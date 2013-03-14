@@ -44,6 +44,16 @@ bool CMobSkill::hasMissMsg()
   return m_Message == 158 || m_Message == 188;
 }
 
+bool CMobSkill::isAoE()
+{
+  return m_Aoe > 0;
+}
+
+bool CMobSkill::isConal()
+{
+  return m_Aoe == 4;
+}
+
 void CMobSkill::setID(uint16 id)
 {
 	m_ID = id;

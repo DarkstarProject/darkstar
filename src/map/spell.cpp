@@ -543,7 +543,7 @@ namespace spell
         if(spell->getSpellGroup() == SPELLGROUP_SONG && (spell->getValidTarget() & TARGET_SELF)){
             // TODO: make sure you have string intru equiped for player
             if(entity->objtype == TYPE_MOB || entity->GetMJob() == JOB_BRD){
-                total += (entity->GetSkill(SKILL_STR) / 276) * 10;
+                total += ((float)entity->GetSkill(SKILL_STR) / 276) * 10;
             }
         }
 

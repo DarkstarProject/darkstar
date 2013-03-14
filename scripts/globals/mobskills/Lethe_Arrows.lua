@@ -21,7 +21,6 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_BIND;
 
-
 	MobStatusEffectMove(mob, target, typeEffect, 1, 0, 120);
 
 	typeEffect = EFFECT_AMNESIA;

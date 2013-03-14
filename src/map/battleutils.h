@@ -75,18 +75,6 @@ enum SPIKES
     SPIKE_REPRISAL             = 6
 };
 
-enum TARGET_PARTY_TYPE
-{
-	SOLO_TARGET			= 0,
-	PARTY_TARGET		= 1,
-	ALLIANCE_TARGET		= 2,
-	PET_PARTY_TARGET	= 3,
-	PET_ALLIANCE_TARGET	= 4,
-	PET_AND_MASTER		= 5,
-	INVALID_MOB_TARGET	= 6,
-    MOB_FAMILY          = 7
-};
-
 namespace battleutils
 {
 	void			LoadSkillTable();
@@ -181,8 +169,6 @@ namespace battleutils
 	uint8				getBarrageShotCount(CCharEntity* PChar);
 	uint8				getStoreTPbonusFromMerit(CBattleEntity* PEntity);
 
-	TARGET_PARTY_TYPE	getAvailableAoeTargets(CBattleEntity* PTarget);
-	bool				handleMobAoeAction(CBattleEntity* PAttacker, CBattleEntity* PTarget, apAction_t* Action, float radius, position_t* radiusAround);
 	EFFECT				getCorsairRollEffect(uint16 id);
     void                ClaimMob(CBattleEntity* PDefender, CBattleEntity* PAttacker);
 };

@@ -26,6 +26,7 @@
 #include "../ability.h"
 #include "../mobskill.h"
 #include "../battleutils.h"
+#include "../targetfinder.h"
 
 #include "ai_general.h"
 

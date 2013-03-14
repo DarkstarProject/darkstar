@@ -36,6 +36,7 @@
 #include "../zone.h"
 #include "../alliance.h"
 #include "../map.h"
+#include "../targetfinder.h"
 
 #include "ai_mob_dummy.h"
 
@@ -57,6 +58,8 @@
 CAIMobDummy::CAIMobDummy(CMobEntity* PMob)
 {
 	m_PMob = PMob;
+    m_PTargetFinder = new CTargetFinder(PMob);
+
 	m_firstSpell = true;
 	m_LastRangedTime = 0;
 	m_WaitTime = 0;
@@ -546,11 +549,12 @@ void CAIMobDummy::ActionAbilityStart()
 
     apAction_t Action;
     m_PMob->m_ActionList.clear();
+
 	if(m_PMobSkill->getValidTargets() == TARGET_ENEMY){ //enemy
-		Action.ActionTarget = m_PBattleTarget;
+	    m_PBattleSubTarget = m_PBattleTarget;
 	}
 	else if(m_PMobSkill->getValidTargets() == TARGET_SELF){ //self
-		Action.ActionTarget = m_PMob;
+	    m_PBattleSubTarget = m_PMob;
 	}
 	else{
 		m_PMob->health.tp = 0;
@@ -559,11 +563,12 @@ void CAIMobDummy::ActionAbilityStart()
 		return;
 	}
 
-	battleutils::MoveIntoRange(m_PMob, m_PBattleTarget, 25);
+	battleutils::MoveIntoRange(m_PMob, m_PBattleSubTarget, 25);
 	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 
 	if( m_PMobSkill->getActivationTime() != 0)
 	{
+		Action.ActionTarget = m_PBattleSubTarget;
 		Action.reaction   = REACTION_HIT;
 		Action.speceffect = SPECEFFECT_HIT;
 		Action.animation  = 0;
@@ -583,11 +588,11 @@ void CAIMobDummy::ActionAbilityStart()
 void CAIMobDummy::ActionAbilityUsing()
 {
 	DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
 	// If our target dies or zones whilst readying, then interrupt the TP move.
-	if(m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget->isDead() ||
-		m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget->getZone() != m_PMob->getZone()){
+	if(m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleSubTarget->isDead() ||
+		m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleSubTarget->getZone() != m_PMob->getZone()){
 		m_ActionType = ACTION_MOBABILITY_INTERRUPT;
 		ActionAbilityInterrupt();
 		return;
@@ -601,8 +606,8 @@ void CAIMobDummy::ActionAbilityUsing()
     {
 		//Range check
 		if(m_PMobSkill->getValidTargets() == TARGET_ENEMY &&
-			m_PBattleTarget!=m_PMob &&
-			distance(m_PBattleTarget->loc.p,m_PMob->loc.p) > m_PMobSkill->getDistance()){
+			m_PBattleSubTarget!=m_PMob &&
+			distance(m_PBattleSubTarget->loc.p,m_PMob->loc.p) > m_PMobSkill->getDistance()){
 
 			m_ActionType = ACTION_MOBABILITY_INTERRUPT;
 			ActionAbilityInterrupt();
@@ -629,8 +634,7 @@ void CAIMobDummy::ActionAbilityUsing()
 void CAIMobDummy::ActionAbilityFinish()
 {
     DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
-
-        m_PMob->m_ActionList.clear();
+    DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
 		// crash fix, a null target made it into CActionPacket
 		if (m_PBattleTarget == NULL)
@@ -648,15 +652,6 @@ void CAIMobDummy::ActionAbilityFinish()
 		// store the skill used
 		m_PMob->m_UsedSkillIds[m_PMobSkill->getID()] = m_PMob->GetMLevel();
 
-		// Who will the ability hit?
-		//   0. Solo player
-		//   1. Party
-		//   2. Alliance
-		//	 3. Pet Party
-		//   4. Pet Alliance
-		TARGET_PARTY_TYPE targetPartyType = SOLO_TARGET; // solo by default
-
-
 	    m_PMobSkill->setTotalTargets(1);
 
 		//handle aoe stuff (self/mob)
@@ -664,207 +659,48 @@ void CAIMobDummy::ActionAbilityFinish()
 		//AOE=2 means the circle is around the BATTLE TARGET
 		//AOE=4 means conal (breath)
 
-		if (m_PMobSkill->getAoe() == 1 || m_PMobSkill->getAoe() == 2) // to handle both types of aoe
+		apAction_t Action;
+		Action.ActionTarget = m_PBattleSubTarget;
+		Action.reaction   = REACTION_HIT;
+		Action.speceffect = SPECEFFECT_HIT;
+		Action.animation  = m_PMobSkill->getAnimationID();
+		Action.subparam   = m_PMobSkill->getID() + 256;
+		Action.messageID  = m_PMobSkill->getMsg();
+		Action.flag		  = 0;
+
+	    m_PTargetFinder->reset(&Action);
+
+		if(m_PMobSkill->isAoE())
 		{
-			if(m_PMobSkill->getValidTargets() == TARGET_ENEMY || m_PMobSkill->getValidTargets() == TARGET_SELF) // aoe on the players
-			{
-				CBattleEntity* PVictim = NULL;
-				if(m_PMobSkill->getValidTargets() == TARGET_SELF){
-					targetPartyType = MOB_FAMILY;
-					PVictim = m_PMob;
-				} else {
-					targetPartyType = battleutils::getAvailableAoeTargets(m_PBattleTarget);
-					PVictim = m_PBattleTarget;
-				}
+			float radius = m_PMobSkill->getDistance();
 
-				apAction_t Action;
-				Action.reaction   = REACTION_HIT;
-				Action.speceffect = SPECEFFECT_HIT;
-				Action.animation  = m_PMobSkill->getAnimationID();
-				Action.subparam   = m_PMobSkill->getID() + 256;
-				Action.messageID  = m_PMobSkill->getMsg();
-				Action.flag		  = 0;
-
-				//determine the type of circle
-				position_t radiusAround = m_PMob->loc.p;	// AOE 1 (circle on mob)
-
-				if(m_PMobSkill->getAoe() == 2) //radius around TARGET not the monster using the ability
-					radiusAround = m_PBattleTarget->loc.p;
-
-				EntityList_t* entities = NULL;
-				float radius = m_PMobSkill->getDistance();
-
-				switch (targetPartyType)
-				{
-					case MOB_FAMILY:
-						if(m_PMob->PParty != NULL){
-							for(uint16 i = 0; i < m_PMob->PParty->members.size(); ++i)
-							{
-								PVictim = m_PMob->PParty->members[i];
-
-								if(PVictim != NULL && battleutils::handleMobAoeAction(m_PMob, PVictim, &Action, radius, &radiusAround))
-								{
-									m_PMob->m_ActionList.push_back(Action);
-								}
-							}
-						}
-					break;
-					case SOLO_TARGET: // single char & maybe a pet
-						if (battleutils::handleMobAoeAction(m_PMob, PVictim, &Action, radius, &radiusAround))
-						{
-							m_PMob->m_ActionList.push_back(Action);
-						}
-
-						if (PVictim->PPet != NULL)
-						{
-							if (battleutils::handleMobAoeAction(m_PMob, PVictim->PPet, &Action, radius, &radiusAround))
-							{
-								m_PMob->m_ActionList.push_back(Action);
-							}
-						}
-						break;
-					case PARTY_TARGET:	// party members and any pets
-						for (uint8 i = 0; i < PVictim->PParty->members.size(); ++i)
-						{
-							if (battleutils::handleMobAoeAction(m_PMob, PVictim->PParty->members.at(i), &Action, radius, &radiusAround))
-							{
-								m_PMob->m_ActionList.push_back(Action);
-							}
-
-							if (PVictim->PParty->members.at(i)->PPet != NULL)
-							{
-								if (battleutils::handleMobAoeAction(m_PMob, PVictim->PParty->members.at(i)->PPet, &Action, radius, &radiusAround))
-								{
-									m_PMob->m_ActionList.push_back(Action);
-								}
-							}
-						}
-						break;
-					case ALLIANCE_TARGET:  // alliance members and any pets
-						for (uint8 a = 0; a < PVictim->PParty->m_PAlliance->partyList.size(); ++a)
-						{
-							for (uint8 i = 0; i < PVictim->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
-							{
-								if (battleutils::handleMobAoeAction(m_PMob, PVictim->PParty->m_PAlliance->partyList.at(a)->members.at(i), &Action, radius, &radiusAround))
-								{
-									m_PMob->m_ActionList.push_back(Action);
-								}
-
-								if (PVictim->PParty->m_PAlliance->partyList.at(a)->members.at(i)->PPet != NULL)
-								{
-									if (battleutils::handleMobAoeAction(m_PMob, PVictim->PParty->m_PAlliance->partyList.at(a)->members.at(i)->PPet, &Action, radius, &radiusAround))
-									{
-										m_PMob->m_ActionList.push_back(Action);
-									}
-								}
-							}
-						}
-						break;
-					case PET_PARTY_TARGET:  // pet with master in a party
-						for (uint8 i = 0; i < PVictim->PMaster->PParty->members.size(); ++i)
-						{
-							if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster->PParty->members.at(i), &Action, radius, &radiusAround))
-							{
-								m_PMob->m_ActionList.push_back(Action);
-							}
-
-							if (PVictim->PMaster->PParty->members.at(i)->PPet != NULL)
-							{
-								if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster->PParty->members.at(i)->PPet, &Action, radius, &radiusAround))
-								{
-									m_PMob->m_ActionList.push_back(Action);
-								}
-							}
-						}
-						break;
-					case PET_ALLIANCE_TARGET:  // pet with master in an alliance
-
-						for (uint8 a = 0; a < PVictim->PMaster->PParty->m_PAlliance->partyList.size(); ++a)
-						{
-							for (uint8 i = 0; i < PVictim->PMaster->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
-							{
-								if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster->PParty->m_PAlliance->partyList.at(a)->members.at(i), &Action, radius, &radiusAround))
-								{
-									m_PMob->m_ActionList.push_back(Action);
-								}
-
-								if (PVictim->PMaster->PParty->m_PAlliance->partyList.at(a)->members.at(i)->PPet != NULL)
-								{
-									if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster->PParty->m_PAlliance->partyList.at(a)->members.at(i)->PPet, &Action, radius, &radiusAround))
-									{
-										m_PMob->m_ActionList.push_back(Action);
-									}
-								}
-							}
-						}
-						break;
-					case PET_AND_MASTER:  // pet with a master
-						if (battleutils::handleMobAoeAction(m_PMob, PVictim, &Action, radius, &radiusAround))
-						{
-							m_PMob->m_ActionList.push_back(Action);
-						}
-
-						if (PVictim->PMaster != NULL)
-						{
-							if (battleutils::handleMobAoeAction(m_PMob, PVictim->PMaster, &Action, radius, &radiusAround))
-							{
-								m_PMob->m_ActionList.push_back(Action);
-							}
-						}
-						break;
-				}
-
-				// handle AoE logic
-				// loop through all targets
-
-			    uint16 actionsLength = m_PMob->m_ActionList.size();
-			    m_PMobSkill->setTotalTargets(actionsLength);
-			    apAction_t* currentAction;
-			    uint16 msg = 0;
-			    for (uint32 i = 0; i < actionsLength; ++i)
-				{
-			        currentAction = &m_PMob->m_ActionList.at(i);
-
-			        CBattleEntity* PTarget = currentAction->ActionTarget;
-
-			        // set default message
-			        m_PMobSkill->resetMsg();
-
-					currentAction->param = luautils::OnMobWeaponSkill(PTarget, m_PMob, m_PMobSkill);
-
-					if(i == 0){
-						msg = m_PMobSkill->getMsg();
-					} else {
-						msg = m_PMobSkill->getAoEMsg();
-					}
-
-					currentAction->messageID = msg;
-
-				}
-
-
-			}
-
+	        m_PTargetFinder->findWithinArea(m_PBattleSubTarget, (AOERADIUS)m_PMobSkill->getAoe(), radius);
 		}
 		else
 		{
-			//single target moves
-			apAction_t Action;
+	        m_PMob->m_ActionList.push_back(Action);
+		}
 
-			if(m_PMobSkill->getValidTargets() == TARGET_ENEMY)
-				Action.ActionTarget = m_PBattleTarget;
+	    uint16 actionsLength = m_PMob->m_ActionList.size();
+	    m_PMobSkill->setTotalTargets(actionsLength);
+	    apAction_t* currentAction;
+	    uint16 msg = 0;
+	    for (uint32 i = 0; i < actionsLength; ++i)
+		{
+	        currentAction = &m_PMob->m_ActionList.at(i);
 
-			else if(m_PMobSkill->getValidTargets() == TARGET_SELF)
-				Action.ActionTarget = m_PMob;
+	        CBattleEntity* PTarget = currentAction->ActionTarget;
 
-			Action.reaction   = REACTION_HIT;
-			Action.speceffect = SPECEFFECT_HIT;
-			Action.animation  = m_PMobSkill->getAnimationID();
-			Action.param	  = luautils::OnMobWeaponSkill(m_PBattleTarget, m_PMob,m_PMobSkill);
-			Action.subparam   = m_PMobSkill->getID() + 256;
-			Action.messageID  = m_PMobSkill->getMsg();
-			Action.flag       = 0;
+	        // set default message
+	        m_PMobSkill->resetMsg();
 
+			currentAction->param = luautils::OnMobWeaponSkill(PTarget, m_PMob, m_PMobSkill);
+
+			if(i == 0){
+				msg = m_PMobSkill->getMsg();
+			} else {
+				msg = m_PMobSkill->getAoEMsg();
+			}
 
 			if(m_PMobSkill->hasMissMsg())
 			{
@@ -873,7 +709,7 @@ void CAIMobDummy::ActionAbilityFinish()
 			    Action.reaction   = REACTION_HIT;
 			}
 
-			m_PMob->m_ActionList.push_back(Action);
+			currentAction->messageID = msg;
 
 		}
 
@@ -894,6 +730,10 @@ void CAIMobDummy::ActionAbilityFinish()
 	}
 	else
 	{
+		// increase magic / ranged timer so its not used right after
+		m_LastMagicTime += m_PMobSkill->getAnimationTime();
+		m_LastRangedTime += m_PMobSkill->getAnimationTime();
+
 		m_ActionType = ACTION_ATTACK;
 	}
 
@@ -1185,8 +1025,6 @@ void CAIMobDummy::ActionMagicFinish()
 	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL || m_PSpell == NULL);
 
 	apAction_t Action;
-	CBattleEntity* PTarget;
-    m_PMob->m_ActionList.clear();
 
 	Action.ActionTarget = m_PBattleSubTarget;
 	Action.reaction   = REACTION_NONE;
@@ -1195,115 +1033,16 @@ void CAIMobDummy::ActionMagicFinish()
 	Action.param      = 0;
 	Action.messageID  = 0;
 	Action.flag		  = 0;
+
 	m_LastMagicTime = m_Tick; // reset this in case the spell is long casting, don't want to immediately recast
+
+    m_PTargetFinder->reset(&Action);
 
 	if (m_PSpell->isAOE()) {
 		float radius = spell::GetSpellRadius(m_PSpell, m_PMob);
 
-		TARGET_PARTY_TYPE targetPartyType;
+        m_PTargetFinder->findWithinArea(m_PBattleSubTarget, AOERADIUS_TARGET, radius);
 
-		if(m_PSpell->isBuff()){
-			// targeting myself, so make it type family
-			targetPartyType = MOB_FAMILY;
-		} else {
-			 targetPartyType = battleutils::getAvailableAoeTargets(m_PBattleSubTarget);
-		}
-
-		position_t radiusAround = m_PBattleSubTarget->loc.p;
-		EntityList_t* entities = NULL;
-		CBattleEntity* PVictim = m_PBattleSubTarget;
-
-		switch (targetPartyType) {
-		case MOB_FAMILY:
-			// Buff everyone in my family
-
-			// add all my hommies
-			if(m_PMob->PParty != NULL){
-				for(uint16 i = 0; i < m_PMob->PParty->members.size(); ++i)
-				{
-					PVictim = m_PMob->PParty->members[i];
-
-					if(PVictim != NULL && battleutils::handleMobAoeAction(m_PMob, PVictim, &Action, radius, &radiusAround))
-					{
-						m_PMob->m_ActionList.push_back(Action);
-					}
-				}
-			}
-			break;
-		case SOLO_TARGET:
-			PVictim = m_PBattleSubTarget->PPet;
-			if (PVictim != NULL && battleutils::handleMobAoeAction(m_PMob, PVictim, &Action, radius, &radiusAround)) {
-				m_PMob->m_ActionList.push_back(Action);
-			}
-
-			PVictim = m_PBattleSubTarget;
-			if (PVictim != NULL && battleutils::handleMobAoeAction(m_PMob, PVictim, &Action, radius, &radiusAround)) {
-				m_PMob->m_ActionList.push_back(Action);
-			}
-			break;
-		case PARTY_TARGET:
-			for (uint8 i = 0; i < m_PBattleSubTarget->PParty->members.size(); ++i) {
-				CBattleEntity* PVictim = m_PBattleSubTarget->PParty->members[i];
-				if (PVictim != NULL && battleutils::handleMobAoeAction(m_PMob, PVictim, &Action, radius, &radiusAround)) {
-					m_PMob->m_ActionList.push_back(Action);
-				}
-			}
-			break;
-		case ALLIANCE_TARGET:
-			for (uint8 a = 0; a < m_PBattleSubTarget->PParty->m_PAlliance->partyList.size(); ++a) {
-				for (uint8 i = 0; i < m_PBattleSubTarget->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i) {
-
-					PVictim = m_PBattleSubTarget->PParty->m_PAlliance->partyList.at(a)->members.at(i);
-
-					// add the member of the alliance
-					if (PVictim != NULL && battleutils::handleMobAoeAction(m_PMob, PVictim, &Action, radius, &radiusAround)) {
-						m_PMob->m_ActionList.push_back(Action);
-					}
-
-					// add the member's pet too
-					if (PVictim->PPet != NULL && battleutils::handleMobAoeAction(m_PMob, PVictim->PPet, &Action, radius, &radiusAround)) {
-						m_PMob->m_ActionList.push_back(Action);
-					}
-				}
-			}
-			break;
-		case PET_PARTY_TARGET:
-			for (uint8 i = 0; i < m_PBattleSubTarget->PMaster->PParty->members.size(); ++i) {
-
-				PVictim = m_PBattleSubTarget->PMaster->PParty->members.at(i);
-
-				if (PVictim != NULL && battleutils::handleMobAoeAction(m_PMob, PVictim, &Action, radius, &radiusAround)) {
-						m_PMob->m_ActionList.push_back(Action);
-				}
-
-				if (PVictim->PPet != NULL && battleutils::handleMobAoeAction(m_PMob, PVictim->PPet, &Action, radius, &radiusAround)) {
-						m_PMob->m_ActionList.push_back(Action);
-					}
-			}
-			break;
-		case PET_ALLIANCE_TARGET:
-			for (uint8 a = 0; a < m_PBattleSubTarget->PMaster->PParty->m_PAlliance->partyList.size(); ++a) {
-				for (uint8 i = 0; i < m_PBattleSubTarget->PMaster->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i) {
-
-					PVictim = m_PBattleSubTarget->PMaster->PParty->m_PAlliance->partyList.at(a)->members.at(i);
-
-					if (PVictim != NULL && battleutils::handleMobAoeAction(m_PMob, PVictim, &Action, radius, &radiusAround)) {
-						m_PMob->m_ActionList.push_back(Action);
-					}
-
-					if (PVictim->PPet != NULL && battleutils::handleMobAoeAction(m_PMob, PVictim->PPet, &Action, radius, &radiusAround)) {
-						m_PMob->m_ActionList.push_back(Action);
-					}
-				}
-			}
-			break;
-		case PET_AND_MASTER:
-			PVictim = m_PBattleSubTarget->PMaster;
-			if (PVictim != NULL && battleutils::handleMobAoeAction(m_PMob, PVictim, &Action, radius, &radiusAround)) {
-				m_PMob->m_ActionList.push_back(Action);
-			}
-			break;
-		}
 	} else {
 		// only add target
 	    m_PMob->m_ActionList.push_back(Action);
@@ -1311,6 +1050,8 @@ void CAIMobDummy::ActionMagicFinish()
 
     uint16 actionsLength = m_PMob->m_ActionList.size();
 	m_PSpell->setTotalTargets(actionsLength);
+
+	CBattleEntity* PTarget = NULL;
 
 	for (uint32 i = 0; i < actionsLength; ++i)
 	{

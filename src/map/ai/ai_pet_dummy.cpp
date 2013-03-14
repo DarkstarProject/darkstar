@@ -30,6 +30,7 @@
 #include "../zone.h"
 #include "../mobskill.h"
 #include "../petutils.h"
+#include "../targetfinder.h"
 
 #include "../lua/luautils.h"
 
@@ -52,6 +53,7 @@
 CAIPetDummy::CAIPetDummy(CPetEntity* PPet)
 {
 	m_PPet = PPet;
+    m_PTargetFinder = new CTargetFinder(PPet);
 }
 
 /************************************************************************
@@ -324,7 +326,6 @@ void CAIPetDummy::ActionAbilityUsing()
 
 void CAIPetDummy::ActionAbilityFinish(){
 	DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
-    m_PPet->m_ActionList.clear();
 
 	apAction_t Action;
 
@@ -364,63 +365,18 @@ void CAIPetDummy::ActionAbilityFinish(){
 	Action.subparam   = m_PMobSkill->getID() + 256;
 	Action.flag       = 0;
 
-	m_PPet->m_ActionList.push_back(Action);
+	// reset AoE finder
+    m_PTargetFinder->reset(&Action);
+    uint8 radius = m_PMobSkill->getDistance();
 
-	//check for aoe moves (buffs)
-	if (m_PMobSkill->getAoe()==1 && m_PPet->getPetType()==PETTYPE_AVATAR || m_PPet->objtype == TYPE_MOB){ //aoe
-		if(m_PMobSkill->getValidTargets() == TARGET_SELF){//on the masters pt
-			//add effect on master (solo play)
-			if (m_PPet->PMaster->PParty==NULL && !m_PPet->PMaster->isDead()
-				&& distance(m_PPet->loc.p, m_PPet->PMaster->loc.p) <= m_PMobSkill->getDistance()){
-			    Action.ActionTarget = m_PPet->PMaster;
-			    m_PPet->m_ActionList.push_back(Action);
-			}
-			//add effect on master's pt (incl. master)
-			if (m_PPet->PMaster->PParty != NULL){
-			    for (uint8 i = 0; i < m_PPet->PMaster->PParty->members.size(); ++i)
-			    {
-				    CBattleEntity* PTarget = m_PPet->PMaster->PParty->members[i];
-
-				    if (!PTarget->isDead() &&
-					   distance(m_PPet->loc.p, PTarget->loc.p) <= m_PMobSkill->getDistance())
-				    {
-					    Action.ActionTarget = PTarget;
-					    m_PPet->m_ActionList.push_back(Action);
-				    }
-				}
-			}
-
-		}
-		else if(m_PMobSkill->getValidTargets()==TARGET_ENEMY && m_PBattleSubTarget!=NULL &&
-			m_PBattleSubTarget->objtype == TYPE_MOB && m_PPet->PMaster->objtype==TYPE_PC){//aoe -ga move
-			CCharEntity* PChar = (CCharEntity*)m_PPet->PMaster;
-			for (SpawnIDList_t::const_iterator it = PChar->SpawnMOBList.begin();  it != PChar->SpawnMOBList.end() && m_PPet->m_ActionList.size() < 16; ++it)
-		    {
-			    CBattleEntity* PTarget = (CBattleEntity*)it->second;
-
-				if (m_PBattleSubTarget != PTarget && !PTarget->isDead() &&
-					distance(m_PBattleSubTarget->loc.p, PTarget->loc.p) <= m_PMobSkill->getDistance()){
-					bool petOwnsMob = false;
-					if (m_PPet->PMaster->PParty != NULL) {
-						for (uint8 i = 0; i < m_PPet->PMaster->PParty->members.size(); ++i){
-							if (m_PPet->PMaster->PParty->members[i]->id == PTarget->m_OwnerID.id){
-								petOwnsMob = true;
-								break;
-							}
-						}
-					}
-					if(PTarget->m_OwnerID.id == 0 || PTarget->m_OwnerID.id == m_PPet->PMaster->id){
-						petOwnsMob = true;
-					}
-					if(petOwnsMob){
-						Action.ActionTarget = PTarget;
-						m_PPet->m_ActionList.push_back(Action);
-					}
-			    }
-		    }
-		}
-	}
-
+    if(m_PMobSkill->isAoE())
+    {
+    	m_PTargetFinder->findWithinArea(m_PBattleSubTarget, (AOERADIUS)m_PMobSkill->getAoe(), radius);
+    }
+    else
+    {
+    	m_PPet->m_ActionList.push_back(Action);
+    }
 
 	//call the script for each monster hit
 	uint16 totalTargets = m_PPet->m_ActionList.size();

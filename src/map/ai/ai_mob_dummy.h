@@ -32,19 +32,19 @@
 #include "../battleentity.h"
 #include "ai_general.h"
 
-enum AOERANGE
-{
-    AOE_PARTY	 = 0x01,
-    AOE_ALLIANCE = 0x02,
-    AOE_ZONE	 = 0x04
-};
-
 /************************************************************************
 *																		*
 *  Первая версия поведения монстров, базовая. Монстры наносят только	*
 *  физический урон														*
 *																		*
 ************************************************************************/
+
+enum AOERANGE
+{
+    AOE_PARTY  = 0x01,
+    AOE_ALLIANCE = 0x02,
+    AOE_ZONE   = 0x04
+};
 
 class CMobEntity;
 

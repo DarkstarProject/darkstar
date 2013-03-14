@@ -86,6 +86,7 @@ class CBattleEntity;
 class CAbility;
 class CWeaponSkill;
 class CMobSkill;
+class CTargetFinder;
 
 class CAIGeneral
 {
@@ -150,6 +151,7 @@ protected:
 	CWeaponSkill*   m_PWeaponSkill;
 	CAbility*		m_PJobAbility;
 	CMobSkill*		m_PMobSkill;
+    CTargetFinder*  m_PTargetFinder; // finds targets for AoEs
 };
 
 #endif
