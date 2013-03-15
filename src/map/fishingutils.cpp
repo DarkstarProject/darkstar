@@ -225,8 +225,8 @@ bool CheckFisherLuck(CCharEntity* PChar)
                 "fish.size,"        // 3
                 "fish.stamina,"     // 4
                 "fish.watertype,"   // 5
-                "rod.flag "         // 6
-                "lure.luck,"        // 7
+                "rod.flag, "         // 6
+                "lure.luck "        // 7
             "FROM fishing_zone AS zone "
             "INNER JOIN fishing_rod  AS rod  USING (fishid) "
 			"INNER JOIN fishing_lure AS lure USING (fishid) "
