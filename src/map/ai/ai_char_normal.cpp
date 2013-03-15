@@ -1565,6 +1565,9 @@ void CAICharNormal::ActionMagicInterrupt()
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
 	m_LastMeleeTime += (m_Tick - m_LastActionTime);
+
+    m_LastCoolDown = m_Tick;
+
 	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 	m_PSpell = NULL;
 	m_PBattleSubTarget = NULL;
