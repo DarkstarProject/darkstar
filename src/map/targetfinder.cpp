@@ -65,7 +65,6 @@ void CTargetFinder::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType,
     m_PRadiusAround = &PTarget->loc.p;
   }
 
-
   // get master to properly handle loops
   m_PMasterTarget = findMaster(PTarget);
 
@@ -137,17 +136,13 @@ void CTargetFinder::addAllInMobList(CBattleEntity* PTarget, bool withPet)
 
 void CTargetFinder::addAllInAlliance(CBattleEntity* PTarget, bool withPet)
 {
-  uint8 parties = PTarget->PParty->m_PAlliance->partyList.size();
-  uint8 partySize = 0;
   CParty* party = NULL;
 
-  for(uint16 i = 0; i < parties; i++)
+  for(uint16 i = 0; i < PTarget->PParty->m_PAlliance->partyList.size(); i++)
   {
     party = PTarget->PParty->m_PAlliance->partyList.at(i);
 
-    partySize = party->members.size();
-
-    for(uint16 p = 0; p < partySize; p++)
+    for(uint16 p = 0; p < party->members.size(); p++)
     {
 
       addEntity(party->members.at(p), withPet);
@@ -161,11 +156,8 @@ void CTargetFinder::addAllInParty(CBattleEntity* PTarget, bool withPet)
 
   CParty* party = PTarget->PParty;
 
-  uint8 partySize = party->members.size();
-
-  ShowDebug("Adding all in party size: %d\n", partySize);
-
-  for(uint16 p = 0; p < partySize; p++)
+  // don't cache the party size!
+  for(uint16 p = 0; p < party->members.size(); p++)
   {
 
     addEntity(party->members.at(p), withPet);
@@ -205,20 +197,12 @@ CBattleEntity* CTargetFinder::findMaster(CBattleEntity* PTarget)
 
 bool CTargetFinder::validEntity(CBattleEntity* PTarget)
 {
-  // I was already added first
+  // I was already added
   if(PTarget == m_PTarget) return false;
 
   // make sure i'm not over limit
   if(m_PBattleEntity->m_ActionList.size() > MAX_AOE_TARGETS) return false;
 
-  /*float dis = distance(*m_PRadiusAround, PTarget->loc.p);
-
-  if(dis <= m_radius)
-  {
-    ShowDebug("Target is within range\n");
-  }
-     ShowDebug("Target is distanced %f, radius %f\n", dis, m_radius);
-*/
   if (PTarget->isDead() || PTarget->getZone() != m_zone || distance(*m_PRadiusAround, PTarget->loc.p) > m_radius)
   {
     return false;
