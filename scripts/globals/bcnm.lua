@@ -267,7 +267,7 @@ function GetBattleBitmask(id,zone,mode)
 	for zoneindex = 1, table.getn(bcnmid_param_map), 2 do
 		if(zone==bcnmid_param_map[zoneindex])then --matched zone
 			for bcnmindex = 1, table.getn(bcnmid_param_map[zoneindex + 1]), 2 do --loop bcnms in this zone
-				if(id==bcnmid_param_map[zoneindex+1][bcnmindex])then --found bcnmid				
+				if(id==bcnmid_param_map[zoneindex+1][bcnmindex])then --found bcnmid
 					if(mode == 1) then
 						return 2^bcnmid_param_map[zoneindex+1][bcnmindex+1]; -- for trigger (mode 1): 1,2,4,8,16,32,...
 					else
@@ -291,52 +291,41 @@ function ItemToBCNMID(player,zone,trade)
 					-- Job/lvl condition for smn battle lvl20
 					if(item >= 1544 and item <= 1549 and player:getMainJob() == 15 and player:getMainLvl() >= 20) then 
 						questTimelineOK = 1;
-					-- AF3 SAM condition
-					elseif(item == 1166 and player:getVar("aThiefinNorgCS") == 6) then
+					elseif(item == 1166 and player:getVar("aThiefinNorgCS") == 6) then -- AF3 SAM condition
 						questTimelineOK = 1;
-					elseif(item == 1551) then
+					elseif(item == 1551) then -- BCNM20 
 						questTimelineOK = 1;
-					-- BCNM20 
-					elseif(item == 1552) then
+					elseif(item == 1552) then -- BCNM30
 						questTimelineOK = 1;
-					-- BCNM30
-					elseif(item == 1130) then
+					elseif(item == 1131) then -- BCNM40
 						questTimelineOK = 1;
-					-- BCNM60 
-					elseif(item == 1175) then
+					elseif(item == 1130) then -- BCNM60
 						questTimelineOK = 1;
-					-- KSNM30	
-					elseif(item == 1178) then
+					elseif(item == 1175) then -- KSNM30
 						questTimelineOK = 1;
-					-- KSNM30	
-					elseif(item == 1180) then
+					elseif(item == 1178) then -- KSNM30
 						questTimelineOK = 1;
-					-- KSNM30						
-					elseif(item == 1553) then
+					elseif(item == 1180) then -- KSNM30
 						questTimelineOK = 1;
-					-- KSNM99
-					elseif(item == 1550) then
+					elseif(item == 1553) then -- KSNM99
 						questTimelineOK = 1;
-					-- Divine Might	
-					elseif(item == 1169 and player:getVar("ThePuppetMasterProgress") == 2) then
+					elseif(item == 1550) then -- Divine Might
 						questTimelineOK = 1;
-					-- The Puppet Master
-					elseif(item == 1171 and player:getVar("ClassReunionProgress") == 5) then
+					elseif(item == 1169 and player:getVar("ThePuppetMasterProgress") == 2) then -- The Puppet Master
 						questTimelineOK = 1;
-					-- Class Reunion
-					elseif(item == 1172 and player:getVar("CarbuncleDebacleProgress") == 3) then
+					elseif(item == 1171 and player:getVar("ClassReunionProgress") == 5) then -- Class Reunion
 						questTimelineOK = 1;
-					-- Carbuncle Debacle (Gremlims)
-					elseif(item == 1174 and player:getVar("CarbuncleDebacleProgress") == 6) then
+					elseif(item == 1172 and player:getVar("CarbuncleDebacleProgress") == 3) then -- Carbuncle Debacle (Gremlims)
 						questTimelineOK = 1;
-					-- Carbuncle Debacle (Ogmios)
+					elseif(item == 1174 and player:getVar("CarbuncleDebacleProgress") == 6) then -- Carbuncle Debacle (Ogmios)
+						questTimelineOK = 1;
 					end
 					
 					if(questTimelineOK == 1) then
 						player:setVar("trade_bcnmid",itemid_bcnmid_map[zoneindex+1][bcnmindex+1]);
 						player:setVar("trade_itemid",itemid_bcnmid_map[zoneindex+1][bcnmindex]);
 						return itemid_bcnmid_map[zoneindex+1][bcnmindex+1];
-					end							
+					end
 			
 				end
 			end
@@ -361,17 +350,17 @@ function checkNonTradeBCNM(player,npc)
 	         player:setVar("trade_bcnmid",706);
 	    end	
 	elseif(Zone == 17) then --Spire of Holla
-	    if(player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(LIGHT_OF_HOLLA) == false) then -- light of holla	
+	    if(player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(LIGHT_OF_HOLLA) == false) then -- light of holla
 	        mask = GetBattleBitmask(768,Zone,1);
 	        player:setVar("trade_bcnmid",768);
 	    end
 	elseif(Zone == 19) then --Spire of Dem
-	    if(player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(LIGHT_OF_DEM) == false) then -- light of dem	
+	    if(player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(LIGHT_OF_DEM) == false) then -- light of dem
 	        mask = GetBattleBitmask(800,Zone,1);
 	        player:setVar("trade_bcnmid",800);
 	    end	
 	elseif(Zone == 21) then --Spire of Mea
-	    if(player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(LIGHT_OF_MEA) == false) then -- light of mea	
+	    if(player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(LIGHT_OF_MEA) == false) then -- light of mea
 	        mask = GetBattleBitmask(832,Zone,1);
 	        player:setVar("trade_bcnmid",832);
 	    end
