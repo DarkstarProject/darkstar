@@ -896,7 +896,11 @@ void CAIMobDummy::ActionWait()
 {
 	// lets just chill here for a bit
 	if(m_Tick - m_LastWaitTime >= m_WaitTime){
-		m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+		if(m_PMob->PEnmityContainer->GetHighestEnmity() == NULL){
+			m_ActionType = ACTION_ROAMING;
+		} else {
+			m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+		}
 	}
 
 	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
@@ -1109,23 +1113,20 @@ void CAIMobDummy::ActionMagicFinish()
 
 	m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 
-	if(m_PMob->PEnmityContainer->GetHighestEnmity() == NULL){
-		// just buffing, lets go back to roaming
-		m_ActionType = ACTION_ROAMING;
-	} else if(m_ActionType == ACTION_NONE){
-		// attack something
-		m_ActionType = ACTION_ENGAGE;
-		ActionEngage();
-		return;
-	} else {
-		if (m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL,0) ) {
-			// let's make CSing monsters actually use lots of spells.
-			m_LastMagicTime = m_Tick - m_PMob->m_MagicRecastTime + m_PSpell->getAnimationTime(); // so the animations look correct.
-		}
+	if (m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL,0) ) {
+		// let's make CSing monsters actually use lots of spells.
+		m_LastMagicTime = m_Tick - m_PMob->m_MagicRecastTime + m_PSpell->getAnimationTime(); // so the animations look correct.
 	}
+
+    m_LastWaitTime = m_Tick;
+	m_WaitTime = 1000;
 
 	m_PSpell = NULL;
 	m_PBattleSubTarget = NULL;
+
+	// display animation, then continue fighting
+	m_ActionType = ACTION_WAIT;
+
 }
 
 /************************************************************************

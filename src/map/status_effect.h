@@ -53,7 +53,7 @@ enum EFFECTFLAG
     EFFECTFLAG_MAGIC_END        = 0x0080,     // исчезает после прочтения заклинания
   	EFFECTFLAG_ON_ZONE          = 0x0100,
     EFFECTFLAG_NO_LOSS_MESSAGE  = 0x0200,     // Suppress effect worn off message.
-    EFFECTFLAG_INVISIBLE		= 1024,
+    EFFECTFLAG_INVISIBLE		= 1024, // invisible effect
     EFFECTFLAG_DETECTABLE		= 2048 // invisible, sneak, deo
 };
 
@@ -522,9 +522,9 @@ enum EFFECT
 	EFFECT_PERPETUANCE				= 469,
 	EFFECT_IMMANENCE				= 470,
 	EFFECT_MIGAWARI					= 471,
-	EFFECT_NINJUTSU_ELE_DEBUFF      = 490,
 	EFFECT_AVATAR					= 491,
 
+	EFFECT_NINJUTSU_ELE_DEBUFF      = 510,
 	EFFECT_DYNAMIS					= 511, // TODO: > 768
 	EFFECT_HEALING					= 512, // TODO: > 768
 	EFFECT_LEAVEGAME				= 513, // TODO: > 768
