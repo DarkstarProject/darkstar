@@ -792,10 +792,8 @@ function handleThrenody(caster, target, spell, basePower, baseDuration, modifier
 end;
 
 function handleNinjutsuDebuff(caster, target, spell, basePower, baseDuration, modifier)
-	-- Remove previous
-    target:delStatusEffect(EFFECT_NINJUTSU_ELE_DEBUFF);
     -- Add new
-    target:addStatusEffect(EFFECT_NINJUTSU_ELE_DEBUFF, basePower, 0, baseDuration, 0, modifier, 0);
+    target:addStatusEffectEx(EFFECT_NINJUTSU_ELE_DEBUFF, 0, basePower, 0, baseDuration, 0, modifier, 0);
 	return EFFECT_NINJUTSU_ELE_DEBUFF;
 end;
 
