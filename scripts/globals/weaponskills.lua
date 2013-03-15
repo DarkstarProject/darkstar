@@ -127,9 +127,6 @@ function doPhysicalWeaponskill(attacker, target, params)
 		end
 		tpHitsLanded = 1;
 	end
-	-- remove effects
-    target:delStatusEffect(EFFECT_ASSASSIN_S_CHARGE);
-    target:delStatusEffect(EFFECT_WARRIOR_S_CHARGE);
 
 	tpHits = 1;
 	if((attacker:getOffhandDmg() ~= 0) and (attacker:getOffhandDmg() > 0 or attacker:getWeaponSkillType(0)==1)) then
@@ -680,6 +677,10 @@ function getMultiAttacks(attacker, numHits)
 					bonusHits = bonusHits + 1;
 				end
 			end
+		end
+		if (i == 1) then
+			target:delStatusEffect(EFFECT_ASSASSIN_S_CHARGE);
+			target:delStatusEffect(EFFECT_WARRIOR_S_CHARGE);
 		end
 	end
 	if ((numHits + bonusHits ) > 8) then
