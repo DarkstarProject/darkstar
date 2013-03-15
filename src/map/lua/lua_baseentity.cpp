@@ -1890,6 +1890,9 @@ inline int32 CLuaBaseEntity::levelRestriction(lua_State* L)
 					PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
 
 					charutils::BuildingCharSkillsTable(PChar);
+					charutils::BuildingCharAbilityTable(PChar);
+					charutils::BuildingCharTraitsTable(PChar);
+					charutils::BuildingCharWeaponSkills(PChar);
 					charutils::CalculateStats(PChar);
 					charutils::CheckValidEquipment(PChar);
 
