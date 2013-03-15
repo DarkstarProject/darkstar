@@ -63,7 +63,7 @@ protected:
   uint32 m_LastRangedTime;
   uint32 m_LastWaitTime;
   uint32 m_WaitTime;
-  uint8 m_skillTP;
+  uint16 m_skillTP;
 
 	void ActionRoaming();
 	void ActionEngage();
