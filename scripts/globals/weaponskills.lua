@@ -127,6 +127,10 @@ function doPhysicalWeaponskill(attacker, target, params)
 		end
 		tpHitsLanded = 1;
 	end
+	-- remove effects
+    target:delStatusEffect(EFFECT_ASSASSIN_S_CHARGE);
+    target:delStatusEffect(EFFECT_WARRIOR_S_CHARGE);
+
 	tpHits = 1;
 	if((attacker:getOffhandDmg() ~= 0) and (attacker:getOffhandDmg() > 0 or attacker:getWeaponSkillType(0)==1)) then
 
