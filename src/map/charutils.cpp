@@ -1241,6 +1241,11 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 						((CItemArmor*)PItem)->modList.at(i)->getModAmount());
 				}
 			}
+			// Removed sub item, if main hand is empty, then possibly eligible for H2H weapon
+			if (!(PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN])->getType() & ITEM_ARMOR))
+			{
+				CheckUnarmedWeapon(PChar);
+			}
 		} else {
 			PChar->delModifiers(&((CItemArmor*)PItem)->modList);
 		}
@@ -1306,10 +1311,11 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 					PChar->PBattleAI->SetLastActionTime(gettick());
 				}
 
-				PChar->look.main = 0;
-                PChar->m_Weapons[SLOT_MAIN] = (PChar->GetMJob() == JOB_MNK ?
-                    itemutils::GetUnarmedH2HItem() :
-                    itemutils::GetUnarmedItem());
+				// If main hand is empty, figure out which UnarmedItem to give the player.
+				if (!(PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN])->getType() & ITEM_ARMOR))
+				{
+					CheckUnarmedWeapon(PChar);
+				}
 
 				PChar->health.tp = 0;
 				BuildingCharWeaponSkills(PChar);
@@ -1606,6 +1612,11 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 								((CItemArmor*)PItem)->modList.at(i)->getModAmount());
 						}
 					}
+					// If main hand is empty, check which UnarmedItem to use.
+					if (!(PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN])->getType() & ITEM_ARMOR))
+					{
+						CheckUnarmedWeapon(PChar);
+					}
 				} else {
 					PChar->addModifiers(&PItem->modList);
 				}
@@ -1621,13 +1632,17 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
     if (equipSlotID == SLOT_MAIN || equipSlotID == SLOT_RANGED)
     {
         PChar->health.tp = 0;
-        // fixes logging in with no h2h
+        /*// fixes logging in with no h2h
         if(PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_NONE && PChar->GetMJob() == JOB_MNK){
             PChar->m_Weapons[SLOT_MAIN] = itemutils::GetUnarmedH2HItem();
         } else if(PChar->m_Weapons[SLOT_MAIN] == itemutils::GetUnarmedH2HItem() && PChar->GetMJob() != JOB_MNK) {
             // return back to normal if changed jobs
             PChar->m_Weapons[SLOT_MAIN] = itemutils::GetUnarmedItem();
-        }
+        }*/
+		if (!(PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN])->getType() & ITEM_ARMOR) || PChar->m_Weapons[SLOT_MAIN] == itemutils::GetUnarmedH2HItem())
+		{
+			CheckUnarmedWeapon(PChar);
+		}
 
         BuildingCharWeaponSkills(PChar);
     }
@@ -1660,6 +1675,11 @@ void CheckValidEquipment(CCharEntity* PChar)
             UnequipItem(PChar, slotID);
         }
 	}
+	// Unarmed H2H weapon check
+	if (!(PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN])->getType() & ITEM_ARMOR) || PChar->m_Weapons[SLOT_MAIN] == itemutils::GetUnarmedH2HItem())
+	{
+		CheckUnarmedWeapon(PChar);
+	}
 
 	PChar->pushPacket(new CCharAppearancePacket(PChar));
 
@@ -1681,6 +1701,8 @@ void RemoveAllEquipment(CCharEntity* PChar)
             UnequipItem(PChar, slotID);
         }
     }
+	// Determines the UnarmedItem to use, since all slots are empty now.
+	CheckUnarmedWeapon(PChar);
     PChar->pushPacket(new CCharAppearancePacket(PChar));
 
     BuildingCharWeaponSkills(PChar);
@@ -3740,5 +3762,27 @@ void SaveDeathTime(CCharEntity* PChar)
 	Sql_Query(SqlHandle, fmtQuery, (uint32)time(NULL), PChar->id);
 }
 
+/************************************************************************
+*																		*
+*  Checks which UnarmedItem to grant when SLOT_MAIN is empty.			*
+*																		*
+************************************************************************/
+
+void CheckUnarmedWeapon(CCharEntity* PChar)
+{
+	CItem* PSubslot = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
+
+	// Main or sub job provides H2H skill, and sub slot is empty.
+	if ((battleutils::GetSkillRank(SKILL_H2H,PChar->GetMJob()) > 0 || battleutils::GetSkillRank(SKILL_H2H,PChar->GetSJob()) > 0) &&
+		!(PSubslot->getType() & ITEM_ARMOR))
+	{
+		PChar->m_Weapons[SLOT_MAIN] = itemutils::GetUnarmedH2HItem();
+		PChar->look.main = 21;											// The secret to H2H animations.  setModelId for UnarmedH2H didn't work.
+	} else {
+		PChar->m_Weapons[SLOT_MAIN] = itemutils::GetUnarmedItem();
+		PChar->look.main = 0;
+	}
+	BuildingCharWeaponSkills(PChar);
+}
 
 } // namespace charutils
