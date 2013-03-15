@@ -580,6 +580,11 @@ void CAIMobDummy::ActionAbilityStart()
 		m_PMob->m_ActionList.push_back(Action);
 		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
 	}
+
+	m_PMobSkill->setTP(m_PMob->health.tp); // store the TP the mob currently has as the mob skill TP modifier
+	// remove tp
+	m_PMob->health.tp = 0;
+
 	m_ActionType = ACTION_MOBABILITY_USING;
 }
 
@@ -615,7 +620,6 @@ void CAIMobDummy::ActionAbilityUsing()
 			return;
 		}
 
-		m_PMobSkill->setTP(m_PMob->health.tp); // store the TP the mob currently has as the mob skill TP modifier
 		m_LastActionTime = m_Tick;
 		m_ActionType = ACTION_MOBABILITY_FINISH;
 		ActionAbilityFinish();
@@ -721,7 +725,6 @@ void CAIMobDummy::ActionAbilityFinish()
 		}
 
 		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
-		m_PMob->health.tp = 0;
 
 	if (m_PMob->isDead()) //e.g. self-destruct. Needed here AFTER sending the action packets.
 	{

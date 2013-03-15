@@ -145,10 +145,10 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	end
 
 	-- increase damage based on tp
-	if(mob:getTP() >= 200) then
-		dmgmod = dmgmod + 1.5;
-	elseif(mob:getTP() == 300) then
+	if(skill:getTP() == 300) then
 		dmgmod = dmgmod + 2;
+	elseif(skill:getTP() >= 200) then
+		dmgmod = dmgmod + 1.5;
 	end
 
 	--work out the base damage for a single hit
