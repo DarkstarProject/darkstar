@@ -37,13 +37,14 @@ class CWeaponSkill
 public:
 
 	CWeaponSkill(uint16 id);
-    
+
 	uint16		getID();
 	uint8		getJob(JOBTYPE JobID);
 	uint16		getSkillLevel();
 	uint8		getRange();
 	uint8       getElement();
-	
+
+    bool       isAoE();
 	uint8		getAoe();
 	uint8		getAnimationId();
 	uint8       getType();
@@ -57,9 +58,9 @@ public:
     void		setSecondarySkillchain(uint8 skillchain);
     void		setTertiarySkillchain(uint8 skillchain);
 	void		setAoe(uint8 aoe);
-	void        setAnimationId(int8 animation); 
+	void        setAnimationId(int8 animation);
 	void		setType(uint8 type);
-	
+
 	bool        hasElement(uint8 elements);
 
     uint8       getPrimarySkillchain();
@@ -68,12 +69,12 @@ public:
 
 	const int8* getName();
 	void		setName(int8* name);
-	
+
 private:
 
 	uint16		m_ID;
 	uint8       m_TypeID;
-	uint8		m_Job[MAX_JOBTYPE]; 
+	uint8		m_Job[MAX_JOBTYPE];
 	uint16		m_Skilllevel;
 	uint8       m_AnimationId;
 	uint8       m_Element;

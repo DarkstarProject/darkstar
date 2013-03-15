@@ -2659,58 +2659,49 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	m_PChar->m_ActionList.push_back(Action);
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
-	m_PChar->m_ActionList.clear();
-	//2 == AoE on Target
-	//4 == Cone on Target (Not supported?)
-	if ( m_PWeaponSkill->getAoe() == 2 || m_PWeaponSkill->getAoe() == 4)
-	{
-		apAction_t AoEAction;
 
-		AoEAction.reaction = REACTION_HIT;
-		AoEAction.speceffect = SPECEFFECT_RECOIL;
-		AoEAction.animation = m_PWeaponSkill->getAnimationId();
-		AoEAction.flag = 0;
+    if(m_PWeaponSkill->getAoe())
+    {
+        apAction_t AoEAction;
 
-		if (m_PBattleSubTarget->objtype == TYPE_MOB)
-		{
-			for (SpawnIDList_t::const_iterator it = m_PChar->SpawnMOBList.begin(); it != m_PChar->SpawnMOBList.end() && m_PChar->m_ActionList.size() < 15; ++it)
-			{
-				CBattleEntity* PTarget = (CBattleEntity*)it->second;
+        AoEAction.reaction = REACTION_HIT;
+        AoEAction.speceffect = SPECEFFECT_RECOIL;
+        AoEAction.animation = m_PWeaponSkill->getAnimationId();
+        AoEAction.flag = 0;
 
-				if (m_PBattleSubTarget != PTarget &&
-					!PTarget->isDead() &&
-					IsMobOwner(PTarget) &&
-					distance(m_PBattleSubTarget->loc.p, PTarget->loc.p) <= 10)
-				{
-					if(m_PWeaponSkill->getAoe() == 4)
-					{
-						if(getangle(m_PBattleSubTarget->loc.p, PTarget->loc.p) >= 45)
-						{
-							continue;
-						}
-					}
+        m_PTargetFinder->reset(&AoEAction);
+        float radius = 10;
 
-					m_PChar->health.tp = wsTP;
-					damage = luautils::OnUseWeaponSkill(m_PChar, m_PBattleSubTarget, &tpHitsLanded, &extraHitsLanded);
-					m_PChar->health.tp = afterWsTP;
+        m_PTargetFinder->findWithinArea(m_PBattleSubTarget, AOERADIUS_TARGET, radius);
 
-					AoEAction.param = battleutils::TakePhysicalDamage(m_PChar, PTarget, damage, false, SLOT_MAIN, 0, taChar, true);
 
-					if (damage == 0)
-					{
-						AoEAction.reaction = REACTION_EVADE;
-						AoEAction.messageID = 188; //but misses
-					}
-					else
-					{
-						AoEAction.messageID = 264; // "xxx takes ### damage." only
-					}
-                    battleutils::ClaimMob(PTarget, m_PChar);
-					AoEAction.ActionTarget = PTarget;
-					m_PChar->m_ActionList.push_back(AoEAction);
-				}
-			}
-		}
+        uint16 actionsLength = m_PChar->m_ActionList.size();
+        apAction_t* currentAction;
+
+        for (uint32 i = 0; i < actionsLength; ++i)
+        {
+
+            currentAction = &m_PChar->m_ActionList.at(i);
+            CBattleEntity* PTarget = currentAction->ActionTarget;
+
+        	m_PChar->health.tp = wsTP;
+        	damage = luautils::OnUseWeaponSkill(m_PChar, PTarget, &tpHitsLanded, &extraHitsLanded);
+
+        	m_PChar->health.tp = afterWsTP;
+
+        	currentAction->param = battleutils::TakePhysicalDamage(m_PChar, PTarget, damage, false, SLOT_MAIN, 0, taChar, true);
+
+        	if (damage == 0)
+        	{
+        		currentAction->reaction = REACTION_EVADE;
+        		currentAction->messageID = 188; //but misses
+        	}
+        	else
+        	{
+        		currentAction->messageID = 264; // "xxx takes ### damage." only
+        	}
+
+        }
 	}
 
 	// to catch high damage bugs

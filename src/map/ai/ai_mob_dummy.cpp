@@ -552,6 +552,7 @@ void CAIMobDummy::ActionAbilityStart()
 
 	if(m_PMobSkill->getValidTargets() == TARGET_ENEMY){ //enemy
 	    m_PBattleSubTarget = m_PBattleTarget;
+		battleutils::MoveIntoRange(m_PMob, m_PBattleSubTarget, 25);
 	}
 	else if(m_PMobSkill->getValidTargets() == TARGET_SELF){ //self
 	    m_PBattleSubTarget = m_PMob;
@@ -563,7 +564,7 @@ void CAIMobDummy::ActionAbilityStart()
 		return;
 	}
 
-	battleutils::MoveIntoRange(m_PMob, m_PBattleSubTarget, 25);
+
 	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 
 	if( m_PMobSkill->getActivationTime() != 0)
@@ -572,7 +573,7 @@ void CAIMobDummy::ActionAbilityStart()
 		Action.reaction   = REACTION_HIT;
 		Action.speceffect = SPECEFFECT_HIT;
 		Action.animation  = 0;
-		Action.param	  = m_PMobSkill->getMsgForAction();//m_PMobSkill->getAnimationID();
+		Action.param	  = m_PMobSkill->getMsgForAction();
 		Action.messageID  = 43; //readies message
 		Action.flag		  = 0;
 
@@ -652,8 +653,6 @@ void CAIMobDummy::ActionAbilityFinish()
 		// store the skill used
 		m_PMob->m_UsedSkillIds[m_PMobSkill->getID()] = m_PMob->GetMLevel();
 
-	    m_PMobSkill->setTotalTargets(1);
-
 		//handle aoe stuff (self/mob)
 		//AOE=1 means the circle is around the MONSTER
 		//AOE=2 means the circle is around the BATTLE TARGET
@@ -668,12 +667,12 @@ void CAIMobDummy::ActionAbilityFinish()
 		Action.messageID  = m_PMobSkill->getMsg();
 		Action.flag		  = 0;
 
+	    m_PTargetFinder->reset(&Action);
 
 		if(m_PMobSkill->isAoE())
 		{
 			float radius = m_PMobSkill->getDistance();
 
-		    m_PTargetFinder->reset(&Action);
 	        m_PTargetFinder->findWithinArea(m_PBattleSubTarget, (AOERADIUS)m_PMobSkill->getAoe(), radius);
 		}
 		else
@@ -683,7 +682,7 @@ void CAIMobDummy::ActionAbilityFinish()
 
 	    uint16 actionsLength = m_PMob->m_ActionList.size();
 	    m_PMobSkill->setTotalTargets(actionsLength);
-	    apAction_t* currentAction;
+	    apAction_t* currentAction = NULL;
 
 	    uint16 msg = 0;
 	    for (uint32 i = 0; i < actionsLength; ++i)

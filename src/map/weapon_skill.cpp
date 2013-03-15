@@ -30,7 +30,7 @@ CWeaponSkill::CWeaponSkill(uint16 id)
 
 	m_AnimationId = 0;
 	m_AOE         = 0;
-	m_Skilllevel  = 0; 
+	m_Skilllevel  = 0;
 	m_TypeID      = 0;
 	m_Range       = 0;
 	m_PrimarySkillchain   = SC_NONE;
@@ -39,7 +39,7 @@ CWeaponSkill::CWeaponSkill(uint16 id)
 
 	memset(m_Job, 0, sizeof(m_Job));
 }
-	
+
 void CWeaponSkill::setID(uint16 id)
 {
 	m_ID = id;
@@ -48,6 +48,11 @@ void CWeaponSkill::setID(uint16 id)
 void CWeaponSkill::setType(uint8 type)
 {
 	m_TypeID = type;
+}
+
+bool CWeaponSkill::isAoE()
+{
+    return m_AOE == 2;
 }
 
 void CWeaponSkill::setJob(int8* jobs)
@@ -91,12 +96,12 @@ void CWeaponSkill::setName(int8* name)
 	m_name.insert(0,name);
 }
 
-void CWeaponSkill::setAnimationId(int8 id) 
+void CWeaponSkill::setAnimationId(int8 id)
 {
 	m_AnimationId = id;
 }
 
-void CWeaponSkill::setAoe(uint8 aoe) 
+void CWeaponSkill::setAoe(uint8 aoe)
 {
 	m_AOE = aoe;
 }
@@ -133,7 +138,7 @@ uint8 CWeaponSkill::getElement()
 
 uint8 CWeaponSkill::getAnimationId()
 {
-	return m_AnimationId; 
+	return m_AnimationId;
 }
 
 uint8 CWeaponSkill::getAoe()

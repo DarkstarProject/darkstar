@@ -119,17 +119,21 @@ void CTargetFinder::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType,
 
 void CTargetFinder::findWithinCone(CBattleEntity* PTarget, float radius)
 {
-
+  //if(getangle(m_PBattleSubTarget->loc.p, PTarget->loc.p) >= 45)
 }
 
 void CTargetFinder::addAllInMobList(CBattleEntity* PTarget, bool withPet)
 {
   CCharEntity* PChar = (CCharEntity*)m_PBattleEntity;
+  CBattleEntity* PBattleTarget = NULL;
 
   for (SpawnIDList_t::const_iterator it = PChar->SpawnMOBList.begin();  it != PChar->SpawnMOBList.end(); ++it)
   {
+    PBattleTarget = (CBattleEntity*)it->second;
 
-    addEntity((CBattleEntity*)it->second, withPet);
+    if(isMobOwner(PBattleTarget)){
+      addEntity(PBattleTarget, withPet);
+    }
 
   }
 }
@@ -193,6 +197,44 @@ CBattleEntity* CTargetFinder::findMaster(CBattleEntity* PTarget)
     }
   }
   return PTarget;
+}
+
+bool CTargetFinder::isMobOwner(CBattleEntity* PTarget)
+{
+if (PTarget->m_OwnerID.id == 0 || PTarget->m_OwnerID.id == m_PBattleEntity->id)
+  {
+    return true;
+  }
+
+  CCharEntity* PChar = (CCharEntity*)m_PBattleEntity;
+
+  if (PChar->PParty != NULL)
+  {
+    if (PChar->PParty->m_PAlliance != NULL)
+    {
+      for (uint8 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
+      {
+        for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
+        {
+          if (PChar->PParty->m_PAlliance->partyList.at(a)->members[i]->id == PTarget->m_OwnerID.id)
+          {
+            return true;
+          }
+        }
+      }
+    }
+        else //no alliance
+        {
+      for (uint8 i = 0; i < PChar->PParty->members.size(); ++i)
+      {
+        if (PChar->PParty->members[i]->id == PTarget->m_OwnerID.id)
+        {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
 }
 
 bool CTargetFinder::validEntity(CBattleEntity* PTarget)
