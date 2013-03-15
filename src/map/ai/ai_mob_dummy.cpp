@@ -64,6 +64,7 @@ CAIMobDummy::CAIMobDummy(CMobEntity* PMob)
 	m_LastRangedTime = 0;
 	m_WaitTime = 0;
 	m_LastWaitTime = 0;
+	m_skillTP = 0;
 }
 
 /************************************************************************
@@ -581,7 +582,9 @@ void CAIMobDummy::ActionAbilityStart()
 		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
 	}
 
-	m_PMobSkill->setTP(m_PMob->health.tp); // store the TP the mob currently has as the mob skill TP modifier
+	// store the TP the mob currently has as the mob skill TP modifier
+	m_skillTP = m_PMob->health.tp;
+
 	// remove tp
 	m_PMob->health.tp = 0;
 
@@ -686,6 +689,8 @@ void CAIMobDummy::ActionAbilityFinish()
 
 	    uint16 actionsLength = m_PMob->m_ActionList.size();
 	    m_PMobSkill->setTotalTargets(actionsLength);
+		m_PMobSkill->setTP(m_skillTP);
+
 	    apAction_t* currentAction = NULL;
 
 	    uint16 msg = 0;
