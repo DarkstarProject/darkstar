@@ -679,8 +679,12 @@ function getMultiAttacks(attacker, numHits)
 			end
 		end
 		if (i == 1) then
-			target:delStatusEffect(EFFECT_ASSASSIN_S_CHARGE);
-			target:delStatusEffect(EFFECT_WARRIOR_S_CHARGE);
+			attacker:delStatusEffect(EFFECT_ASSASSIN_S_CHARGE);
+			attacker:delStatusEffect(EFFECT_WARRIOR_S_CHARGE);
+
+			-- recalculate mods
+			doubleRate = attacker:getMod(MOD_DOUBLE_ATTACK)/100;
+			tripleRate = attacker:getMod(MOD_TRIPLE_ATTACK)/100;
 		end
 	end
 	if ((numHits + bonusHits ) > 8) then

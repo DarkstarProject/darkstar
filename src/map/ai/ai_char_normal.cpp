@@ -2061,6 +2061,12 @@ void CAICharNormal::ActionJobAbilityFinish()
     		if (charutils::hasTrait(m_PChar,TRAIT_RECYCLE))
     			recycleChance += m_PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE,m_PChar->GetMLevel());
 
+            if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_UNLIMITED_SHOT))
+            {
+                m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_UNLIMITED_SHOT);
+                recycleChance = 100;
+            }
+
     		if(PAmmo != NULL && rand()%100 > recycleChance)
     		{
 
@@ -2592,7 +2598,15 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		//ranged WS IDs
 		CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
 
-		if(PAmmo!=NULL && rand()%100 > (m_PChar->getMod(MOD_RECYCLE) + m_PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE,m_PChar->GetMLevel())) )
+        uint8 recycleChance = m_PChar->getMod(MOD_RECYCLE) + m_PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE,m_PChar->GetMLevel());
+
+        if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_UNLIMITED_SHOT))
+               {
+                    m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_UNLIMITED_SHOT);
+                    recycleChance = 100;
+                }
+
+		if(PAmmo!=NULL && rand()%100 > recycleChance)
 		{
 			if ( (PAmmo->getQuantity()-1) < 1) // ammo will run out after this shot, make sure we remove it from equip
 			{
