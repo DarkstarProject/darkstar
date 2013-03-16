@@ -36,12 +36,16 @@ function OnUseAbility(player, target, ability)
 		cure = (vit+chr)*0.125+60;
 	end
 
+	--Cap the final amount to max HP.
+	if((target:getMaxHP() - target:getHP()) < cure) then
+		cure = (target:getMaxHP() - target:getHP());
+	end
 
 	--Applying server mods....
 	cure = cure * CURE_POWER;
 
 	player:addHP(cure);
-	player:updateEnmityFromCure(target,cure*(240 / ( ( 31 * target:getMainLvl() / 50 ) + 6 )),cure*(40 / ( ( 31 * target:getMainLvl() / 50 ) + 6 )));
+	player:updateEnmityFromCure(target,cure);
 	
 	return cure;
 	

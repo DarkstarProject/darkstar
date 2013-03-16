@@ -50,7 +50,7 @@ function OnUseAbility(player, target, ability)
 	
 	--Do it
 	target:addHP(cure);
-	player:updateEnmityFromCure(target,cure*(240 / ( ( 31 * target:getMainLvl() / 50 ) + 6 )),cure*(40 / ( ( 31 * target:getMainLvl() / 50 ) + 6 )));
+	player:updateEnmityFromCure(target,cure);
 	
 	return cure;
 	
