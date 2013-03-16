@@ -150,6 +150,15 @@ inline int32 CLuaBaseEntity::getHP(lua_State *L)
 	return 1;
 }
 
+inline int32 CLuaBaseEntity::getHPP(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+	lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->GetHPP() );
+	return 1;
+}
+
 //======================================================//
 
 inline int32 CLuaBaseEntity::addHP(lua_State *L)
@@ -2704,7 +2713,7 @@ inline int32 CLuaBaseEntity::getGil(lua_State *L)
 			}
 		}
 	}
-	lua_pushnil(L);
+	lua_pushinteger(L, 0);
 	return 1;
 }
 
@@ -6623,6 +6632,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getID),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getName),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getHP),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getHPP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addHP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,restoreHP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delHP),

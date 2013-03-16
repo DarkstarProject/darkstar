@@ -94,6 +94,7 @@ public:
 	int32 getID(lua_State *L);				// Gets Entity Id
 	int32 getName(lua_State *L);			// Gets Entity Name
 
+	int32 getHPP(lua_State*);				// Returns Entity Health %
 	int32 getHP(lua_State*);				// Returns Entity Health
 	int32 addHP(lua_State*);				// Modify hp of Entity +/-
 	int32 restoreHP(lua_State*);			// Modify hp of Entity, but check if alive first

@@ -28,7 +28,12 @@ CAbility::CAbility(uint16 id)
 {
 	m_ID = id;
 }
-	
+
+void CAbility::resetMsg()
+{
+  m_message = m_DefaultMessage;
+}
+
 void CAbility::setID(uint16 id)
 {
 	m_ID = id;
@@ -58,7 +63,7 @@ void CAbility::setLevel(uint8 level)
 {
 	m_level = level;
 }
-	
+
 uint8 CAbility::getLevel()
 {
 	return m_level;
@@ -68,7 +73,7 @@ void CAbility::setRange(uint8 range)
 {
 	m_range = range;
 }
-	
+
 uint8 CAbility::getRange()
 {
 	return m_range;
@@ -78,7 +83,7 @@ void CAbility::setAOE(uint8 aoe)
 {
 	m_aoe = aoe;
 }
-	
+
 uint8 CAbility::getAOE()
 {
 	return m_aoe;
@@ -88,7 +93,7 @@ void CAbility::setAnimationID(uint8 animationID)
 {
 	m_animationID = animationID;
 }
-	
+
 uint8 CAbility::getAnimationID()
 {
 	return m_animationID;
@@ -98,7 +103,7 @@ void CAbility::setRecastTime(uint16 recastTime)
 {
 	m_recastTime =  recastTime;
 }
-	
+
 uint16 CAbility::getRecastTime()
 {
 	return m_recastTime;
@@ -113,7 +118,7 @@ void CAbility::setValidTarget(uint8 validTarget)
 {
 	m_validTarget = validTarget;
 }
-	
+
 uint8 CAbility::getValidTarget()
 {
 	return m_validTarget;
@@ -186,6 +191,48 @@ void CAbility::setMessage(uint16 message)
     m_message = message;
 }
 
+uint16 CAbility::getAoEMsg()
+{
+  switch(m_message){
+        case 185:
+            return 264;
+        case 186:
+            return 266;
+        case 187:
+            return 281;
+        case 188:
+            return 282;
+        case 189:
+            return 283;
+        case 225:
+            return 366;
+        case 226:
+            return 226; //no message for this... I guess there is no aoe TP drain move
+        case 103: //recover hp
+        case 102: //recover hp
+        case 238: //recover hp
+        case 306: //recover hp
+        case 318: //recover hp
+            return 24;
+        case 242:
+            return 277;
+        case 243:
+            return 278;
+        case 284:
+            return 284; //already the aoe message
+        case 370:
+            return 404;
+        case 362:
+            return 363;
+        case 378:
+            return 343;
+        case 224: //recovers mp
+          return 276;
+        default:
+            return m_message;
+    }
+}
+
 uint16 CAbility::getDefaultMessage()
 {
     return m_DefaultMessage;
@@ -219,7 +266,7 @@ namespace ability
 
 	    memset(PAbilityList,0,sizeof(PAbilityList));
 
-	    const int8* Query = 
+	    const int8* Query =
             "SELECT "
               "abilityId,"
               "name,"
@@ -245,10 +292,10 @@ namespace ability
 
 	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	    {
-		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		    {
 			    CAbility* PAbility = new CAbility(Sql_GetIntData(SqlHandle,0));
-		
+
 			    PAbility->setName(Sql_GetData(SqlHandle,1));
 			    PAbility->setJob((JOBTYPE)Sql_GetIntData(SqlHandle,2));
 			    PAbility->setLevel(Sql_GetIntData(SqlHandle,3));

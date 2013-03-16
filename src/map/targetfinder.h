@@ -48,7 +48,7 @@ public:
   void reset(apAction_t* PAction); // remove all found targets
 
   // Main methods for finding targets
-  void findSingleTarget(CBattleEntity* PTarget);
+  void findSingleTarget(CBattleEntity* PTarget, float distance);
   void findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, float radius);
   void findWithinCone(CBattleEntity* PTarget, float distance, float angle);
 

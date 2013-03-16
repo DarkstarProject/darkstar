@@ -350,6 +350,8 @@ public:
 
 	CAbility(uint16 id);
 
+    void        resetMsg();
+
 	uint16		getID();
 	JOBTYPE		getJob();
 	uint8		getLevel();
@@ -359,6 +361,7 @@ public:
 	uint8		getValidTarget();
 	ADDTYPE		getAddType();
     uint16      getMessage();
+    uint16      getAoEMsg();
     uint16      getDefaultMessage();
 	uint16		getRecastTime();
 	uint16		getRecastId();
@@ -378,14 +381,14 @@ public:
     void        setMessage(uint16 message);
     void        setDefaultMessage(uint16 message);
 	void		setRecastTime(uint16 recastTime);
-	void		setRecastId(uint16 recastId); 
+	void		setRecastId(uint16 recastId);
 	void		setCE(uint16 CE);
 	void		setVE(uint16 VE);
 	void        setMeritModID(uint16 value);
 
 	const int8* getName();
 	void		setName(int8* name);
-	
+
 private:
 
 	uint16		m_ID;

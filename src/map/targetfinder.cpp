@@ -57,6 +57,15 @@ void CTargetFinder::reset(apAction_t* PAction)
   m_PMasterTarget = NULL;
 }
 
+void CTargetFinder::findSingleTarget(CBattleEntity* PTarget, float distance)
+{
+  m_radius = distance;
+  m_zone = m_PBattleEntity->getZone();
+  m_PTarget = NULL;
+
+  addEntity(PTarget, false);
+}
+
 void CTargetFinder::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, float radius)
 {
   m_radius = radius;

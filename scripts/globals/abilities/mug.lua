@@ -14,12 +14,10 @@ function OnAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-    if(math.random()<0.9) then
-    	local gil = target:getGil();
+    local gil = 0;
 
-        if(gil == nil) then
-            gil = 0;
-        end
+    if(math.random()<0.9) then
+    	gil = target:getGil();
 
         -- is notorious
         -- all notorious monsters can be mugged
@@ -28,17 +26,19 @@ function OnUseAbility(player, target, ability)
         end
 
         if(gil <= 0) then
-            player:messageTarget(244, target);
+            ability:setMsg(244);
         else
             if(player:getEquipID(SLOT_HEAD) == 15077) then
                 gil = gil * 2;
             end
 
             player:addGil(gil);
-            player:messageTarget(129, target, 41, gil);
-            return gil;
+
+            ability:setMsg(129);
         end
     else
-        player:messageTarget(244, target);
+        ability:setMsg(244);
     end
+
+    return gil;
 end;

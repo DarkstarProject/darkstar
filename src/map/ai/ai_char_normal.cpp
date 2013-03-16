@@ -1982,26 +1982,41 @@ void CAICharNormal::ActionJobAbilityFinish()
     	}
     	else if (m_PJobAbility->getAOE() == 1 && m_PChar->PParty != NULL)
     	{
-    		for (uint32 i = 0; i < m_PChar->PParty->members.size(); i++)
-    		{
-    			CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->members[i];
+            Action.ActionTarget = NULL;
+            Action.reaction   = REACTION_NONE;
+            Action.speceffect = SPECEFFECT_NONE;
+            Action.animation  = m_PJobAbility->getAnimationID();
+            Action.messageID  = m_PJobAbility->getMessage();
+            Action.flag       = 0;
 
-                if(!PTarget->isDead() &&
-                    PTarget->getZone() == m_PChar->getZone() &&
-                    distance(m_PChar->loc.p, PTarget->loc.p) <= m_PJobAbility->getRange())
-    			{
-                    uint16 value = luautils::OnUseAbility(m_PChar, PTarget, m_PJobAbility);
+            m_PTargetFinder->reset(&Action);
+            float distance = m_PJobAbility->getRange();
 
-    				Action.ActionTarget = PTarget;
-    				Action.reaction   = REACTION_NONE;
-    				Action.speceffect = SPECEFFECT_NONE;
-    				Action.animation  = m_PJobAbility->getAnimationID();
-    				Action.param	  = value;
-                    Action.messageID  = m_PJobAbility->getMessage();
-    				Action.flag		  = 0;
+            m_PTargetFinder->findWithinArea(m_PChar, AOERADIUS_ATTACKER, distance);
 
-    				m_PChar->m_ActionList.push_back(Action);
-    			}
+            uint16 actionsLength = m_PChar->m_ActionList.size();
+
+            apAction_t* currentAction = NULL;
+
+            uint16 msg = 0;
+            for (uint32 i = 0; i < actionsLength; ++i)
+            {
+                currentAction = &m_PChar->m_ActionList.at(i);
+
+                CCharEntity* PTarget = (CCharEntity*)currentAction->ActionTarget;
+
+                m_PJobAbility->resetMsg();
+
+                currentAction->param = luautils::OnUseAbility(m_PChar, PTarget, m_PJobAbility);
+
+                if(i == 0){
+                    msg = m_PJobAbility->getMessage();
+                } else {
+                    msg = m_PJobAbility->getAoEMsg();
+                }
+
+                currentAction->messageID = msg;
+
     		}
     	}
     	else if (m_PJobAbility->getID() == ABILITY_EAGLE_EYE_SHOT )
@@ -2231,9 +2246,10 @@ void CAICharNormal::ActionJobAbilityFinish()
     				m_PJobAbility->getID() != ABILITY_GAUGE)
     				//assault(72)/fight(53) doesnt generate hate directly
                 {
-                    ((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.id = m_PChar->id;
-                    ((CMobEntity*)m_PBattleSubTarget)->m_OwnerID.targid = m_PChar->targid;
-                    ((CMobEntity*)m_PBattleSubTarget)->PEnmityContainer->UpdateEnmity(m_PChar, m_PJobAbility->getCE(), m_PJobAbility->getVE());
+                    CMobEntity* mob = (CMobEntity*)m_PBattleSubTarget;
+                    mob->m_OwnerID.id = m_PChar->id;
+                    mob->m_OwnerID.targid = m_PChar->targid;
+                    mob->PEnmityContainer->UpdateEnmity(m_PChar, m_PJobAbility->getCE(), m_PJobAbility->getVE());
                 }
             }
     	}
@@ -2257,6 +2273,7 @@ void CAICharNormal::ActionJobAbilityFinish()
     	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
     	// Message "player uses..."  for most abilities
+        // TODO: all abilities should display their own messages!
     	if(m_PJobAbility->getID() < ABILITY_HEALING_RUBY &&
     		m_PJobAbility->getID() != ABILITY_JUMP &&
     		m_PJobAbility->getID() != ABILITY_HIGH_JUMP &&
