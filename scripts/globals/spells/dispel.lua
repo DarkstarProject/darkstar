@@ -17,7 +17,7 @@ function onSpellCast(caster,target,spell)
     dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
 
     -- apply bonus, flash is hard to fully resist
-    bonus = AffinityBonus(caster,spell) + 200;
+    bonus = AffinityBonus(caster,spell) + 300;
 
     local resist = applyResistance(caster,spell,target,dINT,ENFEEBLING_MAGIC_SKILL,bonus);
     local effect = EFFECT_NONE;

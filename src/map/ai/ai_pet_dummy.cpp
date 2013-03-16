@@ -443,7 +443,7 @@ bool CAIPetDummy::WyvernIsHealing(){
 	bool isMasterHealing = (m_PPet->PMaster->animation == ANIMATION_HEALING);
 	bool isPetHealing = (m_PPet->animation == ANIMATION_HEALING);
 
-	if(isMasterHealing && !isPetHealing){
+	if(isMasterHealing && !isPetHealing && !m_PPet->StatusEffectContainer->HasPreventActionEffect()){
 		//animation down
 		m_PPet->animation = ANIMATION_HEALING;
 		m_PPet->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HEALING,0,0,10,0));
@@ -695,10 +695,7 @@ void CAIPetDummy::ActionAttack()
 
 void CAIPetDummy::ActionSleep()
 {
-    if (!m_PPet->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) &&
-        !m_PPet->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II) &&
-        !m_PPet->StatusEffectContainer->HasStatusEffect(EFFECT_PETRIFICATION) &&
-        !m_PPet->StatusEffectContainer->HasStatusEffect(EFFECT_LULLABY) && !m_PPet->StatusEffectContainer->HasStatusEffect(EFFECT_STUN))
+    if (!m_PPet->StatusEffectContainer->HasPreventActionEffect())
     {
 		//put it in combat if it isn't
 		if( m_PPet->animation == ANIMATION_NONE ){

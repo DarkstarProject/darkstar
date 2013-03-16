@@ -279,7 +279,7 @@ end;
 -- Output:
 -- The factor to multiply down damage (1/2 1/4 1/8 1/16) - In this format so this func can be used for enfeebs on duration.
 
-function applyResistance(player,spell,target,diff,skill,staff)
+function applyResistance(player,spell,target,diff,skill,bonus)
     -- resist everything if magic shield is active
     if(target:hasStatusEffect(EFFECT_MAGIC_SHIELD, 0)) then
         return 0;
@@ -287,6 +287,11 @@ function applyResistance(player,spell,target,diff,skill,staff)
 
     local resist = 1.0;
     local magicaccbonus = 0;
+
+    if(bonus ~= nil) then
+        magicaccbonus = magicaccbonus + bonus;
+    end
+
 	--get the base acc (just skill plus magic acc mod)
 	local magicacc = player:getSkillLevel(skill) + player:getMod(79 + skill) + player:getMod(MOD_MACC);
 

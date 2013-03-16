@@ -19,10 +19,6 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    if not(hasSleepEffects(target)) then
-        target:addStatusEffect(EFFECT_SLEEP_I,1,0,30);
-    else
-        target:messageBasic(423);
-    end
+    target:addStatusEffect(EFFECT_SLEEP_I,1,0,30);
 end;
 

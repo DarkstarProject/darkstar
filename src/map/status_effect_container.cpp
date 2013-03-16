@@ -184,7 +184,7 @@ bool CStatusEffectContainer::CanGainStatusEffect(EFFECT statusEffect, uint16 pow
     switch(statusEffect){
         case EFFECT_SLEEP:
         case EFFECT_SLEEP_II:
-            if(m_POwner->hasImmunity(IMMUNITY_SLEEP) || m_POwner->m_EcoSystem == SYSTEM_UNDEAD) return false;
+            if(m_POwner->hasImmunity(IMMUNITY_SLEEP)) return false;
         break;
         case EFFECT_LULLABY:
             if(m_POwner->hasImmunity(IMMUNITY_SLEEP)) return false;
@@ -940,10 +940,10 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
     StatusEffect->SetType(effects::EffectsParams[effect].Type);
 
 	//todo: find a better place to put this?
-	if(effect == EFFECT_SLEEP || effect == EFFECT_SLEEP_II ||
-		effect == EFFECT_STUN || effect == EFFECT_PETRIFICATION || effect == EFFECT_LULLABY)
+    if(m_POwner->objtype == TYPE_PC || m_POwner->objtype == TYPE_MOB)
     {
-		if(m_POwner->objtype == TYPE_PC || m_POwner->objtype == TYPE_MOB)
+    	if(effect == EFFECT_SLEEP || effect == EFFECT_SLEEP_II ||
+    		effect == EFFECT_STUN || effect == EFFECT_PETRIFICATION || effect == EFFECT_LULLABY)
         {
 			m_POwner->PBattleAI->SetCurrentAction(ACTION_SLEEP);
 		}

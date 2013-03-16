@@ -33,7 +33,7 @@
 #include "../vana_time.h"
 
 
-CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar) 
+CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 {
 	this->type = 0x37;
 	this->size = 0x2E;
@@ -47,19 +47,17 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 	WBUFB(data,(0x2B)-4) = (PChar->nameflags.byte4 << 5) + PChar->nameflags.byte3;
 	WBUFB(data,(0x2F)-4) = (PChar->nameflags.byte4 >> 2);
 
-	if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_INVISIBLE) || 
-        PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE) || 
-        PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CAMOUFLAGE))
+	if (PChar->StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_INVISIBLE))
 	{
 		WBUFB(data,(0x2D)-4) = 0x80;
 	}
-	if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK)) 
+	if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
 	{
 		WBUFB(data,(0x38)-4) = 0x04;
 	}
 
     WBUFB(data,(0x29)-4) = PChar->GetGender(); // +  управляем ростом: 0x02 - 0; 0x08 - 1; 0x10 - 2;
-	WBUFB(data,(0x2C)-4) = PChar->speed * (100 + PChar->getMod(MOD_MOVE)) / 100;	
+	WBUFB(data,(0x2C)-4) = PChar->speed * (100 + PChar->getMod(MOD_MOVE)) / 100;
 	WBUFB(data,(0x30)-4) = PChar->animation;
 
     if (PChar->equip[SLOT_LINK] != 0)
@@ -69,7 +67,7 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 	    if ((linkshell != NULL) && (linkshell->getType() & ITEM_LINKSHELL))
 	    {
 		    lscolor_t LSColor = linkshell->GetLSColor();
-		
+
 		    WBUFB(data,(0x31)-4) = (LSColor.R << 4) + 15;
 		    WBUFB(data,(0x32)-4) = (LSColor.G << 4) + 15;
 		    WBUFB(data,(0x33)-4) = (LSColor.B << 4) + 15;
@@ -88,7 +86,7 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 
 	if (PChar->animation == ANIMATION_FISHING_START)
 	{
-		WBUFB(data,(0x4A)-4) = 0x10;		
+		WBUFB(data,(0x4A)-4) = 0x10;
 	}
 	WBUFU(data,(0x4C)-4) = PChar->StatusEffectContainer->m_Flags;
 }

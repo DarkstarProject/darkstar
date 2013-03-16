@@ -31,7 +31,7 @@
 #include "../itemutils.h"
 
 
-CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type) 
+CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type)
 {
 	this->type = 0x0D;
 	this->size = 0x36;
@@ -51,9 +51,9 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type)
 		{
 			WBUFB(data,(0x0A)-4) = 0x1F;
 
-			WBUFB(data,(0x0B)-4) = PChar->loc.p.rotation;		
-			WBUFF(data,(0x0C)-4) = PChar->loc.p.x;				
-			WBUFF(data,(0x10)-4) = PChar->loc.p.y;				
+			WBUFB(data,(0x0B)-4) = PChar->loc.p.rotation;
+			WBUFF(data,(0x0C)-4) = PChar->loc.p.x;
+			WBUFF(data,(0x10)-4) = PChar->loc.p.y;
 			WBUFF(data,(0x14)-4) = PChar->loc.p.z;
 			WBUFW(data,(0x18)-4) = PChar->loc.p.moving;
 			WBUFW(data,(0x1A)-4) = PChar->m_TargID << 1;
@@ -70,9 +70,7 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type)
 			//	WBUFB(data,(0x22)-4) = 0x20;
 			//}
 
-			if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_INVISIBLE) || 
-                PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE) || 
-                PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CAMOUFLAGE))
+			if (PChar->StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_INVISIBLE))
 			{
 				WBUFB(data,(0x23)-4) = 0x20;
 			}
@@ -84,7 +82,7 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type)
 			    if ((linkshell != NULL) && (linkshell->getType() & ITEM_LINKSHELL))
 			    {
 				    lscolor_t LSColor = linkshell->GetLSColor();
-		
+
 				    WBUFB(data,(0x24)-4) = (LSColor.R << 4) + 15;
 				    WBUFB(data,(0x25)-4) = (LSColor.G << 4) + 15;
 				    WBUFB(data,(0x26)-4) = (LSColor.B << 4) + 15;
@@ -111,7 +109,7 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type)
 			WBUFW(data,(0x52)-4) = PChar->look.sub    + 0x7000;
 			WBUFW(data,(0x54)-4) = PChar->look.ranged + 0x8000;
 
-			memcpy(data+(0x56)-4, PChar->GetName(), PChar->name.size()); 
+			memcpy(data+(0x56)-4, PChar->GetName(), PChar->name.size());
 		}
 		break;
 	}

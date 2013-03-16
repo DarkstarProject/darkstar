@@ -557,11 +557,6 @@ void CAICharNormal::ActionItemUsing()
 		}
 		m_PChar->pushPacket(new CInventoryFinishPacket());
 
-		// TODO: use status effect method
-		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
-		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HIDE);
-		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CAMOUFLAGE);
-
 		apAction_t Action;
         m_PChar->m_ActionList.clear();
 
@@ -2769,6 +2764,7 @@ void CAICharNormal::ActionSleep()
 		m_PBattleSubTarget = NULL;
 		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
     }
+
 }
 
 /************************************************************************
