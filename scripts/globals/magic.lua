@@ -300,7 +300,6 @@ function applyResistance(player,spell,target,diff,skill,staff)
     if(player:getStatusEffect(EFFECT_ELEMENTAL_SEAL) ~= nil) then
         magicaccbonus = magicaccbonus + 256;
     elseif(player:getStatusEffect(EFFECT_DARK_SEAL) ~= nil and skill == DARK_MAGIC_SKILL) then
-        printf("bonus!!!!");
         magicaccbonus = magicaccbonus + 256;
     end
 	--add acc for staves
@@ -526,16 +525,18 @@ function getSkillLvl(rank,level)
         else --absorbs some damage then wear
             target:delMod(MOD_STONESKIN,skin);
             target:delStatusEffect(EFFECT_STONESKIN);
-            return dmg - skin;
+            dmg = dmg - skin;
         end
     end
 
     target:delHP(dmg);
     target:updateEnmityFromDamage(caster,dmg);
+
     -- Only add TP if the target is a mob
     if (target:getObjType() ~= TYPE_PC) then
         target:addTP(10);
     end
+
     return dmg;
  end;
 
