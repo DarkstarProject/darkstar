@@ -292,7 +292,8 @@ bool CTargetFinder::validEntity(CBattleEntity* PTarget)
   if(m_conal && (m_PTarget == NULL || isWithinCone(PTarget)))
   {
     return true;
-  } else if(isWithinArea(PTarget))
+  }
+  else if(isWithinArea(PTarget))
   {
     return true;
   }
@@ -310,7 +311,7 @@ bool CTargetFinder::isPlayer()
 
 bool CTargetFinder::isWithinArea(CBattleEntity* PTarget)
 {
-   return distance(*m_PRadiusAround, PTarget->loc.p) > m_radius;
+   return distance(*m_PRadiusAround, PTarget->loc.p) <= m_radius;
 }
 
 bool CTargetFinder::isWithinCone(CBattleEntity* PTarget)
