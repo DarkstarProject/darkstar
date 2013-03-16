@@ -3265,7 +3265,7 @@ void CAICharNormal::ActionRaiseMenuSelection()
         expLost = m_PChar->GetMLevel() <= 67 ? (charutils::GetExpNEXTLevel(m_PChar->jobs.job[m_PChar->GetMJob()] + 1) * 8 ) / 100 : 2400;
     }
 
-    uint16 xpReturned = expLost * ratioReturned;
+    uint16 xpReturned = ceil(expLost * ratioReturned);
 
     charutils::AddExperiencePoints(true, m_PChar, m_PChar, xpReturned);
 

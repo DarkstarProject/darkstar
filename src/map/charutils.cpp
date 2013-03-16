@@ -2962,7 +2962,9 @@ uint8 GetHighestTreasureHunter(CCharEntity* PChar, CMobEntity* PMob)
 void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, uint32 baseexp, bool isexpchain)
 {
 	if (PChar->isDead()) return;
-	exp = exp * map_config.exp_rate;
+	if (!expFromRaise) {
+		exp = exp * map_config.exp_rate;
+	}
 	uint16 currentExp = PChar->jobs.exp[PChar->GetMJob()];
 	bool onLimitMode = false;
 
