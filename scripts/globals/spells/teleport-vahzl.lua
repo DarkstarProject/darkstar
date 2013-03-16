@@ -3,6 +3,7 @@
 -----------------------------------------
 
 require("scripts/globals/teleports");
+require("scripts/globals/keyitems");
 
 -----------------------------------------
 -- OnSpellCast
@@ -13,7 +14,7 @@ function OnMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-   		if (target:hasKeyItem(355) == true) then
+   		if (target:hasKeyItem(VAHZL_GATE_CRYSTAL) == true) then
    				toVahzl(target);
    		end;
         return 0;
