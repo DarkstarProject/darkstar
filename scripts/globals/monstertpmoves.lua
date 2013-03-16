@@ -179,7 +179,7 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	local double chance = math.random();
 
 	-- first hit has a higher chance to land
-	local firstHitChance = hitrate * 1.5;
+	local firstHitChance = hitrate * 1.8;
 	firstHitChance = math.clamp(firstHitChance, 20, 95);
 
 	-- range attacks have a normal hit rate

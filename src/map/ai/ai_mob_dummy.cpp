@@ -613,7 +613,7 @@ void CAIMobDummy::ActionAbilityUsing()
 	//NOTE: RANGE CHECKS ETC ONLY ARE DONE AFTER THE ABILITY HAS FINISHED PREPARING.
 	//      THE ONLY CHECK IN HERE SHOULD BE WITH STUN/SLEEP/TERROR/ETC
 
-	if ((m_Tick - m_LastActionTime) > m_PMobSkill->getActivationTime())
+	if ((m_Tick - m_LastActionTime) >= m_PMobSkill->getActivationTime())
     {
 		//Range check
 		if(m_PMobSkill->getValidTargets() == TARGET_ENEMY &&
@@ -681,13 +681,11 @@ void CAIMobDummy::ActionAbilityFinish()
 
 		if(m_PMobSkill->isAoE())
 		{
-
 	        m_PTargetFinder->findWithinArea(m_PBattleSubTarget, (AOERADIUS)m_PMobSkill->getAoe(), distance);
 		}
 		else if(m_PMobSkill->isConal())
 		{
 			float angle = 45.0f;
-			ShowDebug("distance %f\n", distance);
 			m_PTargetFinder->findWithinCone(m_PBattleSubTarget, distance, angle);
 		}
 		else

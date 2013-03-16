@@ -1464,6 +1464,7 @@ void CAICharNormal::ActionMagicFinish()
 
     uint16 actionsLength = m_PChar->m_ActionList.size();
     m_PSpell->setTotalTargets(actionsLength);
+
     for (uint32 i = 0; i < actionsLength; ++i)
 	{
         CBattleEntity* PTarget = m_PChar->m_ActionList.at(i).ActionTarget;
@@ -1766,6 +1767,15 @@ void CAICharNormal::ActionJobAbilityFinish()
         // display paralyzed
         m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,MSGBASIC_IS_PARALYZED));
     } else {
+
+        // remove invisible if aggresive
+        if(m_PBattleSubTarget != NULL && m_PBattleSubTarget->objtype == TYPE_MOB){
+            // aggresive action
+            m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
+        } else {
+            // remove invisible only
+            m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_INVISIBLE);
+        }
 
     	if(m_PJobAbility->getID() == ABILITY_REWARD){
     		CItem* PItem = m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_HEAD]);
@@ -2259,14 +2269,6 @@ void CAICharNormal::ActionJobAbilityFinish()
     			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PChar, m_PJobAbility->getID()+16, 0, MSGBASIC_USES_JA));
     	}
 
-        // remove invisible if aggresive
-        if(m_PBattleSubTarget != NULL && m_PBattleSubTarget->objtype == TYPE_MOB){
-            // aggresive action
-            m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
-        } else {
-            // remove invisible only
-            m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_INVISIBLE);
-        }
     } // end paralysis if
 
     m_PChar->PRecastContainer->Add(RECAST_ABILITY, m_PJobAbility->getRecastId(), RecastTime);
