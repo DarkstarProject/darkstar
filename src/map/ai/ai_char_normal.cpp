@@ -2716,7 +2716,13 @@ void CAICharNormal::ActionWeaponSkillFinish()
         	{
         		currentAction->messageID = 264; // "xxx takes ### damage." only
         	}
-            battleutils::ClaimMob(PTarget, m_PChar);
+
+            // create hate on mob
+            if(PTarget->objtype == TYPE_MOB){
+
+                CMobEntity* mob = (CMobEntity*)PTarget;
+                mob->PEnmityContainer->UpdateEnmityFromDamage(m_PChar, currentAction->param);
+            }
         }
 	}
 
