@@ -2676,7 +2676,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
 
-    if(m_PWeaponSkill->getAoe())
+    if(m_PWeaponSkill->isAoE())
     {
         apAction_t AoEAction;
 
@@ -2716,7 +2716,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
         	{
         		currentAction->messageID = 264; // "xxx takes ### damage." only
         	}
-
+            battleutils::ClaimMob(PTarget, m_PChar);
         }
 	}
 

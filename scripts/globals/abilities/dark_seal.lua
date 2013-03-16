@@ -14,6 +14,6 @@ function OnAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-    -- local merits = player:getMerit(MERIT_DIABOLIC_EYE);
-    -- player:addStatusEffect(EFFECT_,1,0,60);
+    local merits = player:getMerit(MERIT_DARK_SEAL);
+    player:addStatusEffect(EFFECT_DARK_SEAL,merits,0,60);
 end;
