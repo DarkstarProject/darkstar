@@ -1133,7 +1133,7 @@ void CAIMobDummy::ActionMagicFinish()
 
 	if (m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL,0) ) {
 		// let's make CSing monsters actually use lots of spells.
-		m_LastMagicTime = m_Tick - m_PMob->m_MagicRecastTime + m_PSpell->getAnimationTime(); // so the animations look correct.
+		m_LastMagicTime = m_Tick - m_PMob->m_MagicRecastTime;
 	}
 
     m_LastWaitTime = m_Tick;
