@@ -367,7 +367,7 @@ inline int32 CLuaBaseEntity::getTP(lua_State *L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-	lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->health.tp );
+	lua_pushnumber( L, ((CBattleEntity*)m_PBaseEntity)->health.tp );
 	return 1;
 }
 
@@ -6049,7 +6049,7 @@ inline int32 CLuaBaseEntity::isFacing(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(PLuaBaseEntity == NULL);
 
-    lua_pushboolean( L, isFaceing(m_PBaseEntity->loc.p, PLuaBaseEntity->GetBaseEntity()->loc.p, 40));
+    lua_pushboolean( L, isFaceing(m_PBaseEntity->loc.p, PLuaBaseEntity->GetBaseEntity()->loc.p, 45));
     return 1;
 }
 

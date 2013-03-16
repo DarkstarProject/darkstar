@@ -63,7 +63,7 @@ public:
 	uint16		getMsg();
     uint16      getAoEMsg();
 	uint16		getValidTargets();
-	uint16		getTP();
+	float		getTP();
     uint16      getTotalTargets();
     uint16      getMsgForAction();
 
@@ -78,7 +78,7 @@ public:
     void        resetMsg();
 	void		setMsg(uint16 msg);
 	void		setValidTargets(uint16 targ);
-	void		setTP(uint16 tp);
+	void		setTP(float tp);
     void        setTotalTargets(uint16 targets);
 
 	const int8* getName();
@@ -100,7 +100,7 @@ private:
     uint16      m_AnimationTime;	//how long the tp animation lasts for in ms
     uint16      m_ActivationTime;	//how long the mob prepares the tp move for
 	uint16		m_Message;			//message param, scripters can edit this depending on self/resist/etc.
-	uint16		m_TP;				//the tp at the time of finish readying (for scripts)
+	float		m_TP;				//the tp at the time of finish readying (for scripts)
 
 	string_t	m_name;
 };

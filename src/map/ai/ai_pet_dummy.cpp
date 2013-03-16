@@ -548,6 +548,8 @@ void CAIPetDummy::ActionEngage()
 
 	if(hasClaim)
 	{
+		battleutils::MoveTo(m_PPet, m_PBattleTarget->loc.p, 2);
+
 		m_PPet->animation = ANIMATION_ATTACK;
 		m_ActionType = ACTION_ATTACK;
 		m_LastActionTime = m_Tick - 4000;

@@ -19,7 +19,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_POISON;
 	local power = math.ceil(mob:getMainLvl() / 5);
 
-    MobStatusEffectMove(mob, target, typeEffect, power, 3, 500);
+    MobStatusEffectMove(mob, target, typeEffect, power, 3, 60);
 
 	local dmgmod = MobBreathMove(mob, target, 0.2, 1.25, ELE_WATER);
 

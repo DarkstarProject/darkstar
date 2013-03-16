@@ -14,7 +14,7 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-	local m = math.random(1,4)+4; -- Sets multiplier to 5-8
+	local m = math.random(1,4)+8; -- Sets multiplier to 5-8
 	local mobHP = mob:getHP();
 	local mobMaxHP = mob:getMaxHP();
 	local base = (mobMaxHP/100)* m; -- Finds out how much hp 1% of the monsters total hp is and then multiplies it by our above multiplyer

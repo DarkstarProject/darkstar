@@ -211,6 +211,8 @@ void CAIMobDummy::ActionEngage()
 		luautils::OnMobEngaged(m_PMob,m_PBattleTarget);
 	}
 
+	battleutils::MoveIntoRange(m_PMob,m_PBattleTarget,25);
+
 	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 	ActionAttack();
 }
@@ -675,12 +677,18 @@ void CAIMobDummy::ActionAbilityFinish()
 		Action.flag		  = 0;
 
 	    m_PTargetFinder->reset(&Action);
+	    float distance = m_PMobSkill->getDistance();
 
 		if(m_PMobSkill->isAoE())
 		{
-			float radius = m_PMobSkill->getDistance();
 
-	        m_PTargetFinder->findWithinArea(m_PBattleSubTarget, (AOERADIUS)m_PMobSkill->getAoe(), radius);
+	        m_PTargetFinder->findWithinArea(m_PBattleSubTarget, (AOERADIUS)m_PMobSkill->getAoe(), distance);
+		}
+		else if(m_PMobSkill->isConal())
+		{
+			float angle = 45.0f;
+			ShowDebug("distance %f\n", distance);
+			m_PTargetFinder->findWithinCone(m_PBattleSubTarget, distance, angle);
 		}
 		else
 		{
@@ -690,6 +698,11 @@ void CAIMobDummy::ActionAbilityFinish()
 	    uint16 actionsLength = m_PMob->m_ActionList.size();
 	    m_PMobSkill->setTotalTargets(actionsLength);
 		m_PMobSkill->setTP(m_skillTP);
+
+		if(actionsLength == 0)
+		{
+			ShowWarning("ai_mob_dummy::ActionAbilityFinish targets is zero!\n");
+		}
 
 	    apAction_t* currentAction = NULL;
 

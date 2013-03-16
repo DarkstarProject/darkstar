@@ -119,7 +119,7 @@ inline int32 CLuaMobSkill::getTP(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
 
-	lua_pushinteger( L, m_PLuaMobSkill->getTP() );
+	lua_pushnumber( L, m_PLuaMobSkill->getTP() );
 	return 1;
 }
 

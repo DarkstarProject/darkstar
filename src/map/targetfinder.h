@@ -30,6 +30,7 @@
 class CBattleEntity;
 
 #define MAX_AOE_TARGETS 15
+
 // allow pets to recieve buffs from protectra, curaga etc
 #define PETS_CAN_AOE_BUFF false
 
@@ -47,8 +48,9 @@ public:
   void reset(apAction_t* PAction); // remove all found targets
 
   // Main methods for finding targets
+  void findSingleTarget(CBattleEntity* PTarget);
   void findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, float radius);
-  void findWithinCone(CBattleEntity* PTarget, float radius);
+  void findWithinCone(CBattleEntity* PTarget, float distance, float angle);
 
   // add all targets in contexts
   void addAllInAlliance(CBattleEntity* PTarget, bool withPet);
@@ -57,10 +59,14 @@ public:
   void addEntity(CBattleEntity* PTarget, bool withPet);
 
   // helpers
+
   bool isMobOwner(CBattleEntity* PTarget);
   CBattleEntity* findMaster(CBattleEntity* PTarget);
   bool validEntity(CBattleEntity* PTarget);
   bool isPlayer();
+
+  bool isWithinArea(CBattleEntity* PTarget);
+  bool isWithinCone(CBattleEntity* PTarget);
 
 protected:
   CBattleEntity* m_PBattleEntity;
@@ -71,6 +77,12 @@ protected:
   uint16 m_zone;
   apAction_t* m_PAction;
 
+  // conal vars
+  bool m_conal;
+  float m_scalar;
+  position_t* m_APoint;
+  position_t m_BPoint;
+  position_t m_CPoint;
 };
 
 #endif

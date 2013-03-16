@@ -46,7 +46,7 @@ bool CMobSkill::hasMissMsg()
 
 bool CMobSkill::isAoE()
 {
-  return m_Aoe > 0;
+  return m_Aoe > 0 && m_Aoe < 4;
 }
 
 bool CMobSkill::isConal()
@@ -110,7 +110,7 @@ void CMobSkill::setFlag(uint8 flag)
 	m_Flag = flag;
 }
 
-void CMobSkill::setTP(uint16 tp)
+void CMobSkill::setTP(float tp)
 {
 	m_TP = tp;
 }
@@ -146,7 +146,7 @@ uint16 CMobSkill::getAnimationID()
 	return m_AnimID;
 }
 
-uint16 CMobSkill::getTP()
+float CMobSkill::getTP()
 {
 	return m_TP;
 }

@@ -26,6 +26,7 @@
 #include "packets/action.h"
 #include "alliance.h"
 #include <math.h>
+#include "../common/mmo.h"
 
 #include "packets/action.h"
 
@@ -36,6 +37,7 @@ CTargetFinder::CTargetFinder(CBattleEntity* PBattleEntity)
   m_PBattleEntity = PBattleEntity;
   m_radius = 0.0f;
   m_zone = 0;
+  m_conal = false;
   m_PRadiusAround = NULL;
   m_PTarget = NULL;
   m_PMasterTarget = NULL;
@@ -46,8 +48,10 @@ void CTargetFinder::reset(apAction_t* PAction)
 {
   m_PAction = PAction;
   m_PBattleEntity->m_ActionList.clear();
+  m_conal = false;
   m_radius = 0.0f;
   m_zone = 0;
+  m_APoint = NULL;
   m_PRadiusAround = NULL;
   m_PTarget = NULL;
   m_PMasterTarget = NULL;
@@ -111,15 +115,47 @@ void CTargetFinder::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType,
         // all party instead
         addAllInParty(m_PMasterTarget, withPet);
       }
+    } else {
+      addEntity(m_PMasterTarget, withPet);
     }
 
   }
 
 }
 
-void CTargetFinder::findWithinCone(CBattleEntity* PTarget, float radius)
+void CTargetFinder::findWithinCone(CBattleEntity* PTarget, float distance, float angle)
 {
-  //if(getangle(m_PBattleSubTarget->loc.p, PTarget->loc.p) >= 45)
+  m_conal = true;
+
+  // TODO: a point should be based on targets position
+  m_APoint = &m_PBattleEntity->loc.p;
+
+  float halfAngle = angle / 2.0f;
+
+  float rightAngle = (1 - ((float)m_APoint->rotation + halfAngle) / 255) * 6.28318f;
+  float leftAngle = (1 - ((float)m_APoint->rotation - halfAngle) / 255) * 6.28318f;
+
+  // calculate end points for triangle
+  m_BPoint.x = cosf(rightAngle) * distance + m_APoint->x;
+  m_BPoint.z = sinf(rightAngle) * distance + m_APoint->z;
+
+  m_CPoint.x = cosf(leftAngle) * distance + m_APoint->x;
+  m_CPoint.z = sinf(leftAngle) * distance + m_APoint->z;
+
+  // ShowDebug("angle %f, rotation %f, distance %f, A (%f, %f) B (%f, %f) C (%f, %f)\n", angle, rightAngle, distance, m_APoint->x, m_APoint->z, m_BPoint.x, m_BPoint.z, m_CPoint.x, m_CPoint.z);
+  // ShowDebug("Target: (%f, %f)\n", PTarget->loc.p.x, PTarget->loc.p.z);
+
+  // precompute for next stage
+  m_BPoint.x = m_BPoint.x - m_APoint->x;
+  m_BPoint.z = m_BPoint.z - m_APoint->z;
+
+  m_CPoint.x = m_CPoint.x - m_APoint->x;
+  m_CPoint.z = m_CPoint.z - m_APoint->z;
+
+  // calculate scalar
+  m_scalar = (m_BPoint.x * m_CPoint.z) - (m_BPoint.z * m_CPoint.x);
+
+  findWithinArea(PTarget, AOERADIUS_ATTACKER, distance);
 }
 
 void CTargetFinder::addAllInMobList(CBattleEntity* PTarget, bool withPet)
@@ -245,12 +281,23 @@ bool CTargetFinder::validEntity(CBattleEntity* PTarget)
   // make sure i'm not over limit
   if(m_PBattleEntity->m_ActionList.size() > MAX_AOE_TARGETS) return false;
 
-  if (PTarget->isDead() || PTarget->getZone() != m_zone || distance(*m_PRadiusAround, PTarget->loc.p) > m_radius)
+  if (PTarget->isDead() || PTarget->getZone() != m_zone)
   {
     return false;
   }
 
-  return true;
+  // check placement
+  // force first target to be added
+  // this will be removed when conal targetting is polished
+  if(m_conal && (m_PTarget == NULL || isWithinCone(PTarget)))
+  {
+    return true;
+  } else if(isWithinArea(PTarget))
+  {
+    return true;
+  }
+
+  return false;
 }
 
 bool CTargetFinder::isPlayer()
@@ -259,4 +306,46 @@ bool CTargetFinder::isPlayer()
 
   // check if i'm owned by a pc
   return m_PBattleEntity->PMaster != NULL && m_PBattleEntity->PMaster->objtype;
+}
+
+bool CTargetFinder::isWithinArea(CBattleEntity* PTarget)
+{
+   return distance(*m_PRadiusAround, PTarget->loc.p) > m_radius;
+}
+
+bool CTargetFinder::isWithinCone(CBattleEntity* PTarget)
+{
+
+  position_t PPoint;
+
+  // holds final weight
+  position_t WPoint;
+
+  // move origin to one vertex
+  PPoint.x = PTarget->loc.p.x - m_APoint->x;
+  PPoint.z = PTarget->loc.p.z - m_APoint->z;
+
+  WPoint.x = (PPoint.x * (m_BPoint.z - m_CPoint.z) + PPoint.z * (m_CPoint.x - m_BPoint.x) + m_BPoint.x * m_CPoint.z - m_CPoint.x * m_BPoint.z) / m_scalar;
+
+  WPoint.y = (PPoint.x * m_CPoint.z - PPoint.z * m_CPoint.x) / m_scalar;
+  WPoint.z = (PPoint.z * m_BPoint.x - PPoint.x * m_BPoint.z) / m_scalar;
+
+  // ShowDebug("A %f, B %f, C %f\n", WPoint.x, WPoint.y, WPoint.z);
+
+  if(WPoint.x < 0 || WPoint.x > 1)
+  {
+    return false;
+  }
+
+  if(WPoint.y < 0 || WPoint.y > 1)
+  {
+    return false;
+  }
+
+  if(WPoint.z < 0 || WPoint.z > 1)
+  {
+    return false;
+  }
+
+  return true;
 }
