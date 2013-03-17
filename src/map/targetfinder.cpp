@@ -174,6 +174,7 @@ void CTargetFinder::addAllInMobList(CBattleEntity* PTarget, bool withPet)
 
   for (SpawnIDList_t::const_iterator it = PChar->SpawnMOBList.begin();  it != PChar->SpawnMOBList.end(); ++it)
   {
+
     PBattleTarget = (CBattleEntity*)it->second;
 
     if(isMobOwner(PBattleTarget)){
@@ -246,7 +247,7 @@ CBattleEntity* CTargetFinder::findMaster(CBattleEntity* PTarget)
 
 bool CTargetFinder::isMobOwner(CBattleEntity* PTarget)
 {
-if (PTarget->m_OwnerID.id == 0 || PTarget->m_OwnerID.id == m_PBattleEntity->id)
+  if (PTarget->m_OwnerID.id == 0 || PTarget->m_OwnerID.id == m_PBattleEntity->id)
   {
     return true;
   }

@@ -224,12 +224,11 @@ void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg){
 		m_PPet->m_ActionList.clear();
 
 		// find correct targe
-		if(m_PMobSkill->getValidTargets() == TARGET_ENEMY){ //enemy
+		if(m_PMobSkill->getValidTargets() & TARGET_SELF){ //self
+		    m_PBattleSubTarget = m_PPet;
+		} else {
 		    m_PBattleSubTarget = m_PBattleTarget;
 			battleutils::MoveIntoRange(m_PPet, m_PBattleSubTarget, 25);
-		}
-		else if(m_PMobSkill->getValidTargets() == TARGET_SELF){ //self
-		    m_PBattleSubTarget = m_PPet;
 		}
 
 		Action.ActionTarget = m_PBattleSubTarget;
@@ -344,6 +343,7 @@ void CAIPetDummy::ActionAbilityUsing()
 
 void CAIPetDummy::ActionAbilityFinish(){
 	DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
 	apAction_t Action;
 
@@ -351,8 +351,7 @@ void CAIPetDummy::ActionAbilityFinish(){
 	Action.reaction   = REACTION_HIT;
 	Action.speceffect = SPECEFFECT_HIT;
 	Action.animation  = m_PMobSkill->getAnimationID();
-
-	Action.subparam   = m_PMobSkill->getID() + 256;
+	Action.subparam   = m_PMobSkill->getMsgForAction();
 	Action.flag       = 0;
 
 	// reset AoE finder
