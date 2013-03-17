@@ -299,7 +299,19 @@ void CStatusEffectContainer::OverwriteStatusEffect(CStatusEffect* StatusEffect)
 
 bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool silent)
 {
-	if(PStatusEffect != NULL && CanGainStatusEffect(PStatusEffect->GetStatusID(), PStatusEffect->GetPower()))
+    if(PStatusEffect == NULL){
+        ShowWarning("status_effect_container::AddStatusEffect Status effect given was NULL!\n");
+        return false;
+    }
+
+    uint16 statusId = PStatusEffect->GetStatusID();
+
+    if(statusId >= MAX_EFFECTID){
+        ShowWarning("status_effect_container::AddStatusEffect statusId given is OVER limit %d\n", statusId);
+        return false;
+    }
+
+	if(PStatusEffect != NULL && CanGainStatusEffect((EFFECT)statusId, PStatusEffect->GetPower()))
 	{
         // remove clean up other effects
         OverwriteStatusEffect(PStatusEffect);

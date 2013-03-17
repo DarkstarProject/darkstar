@@ -1583,6 +1583,7 @@ void CAICharNormal::ActionJobAbilityStart()
 
     if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_AMNESIA)){
         // can't use abilities
+        m_ActionTargetID = 0;
         m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_JA2));
 
         m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
@@ -1669,7 +1670,6 @@ void CAICharNormal::ActionJobAbilityStart()
 					return;
 				}
 
-				//todo: remove this and actually handle ammo thrown items (e.g. pebbles)
 				m_ActionTargetID = 0;
 					m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,MSGBASIC_NO_RANGED_WEAPON));
