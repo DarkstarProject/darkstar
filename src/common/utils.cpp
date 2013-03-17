@@ -46,7 +46,7 @@ int32 checksum(unsigned char *buf,uint32 buflen, char checkhash[16])
 
 	md5((unsigned char *)buf, hash, buflen);
 
-	if( memcmp(hash,checkhash,16) == 0) 
+	if( memcmp(hash,checkhash,16) == 0)
 	{
 		return 0;
 	}
@@ -115,6 +115,29 @@ void getMSB(uint32* result,uint32 value)
 
 }
 
+/*
+Rotations of entities are saved in uint8s, which can only hold up to a value of 255. In order to properly calculate rotations you'll need these methods to convert back and forth.
+*/
+float rotationToRadian(uint8 rotation)
+{
+	return (1 - ((float)rotation) / 255) * 6.28318f;
+}
+
+float rotationToAngle(uint8 rotation)
+{
+	return rotationToRadian(rotation) * 57.2957795f;
+}
+
+uint8 radianToRotation(float radian)
+{
+	return (1 - (radian / 6.28318f)) * 255;
+}
+
+uint8 angleToRotation(float angle)
+{
+	return radianToRotation(angle * 0.0174532925f);
+}
+
 /************************************************************************
 *																		*
 *																		*
@@ -134,8 +157,8 @@ uint8 getangle(position_t A, position_t B)
 *																		*
 ************************************************************************/
 
-bool isFaceing(position_t A, position_t B, uint8 coneAngle) 
-{	
+bool isFaceing(position_t A, position_t B, uint8 coneAngle)
+{
 	int32 angle = getangle(A,B);
 	return ( abs(angle - A.rotation) < (coneAngle >> 1) );
 }
@@ -168,7 +191,7 @@ int32 addBit(uint16 value, uint8* BitArray, uint32 size)
 
 int32 delBit(uint16 value, uint8* BitArray, uint32 size)
 {
-	if(hasBit(value, BitArray, size)) 
+	if(hasBit(value, BitArray, size))
 	{
 		BitArray[value >> 3] &= ~(1 << (value % 8));
 		return 1;
@@ -196,7 +219,7 @@ uint32 packBitsBE(uint8* target, uint64 value, int32 byteOffset, int32 bitOffset
 
 	bitmask >>= (64-lengthInBit);
 	bitmask <<= bitOffset;
-	
+
 	value <<= bitOffset;												//shift value
 	value  &= bitmask;
 

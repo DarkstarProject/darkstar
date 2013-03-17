@@ -26,6 +26,7 @@
 #include "packets/action.h"
 #include "alliance.h"
 #include <math.h>
+// #include <vector.h>
 #include "../common/mmo.h"
 
 #include "packets/action.h"
@@ -287,7 +288,7 @@ bool CTargetFinder::validEntity(CBattleEntity* PTarget)
 {
 
   // make sure i'm not over limit
-  if(m_PBattleEntity->m_ActionList.size() >= MAX_AOE_TARGETS) return false;
+  if(m_PBattleEntity->m_ActionList.size() > MAX_AOE_TARGETS) return false;
 
   if (m_PTarget == PTarget || PTarget->isDead() || PTarget->getZone() != m_zone)
   {

@@ -34,6 +34,10 @@ int32 checksum(uint8* buf,uint32 buflen,char checkhash[16]);
 float distance(position_t A, position_t B);						// расстояние между двумя точками
 int32 intpow32(int32 base, int32 exponent);						// Exponential power of integers
 void getMSB(uint32* result,uint32 value);						// fast Most Significant Byte search under GCC or MSVC. Fallback included.
+float rotationToRadian(uint8 rotation);
+float rotationToAngle(uint8 rotation);
+uint8 radianToRotation(float radian);
+uint8 angleToRotation(float angle);
 uint8 getangle(position_t A, position_t B);						// А - основная сущность, B - цель сущности (проекция вектора на OX)
 bool  isFaceing(position_t A, position_t B, uint8 coneAngle);	// А - основная сущность, B - цель сущности
 

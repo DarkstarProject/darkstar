@@ -69,6 +69,8 @@ public:
   bool isWithinRange(CBattleEntity* PTarget, float range);
 
 protected:
+  // std::vector<CBattleEntity*> m_targets; // contains all found entities
+
   float m_radius;
   position_t* m_PRadiusAround;
 
