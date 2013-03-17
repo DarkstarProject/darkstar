@@ -3619,7 +3619,7 @@ INSERT INTO `item_basic` VALUES(4276, 'serving_of_flint_caviar', 'flint_caviar',
 INSERT INTO `item_basic` VALUES(4277, 'tonosama_rice_ball', 'tonosama_rball', 12, 1536, 56, 0, 367);
 INSERT INTO `item_basic` VALUES(4278, 'shogun_rice_ball', 'shogun_rball', 12, 1536, 56, 0, 753);
 INSERT INTO `item_basic` VALUES(4279, 'tavnazian_salad', 'tavnazian_salad', 1, 1536, 54, 0, 4375);
-INSERT INTO `item_basic` VALUES(4280, 'garlic_cracker_+1', 'g_cracker_+1', 99, 1536, 56, 0, 508);
+INSERT INTO `item_basic` VALUES(4280, 'garlic_cracker_+1', 'g_cracker_+1', 99, 1536, 56, 0, 2);
 INSERT INTO `item_basic` VALUES(4281, 'red_hot_cracker', 'red_hot_cracker', 99, 1536, 56, 0, 34);
 INSERT INTO `item_basic` VALUES(4282, 'pipin_hot_popoto', 'pipin_popoto', 12, 1536, 54, 0, 87);
 INSERT INTO `item_basic` VALUES(4283, 'cup_of_choco-delight', 'choco-delight', 1, 1536, 58, 0, 125);
@@ -3744,7 +3744,7 @@ INSERT INTO `item_basic` VALUES(4401, 'moat_carp', 'moat_carp', 12, 1536, 51, 0,
 INSERT INTO `item_basic` VALUES(4402, 'red_terrapin', 'red_terrapin', 12, 1536, 51, 0, 306);
 INSERT INTO `item_basic` VALUES(4403, 'yellow_globe', 'yellow_globe', 12, 1536, 51, 0, 20);
 INSERT INTO `item_basic` VALUES(4404, 'roast_trout', 'roast_trout', 12, 1536, 53, 0, 153);
-INSERT INTO `item_basic` VALUES(4405, 'rice_ball', 'rice_ball', 12, 1536, 56, 0, 257);
+INSERT INTO `item_basic` VALUES(4405, 'rice_ball', 'rice_ball', 12, 1536, 56, 0, 72);
 INSERT INTO `item_basic` VALUES(4406, 'baked_apple', 'baked_apple', 12, 1536, 57, 0, 191);
 INSERT INTO `item_basic` VALUES(4407, 'carp_sushi', 'carp_sushi', 12, 1536, 56, 0, 183);
 INSERT INTO `item_basic` VALUES(4408, 'tortilla', 'tortilla', 12, 1536, 56, 0, 116);
@@ -4303,7 +4303,7 @@ INSERT INTO `item_basic` VALUES(5063, 'scroll_of_ice_threnody', 'ice_threnody', 
 INSERT INTO `item_basic` VALUES(5064, 'scroll_of_wind_threnody', 'wind_threnody', 1, 1664, 32, 0, 566);
 INSERT INTO `item_basic` VALUES(5065, 'scroll_of_earth_threnody', 'earth_threnody', 1, 1664, 32, 0, 338);
 INSERT INTO `item_basic` VALUES(5066, 'scroll_of_lightning_threnody', 'ltng_threnody', 1, 1664, 32, 0, 1037);
-INSERT INTO `item_basic` VALUES(5067, 'scroll_of_water_threnody', 'water_threnody', 1, 1664, 32, 0, 691);
+INSERT INTO `item_basic` VALUES(5067, 'scroll_of_water_threnody', 'water_threnody', 1, 1664, 32, 0, 419);
 INSERT INTO `item_basic` VALUES(5068, 'scroll_of_light_threnody', 'light_threnody', 1, 1664, 32, 0, 432);
 INSERT INTO `item_basic` VALUES(5069, 'scroll_of_dark_threnody', 'dark_threnody', 1, 1664, 32, 0, 518);
 INSERT INTO `item_basic` VALUES(5070, 'scroll_of_magic_finale', 'magic_finale', 1, 1664, 32, 0, 368);

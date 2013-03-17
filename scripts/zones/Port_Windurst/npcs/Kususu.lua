@@ -29,7 +29,7 @@ stock = {0x1221,1165,1, --Diaga
 
 		 0x1202,585,2,  --Cure II
 		 0x121c,140,2,  --Banish 
-		 0x1226,140,2,  --Banishga
+		 0x1226,1165,2,  --Banishga
 		 0x1235,2097,2, --Blink 
 
 		 0x1201,61,3,   --Cure
