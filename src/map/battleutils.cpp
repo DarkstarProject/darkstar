@@ -2050,6 +2050,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 *																		*
 ************************************************************************/
 
+// TODO: delete this? its not even used
 uint16 TakeMagicDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 {
 	DSP_DEBUG_BREAK_IF(PAttacker->PBattleAI->GetCurrentSpell() == NULL);

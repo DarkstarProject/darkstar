@@ -667,16 +667,9 @@ void CAIMobDummy::ActionAbilityFinish()
 	//AOE=2 means the circle is around the BATTLE TARGET
 	//AOE=4 means conal (breath)
 
-	apAction_t Action;
-	Action.ActionTarget = m_PBattleSubTarget;
-	Action.reaction   = REACTION_HIT;
-	Action.speceffect = SPECEFFECT_HIT;
-	Action.animation  = m_PMobSkill->getAnimationID();
-	Action.subparam   = m_PMobSkill->getID() + 256;
-	Action.messageID  = m_PMobSkill->getMsg();
-	Action.flag		  = 0;
+    m_PTargetFinder->reset();
+    m_PMob->m_ActionList.clear();
 
-    m_PTargetFinder->reset(&Action);
     float distance = m_PMobSkill->getDistance();
 
     if(m_PTargetFinder->isWithinRange(m_PBattleSubTarget, distance))
@@ -696,30 +689,40 @@ void CAIMobDummy::ActionAbilityFinish()
 		}
 	}
 
-    uint16 actionsLength = m_PMob->m_ActionList.size();
+    uint16 actionsLength = m_PTargetFinder->m_targets.size();
 
     m_PMobSkill->setTotalTargets(actionsLength);
 	m_PMobSkill->setTP(m_skillTP);
 
-    apAction_t* currentAction = NULL;
+	apAction_t Action;
+	Action.ActionTarget = m_PBattleSubTarget;
+	Action.reaction   = REACTION_HIT;
+	Action.speceffect = SPECEFFECT_HIT;
+	Action.animation  = m_PMobSkill->getAnimationID();
+	Action.subparam   = m_PMobSkill->getID() + 256;
+	Action.messageID  = m_PMobSkill->getMsg();
+	Action.flag		  = 0;
+
 
     uint16 msg = 0;
-    for (uint32 i = 0; i < actionsLength; ++i)
+    for (std::vector<CBattleEntity*>::iterator it = m_PTargetFinder->m_targets.begin() ; it != m_PTargetFinder->m_targets.end(); ++it)
 	{
-        currentAction = &m_PMob->m_ActionList.at(i);
+        CBattleEntity* PTarget = *it;
 
-        CBattleEntity* PTarget = currentAction->ActionTarget;
+        Action.ActionTarget = PTarget;
 
         // set default message
         m_PMobSkill->resetMsg();
 
-		currentAction->param = luautils::OnMobWeaponSkill(PTarget, m_PMob, m_PMobSkill);
+		Action.param = luautils::OnMobWeaponSkill(PTarget, m_PMob, m_PMobSkill);
 
-		if(i == 0){
+		if(msg == 0){
 			msg = m_PMobSkill->getMsg();
 		} else {
 			msg = m_PMobSkill->getAoEMsg();
 		}
+
+		Action.messageID = msg;
 
 		if(m_PMobSkill->hasMissMsg())
 		{
@@ -728,8 +731,8 @@ void CAIMobDummy::ActionAbilityFinish()
 		    Action.reaction   = REACTION_HIT;
 		}
 
-		currentAction->messageID = msg;
 
+		m_PMob->m_ActionList.push_back(Action);
 	}
 
 	if (m_ActionType == ACTION_FALL)
@@ -1047,19 +1050,10 @@ void CAIMobDummy::ActionMagicFinish()
 {
 	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL || m_PSpell == NULL);
 
-	apAction_t Action;
-
-	Action.ActionTarget = m_PBattleSubTarget;
-	Action.reaction   = REACTION_NONE;
-	Action.speceffect = SPECEFFECT_NONE;
-	Action.animation  = m_PSpell->getAnimationID();
-	Action.param      = 0;
-	Action.messageID  = 0;
-	Action.flag		  = 0;
-
 	m_LastMagicTime = m_Tick; // reset this in case the spell is long casting, don't want to immediately recast
 
-    m_PTargetFinder->reset(&Action);
+    m_PTargetFinder->reset();
+    m_PMob->m_ActionList.clear();
 
     if(m_PTargetFinder->isWithinRange(m_PBattleSubTarget, MOB_SPELL_MAX_RANGE))
     {
@@ -1074,15 +1068,26 @@ void CAIMobDummy::ActionMagicFinish()
 		}
 	}
 
-    uint16 actionsLength = m_PMob->m_ActionList.size();
+    uint16 actionsLength = m_PTargetFinder->m_targets.size();
 
 	m_PSpell->setTotalTargets(actionsLength);
 
-	CBattleEntity* PTarget = NULL;
+	apAction_t Action;
+	Action.ActionTarget = m_PBattleSubTarget;
+	Action.reaction   = REACTION_NONE;
+	Action.speceffect = SPECEFFECT_NONE;
+	Action.animation  = m_PSpell->getAnimationID();
+	Action.param      = 0;
+	Action.messageID  = 0;
+	Action.flag		  = 0;
 
-	for (uint32 i = 0; i < actionsLength; ++i)
+	uint16 msg = 0;
+	for (std::vector<CBattleEntity*>::iterator it = m_PTargetFinder->m_targets.begin() ; it != m_PTargetFinder->m_targets.end(); ++it)
 	{
-        PTarget = m_PMob->m_ActionList.at(i).ActionTarget;
+
+        CBattleEntity* PTarget = *it;
+
+        Action.ActionTarget = PTarget;
 
 		if (m_PSpell->canTargetEnemy()) {
 			// wipe shadows if needed
@@ -1092,8 +1097,6 @@ void CAIMobDummy::ActionMagicFinish()
 			}
 			else if (battleutils::IsAbsorbByShadow(PTarget))
 			{
-				m_PMob->m_ActionList.at(i).messageID = 0;
-				m_PMob->m_ActionList.at(i).param = 1;
 				PTarget->loc.zone->PushPacket(PTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(PTarget,PTarget,0,1, MSGBASIC_SHADOW_ABSORB));
 				continue; // continue to next pt member
 			}
@@ -1102,13 +1105,12 @@ void CAIMobDummy::ActionMagicFinish()
 		m_PSpell->resetMessage();
 
 		int16 result = luautils::OnSpellCast(m_PMob, PTarget);
-        m_PMob->m_ActionList.at(i).param = result;
+
+        Action.param = result;
 
         if(result >= 2000){
         	ShowDebug("Super high magic damage warning: %d\n", result);
         }
-
-        m_PMob->m_ActionList.at(i).messageID = m_PSpell->getMessage();
 
 		if(result > 0 && m_PSpell->canTargetEnemy()){ //damage spell which dealt damage, TODO: use a better identifier!
 			if(m_PSpell->dealsDamage()){
@@ -1116,9 +1118,16 @@ void CAIMobDummy::ActionMagicFinish()
 			}
 		}
 
-		if(i>0){
-			m_PMob->m_ActionList.at(i).messageID = m_PSpell->getAoEMessage();
-		}
+		if(msg == 0)
+		{
+	        msg = m_PSpell->getMessage();
+	    }
+	    else
+	    {
+			msg = m_PSpell->getAoEMessage();
+	    }
+
+	    Action.messageID = msg;
 
 		if (PTarget->objtype == TYPE_MOB && m_PMob->id != PTarget->id && !m_PSpell->isBuff())
         {
@@ -1130,6 +1139,8 @@ void CAIMobDummy::ActionMagicFinish()
             ((CMobEntity*)PTarget)->m_OwnerID.targid = m_PMob->targid;
             ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmity(m_PMob, m_PSpell->getCE(), m_PSpell->getVE());
         }
+
+        m_PMob->m_ActionList.push_back(Action);
     }
 
 	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));

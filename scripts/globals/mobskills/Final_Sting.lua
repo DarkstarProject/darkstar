@@ -18,12 +18,11 @@ function OnMobWeaponSkill(target, mob, skill)
 	local numhits = 1;
 	local accmod = 1;
 	local dmgmod = 1;
-	if(mob:getHP()>1) then
-		local mobHP = mob:getHP();
-		local hpMod = mobHP/mob:getMaxHP();
-		dmgmod = dmgmod + hpMod * 13;
-		mob:setHP(1);
-	end
+
+	local mobHP = mob:getHP();
+	local hpMod = mobHP/mob:getMaxHP();
+	dmgmod = dmgmod + hpMod * 13;
+	mob:setHP(0);
 
 	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);

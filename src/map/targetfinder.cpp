@@ -26,7 +26,7 @@
 #include "packets/action.h"
 #include "alliance.h"
 #include <math.h>
-// #include <vector.h>
+#include <vector>
 #include "../common/mmo.h"
 
 #include "packets/action.h"
@@ -36,22 +36,18 @@
 CTargetFinder::CTargetFinder(CBattleEntity* PBattleEntity)
 {
   m_PBattleEntity = PBattleEntity;
-  m_radius = 0.0f;
-  m_zone = 0;
-  m_conal = false;
-  m_PRadiusAround = NULL;
-  m_PTarget = NULL;
-  m_PMasterTarget = NULL;
-  m_PAction = NULL;
+  m_targets.reserve(MAX_AOE_TARGETS);
+
+  reset();
 }
 
-void CTargetFinder::reset(apAction_t* PAction)
+void CTargetFinder::reset()
 {
-  m_PAction = PAction;
-  m_PBattleEntity->m_ActionList.clear();
+  m_targets.clear();
   m_conal = false;
   m_radius = 0.0f;
   m_zone = 0;
+
   m_APoint = NULL;
   m_PRadiusAround = NULL;
   m_PTarget = NULL;
@@ -220,17 +216,13 @@ void CTargetFinder::addAllInParty(CBattleEntity* PTarget, bool withPet)
 void CTargetFinder::addEntity(CBattleEntity* PTarget, bool withPet)
 {
   if(validEntity(PTarget)){
-
-    m_PAction->ActionTarget = PTarget;
-
-    m_PBattleEntity->m_ActionList.push_back(*m_PAction);
+    m_targets.push_back(PTarget);
   }
 
   // add my pet too, if its allowed
   if(withPet && PTarget->PPet != NULL && validEntity(PTarget->PPet))
   {
-    m_PAction->ActionTarget = PTarget->PPet;
-    m_PBattleEntity->m_ActionList.push_back(*m_PAction);
+    m_targets.push_back(PTarget->PPet);
   }
 
 }
@@ -288,7 +280,7 @@ bool CTargetFinder::validEntity(CBattleEntity* PTarget)
 {
 
   // make sure i'm not over limit
-  if(m_PBattleEntity->m_ActionList.size() > MAX_AOE_TARGETS) return false;
+  if(m_targets.size() > MAX_AOE_TARGETS) return false;
 
   if (m_PTarget == PTarget || PTarget->isDead() || PTarget->getZone() != m_zone)
   {

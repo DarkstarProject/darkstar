@@ -229,7 +229,10 @@ void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg){
 		if(m_PMobSkill->getValidTargets() & TARGET_SELF){ //self
 		    m_PBattleSubTarget = m_PPet;
 		} else {
-		    m_PBattleSubTarget = m_PBattleTarget;
+			if(m_PBattleTarget != NULL)
+			{
+			    m_PBattleSubTarget = m_PBattleTarget;
+			}
 			battleutils::MoveIntoRange(m_PPet, m_PBattleSubTarget, 25);
 		}
 
@@ -348,17 +351,10 @@ void CAIPetDummy::ActionAbilityFinish(){
 	DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
-	apAction_t Action;
-
-	Action.ActionTarget = NULL;
-	Action.reaction   = REACTION_HIT;
-	Action.speceffect = SPECEFFECT_HIT;
-	Action.animation  = m_PMobSkill->getAnimationID();
-	Action.subparam   = m_PMobSkill->getMsgForAction();
-	Action.flag       = 0;
-
 	// reset AoE finder
-    m_PTargetFinder->reset(&Action);
+    m_PTargetFinder->reset();
+    m_PPet->m_ActionList.clear();
+
     float distance = m_PMobSkill->getDistance();
 
     if(m_PTargetFinder->isWithinRange(m_PBattleSubTarget, distance))
@@ -380,32 +376,44 @@ void CAIPetDummy::ActionAbilityFinish(){
 	    }
 	}
 
-	uint16 totalTargets = m_PPet->m_ActionList.size();
+	uint16 totalTargets = m_PTargetFinder->m_targets.size();
 	//call the script for each monster hit
 	m_PMobSkill->setTotalTargets(totalTargets);
 	m_PMobSkill->setTP(m_skillTP);
 
-    apAction_t* currentAction;
+	apAction_t Action;
+	Action.ActionTarget = NULL;
+	Action.reaction   = REACTION_HIT;
+	Action.speceffect = SPECEFFECT_HIT;
+	Action.animation  = m_PMobSkill->getAnimationID();
+	Action.subparam   = m_PMobSkill->getMsgForAction();
+	Action.flag       = 0;
 
-	for (uint32 i = 0; i < totalTargets; ++i){
-        currentAction = &m_PPet->m_ActionList.at(i);
+	uint16 msg = 0;
+	for (std::vector<CBattleEntity*>::iterator it = m_PTargetFinder->m_targets.begin() ; it != m_PTargetFinder->m_targets.end(); ++it)
+	{
 
-		CBattleEntity* PTarget = currentAction->ActionTarget;
+		CBattleEntity* PTarget = *it;
+
+		Action.ActionTarget = PTarget;
 
 		m_PMobSkill->resetMsg();
 
 		if(m_PPet->isBstPet()){
-			currentAction->param = luautils::OnMobWeaponSkill(PTarget, m_PPet, m_PMobSkill);
+			Action.param = luautils::OnMobWeaponSkill(PTarget, m_PPet, m_PMobSkill);
 		} else {
-			currentAction->param = luautils::OnPetAbility(PTarget, m_PPet, m_PMobSkill, m_PPet->PMaster);
+			Action.param = luautils::OnPetAbility(PTarget, m_PPet, m_PMobSkill, m_PPet->PMaster);
 		}
 
-		if(i == 0){
-			currentAction->messageID = m_PMobSkill->getMsg();
+		if(msg == 0){
+			msg = m_PMobSkill->getMsg();
 		} else {
-			currentAction->messageID = m_PMobSkill->getAoEMsg();
+			msg = m_PMobSkill->getAoEMsg();
 		}
 
+		Action.messageID = msg;
+
+		m_PPet->m_ActionList.push_back(Action);
 	}
 
 	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));

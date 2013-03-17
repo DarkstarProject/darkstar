@@ -1434,17 +1434,8 @@ void CAICharNormal::ActionMagicFinish()
         m_PChar->PRecastContainer->Add(RECAST_MAGIC, m_PSpell->getID(), 2000);
 	}
 
-	apAction_t Action;
-	Action.ActionTarget = m_PBattleSubTarget;
-	Action.reaction   = REACTION_NONE;
-	Action.speceffect = SPECEFFECT_NONE;
-	Action.animation  = m_PSpell->getAnimationID();
-	Action.param      = 0;
-	Action.messageID  = 0;
-	Action.flag		  = 0;
-
-
-    m_PTargetFinder->reset(&Action);
+    m_PTargetFinder->reset();
+    m_PChar->m_ActionList.clear();
 
     if (m_PSpell->isAOE())
     {
@@ -1454,15 +1445,28 @@ void CAICharNormal::ActionMagicFinish()
     }
     else
     {
-        m_PChar->m_ActionList.push_back(Action);
+        m_PTargetFinder->findSingleTarget(m_PBattleSubTarget);
     }
 
-    uint16 actionsLength = m_PChar->m_ActionList.size();
+    uint16 actionsLength = m_PTargetFinder->m_targets.size();
+
     m_PSpell->setTotalTargets(actionsLength);
 
-    for (uint32 i = 0; i < actionsLength; ++i)
-	{
-        CBattleEntity* PTarget = m_PChar->m_ActionList.at(i).ActionTarget;
+    apAction_t Action;
+    Action.ActionTarget = m_PBattleSubTarget;
+    Action.reaction   = REACTION_NONE;
+    Action.speceffect = SPECEFFECT_NONE;
+    Action.animation  = m_PSpell->getAnimationID();
+    Action.param      = 0;
+    Action.messageID  = 0;
+    Action.flag       = 0;
+
+    uint16 msg = 0;
+    for (std::vector<CBattleEntity*>::iterator it = m_PTargetFinder->m_targets.begin() ; it != m_PTargetFinder->m_targets.end(); ++it)
+    {
+        CBattleEntity* PTarget = *it;
+
+        Action.ActionTarget = PTarget;
 
         if (m_PSpell->canTargetEnemy()) {
             // wipe shadows if needed
@@ -1470,31 +1474,33 @@ void CAICharNormal::ActionMagicFinish()
                 PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
                 PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BLINK);
             } else if (battleutils::IsAbsorbByShadow(PTarget)) {
-                m_PChar->m_ActionList.at(i).messageID = 0;
-                m_PChar->m_ActionList.at(i).param = 1;
                 PTarget->loc.zone->PushPacket(PTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(PTarget,PTarget,0,1, MSGBASIC_SHADOW_ABSORB));
 
-                battleutils::ClaimMob(m_PBattleSubTarget, m_PChar);
+                battleutils::ClaimMob(PTarget, m_PChar);
                 continue; // continue to next pt member
             }
         }
 
         m_PSpell->resetMessage();
 
-        m_PChar->m_ActionList.at(i).param = luautils::OnSpellCast(m_PChar, PTarget);
+        Action.param = luautils::OnSpellCast(m_PChar, PTarget);
 
-        m_PChar->m_ActionList.at(i).messageID = m_PSpell->getMessage();
-
-        if(m_PChar->m_ActionList.at(i).param>0 && m_PSpell->canTargetEnemy()){ //damage spell which dealt damage, TODO: use a better identifier!
+        if(Action.param > 0 && m_PSpell->canTargetEnemy()){ //damage spell which dealt damage, TODO: use a better identifier!
             if(m_PSpell->dealsDamage()){//damage or drain hp
                 PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
             }
         }
 
-
-        if(i > 0){
-            m_PChar->m_ActionList.at(i).messageID = m_PSpell->getAoEMessage();
+        if(msg == 0)
+        {
+            msg = m_PSpell->getMessage();
         }
+        else
+        {
+            msg = m_PSpell->getAoEMessage();
+        }
+
+        Action.messageID = msg;
 
         if (PTarget->objtype == TYPE_MOB)
         {
@@ -1507,6 +1513,8 @@ void CAICharNormal::ActionMagicFinish()
             ((CMobEntity*)PTarget)->m_OwnerID.targid = m_PChar->targid;
             ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmity(m_PChar, m_PSpell->getCE(), m_PSpell->getVE());
         }
+
+        m_PChar->m_ActionList.push_back(Action);
     }
     // если заклинание атакующее, то дополнительно удаляем эффекты с флагом атаки
     m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_MAGIC_END | ((m_PSpell->getValidTarget() & TARGET_ENEMY) ? EFFECTFLAG_ATTACK : EFFECTFLAG_NONE));
@@ -1984,34 +1992,35 @@ void CAICharNormal::ActionJobAbilityFinish()
             Action.messageID  = m_PJobAbility->getMessage();
             Action.flag       = 0;
 
-            m_PTargetFinder->reset(&Action);
+            m_PTargetFinder->reset();
+            m_PChar->m_ActionList.clear();
+
             float distance = m_PJobAbility->getRange();
 
             m_PTargetFinder->findWithinArea(m_PChar, AOERADIUS_ATTACKER, distance);
 
-            uint16 actionsLength = m_PChar->m_ActionList.size();
-
-            apAction_t* currentAction = NULL;
+            uint16 actionsLength = m_PTargetFinder->m_targets.size();
 
             uint16 msg = 0;
-            for (uint32 i = 0; i < actionsLength; ++i)
+            for (std::vector<CBattleEntity*>::iterator it = m_PTargetFinder->m_targets.begin() ; it != m_PTargetFinder->m_targets.end(); ++it)
             {
-                currentAction = &m_PChar->m_ActionList.at(i);
+                CCharEntity* PTarget = (CCharEntity*)*it;
 
-                CCharEntity* PTarget = (CCharEntity*)currentAction->ActionTarget;
+                Action.ActionTarget = PTarget;
 
                 m_PJobAbility->resetMsg();
 
-                currentAction->param = luautils::OnUseAbility(m_PChar, PTarget, m_PJobAbility);
+                Action.param = luautils::OnUseAbility(m_PChar, PTarget, m_PJobAbility);
 
-                if(i == 0){
+                if(msg == 0){
                     msg = m_PJobAbility->getMessage();
                 } else {
                     msg = m_PJobAbility->getAoEMsg();
                 }
 
-                currentAction->messageID = msg;
+                Action.messageID = msg;
 
+                m_PChar->m_ActionList.push_back(Action);
     		}
     	}
     	else if (m_PJobAbility->getID() == ABILITY_EAGLE_EYE_SHOT )
@@ -2588,7 +2597,8 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	Action.param = damage;
 	Action.flag = 0;
 
-    m_PTargetFinder->reset(&Action);
+    m_PTargetFinder->reset();
+    m_PChar->m_ActionList.clear();
 
     // TODO: need better way to handle misses
     if(damage == 0 && !m_PBattleSubTarget->StatusEffectContainer->HasStatusEffect(EFFECT_STONESKIN))
@@ -2691,43 +2701,52 @@ void CAICharNormal::ActionWeaponSkillFinish()
     {
         float radius = 10;
 
-        m_PTargetFinder->reset(&Action);
+        m_PTargetFinder->reset();
         m_PTargetFinder->findWithinArea(m_PBattleSubTarget, AOERADIUS_TARGET, radius);
 
-        uint16 actionsLength = m_PChar->m_ActionList.size();
-        apAction_t* currentAction;
+        uint16 actionsLength = m_PTargetFinder->m_targets.size();
 
-        for (uint32 i = 0; i < actionsLength; ++i)
+        uint16 msg = 0;
+        for (std::vector<CBattleEntity*>::iterator it = m_PTargetFinder->m_targets.begin() ; it != m_PTargetFinder->m_targets.end(); ++it)
         {
+            CBattleEntity* PTarget = *it;
 
-            currentAction = &m_PChar->m_ActionList.at(i);
-            CBattleEntity* PTarget = currentAction->ActionTarget;
+            // don't add same target twice
+            if(PTarget == m_PBattleSubTarget) continue;
+
+            Action.ActionTarget = PTarget;
 
         	m_PChar->health.tp = wsTP;
+
         	damage = luautils::OnUseWeaponSkill(m_PChar, PTarget, &tpHitsLanded, &extraHitsLanded);
 
         	m_PChar->health.tp = afterWsTP;
 
-        	currentAction->param = battleutils::TakePhysicalDamage(m_PChar, PTarget, damage, false, SLOT_MAIN, 0, taChar, true);
+        	Action.param = battleutils::TakePhysicalDamage(m_PChar, PTarget, damage, false, SLOT_MAIN, 0, taChar, true);
 
-        	if (damage == 0)
+        	if(msg == 0)
         	{
-        		currentAction->reaction = REACTION_EVADE;
-        		currentAction->messageID = 188; //but misses
-        	}
-        	else if(i > 0)
-        	{
-                currentAction->messageID = 264; // "xxx takes ### damage." only
+        		msg = 185;
             } else {
-        		currentAction->messageID = 185;
+                msg = 264; // "xxx takes ### damage." only
             }
+
+            if (damage == 0)
+            {
+                Action.reaction = REACTION_EVADE;
+                msg = 188;
+            }
+
+            Action.messageID = msg; //but misses
 
             // create hate on mob
             if(PTarget->objtype == TYPE_MOB){
 
                 CMobEntity* mob = (CMobEntity*)PTarget;
-                mob->PEnmityContainer->UpdateEnmityFromDamage(m_PChar, currentAction->param);
+                mob->PEnmityContainer->UpdateEnmityFromDamage(m_PChar, Action.param);
             }
+
+            m_PChar->m_ActionList.push_back(Action);
         }
 	}
 

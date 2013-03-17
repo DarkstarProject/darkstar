@@ -45,7 +45,7 @@ class CTargetFinder
 public:
   CTargetFinder(CBattleEntity* PBattleEntity);
 
-  void reset(apAction_t* PAction); // remove all found targets
+  void reset(); // remove all found targets
 
   // Main methods for finding targets
   void findSingleTarget(CBattleEntity* PTarget);
@@ -68,8 +68,9 @@ public:
   bool isWithinCone(CBattleEntity* PTarget);
   bool isWithinRange(CBattleEntity* PTarget, float range);
 
+  std::vector<CBattleEntity*> m_targets; // contains all found entities
+
 protected:
-  // std::vector<CBattleEntity*> m_targets; // contains all found entities
 
   float m_radius;
   position_t* m_PRadiusAround;
@@ -80,7 +81,6 @@ protected:
   CBattleEntity* m_PTarget; // first target
 
   uint16 m_zone;
-  apAction_t* m_PAction;
 
   // conal vars
   bool m_conal;
