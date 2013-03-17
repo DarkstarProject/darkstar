@@ -288,7 +288,7 @@ bool CTargetFinder::validEntity(CBattleEntity* PTarget)
   if(PTarget == m_PTarget) return false;
 
   // make sure i'm not over limit
-  if(m_PBattleEntity->m_ActionList.size() > MAX_AOE_TARGETS) return false;
+  if(m_PBattleEntity->m_ActionList.size() >= MAX_AOE_TARGETS) return false;
 
   if (PTarget->isDead() || PTarget->getZone() != m_zone)
   {
