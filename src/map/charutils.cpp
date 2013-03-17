@@ -3746,6 +3746,7 @@ void loadCharWsPoints(CCharEntity* PChar)
 
 void saveCharWsPoints(CCharEntity* PChar, uint16 indexid, int32 points)
 {
+	DSP_DEBUG_BREAK_IF(indexid > MAX_UNLOCKABLE_WEAPONS);
 	if (points == 0)
 	{
 		Sql_Query(SqlHandle,"DELETE FROM char_weapon_skill_points WHERE itemindex = %u AND charid = '%u' LIMIT 1;", indexid+1, PChar->id);
