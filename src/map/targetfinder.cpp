@@ -289,7 +289,7 @@ bool CTargetFinder::validEntity(CBattleEntity* PTarget)
   // make sure i'm not over limit
   if(m_PBattleEntity->m_ActionList.size() >= MAX_AOE_TARGETS) return false;
 
-  if (PTarget->isDead() || PTarget->getZone() != m_zone)
+  if (m_PTarget == PTarget || PTarget->isDead() || PTarget->getZone() != m_zone)
   {
     return false;
   }
@@ -326,7 +326,7 @@ bool CTargetFinder::isPlayer()
   if(m_PBattleEntity->objtype == TYPE_PC) return true;
 
   // check if i'm owned by a pc
-  return m_PBattleEntity->PMaster != NULL && m_PBattleEntity->PMaster->objtype;
+  return m_PBattleEntity->PMaster != NULL && m_PBattleEntity->PMaster->objtype == TYPE_PC;
 }
 
 bool CTargetFinder::isWithinArea(CBattleEntity* PTarget)

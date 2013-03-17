@@ -175,14 +175,14 @@ INSERT INTO `mob_skill` VALUES (89,79,89,'Poison_Breath', 4, 10.0, 2000, 1000, 4
 INSERT INTO `mob_skill` VALUES (88,79,88,'Sticky_Thread', 4, 10.0, 2000, 1000, 4, 0);
 
 -- Scorpion
--- INSERT INTO `mob_skill` VALUES (94,217,94,'Mandible_Bite', 0, 7.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (97,217,97,'Death_Scissors', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (94,217,94,'Mandible_Bite', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (97,217,97,'Death_Scissors', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (98,217,98,'Wild_Rage', 1, 15.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (99,217,99,'Earth_Pounder', 1, 15.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (95,217,95,'Poison_Sting', 0, 7.0, 2000, 1000, 4, 0); -- 1hp/tick
--- INSERT INTO `mob_skill` VALUES (93,217,93,'Cold_Breath', 4, 15.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (92,217,92,'Numbing_Breath', 4, 15.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (100,217,100,'Sharp_Strike', 0, 7.0, 2000, 1000, 1, 0);
+INSERT INTO `mob_skill` VALUES (99,217,99,'Earth_Pounder', 1, 15.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (95,217,95,'Poison_Sting', 0, 7.0, 2000, 1000, 4, 0); -- 1hp/tick
+INSERT INTO `mob_skill` VALUES (93,217,93,'Cold_Breath', 4, 15.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (92,217,92,'Numbing_Breath', 4, 15.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (100,217,100,'Sharp_Strike', 0, 7.0, 2000, 1000, 1, 0);
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Earthbreaker', 1, 40.0, 2000, 1000, 4, 0); -- NM/HNM only
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Critical_Bite', 0, 7.0, 2000, 1000, 4, 0); -- NM/HNM only
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Venom_Sting', 0, 7.0, 2000, 1000, 4, 0); -- NM/HNM only

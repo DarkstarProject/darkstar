@@ -59,7 +59,6 @@ public:
   void addEntity(CBattleEntity* PTarget, bool withPet);
 
   // helpers
-
   bool isMobOwner(CBattleEntity* PTarget);
   CBattleEntity* findMaster(CBattleEntity* PTarget);
   bool validEntity(CBattleEntity* PTarget);
