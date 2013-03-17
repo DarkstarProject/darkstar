@@ -2484,6 +2484,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	uint16 extraHitsLanded = 0;
 	uint16 damage = 0;
 	m_PChar->PLatentEffectContainer->CheckLatentsTP(0);
+
 	damage = luautils::OnUseWeaponSkill(m_PChar, m_PBattleSubTarget, &tpHitsLanded, &extraHitsLanded);
 
     // handle shadows
@@ -2579,7 +2580,6 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	}
 
 	apAction_t Action;
-	m_PChar->m_ActionList.clear();
 
 	Action.ActionTarget = m_PBattleSubTarget;
 	Action.reaction = REACTION_HIT;
@@ -2588,6 +2588,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	Action.param = damage;
 	Action.flag = 0;
 
+    m_PTargetFinder->reset(&Action);
 
     // TODO: need better way to handle misses
     if(damage == 0 && !m_PBattleSubTarget->StatusEffectContainer->HasStatusEffect(EFFECT_STONESKIN))
@@ -2685,23 +2686,13 @@ void CAICharNormal::ActionWeaponSkillFinish()
     }
 
 	m_PChar->m_ActionList.push_back(Action);
-	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-
 
     if(m_PWeaponSkill->isAoE())
     {
-        apAction_t AoEAction;
-
-        AoEAction.reaction = REACTION_HIT;
-        AoEAction.speceffect = SPECEFFECT_RECOIL;
-        AoEAction.animation = m_PWeaponSkill->getAnimationId();
-        AoEAction.flag = 0;
-
-        m_PTargetFinder->reset(&AoEAction);
         float radius = 10;
 
+        m_PTargetFinder->reset(&Action);
         m_PTargetFinder->findWithinArea(m_PBattleSubTarget, AOERADIUS_TARGET, radius);
-
 
         uint16 actionsLength = m_PChar->m_ActionList.size();
         apAction_t* currentAction;
@@ -2724,10 +2715,12 @@ void CAICharNormal::ActionWeaponSkillFinish()
         		currentAction->reaction = REACTION_EVADE;
         		currentAction->messageID = 188; //but misses
         	}
-        	else
+        	else if(i > 0)
         	{
-        		currentAction->messageID = 264; // "xxx takes ### damage." only
-        	}
+                currentAction->messageID = 264; // "xxx takes ### damage." only
+            } else {
+        		currentAction->messageID = 185;
+            }
 
             // create hate on mob
             if(PTarget->objtype == TYPE_MOB){
@@ -2743,6 +2736,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		ShowError(CL_RED"Warning: %s did 8000+ weaponskill damage, job = %u \n" CL_RESET, m_PChar->GetName(), m_PChar->GetMJob());
 
 	charutils::UpdateHealth(m_PChar);
+
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
 	m_PWeaponSkill = NULL;
