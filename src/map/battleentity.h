@@ -444,6 +444,7 @@ public:
 	bool			hasImmunity(uint32 imID);
 	bool			isAsleep();
 
+
 	JOBTYPE		    GetMJob();					// главная профессия
 	JOBTYPE		    GetSJob();					// дополнительная профессия
 	uint8		    GetMLevel();				// уровень главной профессии

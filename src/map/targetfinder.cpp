@@ -177,7 +177,7 @@ void CTargetFinder::addAllInMobList(CBattleEntity* PTarget, bool withPet)
 
     PBattleTarget = (CBattleEntity*)it->second;
 
-    if(isMobOwner(PBattleTarget)){
+    if(isMobOwner(PBattleTarget) && !PBattleTarget->isCharmed){
       addEntity(PBattleTarget, withPet);
     }
 
