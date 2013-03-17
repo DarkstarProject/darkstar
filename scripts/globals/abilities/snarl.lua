@@ -23,4 +23,5 @@ function OnAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
+	return 0,0;
 end;

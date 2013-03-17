@@ -29,6 +29,22 @@ CAbility::CAbility(uint16 id)
 	m_ID = id;
 }
 
+bool CAbility::isAvatarAbility()
+{
+  return getID() >= ABILITY_HEALING_RUBY;
+}
+
+bool CAbility::isAoE()
+{
+  return m_aoe == 1;
+}
+
+bool CAbility::isConal()
+{
+  // no abilities are conal?
+  return false;
+}
+
 void CAbility::resetMsg()
 {
   m_message = m_DefaultMessage;

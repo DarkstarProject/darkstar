@@ -2161,13 +2161,22 @@ int32 OnMagicCastingCheck(CBaseEntity* PChar,CBaseEntity* PTarget,CSpell* PSpell
 
 int32 OnAbilityCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CAbility* PAbility, CBaseEntity** PMsgTarget)
 {
+    DSP_DEBUG_BREAK_IF(PAbility == NULL);
+
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
     lua_pushnil(LuaHandle);
     lua_setglobal(LuaHandle, "OnAbilityCheck");
 
-	snprintf(File, sizeof(File), "scripts/globals/abilities/%s.lua", PAbility->getName());
+    char* filePath = "scripts/globals/abilities/%s.lua";
+
+    if(PAbility->isAvatarAbility())
+    {
+        filePath = "scripts/globals/abilities/pets/%s.lua";
+    }
+
+	snprintf(File, sizeof(File), filePath, PAbility->getName());
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{

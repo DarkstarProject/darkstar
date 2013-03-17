@@ -350,6 +350,10 @@ public:
 
 	CAbility(uint16 id);
 
+    bool        isAvatarAbility();
+    bool        isAoE();
+    bool        isConal();
+
     void        resetMsg();
 
 	uint16		getID();

@@ -139,10 +139,12 @@ void CAIPetDummy::ActionAbilityStart()
 	else if(m_PPet->getPetType()==PETTYPE_WYVERN){
 		if(m_MasterCommand==MASTERCOMMAND_ELEMENTAL_BREATH && (m_PPet->GetMJob()==JOB_DRG || m_PPet->GetMJob()==JOB_RDM)){
 			m_MasterCommand = MASTERCOMMAND_NONE;
+
 			//offensive or multipurpose wyvern
-			if(m_PPet->PBattleAI->GetBattleTarget()!=NULL){ //prepare elemental breaths
+			if(m_PBattleTarget != NULL){ //prepare elemental breaths
 				int skip = rand()%6;
 				int hasSkipped = 0;
+
 				for(int i=0; i<m_PPet->PetSkills.size(); i++){
 					if(m_PPet->PetSkills[i]->getValidTargets() == TARGET_ENEMY){
 						if(hasSkipped == skip){
@@ -154,9 +156,11 @@ void CAIPetDummy::ActionAbilityStart()
 						}
 					}
 				}
+
 				preparePetAbility(m_PBattleTarget);
 				return;
 			}
+
 		}
 		else if(m_MasterCommand==MASTERCOMMAND_HEALING_BREATH && (m_PPet->GetMJob()==JOB_WHM || m_PPet->GetMJob()==JOB_RDM)){
 			m_MasterCommand = MASTERCOMMAND_NONE;
@@ -218,8 +222,6 @@ void CAIPetDummy::ActionAbilityStart()
 void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg){
 	if(m_PMobSkill!=NULL){
 
-		m_PBattleSubTarget = PTarg;
-
 		apAction_t Action;
 		m_PPet->m_ActionList.clear();
 
@@ -245,11 +247,12 @@ void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg){
 
 		m_PPet->m_ActionList.push_back(Action);
 		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
+
 		m_LastActionTime = m_Tick;
 		m_ActionType = ACTION_MOBABILITY_USING;
 	}
 	else{
-		ShowDebug("Pet skill is null \n");
+		ShowDebug("ai_pet_dummy::ActionAbilityFinish Pet skill is null \n");
 		m_ActionType = ACTION_ATTACK;
 		ActionAttack();
 	}
@@ -393,7 +396,7 @@ void CAIPetDummy::ActionAbilityFinish(){
 
 		if(m_PPet->isBstPet()){
 			currentAction->param = luautils::OnMobWeaponSkill(PTarget, m_PPet, m_PMobSkill);
-		} else{
+		} else {
 			currentAction->param = luautils::OnPetAbility(PTarget, m_PPet, m_PMobSkill, m_PPet->PMaster);
 		}
 

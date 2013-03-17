@@ -15,4 +15,6 @@ end;
 
 function OnUseAbility(player, target, ability)
 	player:addStatusEffect(EFFECT_BERSERK,1,0,180);
+
+    return EFFECT_BERSERK;
 end;

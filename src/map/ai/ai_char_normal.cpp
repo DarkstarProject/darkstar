@@ -1947,9 +1947,9 @@ void CAICharNormal::ActionJobAbilityFinish()
     	}
 
         // TODO: бардак. тоже выкинуть отсюда
-    	else if (m_PJobAbility->getID() >= ABILITY_HEALING_RUBY)
+    	else if (m_PJobAbility->isAvatarAbility())
         {
-    		if (m_PChar->PPet!=NULL) //is a bp - dont display msg and notify pet
+    		if (m_PChar->PPet != NULL) //is a bp - dont display msg and notify pet
             {
     			Action.animation  = 94; //assault anim
     			Action.ActionTarget = m_PBattleSubTarget;
@@ -1975,7 +1975,7 @@ void CAICharNormal::ActionJobAbilityFinish()
     			charutils::UpdateHealth(m_PChar);
     		}
     	}
-    	else if (m_PJobAbility->getAOE() == 1 && m_PChar->PParty != NULL)
+    	else if (m_PJobAbility->isAoE() && m_PChar->PParty != NULL)
     	{
             Action.ActionTarget = NULL;
             Action.reaction   = REACTION_NONE;
