@@ -698,52 +698,49 @@ void CAIMobDummy::ActionAbilityFinish()
 
     uint16 actionsLength = m_PMob->m_ActionList.size();
 
-    if(actionsLength > 0)
-    {
-	    m_PMobSkill->setTotalTargets(actionsLength);
-		m_PMobSkill->setTP(m_skillTP);
+    m_PMobSkill->setTotalTargets(actionsLength);
+	m_PMobSkill->setTP(m_skillTP);
 
-	    apAction_t* currentAction = NULL;
+    apAction_t* currentAction = NULL;
 
-	    uint16 msg = 0;
-	    for (uint32 i = 0; i < actionsLength; ++i)
-		{
-	        currentAction = &m_PMob->m_ActionList.at(i);
+    uint16 msg = 0;
+    for (uint32 i = 0; i < actionsLength; ++i)
+	{
+        currentAction = &m_PMob->m_ActionList.at(i);
 
-	        CBattleEntity* PTarget = currentAction->ActionTarget;
+        CBattleEntity* PTarget = currentAction->ActionTarget;
 
-	        // set default message
-	        m_PMobSkill->resetMsg();
+        // set default message
+        m_PMobSkill->resetMsg();
 
-			currentAction->param = luautils::OnMobWeaponSkill(PTarget, m_PMob, m_PMobSkill);
+		currentAction->param = luautils::OnMobWeaponSkill(PTarget, m_PMob, m_PMobSkill);
 
-			if(i == 0){
-				msg = m_PMobSkill->getMsg();
-			} else {
-				msg = m_PMobSkill->getAoEMsg();
-			}
-
-			if(m_PMobSkill->hasMissMsg())
-			{
-			    Action.reaction   = REACTION_MISS;
-			} else {
-			    Action.reaction   = REACTION_HIT;
-			}
-
-			currentAction->messageID = msg;
-
+		if(i == 0){
+			msg = m_PMobSkill->getMsg();
+		} else {
+			msg = m_PMobSkill->getAoEMsg();
 		}
 
-		if (m_ActionType == ACTION_FALL)
+		if(m_PMobSkill->hasMissMsg())
 		{
-			//  set when you kill the mob in a script, but need
-			//  it to be ACTION_MOBABILITY_FINISH for pushing the packet.
-			m_ActionType = ACTION_MOBABILITY_FINISH;
+		    Action.reaction   = REACTION_MISS;
+		} else {
+		    Action.reaction   = REACTION_HIT;
 		}
 
-		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+		currentAction->messageID = msg;
 
 	}
+
+	if (m_ActionType == ACTION_FALL)
+	{
+		//  set when you kill the mob in a script, but need
+		//  it to be ACTION_MOBABILITY_FINISH for pushing the packet.
+		m_ActionType = ACTION_MOBABILITY_FINISH;
+	}
+
+	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+
 
 	if (m_PMob->isDead()) //e.g. self-destruct. Needed here AFTER sending the action packets.
 	{
@@ -1079,66 +1076,63 @@ void CAIMobDummy::ActionMagicFinish()
 
     uint16 actionsLength = m_PMob->m_ActionList.size();
 
-    if(actionsLength > 0)
-    {
-		m_PSpell->setTotalTargets(actionsLength);
+	m_PSpell->setTotalTargets(actionsLength);
 
-		CBattleEntity* PTarget = NULL;
+	CBattleEntity* PTarget = NULL;
 
-		for (uint32 i = 0; i < actionsLength; ++i)
-		{
-	        PTarget = m_PMob->m_ActionList.at(i).ActionTarget;
+	for (uint32 i = 0; i < actionsLength; ++i)
+	{
+        PTarget = m_PMob->m_ActionList.at(i).ActionTarget;
 
-			if (m_PSpell->canTargetEnemy()) {
-				// wipe shadows if needed
-				if (m_PSpell->isAOE()) {
-					PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
-					PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BLINK);
-				}
-				else if (battleutils::IsAbsorbByShadow(PTarget)) {
-					m_PMob->m_ActionList.at(i).messageID = 0;
-					m_PMob->m_ActionList.at(i).param = 1;
-					PTarget->loc.zone->PushPacket(PTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(PTarget,PTarget,0,1, MSGBASIC_SHADOW_ABSORB));
-					continue; // continue to next pt member
-				}
+		if (m_PSpell->canTargetEnemy()) {
+			// wipe shadows if needed
+			if (m_PSpell->isAOE()) {
+				PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
+				PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BLINK);
 			}
-
-			m_PSpell->resetMessage();
-
-			int16 result = luautils::OnSpellCast(m_PMob, PTarget);
-	        m_PMob->m_ActionList.at(i).param = result;
-
-	        if(result >= 2000){
-	        	ShowDebug("Super high magic damage warning: %d\n", result);
-	        }
-
-	        m_PMob->m_ActionList.at(i).messageID = m_PSpell->getMessage();
-
-			if(result > 0 && m_PSpell->canTargetEnemy()){ //damage spell which dealt damage, TODO: use a better identifier!
-				if(m_PSpell->dealsDamage()){
-					PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
-				}
+			else if (battleutils::IsAbsorbByShadow(PTarget))
+			{
+				m_PMob->m_ActionList.at(i).messageID = 0;
+				m_PMob->m_ActionList.at(i).param = 1;
+				PTarget->loc.zone->PushPacket(PTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(PTarget,PTarget,0,1, MSGBASIC_SHADOW_ABSORB));
+				continue; // continue to next pt member
 			}
+		}
 
-			if(i>0){
-				m_PMob->m_ActionList.at(i).messageID = m_PSpell->getAoEMessage();
+		m_PSpell->resetMessage();
+
+		int16 result = luautils::OnSpellCast(m_PMob, PTarget);
+        m_PMob->m_ActionList.at(i).param = result;
+
+        if(result >= 2000){
+        	ShowDebug("Super high magic damage warning: %d\n", result);
+        }
+
+        m_PMob->m_ActionList.at(i).messageID = m_PSpell->getMessage();
+
+		if(result > 0 && m_PSpell->canTargetEnemy()){ //damage spell which dealt damage, TODO: use a better identifier!
+			if(m_PSpell->dealsDamage()){
+				PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 			}
+		}
 
-			if (PTarget->objtype == TYPE_MOB && m_PMob->id != PTarget->id && !m_PSpell->isBuff())
-	        {
-	            if (PTarget->isDead())
-	            {
-	                ((CMobEntity*)PTarget)->m_DropItemTime = m_PSpell->getAnimationTime();
-	            }
-	            ((CMobEntity*)PTarget)->m_OwnerID.id = m_PMob->id;
-	            ((CMobEntity*)PTarget)->m_OwnerID.targid = m_PMob->targid;
-	            ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmity(m_PMob, m_PSpell->getCE(), m_PSpell->getVE());
-	        }
-	    }
+		if(i>0){
+			m_PMob->m_ActionList.at(i).messageID = m_PSpell->getAoEMessage();
+		}
 
-		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+		if (PTarget->objtype == TYPE_MOB && m_PMob->id != PTarget->id && !m_PSpell->isBuff())
+        {
+            if (PTarget->isDead())
+            {
+                ((CMobEntity*)PTarget)->m_DropItemTime = m_PSpell->getAnimationTime();
+            }
+            ((CMobEntity*)PTarget)->m_OwnerID.id = m_PMob->id;
+            ((CMobEntity*)PTarget)->m_OwnerID.targid = m_PMob->targid;
+            ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmity(m_PMob, m_PSpell->getCE(), m_PSpell->getVE());
+        }
+    }
 
-	}
+	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
 
 	m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 

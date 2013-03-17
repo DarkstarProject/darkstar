@@ -700,7 +700,6 @@ INSERT INTO `mob_skill` VALUES (412,224,412,'Kick_Back', 0, 7.0, 2000, 1000, 4, 
 INSERT INTO `mob_skill` VALUES (415,224,415,'Umbra_Smash', 1, 12.0, 3000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (416,224,416,'Giga_Slash', 1, 12.0, 3000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (417,224,417,'Dark_Nova', 1, 12.0, 3000, 1000, 4, 0);
-
 INSERT INTO `mob_skill` VALUES (413,225,413,'Implosion', 1, 60, 2000, 0, 4, 0);
 
 -- Golem

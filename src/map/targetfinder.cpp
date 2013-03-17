@@ -59,9 +59,9 @@ void CTargetFinder::reset(apAction_t* PAction)
 
 void CTargetFinder::findSingleTarget(CBattleEntity* PTarget)
 {
-  m_radius = 999.0f;
   m_zone = m_PBattleEntity->getZone();
   m_PTarget = NULL;
+  m_PRadiusAround = &PTarget->loc.p;
 
   addEntity(PTarget, false);
 }
@@ -302,13 +302,19 @@ bool CTargetFinder::validEntity(CBattleEntity* PTarget)
   // check placement
   // force first target to be added
   // this will be removed when conal targetting is polished
-  if(m_conal && isWithinCone(PTarget))
+  if(m_conal)
   {
-    return true;
+    if(isWithinCone(PTarget))
+    {
+      return true;
+    }
   }
-  else if(isWithinArea(PTarget))
+  else
   {
-    return true;
+    if(isWithinArea(PTarget))
+    {
+      return true;
+    }
   }
 
   return false;

@@ -379,38 +379,34 @@ void CAIPetDummy::ActionAbilityFinish(){
 	}
 
 	uint16 totalTargets = m_PPet->m_ActionList.size();
-	if(totalTargets > 0)
-	{
-		//call the script for each monster hit
-		m_PMobSkill->setTotalTargets(totalTargets);
-		m_PMobSkill->setTP(m_skillTP);
+	//call the script for each monster hit
+	m_PMobSkill->setTotalTargets(totalTargets);
+	m_PMobSkill->setTP(m_skillTP);
 
-	    apAction_t* currentAction;
+    apAction_t* currentAction;
 
-		for (uint32 i = 0; i < totalTargets; ++i){
-	        currentAction = &m_PPet->m_ActionList.at(i);
+	for (uint32 i = 0; i < totalTargets; ++i){
+        currentAction = &m_PPet->m_ActionList.at(i);
 
-			CBattleEntity* PTarget = currentAction->ActionTarget;
+		CBattleEntity* PTarget = currentAction->ActionTarget;
 
-			m_PMobSkill->resetMsg();
+		m_PMobSkill->resetMsg();
 
-			if(m_PPet->isBstPet()){
-				currentAction->param = luautils::OnMobWeaponSkill(PTarget, m_PPet, m_PMobSkill);
-			} else{
-				currentAction->param = luautils::OnPetAbility(PTarget, m_PPet, m_PMobSkill, m_PPet->PMaster);
-			}
-
-			if(i == 0){
-				currentAction->messageID = m_PMobSkill->getMsg();
-			} else {
-				currentAction->messageID = m_PMobSkill->getAoEMsg();
-			}
-
+		if(m_PPet->isBstPet()){
+			currentAction->param = luautils::OnMobWeaponSkill(PTarget, m_PPet, m_PMobSkill);
+		} else{
+			currentAction->param = luautils::OnPetAbility(PTarget, m_PPet, m_PMobSkill, m_PPet->PMaster);
 		}
 
-		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
+		if(i == 0){
+			currentAction->messageID = m_PMobSkill->getMsg();
+		} else {
+			currentAction->messageID = m_PMobSkill->getAoEMsg();
+		}
 
 	}
+
+	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
 
 	m_PBattleSubTarget = NULL;
 	m_ActionType = ACTION_ATTACK;
