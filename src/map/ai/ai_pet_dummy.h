@@ -43,12 +43,13 @@ public:
 	virtual void CheckCurrentAction(uint32 tick);
 
 	CAIPetDummy(CPetEntity* PPet);
-	
+
 	uint16	m_MasterCommand; //used for avatars/wyverns atm
 
 protected:
 
 	CPetEntity* m_PPet;
+    float m_skillTP;
 
 	void preparePetAbility(CBattleEntity* PTarg);
 	void ActionRoaming();

@@ -41,6 +41,7 @@ public:
 	 CPetEntity(PETTYPE petType);						// конструктор
 	~CPetEntity();						// деструктор
 	PETTYPE getPetType();
+    bool isBstPet();
 	uint16 m_Family;
 	uint8 m_Element;
 	uint32 m_PetID;

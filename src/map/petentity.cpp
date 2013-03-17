@@ -34,7 +34,12 @@ CPetEntity::CPetEntity(PETTYPE petType)
 }
 
 PETTYPE CPetEntity::getPetType(){
-	return m_PetType;
+  return m_PetType;
+}
+
+bool CPetEntity::isBstPet()
+{
+  return getPetType()==PETTYPE_JUGPET || objtype == TYPE_MOB;
 }
 
 CPetEntity::~CPetEntity()

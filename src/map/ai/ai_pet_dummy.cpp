@@ -217,15 +217,33 @@ void CAIPetDummy::ActionAbilityStart()
 
 void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg){
 	if(m_PMobSkill!=NULL){
+
+		m_PBattleSubTarget = PTarg;
+
 		apAction_t Action;
 		m_PPet->m_ActionList.clear();
-		Action.ActionTarget = PTarg;
+
+		// find correct targe
+		if(m_PMobSkill->getValidTargets() == TARGET_ENEMY){ //enemy
+		    m_PBattleSubTarget = m_PBattleTarget;
+			battleutils::MoveIntoRange(m_PPet, m_PBattleSubTarget, 25);
+		}
+		else if(m_PMobSkill->getValidTargets() == TARGET_SELF){ //self
+		    m_PBattleSubTarget = m_PPet;
+		}
+
+		Action.ActionTarget = m_PBattleSubTarget;
 		Action.reaction   = REACTION_HIT;
 		Action.speceffect = SPECEFFECT_HIT;
 		Action.animation  = 0;
-		Action.param	  = m_PMobSkill->getID() + 256;//m_PMobSkill->getAnimationID();
+		Action.param	  = m_PMobSkill->getMsgForAction();
 		Action.messageID  = 43; //readies message
 		Action.flag		  = 0;
+
+
+		m_PPet->health.tp = 0;
+		m_skillTP = m_PPet->health.tp;
+
 		m_PPet->m_ActionList.push_back(Action);
 		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
 		m_LastActionTime = m_Tick;
@@ -317,7 +335,7 @@ void CAIPetDummy::ActionAbilityUsing()
 				return;
 			}
 		}
-		m_PMobSkill->setTP(m_PPet->health.tp);
+
 		m_LastActionTime = m_Tick;
 		m_ActionType = ACTION_MOBABILITY_FINISH;
 		ActionAbilityFinish();
@@ -329,35 +347,7 @@ void CAIPetDummy::ActionAbilityFinish(){
 
 	apAction_t Action;
 
-	if (m_PPet->objtype == TYPE_MOB)
-	{
-		if (m_PMobSkill->getValidTargets() == TARGET_SELF)
-			Action.ActionTarget = m_PPet;
-
-		else if (m_PMobSkill->getValidTargets() == TARGET_ENEMY)
-			Action.ActionTarget = m_PBattleTarget;
-
-		else if(m_PMobSkill->getValidTargets() == TARGET_PLAYER_PARTY)
-			Action.ActionTarget = m_PPet->PMaster;
-	}
-	else
-	{
-		if(m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PPet->getPetType()!=PETTYPE_AVATAR){
-			Action.ActionTarget = m_PBattleTarget;
-		}
-		else if(m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PPet->getPetType()==PETTYPE_AVATAR){
-			Action.ActionTarget = m_PBattleSubTarget;
-		}
-		else if(m_PMobSkill->getValidTargets() == TARGET_PLAYER_PARTY){
-			Action.ActionTarget = m_PBattleSubTarget;
-		}
-		else if(m_PMobSkill->getValidTargets() == TARGET_SELF){
-			Action.ActionTarget = m_PPet;
-		}
-	}
-
-
-
+	Action.ActionTarget = NULL;
 	Action.reaction   = REACTION_HIT;
 	Action.speceffect = SPECEFFECT_HIT;
 	Action.animation  = m_PMobSkill->getAnimationID();
@@ -367,46 +357,58 @@ void CAIPetDummy::ActionAbilityFinish(){
 
 	// reset AoE finder
     m_PTargetFinder->reset(&Action);
+    float distance = m_PMobSkill->getDistance();
 
     if(m_PMobSkill->isAoE())
     {
 	    float radius = m_PMobSkill->getDistance();
 
-    	m_PTargetFinder->findWithinArea(m_PBattleSubTarget, (AOERADIUS)m_PMobSkill->getAoe(), radius);
+    	m_PTargetFinder->findWithinArea(m_PBattleSubTarget, (AOERADIUS)m_PMobSkill->getAoe(), distance);
     }
+    else if(m_PMobSkill->isConal())
+	{
+		float angle = 45.0f;
+		m_PTargetFinder->findWithinCone(m_PBattleSubTarget, distance, angle);
+	}
     else
     {
-    	m_PPet->m_ActionList.push_back(Action);
+    	m_PTargetFinder->findSingleTarget(m_PBattleSubTarget, distance);
     }
 
-	//call the script for each monster hit
 	uint16 totalTargets = m_PPet->m_ActionList.size();
-	m_PMobSkill->setTotalTargets(totalTargets);
-    apAction_t* currentAction;
-	for (uint32 i = 0; i < totalTargets; ++i){
-        currentAction = &m_PPet->m_ActionList.at(i);
+	if(totalTargets > 0)
+	{
+		//call the script for each monster hit
+		m_PMobSkill->setTotalTargets(totalTargets);
+		m_PMobSkill->setTP(m_skillTP);
 
-		CBattleEntity* PTarget = currentAction->ActionTarget;
+	    apAction_t* currentAction;
 
-		m_PMobSkill->resetMsg();
+		for (uint32 i = 0; i < totalTargets; ++i){
+	        currentAction = &m_PPet->m_ActionList.at(i);
 
-		if(m_PPet->getPetType()==PETTYPE_JUGPET || m_PPet->objtype == TYPE_MOB){
-			currentAction->param = luautils::OnMobWeaponSkill(PTarget, m_PPet, m_PMobSkill);
-		} else{
-			currentAction->param = luautils::OnPetAbility(PTarget, m_PPet, m_PMobSkill, m_PPet->PMaster);
+			CBattleEntity* PTarget = currentAction->ActionTarget;
+
+			m_PMobSkill->resetMsg();
+
+			if(m_PPet->isBstPet()){
+				currentAction->param = luautils::OnMobWeaponSkill(PTarget, m_PPet, m_PMobSkill);
+			} else{
+				currentAction->param = luautils::OnPetAbility(PTarget, m_PPet, m_PMobSkill, m_PPet->PMaster);
+			}
+
+			if(i == 0){
+				currentAction->messageID = m_PMobSkill->getMsg();
+			} else {
+				currentAction->messageID = m_PMobSkill->getAoEMsg();
+			}
+
 		}
 
-		if(i == 0){
-			currentAction->messageID = m_PMobSkill->getMsg();
-		} else {
-			currentAction->messageID = m_PMobSkill->getAoEMsg();
-		}
+		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
 
 	}
 
-	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
-
-	m_PPet->health.tp = 0;
 	m_PBattleSubTarget = NULL;
 	m_ActionType = ACTION_ATTACK;
 	if(Action.ActionTarget!=NULL && m_PPet->getPetType()==PETTYPE_AVATAR){ //todo: remove pet type avatar maybe

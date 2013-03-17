@@ -1760,7 +1760,7 @@ INSERT INTO `item_usable` VALUES (15162, 0, 'mist_crown', 1, 1, 26, 0, 5, 30, 60
 INSERT INTO `item_usable` VALUES (15170, 0, 'blink_band', 1, 12, 24, 0, 50, 30, 20, 0);
 INSERT INTO `item_usable` VALUES (15175, 0, 'revilers_helm', 20, 1, 0, 0, 100, 30, 300, 0);
 INSERT INTO `item_usable` VALUES (15179, 0, 'dream_hat_+1', 1, 2, 0, 0, 1, 30, 86400, 0);
-INSERT INTO `item_usable` VALUES (15182, 0, 'zoolater_hat', 1, 3, 78, 0, 50, 30, 1800, 0);
+INSERT INTO `item_usable` VALUES (15182, 0, 'zoolater_hat', 1, 3, 33, 0, 50, 30, 1800, 0);
 INSERT INTO `item_usable` VALUES (15194, 0, 'maats_cap', 1, 8, 79, 0, 1, 30, 86400, 0);
 INSERT INTO `item_usable` VALUES (15198, 0, 'sprout_beret', 4, 3, 0, 0, 1, 30, 600, 0);
 INSERT INTO `item_usable` VALUES (15199, 0, 'guide_beret', 4, 3, 0, 0, 1, 30, 1800, 0);
