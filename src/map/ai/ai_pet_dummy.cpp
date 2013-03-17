@@ -359,21 +359,24 @@ void CAIPetDummy::ActionAbilityFinish(){
     m_PTargetFinder->reset(&Action);
     float distance = m_PMobSkill->getDistance();
 
-    if(m_PMobSkill->isAoE())
+    if(m_PTargetFinder->isWithinRange(m_PBattleSubTarget, distance))
     {
-	    float radius = m_PMobSkill->getDistance();
+	    if(m_PMobSkill->isAoE())
+	    {
+		    float radius = m_PMobSkill->getDistance();
 
-    	m_PTargetFinder->findWithinArea(m_PBattleSubTarget, (AOERADIUS)m_PMobSkill->getAoe(), distance);
-    }
-    else if(m_PMobSkill->isConal())
-	{
-		float angle = 45.0f;
-		m_PTargetFinder->findWithinCone(m_PBattleSubTarget, distance, angle);
+	    	m_PTargetFinder->findWithinArea(m_PBattleSubTarget, (AOERADIUS)m_PMobSkill->getAoe(), distance);
+	    }
+	    else if(m_PMobSkill->isConal())
+		{
+			float angle = 45.0f;
+			m_PTargetFinder->findWithinCone(m_PBattleSubTarget, distance, angle);
+		}
+	    else
+	    {
+	    	m_PTargetFinder->findSingleTarget(m_PBattleSubTarget);
+	    }
 	}
-    else
-    {
-    	m_PTargetFinder->findSingleTarget(m_PBattleSubTarget, distance);
-    }
 
 	uint16 totalTargets = m_PPet->m_ActionList.size();
 	if(totalTargets > 0)

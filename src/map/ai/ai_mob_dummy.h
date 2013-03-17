@@ -32,6 +32,9 @@
 #include "../battleentity.h"
 #include "ai_general.h"
 
+#define MOB_SPELL_MAX_RANGE 26.8f
+#define MOB_RANGED_MAX_RANGE 25.0f
+
 /************************************************************************
 *																		*
 *  Первая версия поведения монстров, базовая. Монстры наносят только	*

@@ -57,9 +57,9 @@ void CTargetFinder::reset(apAction_t* PAction)
   m_PMasterTarget = NULL;
 }
 
-void CTargetFinder::findSingleTarget(CBattleEntity* PTarget, float distance)
+void CTargetFinder::findSingleTarget(CBattleEntity* PTarget)
 {
-  m_radius = distance;
+  m_radius = 999.0f;
   m_zone = m_PBattleEntity->getZone();
   m_PTarget = NULL;
 
@@ -284,8 +284,6 @@ if (PTarget->m_OwnerID.id == 0 || PTarget->m_OwnerID.id == m_PBattleEntity->id)
 
 bool CTargetFinder::validEntity(CBattleEntity* PTarget)
 {
-  // I was already added
-  if(PTarget == m_PTarget) return false;
 
   // make sure i'm not over limit
   if(m_PBattleEntity->m_ActionList.size() >= MAX_AOE_TARGETS) return false;
@@ -295,10 +293,16 @@ bool CTargetFinder::validEntity(CBattleEntity* PTarget)
     return false;
   }
 
+  // this is first target, always add him
+  if(m_PTarget == NULL)
+  {
+    return true;
+  }
+
   // check placement
   // force first target to be added
   // this will be removed when conal targetting is polished
-  if(m_conal && (m_PTarget == NULL || isWithinCone(PTarget)))
+  if(m_conal && isWithinCone(PTarget))
   {
     return true;
   }
@@ -358,4 +362,9 @@ bool CTargetFinder::isWithinCone(CBattleEntity* PTarget)
   }
 
   return true;
+}
+
+bool CTargetFinder::isWithinRange(CBattleEntity* PTarget, float range)
+{
+   return distance(m_PBattleEntity->loc.p, PTarget->loc.p) <= range;
 }

@@ -48,7 +48,7 @@ public:
   void reset(apAction_t* PAction); // remove all found targets
 
   // Main methods for finding targets
-  void findSingleTarget(CBattleEntity* PTarget, float distance);
+  void findSingleTarget(CBattleEntity* PTarget);
   void findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, float radius);
   void findWithinCone(CBattleEntity* PTarget, float distance, float angle);
 
@@ -67,6 +67,7 @@ public:
 
   bool isWithinArea(CBattleEntity* PTarget);
   bool isWithinCone(CBattleEntity* PTarget);
+  bool isWithinRange(CBattleEntity* PTarget, float range);
 
 protected:
   CBattleEntity* m_PBattleEntity;

@@ -69,12 +69,12 @@ uint8 CAbility::getLevel()
 	return m_level;
 }
 
-void CAbility::setRange(uint8 range)
+void CAbility::setRange(float range)
 {
 	m_range = range;
 }
 
-uint8 CAbility::getRange()
+float CAbility::getRange()
 {
 	return m_range;
 }
@@ -305,7 +305,7 @@ namespace ability
 				PAbility->setDefaultMessage(Sql_GetIntData(SqlHandle,6));
               //PAbility->setMessage(Sql_GetIntData(SqlHandle,7));
 			    PAbility->setAnimationID(Sql_GetIntData(SqlHandle,8));
-			    PAbility->setRange(Sql_GetIntData(SqlHandle,9));
+			    PAbility->setRange(Sql_GetFloatData(SqlHandle,9));
 			    PAbility->setAOE(Sql_GetIntData(SqlHandle,10));
 			    PAbility->setRecastId(Sql_GetIntData(SqlHandle,11));
 			    PAbility->setCE(Sql_GetIntData(SqlHandle,12));

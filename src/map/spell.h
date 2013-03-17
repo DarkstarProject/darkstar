@@ -65,6 +65,7 @@ public:
     bool        dealsDamage(); // checks if the spell deals hp damage to target, this is relative to message
     void        resetMessage(); // resets spell to normal state
 
+    float       getMaxRange();
     uint16      getTotalTargets();
 	uint16		getID();
 	uint8		getJob(JOBTYPE JobID);

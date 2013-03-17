@@ -219,6 +219,15 @@ bool CMobEntity::HasRanged()
     return GetMJob() == JOB_RNG || GetMJob() == JOB_NIN;
 }
 
+uint8 CMobEntity::TPUseChance()
+{
+    if(health.tp == 300 || GetHPP() <= 25)
+    {
+        return 100;
+    }
+
+    return 40;
+}
 
 /************************************************************************
 *                                                                       *

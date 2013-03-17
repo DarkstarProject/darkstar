@@ -145,6 +145,7 @@ public:
 	void		SetNewSkin(uint8 skinid);			// Set new skin for the mob
 	uint32		GetSkinID();						// Get the last skinid (0 for base skin)
 
+    uint8       TPUseChance(); // return % chance to use TP move
     bool        HasRanged(); // check if mob has ranged weapon
     void        ChangeMJob(uint16 job); // this will change jobs and update traits, stats, spells
     bool        CanDeaggro();

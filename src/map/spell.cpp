@@ -71,7 +71,7 @@ void CSpell::setID(uint16 id)
 
 uint16 CSpell::getID()
 {
-	return m_ID;
+    return m_ID;
 }
 
 uint8 CSpell::getJob(JOBTYPE JobID)

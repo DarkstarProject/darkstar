@@ -23,7 +23,7 @@ CREATE TABLE `abilities` (
   `message1` smallint(5) unsigned NOT NULL DEFAULT '0',
   `message2` smallint(5) unsigned NOT NULL DEFAULT '0',
   `animation` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `range` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `range` float(3,1) unsigned NOT NULL DEFAULT '0',
   `isAOE` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `CE` smallint(5) NOT NULL DEFAULT '0',
   `VE` smallint(5) NOT NULL DEFAULT '0',

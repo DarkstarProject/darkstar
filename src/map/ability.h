@@ -356,7 +356,7 @@ public:
 	JOBTYPE		getJob();
 	uint8		getLevel();
 	uint8		getAnimationID();
-	uint8		getRange();
+	float		getRange();
 	uint8		getAOE();
 	uint8		getValidTarget();
 	ADDTYPE		getAddType();
@@ -374,7 +374,7 @@ public:
 	void		setJob(JOBTYPE Job);
 	void		setLevel(uint8 level);
 	void		setAnimationID(uint8 animationID);
-	void		setRange(uint8 range);
+	void		setRange(float range);
 	void		setAOE(uint8 aoe);
 	void		setValidTarget(uint8 validTarget);
 	void		setAddType(ADDTYPE addtype);
