@@ -141,8 +141,8 @@ void CTargetFinder::findWithinCone(CBattleEntity* PTarget, float distance, float
 
   float halfAngle = angle / 2.0f;
 
-  float rightAngle = (1 - ((float)m_APoint->rotation + halfAngle) / 255) * 6.28318f;
-  float leftAngle = (1 - ((float)m_APoint->rotation - halfAngle) / 255) * 6.28318f;
+  float rightAngle = rotationToRadian(m_APoint->rotation + halfAngle);
+  float leftAngle = rotationToRadian(m_APoint->rotation - halfAngle);
 
   // calculate end points for triangle
   m_BPoint.x = cosf(rightAngle) * distance + m_APoint->x;
