@@ -3727,8 +3727,13 @@ void loadCharWsPoints(CCharEntity* PChar)
 
 	while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 	{
-		index  = (uint16)Sql_GetUIntData(SqlHandle,0);
-		PChar->unlockedWeapons[index-1].points = (uint16)Sql_GetUIntData(SqlHandle,1);
+		index  = (uint16)Sql_GetUIntData(SqlHandle,0)-1;
+
+        if(index < MAX_UNLOCKABLE_WEAPONS && index >= 0){
+    		PChar->unlockedWeapons[index].points = (uint16)Sql_GetUIntData(SqlHandle,1);
+        } else {
+            ShowWarning("charutils::loadCharWsPoints Warning bad index from database. Index = %d", index);
+        }
 	}
 
 }
