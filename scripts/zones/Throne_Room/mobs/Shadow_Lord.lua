@@ -5,6 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/titles");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onMobSpawn Action
