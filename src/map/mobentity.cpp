@@ -223,7 +223,7 @@ uint8 CMobEntity::TPUseChance()
 {
     if(health.tp < 100) return 0;
 
-    if(health.tp == 300 || GetHPP() <= 25)
+    if(health.tp == 300 || (GetHPP() <= 25 && health.tp >= 100))
     {
         return 100;
     }
