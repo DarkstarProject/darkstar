@@ -1191,18 +1191,18 @@ INSERT INTO `mob_skill` VALUES (2374,187,1830,'Pelagic_Tempest', 0, 7.0, 2000, 1
 INSERT INTO `mob_skill` VALUES (2375,5,1831,'Osmosis', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (2376,5,1832,'Vacuole_Discharge', 0, 7.0, 2000, 1000, 4, 0);
 -- pet wyvern
-INSERT INTO `mob_skill` VALUES (638,193,621,'Healing_Breath_I', 0, 10.0, 2000, 2000, 2, 0);
-INSERT INTO `mob_skill` VALUES (639,193,622,'Healing_Breath_II', 0, 10.0, 2000, 2000, 2, 0);
-INSERT INTO `mob_skill` VALUES (640,193,623,'Healing_Breath_III', 0, 10.0, 2000, 2000, 2, 0);
-INSERT INTO `mob_skill` VALUES (641,193,624,'Remove_Poison', 0, 10.0, 2000, 1500, 2, 0);
-INSERT INTO `mob_skill` VALUES (642,193,625,'Remove_Blindness', 0, 10.0, 2000, 1500, 2, 0);
-INSERT INTO `mob_skill` VALUES (643,193,626,'Remove_Paralysis', 0, 10.0, 2000, 1500, 2, 0);
-INSERT INTO `mob_skill` VALUES (644,193,627,'Flame_Breath', 0, 10.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (645,193,628,'Frost_Breath', 0, 10.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (646,193,629,'Gust_Breath', 0, 10.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (647,193,630,'Sand_Breath', 0, 10.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (648,193,631,'Lightning_Breath', 0, 10.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (649,193,632,'Hydro_Breath', 0, 10.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (638,193,621,'healing_breath_i', 0, 10.0, 2000, 2000, 2, 0);
+INSERT INTO `mob_skill` VALUES (639,193,622,'healing_breath_ii', 0, 10.0, 2000, 2000, 2, 0);
+INSERT INTO `mob_skill` VALUES (640,193,623,'healing_breath_iii', 0, 10.0, 2000, 2000, 2, 0);
+INSERT INTO `mob_skill` VALUES (641,193,624,'remove_poison', 0, 10.0, 2000, 1500, 2, 0);
+INSERT INTO `mob_skill` VALUES (642,193,625,'remove_blindness', 0, 10.0, 2000, 1500, 2, 0);
+INSERT INTO `mob_skill` VALUES (643,193,626,'remove_paralysis', 0, 10.0, 2000, 1500, 2, 0);
+INSERT INTO `mob_skill` VALUES (644,193,627,'flame_breath', 0, 10.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (645,193,628,'frost_breath', 0, 10.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (646,193,629,'gust_breath', 0, 10.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (647,193,630,'sand_breath', 0, 10.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (648,193,631,'lightning_breath', 0, 10.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (649,193,632,'hydro_breath', 0, 10.0, 2000, 1000, 4, 0);
 
 -- --------------------------------------
 -- NM / HNM

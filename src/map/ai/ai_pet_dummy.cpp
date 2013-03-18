@@ -98,7 +98,7 @@ void CAIPetDummy::ActionAbilityStart()
 {
 	if(m_PPet->objtype == TYPE_MOB && m_PPet->PMaster->objtype == TYPE_PC)
 	{
-		if(m_MasterCommand == MASTERCOMMAND_SIC && m_PPet->health.tp>=100 && m_PBattleTarget != NULL)
+		if(m_MasterCommand == MASTERCOMMAND_SIC && m_PPet->health.tp >= 100 && m_PBattleTarget != NULL)
 		{
 			m_MasterCommand = MASTERCOMMAND_NONE;
 			CMobEntity* PMob = (CMobEntity*)m_PPet->PMaster->PPet;
@@ -182,6 +182,9 @@ void CAIPetDummy::ActionAbilityStart()
 				}
 				else if(m_PPet->PMaster->GetHPP() <= 25 && m_PPet->GetMJob()==JOB_RDM){//hybrid wyvern
 					m_PBattleSubTarget = m_PPet->PMaster;
+				} else {
+					// you shouldn't be here
+					DSP_DEBUG_BREAK_IF(true);
 				}
 			}
 		//	}
@@ -226,13 +229,22 @@ void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg){
 		m_PPet->m_ActionList.clear();
 
 		// find correct targe
-		if(m_PMobSkill->getValidTargets() & TARGET_SELF){ //self
+		if(m_PMobSkill->getValidTargets() & TARGET_SELF)
+		{ //self
 		    m_PBattleSubTarget = m_PPet;
-		} else {
+		}
+		else if(m_PMobSkill->getValidTargets() & TARGET_PLAYER_PARTY)
+		{
+			ShowDebug("Target me!\n");
+			m_PBattleSubTarget = m_PPet->PMaster;
+		}
+		else
+		{
 			if(m_PBattleTarget != NULL)
 			{
 			    m_PBattleSubTarget = m_PBattleTarget;
 			}
+			DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 			battleutils::MoveIntoRange(m_PPet, m_PBattleSubTarget, 25);
 		}
 
@@ -255,7 +267,7 @@ void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg){
 		m_ActionType = ACTION_MOBABILITY_USING;
 	}
 	else{
-		ShowDebug("ai_pet_dummy::ActionAbilityFinish Pet skill is null \n");
+		ShowWarning("ai_pet_dummy::ActionAbilityFinish Pet skill is null \n");
 		m_ActionType = ACTION_ATTACK;
 		ActionAttack();
 	}
