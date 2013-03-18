@@ -1485,7 +1485,7 @@ void CAIMobDummy::ActionAttack()
     {
 		// TODO: Do we really want to do this every tick? We should probably only do this check occasionally, else it's almost
 		// guarenteed that the mob will try to use its TP whilst being out of range (if it has the TP)
-		if (rand()%100 <= m_PMob->TPUseChance())
+		if (rand()%100 < m_PMob->TPUseChance())
 		{
 			m_ActionType = ACTION_MOBABILITY_START;
 			ActionAbilityStart();
