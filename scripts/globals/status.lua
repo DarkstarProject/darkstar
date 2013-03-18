@@ -1339,12 +1339,3 @@ MSGBASIC_NO_ELIGIBLE_ROLL		= 428 -- There are no rolls eligible for Double-Up. U
 MSGBASIC_ROLL_ALREADY_ACTIVE	= 429  -- The same roll is already active on the <player>.
 
 
-
-function math.clamp(input, min_val, max_val)
-    if input < min_val then
-        input = min_val;
-    elseif input > max_val then
-        input = max_val;
-    end
-    return input;
-end;

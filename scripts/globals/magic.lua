@@ -1,6 +1,7 @@
 require("scripts/globals/magicburst")
 require("scripts/globals/status")
 require("scripts/globals/weather")
+require("scripts/globals/utils")
 
     MMSG_BUFF_FAIL = 75;
 
@@ -490,7 +491,9 @@ function getSkillLvl(rank,level)
  end;
 
  function finalMagicAdjustments(caster,target,spell,dmg)
-    if(dmg<0) then
+
+    -- magic always deals at least 1 damage
+    if(dmg < 0) then
         dmg = 1;
     end
 
@@ -506,10 +509,21 @@ function getSkillLvl(rank,level)
             dmg = dmg * (0.9 - 0.05 * total);
         end
 
+        -- kill shadows
+        -- target:delStatusEffect(EFFECT_COPY_IMAGE);
+        -- target:delStatusEffect(EFFECT_BLINK);
+    else
+        -- this logic will eventually be moved here
+        -- dmg = utils.takeShadows(target, dmg, 1);
+
+        -- if(dmg == 0) then
+            -- spell:setMsg(31);
+            -- return 1;
+        -- end
     end
 
     dmg = dmg - target:getMod(MOD_PHALANX);
-    if(dmg<0) then
+    if(dmg < 0) then
         dmg = 0;
     end
 
@@ -519,20 +533,7 @@ function getSkillLvl(rank,level)
     end
 
     --handling stoneskin
-    local skin = target:getMod(MOD_STONESKIN);
-    if(skin>0) then
-        if(skin >= dmg) then --absorb all damage
-            target:delMod(MOD_STONESKIN,dmg);
-            if(target:getMod(MOD_STONESKIN)==0) then
-                target:delStatusEffect(EFFECT_STONESKIN);
-            end
-            return 0;
-        else --absorbs some damage then wear
-            target:delMod(MOD_STONESKIN,skin);
-            target:delStatusEffect(EFFECT_STONESKIN);
-            dmg = dmg - skin;
-        end
-    end
+    dmg = utils.stoneskin(target, dmg);
 
     target:delHP(dmg);
     target:updateEnmityFromDamage(caster,dmg);

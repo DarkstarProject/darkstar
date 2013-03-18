@@ -1462,45 +1462,78 @@ void CAICharNormal::ActionMagicFinish()
     Action.flag       = 0;
 
     uint16 msg = 0;
+    int16 ce = 0;
+    int16 ve = 0;
     for (std::vector<CBattleEntity*>::iterator it = m_PTargetFinder->m_targets.begin() ; it != m_PTargetFinder->m_targets.end(); ++it)
     {
         CBattleEntity* PTarget = *it;
 
         Action.ActionTarget = PTarget;
 
-        if (m_PSpell->canTargetEnemy()) {
-            // wipe shadows if needed
-            if (m_PSpell->isAOE()) {
-                PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
-                PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BLINK);
-            } else if (battleutils::IsAbsorbByShadow(PTarget)) {
-                PTarget->loc.zone->PushPacket(PTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(PTarget,PTarget,0,1, MSGBASIC_SHADOW_ABSORB));
-
-                battleutils::ClaimMob(PTarget, m_PChar);
-                continue; // continue to next pt member
-            }
-        }
-
         m_PSpell->resetMessage();
 
-        Action.param = luautils::OnSpellCast(m_PChar, PTarget);
+        ce = m_PSpell->getCE();
+        ve = m_PSpell->getVE();
 
-        if(Action.param > 0 && m_PSpell->canTargetEnemy()){ //damage spell which dealt damage, TODO: use a better identifier!
-            if(m_PSpell->dealsDamage()){//damage or drain hp
+        // take all shadows
+        if(m_PSpell->canTargetEnemy() && m_PSpell->isAOE())
+        {
+            PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BLINK);
+            PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
+        }
+
+        // TODO: this is really hacky and should eventually be moved into lua
+        if(m_PSpell->canTargetEnemy() && !m_PSpell->isAOE() && battleutils::IsAbsorbByShadow(PTarget))
+        {
+            // take shadow
+            msg = 31;
+            Action.param = 1;
+            ve = 0;
+            ce = 0;
+        }
+        else
+        {
+            Action.param = luautils::OnSpellCast(m_PChar, PTarget);
+
+            // remove effects from damage
+            if (m_PSpell->canTargetEnemy() && Action.param > 0 && m_PSpell->dealsDamage())
+            {
+                PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
+            }
+
+            if(msg == 0)
+            {
+                msg = m_PSpell->getMessage();
+            }
+            else
+            {
+                msg = m_PSpell->getAoEMessage();
+            }
+
+        }
+
+        Action.messageID = msg;
+
+        if (m_PSpell->canTargetEnemy()) {
+            // wipe shadows if needed
+            if (!m_PSpell->isAOE() && battleutils::IsAbsorbByShadow(PTarget))
+            {
+                Action.param = 1;
+                Action.messageID = 31;
+
+                // handle hate
+                ve = 0;
+                ce = 0;
+            }
+            else if(Action.param > 0 && m_PSpell->dealsDamage())
+            {
                 PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
             }
         }
 
-        if(msg == 0)
-        {
-            msg = m_PSpell->getMessage();
+        if(Action.param >= 2000){
+            ShowDebug("Super high magic damage warning: %d\n", Action.param);
         }
-        else
-        {
-            msg = m_PSpell->getAoEMessage();
-        }
-
-        Action.messageID = msg;
 
         if (PTarget->objtype == TYPE_MOB)
         {
@@ -1511,7 +1544,7 @@ void CAICharNormal::ActionMagicFinish()
 
             ((CMobEntity*)PTarget)->m_OwnerID.id = m_PChar->id;
             ((CMobEntity*)PTarget)->m_OwnerID.targid = m_PChar->targid;
-            ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmity(m_PChar, m_PSpell->getCE(), m_PSpell->getVE());
+            ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmity(m_PChar, ce, ve);
         }
 
         m_PChar->m_ActionList.push_back(Action);

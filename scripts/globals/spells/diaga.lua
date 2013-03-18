@@ -21,7 +21,7 @@ function onSpellCast(caster,target,spell)
 	basedmg = caster:getSkillLevel(ENFEEBLING_MAGIC_SKILL) / 4;
 	dmg = calculateMagicDamage(basedmg,1,caster,spell,target,ENFEEBLING_MAGIC_SKILL,MOD_INT,false);
 
-	dmg = math.clamp(dmg, 1, 12);
+	dmg = utils.clamp(dmg, 1, 12);
 
 	--get resist multiplier (1x if no resist)
 	resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT)-target:getStat(MOD_INT),ENFEEBLING_MAGIC_SKILL,1.0);

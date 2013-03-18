@@ -23,7 +23,7 @@ function onSpellCast(caster,target,spell)
 
 	-- Softcaps at 2, should always do at least 1
 
-	dmg = math.clamp(dmg, 1, 2);
+	dmg = utils.clamp(dmg, 1, 2);
 
 	--get resist multiplier (1x if no resist)
 	resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT)-target:getStat(MOD_INT),ENFEEBLING_MAGIC_SKILL,1.0);

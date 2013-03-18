@@ -180,7 +180,7 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 
 	-- first hit has a higher chance to land
 	local firstHitChance = hitrate * 1.8;
-	firstHitChance = math.clamp(firstHitChance, 20, 95);
+	firstHitChance = utils.clamp(firstHitChance, 20, 95);
 
 	-- range attacks have a normal hit rate
 	if(tpeffect == TP_RANGED) then
@@ -662,55 +662,20 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 
 	--Handle shadows depending on shadow behaviour / skilltype
 	if(shadowbehav ~= MOBPARAM_WIPE_SHADOWS and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows.
-		targShadows = target:getMod(MOD_UTSUSEMI);
-		shadowType = MOD_UTSUSEMI;
 
-		if(targShadows==0) then --try blink, as utsusemi always overwrites blink this is okay
-			targShadows = target:getMod(MOD_BLINK);
-			shadowType = MOD_BLINK;
+		if(shadowType == MOD_UTSUSEMI and skill:isAoE()) then
+			shadowbehav = MobTakeAoEShadow(mob, target, shadowbehav);
 		end
 
-		if(targShadows>0) then
-		--Blink has a VERY high chance of blocking tp moves, so im assuming its 100% because its easier!
+		dmg = utils.takeShadows(target, dmg, shadowbehav);
 
-			if(shadowType == MOD_UTSUSEMI and skill:isAoE()) then
-				shadowbehav = MobTakeAoEShadow(mob, target, shadowbehav);
-			end
-
-			if(targShadows >= shadowbehav) then --no damage, just suck the shadows
-				skill:setMsg(MSG_SHADOW);
-
-				local shadowsLeft = targShadows-shadowbehav;
-				target:setMod(shadowType, shadowsLeft);
-				if(shadowsLeft > 0 and shadowType == MOD_UTSUSEMI) then --update icon
-					effect = target:getStatusEffect(EFFECT_COPY_IMAGE);
-					if(effect ~= nil) then
-						if(shadowsLeft == 1) then
-							effect:setIcon(EFFECT_COPY_IMAGE);
-						elseif(shadowsLeft == 2) then
-							effect:setIcon(EFFECT_COPY_IMAGE_2);
-						elseif(shadowsLeft == 3) then
-							effect:setIcon(EFFECT_COPY_IMAGE_3);
-						end
-					end
-				end
-				-- remove icon
-				if(shadowsLeft <= 0) then
-					target:delStatusEffect(EFFECT_COPY_IMAGE);
-					target:delStatusEffect(EFFECT_BLINK);
-				end
-				return shadowbehav;
-			else --less shadows than this move will take, remove all and factor damage down
-				dmg = dmg * ((shadowbehav-targShadows)/shadowbehav);
-				target:setMod(MOD_UTSUSEMI,0);
-				target:setMod(MOD_BLINK,0);
-				target:delStatusEffect(EFFECT_COPY_IMAGE);
-				target:delStatusEffect(EFFECT_BLINK);
-			end
+		-- dealt zero damage, so shadows took hit
+		if(dmg == 0) then
+			skill:setMsg(MSG_SHADOW);
+			return shadowbehav;
 		end
+
 	elseif(shadowbehav == MOBPARAM_WIPE_SHADOWS) then --take em all!
-		target:setMod(MOD_UTSUSEMI,0);
-		target:setMod(MOD_BLINK,0);
 		target:delStatusEffect(EFFECT_COPY_IMAGE);
 		target:delStatusEffect(EFFECT_BLINK);
 	end
@@ -768,21 +733,7 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 		return 0;
 	end
 
-	--handling stoneskin
-	skin = target:getMod(MOD_STONESKIN);
-	if(skin>0) then
-		if(skin >= dmg) then --absorb all damage
-			target:delMod(MOD_STONESKIN,dmg);
-			if(target:getMod(MOD_STONESKIN)==0) then
-				target:delStatusEffect(EFFECT_STONESKIN);
-			end
-			return 0;
-		else --absorbs some damage then wear
-			target:delMod(MOD_STONESKIN,skin);
-			target:delStatusEffect(EFFECT_STONESKIN);
-			return dmg - skin;
-		end
-	end
+	dmg = utils.stoneskin(target, dmg);
 
 	return dmg;
 end;

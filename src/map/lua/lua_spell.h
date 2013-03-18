@@ -47,6 +47,7 @@ public:
 	}
 
     int32 setMsg(lua_State*);
+    int32 canTargetEnemy(lua_State*);
     int32 getDefaultMessage(lua_State*);
     int32 isAoE(lua_State*);
     int32 getTotalTargets(lua_State*);

@@ -23,4 +23,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+    target:setMod(MOD_UTSUSEMI,0);
 end;

@@ -69,6 +69,13 @@ inline int32 CLuaSpell::setMsg(lua_State *L)
 	return 0;
 }
 
+inline int32 CLuaSpell::canTargetEnemy(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaSpell == NULL);
+    lua_pushboolean(L, m_PLuaSpell->canTargetEnemy());
+    return 1;
+}
+
 inline int32 CLuaSpell::getTotalTargets(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == NULL);
