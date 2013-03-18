@@ -1899,19 +1899,20 @@ inline int32 CLuaBaseEntity::levelRestriction(lua_State* L)
 					PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
 
 					charutils::BuildingCharSkillsTable(PChar);
-					charutils::BuildingCharAbilityTable(PChar);
-					charutils::BuildingCharTraitsTable(PChar);
-					charutils::BuildingCharWeaponSkills(PChar);
 					charutils::CalculateStats(PChar);
+					charutils::BuildingCharTraitsTable(PChar);
+					charutils::BuildingCharAbilityTable(PChar);
+					charutils::BuildingCharWeaponSkills(PChar);
 					charutils::CheckValidEquipment(PChar);
 
+					// CharAbilitiesPackets are sent by building traits, weapon skills, and CheckValidEquipment (via weapon skills.)
+					// A fourth packet here is not only unnecessary, it'll cause session disconnects, so don't do it, 'kay? :)
 					if (PChar->status == STATUS_NORMAL)
 					{
 						PChar->pushPacket(new CCharJobsPacket(PChar));
 						PChar->pushPacket(new CCharUpdatePacket(PChar));
 						PChar->pushPacket(new CCharHealthPacket(PChar));
 						PChar->pushPacket(new CCharSkillsPacket(PChar));
-						PChar->pushPacket(new CCharAbilitiesPacket(PChar));
 						PChar->pushPacket(new CMenuMeritPacket(PChar));
 						PChar->pushPacket(new CCharSyncPacket(PChar));
 					}
