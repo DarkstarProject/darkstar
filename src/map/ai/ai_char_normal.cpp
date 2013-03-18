@@ -83,17 +83,17 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 {
 	m_Tick = tick;
 
-	if(m_PChar->m_EquipSwap == true)
-	{
-		m_PChar->pushPacket(new CCharAppearancePacket(m_PChar));
-		m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
-		charutils::BuildingCharSkillsTable(m_PChar);
-		charutils::CalculateStats(m_PChar);
+    if(m_PChar->m_EquipSwap == true)
+    {
+        m_PChar->pushPacket(new CCharAppearancePacket(m_PChar));
+        m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
+        charutils::BuildingCharSkillsTable(m_PChar);
+        charutils::CalculateStats(m_PChar);
 
-		m_PChar->UpdateHealth();
-		m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
-		m_PChar->m_EquipSwap = false;
-	}
+        m_PChar->UpdateHealth();
+        m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
+        m_PChar->m_EquipSwap = false;
+    }
 
     if((m_ActionType != ACTION_NONE) && jailutils::InPrison(m_PChar))
     {
@@ -1164,6 +1164,7 @@ void CAICharNormal::ActionMagicStart()
         MagicStartError(49);
 		return;
 	}
+
     if (m_PChar->PRecastContainer->Has(RECAST_MAGIC, m_PSpell->getID()))
     {
         MagicStartError(18);
@@ -1251,7 +1252,8 @@ void CAICharNormal::ActionMagicStart()
 		}
 	}
 	// End of core checks, so pass it along to the script checking function
-	int32 errNo = luautils::OnMagicCastingCheck(m_PBattleTarget, m_PChar, m_PSpell);
+	int32 errNo = luautils::OnMagicCastingCheck(m_PBattleSubTarget, m_PChar, m_PSpell);
+
 	if(errNo != 0)
 	{
 		MagicStartError(errNo);
@@ -1293,6 +1295,7 @@ void CAICharNormal::MagicStartError(uint16 error)
     {
         m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, (m_PBattleSubTarget != NULL ? m_PBattleSubTarget : m_PChar), m_PSpell->getID(), 0, error));
     }
+
     m_ActionTargetID = 0;
 
 	m_PSpell = NULL;
@@ -1326,7 +1329,9 @@ void CAICharNormal::ActionMagicCasting()
 		return;
 	}
 
-	if (m_Tick - m_LastActionTime >= (float)m_PSpell->getCastTime()*((100.0f-(float)dsp_cap(m_PChar->getMod(MOD_FASTCAST),-100,50))/100.0f) ||
+    uint32 totalCastTime = (float)m_PSpell->getCastTime()*((100.0f-(float)dsp_cap(m_PChar->getMod(MOD_FASTCAST),-100,50))/100.0f);
+
+	if (m_Tick - m_LastActionTime >= totalCastTime ||
         m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
 	{
 		if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE)
@@ -1411,6 +1416,7 @@ void CAICharNormal::ActionMagicCasting()
 				}
 			}
 		}
+
 		m_ActionType = ACTION_MAGIC_FINISH;
 		ActionMagicFinish();
 	}
@@ -1449,6 +1455,9 @@ void CAICharNormal::ActionMagicFinish()
     m_PTargetFinder->reset();
     m_PChar->m_ActionList.clear();
 
+    // can this spell target the dead?
+    m_PTargetFinder->m_targetDead = (m_PSpell->getValidTarget() & TARGET_PLAYER_DEAD);
+
     if (m_PSpell->isAOE())
     {
         float radius = spell::GetSpellRadius(m_PSpell, m_PChar);
@@ -1460,9 +1469,9 @@ void CAICharNormal::ActionMagicFinish()
         m_PTargetFinder->findSingleTarget(m_PBattleSubTarget);
     }
 
-    uint16 actionsLength = m_PTargetFinder->m_targets.size();
+    uint16 totalTargets = m_PTargetFinder->m_targets.size();
 
-    m_PSpell->setTotalTargets(actionsLength);
+    m_PSpell->setTotalTargets(totalTargets);
 
     apAction_t Action;
     Action.ActionTarget = m_PBattleSubTarget;
@@ -1572,9 +1581,11 @@ void CAICharNormal::ActionMagicFinish()
     }
 
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
+
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
-	if(m_PChar->PPet!=NULL && ((CPetEntity*)m_PChar->PPet)->getPetType()==PETTYPE_WYVERN){
+	if(m_PChar->PPet!=NULL && ((CPetEntity*)m_PChar->PPet)->getPetType() == PETTYPE_WYVERN)
+    {
 		((CAIPetDummy*)m_PChar->PPet->PBattleAI)->m_MasterCommand = MASTERCOMMAND_HEALING_BREATH;
 		m_PChar->PPet->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
 	}
@@ -1584,8 +1595,16 @@ void CAICharNormal::ActionMagicFinish()
     m_LastCoolDown = m_Tick;
 
 	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-	CMobEntity* Monster = (CMobEntity*)m_PBattleSubTarget;
-	if (Monster->m_HiPCLvl < m_PChar->GetMLevel()) Monster->m_HiPCLvl = m_PChar->GetMLevel();
+
+    if(m_PBattleSubTarget->objtype == TYPE_MOB)
+    {
+    	CMobEntity* Monster = (CMobEntity*)m_PBattleSubTarget;
+    	if (Monster->m_HiPCLvl < m_PChar->GetMLevel())
+        {
+            Monster->m_HiPCLvl = m_PChar->GetMLevel();
+        }
+    }
+
 	m_PSpell = NULL;
 	m_PBattleSubTarget = NULL;
 }

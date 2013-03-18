@@ -17,7 +17,7 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_POISON;
-    local power = mob:getMainLvl()/4 + 1;
+    local power = mob:getMainLvl() / 4 + 1;
 
     MobStatusEffectMove(mob, target, typeEffect, power, 3, 60);
 

@@ -239,6 +239,7 @@ void CAIMobDummy::ActionDisengage()
 	luautils::OnMobDisengage(m_PMob);
 
 	m_LastActionTime = m_Tick;
+
 	m_PBattleTarget  = NULL;
 
 	m_PMob->SetMainSkin(m_PMob->id);

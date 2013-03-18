@@ -47,6 +47,7 @@ void CTargetFinder::reset()
   m_conal = false;
   m_radius = 0.0f;
   m_zone = 0;
+  m_targetDead = false;
 
   m_APoint = NULL;
   m_PRadiusAround = NULL;
@@ -282,7 +283,12 @@ bool CTargetFinder::validEntity(CBattleEntity* PTarget)
   // make sure i'm not over limit
   if(m_targets.size() > MAX_AOE_TARGETS) return false;
 
-  if (m_PTarget == PTarget || PTarget->isDead() || PTarget->getZone() != m_zone)
+  if(!m_targetDead && PTarget->isDead())
+  {
+    return false;
+  }
+
+  if (m_PTarget == PTarget || PTarget->getZone() != m_zone)
   {
     return false;
   }

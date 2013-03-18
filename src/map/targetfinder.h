@@ -69,6 +69,7 @@ public:
   bool isWithinRange(CBattleEntity* PTarget, float range);
 
   std::vector<CBattleEntity*> m_targets; // contains all found entities
+  bool m_targetDead;
 
 protected:
 
