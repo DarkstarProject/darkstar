@@ -104,7 +104,7 @@ map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
 	memset(map_session_data, 0, sizeof(map_session_data_t));
 
 	CREATE(map_session_data->server_packet_data, int8, map_config.buffer_size + 20);
-		
+
 	map_session_data->last_update = time(NULL);
 	map_session_data->client_addr = ip;
 	map_session_data->client_port = port;
@@ -155,7 +155,7 @@ int32 do_init(int32 argc, int8** argv)
     Sql_Keepalive(SqlHandle);
 
     // отчищаем таблицу сессий при старте сервера (временное решение, т.к. в кластере это не будет работать)
-    Sql_Query(SqlHandle, "TRUNCATE TABLE accounts_sessions"); 
+    Sql_Query(SqlHandle, "TRUNCATE TABLE accounts_sessions");
 
 	ShowMessage("\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 	ShowStatus("do_init: zlib is reading");
@@ -168,7 +168,7 @@ int32 do_init(int32 argc, int8** argv)
 
 	// нужно будет написать один метод для инициализации всех данных в battleutils
 	// и один метод для освобождения этих данных
-    
+
 	ShowStatus("do_init: loading spells");
 	spell::LoadSpellList();
 	mobSpellList::LoadMobSpellList();
@@ -233,7 +233,7 @@ void do_final(void)
 	itemutils::FreeItemList();
 	battleutils::FreeWeaponSkillsList();
     battleutils::FreeSkillChainDamageModifiers();
-	
+
 	petutils::FreePetList();
 	zoneutils::FreeZoneList();
 	luautils::free();
@@ -282,7 +282,7 @@ int32 do_sockets(int32 next)
 
 	timeout.tv_sec  = next/1000;
 	timeout.tv_usec = next%1000*1000;
-	
+
 	ret = sSelect(fd_max, &rfd, NULL, NULL, &timeout);
 
 	if( ret == SOCKET_ERROR )
@@ -384,7 +384,7 @@ int32 map_decipher_packet(int8* buff, size_t size, sockaddr_in* from, map_sessio
 
 	blowfish_t *pbfkey = &map_session_data->blowfish;
 
-	for(i = 0; i < tmp; i += 2) 
+	for(i = 0; i < tmp; i += 2)
 	{
 		blowfish_decipher((uint32*)buff+i+7,(uint32*)buff+i+8, pbfkey->P, pbfkey->S[0]);
 	}
@@ -408,10 +408,22 @@ int32 map_decipher_packet(int8* buff, size_t size, sockaddr_in* from, map_sessio
 int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t* map_session_data)
 {
 	size_t size = *buffsize;
+	int32 checksumResult = -1;
 
-	if( checksum((uint8*)(buff+FFXI_HEADER_SIZE),size-(FFXI_HEADER_SIZE+16),buff+size-16) == 0)
+	try
 	{
-		if (map_session_data->PChar == NULL) 
+		// due to network difficulties this will fail because of broken input
+		checksumResult = checksum((uint8*)(buff+FFXI_HEADER_SIZE),size-(FFXI_HEADER_SIZE+16),buff+size-16);
+	}
+	catch(...)
+	{
+		ShowWarning("map::recv_parse Bad checksum input\n");
+		return -1;
+	}
+
+	if(checksumResult == 0)
+	{
+		if (map_session_data->PChar == NULL)
 		{
 			uint32 CharID = RBUFL(buff,FFXI_HEADER_SIZE+0x0C);
 
@@ -419,9 +431,9 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
 
 			int32 ret = Sql_Query(SqlHandle,fmtQuery,CharID);
 
-			if (ret == SQL_ERROR || 
+			if (ret == SQL_ERROR ||
 				Sql_NumRows(SqlHandle) == 0 ||
-				Sql_NextRow(SqlHandle) != SQL_SUCCESS) 
+				Sql_NextRow(SqlHandle) != SQL_SUCCESS)
 			{
 				ShowError(CL_RED"recv_parse: Cannot load session_key for charid %u" CL_RESET, CharID);
 			}
@@ -442,7 +454,7 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
 
 			charutils::LoadChar(PChar);
 			charutils::LoadInventory(PChar);
-            
+
             luautils::OnGameIn(PChar);
 			luautils::CheckForGearSet(PChar); // check for gear set on login
 
@@ -472,7 +484,7 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
 										 PacketDataBuff,
 										 map_config.buffer_size,
 										 zlib_decompress_table);
-		
+
 		// it's making result buff
 		// don't need memcpy header
 		memcpy(buff+FFXI_HEADER_SIZE,PacketDataBuff,PacketDataSize);
@@ -498,13 +510,13 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
 	int8* PacketData_End   = &buff[*buffsize];
 
 	CCharEntity *PChar = map_session_data->PChar;
-	
+
 	uint16 SmallPD_Size = 0;
 	uint16 SmallPD_Type = 0;
 	uint16 SmallPD_Code = RBUFW(buff,0);
 
 	for(int8* SmallPD_ptr = PacketData_Begin;
-		SmallPD_ptr + (RBUFB(SmallPD_ptr,1) & 0xFE)*2 <= PacketData_End && (RBUFB(SmallPD_ptr,1) & 0xFE); 
+		SmallPD_ptr + (RBUFB(SmallPD_ptr,1) & 0xFE)*2 <= PacketData_End && (RBUFB(SmallPD_ptr,1) & 0xFE);
 		SmallPD_ptr = SmallPD_ptr + SmallPD_Size*2)
 	{
 		SmallPD_Size = (RBUFB(SmallPD_ptr,1) & 0x0FE);
@@ -520,7 +532,7 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
 			{
 				continue;
 			}
-			if (SmallPD_Type != 0x15) 
+			if (SmallPD_Type != 0x15)
 			{
 				ShowInfo("parse: %03hX | %04hX %04hX %02hX from user: %s\n", SmallPD_Type, RBUFW(SmallPD_ptr,2), RBUFW(buff,2), SmallPD_Size, PChar->GetName());
 			}
@@ -543,7 +555,7 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
 	// здесь мы проверяем, получил ли клиент предыдущий пакет
 	// если не получил, то мы не создаем новый, а отправляем предыдущий
 
-	if (RBUFW(buff,2) != map_session_data->server_packet_id) 
+	if (RBUFW(buff,2) != map_session_data->server_packet_id)
 	{
 		WBUFW(map_session_data->server_packet_data,2) = SmallPD_Code;
 		WBUFW(map_session_data->server_packet_data,8) = (uint32)time(NULL);
@@ -588,7 +600,7 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
 int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_data_t* map_session_data)
 {
 	// Модификация заголовка исходящего пакета
-	// Суть преобразований: 
+	// Суть преобразований:
 	//  - отправить клиенту номер последнего полученного от него пакета
 	//  - присвоить исходящему пакету номер последнего отправленного клиенту пакета +1
 	//  - записать текущее время отправки пакета
@@ -612,7 +624,7 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
 	md5((uint8*)PTempBuff, hash, PacketSize);
 	memcpy(PTempBuff+PacketSize, hash, 16);
 	PacketSize += 16;
-    
+
     if (PacketSize > map_config.buffer_size + 20)
     {
         ShowFatalError(CL_RED"%Memory manager: PTempBuff is overflowed (%u)\n" CL_RESET, PacketSize);
@@ -630,12 +642,12 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
 		blowfish_encipher((uint32*)(buff)+j+7, (uint32*)(buff)+j+8, pbfkey->P, pbfkey->S[0]);
 	}
 
-	// контролируем размер отправляемого пакета. в случае, 
+	// контролируем размер отправляемого пакета. в случае,
 	// если его размер превышает 1400 байт (размер данных + 42 байта IP заголовок),
 	// то клиент игнорирует пакет и возвращает сообщение о его потере
 
-	// в случае возникновения подобной ситуации выводим предупреждующее сообщение и 
-	// уменьшаем размер BuffMaxSize с шагом в 4 байта до ее устранения (вручную) 
+	// в случае возникновения подобной ситуации выводим предупреждующее сообщение и
+	// уменьшаем размер BuffMaxSize с шагом в 4 байта до ее устранения (вручную)
 
 	*buffsize = PacketSize+FFXI_HEADER_SIZE;
 
@@ -657,7 +669,7 @@ int32 map_close_session(uint32 tick, CTaskMgr::CTask* PTask)
 {
 	map_session_data_t* map_session_data = (map_session_data_t*)PTask->m_data;
 
-	if (map_session_data != NULL && 
+	if (map_session_data != NULL &&
 		map_session_data->server_packet_data != NULL &&		// bad pointer crashed here, might need dia to look at this one
 		map_session_data->PChar != NULL)					// crash occured when both server_packet_data & PChar were NULL
 	{
@@ -677,7 +689,7 @@ int32 map_close_session(uint32 tick, CTaskMgr::CTask* PTask)
 		ShowDebug(CL_CYAN"map_close_session: session closed\n" CL_RESET);
 		return 0;
 	}
-	
+
 	ShowError(CL_RED"map_close_session: cannot close session, session not found\n" CL_RESET);
 	return 1;
 }
@@ -693,7 +705,7 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
 	map_session_list_t::iterator it = map_session_list.begin();
 
 	while(it != map_session_list.end())
-	{ 
+	{
 		map_session_data_t* map_session_data = it->second;
 
         CCharEntity* PChar = map_session_data->PChar;
@@ -712,7 +724,7 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
             }
 		    if ((time(NULL) - map_session_data->last_update) > map_config.max_time_lastupdate)
 		    {
-			    if (PChar != NULL) 
+			    if (PChar != NULL)
 			    {
 
 					//[Alliance] fix to stop server crashing:
@@ -722,7 +734,7 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
 						if(PChar->PParty->members.size() == 1){
 							if(PChar->PParty->m_PAlliance->partyList.size() == 2){
 								PChar->PParty->m_PAlliance->dissolveAlliance();
-							}else if(PChar->PParty->m_PAlliance->partyList.size() == 3){ 
+							}else if(PChar->PParty->m_PAlliance->partyList.size() == 3){
 								PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
 								}
 						}
@@ -756,7 +768,7 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
             PChar->nameflags.flags &= ~FLAG_DC;
             PChar->pushPacket(new CCharUpdatePacket(PChar));
 
-            if (PChar->status == STATUS_NORMAL) 
+            if (PChar->status == STATUS_NORMAL)
             {
                 PChar->status = STATUS_UPDATE;
                 PChar->loc.zone->SpawnPCs(PChar);
@@ -865,7 +877,7 @@ int32 map_config_read(const int8* cfgName)
 		while (--ptr >= w2 && *ptr == ' ');
 		ptr++;
 		*ptr = '\0';
-			
+
 		if(strcmpi(w1,"timestamp_format") == 0)
 		{
 			strncpy(timestamp_format, w2, 20);
@@ -874,15 +886,15 @@ int32 map_config_read(const int8* cfgName)
 		{
 			stdout_with_ansisequence = config_switch(w2);
 		}
-		else if(strcmpi(w1,"console_silent") == 0) 
+		else if(strcmpi(w1,"console_silent") == 0)
 		{
 			ShowInfo("Console Silent Setting: %d", atoi(w2));
 			msg_silent = atoi(w2);
-		} 
-		else if (strcmpi(w1,"map_port") == 0) 
+		}
+		else if (strcmpi(w1,"map_port") == 0)
 		{
 			map_config.usMapPort = (atoi(w2));
-		} 
+		}
 		else if (strcmp(w1,"buff_maxsize") == 0)
 		{
 			map_config.buffer_size = atoi(w2);
@@ -977,7 +989,7 @@ int32 map_config_read(const int8* cfgName)
 
             uint32 length = (uint32)strlen(map_config.server_message);
 
-            for(uint32 count = 0; count < length; ++count) 
+            for(uint32 count = 0; count < length; ++count)
             {
                 if (RBUFW(map_config.server_message, count) == 0x6E5C) //  \n = 0x6E5C in hex
                 {
