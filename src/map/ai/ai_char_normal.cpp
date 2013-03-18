@@ -880,6 +880,7 @@ void CAICharNormal::ActionRangedFinish()
 		Action.flag = 0;
 
         CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
+
         CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
 
         bool isThrowing = PAmmo->isThrowing();
@@ -888,6 +889,11 @@ void CAICharNormal::ActionRangedFinish()
         if(isThrowing)
         {
             slot = SLOT_AMMO;
+            PItem = NULL;
+        }
+        else
+        {
+            PAmmo = NULL;
         }
 
         uint8 shadowsTaken = 0;
@@ -946,14 +952,20 @@ void CAICharNormal::ActionRangedFinish()
 
     					damage = (m_PChar->GetRangedWeaponDmg() + battleutils::GetFSTR(m_PChar,m_PBattleSubTarget,slot)) * pdif;
 
-                        if(slot == SLOT_RANGED){
+                        if(slot == SLOT_RANGED)
+                        {
         					damage = battleutils::CheckForDamageMultiplier(PItem,damage, 0);
+
+                            if(PItem != NULL)
+                            {
+                                charutils::TrySkillUP(m_PChar, (SKILLTYPE)PItem->getSkillType(), m_PBattleSubTarget->GetMLevel());
+                            }
+                        }
+                        else if(slot == SLOT_AMMO && PAmmo != NULL)
+                        {
+    						charutils::TrySkillUP(m_PChar, (SKILLTYPE)PAmmo->getSkillType(), m_PBattleSubTarget->GetMLevel());
                         }
 
-    					if(PItem != NULL)
-    					{
-    						charutils::TrySkillUP(m_PChar, (SKILLTYPE)PItem->getSkillType(), m_PBattleSubTarget->GetMLevel());
-    					}
                     }
 
 				}
