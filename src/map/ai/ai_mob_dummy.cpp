@@ -1283,7 +1283,7 @@ void CAIMobDummy::ActionAttack()
 			else
 			{
 				// give a 40% chance of a TP move >100% TP under most circumstances. Always use TP if we hit 300%. Always use TP if we're < 25% HP and have >100% TP
-				if ( m_MobAbilityEnabled && rand()%100 <= m_PMob->TPUseChance())
+				if ( m_MobAbilityEnabled && rand()%100 < m_PMob->TPUseChance())
 				{
 					m_ActionType = ACTION_MOBABILITY_START;
                     ActionAbilityStart();
