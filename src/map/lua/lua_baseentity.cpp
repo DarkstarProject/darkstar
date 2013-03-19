@@ -6355,37 +6355,41 @@ inline int32 CLuaBaseEntity::useMobAbility(lua_State* L)
 
 	if (lua_isnumber(L,1))
 	{
-		uint16 mobskillId = lua_tointeger(L, 1);
-		CMobSkill* mobskill = battleutils::GetMobSkill(mobskillId);
-
-		if(mobskill != NULL)
+		if (((CMobEntity*)m_PBaseEntity)->PBattleAI->GetBattleTarget() != NULL)
 		{
-			((CMobEntity*)m_PBaseEntity)->PBattleAI->SetCurrentMobSkill(mobskill);
-			if( mobskill->getActivationTime() != 0)
+			uint16 mobskillId = lua_tointeger(L, 1);
+			CMobSkill* mobskill = battleutils::GetMobSkill(mobskillId);
+
+			if(mobskill != NULL)
 			{
-				apAction_t Action;
-				((CMobEntity*)m_PBaseEntity)->m_ActionList.clear();
-				if(mobskill->getValidTargets() == TARGET_ENEMY){ //enemy
-					Action.ActionTarget = ((CMobEntity*)m_PBaseEntity)->PBattleAI->GetBattleTarget();
-				}
-				else if(mobskill->getValidTargets() == TARGET_SELF){ //self
-					Action.ActionTarget = ((CMobEntity*)m_PBaseEntity);
-				}
-				Action.reaction   = REACTION_HIT;
-				Action.speceffect = SPECEFFECT_HIT;
-				Action.animation  = 0;
-				Action.param	  = mobskill->getMsgForAction();//m_PMobSkill->getAnimationID();
-				Action.messageID  = 43; //readies message
-				Action.flag		  = 0;
+				((CMobEntity*)m_PBaseEntity)->PBattleAI->SetCurrentMobSkill(mobskill);
+				if( mobskill->getActivationTime() != 0)
+				{
+					apAction_t Action;
+					((CMobEntity*)m_PBaseEntity)->m_ActionList.clear();
+					if(mobskill->getValidTargets() == TARGET_ENEMY){ //enemy
+						Action.ActionTarget = ((CMobEntity*)m_PBaseEntity)->PBattleAI->GetBattleTarget();
+					}
+					else if(mobskill->getValidTargets() == TARGET_SELF){ //self
+						Action.ActionTarget = ((CMobEntity*)m_PBaseEntity);
+					}
+					Action.reaction   = REACTION_HIT;
+					Action.speceffect = SPECEFFECT_HIT;
+					Action.animation  = 0;
+					Action.param	  = mobskill->getMsgForAction();//m_PMobSkill->getAnimationID();
+					Action.messageID  = 43; //readies message
+					Action.flag		  = 0;
 
-				((CMobEntity*)m_PBaseEntity)->m_ActionList.push_back(Action);
-				((CMobEntity*)m_PBaseEntity)->loc.zone->PushPacket(((CMobEntity*)m_PBaseEntity), CHAR_INRANGE, new CActionPacket((CMobEntity*)m_PBaseEntity));
+					((CMobEntity*)m_PBaseEntity)->m_ActionList.push_back(Action);
+					((CMobEntity*)m_PBaseEntity)->loc.zone->PushPacket(((CMobEntity*)m_PBaseEntity), CHAR_INRANGE, new CActionPacket((CMobEntity*)m_PBaseEntity));
+				}
+				((CMobEntity*)m_PBaseEntity)->PBattleAI->SetBattleSubTarget(((CMobEntity*)m_PBaseEntity)->PBattleAI->GetBattleTarget());
+				((CMobEntity*)m_PBaseEntity)->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_USING);
 			}
-			((CMobEntity*)m_PBaseEntity)->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_USING);
-		}
-		else
-		{
-			ShowWarning("lua_baseentity::useMobAbility NULL mobskill used %d", mobskillId);
+			else
+			{
+				ShowWarning("lua_baseentity::useMobAbility NULL mobskill used %d", mobskillId);
+			}
 		}
 	} else {
 		((CMobEntity*)m_PBaseEntity)->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
