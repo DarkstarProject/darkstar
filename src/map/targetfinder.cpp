@@ -177,6 +177,8 @@ void CTargetFinder::addAllInMobList(CBattleEntity* PTarget, bool withPet)
 
     if(PBattleTarget  && !PBattleTarget->isCharmed && isMobOwner(PBattleTarget)){
       addEntity(PBattleTarget, withPet);
+
+      if(m_targets.size() > MAX_AOE_TARGETS) return;
     }
 
   }
@@ -193,8 +195,10 @@ void CTargetFinder::addAllInAlliance(CBattleEntity* PTarget, bool withPet)
     for(uint16 p = 0; p < party->members.size(); p++)
     {
 
+
       addEntity(party->members.at(p), withPet);
 
+      if(m_targets.size() > MAX_AOE_TARGETS) return;
     }
   }
 }
@@ -210,6 +214,7 @@ void CTargetFinder::addAllInParty(CBattleEntity* PTarget, bool withPet)
 
     addEntity(party->members.at(p), withPet);
 
+    if(m_targets.size() > MAX_AOE_BUFF_TARGETS) return;
   }
 
 }
@@ -279,8 +284,6 @@ bool CTargetFinder::isMobOwner(CBattleEntity* PTarget)
 
 bool CTargetFinder::validEntity(CBattleEntity* PTarget)
 {
-
-  // make sure i'm not over limit
   if(m_targets.size() > MAX_AOE_TARGETS) return false;
 
   if(!m_targetDead && PTarget->isDead())

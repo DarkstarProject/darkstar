@@ -29,6 +29,10 @@
 
 class CBattleEntity;
 
+// max targets a mobs buff move will accept
+#define MAX_AOE_BUFF_TARGETS 9
+
+// max targets for offensive AoEs
 #define MAX_AOE_TARGETS 15
 
 // allow pets to recieve buffs from protectra, curaga etc

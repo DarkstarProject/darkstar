@@ -410,16 +410,7 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
 	size_t size = *buffsize;
 	int32 checksumResult = -1;
 
-	try
-	{
-		// due to network difficulties this will fail because of broken input
-		checksumResult = checksum((uint8*)(buff+FFXI_HEADER_SIZE),size-(FFXI_HEADER_SIZE+16),buff+size-16);
-	}
-	catch(...)
-	{
-		ShowWarning("map::recv_parse Bad checksum input\n");
-		return -1;
-	}
+	checksumResult = checksum((uint8*)(buff+FFXI_HEADER_SIZE),size-(FFXI_HEADER_SIZE+16),buff+size-16);
 
 	if(checksumResult == 0)
 	{
