@@ -479,6 +479,8 @@ public:
 
 	int16		    getMod(uint16 modID);		// величина модификатора
 
+	bool			Rest(float rate); // heal an amount of hp / mp
+
 	void		    addModifier(uint16 type, int16 amount);
 	void		    setModifier(uint16 type, int16 amount);
 	void		    delModifier(uint16 type, int16 amount);

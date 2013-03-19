@@ -164,6 +164,23 @@ int32 CBattleEntity::GetMaxMP()
     return health.modmp;
 }
 
+bool CBattleEntity::Rest(float rate)
+{
+	if(health.hp != health.maxhp){
+        // recover 20% HP
+        uint32 recoverHP = (float)health.maxhp*rate;
+        uint32 recoverMP = (float)health.maxmp*rate;
+        addHP(recoverHP);
+        addMP(recoverMP);
+
+        // lower TP
+        addTP(rate*-50);
+        return true;
+    }
+
+    return false;
+}
+
 int16 CBattleEntity::GetWeaponDelay(bool tp)
 {
 	if (StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS))

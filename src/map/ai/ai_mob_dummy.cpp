@@ -148,17 +148,8 @@ void CAIMobDummy::ActionRoaming()
 		// lets buff up or move around
 		m_LastActionTime = m_Tick - rand()%30000;
 
-		// recover health if i'm below 100%
-		if(m_PMob->GetHPP() < 100){
-			// recover 20% HP
-			uint32 recoverHP = (float)m_PMob->GetMaxHP()*0.2;
-			uint32 recoverMP = (float)m_PMob->GetMaxMP()*0.2;
-			m_PMob->addHP(recoverHP);
-			m_PMob->addMP(recoverMP);
-
-			// lower TP
-			m_PMob->addTP(-10);
-		}
+		// recover health
+		m_PMob->Rest(0.2f);
 
 		if(!(m_PMob->m_Type & MOBTYPE_EVENT) && rand()%10 < 7){
 			// roam

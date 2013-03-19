@@ -211,9 +211,15 @@ zoneLine_t* CZone::GetZoneLine(uint32 zoneLineID)
 	return NULL;
 }
 
-EntityList_t* CZone::GetMobs()
+void  CZone::HealAllMobs()
 {
-  return &m_mobList;
+  for (EntityList_t::const_iterator it = m_mobList.begin() ; it != m_mobList.end() ; ++it)
+    {
+      CMobEntity* PCurrentMob = (CMobEntity*)it->second;
+
+      // keep resting until i'm full
+      PCurrentMob->Rest(1);
+    }
 }
 
 /************************************************************************
@@ -686,12 +692,15 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
     // TODO: могут возникать проблемы с переходом между одной и той же зоной (zone == prevzone)
 
 	m_charList.erase(PChar->targid);
+
 	ShowDebug(CL_CYAN"CZone:: %s DecreaseZoneCounter <%u> %s\n" CL_RESET, GetName(), m_charList.size(),PChar->GetName());
 
 	if (ZoneTimer && m_charList.empty())
 	{
 		ZoneTimer->m_type = CTaskMgr::TASK_REMOVE;
 		ZoneTimer = NULL;
+
+    HealAllMobs();
 	}
 	else
 	{

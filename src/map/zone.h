@@ -424,7 +424,7 @@ public:
 	uint8			GetBackgroundMusic();
 	zoneLine_t*		GetZoneLine(uint32 zoneLineID);
 
-	EntityList_t*	GetMobs();
+	void			HealAllMobs();
 
     CCharEntity*    GetCharByName(int8* name);                                      // finds the player if exists in zone
 	CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1); 					// получаем указатель на любую сущность в зоне
