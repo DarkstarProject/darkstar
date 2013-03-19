@@ -93,6 +93,8 @@ bool CItemWeapon::isTwoHanded()
 
 bool CItemWeapon::isUnlockable()
 {
+    if(m_skillType == SKILL_NON) return false;
+
 	return ( m_unlockId > 0 ? true : false );
 }
 
