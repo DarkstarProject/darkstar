@@ -893,10 +893,6 @@ void CAICharNormal::ActionRangedFinish()
             slot = SLOT_AMMO;
             PItem = NULL;
         }
-        else
-        {
-            PAmmo = NULL;
-        }
 
         uint8 shadowsTaken = 0;
 		uint8 hitCount = 1;			// 1 hit by default
