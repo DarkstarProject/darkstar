@@ -2624,7 +2624,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
 
 		// check for ws points
-		CItemWeapon* PWeapon = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[damslot]);
+		CItemWeapon* PWeapon = (CItemWeapon*)m_PChar->m_Weapons[damslot];
 
 		if (PWeapon->isUnlockable() && !m_PChar->unlockedWeapons[PWeapon->getUnlockId()-1].unlocked)
 		{

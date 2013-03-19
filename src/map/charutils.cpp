@@ -3755,7 +3755,7 @@ void saveCharWsPoints(CCharEntity* PChar, uint16 indexid, int32 points)
 
 	const int8* fmtQuery = "INSERT INTO char_weapon_skill_points SET itemindex = %u, charid = %u, points = %u ON DUPLICATE KEY UPDATE points = %u;";
 
-	Sql_Query(SqlHandle,fmtQuery, indexid+1, PChar->id, points);
+	Sql_Query(SqlHandle,fmtQuery, indexid+1, PChar->id, points, points);
 }
 
 /************************************************************************
