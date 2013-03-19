@@ -15,4 +15,4 @@ PLAYERS_HAVE_NOT_REACHED_LEVEL = 8886; -- Players who have not reached level <nu
 		 STRANDS_OF_GRASS_HERE = 8898; -- The strands of grass here have been tied together.
 
 -- Shop Texts
-SCAVNIX_SHOP_DIALOG = 0; -- [UNKNOWN]
+SCAVNIX_SHOP_DIALOG = 8473; -- <Pshoooooowaaaaa>\nI'm goood Goblin from underwooorld.\nI find lotshhh of gooodieshhh.\nYou want try shhhome chipshhh? Cheap for yooou.

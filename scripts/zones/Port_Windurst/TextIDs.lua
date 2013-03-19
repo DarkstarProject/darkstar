@@ -34,7 +34,7 @@ KOHLO_LAKOLO_DIALOG_A = 12202; -- On your Star Onion Brigade honor, you can't te
               ARORO_SHOP_DIALOG = 4134; -- Buy some hocus-pocus from us at Kususu's Hoodoos! I'll give you a smiley charm from me, Aroro, for free! C'mon... How about it then?
        TANIKOMANIKO_SHOP_DIALOG = 4137; -- Hohbiba-Mubiba! That's how our weapon shop greets its customers! Hohbiba-Mubiba!
                RYAN_SHOP_DIALOG = 11592; -- I have no time for white-livered scum that rely on magic alone. If you're with me then check out these wares from across the high seas.
-       KHEL_PHLHAMA_SHOP_DIALOG = 11103; -- [UNKNOWN] Hello there. How about buying <item> to stay in touch with your friends?
+       KHEL_PHLHAMA_SHOP_DIALOG = 11103; -- Hello there. How about buying <item> to stay in touch with your friends?
            KHEL_PAHLHAMA_DIALOG = 4147; -- She sells <item> by the sea shorrre! Hahaha...
 
        POSSORUHBINI_OPEN_DIALOG = 4141; -- Rrroll up! Rrroll up! Plenty of goods from Norvallen! The morrre you buy, the happierrr you'll make me!

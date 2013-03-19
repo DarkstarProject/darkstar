@@ -19,5 +19,5 @@ NOMAD_MOOGLE_DIALOG = 7248; -- I'm a traveling moogle, kupo. I help adventurers 
     MAMAROON_SHOP_DIALOG = 0; -- [UNKNOWN]
     PIPIROON_SHOP_DIALOG = 0; -- [UNKNOWN]
     POPOROON_SHOP_DIALOG = 0; -- [UNKNOWN]
-WATAKHAMAZOM_SHOP_DIALOG = 0; -- [UNKNOWN]
+WATAKHAMAZOM_SHOP_DIALOG = 10413; -- Looking for some bows and bolts to strrrike fear into the hearts of your enemies? You can find 'em here! -verify-
     YOYOROON_SHOP_DIALOG = 0; -- [UNKNOWN]

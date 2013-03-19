@@ -20,9 +20,9 @@ MISSION_DIALOG_CID_TO_AYAME = 7435; -- Give it to one of his Mythril Musketeers 
 NOTHING_OUT_OF_ORDINARY = 6447; -- There is nothing out of the ordinary here.
 
 -- Shop Texts
-      NOGGA_SHOP_DIALOG = 0; -- [UNKNOWN]
-       OLAF_SHOP_DIALOG = 0; -- [UNKNOWN]
-     TOMASA_SHOP_DIALOG = 0; -- [UNKNOWN]
+      NOGGA_SHOP_DIALOG = 7866; -- I've got some items you won't find elsewhere!
+       OLAF_SHOP_DIALOG = 7865; -- We sell items in the Gunpowder Room, too.\nWhat do you need?
+     TOMASA_SHOP_DIALOG = 7867; -- This is the Craftsmen's Eatery.\nMake room for the next customer when you're done, all right?
     TAKIYAH_OPEN_DIALOG = 9822; -- Hey, it's your lucky day! I've got a fresh batch of goods straight from the island of Qufim!
   TAKIYAH_CLOSED_DIALOG = 9821; -- Maybe someday I'll be able to sell goods from Qufim Island... Someday...
 VICIOUS_EYE_SHOP_DIALOG = 7863; -- Hi. This is where blacksmiths buy what they need.

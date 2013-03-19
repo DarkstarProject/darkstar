@@ -10,4 +10,4 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
 LOGGING_IS_POSSIBLE_HERE = 7608; -- Logging is possible here if you have <item>
 
 -- Shop Dialogues
-SPONDULIX_SHOP_DIALOG = 0; -- [UNKNOWN]
+SPONDULIX_SHOP_DIALOG = 7141; -- Spondulix comes all the way from Boodlix's Emporium to help Tarutaru and Mithra. I can help you, too! You have gil, no?
