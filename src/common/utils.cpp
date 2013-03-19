@@ -25,7 +25,6 @@
 #include "../common/md52.h"
 #include "../common/showmsg.h"
 
-#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -120,23 +119,14 @@ Rotations of entities are saved in uint8s, which can only hold up to a value of 
 */
 float rotationToRadian(uint8 rotation)
 {
-	return (1 - ((float)rotation) / 255) * 6.28318f;
-}
-
-float rotationToAngle(uint8 rotation)
-{
-	return rotationToRadian(rotation) * 57.2957795f;
+	return (((float)rotation) / 256) * 2 * M_PI;
 }
 
 uint8 radianToRotation(float radian)
 {
-	return (1 - (radian / 6.28318f)) * 255;
+	return (radian / (2 * M_PI)) * 256;
 }
 
-uint8 angleToRotation(float angle)
-{
-	return radianToRotation(angle * 0.0174532925f);
-}
 
 /************************************************************************
 *																		*
@@ -146,9 +136,9 @@ uint8 angleToRotation(float angle)
 
 uint8 getangle(position_t A, position_t B)
 {
-	uint8 angle = (uint8)(atanf(( B.z - A.z ) / ( B.x - A.x )) * -40.58451048843f);
+	uint8 angle = (uint8)(atanf(( B.z - A.z ) / ( B.x - A.x )) * -(128.0f / M_PI));
 
-	return (A.x > B.x ? angle + 127 : angle);
+	return (A.x > B.x ? angle + 128 : angle);
 }
 
 /************************************************************************
