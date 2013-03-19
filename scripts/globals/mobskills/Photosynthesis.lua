@@ -22,7 +22,7 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-	local power = mob:getMainLvl()/10 * 7 + 5;
+	local power = math.ceil(mob:getMainLvl()/5 + 1);
 	local duration = 30;
 
 	local typeEffect = EFFECT_REGEN;
