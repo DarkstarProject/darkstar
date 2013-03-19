@@ -76,3 +76,58 @@ function utils.takeShadows(target, dmg, shadowbehav)
 
     return dmg;
 end;
+
+function utils.dmgTaken(target, dmg)
+    local resist = 1;
+
+    resist = 1+(math.floor((target:getMod(MOD_DMG)/100)*256)/256);
+
+    if(resist < 0.5) then
+        resist = 0.5;
+    end
+
+    return dmg * resist;
+end;
+
+function utils.breathTaken(target, breathDmg)
+
+    local resist = 1+((target:getMod(MOD_DMGBREATH) / 100)*256)/256;
+
+    if(resist < 0.5) then
+        resist = 0.5;
+    end
+
+    return breathDmg * resist;
+end;
+
+function utils.magicTaken(target, magicDmg)
+
+    local resist = ((256 + target:getMod(MOD_DMGMAGIC))/256);
+
+    if(resist < 0.5) then
+        resist = 0.5;
+    end
+
+    return magicDmg * resist;
+end;
+
+function utils.physicalTaken(target, dmg)
+
+    local resist = 1+((target:getMod(MOD_DMGPHYS) / 100)*256)/256;
+
+    if(resist < 0.5) then
+        resist = 0.5;
+    end
+
+    return dmg * resist;
+end;
+
+function utils.rangedTaken(target, dmg)
+    local resist = 1+((target:getMod(MOD_DMGRANGE) / 100)*256)/256;
+
+    if(resist < 0.5) then
+        resist = 0.5;
+    end
+
+    return dmg * resist;
+end;

@@ -179,8 +179,8 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	local double chance = math.random();
 
 	-- first hit has a higher chance to land
-	local firstHitChance = hitrate * 1.8;
-	firstHitChance = utils.clamp(firstHitChance, 20, 95);
+	local firstHitChance = hitrate * 1.5;
+	firstHitChance = utils.clamp(firstHitChance, 50, 95);
 
 	-- range attacks have a normal hit rate
 	if(tpeffect == TP_RANGED) then
@@ -212,23 +212,8 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	end
 
 	-- Applies "Damge Taken" and "Physical Damage Taken" mods
-	local dmgTaken = target:getMod(MOD_DMG);
-	local physDmgTaken = target:getMod(MOD_DMGPHYS);
-	local dmgMod = 1;
-	local physMod = 1;
-	if (dmgTaken > 0) then
-		dmgMod = dmgMod+(math.floor((dmgTaken/100)*256)/256);
-	else
-		dmgMod = dmgMod+(math.ceil((dmgTaken/100)*256)/256);
-	end
-	if (physDmgTaken > 0) then
-		physMod = physMod+(math.floor((physDmgTaken/100)*256)/256);
-	else
-		physMod = physMod+(math.ceil((physDmgTaken/100)*256)/256);
-	end
-
-	finaldmg = math.floor(finaldmg * dmgMod);
-	finaldmg = math.floor(finaldmg * physMod);
+	finaldmg = utils.dmgTaken(target, finaldmg);
+	finaldmg = utils.physicalTaken(target, finaldmg);
 
 	-- all hits missed
 	if(hitslanded == 0 or finaldmg == 0) then
@@ -317,16 +302,9 @@ function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
 
 	-- Applies "Damage Taken" and "Magic Damage Taken" gear
 	-- MDT is stored in amount/256
-	local dmgTaken = target:getMod(MOD_DMG);
-	local dmgMod = 1;
-	if (dmgTaken > 0) then
-		dmgMod = dmgMod+(math.floor((dmgTaken/100)*256)/256);
-	else
-		dmgMod = dmgMod+(math.ceil((dmgTaken/100)*256)/256);
-	end
-	local magicDmgMod = (256 + target:getMod(MOD_DMGMAGIC)) / 256;
 
-	finaldmg = finaldmg * dmgMod * magicDmgMod;
+	finaldmg = utils.dmgTaken(target, finaldmg);
+	finaldmg = utils.magicTaken(target, finaldmg);
 
 	-- printf("dmgmod: %f, magicdmgmod: %f, resist: %f, def: %f", dmgMod, magicDmgMod, resist, defense);
 	if(finaldmg < 1) then
@@ -616,31 +594,9 @@ function MobBreathMove(mob, target, percent, base, element, cap)
 	end
 
 	-- add breath resistence and magic resistence
-	local dmgTaken = target:getMod(MOD_DMG);
-	local dmgMod = 1;
-	if (dmgTaken > 0) then
-		dmgMod = dmgMod+(math.floor((dmgTaken/100)*256)/256);
-	else
-		dmgMod = dmgMod+(math.ceil((dmgTaken/100)*256)/256);
-	end
-
-	local dmgBreath = 1+((target:getMod(MOD_DMGBREATH) / 100)*256)/256;
-	local dmgMagic = ((256 + target:getMod(MOD_DMGMAGIC))/256);
-
-	-- cap breath reduction at 50%
-	if(dmgBreath < 0.5) then
-		dmgBreath = 0.5;
-	end
-
-	if(dmgMod < 0.5) then
-		dmgMod = 0.5;
-	end
-
-	if(dmgMagic < 0.5) then
-		dmgMagic = 0.5;
-	end
-
-	damage = damage * dmgMod * dmgBreath * dmgMagic;
+	damage = utils.dmgTaken(target, damage);
+	damage = utils.breathTaken(target, damage);
+	damage = utils.magicTaken(target, damage);
 
 	if(damage <= 0) then
 		damage = 1;
