@@ -235,7 +235,6 @@ void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg){
 		}
 		else if(m_PMobSkill->getValidTargets() & TARGET_PLAYER_PARTY)
 		{
-			ShowDebug("Target me!\n");
 			m_PBattleSubTarget = m_PPet->PMaster;
 		}
 		else

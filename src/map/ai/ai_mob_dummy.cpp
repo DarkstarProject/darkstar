@@ -530,6 +530,7 @@ void CAIMobDummy::ActionAbilityStart()
 			if(MobSkills[i]->getID() == 0){ //TWO-HOUR
 				if(m_PMob->GetHPP() <= 50 && m_PMob->m_SkillStatus==0){//<50% HP and not used skill
 					m_PMobSkill = MobSkills[i];
+					m_PBattleSubTarget = m_PMob;
 					m_ActionType = ACTION_MOBABILITY_FINISH; //no prep time
 					return;
 				}
@@ -648,7 +649,7 @@ void CAIMobDummy::ActionAbilityFinish()
     DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
 	// crash fix, a null target made it into CActionPacket
-	if (m_PBattleTarget == NULL)
+	if (m_PBattleSubTarget == NULL)
 	{
 		m_ActionType = ACTION_ATTACK;
 		return;
@@ -802,53 +803,61 @@ void CAIMobDummy::processTwoHour(){
 	// animation can be overrided
 	uint16 animationId = 0;
 
+	// TOOD: this all should be moved into mob skill scripts
+	Action.messageID = 101;
+
 	//determine the 2h based on mjob and set the correct target and do the right stuff
-	uint16 id = 0; // this is just the main job - 1
+	uint16 id = (uint16)m_PMob->GetMJob()-1; // this is just the main job - 1
 	switch(m_PMob->GetMJob()){
 	case JOB_WAR:
-		id=0; Action.ActionTarget = m_PMob; Action.messageID=101;
 		m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_MIGHTY_STRIKES,0,1,0,45));
 		break;
 	case JOB_MNK:
-		id=1; Action.ActionTarget = m_PMob; Action.messageID=101;
 		m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HUNDRED_FISTS,0,1,0,45));
 		break;
-	case JOB_THF:
-		id=5; Action.ActionTarget = m_PMob; Action.messageID=101;
-		m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_PERFECT_DODGE,0,1,0,30));
-		break;
-	case JOB_RDM:
-		id=4; Action.ActionTarget = m_PMob; Action.messageID=101;
-		m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_CHAINSPELL,0,1,0,60));
-		m_LastMagicTime = 0;
-		break;
 	case JOB_WHM: {
-		id=2; Action.ActionTarget = m_PMob; Action.messageID=103;
+		Action.messageID=103;
+		// TODO: supposed to be AoE
 		int hp = m_PMob->GetMaxHP() - m_PMob->health.hp;
 		m_PMob->addHP(hp);
 		Action.param = hp;
 		}
 		break;
-	//case JOB_NIN:
-	//	id=12; Action.ActionTarget = m_PBattleTarget; Action.messageID=185; break;
-	//case JOB_SMN:
-	//	id=14; Action.ActionTarget = m_PBattleTarget; Action.messageID=185; break;
+	case JOB_BLM:
+		m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_MANAFONT,0,1,0,60));
+		break;
+	case JOB_RDM:
+		m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_CHAINSPELL,0,1,0,60));
+		m_LastMagicTime = 0;
+		break;
+	case JOB_THF:
+		m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_PERFECT_DODGE,0,1,0,30));
+		break;
 	case JOB_PLD:
-		id=6; Action.ActionTarget = m_PMob; Action.messageID=101;
 		m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_INVINCIBLE,0,1,0,30));
 		break;
 	//case JOB_DRK:
 	//	id=7; Action.ActionTarget = m_PMob; Action.messageID=101; break;
-	//case JOB_SAM:
-	//	id=11; Action.ActionTarget = m_PMob; Action.messageID=101; break;
+		// bst
+		// brd
 	//case JOB_RNG:
 	//	id=10; Action.ActionTarget = m_PBattleTarget; Action.messageID=185; break;
+	//case JOB_SAM:
+	//	id=11; Action.ActionTarget = m_PMob; Action.messageID=101; break;
+	//case JOB_NIN:
+	//	id=12; Action.ActionTarget = m_PBattleTarget; Action.messageID=185; break;
+		// drg
+	//case JOB_SMN:
+	//	id=14; Action.ActionTarget = m_PBattleTarget; Action.messageID=185; break;
 	default:
 		m_PMobSkill = NULL;
+		m_PBattleSubTarget = NULL;
 		m_PMob->health.tp = 0;
 		m_ActionType = ACTION_ATTACK;
 		return;
 	}
+
+	Action.ActionTarget = m_PBattleSubTarget;
 
 	// TODO: setup proper animations for dynamis and BCNM
 	// if animation been set
@@ -857,6 +866,7 @@ void CAIMobDummy::processTwoHour(){
 	}
 
 	m_PMobSkill->setID(1986+id);
+
 	//addstatuseffect
 	//send packet with msgid "xxx uses zzz."
 	Action.reaction   = REACTION_HIT;
@@ -1159,7 +1169,8 @@ void CAIMobDummy::ActionMagicFinish()
 
 	m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 
-	if (m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL,0) ) {
+	if (m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL,0) ||
+	    m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT,0)) {
 		// let's make CSing monsters actually use lots of spells.
 		m_LastMagicTime = m_Tick - m_PMob->m_MagicRecastTime;
 	}
