@@ -182,9 +182,6 @@ void CAIPetDummy::ActionAbilityStart()
 				}
 				else if(m_PPet->PMaster->GetHPP() <= 25 && m_PPet->GetMJob()==JOB_RDM){//hybrid wyvern
 					m_PBattleSubTarget = m_PPet->PMaster;
-				} else {
-					// you shouldn't be here
-					DSP_DEBUG_BREAK_IF(true);
 				}
 			}
 		//	}
