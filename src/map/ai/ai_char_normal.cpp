@@ -286,7 +286,8 @@ void CAICharNormal::ActionEngage()
 	{
 		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,MSGBASIC_CANNOT_ATTACK_TARGET));
 	}
-	m_PBattleTarget = NULL;
+    m_PBattleTarget = NULL;
+	m_PBattleSubTarget = NULL;
 	m_ActionType = ACTION_NONE;
 }
 
@@ -341,7 +342,8 @@ void CAICharNormal::ActionDisengage()
 {
 	m_ActionType = ACTION_NONE;
 	m_LastActionTime = m_Tick;
-	m_PBattleTarget = NULL;
+    m_PBattleTarget = NULL;
+	m_PBattleSubTarget = NULL;
 
 	m_PChar->status = STATUS_UPDATE;
 	m_PChar->animation = ANIMATION_NONE;
@@ -1651,7 +1653,6 @@ void CAICharNormal::ActionJobAbilityStart()
 {
 	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
     DSP_DEBUG_BREAK_IF(m_PJobAbility == NULL);
-    DSP_DEBUG_BREAK_IF(m_PBattleSubTarget != NULL);
 
     if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_AMNESIA)){
         // can't use abilities

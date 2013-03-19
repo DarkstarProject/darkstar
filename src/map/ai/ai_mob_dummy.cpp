@@ -885,6 +885,8 @@ void CAIMobDummy::processTwoHour(){
 
 	m_PMobSkill->setID(0);
 	m_PMob->health.tp = 0;
+	m_PBattleSubTarget = NULL;
+
 	if(m_PMob->isDead()){ //mijin will not kill the mob using the 2h, so no need to check for it, only for pcs killing
 		m_ActionType = ACTION_FALL;
 		ActionFall();
