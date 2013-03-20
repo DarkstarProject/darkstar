@@ -137,8 +137,6 @@ public:
 	int32 getWeather(lua_State*);			// Get Weather condition
 	int32 setWeather(lua_State*);			// Set Weather condition (GM COMMAND)
 
-    int32 takeMagicDamage(lua_State*);      //
-
     int32 speed(lua_State*);                // скорость передвижения сущности
 	int32 getAnimation(lua_State*);			// Get Entity Animation
 	int32 setAnimation(lua_State*);			// Set Entity Animation

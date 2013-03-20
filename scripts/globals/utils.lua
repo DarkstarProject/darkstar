@@ -81,6 +81,7 @@ end;
 function utils.thirdeye(target)
     --third eye doesnt care how many shadows, so attempt to anticipate, but reduce
     --chance of anticipate based on previous successful anticipates.
+    local teye = target:getStatusEffect(EFFECT_THIRD_EYE);
     local prevAnt = teye:getPower();
 
     if( prevAnt == 0 or (math.random()*100) < (80-(prevAnt*10)) ) then
