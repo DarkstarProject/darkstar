@@ -1849,6 +1849,8 @@ uint8 GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 
 uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim)
 {
+    bool isRanged = (slot == SLOT_AMMO || slot == SLOT_RANGED);
+
 	if(PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_FORMLESS_STRIKES))
 	{
 		uint8 formlessMod = 70;
@@ -1862,7 +1864,13 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 	{
 
         damage = DmgTaken(PDefender, damage);
-        damage = PhysicalDmgTaken(PDefender, damage);
+
+        if(isRanged)
+        {
+            damage = RangedDmgTaken(PDefender, damage);
+        } else {
+            damage = PhysicalDmgTaken(PDefender, damage);
+        }
 
 		switch(PAttacker->m_Weapons[slot]->getDmgType())
 		{
@@ -2031,7 +2039,14 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 
     if (PAttacker->objtype == TYPE_PC)
     {
-        PAttacker->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK);
+        if(!isRanged)
+        {
+            // only for physical attacks
+            PAttacker->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK);
+        } else {
+            // only remove detectables
+            PAttacker->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
+        }
     }
 	return damage;
 }

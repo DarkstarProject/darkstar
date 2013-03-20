@@ -534,6 +534,7 @@ void CStatusEffectContainer::DelStatusEffectsByFlag(uint16 flag)
 {
     for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
 	{
+        ShowDebug("delete %d flag %d", m_StatusEffectList.at(i)->GetFlag(), flag);
         if (m_StatusEffectList.at(i)->GetFlag() & flag)
 		{
 			RemoveStatusEffect(i--);

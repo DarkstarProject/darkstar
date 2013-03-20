@@ -1055,8 +1055,6 @@ void CAICharNormal::ActionRangedFinish()
 		m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
 
-		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-
         // TODO: что это ? ....
         // если не ошибаюсь, то TREASURE_HUNTER работает лишь при последнем ударе
 
@@ -1086,10 +1084,6 @@ void CAICharNormal::ActionRangedFinish()
 		if (damage > 8000)
 			ShowError(CL_RED"Warning: %s did 8000+ ranged damage, job = %u \n" CL_RESET, m_PChar->GetName(), m_PChar->GetMJob());
 
-		m_PBattleSubTarget = NULL;
-		m_PChar->m_rangedDelay = m_Tick; //cooldown between shots
-
-
 		// remove barrage effect if present
 		if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE,0)){
 			m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BARRAGE,0);
@@ -1104,6 +1098,11 @@ void CAICharNormal::ActionRangedFinish()
 
             m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SANGE);
         }
+
+        m_PBattleSubTarget = NULL;
+        m_PChar->m_rangedDelay = m_Tick; //cooldown between shots
+
+        m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 	}
 }
 
