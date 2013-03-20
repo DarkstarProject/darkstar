@@ -244,6 +244,7 @@ void CAIMobDummy::ActionDisengage()
     m_firstSpell = true;
 
 	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
+
 }
 
 /************************************************************************
@@ -1168,15 +1169,12 @@ void CAIMobDummy::ActionMagicFinish()
 		m_LastMagicTime = m_Tick - m_PMob->m_MagicRecastTime;
 	}
 
-    m_LastWaitTime = m_Tick;
-	m_WaitTime = 1000;
-
 	m_PSpell = NULL;
 	m_PBattleSubTarget = NULL;
 
 	// display animation, then continue fighting
-	m_ActionType = ACTION_WAIT;
 
+	Wait(1000);
 }
 
 /************************************************************************
@@ -1475,7 +1473,7 @@ void CAIMobDummy::ActionAttack()
             m_LastActionTime = m_Tick;
 		}
 	}
-	else if (m_PMob->CanDeaggro() && CurrentDistance > 25 && (m_Tick - m_LastActionTime) > 20000)
+	else if (m_PMob->CanDeaggro() && CurrentDistance > 28 && (m_Tick - m_LastActionTime) > 20000)
     {
         //player has been too far away for some time, deaggro if the mob type dictates it
 
@@ -1558,7 +1556,6 @@ void CAIMobDummy::ActionRangedAttack()
 
     m_LastActionTime = m_Tick;
     m_LastRangedTime = m_Tick;
-    m_LastWaitTime = m_Tick;
 
     // grab ranged attack skill
     m_PMobSkill = battleutils::GetMobSkill(16);
@@ -1570,8 +1567,6 @@ void CAIMobDummy::ActionRangedAttack()
     }
 
     DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
-
-    m_WaitTime = m_PMobSkill->getAnimationTime();
 
     apAction_t Action;
     m_PMob->m_ActionList.clear();
@@ -1598,10 +1593,10 @@ void CAIMobDummy::ActionRangedAttack()
 
 	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
 
-	m_PMobSkill = NULL;
-
 	// this stops the mob from chasing
-	m_ActionType = ACTION_WAIT;
+	Wait(m_PMobSkill->getAnimationTime());
+
+	m_PMobSkill = NULL;
 }
 
 void CAIMobDummy::CastSpell(uint16 spellId)
@@ -1614,4 +1609,11 @@ void CAIMobDummy::CastSpell(uint16 spellId)
 		m_ActionType = ACTION_MAGIC_START;
 		ActionMagicStart();
 	}
+}
+
+void CAIMobDummy::Wait(uint32 waitTime)
+{
+    m_LastWaitTime = m_Tick;
+	m_WaitTime = waitTime;
+	m_ActionType = ACTION_WAIT;
 }

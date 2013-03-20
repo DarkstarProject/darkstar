@@ -1571,7 +1571,7 @@ void CAICharNormal::ActionMagicFinish()
         m_PChar->m_ActionList.push_back(Action);
     }
     // если заклинание атакующее, то дополнительно удаляем эффекты с флагом атаки
-    m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_MAGIC_END | ((m_PSpell->getValidTarget() & TARGET_ENEMY) ? EFFECTFLAG_ATTACK : EFFECTFLAG_NONE));
+    m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_MAGIC_END | ((m_PSpell->getValidTarget() & TARGET_ENEMY) ? EFFECTFLAG_DETECTABLE : EFFECTFLAG_NONE));
 
 	charutils::UpdateHealth(m_PChar);
 
@@ -3134,8 +3134,7 @@ void CAICharNormal::ActionAttack()
                     }
                     else
                     {
-						bool ignoreSneakTrickAttack = (i != 0); // Sneak attack critical effect should only be given on the first swing.
-						bool isCritical = (rand()%100 < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget, ignoreSneakTrickAttack));
+						bool isCritical = (rand()%100 < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget, true));
 
 						float DamageRatio = battleutils::GetDamageRatio(m_PChar, m_PBattleTarget, isCritical, 0);
 
@@ -3154,21 +3153,6 @@ void CAICharNormal::ActionAttack()
 						}
 
 						uint16 bonusDMG = 0;
-
-						if(m_PChar->GetMJob() == JOB_THF && (!ignoreSneakTrickAttack) &&
-							m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK) &&
-							abs(m_PBattleTarget->loc.p.rotation - m_PChar->loc.p.rotation) < 23)
-							{
-								bonusDMG = m_PChar->DEX();
-								if(rand()%100 < 4) Monster->m_THLvl +=1;
-							}
-
-
-						//trick attack agi bonus for thf main job
-						if(m_PChar->GetMJob() == JOB_THF && (!ignoreSneakTrickAttack) && taChar != NULL)
-						{
-							bonusDMG += m_PChar->AGI();
-						}
 
 						if (isHTH)
 						{
@@ -3238,7 +3222,7 @@ void CAICharNormal::ActionAttack()
 				if (Action.reaction == REACTION_HIT)
 				{
 					damage = battleutils::CheckForDamageMultiplier(PWeapon,damage,i);
-					Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, isBlocked, fstrslot, 1, taChar, true);
+					Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, isBlocked, fstrslot, 1, m_PChar, true);
 				}
 				else
 				{
@@ -3267,6 +3251,7 @@ void CAICharNormal::ActionAttack()
 			}
 
 			m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK);
+
 			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 		}
 	}
