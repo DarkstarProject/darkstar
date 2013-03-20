@@ -137,7 +137,10 @@ void CAIPetDummy::ActionAbilityStart()
 		m_MasterCommand = MASTERCOMMAND_NONE;
 	}
 	else if(m_PPet->getPetType()==PETTYPE_WYVERN){
-		if(m_MasterCommand==MASTERCOMMAND_ELEMENTAL_BREATH && (m_PPet->GetMJob()==JOB_DRG || m_PPet->GetMJob()==JOB_RDM)){
+
+		WYVERNTYPE wyverntype = m_PPet->getWyvernType();
+
+		if(m_MasterCommand==MASTERCOMMAND_ELEMENTAL_BREATH && (wyverntype == WYVERNTYPE_MULTIPURPOSE || WYVERNTYPE_OFFENSIVE)){
 			m_MasterCommand = MASTERCOMMAND_NONE;
 
 			//offensive or multipurpose wyvern
@@ -162,25 +165,30 @@ void CAIPetDummy::ActionAbilityStart()
 			}
 
 		}
-		else if(m_MasterCommand==MASTERCOMMAND_HEALING_BREATH && (m_PPet->GetMJob()==JOB_WHM || m_PPet->GetMJob()==JOB_RDM)){
+		else if(m_MasterCommand==MASTERCOMMAND_HEALING_BREATH && (wyverntype == WYVERNTYPE_DEFENSIVE || wyverntype == WYVERNTYPE_MULTIPURPOSE))
+		{
+
 			m_MasterCommand = MASTERCOMMAND_NONE;
 			m_PBattleSubTarget = NULL;
 			//TODO: CHECK FOR STATUS EFFECTS FOR REMOVE- BREATH (higher priority than healing breaths)
 
 		//	if(m_PPet->PMaster->PParty==NULL){//solo with master-kun
 			uint16 masterHead = ((CCharEntity*)(m_PPet->PMaster))->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)(m_PPet->PMaster))->equip[SLOT_HEAD])->getID();
+
 			if(((CCharEntity*)(m_PPet->PMaster))->objtype == TYPE_PC && (masterHead == 12519 || masterHead == 15238)) { //Check for player & AF head, or +1
-				if(m_PPet->PMaster->GetHPP() <= 50 && m_PPet->GetMJob()==JOB_WHM){//healer wyvern
+				if(m_PPet->PMaster->GetHPP() <= 50 && wyverntype == WYVERNTYPE_DEFENSIVE){//healer wyvern
 					m_PBattleSubTarget = m_PPet->PMaster;
 				}
-				else if(m_PPet->PMaster->GetHPP() <= 33 && m_PPet->GetMJob()==JOB_RDM){//hybrid wyvern
+				else if(m_PPet->PMaster->GetHPP() <= 33 && wyverntype == WYVERNTYPE_MULTIPURPOSE){//hybrid wyvern
 					m_PBattleSubTarget = m_PPet->PMaster;
 				}
 			} else {
-				if(m_PPet->PMaster->GetHPP() <= 33 && m_PPet->GetMJob()==JOB_WHM){//healer wyvern
+				if(m_PPet->PMaster->GetHPP() <= 33 && wyverntype == WYVERNTYPE_DEFENSIVE)
+				{//healer wyvern
 					m_PBattleSubTarget = m_PPet->PMaster;
 				}
-				else if(m_PPet->PMaster->GetHPP() <= 25 && m_PPet->GetMJob()==JOB_RDM){//hybrid wyvern
+				else if(m_PPet->PMaster->GetHPP() <= 25 && wyverntype == WYVERNTYPE_MULTIPURPOSE)
+				{//hybrid wyvern
 					m_PBattleSubTarget = m_PPet->PMaster;
 				}
 			}

@@ -35,6 +35,14 @@ enum PETTYPE
 	PETTYPE_PUPPET			= 4
 };
 
+enum WYVERNTYPE
+{
+    WYVERNTYPE_NONE = 0,
+    WYVERNTYPE_DEFENSIVE = 1,
+    WYVERNTYPE_MULTIPURPOSE = 2,
+    WYVERNTYPE_OFFENSIVE = 3
+};
+
 class CPetEntity : public CBattleEntity
 {
 public:
@@ -45,6 +53,8 @@ public:
 	uint16 m_Family;
 	uint8 m_Element;
 	uint32 m_PetID;
+
+    WYVERNTYPE getWyvernType();
 
 	std::vector<CMobSkill*> PetSkills;
 private:

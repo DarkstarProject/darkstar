@@ -589,7 +589,9 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 				break;
 			}
 		}
+		PPet->SetMJob(JOB_DRG);
 		PPet->SetMLevel(PMaster->GetMLevel());
+
 		LoadAvatarStats(PPet); //follows PC calcs (w/o SJ)
 		PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0f*(320.0f/60.0f))); //320 delay
 		PPet->m_Weapons[SLOT_MAIN]->setDamage(1+floor(PPet->GetMLevel()*0.9f));

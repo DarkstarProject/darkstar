@@ -42,6 +42,40 @@ bool CPetEntity::isBstPet()
   return getPetType()==PETTYPE_JUGPET || objtype == TYPE_MOB;
 }
 
+WYVERNTYPE CPetEntity::getWyvernType()
+{
+  DSP_DEBUG_BREAK_IF(PMaster == NULL);
+
+  switch(PMaster->GetSJob())
+  {
+    case JOB_BLM:
+    case JOB_BLU:
+    case JOB_SMN:
+    case JOB_WHM:
+    case JOB_RDM:
+    case JOB_SCH:
+      return WYVERNTYPE_DEFENSIVE;
+    case JOB_DRK:
+    case JOB_PLD:
+    case JOB_NIN:
+    case JOB_BRD:
+      return WYVERNTYPE_MULTIPURPOSE;
+    case JOB_WAR:
+    case JOB_SAM:
+    case JOB_THF:
+    case JOB_BST:
+    case JOB_RNG:
+    case JOB_COR:
+    case JOB_DNC:
+      return WYVERNTYPE_OFFENSIVE;
+
+    default:
+      return WYVERNTYPE_OFFENSIVE;
+  };
+
+
+}
+
 CPetEntity::~CPetEntity()
 {
 }
