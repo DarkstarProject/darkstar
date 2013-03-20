@@ -739,6 +739,7 @@ void CAIPetDummy::ActionAttack()
 				}
 
 				m_PPet->m_ActionList.push_back(Action);
+			}
 
 				m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
 				if(m_PPet->PMaster != NULL && m_PPet->PMaster->objtype == TYPE_PC && m_PPet->PMaster->PPet != NULL){
