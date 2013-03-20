@@ -681,64 +681,63 @@ void CAIPetDummy::ActionAttack()
 				uint8 numAttacks = battleutils::CheckMultiHits(m_PPet, m_PPet->m_Weapons[SLOT_MAIN]);
 
 				for(uint8 i=0; i<numAttacks; i++){
-				Action.reaction   = REACTION_EVADE;
-				Action.speceffect = SPECEFFECT_NONE;
-				Action.animation  = 0;
-				Action.param	  = 0;
-				Action.messageID  = 15;
-				Action.flag		  = 0;
-				//ShowDebug("pet hp %i and atk %i def %i eva is %i \n",m_PPet->health.hp,m_PPet->ATT(),m_PPet->DEF(),m_PPet->getMod(MOD_EVA));
-				uint16 damage = 0;
+					Action.reaction   = REACTION_EVADE;
+					Action.speceffect = SPECEFFECT_NONE;
+					Action.animation  = 0;
+					Action.param	  = 0;
+					Action.messageID  = 15;
+					Action.flag		  = 0;
+					//ShowDebug("pet hp %i and atk %i def %i eva is %i \n",m_PPet->health.hp,m_PPet->ATT(),m_PPet->DEF(),m_PPet->getMod(MOD_EVA));
+					uint16 damage = 0;
 
-				if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE))
-				{
-					Action.messageID = 32;
-				}
-				else if ( rand()%100 < battleutils::GetHitRate(m_PPet, m_PBattleTarget) )
-				{
-                    if (battleutils::IsAbsorbByShadow(m_PBattleTarget))
+					if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE))
 					{
-                        Action.messageID = 0;
-                        Action.reaction = REACTION_EVADE;
-                        m_PBattleTarget->loc.zone->PushPacket(m_PBattleTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleTarget,m_PBattleTarget,0,1,31));
+						Action.messageID = 32;
 					}
-					else
+					else if ( rand()%100 < battleutils::GetHitRate(m_PPet, m_PBattleTarget) )
 					{
-						Action.reaction   = REACTION_HIT;
-						Action.speceffect = SPECEFFECT_HIT;
-						Action.messageID  = 1;
-
-						bool isCritical = ( rand()%100 < battleutils::GetCritHitRate(m_PPet, m_PBattleTarget, false) );
-						float DamageRatio = battleutils::GetDamageRatio(m_PPet, m_PBattleTarget,isCritical, 0);
-
-						if(isCritical)
+	                    if (battleutils::IsAbsorbByShadow(m_PBattleTarget))
 						{
-							DamageRatio += 1;
-							DamageRatio = (DamageRatio > 3 ? 3 : DamageRatio);
-
-							Action.speceffect = SPECEFFECT_CRITICAL_HIT;
-							Action.messageID  = 67;
+	                        Action.messageID = 0;
+	                        Action.reaction = REACTION_EVADE;
+	                        m_PBattleTarget->loc.zone->PushPacket(m_PBattleTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleTarget,m_PBattleTarget,0,1,31));
 						}
-						damage = (uint16)((m_PPet->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PPet, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);
+						else
+						{
+							Action.reaction   = REACTION_HIT;
+							Action.speceffect = SPECEFFECT_HIT;
+							Action.messageID  = 1;
+
+							bool isCritical = ( rand()%100 < battleutils::GetCritHitRate(m_PPet, m_PBattleTarget, false) );
+							float DamageRatio = battleutils::GetDamageRatio(m_PPet, m_PBattleTarget,isCritical, 0);
+
+							if(isCritical)
+							{
+
+								Action.speceffect = SPECEFFECT_CRITICAL_HIT;
+								Action.messageID  = 67;
+							}
+
+							damage = (uint16)((m_PPet->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PPet, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);
+						}
 					}
-				}
-				if (m_PBattleTarget->objtype == TYPE_PC)
-				{
-					charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_EVA, m_PPet->GetMLevel());
-				}
+					if (m_PBattleTarget->objtype == TYPE_PC)
+					{
+						charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_EVA, m_PPet->GetMLevel());
+					}
 
-				bool isBlocked = (rand()%100 < battleutils::GetBlockRate(m_PPet,m_PBattleTarget));
-				if(isBlocked){ Action.reaction = REACTION_BLOCK; }
+					bool isBlocked = (rand()%100 < battleutils::GetBlockRate(m_PPet,m_PBattleTarget));
+					if(isBlocked){ Action.reaction = REACTION_BLOCK; }
 
-                Action.param = battleutils::TakePhysicalDamage(m_PPet, m_PBattleTarget, damage, isBlocked, SLOT_MAIN, 1, NULL, true);
+	                Action.param = battleutils::TakePhysicalDamage(m_PPet, m_PBattleTarget, damage, isBlocked, SLOT_MAIN, 1, NULL, true);
 
-                // spike effect
-				if (Action.reaction != REACTION_EVADE && Action.reaction != REACTION_PARRY)
-				{
-					battleutils::HandleSpikesDamage(m_PPet, m_PBattleTarget, &Action, damage);
-				}
+	                // spike effect
+					if (Action.reaction != REACTION_EVADE && Action.reaction != REACTION_PARRY)
+					{
+						battleutils::HandleSpikesDamage(m_PPet, m_PBattleTarget, &Action, damage);
+					}
 
-				m_PPet->m_ActionList.push_back(Action);
+					m_PPet->m_ActionList.push_back(Action);
 			}
 
 				m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));

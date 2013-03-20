@@ -2312,7 +2312,7 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 		}
 	}
 
-	else if (PEntity->objtype == TYPE_MOB)
+	else if (PEntity->objtype == TYPE_MOB || PEntity->objtype == TYPE_PET)
 	{
 		//Monk
 		if(PEntity->GetMJob() == JOB_MNK)
