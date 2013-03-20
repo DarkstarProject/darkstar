@@ -3301,6 +3301,7 @@ void CAICharNormal::ActionRaiseMenuSelection()
     m_PChar->animation = ANIMATION_NONE;
 
     double ratioReturned = 0.0f;
+	uint16 hpReturned = 1;
 
     apAction_t Action;
     m_PChar->m_ActionList.clear();
@@ -3309,21 +3310,22 @@ void CAICharNormal::ActionRaiseMenuSelection()
     if(m_PChar->m_hasRaise == 1)
     {
         Action.animation = 511;
-        m_PChar->addHP(m_PChar->GetMaxHP()*0.1);
+        hpReturned = m_PChar->GetMaxHP()*0.1;
         ratioReturned = 0.50f * (1 - map_config.exp_retain);
     }
     else if(m_PChar->m_hasRaise == 2)
     {
         Action.animation = 512;
-        m_PChar->addHP(m_PChar->GetMaxHP()*0.25);
+        hpReturned = m_PChar->GetMaxHP()*0.25;
         ratioReturned = ((m_PChar->GetMLevel() <= 50) ? 0.50f : 0.75f) * (1 - map_config.exp_retain);
     }
     else if(m_PChar->m_hasRaise == 3)
     {
         Action.animation = 496;
-        m_PChar->addHP(m_PChar->GetMaxHP()*0.5);
+        hpReturned = m_PChar->GetMaxHP()*0.5;
         ratioReturned = ((m_PChar->GetMLevel() <= 50) ? 0.50f : 0.90f) * (1 - map_config.exp_retain);
     }
+	m_PChar->addHP(((hpReturned < 1) ? 1 : hpReturned));
     Action.reaction   = REACTION_NONE;
     Action.speceffect = SPECEFFECT_RAISE;
     Action.messageID  = 0;
