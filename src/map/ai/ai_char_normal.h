@@ -84,8 +84,6 @@ protected:
 
 	bool IsMobOwner(CBattleEntity* PBattleTarget);
 	bool GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTarget);
-
-    bool CannotAct();
 };
 
 #endif

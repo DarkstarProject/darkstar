@@ -238,8 +238,6 @@ bool CAICharNormal::IsMobOwner(CBattleEntity* PBattleTarget)
 
 void CAICharNormal::ActionEngage()
 {
-    if(CannotAct()) return;
-
 	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0)
     DSP_DEBUG_BREAK_IF(m_PBattleTarget != NULL);
 
@@ -342,8 +340,6 @@ void CAICharNormal::ActionChangeBattleTarget()
 
 void CAICharNormal::ActionDisengage()
 {
-    if(CannotAct()) return;
-
 	m_ActionType = ACTION_NONE;
 	m_LastActionTime = m_Tick;
     m_PBattleTarget = NULL;
@@ -430,8 +426,6 @@ void CAICharNormal::ActionDeath()
 
 void CAICharNormal::ActionItemStart()
 {
-    if(CannotAct()) return;
-
     DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
     DSP_DEBUG_BREAK_IF(m_PBattleSubTarget != NULL);
 
@@ -623,7 +617,11 @@ void CAICharNormal::ActionItemFinish()
 		delete m_PItemUsable;
 
 		m_LastMeleeTime += (m_Tick - m_LastActionTime);
-		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+		//we may have modified the action via item use! (e.g. sleeping potion)
+		if (m_ActionType == ACTION_ITEM_FINISH)
+		{
+			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+		}
 		m_PItemUsable = NULL;
 		m_PBattleSubTarget = NULL;
 
@@ -679,8 +677,6 @@ void CAICharNormal::ActionItemInterrupt()
 
 void CAICharNormal::ActionRangedStart()
 {
-    if(CannotAct()) return;
-
 	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
     DSP_DEBUG_BREAK_IF(m_PBattleSubTarget != NULL);
 
@@ -862,7 +858,7 @@ void CAICharNormal::ActionRangedFinish()
 	}
 
 	// check if player moved during Range attack wait
-	if (m_PChar->m_StartActionPos.x != m_PChar->loc.p.x || m_PChar->m_StartActionPos.z != m_PChar->loc.p.z || m_PChar->StatusEffectContainer->HasPreventActionEffect())
+	if (m_PChar->m_StartActionPos.x != m_PChar->loc.p.x || m_PChar->m_StartActionPos.z != m_PChar->loc.p.z)
 	{
 		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_MOVE_AND_INTERRUPT));
         m_LastMeleeTime += (m_Tick - m_LastActionTime);
@@ -1063,6 +1059,8 @@ void CAICharNormal::ActionRangedFinish()
 		m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
 
+		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+
         // TODO: что это ? ....
         // если не ошибаюсь, то TREASURE_HUNTER работает лишь при последнем ударе
 
@@ -1156,8 +1154,6 @@ void CAICharNormal::ActionRangedInterrupt()
 
 void CAICharNormal::ActionMagicStart()
 {
-    if(CannotAct()) return;
-
     DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
 	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
     DSP_DEBUG_BREAK_IF(m_PBattleSubTarget != NULL);
@@ -1661,7 +1657,6 @@ void CAICharNormal::ActionMagicInterrupt()
 
 void CAICharNormal::ActionJobAbilityStart()
 {
-    if(CannotAct()) return;
 	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
     DSP_DEBUG_BREAK_IF(m_PJobAbility == NULL);
 
@@ -2386,7 +2381,6 @@ void CAICharNormal::ActionJobAbilityFinish()
 
 void CAICharNormal::ActionWeaponSkillStart()
 {
-    if(CannotAct()) return;
     DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
     DSP_DEBUG_BREAK_IF(m_PWeaponSkill == NULL);
     DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
@@ -3281,7 +3275,6 @@ void CAICharNormal::ActionAttack()
 			}
 
 			m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK);
-
 			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 		}
 	}
@@ -3360,18 +3353,5 @@ void CAICharNormal::ActionRaiseMenuSelection()
 
     charutils::AddExperiencePoints(true, m_PChar, m_PChar, xpReturned);
 
-    m_ActionType = ACTION_NONE;
-}
-
-bool CAICharNormal::CannotAct()
-{
-    return false;
-    if(m_PChar->StatusEffectContainer->HasPreventActionEffect())
-    {
-        // display message
-        m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 71));
-        m_ActionType = ACTION_SLEEP;
-        return true;
-    }
-    return false;
+	m_ActionType = ACTION_NONE;
 }
