@@ -198,11 +198,9 @@ void CAIMobDummy::ActionEngage()
 	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
 
 	//Start luautils::OnMobEngaged
-	if (m_PBattleTarget!=NULL) {
+	if (m_PBattleTarget != NULL) {
 		luautils::OnMobEngaged(m_PMob,m_PBattleTarget);
 	}
-
-	battleutils::MoveIntoRange(m_PMob,m_PBattleTarget,25);
 
 	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 	ActionAttack();
@@ -1254,13 +1252,16 @@ void CAIMobDummy::ActionAttack()
     float CurrentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
 
 	// Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
-	if (CurrentDistance <= MOB_SPELL_MAX_RANGE && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && TryCastSpell()) {
-	} else if(CurrentDistance <= MOB_RANGED_MAX_RANGE && m_PMob->HasRanged() && (m_Tick - m_LastRangedTime) > m_PMob->m_RangedCoolDown){
+	if (CurrentDistance <= MOB_SPELL_MAX_RANGE && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && TryCastSpell())
+	{
+
+	}
+	else if(CurrentDistance <= MOB_RANGED_MAX_RANGE && m_PMob->HasRanged() && (m_Tick - m_LastRangedTime) > m_PMob->m_RangedCoolDown)
+	{
 		m_ActionType = ACTION_MOBABILITY_FINISH;
 		ActionRangedAttack();
 		return;
 	}
-
 	else if (CurrentDistance <= m_PMob->m_ModelSize)
 	{
 		int32 WeaponDelay = m_PMob->m_Weapons[SLOT_MAIN]->getDelay();
