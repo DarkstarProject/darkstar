@@ -2043,9 +2043,6 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
         {
             // only for physical attacks
             PAttacker->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK);
-        } else {
-            // only remove detectables
-            PAttacker->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
         }
     }
 	return damage;

@@ -116,7 +116,7 @@ INSERT INTO `mob_skill` VALUES(36, 188, 36, 'Blank_Gaze_Dispel', 0, 16.0, 2000, 
 INSERT INTO `mob_skill` VALUES (45,178,45,'Dream_Flower', 1, 15.0, 2000, 1000, 4, 0); -- Not used by Lycopodia
 INSERT INTO `mob_skill` VALUES (46,178,46,'Wild_Oats', 0, 12.5, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (48,178,48,'Photosynthesis', 0, 7.0, 2000, 1000, 1, 0);
-INSERT INTO `mob_skill` VALUES (49,178,49,'Leaf_Dagger', 0, 7.0, 2000, 1000, 4, 0); -- 1hp/tick
+INSERT INTO `mob_skill` VALUES (49,178,49,'Leaf_Dagger', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES(44, 178,44, 'Head_Butt', 0, 7.0, 1500, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES(50, 178,50, 'Scream', 1, 15.0, 2000, 1000, 4, 0);
 -- INSERT INTO `mob_skill` VALUES(0, 178, 0, 'Petal_Pirouette', 0, 15.0, 2000, 1000, 4, 0); -- Only used by certain NM
@@ -288,13 +288,13 @@ INSERT INTO `mob_skill` VALUES (1002,220,876,'Lamentation', 1, 10.0, 2000, 1000,
 
 -- Lizard
 INSERT INTO `mob_skill` VALUES (110,174,110,'Tail_Blow', 0, 7.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (111,174,111,'Fireball', 2, 9.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (111,174,111,'Fireball', 2, 10.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (112,174,112,'Blockhead', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (113,174,113,'Brain_Crush', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (116,174,116,'Infrasonics', 4, 10.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (117,174,117,'Secretion', 0, 7.0, 2000, 1000, 1, 0);
 INSERT INTO `mob_skill` VALUES (114,174,114,'Baleful_Gaze', 4, 10.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (365,174,969,'Snowball', 2, 9.0, 2000, 1000, 4, 0); -- only in colder regions
+INSERT INTO `mob_skill` VALUES (365,174,969,'Snowball', 2, 10.0, 2000, 1000, 4, 0); -- only in colder regions
 INSERT INTO `mob_skill` VALUES (115,174,115,'Plague_Breath', 4, 10.0, 2000, 1000, 4, 0);
 
 -- Raptor

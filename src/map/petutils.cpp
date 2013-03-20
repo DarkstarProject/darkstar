@@ -570,6 +570,7 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 	else if(PPet->getPetType()==PETTYPE_WYVERN){
 		//set the wyvern job based on master's SJ
 		if(PMaster->GetSJob()!=NULL){
+			// I don't think this is correct
 			switch(PMaster->GetSJob()){
 				//defensive
 			case JOB_WHM:

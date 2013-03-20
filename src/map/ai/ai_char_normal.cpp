@@ -1107,6 +1107,9 @@ void CAICharNormal::ActionRangedFinish()
             m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SANGE);
         }
 
+        // only remove detectables
+        m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
+
         m_PBattleSubTarget = NULL;
         m_PChar->m_rangedDelay = m_Tick; //cooldown between shots
 
