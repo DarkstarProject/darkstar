@@ -342,11 +342,6 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
             if (PStatusEffect->GetIcon() != 0)
             {
                 UpdateStatusIcons();
-                // if (silent == false){
-                    // No need to display this.
-                    // should be the job of spells, items etc
-					// PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PStatusEffect->GetIcon(), 0, 205));
-				// }
             }
             if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
 
@@ -953,13 +948,17 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
     StatusEffect->SetType(effects::EffectsParams[effect].Type);
 
 	//todo: find a better place to put this?
-    if(m_POwner->objtype == TYPE_PC || m_POwner->objtype == TYPE_MOB)
+	if(effect == EFFECT_SLEEP || effect == EFFECT_SLEEP_II ||
+		effect == EFFECT_STUN || effect == EFFECT_PETRIFICATION || effect == EFFECT_LULLABY)
     {
-    	if(effect == EFFECT_SLEEP || effect == EFFECT_SLEEP_II ||
-    		effect == EFFECT_STUN || effect == EFFECT_PETRIFICATION || effect == EFFECT_LULLABY)
+
+        // change icon of sleep II and lullaby. Apparently they don't stop player movement.
+        if(effect == EFFECT_SLEEP_II || effect == EFFECT_LULLABY)
         {
-			m_POwner->PBattleAI->SetCurrentAction(ACTION_SLEEP);
-		}
+            StatusEffect->SetIcon(EFFECT_SLEEP);
+        }
+
+		m_POwner->PBattleAI->SetCurrentAction(ACTION_SLEEP);
 	}
 }
 

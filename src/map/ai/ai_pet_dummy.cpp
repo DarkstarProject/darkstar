@@ -96,6 +96,12 @@ void CAIPetDummy::CheckCurrentAction(uint32 tick)
 
 void CAIPetDummy::ActionAbilityStart()
 {
+	if(m_PPet->StatusEffectContainer->HasPreventActionEffect())
+	{
+		m_ActionType = ACTION_SLEEP;
+		return;
+	}
+
 	if(m_PPet->objtype == TYPE_MOB && m_PPet->PMaster->objtype == TYPE_PC)
 	{
 		if(m_MasterCommand == MASTERCOMMAND_SIC && m_PPet->health.tp >= 100 && m_PBattleTarget != NULL)
@@ -532,7 +538,14 @@ void CAIPetDummy::ActionRoaming()
 
 void CAIPetDummy::ActionEngage()
 {
+
 	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
+
+	if(m_PPet->StatusEffectContainer->HasPreventActionEffect())
+	{
+		m_ActionType = ACTION_SLEEP;
+		return;
+	}
 
 	if( m_PPet->PMaster==NULL || m_PPet->PMaster->isDead())
 	{
@@ -598,6 +611,7 @@ void CAIPetDummy::ActionEngage()
 
 void CAIPetDummy::ActionAttack()
 {
+
 	if( m_PPet->PMaster==NULL || m_PPet->PMaster->isDead()){
 		m_ActionType = ACTION_FALL;
 		ActionFall();

@@ -238,6 +238,8 @@ bool CAICharNormal::IsMobOwner(CBattleEntity* PBattleTarget)
 
 void CAICharNormal::ActionEngage()
 {
+    if(CannotAct()) return;
+
 	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0)
     DSP_DEBUG_BREAK_IF(m_PBattleTarget != NULL);
 
@@ -340,6 +342,8 @@ void CAICharNormal::ActionChangeBattleTarget()
 
 void CAICharNormal::ActionDisengage()
 {
+    if(CannotAct()) return;
+
 	m_ActionType = ACTION_NONE;
 	m_LastActionTime = m_Tick;
     m_PBattleTarget = NULL;
@@ -426,6 +430,8 @@ void CAICharNormal::ActionDeath()
 
 void CAICharNormal::ActionItemStart()
 {
+    if(CannotAct()) return;
+
     DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
     DSP_DEBUG_BREAK_IF(m_PBattleSubTarget != NULL);
 
@@ -673,6 +679,8 @@ void CAICharNormal::ActionItemInterrupt()
 
 void CAICharNormal::ActionRangedStart()
 {
+    if(CannotAct()) return;
+
 	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
     DSP_DEBUG_BREAK_IF(m_PBattleSubTarget != NULL);
 
@@ -854,7 +862,7 @@ void CAICharNormal::ActionRangedFinish()
 	}
 
 	// check if player moved during Range attack wait
-	if (m_PChar->m_StartActionPos.x != m_PChar->loc.p.x || m_PChar->m_StartActionPos.z != m_PChar->loc.p.z)
+	if (m_PChar->m_StartActionPos.x != m_PChar->loc.p.x || m_PChar->m_StartActionPos.z != m_PChar->loc.p.z || m_PChar->StatusEffectContainer->HasPreventActionEffect())
 	{
 		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_MOVE_AND_INTERRUPT));
         m_LastMeleeTime += (m_Tick - m_LastActionTime);
@@ -1145,6 +1153,8 @@ void CAICharNormal::ActionRangedInterrupt()
 
 void CAICharNormal::ActionMagicStart()
 {
+    if(CannotAct()) return;
+
     DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
 	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
     DSP_DEBUG_BREAK_IF(m_PBattleSubTarget != NULL);
@@ -1648,6 +1658,7 @@ void CAICharNormal::ActionMagicInterrupt()
 
 void CAICharNormal::ActionJobAbilityStart()
 {
+    if(CannotAct()) return;
 	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
     DSP_DEBUG_BREAK_IF(m_PJobAbility == NULL);
 
@@ -2372,6 +2383,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 
 void CAICharNormal::ActionWeaponSkillStart()
 {
+    if(CannotAct()) return;
     DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
     DSP_DEBUG_BREAK_IF(m_PWeaponSkill == NULL);
     DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
@@ -3265,7 +3277,7 @@ void CAICharNormal::ActionAttack()
 void CAICharNormal::ActionRaiseMenuSelection()
 {
     // TODO: Moghancement Experience needs to be factored in here somewhere.
-	DSP_DEBUG_BREAK_IF(m_PChar->m_hasRaise == 0 || m_PChar->m_hasRaise > 3);
+    DSP_DEBUG_BREAK_IF(m_PChar->m_hasRaise == 0 || m_PChar->m_hasRaise > 3);
 
     m_PChar->animation = ANIMATION_NONE;
 
@@ -3275,43 +3287,43 @@ void CAICharNormal::ActionRaiseMenuSelection()
     m_PChar->m_ActionList.clear();
 
     Action.ActionTarget = m_PChar;
-	if(m_PChar->m_hasRaise == 1)
+    if(m_PChar->m_hasRaise == 1)
     {
-		Action.animation = 511;
-		m_PChar->addHP(m_PChar->GetMaxHP()*0.1);
+        Action.animation = 511;
+        m_PChar->addHP(m_PChar->GetMaxHP()*0.1);
         ratioReturned = 0.50f * (1 - map_config.exp_retain);
-	}
-	else if(m_PChar->m_hasRaise == 2)
+    }
+    else if(m_PChar->m_hasRaise == 2)
     {
-		Action.animation = 512;
-		m_PChar->addHP(m_PChar->GetMaxHP()*0.25);
+        Action.animation = 512;
+        m_PChar->addHP(m_PChar->GetMaxHP()*0.25);
         ratioReturned = ((m_PChar->GetMLevel() <= 50) ? 0.50f : 0.75f) * (1 - map_config.exp_retain);
-	}
-	else if(m_PChar->m_hasRaise == 3)
+    }
+    else if(m_PChar->m_hasRaise == 3)
     {
-		Action.animation = 496;
-		m_PChar->addHP(m_PChar->GetMaxHP()*0.5);
+        Action.animation = 496;
+        m_PChar->addHP(m_PChar->GetMaxHP()*0.5);
         ratioReturned = ((m_PChar->GetMLevel() <= 50) ? 0.50f : 0.90f) * (1 - map_config.exp_retain);
-	}
+    }
     Action.reaction   = REACTION_NONE;
     Action.speceffect = SPECEFFECT_RAISE;
-	Action.messageID  = 0;
+    Action.messageID  = 0;
     Action.flag = 0;
 
     m_PChar->m_ActionList.push_back(Action);
     m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
     uint8 weaknessLvl = 1;
-	if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_WEAKNESS))
+    if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_WEAKNESS))
     {
-		//double weakness! Calculate stuff here
+        //double weakness! Calculate stuff here
         weaknessLvl = 2;
-	}
-	//add weakness effect (75% reduction in HP/MP)
-	CStatusEffect* PWeaknessEffect = new CStatusEffect(EFFECT_WEAKNESS,EFFECT_WEAKNESS,weaknessLvl,0,300);
-	m_PChar->StatusEffectContainer->AddStatusEffect(PWeaknessEffect);
+    }
+    //add weakness effect (75% reduction in HP/MP)
+    CStatusEffect* PWeaknessEffect = new CStatusEffect(EFFECT_WEAKNESS,EFFECT_WEAKNESS,weaknessLvl,0,300);
+    m_PChar->StatusEffectContainer->AddStatusEffect(PWeaknessEffect);
 
-	charutils::UpdateHealth(m_PChar);
+    charutils::UpdateHealth(m_PChar);
     m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
 
     uint16 expLost = m_PChar->GetMLevel() <= 67 ? (charutils::GetExpNEXTLevel(m_PChar->jobs.job[m_PChar->GetMJob()]) * 8 ) / 100 : 2400;
@@ -3327,5 +3339,18 @@ void CAICharNormal::ActionRaiseMenuSelection()
 
     charutils::AddExperiencePoints(true, m_PChar, m_PChar, xpReturned);
 
-	m_ActionType = ACTION_NONE;
+    m_ActionType = ACTION_NONE;
+}
+
+bool CAICharNormal::CannotAct()
+{
+    return false;
+    if(m_PChar->StatusEffectContainer->HasPreventActionEffect())
+    {
+        // display message
+        m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 71));
+        m_ActionType = ACTION_SLEEP;
+        return true;
+    }
+    return false;
 }
