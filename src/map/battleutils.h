@@ -171,6 +171,12 @@ namespace battleutils
 
 	EFFECT				getCorsairRollEffect(uint16 id);
     void                ClaimMob(CBattleEntity* PDefender, CBattleEntity* PAttacker);
+
+    int32                DmgTaken(CBattleEntity* PDefender, int32 damage);
+    int32               BreathDmgTaken(CBattleEntity* PDefender, int32 damage);
+    int32                MagicDmgTaken(CBattleEntity* PDefender, int32 damage);
+    int32               PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage);
+    int32               RangedDmgTaken(CBattleEntity* PDefender, int32 damage);
 };
 
 #endif

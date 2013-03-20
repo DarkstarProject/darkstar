@@ -1215,7 +1215,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 		chance -= 5*(PDefender->GetMLevel() - PAttacker->GetMLevel());
 		chance = dsp_cap(chance,5,95);
 	}
-	if(rand()%100 >= chance || PAmmo==NULL || PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ARROW_SHIELD, 0)){return;}
+	if(rand()%100 >= chance || PAmmo==NULL){return;}
 
 	switch(PAmmo->getID()){
     case 17325:{ // kabura_arrow
@@ -1592,11 +1592,6 @@ float GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 
 	//get ranged attack value
 	uint16 rAttack = 1;
-    // return zero if arrow shield active
-    if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ARROW_SHIELD, 0))
-    {
-        return 0;
-    }
 
 	if(PAttacker->objtype == TYPE_PC)
 	{
@@ -1865,12 +1860,9 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 	}
 	else
 	{
-		if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_INVINCIBLE, 0) || PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_PHYSICAL_SHIELD, 0))
-		{
-			damage = 0;
-		}
 
-		damage = (damage * (100 + PDefender->getMod(MOD_DMG) + PDefender->getMod(MOD_DMGPHYS))) / 100;
+        damage = DmgTaken(PDefender, damage);
+        damage = PhysicalDmgTaken(PDefender, damage);
 
 		switch(PAttacker->m_Weapons[slot]->getDmgType())
 		{
@@ -3947,6 +3939,85 @@ void ClaimMob(CBattleEntity* PDefender, CBattleEntity* PAttacker)
         mob->m_OwnerID.id = PAttacker->id;
         mob->m_OwnerID.targid = PAttacker->targid;
     }
+}
+
+
+int32 DmgTaken(CBattleEntity* PDefender, int32 damage)
+{
+
+    float resist = 1.0f + (PDefender->getMod(MOD_DMG) / 100.0f);
+
+    if(resist < 0.5f)
+    {
+        resist = 0.5f;
+    }
+
+    return damage * resist;
+}
+
+int32 BreathDmgTaken(CBattleEntity* PDefender, int32 damage)
+{
+
+    float resist = 1.0f + (PDefender->getMod(MOD_UDMGBREATH) / 100.0f);
+
+    damage *= resist;
+
+    resist = 1.0f + (PDefender->getMod(MOD_DMGBREATH) / 100.0f);
+
+    if(resist < 0.5f)
+    {
+        resist = 0.5f;
+    }
+
+    return damage * resist;
+}
+
+int32 MagicDmgTaken(CBattleEntity* PDefender, int32 damage)
+{
+    float resist = (256 + PDefender->getMod(MOD_UDMGMAGIC)) / 256.0f;
+
+    damage *= resist;
+
+    resist = (256 + PDefender->getMod(MOD_DMGMAGIC)) / 256.0f;
+
+    if(resist < 0.5f)
+    {
+        resist = 0.5f;
+    }
+
+    return damage * resist;
+}
+
+int32 PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage)
+{
+    float resist = 1.0f + (PDefender->getMod(MOD_UDMGPHYS) / 100.0f);
+
+    damage *= resist;
+
+    resist = 1.0f + (PDefender->getMod(MOD_DMGPHYS) / 100.0f);
+
+    if(resist < 0.5f)
+    {
+        resist = 0.5f;
+    }
+
+    return damage * resist;
+}
+
+int32 RangedDmgTaken(CBattleEntity* PDefender, int32 damage)
+{
+    float resist = 1.0f + (PDefender->getMod(MOD_UDMGRANGE) / 100.0f);
+
+    damage *= resist;
+
+    resist = 1.0f + (PDefender->getMod(MOD_DMGRANGE) / 100.0f);
+
+    if(resist < 0.5f)
+    {
+        resist = 0.5f;
+    }
+
+    return damage * resist;
 }
 
 };

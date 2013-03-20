@@ -9,6 +9,7 @@
 -- applications of damage mods ('Damage varies with TP.')
 -- performance of the actual WS (rand numbers, etc)
 require("scripts/globals/status");
+require("scripts/globals/utils");
 
 --params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti
 function doPhysicalWeaponskill(attacker, target, params)
@@ -179,6 +180,12 @@ function doPhysicalWeaponskill(attacker, target, params)
 	end
 	finaldmg = finaldmg + souleaterBonus(attacker, (tpHitsLanded+extraHitsLanded));
 	-- print("Landed " .. hitslanded .. "/" .. numHits .. " hits with hitrate " .. hitrate .. "!");
+
+	if(target:hasStatusEffect(EFFECT_FORMLESS_STRIKES) == false) then
+		utils.dmgTaken(target, finaldmg);
+		utils.physicalDmgTaken(target, finaldmg);
+	end
+
 	return finaldmg, tpHitsLanded, extraHitsLanded;
 end;
 
@@ -646,6 +653,9 @@ return alpha;
 		end
 	end
 	--print("Landed " .. hitslanded .. "/" .. numHits .. " hits with hitrate " .. hitrate .. "!");
+
+	utils.dmgTaken(target, finaldmg);
+	utils.rangedDmgTaken(target, finaldmg);
 
 	return finaldmg, tpHitsLanded, extraHitsLanded;
 end;

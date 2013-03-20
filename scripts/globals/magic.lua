@@ -492,11 +492,6 @@ function getSkillLvl(rank,level)
 
  function finalMagicAdjustments(caster,target,spell,dmg)
 
-    -- magic always deals at least 1 damage
-    if(dmg < 0) then
-        dmg = 1;
-    end
-
     -- handle multiple targets
     if(spell:isAoE()) then
         local total = spell:getTotalTargets();
@@ -522,13 +517,12 @@ function getSkillLvl(rank,level)
         -- end
     end
 
+
+    dmg = utils.dmgTaken(target, dmg);
+    dmg = utils.magicDmgTaken(target, dmg);
+
     dmg = dmg - target:getMod(MOD_PHALANX);
     if(dmg < 0) then
-        dmg = 0;
-    end
-
-    -- handle magic shield
-    if(target:hasStatusEffect(EFFECT_MAGIC_SHIELD)) then
         dmg = 0;
     end
 
@@ -540,7 +534,7 @@ function getSkillLvl(rank,level)
 
     -- Only add TP if the target is a mob
     if (target:getObjType() ~= TYPE_PC) then
-        target:addTP(10);
+        target:addTP(100);
     end
 
     return dmg;
@@ -698,7 +692,7 @@ function addBonuses(caster, spell, target, dmg)
 	-- Note that MOD_DMGMAGIC is stored in item_mods in amount/256 format
 
     dmg = utils.dmgTaken(target, dmg);
-    dmg = utils.magicTaken(target, dmg);
+    dmg = utils.magicDmgTaken(target, dmg);
 
 	-- print(affinityBonus);
 	-- print(speciesReduction);

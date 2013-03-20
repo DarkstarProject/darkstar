@@ -51,6 +51,7 @@ public:
     bool        hasMissMsg();
     bool        isAoE();
     bool        isConal();
+    bool        isSingle();
 
 	uint16		getID();
 	uint16		getAnimationID();

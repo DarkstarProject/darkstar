@@ -77,10 +77,24 @@ function utils.takeShadows(target, dmg, shadowbehav)
     return dmg;
 end;
 
-function utils.dmgTaken(target, dmg)
-    local resist = 1;
+-- returns true if taken by third eye
+function utils.thirdeye(target)
+    --third eye doesnt care how many shadows, so attempt to anticipate, but reduce
+    --chance of anticipate based on previous successful anticipates.
+    local prevAnt = teye:getPower();
 
-    resist = 1+(math.floor((target:getMod(MOD_DMG)/100)*256)/256);
+    if( prevAnt == 0 or (math.random()*100) < (80-(prevAnt*10)) ) then
+        --anticipated!
+        teye:setPower(prevAnt+1);
+        target:delStatusEffect(EFFECT_THIRD_EYE);
+        return true;
+    end
+    return false;
+end
+
+function utils.dmgTaken(target, dmg)
+
+    local resist = 1 + (target:getMod(MOD_DMG) / 100);
 
     if(resist < 0.5) then
         resist = 0.5;
@@ -89,9 +103,13 @@ function utils.dmgTaken(target, dmg)
     return dmg * resist;
 end;
 
-function utils.breathTaken(target, breathDmg)
+function utils.breathDmgTaken(target, breathDmg)
 
-    local resist = 1+((target:getMod(MOD_DMGBREATH) / 100)*256)/256;
+    local resist = 1 + (target:getMod(MOD_UDMGBREATH) / 100);
+
+    breathDmg = breathDmg * resist;
+
+    resist = 1 + (target:getMod(MOD_DMGBREATH) / 100);
 
     if(resist < 0.5) then
         resist = 0.5;
@@ -100,9 +118,14 @@ function utils.breathTaken(target, breathDmg)
     return breathDmg * resist;
 end;
 
-function utils.magicTaken(target, magicDmg)
+function utils.magicDmgTaken(target, magicDmg)
 
-    local resist = ((256 + target:getMod(MOD_DMGMAGIC))/256);
+    -- MDT is stored in amount/256
+    local resist = ((256 + target:getMod(MOD_UDMGMAGIC))/256);
+
+    magicDmg = magicDmg * resist;
+
+    resist = ((256 + target:getMod(MOD_DMGMAGIC))/256);
 
     if(resist < 0.5) then
         resist = 0.5;
@@ -111,9 +134,13 @@ function utils.magicTaken(target, magicDmg)
     return magicDmg * resist;
 end;
 
-function utils.physicalTaken(target, dmg)
+function utils.physicalDmgTaken(target, dmg)
 
-    local resist = 1+((target:getMod(MOD_DMGPHYS) / 100)*256)/256;
+    resist = 1 + (target:getMod(MOD_UDMGPHYS) / 100);
+
+    dmg = dmg * resist;
+
+    local resist = 1 + (target:getMod(MOD_DMGPHYS) / 100);
 
     if(resist < 0.5) then
         resist = 0.5;
@@ -122,8 +149,13 @@ function utils.physicalTaken(target, dmg)
     return dmg * resist;
 end;
 
-function utils.rangedTaken(target, dmg)
-    local resist = 1+((target:getMod(MOD_DMGRANGE) / 100)*256)/256;
+function utils.rangedDmgTaken(target, dmg)
+
+    local resist = 1 + (target:getMod(MOD_UDMGRANGE) / 100);
+
+    dmg = dmg * resist;
+
+    resist = 1 + (target:getMod(MOD_DMGRANGE) / 100);
 
     if(resist < 0.5) then
         resist = 0.5;

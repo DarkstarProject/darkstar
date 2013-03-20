@@ -198,6 +198,11 @@ enum MODIFIER
 	MOD_DMGMAGIC			= 0xA3,				// Magic Damage Multiplier - 256 base! (value of -24 means -24/256 magic damage taken)
 	MOD_DMGRANGE			= 0xA4,				// Range Damage Multiplier
 
+	MOD_UDMGPHYS				= 0x183,			// Uncapped Damage Multipliers
+	MOD_UDMGBREATH			= 0x184,			// Used in sentinal, invincible, physical shield etc
+	MOD_UDMGMAGIC			= 0x185,
+	MOD_UDMGRANGE			= 0x186,
+
 	MOD_CRITHITRATE			= 0xA5,				// Raises chance to crit
 	MOD_ENEMYCRITRATE		= 0xA6,				// Raises chance enemy will crit
 
@@ -414,12 +419,9 @@ enum MODIFIER
 	MOD_SHIELD_BASH			= 0x181,
 	MOD_KICK_DMG			= 0x182 			// increases kick attack damage
 
-//  Use these for new modifiers.
-
-	//SPARE_MOD				 = 0x183
 };
 
-#define MAX_MODIFIER	       0x183
+#define MAX_MODIFIER	       0x187
 
 
 

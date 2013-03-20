@@ -1011,6 +1011,8 @@ void CAICharNormal::ActionRangedFinish()
 					m_PChar->pushPacket(new CInventoryFinishPacket());
 				}
 
+                damage = battleutils::RangedDmgTaken(m_PBattleSubTarget, damage);
+
 				totalDamage += damage;
 		}
 
@@ -2132,6 +2134,8 @@ void CAICharNormal::ActionJobAbilityFinish()
 
         			damage = (damage + m_PChar->GetRangedWeaponDmg() + battleutils::GetFSTR(m_PChar,m_PBattleSubTarget,SLOT_RANGED)) * pdif * 5;
         			damage = battleutils::CheckForDamageMultiplier(PItem,damage, 0);
+
+                    damage = battleutils::RangedDmgTaken(m_PBattleSubTarget, damage);
                 }
     		}
     		else //miss

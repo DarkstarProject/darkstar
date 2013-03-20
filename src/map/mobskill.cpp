@@ -54,6 +54,11 @@ bool CMobSkill::isConal()
   return m_Aoe == 4;
 }
 
+bool CMobSkill::isSingle()
+{
+  return m_Aoe == 0;
+}
+
 void CMobSkill::setID(uint16 id)
 {
 	m_ID = id;

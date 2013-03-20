@@ -20,6 +20,7 @@ MOBTYPE_EVENT			= 0x20;
 MOBSKILL_PHYSICAL = 0;
 MOBSKILL_MAGICAL = 1;
 MOBSKILL_RANGED = 2;
+MOBSKILL_BREATH = 4;
 MOBSKILL_SPECIAL = 3;
 
 --skillparam (PHYSICAL)
@@ -211,10 +212,6 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 		finaldmg = 1;
 	end
 
-	-- Applies "Damge Taken" and "Physical Damage Taken" mods
-	finaldmg = utils.dmgTaken(target, finaldmg);
-	finaldmg = utils.physicalTaken(target, finaldmg);
-
 	-- all hits missed
 	if(hitslanded == 0 or finaldmg == 0) then
 		finaldmg = 0;
@@ -300,18 +297,10 @@ function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
 
 	finaldmg = finaldmg * resist * defense;
 
-	-- Applies "Damage Taken" and "Magic Damage Taken" gear
-	-- MDT is stored in amount/256
-
-	finaldmg = utils.dmgTaken(target, finaldmg);
-	finaldmg = utils.magicTaken(target, finaldmg);
-
 	-- printf("dmgmod: %f, magicdmgmod: %f, resist: %f, def: %f", dmgMod, magicDmgMod, resist, defense);
-	if(finaldmg < 1) then
-		finaldmg = 1;
-	end
 
 	returninfo.dmg = finaldmg;
+
 	return returninfo;
 
 end
@@ -593,15 +582,6 @@ function MobBreathMove(mob, target, percent, base, element, cap)
 		damage = damage * resist * defense;
 	end
 
-	-- add breath resistence and magic resistence
-	damage = utils.dmgTaken(target, damage);
-	damage = utils.breathTaken(target, damage);
-	damage = utils.magicTaken(target, damage);
-
-	if(damage <= 0) then
-		damage = 1;
-	end
-
 	return damage;
 end;
 
@@ -612,6 +592,12 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 		return 0;
 	end
 
+	--handle pd
+	if(target:hasStatusEffect(EFFECT_PERFECT_DODGE) and skilltype==MOBSKILL_PHYSICAL) then
+		skill:setMsg(MSG_MISS);
+		return 0;
+	end
+
 	-- set message to damage
 	-- this is for AoE because its only set once
 	skill:setMsg(MSG_DAMAGE);
@@ -619,7 +605,7 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 	--Handle shadows depending on shadow behaviour / skilltype
 	if(shadowbehav ~= MOBPARAM_WIPE_SHADOWS and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows.
 
-		if(shadowType == MOD_UTSUSEMI and skill:isAoE()) then
+		if(skill:isAoE() or skill:isConal()) then
 			shadowbehav = MobTakeAoEShadow(mob, target, shadowbehav);
 		end
 
@@ -634,58 +620,43 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 	elseif(shadowbehav == MOBPARAM_WIPE_SHADOWS) then --take em all!
 		target:delStatusEffect(EFFECT_COPY_IMAGE);
 		target:delStatusEffect(EFFECT_BLINK);
+		target:delStatusEffect(EFFECT_THIRD_EYE);
+	end
+
+	if(skilltype == MOBSKILL_PHYSICAL and skill:isSingle() == false) then
+		target:delStatusEffect(EFFECT_THIRD_EYE);
 	end
 
 	--handle Third Eye using shadowbehav as a guide
-	teye = target:getStatusEffect(EFFECT_THIRD_EYE);
-	if(teye ~= nil and skilltype==MOBSKILL_PHYSICAL) then --T.Eye only procs when active with PHYSICAL stuff
-		if(shadowbehav == MOBPARAM_WIPE_SHADOWS) then --e.g. aoe moves
-			target:delStatusEffect(EFFECT_THIRD_EYE);
-		elseif(shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --it can be absorbed by shadows
-			--third eye doesnt care how many shadows, so attempt to anticipate, but reduce
-			--chance of anticipate based on previous successful anticipates.
-			prevAnt = teye:getPower();
-			skill:setMsg(MSG_ANTICIPATE)
-			if(prevAnt == 0) then
-				--100% proc
-				teye:setPower(1);
-				return 0;
-			end
-			if( (math.random()*100) < (80-(prevAnt*10)) ) then
-				--anticipated!
-				teye:setPower(prevAnt+1);
-				return 0;
-			end
-			target:delStatusEffect(EFFECT_THIRD_EYE);
-		end
+	if(skilltype == MOBSKILL_PHYSICAL and utils.thirdeye(target)) then
+	    skill:setMsg(MSG_ANTICIPATE);
+	    return 0;
 	end
 
+	dmg = utils.dmgTaken(target, dmg);
 
-	if(skilltype == MOBSKILL_PHYSICAL and target:hasStatusEffect(EFFECT_PHYSICAL_SHIELD)) then
-		return 0;
-	end
+	if(skilltype == MOBSKILL_PHYSICAL) then
 
-	if(skilltype == MOBSKILL_RANGED and target:hasStatusEffect(EFFECT_ARROW_SHIELD)) then
-		return 0;
-	end
+		dmg = utils.physicalDmgTaken(target, dmg);
 
-	-- handle elemental resistence
-	if(skilltype == MOBSKILL_MAGICAL and target:hasStatusEffect(EFFECT_MAGIC_SHIELD)) then
-		return 0;
+	elseif(skilltype == MOBSKILL_MAGICAL) then
+
+		dmg = utils.magicDmgTaken(target, dmg);
+
+	elseif(skilltype == MOBSKILL_BREATH) then
+
+		dmg = utils.breathDmgTaken(target, dmg);
+
+	elseif(skilltype == MOBSKILL_RANGED) then
+
+		dmg = utils.rangedDmgTaken(target, dmg);
+
 	end
 
 	--handling phalanx
 	dmg = dmg - target:getMod(MOD_PHALANX);
-	if(dmg<0) then
-		return 0;
-	end
 
-	--handle invincible
-	if(target:hasStatusEffect(EFFECT_INVINCIBLE) and skilltype==MOBSKILL_PHYSICAL)then
-		return 0;
-	end
-	--handle pd
-	if(target:hasStatusEffect(EFFECT_PERFECT_DODGE) and skilltype==MOBSKILL_PHYSICAL)then
+	if(dmg < 0) then
 		return 0;
 	end
 
@@ -698,7 +669,7 @@ end;
 -- used to stop tp move status effects
 function MobPhysicalHit(skill, dmg, target, hits)
 	-- if message is not the default. Then there was a miss, shadow taken etc
-	return skill:getMsg() == MSG_DAMAGE or skill:getMsg() == MSG_DRAIN_HP;
+	return skill:hasMissMsg() == false;
 end;
 
 -- function MobHit()

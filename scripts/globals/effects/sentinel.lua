@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-	target:addMod(MOD_DMGPHYS, effect:getPower());
+	target:addMod(MOD_UDMGPHYS, effect:getPower());
 	target:addMod(MOD_ENMITY, 100);
 end;
 
@@ -21,7 +21,7 @@ end;
 
 function onEffectTick(target,effect)
 	effect:setPower(effect:getPower() + 5);
-	target:delMod(MOD_DMGPHYS, -5);
+	target:delMod(MOD_UDMGPHYS, -5);
 end;
 
 -----------------------------------
@@ -29,6 +29,6 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	target:delMod(MOD_DMGPHYS, effect:getPower());
+	target:delMod(MOD_UDMGPHYS, effect:getPower());
 	target:delMod(MOD_ENMITY, 100);
 end;
