@@ -39,6 +39,7 @@ CStatusEffect::CStatusEffect(EFFECT id, uint16 icon, uint16 power, uint32 tick, 
 	m_Flag	   = EFFECTFLAG_NONE;
 	m_TickTime = tick * 1000;
 	m_Duration = duration * 1000;
+    m_POwner = NULL;
 }
 
 CStatusEffect::~CStatusEffect()

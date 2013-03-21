@@ -3447,7 +3447,7 @@ void SmallPacket0x0E2(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x0E7(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	if (PChar->status != STATUS_NORMAL || PChar->StatusEffectContainer->HasPreventActionEffect())
+	if (PChar->status != STATUS_NORMAL)
 		return;
 
 	if (PChar->getZone() == 0 ||

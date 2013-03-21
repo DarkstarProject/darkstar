@@ -316,13 +316,14 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
         // remove clean up other effects
         OverwriteStatusEffect(PStatusEffect);
 
+        PStatusEffect->SetOwner(m_POwner);
+
         SetEffectParams(PStatusEffect);
 
         // remove effects with same type
         DelStatusEffectsByType(PStatusEffect->GetType());
 
 
-        PStatusEffect->SetOwner(m_POwner);
         PStatusEffect->SetStartTime(gettick());
 
         luautils::OnEffectGain(m_POwner, PStatusEffect);
@@ -947,22 +948,18 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
     StatusEffect->SetType(effects::EffectsParams[effect].Type);
 
 	//todo: find a better place to put this?
-    // if this check isn't here sometimes null baseentities will slip in
-    if(m_POwner->objtype == TYPE_PC || m_POwner->objtype == TYPE_MOB || m_POwner->objtype == TYPE_PET || m_POwner->objtype == TYPE_NPC)
+	if(effect == EFFECT_SLEEP || effect == EFFECT_SLEEP_II ||
+		effect == EFFECT_STUN || effect == EFFECT_PETRIFICATION || effect == EFFECT_LULLABY)
     {
-    	if(effect == EFFECT_SLEEP || effect == EFFECT_SLEEP_II ||
-    		effect == EFFECT_STUN || effect == EFFECT_PETRIFICATION || effect == EFFECT_LULLABY)
+
+        // change icon of sleep II and lullaby. Apparently they don't stop player movement.
+        if(effect == EFFECT_SLEEP_II || effect == EFFECT_LULLABY)
         {
+            StatusEffect->SetIcon(EFFECT_SLEEP);
+        }
 
-            // change icon of sleep II and lullaby. Apparently they don't stop player movement.
-            if(effect == EFFECT_SLEEP_II || effect == EFFECT_LULLABY)
-            {
-                StatusEffect->SetIcon(EFFECT_SLEEP);
-            }
-
-    		m_POwner->PBattleAI->SetCurrentAction(ACTION_SLEEP);
-    	}
-    }
+		m_POwner->PBattleAI->SetCurrentAction(ACTION_SLEEP);
+	}
 }
 
 /************************************************************************
