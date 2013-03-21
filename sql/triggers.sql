@@ -46,7 +46,6 @@ BEGIN
 	DELETE FROM `char_skills`    WHERE `charid` = OLD.charid;
 	DELETE FROM `char_stats`     WHERE `charid` = OLD.charid;
 	DELETE FROM `char_storage`   WHERE `charid` = OLD.charid;
-	DELETE FROM `char_titles`    WHERE `charid` = OLD.charid;
 	DELETE FROM `char_vars`      WHERE `charid` = OLD.charid;
 	DELETE FROM `char_weapon_skill_points` WHERE `charid` = OLD.charid;
 	DELETE FROM `auction_house`  WHERE `seller` = OLD.charid;
