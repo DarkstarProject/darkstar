@@ -21,7 +21,7 @@ end;
 
 function onEffectTick(target,effect)
 
-	healtime = effect:getTickCount();
+	local healtime = effect:getTickCount();
 
 	if (healtime > 1) then
 		-- curse II also known as "zombie"
@@ -32,7 +32,10 @@ function onEffectTick(target,effect)
 				target:setTP(target:getTP()-10);
 				target:addHP(10+(healtime-2)+(target:getMod(MOD_HPHEAL)));
 			end
-			target:addMP(12+(healtime-2)+(target:getMod(MOD_MPHEAL))+(target:getMod(MOD_CLEAR_MIND)*(healtime-2)));
+         -- Each rank of Clear Mind provides +3 hMP (via MOD_MPHEAL)
+         -- Each tic of healing should be +1mp more than the last
+         -- Clear Mind III increases this to +2, and Clear Mind V to +3 (via MOD_CLEAR_MIND)
+			target:addMP(12+((healtime-2) * (1+target:getMod(MOD_CLEAR_MIND)))+(target:getMod(MOD_MPHEAL)));
 		end
 	end
 
