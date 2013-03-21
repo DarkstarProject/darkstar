@@ -1,7 +1,7 @@
 -----------------------------------
 --
 -- 	EFFECT_MANAFONT
--- 	
+--
 -----------------------------------
 
 -----------------------------------
@@ -9,6 +9,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
+    target:addMod(MOD_SPELLINTERRUPT, 100);
 end;
 
 -----------------------------------
@@ -23,4 +24,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+    target:delMod(MOD_SPELLINTERRUPT, 100);
 end;

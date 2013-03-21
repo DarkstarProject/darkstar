@@ -52,6 +52,7 @@ public:
     bool        isAoE();
     bool        isConal();
     bool        isSingle();
+    bool        isTwoHour();
 
 	uint16		getID();
 	uint16		getAnimationID();

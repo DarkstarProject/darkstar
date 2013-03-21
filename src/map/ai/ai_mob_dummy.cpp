@@ -199,7 +199,7 @@ void CAIMobDummy::ActionEngage()
 
 	//Start luautils::OnMobEngaged
 	if (m_PBattleTarget != NULL) {
-		luautils::OnMobEngaged(m_PMob,m_PBattleTarget);
+		luautils::OnMobEngaged(m_PMob, m_PBattleTarget);
 	}
 
 	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
@@ -487,26 +487,42 @@ void CAIMobDummy::ActionAbilityStart()
         ActionAttack();
 		return;
     }
-    m_LastActionTime = m_Tick;
-
-	//TODO: Choose TP move sensibly (if no enemies in range, dont choose a damaging move, etc)
-	std::random_shuffle(MobSkills.begin(), MobSkills.end()); //Start the selection process by randomizing the container
 
 	bool valid = false; //Assume no valid moves exist
-	for(int i=0;i<MobSkills.size();i++){
-		m_PMobSkill = MobSkills.at(i);
-		if(luautils::OnMobSkillCheck(m_PBattleTarget, m_PMob,m_PMobSkill) == 0){ //A script says that the move in question is valid
-			if(distance(m_PBattleTarget->loc.p, m_PMob->loc.p) <= m_PMobSkill->getDistance()) {
-				valid = true;
-				break;
+
+	// lets try to use my two hour
+	// two hour is assumed to be at the front
+	if(MobSkills[0]->isTwoHour() && (m_PMob->m_Type & MOBTYPE_NOTORIOUS || m_PMob->isInDynamis()) && m_PMob->m_SkillStatus == 0){
+		// get my job two hour
+		m_PMobSkill = battleutils::GetTwoHourMobSkill(m_PMob->GetMJob());
+
+		valid = (m_PMobSkill != NULL && luautils::OnMobSkillCheck(m_PBattleTarget, m_PMob, m_PMobSkill) == 0);
+	}
+
+	// no 2 hour picked, lets find a normal skill
+	if(valid == false)
+	{
+		//TODO: Choose TP move sensibly (if no enemies in range, dont choose a damaging move, etc)
+		std::random_shuffle(MobSkills.begin(), MobSkills.end()); //Start the selection process by randomizing the container
+
+		for(int i=0;i<MobSkills.size();i++){
+			m_PMobSkill = MobSkills.at(i);
+			if(!m_PMobSkill->isTwoHour() && luautils::OnMobSkillCheck(m_PBattleTarget, m_PMob, m_PMobSkill) == 0){ //A script says that the move in question is valid
+				if(distance(m_PBattleTarget->loc.p, m_PMob->loc.p) <= m_PMobSkill->getDistance()) {
+					valid = true;
+					break;
+				}
 			}
 		}
 	}
 
-	if(!valid) { //No valid moves exist in the container, but they may become valid later, so keep the TP
+
+	if(!valid) {
+		m_PMob->health.tp = 0;
+		m_ActionType = ACTION_ATTACK;
+
 		if(distance(m_PBattleTarget->loc.p, m_PMob->loc.p) <= m_PMob->m_ModelSize) //mob is in melee range, so attack
 		{
-			m_ActionType = ACTION_ATTACK;
 			ActionAttack();
 			return;
 		}
@@ -515,36 +531,6 @@ void CAIMobDummy::ActionAbilityStart()
 		return;
 	}
 
-	if(m_PMob->m_Type & MOBTYPE_NOTORIOUS){
-		for(int i=0;i<MobSkills.size();i++){
-			if(MobSkills[i]->getID() == 0){ //TWO-HOUR
-				if(m_PMob->GetHPP() <= 50 && m_PMob->m_SkillStatus==0){//<50% HP and not used skill
-					m_PMobSkill = MobSkills[i];
-					m_PBattleSubTarget = m_PMob;
-					m_ActionType = ACTION_MOBABILITY_FINISH; //no prep time
-					return;
-				}
-				break;
-			}
-		}
-	}
-		//prevent randomly selecting the 2h as a tp move
-		if(m_PMobSkill->getID()==0 && MobSkills.size()==1){ //only 2h available, dont use a tp move
-			m_PMob->health.tp = 0;
-			m_ActionType = ACTION_ATTACK;
-		    ActionAttack();
-			return;
-		}
-		else if(m_PMobSkill->getID()==0 && MobSkills.size()>1){//>1 tp move available, choose index 0 or 1.
-			if(MobSkills[0]->getID()==0){ m_PMobSkill = MobSkills[1];}
-			else{ m_PMobSkill = MobSkills[0];}
-		}
-
-
-
-    apAction_t Action;
-    m_PMob->m_ActionList.clear();
-
 	if(m_PMobSkill->getValidTargets() == TARGET_ENEMY){ //enemy
 	    m_PBattleSubTarget = m_PBattleTarget;
 		battleutils::MoveIntoRange(m_PMob, m_PBattleSubTarget, 25);
@@ -552,18 +538,44 @@ void CAIMobDummy::ActionAbilityStart()
 	else if(m_PMobSkill->getValidTargets() == TARGET_SELF){ //self
 	    m_PBattleSubTarget = m_PMob;
 	}
-	else{
+	else
+	{
 		m_PMob->health.tp = 0;
 		m_ActionType = ACTION_ATTACK;
 		ActionAttack();
 		return;
 	}
 
+    m_LastActionTime = m_Tick;
+	// store the TP the mob currently has as the mob skill TP modifier
+	m_skillTP = m_PMob->health.tp;
+
+	// remove tp
+	if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
+	{
+		if(m_PMob->health.tp <= 100)
+		{
+			m_PMob->health.tp = 0;
+		} else {
+			m_PMob->health.tp -= 100;
+		}
+	} else {
+		m_PMob->health.tp = 0;
+	}
 
 	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 
-	if( m_PMobSkill->getActivationTime() != 0)
+	if( m_PMobSkill->getActivationTime() == 0)
 	{
+		m_ActionType = ACTION_MOBABILITY_FINISH;
+		ActionAbilityFinish();
+	}
+	else
+	{
+
+	    apAction_t Action;
+	    m_PMob->m_ActionList.clear();
+		// charge up time
 		Action.ActionTarget = m_PBattleSubTarget;
 		Action.reaction   = REACTION_HIT;
 		Action.speceffect = SPECEFFECT_HIT;
@@ -574,15 +586,9 @@ void CAIMobDummy::ActionAbilityStart()
 
 		m_PMob->m_ActionList.push_back(Action);
 		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+		m_ActionType = ACTION_MOBABILITY_USING;
 	}
 
-	// store the TP the mob currently has as the mob skill TP modifier
-	m_skillTP = m_PMob->health.tp;
-
-	// remove tp
-	m_PMob->health.tp = 0;
-
-	m_ActionType = ACTION_MOBABILITY_USING;
 }
 
 /***********************************************************************
@@ -645,19 +651,15 @@ void CAIMobDummy::ActionAbilityFinish()
 		return;
 	}
 
-	if (m_PMobSkill->getID() == 0 && m_PMob->m_SkillStatus == 0) // 2h
+	// I think this should be saved for all skills used by the mob
+	// this is useful for funguar remembering its used moves
+	if (m_PMobSkill->isTwoHour()) // 2h
 	{
-		processTwoHour();
-		return;
+		m_PMob->m_SkillStatus = 1;
 	}
 
 	// store the skill used
 	m_PMob->m_UsedSkillIds[m_PMobSkill->getID()] = m_PMob->GetMLevel();
-
-	//handle aoe stuff (self/mob)
-	//AOE=1 means the circle is around the MONSTER
-	//AOE=2 means the circle is around the BATTLE TARGET
-	//AOE=4 means conal (breath)
 
     m_PTargetFinder->reset();
     m_PMob->m_ActionList.clear();
@@ -781,109 +783,6 @@ void CAIMobDummy::ActionAbilityInterrupt()
 
     m_PMobSkill = NULL;
     m_ActionType = ACTION_ATTACK;
-}
-
-void CAIMobDummy::processTwoHour(){
-	m_PMob->m_SkillStatus = 1;
-	m_LastActionTime = m_Tick;
-	apAction_t Action;
-    m_PMob->m_ActionList.clear();
-	Action.param = 0;
-
-	// animation can be overrided
-	uint16 animationId = 0;
-
-	// TOOD: this all should be moved into mob skill scripts
-	Action.messageID = 101;
-
-	//determine the 2h based on mjob and set the correct target and do the right stuff
-	uint16 id = (uint16)m_PMob->GetMJob()-1; // this is just the main job - 1
-	switch(m_PMob->GetMJob()){
-	case JOB_WAR:
-		m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_MIGHTY_STRIKES,0,1,0,45));
-		break;
-	case JOB_MNK:
-		m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HUNDRED_FISTS,0,1,0,45));
-		break;
-	case JOB_WHM: {
-		Action.messageID=103;
-		// TODO: supposed to be AoE
-		int hp = m_PMob->GetMaxHP() - m_PMob->health.hp;
-		m_PMob->addHP(hp);
-		Action.param = hp;
-		}
-		break;
-	case JOB_BLM:
-		m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_MANAFONT,0,1,0,60));
-		break;
-	case JOB_RDM:
-		m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_CHAINSPELL,0,1,0,60));
-		m_LastMagicTime = 0;
-		break;
-	case JOB_THF:
-		m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_PERFECT_DODGE,0,1,0,30));
-		break;
-	case JOB_PLD:
-		m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_INVINCIBLE,0,1,0,30));
-		break;
-	//case JOB_DRK:
-	//	id=7; Action.ActionTarget = m_PMob; Action.messageID=101; break;
-		// bst
-		// brd
-	//case JOB_RNG:
-	//	id=10; Action.ActionTarget = m_PBattleTarget; Action.messageID=185; break;
-	//case JOB_SAM:
-	//	id=11; Action.ActionTarget = m_PMob; Action.messageID=101; break;
-	//case JOB_NIN:
-	//	id=12; Action.ActionTarget = m_PBattleTarget; Action.messageID=185; break;
-		// drg
-	//case JOB_SMN:
-	//	id=14; Action.ActionTarget = m_PBattleTarget; Action.messageID=185; break;
-	default:
-		m_PMobSkill = NULL;
-		m_PBattleSubTarget = NULL;
-		m_PMob->health.tp = 0;
-		m_ActionType = ACTION_ATTACK;
-		return;
-	}
-
-	Action.ActionTarget = m_PBattleSubTarget;
-
-	// TODO: setup proper animations for dynamis and BCNM
-	// if animation been set
-	if(m_PMobSkill->getAnimationID() > 0){
-		animationId = m_PMobSkill->getAnimationID();
-	}
-
-	m_PMobSkill->setID(1986+id);
-
-	//addstatuseffect
-	//send packet with msgid "xxx uses zzz."
-	Action.reaction   = REACTION_HIT;
-	Action.speceffect = SPECEFFECT_HIT;
-	Action.animation  = m_PMobSkill->getAnimationID();
-	Action.subparam   = m_PMobSkill->getID() + 256;
-	Action.flag		  = 0;
-	m_PMob->m_ActionList.push_back(Action);
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
-
-	//JAs to handle: SELF TARGET
-	//100 fists, might strike, benedict, perf dodge
-	//invincible, blood weapon,
-	//MOB TARGET (PT)
-	//mijin gakure (no death), astral flow (no pet for now)
-
-	m_PMobSkill->setID(0);
-	m_PMob->health.tp = 0;
-	m_PBattleSubTarget = NULL;
-
-	if(m_PMob->isDead()){ //mijin will not kill the mob using the 2h, so no need to check for it, only for pcs killing
-		m_ActionType = ACTION_FALL;
-		ActionFall();
-	}
-	else{
-		m_ActionType = ACTION_ATTACK;
-	}
 }
 
 /************************************************************************

@@ -94,7 +94,6 @@ protected:
 
     void ActionRangedAttack();
 
-	void processTwoHour();
     bool TryCastSpell(); // logic for spell casting, returns true if found one to cast
     void CastSpell(uint16 spellId);
     void Wait(uint32 waitTime);

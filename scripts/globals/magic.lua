@@ -534,7 +534,7 @@ function getSkillLvl(rank,level)
 
     -- Only add TP if the target is a mob
     if (target:getObjType() ~= TYPE_PC) then
-        target:addTP(10);
+        target:addTP(100);
     end
 
     return dmg;

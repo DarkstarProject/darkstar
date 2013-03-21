@@ -220,7 +220,8 @@ void LoadMobSkillsList()
 			PMobSkill->m_SkillCondition = SKILLBEHAVIOUR_NONE;
 			PMobSkill->m_SkillConditionValue = 0;
 			g_PMobSkillList[PMobSkill->getID()] = PMobSkill;
-			g_PMobFamilySkills[PMobSkill->getfamilyID()].push_back(PMobSkill);
+
+            g_PMobFamilySkills[PMobSkill->getfamilyID()].push_back(PMobSkill);
 		}
 	}
 }
@@ -3966,6 +3967,60 @@ int32 RangedDmgTaken(CBattleEntity* PDefender, int32 damage)
     }
 
     return damage * resist;
+}
+
+// this should be moved into mobskill.cpp
+
+CMobSkill* GetTwoHourMobSkill(JOBTYPE job)
+{
+    uint16 id = 0;
+
+    switch(job)
+    {
+        case JOB_WAR:
+        id = 432;
+        break;
+        case JOB_MNK:
+        id = 434;
+        break;
+        case JOB_WHM:
+        id = 433;
+        break;
+        case JOB_BLM:
+        id = 435;
+        break;
+        case JOB_RDM:
+        id = 436;
+        break;
+        case JOB_THF:
+        id = 437;
+        break;
+        case JOB_PLD:
+        id = 438;
+        break;
+        case JOB_DRK:
+        id = 439;
+        break;
+        case JOB_BST:
+        id = 484;
+        break;
+        case JOB_BRD:
+        id = 440;
+        break;
+        case JOB_RNG:
+        id = 479;
+        break;
+        case JOB_SAM:
+        id = 474;
+        break;
+        case JOB_NIN:
+        id = 475;
+        break;
+        default:
+            return NULL;
+    }
+
+    return GetMobSkill(id);
 }
 
 };

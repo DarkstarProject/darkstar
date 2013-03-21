@@ -59,6 +59,12 @@ bool CMobSkill::isSingle()
   return m_Aoe == 0;
 }
 
+bool CMobSkill::isTwoHour()
+{
+  // no easy way to define two hour skill
+  return m_ID == 0 || (m_AnimID >= 709 && m_AnimID <= 724);
+}
+
 void CMobSkill::setID(uint16 id)
 {
 	m_ID = id;

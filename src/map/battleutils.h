@@ -176,6 +176,8 @@ namespace battleutils
     int32                MagicDmgTaken(CBattleEntity* PDefender, int32 damage);
     int32               PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage);
     int32               RangedDmgTaken(CBattleEntity* PDefender, int32 damage);
+
+    CMobSkill*         GetTwoHourMobSkill(JOBTYPE job);
 };
 
 #endif

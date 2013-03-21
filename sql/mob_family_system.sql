@@ -401,6 +401,8 @@ INSERT INTO `mob_family_system` VALUES (333,'PetSuzaku',8,'Bird',3,10,60,130,120
 INSERT INTO `mob_family_system` VALUES (334,'Orc',7,'Beastmen',1,10,40,108,100,1,3,3,6,4,5,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1.25,1,1,1);
 INSERT INTO `mob_family_system` VALUES (335,'Maat',13,'Humanoid',0,10,40,90,110,3,3,2,3,2,2,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
 INSERT INTO `mob_family_system` VALUES (336,'ZM4-Tonberry',7,'Beastmen',1,10,40,91,140,3,1,3,2,1,5,4,3,3,3,2,1,1,1,1,1,1.25,1,1,1,1,0.5,1,7);
+INSERT INTO `mob_family_system` VALUES (337,'Quadav',7,'Beastmen',0,10,40,120,110,2,3,2,5,4,5,3,3,2,3,3,1,1.25,1,1,1.125,1,1,1,1,1,1.125,0.875,6);
+INSERT INTO `mob_family_system` VALUES (338,'Yagudo',7,'Beastmen',0,10,40,85,120,2,2,5,2,4,5,2,3,3,3,3,1,1,1,1,1,1.25,1,1,1,1,1,1,3);
 /*!40000 ALTER TABLE `mob_family_system` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
