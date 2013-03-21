@@ -18,6 +18,8 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_SOUL_VOICE;
-    skill:setMsg(MobBuffMove(mob, typeEffect, 1, 0, 180));
+    MobBuffMove(mob, typeEffect, 1, 0, 180);
+
+    skill:setMsg(MSG_USES);
     return typeEffect;
 end;

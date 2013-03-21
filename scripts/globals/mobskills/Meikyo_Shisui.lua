@@ -18,7 +18,9 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_MEIKYO_SHISUI;
-    skill:setMsg(MobBuffMove(mob, typeEffect, 1, 0, 30));
+    MobBuffMove(mob, typeEffect, 1, 0, 30);
+
+    skill:setMsg(MSG_USES);
     mob:addTP(300);
     return typeEffect;
 end;

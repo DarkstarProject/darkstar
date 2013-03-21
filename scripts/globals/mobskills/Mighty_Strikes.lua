@@ -18,6 +18,9 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_MIGHTY_STRIKES;
-    skill:setMsg(MobBuffMove(mob, typeEffect, 1, 0, 45));
+    MobBuffMove(mob, typeEffect, 1, 0, 45);
+
+    skill:setMsg(MSG_USES);
+
     return typeEffect;
 end;

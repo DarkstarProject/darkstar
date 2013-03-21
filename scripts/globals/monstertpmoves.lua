@@ -61,6 +61,7 @@ TP_DMG_BONUS = 3;
 TP_RANGED = 4;
 
 MSG_NONE = 0; -- display nothing
+MSG_USES = 101; -- simple uses message
 MSG_SELF_HEAL = 238;
 MSG_ENFEEB_IS = 242; --XXX is petrified.
 MSG_ENFEEB = 243; --XXX receives the effect of petrification.

@@ -18,6 +18,8 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_CHAINSPELL;
-    skill:setMsg(MobBuffMove(mob, typeEffect, 1, 0, 60));
+    MobBuffMove(mob, typeEffect, 1, 0, 60);
+
+    skill:setMsg(MSG_USES);
     return typeEffect;
 end;

@@ -17,6 +17,8 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_PERFECT_DODGE;
-    skill:setMsg(MobBuffMove(mob, typeEffect, 1, 0, 30));
+    MobBuffMove(mob, typeEffect, 1, 0, 30);
+
+    skill:setMsg(MSG_USES);
     return typeEffect;
 end;

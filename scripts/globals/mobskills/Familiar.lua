@@ -21,5 +21,7 @@ function OnMobWeaponSkill(target, mob, skill)
     -- local pet = mob:getPet();
 
     -- pet:addHP();
+    skill:setMsg(MSG_USES);
 
+    return 0;
 end;

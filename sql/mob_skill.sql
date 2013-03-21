@@ -53,7 +53,7 @@ INSERT INTO `mob_skill` VALUES (16,0,16,'Ranged_Attack', 0, 25.0, 2000, 0, 4, 0)
 INSERT INTO `mob_skill` VALUES (402,0,402,'Catapult', 0, 25.0, 2000, 0, 4, 0);
 
 -- two hours
-INSERT INTO `mob_skill` VALUES (432,0,709,'Might_Strikes', 0, 7.0, 2000, 0, 1, 0);
+INSERT INTO `mob_skill` VALUES (432,0,709,'Mighty_Strikes', 0, 7.0, 2000, 0, 1, 0);
 INSERT INTO `mob_skill` VALUES (434,0,710,'Hundred_Fists', 0, 7.0, 2000, 0, 1, 0);
 INSERT INTO `mob_skill` VALUES (433,0,711,'Benediction', 1, 20.0, 2000, 0, 1, 0);
 INSERT INTO `mob_skill` VALUES (435,0,712,'Manafont', 0, 7.0, 2000, 0, 1, 0);
