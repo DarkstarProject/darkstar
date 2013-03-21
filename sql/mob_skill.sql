@@ -309,7 +309,7 @@ INSERT INTO `mob_skill` VALUES (112,174,112,'Blockhead', 0, 7.0, 2000, 1000, 4, 
 INSERT INTO `mob_skill` VALUES (113,174,113,'Brain_Crush', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (116,174,116,'Infrasonics', 4, 10.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (117,174,117,'Secretion', 0, 7.0, 2000, 1000, 1, 0);
-INSERT INTO `mob_skill` VALUES (114,174,114,'Baleful_Gaze', 4, 10.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (114,174,114,'Baleful_Gaze', 0, 10.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (365,174,969,'Snowball', 2, 10.0, 2000, 1000, 4, 0); -- only in colder regions
 INSERT INTO `mob_skill` VALUES (115,174,115,'Plague_Breath', 4, 10.0, 2000, 1000, 4, 0);
 
