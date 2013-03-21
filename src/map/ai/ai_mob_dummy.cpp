@@ -987,7 +987,7 @@ void CAIMobDummy::ActionMagicCasting()
 	if ( ((m_Tick - m_LastMagicTime) >= (float)m_PSpell->getCastTime()*((100.0f-(float)dsp_cap(m_PMob->getMod(MOD_FASTCAST),-100,50))/100.0f)) ||
         m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL,0))
 	{
-		if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE) || m_PMob->StatusEffectContainer->HasPreventActionEffect())
+		if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE))
         {
 			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PBattleSubTarget,0,0,MSGBASIC_UNABLE_TO_CAST));
 			m_ActionType = ACTION_MAGIC_INTERRUPT;

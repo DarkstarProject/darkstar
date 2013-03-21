@@ -130,6 +130,12 @@ CCharEntity::~CCharEntity()
 {
 	clearPacketList();
 
+    if(PTreasurePool != NULL)
+    {
+        // remove myself
+        PTreasurePool->DelMember(this);
+    }
+
 	delete Container;
 	delete UContainer;
     delete PMeritPoints;
