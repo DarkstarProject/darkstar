@@ -2858,7 +2858,8 @@ void DelExperiencePoints(CCharEntity* PChar, float retainPercent)
 		return;
 	}
 
-    uint16 exploss = PChar->GetMLevel() <= 67 ? (GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) * 8 ) / 100 : 2400;
+	uint8 mLevel = (PChar->m_LevelRestriction != 0 && PChar->m_LevelRestriction < PChar->GetMLevel()) ? PChar->m_LevelRestriction : PChar->GetMLevel();
+	uint16 exploss = mLevel <= 67 ? (GetExpNEXTLevel(mLevel) * 8 ) / 100 : 2400;
 
 	//apply retention percent
 	exploss = exploss*(1-retainPercent);
