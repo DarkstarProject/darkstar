@@ -3019,15 +3019,19 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
 		PChar->jobs.exp[PChar->GetMJob()] += exp;
 	}
 
-	conquest::GainInfluencePoints(PChar);
-    conquest::AddConquestPoints(PChar, exp);
+	// Raise exp shouldn't count toward these things, so we have to exclude it.
+	if (!expFromRaise) {
+		conquest::GainInfluencePoints(PChar);
+		conquest::AddConquestPoints(PChar, exp);
 
-	//Add IS + ZENI when you kill a monster in TOAU Zone (10%) NEED TO CHANGE THAT
-	if(PChar->getZone() >= 48 && PChar->getZone() <= 79)
-	{
-		PChar->RegionPoints[3] += ((exp/100)*10); // 10%
-	//	PChar->RegionPoints[10] += ((exp/100)*10); // 10%
-		PChar->pushPacket(new CConquestPacket(PChar));
+		//TODO: Only add IS if player has Saction
+		//TODO: Killing mobs != gaining Zeni
+		if(PChar->getZone() >= 48 && PChar->getZone() <= 79)
+		{
+			PChar->RegionPoints[3] += (exp*0.1f); // 10%
+		//	PChar->RegionPoints[10] += (exp*0.1f); // 10%
+			PChar->pushPacket(new CConquestPacket(PChar));
+		}
 	}
 
 
