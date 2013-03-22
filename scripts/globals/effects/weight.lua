@@ -1,8 +1,10 @@
 -----------------------------------
 --
--- 	EFFECT_NONE
+-- 	EFFECT_WEIGHT
 --
 -----------------------------------
+
+require("scripts/globals/status");
 
 -----------------------------------
 -- onEffectGain Action

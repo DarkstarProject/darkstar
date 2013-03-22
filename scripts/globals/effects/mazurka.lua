@@ -5,6 +5,8 @@
 -- DO NOT ALTER ANY OF THE EFFECT VALUES!
 -----------------------------------
 
+require("scripts/globals/status");
+
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------

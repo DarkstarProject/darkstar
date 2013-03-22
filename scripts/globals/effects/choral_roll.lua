@@ -4,12 +4,14 @@
 --
 -----------------------------------
 
+require("scripts/globals/status");
+
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
-	target:addMod(MOD_SPELLINT, effect:getPower());
+	target:addMod(MOD_SPELLINTERRUPT, effect:getPower());
 end;
 
 -----------------------------------
@@ -24,5 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	target:delMod(MOD_SPELLINT, effect:getPower());
+	target:delMod(MOD_SPELLINTERRUPT, effect:getPower());
 end;

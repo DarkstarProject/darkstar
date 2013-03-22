@@ -4,6 +4,8 @@
 --  Absorbs a certain amount of damage from physical and magical attacks.
 -----------------------------------
 
+require("scripts/globals/status");
+
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------

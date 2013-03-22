@@ -4,12 +4,14 @@
 --
 -----------------------------------
 
+require("scripts/globals/status");
+
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
-   target:addMod(MOD_DMGMAGIC,-240);
+   target:addMod(MOD_UDMGMAGIC,-240);
    target:addMod(MOD_MEVA,200);
 end;
 
@@ -25,6 +27,6 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-   target:delMod(MOD_DMGMAGIC,-240);
+   target:delMod(MOD_UDMGMAGIC,-240);
    target:delMod(MOD_MEVA,200);
 end;

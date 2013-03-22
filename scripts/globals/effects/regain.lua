@@ -2,12 +2,14 @@
 --	Regain
 -----------------------------------
 
+require("scripts/globals/status");
+
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
-	target:addMod(368, effect:getPower() * 10);
+	target:addMod(MOD_REGAIN, effect:getPower() * 10);
 end;
 
 -----------------------------------
@@ -23,5 +25,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	target:delMod(368, effect:getPower() * 10);
+	target:delMod(MOD_REGAIN, effect:getPower() * 10);
 end;

@@ -4,6 +4,8 @@
 --
 -----------------------------------
 
+require("scripts/globals/status");
+
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------
@@ -21,7 +23,7 @@ function onEffectGain(target,effect)
 		end
 		target:addMod(effect:getSubType(), -effect:getPower());
 	end
-	print("added "..effect:getPower().." of mod "..effect:getSubType());
+	--print("added "..effect:getPower().." of mod "..effect:getSubType());
 end;
 
 -----------------------------------
@@ -48,5 +50,5 @@ function onEffectLose(target,effect)
 		end
 		target:delMod(effect:getSubType(), -effect:getPower());
 	end
-	print("removed "..effect:getPower().." of mod "..effect:getSubType());
+	--print("removed "..effect:getPower().." of mod "..effect:getSubType());
 end;

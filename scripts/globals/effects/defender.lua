@@ -1,10 +1,10 @@
 -----------------------------------
 --
--- 	EFFECT_NONE
+-- 	EFFECT_DEFENDER
 --
 -----------------------------------
 
-
+require("scripts/globals/status");
 
 -----------------------------------
 -- onEffectGain Action

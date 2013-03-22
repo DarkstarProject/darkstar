@@ -4,6 +4,8 @@
 --    and black magic you cast on yourself last longer.
 -----------------------------------
 
+require("scripts/globals/status");
+
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------
