@@ -3340,10 +3340,12 @@ void CAICharNormal::ActionRaiseMenuSelection()
     charutils::UpdateHealth(m_PChar);
     m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
 
-    uint16 expLost = m_PChar->GetMLevel() <= 67 ? (charutils::GetExpNEXTLevel(m_PChar->jobs.job[m_PChar->GetMJob()]) * 8 ) / 100 : 2400;
+    uint8 mLevel = (m_PChar->m_LevelRestriction != 0 && m_PChar->m_LevelRestriction < m_PChar->GetMLevel()) ? m_PChar->m_LevelRestriction : m_PChar->GetMLevel();
+    uint16 expLost = mLevel <= 67 ? (charutils::GetExpNEXTLevel(mLevel) * 8 ) / 100 : 2400;
     uint16 xpNeededToLevel = charutils::GetExpNEXTLevel(m_PChar->jobs.job[m_PChar->GetMJob()]) - m_PChar->jobs.exp[m_PChar->GetMJob()];
 
-    if(xpNeededToLevel < expLost)
+    // Exp is enough to level you and (you're not under a level restriction, or the level restriction is higher than your current main level).
+    if(xpNeededToLevel < expLost && (m_PChar->m_LevelRestriction == 0 || m_PChar->GetMLevel() < m_PChar->m_LevelRestriction))
     {
         // Player probably leveled down when they died.  Give they xp for the next level.
         expLost = m_PChar->GetMLevel() <= 67 ? (charutils::GetExpNEXTLevel(m_PChar->jobs.job[m_PChar->GetMJob()] + 1) * 8 ) / 100 : 2400;
