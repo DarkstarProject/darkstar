@@ -2875,8 +2875,11 @@ void DelExperiencePoints(CCharEntity* PChar, float retainPercent)
 		PChar->jobs.exp[PChar->GetMJob()] = GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]-1) - diff;
 		PChar->jobs.job[PChar->GetMJob()] -= 1;
 
-		PChar->SetMLevel(PChar->jobs.job[PChar->GetMJob()]);
-        PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
+		if (PChar->m_LevelRestriction == 0 || PChar->jobs.job[PChar->GetMJob()] < PChar->m_LevelRestriction)
+		{
+			PChar->SetMLevel(PChar->jobs.job[PChar->GetMJob()]);
+			PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
+		}
 
         BuildingCharSkillsTable(PChar);
         CalculateStats(PChar);
