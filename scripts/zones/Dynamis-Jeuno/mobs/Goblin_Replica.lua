@@ -35,26 +35,26 @@ function onMobEngaged(mob,target)
 				if((nbi % 2) == 0) then X=X+2; Z=Z+2; else X=X-2; Z=Z-2; end
 				local mobNBR = spawnList[nb + 1][nbi];
 				
-				if(mobNBR <= 20) then -- Spawn normal Mob
+				if(mobNBR <= 20) then
 					if(mobNBR == 0) then mobNBR = math.random(1,15);  end -- Spawn random Vanguard (TEMPORARY)
-					local mobList = getListDynaMob(target,mobNBR);
+					local DynaMob = getDynaMob(target,mobNBR,1);
 					
-					for nbo = 1, table.getn(mobList), 1 do
-						if(GetMobAction(mobList[nbo]) == 0) then
-							-- Spawn Mob
-							SpawnMob(mobList[nbo]):updateEnmity(target);
-							GetMobByID(mobList[nbo]):setPos(X,Y,Z);
-							-- Spawn Pet for BST, DRG, and SMN
-							if(mobNBR == 9 or mobNBR == 14 or mobNBR == 15) then
-								SpawnMob(mobList[nbo] + 1):updateEnmity(target);
-								GetMobByID(mobList[nbo] + 1):setPos(X,Y,Z);
-							end
-							break;
+					--printf("Goblin Replica => mob %u \n",DynaMob);
+					
+					if(DynaMob ~= nil) then
+						-- Spawn Mob
+						SpawnMob(DynaMob):updateEnmity(target);
+						GetMobByID(DynaMob):setPos(X,Y,Z);
+						-- Spawn Pet for BST, DRG, and SMN
+						if(mobNBR == 9 or mobNBR == 14 or mobNBR == 15) then
+							SpawnMob(DynaMob + 1):updateEnmity(target);
+							GetMobByID(DynaMob + 1):setPos(X,Y,Z);
 						end
 					end
-				elseif(mobNBR > 20) then -- Spawn NM
-					SpawnMob(mobNBR);
-					MJob = GetMobByID(mobNBR):getMainJob();
+				elseif(mobNBR > 20) then
+					SpawnMob(mobNBR):updateEnmity(target);
+					
+					local MJob = GetMobByID(mobNBR):getMainJob();
 					if(MJob == 9 or MJob == 14 or MJob == 15) then
 						-- Spawn Pet for BST, DRG, and SMN
 						SpawnMob(mobNBR + 1):updateEnmity(target);

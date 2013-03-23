@@ -79,6 +79,7 @@ int32 init()
 	lua_register(LuaHandle,"print",luautils::print);
 	lua_register(LuaHandle,"GetNPCByID",luautils::GetNPCByID);
 	lua_register(LuaHandle,"GetMobByID",luautils::GetMobByID);
+	lua_register(LuaHandle,"GetMobIDByJob",luautils::GetMobIDByJob);
 	lua_register(LuaHandle,"WeekUpdateConquest", luautils::WeekUpdateConquest);
     lua_register(LuaHandle,"GetRegionOwner", luautils::GetRegionOwner);
 	lua_register(LuaHandle,"setMobPos",luautils::setMobPos);
@@ -226,6 +227,34 @@ int32 GetMobByID(lua_State* L)
 		lua_pushlightuserdata(L,(void*)PMob);
 		lua_pcall(L,2,1,0);
 		return 1;
+	}
+	lua_pushnil(L);
+	return 1;
+}
+
+/************************************************************************
+* GetMobIDByJob															*
+* Get a mobid by his job (used in dynamis)								*
+* GetMobIDByJob(mobid_min,mobid_max,mobjob)								*
+************************************************************************/
+
+int32 GetMobIDByJob(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1) || lua_isnil(L,2) || !lua_isnumber(L,2) || lua_isnil(L,3) || !lua_isnumber(L,3));
+
+	int32 id_min = (int32)lua_tointeger(L,1);
+	int32 id_max = (int32)lua_tointeger(L,2);
+	JOBTYPE mobJob = (JOBTYPE)lua_tointeger(L,3);
+
+	for(int32 mobid = id_min; id_min < id_max; mobid++)
+	{
+		CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
+		
+		if(!(PMob->m_Type & MOBTYPE_NOTORIOUS) && PMob->GetMJob() == mobJob && PMob->isDead())
+		{
+			lua_pushinteger(L,PMob->id);
+			return 1;
+		}
 	}
 	lua_pushnil(L);
 	return 1;

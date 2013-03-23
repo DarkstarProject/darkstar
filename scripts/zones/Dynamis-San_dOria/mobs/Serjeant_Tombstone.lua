@@ -33,31 +33,32 @@ function onMobEngaged(mob,target)
 		if(mobID == spawnList[nb]) then
 			for nbi = 1, table.getn(spawnList[nb + 1]), 1 do
 				if((nbi % 2) == 0) then X=X+2; Z=Z+2; else X=X-2; Z=Z-2; end
+				local mobNBR = spawnList[nb + 1][nbi];
 				
-				if(spawnList[nb + 1][nbi] <= 20) then -- Spawn normal Mob
-					local mobList = getListDynaMob(target,spawnList[nb + 1][nbi]);
-					for nbo = 1, table.getn(mobList), 1 do
-						
-						if(GetMobAction(mobList[nbo]) == 0) then
-							-- Spawn Mob
-							SpawnMob(mobList[nbo]):updateEnmity(target);
-							GetMobByID(mobList[nbo]):setPos(X,Y,Z);
-							-- Spawn Pet for BST, DRG, and SMN
-							if(spawnList[nb + 1][nbi] == 9 or spawnList[nb + 1][nbi] == 14 or spawnList[nb + 1][nbi] == 15) then
-								SpawnMob(mobList[nbo] + 1):updateEnmity(target);
-								GetMobByID(mobList[nbo] + 1):setPos(X,Y,Z);
-							end
-							break;
+				if(mobNBR <= 20) then
+					if(mobNBR == 0) then mobNBR = math.random(1,15);  end -- Spawn random Vanguard (TEMPORARY)
+					local DynaMob = getDynaMob(target,mobNBR,1);
+					
+					--printf("Serjeant Tombstone => mob %u \n",DynaMob);
+					
+					if(DynaMob ~= nil) then
+						-- Spawn Mob
+						SpawnMob(DynaMob):updateEnmity(target);
+						GetMobByID(DynaMob):setPos(X,Y,Z);
+						-- Spawn Pet for BST, DRG, and SMN
+						if(mobNBR == 9 or mobNBR == 14 or mobNBR == 15) then
+							SpawnMob(DynaMob + 1):updateEnmity(target);
+							GetMobByID(DynaMob + 1):setPos(X,Y,Z);
 						end
 					end
-				elseif(spawnList[nb + 1][nbi] > 20) then -- Spawn NM
-					SpawnMob(spawnList[nb + 1][nbi]):updateEnmity(target);
-					GetMobByID(spawnList[nb + 1][nbi]):setPos(X,Y,Z);
-					local MJob = GetMobByID(spawnList[nb + 1][nbi]):getMainJob();
+				elseif(mobNBR > 20) then
+					SpawnMob(mobNBR):updateEnmity(target);
+					
+					local MJob = GetMobByID(mobNBR):getMainJob();
 					if(MJob == 9 or MJob == 14 or MJob == 15) then
 						-- Spawn Pet for BST, DRG, and SMN
-						SpawnMob(spawnList[nb + 1][nbi] + 1):updateEnmity(target);
-						GetMobByID(spawnList[nb + 1][nbi] + 1):setPos(X,Y,Z);
+						SpawnMob(mobNBR + 1):updateEnmity(target);
+						GetMobByID(mobNBR + 1):setPos(X,Y,Z);
 					end
 				end
 			end
