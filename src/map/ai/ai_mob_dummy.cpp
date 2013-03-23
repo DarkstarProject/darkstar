@@ -61,10 +61,11 @@ CAIMobDummy::CAIMobDummy(CMobEntity* PMob)
     m_PTargetFinder = new CTargetFinder(PMob);
 
 	m_firstSpell = true;
-	m_LastRangedTime = 0;
+	m_LastSpecialTime = 0;
 	m_WaitTime = 0;
 	m_LastWaitTime = 0;
 	m_skillTP = 0;
+
 }
 
 /************************************************************************
@@ -203,6 +204,13 @@ void CAIMobDummy::ActionEngage()
 	}
 
 	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
+
+	// drg shouldn't use jump right away
+	if(m_PMob->GetMJob() == JOB_DRG)
+	{
+		m_LastSpecialTime = m_Tick;
+	}
+
 	ActionAttack();
 }
 
@@ -748,7 +756,7 @@ void CAIMobDummy::ActionAbilityFinish()
 	{
 		// increase magic / ranged timer so its not used right after
 		m_LastMagicTime += m_PMobSkill->getAnimationTime();
-		m_LastRangedTime += m_PMobSkill->getAnimationTime();
+		m_LastSpecialTime += m_PMobSkill->getAnimationTime();
 
 		m_ActionType = ACTION_ATTACK;
 	}
@@ -1155,11 +1163,9 @@ void CAIMobDummy::ActionAttack()
 	{
 
 	}
-	else if(CurrentDistance <= MOB_RANGED_MAX_RANGE && m_PMob->HasRanged() && (m_Tick - m_LastRangedTime) > m_PMob->m_RangedCoolDown)
+	else if(m_PMob->m_SpecialSkill && CurrentDistance <= battleutils::GetMobSkill(m_PMob->m_SpecialSkill)->getDistance() && (m_Tick - m_LastSpecialTime) > m_PMob->m_SpecialCoolDown)
 	{
-		m_ActionType = ACTION_MOBABILITY_FINISH;
-		ActionRangedAttack();
-		return;
+		ActionSpecialSkill();
 	}
 	else if (CurrentDistance <= m_PMob->m_ModelSize)
 	{
@@ -1431,8 +1437,8 @@ bool CAIMobDummy::TryCastSpell()
 
 			// this is a hacky fix for ninja mobs
 			// prevent them from using ranged right after magic
-			if(m_PMob->HasRanged()){
-				m_LastRangedTime = m_Tick - rand()%m_PMob->m_RangedCoolDown + 2000;
+			if(m_PMob->m_SpecialSkill){
+				m_LastSpecialTime = m_Tick - rand()%m_PMob->m_SpecialCoolDown + 2000;
 			}
 		} else {
 			chosenSpellId = m_PMob->SpellContainer->GetSpell();
@@ -1450,23 +1456,24 @@ bool CAIMobDummy::TryCastSpell()
 	return false;
 }
 
-void CAIMobDummy::ActionRangedAttack()
+void CAIMobDummy::ActionSpecialSkill()
 {
+	if(!m_PMob->m_SpecialSkill){
+		m_ActionType = ACTION_ATTACK;
+		ActionAttack();
+		return;
+	}
+
+	// this makes sure the proper packet is sent
+	m_ActionType = ACTION_MOBABILITY_FINISH;
+
+	m_PMobSkill = battleutils::GetMobSkill(m_PMob->m_SpecialSkill);
+
     DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
+    DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
 
     m_LastActionTime = m_Tick;
-    m_LastRangedTime = m_Tick;
-
-    // grab ranged attack skill
-    m_PMobSkill = battleutils::GetMobSkill(16);
-
-    // change ranged attack if giga
-    if(m_PMob->m_Family >= 126 && m_PMob->m_Family <= 130)
-    {
-    	m_PMobSkill = battleutils::GetMobSkill(402);
-    }
-
-    DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
+    m_LastSpecialTime = m_Tick;
 
     apAction_t Action;
     m_PMob->m_ActionList.clear();
@@ -1476,7 +1483,7 @@ void CAIMobDummy::ActionRangedAttack()
 	Action.speceffect = SPECEFFECT_HIT;
     Action.ActionTarget = m_PBattleTarget;
 	Action.animation  = m_PMobSkill->getAnimationID();
-	Action.subparam   = m_PMobSkill->getID() + 256;
+	Action.subparam   = m_PMobSkill->getMsgForAction();
 	Action.param	  = luautils::OnMobWeaponSkill(m_PBattleTarget, m_PMob, m_PMobSkill);
 	Action.messageID  = m_PMobSkill->getMsg();
 	Action.flag       = 0;

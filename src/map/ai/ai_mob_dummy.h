@@ -31,6 +31,7 @@
 
 #include "../battleentity.h"
 #include "ai_general.h"
+#include "../mobskill.h"
 
 #define MOB_SPELL_MAX_RANGE 26.8f
 #define MOB_RANGED_MAX_RANGE 25.0f
@@ -63,7 +64,7 @@ protected:
 
 	CMobEntity* m_PMob;
   bool m_firstSpell;
-  uint32 m_LastRangedTime;
+  uint32 m_LastSpecialTime;
   uint32 m_LastWaitTime;
   uint32 m_WaitTime;
   float m_skillTP;
@@ -81,22 +82,24 @@ protected:
 	void ActionAbilityStart();
 	void ActionAbilityUsing();
 	void ActionAbilityFinish();
-    void ActionAbilityInterrupt();
+  void ActionAbilityInterrupt();
 
 	void ActionAttack();
-    void ActionSleep();
-    void ActionWait();
+  void ActionSleep();
+  void ActionWait();
 
 	void ActionMagicStart();
 	void ActionMagicCasting();
 	void ActionMagicInterrupt();
-    void ActionMagicFinish();
+  void ActionMagicFinish();
 
-    void ActionRangedAttack();
+  // use its special skill, ranged attack, catapult, jump etc
+  void ActionSpecialSkill();
 
-    bool TryCastSpell(); // logic for spell casting, returns true if found one to cast
-    void CastSpell(uint16 spellId);
-    void Wait(uint32 waitTime);
+  // helper functions
+  bool TryCastSpell(); // logic for spell casting, returns true if found one to cast
+  void CastSpell(uint16 spellId);
+  void Wait(uint32 waitTime);
 
 private:
 

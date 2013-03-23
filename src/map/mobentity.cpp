@@ -32,6 +32,7 @@ CMobEntity::CMobEntity()
 	objtype = TYPE_MOB;
 
 	m_DropID = 0;
+    m_SpecialSkill = 0;
 
 	m_minLevel = 1;
 	m_maxLevel = 1;
@@ -69,7 +70,7 @@ CMobEntity::CMobEntity()
     evaRank = 3;
     linkRadius = 10;
 
-    m_RangedCoolDown = 0;
+    m_SpecialCoolDown = 0;
 
 	memset(& m_SpawnPoint, 0, sizeof(m_SpawnPoint));
 
@@ -214,9 +215,10 @@ void CMobEntity::ChangeMJob(uint16 job)
     mobutils::CalculateStats(this);
 }
 
-bool CMobEntity::HasRanged()
+bool CMobEntity::CanSummonPet()
 {
-    return GetMJob() == JOB_RNG || GetMJob() == JOB_NIN;
+    // only doing DRG first
+    return GetMJob() == JOB_DRG;
 }
 
 uint8 CMobEntity::TPUseChance()

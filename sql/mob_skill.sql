@@ -51,6 +51,8 @@ CREATE TABLE IF NOT EXISTS `mob_skill` (
 -- ranged attacks
 INSERT INTO `mob_skill` VALUES (16,0,16,'Ranged_Attack', 0, 25.0, 2000, 0, 4, 0);
 INSERT INTO `mob_skill` VALUES (402,0,402,'Catapult', 0, 25.0, 2000, 0, 4, 0);
+INSERT INTO `mob_skill` VALUES (808,0,351,'Jump', 0, 9.5, 2000, 0, 4, 0);
+INSERT INTO `mob_skill` VALUES (514,0,442,'Jumping_Thrust', 0, 9.5, 2000, 0, 4, 0);
 
 -- two hours
 INSERT INTO `mob_skill` VALUES (432,0,709,'Mighty_Strikes', 0, 7.0, 2000, 0, 1, 0);
@@ -610,7 +612,6 @@ INSERT INTO `mob_skill` VALUES (352,189,352,'Arm_Block', 0, 7.0, 2000, 1000, 1, 
 INSERT INTO `mob_skill` VALUES (351,189,351,'Slam_Dunk', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (349,189,349,'Aerial_Wheel', 0, 12.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (350,189,350,'Shoulder_Attack', 0, 7.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (808,189,440,'Jump', 0, 9.5, 2000, 1000, 4, 0);
 
 -- Orcish NM
 INSERT INTO `mob_skill` VALUES (0,334,432,'Two_Hour', 0, 8.0, 2000, 1000, 4, 0);
@@ -619,7 +620,6 @@ INSERT INTO `mob_skill` VALUES (352,334,352,'Arm_Block', 0, 7.0, 2000, 1000, 1, 
 INSERT INTO `mob_skill` VALUES (351,334,351,'Slam_Dunk', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (349,334,349,'Aerial_Wheel', 0, 12.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (350,334,350,'Shoulder_Attack', 0, 7.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (808,334,440,'Jump', 0, 9.5, 2000, 1000, 4, 0);
 
 -- Quadav
 INSERT INTO `mob_skill` VALUES (355,200,355,'Ore_Toss', 0, 10.0, 2000, 1000, 4, 0);
@@ -760,7 +760,6 @@ INSERT INTO `mob_skill` VALUES (74,61,74,'Shuffle', 4, 7.0, 2000, 1000, 4, 0);
 -- now they dont start matching up....
 
 -- Sahagin (-72 for anim id)
-INSERT INTO `mob_skill` VALUES (514,213,442,'Jumping_Thrust', 0, 9.5, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (515,213,443,'Hydro_Ball', 4, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (521,213,449,'Hydro_Shot', 0, 10.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (524,213,452,'Spinning_Fin', 1, 10.0, 2000, 1000, 4, 0);

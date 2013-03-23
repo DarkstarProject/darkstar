@@ -24,8 +24,10 @@
 #ifndef _TARGETFINDER_H
 #define _TARGETFINDER_H
 
+#include <vector>
 #include "../common/cbasetypes.h"
 #include "../common/mmo.h"
+#include "battleentity.h"
 
 class CBattleEntity;
 

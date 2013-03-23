@@ -266,14 +266,52 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->stats.CHR *= 1.5;
 	}
 
-	// setup ranged attacks
+	PMob->m_SpecialSkill = 0;
+
+	// setup special ability
 	if(PMob->GetMJob() == JOB_RNG)
 	{
-		PMob->m_RangedCoolDown = 15000;
+
+		// giga
+		if(PMob->m_Family == 126 && PMob->m_Family <= 130)
+		{
+			PMob->m_SpecialCoolDown = 25000;
+			// catapult
+			PMob->m_SpecialSkill = 402;
+		}
+		else
+		{
+			// all other rangers
+			PMob->m_SpecialCoolDown = 15000;
+			PMob->m_SpecialSkill = 16;
+		}
+
 	}
-	else if(PMob->HasRanged()) //ninja
+	else if(PMob->GetMJob() == JOB_NIN)
 	{
-		PMob->m_RangedCoolDown = 30000;
+		PMob->m_SpecialCoolDown = 30000;
+		PMob->m_SpecialSkill = 16;
+	}
+	else if(PMob->GetMJob() == JOB_DRG)
+	{
+		PMob->m_SpecialCoolDown = 60000;
+
+		// sahigans
+		if(PMob->m_Family == 213)
+		{
+			PMob->m_SpecialSkill = 514;
+		}
+		else
+		{
+			// all other dragoons
+			PMob->m_SpecialSkill = 808;
+		}
+	}
+
+	// maat shouldn't have a special skill
+	if(PMob->m_Family == 335)
+	{
+		PMob->m_SpecialSkill = 0;
 	}
 
 	// clear current traits first

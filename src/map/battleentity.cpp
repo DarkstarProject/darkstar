@@ -24,9 +24,6 @@
 #include "../common/showmsg.h"
 #include "../common/utils.h"
 
-#include <math.h>
-#include <string.h>
-
 #include "battleentity.h"
 #include "battleutils.h"
 

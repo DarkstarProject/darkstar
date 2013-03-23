@@ -21,17 +21,15 @@
 ===========================================================================
 */
 
-#include "battleentity.h"
+#include "targetfinder.h"
+
 #include "charentity.h"
 #include "packets/action.h"
 #include "alliance.h"
 #include <math.h>
-#include <vector>
 #include "../common/mmo.h"
 
 #include "packets/action.h"
-
-#include "targetfinder.h"
 
 CTargetFinder::CTargetFinder(CBattleEntity* PBattleEntity)
 {

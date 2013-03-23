@@ -86,7 +86,8 @@ public:
 	uint32		m_RespawnTime;						// отрезок времени, через который монстр возрождается после смерти
     uint32      m_DropItemTime;						// время анимации смерти монстра
     uint32      m_MagicRecastTime;                  // Amount of time between casts.
-	uint32		m_RangedCoolDown;					// Amount of time between ranged attacks.
+	uint32		m_SpecialCoolDown;					// Amount of time between ranged attacks.
+  uint16        m_SpecialSkill;
 
 	uint32		m_DropID;							// номер группы оставляемых монстром предметов после смерти
 
@@ -146,8 +147,10 @@ public:
 	uint32		GetSkinID();						// Get the last skinid (0 for base skin)
 
     uint8       TPUseChance(); // return % chance to use TP move
-    bool        HasRanged(); // check if mob has ranged weapon
+    bool        CanSummonPet();
+
     void        ChangeMJob(uint16 job); // this will change jobs and update traits, stats, spells
+
     bool        CanDeaggro();
     uint32      GetDespawnTimer();
     void        SetDespawnTimer(uint32 duration);
