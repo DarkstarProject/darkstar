@@ -1931,10 +1931,14 @@ void CAICharNormal::ActionJobAbilityFinish()
     		m_PChar->PRecastContainer->Add(RECAST_ABILITY, 194, 8000); //double up
     	}
 
-    	else if (m_PJobAbility->getID() == ABILITY_DOUBLE_UP )
-    	{
+    	else if (m_PJobAbility->getID() == ABILITY_DOUBLE_UP)
+            {
+            if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DOUBLE_UP_CHANCE))
+        	{
+            //TODO: some reason cosair double up chance is sometimes null
     		uint8 roll = (rand() % 6) + 1;
     		CStatusEffect* doubleUpEffect = m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_DOUBLE_UP_CHANCE);
+
     		uint8 total = doubleUpEffect->GetPower() + roll;
     		if (total > 12)
     		{
@@ -2023,6 +2027,7 @@ void CAICharNormal::ActionJobAbilityFinish()
     				m_PChar->m_ActionList.push_back(Action);
     			}
     		}
+            }
     	}
 
         // TODO: бардак. тоже выкинуть отсюда
