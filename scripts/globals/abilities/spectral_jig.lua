@@ -10,26 +10,31 @@ require("scripts/globals/status");
 -----------------------------------
 
 function OnAbilityCheck(player,target,ability)
-	return 0,0;
+   return 0,0;
 end;
 
 function OnUseAbility(player, target, ability)
-	
-	local maxDuration = 90;
-	local bonusItem = target:getEquipID(SLOT_FEET);
-	
-	if(bonusItem == 15746 or bonusItem == 15747 or bonusItem == 11393 or bonusItem == 11394) then -- Dancer's Shoes / Dancer's Shoes +1
-		maxDuration = maxDuration * 2;
-	end
-	
-	local randTime = math.random(30,maxDuration);
-	
-	if(player:hasStatusEffect(EFFECT_SNEAK) == false and player:hasStatusEffect(EFFECT_INVISIBLE) == false) then
-		player:addStatusEffect(EFFECT_SNEAK,0,10,randTime);
-		player:addStatusEffect(EFFECT_INVISIBLE,0,10,randTime);
-	else
-		ability:setMsg(75); -- no effect.
-	end
-	
-	return 1;
+
+   local baseDuration = math.random(30,60);
+   local finalDuration = baseDuration;
+   local legs = target:getEquipID(SLOT_LEGS);
+   local feet = target:getEquipID(SLOT_FEET);
+
+   -- Reports have been changed from +30 sec to "extends duration by 100%"
+   if(legs == 16360 or legs == 16361 or legs == 10728) then
+      finalDuration = finalDuration + baseDuration;
+   end
+   if(feet == 15746 or feet == 15747 or feet == 11393 or feet == 11394) then
+      finalDuration = finalDuration + baseDuration;
+   end
+
+   if(player:hasStatusEffect(EFFECT_SNEAK) == false) then
+      player:addStatusEffect(EFFECT_SNEAK,0,10,finalDuration);
+      player:addStatusEffect(EFFECT_INVISIBLE,0,10,finalDuration);
+      ability:setMsg(532); -- Gains the effect of sneak and invisible
+   else
+      ability:setMsg(283); -- no effect on player.
+   end
+
+   return 1;
 end;
