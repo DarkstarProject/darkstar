@@ -20,9 +20,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc) 
-    if((player:getCurrentMission(COP) == THE_ENDURING_TUMULT_OF_WAR and player:getVar("PromathiaStatus")==4))then
+    if(player:getCurrentMission(COP) == THE_ENDURING_TUMULT_OF_WAR and player:getVar("PromathiaStatus")==4) then
 	player:startEvent(0x0002);
-	elseif(player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==3)then
+    elseif(player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==3)then
 	player:startEvent(0x006A); --start floor 1 or 3
 	elseif(player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==5)then
 	player:startEvent(0x006D); --start floor 1 or 3 or 4

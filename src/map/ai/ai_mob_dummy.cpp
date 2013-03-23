@@ -201,7 +201,10 @@ void CAIMobDummy::ActionEngage()
 	//Start luautils::OnMobEngaged
 	if (m_PBattleTarget != NULL) {
 		luautils::OnMobEngaged(m_PMob, m_PBattleTarget);
+		battleutils::MoveIntoRange(m_PMob, m_PBattleTarget, 0);
 	}
+
+
 
 	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 

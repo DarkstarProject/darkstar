@@ -21,7 +21,7 @@ end;
 
 function onTrigger(player,npc) 
   local posZ=player:getZPos();
-    if (player:getCurrentMission(COP) == THE_ENDURING_TUMULT_OF_WAR and player:getVar("PromathiaStatus")==2)then
+    if (player:getCurrentMission(COP) == THE_ENDURING_TUMULT_OF_WAR and player:getVar("PromathiaStatus")==3)then
 	  SpawnMob(16814361,240):updateEnmity(player);
 	  elseif((player:getCurrentMission(COP) == THE_ENDURING_TUMULT_OF_WAR and player:getVar("PromathiaStatus")==4)or player:hasCompletedMission(COP,THE_ENDURING_TUMULT_OF_WAR))then
 	      if(posZ < 318)then

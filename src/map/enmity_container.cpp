@@ -29,7 +29,7 @@
 #include "battleutils.h" 
 #include "charentity.h"
 #include "alliance.h"
-
+#include "packets/entity_update.h"
 
 /************************************************************************
 *                                                                       *
@@ -99,6 +99,9 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE)
 {
     EnmityList_t::iterator PEnmity = m_EnmityList.lower_bound(PEntity->id);
 
+	// current highest enmity before this update
+	CBattleEntity* OldEntity = GetHighestEnmity();
+
     if( PEnmity != m_EnmityList.end() && 
        !m_EnmityList.key_comp()(PEntity->id, PEnmity->first))
 	{
@@ -144,8 +147,18 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE)
 		if(PEntity->objtype == TYPE_MOB && PEntity->PMaster!=NULL && PEntity->PMaster->objtype == TYPE_PC){ 
 			UpdateEnmity(PEntity->PMaster,0,0);
 		}
-
     }
+
+	// highest enmity holder after this update
+	CBattleEntity* NewEntity = GetHighestEnmity();
+
+	// PEntity is now the target, face the target
+	if (OldEntity != NewEntity && !m_EnmityHolder->isAsleep())
+	{
+		uint8 angle = getangle(m_EnmityHolder->loc.p, PEntity->loc.p);
+		m_EnmityHolder->loc.p.rotation = angle;
+		m_EnmityHolder->loc.zone->PushPacket(m_EnmityHolder,CHAR_INRANGE, new CEntityUpdatePacket(m_EnmityHolder, ENTITY_UPDATE));
+	}
 }
 
 /************************************************************************
@@ -237,6 +250,9 @@ void CEnmityContainer::LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percen
 
 	EnmityList_t::iterator PEnmity = m_EnmityList.lower_bound(PEntity->id);
 
+	// current highest enmity before this update
+	CBattleEntity* OldEntity = GetHighestEnmity();
+
     if( PEnmity != m_EnmityList.end() && 
        !m_EnmityList.key_comp()(PEntity->id, PEnmity->first))
 	{
@@ -257,8 +273,18 @@ void CEnmityContainer::LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percen
 			PEnmityReceiver->second->CE += CEValue;
 			PEnmityReceiver->second->VE += VEValue;
 		}
-
     }
+
+	// highest enmity holder after this update
+	CBattleEntity* NewEntity = GetHighestEnmity();
+
+	// PEntity is now the target, face the target
+	if (OldEntity != NewEntity && !m_EnmityHolder->isAsleep())
+	{
+		uint8 angle = getangle(m_EnmityHolder->loc.p, NewEntity->loc.p);
+		m_EnmityHolder->loc.p.rotation = angle;
+		m_EnmityHolder->loc.zone->PushPacket(m_EnmityHolder,CHAR_INRANGE, new CEntityUpdatePacket(m_EnmityHolder, ENTITY_UPDATE));
+	}
 }
 
 /************************************************************************

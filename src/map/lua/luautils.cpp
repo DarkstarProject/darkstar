@@ -250,7 +250,7 @@ int32 GetMobIDByJob(lua_State *L)
 	{
 		CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
 		
-		if(!(PMob->m_Type & MOBTYPE_NOTORIOUS) && PMob->GetMJob() == mobJob && PMob->isDead())
+		if(PMob != NULL && !(PMob->m_Type & MOBTYPE_NOTORIOUS) && PMob->GetMJob() == mobJob && PMob->isDead())
 		{
 			lua_pushinteger(L,PMob->id);
 			return 1;
