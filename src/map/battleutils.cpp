@@ -3939,18 +3939,16 @@ int32 MagicDmgTaken(CBattleEntity* PDefender, int32 damage)
 
 int32 PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage)
 {
-    float resist = 1.0f + (PDefender->getMod(MOD_DMGPHYS) / 100.0f);
+    float resist = 1.0f + (PDefender->getMod(MOD_UDMGPHYS) / 100.0f);
+
+    damage *= resist;
+
+    resist = 1.0f + (PDefender->getMod(MOD_DMGPHYS) / 100.0f);
 
     if(resist < 0.5f)
     {
         resist = 0.5f;
     }
-
-    damage *= resist;
-
-    // Rearranged for Sentinel.  Please make sure Sentinel uses an uncapped percentage reduction
-    // after PDT is calculated if changing this order.
-    resist = 1.0f + (PDefender->getMod(MOD_UDMGPHYS) / 100.0f);
 
     return damage * resist;
 }

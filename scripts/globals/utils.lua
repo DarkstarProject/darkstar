@@ -142,18 +142,15 @@ end;
 
 function utils.physicalDmgTaken(target, dmg)
 
-    local resist = 1 + (target:getMod(MOD_DMGPHYS) / 100);
+    local resist = 1 + (target:getMod(MOD_UDMGPHYS) / 100);
+
+    dmg = dmg * resist;
+
+    resist = 1 + (target:getMod(MOD_DMGPHYS) / 100);
 
     if(resist < 0.5) then
         resist = 0.5;
     end
-
-    dmg = dmg * resist;
-
-    -- Sentinel is applied after regular PDT, and as a percentage.
-    -- If you change this, change Sentinel please :)
-    -- http://wiki.bluegartr.com/bg/Sentinel
-    resist = 1 + (target:getMod(MOD_UDMGPHYS) / 100);
 
     return dmg * resist;
 end;
