@@ -250,12 +250,6 @@ void CParty::RemovePartyLeader(CBattleEntity* PEntity)
 	DSP_DEBUG_BREAK_IF(m_PLeader != PEntity);
     DSP_DEBUG_BREAK_IF(PEntity->objtype != TYPE_PC);
 
-	// Alliance leader, dissolve alliance.
-	if (PEntity->PParty->m_PAlliance != NULL && PEntity->PParty->m_PAlliance->m_AllianceID == PEntity->id)
-	{
-		PEntity->PParty->m_PAlliance->dissolveAlliance();
-	}
-
 	if (members.size() == 1)
 	{
 		DisbandParty();
