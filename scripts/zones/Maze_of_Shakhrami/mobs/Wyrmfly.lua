@@ -4,7 +4,7 @@
 --  Involved in Eco Warrior (Windurst)
 -----------------------------------
 
-require("scripts/globals/titles");
+require("scripts/globals/quests");
 
 -----------------------------------
 -- onMobSpawn Action

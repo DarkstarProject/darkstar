@@ -3,15 +3,13 @@
 --   NPC: Ahko Mhalijikhari
 --  Type: Quest NPC
 -- @zone: 198
--- @pos: -344.617 -12.226 -166.233
+--  @pos: -344.617 -12.226 -166.233
 -- 0x003d  0x003e  0x003f  0x0040  0x0041
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
+require("scripts/globals/keyitems");
 
 -----------------------------------
 -- onTrade Action
