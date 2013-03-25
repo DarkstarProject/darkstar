@@ -98,6 +98,7 @@ int32 init()
 	lua_register(LuaHandle,"VanadielMoonPhase",luautils::VanadielMoonPhase);
 	lua_register(LuaHandle,"VanadielMoonDirection", luautils::VanadielMoonDirection);
     lua_register(LuaHandle,"SetVanadielTimeOffset",luautils::SetVanadielTimeOffset);
+	lua_register(LuaHandle,"IsMoonFull",luautils::IsMoonFull);
 	lua_register(LuaHandle,"RunElevator",luautils::StartElevator);
 	lua_register(LuaHandle,"GetServerVariable",luautils::GetServerVariable);
 	lua_register(LuaHandle,"SetServerVariable",luautils::SetServerVariable);
@@ -460,7 +461,7 @@ int32 SetVanadielTimeOffset(lua_State* L)
 
 /************************************************************************
 *																		*
-*	Return Moon Phasing Direction													*
+*	Return Moon Phasing Direction										*
 *																		*
 ************************************************************************/
 
@@ -469,6 +470,44 @@ int32 VanadielMoonDirection(lua_State* L)
 	lua_pushinteger(L, CVanaTime::getInstance()->getMoonDirection());
 	return 1;
 }
+
+
+/************************************************************************
+*																		*
+*	is full moon?														*
+*																		*
+************************************************************************/
+
+int32 IsMoonFull(lua_State* L)
+{
+	// Full moon occurs when:
+	// Waxing (increasing) from 90% to 100%, 
+	// Waning (decending) from 100% to 95%. 
+	
+	uint8 phase = CVanaTime::getInstance()->getMoonPhase();
+
+	switch (CVanaTime::getInstance()->getMoonDirection())
+	{
+		case 0: // None
+			lua_pushboolean(L, false);
+			return 0;
+
+		case 1: // Waning (decending)
+			if (phase >= 95 && phase <= 100) {
+				lua_pushboolean(L, true);
+				return 1;
+			}
+
+		case 2: // Waxing (increasing)
+			if (phase >= 90 && phase <= 100) {
+				lua_pushboolean(L, true);
+				return 1;
+			}
+	}
+	lua_pushboolean(L, false);
+	return 0;
+}
+
 
 /************************************************************************
 *                                                                       *

@@ -176,7 +176,7 @@ uint32 CVanaTime::getMoonPhase()
 	}else{
 		phase = (int32)(100*daysmod/42 + 0.5);
 	}
-
+	
 	return phase;
 }
 
