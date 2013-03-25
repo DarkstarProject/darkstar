@@ -3414,10 +3414,12 @@ void SmallPacket0x0E2(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 {
                     string_t Message = data+12;
                     uint32   MessageTime = time(NULL);
+                    int8 sqlMessage[256];
+                    Sql_EscapeString(SqlHandle,sqlMessage,Message.c_str());
 
                     const int8* Query = "UPDATE linkshells SET poster = '%s', message = '%s', messagetime = %u WHERE linkshellid = %u LIMIT 1";
 
-                    if (Sql_Query(SqlHandle, Query, PChar->GetName(), Message.c_str(), MessageTime, PChar->PLinkshell->getID()) != SQL_ERROR &&
+                    if (Sql_Query(SqlHandle, Query, PChar->GetName(), sqlMessage, MessageTime, PChar->PLinkshell->getID()) != SQL_ERROR &&
                         Sql_AffectedRows(SqlHandle) != 0)
                     {
                         PChar->PLinkshell->setPoster((int8*)PChar->GetName());
