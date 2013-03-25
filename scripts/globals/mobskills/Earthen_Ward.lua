@@ -15,6 +15,9 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 
+   local typeEffect = EFFECT_STONESKIN;
+   local base = mob:getMainLvl()*2 + 50;
+
     skill:setMsg(MobBuffMove(mob, typeEffect, base, 0, 180));
 
 	return EFFECT_STONESKIN;
