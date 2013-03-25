@@ -419,6 +419,13 @@ enum MODIFIER
 	MOD_SHIELD_BASH			= 0x181,
 	MOD_KICK_DMG			= 0x182 			// increases kick attack damage
 
+
+	// To save time finding the next mod to use..
+
+	//MOD_SPARE				= 0x187;
+	//MOD_SPARE				= 0x188;
+	//MOD_SPARE				= 0x189;
+	//MOD_SPARE				= 0x18A;
 };
 
 #define MAX_MODIFIER	       0x187
