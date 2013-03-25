@@ -2215,7 +2215,7 @@ int32 OnAbilityCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CAbility* PAbilit
 	}
 
     lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnAbilityCheck");
-	if( lua_isnil(LuaHandle,-1) || lua_isnil(LuaHandle,-2))
+	if( lua_isnil(LuaHandle,-1))
 	{
 		ShowError("luautils::OnAbilityCheck (%s): undefined procedure OnAbilityCheck\n", PAbility->getName());
 		return 87;
