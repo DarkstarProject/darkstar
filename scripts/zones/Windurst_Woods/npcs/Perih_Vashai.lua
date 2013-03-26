@@ -27,8 +27,13 @@ end;
 
 function onTrigger(player,npc)
 
-	TheFangedOne = player:getQuestStatus(WINDURST,THE_FANGED_ONE);
-
+	local TheFangedOne = player:getQuestStatus(WINDURST,THE_FANGED_ONE); -- RNG flag quest
+	local SinHunting = player:getQuestStatus(WINDURST,SIN_HUNTING);	-- RNG AF1
+	local SinHuntingCS = player:getVar("sinHunting");
+	
+	local LvL = player:getMainLvl();
+	local Job = player:getMainJob();
+	
 	if(TheFangedOne ~= QUEST_COMPLETED) then
 		if(TheFangedOne == QUEST_AVAILABLE and player:getMainLvl() >= ADVANCED_JOB_LEVEL) then
 			player:startEvent(0x015f);
@@ -39,6 +44,12 @@ function onTrigger(player,npc)
 		elseif(player:getVar("TheFangedOne_Event") == 1) then
 			player:startEvent(0x0166);
 		end
+	elseif(SinHunting == QUEST_AVAILABLE and Job == 11 and LvL >= 40 and SinHuntingCS == 0) then
+		player:startEvent(0x020b);	-- start RNG AF1
+	elseif(SinHuntingCS > 0 and SinHuntingCS < 5) then
+		player:startEvent(0x020c);	-- during quest RNG AF1		
+	elseif(SinHuntingCS == 5) then
+		player:startEvent(0x020f);	-- complete quest RNG AF1		
 	else
 		player:startEvent(0x0152);
 	end
@@ -79,6 +90,22 @@ function onEventFinish(player,csid,option)
 		else
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13117);
 			player:setVar("TheFangedOne_Event",1);
+		end
+	elseif(csid == 0x020b) then	-- start quest RNG AF1
+		player:addQuest(WINDURST,SIN_HUNTING);
+		player:addKeyItem(CHIEFTAINNESS_TWINSTONE_EARRING);
+		player:messageSpecial(KEYITEM_OBTAINED,CHIEFTAINNESS_TWINSTONE_EARRING);	
+		player:setVar("sinHunting",1);
+	elseif(csid == 0x020f) then -- complete quest RNG AF1
+		if (player:getFreeSlotsCount() == 0) then 
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17188);
+		else 
+			player:addItem(17188);
+			player:messageSpecial(ITEM_OBTAINED,17188);
+			player:completeQuest(WINDURST,SIN_HUNTING);
+			player:delKeyItem(CHIEFTAINNESS_TWINSTONE_EARRING);		
+			player:delKeyItem(PERCHONDS_ENVELOPE);				
+			player:setVar("sinHunting",0);	
 		end
 	end
 

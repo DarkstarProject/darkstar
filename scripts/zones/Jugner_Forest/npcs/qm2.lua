@@ -1,14 +1,12 @@
 -----------------------------------
 --  Area: Jugner Forest
---  NPC: Alexius
---  Involved in Quest: A purchase of Arms & Sin Hunting
+--  NPC: ???
+--  Involved in Quest: Sin Hunting - RNG AF1
 --  @zone 104
---  @pos  105 1 382
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/titles");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/zones/Jugner_Forest/TextIDs");
@@ -28,10 +26,8 @@ function onTrigger(player,npc)
    
   	local SinHunting = player:getVar("sinHunting");	-- RNG AF1 
    
-	if (player:hasKeyItem(WEAPONS_ORDER) == true) then
-		player:startEvent(0x0005);
-	elseif(SinHunting == 3) then
-		player:startEvent(0x000a);		
+	if(SinHunting == 4 and IsMoonFull() == true) then
+		player:startEvent(0x000d, 0, 1107);		
 	end
 end;
 
@@ -51,11 +47,8 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-    if(csid == 0x0005) then
-        player:delKeyItem(WEAPONS_ORDER);
-        player:addKeyItem(WEAPONS_RECEIPT);
-        player:messageSpecial(KEYITEM_OBTAINED,WEAPONS_RECEIPT);
-	elseif(csid == 0x000a) then
-		player:setVar("sinHunting",4);
+
+	if(csid == 0x000d) then
+		player:setVar("sinHunting",5);
     end
 end;
