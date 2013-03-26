@@ -37,7 +37,7 @@ function onTrigger(player,npc)
 	-- Class Reunion
 	if(ClassReunion == 1 and ClassReunionProgress == 4) then
 		player:startEvent(0x02c9,0,1171,0,0,0,0,0,0); -- he gives you an ice pendulum and wants you to go to Cloister of Frost
-	elseif(ClassReunion == 1 and ClassReunionProgress == 5 and player:hasItem() == false) then
+	elseif(ClassReunion == 1 and ClassReunionProgress == 5 and player:hasItem(1171) == false) then
 		player:startEvent(0x02c8,0,1171,0,0,0,0,0,0); -- lost the ice pendulum need another one
 	------------------------------------------------------------
 	elseif((TrialByIce == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 6) or (TrialByIce == QUEST_COMPLETED and realday ~= player:getVar("TrialByIce_date"))) then 
