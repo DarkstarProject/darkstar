@@ -24,3 +24,17 @@ function onMobDeath(mob,killer)
   SpawnMob(PH, '', GetMobRespawnTime(PH));
   
 end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function OnMobDespawn(mob)
+    SetServerVariable("[POP]Valkurm_Emperor", os.time(t) + 3600); -- 1 hour
+
+	-- Set PH back to normal, then set to respawn spawn
+	PH = GetServerVariable("[PH]Valkurm_Emperor");
+	SetServerVariable("[PH]Valkurm_Emperor", 0);
+	DeterMob(PH, false);
+	SpawnMob(PH, '', GetMobRespawnTime(PH));
+end;
