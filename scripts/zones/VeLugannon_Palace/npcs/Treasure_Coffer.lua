@@ -32,18 +32,9 @@ function onTrade(player,npc,trade)
 	-- Player traded a key.
 	if((trade:hasItemQty(1060,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
 		
-		-- IMPORTANT ITEM: AF Keyitems, AF Items, & Map -----------
-		local mJob = player:getMainJob();
-		local zone = player:getZone();
-		local listAF = getAFbyZone(zone);
+		-- IMPORTANT ITEM: Map -----------
 		if(player:hasKeyItem(MAP_OF_THE_VELUGANNON_PALACE) == false) then
 			questItemNeeded = 3;
-		end
-		for nb = 1,table.getn(listAF),3 do
-			if(player:getQuestStatus(JEUNO,listAF[nb + 1]) ~= QUEST_AVAILABLE and mJob == listAF[nb] and player:hasItem(listAF[nb + 2]) == false) then
-				questItemNeeded = 2;
-				break
-			end
 		end
 		--------------------------------------
 		

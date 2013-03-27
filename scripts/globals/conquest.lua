@@ -131,7 +131,7 @@ WindInv = {0x80A1,0x000A,0x1055,0x8044,0x3E80,0x31BE,0x8025,0x0FA0,0x32B6,
 DonateCrys = {4096,4097,4098,4099,4100,4101,4102,4103,4238,4239,4240,4241,4242,4243,4244,4245};
 XpRing = {350,700,600}; RingCharg = {7,7,3};
 supplyReward = {10,30,40,10,40,10,40,40,70,50,60,40,70,70,70,70,70,70};
-tpFees = { 0,0,0,0,100, 100, 150, 100, 150, 100, 100, 150, 350, 400, 150, 250, 300, 500, 250, 350, 500, 0, 300 }
+tpFees = { 100, 100, 150, 100, 150, 100, 100, 150, 350, 400, 150, 250, 300, 500, 250, 350, 500, 0, 300 }
 
 ----------------------------------------------------------------
 -- function tradeConquestGuard()
@@ -419,6 +419,7 @@ function hasOutpost(player, region)
 		else
 			bit[i]=0;
 		end;
+		--printf("bit %u: %u \n",i,bit[i]);
 	end;
 	
 	return bit[region];
@@ -430,12 +431,16 @@ end;
 -----------------------------------------------------------------
 
 function OP_TeleFee(player,region)
-	
-		if(GetRegionOwner(region - 5) == player:getNation()) then
-			return tpFees[region];
+		
+	if(hasOutpost(player, region+5) == 1) then
+		if(GetRegionOwner(region) == player:getNation()) then
+			return tpFees[region + 1];
 		else
-			return tpFees[region] * 3;
+			return tpFees[region + 1] * 3;
 		end
+	else
+		return 0;
+	end
 	
 end;
 

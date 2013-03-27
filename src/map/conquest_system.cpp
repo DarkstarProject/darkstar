@@ -102,20 +102,59 @@ namespace conquest
 
 	/************************************************************************
     *    LoseInfluencePoints                                                *
-    *    -10 point for nation							                    *
-    *    +20 point for beastmen                                              *
+    *    -x point for nation							                    *
+    *    +x point for beastmen                                              *
     ************************************************************************/
 
 	void LoseInfluencePoints(CCharEntity* PChar)
 	{
 		REGIONTYPE region = PChar->loc.zone->GetRegionID();
-
-		if(g_Conquest[region][PChar->profile.nation + 2] > 10)
+		int8 point = 0;
+		
+		switch (region)
 		{
-			g_Conquest[region][PChar->profile.nation + 2] -= 10;
+			case REGION_RONFAURE:
+			case REGION_GUSTABERG: 
+			case REGION_SARUTABARUTA: 
+			{
+				point = 1;
+			}
+			case REGION_ZULKHEIM: 
+			case REGION_KOLSHUSHU: 
+			case REGION_NORVALLEN: 
+			case REGION_DERFLAND: 
+			case REGION_ARAGONEU: 
+			{
+				point = 3;
+			}
+			case REGION_QUFIMISLAND: 
+			case REGION_LITELOR: 
+			case REGION_KUZOTZ: 
+			case REGION_ELSHIMOLOWLANDS: 
+			{
+				point = 6;
+			}
+			case REGION_VOLLBOW: 
+			case REGION_VALDEAUNIA: 
+			case REGION_FAUREGANDI: 
+			case REGION_ELSHIMOUPLANDS: 
+			{
+				point = 9;
+			}
+			case REGION_TULIA: 
+			case REGION_MOVALPOLOS: 
+			case REGION_TAVNAZIA: 
+			{
+				point = 12;
+			}
+		} 
+		
+		if(g_Conquest[region][PChar->profile.nation + 2] >= point)
+		{
+			g_Conquest[region][PChar->profile.nation + 2] -= point;
 		}
 		
-		g_Conquest[region][5] += 20;
+		g_Conquest[region][5] += point;
 	}
 
 	/************************************************************************
@@ -224,7 +263,7 @@ namespace conquest
 	void UpdateWeekConquest()
 	{
 		//TODO: 
-		//launch conquest message in all zone (sunday server midnight)
+		//launch conquest message in all zone (monday server midnight)
 
 		//change region control with the best influence
 		for (uint8 i=0; i <= 18; i++)
@@ -246,9 +285,6 @@ namespace conquest
 			g_Conquest[i][4] = 0;
 			g_Conquest[i][5] = 0;
 			g_Conquest[i][6] = 0;
-
-			//change last conquest tally
-			g_Conquest[i][7] = CVanaTime::getInstance()->getSysYearDay();
 		}
 		
 		luautils::SetRegionalConquestOverseers();
@@ -257,17 +293,49 @@ namespace conquest
 		//Update packet ?
 
 		UpdateConquestSystem();
+		ShowDebug(CL_CYAN"Conquest Weekly Update is finished\n" CL_RESET);
 	}
 	
 	/************************************************************************
     *                                                                       *
-    *	Баланс сил на текущий conquest                                      *
-    *                                                                       *
+    *	GetBalance					                                        *
+    *   Classment for the 3 nations                                         *
     ************************************************************************/
 
     uint8 GetBalance()
     {
-	    return 0x1E;
+	    int8 sandy = 0;
+		int8 basty = 0;
+		int8 windy = 0;
+
+		for (uint8 i=0; i <= 18; i++)
+		{
+			if(g_Conquest[i][1] == 0) sandy++;
+			else if(g_Conquest[i][1] == 1) basty++;
+			else if(g_Conquest[i][1] == 2) windy++;
+		}
+
+		if(sandy > basty && sandy > windy)
+		{
+			if(windy > basty) return 45;
+			else return 57;
+		}
+		else if(basty > sandy && basty > windy)
+		{
+			if(sandy > windy) return 54;
+			else return 39;
+		}
+		else if(windy > sandy && windy > basty)
+		{
+			if(sandy > basty) return 30;
+			else return 27;
+		}
+		//TODO: add alliance
+		else 
+		{
+			printf("error with conquest::getBalance()");
+			return 0;
+		}
     }
 
     /************************************************************************
