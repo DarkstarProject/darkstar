@@ -19,6 +19,14 @@ require("scripts/zones/Windurst_Woods/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+
+	if(trade:hasItemQty(1113,1) and trade:getItemCount() == 1) then -- Trade old earring (Rng AF2 quest)	
+		local FireAndBrimstoneCS = player:getVar("fireAndBrimstone");
+		if (FireAndBrimstoneCS == 5) then
+			player:startEvent(0x0219, 0, 13360);
+		end
+	end	
+
 end;
 
 -----------------------------------
@@ -29,11 +37,14 @@ function onTrigger(player,npc)
 
 	local TheFangedOne = player:getQuestStatus(WINDURST,THE_FANGED_ONE); -- RNG flag quest
 	local SinHunting = player:getQuestStatus(WINDURST,SIN_HUNTING);	-- RNG AF1
+	local FireAndBrimstone = player:getQuestStatus(WINDURST,FIRE_AND_BRIMSTONE);	-- RNG AF2
 	local SinHuntingCS = player:getVar("sinHunting");
+	local FireAndBrimstoneCS = player:getVar("fireAndBrimstone");	
 	
 	local LvL = player:getMainLvl();
 	local Job = player:getMainJob();
 	
+	-- the fanged one
 	if(TheFangedOne ~= QUEST_COMPLETED) then
 		if(TheFangedOne == QUEST_AVAILABLE and player:getMainLvl() >= ADVANCED_JOB_LEVEL) then
 			player:startEvent(0x015f);
@@ -44,12 +55,26 @@ function onTrigger(player,npc)
 		elseif(player:getVar("TheFangedOne_Event") == 1) then
 			player:startEvent(0x0166);
 		end
+	
+	-- sin hunting
 	elseif(SinHunting == QUEST_AVAILABLE and Job == 11 and LvL >= 40 and SinHuntingCS == 0) then
 		player:startEvent(0x020b);	-- start RNG AF1
 	elseif(SinHuntingCS > 0 and SinHuntingCS < 5) then
 		player:startEvent(0x020c);	-- during quest RNG AF1		
 	elseif(SinHuntingCS == 5) then
-		player:startEvent(0x020f);	-- complete quest RNG AF1		
+		player:startEvent(0x020f);	-- complete quest RNG AF1
+		
+	-- fire and brimstone	
+	elseif(SinHunting == QUEST_COMPLETED and Job == 11 and FireAndBrimstone == QUEST_AVAILABLE and FireAndBrimstoneCS == 0) then
+		player:startEvent(0x0213);	-- start RNG AF2
+	elseif(FireAndBrimstoneCS > 0 and FireAndBrimstoneCS < 4) then
+		player:startEvent(0x0214);	-- during RNG AF2		
+	elseif(FireAndBrimstoneCS == 4) then
+		player:startEvent(0x0217,0,13360,1113);	-- second part RNG AF2			
+	elseif(FireAndBrimstoneCS == 5) then
+		player:startEvent(0x0218);	-- during second part RNG AF2
+		
+	-- standard dialog
 	else
 		player:startEvent(0x0152);
 	end
@@ -106,6 +131,21 @@ function onEventFinish(player,csid,option)
 			player:delKeyItem(CHIEFTAINNESS_TWINSTONE_EARRING);		
 			player:delKeyItem(PERCHONDS_ENVELOPE);				
 			player:setVar("sinHunting",0);	
+		end
+	elseif(csid == 0x0213) then -- start RNG AF2
+		player:addQuest(WINDURST,FIRE_AND_BRIMSTONE);
+		player:setVar("fireAndBrimstone",1);
+	elseif(csid == 0x0217) then -- start second part RNG AF2
+		player:setVar("fireAndBrimstone",5);			
+	elseif(csid == 0x0219) then -- complete quest RNG AF2
+		if (player:getFreeSlotsCount() == 0) then 
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12518);
+		else 	
+			player:tradeComplete();
+			player:addItem(12518);
+			player:messageSpecial(ITEM_OBTAINED,12518);
+			player:completeQuest(WINDURST,FIRE_AND_BRIMSTONE);		
+			player:setVar("fireAndBrimstone",0);	
 		end
 	end
 
