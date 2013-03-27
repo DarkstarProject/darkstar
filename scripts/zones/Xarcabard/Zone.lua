@@ -24,6 +24,9 @@ end;
 function onZoneIn( player, prevZone)		
 	
 	local cs = -1;
+
+	local UnbridledPassionCS = player:getVar("unbridledPassion");	
+
 	
 	if( player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
 		player:setPos( -136.287, -23.268, 137.302, 91);
@@ -34,6 +37,8 @@ function onZoneIn( player, prevZone)
 		cs = 0x000D; 
 	elseif( triggerLightCutscene( player)) then -- Quest: I Can Hear A Rainbow
 		cs = 0x0009;
+	elseif(UnbridledPassionCS == 3) then	
+		cs = 0x0004;
 	end
 	
 	return cs;	
@@ -71,6 +76,8 @@ function onEventFinish( player, csid, option)
 	
 	if( csid == 0x0009) then	
 		lightCutsceneFinish( player);  -- Quest: I Can Hear A Rainbow
+	elseif(csid == 0x0004) then
+		player:setVar("unbridledPassion",4);
 	end
 	
 end;		

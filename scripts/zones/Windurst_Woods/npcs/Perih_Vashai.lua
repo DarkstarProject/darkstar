@@ -20,7 +20,7 @@ require("scripts/zones/Windurst_Woods/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	if(trade:hasItemQty(1113,1) and trade:getItemCount() == 1) then -- Trade old earring (Rng AF2 quest)	
+	if(trade:hasItemQty(1113,1) and trade:getItemCount() == 1) then -- Trade old earring (complete Rng AF2 quest)	
 		local FireAndBrimstoneCS = player:getVar("fireAndBrimstone");
 		if (FireAndBrimstoneCS == 5) then
 			player:startEvent(0x0219, 0, 13360);
@@ -36,10 +36,15 @@ end;
 function onTrigger(player,npc)
 
 	local TheFangedOne = player:getQuestStatus(WINDURST,THE_FANGED_ONE); -- RNG flag quest
+	
 	local SinHunting = player:getQuestStatus(WINDURST,SIN_HUNTING);	-- RNG AF1
-	local FireAndBrimstone = player:getQuestStatus(WINDURST,FIRE_AND_BRIMSTONE);	-- RNG AF2
 	local SinHuntingCS = player:getVar("sinHunting");
+	
+	local FireAndBrimstone = player:getQuestStatus(WINDURST,FIRE_AND_BRIMSTONE);	-- RNG AF2	
 	local FireAndBrimstoneCS = player:getVar("fireAndBrimstone");	
+	
+	local UnbridledPassion = player:getQuestStatus(WINDURST,UNBRIDLED_PASSION);	-- RNG AF3	
+	local UnbridledPassionCS = player:getVar("unbridledPassion");		
 	
 	local LvL = player:getMainLvl();
 	local Job = player:getMainJob();
@@ -73,6 +78,16 @@ function onTrigger(player,npc)
 		player:startEvent(0x0217,0,13360,1113);	-- second part RNG AF2			
 	elseif(FireAndBrimstoneCS == 5) then
 		player:startEvent(0x0218);	-- during second part RNG AF2
+		
+	-- Unbridled Passion
+	elseif(FireAndBrimstone == QUEST_COMPLETED and Job == 11 and UnbridledPassion == QUEST_AVAILABLE and UnbridledPassion == 0) then
+		player:startEvent(0x021d, 0, 13360);	-- start RNG AF3
+	elseif(UnbridledPassionCS > 0 and UnbridledPassionCS < 3) then
+		player:startEvent(0x021e);	-- during RNG AF3	
+	elseif(UnbridledPassionCS >= 3 and UnbridledPassionCS < 7) then
+		player:startEvent(0x021e);	-- during RNG AF3			
+	elseif(UnbridledPassionCS == 7) then
+		player:startEvent(0x0222, 0, 14099); -- complete RNG AF3		
 		
 	-- standard dialog
 	else
@@ -147,6 +162,19 @@ function onEventFinish(player,csid,option)
 			player:completeQuest(WINDURST,FIRE_AND_BRIMSTONE);		
 			player:setVar("fireAndBrimstone",0);	
 		end
+	elseif(csid == 0x021d) then -- start RNG AF3
+		player:addQuest(WINDURST,UNBRIDLED_PASSION);
+		player:setVar("unbridledPassion",1);
+	elseif(csid == 0x0222) then -- complete quest RNG AF3
+		if (player:getFreeSlotsCount() == 0) then 
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14099);
+		else 	
+			player:addItem(14099);
+			player:messageSpecial(ITEM_OBTAINED,14099);
+			player:completeQuest(WINDURST,UNBRIDLED_PASSION);	
+			player:delKeyItem(KOHS_LETTER);				
+			player:setVar("unbridledPassion",0);	
+		end		
 	end
 
 end;
