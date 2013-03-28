@@ -65,7 +65,7 @@ CAIMobDummy::CAIMobDummy(CMobEntity* PMob)
 	m_WaitTime = 0;
 	m_LastWaitTime = 0;
 	m_skillTP = 0;
-
+	m_LastPetTime = 0;
 }
 
 /************************************************************************
@@ -115,6 +115,8 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
 void CAIMobDummy::ActionRoaming()
 {
 
+	position_t ReturnPoint;
+
 	// If there's someone on our enmity list, go from roaming -> engaging
 	if (m_PMob->PEnmityContainer->GetHighestEnmity() != NULL)
 	{
@@ -133,7 +135,6 @@ void CAIMobDummy::ActionRoaming()
 	}
 	else if ((m_PMob->m_Type & MOBTYPE_NOTORIOUS) && distance(m_PMob->loc.p,m_PMob->m_SpawnPoint) > 2)
 	{
-		position_t ReturnPoint;
 
 		ReturnPoint.x = m_PMob->m_SpawnPoint.x;
 		ReturnPoint.y = m_PMob->m_SpawnPoint.y;
@@ -152,7 +153,13 @@ void CAIMobDummy::ActionRoaming()
 		// recover health
 		m_PMob->Rest(0.2f);
 
-		if(!(m_PMob->m_Type & MOBTYPE_EVENT) && rand()%10 < 7){
+		if(TrySpawnPet())
+		{
+			// I spawned a pet
+		}
+		else if(!(m_PMob->m_Type & MOBTYPE_EVENT) && m_PMob->PMaster == NULL && rand()%10 < 7)
+		{
+
 			// roam
 			position_t RoamingPoint;
 
@@ -165,7 +172,24 @@ void CAIMobDummy::ActionRoaming()
 			battleutils::MoveTo(m_PMob, RoamingPoint, 1);
 
 			m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
-		} else if(m_PMob->SpellContainer->HasBuffSpells())
+
+			// pet should follow me
+			if(m_PMob->PPet != NULL && m_PMob->PPet->PBattleAI->GetCurrentAction() == ACTION_ROAMING)
+			{
+				CBattleEntity* PPet = m_PMob->PPet;
+
+				ReturnPoint = nearPosition(m_PMob->loc.p, 1.5f, M_PI);
+
+				PPet->loc.p.rotation = getangle(PPet->loc.p, ReturnPoint);
+
+				battleutils::MoveTo(PPet, ReturnPoint, 1);
+
+				PPet->loc.zone->PushPacket(PPet,CHAR_INRANGE, new CEntityUpdatePacket(PPet,ENTITY_UPDATE));
+
+			}
+
+		}
+		else if(m_PMob->SpellContainer->HasBuffSpells())
 		{
 			// cast buff
 			CastSpell(m_PMob->SpellContainer->GetBuffSpell());
@@ -199,12 +223,18 @@ void CAIMobDummy::ActionEngage()
 	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
 
 	//Start luautils::OnMobEngaged
-	if (m_PBattleTarget != NULL) {
+	if (m_PBattleTarget != NULL)
+	{
 		luautils::OnMobEngaged(m_PMob, m_PBattleTarget);
-		battleutils::MoveIntoRange(m_PMob, m_PBattleTarget, 0);
+
+		if(CanCastSpells() && m_firstSpell){
+			// look at target instead
+		    m_PMob->loc.p.rotation = getangle(m_PMob->loc.p, m_PBattleTarget->loc.p);;
+		} else {
+			// run at target
+			battleutils::MoveIntoRange(m_PMob, m_PBattleTarget, 0);
+		}
 	}
-
-
 
 	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 
@@ -213,6 +243,7 @@ void CAIMobDummy::ActionEngage()
 	{
 		m_LastSpecialTime = m_Tick;
 	}
+
 
 	ActionAttack();
 }
@@ -233,7 +264,15 @@ void CAIMobDummy::ActionDisengage()
 	}
 	else
 	{
-		m_ActionType = (distance(m_PMob->loc.p,m_PMob->m_SpawnPoint) > 20 ? ACTION_DEATH : ACTION_ROAMING);
+		position_t* SpawnPoint = &m_PMob->m_SpawnPoint;
+
+		if(m_PMob->PMaster != NULL)
+		{
+			// use my masters spawn point
+			SpawnPoint = &((CMobEntity*)m_PMob->PMaster)->m_SpawnPoint;
+		}
+
+		m_ActionType = (distance(m_PMob->loc.p,*SpawnPoint) > 20 ? ACTION_DEATH : ACTION_ROAMING);
 	}
 
 	luautils::OnMobDisengage(m_PMob);
@@ -424,6 +463,13 @@ void CAIMobDummy::ActionFadeOut()
 {
 	if ((m_Tick - m_LastActionTime) > 15000 )
 	{
+		// reset pet cast time to now
+		if(m_PMob->PMaster != NULL && m_PMob->PMaster->objtype == TYPE_MOB)
+		{
+			CAIMobDummy* PBattleAI = (CAIMobDummy*)m_PMob->PMaster->PBattleAI;
+			PBattleAI->m_LastPetTime = m_Tick - rand()%10000;
+		}
+
 		m_PMob->status = STATUS_DISAPPEAR;
         m_PMob->PEnmityContainer->Clear();
 
@@ -446,6 +492,8 @@ void CAIMobDummy::ActionSpawn()
 		m_firstSpell = true;
 		m_ActionType = ACTION_ROAMING;
 		m_PBattleTarget = NULL;
+		m_PBattleSubTarget = NULL;
+		m_PMobSkill = NULL;
 		m_PMob->m_SkillStatus = 0;
         m_PMob->m_OwnerID.clean();
 		m_PMob->m_CallForHelp = 0;
@@ -472,7 +520,14 @@ void CAIMobDummy::ActionSpawn()
 		mobutils::CalculateStats(m_PMob);
 		mobutils::GetAvailableSpells(m_PMob);
 
-		m_PMob->loc.p = m_PMob->m_SpawnPoint;
+		if(m_PMob->PMaster != NULL){
+			// TODO: spawn NEAR mob
+			// elementals have a bit more health
+			m_PMob->loc.p = nearPosition(m_PMob->PMaster->loc.p, 1.5f, M_PI);
+		} else {
+			m_PMob->loc.p = m_PMob->m_SpawnPoint;
+		}
+
 		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_SPAWN));
 	}
 }
@@ -789,8 +844,6 @@ void CAIMobDummy::ActionAbilityInterrupt()
 
 	m_PMob->m_ActionList.push_back(Action);
 	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
-
-	m_PMob->health.tp = 0;
 
     m_PMobSkill = NULL;
     m_ActionType = ACTION_ATTACK;
@@ -1143,26 +1196,37 @@ void CAIMobDummy::ActionAttack()
         {
             CMobEntity* PPartyMember = (CMobEntity*)m_PMob->PParty->members[i];
 
-            if (PPartyMember->PBattleAI->GetCurrentAction() == ACTION_ROAMING){
-
-            	// link only if I see him
-            	if((PPartyMember->m_Behaviour & BEHAVIOUR_AGGRO_SIGHT) || (PPartyMember->m_Behaviour & BEHAVIOUR_AGGRO_TRUESIGHT)){
-
-            	   if(!isFaceing(PPartyMember->loc.p, m_PMob->loc.p, 40)) continue;
-            	}
-
-            	if(distance(m_PMob->loc.p, PPartyMember->loc.p) < m_PMob->linkRadius){
-
-	                PPartyMember->PEnmityContainer->AddBaseEnmity(m_PBattleTarget);
-		        }
+            if(CanLink(PPartyMember)){
+		        PPartyMember->PEnmityContainer->AddBaseEnmity(m_PBattleTarget);
             }
         }
     }
 
+    // ask my master for help
+    if(m_PMob->PMaster != NULL && m_PMob->PMaster->PBattleAI->GetCurrentAction() == ACTION_ROAMING)
+    {
+    	CMobEntity* PMaster = (CMobEntity*)m_PMob->PMaster;
+
+        if(CanLink(PMaster)){
+	        PMaster->PEnmityContainer->AddBaseEnmity(m_PBattleTarget);
+        }
+    }
+
+    // my pet should help as well
+	if(m_PMob->PPet != NULL && m_PMob->PPet->PBattleAI->GetCurrentAction() == ACTION_ROAMING)
+	{
+		// my pet should engage as well
+		((CMobEntity*)m_PMob->PPet)->PEnmityContainer->AddBaseEnmity(m_PBattleTarget);
+	}
+
     float CurrentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
 
 	// Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
-	if (CurrentDistance <= MOB_SPELL_MAX_RANGE && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && TryCastSpell())
+	if(TrySpawnPet())
+	{
+
+	}
+	else if (CurrentDistance <= MOB_SPELL_MAX_RANGE && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && TryCastSpell())
 	{
 
 	}
@@ -1413,12 +1477,23 @@ void CAIMobDummy::ActionAttack()
 	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 }
 
-bool CAIMobDummy::TryCastSpell()
+bool CAIMobDummy::CanCastSpells()
 {
+
 	if ( !m_MagicCastingEnabled || !m_PMob->SpellContainer->HasSpells()) return false;
 
 	// check for spell blockers e.g. silence
 	if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE)) {
+		return false;
+	}
+
+	return true;
+}
+
+bool CAIMobDummy::TryCastSpell()
+{
+	if(!CanCastSpells())
+	{
 		return false;
 	}
 
@@ -1462,8 +1537,7 @@ bool CAIMobDummy::TryCastSpell()
 void CAIMobDummy::ActionSpecialSkill()
 {
 	if(!m_PMob->m_SpecialSkill){
-		m_ActionType = ACTION_ATTACK;
-		ActionAttack();
+		m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 		return;
 	}
 
@@ -1509,6 +1583,50 @@ void CAIMobDummy::ActionSpecialSkill()
 	m_PMobSkill = NULL;
 }
 
+void CAIMobDummy::ActionSpawnPet()
+{
+	if(m_PMob->PPet == NULL)
+	{
+		m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+		return;
+	}
+
+	// this makes sure the proper packet is sent
+	m_ActionType = ACTION_MOBABILITY_FINISH;
+
+	// hardcoded to skill 476
+	m_PMobSkill = battleutils::GetMobSkill(476);
+
+    apAction_t Action;
+
+    m_PMob->m_ActionList.clear();
+
+    m_PMobSkill->resetMsg();
+
+	CMobEntity* PPet = (CMobEntity*)m_PMob->PPet;
+
+	Action.speceffect = SPECEFFECT_HIT;
+    Action.ActionTarget = PPet;
+	Action.animation  = m_PMobSkill->getAnimationID();
+	Action.subparam   = 0;
+	Action.param	  = 0;
+	Action.messageID  = 0;
+	Action.flag       = 0;
+
+	// setup AI
+	PPet->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+	PPet->PBattleAI->CheckCurrentAction(m_Tick);
+
+	m_PMob->m_ActionList.push_back(Action);
+
+	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+
+	// this stops the mob from chasing
+	Wait(m_PMobSkill->getAnimationTime());
+
+	m_PMobSkill = NULL;
+}
+
 void CAIMobDummy::CastSpell(uint16 spellId)
 {
 	m_PSpell = spell::GetSpell(spellId);
@@ -1526,4 +1644,34 @@ void CAIMobDummy::Wait(uint32 waitTime)
     m_LastWaitTime = m_Tick;
 	m_WaitTime = waitTime;
 	m_ActionType = ACTION_WAIT;
+}
+
+bool CAIMobDummy::TrySpawnPet()
+{
+	if(m_PMob->PPet != NULL && m_PMob->PMaster == NULL && m_PMob->m_PetRecastTime != 0 && m_PMob->PPet->status == STATUS_DISAPPEAR && (m_Tick - m_LastPetTime) > m_PMob->m_PetRecastTime)
+	{
+		ActionSpawnPet();
+
+		return true;
+	}
+
+	return false;
+}
+
+bool CAIMobDummy::CanLink(CMobEntity* PTarget)
+{
+	if (PTarget->PBattleAI->GetCurrentAction() == ACTION_ROAMING){
+
+		// link only if I see him
+		if((PTarget->m_Behaviour & BEHAVIOUR_AGGRO_SIGHT) || (PTarget->m_Behaviour & BEHAVIOUR_AGGRO_TRUESIGHT)){
+
+		   if(!isFaceing(PTarget->loc.p, m_PMob->loc.p, 40)) return false;
+		}
+
+		if(distance(m_PMob->loc.p, PTarget->loc.p) < m_PMob->linkRadius)
+		{
+	        return true;
+	    }
+	}
+	return false;
 }

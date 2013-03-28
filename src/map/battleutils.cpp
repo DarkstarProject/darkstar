@@ -3648,7 +3648,7 @@ void tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
 			PVictim->m_EcoSystem == SYSTEM_AVATAR || PVictim->m_EcoSystem == SYSTEM_DEMON ||
 			PVictim->m_EcoSystem == SYSTEM_ELEMENTAL || PVictim->m_EcoSystem == SYSTEM_EMPTY ||
 			PVictim->m_EcoSystem == SYSTEM_LUMORIAN || PVictim->m_EcoSystem == SYSTEM_LUMINION ||
-			PVictim->m_EcoSystem == SYSTEM_UNDEAD){
+			PVictim->m_EcoSystem == SYSTEM_UNDEAD || PVictim->PMaster != NULL){
 			((CMobEntity*)PVictim)->PEnmityContainer->UpdateEnmity(PCharmer, 0, 0);
 			PVictim->StatusEffectContainer->AddStatusEffect(
 					new CStatusEffect(EFFECT_BIND,EFFECT_BIND,1,0,5));
@@ -3739,7 +3739,7 @@ void tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
 		((CMobEntity*)PVictim)->PEnmityContainer->Clear();
 
 		//cancel the mobs mobBattle ai
-		PCharmer->PPet->PBattleAI = NULL;
+        delete PCharmer->PPet->PBattleAI;
 
 		//set the mobs ai to petAi
 		PCharmer->PPet->PBattleAI = new CAIPetDummy((CPetEntity*)PVictim);

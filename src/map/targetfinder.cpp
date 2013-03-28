@@ -92,7 +92,8 @@ void CTargetFinder::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType,
     if(m_PMasterTarget->objtype == TYPE_MOB)
     {
       // special case to add all mobs in range
-      addAllInMobList(m_PMasterTarget, withPet);
+      // never look for pets because they are added anyways
+      addAllInMobList(m_PMasterTarget, false);
 
     } else {
 
@@ -233,11 +234,8 @@ void CTargetFinder::addEntity(CBattleEntity* PTarget, bool withPet)
 
 CBattleEntity* CTargetFinder::findMaster(CBattleEntity* PTarget)
 {
-  if(PTarget->objtype == TYPE_PET || PTarget->objtype == TYPE_MOB)
-  {
-    if(PTarget->PMaster != NULL){
-      return PTarget->PMaster;
-    }
+  if(PTarget->PMaster != NULL){
+    return PTarget->PMaster;
   }
   return PTarget;
 }

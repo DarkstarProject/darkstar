@@ -153,6 +153,29 @@ bool isFaceing(position_t A, position_t B, uint8 coneAngle)
 	return ( abs(angle - A.rotation) < (coneAngle >> 1) );
 }
 
+/**
+Returns a position near the given position.
+
+offset - distance to be placed away from given Position.
+radian - angle relative to given position to be placed at. Zero will be a position infront of the given position.
+Pi will make the position behind the target (180 degrees).
+*/
+position_t nearPosition(position_t A, float offset, float radian)
+{
+	// PI * 0.75 offsets the rotation to the proper place
+	float totalRadians = rotationToRadian(A.rotation) + radian + M_PI * 0.75;
+	position_t B;
+
+	B.x = A.x + cosf(totalRadians) * offset;
+	B.y = A.y;
+	B.z = A.z + sinf(totalRadians) * offset;
+
+	B.rotation = A.rotation;
+	B.moving = A.moving;
+
+	return B;
+}
+
 /************************************************************************
 *																		*
 *  Методы для работы с битовыми массивами								*

@@ -79,9 +79,9 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 		}
 		case ENTITY_UPDATE:
 		{
-			WBUFB(data,(0x0B)-4) = PEntity->loc.p.rotation;		
-			WBUFF(data,(0x0C)-4) = PEntity->loc.p.x;				
-			WBUFF(data,(0x10)-4) = PEntity->loc.p.y;				
+			WBUFB(data,(0x0B)-4) = PEntity->loc.p.rotation;
+			WBUFF(data,(0x0C)-4) = PEntity->loc.p.x;
+			WBUFF(data,(0x10)-4) = PEntity->loc.p.y;
 			WBUFF(data,(0x14)-4) = PEntity->loc.p.z;
 			WBUFW(data,(0x18)-4) = PEntity->loc.p.moving;
 			WBUFW(data,(0x1A)-4) = PEntity->m_TargID << 1;
@@ -89,7 +89,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 			WBUFB(data,(0x1D)-4) = PEntity->speedsub;
 			WBUFB(data,(0x1F)-4) = PEntity->animation;
 
-			WBUFB(data,(0x20)-4) = PEntity->status; 
+			WBUFB(data,(0x20)-4) = PEntity->status;
 			WBUFB(data,(0x2A)-4) = PEntity->animationsub;
 
 			switch(PEntity->objtype)
@@ -98,29 +98,18 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 				{
 					WBUFB(data,(0x1E)-4) = 0x64;
 					WBUFL(data,(0x21)-4) = ((CNpcEntity*)PEntity)->unknown;
-                    WBUFB(data,(0x27)-4) = ((CNpcEntity*)PEntity)->name_prefix;     // gender and something else 
+                    WBUFB(data,(0x27)-4) = ((CNpcEntity*)PEntity)->name_prefix;     // gender and something else
 					WBUFB(data,(0x2B)-4) = ((CNpcEntity*)PEntity)->namevis;
 				}
 				break;
 				case TYPE_MOB:
 				{
-					if(((CMobEntity*)PEntity)->PMaster == NULL)
-					{
-						WBUFB(data,(0x1E)-4) = ((CMobEntity*)PEntity)->GetHPP();
-						WBUFL(data,(0x21)-4) = ((CMobEntity*)PEntity)->m_unknown; 
-						WBUFB(data,(0x21)-4) |= ((CMobEntity*)PEntity)->m_CallForHelp;
-						WBUFB(data,(0x27)-4) = ((CMobEntity*)PEntity)->m_name_prefix;
-						WBUFL(data,(0x2C)-4) = ((CMobEntity*)PEntity)->m_OwnerID.id;
-						//set bit0 to 1 to make HP bars invisible e.g. Yilgeban, another bit somewhere controls mob targetability
-						//WBUFB(data,(0x22)-4) = 0; 
+					CMobEntity* PMob = (CMobEntity*)PEntity;
 
-						if (((CMobEntity*)PEntity)->PMaster != NULL)
-							WBUFB(data,(0x27)-4) = 0x08; //todo: may need |= 
-					}
-					else
+					if(PMob->PMaster != NULL && PMob->PMaster->objtype == TYPE_PC)
 					{
 						//charmed mob
-						if(((CMobEntity*)PEntity)->PMaster->objtype = TYPE_PC)
+						if(PMob->PMaster->objtype = TYPE_PC)
 						{
 							if(((CPetEntity*)PEntity)->PBattleAI->GetCurrentAction()==ACTION_FALL)
 							{
@@ -141,6 +130,20 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 									memcpy(data+(0x34)-4, PEntity->GetName(),(PEntity->name.size() > 15 ? 15 : PEntity->name.size()));
 							}
 						}
+					}
+					else
+					{
+
+						WBUFB(data,(0x1E)-4) = ((CMobEntity*)PEntity)->GetHPP();
+						WBUFL(data,(0x21)-4) = ((CMobEntity*)PEntity)->m_unknown;
+						WBUFB(data,(0x21)-4) |= ((CMobEntity*)PEntity)->m_CallForHelp;
+						WBUFB(data,(0x27)-4) = ((CMobEntity*)PEntity)->m_name_prefix;
+						WBUFL(data,(0x2C)-4) = ((CMobEntity*)PEntity)->m_OwnerID.id;
+						//set bit0 to 1 to make HP bars invisible e.g. Yilgeban, another bit somewhere controls mob targetability
+						//WBUFB(data,(0x22)-4) = 0;
+
+						if (PMob->PMaster != NULL && PMob->PMaster->objtype == TYPE_PC)
+							WBUFB(data,(0x27)-4) = 0x08; //todo: may need |=
 					}
 				}
 				break;

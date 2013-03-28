@@ -657,7 +657,7 @@ void DespawnPet(CBattleEntity* PMaster)
 		PPet->isCharmed = false;
 		PMaster->charmTime = 0;
 
-		PPet->PBattleAI = NULL;
+		delete PPet->PBattleAI;
 		PPet->PBattleAI = new CAIMobDummy((CMobEntity*)PMaster);
 		PPet->PBattleAI->SetLastActionTime(gettick());
 		PPet->PBattleAI->SetCurrentAction(ACTION_FALL);
@@ -716,7 +716,8 @@ void DespawnPet(CBattleEntity* PMaster)
 					PMob->isCharmed = false;
 					PMob->charmTime = NULL;
 					PMob->PMaster = NULL;
-					PMob->PBattleAI = NULL;
+
+					delete PMob->PBattleAI;
 					PMob->PBattleAI = new CAIMobDummy(PMob);
 
 					PMob->PBattleAI->SetLastActionTime(gettick());

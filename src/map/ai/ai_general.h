@@ -104,7 +104,7 @@ public:
 	uint16			GetLastCorsairRoll();
 	bool			GetAutoAttackEnabled();
 	bool			GetMagicCastingEnabled();
-	bool			GetMobAbilityEnabled();
+    bool            GetMobAbilityEnabled();
 
     uint32          GetBattleTime();
 
@@ -124,7 +124,8 @@ public:
 
 	virtual void	CheckCurrentAction(uint32 tick) = 0;
 
-	CAIGeneral();
+    CAIGeneral();
+	~CAIGeneral();
 
 private:
 

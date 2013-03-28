@@ -464,15 +464,14 @@ void CAIPetDummy::ActionAbilityInterrupt(){
 		Action.ActionTarget = m_PPet;
 		Action.reaction   = REACTION_NONE;
 		Action.speceffect = SPECEFFECT_NONE;
-		Action.animation  = m_PMobSkill->getID();
+		Action.animation  = 0; //m_PMobSkill->getID(); null skill would cause crash
 	    Action.param	  = 0;
 		Action.messageID  = 0;
         Action.flag       = 0;
 
-	m_PPet->m_ActionList.push_back(Action);
-	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
+		m_PPet->m_ActionList.push_back(Action);
+		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
 
-	m_PPet->health.tp = 0;
     m_PMobSkill = NULL;
     m_ActionType = ACTION_ATTACK;
 }

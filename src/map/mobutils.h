@@ -35,7 +35,6 @@ namespace mobutils
 	void	CalculateStats(CMobEntity* PMob);
   void  AddTraits(CMobEntity* PMob, JOBTYPE jobID, uint8 lvl);
 	uint16	GetWeaponDamage(CMobEntity* PMob);
-	uint8   checkMultiHits(CMobEntity * PMob,uint32 mobid);
 	void    GetAvailableSpells(CMobEntity* PMob);
 
 };

@@ -48,11 +48,12 @@ CREATE TABLE IF NOT EXISTS `mob_skill` (
 -- Normal Monster
 -- ------------------------------------------
 
--- ranged attacks
+-- abilities
 INSERT INTO `mob_skill` VALUES (16,0,16,'Ranged_Attack', 0, 25.0, 2000, 0, 4, 0);
 INSERT INTO `mob_skill` VALUES (402,0,402,'Catapult', 0, 25.0, 2000, 0, 4, 0);
 INSERT INTO `mob_skill` VALUES (808,0,351,'Jump', 0, 9.5, 2000, 0, 4, 0);
 INSERT INTO `mob_skill` VALUES (514,0,442,'Jumping_Thrust', 0, 9.5, 2000, 0, 4, 0);
+INSERT INTO `mob_skill` VALUES (476,0,505,'Spawn_Pet', 0, 7.0, 2000, 0, 4, 0);
 
 -- two hours
 INSERT INTO `mob_skill` VALUES (432,0,709,'Mighty_Strikes', 0, 7.0, 2000, 0, 1, 0);

@@ -39,7 +39,13 @@
 
 CAIGeneral::CAIGeneral()
 {
+    m_PTargetFinder = NULL;
 	Reset();
+}
+
+CAIGeneral::~CAIGeneral()
+{
+    delete m_PTargetFinder;
 }
 
 /************************************************************************

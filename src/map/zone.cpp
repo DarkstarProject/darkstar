@@ -380,9 +380,9 @@ void CZone::InsertMOB(CBaseEntity* PMob)
 {
 	if ((PMob != NULL) && (PMob->objtype == TYPE_MOB))
 	{
-        PMob->loc.zone = this;
+    PMob->loc.zone = this;
 
-        FindPartyForMob(PMob);
+    FindPartyForMob(PMob);
 		m_mobList[PMob->targid] = PMob;
 	}
 }
@@ -496,11 +496,13 @@ void CZone::FindPartyForMob(CBaseEntity* PEntity)
             CMobEntity* PCurrentMob = (CMobEntity*)it->second;
 
             if (PCurrentMob->m_Link &&
-                PCurrentMob->PMaster == NULL &&
                 PCurrentMob->m_Family == PMob->m_Family)
             {
+              if(PCurrentMob->PMaster == NULL || PCurrentMob->PMaster->objtype == TYPE_MOB)
+              {
                 PCurrentMob->PParty->AddMember(PMob);
                 return;
+              }
             }
         }
         PMob->PParty = new CParty(PMob);
@@ -574,7 +576,7 @@ void CZone::SetWeather(WEATHER weather)
                 PCurrentMob->SetDespawnTimer(0);
                 PCurrentMob->m_AllowRespawn = true;
                 PCurrentMob->PBattleAI->SetLastActionTime(0);
-				PCurrentMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+      				PCurrentMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
 			}
 			else
 			{

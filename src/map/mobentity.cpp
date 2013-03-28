@@ -215,12 +215,6 @@ void CMobEntity::ChangeMJob(uint16 job)
     mobutils::CalculateStats(this);
 }
 
-bool CMobEntity::CanSummonPet()
-{
-    // only doing DRG first
-    return GetMJob() == JOB_DRG;
-}
-
 uint8 CMobEntity::TPUseChance()
 {
     if(health.tp < 100) return 0;

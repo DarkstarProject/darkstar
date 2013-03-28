@@ -129,6 +129,7 @@ void CalculateStats(CMobEntity * PMob)
 	if(PMob->HPmodifier == 0){
 
 		float growth = 1.06;
+		float base = 18.0;
 		uint8 lvl = PMob->GetMLevel();
 
 		//give hp boost every 10 levels after 25
@@ -149,11 +150,19 @@ void CalculateStats(CMobEntity * PMob)
 			growth = 1.1;
 		}
 
-		PMob->health.maxhp = (int16)(18.0 * pow(lvl, growth) * PMob->HPstat);
+		// pets have lower health
+		if(PMob->PMaster != NULL)
+		{
+			growth = 0.95;
+		}
 
-		if(isNM){
+
+		PMob->health.maxhp = (int16)(base * pow(lvl, growth) * PMob->HPstat);
+
+		if(isNM)
+		{
 			PMob->health.maxhp *= 2.0;
-			if(PMob->GetMLevel()>75){
+			if(PMob->GetMLevel() > 75){
 				PMob->health.maxhp *= 2.5;
 			}
 		}
@@ -312,6 +321,28 @@ void CalculateStats(CMobEntity * PMob)
 	if(PMob->m_Family == 335)
 	{
 		PMob->m_SpecialSkill = 0;
+	}
+
+	PMob->m_PetRecastTime = 0;
+
+	// all pets must be defined in the mob_pets file
+	// set recast times for summoning pets
+	if(PMob->GetMJob() == JOB_BST)
+	{
+		PMob->m_PetRecastTime = 60000;
+	}
+	else if(PMob->GetMJob() == JOB_DRG && !isNM && !PMob->isInDynamis())
+	{
+		// 20 min recast
+		PMob->m_PetRecastTime = 720000;
+	}
+	else if(PMob->GetMJob() == JOB_SMN)
+	{
+		PMob->m_PetRecastTime = 60000;
+	}
+	else if(PMob->GetMJob() == JOB_PUP)
+	{
+		PMob->m_PetRecastTime = 720000;
 	}
 
 	// clear current traits first

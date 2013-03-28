@@ -39,6 +39,7 @@ float rotationToRadian(uint8 rotation);
 uint8 radianToRotation(float radian);
 uint8 getangle(position_t A, position_t B);						// А - основная сущность, B - цель сущности (проекция вектора на OX)
 bool  isFaceing(position_t A, position_t B, uint8 coneAngle);	// А - основная сущность, B - цель сущности
+position_t nearPosition(position_t A, float offset, float radian); // Returns a position near the given position
 
 int32 hasBit(uint16 value, uint8* BitArray, uint32 size);		// проверяем наличие бита в массиве
 int32 addBit(uint16 value, uint8* BitArray, uint32 size);		// добавляем бит в массив

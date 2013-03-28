@@ -13,7 +13,7 @@ require("scripts/globals/pets");
 function OnAbilityCheck(player,target,ability)
 	if (player:getPet() ~= nil) then
 		return MSGBASIC_ALREADY_HAS_A_PET,0;
-	elseif (target:getMaster() ~= nil) then
+	elseif (target:getMaster() ~= nil and target:getMaster():isPC()) then
 		return MSGBASIC_THAT_SOMEONES_PET,0;
 	else
 		return 0,0;

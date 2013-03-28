@@ -293,13 +293,13 @@ void LoadMOBList(CZone* PZone)
 			PMob->SetMJob(Sql_GetIntData(SqlHandle,14));
 			PMob->SetSJob(Sql_GetIntData(SqlHandle,15));
 
-            PMob->m_Weapons[SLOT_MAIN]->setMaxHit(1);
+      PMob->m_Weapons[SLOT_MAIN]->setMaxHit(1);
 			PMob->m_Weapons[SLOT_MAIN]->setSkillType(Sql_GetIntData(SqlHandle,16));
 			PMob->m_Weapons[SLOT_MAIN]->setDelay((Sql_GetIntData(SqlHandle,17) * 1000)/60);
 			PMob->m_Weapons[SLOT_MAIN]->setBaseDelay((Sql_GetIntData(SqlHandle,17) * 1000)/60);
 
 			PMob->m_Behaviour  = (uint16)Sql_GetIntData(SqlHandle,18);
-            PMob->m_Link       = (uint8)Sql_GetIntData(SqlHandle,19);
+      PMob->m_Link       = (uint8)Sql_GetIntData(SqlHandle,19);
 			PMob->m_Type       = (uint8)Sql_GetIntData(SqlHandle,20);
 			PMob->m_Immunity   = (IMMUNITY)Sql_GetIntData(SqlHandle,21);
 			PMob->m_EcoSystem  = (ECOSYSTEM)Sql_GetIntData(SqlHandle,22);
@@ -388,8 +388,8 @@ void LoadMOBList(CZone* PZone)
 		        case SYSTEM_DEMON:    PMob->addModifier(MOD_DRAGON_KILLER,   5); break;
 		        case SYSTEM_DRAGON:   PMob->addModifier(MOD_DEMON_KILLER,    5); break;
 		        case SYSTEM_LIZARD:   PMob->addModifier(MOD_VERMIN_KILLER,   5); break;
-                case SYSTEM_LUMINION: PMob->addModifier(MOD_LUMORIAN_KILLER, 5); break;
-                case SYSTEM_LUMORIAN: PMob->addModifier(MOD_LUMINION_KILLER, 5); break;
+            case SYSTEM_LUMINION: PMob->addModifier(MOD_LUMORIAN_KILLER, 5); break;
+            case SYSTEM_LUMORIAN: PMob->addModifier(MOD_LUMINION_KILLER, 5); break;
 		        case SYSTEM_PLANTOID: PMob->addModifier(MOD_BEAST_KILLER,    5); break;
 		        case SYSTEM_UNDEAD:   PMob->addModifier(MOD_ARCANA_KILLER,   5); break;
 		        case SYSTEM_VERMIN:   PMob->addModifier(MOD_PLANTOID_KILLER, 5); break;
@@ -399,6 +399,45 @@ void LoadMOBList(CZone* PZone)
 			luautils::OnMobInitialise(PMob);
 		}
 	}
+
+  // attach pets to mobs
+  const int8* PetQuery =
+        "SELECT mob_mobid, pet_mobid \
+      FROM mob_groups, mob_spawn_points, mob_pets \
+      WHERE mob_pets.mob_mobid = mob_spawn_points.mobid \
+      AND mob_groups.groupid = mob_spawn_points.groupid \
+      AND mob_groups.zoneid = %u;";
+
+  ret = Sql_Query(SqlHandle, PetQuery, PZone->GetID());
+
+  if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+  {
+    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    {
+
+      uint32 masterid = (uint32)Sql_GetUIntData(SqlHandle,0);
+      uint32 petid = (uint32)Sql_GetUIntData(SqlHandle,1);
+
+      CBattleEntity* PMaster = (CBattleEntity*)PZone->GetEntity(masterid & 0x0FFF, TYPE_MOB);
+      CBattleEntity* PPet = (CBattleEntity*)PZone->GetEntity(petid & 0x0FFF, TYPE_MOB);
+
+      if(PMaster == NULL)
+      {
+        ShowError("zoneutils::loadMOBList PMaster is null. masterid: %d\n", masterid);
+      }
+      else if(PPet == NULL)
+      {
+        ShowError("zoneutils::loadMOBList PPet is null. petid: %d\n", petid);
+      }
+      else
+      {
+        PMaster->PPet = PPet;
+        PPet->PMaster = PMaster;
+      }
+
+    }
+  }
+
 }
 
 /************************************************************************
@@ -416,7 +455,7 @@ void LoadZoneList()
         CZone* PZone = new CZone((ZONEID)ZoneID, GetCurrentRegion(ZoneID), GetCurrentContinent(ZoneID));
 
 		LoadNPCList(PZone);
-        LoadMOBList(PZone);
+    LoadMOBList(PZone);
 
 		PZone->ZoneServer(-1);
 		g_PZoneList[ZoneID] = PZone;
