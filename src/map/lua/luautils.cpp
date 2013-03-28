@@ -243,11 +243,11 @@ int32 GetMobIDByJob(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1) || lua_isnil(L,2) || !lua_isnumber(L,2) || lua_isnil(L,3) || !lua_isnumber(L,3));
 
-	int32 id_min = (int32)lua_tointeger(L,1);
-	int32 id_max = (int32)lua_tointeger(L,2);
+	uint32 id_min = (uint32)lua_tointeger(L,1);
+	uint32 id_max = (uint32)lua_tointeger(L,2);
 	JOBTYPE mobJob = (JOBTYPE)lua_tointeger(L,3);
 
-	for(int32 mobid = id_min; id_min < id_max; mobid++)
+	for(uint32 mobid = id_min; mobid <= id_max; mobid++)
 	{
 		CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
 		
