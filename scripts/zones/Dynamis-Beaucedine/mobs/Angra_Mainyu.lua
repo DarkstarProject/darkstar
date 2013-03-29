@@ -87,6 +87,7 @@ function onMobDeath(mob,killer)
 	
 	if(killer:hasKeyItem(HYDRA_CORPS_INSIGNIA) == false) then
 		killer:addKeyItem(HYDRA_CORPS_INSIGNIA);
+		killer:messageSpecial(KEYITEM_OBTAINED,HYDRA_CORPS_INSIGNIA);
 	end
 	
 end;
