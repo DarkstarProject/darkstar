@@ -25,7 +25,12 @@ function onTrigger(player,npc)
 
 	local mJob = player:getMainJob();
 	local mLvl = player:getMainLvl();
+	
 	local equipedForAll = player:getQuestStatus(AHT_URHGAN,EQUIPED_FOR_ALL_OCCASIONS);
+	local NoStringsAttached = player:getQuestStatus(AHT_URHGAN,NO_STRINGS_ATTACHED);
+	local NoStringsAttachedProgress = player:getVar("NoStringsAttachedProgress");
+	
+	
 	if (equipedForAll == QUEST_AVAILABLE and mJob == JOB_COR and mLvl >= AF1_QUEST_LEVEL) then
 		player:startEvent(0x0E4);
 	elseif(equipedForAll == QUEST_ACCEPTED and player:getVar("EquipedforAllOccasions") ==3) then
@@ -35,9 +40,12 @@ function onTrigger(player,npc)
 		player:startEvent(0x0E8);
 	elseif(player:getVar("NavigatingtheUnfriendlySeas") ==4) then
 		player:startEvent(0x0E9);
+	elseif(NoStringsAttachedProgress == 3) then
+		player:startEvent(0x00d6); -- "You see an old, dented automaton..."
 	else
-		
+		player:messageSpecial(8327); -- "There is nothing else of interest here."
 	end
+
 end;
 
 -----------------------------------
@@ -71,5 +79,9 @@ function onEventFinish(player,csid,option)
 		player:completeQuest(AHT_URHGAN,NAVIGATING_THE_UNFRIENDLY_SEAS);
 		player:setVar("NavigatingtheUnfriendlySeas",0);
 		player:setVar("HydrogauageTimer",0);
+	elseif(csid == 0x00d6) then
+		player:addKeyItem(798);
+		player:messageSpecial(KEYITEM_OBTAINED,ANTIQUE_AUTOMATON);
+		player:setVar("NoStringsAttachedProgress",4);
 	end
 end;
