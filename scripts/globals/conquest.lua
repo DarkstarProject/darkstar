@@ -196,6 +196,10 @@ function tradeConquestGuard(player,npc,trade,guardnation,guardtype)
 				else
 					player:showText(npc,CONQUEST + 55,item,XpRing[item - 15760]);
 				end
+         else
+            -- TODO: Verify that message is retail correct.
+            -- This gives feedback on a failure at least, and is grouped with the recharge messages.  Confident enough for a commit.
+            player:showText(npc,CONQUEST+56,item); -- "Please be aware that you can only purchase or recharge <item> once during the period between each conquest results tally.
 			end
 		end
 	end
