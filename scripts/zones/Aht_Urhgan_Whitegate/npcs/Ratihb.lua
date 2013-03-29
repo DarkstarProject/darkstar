@@ -74,7 +74,7 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_OBTAINED,AFgun);
 			player:completeQuest(AHT_URHGAN,EQUIPED_FOR_ALL_OCCASIONS);
 			player:setVar("EquipedforAllOccasions",0);
-		elseif
+		else
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,AFgun);
 		end
 		
