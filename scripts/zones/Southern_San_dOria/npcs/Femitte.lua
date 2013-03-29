@@ -71,7 +71,7 @@ function onEventFinish(player,csid,option)
 	elseif (csid == 0x0297 and option == 0) then
 		player:addKeyItem(GOLDSMITHING_ORDER);
 		player:messageSpecial(KEYITEM_OBTAINED,GOLDSMITHING_ORDER);
-		player:addQuest(DISTANT_LOYALTIES);
+		player:addQuest(SANDORIA,DISTANT_LOYALTIES);
 		player:setVar("DistantLoyaltiesProgress",1);
 	elseif (csid == 0x0299) then
 		if (player:getFreeSlotsCount() == 0) then
