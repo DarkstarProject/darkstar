@@ -153,7 +153,7 @@ void CAIPetDummy::ActionAbilityStart()
 
 		WYVERNTYPE wyverntype = m_PPet->getWyvernType();
 
-		if(m_MasterCommand==MASTERCOMMAND_ELEMENTAL_BREATH && (wyverntype == WYVERNTYPE_MULTIPURPOSE || WYVERNTYPE_OFFENSIVE)){
+		if(m_MasterCommand==MASTERCOMMAND_ELEMENTAL_BREATH && (wyverntype == WYVERNTYPE_MULTIPURPOSE || wyverntype == WYVERNTYPE_OFFENSIVE)){
 			m_MasterCommand = MASTERCOMMAND_NONE;
 
 			//offensive or multipurpose wyvern
