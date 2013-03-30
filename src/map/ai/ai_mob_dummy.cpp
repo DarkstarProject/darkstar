@@ -310,7 +310,7 @@ void CAIMobDummy::ActionFall()
 	m_PMob->animation = ANIMATION_DEATH;
 
 	// my pet should fall as well
-	if(m_PMob->PPet != NULL)
+	if(m_PMob->PPet != NULL && !m_PMob->PPet->isDead() && m_PMob->GetMJob() == JOB_SMN)
 	{
 		m_PMob->PPet->health.hp = 0;
 		m_PMob->PPet->PBattleAI->SetCurrentAction(ACTION_FALL);

@@ -335,8 +335,14 @@ void CalculateStats(CMobEntity * PMob)
 		}
 		else if(PMob->GetMJob() == JOB_DRG && !isNM)
 		{
-			// 20 min recast
-			// PMob->m_SpecialCoolDown = 720000;
+			// only drgs in 3rd expansion calls wyvern as non-NM
+			// include fomors
+			if(PMob->loc.zone->GetContinentID() == THE_ARADJIAH_CONTINENT || PMob->m_Family == 115)
+			{
+				// 20 min recast
+				PMob->m_SpecialSkill = 476;
+				PMob->m_SpecialCoolDown = 720000;
+			}
 		}
 		else if(PMob->GetMJob() == JOB_PUP)
 		{
