@@ -61,10 +61,10 @@ public:
 protected:
 
 	CMobEntity* m_PMob;
+  CMobSkill* m_PSpecialSkill;
   bool m_firstSpell;
   uint32 m_LastSpecialTime;
   uint32 m_LastWaitTime;
-  uint32 m_LastPetTime;
   uint32 m_WaitTime;
   float m_skillTP;
 
@@ -94,12 +94,11 @@ protected:
 
   // use its special skill, ranged attack, catapult, jump etc
   void ActionSpecialSkill();
-  void ActionSpawnPet();
 
   // helper functions
   bool CanCastSpells();
   bool TryCastSpell(); // logic for spell casting, returns true if found one to cast
-  bool TrySpawnPet(); // returns true if I spawned a pet
+  bool TrySpecialSkill();
   void CastSpell(uint16 spellId); // makes the mob cast a spell
   void Wait(uint32 waitTime);
   bool CanLink(CMobEntity* PTarget); // checks if the target can link

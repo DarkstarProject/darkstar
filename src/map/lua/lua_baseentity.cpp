@@ -4687,6 +4687,18 @@ inline int32 CLuaBaseEntity::getPetName(lua_State *L)
 	return 0;
 }
 
+/*
+Checks if the current entity has an alive pet.
+*/
+inline int32 CLuaBaseEntity::hasPet(lua_State *L)
+{
+	CBattleEntity* PTarget = (CBattleEntity*)m_PBaseEntity;
+
+	lua_pushboolean(L, (PTarget->PPet != NULL && PTarget->PPet->status != STATUS_DISAPPEAR));
+
+	return 1;
+}
+
 /************************************************************************
 *																		*
 *  Сущность призывает питомца											*
@@ -4697,14 +4709,31 @@ inline int32 CLuaBaseEntity::spawnPet(lua_State *L)
 {
 	if ( m_PBaseEntity != NULL )
 	{
-		if ( m_PBaseEntity->objtype != TYPE_NPC )
+		if ( m_PBaseEntity->objtype == TYPE_PC )
 		{
 			if( !lua_isnil(L,1) && lua_isstring(L,1) )
 			{
 				petutils::SpawnPet((CBattleEntity*)m_PBaseEntity, lua_tointeger(L,1), false);
-				return 0;
 			}
-			ShowError(CL_RED"CLuaBaseEntity::spawnPet : PetID is NULL\n" CL_RESET);
+			else
+			{
+				ShowError(CL_RED"CLuaBaseEntity::spawnPet : PetID is NULL\n" CL_RESET);
+			}
+		}
+		else if( m_PBaseEntity->objtype == TYPE_MOB)
+		{
+			CMobEntity* mob = (CMobEntity*)m_PBaseEntity;
+
+			if( !lua_isnil(L,1) && lua_isstring(L,1) )
+			{
+				// pick my elemental
+				petutils::SpawnMobPet(mob, lua_tointeger(L,1));
+			}
+
+			// setup AI
+			mob->PPet->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+			mob->PPet->PBattleAI->CheckCurrentAction(0);
+
 		}
 	}
 	return 0;
@@ -6777,6 +6806,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,equipItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPetElement),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPetName),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasPet),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,charmPet),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,spawnPet),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,despawnPet),

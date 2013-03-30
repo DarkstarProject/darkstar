@@ -32,6 +32,7 @@
 #include "../mobutils.h"
 #include "../status_effect.h"
 #include "../petentity.h"
+#include "../petutils.h"
 #include "../spell.h"
 #include "../zone.h"
 #include "../alliance.h"
@@ -60,12 +61,12 @@ CAIMobDummy::CAIMobDummy(CMobEntity* PMob)
 	m_PMob = PMob;
     m_PTargetFinder = new CTargetFinder(PMob);
 
+	m_PSpecialSkill = NULL;
 	m_firstSpell = true;
 	m_LastSpecialTime = 0;
 	m_WaitTime = 0;
 	m_LastWaitTime = 0;
 	m_skillTP = 0;
-	m_LastPetTime = 0;
 }
 
 /************************************************************************
@@ -153,7 +154,7 @@ void CAIMobDummy::ActionRoaming()
 		// recover health
 		m_PMob->Rest(0.2f);
 
-		if(TrySpawnPet())
+		if(m_PSpecialSkill != NULL && TrySpecialSkill())
 		{
 			// I spawned a pet
 		}
@@ -178,7 +179,7 @@ void CAIMobDummy::ActionRoaming()
 			{
 				CBattleEntity* PPet = m_PMob->PPet;
 
-				ReturnPoint = nearPosition(m_PMob->loc.p, 1.5f, M_PI);
+				ReturnPoint = nearPosition(m_PMob->loc.p, 2.0f, M_PI);
 
 				PPet->loc.p.rotation = getangle(PPet->loc.p, ReturnPoint);
 
@@ -189,7 +190,7 @@ void CAIMobDummy::ActionRoaming()
 			}
 
 		}
-		else if(m_PMob->SpellContainer->HasBuffSpells())
+		else if(CanCastSpells() && m_PMob->SpellContainer->HasBuffSpells())
 		{
 			// cast buff
 			CastSpell(m_PMob->SpellContainer->GetBuffSpell());
@@ -211,6 +212,7 @@ void CAIMobDummy::ActionRoaming()
 
 void CAIMobDummy::ActionEngage()
 {
+
 	m_PMob->animation = ANIMATION_ATTACK;
 	m_StartBattle = m_Tick;
 	m_ActionType = ACTION_ATTACK;
@@ -306,6 +308,13 @@ void CAIMobDummy::ActionFall()
 	m_ActionType = ACTION_DROPITEMS;
 	m_LastActionTime = m_Tick;
 	m_PMob->animation = ANIMATION_DEATH;
+
+	// my pet should fall as well
+	if(m_PMob->PPet != NULL)
+	{
+		m_PMob->PPet->health.hp = 0;
+		m_PMob->PPet->PBattleAI->SetCurrentAction(ACTION_FALL);
+	}
 
 	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
 }
@@ -467,13 +476,14 @@ void CAIMobDummy::ActionFadeOut()
 		if(m_PMob->PMaster != NULL && m_PMob->PMaster->objtype == TYPE_MOB)
 		{
 			CAIMobDummy* PBattleAI = (CAIMobDummy*)m_PMob->PMaster->PBattleAI;
-			PBattleAI->m_LastPetTime = m_Tick - rand()%10000;
+			PBattleAI->m_LastSpecialTime = m_Tick - rand()%10000;
 		}
 
 		m_PMob->status = STATUS_DISAPPEAR;
         m_PMob->PEnmityContainer->Clear();
 
         m_ActionType  = m_PMob->m_AllowRespawn ? ACTION_SPAWN : ACTION_NONE;
+
 	}
 }
 
@@ -489,10 +499,12 @@ void CAIMobDummy::ActionSpawn()
 {
 	if ((m_Tick - m_LastActionTime) > m_PMob->m_RespawnTime)
 	{
+
 		m_firstSpell = true;
 		m_ActionType = ACTION_ROAMING;
 		m_PBattleTarget = NULL;
 		m_PBattleSubTarget = NULL;
+		m_PSpecialSkill = NULL;
 		m_PMobSkill = NULL;
 		m_PMob->m_SkillStatus = 0;
         m_PMob->m_OwnerID.clean();
@@ -520,10 +532,27 @@ void CAIMobDummy::ActionSpawn()
 		mobutils::CalculateStats(m_PMob);
 		mobutils::GetAvailableSpells(m_PMob);
 
+		// get my special skill
+		if(m_PMob->m_SpecialSkill)
+		{
+			m_PSpecialSkill = battleutils::GetMobSkill(m_PMob->m_SpecialSkill);
+		}
+
 		if(m_PMob->PMaster != NULL){
 			// TODO: spawn NEAR mob
 			// elementals have a bit more health
-			m_PMob->loc.p = nearPosition(m_PMob->PMaster->loc.p, 1.5f, M_PI);
+			m_PMob->loc.p = nearPosition(m_PMob->PMaster->loc.p, 2.0f, M_PI);
+
+			CMobEntity* PMaster = (CMobEntity*)m_PMob->PMaster;
+
+			if(PMaster->PEnmityContainer->GetHighestEnmity() != NULL)
+		    {
+		        PMaster->PEnmityContainer->AddBaseEnmity(PMaster->PBattleAI->GetBattleTarget());
+		        m_ActionType = ACTION_ATTACK;
+		    }
+
+		    // prevent random despawning
+		    m_PMob->SetDespawnTimer(0);
 		} else {
 			m_PMob->loc.p = m_PMob->m_SpawnPoint;
 		}
@@ -897,6 +926,10 @@ void CAIMobDummy::ActionMagicStart()
 {
 	DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
 
+	// this must be at the top to RESET magic cast timer
+	m_LastActionTime = m_Tick;
+	m_LastMagicTime = m_Tick;
+
 	// check valid targets
 	if (m_PSpell->getValidTarget() & TARGET_SELF) {
 		m_PBattleSubTarget = m_PMob;
@@ -905,14 +938,18 @@ void CAIMobDummy::ActionMagicStart()
 	}
 
 	if ( (m_PSpell->getValidTarget() & TARGET_ENEMY) && m_PBattleSubTarget->objtype == TYPE_MOB) {
-		m_ActionType = ACTION_ATTACK;
-		m_LastMagicTime = m_Tick;
+		m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 		ShowDebug("Monster Magic Cast on self but spell is enemy... spellId: %d \n", m_PSpell->getID());
 		return;
 	}
 
-	m_LastActionTime = m_Tick;
-	m_LastMagicTime = m_Tick;
+	if(luautils::OnMagicCastingCheck(m_PMob, m_PBattleSubTarget, m_PSpell) != 0)
+	{
+		//fail
+		m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+		ActionAttack();
+		return;
+	}
 
 	apAction_t Action;
     m_PMob->m_ActionList.clear();
@@ -1009,11 +1046,12 @@ void CAIMobDummy::ActionMagicInterrupt()
 	m_LastMagicTime = m_Tick; // reset this in case the spell is long casting, don't want to immediately recast
 	m_PSpell = NULL;
 	m_PBattleSubTarget = NULL;
-	m_ActionType = ACTION_ATTACK;
+	m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 }
 
 void CAIMobDummy::ActionMagicFinish()
 {
+
 	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL || m_PSpell == NULL);
 
 	m_LastMagicTime = m_Tick; // reset this in case the spell is long casting, don't want to immediately recast
@@ -1222,17 +1260,13 @@ void CAIMobDummy::ActionAttack()
     float CurrentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
 
 	// Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
-	if(TrySpawnPet())
+	if (CurrentDistance <= MOB_SPELL_MAX_RANGE && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && TryCastSpell())
 	{
 
 	}
-	else if (CurrentDistance <= MOB_SPELL_MAX_RANGE && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && TryCastSpell())
+	else if(m_PSpecialSkill != NULL && (m_Tick - m_LastSpecialTime) > m_PMob->m_SpecialCoolDown && TrySpecialSkill())
 	{
 
-	}
-	else if(m_PMob->m_SpecialSkill && CurrentDistance <= battleutils::GetMobSkill(m_PMob->m_SpecialSkill)->getDistance() && (m_Tick - m_LastSpecialTime) > m_PMob->m_SpecialCoolDown)
-	{
-		ActionSpecialSkill();
 	}
 	else if (CurrentDistance <= m_PMob->m_ModelSize)
 	{
@@ -1459,6 +1493,7 @@ void CAIMobDummy::ActionAttack()
 	}
 	else
     {
+
 		// TODO: Do we really want to do this every tick? We should probably only do this check occasionally, else it's almost
 		// guarenteed that the mob will try to use its TP whilst being out of range (if it has the TP)
 		if (rand()%100 < m_PMob->TPUseChance())
@@ -1484,6 +1519,11 @@ bool CAIMobDummy::CanCastSpells()
 
 	// check for spell blockers e.g. silence
 	if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE)) {
+		return false;
+	}
+
+	// smn can only cast spells if it has an existing pet
+	if(m_PMob->GetMJob() == JOB_SMN && m_PMob->PPet == NULL){
 		return false;
 	}
 
@@ -1536,18 +1576,20 @@ bool CAIMobDummy::TryCastSpell()
 
 void CAIMobDummy::ActionSpecialSkill()
 {
-	if(!m_PMob->m_SpecialSkill){
+
+	if(m_PSpecialSkill == NULL){
+		m_PBattleSubTarget = NULL;
 		m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 		return;
 	}
 
+	// this will be read by the packets layer
+	m_PMobSkill = m_PSpecialSkill;
+
 	// this makes sure the proper packet is sent
 	m_ActionType = ACTION_MOBABILITY_FINISH;
 
-	m_PMobSkill = battleutils::GetMobSkill(m_PMob->m_SpecialSkill);
-
-    DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
-    DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
+    DSP_DEBUG_BREAK_IF(m_PSubBattleTarget == NULL);
 
     m_LastActionTime = m_Tick;
     m_LastSpecialTime = m_Tick;
@@ -1558,10 +1600,10 @@ void CAIMobDummy::ActionSpecialSkill()
     m_PMobSkill->resetMsg();
 
 	Action.speceffect = SPECEFFECT_HIT;
-    Action.ActionTarget = m_PBattleTarget;
+    Action.ActionTarget = m_PBattleSubTarget;
 	Action.animation  = m_PMobSkill->getAnimationID();
 	Action.subparam   = m_PMobSkill->getMsgForAction();
-	Action.param	  = luautils::OnMobWeaponSkill(m_PBattleTarget, m_PMob, m_PMobSkill);
+	Action.param	  = luautils::OnMobWeaponSkill(m_PBattleSubTarget, m_PMob, m_PMobSkill);
 	Action.messageID  = m_PMobSkill->getMsg();
 	Action.flag       = 0;
 
@@ -1580,50 +1622,7 @@ void CAIMobDummy::ActionSpecialSkill()
 	// this stops the mob from chasing
 	Wait(m_PMobSkill->getAnimationTime());
 
-	m_PMobSkill = NULL;
-}
-
-void CAIMobDummy::ActionSpawnPet()
-{
-	if(m_PMob->PPet == NULL)
-	{
-		m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-		return;
-	}
-
-	// this makes sure the proper packet is sent
-	m_ActionType = ACTION_MOBABILITY_FINISH;
-
-	// hardcoded to skill 476
-	m_PMobSkill = battleutils::GetMobSkill(476);
-
-    apAction_t Action;
-
-    m_PMob->m_ActionList.clear();
-
-    m_PMobSkill->resetMsg();
-
-	CMobEntity* PPet = (CMobEntity*)m_PMob->PPet;
-
-	Action.speceffect = SPECEFFECT_HIT;
-    Action.ActionTarget = PPet;
-	Action.animation  = m_PMobSkill->getAnimationID();
-	Action.subparam   = 0;
-	Action.param	  = 0;
-	Action.messageID  = 0;
-	Action.flag       = 0;
-
-	// setup AI
-	PPet->PBattleAI->SetCurrentAction(ACTION_SPAWN);
-	PPet->PBattleAI->CheckCurrentAction(m_Tick);
-
-	m_PMob->m_ActionList.push_back(Action);
-
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
-
-	// this stops the mob from chasing
-	Wait(m_PMobSkill->getAnimationTime());
-
+	m_PBattleSubTarget = NULL;
 	m_PMobSkill = NULL;
 }
 
@@ -1646,18 +1645,6 @@ void CAIMobDummy::Wait(uint32 waitTime)
 	m_ActionType = ACTION_WAIT;
 }
 
-bool CAIMobDummy::TrySpawnPet()
-{
-	if(m_PMob->PPet != NULL && m_PMob->PMaster == NULL && m_PMob->m_PetRecastTime != 0 && m_PMob->PPet->status == STATUS_DISAPPEAR && (m_Tick - m_LastPetTime) > m_PMob->m_PetRecastTime)
-	{
-		ActionSpawnPet();
-
-		return true;
-	}
-
-	return false;
-}
-
 bool CAIMobDummy::CanLink(CMobEntity* PTarget)
 {
 	if (PTarget->PBattleAI->GetCurrentAction() == ACTION_ROAMING){
@@ -1673,5 +1660,43 @@ bool CAIMobDummy::CanLink(CMobEntity* PTarget)
 	        return true;
 	    }
 	}
+	return false;
+}
+
+bool CAIMobDummy::TrySpecialSkill()
+{
+	if(m_PSpecialSkill == NULL) return false;
+
+
+	if(m_PSpecialSkill->getValidTargets() & TARGET_SELF)
+	{
+		m_PBattleSubTarget = m_PMob;
+
+	}
+	else if(m_PBattleTarget != NULL)
+	{
+		// distance check for special skill
+	    float CurrentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
+
+		if(CurrentDistance <= m_PSpecialSkill->getDistance())
+		{
+			m_PBattleSubTarget = m_PBattleTarget;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	else
+	{
+		return false;
+	}
+
+	if(luautils::OnMobSkillCheck(m_PBattleSubTarget, m_PMob, m_PSpecialSkill) == 0)
+	{
+		ActionSpecialSkill();
+		return true;
+	}
+
 	return false;
 }

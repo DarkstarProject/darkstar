@@ -87,7 +87,6 @@ public:
     uint32      m_DropItemTime;						// время анимации смерти монстра
 
     uint32      m_MagicRecastTime;                  // Amount of time between casts.
-    uint32      m_PetRecastTime;        // Cool down time between summoning pets
   	uint32		m_SpecialCoolDown;					// Cool down time between uses.
     uint16        m_SpecialSkill; // mobskill id to use
 
@@ -98,8 +97,8 @@ public:
     uint32      HPmodifier;							// HP in Database (mob_groups)
     uint32      MPmodifier;							// MP in Database (mob_groups)
 
-    float       HPstat;								// HP boost percentage
-    float       MPstat;								// MP boost percentage
+    float       HPscale;								// HP boost percentage
+    float       MPscale;								// MP boost percentage
     uint8       linkRadius;                         // mobs have different link radiuses
 
     // stat ranks

@@ -37,8 +37,8 @@ CMobEntity::CMobEntity()
 	m_minLevel = 1;
 	m_maxLevel = 1;
 
-    HPstat = 1.0;
-    MPstat = 1.0;
+    HPscale = 1.0;
+    MPscale = 1.0;
 
     m_AllowRespawn = 0;
 	m_CallForHelp  = 0;

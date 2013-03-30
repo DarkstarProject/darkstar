@@ -26,7 +26,7 @@
 
 #include "battleentity.h"
 #include "enmity_container.h"
-#include "battleutils.h" 
+#include "battleutils.h"
 #include "charentity.h"
 #include "alliance.h"
 #include "packets/entity_update.h"
@@ -62,7 +62,7 @@ void CEnmityContainer::Clear(uint32 EntityID)
             delete it->second;
 	    }
 		m_EnmityList.clear();
-		return; 
+		return;
 	}
     else
     {
@@ -99,35 +99,35 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE)
 {
     EnmityList_t::iterator PEnmity = m_EnmityList.lower_bound(PEntity->id);
 
-	// current highest enmity before this update
-	CBattleEntity* OldEntity = GetHighestEnmity();
+    // current highest enmity before this update
+    CBattleEntity* OldEntity = GetHighestEnmity();
 
-    if( PEnmity != m_EnmityList.end() && 
+    if( PEnmity != m_EnmityList.end() &&
        !m_EnmityList.key_comp()(PEntity->id, PEnmity->first))
-	{
-		int8 enmityBonus = 0;
-		if (PEntity->objtype & TYPE_PC)
-		{
-			enmityBonus = ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ENMITY_INCREASE, PEntity->GetMLevel()) - 
-				((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ENMITY_DECREASE, PEntity->GetMLevel());
-		}
-		float bonus = (100.0f + dsp_cap(PEntity->getMod(MOD_ENMITY)+enmityBonus, -50, 100)) / 100.0f;
+    {
+        int8 enmityBonus = 0;
+        if (PEntity->objtype & TYPE_PC)
+        {
+            enmityBonus = ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ENMITY_INCREASE, PEntity->GetMLevel()) -
+                ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ENMITY_DECREASE, PEntity->GetMLevel());
+        }
+        float bonus = (100.0f + dsp_cap(PEntity->getMod(MOD_ENMITY)+enmityBonus, -50, 100)) / 100.0f;
 
-        PEnmity->second->CE += CE * bonus; 
+        PEnmity->second->CE += CE * bonus;
         PEnmity->second->VE += VE * bonus;
 
-        //Check for cap limit 
+        //Check for cap limit
         PEnmity->second->CE = dsp_cap(PEnmity->second->CE, 1, 10000);
         PEnmity->second->VE = dsp_cap(PEnmity->second->VE, 1, 10000);
     }
-    else 
+    else
     {
         EnmityObject_t* PEnmityObject = new EnmityObject_t;
 
 		int8 enmityBonus = 0;
 		if (PEntity->objtype & TYPE_PC)
 		{
-			enmityBonus = ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ENMITY_INCREASE, PEntity->GetMLevel()) - 
+			enmityBonus = ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ENMITY_INCREASE, PEntity->GetMLevel()) -
 				((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ENMITY_DECREASE, PEntity->GetMLevel());
 		}
 		float bonus = (100.0f + dsp_cap(PEntity->getMod(MOD_ENMITY)+enmityBonus, -50, 100)) / 100.0f;
@@ -139,12 +139,12 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE)
         m_EnmityList.insert(PEnmity, EnmityList_t::value_type(PEntity->id, PEnmityObject));
 
 		//add master to the enmity list
-		if(PEntity->objtype == TYPE_PET && PEntity->PMaster!=NULL){ 
+		if(PEntity->objtype == TYPE_PET && PEntity->PMaster!=NULL){
 			UpdateEnmity(PEntity->PMaster,0,0);
 		}
 
 		//add master to the enmity list (charmed mob)
-		if(PEntity->objtype == TYPE_MOB && PEntity->PMaster!=NULL && PEntity->PMaster->objtype == TYPE_PC){ 
+		if(PEntity->objtype == TYPE_MOB && PEntity->PMaster!=NULL && PEntity->PMaster->objtype == TYPE_PC){
 			UpdateEnmity(PEntity->PMaster,0,0);
 		}
     }
@@ -196,7 +196,7 @@ void CEnmityContainer::AddPartyEnmity(CCharEntity* PChar)
 									}
 							}
 					}
-				}	
+				}
 
 	}
 
@@ -205,12 +205,12 @@ void CEnmityContainer::AddPartyEnmity(CCharEntity* PChar)
 bool CEnmityContainer::HasTargetID(uint16 TargetID){
 	EnmityList_t::iterator PEnmity = m_EnmityList.lower_bound(TargetID);
 
-    if( PEnmity != m_EnmityList.end() && 
+    if( PEnmity != m_EnmityList.end() &&
        !m_EnmityList.key_comp()(TargetID, PEnmity->first))
 	{
         return true;
     }
-    else 
+    else
     {
 		return false;
 	}
@@ -253,16 +253,16 @@ void CEnmityContainer::LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percen
 	// current highest enmity before this update
 	CBattleEntity* OldEntity = GetHighestEnmity();
 
-    if( PEnmity != m_EnmityList.end() && 
+    if( PEnmity != m_EnmityList.end() &&
        !m_EnmityList.key_comp()(PEntity->id, PEnmity->first))
 	{
-		float mod = ((float)(percent)/100.0f); 
+		float mod = ((float)(percent)/100.0f);
 
 		int32 CEValue = (float)(PEnmity->second->CE * mod);
-        PEnmity->second->CE -= (CEValue < 0 ? 0 : CEValue); 
+        PEnmity->second->CE -= (CEValue < 0 ? 0 : CEValue);
 
 		int32 VEValue = (float)(PEnmity->second->VE * mod);
-		PEnmity->second->VE -= (VEValue < 0 ? 0 : VEValue); 
+		PEnmity->second->VE -= (VEValue < 0 ? 0 : VEValue);
 
 
 		// transfer hate if HateReceiver not null
@@ -311,7 +311,7 @@ void CEnmityContainer::UpdateEnmityFromDamage(CBattleEntity* PEntity, uint16 Dam
 	uint16 CE =  (80.0f / mod) * Damage;
 	uint16 VE = (240.0f / mod) * Damage;
 
-	UpdateEnmity(PEntity, CE, VE); 
+	UpdateEnmity(PEntity, CE, VE);
 }
 
 /************************************************************************
@@ -334,14 +334,14 @@ void CEnmityContainer::UpdateEnmityFromAttack(CBattleEntity* PEntity, uint16 Dam
 CBattleEntity* CEnmityContainer::GetHighestEnmity()
 {
 	uint32 HighestEnmity = 0;
-	
+
 	CBattleEntity* PEntity = NULL;
 
 	for (EnmityList_t::iterator it = m_EnmityList.begin(); it != m_EnmityList.end(); ++it)
 	{
 		EnmityObject_t* PEnmityObject = it->second;
 		uint32 Enmity = PEnmityObject->CE + PEnmityObject->VE;
-		
+
 		if (Enmity >= HighestEnmity)
 		{
 			HighestEnmity = Enmity;
@@ -355,9 +355,9 @@ void CEnmityContainer::DecayEnmity()
 {
 	CBattleEntity* PEntity = NULL;
 
-	for (EnmityList_t::iterator it = m_EnmityList.begin(); it != m_EnmityList.end(); ++it)
-	{
-		EnmityObject_t* PEnmityObject = it->second;
+    for (EnmityList_t::iterator it = m_EnmityList.begin(); it != m_EnmityList.end(); ++it)
+    {
+        EnmityObject_t* PEnmityObject = it->second;
 
 		//Should lose 60/sec, and this is called twice a sec, hence 30.
 		PEnmityObject->VE -= PEnmityObject->VE > 30 ? 30 : PEnmityObject->VE;

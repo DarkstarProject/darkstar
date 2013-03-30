@@ -153,11 +153,11 @@ void CalculateStats(CMobEntity * PMob)
 		// pets have lower health
 		if(PMob->PMaster != NULL)
 		{
-			growth = 0.95;
+			growth = 1.0;
 		}
 
 
-		PMob->health.maxhp = (int16)(base * pow(lvl, growth) * PMob->HPstat);
+		PMob->health.maxhp = (int16)(base * pow(lvl, growth) * PMob->HPscale);
 
 		if(isNM)
 		{
@@ -180,8 +180,9 @@ void CalculateStats(CMobEntity * PMob)
 	case JOB_DRK:
 	case JOB_BLU:
 	case JOB_SCH:
+	case JOB_SMN:
 		if(PMob->MPmodifier == 0){
-			PMob->health.maxmp = (int16)(18.2 * pow(PMob->GetMLevel(),1.1075) * PMob->MPstat);
+			PMob->health.maxmp = (int16)(18.2 * pow(PMob->GetMLevel(),1.1075) * PMob->MPscale);
 			if(isNM){
 			PMob->health.maxmp *= 2.5;
 				if(PMob->GetMLevel()>75){
@@ -323,26 +324,24 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->m_SpecialSkill = 0;
 	}
 
-	PMob->m_PetRecastTime = 0;
-
 	// all pets must be defined in the mob_pets file
 	// set recast times for summoning pets
-	if(PMob->GetMJob() == JOB_BST)
+	if(!PMob->isInDynamis())
 	{
-		PMob->m_PetRecastTime = 60000;
-	}
-	else if(PMob->GetMJob() == JOB_DRG && !isNM && !PMob->isInDynamis())
-	{
-		// 20 min recast
-		PMob->m_PetRecastTime = 720000;
-	}
-	else if(PMob->GetMJob() == JOB_SMN)
-	{
-		PMob->m_PetRecastTime = 60000;
-	}
-	else if(PMob->GetMJob() == JOB_PUP)
-	{
-		PMob->m_PetRecastTime = 720000;
+		if(PMob->GetMJob() == JOB_BST)
+		{
+			PMob->m_SpecialCoolDown = 60000;
+			PMob->m_SpecialSkill = 761;
+		}
+		else if(PMob->GetMJob() == JOB_DRG && !isNM)
+		{
+			// 20 min recast
+			// PMob->m_SpecialCoolDown = 720000;
+		}
+		else if(PMob->GetMJob() == JOB_PUP)
+		{
+			// PMob->m_SpecialCoolDown = 720000;
+		}
 	}
 
 	// clear current traits first
@@ -434,6 +433,9 @@ void GetAvailableSpells(CMobEntity* PMob) {
 		case JOB_RDM:
 			PMob->m_MagicRecastTime = 20000;
 		break;
+		case JOB_SMN:
+			PMob->m_MagicRecastTime = 45000;
+		break;
 		default:
 			PMob->m_MagicRecastTime = 30000;
 		break;
@@ -445,6 +447,10 @@ void GetAvailableSpells(CMobEntity* PMob) {
 	// change spell chances
 	switch(PMob->GetMJob())
 	{
+		case JOB_SMN:
+			// smn only has "buffs"
+			buffChance = 100;
+		break;
 		case JOB_BLM:
 			gaChance = 40;
 			buffChance = 15;

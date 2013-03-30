@@ -11,6 +11,9 @@ require("scripts/globals/summon");
 -----------------------------------------
 
 function OnMagicCastingCheck(caster,target,spell)
+    if(caster:hasPet()) then
+        return 1;
+    end
 	return 0;
 end;
 

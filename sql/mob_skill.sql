@@ -53,7 +53,7 @@ INSERT INTO `mob_skill` VALUES (16,0,16,'Ranged_Attack', 0, 25.0, 2000, 0, 4, 0)
 INSERT INTO `mob_skill` VALUES (402,0,402,'Catapult', 0, 25.0, 2000, 0, 4, 0);
 INSERT INTO `mob_skill` VALUES (808,0,351,'Jump', 0, 9.5, 2000, 0, 4, 0);
 INSERT INTO `mob_skill` VALUES (514,0,442,'Jumping_Thrust', 0, 9.5, 2000, 0, 4, 0);
-INSERT INTO `mob_skill` VALUES (476,0,505,'Spawn_Pet', 0, 7.0, 2000, 0, 4, 0);
+INSERT INTO `mob_skill` VALUES (761,0,505,'Call_Beast', 0, 7.0, 2000, 0, 1, 0);
 
 -- two hours
 INSERT INTO `mob_skill` VALUES (432,0,709,'Mighty_Strikes', 0, 7.0, 2000, 0, 1, 0);
@@ -69,6 +69,7 @@ INSERT INTO `mob_skill` VALUES (440,0,719,'Soul_Voice', 0, 7.0, 2000, 0, 1, 0);
 INSERT INTO `mob_skill` VALUES (479,0,720,'Eagle_Eye_Shot', 0, 25.0, 2000, 0, 4, 0);
 INSERT INTO `mob_skill` VALUES (474,0,721,'Meikyo_Shisui', 0, 7.0, 2000, 0, 1, 0);
 INSERT INTO `mob_skill` VALUES (475,0,722,'Mijin_Gakure', 1, 15.0, 2000, 0, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (476,0,722,'Call_Wyvern', 0, 7.0, 2000, 0, 1, 0);
 -- INSERT INTO `mob_skill` VALUES (478,0,724,'Astral_Flow', 0, 7.0, 2000, 0, 1, 0);
 
 -- Rabbits
@@ -575,7 +576,12 @@ INSERT INTO `mob_skill` VALUES (303,169,303,'Soul_Drain', 0, 7.0, 2000, 1000, 4,
 INSERT INTO `mob_skill` VALUES (304,169,304,'Hecatomb_Wave', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (307,169,307,'Demonic_Howl', 1, 10.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (892,169,311,'Condemnation', 4, 10.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (893,169,313,'Quadrastrike', 0, 7.0, 2000, 1000, 4, 0);
+-- Demon dynamis
+INSERT INTO `mob_skill` VALUES (303,339,303,'Soul_Drain', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (304,339,304,'Hecatomb_Wave', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (307,339,307,'Demonic_Howl', 1, 10.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (892,339,311,'Condemnation', 4, 10.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (893,339,313,'Quadrastrike', 0, 7.0, 2000, 1000, 4, 0);
 -- Goobbue
 INSERT INTO `mob_skill` VALUES (325,136,325,'Blow', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (327,136,327,'Beatdown', 0, 7.0, 2000, 1000, 4, 0);

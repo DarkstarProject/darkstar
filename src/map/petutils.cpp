@@ -60,8 +60,8 @@ struct Pet_t
 
 	uint8		mJob;
 	uint8		m_Element;
-  float       HPstat;                             // HP boost percentage
-    float       MPstat;                             // MP boost percentage
+  float       HPscale;                             // HP boost percentage
+    float       MPscale;                             // MP boost percentage
 
     uint8 		speed;
     // stat ranks
@@ -75,6 +75,35 @@ struct Pet_t
     uint8        attRank;
     uint8        defRank;
     uint8        accRank;
+
+    // magic stuff
+    bool hasSpellScript;
+    uint16 spellList;
+
+    // resists
+    int16 slashres;
+    int16 pierceres;
+    int16 hthres;
+    int16 impactres;
+
+    int16 firedef;
+    int16 icedef;
+    int16 winddef;
+    int16 earthdef;
+    int16 thunderdef;
+    int16 waterdef;
+    int16 lightdef;
+    int16 darkdef;
+
+    int16 fireres;
+    int16 iceres;
+    int16 windres;
+    int16 earthres;
+    int16 thunderres;
+    int16 waterres;
+    int16 lightres;
+    int16 darkres;
+
 };
 
 std::vector<Pet_t*> g_PPetList;
@@ -116,7 +145,10 @@ void LoadPetList()
           mob_family_system.CHR,\
           mob_family_system.DEF,\
           mob_family_system.ATT,\
-          mob_family_system.ACC\
+          mob_family_system.ACC, \
+          hasSpellScript, spellList, \
+          Slash, Pierce, H2H, Impact, \
+		  Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark \
         FROM pet_list, mob_pools, mob_family_system \
         WHERE pet_list.poolid = mob_pools.poolid AND mob_pools.familyid = mob_family_system.familyid";
 
@@ -138,8 +170,8 @@ void LoadPetList()
 			Pet->mJob = (uint8)Sql_GetIntData(SqlHandle,8);
 			Pet->m_Element = (uint8)Sql_GetIntData(SqlHandle, 9);
 
-			Pet->HPstat = Sql_GetFloatData(SqlHandle, 10);
-			Pet->MPstat = Sql_GetFloatData(SqlHandle, 11);
+			Pet->HPscale = Sql_GetFloatData(SqlHandle, 10);
+			Pet->MPscale = Sql_GetFloatData(SqlHandle, 11);
 
 			Pet->speed = (uint8)Sql_GetIntData(SqlHandle,12);
 
@@ -153,6 +185,34 @@ void LoadPetList()
 			Pet->defRank = (uint8)Sql_GetIntData(SqlHandle,20);
 			Pet->attRank = (uint8)Sql_GetIntData(SqlHandle,21);
 			Pet->accRank = (uint8)Sql_GetIntData(SqlHandle,22);
+
+			Pet->hasSpellScript = (bool)Sql_GetIntData(SqlHandle,23);
+
+			Pet->spellList = (uint8)Sql_GetIntData(SqlHandle,24);
+
+			// resistances
+			Pet->slashres = (uint16)(Sql_GetFloatData(SqlHandle,25) * 1000);
+			Pet->pierceres = (uint16)(Sql_GetFloatData(SqlHandle,26) * 1000);
+			Pet->hthres = (uint16)(Sql_GetFloatData(SqlHandle,27) * 1000);
+			Pet->impactres = (uint16)(Sql_GetFloatData(SqlHandle,28) * 1000);
+
+			Pet->firedef = (uint16)((Sql_GetFloatData(SqlHandle, 29) - 1) * -1000);
+			Pet->icedef = (uint16)((Sql_GetFloatData(SqlHandle, 30) - 1) * -1000);
+			Pet->winddef = (uint16)((Sql_GetFloatData(SqlHandle, 31) - 1) * -1000);
+			Pet->earthdef = (uint16)((Sql_GetFloatData(SqlHandle, 32) - 1) * -1000);
+			Pet->thunderdef = (uint16)((Sql_GetFloatData(SqlHandle, 33) - 1) * -1000);
+			Pet->waterdef = (uint16)((Sql_GetFloatData(SqlHandle, 34) - 1) * -1000);
+			Pet->lightdef = (uint16)((Sql_GetFloatData(SqlHandle, 35) - 1) * -1000);
+			Pet->darkdef = (uint16)((Sql_GetFloatData(SqlHandle, 36) - 1) * -1000);
+
+			Pet->fireres = (uint16)((Sql_GetFloatData(SqlHandle, 29) - 1) * -100);
+			Pet->iceres = (uint16)((Sql_GetFloatData(SqlHandle, 30) - 1) * -100);
+			Pet->windres = (uint16)((Sql_GetFloatData(SqlHandle, 31) - 1) * -100);
+			Pet->earthres = (uint16)((Sql_GetFloatData(SqlHandle, 32) - 1) * -100);
+			Pet->thunderres = (uint16)((Sql_GetFloatData(SqlHandle, 33) - 1) * -100);
+			Pet->waterres = (uint16)((Sql_GetFloatData(SqlHandle, 34) - 1) * -100);
+			Pet->lightres = (uint16)((Sql_GetFloatData(SqlHandle, 35) - 1) * -100);
+			Pet->darkres = (uint16)((Sql_GetFloatData(SqlHandle, 36) - 1) * -100);
 
 			g_PPetList.push_back(Pet);
 		}
@@ -274,7 +334,7 @@ void LoadJugStats(CPetEntity* PMob, Pet_t* petStats){
 		growth = 1.07;
 	}
 
-	PMob->health.maxhp = (int16)(18.0 * pow(lvl, growth) * petStats->HPstat);
+	PMob->health.maxhp = (int16)(18.0 * pow(lvl, growth) * petStats->HPscale);
 
 	switch(PMob->GetMJob()){
 	case JOB_PLD:
@@ -284,7 +344,7 @@ void LoadJugStats(CPetEntity* PMob, Pet_t* petStats){
 	case JOB_DRK:
 	case JOB_BLU:
 	case JOB_SCH:
-		PMob->health.maxmp = (int16)(18.2 * pow(lvl,1.1075) * petStats->MPstat);
+		PMob->health.maxmp = (int16)(18.2 * pow(lvl,1.1075) * petStats->MPscale);
 		break;
 	}
 
@@ -634,6 +694,57 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 		PPet->health.tp = ((CCharEntity*)PMaster)->petZoningInfo.petTP;
 		PPet->health.hp = ((CCharEntity*)PMaster)->petZoningInfo.petHP;
 	}
+
+}
+
+void SpawnMobPet(CBattleEntity* PMaster, uint32 PetID)
+{
+	/*
+	This should eventually be merged into one big spawn pet method.
+	At the moment player pets and mob pets are totally different. We need a central place
+	to manage pet families and spawn them.
+	*/
+
+	// grab pet info
+	Pet_t* petData = g_PPetList.at(PetID);
+	CMobEntity* PPet = (CMobEntity*)PMaster->PPet;
+
+	PPet->look = petData->look;
+	PPet->name = petData->name;
+	PPet->m_EcoSystem = petData->EcoSystem;
+	PPet->m_Family = petData->m_Family;
+	PPet->m_Element = petData->m_Element;
+	PPet->HPscale = petData->HPscale;
+	PPet->MPscale = petData->MPscale;
+	PPet->m_HasSpellScript = petData->hasSpellScript;
+
+    // assuming elemental spawn
+    PPet->setModifier(MOD_DMGPHYS,-50); //-50% PDT
+
+	PPet->m_SpellListContainer = mobSpellList::GetMobSpellList(petData->spellList);
+
+	PPet->setModifier(MOD_SLASHRES, petData->slashres);
+	PPet->setModifier(MOD_PIERCERES,petData->pierceres);
+	PPet->setModifier(MOD_HTHRES, petData->hthres);
+	PPet->setModifier(MOD_IMPACTRES, petData->impactres);
+
+    PPet->setModifier(MOD_FIREDEF,    petData->firedef); // These are stored as floating percentages
+    PPet->setModifier(MOD_ICEDEF,     petData->icedef); // and need to be adjusted into modifier units.
+    PPet->setModifier(MOD_WINDDEF,    petData->winddef); // Higher DEF = lower damage.
+    PPet->setModifier(MOD_EARTHDEF,   petData->earthdef); // Negatives signify increased damage.
+    PPet->setModifier(MOD_THUNDERDEF, petData->thunderdef); // Positives signify reduced damage.
+    PPet->setModifier(MOD_WATERDEF,   petData->waterdef); // Ex: 125% damage would be 1.25, 50% damage would be 0.50
+    PPet->setModifier(MOD_LIGHTDEF,   petData->lightdef); // (1.25 - 1) * -1000 = -250 DEF
+    PPet->setModifier(MOD_DARKDEF,    petData->darkdef); // (0.50 - 1) * -1000 = 500 DEF
+
+    PPet->setModifier(MOD_FIRERES,    petData->fireres); // These are stored as floating percentages
+    PPet->setModifier(MOD_ICERES,     petData->iceres); // and need to be adjusted into modifier units.
+    PPet->setModifier(MOD_WINDRES,    petData->windres); // Higher RES = lower damage.
+    PPet->setModifier(MOD_EARTHRES,   petData->earthres); // Negatives signify lower resist chance.
+    PPet->setModifier(MOD_THUNDERRES, petData->thunderres); // Positives signify increased resist chance.
+    PPet->setModifier(MOD_WATERRES,   petData->waterres);
+    PPet->setModifier(MOD_LIGHTRES,   petData->lightres);
+    PPet->setModifier(MOD_DARKRES,    petData->darkres);
 
 }
 

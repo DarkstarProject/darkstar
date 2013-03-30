@@ -67,7 +67,7 @@ void CMobSpellContainer::AddSpell(int16 spellId)
     // na spell and erase
     m_naList.push_back(spellId);
 
-  } else if((spell->getValidTarget() & TARGET_SELF) && spell->getSkillType() == SKILL_HEA){
+  } else if((spell->getValidTarget() & TARGET_SELF) && spell->getSkillType() == SKILL_HEA || spellId == 549 || spellId == 578 || spellId == 581 || spellId == 593){ // includes blue mage healing spells, wild carrot etc
     // add to healing
     m_healList.push_back(spellId);
 

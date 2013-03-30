@@ -361,16 +361,16 @@ void LoadMOBList(CZone* PZone)
 			// phuabo 1: sous l'eau, 2: sort de l'eau, 3: rentre dans l'eau
 			PMob->animationsub = (uint32)Sql_GetIntData(SqlHandle,50);
 
-            // Setup HP / MP Stat Percentage Boost
-            PMob->HPstat = Sql_GetFloatData(SqlHandle,51);
-            PMob->MPstat = Sql_GetFloatData(SqlHandle,52);
+      // Setup HP / MP Stat Percentage Boost
+      PMob->HPscale = Sql_GetFloatData(SqlHandle,51);
+      PMob->MPscale = Sql_GetFloatData(SqlHandle,52);
 
 			PMob->PBattleAI = new CAIMobDummy(PMob);
 
-            if (PMob->m_AllowRespawn = PMob->m_SpawnType == SPAWNTYPE_NORMAL)
-            {
-                PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
-            }
+      if (PMob->m_AllowRespawn = PMob->m_SpawnType == SPAWNTYPE_NORMAL)
+      {
+          PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+      }
 
 			// Check if we should be looking up scripts for this mob
 			PMob->m_HasSpellScript = (uint8)Sql_GetIntData(SqlHandle,53);
@@ -418,8 +418,8 @@ void LoadMOBList(CZone* PZone)
       uint32 masterid = (uint32)Sql_GetUIntData(SqlHandle,0);
       uint32 petid = (uint32)Sql_GetUIntData(SqlHandle,1);
 
-      CBattleEntity* PMaster = (CBattleEntity*)PZone->GetEntity(masterid & 0x0FFF, TYPE_MOB);
-      CBattleEntity* PPet = (CBattleEntity*)PZone->GetEntity(petid & 0x0FFF, TYPE_MOB);
+      CMobEntity* PMaster = (CMobEntity*)PZone->GetEntity(masterid & 0x0FFF, TYPE_MOB);
+      CMobEntity* PPet = (CMobEntity*)PZone->GetEntity(petid & 0x0FFF, TYPE_MOB);
 
       if(PMaster == NULL)
       {
@@ -431,8 +431,12 @@ void LoadMOBList(CZone* PZone)
       }
       else
       {
+        // pet is always spawned by master
+        PPet->m_AllowRespawn = false;
+
         PMaster->PPet = PPet;
         PPet->PMaster = PMaster;
+
       }
 
     }

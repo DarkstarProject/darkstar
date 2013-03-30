@@ -3884,7 +3884,7 @@ void ClaimMob(CBattleEntity* PDefender, CBattleEntity* PAttacker)
 
         CMobEntity* mob = (CMobEntity*)PDefender;
 
-        mob->PEnmityContainer->UpdateEnmityFromDamage(PAttacker, 0);
+        mob->PEnmityContainer->AddBaseEnmity(PAttacker);
         mob->m_OwnerID.id = PAttacker->id;
         mob->m_OwnerID.targid = PAttacker->targid;
     }

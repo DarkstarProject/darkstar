@@ -569,7 +569,7 @@ void CZone::SetWeather(WEATHER weather)
 	{
 		CMobEntity* PCurrentMob = (CMobEntity*)it->second;
 
-        if (PCurrentMob->m_EcoSystem == SYSTEM_ELEMENTAL)
+        if (PCurrentMob->m_EcoSystem == SYSTEM_ELEMENTAL && PCurrentMob->PMaster == NULL)
         {
             if (PCurrentMob->m_Element == Element[weather])
 			{

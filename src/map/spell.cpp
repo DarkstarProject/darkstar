@@ -252,6 +252,8 @@ uint16 CSpell::getMessage()
 uint16 CSpell::getAoEMessage()
 {
     switch(m_message){
+        case 93: // vanishes
+            return 273;
         case 85: // resists
             return 284;
         case 230: //casts gain the effect of
@@ -276,11 +278,6 @@ void CSpell::setMessage(uint16 message)
 
 uint16 CSpell::getDefaultMessage()
 {
-    // this can eventually get removed
-    switch(m_skillType){
-        case 34: //enhancing
-            return 230;
-    }
     return m_DefaultMessage;
 }
 

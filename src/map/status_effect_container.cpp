@@ -1114,7 +1114,6 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
 		m_RegenCheckTime = tick;
 		m_POwner->addHP(m_POwner->getMod(MOD_REGEN));
 
-
 		if (m_POwner->getMod(MOD_AVATAR_PERPETUATION) > 0 && (m_POwner->objtype & TYPE_PC))
 		{
 			int8 perpetuation = m_POwner->getMod(MOD_AVATAR_PERPETUATION);

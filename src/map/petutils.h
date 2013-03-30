@@ -64,11 +64,12 @@ namespace petutils
 	void	FreePetList();
 
 	void	SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone);
-	void	DespawnPet(CBattleEntity* PMaster);
-	void	AttackTarget(CBattleEntity* PMaster, CBattleEntity* PTarget);
-	void	RetreatToMaster(CBattleEntity* PMaster);
-	void	MakePetStay(CBattleEntity* PMaster);
-	int16	PerpetuationCost(uint32 id, uint8 level);
+  void  SpawnMobPet(CBattleEntity* PMaster, uint32 PetID);
+  void  DespawnPet(CBattleEntity* PMaster);
+  void  AttackTarget(CBattleEntity* PMaster, CBattleEntity* PTarget);
+  void  RetreatToMaster(CBattleEntity* PMaster);
+  void  MakePetStay(CBattleEntity* PMaster);
+  int16 PerpetuationCost(uint32 id, uint8 level);
 };
 
 #endif
