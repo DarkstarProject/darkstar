@@ -4724,6 +4724,12 @@ inline int32 CLuaBaseEntity::spawnPet(lua_State *L)
 		{
 			CMobEntity* mob = (CMobEntity*)m_PBaseEntity;
 
+			if(mob->PPet == NULL)
+			{
+				ShowError("lua_baseentity::spawnPet Mob %d pet is NULL\n", mob->id);
+				return 0;
+			}
+
 			if( !lua_isnil(L,1) && lua_isstring(L,1) )
 			{
 				// pick my elemental

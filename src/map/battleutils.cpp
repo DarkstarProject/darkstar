@@ -4016,6 +4016,15 @@ CMobSkill* GetTwoHourMobSkill(JOBTYPE job)
         case JOB_NIN:
         id = 475;
         break;
+        case JOB_DRG:
+        id = 476;
+        break;
+        // smn
+        // pup
+        // blu
+        // cor
+        // dnc
+        // sch
         default:
             return NULL;
     }

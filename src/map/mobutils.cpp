@@ -346,7 +346,8 @@ void CalculateStats(CMobEntity * PMob)
 		}
 		else if(PMob->GetMJob() == JOB_PUP)
 		{
-			// PMob->m_SpecialCoolDown = 720000;
+			// PMob->m_SpecialSkill = 1645;
+			PMob->m_SpecialCoolDown = 720000;
 		}
 	}
 

@@ -374,6 +374,10 @@ INSERT INTO `mob_pets` VALUES (17109104,17109105,9);
 INSERT INTO `mob_pets` VALUES (17109137,17109138,9);
 INSERT INTO `mob_pets` VALUES (17150028,17150030,9);
 INSERT INTO `mob_pets` VALUES (17150050,17150053,9);
+INSERT INTO `mob_pets` VALUES (17367080,17367081,9);
+INSERT INTO `mob_pets` VALUES (17367082,17367083,9);
+INSERT INTO `mob_pets` VALUES (17367084,17367085,9);
+
 INSERT INTO `mob_pets` VALUES (16797840,16797841,15);
 INSERT INTO `mob_pets` VALUES (16797845,16797846,15);
 INSERT INTO `mob_pets` VALUES (16797876,16797877,15);
@@ -669,6 +673,149 @@ INSERT INTO `mob_pets` VALUES (17506670,17506671,15);
 INSERT INTO `mob_pets` VALUES (17125974,17125975,15);
 INSERT INTO `mob_pets` VALUES (17125975,17125976,15);
 INSERT INTO `mob_pets` VALUES (17125976,17125977,15);
+INSERT INTO `mob_pets` VALUES (17375263,17375264,15);
+INSERT INTO `mob_pets` VALUES (17375265,17375266,15);
+INSERT INTO `mob_pets` VALUES (17375267,17375268,15);
+INSERT INTO `mob_pets` VALUES (17436874,17436875,15);
+INSERT INTO `mob_pets` VALUES (17436879,17436880,15);
+INSERT INTO `mob_pets` VALUES (17436884,17436885,15);
+INSERT INTO `mob_pets` VALUES (17436888,17436889,15);
+INSERT INTO `mob_pets` VALUES (17436895,17436896,15);
+INSERT INTO `mob_pets` VALUES (17436899,17436900,15);
+
+INSERT INTO `mob_pets` VALUES (16875666, 16875667, 14); -- Fomor_s_Wyvern
+INSERT INTO `mob_pets` VALUES (16879886, 16879887, 14); -- Fomor_s_Wyvern
+INSERT INTO `mob_pets` VALUES (16887855, 16887856, 14); -- Fomor_s_Wyvern
+INSERT INTO `mob_pets` VALUES (16887944, 16887945, 14); -- Fomor_s_Wyvern
+INSERT INTO `mob_pets` VALUES (16891954, 16891955, 14); -- Fomor_s_Wyvern
+INSERT INTO `mob_pets` VALUES (16891975, 16891976, 14); -- Fomor_s_Wyvern
+INSERT INTO `mob_pets` VALUES (16891979, 16891980, 14); -- Fomor_s_Wyvern
+INSERT INTO `mob_pets` VALUES (16892035, 16892036, 14); -- Fomor_s_Wyvern
+INSERT INTO `mob_pets` VALUES (16990396, 16990397, 14); -- Mamool_Ja_s_Wyvern
+INSERT INTO `mob_pets` VALUES (16990410, 16990411, 14); -- Mamool_Ja_s_Wyvern
+INSERT INTO `mob_pets` VALUES (16990440, 16990441, 14); -- Mamool_Ja_s_Wyvern
+INSERT INTO `mob_pets` VALUES (16990442, 16990443, 14); -- Mamool_Ja_s_Wyvern
+INSERT INTO `mob_pets` VALUES (16998440, 16998441, 14); -- Draugar_s_Wyvern
+INSERT INTO `mob_pets` VALUES (16998444, 16998445, 14); -- Draugar_s_Wyvern
+INSERT INTO `mob_pets` VALUES (16998456, 16998457, 14); -- Draugar_s_Wyvern
+INSERT INTO `mob_pets` VALUES (16998534, 16998535, 14); -- Draugar_s_Wyvern
+INSERT INTO `mob_pets` VALUES (16998540, 16998541, 14); -- Draugar_s_Wyvern
+INSERT INTO `mob_pets` VALUES (16998648, 16998649, 14); -- Draugar_s_Wyvern
+INSERT INTO `mob_pets` VALUES (16998659, 16998660, 14); -- Draugar_s_Wyvern
+INSERT INTO `mob_pets` VALUES (16998769, 16998770, 14); -- Draugar_s_Wyvern
+INSERT INTO `mob_pets` VALUES (16998798, 16998799, 14); -- Draugar_s_Wyvern
+INSERT INTO `mob_pets` VALUES (16998814, 16998815, 14); -- Draugar_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17043505, 17043506, 14); -- Mamool_Ja_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17043510, 17043511, 14); -- Mamool_Ja_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17043571, 17043572, 14); -- Mamool_Ja_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17043581, 17043582, 14); -- Mamool_Ja_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17043605, 17043606, 14); -- Mamool_Ja_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17043679, 17043680, 14); -- Mamool_Ja_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17043681, 17043682, 14); -- Mamool_Ja_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17043749, 17043750, 14); -- Mamool_Ja_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17043755, 17043756, 14); -- Mamool_Ja_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17043794, 17043795, 14); -- Mamool_Ja_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17043811, 17043812, 14); -- Mamool_Ja_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17101057, 17101058, 14); -- Draugar_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17101059, 17101075, 14); -- Draugar_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17101127, 17101128, 14); -- Draugar_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17534991, 17534992, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17535014, 17535015, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17535032, 17535033, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17535042, 17535043, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17535072, 17535073, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17535096, 17535097, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17535152, 17535153, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17535164, 17535165, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17535179, 17535180, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17539088, 17539089, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17539105, 17539106, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17539112, 17539113, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17539164, 17539165, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17539199, 17539200, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17539239, 17539240, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17539249, 17539250, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17539291, 17539292, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17543192, 17543193, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17543229, 17543230, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17543237, 17543238, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17543241, 17543242, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17543256, 17543257, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17543266, 17543267, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17543339, 17543340, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17543360, 17543361, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17543415, 17543416, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17543431, 17543432, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17547282, 17547283, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17547312, 17547313, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17547332, 17547333, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17547348, 17547349, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17547426, 17547427, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17547452, 17547453, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17326111, 17326112, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17326157, 17326158, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17326162, 17326163, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17326225, 17326226, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17326271, 17326272, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17326273, 17326274, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17326305, 17326306, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17326307, 17326308, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17326331, 17326332, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17326383, 17326384, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17326421, 17326422, 14); -- Vanguard_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17326492, 17326493, 14); -- Hydra_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17326503, 17326504, 14); -- Hydra_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17326531, 17326532, 14); -- Hydra_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17326549, 17326550, 14); -- Hydra_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17326594, 17326595, 14); -- Hydra_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17326627, 17326628, 14); -- Hydra_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17326640, 17326641, 14); -- Hydra_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17326642, 17326643, 14); -- Hydra_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17326704, 17326705, 14); -- Hydra_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17326734, 17326735, 14); -- Hydra_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17326746, 17326747, 14); -- Hydra_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17326769, 17326770, 14); -- Hydra_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17330232, 17330233, 14); -- Kindred_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17330234, 17330235, 14); -- Kindred_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17330263, 17330264, 14); -- Kindred_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17330329, 17330330, 14); -- Kindred_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17330418, 17330419, 14); -- Kindred_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17330428, 17330429, 14); -- Kindred_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17330430, 17330431, 14); -- Zagan_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17330477, 17330478, 14); -- Kindred_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17330572, 17330573, 14); -- Kindred_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17330608, 17330609, 14); -- Kindred_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17330639, 17330640, 14); -- Kindred_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17330643, 17330644, 14); -- Kindred_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17330653, 17330654, 14); -- Kindred_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17330693, 17330694, 14); -- Kindred_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17330699, 17330700, 14); -- Kindred_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17330710, 17330711, 14); -- Kindred_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17330744, 17330745, 14); -- Kindred_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17330766, 17330767, 14); -- Kindred_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17199584, 17199585, 14); -- Orc_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17203664, 17203665, 14); -- Orc_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17281480, 17281481, 14); -- Sahagin_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17346571, 17346572, 14); -- Orc_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17346577, 17346578, 14); -- Orc_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17346583, 17346584, 14); -- Orc_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17387585, 17387586, 14); -- Orc_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17444904, 17444906, 14); -- Sahagin_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17444910, 17444912, 14); -- Sahagin_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17444916, 17444918, 14); -- Sahagin_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17465360, 17465361, 14); -- Maat_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17465362, 17465363, 14); -- Maat_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17465364, 17465365, 14); -- Maat_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17498356, 17498357, 14); -- Sahagin_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17498516, 17498517, 14); -- Sahagin_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17498560, 17498561, 14); -- Sahagin_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17514515, 17514518, 14); -- Ark_Angel_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17514516, 17514519, 14); -- Ark_Angel_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17514517, 17514520, 14); -- Ark_Angel_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17514527, 17514528, 14); -- Ark_Angel_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17514535, 17514536, 14); -- Ark_Angel_s_Wyvern
+-- INSERT INTO `mob_pets` VALUES (17514543, 17514544, 14); -- Ark_Angel_s_Wyvern
+
 /*!40000 ALTER TABLE `mob_pets` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

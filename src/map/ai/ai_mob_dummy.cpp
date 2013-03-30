@@ -748,7 +748,8 @@ void CAIMobDummy::ActionAbilityFinish()
 
 	// I think this should be saved for all skills used by the mob
 	// this is useful for funguar remembering its used moves
-	if (m_PMobSkill->isTwoHour()) // 2h
+	// drg can use their two hour multiple times
+	if (m_PMobSkill->isTwoHour() && m_PMob->GetMJob() != JOB_DRG) // 2h
 	{
 		m_PMob->m_SkillStatus = 1;
 	}
@@ -1589,7 +1590,7 @@ void CAIMobDummy::ActionSpecialSkill()
 	// this makes sure the proper packet is sent
 	m_ActionType = ACTION_MOBABILITY_FINISH;
 
-    DSP_DEBUG_BREAK_IF(m_PSubBattleTarget == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
     m_LastActionTime = m_Tick;
     m_LastSpecialTime = m_Tick;
