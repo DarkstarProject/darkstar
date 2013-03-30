@@ -25,7 +25,7 @@ function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_ENMITY_DOWN;
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 10, 3, 120);
-    mob:resetEnmtiy(target);
+    mob:resetEnmity(target);
 
 	target:delHP(dmg);
 	return dmg;
