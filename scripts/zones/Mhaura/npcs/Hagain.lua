@@ -3,6 +3,12 @@
 --	NPC: Hagain
 --	Standard Info NPC
 -----------------------------------
+package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/keyitems");
+require("scripts/globals/quests");
+
 
 -----------------------------------
 -- onTrade Action
@@ -35,6 +41,7 @@ function onTrigger(player,npc)
 	else
 		player:startEvent(0x2712);	-- standard dialog
 	end
+	
 end;
 
 -----------------------------------
@@ -54,9 +61,12 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	if (csid == 0x2713) then
-		player:setVar("hittingTheMarquisateHagainCS",2);	
+		player:setVar("hittingTheMarquisateHagainCS",2);
+		player:addKeyItem(BOMB_INCENSE);
+		player:messageSpecial(KEYITEM_OBTAINED,BOMB_INCENSE);			
 	elseif(csid == 0x2715) then
 		player:setVar("hittingTheMarquisateHagainCS",9);	
+		player:delKeyItem(BOMB_INCENSE);
 		player:tradeComplete();
 	end
 
