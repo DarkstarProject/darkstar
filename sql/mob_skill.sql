@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `mob_skill` (
 -- abilities
 INSERT INTO `mob_skill` VALUES (16,0,16,'Ranged_Attack', 0, 25.0, 2000, 0, 4, 0);
 INSERT INTO `mob_skill` VALUES (402,0,402,'Catapult', 0, 25.0, 2000, 0, 4, 0);
--- INSERT INTO `mob_skill` VALUES (402,0,402,'Zarraqa', 0, 25.0, 2000, 0, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (1491,0,1298,'Zarraqa', 0, 25.0, 2000, 0, 4, 0);
 INSERT INTO `mob_skill` VALUES (808,0,351,'Jump', 0, 9.5, 2000, 0, 4, 0);
 INSERT INTO `mob_skill` VALUES (514,0,442,'Jumping_Thrust', 0, 9.5, 2000, 0, 4, 0);
 INSERT INTO `mob_skill` VALUES (761,0,505,'Call_Beast', 0, 7.0, 2000, 0, 1, 0);
@@ -1199,6 +1199,16 @@ INSERT INTO `mob_skill` VALUES (1488,246,1233,'Diamondhide', 1, 16.0, 2000, 1000
 INSERT INTO `mob_skill` VALUES (1489,246,1234,'Enervation', 1, 18.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (1490,246,1235,'Quake_Stomp', 0, 7.0, 2000, 1000, 1, 0);
 -- INSERT INTO `mob_skill` VALUES (1493,246,1247,'Healing_Stomp', 1, 16.0, 2000, 1000, 1, 0); -- NM only
+-- Automaton
+INSERT INTO `mob_skill` VALUES (1684,31,1304,'Chimera_Ripper', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1685,31,1305,'String_Clipper', 0, 7.0, 2000, 1000, 4, 0);
+
+-- INSERT INTO `mob_skill` VALUES (1688,0,1307,'Shield_Bash', 0, 7.0, 2000, 1000, 4, 0);
+
+INSERT INTO `mob_skill` VALUES (1687,28,1306,'Slap_Stick', 0, 7.0, 2000, 1000, 4, 0);
+
+INSERT INTO `mob_skill` VALUES (1686,29,1303,'Arcuballista', 0, 15.0, 2000, 1000, 4, 0);
+
 -- Lamia = 171 Merrow = 182
 INSERT INTO `mob_skill` VALUES (1510,171,1253,'Hysteric_Barrage', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (1515,182,1258,'Tail_Slap', 4, 16.0, 2000, 1000, 4, 0);
