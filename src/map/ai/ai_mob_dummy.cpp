@@ -935,15 +935,35 @@ void CAIMobDummy::ActionMagicStart()
 	if (m_PSpell->getValidTarget() & TARGET_SELF) {
 		m_PBattleSubTarget = m_PMob;
 
-		// chance to target my master
-		if(m_PMob->PMaster != NULL && (m_PSpell->getValidTarget() & TARGET_PLAYER_PARTY) && rand()%2 == 0)
+		// only buff other targets if i'm roaming
+		if(m_ActionType == ACTION_ROAMING && m_PSpell->getValidTarget() & TARGET_PLAYER_PARTY)
 		{
-			m_PBattleSubTarget = m_PMob->PMaster;
+			// chance to target my master
+			if(m_PMob->PMaster != NULL && rand()%2 == 0)
+			{
+				// target my master
+				m_PBattleSubTarget = m_PMob->PMaster;
+			}
+			else if(rand()%3 == 0)
+			{
+				// chance to target party
+				m_PTargetFinder->reset();
+				m_PTargetFinder->findWithinArea(m_PMob, AOERADIUS_ATTACKER, MOB_SPELL_MAX_RANGE);
+
+				uint16 totalTargets = m_PTargetFinder->m_targets.size();
+
+				if(totalTargets)
+				{
+					// randomly select a target
+					m_PBattleSubTarget = m_PTargetFinder->m_targets[rand()%totalTargets];
+				}
+
+			}
 		}
 
-		// TODO: chance to target party
-
-	} else {
+	}
+	else
+	{
 		m_PBattleSubTarget = m_PBattleTarget;
 	}
 
