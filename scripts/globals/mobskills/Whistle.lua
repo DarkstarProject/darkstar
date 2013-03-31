@@ -17,11 +17,12 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-	local power = mob:getMainLvl()/10 * 3.75 + 5;
+	local power = target:getMainLvl()/10 * 3.75 + 5;
 	local duration = 60;
 
 	local typeEffect = EFFECT_AGI_BOOST;
 
-    skill:setMsg(MobBuffMove(mob, typeEffect, power, 0, duration));
+    skill:setMsg(MobBuffMove(target, typeEffect, power, 3, duration));
+
 	return typeEffect;
 end;

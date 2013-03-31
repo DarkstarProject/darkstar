@@ -69,7 +69,7 @@ public:
   bool isMobOwner(CBattleEntity* PTarget);
   CBattleEntity* findMaster(CBattleEntity* PTarget);
   bool validEntity(CBattleEntity* PTarget);
-  bool isPlayer();
+  bool checkIsPlayer();
 
   bool isWithinArea(CBattleEntity* PTarget);
   bool isWithinCone(CBattleEntity* PTarget);
@@ -80,6 +80,7 @@ public:
 
 protected:
 
+  bool isPlayer; // is this being using on players only?
   float m_radius;
   position_t* m_PRadiusAround;
 

@@ -394,7 +394,6 @@ void LoadJugStats(CPetEntity* PMob, Pet_t* petStats){
 	PMob->stats.MND = fMND + mMND;
 	PMob->stats.CHR = fCHR + mCHR;
 
-	//TODO: add traits?
 }
 
 void LoadAvatarStats(CPetEntity* PChar)
@@ -969,5 +968,37 @@ int16 PerpetuationCost(uint32 id, uint8 level)
 	return cost;
 }
 
+/*
+Familiars a pet.
+*/
+void Familiar(CBattleEntity* PPet)
+{
+
+    /*
+        Boost HP by 10%
+        Increase charm duration up to 30 mins
+        boost all stats by 5%
+    */
+
+    if(PPet->objtype == TYPE_MOB && PPet->isCharmed)
+    {
+        // increase charm duration
+        PPet->charmTime += 108000 - rand()%18000;
+    }
+
+    // boost hp by 10%
+    uint16 boost = (float)PPet->health.maxhp * 0.10;
+
+    PPet->health.maxhp += boost;
+    PPet->health.hp += boost;
+    PPet->UpdateHealth();
+
+    // boost stats by 10%
+    PPet->addModifier(MOD_ATTP, 10);
+    PPet->addModifier(MOD_ACCP, 10);
+    PPet->addModifier(MOD_EVAP, 10);
+    PPet->addModifier(MOD_DEFP, 10);
+
+}
 
 }; // namespace petutils

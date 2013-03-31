@@ -85,8 +85,9 @@ void CTargetFinder::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType,
   addEntity(PTarget, false); // pet will be added later
 
   m_PTarget = PTarget;
+  isPlayer = checkIsPlayer();
 
-  if(isPlayer()){
+  if(isPlayer){
     // handle this as a player
 
     if(m_PMasterTarget->objtype == TYPE_MOB)
@@ -174,7 +175,7 @@ void CTargetFinder::addAllInMobList(CBattleEntity* PTarget, bool withPet)
 
     PBattleTarget = (CBattleEntity*)it->second;
 
-    if(PBattleTarget  && !PBattleTarget->isCharmed && isMobOwner(PBattleTarget)){
+    if(PBattleTarget && isMobOwner(PBattleTarget)){
       addEntity(PBattleTarget, withPet);
 
       if(m_targets.size() > MAX_AOE_TARGETS) return;
@@ -193,7 +194,6 @@ void CTargetFinder::addAllInAlliance(CBattleEntity* PTarget, bool withPet)
 
     for(uint16 p = 0; p < party->members.size(); p++)
     {
-
 
       addEntity(party->members.at(p), withPet);
 
@@ -292,10 +292,25 @@ bool CTargetFinder::validEntity(CBattleEntity* PTarget)
     return false;
   }
 
+
   // this is first target, always add him
   if(m_PTarget == NULL)
   {
     return true;
+  }
+
+  // shouldn't add if target is charmed by the enemy
+  if(PTarget->PMaster != NULL)
+  {
+    if(isPlayer && PTarget->PMaster->objtype == TYPE_MOB)
+    {
+      // can't target outside my team
+      return false;
+    }
+    else if(PTarget->PMaster->objtype == TYPE_PC || PTarget->PMaster->objtype == TYPE_PET)
+    {
+      return false;
+    }
   }
 
   // check placement
@@ -319,7 +334,7 @@ bool CTargetFinder::validEntity(CBattleEntity* PTarget)
   return false;
 }
 
-bool CTargetFinder::isPlayer()
+bool CTargetFinder::checkIsPlayer()
 {
   if(m_PBattleEntity->objtype == TYPE_PC) return true;
 

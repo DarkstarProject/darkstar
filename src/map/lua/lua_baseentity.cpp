@@ -248,7 +248,7 @@ inline int32 CLuaBaseEntity::getPet(lua_State* L)
 	{
 		//uint32 petid = (uint32);
 
-		CBaseEntity* PPet = ((CBattleEntity*)m_PBaseEntity)->PPet;
+		CBattleEntity* PPet = ((CBattleEntity*)m_PBaseEntity)->PPet;
 
 		lua_pushstring(L,CLuaBaseEntity::className);
 		lua_gettable(L,LUA_GLOBALSINDEX);
@@ -261,6 +261,20 @@ inline int32 CLuaBaseEntity::getPet(lua_State* L)
 	}
 	lua_pushnil(L);
 	return 1;
+}
+
+inline int32 CLuaBaseEntity::familiar(lua_State* L)
+{
+	if(((CBattleEntity*)m_PBaseEntity)->PPet != NULL)
+	{
+		//uint32 petid = (uint32);
+
+		CBattleEntity* PPet = ((CBattleEntity*)m_PBaseEntity)->PPet;
+
+		petutils::Familiar(PPet);
+	}
+
+	return 0;
 }
 
 //======================================================//
@@ -6821,6 +6835,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,petStay),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,petAbility),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPet),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,familiar),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPetID),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,needToZone),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getContainerSize),

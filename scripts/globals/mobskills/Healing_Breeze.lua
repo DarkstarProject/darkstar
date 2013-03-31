@@ -16,13 +16,13 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 	local m = math.random(1,6)+15;
-	local base = (mob:getMaxHP()/100)* m;
-	local mobHP = mob:getHP();
-	local mobMaxHP = mob:getMaxHP();
+	local base = (target:getMaxHP()/100)* m;
+	local mobHP = target:getHP();
+	local mobMaxHP = target:getMaxHP();
 	if(mobHP+base > mobMaxHP) then
 		base = mobMaxHP - mobHP; --cap it
 	end
 	skill:setMsg(MSG_SELF_HEAL);
-	mob:addHP(base);
+	target:addHP(base);
 	return base;
 end;

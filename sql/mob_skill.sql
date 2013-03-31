@@ -83,10 +83,10 @@ INSERT INTO `mob_skill` VALUES (3,206,3,'Whirl_Claws', 1, 5.0, 2000, 1000, 4, 0)
 INSERT INTO `mob_skill` VALUES (1,317,1,'Foot_Kick', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (2,317,2,'Dust_Cloud', 4, 10.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (3,317,3,'Whirl_Claws', 1, 5.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES(67, 317, 1, 'Wild_Carrot', 1, 20.0, 2000, 1000, 1, 0); -- animation needs to be found
+INSERT INTO `mob_skill` VALUES(67, 317, 1, 'Wild_Carrot', 0, 20.0, 2000, 1000, 1, 0); -- animation needs to be found
 -- Snowy Area (318)
 INSERT INTO `mob_skill` VALUES (3,318, 3,'Whirl_Claws', 1, 5.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES(67, 318, 1, 'Wild_Carrot', 1, 20.0, 2000, 1000, 1, 0);
+INSERT INTO `mob_skill` VALUES(67, 318, 1, 'Wild_Carrot', 0, 20.0, 2000, 1000, 1, 0);
 INSERT INTO `mob_skill` VALUES(405, 318, 970, 'Snow_Cloud', 4, 10.0, 2000, 1000, 4, 0);
 
 -- Sheep

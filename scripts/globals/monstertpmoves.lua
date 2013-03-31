@@ -62,6 +62,7 @@ TP_RANGED = 4;
 
 MSG_NONE = 0; -- display nothing
 MSG_USES = 101; -- simple uses message
+MSG_FAMILIAR = 108;
 MSG_SELF_HEAL = 238;
 MSG_ENFEEB_IS = 242; --XXX is petrified.
 MSG_ENFEEB = 243; --XXX receives the effect of petrification.
@@ -146,12 +147,7 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 		hitrate = 30;
 	end
 
-	-- increase damage based on tp
-	if(skill:getTP() == 300) then
-		dmgmod = dmgmod + 2;
-	elseif(skill:getTP() >= 200) then
-		dmgmod = dmgmod + 1.5;
-	end
+	dmgmod = dmgmod * MobTPMod(skill:getTP());
 
 	--work out the base damage for a single hit
 	hitdamage = (base + lvldiff);
@@ -311,12 +307,12 @@ end
 --statmod = the stat to account for resist (INT,MND,etc) e.g. MOD_INT
 --This determines how much the monsters ability resists on the player.
 --TODO: update all mob moves to use the new function
-function applyPlayerResistance(mob,effect,target,diff,skill,element)
+function applyPlayerResistance(mob,effect,target,diff,bonus,element)
     resist = 1.0;
     magicaccbonus = 0;
 
 	--get the base acc (just skill plus magic acc mod)
-	magicacc = getSkillLvl(1, mob:getMainLvl());
+	magicacc = getSkillLvl(1, mob:getMainLvl()) + bonus;
 
 	--difference in int/mnd
 	if diff > 10 then
@@ -570,7 +566,8 @@ function MobBreathMove(mob, target, percent, base, element, cap)
 	-- elemental resistence
 	if(element ~= nil and element > 0) then
 		-- no skill available, pass nil
-		local resist = applyPlayerResistance(mob,nil,target,mob:getStat(MOD_INT)-target:getStat(MOD_INT),0,element);
+		-- breath moves get a bonus accuracy because they are hard to resist
+		local resist = applyPlayerResistance(mob,nil,target,mob:getStat(MOD_INT)-target:getStat(MOD_INT),mob:getMainLvl(),element);
 
 		-- get elemental damage reduction
 		local defense = 1 - (target:getMod(resistMod[element]) + target:getMod(defenseMod[element])) / 256;
@@ -720,6 +717,7 @@ function MobGazeMove(mob, target, typeEffect, power, tick, duration)
 end;
 
 function MobBuffMove(mob, typeEffect, power, tick, duration)
+
     if(mob:addStatusEffect(typeEffect,power,tick,duration)) then
 	    return MSG_BUFF;
     end
@@ -743,6 +741,16 @@ function MobTakeAoEShadow(mob, target, max)
 	end
 
 	return math.random(1, max);
+end;
+
+function MobTPMod(tp)
+	-- increase damage based on tp
+	if(tp >= 300) then
+		return 2;
+	elseif(tp >= 200) then
+		return 1.5;
+	end
+	return 1;
 end;
 
 function fTP(tp,ftp1,ftp2,ftp3)
