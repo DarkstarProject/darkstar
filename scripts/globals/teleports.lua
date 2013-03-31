@@ -444,29 +444,6 @@ end;
 function toWajaomLaypoint(player)  -- Wajaom Woodlands Laypoint
 	player:setPos(-200,-10,80,125,0x33);
 end;
------------------------------------
---  debugTeleport
------------------------------------
-function debugTeleport(player,npcid)
-	if (DEBUG_MODE == 1) then
-		local npc = GetNPCByID(npcid);
-		if (npc ~= nil) then
-			player:setPos(npc:getXPos(), npc:getYPos(), npc:getZPos(), 0, npc:getZone());
-		end
-	end
-end;
-function toWajaomLaypoint(player)  -- Wajaom Woodlands Laypoint
-	player:setPos(-200,-10,80,125,0x33);
-end;
-
-function debugTeleport(player,npcid)
-	if(DEBUG_MODE == 1) then
-		local npc = GetNPCByID(npcid);
-		if(npc ~= nil) then
-			player:setPos(npc:getXPos(), npc:getYPos(), npc:getZPos(), 0, npc:getZone());
-		end
-	end
-end;
 
 -----------------------------------
 -- Teleport Items
