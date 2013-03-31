@@ -357,6 +357,21 @@ void CalculateStats(CMobEntity * PMob)
         CTrait* PTrait = PMob->TraitList.at(i);
         PMob->delModifier(PTrait->getMod(), PTrait->getValue());
     }
+
+	// add special traits to families
+	// right now this is hard coded but will eventually be put into a column?
+
+	if(PMob->m_Family == 175)
+	{
+		// magic pot has high defense bonus
+		PMob->setModifier(MOD_MDEF, 50);
+	}
+	else if(PMob->m_Family == 4)
+	{
+		// ahriman has magic defense bonus
+		PMob->setModifier(MOD_MDEF, 25);
+	}
+
     PMob->TraitList.clear();
 
     // add double attack bonus 50+
@@ -396,6 +411,7 @@ void CalculateStats(CMobEntity * PMob)
 			}
 		}
 	}
+
 }
 
 void AddTraits(CMobEntity* PMob, JOBTYPE jobID, uint8 lvl)
