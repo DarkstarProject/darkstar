@@ -934,6 +934,15 @@ void CAIMobDummy::ActionMagicStart()
 	// check valid targets
 	if (m_PSpell->getValidTarget() & TARGET_SELF) {
 		m_PBattleSubTarget = m_PMob;
+
+		// chance to target my master
+		if(m_PMob->PMaster != NULL && (m_PSpell->getValidTarget() & TARGET_PLAYER_PARTY) && rand()%2 == 0)
+		{
+			m_PBattleSubTarget = m_PMob->PMaster;
+		}
+
+		// TODO: chance to target party
+
 	} else {
 		m_PBattleSubTarget = m_PBattleTarget;
 	}
