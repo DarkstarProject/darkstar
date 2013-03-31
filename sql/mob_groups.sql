@@ -1,27 +1,24 @@
--- MySQL dump 10.13  Distrib 5.5.28, for Win64 (x86)
---
--- Host: 10.0.0.10    Database: dspdb
--- ------------------------------------------------------
--- Server version 5.5.28
+/*
+Navicat MySQL Data Transfer
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+Source Server         : dspdb
+Source Server Version : 50522
+Source Host           : localhost:3306
+Source Database       : dspdb
 
---
--- Table structure for table `mob_groups`
---
+Target Server Type    : MYSQL
+Target Server Version : 50522
+File Encoding         : 65001
 
+Date: 2013-03-30 20:24:32
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `mob_groups`
+-- ----------------------------
 DROP TABLE IF EXISTS `mob_groups`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `mob_groups` (
   `groupid` int(10) unsigned NOT NULL,
   `poolid` int(10) unsigned NOT NULL DEFAULT '0',
@@ -35,17 +32,9 @@ CREATE TABLE `mob_groups` (
   `maxLevel` tinyint(2) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`groupid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=22;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `mob_groups`
---
-
-LOCK TABLES `mob_groups` WRITE;
-/*!40000 ALTER TABLE `mob_groups` DISABLE KEYS */;
 
 -- ----------------------------
--- Records
+-- Records of mob_groups
 -- ----------------------------
 INSERT INTO `mob_groups` VALUES ('1', '69', '1', '0', '128', '40', '0', '0', '34', '36');
 INSERT INTO `mob_groups` VALUES ('2', '417', '1', '0', '128', '299', '0', '0', '20', '24');
@@ -284,7 +273,7 @@ INSERT INTO `mob_groups` VALUES ('240', '3598', '8', '0', '128', '0', '0', '0', 
 INSERT INTO `mob_groups` VALUES ('241', '3599', '8', '0', '0', '0', '0', '0', '0', '0');
 INSERT INTO `mob_groups` VALUES ('242', '3600', '8', '0', '128', '0', '0', '0', '50', '50');
 INSERT INTO `mob_groups` VALUES ('243', '3601', '8', '0', '128', '0', '0', '0', '50', '50');
-INSERT INTO `mob_groups` VALUES ('244', '3602', '8', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `mob_groups` VALUES ('244', '3602', '8', '0', '128', '0', '0', '0', '0', '0');
 INSERT INTO `mob_groups` VALUES ('245', '3613', '8', '0', '128', '0', '0', '0', '75', '75');
 INSERT INTO `mob_groups` VALUES ('246', '3827', '8', '0', '128', '0', '0', '0', '75', '75');
 INSERT INTO `mob_groups` VALUES ('247', '4046', '8', '0', '128', '0', '0', '0', '75', '75');
@@ -629,7 +618,7 @@ INSERT INTO `mob_groups` VALUES ('585', '1397', '24', '330', '1', '1019', '0', '
 INSERT INTO `mob_groups` VALUES ('586', '1398', '24', '330', '1', '1022', '0', '0', '80', '82');
 INSERT INTO `mob_groups` VALUES ('587', '1549', '24', '330', '0', '1144', '0', '0', '40', '43');
 INSERT INTO `mob_groups` VALUES ('588', '1553', '24', '330', '0', '1147', '0', '0', '41', '44');
-INSERT INTO `mob_groups` VALUES ('589', '1555', '24', '330', '0', '1149', '0', '0', '41', '44');
+INSERT INTO `mob_groups` VALUES ('589', '1555', '24', '330', '128', '1149', '0', '0', '41', '44');
 INSERT INTO `mob_groups` VALUES ('590', '1559', '24', '330', '0', '1153', '0', '0', '35', '38');
 INSERT INTO `mob_groups` VALUES ('591', '1573', '24', '330', '0', '1163', '0', '0', '41', '44');
 INSERT INTO `mob_groups` VALUES ('592', '1583', '24', '330', '0', '1167', '0', '0', '35', '38');
@@ -686,7 +675,7 @@ INSERT INTO `mob_groups` VALUES ('642', '1380', '25', '330', '1', '987', '0', '0
 INSERT INTO `mob_groups` VALUES ('643', '1382', '25', '330', '0', '0', '0', '0', '37', '39');
 INSERT INTO `mob_groups` VALUES ('644', '1383', '25', '330', '0', '0', '0', '0', '37', '39');
 INSERT INTO `mob_groups` VALUES ('645', '1384', '25', '330', '1', '0', '0', '0', '49', '51');
-INSERT INTO `mob_groups` VALUES ('646', '1385', '25', '330', '1', '0', '0', '0', '36', '38');
+INSERT INTO `mob_groups` VALUES ('646', '1385', '25', '330', '128', '0', '0', '0', '36', '38');
 INSERT INTO `mob_groups` VALUES ('647', '1386', '25', '330', '1', '0', '0', '0', '35', '37');
 INSERT INTO `mob_groups` VALUES ('648', '1387', '25', '330', '1', '1004', '0', '0', '36', '38');
 INSERT INTO `mob_groups` VALUES ('649', '1388', '25', '330', '1', '0', '0', '0', '36', '38');
@@ -699,7 +688,7 @@ INSERT INTO `mob_groups` VALUES ('655', '1397', '25', '330', '1', '0', '0', '0',
 INSERT INTO `mob_groups` VALUES ('656', '1398', '25', '330', '1', '0', '0', '0', '35', '37');
 INSERT INTO `mob_groups` VALUES ('657', '1549', '25', '330', '0', '1144', '0', '0', '40', '43');
 INSERT INTO `mob_groups` VALUES ('658', '1553', '25', '330', '0', '1148', '0', '0', '41', '44');
-INSERT INTO `mob_groups` VALUES ('659', '1555', '25', '330', '0', '1150', '0', '0', '41', '44');
+INSERT INTO `mob_groups` VALUES ('659', '1555', '25', '330', '128', '1150', '0', '0', '41', '44');
 INSERT INTO `mob_groups` VALUES ('660', '1573', '25', '330', '0', '1164', '0', '0', '41', '44');
 INSERT INTO `mob_groups` VALUES ('661', '1592', '25', '0', '128', '0', '0', '0', '34', '36');
 INSERT INTO `mob_groups` VALUES ('662', '1599', '25', '330', '0', '1177', '0', '0', '41', '44');
@@ -716,7 +705,7 @@ INSERT INTO `mob_groups` VALUES ('672', '2997', '25', '330', '0', '2563', '0', '
 INSERT INTO `mob_groups` VALUES ('673', '3014', '25', '330', '0', '2615', '0', '0', '41', '44');
 INSERT INTO `mob_groups` VALUES ('674', '3015', '25', '330', '0', '2621', '0', '0', '41', '44');
 INSERT INTO `mob_groups` VALUES ('675', '3034', '25', '330', '0', '2682', '0', '0', '43', '46');
-INSERT INTO `mob_groups` VALUES ('676', '3039', '25', '330', '0', '2686', '0', '0', '41', '44');
+INSERT INTO `mob_groups` VALUES ('676', '3039', '25', '330', '128', '2686', '0', '0', '41', '44');
 INSERT INTO `mob_groups` VALUES ('677', '3073', '25', '330', '0', '2726', '0', '0', '47', '50');
 INSERT INTO `mob_groups` VALUES ('678', '3199', '25', '0', '0', '0', '0', '0', '0', '0');
 INSERT INTO `mob_groups` VALUES ('679', '3854', '25', '330', '0', '3439', '0', '0', '33', '37');
@@ -1448,7 +1437,7 @@ INSERT INTO `mob_groups` VALUES ('1404', '2026', '42', '0', '0', '1736', '0', '0
 INSERT INTO `mob_groups` VALUES ('1405', '2027', '42', '0', '0', '1738', '0', '0', '0', '0');
 INSERT INTO `mob_groups` VALUES ('1406', '2028', '42', '0', '0', '1740', '0', '0', '0', '0');
 INSERT INTO `mob_groups` VALUES ('1407', '2029', '42', '0', '0', '1742', '0', '0', '0', '0');
-INSERT INTO `mob_groups` VALUES ('1408', '2030', '42', '0', '0', '1744', '0', '0', '0', '0');
+INSERT INTO `mob_groups` VALUES ('1408', '2030', '42', '0', '128', '1744', '0', '0', '0', '0');
 INSERT INTO `mob_groups` VALUES ('1409', '2031', '42', '0', '0', '0', '0', '0', '0', '0');
 INSERT INTO `mob_groups` VALUES ('1410', '2032', '42', '0', '0', '0', '0', '0', '0', '0');
 INSERT INTO `mob_groups` VALUES ('1411', '2033', '42', '0', '0', '0', '0', '0', '0', '0');
@@ -1804,8 +1793,8 @@ INSERT INTO `mob_groups` VALUES ('1775', '2525', '52', '330', '0', '2162', '0', 
 INSERT INTO `mob_groups` VALUES ('1776', '2528', '52', '300', '0', '2167', '0', '0', '81', '83');
 INSERT INTO `mob_groups` VALUES ('1777', '2529', '52', '300', '0', '2169', '0', '0', '81', '83');
 INSERT INTO `mob_groups` VALUES ('1778', '2537', '52', '300', '0', '2179', '0', '0', '81', '83');
-INSERT INTO `mob_groups` VALUES ('1779', '2540', '52', '300', '0', '0', '0', '0', '81', '83');
-INSERT INTO `mob_groups` VALUES ('1780', '2541', '52', '300', '0', '0', '0', '0', '76', '78');
+INSERT INTO `mob_groups` VALUES ('1779', '2540', '52', '300', '128', '0', '0', '0', '81', '83');
+INSERT INTO `mob_groups` VALUES ('1780', '2541', '52', '300', '128', '0', '0', '0', '76', '78');
 INSERT INTO `mob_groups` VALUES ('1781', '2562', '52', '330', '0', '0', '0', '0', '78', '79');
 INSERT INTO `mob_groups` VALUES ('1782', '2606', '52', '0', '128', '2237', '0', '0', '90', '95');
 INSERT INTO `mob_groups` VALUES ('1783', '2616', '52', '0', '128', '2245', '0', '0', '71', '72');
@@ -2226,9 +2215,9 @@ INSERT INTO `mob_groups` VALUES ('2198', '2534', '65', '300', '0', '2175', '0', 
 INSERT INTO `mob_groups` VALUES ('2199', '2535', '65', '300', '0', '2177', '0', '0', '73', '75');
 INSERT INTO `mob_groups` VALUES ('2200', '2537', '65', '300', '0', '2180', '0', '0', '81', '83');
 INSERT INTO `mob_groups` VALUES ('2201', '2538', '65', '300', '0', '2181', '0', '0', '81', '83');
-INSERT INTO `mob_groups` VALUES ('2202', '2539', '65', '300', '0', '0', '0', '0', '68', '70');
-INSERT INTO `mob_groups` VALUES ('2203', '2540', '65', '300', '0', '0', '0', '0', '68', '70');
-INSERT INTO `mob_groups` VALUES ('2204', '2541', '65', '300', '0', '0', '0', '0', '68', '70');
+INSERT INTO `mob_groups` VALUES ('2202', '2539', '65', '300', '128', '0', '0', '0', '68', '70');
+INSERT INTO `mob_groups` VALUES ('2203', '2540', '65', '300', '128', '0', '0', '0', '68', '70');
+INSERT INTO `mob_groups` VALUES ('2204', '2541', '65', '300', '128', '0', '0', '0', '68', '70');
 INSERT INTO `mob_groups` VALUES ('2205', '2543', '65', '300', '0', '0', '0', '0', '75', '77');
 INSERT INTO `mob_groups` VALUES ('2206', '2545', '65', '300', '0', '0', '0', '0', '73', '75');
 INSERT INTO `mob_groups` VALUES ('2207', '2656', '65', '0', '128', '0', '0', '0', '58', '63');
@@ -8749,7 +8738,7 @@ INSERT INTO `mob_groups` VALUES ('8724', '4457', '164', '0', '128', '0', '0', '0
 INSERT INTO `mob_groups` VALUES ('8725', '4458', '164', '0', '128', '0', '0', '0', '75', '80');
 INSERT INTO `mob_groups` VALUES ('8726', '4461', '164', '330', '0', '4324', '0', '0', '71', '73');
 INSERT INTO `mob_groups` VALUES ('8727', '4515', '164', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `mob_groups` VALUES ('8728', '248', '165', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `mob_groups` VALUES ('8728', '248', '165', '0', '128', '0', '0', '0', '0', '0');
 INSERT INTO `mob_groups` VALUES ('8729', '305', '165', '0', '0', '0', '0', '0', '0', '0');
 INSERT INTO `mob_groups` VALUES ('8730', '811', '165', '0', '128', '0', '0', '0', '60', '60');
 INSERT INTO `mob_groups` VALUES ('8731', '838', '165', '0', '128', '0', '0', '0', '70', '70');
@@ -8807,7 +8796,7 @@ INSERT INTO `mob_groups` VALUES ('8782', '2764', '167', '0', '128', '2376', '0',
 INSERT INTO `mob_groups` VALUES ('8783', '3125', '167', '7920', '0', '2765', '0', '0', '72', '73');
 INSERT INTO `mob_groups` VALUES ('8784', '3557', '167', '28800', '0', '3138', '0', '0', '64', '65');
 INSERT INTO `mob_groups` VALUES ('8785', '3597', '167', '86400', '2', '3183', '0', '0', '70', '70');
-INSERT INTO `mob_groups` VALUES ('8786', '4321', '167', '1056', '0', '4132', '0', '0', '55', '59');
+INSERT INTO `mob_groups` VALUES ('8786', '4321', '167', '1056', '128', '4132', '0', '0', '55', '59');
 INSERT INTO `mob_groups` VALUES ('8787', '248', '168', '0', '0', '0', '0', '0', '0', '0');
 INSERT INTO `mob_groups` VALUES ('8788', '454', '168', '0', '128', '0', '0', '0', '75', '75');
 INSERT INTO `mob_groups` VALUES ('8789', '506', '168', '0', '0', '0', '0', '0', '0', '0');
@@ -9883,7 +9872,7 @@ INSERT INTO `mob_groups` VALUES ('9858', '1710', '198', '792', '0', '1450', '0',
 INSERT INTO `mob_groups` VALUES ('9859', '1715', '198', '792', '0', '1466', '0', '0', '31', '34');
 INSERT INTO `mob_groups` VALUES ('9860', '1720', '198', '0', '128', '0', '0', '0', '24', '26');
 INSERT INTO `mob_groups` VALUES ('9861', '1738', '198', '528', '0', '1489', '0', '0', '16', '18');
-INSERT INTO `mob_groups` VALUES ('9862', '1720', '198', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `mob_groups` VALUES ('9862', '1776', '198', '0', '128', '0', '0', '0', '0', '0');
 INSERT INTO `mob_groups` VALUES ('9863', '2046', '198', '0', '128', '1760', '0', '0', '35', '36');
 INSERT INTO `mob_groups` VALUES ('9864', '2146', '198', '660', '0', '1843', '0', '0', '26', '28');
 INSERT INTO `mob_groups` VALUES ('9865', '2313', '198', '660', '0', '1981', '0', '0', '30', '33');
@@ -10617,10 +10606,10 @@ INSERT INTO `mob_groups` VALUES ('10749', '4053', '172', '330', '0', '3631', '0'
 INSERT INTO `mob_groups` VALUES ('10750', '3371', '172', '330', '0', '2976', '0', '0', '81', '84');
 INSERT INTO `mob_groups` VALUES ('10751', '2385', '172', '330', '0', '2037', '0', '0', '81', '84');
 INSERT INTO `mob_groups` VALUES ('10752', '2910', '167', '330', '0', '0', '0', '0', '81', '84');
-INSERT INTO `mob_groups` VALUES ('10753', '4321', '167', '330', '0', '4132', '0', '0', '81', '84');
+INSERT INTO `mob_groups` VALUES ('10753', '4321', '167', '330', '128', '4132', '0', '0', '81', '84');
 INSERT INTO `mob_groups` VALUES ('10754', '2764', '167', '330', '0', '2378', '0', '0', '81', '84');
 INSERT INTO `mob_groups` VALUES ('10755', '1900', '167', '330', '0', '1639', '0', '0', '81', '84');
-INSERT INTO `mob_groups` VALUES ('10756', '1471', '167', '330', '0', '1082', '0', '0', '81', '84');
+INSERT INTO `mob_groups` VALUES ('10756', '1471', '167', '330', '128', '1082', '0', '0', '81', '84');
 INSERT INTO `mob_groups` VALUES ('10757', '4112', '204', '330', '0', '3671', '0', '0', '81', '84');
 INSERT INTO `mob_groups` VALUES ('10758', '1120', '204', '330', '0', '800', '0', '0', '81', '84');
 INSERT INTO `mob_groups` VALUES ('10759', '4127', '204', '330', '0', '3686', '0', '0', '81', '84');
@@ -10856,4 +10845,3 @@ INSERT INTO `mob_groups` VALUES ('11001', '4657', '81', '330', '128', '2797', '8
 INSERT INTO `mob_groups` VALUES ('11002', '4658', '81', '330', '128', '560', '4444', '0', '50', '51');
 INSERT INTO `mob_groups` VALUES ('11003', '4655', '81', '330', '128', '0', '4800', '0', '60', '60');
 INSERT INTO `mob_groups` VALUES ('11004', '4656', '81', '330', '128', '4391', '80000', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('11005', '4675', '198', '0', '128', '0', '3500', '0', '40', '50');
