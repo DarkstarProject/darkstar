@@ -50,5 +50,7 @@ CREATE TABLE IF NOT EXISTS `char_jobs` (
   `pup` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `dnc` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `sch` tinyint(2) unsigned NOT NULL DEFAULT '0',
+  `geo` tinyint(2) unsigned NOT NULL DEFAULT '0',
+  `run` tinyint(2) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`charid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=95;

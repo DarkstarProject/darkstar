@@ -349,15 +349,15 @@ void LoadChar(CCharEntity* PChar)
         PChar->targid = 0x400;
 		PChar->SetName(Sql_GetData(SqlHandle,0));
 
-        PChar->loc.destination = (uint8)Sql_GetIntData(SqlHandle,1);
-		PChar->loc.prevzone    = (uint8)Sql_GetIntData(SqlHandle,2);
+        PChar->loc.destination = (uint16)Sql_GetIntData(SqlHandle,1);
+		PChar->loc.prevzone    = (uint16)Sql_GetIntData(SqlHandle,2);
 		PChar->loc.p.rotation  = (uint8)Sql_GetIntData(SqlHandle,3);
 		PChar->loc.p.x = Sql_GetFloatData(SqlHandle,4);
 		PChar->loc.p.y = Sql_GetFloatData(SqlHandle,5);
 		PChar->loc.p.z = Sql_GetFloatData(SqlHandle,6);
 		PChar->loc.boundary = (uint16)Sql_GetIntData(SqlHandle,7);
 
-        PChar->profile.home_point.destination = (uint8)Sql_GetIntData(SqlHandle,8);
+        PChar->profile.home_point.destination = (uint16)Sql_GetIntData(SqlHandle,8);
 		PChar->profile.home_point.p.rotation  = (uint8)Sql_GetIntData(SqlHandle,9);
 		PChar->profile.home_point.p.x = Sql_GetFloatData(SqlHandle,10);
 		PChar->profile.home_point.p.y = Sql_GetFloatData(SqlHandle,11);
@@ -621,7 +621,7 @@ void LoadChar(CCharEntity* PChar)
 	fmtQuery = "SELECT sandoria_cp, bastok_cp, windurst_cp, sandoria_supply, bastok_supply, windurst_supply, \
 					   imperial_standing, runic_portal, leujaoam_assault_point, mamool_assault_point, \
 					   lebros_assault_point, periqia_assault_point, ilrusi_assault_point, nyzul_isle_assault_point, \
-					   zeni_point, maw, past_sandoria_tp, past_bastok_tp, past_windurst_tp, allied_notes, tabs \
+					   zeni_point, maw, past_sandoria_tp, past_bastok_tp, past_windurst_tp, allied_notes, tabs, bayld \
 				FROM char_points \
 				WHERE charid = %u;";
 
@@ -655,6 +655,7 @@ void LoadChar(CCharEntity* PChar)
 		PChar->nationtp.pastwindurst = (uint32)Sql_GetUIntData(SqlHandle, 18);	// Windurst Past teleport
 		PChar->RegionPoints[11] = (uint32)Sql_GetIntData(SqlHandle, 19);		// Allied notes
 		PChar->RegionPoints[12] = (uint32)Sql_GetIntData(SqlHandle, 20);		// Tabs
+        PChar->RegionPoints[13] = (uint32)Sql_GetIntData(SqlHandle, 21);
 		//TODO: abyssea, bcnm, kcnm, ...
 	}
 
@@ -822,7 +823,24 @@ void SendQuestMissionLog(CCharEntity* PChar)
 
 	for (uint8 status = 0x01; status <= 0x02; ++status)
 	{
-		for (uint8 areaID = 0; areaID < MAX_QUESTAREA ; ++areaID)
+		for (uint8 areaID = 0; areaID <= QUESTS_CRYSTALWAR ; ++areaID)
+		{
+			PChar->pushPacket(new CQuestMissionLogPacket(PChar, areaID, status));
+		}
+	}
+	
+	// Treasures of Aht Urhgan
+	// Wings of the Goddess Missions
+	PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ZILART, 0x02));
+	PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_TOAU, 0x02));
+
+	// Campaign Operations
+	PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_CAMPAIGN, 0x02));
+	PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_CAMPAIGN2, 0x02));
+
+	for (uint8 status = 0x01; status <= 0x02; ++status)
+	{
+		for (uint8 areaID = QUESTS_ABYSSEA; areaID < MAX_QUESTAREA ; ++areaID)
 		{
 			PChar->pushPacket(new CQuestMissionLogPacket(PChar, areaID, status));
 		}
@@ -836,16 +854,8 @@ void SendQuestMissionLog(CCharEntity* PChar)
 	// то достаточно выполнить обновление для MISSION_ZILART
 
 	PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ZILART, 0x01));
-	PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ZILART, 0x02));
-	// Treasures of Aht Urhgan
-	// Wings of the Goddess Missions
 
-	PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_TOAU, 0x02));
 
-	// Campaign Operations
-
-	PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_CAMPAIGN, 0x02));
-	PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_CAMPAIGN2, 0x02));
 }
 
 /************************************************************************
@@ -3517,6 +3527,8 @@ void SaveCharJob(CCharEntity* PChar, JOBTYPE job)
 		case JOB_PUP: fmtQuery = "UPDATE char_jobs SET unlocked = %u, pup = %u WHERE charid = %u LIMIT 1"; break;
 		case JOB_DNC: fmtQuery = "UPDATE char_jobs SET unlocked = %u, dnc = %u WHERE charid = %u LIMIT 1"; break;
 		case JOB_SCH: fmtQuery = "UPDATE char_jobs SET unlocked = %u, sch = %u WHERE charid = %u LIMIT 1"; break;
+        case JOB_GEO: fmtQuery = "UPDATE char_jobs SET unlocked = %u, geo = %u WHERE charid = %u LIMIT 1"; break;
+        case JOB_RUN: fmtQuery = "UPDATE char_jobs SET unlocked = %u, run = %u WHERE charid = %u LIMIT 1"; break;
 	}
     Sql_Query(SqlHandle, fmtQuery, PChar->jobs.unlocked, PChar->jobs.job[job], PChar->id);
 }
@@ -3555,6 +3567,8 @@ void SaveCharExp(CCharEntity* PChar, JOBTYPE job)
 		case JOB_PUP: Query = "UPDATE char_exp SET pup = %u, merits = %u, limits = %u WHERE charid = %u"; break;
 		case JOB_DNC: Query = "UPDATE char_exp SET dnc = %u, merits = %u, limits = %u WHERE charid = %u"; break;
 		case JOB_SCH: Query = "UPDATE char_exp SET sch = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+        case JOB_GEO: Query = "UPDATE char_exp SET geo = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+        case JOB_RUN: Query = "UPDATE char_exp SET run = %u, merits = %u, limits = %u WHERE charid = %u"; break;
 	}
     Sql_Query(SqlHandle, Query,
         PChar->jobs.exp[job],
@@ -3604,7 +3618,7 @@ void SaveCharPoints(CCharEntity* PChar)
 							imperial_standing = %u, runic_portal = %u, leujaoam_assault_point = %u, mamool_assault_point = %u, \
 							lebros_assault_point = %u, periqia_assault_point = %u, ilrusi_assault_point = %u, \
 							nyzul_isle_assault_point = %u, zeni_point = %u, maw = %u, past_sandoria_tp = %u, \
-							past_bastok_tp = %u, past_windurst_tp = %u, allied_notes = %u, tabs = %u \
+							past_bastok_tp = %u, past_windurst_tp = %u, allied_notes = %u, tabs = %u, bayld = %u \
 						WHERE charid = %u;";
 
 	Sql_Query(SqlHandle,
@@ -3630,6 +3644,7 @@ void SaveCharPoints(CCharEntity* PChar)
 		PChar->nationtp.pastwindurst,
 		PChar->RegionPoints[11],
 		PChar->RegionPoints[12],
+        PChar->RegionPoints[13],
 		PChar->id);
 }
 

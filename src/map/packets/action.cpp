@@ -378,13 +378,13 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 		}
 
 		bitOffset = packBitsBE(data, Action.reaction,   bitOffset,  5);				// физическая реакция на урон
-		bitOffset = packBitsBE(data, Action.animation+animOffset,  bitOffset, 11);				// анимация специальных эффектов (monster TP animations are 1800+)
+		bitOffset = packBitsBE(data, Action.animation+animOffset,  bitOffset, 11);	// анимация специальных эффектов (monster TP animations are 1800+)
 		bitOffset += 1;
 		bitOffset = packBitsBE(data, Action.speceffect, bitOffset, 9);				// specialEffect
-		bitOffset = packBitsBE(data, Action.param,	    bitOffset, 16);				// параметр сообщения (урон)
 		bitOffset += 1;
+		bitOffset = packBitsBE(data, Action.param, bitOffset, 17);					// параметр сообщения (урон)
 		bitOffset = packBitsBE(data, Action.messageID,  bitOffset, 10);				// сообщение
-		bitOffset += 32;
+		bitOffset += 31;
 		bitOffset = packBitsBE(data, Action.flag,		bitOffset,  2);				// флаг, ??? наличие дополнительного эффекта ???
 
 		if (Action.flag != 0)

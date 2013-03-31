@@ -359,7 +359,7 @@ namespace ability
 
     CAbility* GetTwoHourAbility(JOBTYPE JobID)
     {
-        DSP_DEBUG_BREAK_IF(JobID < JOB_WAR || JobID > JOB_SCH);
+        DSP_DEBUG_BREAK_IF(JobID < JOB_WAR || JobID >= MAX_JOBTYPE);
 
         switch(JobID)
         {
@@ -383,6 +383,8 @@ namespace ability
             case JOB_PUP: return PAbilityList[ABILITY_OVERDRIVE]; break;
             case JOB_DNC: return PAbilityList[ABILITY_TRANCE]; break;
             case JOB_SCH: return PAbilityList[ABILITY_TABULA_RASA]; break;
+            case JOB_GEO: return PAbilityList[ABILITY_BOLSTER]; break;
+            case JOB_RUN: return PAbilityList[ABILITY_ELEMENTAL_SFORZO]; break;
         }
         return NULL;
     }

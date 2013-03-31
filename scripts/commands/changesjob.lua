@@ -50,6 +50,10 @@ function onTrigger(player,jobname,lvl)
 		player:changesJob(19);
 	elseif(jobname=="SCH" or jobname=="sch" or jobname=='20') then
 		player:changesJob(20);
+	elseif(jobname=="GEO" or jobname=="geo" or jobname=='21') then
+		player:changesJob(21);
+	elseif(jobname=="RUN" or jobname=="run" or jobname=='22') then
+		player:changesJob(22);
 	else
 		print('Unrecognised job (1st param) entered. Use the ID number or short name e.g. WAR'); 
 	end

@@ -260,6 +260,8 @@ INSERT INTO `abilities` VALUES ('230', 'afflatus_misery', '3', '40', '1', '60', 
 INSERT INTO `abilities` VALUES ('231', 'composure', '5', '50', '1', '300', '50', '0', '0', '215', '20', '0', '1', '80', '0', '0');
 INSERT INTO `abilities` VALUES ('232', 'yonin', '13', '40', '1', '180', '146', '0', '0', '218', '20', '0', '1', '600', '0', '0');
 INSERT INTO `abilities` VALUES ('233', 'innin', '13', '40', '1', '180', '147', '0', '0', '219', '20', '0', '1', '60', '0', '0');
+INSERT INTO `abilities` VALUES ('327', 'bolster', '21', '0', '1', '7200', '0', '0', '0', '33', '20', '0', '1', '300', '0', '0');
+INSERT INTO `abilities` VALUES ('340', 'elemental_sforzo', '22', '0', '1', '7200', '0', '0', '0', '33', '20', '0', '1', '300', '0', '0');
 INSERT INTO `abilities` VALUES ('496', 'healing_ruby', '15', '1', '3', '60', '174', '0', '0', '6', '18', '0', '1', '60', '0', '0');
 INSERT INTO `abilities` VALUES ('497', 'poison_nails', '15', '5', '4', '60', '173', '0', '0', '11', '18', '0', '1', '60', '0', '0');
 INSERT INTO `abilities` VALUES ('498', 'shining_ruby', '15', '24', '1', '60', '174', '0', '0', '44', '18', '0', '1', '60', '0', '0');

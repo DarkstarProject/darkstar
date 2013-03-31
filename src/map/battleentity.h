@@ -88,10 +88,12 @@ enum JOBTYPE
 	JOB_COR				= 17,
 	JOB_PUP				= 18,
 	JOB_DNC				= 19,
-	JOB_SCH				= 20
+	JOB_SCH				= 20,
+    JOB_GEO             = 21,
+    JOB_RUN             = 22
 };
 
-#define MAX_JOBTYPE		21
+#define MAX_JOBTYPE		23
 
 enum SKILLTYPE
 {

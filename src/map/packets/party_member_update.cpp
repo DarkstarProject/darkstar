@@ -48,7 +48,7 @@ CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 Mem
 		}
 		if (PChar->getZone() != ZoneID) 
 		{
-			WBUFB(data,(0x1F)-4) = PChar->getZone();
+			WBUFW(data,(0x1F)-4) = PChar->getZone();
 		} 
 		else
 		{

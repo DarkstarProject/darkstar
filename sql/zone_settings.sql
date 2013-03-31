@@ -27,7 +27,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 DROP TABLE IF EXISTS `zone_settings`;
 CREATE TABLE IF NOT EXISTS `zone_settings` (
-  `zoneid` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `zoneid` smallint(3) unsigned NOT NULL DEFAULT '0',
   `zoneip` int(10) unsigned zerofill NOT NULL DEFAULT '0000000000',
   `zoneport` smallint(5) unsigned NOT NULL DEFAULT '0',
   `name` tinytext NOT NULL,
@@ -300,3 +300,32 @@ INSERT INTO `zone_settings` VALUES (252, 0016777343, 54230, 'Norg', 209, 191, 19
 INSERT INTO `zone_settings` VALUES (253, 0016777343, 54230, 'Abyssea-Uleguerand', 51, 52, 52, 0, 0.00, 0);
 INSERT INTO `zone_settings` VALUES (254, 0016777343, 54230, 'Abyssea-Grauberg', 51, 52, 52, 0, 0.00, 0);
 INSERT INTO `zone_settings` VALUES (255, 0016777343, 54230, 'Abyssea-Empyreal_Paradox', 51, 52, 52, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (256, 0016777343, 54230, 'Western_Adoulin', 59, 59, 59, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (257, 0016777343, 54230, 'Eastern_Adoulin', 63, 63, 63, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (258, 0016777343, 54230, 'Rala_Waterways', 61, 57, 57, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (259, 0016777343, 54230, 'Rala_Waterways_U', 61, 57, 57, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (260, 0016777343, 54230, 'Yahse_Hunting_Grounds', 60, 57, 57, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (261, 0016777343, 54230, 'Ceizak_Battlegrounds', 60, 57, 57, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (262, 0016777343, 54230, 'Foret_de_Hennetiel', 0, 0, 0, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (263, 0016777343, 54230, 'Yorcia_Weald', 0, 0, 0, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (264, 0016777343, 54230, 'Yorcia_Weald_U', 0, 0, 0, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (265, 0016777343, 54230, 'Morimar_Basalt_Fields', 0, 0, 0, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (266, 0016777343, 54230, 'noname', 0, 0, 0, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (267, 0016777343, 54230, 'noname', 0, 0, 0, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (268, 0016777343, 54230, 'Sih_Gates', 0, 0, 0, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (269, 0016777343, 54230, 'Mor_Gates', 0, 0, 0, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (270, 0016777343, 54230, 'Cirdas_Caverns', 0, 0, 0, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (271, 0016777343, 54230, 'Cirdas_Caverns_U', 0, 0, 0, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (272, 0016777343, 54230, 'noname', 0, 0, 0, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (273, 0016777343, 54230, 'noname', 0, 0, 0, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (274, 0016777343, 54230, 'noname', 0, 0, 0, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (275, 0016777343, 54230, 'noname', 0, 0, 0, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (276, 0016777343, 54230, 'noname', 0, 0, 0, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (277, 0016777343, 54230, 'noname', 0, 0, 0, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (278, 0016777343, 54230, 'noname', 0, 0, 0, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (279, 0016777343, 54230, 'noname', 0, 0, 0, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (280, 0016777343, 54230, 'noname', 0, 0, 0, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (281, 0016777343, 54230, 'noname', 0, 0, 0, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (282, 0016777343, 54230, 'noname', 0, 0, 0, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (283, 0016777343, 54230, 'Silver_Knife', 0, 0, 0, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (284, 0016777343, 54230, 'Celennia_Wexworth_Memorial_Library', 0, 0, 0, 0, 0.00, 0);

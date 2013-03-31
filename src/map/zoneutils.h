@@ -49,8 +49,8 @@ namespace zoneutils
     REGIONTYPE    GetCurrentRegion(uint8 ZoneID);
     CONTINENTTYPE GetCurrentContinent(uint8 ZoneID);
 
-	CZone*		 GetZone(uint8 ZoneID);							                    // получаем указатель на зону
-	CNpcEntity*	 GetTrigger(uint16 TargID, uint8 ZoneID);		                    // триггер для старта событий (как побочный эффект - вероятность появления прозрачного орка)
+	CZone*		 GetZone(uint16 ZoneID);							                    // получаем указатель на зону
+	CNpcEntity*	 GetTrigger(uint16 TargID, uint16 ZoneID);		                    // триггер для старта событий (как побочный эффект - вероятность появления прозрачного орка)
     CBaseEntity* GetEntity(uint32 ID, uint8 filter = -1);                           // получаем указатель на любую сущность
     CCharEntity* GetCharByName(int8* name);                                         // получаем указатель на персонажа по имени
     CCharEntity* GetCharFromRegion(uint32 charid, uint16 targid, uint8 RegionID);   // получаем указатель на персонажа в указанном регионе

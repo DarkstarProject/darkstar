@@ -51,7 +51,7 @@ const int8* CBaseEntity::GetName()
 	return name.c_str();
 }
 
-uint8 CBaseEntity::getZone()
+uint16 CBaseEntity::getZone()
 {
     return loc.zone != NULL ? loc.zone->GetID() : loc.destination;
 }

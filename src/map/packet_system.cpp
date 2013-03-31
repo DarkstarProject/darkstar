@@ -2064,6 +2064,7 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 
 	uint32 zoneLineID = RBUFL(data,(0x04));
+    //TODO: verify packet in adoulin expansion
 	uint8  town		  = RBUFB(data,(0x16)); // используются при выходе из mog house
 	uint8  zone		  = RBUFB(data,(0x17)); // используются при выходе из mog house
 
@@ -2107,7 +2108,7 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 // выход из MogHouse
 				if(PZoneLine->m_zoneLineID == 1903324538)
 				{
-                    uint8 prevzone = PChar->loc.prevzone;
+                    uint16 prevzone = PChar->loc.prevzone;
 
                     if (zone != 0)  // 0 - выход в предыдущую зону, остальные значения - выбор зоны по имени
                     {
@@ -2758,7 +2759,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	}
     else if (RBUFB(data,(0x06)) == '#' && PChar->nameflags.flags & FLAG_GM)
     {
-        for (uint16 zone = 0; zone < 256; ++zone)
+        for (uint16 zone = 0; zone < MAX_ZONEID; ++zone)
         {
             zoneutils::GetZone(zone)->PushPacket(
                 NULL,
@@ -2845,7 +2846,7 @@ void SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	{
 		uint32 CharID = (uint32)Sql_GetUIntData(SqlHandle,0);
 		uint16 TargID = (uint16)Sql_GetUIntData(SqlHandle,1);
-		uint8  ZoneID = (uint8) Sql_GetUIntData(SqlHandle,2);
+		uint16 ZoneID = (uint8) Sql_GetUIntData(SqlHandle,2);
 
 		CCharEntity* PTellRecipient = (CCharEntity*)zoneutils::GetZone(ZoneID)->GetEntity(TargID, TYPE_PC);
 

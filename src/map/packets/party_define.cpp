@@ -51,7 +51,7 @@ CPartyDefinePacket::CPartyDefinePacket(CParty* PParty)
 					WBUFL(data,12*offset+(0x08)-4) = PChar->id;
 					WBUFW(data,12*offset+(0x0C)-4) = PChar->targid;
                     WBUFW(data,12*offset+(0x0E)-4) = PChar->PParty->GetMemberFlags(PChar);
-					WBUFB(data,12*offset+(0x10)-4) = PChar->getZone();
+					WBUFW(data,12*offset+(0x10)-4) = PChar->getZone();
                     
 					offset++;
 				}
@@ -68,7 +68,7 @@ CPartyDefinePacket::CPartyDefinePacket(CParty* PParty)
 				WBUFL(data,12*i+(0x08)-4) = PChar->id;
 				WBUFW(data,12*i+(0x0C)-4) = PChar->targid;
 				WBUFW(data,12*i+(0x0E)-4) = PChar->PParty->GetMemberFlags(PChar);
-				WBUFB(data,12*i+(0x10)-4) = PChar->getZone();
+				WBUFW(data,12*i+(0x10)-4) = PChar->getZone();
 			}
         }
 	}

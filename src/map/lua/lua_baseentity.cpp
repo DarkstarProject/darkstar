@@ -540,7 +540,7 @@ inline int32 CLuaBaseEntity::setPos(lua_State *L)
 	{
 		if( !lua_isnil(L,5) && lua_isnumber(L,5) )
 		{
-            ((CCharEntity*)m_PBaseEntity)->loc.destination = (uint8)lua_tointeger(L,5);
+            ((CCharEntity*)m_PBaseEntity)->loc.destination = (uint16)lua_tointeger(L,5);
 			((CCharEntity*)m_PBaseEntity)->status = STATUS_DISAPPEAR;
 			((CCharEntity*)m_PBaseEntity)->loc.boundary = 0;
 			((CCharEntity*)m_PBaseEntity)->clearPacketList();
@@ -1224,7 +1224,7 @@ inline int32 CLuaBaseEntity::addMission(lua_State *L)
             ShowWarning(CL_YELLOW"Lua::addMission: player has a current mission\n" CL_RESET, LogID);
         }
         PChar->m_missionLog[LogID].current = MissionID;
-		PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID+10, 1));
+		PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID+11, 1));
 
 		charutils::SaveMissionsList(PChar);
     }
@@ -1262,12 +1262,12 @@ inline int32 CLuaBaseEntity::delMission(lua_State *L)
 		if (current == MissionID)
 		{
 			PChar->m_missionLog[LogID].current = LogID > 2 ? 0 : -1;
-			PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID+10, 1));
+			PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID+11, 1));
 		}
 		if (complete != 0)
 		{
 			PChar->m_missionLog[LogID].complete[MissionID] = false;
-			PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID+10, 2));
+			PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID+11, 2));
 		}
 		charutils::SaveMissionsList(PChar);
     }
@@ -1364,8 +1364,8 @@ inline int32 CLuaBaseEntity::completeMission(lua_State *L)
         }
 	    PChar->m_missionLog[LogID].current = LogID > 2 ? 0 : -1;
 	    PChar->m_missionLog[LogID].complete[MissionID] = true;
-	    PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID+10, 1));
-	    PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID+10, 2));
+	    PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID+11, 1));
+	    PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID+11, 2));
 
 	    charutils::SaveMissionsList(PChar);
     }

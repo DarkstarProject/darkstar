@@ -41,6 +41,7 @@ CREATE TABLE `char_points` (
   `past_windurst_tp` int(10) NOT NULL DEFAULT '0',
   `allied_notes` int(15) NOT NULL DEFAULT '0',
   `tabs` int(15) NOT NULL DEFAULT '0',
+  `bayld` int(15) NOT NULL DEFAULT '0',
   PRIMARY KEY (`charid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

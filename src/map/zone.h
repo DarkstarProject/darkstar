@@ -37,7 +37,7 @@
 
 #include "packets/weather.h"
 
-enum ZONEID : uint8
+enum ZONEID : uint16
 {
 	ZONE_RESIDENTIAL_AREA             = 0,
 	ZONE_PHANAUET_CHANNEL             = 1,
@@ -294,10 +294,39 @@ enum ZONEID : uint8
 	ZONE_NORG                         = 252,
 	ZONE_ABYSSEA_ULEGUERAND           = 253,
 	ZONE_ABYSSEA_GRAUBERG             = 254,
-	ZONE_ABYSSEA_EMPYREAL_PARADOX     = 255
+	ZONE_ABYSSEA_EMPYREAL_PARADOX     = 255,
+    ZONE_WESTERN_ADOULIN              = 256,
+    ZONE_EASTERN_ADOULIN              = 257,
+    ZONE_RALA_WATERWAYS               = 258,
+    ZONE_RALA_WATERWAYS_U             = 259,
+    ZONE_YAHSE_HUNTING_GROUNDS        = 260,
+    ZONE_CEIZAK_BATTLEGROUNDS         = 261,
+    ZONE_FORET_DE_HENNETIEL           = 262,
+    ZONE_YORCIA_WEALD                 = 263,
+    ZONE_YORCIA_WEALD_U               = 264,
+    ZONE_MORIMAR_BASALT_FIELDS        = 265,
+    ZONE_266                          = 266,
+    ZONE_267                          = 267,
+    ZONE_SIH_GATES                    = 268,
+    ZONE_MOH_GATES                    = 269,
+    ZONE_CIRDAS_CAVERNS               = 270,
+    ZONE_CIRDAS_CAVERNS_U             = 271,
+    ZONE_272                          = 272,
+    ZONE_273                          = 273,
+    ZONE_274                          = 274,
+    ZONE_275                          = 275,
+    ZONE_276                          = 276,
+    ZONE_277                          = 277,
+    ZONE_278                          = 278,
+    ZONE_279                          = 279,
+    ZONE_280                          = 280,
+    ZONE_281                          = 281,
+    ZONE_282                          = 282,
+    ZONE_SILVER_KNIFE                 = 283,
+    ZONE_CELENNIA_WEXWORTH_MEMORIAL_L = 284
 };
 
-#define MAX_ZONEID 256
+#define MAX_ZONEID 285
 
 enum REGIONTYPE : uint8
 {
@@ -384,7 +413,7 @@ struct zoneMusic_t
 struct zoneLine_t
 {
 	uint32	   m_zoneLineID;
-	uint8	   m_toZone;
+	uint16	   m_toZone;
 	position_t m_toPos;
 };
 

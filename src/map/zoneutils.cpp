@@ -37,7 +37,7 @@
 #include "mob_spell_list.h"
 
 
-CZone* g_PZoneList[256];	// глобальный массив указателей на игровые зоны
+CZone* g_PZoneList[MAX_ZONEID];	// глобальный массив указателей на игровые зоны
 CNpcEntity*  g_PTrigger;	// триггер для запуска событий
 
 
@@ -52,7 +52,7 @@ namespace zoneutils
 
 void TOTDCharnge(TIMETYPE TOTD)
 {
-	for(int32 ZoneID = 0; ZoneID < 256; ++ZoneID)
+	for(int32 ZoneID = 0; ZoneID < MAX_ZONEID; ++ZoneID)
 	{
 		g_PZoneList[ZoneID]->TOTDChange(TOTD);
 	}
@@ -72,7 +72,7 @@ void UpdateWeather()
     uint8 WeatherChange = 0;
     uint8 WeatherFrequency = 0;
 
-    for (int32 ZoneID = 0; ZoneID < 256; ZoneID++)
+    for (int32 ZoneID = 0; ZoneID < MAX_ZONEID; ZoneID++)
     {
         if (!g_PZoneList[ZoneID]->IsWeatherStatic())
         {
@@ -100,12 +100,13 @@ void UpdateWeather()
 *																		*
 ************************************************************************/
 
-CZone* GetZone(uint8 ZoneID)
+CZone* GetZone(uint16 ZoneID)
 {
+    DSP_DEBUG_BREAK_IF(ZoneID >= MAX_ZONEID);
 	return g_PZoneList[ZoneID];
 }
 
-CNpcEntity* GetTrigger(uint16 TargID, uint8 ZoneID)
+CNpcEntity* GetTrigger(uint16 TargID, uint16 ZoneID)
 {
 	g_PTrigger->targid = TargID;
 	g_PTrigger->id = ((4096 + ZoneID) << 12) + TargID;
@@ -133,7 +134,7 @@ CBaseEntity* GetEntity(uint32 ID, uint8 filter)
 
 CCharEntity* GetCharByName(int8* name)
 {
-    for(int32 ZoneID = 0; ZoneID < 256; ZoneID++)
+    for(int32 ZoneID = 0; ZoneID < MAX_ZONEID; ZoneID++)
     {
         CCharEntity* PChar = g_PZoneList[ZoneID]->GetCharByName(name);
 
@@ -153,7 +154,7 @@ CCharEntity* GetCharByName(int8* name)
 
 CCharEntity* GetCharFromRegion(uint32 charid, uint16 targid, uint8 RegionID)
 {
-    for(int32 ZoneID = 0; ZoneID < 256; ZoneID++)
+    for(int32 ZoneID = 0; ZoneID < MAX_ZONEID; ZoneID++)
 	{
         if (g_PZoneList[ZoneID]->GetRegionID() == RegionID)
         {
@@ -454,7 +455,7 @@ void LoadZoneList()
 {
 	g_PTrigger = new CNpcEntity();	// нужно в конструкторе CNpcEntity задавать модель по умолчанию
 
-	for(int32 ZoneID = 0; ZoneID < 256; ZoneID++)
+	for(int32 ZoneID = 0; ZoneID < MAX_ZONEID; ZoneID++)
 	{
         CZone* PZone = new CZone((ZONEID)ZoneID, GetCurrentRegion(ZoneID), GetCurrentContinent(ZoneID));
 
@@ -664,7 +665,7 @@ CONTINENTTYPE GetCurrentContinent(uint8 ZoneID)
 
 void FreeZoneList()
 {
-	for(int32 ZoneID = 0; ZoneID < 256; ++ZoneID)
+	for(int32 ZoneID = 0; ZoneID < MAX_ZONEID; ++ZoneID)
 	{
 		delete g_PZoneList[ZoneID];
 	}

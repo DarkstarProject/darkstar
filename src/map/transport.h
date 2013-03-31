@@ -50,7 +50,7 @@ struct Transport_t
 struct Elevator_t 
 {
 	uint8 id;
-	uint8 zone;
+	uint16 zone;
 
 	uint8 interval;
 	uint8 movetime;

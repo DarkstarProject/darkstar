@@ -161,21 +161,21 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
 	  //WBUFB(data,(0x20)-4) = 2;
 
 		WBUFB(data,(0x40)-4) = PChar->getZone();
-		WBUFB(data,(0x62)-4) = PChar->getZone();
+		WBUFW(data,(0x62)-4) = PChar->getZone();
 		WBUFW(data,(0x64)-4) = csid;
 	}
 
 	if (PChar->getZone() == 0) 
 	{
 		WBUFB(data,(0x80)-4) = 1;
-		WBUFB(data,(0x30)-4) = PChar->loc.prevzone;             // form zone
-		WBUFB(data,(0x42)-4) = PChar->loc.prevzone;             // from zone
+		WBUFW(data,(0x30)-4) = PChar->loc.prevzone;             // form zone
+		WBUFW(data,(0x42)-4) = PChar->loc.prevzone;             // from zone
 	    WBUFW(data,(0xAA)-4) = GetMogHouseID(PChar);            // Mog House id
 		WBUFB(data,(0xAE)-4) = GetMosHouseFlag(PChar);          // Mog House leaving flag
 	} else {
-		WBUFB(data,(0x80)-4) = 2;										
-		WBUFB(data,(0x30)-4) = PChar->getZone();                // to zone
-		WBUFB(data,(0x42)-4) = PChar->getZone();                // to zone
+		WBUFB(data,(0x80)-4) = 2;
+		WBUFW(data,(0x30)-4) = PChar->getZone();                // to zone
+		WBUFW(data,(0x42)-4) = PChar->getZone();                // to zone
 	    WBUFW(data,(0xAA)-4) = 0x01FF;
         WBUFB(data,(0xAC)-4) = csid > 0 ? 0x01 : 0x00;          //if 0x01 then pause between zone
 		WBUFB(data,(0xAF)-4) = PChar->loc.zone->CanUseMisc(MISC_MOGMENU);	// флаг, позволяет использовать mog menu за пределами mog house
