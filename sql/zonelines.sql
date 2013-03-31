@@ -28,8 +28,8 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 DROP TABLE IF EXISTS `zonelines`;
 CREATE TABLE IF NOT EXISTS `zonelines` (
   `zoneline` int(10) unsigned NOT NULL,
-  `fromzone` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `tozone` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `fromzone` smallint(3) unsigned NOT NULL DEFAULT '0',
+  `tozone` smallint(3) unsigned NOT NULL DEFAULT '0',
   `tox` float(7,3) NOT NULL DEFAULT '0.000',
   `toy` float(7,3) NOT NULL DEFAULT '0.000',
   `toz` float(7,3) NOT NULL DEFAULT '0.000',

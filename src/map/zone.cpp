@@ -242,7 +242,7 @@ void CZone::LoadZoneLines()
 			zoneLine_t* zl = new zoneLine_t;
 
 			zl->m_zoneLineID = (uint32)Sql_GetIntData(SqlHandle,0);
-			zl->m_toZone  = (uint8)Sql_GetIntData(SqlHandle,1);
+			zl->m_toZone  = (uint16)Sql_GetIntData(SqlHandle,1);
 			zl->m_toPos.x = Sql_GetFloatData(SqlHandle,2);
 			zl->m_toPos.y = Sql_GetFloatData(SqlHandle,3);
 			zl->m_toPos.z = Sql_GetFloatData(SqlHandle,4);
