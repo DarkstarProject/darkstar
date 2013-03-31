@@ -83,7 +83,7 @@ protected:
 	void ActionAbilityFinish();
   void ActionAbilityInterrupt();
 
-	void ActionAttack();
+  void ActionAttack();
 
   void ActionSleep();
   void ActionWait();
