@@ -77,7 +77,7 @@ void CTransportHandler::InitializeTransport()
 		{
             Transport_t* PTransport = new Transport_t;
 
-            PTransport->Dock.zone = zoneutils::GetZone((Sql_GetUIntData(SqlHandle,1) >> 12) - 4096);
+            PTransport->Dock.zone = zoneutils::GetZone((Sql_GetUIntData(SqlHandle,1) >> 12) & 0x0FFF);
             PTransport->Dock.p.x  = Sql_GetFloatData(SqlHandle,3);
             PTransport->Dock.p.y  = Sql_GetFloatData(SqlHandle,4);
             PTransport->Dock.p.z  = Sql_GetFloatData(SqlHandle,5);
@@ -144,7 +144,7 @@ void CTransportHandler::InitializeElevators()
 			Elevator_t elevator;
 
 			elevator.id = (uint8)Sql_GetUIntData(SqlHandle,0);
-			elevator.zone = (uint16)((Sql_GetUIntData(SqlHandle,1) >> 12) - 4096);
+			elevator.zone = (uint16)((Sql_GetUIntData(SqlHandle,1) >> 12) & 0x0FFF);
 
 			elevator.Elevator  = (CNpcEntity*)zoneutils::GetEntity(Sql_GetUIntData(SqlHandle,1), TYPE_NPC);
 			elevator.LowerDoor = (CNpcEntity*)zoneutils::GetEntity(Sql_GetUIntData(SqlHandle,2), TYPE_NPC);
