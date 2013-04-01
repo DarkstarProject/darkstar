@@ -196,7 +196,7 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr,int* count)
 
 	if(shouldFilter){
 		std::string fmtQuery = "SELECT charid, partyid, charname, pos_zone, pos_prevzone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, \
-                            war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch \
+                            war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run \
                             FROM accounts_sessions \
                             LEFT JOIN chars USING (charid) \
                             LEFT JOIN char_look USING (charid) \
@@ -220,7 +220,7 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr,int* count)
 	}
 	else{
 		const int8* fmtQuery = "SELECT charid, partyid, charname, pos_zone, pos_prevzone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, \
-                            war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch \
+                            war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run \
                             FROM accounts_sessions \
                             LEFT JOIN chars USING (charid) \
                             LEFT JOIN char_look USING (charid) \
@@ -318,7 +318,7 @@ std::list<SearchEntity*> CDataLoader::GetPartyList(uint32 PartyID)
     std::list<SearchEntity*> PartyList;
 
     const int8* Query = "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, \
-                         war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch \
+                         war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run \
                          FROM accounts_sessions \
                          LEFT JOIN chars USING (charid) \
                          LEFT JOIN char_look USING (charid) \
@@ -379,7 +379,7 @@ std::list<SearchEntity*> CDataLoader::GetLinkshellList(uint32 LinkshellID)
 {
     std::list<SearchEntity*> LinkshellList;
 	const int8* fmtQuery = "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, \
-                            war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, linkshellid, linkshellrank \
+                            war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run, linkshellid, linkshellrank \
                             FROM accounts_sessions \
                             LEFT JOIN chars USING (charid) \
                             LEFT JOIN char_look USING (charid) \
@@ -410,7 +410,7 @@ std::list<SearchEntity*> CDataLoader::GetLinkshellList(uint32 LinkshellID)
             PPlayer->slvl   = (uint8) Sql_GetIntData(SqlHandle, 11 + PPlayer->sjob);
             PPlayer->race   = (uint8) Sql_GetIntData(SqlHandle,  8);
             PPlayer->rank   = (uint8) Sql_GetIntData(SqlHandle,  5 + PPlayer->nation);
-			PPlayer->linkshell = (uint8) Sql_GetIntData(SqlHandle,  33);
+			PPlayer->linkshell = (uint8) Sql_GetIntData(SqlHandle,  35);
             PPlayer->slvl = (PPlayer->slvl > (PPlayer->mlvl >> 1) ? (PPlayer->mlvl == 1 ? 1 : (PPlayer->mlvl >> 1)) : PPlayer->slvl);
 
             uint32 partyid  = (uint32)Sql_GetUIntData(SqlHandle, 1);
