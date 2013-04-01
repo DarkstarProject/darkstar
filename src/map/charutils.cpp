@@ -482,7 +482,7 @@ void LoadChar(CCharEntity* PChar)
 		PChar->look.ranged	= (uint16)Sql_GetIntData(SqlHandle,10);
 	}
 
-	fmtQuery = "SELECT unlocked, genkai, war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch \
+	fmtQuery = "SELECT unlocked, genkai, war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run \
 				FROM char_jobs \
 				WHERE charid = %u;";
 
@@ -515,11 +515,13 @@ void LoadChar(CCharEntity* PChar)
 		PChar->jobs.job[JOB_PUP] = (uint8)Sql_GetIntData(SqlHandle,19);
 		PChar->jobs.job[JOB_DNC] = (uint8)Sql_GetIntData(SqlHandle,20);
 		PChar->jobs.job[JOB_SCH] = (uint8)Sql_GetIntData(SqlHandle,21);
+		PChar->jobs.job[JOB_GEO] = (uint8)Sql_GetIntData(SqlHandle,22);
+		PChar->jobs.job[JOB_RUN] = (uint8)Sql_GetIntData(SqlHandle,23);
 	}
 
 
 
-	fmtQuery = "SELECT mode, war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, merits, limits \
+	fmtQuery = "SELECT mode, war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run, merits, limits \
 				FROM char_exp \
 				WHERE charid = %u;";
 
@@ -550,8 +552,10 @@ void LoadChar(CCharEntity* PChar)
 		PChar->jobs.exp[JOB_PUP] = (uint16)Sql_GetIntData(SqlHandle, 18);
 		PChar->jobs.exp[JOB_DNC] = (uint16)Sql_GetIntData(SqlHandle, 19);
 		PChar->jobs.exp[JOB_SCH] = (uint16)Sql_GetIntData(SqlHandle, 20);
-        meritPoints = (uint16)Sql_GetIntData(SqlHandle, 21);
-		limitPoints = (uint16)Sql_GetIntData(SqlHandle, 22);
+		PChar->jobs.exp[JOB_GEO] = (uint16)Sql_GetIntData(SqlHandle, 21);
+		PChar->jobs.exp[JOB_RUN] = (uint16)Sql_GetIntData(SqlHandle, 22);
+        meritPoints = (uint16)Sql_GetIntData(SqlHandle, 23);
+		limitPoints = (uint16)Sql_GetIntData(SqlHandle, 24);
 	}
 
 
@@ -655,7 +659,7 @@ void LoadChar(CCharEntity* PChar)
 		PChar->nationtp.pastwindurst = (uint32)Sql_GetUIntData(SqlHandle, 18);	// Windurst Past teleport
 		PChar->RegionPoints[11] = (uint32)Sql_GetIntData(SqlHandle, 19);		// Allied notes
 		PChar->RegionPoints[12] = (uint32)Sql_GetIntData(SqlHandle, 20);		// Tabs
-        PChar->RegionPoints[13] = (uint32)Sql_GetIntData(SqlHandle, 21);
+        PChar->RegionPoints[13] = (uint32)Sql_GetIntData(SqlHandle, 21);		// Bayld
 		//TODO: abyssea, bcnm, kcnm, ...
 	}
 
