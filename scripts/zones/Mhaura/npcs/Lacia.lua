@@ -7,7 +7,7 @@
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 
 require("scripts/globals/settings");
-require("scripts/globals/shop");
+require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/zones/Mhaura/TextIDs");
 
@@ -17,9 +17,8 @@ require("scripts/zones/Mhaura/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	TrialSizeLightning = player:getQuestStatus(OTHER_AREAS,TRIAL_SIZE_TRIAL_BY_LIGHTNING);
 	
-	if(trade:hasItemQty(1548,1) == true and TrialSizeLightning == QUEST_ACCEPTED) then
+	if(trade:hasItemQty(1548,1) == true and player:getQuestStatus(OTHER_AREAS,TRIAL_SIZE_TRIAL_BY_LIGHTNING) == QUEST_ACCEPTED and player:getMainJob() == JOB_SMN) then
 		player:startEvent(0x272a,0,1548,5,20);
 	end
 end; 
@@ -30,19 +29,16 @@ end;
 
 function onTrigger(player,npc)
 	
-	TrialSizeLightning = player:getQuestStatus(OTHER_AREAS,TRIAL_SIZE_TRIAL_BY_LIGHTNING);
-	mLvl = player:getMainLvl();
-	mJob = player:getMainJob();
-	realday = tonumber(os.date("%j"));
+	local TrialSizeLightning = player:getQuestStatus(OTHER_AREAS,TRIAL_SIZE_TRIAL_BY_LIGHTNING);
 
-	if(mLvl >= 20 and mJob == 15 and TrialSizeLightning == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 2) then --Requires player to be Summoner at least lvl 20
+	if(player:getMainLvl() >= 20 and player:getMainJob() == JOB_SMN and TrialSizeLightning == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 2) then --Requires player to be Summoner at least lvl 20
 		player:startEvent(0x2729,0,1548,5,20); 	--mini tuning fork of lightning, zone, level
 	elseif(TrialSizeLightning == QUEST_ACCEPTED) then
 		LightningFork = player:hasItem(1548);
 		
 		if(LightningFork == true) then 
 			player:startEvent(0x2722); --Dialogue given to remind player to be prepared
-		elseif(LightningFork == false and realday ~= player:getVar("TrialSizeLightning_date")) then
+		elseif(LightningFork == false and tonumber(os.date("%j") ~= player:getVar("TrialSizeLightning_date")) then
 			player:startEvent(0x272d,0,1548,5,20); --Need another mini tuning fork
 		end
 	elseif(TrialSizeLightning == QUEST_COMPLETED) then

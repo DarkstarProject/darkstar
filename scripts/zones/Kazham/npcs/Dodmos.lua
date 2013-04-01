@@ -10,7 +10,7 @@ package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-require("scripts/globals/shop");
+require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/zones/Kazham/TextIDs");
 
@@ -21,9 +21,8 @@ require("scripts/zones/Kazham/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	TrialSizeFire = player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_FIRE);
 	
-	if(trade:hasItemQty(1544,1) == true and TrialSizeFire == QUEST_ACCEPTED) then
+	if(trade:hasItemQty(1544,1) == true and player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_FIRE) == QUEST_ACCEPTED  and player:getMainJob() == JOB_SMN) then
 		player:startEvent(0x011f,0,1544,0,20);
 	end
 
@@ -34,19 +33,16 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	TrialSizeFire = player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_FIRE);
-	mLvl = player:getMainLvl();
-	mJob = player:getMainJob();
-	realday = tonumber(os.date("%j"));
+	local TrialSizeFire = player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_FIRE);
 
-	if(mLvl >= 20 and mJob == 15 and TrialSizeFire == QUEST_AVAILABLE and player:getFameLevel(KAZHAM) >= 2) then --Requires player to be Summoner at least lvl 20
+	if(player:getMainLvl() >= 20 and player:getMainJob() == JOB_SMN and TrialSizeFire == QUEST_AVAILABLE and player:getFameLevel(KAZHAM) >= 2) then --Requires player to be Summoner at least lvl 20
 		player:startEvent(0x011e,0,1544,0,20); 	--mini tuning fork, zone, level
 	elseif(TrialSizeFire == QUEST_ACCEPTED) then
 		FireFork = player:hasItem(1544);
 		
 		if(FireFork == true) then 
 			player:startEvent(0x0110); --Dialogue given to remind player to be prepared
-		elseif(FireFork == false and realday ~= player:getVar("TrialSizeFire_date")) then
+		elseif(FireFork == false and tonumber(os.date("%j") ~= player:getVar("TrialSizeFire_date")) then
 			player:startEvent(0x0122,0,1544,0,20); --Need another mini tuning fork
 		end
 	elseif(TrialSizeFire == QUEST_COMPLETED) then

@@ -12,7 +12,10 @@ require("scripts/globals/bcnm");
 -----------------------------------------
 
 function OnMagicCastingCheck(caster,target,spell)
-	return avatarMiniFightCheck(caster);
+	if(caster:getObjType() == TYPE_PC) then
+		return avatarMiniFightCheck(caster);
+	end
+	return 0;
 end;
 
 function onSpellCast(caster,target,spell)

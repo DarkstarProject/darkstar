@@ -8,7 +8,7 @@ package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-require("scripts/globals/shop");
+require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/zones/Norg/TextIDs");
 
@@ -18,7 +18,7 @@ require("scripts/zones/Norg/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(trade:hasItemQty(1549,1) and player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WATER) == QUEST_ACCEPTED) then
+	if(trade:hasItemQty(1549,1) and player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WATER) == QUEST_ACCEPTED and player:getMainJob() == JOB_SMN) then
 		player:startEvent(0x00c8,0,1549,2,20);
 	end
 
@@ -31,18 +31,14 @@ end;
 function onTrigger(player,npc)
 	
 	local TrialSizeWater = player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WATER);
-	local mLvl = player:getMainLvl();
-	local mJob = player:getMainJob();
-	local realday = tonumber(os.date("%j"));
-
-	if(mLvl >= 20 and mJob == 15 and TrialSizeWater == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 2) then --Requires player to be Summoner at least lvl 20
+	if(player:getMainLvl() >= 20 and player:getMainJob() == JOB_SMN and TrialSizeWater == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 2) then --Requires player to be Summoner at least lvl 20
 		player:startEvent(0x00c7,0,1549,2,20); 	--mini tuning fork of water, zone, level
 	elseif(TrialSizeWater == QUEST_ACCEPTED) then
 		WaterFork = player:hasItem(1549);
 		
 		if(WaterFork) then 
 			player:startEvent(0x006f); --Dialogue given to remind player to be prepared
-		elseif(WaterFork == false and realday ~= player:getVar("TrialSizeWater_date")) then
+		elseif(WaterFork == false and tonumber(os.date("%j") ~= player:getVar("TrialSizeWater_date")) then
 			player:startEvent(0x00cb,0,1549,2,20); --Need another mini tuning fork
 		end
 	elseif(TrialSizeWater == QUEST_COMPLETED) then

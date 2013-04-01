@@ -37,7 +37,7 @@ function onTrigger(player,npc)
 	if(player:getMainLvl() >= 20 and player:getMainJob() == JOB_SMN and TrialSizeByIce == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 2) then -- Requires player to be Summoner at least lvl 20
 		player:startEvent(0x02dd,0,1545,4,20); 	--mini tuning fork of ice, zone, level
 	elseif(TrialSizeByIce == QUEST_ACCEPTED) then
-		IceFork = player:hasItem(1545);
+		local IceFork = player:hasItem(1545);
 		
 		if(IceFork) then 
 			player:startEvent(0x02c4); --Dialogue given to remind player to be prepared
@@ -75,11 +75,12 @@ function onEventFinish(player,csid,option)
 		if(player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1545);
 		else 
+			player:setVar("TrialSizeIce_date", 0);
 			player:addQuest(SANDORIA,TRIAL_SIZE_TRIAL_BY_ICE);
 			player:addItem(1545);
 			player:messageSpecial(ITEM_OBTAINED,1545);
 		end
-	elseif(csid == 0x02de and option == 0) then
+	elseif(csid == 0x02de and option == 0 or csid == 0x02e1) then
 		if(player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1545);
 		else 
