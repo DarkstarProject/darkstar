@@ -1916,11 +1916,10 @@ inline int32 CLuaBaseEntity::levelRestriction(lua_State* L)
 					charutils::CalculateStats(PChar);
 					charutils::BuildingCharTraitsTable(PChar);
 					charutils::BuildingCharAbilityTable(PChar);
-					charutils::BuildingCharWeaponSkills(PChar);
-					charutils::CheckValidEquipment(PChar);
+					charutils::CheckValidEquipment(PChar); // Handles rebuilding weapon skills as well.
 
-					// CharAbilitiesPackets are sent by building traits, weapon skills, and CheckValidEquipment (via weapon skills.)
-					// A fourth packet here is not only unnecessary, it'll cause session disconnects, so don't do it, 'kay? :)
+					// CharAbilitiesPackets are sent by building traits and CheckValidEquipment (via weapon skills.)
+					// A third packet here is not only unnecessary, it'll cause session disconnects, so don't do it, 'kay? :)
 					if (PChar->status == STATUS_NORMAL)
 					{
 						PChar->pushPacket(new CCharJobsPacket(PChar));
