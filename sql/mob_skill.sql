@@ -485,14 +485,14 @@ INSERT INTO `mob_skill` VALUES (218,121,218,'Fear_Touch', 0, 7.0, 2000, 1000, 4,
 INSERT INTO `mob_skill` VALUES (219,121,219,'Terror_Touch', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (217,121,217,'Ectosmash', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (221,121,221,'Dark_Sphere', 0, 7.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (216,121,216,'Grave_Reel', 1, 15.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (216,121,216,'Grave_Reel', 1, 10.0, 2000, 1000, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Perdition', 0, 7.0, 2000, 1000, 4, 0); -- Bhoot only
 
 -- Skeleton
 INSERT INTO `mob_skill` VALUES (222,227,222,'Hell_Slash', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (223,227,223,'Horror_Cloud', 0, 7.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (228,227,228,'Black_Cloud', 1, 15.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (229,227,229,'Blood_Saber', 1, 15.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (228,227,228,'Black_Cloud', 1, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (229,227,229,'Blood_Saber', 1, 10.0, 2000, 1000, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Marrow Drain', 0, 7.0, 2000, 1000, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Malediction', 1, 15.0, 2000, 1000, 4, 0); --  Drain (~300). Only used by draugar
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Dereliction', 1, 20.0, 2000, 1000, 4, 0); -- Only used by draugar NM
