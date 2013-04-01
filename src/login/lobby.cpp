@@ -132,7 +132,7 @@ int32 lobbydata_parse(int32 fd)
 				const char *pfmtQuery =  "SELECT charid, charname, pos_zone, pos_prevzone, mjob,\
 												 race, face, head, body, hands, legs, feet, main, sub,\
 												 war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng,\
-												 sam, nin, drg, smn, blu, cor, pup, dnc, sch \
+												 sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run \
 										  FROM chars \
 											INNER JOIN char_stats USING(charid)\
 											INNER JOIN char_look  USING(charid) \
