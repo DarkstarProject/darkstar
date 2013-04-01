@@ -547,7 +547,7 @@ void CAIMobDummy::ActionSpawn()
 
 			if(PMaster->PEnmityContainer->GetHighestEnmity() != NULL)
 		    {
-		        PMaster->PEnmityContainer->AddBaseEnmity(PMaster->PBattleAI->GetBattleTarget());
+		        PMaster->PEnmityContainer->AddBaseEnmity(PMaster->PEnmityContainer->GetHighestEnmity());
 		        m_ActionType = ACTION_ATTACK;
 		    }
 

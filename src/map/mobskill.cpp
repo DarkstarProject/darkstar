@@ -41,7 +41,7 @@ CMobSkill::CMobSkill(uint16 id)
 
 bool CMobSkill::hasMissMsg()
 {
-  return m_Message == 158 || m_Message == 188;
+  return m_Message == 158 || m_Message == 188 || m_Message == 31 || m_Message == 30;
 }
 
 bool CMobSkill::isAoE()
