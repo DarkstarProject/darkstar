@@ -5,16 +5,18 @@
 
 require("scripts/globals/pets");
 require("scripts/globals/summon");
+require("scripts/globals/bcnm");
 
 -----------------------------------------
 -- OnSpellCast
 -----------------------------------------
 
 function OnMagicCastingCheck(caster,target,spell)
+	local result = avatarMiniFightCheck(caster);
     if(caster:hasPet()) then
-        return 1;
+        result = 1;
     end
-	return 0;
+	return result;
 end;
 
 function onSpellCast(caster,target,spell)

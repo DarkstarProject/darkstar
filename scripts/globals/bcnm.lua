@@ -481,3 +481,21 @@ function checkNonTradeBCNM(player,npc)
 	end
 	
 end;
+
+--------------------------------------------------
+--             BCNM Utilities                   --
+--------------------------------------------------
+
+
+--------
+--  Checks if the summoner is in a Trial Size Avatar Mini Fight (used to restrict summoning while in bcnm)
+--------
+function avatarMiniFightCheck(caster) 
+	
+	local result = 0;
+	local bcnmID = caster:getVar("trade_bcnmid");
+	if(bcnmID == 418 or bcnmID == 609 or bcnmID == 450 or bcnmID == 482 or bcnmID == 545 or bcnmID == 578) then -- Mini Avatar Fights
+		result = 40; -- Cannot use <spell> in this area.
+	end
+	return result;
+end;

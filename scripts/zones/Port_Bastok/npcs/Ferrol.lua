@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
 	TrialSizeEarth = player:getQuestStatus(BASTOK,TRIAL_SIZE_TRIAL_BY_EARTH);
 	
 	if(trade:hasItemQty(1547,1) and TrialSizeEarth == QUEST_ACCEPTED and player:getMainJob() == 15) then
-		player:startEvent(0x012a,0,1547,1,player:getMainLvl());
+		player:startEvent(0x012a,0,1547,1,20);
 	end
 
 end;

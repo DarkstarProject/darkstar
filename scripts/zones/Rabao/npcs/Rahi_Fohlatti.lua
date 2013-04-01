@@ -6,8 +6,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/shop");
+require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/zones/Rabao/TextIDs");
 
@@ -16,10 +15,9 @@ require("scripts/zones/Rabao/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	TrialSizeWind = player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WIND);
 	
-	if(trade:hasItemQty(1546,1) and TrialSizeWind == QUEST_ACCEPTED and player:getMainJob() == 15) then
-		player:startEvent(0x006d,0,1546,3,player:getMainLvl());
+	if(trade:hasItemQty(1546,1) and player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WIND) == QUEST_ACCEPTED and player:getMainJob() == JOB_SMN) then
+		player:startEvent(0x006d,0,1546,3,20);
 	end
 end; 
 
@@ -28,19 +26,16 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	TrialSizeWind = player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WIND);
-	mLvl = player:getMainLvl();
-	mJob = player:getMainJob();
-	realday = tonumber(os.date("%j"));
+	local TrialSizeWind = player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WIND);
 
-	if(mLvl >= 20 and mJob == 15 and TrialSizeWind == QUEST_AVAILABLE and player:getFameLevel(RABAO) >= 2) then --Requires player to be Summoner at least lvl 20
+	if(player:getMainLvl() >= 20 and player:getMainJob() == JOB_SMN and TrialSizeWind == QUEST_AVAILABLE and player:getFameLevel(RABAO) >= 2) then --Requires player to be Summoner at least lvl 20
 		player:startEvent(0x006c,0,1546,3,20); 	--mini tuning fork, zone, level
 	elseif(TrialSizeWind == QUEST_ACCEPTED) then
-		WindFork = player:hasItem(1546);
+		local WindFork = player:hasItem(1546);
 		
 		if(WindFork) then 
 			player:startEvent(0x0044); -- Dialogue given to remind player to be prepared
-		elseif(WindFork == false and realday ~= player:getVar("TrialSizeWind_date")) then
+		elseif(WindFork == false and tonumber(os.date("%j")) ~= player:getVar("TrialSizeWind_date")) then
 			player:startEvent(0x0070,0,1546,3,20); -- Need another mini tuning fork
 		else
 			player:startEvent(0x0072); -- Standard dialog when you loose, and you don't wait 1 real day
