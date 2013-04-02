@@ -18,13 +18,13 @@ YOU_ACCEPT_THE_MISSION = 11081; -- You have accepted the mission.
 
 -- Quest Dialog
     GOLD_SKULL_DIALOG = 3251; -- Welcome back. Your mission went without incident, I trust?
-KOHLO_LAKOLO_DIALOG_A = 12202; -- On your Star Onion Brigade honor, you can't tell anybody that Joker is hiding in the ghosty house!
+KOHLO_LAKOLO_DIALOG_A = 12219; -- On your Star Onion Brigade honor, you can't tell anybody that Joker is hiding in the ghosty house!
        MELEK_DIALOG_A = 3278; -- Well, good luck with your mission. I look forward to hearing of your success."good luck with your mission" (may not be correct response)
        MELEK_DIALOG_B = 3250; -- Take that sword to Giddeus. Good luck.
        MELEK_DIALOG_C = 3256; -- I hope to see you safe and well again someday. Take care, ≺Player Name≻.
 
 -- Shop Texts
-      KUCHAMALKOBHI_SHOP_DIALOG = 12461; -- How about a nice suit of adventurer-issue armorrr? Be careful though. We offer no rrrefunds!
+      KUCHAMALKOBHI_SHOP_DIALOG = 12478; -- How about a nice suit of adventurer-issue armorrr? Be careful though. We offer no rrrefunds!
              KUSUSU_SHOP_DIALOG = 4133; -- Welcome to Kususu's Ho～odo～os! We have low-level to medium-level magic on sale to help you through the early, rough spells in your life.
       HOHBIBAMUBIBA_SHOP_DIALOG = 4135; -- Hohbiba-Mubiba! Just because, at first glance, we Tarutaru look weak, doesn't mean you should make light of our weapons.
      GURUNAMAGURUNA_SHOP_DIALOG = 4139; -- There's a time to attack and a time to defend... And speaking defensively, why not get some armor or fine clothes here?
@@ -33,8 +33,8 @@ KOHLO_LAKOLO_DIALOG_A = 12202; -- On your Star Onion Brigade honor, you can't te
          ULIPEHKOWA_SHOP_DIALOG = 4130; -- Step rrright up! Step rrright up! This is yourrr last chance to shop in Windurst! Get yourrr souvenirs or forrrgotten shopping done here!
               ARORO_SHOP_DIALOG = 4134; -- Buy some hocus-pocus from us at Kususu's Hoodoos! I'll give you a smiley charm from me, Aroro, for free! C'mon... How about it then?
        TANIKOMANIKO_SHOP_DIALOG = 4137; -- Hohbiba-Mubiba! That's how our weapon shop greets its customers! Hohbiba-Mubiba!
-               RYAN_SHOP_DIALOG = 11592; -- I have no time for white-livered scum that rely on magic alone. If you're with me then check out these wares from across the high seas.
-       KHEL_PHLHAMA_SHOP_DIALOG = 11103; -- Hello there. How about buying <item> to stay in touch with your friends?
+               RYAN_SHOP_DIALOG = 11609; -- I have no time for white-livered scum that rely on magic alone. If you're with me then check out these wares from across the high seas.
+       KHEL_PHLHAMA_SHOP_DIALOG = 11120; -- Hello there. How about buying <item> to stay in touch with your friends?
            KHEL_PAHLHAMA_DIALOG = 4147; -- She sells <item> by the sea shorrre! Hahaha...
 
        POSSORUHBINI_OPEN_DIALOG = 4141; -- Rrroll up! Rrroll up! Plenty of goods from Norvallen! The morrre you buy, the happierrr you'll make me!
