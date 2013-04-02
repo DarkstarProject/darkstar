@@ -6,90 +6,97 @@ ITEM_CANNOT_BE_OBTAINED = 6564;  -- You cannot obtain the item <item> come back 
            GIL_OBTAINED = 6568;  -- Obtained <number> gil
        KEYITEM_OBTAINED = 6570;  -- Obtained key item: <keyitem>
           HOMEPOINT_SET = 188;   -- Home point set!
-    NOT_HAVE_ENOUGH_GIL = 0;     -- You do not have enough gil
- FISHING_MESSAGE_OFFSET = 7294;  -- You can't fish here
-          MOGHOUSE_EXIT = 12210; -- You have learned your way through the back alleys of San d'Oria! Now you can exit to any area from your residence.
+    NOT_HAVE_ENOUGH_GIL = 6572;     -- You do not have enough gil
+ FISHING_MESSAGE_OFFSET = 7304;  -- You can't fish here
+          MOGHOUSE_EXIT = 12229; -- You have learned your way through the back alleys of San d'Oria! Now you can exit to any area from your residence.
 
           -- Conquest System
-CONQUEST = 11571; -- You've earned conquest points!
+CONQUEST = 11583; -- You've earned conquest points!
       
 -- Mission Dialogs
 ORIGINAL_MISSION_OFFSET = 16; -- Bring me one of those axes, and your mission will be a success. No running away now; we've a proud country to defend!
  YOU_ACCEPT_THE_MISSION = 5; -- You accept the mission.
 
 -- Quest Dialog
-   SHIVA_UNLOCKED = 12655; -- You are now able to summon Shiva.
-OLBERGIEUT_DIALOG = 11129; -- Friar Faurbellant is on retreat at the Crag of Holla. Please give <item> to him.
-
--- Other Dialog
+   OLBERGIEUT_DIALOG = 11148; -- Friar Faurbellant is on retreat at the Crag of Holla. Please give <item> to him.
        FLYER_REFUSED = 11377; -- Your flyer is refused.
-       FLYER_ALREADY = 11917; -- This person already has a flyer.
       FLYER_ACCEPTED = 11916; -- Your flyer is accepted!
+       FLYER_ALREADY = 11917; -- This person already has a flyer.
+	  SHIVA_UNLOCKED = 12674; -- You are now able to summon Shiva.
+	   
+-- Other Dialog
+ GUILBERDRIER_DIALOG = 11024; -- A magic shop, you say? A bit of magic would come in handy... I know! I'll have my daughter study it for me!
+    ABIOLEGET_DIALOG = 11100; -- All of Altana's children are welcome here.
+     PELLIMIE_DIALOG = 11101; -- Is this your first time here? Join us in prayer!
+   FITTESEGAT_DIALOG = 11102; -- Paradise is a place without fear, without death!
+      MAURINE_DIALOG = 11103; -- Papsque Shamonde sometimes addresses the city from the balcony, you know. I long for his blessing, if but once!
+     PRERIVON_DIALOG = 11104; -- With each sermon, I take another step closer to Paradise.
+      MALFINE_DIALOG = 11105; -- Truly fortunate are we that words of sacrament are read every day!
+     COULLENE_DIALOG = 11106; -- Goddess above, deliver us to Paradise!
 
-       HELAKU_DIALOG = 11253; -- Leave this building, and you'll see a great fortress to the right. That's Chateau d'Oraguille. And be polite; San d'Orians can be quite touchy.
-     KASARORO_DIALOG = 11292; -- Step right outside, and you'll see a big castle on the left. That's Chateau d'Oraguille. They're a little touchy in there, so mind your manners!
+     GUILERME_DIALOG = 11220; -- Behold Chateau d'Oraguille, the greatest fortress in the realm!
 
- GUILBERDRIER_DIALOG = 11005; -- A magic shop, you say? A bit of magic would come in handy... I know! I'll have my daughter study it for me!
-      VILLION_DIALOG = 11914; -- Opening a shop of magic, without consulting me first? I must pay this Regine a visit!
-      CAPIRIA_DIALOG = 11913; -- A flyer? For me? Some reading material would be a welcome change of pace, indeed!
-      BONCORT_DIALOG = 11912; -- Hmm... With magic, I could get hold of materials a mite easier. I'll have to check this “mart” out.
-     COULLENE_DIALOG = 11915; -- Magic could be of use on my journey to Paradise. Thank you so much!
+     PHAVIANE_DIALOG = 11224; -- This is Victory Arch. Beyond lies Southern San d'Oria.
+     SOCHIENE_DIALOG = 11225; -- You stand before Victory Arch. Southern San d'Oria is on the other side.
+     PEPIGORT_DIALOG = 11226; -- This gate leads to Port San d'Oria.
+   RODAILLECE_DIALOG = 11227; -- This is Ranperre Gate. Fiends lurk in the lands beyond, so take caution!
+   
+      GALAHAD_DIALOG = 11240; -- Welcome to the Consulate of Jeuno. I am Galahad, Consul to San d'Oria.
+       ISHWAR_DIALOG = 11241; -- May I assist you?
+       ARIENH_DIALOG = 11242; -- If you have business with Consul Galahad, you'll find him inside.
+       EMILIA_DIALOG = 11243; -- Welcome to the Consulate of Jeuno.
+	   
+       HELAKU_DIALOG = 11272; -- Leave this building, and you'll see a great fortress to the right. That's Chateau d'Oraguille. And be polite; San d'Orians can be quite touchy.
 
-    COULLENE_MESSAGE = 13218; -- Coullene looks over curiously for a moment.
-GUILBERDRIER_MESSAGE = 13219; -- Guilberdrier looks over curiously for a moment.
-     BONCORT_MESSAGE = 13220; -- Boncort looks over curiously for a moment.
-     CAPIRIA_MESSAGE = 13221; -- Capiria looks over curiously for a moment.
-     VILLION_MESSAGE = 13222; -- Villion looks over curiously for a moment.
+	 KASARORO_DIALOG = 11311; -- Step right outside, and you'll see a big castle on the left. That's Chateau d'Oraguille. They're a little touchy in there, so mind your manners!
 
-    ABIOLEGET_DIALOG = 11081; -- All of Altana's children are welcome here.
-      MALFINE_DIALOG = 11086; -- Truly fortunate are we that words of sacrament are read every day!
-   FITTESEGAT_DIALOG = 11083; -- Paradise is a place without fear, without death!
-      MAURINE_DIALOG = 11084; -- Papsque Shamonde sometimes addresses the city from the balcony, you know. I long for his blessing, if but once!
-     PELLIMIE_DIALOG = 11082; -- Is this your first time here? Join us in prayer!
-     PRERIVON_DIALOG = 11085; -- With each sermon, I take another step closer to Paradise.
-     AIVEDOIR_DIALOG = 11363; -- That's funny. I could have sworn she asked me to meet her here...
-       ARIENH_DIALOG = 11223; -- If you have business with Consul Galahad, you'll find him inside.
-    BERTENONT_DIALOG = 11365; -- Stars are more beautiful up close. Don't you agree?
-      CAPIRIA_DIALOG = 11364; -- He's late! I do hope he hasn't forgotten.
-     COULLENE_DIALOG = 11087; -- Goddess above, deliver us to Paradise!
-       EMILIA_DIALOG = 11224; -- Welcome to the Consulate of Jeuno.
-      GALAHAD_DIALOG = 11221; -- Welcome to the Consulate of Jeuno. I am Galahad, Consul to San d'Oria.
-     GILIPESE_DIALOG = 11386; -- Nothing to report!
-     GUILERME_DIALOG = 11201; -- Behold Chateau d'Oraguille, the greatest fortress in the realm!
-       ISHWAR_DIALOG = 11222; -- May I assist you?
-     MAURINNE_DIALOG = 11329; -- This part of town is so lively, I like watching everybody just go about their business.
-     PEPIGORT_DIALOG = 11207; -- This gate leads to Port San d'Oria.
-     PHAVIANE_DIALOG = 11205; -- This is Victory Arch. Beyond lies Southern San d'Oria.
-   RODAILLECE_DIALOG = 11208; -- This is Ranperre Gate. Fiends lurk in the lands beyond, so take caution!
-     SOCHIENE_DIALOG = 11206; -- You stand before Victory Arch. Southern San d'Oria is on the other side.
+     MAURINNE_DIALOG = 11348; -- This part of town is so lively, I like watching everybody just go about their business.
+
+     AIVEDOIR_DIALOG = 11382; -- That's funny. I could have sworn she asked me to meet her here...
+      CAPIRIA_DIALOG = 11383; -- He's late! I do hope he hasn't forgotten.
+    BERTENONT_DIALOG = 11384; -- Stars are more beautiful up close. Don't you agree?
+
+     GILIPESE_DIALOG = 11405; -- Nothing to report!
+
+      BONCORT_DIALOG = 11931; -- Hmm... With magic, I could get hold of materials a mite easier. I'll have to check this “mart” out.
+      CAPIRIA_DIALOG = 11932; -- A flyer? For me? Some reading material would be a welcome change of pace, indeed!
+      VILLION_DIALOG = 11933; -- Opening a shop of magic, without consulting me first? I must pay this Regine a visit!
+     COULLENE_DIALOG = 11934; -- Magic could be of use on my journey to Paradise. Thank you so much!
+
+    COULLENE_MESSAGE = 13237; -- Coullene looks over curiously for a moment.
+GUILBERDRIER_MESSAGE = 13238; -- Guilberdrier looks over curiously for a moment.
+     BONCORT_MESSAGE = 13239; -- Boncort looks over curiously for a moment.
+     CAPIRIA_MESSAGE = 13240; -- Capiria looks over curiously for a moment.
+     VILLION_MESSAGE = 13241; -- Villion looks over curiously for a moment.
 
 -- Shop Texts
-     BONCORT_SHOP_DIALOG = 11483; -- Welcome to the Phoenix Perch!
-  ARACHAGNON_SHOP_DIALOG = 12759; -- Would you be interested in purchasing some adventurer-issue armor? Be careful when selecting, as we accept no refunds.
-     ARLENNE_SHOP_DIALOG = 11487; -- Welcome to the Royal Armory!
-       JUSTI_SHOP_DIALOG = 13408; -- Hello!
- PIRVIDIAUCE_SHOP_DIALOG = 11484; -- Care to see what I have?
-   TAVOURINE_SHOP_DIALOG = 11488; -- Looking for a weapon? We've got many in stock!
-  CAUZERISTE_SHOP_DIALOG = 11467; -- Welcome! San d'Oria Carpenters' Guild shop, at your service.
-    CHAUPIRE_SHOP_DIALOG = 11498; -- San d'Orian woodcraft is the finest in the land!
-   DOGGOMEHR_SHOP_DIALOG = 11399; -- Welcome to the Blacksmiths' Guild shop.
-    LUCRETIA_SHOP_DIALOG = 11400; -- Blacksmiths' Guild shop, at your service!
-    GAUDYLOX_SHOP_DIALOG = 12470; -- Phssshooooowoooo You never see Goblinshhh from underworld? Me no bad. Me sell chipshhh. You buy. Use with shhhtone heart. You get lucky!
+   DOGGOMEHR_SHOP_DIALOG = 11418; -- Welcome to the Blacksmiths' Guild shop.
+    LUCRETIA_SHOP_DIALOG = 11419; -- Blacksmiths' Guild shop, at your service!
 
-    ANTONIAN_OPEN_DIALOG = 11482; -- Interested in goods from Aragoneu?
-  ANTONIAN_CLOSED_DIALOG = 11492; -- The Kingdom's influence is waning in Aragoneu. I cannot import goods from that region, though I long to.
+  CAUZERISTE_SHOP_DIALOG = 11486; -- Welcome! San d'Oria Carpenters' Guild shop, at your service.
+  
+    ANTONIAN_OPEN_DIALOG = 11501; -- Interested in goods from Aragoneu?
+     BONCORT_SHOP_DIALOG = 11502; -- Welcome to the Phoenix Perch!
+ PIRVIDIAUCE_SHOP_DIALOG = 11503; -- Care to see what I have?
+  PALGUEVION_OPEN_DIALOG = 11504; -- I've got a shipment straight from Valdeaunia!
+     VICHUEL_OPEN_DIALOG = 11505; -- Fauregandi produce for sale!
+     ARLENNE_SHOP_DIALOG = 11506; -- Welcome to the Royal Armory!
+   TAVOURINE_SHOP_DIALOG = 11507; -- Looking for a weapon? We've got many in stock!
+   
+  ANTONIAN_CLOSED_DIALOG = 11511; -- The Kingdom's influence is waning in Aragoneu. I cannot import goods from that region, though I long to.
+PALGUEVION_CLOSED_DIALOG = 11512; -- Would that Valdeaunia came again under San d'Orian dominion, I could then import its goods!
+   VICHUEL_CLOSED_DIALOG = 11513; -- I'd make a killing selling Fauregandi produce here, but that region's not under San d'Orian control!
+  ATTARENA_CLOSED_DIALOG = 11514; -- Once all of Li'Telor is back under San d'Orian influence, I'll fill my stock with unique goods from there!
+EUGBALLION_CLOSED_DIALOG = 11515; -- I'd be making a fortune selling goods from Qufim Island...if it were only under San d'Orian control!
+  EUGBALLION_OPEN_DIALOG = 11516; -- Have a look at these goods imported direct from Qufim Island!
+    CHAUPIRE_SHOP_DIALOG = 11517; -- San d'Orian woodcraft is the finest in the land!
 
-  PALGUEVION_OPEN_DIALOG = 11485; -- I've got a shipment straight from Valdeaunia!
-PALGUEVION_CLOSED_DIALOG = 11493; -- Would that Valdeaunia came again under San d'Orian dominion, I could then import its goods!
+    GAUDYLOX_SHOP_DIALOG = 12489; -- Phssshooooowoooo You never see Goblinshhh from underworld? Me no bad. Me sell chipshhh. You buy. Use with shhhtone heart. You get lucky!
+MILLECHUCA_CLOSED_DIALOG = 12490; -- I've been trying to import goods from Vollbow, but it's so hard to get items from areas that aren't under San d'Orian control.
 
-     VICHUEL_OPEN_DIALOG = 11486; -- Fauregandi produce for sale!
-   VICHUEL_CLOSED_DIALOG = 11494; -- I'd make a killing selling Fauregandi produce here, but that region's not under San d'Orian control!
+    ATTARENA_OPEN_DIALOG = 12575; -- Good day! Take a look at my selection from Li'Telor!
+  MILLECHUCA_OPEN_DIALOG = 12576; -- Specialty goods from Vollbow! Specialty goods from Vollbow!
+  
+  ARACHAGNON_SHOP_DIALOG = 12778; -- Would you be interested in purchasing some adventurer-issue armor? Be careful when selecting, as we accept no refunds.
 
-  EUGBALLION_OPEN_DIALOG = 11497; -- Have a look at these goods imported direct from Qufim Island!
-EUGBALLION_CLOSED_DIALOG = 11496; -- I'd be making a fortune selling goods from Qufim Island...if it were only under San d'Orian control!
-
-    ATTARENA_OPEN_DIALOG = 12556; -- Good day! Take a look at my selection from Li'Telor!
-  ATTARENA_CLOSED_DIALOG = 11495; -- Once all of Li'Telor is back under San d'Orian influence, I'll fill my stock with unique goods from there!
-
-  MILLECHUCA_OPEN_DIALOG = 12557; -- Specialty goods from Vollbow! Specialty goods from Vollbow!
-MILLECHUCA_CLOSED_DIALOG = 12471; -- I've been trying to import goods from Vollbow, but it's so hard to get items from areas that aren't under San d'Orian control.
+       JUSTI_SHOP_DIALOG = 13427; -- Hello!
