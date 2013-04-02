@@ -4,6 +4,9 @@
 -- @pos -345 104 -260 144
 -----------------------------------
 
+require("scripts/globals/keyitems");
+requite("scripts/globals/missions");
+
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function OnBcnmRegister(player,instance)
 end;
