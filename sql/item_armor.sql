@@ -11,6 +11,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 -- Table structure for item_armor
 -- ----------------------------
+DROP TABLE `item_armor`;
 CREATE TABLE `item_armor` (
   `itemId` smallint(5) unsigned NOT NULL DEFAULT '0',
   `name` tinytext,
