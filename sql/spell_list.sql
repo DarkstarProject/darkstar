@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `spell_list`;
 CREATE TABLE `spell_list` (
   `spellid` smallint(3) unsigned NOT NULL,
   `name` char(20) NOT NULL,
-  `jobs` binary(20) NOT NULL,
+  `jobs` binary(22) NOT NULL,
   `group` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `element` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `zonemisc` smallint(5) unsigned NOT NULL DEFAULT '0',
