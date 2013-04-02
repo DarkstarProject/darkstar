@@ -7,5 +7,5 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
 
 -- Quest dialog
-YOU_CANNOT_ENTER_THE_BATTLEFIELD = 7156; -- You cannot enter the battlefield...
-				  TITAN_UNLOCKED = 7507; -- You are now able to summon Titan.     
+YOU_CANNOT_ENTER_THE_BATTLEFIELD = 7166; -- You cannot enter the battlefield...
+				  TITAN_UNLOCKED = 7517; -- You are now able to summon Titan.     
