@@ -8,4 +8,4 @@ FULL_INVENTORY_AFTER_TRADE = 6377; -- You cannot obtain the <item>. Try trading 
           KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
             ITEMS_OBTAINED = 6387; -- You obtain <param2 number> <param1 item>
 
-NOTHING_OUT_OF_ORDINARY = 7322; -- There is nothing out of the ordinary here.
+NOTHING_OUT_OF_ORDINARY = 7332; -- There is nothing out of the ordinary here.

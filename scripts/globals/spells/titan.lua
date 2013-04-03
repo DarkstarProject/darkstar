@@ -5,7 +5,6 @@
 
 require("scripts/globals/pets");
 require("scripts/globals/summon");
-require("scripts/globals/bcnm");
 
 -----------------------------------------
 -- OnSpellCast

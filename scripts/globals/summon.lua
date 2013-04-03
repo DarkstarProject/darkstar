@@ -310,3 +310,18 @@ function avatarFTP(tp,ftp1,ftp2,ftp3)
 	end
 	return 1; --no ftp mod
 end;
+
+--------
+--  Checks if the summoner is in a Trial Size Avatar Mini Fight (used to restrict summoning while in bcnm)
+--------
+function avatarMiniFightCheck(caster) 
+   local result = 0;
+   local bcnmid;
+   if (caster:hasStatusEffect(EFFECT_BATTLEFIELD) == true) then
+      bcnmid = caster:getStatusEffect(EFFECT_BATTLEFIELD):getPower();
+      if(bcnmid == 418 or bcnmid == 609 or bcnmid == 450 or bcnmid == 482 or bcnmid == 545 or bcnmid == 578) then -- Mini Avatar Fights
+         result = 40; -- Cannot use <spell> in this area.
+      end
+   end
+   return result;
+end;

@@ -7,4 +7,4 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
 
 -- Quest dialog
-GARUDA_UNLOCKED = 7507; -- You are now able to summon Garuda.
+GARUDA_UNLOCKED = 7517; -- You are now able to summon Garuda.
