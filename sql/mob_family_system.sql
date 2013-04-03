@@ -404,6 +404,13 @@ INSERT INTO `mob_family_system` VALUES (336,'ZM4-Tonberry',7,'Beastmen',1,10,40,
 INSERT INTO `mob_family_system` VALUES (337,'Quadav',7,'Beastmen',0,10,40,120,110,2,3,2,5,4,5,3,3,2,3,3,1,1.25,1,1,1.125,1,1,1,1,1,1.125,0.875,6);
 INSERT INTO `mob_family_system` VALUES (338,'Yagudo',7,'Beastmen',0,10,40,85,120,2,2,5,2,4,5,2,3,3,3,3,1,1,1,1,1,1.25,1,1,1,1,1,1,3);
 INSERT INTO `mob_family_system` VALUES (339,'Kindred',9,'Demon',0,15,50,108,140,1,2,4,4,1,2,4,3,3,3,3,1,1,1,1,0.75,0.75,0.75,0.75,0.75,0.75,1.25,0.75,8);
+INSERT INTO `mob_family_system` VALUES (337,'Umbril',1,'Amorph',1,10,40,70,140,6,3,6,3,1,5,4,3,3,3,3,0.875,1,0.75,0.75,1.25,1.25,1.25,1.125,1.125,1.125,1.125,1.125,6);
+INSERT INTO `mob_family_system` VALUES (338,'Twitherym',20,'Vermin',0,10,40,92,90,1,3,4,3,6,6,5,3,3,3,3,1,1.25,1,1,1,1.25,0.875,1,1,1,1,1,3);
+INSERT INTO `mob_family_system` VALUES (339,'Chapuli',20,'Vermin',1,10,40,105,120,3,3,4,3,3,6,5,3,5,3,3,1,1,1,1,1,1.25,1,1,1.25,1,1.125,1.25,4);
+INSERT INTO `mob_family_system` VALUES (340,'Mantis',20,'Vermin',1,1,40,105,120,3,3,4,3,3,6,5,3,5,3,3,1,1,1,1,1,1.25,1,1,1.25,1,1.125,1.25,4);
+INSERT INTO `mob_family_system` VALUES (341,'Blossom',1,'Amorph',0,10,0,130,180,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1.25,0.875,1,1,1.25,0.875,4);
+INSERT INTO `mob_family_system` VALUES (342,'Velkk',7,'Beastmen',0,10,40,116,140,1,3,1,2,2,3,3,3,3,3,3,1,1,1,1,1,1,1.25,0.5,1,1,1,0.5,8);
+INSERT INTO `mob_family_system` VALUES (343,'Heartwing',3,'Arcana',0,10,40,90,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1.25,1,1,1,5);
 /*!40000 ALTER TABLE `mob_family_system` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

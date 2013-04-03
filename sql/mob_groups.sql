@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS `mob_groups`;
 CREATE TABLE `mob_groups` (
   `groupid` int(10) unsigned NOT NULL,
   `poolid` int(10) unsigned NOT NULL DEFAULT '0',
-  `zoneid` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `zoneid` smallint(3) unsigned NOT NULL DEFAULT '0',
   `respawntime` int(10) unsigned NOT NULL DEFAULT '0',
   `spawntype` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `dropid` int(10) unsigned NOT NULL DEFAULT '0',
@@ -10845,3 +10845,23 @@ INSERT INTO `mob_groups` VALUES ('11001', '4657', '81', '330', '128', '2797', '8
 INSERT INTO `mob_groups` VALUES ('11002', '4658', '81', '330', '128', '560', '4444', '0', '50', '51');
 INSERT INTO `mob_groups` VALUES ('11003', '4655', '81', '330', '128', '0', '4800', '0', '60', '60');
 INSERT INTO `mob_groups` VALUES ('11004', '4656', '81', '330', '128', '4391', '80000', '0', '80', '85');
+INSERT INTO `mob_groups` VALUES ('11022', '5000', '261', '330', '0', '3355', '0', '0', '99', '107');
+INSERT INTO `mob_groups` VALUES ('11023', '5001', '261', '330', '0', '3355', '0', '0', '99', '107');
+INSERT INTO `mob_groups` VALUES ('11024', '5002', '261', '330', '0', '3355', '0', '0', '99', '107');
+INSERT INTO `mob_groups` VALUES ('11025', '5003', '261', '330', '0', '3355', '0', '0', '99', '107');
+INSERT INTO `mob_groups` VALUES ('11026', '5004', '261', '330', '0', '3355', '0', '0', '99', '107');
+INSERT INTO `mob_groups` VALUES ('11027', '5005', '261', '330', '0', '3355', '0', '0', '99', '107');
+INSERT INTO `mob_groups` VALUES ('11028', '5006', '261', '330', '0', '3355', '0', '0', '99', '107');
+INSERT INTO `mob_groups` VALUES ('11029', '5007', '261', '330', '0', '3355', '0', '0', '99', '107');
+INSERT INTO `mob_groups` VALUES ('11030', '5008', '261', '330', '0', '3355', '0', '0', '99', '107');
+INSERT INTO `mob_groups` VALUES ('11031', '5009', '261', '330', '0', '3355', '0', '0', '99', '107');
+INSERT INTO `mob_groups` VALUES ('11032', '5010', '261', '330', '0', '3355', '0', '0', '99', '107');
+INSERT INTO `mob_groups` VALUES ('11041', '5011', '261', '330', '0', '3355', '0', '0', '99', '107');
+INSERT INTO `mob_groups` VALUES ('11033', '5012', '261', '330', '0', '3355', '0', '0', '99', '107');
+INSERT INTO `mob_groups` VALUES ('11034', '5013', '261', '330', '0', '3355', '0', '0', '99', '107');
+INSERT INTO `mob_groups` VALUES ('11035', '5014', '261', '330', '0', '3355', '0', '0', '99', '107');
+INSERT INTO `mob_groups` VALUES ('11036', '5015', '261', '330', '0', '3355', '0', '0', '99', '107');
+INSERT INTO `mob_groups` VALUES ('11037', '5016', '261', '330', '0', '3355', '0', '0', '99', '107');
+INSERT INTO `mob_groups` VALUES ('11038', '5017', '261', '330', '0', '3355', '0', '0', '99', '107');
+INSERT INTO `mob_groups` VALUES ('11039', '5018', '261', '330', '0', '3355', '0', '0', '99', '107');
+INSERT INTO `mob_groups` VALUES ('11040', '5019', '261', '330', '0', '3355', '0', '0', '99', '107');
