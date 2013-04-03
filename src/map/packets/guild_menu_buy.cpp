@@ -70,5 +70,5 @@ CGuildMenuBuyPacket::CGuildMenuBuyPacket(CCharEntity* PChar, CItemContainer* PGu
         }
     }
     WBUFB(data,(0xF4)-4) = ItemCount;
-    WBUFB(data,(0xF5)-4) = PacketCount + 0x80;
+    WBUFB(data,(0xF5)-4) = PacketCount + 0xC0;
 }

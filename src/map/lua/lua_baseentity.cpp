@@ -49,6 +49,7 @@
 #include "../packets/event.h"
 #include "../packets/event_update.h"
 #include "../packets/guild_menu.h"
+#include "../packets/guild_menu_buy.h"
 #include "../packets/inventory_finish.h"
 #include "../packets/inventory_modify.h"
 #include "../packets/inventory_size.h"
@@ -2309,9 +2310,12 @@ inline int32 CLuaBaseEntity::sendGuild(lua_State* L)
 	{
 		status = GUILD_CLOSE;
 	}
-
-	((CCharEntity*)m_PBaseEntity)->PGuildShop = guildutils::GetGuildShop(GuildID);
+    CItemContainer* PGuildShop = guildutils::GetGuildShop(GuildID);
+	((CCharEntity*)m_PBaseEntity)->PGuildShop = PGuildShop;
 	((CCharEntity*)m_PBaseEntity)->pushPacket(new CGuildMenuPacket(status, open, close, holiday));
+    if (status == GUILD_OPEN) {
+        ((CCharEntity*)m_PBaseEntity)->pushPacket(new CGuildMenuBuyPacket((CCharEntity*)m_PBaseEntity, PGuildShop));
+    }
 
 	lua_pushboolean( L, status == GUILD_OPEN );
 	return 1;

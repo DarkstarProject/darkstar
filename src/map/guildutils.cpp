@@ -71,7 +71,7 @@ void Initialize()
 			g_PGuildList.push_back(new CItemContainer(Sql_GetIntData(SqlHandle,0)));
 		}
 	}
-	for (std::vector<CItemContainer*>::iterator iter = g_PGuildList.begin(); iter == g_PGuildList.end(); iter++)
+	for (std::vector<CItemContainer*>::iterator iter = g_PGuildList.begin(); iter != g_PGuildList.end(); iter++)
     {
 		CItemContainer* PGuild = *iter;
 
@@ -95,6 +95,9 @@ void Initialize()
 				PItem->setStackSize(Sql_GetIntData(SqlHandle,3));
 				PItem->setDailyIncreace(Sql_GetIntData(SqlHandle,4));
 
+                //TODO: set price based on previous day stock
+                PItem->setBasePrice(Sql_GetIntData(SqlHandle,1));
+
 				if (PItem->IsDailyIncrease())
 				{
 					PItem->setQuantity((PItem->getStackSize() * 75) / 100);
@@ -113,7 +116,7 @@ void Initialize()
 
 void UpdateGuildsStock()
 {
-    for (std::vector<CItemContainer*>::iterator iter = g_PGuildList.begin(); iter == g_PGuildList.end(); iter++)
+    for (std::vector<CItemContainer*>::iterator iter = g_PGuildList.begin(); iter != g_PGuildList.end(); iter++)
 	{
 		CItemContainer* PGuild = *iter;
         for(uint8 slotid = 1; slotid <= PGuild->GetSize(); ++slotid)
@@ -132,6 +135,9 @@ void UpdateGuildsStock()
             {
                 PItem->setQuantity(limit);
             }
+
+            //TODO: set price based on previous day stock
+            PItem->setBasePrice(PItem->getMinPrice());
         }
 	}
     ShowDebug(CL_CYAN"UpdateGuildsStock is finished\n" CL_RESET);

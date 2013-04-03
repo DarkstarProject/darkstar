@@ -629,6 +629,9 @@
     <ClInclude Include="..\..\src\map\targetfinder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\guild_menu_update.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
@@ -1182,6 +1185,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\targetfinder.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\guild_menu_update.cpp">
+      <Filter>Source Files\packets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
