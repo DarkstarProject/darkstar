@@ -8,4 +8,4 @@ ITEM_CANNOT_BE_OBTAINED = 6538; -- You cannot obtain the item <item> come back a
 
 -- Quest dialog
     SENSE_OF_FOREBODING = 6556; -- You are suddenly overcome with a sense of foreboding...
-NOTHING_OUT_OF_ORDINARY = 7274; -- There is nothing out of the ordinary here.
+NOTHING_OUT_OF_ORDINARY = 7284; -- There is nothing out of the ordinary here.
