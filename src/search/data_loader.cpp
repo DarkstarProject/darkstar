@@ -244,8 +244,8 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr,int* count)
             memcpy(PPlayer->name, Sql_GetData(SqlHandle, 2), 15);
 
             PPlayer->id			= (uint32)Sql_GetUIntData(SqlHandle, 0);
-            PPlayer->zone		= (uint8) Sql_GetIntData(SqlHandle,  3);
-			PPlayer->prevzone   = (uint8) Sql_GetIntData(SqlHandle,  4);
+            PPlayer->zone		= (uint16) Sql_GetIntData(SqlHandle,  3);
+			PPlayer->prevzone   = (uint16) Sql_GetIntData(SqlHandle,  4);
             PPlayer->nation		= (uint8) Sql_GetIntData(SqlHandle,  5);
             PPlayer->mjob		= (uint8) Sql_GetIntData(SqlHandle, 11);
             PPlayer->sjob		= (uint8) Sql_GetIntData(SqlHandle, 12);
