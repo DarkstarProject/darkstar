@@ -48,7 +48,7 @@ function onTrigger(player,npc)
 	local questStatus = player:getQuestStatus(JEUNO,THE_ROAD_TO_AHT_URHGAN);
 	local questStatusVar = player:getVar("THE_ROAD_TO_AHT_URHGAN");
 
-	if (questStatus == QUEST_AVAILABLE) then
+	if (questStatus == QUEST_AVAILABLE and ENABLE_TOAU == 1) then
 		player:startEvent(0x274E); -- Offer Quest, First Dialog.
 	elseif (questStatus == QUEST_ACCEPTED and questStatusVar == 0) then
 		player:startEvent(0x274F); -- Offically offer quest, Second Dialog.

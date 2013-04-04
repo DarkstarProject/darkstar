@@ -40,7 +40,7 @@ local divinationDay = player:getVar("LastDivinationDay");
 local currentDay = VanadielDayOfTheYear();
 local divinationReady = ((divinationDay < currentDay) or (divinationDay > currentDay and player:getVar("LastDivinationYear") < VanadielYear()));
 
-	if (player:getMainLvl() >= 30 and AnEmptyVessel == QUEST_AVAILABLE and AnEmptyVesselProgress <= 1 and divinationReady == true) then
+	if (ENABLE_TOAU == 1 and player:getMainLvl() >= ADVANCED_JOB_LEVEL and AnEmptyVessel == QUEST_AVAILABLE and AnEmptyVesselProgress <= 1 and divinationReady == true) then
 		player:startEvent(0x003c,player:getGil()); -- initial cutscene where you get what stone you are gonne give to him if you answer all 10 questions correctly
 	elseif (AnEmptyVesselProgress == 1 and AnEmptyVessel == QUEST_AVAILABLE and divinationReady == false) then -- on the same day
 		player:startEvent(0x003f); -- reminder to come back next day, cause you failed

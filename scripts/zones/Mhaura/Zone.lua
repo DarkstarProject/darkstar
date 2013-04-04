@@ -38,7 +38,7 @@ end;
 
 function onTransportEvent(player,transport)
 	if ((transport == 47) or (transport == 46)) then 
-		if (not(player:hasKeyItem(BOARDING_PERMIT))) then
+		if (not(player:hasKeyItem(BOARDING_PERMIT)) or ENABLE_TOAU == 0) then
 			player:setPos(8.200,-1.363,3.445,192);
 			player:messageSpecial(DO_NOT_PROSSESS, BOARDING_PERMIT);
 		else
@@ -47,22 +47,22 @@ function onTransportEvent(player,transport)
 	else
 		player:startEvent(0x00c8,0,0,0,0,0,0,0,0,220);
 	end
-end;	
+end;
 
------------------------------------	
--- onEventUpdate	
------------------------------------	
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
 
-function onEventUpdate(player,csid,option)	
+function onEventUpdate(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-end;	
+end;
 
 -----------------------------------	
 -- onEventFinish	
 -----------------------------------	
 
-function onEventFinish(player,csid,option)	
+function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	if (csid == 0x00c8) then
