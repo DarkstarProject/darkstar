@@ -175,18 +175,25 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr,int* count)
     std::list<SearchEntity*> PlayersList;
 	std::string filterQry = "";
 	if(sr.jobid > 0 && sr.jobid < 21){ 
-		filterQry.append(" mjob = "+std::to_string(sr.jobid)+" AND "); 
+		filterQry.append(" mjob = ");
+        filterQry.append(std::to_string(static_cast<unsigned long long>(sr.jobid)));
+        filterQry.append(" AND "); 
 	}
 	if(sr.zoneid[0] > 0) { 
         string_t zoneList;
         int i = 1;
-        zoneList.append(std::to_string(sr.zoneid[0]));
+        zoneList.append(std::to_string(static_cast<unsigned long long>(sr.zoneid[0])));
         while (i < 10 && sr.zoneid[i] != 0)
         {
-            zoneList.append(", "+std::to_string(sr.zoneid[i]));
+            zoneList.append(", ");
+            zoneList.append(std::to_string(static_cast<unsigned long long>(sr.zoneid[i])));
             i++;
         }
-        filterQry.append("(pos_zone IN ("+zoneList+") OR (pos_zone = 0 AND pos_prevzone IN ("+zoneList+"))) AND ");
+        filterQry.append("(pos_zone IN (");
+        filterQry.append(zoneList);
+        filterQry.append(") OR (pos_zone = 0 AND pos_prevzone IN (");
+        filterQry.append(zoneList);
+        filterQry.append("))) AND ");
 	}
     filterQry.erase(filterQry.end()-4, filterQry.end());
 	int32 ret = SQL_ERROR;
