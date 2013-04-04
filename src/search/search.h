@@ -35,7 +35,7 @@ struct search_config_t
 
 struct search_req
 {
-	uint8 zoneid;
+	uint16 zoneid[10];
 	uint8 jobid;
 	uint8 minlvl;
 	uint8 maxlvl;

@@ -268,7 +268,7 @@ public:
 	int8	m_name[16];
 
 	uint8	m_mjob;
-	uint8	m_zone;
+	uint16	m_zone;
 	uint8	m_nation;
 
 	look_t	m_look;	

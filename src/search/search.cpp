@@ -564,13 +564,14 @@ search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 	uint8 minLvl = 0;
 	uint8 maxLvl = 0;
 	uint8 jobid = 0;
-	uint8 zoneid = 0;
+    uint16 areas[10];
 
 	uint8* data = (uint8*)PTCPRequest->GetData();
 	uint8  size = RBUFB(data,(0x10));
 
 	uint16 workloadBits = size * 8;
 
+    memset(areas, 0, sizeof(areas));
 	//ShowMessage("Received a search packet with size %u byte\n", size);
 	
 	while(bitOffset < workloadBits)
@@ -628,7 +629,7 @@ search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 				//packetData.sortDescendingByName=sortDescending;
 				break;
 			}			
-			case SEARCH_AREA: //Area Code Entry - 8 bit
+			case SEARCH_AREA: //Area Code Entry - 10 bit
 			{
 				if (isPresent == 0) //no more Area entries
 				{
@@ -636,12 +637,9 @@ search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 				}
 				else // 8 Bit = 1 Byte per Area Code
 				{
-					bitOffset+=2;
-					unsigned char areas[10];
-					areas[areaCount] = (unsigned char)unpackBitsLE(&data[0x11],bitOffset,8);
+					areas[areaCount] = (uint16)unpackBitsLE(&data[0x11],bitOffset,10);
 					areaCount++;
-					bitOffset+=8;
-					zoneid = areas[areaCount-1];
+					bitOffset+=10;
 				//	printf("SEARCH::Area List Entry found(%2X)!\n",areas[areaCount-1]);
 				}
 				break;
@@ -774,14 +772,14 @@ search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 	}
 	printf("\n");
 
-	ShowMessage("Name: %s Zone: %u Job: %u Lvls: %u ~ %u \n",(nameLen>0 ? name : 0),zoneid,jobid,minLvl,maxLvl);
+	ShowMessage("Name: %s Job: %u Lvls: %u ~ %u \n",(nameLen>0 ? name : 0),jobid,minLvl,maxLvl);
 
 	search_req sr;
 	sr.jobid = jobid;
 	sr.maxlvl = maxLvl;
 	sr.minlvl = minLvl;
-	sr.zoneid = zoneid;
 	sr.nameLen = nameLen;
+	memcpy(sr.zoneid, areas, sizeof(sr.zoneid));
 	if(nameLen>0){
 		sr.name.insert(0,(int8*)name);
 	}

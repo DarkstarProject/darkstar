@@ -173,64 +173,37 @@ uint32 CDataLoader::GetPlayersCount(search_req sr)
 std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr,int* count)
 {
     std::list<SearchEntity*> PlayersList;
-	bool shouldFilter = false;
-	uint8 filters = 0;
 	std::string filterQry = "";
 	if(sr.jobid > 0 && sr.jobid < 21){ 
-		filterQry.append(" mjob = %u "); 
-		filters |= 0x01;
-		shouldFilter = true;
+		filterQry.append(" mjob = "+std::to_string(sr.jobid)+" AND "); 
 	}
-	if(sr.zoneid > 0) { 
-		if(filters==1){
-			filterQry.append("AND (pos_zone = %u OR (pos_zone = 0 AND pos_prevzone = %u)) ");
-		}
-		else{
-			filterQry.append("(pos_zone = %u OR (pos_zone = 0 AND pos_prevzone = %u)) ");
-		}
-		filters |= 0x02;
-		shouldFilter = true;
+	if(sr.zoneid[0] > 0) { 
+        string_t zoneList;
+        int i = 1;
+        zoneList.append(std::to_string(sr.zoneid[0]));
+        while (i < 10 && sr.zoneid[i] != 0)
+        {
+            zoneList.append(", "+std::to_string(sr.zoneid[i]));
+            i++;
+        }
+        filterQry.append("(pos_zone IN ("+zoneList+") OR (pos_zone = 0 AND pos_prevzone IN ("+zoneList+"))) AND ");
 	}
-
+    filterQry.erase(filterQry.end()-4, filterQry.end());
 	int32 ret = SQL_ERROR;
 
-	if(shouldFilter){
-		std::string fmtQuery = "SELECT charid, partyid, charname, pos_zone, pos_prevzone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, \
-                            war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run \
-                            FROM accounts_sessions \
-                            LEFT JOIN chars USING (charid) \
-                            LEFT JOIN char_look USING (charid) \
-                            LEFT JOIN char_stats USING (charid) \
-                            LEFT JOIN char_jobs USING(charid) \
-							LEFT JOIN char_profile USING(charid) \
-							WHERE charname IS NOT NULL AND ";
-		fmtQuery.append(filterQry);
-		fmtQuery.append("ORDER BY charname ASC");
+	std::string fmtQuery = "SELECT charid, partyid, charname, pos_zone, pos_prevzone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, \
+                        war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run \
+                        FROM accounts_sessions \
+                        LEFT JOIN chars USING (charid) \
+                        LEFT JOIN char_look USING (charid) \
+                        LEFT JOIN char_stats USING (charid) \
+                        LEFT JOIN char_jobs USING(charid) \
+						LEFT JOIN char_profile USING(charid) \
+						WHERE charname IS NOT NULL AND ";
+	fmtQuery.append(filterQry);
+	fmtQuery.append("ORDER BY charname ASC");
 
-		if(filters==1){//just job
-			ret = Sql_Query(SqlHandle, fmtQuery.c_str(),sr.jobid);
-		}
-		else if(filters==2){ //just zone
-			ret = Sql_Query(SqlHandle, fmtQuery.c_str(),sr.zoneid,sr.zoneid);
-		}
-		else if(filters==3){ //zone and job
-			ret = Sql_Query(SqlHandle, fmtQuery.c_str(),sr.jobid,sr.zoneid,sr.zoneid);
-		}
-
-	}
-	else{
-		const int8* fmtQuery = "SELECT charid, partyid, charname, pos_zone, pos_prevzone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, \
-                            war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run \
-                            FROM accounts_sessions \
-                            LEFT JOIN chars USING (charid) \
-                            LEFT JOIN char_look USING (charid) \
-                            LEFT JOIN char_stats USING (charid) \
-                            LEFT JOIN char_jobs USING(charid) \
-							LEFT JOIN char_profile USING(charid) \
-							WHERE charname IS NOT NULL \
-                            ORDER BY charname ASC";
-		ret = Sql_Query(SqlHandle, fmtQuery);
-	}
+	ret = Sql_Query(SqlHandle, fmtQuery.c_str());
 
 	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{
@@ -341,7 +314,7 @@ std::list<SearchEntity*> CDataLoader::GetPartyList(uint32 PartyID)
 			memcpy(PPlayer->name, Sql_GetData(SqlHandle, 2), 15);
 
             PPlayer->id     = (uint32)Sql_GetUIntData(SqlHandle, 0);
-            PPlayer->zone   = (uint8) Sql_GetIntData(SqlHandle,  3);
+            PPlayer->zone   = (uint16) Sql_GetIntData(SqlHandle,  3);
             PPlayer->nation = (uint8) Sql_GetIntData(SqlHandle,  4);
             PPlayer->mjob   = (uint8) Sql_GetIntData(SqlHandle, 10);
             PPlayer->sjob   = (uint8) Sql_GetIntData(SqlHandle, 11);
@@ -402,7 +375,7 @@ std::list<SearchEntity*> CDataLoader::GetLinkshellList(uint32 LinkshellID)
             memcpy(PPlayer->name, Sql_GetData(SqlHandle, 2), 15);
 
             PPlayer->id     = (uint32)Sql_GetUIntData(SqlHandle, 0);
-            PPlayer->zone   = (uint8) Sql_GetIntData(SqlHandle,  3);
+            PPlayer->zone   = (uint16) Sql_GetIntData(SqlHandle,  3);
             PPlayer->nation = (uint8) Sql_GetIntData(SqlHandle,  4);
             PPlayer->mjob   = (uint8) Sql_GetIntData(SqlHandle, 10);
             PPlayer->sjob   = (uint8) Sql_GetIntData(SqlHandle, 11);
