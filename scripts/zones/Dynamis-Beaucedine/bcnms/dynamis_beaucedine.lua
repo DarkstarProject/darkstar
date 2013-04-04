@@ -30,7 +30,6 @@ function OnBcnmLeave(player,instance,leavecode)
 		player:setPos(-284.751,-39.923,-422.948,235,0x6F);
 	end
 	if(leavecode == 4) then
-		GetNPCByID(17539319):setStatus(2);
 		SetServerVariable("[DynaBeaucedine]UniqueID",0);
 	end
 	

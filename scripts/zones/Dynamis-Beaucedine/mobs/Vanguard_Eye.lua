@@ -65,11 +65,11 @@ function onMobDeath(mob,killer)
 	-- 117 spawn 120 when defeated
 	elseif(mobID == 17326536) then
 		SpawnMob(17326553);
-	-- 138 139 140: Spawn 157 when defeated
+	-- 138 139 140: Spawn 147 when defeated
 	elseif(mobID == 17326661 and GetMobAction(17326668) == 0 and GetMobAction(17326673) == 0 or 
 		   mobID == 17326668 and GetMobAction(17326661) == 0 and GetMobAction(17326673) == 0 or 
 		   mobID == 17326673 and GetMobAction(17326661) == 0 and GetMobAction(17326668) == 0) then
-		SpawnMob(17326790);
+		SpawnMob(17326706);
 	-- 157 spawn 158-162 when defeated
 	elseif(mobID == 17326790) then
 		SpawnMob(17326086);
