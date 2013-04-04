@@ -1900,7 +1900,7 @@ void BuildingCharAbilityTable(CCharEntity* PChar)
 	{
 		CAbility* PAbility = AbilitiesList.at(i);
 
-		if (PChar->GetSLevel() >= PAbility->getLevel() )
+		if (PChar->GetSLevel() >= PAbility->getLevel() &&  PAbility->getID() < 496)
 		{
 			if (PAbility->getLevel() != 0 )
 			{
