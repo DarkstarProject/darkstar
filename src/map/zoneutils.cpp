@@ -619,8 +619,9 @@ REGIONTYPE GetCurrentRegion(uint8 ZoneID)
 		case ZONE_RIVERNE_SITE_B01:
 		case ZONE_SACRARIUM:
 		case ZONE_SEALIONS_DEN:
-		case ZONE_TAVNAZIAN_SAFEHOLD:
 			return REGION_TAVNAZIA;
+        case ZONE_TAVNAZIAN_SAFEHOLD:
+            return REGION_TAVNAZIAN_MARQ;
         case ZONE_SOUTHERN_SANDORIA:
         case ZONE_NORTHERN_SANDORIA:
         case ZONE_PORT_SANDORIA:
@@ -642,6 +643,132 @@ REGIONTYPE GetCurrentRegion(uint8 ZoneID)
         case ZONE_LOWER_JEUNO:
         case ZONE_PORT_JEUNO:
             return REGION_JEUNO;
+        case ZONE_DYNAMIS_BASTOK:
+        case ZONE_DYNAMIS_BEAUCEDINE:
+        case ZONE_DYNAMIS_BUBURIMU:
+        case ZONE_DYNAMIS_JEUNO:
+        case ZONE_DYNAMIS_QUFIM:
+        case ZONE_DYNAMIS_SAN_DORIA:
+        case ZONE_DYNAMIS_TAVNAZIA:
+        case ZONE_DYNAMIS_VALKURM:
+        case ZONE_DYNAMIS_WINDURST:
+        case ZONE_DYNAMIS_XARCABARD:
+            return REGION_DYNAMIS;
+        case ZONE_PROMYVION_DEM:
+        case ZONE_PROMYVION_HOLLA:
+        case ZONE_PROMYVION_MEA:
+        case ZONE_PROMYVION_VAHZL:
+        case ZONE_SPIRE_OF_DEM:
+        case ZONE_SPIRE_OF_HOLLA:
+        case ZONE_SPIRE_OF_MEA:
+        case ZONE_SPIRE_OF_VAHZL:
+        case ZONE_HALL_OF_TRANSFERENCE:
+            return REGION_PROMYVION;
+        case ZONE_ALTAIEU:
+        case ZONE_EMPYREAL_PARADOX:
+        case ZONE_THE_GARDEN_OF_RUHMET:
+        case ZONE_GRAND_PALACE_OF_HUXZOI:
+            return REGION_LUMORIA;
+        case ZONE_APOLLYON:
+        case ZONE_TEMENOS:
+            return REGION_LIMBUS;
+        case ZONE_AL_ZAHBI:
+        case ZONE_AHT_URHGAN_WHITEGATE:
+        case ZONE_BHAFLAU_THICKETS:
+        case ZONE_THE_COLOSSEUM:
+            return REGION_WEST_AHT_URHGAN;
+        case ZONE_MAMOOL_JA_TRAINING_GROUNDS:
+        case ZONE_MAMOOK:
+        case ZONE_WAJAOM_WOODLANDS:
+        case ZONE_AYDEEWA_SUBTERRANE:
+        case ZONE_JADE_SEPULCHER:
+            return REGION_MAMOOL_JA_SAVAGE;
+        case ZONE_HALVUNG:
+        case ZONE_MOUNT_ZHAYOLM:
+        case ZONE_LEBROS_CAVERN:
+        case ZONE_NAVUKGO_EXECUTION_CHAMBER:
+            return REGION_HALVUNG;
+        case ZONE_ARRAPAGO_REEF:
+        case ZONE_CAEDARVA_MIRE:
+        case ZONE_LEUJAOAM_SANCTUM:
+        case ZONE_NASHMAU:
+        case ZONE_HAZHALM_TESTING_GROUNDS:
+        case ZONE_TALACCA_COVE:
+        case ZONE_PERIQIA:
+            return REGION_ARRAPAGO;
+        case ZONE_NYZUL_ISLE:
+        case ZONE_ARRAPAGO_REMNANTS:
+        case ZONE_ALZADAAL_UNDERSEA_RUINS:
+        case ZONE_SILVER_SEA_REMNANTS:
+            return REGION_ALZADAAL;
+        case ZONE_SOUTHERN_SAN_DORIA_S:
+        case ZONE_EAST_RONFAURE_S:
+            return REGION_RONFAURE_FRONT;
+        case ZONE_BASTOK_MARKETS_S:
+        case ZONE_NORTH_GUSTABERG_S:
+        case ZONE_RUHOTZ_SILVERMINES:
+        case ZONE_GRAUBERG_S:
+            return REGION_GUSTABERG_FRONT;
+        case ZONE_WINDURST_WATERS_S:
+        case ZONE_WEST_SARUTABARUTA_S:
+        case ZONE_GHOYUS_REVERIE:
+        case ZONE_FORT_KARUGO_NARUGO_S:
+            return REGION_SARUTA_FRONT;
+        case ZONE_BATALLIA_DOWNS_S:
+        case ZONE_JUGNER_FOREST_S:
+        case ZONE_LA_VAULE_S:
+        case ZONE_EVERBLOOM_HOLLOW:
+        case ZONE_THE_ELDIEME_NECROPOLIS_S:
+            return REGION_NORVALLEN_FRONT;
+        case ZONE_ROLANBERRY_FIELDS_S:
+        case ZONE_PASHHOW_MARSHLANDS_S:
+        case ZONE_CRAWLERS_NEST_S:
+        case ZONE_BEADEAUX_S:
+        case ZONE_VUNKERL_INLET_S:
+            return REGION_DERFLAND_FRONT;
+        case ZONE_SAUROMUGUE_CHAMPAIGN_S:
+        case ZONE_MERIPHATAUD_MOUNTAINS_S:
+        case ZONE_CASTLE_OZTROJA_S:
+        case ZONE_GARLAIGE_CITADEL_S:
+            return REGION_ARAGONEAU_FRONT;
+        case ZONE_BEAUCEDINE_GLACIER_S:
+            return REGION_FAUREGANDI_FRONT;
+        case ZONE_XARCABARD_S:
+        case ZONE_CASTLE_ZVAHL_BAILEYS_S:
+        case ZONE_CASTLE_ZVAHL_KEEP_S:
+        case ZONE_THRONE_ROOM_S:
+            return REGION_VALDEAUNIA_FRONT;
+        case ZONE_ABYSSEA_ALTEPA:
+        case ZONE_ABYSSEA_ATTOHWA:
+        case ZONE_ABYSSEA_EMPYREAL_PARADOX:
+        case ZONE_ABYSSEA_GRAUBERG:
+        case ZONE_ABYSSEA_KONSCHTAT:
+        case ZONE_ABYSSEA_LA_THEINE:
+        case ZONE_ABYSSEA_MISAREAUX:
+        case ZONE_ABYSSEA_TAHRONGI:
+        case ZONE_ABYSSEA_ULEGUERAND:
+        case ZONE_ABYSSEA_VUNKERL:
+            return REGION_ABYSSEA;
+        case ZONE_WALK_OF_ECHOES:
+            return REGION_THE_THRESHOLD;
+        case ZONE_DIORAMA_ABDHALJS_GHELSBA:
+        case ZONE_ABDHALJS_ISLE_PURGONORGO:
+        case ZONE_MAQUETTE_ABDHALS_LEGION:
+            return REGION_ABDHALJS;
+        case ZONE_WESTERN_ADOULIN:
+        case ZONE_EASTERN_ADOULIN:
+        case ZONE_RALA_WATERWAYS:
+        case ZONE_RALA_WATERWAYS_U:
+            return REGION_ADOULIN_ISLANDS;
+        case ZONE_CEIZAK_BATTLEGROUNDS:
+        case ZONE_FORET_DE_HENNETIEL:
+        case ZONE_SIH_GATES:
+        case ZONE_MOH_GATES:
+        case ZONE_CIRDAS_CAVERNS:
+        case ZONE_CIRDAS_CAVERNS_U:
+        case ZONE_YAHSE_HUNTING_GROUNDS:
+        case ZONE_MORIMAR_BASALT_FIELDS:
+            return REGION_EAST_ULBUKA;
 	}
 	return REGION_UNKNOWN;
 }

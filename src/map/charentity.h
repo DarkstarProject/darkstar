@@ -173,7 +173,7 @@ public:
 	bool			  m_EquipSwap;					// true if equipment was recently changed
 	uint8			  equip[17];                    // экипировка персонажа
 
-	uint8			  m_ZonesList[40];				// список посещенных персонажем зон
+	uint8			  m_ZonesList[36];				// список посещенных персонажем зон
 	uint8			  m_SpellList[128];				// список изученных заклинаний
     uint8             m_TitleList[94];              // список заслуженных завний
 	uint8			  m_Abilities[46];				// список текущих способностей

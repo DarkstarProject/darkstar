@@ -847,7 +847,7 @@ inline int32 CLuaBaseEntity::isZoneVisited(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    lua_pushboolean( L, hasBit((uint8)lua_tointeger(L,-1), PChar->m_ZonesList, sizeof(PChar->m_ZonesList)));
+    lua_pushboolean( L, hasBit((uint16)lua_tointeger(L,-1), PChar->m_ZonesList, sizeof(PChar->m_ZonesList)));
 	return 1;
 }
 
