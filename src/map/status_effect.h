@@ -525,10 +525,11 @@ enum EFFECT
 	EFFECT_AVATAR					= 491,
 
 	EFFECT_NINJUTSU_ELE_DEBUFF      = 510,
-	EFFECT_DYNAMIS					= 511, // TODO: > 768
 	EFFECT_HEALING					= 512, // TODO: > 768
 	EFFECT_LEAVEGAME				= 513, // TODO: > 768
     EFFECT_SKILLCHAIN               = 514, // TODO: > 768
+
+	EFFECT_DYNAMIS					= 800,
 };
 
 #define MAX_EFFECTID    800  // 768 real + 32 custom

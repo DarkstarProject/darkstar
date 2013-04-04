@@ -519,10 +519,11 @@ INSERT INTO `status_effects` VALUES (487,'endrain',32,94,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (488,'enaspir',32,94,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (489,'afterglow',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (510,'ninjutsu_ele_debuff',544,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (511,'dynamis',0,0,0,0,0,0,0);
+
 INSERT INTO `status_effects` VALUES (512,'healing',48,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (513,'leavegame',48,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (514,'skillchain',32,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (800,'dynamis',0,0,0,0,0,0,0);
 /*!40000 ALTER TABLE `status_effects` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

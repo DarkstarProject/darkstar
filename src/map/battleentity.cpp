@@ -96,7 +96,7 @@ bool CBattleEntity::hasImmunity(uint32 imID)
 {
 	if(objtype == TYPE_MOB){
 		IMMUNITY mobImmunity = (IMMUNITY)imID;
-		return (m_Immunity == mobImmunity);
+		return (m_Immunity & mobImmunity);
 	}
 	return false;
 }
