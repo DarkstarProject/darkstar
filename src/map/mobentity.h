@@ -148,6 +148,7 @@ public:
 	uint32		GetSkinID();						// Get the last skinid (0 for base skin)
 
     uint8       TPUseChance(); // return % chance to use TP move
+    bool        CanUseTwoHour(); // checks if the mob can use a two hour
 
     void        ChangeMJob(uint16 job); // this will change jobs and update traits, stats, spells
 

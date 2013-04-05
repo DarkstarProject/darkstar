@@ -227,6 +227,21 @@ uint8 CMobEntity::TPUseChance()
     return 40;
 }
 
+bool CMobEntity::CanUseTwoHour()
+{
+    if(!(m_Type & MOBTYPE_NOTORIOUS) && !isInDynamis())
+    {
+        return false;
+    }
+
+    if(m_EcoSystem == SYSTEM_BEASTMEN)
+    {
+        return true;
+    }
+
+    return false;
+}
+
 /************************************************************************
 *                                                                       *
 *  Change Skin of the Mob                                               *

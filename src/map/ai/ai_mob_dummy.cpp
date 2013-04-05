@@ -587,11 +587,14 @@ void CAIMobDummy::ActionAbilityStart()
 
 	// lets try to use my two hour
 	// two hour is assumed to be at the front
-	if(MobSkills[0]->isTwoHour() && (m_PMob->m_Type & MOBTYPE_NOTORIOUS || m_PMob->isInDynamis()) && m_PMob->m_SkillStatus == 0){
-		// get my job two hour
-		m_PMobSkill = battleutils::GetTwoHourMobSkill(m_PMob->GetMJob());
+	if(m_PMob->m_SkillStatus == 0)
+	{
+		if(MobSkills[0]->isTwoHour() && (m_PMob->m_Type & MOBTYPE_NOTORIOUS || m_PMob->isInDynamis()) || m_PMob->CanUseTwoHour()){
+			// get my job two hour
+			m_PMobSkill = battleutils::GetTwoHourMobSkill(m_PMob->GetMJob());
 
-		valid = (m_PMobSkill != NULL && luautils::OnMobSkillCheck(m_PBattleTarget, m_PMob, m_PMobSkill) == 0);
+			valid = (m_PMobSkill != NULL && luautils::OnMobSkillCheck(m_PBattleTarget, m_PMob, m_PMobSkill) == 0);
+		}
 	}
 
 	// no 2 hour picked, lets find a normal skill

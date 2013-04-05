@@ -411,6 +411,7 @@ INSERT INTO `mob_family_system` VALUES (343,'Mantis',20,'Vermin',1,1,40,105,120,
 INSERT INTO `mob_family_system` VALUES (344,'Blossom',1,'Amorph',0,10,0,130,180,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1.25,0.875,1,1,1.25,0.875,4);
 INSERT INTO `mob_family_system` VALUES (345,'Velkk',7,'Beastmen',0,10,40,116,140,1,3,1,2,2,3,3,3,3,3,3,1,1,1,1,1,1,1.25,0.5,1,1,1,0.5,8);
 INSERT INTO `mob_family_system` VALUES (346,'Heartwing',3,'Arcana',0,10,40,90,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1.25,1,1,1,5);
+INSERT INTO `mob_family_system` VALUES (347,'MobWyvern',10,'Dragon',0,10,40,100,90,1,2,1,3,6,3,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,0.875,1.125,0);
 /*!40000 ALTER TABLE `mob_family_system` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
