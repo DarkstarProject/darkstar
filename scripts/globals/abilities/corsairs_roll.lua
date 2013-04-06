@@ -26,7 +26,7 @@ function OnUseAbilityRoll(caster, target, ability, total)
 	elseif (caster:getSubJob() == JOB_COR and caster:getSubLvl() < target:getMainLvl()) then
 		effectpower = effectpower * (caster:getSubLvl() / target:getMainLvl());
 	end
-	if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(MERIT_BUST_DURATION), EFFECT_CORSAIRS_ROLL, effectpower[total], 0, duration, target:getID(), total, MOD_EXP_BONUS) == false) then
+	if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(MERIT_BUST_DURATION), EFFECT_CORSAIRS_ROLL, effectpower, 0, duration, target:getID(), total, MOD_EXP_BONUS) == false) then
 		ability:setMsg(423);
 	end
 end;
