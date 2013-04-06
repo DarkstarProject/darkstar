@@ -431,7 +431,7 @@ enum MODIFIER
 	//MOD_SPARE				= 0x18D,
 };
 
-#define MAX_MODIFIER	       0x187
+#define MAX_MODIFIER	       0x188
 
 
 

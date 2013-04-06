@@ -529,10 +529,10 @@ enum EFFECT
 	EFFECT_LEAVEGAME				= 513, // TODO: > 768
     EFFECT_SKILLCHAIN               = 514, // TODO: > 768
 
-	EFFECT_DYNAMIS					= 800,
+	EFFECT_DYNAMIS					= 800
 };
 
-#define MAX_EFFECTID    800  // 768 real + 32 custom
+#define MAX_EFFECTID    801  // 768 real + 32 custom
 
 /************************************************************************
 *																		*
