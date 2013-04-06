@@ -20,7 +20,8 @@ end;
 
 function OnUseAbilityRoll(caster, target, ability, total)
 	local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
-	local effectpower = {10, 11, 11, 12, 20, 13, 15, 16, 8, 17, 24, 6}
+	local effectpowers = {10, 11, 11, 12, 20, 13, 15, 16, 8, 17, 24, 6};
+	local effectpower = effectpowers[total];
 	if (caster:getMainJob() == JOB_COR and caster:getMainLvl() < target:getMainLvl()) then
 		effectpower = effectpower * (caster:getMainLvl() / target:getMainLvl());
 	elseif (caster:getSubJob() == JOB_COR and caster:getSubLvl() < target:getMainLvl()) then
