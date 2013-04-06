@@ -305,8 +305,9 @@ enum MODIFIER
 // Dark Knight
 // Beastmaster
 	MOD_TAME				= 0x130,			// Additional percent chance to charm
-	MOD_CHARM				= 0x168,			// extends the charm time only, no effect of charm chance
-	MOD_REWARD_HP_BONUS		 = 0x16C,			// Percent to add to reward HP healed. (364)
+	MOD_CHARM_TIME			= 0x168,			// extends the charm time only, no effect of charm chance
+	MOD_REWARD_HP_BONUS		= 0x16C,			// Percent to add to reward HP healed. (364)
+	MOD_CHARM_CHANCE		= 0x187,			// extra chance to charm (light+apollo staff ect)
 
 // Bard
 
@@ -422,10 +423,12 @@ enum MODIFIER
 
 	// To save time finding the next mod to use..
 
-	//MOD_SPARE				= 0x187;
-	//MOD_SPARE				= 0x188;
-	//MOD_SPARE				= 0x189;
-	//MOD_SPARE				= 0x18A;
+	//MOD_SPARE				= 0x188,
+	//MOD_SPARE				= 0x189,
+	//MOD_SPARE				= 0x18A,
+	//MOD_SPARE				= 0x18B,
+	//MOD_SPARE				= 0x18C,
+	//MOD_SPARE				= 0x18D,
 };
 
 #define MAX_MODIFIER	       0x187

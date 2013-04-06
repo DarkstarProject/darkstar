@@ -581,6 +581,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	uint16 TargID =	RBUFW(data,(0x08));
 	uint8  action = RBUFB(data,(0x0A));
 
+
 	switch (action)
 	{
 		case 0x00: // trigger
@@ -689,7 +690,11 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			PChar->pushPacket(new CServerIPPacket(PChar,2));
 		}
 		break;
-		case 0x0C: break;	// assist
+		case 0x0C: 	// assist
+		{
+			battleutils::assistTarget(PChar, TargID);
+		}
+		break;
 		case 0x0D: 	// raise menu
 	    {
 			if(RBUFB(data,(0x0C)) == 0) //ACCEPTED RAISE

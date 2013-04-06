@@ -53,6 +53,7 @@
 #include "items.h"
 #include "packets/pet_sync.h"
 #include "packets/char_sync.h"
+#include "packets/lock_on.h"
 #include "ai/ai_pet_dummy.h"
 
 
@@ -3690,7 +3691,7 @@ void tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
 		}
 
 		//apply charm time extension from gear
-		uint8 charmModValue = (PCharmer->getMod(MOD_CHARM));
+		uint8 charmModValue = (PCharmer->getMod(MOD_CHARM_TIME));
 		float extraCharmTime = (float)(CharmTime*(charmModValue * 0.5f)/10);
 		CharmTime += extraCharmTime;
 
@@ -3779,8 +3780,7 @@ bool TryCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 base)
 	//  -75 with a BST SJ lvl10 will struggle on EP
 	//	-75 with a BST SJ lvl75 will not - thats player has bst leveled to 75 and is using it as SJ
 	//---------------------------------------------------------
-
-
+	
 	uint8 charmerBSTlevel = 0;
 
 		if (PCharmer->objtype == TYPE_PC)
@@ -3798,90 +3798,61 @@ bool TryCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 base)
 	float chrRatio = (float)PVictim->CHR() / PCharmer->CHR();
 	check *= chrRatio;
 
-
-	//check for hidden effect items (maybe use another modifier for hidden effects)
-	if (PCharmer->objtype == TYPE_PC)
-	{
-		CCharEntity* PChar = (CCharEntity*)PCharmer;
-		CItemWeapon* PWeapon = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]);
-
-		float hiddenEffect = 0;
-		if(PWeapon)
-		{
-			switch (PWeapon->getID())
-			{
-				case 17557:	hiddenEffect = 10; break; //light staff 10%
-				case 17558:	hiddenEffect = 15; break; //apollo staff 15%
-			}
-		}
-		float StaffMods = ((float)((100.0f - hiddenEffect)/100.0f));
-		check *= StaffMods;
-	}
-
+	float charmChanceMods = PCharmer->getMod(MOD_CHARM_CHANCE);
+	check *= ((float)((100.0f - charmChanceMods)/100.0f));
+	
 
 	//cap chance at 95%
-	if(check < 5) check = 5;
-
-	if(check < rand()%100)
+	if(check < 5) {
+		check = 5;
+	}
+	if(check < rand()%100) {
 		return true;
-
+	}
 	return false;
 }
 
+
+/************************************************************************
+*                                                                       *
+*	get corsair roll effect									            *
+*                                                                       *
+************************************************************************/
 EFFECT getCorsairRollEffect(uint16 id)
 {
 	switch(id)
 	{
-	case ABILITY_FIGHTERS_ROLL:
-		return EFFECT_FIGHTERS_ROLL;
-	case ABILITY_MONKS_ROLL:
-		return EFFECT_MONKS_ROLL;
-	case ABILITY_HEALERS_ROLL:
-		return EFFECT_HEALERS_ROLL;
-	case ABILITY_WIZARDS_ROLL:
-		return EFFECT_WIZARDS_ROLL;
-	case ABILITY_WARLOCKS_ROLL:
-		return EFFECT_WARLOCKS_ROLL;
-	case ABILITY_ROGUES_ROLL:
-		return EFFECT_ROGUES_ROLL;
-	case ABILITY_GALLANTS_ROLL:
-		return EFFECT_GALLANTS_ROLL;
-	case ABILITY_CHAOS_ROLL:
-		return EFFECT_CHAOS_ROLL;
-	case ABILITY_BEAST_ROLL:
-		return EFFECT_BEAST_ROLL;
-	case ABILITY_CHORAL_ROLL:
-		return EFFECT_CHORAL_ROLL;
-	case ABILITY_HUNTERS_ROLL:
-		return EFFECT_HUNTERS_ROLL;
-	case ABILITY_SAMURAI_ROLL:
-		return EFFECT_SAMURAI_ROLL;
-	case ABILITY_NINJA_ROLL:
-		return EFFECT_NINJA_ROLL;
-	case ABILITY_DRACHEN_ROLL:
-		return EFFECT_DRACHEN_ROLL;
-	case ABILITY_EVOKERS_ROLL:
-		return EFFECT_EVOKERS_ROLL;
-	case ABILITY_MAGUSS_ROLL:
-		return EFFECT_MAGUSS_ROLL;
-	case ABILITY_CORSAIRS_ROLL:
-		return EFFECT_CORSAIRS_ROLL;
-	case ABILITY_PUPPET_ROLL:
-		return EFFECT_PUPPET_ROLL;
-	case ABILITY_DANCERS_ROLL:
-		return EFFECT_DANCERS_ROLL;
-	case ABILITY_SCHOLARS_ROLL:
-		return EFFECT_SCHOLARS_ROLL;
+		case ABILITY_FIGHTERS_ROLL: return EFFECT_FIGHTERS_ROLL;
+		case ABILITY_MONKS_ROLL:	return EFFECT_MONKS_ROLL;
+		case ABILITY_HEALERS_ROLL:	return EFFECT_HEALERS_ROLL;
+		case ABILITY_WIZARDS_ROLL:	return EFFECT_WIZARDS_ROLL;
+		case ABILITY_WARLOCKS_ROLL:	return EFFECT_WARLOCKS_ROLL;
+		case ABILITY_ROGUES_ROLL:	return EFFECT_ROGUES_ROLL;
+		case ABILITY_GALLANTS_ROLL:	return EFFECT_GALLANTS_ROLL;
+		case ABILITY_CHAOS_ROLL:	return EFFECT_CHAOS_ROLL;
+		case ABILITY_BEAST_ROLL:	return EFFECT_BEAST_ROLL;
+		case ABILITY_CHORAL_ROLL:	return EFFECT_CHORAL_ROLL;
+		case ABILITY_HUNTERS_ROLL:	return EFFECT_HUNTERS_ROLL;
+		case ABILITY_SAMURAI_ROLL:	return EFFECT_SAMURAI_ROLL;
+		case ABILITY_NINJA_ROLL:	return EFFECT_NINJA_ROLL;
+		case ABILITY_DRACHEN_ROLL:	return EFFECT_DRACHEN_ROLL;
+		case ABILITY_EVOKERS_ROLL:	return EFFECT_EVOKERS_ROLL;
+		case ABILITY_MAGUSS_ROLL:	return EFFECT_MAGUSS_ROLL;
+		case ABILITY_CORSAIRS_ROLL:	return EFFECT_CORSAIRS_ROLL;
+		case ABILITY_PUPPET_ROLL:	return EFFECT_PUPPET_ROLL;
+		case ABILITY_DANCERS_ROLL:	return EFFECT_DANCERS_ROLL;
+		case ABILITY_SCHOLARS_ROLL:	return EFFECT_SCHOLARS_ROLL;
 	}
 	//Unhandled Scenario
 	DSP_DEBUG_BREAK_IF(true);
 	return EFFECT_BUST;
 }
 
+
 void ClaimMob(CBattleEntity* PDefender, CBattleEntity* PAttacker)
 {
-    if(PDefender->objtype == TYPE_MOB){
-
+    if(PDefender->objtype == TYPE_MOB)
+	{
         CMobEntity* mob = (CMobEntity*)PDefender;
 
         mob->PEnmityContainer->AddBaseEnmity(PAttacker);
@@ -3906,17 +3877,13 @@ int32 DmgTaken(CBattleEntity* PDefender, int32 damage)
 
 int32 BreathDmgTaken(CBattleEntity* PDefender, int32 damage)
 {
-
     float resist = 1.0f + (PDefender->getMod(MOD_UDMGBREATH) / 100.0f);
-
     damage *= resist;
 
     resist = 1.0f + (PDefender->getMod(MOD_DMGBREATH) / 100.0f);
 
     if(resist < 0.5f)
-    {
         resist = 0.5f;
-    }
 
     return damage * resist;
 }
@@ -3969,67 +3936,69 @@ int32 RangedDmgTaken(CBattleEntity* PDefender, int32 damage)
     return damage * resist;
 }
 
-// this should be moved into mobskill.cpp
 
+/************************************************************************
+*                                                                       *
+*	get mobs 2 hour skills	(should be moved into mobskill.cpp)         *
+*                                                                       *
+************************************************************************/
 CMobSkill* GetTwoHourMobSkill(JOBTYPE job)
 {
     uint16 id = 0;
 
     switch(job)
     {
-        case JOB_WAR:
-        id = 432;
-        break;
-        case JOB_MNK:
-        id = 434;
-        break;
-        case JOB_WHM:
-        id = 433;
-        break;
-        case JOB_BLM:
-        id = 435;
-        break;
-        case JOB_RDM:
-        id = 436;
-        break;
-        case JOB_THF:
-        id = 437;
-        break;
-        case JOB_PLD:
-        id = 438;
-        break;
-        case JOB_DRK:
-        id = 439;
-        break;
-        case JOB_BST:
-        id = 484;
-        break;
-        case JOB_BRD:
-        id = 440;
-        break;
-        case JOB_RNG:
-        id = 479;
-        break;
-        case JOB_SAM:
-        id = 474;
-        break;
-        case JOB_NIN:
-        id = 475;
-        break;
-        case JOB_DRG:
-        id = 476;
-        break;
-        // smn
-        // pup
-        // blu
-        // cor
-        // dnc
-        // sch
-        default:
-            return NULL;
+        case JOB_WAR: id = 432; break;
+        case JOB_MNK: id = 434; break;
+        case JOB_WHM: id = 433; break;
+        case JOB_BLM: id = 435; break;
+        case JOB_RDM: id = 436; break;
+        case JOB_THF: id = 437; break;
+        case JOB_PLD: id = 438; break;
+        case JOB_DRK: id = 439; break;
+        case JOB_BST: id = 484; break;
+        case JOB_BRD: id = 440; break;
+        case JOB_RNG: id = 479; break;
+        case JOB_SAM: id = 474; break;
+        case JOB_NIN: id = 475; break;
+        case JOB_DRG: id = 476; break;
+        //case JOB_SMN: id = ???; break;
+        //case JOB_PUP: id = ???; break;
+        //case JOB_BLU: id = ???; break;
+        //case JOB_COR: id = ???; break;
+        //case JOB_DNC: id = ???; break;
+        //case JOB_SCH: id = ???; break;
+        default: return NULL;
     }
-
     return GetMobSkill(id);
 }
+
+
+
+/************************************************************************
+*                                                                       *
+*	handle the /assist command		                                    *
+*                                                                       *
+************************************************************************/
+void assistTarget(CCharEntity* PChar, uint16 TargID)
+{
+
+	// get the player we want to assist
+	CBattleEntity* PlayerToAssist = (CBattleEntity*)PChar->loc.zone->GetEntity(TargID, TYPE_PC);
+
+	if (PlayerToAssist != NULL && PlayerToAssist->m_TargID != NULL && PlayerToAssist->objtype == TYPE_PC)
+	{
+		// get that players target (mob,player,pet only)
+		CBattleEntity* EntityToLockon = (CBattleEntity*)PChar->loc.zone->GetEntity(PlayerToAssist->m_TargID, TYPE_MOB | TYPE_PC | TYPE_PET);
+
+		if (EntityToLockon != NULL) 
+		{
+			// lock on to the new target!
+			PChar->pushPacket(new CLockOnPacket(PChar, EntityToLockon));
+		}
+	}
+}
+
+
 
 };
