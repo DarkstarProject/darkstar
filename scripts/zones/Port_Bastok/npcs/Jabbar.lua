@@ -27,11 +27,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:hasKeyItem(TENSHODO_MEMBERS_CARD)) then 
+	--[[if (player:hasKeyItem(TENSHODO_MEMBERS_CARD)) then 
 		if (player:sendGuild(0xEC03, 1, 23, 4)) then 
 			player:showText(npc,TENSHODO_SHOP_OPEN_DIALOG);
 		end
-	elseif (player:getQuestStatus(JEUNO,TENSHODO_MEMBERSHIP) == QUEST_ACCEPTED) then
+	else]]
+	if (player:getQuestStatus(JEUNO,TENSHODO_MEMBERSHIP) == QUEST_ACCEPTED) then
 		if (player:hasKeyItem(TENSHODO_APPLICATION_FORM)) then
 			player:startEvent(0x0098);
 		else
