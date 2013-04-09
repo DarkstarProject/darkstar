@@ -7010,105 +7010,105 @@ INSERT INTO `mob_groups` VALUES ('6996', '3798', '132', '0', '0', '0', '0', '0',
 INSERT INTO `mob_groups` VALUES ('6997', '3975', '132', '0', '0', '3565', '0', '0', '0', '0');
 INSERT INTO `mob_groups` VALUES ('6998', '4043', '132', '0', '0', '3618', '0', '0', '0', '0');
 INSERT INTO `mob_groups` VALUES ('6999', '4216', '132', '0', '0', '3999', '0', '0', '0', '0');
-INSERT INTO `mob_groups` VALUES ('7000', '43', '134', '0', '128', '22', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7001', '141', '134', '0', '128', '0', '0', '0', '85', '90');
-INSERT INTO `mob_groups` VALUES ('7002', '257', '134', '0', '128', '187', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7003', '294', '134', '0', '128', '209', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7004', '401', '134', '0', '128', '280', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7005', '408', '134', '0', '128', '284', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7006', '508', '134', '0', '128', '375', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7007', '529', '134', '0', '128', '395', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7008', '594', '134', '0', '128', '441', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7009', '755', '134', '0', '128', '553', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7010', '892', '134', '0', '128', '628', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7011', '893', '134', '0', '128', '0', '0', '0', '64', '68');
-INSERT INTO `mob_groups` VALUES ('7012', '934', '134', '0', '128', '655', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7013', '1021', '134', '0', '128', '726', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7014', '1107', '134', '0', '128', '789', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7015', '1109', '134', '0', '128', '791', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7016', '1125', '134', '0', '128', '804', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7017', '1152', '134', '0', '128', '822', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7018', '1153', '134', '0', '128', '823', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7019', '1155', '134', '0', '128', '825', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7020', '1156', '134', '0', '128', '826', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7021', '1204', '134', '0', '128', '859', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7022', '1344', '134', '0', '128', '0', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7023', '1399', '134', '0', '128', '1025', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7024', '1453', '134', '0', '128', '1071', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7025', '1484', '134', '0', '128', '1095', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7026', '1542', '134', '0', '128', '1138', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7027', '1716', '134', '0', '128', '1434', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7028', '1774', '134', '0', '128', '1537', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7029', '1784', '134', '0', '128', '1538', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7030', '1853', '134', '0', '128', '1610', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7031', '1857', '134', '0', '128', '1611', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7032', '1858', '134', '0', '128', '1612', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7033', '1909', '134', '0', '128', '1646', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7034', '1914', '134', '0', '128', '1650', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7035', '2005', '134', '0', '128', '1714', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7036', '2019', '134', '0', '128', '1723', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7037', '2020', '134', '0', '128', '1725', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7038', '2021', '134', '0', '128', '1727', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7039', '2022', '134', '0', '128', '1729', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7040', '2023', '134', '0', '128', '1731', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7041', '2024', '134', '0', '128', '1733', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7042', '2025', '134', '0', '128', '1735', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7043', '2026', '134', '0', '128', '1737', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7044', '2027', '134', '0', '128', '1739', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7045', '2028', '134', '0', '128', '1741', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7046', '2029', '134', '0', '128', '1743', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7047', '2030', '134', '0', '128', '1745', '0', '0', '75', '80');
+INSERT INTO `mob_groups` VALUES ('7000', '43', '134', '0', '128', '22', '0', '0', '75', '75'); -- Adamantking_Effigy
+INSERT INTO `mob_groups` VALUES ('7001', '141', '134', '0', '128', '0', '0', '0', '80', '80'); -- Angra_Mainyu
+INSERT INTO `mob_groups` VALUES ('7002', '257', '134', '0', '128', '187', '0', '0', '75', '80'); -- Ascetox_Ratgums
+INSERT INTO `mob_groups` VALUES ('7003', '294', '134', '0', '128', '209', '0', '0', '75', '75'); -- Avatar_Icon
+INSERT INTO `mob_groups` VALUES ('7004', '401', '134', '0', '128', '280', '0', '0', '75', '80'); -- Be_Zhe_Keeprazer
+INSERT INTO `mob_groups` VALUES ('7005', '408', '134', '0', '128', '284', '0', '0', '75', '80'); -- Bhuu_Wjato_the_Firepool
+INSERT INTO `mob_groups` VALUES ('7006', '508', '134', '0', '128', '375', '0', '0', '75', '80'); -- Bordox_Kittyback
+INSERT INTO `mob_groups` VALUES ('7007', '529', '134', '0', '128', '395', '0', '0', '75', '80'); -- Brewnix_Bittypupils
+INSERT INTO `mob_groups` VALUES ('7008', '594', '134', '0', '128', '441', '0', '0', '75', '80'); -- Caa_Xaza_the_Madpiercer
+INSERT INTO `mob_groups` VALUES ('7009', '755', '134', '0', '128', '553', '0', '0', '75', '80'); -- Cobraclaw_Buchzvotch
+INSERT INTO `mob_groups` VALUES ('7010', '892', '134', '0', '128', '628', '0', '0', '80', '85'); -- Dagourmarche (AT NM)
+INSERT INTO `mob_groups` VALUES ('7011', '893', '134', '0', '128', '0', '0', '0', '64', '68'); -- ???
+INSERT INTO `mob_groups` VALUES ('7012', '934', '134', '0', '128', '655', '0', '0', '75', '80'); -- Deathcaller_Bidfbid
+INSERT INTO `mob_groups` VALUES ('7013', '1021', '134', '0', '128', '726', '0', '0', '75', '80'); -- De_Bho_Pyrohand
+INSERT INTO `mob_groups` VALUES ('7014', '1107', '134', '0', '128', '789', '0', '0', '75', '80'); -- Drakefeast_Wubmfub
+INSERT INTO `mob_groups` VALUES ('7015', '1109', '134', '0', '128', '791', '0', '0', '75', '80'); -- Draklix_Scalecrust
+INSERT INTO `mob_groups` VALUES ('7016', '1125', '134', '0', '128', '804', '0', '0', '75', '80'); -- Droprix_Granitepalms
+INSERT INTO `mob_groups` VALUES ('7017', '1152', '134', '0', '128', '822', '0', '0', '80', '80'); -- Dynamis_Effigy
+INSERT INTO `mob_groups` VALUES ('7018', '1153', '134', '0', '128', '823', '0', '0', '80', '80'); -- Dynamis_Icon
+INSERT INTO `mob_groups` VALUES ('7019', '1155', '134', '0', '128', '825', '0', '0', '80', '80'); -- Dynamis_Statue
+INSERT INTO `mob_groups` VALUES ('7020', '1156', '134', '0', '128', '826', '0', '0', '80', '80'); -- Dynamis_Tombstone
+INSERT INTO `mob_groups` VALUES ('7021', '1204', '134', '0', '128', '859', '0', '0', '75', '80'); -- Elvaanlopper_Grokdok
+INSERT INTO `mob_groups` VALUES ('7022', '1344', '134', '0', '128', '0', '0', '0', '80', '80'); -- Fire_Pukis
+INSERT INTO `mob_groups` VALUES ('7023', '1399', '134', '0', '128', '1025', '0', '0', '75', '80'); -- Foo_Peku_the_Bloodcloak
+INSERT INTO `mob_groups` VALUES ('7024', '1453', '134', '0', '128', '1071', '0', '0', '75', '80'); -- Galkarider_Retzpratz
+INSERT INTO `mob_groups` VALUES ('7025', '1484', '134', '0', '128', '1095', '0', '0', '80', '85'); -- ???
+INSERT INTO `mob_groups` VALUES ('7026', '1542', '134', '0', '128', '1138', '0', '0', '75', '80'); -- Gibberox_Pimplebeak
+INSERT INTO `mob_groups` VALUES ('7027', '1716', '134', '0', '128', '1434', '0', '0', '75', '75'); -- Goblin_Statue
+INSERT INTO `mob_groups` VALUES ('7028', '1774', '134', '0', '128', '1537', '0', '0', '80', '85'); -- Goublefaupe (AT NM)
+INSERT INTO `mob_groups` VALUES ('7029', '1784', '134', '0', '128', '1538', '0', '0', '75', '80'); -- Go_Tyo_Magenapper
+INSERT INTO `mob_groups` VALUES ('7030', '1853', '134', '0', '128', '1610', '0', '0', '75', '80'); -- Guu_Waji_the_Preacher
+INSERT INTO `mob_groups` VALUES ('7031', '1857', '134', '0', '128', '1611', '0', '0', '75', '80'); -- Gu_Khu_Dukesniper
+INSERT INTO `mob_groups` VALUES ('7032', '1858', '134', '0', '128', '1612', '0', '0', '75', '80'); -- Gu_Nha_Wallstormer
+INSERT INTO `mob_groups` VALUES ('7033', '1909', '134', '0', '128', '1646', '0', '0', '75', '80'); -- Heavymail_Djidzbad
+INSERT INTO `mob_groups` VALUES ('7034', '1914', '134', '0', '128', '1650', '0', '0', '75', '80'); -- Hee_Mida_the_Meticulous
+INSERT INTO `mob_groups` VALUES ('7035', '2005', '134', '0', '128', '1714', '0', '0', '75', '80'); -- Humegutter_Adzjbadj
+INSERT INTO `mob_groups` VALUES ('7036', '2019', '134', '0', '128', '1723', '0', '0', '75', '80'); -- Hydra_Bard...
+INSERT INTO `mob_groups` VALUES ('7037', '2020', '134', '0', '128', '1725', '0', '0', '75', '80'); -- 
+INSERT INTO `mob_groups` VALUES ('7038', '2021', '134', '0', '128', '1727', '0', '0', '75', '80'); -- 
+INSERT INTO `mob_groups` VALUES ('7039', '2022', '134', '0', '128', '1729', '0', '0', '75', '80'); -- 
+INSERT INTO `mob_groups` VALUES ('7040', '2023', '134', '0', '128', '1731', '0', '0', '75', '80'); -- 
+INSERT INTO `mob_groups` VALUES ('7041', '2024', '134', '0', '128', '1733', '0', '0', '75', '80'); -- 
+INSERT INTO `mob_groups` VALUES ('7042', '2025', '134', '0', '128', '1735', '0', '0', '75', '80'); -- 
+INSERT INTO `mob_groups` VALUES ('7043', '2026', '134', '0', '128', '1737', '0', '0', '75', '80'); -- 
+INSERT INTO `mob_groups` VALUES ('7044', '2027', '134', '0', '128', '1739', '0', '0', '75', '80'); -- 
+INSERT INTO `mob_groups` VALUES ('7045', '2028', '134', '0', '128', '1741', '0', '0', '75', '80'); -- 
+INSERT INTO `mob_groups` VALUES ('7046', '2029', '134', '0', '128', '1743', '0', '0', '75', '80'); -- 
+INSERT INTO `mob_groups` VALUES ('7047', '2030', '134', '0', '128', '1745', '0', '0', '75', '80'); -- 
 INSERT INTO `mob_groups` VALUES ('7048', '2031', '134', '0', '128', '0', '0', '0', '60', '64');
 INSERT INTO `mob_groups` VALUES ('7049', '2032', '134', '0', '128', '0', '0', '0', '75', '80');
 INSERT INTO `mob_groups` VALUES ('7050', '2033', '134', '0', '128', '0', '0', '0', '60', '64');
 INSERT INTO `mob_groups` VALUES ('7051', '2034', '134', '0', '128', '1747', '0', '0', '75', '80');
 INSERT INTO `mob_groups` VALUES ('7052', '2035', '134', '0', '128', '1749', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7053', '2036', '134', '0', '128', '1751', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7054', '2148', '134', '0', '128', '1846', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7055', '2151', '134', '0', '128', '1847', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7056', '2153', '134', '0', '128', '1848', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7057', '2273', '134', '0', '128', '1948', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7058', '2281', '134', '0', '128', '1953', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7059', '2303', '134', '0', '128', '1973', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7060', '2429', '134', '0', '128', '2073', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7061', '2466', '134', '0', '128', '2109', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7062', '2660', '134', '0', '128', '2270', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7063', '2681', '134', '0', '128', '2305', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7064', '2683', '134', '0', '128', '2306', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7065', '2728', '134', '0', '128', '2334', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7066', '2740', '134', '0', '128', '2347', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7067', '2778', '134', '0', '128', '2399', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7068', '2814', '134', '0', '128', '2419', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7069', '2818', '134', '0', '128', '2420', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7070', '2928', '134', '0', '128', '2495', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7071', '3122', '134', '0', '128', '0', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7072', '3167', '134', '0', '128', '0', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7073', '3238', '134', '0', '128', '2881', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7074', '3289', '134', '0', '128', '2913', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7075', '3399', '134', '0', '128', '3007', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7076', '3412', '134', '0', '128', '3012', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7077', '3423', '134', '0', '128', '3021', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7078', '3548', '134', '0', '128', '3126', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7079', '3606', '134', '0', '128', '3187', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7080', '3650', '134', '0', '128', '3227', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7081', '3671', '134', '0', '128', '3236', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7082', '3702', '134', '0', '128', '3278', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7083', '3715', '134', '0', '128', '3290', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7084', '3717', '134', '0', '128', '3291', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7085', '3729', '134', '0', '128', '3302', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7086', '3829', '134', '0', '128', '3419', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7087', '3849', '134', '0', '128', '3435', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7088', '3857', '134', '0', '128', '3442', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7089', '3940', '134', '0', '128', '3531', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7090', '4084', '134', '0', '128', '3649', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7091', '4133', '134', '0', '128', '3690', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7092', '4134', '134', '0', '128', '3695', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7093', '4135', '134', '0', '128', '3700', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7094', '4136', '134', '0', '128', '3705', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7095', '4137', '134', '0', '128', '3710', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7096', '4138', '134', '0', '128', '3715', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7097', '4139', '134', '0', '128', '3720', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7098', '4140', '134', '0', '128', '3725', '0', '0', '75', '80');
+INSERT INTO `mob_groups` VALUES ('7053', '2036', '134', '0', '128', '1751', '0', '0', '75', '80'); -- ...Hydra_White_Mage
+INSERT INTO `mob_groups` VALUES ('7054', '2148', '134', '0', '128', '1846', '0', '0', '75', '80'); -- Jeunoraider_Gepkzip
+INSERT INTO `mob_groups` VALUES ('7055', '2151', '134', '0', '128', '1847', '0', '0', '75', '80'); -- Ji_Fhu_Infiltrator
+INSERT INTO `mob_groups` VALUES ('7056', '2153', '134', '0', '128', '1848', '0', '0', '75', '80'); -- Ji_Khu_Towercleaver
+INSERT INTO `mob_groups` VALUES ('7057', '2273', '134', '0', '128', '1948', '0', '0', '75', '80'); -- Knii_Hoqo_the_Bisector
+INSERT INTO `mob_groups` VALUES ('7058', '2281', '134', '0', '128', '1953', '0', '0', '75', '80'); -- Koo_Saxu_the_Everfast
+INSERT INTO `mob_groups` VALUES ('7059', '2303', '134', '0', '128', '1973', '0', '0', '75', '80'); -- Kuu_Xuka_the_Nimble
+INSERT INTO `mob_groups` VALUES ('7060', '2429', '134', '0', '128', '2073', '0', '0', '75', '80'); -- Lockbuster_Zapdjipp
+INSERT INTO `mob_groups` VALUES ('7061', '2466', '134', '0', '128', '2109', '0', '0', '75', '80'); -- Maa_Zaua_the_Wyrmkeeper
+INSERT INTO `mob_groups` VALUES ('7062', '2660', '134', '0', '128', '2270', '0', '0', '80', '85'); -- Mildaunegeux (AT NM)
+INSERT INTO `mob_groups` VALUES ('7063', '2681', '134', '0', '128', '2305', '0', '0', '75', '80'); -- Mithraslaver_Debhabob
+INSERT INTO `mob_groups` VALUES ('7064', '2683', '134', '0', '128', '2306', '0', '0', '75', '80'); -- Mi_Rhe_Whisperblade
+INSERT INTO `mob_groups` VALUES ('7065', '2728', '134', '0', '128', '2334', '0', '0', '75', '80'); -- Moltenox_Stubthumbs
+INSERT INTO `mob_groups` VALUES ('7066', '2740', '134', '0', '128', '2347', '0', '0', '75', '80'); -- Morblox_Chubbychin
+INSERT INTO `mob_groups` VALUES ('7067', '2778', '134', '0', '128', '2399', '0', '0', '75', '80'); -- Mu_Gha_Legionkiller
+INSERT INTO `mob_groups` VALUES ('7068', '2814', '134', '0', '128', '2419', '0', '0', '75', '80'); -- Na_Hya_Floodmaker
+INSERT INTO `mob_groups` VALUES ('7069', '2818', '134', '0', '128', '2420', '0', '0', '75', '80'); -- Nee_Huxa_the_Judgmental
+INSERT INTO `mob_groups` VALUES ('7070', '2928', '134', '0', '128', '2495', '0', '0', '75', '80'); -- Nu_Bhi_Spiraleye
+INSERT INTO `mob_groups` VALUES ('7071', '3122', '134', '0', '128', '0', '0', '0', '80', '80'); -- Petro_Pukis
+INSERT INTO `mob_groups` VALUES ('7072', '3167', '134', '0', '128', '0', '0', '0', '80', '80'); -- Poison_Pukis
+INSERT INTO `mob_groups` VALUES ('7073', '3238', '134', '0', '128', '2881', '0', '0', '75', '80'); -- Puu_Timu_the_Phantasmal
+INSERT INTO `mob_groups` VALUES ('7074', '3289', '134', '0', '128', '2913', '0', '0', '80', '85'); -- Quiebitiel (AT NM)
+INSERT INTO `mob_groups` VALUES ('7075', '3399', '134', '0', '128', '3007', '0', '0', '75', '80'); -- Routsix_Rubbertendon
+INSERT INTO `mob_groups` VALUES ('7076', '3412', '134', '0', '128', '3012', '0', '0', '75', '80'); -- Ruffbix_Jumbolobes
+INSERT INTO `mob_groups` VALUES ('7077', '3423', '134', '0', '128', '3021', '0', '0', '75', '80'); -- Ryy_Qihi_the_Idolrobber
+INSERT INTO `mob_groups` VALUES ('7078', '3548', '134', '0', '128', '3126', '0', '0', '75', '75'); -- Serjeant_Tombstone
+INSERT INTO `mob_groups` VALUES ('7079', '3606', '134', '0', '128', '3187', '0', '0', '75', '80'); -- Shisox_Widebrow
+INSERT INTO `mob_groups` VALUES ('7080', '3650', '134', '0', '128', '3227', '0', '0', '75', '80'); -- Skinmask_Ugghfogg
+INSERT INTO `mob_groups` VALUES ('7081', '3671', '134', '0', '128', '3236', '0', '0', '75', '80'); -- Slinkix_Trufflesniff
+INSERT INTO `mob_groups` VALUES ('7082', '3702', '134', '0', '128', '3278', '0', '0', '75', '80'); -- Soo_Jopo_the_Fiendking
+INSERT INTO `mob_groups` VALUES ('7083', '3715', '134', '0', '128', '3290', '0', '0', '75', '80'); -- So_Gho_Adderhandler
+INSERT INTO `mob_groups` VALUES ('7084', '3717', '134', '0', '128', '3291', '0', '0', '75', '80'); -- So_Zho_Metalbender
+INSERT INTO `mob_groups` VALUES ('7085', '3729', '134', '0', '128', '3302', '0', '0', '75', '80'); -- Spinalsucker_Galflmall
+INSERT INTO `mob_groups` VALUES ('7086', '3829', '134', '0', '128', '3419', '0', '0', '75', '80'); -- Swypestix_Tigershins
+INSERT INTO `mob_groups` VALUES ('7087', '3849', '134', '0', '128', '3435', '0', '0', '75', '80'); -- Taruroaster_Biggsjig
+INSERT INTO `mob_groups` VALUES ('7088', '3857', '134', '0', '128', '3442', '0', '0', '75', '80'); -- Ta_Hyu_Gallanthunter
+INSERT INTO `mob_groups` VALUES ('7089', '3940', '134', '0', '128', '3531', '0', '0', '75', '80'); -- Tocktix_Thinlids
+INSERT INTO `mob_groups` VALUES ('7090', '4084', '134', '0', '128', '3649', '0', '0', '75', '80'); -- Ultrasonic_Zeknajak
+INSERT INTO `mob_groups` VALUES ('7091', '4133', '134', '0', '128', '3690', '0', '0', '75', '80'); -- Vanguard_Alchemist...
+INSERT INTO `mob_groups` VALUES ('7092', '4134', '134', '0', '128', '3695', '0', '0', '75', '80'); -- 
+INSERT INTO `mob_groups` VALUES ('7093', '4135', '134', '0', '128', '3700', '0', '0', '75', '80'); -- 
+INSERT INTO `mob_groups` VALUES ('7094', '4136', '134', '0', '128', '3705', '0', '0', '75', '80'); -- 
+INSERT INTO `mob_groups` VALUES ('7095', '4137', '134', '0', '128', '3710', '0', '0', '75', '80'); -- 
+INSERT INTO `mob_groups` VALUES ('7096', '4138', '134', '0', '128', '3715', '0', '0', '75', '80'); -- 
+INSERT INTO `mob_groups` VALUES ('7097', '4139', '134', '0', '128', '3720', '0', '0', '75', '80'); -- 
+INSERT INTO `mob_groups` VALUES ('7098', '4140', '134', '0', '128', '3725', '0', '0', '75', '80'); -- 
 INSERT INTO `mob_groups` VALUES ('7099', '4141', '134', '0', '128', '3730', '0', '0', '75', '80');
 INSERT INTO `mob_groups` VALUES ('7100', '4142', '134', '0', '128', '3735', '0', '0', '75', '80');
 INSERT INTO `mob_groups` VALUES ('7101', '4143', '134', '0', '128', '3740', '0', '0', '75', '80');
@@ -7116,9 +7116,9 @@ INSERT INTO `mob_groups` VALUES ('7102', '4144', '134', '0', '128', '3745', '0',
 INSERT INTO `mob_groups` VALUES ('7103', '4145', '134', '0', '128', '0', '0', '0', '75', '80');
 INSERT INTO `mob_groups` VALUES ('7104', '4146', '134', '0', '128', '3751', '0', '0', '75', '80');
 INSERT INTO `mob_groups` VALUES ('7105', '4147', '134', '0', '128', '3756', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7106', '4148', '134', '0', '128', '3761', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7107', '4149', '134', '0', '128', '3764', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7108', '4150', '134', '0', '128', '3769', '0', '0', '75', '80');
+INSERT INTO `mob_groups` VALUES ('7106', '4148', '134', '0', '128', '3761', '0', '0', '75', '80'); -- ...Vanguard_Exemplar
+INSERT INTO `mob_groups` VALUES ('7107', '4149', '134', '0', '128', '3764', '0', '0', '75', '80'); -- Vanguard_Eye
+INSERT INTO `mob_groups` VALUES ('7108', '4150', '134', '0', '128', '3769', '0', '0', '75', '80'); -- Vanguard_Footsoldier...
 INSERT INTO `mob_groups` VALUES ('7109', '4151', '134', '0', '128', '3774', '0', '0', '75', '80');
 INSERT INTO `mob_groups` VALUES ('7110', '4152', '134', '0', '128', '3779', '0', '0', '75', '80');
 INSERT INTO `mob_groups` VALUES ('7111', '4153', '134', '0', '128', '3784', '0', '0', '75', '80');
@@ -7132,7 +7132,7 @@ INSERT INTO `mob_groups` VALUES ('7118', '4160', '134', '0', '128', '3819', '0',
 INSERT INTO `mob_groups` VALUES ('7119', '4161', '134', '0', '128', '3824', '0', '0', '75', '80');
 INSERT INTO `mob_groups` VALUES ('7120', '4162', '134', '0', '128', '3829', '0', '0', '75', '80');
 INSERT INTO `mob_groups` VALUES ('7121', '4163', '134', '0', '128', '3834', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7122', '4164', '134', '0', '128', '3839', '0', '0', '75', '80');
+INSERT INTO `mob_groups` VALUES ('7122', '4164', '134', '0', '128', '3839', '0', '0', '75', '80'); -- ...Vanguard_Minstrel...
 INSERT INTO `mob_groups` VALUES ('7123', '4165', '134', '0', '128', '3844', '0', '0', '75', '80');
 INSERT INTO `mob_groups` VALUES ('7124', '4166', '134', '0', '128', '3849', '0', '0', '75', '80');
 INSERT INTO `mob_groups` VALUES ('7125', '4167', '134', '0', '128', '3854', '0', '0', '75', '80');
@@ -7151,8 +7151,8 @@ INSERT INTO `mob_groups` VALUES ('7137', '4179', '134', '0', '128', '3914', '0',
 INSERT INTO `mob_groups` VALUES ('7138', '4180', '134', '0', '128', '3919', '0', '0', '75', '80');
 INSERT INTO `mob_groups` VALUES ('7139', '4181', '134', '0', '128', '3924', '0', '0', '75', '80');
 INSERT INTO `mob_groups` VALUES ('7140', '4182', '134', '0', '128', '3929', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7141', '4183', '134', '0', '128', '3934', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7142', '4184', '134', '0', '128', '3939', '0', '0', '75', '80');
+INSERT INTO `mob_groups` VALUES ('7141', '4183', '134', '0', '128', '3934', '0', '0', '75', '80'); -- ...Vanguard_Skirmisher...
+INSERT INTO `mob_groups` VALUES ('7142', '4184', '134', '0', '128', '3939', '0', '0', '75', '80'); -- Ga_Fho_Venomtouch
 INSERT INTO `mob_groups` VALUES ('7143', '4185', '134', '0', '128', '0', '0', '0', '60', '64');
 INSERT INTO `mob_groups` VALUES ('7144', '4186', '134', '0', '128', '0', '0', '0', '60', '64');
 INSERT INTO `mob_groups` VALUES ('7145', '4187', '134', '0', '128', '0', '0', '0', '60', '64');
@@ -7167,13 +7167,13 @@ INSERT INTO `mob_groups` VALUES ('7153', '4195', '134', '0', '128', '3964', '0',
 INSERT INTO `mob_groups` VALUES ('7154', '4196', '134', '0', '128', '3969', '0', '0', '75', '80');
 INSERT INTO `mob_groups` VALUES ('7155', '4197', '134', '0', '128', '3974', '0', '0', '75', '80');
 INSERT INTO `mob_groups` VALUES ('7156', '4198', '134', '0', '128', '3979', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7157', '4199', '134', '0', '128', '3984', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7158', '4219', '134', '0', '128', '4003', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7159', '4330', '134', '0', '128', '4140', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7160', '4351', '134', '0', '128', '0', '0', '0', '75', '80');
-INSERT INTO `mob_groups` VALUES ('7161', '4380', '134', '0', '128', '4193', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7162', '4391', '134', '0', '128', '4201', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7163', '4394', '134', '0', '128', '4203', '0', '0', '80', '85');
+INSERT INTO `mob_groups` VALUES ('7157', '4199', '134', '0', '128', '3984', '0', '0', '75', '80'); -- ...Vanguard_Welldigger
+INSERT INTO `mob_groups` VALUES ('7158', '4219', '134', '0', '128', '4003', '0', '0', '80', '85'); -- Velosareon (AT NM)
+INSERT INTO `mob_groups` VALUES ('7159', '4330', '134', '0', '128', '4140', '0', '0', '75', '80'); -- Whistrix_Toadthroat
+INSERT INTO `mob_groups` VALUES ('7160', '4351', '134', '0', '128', '0', '0', '0', '80', '80'); -- Wind_Pukis
+INSERT INTO `mob_groups` VALUES ('7161', '4380', '134', '0', '128', '4193', '0', '0', '75', '80'); -- Wraithdancer_Gidbnod
+INSERT INTO `mob_groups` VALUES ('7162', '4391', '134', '0', '128', '4201', '0', '0', '75', '80'); -- Xaa_Chau_the_Roctalon
+INSERT INTO `mob_groups` VALUES ('7163', '4394', '134', '0', '128', '4203', '0', '0', '75', '80'); -- Xhoo_Fuza_the_Sublime
 INSERT INTO `mob_groups` VALUES ('7164', '134', '135', '0', '128', '0', '0', '0', '64', '68');
 INSERT INTO `mob_groups` VALUES ('7165', '143', '135', '0', '128', '102', '0', '0', '80', '85');
 INSERT INTO `mob_groups` VALUES ('7166', '144', '135', '0', '128', '103', '0', '0', '80', '85');
@@ -7181,7 +7181,7 @@ INSERT INTO `mob_groups` VALUES ('7167', '145', '135', '0', '0', '104', '0', '0'
 INSERT INTO `mob_groups` VALUES ('7168', '146', '135', '0', '128', '105', '0', '0', '80', '85');
 INSERT INTO `mob_groups` VALUES ('7169', '147', '135', '0', '128', '106', '0', '0', '80', '85');
 INSERT INTO `mob_groups` VALUES ('7170', '148', '135', '0', '128', '107', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('7171', '149', '135', '0', '128', '108', '0', '0', '80', '85');
+INSERT INTO `mob_groups` VALUES ('7171', '149', '135', '0', '128', '108', '0', '0', '80', '80');
 INSERT INTO `mob_groups` VALUES ('7172', '150', '135', '0', '128', '109', '0', '0', '80', '85');
 INSERT INTO `mob_groups` VALUES ('7173', '151', '135', '0', '128', '110', '0', '0', '80', '85');
 INSERT INTO `mob_groups` VALUES ('7174', '152', '135', '0', '128', '111', '0', '0', '80', '85');
@@ -9386,11 +9386,11 @@ INSERT INTO `mob_groups` VALUES ('9372', '3537', '184', '660', '0', '0', '0', '0
 INSERT INTO `mob_groups` VALUES ('9373', '3875', '184', '0', '0', '0', '0', '0', '0', '0');
 INSERT INTO `mob_groups` VALUES ('9374', '3912', '184', '660', '4', '0', '0', '0', '35', '36');
 INSERT INTO `mob_groups` VALUES ('9375', '4498', '184', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `mob_groups` VALUES ('9376', '363', '185', '0', '128', '254', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('9377', '3076', '185', '0', '128', '2729', '60000', '0', '85', '90');
-INSERT INTO `mob_groups` VALUES ('9378', '3340', '185', '0', '128', '2937', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('9379', '3548', '185', '0', '128', '3127', '1000', '1000', '70', '70');
-INSERT INTO `mob_groups` VALUES ('9380', '3705', '185', '0', '128', '3281', '0', '0', '80', '85');
+INSERT INTO `mob_groups` VALUES ('9376', '363', '185', '0', '128', '254', '0', '0', '75', '80'); -- Battlechoir_Gitchfotch
+INSERT INTO `mob_groups` VALUES ('9377', '3076', '185', '0', '128', '2729', '60000', '0', '80', '80'); -- Overlord_s_Tombstone
+INSERT INTO `mob_groups` VALUES ('9378', '3340', '185', '0', '128', '2937', '0', '0', '75', '80'); -- Reapertongue_Gadgquok
+INSERT INTO `mob_groups` VALUES ('9379', '3548', '185', '0', '128', '3127', '1000', '1000', '75', '75'); -- Serjeant_Tombstone
+INSERT INTO `mob_groups` VALUES ('9380', '3705', '185', '0', '128', '3281', '0', '0', '75', '80'); -- Soulsender_Fugbrag
 INSERT INTO `mob_groups` VALUES ('9381', '4135', '185', '0', '128', '3701', '0', '0', '75', '77');
 INSERT INTO `mob_groups` VALUES ('9382', '4138', '185', '0', '128', '3716', '0', '0', '75', '77');
 INSERT INTO `mob_groups` VALUES ('9383', '4140', '185', '0', '128', '3726', '0', '0', '75', '77');
@@ -9409,17 +9409,17 @@ INSERT INTO `mob_groups` VALUES ('9395', '4187', '185', '0', '128', '0', '0', '0
 INSERT INTO `mob_groups` VALUES ('9396', '4190', '185', '0', '128', '0', '0', '0', '60', '64');
 INSERT INTO `mob_groups` VALUES ('9397', '4193', '185', '0', '128', '3955', '0', '0', '75', '77');
 INSERT INTO `mob_groups` VALUES ('9398', '4195', '185', '0', '128', '3965', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9399', '4243', '185', '0', '128', '4021', '0', '0', '80', '85');
+INSERT INTO `mob_groups` VALUES ('9399', '4243', '185', '0', '128', '4021', '0', '0', '75', '80'); -- Voidstreaker_Butchnotch
 INSERT INTO `mob_groups` VALUES ('9400', '4289', '185', '0', '128', '4075', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9401', '4387', '185', '0', '128', '4196', '0', '0', '80', '85');
-INSERT INTO `mob_groups` VALUES ('9402', '43', '186', '0', '128', '23', '1000', '1000', '70', '70');
-INSERT INTO `mob_groups` VALUES ('9403', '43', '186', '0', '128', '23', '1000', '1000', '70', '70');
+INSERT INTO `mob_groups` VALUES ('9401', '4387', '185', '0', '128', '4196', '0', '0', '75', '80'); -- Wyrmgnasher_Bjakdek
+INSERT INTO `mob_groups` VALUES ('9402', '43', '186', '0', '128', '23', '1000', '1000', '75', '75'); -- Adamantking_Image
+INSERT INTO `mob_groups` VALUES ('9403', '43', '186', '0', '128', '23', '1000', '1000', '75', '75'); -- Adamantking_Effigy
 INSERT INTO `mob_groups` VALUES ('9404', '400', '186', '0', '128', '0', '0', '0', '75', '75');
 INSERT INTO `mob_groups` VALUES ('9405', '1179', '186', '0', '128', '843', '0', '0', '75', '75');
-INSERT INTO `mob_groups` VALUES ('9406', '1614', '186', '0', '128', '0', '0', '0', '75', '75');
-INSERT INTO `mob_groups` VALUES ('9407', '1855', '186', '0', '128', '0', '60000', '0', '80', '80');
-INSERT INTO `mob_groups` VALUES ('9408', '1859', '186', '0', '128', '0', '0', '0', '75', '75');
-INSERT INTO `mob_groups` VALUES ('9409', '2285', '186', '0', '128', '0', '0', '0', '75', '75');
+INSERT INTO `mob_groups` VALUES ('9406', '1614', '186', '0', '128', '0', '0', '0', '75', '80'); -- Gi_Pha_Manameister
+INSERT INTO `mob_groups` VALUES ('9407', '1855', '186', '0', '128', '0', '60000', '0', '80', '80'); -- Gu_Dha_Effigy
+INSERT INTO `mob_groups` VALUES ('9408', '1859', '186', '0', '128', '0', '0', '0', '75', '80'); -- Gu_Nhi_Noondozer
+INSERT INTO `mob_groups` VALUES ('9409', '2285', '186', '0', '128', '0', '0', '0', '75', '80'); -- Ko_Dho_Cannonball
 INSERT INTO `mob_groups` VALUES ('9410', '4139', '186', '0', '128', '3721', '0', '0', '75', '77');
 INSERT INTO `mob_groups` VALUES ('9411', '4142', '186', '0', '128', '3736', '0', '0', '75', '77');
 INSERT INTO `mob_groups` VALUES ('9412', '4143', '186', '0', '128', '3741', '0', '0', '75', '77');
@@ -9438,15 +9438,15 @@ INSERT INTO `mob_groups` VALUES ('9424', '4191', '186', '0', '128', '3945', '0',
 INSERT INTO `mob_groups` VALUES ('9425', '4194', '186', '0', '128', '3960', '0', '0', '75', '77');
 INSERT INTO `mob_groups` VALUES ('9426', '4196', '186', '0', '128', '3970', '0', '0', '75', '77');
 INSERT INTO `mob_groups` VALUES ('9427', '4197', '186', '0', '128', '3975', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9428', '4499', '186', '0', '128', '0', '0', '0', '75', '75');
-INSERT INTO `mob_groups` VALUES ('9429', '294', '187', '0', '128', '210', '1000', '1000', '70', '70');
-INSERT INTO `mob_groups` VALUES ('9430', '295', '187', '0', '128', '211', '1000', '1000', '70', '70');
-INSERT INTO `mob_groups` VALUES ('9431', '1864', '187', '0', '128', '1617', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9432', '2437', '187', '0', '128', '2077', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9433', '2464', '187', '0', '128', '2107', '0', '0', '75', '77');
+INSERT INTO `mob_groups` VALUES ('9428', '4499', '186', '0', '128', '0', '0', '0', '75', '80'); -- Ze_Vho_Fallsplitter
+INSERT INTO `mob_groups` VALUES ('9429', '294', '187', '0', '128', '210', '1000', '1000', '75', '75'); -- Avatar_Icon
+INSERT INTO `mob_groups` VALUES ('9430', '295', '187', '0', '128', '211', '1000', '1000', '75', '75'); -- Avatar_Idol
+INSERT INTO `mob_groups` VALUES ('9431', '1864', '187', '0', '128', '1617', '0', '0', '75', '80'); -- Haa_Pevi_the_Stentorian
+INSERT INTO `mob_groups` VALUES ('9432', '2437', '187', '0', '128', '2077', '0', '0', '75', '80'); -- Loo_Hepe_the_Eyepiercer
+INSERT INTO `mob_groups` VALUES ('9433', '2464', '187', '0', '128', '2107', '0', '0', '75', '80'); -- Maa_Febi_the_Steadfast
 INSERT INTO `mob_groups` VALUES ('9434', '2550', '187', '0', '128', '2193', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9435', '2777', '187', '0', '128', '2398', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9436', '4070', '187', '0', '128', '3644', '60000', '0', '85', '85');
+INSERT INTO `mob_groups` VALUES ('9435', '2777', '187', '0', '128', '2398', '0', '0', '75', '80'); -- Muu_Febi_the_Steadfast
+INSERT INTO `mob_groups` VALUES ('9436', '4070', '187', '0', '128', '3644', '60000', '0', '80', '80'); -- Tzee_Xicu_Idol
 INSERT INTO `mob_groups` VALUES ('9437', '4137', '187', '0', '128', '3711', '0', '0', '75', '77');
 INSERT INTO `mob_groups` VALUES ('9438', '4141', '187', '0', '128', '3731', '0', '0', '75', '77');
 INSERT INTO `mob_groups` VALUES ('9439', '4148', '187', '0', '128', '3762', '0', '0', '75', '77');
@@ -9465,42 +9465,42 @@ INSERT INTO `mob_groups` VALUES ('9451', '4185', '187', '0', '128', '0', '0', '0
 INSERT INTO `mob_groups` VALUES ('9452', '4186', '187', '0', '128', '0', '0', '0', '60', '64');
 INSERT INTO `mob_groups` VALUES ('9453', '4190', '187', '0', '128', '0', '0', '0', '60', '64');
 INSERT INTO `mob_groups` VALUES ('9454', '4198', '187', '0', '128', '3980', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9455', '4384', '187', '0', '128', '4195', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9456', '4399', '187', '0', '128', '4206', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9457', '194', '188', '0', '128', '150', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9458', '336', '188', '0', '128', '236', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9459', '449', '188', '0', '128', '322', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9460', '505', '188', '0', '128', '374', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9461', '554', '188', '0', '128', '412', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9462', '745', '188', '0', '128', '546', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9463', '1052', '188', '0', '128', '752', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9464', '1199', '188', '0', '128', '856', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9465', '1251', '188', '0', '128', '895', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9466', '1444', '188', '0', '128', '1066', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9467', '1668', '188', '0', '128', '1335', '60000', '0', '80', '80');
-INSERT INTO `mob_groups` VALUES ('9468', '1707', '188', '0', '128', '1435', '1000', '1000', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9469', '1716', '188', '0', '128', '1467', '1000', '1000', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9470', '1935', '188', '0', '128', '1672', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9471', '2007', '188', '0', '128', '1715', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9472', '2115', '188', '0', '128', '1815', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9473', '2116', '188', '0', '128', '1816', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9474', '2191', '188', '0', '128', '1870', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9475', '2225', '188', '0', '128', '1895', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9476', '2453', '188', '0', '128', '2096', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9477', '2711', '188', '0', '128', '2329', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9478', '2747', '188', '0', '128', '2354', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9479', '2751', '188', '0', '128', '2359', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9480', '3213', '188', '0', '128', '2836', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9481', '3419', '188', '0', '128', '3020', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9482', '3507', '188', '0', '128', '3089', '0', '0', '75', '77');
+INSERT INTO `mob_groups` VALUES ('9455', '4384', '187', '0', '128', '4195', '0', '0', '75', '80'); -- Wuu_Qoho_the_Razorclaw
+INSERT INTO `mob_groups` VALUES ('9456', '4399', '187', '0', '128', '4206', '0', '0', '75', '80'); -- Xoo_Kaza_the_Solemn
+INSERT INTO `mob_groups` VALUES ('9457', '194', '188', '0', '128', '150', '0', '0', '75', '77'); -- Anvilix_Sootwrists
+INSERT INTO `mob_groups` VALUES ('9458', '336', '188', '0', '128', '236', '0', '0', '75', '77'); -- Bandrix_Rockjaw
+INSERT INTO `mob_groups` VALUES ('9459', '449', '188', '0', '128', '322', '0', '0', '75', '77'); -- Blazox_Boneybod
+INSERT INTO `mob_groups` VALUES ('9460', '505', '188', '0', '128', '374', '0', '0', '75', '77'); -- Bootrix_Jaggedelbow
+INSERT INTO `mob_groups` VALUES ('9461', '554', '188', '0', '128', '412', '0', '0', '75', '77'); -- Buffrix_Eargone
+INSERT INTO `mob_groups` VALUES ('9462', '745', '188', '0', '128', '546', '0', '0', '75', '77'); -- Cloktix_Longnail
+INSERT INTO `mob_groups` VALUES ('9463', '1052', '188', '0', '128', '752', '0', '0', '75', '77'); -- Distilix_Stickytoes
+INSERT INTO `mob_groups` VALUES ('9464', '1199', '188', '0', '128', '856', '0', '0', '75', '77'); -- Elixmix_Hooknose
+INSERT INTO `mob_groups` VALUES ('9465', '1251', '188', '0', '128', '895', '0', '0', '75', '77'); -- Eremix_Snottynostril
+INSERT INTO `mob_groups` VALUES ('9466', '1444', '188', '0', '128', '1066', '0', '0', '75', '77'); -- Gabblox_Magpietongue
+INSERT INTO `mob_groups` VALUES ('9467', '1668', '188', '0', '128', '1335', '60000', '0', '80', '80'); -- Goblin_Golem
+INSERT INTO `mob_groups` VALUES ('9468', '1707', '188', '0', '128', '1435', '1000', '1000', '75', '75'); -- Goblin_Replica
+INSERT INTO `mob_groups` VALUES ('9469', '1716', '188', '0', '128', '1467', '1000', '1000', '75', '75'); -- Goblin_Statue
+INSERT INTO `mob_groups` VALUES ('9470', '1935', '188', '0', '128', '1672', '0', '0', '75', '77'); -- Hermitrix_Toothrot
+INSERT INTO `mob_groups` VALUES ('9471', '2007', '188', '0', '128', '1715', '0', '0', '75', '77'); -- Humnox_Drumbelly
+INSERT INTO `mob_groups` VALUES ('9472', '2115', '188', '0', '128', '1815', '0', '0', '75', '77'); -- Jabbrox_Grannyguise
+INSERT INTO `mob_groups` VALUES ('9473', '2116', '188', '0', '128', '1816', '0', '0', '75', '77'); -- Jabkix_Pigeonpecs
+INSERT INTO `mob_groups` VALUES ('9474', '2191', '188', '0', '128', '1870', '0', '0', '75', '77'); -- Karashix_Swollenskull
+INSERT INTO `mob_groups` VALUES ('9475', '2225', '188', '0', '128', '1895', '0', '0', '75', '77'); -- Kikklix_Longlegs
+INSERT INTO `mob_groups` VALUES ('9476', '2453', '188', '0', '128', '2096', '0', '0', '75', '77'); -- Lurklox_Dhalmelneck
+INSERT INTO `mob_groups` VALUES ('9477', '2711', '188', '0', '128', '2329', '0', '0', '75', '77'); -- Mobpix_Mucousmouth
+INSERT INTO `mob_groups` VALUES ('9478', '2747', '188', '0', '128', '2354', '0', '0', '75', '77'); -- Morgmox_Moldnoggin
+INSERT INTO `mob_groups` VALUES ('9479', '2751', '188', '0', '128', '2359', '0', '0', '75', '77'); -- Mortilox_Wartpaws
+INSERT INTO `mob_groups` VALUES ('9480', '3213', '188', '0', '128', '2836', '0', '0', '75', '77'); -- Prowlox_Barrelbelly
+INSERT INTO `mob_groups` VALUES ('9481', '3419', '188', '0', '128', '3020', '0', '0', '75', '77'); -- Rutrix_Hamgams
+INSERT INTO `mob_groups` VALUES ('9482', '3507', '188', '0', '128', '3089', '0', '0', '75', '77'); -- Scruffix_Shaggychest
 INSERT INTO `mob_groups` VALUES ('9483', '3674', '188', '0', '128', '3238', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9484', '3676', '188', '0', '128', '3239', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9485', '3692', '188', '0', '128', '3271', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9486', '3718', '188', '0', '128', '3292', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9487', '3917', '188', '0', '128', '3523', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9488', '3985', '188', '0', '128', '3575', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9489', '4047', '188', '0', '128', '3619', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9490', '4064', '188', '0', '128', '3639', '0', '0', '75', '77');
+INSERT INTO `mob_groups` VALUES ('9484', '3676', '188', '0', '128', '3239', '0', '0', '75', '77'); -- Smeltix_Thickhide
+INSERT INTO `mob_groups` VALUES ('9485', '3692', '188', '0', '128', '3271', '0', '0', '75', '77'); -- Snypestix_Eaglebeak
+INSERT INTO `mob_groups` VALUES ('9486', '3718', '188', '0', '128', '3292', '0', '0', '75', '77'); -- Sparkspox_Sweatbrow
+INSERT INTO `mob_groups` VALUES ('9487', '3917', '188', '0', '128', '3523', '0', '0', '75', '77'); -- Ticktox_Beadyeyes
+INSERT INTO `mob_groups` VALUES ('9488', '3985', '188', '0', '128', '3575', '0', '0', '75', '77'); -- Trailblix_Goatmug
+INSERT INTO `mob_groups` VALUES ('9489', '4047', '188', '0', '128', '3619', '0', '0', '75', '77'); -- Tufflix_Loglimbs
+INSERT INTO `mob_groups` VALUES ('9490', '4064', '188', '0', '128', '3639', '0', '0', '75', '77'); -- Tymexox_Ninefingers
 INSERT INTO `mob_groups` VALUES ('9491', '4133', '188', '0', '128', '3691', '0', '0', '75', '77');
 INSERT INTO `mob_groups` VALUES ('9492', '4134', '188', '0', '128', '3696', '0', '0', '75', '77');
 INSERT INTO `mob_groups` VALUES ('9493', '4136', '188', '0', '128', '3706', '0', '0', '75', '77');
@@ -9518,8 +9518,8 @@ INSERT INTO `mob_groups` VALUES ('9504', '4189', '188', '0', '128', '0', '0', '0
 INSERT INTO `mob_groups` VALUES ('9505', '4190', '188', '0', '128', '0', '0', '0', '60', '64');
 INSERT INTO `mob_groups` VALUES ('9506', '4192', '188', '0', '128', '3950', '0', '0', '75', '77');
 INSERT INTO `mob_groups` VALUES ('9507', '4199', '188', '0', '128', '3985', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9508', '4303', '188', '0', '128', '4084', '0', '0', '75', '77');
-INSERT INTO `mob_groups` VALUES ('9509', '4388', '188', '0', '128', '4197', '0', '0', '75', '77');
+INSERT INTO `mob_groups` VALUES ('9508', '4303', '188', '0', '128', '4084', '0', '0', '75', '77'); -- Wasabix_Callusdigit
+INSERT INTO `mob_groups` VALUES ('9509', '4388', '188', '0', '128', '4197', '0', '0', '75', '77'); -- Wyrmwix_Snakespecs
 INSERT INTO `mob_groups` VALUES ('9510', '70', '190', '0', '128', '0', '0', '0', '76', '76');
 INSERT INTO `mob_groups` VALUES ('9511', '244', '190', '990', '0', '178', '0', '0', '64', '66');
 INSERT INTO `mob_groups` VALUES ('9512', '656', '190', '660', '0', '485', '0', '0', '2', '5');
@@ -10885,3 +10885,20 @@ INSERT INTO `mob_groups` VALUES (11057,5033,260,330,0,3355,0,0,99,107);
 INSERT INTO `mob_groups` VALUES (11058,5034,260,330,0,3355,0,0,99,107);
 INSERT INTO `mob_groups` VALUES (11059,5035,260,330,0,3355,0,0,99,107);
 INSERT INTO `mob_groups` VALUES (11060,5036,260,330,0,3355,0,0,99,107);
+INSERT INTO `mob_groups` VALUES (11061,5037,258,330,0,3355,0,0,99,107);
+INSERT INTO `mob_groups` VALUES (11062,5038,258,330,0,3355,0,0,99,107);
+INSERT INTO `mob_groups` VALUES (11063,5039,258,330,0,3355,0,0,99,107);
+INSERT INTO `mob_groups` VALUES (11064,5040,258,330,0,3355,0,0,99,107);
+INSERT INTO `mob_groups` VALUES (11065,5041,258,330,0,3355,0,0,99,107);
+INSERT INTO `mob_groups` VALUES (11066,5042,258,330,0,3355,0,0,99,107);
+INSERT INTO `mob_groups` VALUES (11067,5043,258,330,0,3355,0,0,99,107);
+INSERT INTO `mob_groups` VALUES (11068,5044,258,330,0,3355,0,0,99,107);
+INSERT INTO `mob_groups` VALUES (11069,5045,258,330,0,3355,0,0,99,107);
+INSERT INTO `mob_groups` VALUES (11070,5046,258,330,0,3355,0,0,99,107);
+INSERT INTO `mob_groups` VALUES (11071,5047,258,330,0,3355,0,0,99,107);
+INSERT INTO `mob_groups` VALUES (11072,5048,258,330,0,3355,0,0,99,107);
+INSERT INTO `mob_groups` VALUES (11073,5049,258,330,0,3355,0,0,99,107);
+INSERT INTO `mob_groups` VALUES (11074,5050,258,330,0,3355,0,0,99,107);
+INSERT INTO `mob_groups` VALUES (11075,5051,258,330,0,3355,0,0,99,107);
+INSERT INTO `mob_groups` VALUES (11076,5052,258,330,0,3355,0,0,99,107);
+INSERT INTO `mob_groups` VALUES (11077,5053,258,330,0,3355,0,0,99,107);
