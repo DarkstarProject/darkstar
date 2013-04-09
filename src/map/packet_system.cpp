@@ -2887,7 +2887,7 @@ void SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	{
 		uint32 CharID = (uint32)Sql_GetUIntData(SqlHandle,0);
 		uint16 TargID = (uint16)Sql_GetUIntData(SqlHandle,1);
-		uint16 ZoneID = (uint8) Sql_GetUIntData(SqlHandle,2);
+		uint16 ZoneID = (uint16) Sql_GetUIntData(SqlHandle,2);
 
 		CCharEntity* PTellRecipient = (CCharEntity*)zoneutils::GetZone(ZoneID)->GetEntity(TargID, TYPE_PC);
 
