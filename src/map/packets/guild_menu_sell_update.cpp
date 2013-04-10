@@ -25,23 +25,22 @@
 
 #include <string.h>
 
-#include "guild_menu_update.h"
+#include "guild_menu_sell_update.h"
 
 #include "../charentity.h"
 #include "../item_container.h"
 
 #include "../items/item_shop.h"
 
-CGuildMenuUpdatePacket::CGuildMenuUpdatePacket(CCharEntity* PChar, CItemContainer* PGuild, uint16 itemID, uint8 quantity)
+CGuildMenuSellUpdatePacket::CGuildMenuSellUpdatePacket(CCharEntity* PChar, uint8 stock, uint16 itemID, uint8 quantity)
 {
-    this->type = 0x82;
+    this->type = 0x84;
     this->size = 0x04;
 
     DSP_DEBUG_BREAK_IF(PChar == NULL);
-    DSP_DEBUG_BREAK_IF(PGuild == NULL);
 
     WBUFW(data, (0x04)-4) = itemID;
-    WBUFB(data, (0x06)-4) = PGuild->GetItem(PGuild->SearchItem(itemID))->getQuantity();
+    WBUFB(data, (0x06)-4) = stock;
     WBUFB(data, (0x07)-4) = quantity;
 
 }

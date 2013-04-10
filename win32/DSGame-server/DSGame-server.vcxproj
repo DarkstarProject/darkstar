@@ -214,7 +214,8 @@
     <ClInclude Include="..\..\src\map\packets\guild_menu.h" />
     <ClInclude Include="..\..\src\map\packets\guild_menu_buy.h" />
     <ClInclude Include="..\..\src\map\packets\guild_menu_sell.h" />
-    <ClInclude Include="..\..\src\map\packets\guild_menu_update.h" />
+    <ClInclude Include="..\..\src\map\packets\guild_menu_buy_update.h" />
+    <ClInclude Include="..\..\src\map\packets\guild_menu_sell_update.h" />
     <ClInclude Include="..\..\src\map\packets\inventory_assign.h" />
     <ClInclude Include="..\..\src\map\packets\inventory_finish.h" />
     <ClInclude Include="..\..\src\map\packets\inventory_item.h" />
@@ -402,7 +403,8 @@
     <ClCompile Include="..\..\src\map\packets\guild_menu.cpp" />
     <ClCompile Include="..\..\src\map\packets\guild_menu_buy.cpp" />
     <ClCompile Include="..\..\src\map\packets\guild_menu_sell.cpp" />
-    <ClCompile Include="..\..\src\map\packets\guild_menu_update.cpp" />
+    <ClCompile Include="..\..\src\map\packets\guild_menu_buy_update.cpp" />
+    <ClCompile Include="..\..\src\map\packets\guild_menu_sell_update.cpp" />
     <ClCompile Include="..\..\src\map\packets\inventory_assign.cpp" />
     <ClCompile Include="..\..\src\map\packets\inventory_finish.cpp" />
     <ClCompile Include="..\..\src\map\packets\inventory_item.cpp" />

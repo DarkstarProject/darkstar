@@ -21,8 +21,8 @@
 ===========================================================================
 */
 
-#ifndef _CGUILDMENUUPDATEPACKET_H
-#define _CGUILDMENUUPDATEPACKET_H
+#ifndef _CGUILDMENUBUYUPDATEPACKET_H
+#define _CGUILDMENUBUYUPDATEPACKET_H
 
 #include "../../common/cbasetypes.h"
 
@@ -37,11 +37,11 @@
 class CCharEntity;
 class CItemContainer;
 
-class CGuildMenuUpdatePacket : public CBasicPacket
+class CGuildMenuBuyUpdatePacket : public CBasicPacket
 {
 public:
 	
-	CGuildMenuUpdatePacket(CCharEntity* PChar, CItemContainer* PGuild, uint16 itemID, uint8 quantity);
+	CGuildMenuBuyUpdatePacket(CCharEntity* PChar, uint8 stock, uint16 itemID, uint8 quantity);
 };
 
 #endif

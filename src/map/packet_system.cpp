@@ -91,7 +91,8 @@
 #include "packets/entity_update.h"
 #include "packets/guild_menu_buy.h"
 #include "packets/guild_menu_sell.h"
-#include "packets/guild_menu_update.h"
+#include "packets/guild_menu_buy_update.h"
+#include "packets/guild_menu_sell_update.h"
 #include "packets/inventory_assign.h"
 #include "packets/inventory_finish.h"
 #include "packets/inventory_item.h"
@@ -2717,13 +2718,13 @@ void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x0AA(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	uint8  quantity   = RBUFB(data,(0x07));
 	uint16 itemID     = RBUFW(data,(0x04));
+	uint8  quantity   = RBUFB(data,(0x07));
 	uint8  shopSlotID = PChar->PGuildShop->SearchItem(itemID);
     CItemShop* item   = (CItemShop*)PChar->PGuildShop->GetItem(shopSlotID);
 	CItem* gil        = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
 
-	if ((gil != NULL) && (gil->getType() & ITEM_CURRENCY) && item->getQuantity() >= quantity)
+	if ((gil != NULL) && (gil->getType() & ITEM_CURRENCY) && item != NULL && item->getQuantity() >= quantity)
 	{
 		if (gil->getQuantity() > (item->getBasePrice() * quantity))
 		{
@@ -2734,11 +2735,12 @@ void SmallPacket0x0AA(map_session_data_t* session, CCharEntity* PChar, int8* dat
 				charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(int32)(item->getBasePrice() * quantity));
 
 				PChar->PGuildShop->GetItem(shopSlotID)->setQuantity(PChar->PGuildShop->GetItem(shopSlotID)->getQuantity()-quantity);
-                PChar->pushPacket(new CGuildMenuUpdatePacket(PChar, PChar->PGuildShop, itemID, quantity));
+                PChar->pushPacket(new CGuildMenuBuyUpdatePacket(PChar, PChar->PGuildShop->GetItem(PChar->PGuildShop->SearchItem(itemID))->getQuantity(), itemID, quantity));
                 PChar->pushPacket(new CInventoryFinishPacket());
 			}
 		}
 	}
+    //TODO: error messages!
 	return;
 }
 
@@ -2768,6 +2770,40 @@ void SmallPacket0x0AB(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	{
 		PChar->pushPacket(new CGuildMenuBuyPacket(PChar, PChar->PGuildShop));
 	}
+	return;
+}
+
+/************************************************************************
+*																		*
+*  Sell items to guild                                      			*
+*																		*
+************************************************************************/
+
+void SmallPacket0x0AC(map_session_data_t* session, CCharEntity* PChar, int8* data)
+{
+	if (PChar->PGuildShop != NULL)
+	{
+	    uint16 itemID       = RBUFW(data,(0x04));
+        uint8  slot         = RBUFB(data,(0x06));
+	    uint8  quantity     = RBUFB(data,(0x07));
+	    uint8  shopSlotID   = PChar->PGuildShop->SearchItem(itemID);
+        CItemShop* shopItem = (CItemShop*)PChar->PGuildShop->GetItem(shopSlotID);
+        CItem*     charItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slot);
+
+        //TODO: add all sellable items to guild table
+        if (shopItem && charItem && charItem->getQuantity() >= quantity)
+	    {
+			if (charutils::UpdateItem(PChar, LOC_INVENTORY, slot, -quantity) == itemID)
+			{
+				charutils::UpdateItem(PChar, LOC_INVENTORY, 0, (shopItem->getBasePrice() / 3) * quantity);
+                
+				PChar->PGuildShop->GetItem(shopSlotID)->setQuantity(PChar->PGuildShop->GetItem(shopSlotID)->getQuantity()+quantity);
+                PChar->pushPacket(new CGuildMenuSellUpdatePacket(PChar, PChar->PGuildShop->GetItem(PChar->PGuildShop->SearchItem(itemID))->getQuantity(), itemID, quantity));
+                PChar->pushPacket(new CInventoryFinishPacket());
+			}
+	    }
+        //TODO: error messages!
+    }
 	return;
 }
 
@@ -4216,7 +4252,7 @@ void PacketParserInitialize()
     PacketSize[0x0A2] = 0x00; PacketParser[0x0A2] = &SmallPacket0x0A2;
     PacketSize[0x0AA] = 0x00; PacketParser[0x0AA] = &SmallPacket0x0AA;
     PacketSize[0x0AB] = 0x00; PacketParser[0x0AB] = &SmallPacket0x0AB;
-    PacketSize[0x0AC] = 0x00; PacketParser[0x0AC] = &SmallPacket0xFFF;	// not implemented
+    PacketSize[0x0AC] = 0x00; PacketParser[0x0AC] = &SmallPacket0x0AC;
     PacketSize[0x0AD] = 0x00; PacketParser[0x0AD] = &SmallPacket0x0AD;
     PacketSize[0x0B5] = 0x00; PacketParser[0x0B5] = &SmallPacket0x0B5;
     PacketSize[0x0B6] = 0x00; PacketParser[0x0B6] = &SmallPacket0x0B6;

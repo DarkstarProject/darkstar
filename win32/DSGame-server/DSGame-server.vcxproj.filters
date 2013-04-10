@@ -629,7 +629,10 @@
     <ClInclude Include="..\..\src\map\targetfinder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\packets\guild_menu_update.h">
+    <ClInclude Include="..\..\src\map\packets\guild_menu_buy_update.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\guild_menu_sell_update.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1186,7 +1189,10 @@
     <ClCompile Include="..\..\src\map\targetfinder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\packets\guild_menu_update.cpp">
+    <ClCompile Include="..\..\src\map\packets\guild_menu_buy_update.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\guild_menu_sell_update.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
   </ItemGroup>
