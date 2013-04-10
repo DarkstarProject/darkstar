@@ -419,7 +419,7 @@ bool CInstance::addPlayerToDynamis(CCharEntity* PChar){
 	if(m_PlayerList.size() >= m_MaxParticipants){
 		ShowDebug("Cannot add %s to Dynamis list, max size reached.\n",PChar->GetName());return false;
 	}
-	if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DYNAMIS) || PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD)){
+	if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DYNAMIS, 0) || PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD)){
 		ShowDebug("Cannot add %s to Dynamis list, they have BC effect.\n",PChar->GetName());return false;
 	}
 	if(PChar->getZone() != m_ZoneID){
@@ -427,7 +427,7 @@ bool CInstance::addPlayerToDynamis(CCharEntity* PChar){
 	}
 
 	m_PlayerList.push_back(PChar);
-	PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_DYNAMIS,EFFECT_DYNAMIS,this->m_BcnmID,0,0),true);
+	PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_DYNAMIS,0,this->m_BcnmID,0,0),true);
 	return true;
 }
 

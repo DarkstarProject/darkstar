@@ -5549,7 +5549,7 @@ inline int32 CLuaBaseEntity::bcnmEnter(lua_State *L){
 
 	int Pzone = PChar->getZone();
 	if(Pzone > 184 && Pzone < 189 || Pzone > 133 && Pzone < 136){
-		if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DYNAMIS)){
+		if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DYNAMIS, 0)){
 			uint16 effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_DYNAMIS,0)->GetPower();
 			if(PChar->loc.zone->m_InstanceHandler->enterBcnm(effect_bcnmid,PChar)){
 				lua_pushinteger( L,1);
