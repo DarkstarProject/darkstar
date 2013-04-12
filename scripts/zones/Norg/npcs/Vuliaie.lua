@@ -1,17 +1,17 @@
 -----------------------------------
---  Area: Lower Jeuno
---   NPC: Amalasanda
+--  Area: Norg
+--   NPC: Vuliaie
 --  Type: Tenshodo Merchant
--- @zone: 245
---  @pos: 28.149 2.899 -44.780
+-- @zone: 252
+--  @pos: -24 0 -19
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/shop");
-require("scripts/zones/Lower_Jeuno/TextIDs");
+require("scripts/zones/Norg/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -26,8 +26,8 @@ end;
 
 function onTrigger(player,npc)
 	if (player:hasKeyItem(TENSHODO_MEMBERS_CARD)) then 
-		if(player:sendGuild(60420,1,23,2)) then
-			player:showText(npc, AMALASANDA_SHOP_DIALOG);
+		if(player:sendGuild(60421,1,23,7)) then
+			player:showText(npc, VULIAIE_SHOP_DIALOG);
 		end
 	else
 	end

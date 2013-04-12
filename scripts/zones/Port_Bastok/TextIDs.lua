@@ -57,6 +57,7 @@ POWHATAN_DIALOG_1 = 7062; -- I'm sick and tired of entertaining guests.
     ZOBYQUHYO_CLOSED_DIALOG = 8155; -- I'm trrrying to start a business selling goods from the Elshimo Lowlands, but it's not easy getting stuff from areas that aren't under Bastokan contrrrol.
   DHENTEVRYUKOH_OPEN_DIALOG = 8156; -- Welcome! Welcome! Take a wonderrr at these specialty goods from the Elshimo Uplands!
 DHENTEVRYUKOH_CLOSED_DIALOG = 8157; -- I'm trrrying to start a business selling goods from the Elshimo Uplands, but it's not easy transporting goods from areas that aren't under Bastokan contrrrol.
+	    BLABBIVIX_SHOP_DIALOG = 8419; -- &lt;Pshooowaaaaa&gt; I come from the underworld.\nThese chipshhh, you knooow, are popular among us Goblinshhh.\nUse with heart of shhhtatue.
 
     BAGNOBROK_CLOSED_DIALOG = 8912; -- Kbastok sis kweak! Smoblins yonly twant gstrong sfriends! Non sgoods mfrom Smovalpolos ytoday!
       BAGNOBROK_OPEN_DIALOG = 8913; -- Kbastok! Crepublic sis gstrong! Smoblins lsell sgoods oto gstrong sfriends! 
