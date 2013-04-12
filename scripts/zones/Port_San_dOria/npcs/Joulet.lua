@@ -30,6 +30,7 @@ function onTrade(player,npc,trade)
 			player:tradeComplete();
 			player:addFame(SANDORIA,SAN_FAME*30);
 			player:addGil((GIL_RATE*10*MoatCarp) + (GIL_RATE*15*ForestCarp));
+			player:messageSpecial(GIL_OBTAINED,MoatCarp*10 + ForestCarp*15);
 			player:startEvent(0x0133);
 		elseif(player:getQuestStatus(SANDORIA,THE_COMPETITION) >= QUEST_ACCEPTED) then -- regular turn-ins. Still allowed after completion of the quest.
 			player:tradeComplete();
@@ -38,6 +39,7 @@ function onTrade(player,npc,trade)
 			totalFish = MoatCarp + ForestCarp + fishCountVar
 			player:setVar("theCompetitionFishCountVar",totalFish);
 			player:startEvent(0x0131);
+			player:messageSpecial(GIL_OBTAINED,MoatCarp*10 + ForestCarp*15);
 		else
 			player:startEvent(0x0132);
 		end
