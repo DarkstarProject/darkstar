@@ -22,7 +22,7 @@ CREATE TABLE `char_weapon_skill_points` (
   `itemindex` int(10) NOT NULL,
   `charid` int(10) NOT NULL,
   `points` int(10) NOT NULL,
-  PRIMARY KEY (`itemindex`)
+  PRIMARY KEY (`itemindex`, `charid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- ----------------------------
