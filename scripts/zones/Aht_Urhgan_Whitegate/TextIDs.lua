@@ -20,6 +20,7 @@ MUSHAYRA_DIALOG = 4851; -- Sorry for all the trouble. Please ignore Hadahda the 
  HADAHDA_DIALOG = 4802; -- Hey, think you could help me out?
  
  -- Other Dialogs
+ ITEM_DELIVERY_DIALOG = 9227;
  RUNIC_PORTAL = 4471; -- You cannot use the runic portal without the Empire's authorization.
 
 -- Shop Texts

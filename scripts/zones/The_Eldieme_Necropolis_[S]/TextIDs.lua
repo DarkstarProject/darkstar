@@ -6,5 +6,8 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6379; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
 
+-- Other Texts
+ITEM_DELIVERY_DIALOG = 7857; -- Have something to send?	   
+	   
 -- Shop Texts
 LAYTON_SHOP_DIALOG = 0; -- [UNKNOWN]

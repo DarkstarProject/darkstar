@@ -24,6 +24,7 @@ end;
 
 function onTrigger(player,npc)
 	player:showText(npc, ITEM_DELIVERY_DIALOG);
+	player:openSendBox();
 end;
 
 -----------------------------------

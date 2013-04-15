@@ -5,7 +5,6 @@
 --  @zone: 235
 --  @pos: -323.744 -16.001 -88.698
 --
---  Auto-Script: Requires Verification. Verified standard dialog - thrydwolf 12/8/2011
 -----------------------------------
 
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
@@ -24,6 +23,7 @@ end;
 
 function onTrigger(player,npc)
 	player:showText(npc, ITEM_DELIVERY_DIALOG);
+	player:openSendBox();
 end;
 
 -----------------------------------

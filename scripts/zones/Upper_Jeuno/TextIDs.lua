@@ -8,6 +8,9 @@ ITEM_CANNOT_BE_OBTAINED = 6615; -- You cannot obtain the item <item> come back a
     NOT_HAVE_ENOUGH_GIL = 6542; -- You do not have enough gil.
           HOMEPOINT_SET = 6608; -- Home point set!
 
+-- Other Texts
+ITEM_DELIVERY_DIALOG = 7958; -- Delivering goods to residences everywhere!	  
+		  
 -- Conquest system
 CONQUEST = 7625; -- You've earned conquest points!
 

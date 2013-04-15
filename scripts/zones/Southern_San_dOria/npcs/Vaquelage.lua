@@ -34,7 +34,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x02a0);
+	player:showText(npc, ITEM_DELIVERY_DIALOG);
+	player:openSendBox();
 end; 
 
 -----------------------------------

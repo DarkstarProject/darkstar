@@ -7,7 +7,10 @@ ITEM_CANNOT_BE_OBTAINED = 10527; -- You cannot obtain the item <item> come back 
        KEYITEM_OBTAINED = 6381;  -- Obtained key item: <keyitem>
           HOMEPOINT_SET = 6424;  -- Home point set!
  FISHING_MESSAGE_OFFSET = 6594;  -- You can't fish here
-     
+    
+-- Other Texts
+ITEM_DELIVERY_DIALOG = 9885; -- We can deliver packages to Mog Houses anywhere in Vana'diel.
+	
 -- Quest Dialog
 	 IFRIT_UNLOCKED = 10441; -- You are now able to summon Ifrit.
 NOMAD_MOOGLE_DIALOG = 10509; -- I'm a traveling moogle, kupo. I help adventurers in the Outlands access items they have stored in a Mog House elsewhere, kupo.

@@ -9,6 +9,9 @@ ITEM_CANNOT_BE_OBTAINED = 10106; -- You cannot obtain the item <item> come back 
           HOMEPOINT_SET = 2;     -- Home point set!
  FISHING_MESSAGE_OFFSET = 6594;  -- You can't fish here
 
+ -- Other Texts
+ PAKHI_DELIVERY_DIALOG = 9924; -- When your pack is fit to burrrst, send your non-essential items to your delivery box and bam, prrroblem solved!
+ SPIRIT_DELIVERY_DIALOG = 9925; -- We can deliver goods to your residence or to the residences of your friends.
 -- Quest Dialog
 	GARUDA_UNLOCKED	= 10009; -- You are now able to summon Garuda.
 NOMAD_MOOGLE_DIALOG = 10077; -- I'm a traveling moogle, kupo. I help adventurers in the Outlands access items they have stored in a Mog House elsewhere, kupo.

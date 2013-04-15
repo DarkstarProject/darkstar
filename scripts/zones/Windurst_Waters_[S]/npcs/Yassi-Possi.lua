@@ -25,6 +25,7 @@ end;
 
 function onTrigger(player,npc)
 	player:showText(npc, YASSI_POSSI_DIALOG);
+	player:openSendBox();
 end;
 
 -----------------------------------

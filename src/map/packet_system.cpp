@@ -113,6 +113,7 @@
 #include "packets/party_search.h"
 #include "packets/position.h"
 #include "packets/release.h"
+#include "packets/send_box.h"
 #include "packets/server_ip.h"
 #include "packets/server_message.h"
 #include "packets/shop_appraise.h"
@@ -284,6 +285,9 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	PChar->pushPacket(new CDownloadingDataPacket());
 	PChar->pushPacket(new CZoneInPacket(PChar,EventID));
 	PChar->pushPacket(new CZoneVisitedPacket(PChar));
+
+    charutils::RecoverFailedSendBox(PChar);
+
 	return;
 };
 
@@ -1392,7 +1396,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	// 0x04 - возврат неправильно отправленного предмета (отмена выполненной отправки)
 	// 0x05 - отправка клиенту количества новых предметов
 	// 0x06 - отправка клиенту новых предметов
-	// 0x07 -
+	// 0x07 - removes a delivered item from sending box
 	// 0x08 - обновление предмета в ячейке перед удалением
 	// 0x09 - вернуть предмет отправителю
     // 0x0a - взять предмет из ячейки
@@ -1409,52 +1413,210 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			// отправляем персонажу старые предметы (предметы, которые персонаж уже видел в delivery box)
 			// все старые предметы расположены в ячейках 0-7
 
-            PChar->UContainer->Clean();
-            PChar->UContainer->SetType(UCONTAINER_DELIVERYBOX);
 
-			const int8* fmtQuery = "SELECT itemid, itemsubid, slot, quantity, sender \
-                                    FROM delivery_box \
-							        WHERE charid = %u \
-							        ORDER BY slot \
-							        LIMIT 8";
+            if (boxtype == 0x01)
+            {
+			    const int8* fmtQuery = "SELECT itemid, itemsubid, slot, quantity, sender \
+                                        FROM delivery_box \
+							            WHERE charid = %u \
+                                        AND box = %u \
+							            ORDER BY slot \
+							            LIMIT 8";
 
-	        int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+	            int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id, boxtype);
 
-	        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-	        {
-                uint8 slotid    = 8;
-                uint8 old_items = 0;
+	            if (ret != SQL_ERROR)
+	            {
+                    uint8 slotid = 8;
+                    uint8 old_items = 0;
 
-		        while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		        {
-                    CItem* PItem = itemutils::GetItem(Sql_GetIntData(SqlHandle,0));
-
-                    if(PItem != NULL) // Prevent an access violation in the event that an item doesn't exist for an ID
+                    if (Sql_NumRows(SqlHandle) != 0)
                     {
-                        PItem->setSubID(Sql_GetIntData(SqlHandle,1));
-                        PItem->setSlotID(Sql_GetIntData(SqlHandle,2));
-                        PItem->setQuantity(Sql_GetUIntData(SqlHandle,3));
-                        PItem->setSender(Sql_GetData(SqlHandle,4));
+		                while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		                {
+                            CItem* PItem = itemutils::GetItem(Sql_GetIntData(SqlHandle,0));
 
-                        if (PItem->getSlotID() < 8)
-                        {
-                            old_items++;
-                            PChar->UContainer->SetItem(PItem->getSlotID(), PItem);
-                            continue;
+                            if(PItem != NULL) // Prevent an access violation in the event that an item doesn't exist for an ID
+                            {
+                                PItem->setSubID(Sql_GetIntData(SqlHandle,1));
+                                PItem->setSlotID(Sql_GetIntData(SqlHandle,2));
+                                PItem->setQuantity(Sql_GetUIntData(SqlHandle,3));
+                                PItem->setSender(Sql_GetData(SqlHandle,4));
+
+                                if (PItem->getSlotID() < 8)
+                                {
+                                    old_items++;
+                                    PChar->UContainer->SetItem(PItem->getSlotID(), PItem);
+                                    continue;
+                                }
+                                PChar->UContainer->SetItem(slotid++, PItem);
+                            }
                         }
-                        PChar->UContainer->SetItem(slotid++, PItem);
-                    } // Prevent access violation
-		        }
-                for (uint8 i = 0; i < 8; ++i)
-                {
-                    if (!PChar->UContainer->IsSlotEmpty(i))
+		            }
+                    for (uint8 i = 0; i < 8; ++i)
                     {
-                        PChar->pushPacket(new CDeliveryBoxPacket(action, PChar->UContainer->GetItem(i), old_items));
+                        if (!PChar->UContainer->IsSlotEmpty(i))
+                        {
+                            PChar->pushPacket(new CDeliveryBoxPacket(action, PChar->UContainer->GetItem(i), old_items));
+                        }
                     }
                 }
-	        }
+            }
+            else if (boxtype == 0x02)
+            {
+                for (uint8 i = 0; i < 8; ++i)
+                {
+                    PChar->pushPacket(new CSendBoxPacket(action, PChar->UContainer->GetItem(i), i, PChar->UContainer->GetItemsCount()));
+                }
+            }
             return;
 		}
+        case 0x02: //add items to send box
+        {
+            uint8 invslot = RBUFB(data, (0x07));
+            uint8 quantity = RBUFB(data, (0x08));
+            CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invslot);
+
+            if (PItem && PItem->getQuantity() >= quantity && PChar->UContainer->IsSlotEmpty(slotID) && !(PItem->getFlag() & ITEM_FLAG_EX))
+            {
+                int32 ret = Sql_Query(SqlHandle, "SELECT charid FROM chars WHERE charname = '%s' LIMIT 1", data+0x10);
+                if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+                {
+                    uint32 charid = Sql_GetUIntData(SqlHandle, 0);
+
+                    ret = Sql_Query(SqlHandle,
+                        "INSERT INTO delivery_box(charid, charname, box, slot, itemid, itemsubid, quantity, senderid, sender) \
+                        VALUES(%u, '%s', 2, %u, %u, %u, %u, %u, '%s'); ",
+                        charid,
+                        data+0x10,
+                        slotID,
+                        PItem->getID(),
+                        PItem->getSubID(),
+                        quantity,
+                        PChar->id,
+                        PChar->GetName());
+
+                    if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
+                    {
+                        CItem* PUBoxItem = itemutils::GetItem(PItem->getID());
+                        PUBoxItem->setReceiver(data+0x10);
+                        PUBoxItem->setSender((int8*)PChar->GetName());
+                        PUBoxItem->setQuantity(quantity);
+                        PUBoxItem->setSlotID(PItem->getSlotID());
+                        PChar->UContainer->SetItem(slotID, PUBoxItem);
+                        PChar->pushPacket(new CSendBoxPacket(action, PUBoxItem, slotID, PChar->UContainer->GetItemsCount()));
+                        charutils::UpdateItem(PChar, LOC_INVENTORY, invslot, -(int32)quantity);
+                        PChar->pushPacket(new CInventoryFinishPacket());
+                    }
+                }
+            }
+            return;
+        }
+        case 0x03: //send items 
+        {
+            uint8 send_items = 0;
+            for (int i = 0; i < 8; i++)
+            {
+                if (!PChar->UContainer->IsSlotEmpty(i))
+                {
+                    if (PChar->UContainer->GetItem(i)->getSent() == false)
+                    {
+                        send_items++;
+                    }
+                }
+            }
+            if (!PChar->UContainer->IsSlotEmpty(slotID))
+            {
+                CItem* PItem = PChar->UContainer->GetItem(slotID);
+
+                if (PItem && PItem->getSent() == false)
+                {
+                    bool isAutoCommitOn = Sql_GetAutoCommit(SqlHandle);
+                    bool commit = false;
+
+                    if(Sql_SetAutoCommit(SqlHandle, false) && Sql_TransactionStart(SqlHandle))
+                    {
+                        int32 ret = Sql_Query(SqlHandle, "SELECT charid FROM chars WHERE charname = '%s' LIMIT 1", PItem->getReceiver());
+
+                        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+                        {
+                            uint32 charid = Sql_GetUIntData(SqlHandle, 0);
+
+                            ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET sent = 1 WHERE charid = %u AND senderid = %u AND slot = %u AND box = 2;", charid, PChar->id, slotID);
+
+                            if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
+                            {
+                                ret = Sql_Query(SqlHandle, 
+                                    "INSERT INTO delivery_box(charid, charname, box, itemid, itemsubid, quantity, senderid, sender) \
+                                    VALUES(%u, '%s', 1, %u, %u, %u, %u, '%s'); ",
+                                    charid,
+                                    PItem->getReceiver(),
+                                    PItem->getID(),
+                                    PItem->getSubID(),
+                                    PItem->getQuantity(),
+                                    PChar->id,
+                                    PChar->GetName());
+                                if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
+                                {
+                                    PChar->pushPacket(new CSendBoxPacket(action, PItem, slotID, send_items, 0x02));
+                                    PChar->pushPacket(new CSendBoxPacket(action, PItem, slotID, send_items, 0x01));
+                                    commit = true;
+                                }
+                            }
+                        }
+                        if(!commit || !Sql_TransactionCommit(SqlHandle))
+                        {
+                            Sql_TransactionRollback(SqlHandle);
+                            ShowError("Could not finalize send transaction. PlayerID: %d Target: %s slotID: %d", PChar->id, PItem->getReceiver(), slotID);
+                        }
+
+                        Sql_SetAutoCommit(SqlHandle, isAutoCommitOn);
+                    }
+                }
+            }
+            return;
+        }
+        case 0x04: //cancel send
+        {
+            if (PChar->UContainer->GetType() != UCONTAINER_DELIVERYBOX) return;
+
+            if (!PChar->UContainer->IsSlotEmpty(slotID) )
+            {
+                bool isAutoCommitOn = Sql_GetAutoCommit(SqlHandle);
+                bool commit = false;
+
+                if(Sql_SetAutoCommit(SqlHandle, false) && Sql_TransactionStart(SqlHandle))
+                {
+                    int32 ret = Sql_Query(SqlHandle, "SELECT charid FROM chars WHERE charname = '%s' LIMIT 1", PChar->UContainer->GetItem(slotID)->getReceiver());
+
+                    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+                    {
+                        uint32 charid = Sql_GetUIntData(SqlHandle, 0);
+                        ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET sent = 0 WHERE senderid = %u AND box = 2 AND slot = %u LIMIT 1;", PChar->id, slotID);
+
+                        if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
+                        {
+                            int32 ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE senderid = %u AND box = 1 AND charid = %u LIMIT 1;", PChar->id, charid);
+
+                            if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
+                            {
+                                PChar->UContainer->GetItem(slotID)->setSent(false);
+                                commit = true;
+                                PChar->pushPacket(new CSendBoxPacket(action, PChar->UContainer->GetItem(slotID), slotID, PChar->UContainer->GetItemsCount(), 0x02));
+                                PChar->pushPacket(new CSendBoxPacket(action, PChar->UContainer->GetItem(slotID), slotID, PChar->UContainer->GetItemsCount(), 0x01));
+                            }
+                        }
+                    }
+                    if(!commit || !Sql_TransactionCommit(SqlHandle))
+                    {
+                        Sql_TransactionRollback(SqlHandle);
+                        ShowError("Could not finalize cancel send transaction. PlayerID: %d slotID: %d", PChar->id, slotID);
+                    }
+
+                    Sql_SetAutoCommit(SqlHandle, isAutoCommitOn);
+                }
+            }
+        }
 		case 0x05:
 		{
 			// отправляем персонажу количество новых предметов (предметы, которые персонаж еще не видел в delivery box)
@@ -1463,32 +1625,48 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
             if (PChar->UContainer->GetType() != UCONTAINER_DELIVERYBOX) return;
 
-            uint8 new_items = 0;
+            if (boxtype == 0x01)
+            {
+                uint8 new_items = 0;
 
-            for (uint8 slotid = 8; slotid < 16; ++slotid)
-		    {
-                if (PChar->UContainer->IsSlotEmpty(slotid)) break;
+                for (uint8 slotid = 8; slotid < 16; ++slotid)
+		        {
+                    if (PChar->UContainer->IsSlotEmpty(slotid)) break;
 
-                CItem* PItem = PChar->UContainer->GetItem(slotid);
+                    CItem* PItem = PChar->UContainer->GetItem(slotid);
 
-                for (uint8 i = 0; i < 8 ; ++i)
-                {
-                    if (PChar->UContainer->IsSlotEmpty(i))
+                    for (uint8 i = 0; i < 8 ; ++i)
                     {
-                        int32 ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET slot = %u WHERE charid = %u AND slot = %u", i, PChar->id, PItem->getSlotID());
-
-                        if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
+                        if (PChar->UContainer->IsSlotEmpty(i))
                         {
-                            PItem->setSlotID(i);
-                            PChar->UContainer->SetItem(i, PItem);
-                            PChar->UContainer->SetItem(slotid, NULL);
-                            new_items++;
+                            int32 ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET slot = %u WHERE charid = %u AND slot = %u AND box = 1", i, PChar->id, PItem->getSlotID());
+
+                            if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
+                            {
+                                PItem->setSlotID(i);
+                                PChar->UContainer->SetItem(i, PItem);
+                                PChar->UContainer->SetItem(slotid, NULL);
+                                new_items++;
+                            }
+                            break;
                         }
-                        break;
                     }
                 }
+                PChar->pushPacket(new CDeliveryBoxPacket(action, new_items));
 			}
-			PChar->pushPacket(new CDeliveryBoxPacket(action, new_items));
+            else if (boxtype == 0x02)
+            {
+                uint8 received_items = 0;
+
+                int32 ret = Sql_Query(SqlHandle, "SELECT charid FROM delivery_box WHERE senderid = %u AND received = 1 AND box = 2", PChar->id);
+
+                if (ret != SQL_ERROR )
+                {
+                    received_items = Sql_NumRows(SqlHandle);
+                }
+                PChar->pushPacket(new CSendBoxPacket(action, 0xFF, 0x02));
+                PChar->pushPacket(new CSendBoxPacket(action, received_items, 0x01));
+            }
 			return;
 		}
 		case 0x06:
@@ -1522,6 +1700,37 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
             }
 			return;
 		}
+        case 0x07:
+        {
+            uint8 received_items = 0;
+            uint8 first_received = 0xFF;
+            for (int i = 0; i < 8; ++i)
+            {
+                if (!PChar->UContainer->IsSlotEmpty(i))
+                {
+                    CItem* PItem = PChar->UContainer->GetItem(i);
+                    if (PItem->getSent() == true)
+                    {
+                        if (first_received == 0xFF)
+                        {
+                            first_received = i;
+                        }
+                        received_items++;
+                    }
+                }
+            }
+            CItem* PItem = PChar->UContainer->GetItem(first_received);
+
+            int32 ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE senderid = %u AND box = 2 AND slot = %u LIMIT 1;", PChar->id, first_received);
+
+            if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
+            {
+                PChar->pushPacket(new CSendBoxPacket(action, 0, 0x02));
+                PChar->pushPacket(new CSendBoxPacket(action, PItem, first_received, received_items, 0x01));
+                PChar->UContainer->SetItem(first_received, NULL);
+                delete PItem;
+            }
+        }
         case 0x09: // Option: Return
         {
             if (PChar->UContainer->GetType() == UCONTAINER_DELIVERYBOX &&
@@ -1532,23 +1741,26 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
                 CItem* PItem = PChar->UContainer->GetItem(slotID);
                 uint32 senderID = 0;
+                string_t senderName;
 
                 if(Sql_SetAutoCommit(SqlHandle, false) && Sql_TransactionStart(SqlHandle))
                 {
                     // Get sender of delivery record
-                    int32 ret = Sql_Query(SqlHandle, "SELECT senderid FROM delivery_box WHERE charid = %u AND slot = %u LIMIT 1;", PChar->id, slotID);
+                    int32 ret = Sql_Query(SqlHandle, "SELECT senderid, sender FROM delivery_box WHERE charid = %u AND slot = %u AND box = 1 LIMIT 1;", PChar->id, slotID);
 
                     if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                     {
                         senderID = Sql_GetUIntData(SqlHandle, 0);
+                        senderName.insert(0,Sql_GetData(SqlHandle, 1));
 
                         if(senderID != 0)
                         {
                             // Insert a return record into delivery_box
                             ret = Sql_Query(SqlHandle,
-                                "INSERT INTO delivery_box(charid, box, itemid, itemsubid, quantity, senderid, sender) \
-                                VALUES(%u, 0, %u, %u, %u, %u, '%s'); ",
+                                "INSERT INTO delivery_box(charid, charname, box, itemid, itemsubid, quantity, senderid, sender) \
+                                VALUES(%u, '%s', 1, %u, %u, %u, %u, '%s'); ",
                                 senderID,
+                                senderName.c_str(),
                                 PItem->getID(),
                                 PItem->getSubID(),
                                 PItem->getQuantity(),
@@ -1558,22 +1770,27 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
                             if(ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) > 0)
                             {
                                 // Remove original delivery record
-                                ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE charid = %u AND slot = %u LIMIT 1;", PChar->id, slotID);
+                                ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE charid = %u AND slot = %u AND box = 1 LIMIT 1;", PChar->id, slotID);
 
                                 if(ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) > 0)
                                 {
-                                    PChar->UContainer->SetItem(slotID, NULL);
-                                    PChar->pushPacket(new CDeliveryBoxPacket(action, PItem, PChar->UContainer->GetItemsCount()));
-                                    delete PItem;
-                                    commit = true;
+                                    ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET received = 1 WHERE charid = %u AND senderid = %u AND box = 2 LIMIT 1;", PChar->id, senderID);
+
+                                    if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
+                                    {
+                                        PChar->UContainer->SetItem(slotID, NULL);
+                                        PChar->pushPacket(new CDeliveryBoxPacket(action, PItem, PChar->UContainer->GetItemsCount()));
+                                        delete PItem;
+                                        commit = true;
+                                    }
                                 }
                             }
                         }
                     }
 
-                    if((commit && !Sql_TransactionCommit(SqlHandle)) || // Commit
-                        (!Sql_TransactionRollback(SqlHandle)))          // Rollback
+                    if(!commit || !Sql_TransactionCommit(SqlHandle))
                     {
+                        Sql_TransactionRollback(SqlHandle);
                         ShowError("Could not finalize delivery return transaction. PlayerID: %d SenderID :%d ItemID: %d Quantity: %d", PChar->id, senderID, PItem->getID(), PItem->getQuantity());
                     }
 
@@ -1587,29 +1804,70 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
             if (PChar->UContainer->GetType() == UCONTAINER_DELIVERYBOX &&
                !PChar->UContainer->IsSlotEmpty(slotID))
             {
+                bool isAutoCommitOn = Sql_GetAutoCommit(SqlHandle);
+                bool commit = false;
+
                 CItem* PItem = PChar->UContainer->GetItem(slotID);
 
                 ShowMessage("FreeSlots %u\n", PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount());
                 ShowMessage("ItemType %u", PItem->getType());
 
-                if (PItem->getType() != ITEM_CURRENCY &&
+                if (boxtype == 0x01 && PItem->getType() != ITEM_CURRENCY &&
                     PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() == 0)
                 {
                     PChar->pushPacket(new CDeliveryBoxPacket(action, PItem, PChar->UContainer->GetItemsCount(), 0xB9));
                     return;
                 }
-                int32 ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE charid = %u AND slot = %u LIMIT 1", PChar->id, slotID);
 
-                if (ret != SQL_ERROR &&  Sql_AffectedRows(SqlHandle) != 0)
+                if(Sql_SetAutoCommit(SqlHandle, false) && Sql_TransactionStart(SqlHandle))
                 {
-                    charutils::AddItem(PChar, LOC_INVENTORY, PItem->getID(), PItem->getQuantity());
+                    if (boxtype == 0x01)
+                    {
+                        int32 ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE charid = %u AND slot = %u AND box = %u LIMIT 1", PChar->id, slotID, boxtype);
 
-                    PChar->UContainer->SetItem(slotID, NULL);
+                        if (ret != SQL_ERROR &&  Sql_AffectedRows(SqlHandle) != 0)
+                        {
+                            int32 ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET received = 1 WHERE charid = %u AND sender = '%s' AND box = 2 LIMIT 1", PChar->id, PItem->getSender());
 
-                    PChar->pushPacket(new CDeliveryBoxPacket(action, PItem, PChar->UContainer->GetItemsCount()));
+                            if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
+                            {
+                                charutils::AddItem(PChar, LOC_INVENTORY, PItem->getID(), PItem->getQuantity());
+                                PChar->UContainer->SetItem(slotID, NULL);
+                                PChar->pushPacket(new CDeliveryBoxPacket(action, PItem, PChar->UContainer->GetItemsCount()));
+                                commit = true;
+                            }
+                        }
+                    }
+                    else if (boxtype == 0x02)
+                    {
+                        int32 ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE senderid = %u AND slot = %u AND box = %u LIMIT 1", PChar->id, slotID, boxtype);
+
+                        if (ret != SQL_ERROR &&  Sql_AffectedRows(SqlHandle) != 0)
+                        {
+                            uint8 loc = PChar->getStorage(LOC_INVENTORY)->SearchItem(PItem->getID());
+                            if(loc != ERROR_SLOTID)
+                            {
+                                charutils::UpdateItem(PChar, LOC_INVENTORY, loc, PItem->getQuantity());
+                            }
+                            else
+                            {
+                                charutils::AddItem(PChar, LOC_INVENTORY, PItem->getID(), PItem->getQuantity());
+                            }
+                            PChar->UContainer->SetItem(slotID, NULL);
+                            PChar->pushPacket(new CSendBoxPacket(action, PItem, slotID, PChar->UContainer->GetItemsCount()));
+                            commit = true;
+                        }
+                    }
                     PChar->pushPacket(new CInventoryFinishPacket());
                     delete PItem;
                 }
+                if(!commit || !Sql_TransactionCommit(SqlHandle))
+                {
+                    Sql_TransactionRollback(SqlHandle);
+                    ShowError("Could not finalize receive transaction. PlayerID: %d ItemID: %d Quantity: %d", PChar->id, PItem->getID(), PItem->getQuantity());
+                }
+
+                Sql_SetAutoCommit(SqlHandle, isAutoCommitOn);
             }
 			return;
         }
@@ -1620,7 +1878,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
             if (PChar->UContainer->GetType() == UCONTAINER_DELIVERYBOX &&
                !PChar->UContainer->IsSlotEmpty(slotID))
             {
-                int32 ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE charid = %u AND slot = %u LIMIT 1", PChar->id, slotID);
+                int32 ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE charid = %u AND slot = %u AND box = 1 LIMIT 1", PChar->id, slotID);
 
                 if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
                 {
@@ -1633,10 +1891,93 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
             }
 			return;
 		}
+        case 0x0C: // Confirm name (send box)
+        {
+            int32 ret = Sql_Query(SqlHandle, "SELECT charid FROM chars WHERE charname = '%s' LIMIT 1", data+0x10);
+
+            if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+            {
+                PChar->pushPacket(new CSendBoxPacket(action, 0xFF, 0x02));
+                PChar->pushPacket(new CSendBoxPacket(action, 0x00, 0x01));
+            }
+            else
+            {
+                PChar->pushPacket(new CSendBoxPacket(action, 0xFF, 0x02));
+                PChar->pushPacket(new CSendBoxPacket(action, 0x00, 0xFB));
+            }
+            return;
+        }
+        case 0x0E: //open delivery box
+        {
+            PChar->UContainer->Clean();
+            PChar->UContainer->SetType(UCONTAINER_DELIVERYBOX);
+
+			const int8* fmtQuery = "SELECT itemid, itemsubid, slot, quantity, sender \
+                                    FROM delivery_box \
+							        WHERE charid = %u \
+                                    AND box = %u \
+                                    AND slot < 8 \
+							        ORDER BY slot;";
+
+	        int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id, boxtype);
+
+	        if (ret != SQL_ERROR)
+	        {
+                if (Sql_NumRows(SqlHandle) != 0)
+                {
+		            while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		            {
+                        CItem* PItem = itemutils::GetItem(Sql_GetIntData(SqlHandle,0));
+
+                        if(PItem != NULL) // Prevent an access violation in the event that an item doesn't exist for an ID
+                        {
+                            PItem->setSubID(Sql_GetIntData(SqlHandle,1));
+                            PItem->setSlotID(Sql_GetIntData(SqlHandle,2));
+                            PItem->setQuantity(Sql_GetUIntData(SqlHandle,3));
+                            PItem->setSender(Sql_GetData(SqlHandle,4));
+                            PChar->UContainer->SetItem(PItem->getSlotID(), PItem);
+                        }
+                    }
+		        }
+            }
+	        PChar->pushPacket(new CDeliveryBoxPacket(action, 0));
+            return;
+        }
         case 0x0F:
         {
             if (PChar->UContainer->GetType() == UCONTAINER_DELIVERYBOX)
             {
+                if (boxtype == 0x02)
+                {
+                    //recover items that failed to send
+                    for (int i = 0; i < 8; ++i)
+                    {
+                        if (!PChar->UContainer->IsSlotEmpty(i))
+                        {
+                            if (PChar->UContainer->GetItem(i)->getSent() == false)
+                            {
+                                CItem* PItem = PChar->UContainer->GetItem(i);
+                                uint8 loc = PChar->getStorage(LOC_INVENTORY)->SearchItem(PItem->getID());
+                                if(loc != ERROR_SLOTID)
+                                {
+                                    charutils::UpdateItem(PChar, LOC_INVENTORY, loc, PItem->getQuantity());
+                                }
+                                else
+                                {
+                                    uint8 add = charutils::AddItem(PChar, LOC_INVENTORY, PItem->getID(), PItem->getQuantity(), true);
+                                }
+                            }
+                        }
+                    }
+                    const int8* fmtQuery = "DELETE FROM delivery_box \
+							            WHERE senderid = %u \
+                                        AND box = 2 \
+                                        AND slot < 8 \
+                                        AND sent = 0 \
+							            ORDER BY slot;";
+                    int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+                    DSP_DEBUG_BREAK_IF(ret == SQL_ERROR);
+                }
                 PChar->UContainer->Clean();
             }
         }

@@ -20,7 +20,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:showText(npc, 11105); -- If'n ye have goods tae deliver, then Nembet be yer man!;
+	player:showText(npc, ITEM_DELIVERY_DIALOG);
+	player:openSendBox();
 end;
 
 -----------------------------------

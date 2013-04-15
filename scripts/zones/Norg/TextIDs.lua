@@ -9,6 +9,10 @@ ITEM_CANNOT_BE_OBTAINED = 10508; -- You cannot obtain the item <item> come back 
           HOMEPOINT_SET = 2;     -- Home point set!
          DOOR_IS_LOCKED = 10281; -- The door is locked tight.
 
+-- Other Texts		 
+SPASIJA_DELIVERY_DIALOG = 10275; -- Hiya! I can deliver packages to anybody, anywhere, anytime. What do you say?
+PALEILLE_DELIVERY_DIALOG = 10276; -- We can deliver parcels to any residence in Vana'diel.		 
+		 
 -- Quest Dialog
 YOU_CAN_NOW_BECOME_A_SAMURAI = 10124; -- You accept the Mumeito from Gilgamesh. You can now become a samurai.
    CARRYING_TOO_MUCH_ALREADY = 10125; -- I wish to give you your reward, but you seem to be carrying too much already. Come back when you have more room in your pack.

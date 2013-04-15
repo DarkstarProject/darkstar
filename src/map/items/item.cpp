@@ -46,6 +46,7 @@ CItem::CItem(uint16 id)
     m_ahCat      = 0;
     m_flag       = 0;
 	m_wornItem	 = 0;
+    m_sent       = false;
 
     m_slotID     = -1;
     m_locationID = -1;
@@ -271,6 +272,23 @@ void CItem::setSender(int8* sender)
 *                                                                       *
 ************************************************************************/
 
+const int8* CItem::getReceiver()
+{
+    return m_recv.c_str();
+}
+
+void CItem::setReceiver(int8* receiver)
+{
+    m_recv.clear();
+    m_recv.insert(0,receiver);
+}
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
 const int8* CItem::getSignature()
 {
 	return m_sign.c_str();
@@ -328,4 +346,20 @@ void CItem::setWornItem(uint8 mode)
 uint8 CItem::getWornItem()
 {
 	return m_wornItem;
+}
+
+/************************************************************************
+*                                                                       *
+*  Sent (via send/delivery box)                                         *
+*                                                                       *
+************************************************************************/
+	
+void CItem::setSent(bool sent)
+{
+	m_sent = sent;
+}
+
+bool CItem::getSent()
+{
+	return m_sent;
 }

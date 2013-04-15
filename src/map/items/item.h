@@ -94,6 +94,7 @@ public:
 	uint8		getLocationID();
 	uint8		getSlotID();
 	uint8		getWornItem();
+    bool        getSent();
 
 	void		setID(uint16 );
 	void		setSubID(uint16);
@@ -109,12 +110,16 @@ public:
 	void		setLocationID(uint8 LocationID);
 	void		setSlotID(uint8 SlotID);
 	void		setWornItem(uint8 mode);
+    void        setSent(bool sent);
 
 	const int8* getName();
 	void		setName(int8* name);
 
     const int8* getSender();
 	void		setSender(int8* sender);
+
+    const int8* getReceiver();
+    void        setReceiver(int8* receiver);
 
 	const int8* getSignature();
 	void		setSignature(int8* signature);
@@ -137,8 +142,11 @@ private:
 	uint8		m_slotID;       // ячейка предмета в хранилище
 	uint8		m_locationID;   // номер хранилища предмета
 
+    bool        m_sent;
+
 	string_t	m_name;
     string_t	m_send;
+    string_t    m_recv;
 	string_t	m_sign;
 };
 

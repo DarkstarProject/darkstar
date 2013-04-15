@@ -13,8 +13,7 @@ ITEM_CANNOT_BE_OBTAINED = 6375, -- You cannot obtain the item <item> come back a
     
 -- NPC texts
 NOMAD_MOOGLE_DIALOG = 6554, -- I'm a traveling moogle, kupo. I help adventurers in the Outlands access items they have stored in a Mog House elsewhere, kupo.
-       BORIS_DIALOG = 7485, -- My independent survey confirms the inn as the preferred location from which adventurers send parcels.
-      WENZEL_DIALOG = 7484, -- My independent survey confirms the town entrance as the preferred location from which adventurers send parcels.
+
 
 -- Shop Texts
   HERMINIA_SHOP_DIALOG = 6930, -- Hello there. What can I do for you?
@@ -25,3 +24,5 @@ CLOTHCRAFT_SHOP_DIALOG = 6933, -- Welcome to the Weavers' Guild salesroom.
 CHUTARMIRE_SHOP_DIALOG = 6936, -- I have items for those who delve in the black arts!
   DOHDJUMA_SHOP_DIALOG = 6932, -- I'm Dohdjuma, and I sell all kinds of things.
 }
+BORIS_DELIVERY_DIALOG = 7485, -- My independent survey confirms the inn as the preferred location from which adventurers send parcels.
+WENZEL_DELIVERY_DIALOG = 7484, -- My independent survey confirms the town entrance as the preferred location from which adventurers send parcels.

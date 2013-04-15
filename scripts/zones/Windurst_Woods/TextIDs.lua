@@ -11,7 +11,10 @@ ITEM_CANNOT_BE_OBTAINED = 6682; -- You cannot obtain the item <item> come back a
 
 -- Conquest System
 CONQUEST = 8705; -- You've earned conquest points!
-  
+
+-- Other Texts
+ITEM_DELIVERY_DIALOG = 6737; -- We can deliver goods to your residence or to the residences of your friends.
+
 -- Mission Dialogs
 YOU_ACCEPT_THE_MISSION = 6667; -- You have accepted the mission.
 

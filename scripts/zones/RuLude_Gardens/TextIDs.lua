@@ -15,6 +15,8 @@ CONQUEST = 10469; -- You've earned conquest points!
 -- Other dialog
          NOTHING_OUT_OF_ORDINARY = 6532; -- There is nothing out of the ordinary here.
 SOVEREIGN_WITHOUT_AN_APPOINTMENT = 10098; -- Nobody sees the sovereign without an appointment!
+ITEM_DELIVERY_DIALOG = 10188; -- Now offering quick and easy delivery of packages to homes everywhere!
+
 
 -- Mission Dialog
 WINDURST_EMBASSY = 10025; -- It reads, “Restricted Area.”

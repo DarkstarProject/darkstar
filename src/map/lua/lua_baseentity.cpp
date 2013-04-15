@@ -45,6 +45,7 @@
 #include "../packets/char_stats.h"
 #include "../packets/char_sync.h"
 #include "../packets/char_update.h"
+#include "../packets/send_box.h"
 #include "../packets/entity_update.h"
 #include "../packets/event.h"
 #include "../packets/event_update.h"
@@ -2179,6 +2180,23 @@ inline int32 CLuaBaseEntity::getEventTarget(lua_State *L)
     lua_pushlightuserdata(L,(void*)((CCharEntity*)m_PBaseEntity)->m_event.Target);
     lua_pcall(L,2,1,0);
     return 1;
+}
+
+/************************************************************************
+*																		*
+*  Opens the dialogue box to deliver items to players     				*
+*																		*
+************************************************************************/
+
+inline int32 CLuaBaseEntity::openSendBox(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    charutils::RecoverFailedSendBox((CCharEntity*)m_PBaseEntity);
+    charutils::OpenSendBox((CCharEntity*)m_PBaseEntity);
+
+    return 0;
 }
 
 /************************************************************************
@@ -6757,6 +6775,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,startEvent),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEvent),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEventTarget),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,openSendBox),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,showText),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageBasic),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageTarget),

@@ -10,6 +10,10 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
  FISHING_MESSAGE_OFFSET = 6623; -- You can't fish here
          DO_NOT_POSSESS = 7653; -- You do not possess <keyitem>. You were not permitted to board the ship...
      
+-- Other Texts
+MAURIRI_DELIVERY_DIALOG = 7950; -- Mauriri is my name, and sending parcels from Mhaura is my game.
+PANORU_DELIVERY_DIALOG =  7951; -- Looking for a delivery company that isn't lamey-wame? The quality of my service puts Mauriri to shame!
+	 
 -- Quest Dialog
      SUBJOB_UNLOCKED = 6955; -- You can now use support jobs!
   GOLDSMITHING_GUILD = 7058; -- Everything you need for your goldsmithing needs!

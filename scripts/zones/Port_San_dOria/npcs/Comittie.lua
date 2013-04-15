@@ -8,6 +8,7 @@
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
+require("scripts/zones/Port_San_dOria/TextIDs");
 -----------------------------------
 
 -----------------------------------
@@ -22,7 +23,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x021f);
+	player:showText(npc, ITEM_DELIVERY_DIALOG);
+	player:openSendBox();
 end;
 
 -----------------------------------

@@ -9,6 +9,9 @@ ITEM_CANNOT_BE_OBTAINED = 6534; -- You cannot obtain the item <item> come back a
  FISHING_MESSAGE_OFFSET = 6865; -- You can't fish here
           MOGHOUSE_EXIT = 7999; -- You have learned your way through the back alleys of Windurst! Now you can exit to any area from your residence.
 
+-- Other Texts
+ITEM_DELIVERY_DIALOG = 6872; -- We can deliver goods to your residence or to the residences of your friends.		  
+		  
 -- Dynamis dialogs
 	  YOU_CANNOT_ENTER_DYNAMIS = 8894; -- You cannot enter Dynamis - Windurst for x day (Vana'diel time)
 PLAYERS_HAVE_NOT_REACHED_LEVEL = 8896; -- Players who have not reached level <number> are prohibited from entering Dynamis.

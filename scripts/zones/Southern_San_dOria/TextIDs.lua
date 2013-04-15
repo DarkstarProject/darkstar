@@ -28,6 +28,7 @@ PLAYERS_HAVE_NOT_REACHED_LEVEL = 7296; -- Players who have not reached level <nu
    FLYER_ALREADY = 8710; -- This person already has a flyer.
 
 -- Other dialog
+ITEM_DELIVERY_DIALOG = 8289; -- Parcels delivered to rooms anywhere in Vana'diel!
     ROSEL_DIALOG = 7666; -- Hrmm... Now, this is interesting! It pays to keep an eye on the competition. Thanks for letting me know!
 
  BLENDARE_DIALOG = 7973; -- Wait! If I had magic, maybe I could keep my brother's hands off my sweets...

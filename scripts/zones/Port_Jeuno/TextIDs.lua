@@ -9,6 +9,9 @@ ITEM_CANNOT_BE_OBTAINED = 6600; -- You cannot obtain the item <item> come back a
  FISHING_MESSAGE_OFFSET = 6807; -- You can't fish here
           MOGHOUSE_EXIT = 7069; -- You have learned your way through the back alleys of Jeuno! Now you can exit to any area from your residence.
 
+-- Other Texts
+ITEM_DELIVERY_DIALOG = 7267; -- Delivering goods to residences everywhere!		  
+		  
 -- Conquest system
 CONQUEST = 7277; -- You've earned conquest points!
 

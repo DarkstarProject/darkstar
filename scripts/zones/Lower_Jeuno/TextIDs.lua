@@ -12,7 +12,8 @@ ITEM_CANNOT_BE_OBTAINED = 6620; -- You cannot obtain the item <item> come back a
              ITS_LOCKED = 7463; -- It's locked.
             GUIDE_STONE = 7016; -- Up: Upper Jeuno, Down: Port Jeuno
 
-
+-- Other Texts
+ITEM_DELIVERY_DIALOG = 7656; -- Now offering quick and easy delivery of packages to residences everywhere! 
 -- Conquest system
 CONQUEST = 7929; -- You've earned conquest points!
 

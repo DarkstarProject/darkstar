@@ -147,6 +147,9 @@ namespace charutils
 	void	LoadCharUnlockedWeapons(CCharEntity* PChar);
 	void	loadCharWsPoints(CCharEntity* PChar);
 	void	saveCharWsPoints(CCharEntity* PChar, uint16 indexid, int32 points);
+
+    void    OpenSendBox(CCharEntity* PChar);
+    void    RecoverFailedSendBox(CCharEntity* PChar);
 };
 
 #endif

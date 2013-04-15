@@ -56,6 +56,7 @@
 #include "packets/message_basic.h"
 #include "packets/message_debug.h"
 #include "packets/message_standard.h"
+#include "packets/send_box.h"
 #include "packets/quest_mission_log.h"
 #include "packets/conquest_map.h"
 
@@ -3818,6 +3819,97 @@ void CheckUnarmedWeapon(CCharEntity* PChar)
 		PChar->look.main = 0;
 	}
 	BuildingCharWeaponSkills(PChar);
+}
+
+/************************************************************************
+*																		*
+*  Opens the characters send box                            			*
+*																		*
+************************************************************************/
+
+void OpenSendBox(CCharEntity* PChar)
+{
+    PChar->UContainer->Clean();
+    PChar->UContainer->SetType(UCONTAINER_DELIVERYBOX);
+
+	const int8* fmtQuery = "SELECT itemid, itemsubid, slot, quantity, sender, charname \
+                            FROM delivery_box \
+							WHERE senderid = %u \
+                            AND box = 2 \
+                            AND slot < 8 \
+                            AND sent = 1 \
+							ORDER BY slot;";
+
+	int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+
+	if (ret != SQL_ERROR)
+	{
+        if (Sql_NumRows(SqlHandle) != 0)
+        {
+		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		    {
+                CItem* PItem = itemutils::GetItem(Sql_GetIntData(SqlHandle,0));
+
+                if(PItem != NULL) // Prevent an access violation in the event that an item doesn't exist for an ID
+                {
+                    PItem->setSubID(Sql_GetIntData(SqlHandle,1));
+                    PItem->setSlotID(Sql_GetIntData(SqlHandle,2));
+                    PItem->setQuantity(Sql_GetUIntData(SqlHandle,3));
+                    PItem->setSender(Sql_GetData(SqlHandle,4));
+                    PItem->setReceiver(Sql_GetData(SqlHandle,5));
+                    PItem->setSent(true);
+                    PChar->UContainer->SetItem(PItem->getSlotID(), PItem);
+                }
+            }
+		}
+    }
+	PChar->pushPacket(new CSendBoxPacket(0x0D, 0, 0x01));
+    return;
+}
+
+/************************************************************************
+*																		*
+*  Recovers items that were inserted into send box but were not			*
+*  successfully delivered or retrieved                                  *
+*																		*
+************************************************************************/
+
+void RecoverFailedSendBox(CCharEntity* PChar)
+{
+	const int8* fmtQuery = "SELECT itemid, quantity \
+                            FROM delivery_box \
+							WHERE senderid = %u \
+                            AND box = 2 \
+                            AND slot < 8 \
+                            AND sent = 0 \
+							ORDER BY slot;";
+
+	int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+
+    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0)
+    {
+        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            uint8 loc = PChar->getStorage(LOC_INVENTORY)->SearchItem(Sql_GetIntData(SqlHandle,0));
+            if(loc != ERROR_SLOTID)
+            {
+                UpdateItem(PChar, LOC_INVENTORY, loc, Sql_GetIntData(SqlHandle,1));
+            }
+            else
+            {
+                uint8 add = AddItem(PChar, LOC_INVENTORY, Sql_GetIntData(SqlHandle,0), Sql_GetIntData(SqlHandle,1), true);
+                DSP_DEBUG_BREAK_IF(add == ERROR_SLOTID);
+            }
+        }
+        fmtQuery = "DELETE FROM delivery_box \
+							WHERE senderid = %u \
+                            AND box = 2 \
+                            AND slot < 8 \
+                            AND sent = 0 \
+							ORDER BY slot;";
+        ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+        DSP_DEBUG_BREAK_IF(ret == SQL_ERROR);
+    }
 }
 
 } // namespace charutils

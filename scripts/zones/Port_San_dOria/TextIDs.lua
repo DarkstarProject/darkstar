@@ -11,6 +11,9 @@ FULL_INVENTORY_AFTER_TRADE = 6402; -- You cannot obtain the <item>. Try trading 
              HOMEPOINT_SET = 24;   -- Home point set!
     FISHING_MESSAGE_OFFSET = 6795; -- You can't fish here
 
+ITEM_DELIVERY_DIALOG = 7507; -- Now delivering parcels to rooms everywhere!	
+	
+	
 -- Dialogs
    FLYER_REFUSED = 7119; -- This person isn't interested.
    FLYER_ALREADY = 7120; -- This person already has a flyer.

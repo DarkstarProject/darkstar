@@ -635,6 +635,9 @@
     <ClInclude Include="..\..\src\map\packets\guild_menu_sell_update.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\send_box.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
@@ -1193,6 +1196,9 @@
       <Filter>Source Files\packets</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\guild_menu_sell_update.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\send_box.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
   </ItemGroup>

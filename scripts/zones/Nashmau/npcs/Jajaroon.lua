@@ -21,7 +21,7 @@ end;
 
 function onTrigger(player,npc)
 	
-player:showText(npc,JAJAROONT_SHOP_DIALOG);
+player:showText(npc,JAJAROON_SHOP_DIALOG);
 
 stock = {0x0880,48,		-- Fire Card
 	 0x0881,48,		-- Ice Card
