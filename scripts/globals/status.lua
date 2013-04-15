@@ -807,6 +807,7 @@ MOD_HASTE_GEAR			= 0x180
 MOD_SHIELD_BASH     = 0x181
 MOD_KICK_DMG        = 0x182
 MOD_CHARM_CHANCE		= 0x187
+MOD_WEAPON_BASH			= 0x188
 
 -----------------------------------
 -- Merit Definitions

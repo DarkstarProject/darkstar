@@ -418,12 +418,12 @@ enum MODIFIER
 	MOD_RANGED_DELAYP		 = 0x17D,			//ranged delay addition percent (does not affect tp gain)
 
 	MOD_SHIELD_BASH			= 0x181,
-	MOD_KICK_DMG			= 0x182 			// increases kick attack damage
+	MOD_KICK_DMG			= 0x182, 			// increases kick attack damage
+    MOD_WEAPON_BASH         = 0x188
 
 
 	// To save time finding the next mod to use..
 
-	//MOD_SPARE				= 0x188,
 	//MOD_SPARE				= 0x189,
 	//MOD_SPARE				= 0x18A,
 	//MOD_SPARE				= 0x18B,
@@ -431,7 +431,7 @@ enum MODIFIER
 	//MOD_SPARE				= 0x18D,
 };
 
-#define MAX_MODIFIER	       0x188
+#define MAX_MODIFIER	       0x189
 
 
 
