@@ -29,7 +29,6 @@ function onTrigger(player,npc)
 		if(player:sendGuild(60420,1,23,2)) then
 			player:showText(npc, AMALASANDA_SHOP_DIALOG);
 		end
-	else
 	end
 end;
 
