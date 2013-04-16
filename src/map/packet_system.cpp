@@ -1827,12 +1827,11 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
                         if (ret != SQL_ERROR &&  Sql_AffectedRows(SqlHandle) != 0)
                         {
-                            int32 ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET received = 1 WHERE charid = %u AND sender = '%s' AND box = 2 LIMIT 1", PChar->id, PItem->getSender());
+                            ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET received = 1 WHERE charid = %u AND sender = '%s' AND box = 2 LIMIT 1", PChar->id, PItem->getSender());
 
-                            if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
+                            if (ret != SQL_ERROR)
                             {
                                 charutils::AddItem(PChar, LOC_INVENTORY, PItem->getID(), PItem->getQuantity());
-                                PChar->UContainer->SetItem(slotID, NULL);
                                 PChar->pushPacket(new CDeliveryBoxPacket(action, PItem, PChar->UContainer->GetItemsCount()));
                                 commit = true;
                             }
@@ -1853,12 +1852,12 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
                             {
                                 charutils::AddItem(PChar, LOC_INVENTORY, PItem->getID(), PItem->getQuantity());
                             }
-                            PChar->UContainer->SetItem(slotID, NULL);
                             PChar->pushPacket(new CSendBoxPacket(action, PItem, slotID, PChar->UContainer->GetItemsCount()));
                             commit = true;
                         }
                     }
                     PChar->pushPacket(new CInventoryFinishPacket());
+                    PChar->UContainer->SetItem(slotID, NULL);
                     delete PItem;
                 }
                 if(!commit || !Sql_TransactionCommit(SqlHandle))
