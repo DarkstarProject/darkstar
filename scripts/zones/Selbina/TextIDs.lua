@@ -23,6 +23,7 @@ CLOTHCRAFT_SHOP_DIALOG = 6933, -- Welcome to the Weavers' Guild salesroom.
    QUELPIA_SHOP_DIALOG = 6935, -- In need of otherworldly protection?
 CHUTARMIRE_SHOP_DIALOG = 6936, -- I have items for those who delve in the black arts!
   DOHDJUMA_SHOP_DIALOG = 6932, -- I'm Dohdjuma, and I sell all kinds of things.
+  BORIS_DELIVERY_DIALOG = 7485, -- My independent survey confirms the inn as the preferred location from which adventurers send parcels.
+  WENZEL_DELIVERY_DIALOG = 7484, -- My independent survey confirms the town entrance as the preferred location from which adventurers send parcels.
 }
-BORIS_DELIVERY_DIALOG = 7485, -- My independent survey confirms the inn as the preferred location from which adventurers send parcels.
-WENZEL_DELIVERY_DIALOG = 7484, -- My independent survey confirms the town entrance as the preferred location from which adventurers send parcels.
+
