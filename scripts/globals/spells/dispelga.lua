@@ -37,3 +37,4 @@ function onSpellCast(caster,target,spell)
     end
 
     return effect;
+end;
