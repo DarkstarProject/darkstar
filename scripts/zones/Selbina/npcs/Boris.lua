@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc, BORIS_DELIVERY_DIALOG);
+	player:showText(npc, TextID_Selbina.BORIS_DELIVERY_DIALOG);
 	player:openSendBox();
 end;
 

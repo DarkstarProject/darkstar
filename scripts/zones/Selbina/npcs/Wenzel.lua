@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc, WENZEL_DELIVERY_DIALOG);
+	player:showText(npc, TextID_Selbina.WENZEL_DELIVERY_DIALOG);
 	player:openSendBox();
 end;
 
