@@ -8,8 +8,9 @@
 --  quickly earn gil. However, as this is not a legitimate concern on private servers players may
 --  complete this quest even with no fame.
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 require("scripts/zones/Selbina/TextIDs");
+-----------------------------------
+
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");

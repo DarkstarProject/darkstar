@@ -6,9 +6,8 @@
 --  @pos: 31.961 -14.661 57.997
 --
 -----------------------------------
-
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 require("scripts/zones/Selbina/TextIDs");
+-----------------------------------
 
 -----------------------------------
 -- onTrade Action
