@@ -83,7 +83,7 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
 
 	switch(m_ActionType)
 	{
-		case ACTION_NONE:                                           break;
+		case ACTION_NONE:
 		case ACTION_ROAMING:			  ActionRoaming();          break;
 		case ACTION_ENGAGE:				  ActionEngage();           break;
 		case ACTION_DISENGAGE:			  ActionDisengage();        break;
