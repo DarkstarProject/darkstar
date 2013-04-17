@@ -52,7 +52,6 @@ void CUContainer::Clean()
         for (uint8 i = 0; i < UCONTAINER_SIZE; ++i)
         {
             delete m_PItem[i];
-            m_PItem[i] = NULL;
         }
     }
     m_ContainerType = UCONTAINER_EMPTY;

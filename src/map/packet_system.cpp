@@ -1474,7 +1474,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
         case 0x02: //add items to send box
         {
             uint8 invslot = RBUFB(data, (0x07));
-            uint8 quantity = RBUFB(data, (0x08));
+            uint32 quantity = RBUFL(data, (0x08));
             CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invslot);
 
             if (PItem && PItem->getQuantity() >= quantity && PChar->UContainer->IsSlotEmpty(slotID) && !(PItem->getFlag() & ITEM_FLAG_EX))
