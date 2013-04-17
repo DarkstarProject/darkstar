@@ -5,7 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/keyitems");
-requite("scripts/globals/missions");
+require("scripts/globals/missions");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function OnBcnmRegister(player,instance)
