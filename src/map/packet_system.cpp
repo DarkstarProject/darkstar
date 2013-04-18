@@ -1643,10 +1643,16 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
                             if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
                             {
-                                PItem->setSlotID(i);
-                                PChar->UContainer->SetItem(i, PItem);
-                                PChar->UContainer->SetItem(slotid, NULL);
-                                new_items++;
+                                ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET received = 1 WHERE charid = %u AND sender = '%s' AND box = 2 AND received = 0 \
+                                                           AND quantity = %u LIMIT 1", PChar->id, PItem->getSender(), PItem->getQuantity());
+
+                                if (ret != SQL_ERROR)
+                                {
+                                    PItem->setSlotID(i);
+                                    PChar->UContainer->SetItem(i, PItem);
+                                    PChar->UContainer->SetItem(slotid, NULL);
+                                    new_items++;
+                                }
                             }
                             break;
                         }
@@ -1827,14 +1833,9 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
                         if (ret != SQL_ERROR &&  Sql_AffectedRows(SqlHandle) != 0)
                         {
-                            ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET received = 1 WHERE charid = %u AND sender = '%s' AND box = 2 and received = 0 LIMIT 1", PChar->id, PItem->getSender());
-
-                            if (ret != SQL_ERROR)
-                            {
-                                charutils::AddItem(PChar, LOC_INVENTORY, PItem->getID(), PItem->getQuantity());
-                                PChar->pushPacket(new CDeliveryBoxPacket(action, PItem, PChar->UContainer->GetItemsCount()));
-                                commit = true;
-                            }
+                            charutils::AddItem(PChar, LOC_INVENTORY, PItem->getID(), PItem->getQuantity());
+                            PChar->pushPacket(new CDeliveryBoxPacket(action, PItem, PChar->UContainer->GetItemsCount()));
+                            commit = true;
                         }
                     }
                     else if (boxtype == 0x02)
