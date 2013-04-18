@@ -1827,7 +1827,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
                         if (ret != SQL_ERROR &&  Sql_AffectedRows(SqlHandle) != 0)
                         {
-                            ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET received = 1 WHERE charid = %u AND sender = '%s' AND box = 2 LIMIT 1", PChar->id, PItem->getSender());
+                            ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET received = 1 WHERE charid = %u AND sender = '%s' AND box = 2 and received = 0 LIMIT 1", PChar->id, PItem->getSender());
 
                             if (ret != SQL_ERROR)
                             {
