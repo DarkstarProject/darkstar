@@ -40,7 +40,7 @@ CMenuMeritPacket::CMenuMeritPacket(CCharEntity* PChar)
     WBUFW(data,(0x08)-4) = PChar->PMeritPoints->GetLimitPoints();
     WBUFB(data,(0x0A)-4) = PChar->PMeritPoints->GetMeritPoints();
 
-	if (PChar->GetMLevel() >= 75 && charutils::hasKeyItem(PChar, 606))			// keyitem Limit Breaker
+	if (PChar->jobs.job[PChar->GetMJob()] >= 75 && charutils::hasKeyItem(PChar, 606))			// keyitem Limit Breaker
 	{
         WBUFB(data,(0x0B)-4) = PChar->MeritMode ? 0xE0 : 0x20; 					// режим (0xE0 limit pints, 0x20 exp points)
 	}

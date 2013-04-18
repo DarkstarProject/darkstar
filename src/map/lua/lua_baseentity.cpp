@@ -1919,18 +1919,6 @@ inline int32 CLuaBaseEntity::levelRestriction(lua_State* L)
 					charutils::BuildingCharTraitsTable(PChar);
 					charutils::BuildingCharAbilityTable(PChar);
 					charutils::CheckValidEquipment(PChar); // Handles rebuilding weapon skills as well.
-
-					// CharAbilitiesPackets are sent by building traits and CheckValidEquipment (via weapon skills.)
-					// A third packet here is not only unnecessary, it'll cause session disconnects, so don't do it, 'kay? :)
-					if (PChar->status == STATUS_NORMAL)
-					{
-						PChar->pushPacket(new CCharJobsPacket(PChar));
-						PChar->pushPacket(new CCharUpdatePacket(PChar));
-						PChar->pushPacket(new CCharHealthPacket(PChar));
-						PChar->pushPacket(new CCharSkillsPacket(PChar));
-						PChar->pushPacket(new CMenuMeritPacket(PChar));
-						PChar->pushPacket(new CCharSyncPacket(PChar));
-					}
 				}
 			}
 			lua_pushinteger( L, PChar->m_LevelRestriction );
