@@ -6,6 +6,9 @@ ITEM_CANNOT_BE_OBTAINED = 7996; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6379; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
  FISHING_MESSAGE_OFFSET = 6994; -- You can't fish here
+ 
+ --Other Texts
+   ITEM_DELIVERY_DIALOG = 7741;
 
 -- Shop Texts
        ALLARD_SHOP_DIALOG = 7506; -- Hey, how ya doin'?\nWelcome to the armor shop of the Ulthalam Parade's leading star--Allard, in the flesh! -verify-
