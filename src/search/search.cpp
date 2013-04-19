@@ -478,22 +478,37 @@ void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest)
     uint8* data    = (uint8*)PTCPRequest->GetData();                            
 	uint8  AHCatID = RBUFB(data,(0x16));
 
-    //2 - уровень
-    //3 - раса
-    //4 - профессия
-    //5 - урон
-    //6 - задержка
-    //7 - защита
-    //8 - сопротивление
-    //9 - название
-
-    for (uint8 i = 0; i < RBUFB(data,(0x12)); ++i) // параметры сортировки предметов
+    //2 - уровень -- level
+    //3 - раса -- race
+    //4 - профессия -- job
+    //5 - урон -- damage
+    //6 - задержка -- delay
+    //7 - защита -- defense
+    //8 - сопротивление -- resistance
+    //9 - название -- name
+	string_t OrderByString = "ORDER BY";
+	uint8 paramCount = RBUFB(data,0x12);
+    for (uint8 i = 0; i < paramCount; ++i) // параметры сортировки предметов
     {
-        ShowMessage(" Param%u: %u\n", i, RBUFL(data,(0x18)+8*i));
+		uint8 param = RBUFL(data,(0x18)+8*i);
+        ShowMessage(" Param%u: %u\n", i, param);
+		switch (param) {
+			case 2:
+				OrderByString.append(" item_armor.level DESC,");
+			case 5:
+				OrderByString.append(" item_weapon.dmg DESC,");
+			case 6:
+				OrderByString.append(" item_weapon.delay DESC,");
+			case 9:
+				OrderByString.append(" item_basic.sortname,");
+		}
     }
 
+	OrderByString.append(" item_basic.itemid");
+	int8* OrderByArray = (int8*)OrderByString.data();
+
 	CDataLoader* PDataLoader = new CDataLoader();                        
-    std::vector<ahItem*> ItemList = PDataLoader->GetAHItemsToCategry(AHCatID);
+    std::vector<ahItem*> ItemList = PDataLoader->GetAHItemsToCategory(AHCatID,OrderByArray);
 
     uint8 PacketsCount = (ItemList.size() / 20) + (ItemList.size() % 20 != 0) + (ItemList.size() == 0);
 

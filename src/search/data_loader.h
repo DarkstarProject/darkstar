@@ -86,7 +86,7 @@ public:
     std::list<SearchEntity*> GetPartyList(uint32 PartyID);
     std::list<SearchEntity*> GetLinkshellList(uint32 LinkshellID);
     std::list<SearchEntity*> GetPlayersList(search_req sr, int* count);
-	std::vector<ahItem*>     GetAHItemsToCategry(uint8 AHCategoryID);
+	std::vector<ahItem*>     GetAHItemsToCategory(uint8 AHCategoryID, int8* OrderByString);
 
 private:
 

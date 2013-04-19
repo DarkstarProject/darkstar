@@ -91,10 +91,10 @@ std::vector<ahHistory*> CDataLoader::GetAHItemHystory(uint16 ItemID, bool stack)
 /************************************************************************
 *                                                                       *
 *  Список продаваемых предметов в указанной категории                   *
-*                                                                       *
+*  The list of items sold in this category                              *
 ************************************************************************/
 
-std::vector<ahItem*> CDataLoader::GetAHItemsToCategry(uint8 AHCategoryID)
+std::vector<ahItem*> CDataLoader::GetAHItemsToCategory(uint8 AHCategoryID, int8* OrderByString)
 {
     ShowDebug("try find category %u\n", AHCategoryID);
 
@@ -107,9 +107,9 @@ std::vector<ahItem*> CDataLoader::GetAHItemsToCategry(uint8 AHCategoryID)
                             LEFT JOIN item_weapon ON item_basic.itemid = item_weapon.itemid \
                             WHERE aH = %u \
                             GROUP BY item_basic.itemid \
-                            ORDER BY item_armor.level DESC, item_weapon.dmg DESC, item_basic.sortname DESC";
+                            %s";
 
-	int32 ret = Sql_Query(SqlHandle, fmtQuery, AHCategoryID);
+	int32 ret = Sql_Query(SqlHandle, fmtQuery, AHCategoryID, OrderByString);
 
 	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{
