@@ -836,8 +836,8 @@ int32 doSynthResult(CCharEntity* PChar)
 			{
                 // TODO: вынести метод в uitls (добавить метод обратного действия)
 
-				uint8 signature[12];
-				for(uint8 currChar = 0; currChar <= PChar->name.size(); ++currChar)
+				uint8 signature[12] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+				for(uint8 currChar = 0; currChar < PChar->name.size(); ++currChar)
 				{
 					int32 tempChar = 0;
 					if		((PChar->name[currChar] >= '0') && (PChar->name[currChar] <= '9'))
@@ -850,10 +850,11 @@ int32 doSynthResult(CCharEntity* PChar)
 				}
 				PItem->setSignature((int8*)signature);
 
-				const int8* fmtQuery = "UPDATE char_inventory SET signature = '%s' WHERE charid = %u AND location = 0 AND slot = %u;";
-				 
 				int8 signature_esc[sizeof(signature)*2+1];
 				Sql_EscapeStringLen(SqlHandle,signature_esc,PItem->getSignature(),strlen(PItem->getSignature()));
+				 
+				int8* fmtQuery = "UPDATE char_inventory SET signature = '%s' WHERE charid = %u AND location = 0 AND slot = %u;\0";
+				
 
 				Sql_Query(SqlHandle,fmtQuery,signature_esc,PChar->id, invSlotID);
 			}

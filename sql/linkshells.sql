@@ -29,12 +29,11 @@ DROP TABLE IF EXISTS `linkshells`;
 CREATE TABLE IF NOT EXISTS `linkshells` (
   `linkshellid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `fullname` varchar(20) NOT NULL DEFAULT '',
-  `name` varchar(15) NOT NULL,
+  `name` blob(15) NOT NULL,
   `color` smallint(5) unsigned NOT NULL DEFAULT '61440',
   `poster` varchar(15) NOT NULL DEFAULT '',
   `message` varchar(115) NOT NULL DEFAULT '',
   `messagetime` int(10) unsigned NOT NULL DEFAULT '0',
   `postrights` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`linkshellid`),
-  UNIQUE KEY `name` (`name`)
+  PRIMARY KEY (`linkshellid`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=1 ;
