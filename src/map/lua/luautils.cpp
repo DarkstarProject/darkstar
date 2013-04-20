@@ -523,27 +523,28 @@ int32 SpawnMob(lua_State* L)
         CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
         if (PMob != NULL)
         {
-            if (PMob->PBattleAI->GetCurrentAction() == ACTION_NONE ||
-                PMob->PBattleAI->GetCurrentAction() == ACTION_SPAWN)
+
+            if( !lua_isnil(L,2) && lua_isnumber(L,2))
             {
-                if( !lua_isnil(L,2) && lua_isnumber(L,2))
-                {
-                    PMob->SetDespawnTimer((uint32)lua_tointeger(L,2));
-                }
-
-                if( !lua_isnil(L,3) && lua_isnumber(L,3))
-                {
-                  PMob->m_RespawnTime = (uint32)lua_tointeger(L,3) * 1000;
-                  PMob->PBattleAI->SetLastActionTime(gettick() - 1000);
-                } else {
-                  PMob->PBattleAI->SetLastActionTime(0);
-                }
-
-                PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
-                PMob->PBattleAI->CheckCurrentAction(gettick());
-            } else {
-                ShowDebug(CL_CYAN"SpawnMob: <%s> is alredy spawned\n" CL_RESET, PMob->GetName());
+                PMob->SetDespawnTimer((uint32)lua_tointeger(L,2));
             }
+
+            if( !lua_isnil(L,3) && lua_isnumber(L,3))
+            {
+                PMob->m_RespawnTime = (uint32)lua_tointeger(L,3) * 1000;
+                PMob->PBattleAI->SetLastActionTime(gettick() - 1000);
+                PMob->m_AllowRespawn = true;
+            } else {
+                if (PMob->PBattleAI->GetCurrentAction() == ACTION_NONE ||
+                    PMob->PBattleAI->GetCurrentAction() == ACTION_SPAWN)
+                {
+                    PMob->PBattleAI->SetLastActionTime(0);
+                    PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+                } else {
+                    ShowDebug(CL_CYAN"SpawnMob: <%s> is alredy spawned\n" CL_RESET, PMob->GetName());
+                }
+            }
+            PMob->PBattleAI->CheckCurrentAction(gettick());
 		    lua_pushstring(L,CLuaBaseEntity::className);
 		    lua_gettable(L,LUA_GLOBALSINDEX);
 		    lua_pushstring(L,"new");
