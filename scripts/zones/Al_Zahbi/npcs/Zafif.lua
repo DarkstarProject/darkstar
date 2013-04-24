@@ -38,7 +38,7 @@ stock = {0x1204,23400,		-- Scroll of Cure IV
 	 0x1304,77600,		-- Scroll of Dispell
 	 0x1270,27000,		-- Scroll of Flash
 	 0x128E,99375,		-- Scroll of Reraise III
-	 0x1268,28500}		-- Scroll of Reprisal
+	 0x126B,28500}		-- Scroll of Reprisal
  
 showShop(player, STATIC, stock);
 end; 
