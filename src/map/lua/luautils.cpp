@@ -534,6 +534,10 @@ int32 SpawnMob(lua_State* L)
                 PMob->m_RespawnTime = (uint32)lua_tointeger(L,3) * 1000;
                 PMob->PBattleAI->SetLastActionTime(gettick() - 1000);
                 PMob->m_AllowRespawn = true;
+                if (PMob->PBattleAI->GetCurrentAction() == ACTION_NONE)
+                {
+                    PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+                }
             } else {
                 if (PMob->PBattleAI->GetCurrentAction() == ACTION_NONE ||
                     PMob->PBattleAI->GetCurrentAction() == ACTION_SPAWN)
