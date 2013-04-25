@@ -889,13 +889,18 @@ void CAICharNormal::ActionRangedFinish()
 
         CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
 
-        bool isThrowing = PAmmo->isThrowing();
+        bool ammoThrowing = PAmmo->isThrowing();
+        bool rangedThrowing = PItem->isThrowing();
         uint8 slot = SLOT_RANGED;
 
-        if(isThrowing)
+        if(ammoThrowing)
         {
             slot = SLOT_AMMO;
             PItem = NULL;
+        }
+        if(rangedThrowing)
+        {
+            PAmmo = NULL;
         }
 
         uint8 shadowsTaken = 0;
@@ -906,11 +911,11 @@ void CAICharNormal::ActionRangedFinish()
 
 
         // if barrage is detected, getBarrageShotCount also checks for ammo count
-        if (!isThrowing && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE,0))
+        if (!ammoThrowing && !rangedThrowing && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE,0))
         {
             hitCount += battleutils::getBarrageShotCount(m_PChar);
         }
-        else if(isThrowing && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SANGE))
+        else if(ammoThrowing && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SANGE))
         {
             isSange = true;
             hitCount += m_PChar->getMod(MOD_UTSUSEMI);
