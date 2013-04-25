@@ -83,7 +83,7 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
 
 	switch(m_ActionType)
 	{
-		case ACTION_NONE:
+		case ACTION_NONE:                                           break;
 		case ACTION_ROAMING:			  ActionRoaming();          break;
 		case ACTION_ENGAGE:				  ActionEngage();           break;
 		case ACTION_DISENGAGE:			  ActionDisengage();        break;
@@ -919,7 +919,7 @@ void CAIMobDummy::ActionWait()
 		if(m_PMob->PEnmityContainer->GetHighestEnmity() == NULL){
 			m_ActionType = ACTION_ROAMING;
 		} else {
-			m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+			m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_ENGAGE);
 		}
 	}
 
@@ -1171,11 +1171,6 @@ void CAIMobDummy::ActionMagicFinish()
 	    }
 
 	    Action.messageID = msg;
-
-        if(Action.param >= 2000){
-        	ShowDebug("Super high magic damage warning: %d\n", Action.param);
-        }
-
 
 		if (PTarget->objtype == TYPE_MOB && m_PMob->id != PTarget->id && !m_PSpell->isBuff())
         {
