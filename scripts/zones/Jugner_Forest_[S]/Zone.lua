@@ -24,7 +24,13 @@ function onZoneIn(player,prevZone)
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(621.865,-6.665,300.264,149);
 	end	
-	return cs;	
+	
+if(player:getQuestStatus(CRYSTAL_WAR,CLAWS_OF_THE_GRIFFON) == QUEST_ACCEPTED and player:getVar("ClawsOfGriffonProg") == 0) then
+				return 200;
+				
+			else
+				return cs;
+		end
 end;		
 
 -----------------------------------		

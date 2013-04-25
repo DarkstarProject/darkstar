@@ -6,13 +6,19 @@
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
-
+require("scripts/globals/quests");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
+if(player:getQuestStatus(CRYSTAL_WAR,GIFTS_OF_THE_GRIFFON) == QUEST_ACCEPTED and player:getVar("GiftsOfGriffonProg") == 3) then
+		if(trade:hasItemQty(2528,1) and trade:getItemCount() == 1) then
+			player:startEvent(0x01A) -- Gifts of Griffon Trade
+			
+		end
+	end
 end;
 
 -----------------------------------
@@ -20,7 +26,20 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x025);
+
+	if(player:getQuestStatus(CRYSTAL_WAR,GIFTS_OF_THE_GRIFFON) == QUEST_AVAILABLE and player:getMainLvl() >= 10) then
+		player:startEvent(0x015); -- Gifts of Griffon Quest Start
+		
+	elseif(player:getQuestStatus(CRYSTAL_WAR,GIFTS_OF_THE_GRIFFON) == QUEST_ACCEPTED and player:getVar("GiftsOfGriffonProg") == 0) then
+		player:startEvent(0x016); -- Gifts of Griffon Stage 2 Cutscene
+		
+	elseif (player:getQuestStatus(CRYSTAL_WAR,GIFTS_OF_THE_GRIFFON) == QUEST_ACCEPTED and player:getVar("GiftsOfGriffonProg") == 1) then
+		player:startEvent(0x027); -- Gifts of Griffon Stage 2 Dialogue
+	
+	
+	else	
+	player:startEvent(0x025); -- Default Dialogue
+end
 end;
 
 -----------------------------------
@@ -39,4 +58,14 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+	if(csid == 0x015) then
+		player:addQuest(CRYSTAL_WAR,GIFTS_OF_THE_GRIFFON); -- Gifts of Griffon Quest Start
+		
+	elseif(csid == 0x016) then 
+		player:setVar("GiftsOfGriffonProg",1); -- Gifts of Griffon Stage 2
+		
+	elseif(csid == 0x01A) then
+		player:tradeComplete();
+		player:setVar("GiftsOfGriffonProg",4); -- Gifts of Griffon Stage 3
+end
 end;
