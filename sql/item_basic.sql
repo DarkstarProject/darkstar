@@ -3729,7 +3729,7 @@ INSERT INTO `item_basic` VALUES(4386, 'king_truffle', 'king_truffle', 12, 1536, 
 INSERT INTO `item_basic` VALUES(4387, 'wild_onion', 'wild_onion', 12, 1536, 59, 0, 72);
 INSERT INTO `item_basic` VALUES(4388, 'eggplant', 'eggplant', 12, 1536, 59, 0, 11);
 INSERT INTO `item_basic` VALUES(4389, 'san_dorian_carrot', 'san_dor_carrot', 12, 1536, 59, 0, 8);
-INSERT INTO `item_basic` VALUES(4390, 'mithran_tomato', 'mithran_tomato', 12, 1536, 59, 0, 757);
+INSERT INTO `item_basic` VALUES(4390, 'mithran_tomato', 'mithran_tomato', 12, 1536, 59, 0, 6);
 INSERT INTO `item_basic` VALUES(4391, 'bretzel', 'bretzel', 99, 1536, 56, 0, 6);
 INSERT INTO `item_basic` VALUES(4392, 'saruta_orange', 'saruta_orange', 12, 1536, 59, 0, 8);
 INSERT INTO `item_basic` VALUES(4393, 'orange_kuchen', 'orange_kuchen', 1, 1536, 57, 0, 76);
