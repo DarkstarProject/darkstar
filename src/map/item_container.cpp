@@ -220,3 +220,23 @@ uint8 CItemContainer::SearchItem(uint16 ItemID)
 	}
 	return ERROR_SLOTID;
 }
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+uint8 CItemContainer::SearchItemWithSpace(uint16 ItemID, uint32 quantity)
+{
+	for (uint8 SlotID = 0; SlotID <= m_size; ++SlotID) 
+	{
+		if ((m_ItemList[SlotID] != NULL) && 
+			(m_ItemList[SlotID]->getID() == ItemID) &&
+            (m_ItemList[SlotID]->getQuantity() <= m_ItemList[SlotID]->getStackSize()-quantity)) 
+		{
+			return SlotID;
+		}
+	}
+	return ERROR_SLOTID;
+}

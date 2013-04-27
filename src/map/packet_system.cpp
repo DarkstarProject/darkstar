@@ -1798,6 +1798,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     {
                         Sql_TransactionRollback(SqlHandle);
                         ShowError("Could not finalize delivery return transaction. PlayerID: %d SenderID :%d ItemID: %d Quantity: %d", PChar->id, senderID, PItem->getID(), PItem->getQuantity());
+                        PChar->pushPacket(new CDeliveryBoxPacket(action, PItem, PChar->UContainer->GetItemsCount(), 0xEB));
                     }
 
                     Sql_SetAutoCommit(SqlHandle, isAutoCommitOn);
@@ -1840,11 +1841,11 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     }
                     else if (boxtype == 0x02)
                     {
-                        int32 ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE senderid = %u AND slot = %u AND box = %u LIMIT 1", PChar->id, slotID, boxtype);
+                        int32 ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE senderid = %u AND sent = 0 AND slot = %u AND box = %u LIMIT 1", PChar->id, slotID, boxtype);
 
                         if (ret != SQL_ERROR &&  Sql_AffectedRows(SqlHandle) != 0)
                         {
-                            uint8 loc = PChar->getStorage(LOC_INVENTORY)->SearchItem(PItem->getID());
+                            uint8 loc = PChar->getStorage(LOC_INVENTORY)->SearchItemWithSpace(PItem->getID(), PItem->getQuantity());
                             if(loc != ERROR_SLOTID)
                             {
                                 charutils::UpdateItem(PChar, LOC_INVENTORY, loc, PItem->getQuantity());
@@ -1855,6 +1856,8 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
                             }
                             PChar->pushPacket(new CSendBoxPacket(action, PItem, slotID, PChar->UContainer->GetItemsCount()));
                             commit = true;
+                        } else {
+                            PChar->pushPacket(new CSendBoxPacket(action, PItem, slotID, PChar->UContainer->GetItemsCount(), 0xEB));
                         }
                     }
                     PChar->pushPacket(new CInventoryFinishPacket());
@@ -1957,7 +1960,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
                             if (PChar->UContainer->GetItem(i)->getSent() == false)
                             {
                                 CItem* PItem = PChar->UContainer->GetItem(i);
-                                uint8 loc = PChar->getStorage(LOC_INVENTORY)->SearchItem(PItem->getID());
+                                uint8 loc = PChar->getStorage(LOC_INVENTORY)->SearchItemWithSpace(PItem->getID(), PItem->getQuantity());
                                 if(loc != ERROR_SLOTID)
                                 {
                                     charutils::UpdateItem(PChar, LOC_INVENTORY, loc, PItem->getQuantity());

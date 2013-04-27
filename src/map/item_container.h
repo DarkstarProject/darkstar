@@ -64,6 +64,7 @@ public:
     uint8   AddSize(int8 size);                     // увеличиваем/уменьшаем размер контейнера
 	uint8	SetSize(uint8 size);
 	uint8	SearchItem(uint16 ItemID);				// поиск предмета в хранилище
+    uint8   SearchItemWithSpace(uint16 ItemID, uint32 quantity); //search for item that has space to accomodate x items added
 
 	uint8	InsertItem(CItem* PItem);				// добавляем заранее созданный предмет в свободную ячейку
 	uint8	InsertItem(CItem* PItem, uint8 slotID);	// добавляем заранее созданный предмет в выбранную ячейку

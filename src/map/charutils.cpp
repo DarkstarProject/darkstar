@@ -3890,7 +3890,7 @@ void RecoverFailedSendBox(CCharEntity* PChar)
     {
         while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            uint8 loc = PChar->getStorage(LOC_INVENTORY)->SearchItem(Sql_GetIntData(SqlHandle,0));
+            uint8 loc = PChar->getStorage(LOC_INVENTORY)->SearchItemWithSpace(Sql_GetIntData(SqlHandle,0), Sql_GetIntData(SqlHandle,1));
             if(loc != ERROR_SLOTID)
             {
                 UpdateItem(PChar, LOC_INVENTORY, loc, Sql_GetIntData(SqlHandle,1));
