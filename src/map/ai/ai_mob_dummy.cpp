@@ -218,7 +218,6 @@ void CAIMobDummy::ActionEngage()
 	m_ActionType = ACTION_ATTACK;
 	m_LastActionTime = m_Tick - 1000; // Why do we subtract 1 sec?
 	m_firstSpell = true;
-	m_LastMagicTime = m_Tick - m_PMob->m_MagicRecastTime - 1; // Monster always cast on engage if they can.
 
 	//if (m_PMob->animationsub == 1 || m_PMob->animationsub == 3) m_PMob->animationsub = 2;  //need a better way to do this: it only applies to some mobs!
 
