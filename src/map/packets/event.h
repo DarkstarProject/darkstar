@@ -53,7 +53,8 @@ public:
 		uint32 param4 = 0,
 		uint32 param5 = 0,
 		uint32 param6 = 0,
-		uint32 param7 = 0);
+		uint32 param7 = 0,
+        int16 textTable = -1);
 };
 
 #endif

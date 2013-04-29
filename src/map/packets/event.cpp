@@ -40,7 +40,8 @@ CEventPacket::CEventPacket(
 	uint32 param4,
 	uint32 param5,
 	uint32 param6,
-	uint32 param7)
+	uint32 param7,
+    int16 textTable)
 {
 	this->type = 0x32;
 	this->size = 0x0A;
@@ -64,7 +65,14 @@ CEventPacket::CEventPacket(
 		WBUFW(data,(0x28)-4) = PChar->m_TargID;
 
         WBUFW(data,(0x2A)-4) = (PChar->getZone() != 0 ? PChar->getZone() : PChar->loc.prevzone);
-        WBUFW(data,(0x30)-4) = (PChar->getZone() != 0 ? PChar->getZone() : PChar->loc.prevzone);
+        if (textTable != -1)
+        {
+            WBUFW(data,(0x30)-4) = textTable;
+        }
+        else
+        {
+            WBUFW(data,(0x30)-4) = (PChar->getZone() != 0 ? PChar->getZone() : PChar->loc.prevzone);
+        }
 
 		WBUFW(data,(0x2C)-4) = EventID;
 		WBUFB(data,(0x2E)-4) = 8; // если патаметров меньше, чем 8, то после завершения события камера "прыгнет" за спину персонажу

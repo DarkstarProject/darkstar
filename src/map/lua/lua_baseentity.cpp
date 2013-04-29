@@ -2044,6 +2044,7 @@ inline int32 CLuaBaseEntity::startEvent(lua_State *L)
     uint32 param5 = 0;
     uint32 param6 = 0;
     uint32 param7 = 0;
+    int16 textTable = -1;
 
     if( !lua_isnil(L,2) && lua_isnumber(L,2) )
         param0 = (uint32)lua_tointeger(L,2);
@@ -2061,6 +2062,8 @@ inline int32 CLuaBaseEntity::startEvent(lua_State *L)
         param6 = (uint32)lua_tointeger(L,8);
     if( !lua_isnil(L,9) && lua_isnumber(L,9) )
         param7 = (uint32)lua_tointeger(L,9);
+    if( !lua_isnil(L,10) && lua_isnumber(L,10) )
+        textTable = (int16)lua_tointeger(L,10);
 
     ((CCharEntity*)m_PBaseEntity)->pushPacket(
         new CEventPacket(
@@ -2074,7 +2077,8 @@ inline int32 CLuaBaseEntity::startEvent(lua_State *L)
             param4,
             param5,
             param6,
-            param7));
+            param7,
+            textTable));
 
     // если требуется вернуть фиктивный результат, то делаем это
     if( !lua_isnil(L,10) && lua_isnumber(L,10) )
