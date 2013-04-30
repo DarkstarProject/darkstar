@@ -32,7 +32,7 @@ stock = {0x4300,44,		-- Shortbow
 	 0x43A8,8,		-- Iron Arrow
 	 0x43A9,18,		-- Silver Arrow
 	 0x43AA,140,		-- Fire Arrow
-	 0x4341,6,		-- Crossbow Bolt
+	 0x43B8,6,		-- Crossbow Bolt
 	 0x4752,248}		-- Throwing Tomahawk
  
 showShop(player, STATIC, stock);
