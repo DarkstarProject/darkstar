@@ -38,7 +38,9 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getCurrentMission(BASTOK) ~= 255) then
+	if(player:hasKeyItem(YASINS_SWORD)) then -- The Doorman, WAR AF1
+		player:startEvent(0x02ee);
+	elseif(player:getCurrentMission(BASTOK) ~= 255) then
 		local currentMission = player:getCurrentMission(BASTOK);
 		
 		if(currentMission == THE_ZERUHN_REPORT and player:hasKeyItem(ZERUHN_REPORT)) then
