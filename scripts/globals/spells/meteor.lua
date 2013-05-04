@@ -3,9 +3,10 @@
 -- Deals non-elemental damage to an enemy.
 -----------------------------------------
 
+require("/scripts/globals/settings");
 require("scripts/globals/magic");
 require("scripts/globals/status");
-
+require("/scripts/globals/monstertpmoves");
 -----------------------------------------
 -- OnSpellCast
 -----------------------------------------
@@ -15,6 +16,7 @@ function OnMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
+
 	--calculate raw damage
 	--Byrthnoth @ Random Facts Thread: Magic @ BG:
 	--Spell Base Damage = MAB/MDB*floor(Int + Elemental Magic Skill/6)*3.5
@@ -26,6 +28,11 @@ function onSpellCast(caster,target,spell)
 	dmg = adjustForTarget(target,dmg);
 	--add in final adjustments
 	dmg = finalMagicAdjustments(caster,target,spell,dmg);
-
-	return dmg;
+	if (caster:getID() == 17297441) then -- For King Behemoth
+		target:delHP(dmg*6);
+		return dmg*6;
+	else
+		return dmg;
+	end
+	
 end;
