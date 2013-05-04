@@ -830,4 +830,3 @@ INSERT INTO `mob_spell_lists` VALUES ('MagicPot', '36', '273', '31', '55');
 INSERT INTO `mob_spell_lists` VALUES ('MagicPot', '36', '274', '56', '255');
 INSERT INTO `mob_spell_lists` VALUES ('MagicPot', '36', '169', '5', '29');
 INSERT INTO `mob_spell_lists` VALUES ('MagicPot', '36', '258', '7', '255');
-INSERT INTO `mob_spell_lists` VALUES ('King_Behemoth', '37', '218', '85', '85');
