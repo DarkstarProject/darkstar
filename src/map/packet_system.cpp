@@ -1596,7 +1596,9 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
                         if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
                         {
-                            int32 ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE senderid = %u AND box = 1 AND charid = %u LIMIT 1;", PChar->id, charid);
+                            CItem* PItem = PChar->UContainer->GetItem(slotID);
+                            int32 ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE senderid = %u AND box = 1 AND charid = %u AND itemid = %u AND quantity = %u LIMIT 1;",
+                                PChar->id, charid, PItem->getID(), PItem->getQuantity());
 
                             if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
                             {
@@ -3418,19 +3420,23 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
             uint32   LinkshellID    = 0;
             uint16   LinkshellColor = RBUFW(data,(0x04));
             string_t LinkshellName  = data+8;
+            int8     DecodedName[21];
+            int8     EncodedName[16];
 
+            DecodeString(data+8, DecodedName);
+            EncodeString(DecodedName, EncodedName);
             // TODO: проверить имя на необходимость добавления окончания строки
 
-            if (LinkshellID = linkshell::RegisterNewLinkshell(LinkshellName.c_str(), LinkshellColor)) // здесь дейтсвительно присваивание
+            if (LinkshellID = linkshell::RegisterNewLinkshell(DecodedName, LinkshellColor)) // здесь дейтсвительно присваивание
             {
 	            const int8* Query = "UPDATE char_inventory SET signature = '%s', itemId = 513 WHERE charid = %u AND location = 0 AND slot = %u LIMIT 1";
 
-		        if (Sql_Query(SqlHandle, Query, LinkshellName.c_str(), PChar->id, SlotID) != SQL_ERROR &&
+		        if (Sql_Query(SqlHandle, Query, DecodedName, PChar->id, SlotID) != SQL_ERROR &&
                     Sql_AffectedRows(SqlHandle) != 0)
                 {
                     PItemLinkshell->setID(513);
                     PItemLinkshell->SetLSID(LinkshellID);
-                    PItemLinkshell->setSignature((int8*)LinkshellName.c_str());
+                    PItemLinkshell->setSignature(EncodedName); //because apparently the format from the packet isn't right, and is missing terminators
                     PItemLinkshell->SetLSColor(LinkshellColor);
 
                     PChar->pushPacket(new CInventoryItemPacket(PItemLinkshell, LOC_INVENTORY, SlotID));

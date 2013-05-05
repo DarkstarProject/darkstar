@@ -28,8 +28,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 DROP TABLE IF EXISTS `linkshells`;
 CREATE TABLE IF NOT EXISTS `linkshells` (
   `linkshellid` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `fullname` varchar(20) NOT NULL DEFAULT '',
-  `name` blob(15) NOT NULL,
+  `name` varchar(20) NOT NULL DEFAULT '',
   `color` smallint(5) unsigned NOT NULL DEFAULT '61440',
   `poster` varchar(15) NOT NULL DEFAULT '',
   `message` varchar(115) NOT NULL DEFAULT '',

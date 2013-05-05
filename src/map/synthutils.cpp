@@ -834,28 +834,14 @@ int32 doSynthResult(CCharEntity* PChar)
 		{
 			if ((PItem->getFlag() & ITEM_FLAG_INSCRIBABLE) && (PChar->Container->getItemID(0) > 0x1080))
 			{
-                // TODO: вынести метод в uitls (добавить метод обратного действия)
+                int8 encodedSignature [16];
+				PItem->setSignature(EncodeString((int8*)PChar->name.c_str(), encodedSignature));
 
-				uint8 signature[12] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-				for(uint8 currChar = 0; currChar < PChar->name.size(); ++currChar)
-				{
-					int32 tempChar = 0;
-					if		((PChar->name[currChar] >= '0') && (PChar->name[currChar] <= '9'))
-						tempChar = PChar->name[currChar]-'0'+1;
-					else if ((PChar->name[currChar] >= 'A') && (PChar->name[currChar] <= 'Z'))
-						tempChar = PChar->name[currChar]-'A'+11;
-					else if ((PChar->name[currChar] >= 'a') && (PChar->name[currChar] <= 'z'))
-						tempChar = PChar->name[currChar]-'a'+37;
-					packBitsLE(signature,tempChar,0,6*currChar,6);
-				}
-				PItem->setSignature((int8*)signature);
-
-				int8 signature_esc[sizeof(signature)*2+1];
-				Sql_EscapeStringLen(SqlHandle,signature_esc,PItem->getSignature(),strlen(PItem->getSignature()));
+				int8 signature_esc[sizeof(PChar->name.c_str())*2+1];
+				Sql_EscapeStringLen(SqlHandle,signature_esc,PChar->name.c_str(),strlen(PChar->name.c_str()));
 				 
 				int8* fmtQuery = "UPDATE char_inventory SET signature = '%s' WHERE charid = %u AND location = 0 AND slot = %u;\0";
 				
-
 				Sql_Query(SqlHandle,fmtQuery,signature_esc,PChar->id, invSlotID);
 			}
 			PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_INVENTORY, invSlotID));

@@ -30,7 +30,7 @@ CREATE TABLE `char_inventory` (
   `level` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `rotation` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `bazaar` int(8) unsigned NOT NULL DEFAULT '0',
-  `signature` blob(15),
+  `signature` varchar(20) NOT NULL DEFAULT '',
   `currCharges` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `lastUseTime` int(10) unsigned NOT NULL DEFAULT '0',
   `worn` tinyint(1) NOT NULL DEFAULT '0',

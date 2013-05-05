@@ -729,7 +729,9 @@ void LoadInventory(CCharEntity* PChar)
 				}
 				if (PItem->getFlag() & ITEM_FLAG_INSCRIBABLE)
 				{
-					PItem->setSignature(Sql_GetData(SqlHandle,5));
+                    int8 EncodedString [16];
+                    EncodeString(Sql_GetData(SqlHandle,5), EncodedString);
+					PItem->setSignature(EncodedString);
 				}
 				if ((PItem->getType() & ITEM_USABLE) && (PItem->getSubType() & ITEM_CHARGED))
 				{

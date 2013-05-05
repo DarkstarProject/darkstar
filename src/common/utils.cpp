@@ -424,3 +424,55 @@ uint64 unpackBitsLE(uint8* target, int32 byteOffset, int32 bitOffset, uint8 leng
 	if (modifiedTarget) delete []modifiedTarget;
 	return retVal;
 }
+
+int8* EncodeString(int8* signature, int8* target)
+{
+	uint8 encodedSignature[15];
+    memset(encodedSignature, 0, sizeof encodedSignature);
+    uint8 chars = 0;
+    uint8 leftover = 0;
+	for(uint8 currChar = 0; currChar < strlen((const char*)signature); ++currChar)
+	{
+		uint8 tempChar = 0;
+		if		((signature[currChar] >= '0') && (signature[currChar] <= '9'))
+			tempChar = signature[currChar]-'0'+53;
+		else if ((signature[currChar] >= 'A') && (signature[currChar] <= 'Z'))
+			tempChar = signature[currChar]-'A'+27;
+		else if ((signature[currChar] >= 'a') && (signature[currChar] <= 'z'))
+			tempChar = signature[currChar]-'a'+1;
+		packBitsLE(encodedSignature,tempChar,6*currChar,6);
+        chars++;
+	}
+    leftover = (chars * 6) % 8;
+    leftover = 8 - leftover;
+    leftover = (leftover == 8 || leftover == 2 ? 6 : leftover);
+    packBitsLE(encodedSignature,0xFF,6*chars, leftover);
+    
+    return strncpy(target, (int8*)encodedSignature, sizeof encodedSignature);
+}
+
+int8* DecodeString(int8* signature, int8* target)
+{
+    uint8 decodedSignature[21];
+    memset(decodedSignature, 0, sizeof decodedSignature);
+
+    for(uint8 currChar = 0; currChar < (strlen((const char*)signature) * 8) / 6; ++currChar)
+    {
+        uint8 tempChar = '\0';
+        tempChar = unpackBitsLE((uint8*)signature, currChar*6, 6);
+        if      (tempChar >= 1 && tempChar <= 26)
+            tempChar = 'a' - 1 + tempChar;
+        else if (tempChar >= 27 && tempChar <= 52)
+            tempChar = 'A' - 27 + tempChar;
+        else if (tempChar >= 53 && tempChar <= 62)
+            tempChar = '0' - 53 + tempChar;
+
+        if (tempChar == '\0')
+            decodedSignature[currChar-1] = '\0';
+        else if (tempChar == 63)
+            decodedSignature[currChar] = '\0';
+        else
+            decodedSignature[currChar] = tempChar;
+    }
+    return strncpy(target, (int8*)decodedSignature, sizeof decodedSignature);
+}

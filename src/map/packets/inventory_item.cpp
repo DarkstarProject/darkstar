@@ -104,6 +104,7 @@ CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8
                 WBUFW(data,(0x17)-4) = ((CItemLinkshell*)PItem)->GetLSRawColor();
                 WBUFB(data,(0x19)-4) = ((CItemLinkshell*)PItem)->GetLSType();
 
+                memset(data+(0x1A)-4, 0, 15);
                 memcpy(data+(0x1A)-4, PItem->getSignature(), dsp_cap(strlen(PItem->getSignature()), 0, 15));
             }
 			break;
