@@ -557,6 +557,7 @@ void CAIMobDummy::ActionSpawn()
 		}
 
 		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_SPAWN));
+        luautils::OnMobSpawn( m_PMob );
 	}
 }
 

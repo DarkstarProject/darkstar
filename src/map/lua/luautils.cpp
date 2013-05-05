@@ -1939,7 +1939,7 @@ int32 OnMobSpawn(CBaseEntity* PMob)
     Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
 
 
-    if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+    if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
     {
         ShowError("luautils::OnMobSpawn: %s\n",lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);

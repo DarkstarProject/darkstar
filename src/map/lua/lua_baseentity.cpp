@@ -6524,16 +6524,14 @@ inline int32 CLuaBaseEntity::getExtraVar(lua_State* L)
 		lua_pushinteger(L, var3);
 	} else {
 		uint32 var = ((CMobEntity*)m_PBaseEntity)->m_extraVar;
-		uint8 var1 = var & 0x000000FF;
-		uint8 var2 = var & 0x0000FF00;
-		var2 >>= 8;
-		uint8 var3 = var & 0x00FF0000;
-		var3 >>= 16;
-		uint8 var4 = var >>= 24;
-		lua_pushinteger(L, var1);
-		lua_pushinteger(L, var2);
-		lua_pushinteger(L, var3);
+	    uint8 var1 = (var & 0x000000FF);
+	    uint8 var2 = (var & 0x0000FF00) >> 8;
+	    uint8 var3 = (var & 0x00FF0000) >> 16;
+	    uint8 var4 = (var & 0xFF000000) >> 24;
 		lua_pushinteger(L, var4);
+		lua_pushinteger(L, var3);
+		lua_pushinteger(L, var2);
+		lua_pushinteger(L, var1);
 	}
 
 	return n;
