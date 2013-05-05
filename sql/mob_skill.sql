@@ -1268,6 +1268,17 @@ INSERT INTO `mob_skill` VALUES (649,347,632,'Wyvern_Hydro_Breath', 0, 10.0, 2000
 -- NM / HNM
 -- --------------------------------------
 
+-- Kam'lanaut
+-- TODO: Script these when mob additional effects work.
+-- INSERT INTO `mob_skill` VALUES (567,149,495,'Fire_Blade',0,7,2000,1000,1,0);
+-- INSERT INTO `mob_skill` VALUES (568,149,496,'Frost_Blade',0,7,2000,1000,1,0);
+-- INSERT INTO `mob_skill` VALUES (569,149,497,'Wind_Blade',0,7,2000,1000,1,0);
+-- INSERT INTO `mob_skill` VALUES (570,149,498,'Earth_Blade',0,7,2000,1000,1,0);
+-- INSERT INTO `mob_skill` VALUES (571,149,499,'Lightning_Blade',0,7,2000,1000,1,0);
+-- INSERT INTO `mob_skill` VALUES (572,149,500,'Water_Blade',0,7,2000,1000,1,0);
+INSERT INTO `mob_skill` VALUES (573,149,501,'Great_Wheel', 1,7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (574,149,502,'Light_Blade', 0, 30.0, 2000, 1000, 4, 0);
+
 -- Cerberus
 INSERT INTO `mob_skill` VALUES (1529,62,1223,'Lava_Spit', 1, 10.0, 2000, 1000, 4, 0); -- ~400 dmg
 INSERT INTO `mob_skill` VALUES (1530,62,1224,'Sulfurous_Breath', 0, 7.0, 2000, 1000, 4, 0); -- ~500 dmg
