@@ -425,7 +425,7 @@ uint64 unpackBitsLE(uint8* target, int32 byteOffset, int32 bitOffset, uint8 leng
 	return retVal;
 }
 
-int8* EncodeString(int8* signature, int8* target)
+int8* EncodeStringLinkshell(int8* signature, int8* target)
 {
 	uint8 encodedSignature[15];
     memset(encodedSignature, 0, sizeof encodedSignature);
@@ -451,7 +451,7 @@ int8* EncodeString(int8* signature, int8* target)
     return strncpy(target, (int8*)encodedSignature, sizeof encodedSignature);
 }
 
-int8* DecodeString(int8* signature, int8* target)
+int8* DecodeStringLinkshell(int8* signature, int8* target)
 {
     uint8 decodedSignature[21];
     memset(decodedSignature, 0, sizeof decodedSignature);
@@ -473,6 +473,53 @@ int8* DecodeString(int8* signature, int8* target)
             decodedSignature[currChar] = '\0';
         else
             decodedSignature[currChar] = tempChar;
+    }
+    return strncpy(target, (int8*)decodedSignature, sizeof decodedSignature);
+}
+
+int8* EncodeStringSignature(int8* signature, int8* target)
+{
+	uint8 encodedSignature[12];
+    memset(encodedSignature, 0, sizeof encodedSignature);
+    uint8 chars = 0;
+    uint8 leftover = 0;
+	for(uint8 currChar = 0; currChar < strlen((const char*)signature); ++currChar)
+	{
+		uint8 tempChar = 0;
+		if		((signature[currChar] >= '0') && (signature[currChar] <= '9'))
+			tempChar = signature[currChar]-'0'+1;
+		else if ((signature[currChar] >= 'A') && (signature[currChar] <= 'Z'))
+			tempChar = signature[currChar]-'A'+11;
+		else if ((signature[currChar] >= 'a') && (signature[currChar] <= 'z'))
+			tempChar = signature[currChar]-'a'+37;
+		packBitsLE(encodedSignature,tempChar,6*currChar,6);
+        chars++;
+	}
+    //leftover = (chars * 6) % 8;
+    //leftover = 8 - leftover;
+    //leftover = (leftover == 8 ? 6 : leftover);
+    //packBitsLE(encodedSignature,0xFF,6*chars, leftover);
+    
+    return strncpy(target, (int8*)encodedSignature, sizeof encodedSignature);
+}
+
+int8* DecodeStringSignature(int8* signature, int8* target)
+{
+    uint8 decodedSignature[16];
+    memset(decodedSignature, 0, sizeof decodedSignature);
+
+    for(uint8 currChar = 0; currChar < (strlen((const char*)signature) * 8) / 6; ++currChar)
+    {
+        uint8 tempChar = '\0';
+        tempChar = unpackBitsLE((uint8*)signature, currChar*6, 6);
+        if      (tempChar >= 1 && tempChar <= 10)
+            tempChar = '0' - 1 + tempChar;
+        else if (tempChar >= 11 && tempChar <= 36)
+            tempChar = 'A' - 11 + tempChar;
+        else if (tempChar >= 37 && tempChar <= 62)
+            tempChar = 'a' - 37 + tempChar;
+
+        decodedSignature[currChar] = tempChar;
     }
     return strncpy(target, (int8*)decodedSignature, sizeof decodedSignature);
 }

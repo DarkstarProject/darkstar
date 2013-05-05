@@ -3423,8 +3423,8 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
             int8     DecodedName[21];
             int8     EncodedName[16];
 
-            DecodeString(data+8, DecodedName);
-            EncodeString(DecodedName, EncodedName);
+            DecodeStringLinkshell(data+8, DecodedName);
+            EncodeStringLinkshell(DecodedName, EncodedName);
             // TODO: проверить имя на необходимость добавления окончания строки
 
             if (LinkshellID = linkshell::RegisterNewLinkshell(DecodedName, LinkshellColor)) // здесь дейтсвительно присваивание

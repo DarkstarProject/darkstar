@@ -835,7 +835,7 @@ int32 doSynthResult(CCharEntity* PChar)
 			if ((PItem->getFlag() & ITEM_FLAG_INSCRIBABLE) && (PChar->Container->getItemID(0) > 0x1080))
 			{
                 int8 encodedSignature [16];
-				PItem->setSignature(EncodeString((int8*)PChar->name.c_str(), encodedSignature));
+				PItem->setSignature(EncodeStringSignature((int8*)PChar->name.c_str(), encodedSignature));
 
 				int8 signature_esc[sizeof(PChar->name.c_str())*2+1];
 				Sql_EscapeStringLen(SqlHandle,signature_esc,PChar->name.c_str(),strlen(PChar->name.c_str()));

@@ -308,7 +308,7 @@ namespace linkshell
 			
 			    PLinkshell->setColor(Sql_GetIntData(SqlHandle,1));
                 int8 EncodedName[16];
-                EncodeString(Sql_GetData(SqlHandle,2), EncodedName);
+                EncodeStringLinkshell(Sql_GetData(SqlHandle,2), EncodedName);
                 PLinkshell->setName(EncodedName);
                 PLinkshell->setPoster(Sql_GetData(SqlHandle,3));
                 PLinkshell->setMessage(Sql_GetData(SqlHandle,4));

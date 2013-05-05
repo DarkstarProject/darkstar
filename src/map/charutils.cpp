@@ -730,7 +730,7 @@ void LoadInventory(CCharEntity* PChar)
 				if (PItem->getFlag() & ITEM_FLAG_INSCRIBABLE)
 				{
                     int8 EncodedString [16];
-                    EncodeString(Sql_GetData(SqlHandle,5), EncodedString);
+                    EncodeStringSignature(Sql_GetData(SqlHandle,5), EncodedString);
 					PItem->setSignature(EncodedString);
 				}
 				if ((PItem->getType() & ITEM_USABLE) && (PItem->getSubType() & ITEM_CHARGED))
@@ -740,6 +740,9 @@ void LoadInventory(CCharEntity* PChar)
 				}
                 if (PItem->getType() & ITEM_LINKSHELL)
                 {
+                    int8 EncodedString [16];
+                    EncodeStringLinkshell(Sql_GetData(SqlHandle,5), EncodedString);
+                    PItem->setSignature(EncodedString);
                     ((CItemLinkshell*)PItem)->SetLSID(Sql_GetUIntData(SqlHandle,8));
                     ((CItemLinkshell*)PItem)->SetLSColor(Sql_GetIntData(SqlHandle,9));
                 }
