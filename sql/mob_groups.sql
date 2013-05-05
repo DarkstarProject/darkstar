@@ -9309,7 +9309,7 @@ INSERT INTO `mob_groups` VALUES ('9295', '809', '179', '0', '128', '0', '0', '0'
 INSERT INTO `mob_groups` VALUES ('9296', '810', '179', '0', '128', '0', '0', '0', '60', '60');
 INSERT INTO `mob_groups` VALUES ('9297', '862', '179', '0', '128', '0', '0', '0', '60', '60');
 INSERT INTO `mob_groups` VALUES ('9298', '1158', '179', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `mob_groups` VALUES ('9299', '2184', '179', '0', '128', '0', '0', '0', '75', '75');
+INSERT INTO `mob_groups` VALUES ('9299', '2184', '179', '0', '128', '0', '15000', '0', '75', '75');
 INSERT INTO `mob_groups` VALUES ('9300', '3199', '179', '0', '128', '0', '0', '0', '60', '60');
 INSERT INTO `mob_groups` VALUES ('9301', '3529', '179', '0', '0', '0', '0', '0', '0', '0');
 INSERT INTO `mob_groups` VALUES ('9302', '3534', '179', '0', '0', '0', '0', '0', '0', '0');
