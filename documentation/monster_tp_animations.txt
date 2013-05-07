@@ -51,3 +51,10 @@ Creates by Lautan.
 1170+ - TOAU tp moves
 
 1304 - puppet ws
+
+
+These need to be used together.  Teleport out, change pos, teleport in.
+Used by mobs such as Ark Angel TT, which teleports around the battlefield instead of moving.  Target isn't lost on AA TT.
+Not to be confused with worms moving, which is completely different.  Costume and walk around.
+Teleport out: 639, 674, 689
+Teleport in: ???, 675, 690
