@@ -3229,13 +3229,8 @@ void SaveQuestsList(CCharEntity* PChar)
 {
 	const int8* Query =
         "UPDATE chars "
-        "LEFT JOIN char_profile USING(charid) "
         "SET "
-          "quests = '%s', "
-          "fame_sandoria = %u,"
-          "fame_bastok = %u,"
-          "fame_windurst = %u,"
-          "fame_norg = %u "
+          "quests = '%s' "
         "WHERE charid = %u;";
 
 	int8 questslist[sizeof(PChar->m_questLog)*2+1];
@@ -3243,6 +3238,27 @@ void SaveQuestsList(CCharEntity* PChar)
 
 	Sql_Query(SqlHandle, Query,
         questslist,
+        PChar->id);
+}
+
+/************************************************************************
+*																		*
+*  Сохраняем список квестов												*
+*																		*
+************************************************************************/
+
+void SaveFame(CCharEntity* PChar)
+{
+	const int8* Query =
+        "UPDATE char_profile "
+        "SET "
+          "fame_sandoria = %u,"
+          "fame_bastok = %u,"
+          "fame_windurst = %u,"
+          "fame_norg = %u "
+        "WHERE charid = %u;";
+
+	Sql_Query(SqlHandle, Query,
         PChar->profile.fame[0],
         PChar->profile.fame[1],
         PChar->profile.fame[2],

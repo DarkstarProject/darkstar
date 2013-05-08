@@ -3234,6 +3234,7 @@ inline int32 CLuaBaseEntity::setFame(lua_State *L)
             ((CCharEntity*)m_PBaseEntity)->profile.fame[3] = fame;
         break;
     }
+    charutils::SaveFame((CCharEntity*)m_PBaseEntity);
     return 0;
 }
 
@@ -3274,6 +3275,7 @@ inline int32 CLuaBaseEntity::addFame(lua_State *L)
             ((CCharEntity*)m_PBaseEntity)->profile.fame[3] += fame;
         break;
     }
+    charutils::SaveFame((CCharEntity*)m_PBaseEntity);
     return 0;
 }
 

@@ -123,6 +123,7 @@ namespace charutils
 	void	SaveCharPosition(CCharEntity* PChar);				        // сохраняем позицию персонажа
 	void	SaveMissionsList(CCharEntity* PChar);                       // Save the missions list
 	void	SaveQuestsList(CCharEntity* PChar);					        // сохраняем список ксевтов
+    void    SaveFame(CCharEntity* PChar);                               // Save area fame / reputation
 	void	SaveZonesVisited(CCharEntity* PChar);				        // сохраняем посещенные зоны
 	void	SaveKeyItems(CCharEntity* PChar);					        // сохраняем ключевые предметы
 	void	SaveCharInventoryCapacity(CCharEntity* PChar);              // Save Character inventory capacity
