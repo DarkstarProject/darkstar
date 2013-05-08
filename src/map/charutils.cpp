@@ -989,8 +989,16 @@ uint8 AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem)
 
         const int8* Query = "INSERT INTO char_inventory(charid, location, slot, itemId, quantity, signature, currCharges) \
                              VALUES(%u,%u,%u,%u,%u,'%s',%u)";
-
-        if( Sql_Query(SqlHandle, Query, PChar->id, LocationID, SlotID, PItem->getID(), PItem->getQuantity(), PItem->getSignature(), charges) == SQL_ERROR )
+        int8 signature[21];
+        if (PItem->getType() & ITEM_LINKSHELL)
+        {
+            DecodeStringLinkshell((int8*)PItem->getSignature(), signature);
+        }
+        else
+        {
+            DecodeStringSignature((int8*)PItem->getSignature(), signature);
+        }
+        if( Sql_Query(SqlHandle, Query, PChar->id, LocationID, SlotID, PItem->getID(), PItem->getQuantity(), signature, charges) == SQL_ERROR )
         {
             ShowError(CL_RED"charplugin::AddItem: Cannot insert item to database\n" CL_RESET);
             PChar->getStorage(LocationID)->InsertItem(NULL, SlotID);
