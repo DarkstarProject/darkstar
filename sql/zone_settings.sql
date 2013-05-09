@@ -313,7 +313,7 @@ INSERT INTO `zone_settings` VALUES (265, 0016777343, 54230, 'Morimar_Basalt_Fiel
 INSERT INTO `zone_settings` VALUES (266, 0016777343, 54230, 'noname', 0, 0, 0, 0, 0.00, 0);
 INSERT INTO `zone_settings` VALUES (267, 0016777343, 54230, 'noname', 0, 0, 0, 0, 0.00, 0);
 INSERT INTO `zone_settings` VALUES (268, 0016777343, 54230, 'Sih_Gates', 0, 0, 0, 0, 0.00, 0);
-INSERT INTO `zone_settings` VALUES (269, 0016777343, 54230, 'Mor_Gates', 0, 0, 0, 0, 0.00, 0);
+INSERT INTO `zone_settings` VALUES (269, 0016777343, 54230, 'Moh_Gates', 0, 0, 0, 0, 0.00, 0);
 INSERT INTO `zone_settings` VALUES (270, 0016777343, 54230, 'Cirdas_Caverns', 0, 0, 0, 0, 0.00, 0);
 INSERT INTO `zone_settings` VALUES (271, 0016777343, 54230, 'Cirdas_Caverns_U', 0, 0, 0, 0, 0.00, 0);
 INSERT INTO `zone_settings` VALUES (272, 0016777343, 54230, 'noname', 0, 0, 0, 0, 0.00, 0);
