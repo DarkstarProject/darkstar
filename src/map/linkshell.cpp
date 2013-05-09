@@ -152,50 +152,52 @@ void CLinkshell::ChangeMemberRank(int8* MemberName, uint8 toSack)
 {
 	//topearl = 3
 	//tosack = 2
-	int idadjust = 1;
-	if(toSack==2){idadjust = -1;}
+	int newId = 512 + toSack;
 	
-	for (uint32 i = 0; i < members.size(); ++i) 
-	{
-		if (strcmp(MemberName, members.at(i)->GetName()) == 0)
-		{
-            CCharEntity* PMember = (CCharEntity*)members.at(i);
+    if (newId == 514 || newId == 515)
+    {
+	    for (uint32 i = 0; i < members.size(); ++i) 
+	    {
+		    if (strcmp(MemberName, members.at(i)->GetName()) == 0)
+		    {
+                CCharEntity* PMember = (CCharEntity*)members.at(i);
 
-            CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PMember->getStorage(LOC_INVENTORY)->GetItem(PMember->equip[SLOT_LINK]);
+                CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PMember->getStorage(LOC_INVENTORY)->GetItem(PMember->equip[SLOT_LINK]);
 
-            if (PItemLinkshell != NULL && (PItemLinkshell->getType() & ITEM_LINKSHELL))
-            {
-				PItemLinkshell->setID(PItemLinkshell->getID()+idadjust);
+                if (PItemLinkshell != NULL && (PItemLinkshell->getType() & ITEM_LINKSHELL))
+                {
+				    PItemLinkshell->setID(newId);
 
-                PMember->pushPacket(new CInventoryAssignPacket(PItemLinkshell, INV_NORMAL));
-                PMember->pushPacket(new CLinkshellEquipPacket(PMember));
-            }
+                    PMember->pushPacket(new CInventoryAssignPacket(PItemLinkshell, INV_NORMAL));
+                    PMember->pushPacket(new CLinkshellEquipPacket(PMember));
+                }
 
-			CItemContainer* Inventory = PMember->getStorage(LOC_INVENTORY);
-            for (uint8 SlotID = 0; SlotID < Inventory->GetSize(); ++SlotID)
-            {
-                    CItemLinkshell* PItemLinkshell = (CItemLinkshell*)Inventory->GetItem(SlotID);
+			    CItemContainer* Inventory = PMember->getStorage(LOC_INVENTORY);
+                for (uint8 SlotID = 0; SlotID < Inventory->GetSize(); ++SlotID)
+                {
+                        CItemLinkshell* PItemLinkshell = (CItemLinkshell*)Inventory->GetItem(SlotID);
 
-					if (PItemLinkshell != NULL && (PItemLinkshell->getType() & ITEM_LINKSHELL) && PItemLinkshell->GetLSID() == m_id)
-		            {
-                        const int8* Query = "UPDATE char_inventory SET itemid = %u WHERE charid = %u AND location = %u AND slot = %u LIMIT 1";
-						Sql_Query(SqlHandle, Query, PItemLinkshell->getID(),PMember->id, LOC_INVENTORY, SlotID);
-						Sql_Query(SqlHandle,"UPDATE accounts_sessions SET linkshellid = %u , linkshellrank = %u WHERE charid = %u", 
-										m_id,PItemLinkshell->GetLSType(), PMember->id);
-                        PMember->pushPacket(new CInventoryItemPacket(PItemLinkshell, LOC_INVENTORY, SlotID));
-		            }
-            }
+					    if (PItemLinkshell != NULL && (PItemLinkshell->getType() & ITEM_LINKSHELL) && PItemLinkshell->GetLSID() == m_id)
+		                {
+                            const int8* Query = "UPDATE char_inventory SET itemid = %u WHERE charid = %u AND location = %u AND slot = %u LIMIT 1";
+						    Sql_Query(SqlHandle, Query, PItemLinkshell->getID(),PMember->id, LOC_INVENTORY, SlotID);
+						    Sql_Query(SqlHandle,"UPDATE accounts_sessions SET linkshellid = %u , linkshellrank = %u WHERE charid = %u", 
+										    m_id,PItemLinkshell->GetLSType(), PMember->id);
+                            PMember->pushPacket(new CInventoryItemPacket(PItemLinkshell, LOC_INVENTORY, SlotID));
+		                }
+                }
 	        
-            charutils::SaveCharStats(PMember);
-            charutils::SaveCharEquip(PMember);
+                charutils::SaveCharStats(PMember);
+                charutils::SaveCharEquip(PMember);
 
-            if (PMember->status == STATUS_NORMAL) PMember->status = STATUS_UPDATE;
+                if (PMember->status == STATUS_NORMAL) PMember->status = STATUS_UPDATE;
 
-            PMember->pushPacket(new CInventoryFinishPacket());
-            PMember->pushPacket(new CCharUpdatePacket(PMember));
-			return;
-		} 
-	}
+                PMember->pushPacket(new CInventoryFinishPacket());
+                PMember->pushPacket(new CCharUpdatePacket(PMember));
+			    return;
+		    } 
+	    }
+    }
 }
 
 /************************************************************************
