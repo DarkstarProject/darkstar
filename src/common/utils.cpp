@@ -468,9 +468,15 @@ int8* DecodeStringLinkshell(int8* signature, int8* target)
             tempChar = '0' - 53 + tempChar;
 
         if (tempChar == '\0')
+        {
             decodedSignature[currChar-1] = '\0';
+            break;
+        }
         else if (tempChar == 63)
+        {
             decodedSignature[currChar] = '\0';
+            break;
+        }
         else
             decodedSignature[currChar] = tempChar;
     }
