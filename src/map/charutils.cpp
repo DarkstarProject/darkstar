@@ -727,12 +727,6 @@ void LoadInventory(CCharEntity* PChar)
 				{
 					PItem->setSubType(ITEM_LOCKED);
 				}
-				if (PItem->getFlag() & ITEM_FLAG_INSCRIBABLE)
-				{
-                    int8 EncodedString [16];
-                    EncodeStringSignature(Sql_GetData(SqlHandle,5), EncodedString);
-					PItem->setSignature(EncodedString);
-				}
 				if ((PItem->getType() & ITEM_USABLE) && (PItem->getSubType() & ITEM_CHARGED))
 				{
 					((CItemUsable*)PItem)->setCurrentCharges(Sql_GetUIntData(SqlHandle,6));
@@ -745,6 +739,15 @@ void LoadInventory(CCharEntity* PChar)
                     PItem->setSignature(EncodedString);
                     ((CItemLinkshell*)PItem)->SetLSID(Sql_GetUIntData(SqlHandle,8));
                     ((CItemLinkshell*)PItem)->SetLSColor(Sql_GetIntData(SqlHandle,9));
+                }
+                else
+                {
+                    if (PItem->getFlag() & ITEM_FLAG_INSCRIBABLE)
+				    {
+                        int8 EncodedString [13];
+                        EncodeStringSignature(Sql_GetData(SqlHandle,5), EncodedString);
+					    PItem->setSignature(EncodedString);
+				    }
                 }
                 if (PItem->getType() & ITEM_FURNISHING && PItem->getLocationID() == LOC_MOGSAFE)
                 {
