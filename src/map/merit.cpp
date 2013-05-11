@@ -26,6 +26,8 @@
 #include "map.h"
 #include "merit.h"
 #include "charentity.h"
+#include "charutils.h"
+#include "packets/char_spells.h"
 
 /************************************************************************
 *                                                                       *
@@ -204,7 +206,7 @@ CMeritPoints::CMeritPoints(CCharEntity* PChar)
     memcpy(merits, meritNameSpace::GMeritsTemplate, sizeof(merits));
 
 
-
+    m_PChar = PChar;
 	LoadMeritPoints(PChar->id);
 
     m_LimitPoints = 0;
@@ -456,6 +458,14 @@ void CMeritPoints::RaiseMerit(MERIT_TYPE merit)
         m_MeritPoints -= PMerit->next;
 
 		PMerit->next = upgrade[PMerit->upgradeid][PMerit->count+1];
+        if (PMerit->spellid != 0)
+        {
+            if (charutils::addSpell(m_PChar, PMerit->spellid))
+            {
+                charutils::SaveSpells(m_PChar);
+                m_PChar->pushPacket(new CCharSpellsPacket(m_PChar));
+            }
+        }
 		PMerit->count++;
     }
 }
@@ -473,6 +483,14 @@ void CMeritPoints::LowerMerit(MERIT_TYPE merit)
     if (PMerit->count > 0)
     {
         PMerit->next = upgrade[meritCatInfo[GetMeritCategory(merit)].UpgradeID][--PMerit->count];
+    }
+    if (PMerit->spellid != 0 && PMerit->count == 0)
+    {
+        if (charutils::delSpell(m_PChar, PMerit->spellid))
+        {
+            charutils::SaveSpells(m_PChar);
+            m_PChar->pushPacket(new CCharSpellsPacket(m_PChar));
+        }
     }
 }
 
@@ -532,7 +550,8 @@ namespace meritNameSpace
     void LoadMeritsList()
     {
 
-        int32 ret = Sql_Query(SqlHandle, "SELECT meritid, value, jobs, upgrade, upgradeid, catagoryid FROM merits ORDER BY meritid ASC LIMIT %u", MERITS_COUNT);
+        int32 ret = Sql_Query(SqlHandle, "SELECT m.meritid, m.value, m.jobs, m.upgrade, m.upgradeid, m.catagoryid, sl.spellid FROM merits m LEFT JOIN \
+            spell_list sl ON m.name = sl.name ORDER BY m.meritid ASC LIMIT %u", MERITS_COUNT);
 
 	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != MERITS_COUNT )
 	    {
@@ -556,6 +575,7 @@ namespace meritNameSpace
 				Merit.upgradeid = Sql_GetUIntData(SqlHandle,4);
 				Merit.catid		= Sql_GetUIntData(SqlHandle,5);	
 				Merit.next      = upgrade[Merit.upgradeid][0];
+                Merit.spellid   = Sql_GetUIntData(SqlHandle, 6);
 
 				GMeritsTemplate[index] = Merit;						// add the merit to the array
 
@@ -578,6 +598,15 @@ namespace meritNameSpace
 			
 			groupOffset[catIndex] = index - catMeritIndex;			// add the last offset manually since loop finishes before hand.
 
+           /* ret = Sql_Query(SqlHandle, "SELECT meritid, spellid FROM merits INNER JOIN spell_list ON merits.name = spell_list.name");
+
+            if (ret != SQL_ERROR)
+            {
+		        while( Sql_NextRow(SqlHandle) == SQL_SUCCESS ) 
+		        {
+                    GMeritsTemplate
+		        }
+            }*/
 
 	    }
         else

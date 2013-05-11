@@ -45,6 +45,8 @@ CSpell::CSpell(uint16 id)
     m_MagicBurstMessage = 0;
     m_element           = 0;
 	m_spellGroup        = SPELLGROUP_NONE;
+    m_meritId           = 0;
+    m_requirements      = 0;
 
 	memset(m_job, 0, sizeof(m_job));
 }
@@ -351,19 +353,29 @@ void CSpell::setMonsterSkillId(uint16 skillid)
 	m_monsterSkillId = skillid;
 }
 
+uint8 CSpell::getRequirements()
+{
+	return m_requirements;
+}
+
+void CSpell::setRequirements(uint8 requirements)
+{
+	m_requirements = requirements;
+}
+
+uint16 CSpell::getMeritId()
+{
+	return m_meritId;
+}
+
+void CSpell::setMeritId(uint16 meritId)
+{
+	m_meritId = meritId;
+}
+
 void CSpell::addModifier(CModifier* modifier)
 {
     modList.push_back(modifier);
-}
-
-void CSpell::setScriptType(uint8 scriptType)
-{
-	m_scriptType = scriptType;
-}
-
-uint8 CSpell::getScriptType()
-{
-	return m_scriptType;
 }
 
 /************************************************************************
@@ -388,7 +400,7 @@ namespace spell
 	    memset(PSpellList, 0, sizeof(PSpellList));
 
 	    const int8* Query = "SELECT spellid, name, jobs, `group`, validTargets, skill, castTime, recastTime, animation, animationTime, mpCost, \
-					         isAOE, base, element, zonemisc, multiplier, message, magicBurstMessage, CE, VE, scriptType \
+					         isAOE, base, element, zonemisc, multiplier, message, magicBurstMessage, CE, VE, requirements \
 							 FROM spell_list \
 							 WHERE spellid < %u;";
 
@@ -420,7 +432,7 @@ namespace spell
                 PSpell->setMagicBurstMessage(Sql_GetIntData(SqlHandle,17));
 			    PSpell->setCE(Sql_GetIntData(SqlHandle,18));
 			    PSpell->setVE(Sql_GetIntData(SqlHandle,19));
-				PSpell->setScriptType(Sql_GetIntData(SqlHandle,20));
+                PSpell->setRequirements(Sql_GetIntData(SqlHandle,20));
 
                 if(PSpell->isAOE())
                 {
@@ -468,6 +480,21 @@ namespace spell
 			    }
 		    }
 	    }
+
+	    ret = Sql_Query(SqlHandle,"SELECT spellId, meritId FROM spell_list INNER JOIN merits ON spell_list.name = merits.name;");
+
+	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	    {
+		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		    {
+			    uint16 spellId = (uint16)Sql_GetUIntData(SqlHandle,0);
+
+			    if (!(spellId > MAX_SPELL_ID) && (PSpellList[spellId] != NULL))
+			    {
+                    PSpellList[spellId]->setMeritId(Sql_GetUIntData(SqlHandle,1));
+			    }
+		    }
+	    }
     }
 
 	CSpell* GetSpellByMonsterSkillId(uint16 SkillID) {
@@ -509,12 +536,61 @@ namespace spell
 
     bool CanUseSpell(CBattleEntity* PCaster, uint16 SpellID)
     {
-	    if (GetSpell(SpellID) != NULL)
+        CSpell* spell = GetSpell(SpellID);
+	    if (spell != NULL)
 	    {
-		    uint8 JobMLVL = PSpellList[SpellID]->getJob(PCaster->GetMJob());
-		    uint8 JobSLVL = PSpellList[SpellID]->getJob(PCaster->GetSJob());
+		    uint8 JobMLVL = spell->getJob(PCaster->GetMJob());
+		    uint8 JobSLVL = spell->getJob(PCaster->GetSJob());
+            uint8 requirements = spell->getRequirements();
 
-		    return (PCaster->GetMLevel() >= JobMLVL || PCaster->GetSLevel() >= JobSLVL);
+		    if(PCaster->GetMLevel() >= JobMLVL)
+            {
+                if(requirements & SPELLREQ_ADDENDUM_BLACK && PCaster->GetMJob() == JOB_SCH)
+                {
+                    if(PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_BLACK))
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+                else if (requirements & SPELLREQ_ADDENDUM_WHITE && PCaster->GetMJob() == JOB_SCH)
+                {
+                    if (PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_WHITE))
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+                else if (requirements & SPELLREQ_MERIT && PCaster->objtype == TYPE_PC)
+                {
+                    if(((CCharEntity*)PCaster)->PMeritPoints->GetMerit((MERIT_TYPE)spell->getMeritId())->count > 0)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+                return true;
+            }
+            if(PCaster->GetSLevel() >= JobSLVL)
+            {
+                if(requirements & SPELLREQ_ADDENDUM_BLACK && PCaster->GetSJob() == JOB_SCH)
+                {
+                    if(PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_BLACK))
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+                else if (requirements & SPELLREQ_ADDENDUM_WHITE && PCaster->GetSJob() == JOB_SCH)
+                {
+                    if (PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_WHITE))
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+                return true;
+            }
 	    }
 	    return false;
     }

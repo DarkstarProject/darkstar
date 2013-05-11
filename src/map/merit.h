@@ -490,6 +490,7 @@ struct Merit_t
     uint32 jobs;            // маска профессий, для которых merit работает
 	uint8  upgradeid;		// which set of upgrade values the merit will use
 	uint8  catid;			// cat which merit belongs to
+    uint16 spellid;         // associated spell ID to learn/unlearn
 };
 
 /************************************************************************
@@ -529,13 +530,13 @@ class CMeritPoints
 
     private:
 
-        uint16      m_LimitPoints;
-        uint8       m_MeritPoints;
+        uint16       m_LimitPoints;
+        uint8        m_MeritPoints;
+        CCharEntity* m_PChar;
+		Merit_t      merits[MERITS_COUNT];
 
-		Merit_t     merits[MERITS_COUNT];
-
-        Merit_t*    GetMeritPointer(MERIT_TYPE merit);
-        Merit_t*    Categories[MCATEGORY_COUNT/64-1];				// 51 pointers to the first merit of each catagory
+        Merit_t*     GetMeritPointer(MERIT_TYPE merit);
+        Merit_t*     Categories[MCATEGORY_COUNT/64-1];				// 51 pointers to the first merit of each catagory
 };
 
 

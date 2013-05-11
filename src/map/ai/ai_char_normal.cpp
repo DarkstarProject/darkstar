@@ -1168,15 +1168,20 @@ void CAICharNormal::ActionMagicStart()
         return;
     }
 
-    // mute 049
 	if (!charutils::hasSpell(m_PChar, m_PSpell->getID()) ||
-	    !spell::CanUseSpell(m_PChar, m_PSpell->getID()) ||
-		m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE) ||
-        m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MUTE))
+	    !spell::CanUseSpell(m_PChar, m_PSpell->getID()))
 	{
-        MagicStartError(49);
+        MagicStartError(47, m_PSpell->getID());
 		return;
 	}
+
+    // mute 049
+    if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE) ||
+        m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MUTE))
+    {
+        MagicStartError(49);
+		return;
+    }
 
     if (m_PChar->PRecastContainer->Has(RECAST_MAGIC, m_PSpell->getID()))
     {
@@ -1300,13 +1305,13 @@ void CAICharNormal::ActionMagicStart()
 *                                                                       *
 ************************************************************************/
 
-void CAICharNormal::MagicStartError(uint16 error)
+void CAICharNormal::MagicStartError(uint16 error, uint16 param)
 {
     DSP_DEBUG_BREAK_IF(m_ActionType != ACTION_MAGIC_START);
 
     if (error != 0)
     {
-        m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, (m_PBattleSubTarget != NULL ? m_PBattleSubTarget : m_PChar), m_PSpell->getID(), 0, error));
+        m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, (m_PBattleSubTarget != NULL ? m_PBattleSubTarget : m_PChar), m_PSpell->getID(), param, error));
     }
 
     m_ActionTargetID = 0;

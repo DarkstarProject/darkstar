@@ -44,6 +44,7 @@ enum MSGBASIC_ID : uint16
 	MSGBASIC_SHADOW_ABSORB			= 31, /* .. of <target>'s shadows absorb the damage and disappear. */
 	MSGBASIC_NOT_ENOUGH_MP			= 34, /* The <player> does not have enough MP to cast (NULL). */
 	MSGBASIC_NO_NINJA_TOOLS			= 35, /* The <player> lacks the ninja tools to cast (NULL). */
+    MSGBASIC_CANNOT_CAST_SPELL      = 47, /* >player> cannot cast <spell>. */
 	MSGBASIC_UNABLE_TO_CAST_SPELLS  = 49, /* The <player> is unable to cast spells. */
 	MSGBASIC_WAIT_LONGER			= 94, /* You must wait longer to perform that action. */
 	MSGBASIC_USES_JA				= 100, /* The <player> uses .. */

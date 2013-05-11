@@ -30,6 +30,7 @@
 #include "../common/mmo.h"
 
 #include "battleentity.h"
+#include "charentity.h"
 
 #define CANNOT_USE_SPELL	0
 #define MAX_SPELL_ID		800
@@ -45,12 +46,12 @@ enum SPELLGROUP
 	SPELLGROUP_WHITE	 = 6
 };
 
-enum SPELL_SCRIPTTYPE
+enum SPELLREQ
 {
-	SPELLSCRIPT_NONE		= 0x00,
-	SPELLSCRIPT_NORMAL		= 0x01,
-	SPELLSCRIPT_CASTCHECK	= 0x02,
-	SPELLSCRIPT_ANIMFINISH	= 0x04
+    SPELLCASTTYPE_NORMAL    = 0x00,
+    SPELLREQ_MERIT          = 0x01,
+    SPELLREQ_ADDENDUM_BLACK = 0x02,
+    SPELLREQ_ADDENDUM_WHITE = 0x04
 };
 
 class CSpell
@@ -90,7 +91,8 @@ public:
 	uint16		getMonsterSkillId();
     uint8       getRadius();
     uint16      getAoEMessage(); // returns the single target message for AoE moves
-	uint8		getScriptType();
+    uint8       getRequirements();
+    uint16      getMeritId();
     bool        tookEffect(); // returns true if the spell landed, not resisted or missed
 
     void        setRadius(uint8 radius);
@@ -115,10 +117,11 @@ public:
     void        setMagicBurstMessage(uint16 message);
 	void		setCE(uint16 ce);
 	void		setVE(uint16 ve);
+    void        setRequirements(uint8 requirements);
+    void        setMeritId(uint16 meritId);
 	void		setModifiedRecast(uint16 mrec);
 	void		setMonsterSkillId(uint16 skillid);
     void		addModifier(CModifier* modifier);
-	void		setScriptType(uint8 scriptType);
 
 	const int8* getName();
 	void		setName(int8* name);
@@ -152,7 +155,8 @@ private:
 	string_t	m_name;									// spell name
 	uint16		m_modifiedRecastTime;					// recast time after modifications
 	uint16		m_monsterSkillId;						// matching skill for a blue spell
-	uint8		m_scriptType;
+    uint8       m_requirements;                         // requirements before being able to cast spell
+    uint16      m_meritId;                              // associated merit (if applicable)
 };
 
 /************************************************************************
