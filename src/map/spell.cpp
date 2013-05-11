@@ -561,14 +561,6 @@ namespace spell
                     }
                     return false;
                 }
-                else if (requirements & SPELLREQ_MERIT && PCaster->objtype == TYPE_PC)
-                {
-                    if(((CCharEntity*)PCaster)->PMeritPoints->GetMerit((MERIT_TYPE)spell->getMeritId())->count > 0)
-                    {
-                        return true;
-                    }
-                    return false;
-                }
                 return true;
             }
             if(PCaster->GetSLevel() >= JobSLVL)
