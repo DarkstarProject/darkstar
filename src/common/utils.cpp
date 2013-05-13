@@ -427,7 +427,7 @@ uint64 unpackBitsLE(uint8* target, int32 byteOffset, int32 bitOffset, uint8 leng
 
 int8* EncodeStringLinkshell(int8* signature, int8* target)
 {
-	uint8 encodedSignature[15];
+	uint8 encodedSignature[16];
     memset(encodedSignature, 0, sizeof encodedSignature);
     uint8 chars = 0;
     uint8 leftover = 0;

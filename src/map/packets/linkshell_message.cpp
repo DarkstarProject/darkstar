@@ -23,6 +23,8 @@
 
 #include "../../common/socket.h"
 
+#include "../../common/utils.h"
+
 #include "linkshell_message.h"
 
 #include <string.h>
@@ -40,9 +42,13 @@ CLinkshellMessagePacket::CLinkshellMessagePacket(CLinkshell* PLinkshell)
         WBUFB(data,(0x04)-4) = 0x70;
 	    WBUFB(data,(0x05)-4) = 0x86; // +0x80 - show,  +0x40 - set
 
+		int8 linkshellName[15];
+		memset(linkshellName,0,sizeof linkshellName);
+		EncodeStringLinkshell((int8*)PLinkshell->getName(),linkshellName);
+
         memcpy(data+(0x08)-4, PLinkshell->getMessage(), dsp_min(strlen(PLinkshell->getMessage()), 115));
         memcpy(data+(0x8C)-4, PLinkshell->getPoster(), dsp_min(strlen(PLinkshell->getPoster()), 15));
-        memcpy(data+(0xA0)-4, PLinkshell->getName(), dsp_min(strlen(PLinkshell->getName()), 16));
+        memcpy(data+(0xA0)-4, linkshellName, dsp_min(strlen(linkshellName), 16));
 
         WBUFL(data,(0x88)-4) = PLinkshell->getMessageTime();
     }

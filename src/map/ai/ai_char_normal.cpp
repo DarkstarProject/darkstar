@@ -3198,7 +3198,7 @@ void CAICharNormal::ActionAttack()
 							// (ffxiclopedia h2h) remove 3 dmg from weapon, DB has an extra 3 for weapon rank
 
 							// get natural h2h damage (h2hSkill*0.11+3)
-							uint16 naturalH2hDmg = (float)(m_PChar->GetSkill(1) * 0.11f)+3;
+							uint16 naturalH2hDmg = (float)(m_PChar->GetSkill(SKILL_H2H) * 0.11f)+3;
 
                             int16 baseDamage = m_PChar->GetMainWeaponDmg()-3;
 

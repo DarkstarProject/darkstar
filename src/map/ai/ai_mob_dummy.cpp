@@ -1391,7 +1391,8 @@ void CAIMobDummy::ActionAttack()
 								//counter check (rate AND your hit rate makes it land, else its just a regular hit)
 								if (rand()%100 < (m_PBattleTarget->getMod(MOD_COUNTER) + meritCounter) &&
 									rand()%100 < battleutils::GetHitRate(m_PBattleTarget,m_PMob) &&
-									charutils::hasTrait((CCharEntity*)m_PBattleTarget,TRAIT_COUNTER))
+									(charutils::hasTrait((CCharEntity*)m_PBattleTarget,TRAIT_COUNTER) || 
+									m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN)))
 								{
 									isCountered = true;
 									Action.messageID = 33; //counter msg  32
@@ -1399,12 +1400,27 @@ void CAIMobDummy::ActionAttack()
 									Action.speceffect = SPECEFFECT_NONE;
 
 									bool isCritical = ( rand()%100 < battleutils::GetCritHitRate(m_PBattleTarget, m_PMob,false) );
+									bool isHTH = m_PBattleTarget->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH;
+									if (!isHTH && m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->GetMJob() == JOB_MNK)
+									{
+										isHTH = true;
+									}
+									int16 naturalh2hDMG = 0;
+									if (isHTH)
+									{
+										naturalh2hDMG = (float)(m_PBattleTarget->GetSkill(SKILL_H2H) * 0.11f)+3;
+									}
 
 									float DamageRatio = battleutils::GetDamageRatio(m_PBattleTarget, m_PMob,isCritical, 0);
-									damage = (uint16)((m_PBattleTarget->GetMainWeaponDmg() + battleutils::GetFSTR(m_PBattleTarget, m_PMob,SLOT_MAIN)) * DamageRatio);
+									damage = (uint16)((m_PBattleTarget->GetMainWeaponDmg() + naturalh2hDMG + battleutils::GetFSTR(m_PBattleTarget, m_PMob,SLOT_MAIN)) * DamageRatio);
 
 									Action.subparam = (damage * 2);
 									Action.flag = 2;
+								}
+								else if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_COUNTER))
+								{ //Perfect Counter only counters hits that normal counter misses
+									isCountered = true;
+									
 								}
 								else
 								{
@@ -1497,6 +1513,11 @@ void CAIMobDummy::ActionAttack()
 						else
 						{
 							Action.param = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, 1, NULL, true);
+							if(m_PBattleTarget->objtype == TYPE_PC)
+							{
+								uint8 skilltype = (m_PBattleTarget->m_Weapons[SLOT_MAIN] == NULL ? SKILL_H2H : m_PBattleTarget->m_Weapons[SLOT_MAIN]->getSkillType());
+								charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, (SKILLTYPE)skilltype, m_PMob->GetMLevel());
+							}
 						}
 
 						m_PMob->m_ActionList.push_back(Action);

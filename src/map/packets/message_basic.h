@@ -31,6 +31,7 @@
 /*
  * This contains a list of message IDs for this type of packet. They should be used
  * in the messageID parameter. 
+ * Located in 1-27-72.xml if using MassExtractor -full-scan
  */
 enum MSGBASIC_ID : uint16 
 {
@@ -100,7 +101,22 @@ enum MSGBASIC_ID : uint16
 	MSGBASIC_DOUBLEUP_BUST			= 426, /* The <player> uses Double-Up. Bust! <target> loses the effect of .. */
 	MSGBASIC_DOUBLEUP_BUST_SUB		= 427, /* <target> loses the effect of .. */
 	MSGBASIC_NO_ELIGIBLE_ROLL		= 428, /* There are no rolls eligible for Double-Up. Unable to use ability. */
-	MSGBASIC_ROLL_ALREADY_ACTIVE	= 429  /* The same roll is already active on the <player>. */
+	MSGBASIC_ROLL_ALREADY_ACTIVE	= 429, /* The same roll is already active on the <player>. */
+	/* MNK */
+	MSGBASIC_PERFECT_COUNTER_MISS	= 592, /* <player> attempts to counter <target>'s attack, but misses. */
+	MSGBASIC_COUNTER_ABSORBED_DMG	= 606, /* The <target> absorbs <player>'s counter. The <target> recovers .. HP. */
+	MSGBASIC_COUNTER_ABS_BY_SHADOW	= 14,  /* The <player>'s attack is countered by the <target>. .. of <player>'s shadows absorbs the damage and disappears. */
+	/* THF */
+	MSGBASIC_TREASURE_HUNTER_UP		= 603,  /* Additional effect: Treasure Hunter effectiveness against <target> increases to .. */
+
+
+	/* DEBUG MESSAGES */
+	MSGBASIC_DEBUG_RESISTED_SPELL	= 66, /* Debug: Resisted spell! */
+	MSGBASIC_DEBUG_RECEIVED_STATUS	= 73, /* Debug: <target>'s status is now .. */
+	MSGBASIC_DEBUG_RECOVERED_STATUS	= 74, /* Debug: <target> recovers from .. */
+	MSGBASIC_DEBUG_DBLATK_PROC		= 79, /* Debug: <target> uses Double Attack (..%) */
+	MSGBASIC_DEBUG_TRPATK_PROC		= 80, /* Debug: <target> uses Triple Attack (..%) */
+	MSGBASIC_DEBUG_SUCCESS_CHANCE	= 255 /* DEBUG: ..% chance of success */
 };
 
 /************************************************************************
