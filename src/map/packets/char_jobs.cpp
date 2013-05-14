@@ -39,9 +39,9 @@ CCharJobsPacket::CCharJobsPacket(CCharEntity * PChar)
 	WBUFB(data,(0x08)-4) = PChar->GetMJob();			    // подсвечиваем желтым главную профессию
 	WBUFB(data,(0x0B)-4) = PChar->GetSJob();			    // подсвечиваем синим дополнительную профессию
 
-	memcpy(data+(0x0C)-4, &PChar->jobs, 20);
+	memcpy(data+(0x0C)-4, &PChar->jobs, 22);
     memcpy(data+(0x20)-4, &PChar->stats,14);
-	memcpy(data+(0x44)-4, &PChar->jobs, 25);
+	memcpy(data+(0x44)-4, &PChar->jobs, 27);
 
     WBUFL(data,(0x3C)-4) = PChar->health.hp;
 	WBUFL(data,(0x40)-4) = PChar->health.mp;

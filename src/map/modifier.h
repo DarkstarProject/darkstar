@@ -371,12 +371,8 @@ enum MODIFIER
 	MOD_FINISHING_MOVES		= 0x14D,			// Tracks # of finishing moves
 
 // Scholar
-	MOD_SUBLIMATION			= 0x14E,			// Pool of MP to draw from after Sublimation charge is complete.
-	MOD_STORMSURGE			= 0x14F,			// Tracks which element storm it is
-	MOD_LIGHT_ARTS_MPCOST	= 0x150,
-	MOD_LIGHT_ARTS_FASTCAST	= 0x151,
-	MOD_DARK_ARTS_MPCOST	= 0x152,
-	MOD_DARK_ARTS_FASTCAST	= 0x153,
+	//MOD_DARK_ARTS_MPCOST	= 0x152,
+	//MOD_DARK_ARTS_FASTCAST	= 0x153,
 
 
 	MOD_ENSPELL				= 0x155,			//stores the type of enspell active (0 if nothing)
@@ -419,19 +415,22 @@ enum MODIFIER
 
 	MOD_SHIELD_BASH			= 0x181,
 	MOD_KICK_DMG			= 0x182, 			// increases kick attack damage
-    MOD_WEAPON_BASH         = 0x188
+    MOD_WEAPON_BASH         = 0x188,
 
-
-	// To save time finding the next mod to use..
-
-	//MOD_SPARE				= 0x189,
-	//MOD_SPARE				= 0x18A,
-	//MOD_SPARE				= 0x18B,
-	//MOD_SPARE				= 0x18C,
-	//MOD_SPARE				= 0x18D,
+    MOD_BLACK_MAGIC_COST    = 0x189,            // MP cost for black magic (light/dark arts)
+    MOD_WHITE_MAGIC_COST    = 0x18A,            // MP cost for white magic (light/dark arts)
+    MOD_BLACK_MAGIC_CAST    = 0x18B,            // Cast time for black magic (light/dark arts)
+    MOD_WHITE_MAGIC_CAST    = 0x18C,            // Cast time for black magic (light/dark arts)
+    MOD_BLACK_MAGIC_RECAST  = 0x18D,            // Recast time for black magic (light/dark arts)
+    MOD_WHITE_MAGIC_RECAST  = 0x18E,            // Recast time for white magic (light/dark arts)
+    MOD_ALACRITY_CELERITY_EFFECT = 0x18F,        // Bonus for celerity/alacrity effect
+    MOD_LIGHT_ARTS_EFFECT   = 0x14E,
+    MOD_DARK_ARTS_EFFECT    = 0x14F,
+    MOD_LIGHT_ARTS_SKILL    = 0x150,
+    MOD_DARK_ARTS_SKILL     = 0x151
 };
 
-#define MAX_MODIFIER	       0x189
+#define MAX_MODIFIER	       0x190
 
 
 

@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.29, for debian-linux-gnu (i686)
+-- MySQL dump 10.13  Distrib 5.5.25a, for Win64 (x86)
 --
 -- Host: localhost    Database: dspdb
 -- ------------------------------------------------------
--- Server version	5.5.29-0ubuntu0.12.04.1
+-- Server version	5.5.25a
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -390,16 +390,16 @@ INSERT INTO `status_effects` VALUES (354,'seigan',33,353,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (355,'convergence',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (356,'diffusion',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (357,'snake_eye',32,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (358,'light_arts',32,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (359,'dark_arts',32,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (360,'penury',160,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (361,'parsimony',160,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (362,'celerity',160,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (363,'alacrity',160,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (364,'rapture',160,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (365,'ebullience',160,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (366,'accession',160,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (367,'manifestation',160,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (358,'light_arts',288,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (359,'dark_arts',288,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (360,'penury',32,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (361,'parsimony',32,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (362,'celerity',32,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (363,'alacrity',32,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (364,'rapture',32,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (365,'ebullience',32,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (366,'accession',32,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (367,'manifestation',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (368,'drain_samba',32,368,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (369,'aspir_samba',32,368,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (370,'haste_samba',32,368,0,0,0,0,0);
@@ -441,10 +441,10 @@ INSERT INTO `status_effects` VALUES (408,'sekkanoki',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (409,'pianissimo',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (410,'saber_dance',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (411,'fan_dance',32,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (412,'altruism',160,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (413,'focalization',160,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (414,'tranquility',160,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (415,'equanimity',160,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (412,'altruism',32,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (413,'focalization',32,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (414,'tranquility',32,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (415,'equanimity',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (416,'enlightenment',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (417,'afflatus_solace',289,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (418,'afflatus_misery',289,0,0,0,0,0,0);
@@ -519,7 +519,6 @@ INSERT INTO `status_effects` VALUES (487,'endrain',32,94,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (488,'enaspir',32,94,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (489,'afterglow',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (510,'ninjutsu_ele_debuff',544,0,0,0,0,0,0);
-
 INSERT INTO `status_effects` VALUES (512,'healing',48,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (513,'leavegame',48,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (514,'skillchain',32,0,0,0,0,0,0);
@@ -536,4 +535,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-02-26 19:33:10
+-- Dump completed on 2013-05-12 20:43:16

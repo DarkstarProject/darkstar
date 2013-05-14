@@ -34,8 +34,10 @@ enum ADDTYPE
 	ADDTYPE_NORMAL		= 0,
 	ADDTYPE_MERIT		= 1,
 	ADDTYPE_ASTRAL_FLOW	= 2,
-	ADDTYPE_MAIN_ONLY	= 3,
-	ADDTYPE_LEARNED		= 4
+	ADDTYPE_MAIN_ONLY	= 4,
+	ADDTYPE_LEARNED		= 8,
+    ADDTYPE_LIGHT_ARTS  = 16,
+    ADDTYPE_DARK_ARTS   = 32
 };
 
 enum ABILITY
@@ -452,6 +454,15 @@ enum ABILITY
 
 #define MAX_ABILITY_ID	617
 
+struct Charge_t 
+{
+    uint16     ID;          //recastId
+    JOBTYPE    job;         //job
+    uint8      level;       //level
+    uint8      maxCharges;  //maximum number of stored charges
+    uint32     chargeTime;  //time required to restore one charge
+};
+
 /************************************************************************
 *                                                                       *
 *                                                                       *
@@ -477,7 +488,7 @@ public:
 	float		getRange();
 	uint8		getAOE();
 	uint8		getValidTarget();
-	ADDTYPE		getAddType();
+	uint8		getAddType();
     uint16      getMessage();
     uint16      getAoEMsg();
     uint16      getDefaultMessage();
@@ -487,7 +498,6 @@ public:
 	uint16		getVE();
 	uint16		getMeritModID();
 
-
 	void		setID(uint16 id);
 	void		setJob(JOBTYPE Job);
 	void		setLevel(uint8 level);
@@ -495,7 +505,7 @@ public:
 	void		setRange(float range);
 	void		setAOE(uint8 aoe);
 	void		setValidTarget(uint8 validTarget);
-	void		setAddType(ADDTYPE addtype);
+	void		setAddType(uint8 addtype);
     void        setMessage(uint16 message);
     void        setDefaultMessage(uint16 message);
 	void		setRecastTime(uint16 recastTime);
@@ -516,7 +526,7 @@ private:
 	uint8		m_range;
 	uint8		m_aoe;
 	uint8		m_validTarget;
-	ADDTYPE		m_addType;
+	uint8		m_addType;
     uint16      m_message;
 	uint16		m_DefaultMessage;
 	uint16		m_recastTime;
@@ -538,8 +548,11 @@ namespace ability
     void    LoadAbilitiesList();
 
     CAbility* GetAbility(uint16 AbilityID);
+
     CAbility* GetTwoHourAbility(JOBTYPE JobID);
 	bool CanLearnAbility(CBattleEntity* PUser, uint16 AbilityID);
+    Charge_t* GetCharge(CBattleEntity* PUser, uint16 chargeID);
+
     std::vector<CAbility*> GetAbilities(JOBTYPE JobID);
 };
 

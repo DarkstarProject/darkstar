@@ -1512,6 +1512,28 @@ inline int32 CLuaBaseEntity::getSkillLevel(lua_State *L)
 
 /************************************************************************
 *                                                                       *
+*                                   					                *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getMaxSkillLevel(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,-3) || !lua_isnumber(L,-3));
+
+    SKILLTYPE skill = (SKILLTYPE)lua_tointeger(L,-1);
+    JOBTYPE job = (JOBTYPE)lua_tointeger(L,-2);
+    uint8 level = lua_tointeger(L,-3);
+
+    lua_pushinteger( L, battleutils::GetMaxSkill(skill, job, level));
+	return 1;
+}
+
+/************************************************************************
+*                                                                       *
 *                                                                       *
 *                                                                       *
 ************************************************************************/
@@ -4229,6 +4251,7 @@ inline int32 CLuaBaseEntity::changeJob(lua_State *L)
     charutils::BuildingCharSkillsTable(PChar);
 	charutils::CalculateStats(PChar);
     charutils::CheckValidEquipment(PChar);
+    PChar->PRecastContainer->ResetAbilities();
     charutils::BuildingCharAbilityTable(PChar);
     charutils::BuildingCharTraitsTable(PChar);
     charutils::BuildingCharWeaponSkills(PChar);
@@ -6673,6 +6696,22 @@ inline int32 CLuaBaseEntity::getMaster(lua_State* L)
 	lua_pushnil(L);
 	return 1;
 }
+
+inline int32 CLuaBaseEntity::recalculateAbilitiesTable(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    if(m_PBaseEntity->objtype & TYPE_PC)
+    {
+        CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+        charutils::BuildingCharAbilityTable(PChar);
+        charutils::BuildingCharTraitsTable(PChar);
+        charutils::BuildingCharWeaponSkills(PChar);
+
+        PChar->pushPacket(new CCharAbilitiesPacket(PChar));
+    }
+    return 0;
+}
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -6740,6 +6779,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,unseenKeyItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delKeyItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSkillLevel),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaxSkillLevel),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addSpell),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasSpell),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,canLearnSpell),
@@ -6951,5 +6991,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setBattleSubTarget),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasTPMoves),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaster),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,recalculateAbilitiesTable),
 	{NULL,NULL}
 };

@@ -4224,6 +4224,7 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		charutils::BuildingCharSkillsTable(PChar);
 		charutils::CalculateStats(PChar);
         charutils::BuildingCharTraitsTable(PChar);
+        PChar->PRecastContainer->ResetAbilities();
 		charutils::BuildingCharAbilityTable(PChar);
         charutils::BuildingCharWeaponSkills(PChar);
 

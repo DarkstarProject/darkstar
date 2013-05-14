@@ -44,7 +44,7 @@ CCharSkillsPacket::CCharSkillsPacket(CCharEntity* PChar)
 	{
         Recast_t* recast = RecastList->at(i);
 
-		uint32 time = (recast->RecastTime - (gettick() - recast->TimeStamp)) / 1000;
+		uint32 time = (recast->RecastTime == 0 ? 0 : ((recast->RecastTime - (gettick() - recast->TimeStamp)) / 1000));
 
 		if(recast->ID != 0) 
 		{

@@ -78,19 +78,63 @@ std::vector<Recast_t*>* CRecastContainer::GetRecastList(RECASTTYPE type)
 
 /************************************************************************
 *                                                                       *
+*  Get Recast                                                           *
+*                                                                       *
+************************************************************************/
+
+Recast_t* CRecastContainer::GetRecast(RECASTTYPE type, uint16 id)
+{
+    RecastList_t* list = GetRecastList(type);
+    for (std::vector<Recast_t*>::iterator it = list->begin() ; it != list->end(); ++it)
+    {
+        Recast_t* recast = *it;
+        if( recast->ID == id)
+        {
+            return recast;
+        }
+    }
+    return NULL;
+}
+
+/************************************************************************
+*                                                                       *
 *  Добавляем запись в контейнер                                         *
 *                                                                       *
 ************************************************************************/
 
-void CRecastContainer::Add(RECASTTYPE type, uint16 id, uint32 duration)
+void CRecastContainer::Add(RECASTTYPE type, uint16 id, uint32 duration, uint32 chargeTime, uint8 maxCharges)
 {
-    Recast_t* recast = new Recast_t;
+    Recast_t* recast = GetRecast(type, id);
 
-    recast->ID = id;
-    recast->TimeStamp = gettick();
-    recast->RecastTime = duration;
+    if( recast == NULL)
+    {
+        Recast_t* newRecast = new Recast_t;
+        newRecast->ID = id;
+        newRecast->TimeStamp = gettick();
+        newRecast->RecastTime = duration;
+        newRecast->chargeTime = chargeTime;
+        newRecast->maxCharges = maxCharges;
 
-    GetRecastList(type)->push_back(recast);
+        GetRecastList(type)->push_back(newRecast);
+    }
+    else
+    {
+        if (chargeTime == 0)
+        {
+            recast->TimeStamp = gettick();
+            recast->RecastTime = duration;
+        }
+        else
+        {
+            if (recast->RecastTime == 0)
+            {
+                recast->TimeStamp = gettick();
+            }
+            recast->RecastTime += chargeTime * 1000;
+            recast->chargeTime = chargeTime;
+            recast->maxCharges = maxCharges;
+        }
+    }
 }
 
 /************************************************************************
@@ -153,6 +197,39 @@ bool CRecastContainer::Has(RECASTTYPE type, uint16 id)
 
 /************************************************************************
 *                                                                       *
+*  Finds recast and checks if time > 0                                  *
+*                                                                       *
+************************************************************************/
+
+bool CRecastContainer::HasRecast(RECASTTYPE type, uint16 id)
+{
+    RecastList_t* PRecastList = GetRecastList(type);
+
+    for (uint16 i = 0; i < PRecastList->size(); ++i)
+	{
+        if (PRecastList->at(i)->ID == id && PRecastList->at(i)->RecastTime > 0)
+        {
+            if (PRecastList->at(i)->chargeTime == 0)
+            {
+                return true;
+            }
+            else
+            {
+                int charges = PRecastList->at(i)->maxCharges - ((PRecastList->at(i)->RecastTime - (gettick() - PRecastList->at(i)->TimeStamp)) / (PRecastList->at(i)->chargeTime * 1000)) - 1;
+
+                //TODO: multiple charges (BST Ready)
+                if (charges < 1)
+                {
+                    return true;
+                }
+            }
+        }
+	}
+    return false;
+}
+
+/************************************************************************
+*                                                                       *
 *  Проверяем список на устаревшие записи                                *
 *                                                                       *
 ************************************************************************/
@@ -178,9 +255,46 @@ void CRecastContainer::Check(uint32 tick)
                     m_PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_INVENTORY, recast->ID));
 	                m_PChar->pushPacket(new CInventoryFinishPacket());
                 }
-                PRecastList->erase(PRecastList->begin() + i--);
-                delete recast;
+                if (type == RECAST_ITEM || type == RECAST_MAGIC)
+                {
+                    PRecastList->erase(PRecastList->begin() + i--);
+                    delete recast;
+                }
+                else
+                {
+                    recast->RecastTime = 0;
+                }
 		    }
 	    }
+    }
+}
+
+/************************************************************************
+*                                                                       *
+*  Resets all job abilities except two-hour (change jobs)               *
+*                                                                       *
+************************************************************************/
+
+void CRecastContainer::ResetAbilities()
+{
+    RecastList_t* PRecastList = GetRecastList(RECAST_ABILITY);
+
+    uint32 timestamp = 0;
+    uint32 recastTime = 0;
+
+    Recast_t* twoHour = GetRecast(RECAST_ABILITY, 0);
+    if (twoHour != NULL)
+    {
+        uint32 timestamp = twoHour->TimeStamp;
+        uint32 recastTime = twoHour->RecastTime;
+    }
+    PRecastList->clear();
+    if (twoHour != NULL)
+    {
+        Recast_t* newTwoHour = new Recast_t;
+        newTwoHour->ID = 0;
+        newTwoHour->TimeStamp = timestamp;
+        newTwoHour->RecastTime = recastTime;
+        PRecastList->push_back(newTwoHour);
     }
 }

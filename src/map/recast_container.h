@@ -39,9 +39,11 @@ enum RECASTTYPE
 
 struct Recast_t 
 {
-    uint16      ID;
+    uint16     ID;
     uint32     TimeStamp;
     uint32     RecastTime;
+    uint32     chargeTime;
+    uint8      maxCharges;
 };
 
 /************************************************************************
@@ -63,9 +65,12 @@ class CRecastContainer
     void Del(RECASTTYPE type);
     void Del(RECASTTYPE type, uint16 id);
     bool Has(RECASTTYPE type, uint16 id);
-    void Add(RECASTTYPE type, uint16 id, uint32 duration);
+    bool HasRecast(RECASTTYPE type, uint16 id);
+    void Add(RECASTTYPE type, uint16 id, uint32 duration, uint32 chargeTime = 0, uint8 maxCharges = 0);
+    void ResetAbilities();
 
     RecastList_t* GetRecastList(RECASTTYPE type);
+    Recast_t*     GetRecast(RECASTTYPE type, uint16 id);
 
 	CRecastContainer(CCharEntity* PChar);
    ~CRecastContainer();

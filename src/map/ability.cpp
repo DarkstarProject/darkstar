@@ -140,12 +140,12 @@ uint8 CAbility::getValidTarget()
 	return m_validTarget;
 }
 
-ADDTYPE CAbility::getAddType()
+uint8 CAbility::getAddType()
 {
     return m_addType;
 }
 
-void CAbility::setAddType(ADDTYPE addType)
+void CAbility::setAddType(uint8 addType)
 {
     m_addType = addType;
 }
@@ -269,6 +269,7 @@ namespace ability
 {
     CAbility* PAbilityList[MAX_ABILITY_ID];                     // Complete Abilities List
     std::vector<CAbility*> PAbilitiesList[MAX_JOBTYPE];			// Abilities List By Job Type
+    std::vector<Charge_t*> PChargesList;                       // Abilities with charges
 
     /************************************************************************
     *                                                                       *
@@ -327,12 +328,31 @@ namespace ability
 			    PAbility->setCE(Sql_GetIntData(SqlHandle,12));
 			    PAbility->setVE(Sql_GetIntData(SqlHandle,13));
 			    PAbility->setMeritModID(Sql_GetIntData(SqlHandle,14));
-				PAbility->setAddType((ADDTYPE)Sql_GetIntData(SqlHandle,15));
+				PAbility->setAddType(Sql_GetUIntData(SqlHandle,15));
 
 			    PAbilityList[PAbility->getID()] = PAbility;
 			    PAbilitiesList[PAbility->getJob()].push_back(PAbility);
 		    }
 	    }
+
+        const int8* Query2 = "SELECT recastId, job, level, maxCharges, chargeTime FROM abilities_charges ORDER BY job, level ASC;";
+
+        ret = Sql_Query(SqlHandle, Query2);
+
+        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        {
+		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		    {
+                Charge_t* PCharge = new Charge_t;
+                PCharge->ID = Sql_GetUIntData(SqlHandle,0);
+                PCharge->job = (JOBTYPE)Sql_GetUIntData(SqlHandle,1);
+                PCharge->level = Sql_GetUIntData(SqlHandle,2);
+                PCharge->maxCharges = Sql_GetUIntData(SqlHandle,3);
+                PCharge->chargeTime = Sql_GetUIntData(SqlHandle,4);
+
+                PChargesList.push_back(PCharge);
+            }
+        }
     }
 
     /************************************************************************
@@ -411,5 +431,40 @@ namespace ability
     std::vector<CAbility*> GetAbilities(JOBTYPE JobID)
     {
 	    return PAbilitiesList[JobID];
+    }
+
+    Charge_t* GetCharge(CBattleEntity* PUser, uint16 chargeID)
+    {
+        Charge_t* charge = NULL;
+        for (std::vector<Charge_t*>::iterator it = PChargesList.begin() ; it != PChargesList.end(); ++it)
+        {
+            Charge_t* PCharge = *it;
+            if (PCharge->ID == chargeID)
+            {
+                if (PUser->GetMJob() == PCharge->job)
+                {
+                    if (PUser->GetMLevel() >= PCharge->level)
+                    {
+                        charge = PCharge;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                else if (PUser->GetSJob() == PCharge->job)
+                {
+                    if (PUser->GetSLevel() >= PCharge->level)
+                    {
+                        charge = PCharge;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+        return charge;
     }
 };

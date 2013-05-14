@@ -180,6 +180,7 @@ public:
 	int32 delKeyItem(lua_State*);			// Removes key item from Entity key item collection
 
 	int32 getSkillLevel(lua_State*);		// Get Current Skill Level
+    int32 getMaxSkillLevel(lua_State*);     // Get Skill Cap for skill and rank
 	int32 addSpell(lua_State*);				// Add spell to Entity spell list
 	int32 addAllSpells(lua_State*);			// Add all spells to GM char
     int32 hasSpell(lua_State*);				// Check to see if character has item in spell list
@@ -415,6 +416,8 @@ public:
 	int32 setBattleSubTarget(lua_State*);
 	int32 hasTPMoves(lua_State*);
 	int32 getMaster(lua_State*);
+
+    int32 recalculateAbilitiesTable(lua_State*);
 };
 
 #endif

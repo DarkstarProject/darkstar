@@ -1236,7 +1236,8 @@ void CAICharNormal::ActionMagicStart()
 		}
 		else
 		{
-			if (m_PSpell->getMPCost() > m_PChar->health.mp && !m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT))
+            uint16 cost = charutils::CalculateManaCost(m_PChar, m_PSpell);
+			if (cost > m_PChar->health.mp && !m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT))
 			{
                 MagicStartError(34);
 				return;
@@ -1347,7 +1348,7 @@ void CAICharNormal::ActionMagicCasting()
 		return;
 	}
 
-    uint32 totalCastTime = (float)m_PSpell->getCastTime()*((100.0f-(float)dsp_cap(m_PChar->getMod(MOD_FASTCAST),-100,50))/100.0f);
+    uint32 totalCastTime = charutils::CalculateSpellcastTime(m_PChar, m_PSpell);
 
 	if (m_Tick - m_LastActionTime >= totalCastTime ||
         m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
@@ -1418,7 +1419,8 @@ void CAICharNormal::ActionMagicCasting()
 		}
         else
         {
-			if (m_PSpell->getMPCost() > m_PChar->health.mp && !m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT))
+            uint16 cost = charutils::CalculateManaCost(m_PChar, m_PSpell);
+			if (cost > m_PChar->health.mp && !m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT))
 			{
 				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,m_PSpell->getID(),0,MSGBASIC_NOT_ENOUGH_MP));
 
@@ -1430,7 +1432,7 @@ void CAICharNormal::ActionMagicCasting()
             {
 				if (!m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT))
 				{
-					m_PChar->addMP(-(int16)m_PSpell->getMPCost());
+					m_PChar->addMP(-(int16)cost);
 				}
 			}
 		}
@@ -1454,10 +1456,7 @@ void CAICharNormal::ActionMagicFinish()
 
     if (!m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
     {
-	    uint32 RecastTime = (float)m_PSpell->getRecastTime() * ((100.0f-dsp_cap((float)m_PChar->getMod(MOD_FASTCAST)/2.0f,0.0f,25.0f))/100.0f);
-		// Only haste from spells or equipment is counted; ignore MOD_HASTE_ABILITY and cap at 25% (256/1024)
-		int16 Haste = m_PChar->getMod(MOD_HASTE_MAGIC) + m_PChar->getMod(MOD_HASTE_GEAR);
-		RecastTime = RecastTime * ((float)(1024-dsp_cap(Haste,-1024,256))/1024);
+	    uint32 RecastTime = charutils::CalculateSpellRecastTime(m_PChar, m_PSpell);
 
 		//needed so the client knows of the reduced recast time!
 		m_PSpell->setModifiedRecast(RecastTime);
@@ -1681,7 +1680,7 @@ void CAICharNormal::ActionJobAbilityStart()
         return;
     }
 
-    if (m_PChar->PRecastContainer->Has(RECAST_ABILITY, m_PJobAbility->getRecastId()))
+    if (m_PChar->PRecastContainer->HasRecast(RECAST_ABILITY, m_PJobAbility->getRecastId()))
     {
         m_ActionTargetID = 0;
 
@@ -2380,7 +2379,15 @@ void CAICharNormal::ActionJobAbilityFinish()
 
     } // end paralysis if
 
-    m_PChar->PRecastContainer->Add(RECAST_ABILITY, m_PJobAbility->getRecastId(), RecastTime);
+    uint32 chargeTime = 0;
+    uint8 maxCharges = 0;
+    Charge_t* charge = ability::GetCharge(m_PChar, m_PJobAbility->getRecastId());
+    if (charge != NULL)
+    {
+        chargeTime = charge->chargeTime;
+        maxCharges = charge->maxCharges;
+    }
+    m_PChar->PRecastContainer->Add(RECAST_ABILITY, m_PJobAbility->getRecastId(), RecastTime, chargeTime, maxCharges);
     m_PChar->pushPacket(new CCharSkillsPacket(m_PChar));
 
 	m_PJobAbility = NULL;

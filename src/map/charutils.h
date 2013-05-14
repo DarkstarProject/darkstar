@@ -151,6 +151,12 @@ namespace charutils
 
     void    OpenSendBox(CCharEntity* PChar);
     void    RecoverFailedSendBox(CCharEntity* PChar);
+
+    bool    CheckAbilityAddtype(CCharEntity* PChar, CAbility* PAbility);
+
+    uint16  CalculateManaCost(CCharEntity* PChar, CSpell* PSpell);
+    uint32  CalculateSpellcastTime(CCharEntity* PChar, CSpell* PSpell);
+    uint32  CalculateSpellRecastTime(CCharEntity* PChar, CSpell* PSpell);
 };
 
 #endif

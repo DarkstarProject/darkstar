@@ -669,6 +669,7 @@ void LoadChar(CCharEntity* PChar)
 	PChar->PMeritPoints->SetLimitPoints(limitPoints);
 
 	BuildingCharSkillsTable(PChar);
+    PChar->PRecastContainer->ResetAbilities();
 	BuildingCharAbilityTable(PChar);
 	BuildingCharTraitsTable(PChar);
 	CalculateStats(PChar);
@@ -1039,10 +1040,10 @@ bool HasItem(CCharEntity* PChar, uint16 ItemID)
 
 void UpdateSubJob(CCharEntity* PChar)
 {
-
     charutils::BuildingCharSkillsTable(PChar);
     charutils::CalculateStats(PChar);
     charutils::CheckValidEquipment(PChar);
+    PChar->PRecastContainer->ResetAbilities();
     charutils::BuildingCharAbilityTable(PChar);
     charutils::BuildingCharTraitsTable(PChar);
     charutils::BuildingCharWeaponSkills(PChar);
@@ -1896,10 +1897,13 @@ void BuildingCharAbilityTable(CCharEntity* PChar)
 
 		if (PChar->GetMLevel() >= PAbility->getLevel() &&  PAbility->getID() < 496 )
 		{
-			if (PAbility->getID() != ABILITY_PET_COMMANDS && (PAbility->getAddType() == ADDTYPE_NORMAL || PAbility->getAddType() == ADDTYPE_MAIN_ONLY ||
-				(PAbility->getAddType() == ADDTYPE_LEARNED && hasLearnedAbility(PChar, PAbility->getID())) ||
-				PAbility->getAddType() == ADDTYPE_MERIT && PChar->PMeritPoints->GetMerit((MERIT_TYPE)PAbility->getMeritModID())->count > 0)){
-				addAbility(PChar, PAbility->getID());
+			if (PAbility->getID() != ABILITY_PET_COMMANDS && CheckAbilityAddtype(PChar, PAbility))
+            {
+                addAbility(PChar, PAbility->getID());
+                if (!PChar->PRecastContainer->Has(RECAST_ABILITY, PAbility->getRecastId()))
+                {
+                    PChar->PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), 0);
+                }
 			}
 		}else{
 			break;
@@ -1921,9 +1925,13 @@ void BuildingCharAbilityTable(CCharEntity* PChar)
 		{
 			if (PAbility->getLevel() != 0 )
 			{
-				if (PAbility->getAddType() == ADDTYPE_NORMAL || (PAbility->getAddType() == ADDTYPE_LEARNED && hasLearnedAbility(PChar, PAbility->getID())))
+				if (PAbility->getID() != ABILITY_PET_COMMANDS && CheckAbilityAddtype(PChar, PAbility) && !(PAbility->getAddType() & ADDTYPE_MAIN_ONLY))
 				{
 					addAbility(PChar, PAbility->getID());
+                    if (!PChar->PRecastContainer->Has(RECAST_ABILITY, PAbility->getRecastId()))
+                    {
+                        PChar->PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), 0);
+                    }
 				}
 			}
 		}else{
@@ -3942,6 +3950,165 @@ void RecoverFailedSendBox(CCharEntity* PChar)
         ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
         DSP_DEBUG_BREAK_IF(ret == SQL_ERROR);
     }
+}
+
+bool CheckAbilityAddtype(CCharEntity* PChar, CAbility* PAbility)
+{
+    if (PAbility->getAddType() & ADDTYPE_MERIT)
+    {
+        if (!(PChar->PMeritPoints->GetMerit((MERIT_TYPE)PAbility->getMeritModID())->count > 0))
+        {
+            return false;
+        }
+    }
+    if (PAbility->getAddType() & ADDTYPE_ASTRAL_FLOW)
+    {
+        if (!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_ASTRAL_FLOW))
+        {
+            return false;
+        }
+    }
+    if (PAbility->getAddType() & ADDTYPE_LEARNED)
+    {
+        if(!hasLearnedAbility(PChar, PAbility->getID()))
+        {
+            return false;
+        }
+    }
+    if (PAbility->getAddType() & ADDTYPE_LIGHT_ARTS)
+    {
+        if(!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LIGHT_ARTS) && !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_WHITE))
+        {
+            return false;
+        }
+    }
+    if (PAbility->getAddType() & ADDTYPE_DARK_ARTS)
+    {
+        if(!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DARK_ARTS) && !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_BLACK))
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+uint16  CalculateManaCost(CCharEntity* PChar, CSpell* PSpell)
+{
+    uint16 base = PSpell->getMPCost();
+    int16 cost = base;
+
+    if (PSpell->getSpellGroup() == SPELLGROUP_BLACK)
+    {
+        if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_PARSIMONY))
+        {
+            cost -= base / 2;
+            PChar->StatusEffectContainer->DelStatusEffect(EFFECT_PARSIMONY);
+        }
+        else
+        {
+            cost += base * (PChar->getMod(MOD_BLACK_MAGIC_COST)/100.0f);
+        }
+    }
+    else if (PSpell->getSpellGroup() == SPELLGROUP_WHITE)
+    {
+        if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_PENURY))
+        {
+            cost -= base / 2;
+            PChar->StatusEffectContainer->DelStatusEffect(EFFECT_PENURY);
+        }
+        else
+        {
+            cost += base * (PChar->getMod(MOD_WHITE_MAGIC_COST)/100.0f);
+        }
+    }
+    return dsp_cap(cost, 0, 9999);
+}
+
+uint32  CalculateSpellcastTime(CCharEntity* PChar, CSpell* PSpell)
+{
+    uint32 base = PSpell->getCastTime();
+    uint32 cast = base;
+
+    if (PSpell->getSpellGroup() == SPELLGROUP_BLACK)
+    {
+        if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_ALACRITY))
+        {
+            uint16 bonus = PChar->getMod(MOD_ALACRITY_CELERITY_EFFECT);
+            cast -= base * ((100 - (50 + bonus)) / 100.0f);
+        }
+        else
+        {
+            cast = cast * (1.0f + PChar->getMod(MOD_BLACK_MAGIC_CAST)/100.0f);
+        }
+    }
+    else if (PSpell->getSpellGroup() == SPELLGROUP_WHITE)
+    {
+        if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CELERITY))
+        {
+            uint16 bonus = PChar->getMod(MOD_ALACRITY_CELERITY_EFFECT);
+            cast -= base * ((100 - (50 + bonus)) / 100.0f);
+        }
+        else
+        {
+            cast = cast * (1.0f + PChar->getMod(MOD_WHITE_MAGIC_CAST)/100.0f);
+        }
+    }
+    return cast * ((100.0f-(float)dsp_cap(PChar->getMod(MOD_FASTCAST),-100,50))/100.0f);
+}
+
+uint32  CalculateSpellRecastTime(CCharEntity* PChar, CSpell* PSpell)
+{
+    uint32 base = PSpell->getRecastTime();
+    uint32 recast = base;
+
+    if (PSpell->getSpellGroup() == SPELLGROUP_BLACK)
+    {
+        if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_ALACRITY))
+        {
+            uint16 bonus = PChar->getMod(MOD_ALACRITY_CELERITY_EFFECT);
+            recast -= base * ((100 - (50 + bonus)) / 100.0f);
+
+            int16 haste = PChar->getMod(MOD_HASTE_MAGIC) + PChar->getMod(MOD_HASTE_GEAR);
+            if (haste < 0)
+            {
+                recast = recast * ((float)(1024-dsp_cap(haste,-1024,256))/1024);
+            }
+            PChar->StatusEffectContainer->DelStatusEffect(EFFECT_ALACRITY);
+        }
+        else
+        {
+            recast = recast * (1.0f + PChar->getMod(MOD_BLACK_MAGIC_CAST)/100.0f);
+            int16 haste = PChar->getMod(MOD_HASTE_MAGIC) + PChar->getMod(MOD_HASTE_GEAR);
+	        recast = recast * ((float)(1024-dsp_cap(haste,-1024,256))/1024);
+        }
+    }
+    else if (PSpell->getSpellGroup() == SPELLGROUP_WHITE)
+    {
+        if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CELERITY))
+        {
+            uint16 bonus = PChar->getMod(MOD_ALACRITY_CELERITY_EFFECT);
+            recast -= base * ((100 - (50 + bonus)) / 100.0f);
+
+            int16 haste = PChar->getMod(MOD_HASTE_MAGIC) + PChar->getMod(MOD_HASTE_GEAR);
+            if (haste < 0)
+            {
+                recast = recast * ((float)(1024-dsp_cap(haste,-1024,256))/1024);
+            }
+            PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CELERITY);
+        }
+        else
+        {
+            recast = recast * (1.0f + PChar->getMod(MOD_WHITE_MAGIC_CAST)/100.0f);
+            int16 haste = PChar->getMod(MOD_HASTE_MAGIC) + PChar->getMod(MOD_HASTE_GEAR);
+	        recast = recast * ((float)(1024-dsp_cap(haste,-1024,256))/1024);
+        }
+    }
+    else
+    {
+        int16 haste = PChar->getMod(MOD_HASTE_MAGIC) + PChar->getMod(MOD_HASTE_GEAR);
+	    recast = recast * ((float)(1024-dsp_cap(haste,-1024,256))/1024);
+    }
+    return recast * ((100.0f-dsp_cap((float)PChar->getMod(MOD_FASTCAST)/2.0f,0.0f,25.0f))/100.0f);
 }
 
 } // namespace charutils

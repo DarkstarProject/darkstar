@@ -760,12 +760,6 @@ MOD_ROLL_DANCERS		= 0x14A
 MOD_ROLL_SCHOLARS		= 0x14B
 MOD_BUST			= 0x14C
 MOD_FINISHING_MOVES		= 0x14D
-MOD_SUBLIMATION			= 0x14E
-MOD_STORMSURGE			= 0x14F
-MOD_LIGHT_ARTS_MPCOST		= 0x150
-MOD_LIGHT_ARTS_FASTCAST		= 0x151
-MOD_DARK_ARTS_MPCOST		= 0x152
-MOD_DARK_ARTS_FASTCAST		= 0x153
 MOD_WIDESCAN            	= 0x154
 MOD_ENSPELL             	= 0x155
 MOD_SPIKES              	= 0x156
@@ -808,6 +802,16 @@ MOD_SHIELD_BASH     = 0x181
 MOD_KICK_DMG        = 0x182
 MOD_CHARM_CHANCE		= 0x187
 MOD_WEAPON_BASH			= 0x188
+MOD_BLACK_MAGIC_COST    = 0x189          
+MOD_WHITE_MAGIC_COST    = 0x18          
+MOD_BLACK_MAGIC_CAST    = 0x18B           
+MOD_WHITE_MAGIC_CAST    = 0x18C          
+MOD_WHITE_MAGIC_RECAST  = 0x18E            
+MOD_ALACRITY_CELERITY_EFFECT = 0x18F
+MOD_LIGHT_ARTS_EFFECT   = 0x14E
+MOD_DARK_ARTS_EFFECT    = 0x14F
+MOD_LIGHT_ARTS_SKILL    = 0x150
+MOD_DARK_ARTS_SKILL     = 0x151
 
 -----------------------------------
 -- Merit Definitions
@@ -1342,6 +1346,6 @@ MSGBASIC_DOUBLEUP_FAIL			= 425 -- The <player> uses Double-Up. The total for . i
 MSGBASIC_DOUBLEUP_BUST			= 426 -- The <player> uses Double-Up. Bust! <target> loses the effect of ..
 MSGBASIC_DOUBLEUP_BUST_SUB		= 427 -- <target> loses the effect of ..
 MSGBASIC_NO_ELIGIBLE_ROLL		= 428 -- There are no rolls eligible for Double-Up. Unable to use ability.
-MSGBASIC_ROLL_ALREADY_ACTIVE	= 429  -- The same roll is already active on the <player>.
-
+MSGBASIC_ROLL_ALREADY_ACTIVE	= 429 -- The same roll is already active on the <player>.
+MSGBASIC_EFFECT_ALREADY_ACTIVE  = 523 -- The same effect is already active on <player>.
 

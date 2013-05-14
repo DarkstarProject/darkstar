@@ -326,8 +326,6 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
 
         PStatusEffect->SetStartTime(gettick());
 
-        luautils::OnEffectGain(m_POwner, PStatusEffect);
-
         m_POwner->addModifiers(&PStatusEffect->modList);
         if( m_POwner->health.maxhp != 0) //make sure we're not in the middle of logging in
         {
@@ -335,6 +333,8 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
         }
 
         m_StatusEffectList.push_back(PStatusEffect);
+
+        luautils::OnEffectGain(m_POwner, PStatusEffect);
 
         if (m_POwner->objtype == TYPE_PC)
         {
