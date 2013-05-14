@@ -42,7 +42,7 @@ CLinkshellMessagePacket::CLinkshellMessagePacket(CLinkshell* PLinkshell)
         WBUFB(data,(0x04)-4) = 0x70;
 	    WBUFB(data,(0x05)-4) = 0x86; // +0x80 - show,  +0x40 - set
 
-		int8 linkshellName[15];
+		int8 linkshellName[16];
 		memset(linkshellName,0,sizeof linkshellName);
 		EncodeStringLinkshell((int8*)PLinkshell->getName(),linkshellName);
 
