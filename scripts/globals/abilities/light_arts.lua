@@ -55,7 +55,7 @@ function OnUseAbility(player, target, ability)
 		newHealing = newCap - (player:getMaxSkillLevel(HEALING_MAGIC_SKILL, JOB_SCH, player:getMainLvl()) - currHealing)
 	end
 	
-	player:addStatusEffect(EFFECT_LIGHT_ARTS,10 + effectbonus,0,7200, newEnhancing, newEnfeebling, );
+	player:addStatusEffect(EFFECT_LIGHT_ARTS,10 + effectbonus,0,7200);
 
     return EFFECT_LIGHT_ARTS;
 end;
