@@ -10,6 +10,9 @@ require("scripts/globals/status");
 -----------------------------------
 
 function OnAbilityCheck(player,target,ability)
+	if player:hasStatusEffect(EFFECT_DARK_ARTS) then
+		return MSGBASIC_EFFECT_ALREADY_ACTIVE, 0;
+	end
 	return 0,0;
 end;
 

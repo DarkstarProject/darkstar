@@ -1,5 +1,5 @@
 -----------------------------------
--- Ability: Light Arts
+-- Ability: Addendum: White
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -10,22 +10,14 @@ require("scripts/globals/status");
 -----------------------------------
 
 function OnAbilityCheck(player,target,ability)
-	if player:hasStatusEffect(EFFECT_LIGHT_ARTS) then
+	if player:hasStatusEffect(EFFECT_ADDENDUM_WHITE) then
 		return MSGBASIC_EFFECT_ALREADY_ACTIVE, 0;
 	end
 	return 0,0;
 end;
 
 function OnUseAbility(player, target, ability)
-	player:delStatusEffect(EFFECT_DARK_ARTS);
-	player:delStatusEffect(EFFECT_ADDENDUM_BLACK);
-	player:delStatusEffect(EFFECT_PARSIMONY);
-	player:delStatusEffect(EFFECT_ALACRITY);
-	player:delStatusEffect(EFFECT_MANIFESTATION);
-	player:delStatusEffect(EFFECT_EBULLIENCE);
-	player:delStatusEffect(EFFECT_FOCALIZATION);
-	player:delStatusEffect(EFFECT_EQUANIMITY);
-	player:delStatusEffect(EFFECT_IMMANENCE);
+	player:delStatusEffectSilent(EFFECT_LIGHT_ARTS);
 	
 	local skillbonus = player:getMod(MOD_LIGHT_ARTS_SKILL);
 	local effectbonus = player:getMod(MOD_LIGHT_ARTS_EFFECT);
@@ -34,7 +26,7 @@ function OnUseAbility(player, target, ability)
 		regenbonus = 3 * math.floor((player:getMainLvl() - 10) / 10);
 	end
 	
-	player:addStatusEffect(EFFECT_LIGHT_ARTS,effectbonus,0,7200,0,regenbonus);
+	player:addStatusEffectEx(EFFECT_ADDENDUM_WHITE,EFFECT_ADDENDUM_WHITE,effectbonus,0,7200,0,regenbonus, true);
 
     return EFFECT_LIGHT_ARTS;
 end;

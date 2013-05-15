@@ -298,6 +298,7 @@ public:
 	int32 canGainStatusEffect(lua_State*);		// Returns true if the effect can be added
     int32 getStatusEffect(lua_State*);		//
 	int32 delStatusEffect(lua_State*);		// Removes Status Effect
+    int32 delStatusEffectSilent(lua_State*);// Removes Status Effect, suppresses message
 	int32 eraseStatusEffect(lua_State*);	// Used with "Erase" spell
 	int32 dispelStatusEffect(lua_State*);	// Used with "Dispel" spell
 	int32 stealStatusEffect(lua_State*);    // Used in mob skills to steal effects

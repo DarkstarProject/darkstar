@@ -3922,6 +3922,22 @@ inline int32 CLuaBaseEntity::delStatusEffect(lua_State *L)
     return 1;
 }
 
+inline int32 CLuaBaseEntity::delStatusEffectSilent(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+    bool result = false;
+
+    if( !lua_isnil(L,1) && lua_isnumber(L,1) )
+    {
+        /* Delete matching status effect any power */
+        result = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->DelStatusEffectSilent((EFFECT)lua_tointeger(L,1));
+    }
+
+    lua_pushboolean(L, result);
+    return 1;
+}
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::removePartyEffect(lua_State *L)
@@ -6868,6 +6884,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasBustEffect),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStatusEffectElement),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delStatusEffect),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,delStatusEffectSilent),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,eraseStatusEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,dispelStatusEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,dispelAllStatusEffect),

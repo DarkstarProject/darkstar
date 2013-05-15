@@ -223,8 +223,8 @@ INSERT INTO `abilities` VALUES ('191', 'violent_flourish', '19', '45', '4', '20'
 INSERT INTO `abilities` VALUES ('192', 'building_flourish', '19', '50', '1', '10', '222', '0', '0', '220', '20.0', '0', '1', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('193', 'wild_flourish', '19', '60', '4', '30', '222', '0', '0', '220', '20.0', '0', '1', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('194', 'tabula_rasa', '20', '0', '1', '7200', '0', '0', '0', '190', '20.0', '0', '1', '300', '0', '0');
-INSERT INTO `abilities` VALUES ('195', 'light_arts', '20', '10', '1', '60', '228', '0', '0', '191', '20.0', '0', '1', '80', '0', '0');
-INSERT INTO `abilities` VALUES ('196', 'dark_arts', '20', '10', '1', '60', '232', '0', '0', '192', '20.0', '0', '1', '300', '0', '0');
+INSERT INTO `abilities` VALUES ('195', 'light_arts', '20', '10', '1', '60', '228', '0', '0', '171', '20.0', '0', '1', '80', '0', '0');
+INSERT INTO `abilities` VALUES ('196', 'dark_arts', '20', '10', '1', '60', '232', '0', '0', '176', '20.0', '0', '1', '300', '0', '0');
 INSERT INTO `abilities` VALUES ('197', 'flourishes_ii', '19', '40', '1', '0', '0', '0', '0', '0', '20.0', '0', '0', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('198', 'modus_veritas', '20', '65', '4', '600', '230', '0', '0', '188', '20.0', '0', '1', '80', '0', '0');
 INSERT INTO `abilities` VALUES ('199', 'penury', '20', '10', '1', '0', '231', '0', '0', '172', '20.0', '0', '1', '80', '0', '16');
@@ -244,8 +244,8 @@ INSERT INTO `abilities` VALUES ('213', 'pianissimo', '10', '45', '1', '15', '111
 INSERT INTO `abilities` VALUES ('214', 'sekkanoki', '12', '60', '1', '300', '140', '0', '0', '199', '20.0', '0', '1', '80', '0', '0');
 INSERT INTO `abilities` VALUES ('216', 'elemental_siphon', '15', '50', '1', '300', '175', '0', '0', '201', '20.0', '0', '1', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('217', 'sublimation', '20', '35', '1', '30', '234', '0', '0', '189', '20.0', '0', '1', '80', '0', '0');
-INSERT INTO `abilities` VALUES ('218', 'addendum_white', '20', '10', '1', '0', '231', '0', '0', '171', '20.0', '0', '1', '80', '0', '16');
-INSERT INTO `abilities` VALUES ('219', 'addendum_black', '20', '30', '1', '0', '231', '0', '0', '176', '20.0', '0', '1', '80', '0', '32');
+INSERT INTO `abilities` VALUES ('218', 'addendum_white', '20', '10', '1', '0', '231', '0', '0', '191', '20.0', '0', '1', '80', '0', '16');
+INSERT INTO `abilities` VALUES ('219', 'addendum_black', '20', '30', '1', '0', '231', '0', '0', '192', '20.0', '0', '1', '80', '0', '32');
 INSERT INTO `abilities` VALUES ('220', 'collaborator', '6', '65', '2', '60', '17', '0', '0', '220', '20.0', '0', '0', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('221', 'saber_dance', '19', '75', '1', '300', '217', '0', '0', '207', '20.0', '0', '1', '80', '3200', '1');
 INSERT INTO `abilities` VALUES ('222', 'fan_dance', '19', '75', '1', '300', '216', '0', '0', '208', '20.0', '0', '1', '80', '3202', '1');
