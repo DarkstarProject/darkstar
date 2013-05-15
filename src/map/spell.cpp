@@ -545,7 +545,11 @@ namespace spell
 
 		    if(PCaster->GetMLevel() >= JobMLVL)
             {
-                if(requirements & SPELLREQ_ADDENDUM_BLACK && PCaster->GetMJob() == JOB_SCH)
+                if (requirements & SPELLREQ_TABULA_RASA && !PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_TABULA_RASA))
+                {
+                    return false;
+                }
+                if (requirements & SPELLREQ_ADDENDUM_BLACK && PCaster->GetMJob() == JOB_SCH)
                 {
                     if(PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_BLACK))
                     {
@@ -565,6 +569,10 @@ namespace spell
             }
             if(PCaster->GetSLevel() >= JobSLVL)
             {
+                if (requirements & SPELLREQ_TABULA_RASA && !PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_TABULA_RASA))
+                {
+                    return false;
+                }
                 if(requirements & SPELLREQ_ADDENDUM_BLACK && PCaster->GetSJob() == JOB_SCH)
                 {
                     if(PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_BLACK))

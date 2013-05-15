@@ -26,6 +26,8 @@ function onSpellCast(caster,target,spell)
 		hp = hp+2;
 	end
 
+	hp = hp + caster:getMod(MOD_REGEN_EFFECT);
+	
 	duration = 60;
 
 	if (target:getMainLvl() < 66) then

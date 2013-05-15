@@ -1171,7 +1171,7 @@ void CAICharNormal::ActionMagicStart()
 	if (!charutils::hasSpell(m_PChar, m_PSpell->getID()) ||
 	    !spell::CanUseSpell(m_PChar, m_PSpell->getID()))
 	{
-        MagicStartError(47, m_PSpell->getID());
+        MagicStartError(MSGBASIC_CANNOT_CAST_SPELL, m_PSpell->getID());
 		return;
 	}
 
@@ -1179,7 +1179,7 @@ void CAICharNormal::ActionMagicStart()
     if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE) ||
         m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MUTE))
     {
-        MagicStartError(49);
+        MagicStartError(MSGBASIC_UNABLE_TO_CAST_SPELLS);
 		return;
     }
 
@@ -1376,9 +1376,10 @@ void CAICharNormal::ActionMagicCasting()
 			return;
 		}
 
-		if (!charutils::hasSpell(m_PChar, m_PSpell->getID()))
+		if (!charutils::hasSpell(m_PChar, m_PSpell->getID()) ||
+            !spell::CanUseSpell(m_PChar, m_PSpell->getID()))
 		{
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0, MSGBASIC_UNABLE_TO_CAST_SPELLS));
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,m_PSpell->getID(),0, MSGBASIC_CANNOT_CAST_SPELL));
 
 			m_ActionType = ACTION_MAGIC_INTERRUPT;
 			ActionMagicInterrupt();

@@ -27,35 +27,12 @@ function OnUseAbility(player, target, ability)
 	
 	local skillbonus = player:getMod(MOD_LIGHT_ARTS_SKILL);
 	local effectbonus = player:getMod(MOD_LIGHT_ARTS_EFFECT);
-	
-	--Get the B+ skill cap for the casters level
-	local newCap = player:getMaxSkillLevel(ENHANCING_MAGIC_SKILL, JOB_RDM, player:getMainLvl());
-	
-	local currEnhancing = player:getSkillLevel(ENHANCING_MAGIC_SKILL);
-	local currEnfeebling = player:getSkillLevel(ENFEEBLING_MAGIC_SKILL);
-	local currDivine = player:getSkillLevel(DIVINE_MAGIC_SKILL);
-	local currHealing = player:getSkillLevel(HEALING_MAGIC_SKILL);
-	
-	local newEnhancing = 0;
-	local newEnfeebling = 0;
-	local newDivine = 0;
-	local newHealing = 0;
-	
-	--and get the new skill (new cap minus the difference between the current cap and current skill)
-	--todo: pass the value to add instead of set
-	if (player:getMainJob() == JOB_SCH) then
-		newEnhancing = newCap - (player:getMaxSkillLevel(ENHANCING_MAGIC_SKILL, JOB_SCH, player:getMainLvl()) - currEnhancing)
-		newEnfeebling = newCap - (player:getMaxSkillLevel(ENFEEBLING_MAGIC_SKILL, JOB_SCH, player:getMainLvl()) - currEnfeebling)
-		newDivine = newCap - (player:getMaxSkillLevel(DIVINE_MAGIC_SKILL, JOB_SCH, player:getMainLvl()) - currDivine)
-		newHealing = newCap - (player:getMaxSkillLevel(HEALING_MAGIC_SKILL, JOB_SCH, player:getMainLvl()) - currHealing)
-	else
-		newEnhancing = newCap - (player:getMaxSkillLevel(ENHANCING_MAGIC_SKILL, JOB_SCH, math.floor(player:getMainLvl()/2)) - currEnhancing)
-		newEnfeebling = newCap - (player:getMaxSkillLevel(ENFEEBLING_MAGIC_SKILL, JOB_SCH, math.floor(player:getMainLvl()/2)) - currEnfeebling)
-		newDivine = newCap - (player:getMaxSkillLevel(DIVINE_MAGIC_SKILL, JOB_SCH, math.floor(player:getMainLvl()/2)) - currDivine)
-		newHealing = newCap - (player:getMaxSkillLevel(HEALING_MAGIC_SKILL, JOB_SCH, player:getMainLvl()) - currHealing)
+	local regenbonus = 0;
+	if (player:getMainJob() == JOB_SCH and player:getMainLvl() >= 20) then
+		regenbonus = 3 * math.floor((player:getMainLvl() - 10) / 10);
 	end
 	
-	player:addStatusEffect(EFFECT_LIGHT_ARTS,10 + effectbonus,0,7200);
+	player:addStatusEffect(EFFECT_LIGHT_ARTS,effectbonus,0,7200,0,regenbonus);
 
     return EFFECT_LIGHT_ARTS;
 end;

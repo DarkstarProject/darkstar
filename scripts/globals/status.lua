@@ -813,6 +813,7 @@ MOD_LIGHT_ARTS_EFFECT   = 0x14E
 MOD_DARK_ARTS_EFFECT    = 0x14F
 MOD_LIGHT_ARTS_SKILL    = 0x150
 MOD_DARK_ARTS_SKILL     = 0x151
+MOD_REGEN_EFFECT        = 0x152
 
 -----------------------------------
 -- Merit Definitions

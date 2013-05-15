@@ -4111,7 +4111,7 @@ uint32  CalculateSpellRecastTime(CCharEntity* PChar, CSpell* PSpell)
         }
         if (applyArts)
         {
-            recast = recast * (1.0f + PChar->getMod(MOD_WHITE_MAGIC_CAST)/100.0f);
+            recast = recast * (1.0f + PChar->getMod(MOD_BLACK_MAGIC_RECAST)/100.0f);
         }
     }
     else if (PSpell->getSpellGroup() == SPELLGROUP_WHITE)
@@ -4139,7 +4139,7 @@ uint32  CalculateSpellRecastTime(CCharEntity* PChar, CSpell* PSpell)
         }
         if (applyArts)
         {
-            recast = recast * (1.0f + PChar->getMod(MOD_WHITE_MAGIC_CAST)/100.0f);
+            recast = recast * (1.0f + PChar->getMod(MOD_WHITE_MAGIC_RECAST)/100.0f);
         }
     }
     int16 haste = PChar->getMod(MOD_HASTE_MAGIC) + PChar->getMod(MOD_HASTE_GEAR);
