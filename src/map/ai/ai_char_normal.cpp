@@ -1475,11 +1475,20 @@ void CAICharNormal::ActionMagicFinish()
     // can this spell target the dead?
     m_PTargetFinder->m_targetDead = (m_PSpell->getValidTarget() & TARGET_PLAYER_DEAD);
 
-    if (m_PSpell->isAOE())
+    uint8 aoeType = battleutils::GetSpellAoEType(m_PChar, m_PSpell);
+
+    if (aoeType == SPELLAOE_RADIAL)
     {
         float radius = spell::GetSpellRadius(m_PSpell, m_PChar);
 
         m_PTargetFinder->findWithinArea(m_PBattleSubTarget, AOERADIUS_TARGET, radius);
+    }
+    else if (aoeType == SPELLAOE_CONAL)
+    {
+        //TODO: actual angle calculation
+        float radius = spell::GetSpellRadius(m_PSpell, m_PChar);
+
+        m_PTargetFinder->findWithinCone(m_PBattleSubTarget, radius, 45);
     }
     else
     {
@@ -1514,14 +1523,14 @@ void CAICharNormal::ActionMagicFinish()
         ve = m_PSpell->getVE();
 
         // take all shadows
-        if(m_PSpell->canTargetEnemy() && m_PSpell->isAOE())
+        if(m_PSpell->canTargetEnemy() && aoeType > 0)
         {
             PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BLINK);
             PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
         }
 
         // TODO: this is really hacky and should eventually be moved into lua
-        if(m_PSpell->canTargetEnemy() && !m_PSpell->isAOE() && battleutils::IsAbsorbByShadow(PTarget))
+        if(m_PSpell->canTargetEnemy() && aoeType > SPELLAOE_NONE && battleutils::IsAbsorbByShadow(PTarget))
         {
             // take shadow
             msg = 31;
@@ -1554,7 +1563,7 @@ void CAICharNormal::ActionMagicFinish()
 
         if (m_PSpell->canTargetEnemy()) {
             // wipe shadows if needed
-            if (!m_PSpell->isAOE() && battleutils::IsAbsorbByShadow(PTarget))
+            if (m_PSpell->getAOE() == SPELLAOE_NONE && battleutils::IsAbsorbByShadow(PTarget))
             {
                 Action.param = 1;
                 Action.messageID = 31;
@@ -1587,6 +1596,7 @@ void CAICharNormal::ActionMagicFinish()
 
         m_PChar->m_ActionList.push_back(Action);
     }
+    charutils::RemoveStratagems(m_PChar, m_PSpell);
     // если заклинание атакующее, то дополнительно удаляем эффекты с флагом атаки
     m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_MAGIC_END | ((m_PSpell->getValidTarget() & TARGET_ENEMY) ? EFFECTFLAG_DETECTABLE : EFFECTFLAG_NONE));
 

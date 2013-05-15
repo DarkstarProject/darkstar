@@ -3994,29 +3994,44 @@ bool CheckAbilityAddtype(CCharEntity* PChar, CAbility* PAbility)
 
 uint16  CalculateManaCost(CCharEntity* PChar, CSpell* PSpell)
 {
+    bool applyArts = true;
     uint16 base = PSpell->getMPCost();
+    if (PSpell->getID() == 478 || PSpell->getID() == 502) //Embrava/Kaustra
+    {
+        base = PChar->health.maxmp * 0.2;
+    }
     int16 cost = base;
 
     if (PSpell->getSpellGroup() == SPELLGROUP_BLACK)
     {
-        if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_PARSIMONY))
+        if (PSpell->getAOE() == SPELLAOE_RADIAL_MANI && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MANIFESTATION))
         {
-            cost -= base / 2;
-            PChar->StatusEffectContainer->DelStatusEffect(EFFECT_PARSIMONY);
+            cost *= 2;
+            applyArts = false;
         }
-        else
+        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_PARSIMONY))
+        {
+            cost /= 2;
+            applyArts = false;
+        }
+        else if (applyArts)
         {
             cost += base * (PChar->getMod(MOD_BLACK_MAGIC_COST)/100.0f);
         }
     }
     else if (PSpell->getSpellGroup() == SPELLGROUP_WHITE)
     {
-        if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_PENURY))
+        if (PSpell->getAOE() == SPELLAOE_RADIAL_ACCE && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_ACCESSION))
         {
-            cost -= base / 2;
-            PChar->StatusEffectContainer->DelStatusEffect(EFFECT_PENURY);
+            cost *= 2;
+            applyArts = false;
         }
-        else
+        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_PENURY))
+        {
+            cost /= 2;
+            applyArts = false;
+        }
+        else if (applyArts)
         {
             cost += base * (PChar->getMod(MOD_WHITE_MAGIC_COST)/100.0f);
         }
@@ -4026,29 +4041,32 @@ uint16  CalculateManaCost(CCharEntity* PChar, CSpell* PSpell)
 
 uint32  CalculateSpellcastTime(CCharEntity* PChar, CSpell* PSpell)
 {
+    bool applyArts = true;
     uint32 base = PSpell->getCastTime();
     uint32 cast = base;
 
     if (PSpell->getSpellGroup() == SPELLGROUP_BLACK)
     {
-        if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_ALACRITY))
+        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_ALACRITY))
         {
             uint16 bonus = PChar->getMod(MOD_ALACRITY_CELERITY_EFFECT);
             cast -= base * ((100 - (50 + bonus)) / 100.0f);
+            applyArts = false;
         }
-        else
+        else if (applyArts)
         {
             cast = cast * (1.0f + PChar->getMod(MOD_BLACK_MAGIC_CAST)/100.0f);
         }
     }
     else if (PSpell->getSpellGroup() == SPELLGROUP_WHITE)
     {
-        if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CELERITY))
+        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CELERITY))
         {
             uint16 bonus = PChar->getMod(MOD_ALACRITY_CELERITY_EFFECT);
             cast -= base * ((100 - (50 + bonus)) / 100.0f);
+            applyArts = false;
         }
-        else
+        else if (applyArts)
         {
             cast = cast * (1.0f + PChar->getMod(MOD_WHITE_MAGIC_CAST)/100.0f);
         }
@@ -4058,57 +4076,103 @@ uint32  CalculateSpellcastTime(CCharEntity* PChar, CSpell* PSpell)
 
 uint32  CalculateSpellRecastTime(CCharEntity* PChar, CSpell* PSpell)
 {
+    bool applyArts = true;
     uint32 base = PSpell->getRecastTime();
     uint32 recast = base;
+    uint8 applyHaste = 0;
+
+    if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_COMPOSURE))
+    {
+        recast *= 1.25;
+    }
 
     if (PSpell->getSpellGroup() == SPELLGROUP_BLACK)
     {
-        if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_ALACRITY))
+        if (PSpell->getAOE() == SPELLAOE_RADIAL_MANI && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MANIFESTATION))
+        {
+            if (PChar->GetMJob() == JOB_SCH)
+            {
+                recast *= 2;
+            }
+            else
+            {
+                recast *= 3;
+            }
+            applyArts = false;
+            applyHaste++;
+        }
+        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_ALACRITY))
         {
             uint16 bonus = PChar->getMod(MOD_ALACRITY_CELERITY_EFFECT);
-            recast -= base * ((100 - (50 + bonus)) / 100.0f);
+            recast *=  ((50 + bonus) / 100.0f);
 
-            int16 haste = PChar->getMod(MOD_HASTE_MAGIC) + PChar->getMod(MOD_HASTE_GEAR);
-            if (haste < 0)
-            {
-                recast = recast * ((float)(1024-dsp_cap(haste,-1024,256))/1024);
-            }
-            PChar->StatusEffectContainer->DelStatusEffect(EFFECT_ALACRITY);
+            applyArts = false;
+            applyHaste++;
         }
-        else
+        if (applyArts)
         {
-            recast = recast * (1.0f + PChar->getMod(MOD_BLACK_MAGIC_CAST)/100.0f);
-            int16 haste = PChar->getMod(MOD_HASTE_MAGIC) + PChar->getMod(MOD_HASTE_GEAR);
-	        recast = recast * ((float)(1024-dsp_cap(haste,-1024,256))/1024);
+            recast = recast * (1.0f + PChar->getMod(MOD_WHITE_MAGIC_CAST)/100.0f);
         }
     }
     else if (PSpell->getSpellGroup() == SPELLGROUP_WHITE)
     {
-        if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CELERITY))
+        if (PSpell->getAOE() == SPELLAOE_RADIAL_ACCE && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_ACCESSION))
+        {
+            if (PChar->GetMJob() == JOB_SCH)
+            {
+                recast *= 2;
+            }
+            else
+            {
+                recast *= 3;
+            }
+            applyArts = false;
+            applyHaste++;
+        }
+        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CELERITY))
         {
             uint16 bonus = PChar->getMod(MOD_ALACRITY_CELERITY_EFFECT);
-            recast -= base * ((100 - (50 + bonus)) / 100.0f);
+            recast *=  ((50 + bonus) / 100.0f);
 
-            int16 haste = PChar->getMod(MOD_HASTE_MAGIC) + PChar->getMod(MOD_HASTE_GEAR);
-            if (haste < 0)
-            {
-                recast = recast * ((float)(1024-dsp_cap(haste,-1024,256))/1024);
-            }
-            PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CELERITY);
+            applyArts = false;
+            applyHaste++;
         }
-        else
+        if (applyArts)
         {
             recast = recast * (1.0f + PChar->getMod(MOD_WHITE_MAGIC_CAST)/100.0f);
-            int16 haste = PChar->getMod(MOD_HASTE_MAGIC) + PChar->getMod(MOD_HASTE_GEAR);
-	        recast = recast * ((float)(1024-dsp_cap(haste,-1024,256))/1024);
         }
     }
-    else
+    int16 haste = PChar->getMod(MOD_HASTE_MAGIC) + PChar->getMod(MOD_HASTE_GEAR);
+
+    if ( haste < 0 || applyHaste == 0 || applyHaste == 2)
     {
-        int16 haste = PChar->getMod(MOD_HASTE_MAGIC) + PChar->getMod(MOD_HASTE_GEAR);
-	    recast = recast * ((float)(1024-dsp_cap(haste,-1024,256))/1024);
+        recast = recast * ((float)(1024-dsp_cap(haste,-1024,256))/1024);
     }
     return recast * ((100.0f-dsp_cap((float)PChar->getMod(MOD_FASTCAST)/2.0f,0.0f,25.0f))/100.0f);
+}
+
+void RemoveStratagems(CCharEntity* PChar, CSpell* PSpell)
+{
+    if (PSpell->getSpellGroup() == SPELLGROUP_WHITE)
+    {
+        //rapture to be deleted in applicable scripts
+        PChar->StatusEffectContainer->DelStatusEffect(EFFECT_PENURY);
+        PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CELERITY);
+        if (PSpell->getAOE() == SPELLAOE_RADIAL_ACCE)
+        {
+            PChar->StatusEffectContainer->DelStatusEffect(EFFECT_ACCESSION);
+        }
+    }
+    else if (PSpell->getSpellGroup() == SPELLGROUP_BLACK)
+    {
+        //ebullience to be deleted in applicable scripts
+        PChar->StatusEffectContainer->DelStatusEffect(EFFECT_PARSIMONY);
+        PChar->StatusEffectContainer->DelStatusEffect(EFFECT_ALACRITY);
+        if (PSpell->getAOE() == SPELLAOE_RADIAL_MANI)
+        {
+            PChar->StatusEffectContainer->DelStatusEffect(EFFECT_MANIFESTATION);
+        }
+    }
 }
 
 } // namespace charutils

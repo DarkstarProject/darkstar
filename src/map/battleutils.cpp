@@ -3999,6 +3999,13 @@ void assistTarget(CCharEntity* PChar, uint16 TargID)
 	}
 }
 
-
+uint8 GetSpellAoEType(CBattleEntity* PCaster, CSpell* PSpell)
+{
+    if (PSpell->getAOE() == SPELLAOE_RADIAL_ACCE && PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ACCESSION))
+        return SPELLAOE_RADIAL;
+    if (PSpell->getAOE() == SPELLAOE_RADIAL_MANI && PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_MANIFESTATION))
+        return SPELLAOE_RADIAL;
+    return PSpell->getAOE();
+}
 
 };

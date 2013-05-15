@@ -493,7 +493,7 @@ function getSkillLvl(rank,level)
  function finalMagicAdjustments(caster,target,spell,dmg)
 
     -- handle multiple targets
-    if(spell:isAoE()) then
+    if(caster:isSpellAoE(spell:getID())) then
         local total = spell:getTotalTargets();
 
         if(total > 9) then

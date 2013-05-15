@@ -1092,13 +1092,21 @@ void CAIMobDummy::ActionMagicFinish()
     m_PTargetFinder->reset();
     m_PMob->m_ActionList.clear();
 
+    uint8 aoeType = battleutils::GetSpellAoEType(m_PMob, m_PSpell);
+
     if(m_PTargetFinder->isWithinRange(m_PBattleSubTarget, MOB_SPELL_MAX_RANGE))
     {
-		if (m_PSpell->isAOE()) {
+		if (aoeType == SPELLAOE_RADIAL) {
 			float distance = spell::GetSpellRadius(m_PSpell, m_PMob);
 
 	        m_PTargetFinder->findWithinArea(m_PBattleSubTarget, AOERADIUS_TARGET, distance);
 
+        } else if (aoeType == SPELLAOE_CONAL)
+        {
+            //TODO: actual angle calculation
+            float radius = spell::GetSpellRadius(m_PSpell, m_PMob);
+
+            m_PTargetFinder->findWithinCone(m_PBattleSubTarget, radius, 45);
 		} else {
 			// only add target
 			m_PTargetFinder->findSingleTarget(m_PBattleSubTarget);
@@ -1134,14 +1142,14 @@ void CAIMobDummy::ActionMagicFinish()
         ve = m_PSpell->getVE();
 
         // take all shadows
-        if(m_PSpell->canTargetEnemy() && m_PSpell->isAOE())
+        if(m_PSpell->canTargetEnemy() && aoeType > 0)
         {
         	PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BLINK);
         	PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
         }
 
         // TODO: this is really hacky and should eventually be moved into lua
-        if(m_PSpell->canTargetEnemy() && !m_PSpell->isAOE() && battleutils::IsAbsorbByShadow(PTarget))
+        if(m_PSpell->canTargetEnemy() && aoeType == SPELLAOE_NONE && battleutils::IsAbsorbByShadow(PTarget))
         {
         	// take shadow
         	msg = 31;

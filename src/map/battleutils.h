@@ -178,6 +178,8 @@ namespace battleutils
     int32               RangedDmgTaken(CBattleEntity* PDefender, int32 damage);
 	void				assistTarget(CCharEntity* PChar, uint16 TargID);
     CMobSkill*          GetTwoHourMobSkill(JOBTYPE job);
+
+    uint8               GetSpellAoEType(CBattleEntity* PCaster, CSpell* PSpell);
 };
 
 #endif

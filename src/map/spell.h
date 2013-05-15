@@ -55,13 +55,21 @@ enum SPELLREQ
     SPELLREQ_TABULA_RASA    = 0x08
 };
 
+enum SPELLAOE
+{
+    SPELLAOE_NONE           = 0,
+    SPELLAOE_RADIAL         = 1,
+    SPELLAOE_CONAL          = 2,
+    SPELLAOE_RADIAL_MANI    = 3,  //AOE when under SCH stratagem Manifestation
+    SPELLAOE_RADIAL_ACCE    = 4   //AOE when under SCH stratagem Accession
+};
+
 class CSpell
 {
 public:
 
 	CSpell(uint16 id);
 
-    bool        isAOE();
     bool        canTargetEnemy();
     bool        isBuff();
     bool        dealsDamage(); // checks if the spell deals hp damage to target, this is relative to message
@@ -80,6 +88,7 @@ public:
 	SPELLGROUP	getSpellGroup();
     uint8       getSkillType();
     uint16      getZoneMisc();
+    uint8       getAOE();
 	uint16		getBase();
 	uint16		getElement();
 	float		getMultiplier();
@@ -144,7 +153,7 @@ private:
 	uint8		m_ValidTarget;							// target pc/npc/both
 	SPELLGROUP  m_spellGroup;							// spellgroup
     uint16      m_zoneMisc;                             // условия чтения заклинаний в зонах
-	bool		m_isAOE;								// aoe or single target spell
+	uint8		m_AOE;								// aoe or single target spell
 	uint16		m_base;									// spell base damage
 	float		m_multiplier;							// multiplier for upper tier spells
 	uint16		m_element;								// element of spell

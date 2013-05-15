@@ -6511,7 +6511,6 @@ inline int32 CLuaBaseEntity::updateTarget(lua_State* L)
 	return 0;
 }
 
-
 /************************************************************************
 *                                                                       *
 *  Gets the extra var stored in the mob entity.  Number parameter       *
@@ -6712,6 +6711,21 @@ inline int32 CLuaBaseEntity::recalculateAbilitiesTable(lua_State* L)
     }
     return 0;
 }
+
+inline int32 CLuaBaseEntity::isSpellAoE(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+    CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
+    CSpell* PSpell = spell::GetSpell(lua_tonumber(L,1));
+
+    lua_pushboolean(L,battleutils::GetSpellAoEType(PEntity, PSpell) > 0);
+
+    return 1;
+}
+
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -6992,5 +7006,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasTPMoves),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaster),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,recalculateAbilitiesTable),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,isSpellAoE),
 	{NULL,NULL}
 };

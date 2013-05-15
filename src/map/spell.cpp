@@ -36,7 +36,7 @@ CSpell::CSpell(uint16 id)
 	m_castTime          = 0;
 	m_recastTime        = 0;
 	m_animation         = 0;
-    m_isAOE             = 0;
+    m_AOE             = 0;
     m_animationTime     = 0;
     m_skillType         = 0;
     m_zoneMisc          = 0;
@@ -206,14 +206,14 @@ bool CSpell::canTargetEnemy()
     return getValidTarget() & TARGET_ENEMY && !(getValidTarget() & TARGET_SELF);
 }
 
-bool CSpell::isAOE()
+uint8 CSpell::getAOE()
 {
-	return m_isAOE;
+	return m_AOE;
 }
 
 void CSpell::setAOE(uint8 AOE)
 {
-	m_isAOE = (AOE != 0);
+	m_AOE = AOE;
 }
 
 uint16 CSpell::getBase()
@@ -400,7 +400,7 @@ namespace spell
 	    memset(PSpellList, 0, sizeof(PSpellList));
 
 	    const int8* Query = "SELECT spellid, name, jobs, `group`, validTargets, skill, castTime, recastTime, animation, animationTime, mpCost, \
-					         isAOE, base, element, zonemisc, multiplier, message, magicBurstMessage, CE, VE, requirements \
+					         AOE, base, element, zonemisc, multiplier, message, magicBurstMessage, CE, VE, requirements \
 							 FROM spell_list \
 							 WHERE spellid < %u;";
 
@@ -434,7 +434,7 @@ namespace spell
 			    PSpell->setVE(Sql_GetIntData(SqlHandle,19));
                 PSpell->setRequirements(Sql_GetIntData(SqlHandle,20));
 
-                if(PSpell->isAOE())
+                if(PSpell->getAOE())
                 {
                     // default radius
                     PSpell->setRadius(10);

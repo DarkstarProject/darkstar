@@ -53,8 +53,8 @@ enum EFFECTFLAG
     EFFECTFLAG_MAGIC_END        = 0x0080,     // исчезает после прочтения заклинания
   	EFFECTFLAG_ON_ZONE          = 0x0100,
     EFFECTFLAG_NO_LOSS_MESSAGE  = 0x0200,     // Suppress effect worn off message.
-    EFFECTFLAG_INVISIBLE		= 1024, // invisible effect
-    EFFECTFLAG_DETECTABLE		= 2048 // invisible, sneak, deo
+    EFFECTFLAG_INVISIBLE		= 0x0400,     // invisible effect
+    EFFECTFLAG_DETECTABLE		= 0x0800      // invisible, sneak, deo
 };
 
 enum EFFECT

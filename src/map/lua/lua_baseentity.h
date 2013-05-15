@@ -418,6 +418,7 @@ public:
 	int32 getMaster(lua_State*);
 
     int32 recalculateAbilitiesTable(lua_State*);
+    int32 isSpellAoE(lua_State* L);
 };
 
 #endif

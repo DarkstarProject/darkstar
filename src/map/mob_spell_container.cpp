@@ -22,6 +22,7 @@
 */
 
 #include "mob_spell_container.h"
+#include "battleutils.h"
 
 CMobSpellContainer::CMobSpellContainer(CMobEntity* PMob)
 {
@@ -55,7 +56,8 @@ void CMobSpellContainer::AddSpell(int16 spellId)
 
   // add spell to correct vector
   // try to add it to ga list first
-  if(spell->isAOE() && spell->canTargetEnemy()){
+  uint8 aoe = battleutils::GetSpellAoEType(m_PMob, spell);
+  if(aoe > 0 && spell->canTargetEnemy()){
 
     m_gaList.push_back(spellId);
 

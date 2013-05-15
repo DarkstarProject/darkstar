@@ -24,6 +24,7 @@
 #include "../../common/showmsg.h"
 
 #include "lua_spell.h"
+#include "../battleutils.h"
 
 
 /************************************************************************
@@ -107,7 +108,7 @@ inline int32 CLuaSpell::getElement(lua_State *L)
 inline int32 CLuaSpell::isAoE(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PLuaSpell == NULL);
-	lua_pushboolean(L,m_PLuaSpell->isAOE());
+	lua_pushinteger(L,m_PLuaSpell->getAOE());
 	return 1;
 }
 
