@@ -41,6 +41,11 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
 		zoneutils::UpdateWeather();
 	}
 
+	if (CVanaTime::getInstance()->getMinute() == 0)
+	{
+		luautils::OnGameHourAutomatisation();
+	}
+
     if (VanadielTOTD != TIME_NONE)
 	{
 		zoneutils::TOTDCharnge(VanadielTOTD);

@@ -2,13 +2,6 @@
 -- Author: Ezekyel
 -- this function is used for npcs that change position every vanadiel game day
 -----------------------------------
-
--- BY GAME DAY
-
-
--- BY GAME HOUR
--- flame spout
-
 function OnGameDayAutomatisation()
 	
 	-- Storage Hole in Davoi
@@ -71,4 +64,12 @@ function OnGameDayAutomatisation()
 	if (ToD <= os.time(t)) then
 		DeterMob(16806215, false);
 	end
+end;
+
+-----------------------------------
+-- Author: deviltti
+-- this function is used for npcs that change position every vanadiel game hour
+-----------------------------------
+function OnGameHourAutomatisation()
+
 end;

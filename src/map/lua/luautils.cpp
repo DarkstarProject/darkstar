@@ -2031,6 +2031,45 @@ int32 OnGameDayAutomatisation()
 }
 
 /************************************************************************
+*	OnGameHourAutomatisation()											*
+*   used for creating action of npc every game hour						*
+*																		*
+************************************************************************/
+
+int32 OnGameHourAutomatisation()
+{
+	int8 File[255];
+	memset(File,0,sizeof(File));
+
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "OnGameHourAutomatisation");
+
+	snprintf(File, sizeof(File), "scripts/globals/automatisation.lua");
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+		ShowError("luautils::OnGameHourAutomatisation: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnGameHourAutomatisation");
+	if( lua_isnil(LuaHandle,-1) )
+	{
+		ShowError("luautils::OnGameHourAutomatisation: undefined procedure OnGameHourAutomatisation\n");
+		return -1;
+	}
+
+	if( lua_pcall(LuaHandle,0,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::OnGameHourAutomatisation: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return -1;
+	}
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+}
+
+/************************************************************************
 *                                                                       *
 *                                                                       *
 *                                                                       *
