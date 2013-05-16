@@ -703,7 +703,7 @@ int32 GetMobAction(lua_State* L)
 *                                                                       *
 ************************************************************************/
 
-int32 GetTextIDVariable(uint32 ZoneID, const char* variable)
+int32 GetTextIDVariable(uint16 ZoneID, const char* variable)
 {
     lua_pushnil(LuaHandle);
     lua_setglobal(LuaHandle, variable);
@@ -778,7 +778,7 @@ int32 OnServerStart()
 *																		*
 ************************************************************************/
 
-int32 OnZoneInitialise(uint8 ZoneID)
+int32 OnZoneInitialise(uint16 ZoneID)
 {
 	CZone* PZone = zoneutils::GetZone(ZoneID);
 
@@ -2096,14 +2096,13 @@ int32 OnZoneWeatherChange(uint16 ZoneID, uint8 weather)
     lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnZoneWeatherChange");
 	if( lua_isnil(LuaHandle,-1) )
 	{
-		ShowError("luautils::OnZoneWeatherChange: undefined procedure OnGameHourAutomatisation\n");
+		// ShowError("luautils::OnZoneWeatherChange: undefined procedure OnZoneWeatherChange\n");
 		return -1;
 	}
 
-	lua_pushinteger(LuaHandle, ZoneID);
 	lua_pushinteger(LuaHandle, weather);
 
-	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+	if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnZoneWeatherChange: %s\n",lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);

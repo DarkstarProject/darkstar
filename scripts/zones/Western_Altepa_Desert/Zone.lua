@@ -69,9 +69,10 @@ function onEventFinish( player, csid, option)
 	end		
 end;
 
-function OnZoneWeatherChange(zoneid, weather)
-	local KingVinegarroon = GetMobByID(17289575); -- King Vinegarroon
+function OnZoneWeatherChange(weather)
+	
 	if(weather == WEATHER_DUST_STORM or weather == WEATHER_SAND_STORM and GetMobAction(17289575) == 0) then
 		SpawnMob(17289575);
 	end
+	
 end;

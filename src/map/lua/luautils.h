@@ -83,7 +83,7 @@ namespace luautils
 	int32 GetServerVariable(lua_State*);
 	int32 SetServerVariable(lua_State *);
 
-    int32 GetTextIDVariable(uint32 ZoneID, const char* variable);               // загружаем значение переменной TextID указанной зоны
+    int32 GetTextIDVariable(uint16 ZoneID, const char* variable);               // загружаем значение переменной TextID указанной зоны
 
 	int32 OnServerStart();														// triggers when game server starts up
 
@@ -93,7 +93,7 @@ namespace luautils
 		
     int32 OnGameIn(CCharEntity* PChar);											//
 	int32 OnZoneIn(CCharEntity* PChar);											// triggers when a player zones into a zone
-	int32 OnZoneInitialise(uint8 ZoneID);										// triggers when zone is loaded
+	int32 OnZoneInitialise(uint16 ZoneID);										// triggers when zone is loaded
 	int32 OnRegionEnter(CCharEntity* PChar, CRegion* PRegion);					// when player enters a region of a zone
 	int32 OnRegionLeave(CCharEntity* PChar, CRegion* Pregion);					// when player leaves a region of a zone
     int32 OnTransportEvent(CCharEntity* PChar, uint32 TransportID);

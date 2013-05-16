@@ -905,6 +905,7 @@ inline int32 CLuaBaseEntity::setWeather(lua_State *L)
     if (weather < MAX_WEATHER_ID)
     {
         zoneutils::GetZone(m_PBaseEntity->getZone())->SetWeather((WEATHER)weather);
+		luautils::OnZoneWeatherChange(m_PBaseEntity->getZone(), weather);
     }
 	return 0;
 }
