@@ -25,7 +25,7 @@ function OnUseAbility(player, target, ability)
 		helixbonus = math.floor(player:getMainLvl() / 5) - 3;
 	end
 
-	player:addStatusEffect(EFFECT_TABULA_RASA,helixbonus,0,180,0,regenbonus);
+	player:addStatusEffect(EFFECT_TABULA_RASA,math.floor(helixbonus*1.5),0,180,0,math.floor(regenbonus*1.5));
 
     return EFFECT_TABULA_RASA;
 end;

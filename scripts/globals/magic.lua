@@ -623,29 +623,29 @@ function addBonuses(caster, spell, target, dmg)
 	if(weather == singleWeatherStrong[ele]) then
 		-- Iridescence
 		if(equippedMain == 18632 or equippedMain == 18633) then
-			if(math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+			if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
 				dayWeatherBonus = dayWeatherBonus + 0.10;
 			end
 		end
-		if(math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+		if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
 	elseif(caster:getWeather() == singleWeatherWeak[ele]) then
-		if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele]) then
+		if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] or isHelixSpell(spell)) then
 			dayWeatherBonus = dayWeatherBonus - 0.10;
 		end
 	elseif(weather == doubleWeatherStrong[ele]) then
 		-- Iridescence
 		if(equippedMain == 18632 or equippedMain == 186330) then
-			if(math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+			if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
 				dayWeatherBonus = dayWeatherBonus + 0.10;
 			end
 		end
-		if(math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+		if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
 			dayWeatherBonus = dayWeatherBonus + 0.25;
 		end
 	elseif(weather == doubleWeatherWeak[ele]) then
-		if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele]) then
+		if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] or isHelixSpell(spell)) then
 			dayWeatherBonus = dayWeatherBonus - 0.25;
 		end
 	end
@@ -754,6 +754,16 @@ function getHelixDuration(caster, target, spell)
 		duration = 90;
 	end
     return duration;
+end;
+
+function isHelixSpell(spell)
+	--Dark Arts will further increase Helix duration, but testing is ongoing.
+
+	local id = spell:getID();
+	if id >= 278 and id <= 285 then
+		return true;
+	end
+	return false;
 end;
 
 function handleThrenody(caster, target, spell, basePower, baseDuration, modifier)
