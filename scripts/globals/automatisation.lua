@@ -66,10 +66,13 @@ function OnGameDayAutomatisation()
 	end
 end;
 
------------------------------------
--- Author: deviltti
--- this function is used for npcs that change position every vanadiel game hour
------------------------------------
 function OnGameHourAutomatisation()
-
+	local VanadielHour = VanadielHour();
+	GetNPCByID(16806282):openDoor(); -- Attohwa Chasm miasma
+	if(VanadielHour % 3 == 0) then -- Opens flame spouts every 3 hours Earth time
+		GetNPCByID(17617179):openDoor(); -- Ifrit's Cauldron flame spout
+		GetNPCByID(17617180):openDoor(); -- Ifrit's Cauldron flame spout
+		GetNPCByID(17617181):openDoor(); -- Ifrit's Cauldron flame spout
+		GetNPCByID(17617182):openDoor(); -- Ifrit's Cauldron flame spout
+	end
 end;
