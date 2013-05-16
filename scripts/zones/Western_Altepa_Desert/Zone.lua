@@ -7,7 +7,8 @@
 package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
 
 require("scripts/zones/Western_Altepa_Desert/TextIDs");
-require( "scripts/globals/icanheararainbow");
+require("scripts/globals/icanheararainbow");
+require("scripts/globals/weather");
 
 -----------------------------------
 -- onInitialize
@@ -66,4 +67,11 @@ function onEventFinish( player, csid, option)
 	if (csid == 0x0002) then		
 		lightCutsceneFinish( player);  -- Quest: I Can Hear A Rainbow
 	end		
+end;
+
+function OnZoneWeatherChange(zoneid, weather)
+	local KingVinegarroon = GetMobByID(17289575); -- King Vinegarroon
+	if(weather == WEATHER_DUST_STORM or weather == WEATHER_SAND_STORM and GetMobAction(17289575) == 0) then
+		SpawnMob(17289575);
+	end
 end;

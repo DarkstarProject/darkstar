@@ -7,7 +7,8 @@
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
 
 require("scripts/zones/Valkurm_Dunes/TextIDs");
-require( "scripts/globals/icanheararainbow");
+require("scripts/globals/icanheararainbow");
+require("scripts/globals/weather");
 
 -----------------------------------
 -- onInitialize
@@ -66,4 +67,13 @@ function onEventFinish( player, csid, option)
 	if( csid == 0x0003) then		
 		lightCutsceneFinish( player);  -- Quest: I Can Hear A Rainbow
 	end		
+end;
+
+function OnZoneWeatherChange(zoneid, weather)
+	local qm1 = GetNPCByID(17199692); -- Quest: An Empty Vessel
+	if(weather == WEATHER_DUST_STORM) then
+		qm1:setStatus(0);
+	else
+		qm1:setStatus(3);
+	end
 end;

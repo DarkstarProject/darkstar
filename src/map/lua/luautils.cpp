@@ -2070,6 +2070,49 @@ int32 OnGameHourAutomatisation()
 }
 
 /************************************************************************
+*	OnZoneWeatherChange													*
+*   used to allow scripted Npcs and mobs to spawn under specific		*
+*	weather conditions													*
+*																		*
+************************************************************************/
+
+int32 OnZoneWeatherChange(uint16 ZoneID, uint8 weather)
+{
+	int8 File[255];
+	memset(File,0,sizeof(File));
+
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "OnZoneWeatherChange");
+
+	snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", zoneutils::GetZone(ZoneID)->GetName());
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+		ShowError("luautils::OnZoneWeatherChange: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnZoneWeatherChange");
+	if( lua_isnil(LuaHandle,-1) )
+	{
+		ShowError("luautils::OnZoneWeatherChange: undefined procedure OnGameHourAutomatisation\n");
+		return -1;
+	}
+
+	lua_pushinteger(LuaHandle, ZoneID);
+	lua_pushinteger(LuaHandle, weather);
+
+	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::OnZoneWeatherChange: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return -1;
+	}
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+}
+
+/************************************************************************
 *                                                                       *
 *                                                                       *
 *                                                                       *

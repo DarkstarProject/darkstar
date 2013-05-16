@@ -89,6 +89,7 @@ namespace luautils
 
 	int32 OnGameDayAutomatisation();											// Automatic action of NPC every game day
 	int32 OnGameHourAutomatisation();											// Automatic action of NPC every game hour
+	int32 OnZoneWeatherChange(uint16 ZoneID, uint8 weather);
 		
     int32 OnGameIn(CCharEntity* PChar);											//
 	int32 OnZoneIn(CCharEntity* PChar);											// triggers when a player zones into a zone

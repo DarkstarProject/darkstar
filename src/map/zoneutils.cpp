@@ -86,7 +86,9 @@ void UpdateWeather()
                 if (WeatherChange < WeatherFrequency)
                 {
 
-                    g_PZoneList[ZoneID]->SetWeather((WEATHER)weather); break;
+                    g_PZoneList[ZoneID]->SetWeather((WEATHER)weather);
+					luautils::OnZoneWeatherChange(ZoneID, weather);
+					break;
                 }
             }
         }
