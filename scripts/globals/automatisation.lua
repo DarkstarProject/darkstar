@@ -68,11 +68,14 @@ end;
 
 function OnGameHourAutomatisation()
 	local VanadielHour = VanadielHour();
+	
 	GetNPCByID(16806282):openDoor(); -- Attohwa Chasm miasma
-	if(VanadielHour % 3 == 0) then -- Opens flame spouts every 3 hours Earth time
-		GetNPCByID(17617179):openDoor(); -- Ifrit's Cauldron flame spout
-		GetNPCByID(17617180):openDoor(); -- Ifrit's Cauldron flame spout
-		GetNPCByID(17617181):openDoor(); -- Ifrit's Cauldron flame spout
-		GetNPCByID(17617182):openDoor(); -- Ifrit's Cauldron flame spout
+	
+	if(VanadielHour % 3 == 0) then -- Opens flame spouts every 3 hours Vana'diel time
+		GetNPCByID(17617179):openDoor(); -- Ifrit's Cauldron flame spout (H-6) Map 1
+		GetNPCByID(17617180):openDoor(); -- Ifrit's Cauldron flame spout (H-6) Map 5
+		GetNPCByID(17617181):openDoor(); -- Ifrit's Cauldron flame spout (I-10) Map 8
+		GetNPCByID(17617182):openDoor(); -- Ifrit's Cauldron flame spout (E-7) Map 8
 	end
+	
 end;
