@@ -370,10 +370,6 @@ enum MODIFIER
 // Dancer
 	MOD_FINISHING_MOVES		= 0x14D,			// Tracks # of finishing moves
 
-// Scholar
-	//MOD_DARK_ARTS_FASTCAST	= 0x153,
-
-
 	MOD_ENSPELL				= 0x155,			//stores the type of enspell active (0 if nothing)
 	MOD_SPIKES				= 0x156,			//store the type of spike spell active (0 if nothing)
 	MOD_ENSPELL_DMG			= 0x157,			//stores the base damage of the enspell before reductions
@@ -427,7 +423,9 @@ enum MODIFIER
     MOD_DARK_ARTS_EFFECT    = 0x14F,
     MOD_LIGHT_ARTS_SKILL    = 0x150,
     MOD_DARK_ARTS_SKILL     = 0x151,
-    MOD_REGEN_EFFECT        = 0x152
+    MOD_REGEN_EFFECT        = 0x152,
+    MOD_REGEN_DURATION      = 0x153,
+    MOD_HELIX_EFFECT        = 0x154
 };
 
 #define MAX_MODIFIER	       0x190

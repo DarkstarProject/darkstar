@@ -30,6 +30,8 @@ function onSpellCast(caster,target,spell)
 	
 	duration = 60;
 
+	duration = duration + caster:getMod(MOD_REGEN_DURATION);
+	
 	if (target:getMainLvl() < 66) then
 		duration = duration * target:getMainLvl() / 66;
 	end

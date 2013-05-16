@@ -11,6 +11,7 @@
 function onEffectGain(target,effect)
 	target:recalculateAbilitiesTable();
 	local bonus = effect:getPower();
+	local helix = effect:getSubPower();
 	
 	target:addMod(MOD_BLACK_MAGIC_COST, -bonus);
 	target:addMod(MOD_BLACK_MAGIC_CAST, -bonus);
@@ -23,6 +24,7 @@ function onEffectGain(target,effect)
 		target:addMod(MOD_WHITE_MAGIC_COST, 20);
 		target:addMod(MOD_WHITE_MAGIC_CAST, 20);
 		target:addMod(MOD_WHITE_MAGIC_RECAST, 20);
+		target:addMod(MOD_HELIX_EFFECT, helix);
 	end
 end;
 
@@ -40,6 +42,7 @@ end;
 function onEffectLose(target,effect)
 	target:recalculateAbilitiesTable();
 	local bonus = effect:getPower();
+	local helix = effect:getSubPower();
 	
 	target:delMod(MOD_BLACK_MAGIC_COST, -bonus);
 	target:delMod(MOD_BLACK_MAGIC_CAST, -bonus);
@@ -52,5 +55,6 @@ function onEffectLose(target,effect)
 		target:delMod(MOD_WHITE_MAGIC_COST, 20);
 		target:delMod(MOD_WHITE_MAGIC_CAST, 20);
 		target:delMod(MOD_WHITE_MAGIC_RECAST, 20);
+		target:delMod(MOD_HELIX_EFFECT, helix);
 	end
 end;

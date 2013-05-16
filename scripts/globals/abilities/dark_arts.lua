@@ -10,7 +10,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function OnAbilityCheck(player,target,ability)
-	if player:hasStatusEffect(EFFECT_DARK_ARTS) then
+	if player:hasStatusEffect(EFFECT_DARK_ARTS) or player:hasStatusEffect(EFFECT_ADDENDUM_BLACK) then
 		return MSGBASIC_EFFECT_ALREADY_ACTIVE, 0;
 	end
 	return 0,0;
@@ -26,7 +26,13 @@ function OnUseAbility(player, target, ability)
 	player:delStatusEffect(EFFECT_ALTRUISM);
 	player:delStatusEffect(EFFECT_TRANQUILITY);
 	player:delStatusEffect(EFFECT_PERPETUANCE);
-	player:addStatusEffect(EFFECT_DARK_ARTS,1,0,7200);
+	
+	local helixbonus = 0;
+	if (player:getMainJob() == JOB_SCH and player:getMainLvl() >= 20) then
+		helixbonus = math.floor(player:getMainLvl() / 5) - 3;
+	end
+	
+	player:addStatusEffect(EFFECT_DARK_ARTS,1,0,7200,helixbonus);
 
     return EFFECT_DARK_ARTS;
 end;

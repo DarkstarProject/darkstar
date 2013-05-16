@@ -10,7 +10,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function OnAbilityCheck(player,target,ability)
-	if player:hasStatusEffect(EFFECT_LIGHT_ARTS) then
+	if player:hasStatusEffect(EFFECT_LIGHT_ARTS) or player:hasStatusEffect(EFFECT_ADDENDUM_WHITE) then
 		return MSGBASIC_EFFECT_ALREADY_ACTIVE, 0;
 	end
 	return 0,0;
