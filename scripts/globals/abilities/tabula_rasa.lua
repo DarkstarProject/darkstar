@@ -22,7 +22,7 @@ function OnUseAbility(player, target, ability)
 	
 	local helixbonus = 0;
 	if (player:getMainJob() == JOB_SCH and player:getMainLvl() >= 20) then
-		helixbonus = math.floor(player:getMainLvl() / 5) - 3;
+		helixbonus = math.floor(player:getMainLvl() / 4);
 	end
 
 	player:addStatusEffect(EFFECT_TABULA_RASA,math.floor(helixbonus*1.5),0,180,0,math.floor(regenbonus*1.5));

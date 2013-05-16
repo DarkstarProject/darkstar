@@ -29,7 +29,7 @@ function OnUseAbility(player, target, ability)
 	
 	local helixbonus = 0;
 	if (player:getMainJob() == JOB_SCH and player:getMainLvl() >= 20) then
-		helixbonus = math.floor(player:getMainLvl() / 5) - 3;
+		helixbonus = math.floor(player:getMainLvl() / 4);
 	end
 	
 	player:addStatusEffect(EFFECT_DARK_ARTS,1,0,7200,helixbonus);

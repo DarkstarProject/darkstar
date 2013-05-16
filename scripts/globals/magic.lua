@@ -656,11 +656,11 @@ function addBonuses(caster, spell, target, dmg)
 		if(equippedLegs == 15120 or equippedLegs == 15583) then
 			dayWeatherBonus = dayWeatherBonus + 0.05;
 		end
-		if(math.random() < 0.33 or equippedWaist == elementalObi[ele]) then
+		if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
 	elseif(dayElement == dayWeak[ele]) then
-		if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele]) then
+		if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] or isHelixSpell(spell)) then
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
 	end

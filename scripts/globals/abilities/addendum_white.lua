@@ -26,7 +26,7 @@ function OnUseAbility(player, target, ability)
 		regenbonus = 3 * math.floor((player:getMainLvl() - 10) / 10);
 	end
 	
-	player:addStatusEffectEx(EFFECT_ADDENDUM_WHITE,EFFECT_ADDENDUM_WHITE,effectbonus,0,7200,0,regenbonus, true);
+	player:addStatusEffectEx(EFFECT_ADDENDUM_WHITE,EFFECT_ADDENDUM_WHITE,effectbonus,0,7200,0,regenbonus,true);
 
-    return EFFECT_LIGHT_ARTS;
+    return EFFECT_ADDENDUM_WHITE;
 end;

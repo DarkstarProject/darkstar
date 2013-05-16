@@ -21,8 +21,12 @@ function OnUseAbility(player, target, ability)
 	
 	local skillbonus = player:getMod(MOD_DARK_ARTS_SKILL);
 	local effectbonus = player:getMod(MOD_DARK_ARTS_EFFECT);
+	local helixbonus = 0;
+	if (player:getMainJob() == JOB_SCH and player:getMainLvl() >= 20) then
+		helixbonus = math.floor(player:getMainLvl() / 4);
+	end
 	
-	player:addStatusEffectEx(EFFECT_ADDENDUM_BLACK,EFFECT_ADDENDUM_BLACK,effectbonus,0,7200,0,true);
+	player:addStatusEffectEx(EFFECT_ADDENDUM_BLACK,EFFECT_ADDENDUM_BLACK,effectbonus,0,7200,0,helixbonus,true);
 
-    return EFFECT_LIGHT_ARTS;
+    return EFFECT_ADDENDUM_BLACK;
 end;
