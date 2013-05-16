@@ -10,12 +10,17 @@ require("scripts/globals/status");
 -----------------------------------
 
 function OnAbilityCheck(player,target,ability)
-	return 0,0;
+	local effectID = getCorsairRollEffect(ability:getID());
+	if (player:hasStatusEffect(effectID) or player:hasBustEffect(effectID)) then
+		return MSGBASIC_ROLL_ALREADY_ACTIVE,0;
+	else
+		return 0,0;
+	end
 end;
 
 function OnUseAbilityRoll(caster, target, ability, total)
 	local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
-	local effectpowers = {8, 32, 10, 12, 14, 4, 16, 20, 22, 24, 40}
+	local effectpowers = {8, 32, 10, 12, 14, 4, 16, 20, 22, 24, 40, 5}
 	local effectpower = effectpowers[total]
 	if (total < 12 and caster:hasPartyJob(JOB_SAM) ) then
 		effectpower = effectpower + 10;
