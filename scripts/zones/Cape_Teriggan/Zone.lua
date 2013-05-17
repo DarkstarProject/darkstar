@@ -6,8 +6,9 @@
 
 package.loaded[ "scripts/zones/Cape_Teriggan/TextIDs"] = nil;
 
-require( "scripts/zones/Cape_Teriggan/TextIDs");
-require( "scripts/globals/icanheararainbow");
+require("scripts/zones/Cape_Teriggan/TextIDs");
+require("scripts/globals/icanheararainbow");
+require("scripts/globals/weather");
 
 -----------------------------------
 -- onInitialize
@@ -66,4 +67,14 @@ function onEventFinish( player, csid, option)
 	if (csid == 0x0002) then
 		lightCutsceneFinish( player);  -- Quest: I Can Hear A Rainbow
 	end
+end;
+
+function OnZoneWeatherChange(weather)
+	
+	if(weather == WEATHER_WIND or weather == WEATHER_GALES) then
+		SpawnMob(17240413); -- Kreutzet
+	elseif(GetMobAction(17240413) == 16 and (weather ~= WEATHER_WIND or weather ~= WEATHER_GALES)) then
+		DespawnMob(17240413);
+	end
+	
 end;

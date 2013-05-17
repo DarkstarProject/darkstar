@@ -71,8 +71,10 @@ end;
 
 function OnZoneWeatherChange(weather)
 	
-	if(weather == WEATHER_DUST_STORM or weather == WEATHER_SAND_STORM and GetMobAction(17289575) == 0) then
-		SpawnMob(17289575);
+	if(weather == WEATHER_DUST_STORM or weather == WEATHER_SAND_STORM) then
+		SpawnMob(17289575); -- King Vinegarroon
+	elseif(GetMobAction(17289575) == 16 and (weather ~= WEATHER_DUST_STORM or weather ~= WEATHER_SAND_STORM)) then
+		DespawnMob(17289575);
 	end
 	
 end;
