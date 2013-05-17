@@ -81,3 +81,12 @@ function onEventFinish(player,csid,option)
 	--printf("CSID: %u",csid);
 	--printf("RESULT: %u",option);
 end;	
+
+function OnZoneWeatherChange(weather)
+	local qm2 = GetNPCByID(17559904); -- Quest: An Empty Vessel
+	if(weather == WEATHER_NONE or weather == WEATHER_SUNSHINE) then
+		qm2:setStatus(0);
+	else
+		qm2:setStatus(3);
+	end
+end;
