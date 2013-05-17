@@ -1696,6 +1696,8 @@ int32 OnMobDisengage(CBaseEntity* PMob)
 	lua_pushnil(LuaHandle);
 	lua_setglobal(LuaHandle, "onMobDisengage");
 
+	uint8 weather = PMob->loc.zone->GetWeather();
+
 	snprintf( File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
@@ -1713,7 +1715,9 @@ int32 OnMobDisengage(CBaseEntity* PMob)
 	CLuaBaseEntity LuaMobEntity(PMob);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
 
-	if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
+	lua_pushinteger(LuaHandle, weather);
+
+	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::onMobDisengage: %s\n",lua_tostring(LuaHandle,-1));
 		lua_pop(LuaHandle, 1);

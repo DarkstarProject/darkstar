@@ -1,10 +1,10 @@
 -----------------------------------
 -- Area: Western Altepa Desert
 --   NM: King Vinegarroon
--- ToDo: Should spawn only in earth weather
 -----------------------------------
 
 require("scripts/globals/titles");
+require("scripts/globals/weather");
 
 -----------------------------------
 -- onMobSpawn Action
@@ -26,4 +26,12 @@ function onMobDeath(mob, killer)
   UpdateNMSpawnPoint(King_Vinegarroon);
   SpawnMob(King_Vinegarroon, '', math.random((75600),(86400)));
   
+end;
+
+function onMobDisengage(mob, weather)
+	
+	if(weather ~= WEATHER_DUST_STORM or weather ~= WEATHER_SAND_STORM) then
+		DespawnMob(mob:getID());
+	end
+	
 end;
