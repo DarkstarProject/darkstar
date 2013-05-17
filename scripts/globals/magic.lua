@@ -741,7 +741,7 @@ function getElementalDebuffStatDownFromDOT(dot)
     return stat_down;
 end;
 
-function getHelixDuration(caster, target, spell)
+function getHelixDuration(caster)
 	--Dark Arts will further increase Helix duration, but testing is ongoing.
 
 	local casterLevel = caster:getMainLvl();

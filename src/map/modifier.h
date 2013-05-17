@@ -425,7 +425,8 @@ enum MODIFIER
     MOD_DARK_ARTS_SKILL     = 0x151,
     MOD_REGEN_EFFECT        = 0x152,
     MOD_REGEN_DURATION      = 0x153,
-    MOD_HELIX_EFFECT        = 0x154
+    MOD_HELIX_EFFECT        = 0x154,
+    MOD_HELIX_DURATION      = 0x155
 };
 
 #define MAX_MODIFIER	       0x190

@@ -572,6 +572,7 @@ public:
     void    SetTier(uint16 tier);
 	void	SetDuration(uint32 Duration);
     void    SetOwner(CBattleEntity* Owner);
+    void    SetTickTime(uint32 tick);
 
 	void	SetLastTick(uint32 LastTick);
 	void	SetStartTime(uint32 StartTime);

@@ -174,6 +174,11 @@ void CStatusEffect::SetLastTick(uint32 LastTick)
 	m_LastTick = LastTick;
 }
 
+void CStatusEffect::SetTickTime(uint32 tick)
+{
+	m_TickTime = tick;
+}
+
 void CStatusEffect::SetName(const int8* name)
 {
 	m_Name.clear();

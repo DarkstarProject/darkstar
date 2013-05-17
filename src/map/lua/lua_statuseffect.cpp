@@ -149,9 +149,17 @@ inline int32 CLuaStatusEffect::getTickCount(lua_State* L)
 
     if (m_PLuaStatusEffect->GetTickTime() != 0)
 	{
-		count = count = (m_PLuaStatusEffect->GetLastTick() - m_PLuaStatusEffect->GetStartTime()) / m_PLuaStatusEffect->GetTickTime();
+		count = (m_PLuaStatusEffect->GetLastTick() - m_PLuaStatusEffect->GetStartTime()) / m_PLuaStatusEffect->GetTickTime();
     }
 	lua_pushinteger( L, count );
+	return 1;
+}
+
+inline int32 CLuaStatusEffect::getTick(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+	
+	lua_pushinteger( L, m_PLuaStatusEffect->GetTickTime() );
 	return 1;
 }
 
@@ -211,6 +219,16 @@ inline int32 CLuaStatusEffect::setDuration(lua_State* L)
 	return 0;
 }
 
+inline int32 CLuaStatusEffect::setTick(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+    m_PLuaStatusEffect->SetTickTime( lua_tointeger(L,1) );
+    return 0;
+}
+
 /************************************************************************
 *                                                                       *
 *  Перезапускаем эффект                                                 *
@@ -260,5 +278,7 @@ Lunar<CLuaStatusEffect>::Register_t CLuaStatusEffect::methods[] =
     LUNAR_DECLARE_METHOD(CLuaStatusEffect,setSubPower),
     LUNAR_DECLARE_METHOD(CLuaStatusEffect,getTier),
     LUNAR_DECLARE_METHOD(CLuaStatusEffect,setTier),
+    LUNAR_DECLARE_METHOD(CLuaStatusEffect,getTick),
+    LUNAR_DECLARE_METHOD(CLuaStatusEffect,setTick),
 	{NULL,NULL}
 }; 
