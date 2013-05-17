@@ -11,3 +11,6 @@ ITEM_DELIVERY_DIALOG = 7857; -- Have something to send?
 	   
 -- Shop Texts
 LAYTON_SHOP_DIALOG = 0; -- [UNKNOWN]
+
+-- Quest Dialog
+YOU_CAN_NOW_BECOME_A_SCHOLAR = 7667;
