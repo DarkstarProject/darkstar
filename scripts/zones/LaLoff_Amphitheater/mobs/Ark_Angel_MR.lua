@@ -4,6 +4,9 @@
 --
 -----------------------------------
 require("scripts/zones/LaLoff_Amphitheater/TextIDs");
+
+-- TODO: Allegedly has a 12 hp/sec regen.  Determine if true, and add to onMobInitialize if so.
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
@@ -11,48 +14,41 @@ require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 function OnMobSpawn(mob)
 end;
 
-
 -----------------------------------
 -- onMobEngaged
 -----------------------------------
 
 function onMobEngaged(mob,target)
 
-	local mobid = mob:getID()
+-- TODO: Summons pet when party is engaged.  Randomly chosen between Tiger and Mandragora.
+--       Current victory system doesn't readily support a random choice of pet while having
+--       the pet as a victory condition.  Therefore, Mandragora just isn't used at this time.
 
-	if (mobid == 17514500) then
-		GetMobByID(17514497):updateEnmity(target);
-		GetMobByID(17514509):updateEnmity(target);
-		GetMobByID(17514512):updateEnmity(target);
-		GetMobByID(17514515):updateEnmity(target);
-		GetMobByID(17514518):updateEnmity(target);
-		GetMobByID(17514503):updateEnmity(target);
-		return;
+   local mobid = mob:getID()
 
-	elseif (mobid == 17514501) then
-		GetMobByID(17514498):updateEnmity(target);
-		GetMobByID(17514504):updateEnmity(target);
-		GetMobByID(17514510):updateEnmity(target);
-		GetMobByID(17514513):updateEnmity(target);
-		GetMobByID(17514516):updateEnmity(target);
-		GetMobByID(17514519):updateEnmity(target);
-		return;
-
-
-	elseif (mobid == 17514502) then
-		GetMobByID(17514499):updateEnmity(target);
-		GetMobByID(17514505):updateEnmity(target);
-		GetMobByID(17514511):updateEnmity(target);
-		GetMobByID(17514514):updateEnmity(target);
-		GetMobByID(17514517):updateEnmity(target);
-		GetMobByID(17514520):updateEnmity(target);
-		return;
-
-	end
-
-
+   for member = mobid-1, mobid+6 do
+      if (GetMobAction(member) == 16) then 
+         GetMobByID(member):updateEnmity(target);
+      end
+   end
 end;
 
+-----------------------------------
+-- onMobFight Action
+-----------------------------------
+function onMobFight(mob,target)
+
+-- TODO: Determine conditions for resummoning pet, if this is done.
+
+   local mobid = mob:getID()
+
+   -- Party hate.  Keep everybody in the fight.
+   for member = mobid-1, mobid+6 do
+      if (GetMobAction(member) == 16) then
+         GetMobByID(member):updateEnmity(target);
+      end
+   end
+end;
 
 -----------------------------------
 -- onMobDeath Action

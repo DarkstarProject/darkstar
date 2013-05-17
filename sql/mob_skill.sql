@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `mob_skill` (
   `mob_skill_id` smallint(4) unsigned NOT NULL,
   `family_id` smallint(3) unsigned NOT NULL,
   `mob_anim_id` smallint(4) unsigned NOT NULL,
-  `mob_skill_name` char(20) CHARACTER SET latin1 NOT NULL,
+  `mob_skill_name` char(25) CHARACTER SET latin1 NOT NULL,
   `mob_skill_aoe` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `mob_skill_distance` float(3,1) NOT NULL DEFAULT '6.0',
   `mob_anim_time` smallint(4) unsigned NOT NULL DEFAULT '2000',

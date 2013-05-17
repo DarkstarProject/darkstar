@@ -4,6 +4,9 @@
 --
 -----------------------------------
 require("scripts/zones/LaLoff_Amphitheater/TextIDs");
+
+-- TODO: Allegedly has a 12 hp/sec regen.  Determine if true, and add to onMobInitialize if so.
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
@@ -11,48 +14,41 @@ require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 function OnMobSpawn(mob)
 end;
 
-
 -----------------------------------
 -- onMobEngaged
 -----------------------------------
 
 function onMobEngaged(mob,target)
 
-	local mobid = mob:getID()
+-- TODO: Call Wyvern onMobEngage
 
-	if (mobid == 17514515) then
-		GetMobByID(17514497):updateEnmity(target);
-		GetMobByID(17514500):updateEnmity(target);
-		GetMobByID(17514509):updateEnmity(target);
-		GetMobByID(17514512):updateEnmity(target);
-		GetMobByID(17514518):updateEnmity(target);
-		GetMobByID(17514503):updateEnmity(target);
-		return;
+   local mobid = mob:getID()
 
-	elseif (mobid == 17514513) then
-		GetMobByID(17514498):updateEnmity(target);
-		GetMobByID(17514501):updateEnmity(target);
-		GetMobByID(17514504):updateEnmity(target);
-		GetMobByID(17514510):updateEnmity(target);
-		GetMobByID(17514516):updateEnmity(target);
-		GetMobByID(17514519):updateEnmity(target);
-		return;
-
-
-	elseif (mobid == 17514514) then
-		GetMobByID(17514499):updateEnmity(target);
-		GetMobByID(17514502):updateEnmity(target);
-		GetMobByID(17514505):updateEnmity(target);
-		GetMobByID(17514511):updateEnmity(target);
-		GetMobByID(17514517):updateEnmity(target);
-		GetMobByID(17514520):updateEnmity(target);
-		return;
-
-	end
-
-
+   for member = mobid-6, mobid+1 do
+      if (GetMobAction(member) == 16) then 
+         GetMobByID(member):updateEnmity(target);
+      end
+   end
 end;
 
+-----------------------------------
+-- onMobFight Action
+-----------------------------------
+function onMobFight(mob,target)
+
+-- TODO: Allegedly resummons wyvern 30 seconds after death.  Verify and implement if true.
+-- TODO: Allegedly uses Meikyo Shisui every 90 seconds.  Verify and implement if true.
+-- TODO: AA GK actively seeks to skillchain to Light off of his own WSs under MS, or other AA's WSs.
+
+   local mobid = mob:getID()
+
+   -- Party hate.  Keep everybody in the fight.
+   for member = mobid-6, mobid+1 do
+      if (GetMobAction(member) == 16) then
+         GetMobByID(member):updateEnmity(target);
+      end
+   end
+end;
 
 -----------------------------------
 -- onMobDeath Action
