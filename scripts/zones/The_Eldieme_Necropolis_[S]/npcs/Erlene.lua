@@ -57,7 +57,11 @@ function onTrigger(player,npc)
 			player:startEvent(13);
 		end
 	elseif(ALittleKnowledge == QUEST_COMPLETED) then
-		player:startEvent(15);
+		if(player:getMainJob() == JOB_SCH and player:getMainLvl() >= 5) then
+			player:startEvent(47);
+		else
+			player:startEvent(15);
+		end
 	end
 	
 end; 
@@ -91,6 +95,12 @@ function onEventFinish(player,csid,option)
 		player:setVar("ALittleKnowledge", 0);
 		player:messageSpecial(YOU_CAN_NOW_BECOME_A_SCHOLAR);
 		player:completeQuest(CRYSTAL_WAR, A_LITTLE_KNOWLEDGE);
+	elseif(csid == 47) then
+		if(player:canLearnSpell(478) and player:canLearnSpell(502)) then
+			player:addSpell(478, true);
+			player:addSpell(502, true);
+			player:messageSpecial(YOU_LEARN_EMBRAVA_AND_KAUSTRA);
+		end
 	end
 	
 end;

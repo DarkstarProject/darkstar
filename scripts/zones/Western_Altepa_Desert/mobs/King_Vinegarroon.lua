@@ -30,7 +30,7 @@ end;
 
 function onMobDisengage(mob, weather)
 	
-	if(weather ~= WEATHER_DUST_STORM or weather ~= WEATHER_SAND_STORM) then
+	if(weather ~= WEATHER_DUST_STORM and weather ~= WEATHER_SAND_STORM) then
 		DespawnMob(mob:getID());
 	end
 	

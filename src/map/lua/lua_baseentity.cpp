@@ -1575,17 +1575,23 @@ inline int32 CLuaBaseEntity::addSpell(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	bool silent = false;
 
-    uint16 SpellID = (uint16)lua_tointeger(L,-1);
+	uint32 n = lua_gettop(L);
+
+    uint16 SpellID = (uint16)lua_tointeger(L, 1);
+	if (n > 1)
+		silent = lua_toboolean(L, 2);
 
     if (charutils::addSpell(PChar, SpellID))
     {
         charutils::SaveSpells(PChar);
         PChar->pushPacket(new CCharSpellsPacket(PChar));
-        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 23));
+		if(!silent)
+			PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 23));
     }
     return 0;
 }
