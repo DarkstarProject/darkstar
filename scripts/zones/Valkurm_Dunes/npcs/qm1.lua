@@ -24,7 +24,7 @@ function onTrigger(player,npc)
 	
 	if(player:getFreeSlotsCount() > 0) then
 		player:addItem(503);
-		player:messageSpecial(ITEM_OBTAINED,503,1);
+		player:messageSpecial(ITEM_OBTAINED,503);
 	else
 		player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,503);
 	end

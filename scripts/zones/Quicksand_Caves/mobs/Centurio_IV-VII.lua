@@ -21,7 +21,7 @@ end;
 function onMobEngaged(mob, target)
 end;
 
-function onMobDisengage(mob, weather)
+function onMobDisengage(mob)
 	-- printf("Disengaging Centurio");
 	local self = mob:getID();
 	DespawnMob(self, 120);
