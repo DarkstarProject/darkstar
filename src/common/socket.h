@@ -9,6 +9,7 @@
 
 
 #ifdef WIN32
+#define FD_SETSIZE 1000
 	#include <winsock2.h>
 	typedef long in_addr_t;
 #else
