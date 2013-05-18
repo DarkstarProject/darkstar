@@ -17,6 +17,8 @@ function OnAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
+	player:delStatusEffectSilent(EFFECT_DARK_ARTS);
+	player:delStatusEffectSilent(EFFECT_ADDENDUM_BLACK);
 	player:delStatusEffectSilent(EFFECT_LIGHT_ARTS);
 	
 	local skillbonus = player:getMod(MOD_LIGHT_ARTS_SKILL);

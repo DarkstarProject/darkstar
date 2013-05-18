@@ -32,7 +32,7 @@ function OnUseAbility(player, target, ability)
 		helixbonus = math.floor(player:getMainLvl() / 4);
 	end
 	
-	player:addStatusEffect(EFFECT_DARK_ARTS,1,0,7200,helixbonus);
+	player:addStatusEffect(EFFECT_DARK_ARTS,1,0,7200,0,helixbonus);
 
     return EFFECT_DARK_ARTS;
 end;

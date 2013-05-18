@@ -370,12 +370,12 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
 {
     CStatusEffect* PStatusEffect = m_StatusEffectList.at(id);
 
+    m_StatusEffectList.erase(m_StatusEffectList.begin() + id);
+
     luautils::OnEffectLose(m_POwner, PStatusEffect);
 
     m_POwner->delModifiers(&PStatusEffect->modList);
     m_POwner->UpdateHealth();
-
-    m_StatusEffectList.erase(m_StatusEffectList.begin() + id);
 
     if (m_POwner->objtype == TYPE_PC)
     {
