@@ -32,7 +32,7 @@ function onSpellCast(caster,target,spell)
 
 	local final = getCureFinal(caster,spell,getBaseCureOld(power,divisor,constant),minCure,true);
 
-	final = final + (final * target:getMod(MOD_CURE_POTENCY_RCVD));
+	final = final + (final * (target:getMod(MOD_CURE_POTENCY_RCVD)/100));
 	
 	if(target:getObjType() == TYPE_PC) then
 		--Applying server mods....
