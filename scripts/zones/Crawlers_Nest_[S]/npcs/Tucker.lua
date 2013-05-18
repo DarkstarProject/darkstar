@@ -101,8 +101,6 @@ function onEventFinish(player,csid,option)
 		else
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 2550);
 		end
-	elseif(csid == 12) then
-		player:setVar("SheetsofVellum", 0);
 	end
 	
 end;

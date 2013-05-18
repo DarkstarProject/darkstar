@@ -93,6 +93,7 @@ function onEventFinish(player,csid,option)
 		player:unlockJob(JOB_SCH);
 		player:addTitle(SCHULTZ_SCHOLAR);
 		player:setVar("ALittleKnowledge", 0);
+		player:setVar("SheetsofVellum", 0);
 		player:messageSpecial(YOU_CAN_NOW_BECOME_A_SCHOLAR);
 		player:completeQuest(CRYSTAL_WAR, A_LITTLE_KNOWLEDGE);
 	elseif(csid == 47) then
