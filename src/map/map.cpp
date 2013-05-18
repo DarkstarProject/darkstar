@@ -209,6 +209,8 @@ int32 do_init(int32 argc, int8** argv)
 
 	CREATE(g_PBuff,   int8, map_config.buffer_size + 20);
     CREATE(PTempBuff, int8, map_config.buffer_size + 20);
+	aFree((void*)map_config.mysql_login);
+	aFree((void*)map_config.mysql_password);
 	ShowStatus("The map-server is " CL_GREEN"ready" CL_RESET" to work...\n");
     ShowMessage("=======================================================================\n");
 	return 0;
