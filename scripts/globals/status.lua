@@ -825,6 +825,7 @@ MOD_REGEN_EFFECT        = 0x152
 MOD_REGEN_DURATION      = 0x153
 MOD_HELIX_EFFECT        = 0x154
 MOD_HELIX_DURATION		= 0x155
+MOD_STORMSURGE_EFFECT   = 0x190
 
 -----------------------------------
 -- Merit Definitions

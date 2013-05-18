@@ -1,6 +1,8 @@
 -----------------------------------
--- Ability: Mantra
+-- Ability: Sublimation
 -----------------------------------
+
+require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
@@ -12,11 +14,9 @@ function OnAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-	player:delStatusEffect(EFFECT_MAX_HP_BOOST);
-
-	local merits = player:getMerit(MERIT_MANTRA);
-
-	target:addStatusEffect(EFFECT_MAX_HP_BOOST,merits,0,180);
 	
-	return EFFECT_MANTRA;
+	if (player:hasStatusEffect(EFFECT_SUBLIMATION_COMPLETE) then
+		
+	end
+    return EFFECT_LIGHT_ARTS;
 end;

@@ -862,9 +862,8 @@ inline int32 CLuaBaseEntity::getWeather(lua_State *L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-	CZone* PZone = zoneutils::GetZone(PChar->getZone());
 
-	WEATHER weather = PZone->GetWeather();
+	WEATHER weather = battleutils::GetWeather(PChar, false);
 
 	switch(weather)
     {

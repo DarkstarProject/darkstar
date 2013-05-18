@@ -180,6 +180,8 @@ namespace battleutils
     CMobSkill*          GetTwoHourMobSkill(JOBTYPE job);
 
     uint8               GetSpellAoEType(CBattleEntity* PCaster, CSpell* PSpell);
+    WEATHER             GetWeather(CBattleEntity* PEntity, bool ignoreScholar);
+
 };
 
 #endif
