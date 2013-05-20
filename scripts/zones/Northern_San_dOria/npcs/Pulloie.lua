@@ -43,8 +43,4 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-if (csid == 0x0253 or csid == 0x0256 and option == 0) then
-player:setHomePoint();
-player:messageSpecial(HOMEPOINT_SET);
-end
 end;
