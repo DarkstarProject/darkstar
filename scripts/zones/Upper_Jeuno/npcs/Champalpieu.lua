@@ -28,7 +28,7 @@ stock = {0x110D,120,	--Rolanberry
 	0x43B8,5,	--Crossbow Bolt
 	0x025D,180,	--Pickaxe
 	0x13C8,567,	--Wind Threnody
-	0x13BB,420}	--Water Threnody
+	0x13CB,420}	--Water Threnody
  
 showShop(player, STATIC, stock);
 end; 
