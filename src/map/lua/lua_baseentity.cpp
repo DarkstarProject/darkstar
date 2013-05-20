@@ -861,9 +861,9 @@ inline int32 CLuaBaseEntity::getWeather(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 
-	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
 
-	WEATHER weather = battleutils::GetWeather(PChar, false);
+	WEATHER weather = battleutils::GetWeather(PEntity, false);
 
 	switch(weather)
     {

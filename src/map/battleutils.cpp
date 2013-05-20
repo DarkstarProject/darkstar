@@ -4012,23 +4012,25 @@ uint8 GetSpellAoEType(CBattleEntity* PCaster, CSpell* PSpell)
 WEATHER GetWeather(CBattleEntity* PEntity, bool ignoreScholar)
 {
     WEATHER scholarSpell = WEATHER_NONE;
-    if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_FIRESTORM))
-        scholarSpell = WEATHER_HOT_SPELL;
-    if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_RAINSTORM))
-        scholarSpell = WEATHER_RAIN;
-    if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SANDSTORM))
-        scholarSpell = WEATHER_DUST_STORM;
-    if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_WINDSTORM))
-        scholarSpell = WEATHER_WIND;
-    if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_HAILSTORM))
-        scholarSpell = WEATHER_SNOW;
-    if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_THUNDERSTORM))
-        scholarSpell = WEATHER_THUNDER;
-    if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_AURORASTORM))
-        scholarSpell = WEATHER_AURORAS;
-    if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_VOIDSTORM))
-        scholarSpell = WEATHER_GLOOM;
-
+    if (PEntity->objtype == TYPE_MOB || PEntity->objtype == TYPE_PC)
+    {
+        if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_FIRESTORM))
+            scholarSpell = WEATHER_HOT_SPELL;
+        if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_RAINSTORM))
+            scholarSpell = WEATHER_RAIN;
+        if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SANDSTORM))
+            scholarSpell = WEATHER_DUST_STORM;
+        if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_WINDSTORM))
+            scholarSpell = WEATHER_WIND;
+        if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_HAILSTORM))
+            scholarSpell = WEATHER_SNOW;
+        if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_THUNDERSTORM))
+            scholarSpell = WEATHER_THUNDER;
+        if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_AURORASTORM))
+            scholarSpell = WEATHER_AURORAS;
+        if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_VOIDSTORM))
+            scholarSpell = WEATHER_GLOOM;
+    }
     WEATHER zoneWeather = zoneutils::GetZone(PEntity->getZone())->GetWeather();
 
     if (ignoreScholar || scholarSpell == WEATHER_NONE)
