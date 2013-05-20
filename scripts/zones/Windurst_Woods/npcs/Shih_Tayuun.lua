@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Windurst Woods
 -- NPC: Shih Tayuun
--- Guild Merchant NPC: Bonecrafting Guild 
+-- Guild Merchant NPC: Clothcraft Guild 
 -- @zone: 241
 -- @pos: -3.064 -6.25 -131.374
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(514,8,23,3)) then
+	if(player:sendGuild(514,6,21,0)) then
 		player:showText(npc,SHIH_TAYUUN_DIALOG);
 	end
 end;

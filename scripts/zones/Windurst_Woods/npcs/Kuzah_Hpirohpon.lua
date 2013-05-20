@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(515,6,21,1)) then
+	if(player:sendGuild(515,6,21,0)) then
 		player:showText(npc,KUZAH_HPIROHPON_DIALOG);
 	end
 end;
