@@ -22,7 +22,6 @@ end;
 function onTrigger(player,npc)
 	local npcid = npc:getID();
 
-	printf("id: %u", npcid);
 	if(npcid == 17310038) then
 		local portal = GetNPCByID(17310051);
 		if(portal:getAnimation() == 8) then

@@ -1,4 +1,3 @@
-
 require("/scripts/globals/settings");
 require("scripts/globals/conquest");
 
@@ -210,9 +209,12 @@ FOV_MENU_ELITE_CHAP6 = 132;
 FOV_MENU_ELITE_CHAP7 = 148;
 
 --Special Message IDs (these usually don't break)
+--Found in Dialog Tables under "Other>System Messages (4)"
 FOV_MSG_KILLED_TARGET    = 558;
 FOV_MSG_COMPLETED_REGIME = 559;
+FOV_MSG_GET_GIL          = 565;
 FOV_MSG_GET_TABS         = 566;
+FOV_MSG_BEGINS_ANEW      = 643;
 
 
 --MESSAGE ID CONSTANTS (msg id of "new training regime registered!": change this if msg ids break!)
@@ -531,12 +533,18 @@ function checkRegime(killer,mob,rid,index)
                         --complete regime
                         killer:messageBasic(FOV_MSG_COMPLETED_REGIME);
                         local reward = getRegimeReward(rid);
-                        local tabs = (math.floor((reward/10))*TABS_RATE);
-						
-                        killer:addPoint(TABS,tabs);
-                        killer:messageBasic(FOV_MSG_GET_TABS,math.floor((reward/10))*TABS_RATE,tabs);
-                        killer:addGil(reward);
-						
+                        local tabs = (math.floor(reward/10)*TABS_RATE);
+                        local VanadielEpoch = (VanadielYear() * 360) + VanadielDayOfTheYear();
+
+                        -- Award gil and tabs once per day.
+                        if (killer:getVar("fov_LastReward") < VanadielEpoch) then
+                           killer:messageBasic(FOV_MSG_GET_GIL,reward);
+                           killer:addGil(reward);
+                           killer:addPoint(TABS,tabs);
+                           killer:messageBasic(FOV_MSG_GET_TABS,tabs,killer:getPoint(TABS)); -- Careful about order.
+                           killer:setVar("fov_LastReward",VanadielEpoch);
+                        end
+
                         --TODO: display msgs (based on zone annoyingly, so will need killer:getZone() then a lookup)
                         killer:addExp(reward);
                         if (k1 ~= 0) then killer:setVar("fov_numkilled1",0); end
@@ -550,7 +558,7 @@ function checkRegime(killer,mob,rid,index)
                             killer:setVar("fov_numneeded3",0);
                             killer:setVar("fov_numneeded4",0);
                         else
-                        --message what you start repeat
+                           killer:messageBasic(FOV_MSG_BEGINS_ANEW);
                         end
                     end
                 end
