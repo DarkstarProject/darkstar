@@ -3758,7 +3758,7 @@ uint8 AvatarPerpetuationReduction(CCharEntity* PChar)
 	else if( affinity < 0 )
 		reduction = reduction - affinity - 1;
 
-	if( CVanaTime::getInstance()->getWeekday()+1 == element )
+	if( CVanaTime::getInstance()->getWeekday() == element )
 		reduction = reduction + PChar->getMod(MOD_DAY_REDUCTION);
 
 	WEATHER weather = battleutils::GetWeather(PChar,false);
