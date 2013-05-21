@@ -3744,7 +3744,7 @@ uint8 AvatarPerpetuationReduction(CCharEntity* PChar)
 	MODIFIER strong[8] = {MOD_FIRE_AFFINITY, MOD_EARTH_AFFINITY, MOD_WATER_AFFINITY, MOD_WIND_AFFINITY, MOD_ICE_AFFINITY, MOD_THUNDER_AFFINITY, MOD_LIGHT_AFFINITY, MOD_DARK_AFFINITY};
 	MODIFIER weak[8] = {MOD_WATER_AFFINITY, MOD_WIND_AFFINITY, MOD_THUNDER_AFFINITY, MOD_ICE_AFFINITY, MOD_FIRE_AFFINITY, MOD_EARTH_AFFINITY, MOD_DARK_AFFINITY, MOD_LIGHT_AFFINITY};
 
-	int8 element = ((CPetEntity*)(PChar->PPet))->m_Element;
+	int8 element = ((CPetEntity*)(PChar->PPet))->m_Element - 1;
 	int8 affinity = PChar->getMod(strong[element]);
 	CItemWeapon* mainHand = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]);
 
@@ -3761,7 +3761,7 @@ uint8 AvatarPerpetuationReduction(CCharEntity* PChar)
 	if( CVanaTime::getInstance()->getWeekday()+1 == element )
 		reduction = reduction + PChar->getMod(MOD_DAY_REDUCTION);
 
-	WEATHER weather = zoneutils::GetZone(PChar->getZone())->GetWeather();
+	WEATHER weather = battleutils::GetWeather(PChar,false);
 
 	WEATHER weatherStrong[8] = {WEATHER_HOT_SPELL, WEATHER_DUST_STORM, WEATHER_RAIN, WEATHER_WIND, WEATHER_SNOW, WEATHER_THUNDER, WEATHER_AURORAS, WEATHER_GLOOM};
 
