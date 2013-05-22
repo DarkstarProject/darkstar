@@ -109,7 +109,7 @@ function onEventFinish(player,csid,option)
 end;
 
 function OnIncomingAirship(player)
-	if (player:getZPos() > -160 or player:getZPos() < -80) then
+	if (player:getZPos() > -160 and player:getZPos() < -80) then
 		player:startEvent(70);
 	end
 end;
