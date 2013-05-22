@@ -106,4 +106,10 @@ function onEventFinish(player,csid,option)
 		player:setVar("COP_optional_CS_Despachaire",0);
 		player:setVar("PromathiaStatus",1);
 	end
-end;	
+end;
+
+function OnIncomingAirship(player)
+	if (player:getZPos() > -160 or player:getZPos() < -80) then
+		player:startEvent(70);
+	end
+end;

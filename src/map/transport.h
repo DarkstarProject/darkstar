@@ -30,6 +30,12 @@
 
 #include "npcentity.h"
 
+enum AIRSHIP
+{
+	AIRSHIP_ARRIVAL		= 0,
+	AIRSHIP_DEPARTURE	= 1
+};
+
 struct Transport_t
 {
     location_t   Dock;

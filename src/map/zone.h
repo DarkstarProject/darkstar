@@ -517,6 +517,8 @@ public:
 	void			ZoneServer(uint32 tick);
 	void			ZoneServerRegion(uint32 tick);
 
+	EntityList_t	GetCharList();
+
 	CZone(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID);
 
     CInstanceHandler* m_InstanceHandler;	// BCNM Instances in this zone

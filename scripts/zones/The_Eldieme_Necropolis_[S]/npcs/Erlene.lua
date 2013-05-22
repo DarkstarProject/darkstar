@@ -5,6 +5,7 @@
 
 package.loaded["scripts/zones/The_Eldieme_Necropolis_[S]/TextIDs"] = nil;
 require("scripts/zones/The_Eldieme_Necropolis_[S]/TextIDs");
+require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/settings");
@@ -90,6 +91,7 @@ function onEventFinish(player,csid,option)
 		player:tradeComplete();
 		player:setVar("ALittleKnowledge", 2);
 	elseif(csid == 14) then
+		player:addKeyItem(GRIMOIRE);
 		player:unlockJob(JOB_SCH);
 		player:addTitle(SCHULTZ_SCHOLAR);
 		player:setVar("ALittleKnowledge", 0);

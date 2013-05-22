@@ -97,6 +97,7 @@ namespace luautils
 	int32 OnRegionEnter(CCharEntity* PChar, CRegion* PRegion);					// when player enters a region of a zone
 	int32 OnRegionLeave(CCharEntity* PChar, CRegion* Pregion);					// when player leaves a region of a zone
     int32 OnTransportEvent(CCharEntity* PChar, uint32 TransportID);
+	int32 OnIncomingAirship(CCharEntity* PChar);
 
 	int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc);						// triggered when user targets npc and clicks action button
 	int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result);		// triggered when game triggers event update during cutscene

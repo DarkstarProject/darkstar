@@ -1530,6 +1530,11 @@ void CZone::ZoneServerRegion(uint32 tick)
 	}
 }
 
+EntityList_t CZone::GetCharList()
+{
+	return m_charList;
+}
+
 //===========================================================
 
 /*

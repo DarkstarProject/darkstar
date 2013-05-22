@@ -2625,6 +2625,48 @@ int32 OnTransportEvent(CCharEntity* PChar, uint32 TransportID)
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+int32 OnIncomingAirship(CCharEntity* PChar)
+{
+	int8 File[255];
+	memset(File,0,sizeof(File));
+
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "OnIncomingAirship");
+
+	snprintf(File, sizeof(File), "scripts/zones/Port_Bastok/Zone.lua");
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+		ShowError("luautils::OnIncomingAirship: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnIncomingAirship");
+	if( lua_isnil(LuaHandle,-1) )
+	{
+		ShowError("luautils::OnIncomingAirship: undefined procedure OnIncomingAirship\n");
+		return -1;
+	}
+
+	CLuaBaseEntity LuaBaseEntity(PChar);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
+
+	if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::OnIncomingAirship: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return -1;
+	}
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+}
+
 /********************************************************************
 	onBcnmEnter - callback when you enter a BCNM via a lua call to bcnmEnter(bcnmid)
 *********************************************************************/

@@ -58,3 +58,4 @@ INSERT INTO `elevators` VALUES ('22', 'Pso\'Xja - Door (dtr 2)', '16814479', '0'
 INSERT INTO `elevators` VALUES ('23', 'Pso\'Xja - Door (dtr 2)', '16814480', '0', '0', '1', '1');
 INSERT INTO `elevators` VALUES ('24', 'Pso\'Xja - Door (dtr 4)', '16814481', '0', '0', '1', '1');
 INSERT INTO `elevators` VALUES ('25', 'Pso\'Xja - Door (dtr 4)', '16814482', '0', '0', '1', '1');
+INSERT INTO `elevators` VALUES ('26', 'Bastok-Jeuno Airship - Bridge', '17743958', '17743959', '17743960', '1', '1');
