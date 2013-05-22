@@ -3735,14 +3735,45 @@ bool hasMogLockerAccess(CCharEntity* PChar) {
 	return false;
 }
 
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
 
 uint8 AvatarPerpetuationReduction(CCharEntity* PChar)
 {
-
 	uint8 reduction = PChar->getMod(MOD_PERPETUATION_REDUCTION);
 
-	MODIFIER strong[8] = {MOD_FIRE_AFFINITY, MOD_EARTH_AFFINITY, MOD_WATER_AFFINITY, MOD_WIND_AFFINITY, MOD_ICE_AFFINITY, MOD_THUNDER_AFFINITY, MOD_LIGHT_AFFINITY, MOD_DARK_AFFINITY};
-	MODIFIER weak[8] = {MOD_WATER_AFFINITY, MOD_WIND_AFFINITY, MOD_THUNDER_AFFINITY, MOD_ICE_AFFINITY, MOD_FIRE_AFFINITY, MOD_EARTH_AFFINITY, MOD_DARK_AFFINITY, MOD_LIGHT_AFFINITY};
+	static const MODIFIER strong[8] = {
+        MOD_FIRE_AFFINITY, 
+        MOD_EARTH_AFFINITY, 
+        MOD_WATER_AFFINITY, 
+        MOD_WIND_AFFINITY, 
+        MOD_ICE_AFFINITY, 
+        MOD_THUNDER_AFFINITY, 
+        MOD_LIGHT_AFFINITY, 
+        MOD_DARK_AFFINITY};
+
+	static const MODIFIER weak[8] = {
+        MOD_WATER_AFFINITY, 
+        MOD_WIND_AFFINITY, 
+        MOD_THUNDER_AFFINITY, 
+        MOD_ICE_AFFINITY, 
+        MOD_FIRE_AFFINITY, 
+        MOD_EARTH_AFFINITY, 
+        MOD_DARK_AFFINITY, 
+        MOD_LIGHT_AFFINITY};
+
+    static const WEATHER weatherStrong[8] = {
+        WEATHER_HOT_SPELL, 
+        WEATHER_DUST_STORM, 
+        WEATHER_RAIN, 
+        WEATHER_WIND, 
+        WEATHER_SNOW, 
+        WEATHER_THUNDER, 
+        WEATHER_AURORAS, 
+        WEATHER_GLOOM};
 
 	int8 element = ((CPetEntity*)(PChar->PPet))->m_Element - 1;
 	int8 affinity = PChar->getMod(strong[element]);
@@ -3763,18 +3794,11 @@ uint8 AvatarPerpetuationReduction(CCharEntity* PChar)
 
 	WEATHER weather = battleutils::GetWeather(PChar,false);
 
-	WEATHER weatherStrong[8] = {WEATHER_HOT_SPELL, WEATHER_DUST_STORM, WEATHER_RAIN, WEATHER_WIND, WEATHER_SNOW, WEATHER_THUNDER, WEATHER_AURORAS, WEATHER_GLOOM};
-
 	if( weather == weatherStrong[element] || weather == weatherStrong[element]+1 )
 		reduction = reduction + PChar->getMod(MOD_WEATHER_REDUCTION);
 
 	return reduction;
 }
-
-
-
-
-
 
 /************************************************************************
 *																		*
