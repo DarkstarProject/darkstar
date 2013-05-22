@@ -3775,14 +3775,22 @@ uint8 AvatarPerpetuationReduction(CCharEntity* PChar)
         WEATHER_AURORAS, 
         WEATHER_GLOOM};
 
-	int8 element = ((CPetEntity*)(PChar->PPet))->m_Element - 1;
+	uint8 element = ((CPetEntity*)(PChar->PPet))->m_Element - 1;
+
+    DSP_DEBUG_BREAK_IF(element > 7);
+
 	int8 affinity = PChar->getMod(strong[element]);
-	CItemWeapon* mainHand = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]);
+
+    // TODO: don't use ItemIDs in CORE. it must be MOD
+
+    CItemWeapon* mainHand = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]);
 
 	if( mainHand && mainHand->getID() == 18632 )
 		affinity = affinity + 1;
 	else if( mainHand && mainHand->getID() == 18633 )
 		affinity = affinity + 2;
+
+    //-----------------------------------------------
 
 	if( affinity > 0 )
 		reduction = reduction + affinity + 1;
