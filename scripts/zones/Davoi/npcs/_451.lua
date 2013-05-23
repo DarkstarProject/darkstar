@@ -1,6 +1,6 @@
 function onTrigger(player,npc)
 
-RunElevator(17);
+StartElevator(17);
 GetNPCByID(17388000):setAnimation(8);
 
 

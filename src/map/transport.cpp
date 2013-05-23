@@ -275,6 +275,14 @@ void CTransportHandler::TransportTimer()
 					elevator->isMoving = true;
 					startElevator(elevator);
 				}
+				else if (
+					(HourOffset == AIRSHIP_ARRIVAL && MinuteOffset == 10) ||
+					(HourOffset == AIRSHIP_DEPARTURE && MinuteOffset == 26)
+					)
+				{
+					elevator->isMoving = false;
+					arriveElevator(elevator);
+				}
 			}
 			else
 			{
@@ -294,7 +302,7 @@ void CTransportHandler::TransportTimer()
 							elevator->isStarted = false;
 						}
 						elevator->isMoving = false;
-						arrivElevator(elevator);
+						arriveElevator(elevator);
 					}
 				}
 			}
@@ -339,14 +347,10 @@ void CTransportHandler::startElevator(Elevator_t * elevator)
 	{
 		if (elevator->id == 26)
 		{
-			if (elevator->Elevator->animation == ANIMATION_OPEN_DOOR)
-			{
-				elevator->LowerDoor->animation = ANIMATION_OPEN_DOOR;
-				zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->LowerDoor,ENTITY_SPAWN));
-				elevator->UpperDoor->animation = ANIMATION_OPEN_DOOR;
-				zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->UpperDoor,ENTITY_SPAWN));
-			}
-
+			elevator->LowerDoor->animation = ANIMATION_CLOSE_DOOR;
+			zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->LowerDoor,ENTITY_SPAWN));
+			elevator->UpperDoor->animation = ANIMATION_CLOSE_DOOR;
+			zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->UpperDoor,ENTITY_SPAWN));
 		}
 		else
 		{
@@ -381,18 +385,30 @@ void CTransportHandler::startElevator(Elevator_t * elevator)
 *                                                                       *
 ************************************************************************/
 
-void CTransportHandler::arrivElevator(Elevator_t * elevator)
+void CTransportHandler::arriveElevator(Elevator_t * elevator)
 {
 	if (elevator->id == 17)
 	{
 		elevator->interval = elevator->interval;
 	}
-	if (elevator->Elevator->animation == ANIMATION_ELEVATOR_DOWN)
+	if (elevator->id == 26)
 	{
 		elevator->LowerDoor->animation = ANIMATION_OPEN_DOOR;
 		zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->LowerDoor,ENTITY_SPAWN));
-	} else {
 		elevator->UpperDoor->animation = ANIMATION_OPEN_DOOR;
 		zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->UpperDoor,ENTITY_SPAWN));
+	}
+	else
+	{
+		if (elevator->Elevator->animation == ANIMATION_ELEVATOR_DOWN)
+		{
+			elevator->LowerDoor->animation = ANIMATION_OPEN_DOOR;
+			zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->LowerDoor,ENTITY_SPAWN));
+		}
+		else
+		{
+			elevator->UpperDoor->animation = ANIMATION_OPEN_DOOR;
+			zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->UpperDoor,ENTITY_SPAWN));
+		}
 	}
 }

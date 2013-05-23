@@ -94,7 +94,7 @@ private:
 	void InitializeElevators();
 
 	void startElevator(Elevator_t *);
-	void arrivElevator(Elevator_t *);
+	void arriveElevator(Elevator_t *);
 
 	std::vector<Elevator_t> ElevatorList;
     std::vector<Transport_t*> TransportList;
