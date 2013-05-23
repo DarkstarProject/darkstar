@@ -97,7 +97,7 @@ public:
     uint16      getMagicBurstMessage();
 	uint16		getCE();
 	uint16		getVE();
-	uint16		getModifiedRecast();
+	uint32		getModifiedRecast();
 	uint16		getMonsterSkillId();
     uint8       getRadius();
     uint16      getAoEMessage(); // returns the single target message for AoE moves
@@ -129,7 +129,7 @@ public:
 	void		setVE(uint16 ve);
     void        setRequirements(uint8 requirements);
     void        setMeritId(uint16 meritId);
-	void		setModifiedRecast(uint16 mrec);
+	void		setModifiedRecast(uint32 mrec);
 	void		setMonsterSkillId(uint16 skillid);
     void		addModifier(CModifier* modifier);
 
@@ -163,7 +163,7 @@ private:
 	uint16		m_CE;									// cumulative enmity of spell
 	uint16		m_VE;									// volatile enmity of spell
 	string_t	m_name;									// spell name
-	uint16		m_modifiedRecastTime;					// recast time after modifications
+	uint32		m_modifiedRecastTime;					// recast time after modifications
 	uint16		m_monsterSkillId;						// matching skill for a blue spell
     uint8       m_requirements;                         // requirements before being able to cast spell
     uint16      m_meritId;                              // associated merit (if applicable)

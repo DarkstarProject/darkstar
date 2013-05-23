@@ -333,12 +333,12 @@ uint16 CSpell::getVE()
 	return m_VE;
 }
 
-void CSpell::setModifiedRecast(uint16 mrec)
+void CSpell::setModifiedRecast(uint32 mrec)
 {
 	m_modifiedRecastTime = mrec;
 }
 
-uint16 CSpell::getModifiedRecast()
+uint32 CSpell::getModifiedRecast()
 {
 	return m_modifiedRecastTime;
 }
