@@ -2297,8 +2297,8 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 	//checking players weapon hit count
 	uint8 num = PWeapon->getHitCount(NULL);
 
-	uint8 tripleAttack = PEntity->getMod(MOD_TRIPLE_ATTACK);
-	uint8 doubleAttack = PEntity->getMod(MOD_DOUBLE_ATTACK);
+	uint8 tripleAttack = (PEntity->getMod(MOD_TRIPLE_ATTACK) < 0 ? 0 : PEntity->getMod(MOD_TRIPLE_ATTACK));
+	uint8 doubleAttack = (PEntity->getMod(MOD_DOUBLE_ATTACK) < 0 ? 0 : PEntity->getMod(MOD_DOUBLE_ATTACK));
 
 	//check for merit upgrades
 	if (PEntity->objtype == TYPE_PC)
