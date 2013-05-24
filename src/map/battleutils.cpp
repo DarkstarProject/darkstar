@@ -2297,8 +2297,8 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 	//checking players weapon hit count
 	uint8 num = PWeapon->getHitCount(NULL);
 
-	uint8 tripleAttack = (PEntity->getMod(MOD_TRIPLE_ATTACK) < 0 ? 0 : PEntity->getMod(MOD_TRIPLE_ATTACK));
-	uint8 doubleAttack = (PEntity->getMod(MOD_DOUBLE_ATTACK) < 0 ? 0 : PEntity->getMod(MOD_DOUBLE_ATTACK));
+	int8 tripleAttack = PEntity->getMod(MOD_TRIPLE_ATTACK);
+	int8 doubleAttack = PEntity->getMod(MOD_DOUBLE_ATTACK);
 
 	//check for merit upgrades
 	if (PEntity->objtype == TYPE_PC)
@@ -2313,7 +2313,6 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 			doubleAttack += PChar->PMeritPoints->GetMeritValue(MERIT_DOUBLE_ATTACK_RATE,PEntity->GetMLevel());
 		}
 	}
-
 	else if (PEntity->objtype == TYPE_MOB || PEntity->objtype == TYPE_PET)
 	{
 		//Monk
@@ -2333,6 +2332,8 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 		}
 	}
 
+    doubleAttack = dsp_cap(doubleAttack,0,100);
+    tripleAttack = dsp_cap(tripleAttack,0,100);
 
 	if (rand()%100 < tripleAttack)
 	{
