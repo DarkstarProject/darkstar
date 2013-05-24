@@ -260,7 +260,10 @@ void CTransportHandler::TransportTimer()
 						for (EntityList_t::const_iterator it = charList.begin() ; it != charList.end() ; ++it)
 						{
 							CCharEntity* PChar = (CCharEntity*)it->second;
-							PChar->pushPacket(new CEventPacket(PChar, 70, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1));
+							if ((PChar->GetXPos() > 54 && PChar->GetXPos() < 66) && (PChar->GetZPos() > -160 && PChar->GetZPos() < -80))
+							{
+								PChar->pushPacket(new CEventPacket(PChar, 70, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1));
+							}
 						}
 					}
 					elevator->isMoving = true;
