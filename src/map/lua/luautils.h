@@ -97,8 +97,7 @@ namespace luautils
 	int32 OnRegionEnter(CCharEntity* PChar, CRegion* PRegion);					// when player enters a region of a zone
 	int32 OnRegionLeave(CCharEntity* PChar, CRegion* Pregion);					// when player leaves a region of a zone
     int32 OnTransportEvent(CCharEntity* PChar, uint32 TransportID);
-	int32 OnIncomingAirship(CCharEntity* PChar);
-
+	
 	int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc);						// triggered when user targets npc and clicks action button
 	int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result);		// triggered when game triggers event update during cutscene
 	int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result);		// triggered when cutscene/event is completed
@@ -117,6 +116,7 @@ namespace luautils
 
     int32 OnMobInitialise(CBaseEntity* PMob);									// Used for passive trait
 	int32 OnMobSpawn(CBaseEntity* PMob);										// triggers on mob spawn
+	int32 OnMobRoam(CBaseEntity* PMob);
 	int32 OnMobEngaged(CBaseEntity* PMob, CBaseEntity* PTarget);				// triggers on mob engaging a target
 	int32 OnMobDisengage(CBaseEntity* PMob);									// triggers on mob disengaging (no more targets)
 	int32 OnMobFight(CBaseEntity* PMob, CBaseEntity* PTarget);					// Сalled every 3 sec when a player fight monster

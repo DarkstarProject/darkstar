@@ -29,8 +29,7 @@
 #include "zone.h"
 #include "zoneutils.h"
 
-#include "lua/luautils.h"
-
+#include "packets/event.h"
 #include "packets/entity_update.h"
 
 /************************************************************************
@@ -245,8 +244,8 @@ void CTransportHandler::TransportTimer()
 		{
 			if (elevator->id == 26)
 			{
-				uint16 HourOffset	= CVanaTime::getInstance()->getHour() % 6;
-				uint16 MinuteOffset	= CVanaTime::getInstance()->getMinute();
+				uint8 HourOffset	= CVanaTime::getInstance()->getHour() % 6;
+				uint8 MinuteOffset	= CVanaTime::getInstance()->getMinute();
 
 				if (
 					(HourOffset == AIRSHIP_ARRIVAL && MinuteOffset == 4) ||
@@ -261,7 +260,7 @@ void CTransportHandler::TransportTimer()
 						for (EntityList_t::const_iterator it = charList.begin() ; it != charList.end() ; ++it)
 						{
 							CCharEntity* PChar = (CCharEntity*)it->second;
-							luautils::OnIncomingAirship(PChar);
+							PChar->pushPacket(new CEventPacket(PChar, 70, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1));
 						}
 					}
 					elevator->isMoving = true;

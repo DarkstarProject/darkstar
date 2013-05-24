@@ -1953,6 +1953,50 @@ int32 OnMobSpawn(CBaseEntity* PMob)
 }
 
 /************************************************************************
+*																		*
+*																		*
+*																		*
+************************************************************************/
+
+int32 OnMobRoam(CBaseEntity* PMob)
+{
+    DSP_DEBUG_BREAK_IF(PMob == NULL || PMob->objtype != TYPE_MOB)
+    
+	CLuaBaseEntity LuaMobEntity(PMob);
+	
+	int8 File[255];
+	memset(File,0,sizeof(File));
+
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "OnMobRoam");
+
+	snprintf( File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+        lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnMobRoam");
+	if( lua_isnil(LuaHandle,-1) )
+	{
+		return -1;
+	}
+
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
+	
+	if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::OnMobRoam: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+}
+
+/************************************************************************
 *                                                                       *
 *                                                                       *
 *                                                                       *
@@ -2619,48 +2663,6 @@ int32 OnTransportEvent(CCharEntity* PChar, uint32 TransportID)
 	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnTransportEvent: %s\n",lua_tostring(LuaHandle,-1));
-        lua_pop(LuaHandle, 1);
-		return -1;
-	}
-	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
-}
-
-/************************************************************************
-*                                                                       *
-*                                                                       *
-*                                                                       *
-************************************************************************/
-
-int32 OnIncomingAirship(CCharEntity* PChar)
-{
-	int8 File[255];
-	memset(File,0,sizeof(File));
-
-    lua_pushnil(LuaHandle);
-    lua_setglobal(LuaHandle, "OnIncomingAirship");
-
-	snprintf(File, sizeof(File), "scripts/zones/Port_Bastok/Zone.lua");
-
-	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
-	{
-		ShowError("luautils::OnIncomingAirship: %s\n",lua_tostring(LuaHandle,-1));
-        lua_pop(LuaHandle, 1);
-		return -1;
-	}
-
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnIncomingAirship");
-	if( lua_isnil(LuaHandle,-1) )
-	{
-		ShowError("luautils::OnIncomingAirship: undefined procedure OnIncomingAirship\n");
-		return -1;
-	}
-
-	CLuaBaseEntity LuaBaseEntity(PChar);
-	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-
-	if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
-	{
-		ShowError("luautils::OnIncomingAirship: %s\n",lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
 		return -1;
 	}

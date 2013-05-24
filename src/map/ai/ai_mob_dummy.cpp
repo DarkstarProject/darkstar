@@ -197,6 +197,10 @@ void CAIMobDummy::ActionRoaming()
 		}
 
 	}
+	if ((m_Tick - m_SpawnTime) % 3000 <= 400)
+	{
+		luautils::OnMobRoam(m_PMob);
+	}
 	if (m_PMob->GetDespawnTimer() > 0 && m_PMob->GetDespawnTimer() < m_Tick)
 	{
 		m_LastActionTime = m_Tick - 12000;
@@ -499,6 +503,7 @@ void CAIMobDummy::ActionSpawn()
 	if ((m_Tick - m_LastActionTime) > m_PMob->m_RespawnTime)
 	{
 
+		m_SpawnTime = m_Tick;
 		m_firstSpell = true;
 		m_ActionType = ACTION_ROAMING;
 		m_PBattleTarget = NULL;

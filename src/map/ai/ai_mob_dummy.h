@@ -63,6 +63,7 @@ protected:
 	CMobEntity* m_PMob;
   CMobSkill* m_PSpecialSkill;
   bool m_firstSpell;
+  uint32 m_SpawnTime;
   uint32 m_LastSpecialTime;
   uint32 m_LastWaitTime;
   uint32 m_WaitTime;
