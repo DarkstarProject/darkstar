@@ -14,6 +14,10 @@ require( "scripts/globals/icanheararainbow");
 -----------------------------------
 
 function onInitialize( zone)		
+	
+	local Noble_Mold = 17273278;
+	GetMobByID(Noble_Mold):setExtraVar(os.time());
+	
 end;		
 
 -----------------------------------		
