@@ -15,11 +15,11 @@ require("scripts/zones/Mhaura/TextIDs");
 function onInitialize(zone)
 end;
 
------------------------------------		
--- onZoneIn		
------------------------------------		
+-----------------------------------
+-- onZoneIn
+-----------------------------------
 
-function onZoneIn(player,prevZone)		
+function onZoneIn(player,prevZone)
 local cs = -1;	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
 		if (prevZone == 221 or prevZone == 47) then
@@ -28,13 +28,13 @@ local cs = -1;
 		else
 			player:setPos(0.003,-6.252,117.971,65);
 		end
-	end	
-return cs;	
-end;		
+	end
+return cs;
+end;
 
------------------------------------		
--- onTransportEvent		
------------------------------------		
+-----------------------------------
+-- onTransportEvent
+-----------------------------------
 
 function onTransportEvent(player,transport)
 	if ((transport == 47) or (transport == 46)) then 
@@ -42,10 +42,10 @@ function onTransportEvent(player,transport)
 			player:setPos(8.200,-1.363,3.445,192);
 			player:messageSpecial(DO_NOT_PROSSESS, BOARDING_PERMIT);
 		else
-			player:startEvent(0x00c8,0,0,0,0,0,0,0,0,46);
+			player:startEvent(0x00c8);
 		end
 	else
-		player:startEvent(0x00c8,0,0,0,0,0,0,0,0,220);
+		player:startEvent(0x00c8);
 	end
 end;
 
@@ -65,7 +65,14 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if (csid == 0x00c8) then
-		player:setPos(0,0,0,0,option);
-	end
-end;	
+   if (csid == 0x00c8) then
+      local DepartureTime = VanadielHour();
+      if (DepartureTime % 8 == 0) then
+         player:setPos(0,0,0,0,220); -- Boat to Selbina
+      elseif (DepartureTime % 8 == 4) then
+         player:setPos(0,0,0,0,46); -- Boat to Aht Urghan
+      else
+         player:setPos(8,-1,5,62,249); -- Something went wrong, dump them on the dock for safety.
+      end
+   end
+end;
