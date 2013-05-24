@@ -45,8 +45,6 @@ drop = {2,{0x1198,0.0900,0x02B0,0.1800,0x02BA,0.2700,0x039B,0.3600,0x02B7,0.4500
 
 function startLogging(player,zone,npc,trade,csid)
 	
-	math.randomseed(os.time());
-	
 	if(trade:hasItemQty(1021,1) and trade:getItemCount() == 1) then
 		
 		broke = hatchetBreak(player,trade);

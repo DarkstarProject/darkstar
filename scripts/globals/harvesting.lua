@@ -36,8 +36,6 @@ rocks = {0x0301,0x0302,0x0303,0x0304,0x0305,0x0306,0x0308,0x0307};
 
 function startHarvesting(player,zone,npc,trade,csid)
 	
-	math.randomseed(os.time());
-	
 	if(trade:hasItemQty(1020,1) and trade:getItemCount() == 1) then
 		
 		broke = sickleBreak(player,trade);
