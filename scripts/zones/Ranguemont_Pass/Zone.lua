@@ -13,6 +13,10 @@ require("scripts/zones/Ranguemont_Pass/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+	local Taisaijin = 17457216;
+	GetMobByID(Taisaijin):setExtraVar(os.time());
+
 end;
 
 -----------------------------------		

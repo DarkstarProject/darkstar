@@ -13,13 +13,7 @@ function onMobDeath(mob, killer)
 	
 	local Noble_Mold = 17273278;
 	local Noble_Mold_PH = GetServerVariable("Noble_Mold_PH");
-	local Noble_Mold_PH_Table =
-	{
-		17273276,
-		17273277
-	};
-	local Noble_Mold_ToD = GetMobByID(Noble_Mold):getExtraVar(1);
-	
+		
 	GetMobByID(Noble_Mold):setExtraVar(os.time() + math.random((43200), (57600)));
 	SetServerVariable("Noble_Mold_PH", 0);
 	DeterMob(Noble_Mold, true);

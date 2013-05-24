@@ -12,6 +12,10 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onInitialize(zone)
+
+	local Colorful_Leshy = 16875762;
+	GetMobByID(Colorful_Leshy):setExtraVar(os.time());
+
 end;
 
 -----------------------------------		

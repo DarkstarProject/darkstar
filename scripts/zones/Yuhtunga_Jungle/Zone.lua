@@ -7,13 +7,17 @@
 package.loaded["scripts/zones/Yuhtunga_Jungle/TextIDs"] = nil;
 
 require("scripts/zones/Yuhtunga_Jungle/TextIDs");
-require( "scripts/globals/icanheararainbow");
+require("scripts/globals/icanheararainbow");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
-function onInitialize( zone)		
+function onInitialize(zone)		
+
+	local Rose_Garden = 17281357;
+	GetMobByID(Rose_Garden):setExtraVar(os.time());
+
 end;		
 
 -----------------------------------		
