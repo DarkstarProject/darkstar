@@ -12,7 +12,7 @@ require("scripts/zones/Lufaise_Meadows/TextIDs");
 
 guardnation = SANDORIA;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 guardtype 	= 4;		-- 1: city, 2: foreign, 3: outpost, 4: border
-region 		= TAVNAZIA;
+region 		= TAVNAZIANARCH;
 csid 		= 0x7ffa;
 
 -----------------------------------

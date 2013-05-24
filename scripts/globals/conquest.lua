@@ -35,7 +35,7 @@ ELSHIMOLOWLANDS = 14;
  ELSHIMOUPLANDS = 15;
           TULIA = 16;
      MOVALPOLOS = 17;
-       TAVNAZIA = 18;
+  TAVNAZIANARCH = 18;
 
 nationAlly = 3;
 
@@ -1101,7 +1101,7 @@ switch (region): caseof {
   end,
   
   ---------------------------------
-  [TAVNAZIA] = function (x) -- Lufaise_Meadows
+  [TAVNAZIANARCH] = function (x) -- Lufaise_Meadows
   ---------------------------------
 	--print("TAVNAZIA");
 	

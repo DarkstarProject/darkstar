@@ -11,7 +11,7 @@ require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/zones/Lufaise_Meadows/TextIDs");
 
-region 	= TAVNAZIA;
+region 	= TAVNAZIANARCH;
 csid	= 0x7ff4;
 
 -----------------------------------
