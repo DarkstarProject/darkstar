@@ -14,7 +14,7 @@ require("scripts/globals/missions");
 function onInitialize(zone)
 
 	local Colorful_Leshy = 16875762;
-	GetMobByID(Colorful_Leshy):setExtraVar(os.time());
+	GetMobByID(Colorful_Leshy):setExtraVar(os.time() + math.random((43200), (86400)));
 
 end;
 

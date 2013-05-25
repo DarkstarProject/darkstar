@@ -16,7 +16,7 @@ require("scripts/globals/icanheararainbow");
 function onInitialize(zone)		
 
 	local Rose_Garden = 17281357;
-	GetMobByID(Rose_Garden):setExtraVar(os.time());
+	GetMobByID(Rose_Garden):setExtraVar(os.time() + math.random((36000), (37800)));
 
 end;		
 
