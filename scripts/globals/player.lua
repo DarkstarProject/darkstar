@@ -229,7 +229,14 @@ function CharCreate(player)
 	}
 
 	-- SET START GIL
-	player:setGil(START_GIL);
+   --[[For some intermittent reason m_ZoneList ends up empty on characters, which is
+   possibly also why they lose key items.  When that happens, CharCreate will be run and
+   they end up losing their gil to the code below.  Added a conditional to hopefully
+   prevent that until the bug is fixed.  Used the if instead of addGil to prevent abuse
+   on servers with very high values of START_GIL, I guess.]]
+   if (player:getGil() < START_GIL) then
+      player:setGil(START_GIL);
+   end
 
 	-- ADD ADVENTURER COUPON
 	player:addItem(0x218);
