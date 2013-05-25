@@ -1281,7 +1281,7 @@ INSERT INTO `mob_skill` VALUES (574,351,502,'Light_Blade', 0, 30.0, 2000, 1000, 
 
 -- Ark Angel EV
 INSERT INTO `mob_skill` VALUES (0,352,432,'Two_Hour', 1, 15.0, 2000, 0, 4, 0);
-INSERT INTO `mob_skill` VALUES (677,352,635,'Dominion_Slash',1,10,2000,0,4,0);
+INSERT INTO `mob_skill` VALUES (677,352,635,'Dominion_Slash',2,10,2000,0,4,0);
 INSERT INTO `mob_skill` VALUES (678,352,638,'Shield_Strike',4,7,2000,0,4,0);
 INSERT INTO `mob_skill` VALUES (686,352,642,'Spirits_Within',0,7,2000,0,4,0);
 INSERT INTO `mob_skill` VALUES (687,352,643,'Vorpal_Blade',0,7,2000,0,4,0);
@@ -1303,7 +1303,7 @@ INSERT INTO `mob_skill` VALUES (684,355,644,'Rampage',0,7,2000,0,4,0);
 INSERT INTO `mob_skill` VALUES (685,355,645,'Calamity',0,7,2000,0,4,0);
 -- Ark Angel TT
 INSERT INTO `mob_skill` VALUES (0,356,432,'Two_Hour', 1, 15.0, 2000, 0, 4, 0);
-INSERT INTO `mob_skill` VALUES (679,356,636,'Amon_Drive',1,10,2000,0,4,0);
+INSERT INTO `mob_skill` VALUES (679,356,636,'Amon_Drive',2,10,2000,0,4,0);
 INSERT INTO `mob_skill` VALUES (688,356,646,'Spinning_Scythe',1,7,2000,0,4,0);
 INSERT INTO `mob_skill` VALUES (689,356,647,'Guillotine',0,7,2000,0,4,0);
 

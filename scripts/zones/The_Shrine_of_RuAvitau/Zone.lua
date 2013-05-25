@@ -6,6 +6,8 @@
 
 package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
 require("scripts/globals/settings");
+require("scripts/globals/missions");
+require("scripts/globals/keyitems");
 require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
 
 -----------------------------------
@@ -13,7 +15,7 @@ require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-	
+
 	-- MAP 1 ------------------------
 	zone:registerRegion(1, -21, 29, -61, -16, 31, -57); 	--> F (H-10)
 	zone:registerRegion(2, 16, 29, 57, 21, 31, 61); 		--> E (H-7)
@@ -42,24 +44,45 @@ function onInitialize(zone)
 
 end;
 
------------------------------------		
--- onZoneIn		
------------------------------------		
+-----------------------------------
+-- onZoneIn
+-----------------------------------
 
-function onZoneIn(player,prevZone)		
-	cs = -1;	
-	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
-		player:setPos(-3.38,46.326,60,122);
-	end	
-	return cs;	
-end;		
+function onZoneIn(player,prevZone)
+   cs = -1;
+   local xPos = player:getXPos();
+   local yPos = player:getYPos();
+   local zPos = player:getZPos();
+   local ZilartMission = player:getCurrentMission(ZILART);
 
------------------------------------		
--- onRegionEnter		
------------------------------------		
+   -- Checked here to be fair to new players
+   local DMEarrings = 0;
+   for i=14739, 14743 do
+      if (player:hasItem(i)) then
+         DMEarrings = DMEarrings + 1;
+      end
+   end
 
-function onRegionEnter(player,region)	
-	
+   -- ZM 15 -> ZM 16
+   if (ZilartMission == THE_SEALED_SHRINE and player:getVar("ZilartStatus") == 1 and
+      xPos >= -45 and yPos >= -4 and zPos >= -240 and
+      xPos <= -33 and yPos <= -2 and zPos <= -226 and DMEarrings <= NUMBER_OF_DM_EARRINGS) then -- Entered through main gate
+         cs = 51;
+   end
+
+   if ((xPos == 0) and (yPos == 0) and (zPos == 0)) then
+      player:setPos(-3.38,46.326,60,122);
+   end
+
+   return cs;
+end;
+
+-----------------------------------
+-- onRegionEnter
+-----------------------------------
+
+function onRegionEnter(player,region)
+
 	switch (region:GetRegionID()): caseof
 	{
 		[1] = function (x)
@@ -113,30 +136,36 @@ function onRegionEnter(player,region)
 		default = function (x)
 		end,
 	}
-	
+
 end;
 
------------------------------------	
--- onRegionLeave	
------------------------------------	
+-----------------------------------
+-- onRegionLeave
+-----------------------------------
 
-function onRegionLeave(player,region)	
+function onRegionLeave(player,region)
 end;
 
------------------------------------	
--- onEventUpdate	
------------------------------------	
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
 
-function onEventUpdate(player,csid,option)	
+function onEventUpdate(player,csid,option)
 	--printf("CSID: %u",csid);
 	--printf("RESULT: %u",option);
-end;	
+end;
 
------------------------------------	
--- onEventFinish	
------------------------------------	
+-----------------------------------
+-- onEventFinish
+-----------------------------------
 
-function onEventFinish(player,csid,option)	
+function onEventFinish(player,csid,option)
 	--printf("CSID: %u",csid);
 	--printf("RESULT: %u",option);
-end;	
+
+   if (csid == 15) then
+      player:completeMission(ZILART,THE_SEALED_SHRINE);
+      player:addMission(ZILART,THE_CELESTIAL_NEXUS);
+      player:setVar("ZilartStatus",0);
+   end
+end;

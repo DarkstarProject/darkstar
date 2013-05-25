@@ -5,6 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/missions");
+require("scripts/globals/settings")
 
 -----------------------------------
 -- onTrade Action
@@ -18,10 +19,19 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+
 	local ZilartMission = player:getCurrentMission(ZILART);
 	local currentMission = player:getCurrentMission(BASTOK);
-	
+   local ZilartStatus = player:getVar("ZilartStatus");
+
+   -- Checked here to be fair to new players
+   local DMEarrings = 0;
+   for i=14739, 14743 do
+      if (player:hasItem(i)) then
+         DMEarrings = DMEarrings + 1;
+      end
+   end
+
 	if(ZilartMission == WELCOME_TNORG) then
 		player:startEvent(0x0002); -- Zilart Missions 2
 	elseif(ZilartMission == ROMAEVE and player:getVar("ZilartStatus") <= 1) then
@@ -30,6 +40,8 @@ function onTrigger(player,npc)
 		player:startEvent(0x00a9); -- Zilart Missions 11
 	elseif(currentMission == THE_PIRATE_S_COVE and player:getVar("MissionStatus") == 1) then
 		player:startEvent(0x0062); -- Bastok Mission 6-2
+	elseif(ZilartMission == THE_SEALED_SHRINE and ZilartStatus == 0 and DMEarrings <= NUMBER_OF_DM_EARRINGS) then
+			player:startEvent(0x00ac);
 	else
 		player:startEvent(0x0005);
 	end
@@ -71,6 +83,8 @@ function onEventFinish(player,csid,option)
 		player:addMission(ZILART,THE_MITHRA_AND_THE_CRYSTAL);
 	elseif(csid == 0x0062) then
 		player:setVar("MissionStatus",2);
+	elseif(csid == 0x00ac) then
+		player:setVar("ZilartStatus",1);
 	end
 	
 end;

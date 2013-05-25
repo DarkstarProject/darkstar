@@ -23,12 +23,14 @@ function OnMobWeaponSkill(target, mob, skill)
    local dmg = 0;
 
    -- Should produce 1000 - 3750 @ full HP using the player formula, assuming 8k HP for AA EV.
-      -- This is probably lower than retail.  I'm sure players will be upset.
+      -- dmg * 2.5, as wiki claims ~2500 at 100% HP, until a better formula comes along.
    if tp <= 200 then -- 100 - 200
       dmg = math.floor(hp * (math.floor(0.16 * tp) + 16) / 256);
    else -- 201 - 300
       dmg = math.floor(hp * (math.floor(0.72 * tp) - 96) / 256);
    end
+
+   dmg = dmg * 2.5;
 
    -- Believe it or not, it's been proven to be breath damage.
    dmg = utils.breathDmgTaken(target, dmg);

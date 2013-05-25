@@ -1,13 +1,11 @@
 -----------------------------------
 -- Area: LaLoff Amphitheater
--- Name: Divine Might
+-- Name: Ark Angels 4 (Elvaan)
 -- 
 -----------------------------------
 package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
--------------------------------------
 require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 require("scripts/globals/missions");
-require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 
 -- Death cutscenes:
@@ -27,7 +25,6 @@ end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function OnBcnmEnter(player,instance)
-	player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,1,1);
 end;
 
 -- Leaving the BCNM by every mean possible, given by the LeaveCode
@@ -42,12 +39,13 @@ function OnBcnmLeave(player,instance,leavecode)
 print("leave code "..leavecode);
 
 	if(leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
+	
 		if(player:hasCompletedMission(ZILART,ARK_ANGELS)) then
-			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,5,1);		-- winning CS (allow player to skip)
+			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,3,1);		-- winning CS (allow player to skip)
 		else
-			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,5,0);		-- winning CS
+			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,3,0);		-- winning CS
 		end
-
+		
 	elseif(leavecode == 4) then
 		player:startEvent(0x7d02);	-- player lost
 	end
@@ -59,22 +57,29 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
--- print("bc finish csid "..csid.." and option "..option);
+ -- print("bc finish csid "..csid.." and option "..option);
+
+   local AAKeyitems = (player:hasKeyItem(SHARD_OF_APATHY) and player:hasKeyItem(SHARD_OF_COWARDICE)
+         and player:hasKeyItem(SHARD_OF_ENVY) and player:hasKeyItem(SHARD_OF_RAGE));
 
    if(csid == 0x7d01) then
-      if (player:getQuestStatus(OUTLANDS,DIVINE_MIGHT) == QUEST_ACCEPTED) then
-         player:setVar("DivineMight",2); -- Used to use 2 to track completion, so that's preserved to maintain compatibility
-         for i=SHARD_OF_APATHY, SHARD_OF_RAGE do
-            player:addKeyItem(i);
-            player:messageSpecial(KEYITEM_OBTAINED,i);
-         end
-         if (player:getCurrentMission(ZILART) == ARK_ANGELS) then
+      if (player:getCurrentMission(ZILART) == ARK_ANGELS  and player:getVar("ZilartStatus") == 1) then
+         player:addKeyItem(SHARD_OF_ARROGANCE);
+         player:messageSpecial(KEYITEM_OBTAINED,SHARD_OF_ARROGANCE);
+         if (AAKeyitems == true) then
             player:completeMission(ZILART,ARK_ANGELS);
             player:addMission(ZILART,THE_SEALED_SHRINE);
             player:setVar("ZilartStatus",0);
          end
-      elseif (player:getQuestStatus(OUTLANDS,DIVINE_MIGHT_REPEAT) == QUEST_ACCEPTED and player:hasKeyItem(MOONLIGHT_ORE) == true) then
-         player:setVar("DivineMight",2);
       end
+   end
+
+   local AAKeyitems = (player:hasKeyItem(SHARD_OF_APATHY) and player:hasKeyItem(SHARD_OF_ARROGANCE)
+         and player:hasKeyItem(SHARD_OF_COWARDICE) and player:hasKeyItem(SHARD_OF_ENVY)
+         and player:hasKeyItem(SHARD_OF_RAGE));
+   if (AAKeyitems == true) then
+      player:completeMission(ZILART,ARK_ANGELS);
+      player:addMission(ZILART,THE_SEALED_SHRINE);
+      player:setVar("ZilartStatus",0);
    end
 end;

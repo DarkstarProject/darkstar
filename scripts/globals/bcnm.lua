@@ -52,7 +52,7 @@ bcnmid_param_map = {10,{704,0,706,2},
 					168,{192,0,194,2,195,3,196,4},
 					170,{224,0},
 					179,{256,0},
-					180,{293,5},
+					180,{293,5,288,0,289,1,290,2,291,3,292,4}
 					201,{416,0,417,1,418,2},
 					202,{448,0,449,1,450,2},
 					203,{480,0,481,1,482,2},
@@ -434,7 +434,27 @@ function checkNonTradeBCNM(player,npc)
 		if(player:getCurrentMission(ZILART) == RETURN_TO_DELKFUTTS_TOWER and player:getVar("ZilartStatus") == 3) then -- Zilart Mission 8
 			mask = GetBattleBitmask(256,Zone,1);
 			player:setVar("trade_bcnmid",256);
-		end	
+		end
+	elseif(Zone == 180) then -- La'Loff Amphitheater
+		if(player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1) then
+			local qmid = npc:getID();
+			if (qmid == 17514548 and player:hasKeyItem(SHARD_OF_APATHY) == false) then -- Hume, Ark Angels 1
+				mask = GetBattleBitmask(288,Zone,1);
+				player:setVar("trade_bcnmid",288);
+			elseif (qmid == 17514549 and player:hasKeyItem(SHARD_OF_COWARDICE) == false) then -- Tarutaru, Ark Angels 2
+				mask = GetBattleBitmask(289,Zone,1);
+				player:setVar("trade_bcnmid",289);
+			elseif (qmid == 17514550 and player:hasKeyItem(SHARD_OF_ENVY) == false) then -- Mithra, Ark Angels 3
+				mask = GetBattleBitmask(290,Zone,1);
+				player:setVar("trade_bcnmid",290);
+			elseif (qmid == 17514551 and player:hasKeyItem(SHARD_OF_ARROGANCE) == false) then -- Elvaan, Ark Angels 4
+				mask = GetBattleBitmask(291,Zone,1);
+				player:setVar("trade_bcnmid",291);
+			elseif (qmid == 17514552 and player:hasKeyItem(SHARD_OF_RAGE) == false) then -- Galka, Ark Angels 5
+				mask = GetBattleBitmask(292,Zone,1);
+				player:setVar("trade_bcnmid",292);
+			end
+		end
 	elseif(Zone == 201) then -- Cloister of Gales
 		if(player:hasKeyItem(TUNING_FORK_OF_WIND)) then -- Trial by Wind
 			mask = GetBattleBitmask(416,Zone,1);
