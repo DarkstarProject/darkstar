@@ -22,3 +22,13 @@ WEATHER_AURORAS		= 16;
 WEATHER_STELLAR_GLARE	= 17;
 WEATHER_GLOOM		= 18;
 WEATHER_DARKNESS	= 19;
+
+TIME_NONE           = 0;
+TIME_MIDNIGHT       = 1;
+TIME_FOG            = 2;
+TIME_NEW_DAY        = 3;
+TIME_DAWN           = 4;
+TIME_DAY            = 5;
+TIME_DUSK           = 6;
+TIME_EVENING        = 7;
+TIME_NIGHT          = 8;

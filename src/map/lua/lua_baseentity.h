@@ -290,6 +290,8 @@ public:
 	int32 isMobType(lua_State*);			// True if mob is of type passed to function
 	int32 changeSkin(lua_State*);			// Change mob skin
 	int32 getSkinID(lua_State*);			// Get Skin ID (0 for base skin)
+	int32 getSystem(lua_State*);
+	int32 getFamily(lua_State*);
 
 	int32 addStatusEffect(lua_State*);		// Adds status effect to character
     int32 addStatusEffectEx(lua_State*);	// Adds status effect to character

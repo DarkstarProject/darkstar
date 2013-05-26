@@ -4999,6 +4999,28 @@ inline int32 CLuaBaseEntity::isUndead(lua_State *L)
 	return 1;
 }
 
+inline int32 CLuaBaseEntity::getSystem(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+	uint8 system = ((CMobEntity*)m_PBaseEntity)->m_EcoSystem;
+
+	lua_pushinteger(L, system);
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::getFamily(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+	uint16 family = ((CMobEntity*)m_PBaseEntity)->m_Family;
+
+	lua_pushinteger(L, family);
+	return 1;
+}
+
  /************************************************************************
 *                                                                      *
 *  Returns true if mob is of passed in type                                *
@@ -7011,6 +7033,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBattleTime),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,changeSkin),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSkinID),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSystem),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getFamily),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,createWornItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasWornItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getObjType),

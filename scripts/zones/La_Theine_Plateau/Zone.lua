@@ -5,11 +5,12 @@
 -----------------------------------
 
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
-
-require("scripts/globals/settings");
-require("scripts/globals/quests");
 require("scripts/zones/La_Theine_Plateau/TextIDs");
-require( "scripts/globals/icanheararainbow");
+
+require("scripts/globals/icanheararainbow");
+require("scripts/globals/quests");
+require("scripts/globals/settings");
+require("scripts/globals/weather");
 
 -----------------------------------
 -- onInitialize
@@ -75,4 +76,32 @@ function onEventFinish( player, csid, option)
 		player:addFame( BASTOK, AF2_FAME);
 		player:completeQuest( BASTOK,DARK_PUPPET);
 	end	
-end;		
+end;
+
+function OnZoneWeatherChange(weather)
+    
+    local _2u0 = GetNPCByID(17195599);
+    local I_Can_Hear_a_Rainbow = GetServerVariable("I_Can_Hear_a_Rainbow");
+    
+    if (I_Can_Hear_a_Rainbow == 1 and weather ~= WEATHER_RAIN and _2u0:getAnimation() == 9) then
+        _2u0:setAnimation(8);
+    elseif (weather == WEATHER_RAIN) then
+        _2u0:setAnimation(9);
+        SetServerVariable("I_Can_Hear_a_Rainbow", 0);
+    end
+    
+end;
+
+function OnTOTDChange(TOTD)
+
+    local _2u0 = GetNPCByID(17195599);
+    local I_Can_Hear_a_Rainbow = GetServerVariable("I_Can_Hear_a_Rainbow");
+    
+    if (TOTD >= TIME_DAWN and TOTD <= TIME_EVENING and _2u0:getAnimation() == 9) then
+        _2u0:setAnimation(8);
+    elseif (TOTD < TIME_DAWN or TOTD > TIME_EVENING) then
+        _2u0:setAnimation(9);
+        SetServerVariable("I_Can_Hear_a_Rainbow", 0);
+    end
+
+end;

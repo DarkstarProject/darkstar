@@ -32,6 +32,9 @@
 #include "packets/event.h"
 #include "packets/entity_update.h"
 
+#define ELEVATOR_INTERVAL_PORT_BASTOK_BRIDGE	360
+#define ELEVATOR_INTERVAL_KUFTAL_TUNNEL_ROCK	360
+
 /************************************************************************
 *                                                                       *
 *  Создание глобальной ссылки на объект класса                          *
@@ -242,15 +245,13 @@ void CTransportHandler::TransportTimer()
 
 		if (elevator->isStarted)
 		{
-			if (elevator->id == 26)
+			uint16 TimerOffset = (VanaTime % elevator->interval);
+			
+			if (elevator->id == ELEVATOR_PORT_BASTOK_BRIDGE)
 			{
-				uint8 HourOffset	= CVanaTime::getInstance()->getHour() % 6;
-				uint8 MinuteOffset	= CVanaTime::getInstance()->getMinute();
+				TimerOffset = (VanaTime % ELEVATOR_INTERVAL_PORT_BASTOK_BRIDGE);
 
-				if (
-					(HourOffset == AIRSHIP_ARRIVAL && MinuteOffset == 4) ||
-					(HourOffset == AIRSHIP_DEPARTURE && MinuteOffset == 20)
-					)
+				if (TimerOffset == 0 || TimerOffset == 76)
 				{
 					CZone* PZone = zoneutils::GetZone(elevator->zone);
 					EntityList_t charList = PZone->GetCharList();
@@ -266,36 +267,41 @@ void CTransportHandler::TransportTimer()
 							}
 						}
 					}
-					elevator->isMoving = true;
-					startElevator(elevator);
 				}
-				else if (
-					(HourOffset == AIRSHIP_ARRIVAL && MinuteOffset == 8) ||
-					(HourOffset == AIRSHIP_DEPARTURE && MinuteOffset == 24)
-					)
+				else if (TimerOffset == 4 || TimerOffset == 80)
 				{
 					elevator->isMoving = true;
 					startElevator(elevator);
 				}
-				else if (
-					(HourOffset == AIRSHIP_ARRIVAL && MinuteOffset == 10) ||
-					(HourOffset == AIRSHIP_DEPARTURE && MinuteOffset == 26)
-					)
+				else if (TimerOffset == 8 || TimerOffset == 84)
+				{
+					elevator->isMoving = true;
+					startElevator(elevator);
+				}
+				else if (TimerOffset == 12 || TimerOffset == 88)
 				{
 					elevator->isMoving = false;
 					arriveElevator(elevator);
 				}
 			}
-			else
+			else if (elevator->id == ELEVATOR_KUFTAL_TUNNEL_ROCK)
 			{
-				uint16 elevatorTimerOffset = (VanaTime % elevator->interval);
-		
-				if(elevatorTimerOffset == 0)
+				TimerOffset = (VanaTime % ELEVATOR_INTERVAL_KUFTAL_TUNNEL_ROCK);
+
+				if (TimerOffset == 60)
 				{
 					elevator->isMoving = true;
 					startElevator(elevator);
 				}
-				else if (elevatorTimerOffset == elevator->movetime)
+			}
+			else
+			{
+				if (TimerOffset == 0)
+				{
+					elevator->isMoving = true;
+					startElevator(elevator);
+				}
+				else if (TimerOffset == elevator->movetime)
 				{
 					if (elevator->isMoving)
 					{
@@ -347,7 +353,7 @@ void CTransportHandler::startElevator(Elevator_t * elevator)
   
 	if ((elevator->LowerDoor != NULL) && (elevator->UpperDoor != NULL)) 
 	{
-		if (elevator->id == 26)
+		if (elevator->id == ELEVATOR_PORT_BASTOK_BRIDGE)
 		{
 			elevator->LowerDoor->animation = ANIMATION_CLOSE_DOOR;
 			zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->LowerDoor,ENTITY_SPAWN));
@@ -393,7 +399,7 @@ void CTransportHandler::arriveElevator(Elevator_t * elevator)
 	{
 		elevator->interval = elevator->interval;
 	}
-	if (elevator->id == 26)
+	if (elevator->id == ELEVATOR_PORT_BASTOK_BRIDGE)
 	{
 		elevator->LowerDoor->animation = ANIMATION_OPEN_DOOR;
 		zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->LowerDoor,ENTITY_SPAWN));

@@ -52,9 +52,10 @@ namespace zoneutils
 
 void TOTDCharnge(TIMETYPE TOTD)
 {
-	for(int32 ZoneID = 0; ZoneID < MAX_ZONEID; ++ZoneID)
+	for (int16 ZoneID = 0; ZoneID < MAX_ZONEID; ++ZoneID)
 	{
 		g_PZoneList[ZoneID]->TOTDChange(TOTD);
+		luautils::OnTOTDChange(ZoneID, TOTD);
 	}
 }
 
@@ -72,7 +73,7 @@ void UpdateWeather()
     uint8 WeatherChange = 0;
     uint8 WeatherFrequency = 0;
 
-    for (int16 ZoneID = 0; ZoneID < MAX_ZONEID; ZoneID++)
+    for (int16 ZoneID = 0; ZoneID < MAX_ZONEID; ++ZoneID)
     {
         if (!g_PZoneList[ZoneID]->IsWeatherStatic())
         {

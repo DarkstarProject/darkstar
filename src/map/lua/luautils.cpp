@@ -2117,13 +2117,6 @@ int32 OnGameHourAutomatisation()
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
-/************************************************************************
-*	OnZoneWeatherChange													*
-*   used to allow scripted Npcs and mobs to spawn under specific		*
-*	weather conditions													*
-*																		*
-************************************************************************/
-
 int32 OnZoneWeatherChange(uint16 ZoneID, uint8 weather)
 {
 	int8 File[255];
@@ -2153,6 +2146,41 @@ int32 OnZoneWeatherChange(uint16 ZoneID, uint8 weather)
 	if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnZoneWeatherChange: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return -1;
+	}
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+}
+
+int32 OnTOTDChange(uint16 ZoneID, uint8 TOTD)
+{
+	int8 File[255];
+	memset(File,0,sizeof(File));
+
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "OnTOTDChange");
+
+	snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", zoneutils::GetZone(ZoneID)->GetName());
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+		ShowError("luautils::OnTOTDChange: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnTOTDChange");
+	if( lua_isnil(LuaHandle,-1) )
+	{
+		// ShowError("luautils::OnZoneWeatherChange: undefined procedure OnZoneWeatherChange\n");
+		return -1;
+	}
+
+	lua_pushinteger(LuaHandle, TOTD);
+
+	if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::OnTOTDChange: %s\n",lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
 		return -1;
 	}
@@ -2621,10 +2649,11 @@ int32 SetServerVariable(lua_State *L)
 
 	if (value == 0)
 	{
-		Sql_Query(SqlHandle, "DELETE FROM server_variables WHERE name = '%s' LIMIT 1;", name);
+		const int8* fmtQuery = "DELETE FROM server_variables WHERE name = '%s' LIMIT 1;";
+		
+		Sql_Query(SqlHandle, fmtQuery, name);
 		return 0;
 	}
-
 	const int8* fmtQuery = "INSERT INTO server_variables VALUES ('%s', %i) ON DUPLICATE KEY UPDATE value = %i;";
 
 	Sql_Query(SqlHandle, fmtQuery, name, value, value);

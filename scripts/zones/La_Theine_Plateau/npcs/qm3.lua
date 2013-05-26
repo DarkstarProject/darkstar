@@ -5,11 +5,11 @@
 -----------------------------------
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
 -----------------------------------
+require("scripts/zones/La_Theine_Plateau/TextIDs");
 
 require("scripts/globals/quests");
-require("scripts/globals/titles");
 require("scripts/globals/settings");
-require("scripts/zones/La_Theine_Plateau/TextIDs");
+require("scripts/globals/titles");
 
 -----------------------------------
 -- onTrade
@@ -58,6 +58,7 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(UNLOCK_SUMMONER);
 		player:messageSpecial(UNLOCK_CARBUNCLE);
 		player:setVar("ICanHearARainbow",0);
+        SetServerVariable("I_Can_Hear_a_Rainbow", 1);
 	end
 end;
 

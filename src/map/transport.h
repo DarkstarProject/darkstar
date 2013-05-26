@@ -30,10 +30,10 @@
 
 #include "npcentity.h"
 
-enum AIRSHIP
+enum ELEVATOR
 {
-	AIRSHIP_ARRIVAL		= 0,
-	AIRSHIP_DEPARTURE	= 1
+	ELEVATOR_PORT_BASTOK_BRIDGE		= 26,
+	ELEVATOR_KUFTAL_TUNNEL_ROCK		= 27
 };
 
 struct Transport_t
@@ -58,8 +58,8 @@ struct Elevator_t
 	uint8 id;
 	uint16 zone;
 
-	uint8 interval;
-	uint8 movetime;
+	uint16 interval;
+	uint16 movetime;
 
 	CNpcEntity * Elevator;
 	CNpcEntity * LowerDoor;
