@@ -2129,7 +2129,6 @@ int32 OnZoneWeatherChange(uint16 ZoneID, uint8 weather)
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
-		ShowError("luautils::OnZoneWeatherChange: %s\n",lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
 		return -1;
 	}
@@ -2137,7 +2136,6 @@ int32 OnZoneWeatherChange(uint16 ZoneID, uint8 weather)
     lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnZoneWeatherChange");
 	if( lua_isnil(LuaHandle,-1) )
 	{
-		// ShowError("luautils::OnZoneWeatherChange: undefined procedure OnZoneWeatherChange\n");
 		return -1;
 	}
 
@@ -2145,7 +2143,6 @@ int32 OnZoneWeatherChange(uint16 ZoneID, uint8 weather)
 
 	if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
 	{
-		ShowError("luautils::OnZoneWeatherChange: %s\n",lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
 		return -1;
 	}
@@ -2164,7 +2161,6 @@ int32 OnTOTDChange(uint16 ZoneID, uint8 TOTD)
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
-		ShowError("luautils::OnTOTDChange: %s\n",lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
 		return -1;
 	}
@@ -2172,7 +2168,6 @@ int32 OnTOTDChange(uint16 ZoneID, uint8 TOTD)
     lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnTOTDChange");
 	if( lua_isnil(LuaHandle,-1) )
 	{
-		// ShowError("luautils::OnZoneWeatherChange: undefined procedure OnZoneWeatherChange\n");
 		return -1;
 	}
 
@@ -2180,7 +2175,6 @@ int32 OnTOTDChange(uint16 ZoneID, uint8 TOTD)
 
 	if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
 	{
-		ShowError("luautils::OnTOTDChange: %s\n",lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
 		return -1;
 	}
@@ -2649,14 +2643,10 @@ int32 SetServerVariable(lua_State *L)
 
 	if (value == 0)
 	{
-		const int8* fmtQuery = "DELETE FROM server_variables WHERE name = '%s' LIMIT 1;";
-		
-		Sql_Query(SqlHandle, fmtQuery, name);
+		Sql_Query(SqlHandle, "DELETE FROM server_variables WHERE name = '%s' LIMIT 1;", name);
 		return 0;
 	}
-	const int8* fmtQuery = "INSERT INTO server_variables VALUES ('%s', %i) ON DUPLICATE KEY UPDATE value = %i;";
-
-	Sql_Query(SqlHandle, fmtQuery, name, value, value);
+	Sql_Query(SqlHandle, "INSERT INTO server_variables VALUES ('%s', %i) ON DUPLICATE KEY UPDATE value = %i;", name, value, value);
 	
 	lua_pushnil(L);
 	return 0;

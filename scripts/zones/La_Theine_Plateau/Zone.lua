@@ -81,11 +81,12 @@ end;
 function OnZoneWeatherChange(weather)
     
     local _2u0 = GetNPCByID(17195599);
+    local VanadielTOTD = VanadielTOTD();
     local I_Can_Hear_a_Rainbow = GetServerVariable("I_Can_Hear_a_Rainbow");
     
-    if (I_Can_Hear_a_Rainbow == 1 and weather ~= WEATHER_RAIN and _2u0:getAnimation() == 9) then
+    if (I_Can_Hear_a_Rainbow == 1 and weather ~= WEATHER_RAIN and VanadielTOTD >= TIME_DAWN and VanadielTOTD <= TIME_EVENING and _2u0:getAnimation() == 9) then
         _2u0:setAnimation(8);
-    elseif (weather == WEATHER_RAIN) then
+    elseif (I_Can_Hear_a_Rainbow == 1 and weather == WEATHER_RAIN and _2u0:getAnimation() == 8) then
         _2u0:setAnimation(9);
         SetServerVariable("I_Can_Hear_a_Rainbow", 0);
     end
@@ -97,9 +98,9 @@ function OnTOTDChange(TOTD)
     local _2u0 = GetNPCByID(17195599);
     local I_Can_Hear_a_Rainbow = GetServerVariable("I_Can_Hear_a_Rainbow");
     
-    if (TOTD >= TIME_DAWN and TOTD <= TIME_EVENING and _2u0:getAnimation() == 9) then
+    if (I_Can_Hear_a_Rainbow == 1 and TOTD >= TIME_DAWN and TOTD <= TIME_EVENING and _2u0:getAnimation() == 9) then
         _2u0:setAnimation(8);
-    elseif (TOTD < TIME_DAWN or TOTD > TIME_EVENING) then
+    elseif (I_Can_Hear_a_Rainbow == 1 and TOTD < TIME_DAWN or TOTD > TIME_EVENING and _2u0:getAnimation() == 8) then
         _2u0:setAnimation(9);
         SetServerVariable("I_Can_Hear_a_Rainbow", 0);
     end
