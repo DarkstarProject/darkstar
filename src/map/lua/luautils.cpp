@@ -2613,12 +2613,23 @@ int32 GetServerVariable(lua_State *L)
 
 int32 SetServerVariable(lua_State *L)
 {
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isstring(L,-2));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, -2) || !lua_isstring(L, -2));
 
-	int32 value = (int32)lua_tointeger(L,-1);
+	const int8* name = lua_tostring(L, -2);
+	int32 value = (int32)lua_tointeger(L, -1);
 
-	Sql_Query(SqlHandle,"INSERT INTO server_variables VALUES ('%s', %i) ON DUPLICATE KEY UPDATE value = %i;", lua_tostring(L,-2), value, value);
+	if (value == 0)
+	{
+		Sql_Query(SqlHandle, "DELETE FROM server_variables WHERE name = '%s' LIMIT 1;", name);
+		return 0;
+	}
+
+	const int8* fmtQuery = "INSERT INTO server_variables VALUES ('%s', %i) ON DUPLICATE KEY UPDATE value = %i;";
+
+	Sql_Query(SqlHandle, fmtQuery, name, value, value);
+	
+	lua_pushnil(L);
 	return 0;
 }
 
