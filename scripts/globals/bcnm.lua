@@ -312,7 +312,7 @@ function ItemToBCNMID(player,zone,trade)
 						questTimelineOK = 1;
 					elseif(item == 1553) then -- KSNM99
 						questTimelineOK = 1;
-					elseif(item == 1550) then -- Divine Might
+					elseif(item == 1550 and (player:getQuestStatus(OUTLANDS,DIVINE_MIGHT) == QUEST_ACCEPTED or player:getQuestStatus(OUTLANDS,DIVINE_MIGHT_REPEAT) == QUEST_ACCEPTED)) then -- Divine Might
 						questTimelineOK = 1;
 					elseif(item == 1169 and player:getVar("ThePuppetMasterProgress") == 2) then -- The Puppet Master
 						questTimelineOK = 1;
