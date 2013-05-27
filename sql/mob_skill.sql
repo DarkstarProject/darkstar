@@ -1127,16 +1127,6 @@ INSERT INTO `mob_skill` VALUES (88,108,88,'Sticky_Thread', 4, 10.0, 2000, 1000, 
 -- INSERT INTO `mob_skill` VALUES (0,257,1227,'Granite_Skin', 0, 7.0, 2000, 1000, 1, 0);
 -- INSERT INTO `mob_skill` VALUES (0,257,0,'Crippling_Slam', 4, 16.0, 2000, 1000, 4, 0);
 
--- Hydra
--- INSERT INTO `mob_skill` VALUES (1572,164,1308,'Pyric_Blast', 4, 15.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (1573,164,1307,'Polar_Bulwark', 0, 7.0, 2000, 1000, 1, 0);
--- INSERT INTO `mob_skill` VALUES (1574,164,1309,'Polar_Blast', 4, 15.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (1575,164,0,'Pyric_Bulwark', 0, 7.0, 2000, 1000, 1, 0);
--- INSERT INTO `mob_skill` VALUES (1576,164,1313,'Barofield', 4, 15.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (1578,164,1310,'Trembling', 1, 5.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (1579,164,1311,'Serpentine_Tail', 0, 7.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (1580,164,1312,'Nerve_Gas', 1, 10.0, 2000, 1000, 4, 0);
-
 -- Ladybug
 INSERT INTO `mob_skill` VALUES (1925,170,1579,'Spiral_Spin', 0, 7.0, 2000, 1000, 4, 0);
 -- Pixie
@@ -1314,6 +1304,25 @@ INSERT INTO `mob_skill` VALUES (1531,62,1225,'Scorching_Lash', 1, 20.0, 2000, 10
 INSERT INTO `mob_skill` VALUES (1532,62,1226,'Ululation', 1, 20.0, 2000, 1000, 4, 0); -- Paralyze
 INSERT INTO `mob_skill` VALUES (1533,62,1227,'Magma_Hoplon', 0, 7.0, 2000, 1000, 1, 0); -- Stoneskin + Blaze Spike
 INSERT INTO `mob_skill` VALUES (1534,62,1228,'Gates_of_Hades', 1, 20.0, 2000, 1000, 4, 0); -- ~950 dmg + 20hp/tick
+
+-- Hydra
+INSERT INTO `mob_skill` VALUES (1572,164,1308,'Pyric_Blast', 4, 15.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1573,164,1319,'Polar_Bulwark', 0, 7.0, 2000, 1000, 1, 0);
+INSERT INTO `mob_skill` VALUES (1574,164,1309,'Polar_Blast', 4, 15.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1575,164,1318,'Pyric_Bulwark', 0, 7.0, 2000, 1000, 1, 0);
+INSERT INTO `mob_skill` VALUES (1576,164,1313,'Barofield', 4, 15.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1578,164,1310,'Trembling', 1, 10.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1579,164,1311,'Serpentine_Tail', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1580,164,1312,'Nerve_Gas', 1, 10.0, 2000, 1000, 4, 0);
+
+-- Khimaira
+INSERT INTO `mob_skill` VALUES (1769,168,1369,'Dreadstorm', 1, 18.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1770,168,1381,'Fossilizing_Breath', 4, 16.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1772,168,1386,'Fulmination', 1, 32.0, 2000, 1000, 4, 0); -- only at < 37% strong paralyze
+INSERT INTO `mob_skill` VALUES (1771,168,1382,'Plague_Swipe', 4, 16.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1766,168,1367,'Tenebrous_Mist', 1, 18.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1767,168,1368,'Thunderstrike', 1, 18.0, 2000, 1000, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (1768,168,1371,'Tourbillion', 1, 18.0, 2000, 1000, 4, 0); -- Need a system to lower wings with crits.  Commented out for now.
 
 -- King Vinegaroon
 -- INSERT INTO `mob_skill` VALUES (467,274,0,'Earthbreaker', 1, 40.0, 2000, 1000, 4, 0); -- add effect stun
@@ -1668,14 +1677,14 @@ INSERT INTO `mob_skill` VALUES (1515,310,1258,'Tail_Slap', 4, 16.0, 2000, 1000, 
 -- INSERT INTO `mob_skill` VALUES (0,312,0,'Abominable_Belch', 1, 18.0, 2000, 1000, 4, 0);
 
 -- Tinnin (313)
--- INSERT INTO `mob_skill` VALUES (1572,313,1308,'Pyric_Blast', 4, 15.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (1573,313,1307,'Polar_Bulwark', 0, 7.0, 2000, 1000, 1, 0);
--- INSERT INTO `mob_skill` VALUES (1574,313,1309,'Polar_Blast', 4, 15.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (1575,313,0,'Pyric_Bulwark', 0, 7.0, 2000, 1000, 1, 0);
--- INSERT INTO `mob_skill` VALUES (1576,313,1313,'Barofield', 4, 15.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (1578,313,1310,'Trembling', 1, 5.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (1579,313,1311,'Serpentine_Tail', 0, 7.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (1580,313,1312,'Nerve_Gas', 1, 10.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1572,313,1308,'Pyric_Blast', 4, 15.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1573,313,1319,'Polar_Bulwark', 0, 7.0, 2000, 1000, 1, 0);
+INSERT INTO `mob_skill` VALUES (1574,313,1309,'Polar_Blast', 4, 15.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1575,313,1318,'Pyric_Bulwark', 0, 7.0, 2000, 1000, 1, 0);
+INSERT INTO `mob_skill` VALUES (1576,313,1313,'Barofield', 4, 15.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1578,313,1310,'Trembling', 1, 10.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1579,313,1311,'Serpentine_Tail', 0, 7.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1580,313,1312,'Nerve_Gas', 1, 10.0, 2000, 1000, 4, 0);
 
 -- Sarameya (314)
 INSERT INTO `mob_skill` VALUES (1529,314,1223,'Lava_Spit', 1, 10.0, 2000, 1000, 4, 0);
@@ -1686,13 +1695,13 @@ INSERT INTO `mob_skill` VALUES (1533,314,1227,'Magma_Hoplon', 0, 7.0, 2000, 1000
 INSERT INTO `mob_skill` VALUES (1534,314,1228,'Gates_of_Hades', 1, 20.0, 2000, 1000, 4, 0);
 
 -- Tyger (315)
--- INSERT INTO `mob_skill` VALUES (1769,315,1369,'Dreadstorm', 1, 18.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (1770,315,1381,'Fossilizing_Breath', 4, 16.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (1772,315,1386,'Fulmination', 1, 32.0, 2000, 1000, 4, 0); -- only at < 50% strong paralyze
--- INSERT INTO `mob_skill` VALUES (0,315,0,'Plague_Swipe', 4, 16.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (1766,315,1367,'Tenebrous_Mist', 1, 18.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (1767,315,1368,'Thunderstrike', 1, 18.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (1768,315,1371,'Tourbillion', 1, 18.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1769,315,1369,'Dreadstorm', 1, 18.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1770,315,1381,'Fossilizing_Breath', 4, 16.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1772,315,1386,'Fulmination', 1, 32.0, 2000, 1000, 4, 0); -- only at < 50% strong paralyze
+INSERT INTO `mob_skill` VALUES (1771,315,1382,'Plague_Swipe', 4, 16.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1766,315,1367,'Tenebrous_Mist', 1, 18.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1767,315,1368,'Thunderstrike', 1, 18.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (1768,315,1371,'Tourbillion', 1, 18.0, 2000, 1000, 4, 0);
 
 -- Pandemonium Warden  (316)
 -- INSERT INTO `mob_skill` VALUES (2415,316,3932,'Supernova',1,25.0,5000,3500,4,0);

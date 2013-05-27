@@ -36,6 +36,8 @@ function OnMobWeaponSkill(target, mob, skill)
       target:dispelStatusEffect();
    end
 
+   -- TODO: Dispel message
+
    -- Damage is HIGHLY conflicting.  Witnessed anywhere from 300 to 900.
    -- TP DMG VARIES can sort of account for this, but I feel like it's still not right.
    target:delHP(dmg);

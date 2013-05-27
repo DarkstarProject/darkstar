@@ -573,8 +573,8 @@ AN_UNDYING_PLEDGE               = 149;
 WRATH_OF_THE_OPO_OPOS           = 160;
 WANDERING_SOULS                 = 161;
 SOUL_SEARCHING                  = 162;
-DIVINE_MIGHT                    = 163;
-DIVINE_MIGHT_REPEAT             = 164;
+DIVINE_MIGHT                    = 163; -- ± --
+DIVINE_MIGHT_REPEAT             = 164; -- ± --
 OPEN_SESAME                     = 165;
 
 -- Rabao(192-201)
