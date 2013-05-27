@@ -163,7 +163,7 @@ function onEventFinish(player,csid,option)
 	--printf("CSID: %u",csid);
 	--printf("RESULT: %u",option);
 
-   if (csid == 15) then
+   if (csid == 51) then
       player:completeMission(ZILART,THE_SEALED_SHRINE);
       player:addMission(ZILART,THE_CELESTIAL_NEXUS);
       player:setVar("ZilartStatus",0);
