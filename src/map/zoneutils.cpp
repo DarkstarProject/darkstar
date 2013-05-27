@@ -55,7 +55,6 @@ void TOTDCharnge(TIMETYPE TOTD)
 	for (uint16 ZoneID = 0; ZoneID < MAX_ZONEID; ZoneID++)
 	{
 		g_PZoneList[ZoneID]->TOTDChange(TOTD);
-		luautils::OnTOTDChange(ZoneID, TOTD);
 	}
 }
 

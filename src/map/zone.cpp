@@ -231,7 +231,7 @@ void  CZone::HealAllMobs()
 
 void CZone::LoadZoneLines()
 {
-	const int8* fmtQuery = "SELECT zoneline, tozone, tox, toy, toz, rotation FROM zonelines WHERE fromzone = %u";
+	static const int8* fmtQuery = "SELECT zoneline, tozone, tox, toy, toz, rotation FROM zonelines WHERE fromzone = %u";
 
 	int32 ret = Sql_Query(SqlHandle, fmtQuery, m_zoneID);
 
@@ -261,7 +261,7 @@ void CZone::LoadZoneLines()
 
 void CZone::LoadZoneWeather()
 {
-    const int8* Query =
+    static const int8* Query =
         "SELECT "
           "weather.none,"
           "weather.sunshine,"
@@ -324,7 +324,7 @@ void CZone::LoadZoneWeather()
 
 void CZone::LoadZoneSettings()
 {
-    const int8* Query =
+    static const int8* Query =
         "SELECT "
           "zone.name,"
           "zone.zoneip,"
@@ -1184,6 +1184,11 @@ void CZone::TOTDChange(TIMETYPE TOTD)
 
 	switch (TOTD)
 	{
+        case TIME_MIDNIGHT:
+        {
+
+        }
+        break;
         case TIME_FOG:
         {
             for (EntityList_t::const_iterator it = m_mobList.begin(); it != m_mobList.end(); ++it)
@@ -1290,6 +1295,7 @@ void CZone::TOTDChange(TIMETYPE TOTD)
 			charutils::CheckEquipLogic((CCharEntity*)it->second, ScriptType, TOTD);
 		}
 	}
+    luautils::OnTOTDChange(m_zoneID, TOTD);
 }
 
 /************************************************************************
