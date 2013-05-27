@@ -98,7 +98,7 @@ function onTrigger(player,npc)
 	elseif(shatteringStars == QUEST_ACCEPTED and LvL >= 66 and mJob <= 15 and player:getVar("maatDefeated") >= 1) then
 		player:startEvent(0x005d); -- Finish Quest "Shattering Stars"
 	else
-		player:showText(npc,10259);
+		player:showText(npc,MAAT_DIALOG);
 	end
 
 end;
