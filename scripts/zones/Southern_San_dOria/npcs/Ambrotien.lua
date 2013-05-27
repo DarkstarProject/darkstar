@@ -18,6 +18,7 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 function onTrade(player,npc,trade)
 	
 	CurrentMission = player:getCurrentMission(SANDORIA);
+	OrcishScoutCompleted = player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS);
 	BatHuntCompleted = player:hasCompletedMission(SANDORIA,BAT_HUNT);
 	TheCSpringCompleted = player:hasCompletedMission(SANDORIA,THE_CRYSTAL_SPRING);
 	MissionStatus = player:getVar("MissionStatus");
@@ -59,16 +60,13 @@ function onTrigger(player,npc)
 		pRank = player:getRank();
 		cs, p, offset = getMissionOffset(player,2,CurrentMission,MissionStatus);
 		
-		
 		if(CurrentMission <= 15 and (cs ~= 0 or offset ~= 0 or (CurrentMission == 0 and offset == 0))) then
 			if(cs == 0) then
 				player:showText(npc,ORIGINAL_MISSION_OFFSET + offset); -- dialog after accepting mission
 			else
 				player:startEvent(cs,p[1],p[2],p[3],p[4],p[5],p[6],p[7],p[8]);
 			end
-		end
-		
-		if(pRank == 1 and player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS) == false) then
+      elseif(pRank == 1 and player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS) == false) then
 			player:startEvent(0x07d0); -- Start First Mission "Smash the Orcish scouts"
 		elseif(player:hasKeyItem(ANCIENT_SANDORIAN_BOOK)) then
 	        player:startEvent(0x040c);

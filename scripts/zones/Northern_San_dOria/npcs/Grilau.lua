@@ -18,6 +18,7 @@ require("scripts/zones/Northern_San_dOria/TextIDs");
 function onTrade(player,npc,trade)
 	
 	CurrentMission = player:getCurrentMission(SANDORIA);
+	OrcishScoutCompleted = player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS);
 	BatHuntCompleted = player:hasCompletedMission(SANDORIA,BAT_HUNT);
 	TheCSpringCompleted = player:hasCompletedMission(SANDORIA,THE_CRYSTAL_SPRING);
 	MissionStatus = player:getVar("MissionStatus");

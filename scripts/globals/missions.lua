@@ -825,7 +825,7 @@ function finishMissionTimeline(player,guard,csid,option)
 			timeline = {
 				 -- MissionID,{Guard#1 DialogID, option},{Guard#2 DialogID, option},{NPC#1 DialogID, option},{NPC#2 DialogID, option},{function list}
 				 0,{0x03e8,0},{0x07d0,0},{0,0},		{0,0},{{1},{2}}, 													-- MISSION 1-1 (First Mission [START])
-				 0,{0x03fc,0},{0x07e4,0},{0,0},		{0,0},{{4},{5,150},{12}}, 											-- MISSION 1-1
+				 0,{0x03fc,0},{0x07e4,0},{0,0},		{0,0},{{4},{5,150},{12},{14,0}}, 											-- MISSION 1-1
 				 0,{0x03ea,0},{0x07d2,0},{0,0},		{0,0},{{4},{5,150},{12}},											-- MISSION 1-1 [Repeat]
 				 1,{0x03ff,0},{0x07e7,0},{0,0},		{0,0},{{4},{14,0},{5,200},{12}}, 									-- MISSION 1-2
 				 1,{0x03eb,0},{0x07d3,0},{0,0},		{0,0},{{4},{14,0},{5,200},{12}},									-- MISSION 1-2 [Repeat]

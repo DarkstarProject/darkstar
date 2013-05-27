@@ -31,19 +31,19 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc) 
-local currentMission = player:getCurrentMission(SANDORIA);
-	  MissionStatus = player:getVar("MissionStatus");	
-	X = npc:getXPos();
-	Z = npc:getZPos();
+   local currentMission = player:getCurrentMission(SANDORIA);
+	local MissionStatus = player:getVar("MissionStatus");	
+	local X = npc:getXPos();
+	local Z = npc:getZPos();
 	
 	if(X >= -1 and X <= 1 and Z >= -106 and Z <= -102) then
-		if(player:getCurrentMission(SANDORIA) == BAT_HUNT and player:getVar("MissionStatus") == 0) then
+		if(player:getCurrentMission(SANDORIA) == BAT_HUNT and MissionStatus <= 1) then -- Bug caused players to have MissionStatus 1 at start, so self-healing is necessary.
 			player:startEvent(0x0004);
 		else
 			player:startEvent(0x0002);
 		end
 	elseif(npc:getID() == 17555927) then
-	    if(currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 2) then	
+	    if(currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 2) then
 	        player:startEvent(0x0008);
 	    end
 	end
