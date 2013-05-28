@@ -228,6 +228,47 @@ function CharCreate(player)
 		default = function (x) end,
 	}
 
+   ----- settings.lua Perks -----
+   if (ADVANCED_JOB_LEVEL == 0) then
+      for i = 6,22 do
+         player:unlockJob(i);
+      end
+   end
+
+   if (SUBJOB_QUEST_LEVEL == 0) then
+      player:unlockJob(0);
+   end
+
+   if (ALL_MAPS == 1) then -- Does not include SoA maps
+      for i=385,447 do
+         player:addKeyItem(i);
+      end
+      for i=1856,1903 do
+         player:addKeyItem(i);
+      end
+   end
+
+   if (INITIAL_LEVEL_CAP ~= 50) then
+      player:levelCap(INITIAL_LEVEL_CAP)
+   end
+
+   if (START_INVENTORY > 30) then
+      player:changeContainerSize(0,(START_INVENTORY - 30))
+      player:changeContainerSize(5,(START_INVENTORY - 30))
+   end
+
+   if (UNLOCK_OUTPOST_WARPS >= 1) then
+      player:addNationTeleport(0,2097120);
+      player:addNationTeleport(1,2097120);
+      player:addNationTeleport(2,2097120);
+      if (UNLOCK_OUTPOST_WARPS == 2) then -- Tu'Lia and Tavnazia
+         player:addNationTeleport(0,10485760);
+         player:addNationTeleport(1,10485760);
+         player:addNationTeleport(2,10485760);
+      end
+   end
+   ----- End settings.lua Perks -----
+
 	-- SET START GIL
    --[[For some intermittent reason m_ZoneList ends up empty on characters, which is
    possibly also why they lose key items.  When that happens, CharCreate will be run and

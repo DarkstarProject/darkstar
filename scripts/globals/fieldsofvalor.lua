@@ -542,7 +542,9 @@ function checkRegime(killer,mob,rid,index)
                            killer:addGil(reward);
                            killer:addPoint(TABS,tabs);
                            killer:messageBasic(FOV_MSG_GET_TABS,tabs,killer:getPoint(TABS)); -- Careful about order.
-                           killer:setVar("fov_LastReward",VanadielEpoch);
+                           if (REGIME_WAIT == 1) then
+                              killer:setVar("fov_LastReward",VanadielEpoch);
+                           end
                         end
 
                         --TODO: display msgs (based on zone annoyingly, so will need killer:getZone() then a lookup)
