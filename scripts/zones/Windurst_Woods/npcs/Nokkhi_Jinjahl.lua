@@ -288,7 +288,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x029b);
+	player:startEvent(0x029b,npc:getID());
 end;
 
 -----------------------------------

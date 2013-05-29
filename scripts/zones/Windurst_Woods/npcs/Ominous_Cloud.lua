@@ -151,7 +151,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x02ba);
+	player:startEvent(0x02ba,npc:getID());
 end;
 
 -----------------------------------
