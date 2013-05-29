@@ -34,12 +34,12 @@ function OnUseWeaponSkill(player, target, wsID)
 	params.canCrit = false;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1.33;
-	local damage, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 
 	if damage > 0 and (target:hasStatusEffect(EFFECT_BLINDNESS) == false) then
 		target:addStatusEffect(EFFECT_BLINDNESS, 25, 0, 60);
 	end	
 	
-	return tpHits, extraHits, damage;
+	return tpHits, extraHits, criticalHit, damage;
 	
 end	

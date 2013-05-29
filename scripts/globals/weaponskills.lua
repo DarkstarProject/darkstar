@@ -13,6 +13,9 @@ require("scripts/globals/utils");
 
 --params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti
 function doPhysicalWeaponskill(attacker, target, params)
+	
+	local criticalHit = false;
+	
 	--get fstr
 	local fstr = fSTR(attacker:getStat(MOD_STR),target:getStat(MOD_VIT),attacker:getWeaponDmgRank());
 
@@ -138,6 +141,7 @@ function doPhysicalWeaponskill(attacker, target, params)
 			if(params.canCrit) then
 				critchance = math.random();
 				if(critchance <= critrate or hasMightyStrikes) then --crit hit!
+					criticalHit = true;
 					cpdif = generatePdif(ccritratio[1], ccritratio[2], true);
 					finaldmg = finaldmg + base * cpdif;
 				else
@@ -165,6 +169,7 @@ function doPhysicalWeaponskill(attacker, target, params)
 				if(params.canCrit) then
 					critchance = math.random();
 					if(critchance <= critrate or hasMightyStrikes) then --crit hit!
+						criticalHit = true;
 						cpdif = generatePdif(ccritratio[1], ccritratio[2], true);
 						finaldmg = finaldmg + base * cpdif;
 					else
@@ -186,7 +191,7 @@ function doPhysicalWeaponskill(attacker, target, params)
 		utils.physicalDmgTaken(target, finaldmg);
 	end
 
-	return finaldmg, tpHitsLanded, extraHitsLanded;
+	return finaldmg, criticalHit, tpHitsLanded, extraHitsLanded;
 end;
 
 function souleaterBonus(attacker, numhits)

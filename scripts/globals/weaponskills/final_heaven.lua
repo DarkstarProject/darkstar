@@ -41,5 +41,5 @@ function OnUseWeaponSkill(attacker, target, wsID)
 
 
 
-	return tpHits, extraHits, damage;
+	return tpHits, extraHits, criticalHit, damage;
 end

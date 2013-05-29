@@ -2156,6 +2156,7 @@ void CAICharNormal::ActionJobAbilityFinish()
         			{
         				pdif *= 1.25; //uncapped
         				Action.speceffect = SPECEFFECT_CRITICAL_HIT;
+						luautils::OnCriticalHit(m_PBattleSubTarget);
         			}
 
         			CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
@@ -3186,6 +3187,7 @@ void CAICharNormal::ActionAttack()
 							Action.speceffect = SPECEFFECT_CRITICAL_HIT;
 							Action.messageID  = 67;
 							Action.flag = 0;
+							luautils::OnCriticalHit(m_PBattleTarget);
 						}
 						else
 						{

@@ -32,6 +32,6 @@ function OnUseWeaponSkill(player, target, wsID)
 	params.atkmulti = 1;
 	damage, tpHits, extraHits = doRangedWeaponskill(player, target, params);
 
-	return tpHits, extraHits, damage;
+	return tpHits, extraHits, criticalHit, damage;
 
 end;

@@ -30,8 +30,8 @@ function OnUseWeaponSkill(player, target, wsID)
 	params.atkmulti = 1;
 	params.kick = true;
 
-	local damage, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 
-	return tpHits, extraHits, damage;
+	return tpHits, extraHits, criticalHit, damage;
 
 end

@@ -32,6 +32,6 @@ function OnUseWeaponSkill(player, target, wsID)
 		target:addStatusEffect(EFFECT_INT_DOWN, 10, 0, 140);
 	end	
 	
-	return tpHits, extraHits, damage;
+	return tpHits, extraHits, criticalHit, damage;
 	
 end	

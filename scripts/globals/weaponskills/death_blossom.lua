@@ -33,5 +33,5 @@ function OnUseWeaponSkill(player, target, wsID)
 			target:addStatusEffect(EFFECT_MAGIC_EVASION_DOWN, 10, 0, duration);
 		end
 	end
-	return tpHits, extraHits, damage;
+	return tpHits, extraHits, criticalHit, damage;
 end

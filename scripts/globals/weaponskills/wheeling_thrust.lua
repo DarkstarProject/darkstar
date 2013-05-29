@@ -36,7 +36,7 @@ function OnUseWeaponSkill(player, target, wsID)
 	params.ignored200 = 0.75;
 	params.ignored300 = 1;
 	
-	local damage, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 	
-	return tpHits, extraHits, damage;
+	return tpHits, extraHits, criticalHit, damage;
 end	

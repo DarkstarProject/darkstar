@@ -38,6 +38,6 @@ function OnUseWeaponSkill(player, target, wsID)
 	
 	local damage, tpHits, extraHits = doRangedWeaponskill(player, target, params);
 		
-	return tpHits, extraHits, damage;
+	return tpHits, extraHits, criticalHit, damage;
 	
 end	

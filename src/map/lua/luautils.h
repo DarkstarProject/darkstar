@@ -121,6 +121,7 @@ namespace luautils
 	int32 OnMobEngaged(CBaseEntity* PMob, CBaseEntity* PTarget);				// triggers on mob engaging a target
 	int32 OnMobDisengage(CBaseEntity* PMob);									// triggers on mob disengaging (no more targets)
 	int32 OnMobFight(CBaseEntity* PMob, CBaseEntity* PTarget);					// Сalled every 3 sec when a player fight monster
+	int32 OnCriticalHit(CBattleEntity* PTarget);
 	int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller);					// triggers on mob death
 	int32 OnMobDespawn(CBaseEntity* PMob);										// triggers on mob despawn (death not assured)
 

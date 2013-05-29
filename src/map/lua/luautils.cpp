@@ -1774,6 +1774,44 @@ int32 OnMobFight(CBaseEntity* PMob, CBaseEntity* PTarget)
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
+int32 OnCriticalHit(CBattleEntity* PMob)
+{
+    DSP_DEBUG_BREAK_IF(PMob == NULL || PMob->objtype != TYPE_MOB)
+
+	CLuaBaseEntity LuaMobEntity(PMob);
+
+	int8 File[255];
+	memset(File,0,sizeof(File));
+
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "OnCriticalHit");
+
+	snprintf( File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+        lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnCriticalHit");
+	if( lua_isnil(LuaHandle,-1) )
+	{
+		return -1;
+	}
+
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
+
+	if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::OnCriticalHit: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+}
+
 /************************************************************************
 *																		*
 *  Скрипт выполняется после смерти любого монстра в игре				*
@@ -2225,8 +2263,17 @@ int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, uint16* tpHitsLand
         lua_pop(LuaHandle, 1);
 		return 0;
 	}
-	(*tpHitsLanded) = lua_tonumber(LuaHandle, -3);
-	(*extraHitsLanded) = lua_tonumber(LuaHandle, -2);
+
+	(*tpHitsLanded) = lua_tonumber(LuaHandle, -4);
+	(*extraHitsLanded) = lua_tonumber(LuaHandle, -3);
+	bool criticalHit = lua_toboolean(LuaHandle, -2);
+
+	if (criticalHit == true)
+	{
+		CBattleEntity* PTarget = (CBattleEntity*)PMob;
+		luautils::OnCriticalHit(PTarget);
+	}
+
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
