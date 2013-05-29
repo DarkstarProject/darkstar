@@ -12,8 +12,11 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function OnMobSkillCheck(target,mob,skill)
-   -- TODO: Used only when third/right head is alive (animationsub 0)
-   return 0;
+   if (mob:AnimationSub() == 0) then
+      return 0;
+   else
+      return 1;
+   end
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
