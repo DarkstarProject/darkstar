@@ -2267,6 +2267,7 @@ int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, uint16* tpHitsLand
 	(*tpHitsLanded) = lua_tonumber(LuaHandle, -4);
 	(*extraHitsLanded) = lua_tonumber(LuaHandle, -3);
 	bool criticalHit = lua_toboolean(LuaHandle, -2);
+    int32 dmg = (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 
 	if (criticalHit == true)
 	{
@@ -2274,7 +2275,7 @@ int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, uint16* tpHitsLand
 		luautils::OnCriticalHit(PTarget);
 	}
 
-	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+	return dmg;
 }
 
 /***********************************************************************
