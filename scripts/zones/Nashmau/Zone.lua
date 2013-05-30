@@ -13,7 +13,6 @@ require("scripts/zones/Nashmau/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-zone:registerRegion(1,10.816,-20,-105,13.221,20,-103.1);
 end;
 
 -----------------------------------
@@ -37,9 +36,6 @@ end;
 -- onRegionEnter
 -----------------------------------
 function onRegionEnter(player,region)
-  if(GetNPCByID(16994321):getAnimation() == 8) then
-    player:setPos(11.384,1.289,-108.847,63);
-  end
 end;
 
 
