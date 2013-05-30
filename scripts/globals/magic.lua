@@ -179,6 +179,7 @@ function getCureFinal(caster,spell,basecure,minCure,isBlueMagic)
 			else
 				rapture = 1.5;
 			end
+			caster:delStatusEffectSilent(EFFECT_RAPTURE);
 		end
 	end
 	local dayWeatherBonus = 1;
@@ -605,7 +606,7 @@ function calculateMagicBurstAndBonus(caster, spell, target)
     return burst, burstBonus;
 end;
 
-function addBonuses(caster, spell, target, dmg)
+function addBonuses(caster, spell, target, dmg, bonusmab)
 	local ele = spell:getElement();
 
 	local affinityBonus = AffinityBonus(caster, spell);
@@ -678,15 +679,33 @@ function addBonuses(caster, spell, target, dmg)
 	end
 
 	dmg = math.floor(dmg * burst);
-
-    local mab = (100 + caster:getMod(MOD_MATT)) / (100 + target:getMod(MOD_MDEF));
+	local mab = 0;
+	if (bonusmab ~= nil) then
+		mab = (100 + caster:getMod(MOD_MATT) + bonusmab) / (100 + target:getMod(MOD_MDEF));
+	else
+		mab = (100 + caster:getMod(MOD_MATT)) / (100 + target:getMod(MOD_MDEF));
+	end
 
     if(mab < 0) then
         mab = 0;
     end
 
 	dmg = math.floor(dmg * mab);
-
+	
+	if (caster:hasStatusEffect(EFFECT_EBULLIENCE)) then
+		local equippedHead = caster:getEquipID(SLOT_HEAD);
+		if(equippedHead == 11183) then
+			dmg = dmg * 1.25; --savant's bonnet +1
+		elseif(equippedHead == 11083) then
+			dmg = dmg * 1.3; --savant's bonnet +2
+		else
+			dmg = dmg * 1.2;
+		end
+		caster:delStatusEffectSilent(EFFECT_EBULLIENCE);
+	end
+	
+	dmg = math.floor(dmg);
+	
 	-- Applies "Damage Taken" and "Magic Damage Taken" mods.
 	-- The formulas look crazy because SE.
 	-- Note that MOD_DMGMAGIC is stored in item_mods in amount/256 format
