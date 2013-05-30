@@ -108,8 +108,8 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE)
         int8 enmityBonus = 0;
         if (PEntity->objtype & TYPE_PC)
         {
-            enmityBonus = ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ENMITY_INCREASE, PEntity->GetMLevel()) -
-                ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ENMITY_DECREASE, PEntity->GetMLevel());
+            enmityBonus = ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ENMITY_INCREASE, (CCharEntity*)PEntity) -
+                ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ENMITY_DECREASE, (CCharEntity*)PEntity);
         }
         float bonus = (100.0f + dsp_cap(PEntity->getMod(MOD_ENMITY)+enmityBonus, -50, 100)) / 100.0f;
 
@@ -127,8 +127,8 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE)
 		int8 enmityBonus = 0;
 		if (PEntity->objtype & TYPE_PC)
 		{
-			enmityBonus = ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ENMITY_INCREASE, PEntity->GetMLevel()) -
-				((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ENMITY_DECREASE, PEntity->GetMLevel());
+            enmityBonus = ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ENMITY_INCREASE, (CCharEntity*)PEntity) -
+                ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ENMITY_DECREASE, (CCharEntity*)PEntity);
 		}
 		float bonus = (100.0f + dsp_cap(PEntity->getMod(MOD_ENMITY)+enmityBonus, -50, 100)) / 100.0f;
 

@@ -4461,7 +4461,7 @@ inline int32 CLuaBaseEntity::getMerit(lua_State *L)
     } else {
 		CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-		lua_pushinteger(L, PChar->PMeritPoints->GetMeritValue((MERIT_TYPE)lua_tointeger(L,1), PChar->GetMLevel()));
+		lua_pushinteger(L, PChar->PMeritPoints->GetMeritValue((MERIT_TYPE)lua_tointeger(L,1), PChar));
 	}
 
 	return 1;
@@ -6762,6 +6762,7 @@ inline int32 CLuaBaseEntity::isSpellAoE(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+    DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_PC || m_PBaseEntity->objtype & TYPE_MOB));
 
     CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
     CSpell* PSpell = spell::GetSpell(lua_tonumber(L,1));
@@ -6779,6 +6780,27 @@ inline int32 CLuaBaseEntity::isSpellAoE(lua_State* L)
     return 1;
 }
 
+inline int32 CLuaBaseEntity::getBaseHP(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_PC || m_PBaseEntity->objtype & TYPE_MOB));
+
+    CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
+
+    lua_pushnumber(L,PEntity->health.maxhp);
+    return 1;
+}
+
+inline int32 CLuaBaseEntity::getBaseMP(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_PC || m_PBaseEntity->objtype & TYPE_MOB));
+
+    CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
+
+    lua_pushnumber(L,PEntity->health.maxmp);
+    return 1;
+}
 
 //==========================================================//
 
@@ -7064,5 +7086,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaster),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,recalculateAbilitiesTable),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isSpellAoE),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBaseHP),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBaseMP),
 	{NULL,NULL}
 };

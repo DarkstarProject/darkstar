@@ -1749,7 +1749,7 @@ bool TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender){
 		if (check > 100) check = 100;
 
 		//apply any merit reduction
-		meritReduction = ((CCharEntity*)PDefender)->PMeritPoints->GetMeritValue(MERIT_SPELL_INTERUPTION_RATE,PDefender->GetMLevel());
+		meritReduction = ((CCharEntity*)PDefender)->PMeritPoints->GetMeritValue(MERIT_SPELL_INTERUPTION_RATE,(CCharEntity*)PDefender);
 	}
 
 	float aquaveil = ((float)((100.0f - (meritReduction + (float)PDefender->getMod(MOD_SPELLINTERRUPT)))/100.0f));
@@ -1858,7 +1858,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 		uint8 formlessMod = 70;
 
 		if (PAttacker->objtype == TYPE_PC)
-			formlessMod += ((CCharEntity*)PAttacker)->PMeritPoints->GetMeritValue(MERIT_FORMLESS_STRIKES, PAttacker->GetMLevel());
+			formlessMod += ((CCharEntity*)PAttacker)->PMeritPoints->GetMeritValue(MERIT_FORMLESS_STRIKES, (CCharEntity*)PAttacker);
 
 		damage = damage * formlessMod / 100;
 	}
@@ -2117,8 +2117,8 @@ uint8 GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool ig
 	else
 	{
 		//apply merit mods
-		if (PAttacker->objtype == TYPE_PC) crithitrate += ((CCharEntity*)PAttacker)->PMeritPoints->GetMeritValue(MERIT_CRIT_HIT_RATE,PAttacker->GetMLevel());
-		if (PDefender->objtype == TYPE_PC) crithitrate -= ((CCharEntity*)PDefender)->PMeritPoints->GetMeritValue(MERIT_ENEMY_CRIT_RATE,PDefender->GetMLevel());
+		if (PAttacker->objtype == TYPE_PC) crithitrate += ((CCharEntity*)PAttacker)->PMeritPoints->GetMeritValue(MERIT_CRIT_HIT_RATE,(CCharEntity*)PAttacker);
+		if (PDefender->objtype == TYPE_PC) crithitrate -= ((CCharEntity*)PDefender)->PMeritPoints->GetMeritValue(MERIT_ENEMY_CRIT_RATE,(CCharEntity*)PDefender);
 
 		int32 attackerdex = PAttacker->DEX();
 		int32 defenderagi = PDefender->AGI();
@@ -2307,10 +2307,10 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 
 		//merit chance only applies if player has the job trait
 		if (charutils::hasTrait(PChar, TRAIT_TRIPLE_ATTACK)) {
-			tripleAttack += PChar->PMeritPoints->GetMeritValue(MERIT_TRIPLE_ATTACK_RATE,PEntity->GetMLevel());
+			tripleAttack += PChar->PMeritPoints->GetMeritValue(MERIT_TRIPLE_ATTACK_RATE,(CCharEntity*)PEntity);
 		}
 		if (charutils::hasTrait(PChar, TRAIT_DOUBLE_ATTACK)) {
-			doubleAttack += PChar->PMeritPoints->GetMeritValue(MERIT_DOUBLE_ATTACK_RATE,PEntity->GetMLevel());
+			doubleAttack += PChar->PMeritPoints->GetMeritValue(MERIT_DOUBLE_ATTACK_RATE,(CCharEntity*)PEntity);
 		}
 	}
 	else if (PEntity->objtype == TYPE_MOB || PEntity->objtype == TYPE_PET)
@@ -2353,7 +2353,7 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 		{
 			uint8 zanshin = PEntity->getMod(MOD_ZANSHIN);
 			if (PEntity->objtype == TYPE_PC)
-				zanshin += ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, PEntity->GetMLevel());
+				zanshin += ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, (CCharEntity*)PEntity);
 
 			if(rand()%100 < (zanshin / 4) )
 				num++;
@@ -3127,7 +3127,7 @@ bool HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool)
 		uint16 meritBonus = 0;
 
 		if (charutils::hasTrait(PChar, TRAIT_NINJA_TOOL_EXPERT))
-			meritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_NINJA_TOOL_EXPERTISE,PChar->GetMLevel());
+			meritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_NINJA_TOOL_EXPERTISE,(CCharEntity*)PChar);
 
 		uint16 chance = (PChar->getMod(MOD_NINJA_TOOL) + meritBonus);
 
@@ -3380,7 +3380,7 @@ uint8 getStoreTPbonusFromMerit(CBattleEntity* PEntity)
 	{
 		if (((CCharEntity*)PEntity)->GetMJob() == JOB_SAM || ((CCharEntity*)PEntity)->GetSJob() == JOB_SAM)
 		{
-			return ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_STORE_TP_EFFECT, PEntity->GetMLevel());
+			return ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_STORE_TP_EFFECT, (CCharEntity*)PEntity);
 		}
 	}
 	return 0;
@@ -3402,7 +3402,7 @@ uint16 getOverWhelmDamageBonus(CCharEntity* m_PChar, CBattleEntity* PDefender, u
 			// must be facing mob
 			if(abs(PDefender->loc.p.rotation - m_PChar->loc.p.rotation) > 90)
 			{
-				uint8 meritCount = m_PChar->PMeritPoints->GetMeritValue(MERIT_OVERWHELM, m_PChar->GetMLevel());
+				uint8 meritCount = m_PChar->PMeritPoints->GetMeritValue(MERIT_OVERWHELM, m_PChar);
 
 				switch (meritCount)
 				{

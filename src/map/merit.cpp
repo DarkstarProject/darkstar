@@ -511,18 +511,24 @@ void CMeritPoints::LowerMerit(MERIT_TYPE merit)
 *                                                                       *
 ************************************************************************/
 
-int32 CMeritPoints::GetMeritValue(MERIT_TYPE merit, uint8 lvl)
+int32 CMeritPoints::GetMeritValue(MERIT_TYPE merit, CCharEntity* PChar)
 {
-	uint8 meritValue = dsp_min(GetMeritPointer(merit)->count, cap[lvl]);  
+    Merit_t* PMerit = GetMeritPointer(merit);
+	uint8 meritValue = 0;
+    
+    if (PMerit->catid < 5 || (PMerit->jobs & (1 << (PChar->GetMJob() - 1)) && PChar->GetMLevel() > 75))
+        meritValue = dsp_min(PMerit->count, cap[PChar->GetMLevel()]);
 
-	meritValue *= GetMeritPointer(merit)->value;
+	meritValue *= PMerit->value;
 
 	return meritValue;
 }
 
-int32 CMeritPoints::GetMeritValue(Merit_t* merit, uint8 lvl)
+int32 CMeritPoints::GetMeritValue(Merit_t* merit, CCharEntity* PChar)
 {
-	uint8 meritValue = dsp_min(merit->count, cap[lvl]);  
+    uint8 meritValue = 0;
+    if (merit->catid < 5 || (merit->jobs & (1 << (PChar->GetMJob() - 1)) && PChar->GetMLevel() > 75))
+        meritValue = dsp_min(merit->count, cap[PChar->GetMLevel()]);
 
 	meritValue *= merit->value;
 

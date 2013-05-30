@@ -192,7 +192,7 @@ void CalculateStats(CCharEntity* PChar)
 	}
 
 
-	uint16 MeritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_MAX_HP, PChar->GetMLevel());
+	uint16 MeritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_MAX_HP, PChar);
 	PChar->health.maxhp = (int16)(raceStat + jobStat + bonusStat + sJobStat + MeritBonus);
 
 	//Начало расчера MP
@@ -234,7 +234,7 @@ void CalculateStats(CCharEntity* PChar)
 		sJobStat = (grade::GetMPScale(grade,0) + grade::GetMPScale(grade,scaleTo60Column) * (slvl - 1)) / 2;
 	}
 
-	MeritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_MAX_MP, PChar->GetMLevel());
+	MeritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_MAX_MP, PChar);
 	PChar->health.maxmp = (int16)(raceStat + jobStat + sJobStat + MeritBonus); // результат расчета MP
 
 
@@ -292,7 +292,7 @@ void CalculateStats(CCharEntity* PChar)
 		}
 
 		// get each merit bonus stat, str,dex,vit and so on...
-		MeritBonus = PChar->PMeritPoints->GetMeritValue((Merit_t*)PChar->PMeritPoints->GetMeritByIndex(StatIndex), PChar->GetMLevel());
+		MeritBonus = PChar->PMeritPoints->GetMeritValue((Merit_t*)PChar->PMeritPoints->GetMeritByIndex(StatIndex), PChar);
 
 		// Вывод значения
 		WBUFW(&PChar->stats,counter) = (uint16)(raceStat + jobStat + sJobStat + MeritBonus);
@@ -1960,7 +1960,7 @@ void BuildingCharSkillsTable(CCharEntity* PChar)
 		//ignore these indexes when calculating merits
 		if (i < 13 || i > 24)
 		{
-			meritBonus = PChar->PMeritPoints->GetMeritValue((Merit_t*)PChar->PMeritPoints->GetMeritByIndex(meritIndex), PChar->GetMLevel());
+			meritBonus = PChar->PMeritPoints->GetMeritValue((Merit_t*)PChar->PMeritPoints->GetMeritByIndex(meritIndex), PChar);
 			meritIndex++;
 		}
 

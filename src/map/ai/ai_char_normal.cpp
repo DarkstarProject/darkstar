@@ -714,7 +714,7 @@ void CAICharNormal::ActionRangedStart()
 		if (charutils::hasTrait(m_PChar, TRAIT_SNAPSHOT))
 		{
 			// reduction from merits should only apply if the user has the trait
-			SnapShotReductionPercent = m_PChar->PMeritPoints->GetMeritValue(MERIT_SNAPSHOT, m_PChar->GetMLevel());
+			SnapShotReductionPercent = m_PChar->PMeritPoints->GetMeritValue(MERIT_SNAPSHOT, m_PChar);
 		}
 
 		// get any snapshotreduction from gear
@@ -727,7 +727,7 @@ void CAICharNormal::ActionRangedStart()
 		// do chance for rapid shot
 		if (charutils::hasTrait(m_PChar, TRAIT_RAPID_SHOT))
 		{
-			uint16 chance = (m_PChar->getMod(MOD_RAPID_SHOT) + m_PChar->PMeritPoints->GetMeritValue(MERIT_RAPID_SHOT_RATE, m_PChar->GetMLevel()));
+			uint16 chance = (m_PChar->getMod(MOD_RAPID_SHOT) + m_PChar->PMeritPoints->GetMeritValue(MERIT_RAPID_SHOT_RATE, m_PChar));
 			if (rand()%100 < chance)
 				m_PChar->m_rangedDelay = 0;
 		}
@@ -993,7 +993,7 @@ void CAICharNormal::ActionRangedFinish()
 				uint8 recycleChance = m_PChar->getMod(MOD_RECYCLE);
 
 				if (charutils::hasTrait(m_PChar,TRAIT_RECYCLE))
-					recycleChance += m_PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE,m_PChar->GetMLevel());
+					recycleChance += m_PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE,m_PChar);
 
                 // only remove on hit
                 if(hitOccured && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_UNLIMITED_SHOT))
@@ -1839,7 +1839,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 
 	if (((CAbility*)m_PJobAbility)->getMeritModID() > 0)
 	{
-		meritRecastReduction = m_PChar->PMeritPoints->GetMeritValue((Merit_t*)m_PChar->PMeritPoints->GetMerit((MERIT_TYPE)m_PJobAbility->getMeritModID()), m_PChar->GetMLevel());
+		meritRecastReduction = m_PChar->PMeritPoints->GetMeritValue((Merit_t*)m_PChar->PMeritPoints->GetMerit((MERIT_TYPE)m_PJobAbility->getMeritModID()), m_PChar);
 	}
 
     uint32 RecastTime = (m_PJobAbility->getRecastTime() - meritRecastReduction) * 1000;
@@ -2187,7 +2187,7 @@ void CAICharNormal::ActionJobAbilityFinish()
     		uint8 recycleChance = m_PChar->getMod(MOD_RECYCLE);
 
     		if (charutils::hasTrait(m_PChar,TRAIT_RECYCLE))
-    			recycleChance += m_PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE,m_PChar->GetMLevel());
+    			recycleChance += m_PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE,m_PChar);
 
             if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_UNLIMITED_SHOT))
             {
@@ -2730,7 +2730,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		//ranged WS IDs
 		CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
 
-        uint8 recycleChance = m_PChar->getMod(MOD_RECYCLE) + m_PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE,m_PChar->GetMLevel());
+        uint8 recycleChance = m_PChar->getMod(MOD_RECYCLE) + m_PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE,m_PChar);
 
         if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_UNLIMITED_SHOT))
                {
@@ -3073,7 +3073,7 @@ void CAICharNormal::ActionAttack()
 				if(m_PChar->GetMJob() == JOB_MNK)
 				{
 					uint8 kickAttackChance = m_PChar->getMod(MOD_KICK_ATTACK);
-					kickAttackChance += m_PChar->PMeritPoints->GetMeritValue(MERIT_KICK_ATTACK_RATE,m_PChar->GetMLevel());
+					kickAttackChance += m_PChar->PMeritPoints->GetMeritValue(MERIT_KICK_ATTACK_RATE,m_PChar);
 					numKickAttacks = ((rand()%100 <= kickAttackChance) ? 1 : 0);
 				}
 			}
@@ -3262,7 +3262,7 @@ void CAICharNormal::ActionAttack()
 
 					// Zanshin effects from gear, food or buffs do not require the job trait to be enabled.
 					if (!zanshin)
-						zanshinChance += m_PChar->getMod(MOD_ZANSHIN) + m_PChar->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, m_PChar->GetMLevel());
+						zanshinChance += m_PChar->getMod(MOD_ZANSHIN) + m_PChar->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, m_PChar);
 
 					if (!zanshin && rand()%100 < zanshinChance && (( i == 0 && numattacksRightHand == 1 ) || (i == numattacksRightHand && numattacksLeftHand == 1)) )
 					{

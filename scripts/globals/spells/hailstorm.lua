@@ -27,6 +27,9 @@ function onSpellCast(caster,target,spell)
 	target:delStatusEffectSilent(EFFECT_VOIDSTORM);
 	
 	local merit = caster:getMerit(MERIT_STORMSURGE);
-	local power = merit + caster:getMod(MOD_STORMSURGE_EFFECT) + 2;	
+	local power = 0;
+	if merit > 0 then
+		power = merit + caster:getMod(MOD_STORMSURGE_EFFECT) + 2;
+	end
 	target:addStatusEffect(EFFECT_HAILSTORM,power,0,180);
 end;
