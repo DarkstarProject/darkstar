@@ -428,9 +428,10 @@ enum MODIFIER
     MOD_HELIX_EFFECT        = 0x154,
     MOD_HELIX_DURATION      = 0x155,
     MOD_STORMSURGE_EFFECT   = 0x190,
+    MOD_SUBLIMATION_BONUS   = 0x191
 };
 
-#define MAX_MODIFIER	       0x191
+#define MAX_MODIFIER	       0x192
 
 
 
