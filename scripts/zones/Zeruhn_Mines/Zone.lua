@@ -67,7 +67,7 @@ function onEventFinish(player,csid,option)
 	if (csid == 0x0082 or csid == 0x0083) then
 		if (player:getFreeSlotsCount() > 0) then	
 			player:addItem(16607);
-			player:setVar("Blade_of_Darkness_SwordKills", 0);
+			player:setVar("ChaosbringerKills", 0);
 			player:messageSpecial(ITEM_OBTAINED,16607);
 		else	
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16607);

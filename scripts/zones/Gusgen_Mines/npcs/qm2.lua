@@ -25,7 +25,7 @@ function onTrade(player,npc,trade)
 			SpawnMob(17580038,300):updateEnmity(player);
 		end
 	end
-	if(player:getQuestStatus(BASTOK, BLADE_OF_DEATH) == QUEST_ACCEPTED and player:getVar("Blade_of_Darkness_SwordKills") >= 200) then
+	if(player:getQuestStatus(BASTOK, BLADE_OF_DEATH) == QUEST_ACCEPTED and player:getVar("ChaosbringerKills") == 200) then
 		if(trade:hasItemQty(16607,1) and trade:getItemCount() == 1) then -- Trade Chaosbringer
 			player:tradeComplete();
 			player:startEvent(0x000a);
@@ -62,7 +62,7 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() > 0) then	
 			player:addItem(16637);
 			player:addTitle(BLACK_DEATH);
-			player:setVar("Blade_of_Darkness_SwordKills", 0);
+			player:setVar("ChaosbringerKills", 0);
 			player:messageSpecial(ITEM_OBTAINED,16637);
 			player:delKeyItem(LETTER_FROM_ZEID);
 			player:completeQuest(BASTOK,BLADE_OF_DEATH);
