@@ -28,7 +28,7 @@ stock = {0x1311,10304,		-- Scroll of Sleepga
 	 0x127f,19200,		-- Scroll of Protectra III
 	 0x1283,14080,		-- Scroll of Shellra II
 	 0x1284,26244,		-- Scroll of Shellra III
-	 0x124a,15120,		-- Scroll of Barpetrify
+	 0x124d,15120,		-- Scroll of Barpetrify
 	 0x124e,9600,		-- Scroll of Barvirus
 	 0x125b,15120,		-- Scroll of Barpetra
 	 0x125c,9600,		-- Scroll of Barvira
