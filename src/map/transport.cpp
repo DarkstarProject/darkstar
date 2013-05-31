@@ -32,9 +32,6 @@
 #include "packets/event.h"
 #include "packets/entity_update.h"
 
-#define ELEVATOR_INTERVAL_PORT_BASTOK_BRIDGE	360
-#define ELEVATOR_INTERVAL_KUFTAL_TUNNEL_ROCK	360
-
 /************************************************************************
 *                                                                       *
 *  Создание глобальной ссылки на объект класса                          *
@@ -247,9 +244,9 @@ void CTransportHandler::TransportTimer()
 		{
 			uint16 TimerOffset = (VanaTime % elevator->interval);
 			
-			if (elevator->id == ELEVATOR_PORT_BASTOK_BRIDGE)
+			if (elevator->id == ELEVATOR_PORT_BASTOK_DRWBRDG)
 			{
-				TimerOffset = (VanaTime % ELEVATOR_INTERVAL_PORT_BASTOK_BRIDGE);
+				TimerOffset = (VanaTime % INTERVAL_PORT_BASTOK_DRWBRDG);
 
 				if (TimerOffset == 0 || TimerOffset == 76)
 				{
@@ -284,9 +281,9 @@ void CTransportHandler::TransportTimer()
 					arriveElevator(elevator);
 				}
 			}
-			else if (elevator->id == ELEVATOR_KUFTAL_TUNNEL_ROCK)
+			else if (elevator->id == ELEVATOR_KUFTAL_TUNNEL_DSPPRNG_RCK)
 			{
-				TimerOffset = (VanaTime % ELEVATOR_INTERVAL_KUFTAL_TUNNEL_ROCK);
+				TimerOffset = (VanaTime % INTERVAL_KUFTAL_TUNNEL_DSPPRNG_RCK);
 
 				if (TimerOffset == 60)
 				{
@@ -353,7 +350,7 @@ void CTransportHandler::startElevator(Elevator_t * elevator)
   
 	if ((elevator->LowerDoor != NULL) && (elevator->UpperDoor != NULL)) 
 	{
-		if (elevator->id == ELEVATOR_PORT_BASTOK_BRIDGE)
+		if (elevator->id == ELEVATOR_PORT_BASTOK_DRWBRDG)
 		{
 			elevator->LowerDoor->animation = ANIMATION_CLOSE_DOOR;
 			zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->LowerDoor,ENTITY_SPAWN));
@@ -395,11 +392,11 @@ void CTransportHandler::startElevator(Elevator_t * elevator)
 
 void CTransportHandler::arriveElevator(Elevator_t * elevator)
 {
-	if (elevator->id == 17)
+	if (elevator->id == ELEVATOR_DAVOI_ELVTR)
 	{
 		elevator->interval = elevator->interval;
 	}
-	if (elevator->id == ELEVATOR_PORT_BASTOK_BRIDGE)
+	if (elevator->id == ELEVATOR_PORT_BASTOK_DRWBRDG)
 	{
 		elevator->LowerDoor->animation = ANIMATION_OPEN_DOOR;
 		zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->LowerDoor,ENTITY_SPAWN));
