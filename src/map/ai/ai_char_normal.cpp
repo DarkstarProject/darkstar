@@ -2603,6 +2603,11 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
 	damage = luautils::OnUseWeaponSkill(m_PChar, m_PBattleSubTarget, &tpHitsLanded, &extraHitsLanded);
 
+	if (damage >= m_PBattleSubTarget->health.hp)
+	{
+		m_PChar->setWeaponSkillKill(true);
+	}
+
     // handle shadows
     uint8 shadowsTaken = 0;
     uint8 landedHits = tpHitsLanded + extraHitsLanded;

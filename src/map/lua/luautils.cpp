@@ -1827,6 +1827,8 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 	CLuaBaseEntity LuaMobEntity(PMob);
 	CLuaBaseEntity LuaKillerEntity(PKiller);
 
+	bool isWeaponSkillKill = PChar->getWeaponSkillKill();
+
     if (((CMobEntity*)PMob)->m_OwnerID.id == PKiller->id)
     {
         lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobDeathEx");
@@ -1834,8 +1836,9 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 	    {
             Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
             Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaKillerEntity);
+			lua_pushboolean(LuaHandle, isWeaponSkillKill);
 
-            if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+            if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
 	        {
 		        ShowError("luautils::OnMobDeath: %s\n",lua_tostring(LuaHandle,-1));
 	        }

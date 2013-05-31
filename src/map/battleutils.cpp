@@ -3605,13 +3605,20 @@ uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
 		((CMobEntity*)PVictim)->PEnmityContainer->LowerEnmityByPercent(PAttacker , enmityReduction, NULL);
 	}
 
+	CCharEntity* PChar = (CCharEntity*)PAttacker;
 
 	// try skill up (CharEntity only)
 	if (PAttacker->objtype == TYPE_PC)
-		charutils::TrySkillUP((CCharEntity*)PAttacker, (SKILLTYPE)PWeapon->getSkillType(), PVictim->GetMLevel());
+		charutils::TrySkillUP(PChar, (SKILLTYPE)PWeapon->getSkillType(), PVictim->GetMLevel());
 
 	// jump + high jump doesn't give any tp to victim
 	battleutils::TakePhysicalDamage(PAttacker, PVictim, totalDamage, false, fstrslot, realHits, NULL, false);
+
+	if (totalDamage >= PVictim->health.hp)
+	{
+		PChar->setWeaponSkillKill(true);
+	}
+
 	return totalDamage;
 }
 

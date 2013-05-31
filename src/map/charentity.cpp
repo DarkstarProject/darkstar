@@ -108,6 +108,8 @@ CCharEntity::CCharEntity()
 
 	MeritMode = false;
 
+	m_isWeaponSkillKill = false;
+
     BazaarID.clean();
     TradePending.clean();
     InvitePending.clean();
@@ -305,4 +307,14 @@ int32 CCharEntity::addMP(int32 mp)
 	//PLatentEffectContainer->CheckLatentsHP(health.mp);
 
 	return abs(mp);
+}
+
+bool CCharEntity::getWeaponSkillKill()
+{
+	return m_isWeaponSkillKill;
+}
+
+void CCharEntity::setWeaponSkillKill(bool isWeaponSkillKill)
+{
+	m_isWeaponSkillKill = isWeaponSkillKill;
 }

@@ -431,6 +431,7 @@ void CAIMobDummy::ActionDropItems()
 			}
 		}
         m_ActionType = ACTION_DEATH;
+		PChar->setWeaponSkillKill(false);
 	}
 }
 

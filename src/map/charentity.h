@@ -256,6 +256,9 @@ public:
 
 	int8			  getShieldSize();
 
+	bool			getWeaponSkillKill();
+	void			setWeaponSkillKill(bool isWeaponSkillKill);
+
 	bool			  isWeaponUnlocked(uint16 indexid);					// return if weapon is broken
 	bool			  addWsPoints(uint8 points, uint16 WeaponIndex);	// return if weapon is broken
 	UnlockedWeapons_t unlockedWeapons[MAX_UNLOCKABLE_WEAPONS];			// chars unlocked weapon status
@@ -278,6 +281,8 @@ private:
 	CItemContainer*   m_Moglocker;
 	CItemContainer*	  m_Mogsatchel;
 	CItemContainer*	  m_Mogsack;
+
+	bool			m_isWeaponSkillKill;
 
 	PacketList_t      PacketList;					// в этом списке хранятся все пакеты, предназначенные для отправки персонажу
 };
