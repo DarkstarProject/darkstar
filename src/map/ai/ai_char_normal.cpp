@@ -2236,7 +2236,12 @@ void CAICharNormal::ActionJobAbilityFinish()
     			//Action.flag = 3;
     		}
 
-    		// handle jump abilities---
+    		/* TODO: Handle post-Lv. 75 genkai job abilities from support jobs that
+			 * deal damage points and defeats a monster while Blade of Darkness and/or
+			 * Blade of Death quests are active.
+			 */
+			
+			// handle jump abilities---
 
     		// Jump
     		if(m_PJobAbility->getID() == ABILITY_JUMP)
@@ -2247,6 +2252,10 @@ void CAICharNormal::ActionJobAbilityFinish()
     				Action.messageID = 0;
     				m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 0, MSGBASIC_USES_BUT_MISSES));
     			}
+				else if (Action.param >= m_PBattleSubTarget->health.hp)
+				{
+					m_PChar->setWeaponSkillKill(true);
+				}
     		}
     		// High Jump
     		else if(m_PJobAbility->getID() == ABILITY_HIGH_JUMP)
@@ -2257,6 +2266,10 @@ void CAICharNormal::ActionJobAbilityFinish()
     				Action.messageID = 0;
     				m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 0, MSGBASIC_USES_BUT_MISSES));
     			}
+				else if (Action.param >= m_PBattleSubTarget->health.hp)
+				{
+					m_PChar->setWeaponSkillKill(true);
+				}
     		}
     		// Super Jump
     		else if(m_PJobAbility->getID() == ABILITY_SUPER_JUMP)
@@ -2869,6 +2882,11 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	charutils::UpdateHealth(m_PChar);
 
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+
+	if (Action.param >= m_PBattleSubTarget->health.hp)
+	{
+		m_PChar->setWeaponSkillKill(true);
+	}
 
 	m_PWeaponSkill = NULL;
     m_PBattleSubTarget = NULL;
