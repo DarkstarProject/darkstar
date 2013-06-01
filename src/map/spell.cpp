@@ -551,7 +551,7 @@ namespace spell
                 }
                 if (requirements & SPELLREQ_ADDENDUM_BLACK && PCaster->GetMJob() == JOB_SCH)
                 {
-                    if(PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_BLACK))
+                    if(PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_BLACK) || PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ENLIGHTENMENT))
                     {
                         return true;
                     }
@@ -559,7 +559,7 @@ namespace spell
                 }
                 else if (requirements & SPELLREQ_ADDENDUM_WHITE && PCaster->GetMJob() == JOB_SCH)
                 {
-                    if (PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_WHITE))
+                    if (PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_WHITE) || PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ENLIGHTENMENT))
                     {
                         return true;
                     }
@@ -567,7 +567,7 @@ namespace spell
                 }
                 return true;
             }
-            if(PCaster->GetSLevel() >= JobSLVL)
+            else if(PCaster->GetSLevel() >= JobSLVL)
             {
                 if (requirements & SPELLREQ_TABULA_RASA && !PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_TABULA_RASA))
                 {

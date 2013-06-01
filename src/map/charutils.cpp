@@ -4190,6 +4190,7 @@ void RemoveStratagems(CCharEntity* PChar, CSpell* PSpell)
         //rapture to be deleted in applicable scripts
         PChar->StatusEffectContainer->DelStatusEffect(EFFECT_PENURY);
         PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CELERITY);
+        PChar->StatusEffectContainer->DelStatusEffect(EFFECT_ENLIGHTENMENT);
         if (PSpell->getAOE() == SPELLAOE_RADIAL_ACCE)
         {
             PChar->StatusEffectContainer->DelStatusEffect(EFFECT_ACCESSION);
@@ -4200,6 +4201,7 @@ void RemoveStratagems(CCharEntity* PChar, CSpell* PSpell)
         //ebullience to be deleted in applicable scripts
         PChar->StatusEffectContainer->DelStatusEffect(EFFECT_PARSIMONY);
         PChar->StatusEffectContainer->DelStatusEffect(EFFECT_ALACRITY);
+        PChar->StatusEffectContainer->DelStatusEffect(EFFECT_ENLIGHTENMENT);
         if (PSpell->getAOE() == SPELLAOE_RADIAL_MANI)
         {
             PChar->StatusEffectContainer->DelStatusEffect(EFFECT_MANIFESTATION);
