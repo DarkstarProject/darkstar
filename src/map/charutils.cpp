@@ -4191,6 +4191,8 @@ void RemoveStratagems(CCharEntity* PChar, CSpell* PSpell)
         PChar->StatusEffectContainer->DelStatusEffect(EFFECT_PENURY);
         PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CELERITY);
         PChar->StatusEffectContainer->DelStatusEffect(EFFECT_ENLIGHTENMENT);
+        PChar->StatusEffectContainer->DelStatusEffect(EFFECT_ALTRUISM);
+        PChar->StatusEffectContainer->DelStatusEffect(EFFECT_TRANQUILITY);
         if (PSpell->getAOE() == SPELLAOE_RADIAL_ACCE)
         {
             PChar->StatusEffectContainer->DelStatusEffect(EFFECT_ACCESSION);
@@ -4202,6 +4204,8 @@ void RemoveStratagems(CCharEntity* PChar, CSpell* PSpell)
         PChar->StatusEffectContainer->DelStatusEffect(EFFECT_PARSIMONY);
         PChar->StatusEffectContainer->DelStatusEffect(EFFECT_ALACRITY);
         PChar->StatusEffectContainer->DelStatusEffect(EFFECT_ENLIGHTENMENT);
+        PChar->StatusEffectContainer->DelStatusEffect(EFFECT_FOCALIZATION);
+        PChar->StatusEffectContainer->DelStatusEffect(EFFECT_EQUANIMITY);
         if (PSpell->getAOE() == SPELLAOE_RADIAL_MANI)
         {
             PChar->StatusEffectContainer->DelStatusEffect(EFFECT_MANIFESTATION);

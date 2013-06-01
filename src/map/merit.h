@@ -454,8 +454,8 @@ enum MERIT_TYPE
     //SCH 2
     MERIT_ALTRUISM                  = MCATEGORY_SCH_2 + 0x00,
     MERIT_FOCALIZATION              = MCATEGORY_SCH_2 + 0x02,
-    MERIT_TRANQULITY                = MCATEGORY_SCH_2 + 0x04,
-    MERIT_ENQUANIMITY               = MCATEGORY_SCH_2 + 0x06,
+    MERIT_TRANQUILITY               = MCATEGORY_SCH_2 + 0x04,
+    MERIT_EQUANIMITY                = MCATEGORY_SCH_2 + 0x06,
     MERIT_ENLIGHTENMENT             = MCATEGORY_SCH_2 + 0x08,
     MERIT_STORMSURGE                = MCATEGORY_SCH_2 + 0x0A,
 };

@@ -297,6 +297,12 @@ function applyResistance(player,spell,target,diff,skill,bonus)
 	--get the base acc (just skill plus magic acc mod)
 	local magicacc = player:getSkillLevel(skill) + player:getMod(79 + skill) + player:getMod(MOD_MACC);
 
+	if player:hasStatusEffect(EFFECT_ALTRUISM) and spell:getSpellGroup() == SPELLGROUP_WHITE then
+		magicacc = magicacc + player:getStatusEffect(EFFECT_ALTRUISM):getPower();
+	end
+	if player:hasStatusEffect(EFFECT_FOCALIZATION) and spell:getSpellGroup() == SPELLGROUP_BLACK then
+		magicacc = magicacc + player:getStatusEffect(EFFECT_FOCALIZATION):getPower();	
+	end
 	--difference in int/mnd
 	if(diff > 10) then
 		magicacc = magicacc + 10 + (diff - 10)/2;

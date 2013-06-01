@@ -278,6 +278,6 @@ INSERT INTO `merits` VALUES ('3206', 'closed_position', '5', '3', '262144', '7',
 INSERT INTO `merits` VALUES ('3264', 'altruism', '5', '5', '524288', '7', '50');
 INSERT INTO `merits` VALUES ('3266', 'focalization', '5', '5', '524288', '7', '50');
 INSERT INTO `merits` VALUES ('3268', 'tranquility', '5', '10', '524288', '7', '50');
-INSERT INTO `merits` VALUES ('3270', 'enquanimity', '5', '1', '524288', '7', '50');
+INSERT INTO `merits` VALUES ('3270', 'enquanimity', '5', '10', '524288', '7', '50');
 INSERT INTO `merits` VALUES ('3272', 'enlightenment', '5', '5', '524288', '7', '50');
 INSERT INTO `merits` VALUES ('3274', 'stormsurge', '5', '1', '524288', '7', '50');

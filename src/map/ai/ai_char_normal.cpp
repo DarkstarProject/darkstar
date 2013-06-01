@@ -1592,7 +1592,25 @@ void CAICharNormal::ActionMagicFinish()
 
             ((CMobEntity*)PTarget)->m_OwnerID.id = m_PChar->id;
             ((CMobEntity*)PTarget)->m_OwnerID.targid = m_PChar->targid;
+            if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRANQUILITY) && m_PSpell->getSpellGroup() == SPELLGROUP_WHITE)
+            {
+                m_PChar->addModifier(MOD_ENMITY, -m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_TRANQUILITY)->GetPower());
+            }
+            if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_EQUANIMITY) && m_PSpell->getSpellGroup() == SPELLGROUP_BLACK)
+            {
+                m_PChar->addModifier(MOD_ENMITY, -m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_EQUANIMITY)->GetPower());
+            }
             ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmity(m_PChar, ce, ve);
+            if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRANQUILITY) && m_PSpell->getSpellGroup() == SPELLGROUP_WHITE)
+            {
+                m_PChar->delModifier(MOD_ENMITY, -m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_TRANQUILITY)->GetPower());
+                m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_TRANQUILITY);
+            }
+            if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_EQUANIMITY) && m_PSpell->getSpellGroup() == SPELLGROUP_BLACK)
+            {
+                m_PChar->delModifier(MOD_ENMITY, -m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_EQUANIMITY)->GetPower());
+                m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_EQUANIMITY);
+            }
         }
 
         m_PChar->m_ActionList.push_back(Action);

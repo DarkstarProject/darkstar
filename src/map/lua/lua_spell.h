@@ -54,6 +54,7 @@ public:
     int32 getMagicBurstMessage(lua_State*);
 	int32 getElement(lua_State*);
 	int32 getID(lua_State*);
+    int32 getSpellGroup(lua_State*);
 };
 
 #endif
