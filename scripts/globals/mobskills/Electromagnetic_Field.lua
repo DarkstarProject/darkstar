@@ -2,7 +2,7 @@
 --  Electromagnetric Field
 --
 --  Description: Deals thunder damage.
---  Type: Magical (Water)
+--  Type: Magical (Thunder)
 --
 --
 ---------------------------------------------
@@ -15,6 +15,8 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
+
+-- TODO: Knockback
 
     local dmgmod = 1;
     local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*2.6,ELE_THUNDER,dmgmod,TP_NO_EFFECT);

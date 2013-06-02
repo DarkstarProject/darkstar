@@ -1031,10 +1031,10 @@ INSERT INTO `mob_skill` VALUES (274,74,900,'Memento_Mori', 0, 7.0, 2000, 1000, 1
 -- INSERT INTO `mob_skill` VALUES (277,74,277,'Danse_Macabre', 0, 7.0, 2000, 1000, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (274,74,1070,'Final_Retribution', 1, 10.0, 2000, 1000, 4, 0);
 -- Spheroids
--- INSERT INTO `mob_skill` VALUES (728,234,973,'Electrocharge', 0, 15.0, 2000, 1000, 4, 0);
--- INSERT INTO `mob_skill` VALUES (305,234,974,'Electromagnetic_Field', 1, 10.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (1657,234,971,'Stunbolt', 0, 10.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (1775,234,972,'Reactive_Shield', 0, 7.0, 2000, 1000, 1, 0);
+INSERT INTO `mob_skill` VALUES (728,234,685,'Electrocharge', 0, 15.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (305,234,971,'Electromagnetic_Field', 1, 10.0, 2000, 1000, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (1657,234,0,'Stunbolt', 0, 10.0, 2000, 1000, 4, 0); -- Animation?
+-- INSERT INTO `mob_skill` VALUES (1775,234,972,'Reactive_Shield', 0, 7.0, 2000, 1000, 1, 0); -- CoP zones only.
 -- mammet
 -- --------------------
 -- VALUES POST 1024
