@@ -265,7 +265,7 @@ function onTrigger(player,npc)
       elseif (eventParams[7] == 2) then
          player:startEvent(17, itemid, eventParams[1], eventParams[2], eventParams[3], 0, 0, 0, eventParams[8]);
       elseif (eventParams[7] == 3) then
-         player:startEvent(50, itemid, eventParams[1], 0, 0, 0, 0, 0, 0, eventParams[8]);
+         player:startEvent(50, itemid, eventParams[1], 0, 0, 0, 0, 0, eventParams[8]);
 
       -- Stage 4 logic starts here.  Every weapon has its own cutscene.
       elseif (eventParams[7] == 4) then
