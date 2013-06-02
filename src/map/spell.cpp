@@ -536,6 +536,7 @@ namespace spell
 
     bool CanUseSpell(CBattleEntity* PCaster, uint16 SpellID)
     {
+        bool usable = false;
         CSpell* spell = GetSpell(SpellID);
 	    if (spell != NULL)
 	    {
@@ -545,54 +546,56 @@ namespace spell
 
 		    if(PCaster->GetMLevel() >= JobMLVL)
             {
-                if (requirements & SPELLREQ_TABULA_RASA && !PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_TABULA_RASA))
+                if (requirements & SPELLREQ_TABULA_RASA && PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_TABULA_RASA))
                 {
-                    return false;
+                    usable = true;
                 }
                 if (requirements & SPELLREQ_ADDENDUM_BLACK && PCaster->GetMJob() == JOB_SCH)
                 {
                     if(PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_BLACK) || PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ENLIGHTENMENT))
                     {
-                        return true;
+                        usable = true;
                     }
-                    return false;
                 }
                 else if (requirements & SPELLREQ_ADDENDUM_WHITE && PCaster->GetMJob() == JOB_SCH)
                 {
                     if (PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_WHITE) || PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ENLIGHTENMENT))
                     {
-                        return true;
+                        usable = true;
                     }
-                    return false;
                 }
-                return true;
-            }
-            else if(PCaster->GetSLevel() >= JobSLVL)
-            {
-                if (requirements & SPELLREQ_TABULA_RASA && !PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_TABULA_RASA))
+                else
                 {
-                    return false;
+                    usable = true;
+                }
+            }
+            if(PCaster->GetSLevel() >= JobSLVL)
+            {
+                if (requirements & SPELLREQ_TABULA_RASA && PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_TABULA_RASA))
+                {
+                    usable = true;
                 }
                 if(requirements & SPELLREQ_ADDENDUM_BLACK && PCaster->GetSJob() == JOB_SCH)
                 {
                     if(PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_BLACK))
                     {
-                        return true;
+                        usable = true;
                     }
-                    return false;
                 }
                 else if (requirements & SPELLREQ_ADDENDUM_WHITE && PCaster->GetSJob() == JOB_SCH)
                 {
                     if (PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_WHITE))
                     {
-                        return true;
+                        usable = true;
                     }
-                    return false;
                 }
-                return true;
+                else
+                {
+                    usable = true;
+                }
             }
 	    }
-	    return false;
+	    return usable;
     }
 
 	// This is a utility method for mobutils, when we want to work out if we can give monsters a spell

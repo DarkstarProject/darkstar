@@ -32,7 +32,6 @@ function onEffectTick(target,effect)
 	
 	local limit = math.floor((target:getBaseHP() + target:getMod(MOD_HP) + target:getMerit(MERIT_MAX_HP)) / 4) +
 		target:getMerit(MERIT_MAX_SUBLIMATION);
-	print("dmg: "..dmg.." store: "..store.." limit: "..limit);
 	
 	if(target:hasStatusEffect(EFFECT_STONESKIN)) then
 		local skin = target:getMod(MOD_STONESKIN);
