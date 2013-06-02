@@ -3378,7 +3378,7 @@ uint8 getStoreTPbonusFromMerit(CBattleEntity* PEntity)
 {
 	if (PEntity->objtype == TYPE_PC)
 	{
-		if (((CCharEntity*)PEntity)->GetMJob() == JOB_SAM || ((CCharEntity*)PEntity)->GetSJob() == JOB_SAM)
+		if (((CCharEntity*)PEntity)->GetMJob() == JOB_SAM)
 		{
 			return ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_STORE_TP_EFFECT, (CCharEntity*)PEntity);
 		}
