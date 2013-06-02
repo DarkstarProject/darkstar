@@ -38,7 +38,7 @@ end;
 function onTrigger(player,npc)
 player:showText(npc,6692) -- is a temp textid 
 
-	stock = {4242,200,1,		--plasma crystal
+	--[[stock = {4242,200,1,		--plasma crystal
 			 4238,200,1,		--inferno crystal
 			 4239,200,1,		--glacier
 			 4240,200,1,		--cyclone
@@ -64,7 +64,7 @@ player:showText(npc,6692) -- is a temp textid
 			 3329,15000,3,		--tanners emblem
 			 339,200000,3}		--tanners signboard
 	 
-	showNationShop(player, SANDORIA, stock);
+	showNationShop(player, SANDORIA, stock);]]
 
 end;
 
