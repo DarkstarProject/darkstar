@@ -104,9 +104,9 @@ uint32 CMobEntity::GetRandomGil()
 {
     float multiplier = 1 + (float)GetMLevel() / 75.0;
 
-    uint16 base = GetMLevel() * ((m_Type & MOBTYPE_NOTORIOUS) ? 10 : multiplier);
+    uint16 base = GetMLevel() * ((m_Type & MOBTYPE_NOTORIOUS) ? 10 : multiplier) + 4;
 
-    uint16 highBase = (float)(base*(multiplier*1.4))/2 + 3;
+    uint16 highBase = (float)(base*(multiplier*1.4))/2 + 2;
 
     // randomize it
 	base += rand()%highBase;
