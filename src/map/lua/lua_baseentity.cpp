@@ -1612,7 +1612,7 @@ inline int32 CLuaBaseEntity::addAllSpells(lua_State *L)
 
 	uint16 elements = sizeof ValidSpells / sizeof ValidSpells[0];
 
-		 for(uint16 i = 1; i < elements; ++i)
+		 for(uint16 i = 0; i < elements; ++i)
 		 {
 			if (charutils::addSpell(PChar, ValidSpells[i]))
 			{
