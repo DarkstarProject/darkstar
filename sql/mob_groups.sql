@@ -7027,17 +7027,17 @@ INSERT INTO `mob_groups` VALUES ('7013', '1021', '134', '0', '128', '726', '0', 
 INSERT INTO `mob_groups` VALUES ('7014', '1107', '134', '0', '128', '789', '0', '0', '75', '80'); -- Drakefeast_Wubmfub
 INSERT INTO `mob_groups` VALUES ('7015', '1109', '134', '0', '128', '791', '0', '0', '75', '80'); -- Draklix_Scalecrust
 INSERT INTO `mob_groups` VALUES ('7016', '1125', '134', '0', '128', '804', '0', '0', '75', '80'); -- Droprix_Granitepalms
-INSERT INTO `mob_groups` VALUES ('7017', '1152', '134', '0', '128', '822', '0', '0', '80', '80'); -- Dynamis_Effigy
-INSERT INTO `mob_groups` VALUES ('7018', '1153', '134', '0', '128', '823', '0', '0', '80', '80'); -- Dynamis_Icon
-INSERT INTO `mob_groups` VALUES ('7019', '1155', '134', '0', '128', '825', '0', '0', '80', '80'); -- Dynamis_Statue
-INSERT INTO `mob_groups` VALUES ('7020', '1156', '134', '0', '128', '826', '0', '0', '80', '80'); -- Dynamis_Tombstone
+INSERT INTO `mob_groups` VALUES ('7017', '1152', '134', '0', '128', '822', '1000', '0', '80', '80'); -- Dynamis_Effigy
+INSERT INTO `mob_groups` VALUES ('7018', '1153', '134', '0', '128', '823', '1000', '0', '80', '80'); -- Dynamis_Icon
+INSERT INTO `mob_groups` VALUES ('7019', '1155', '134', '0', '128', '825', '1000', '0', '80', '80'); -- Dynamis_Statue
+INSERT INTO `mob_groups` VALUES ('7020', '1156', '134', '0', '128', '826', '1000', '0', '80', '80'); -- Dynamis_Tombstone
 INSERT INTO `mob_groups` VALUES ('7021', '1204', '134', '0', '128', '859', '0', '0', '75', '80'); -- Elvaanlopper_Grokdok
 INSERT INTO `mob_groups` VALUES ('7022', '1344', '134', '0', '128', '0', '0', '0', '80', '80'); -- Fire_Pukis
 INSERT INTO `mob_groups` VALUES ('7023', '1399', '134', '0', '128', '1025', '0', '0', '75', '80'); -- Foo_Peku_the_Bloodcloak
 INSERT INTO `mob_groups` VALUES ('7024', '1453', '134', '0', '128', '1071', '0', '0', '75', '80'); -- Galkarider_Retzpratz
 INSERT INTO `mob_groups` VALUES ('7025', '1484', '134', '0', '128', '1095', '0', '0', '80', '85'); -- ???
 INSERT INTO `mob_groups` VALUES ('7026', '1542', '134', '0', '128', '1138', '0', '0', '75', '80'); -- Gibberox_Pimplebeak
-INSERT INTO `mob_groups` VALUES ('7027', '1716', '134', '0', '128', '1434', '0', '0', '75', '75'); -- Goblin_Statue
+INSERT INTO `mob_groups` VALUES ('7027', '1716', '134', '0', '128', '1434', '1000', '0', '75', '75'); -- Goblin_Statue
 INSERT INTO `mob_groups` VALUES ('7028', '1774', '134', '0', '128', '1537', '0', '0', '80', '85'); -- Goublefaupe (AT NM)
 INSERT INTO `mob_groups` VALUES ('7029', '1784', '134', '0', '128', '1538', '0', '0', '75', '80'); -- Go_Tyo_Magenapper
 INSERT INTO `mob_groups` VALUES ('7030', '1853', '134', '0', '128', '1610', '0', '0', '75', '80'); -- Guu_Waji_the_Preacher
