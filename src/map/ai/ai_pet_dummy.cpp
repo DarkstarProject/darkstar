@@ -731,6 +731,11 @@ void CAIPetDummy::ActionAttack()
 				}
 			}
 			m_LastActionTime = m_Tick;
+			
+            // Update the targets attacker level..
+            CMobEntity* Monster = (CMobEntity*)m_PBattleTarget;
+            if (Monster->m_HiPCLvl < ((CCharEntity*)m_PPet->PMaster)->GetMLevel())
+                Monster->m_HiPCLvl = ((CCharEntity*)m_PPet->PMaster)->GetMLevel();
 		}
 	}
 

@@ -12,7 +12,13 @@ require("/scripts/globals/monstertpmoves");
 -----------------------------------------
 
 function OnMagicCastingCheck(caster,target,spell)
-	return 0;
+   -- TODO: Correct message is "Incorrect job, job level too low, or required ability not activated."  Unable to locate this in our basic or system message functions.
+   -- The client blocks the spell via menus, but it can still be cast via text commands, so we have to block it here, albiet with the wrong message.
+   if (caster:hasStatusEffect(EFFECT_ELEMENTAL_SEAL) == true) then
+      return 0;
+   else
+      return MSGBASIC_STATUS_PREVENTS;
+   end
 end;
 
 function onSpellCast(caster,target,spell)
