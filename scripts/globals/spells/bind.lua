@@ -31,9 +31,11 @@ function onSpellCast(caster,target,spell)
 					else
 						spell:setMsg(75);
 			end
+		else
+			spell:setMsg(85);
 		end
 	else
-		spell:setMsg(85);
+        spell:setMsg(284);
 	end
 
 

@@ -1405,7 +1405,7 @@ void CAIMobDummy::ActionAttack()
 								//counter check (rate AND your hit rate makes it land, else its just a regular hit)
 								if (rand()%100 < (m_PBattleTarget->getMod(MOD_COUNTER) + meritCounter) &&
 									rand()%100 < battleutils::GetHitRate(m_PBattleTarget,m_PMob) &&
-									(charutils::hasTrait((CCharEntity*)m_PBattleTarget,TRAIT_COUNTER) || 
+									(charutils::hasTrait((CCharEntity*)m_PBattleTarget,TRAIT_COUNTER) ||
 									m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN)))
 								{
 									isCountered = true;
@@ -1434,7 +1434,7 @@ void CAIMobDummy::ActionAttack()
 								else if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_COUNTER))
 								{ //Perfect Counter only counters hits that normal counter misses
 									isCountered = true;
-									
+
 								}
 								else
 								{
@@ -1536,7 +1536,7 @@ void CAIMobDummy::ActionAttack()
 
 						m_PMob->m_ActionList.push_back(Action);
 					}
-					battleutils::MoveIntoRange(m_PMob,m_PBattleTarget,25);
+					// battleutils::MoveIntoRange(m_PMob,m_PBattleTarget,25);
 					m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
 				} //end attack for
 			}
@@ -1564,7 +1564,6 @@ void CAIMobDummy::ActionAttack()
 			m_ActionType = ACTION_MOBABILITY_START;
 			ActionAbilityStart();
 		}
-		battleutils::MoveIntoRange(m_PMob, m_PBattleTarget, 25);
 	}
 
 	if(m_PMob->m_Type & MOBTYPE_NOTORIOUS && (m_Tick - m_StartBattle) % 3000 <= 400) // launch OnMobFight every 3 sec (not everytime at 0 but 0~400)
@@ -1572,6 +1571,7 @@ void CAIMobDummy::ActionAttack()
 		luautils::OnMobFight(m_PMob,m_PBattleTarget);
 	}
 
+	battleutils::MoveIntoRange(m_PMob, m_PBattleTarget, 25);
 	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 }
 
