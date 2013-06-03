@@ -6488,7 +6488,7 @@ INSERT INTO `mob_groups` VALUES ('6474', '3890', '118', '0', '128', '0', '0', '0
 INSERT INTO `mob_groups` VALUES ('6475', '3891', '118', '0', '128', '0', '0', '0', '35', '35');
 INSERT INTO `mob_groups` VALUES ('6476', '3892', '118', '0', '128', '0', '0', '0', '35', '35');
 INSERT INTO `mob_groups` VALUES ('6477', '3893', '118', '0', '128', '0', '0', '0', '35', '35');
-INSERT INTO `mob_groups` VALUES ('6478', '4309', '118', '1056', '4', '4101', '0', '0', '75', '82');
+INSERT INTO `mob_groups` VALUES ('6478', '4309', '118', '1056', '4', '4101', '0', '0', '28', '30');
 INSERT INTO `mob_groups` VALUES ('6479', '4345', '118', '0', '0', '0', '0', '0', '0', '0');
 INSERT INTO `mob_groups` VALUES ('6480', '4453', '118', '0', '128', '0', '0', '0', '28', '30');
 INSERT INTO `mob_groups` VALUES ('6481', '4454', '118', '0', '128', '0', '0', '0', '28', '30');
@@ -7047,17 +7047,17 @@ INSERT INTO `mob_groups` VALUES ('7033', '1909', '134', '0', '128', '1646', '0',
 INSERT INTO `mob_groups` VALUES ('7034', '1914', '134', '0', '128', '1650', '0', '0', '75', '80'); -- Hee_Mida_the_Meticulous
 INSERT INTO `mob_groups` VALUES ('7035', '2005', '134', '0', '128', '1714', '0', '0', '75', '80'); -- Humegutter_Adzjbadj
 INSERT INTO `mob_groups` VALUES ('7036', '2019', '134', '0', '128', '1723', '0', '0', '75', '80'); -- Hydra_Bard...
-INSERT INTO `mob_groups` VALUES ('7037', '2020', '134', '0', '128', '1725', '0', '0', '75', '80'); -- 
-INSERT INTO `mob_groups` VALUES ('7038', '2021', '134', '0', '128', '1727', '0', '0', '75', '80'); -- 
-INSERT INTO `mob_groups` VALUES ('7039', '2022', '134', '0', '128', '1729', '0', '0', '75', '80'); -- 
-INSERT INTO `mob_groups` VALUES ('7040', '2023', '134', '0', '128', '1731', '0', '0', '75', '80'); -- 
-INSERT INTO `mob_groups` VALUES ('7041', '2024', '134', '0', '128', '1733', '0', '0', '75', '80'); -- 
-INSERT INTO `mob_groups` VALUES ('7042', '2025', '134', '0', '128', '1735', '0', '0', '75', '80'); -- 
-INSERT INTO `mob_groups` VALUES ('7043', '2026', '134', '0', '128', '1737', '0', '0', '75', '80'); -- 
-INSERT INTO `mob_groups` VALUES ('7044', '2027', '134', '0', '128', '1739', '0', '0', '75', '80'); -- 
-INSERT INTO `mob_groups` VALUES ('7045', '2028', '134', '0', '128', '1741', '0', '0', '75', '80'); -- 
-INSERT INTO `mob_groups` VALUES ('7046', '2029', '134', '0', '128', '1743', '0', '0', '75', '80'); -- 
-INSERT INTO `mob_groups` VALUES ('7047', '2030', '134', '0', '128', '1745', '0', '0', '75', '80'); -- 
+INSERT INTO `mob_groups` VALUES ('7037', '2020', '134', '0', '128', '1725', '0', '0', '75', '80'); --
+INSERT INTO `mob_groups` VALUES ('7038', '2021', '134', '0', '128', '1727', '0', '0', '75', '80'); --
+INSERT INTO `mob_groups` VALUES ('7039', '2022', '134', '0', '128', '1729', '0', '0', '75', '80'); --
+INSERT INTO `mob_groups` VALUES ('7040', '2023', '134', '0', '128', '1731', '0', '0', '75', '80'); --
+INSERT INTO `mob_groups` VALUES ('7041', '2024', '134', '0', '128', '1733', '0', '0', '75', '80'); --
+INSERT INTO `mob_groups` VALUES ('7042', '2025', '134', '0', '128', '1735', '0', '0', '75', '80'); --
+INSERT INTO `mob_groups` VALUES ('7043', '2026', '134', '0', '128', '1737', '0', '0', '75', '80'); --
+INSERT INTO `mob_groups` VALUES ('7044', '2027', '134', '0', '128', '1739', '0', '0', '75', '80'); --
+INSERT INTO `mob_groups` VALUES ('7045', '2028', '134', '0', '128', '1741', '0', '0', '75', '80'); --
+INSERT INTO `mob_groups` VALUES ('7046', '2029', '134', '0', '128', '1743', '0', '0', '75', '80'); --
+INSERT INTO `mob_groups` VALUES ('7047', '2030', '134', '0', '128', '1745', '0', '0', '75', '80'); --
 INSERT INTO `mob_groups` VALUES ('7048', '2031', '134', '0', '128', '0', '0', '0', '60', '64');
 INSERT INTO `mob_groups` VALUES ('7049', '2032', '134', '0', '128', '0', '0', '0', '75', '80');
 INSERT INTO `mob_groups` VALUES ('7050', '2033', '134', '0', '128', '0', '0', '0', '60', '64');
@@ -7102,13 +7102,13 @@ INSERT INTO `mob_groups` VALUES ('7088', '3857', '134', '0', '128', '3442', '0',
 INSERT INTO `mob_groups` VALUES ('7089', '3940', '134', '0', '128', '3531', '0', '0', '75', '80'); -- Tocktix_Thinlids
 INSERT INTO `mob_groups` VALUES ('7090', '4084', '134', '0', '128', '3649', '0', '0', '75', '80'); -- Ultrasonic_Zeknajak
 INSERT INTO `mob_groups` VALUES ('7091', '4133', '134', '0', '128', '3690', '0', '0', '75', '80'); -- Vanguard_Alchemist...
-INSERT INTO `mob_groups` VALUES ('7092', '4134', '134', '0', '128', '3695', '0', '0', '75', '80'); -- 
-INSERT INTO `mob_groups` VALUES ('7093', '4135', '134', '0', '128', '3700', '0', '0', '75', '80'); -- 
-INSERT INTO `mob_groups` VALUES ('7094', '4136', '134', '0', '128', '3705', '0', '0', '75', '80'); -- 
-INSERT INTO `mob_groups` VALUES ('7095', '4137', '134', '0', '128', '3710', '0', '0', '75', '80'); -- 
-INSERT INTO `mob_groups` VALUES ('7096', '4138', '134', '0', '128', '3715', '0', '0', '75', '80'); -- 
-INSERT INTO `mob_groups` VALUES ('7097', '4139', '134', '0', '128', '3720', '0', '0', '75', '80'); -- 
-INSERT INTO `mob_groups` VALUES ('7098', '4140', '134', '0', '128', '3725', '0', '0', '75', '80'); -- 
+INSERT INTO `mob_groups` VALUES ('7092', '4134', '134', '0', '128', '3695', '0', '0', '75', '80'); --
+INSERT INTO `mob_groups` VALUES ('7093', '4135', '134', '0', '128', '3700', '0', '0', '75', '80'); --
+INSERT INTO `mob_groups` VALUES ('7094', '4136', '134', '0', '128', '3705', '0', '0', '75', '80'); --
+INSERT INTO `mob_groups` VALUES ('7095', '4137', '134', '0', '128', '3710', '0', '0', '75', '80'); --
+INSERT INTO `mob_groups` VALUES ('7096', '4138', '134', '0', '128', '3715', '0', '0', '75', '80'); --
+INSERT INTO `mob_groups` VALUES ('7097', '4139', '134', '0', '128', '3720', '0', '0', '75', '80'); --
+INSERT INTO `mob_groups` VALUES ('7098', '4140', '134', '0', '128', '3725', '0', '0', '75', '80'); --
 INSERT INTO `mob_groups` VALUES ('7099', '4141', '134', '0', '128', '3730', '0', '0', '75', '80');
 INSERT INTO `mob_groups` VALUES ('7100', '4142', '134', '0', '128', '3735', '0', '0', '75', '80');
 INSERT INTO `mob_groups` VALUES ('7101', '4143', '134', '0', '128', '3740', '0', '0', '75', '80');
