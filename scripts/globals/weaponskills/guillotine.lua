@@ -24,7 +24,7 @@ function OnUseWeaponSkill(player, target, wsID)
 	--attack multiplier (only some WSes use this, this varies the actual ratio value, see Tachi: Kasha) 1 is default.
 	params.atkmulti = 1;
 	
-	local damage, tpHits, extraHits = doPhysicalWeaponskill(player,target, params);
+	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 	
 	if damage > 0 then
 		local tp = player:getTP();

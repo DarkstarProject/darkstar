@@ -36,7 +36,8 @@ function OnUseWeaponSkill(player, target, wsID)
 
 	-- needs ignore defense. param
 
-	damage, tpHits, extraHits = doRangedWeaponskill(player, target, params);
+	local damage, tpHits, extraHits = doRangedWeaponskill(player, target, params);
+   local crticalHit = false;
 
 	return tpHits, extraHits, criticalHit, damage;
 

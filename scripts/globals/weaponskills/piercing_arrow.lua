@@ -38,7 +38,8 @@ function OnUseWeaponSkill(player, target, wsID)
 	params.ignored300 = 0.5;
 	
 	local damage, tpHits, extraHits = doRangedWeaponskill(player, target, params);
-		
+   local crticalHit = false;
+	
 	return tpHits, extraHits, criticalHit, damage;
 	
 end	

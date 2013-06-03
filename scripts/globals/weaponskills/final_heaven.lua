@@ -12,7 +12,7 @@
 require("/scripts/globals/settings");
 require("/scripts/globals/weaponskills");
 require("scripts/globals/weaponskills");
-function OnUseWeaponSkill(attacker, target, wsID)
+function OnUseWeaponSkill(player, target, wsID)
 	
 	local params = {};
 	--number of normal hits for ws
@@ -36,8 +36,8 @@ function OnUseWeaponSkill(attacker, target, wsID)
 
 	--attack multiplier (only some WSes use this, this varies the actual ratio value, see Tachi: Kasha) 1 is default.
 	params.atkmulti = 1;
-	--damage = damage * ftp(attacker:getTP(), ftp100, ftp200, ftp300);
-	local damage, tpHits, extraHits = doPhysicalWeaponskill(attacker,target, params);
+	--damage = damage * ftp(player:getTP(), ftp100, ftp200, ftp300);
+	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 
 
 
