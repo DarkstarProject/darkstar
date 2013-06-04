@@ -31,7 +31,7 @@
 
 #include "spell.h"
 
-#define MAX_MOBSPELLLIST_ID		40
+#define MAX_MOBSPELLLIST_ID		41
 
 typedef struct
 {
