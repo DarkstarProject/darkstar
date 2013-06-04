@@ -92,8 +92,8 @@ void CTargetFinder::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType,
 
     if(m_PMasterTarget->objtype == TYPE_MOB)
     {
+
       // special case to add all mobs in range
-      // never look for pets because they are added anyways
       addAllInMobList(m_PMasterTarget, false);
 
     } else {
@@ -111,8 +111,8 @@ void CTargetFinder::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType,
     }
 
   } else {
-
     // handle this as a mob
+
     if(m_PMasterTarget->PParty != NULL)
     {
       if(m_PMasterTarget->PParty->m_PAlliance != NULL)
@@ -302,7 +302,7 @@ bool CTargetFinder::validEntity(CBattleEntity* PTarget)
   // shouldn't add if target is charmed by the enemy
   if(PTarget->PMaster != NULL)
   {
-    if(isPlayer && PTarget->PMaster->objtype == TYPE_MOB)
+    if(isPlayer && PTarget->PMaster->objtype == TYPE_MOB && PTarget->objtype == TYPE_PC)
     {
       // can't target outside my team
       return false;
