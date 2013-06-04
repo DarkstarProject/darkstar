@@ -895,3 +895,6 @@ INSERT INTO `mob_spell_lists` VALUES ('ArkAngelTT', '39', '271', '1', '255');
 INSERT INTO `mob_spell_lists` VALUES ('ArkAngelTT', '39', '272', '1', '255');
 INSERT INTO `mob_spell_lists` VALUES ('ArkAngelTT', '39', '274', '1', '255');
 INSERT INTO `mob_spell_lists` VALUES ('ArkAngelTT', '39', '275', '1', '255');
+INSERT INTO `mob_spell_lists` VALUES ('Goblin_Statue', '40', '57', '1', '255');
+INSERT INTO `mob_spell_lists` VALUES ('Goblin_Statue', '40', '128', '1', '255');
+INSERT INTO `mob_spell_lists` VALUES ('Goblin_Statue', '40', '133', '1', '255');
