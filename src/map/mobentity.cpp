@@ -102,20 +102,33 @@ void CMobEntity::SetDespawnTimer(uint32 duration)
 
 uint32 CMobEntity::GetRandomGil()
 {
-    float multiplier = 1 + (float)GetMLevel() / 75.0;
 
-    uint16 base = GetMLevel() * ((m_Type & MOBTYPE_NOTORIOUS) ? 10 : multiplier);
+    float gil = pow(GetMLevel(), 1.05f);
 
-    if(base == 0){
-        base = 1;
+    if(gil < 1){
+        gil = 1;
     }
 
-    uint16 highBase = (float)(base*(multiplier*1.4))/2 + 2;
+    uint16 highGil = (float)(gil) / 3 + 4;
+
+    if(highGil < 2){
+        highGil = 2;
+    }
 
     // randomize it
-	base += rand()%highBase;
+	gil += rand()%highGil;
 
-    return base;
+    // NMs get more gil
+    if((m_Type & MOBTYPE_NOTORIOUS) == MOBTYPE_NOTORIOUS){
+        gil *= 10;
+    }
+
+    // thfs drop more gil
+    if(GetMJob() == JOB_THF){
+        gil = (float)gil * 1.5;
+    }
+
+    return gil;
 }
 
 /************************************************************************
