@@ -544,8 +544,6 @@ void CAIMobDummy::ActionSpawn()
 		}
 
 		if(m_PMob->PMaster != NULL){
-			// TODO: spawn NEAR mob
-			// elementals have a bit more health
 			m_PMob->loc.p = nearPosition(m_PMob->PMaster->loc.p, 2.0f, M_PI);
 
 			CMobEntity* PMaster = (CMobEntity*)m_PMob->PMaster;
@@ -1262,12 +1260,6 @@ void CAIMobDummy::ActionAttack()
 			m_PBattleTarget->PPet->PBattleAI->SetBattleTarget(m_PMob);
 		}
 	}
-	// Jug pets (and normal charmed pets) will defend themselves from attack only, not their master. (self-preservation behaviour)
-	else if(m_PBattleTarget->objtype == TYPE_PET && m_PBattleTarget->PBattleAI->GetBattleTarget()==NULL){
-		if(((CPetEntity*)m_PBattleTarget)->getPetType()==PETTYPE_JUGPET){
-			m_PBattleTarget->PBattleAI->SetBattleTarget(m_PMob);
-		}
-	}
 
 	// Handle monster linking if they are close enough
     if (m_PMob->PParty != NULL)
@@ -1655,7 +1647,7 @@ void CAIMobDummy::ActionSpecialSkill()
     DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
     m_LastActionTime = m_Tick;
-    m_LastSpecialTime = m_Tick;
+    m_LastSpecialTime = m_Tick - rand()%(m_PMob->m_SpecialCoolDown/3);
 
     apAction_t Action;
     m_PMob->m_ActionList.clear();
