@@ -426,11 +426,11 @@ void LoadMOBList(CZone* PZone)
 
       if(PMaster == NULL)
       {
-        ShowError("zoneutils::loadMOBList PMaster is null. masterid: %d\n", masterid);
+        ShowError("zoneutils::loadMOBList PMaster is null. masterid: %d. Make sure x,y,z are not zeros!\n", masterid);
       }
       else if(PPet == NULL)
       {
-        ShowError("zoneutils::loadMOBList PPet is null. petid: %d\n", petid);
+        ShowError("zoneutils::loadMOBList PPet is null. petid: %d. Make sure x,y,z are not zeros!\n", petid);
       }
       else
       {
