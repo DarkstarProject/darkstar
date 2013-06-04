@@ -1,3 +1,5 @@
+require("scripts/globals/status");
+
 -----------------------------------
 -- Author: bluekirby0
 -- Place convenience functions 
@@ -25,4 +27,22 @@ function isArtifactArmor(itemid)
 	elseif(itemid >= 15659 and itemid <= 15661) then retval = true; -- WotG legs sets
 	end
 	return retval;
+end;
+
+-- Provides a count for the number of pieces of equipment that "enhance the effect of rice balls"
+function RiceBalls(player)
+   local hands = player:getEquipID(SLOT_HANDS);
+   local head = player:getEquipID(SLOT_HEAD);
+   local feet = player:getEquipID(SLOT_FEET);
+   local power = 0;
+   if (hands == 13972 or hands == 14901) then -- Myochin Kote
+      power = power + 1;
+   end
+   if (head == 13910 or head == 13949) then -- Roshi Jinpachi
+      power = power + 1;
+   end
+   if (feet == 11367) then -- Nobushi Kyahan
+      power = power + 1;
+   end
+   return power;
 end;
