@@ -308,6 +308,8 @@ void CAIMobDummy::ActionDisengage()
 
 void CAIMobDummy::ActionFall()
 {
+	m_PMob->PEnmityContainer->Clear();
+
 	m_ActionType = ACTION_DROPITEMS;
 	m_LastActionTime = m_Tick;
 	m_PMob->animation = ANIMATION_DEATH;
