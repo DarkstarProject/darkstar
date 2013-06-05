@@ -25,7 +25,7 @@ function onTrade(player,npc,trade)
 			SpawnMob(17580038,300):updateEnmity(player);
 		end
 	end
-	if(player:getQuestStatus(BASTOK, BLADE_OF_DEATH) == QUEST_ACCEPTED and player:getVar("ChaosbringerKills") == 200) then
+	if(player:getQuestStatus(BASTOK, BLADE_OF_DEATH) == QUEST_ACCEPTED and player:getVar("ChaosbringerKills") >= 200) then
 		if(trade:hasItemQty(16607,1) and trade:getItemCount() == 1) then -- Trade Chaosbringer
 			player:tradeComplete();
 			player:startEvent(0x000a);
