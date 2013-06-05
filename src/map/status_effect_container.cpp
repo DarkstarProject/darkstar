@@ -1086,7 +1086,7 @@ void CStatusEffectContainer::CheckEffects(uint32 tick)
 			}
 
 			if (PStatusEffect->GetDuration() != 0 &&
-				PStatusEffect->GetDuration() + PStatusEffect->GetStartTime() <= tick)
+				PStatusEffect->GetDuration() + PStatusEffect->GetStartTime() <= tick && i <m_StatusEffectList.size())
 			{
 				RemoveStatusEffect(i--);
 			}
