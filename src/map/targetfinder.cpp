@@ -41,6 +41,7 @@ CTargetFinder::CTargetFinder(CBattleEntity* PBattleEntity)
 
 void CTargetFinder::reset()
 {
+  m_finderType = FINDER_NONE;
   m_targets.clear();
   m_conal = false;
   m_radius = 0.0f;
@@ -92,13 +93,14 @@ void CTargetFinder::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType,
 
     if(m_PMasterTarget->objtype == TYPE_MOB)
     {
-
+      m_finderType = FINDER_PLAYER_MONSTER;
       // special case to add all mobs in range
       addAllInMobList(m_PMasterTarget, false);
 
     } else {
 
       // players will never need to add whole alliance
+      m_finderType = FINDER_PLAYER_PLAYER;
 
       if(m_PMasterTarget->PParty != NULL)
       {
@@ -112,6 +114,12 @@ void CTargetFinder::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType,
 
   } else {
     // handle this as a mob
+
+    if(PTarget->objtype == TYPE_PC){
+      m_finderType = FINDER_MONSTER_PLAYER;
+    } else {
+      m_finderType = FINDER_MONSTER_MONSTER;
+    }
 
     if(m_PMasterTarget->PParty != NULL)
     {
@@ -278,6 +286,10 @@ bool CTargetFinder::isMobOwner(CBattleEntity* PTarget)
   return false;
 }
 
+/*
+validEntity will check if the given entity can be targeted in the AoE.
+
+*/
 bool CTargetFinder::validEntity(CBattleEntity* PTarget)
 {
   if(m_targets.size() > MAX_AOE_TARGETS) return false;
@@ -302,13 +314,19 @@ bool CTargetFinder::validEntity(CBattleEntity* PTarget)
   // shouldn't add if target is charmed by the enemy
   if(PTarget->PMaster != NULL)
   {
-    if(isPlayer && PTarget->PMaster->objtype == TYPE_MOB && PTarget->objtype == TYPE_PC)
-    {
-      // can't target outside my team
-      return false;
-    }
-    else if(PTarget->PMaster->objtype == TYPE_PC || PTarget->PMaster->objtype == TYPE_PET)
-    {
+    if(m_finderType == FINDER_MONSTER_PLAYER){
+
+      if(PTarget->PMaster->objtype == TYPE_MOB){
+        return false;
+      }
+
+    } else if(m_finderType == FINDER_PLAYER_MONSTER){
+
+      if(PTarget->PMaster->objtype == TYPE_PC){
+        return false;
+      }
+
+    } else if(m_finderType == FINDER_MONSTER_MONSTER || m_finderType == FINDER_PLAYER_PLAYER){
       return false;
     }
   }

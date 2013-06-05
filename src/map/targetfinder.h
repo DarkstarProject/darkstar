@@ -47,6 +47,33 @@ enum AOERADIUS
   AOERADIUS_TARGET = 2
 };
 
+/*
+
+Every targetfinder has a context in which to find targets. See below.
+
+Cases:
+
+  If player -> monster
+    I can hit all monsters around and their pets. If the monsters are not controlled by a player.
+
+  If monster -> player
+    I can hit all players in the party, alliance and their pets.
+
+  If player -> player
+    I can hit all players in my party.
+
+  If monster -> monster
+    I can hit all monsters in my party.
+
+*/
+enum FINDERTYPE {
+  FINDER_NONE = 0,
+  FINDER_PLAYER_PLAYER = 1,
+  FINDER_MONSTER_MONSTER = 2,
+  FINDER_PLAYER_MONSTER = 3,
+  FINDER_MONSTER_PLAYER = 4
+};
+
 class CTargetFinder
 {
 public:
@@ -80,7 +107,7 @@ public:
 
 protected:
 
-  bool isPlayer; // is this being using on players only?
+  bool isPlayer; // is this from a player?
   float m_radius;
   position_t* m_PRadiusAround;
 
@@ -90,6 +117,7 @@ protected:
   CBattleEntity* m_PTarget; // first target
 
   uint16 m_zone;
+  FINDERTYPE m_finderType;
 
   // conal vars
   bool m_conal;
