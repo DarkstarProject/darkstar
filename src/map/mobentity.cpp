@@ -139,7 +139,7 @@ uint32 CMobEntity::GetRandomGil()
 
 bool CMobEntity::CanDeaggro()
 {
-	return (m_Type & MOBTYPE_NOTORIOUS) != MOBTYPE_NOTORIOUS && (m_Type & MOBTYPE_BATTLEFIELD) != MOBTYPE_BATTLEFIELD;
+	return !(m_Type & MOBTYPE_NOTORIOUS || m_Type & MOBTYPE_BATTLEFIELD);
 }
 
 /************************************************************************
@@ -249,7 +249,7 @@ bool CMobEntity::CanUseTwoHour()
         return false;
     }
 
-    if((m_Type & MOBTYPE_NOTORIOUS) == MOBTYPE_NOTORIOUS || isInDynamis())
+    if(m_Type & MOBTYPE_NOTORIOUS || isInDynamis())
     {
         return true;
     }

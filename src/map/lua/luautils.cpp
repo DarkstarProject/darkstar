@@ -250,8 +250,8 @@ int32 GetMobIDByJob(lua_State *L)
 	for(uint32 mobid = id_min; mobid <= id_max; mobid++)
 	{
 		CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
-
-		if(PMob != NULL && (PMob->m_Type & MOBTYPE_NOTORIOUS) != MOBTYPE_NOTORIOUS && PMob->GetMJob() == mobJob && PMob->isDead())
+		
+		if(PMob != NULL && !(PMob->m_Type & MOBTYPE_NOTORIOUS) && PMob->GetMJob() == mobJob && PMob->isDead())
 		{
 			lua_pushinteger(L,PMob->id);
 			return 1;
@@ -481,9 +481,9 @@ int32 VanadielMoonDirection(lua_State* L)
 int32 IsMoonFull(lua_State* L)
 {
 	// Full moon occurs when:
-	// Waxing (increasing) from 90% to 100%,
-	// Waning (decending) from 100% to 95%.
-
+	// Waxing (increasing) from 90% to 100%, 
+	// Waning (decending) from 100% to 95%. 
+	
 	uint8 phase = CVanaTime::getInstance()->getMoonPhase();
 
 	switch (CVanaTime::getInstance()->getMoonDirection())
@@ -2002,9 +2002,9 @@ int32 OnMobSpawn(CBaseEntity* PMob)
 int32 OnMobRoam(CBaseEntity* PMob)
 {
     DSP_DEBUG_BREAK_IF(PMob == NULL || PMob->objtype != TYPE_MOB)
-
+    
 	CLuaBaseEntity LuaMobEntity(PMob);
-
+	
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
@@ -2026,7 +2026,7 @@ int32 OnMobRoam(CBaseEntity* PMob)
 	}
 
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
-
+	
 	if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnMobRoam: %s\n",lua_tostring(LuaHandle,-1));
@@ -2698,7 +2698,7 @@ int32 SetServerVariable(lua_State *L)
 		return 0;
 	}
 	Sql_Query(SqlHandle, "INSERT INTO server_variables VALUES ('%s', %i) ON DUPLICATE KEY UPDATE value = %i;", name, value, value);
-
+	
 	lua_pushnil(L);
 	return 0;
 }

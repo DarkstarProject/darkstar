@@ -3658,7 +3658,7 @@ void tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
 		}
 
 		// cannot charm NM
-		if ((((CMobEntity*)PVictim)->m_Type & MOBTYPE_NOTORIOUS) == MOBTYPE_NOTORIOUS){
+		if (((CMobEntity*)PVictim)->m_Type & MOBTYPE_NOTORIOUS){
 			((CMobEntity*)PVictim)->PEnmityContainer->UpdateEnmity(PCharmer, 0, 0);
 			return;
 		}
@@ -3781,7 +3781,7 @@ bool TryCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 base)
 	//  -75 with a BST SJ lvl10 will struggle on EP
 	//	-75 with a BST SJ lvl75 will not - thats player has bst leveled to 75 and is using it as SJ
 	//---------------------------------------------------------
-
+	
 	uint8 charmerBSTlevel = 0;
 
 		if (PCharmer->objtype == TYPE_PC)
@@ -3801,7 +3801,7 @@ bool TryCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 base)
 
 	float charmChanceMods = PCharmer->getMod(MOD_CHARM_CHANCE);
 	check *= ((float)((100.0f - charmChanceMods)/100.0f));
-
+	
 
 	//cap chance at 95%
 	if(check < 5) {
@@ -3992,7 +3992,7 @@ void assistTarget(CCharEntity* PChar, uint16 TargID)
 		// get that players target (mob,player,pet only)
 		CBattleEntity* EntityToLockon = (CBattleEntity*)PChar->loc.zone->GetEntity(PlayerToAssist->m_TargID, TYPE_MOB | TYPE_PC | TYPE_PET);
 
-		if (EntityToLockon != NULL)
+		if (EntityToLockon != NULL) 
 		{
 			// lock on to the new target!
 			PChar->pushPacket(new CLockOnPacket(PChar, EntityToLockon));
