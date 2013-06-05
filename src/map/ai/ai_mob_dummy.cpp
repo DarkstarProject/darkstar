@@ -158,7 +158,12 @@ void CAIMobDummy::ActionRoaming()
 		{
 			// I spawned a pet
 		}
-		else if(!(m_PMob->m_Type & MOBTYPE_EVENT) && m_PMob->PMaster == NULL && rand()%10 < 7)
+		else if(CanCastSpells() && rand()%10 < 3 && m_PMob->SpellContainer->HasBuffSpells())
+		{
+			// cast buff
+			CastSpell(m_PMob->SpellContainer->GetBuffSpell());
+		}
+		else if((m_PMob->m_Type & MOBTYPE_EVENT) != MOBTYPE_EVENT && m_PMob->PMaster == NULL)
 		{
 
 			// roam
@@ -189,11 +194,6 @@ void CAIMobDummy::ActionRoaming()
 
 			}
 
-		}
-		else if(CanCastSpells() && m_PMob->SpellContainer->HasBuffSpells())
-		{
-			// cast buff
-			CastSpell(m_PMob->SpellContainer->GetBuffSpell());
 		}
 
 	}
