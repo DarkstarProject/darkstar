@@ -1255,6 +1255,8 @@ void CAIMobDummy::ActionAttack()
 		return;
 	}
 
+	battleutils::MoveIntoRange(m_PMob, m_PBattleTarget, 25);
+
 	//handle pet behaviour on the targets behalf (faster than in ai_pet_dummy)
 	// Avatars defend masters by attacking mobs if the avatar isn't attacking anything currently (bodyguard behaviour)
 	if(m_PBattleTarget->PPet != NULL && m_PBattleTarget->PPet->PBattleAI->GetBattleTarget()==NULL) {
@@ -1565,7 +1567,6 @@ void CAIMobDummy::ActionAttack()
 		luautils::OnMobFight(m_PMob,m_PBattleTarget);
 	}
 
-	battleutils::MoveIntoRange(m_PMob, m_PBattleTarget, 25);
 	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 }
 
