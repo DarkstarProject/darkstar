@@ -226,12 +226,19 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		int8 session_key[20*2+1];
 		bin2hex(session_key,(uint8*)session->blowfish.key,20);
 
-        if (PChar->loc.destination != 0 &&
-            PChar->loc.destination != 214)
+        uint16 destination = PChar->loc.destination;
+
+        if(destination >= MAX_ZONEID){
+            // holy crap out of range, lets go to the safe place
+            PChar->loc.destination = destination = ZONE_RESIDENTIAL_AREA;
+        }
+
+        if (destination != ZONE_RESIDENTIAL_AREA &&
+            destination != ZONE_214)
 		{
-            zoneutils::GetZone(PChar->loc.destination)->IncreaseZoneCounter(PChar);
+            zoneutils::GetZone(destination)->IncreaseZoneCounter(PChar);
 		} else {
-            PChar->loc.zone = zoneutils::GetZone(PChar->loc.destination);
+            PChar->loc.zone = zoneutils::GetZone(destination);
         }
 
         firstlogin = true;
