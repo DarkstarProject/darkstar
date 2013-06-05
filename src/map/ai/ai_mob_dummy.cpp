@@ -263,7 +263,7 @@ void CAIMobDummy::ActionEngage()
 void CAIMobDummy::ActionDisengage()
 {
 	// Despawn if we're >20 yalms from our spawn point
-	if(m_PMob->m_Type & MOBTYPE_NOTORIOUS)
+	if((m_PMob->m_Type & MOBTYPE_NOTORIOUS) == MOBTYPE_NOTORIOUS)
 	{
 		m_ActionType = ACTION_ROAMING;
 	}
@@ -382,7 +382,7 @@ void CAIMobDummy::ActionDropItems()
 					*/
 					uint8 Pzone = PChar->getZone();
 					if(charutils::GetRealExp(PChar->GetMLevel(),m_PMob->GetMLevel())>0 &&
-						rand()%100 < 40 && m_PMob->m_Type == MOBTYPE_NORMAL && ((Pzone > 0 &&
+						rand()%100 < 40 && (m_PMob->m_Type & MOBTYPE_NORMAL) == MOBTYPE_NORMAL && ((Pzone > 0 &&
 						Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255))){ //exp-yielding monster and drop is successful
 						//TODO: The drop is actually based on a 5 minute timer, and not a probability of dropping!
 
@@ -1560,7 +1560,7 @@ void CAIMobDummy::ActionAttack()
 		}
 	}
 
-	if(m_PMob->m_Type & MOBTYPE_NOTORIOUS && (m_Tick - m_StartBattle) % 3000 <= 400) // launch OnMobFight every 3 sec (not everytime at 0 but 0~400)
+	if((m_PMob->m_Type & MOBTYPE_NOTORIOUS) == MOBTYPE_NOTORIOUS && (m_Tick - m_StartBattle) % 3000 <= 400) // launch OnMobFight every 3 sec (not everytime at 0 but 0~400)
 	{
 		luautils::OnMobFight(m_PMob,m_PBattleTarget);
 	}

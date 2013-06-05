@@ -139,7 +139,7 @@ uint32 CMobEntity::GetRandomGil()
 
 bool CMobEntity::CanDeaggro()
 {
-	return !(m_Type & MOBTYPE_NOTORIOUS || m_Type & MOBTYPE_BATTLEFIELD);
+	return (m_Type & MOBTYPE_NOTORIOUS) != MOBTYPE_NOTORIOUS && (m_Type & MOBTYPE_BATTLEFIELD) != MOBTYPE_BATTLEFIELD;
 }
 
 /************************************************************************
@@ -243,9 +243,15 @@ uint8 CMobEntity::TPUseChance()
 
 bool CMobEntity::CanUseTwoHour()
 {
-    if(!(m_Type & MOBTYPE_NOTORIOUS) && !isInDynamis())
-    {
+
+    // mobs below lvl 10 cannot two hour
+    if(GetMLevel() < 10){
         return false;
+    }
+
+    if((m_Type & MOBTYPE_NOTORIOUS) == MOBTYPE_NOTORIOUS || isInDynamis())
+    {
+        return true;
     }
 
     if(m_EcoSystem == SYSTEM_BEASTMEN)

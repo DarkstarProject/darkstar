@@ -125,7 +125,7 @@ uint16 GetBase(CMobEntity * PMob, uint8 rank)
 
 void CalculateStats(CMobEntity * PMob)
 {
-	bool isNM = PMob->m_Type & MOBTYPE_NOTORIOUS;
+	bool isNM = (PMob->m_Type & MOBTYPE_NOTORIOUS) == MOBTYPE_NOTORIOUS;
 	if(PMob->HPmodifier == 0){
 
 		float growth = 1.06;

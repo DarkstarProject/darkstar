@@ -2258,7 +2258,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 			 * deal damage points and defeats a monster while Blade of Darkness and/or
 			 * Blade of Death quests are active.
 			 */
-			
+
 			// handle jump abilities---
 
     		// Jump
@@ -2334,7 +2334,7 @@ void CAICharNormal::ActionJobAbilityFinish()
     		}
     		if(m_PJobAbility->getID() == ABILITY_GAUGE){
     			if(m_PBattleSubTarget != NULL && m_PBattleSubTarget->objtype == TYPE_MOB){
-    				if(((CMobEntity*)m_PBattleSubTarget)->m_Type == MOBTYPE_NOTORIOUS ||
+    				if((((CMobEntity*)m_PBattleSubTarget)->m_Type & MOBTYPE_NOTORIOUS) == MOBTYPE_NOTORIOUS ||
     					m_PBattleSubTarget->m_EcoSystem == SYSTEM_BEASTMEN ||
     					m_PBattleSubTarget->m_EcoSystem == SYSTEM_ARCANA)
     				{

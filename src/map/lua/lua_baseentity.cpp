@@ -2764,7 +2764,7 @@ inline int32 CLuaBaseEntity::getGil(lua_State *L)
 		{
 			// TODO: Mobs should have a gil pool, until implemented mob can be mugged unlimited times.
 			CMobEntity * PMob = (CMobEntity*)m_PBaseEntity;
-			if(PMob->m_EcoSystem == SYSTEM_BEASTMEN || PMob->m_Type & MOBTYPE_NOTORIOUS)
+			if(PMob->m_EcoSystem == SYSTEM_BEASTMEN || (PMob->m_Type & MOBTYPE_NOTORIOUS) == MOBTYPE_NOTORIOUS)
 			{
 				lua_pushinteger(L, PMob->GetRandomGil());
 				return 1;

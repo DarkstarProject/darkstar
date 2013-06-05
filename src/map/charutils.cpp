@@ -842,7 +842,7 @@ void SendQuestMissionLog(CCharEntity* PChar)
 			PChar->pushPacket(new CQuestMissionLogPacket(PChar, areaID, status));
 		}
 	}
-	
+
 	// Treasures of Aht Urhgan
 	// Wings of the Goddess Missions
 	PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ZILART, 0x02));
@@ -2704,7 +2704,7 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
                         continue;
                     }
 					uint8 Pzone = PMember->getZone();
-                    if (PMob->m_Type == MOBTYPE_NORMAL && ((Pzone > 0 && Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255)))
+                    if ((PMob->m_Type & MOBTYPE_NORMAL) == MOBTYPE_NORMAL && ((Pzone > 0 && Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255)))
 					{
 						if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && rand()%100 < 20 &&
                         PMember->loc.zone == PMob->loc.zone) // Need to move to SIGNET_CHANCE constant
@@ -2712,7 +2712,7 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 							PMember->PTreasurePool->AddItem(4095 + PMob->m_Element, PMob);
 						}
 					}
-					if (PChar->PParty != NULL && PChar->PParty->m_PAlliance != NULL && PMob->m_Type == MOBTYPE_NORMAL)
+					if (PChar->PParty != NULL && PChar->PParty->m_PAlliance != NULL && (PMob->m_Type & MOBTYPE_NORMAL) == MOBTYPE_NORMAL)
 					{
 						if ((Pzone > 38 && Pzone < 43) || (Pzone > 133 && Pzone < 136) || (Pzone > 184 && Pzone < 189)) AddExperiencePoints(false, PMember, PMob, exp, 1, false);
 						else AddExperiencePoints(false, PMember, PMob, 1, 1, false);
@@ -3746,33 +3746,33 @@ uint8 AvatarPerpetuationReduction(CCharEntity* PChar)
 	uint8 reduction = PChar->getMod(MOD_PERPETUATION_REDUCTION);
 
 	static const MODIFIER strong[8] = {
-        MOD_FIRE_AFFINITY, 
-        MOD_EARTH_AFFINITY, 
-        MOD_WATER_AFFINITY, 
-        MOD_WIND_AFFINITY, 
-        MOD_ICE_AFFINITY, 
-        MOD_THUNDER_AFFINITY, 
-        MOD_LIGHT_AFFINITY, 
+        MOD_FIRE_AFFINITY,
+        MOD_EARTH_AFFINITY,
+        MOD_WATER_AFFINITY,
+        MOD_WIND_AFFINITY,
+        MOD_ICE_AFFINITY,
+        MOD_THUNDER_AFFINITY,
+        MOD_LIGHT_AFFINITY,
         MOD_DARK_AFFINITY};
 
 	static const MODIFIER weak[8] = {
-        MOD_WATER_AFFINITY, 
-        MOD_WIND_AFFINITY, 
-        MOD_THUNDER_AFFINITY, 
-        MOD_ICE_AFFINITY, 
-        MOD_FIRE_AFFINITY, 
-        MOD_EARTH_AFFINITY, 
-        MOD_DARK_AFFINITY, 
+        MOD_WATER_AFFINITY,
+        MOD_WIND_AFFINITY,
+        MOD_THUNDER_AFFINITY,
+        MOD_ICE_AFFINITY,
+        MOD_FIRE_AFFINITY,
+        MOD_EARTH_AFFINITY,
+        MOD_DARK_AFFINITY,
         MOD_LIGHT_AFFINITY};
 
     static const WEATHER weatherStrong[8] = {
-        WEATHER_HOT_SPELL, 
-        WEATHER_DUST_STORM, 
-        WEATHER_RAIN, 
-        WEATHER_WIND, 
-        WEATHER_SNOW, 
-        WEATHER_THUNDER, 
-        WEATHER_AURORAS, 
+        WEATHER_HOT_SPELL,
+        WEATHER_DUST_STORM,
+        WEATHER_RAIN,
+        WEATHER_WIND,
+        WEATHER_SNOW,
+        WEATHER_THUNDER,
+        WEATHER_AURORAS,
         WEATHER_GLOOM};
 
 	uint8 element = ((CPetEntity*)(PChar->PPet))->m_Element - 1;

@@ -1512,7 +1512,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
             }
             return;
         }
-        case 0x03: //send items 
+        case 0x03: //send items
         {
             uint8 send_items = 0;
             for (int i = 0; i < 8; i++)
@@ -1546,7 +1546,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
                             if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
                             {
-                                ret = Sql_Query(SqlHandle, 
+                                ret = Sql_Query(SqlHandle,
                                     "INSERT INTO delivery_box(charid, charname, box, itemid, itemsubid, quantity, senderid, sender) \
                                     VALUES(%u, '%s', 1, %u, %u, %u, %u, '%s'); ",
                                     charid,
@@ -3142,7 +3142,7 @@ void SmallPacket0x0AC(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			if (charutils::UpdateItem(PChar, LOC_INVENTORY, slot, -quantity) == itemID)
 			{
 				charutils::UpdateItem(PChar, LOC_INVENTORY, 0, (shopItem->getBasePrice() / 3) * quantity);
-                
+
 				PChar->PGuildShop->GetItem(shopSlotID)->setQuantity(PChar->PGuildShop->GetItem(shopSlotID)->getQuantity()+quantity);
                 PChar->pushPacket(new CGuildMenuSellUpdatePacket(PChar, PChar->PGuildShop->GetItem(PChar->PGuildShop->SearchItem(itemID))->getQuantity(), itemID, quantity));
                 PChar->pushPacket(new CInventoryFinishPacket());
@@ -3660,7 +3660,7 @@ void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		{
 			CMobEntity* PTarget = (CMobEntity*)PEntity;
 
-            if (PTarget->m_Type & MOBTYPE_NOTORIOUS)
+            if ((PTarget->m_Type & MOBTYPE_NOTORIOUS) == MOBTYPE_NOTORIOUS)
 			{
 			    PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0, 249));
 			}
