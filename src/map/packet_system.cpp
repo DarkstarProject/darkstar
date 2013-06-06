@@ -229,6 +229,7 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
         uint16 destination = PChar->loc.destination;
 
         if(destination >= MAX_ZONEID){
+            ShowWarning("packet_system::SmallPacket0x00A player tried to enter zone out of range: %d\n", destination);
             // holy crap out of range, lets go to the safe place
             PChar->loc.destination = destination = ZONE_RESIDENTIAL_AREA;
         }
@@ -1519,7 +1520,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
             }
             return;
         }
-        case 0x03: //send items 
+        case 0x03: //send items
         {
             uint8 send_items = 0;
             for (int i = 0; i < 8; i++)
@@ -1553,7 +1554,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
                             if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
                             {
-                                ret = Sql_Query(SqlHandle, 
+                                ret = Sql_Query(SqlHandle,
                                     "INSERT INTO delivery_box(charid, charname, box, itemid, itemsubid, quantity, senderid, sender) \
                                     VALUES(%u, '%s', 1, %u, %u, %u, %u, '%s'); ",
                                     charid,
@@ -3149,7 +3150,7 @@ void SmallPacket0x0AC(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			if (charutils::UpdateItem(PChar, LOC_INVENTORY, slot, -quantity) == itemID)
 			{
 				charutils::UpdateItem(PChar, LOC_INVENTORY, 0, (shopItem->getBasePrice() / 3) * quantity);
-                
+
 				PChar->PGuildShop->GetItem(shopSlotID)->setQuantity(PChar->PGuildShop->GetItem(shopSlotID)->getQuantity()+quantity);
                 PChar->pushPacket(new CGuildMenuSellUpdatePacket(PChar, PChar->PGuildShop->GetItem(PChar->PGuildShop->SearchItem(itemID))->getQuantity(), itemID, quantity));
                 PChar->pushPacket(new CInventoryFinishPacket());
