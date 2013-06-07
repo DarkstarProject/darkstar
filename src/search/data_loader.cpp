@@ -273,6 +273,10 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr,int* count)
 					continue;
 				}
 			}
+            if (nameflag & FLAG_ANON && nameflag & FLAG_GM)
+            {
+                continue;   
+            }
 			if(visibleResults<20){
 				PlayersList.push_back(PPlayer);
 				visibleResults++;
