@@ -62,6 +62,7 @@ namespace luautils
 	int32 setMobPos(lua_State*);												// set a mobs position (only if mob is not in combat)
 
 	int32 getCorsairRollEffect(lua_State*);
+    int32 getSpell(lua_State*);
 
 	int32 SpawnMob(lua_State*);													// Spawn Mob By Mob Id - NMs, BCNM...
 	int32 DespawnMob(lua_State*);												// Despawn (Fade Out) Mob By Id

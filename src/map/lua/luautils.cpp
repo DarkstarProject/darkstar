@@ -109,6 +109,7 @@ int32 init()
 	lua_register(LuaHandle,"UpdateNMSpawnPoint",luautils::UpdateNMSpawnPoint);
 
 	lua_register(LuaHandle,"getCorsairRollEffect",luautils::getCorsairRollEffect);
+    lua_register(LuaHandle,"getSpell",luautils::getSpell);
 
     Lunar<CLuaAbility>::Register(LuaHandle);
 	Lunar<CLuaBaseEntity>::Register(LuaHandle);
@@ -2983,6 +2984,25 @@ int32 getCorsairRollEffect(lua_State* L)
     if(!lua_isnil(L,1) && lua_isnumber(L,1))
 	{
 		lua_pushinteger(L, battleutils::getCorsairRollEffect(lua_tointeger(L,1)));
+		return 1;
+	}
+	return 0;
+}
+
+int32 getSpell(lua_State* L)
+{
+    if(!lua_isnil(L,1) && lua_isnumber(L,1))
+	{
+		CSpell* PSpell = spell::GetSpell(lua_tointeger(L,1));
+
+		lua_pushstring(L,CLuaSpell::className);
+		lua_gettable(L,LUA_GLOBALSINDEX);
+		lua_pushstring(L,"new");
+		lua_gettable(L,-2);
+		lua_insert(L,-2);
+		lua_pushlightuserdata(L,(void*)PSpell);
+		lua_pcall(L,2,1,0);
+
 		return 1;
 	}
 	return 0;

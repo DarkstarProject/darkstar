@@ -6762,7 +6762,6 @@ inline int32 CLuaBaseEntity::isSpellAoE(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
-    DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_PC || m_PBaseEntity->objtype & TYPE_MOB));
 
     CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
     CSpell* PSpell = spell::GetSpell(lua_tonumber(L,1));
@@ -6773,7 +6772,6 @@ inline int32 CLuaBaseEntity::isSpellAoE(lua_State* L)
     }
     else
     {
-        //TODO: avatar blood pacts should not be using calculateMagicDamage and passing in the lua skill as a lua spell
         lua_pushboolean(L,false);
     }
 
