@@ -5,9 +5,12 @@
 -- @zone 149
 -- @pos 23 0 -23
 -----------------------------------
+package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
+require("scripts/zones/Davoi/TextIDs");
 
 -----------------------------------
 -- onTrade Action
