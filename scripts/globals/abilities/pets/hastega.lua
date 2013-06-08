@@ -18,7 +18,9 @@ function OnPetAbility(target, pet, skill, summoner)
 		duration = 350;
 	end;
 
-	target:addStatusEffect(EFFECT_HASTE,150,0,duration);
+	-- Garuda's Hastega is a weird exception and uses 153 instead of 15%
+   -- That's why it overwrites some things regular haste won't.
+   target:addStatusEffect(EFFECT_HASTE,153,0,duration);
 	skill:setMsg(MSG_BUFF);
 	return EFFECT_HASTE;
 end
