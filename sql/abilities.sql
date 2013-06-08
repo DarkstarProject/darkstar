@@ -223,8 +223,8 @@ INSERT INTO `abilities` VALUES ('191', 'violent_flourish', '19', '45', '4', '20'
 INSERT INTO `abilities` VALUES ('192', 'building_flourish', '19', '50', '1', '10', '222', '0', '0', '220', '20.0', '0', '1', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('193', 'wild_flourish', '19', '60', '4', '30', '222', '0', '0', '220', '20.0', '0', '1', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('194', 'tabula_rasa', '20', '0', '1', '7200', '0', '0', '0', '190', '20.0', '0', '1', '300', '0', '0');
-INSERT INTO `abilities` VALUES ('195', 'light_arts', '20', '10', '1', '60', '228', '0', '0', '171', '20.0', '0', '1', '80', '0', '0');
-INSERT INTO `abilities` VALUES ('196', 'dark_arts', '20', '10', '1', '60', '232', '0', '0', '176', '20.0', '0', '1', '300', '0', '0');
+INSERT INTO `abilities` VALUES ('195', 'light_arts', '20', '10', '1', '60', '228', '0', '0', '171', '20.0', '0', '1', '80', '1600', '0');
+INSERT INTO `abilities` VALUES ('196', 'dark_arts', '20', '10', '1', '60', '232', '0', '0', '176', '20.0', '0', '1', '300', '1600', '0');
 INSERT INTO `abilities` VALUES ('197', 'flourishes_ii', '19', '40', '1', '0', '0', '0', '0', '0', '20.0', '0', '0', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('198', 'modus_veritas', '20', '65', '4', '600', '230', '0', '0', '188', '20.0', '0', '1', '80', '0', '0');
 INSERT INTO `abilities` VALUES ('199', 'penury', '20', '10', '1', '0', '231', '0', '0', '172', '20.0', '0', '1', '80', '0', '16');

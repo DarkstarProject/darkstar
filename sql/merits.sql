@@ -172,7 +172,7 @@ INSERT INTO `merits` VALUES ('1538', 'haste_samba_effect', '5', '1', '262144', '
 INSERT INTO `merits` VALUES ('1540', 'reverse_flourish_effect', '5', '3', '262144', '6', '23');
 INSERT INTO `merits` VALUES ('1542', 'building_flourish_effect', '5', '2', '262144', '6', '23');
 INSERT INTO `merits` VALUES ('1600', 'grimoire_recast', '5', '2', '524288', '6', '24');
-INSERT INTO `merits` VALUES ('1602', 'modus_veritas_duration', '5', '3', '524288', '6', '24');
+INSERT INTO `merits` VALUES ('1602', 'modus_veritas_duration', '5', '1', '524288', '6', '24');
 INSERT INTO `merits` VALUES ('1604', 'helix_magic_acc_att', '5', '1', '524288', '6', '24');
 INSERT INTO `merits` VALUES ('1606', 'max_sublimation', '5', '10', '524288', '6', '24');
 INSERT INTO `merits` VALUES ('1664', 'shijin_spiral', '1', '1', '131074', '0', '25');
