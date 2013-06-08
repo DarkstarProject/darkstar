@@ -527,7 +527,7 @@ int32 CMeritPoints::GetMeritValue(MERIT_TYPE merit, CCharEntity* PChar)
 int32 CMeritPoints::GetMeritValue(Merit_t* merit, CCharEntity* PChar)
 {
     uint8 meritValue = 0;
-    if (merit->catid < 5 || (merit->jobs & (1 << (PChar->GetMJob() - 1)) && PChar->GetMLevel() > 75))
+    if (merit->catid < 5 || (merit->jobs & (1 << (PChar->GetMJob() - 1)) && PChar->GetMLevel() >= 75))
         meritValue = dsp_min(merit->count, cap[PChar->GetMLevel()]);
 
 	meritValue *= merit->value;
