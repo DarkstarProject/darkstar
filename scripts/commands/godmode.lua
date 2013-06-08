@@ -11,7 +11,7 @@
 function onTrigger(player,target)
 	if (player:getVar("GodMode") == 0) then
 		player:setVar("GodMode",1)
-		player:addStatusEffect(EFFECT_SENTINEL,-100,0,0);
+		player:addStatusEffect(EFFECT_SENTINEL,100,0,0);
 		player:addStatusEffect(EFFECT_MIGHTY_STRIKES,1,0,0);
 		player:addStatusEffect(EFFECT_HUNDRED_FISTS,1,0,0);
 		player:addStatusEffect(EFFECT_CHAINSPELL,1,0,0);
@@ -19,7 +19,6 @@ function onTrigger(player,target)
 		player:addStatusEffect(EFFECT_INVINCIBLE,1,0,0);				
 		player:addStatusEffect(EFFECT_MANAFONT,1,0,0);
 		player:addStatusEffect(EFFECT_REGAIN,100,1,0);
-        player:addStatusEffect(EFFECT_HASTE,30,0,0);
 	else
 		player:setVar("GodMode",0)
 		player:delStatusEffect(EFFECT_SENTINEL);
@@ -30,6 +29,5 @@ function onTrigger(player,target)
 		player:delStatusEffect(EFFECT_INVINCIBLE);	
 		player:delStatusEffect(EFFECT_MANAFONT);
 		player:delStatusEffect(EFFECT_REGAIN);
-        player:delStatusEffect(EFFECT_HASTE);
 	end
 end;

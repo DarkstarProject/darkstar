@@ -24,7 +24,7 @@ function onGameIn(player, firstlogin)
 
 
     if (player:getVar("GodMode") == 1) then
-	player:addStatusEffect(EFFECT_SENTINEL,-100,0,0);
+	player:addStatusEffect(EFFECT_SENTINEL,100,0,0);
 	player:addStatusEffect(EFFECT_MIGHTY_STRIKES,1,0,0);
 	player:addStatusEffect(EFFECT_HUNDRED_FISTS,1,0,0);
 	player:addStatusEffect(EFFECT_CHAINSPELL,1,0,0);

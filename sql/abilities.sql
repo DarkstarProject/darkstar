@@ -181,7 +181,7 @@ INSERT INTO `abilities` VALUES ('149', 'stealth_shot', '11', '75', '1', '300', '
 INSERT INTO `abilities` VALUES ('150', 'flashy_shot', '11', '75', '1', '600', '128', '0', '0', '151', '20.0', '0', '1', '300', '2690', '1');
 INSERT INTO `abilities` VALUES ('151', 'shikikoyo', '12', '75', '2', '900', '136', '0', '0', '152', '20.0', '0', '1', '80', '2752', '1');
 INSERT INTO `abilities` VALUES ('152', 'blade_bash', '12', '75', '1', '900', '137', '110', '0', '202', '20.0', '0', '0', '0', '2754', '1');
-INSERT INTO `abilities` VALUES ('153', 'deep_breathing', '14', '75', '1', '900', '164', '0', '0', '153', '20.0', '0', '0', '0', '2880', '1');
+INSERT INTO `abilities` VALUES ('153', 'deep_breathing', '14', '75', '1', '300', '164', '0', '0', '153', '20.0', '0', '0', '0', '2880', '1');
 INSERT INTO `abilities` VALUES ('154', 'angon', '14', '75', '4', '180', '165', '0', '0', '245', '20.0', '0', '0', '0', '2882', '1');
 INSERT INTO `abilities` VALUES ('155', 'sange', '13', '75', '1', '300', '145', '0', '0', '200', '20.0', '0', '1', '0', '2816', '1');
 INSERT INTO `abilities` VALUES ('156', 'blood_pact_ward', '15', '1', '1', '0', '174', '0', '0', '0', '20.0', '0', '0', '0', '0', '0');
