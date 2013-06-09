@@ -161,13 +161,13 @@ INSERT INTO `abilities` VALUES ('129', 'thunder_maneuver', '18', '1', '1', '10',
 INSERT INTO `abilities` VALUES ('130', 'water_maneuver', '18', '1', '1', '10', '210', '0', '0', '83', '18.0', '0', '1', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('131', 'light_maneuver', '18', '1', '1', '10', '210', '0', '0', '83', '18.0', '0', '1', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('132', 'dark_maneuver', '18', '1', '1', '10', '210', '0', '0', '83', '18.0', '0', '1', '0', '0', '0');
-INSERT INTO `abilities` VALUES ('133', 'warriors_charge', '1', '75', '1', '900', '6', '0', '0', '154', '20.0', '0', '1', '300', '2048', '1');
+INSERT INTO `abilities` VALUES ('133', 'warriors_charge', '1', '75', '1', '300', '6', '0', '0', '154', '20.0', '0', '1', '300', '2048', '1');
 INSERT INTO `abilities` VALUES ('134', 'tomahawk', '1', '75', '4', '180', '7', '0', '0', '244', '20.0', '0', '1', '600', '2050', '1');
 INSERT INTO `abilities` VALUES ('135', 'mantra', '2', '75', '1', '600', '19', '441', '0', '155', '20.0', '1', '1', '60', '2112', '1');
 INSERT INTO `abilities` VALUES ('136', 'formless_strikes', '2', '75', '1', '600', '20', '0', '0', '156', '20.0', '0', '1', '300', '2114', '1');
 INSERT INTO `abilities` VALUES ('137', 'martyr', '3', '75', '3', '600', '27', '119', '0', '157', '20.0', '0', '1', '300', '2176', '1');
 INSERT INTO `abilities` VALUES ('138', 'devotion', '3', '75', '3', '600', '28', '119', '0', '158', '20.0', '0', '1', '300', '2178', '1');
-INSERT INTO `abilities` VALUES ('139', 'assassins_charge', '6', '75', '1', '900', '67', '0', '0', '160', '20.0', '0', '1', '300', '2368', '1');
+INSERT INTO `abilities` VALUES ('139', 'assassins_charge', '6', '75', '1', '300', '67', '0', '0', '160', '20.0', '0', '1', '300', '2368', '1');
 INSERT INTO `abilities` VALUES ('140', 'feint', '6', '75', '1', '600', '68', '0', '0', '159', '20.0', '0', '1', '300', '2370', '1');
 INSERT INTO `abilities` VALUES ('141', 'fealty', '7', '75', '1', '600', '78', '0', '0', '148', '20.0', '0', '1', '300', '2432', '1');
 INSERT INTO `abilities` VALUES ('142', 'chivalry', '7', '75', '1', '600', '79', '451', '0', '149', '20.0', '0', '1', '300', '2434', '1');
