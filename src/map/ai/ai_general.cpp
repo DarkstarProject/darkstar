@@ -26,7 +26,8 @@
 #include "../ability.h"
 #include "../mobskill.h"
 #include "../battleutils.h"
-#include "../targetfinder.h"
+#include "../targetfind.h"
+#include "../pathfind.h"
 
 #include "ai_general.h"
 
@@ -39,13 +40,15 @@
 
 CAIGeneral::CAIGeneral()
 {
-    m_PTargetFinder = NULL;
+    m_PTargetFind = NULL;
+    m_PPathFind = NULL;
 	Reset();
 }
 
 CAIGeneral::~CAIGeneral()
 {
-    delete m_PTargetFinder;
+    delete m_PTargetFind;
+    delete m_PPathFind;
 }
 
 /************************************************************************

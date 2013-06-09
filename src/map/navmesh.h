@@ -22,47 +22,56 @@
 */
 
 /*
-The PathFind class provides an interface for getting an entity to a destination. It will find a path from a navmesh and carry it out.
+The NavMesh class will load and find paths given a start point and end point.
 */
-#ifndef _PATHFIND_H
-#define _PATHFIND_H
+#ifndef _NAVMESH_H
+#define _NAVMESH_H
+
+#include "../common/detour/DetourNavMesh.h"
+#include "../common/detour/DetourNavMeshQuery.h"
 
 #include "../common/showmsg.h"
 #include "../common/mmo.h"
 
-class CBattleEntity;
+#define MAX_NAV_POLYS 128
 
-// no path can be longer than this
-#define MAX_PATH_POINTS 50
+static const int NAVMESHSET_MAGIC = 'M'<<24 | 'S'<<16 | 'E'<<8 | 'T'; //'MSET';
+static const int NAVMESHSET_VERSION = 1;
 
-class CPathFind
+struct NavMeshSetHeader
+{
+  int magic;
+  int version;
+  int numTiles;
+  dtNavMeshParams params;
+};
+
+struct NavMeshTileHeader
+{
+  dtTileRef tileRef;
+  int dataSize;
+};
+
+class CNavMesh
 {
   public:
-    CPathFind(CBattleEntity* PTarget);
-    ~CPathFind();
+    static const int8 ERROR_NEARESTPOLY = -2;
 
-    // move to a random point around given point
-    bool RoamAround(position_t point, uint8 roamFlags);
+  public:
+    CNavMesh();
+    ~CNavMesh();
 
-    // create and follow a path to given point
-    bool MoveTo(position_t point);
+    bool load(char* path);
+    void unload();
 
-    // moves mob to next point
-    void Step();
-
-    // checks if mob is currently following a path
-    bool IsFollowingPath();
-
-    // clear current path
-    void Clear();
-    bool NavMeshAvailable();
+    int16 findPath(position_t start, position_t end, position_t* path, uint16 size);
 
   private:
-    CBattleEntity* m_PTarget;
-    position_t m_points[MAX_PATH_POINTS];
-    int16 m_currentPoint;
-    int16 m_pathLength;
-    int8 m_mode;
+    void outputError(uint32 status);
+
+    dtNavMesh* m_navMesh;
+    dtNavMeshQuery* m_navMeshQuery;
+    char* path;
 };
 
 #endif

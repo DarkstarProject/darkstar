@@ -58,17 +58,6 @@ enum MOBTYPE
 	MOBTYPE_EVENT			= 0x20
 };
 
-enum ROAMTYPE
-{
-  ROAMTYPE_NONE = 0x0,
-  ROAMTYPE_SMALL = 0x01, // move around less than 10
-  ROAMTYPE_MEDIUM = 0x02, // move around 10-20
-  ROAMTYPE_LARGE = 0x04, // move around 20-30
-  ROAMTYPE_WANDER = 0x08, // roam multiple times in a row
-  ROAMTYPE_SCENT = 0x10, // use scent to influence roaming
-  ROAMTYPE_SCOUT = 0x20 // move around often
-};
-
 enum BEHAVIOUR
 {
 	BEHAVIOUR_NONE				= 0x00,

@@ -30,7 +30,7 @@
 #include "../zone.h"
 #include "../mobskill.h"
 #include "../petutils.h"
-#include "../targetfinder.h"
+#include "../targetfind.h"
 
 #include "../lua/luautils.h"
 
@@ -53,7 +53,7 @@
 CAIPetDummy::CAIPetDummy(CPetEntity* PPet)
 {
 	m_PPet = PPet;
-    m_PTargetFinder = new CTargetFinder(PPet);
+    m_PTargetFind = new CTargetFind(PPet);
 }
 
 /************************************************************************
@@ -381,31 +381,31 @@ void CAIPetDummy::ActionAbilityFinish(){
 	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
 	// reset AoE finder
-    m_PTargetFinder->reset();
+    m_PTargetFind->reset();
     m_PPet->m_ActionList.clear();
 
     float distance = m_PMobSkill->getDistance();
 
-    if(m_PTargetFinder->isWithinRange(m_PBattleSubTarget, distance))
+    if(m_PTargetFind->isWithinRange(m_PBattleSubTarget, distance))
     {
 	    if(m_PMobSkill->isAoE())
 	    {
 		    float radius = m_PMobSkill->getDistance();
 
-	    	m_PTargetFinder->findWithinArea(m_PBattleSubTarget, (AOERADIUS)m_PMobSkill->getAoe(), distance);
+	    	m_PTargetFind->findWithinArea(m_PBattleSubTarget, (AOERADIUS)m_PMobSkill->getAoe(), distance);
 	    }
 	    else if(m_PMobSkill->isConal())
 		{
 			float angle = 45.0f;
-			m_PTargetFinder->findWithinCone(m_PBattleSubTarget, distance, angle);
+			m_PTargetFind->findWithinCone(m_PBattleSubTarget, distance, angle);
 		}
 	    else
 	    {
-	    	m_PTargetFinder->findSingleTarget(m_PBattleSubTarget);
+	    	m_PTargetFind->findSingleTarget(m_PBattleSubTarget);
 	    }
 	}
 
-	uint16 totalTargets = m_PTargetFinder->m_targets.size();
+	uint16 totalTargets = m_PTargetFind->m_targets.size();
 	//call the script for each monster hit
 	m_PMobSkill->setTotalTargets(totalTargets);
 	m_PMobSkill->setTP(m_skillTP);
@@ -419,7 +419,7 @@ void CAIPetDummy::ActionAbilityFinish(){
 	Action.flag       = 0;
 
 	uint16 msg = 0;
-	for (std::vector<CBattleEntity*>::iterator it = m_PTargetFinder->m_targets.begin() ; it != m_PTargetFinder->m_targets.end(); ++it)
+	for (std::vector<CBattleEntity*>::iterator it = m_PTargetFind->m_targets.begin() ; it != m_PTargetFind->m_targets.end(); ++it)
 	{
 
 		CBattleEntity* PTarget = *it;
@@ -731,7 +731,7 @@ void CAIPetDummy::ActionAttack()
 				}
 			}
 			m_LastActionTime = m_Tick;
-			
+
             // Update the targets attacker level..
             CMobEntity* Monster = (CMobEntity*)m_PBattleTarget;
             if (Monster->m_HiPCLvl < ((CCharEntity*)m_PPet->PMaster)->GetMLevel())

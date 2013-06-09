@@ -30,7 +30,7 @@ int32   zlib_init()
 	for(i = 0; i < size/4; i++)
 		if(zlib_decompress_table[i] > (char *)255)
 			zlib_decompress_table[i] = zlib_decompress_table[i] - 0x15b3aaa0 + (unsigned long)zlib_decompress_table;
- 
+
 	return 0;
 }
 
@@ -81,7 +81,7 @@ ppuint32 zlib_decompress(char *in,ppuint32 inSize, char *out, ppuint32 outSize, 
 	if(in[0] != 1)
 		return -1;
 	in++;
-	
+
 	for(i = 0; i < inSize ;i++){
 		if((in[i/8]>>(i&7))&1)
 			follow = (unsigned int **)follow[1];

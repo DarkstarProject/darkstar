@@ -36,6 +36,8 @@
 #include "instance_handler.h"
 
 #include "packets/weather.h"
+#include "navmesh.h"
+
 
 enum ZONEID : uint16
 {
@@ -523,6 +525,8 @@ public:
 
     CInstanceHandler* m_InstanceHandler;	// BCNM Instances in this zone
 
+    CNavMesh*		m_navMesh;				// zones navmesh for finding paths
+
 private:
 
 	ZONEID			m_zoneID;				// ID зоны
@@ -531,10 +535,12 @@ private:
 	string_t		m_zoneName;				// имя зоны
 	uint16			m_zonePort;				// порт зоны
 	uint32			m_zoneIP;               // IP зоны
+    bool 			m_useNavMesh;			// Use navmesh for roaming, chasing
 
 	WEATHER			m_Weather;              // текущая погода
     uint32          m_WeatherChangeTime;    // время начала текущей погоды
     bool            m_IsWeatherStatic;      // погода в зоне никогда не меняется
+
 
 	uint16			m_tax;					// налог в bazaar
 	uint16			m_miscMask;				// битовое поле, описывающее возможности использования в зоне определенных умений
@@ -557,6 +563,7 @@ private:
 	void	LoadZoneLines();				// список zonelines (можно было бы заменить этот метод методом InsertZoneLine)
     void    LoadZoneWeather();              // погода
 	void	LoadZoneSettings();				// настройки зоны
+	void	LoadNavMesh();					// Load the zones navmesh. Must exist in scripts/zones/:zone/NavMesh.nav
 };
 
 #endif
