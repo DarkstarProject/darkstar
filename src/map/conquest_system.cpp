@@ -315,6 +315,11 @@ namespace conquest
 			else if(g_Conquest[i][1] == 2) windy++;
 		}
 
+		// Based on the below values, it seems to be in pairs of bits.
+		// Order is Windurst, Bastok, San d'Oria
+		// 01 for first place, 10 for second, 11 for third.
+		// 45 = 0b101101 = Windurst in second, Bastok in third, San d'Oria in first
+		// 30 = 0b011110 = Windurst in first, Bastok in third, San d'Oria in second
 		if(sandy > basty && sandy > windy)
 		{
 			if(windy > basty) return 45;
