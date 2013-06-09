@@ -212,10 +212,12 @@ end;
 
 function supplyRunFresh(player)
 	
-	local started = player:getVar("supplyQuest_started");
+	local fresh = player:getVar("supplyQuest_fresh");
+   local started = player:getVar("supplyQuest_started");
 	local region = player:getVar("supplyQuest_region");
 	
-	if(started + 1 < VanadielDayOfTheYear() and (region > 0 or player:hasKeyItem(75))) then
+	if((fresh <= os.time() and (region > 0 or player:hasKeyItem(75))) or
+      started <= 400) then -- Legacy support to remove supplies from the old system, otherwise they'd never go away.
 		return 0;
 	else
 		return 1;
@@ -302,7 +304,7 @@ function getSupplyAvailable(nation,player)
 	
 	local mask = 2130706463;
 	
-	if(player:getVar("supplyQuest_started") == VanadielDayOfTheYear()) then
+	if(player:getVar("supplyQuest_started") == vanaDay()) then
 		mask = 4294967295; -- Need to wait 1 vanadiel day
 	end
 	

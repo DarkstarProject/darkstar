@@ -127,8 +127,9 @@ function onEventFinish(player,csid,option)
 		region = option - 65541;
 		player:addKeyItem(getSupplyKey(region));
 		player:messageSpecial(KEYITEM_OBTAINED,getSupplyKey(region));
-		player:setVar("supplyQuest_started",VanadielDayOfTheYear());
+		player:setVar("supplyQuest_started",vanaDay());
 		player:setVar("supplyQuest_region",region);
+      player:setVar("supplyQuest_fresh",getConquestTally());
 	end;
 	
 end;

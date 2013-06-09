@@ -76,3 +76,11 @@ function getConquestTally()
    -- Midnight + daysToTally * a day worth of seconds.
    return (getMidnight() + (daysToTally * 86400));
 end;
+
+-----------------------------------
+--  vanaDay()
+--  Small function to make it easier to store the current date
+-----------------------------------
+function vanaDay()
+   return (VanadielYear() * 360) + VanadielDayOfTheYear();
+end;

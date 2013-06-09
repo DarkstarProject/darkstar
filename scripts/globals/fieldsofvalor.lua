@@ -1,5 +1,6 @@
 require("/scripts/globals/settings");
 require("scripts/globals/conquest");
+require("scripts/globals/common");
 
 --require("/scripts/globals/spell_definitions");
 
@@ -534,7 +535,7 @@ function checkRegime(killer,mob,rid,index)
                         killer:messageBasic(FOV_MSG_COMPLETED_REGIME);
                         local reward = getRegimeReward(rid);
                         local tabs = (math.floor(reward/10)*TABS_RATE);
-                        local VanadielEpoch = (VanadielYear() * 360) + VanadielDayOfTheYear();
+                        local VanadielEpoch = vanaDay();
 
                         -- Award gil and tabs once per day.
                         if (killer:getVar("fov_LastReward") < VanadielEpoch) then

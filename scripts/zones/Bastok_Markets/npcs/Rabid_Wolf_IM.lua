@@ -13,6 +13,7 @@ package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/conquest");
+require("scripts/globals/common");
 require("scripts/zones/Bastok_Markets/TextIDs");
 
 guardnation = BASTOK;	-- SANDORIA, BASTOK, WINDURST, JEUNO
@@ -41,6 +42,7 @@ function onTrigger(player,npc)
 		player:messageSpecial(KEYITEM_OBTAINED + 1,getSupplyKey(region));
 		player:setVar("supplyQuest_started",0);
 		player:setVar("supplyQuest_region",0);
+      player:setVar("supplyQuest_fresh",0);
 	else
 		Menu1 = getArg1(guardnation,player);
 		Menu2 = getExForceAvailable(guardnation,player);
@@ -127,8 +129,9 @@ function onEventFinish(player,csid,option)
 		region = option - 65541;
 		player:addKeyItem(getSupplyKey(region));
 		player:messageSpecial(KEYITEM_OBTAINED,getSupplyKey(region));
-		player:setVar("supplyQuest_started",VanadielDayOfTheYear());
+		player:setVar("supplyQuest_started",vanaDay());
 		player:setVar("supplyQuest_region",region);
+      player:setVar("supplyQuest_fresh",getConquestTally());
 	end;
 	
 end;
