@@ -239,6 +239,8 @@ public:
 	int32 setVar(lua_State*);				// Sets a character variable
     int32 addVar(lua_State*);               // Increments/decriments/sets a character variable
 
+	int32 setPetName(lua_State*);
+
 	int32 setMaskBit(lua_State*);			// Sets a single bit in a character variable
 	int32 getMaskBit(lua_State*);			// Retrieves a single bit in a character variable
 	int32 countMaskBits(lua_State*);		// Retrieves number of true bits in a character variable

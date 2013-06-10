@@ -2451,6 +2451,30 @@ inline int32 CLuaBaseEntity::addVar(lua_State *L)
 	return 0;
 }
 
+inline int32 CLuaBaseEntity::setPetName(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, -2) || !lua_isnumber(L, -2));
+
+	uint8 pet = (uint8)lua_tointeger(L, -2);
+	uint16 value = (uint16)lua_tointeger(L, -1);
+
+	if (pet == 0)
+	{
+		Sql_Query(SqlHandle, "INSERT INTO char_pet_name SET charid = %u, wyvernid = %u ON DUPLICATE KEY UPDATE wyvernid = %u;", m_PBaseEntity->id, value, value);
+	}
+	else if (pet == 1)
+	{
+		Sql_Query(SqlHandle, "INSERT INTO char_pet_name SET charid = %u, automatonid = %u ON DUPLICATE KEY UPDATE automatonid = %u;", m_PBaseEntity->id, value, value);
+	}
+
+	lua_pushnil(L);
+	return 1;
+}
+
 /************************************************************************
 *																		*
 *  Set a single bit as part of a bitmask in a database variable 		*
@@ -6887,6 +6911,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getVar),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setVar),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addVar),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setPetName),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMaskBit),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaskBit),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,countMaskBits),

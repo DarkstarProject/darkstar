@@ -552,6 +552,22 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 	}
 	else if(PetID==PETID_WYVERN){
 		petType = PETTYPE_WYVERN;
+
+		g_PPetList.at(PetID)->name.clear();
+
+		const int8* Query =
+			"SELECT\
+				pet_name.name\
+			FROM pet_name, char_pet_name\
+			WHERE pet_name.id = char_pet_name.wyvernid";
+
+		if ( Sql_Query(SqlHandle, Query) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+		{
+			while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+			{
+				g_PPetList.at(PetID)->name.insert(0, Sql_GetData(SqlHandle, 0));
+			}
+		}
 	}
 	CPetEntity* PPet = new CPetEntity(petType);
 
