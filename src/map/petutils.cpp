@@ -553,11 +553,10 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 	else if(PetID==PETID_WYVERN){
 		petType = PETTYPE_WYVERN;
 
-		g_PPetList.at(PetID)->name.clear();
-
 		const int8* Query =
 			"SELECT\
-				pet_name.name\
+				pet_name.name,\
+				char_pet_name.wyvernid\
 			FROM pet_name, char_pet_name\
 			WHERE pet_name.id = char_pet_name.wyvernid";
 
@@ -565,7 +564,13 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 		{
 			while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 			{
-				g_PPetList.at(PetID)->name.insert(0, Sql_GetData(SqlHandle, 0));
+				uint16 wyvernid = (uint16)Sql_GetIntData(SqlHandle, 1);
+
+				if (wyvernid != 0)
+				{
+					g_PPetList.at(PetID)->name.clear();
+					g_PPetList.at(PetID)->name.insert(0, Sql_GetData(SqlHandle, 0));
+				}
 			}
 		}
 	}
