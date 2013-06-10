@@ -677,6 +677,7 @@ int32 map_close_session(uint32 tick, CTaskMgr::CTask* PTask)
 		aFree(map_session_data->server_packet_data);
 		delete map_session_data->PChar;
 		delete map_session_data;
+		map_session_data = NULL;
 
 		map_session_list.erase(ipp);
 		ShowDebug(CL_CYAN"map_close_session: session closed\n" CL_RESET);
