@@ -24,10 +24,12 @@
 #include "pathfind.h"
 #include "zone.h"
 #include "battleentity.h"
+#include "mobentity.h"
 
 CPathFind::CPathFind(CBattleEntity* PTarget)
 {
   m_PTarget = PTarget;
+  m_PTargetPoint = NULL;
 }
 
 CPathFind::~CPathFind()
@@ -43,38 +45,63 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
   // walk normal speed
   m_mode = 1;
 
+  if(GetRealSpeed() == 0 || m_PTarget->objtype != TYPE_MOB)
+  {
+    return false;
+  }
+
   if(NavMeshAvailable())
   {
 
     position_t start = m_PTarget->loc.p;
-    position_t end = m_PTarget->loc.p;
 
-    end.x = end.x + rand()%20 + rand()%-20;
-    end.z = end.z + rand()%20 + rand()%-20;
+    // roam around my spawn point
+    position_t end = ((CMobEntity*)m_PTarget)->m_SpawnPoint;
+
+    float t = 2.0f * M_PI * ((double) rand() / (RAND_MAX));
+    float u = ((double) rand() / (RAND_MAX)) + ((float) rand() / (RAND_MAX));
+
+    if(u > 1){
+      u = u - 2;
+    }
+
+    float maxDistance = 30.0f;
+    float r = u * maxDistance;
+
+    end.x += r * cosf(t);
+    end.z += r * sinf(t);
 
     m_pathLength = m_PTarget->loc.zone->m_navMesh->findPath(start, end, m_points, MAX_PATH_POINTS);
     m_currentPoint = 0;
 
+    // ShowDebug("CPathFind::RoamAround Total Path Length (%d)\n", m_pathLength);
+
     if(m_pathLength <= 0)
     {
-      ShowError("CPathFind::RoamAround Path could not be found\n");
+      Clear();
       return false;
     }
-
-    // for(int8 i=0; i<MAX_PATH_POINTS; i++)
-    // {
-    //   if(m_points[i].x != 0)
-    //     ShowDebug("CPathFind::RoamAround points found (%f, %f, %f)\n", m_points[i].x, m_points[i].y, m_points[i].z);
-    // }
 
   }
 
   return true;
 }
 
-bool CPathFind::MoveTo(position_t point)
+bool CPathFind::RunTo(position_t point)
 {
-  ShowError("MoveTo not implemented\n");
+  m_mode = 2;
+  ShowError("RunTo not implemented\n");
+}
+
+bool CPathFind::WalkTo(position_t point)
+{
+  m_mode = 1;
+  ShowError("WalkTo not implemented\n");
+}
+
+bool CPathFind::KnockBack(position_t from, float power)
+{
+  // pushes entity back from the given position
 }
 
 bool CPathFind::NavMeshAvailable()
@@ -82,63 +109,77 @@ bool CPathFind::NavMeshAvailable()
   return m_PTarget->loc.zone && m_PTarget->loc.zone->m_navMesh != NULL;
 }
 
-void CPathFind::Step()
+void CPathFind::FollowPath()
 {
   if(!IsFollowingPath()) return;
 
   // move mob to next point
-  position_t* nextPoint = &m_points[m_currentPoint]
+  m_PTargetPoint = &m_points[m_currentPoint];
 
-  // check if i'm close enough to next point
-  // TODO: find real speed with mode and speed mod
-  if(distance(m_PTarget->loc.p, *nextPoint) <= m_PTarget->speed)
+  StepTo(m_PTargetPoint);
+
+  if(AtPoint(m_PTargetPoint))
   {
-    m_PTarget->loc.p.x = nextPoint.x;
-    m_PTarget->loc.p.y = nextPoint.y;
-    m_PTarget->loc.p.z = nextPoint.z;
-  }
-  else
-  {
+    m_currentPoint++;
 
-  }
-
-  m_currentPoint++;
-
-  if(m_currentPoint >= m_pathLength)
-  {
-    // i'm finished!
-    Clear();
+    if(m_currentPoint >= m_pathLength)
+    {
+      // i'm finished!
+      Clear();
+    }
   }
 }
 
-void CPathFind::MoveTo(position_t* pos)
+void CPathFind::StepTo(position_t* pos)
 {
 
-  uint8 angle = getangle(PPursuer->loc.p, PTarget->loc.p);
-  PPursuer->loc.p.rotation = angle;
-  /*
-  if (m_PTarget->speed != 0)
+  float speed = GetRealSpeed();
+
+  // face point mob is moving towards
+  m_PTarget->loc.p.rotation = getangle(m_PTarget->loc.p, *pos);
+
+  // if i'm going to overshoot the checkpoint just put me there
+  if(distance(m_PTarget->loc.p, *pos) < speed)
   {
-    float angle = (1 - (float)m_PTarget->loc.p.rotation / 255) * 6.28318f;
+    m_PTarget->loc.p.x = pos->x;
+    m_PTarget->loc.p.y = pos->y;
+    m_PTarget->loc.p.z = pos->z;
+  }
+  else
+  {
+    // take a step towards target point
+    float radians = (1 - (float)m_PTarget->loc.p.rotation / 255) * 6.28318f;
 
-        m_PTarget->loc.p.x += (cosf(angle) * ((float)(m_PTarget->speed * (1+(m_PTarget->getMod(MOD_MOVE) / 100.0f))) / 0x28) * (mode) * 1.08);
+    m_PTarget->loc.p.x += cosf(radians) * speed;
 
-    m_PTarget->loc.p.y = pos.y;
+    m_PTarget->loc.p.y = pos->y;
 
-        m_PTarget->loc.p.z += (sinf(angle) * ((float)(m_PTarget->speed * (1+(m_PTarget->getMod(MOD_MOVE) / 100.0f))) / 0x28) * (mode) * 1.08);
+    m_PTarget->loc.p.z += sinf(radians) * speed;
 
-    m_PTarget->loc.p.moving += ((0x36*((float)m_PTarget->speed/0x28)) - (0x14*(mode - 1)));
+  }
 
-    if(m_PTarget->loc.p.moving > 0x2fff)
-    {
-      m_PTarget->loc.p.moving = 0;
-    }
-  }*/
+  m_PTarget->loc.p.moving += ((0x36*((float)speed/0x28)) - (0x14*(m_mode - 1)));
+
+  if(m_PTarget->loc.p.moving > 0x2fff)
+  {
+    m_PTarget->loc.p.moving = 0;
+  }
+
+}
+
+float CPathFind::GetRealSpeed()
+{
+  return ((float)(m_PTarget->speed * (1+(m_PTarget->getMod(MOD_MOVE) / 100.0f))) / 0x28) * (m_mode) * 1.08;
 }
 
 bool CPathFind::IsFollowingPath()
 {
   return m_pathLength > 0;
+}
+
+bool CPathFind::AtPoint(position_t* pos)
+{
+  return m_PTarget->loc.p.x == pos->x && m_PTarget->loc.p.z == pos->z;
 }
 
 void CPathFind::Clear()

@@ -156,13 +156,18 @@ void CAIMobDummy::ActionRoaming()
 	else if(m_PPathFind->IsFollowingPath())
 	{
 		// i'm following a path
-		m_PPathFind->Step();
+		m_PPathFind->FollowPath();
 		m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
+
+		// if I just finished reset my last action time
+		if(!m_PPathFind->IsFollowingPath())
+		{
+			m_LastActionTime = m_Tick;// - rand()%30000;
+		}
 	}
-	else if ((m_Tick - m_LastActionTime) > 45000)
+	else if ((m_Tick - m_LastActionTime) > 5000)
 	{
 		// lets buff up or move around
-		m_LastActionTime = m_Tick - rand()%30000;
 
 		// recover health
 		m_PMob->Rest(0.2f);
@@ -176,14 +181,22 @@ void CAIMobDummy::ActionRoaming()
 			// cast buff
 			CastSpell(m_PMob->SpellContainer->GetBuffSpell());
 		}
-		else if((m_PMob->m_Type & MOBTYPE_EVENT) != MOBTYPE_EVENT && m_PMob->PMaster == NULL)
+		else if((m_PMob->m_Type & MOBTYPE_EVENT) != MOBTYPE_EVENT && m_PMob->PMaster == NULL && m_PMob->speed > 0)
 		{
 
-			m_PPathFind->RoamAround(m_PMob->m_SpawnPoint, ROAMFLAG_NONE);
+			if(m_PPathFind->RoamAround(m_PMob->m_SpawnPoint, ROAMFLAG_NONE))
+			{
 
-			m_PPathFind->Step();
+				m_PPathFind->FollowPath();
 
-			m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
+				m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
+			} else {
+				m_LastActionTime = m_Tick;
+
+				// output pathfind failed for player
+				m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PMob, 0, 0, 52));
+			}
+
 
 			// roam
 			/*position_t RoamingPoint;
@@ -249,7 +262,7 @@ void CAIMobDummy::ActionEngage()
 
 		if(CanCastSpells() && m_firstSpell){
 			// look at target instead
-		    m_PMob->loc.p.rotation = getangle(m_PMob->loc.p, m_PBattleTarget->loc.p);;
+		    m_PMob->loc.p.rotation = getangle(m_PMob->loc.p, m_PBattleTarget->loc.p);
 		} else {
 			// run at target
 			battleutils::MoveIntoRange(m_PMob, m_PBattleTarget, 0);

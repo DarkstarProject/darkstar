@@ -70,6 +70,7 @@ bool CNavMesh::load(char* path)
     fclose(fp);
     return 0;
   }
+
   dtStatus status = m_navMesh->init(&header.params);
   if (dtStatusFailed(status))
   {
@@ -92,6 +93,7 @@ bool CNavMesh::load(char* path)
     fread(data, tileHeader.dataSize, 1, fp);
 
     m_navMesh->addTile(data, tileHeader.dataSize, DT_TILE_FREE_DATA, tileHeader.tileRef, 0);
+
   }
 
   fclose(fp);
@@ -101,7 +103,7 @@ bool CNavMesh::load(char* path)
   // init detour nav mesh path finder
   status = m_navMeshQuery->init(m_navMesh, MAX_NAV_POLYS);
 
-  if(status & DT_FAILURE)
+  if(dtStatusFailed(status))
   {
     ShowError("CNavMesh::load Error loading navmeshquery (%s)\n", path);
     outputError(status);
@@ -150,24 +152,26 @@ void CNavMesh::unload()
 int16 CNavMesh::findPath(position_t start, position_t end, position_t* path, uint16 size)
 {
 
+  dtStatus status;
+
   float spos[3];
-  spos[0] = start.y;
+  spos[0] = start.x;
   spos[1] = start.z;
-  spos[2] = start.x;
+  spos[2] = start.y * -1;
 
   float epos[3];
-  epos[0] = end.y;
+  epos[0] = end.x;
   epos[1] = end.z;
-  epos[2] = end.x;
+  epos[2] = end.y * -1;
 
   dtQueryFilter filter;
   filter.setIncludeFlags(0xffff);
   filter.setExcludeFlags(0);
 
   float polyPickExt[3];
-  polyPickExt[0] = 4;
-  polyPickExt[1] = 2;
-  polyPickExt[2] = 2;
+  polyPickExt[0] = 15;
+  polyPickExt[1] = 15;
+  polyPickExt[2] = 30;
 
   dtPolyRef startRef;
   dtPolyRef endRef;
@@ -175,12 +179,27 @@ int16 CNavMesh::findPath(position_t start, position_t end, position_t* path, uin
   dtPolyRef nearestRef;
   float nearestPt[3];
 
-  startRef = m_navMeshQuery->findNearestPoly(spos, polyPickExt, &filter, &nearestRef, nearestPt);
-  endRef = m_navMeshQuery->findNearestPoly(epos, polyPickExt, &filter, &nearestRef, nearestPt);
+  status = m_navMeshQuery->findNearestPoly(spos, polyPickExt, &filter, &startRef, nearestPt);
 
-  if ( !startRef || !endRef )
+  if(dtStatusFailed(status))
   {
-    ShowError("CNavMesh::findPath Could not find nearest poly Start: (%f,%f,%f) End: (%f,%f,%f)\n", spos[2], spos[1], spos[0], epos[2], epos[1], epos[0]);
+    ShowError("CNavMesh::findPath start point invalid (%f, %f, %f)\n", spos[0], spos[1], spos[2]);
+    outputError(status);
+    return ERROR_NEARESTPOLY;
+  }
+
+  status = m_navMeshQuery->findNearestPoly(epos, polyPickExt, &filter, &endRef, nearestPt);
+
+  if(dtStatusFailed(status))
+  {
+    ShowError("CNavMesh::findPath end point invalid (%f, %f, %f)\n", epos[0], epos[1], epos[2]);
+    outputError(status);
+    return ERROR_NEARESTPOLY;
+  }
+
+  if (!m_navMesh->isValidPolyRef(startRef) || !m_navMesh->isValidPolyRef(endRef))
+  {
+    ShowError("CNavMesh::findPath startRef or endRef are not valid poly refs\n");
     return ERROR_NEARESTPOLY;
   }
 
@@ -189,35 +208,49 @@ int16 CNavMesh::findPath(position_t start, position_t end, position_t* path, uin
   float straightPath[MAX_NAV_POLYS*3];
   unsigned char straightPathFlags[MAX_NAV_POLYS];
   dtPolyRef straightPathPolys[MAX_NAV_POLYS];
-  int nstraightPath;
+  int nstraightPath = 0;
 
   int16 pos = 0;
 
   // not sure what this is for?
-  int32 pathCount = MAX_NAV_POLYS;
+  int32 pathCount = 0;
 
-  npolys = m_navMeshQuery->findPath(startRef, endRef, spos, epos, &filter, m_polys, &pathCount, MAX_NAV_POLYS);
+  status = m_navMeshQuery->findPath(startRef, endRef, spos, epos, &filter, m_polys, &pathCount, MAX_NAV_POLYS);
 
-  nstraightPath = 0;
-  if (npolys)
+  if(dtStatusFailed(status))
+  {
+    ShowError("CNavMesh::findPath findPath error\n");
+    outputError(status);
+    return -1;
+  }
+
+  if (pathCount > 0)
   {
 
     int32 straightPathCount = MAX_NAV_POLYS * 3;
 
-    nstraightPath = m_navMeshQuery->findStraightPath(spos, epos, m_polys, npolys, straightPath, straightPathFlags, straightPathPolys, &straightPathCount, MAX_NAV_POLYS);
-    for ( int i = 0; i < nstraightPath*3; )
+    status = m_navMeshQuery->findStraightPath(spos, epos, m_polys, pathCount, straightPath, straightPathFlags, straightPathPolys, &straightPathCount, MAX_NAV_POLYS);
+
+    if(dtStatusFailed(status))
     {
-      path[pos].y = -1.0f * straightPath[i++];
-      path[pos].z = straightPath[i++];
+      ShowError("CNavMesh::findPath findStraightPath error\n");
+      outputError(status);
+      return -1;
+    }
+
+    for ( int i = 0; i < straightPathCount*3; )
+    {
       path[pos].x = straightPath[i++];
+      path[pos].z = straightPath[i++];
+      path[pos].y = straightPath[i++] * -1;
       pos++;
     }
 
-    // append the end point
-    path[pos].x = end.x;
-    path[pos].y = end.y;
-    path[pos].z = end.z;
-    pos++;
+    if(pos > 2)
+    {
+      ShowDebug("long path!\n");
+    }
+
   }
 
   return pos;

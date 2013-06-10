@@ -44,22 +44,41 @@ class CPathFind
     // move to a random point around given point
     bool RoamAround(position_t point, uint8 roamFlags);
 
-    // create and follow a path to given point
-    bool MoveTo(position_t point);
+    // run twice as fast to point
+    // used for chasing
+    bool RunTo(position_t point);
+
+    // walk normally to a point
+    // used for pets roaming with master
+    bool WalkTo(position_t point);
+
+    bool KnockBack(position_t point, float power);
 
     // moves mob to next point
-    void Step();
+    void FollowPath();
+
+    // tells entity to take one step towards position
+    void StepTo(position_t* pos);
 
     // checks if mob is currently following a path
     bool IsFollowingPath();
+
+    // calculate speed of mob with mode, mod_speed, etc
+    float GetRealSpeed();
 
     // clear current path
     void Clear();
     bool NavMeshAvailable();
 
+    // checks if mob is at given point
+    bool AtPoint(position_t* pos);
+
   private:
+
     CBattleEntity* m_PTarget;
     position_t m_points[MAX_PATH_POINTS];
+    position_t* m_PTargetPoint;
+
     int16 m_currentPoint;
     int16 m_pathLength;
     int8 m_mode;
