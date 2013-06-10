@@ -7,6 +7,7 @@
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/missions");
