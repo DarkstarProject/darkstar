@@ -9,6 +9,7 @@ package.loaded["scripts/zones/Ghelsba_Outpost/TextIDs"] = nil;
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
+require("scripts/globals/pets");
 require("scripts/zones/Ghelsba_Outpost/TextIDs");
 
 -----------------------------------
@@ -51,7 +52,7 @@ end;
 function onEventFinish(player,csid,option)
 -- print(bc finish csid ..csid.. and option ..option);
 	
-	if(csid == 0x7d01 and option ~= 0 and player:hasKeyItem(DRAGON_CURSE_REMEDY) == true) then -->= 2147483648 and option <= 2147483679) then
+	if(csid == 0x7d01 and option ~= 0 and player:hasKeyItem(DRAGON_CURSE_REMEDY) == true) then
 		player:addTitle(HEIR_TO_THE_HOLY_CREST);
 		player:delKeyItem(DRAGON_CURSE_REMEDY);
 		player:unlockJob(14);
@@ -59,6 +60,9 @@ function onEventFinish(player,csid,option)
 		player:setVar("TheHolyCrest_Event",0);
 		player:addFame(SANDORIA,SAN_FAME*30);
 		player:completeQuest(SANDORIA,THE_HOLY_CREST);
+      if (option >= 2147483648 and option <= 2147483679) then -- Safety, in case the cutscene spews idk what.
+         player:setPetName(PETTYPE_WYVERN,option-2147483647);
+      end
 	end
 	
 end;
