@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/Temple_of_Uggalepih/TextIDs");
+require("scripts/globals/pets");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
@@ -24,7 +25,7 @@ end;
 
 function onTrigger(player,npc)
 	local NM_Kill = player:getVar("KnightStalker_Kill");
-	if (player:getVar("KnightStalker_Progress") == 4 and player:getMainJob() == 14 and player:getPetID() == 48
+	if (player:getVar("KnightStalker_Progress") == 4 and player:getMainJob() == 14 and player:getPetID() == PET_WYVERN
       and NM_Kill == 0 and GetMobAction(17428807) == 0 and GetMobAction(17428808) == 0) then
 		-- These mobs specifically will not engage unless aggro'd.
 		player:messageSpecial(SOME_SORT_OF_CEREMONY + 1); -- Your wyvern reacts violently to this spot!
