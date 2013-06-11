@@ -79,7 +79,7 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17386);
 		else
 			player:tradeComplete();
-			player:addItem(4853);
+			player:addItem(17386);
 			player:messageSpecial(ITEM_OBTAINED, 17386);
 			player:addTitle(CARP_DIEM);
 			player:addKeyItem(TESTIMONIAL);
