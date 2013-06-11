@@ -2470,6 +2470,10 @@ inline int32 CLuaBaseEntity::setPetName(lua_State *L)
 	{
 		Sql_Query(SqlHandle, "INSERT INTO char_pet_name SET charid = %u, automatonid = %u ON DUPLICATE KEY UPDATE automatonid = %u;", m_PBaseEntity->id, value, value);
 	}
+	else if (pet == 2)
+	{
+		Sql_Query(SqlHandle, "INSERT INTO char_pet_name SET charid = %u, adventuringfellowid = %u ON DUPLICATE KEY UPDATE adventuringfellowid = %u;", m_PBaseEntity->id, value, value);
+	}
 
 	lua_pushnil(L);
 	return 1;
