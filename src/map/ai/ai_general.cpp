@@ -417,3 +417,12 @@ void CAIGeneral::SetMobAbilityEnabled(bool enabled)
 {
 	m_MobAbilityEnabled = enabled;
 }
+
+bool CAIGeneral::MoveTo(position_t* pos)
+{
+    if(m_PPathFind != NULL && m_ActionType == ACTION_ROAMING){
+        m_PPathFind->StepTo(pos);
+        return true;
+    }
+    return false;
+}

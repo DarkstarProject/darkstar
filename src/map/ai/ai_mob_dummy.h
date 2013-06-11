@@ -105,6 +105,8 @@ protected:
   void Wait(uint32 waitTime);
   bool CanLink(CMobEntity* PTarget); // checks if the target can link
 
+  void FollowPath(); // continues moving
+
 private:
 
 };

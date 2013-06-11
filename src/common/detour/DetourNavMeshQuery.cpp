@@ -26,7 +26,6 @@
 #include "DetourAlloc.h"
 #include "DetourAssert.h"
 #include <new>
-#include "../showmsg.h"
 
 /// @class dtQueryFilter
 ///
@@ -744,7 +743,7 @@ dtStatus dtNavMeshQuery::findNearestPoly(const float* center, const float* exten
 	// Find nearest polygon amongst the nearby polygons.
 	dtPolyRef nearest = 0;
 	float nearestDistanceSqr = FLT_MAX;
-	ShowDebug("nearest poly count (%d)\n", polyCount);
+
 	for (int i = 0; i < polyCount; ++i)
 	{
 		dtPolyRef ref = polys[i];

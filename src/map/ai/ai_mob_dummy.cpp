@@ -116,7 +116,6 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
 
 void CAIMobDummy::ActionRoaming()
 {
-	position_t ReturnPoint;
 
 	if (m_PMob->GetDespawnTimer() > 0 && m_PMob->GetDespawnTimer() < m_Tick)
 	{
@@ -141,9 +140,14 @@ void CAIMobDummy::ActionRoaming()
 		m_ActionType = ACTION_ENGAGE;
 		ActionEngage();
 	}
-	else if ((m_PMob->m_Type & MOBTYPE_NOTORIOUS) && distance(m_PMob->loc.p,m_PMob->m_SpawnPoint) > 2)
+	else if(m_PPathFind->IsFollowingPath())
+	{
+		FollowPath();
+	}
+	else if ((m_PMob->m_Type & MOBTYPE_NOTORIOUS) && distance(m_PMob->loc.p,m_PMob->m_SpawnPoint) > 2 && !m_PPathFind->isNavMeshAvailable())
 	{
 
+		position_t ReturnPoint;
 		ReturnPoint.x = m_PMob->m_SpawnPoint.x;
 		ReturnPoint.y = m_PMob->m_SpawnPoint.y;
 		ReturnPoint.z = m_PMob->m_SpawnPoint.z;
@@ -153,19 +157,7 @@ void CAIMobDummy::ActionRoaming()
 
 		m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
 	}
-	else if(m_PPathFind->IsFollowingPath())
-	{
-		// i'm following a path
-		m_PPathFind->FollowPath();
-		m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
-
-		// if I just finished reset my last action time
-		if(!m_PPathFind->IsFollowingPath())
-		{
-			m_LastActionTime = m_Tick;// - rand()%30000;
-		}
-	}
-	else if ((m_Tick - m_LastActionTime) > 5000)
+	else if ((m_Tick - m_LastActionTime) > 45000)
 	{
 		// lets buff up or move around
 
@@ -175,56 +167,26 @@ void CAIMobDummy::ActionRoaming()
 		if(m_PSpecialSkill != NULL && TrySpecialSkill())
 		{
 			// I spawned a pet
+			m_LastActionTime = m_Tick - rand()%40000;
 		}
 		else if(CanCastSpells() && rand()%10 < 4 && m_PMob->SpellContainer->HasBuffSpells())
 		{
 			// cast buff
 			CastSpell(m_PMob->SpellContainer->GetBuffSpell());
+			m_LastActionTime = m_Tick - rand()%30000;
 		}
 		else if((m_PMob->m_Type & MOBTYPE_EVENT) != MOBTYPE_EVENT && m_PMob->PMaster == NULL && m_PMob->speed > 0)
 		{
 
-			if(m_PPathFind->RoamAround(m_PMob->m_SpawnPoint, ROAMFLAG_NONE))
+			if(m_PPathFind->RoamAround(m_PMob->m_SpawnPoint, m_PMob->m_roamFlags))
 			{
-
-				m_PPathFind->FollowPath();
-
-				m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
+				FollowPath();
 			} else {
 				m_LastActionTime = m_Tick;
 
 				// output pathfind failed for player
 				m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PMob, 0, 0, 52));
 			}
-
-
-			// roam
-			/*position_t RoamingPoint;
-
-			RoamingPoint.x = m_PMob->m_SpawnPoint.x - 1 + rand()%2;
-			RoamingPoint.y = m_PMob->m_SpawnPoint.y;
-			RoamingPoint.z = m_PMob->m_SpawnPoint.z - 1 + rand()%2;
-
-			m_PMob->loc.p.rotation = getangle(m_PMob->loc.p, RoamingPoint);
-
-			battleutils::MoveTo(m_PMob, RoamingPoint, 1);
-
-			m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
-
-			// pet should follow me
-			if(m_PMob->PPet != NULL && m_PMob->PPet->PBattleAI->GetCurrentAction() == ACTION_ROAMING)
-			{
-				CBattleEntity* PPet = m_PMob->PPet;
-
-				ReturnPoint = nearPosition(m_PMob->loc.p, 2.0f, M_PI);
-
-				PPet->loc.p.rotation = getangle(PPet->loc.p, ReturnPoint);
-
-				battleutils::MoveTo(PPet, ReturnPoint, 1);
-
-				PPet->loc.zone->PushPacket(PPet,CHAR_INRANGE, new CEntityUpdatePacket(PPet,ENTITY_UPDATE));
-
-			}*/
 
 		}
 
@@ -1785,4 +1747,26 @@ bool CAIMobDummy::TrySpecialSkill()
 	}
 
 	return false;
+}
+
+void CAIMobDummy::FollowPath()
+{
+	m_PPathFind->FollowPath();
+
+	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
+
+	if(m_ActionType == ACTION_ROAMING)
+	{
+		if(m_PMob->PPet != NULL)
+		{
+			// update pet as well
+			m_PMob->PPet->loc.zone->PushPacket(m_PMob->PPet,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob->PPet,ENTITY_UPDATE));
+		}
+
+		// if I just finished reset my last action time
+		if(!m_PPathFind->IsFollowingPath())
+		{
+			m_LastActionTime = m_Tick - rand()%25000;
+		}
+	}
 }

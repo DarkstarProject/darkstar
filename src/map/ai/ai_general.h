@@ -107,6 +107,7 @@ public:
 	bool			GetAutoAttackEnabled();
 	bool			GetMagicCastingEnabled();
     bool            GetMobAbilityEnabled();
+    bool            MoveTo(position_t* pos); // move entity to position. Doesn't pathfind
 
     uint32          GetBattleTime();
 

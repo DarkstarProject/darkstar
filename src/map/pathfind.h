@@ -60,6 +60,9 @@ class CPathFind
     // tells entity to take one step towards position
     void StepTo(position_t* pos);
 
+    // moves the targets pet near the given point
+    void PetStepTo(position_t* pos);
+
     // checks if mob is currently following a path
     bool IsFollowingPath();
 
@@ -68,7 +71,7 @@ class CPathFind
 
     // clear current path
     void Clear();
-    bool NavMeshAvailable();
+    bool isNavMeshAvailable();
 
     // checks if mob is at given point
     bool AtPoint(position_t* pos);

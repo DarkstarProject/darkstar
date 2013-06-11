@@ -145,7 +145,7 @@ INSERT INTO `zone_settings` VALUES (96, 0016777343, 54230, 'Fort_Karugo-Narugo_[
 INSERT INTO `zone_settings` VALUES (97, 0016777343, 54230, 'Meriphataud_Mountains_[S]', 0, 215, 215, 0, 0.00, 156, 0);
 INSERT INTO `zone_settings` VALUES (98, 0016777343, 54230, 'Sauromugue_Champaign_[S]', 252, 215, 215, 0, 0.00, 156, 0);
 INSERT INTO `zone_settings` VALUES (99, 0016777343, 54230, 'Castle_Oztroja_[S]', 0, 216, 216, 0, 0.00, 145, 0);
-INSERT INTO `zone_settings` VALUES (100, 0016777343, 54230, 'West_Ronfaure', 109, 101, 103, 0, 0.00, 156, 0);
+INSERT INTO `zone_settings` VALUES (100, 0016777343, 54230, 'West_Ronfaure', 109, 101, 103, 0, 0.00, 156, 1);
 INSERT INTO `zone_settings` VALUES (101, 0016777343, 54230, 'East_Ronfaure', 109, 101, 103, 0, 0.00, 156, 0);
 INSERT INTO `zone_settings` VALUES (102, 0016777343, 54230, 'La_Theine_Plateau', 0, 101, 103, 0, 0.00, 156, 0);
 INSERT INTO `zone_settings` VALUES (103, 0016777343, 54230, 'Valkurm_Dunes', 0, 101, 103, 0, 0.00, 156, 0);

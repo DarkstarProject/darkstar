@@ -341,18 +341,6 @@ enum TARGETTYPE
 	TARGET_PLAYER_DEAD		= 0x20,
 	TARGET_NPC				= 0x40		// скорее всего подразумевается mob, выглядящий как npc и воюющий на стороне персонажа
 };
-
-enum ROAMFLAG
-{
-  ROAMFLAG_NONE = 0x0,
-  ROAMFLAG_SMALL = 0x01, // move around less than 10
-  ROAMFLAG_MEDIUM = 0x02, // move around 10-20
-  ROAMFLAG_LARGE = 0x04, // move around 20-30
-  ROAMFLAG_WANDER = 0x08, // roam multiple times in a row
-  ROAMFLAG_SCENT = 0x10, // use scent to influence movement
-  ROAMFLAG_SCOUT = 0x20 // move around often
-};
-
 enum SKILLCHAIN_ELEMENT
 {
     SC_NONE          =  0, // Lv0 None

@@ -156,13 +156,13 @@ int16 CNavMesh::findPath(position_t start, position_t end, position_t* path, uin
 
   float spos[3];
   spos[0] = start.x;
-  spos[1] = start.z;
-  spos[2] = start.y * -1;
+  spos[1] = start.y * -1;
+  spos[2] = start.z * -1;
 
   float epos[3];
   epos[0] = end.x;
-  epos[1] = end.z;
-  epos[2] = end.y * -1;
+  epos[1] = end.y * -1;
+  epos[2] = end.z * -1;
 
   dtQueryFilter filter;
   filter.setIncludeFlags(0xffff);
@@ -170,8 +170,8 @@ int16 CNavMesh::findPath(position_t start, position_t end, position_t* path, uin
 
   float polyPickExt[3];
   polyPickExt[0] = 15;
-  polyPickExt[1] = 15;
-  polyPickExt[2] = 30;
+  polyPickExt[1] = 30;
+  polyPickExt[2] = 15;
 
   dtPolyRef startRef;
   dtPolyRef endRef;
@@ -199,7 +199,7 @@ int16 CNavMesh::findPath(position_t start, position_t end, position_t* path, uin
 
   if (!m_navMesh->isValidPolyRef(startRef) || !m_navMesh->isValidPolyRef(endRef))
   {
-    ShowError("CNavMesh::findPath startRef or endRef are not valid poly refs\n");
+    ShowError("CNavMesh::findPath Could not find valid start / end poly\n");
     return ERROR_NEARESTPOLY;
   }
 
@@ -241,17 +241,62 @@ int16 CNavMesh::findPath(position_t start, position_t end, position_t* path, uin
     for ( int i = 0; i < straightPathCount*3; )
     {
       path[pos].x = straightPath[i++];
-      path[pos].z = straightPath[i++];
       path[pos].y = straightPath[i++] * -1;
+      path[pos].z = straightPath[i++] * -1;
       pos++;
-    }
 
-    if(pos > 2)
-    {
-      ShowDebug("long path!\n");
+      if(pos == size)
+      {
+        ShowError("CNavMesh::findPath Path is too long to hold in array!\n");
+        break;
+      }
     }
 
   }
 
   return pos;
+}
+
+bool CNavMesh::test(uint16 zoneId)
+{
+  position_t path[30];
+  int8 size = 30;
+  position_t start;
+  position_t end;
+
+  if(zoneId == 100)
+  {
+    // west ronfaure
+    start.x = -224;
+    start.y = 60;
+    start.z = -316;
+
+    end.x = -224;
+    end.y = 60;
+    end.z = -324;
+  }
+
+  end.y *= -1.0f;
+  end.z *= -1.0f;
+
+  start.y *= -1.0f;
+  start.z *= -1.0f;
+
+  int8 totalLength = findPath(start, end, path, size);
+
+  if(totalLength > 1)
+  {
+    if(end.x != path[totalLength-1].x || end.z != path[totalLength-1].z){
+      ShowError("CNavMesh::test Zone (%d) Failed end points do not match\n", zoneId);
+      return false;
+    }
+
+    ShowDebug("CNavMesh::test Zone (%d) Passed sanity test!\n", zoneId);
+  }
+  else
+  {
+    ShowError("CNavMesh::test Zone (%d) Failed path could not be created\n", zoneId);
+    return false;
+  }
+  return true;
 }

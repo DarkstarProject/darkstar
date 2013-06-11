@@ -42,6 +42,7 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
 {
   Clear();
 
+
   // walk normal speed
   m_mode = 1;
 
@@ -50,14 +51,17 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
     return false;
   }
 
-  if(NavMeshAvailable())
+  CMobEntity* PMob = (CMobEntity*)m_PTarget;
+
+  if(isNavMeshAvailable())
   {
 
     position_t start = m_PTarget->loc.p;
 
     // roam around my spawn point
-    position_t end = ((CMobEntity*)m_PTarget)->m_SpawnPoint;
+    position_t end = PMob->m_SpawnPoint;
 
+    // this will find a random point around the given point
     float t = 2.0f * M_PI * ((double) rand() / (RAND_MAX));
     float u = ((double) rand() / (RAND_MAX)) + ((float) rand() / (RAND_MAX));
 
@@ -65,7 +69,7 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
       u = u - 2;
     }
 
-    float maxDistance = 30.0f;
+    float maxDistance = 10.0f;
     float r = u * maxDistance;
 
     end.x += r * cosf(t);
@@ -81,6 +85,18 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
       Clear();
       return false;
     }
+
+  }
+  else
+  {
+    // ew, we gotta use the old way
+
+    m_pathLength = 1;
+    position_t RoamingPoint;
+
+    RoamingPoint.x = PMob->m_SpawnPoint.x - 1 + rand()%2;
+    RoamingPoint.y = PMob->m_SpawnPoint.y;
+    RoamingPoint.z = PMob->m_SpawnPoint.z - 1 + rand()%2;
 
   }
 
@@ -104,7 +120,7 @@ bool CPathFind::KnockBack(position_t from, float power)
   // pushes entity back from the given position
 }
 
-bool CPathFind::NavMeshAvailable()
+bool CPathFind::isNavMeshAvailable()
 {
   return m_PTarget->loc.zone && m_PTarget->loc.zone->m_navMesh != NULL;
 }
@@ -165,6 +181,17 @@ void CPathFind::StepTo(position_t* pos)
     m_PTarget->loc.p.moving = 0;
   }
 
+}
+
+void CPathFind::PetStepTo(position_t* pos)
+{
+
+  // only works for mob pets
+  if(m_PTarget->PPet == NULL || m_PTarget->PPet->PBattleAI->GetCurrentAction() != ACTION_ROAMING) return;
+
+  position_t targetPoint = nearPosition(*pos, 2.0f, M_PI);
+
+  m_PTarget->PPet->PBattleAI->MoveTo(&targetPoint);
 }
 
 float CPathFind::GetRealSpeed()

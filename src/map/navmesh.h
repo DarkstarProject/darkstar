@@ -66,6 +66,9 @@ class CNavMesh
 
     int16 findPath(position_t start, position_t end, position_t* path, uint16 size);
 
+    // validate the integrity of the navmesh
+    bool test(uint16 zoneId);
+
   private:
     void outputError(uint32 status);
 
