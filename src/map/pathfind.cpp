@@ -107,17 +107,20 @@ bool CPathFind::RunTo(position_t point)
 {
   m_mode = 2;
   ShowError("RunTo not implemented\n");
+  return false;
 }
 
 bool CPathFind::WalkTo(position_t point)
 {
   m_mode = 1;
   ShowError("WalkTo not implemented\n");
+  return false;
 }
 
 bool CPathFind::KnockBack(position_t from, float power)
 {
   // pushes entity back from the given position
+	return false;
 }
 
 bool CPathFind::isNavMeshAvailable()

@@ -45,6 +45,15 @@
     <Filter Include="Resource Files">
       <UniqueIdentifier>{c199594e-8e4b-40cf-9541-5ca33be82bfe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\common\detour">
+      <UniqueIdentifier>{89075007-3807-4b5f-9df2-cb2ac2b308cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\common\recast">
+      <UniqueIdentifier>{af804228-61a0-45d3-97c2-9a18681a347a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\common\detour">
+      <UniqueIdentifier>{99c3c980-7b14-412b-a585-84bbee3f3fdc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\map\ability.h">
@@ -626,9 +635,6 @@
     <ClInclude Include="..\..\src\map\items\item_fish.h">
       <Filter>Header Files\items</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\targetfinder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\map\packets\guild_menu_buy_update.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
@@ -637,6 +643,48 @@
     </ClInclude>
     <ClInclude Include="..\..\src\map\packets\send_box.h">
       <Filter>Header Files\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\targetfind.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\detour\DetourAlloc.h">
+      <Filter>Header Files\common\detour</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\detour\DetourAssert.h">
+      <Filter>Header Files\common\detour</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\detour\DetourCommon.h">
+      <Filter>Header Files\common\detour</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\detour\DetourNavMesh.h">
+      <Filter>Header Files\common\detour</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\detour\DetourNavMeshBuilder.h">
+      <Filter>Header Files\common\detour</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\detour\DetourNavMeshQuery.h">
+      <Filter>Header Files\common\detour</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\detour\DetourNode.h">
+      <Filter>Header Files\common\detour</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\detour\DetourStatus.h">
+      <Filter>Header Files\common\detour</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\recast\Recast.h">
+      <Filter>Header Files\common\recast</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\recast\RecastAlloc.h">
+      <Filter>Header Files\common\recast</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\recast\RecastAssert.h">
+      <Filter>Header Files\common\recast</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\navmesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\pathfind.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1189,9 +1237,6 @@
     <ClCompile Include="..\..\src\map\items\item_fish.cpp">
       <Filter>Source Files\items</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\targetfinder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\map\packets\guild_menu_buy_update.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
@@ -1200,6 +1245,33 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\send_box.cpp">
       <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\targetfind.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\detour\DetourAlloc.cpp">
+      <Filter>Source Files\common\detour</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\detour\DetourCommon.cpp">
+      <Filter>Source Files\common\detour</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\detour\DetourNavMesh.cpp">
+      <Filter>Source Files\common\detour</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\detour\DetourNavMeshBuilder.cpp">
+      <Filter>Source Files\common\detour</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\detour\DetourNavMeshQuery.cpp">
+      <Filter>Source Files\common\detour</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\detour\DetourNode.cpp">
+      <Filter>Source Files\common\detour</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\navmesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\pathfind.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
