@@ -405,7 +405,7 @@ void LoadMOBList(CZone* PZone)
 
   // attach pets to mobs
   const int8* PetQuery =
-        "SELECT mob_mobid, pet_mobid \
+        "SELECT mob_mobid, pet_offset \
       FROM mob_groups, mob_spawn_points, mob_pets \
       WHERE mob_pets.mob_mobid = mob_spawn_points.mobid \
       AND mob_groups.groupid = mob_spawn_points.groupid \
@@ -419,9 +419,9 @@ void LoadMOBList(CZone* PZone)
     {
 
       uint32 masterid = (uint32)Sql_GetUIntData(SqlHandle,0);
-      uint32 petid = (uint32)Sql_GetUIntData(SqlHandle,1);
-
-      CMobEntity* PMaster = (CMobEntity*)PZone->GetEntity(masterid & 0x0FFF, TYPE_MOB);
+      uint32 petid = masterid + (uint32)Sql_GetUIntData(SqlHandle,1);
+	  
+	  CMobEntity* PMaster = (CMobEntity*)PZone->GetEntity(masterid & 0x0FFF, TYPE_MOB);
       CMobEntity* PPet = (CMobEntity*)PZone->GetEntity(petid & 0x0FFF, TYPE_MOB);
 
       if(PMaster == NULL)
@@ -432,6 +432,10 @@ void LoadMOBList(CZone* PZone)
       {
         ShowError("zoneutils::loadMOBList PPet is null. petid: %d. Make sure x,y,z are not zeros!\n", petid);
       }
+	  else if(masterid == petid)
+	  {
+		ShowError("zoneutils::loadMOBList Master and Pet are the same entity: %d\n", masterid);
+	  }
       else
       {
         // pet is always spawned by master
