@@ -199,7 +199,7 @@ int16 CNavMesh::findPath(position_t start, position_t end, position_t* path, uin
 
   if (!m_navMesh->isValidPolyRef(startRef) || !m_navMesh->isValidPolyRef(endRef))
   {
-    ShowError("CNavMesh::findPath Could not find valid start (%f, %f, %f) / end (%f, %f, %f) poly \n", start.x, start.y, start.z, end.x, end.y, end.z);
+    ShowError("CNavMesh::findPath Couldn't find path start (%f, %f, %f) / end (%f, %f, %f) Zone (%s) \n", start.x, start.y, start.z, end.x, end.y, end.z, path);
     return ERROR_NEARESTPOLY;
   }
 

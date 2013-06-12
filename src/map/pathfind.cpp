@@ -131,6 +131,7 @@ void CPathFind::FollowPath()
   m_PTargetPoint = &m_points[m_currentPoint];
 
   StepTo(m_PTargetPoint);
+  PetStepTo(m_PTargetPoint);
 
   if(AtPoint(m_PTargetPoint))
   {

@@ -167,13 +167,13 @@ void CAIMobDummy::ActionRoaming()
 		if(m_PSpecialSkill != NULL && TrySpecialSkill())
 		{
 			// I spawned a pet
-			m_LastActionTime = m_Tick - rand()%40000;
+			m_LastActionTime = m_Tick - rand()%35000;
 		}
 		else if(CanCastSpells() && rand()%10 < 4 && m_PMob->SpellContainer->HasBuffSpells())
 		{
 			// cast buff
 			CastSpell(m_PMob->SpellContainer->GetBuffSpell());
-			m_LastActionTime = m_Tick - rand()%30000;
+			m_LastActionTime = m_Tick - rand()%35000;
 		}
 		else if((m_PMob->m_Type & MOBTYPE_EVENT) != MOBTYPE_EVENT && m_PMob->PMaster == NULL && m_PMob->speed > 0)
 		{
@@ -1766,7 +1766,7 @@ void CAIMobDummy::FollowPath()
 		// if I just finished reset my last action time
 		if(!m_PPathFind->IsFollowingPath())
 		{
-			m_LastActionTime = m_Tick - rand()%30000;
+			m_LastActionTime = m_Tick - rand()%35000;
 		}
 	}
 }
