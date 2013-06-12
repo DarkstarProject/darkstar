@@ -91,6 +91,11 @@ int32 lobbydata_parse(int32 fd)
 			return 0;
 		}
 
+        if( sd == NULL )
+        {
+            do_close_tcp(fd);
+            return -1;
+        }
 	}
 
 	
