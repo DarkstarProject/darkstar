@@ -199,7 +199,7 @@ int16 CNavMesh::findPath(position_t start, position_t end, position_t* path, uin
 
   if (!m_navMesh->isValidPolyRef(startRef) || !m_navMesh->isValidPolyRef(endRef))
   {
-    ShowError("CNavMesh::findPath Could not find valid start / end poly\n");
+    ShowError("CNavMesh::findPath Could not find valid start (%f, %f, %f) / end (%f, %f, %f) poly \n", start.x, start.y, start.z, end.x, end.y, end.z);
     return ERROR_NEARESTPOLY;
   }
 
@@ -290,8 +290,6 @@ bool CNavMesh::test(uint16 zoneId)
       ShowError("CNavMesh::test Zone (%d) Failed end points do not match\n", zoneId);
       return false;
     }
-
-    ShowDebug("CNavMesh::test Zone (%d) Passed sanity test!\n", zoneId);
   }
   else
   {

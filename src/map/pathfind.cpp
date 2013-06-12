@@ -42,7 +42,6 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
 {
   Clear();
 
-
   // walk normal speed
   m_mode = 1;
 
@@ -76,9 +75,6 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
     end.z += r * sinf(t);
 
     m_pathLength = m_PTarget->loc.zone->m_navMesh->findPath(start, end, m_points, MAX_PATH_POINTS);
-    m_currentPoint = 0;
-
-    // ShowDebug("CPathFind::RoamAround Total Path Length (%d)\n", m_pathLength);
 
     if(m_pathLength <= 0)
     {
@@ -92,11 +88,10 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
     // ew, we gotta use the old way
 
     m_pathLength = 1;
-    position_t RoamingPoint;
 
-    RoamingPoint.x = PMob->m_SpawnPoint.x - 1 + rand()%2;
-    RoamingPoint.y = PMob->m_SpawnPoint.y;
-    RoamingPoint.z = PMob->m_SpawnPoint.z - 1 + rand()%2;
+    m_points[0].x = PMob->m_SpawnPoint.x - 1 + rand()%2;
+    m_points[0].y = PMob->m_SpawnPoint.y;
+    m_points[0].z = PMob->m_SpawnPoint.z - 1 + rand()%2;
 
   }
 
@@ -177,7 +172,7 @@ void CPathFind::StepTo(position_t* pos)
 
   }
 
-  m_PTarget->loc.p.moving += ((0x36*((float)speed/0x28)) - (0x14*(m_mode - 1)));
+  m_PTarget->loc.p.moving += ((0x36*((float)m_PTarget->speed/0x28)) - (0x14*(m_mode - 1)));
 
   if(m_PTarget->loc.p.moving > 0x2fff)
   {

@@ -1766,7 +1766,7 @@ void CAIMobDummy::FollowPath()
 		// if I just finished reset my last action time
 		if(!m_PPathFind->IsFollowingPath())
 		{
-			m_LastActionTime = m_Tick - rand()%25000;
+			m_LastActionTime = m_Tick - rand()%30000;
 		}
 	}
 }
