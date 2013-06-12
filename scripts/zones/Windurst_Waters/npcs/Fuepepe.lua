@@ -6,8 +6,12 @@
 --  @zone = 238
 --  @pos = 161 -2 161
 -----------------------------------
+package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
+-----------------------------------
 
+require("scripts/globals/quests");
 require("scripts/globals/settings");
+require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrade Action

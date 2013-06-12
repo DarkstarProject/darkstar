@@ -7,6 +7,7 @@
 -----------------------------------
 
 require("scripts/globals/quests");
+require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 
 -----------------------------------

@@ -12,7 +12,7 @@ package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-require("scripts/globals/keyitems");	
+require("scripts/globals/keyitems");
 require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------

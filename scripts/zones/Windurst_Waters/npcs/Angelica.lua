@@ -13,7 +13,7 @@ require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-require("scripts/globals/keyitems");	
+require("scripts/globals/keyitems");
 require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
@@ -35,21 +35,21 @@ function onTrigger(player,npc)
 	elseif (posestatus == QUEST_AVAILABLE and player:getVar("QuestAPoseByOtherName_prog") == 1) then
 		player:setVar("QuestAPoseByOtherName_prog",2);
 		mjob = player:getMainJob();
-		if (mjob == 1 or mjob == 7 or mjob == 8 or mjob == 14 or mjob == 17) then  	-- Quest Start: Bronze Harness (War/Pld/Drk/Drg/Crs)
+		if (mjob == JOB_WAR or mjob == JOB_PLD or mjob == JOB_DRK or mjob == JOB_DRG or mjob == JOB_COR) then  	-- Quest Start: Bronze Harness (War/Pld/Drk/Drg/Crs)
 			player:startEvent(0x005c,0,0,0,12576);
 			player:setVar("QuestAPoseByOtherName_equip",12576);
-		elseif (mjob == 2 or mjob == 10 or mjob == 16) then	 						-- Quest Start: Robe (Mnk/Brd/Blu)
+		elseif (mjob == JOB_MNK or mjob == JOB_BRD or mjob == JOB_BLU) then	 						-- Quest Start: Robe (Mnk/Brd/Blu)
 			player:startEvent(0x005c,0,0,0,12600);
-			player:setVar("QuestAPoseByOtherName_equip",12600);			
-		elseif (mjob == 6 or mjob == 9 or mjob == 11 or mjob == 19) then	 		-- Quest Start: Leather Vest (Thf/Bst/Rng/Dnc)
+			player:setVar("QuestAPoseByOtherName_equip",12600);
+		elseif (mjob == JOB_THF or mjob == JOB_BST or mjob == JOB_RNG or mjob == JOB_DNC) then	 		-- Quest Start: Leather Vest (Thf/Bst/Rng/Dnc)
 			player:startEvent(0x005c,0,0,0,12568);
-			player:setVar("QuestAPoseByOtherName_equip",12568);	
-		elseif (mjob == 3 or mjob == 4 or mjob == 15 or mjob == 18 or mjob == 20) then	 -- Quest Start: Tunic (Whm/Blm/Rdm/Smn/Pup/Sch)
+			player:setVar("QuestAPoseByOtherName_equip",12568);
+		elseif (mjob == JOB_WHM or mjob == JOB_BLM or mjob == JOB_SMN or mjob == JOB_PUP or mjob == JOB_SCH) then	 -- Quest Start: Tunic (Whm/Blm/Rdm/Smn/Pup/Sch)
 			player:startEvent(0x005c,0,0,0,12608);
-			player:setVar("QuestAPoseByOtherName_equip",12608);	
-		elseif (mjob == 12 or mjob == 13) then	 									-- Quest Start: Kenpogi(Sam/Nin) 
+			player:setVar("QuestAPoseByOtherName_equip",12608);
+		elseif (mjob == JOB_SAM or mjob == JOB_NIN) then	 									-- Quest Start: Kenpogi(Sam/Nin) 
 			player:startEvent(0x005c,0,0,0,12584);
-			player:setVar("QuestAPoseByOtherName_equip",12584);	
+			player:setVar("QuestAPoseByOtherName_equip",12584);
 		end
 	elseif (posestatus == QUEST_ACCEPTED) then
 		starttime = player:getVar("QuestAPoseByOtherName_time");

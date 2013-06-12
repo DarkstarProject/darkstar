@@ -24,6 +24,9 @@ JOB_COR             = 17;
 JOB_PUP             = 18;
 JOB_DNC             = 19;
 JOB_SCH             = 20;
+JOB_GEO             = 21;
+JOB_RUN             = 22;
+
 -----------------------------------
 -- These codes represent the actual status effects.
 -- They are simply for convenience.
