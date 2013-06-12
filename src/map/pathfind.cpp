@@ -68,8 +68,19 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
       u = u - 2;
     }
 
-    float maxDistance = 10.0f;
-    float r = u * maxDistance;
+    // all mobs will default to this distance
+    float minDistance = 5.0f;
+    float maxDistance = 10.0f + minDistance;
+
+    // sight aggro mobs will move a bit farther
+    // this is until this data is put in the database
+    if(PMob->m_Behaviour != BEHAVIOUR_NONE)
+    {
+      minDistance = 10.0f;
+      maxDistance = 10.0f + minDistance;
+    }
+
+    float r = u * maxDistance + minDistance;
 
     end.x += r * cosf(t);
     end.z += r * sinf(t);

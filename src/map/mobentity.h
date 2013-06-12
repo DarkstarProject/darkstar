@@ -51,11 +51,11 @@ enum SPAWNTYPE
 enum ROAMFLAG
 {
   ROAMFLAG_NONE = 0x0,
-  ROAMFLAG_SMALL = 0x01, // move around less than 10
-  ROAMFLAG_MEDIUM = 0x02, // move around 10-20
-  ROAMFLAG_LARGE = 0x04, // move around 20-30
+  ROAMFLAG_SMALL = 0x01, // move around less than 5
+  ROAMFLAG_MEDIUM = 0x02, // move around 10-15
+  ROAMFLAG_LARGE = 0x04, // move around 15-20
   ROAMFLAG_WANDER = 0x08, // roam to multiple points in a row
-  ROAMFLAG_SCENT = 0x10, // use scent to influence movement
+  ROAMFLAG_SCENT = 0x10, // use scent to pursue players
   ROAMFLAG_SCOUT = 0x20, // move around more often
   ROAMFLAG_GUARD = 0x40 // move less often
 };
@@ -81,7 +81,7 @@ enum BEHAVIOUR
 	BEHAVIOUR_AGGRO_TRUESIGHT	= 0x10,
 	BEHAVIOUR_AGGRO_MAGIC		= 0x20,
 	BEHAVIOUR_AGGRO_WEAPONSKILL	= 0x40,
-	BEHAVIOUR_AGGRO_JOBABILITY	= 0x80,
+  BEHAVIOUR_AGGRO_JOBABILITY  = 0x80
 };
 
 
@@ -102,16 +102,17 @@ public:
     uint32      m_MagicRecastTime;                  // Amount of time between casts.
   	uint32		m_SpecialCoolDown;					// Cool down time between uses.
     uint16        m_SpecialSkill; // mobskill id to use
+    uint16    m_RoamCoolDown; // Amount of time between roam actions
 
-	uint32		m_DropID;							// номер группы оставляемых монстром предметов после смерти
+  uint32    m_DropID;             // номер группы оставляемых монстром предметов после смерти
 
-	uint8		m_minLevel;							// минимально-возможный  уровень монстра
-	uint8		m_maxLevel;							// максимально-возможный уровень монстра
-    uint32      HPmodifier;							// HP in Database (mob_groups)
-    uint32      MPmodifier;							// MP in Database (mob_groups)
+  uint8   m_minLevel;             // минимально-возможный  уровень монстра
+  uint8   m_maxLevel;             // максимально-возможный уровень монстра
+    uint32      HPmodifier;             // HP in Database (mob_groups)
+    uint32      MPmodifier;             // MP in Database (mob_groups)
 
-    float       HPscale;								// HP boost percentage
-    float       MPscale;								// MP boost percentage
+    float       HPscale;                // HP boost percentage
+    float       MPscale;                // MP boost percentage
     uint8       linkRadius;                         // mobs have different link radiuses
 
     ROAMFLAG m_roamFlags; // defines its roaming behaviour
@@ -131,11 +132,11 @@ public:
     // not used
     uint8        evaRank;
 
-	uint8		m_Type;								// тип монстра
-    uint8       m_Link;								// взаимопомощь монстрам своего семейства
-	uint16		m_Behaviour;						// поведение монстра в различных ситуациях
-	SPAWNTYPE	m_SpawnType;						// условие появления монстра
-	uint32		m_extraVar;							// extra variable to store combat related variables from scripts
+  uint8   m_Type;               // тип монстра
+    uint8       m_Link;               // взаимопомощь монстрам своего семейства
+  uint16    m_Behaviour;            // поведение монстра в различных ситуациях
+  SPAWNTYPE m_SpawnType;            // условие появления монстра
+  uint32    m_extraVar;             // extra variable to store combat related variables from scripts
 
 	uint8		m_CallForHelp;						// в перспективе желательно объединить эту переменную с CNpc->unknown
 

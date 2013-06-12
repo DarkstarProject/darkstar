@@ -278,6 +278,14 @@ void CalculateStats(CMobEntity * PMob)
 
 	PMob->m_SpecialSkill = 0;
 
+	PMob->m_RoamCoolDown = 45000;
+
+	// aggro mobs move around a bit more often
+	if(PMob->m_Behaviour != BEHAVIOUR_NONE)
+	{
+		PMob->m_RoamCoolDown = 30000;
+	}
+
 	// setup special ability
 	if(PMob->GetMJob() == JOB_RNG)
 	{
