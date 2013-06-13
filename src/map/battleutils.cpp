@@ -2652,7 +2652,6 @@ void MoveIntoRange(CBattleEntity* PPursuer, CBattleEntity* PTarget, uint8 angleT
     PPursuer->loc.p.rotation = angle;
 
     if (distance(PPursuer->loc.p, PTarget->loc.p) > PPursuer->m_ModelSize){
-
 		MoveTo(PPursuer, PTarget->loc.p, 2);
     }
 }

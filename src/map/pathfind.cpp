@@ -55,43 +55,17 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
   if(isNavMeshAvailable())
   {
 
-    position_t start = m_PTarget->loc.p;
-
-    // roam around my spawn point
-    position_t end = PMob->m_SpawnPoint;
-
-    // this will find a random point around the given point
-    float t = 2.0f * M_PI * ((double) rand() / (RAND_MAX));
-    float u = ((double) rand() / (RAND_MAX)) + ((float) rand() / (RAND_MAX));
-
-    if(u > 1){
-      u = u - 2;
-    }
-
     // all mobs will default to this distance
-    float minDistance = 5.0f;
-    float maxDistance = 10.0f + minDistance;
+    float maxRadius = 10.0f;
 
     // sight aggro mobs will move a bit farther
     // this is until this data is put in the database
     if(PMob->m_Behaviour != BEHAVIOUR_NONE)
     {
-      minDistance = 10.0f;
-      maxDistance = 10.0f + minDistance;
+      maxRadius = 20.0f;
     }
 
-    float r = u * maxDistance + minDistance;
-
-    end.x += r * cosf(t);
-    end.z += r * sinf(t);
-
-    m_pathLength = m_PTarget->loc.zone->m_navMesh->findPath(start, end, m_points, MAX_PATH_POINTS);
-
-    if(m_pathLength <= 0)
-    {
-      Clear();
-      return false;
-    }
+    return FindRandomPath(&PMob->m_SpawnPoint, maxRadius);
 
   }
   else
@@ -112,8 +86,21 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
 bool CPathFind::RunTo(position_t point)
 {
   m_mode = 2;
-  ShowError("RunTo not implemented\n");
-  return false;
+
+  if(isNavMeshAvailable())
+  {
+    return FindClosestPath(&m_PTarget->loc.p, &point);
+  }
+  else
+  {
+    m_pathLength = 1;
+
+    m_points[0].x = point.x;
+    m_points[0].y = point.y;
+    m_points[0].z = point.z;
+  }
+
+  return true;
 }
 
 bool CPathFind::WalkTo(position_t point)
@@ -202,6 +189,55 @@ void CPathFind::PetStepTo(position_t* pos)
   position_t targetPoint = nearPosition(*pos, 2.0f, M_PI);
 
   m_PTarget->PPet->PBattleAI->MoveTo(&targetPoint);
+}
+
+bool CPathFind::FindPath(position_t* start, position_t* end)
+{
+
+  m_pathLength = m_PTarget->loc.zone->m_navMesh->findPath(*start, *end, m_points, MAX_PATH_POINTS);
+
+  if(m_pathLength <= 0)
+  {
+    ShowError("CPathFind::FindPath Entity (%d) could not find path", m_PTarget->id);
+    Clear();
+    return false;
+  }
+
+  return true;
+}
+
+bool CPathFind::FindRandomPath(position_t* start, float maxRadius)
+{
+
+  m_pathLength = m_PTarget->loc.zone->m_navMesh->findRandomPath(*start, maxRadius, m_points, MAX_PATH_POINTS);
+
+  if(m_pathLength <= 0)
+  {
+    ShowError("CPathFind::FindRandomPath Entity (%d) could not find path", m_PTarget->id);
+    Clear();
+    return false;
+  }
+
+  return true;
+}
+
+bool CPathFind::FindClosestPath(position_t* start, position_t* end)
+{
+
+  m_pathLength = m_PTarget->loc.zone->m_navMesh->findPath(*start, *end, m_points, MAX_PATH_POINTS);
+
+  if(m_pathLength <= 0 || m_pathLength >= 6)
+  {
+    // f you, too long
+    // this is a trick to make mobs go up / down impassible terrain
+    m_pathLength = 1;
+
+    m_points[0].x = end->x;
+    m_points[0].y = end->y;
+    m_points[0].z = end->z;
+  }
+
+  return true;
 }
 
 float CPathFind::GetRealSpeed()

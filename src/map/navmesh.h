@@ -64,7 +64,8 @@ class CNavMesh
     bool load(char* path);
     void unload();
 
-    int16 findPath(position_t start, position_t end, position_t* path, uint16 size);
+    int16 findPath(position_t start, position_t end, position_t* path, uint16 pathSize);
+    int16 findRandomPath(position_t start, float maxRadius, position_t* path, uint16 pathSize);
 
     // validate the integrity of the navmesh
     bool test(uint16 zoneId);

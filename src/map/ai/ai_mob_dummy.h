@@ -34,6 +34,9 @@
 
 #define MOB_SPELL_MAX_RANGE 26.8f
 
+// this will make mobs walk back to spawn point instead of despawning
+#define MOB_TRAIN false
+
 /************************************************************************
 *																		*
 *  Первая версия поведения монстров, базовая. Монстры наносят только	*

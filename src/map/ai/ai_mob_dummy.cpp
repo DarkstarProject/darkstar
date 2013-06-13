@@ -1245,7 +1245,15 @@ void CAIMobDummy::ActionAttack()
 		return;
 	}
 
-	battleutils::MoveIntoRange(m_PMob, m_PBattleTarget, 25);
+    float CurrentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
+
+	if(CurrentDistance > m_PMob->m_ModelSize)
+	{
+		if(m_PPathFind->RunTo(m_PBattleTarget->loc.p))
+		{
+			FollowPath();
+		}
+	}
 
 	//handle pet behaviour on the targets behalf (faster than in ai_pet_dummy)
 	// Avatars defend masters by attacking mobs if the avatar isn't attacking anything currently (bodyguard behaviour)
@@ -1285,7 +1293,6 @@ void CAIMobDummy::ActionAttack()
 		((CMobEntity*)m_PMob->PPet)->PEnmityContainer->AddBaseEnmity(m_PBattleTarget);
 	}
 
-    float CurrentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
 
 	// Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
 	if (CurrentDistance <= MOB_SPELL_MAX_RANGE && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && TryCastSpell())

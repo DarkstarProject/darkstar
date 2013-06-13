@@ -529,3 +529,8 @@ int8* DecodeStringSignature(int8* signature, int8* target)
     }
     return strncpy(target, (int8*)decodedSignature, sizeof decodedSignature);
 }
+
+float RandomNumber()
+{
+  return ((double) rand() / (RAND_MAX));
+}

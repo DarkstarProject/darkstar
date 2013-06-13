@@ -33,7 +33,7 @@ The PathFind class provides an interface for getting an entity to a destination.
 class CBattleEntity;
 
 // no path can be longer than this
-#define MAX_PATH_POINTS 50
+#define MAX_PATH_POINTS 15
 
 class CPathFind
 {
@@ -77,6 +77,16 @@ class CPathFind
     bool AtPoint(position_t* pos);
 
   private:
+
+    // find a valid path using polys
+    bool FindPath(position_t* start, position_t* end);
+
+    // cut some corners and find the fastest path
+    // this will make the mob run down cliffs
+    bool FindClosestPath(position_t* start, position_t* end);
+
+    // finds a random path around the given point
+    bool FindRandomPath(position_t* start, float maxRadius);
 
     CBattleEntity* m_PTarget;
     position_t m_points[MAX_PATH_POINTS];
