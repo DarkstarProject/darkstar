@@ -52,7 +52,12 @@ class CPathFind
     // used for pets roaming with master
     bool WalkTo(position_t point);
 
-    bool KnockBack(position_t point, float power);
+    // instantly moves an entity to the point
+    // this will make sure you're not in a wall
+    bool WarpTo(position_t point);
+
+    // this will push the entity forward or backwards by the given power
+    bool Knock(position_t point, float power);
 
     // moves mob to next point
     void FollowPath();
@@ -68,6 +73,9 @@ class CPathFind
 
     // calculate speed of mob with mode, mod_speed, etc
     float GetRealSpeed();
+
+    // look at the given point
+    void LookAt(position_t point);
 
     // clear current path
     void Clear();
@@ -90,7 +98,6 @@ class CPathFind
 
     CBattleEntity* m_PTarget;
     position_t m_points[MAX_PATH_POINTS];
-    position_t* m_PTargetPoint;
 
     int16 m_currentPoint;
     int16 m_pathLength;

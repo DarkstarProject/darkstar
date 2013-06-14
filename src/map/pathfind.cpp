@@ -29,7 +29,7 @@
 CPathFind::CPathFind(CBattleEntity* PTarget)
 {
   m_PTarget = PTarget;
-  m_PTargetPoint = NULL;
+  Clear();
 }
 
 CPathFind::~CPathFind()
@@ -42,13 +42,13 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
 {
   Clear();
 
-  // walk normal speed
-  m_mode = 1;
-
-  if(GetRealSpeed() == 0 || m_PTarget->objtype != TYPE_MOB)
+  if(m_PTarget->speed == 0 || m_PTarget->objtype != TYPE_MOB)
   {
     return false;
   }
+
+  // walk normal speed
+  m_mode = 1;
 
   CMobEntity* PMob = (CMobEntity*)m_PTarget;
 
@@ -85,6 +85,10 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
 
 bool CPathFind::RunTo(position_t point)
 {
+  Clear();
+
+  if(m_PTarget->speed == 0) return false;
+
   m_mode = 2;
 
   if(isNavMeshAvailable())
@@ -105,12 +109,32 @@ bool CPathFind::RunTo(position_t point)
 
 bool CPathFind::WalkTo(position_t point)
 {
+  Clear();
+
+  if(m_PTarget->speed == 0) return false;
+
   m_mode = 1;
   ShowError("WalkTo not implemented\n");
   return false;
 }
 
-bool CPathFind::KnockBack(position_t from, float power)
+bool CPathFind::WarpTo(position_t point)
+{
+  Clear();
+
+  position_t newPoint = nearPosition(point, 2.0f, M_PI);
+
+  m_PTarget->loc.p.x = newPoint.x;
+  m_PTarget->loc.p.y = newPoint.y;
+  m_PTarget->loc.p.z = newPoint.z;
+  m_PTarget->loc.p.moving = 0;
+
+  LookAt(point);
+
+  return true;
+}
+
+bool CPathFind::Knock(position_t from, float power)
 {
   // pushes entity back from the given position
 	return false;
@@ -126,12 +150,12 @@ void CPathFind::FollowPath()
   if(!IsFollowingPath()) return;
 
   // move mob to next point
-  m_PTargetPoint = &m_points[m_currentPoint];
+  position_t* targetPoint = &m_points[m_currentPoint];
 
-  StepTo(m_PTargetPoint);
-  PetStepTo(m_PTargetPoint);
+  StepTo(targetPoint);
+  PetStepTo(targetPoint);
 
-  if(AtPoint(m_PTargetPoint))
+  if(AtPoint(targetPoint))
   {
     m_currentPoint++;
 
@@ -149,10 +173,10 @@ void CPathFind::StepTo(position_t* pos)
   float speed = GetRealSpeed();
 
   // face point mob is moving towards
-  m_PTarget->loc.p.rotation = getangle(m_PTarget->loc.p, *pos);
+  LookAt(*pos);
 
   // if i'm going to overshoot the checkpoint just put me there
-  if(distance(m_PTarget->loc.p, *pos) < speed)
+  if(distance(m_PTarget->loc.p, *pos) <= speed)
   {
     m_PTarget->loc.p.x = pos->x;
     m_PTarget->loc.p.y = pos->y;
@@ -160,6 +184,7 @@ void CPathFind::StepTo(position_t* pos)
   }
   else
   {
+
     // take a step towards target point
     float radians = (1 - (float)m_PTarget->loc.p.rotation / 255) * 6.28318f;
 
@@ -238,6 +263,11 @@ bool CPathFind::FindClosestPath(position_t* start, position_t* end)
   }
 
   return true;
+}
+
+void CPathFind::LookAt(position_t point)
+{
+  m_PTarget->loc.p.rotation = getangle(m_PTarget->loc.p, point);
 }
 
 float CPathFind::GetRealSpeed()

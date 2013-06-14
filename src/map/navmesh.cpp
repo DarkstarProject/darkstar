@@ -240,7 +240,8 @@ int16 CNavMesh::findPath(position_t start, position_t end, position_t* path, uin
       return -1;
     }
 
-    for ( int i = 0; i < straightPathCount*3; )
+    // i starts at 3 so the start position is ignored
+    for ( int i = 3; i < straightPathCount*3; )
     {
       path[pos].x = straightPath[i++];
       path[pos].y = straightPath[i++] * -1;

@@ -54,6 +54,7 @@ CAIPetDummy::CAIPetDummy(CPetEntity* PPet)
 {
 	m_PPet = PPet;
     m_PTargetFind = new CTargetFind(PPet);
+    m_PPathFind = new CPathFind(PPet);
 }
 
 /************************************************************************
@@ -531,12 +532,21 @@ void CAIPetDummy::ActionRoaming()
 	if(m_PBattleTarget!=NULL){
 		m_ActionType = ACTION_ENGAGE;
 		ActionEngage();
+		return;
 	}
-	else if (distance(m_PPet->loc.p, m_PPet->PMaster->loc.p) > 3)
-	{
-		m_PPet->loc.p.rotation = getangle(m_PPet->loc.p, m_PPet->PMaster->loc.p);
 
-		battleutils::MoveTo(m_PPet, m_PPet->PMaster->loc.p, 2);
+	float currentDistance = distance(m_PPet->loc.p, m_PPet->PMaster->loc.p);
+
+	if (currentDistance > PET_ROAM_DISTANCE)
+	{
+		if(currentDistance <= 25.0f && m_PPathFind->RunTo(m_PPet->PMaster->loc.p))
+		{
+			m_PPathFind->FollowPath();
+		}
+		else
+		{
+			m_PPathFind->WarpTo(m_PPet->PMaster->loc.p);
+		}
 
         m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
 	}
@@ -637,15 +647,26 @@ void CAIPetDummy::ActionAttack()
 		return;
 	}
 
-	m_PPet->loc.p.rotation = getangle(m_PPet->loc.p, m_PBattleTarget->loc.p);
+	m_PPathFind->LookAt(m_PBattleTarget->loc.p);
+
+	float currentDistance = distance(m_PPet->loc.p, m_PBattleTarget->loc.p);
 
 	//go to target if its too far away
-	if (distance(m_PPet->loc.p, m_PBattleTarget->loc.p) > m_PBattleTarget->m_ModelSize)
+	if (currentDistance > m_PBattleTarget->m_ModelSize)
 	{
-		battleutils::MoveTo(m_PPet, m_PBattleTarget->loc.p, 2);
-        m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+		if(m_PPathFind->RunTo(m_PBattleTarget->loc.p))
+		{
+			m_PPathFind->FollowPath();
+
+	        m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+
+	        // recalculate
+			currentDistance = distance(m_PPet->loc.p, m_PBattleTarget->loc.p);
+		}
 	}
-	else{
+
+	if(currentDistance <= m_PBattleTarget->m_ModelSize)
+	{
 		//try to attack
 		if((m_Tick - m_LastActionTime) > m_PPet->m_Weapons[SLOT_MAIN]->getDelay()){
 			if (battleutils::IsParalised(m_PPet))
@@ -738,7 +759,6 @@ void CAIPetDummy::ActionAttack()
                 Monster->m_HiPCLvl = ((CCharEntity*)m_PPet->PMaster)->GetMLevel();
 		}
 	}
-
 }
 
 void CAIPetDummy::ActionSleep()

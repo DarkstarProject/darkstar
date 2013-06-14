@@ -1368,7 +1368,7 @@ void CAICharNormal::ActionMagicCasting()
 			ActionMagicInterrupt();
 			return;
 		}
-		else if (battleutils::IsIntimidated(m_PChar, m_PBattleSubTarget))
+		else if (!(m_PSpell->getValidTarget() & TARGET_SELF) && battleutils::IsIntimidated(m_PChar, m_PBattleSubTarget))
 		{
 		    m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,MSGBASIC_IS_INTIMIDATED));
 		    m_ActionType = ACTION_MAGIC_INTERRUPT;

@@ -147,15 +147,12 @@ void CAIMobDummy::ActionRoaming()
 	else if ((m_PMob->m_Type & MOBTYPE_NOTORIOUS) && distance(m_PMob->loc.p,m_PMob->m_SpawnPoint) > 2 && !m_PPathFind->isNavMeshAvailable())
 	{
 
-		position_t ReturnPoint;
-		ReturnPoint.x = m_PMob->m_SpawnPoint.x;
-		ReturnPoint.y = m_PMob->m_SpawnPoint.y;
-		ReturnPoint.z = m_PMob->m_SpawnPoint.z;
+		if(m_PPathFind->WalkTo(m_PMob->m_SpawnPoint))
+		{
+			FollowPath();
+			m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
+		}
 
-		m_PMob->loc.p.rotation = getangle(m_PMob->loc.p, m_PMob->m_SpawnPoint);
-		battleutils::MoveTo(m_PMob, ReturnPoint, 1);
-
-		m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
 	}
 	else if ((m_Tick - m_LastActionTime) > m_PMob->m_RoamCoolDown)
 	{
@@ -224,10 +221,13 @@ void CAIMobDummy::ActionEngage()
 
 		if(CanCastSpells() && m_firstSpell){
 			// look at target instead
-		    m_PMob->loc.p.rotation = getangle(m_PMob->loc.p, m_PBattleTarget->loc.p);
+			m_PPathFind->LookAt(m_PBattleTarget->loc.p);
 		} else {
 			// run at target
-			battleutils::MoveIntoRange(m_PMob, m_PBattleTarget, 0);
+			if(m_PPathFind->RunTo(m_PBattleTarget->loc.p))
+			{
+				FollowPath();
+			}
 		}
 	}
 
@@ -1030,7 +1030,7 @@ void CAIMobDummy::ActionMagicCasting()
 			ActionMagicInterrupt();
 			return;
 		}
-		else if (battleutils::IsIntimidated(m_PMob, m_PBattleSubTarget))
+		else if (!(m_PSpell->getValidTarget() & TARGET_SELF) && battleutils::IsIntimidated(m_PMob, m_PBattleSubTarget))
 		{
 		    m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PBattleSubTarget,0,0,MSGBASIC_IS_INTIMIDATED));
 		    m_ActionType = ACTION_MAGIC_INTERRUPT;
@@ -1038,8 +1038,8 @@ void CAIMobDummy::ActionMagicCasting()
 			return;
 		}
 
-		float CurrentDistance = distance(m_PMob->loc.p, m_PBattleSubTarget->loc.p);
-		if (CurrentDistance > 28.5) {
+		float currentDistance = distance(m_PMob->loc.p, m_PBattleSubTarget->loc.p);
+		if (currentDistance > 28.5) {
 			m_ActionType = ACTION_MAGIC_INTERRUPT;
 			ActionMagicInterrupt();
 			return;
@@ -1245,13 +1245,19 @@ void CAIMobDummy::ActionAttack()
 		return;
 	}
 
-    float CurrentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
+    float currentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
 
-	if(CurrentDistance > m_PMob->m_ModelSize)
+    // always face target
+    m_PPathFind->LookAt(m_PBattleTarget->loc.p);
+
+	if(currentDistance > m_PMob->m_ModelSize)
 	{
 		if(m_PPathFind->RunTo(m_PBattleTarget->loc.p))
 		{
 			FollowPath();
+
+			// recalculate
+		    currentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
 		}
 	}
 
@@ -1289,13 +1295,12 @@ void CAIMobDummy::ActionAttack()
     // my pet should help as well
 	if(m_PMob->PPet != NULL && m_PMob->PPet->PBattleAI->GetCurrentAction() == ACTION_ROAMING)
 	{
-		// my pet should engage as well
 		((CMobEntity*)m_PMob->PPet)->PEnmityContainer->AddBaseEnmity(m_PBattleTarget);
 	}
 
 
 	// Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
-	if (CurrentDistance <= MOB_SPELL_MAX_RANGE && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && TryCastSpell())
+	if (currentDistance <= MOB_SPELL_MAX_RANGE && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && TryCastSpell())
 	{
 
 	}
@@ -1303,7 +1308,7 @@ void CAIMobDummy::ActionAttack()
 	{
 
 	}
-	else if (CurrentDistance <= m_PMob->m_ModelSize)
+	else if (currentDistance <= m_PMob->m_ModelSize)
 	{
 		int32 WeaponDelay = m_PMob->m_Weapons[SLOT_MAIN]->getDelay();
 		if (m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS,0))
@@ -1536,7 +1541,7 @@ void CAIMobDummy::ActionAttack()
             m_LastActionTime = m_Tick;
 		}
 	}
-	else if (m_PMob->CanDeaggro() && CurrentDistance > 28 && (m_Tick - m_LastActionTime) > 20000)
+	else if (m_PMob->CanDeaggro() && currentDistance > 28 && (m_Tick - m_LastActionTime) > 20000)
     {
         //player has been too far away for some time, deaggro if the mob type dictates it
 
@@ -1731,9 +1736,9 @@ bool CAIMobDummy::TrySpecialSkill()
 	else if(m_PBattleTarget != NULL)
 	{
 		// distance check for special skill
-	    float CurrentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
+	    float currentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
 
-		if(CurrentDistance <= m_PSpecialSkill->getDistance())
+		if(currentDistance <= m_PSpecialSkill->getDistance())
 		{
 			m_PBattleSubTarget = m_PBattleTarget;
 		}
