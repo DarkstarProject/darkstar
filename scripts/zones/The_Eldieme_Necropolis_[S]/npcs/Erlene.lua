@@ -44,7 +44,7 @@ function onTrigger(player,npc)
 	
 	if(ENABLE_WOTG == 1 and player:getMainLvl() >= ADVANCED_JOB_LEVEL and ALittleKnowledge == QUEST_AVAILABLE) then
 		player:startEvent(10,1);
-	elseif(player:getMainLvl() < ADVANCED_JOB_LEVEL) then
+	elseif(player:getMainLvl() < ADVANCED_JOB_LEVEL and ALittleKnowledgeProgress < 1) then
 		player:startEvent(10);
 	elseif(ALittleKnowledgeProgress == 1) then
 		player:startEvent(11);
