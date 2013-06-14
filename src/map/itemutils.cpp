@@ -67,7 +67,7 @@ namespace itemutils
 	    {
 		    return new CItemUsable(ItemID);
 	    }
-	    if( (ItemID >= 0x2000) && (ItemID <= 0x21FF) ) 
+	    if( (ItemID >= 0x2000) && (ItemID <= 0x27FF) ) 
 	    {
 		    return new CItemPuppet(ItemID);
 	    }
@@ -75,10 +75,19 @@ namespace itemutils
 	    {
 		    return new CItemArmor(ItemID);
 	    }
-	    if( (ItemID >= 0x4000) && (ItemID <= 0x53FF) ) 
+	    if( (ItemID >= 0x4000) && (ItemID <= 0x5FFF) ) 
 	    {
 		    return new CItemWeapon(ItemID);
 	    }
+		if( (ItemID >= 0x6000) && (ItemID <= 0x6FFF) )
+		{
+			return new CItemArmor(ItemID);
+		}
+		if( (ItemID >= 0x7000) && (ItemID <= 0x7FFF) )
+		{
+			return new CItemGeneral(ItemID);
+		}
+
 
 	    return NULL;
     }
@@ -113,18 +122,26 @@ namespace itemutils
 		    {
 			    return new CItemUsable(*((CItemUsable*)g_pItemList[ItemID]));
 		    }
-		    if( (ItemID >= 0x2000) && (ItemID <= 0x21FF) ) 
+		    if( (ItemID >= 0x2000) && (ItemID <= 0x27FF) ) 
 		    {
 			    return new CItemPuppet(*((CItemPuppet*)g_pItemList[ItemID]));
 		    }
-		    if( (ItemID >= 0x2800) && (ItemID <= 0x3FFF) ) 
+		    if( ((ItemID >= 0x2800) && (ItemID <= 0x3FFF))) 
 		    {
 			    return new CItemArmor(*((CItemArmor*)g_pItemList[ItemID]));
 		    }
-		    if( (ItemID >= 0x4000) && (ItemID <= 0x53FF) )
+		    if( (ItemID >= 0x4000) && (ItemID <= 0x5FFF) )
 		    {
 			    return new CItemWeapon(*((CItemWeapon*)g_pItemList[ItemID]));
 		    }
+			if( (ItemID >= 0x6000) && (ItemID <= 0x6FFF) )
+			{
+				return new CItemArmor(*((CItemArmor*)g_pItemList[ItemID]));
+			}
+			if( (ItemID >= 0x7000) && (ItemID <= 0x7FFF) )
+			{
+			    return new CItemGeneral(*((CItemGeneral*)g_pItemList[ItemID]));
+			}
 	    }
 	    return NULL;
     }
