@@ -15,7 +15,10 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
+   local npcid = npc:getID();
+   if (trade:getItemCount() == 1 and trade:hasItemQty(4105,1) == true) then -- Ice Cluster Trade
+      GetNPCByID(npcid+5):openDoor();
+   end
 end; 
 
 -----------------------------------
@@ -23,10 +26,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	printf("%u",npc:getID())
-	npcid = npc:getID();
+	-- printf("%u",npc:getID())
+	local npcid = npc:getID();
 	
-	if(npcid == 17617198) then
+   -- Commented out to preserve CSIDs for the quest, since the workaround was removed.
+	--[[if(npcid == 17617198) then
 		player:startEvent(0x000b);
 	elseif(npcid == 17617199) then
 		player:startEvent(0x000c);
@@ -34,7 +38,7 @@ function onTrigger(player,npc)
 		player:startEvent(0x000d);
 	elseif(npcid == 17617201) then
 		player:startEvent(0x000e);
-	end
+	end]]
 	
 end;
 -----------------------------------
@@ -52,32 +56,5 @@ end;
 
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
-printf("RESULT: %u",option);
-	
-	if(csid == 0x000b and option == 0) then
-		if(player:getXPos() > 195) then
-			player:setPos(190,0,19,124);
-		else
-			player:setPos(198,0,19,252);
-		end
-	elseif(csid == 0x000c and option == 0) then
-		if(player:getXPos() < -205) then
-			player:setPos(-201,0,-60,245);
-		else
-			player:setPos(-210,0,-60,127);
-		end
-	elseif(csid == 0x000d and option == 0) then
-		if(player:getXPos() < -171) then
-			player:setPos(-168,39,60,256);
-		else
-			player:setPos(-176,38,60,124);
-		end
-	elseif(csid == 0x000e and option == 0) then
-		if(player:getZPos() > 187) then
-			player:setPos(-340,39,184,63);
-		else
-			player:setPos(-341,39,192,179);
-		end
-	end
-	
+--printf("RESULT: %u",option);
 end;
