@@ -56,7 +56,7 @@ class CPathFind
     bool WarpTo(position_t point);
 
     // this will push the entity backwards by the given power
-    bool KnockBack(position_t from, float power);
+    bool Knockback(position_t from, float power);
 
     // moves mob to next point
     void FollowPath();

@@ -147,7 +147,7 @@ bool CPathFind::WarpTo(position_t point)
   return true;
 }
 
-bool CPathFind::KnockBack(position_t from, float power)
+bool CPathFind::Knockback(position_t from, float power)
 {
   // pushes entity back from the given position
 	return false;

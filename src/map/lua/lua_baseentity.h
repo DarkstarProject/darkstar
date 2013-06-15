@@ -424,6 +424,18 @@ public:
 
     int32 recalculateAbilitiesTable(lua_State*);
     int32 isSpellAoE(lua_State* L);
+
+    // == Pathfind Methods ==
+    int32 WalkTo(lua_State* L); // walk at normal speed through the given points
+    int32 RunTo(lua_State* L);	// run through the given points
+    int32 WarpTo(lua_State* L); // warp to the given point
+    int32 Knockback(lua_State* L); // knockback target with given power
+    int32 RoamAround(lua_State* L); // pick a random point to walk to
+    int32 LimitDistance(lua_State* L); // limits the current path distance to given max distance
+
+    int32 LookAt(lua_State* L); // look at given entity
+    int32 isFollowingPath(lua_State* L); // checks if the entity is following a path
+    int32 ClearPath(lua_State* L); // removes current pathfind and stops moving
 };
 
 #endif

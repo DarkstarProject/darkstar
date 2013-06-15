@@ -53,7 +53,6 @@
 CAIPetDummy::CAIPetDummy(CPetEntity* PPet)
 {
 	m_PPet = PPet;
-	uint8 m_ChaseThrottle = 0;
     m_PTargetFind = new CTargetFind(PPet);
     m_PPathFind = new CPathFind(PPet);
 }

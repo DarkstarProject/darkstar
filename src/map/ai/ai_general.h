@@ -130,6 +130,7 @@ public:
     CAIGeneral();
 	~CAIGeneral();
 
+    CPathFind*       m_PPathFind; // finds paths
 private:
 
     //uint32			m_StartBattle;			// Battle start time
@@ -156,7 +157,6 @@ protected:
 	CAbility*		m_PJobAbility;
 	CMobSkill*		m_PMobSkill;
     CTargetFind*  m_PTargetFind; // finds targets for AoEs
-    CPathFind*       m_PPathFind; // finds paths
 };
 
 #endif
