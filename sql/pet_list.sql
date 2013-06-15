@@ -110,10 +110,3 @@ INSERT INTO `pet_list` VALUES (65, 'Crude Raphie', 4637, 96, 99, 5400, 0);
 INSERT INTO `pet_list` VALUES (66, 'Dapper Mac', 4638, 76, 99, 7200, 0);
 INSERT INTO `pet_list` VALUES (67, 'Slippery Silas', 4639, 23, 99, 1800, 0);
 INSERT INTO `pet_list` VALUES (68, 'Turbid Toloi', 4640, 23, 99, 3600, 0);
-
-
-
-
-
-
-

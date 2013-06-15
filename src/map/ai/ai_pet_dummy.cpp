@@ -128,7 +128,7 @@ void CAIPetDummy::ActionAbilityStart()
 	}
 
 
-	if(m_PPet->getPetType()==PETTYPE_JUGPET){
+	if(m_PPet->getPetType()==PETTYPE_JUG_PET){
 		if(m_MasterCommand==MASTERCOMMAND_SIC && m_PPet->health.tp>=100 && m_PBattleTarget!=NULL){ //choose random tp move
 			m_MasterCommand = MASTERCOMMAND_NONE;
 			if(m_PPet->PetSkills.size()>0){

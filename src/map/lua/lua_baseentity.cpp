@@ -2456,23 +2456,43 @@ inline int32 CLuaBaseEntity::setPetName(lua_State *L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
-	DSP_DEBUG_BREAK_IF(lua_isnil(L, -2) || !lua_isnumber(L, -2));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-	uint8 pet = (uint8)lua_tointeger(L, -2);
-	uint16 value = (uint16)lua_tointeger(L, -1);
+	int32 n = lua_gettop(L);
+	
+	uint8 petType = (uint8)lua_tointeger(L, 1);
 
-	if (pet == 0)
+	if (n == 2)
 	{
-		Sql_Query(SqlHandle, "INSERT INTO char_pet_name SET charid = %u, wyvernid = %u ON DUPLICATE KEY UPDATE wyvernid = %u;", m_PBaseEntity->id, value, value);
+		uint16 value = (uint16)lua_tointeger(L, 2);
+		
+		if (petType == PETTYPE_WYVERN)
+		{
+			Sql_Query(SqlHandle, "INSERT INTO char_pet_name SET charid = %u, wyvernid = %u ON DUPLICATE KEY UPDATE wyvernid = %u;", m_PBaseEntity->id, value, value);
+		}
+		else if (petType == PETTYPE_AUTOMATON)
+		{
+			Sql_Query(SqlHandle, "INSERT INTO char_pet_name SET charid = %u, automatonid = %u ON DUPLICATE KEY UPDATE automatonid = %u;", m_PBaseEntity->id, value, value);
+		}
+		/*
+		else if (petType == PETTYPE_ADVENTURING_FELLOW)
+		{
+			Sql_Query(SqlHandle, "INSERT INTO char_pet_name SET charid = %u, adventuringfellowid = %u ON DUPLICATE KEY UPDATE adventuringfellowid = %u;", m_PBaseEntity->id, value, value);
+		}
+		*/
 	}
-	else if (pet == 1)
+	else if (n == 3)
 	{
-		Sql_Query(SqlHandle, "INSERT INTO char_pet_name SET charid = %u, automatonid = %u ON DUPLICATE KEY UPDATE automatonid = %u;", m_PBaseEntity->id, value, value);
-	}
-	else if (pet == 2)
-	{
-		Sql_Query(SqlHandle, "INSERT INTO char_pet_name SET charid = %u, adventuringfellowid = %u ON DUPLICATE KEY UPDATE adventuringfellowid = %u;", m_PBaseEntity->id, value, value);
+		if (petType == PETTYPE_CHOCOBO)
+		{
+			uint32 chocoboname1 = lua_tointeger(L, 2) & 0x0000FFFF;
+			uint32 chocoboname2 = lua_tointeger(L, 3) << 16;
+
+			uint32 value = chocoboname1 + chocoboname2;
+
+			Sql_Query(SqlHandle, "INSERT INTO char_pet_name SET charid = %u, chocoboid = %u ON DUPLICATE KEY UPDATE chocoboid = %u;", m_PBaseEntity->id, value, value);
+		}
 	}
 
 	lua_pushnil(L);

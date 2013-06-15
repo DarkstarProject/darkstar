@@ -39,7 +39,7 @@ PETTYPE CPetEntity::getPetType(){
 
 bool CPetEntity::isBstPet()
 {
-  return getPetType()==PETTYPE_JUGPET || objtype == TYPE_MOB;
+  return getPetType()==PETTYPE_JUG_PET || objtype == TYPE_MOB;
 }
 
 WYVERNTYPE CPetEntity::getWyvernType()

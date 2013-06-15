@@ -546,11 +546,14 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 	if (PMaster->objtype == TYPE_PC)
 		((CCharEntity*)PMaster)->petZoningInfo.petID = PetID;
 
-	PETTYPE petType = PETTYPE_JUGPET;
-	if(PetID<=20){
+	PETTYPE petType = PETTYPE_JUG_PET;
+	
+	if (PetID <= PETID_CAIT_SITH)
+	{
 		petType = PETTYPE_AVATAR;
 	}
-	else if(PetID==PETID_WYVERN){
+	else if (PetID==PETID_WYVERN)
+	{
 		petType = PETTYPE_WYVERN;
 
 		const int8* Query =
@@ -570,6 +573,100 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 				{
 					g_PPetList.at(PetID)->name.clear();
 					g_PPetList.at(PetID)->name.insert(0, Sql_GetData(SqlHandle, 0));
+				}
+			}
+		}
+	}
+	else if (PetID==PETID_AUTOMATON)
+	{
+		petType = PETTYPE_AUTOMATON;
+
+		const int8* Query =
+			"SELECT\
+				pet_name.name,\
+				char_pet_name.automatonid\
+			FROM pet_name, char_pet_name\
+			WHERE pet_name.id = char_pet_name.automatonid";
+
+		if ( Sql_Query(SqlHandle, Query) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+		{
+			while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+			{
+				uint16 automatonid = (uint16)Sql_GetIntData(SqlHandle, 1);
+
+				if (automatonid != 0)
+				{
+					g_PPetList.at(PetID)->name.clear();
+					g_PPetList.at(PetID)->name.insert(0, Sql_GetData(SqlHandle, 0));
+				}
+			}
+		}
+	}
+	/*
+	else if (PetID==PETID_ADVENTURING_FELLOW)
+	{
+		petType = PETTYPE_ADVENTURING_FELLOW;
+
+		const int8* Query =
+			"SELECT\
+				pet_name.name,\
+				char_pet_name.adventuringfellowid\
+			FROM pet_name, char_pet_name\
+			WHERE pet_name.id = char_pet_name.adventuringfellowid";
+
+		if ( Sql_Query(SqlHandle, Query) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+		{
+			while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+			{
+				uint16 adventuringfellowid = (uint16)Sql_GetIntData(SqlHandle, 1);
+
+				if (adventuringfellowid != 0)
+				{
+					g_PPetList.at(PetID)->name.clear();
+					g_PPetList.at(PetID)->name.insert(0, Sql_GetData(SqlHandle, 0));
+				}
+			}
+		}
+	}
+	*/
+	else if(PetID == PETID_CHOCOBO)
+	{
+		petType = PETTYPE_CHOCOBO;
+
+		const int8* Query =
+			"SELECT\
+				char_pet_name.chocoboid\
+			FROM char_pet_name";
+
+		if ( Sql_Query(SqlHandle, Query) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+		{
+			while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+			{
+				uint32 chocoboid = (uint32)Sql_GetIntData(SqlHandle, 0);
+
+				if (chocoboid != 0)
+				{
+					uint16 chocoboname1 = chocoboid & 0x0000FFFF;
+					uint16 chocoboname2 = chocoboid >>= 16;
+
+					g_PPetList.at(PetID)->name.clear();
+
+					Query =
+						"SELECT\
+							pet_name.name\
+						FROM pet_name\
+						WHERE pet_name.id = %u OR pet_name.id = %u";
+
+					if ( Sql_Query(SqlHandle, Query, chocoboname1, chocoboname2) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+					{
+						while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+						{
+							if (chocoboname1 != NULL && chocoboname2 != NULL)
+							{
+								g_PPetList.at(PetID)->name.insert(0, Sql_GetData(SqlHandle, 0));
+							}
+						}
+					}
 				}
 			}
 		}
@@ -645,7 +742,7 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 
 		PMaster->addModifier(MOD_AVATAR_PERPETUATION, PerpetuationCost(PetID, PPet->GetMLevel()));
 	}
-	else if(PPet->getPetType()==PETTYPE_JUGPET){
+	else if(PPet->getPetType()==PETTYPE_JUG_PET){
 		PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0f*(240.0f/60.0f)));
 		//TODO: Base off the caps + merits depending on jug type
 		PPet->SetMLevel(PMaster->GetMLevel());

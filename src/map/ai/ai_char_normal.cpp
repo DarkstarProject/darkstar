@@ -2394,7 +2394,7 @@ void CAICharNormal::ActionJobAbilityFinish()
     		charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
     		m_PChar->pushPacket(new CInventoryFinishPacket());
     	}
-    	if(m_PJobAbility->getID() == ABILITY_SIC && m_PChar->PPet != NULL && ((CPetEntity*)m_PChar->PPet)->getPetType() == PETTYPE_JUGPET){//Sic
+    	if(m_PJobAbility->getID() == ABILITY_SIC && m_PChar->PPet != NULL && ((CPetEntity*)m_PChar->PPet)->getPetType() == PETTYPE_JUG_PET){//Sic
     		((CAIPetDummy*)m_PChar->PPet->PBattleAI)->m_MasterCommand = MASTERCOMMAND_SIC;
     		m_PChar->PPet->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
     	}

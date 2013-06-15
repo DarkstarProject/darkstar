@@ -336,8 +336,8 @@ void SmallPacket0x00C(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		{
 			switch (PChar->petZoningInfo.petType)
 			{
-				case PETTYPE_PUPPET:
-				case PETTYPE_JUGPET:
+				case PETTYPE_AUTOMATON:
+				case PETTYPE_JUG_PET:
 				case PETTYPE_WYVERN:
 					petutils::SpawnPet(PChar, PChar->petZoningInfo.petID, true);
 					break;
@@ -2406,8 +2406,8 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		{
 			switch (PPet->getPetType())
 			{
-				case PETTYPE_JUGPET:
-				case PETTYPE_PUPPET:
+				case PETTYPE_JUG_PET:
+				case PETTYPE_AUTOMATON:
 				case PETTYPE_WYVERN:
 					PChar->petZoningInfo.petHP = PPet->health.hp;
 					PChar->petZoningInfo.petTP = PPet->health.tp;
