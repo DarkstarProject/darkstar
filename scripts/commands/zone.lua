@@ -315,8 +315,7 @@ function onTrigger(player,zoneID)
    if (string.byte(zoneID,1) == 0xFD and string.byte(zoneID,2) == 2 and
       string.byte(zoneID,5) ~= nil and string.byte(zoneID,6) == 0xFD) then -- Autotranslate string found
       word = string.format("%X",string.byte(zoneID,5));
-      -- Pad short values
-      if (string.len(word) == 1) then
+      if (string.len(word) == 1) then -- Got a nibble, want a byte.
          word = 0 ..word;
       end
       word = "x"..word;

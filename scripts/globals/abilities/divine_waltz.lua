@@ -46,7 +46,7 @@ function OnUseAbility(player, target, ability)
 	--Applying server mods....
 	cure = cure * CURE_POWER;
 
-	player:addHP(cure);
+	player:restoreHP(cure);
 	player:updateEnmityFromCure(target,cure);
 	
 	return cure;

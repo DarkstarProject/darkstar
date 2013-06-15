@@ -46,7 +46,7 @@ function OnUseAbility(player, target, ability)
 	end
 	
 	--Do it
-	target:addHP(cure);
+	target:restoreHP(cure);
 	player:updateEnmityFromCure(target,cure);
 	
 	return cure;
