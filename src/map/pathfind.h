@@ -49,18 +49,22 @@ class CPathFind
     bool RunTo(position_t point);
 
     // walk normally to a point
-    // used for pets roaming with master
     bool WalkTo(position_t point);
 
     // instantly moves an entity to the point
     // this will make sure you're not in a wall
     bool WarpTo(position_t point);
 
-    // this will push the entity forward or backwards by the given power
-    bool Knock(position_t point, float power);
+    // this will push the entity backwards by the given power
+    bool KnockBack(position_t from, float power);
 
     // moves mob to next point
     void FollowPath();
+
+    // stops pathfinding after moving the given distance
+    // this can be used to prevent mobs from walking
+    // all the way to a point
+    void LimitDistance(float maxDistance);
 
     // tells entity to take one step towards position
     void StepTo(position_t* pos);
@@ -79,7 +83,7 @@ class CPathFind
 
     // clear current path
     void Clear();
-    bool isNavMeshAvailable();
+    bool isNavMeshEnabled();
 
     // checks if mob is at given point
     bool AtPoint(position_t* pos);
@@ -102,6 +106,8 @@ class CPathFind
     int16 m_currentPoint;
     int16 m_pathLength;
     int8 m_mode;
+    float m_distanceMoved;
+    float m_maxDistance;
 };
 
 #endif

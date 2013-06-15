@@ -52,7 +52,7 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
 
   CMobEntity* PMob = (CMobEntity*)m_PTarget;
 
-  if(isNavMeshAvailable())
+  if(isNavMeshEnabled())
   {
 
     // all mobs will default to this distance
@@ -91,7 +91,7 @@ bool CPathFind::RunTo(position_t point)
 
   m_mode = 2;
 
-  if(isNavMeshAvailable())
+  if(isNavMeshEnabled())
   {
     return FindClosestPath(&m_PTarget->loc.p, &point);
   }
@@ -114,7 +114,20 @@ bool CPathFind::WalkTo(position_t point)
   if(m_PTarget->speed == 0) return false;
 
   m_mode = 1;
-  ShowError("WalkTo not implemented\n");
+
+  if(isNavMeshEnabled())
+  {
+    return FindClosestPath(&m_PTarget->loc.p, &point);
+  }
+  else
+  {
+    m_pathLength = 1;
+
+    m_points[0].x = point.x;
+    m_points[0].y = point.y;
+    m_points[0].z = point.z;
+  }
+
   return false;
 }
 
@@ -134,15 +147,22 @@ bool CPathFind::WarpTo(position_t point)
   return true;
 }
 
-bool CPathFind::Knock(position_t from, float power)
+bool CPathFind::KnockBack(position_t from, float power)
 {
   // pushes entity back from the given position
 	return false;
 }
 
-bool CPathFind::isNavMeshAvailable()
+bool CPathFind::isNavMeshEnabled()
 {
   return m_PTarget->loc.zone && m_PTarget->loc.zone->m_navMesh != NULL;
+}
+
+void CPathFind::LimitDistance(float maxLength)
+{
+  if(!IsFollowingPath()) return;
+
+  m_maxDistance = maxLength;
 }
 
 void CPathFind::FollowPath()
@@ -155,7 +175,12 @@ void CPathFind::FollowPath()
   StepTo(targetPoint);
   PetStepTo(targetPoint);
 
-  if(AtPoint(targetPoint))
+  if(m_maxDistance && m_distanceMoved >= m_maxDistance)
+  {
+    // if I have a max distance, check to stop me
+    Clear();
+  }
+  else if(AtPoint(targetPoint))
   {
     m_currentPoint++;
 
@@ -176,15 +201,18 @@ void CPathFind::StepTo(position_t* pos)
   LookAt(*pos);
 
   // if i'm going to overshoot the checkpoint just put me there
-  if(distance(m_PTarget->loc.p, *pos) <= speed)
+  float distanceTo = distance(m_PTarget->loc.p, *pos);
+  if(distanceTo <= speed)
   {
+    m_distanceMoved += distanceTo;
+
     m_PTarget->loc.p.x = pos->x;
     m_PTarget->loc.p.y = pos->y;
     m_PTarget->loc.p.z = pos->z;
   }
   else
   {
-
+    m_distanceMoved += speed;
     // take a step towards target point
     float radians = (1 - (float)m_PTarget->loc.p.rotation / 255) * 6.28318f;
 
@@ -290,4 +318,6 @@ void CPathFind::Clear()
   m_pathLength = 0;
   m_currentPoint = 0;
   m_mode = 0;
+  m_maxDistance = 0;
+  m_distanceMoved = 0;
 }

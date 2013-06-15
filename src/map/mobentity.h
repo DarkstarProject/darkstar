@@ -53,9 +53,8 @@ enum ROAMFLAG
   ROAMFLAG_NONE = 0x0,
   ROAMFLAG_SMALL = 0x01, // move around less than 5
   ROAMFLAG_MEDIUM = 0x02, // move around 10-15
-  ROAMFLAG_LARGE = 0x04, // move around 15-20
+  ROAMFLAG_LARGE = 0x04, // move around 15-25
   ROAMFLAG_WANDER = 0x08, // roam to multiple points in a row
-  ROAMFLAG_SCENT = 0x10, // use scent to pursue players
   ROAMFLAG_SCOUT = 0x20, // move around more often
   ROAMFLAG_GUARD = 0x40 // move less often
 };
@@ -82,6 +81,7 @@ enum BEHAVIOUR
 	BEHAVIOUR_AGGRO_MAGIC		= 0x20,
 	BEHAVIOUR_AGGRO_WEAPONSKILL	= 0x40,
   BEHAVIOUR_AGGRO_JOBABILITY  = 0x80
+  BEHAVIOUR_SCENT  = 0x100
 };
 
 

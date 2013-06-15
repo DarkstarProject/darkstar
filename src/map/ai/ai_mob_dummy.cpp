@@ -144,16 +144,6 @@ void CAIMobDummy::ActionRoaming()
 	{
 		FollowPath();
 	}
-	else if ((m_PMob->m_Type & MOBTYPE_NOTORIOUS) && distance(m_PMob->loc.p,m_PMob->m_SpawnPoint) > 2 && !m_PPathFind->isNavMeshAvailable())
-	{
-
-		if(m_PPathFind->WalkTo(m_PMob->m_SpawnPoint))
-		{
-			FollowPath();
-			m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
-		}
-
-	}
 	else if ((m_Tick - m_LastActionTime) > m_PMob->m_RoamCoolDown)
 	{
 		// lets buff up or move around
@@ -161,7 +151,23 @@ void CAIMobDummy::ActionRoaming()
 		// recover health
 		m_PMob->Rest(0.2f);
 
-		if(m_PSpecialSkill != NULL && TrySpecialSkill())
+		if(MOB_TRAIN && m_PPathFind->isNavMeshEnabled() && distance(m_PMob->loc.p, m_PMob->m_SpawnPoint) > 20
+		 && m_PPathFind->WalkTo(m_PMob->m_SpawnPoint)
+		 || 
+		 (m_PMob->m_Type & MOBTYPE_NOTORIOUS) && distance(m_PMob->loc.p, m_PMob->m_SpawnPoint) > 2 
+		 && m_PPathFind->WalkTo(m_PMob->m_SpawnPoint))
+		{
+			// walk back to spawn if too far away
+			
+			// limit total path to just 10 or 
+			// else we'll move straight back to spawn
+			m_PPathFind->LimitDistance(10.0f);
+
+			FollowPath();
+
+			m_LastActionTime = m_Tick - (float)m_PMob->m_RoamCoolDown / 2.0f;
+		}
+		else if(m_PSpecialSkill != NULL && TrySpecialSkill())
 		{
 			// I spawned a pet
 			m_LastActionTime = m_Tick - rand()%(m_PMob->m_RoamCoolDown + 5000);
@@ -217,7 +223,8 @@ void CAIMobDummy::ActionEngage()
 	//Start luautils::OnMobEngaged
 	if (m_PBattleTarget != NULL)
 	{
-		luautils::OnMobEngaged(m_PMob, m_PBattleTarget);
+
+		m_PPathFind->Clear();
 
 		if(CanCastSpells() && m_firstSpell){
 			// look at target instead
@@ -229,6 +236,8 @@ void CAIMobDummy::ActionEngage()
 				FollowPath();
 			}
 		}
+
+		luautils::OnMobEngaged(m_PMob, m_PBattleTarget);
 	}
 
 	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
@@ -253,7 +262,7 @@ void CAIMobDummy::ActionEngage()
 void CAIMobDummy::ActionDisengage()
 {
 	// Despawn if we're >20 yalms from our spawn point
-	if(m_PMob->m_Type & MOBTYPE_NOTORIOUS)
+	if(m_PMob->m_Type & MOBTYPE_NOTORIOUS || MOB_TRAIN)
 	{
 		m_ActionType = ACTION_ROAMING;
 	}
@@ -270,7 +279,7 @@ void CAIMobDummy::ActionDisengage()
 		m_ActionType = (distance(m_PMob->loc.p,*SpawnPoint) > 20 ? ACTION_DEATH : ACTION_ROAMING);
 	}
 
-	luautils::OnMobDisengage(m_PMob);
+	m_PPathFind->Clear();
 
 	m_LastActionTime = m_Tick;
 
@@ -285,6 +294,8 @@ void CAIMobDummy::ActionDisengage()
 	//if (m_PMob->animationsub == 2) m_PMob->animationsub = 3;
 
     m_firstSpell = true;
+
+	luautils::OnMobDisengage(m_PMob);
 
 	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 
