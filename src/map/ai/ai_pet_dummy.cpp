@@ -53,6 +53,7 @@
 CAIPetDummy::CAIPetDummy(CPetEntity* PPet)
 {
 	m_PPet = PPet;
+	uint8 m_ChaseThrottle = 0;
     m_PTargetFind = new CTargetFind(PPet);
     m_PPathFind = new CPathFind(PPet);
 }
@@ -539,7 +540,7 @@ void CAIPetDummy::ActionRoaming()
 
 	if (currentDistance > PET_ROAM_DISTANCE)
 	{
-		if(currentDistance <= 25.0f && m_PPathFind->RunTo(m_PPet->PMaster->loc.p))
+		if(currentDistance <= 28.0f && m_PPathFind->RunTo(m_PPet->PMaster->loc.p))
 		{
 			m_PPathFind->FollowPath();
 		}

@@ -68,6 +68,7 @@ CAIMobDummy::CAIMobDummy(CMobEntity* PMob)
 	m_WaitTime = 0;
 	m_LastWaitTime = 0;
 	m_skillTP = 0;
+	m_ChaseThrottle = 0;
 }
 
 /************************************************************************
@@ -143,6 +144,9 @@ void CAIMobDummy::ActionRoaming()
 	else if(m_PPathFind->IsFollowingPath())
 	{
 		FollowPath();
+
+		m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
+
 	}
 	else if ((m_Tick - m_LastActionTime) > m_PMob->m_RoamCoolDown)
 	{
@@ -165,6 +169,8 @@ void CAIMobDummy::ActionRoaming()
 
 			FollowPath();
 
+			m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
+
 			m_LastActionTime = m_Tick - (float)m_PMob->m_RoamCoolDown / 2.0f;
 		}
 		else if(m_PSpecialSkill != NULL && TrySpecialSkill())
@@ -184,6 +190,9 @@ void CAIMobDummy::ActionRoaming()
 			if(m_PPathFind->RoamAround(m_PMob->m_SpawnPoint, m_PMob->m_roamFlags))
 			{
 				FollowPath();
+
+				m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
+
 			} else {
 				m_LastActionTime = m_Tick;
 
@@ -232,8 +241,8 @@ void CAIMobDummy::ActionEngage()
 		} else {
 			// run at target
 			if(m_PPathFind->RunTo(m_PBattleTarget->loc.p))
-			{
-				FollowPath();
+			{	
+				m_PPathFind->FollowPath();
 			}
 		}
 
@@ -1263,9 +1272,17 @@ void CAIMobDummy::ActionAttack()
 
 	if(currentDistance > m_PMob->m_ModelSize)
 	{
-		if(m_PPathFind->RunTo(m_PBattleTarget->loc.p))
+		// mobs will find a new path only when enough ticks pass
+		// this is so the server is not overloaded
+		if(!m_PPathFind->IsFollowingPath() || ++m_ChaseThrottle == 4)
 		{
-			FollowPath();
+			m_ChaseThrottle = 0;
+			m_PPathFind->RunTo(m_PBattleTarget->loc.p);
+		}
+
+		if(m_PPathFind->IsFollowingPath())
+		{
+			m_PPathFind->FollowPath();
 
 			// recalculate
 		    currentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
@@ -1775,8 +1792,6 @@ bool CAIMobDummy::TrySpecialSkill()
 void CAIMobDummy::FollowPath()
 {
 	m_PPathFind->FollowPath();
-
-	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
 
 	if(m_ActionType == ACTION_ROAMING)
 	{

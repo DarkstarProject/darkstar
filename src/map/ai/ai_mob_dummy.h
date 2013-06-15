@@ -44,13 +44,6 @@
 *																		*
 ************************************************************************/
 
-enum AOERANGE
-{
-    AOE_PARTY  = 0x01,
-    AOE_ALLIANCE = 0x02,
-    AOE_ZONE   = 0x04
-};
-
 class CMobEntity;
 
 class CAIMobDummy : public CAIGeneral
@@ -70,6 +63,7 @@ protected:
   uint32 m_LastSpecialTime;
   uint32 m_LastWaitTime;
   uint32 m_WaitTime;
+  uint8 m_ChaseThrottle;
   float m_skillTP;
 
 	void ActionRoaming();
