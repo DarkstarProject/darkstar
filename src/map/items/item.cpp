@@ -24,6 +24,7 @@
 #include <string.h>
 
 #include "item.h"
+#include "../../common/utils.h"
 
 /************************************************************************
 *                                                                       *
@@ -50,6 +51,16 @@ CItem::CItem(uint16 id)
 
     m_slotID     = -1;
     m_locationID = -1;
+
+	m_augments[0] = 0;
+	m_augments[1] = 0;
+	m_augments[2] = 0;
+	m_augments[3] = 0;
+	m_augmentvalues[0] = 0;
+	m_augmentvalues[1] = 0;
+	m_augmentvalues[2] = 0;
+	m_augmentvalues[3] = 0;
+	m_trialNumber = 0;
 }
 
 CItem::~CItem()
@@ -362,4 +373,38 @@ void CItem::setSent(bool sent)
 bool CItem::getSent()
 {
 	return m_sent;
+}
+
+/************************************************************************
+*                                                                       *
+*  Augments                                                             *
+*  5 bits for value, 11 bits for augment ID                             *
+*                                                                       *
+************************************************************************/
+
+void CItem::setAugmentType(uint8 augment, uint16 type)
+{
+	m_augments[augment] = type;	
+}
+uint16 CItem::getAugmentType(uint8 augment)
+{
+    return m_augments[augment];
+}
+
+void CItem::setAugmentValue(uint8 augment, uint8 value)
+{
+	m_augmentvalues[augment] = value;
+}
+uint8 CItem::getAugmentValue(uint8 augment)
+{
+	return m_augmentvalues[augment];
+}
+
+void CItem::setTrialNumber(uint16 trial)
+{
+	m_trialNumber = trial;
+}
+uint16 CItem::getTrialNumber()
+{
+	return m_trialNumber;
 }

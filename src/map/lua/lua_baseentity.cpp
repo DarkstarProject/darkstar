@@ -574,11 +574,66 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
 
 	uint16 itemID = (uint16)lua_tointeger(L,1);
 	uint32 quantity = 1;
+	uint16 augment0 = 0; uint8 augment0val = 0;
+	uint16 augment1 = 0; uint8 augment1val = 0;
+	uint16 augment2 = 0; uint8 augment2val = 0;
+	uint16 augment3 = 0; uint8 augment3val = 0;
 
 	if( !lua_isnil(L,2) && lua_isnumber(L,2) )
 		quantity = (uint32)lua_tointeger(L,2);
 
-	uint8 SlotID = charutils::AddItem((CCharEntity*)m_PBaseEntity, LOC_INVENTORY, itemID, quantity);
+	if( !lua_isnil(L,3) && lua_isnumber(L,3) )
+		augment0 = (uint16)lua_tointeger(L,3);
+	if( !lua_isnil(L,4) && lua_isnumber(L,4) )
+		augment0val = (uint8)lua_tointeger(L,4);
+	if( !lua_isnil(L,5) && lua_isnumber(L,5) )
+		augment1 = (uint16)lua_tointeger(L,5);
+	if( !lua_isnil(L,6) && lua_isnumber(L,6) )
+		augment1val = (uint8)lua_tointeger(L,6);
+	if( !lua_isnil(L,7) && lua_isnumber(L,7) )
+		augment2 = (uint16)lua_tointeger(L,7);
+	if( !lua_isnil(L,8) && lua_isnumber(L,8) )
+		augment2val = (uint8)lua_tointeger(L,8);
+	if( !lua_isnil(L,9) && lua_isnumber(L,9) )
+		augment3 = (uint16)lua_tointeger(L,9);
+	if( !lua_isnil(L,10) && lua_isnumber(L,10) )
+		augment3val = (uint8)lua_tointeger(L,10);
+
+
+	uint8 SlotID = 255;
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	uint8 LocationID = LOC_INVENTORY;
+	if (PChar->getStorage(LocationID)->GetFreeSlotsCount() == 0 || quantity == 0)
+    {
+        SlotID = ERROR_SLOTID;
+    }
+
+	CItem* PItem = itemutils::GetItem(itemID);
+
+	if (PItem != NULL)
+	{
+		PItem->setQuantity(quantity);
+		if(augment0 != 0)
+		{
+			PItem->setSubType(ITEM_AUGMENTED);
+			PItem->setAugmentType(0,augment0);
+			PItem->setAugmentValue(0,augment0val);
+			PItem->setAugmentType(1,augment1);
+			PItem->setAugmentValue(1,augment1val);
+			PItem->setAugmentType(2,augment2);
+			PItem->setAugmentValue(2,augment2val);
+			PItem->setAugmentType(3,augment3);
+			PItem->setAugmentValue(3,augment3val);
+		}
+		PItem->setTrialNumber(0);
+
+        SlotID = charutils::AddItem(PChar, LocationID, PItem);
+	}
+	else
+	{
+		ShowWarning(CL_YELLOW"charplugin::AddItem: Item <%i> is not found in a database\n" CL_RESET, itemID);
+		return ERROR_SLOTID;
+	}
 
 	lua_pushboolean( L, (SlotID != 0xFF) );
 	return 1;

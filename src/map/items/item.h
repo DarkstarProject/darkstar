@@ -95,6 +95,9 @@ public:
 	uint8		getSlotID();
 	uint8		getWornItem();
     bool        getSent();
+	uint16      getAugmentType(uint8 augment);
+	uint8       getAugmentValue(uint8 augment);
+	uint16      getTrialNumber();
 
 	void		setID(uint16 );
 	void		setSubID(uint16);
@@ -111,6 +114,9 @@ public:
 	void		setSlotID(uint8 SlotID);
 	void		setWornItem(uint8 mode);
     void        setSent(bool sent);
+	void        setAugmentType(uint8 augment, uint16 type);
+	void        setAugmentValue(uint8 augment, uint8 value);
+	void        setTrialNumber(uint16);
 
 	const int8* getName();
 	void		setName(int8* name);
@@ -141,6 +147,10 @@ private:
 
 	uint8		m_slotID;       // ячейка предмета в хранилище
 	uint8		m_locationID;   // номер хранилища предмета
+
+	uint16      m_augments[4];  // augment types
+	uint8       m_augmentvalues[4]; //augment values
+	uint16      m_trialNumber;  // trial number is 2 bytes, little endian
 
     bool        m_sent;
 
