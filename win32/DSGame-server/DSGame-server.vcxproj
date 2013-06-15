@@ -95,6 +95,14 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\common\blowfish.h" />
     <ClInclude Include="..\..\src\common\cbasetypes.h" />
+    <ClInclude Include="..\..\src\common\detour\DetourAlloc.h" />
+    <ClInclude Include="..\..\src\common\detour\DetourAssert.h" />
+    <ClInclude Include="..\..\src\common\detour\DetourCommon.h" />
+    <ClInclude Include="..\..\src\common\detour\DetourNavMesh.h" />
+    <ClInclude Include="..\..\src\common\detour\DetourNavMeshBuilder.h" />
+    <ClInclude Include="..\..\src\common\detour\DetourNavMeshQuery.h" />
+    <ClInclude Include="..\..\src\common\detour\DetourNode.h" />
+    <ClInclude Include="..\..\src\common\detour\DetourStatus.h" />
     <ClInclude Include="..\..\src\common\kernel.h" />
     <ClInclude Include="..\..\src\common\lua\lua.h" />
     <ClInclude Include="..\..\src\common\lua\lua.hpp" />
@@ -105,6 +113,9 @@
     <ClInclude Include="..\..\src\common\malloc.h" />
     <ClInclude Include="..\..\src\common\md52.h" />
     <ClInclude Include="..\..\src\common\mmo.h" />
+    <ClInclude Include="..\..\src\common\recast\Recast.h" />
+    <ClInclude Include="..\..\src\common\recast\RecastAlloc.h" />
+    <ClInclude Include="..\..\src\common\recast\RecastAssert.h" />
     <ClInclude Include="..\..\src\common\showmsg.h" />
     <ClInclude Include="..\..\src\common\socket.h" />
     <ClInclude Include="..\..\src\common\sql.h" />
@@ -172,6 +183,7 @@
     <ClInclude Include="..\..\src\map\mob_spell_container.h" />
     <ClInclude Include="..\..\src\map\mob_spell_list.h" />
     <ClInclude Include="..\..\src\map\modifier.h" />
+    <ClInclude Include="..\..\src\map\navmesh.h" />
     <ClInclude Include="..\..\src\map\npcentity.h" />
     <ClInclude Include="..\..\src\map\packets\action.h" />
     <ClInclude Include="..\..\src\map\packets\auction_house.h" />
@@ -270,6 +282,7 @@
     <ClInclude Include="..\..\src\map\packets\zone_visited.h" />
     <ClInclude Include="..\..\src\map\packet_system.h" />
     <ClInclude Include="..\..\src\map\party.h" />
+    <ClInclude Include="..\..\src\map\pathfind.h" />
     <ClInclude Include="..\..\src\map\petentity.h" />
     <ClInclude Include="..\..\src\map\petutils.h" />
     <ClInclude Include="..\..\src\map\recast_container.h" />
@@ -278,7 +291,7 @@
     <ClInclude Include="..\..\src\map\status_effect.h" />
     <ClInclude Include="..\..\src\map\status_effect_container.h" />
     <ClInclude Include="..\..\src\map\synthutils.h" />
-    <ClInclude Include="..\..\src\map\targetfinder.h" />
+    <ClInclude Include="..\..\src\map\targetfind.h" />
     <ClInclude Include="..\..\src\map\time_server.h" />
     <ClInclude Include="..\..\src\map\trade_container.h" />
     <ClInclude Include="..\..\src\map\trait.h" />
@@ -293,6 +306,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\common\blowfish.cpp" />
+    <ClCompile Include="..\..\src\common\detour\DetourAlloc.cpp" />
+    <ClCompile Include="..\..\src\common\detour\DetourCommon.cpp" />
+    <ClCompile Include="..\..\src\common\detour\DetourNavMesh.cpp" />
+    <ClCompile Include="..\..\src\common\detour\DetourNavMeshBuilder.cpp" />
+    <ClCompile Include="..\..\src\common\detour\DetourNavMeshQuery.cpp" />
+    <ClCompile Include="..\..\src\common\detour\DetourNode.cpp" />
     <ClCompile Include="..\..\src\common\kernel.cpp" />
     <ClCompile Include="..\..\src\common\malloc.cpp" />
     <ClCompile Include="..\..\src\common\md52.cpp" />
@@ -362,6 +381,7 @@
     <ClCompile Include="..\..\src\map\mob_spell_container.cpp" />
     <ClCompile Include="..\..\src\map\mob_spell_list.cpp" />
     <ClCompile Include="..\..\src\map\modifier.cpp" />
+    <ClCompile Include="..\..\src\map\navmesh.cpp" />
     <ClCompile Include="..\..\src\map\npcentity.cpp" />
     <ClCompile Include="..\..\src\map\packets\action.cpp" />
     <ClCompile Include="..\..\src\map\packets\auction_house.cpp" />
@@ -460,6 +480,7 @@
     <ClCompile Include="..\..\src\map\packets\zone_visited.cpp" />
     <ClCompile Include="..\..\src\map\packet_system.cpp" />
     <ClCompile Include="..\..\src\map\party.cpp" />
+    <ClCompile Include="..\..\src\map\pathfind.cpp" />
     <ClCompile Include="..\..\src\map\petentity.cpp" />
     <ClCompile Include="..\..\src\map\petutils.cpp" />
     <ClCompile Include="..\..\src\map\recast_container.cpp" />
@@ -468,7 +489,7 @@
     <ClCompile Include="..\..\src\map\status_effect.cpp" />
     <ClCompile Include="..\..\src\map\status_effect_container.cpp" />
     <ClCompile Include="..\..\src\map\synthutils.cpp" />
-    <ClCompile Include="..\..\src\map\targetfinder.cpp" />
+    <ClCompile Include="..\..\src\map\targetfind.cpp" />
     <ClCompile Include="..\..\src\map\time_server.cpp" />
     <ClCompile Include="..\..\src\map\trade_container.cpp" />
     <ClCompile Include="..\..\src\map\trait.cpp" />

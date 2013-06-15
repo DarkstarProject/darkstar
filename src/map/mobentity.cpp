@@ -40,6 +40,9 @@ CMobEntity::CMobEntity()
     HPscale = 1.0;
     MPscale = 1.0;
 
+    // default to normal roaming
+    m_roamFlags = ROAMFLAG_NONE;
+
     m_AllowRespawn = 0;
 	m_CallForHelp  = 0;
     m_DespawnTimer = 0;
@@ -71,6 +74,7 @@ CMobEntity::CMobEntity()
     linkRadius = 10;
 
     m_SpecialCoolDown = 0;
+    m_RoamCoolDown = 0;
 
 	memset(& m_SpawnPoint, 0, sizeof(m_SpawnPoint));
 

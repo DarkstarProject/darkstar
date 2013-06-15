@@ -30,7 +30,7 @@
 #include "../zone.h"
 #include "../mobskill.h"
 #include "../petutils.h"
-#include "../targetfinder.h"
+#include "../targetfind.h"
 
 #include "../lua/luautils.h"
 
@@ -53,7 +53,8 @@
 CAIPetDummy::CAIPetDummy(CPetEntity* PPet)
 {
 	m_PPet = PPet;
-    m_PTargetFinder = new CTargetFinder(PPet);
+    m_PTargetFind = new CTargetFind(PPet);
+    m_PPathFind = new CPathFind(PPet);
 }
 
 /************************************************************************
@@ -381,31 +382,31 @@ void CAIPetDummy::ActionAbilityFinish(){
 	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
 	// reset AoE finder
-    m_PTargetFinder->reset();
+    m_PTargetFind->reset();
     m_PPet->m_ActionList.clear();
 
     float distance = m_PMobSkill->getDistance();
 
-    if(m_PTargetFinder->isWithinRange(m_PBattleSubTarget, distance))
+    if(m_PTargetFind->isWithinRange(m_PBattleSubTarget, distance))
     {
 	    if(m_PMobSkill->isAoE())
 	    {
 		    float radius = m_PMobSkill->getDistance();
 
-	    	m_PTargetFinder->findWithinArea(m_PBattleSubTarget, (AOERADIUS)m_PMobSkill->getAoe(), distance);
+	    	m_PTargetFind->findWithinArea(m_PBattleSubTarget, (AOERADIUS)m_PMobSkill->getAoe(), distance);
 	    }
 	    else if(m_PMobSkill->isConal())
 		{
 			float angle = 45.0f;
-			m_PTargetFinder->findWithinCone(m_PBattleSubTarget, distance, angle);
+			m_PTargetFind->findWithinCone(m_PBattleSubTarget, distance, angle);
 		}
 	    else
 	    {
-	    	m_PTargetFinder->findSingleTarget(m_PBattleSubTarget);
+	    	m_PTargetFind->findSingleTarget(m_PBattleSubTarget);
 	    }
 	}
 
-	uint16 totalTargets = m_PTargetFinder->m_targets.size();
+	uint16 totalTargets = m_PTargetFind->m_targets.size();
 	//call the script for each monster hit
 	m_PMobSkill->setTotalTargets(totalTargets);
 	m_PMobSkill->setTP(m_skillTP);
@@ -419,7 +420,7 @@ void CAIPetDummy::ActionAbilityFinish(){
 	Action.flag       = 0;
 
 	uint16 msg = 0;
-	for (std::vector<CBattleEntity*>::iterator it = m_PTargetFinder->m_targets.begin() ; it != m_PTargetFinder->m_targets.end(); ++it)
+	for (std::vector<CBattleEntity*>::iterator it = m_PTargetFind->m_targets.begin() ; it != m_PTargetFind->m_targets.end(); ++it)
 	{
 
 		CBattleEntity* PTarget = *it;
@@ -531,12 +532,21 @@ void CAIPetDummy::ActionRoaming()
 	if(m_PBattleTarget!=NULL){
 		m_ActionType = ACTION_ENGAGE;
 		ActionEngage();
+		return;
 	}
-	else if (distance(m_PPet->loc.p, m_PPet->PMaster->loc.p) > 3)
-	{
-		m_PPet->loc.p.rotation = getangle(m_PPet->loc.p, m_PPet->PMaster->loc.p);
 
-		battleutils::MoveTo(m_PPet, m_PPet->PMaster->loc.p, 2);
+	float currentDistance = distance(m_PPet->loc.p, m_PPet->PMaster->loc.p);
+
+	if (currentDistance > PET_ROAM_DISTANCE)
+	{
+		if(currentDistance <= 28.0f && m_PPathFind->RunTo(m_PPet->PMaster->loc.p))
+		{
+			m_PPathFind->FollowPath();
+		}
+		else
+		{
+			m_PPathFind->WarpTo(m_PPet->PMaster->loc.p);
+		}
 
         m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
 	}
@@ -637,15 +647,26 @@ void CAIPetDummy::ActionAttack()
 		return;
 	}
 
-	m_PPet->loc.p.rotation = getangle(m_PPet->loc.p, m_PBattleTarget->loc.p);
+	m_PPathFind->LookAt(m_PBattleTarget->loc.p);
+
+	float currentDistance = distance(m_PPet->loc.p, m_PBattleTarget->loc.p);
 
 	//go to target if its too far away
-	if (distance(m_PPet->loc.p, m_PBattleTarget->loc.p) > m_PBattleTarget->m_ModelSize)
+	if (currentDistance > m_PBattleTarget->m_ModelSize)
 	{
-		battleutils::MoveTo(m_PPet, m_PBattleTarget->loc.p, 2);
-        m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+		if(m_PPathFind->RunTo(m_PBattleTarget->loc.p))
+		{
+			m_PPathFind->FollowPath();
+
+	        m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+
+	        // recalculate
+			currentDistance = distance(m_PPet->loc.p, m_PBattleTarget->loc.p);
+		}
 	}
-	else{
+
+	if(currentDistance <= m_PBattleTarget->m_ModelSize)
+	{
 		//try to attack
 		if((m_Tick - m_LastActionTime) > m_PPet->m_Weapons[SLOT_MAIN]->getDelay()){
 			if (battleutils::IsParalised(m_PPet))
@@ -731,14 +752,13 @@ void CAIPetDummy::ActionAttack()
 				}
 			}
 			m_LastActionTime = m_Tick;
-			
+
             // Update the targets attacker level..
             CMobEntity* Monster = (CMobEntity*)m_PBattleTarget;
             if (Monster->m_HiPCLvl < ((CCharEntity*)m_PPet->PMaster)->GetMLevel())
                 Monster->m_HiPCLvl = ((CCharEntity*)m_PPet->PMaster)->GetMLevel();
 		}
 	}
-
 }
 
 void CAIPetDummy::ActionSleep()

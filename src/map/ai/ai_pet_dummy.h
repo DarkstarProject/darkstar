@@ -34,6 +34,8 @@
 *																		*
 ************************************************************************/
 
+#define PET_ROAM_DISTANCE 3.0f
+
 class CPetEntity;
 
 class CAIPetDummy : public CAIGeneral

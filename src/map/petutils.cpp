@@ -676,7 +676,7 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
     PPet->loc = PMaster->loc;
 
     // spawn me randomly around master
-	PPet->loc.p = nearPosition(PMaster->loc.p, 2.1f, M_PI);
+	PPet->loc.p = nearPosition(PMaster->loc.p, PET_ROAM_DISTANCE, M_PI);
 
 	PPet->look = g_PPetList.at(PetID)->look;
 	PPet->name = g_PPetList.at(PetID)->name;

@@ -34,19 +34,15 @@
 
 #define MOB_SPELL_MAX_RANGE 26.8f
 
+// this will make mobs walk back to spawn point instead of despawning
+#define MOB_TRAIN false
+
 /************************************************************************
 *																		*
 *  Первая версия поведения монстров, базовая. Монстры наносят только	*
 *  физический урон														*
 *																		*
 ************************************************************************/
-
-enum AOERANGE
-{
-    AOE_PARTY  = 0x01,
-    AOE_ALLIANCE = 0x02,
-    AOE_ZONE   = 0x04
-};
 
 class CMobEntity;
 
@@ -67,6 +63,7 @@ protected:
   uint32 m_LastSpecialTime;
   uint32 m_LastWaitTime;
   uint32 m_WaitTime;
+  uint8 m_ChaseThrottle;
   float m_skillTP;
 
 	void ActionRoaming();
@@ -104,6 +101,8 @@ protected:
   void CastSpell(uint16 spellId); // makes the mob cast a spell
   void Wait(uint32 waitTime);
   bool CanLink(CMobEntity* PTarget); // checks if the target can link
+
+  void FollowPath(); // continues moving
 
 private:
 

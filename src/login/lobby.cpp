@@ -108,6 +108,7 @@ int32 lobbydata_parse(int32 fd)
 	if( RFIFOREST(fd) >= 1 )
 	{
 		unsigned char *buff = session[fd]->rdata;
+		if (RBUFB(buff,0) == 0x0d) ShowDebug(CL_RED"Posible Crash Attempt from IP: "CL_WHITE"<%s>\n"CL_RESET,ip2str(session[fd]->client_addr,NULL),NULL);
 		ShowDebug("lobbydata_parse:Incoming Packet:" CL_WHITE"<%x>" CL_RESET" from ip:<%s>\n",RBUFB(buff,0),ip2str(sd->client_addr,NULL));
 
 		int32 code = RBUFB(buff,0);
@@ -704,6 +705,7 @@ int32 lobby_createchar_save(uint32 accid, uint32 charid, char_mini* createchar)
 
 	if( Sql_Query(SqlHandle,Query,charid,accid,createchar->m_name,createchar->m_zone,createchar->m_nation) == SQL_ERROR )
 	{
+		ShowDebug(CL_WHITE"lobby_ccsave" CL_RESET": char<" CL_WHITE"%s" CL_RESET">, accid: %u, charid: %u\n",createchar->m_name, accid, charid);
 		return -1;
 	}
 
@@ -711,6 +713,8 @@ int32 lobby_createchar_save(uint32 accid, uint32 charid, char_mini* createchar)
 
 	if( Sql_Query(SqlHandle,Query,charid,createchar->m_look.face,createchar->m_look.race,createchar->m_look.size) == SQL_ERROR )
 	{
+		ShowDebug(CL_WHITE"lobby_cLook" CL_RESET": char<" CL_WHITE"%s" CL_RESET">, charid: %u\n",createchar->m_name, charid);
+		
 		return -1;
 	}
 
@@ -718,6 +722,8 @@ int32 lobby_createchar_save(uint32 accid, uint32 charid, char_mini* createchar)
 	
 	if( Sql_Query(SqlHandle, Query, charid, createchar->m_mjob) == SQL_ERROR )
 	{
+		ShowDebug(CL_WHITE"lobby_cStats" CL_RESET": charid: %u\n",charid);
+		
 		return -1;
 	}
 

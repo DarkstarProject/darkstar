@@ -21,13 +21,93 @@
 ===========================================================================
 */
 
+/*
+The PathFind class provides an interface for getting an entity to a destination. It will find a path from a navmesh and carry it out.
+*/
 #ifndef _PATHFIND_H
 #define _PATHFIND_H
+
+#include "../common/showmsg.h"
+#include "../common/mmo.h"
+
+class CBattleEntity;
+
+// no path can be longer than this
+#define MAX_PATH_POINTS 15
 
 class CPathFind
 {
   public:
-    CPathFind();
+    CPathFind(CBattleEntity* PTarget);
+    ~CPathFind();
+
+    // move to a random point around given point
+    bool RoamAround(position_t point, uint8 roamFlags);
+
+    // run twice as fast to point
+    // used for chasing
+    bool RunTo(position_t point);
+
+    // walk normally to a point
+    bool WalkTo(position_t point);
+
+    // instantly moves an entity to the point
+    // this will make sure you're not in a wall
+    bool WarpTo(position_t point);
+
+    // this will push the entity backwards by the given power
+    bool Knockback(position_t from, float power);
+
+    // moves mob to next point
+    void FollowPath();
+
+    // stops pathfinding after moving the given distance
+    // this can be used to prevent mobs from walking
+    // all the way to a point
+    void LimitDistance(float maxDistance);
+
+    // tells entity to take one step towards position
+    void StepTo(position_t* pos);
+
+    // moves the targets pet near the given point
+    void PetStepTo(position_t* pos);
+
+    // checks if mob is currently following a path
+    bool IsFollowingPath();
+
+    // calculate speed of mob with mode, mod_speed, etc
+    float GetRealSpeed();
+
+    // look at the given point
+    void LookAt(position_t point);
+
+    // clear current path
+    void Clear();
+    bool isNavMeshEnabled();
+
+    // checks if mob is at given point
+    bool AtPoint(position_t* pos);
+
+  private:
+
+    // find a valid path using polys
+    bool FindPath(position_t* start, position_t* end);
+
+    // cut some corners and find the fastest path
+    // this will make the mob run down cliffs
+    bool FindClosestPath(position_t* start, position_t* end);
+
+    // finds a random path around the given point
+    bool FindRandomPath(position_t* start, float maxRadius);
+
+    CBattleEntity* m_PTarget;
+    position_t m_points[MAX_PATH_POINTS];
+
+    int16 m_currentPoint;
+    int16 m_pathLength;
+    int8 m_mode;
+    float m_distanceMoved;
+    float m_maxDistance;
 };
 
 #endif

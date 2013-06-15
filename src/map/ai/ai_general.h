@@ -25,6 +25,8 @@
 #define _CAIGENERAL_H
 
 #include "../../common/cbasetypes.h"
+#include "../targetfind.h"
+#include "../pathfind.h"
 
 enum MASTERCOMMAND //master as in pet's master
 {
@@ -105,6 +107,7 @@ public:
 	bool			GetAutoAttackEnabled();
 	bool			GetMagicCastingEnabled();
     bool            GetMobAbilityEnabled();
+    bool            MoveTo(position_t* pos); // move entity to position. Doesn't pathfind
 
     uint32          GetBattleTime();
 
@@ -127,6 +130,7 @@ public:
     CAIGeneral();
 	~CAIGeneral();
 
+    CPathFind*       m_PPathFind; // finds paths
 private:
 
     //uint32			m_StartBattle;			// Battle start time
@@ -152,7 +156,7 @@ protected:
 	CWeaponSkill*   m_PWeaponSkill;
 	CAbility*		m_PJobAbility;
 	CMobSkill*		m_PMobSkill;
-    CTargetFinder*  m_PTargetFinder; // finds targets for AoEs
+    CTargetFind*  m_PTargetFind; // finds targets for AoEs
 };
 
 #endif

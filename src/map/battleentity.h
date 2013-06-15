@@ -341,7 +341,6 @@ enum TARGETTYPE
 	TARGET_PLAYER_DEAD		= 0x20,
 	TARGET_NPC				= 0x40		// скорее всего подразумевается mob, выглядящий как npc и воюющий на стороне персонажа
 };
-
 enum SKILLCHAIN_ELEMENT
 {
     SC_NONE          =  0, // Lv0 None

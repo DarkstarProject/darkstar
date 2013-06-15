@@ -119,12 +119,12 @@ Rotations of entities are saved in uint8s, which can only hold up to a value of 
 */
 float rotationToRadian(uint8 rotation)
 {
-	return (((float)rotation) / 256) * 2 * M_PI;
+	return (((float)rotation) / 255) * 2 * M_PI;
 }
 
 uint8 radianToRotation(float radian)
 {
-	return (radian / (2 * M_PI)) * 256;
+	return (radian / (2 * M_PI)) * 255;
 }
 
 
@@ -447,7 +447,7 @@ int8* EncodeStringLinkshell(int8* signature, int8* target)
     leftover = 8 - leftover;
     leftover = (leftover == 8 || leftover == 2 ? 6 : leftover);
     packBitsLE(encodedSignature,0xFF,6*chars, leftover);
-    
+
     return strncpy(target, (int8*)encodedSignature, sizeof encodedSignature);
 }
 
@@ -505,7 +505,7 @@ int8* EncodeStringSignature(int8* signature, int8* target)
     //leftover = 8 - leftover;
     //leftover = (leftover == 8 ? 6 : leftover);
     //packBitsLE(encodedSignature,0xFF,6*chars, leftover);
-    
+
     return strncpy(target, (int8*)encodedSignature, sizeof encodedSignature);
 }
 
@@ -528,4 +528,9 @@ int8* DecodeStringSignature(int8* signature, int8* target)
         decodedSignature[currChar] = tempChar;
     }
     return strncpy(target, (int8*)decodedSignature, sizeof decodedSignature);
+}
+
+float RandomNumber()
+{
+  return ((double) rand() / (RAND_MAX));
 }

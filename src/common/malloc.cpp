@@ -223,7 +223,7 @@ void* _mmalloc(size_t size, const char *file, int line, const char *func )
 		ShowError("_mmalloc: %d\n", size);
 		return 0;
 	}
-	
+
 	if(size == 0) {
 		return NULL;
 	}
@@ -367,7 +367,7 @@ void _mfree(void *ptr, const char *file, int line, const char *func )
 	struct unit_head *head;
 
 	if (ptr == NULL)
-		return; 
+		return;
 
 	head = (struct unit_head *)((char *)ptr - sizeof(struct unit_head) + sizeof(long));
 	if(head->size == 0) {

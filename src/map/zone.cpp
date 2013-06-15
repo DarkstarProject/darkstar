@@ -103,22 +103,27 @@ int32 zone_server_region(uint32 tick, CTaskMgr::CTask* PTask)
 
 CZone::CZone(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID)
 {
-	ZoneTimer = NULL;
+  ZoneTimer = NULL;
 
-	m_zoneID = ZoneID;
-    m_regionID = RegionID;
-    m_continentID = ContinentID;
-    m_Transport = 0;
-	m_TreasurePool = 0;
-	m_RegionCheckTime = 0;
-	m_InstanceHandler = NULL;
-	m_Weather = WEATHER_NONE;
-    m_WeatherChangeTime = 0;
-    m_IsWeatherStatic = 0;
+  m_zoneID = ZoneID;
+  m_regionID = RegionID;
+  m_continentID = ContinentID;
+  m_Transport = 0;
+  m_TreasurePool = 0;
+  m_RegionCheckTime = 0;
+  m_InstanceHandler = NULL;
+  m_Weather = WEATHER_NONE;
+  m_WeatherChangeTime = 0;
+  m_IsWeatherStatic = 0;
+  m_useNavMesh = false;
+  m_navMesh = NULL;
 
-	LoadZoneLines();
-    LoadZoneWeather();
-	LoadZoneSettings();
+  // settings should load first
+  LoadZoneSettings();
+
+  LoadZoneLines();
+  LoadZoneWeather();
+  LoadNavMesh();
 }
 
 /************************************************************************
@@ -334,6 +339,7 @@ void CZone::LoadZoneSettings()
           "zone.battlemulti,"
           "zone.tax,"
           "zone.misc,"
+          "zone.navmesh,"
           "bcnm.name "
         "FROM zone_settings AS zone "
         "LEFT JOIN bcnm_info AS bcnm "
@@ -347,22 +353,23 @@ void CZone::LoadZoneSettings()
     {
         m_zoneName.insert(0, Sql_GetData(SqlHandle,0));
 
-		m_zoneIP   = (uint32)Sql_GetUIntData(SqlHandle,1);
-		m_zonePort = (uint16)Sql_GetUIntData(SqlHandle,2);
-		m_zoneMusic.m_song   = (uint8)Sql_GetUIntData(SqlHandle,3);		// background music
-		m_zoneMusic.m_bSongS = (uint8)Sql_GetUIntData(SqlHandle,4);		// solo battle music
-		m_zoneMusic.m_bSongM = (uint8)Sql_GetUIntData(SqlHandle,5);		// party battle music
-		m_tax = (uint16)(Sql_GetFloatData(SqlHandle,6) * 100);			// tax for bazaar
-		m_miscMask = (uint16)Sql_GetUIntData(SqlHandle,7);
+    m_zoneIP   = (uint32)Sql_GetUIntData(SqlHandle,1);
+    m_zonePort = (uint16)Sql_GetUIntData(SqlHandle,2);
+    m_zoneMusic.m_song   = (uint8)Sql_GetUIntData(SqlHandle,3);   // background music
+    m_zoneMusic.m_bSongS = (uint8)Sql_GetUIntData(SqlHandle,4);   // solo battle music
+    m_zoneMusic.m_bSongM = (uint8)Sql_GetUIntData(SqlHandle,5);   // party battle music
+    m_tax = (uint16)(Sql_GetFloatData(SqlHandle,6) * 100);      // tax for bazaar
+    m_miscMask = (uint16)Sql_GetUIntData(SqlHandle,7);
+    m_useNavMesh = (bool)Sql_GetIntData(SqlHandle,8);
 
-        if (Sql_GetData(SqlHandle,8) != NULL) // сейчас нельзя использовать bcnmid, т.к. они начинаются с нуля
+        if (Sql_GetData(SqlHandle,9) != NULL) // сейчас нельзя использовать bcnmid, т.к. они начинаются с нуля
         {
             m_InstanceHandler = new CInstanceHandler(m_zoneID);
-	    }
+      }
         if (m_miscMask & MISC_TREASURE)
-		{
+    {
             m_TreasurePool = new CTreasurePool(TREASUREPOOL_ZONE);
-		}
+    }
     }
     else
     {
@@ -370,16 +377,47 @@ void CZone::LoadZoneSettings()
     }
 }
 
+void CZone::LoadNavMesh()
+{
+
+  // disable / enable maps navmesh in zone_settings.sql
+  if(!m_useNavMesh) return;
+
+  if(m_navMesh == NULL){
+    m_navMesh = new CNavMesh();
+  }
+
+  int8 file[255];
+  memset(file,0,sizeof(file));
+  snprintf(file, sizeof(file), "scripts/zones/%s/NavMesh.nav", GetName());
+
+  if(m_navMesh->load(file))
+  {
+    ShowDebug("CZone::LoadNavMesh Navmesh loaded for (%s)\n", GetName());
+
+    // lets verify it can find proper paths
+    if(!m_navMesh->test((int16)GetID()))
+    {
+      // test failed, don't use it
+      m_useNavMesh = false;
+    }
+
+  } else {
+    m_useNavMesh = false;
+  }
+
+}
+
 /************************************************************************
-*																		*
-*  Добавляем в зону MOB													*
-*																		*
+*                                   *
+*  Добавляем в зону MOB                         *
+*                                   *
 ************************************************************************/
 
 void CZone::InsertMOB(CBaseEntity* PMob)
 {
-	if ((PMob != NULL) && (PMob->objtype == TYPE_MOB))
-	{
+  if ((PMob != NULL) && (PMob->objtype == TYPE_MOB))
+  {
     PMob->loc.zone = this;
 
     FindPartyForMob(PMob);

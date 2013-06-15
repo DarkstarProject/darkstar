@@ -26,7 +26,8 @@
 #include "../ability.h"
 #include "../mobskill.h"
 #include "../battleutils.h"
-#include "../targetfinder.h"
+#include "../targetfind.h"
+#include "../pathfind.h"
 
 #include "ai_general.h"
 
@@ -39,13 +40,15 @@
 
 CAIGeneral::CAIGeneral()
 {
-    m_PTargetFinder = NULL;
+    m_PTargetFind = NULL;
+    m_PPathFind = NULL;
 	Reset();
 }
 
 CAIGeneral::~CAIGeneral()
 {
-    delete m_PTargetFinder;
+    delete m_PTargetFind;
+    delete m_PPathFind;
 }
 
 /************************************************************************
@@ -413,4 +416,13 @@ void CAIGeneral::SetMagicCastingEnabled(bool enabled)
 void CAIGeneral::SetMobAbilityEnabled(bool enabled)
 {
 	m_MobAbilityEnabled = enabled;
+}
+
+bool CAIGeneral::MoveTo(position_t* pos)
+{
+    if(m_PPathFind != NULL && m_ActionType == ACTION_ROAMING){
+        m_PPathFind->StepTo(pos);
+        return true;
+    }
+    return false;
 }

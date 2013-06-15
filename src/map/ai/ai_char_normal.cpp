@@ -36,7 +36,7 @@
 #include "../vana_time.h"
 #include "../weapon_skill.h"
 #include "../zone.h"
-#include "../targetfinder.h"
+#include "../targetfind.h"
 
 #include "../lua/luautils.h"
 
@@ -68,7 +68,7 @@
 CAICharNormal::CAICharNormal(CCharEntity* PChar)
 {
 	m_PChar = PChar;
-    m_PTargetFinder = new CTargetFinder(PChar);
+    m_PTargetFind = new CTargetFind(PChar);
 	m_AttackMessageTime = 0;
     m_LastCoolDown = 0;
 }
@@ -1368,7 +1368,7 @@ void CAICharNormal::ActionMagicCasting()
 			ActionMagicInterrupt();
 			return;
 		}
-		else if (battleutils::IsIntimidated(m_PChar, m_PBattleSubTarget))
+		else if (!(m_PSpell->getValidTarget() & TARGET_SELF) && battleutils::IsIntimidated(m_PChar, m_PBattleSubTarget))
 		{
 		    m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,MSGBASIC_IS_INTIMIDATED));
 		    m_ActionType = ACTION_MAGIC_INTERRUPT;
@@ -1470,11 +1470,11 @@ void CAICharNormal::ActionMagicFinish()
         m_PChar->PRecastContainer->Add(RECAST_MAGIC, m_PSpell->getID(), 2000);
 	}
 
-    m_PTargetFinder->reset();
+    m_PTargetFind->reset();
     m_PChar->m_ActionList.clear();
 
     // can this spell target the dead?
-    m_PTargetFinder->m_targetDead = (m_PSpell->getValidTarget() & TARGET_PLAYER_DEAD);
+    m_PTargetFind->m_targetDead = (m_PSpell->getValidTarget() & TARGET_PLAYER_DEAD);
 
     uint8 aoeType = battleutils::GetSpellAoEType(m_PChar, m_PSpell);
 
@@ -1482,21 +1482,21 @@ void CAICharNormal::ActionMagicFinish()
     {
         float radius = spell::GetSpellRadius(m_PSpell, m_PChar);
 
-        m_PTargetFinder->findWithinArea(m_PBattleSubTarget, AOERADIUS_TARGET, radius);
+        m_PTargetFind->findWithinArea(m_PBattleSubTarget, AOERADIUS_TARGET, radius);
     }
     else if (aoeType == SPELLAOE_CONAL)
     {
         //TODO: actual angle calculation
         float radius = spell::GetSpellRadius(m_PSpell, m_PChar);
 
-        m_PTargetFinder->findWithinCone(m_PBattleSubTarget, radius, 45);
+        m_PTargetFind->findWithinCone(m_PBattleSubTarget, radius, 45);
     }
     else
     {
-        m_PTargetFinder->findSingleTarget(m_PBattleSubTarget);
+        m_PTargetFind->findSingleTarget(m_PBattleSubTarget);
     }
 
-    uint16 totalTargets = m_PTargetFinder->m_targets.size();
+    uint16 totalTargets = m_PTargetFind->m_targets.size();
 
     m_PSpell->setTotalTargets(totalTargets);
 
@@ -1512,7 +1512,7 @@ void CAICharNormal::ActionMagicFinish()
     uint16 msg = 0;
     int16 ce = 0;
     int16 ve = 0;
-    for (std::vector<CBattleEntity*>::iterator it = m_PTargetFinder->m_targets.begin() ; it != m_PTargetFinder->m_targets.end(); ++it)
+    for (std::vector<CBattleEntity*>::iterator it = m_PTargetFind->m_targets.begin() ; it != m_PTargetFind->m_targets.end(); ++it)
     {
         CBattleEntity* PTarget = *it;
 
@@ -2106,17 +2106,17 @@ void CAICharNormal::ActionJobAbilityFinish()
             Action.messageID  = m_PJobAbility->getMessage();
             Action.flag       = 0;
 
-            m_PTargetFinder->reset();
+            m_PTargetFind->reset();
             m_PChar->m_ActionList.clear();
 
             float distance = m_PJobAbility->getRange();
 
-            m_PTargetFinder->findWithinArea(m_PChar, AOERADIUS_ATTACKER, distance);
+            m_PTargetFind->findWithinArea(m_PChar, AOERADIUS_ATTACKER, distance);
 
-            uint16 actionsLength = m_PTargetFinder->m_targets.size();
+            uint16 actionsLength = m_PTargetFind->m_targets.size();
 
             uint16 msg = 0;
-            for (std::vector<CBattleEntity*>::iterator it = m_PTargetFinder->m_targets.begin() ; it != m_PTargetFinder->m_targets.end(); ++it)
+            for (std::vector<CBattleEntity*>::iterator it = m_PTargetFind->m_targets.begin() ; it != m_PTargetFind->m_targets.end(); ++it)
             {
                 CCharEntity* PTarget = (CCharEntity*)*it;
 
@@ -2258,7 +2258,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 			 * deal damage points and defeats a monster while Blade of Darkness and/or
 			 * Blade of Death quests are active.
 			 */
-			
+
 			// handle jump abilities---
 
     		// Jump
@@ -2735,7 +2735,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	Action.param = damage;
 	Action.flag = 0;
 
-    m_PTargetFinder->reset();
+    m_PTargetFind->reset();
     m_PChar->m_ActionList.clear();
 
     // TODO: need better way to handle misses
@@ -2839,13 +2839,13 @@ void CAICharNormal::ActionWeaponSkillFinish()
     {
         float radius = 10;
 
-        m_PTargetFinder->reset();
-        m_PTargetFinder->findWithinArea(m_PBattleSubTarget, AOERADIUS_TARGET, radius);
+        m_PTargetFind->reset();
+        m_PTargetFind->findWithinArea(m_PBattleSubTarget, AOERADIUS_TARGET, radius);
 
-        uint16 actionsLength = m_PTargetFinder->m_targets.size();
+        uint16 actionsLength = m_PTargetFind->m_targets.size();
 
         uint16 msg = 0;
-        for (std::vector<CBattleEntity*>::iterator it = m_PTargetFinder->m_targets.begin() ; it != m_PTargetFinder->m_targets.end(); ++it)
+        for (std::vector<CBattleEntity*>::iterator it = m_PTargetFind->m_targets.begin() ; it != m_PTargetFind->m_targets.end(); ++it)
         {
             CBattleEntity* PTarget = *it;
 
