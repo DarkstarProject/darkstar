@@ -109,6 +109,7 @@ CCharEntity::CCharEntity()
 	MeritMode = false;
 
 	m_isWeaponSkillKill = false;
+	m_isMijinGakure = false;
 
     BazaarID.clean();
     TradePending.clean();
@@ -317,4 +318,14 @@ bool CCharEntity::getWeaponSkillKill()
 void CCharEntity::setWeaponSkillKill(bool isWeaponSkillKill)
 {
 	m_isWeaponSkillKill = isWeaponSkillKill;
+}
+
+bool CCharEntity::getMijinGakure()
+{
+	return m_isMijinGakure;
+}
+
+void CCharEntity::setMijinGakure(bool isMijinGakure)
+{
+	m_isMijinGakure = isMijinGakure;
 }

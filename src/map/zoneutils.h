@@ -46,8 +46,8 @@ namespace zoneutils
     void UpdateWeather();                                                           // обновляем погоду в зонах
 	void TOTDCharnge(TIMETYPE TOTD);                                                // реакция мира на смену времени суток
 
-    REGIONTYPE    GetCurrentRegion(uint8 ZoneID);
-    CONTINENTTYPE GetCurrentContinent(uint8 ZoneID);
+    REGIONTYPE    GetCurrentRegion(uint16 ZoneID);
+    CONTINENTTYPE GetCurrentContinent(uint16 ZoneID);
 
 	CZone*		 GetZone(uint16 ZoneID);							                    // получаем указатель на зону
 	CNpcEntity*	 GetTrigger(uint16 TargID, uint16 ZoneID);		                    // триггер для старта событий (как побочный эффект - вероятность появления прозрачного орка)

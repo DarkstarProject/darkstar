@@ -86,7 +86,7 @@ namespace luautils
 
     int32 GetTextIDVariable(uint16 ZoneID, const char* variable);               // загружаем значение переменной TextID указанной зоны
 
-	int32 OnServerStart();														// triggers when game server starts up
+	int32 OnServerStart();													// triggers when game server starts up
 
 	int32 OnGameDayAutomatisation();											// Automatic action of NPC every game day
 	int32 OnGameHourAutomatisation();											// Automatic action of NPC every game hour
@@ -105,6 +105,9 @@ namespace luautils
 	int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result);		// triggered when cutscene/event is completed
 	int32 OnTrade(CCharEntity* PChar, CBaseEntity* PNpc);						// triggers when a trade completes with an npc
 
+	int32 OnNpcInitialize(CBaseEntity* PNpc);						// triggers when a patrol npc gets initialize
+	int32 OnNpcPathFinish(CBaseEntity* PNpc);						// triggers when a patrol npc finishes its pathfind
+
 	int32 OnEffectGain(CBattleEntity* PEntity, CStatusEffect* StatusEffect);	// triggers when an effect is applied to pc/npc
 	int32 OnEffectTick(CBattleEntity* PEntity, CStatusEffect* StatusEffect);	// triggers when effect tick timer has been reached
 	int32 OnEffectLose(CBattleEntity* PEntity, CStatusEffect* StatusEffect);	// triggers when effect has been lost
@@ -116,7 +119,7 @@ namespace luautils
 	int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget);			// triggered when casting a spell
 	int32 OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget);// triggered when monster wants to use a spell on target
 
-    int32 OnMobInitialise(CBaseEntity* PMob);									// Used for passive trait
+    int32 OnMobInitialize(CBaseEntity* PMob);									// Used for passive trait
 	int32 OnMobSpawn(CBaseEntity* PMob);										// triggers on mob spawn
 	int32 OnMobRoam(CBaseEntity* PMob);
 	int32 OnMobEngaged(CBaseEntity* PMob, CBaseEntity* PTarget);				// triggers on mob engaging a target

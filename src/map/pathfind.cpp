@@ -279,7 +279,7 @@ bool CPathFind::FindClosestPath(position_t* start, position_t* end)
 
   m_pathLength = m_PTarget->loc.zone->m_navMesh->findPath(*start, *end, m_points, MAX_PATH_POINTS);
 
-  if(m_pathLength <= 0 || m_pathLength >= 6)
+  if(m_pathLength <= 0 || m_pathLength >= 7)
   {
     // f you, too long
     // this is a trick to make mobs go up / down impassible terrain

@@ -751,25 +751,7 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 	else if(PPet->getPetType()==PETTYPE_WYVERN){
 		//set the wyvern job based on master's SJ
 		if(PMaster->GetSJob()!=NULL){
-			// I don't think this is correct
-			switch(PMaster->GetSJob()){
-				//defensive
-			case JOB_WHM:
-			case JOB_BLM:
-			case JOB_RDM:
-			case JOB_BLU:
-			case JOB_SMN:
-			case JOB_SCH:
-				PPet->SetMJob(JOB_WHM);
-				break;
-				//multipurpose
-			case JOB_BRD:
-			case JOB_DRK:
-			case JOB_PLD:
-			case JOB_NIN:
-				PPet->SetMJob(JOB_RDM);
-				break;
-			}
+			PPet->SetSJob(PMaster->GetSJob());
 		}
 		PPet->SetMJob(JOB_DRG);
 		PPet->SetMLevel(PMaster->GetMLevel());

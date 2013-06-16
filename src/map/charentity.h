@@ -258,6 +258,8 @@ public:
 
 	bool			getWeaponSkillKill();
 	void			setWeaponSkillKill(bool isWeaponSkillKill);
+	bool			getMijinGakure();
+	void			setMijinGakure(bool isMijinGakure);
 
 	bool			  isWeaponUnlocked(uint16 indexid);					// return if weapon is broken
 	bool			  addWsPoints(uint8 points, uint16 WeaponIndex);	// return if weapon is broken
@@ -283,6 +285,7 @@ private:
 	CItemContainer*	  m_Mogsack;
 
 	bool			m_isWeaponSkillKill;
+	bool			m_isMijinGakure;
 
 	PacketList_t      PacketList;					// в этом списке хранятся все пакеты, предназначенные для отправки персонажу
 };

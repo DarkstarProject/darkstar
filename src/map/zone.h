@@ -504,6 +504,7 @@ public:
 	void			InsertMOB(CBaseEntity* PMob);									// добавляем в зону mob
 	void			InsertPET(CBaseEntity* PPet);									// добавляем в зону pet
 	void			DeletePET(CBaseEntity* PPet);       	                        // derefs the pet's ID from this zone
+	void			InsertPatrol(CBaseEntity* PNpc);								
 
     void            FindPartyForMob(CBaseEntity* PEntity);                          // ищем группу для монстра
     void            TransportDepart(CBaseEntity* PTransportNPC);                    // транспотр отправляется, необходимо собрать пассажиров
@@ -551,6 +552,7 @@ private:
 	EntityList_t	m_petList;				// список всех PETs в зоне
 	EntityList_t	m_npcList;				// список всех NPCs в зоне
 	EntityList_t	m_charList;				// список всех PCs  в зоне
+	EntityList_t    m_patrolList;			// list of patroling npcs
 
 	regionList_t	m_regionList;			// список активных областей зоны
 	zoneLineList_t	m_zoneLineList;			// список всех доступных zonelines для зоны

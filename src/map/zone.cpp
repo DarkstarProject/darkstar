@@ -1475,6 +1475,15 @@ void CZone::ZoneServer(uint32 tick)
 		PMob->StatusEffectContainer->CheckRegen(tick);
 	}
 
+  for (EntityList_t::const_iterator it = m_npcList.begin(); it != m_npcList.end() ; ++it)
+  {
+    CNpcEntity* PNpc = (CNpcEntity*)it->second;
+
+    if(PNpc->PBattleAI != NULL)
+    {
+      PNpc->PBattleAI->CheckCurrentAction(tick);
+    }
+  }
 
 	EntityList_t::const_iterator pit = m_petList.begin();
 	while(pit != m_petList.end())

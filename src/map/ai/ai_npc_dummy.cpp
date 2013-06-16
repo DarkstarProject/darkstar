@@ -21,43 +21,37 @@
 ===========================================================================
 */
 
-#ifndef _CAINPCPATROL_H
-#define _CAINPCPATROL_H
+#include "../npcentity.h"
+#include "ai_npc_dummy.h"
 
+#include "../pathfind.h"
 #include "../../common/showmsg.h"
 
-#include "ai_general.h"
-
-class CNpcEntity;
-
-struct patrol_t
+CAINpcDummy::CAINpcDummy(CNpcEntity* PNpc)
 {
-  position_t p;
-  bool look; // look at position instead of moving
-  uint16 wait; // wait time after patrol action
-  uint8 msgId; // message to output
-};
+  m_PNpc = PNpc;
+  m_PPathFind = new CPathFind(PNpc);
+}
 
-class CAINpcPatrol : public CAIGeneral
+void CAINpcDummy::CheckCurrentAction(uint32 tick)
 {
-public:
+  m_Tick = tick;
 
-  virtual void CheckCurrentAction(uint32 tick);
+  switch(m_ActionType)
+  {
+    case ACTION_NONE: break;
+    case ACTION_ROAMING:  ActionRoaming();  break;
+    case ACTION_WAIT: ActionWait(); break;
+    default : DSP_DEBUG_BREAK_IF(true);
+  }
+}
 
-  CAINpcPatrol(CNpcEntity* PNpc);
+void CAINpcDummy::ActionRoaming()
+{
 
-  patrol_t m_patrols[20];
+}
 
-protected:
+void CAINpcDummy::ActionWait()
+{
 
-  CNpcEntity* m_PNpc;
-  uint8 m_currentPoint;
-
-  void ActionRoaming();
-  void ActionWait();
-
-private:
-
-};
-
-#endif
+}

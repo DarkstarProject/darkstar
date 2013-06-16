@@ -1210,6 +1210,80 @@ int32 OnTrade(CCharEntity* PChar, CBaseEntity* PNpc)
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
+int32 OnNpcInitialize(CBaseEntity* PNpc)
+{
+    DSP_DEBUG_BREAK_IF(PNpc == NULL);
+
+    int8 File[255];
+    memset(File,0,sizeof(File));
+
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onNpcInitialize");
+
+    snprintf( File, sizeof(File), "scripts/zones/%s/npcs/%s.lua", PNpc->loc.zone->GetName(), PNpc->GetName());
+
+    if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+    {
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onNpcInitialize");
+    if( lua_isnil(LuaHandle,-1) )
+    {
+        return -1;
+    }
+
+    CLuaBaseEntity LuaBaseEntity(PNpc);
+    Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
+
+
+    if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
+    {
+        ShowError("luautils::OnNpcInitialize: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+    return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+}
+
+int32 OnNpcPathFinish(CBaseEntity* PNpc)
+{
+    DSP_DEBUG_BREAK_IF(PNpc == NULL);
+
+    int8 File[255];
+    memset(File,0,sizeof(File));
+
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onNpcPathFinish");
+
+    snprintf( File, sizeof(File), "scripts/zones/%s/npcs/%s.lua", PNpc->loc.zone->GetName(), PNpc->GetName());
+
+    if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+    {
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onNpcPathFinish");
+    if( lua_isnil(LuaHandle,-1) )
+    {
+        return -1;
+    }
+
+    CLuaBaseEntity LuaBaseEntity(PNpc);
+    Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
+
+
+    if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
+    {
+        ShowError("luautils::OnNpcPathFinish: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+    return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+}
+
 /************************************************************************
 *																		*
 *  Начало работы статус-эффекта. Возвращаемое значение 0 или номер		*
@@ -1588,7 +1662,7 @@ int32 OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget)
 *                                                                       *
 ************************************************************************/
 
-int32 OnMobInitialise(CBaseEntity* PMob)
+int32 OnMobInitialize(CBaseEntity* PMob)
 {
     DSP_DEBUG_BREAK_IF(PMob == NULL);
 

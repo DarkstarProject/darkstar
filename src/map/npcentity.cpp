@@ -74,10 +74,10 @@ int32 reappear_npc(uint32 tick, CTaskMgr::CTask* PTask)
 CNpcEntity::CNpcEntity() 
 {
 	objtype = TYPE_NPC;
-
 	look.face = 0x32;
 }
 
 CNpcEntity::~CNpcEntity()
 {
+  
 }

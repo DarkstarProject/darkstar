@@ -107,4 +107,4 @@ private:
 	string_t	m_name;
 };
 
-#endif;
+#endif

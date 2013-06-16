@@ -26,6 +26,7 @@
 #include <string.h>
 
 #include "ai/ai_mob_dummy.h"
+#include "ai/ai_npc_dummy.h"
 
 #include "lua/luautils.h"
 
@@ -237,6 +238,41 @@ void LoadNPCList(CZone* PZone)
 			PZone->InsertNPC(PNpc);
 		}
 	}
+
+  /*
+  Load npc patrol list. This will enable the npcs to move around and follow patrol points.
+  */
+
+  const int8* QueryPatrol =
+        "SELECT \
+          npc_dummies.npcid \
+        FROM npc_dummies, npc_list \
+        WHERE npc_list.npcid = npc_dummies.npcid \
+        AND npc_list.zoneid = %u;";
+
+    ret = Sql_Query(SqlHandle, QueryPatrol, PZone->GetID());
+
+  if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+  {
+    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    {
+
+      uint32 npcid = (uint32)Sql_GetUIntData(SqlHandle,0);
+    
+      CNpcEntity* PNpc = (CNpcEntity*)PZone->GetEntity(npcid & 0x0FFF, TYPE_NPC);
+
+      if(PNpc == NULL)
+      {
+        ShowError("zoneutils::LoadNPCList Npc could not be found (%d)\n", npcid);
+      } 
+      else 
+      {
+        PNpc->PBattleAI = new CAINpcDummy(PNpc);
+        luautils::OnNpcInitialize(PNpc);
+      }
+
+    }
+  }
 }
 
 /************************************************************************
@@ -399,7 +435,7 @@ void LoadMOBList(CZone* PZone)
 	        }
 
 			PZone->InsertMOB(PMob);
-			luautils::OnMobInitialise(PMob);
+			luautils::OnMobInitialize(PMob);
 		}
 	}
 
@@ -485,7 +521,7 @@ void LoadZoneList()
 *                                                                       *
 ************************************************************************/
 
-REGIONTYPE GetCurrentRegion(uint8 ZoneID)
+REGIONTYPE GetCurrentRegion(uint16 ZoneID)
 {
 	switch (ZoneID)
 	{
@@ -785,7 +821,7 @@ REGIONTYPE GetCurrentRegion(uint8 ZoneID)
 *                                                                       *
 ************************************************************************/
 
-CONTINENTTYPE GetCurrentContinent(uint8 ZoneID)
+CONTINENTTYPE GetCurrentContinent(uint16 ZoneID)
 {
     return GetCurrentRegion(ZoneID) != REGION_UNKNOWN ? THE_MIDDLE_LANDS : OTHER_AREAS;
 }

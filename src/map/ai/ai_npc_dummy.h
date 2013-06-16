@@ -21,34 +21,34 @@
 ===========================================================================
 */
 
-#include "../npcentity.h"
-#include "ai_npc_patrol.h"
+#ifndef _CAINPCDUMMY_H
+#define _CAINPCDUMMY_H
 
-CAINpcPatrol::CAINpcPatrol(CNpcEntity* PNpc)
+/*
+The AINpcPatrol allows npcs to use lua pathfind bindings and patrol around areas.
+*/
+
+#include "ai_general.h"
+
+class CNpcEntity;
+
+class CAINpcDummy : public CAIGeneral
 {
-  m_PNpc = PNpc;
-  m_PPathFind = new CPathFind(PNpc);
-}
+public:
 
-void CAINpcPatrol::CheckCurrentAction(uint32 tick)
-{
-  m_Tick = tick;
+  virtual void CheckCurrentAction(uint32 tick);
 
-  switch(m_ActionType)
-  {
-    case ACTION_NONE: break;
-    case ACTION_ROAMING:  ActionRoaming();  break;
-    case ACTION_WAIT: ActionWait(); break;
-    default : DSP_DEBUG_BREAK_IF(true);
-  }
-}
+  CAINpcDummy(CNpcEntity* PNpc);
 
-void CAINpcPatrol::ActionRoaming()
-{
+protected:
 
-}
+  CNpcEntity* m_PNpc;
 
-void CAINpcPatrol::ActionWait()
-{
+  void ActionRoaming();
+  void ActionWait();
 
-}
+private:
+
+};
+
+#endif

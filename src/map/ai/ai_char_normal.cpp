@@ -380,7 +380,15 @@ void CAICharNormal::ActionFall()
 	//influence for conquest system
 	conquest::LoseInfluencePoints(m_PChar);
 
-	charutils::DelExperiencePoints(m_PChar,map_config.exp_retain);
+	if (m_PChar->getMijinGakure() == false)
+	{
+		charutils::DelExperiencePoints(m_PChar,map_config.exp_retain);
+	}
+	else
+	{
+		m_PChar->setMijinGakure(false);
+	}
+
 	charutils::SaveDeathTime(m_PChar);
 
 }
@@ -2254,6 +2262,14 @@ void CAICharNormal::ActionJobAbilityFinish()
     			//Action.flag = 3;
     		}
 
+    		if (m_PJobAbility->getID() == ABILITY_MIJIN_GAKURE)
+			{
+				m_PChar->setMijinGakure(true);
+				m_PChar->health.hp = 0;
+		        charutils::UpdateHealth(m_PChar);
+				m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE, new CActionPacket(m_PChar));
+			}
+
     		/* TODO: Handle post-Lv. 75 genkai job abilities from support jobs that
 			 * deal damage points and defeats a monster while Blade of Darkness and/or
 			 * Blade of Death quests are active.
@@ -2305,8 +2321,6 @@ void CAICharNormal::ActionJobAbilityFinish()
 
 
     		m_PChar->m_ActionList.push_back(Action);
-
-
 
     		if (m_PJobAbility->getID() == ABILITY_SNARL)
     		{
@@ -2436,6 +2450,13 @@ void CAICharNormal::ActionJobAbilityFinish()
 	m_PJobAbility = NULL;
     m_PBattleSubTarget = NULL;
     m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+
+	if (m_PChar->getMijinGakure() == true && m_PChar->health.hp == 0)
+	{
+		m_ActionType = ACTION_FALL;
+		ActionFall();
+	}
+
 }
 
 /************************************************************************

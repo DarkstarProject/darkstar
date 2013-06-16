@@ -435,6 +435,9 @@ public:
     int32 RoamAround(lua_State* L); // pick a random point to walk to
     int32 LimitDistance(lua_State* L); // limits the current path distance to given max distance
 
+    // == for patrol npcs
+    int32 PatrolTo(lua_State* L); // patrol to point from npc_portals.sql
+
     int32 LookAt(lua_State* L); // look at given entity
     int32 isFollowingPath(lua_State* L); // checks if the entity is following a path
     int32 ClearPath(lua_State* L); // removes current pathfind and stops moving
