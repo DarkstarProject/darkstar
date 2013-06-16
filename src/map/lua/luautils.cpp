@@ -1237,7 +1237,6 @@ int32 OnNpcInitialize(CBaseEntity* PNpc)
     CLuaBaseEntity LuaBaseEntity(PNpc);
     Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
 
-
     if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
     {
         ShowError("luautils::OnNpcInitialize: %s\n",lua_tostring(LuaHandle,-1));
@@ -1277,7 +1276,7 @@ int32 OnNpcPathFinish(CBaseEntity* PNpc)
 
     if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
     {
-        ShowError("luautils::OnNpcPathFinish: %s\n",lua_tostring(LuaHandle,-1));
+        ShowError("luautils::OnNpcPath: %s\n",lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
         return -1;
     }

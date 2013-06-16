@@ -48,8 +48,16 @@ class CPathFind
     // used for chasing
     bool RunTo(position_t point);
 
+    // run through given points
+    // this will not use navmesh
+    bool RunThrough(position_t* points, uint8 totalPoints);
+
     // walk normally to a point
     bool WalkTo(position_t point);
+
+    // walk through given points
+    // this will not use navmesh
+    bool WalkThrough(position_t* points, uint8 totalPoints);
 
     // instantly moves an entity to the point
     // this will make sure you're not in a wall

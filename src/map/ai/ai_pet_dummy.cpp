@@ -263,7 +263,7 @@ void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg){
 			    m_PBattleSubTarget = m_PBattleTarget;
 			}
 			DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
-			battleutils::MoveIntoRange(m_PPet, m_PBattleSubTarget, 25);
+			m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
 		}
 
 		Action.ActionTarget = m_PBattleSubTarget;
@@ -597,8 +597,12 @@ void CAIPetDummy::ActionEngage()
 
 	if(hasClaim)
 	{
-		battleutils::MoveTo(m_PPet, m_PBattleTarget->loc.p, 2);
-
+		// run at target
+		if(m_PPathFind->RunTo(m_PBattleTarget->loc.p))
+		{	
+			m_PPathFind->FollowPath();
+		}
+		
 		m_PPet->animation = ANIMATION_ATTACK;
 		m_ActionType = ACTION_ATTACK;
 		m_LastActionTime = m_Tick - 4000;

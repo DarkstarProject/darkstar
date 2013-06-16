@@ -131,6 +131,7 @@ public:
 	~CAIGeneral();
 
     CPathFind*       m_PPathFind; // finds paths
+    
 private:
 
     //uint32			m_StartBattle;			// Battle start time

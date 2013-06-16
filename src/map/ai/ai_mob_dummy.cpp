@@ -632,22 +632,16 @@ void CAIMobDummy::ActionAbilityStart()
 
 
 	if(!valid) {
+		// couldn't find anything so go back to attack
 		m_PMob->health.tp = 0;
 		m_ActionType = ACTION_ATTACK;
-
-		if(distance(m_PBattleTarget->loc.p, m_PMob->loc.p) <= m_PMob->m_ModelSize) //mob is in melee range, so attack
-		{
-			ActionAttack();
-			return;
-		}
-		battleutils::MoveIntoRange(m_PMob, m_PBattleTarget, 25);
-		m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
+		ActionAttack();
 		return;
 	}
 
 	if(m_PMobSkill->getValidTargets() == TARGET_ENEMY){ //enemy
 	    m_PBattleSubTarget = m_PBattleTarget;
-		battleutils::MoveIntoRange(m_PMob, m_PBattleSubTarget, 25);
+	    m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
 	}
 	else if(m_PMobSkill->getValidTargets() == TARGET_SELF){ //self
 	    m_PBattleSubTarget = m_PMob;
@@ -1562,7 +1556,7 @@ void CAIMobDummy::ActionAttack()
 
 						m_PMob->m_ActionList.push_back(Action);
 					}
-					// battleutils::MoveIntoRange(m_PMob,m_PBattleTarget,25);
+
 					m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
 				} //end attack for
 			}

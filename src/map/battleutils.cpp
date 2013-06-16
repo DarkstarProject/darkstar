@@ -2605,57 +2605,6 @@ bool IsIntimidated(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 	return (rand()%100 < KillerEffect);
 }
 
-/************************************************************************
-*                                                                       *
-*  Moves mob  - mode 1 = walk / 2 = run                                 *
-*                                                                       *
-************************************************************************/
-
-void MoveTo(CBattleEntity* PEntity, position_t pos, uint8 mode)
-{
-	DSP_DEBUG_BREAK_IF(mode < 1 || mode > 2);
-
-	if (PEntity->speed != 0)
-	{
-		float angle = (1 - (float)PEntity->loc.p.rotation / 255) * 6.28318f;
-
-        PEntity->loc.p.x += (cosf(angle) * ((float)(PEntity->speed * (1+(PEntity->getMod(MOD_MOVE) / 100.0f))) / 0x28) * (mode) * 1.08);
-
-		PEntity->loc.p.y = pos.y;
-
-        PEntity->loc.p.z += (sinf(angle) * ((float)(PEntity->speed * (1+(PEntity->getMod(MOD_MOVE) / 100.0f))) / 0x28) * (mode) * 1.08);
-
-		PEntity->loc.p.moving += ((0x36*((float)PEntity->speed/0x28)) - (0x14*(mode - 1)));
-
-		if(PEntity->loc.p.moving > 0x2fff)
-		{
-			PEntity->loc.p.moving = 0;
-		}
-	}
-}
-
-/************************************************************************
-*                                                                       *
-*  Moves mob into melee range and turns to face with a given            *
-*  angle threshold                                                      *
-*                                                                       *
-************************************************************************/
-
-
-void MoveIntoRange(CBattleEntity* PPursuer, CBattleEntity* PTarget, uint8 angleThreshold)
-{
-	// if(angle >= angleThreshold){
-    // }
-
-    // always change angle for now
-    uint8 angle = getangle(PPursuer->loc.p, PTarget->loc.p);
-    PPursuer->loc.p.rotation = angle;
-
-    if (distance(PPursuer->loc.p, PTarget->loc.p) > PPursuer->m_ModelSize){
-		MoveTo(PPursuer, PTarget->loc.p, 2);
-    }
-}
-
 /****************************************************************
 *	Determine if an enfeeble spell will land - untested			*
 ****************************************************************/

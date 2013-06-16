@@ -107,6 +107,33 @@ bool CPathFind::RunTo(position_t point)
   return true;
 }
 
+bool CPathFind::RunThrough(position_t* points, uint8 totalPoints)
+{
+  
+  Clear();
+
+  if(m_PTarget->speed == 0) return false;
+
+  m_mode = 2;
+
+  m_pathLength = totalPoints;
+
+  if(totalPoints > MAX_PATH_POINTS)
+  {
+    ShowWarning("CPathFind::RunThrough Given too many points (%d). Limiting to max (%d)\n", totalPoints, MAX_PATH_POINTS);
+    m_pathLength = MAX_PATH_POINTS;
+  }
+
+  for(uint8 i=0; i<totalPoints; i++)
+  {
+    m_points[i].x = points[i].x;
+    m_points[i].y = points[i].y;
+    m_points[i].z = points[i].z;
+  }
+
+  return true;
+}
+
 bool CPathFind::WalkTo(position_t point)
 {
   Clear();
@@ -129,6 +156,32 @@ bool CPathFind::WalkTo(position_t point)
   }
 
   return false;
+}
+
+bool CPathFind::WalkThrough(position_t* points, uint8 totalPoints)
+{
+  Clear();
+
+  if(m_PTarget->speed == 0) return false;
+
+  m_mode = 1;
+
+  m_pathLength = totalPoints;
+
+  if(totalPoints > MAX_PATH_POINTS)
+  {
+    ShowWarning("CPathFind::WalkThrough Given too many points (%d). Limiting to max (%d)\n", totalPoints, MAX_PATH_POINTS);
+    m_pathLength = MAX_PATH_POINTS;
+  }
+
+  for(uint8 i=0; i<totalPoints; i++)
+  {
+    m_points[i].x = points[i].x;
+    m_points[i].y = points[i].y;
+    m_points[i].z = points[i].z;
+  }
+
+  return true;
 }
 
 bool CPathFind::WarpTo(position_t point)

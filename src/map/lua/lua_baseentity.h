@@ -428,19 +428,18 @@ public:
     int32 isSpellAoE(lua_State* L);
 
     // == Pathfind Methods ==
-    int32 WalkTo(lua_State* L); // walk at normal speed through the given points
-    int32 RunTo(lua_State* L);	// run through the given points
-    int32 WarpTo(lua_State* L); // warp to the given point
-    int32 Knockback(lua_State* L); // knockback target with given power
-    int32 RoamAround(lua_State* L); // pick a random point to walk to
-    int32 LimitDistance(lua_State* L); // limits the current path distance to given max distance
+    int32 walkThrough(lua_State* L); // walk at normal speed through the given points
+    int32 runThrough(lua_State* L);	// run through the given points
+    // int32 WarpTo(lua_State* L); // warp to the given point
+    int32 knockback(lua_State* L); // knockback target with given power
+    // int32 RoamAround(lua_State* L); // pick a random point to walk to
+    // int32 LimitDistance(lua_State* L); // limits the current path distance to given max distance
 
-    // == for patrol npcs
-    int32 PatrolTo(lua_State* L); // patrol to point from npc_portals.sql
-
-    int32 LookAt(lua_State* L); // look at given entity
+    int32 atPoint(lua_State* L); // is at given point
+    int32 lookAt(lua_State* L); // look at given entity
     int32 isFollowingPath(lua_State* L); // checks if the entity is following a path
-    int32 ClearPath(lua_State* L); // removes current pathfind and stops moving
+    int32 clearPath(lua_State* L); // removes current pathfind and stops moving
+    int32 wait(lua_State* L); // make the npc wait a number of ms and then back into roam
 };
 
 #endif

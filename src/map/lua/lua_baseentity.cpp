@@ -6903,6 +6903,130 @@ inline int32 CLuaBaseEntity::getBaseMP(lua_State* L)
     return 1;
 }
 
+/*
+Walk through the given points. NPC only.
+
+Usage:
+
+	npc:walkThrough(
+		-217, -57, 379,
+		-264, -55, 378
+	);
+*/
+inline int32 CLuaBaseEntity::walkThrough(lua_State* L)
+{
+
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
+	DSP_DEBUG_BREAK_IF(luaL_checktype(L, 1, LUA_TTABLE) == false);
+
+	position_t points[20];
+
+	uint8 length = lua_objlen(L, 1);
+	uint8 pos = 0;
+
+	DSP_DEBUG_BREAK_IF(length > 20);
+
+	// grab points from array and store in points array
+	for(uint8 i=1; i<length; i+=3)
+	{
+		lua_rawgeti(L, 1, i);
+		points[pos].x = lua_tonumber(L, -1);
+		lua_pop(L,1);
+
+ 		lua_rawgeti(L, 1, i+1);
+		points[pos].y = lua_tonumber(L, -1);
+		lua_pop(L,1);
+
+		lua_rawgeti(L, 1, i+2);
+		points[pos].z = lua_tonumber(L, -1);
+		lua_pop(L,1);
+
+		pos++;
+	}
+
+	CNpcEntity* PNpc = (CNpcEntity*)m_PBaseEntity;
+
+	if(PNpc->PBattleAI->m_PPathFind->WalkThrough(points, pos))
+	{
+		PNpc->PBattleAI->SetCurrentAction(ACTION_ROAMING);
+		lua_pushboolean(L, true);
+	} 
+	else 
+	{
+		lua_pushboolean(L, false);
+	}
+
+	return 1;
+}
+
+/*
+Run through the given points. NPC only.
+
+Usage:
+
+	npc:runTo(
+		-217, -57, 379,
+		-264, -55, 378
+	);
+*/
+inline int32 CLuaBaseEntity::runThrough(lua_State* L)
+{
+
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::knockback(lua_State* L)
+{
+
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::atPoint(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	
+	float posX = lua_tonumber(L,1);
+	float posY = lua_tonumber(L,2);
+	float posZ = lua_tonumber(L,3);
+
+	lua_pushboolean(L, m_PBaseEntity->loc.p.x == posX && m_PBaseEntity->loc.p.y == posY && m_PBaseEntity->loc.p.z == posZ);
+
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::lookAt(lua_State* L)
+{
+
+	return 1;
+}
+
+/*
+Checks if the entity is following a path.
+*/
+inline int32 CLuaBaseEntity::isFollowingPath(lua_State* L)
+{
+
+	return 1;
+}
+
+/*
+Clears the current path and stops moving.
+*/
+inline int32 CLuaBaseEntity::clearPath(lua_State* L)
+{
+
+	return 1;
+}
+
+/*
+Wait for a given number of milliseconds.
+*/
+inline int32 CLuaBaseEntity::wait(lua_State* L)
+{
+	return 1;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -7190,5 +7314,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isSpellAoE),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBaseHP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBaseMP),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBaseMP),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,walkThrough),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,atPoint),
 	{NULL,NULL}
 };

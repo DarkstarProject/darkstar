@@ -25,7 +25,10 @@
 #include "ai_npc_dummy.h"
 
 #include "../pathfind.h"
+#include "../lua/luautils.h"
 #include "../../common/showmsg.h"
+
+#include "../packets/entity_update.h"
 
 CAINpcDummy::CAINpcDummy(CNpcEntity* PNpc)
 {
@@ -48,7 +51,19 @@ void CAINpcDummy::CheckCurrentAction(uint32 tick)
 
 void CAINpcDummy::ActionRoaming()
 {
+  if(m_PPathFind->IsFollowingPath())
+  {
 
+    m_PPathFind->FollowPath();
+
+    if(!m_PPathFind->IsFollowingPath())
+    {
+      luautils::OnNpcPathFinish(m_PNpc);
+    }
+
+    m_PNpc->loc.zone->PushPacket(m_PNpc,CHAR_INRANGE, new CEntityUpdatePacket(m_PNpc,ENTITY_UPDATE));
+
+  }
 }
 
 void CAINpcDummy::ActionWait()

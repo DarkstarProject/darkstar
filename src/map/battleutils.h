@@ -140,8 +140,6 @@ namespace battleutils
 
     uint8				GetEnmityMod(uint8 level, uint8 modType);
 	bool				Enfeeble(CBattleEntity* PCaster, CBattleEntity* PDefender, EFFECT Effect);
-	void				MoveTo(CBattleEntity* PEntity, position_t pos, uint8 mode);
-	void				MoveIntoRange(CBattleEntity* PPursuer, CBattleEntity* PTarget, uint8 angleThreshold);
 	bool				isValidSelfTargetWeaponskill(int wsid);
 	bool				TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	float				CalculateBaseTP(int delay, int stp);

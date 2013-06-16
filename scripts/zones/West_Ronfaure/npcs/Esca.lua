@@ -27,12 +27,14 @@ function onTrade(player,npc,trade)
 	local freeSlot = player:getFreeSlotsCount();
 	local eagleButton = trade:hasItemQty(578, 1);
 	local hasGiltGlasses = player:hasItem(579);
-	if (count == 1 and freeSlot > 0 and eagleButton == true and hasGiltGlasses == false) then
-		player:tradeComplete();
-		player:startEvent(0x0079);
-		player:setVar("thePickpocketGiltGlasses", 1); -- used to get eventID 0x0080
-	else
-		player:messageSpecial(6378, 579); -- CANNOT_OBTAIN_ITEM
+	if(eagleButton == true and hasGiltGlasses == false) then
+		if (count == 1 and freeSlot > 0) then
+			player:tradeComplete();
+			player:startEvent(0x0079);
+			player:setVar("thePickpocketGiltGlasses", 1); -- used to get eventID 0x0080
+		else
+			player:messageSpecial(6378, 579); -- CANNOT_OBTAIN_ITEM
+		end;
 	end;
 end; 
 

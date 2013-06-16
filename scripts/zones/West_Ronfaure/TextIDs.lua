@@ -15,3 +15,7 @@ DISMAYED_CUSTOMER = 7336; -- You find some worthless scraps of paper.
    COLMAIE_DIALOG = 7259; -- Orcish scouts lurk in the shadows. Consider yourself warned!
  GACHEMAGE_DIALOG = 7259; -- Orcish scouts lurk in the shadows. Consider yourself warned!
   LAILLERA_DIALOG = 7261; -- I mustn't chat while on duty. Sorry.
+ZOVRIACE_REPORT = 7308; -- report to colmaie
+ZOVRIACE_DIALOG = 7310; -- let me be
+PALCOMONDAU_REPORT = 7305; -- report
+PALCOMONDAU_DIALOG = 7306; -- let me be
