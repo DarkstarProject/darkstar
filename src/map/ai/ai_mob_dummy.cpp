@@ -317,6 +317,7 @@ void CAIMobDummy::ActionDisengage()
 void CAIMobDummy::ActionFall()
 {
 	m_PMob->PEnmityContainer->Clear();
+	m_PPathFind->Clear();
 
 	m_ActionType = ACTION_DROPITEMS;
 	m_LastActionTime = m_Tick;
@@ -532,8 +533,10 @@ void CAIMobDummy::ActionSpawn()
 		m_PMob->animation = ANIMATION_NONE;
 
         m_PMob->PEnmityContainer->Clear();
+        m_PPathFind->Clear();
 
 		uint8 level = m_PMob->m_minLevel;
+		
 		// Generate a random level between min and max level
 		if (m_PMob->m_maxLevel != m_PMob->m_minLevel)
 		{
@@ -570,8 +573,9 @@ void CAIMobDummy::ActionSpawn()
 			m_PMob->loc.p = m_PMob->m_SpawnPoint;
 		}
 
-		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_SPAWN));
         luautils::OnMobSpawn( m_PMob );
+        
+		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_SPAWN));
 	}
 }
 

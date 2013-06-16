@@ -16,6 +16,24 @@ require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Bostaunieux_Oubliette/TextIDs");
 
+path = {
+	25, -24, 20,
+	68, -24, 20
+};
+
+function onInitialize(npc)
+	npc:setPos(path[1], path[2], path[3]);
+	npc:walkThrough(path);
+end;
+
+function onPathFinish(npc)
+	if(npc:atPoint(path[1], path[2], path[3])) then
+		npc:walkThrough(path);
+	else
+		npc:walkThrough(path, true);
+	end
+end;
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -25,6 +43,7 @@ function onTrade(player,npc,trade)
 	if(player:getVar("troubleAtTheSluiceVar") == 2) then
 		if(trade:hasItemQty(959,1) and trade:getItemCount() == 1) then -- Trade Dahlia
 			player:startEvent(0x0011);
+			npc:wait(-1);
 		end
 	end
 	if(player:getQuestStatus(SANDORIA,THE_RUMOR) == QUEST_ACCEPTED) then
@@ -32,6 +51,7 @@ function onTrade(player,npc,trade)
 		BeastBlood = trade:hasItemQty(930,1)
 		if(BeastBlood == true and count == 1) then
 			player:startEvent(0x000c);
+			npc:wait(-1);
 		end
 	end
 end;
@@ -47,6 +67,8 @@ function onTrigger(player,npc)
 	tatsVar = player:getVar("troubleAtTheSluiceVar");
 	theRumor = player:getQuestStatus(SANDORIA,THE_RUMOR);
 	
+	npc:wait(-1);
+
 	-- The Holy Crest Quest
 	if(TheHolyCrest == 1) then
 		player:startEvent(0x0006);
@@ -109,4 +131,6 @@ function onEventFinish(player,csid,option)
 		end
 	end
 	
+	GetNPCByID(17461503):wait(0);
+
 end;

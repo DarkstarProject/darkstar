@@ -393,8 +393,6 @@ void CZone::LoadNavMesh()
 
   if(m_navMesh->load(file))
   {
-    ShowDebug("CZone::LoadNavMesh Navmesh loaded for (%s)\n", GetName());
-
     // lets verify it can find proper paths
     if(!m_navMesh->test((int16)GetID()))
     {
