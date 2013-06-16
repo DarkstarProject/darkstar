@@ -131,6 +131,7 @@
     <ClInclude Include="..\..\src\map\ai\ai_char_prisoner.h" />
     <ClInclude Include="..\..\src\map\ai\ai_general.h" />
     <ClInclude Include="..\..\src\map\ai\ai_mob_dummy.h" />
+    <ClInclude Include="..\..\src\map\ai\ai_npc_dummy.h" />
     <ClInclude Include="..\..\src\map\ai\ai_pet_dummy.h" />
     <ClInclude Include="..\..\src\map\alliance.h" />
     <ClInclude Include="..\..\src\map\baseentity.h" />
@@ -329,6 +330,7 @@
     <ClCompile Include="..\..\src\map\ai\ai_char_prisoner.cpp" />
     <ClCompile Include="..\..\src\map\ai\ai_general.cpp" />
     <ClCompile Include="..\..\src\map\ai\ai_mob_dummy.cpp" />
+    <ClCompile Include="..\..\src\map\ai\ai_npc_dummy.cpp" />
     <ClCompile Include="..\..\src\map\ai\ai_pet_dummy.cpp" />
     <ClCompile Include="..\..\src\map\alliance.cpp" />
     <ClCompile Include="..\..\src\map\baseentity.cpp" />
