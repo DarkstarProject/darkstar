@@ -764,15 +764,12 @@ void LoadInventory(CCharEntity* PChar)
                     ((CItemLinkshell*)PItem)->SetLSID(Sql_GetUIntData(SqlHandle,8));
                     ((CItemLinkshell*)PItem)->SetLSColor(Sql_GetIntData(SqlHandle,9));
                 }
-                else
-                {
-                    if (PItem->getFlag() & ITEM_FLAG_INSCRIBABLE)
-				    {
-                        int8 EncodedString [13];
-                        EncodeStringSignature(Sql_GetData(SqlHandle,5), EncodedString);
-					    PItem->setSignature(EncodedString);
-				    }
-                }
+                else if (PItem->getFlag() & ITEM_FLAG_INSCRIBABLE)
+				{
+                    int8 EncodedString [13];
+                    EncodeStringSignature(Sql_GetData(SqlHandle,5), EncodedString);
+					PItem->setSignature(EncodedString);
+				}
                 if (PItem->getType() & ITEM_FURNISHING && PItem->getLocationID() == LOC_MOGSAFE)
                 {
                     if (Sql_GetIntData(SqlHandle,10) != 0) // способ узнать, что предмет действительно установлен
@@ -3721,9 +3718,10 @@ void SaveCharPoints(CCharEntity* PChar)
 
 uint32  AddExpBonus(CCharEntity* PChar, uint32 exp)
 {
-    if (PChar->getMod(MOD_DEDICATION) != 0 || PChar->getMod(MOD_EXP_BONUS) != 0)
+    int32 bonus = 0;
+    if (PChar->getMod(MOD_DEDICATION))
     {
-        int16 percentage = PChar->getMod(MOD_DEDICATION) + PChar->getMod(MOD_EXP_BONUS);
+        int16 percentage = PChar->getMod(MOD_DEDICATION);
         int16 cap = PChar->getMod(MOD_DEDICATION_CAP);
 
         int16 dedication = dsp_cap(exp * PChar->getMod(MOD_DEDICATION) / 100, 0, PChar->getMod(MOD_DEDICATION_CAP));
@@ -3735,8 +3733,15 @@ uint32  AddExpBonus(CCharEntity* PChar, uint32 exp)
             PChar->StatusEffectContainer->DelStatusEffect(EFFECT_DEDICATION);
         }
 
-        exp += dedication;
+        bonus = dedication;
     }
+
+    bonus += exp * (PChar->getMod(MOD_EXP_BONUS) / 100.0f);
+
+    if (bonus + (int32)exp < 0)
+        exp = 0;
+    else
+        exp = exp + bonus;
 
     return exp;
 }
