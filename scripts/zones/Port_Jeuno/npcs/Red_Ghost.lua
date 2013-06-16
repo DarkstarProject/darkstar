@@ -8,6 +8,24 @@ package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Port_Jeuno/TextIDs");
 require("scripts/globals/quests");
 
+path = {
+	-96.5, 0, -8,
+	-96.5, 0, 8
+};
+
+function onInitialize(npc)
+	npc:setPos(path[1], path[2], path[3]);
+	npc:walkThrough(path);
+end;
+
+function onPathFinish(npc)
+	if(npc:atPoint(path[1], path[2], path[3])) then
+		npc:walkThrough(path);
+	else
+		npc:walkThrough(path, true);
+	end
+end;
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -26,6 +44,9 @@ function onTrigger(player,npc)
 	else
 		player:startEvent(0x22);
 	end
+
+	-- wait until event is over
+	npc:wait(-1);
 end; 
 
 -----------------------------------
@@ -47,4 +68,6 @@ function onEventFinish(player,csid,option)
 	if (csid == 314) then
 		player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",15,true)
 	end
+
+	GetNPCByID(17784896):wait(0);
 end;

@@ -36,3 +36,4 @@ CREATE TABLE IF NOT EXISTS `npc_dummies` (
 --
 
 INSERT INTO `npc_dummies` VALUES('17187457');
+INSERT INTO `npc_dummies` VALUES('17784896');

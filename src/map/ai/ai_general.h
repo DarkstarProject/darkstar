@@ -108,7 +108,7 @@ public:
 	bool			GetMagicCastingEnabled();
     bool            GetMobAbilityEnabled();
     bool            MoveTo(position_t* pos); // move entity to position. Doesn't pathfind
-    void			Wait(uint32 waitTime);
+    void			Wait(int32 waitTime);
 
     uint32          GetBattleTime();
 

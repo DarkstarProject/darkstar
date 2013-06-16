@@ -429,9 +429,18 @@ bool CAIGeneral::MoveTo(position_t* pos)
     return false;
 }
 
-void CAIGeneral::Wait(uint32 waitTime)
+void CAIGeneral::Wait(int32 waitTime)
 {
+	if(waitTime == -1)
+	{
+		// wait forever
+		m_WaitTime = 99999999;
+	}
+	else
+	{
+		m_WaitTime = waitTime;
+	}
+	
     m_LastWaitTime = m_Tick;
-	m_WaitTime = waitTime;
 	m_ActionType = ACTION_WAIT;
 }

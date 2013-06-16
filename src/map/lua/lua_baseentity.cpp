@@ -6923,8 +6923,6 @@ inline int32 CLuaBaseEntity::walkThrough(lua_State* L)
 {
 
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
-	DSP_DEBUG_BREAK_IF(luaL_checktype(L, 1, LUA_TTABLE) == false);
 
 	position_t points[20];
 
@@ -6933,7 +6931,7 @@ inline int32 CLuaBaseEntity::walkThrough(lua_State* L)
 
 	bool reverse = lua_isboolean(L, 2);
 
-	DSP_DEBUG_BREAK_IF(length > 20);
+	DSP_DEBUG_BREAK_IF(length > 20*3);
 
 	// grab points from array and store in points array
 	for(uint8 i=1; i<length; i+=3)
@@ -6953,11 +6951,11 @@ inline int32 CLuaBaseEntity::walkThrough(lua_State* L)
 		pos++;
 	}
 
-	CNpcEntity* PNpc = (CNpcEntity*)m_PBaseEntity;
+	CBattleEntity* PBattle = (CBattleEntity*)m_PBaseEntity;
 
-	if(PNpc->PBattleAI->m_PPathFind->WalkThrough(points, pos, reverse))
+	if(PBattle->PBattleAI->m_PPathFind->WalkThrough(points, pos, reverse))
 	{
-		PNpc->PBattleAI->SetCurrentAction(ACTION_ROAMING);
+		PBattle->PBattleAI->SetCurrentAction(ACTION_ROAMING);
 		lua_pushboolean(L, true);
 	} 
 	else 
@@ -6982,8 +6980,6 @@ inline int32 CLuaBaseEntity::runThrough(lua_State* L)
 {
 
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
-	DSP_DEBUG_BREAK_IF(luaL_checktype(L, 1, LUA_TTABLE) == false);
 
 	position_t points[20];
 
@@ -6991,7 +6987,8 @@ inline int32 CLuaBaseEntity::runThrough(lua_State* L)
 	uint8 pos = 0;
 
 	bool reverse = lua_isboolean(L, 2);
-		DSP_DEBUG_BREAK_IF(length > 20);
+
+	DSP_DEBUG_BREAK_IF(length > 20*3);
 
 	// grab points from array and store in points array
 	for(uint8 i=1; i<length; i+=3)
@@ -7011,11 +7008,11 @@ inline int32 CLuaBaseEntity::runThrough(lua_State* L)
 		pos++;
 	}
 
-	CNpcEntity* PNpc = (CNpcEntity*)m_PBaseEntity;
+	CBattleEntity* PBattle = (CBattleEntity*)m_PBaseEntity;
 
-	if(PNpc->PBattleAI->m_PPathFind->RunThrough(points, pos, reverse))
+	if(PBattle->PBattleAI->m_PPathFind->RunThrough(points, pos, reverse))
 	{
-		PNpc->PBattleAI->SetCurrentAction(ACTION_ROAMING);
+		PBattle->PBattleAI->SetCurrentAction(ACTION_ROAMING);
 		lua_pushboolean(L, true);
 	} 
 	else 
