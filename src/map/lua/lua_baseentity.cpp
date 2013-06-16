@@ -7117,11 +7117,13 @@ Usage:
 */
 inline int32 CLuaBaseEntity::wait(lua_State* L)
 {
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_PC);
 
-	CNpcEntity* PNpc = (CNpcEntity*)m_PBaseEntity;
+	CBattleEntity* PBattle = (CBattleEntity*)m_PBaseEntity;
 
-	PNpc->PBattleAI->Wait(lua_tonumber(L, 1));
+	DSP_DEBUG_BREAK_IF(PBattle->PBattleAI == NULL);
+
+	PBattle->PBattleAI->Wait(lua_tonumber(L, 1));
 
 	return 1;
 }

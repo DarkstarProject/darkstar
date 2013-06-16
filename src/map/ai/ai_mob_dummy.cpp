@@ -176,11 +176,11 @@ void CAIMobDummy::ActionRoaming()
 			// I spawned a pet
 			m_LastActionTime = m_Tick - rand()%(m_PMob->m_RoamCoolDown + 5000);
 		}
-		else if(CanCastSpells() && rand()%10 < 4 && m_PMob->SpellContainer->HasBuffSpells())
+		else if(CanCastSpells() && rand()%10 < 3 && m_PMob->SpellContainer->HasBuffSpells())
 		{
 			// cast buff
 			CastSpell(m_PMob->SpellContainer->GetBuffSpell());
-			m_LastActionTime = m_Tick - rand()%(m_PMob->m_RoamCoolDown + 5000);
+			m_LastActionTime = m_Tick - rand()%(m_PMob->m_RoamCoolDown + 15000);
 		}
 		else if((m_PMob->m_Type & MOBTYPE_EVENT) != MOBTYPE_EVENT && m_PMob->PMaster == NULL && m_PMob->speed > 0)
 		{

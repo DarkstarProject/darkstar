@@ -54,6 +54,9 @@ void CAINpcDummy::ActionRoaming()
   if(m_PPathFind->IsFollowingPath())
   {
 
+    // stop npc from looking at other things while walking
+    m_PNpc->m_TargID = 0;
+
     m_PPathFind->FollowPath();
 
     if(!m_PPathFind->IsFollowingPath())

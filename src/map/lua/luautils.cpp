@@ -194,13 +194,19 @@ int32 GetNPCByID(lua_State* L)
 
 		CBaseEntity* PNpc = zoneutils::GetEntity(npcid, TYPE_NPC);
 
-		lua_pushstring(L,CLuaBaseEntity::className);
-		lua_gettable(L,LUA_GLOBALSINDEX);
-		lua_pushstring(L,"new");
-		lua_gettable(L,-2);
-		lua_insert(L,-2);
-		lua_pushlightuserdata(L,(void*)PNpc);
-		lua_pcall(L,2,1,0);
+		if(PNpc == NULL){
+			ShowWarning("luautils::GetNPCByID NPC doesn't exist (%d)\n", npcid);
+			lua_pushnil(L);
+		} else {
+			lua_pushstring(L,CLuaBaseEntity::className);
+			lua_gettable(L,LUA_GLOBALSINDEX);
+			lua_pushstring(L,"new");
+			lua_gettable(L,-2);
+			lua_insert(L,-2);
+			lua_pushlightuserdata(L,(void*)PNpc);
+			lua_pcall(L,2,1,0);
+		}
+
 		return 1;
 	}
 	lua_pushnil(L);
@@ -221,13 +227,19 @@ int32 GetMobByID(lua_State* L)
 
 		CBaseEntity* PMob = zoneutils::GetEntity(mobid, TYPE_MOB);
 
-		lua_pushstring(L,CLuaBaseEntity::className);
-		lua_gettable(L,LUA_GLOBALSINDEX);
-		lua_pushstring(L,"new");
-		lua_gettable(L,-2);
-		lua_insert(L,-2);
-		lua_pushlightuserdata(L,(void*)PMob);
-		lua_pcall(L,2,1,0);
+		if(PMob == NULL){
+			ShowWarning("luautils::GetMobByID Mob doesn't exist (%d)\n", mobid);
+			lua_pushnil(L);
+		} else {
+			lua_pushstring(L,CLuaBaseEntity::className);
+			lua_gettable(L,LUA_GLOBALSINDEX);
+			lua_pushstring(L,"new");
+			lua_gettable(L,-2);
+			lua_insert(L,-2);
+			lua_pushlightuserdata(L,(void*)PMob);
+			lua_pcall(L,2,1,0);
+		}
+
 		return 1;
 	}
 	lua_pushnil(L);

@@ -12,6 +12,28 @@ require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 require("scripts/zones/Davoi/TextIDs");
 
+path = {
+	20.6, 0, -23,
+	46, 0, -19,
+	53.5, -1.8, -19,
+	61, -1.1, -18.6,
+	67.3, -1.5, -18.6,
+	90, -0.5, -19
+};
+
+function onInitialize(npc)
+	npc:setPos(path[1], path[2], path[3]);
+	npc:walkThrough(path);
+end;
+
+function onPathFinish(npc)
+	if(npc:atPoint(path[1], path[2], path[3])) then
+		npc:walkThrough(path);
+	else
+		npc:walkThrough(path, true);
+	end
+end;
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -27,6 +49,10 @@ function onTrigger(player,npc)
 	
 	if(player:getCurrentMission(SANDORIA) == INFILTRATE_DAVOI and player:getVar("MissionStatus") == 3) then
 		player:startEvent(0x0075);
+		npc:wait(-1);
+	else
+		player:showText(npc, QUEMARICOND_DIALOG);
+		npc:wait(2000);
 	end
 	
 end;
@@ -54,4 +80,5 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(KEYITEM_OBTAINED,ROYAL_KNIGHTS_DAVOI_REPORT);
 	end
 
+	GetNPCByID(17387987):wait(0);
 end;

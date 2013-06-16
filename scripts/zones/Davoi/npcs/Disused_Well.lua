@@ -28,7 +28,7 @@ function onTrigger(player,npc)
 		player:addKeyItem(KNIGHTS_SOUL);
 		player:messageSpecial(KEYITEM_OBTAINED, KNIGHTS_SOUL);
 	else
-		player:messageSpecial(YOU_SEE_NOTHING);
+		player:messageSpecial(A_WELL);
 	end
 	
 end; 

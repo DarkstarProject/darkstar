@@ -131,6 +131,9 @@ function onEventFinish(player,csid,option)
 		end
 	end
 	
-	GetNPCByID(17461503):wait(0);
+	local npc = GetNPCByID(17461503);
+	if(npc ~= nil) then
+		npc:wait(0);
+	end
 
 end;

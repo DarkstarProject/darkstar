@@ -26,6 +26,13 @@ function onTrigger(player,npc)
 		return -1;
 	else
 		player:messageSpecial(PROTECTED_BY_UNKNOWN_FORCE);
+
+		local guardian = GetMobByID(17428494);
+
+		if(guardian ~= nil and guardian:getHP() > 0 and guardian:hasTarget() == false) then
+			guardian:updateEnmity(player);
+		end
+
 		return 1;
 	end
 end; 

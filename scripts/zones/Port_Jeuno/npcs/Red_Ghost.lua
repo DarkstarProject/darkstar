@@ -69,5 +69,9 @@ function onEventFinish(player,csid,option)
 		player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",15,true)
 	end
 
-	GetNPCByID(17784896):wait(0);
+	local npc = GetNPCByID(17784896);
+	
+	if(npc ~= nil) then
+		npc:wait(0);
+	end
 end;
