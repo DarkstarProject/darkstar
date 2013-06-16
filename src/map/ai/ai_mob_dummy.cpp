@@ -174,13 +174,13 @@ void CAIMobDummy::ActionRoaming()
 		else if(m_PSpecialSkill != NULL && TrySpecialSkill())
 		{
 			// I spawned a pet
-			m_LastActionTime = m_Tick - rand()%(m_PMob->m_RoamCoolDown + 5000);
+			m_LastActionTime = m_Tick - rand()%(m_PMob->m_RoamCoolDown) + 5000;
 		}
 		else if(CanCastSpells() && rand()%10 < 3 && m_PMob->SpellContainer->HasBuffSpells())
 		{
 			// cast buff
 			CastSpell(m_PMob->SpellContainer->GetBuffSpell());
-			m_LastActionTime = m_Tick - rand()%(m_PMob->m_RoamCoolDown + 15000);
+			m_LastActionTime = m_Tick - rand()%(m_PMob->m_RoamCoolDown) + 15000;
 		}
 		else if((m_PMob->m_Type & MOBTYPE_EVENT) != MOBTYPE_EVENT && m_PMob->PMaster == NULL && m_PMob->speed > 0)
 		{
@@ -1793,7 +1793,7 @@ void CAIMobDummy::FollowPath()
 		// if I just finished reset my last action time
 		if(!m_PPathFind->IsFollowingPath())
 		{
-			m_LastActionTime = m_Tick - rand()%(m_PMob->m_RoamCoolDown + 5000);
+			m_LastActionTime = m_Tick - rand()%m_PMob->m_RoamCoolDown + 5000;
 			luautils::OnMobPathFinish(m_PMob);
 		}
 	}

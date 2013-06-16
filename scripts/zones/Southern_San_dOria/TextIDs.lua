@@ -1,7 +1,7 @@
 -- Variable TextID   Description text
 
 -- General Texts
-   ITEM_CANNOT_BE_OBTAINED = 6457; -- You cannot obtain the item <item> come back again after sorting your inventory
+   ITEM_CANNOT_BE_OBTAINED = 6467; -- You cannot obtain the item <item> come back again after sorting your inventory
 FULL_INVENTORY_AFTER_TRADE = 6402; -- You cannot obtain the <item>. Try trading again after sorting your inventory
              ITEM_OBTAINED = 6403; -- Obtained: <item>
               GIL_OBTAINED = 6404; -- Obtained <number> gil
