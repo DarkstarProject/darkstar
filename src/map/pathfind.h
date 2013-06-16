@@ -33,7 +33,7 @@ The PathFind class provides an interface for getting an entity to a destination.
 class CBattleEntity;
 
 // no path can be longer than this
-#define MAX_PATH_POINTS 15
+#define MAX_PATH_POINTS 20
 
 class CPathFind
 {
@@ -50,14 +50,14 @@ class CPathFind
 
     // run through given points
     // this will not use navmesh
-    bool RunThrough(position_t* points, uint8 totalPoints);
+    bool RunThrough(position_t* points, uint8 totalPoints, bool reverse);
 
     // walk normally to a point
     bool WalkTo(position_t point);
 
     // walk through given points
     // this will not use navmesh
-    bool WalkThrough(position_t* points, uint8 totalPoints);
+    bool WalkThrough(position_t* points, uint8 totalPoints, bool reverse);
 
     // instantly moves an entity to the point
     // this will make sure you're not in a wall
@@ -107,6 +107,8 @@ class CPathFind
 
     // finds a random path around the given point
     bool FindRandomPath(position_t* start, float maxRadius);
+
+    void AddPoints(position_t* points, uint8 totalPoints, bool reverse);
 
     CBattleEntity* m_PTarget;
     position_t m_points[MAX_PATH_POINTS];

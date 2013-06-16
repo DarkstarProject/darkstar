@@ -107,7 +107,7 @@ bool CPathFind::RunTo(position_t point)
   return true;
 }
 
-bool CPathFind::RunThrough(position_t* points, uint8 totalPoints)
+bool CPathFind::RunThrough(position_t* points, uint8 totalPoints, bool reverse = false)
 {
   
   Clear();
@@ -116,20 +116,7 @@ bool CPathFind::RunThrough(position_t* points, uint8 totalPoints)
 
   m_mode = 2;
 
-  m_pathLength = totalPoints;
-
-  if(totalPoints > MAX_PATH_POINTS)
-  {
-    ShowWarning("CPathFind::RunThrough Given too many points (%d). Limiting to max (%d)\n", totalPoints, MAX_PATH_POINTS);
-    m_pathLength = MAX_PATH_POINTS;
-  }
-
-  for(uint8 i=0; i<totalPoints; i++)
-  {
-    m_points[i].x = points[i].x;
-    m_points[i].y = points[i].y;
-    m_points[i].z = points[i].z;
-  }
+  AddPoints(points, totalPoints, reverse);
 
   return true;
 }
@@ -158,7 +145,7 @@ bool CPathFind::WalkTo(position_t point)
   return false;
 }
 
-bool CPathFind::WalkThrough(position_t* points, uint8 totalPoints)
+bool CPathFind::WalkThrough(position_t* points, uint8 totalPoints, bool reverse = false)
 {
   Clear();
 
@@ -166,20 +153,7 @@ bool CPathFind::WalkThrough(position_t* points, uint8 totalPoints)
 
   m_mode = 1;
 
-  m_pathLength = totalPoints;
-
-  if(totalPoints > MAX_PATH_POINTS)
-  {
-    ShowWarning("CPathFind::WalkThrough Given too many points (%d). Limiting to max (%d)\n", totalPoints, MAX_PATH_POINTS);
-    m_pathLength = MAX_PATH_POINTS;
-  }
-
-  for(uint8 i=0; i<totalPoints; i++)
-  {
-    m_points[i].x = points[i].x;
-    m_points[i].y = points[i].y;
-    m_points[i].z = points[i].z;
-  }
+  AddPoints(points, totalPoints, reverse);
 
   return true;
 }
@@ -373,4 +347,36 @@ void CPathFind::Clear()
   m_mode = 0;
   m_maxDistance = 0;
   m_distanceMoved = 0;
+  m_PTarget->loc.p.moving = 0;
+}
+
+void CPathFind::AddPoints(position_t* points, uint8 totalPoints, bool reverse = false)
+{
+  
+  m_pathLength = totalPoints;
+
+  if(totalPoints > MAX_PATH_POINTS)
+  {
+    ShowWarning("CPathFind::AddPoints Given too many points (%d). Limiting to max (%d)\n", totalPoints, MAX_PATH_POINTS);
+    m_pathLength = MAX_PATH_POINTS;
+  }
+
+  uint8 index;
+
+  for(uint8 i=0; i<totalPoints; i++)
+  {
+    if(reverse)
+    {
+      index = totalPoints - 1 - i;
+    }
+    else
+    {
+      index = i;
+    }
+    
+    m_points[index].x = points[i].x;
+    m_points[index].y = points[i].y;
+    m_points[index].z = points[i].z;
+  }
+
 }

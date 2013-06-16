@@ -42,6 +42,8 @@ CAIGeneral::CAIGeneral()
 {
     m_PTargetFind = NULL;
     m_PPathFind = NULL;
+    m_WaitTime = 0;
+    m_LastWaitTime = 0;
 	Reset();
 }
 
@@ -425,4 +427,11 @@ bool CAIGeneral::MoveTo(position_t* pos)
         return true;
     }
     return false;
+}
+
+void CAIGeneral::Wait(uint32 waitTime)
+{
+    m_LastWaitTime = m_Tick;
+	m_WaitTime = waitTime;
+	m_ActionType = ACTION_WAIT;
 }

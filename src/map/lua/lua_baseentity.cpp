@@ -2285,7 +2285,7 @@ inline int32 CLuaBaseEntity::openSendBox(lua_State *L)
 inline int32 CLuaBaseEntity::showText(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	// DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isuserdata(L,1));
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
@@ -2322,7 +2322,14 @@ inline int32 CLuaBaseEntity::showText(lua_State *L)
         if( !lua_isnil(L,6) && lua_isnumber(L,6) )
             param3 = (uint32)lua_tointeger(L,6);
 
-        ((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageSpecialPacket(PBaseEntity, messageID, param0, param1, param2, param3));
+        if(m_PBaseEntity->objtype == TYPE_PC)
+        {
+	        ((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageSpecialPacket(PBaseEntity, messageID, param0, param1, param2, param3));
+        }
+        else
+        {
+			m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity,CHAR_INRANGE,new CMessageSpecialPacket(PBaseEntity, messageID, param0, param1, param3));
+        }
 	}
 	return 0;
 }
@@ -3063,8 +3070,7 @@ inline int32 CLuaBaseEntity::messageTarget(lua_State* L)
 
     CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L,2);
 
-    if (PEntity != NULL &&
-        PEntity->GetBaseEntity()->objtype != TYPE_NPC)
+    if (PEntity != NULL)
     {
 	    if( !lua_isnil(L,2) && lua_isnumber(L,3) )
 	        param0 = (uint32)lua_tointeger(L,3);
@@ -6908,10 +6914,10 @@ Walk through the given points. NPC only.
 
 Usage:
 
-	npc:walkThrough(
-		-217, -57, 379,
-		-264, -55, 378
-	);
+	npc:walkThrough({
+		-217, -57, 379, -- point 1
+		-264, -55, 378 -- point 2
+	}, true); -- last element will reverse path
 */
 inline int32 CLuaBaseEntity::walkThrough(lua_State* L)
 {
@@ -6924,6 +6930,8 @@ inline int32 CLuaBaseEntity::walkThrough(lua_State* L)
 
 	uint8 length = lua_objlen(L, 1);
 	uint8 pos = 0;
+
+	bool reverse = lua_isboolean(L, 2);
 
 	DSP_DEBUG_BREAK_IF(length > 20);
 
@@ -6947,7 +6955,7 @@ inline int32 CLuaBaseEntity::walkThrough(lua_State* L)
 
 	CNpcEntity* PNpc = (CNpcEntity*)m_PBaseEntity;
 
-	if(PNpc->PBattleAI->m_PPathFind->WalkThrough(points, pos))
+	if(PNpc->PBattleAI->m_PPathFind->WalkThrough(points, pos, reverse))
 	{
 		PNpc->PBattleAI->SetCurrentAction(ACTION_ROAMING);
 		lua_pushboolean(L, true);
@@ -6965,23 +6973,71 @@ Run through the given points. NPC only.
 
 Usage:
 
-	npc:runTo(
+	npc:runTo({
 		-217, -57, 379,
 		-264, -55, 378
-	);
+	});
 */
 inline int32 CLuaBaseEntity::runThrough(lua_State* L)
 {
 
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
+	DSP_DEBUG_BREAK_IF(luaL_checktype(L, 1, LUA_TTABLE) == false);
+
+	position_t points[20];
+
+	uint8 length = lua_objlen(L, 1);
+	uint8 pos = 0;
+
+	bool reverse = lua_isboolean(L, 2);
+		DSP_DEBUG_BREAK_IF(length > 20);
+
+	// grab points from array and store in points array
+	for(uint8 i=1; i<length; i+=3)
+	{
+		lua_rawgeti(L, 1, i);
+		points[pos].x = lua_tonumber(L, -1);
+		lua_pop(L,1);
+
+ 		lua_rawgeti(L, 1, i+1);
+		points[pos].y = lua_tonumber(L, -1);
+		lua_pop(L,1);
+
+		lua_rawgeti(L, 1, i+2);
+		points[pos].z = lua_tonumber(L, -1);
+		lua_pop(L,1);
+
+		pos++;
+	}
+
+	CNpcEntity* PNpc = (CNpcEntity*)m_PBaseEntity;
+
+	if(PNpc->PBattleAI->m_PPathFind->RunThrough(points, pos, reverse))
+	{
+		PNpc->PBattleAI->SetCurrentAction(ACTION_ROAMING);
+		lua_pushboolean(L, true);
+	} 
+	else 
+	{
+		lua_pushboolean(L, false);
+	}
+
+	return 1;
 	return 1;
 }
 
 inline int32 CLuaBaseEntity::knockback(lua_State* L)
 {
 
-	return 1;
+	return 0;
 }
 
+/*
+Usage:
+	
+	npc:atPoint(-200, 10, -300);
+*/
 inline int32 CLuaBaseEntity::atPoint(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -6995,10 +7051,33 @@ inline int32 CLuaBaseEntity::atPoint(lua_State* L)
 	return 1;
 }
 
+/*
+Usage:
+	
+	npc:lookAt(-200, 10, -300);
+*/
 inline int32 CLuaBaseEntity::lookAt(lua_State* L)
 {
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	
+	CBattleEntity* PBattle = (CBattleEntity*)m_PBaseEntity;
 
-	return 1;
+	DSP_DEBUG_BREAK_IF(PBattle->PBattleAI == NULL);
+
+	if(PBattle->PBattleAI->m_PPathFind != NULL)
+	{
+		position_t point;
+
+		point.x = lua_tonumber(L,1);
+		point.y = lua_tonumber(L,2);
+		point.z = lua_tonumber(L,3);
+
+		PBattle->PBattleAI->m_PPathFind->LookAt(point);
+
+	    PBattle->loc.zone->PushPacket(PBattle,CHAR_INRANGE, new CEntityUpdatePacket(PBattle,ENTITY_UPDATE));	
+	}
+
+	return 0;
 }
 
 /*
@@ -7006,6 +7085,12 @@ Checks if the entity is following a path.
 */
 inline int32 CLuaBaseEntity::isFollowingPath(lua_State* L)
 {
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+	CBattleEntity* PBattle = (CBattleEntity*)m_PBaseEntity;
+	DSP_DEBUG_BREAK_IF(PBattle->PBattleAI == NULL);
+
+	lua_pushboolean(L, PBattle->PBattleAI->m_PPathFind != NULL && PBattle->PBattleAI->m_PPathFind->IsFollowingPath());
 
 	return 1;
 }
@@ -7015,15 +7100,32 @@ Clears the current path and stops moving.
 */
 inline int32 CLuaBaseEntity::clearPath(lua_State* L)
 {
+	CBattleEntity* PBattle = (CBattleEntity*)m_PBaseEntity;
+	DSP_DEBUG_BREAK_IF(PBattle->PBattleAI == NULL);
 
-	return 1;
+	if(PBattle->PBattleAI->m_PPathFind != NULL)
+	{
+		PBattle->PBattleAI->m_PPathFind->Clear();
+	}
+
+	return 0;
 }
 
 /*
 Wait for a given number of milliseconds.
+
+Usage:
+	
+	npc:wait(1000); -- wait one second
 */
 inline int32 CLuaBaseEntity::wait(lua_State* L)
 {
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
+
+	CNpcEntity* PNpc = (CNpcEntity*)m_PBaseEntity;
+
+	PNpc->PBattleAI->Wait(lua_tonumber(L, 1));
+
 	return 1;
 }
 
@@ -7316,6 +7418,12 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBaseMP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBaseMP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,walkThrough),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,runThrough),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,atPoint),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,lookAt),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,clearPath),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,isFollowingPath),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,wait),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,knockback),
 	{NULL,NULL}
 };

@@ -120,6 +120,7 @@ namespace luautils
 	int32 OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget);// triggered when monster wants to use a spell on target
 
     int32 OnMobInitialize(CBaseEntity* PMob);									// Used for passive trait
+	int32 OnMobPathFinish(CBaseEntity* PMob);						// triggers when a patrol npc finishes its pathfind
 	int32 OnMobSpawn(CBaseEntity* PMob);										// triggers on mob spawn
 	int32 OnMobRoam(CBaseEntity* PMob);
 	int32 OnMobEngaged(CBaseEntity* PMob, CBaseEntity* PTarget);				// triggers on mob engaging a target

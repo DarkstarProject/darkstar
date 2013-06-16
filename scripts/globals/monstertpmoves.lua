@@ -665,7 +665,7 @@ end;
 
 -- returns true if mob attack hit
 -- used to stop tp move status effects
-function MobPhysicalHit(skill, dmg, target, hits)
+function MobPhysicalHit(skill)
 	-- if message is not the default. Then there was a miss, shadow taken etc
 	return skill:hasMissMsg() == false;
 end;
@@ -700,10 +700,16 @@ function MobStatusEffectMove(mob, target, typeEffect, power, tick, duration)
 	return MSG_NO_EFFECT; -- no effect
 end;
 
+function MobPhysicalKnockback(mob, target, power)
+	if(MobPhysicalHit(skill)) then
+		target:knockback(mob:getXPos(), mob:getYPos(), mob:getZPos(), power);
+	end
+end;
+
 -- similar to status effect move except, this will not land if the attack missed
 function MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, tick, duration)
 
-    if(MobPhysicalHit(skill, 0, 0, 0)) then
+    if(MobPhysicalHit(skill)) then
         MobStatusEffectMove(mob, target, typeEffect, power, tick, duration);
     end
 end;

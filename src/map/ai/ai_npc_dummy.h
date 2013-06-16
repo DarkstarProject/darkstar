@@ -40,6 +40,7 @@ public:
 
   CAINpcDummy(CNpcEntity* PNpc);
 
+
 protected:
 
   CNpcEntity* m_PNpc;

@@ -53,7 +53,7 @@ public:
 	virtual void CheckCurrentAction(uint32 tick);
 
 	CAIMobDummy(CMobEntity* PMob);
-
+  
 protected:
 
 	CMobEntity* m_PMob;
@@ -61,8 +61,6 @@ protected:
   bool m_firstSpell;
   uint32 m_SpawnTime;
   uint32 m_LastSpecialTime;
-  uint32 m_LastWaitTime;
-  uint32 m_WaitTime;
   uint8 m_ChaseThrottle;
   float m_skillTP;
 
@@ -99,7 +97,6 @@ protected:
   bool TryCastSpell(); // logic for spell casting, returns true if found one to cast
   bool TrySpecialSkill();
   void CastSpell(uint16 spellId); // makes the mob cast a spell
-  void Wait(uint32 waitTime);
   bool CanLink(CMobEntity* PTarget); // checks if the target can link
 
   void FollowPath(); // continues moving

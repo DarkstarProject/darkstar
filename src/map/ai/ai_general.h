@@ -108,6 +108,7 @@ public:
 	bool			GetMagicCastingEnabled();
     bool            GetMobAbilityEnabled();
     bool            MoveTo(position_t* pos); // move entity to position. Doesn't pathfind
+    void			Wait(uint32 waitTime);
 
     uint32          GetBattleTime();
 
@@ -158,6 +159,10 @@ protected:
 	CAbility*		m_PJobAbility;
 	CMobSkill*		m_PMobSkill;
     CTargetFind*  m_PTargetFind; // finds targets for AoEs
+    
+	uint32 m_WaitTime;
+	uint32 m_LastWaitTime;
+
 };
 
 #endif

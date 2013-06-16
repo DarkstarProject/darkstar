@@ -65,8 +65,6 @@ CAIMobDummy::CAIMobDummy(CMobEntity* PMob)
 	m_PSpecialSkill = NULL;
 	m_firstSpell = true;
 	m_LastSpecialTime = 0;
-	m_WaitTime = 0;
-	m_LastWaitTime = 0;
 	m_skillTP = 0;
 	m_ChaseThrottle = 0;
 }
@@ -1720,13 +1718,6 @@ void CAIMobDummy::CastSpell(uint16 spellId)
 	}
 }
 
-void CAIMobDummy::Wait(uint32 waitTime)
-{
-    m_LastWaitTime = m_Tick;
-	m_WaitTime = waitTime;
-	m_ActionType = ACTION_WAIT;
-}
-
 bool CAIMobDummy::CanLink(CMobEntity* PTarget)
 {
 	if (PTarget->PBattleAI->GetCurrentAction() == ACTION_ROAMING){
@@ -1799,6 +1790,7 @@ void CAIMobDummy::FollowPath()
 		if(!m_PPathFind->IsFollowingPath())
 		{
 			m_LastActionTime = m_Tick - rand()%(m_PMob->m_RoamCoolDown + 5000);
+			luautils::OnMobPathFinish(m_PMob);
 		}
 	}
 }
