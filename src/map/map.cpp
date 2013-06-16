@@ -228,8 +228,6 @@ void do_final(void)
     aFree(PTempBuff);
 
 	aFree((void*)map_config.mysql_host);
-	aFree((void*)map_config.mysql_login);
-	aFree((void*)map_config.mysql_password);
 	aFree((void*)map_config.mysql_database);
 
 	itemutils::FreeItemList();
