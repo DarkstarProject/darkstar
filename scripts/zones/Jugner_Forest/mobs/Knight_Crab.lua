@@ -23,7 +23,8 @@ function onMobDeath(mob, killer)
 	
 	if(GetServerVariable("[POP]King_Arthro") == 10) then
 		SetServerVariable("[POP]King_Arthro",0);
-		SpawnMob(17203216,600,300); -- Pop King Arthro !
+		local spawnTime = math.random(5,10);
+		SpawnMob(17203216,600,spawnTime); -- Pop King Arthro !
 	end
 	
 end;
