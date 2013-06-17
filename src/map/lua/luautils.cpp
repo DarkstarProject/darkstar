@@ -1222,7 +1222,7 @@ int32 OnTrade(CCharEntity* PChar, CBaseEntity* PNpc)
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
-int32 OnNpcInitialize(CBaseEntity* PNpc)
+int32 OnNpcSpawn(CBaseEntity* PNpc)
 {
     DSP_DEBUG_BREAK_IF(PNpc == NULL);
 
@@ -1230,7 +1230,7 @@ int32 OnNpcInitialize(CBaseEntity* PNpc)
     memset(File,0,sizeof(File));
 
     lua_pushnil(LuaHandle);
-    lua_setglobal(LuaHandle, "onInitialize");
+    lua_setglobal(LuaHandle, "onSpawn");
 
     snprintf( File, sizeof(File), "scripts/zones/%s/npcs/%s.lua", PNpc->loc.zone->GetName(), PNpc->GetName());
 
@@ -1240,7 +1240,7 @@ int32 OnNpcInitialize(CBaseEntity* PNpc)
         return -1;
     }
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onInitialize");
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onSpawn");
     if( lua_isnil(LuaHandle,-1) )
     {
         return -1;
@@ -1251,14 +1251,14 @@ int32 OnNpcInitialize(CBaseEntity* PNpc)
 
     if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
     {
-        ShowError("luautils::OnNpcInitialize: %s\n",lua_tostring(LuaHandle,-1));
+        ShowError("luautils::OnNpcSpawn: %s\n",lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
         return -1;
     }
     return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
-int32 OnNpcPathFinish(CBaseEntity* PNpc)
+int32 OnNpcPath(CBaseEntity* PNpc)
 {
     DSP_DEBUG_BREAK_IF(PNpc == NULL);
 
@@ -1266,7 +1266,7 @@ int32 OnNpcPathFinish(CBaseEntity* PNpc)
     memset(File,0,sizeof(File));
 
     lua_pushnil(LuaHandle);
-    lua_setglobal(LuaHandle, "onPathFinish");
+    lua_setglobal(LuaHandle, "onPath");
 
     snprintf( File, sizeof(File), "scripts/zones/%s/npcs/%s.lua", PNpc->loc.zone->GetName(), PNpc->GetName());
 
@@ -1276,7 +1276,7 @@ int32 OnNpcPathFinish(CBaseEntity* PNpc)
         return -1;
     }
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onPathFinish");
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onPath");
     if( lua_isnil(LuaHandle,-1) )
     {
         return -1;
@@ -1284,7 +1284,6 @@ int32 OnNpcPathFinish(CBaseEntity* PNpc)
 
     CLuaBaseEntity LuaBaseEntity(PNpc);
     Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-
 
     if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
     {
@@ -1710,7 +1709,7 @@ int32 OnMobInitialize(CBaseEntity* PMob)
     return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
-int32 OnMobPathFinish(CBaseEntity* PMob)
+int32 OnMobPath(CBaseEntity* PMob)
 {
     DSP_DEBUG_BREAK_IF(PMob == NULL);
 
@@ -1718,7 +1717,7 @@ int32 OnMobPathFinish(CBaseEntity* PMob)
     memset(File,0,sizeof(File));
 
     lua_pushnil(LuaHandle);
-    lua_setglobal(LuaHandle, "onMobPathFinish");
+    lua_setglobal(LuaHandle, "onMobPath");
 
     snprintf( File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
@@ -1728,7 +1727,7 @@ int32 OnMobPathFinish(CBaseEntity* PMob)
         return -1;
     }
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobPathFinish");
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobPath");
     if( lua_isnil(LuaHandle,-1) )
     {
         return -1;
@@ -1737,10 +1736,9 @@ int32 OnMobPathFinish(CBaseEntity* PMob)
     CLuaBaseEntity LuaMobEntity(PMob);
     Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
 
-
     if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
     {
-        ShowError("luautils::onMobPathFinish: %s\n",lua_tostring(LuaHandle,-1));
+        ShowError("luautils::onMobPath: %s\n",lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
         return -1;
     }
@@ -2114,6 +2112,44 @@ int32 OnMobSpawn(CBaseEntity* PMob)
         return -1;
     }
     return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+}
+
+int32 OnMobRoamAction(CBaseEntity* PMob)
+{
+    DSP_DEBUG_BREAK_IF(PMob == NULL || PMob->objtype != TYPE_MOB)
+    
+	CLuaBaseEntity LuaMobEntity(PMob);
+	
+	int8 File[255];
+	memset(File,0,sizeof(File));
+
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "OnMobRoamAction");
+
+	snprintf( File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+        lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnMobRoamAction");
+	if( lua_isnil(LuaHandle,-1) )
+	{
+		return -1;
+	}
+
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
+	
+	if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::OnMobRoamAction: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
 /************************************************************************

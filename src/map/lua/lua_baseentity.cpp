@@ -529,14 +529,38 @@ inline int32 CLuaBaseEntity::setPos(lua_State *L)
         m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_DESPAWN));
     }
 
-	if( !lua_isnil(L,1) && lua_isnumber(L,1) )
-		m_PBaseEntity->loc.p.x = (float) lua_tonumber(L,1);
-	if( !lua_isnil(L,2) && lua_isnumber(L,2) )
-		m_PBaseEntity->loc.p.y = (float) lua_tonumber(L,2);
-	if( !lua_isnil(L,3) && lua_isnumber(L,3) )
-		m_PBaseEntity->loc.p.z = (float) lua_tonumber(L,3);
-	if( !lua_isnil(L,4) && lua_isnumber(L,4) )
-		m_PBaseEntity->loc.p.rotation = (uint8) lua_tointeger(L,4);
+	if(lua_isnumber(L, 1))
+	{
+
+		if( !lua_isnil(L,1) && lua_isnumber(L,1) )
+			m_PBaseEntity->loc.p.x = (float) lua_tonumber(L,1);
+		if( !lua_isnil(L,2) && lua_isnumber(L,2) )
+			m_PBaseEntity->loc.p.y = (float) lua_tonumber(L,2);
+		if( !lua_isnil(L,3) && lua_isnumber(L,3) )
+			m_PBaseEntity->loc.p.z = (float) lua_tonumber(L,3);
+		if( !lua_isnil(L,4) && lua_isnumber(L,4) )
+			m_PBaseEntity->loc.p.rotation = (uint8) lua_tointeger(L,4);
+	}
+	else
+	{
+		// its a table
+		lua_rawgeti(L, 1, 1);
+		m_PBaseEntity->loc.p.x = lua_tonumber(L, -1);
+		lua_pop(L,1);
+
+		lua_rawgeti(L, 1, 2);
+		m_PBaseEntity->loc.p.y = lua_tonumber(L, -1);
+		lua_pop(L,1);
+
+		lua_rawgeti(L, 1, 3);
+		m_PBaseEntity->loc.p.z = lua_tonumber(L, -1);
+		lua_pop(L,1);
+
+		lua_rawgeti(L, 1, 4);
+		m_PBaseEntity->loc.p.rotation = (uint8)lua_tointeger(L, -1);
+		lua_pop(L,1);
+	}
+
 
 	if( m_PBaseEntity->objtype == TYPE_PC)
 	{
@@ -7034,14 +7058,37 @@ inline int32 CLuaBaseEntity::knockback(lua_State* L)
 Usage:
 	
 	npc:atPoint(-200, 10, -300);
+	npc:atPoint({-200, 10, -300});
 */
 inline int32 CLuaBaseEntity::atPoint(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	
-	float posX = lua_tonumber(L,1);
-	float posY = lua_tonumber(L,2);
-	float posZ = lua_tonumber(L,3);
+	float posX = 0;
+	float posY = 0;
+	float posZ = 0;
+
+	if(lua_isnumber(L, 1))
+	{
+		posX = lua_tonumber(L,1);
+		posY = lua_tonumber(L,2);
+		posZ = lua_tonumber(L,3);
+	}
+	else
+	{
+		// its a table
+		lua_rawgeti(L, 1, 1);
+		posX = lua_tonumber(L, -1);
+		lua_pop(L,1);
+
+		lua_rawgeti(L, 1, 2);
+		posY = lua_tonumber(L, -1);
+		lua_pop(L,1);
+
+		lua_rawgeti(L, 1, 3);
+		posZ = lua_tonumber(L, -1);
+		lua_pop(L,1);
+	}
 
 	lua_pushboolean(L, m_PBaseEntity->loc.p.x == posX && m_PBaseEntity->loc.p.y == posY && m_PBaseEntity->loc.p.z == posZ);
 
@@ -7052,6 +7099,7 @@ inline int32 CLuaBaseEntity::atPoint(lua_State* L)
 Usage:
 	
 	npc:lookAt(-200, 10, -300);
+	npc:lookAt({-200, 10, -300});
 */
 inline int32 CLuaBaseEntity::lookAt(lua_State* L)
 {
@@ -7061,13 +7109,39 @@ inline int32 CLuaBaseEntity::lookAt(lua_State* L)
 
 	DSP_DEBUG_BREAK_IF(PBattle->PBattleAI == NULL);
 
+	float posX = 0;
+	float posY = 0;
+	float posZ = 0;
+
+	if(lua_isnumber(L, 1))
+	{
+		posX = lua_tonumber(L,1);
+		posY = lua_tonumber(L,2);
+		posZ = lua_tonumber(L,3);
+	}
+	else
+	{
+		// its a table
+		lua_rawgeti(L, 1, 1);
+		posX = lua_tonumber(L, -1);
+		lua_pop(L,1);
+
+		lua_rawgeti(L, 1, 2);
+		posY = lua_tonumber(L, -1);
+		lua_pop(L,1);
+
+		lua_rawgeti(L, 1, 3);
+		posZ = lua_tonumber(L, -1);
+		lua_pop(L,1);
+	}
+
 	if(PBattle->PBattleAI->m_PPathFind != NULL)
 	{
 		position_t point;
 
-		point.x = lua_tonumber(L,1);
-		point.y = lua_tonumber(L,2);
-		point.z = lua_tonumber(L,3);
+		point.x = posX;
+		point.y = posY;
+		point.z = posZ;
 
 		PBattle->PBattleAI->m_PPathFind->LookAt(point);
 

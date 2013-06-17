@@ -442,5 +442,4 @@ void CAIGeneral::Wait(int32 waitTime)
 	}
 	
     m_LastWaitTime = m_Tick;
-	m_ActionType = ACTION_WAIT;
 }

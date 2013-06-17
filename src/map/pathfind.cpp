@@ -196,6 +196,8 @@ void CPathFind::FollowPath()
 {
   if(!IsFollowingPath()) return;
 
+  m_onPoint = false;
+
   // move mob to next point
   position_t* targetPoint = &m_points[m_currentPoint];
 
@@ -206,6 +208,8 @@ void CPathFind::FollowPath()
   {
     // if I have a max distance, check to stop me
     Clear();
+
+    m_onPoint = true;
   }
   else if(AtPoint(targetPoint))
   {
@@ -216,7 +220,14 @@ void CPathFind::FollowPath()
       // i'm finished!
       Clear();
     }
+
+    m_onPoint = true;
   }
+}
+
+bool CPathFind::OnPoint()
+{
+  return m_onPoint;
 }
 
 void CPathFind::StepTo(position_t* pos)
@@ -347,7 +358,7 @@ void CPathFind::Clear()
   m_mode = 0;
   m_maxDistance = 0;
   m_distanceMoved = 0;
-  m_PTarget->loc.p.moving = 0;
+  m_onPoint = true;
 }
 
 void CPathFind::AddPoints(position_t* points, uint8 totalPoints, bool reverse = false)

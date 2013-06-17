@@ -11,6 +11,7 @@ package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 require("scripts/zones/Davoi/TextIDs");
+require("scripts/globals/pathfind");
 
 path = {
 	20.6, 0, -23,
@@ -21,17 +22,14 @@ path = {
 	90, -0.5, -19
 };
 
-function onInitialize(npc)
-	npc:setPos(path[1], path[2], path[3]);
-	npc:walkThrough(path);
+function onSpawn(npc)
+	npc:setPos(pathfind.first(path));
+	onPath(npc);
 end;
 
-function onPathFinish(npc)
-	if(npc:atPoint(path[1], path[2], path[3])) then
-		npc:walkThrough(path);
-	else
-		npc:walkThrough(path, true);
-	end
+function onPath(npc)
+	
+	pathfind.patrol(npc, path);
 end;
 
 -----------------------------------

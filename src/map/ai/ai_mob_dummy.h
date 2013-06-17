@@ -62,6 +62,8 @@ protected:
   uint32 m_SpawnTime;
   uint32 m_LastSpecialTime;
   uint8 m_ChaseThrottle;
+  uint32 m_LastStunTime;
+  uint32 m_StunTime;
   float m_skillTP;
 
 	void ActionRoaming();
@@ -82,7 +84,7 @@ protected:
   void ActionAttack();
 
   void ActionSleep();
-  void ActionWait();
+  void ActionStun();
 
 	void ActionMagicStart();
 	void ActionMagicCasting();
@@ -98,6 +100,7 @@ protected:
   bool TrySpecialSkill();
   void CastSpell(uint16 spellId); // makes the mob cast a spell
   bool CanLink(CMobEntity* PTarget); // checks if the target can link
+  void Stun(uint32 stunTime);
 
   void FollowPath(); // continues moving
 

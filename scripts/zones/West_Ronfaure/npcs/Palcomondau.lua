@@ -8,6 +8,8 @@
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/pathfind");
+
 path = {
 	-577, -56, 500,
 	-549, -55, 497,
@@ -24,30 +26,34 @@ path = {
 	-333, -45, 374,
 	-296, -52, 382,
 	-282, -55, 379,
-	-184, -61, 380	
+	-184, -61, 380
 };
 
-function onInitialize(npc)
-	npc:setPos(path[1], path[2], path[3]);
-	npc:walkThrough(path);
+
+function onSpawn(npc)	
+	npc:setPos(pathfind.first(path));
+	onPath(npc);
 end;
 
-function onPathFinish(npc)
-	
-	if(npc:atPoint(path[1], path[2], path[3])) then
+function onPath(npc)
 
-		npc:walkThrough(path);
-	else
+	if(npc:atPoint(pathfind.first(path))) then
+
+		npc:walkThrough(pathfind.fromStart(path));
+
+	elseif(npc:atPoint(pathfind.last(path))) then
+
 		local ada = GetNPCByID(17187461);
 
 		npc:showText(ada, PALCOMONDAU_REPORT);
 
 		-- go same path but backwards
-		npc:walkThrough(path, true);
+		npc:walkThrough(pathfind.fromEnd(path));
+		
+		-- small delay after path finish
+		npc:wait(2000);
 	end
 
-	-- small delay after path finish
-	npc:wait(2000);
 end;
 
 -----------------------------------
@@ -62,8 +68,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	npc:wait(2000);
 	player:showText(npc, PALCOMONDAU_DIALOG);
+	npc:wait(2000);
 end;
 
 -----------------------------------

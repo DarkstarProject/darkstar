@@ -105,8 +105,8 @@ namespace luautils
 	int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result);		// triggered when cutscene/event is completed
 	int32 OnTrade(CCharEntity* PChar, CBaseEntity* PNpc);						// triggers when a trade completes with an npc
 
-	int32 OnNpcInitialize(CBaseEntity* PNpc);						// triggers when a patrol npc gets initialize
-	int32 OnNpcPathFinish(CBaseEntity* PNpc);						// triggers when a patrol npc finishes its pathfind
+	int32 OnNpcSpawn(CBaseEntity* PNpc);						// triggers when a patrol npc spawns
+	int32 OnNpcPath(CBaseEntity* PNpc);						// triggers when a patrol npc reaches a point
 
 	int32 OnEffectGain(CBattleEntity* PEntity, CStatusEffect* StatusEffect);	// triggers when an effect is applied to pc/npc
 	int32 OnEffectTick(CBattleEntity* PEntity, CStatusEffect* StatusEffect);	// triggers when effect tick timer has been reached
@@ -120,8 +120,9 @@ namespace luautils
 	int32 OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget);// triggered when monster wants to use a spell on target
 
     int32 OnMobInitialize(CBaseEntity* PMob);									// Used for passive trait
-	int32 OnMobPathFinish(CBaseEntity* PMob);						// triggers when a patrol npc finishes its pathfind
+	int32 OnMobPath(CBaseEntity* PMob);						// triggers when a patrol npc finishes its pathfind
 	int32 OnMobSpawn(CBaseEntity* PMob);										// triggers on mob spawn
+	int32 OnMobRoamAction(CBaseEntity* PMob);										// triggers when event mob is ready for a custom roam action
 	int32 OnMobRoam(CBaseEntity* PMob);
 	int32 OnMobEngaged(CBaseEntity* PMob, CBaseEntity* PTarget);				// triggers on mob engaging a target
 	int32 OnMobDisengage(CBaseEntity* PMob);									// triggers on mob disengaging (no more targets)

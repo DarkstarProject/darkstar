@@ -69,6 +69,9 @@ class CPathFind
     // moves mob to next point
     void FollowPath();
 
+    // returns true if entity is on a way point
+    bool OnPoint();
+
     // stops pathfinding after moving the given distance
     // this can be used to prevent mobs from walking
     // all the way to a point
@@ -113,6 +116,7 @@ class CPathFind
     CBattleEntity* m_PTarget;
     position_t m_points[MAX_PATH_POINTS];
 
+    bool m_onPoint;
     int16 m_currentPoint;
     int16 m_pathLength;
     int8 m_mode;

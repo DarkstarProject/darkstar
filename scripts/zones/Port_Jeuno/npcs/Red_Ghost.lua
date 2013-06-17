@@ -7,23 +7,20 @@
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Port_Jeuno/TextIDs");
 require("scripts/globals/quests");
+require("scripts/globals/pathfind");
 
 path = {
 	-96.5, 0, -8,
 	-96.5, 0, 8
 };
 
-function onInitialize(npc)
-	npc:setPos(path[1], path[2], path[3]);
-	npc:walkThrough(path);
+function onSpawn(npc)
+	npc:setPos(pathfind.first(path));
+	onPath(npc);
 end;
 
-function onPathFinish(npc)
-	if(npc:atPoint(path[1], path[2], path[3])) then
-		npc:walkThrough(path);
-	else
-		npc:walkThrough(path, true);
-	end
+function onPath(npc)
+	pathfind.patrol(npc, path);
 end;
 
 -----------------------------------

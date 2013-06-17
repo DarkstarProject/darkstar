@@ -98,7 +98,7 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
 		case ACTION_MOBABILITY_USING:	  ActionAbilityUsing();     break;
 		case ACTION_MOBABILITY_FINISH:	  ActionAbilityFinish();  	break;
         case ACTION_MOBABILITY_INTERRUPT: ActionAbilityInterrupt(); break;
-        case ACTION_WAIT: 				  ActionWait();			    break;
+        case ACTION_STUN: 			  	  ActionStun();			    break;
 		case ACTION_MAGIC_START:		  ActionMagicStart();		break;
 		case ACTION_MAGIC_CASTING:		  ActionMagicCasting();		break;
 		case ACTION_MAGIC_INTERRUPT:	  ActionMagicInterrupt();	break;
@@ -128,6 +128,7 @@ void CAIMobDummy::ActionRoaming()
 	{
 		m_ActionType = ACTION_ENGAGE;
 		ActionEngage();
+		return;
 	}
 	else if (m_PMob->m_OwnerID.id != 0) // if we're claimed by someone
 	{
@@ -138,8 +139,16 @@ void CAIMobDummy::ActionRoaming()
 
 		m_ActionType = ACTION_ENGAGE;
 		ActionEngage();
+		return;
 	}
-	else if(m_PPathFind->IsFollowingPath())
+	
+	// wait my time
+	if(m_Tick - m_LastWaitTime < m_WaitTime){
+		m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
+		return;
+	}
+
+	if(m_PPathFind->IsFollowingPath())
 	{
 		FollowPath();
 
@@ -182,7 +191,13 @@ void CAIMobDummy::ActionRoaming()
 			CastSpell(m_PMob->SpellContainer->GetBuffSpell());
 			m_LastActionTime = m_Tick - rand()%(m_PMob->m_RoamCoolDown) + 15000;
 		}
-		else if((m_PMob->m_Type & MOBTYPE_EVENT) != MOBTYPE_EVENT && m_PMob->PMaster == NULL && m_PMob->speed > 0)
+		else if(m_PMob->m_Type & MOBTYPE_EVENT)
+		{
+			// allow custom event action
+			luautils::OnMobRoamAction(m_PMob);
+			m_LastActionTime = m_Tick;
+		}
+		else if(m_PMob->PMaster == NULL && m_PMob->speed > 0)
 		{
 
 			if(m_PPathFind->RoamAround(m_PMob->m_SpawnPoint, m_PMob->m_roamFlags))
@@ -924,10 +939,10 @@ void CAIMobDummy::ActionSleep()
 }
 
 
-void CAIMobDummy::ActionWait()
+void CAIMobDummy::ActionStun()
 {
 	// lets just chill here for a bit
-	if(m_Tick - m_LastWaitTime >= m_WaitTime){
+	if(m_Tick - m_LastStunTime >= m_StunTime){
 		if(m_PMob->PEnmityContainer->GetHighestEnmity() == NULL){
 			m_ActionType = ACTION_ROAMING;
 		} else {
@@ -1221,7 +1236,7 @@ void CAIMobDummy::ActionMagicFinish()
 
 	// display animation, then continue fighting
 
-	Wait(1000);
+	Stun(1000);
 }
 
 /************************************************************************
@@ -1667,6 +1682,7 @@ void CAIMobDummy::ActionSpecialSkill()
 		return;
 	}
 
+
 	// this will be read by the packets layer
 	m_PMobSkill = m_PSpecialSkill;
 
@@ -1704,7 +1720,7 @@ void CAIMobDummy::ActionSpecialSkill()
 	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
 
 	// this stops the mob from chasing
-	Wait(m_PMobSkill->getAnimationTime());
+	Stun(m_PMobSkill->getAnimationTime());
 
 	m_PBattleSubTarget = NULL;
 	m_PMobSkill = NULL;
@@ -1784,6 +1800,7 @@ void CAIMobDummy::FollowPath()
 
 	if(m_ActionType == ACTION_ROAMING)
 	{
+
 		if(m_PMob->PPet != NULL)
 		{
 			// update pet as well
@@ -1794,7 +1811,17 @@ void CAIMobDummy::FollowPath()
 		if(!m_PPathFind->IsFollowingPath())
 		{
 			m_LastActionTime = m_Tick - rand()%m_PMob->m_RoamCoolDown + 5000;
-			luautils::OnMobPathFinish(m_PMob);
+		}
+
+		if(m_PPathFind->OnPoint()){
+			luautils::OnMobPath(m_PMob);
 		}
 	}
+}
+
+void CAIMobDummy::Stun(uint32 stunTime)
+{
+	m_StunTime = stunTime;
+    m_LastStunTime = m_Tick;
+	m_ActionType = ACTION_STUN;
 }

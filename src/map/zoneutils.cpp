@@ -268,7 +268,7 @@ void LoadNPCList(CZone* PZone)
       else 
       {
         PNpc->PBattleAI = new CAINpcDummy(PNpc);
-        luautils::OnNpcInitialize(PNpc);
+        PNpc->PBattleAI->SetCurrentAction(ACTION_SPAWN);
       }
 
     }

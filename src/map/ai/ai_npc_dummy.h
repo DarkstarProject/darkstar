@@ -46,6 +46,7 @@ protected:
   CNpcEntity* m_PNpc;
 
   void ActionRoaming();
+  void ActionSpawn();
   void ActionWait();
 
 private:

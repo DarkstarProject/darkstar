@@ -15,23 +15,20 @@ require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Bostaunieux_Oubliette/TextIDs");
+require("scripts/globals/pathfind");
 
 path = {
 	25, -24, 20,
 	68, -24, 20
 };
 
-function onInitialize(npc)
-	npc:setPos(path[1], path[2], path[3]);
-	npc:walkThrough(path);
+function onSpawn(npc)
+	npc:setPos(pathfind.first(path));
+	onPath(npc);
 end;
 
-function onPathFinish(npc)
-	if(npc:atPoint(path[1], path[2], path[3])) then
-		npc:walkThrough(path);
-	else
-		npc:walkThrough(path, true);
-	end
+function onPath(npc)
+	pathfind.patrol(npc, path);
 end;
 
 -----------------------------------

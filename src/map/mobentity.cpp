@@ -74,7 +74,7 @@ CMobEntity::CMobEntity()
     linkRadius = 10;
 
     m_SpecialCoolDown = 0;
-    m_RoamCoolDown = 0;
+    m_RoamCoolDown = 45000;
 
 	memset(& m_SpawnPoint, 0, sizeof(m_SpawnPoint));
 

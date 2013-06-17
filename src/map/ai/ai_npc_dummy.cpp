@@ -43,14 +43,28 @@ void CAINpcDummy::CheckCurrentAction(uint32 tick)
   switch(m_ActionType)
   {
     case ACTION_NONE: break;
+    case ACTION_SPAWN:  ActionSpawn();  break;
     case ACTION_ROAMING:  ActionRoaming();  break;
-    case ACTION_WAIT: ActionWait(); break;
     default : DSP_DEBUG_BREAK_IF(true);
   }
 }
 
+void CAINpcDummy::ActionSpawn()
+{
+  luautils::OnNpcSpawn(m_PNpc);
+  
+  m_ActionType = ACTION_ROAMING;
+}
+
 void CAINpcDummy::ActionRoaming()
 {
+
+  // wait my time
+  if(m_Tick - m_LastWaitTime < m_WaitTime){
+    m_PNpc->loc.zone->PushPacket(m_PNpc,CHAR_INRANGE, new CEntityUpdatePacket(m_PNpc,ENTITY_UPDATE));
+    return;
+  }
+
   if(m_PPathFind->IsFollowingPath())
   {
 
@@ -59,22 +73,12 @@ void CAINpcDummy::ActionRoaming()
 
     m_PPathFind->FollowPath();
 
-    if(!m_PPathFind->IsFollowingPath())
+    if(m_PPathFind->OnPoint())
     {
-      luautils::OnNpcPathFinish(m_PNpc);
+      luautils::OnNpcPath(m_PNpc);
     }
 
     m_PNpc->loc.zone->PushPacket(m_PNpc,CHAR_INRANGE, new CEntityUpdatePacket(m_PNpc,ENTITY_UPDATE));
 
   }
-}
-
-void CAINpcDummy::ActionWait()
-{
-  if(m_Tick - m_LastWaitTime >= m_WaitTime)
-  {
-    m_ActionType = ACTION_ROAMING;
-  }
-
-  m_PNpc->loc.zone->PushPacket(m_PNpc,CHAR_INRANGE, new CEntityUpdatePacket(m_PNpc, ENTITY_UPDATE));
 }
