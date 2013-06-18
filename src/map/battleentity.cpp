@@ -52,7 +52,6 @@ CBattleEntity::CBattleEntity()
 	PPet      = NULL;
     PParty    = NULL;
 	PMaster   = NULL;
-	PBattleAI = NULL;
 
 	StatusEffectContainer = new CStatusEffectContainer(this);
 
@@ -162,6 +161,17 @@ uint8 CBattleEntity::GetMPP()
 int32 CBattleEntity::GetMaxMP()
 {
     return health.modmp;
+}
+
+/************************************************************************
+*                                                                       *
+*  Скорость перемещения с учетом модификаторов                          *
+*                                                                       *
+************************************************************************/
+
+uint8 CBattleEntity::GetSpeed()
+{
+    return dsp_cap(speed * (100 + getMod(MOD_MOVE)) / 100, UINT8_MIN, UINT8_MAX);
 }
 
 bool CBattleEntity::Rest(float rate)

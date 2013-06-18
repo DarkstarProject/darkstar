@@ -49,6 +49,8 @@ enum SCRIPTTYPE : uint16
 	//...
 };
 
+#define AUGMENT_COUNT   4
+
 class CItemArmor : public CItemUsable
 {
 public:
@@ -66,6 +68,8 @@ public:
     uint8   getShieldAbsorption();
 	int16	getModifier(uint16 mod);
     uint8   getSlotType();
+    uint16  getAugment(uint8 slot);
+	uint16  getTrialNumber();
 
     bool    IsShield();
 
@@ -76,11 +80,16 @@ public:
 	void	setScriptType(uint16 isScripted);
 	void	setEquipSlotId(uint16 equipSlot);
 	void	setRemoveSlotId(uint8 removSlot);
+    void    setAugment(uint8 slot, uint16 type, uint8 value);
+	void    setTrialNumber(uint16);
+     
+    void    LoadAugment(uint8 slot, uint16 augment);
 
     void    addModifier(CModifier* modifier);
 	void	addLatent(CLatentEffect* latent);
+
 	std::vector<CModifier*> modList;			// список модификаторов
-	std::vector<CLatentEffect*> latentList;  // contains latents
+	std::vector<CLatentEffect*> latentList;     // contains latents
 
 private:
 
@@ -92,6 +101,11 @@ private:
     uint8   m_absorption;
 	uint16	m_equipSlotID;
 	uint8	m_removeSlotID;
+    uint16  m_trialNumber;                      // trial number is 2 bytes, little endian
+
+    uint16  m_augments[AUGMENT_COUNT];          // augments
+
+    void    SetAugmentMod(uint16 type, uint8 value);
 };
 
 #endif

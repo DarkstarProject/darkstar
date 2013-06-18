@@ -719,14 +719,10 @@ void LoadInventory(CCharEntity* PChar)
           "rotation,"       // 14
 		  "worn,"			// 15
 		  "augment0,"       // 16
-		  "augment0value,"  // 17
-		  "augment1,"       // 18
-		  "augment1value,"  // 19
-		  "augment2,"       // 20
-		  "augment2value,"  // 21
-		  "augment3,"       // 22
-		  "augment3value, " // 23
-		  "trialNumber "    // 24
+		  "augment1,"       // 17
+		  "augment2,"       // 18
+		  "augment3,"       // 19
+		  "trialNumber "    // 20
         "FROM char_inventory "
         "LEFT JOIN linkshells ON signature = name "
         "WHERE charid = %u "
@@ -758,19 +754,15 @@ void LoadInventory(CCharEntity* PChar)
 					((CItemUsable*)PItem)->setLastUseTime(Sql_GetUIntData(SqlHandle,7));
 				}
 
-				PItem->setAugmentType(0,Sql_GetUIntData(SqlHandle,16));
-				PItem->setAugmentValue(0,Sql_GetUIntData(SqlHandle,17));
-				PItem->setAugmentType(1,Sql_GetUIntData(SqlHandle,18));
-				PItem->setAugmentValue(1,Sql_GetUIntData(SqlHandle,19));
-				PItem->setAugmentType(2,Sql_GetUIntData(SqlHandle,20));
-				PItem->setAugmentValue(2,Sql_GetUIntData(SqlHandle,21));
-				PItem->setAugmentType(3,Sql_GetUIntData(SqlHandle,22));
-				PItem->setAugmentValue(3,Sql_GetUIntData(SqlHandle,23));
-				PItem->setTrialNumber(Sql_GetUIntData(SqlHandle,24));
-				if(PItem->getAugmentType(0) != 0 || PItem->getAugmentType(1) != 0 ||
-					PItem->getAugmentType(2) != 0 || PItem->getAugmentType(3) != 0)
-						PItem->setSubType(ITEM_AUGMENTED); 
+                if (PItem->getType() & ITEM_ARMOR)
+                {
+				    ((CItemArmor*)PItem)->LoadAugment(0, Sql_GetUIntData(SqlHandle,16));
+				    ((CItemArmor*)PItem)->LoadAugment(1, Sql_GetUIntData(SqlHandle,17));
+				    ((CItemArmor*)PItem)->LoadAugment(2, Sql_GetUIntData(SqlHandle,18));
+				    ((CItemArmor*)PItem)->LoadAugment(3, Sql_GetUIntData(SqlHandle,19));
 
+                    ((CItemArmor*)PItem)->setTrialNumber(Sql_GetUIntData(SqlHandle,20));
+                }
                 if (PItem->getType() & ITEM_LINKSHELL)
                 {
                     int8 EncodedString [16];
@@ -1026,8 +1018,22 @@ uint8 AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem)
     {
         uint8 charges = (PItem->getType() & ITEM_USABLE ? ((CItemUsable*)PItem)->getCurrentCharges() : 0);
 
-        const int8* Query = "INSERT INTO char_inventory(charid, location, slot, itemId, quantity, signature, currCharges, augment0, augment0value, augment1, augment1value, augment2, augment2value, augment3, augment3value, trialNumber) \
-                             VALUES(%u,%u,%u,%u,%u,'%s',%u,%u,%u,%u,%u,%u,%u,%u,%u,%u)";
+        const int8* Query = 
+            "INSERT INTO char_inventory("
+                "charid," 
+                "location,"
+                "slot,"
+                "itemId,"
+                "quantity,"
+                "signature,"
+                "currCharges,"
+                "augment0,"
+                "augment1,"
+                "augment2,"
+                "augment3,"
+                "trialNumber) "
+            "VALUES(%u,%u,%u,%u,%u,'%s',%u,%u,%u,%u,%u,%u)";
+
         int8 signature[21];
         if (PItem->getType() & ITEM_LINKSHELL)
         {
@@ -1037,10 +1043,22 @@ uint8 AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem)
         {
             DecodeStringSignature((int8*)PItem->getSignature(), signature);
         }
-        if( Sql_Query(SqlHandle, Query, PChar->id, LocationID, SlotID, PItem->getID(), PItem->getQuantity(), signature, charges,
-				PItem->getAugmentType(0), PItem->getAugmentValue(0), PItem->getAugmentType(1), PItem->getAugmentValue(1),
-				PItem->getAugmentType(2), PItem->getAugmentValue(2), PItem->getAugmentType(3), PItem->getAugmentValue(3),
-				PItem->getTrialNumber() ) == SQL_ERROR )
+
+        bool IsItemArmor = PItem->getType() & ITEM_ARMOR;
+
+        if( Sql_Query(SqlHandle, Query, 
+            PChar->id, 
+            LocationID, 
+            SlotID, 
+            PItem->getID(), 
+            PItem->getQuantity(), 
+            signature, 
+            charges,
+            IsItemArmor ? ((CItemArmor*)PItem)->getAugment(0) : 0,
+            IsItemArmor ? ((CItemArmor*)PItem)->getAugment(1) : 0,
+            IsItemArmor ? ((CItemArmor*)PItem)->getAugment(2) : 0,
+            IsItemArmor ? ((CItemArmor*)PItem)->getAugment(3) : 0,
+            IsItemArmor ? ((CItemArmor*)PItem)->getTrialNumber() : 0 ) == SQL_ERROR )
         {
             ShowError(CL_RED"charplugin::AddItem: Cannot insert item to database\n" CL_RESET);
             PChar->getStorage(LocationID)->InsertItem(NULL, SlotID);

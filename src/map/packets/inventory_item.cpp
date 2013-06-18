@@ -46,26 +46,7 @@ CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8
 		WBUFL(data,(0x08)-4) = PItem->getCharPrice();
 		WBUFW(data,(0x0C)-4) = PItem->getID();
 
-		if (PItem->getSubType() & ITEM_AUGMENTED)
-		{
-			WBUFB(data,(0x11)-4) = 0x02;
-			if (PItem->getTrialNumber() != NULL)
-			{
-				WBUFB(data,(0x12)-4) = 0x43;
-				WBUFW(data,(0x1B)-4) = PItem->getTrialNumber();
-			}
-			else
-			{
-				WBUFB(data,(0x12)-4) = 0x03;
-			}
-			
-			for (uint8 i = 0; i < 4; i++)
-			{
-				packBitsBE(data, PItem->getAugmentType(i), (0x13 + (i * 2))-4, 0, 11);
-				packBitsBE(data, PItem->getAugmentValue(i), (0x13 + (i * 2))-4, 11, 5); 
-			}
-		}
-		else if (PItem->getSubType() & ITEM_CHARGED)
+		if (PItem->getSubType() & ITEM_CHARGED)
 		{
             if (PItem->getSubType() & ITEM_LOCKED)
             {
@@ -100,6 +81,25 @@ CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8
 
 		switch (PItem->getType()) 
 		{
+            case ITEM_ARMOR:
+            {
+                if (PItem->getSubType() & ITEM_AUGMENTED)
+		        {
+			        WBUFB(data,(0x11)-4) = 0x02;
+                    WBUFB(data,(0x12)-4) = 0x03;
+
+			        if (((CItemArmor*)PItem) != 0)
+			        {
+				        WBUFB(data,(0x12)-4) = 0x43;
+				        WBUFW(data,(0x1B)-4) = ((CItemArmor*)PItem)->getTrialNumber();
+			        }
+                    WBUFW(data,(0x13)-4) = ((CItemArmor*)PItem)->getAugment(0);
+                    WBUFW(data,(0x15)-4) = ((CItemArmor*)PItem)->getAugment(1);
+                    WBUFW(data,(0x17)-4) = ((CItemArmor*)PItem)->getAugment(2);
+                    WBUFW(data,(0x19)-4) = ((CItemArmor*)PItem)->getAugment(3);
+		        }
+            }
+            break;
 			case ITEM_FURNISHING:
 			{
 				if (PItem->getSubType() & ITEM_LOCKED)

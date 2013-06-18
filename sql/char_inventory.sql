@@ -35,13 +35,9 @@ CREATE TABLE `char_inventory` (
   `lastUseTime` int(10) unsigned NOT NULL DEFAULT '0',
   `worn` tinyint(1) NOT NULL DEFAULT '0',
   `augment0` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `augment0value` tinyint(3) NOT NULL DEFAULT '0',
   `augment1` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `augment1value` tinyint(3) NOT NULL DEFAULT '0',
   `augment2` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `augment2value` tinyint(3) NOT NULL DEFAULT '0',
   `augment3` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `augment3value` tinyint(3) NOT NULL DEFAULT '0',
   `trialNumber` smallint(5) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`charid`,`location`,`slot`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=28;

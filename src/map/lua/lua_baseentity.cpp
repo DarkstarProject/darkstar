@@ -638,43 +638,33 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
 	if( !lua_isnil(L,10) && lua_isnumber(L,10) )
 		augment3val = (uint8)lua_tointeger(L,10);
 
+	uint8 SlotID = ERROR_SLOTID;
 
-	uint8 SlotID = 255;
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-	uint8 LocationID = LOC_INVENTORY;
-	if (PChar->getStorage(LocationID)->GetFreeSlotsCount() == 0 || quantity == 0)
+
+	if (PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0 && quantity != 0)
     {
-        SlotID = ERROR_SLOTID;
+        CItem* PItem = itemutils::GetItem(itemID);
+
+	    if (PItem != NULL)
+	    {
+		    PItem->setQuantity(quantity);
+
+            if ((PItem->getType() & ITEM_ARMOR))
+		    {
+			    if (augment0 != 0) ((CItemArmor*)PItem)->setAugment(0, augment0, augment0val);
+			    if (augment1 != 0) ((CItemArmor*)PItem)->setAugment(1, augment1, augment1val);
+                if (augment2 != 0) ((CItemArmor*)PItem)->setAugment(2, augment2, augment2val);
+                if (augment3 != 0) ((CItemArmor*)PItem)->setAugment(3, augment3, augment3val);
+		    }
+            SlotID = charutils::AddItem(PChar, LOC_INVENTORY, PItem);
+	    }
+	    else
+	    {
+		    ShowWarning(CL_YELLOW"charplugin::AddItem: Item <%i> is not found in a database\n" CL_RESET, itemID);
+	    }
     }
-
-	CItem* PItem = itemutils::GetItem(itemID);
-
-	if (PItem != NULL)
-	{
-		PItem->setQuantity(quantity);
-		if(augment0 != 0)
-		{
-			PItem->setSubType(ITEM_AUGMENTED);
-			PItem->setAugmentType(0,augment0);
-			PItem->setAugmentValue(0,augment0val);
-			PItem->setAugmentType(1,augment1);
-			PItem->setAugmentValue(1,augment1val);
-			PItem->setAugmentType(2,augment2);
-			PItem->setAugmentValue(2,augment2val);
-			PItem->setAugmentType(3,augment3);
-			PItem->setAugmentValue(3,augment3val);
-		}
-		PItem->setTrialNumber(0);
-
-        SlotID = charutils::AddItem(PChar, LocationID, PItem);
-	}
-	else
-	{
-		ShowWarning(CL_YELLOW"charplugin::AddItem: Item <%i> is not found in a database\n" CL_RESET, itemID);
-		return ERROR_SLOTID;
-	}
-
-	lua_pushboolean( L, (SlotID != 0xFF) );
+	lua_pushboolean( L, (SlotID != ERROR_SLOTID) );
 	return 1;
 }
 //==========================================================//

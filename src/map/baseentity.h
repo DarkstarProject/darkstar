@@ -27,6 +27,8 @@
 #include "../common/cbasetypes.h"
 #include "../common/mmo.h"
 
+#include "ai/ai_general.h"
+
 enum ENTITYTYPE
 {
 	TYPE_PC		= 0x01,
@@ -123,11 +125,14 @@ public:
 	uint8			speed;				// скорость передвижения
 	uint8			speedsub;			// подолнительный параметр скорости передвижения
 
-	virtual const int8*		GetName();			// имя сущности
+	virtual const int8* GetName();      // имя сущности
+
 	uint16			getZone();			// текущая зона
 	float			GetXPos();			// позиция по координате X
 	float			GetYPos();			// позиция по координате Y
 	float			GetZPos();			// позиция по координате Z
+
+    CAIGeneral*     PBattleAI;          // интеллект любой сущности
 
     CBaseEntity();						// конструктор
     virtual ~CBaseEntity();						// деструктор

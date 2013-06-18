@@ -30,7 +30,7 @@ The PathFind class provides an interface for getting an entity to a destination.
 #include "../common/showmsg.h"
 #include "../common/mmo.h"
 
-class CBattleEntity;
+class CBaseEntity;
 
 // no path can be longer than this
 #define MAX_PATH_POINTS 40
@@ -38,7 +38,7 @@ class CBattleEntity;
 class CPathFind
 {
   public:
-    CPathFind(CBattleEntity* PTarget);
+    CPathFind(CBaseEntity* PTarget);
     ~CPathFind();
 
     // move to a random point around given point
@@ -113,7 +113,7 @@ class CPathFind
 
     void AddPoints(position_t* points, uint8 totalPoints, bool reverse);
 
-    CBattleEntity* m_PTarget;
+    CBaseEntity* m_PTarget;
     position_t m_points[MAX_PATH_POINTS];
 
     bool m_onPoint;

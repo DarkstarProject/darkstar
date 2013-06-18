@@ -21,14 +21,18 @@
 ===========================================================================
 */
 
-#include "../npcentity.h"
-#include "ai_npc_dummy.h"
-
-#include "../pathfind.h"
-#include "../lua/luautils.h"
 #include "../../common/showmsg.h"
 
+#include "../lua/luautils.h"
+
 #include "../packets/entity_update.h"
+
+#include "../npcentity.h"
+#include "../pathfind.h"
+#include "../zone.h"
+
+#include "ai_npc_dummy.h"
+
 
 CAINpcDummy::CAINpcDummy(CNpcEntity* PNpc)
 {

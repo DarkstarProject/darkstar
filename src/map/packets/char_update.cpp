@@ -57,7 +57,7 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 	}
 
     WBUFB(data,(0x29)-4) = PChar->GetGender(); // +  управляем ростом: 0x02 - 0; 0x08 - 1; 0x10 - 2;
-	WBUFB(data,(0x2C)-4) = PChar->speed * (100 + PChar->getMod(MOD_MOVE)) / 100;
+    WBUFB(data,(0x2C)-4) = PChar->GetSpeed();
 	WBUFB(data,(0x30)-4) = PChar->animation;
 
     if (PChar->equip[SLOT_LINK] != 0)

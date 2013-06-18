@@ -26,8 +26,6 @@
 
 #include <vector>
 
-#include "ai/ai_general.h"
-
 #include "items/item_weapon.h"
 
 #include "baseentity.h"
@@ -437,6 +435,8 @@ public:
     uint16          EVA();
 	uint16          RATT(uint8 skill);
 
+    uint8           GetSpeed();
+
 	uint32			charmTime;					// to hold the time entity is charmed
 	bool			isCharmed;					// is the battle entity charmed?
 
@@ -499,7 +499,6 @@ public:
 
 	ActionList_t	m_ActionList;			    // список совершенных действий за одну атаку (нужно будет написать структуру, включающую ActionList в которой будут категории анимации и т.д.)
 
-	CAIGeneral*		PBattleAI;				    // интеллект боевой сущности
     CParty*			PParty;					    // описание группы, в которой состоит сущность
 	CBattleEntity*	PPet;					    // питомец сущности
 	CBattleEntity*	PMaster;				    // владелец/хозяин сущности (распространяется на все боевые сущности)

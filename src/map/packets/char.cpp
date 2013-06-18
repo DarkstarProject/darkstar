@@ -57,7 +57,7 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type)
 			WBUFF(data,(0x14)-4) = PChar->loc.p.z;
 			WBUFW(data,(0x18)-4) = PChar->loc.p.moving;
 			WBUFW(data,(0x1A)-4) = PChar->m_TargID << 1;
-			WBUFB(data,(0x1C)-4) = PChar->speed * (100 + PChar->getMod(MOD_MOVE)) / 100;
+            WBUFB(data,(0x1C)-4) = PChar->GetSpeed();
 			WBUFB(data,(0x1D)-4) = PChar->speedsub;
 			WBUFB(data,(0x1E)-4) = PChar->GetHPP();
 			WBUFB(data,(0x1F)-4) = PChar->animation;

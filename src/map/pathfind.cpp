@@ -23,10 +23,10 @@
 
 #include "pathfind.h"
 #include "zone.h"
-#include "battleentity.h"
+#include "baseentity.h"
 #include "mobentity.h"
 
-CPathFind::CPathFind(CBattleEntity* PTarget)
+CPathFind::CPathFind(CBaseEntity* PTarget)
 {
   m_PTarget = PTarget;
   Clear();
@@ -273,13 +273,17 @@ void CPathFind::StepTo(position_t* pos)
 
 void CPathFind::PetStepTo(position_t* pos)
 {
+    // only works for mob pets
+    if (m_PTarget->objtype == TYPE_MOB)
+    {
+        CMobEntity* PMob = (CMobEntity*)m_PTarget;
 
-  // only works for mob pets
-  if(m_PTarget->PPet == NULL || m_PTarget->PPet->PBattleAI->GetCurrentAction() != ACTION_ROAMING) return;
+        if(PMob->PPet == NULL || PMob->PPet->PBattleAI->GetCurrentAction() != ACTION_ROAMING) return;
 
-  position_t targetPoint = nearPosition(*pos, 2.0f, M_PI);
+        position_t targetPoint = nearPosition(*pos, 2.0f, M_PI);
 
-  m_PTarget->PPet->PBattleAI->MoveTo(&targetPoint);
+        PMob->PPet->PBattleAI->MoveTo(&targetPoint);
+    }
 }
 
 bool CPathFind::FindPath(position_t* start, position_t* end)
@@ -338,7 +342,7 @@ void CPathFind::LookAt(position_t point)
 
 float CPathFind::GetRealSpeed()
 {
-  return ((float)(m_PTarget->speed * (1+(m_PTarget->getMod(MOD_MOVE) / 100.0f))) / 0x28) * (m_mode) * 1.08;
+    return ((m_PTarget->objtype == TYPE_NPC) ? m_PTarget->speed : ((CBattleEntity*)m_PTarget)->GetSpeed() / 0x28) * (m_mode) * 1.08;
 }
 
 bool CPathFind::IsFollowingPath()

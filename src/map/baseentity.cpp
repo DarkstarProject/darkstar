@@ -30,6 +30,8 @@ CBaseEntity::CBaseEntity()
 {
 	m_TargID = 0;
 
+    PBattleAI = NULL;
+
 	speed    = 40 + map_config.speed_mod;
 	speedsub = 40 + map_config.speed_mod;
 	
