@@ -18,7 +18,12 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
     local dmgmod = 1;
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*math.random(5,8),ELE_FIRE,dmgmod,TP_MAB_BONUS,1);
+
+	if(mob:getHP()~=0) then
+		dmgmod = mob:getHP()/mob:getMaxHP();
+	end
+
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*math.random(13,23),ELE_FIRE,dmgmod,TP_MAB_BONUS,1);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_IGNORE_SHADOWS);
     target:delHP(dmg);
     return dmg;
