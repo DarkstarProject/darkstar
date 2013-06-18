@@ -380,14 +380,8 @@ void CAICharNormal::ActionFall()
 	//influence for conquest system
 	conquest::LoseInfluencePoints(m_PChar);
 
-	if (m_PChar->getMijinGakure() == false)
-	{
+	if (!m_PChar->getMijinGakure())
 		charutils::DelExperiencePoints(m_PChar,map_config.exp_retain);
-	}
-	else
-	{
-		m_PChar->setMijinGakure(false);
-	}
 
 	charutils::SaveDeathTime(m_PChar);
 
@@ -2451,7 +2445,7 @@ void CAICharNormal::ActionJobAbilityFinish()
     m_PBattleSubTarget = NULL;
     m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 
-	if (m_PChar->getMijinGakure() == true && m_PChar->health.hp == 0)
+	if (m_PChar->getMijinGakure())
 	{
 		m_ActionType = ACTION_FALL;
 		ActionFall();
@@ -3395,13 +3389,13 @@ void CAICharNormal::ActionRaiseMenuSelection()
     if(m_PChar->m_hasRaise == 1)
     {
         Action.animation = 511;
-        hpReturned = m_PChar->GetMaxHP()*0.1;
+        hpReturned = (m_PChar->getMijinGakure()) ? m_PChar->GetMaxHP()*0.5 : m_PChar->GetMaxHP()*0.1;
         ratioReturned = 0.50f * (1 - map_config.exp_retain);
     }
     else if(m_PChar->m_hasRaise == 2)
     {
         Action.animation = 512;
-        hpReturned = m_PChar->GetMaxHP()*0.25;
+        hpReturned = (m_PChar->getMijinGakure()) ? m_PChar->GetMaxHP()*0.5 : m_PChar->GetMaxHP()*0.25;
         ratioReturned = ((m_PChar->GetMLevel() <= 50) ? 0.50f : 0.75f) * (1 - map_config.exp_retain);
     }
     else if(m_PChar->m_hasRaise == 3)
@@ -3427,7 +3421,8 @@ void CAICharNormal::ActionRaiseMenuSelection()
     }
     //add weakness effect (75% reduction in HP/MP)
     CStatusEffect* PWeaknessEffect = new CStatusEffect(EFFECT_WEAKNESS,EFFECT_WEAKNESS,weaknessLvl,0,300);
-    m_PChar->StatusEffectContainer->AddStatusEffect(PWeaknessEffect);
+    if (!m_PChar->getMijinGakure())
+		m_PChar->StatusEffectContainer->AddStatusEffect(PWeaknessEffect);
 
     charutils::UpdateHealth(m_PChar);
     m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
@@ -3445,7 +3440,10 @@ void CAICharNormal::ActionRaiseMenuSelection()
 
     uint16 xpReturned = ceil(expLost * ratioReturned);
 
-    charutils::AddExperiencePoints(true, m_PChar, m_PChar, xpReturned);
+    if (!m_PChar->getMijinGakure())
+		charutils::AddExperiencePoints(true, m_PChar, m_PChar, xpReturned);
+
+	m_PChar->setMijinGakure(false);
 
 	m_ActionType = ACTION_NONE;
 }
