@@ -427,6 +427,9 @@ public:
     int32 recalculateAbilitiesTable(lua_State*);
     int32 isSpellAoE(lua_State* L);
 
+	int32 checkNameFlags(lua_State* L);      // this is check and not get because it tests for a flag, it doesn't return all flags
+	int32 getGMLevel(lua_State* L);
+	int32 setGMLevel(lua_State* L);
     // == Pathfind Methods ==
     int32 walkThrough(lua_State* L); // walk at normal speed through the given points
     int32 runThrough(lua_State* L);	// run through the given points

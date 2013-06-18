@@ -41,6 +41,8 @@ CCharEntity::CCharEntity()
 
 	m_event.reset();
 
+	m_GMlevel = 0;
+
 	Container    = new CTradeContainer();
 	UContainer	 = new CUContainer();
 
@@ -106,6 +108,7 @@ CCharEntity::CCharEntity()
     m_EquipBlock = 0;
 	m_EquipSwap = false;
 
+
 	MeritMode = false;
 
 	m_isWeaponSkillKill = false;
@@ -127,6 +130,8 @@ CCharEntity::CCharEntity()
 	petZoningInfo.petType = PETTYPE_AVATAR;			// dummy data, the bool tells us to respawn if required
 	petZoningInfo.petHP = 0;
 	petZoningInfo.petTP = 0;
+
+
 }
 
 CCharEntity::~CCharEntity()

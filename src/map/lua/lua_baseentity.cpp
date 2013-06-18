@@ -532,14 +532,14 @@ inline int32 CLuaBaseEntity::setPos(lua_State *L)
 	if(lua_isnumber(L, 1))
 	{
 
-		if( !lua_isnil(L,1) && lua_isnumber(L,1) )
-			m_PBaseEntity->loc.p.x = (float) lua_tonumber(L,1);
-		if( !lua_isnil(L,2) && lua_isnumber(L,2) )
-			m_PBaseEntity->loc.p.y = (float) lua_tonumber(L,2);
-		if( !lua_isnil(L,3) && lua_isnumber(L,3) )
-			m_PBaseEntity->loc.p.z = (float) lua_tonumber(L,3);
-		if( !lua_isnil(L,4) && lua_isnumber(L,4) )
-			m_PBaseEntity->loc.p.rotation = (uint8) lua_tointeger(L,4);
+	if( !lua_isnil(L,1) && lua_isnumber(L,1) )
+		m_PBaseEntity->loc.p.x = (float) lua_tonumber(L,1);
+	if( !lua_isnil(L,2) && lua_isnumber(L,2) )
+		m_PBaseEntity->loc.p.y = (float) lua_tonumber(L,2);
+	if( !lua_isnil(L,3) && lua_isnumber(L,3) )
+		m_PBaseEntity->loc.p.z = (float) lua_tonumber(L,3);
+	if( !lua_isnil(L,4) && lua_isnumber(L,4) )
+		m_PBaseEntity->loc.p.rotation = (uint8) lua_tointeger(L,4);
 	}
 	else
 	{
@@ -2348,8 +2348,8 @@ inline int32 CLuaBaseEntity::showText(lua_State *L)
 
         if(m_PBaseEntity->objtype == TYPE_PC)
         {
-	        ((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageSpecialPacket(PBaseEntity, messageID, param0, param1, param2, param3));
-        }
+        ((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageSpecialPacket(PBaseEntity, messageID, param0, param1, param2, param3));
+	}
         else
         {
 			m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity,CHAR_INRANGE,new CMessageSpecialPacket(PBaseEntity, messageID, param0, param1, param3));
@@ -6933,6 +6933,39 @@ inline int32 CLuaBaseEntity::getBaseMP(lua_State* L)
     return 1;
 }
 
+inline int32 CLuaBaseEntity::checkNameFlags(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_PC));
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	if(PChar->nameflags.flags & (uint32)lua_tonumber(L,1))
+		lua_pushboolean(L,true);
+	else
+		lua_pushboolean(L,false);
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::getGMLevel(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_PC));
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	lua_pushnumber(L,PChar->m_GMlevel);
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::setGMLevel(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_PC));
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	PChar->m_GMlevel = (uint8)lua_tonumber(L,1);
+	charutils::SaveCharGMLevel(PChar);
+	return 1;
+}
 /*
 Walk through the given points. NPC only.
 
@@ -7489,7 +7522,9 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isSpellAoE),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBaseHP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBaseMP),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBaseMP),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkNameFlags),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getGMLevel),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setGMLevel),    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBaseMP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,walkThrough),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,runThrough),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,atPoint),

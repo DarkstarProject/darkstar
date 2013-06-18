@@ -254,6 +254,8 @@ public:
     uint8             m_hasAutoTarget;              // возможность использования AutoTarget функции
 	position_t		  m_StartActionPos;				// позиция начала действия (использование предмета, начало стрельбы, позиция tractor)
 
+	uint8			  m_GMlevel;                    // Level of the GM flag assigned to this character
+	
 	int8			  getShieldSize();
 
 	bool			getWeaponSkillKill();

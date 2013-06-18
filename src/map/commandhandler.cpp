@@ -91,6 +91,15 @@ bool CCommandHandler::init(const int8* InitCmdInIPath, lua_State* InitLState)
 		}else{
 			SomthCmds.CmdPath = m_CmdInIPath;
 		};
+		/*getting cmd permission level*/
+		lua_pushstring(m_LState,"permission");
+		lua_gettable(m_LState,-2);
+		if( lua_tostring(m_LState,-1) != NULL )
+		{
+			SomthCmds.CmdPermissionLvl = lua_tointeger(m_LState,-1);
+			/*pop key and value*/
+			lua_pop(m_LState,1);
+		}
 		/*getting cmd parameters*/
 		lua_pushstring(m_LState,"parameters");
 		lua_gettable(m_LState,-2);
@@ -154,6 +163,17 @@ int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
 		PChar->pushPacket(new CMessageDebugPacket(PChar,PChar,0,0,27));
 		ShowDebug("cmdhandler::call: function <%s> not found\n", cmdname.c_str());
 		return -1;
+	}
+	ShowDebug("CmdPermissionLvl: %u, PChar->m_GMlevel: %u\n",CmdHandler->CmdPermissionLvl,PChar->m_GMlevel);
+	if(CmdHandler->CmdPermissionLvl > PChar->m_GMlevel)
+	{
+		ShowWarning("cmdhandler::call: Character %s attempting to use higher permission command %s\n",PChar->name.c_str(),CmdHandler->CmdName.c_str());
+		return -1;
+	}
+	if(PChar->m_GMlevel == 0 && CmdHandler->CmdPermissionLvl > 0)
+	{
+		ShowWarning("cmdhandler::call: Character %s attempting to use GM command %s\n",PChar->name.c_str(),CmdHandler->CmdName.c_str());
+	    return -1;
 	}
 
 	//Загрузка файла команды.

@@ -55,6 +55,7 @@ struct cmd_t
 {
 	std::string  CmdName;
 	std::string  CmdPath;
+	uint8        CmdPermissionLvl;
 	std::string  CmdParameters;
 };
 
