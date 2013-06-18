@@ -51,7 +51,7 @@ function onPath(npc)
 		npc:walkThrough(pathfind.fromEnd(path));
 		
 		-- small delay after path finish
-		npc:wait(2000);
+		npc:wait();
 	end
 
 end;
@@ -69,7 +69,7 @@ end;
 
 function onTrigger(player,npc)
 	player:showText(npc, PALCOMONDAU_DIALOG);
-	npc:wait(2000);
+	npc:wait();
 end;
 
 -----------------------------------

@@ -33,7 +33,7 @@ The PathFind class provides an interface for getting an entity to a destination.
 class CBattleEntity;
 
 // no path can be longer than this
-#define MAX_PATH_POINTS 20
+#define MAX_PATH_POINTS 40
 
 class CPathFind
 {

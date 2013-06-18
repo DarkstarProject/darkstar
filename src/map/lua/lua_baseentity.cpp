@@ -585,7 +585,22 @@ inline int32 CLuaBaseEntity::setPos(lua_State *L)
 	return 0;
 }
 
+inline int32 CLuaBaseEntity::getPos(lua_State* L)
+{
+	lua_createtable(L, 3, 0);
+    int8 newTable = lua_gettop(L);
 
+    lua_pushnumber(L, m_PBaseEntity->loc.p.x);
+    lua_rawseti(L, newTable, 1);
+
+    lua_pushnumber(L, m_PBaseEntity->loc.p.y);
+    lua_rawseti(L, newTable, 2);
+
+    lua_pushnumber(L, m_PBaseEntity->loc.p.z);
+    lua_rawseti(L, newTable, 3);
+
+    return 1;
+}
 
 //==========================================================//
 
@@ -3108,6 +3123,17 @@ inline int32 CLuaBaseEntity::messageTarget(lua_State* L)
 			m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity,CHAR_INRANGE,new CMessageBasicPacket(m_PBaseEntity, PEntity->GetBaseEntity(), param0, param1, messageID));
 		}
     }
+	return 0;
+}
+
+inline int32 CLuaBaseEntity::clearTargID(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+	m_PBaseEntity->m_TargID = 0;
+
+    m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity,CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity,ENTITY_UPDATE));
+    
 	return 0;
 }
 
@@ -6981,14 +7007,14 @@ inline int32 CLuaBaseEntity::walkThrough(lua_State* L)
 
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 
-	position_t points[20];
+	position_t points[40];
 
 	uint8 length = lua_objlen(L, 1);
 	uint8 pos = 0;
 
 	bool reverse = lua_isboolean(L, 2);
 
-	DSP_DEBUG_BREAK_IF(length > 20*3);
+	DSP_DEBUG_BREAK_IF(length > 40*3);
 
 	// grab points from array and store in points array
 	for(uint8 i=1; i<length; i+=3)
@@ -7038,14 +7064,14 @@ inline int32 CLuaBaseEntity::runThrough(lua_State* L)
 
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 
-	position_t points[20];
+	position_t points[40];
 
 	uint8 length = lua_objlen(L, 1);
 	uint8 pos = 0;
 
 	bool reverse = lua_isboolean(L, 2);
 
-	DSP_DEBUG_BREAK_IF(length > 20*3);
+	DSP_DEBUG_BREAK_IF(length > 40*3);
 
 	// grab points from array and store in points array
 	for(uint8 i=1; i<length; i+=3)
@@ -7138,10 +7164,6 @@ inline int32 CLuaBaseEntity::lookAt(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	
-	CBattleEntity* PBattle = (CBattleEntity*)m_PBaseEntity;
-
-	DSP_DEBUG_BREAK_IF(PBattle->PBattleAI == NULL);
-
 	float posX = 0;
 	float posY = 0;
 	float posZ = 0;
@@ -7168,18 +7190,15 @@ inline int32 CLuaBaseEntity::lookAt(lua_State* L)
 		lua_pop(L,1);
 	}
 
-	if(PBattle->PBattleAI->m_PPathFind != NULL)
-	{
-		position_t point;
+	position_t point;
 
-		point.x = posX;
-		point.y = posY;
-		point.z = posZ;
+	point.x = posX;
+	point.y = posY;
+	point.z = posZ;
 
-		PBattle->PBattleAI->m_PPathFind->LookAt(point);
+	m_PBaseEntity->loc.p.rotation = getangle(m_PBaseEntity->loc.p, point);
 
-	    PBattle->loc.zone->PushPacket(PBattle,CHAR_INRANGE, new CEntityUpdatePacket(PBattle,ENTITY_UPDATE));	
-	}
+    m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity,CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity,ENTITY_UPDATE));	
 
 	return 0;
 }
@@ -7192,9 +7211,10 @@ inline int32 CLuaBaseEntity::isFollowingPath(lua_State* L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 
 	CBattleEntity* PBattle = (CBattleEntity*)m_PBaseEntity;
-	DSP_DEBUG_BREAK_IF(PBattle->PBattleAI == NULL);
 
-	lua_pushboolean(L, PBattle->PBattleAI->m_PPathFind != NULL && PBattle->PBattleAI->m_PPathFind->IsFollowingPath());
+	lua_pushboolean(L, PBattle->PBattleAI != NULL && 
+		PBattle->PBattleAI->m_PPathFind != NULL && 
+		PBattle->PBattleAI->m_PPathFind->IsFollowingPath());
 
 	return 1;
 }
@@ -7230,7 +7250,13 @@ inline int32 CLuaBaseEntity::wait(lua_State* L)
 
 	DSP_DEBUG_BREAK_IF(PBattle->PBattleAI == NULL);
 
-	PBattle->PBattleAI->Wait(lua_tonumber(L, 1));
+	int32 waitTime = 3000;
+
+	if(lua_isnumber(L, 1)){
+		waitTime = lua_tonumber(L, 1);
+	}
+
+	PBattle->PBattleAI->Wait(waitTime);
 
 	return 1;
 }
@@ -7278,6 +7304,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeather),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setWeather),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setPos),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPos),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRace),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNation),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setNation),
@@ -7337,6 +7364,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageTarget),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageSpecial),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageSystem),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,clearTargID),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendMenu),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendGuild),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setHomePoint),

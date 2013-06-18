@@ -77,3 +77,7 @@ FERDOULEMIONT_SHOP_DIALOG = 8293; -- Hello!
      CARAUTIA_SHOP_DIALOG = 0; -- [UNKNOWN]
      MIOGIQUE_SHOP_DIALOG = 0; -- [UNKNOWN]
     VALERIANO_SHOP_DIALOG = 0; -- [UNKNOWN] 
+
+    RAMINEL_DELIVERY = 7977; -- here is your delivery
+    LUSIANE_THANK = 7978; -- thank you!
+    RAMINEL_DELIVERIES = 7979; -- I got deliveries

@@ -130,6 +130,7 @@ public:
 	int32 getYPos(lua_State*);				// Get Entity Y position
 	int32 getZPos(lua_State*);				// Get Entity Z position
     int32 setPos(lua_State*);				// Set Entity position (x,y,z,rot) or (x,y,z,rot,zone)
+    int32 getPos(lua_State*);				// Get Entity position (x,y,z)
 	int32 getZone(lua_State*);				// Get Entity zone
     int32 getZoneName(lua_State*);          // Get Entity zone name
 	int32 getCurrentRegion(lua_State*);		// Get Entity conquest region
@@ -211,6 +212,7 @@ public:
 	int32 messageSystem(lua_State*);		// Sends System Message
     int32 messageBasic(lua_State*);         // Sends Basic Message
     int32 messageTarget(lua_State*);         // Sends Basic Message With Target
+    int32 clearTargID(lua_State*);			// clears target of entity
 
 	int32 release(lua_State*);				// Stops event
 	int32 startEvent(lua_State*);			// Begins Event

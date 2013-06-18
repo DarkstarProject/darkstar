@@ -41,3 +41,4 @@ INSERT INTO `npc_dummies` VALUES('17461503');
 INSERT INTO `npc_dummies` VALUES('17387987');
 INSERT INTO `npc_dummies` VALUES('17801294');
 INSERT INTO `npc_dummies` VALUES('17780794');
+INSERT INTO `npc_dummies` VALUES('17719326');
