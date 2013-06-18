@@ -40,7 +40,7 @@ CItemArmor::CItemArmor(uint16 id) : CItemUsable(id)
     m_absorption   = 0;
     m_trialNumber  = 0;
 
-    memset(&m_augments, 0, ARRAYLENGTH(m_augments));
+    memset(&m_augments, 0, sizeof(m_augments));
 }
 
 CItemArmor::~CItemArmor()
