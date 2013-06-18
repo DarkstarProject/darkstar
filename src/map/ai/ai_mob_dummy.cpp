@@ -189,7 +189,7 @@ void CAIMobDummy::ActionRoaming()
 		{
 			// cast buff
 			CastSpell(m_PMob->SpellContainer->GetBuffSpell());
-			m_LastActionTime = m_Tick - rand()%(m_PMob->m_RoamCoolDown) + 15000;
+			m_LastActionTime = m_Tick - rand()%(m_PMob->m_RoamCoolDown) + 5000;
 		}
 		else if(m_PMob->m_Type & MOBTYPE_EVENT)
 		{
@@ -234,35 +234,14 @@ void CAIMobDummy::ActionEngage()
 
 	m_PMob->animation = ANIMATION_ATTACK;
 	m_StartBattle = m_Tick;
-	m_ActionType = ACTION_ATTACK;
 	m_LastActionTime = m_Tick - 1000; // Why do we subtract 1 sec?
+	m_ActionType = ACTION_ATTACK;
 	m_firstSpell = true;
 
 	//if (m_PMob->animationsub == 1 || m_PMob->animationsub == 3) m_PMob->animationsub = 2;  //need a better way to do this: it only applies to some mobs!
 
+	m_PPathFind->Clear();
 	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
-
-	//Start luautils::OnMobEngaged
-	if (m_PBattleTarget != NULL)
-	{
-
-		m_PPathFind->Clear();
-
-		if(CanCastSpells() && m_firstSpell){
-			// look at target instead
-			m_PPathFind->LookAt(m_PBattleTarget->loc.p);
-		} else {
-			// run at target
-			if(m_PPathFind->RunTo(m_PBattleTarget->loc.p))
-			{	
-				m_PPathFind->FollowPath();
-			}
-		}
-
-		luautils::OnMobEngaged(m_PMob, m_PBattleTarget);
-	}
-
-	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 
 	// drg shouldn't use jump right away
 	if(m_PMob->GetMJob() == JOB_DRG)
@@ -270,8 +249,27 @@ void CAIMobDummy::ActionEngage()
 		m_LastSpecialTime = m_Tick;
 	}
 
+	//Start luautils::OnMobEngaged
+	if (m_PBattleTarget != NULL)
+	{
 
-	ActionAttack();
+		luautils::OnMobEngaged(m_PMob, m_PBattleTarget);
+
+		if(CanCastSpells() && m_firstSpell){
+			// TODO: should go into standback action
+			// look at target instead
+			m_PPathFind->LookAt(m_PBattleTarget->loc.p);
+		} else {
+			ActionAttack();
+		}
+
+	}
+	else
+	{
+		m_ActionType = ACTION_DISENGAGE;
+	}
+
+	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 }
 
 /************************************************************************
@@ -941,6 +939,7 @@ void CAIMobDummy::ActionSleep()
 
 void CAIMobDummy::ActionStun()
 {
+
 	// lets just chill here for a bit
 	if(m_Tick - m_LastStunTime >= m_StunTime){
 		if(m_PMob->PEnmityContainer->GetHighestEnmity() == NULL){
@@ -998,9 +997,11 @@ void CAIMobDummy::ActionMagicStart()
 	}
 
 	if ( (m_PSpell->getValidTarget() & TARGET_ENEMY) && m_PBattleSubTarget->objtype == TYPE_MOB) {
-		m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-		ShowDebug("Monster Magic Cast on self but spell is enemy... spellId: %d \n", m_PSpell->getID());
-		return;
+		if(m_PBattleSubTarget->PMaster == NULL || m_PBattleSubTarget->PMaster->objtype != TYPE_PC){
+			m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+			ShowDebug("Monster Magic Cast on self but spell is enemy... spellId: %d \n", m_PSpell->getID());
+			return;
+		}
 	}
 
 	if(luautils::OnMagicCastingCheck(m_PMob, m_PBattleSubTarget, m_PSpell) != 0)
@@ -1336,7 +1337,6 @@ void CAIMobDummy::ActionAttack()
 	{
 		((CMobEntity*)m_PMob->PPet)->PEnmityContainer->AddBaseEnmity(m_PBattleTarget);
 	}
-
 
 	// Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
 	if (currentDistance <= MOB_SPELL_MAX_RANGE && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && TryCastSpell())
@@ -1764,7 +1764,6 @@ bool CAIMobDummy::TrySpecialSkill()
 	if(m_PSpecialSkill->getValidTargets() & TARGET_SELF)
 	{
 		m_PBattleSubTarget = m_PMob;
-
 	}
 	else if(m_PBattleTarget != NULL)
 	{

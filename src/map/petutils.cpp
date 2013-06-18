@@ -1081,13 +1081,15 @@ void Familiar(CBattleEntity* PPet)
     /*
         Boost HP by 10%
         Increase charm duration up to 30 mins
-        boost all stats by 5%
+        boost stats by 10%
     */
 
+    // only increase time for charmed mobs
     if(PPet->objtype == TYPE_MOB && PPet->isCharmed)
     {
         // increase charm duration
-        PPet->charmTime += 108000 - rand()%18000;
+        // 30 mins - 1-5 mins
+        PPet->charmTime += 1800000 - rand()%300000;
     }
 
     // boost hp by 10%

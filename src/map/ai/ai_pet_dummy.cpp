@@ -596,13 +596,7 @@ void CAIPetDummy::ActionEngage()
 
 
 	if(hasClaim)
-	{
-		// run at target
-		if(m_PPathFind->RunTo(m_PBattleTarget->loc.p))
-		{	
-			m_PPathFind->FollowPath();
-		}
-		
+	{	
 		m_PPet->animation = ANIMATION_ATTACK;
 		m_ActionType = ACTION_ATTACK;
 		m_LastActionTime = m_Tick - 4000;
@@ -624,7 +618,7 @@ void CAIPetDummy::ActionEngage()
 
 void CAIPetDummy::ActionAttack()
 {
-	if( m_PPet->PMaster==NULL || m_PPet->PMaster->isDead()){
+	if( m_PPet->PMaster==NULL || m_PPet->PMaster->isDead() || m_PPet->isDead()){
 		m_ActionType = ACTION_FALL;
 		ActionFall();
 		return;

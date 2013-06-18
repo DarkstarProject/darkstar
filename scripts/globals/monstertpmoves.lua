@@ -284,7 +284,7 @@ function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
 	-- get elemental damage reduction
 	local defense = 1;
 	if(element > 0) then
-		defense = 1 + (target:getMod(defenseMod[element]) * -1000);
+		defense = 1 + (target:getMod(defenseMod[element]) / -1000);
 
 		-- max defense is 50%
 		if(defense < 0.5) then
@@ -293,8 +293,6 @@ function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
 	end
 
 	finaldmg = finaldmg * resist * defense;
-
-	-- printf("dmgmod: %f, magicdmgmod: %f, resist: %f, def: %f", dmgMod, magicDmgMod, resist, defense);
 
 	returninfo.dmg = finaldmg;
 
@@ -326,11 +324,7 @@ function applyPlayerResistance(mob,effect,target,diff,bonus,element)
 
 	-- add elemental resistence
 	if(element > 0) then
-		if(target:isPC()) then
-			magiceva = magiceva + target:getMod(resistMod[element]);
-		else
-			magicacc = magicacc * (1 + (target:getMod(resistMod[element]*-100)));
-		end
+		magiceva = magiceva + target:getMod(resistMod[element]);
 	end
 
 	p = magicacc - (magiceva * 0.85);
@@ -700,7 +694,7 @@ function MobStatusEffectMove(mob, target, typeEffect, power, tick, duration)
 	return MSG_NO_EFFECT; -- no effect
 end;
 
-function MobPhysicalKnockback(mob, target, power)
+function MobPhysicalKnockback(skill, mob, target, power)
 	if(MobPhysicalHit(skill)) then
 		target:knockback(mob:getXPos(), mob:getYPos(), mob:getZPos(), power);
 	end

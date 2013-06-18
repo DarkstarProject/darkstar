@@ -15,7 +15,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
 	target:delHP(dmg);
 
-	MobPhysicalKnockback(mob, target, 1);
+	MobPhysicalKnockback(skill, mob, target, 1);
 
 	return dmg;
 end;
