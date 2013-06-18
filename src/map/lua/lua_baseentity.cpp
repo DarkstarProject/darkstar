@@ -6917,6 +6917,22 @@ inline int32 CLuaBaseEntity::recalculateAbilitiesTable(lua_State* L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::recalculateSkillsTable(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    if(m_PBaseEntity->objtype & TYPE_PC)
+    {
+        CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+        charutils::BuildingCharSkillsTable(PChar);
+        charutils::BuildingCharWeaponSkills(PChar);
+
+        PChar->pushPacket(new CCharSkillsPacket(PChar));
+        PChar->pushPacket(new CCharAbilitiesPacket(PChar));
+    }
+    return 0;
+}
+
 inline int32 CLuaBaseEntity::isSpellAoE(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -7547,6 +7563,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasTPMoves),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaster),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,recalculateAbilitiesTable),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,recalculateSkillsTable),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isSpellAoE),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBaseHP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBaseMP),

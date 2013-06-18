@@ -427,6 +427,7 @@ public:
 	int32 getMaster(lua_State*);
 
     int32 recalculateAbilitiesTable(lua_State*);
+    int32 recalculateSkillsTable(lua_State*);
     int32 isSpellAoE(lua_State* L);
 
 	int32 checkNameFlags(lua_State* L);      // this is check and not get because it tests for a flag, it doesn't return all flags
