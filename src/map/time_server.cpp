@@ -55,16 +55,13 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
             guildutils::UpdateGuildsStock();
 			luautils::OnGameDayAutomatisation();
 			conquest::UpdateConquestSystem();
-        }
-	}
 
-	//weekly update for conquest (monday at midnight)
-	if(CVanaTime::getInstance()->getSysWeekDay() == 1 &&
-	   CVanaTime::getInstance()->getSysHour() == 0 &&
-	   CVanaTime::getInstance()->getSysMinute() == 0 &&
-	   (CVanaTime::getInstance()->getSysSecond() == 0 || CVanaTime::getInstance()->getSysSecond() == 1))
-	{
-		conquest::UpdateWeekConquest();
+            // weekly update for conquest (monday at midnight)
+	        if (CVanaTime::getInstance()->getSysWeekDay() == 1)
+	        {
+		        conquest::UpdateWeekConquest();
+	        }
+        }
 	}
 
 	CTransportHandler::getInstance()->TransportTimer();
