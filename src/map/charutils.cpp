@@ -368,37 +368,37 @@ void LoadChar(CCharEntity* PChar)
 
 		size_t length = 0;
 		int8* quests = NULL;
-		Sql_GetData(SqlHandle,15,&quests,&length);
+		Sql_GetData(SqlHandle,14,&quests,&length);
 		memcpy(PChar->m_questLog, quests, (length > sizeof(PChar->m_questLog) ? sizeof(PChar->m_questLog) : length));
 
 		length = 0;
 		int8* keyitems = NULL;
-		Sql_GetData(SqlHandle,16,&keyitems,&length);
+		Sql_GetData(SqlHandle,15,&keyitems,&length);
 		memcpy(PChar->keys.keysList, keyitems, (length > sizeof(PChar->keys) ? sizeof(PChar->keys) : length));
 
 		length = 0;
 		int8* spells = NULL;
-		Sql_GetData(SqlHandle,17,&spells,&length);
+		Sql_GetData(SqlHandle,16,&spells,&length);
 		memcpy(PChar->m_SpellList, spells, (length > sizeof(PChar->m_SpellList) ? sizeof(PChar->m_SpellList) : length));
 
 		length = 0;
 		int8* abilities = NULL;
-		Sql_GetData(SqlHandle,18,&abilities,&length);
+		Sql_GetData(SqlHandle,17,&abilities,&length);
 		memcpy(PChar->m_LearnedAbilities, abilities, (length > sizeof(PChar->m_LearnedAbilities) ? sizeof(PChar->m_LearnedAbilities) : length));
 
         length = 0;
 		int8* titles = NULL;
-		Sql_GetData(SqlHandle,19,&titles,&length);
+		Sql_GetData(SqlHandle,18,&titles,&length);
 		memcpy(PChar->m_TitleList, titles, (length > sizeof(PChar->m_TitleList) ? sizeof(PChar->m_TitleList) : length));
 
 		length = 0;
 		int8* zones = NULL;
-		Sql_GetData(SqlHandle,20,&zones,&length);
+		Sql_GetData(SqlHandle,19,&zones,&length);
 		memcpy(PChar->m_ZonesList, zones, (length > sizeof(PChar->m_ZonesList) ? sizeof(PChar->m_ZonesList) : length));
 
         length = 0;
 		int8* missions = NULL;
-		Sql_GetData(SqlHandle,21,&missions,&length);
+		Sql_GetData(SqlHandle,20,&missions,&length);
 		memcpy(PChar->m_missionLog, missions, (length > sizeof(PChar->m_missionLog) ? sizeof(PChar->m_missionLog) : length));
 
 	}
