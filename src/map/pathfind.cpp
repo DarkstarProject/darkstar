@@ -342,7 +342,14 @@ void CPathFind::LookAt(position_t point)
 
 float CPathFind::GetRealSpeed()
 {
-    return ((m_PTarget->objtype == TYPE_NPC) ? m_PTarget->speed : ((CBattleEntity*)m_PTarget)->GetSpeed() / 0x28) * (m_mode) * 1.08;
+  uint8 baseSpeed = m_PTarget->speed;
+
+  if(m_PTarget->objtype != TYPE_NPC)
+  {
+    baseSpeed = ((CBattleEntity*)m_PTarget)->GetSpeed();
+  }
+
+  return ( baseSpeed / 0x28) * (m_mode) * 1.08;
 }
 
 bool CPathFind::IsFollowingPath()
