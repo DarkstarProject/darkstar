@@ -38,17 +38,18 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+
 	local ALittleKnowledge = player:getQuestStatus(CRYSTAL_WAR, A_LITTLE_KNOWLEDGE);
 	local ALittleKnowledgeProgress = player:getVar("ALittleKnowledge");
-	
-	if(ENABLE_WOTG == 1 and player:getMainLvl() >= ADVANCED_JOB_LEVEL and ALittleKnowledge == QUEST_AVAILABLE) then
-		player:startEvent(10,1);
-	elseif(player:getMainLvl() < ADVANCED_JOB_LEVEL and ALittleKnowledgeProgress < 1) then
-		player:startEvent(10);
-	elseif(ALittleKnowledgeProgress == 1) then
+	if(ENABLE_WOTG == 1 and ALittleKnowledge == QUEST_AVAILABLE) then
+		if player:getMainLvl() >= ADVANCED_JOB_LEVEL then
+			player:startEvent(10,1);
+		else
+			player:startEvent(10);
+		end
+	elseif(ALittleKnowledgeProgress == 1 and ALittleKnowledge == QUEST_ACCEPTED) then
 		player:startEvent(11);
-	elseif(ALittleKnowledgeProgress == 2) then
+	elseif(ALittleKnowledgeProgress == 2 and ALittleKnowledge == QUEST_ACCEPTED) then
 		if(	player:hasStatusEffect(EFFECT_MANAFONT) or
 			player:hasStatusEffect(EFFECT_CHAINSPELL) or
 			player:hasStatusEffect(EFFECT_ASTRAL_FLOW) or
@@ -58,7 +59,7 @@ function onTrigger(player,npc)
 			player:startEvent(13);
 		end
 	elseif(ALittleKnowledge == QUEST_COMPLETED) then
-		if(player:getMainJob() == JOB_SCH and player:getMainLvl() >= 5) then
+		if(player:getMainJob() == JOB_SCH and player:getMainLvl() >= 5 and not (player:hasSpell(478) and player:hasSpell(502))) then
 			player:startEvent(47);
 		else
 			player:startEvent(15);
@@ -107,6 +108,3 @@ function onEventFinish(player,csid,option)
 	end
 	
 end;
-
-
-
