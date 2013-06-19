@@ -224,7 +224,7 @@ bool CPathFind::OnPoint()
 
 void CPathFind::StepTo(position_t* pos, bool run)
 {
-
+  
   float speed = GetRealSpeed();
 
   if(speed == 0)
@@ -340,7 +340,7 @@ float CPathFind::GetRealSpeed()
     baseSpeed = ((CBattleEntity*)m_PTarget)->GetSpeed();
   }
 
-  return (float)(baseSpeed / 0x28) * 1.08;
+  return ((float)baseSpeed / 0x28) * 1.08;
 }
 
 bool CPathFind::IsFollowingPath()
