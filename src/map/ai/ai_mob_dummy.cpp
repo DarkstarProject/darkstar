@@ -1257,10 +1257,18 @@ void CAIMobDummy::ActionAttack()
 	}
 
 	// mob should not attack another mob with no master
-	if(m_PBattleTarget != NULL && m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->PMaster == NULL)
+	if(m_PBattleTarget != NULL && (m_PBattleTarget->objtype == TYPE_MOB || m_PBattleTarget->objtype == TYPE_PET) && m_PBattleTarget->PMaster == NULL)
 	{
+
+        if (m_PMob->m_OwnerID.id == m_PBattleTarget->id)
+        {
+            m_PMob->m_OwnerID.clean();
+        }
+
 		m_PMob->PEnmityContainer->Clear(m_PBattleTarget->id);
 		m_PMob->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
+		m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
+		return;
 	}
 
 	// target is dead, on a choco or zoned, so wipe them from our enmity list
@@ -1799,11 +1807,16 @@ void CAIMobDummy::FollowPath()
 
 	if(m_ActionType == ACTION_ROAMING)
 	{
-
-		if(m_PMob->PPet != NULL)
+		CBattleEntity* PPet = m_PMob->PPet;
+		if(PPet != NULL && PPet->PBattleAI->GetCurrentAction() == ACTION_ROAMING)
 		{
-			// update pet as well
-			m_PMob->PPet->loc.zone->PushPacket(m_PMob->PPet,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob->PPet,ENTITY_UPDATE));
+
+			// pet should follow me if roaming
+	        position_t targetPoint = nearPosition(m_PMob->loc.p, 2.0f, M_PI);
+
+	        PPet->PBattleAI->MoveTo(&targetPoint);
+        
+			PPet->loc.zone->PushPacket(PPet,CHAR_INRANGE, new CEntityUpdatePacket(PPet,ENTITY_UPDATE));
 		}
 
 		// if I just finished reset my last action time

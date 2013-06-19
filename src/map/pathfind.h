@@ -50,14 +50,14 @@ class CPathFind
 
     // run through given points
     // this will not use navmesh
-    bool RunThrough(position_t* points, uint8 totalPoints, bool reverse);
+    bool RunThrough(position_t* points, uint8 totalPoints, bool reverse = false);
 
     // walk normally to a point
     bool WalkTo(position_t point);
 
     // walk through given points
     // this will not use navmesh
-    bool WalkThrough(position_t* points, uint8 totalPoints, bool reverse);
+    bool WalkThrough(position_t* points, uint8 totalPoints, bool reverse = false);
 
     // instantly moves an entity to the point
     // this will make sure you're not in a wall
@@ -78,10 +78,7 @@ class CPathFind
     void LimitDistance(float maxDistance);
 
     // tells entity to take one step towards position
-    void StepTo(position_t* pos);
-
-    // moves the targets pet near the given point
-    void PetStepTo(position_t* pos);
+    void StepTo(position_t* pos, bool run = false);
 
     // checks if mob is currently following a path
     bool IsFollowingPath();
@@ -111,7 +108,7 @@ class CPathFind
     // finds a random path around the given point
     bool FindRandomPath(position_t* start, float maxRadius);
 
-    void AddPoints(position_t* points, uint8 totalPoints, bool reverse);
+    void AddPoints(position_t* points, uint8 totalPoints, bool reverse = false);
 
     CBaseEntity* m_PTarget;
     position_t m_points[MAX_PATH_POINTS];
@@ -119,7 +116,7 @@ class CPathFind
     bool m_onPoint;
     int16 m_currentPoint;
     int16 m_pathLength;
-    int8 m_mode;
+    bool m_run;
     float m_distanceMoved;
     float m_maxDistance;
 };

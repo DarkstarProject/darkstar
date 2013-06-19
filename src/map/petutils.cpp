@@ -910,7 +910,7 @@ void DespawnPet(CBattleEntity* PMaster)
 					PMob->PEnmityContainer->Clear();
 
 					// charm time is up, mob attacks player now
-					if (!PMob->GetHPP() == 0 && !PMob->PMaster->GetHPP() == 0)
+					if (PMob->GetHPP() != 0 && PMob->PMaster->GetHPP() != 0)
 					{
 						PMob->PEnmityContainer->UpdateEnmity(PChar, 0, 0);
 						PMob->health.tp = 0;// reset tp to 0 to stop mobAi using tp move on player as soon as charm wears

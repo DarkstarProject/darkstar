@@ -47,9 +47,6 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
     return false;
   }
 
-  // walk normal speed
-  m_mode = 1;
-
   CMobEntity* PMob = (CMobEntity*)m_PTarget;
 
   if(isNavMeshEnabled())
@@ -89,7 +86,7 @@ bool CPathFind::RunTo(position_t point)
 
   if(m_PTarget->speed == 0) return false;
 
-  m_mode = 2;
+  m_run = true;
 
   if(isNavMeshEnabled())
   {
@@ -107,14 +104,14 @@ bool CPathFind::RunTo(position_t point)
   return true;
 }
 
-bool CPathFind::RunThrough(position_t* points, uint8 totalPoints, bool reverse = false)
+bool CPathFind::RunThrough(position_t* points, uint8 totalPoints, bool reverse)
 {
   
   Clear();
 
   if(m_PTarget->speed == 0) return false;
 
-  m_mode = 2;
+  m_run = true;
 
   AddPoints(points, totalPoints, reverse);
 
@@ -126,8 +123,6 @@ bool CPathFind::WalkTo(position_t point)
   Clear();
 
   if(m_PTarget->speed == 0) return false;
-
-  m_mode = 1;
 
   if(isNavMeshEnabled())
   {
@@ -145,13 +140,11 @@ bool CPathFind::WalkTo(position_t point)
   return false;
 }
 
-bool CPathFind::WalkThrough(position_t* points, uint8 totalPoints, bool reverse = false)
+bool CPathFind::WalkThrough(position_t* points, uint8 totalPoints, bool reverse)
 {
   Clear();
 
   if(m_PTarget->speed == 0) return false;
-
-  m_mode = 1;
 
   AddPoints(points, totalPoints, reverse);
 
@@ -201,8 +194,7 @@ void CPathFind::FollowPath()
   // move mob to next point
   position_t* targetPoint = &m_points[m_currentPoint];
 
-  StepTo(targetPoint);
-  PetStepTo(targetPoint);
+  StepTo(targetPoint, m_run);
 
   if(m_maxDistance && m_distanceMoved >= m_maxDistance)
   {
@@ -230,23 +222,37 @@ bool CPathFind::OnPoint()
   return m_onPoint;
 }
 
-void CPathFind::StepTo(position_t* pos)
+void CPathFind::StepTo(position_t* pos, bool run)
 {
 
   float speed = GetRealSpeed();
 
+  if(speed == 0)
+  {
+    ShowWarning("CPathFind::StepTo Mobs speed is zero and its trying to move (%d)\n", m_PTarget->id);
+  }
+
+  int8 mode = 1;
+
+  if(run)
+  {
+    mode = 2;
+    speed *= 2;
+  }
+
   // face point mob is moving towards
   LookAt(*pos);
 
-  // if i'm going to overshoot the checkpoint just put me there
   float distanceTo = distance(m_PTarget->loc.p, *pos);
+
+  // if i'm going to overshoot the checkpoint just put me there
   if(distanceTo <= speed)
   {
     m_distanceMoved += distanceTo;
-
     m_PTarget->loc.p.x = pos->x;
     m_PTarget->loc.p.y = pos->y;
     m_PTarget->loc.p.z = pos->z;
+
   }
   else
   {
@@ -262,28 +268,13 @@ void CPathFind::StepTo(position_t* pos)
 
   }
 
-  m_PTarget->loc.p.moving += ((0x36*((float)m_PTarget->speed/0x28)) - (0x14*(m_mode - 1)));
+  m_PTarget->loc.p.moving += ((0x36*((float)m_PTarget->speed/0x28)) - (0x14*(mode - 1)));
 
   if(m_PTarget->loc.p.moving > 0x2fff)
   {
     m_PTarget->loc.p.moving = 0;
   }
 
-}
-
-void CPathFind::PetStepTo(position_t* pos)
-{
-    // only works for mob pets
-    if (m_PTarget->objtype == TYPE_MOB)
-    {
-        CMobEntity* PMob = (CMobEntity*)m_PTarget;
-
-        if(PMob->PPet == NULL || PMob->PPet->PBattleAI->GetCurrentAction() != ACTION_ROAMING) return;
-
-        position_t targetPoint = nearPosition(*pos, 2.0f, M_PI);
-
-        PMob->PPet->PBattleAI->MoveTo(&targetPoint);
-    }
 }
 
 bool CPathFind::FindPath(position_t* start, position_t* end)
@@ -349,7 +340,7 @@ float CPathFind::GetRealSpeed()
     baseSpeed = ((CBattleEntity*)m_PTarget)->GetSpeed();
   }
 
-  return ( baseSpeed / 0x28) * (m_mode) * 1.08;
+  return (float)(baseSpeed / 0x28) * 1.08;
 }
 
 bool CPathFind::IsFollowingPath()
@@ -366,13 +357,13 @@ void CPathFind::Clear()
 {
   m_pathLength = 0;
   m_currentPoint = 0;
-  m_mode = 0;
+  m_run = false;
   m_maxDistance = 0;
   m_distanceMoved = 0;
   m_onPoint = true;
 }
 
-void CPathFind::AddPoints(position_t* points, uint8 totalPoints, bool reverse = false)
+void CPathFind::AddPoints(position_t* points, uint8 totalPoints, bool reverse)
 {
   
   m_pathLength = totalPoints;
