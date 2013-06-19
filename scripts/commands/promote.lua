@@ -15,9 +15,10 @@ function onTrigger(player,targetname,level)
 	if(target:getGMLevel() < player:getGMLevel()) then -- cannot change the level of a higher GM
 		if(level < player:getGMLevel()) then -- cannot set a player to higher than yourself
 			target:setGMLevel(level);
-			printf("Target: %s || New level: %u",target:getName(),level);
+			--printf("Target: %s || New level: %u",target:getName(),level);
 		else
-			printf("Target's new level is too high");
+			--printf("Target's new level is too high");
+			player:PrintToPlayer("Target's new level is too high.");
 		end;
 	else
 		printf("%s attempting to adjust higher GM: %s",player:getName(),target:getName());

@@ -45,6 +45,7 @@
 #include "../packets/char_stats.h"
 #include "../packets/char_sync.h"
 #include "../packets/char_update.h"
+#include "../packets/chat_message.h"
 #include "../packets/send_box.h"
 #include "../packets/entity_update.h"
 #include "../packets/event.h"
@@ -6998,6 +6999,19 @@ inline int32 CLuaBaseEntity::setGMLevel(lua_State* L)
 	charutils::SaveCharGMLevel(PChar);
 	return 1;
 }
+inline int32 CLuaBaseEntity::PrintToPlayer(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_PC));
+	if (lua_isstring(L,1) && !lua_isnil(L,1))
+	{	
+		zoneutils::GetZone(m_PBaseEntity->getZone())->PushPacket(
+			m_PBaseEntity,
+			CHAR_INRANGE_SELF,
+			new CChatMessagePacket((CCharEntity*)m_PBaseEntity,MESSAGE_SYSTEM_1,(char*)lua_tostring(L,1)));
+	}
+	return 1;
+}
 /*
 Walk through the given points. NPC only.
 
@@ -7559,7 +7573,9 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBaseMP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkNameFlags),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getGMLevel),
-	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setGMLevel),    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBaseMP),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setGMLevel),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,PrintToPlayer),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBaseMP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,walkThrough),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,runThrough),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,atPoint),

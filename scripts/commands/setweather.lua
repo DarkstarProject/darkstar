@@ -52,6 +52,7 @@ printf("Weather Change Requested");
 	elseif(weather=="DARKNESS" or weather=="darkness" or weather=='19') then
 		player:setWeather(19);
 	else
-		print('Unrecognised Weather');
+		--print('Unrecognised Weather');
+		player:PrintToPlayer('Unrecognised Weather');
 	end
 end;

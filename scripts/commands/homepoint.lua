@@ -16,26 +16,7 @@ function onTrigger(player,target)
 	elseif(target==nil) then
 		player:warp();
 	else
-		printf("Player named %s not found!",target);
+		--printf("Player named %s not found!",target);
+		player:PrintToPlayer(string.format("Player named %s not found!",target));
 	end
-end;
-
------------------------------------
--- onEventUpdate Action
------------------------------------
-
-function onEventUpdate(player,csid,option)
---print("CS : onEventUpdate");
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish Action
------------------------------------
-
-function onEventFinish(player,csid,option)
---print("CS : onEventFinish");
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
 end;

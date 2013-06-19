@@ -62,6 +62,7 @@ function onTrigger(player,skill)
     elseif(skill=="blue") then
 		player:capSkill(43);
 	else
-		print("Unknown skill type: "..skill);
+		--print("Unknown skill type: "..skill);
+		player:PrintToPlayer("Unknown skill type: "..skill);
 	end
 end;

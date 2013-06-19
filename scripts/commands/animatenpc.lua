@@ -15,7 +15,8 @@ function onTrigger(player, npc, anim)
 	if (npc ~= nil and anim ~= nil) then
         local oldanim = GetNPCByID(npc):getAnimation();
         GetNPCByID(npc):setAnimation(anim);
-        printf("NPC ID: %i | Old animation: %i | New animation: %i\n", npc, oldanim, anim);
+        --printf("NPC ID: %i | Old animation: %i | New animation: %i\n", npc, oldanim, anim);
+		player:PrintToPlayer(string.format("NPC ID: %i | Old animation: %i | New animation: %i\n", npc, oldanim, anim));
     end
 
 end;

@@ -681,7 +681,7 @@ int32 GetPlayerByName(lua_State* L)
 			return 1;
 		}
 	}
-    ShowError(CL_RED"GetPlayerByName :: Input string is not valid." CL_RESET);
+    ShowError(CL_RED"GetPlayerByName :: Input string is not valid.\n" CL_RESET);
 	lua_pushnil(L);
 	return 1;
 }

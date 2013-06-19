@@ -164,7 +164,6 @@ int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
 		ShowDebug("cmdhandler::call: function <%s> not found\n", cmdname.c_str());
 		return -1;
 	}
-	ShowDebug("CmdPermissionLvl: %u, PChar->m_GMlevel: %u\n",CmdHandler->CmdPermissionLvl,PChar->m_GMlevel);
 	if(CmdHandler->CmdPermissionLvl > PChar->m_GMlevel)
 	{
 		ShowWarning("cmdhandler::call: Character %s attempting to use higher permission command %s\n",PChar->name.c_str(),CmdHandler->CmdName.c_str());

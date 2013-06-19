@@ -55,11 +55,13 @@ function onTrigger(player,jobname,lvl)
 	elseif(jobname=="RUN" or jobname=="run" or jobname=='22') then
 		player:changesJob(22);
 	else
-		print('Unrecognised job (1st param) entered. Use the ID number or short name e.g. WAR'); 
+		--print('Unrecognised job (1st param) entered. Use the ID number or short name e.g. WAR'); 
+		player:PrintToPlayer('Unrecognised job (1st param) entered. Use the ID number or short name e.g. WAR'); 
 	end
 	if(lvl>0 and lvl<=99) then
 		player:setsLevel(lvl);
 	else
-		print('Level (2nd param) must be between 1~99'); 
+		--print('Level (2nd param) must be between 1~99'); 
+		player:PrintToPlayer('Level (2nd param) must be between 1~99'); 
 	end
 end;
