@@ -27,6 +27,7 @@ require("scripts/globals/utils")
 	LIGHTSDAY		= 6;
 	DARKSDAY		= 7;
 
+	ELE_NONE		= 0;
     ELE_FIRE        = 1;
     ELE_EARTH       = 2;
     ELE_WATER       = 3;

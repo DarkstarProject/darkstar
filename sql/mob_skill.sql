@@ -70,7 +70,7 @@ INSERT INTO `mob_skill` VALUES (484,0,717,'Familiar', 0, 7.0, 2000, 0, 1, 0);
 INSERT INTO `mob_skill` VALUES (440,0,719,'Soul_Voice', 0, 7.0, 2000, 0, 1, 0);
 INSERT INTO `mob_skill` VALUES (479,0,720,'Eagle_Eye_Shot', 0, 25.0, 2000, 0, 4, 0);
 INSERT INTO `mob_skill` VALUES (474,0,721,'Meikyo_Shisui', 0, 7.0, 2000, 0, 1, 0);
-INSERT INTO `mob_skill` VALUES (475,0,722,'Mijin_Gakure', 1, 15.0, 2000, 2000, 4, 0);
+INSERT INTO `mob_skill` VALUES (475,0,722,'Mijin_Gakure', 1, 15.0, 2000, 0, 4, 0);
 INSERT INTO `mob_skill` VALUES (476,0,723,'Call_Wyvern', 0, 7.0, 2000, 0, 1, 0);
 -- INSERT INTO `mob_skill` VALUES (478,0,724,'Astral_Flow', 0, 7.0, 2000, 0, 1, 0);
 
