@@ -132,9 +132,9 @@ void CItem::setType(uint8 type)
 	m_type |= type;
 }
 
-uint8 CItem::getType()
+bool CItem::isType(ITEM_TYPE type)
 {
-	return m_type;
+	return (m_type & type);
 }
 
 /************************************************************************
@@ -148,9 +148,9 @@ void CItem::setSubType(uint8 subtype)
 	m_subtype = (subtype > 128 ? m_subtype & subtype : m_subtype | subtype);
 }
 
-uint8 CItem::getSubType()
+bool CItem::isSubType(ITEM_SUBTYPE subtype)
 {
-	return m_subtype;
+	return (m_subtype & subtype);
 }
 
 /************************************************************************
@@ -360,7 +360,7 @@ void CItem::setSent(bool sent)
 	m_sent = sent;
 }
 
-bool CItem::getSent()
+bool CItem::isSent()
 {
 	return m_sent;
 }

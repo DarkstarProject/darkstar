@@ -156,35 +156,35 @@ namespace itemutils
     {
         DSP_DEBUG_BREAK_IF(PItem == NULL);
 
-        if (PItem->getType() & ITEM_WEAPON)
+        if (PItem->isType(ITEM_WEAPON))
         {
             return new CItemWeapon(*((CItemWeapon*)PItem));
         }
-        if (PItem->getType() & ITEM_ARMOR)
+        if (PItem->isType(ITEM_ARMOR))
         {
             return new CItemArmor(*((CItemArmor*)PItem));
         }
-        if (PItem->getType() & ITEM_USABLE)
+        if (PItem->isType(ITEM_USABLE))
         {
             return new CItemUsable(*((CItemUsable*)PItem));
         }
-        if (PItem->getType() & ITEM_LINKSHELL)
+        if (PItem->isType(ITEM_LINKSHELL))
         {
             return new CItemLinkshell(*((CItemLinkshell*)PItem));
         }
-        if (PItem->getType() & ITEM_FURNISHING)
+        if (PItem->isType(ITEM_FURNISHING))
         {
             return new CItemFurnishing(*((CItemFurnishing*)PItem));
         }
-        if (PItem->getType() & ITEM_PUPPET)
+        if (PItem->isType(ITEM_PUPPET))
         {
             return new CItemPuppet(*((CItemPuppet*)PItem));
         }
-        if (PItem->getType() & ITEM_GENERAL)
+        if (PItem->isType(ITEM_GENERAL))
         {
             return new CItemGeneral(*((CItemGeneral*)PItem));
         }
-	    if (PItem->getType() & ITEM_CURRENCY)
+	    if (PItem->isType(ITEM_CURRENCY))
         {
             return new CItemCurrency(*((CItemCurrency*)PItem));
         }
@@ -328,11 +328,11 @@ namespace itemutils
 				    PItem->setAHCat(Sql_GetUIntData(SqlHandle,4));
 				    PItem->setBasePrice(Sql_GetUIntData(SqlHandle,5));
 				
-				    if (PItem->getType() & ITEM_GENERAL)
+				    if (PItem->isType(ITEM_GENERAL))
 				    {
 
 				    }
-				    if (PItem->getType() & ITEM_USABLE)
+				    if (PItem->isType(ITEM_USABLE))
 				    {
 					    ((CItemUsable*)PItem)->setSubID(Sql_GetUIntData(SqlHandle,6));
 					    ((CItemUsable*)PItem)->setValidTarget(Sql_GetUIntData(SqlHandle,7));
@@ -345,11 +345,11 @@ namespace itemutils
 					    ((CItemUsable*)PItem)->setReuseDelay(Sql_GetUIntData(SqlHandle,13));
                         ((CItemUsable*)PItem)->setAoE(Sql_GetUIntData(SqlHandle,14));
 				    }
-				    if (PItem->getType() & ITEM_PUPPET)
+				    if (PItem->isType(ITEM_PUPPET))
 				    {
 
 				    }
-				    if (PItem->getType() & ITEM_ARMOR)
+				    if (PItem->isType(ITEM_ARMOR))
 				    {
 					    ((CItemArmor*)PItem)->setReqLvl(Sql_GetUIntData(SqlHandle,15));
 					    ((CItemArmor*)PItem)->setJobs(Sql_GetUIntData(SqlHandle,16));
@@ -364,7 +364,7 @@ namespace itemutils
 						    ((CItemArmor*)PItem)->setSubType(ITEM_CHARGED);
 					    }
 				    }
-				    if (PItem->getType() & ITEM_WEAPON)
+				    if (PItem->isType(ITEM_WEAPON))
 				    {
 						((CItemWeapon*)PItem)->setSkillType(Sql_GetUIntData(SqlHandle,22));
 						((CItemWeapon*)PItem)->setSubSkillType(Sql_GetUIntData(SqlHandle,23));
@@ -374,7 +374,7 @@ namespace itemutils
                         ((CItemWeapon*)PItem)->setMaxHit(Sql_GetUIntData(SqlHandle,27));
                         ((CItemWeapon*)PItem)->setUnlockable(Sql_GetUIntData(SqlHandle,28));
 				    }
-				    if (PItem->getType() & ITEM_FURNISHING)
+				    if (PItem->isType(ITEM_FURNISHING))
 				    {
 					    ((CItemFurnishing*)PItem)->setStorage(Sql_GetUIntData(SqlHandle,29));
 					    ((CItemFurnishing*)PItem)->setMoghancement(Sql_GetUIntData(SqlHandle,30));
@@ -396,7 +396,7 @@ namespace itemutils
 			    uint16 modID  = (uint16)Sql_GetUIntData(SqlHandle,1);
 			    int16  value  = (int16) Sql_GetIntData (SqlHandle,2);
 
-			    if ((g_pItemList[ItemID] != NULL) && (g_pItemList[ItemID]->getType() & ITEM_ARMOR))
+			    if ((g_pItemList[ItemID] != NULL) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
 			    {
                     ((CItemArmor*)g_pItemList[ItemID])->addModifier(new CModifier(modID,value));
 			    }
@@ -415,7 +415,7 @@ namespace itemutils
 				uint16 latentId = (uint16) Sql_GetIntData(SqlHandle,3);
 				uint16 latentParam = (uint16) Sql_GetIntData(SqlHandle,4);
 
-			    if ((g_pItemList[ItemID] != NULL) && (g_pItemList[ItemID]->getType() & ITEM_ARMOR))
+			    if ((g_pItemList[ItemID] != NULL) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
 			    {
                     ((CItemArmor*)g_pItemList[ItemID])->addLatent(new CLatentEffect((LATENT)latentId, latentParam, 0, modID, value));
 			    }
@@ -522,8 +522,7 @@ namespace itemutils
     {
 	    for(int32 ItemID = 0; ItemID < MAX_ITEMID; ++ItemID)
 	    {
-		    if ((g_pItemList[ItemID] != NULL) &&
-			    (g_pItemList[ItemID]->getType() & ITEM_ARMOR))
+		    if ((g_pItemList[ItemID] != NULL) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
 		    {
 			    CItemArmor* PItem = (CItemArmor*)g_pItemList[ItemID];
 

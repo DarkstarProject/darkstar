@@ -79,7 +79,7 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type)
             {
 			    CItemLinkshell* linkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);
 
-			    if ((linkshell != NULL) && (linkshell->getType() & ITEM_LINKSHELL))
+			    if ((linkshell != NULL) && linkshell->isType(ITEM_LINKSHELL))
 			    {
 				    lscolor_t LSColor = linkshell->GetLSColor();
 

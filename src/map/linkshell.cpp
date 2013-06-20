@@ -164,7 +164,7 @@ void CLinkshell::ChangeMemberRank(int8* MemberName, uint8 toSack)
 
                 CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PMember->getStorage(LOC_INVENTORY)->GetItem(PMember->equip[SLOT_LINK]);
 
-                if (PItemLinkshell != NULL && (PItemLinkshell->getType() & ITEM_LINKSHELL))
+                if (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL))
                 {
 				    PItemLinkshell->setID(newId);
 
@@ -177,7 +177,7 @@ void CLinkshell::ChangeMemberRank(int8* MemberName, uint8 toSack)
                 {
                         CItemLinkshell* PItemLinkshell = (CItemLinkshell*)Inventory->GetItem(SlotID);
 
-					    if (PItemLinkshell != NULL && (PItemLinkshell->getType() & ITEM_LINKSHELL) && PItemLinkshell->GetLSID() == m_id)
+					    if (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL) && PItemLinkshell->GetLSID() == m_id)
 		                {
                             const int8* Query = "UPDATE char_inventory SET itemid = %u WHERE charid = %u AND location = %u AND slot = %u LIMIT 1";
 						    Sql_Query(SqlHandle, Query, PItemLinkshell->getID(),PMember->id, LOC_INVENTORY, SlotID);
@@ -216,7 +216,7 @@ void CLinkshell::RemoveMemberByName(int8* MemberName)
 
             CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PMember->getStorage(LOC_INVENTORY)->GetItem(PMember->equip[SLOT_LINK]);
 
-            if (PItemLinkshell != NULL && (PItemLinkshell->getType() & ITEM_LINKSHELL))
+            if (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL))
             {
                 linkshell::DelOnlineMember(PMember, PItemLinkshell);
 
@@ -234,7 +234,7 @@ void CLinkshell::RemoveMemberByName(int8* MemberName)
             {
                     CItemLinkshell* PItemLinkshell = (CItemLinkshell*)Inventory->GetItem(SlotID);
 
-					if (PItemLinkshell != NULL && (PItemLinkshell->getType() & ITEM_LINKSHELL) && PItemLinkshell->GetLSID() == m_id)
+					if (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL) && PItemLinkshell->GetLSID() == m_id)
 		            {
                         const int8* Query = "UPDATE char_inventory SET itemid = (itemid+2) WHERE charid = %u AND location = %u AND slot = %u LIMIT 1";
 
@@ -330,7 +330,7 @@ namespace linkshell
     bool AddOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell)
     {
         DSP_DEBUG_BREAK_IF(PChar == NULL);
-        if (PItemLinkshell != NULL && (PItemLinkshell->getType() & ITEM_LINKSHELL))
+        if (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL))
         {
             LinkshellList_t::const_iterator it = LinkshellList.find(PItemLinkshell->GetLSID()); 
 			if (it != LinkshellList.end())
@@ -351,7 +351,7 @@ namespace linkshell
     bool DelOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell)
     {
         DSP_DEBUG_BREAK_IF(PChar == NULL);
-        if (PItemLinkshell != NULL && (PItemLinkshell->getType() & ITEM_LINKSHELL))
+        if (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL))
         {
             LinkshellList_t::const_iterator it = LinkshellList.find(PItemLinkshell->GetLSID()); 
 			if (it != LinkshellList.end())

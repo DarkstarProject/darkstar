@@ -46,7 +46,7 @@ CTradeUpdatePacket::CTradeUpdatePacket(CItem* PItem, uint8 SlotID)
 	WBUFW(data,(0x0A)-4) = PItem->getID();
 	WBUFB(data,(0x0D)-4) = SlotID;
 
-    if (PItem->getSubType() & ITEM_CHARGED)
+    if (PItem->isSubType(ITEM_CHARGED))
     {
 		WBUFB(data,(0x0E)-4) = 0x01;
 
@@ -55,7 +55,7 @@ CTradeUpdatePacket::CTradeUpdatePacket(CItem* PItem, uint8 SlotID)
             WBUFB(data,(0x0F)-4) = ((CItemUsable*)PItem)->getCurrentCharges(); 
         }
 	}
-    if (PItem->getType() & ITEM_LINKSHELL) 
+    if (PItem->isType(ITEM_LINKSHELL))
 	{	
         WBUFL(data,(0x0E)-4) = ((CItemLinkshell*)PItem)->GetLSID();
         WBUFW(data,(0x14)-4) = ((CItemLinkshell*)PItem)->GetLSRawColor();

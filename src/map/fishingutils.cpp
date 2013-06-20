@@ -103,7 +103,7 @@ void StartFishing(CCharEntity* PChar)
 	WeaponItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);	
 			
 	if ((WeaponItem == NULL) ||
-	   !(WeaponItem->getType() & ITEM_WEAPON) ||
+	   !(WeaponItem->isType(ITEM_WEAPON)) ||
 		(WeaponItem->getSkillType() != SKILL_FSH)) 
 	{													
 		// сообщение: "You can't fish without a rod in your hands"
@@ -116,7 +116,7 @@ void StartFishing(CCharEntity* PChar)
 	WeaponItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);	
 							
 	if ((WeaponItem == NULL) ||
-	   !(WeaponItem->getType() & ITEM_WEAPON) ||
+	   !(WeaponItem->isType(ITEM_WEAPON)) ||
 		(WeaponItem->getSkillType() != SKILL_FSH))
 	{
 		// сообщение: "You can't fish without bait on the hook"	
@@ -153,7 +153,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
 	WeaponItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);	
 
 	DSP_DEBUG_BREAK_IF(WeaponItem == NULL);
-	DSP_DEBUG_BREAK_IF(!(WeaponItem->getType() & ITEM_WEAPON));
+	DSP_DEBUG_BREAK_IF(WeaponItem->isType(ITEM_WEAPON) == false);
 	DSP_DEBUG_BREAK_IF(WeaponItem->getSkillType() != SKILL_FSH);
 
 	uint16 RodID = WeaponItem->getID();
@@ -161,7 +161,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
 	WeaponItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);	
 							
 	DSP_DEBUG_BREAK_IF(WeaponItem == NULL);
-	DSP_DEBUG_BREAK_IF(!(WeaponItem->getType() & ITEM_WEAPON));
+	DSP_DEBUG_BREAK_IF(WeaponItem->isType(ITEM_WEAPON) == false);
 	DSP_DEBUG_BREAK_IF(WeaponItem->getSkillType() != SKILL_FSH);
 
 	uint16 LureID = WeaponItem->getID();
@@ -271,7 +271,7 @@ bool LureLoss(CCharEntity* PChar, bool RemoveFly)
 	CItemWeapon* PLure = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);
 
 	DSP_DEBUG_BREAK_IF(PLure == NULL);
-	DSP_DEBUG_BREAK_IF(!(PLure->getType() & ITEM_WEAPON));
+	DSP_DEBUG_BREAK_IF(PLure->isType(ITEM_WEAPON) == false);
 	DSP_DEBUG_BREAK_IF(PLure->getSkillType() != SKILL_FSH);
 
 	if (!RemoveFly &&
@@ -378,7 +378,7 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina)
 				charutils::AddItem(PChar, LOC_INVENTORY, PFish->getID(), 1);
                 PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCaughtFishPacket(PChar, PFish->getID(), MessageOffset + 0x27));
 
-				if (PFish->getType() & ITEM_USABLE)
+				if (PFish->isType(ITEM_USABLE))
 				{
 					LureLoss(PChar, false);
 				}

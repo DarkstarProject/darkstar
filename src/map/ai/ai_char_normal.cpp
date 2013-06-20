@@ -523,7 +523,7 @@ void CAICharNormal::ActionItemUsing()
         m_LastActionTime = m_Tick;
 		m_ActionType = ACTION_ITEM_FINISH;
 
-		if (m_PItemUsable->getType() & ITEM_ARMOR)
+		if (m_PItemUsable->isType(ITEM_ARMOR))
 		{
 			if (m_PItemUsable->getMaxCharges() > 1)
 			{
@@ -695,8 +695,8 @@ void CAICharNormal::ActionRangedStart()
 
     CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
 
-	if (PRanged != NULL &&
-	   (PRanged->getType() & ITEM_WEAPON) || PAmmo != NULL && PAmmo->isThrowing())
+	if (PRanged != NULL && PRanged->isType(ITEM_WEAPON) || 
+        PAmmo != NULL && PAmmo->isThrowing())
 	{
 		uint8 SkillType = 0;
 
@@ -753,10 +753,8 @@ void CAICharNormal::ActionRangedStart()
 			{
 
                 PRanged = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
-				if (PRanged != NULL &&
-				   (PRanged->getType() & ITEM_WEAPON))
+				if (PRanged != NULL && PRanged->isType(ITEM_WEAPON))
 				{
-
 					break;
 				}
 			}
@@ -1751,8 +1749,7 @@ void CAICharNormal::ActionJobAbilityStart()
 		if (m_PJobAbility->getID() == ABILITY_EAGLE_EYE_SHOT || m_PJobAbility->getID() == ABILITY_SHADOWBIND){
 			CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
 
-			if (PItem != NULL &&
-			   (PItem->getType() & ITEM_WEAPON))
+			if (PItem != NULL && PItem->isType(ITEM_WEAPON))
 			{
 				switch (PItem->getSkillType())
 				{
@@ -1762,8 +1759,7 @@ void CAICharNormal::ActionJobAbilityStart()
 					{
 						PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
 
-						if (PItem != NULL &&
-						   (PItem->getType() & ITEM_WEAPON))
+						if (PItem != NULL && PItem->isType(ITEM_WEAPON))
 						{
 							break;
 						}
@@ -1780,7 +1776,7 @@ void CAICharNormal::ActionJobAbilityStart()
 				PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
 
 				if (PItem == NULL ||
-				  !(PItem->getType() & ITEM_WEAPON) ||
+				  !(PItem->isType(ITEM_WEAPON)) ||
 				   (PItem->getSkillType() != SKILL_THR))
 				{
 					m_ActionTargetID = 0;
@@ -2510,7 +2506,7 @@ void CAICharNormal::ActionWeaponSkillStart()
 
 			// before allowing ranged weapon skill...
 			if (PItem == NULL ||								// check item is not null
-			  !(PItem->getType() & ITEM_WEAPON) ||
+			  !(PItem->isType(ITEM_WEAPON)) ||
 			  !m_PChar->m_Weapons[SLOT_AMMO]->isRanged() ||		// make sure ammo item is a ranged item
               !m_PChar->m_Weapons[SLOT_RANGED]->isRanged() ||	// make sure range weapon is a range weapon
 			  m_PChar->equip[SLOT_AMMO] == 0)					// make sure ammo is equiped (the ammo qty checks the inventory slot and not the ammo slot)

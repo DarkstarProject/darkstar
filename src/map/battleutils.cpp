@@ -1567,7 +1567,7 @@ uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender){
 	if(PAttacker->objtype == TYPE_PC){
 		CCharEntity* PChar = (CCharEntity*)PAttacker;
 		CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
-		if(PItem!=NULL && (PItem->getType() & ITEM_WEAPON)){
+		if(PItem!=NULL && PItem->isType(ITEM_WEAPON)){
 			int skill = PChar->GetSkill(PItem->getSkillType());
 			acc = skill;
 			if(skill>200){ acc = 200 + (skill-200)*0.9;}
@@ -1600,7 +1600,7 @@ float GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 		CCharEntity* PChar = (CCharEntity*)PAttacker;
 		CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
 
-		if (PItem != NULL && (PItem->getType() & ITEM_WEAPON))
+		if (PItem != NULL && PItem->isType(ITEM_WEAPON))
 		{
 			rAttack = PChar->RATT(PItem->getSkillType());
 		}
@@ -1608,7 +1608,7 @@ float GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 		{
 			PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);
 
-			if (PItem == NULL || !(PItem->getType() & ITEM_WEAPON) || (PItem->getSkillType() != SKILL_THR)){
+			if (PItem == NULL || !PItem->isType(ITEM_WEAPON) || (PItem->getSkillType() != SKILL_THR)){
 				ShowDebug("battleutils::GetRangedPDIF Cannot find a valid ranged weapon to calculate PDIF for. \n");
 			}
 			else

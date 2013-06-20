@@ -353,8 +353,6 @@ CBattleEntity* CEnmityContainer::GetHighestEnmity()
 
 void CEnmityContainer::DecayEnmity()
 {
-	CBattleEntity* PEntity = NULL;
-
     for (EnmityList_t::iterator it = m_EnmityList.begin(); it != m_EnmityList.end(); ++it)
     {
         EnmityObject_t* PEnmityObject = it->second;

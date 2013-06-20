@@ -854,7 +854,7 @@ void SmallPacket0x028(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
     CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
 
-    if (PItem != NULL && !(PItem->getSubType() & ITEM_LOCKED))
+    if (PItem != NULL && !PItem->isSubType(ITEM_LOCKED))
     {
         uint16 ItemID = PItem->getID();
 
@@ -891,7 +891,7 @@ void SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 	CItem* PItem = PChar->getStorage(FromLocationID)->GetItem(FromSlotID);
 
-    if(PItem == NULL || (PItem->getSubType() & ITEM_LOCKED))
+    if(PItem == NULL || PItem->isSubType(ITEM_LOCKED))
 	{
 		if(PItem==NULL){
 			ShowWarning(CL_YELLOW"SmallPacket0x29: Trying to move NULL item from location %u slot %u to location %u slot %u of quan %u \n" CL_RESET, FromLocationID, FromSlotID, ToLocationID, ToSlotID,quantity);
@@ -1228,13 +1228,13 @@ void SmallPacket0x037(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 	CItemUsable* PItem = (CItemUsable*)PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
 
-	if ((PItem != NULL) && (PItem->getType() & ITEM_USABLE))
+	if ((PItem != NULL) && PItem->isType(ITEM_USABLE))
 	{
-		if (PItem->getType() & ITEM_ARMOR)
+		if (PItem->isType(ITEM_ARMOR))
 		{
 			//TODO: если ITEM_LOCKED, то должна быть проверка на то, что предмет экипирован
 		}
-		else if (PItem->getSubType() & ITEM_LOCKED)
+		else if (PItem->isSubType(ITEM_LOCKED))
 		{
 			return;
 		}
@@ -1292,7 +1292,7 @@ void SmallPacket0x03A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
         if ((PItem != NULL) &&
             (PItem->getQuantity() < PItem->getStackSize()) &&
-           !(PItem->getSubType() & ITEM_LOCKED))
+            !PItem->isSubType(ITEM_LOCKED))
         {
             for (uint8 slotID2 = slotID+1; slotID2 <= size; ++slotID2)
             {
@@ -1301,7 +1301,7 @@ void SmallPacket0x03A(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 if ((PItem2 != NULL) &&
                     (PItem2->getID() == PItem->getID()) &&
                     (PItem2->getQuantity() < PItem2->getStackSize()) &&
-                   !(PItem2->getSubType() & ITEM_LOCKED))
+                    !PItem2->isSubType(ITEM_LOCKED))
                 {
                     uint32 totalQty = PItem->getQuantity() + PItem2->getQuantity();
                     uint32 moveQty  = 0;
@@ -1525,19 +1525,17 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
             uint8 send_items = 0;
             for (int i = 0; i < 8; i++)
             {
-                if (!PChar->UContainer->IsSlotEmpty(i))
+                if (!PChar->UContainer->IsSlotEmpty(i) && 
+                    !PChar->UContainer->GetItem(i)->isSent())
                 {
-                    if (PChar->UContainer->GetItem(i)->getSent() == false)
-                    {
-                        send_items++;
-                    }
+                    send_items++;
                 }
             }
             if (!PChar->UContainer->IsSlotEmpty(slotID))
             {
                 CItem* PItem = PChar->UContainer->GetItem(slotID);
 
-                if (PItem && PItem->getSent() == false)
+                if (PItem && !PItem->isSent())
                 {
                     bool isAutoCommitOn = Sql_GetAutoCommit(SqlHandle);
                     bool commit = false;
@@ -1725,7 +1723,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 if (!PChar->UContainer->IsSlotEmpty(i))
                 {
                     CItem* PItem = PChar->UContainer->GetItem(i);
-                    if (PItem->getSent() == true)
+                    if (PItem->isSent())
                     {
                         if (first_received == 0xFF)
                         {
@@ -1827,9 +1825,9 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 CItem* PItem = PChar->UContainer->GetItem(slotID);
 
                 ShowMessage("FreeSlots %u\n", PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount());
-                ShowMessage("ItemType %u", PItem->getType());
+                ShowMessage("ItemId %u", PItem->getID());
 
-                if (boxtype == 0x01 && PItem->getType() != ITEM_CURRENCY &&
+                if (boxtype == 0x01 && !PItem->isType(ITEM_CURRENCY)  &&
                     PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() == 0)
                 {
                     PChar->pushPacket(new CDeliveryBoxPacket(action, PItem, PChar->UContainer->GetItemsCount(), 0xB9));
@@ -1965,20 +1963,18 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     //recover items that failed to send
                     for (int i = 0; i < 8; ++i)
                     {
-                        if (!PChar->UContainer->IsSlotEmpty(i))
+                        if (!PChar->UContainer->IsSlotEmpty(i) &&
+                            !PChar->UContainer->GetItem(i)->isSent())
                         {
-                            if (PChar->UContainer->GetItem(i)->getSent() == false)
+                            CItem* PItem = PChar->UContainer->GetItem(i);
+                            uint8 loc = PChar->getStorage(LOC_INVENTORY)->SearchItemWithSpace(PItem->getID(), PItem->getQuantity());
+                            if(loc != ERROR_SLOTID)
                             {
-                                CItem* PItem = PChar->UContainer->GetItem(i);
-                                uint8 loc = PChar->getStorage(LOC_INVENTORY)->SearchItemWithSpace(PItem->getID(), PItem->getQuantity());
-                                if(loc != ERROR_SLOTID)
-                                {
-                                    charutils::UpdateItem(PChar, LOC_INVENTORY, loc, PItem->getQuantity());
-                                }
-                                else
-                                {
-                                    uint8 add = charutils::AddItem(PChar, LOC_INVENTORY, PItem->getID(), PItem->getQuantity(), true);
-                                }
+                                charutils::UpdateItem(PChar, LOC_INVENTORY, loc, PItem->getQuantity());
+                            }
+                            else
+                            {
+                                uint8 add = charutils::AddItem(PChar, LOC_INVENTORY, PItem->getID(), PItem->getQuantity(), true);
                             }
                         }
                     }
@@ -2035,7 +2031,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
             if ((PItem != NULL) &&
                 (PItem->getID() == itemid) &&
-               !(PItem->getSubType() & ITEM_LOCKED) &&
+               !(PItem->isSubType(ITEM_LOCKED)) &&
                !(PItem->getFlag() & ITEM_FLAG_NOAUCTION))
             {
                 PItem->setCharPrice(price);
@@ -2093,7 +2089,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
             CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slot);
 
             if ((PItem != NULL) &&
-               !(PItem->getSubType() & ITEM_LOCKED) &&
+               !(PItem->isSubType(ITEM_LOCKED)) &&
                !(PItem->getFlag() & ITEM_FLAG_NOAUCTION))
             {
                 if (quantity == 0 &&
@@ -2162,7 +2158,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     CItem* gil  = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
 
 	                if (gil != NULL &&
-                        gil->getType() & ITEM_CURRENCY &&
+                        gil->isType(ITEM_CURRENCY) &&
                         gil->getQuantity() >= price)
 	                {
                         const int8* fmtQuery = "UPDATE auction_house \
@@ -2755,7 +2751,7 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* dat
             {
                 CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);
 
-                if (PItemLinkshell != NULL && (PItemLinkshell->getType() & ITEM_LINKSHELL))
+                if (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL))
                 {
 					// TODO: can currently use command to kick sack holders
 					if(PItemLinkshell->GetLSType() == LSTYPE_LINKSHELL || PItemLinkshell->GetLSType() == LSTYPE_PEARLSACK){
@@ -2953,7 +2949,7 @@ void SmallPacket0x083(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 	CItem* gil  = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
 
-	if ((gil != NULL) && (gil->getType() & ITEM_CURRENCY))
+	if ((gil != NULL) && gil->isType(ITEM_CURRENCY))
 	{
 		if (gil->getQuantity() > (price * quantity))
 		{
@@ -3014,7 +3010,7 @@ void SmallPacket0x085(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	CItem* gil   = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
 	CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
 
-	if ( (PItem != NULL) && (gil != NULL) && (gil->getType() & ITEM_CURRENCY) )
+	if ( (PItem != NULL) && ((gil != NULL) && gil->isType(ITEM_CURRENCY)) )
 	{
 		charutils::UpdateItem(PChar, LOC_INVENTORY, 0, quantity * PItem->getBasePrice());
 		charutils::UpdateItem(PChar, LOC_INVENTORY, slotID, -(int32)quantity);
@@ -3078,7 +3074,7 @@ void SmallPacket0x0AA(map_session_data_t* session, CCharEntity* PChar, int8* dat
     CItemShop* item   = (CItemShop*)PChar->PGuildShop->GetItem(shopSlotID);
 	CItem* gil        = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
 
-	if ((gil != NULL) && (gil->getType() & ITEM_CURRENCY) && item != NULL && item->getQuantity() >= quantity)
+	if (((gil != NULL) && gil->isType(ITEM_CURRENCY)) && item != NULL && item->getQuantity() >= quantity)
 	{
 		if (gil->getQuantity() > (item->getBasePrice() * quantity))
 		{
@@ -3392,7 +3388,7 @@ void SmallPacket0x0C3(map_session_data_t* session, CCharEntity* PChar, int8* dat
 {
     CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);
 
-    if (PItemLinkshell != NULL && (PItemLinkshell->getType() & ITEM_LINKSHELL))
+    if (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL))
     {
         CItemLinkshell* PItemLinkPearl = new CItemLinkshell(*PItemLinkshell);
 
@@ -3421,7 +3417,7 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
     CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
 
-    if (PItemLinkshell != NULL && (PItemLinkshell->getType() & ITEM_LINKSHELL))
+    if (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL))
     {
         if (PItemLinkshell->getID() == 512) // создание новой linkshell
         {
@@ -3486,7 +3482,7 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     {
                         CItemLinkshell* POldItemLinkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);
 
-                        if (POldItemLinkshell != NULL && (POldItemLinkshell->getType() & ITEM_LINKSHELL))
+                        if (POldItemLinkshell != NULL && POldItemLinkshell->isType(ITEM_LINKSHELL))
                         {
                             linkshell::DelOnlineMember(PChar, POldItemLinkshell);
 
@@ -3834,7 +3830,7 @@ void SmallPacket0x0E2(map_session_data_t* session, CCharEntity* PChar, int8* dat
 {
     CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);
 
-    if (PChar->PLinkshell != NULL && (PItemLinkshell != NULL && (PItemLinkshell->getType() & ITEM_LINKSHELL)))
+    if (PChar->PLinkshell != NULL && (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL)))
     {
         switch (RBUFB(data,(0x04)) & 0xF0) // назначение первых бит пока неизвестно
         {
@@ -4080,7 +4076,7 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 	if (PItem != NULL &&
 		PItem->getID() == ItemID &&
-		PItem->getType() & ITEM_FURNISHING)
+		PItem->isType(ITEM_FURNISHING))
 	{
 		if (PItem->getFlag() & ITEM_FLAG_WALLHANDING)
 		{
@@ -4138,7 +4134,7 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 	if (PItem != NULL &&
 		PItem->getID() == ItemID &&
-		PItem->getType() & ITEM_FURNISHING)
+		PItem->isType(ITEM_FURNISHING))
 	{
         // TODO: удаление мебели может никак не повлиять на размер хранилища, если сумма Storage превышала 80 ячеек
 

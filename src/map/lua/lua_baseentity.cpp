@@ -651,7 +651,7 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
 	    {
 		    PItem->setQuantity(quantity);
 
-            if ((PItem->getType() & ITEM_ARMOR))
+            if (PItem->isType(ITEM_ARMOR))
 		    {
 			    if (augment0 != 0) ((CItemArmor*)PItem)->setAugment(0, augment0, augment0val);
 			    if (augment1 != 0) ((CItemArmor*)PItem)->setAugment(1, augment1, augment1val);
@@ -2891,7 +2891,7 @@ inline int32 CLuaBaseEntity::getGil(lua_State *L)
 				lua_pushinteger( L, 0 );
 				return 1;
 			}
-			else if(!(item->getType() & ITEM_CURRENCY))
+			else if(!item->isType(ITEM_CURRENCY))
 			{
 				ShowFatalError(CL_RED"lua::getGil : Item in currency slot is not gil!\n" CL_RESET);
 				return 0;
@@ -2927,7 +2927,7 @@ inline int32 CLuaBaseEntity::addGil(lua_State *L)
 			{
 				CItem * item = ((CCharEntity*)m_PBaseEntity)->getStorage(LOC_INVENTORY)->GetItem(0);
 
-				if(item == NULL || !(item->getType() & ITEM_CURRENCY))
+				if(item == NULL || !item->isType(ITEM_CURRENCY))
 				{
 					ShowFatalError(CL_RED"lua::addGil : No Gil in currency slot\n" CL_RESET);
 					return 0;
@@ -2961,7 +2961,7 @@ inline int32 CLuaBaseEntity::delGil(lua_State *L)
 
 	CItem* PItem = ((CCharEntity*)m_PBaseEntity)->getStorage(LOC_INVENTORY)->GetItem(0);
 
-    if (PItem != NULL && (PItem->getType() & ITEM_CURRENCY))
+    if (PItem != NULL && PItem->isType(ITEM_CURRENCY))
     {
         int32 gil = (int32)lua_tointeger(L, -1);
 	    result = charutils::UpdateItem((CCharEntity*)m_PBaseEntity, LOC_INVENTORY, 0, -gil) == 0xFFFF;
@@ -2986,7 +2986,7 @@ inline int32 CLuaBaseEntity::setGil(lua_State *L)
 			{
 				CItem * item = ((CCharEntity*)m_PBaseEntity)->getStorage(LOC_INVENTORY)->GetItem(0);
 
-				if(item == NULL || !(item->getType() & ITEM_CURRENCY))
+				if(item == NULL || !item->isType(ITEM_CURRENCY))
 				{
 					ShowFatalError(CL_RED"lua::setGil : No Gil in currency slot\n" CL_RESET);
 					return 0;
@@ -4736,7 +4736,7 @@ inline int32 CLuaBaseEntity::getEquipID(lua_State *L)
 
 		CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT]);
 
-		if((PItem != NULL) && (PItem->getType() & ITEM_ARMOR))
+		if((PItem != NULL) && PItem->isType(ITEM_ARMOR))
 		{
 			lua_pushinteger(L,PItem->getID());
 			return 1;
@@ -5979,14 +5979,9 @@ inline int32 CLuaBaseEntity::addPlayerToDynamis(lua_State *L)
 inline int32 CLuaBaseEntity::isInDynamis(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-
-	if(PChar->isInDynamis()){
-		lua_pushboolean(L, true);
-	}else{
-		lua_pushboolean(L, false);
-	}
+    lua_pushboolean(L, ((CBattleEntity*)m_PBaseEntity)->isInDynamis());
 	return 1;
 }
 
@@ -6610,7 +6605,7 @@ inline int32 CLuaBaseEntity::castSpell(lua_State* L)
 inline int32 CLuaBaseEntity::useMobAbility(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_MOB));
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
 	if (lua_isnumber(L,1))
 	{
@@ -6659,7 +6654,7 @@ inline int32 CLuaBaseEntity::useMobAbility(lua_State* L)
 inline int32 CLuaBaseEntity::setSpellCooldown(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_MOB));
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 	DSP_DEBUG_BREAK_IF(!lua_isnumber(L, 1));
 
 	((CMobEntity*)m_PBaseEntity)->m_MagicRecastTime = lua_tointeger(L, 1);
@@ -6700,7 +6695,7 @@ inline int32 CLuaBaseEntity::SetMobAbilityEnabled(lua_State* L)
 inline int32 CLuaBaseEntity::updateTarget(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_MOB));
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
 	((CMobEntity*)m_PBaseEntity)->PBattleAI->SetBattleTarget(((CMobEntity*)m_PBaseEntity)->PEnmityContainer->GetHighestEnmity());
 
@@ -6720,7 +6715,7 @@ inline int32 CLuaBaseEntity::updateTarget(lua_State* L)
 inline int32 CLuaBaseEntity::getExtraVar(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_MOB));
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
 	int32 n = lua_tointeger(L,1);
 
@@ -6770,7 +6765,7 @@ inline int32 CLuaBaseEntity::getExtraVar(lua_State* L)
 inline int32 CLuaBaseEntity::setExtraVar(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_MOB));
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
 	((CMobEntity*)m_PBaseEntity)->m_extraVar = lua_tonumber(L, 1);
 
@@ -6801,7 +6796,7 @@ inline int32 CLuaBaseEntity::setExtraVar(lua_State* L)
 inline int32 CLuaBaseEntity::setSpellList(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_MOB));
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
 	((CMobEntity*)m_PBaseEntity)->m_SpellListContainer = mobSpellList::GetMobSpellList(lua_tonumber(L,1));
@@ -6812,7 +6807,7 @@ inline int32 CLuaBaseEntity::setSpellList(lua_State* L)
 inline int32 CLuaBaseEntity::hasValidJugPetItem(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_PC));
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
 	CItemWeapon* PItem = (CItemWeapon*)((CCharEntity*)m_PBaseEntity)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)m_PBaseEntity)->equip[SLOT_AMMO]);
 
@@ -6982,7 +6977,8 @@ inline int32 CLuaBaseEntity::checkNameFlags(lua_State* L)
 inline int32 CLuaBaseEntity::getGMLevel(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_PC));
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
 	lua_pushnumber(L,PChar->m_GMlevel);
@@ -6992,17 +6988,19 @@ inline int32 CLuaBaseEntity::getGMLevel(lua_State* L)
 inline int32 CLuaBaseEntity::setGMLevel(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_PC));
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
 	PChar->m_GMlevel = (uint8)lua_tonumber(L,1);
 	charutils::SaveCharGMLevel(PChar);
-	return 1;
+	return 0;
 }
 inline int32 CLuaBaseEntity::PrintToPlayer(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_PC));
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    
 	if (lua_isstring(L,1) && !lua_isnil(L,1))
 	{	
 		zoneutils::GetZone(m_PBaseEntity->getZone())->PushPacket(
@@ -7010,7 +7008,7 @@ inline int32 CLuaBaseEntity::PrintToPlayer(lua_State* L)
 			CHAR_INRANGE_SELF,
 			new CChatMessagePacket((CCharEntity*)m_PBaseEntity,MESSAGE_SYSTEM_1,(char*)lua_tostring(L,1)));
 	}
-	return 1;
+	return 0;
 }
 /*
 Walk through the given points. NPC only.

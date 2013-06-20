@@ -82,8 +82,6 @@ public:
 
 	uint16		getID();
 	uint16		getSubID();
-	uint8		getType();
-	uint8		getSubType();
 	uint16		getFlag();
 	uint8		getAHCat();
     uint32      getReserve();
@@ -94,11 +92,13 @@ public:
 	uint8		getLocationID();
 	uint8		getSlotID();
 	uint8		getWornItem();
-    bool        getSent();
+
+    bool        isSent();
+    bool        isType(ITEM_TYPE);
+    bool        isSubType(ITEM_SUBTYPE);
 
 	void		setID(uint16 );
 	void		setSubID(uint16);
-	void		setType(uint8);
 	void		setSubType(uint8);
 	void		setFlag(uint16);
 	void		setAHCat(uint8);
@@ -123,7 +123,11 @@ public:
 
 	const int8* getSignature();
 	void		setSignature(int8* signature);
-	
+
+protected:
+
+    void        setType(uint8);
+
 private:
 
 	uint16		m_id;

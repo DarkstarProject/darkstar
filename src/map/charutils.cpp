@@ -748,13 +748,13 @@ void LoadInventory(CCharEntity* PChar)
 				{
 					PItem->setSubType(ITEM_LOCKED);
 				}
-				if ((PItem->getType() & ITEM_USABLE) && (PItem->getSubType() & ITEM_CHARGED))
+				if (PItem->isType(ITEM_USABLE) && PItem->isSubType(ITEM_CHARGED))
 				{
 					((CItemUsable*)PItem)->setCurrentCharges(Sql_GetUIntData(SqlHandle,6));
 					((CItemUsable*)PItem)->setLastUseTime(Sql_GetUIntData(SqlHandle,7));
 				}
 
-                if (PItem->getType() & ITEM_ARMOR)
+                if (PItem->isType(ITEM_ARMOR))
                 {
 				    ((CItemArmor*)PItem)->LoadAugment(0, Sql_GetUIntData(SqlHandle,16));
 				    ((CItemArmor*)PItem)->LoadAugment(1, Sql_GetUIntData(SqlHandle,17));
@@ -763,7 +763,7 @@ void LoadInventory(CCharEntity* PChar)
 
                     ((CItemArmor*)PItem)->setTrialNumber(Sql_GetUIntData(SqlHandle,20));
                 }
-                if (PItem->getType() & ITEM_LINKSHELL)
+                if (PItem->isType(ITEM_LINKSHELL))
                 {
                     int8 EncodedString [16];
                     EncodeStringLinkshell(Sql_GetData(SqlHandle,5), EncodedString);
@@ -777,7 +777,7 @@ void LoadInventory(CCharEntity* PChar)
                     EncodeStringSignature(Sql_GetData(SqlHandle,5), EncodedString);
 					PItem->setSignature(EncodedString);
 				}
-                if (PItem->getType() & ITEM_FURNISHING && PItem->getLocationID() == LOC_MOGSAFE)
+                if (PItem->isType(ITEM_FURNISHING) && PItem->getLocationID() == LOC_MOGSAFE)
                 {
                     if (Sql_GetIntData(SqlHandle,10) != 0) // способ узнать, что предмет действительно установлен
                     {
@@ -832,7 +832,7 @@ void LoadInventory(CCharEntity* PChar)
 
 		CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
 
-		if ((PItem != NULL) && (PItem->getType() & ITEM_LINKSHELL))
+		if ((PItem != NULL) && PItem->isType(ITEM_LINKSHELL))
         {
 		    PItem->setSubType(ITEM_LOCKED);
             PChar->equip[SLOT_LINK] = SlotID;
@@ -996,7 +996,7 @@ uint8 AddItem(CCharEntity* PChar, uint8 LocationID, uint16 ItemID, uint32 quanti
 
 uint8 AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem)
 {
-    if (PItem->getType() & ITEM_CURRENCY)
+    if (PItem->isType(ITEM_CURRENCY))
     {
         UpdateItem(PChar, LocationID, 0, PItem->getQuantity());
         delete PItem;
@@ -1016,7 +1016,7 @@ uint8 AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem)
 
     if (SlotID != ERROR_SLOTID)
     {
-        uint8 charges = (PItem->getType() & ITEM_USABLE ? ((CItemUsable*)PItem)->getCurrentCharges() : 0);
+        uint8 charges = (PItem->isType(ITEM_USABLE) ? ((CItemUsable*)PItem)->getCurrentCharges() : 0);
 
         const int8* Query = 
             "INSERT INTO char_inventory("
@@ -1035,7 +1035,7 @@ uint8 AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem)
             "VALUES(%u,%u,%u,%u,%u,'%s',%u,%u,%u,%u,%u,%u)";
 
         int8 signature[21];
-        if (PItem->getType() & ITEM_LINKSHELL)
+        if (PItem->isType(ITEM_LINKSHELL))
         {
             DecodeStringLinkshell((int8*)PItem->getSignature(), signature);
         }
@@ -1043,8 +1043,6 @@ uint8 AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem)
         {
             DecodeStringSignature((int8*)PItem->getSignature(), signature);
         }
-
-        bool IsItemArmor = PItem->getType() & ITEM_ARMOR;
 
         if( Sql_Query(SqlHandle, Query, 
             PChar->id, 
@@ -1054,11 +1052,11 @@ uint8 AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem)
             PItem->getQuantity(), 
             signature, 
             charges,
-            IsItemArmor ? ((CItemArmor*)PItem)->getAugment(0) : 0,
-            IsItemArmor ? ((CItemArmor*)PItem)->getAugment(1) : 0,
-            IsItemArmor ? ((CItemArmor*)PItem)->getAugment(2) : 0,
-            IsItemArmor ? ((CItemArmor*)PItem)->getAugment(3) : 0,
-            IsItemArmor ? ((CItemArmor*)PItem)->getTrialNumber() : 0 ) == SQL_ERROR )
+            PItem->isType(ITEM_ARMOR) ? ((CItemArmor*)PItem)->getAugment(0) : 0,
+            PItem->isType(ITEM_ARMOR) ? ((CItemArmor*)PItem)->getAugment(1) : 0,
+            PItem->isType(ITEM_ARMOR) ? ((CItemArmor*)PItem)->getAugment(2) : 0,
+            PItem->isType(ITEM_ARMOR) ? ((CItemArmor*)PItem)->getAugment(3) : 0,
+            PItem->isType(ITEM_ARMOR) ? ((CItemArmor*)PItem)->getTrialNumber() : 0 ) == SQL_ERROR )
         {
             ShowError(CL_RED"charplugin::AddItem: Cannot insert item to database\n" CL_RESET);
             PChar->getStorage(LocationID)->InsertItem(NULL, SlotID);
@@ -1192,7 +1190,7 @@ uint32 UpdateItem(CCharEntity* PChar, uint8 LocationID, uint8 slotID, int32 quan
 
 	if (newQuantity > PItem->getStackSize()) newQuantity = PItem->getStackSize();
 
-	if (newQuantity > 0 || (PItem->getType() & ITEM_CURRENCY))
+	if (newQuantity > 0 || PItem->isType(ITEM_CURRENCY))
     {
 		const int8* Query =
             "UPDATE char_inventory "
@@ -1282,7 +1280,7 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 {
 	CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[equipSlotID]);
 
-	if((PItem != NULL) && (PItem->getType() & ITEM_ARMOR))
+	if((PItem != NULL) && PItem->isType(ITEM_ARMOR))
 	{
 		switch(((CItemArmor*)PItem)->getRemoveSlotId())
 		{
@@ -1305,13 +1303,13 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 			{
 				CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[i]);
 
-				if ((PItem != NULL) && (PItem->getType() & ITEM_ARMOR))
+				if ((PItem != NULL) && PItem->isType(ITEM_ARMOR))
 				{
 					PChar->m_EquipFlag |= ((CItemArmor*)PItem)->getScriptType();
 				}
 			}
 		}
-        if (PItem->getSubType() & ITEM_CHARGED)
+        if (PItem->isSubType(ITEM_CHARGED))
 		{
             PChar->PRecastContainer->Del(RECAST_ITEM, PItem->getSlotID()); // при снятии предмета с таймером удаляем запись о нем из RecastList
 		}
@@ -1330,7 +1328,7 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 				}
 			}
 			// Removed sub item, if main hand is empty, then possibly eligible for H2H weapon
-			if (!(PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN])->getType() & ITEM_ARMOR))
+			if (!PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN])->isType(ITEM_ARMOR))
 			{
 				CheckUnarmedWeapon(PChar);
 			}
@@ -1379,7 +1377,7 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 		    break;
 			case SLOT_MAIN:
 			{
-				if (PItem->getType() & ITEM_WEAPON)
+				if (PItem->isType(ITEM_WEAPON))
 				{
 					if (((CItemWeapon*)PItem)->getSkillType() == SKILL_H2H)
 					{
@@ -1389,7 +1387,7 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 
 				PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
 
-				if ((PItem != NULL) && (PItem->getType() & ITEM_WEAPON))
+				if ((PItem != NULL) && PItem->isType(ITEM_WEAPON))
 				{
 					UnequipItem(PChar, SLOT_SUB);
 				}
@@ -1400,7 +1398,7 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 				}
 
 				// If main hand is empty, figure out which UnarmedItem to give the player.
-				if (!(PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN])->getType() & ITEM_ARMOR))
+				if (!PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN])->isType(ITEM_ARMOR))
 				{
 					CheckUnarmedWeapon(PChar);
 				}
@@ -1450,7 +1448,7 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 		{
 			case SLOT_MAIN:
 			{
-				if (PItem->getType() & ITEM_WEAPON)
+				if (PItem->isType(ITEM_WEAPON))
 				{
 					switch (((CItemWeapon*)PItem)->getSkillType())
 					{
@@ -1463,7 +1461,7 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 						case SKILL_STF:
 						{
 							CItemArmor* armor = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
-							if ((armor != NULL) && (armor->getType() & ITEM_ARMOR))
+							if ((armor != NULL) && armor->isType(ITEM_ARMOR))
 							{
 								UnequipItem(PChar,SLOT_SUB);
 							}
@@ -1493,9 +1491,9 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 			case SLOT_SUB:
 			{
 				CItemWeapon* weapon = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]);
-				if (weapon == NULL || !(weapon->getType() & ITEM_WEAPON))
+				if (weapon == NULL || !weapon->isType(ITEM_WEAPON))
 				{
-					if (PItem->getType() & ITEM_WEAPON)
+					if (PItem->isType(ITEM_WEAPON))
 					{
 						return false;
 					}
@@ -1506,7 +1504,7 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 					{
 						case SKILL_H2H:
 						{
-							if (!(PItem->getType() & ITEM_WEAPON))
+							if (!PItem->isType(ITEM_WEAPON))
 							{
 								UnequipItem(PChar,SLOT_MAIN);
 							}
@@ -1517,7 +1515,7 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 						case SKILL_KAT:
 						case SKILL_CLB:
 						{
-							if (PItem->getType() & ITEM_WEAPON && !charutils::hasTrait(PChar, TRAIT_DUAL_WIELD))
+							if (PItem->isType(ITEM_WEAPON) && !charutils::hasTrait(PChar, TRAIT_DUAL_WIELD))
 							{
 								PChar->m_EquipSwap = true;
 								return false;
@@ -1528,7 +1526,7 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 						break;
 						default:
 						{
-							if (!(PItem->getType() & ITEM_WEAPON))
+							if (!PItem->isType(ITEM_WEAPON))
 							{
 								UnequipItem(PChar,SLOT_MAIN);
 							}
@@ -1540,10 +1538,10 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 			break;
 			case SLOT_RANGED:
 			{
-				if (PItem->getType() & ITEM_WEAPON)
+				if (PItem->isType(ITEM_WEAPON))
 				{
 					CItemWeapon* weapon = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);
-					if ((weapon != NULL) && (weapon->getType() & ITEM_WEAPON))
+					if ((weapon != NULL) && weapon->isType(ITEM_WEAPON))
 					{
 						if (((CItemWeapon*)PItem)->getSkillType() != weapon->getSkillType() ||
 							((CItemWeapon*)PItem)->getSubSkillType() != weapon->getSubSkillType())
@@ -1558,10 +1556,10 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 			break;
 			case SLOT_AMMO:
 			{
-				if (PItem->getType() & ITEM_WEAPON)
+				if (PItem->isType(ITEM_WEAPON))
 				{
 					CItemWeapon* weapon = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
-					if ((weapon != NULL) && (weapon->getType() & ITEM_WEAPON))
+					if ((weapon != NULL) && weapon->isType(ITEM_WEAPON))
 					{
 						if (((CItemWeapon*)PItem)->getSkillType() != weapon->getSkillType() ||
 							((CItemWeapon*)PItem)->getSubSkillType() != weapon->getSubSkillType())
@@ -1580,7 +1578,7 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 			case SLOT_HEAD:
 			{
 				CItemArmor* armor = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_BODY]);
-				if ((armor != NULL) && (armor->getType() & ITEM_ARMOR))
+				if ((armor != NULL) && armor->isType(ITEM_ARMOR))
 				{
 					uint8 removeSlotID = armor->getRemoveSlotId();
 					if(removeSlotID == SLOT_HEAD) {
@@ -1602,7 +1600,7 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 			case SLOT_HANDS:
 			{
 				CItemArmor* armor = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_BODY]);
-				if ((armor != NULL) && (armor->getType() & ITEM_ARMOR))
+				if ((armor != NULL) && armor->isType(ITEM_ARMOR))
 				{
 					uint8 removeSlotID = armor->getRemoveSlotId();
 					if(removeSlotID == SLOT_HANDS)
@@ -1625,7 +1623,7 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 			case SLOT_FEET:
 			{
 				CItemArmor* armor = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LEGS]);
-				if ((armor != NULL) && (armor->getType() & ITEM_ARMOR))
+				if ((armor != NULL) && armor->isType(ITEM_ARMOR))
 				{
 					uint8 removeSlotID = armor->getRemoveSlotId();
 					if (removeSlotID == SLOT_FEET)
@@ -1667,16 +1665,16 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 	{
 		CItemArmor* PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
 
-		if ((PItem != NULL) && (PItem->getType() & ITEM_ARMOR))
+		if ((PItem != NULL) && PItem->isType(ITEM_ARMOR))
 		{
-			if (!(PItem->getSubType() & ITEM_LOCKED) && EquipArmor(PChar, slotID, equipSlotID))
+			if (!PItem->isSubType(ITEM_LOCKED) && EquipArmor(PChar, slotID, equipSlotID))
 			{
 				if (PItem->getScriptType() & SCRIPT_EQUIP)
 				{
 					luautils::OnItemCheck(PChar, PItem);
 					PChar->m_EquipFlag |= PItem->getScriptType();
 				}
-                if ((PItem->getType() & ITEM_USABLE) && ((CItemUsable*)PItem)->getCurrentCharges() != 0)
+                if (PItem->isType(ITEM_USABLE) && ((CItemUsable*)PItem)->getCurrentCharges() != 0)
 		        {
                     PItem->setAssignTime(CVanaTime::getInstance()->getVanaTime());
                     PChar->PRecastContainer->Add(RECAST_ITEM, slotID, PItem->getReuseTime());
@@ -1701,7 +1699,7 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 						}
 					}
 					// If main hand is empty, check which UnarmedItem to use.
-					if (!(PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN])->getType() & ITEM_ARMOR))
+					if (!PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN])->isType(ITEM_ARMOR))
 					{
 						CheckUnarmedWeapon(PChar);
 					}
@@ -1727,7 +1725,7 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
             // return back to normal if changed jobs
             PChar->m_Weapons[SLOT_MAIN] = itemutils::GetUnarmedItem();
         }*/
-		if (!(PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN])->getType() & ITEM_ARMOR) || PChar->m_Weapons[SLOT_MAIN] == itemutils::GetUnarmedH2HItem())
+		if (!PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN])->isType(ITEM_ARMOR) || PChar->m_Weapons[SLOT_MAIN] == itemutils::GetUnarmedH2HItem())
 		{
 			CheckUnarmedWeapon(PChar);
 		}
@@ -1752,7 +1750,7 @@ void CheckValidEquipment(CCharEntity* PChar)
 	{
 		PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[slotID]);
 
-		if ((PItem != NULL) && (PItem->getType() & ITEM_ARMOR))
+		if ((PItem != NULL) && PItem->isType(ITEM_ARMOR))
 		{
 			if ((PItem->getJobs() & (1 << (PChar->GetMJob() - 1))) &&
                 (PItem->getReqLvl() <= PChar->GetMLevel()) &&
@@ -1764,7 +1762,7 @@ void CheckValidEquipment(CCharEntity* PChar)
         }
 	}
 	// Unarmed H2H weapon check
-	if (!(PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN])->getType() & ITEM_ARMOR) || PChar->m_Weapons[SLOT_MAIN] == itemutils::GetUnarmedH2HItem())
+	if (!PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN])->isType(ITEM_ARMOR) || PChar->m_Weapons[SLOT_MAIN] == itemutils::GetUnarmedH2HItem())
 	{
 		CheckUnarmedWeapon(PChar);
 	}
@@ -1784,7 +1782,7 @@ void RemoveAllEquipment(CCharEntity* PChar)
     {
         PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[slotID]);
 
-        if ((PItem != NULL) && (PItem->getType() & ITEM_ARMOR))
+        if ((PItem != NULL) && PItem->isType(ITEM_ARMOR))
         {
             UnequipItem(PChar, slotID);
         }
@@ -1816,7 +1814,7 @@ void CheckEquipLogic(CCharEntity* PChar, SCRIPTTYPE ScriptType, uint32 param)
 	{
 		CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[slotID]);
 
-		if ((PItem != NULL) && (PItem->getType() & ITEM_ARMOR))
+		if ((PItem != NULL) && PItem->isType(ITEM_ARMOR))
 		{
 			if (((CItemArmor*)PItem)->getScriptType() & ScriptType)
 			{
@@ -1884,7 +1882,7 @@ void BuildingCharWeaponSkills(CCharEntity* PChar)
 
 	//add in ranged ws
 	PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
-	if(PItem != NULL && (PItem->getType() & ITEM_WEAPON) && PItem->getSkillType()!=SKILL_THR)
+	if(PItem != NULL && PItem->isType(ITEM_WEAPON) && PItem->getSkillType()!=SKILL_THR)
 	{
 		skill = PChar->m_Weapons[SLOT_RANGED]->getSkillType();
 		std::list<CWeaponSkill*>&& WeaponSkillList = battleutils::GetWeaponSkills(skill);
@@ -3977,7 +3975,7 @@ void CheckUnarmedWeapon(CCharEntity* PChar)
 
 	// Main or sub job provides H2H skill, and sub slot is empty.
 	if ((battleutils::GetSkillRank(SKILL_H2H,PChar->GetMJob()) > 0 || battleutils::GetSkillRank(SKILL_H2H,PChar->GetSJob()) > 0) &&
-		!(PSubslot->getType() & ITEM_ARMOR))
+		!PSubslot->isType(ITEM_ARMOR))
 	{
 		PChar->m_Weapons[SLOT_MAIN] = itemutils::GetUnarmedH2HItem();
 		PChar->look.main = 21;											// The secret to H2H animations.  setModelId for UnarmedH2H didn't work.

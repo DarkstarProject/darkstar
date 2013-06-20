@@ -106,24 +106,24 @@ CConquestPacket::CConquestPacket(CCharEntity * PChar)
     //};
 	//memcpy(data+(0xA0)-4, &packet, 16);
 
-	WBUFL(data,(0xA0)-4) = 16; // Situation: mamool ja niveau -> (1) 16 (2) 32 (3) 48 (4) 64 (5) 80 (6) 96 (7) 112 (8) 128
-	WBUFL(data,(0xA1)-4) = 17; // Situation: mercenaire trolls niveau -> 1~12 la suite avec un autre 
-	WBUFL(data,(0xA2)-4) = 0; // Situation: mamool ja status du siege -> (0) entrainement > (1) en marche > (2) attaque > (3) retraite | (4) defense (5) preparation
-	WBUFL(data,(0xA3)-4) = 4; // Situation: undead status du siege ? (3) defense (4) entrainement (5) defense
+	WBUFB(data,(0xA0)-4) = 16; // Situation: mamool ja niveau -> (1) 16 (2) 32 (3) 48 (4) 64 (5) 80 (6) 96 (7) 112 (8) 128
+	WBUFB(data,(0xA1)-4) = 17; // Situation: mercenaire trolls niveau -> 1~12 la suite avec un autre 
+	WBUFB(data,(0xA2)-4) = 0; // Situation: mamool ja status du siege -> (0) entrainement > (1) en marche > (2) attaque > (3) retraite | (4) defense (5) preparation
+	WBUFB(data,(0xA3)-4) = 4; // Situation: undead status du siege ? (3) defense (4) entrainement (5) defense
 
-	WBUFL(data,(0xA4)-4) = 0; // mamool ja: (13) preparation (26) attaque (32) entrainement
-	WBUFL(data,(0xA5)-4) = 0; // mamool ja: forces ennemies (1=32)
-	WBUFL(data,(0xA6)-4) = 0; // mamool ja: miroir archaique (1=2)
-	WBUFL(data,(0xA7)-4) = 0;
+	WBUFB(data,(0xA4)-4) = 0; // mamool ja: (13) preparation (26) attaque (32) entrainement
+	WBUFB(data,(0xA5)-4) = 0; // mamool ja: forces ennemies (1=32)
+	WBUFB(data,(0xA6)-4) = 0; // mamool ja: miroir archaique (1=2)
+	WBUFB(data,(0xA7)-4) = 0;
 
-	WBUFL(data,(0xA8)-4) = 0; // trolls: forces ennemies (66=8)
-	WBUFL(data,(0xA9)-4) = 0; // trolls: (70) attaque
-	WBUFL(data,(0xAA)-4) = 0; // trolls: miroir archaique (4=8)
-	WBUFL(data,(0xAB)-4) = 0;
-	WBUFL(data,(0xAC)-4) = 0; // undead: forces ennemies (101=12)
-	WBUFL(data,(0xAD)-4) = 0; // undead: (61) preparation
-	WBUFL(data,(0xAE)-4) = 0; // undead: miroir archaique (4=8)
-	WBUFL(data,(0xAF)-4) = 0;
+	WBUFB(data,(0xA8)-4) = 0; // trolls: forces ennemies (66=8)
+	WBUFB(data,(0xA9)-4) = 0; // trolls: (70) attaque
+	WBUFB(data,(0xAA)-4) = 0; // trolls: miroir archaique (4=8)
+	WBUFB(data,(0xAB)-4) = 0;
+	WBUFB(data,(0xAC)-4) = 0; // undead: forces ennemies (101=12)
+	WBUFB(data,(0xAD)-4) = 0; // undead: (61) preparation
+	WBUFB(data,(0xAE)-4) = 0; // undead: miroir archaique (4=8)
+	WBUFB(data,(0xAF)-4) = 0;
 
 	WBUFL(data,(0xB0)-4) = PChar->RegionPoints[3];
 }

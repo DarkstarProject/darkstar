@@ -56,7 +56,7 @@ CCheckPacket::CCheckPacket(CCharEntity* PChar, CCharEntity* PTarget)
 				WBUFW(data,(size*2+0x00)-4) = PItem->getID();
 				WBUFB(data,(size*2+0x02)-4) = i;
 
-				if (PItem->getSubType() & ITEM_CHARGED)
+				if (PItem->isSubType(ITEM_CHARGED))
 				{
                     uint32 currentTime = CVanaTime::getInstance()->getVanaTime();
 					uint32 nextUseTime = ((CItemUsable*)PItem)->getLastUseTime() + ((CItemUsable*)PItem)->getReuseDelay();
@@ -107,7 +107,7 @@ CCheckPacket::CCheckPacket(CCharEntity* PChar, CCharEntity* PTarget)
     {
         CItemLinkshell* PLinkshell = (CItemLinkshell*)PTarget->getStorage(LOC_INVENTORY)->GetItem(PTarget->equip[SLOT_LINK]);
 
-        if ((PLinkshell != NULL) && (PLinkshell->getType() & ITEM_LINKSHELL))
+        if ((PLinkshell != NULL) && PLinkshell->isType(ITEM_LINKSHELL))
 	    {
           //WBUFW(data,(0x0C)-4) = PLinkshell->GetLSID(); 
             WBUFW(data,(0x0E)-4) = PLinkshell->getID();

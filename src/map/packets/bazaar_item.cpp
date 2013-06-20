@@ -45,7 +45,7 @@ CBazaarItemPacket::CBazaarItemPacket(CItem* PItem, uint8 SlotID, uint16 Tax)
 	    WBUFW(data,(0x0C)-4) = Tax;
 	    WBUFW(data,(0x0E)-4) = PItem->getID();
 
-	    if (PItem->getSubType() & ITEM_CHARGED)
+        if (PItem->isSubType(ITEM_CHARGED) && PItem->isType(ITEM_USABLE))
 	    {
             uint32 currentTime = CVanaTime::getInstance()->getVanaTime();
 		    uint32 nextUseTime = ((CItemUsable*)PItem)->getLastUseTime() + ((CItemUsable*)PItem)->getReuseDelay();

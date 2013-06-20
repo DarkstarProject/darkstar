@@ -1114,7 +1114,7 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
 		m_RegenCheckTime = tick;
 		m_POwner->addHP(m_POwner->getMod(MOD_REGEN));
 
-		if (m_POwner->getMod(MOD_AVATAR_PERPETUATION) > 0 && (m_POwner->objtype & TYPE_PC))
+		if (m_POwner->getMod(MOD_AVATAR_PERPETUATION) > 0 && (m_POwner->objtype == TYPE_PC))
 		{
 			int8 perpetuation = m_POwner->getMod(MOD_AVATAR_PERPETUATION);
 
@@ -1122,15 +1122,16 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
 				perpetuation = 0;
 			else
 			{
-				if (m_POwner->PPet != NULL && (m_POwner->objtype & TYPE_PC))
+				if (m_POwner->PPet != NULL && (m_POwner->objtype == TYPE_PC))
 				{
-					CItemArmor* hands = (CItemArmor*)((CCharEntity*)(CItemArmor*)m_POwner)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)m_POwner)->equip[SLOT_HANDS]);
+                    CCharEntity* PChar = (CCharEntity*)m_POwner;
+					CItem* hands = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_HANDS]);
 
 					if (hands && hands->getID() == 14062){
 						perpetuation /= 2;
 					}
 
-					perpetuation -= charutils::AvatarPerpetuationReduction((CCharEntity*)m_POwner);
+					perpetuation -= charutils::AvatarPerpetuationReduction(PChar);
 
 					if( perpetuation < 1 )
 						perpetuation = 1;
@@ -1146,22 +1147,19 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
 					petutils::DespawnPet(m_POwner);
 				}
 			}
-
 		}
 		else
 		{
 			m_POwner->addMP(m_POwner->getMod(MOD_REFRESH));
 		}
 
-		m_POwner->addTP(m_POwner->getMod(MOD_REGAIN)/10.0);
+		m_POwner->addTP(m_POwner->getMod(MOD_REGAIN)/10);
 
-		if( m_POwner->status != STATUS_DISAPPEAR && (m_POwner->objtype & TYPE_PC))
+		if( m_POwner->status != STATUS_DISAPPEAR && (m_POwner->objtype == TYPE_PC))
 		{
 			charutils::UpdateHealth((CCharEntity*)m_POwner);
 		}
     }
-
-
 }
 
 bool CStatusEffectContainer::HasPreventActionEffect()
