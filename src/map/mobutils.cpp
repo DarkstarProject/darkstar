@@ -338,7 +338,7 @@ void CalculateStats(CMobEntity * PMob)
 	{
 		if(PMob->GetMJob() == JOB_BST)
 		{
-			PMob->m_SpecialCoolDown = 60000;
+			PMob->m_SpecialCoolDown = 120000;
 			PMob->m_SpecialSkill = 761;
 		}
 		else if(PMob->GetMJob() == JOB_DRG && !isNM)
