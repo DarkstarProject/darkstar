@@ -21,6 +21,8 @@ function onTrade(player,npc,trade)
 	if(player:getQuestStatus(SANDORIA,A_SENTRY_S_PERIL) == QUEST_ACCEPTED) then
 		if(trade:hasItemQty(600,1) and trade:getItemCount() == 1) then
 			player:startEvent(0x0064);
+		else
+			player:startEvent(118);
 		end
 	end
 	
@@ -31,15 +33,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-
-	local thePickpocket = player:getQuestStatus(SANDORIA, THE_PICKPOCKET);
-
-	if(thePickpocket > 0) then
-		player:showText(npc, 7262);
-	else
-		player:startEvent(0x0065);
-	end
+	player:startEvent(0x0065);
 end;
 
 -----------------------------------
