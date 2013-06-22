@@ -33,7 +33,14 @@ The PathFind class provides an interface for getting an entity to a destination.
 class CBaseEntity;
 
 // no path can be longer than this
-#define MAX_PATH_POINTS 40
+#define MAX_PATH_POINTS 50
+
+enum PATHFLAG {
+  PATHFLAG_NONE = 0,
+  PATHFLAG_RUN = 1, // run twice the speed
+  PATHFLAG_WALLHACK = 2, // run through walls if path is too long
+  PATHFLAG_REVERSE = 4// reverse the path
+};
 
 class CPathFind
 {
@@ -44,20 +51,11 @@ class CPathFind
     // move to a random point around given point
     bool RoamAround(position_t point, uint8 roamFlags);
 
-    // run twice as fast to point
-    // used for chasing
-    bool RunTo(position_t point);
+    // find and walk to the given point
+    bool PathTo(position_t point, uint8 pathFlags);
 
-    // run through given points
-    // this will not use navmesh
-    bool RunThrough(position_t* points, uint8 totalPoints, bool reverse = false);
-
-    // walk normally to a point
-    bool WalkTo(position_t point);
-
-    // walk through given points
-    // this will not use navmesh
-    bool WalkThrough(position_t* points, uint8 totalPoints, bool reverse = false);
+    // walk through the given points. No new points made.
+    bool PathThrough(position_t* points, uint8 totalPoints, uint8 pathFlags);
 
     // instantly moves an entity to the point
     // this will make sure you're not in a wall
@@ -71,6 +69,9 @@ class CPathFind
 
     // returns true if entity is on a way point
     bool OnPoint();
+
+    // returns last point in path target was that
+    position_t* GetLastPoint();
 
     // stops pathfinding after moving the given distance
     // this can be used to prevent mobs from walking
@@ -112,11 +113,13 @@ class CPathFind
 
     CBaseEntity* m_PTarget;
     position_t m_points[MAX_PATH_POINTS];
+    position_t* m_PLastPoint;
 
+    uint8 m_pathFlags;
     bool m_onPoint;
     int16 m_currentPoint;
     int16 m_pathLength;
-    bool m_run;
+
     float m_distanceMoved;
     float m_maxDistance;
 };

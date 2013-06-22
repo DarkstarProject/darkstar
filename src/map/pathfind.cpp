@@ -29,12 +29,15 @@
 CPathFind::CPathFind(CBaseEntity* PTarget)
 {
   m_PTarget = PTarget;
+  m_PLastPoint = NULL;
+  m_pathFlags = 0;
   Clear();
 }
 
 CPathFind::~CPathFind()
 {
   m_PTarget = NULL;
+  m_PLastPoint = NULL;
   Clear();
 }
 
@@ -62,8 +65,15 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
       maxRadius = 20.0f;
     }
 
-    return FindRandomPath(&PMob->m_SpawnPoint, maxRadius);
-
+    if(FindRandomPath(&PMob->m_SpawnPoint, maxRadius))
+    {
+      return true;
+    }
+    else
+    {
+      Clear();
+      return false;
+    }
   }
   else
   {
@@ -80,17 +90,32 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
   return true;
 }
 
-bool CPathFind::RunTo(position_t point)
+bool CPathFind::PathTo(position_t point, uint8 pathFlags)
 {
+
   Clear();
 
-  if(m_PTarget->speed == 0) return false;
-
-  m_run = true;
+  m_pathFlags = pathFlags;
 
   if(isNavMeshEnabled())
   {
-    return FindClosestPath(&m_PTarget->loc.p, &point);
+    bool result = false;
+
+    if(m_pathFlags & PATHFLAG_WALLHACK)
+    {
+      result = FindClosestPath(&m_PTarget->loc.p, &point);
+    }
+    else
+    {
+      result = FindPath(&m_PTarget->loc.p, &point);
+    }
+
+    if(!result)
+    {
+      Clear();
+    }
+
+    return result;
   }
   else
   {
@@ -104,49 +129,14 @@ bool CPathFind::RunTo(position_t point)
   return true;
 }
 
-bool CPathFind::RunThrough(position_t* points, uint8 totalPoints, bool reverse)
+bool CPathFind::PathThrough(position_t* points, uint8 totalPoints, uint8 pathFlags)
 {
-  
+
   Clear();
 
-  if(m_PTarget->speed == 0) return false;
+  m_pathFlags = pathFlags;
 
-  m_run = true;
-
-  AddPoints(points, totalPoints, reverse);
-
-  return true;
-}
-
-bool CPathFind::WalkTo(position_t point)
-{
-  Clear();
-
-  if(m_PTarget->speed == 0) return false;
-
-  if(isNavMeshEnabled())
-  {
-    return FindClosestPath(&m_PTarget->loc.p, &point);
-  }
-  else
-  {
-    m_pathLength = 1;
-
-    m_points[0].x = point.x;
-    m_points[0].y = point.y;
-    m_points[0].z = point.z;
-  }
-
-  return false;
-}
-
-bool CPathFind::WalkThrough(position_t* points, uint8 totalPoints, bool reverse)
-{
-  Clear();
-
-  if(m_PTarget->speed == 0) return false;
-
-  AddPoints(points, totalPoints, reverse);
+  AddPoints(points, totalPoints, m_pathFlags & PATHFLAG_REVERSE);
 
   return true;
 }
@@ -194,7 +184,7 @@ void CPathFind::FollowPath()
   // move mob to next point
   position_t* targetPoint = &m_points[m_currentPoint];
 
-  StepTo(targetPoint, m_run);
+  StepTo(targetPoint, m_pathFlags & PATHFLAG_RUN);
 
   if(m_maxDistance && m_distanceMoved >= m_maxDistance)
   {
@@ -206,6 +196,8 @@ void CPathFind::FollowPath()
   else if(AtPoint(targetPoint))
   {
     m_currentPoint++;
+
+    m_PLastPoint = targetPoint;
 
     if(m_currentPoint >= m_pathLength)
     {
@@ -222,9 +214,14 @@ bool CPathFind::OnPoint()
   return m_onPoint;
 }
 
+position_t* CPathFind::GetLastPoint()
+{
+  return m_PLastPoint;
+}
+
 void CPathFind::StepTo(position_t* pos, bool run)
 {
-  
+
   float speed = GetRealSpeed();
 
   if(speed == 0)
@@ -285,7 +282,6 @@ bool CPathFind::FindPath(position_t* start, position_t* end)
   if(m_pathLength <= 0)
   {
     ShowError("CPathFind::FindPath Entity (%d) could not find path", m_PTarget->id);
-    Clear();
     return false;
   }
 
@@ -300,7 +296,6 @@ bool CPathFind::FindRandomPath(position_t* start, float maxRadius)
   if(m_pathLength <= 0)
   {
     ShowError("CPathFind::FindRandomPath Entity (%d) could not find path", m_PTarget->id);
-    Clear();
     return false;
   }
 
@@ -355,9 +350,9 @@ bool CPathFind::AtPoint(position_t* pos)
 
 void CPathFind::Clear()
 {
+  m_pathFlags = 0;
   m_pathLength = 0;
   m_currentPoint = 0;
-  m_run = false;
   m_maxDistance = 0;
   m_distanceMoved = 0;
   m_onPoint = true;
@@ -365,7 +360,7 @@ void CPathFind::Clear()
 
 void CPathFind::AddPoints(position_t* points, uint8 totalPoints, bool reverse)
 {
-  
+
   m_pathLength = totalPoints;
 
   if(totalPoints > MAX_PATH_POINTS)
@@ -386,7 +381,7 @@ void CPathFind::AddPoints(position_t* points, uint8 totalPoints, bool reverse)
     {
       index = i;
     }
-    
+
     m_points[index].x = points[i].x;
     m_points[index].y = points[i].y;
     m_points[index].z = points[i].z;

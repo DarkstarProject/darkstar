@@ -141,7 +141,7 @@ void CAIMobDummy::ActionRoaming()
 		ActionEngage();
 		return;
 	}
-	
+
 	// wait my time
 	if(m_Tick - m_LastWaitTime < m_WaitTime){
 		m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
@@ -160,17 +160,17 @@ void CAIMobDummy::ActionRoaming()
 		// lets buff up or move around
 
 		// recover health
-		m_PMob->Rest(0.2f);
+		m_PMob->Rest(0.1f);
 
 		if(MOB_TRAIN && m_PPathFind->isNavMeshEnabled() && distance(m_PMob->loc.p, m_PMob->m_SpawnPoint) > 20
-		 && m_PPathFind->WalkTo(m_PMob->m_SpawnPoint)
-		 || 
-		 (m_PMob->m_Type & MOBTYPE_NOTORIOUS) && distance(m_PMob->loc.p, m_PMob->m_SpawnPoint) > 2 
-		 && m_PPathFind->WalkTo(m_PMob->m_SpawnPoint))
+		 && m_PPathFind->PathTo(m_PMob->m_SpawnPoint, PATHFLAG_WALLHACK)
+		 ||
+		 (m_PMob->m_Type & MOBTYPE_NOTORIOUS) && distance(m_PMob->loc.p, m_PMob->m_SpawnPoint) > 2
+		 && m_PPathFind->PathTo(m_PMob->m_SpawnPoint, PATHFLAG_WALLHACK))
 		{
 			// walk back to spawn if too far away
-			
-			// limit total path to just 10 or 
+
+			// limit total path to just 10 or
 			// else we'll move straight back to spawn
 			m_PPathFind->LimitDistance(10.0f);
 
@@ -549,7 +549,7 @@ void CAIMobDummy::ActionSpawn()
         m_PPathFind->Clear();
 
 		uint8 level = m_PMob->m_minLevel;
-		
+
 		// Generate a random level between min and max level
 		if (m_PMob->m_maxLevel != m_PMob->m_minLevel)
 		{
@@ -587,7 +587,7 @@ void CAIMobDummy::ActionSpawn()
 		}
 
         luautils::OnMobSpawn( m_PMob );
-        
+
 		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_SPAWN));
 	}
 }
@@ -1297,7 +1297,7 @@ void CAIMobDummy::ActionAttack()
 		if(!m_PPathFind->IsFollowingPath() || ++m_ChaseThrottle == 4)
 		{
 			m_ChaseThrottle = 0;
-			m_PPathFind->RunTo(m_PBattleTarget->loc.p);
+			m_PPathFind->PathTo(m_PBattleTarget->loc.p, PATHFLAG_WALLHACK | PATHFLAG_RUN);
 		}
 
 		if(m_PPathFind->IsFollowingPath())
@@ -1815,7 +1815,7 @@ void CAIMobDummy::FollowPath()
 	        position_t targetPoint = nearPosition(m_PMob->loc.p, 2.0f, M_PI);
 
 	        PPet->PBattleAI->MoveTo(&targetPoint);
-        
+
 			PPet->loc.zone->PushPacket(PPet,CHAR_INRANGE, new CEntityUpdatePacket(PPet,ENTITY_UPDATE));
 		}
 

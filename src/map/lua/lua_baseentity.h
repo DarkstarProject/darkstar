@@ -435,15 +435,15 @@ public:
 	int32 setGMLevel(lua_State* L);
 	int32 PrintToPlayer(lua_State* L);   // for sending debugging messages/command confirmations to the player's client
     // == Pathfind Methods ==
-    int32 walkThrough(lua_State* L); // walk at normal speed through the given points
-    int32 runThrough(lua_State* L);	// run through the given points
+    int32 pathThrough(lua_State* L); // walk at normal speed through the given points
     // int32 WarpTo(lua_State* L); // warp to the given point
     int32 knockback(lua_State* L); // knockback target with given power
     // int32 RoamAround(lua_State* L); // pick a random point to walk to
     // int32 LimitDistance(lua_State* L); // limits the current path distance to given max distance
 
+    int32 getLastPoint(lua_State* L); // returns last pathfind point at
     int32 atPoint(lua_State* L); // is at given point
-    int32 lookAt(lua_State* L); // look at given entity
+    int32 lookAt(lua_State* L); // look at given position
     int32 isFollowingPath(lua_State* L); // checks if the entity is following a path
     int32 clearPath(lua_State* L); // removes current pathfind and stops moving
     int32 wait(lua_State* L); // make the npc wait a number of ms and then back into roam

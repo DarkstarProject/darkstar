@@ -8,6 +8,7 @@ package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
 require("scripts/zones/Kazham/TextIDs");
 require("scripts/globals/pathfind");
 
+-- disabled for now
 path = {
 	33, -11, -30,
 	34.7, -11, -64,
@@ -20,13 +21,13 @@ path = {
 };
 
 function onSpawn(npc)
-	npc:setPos(pathfind.first(path));
-	onPath(npc);
+	-- npc:setPos(pathfind.first(path));
+	-- onPath(npc);
 end;
 
 function onPath(npc)
 	
-	pathfind.patrol(npc, path);
+	-- pathfind.patrol(npc, path);
 end;
 
 -----------------------------------
