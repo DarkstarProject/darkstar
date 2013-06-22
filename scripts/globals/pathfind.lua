@@ -104,7 +104,6 @@ function pathfind.patrol(npc, points)
 		while(i <= length) do
 
 			if(npc:atPoint(pathfind.get(points, i))) then
-				printf("Starting from point %d", i);
 				npc:pathThrough(pathfind.fromStart(points, i));
 				break;
 			end

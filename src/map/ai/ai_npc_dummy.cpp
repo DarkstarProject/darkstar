@@ -65,7 +65,7 @@ void CAINpcDummy::ActionRoaming()
 
   // wait my time
   if(m_Tick - m_LastWaitTime < m_WaitTime){
-    m_PNpc->loc.zone->PushPacket(m_PNpc,CHAR_INRANGE, new CEntityUpdatePacket(m_PNpc,ENTITY_UPDATE));
+    // m_PNpc->loc.zone->PushPacket(m_PNpc,CHAR_INRANGE, new CEntityUpdatePacket(m_PNpc,ENTITY_UPDATE));
     return;
   }
 

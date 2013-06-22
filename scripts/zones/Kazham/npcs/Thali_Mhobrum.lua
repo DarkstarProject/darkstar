@@ -7,6 +7,28 @@
 package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
 require("scripts/zones/Kazham/TextIDs");
 
+path = {
+55.816410, -11.000000, -43.992680,
+54.761787, -11.000000, -44.046181,
+51.805824, -11.000000, -44.200321,
+52.922001, -11.000000, -44.186420,
+51.890709, -11.000000, -44.224312,
+47.689358, -11.000000, -44.374969,
+52.826096, -11.000000, -44.191029,
+47.709465, -11.000000, -44.374393,
+52.782181, -11.000000, -44.192482,
+47.469643, -11.000000, -44.383091
+};
+
+function onSpawn(npc)
+	npc:setPos(pathfind.first(path));
+	onPath(npc);
+end;
+
+function onPath(npc)
+	pathfind.patrol(npc, path);
+end;
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -20,6 +42,7 @@ end;
 
 function onTrigger(player,npc)
 	player:startEvent(0x00BE);
+	npc:wait(-1);
 end;
 -----------------------------------
 -- onEventUpdate
@@ -37,6 +60,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+GetNPCByID(17801237):wait(0);
 end;
 
 

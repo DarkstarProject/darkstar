@@ -31,7 +31,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0065);
+
+
+	local thePickpocket = player:getQuestStatus(SANDORIA, THE_PICKPOCKET);
+
+	if(thePickpocket > 0) then
+		player:showText(npc, 7262);
+	else
+		player:startEvent(0x0065);
+	end
 end;
 
 -----------------------------------

@@ -14,6 +14,32 @@ require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
+require("scripts/globals/pathfind");
+
+path = {
+-121.512833, -2.000000, 14.492509,
+-122.600044, -2.000000, 14.535807,
+-123.697128, -2.000000, 14.615446,
+-124.696846, -2.000000, 14.707844,
+-123.606018, -2.000000, 14.601295,
+-124.720863, -2.000000, 14.709210,
+-123.677681, -2.000000, 14.608237,
+-124.752579, -2.000000, 14.712106,
+-123.669525, -2.000000, 14.607473,
+-124.788277, -2.000000, 14.715488,
+-123.792847, -2.000000, 14.619405,
+-124.871826, -2.000000, 14.723736
+};
+
+function onSpawn(npc)
+	npc:setPos(pathfind.first(path));
+	onPath(npc);
+end;
+
+function onPath(npc)
+	pathfind.patrol(npc, path);
+end;
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -30,6 +56,7 @@ function onTrade(player,npc,trade)
 	elseif(player:getQuestStatus(SANDORIA,A_SENTRY_S_PERIL) == QUEST_ACCEPTED) then
 		if(trade:hasItemQty(601,1) and trade:getItemCount() == 1) then
 			player:startEvent(0x0201);
+			npc:wait(-1);
 		end
 	end
 	
@@ -42,7 +69,9 @@ end;
 function onTrigger(player,npc)
 
 	aSentrysPeril = player:getQuestStatus(SANDORIA,A_SENTRY_S_PERIL);
-	
+
+	npc:wait(-1);
+
 	if(aSentrysPeril == QUEST_AVAILABLE) then
 		player:startEvent(0x01fe);
 	elseif(aSentrysPeril == QUEST_ACCEPTED) then
@@ -53,6 +82,8 @@ function onTrigger(player,npc)
 		end	
 	elseif(aSentrysPeril == QUEST_COMPLETED) then
 		player:startEvent(0x0209);
+	else
+		npc:wait(0);
 	end
 	
 end; 
@@ -102,4 +133,5 @@ function onEventFinish(player,csid,option)
 		end
 	end
 	
+	GetNPCByID(17719328):wait(0);
 end;

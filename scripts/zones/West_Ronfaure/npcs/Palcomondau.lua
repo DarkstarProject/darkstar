@@ -318,7 +318,7 @@ function onPath(npc)
 		gac:showText(npc, PALCOMONDAU_REPORT);
 
 		-- small delay after path finish
-		npc:wait(5000);
+		npc:wait(8000);
 	end
 
 	pathfind.patrol(npc, path);

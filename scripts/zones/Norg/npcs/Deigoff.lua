@@ -72,7 +72,7 @@ path = {
 
 function onSpawn(npc)
 	npc:setPos(pathfind.first(path));
-	onPath(npc);
+	-- onPath(npc);
 end;
 
 function onPath(npc)

@@ -265,7 +265,7 @@ void CPathFind::StepTo(position_t* pos, bool run)
 
   }
 
-  m_PTarget->loc.p.moving += ((0x36*((float)m_PTarget->speed/0x28)) - (0x14*(mode - 1)));
+  m_PTarget->loc.p.moving += ((0x36*((float)m_PTarget->speed/0x28)) - (0x14*((float)mode * 0.5)));
 
   if(m_PTarget->loc.p.moving > 0x2fff)
   {
@@ -356,6 +356,7 @@ void CPathFind::Clear()
   m_maxDistance = 0;
   m_distanceMoved = 0;
   m_onPoint = true;
+  m_PTarget->loc.p.moving = 0;
 }
 
 void CPathFind::AddPoints(position_t* points, uint8 totalPoints, bool reverse)
