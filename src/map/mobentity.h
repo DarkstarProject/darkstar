@@ -47,6 +47,11 @@ enum SPAWNTYPE
 	SPAWNTYPE_SCRIPTED		= 0x80
 };
 
+enum SPECIALFLAG
+{
+  SPECIALFLAG_NONE = 0x0,
+  SPECIALFLAG_HIDDEN = 0x1 // only use special when hidden
+};
 
 enum ROAMFLAG
 {
@@ -57,7 +62,9 @@ enum ROAMFLAG
   ROAMFLAG_WANDER = 0x08, // roam to multiple points in a row
   ROAMFLAG_SCOUT = 0x10, // move around more often
   ROAMFLAG_GUARD = 0x20, // move less often
-  ROAMFLAG_WORM = 0x40 // pop up and down when moving
+  ROAMFLAG_WORM = 0x40, // pop up and down when moving
+  ROAMFLAG_AMBUSH = 0x80, // stays hidden until someone comes close (antlion)
+  ROAMFLAG_EVENT = 0x100 // calls lua method for roaming logic
 };
 
 enum MOBTYPE
@@ -71,18 +78,7 @@ enum MOBTYPE
 	MOBTYPE_EVENT			= 0x20
 };
 
-enum ROAMTYPE
-{
-  ROAMTYPE_NONE = 0x0,
-  ROAMTYPE_SMALL = 0x01, // move around less than 10
-  ROAMTYPE_MEDIUM = 0x02, // move around 10-20
-  ROAMTYPE_LARGE = 0x04, // move around 20-30
-  ROAMTYPE_WANDER = 0x08, // roam multiple times in a row
-  ROAMTYPE_SCENT = 0x10, // use scent to influence roaming
-  ROAMTYPE_SCOUT = 0x20 // move around often
-};
-
-enum BEHAVIOUR
+enum BEHAVIOUR : uint16
 {
 	BEHAVIOUR_NONE				= 0x00,
 	BEHAVIOUR_AGGRO_SIGHT		= 0x01,
@@ -93,7 +89,8 @@ enum BEHAVIOUR
 	BEHAVIOUR_AGGRO_MAGIC		= 0x20,
 	BEHAVIOUR_AGGRO_WEAPONSKILL	= 0x40,
   BEHAVIOUR_AGGRO_JOBABILITY  = 0x80,
-  BEHAVIOUR_SCENT  = 0x100
+  BEHAVIOUR_SCENT  = 0x100,
+  BEHAVIOUR_AGGRO_AMBUSH  = 0x200
 };
 
 
@@ -128,6 +125,7 @@ public:
     uint8       linkRadius;                         // mobs have different link radiuses
 
     uint8 m_roamFlags; // defines its roaming behaviour
+    uint8 m_specialFlags; // flags for special skill
 
     // stat ranks
     uint8        strRank;

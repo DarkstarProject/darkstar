@@ -365,6 +365,14 @@ void CalculateStats(CMobEntity * PMob)
 		}
 	}
 
+	if(PMob->m_Family == 357)
+	{
+		PMob->m_SpecialSkill = 22;
+		PMob->m_SpecialCoolDown = 1000;
+		PMob->m_specialFlags |= SPECIALFLAG_HIDDEN;
+		PMob->m_roamFlags |= ROAMFLAG_AMBUSH;
+	}
+
 	// setup standback info
 	// mobs that stand back: blm, whm, rng, cor
 
@@ -383,7 +391,7 @@ void CalculateStats(CMobEntity * PMob)
 		// magic pot has high defense bonus
 		PMob->setModifier(MOD_MDEF, 50);
 	}
-	else if(PMob->m_Family == 4)
+	else if(PMob->m_Family == 4 || PMob->m_Family == 74)
 	{
 		// ahriman has magic defense bonus
 		PMob->setModifier(MOD_MDEF, 25);

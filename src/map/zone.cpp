@@ -919,7 +919,17 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 							continue;
 						}
 					}
-					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_HEARING &&
+          if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_AMBUSH &&
+                       !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
+          {
+            if(CurrentDistance < 3)
+            {
+              PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
+              continue;       
+            }
+          }
+            
+          if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_HEARING &&
                        !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
 					{
 						if (CurrentDistance < 8)

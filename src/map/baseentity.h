@@ -133,6 +133,7 @@ public:
 	float			GetYPos();			// позиция по координате Y
 	float			GetZPos();			// позиция по координате Z
 	void			HideName(bool hide); // hide / show name
+	bool			IsNameHidden();		// checks if name is hidden
 
     CAIGeneral*     PBattleAI;          // интеллект любой сущности
 

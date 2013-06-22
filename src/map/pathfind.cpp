@@ -368,7 +368,6 @@ void CPathFind::Clear()
   m_distanceMoved = 0;
 
   m_onPoint = true;
-  m_PTarget->loc.p.moving = 0;
 }
 
 void CPathFind::AddPoints(position_t* points, uint8 totalPoints, bool reverse)

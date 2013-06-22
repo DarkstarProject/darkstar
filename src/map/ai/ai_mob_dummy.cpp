@@ -191,11 +191,18 @@ void CAIMobDummy::ActionRoaming()
 			CastSpell(m_PMob->SpellContainer->GetBuffSpell());
 			m_LastActionTime = m_Tick - rand()%(m_PMob->m_RoamCoolDown) + 5000;
 		}
-		else if(m_PMob->m_Type & MOBTYPE_EVENT)
+		else if(m_PMob->m_roamFlags & ROAMFLAG_EVENT)
 		{
 			// allow custom event action
 			luautils::OnMobRoamAction(m_PMob);
 			m_LastActionTime = m_Tick;
+		}
+		else if(m_PMob->m_roamFlags & ROAMFLAG_AMBUSH)
+		{
+			// stay underground
+			m_PMob->HideName(true);
+			m_PMob->animationsub = 0;
+			m_PMob->m_unknown = 2181;
 		}
 		else if(m_PMob->PMaster == NULL && (m_PMob->speed > 0 || m_PMob->m_roamFlags & ROAMFLAG_WORM))
 		{
@@ -271,7 +278,18 @@ void CAIMobDummy::ActionEngage()
 			// TODO: should go into standback action
 			// look at target instead
 			m_PPathFind->LookAt(m_PBattleTarget->loc.p);
-		} else {
+		} 
+		else if((m_PMob->m_roamFlags & ROAMFLAG_AMBUSH) && m_PMob->IsNameHidden())
+		{
+			// jump out at you
+			TrySpecialSkill();
+
+			m_PMob->animationsub = 1;
+			m_PMob->HideName(false);
+			m_PMob->m_unknown = 0;
+		}
+		else
+		{
 			ActionAttack();
 		}
 
@@ -326,6 +344,12 @@ void CAIMobDummy::ActionDisengage()
 	//if (m_PMob->animationsub == 2) m_PMob->animationsub = 3;
 
     m_firstSpell = true;
+
+	if(m_PMob->m_roamFlags & ROAMFLAG_AMBUSH)
+	{
+		m_PMob->HideName(true);
+		m_PMob->animationsub = 1;
+	}
 
 	luautils::OnMobDisengage(m_PMob);
 
@@ -556,6 +580,13 @@ void CAIMobDummy::ActionSpawn()
         m_PMob->m_DropItemTime = 1000;
 		m_PMob->status = STATUS_UPDATE;
 		m_PMob->animation = ANIMATION_NONE;
+		m_PMob->HideName(false);
+
+		// event mob types will always have custom roaming
+		if(m_PMob->m_Type & MOBTYPE_EVENT)
+		{
+			m_PMob->m_roamFlags = ROAMFLAG_EVENT;
+		}
 
         m_PMob->PEnmityContainer->Clear();
         m_PPathFind->Clear();
@@ -596,6 +627,13 @@ void CAIMobDummy::ActionSpawn()
 		    m_PMob->SetDespawnTimer(0);
 		} else {
 			m_PMob->loc.p = m_PMob->m_SpawnPoint;
+		}
+
+		if(m_PMob->m_roamFlags & ROAMFLAG_AMBUSH)
+		{
+			m_PMob->HideName(true);
+			m_PMob->animationsub = 0;
+			m_PMob->m_unknown = 2181;
 		}
 
         luautils::OnMobSpawn( m_PMob );
@@ -1780,6 +1818,10 @@ bool CAIMobDummy::TrySpecialSkill()
 {
 	if(m_PSpecialSkill == NULL) return false;
 
+	if((m_PMob->m_specialFlags & SPECIALFLAG_HIDDEN) && !m_PMob->IsNameHidden())
+	{
+		return false;
+	}
 
 	if(m_PSpecialSkill->getValidTargets() & TARGET_SELF)
 	{

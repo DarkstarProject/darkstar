@@ -42,6 +42,7 @@ CMobEntity::CMobEntity()
 
     // default to normal roaming
     m_roamFlags = ROAMFLAG_NONE;
+    m_specialFlags = SPECIALFLAG_NONE;
 
     m_AllowRespawn = 0;
 	m_CallForHelp  = 0;

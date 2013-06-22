@@ -83,6 +83,11 @@ void CBaseEntity::HideName(bool hide)
 	}
 	else
 	{
-		namevis = 0;
+		namevis = 1;
 	}
+}
+
+bool CBaseEntity::IsNameHidden()
+{
+	return namevis == 0x08;
 }
