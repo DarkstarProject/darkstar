@@ -29,6 +29,7 @@
 CBaseEntity::CBaseEntity() 
 {
 	m_TargID = 0;
+	namevis = 1;
 
     PBattleAI = NULL;
 
@@ -71,4 +72,17 @@ float CBaseEntity::GetYPos()
 float CBaseEntity::GetZPos()
 {
 	return loc.p.z;
+}
+
+void CBaseEntity::HideName(bool hide)
+{
+	if(hide)
+	{
+		// I totally guessed this number
+		namevis = 0x08;
+	}
+	else
+	{
+		namevis = 0;
+	}
 }

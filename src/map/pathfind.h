@@ -49,17 +49,17 @@ class CPathFind
     ~CPathFind();
 
     // move to a random point around given point
-    bool RoamAround(position_t point, uint8 roamFlags);
+    bool RoamAround(position_t point, uint8 roamFlags = 0);
 
     // find and walk to the given point
-    bool PathTo(position_t point, uint8 pathFlags);
+    bool PathTo(position_t point, uint8 pathFlags = 0);
 
     // walk through the given points. No new points made.
-    bool PathThrough(position_t* points, uint8 totalPoints, uint8 pathFlags);
+    bool PathThrough(position_t* points, uint8 totalPoints, uint8 pathFlags = 0);
 
     // instantly moves an entity to the point
     // this will make sure you're not in a wall
-    bool WarpTo(position_t point);
+    bool WarpTo(position_t point, float maxDistance = 2.0f);
 
     // this will push the entity backwards by the given power
     bool Knockback(position_t from, float power);
@@ -116,6 +116,7 @@ class CPathFind
     position_t* m_PLastPoint;
 
     uint8 m_pathFlags;
+    uint8 m_roamFlags;
     bool m_onPoint;
     int16 m_currentPoint;
     int16 m_pathLength;

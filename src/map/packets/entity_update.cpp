@@ -92,6 +92,8 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 			WBUFB(data,(0x20)-4) = PEntity->status;
 			WBUFB(data,(0x2A)-4) = PEntity->animationsub;
 
+			WBUFB(data,(0x2B)-4) = PEntity->namevis;
+
 			switch(PEntity->objtype)
 			{
 				case TYPE_NPC:
@@ -99,7 +101,6 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 					WBUFB(data,(0x1E)-4) = 0x64;
 					WBUFL(data,(0x21)-4) = ((CNpcEntity*)PEntity)->unknown;
                     WBUFB(data,(0x27)-4) = ((CNpcEntity*)PEntity)->name_prefix;     // gender and something else
-					WBUFB(data,(0x2B)-4) = ((CNpcEntity*)PEntity)->namevis;
 				}
 				break;
 				case TYPE_MOB:
@@ -111,7 +112,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 						//charmed mob
 						if(PMob->PMaster->objtype = TYPE_PC)
 						{
-							if(((CPetEntity*)PEntity)->PBattleAI->GetCurrentAction()==ACTION_FALL)
+							if(PMob->PBattleAI->GetCurrentAction()==ACTION_FALL)
 							{
 									WBUFB(data,(0x0A)-4) = 0x07;
 									WBUFB (data,(0x21)-4) = 0x99;
@@ -125,7 +126,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 							else
 							{
 									this->size = 0x24;
-									WBUFB (data,(0x1E)-4) = ((CPetEntity*)PEntity)->GetHPP();
+									WBUFB (data,(0x1E)-4) = PMob->GetHPP();
 									WBUFB (data,(0x27)-4) = 0x08;
 									memcpy(data+(0x34)-4, PEntity->GetName(),(PEntity->name.size() > 15 ? 15 : PEntity->name.size()));
 							}
@@ -134,11 +135,11 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 					else
 					{
 
-						WBUFB(data,(0x1E)-4) = ((CMobEntity*)PEntity)->GetHPP();
-						WBUFL(data,(0x21)-4) = ((CMobEntity*)PEntity)->m_unknown;
-						WBUFB(data,(0x21)-4) |= ((CMobEntity*)PEntity)->m_CallForHelp;
-						WBUFB(data,(0x27)-4) = ((CMobEntity*)PEntity)->m_name_prefix;
-						WBUFL(data,(0x2C)-4) = ((CMobEntity*)PEntity)->m_OwnerID.id;
+						WBUFB(data,(0x1E)-4) = PMob->GetHPP();
+						WBUFL(data,(0x21)-4) = PMob->m_unknown;
+						WBUFB(data,(0x21)-4) |= PMob->m_CallForHelp;
+						WBUFB(data,(0x27)-4) = PMob->m_name_prefix;
+						WBUFL(data,(0x2C)-4) = PMob->m_OwnerID.id;
 						//set bit0 to 1 to make HP bars invisible e.g. Yilgeban, another bit somewhere controls mob targetability
 						//WBUFB(data,(0x22)-4) = 0;
 

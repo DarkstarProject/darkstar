@@ -36,7 +36,6 @@ class CNpcEntity : public CBaseEntity
 {
 public:
 
-	uint8		namevis; 
 	uint32		unknown;
 	uint8		name_prefix;
 

@@ -197,12 +197,24 @@ void CAIMobDummy::ActionRoaming()
 			luautils::OnMobRoamAction(m_PMob);
 			m_LastActionTime = m_Tick;
 		}
-		else if(m_PMob->PMaster == NULL && m_PMob->speed > 0)
+		else if(m_PMob->PMaster == NULL && (m_PMob->speed > 0 || m_PMob->m_roamFlags & ROAMFLAG_WORM))
 		{
 
 			if(m_PPathFind->RoamAround(m_PMob->m_SpawnPoint, m_PMob->m_roamFlags))
 			{
-				FollowPath();
+				if(m_PMob->m_roamFlags & ROAMFLAG_WORM)
+				{
+					// move down
+					m_PMob->animationsub = 1;
+					m_PMob->HideName(true);
+
+					// don't move around until i'm fully in the ground
+					Wait(2000);
+				}
+				else
+				{
+					FollowPath();
+				}
 
 				m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
 
@@ -1823,6 +1835,13 @@ void CAIMobDummy::FollowPath()
 		if(!m_PPathFind->IsFollowingPath())
 		{
 			m_LastActionTime = m_Tick - rand()%m_PMob->m_RoamCoolDown + 5000;
+
+			// i'm a worm pop back up
+			if(m_PMob->m_roamFlags & ROAMFLAG_WORM)
+			{
+				m_PMob->animationsub = 0;
+				m_PMob->HideName(false);
+			}
 		}
 
 		if(m_PPathFind->OnPoint()){

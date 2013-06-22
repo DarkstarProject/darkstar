@@ -280,6 +280,12 @@ void CalculateStats(CMobEntity * PMob)
 
 	PMob->m_RoamCoolDown = 45000;
 
+	if(PMob->m_Family == 258)
+	{
+		// worms don't act as often
+		PMob->m_RoamCoolDown = 60000;
+	}
+
 	// aggro mobs move around a bit more often
 	if(PMob->m_Behaviour != BEHAVIOUR_NONE)
 	{
@@ -359,6 +365,9 @@ void CalculateStats(CMobEntity * PMob)
 		}
 	}
 
+	// setup standback info
+	// mobs that stand back: blm, whm, rng, cor
+
 	// clear current traits first
     for (uint8 i = 0; i < PMob->TraitList.size(); ++i)
     {
@@ -378,6 +387,23 @@ void CalculateStats(CMobEntity * PMob)
 	{
 		// ahriman has magic defense bonus
 		PMob->setModifier(MOD_MDEF, 25);
+	}
+
+	// TODO: this should be put into its own column
+	// has not been decided where yet
+	if(PMob->m_Family == 258)
+	{
+		// makes worms roam by going into ground / back up
+		PMob->m_roamFlags |= ROAMFLAG_WORM;
+	}
+
+	if(PMob->m_Behaviour != BEHAVIOUR_NONE)
+	{
+		PMob->m_roamFlags |= ROAMFLAG_MEDIUM;
+	}
+	else
+	{
+		PMob->m_roamFlags |= ROAMFLAG_SMALL;
 	}
 
     PMob->TraitList.clear();

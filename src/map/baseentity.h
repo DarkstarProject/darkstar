@@ -124,6 +124,7 @@ public:
 	uint8			animationsub;		// дополнительный параметры анимации
 	uint8			speed;				// скорость передвижения
 	uint8			speedsub;			// подолнительный параметр скорости передвижения
+	uint8			namevis; 
 
 	virtual const int8* GetName();      // имя сущности
 
@@ -131,6 +132,7 @@ public:
 	float			GetXPos();			// позиция по координате X
 	float			GetYPos();			// позиция по координате Y
 	float			GetZPos();			// позиция по координате Z
+	void			HideName(bool hide); // hide / show name
 
     CAIGeneral*     PBattleAI;          // интеллект любой сущности
 

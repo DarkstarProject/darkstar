@@ -45,12 +45,7 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
 {
   Clear();
 
-  if(m_PTarget->speed == 0 || m_PTarget->objtype != TYPE_MOB)
-  {
-    return false;
-  }
-
-  CMobEntity* PMob = (CMobEntity*)m_PTarget;
+  m_roamFlags = roamFlags;
 
   if(isNavMeshEnabled())
   {
@@ -60,12 +55,14 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
 
     // sight aggro mobs will move a bit farther
     // this is until this data is put in the database
-    if(PMob->m_Behaviour != BEHAVIOUR_NONE)
+    if(m_roamFlags & ROAMFLAG_MEDIUM)
     {
       maxRadius = 20.0f;
     }
 
-    if(FindRandomPath(&PMob->m_SpawnPoint, maxRadius))
+    // TODO: finish roam flags. distance should have a distance limit
+
+    if(FindRandomPath(&point, maxRadius))
     {
       return true;
     }
@@ -77,13 +74,20 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
   }
   else
   {
-    // ew, we gotta use the old way
 
+    // no point worm roaming cause it'll move one inch
+    if(m_roamFlags & ROAMFLAG_WORM)
+    {
+      Clear();
+      return false;
+    }
+
+    // ew, we gotta use the old way
     m_pathLength = 1;
 
-    m_points[0].x = PMob->m_SpawnPoint.x - 1 + rand()%2;
-    m_points[0].y = PMob->m_SpawnPoint.y;
-    m_points[0].z = PMob->m_SpawnPoint.z - 1 + rand()%2;
+    m_points[0].x = point.x - 1 + rand()%2;
+    m_points[0].y = point.y;
+    m_points[0].z = point.z - 1 + rand()%2;
 
   }
 
@@ -141,11 +145,11 @@ bool CPathFind::PathThrough(position_t* points, uint8 totalPoints, uint8 pathFla
   return true;
 }
 
-bool CPathFind::WarpTo(position_t point)
+bool CPathFind::WarpTo(position_t point, float maxDistance)
 {
   Clear();
 
-  position_t newPoint = nearPosition(point, 2.0f, M_PI);
+  position_t newPoint = nearPosition(point, maxDistance, M_PI);
 
   m_PTarget->loc.p.x = newPoint.x;
   m_PTarget->loc.p.y = newPoint.y;
@@ -335,6 +339,11 @@ float CPathFind::GetRealSpeed()
     baseSpeed = ((CBattleEntity*)m_PTarget)->GetSpeed();
   }
 
+  if(baseSpeed == 0 && (m_roamFlags & ROAMFLAG_WORM))
+  {
+    baseSpeed = 20;
+  }
+
   return ((float)baseSpeed / 0x28) * 1.08;
 }
 
@@ -351,10 +360,13 @@ bool CPathFind::AtPoint(position_t* pos)
 void CPathFind::Clear()
 {
   m_pathFlags = 0;
+  m_roamFlags = 0;
+
   m_pathLength = 0;
   m_currentPoint = 0;
   m_maxDistance = 0;
   m_distanceMoved = 0;
+
   m_onPoint = true;
   m_PTarget->loc.p.moving = 0;
 }

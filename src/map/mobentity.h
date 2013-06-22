@@ -52,11 +52,12 @@ enum ROAMFLAG
 {
   ROAMFLAG_NONE = 0x0,
   ROAMFLAG_SMALL = 0x01, // move around less than 5
-  ROAMFLAG_MEDIUM = 0x02, // move around 10-15
+  ROAMFLAG_MEDIUM = 0x02, // move around 10-20
   ROAMFLAG_LARGE = 0x04, // move around 15-25
   ROAMFLAG_WANDER = 0x08, // roam to multiple points in a row
   ROAMFLAG_SCOUT = 0x10, // move around more often
-  ROAMFLAG_GUARD = 0x20 // move less often
+  ROAMFLAG_GUARD = 0x20, // move less often
+  ROAMFLAG_WORM = 0x40 // pop up and down when moving
 };
 
 enum MOBTYPE
@@ -126,7 +127,7 @@ public:
     float       MPscale;                // MP boost percentage
     uint8       linkRadius;                         // mobs have different link radiuses
 
-    ROAMFLAG m_roamFlags; // defines its roaming behaviour
+    uint8 m_roamFlags; // defines its roaming behaviour
 
     // stat ranks
     uint8        strRank;
