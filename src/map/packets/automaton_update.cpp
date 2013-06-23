@@ -67,6 +67,51 @@ CAutomatonUpdatePacket::CAutomatonUpdatePacket(CCharEntity* PChar)
 	this->type = 0x44;
 	this->size = 0x4E;
 
+	WBUFB(data,(0x04)-4) = JOB_PUP;
+
+	WBUFB(data,(0x08)-4) = 0x03; //sharpshot head, harlequin = 0x01
+	WBUFB(data,(0x09)-4) = 0x22; //sharpshot frame, harlequin = 0x20
+	WBUFB(data,(0x0A)-4) = 0x00; //attachment slot 0
+	WBUFB(data,(0x0B)-4) = 0x00; //slot 1
+	WBUFB(data,(0x0C)-4) = 0x00; //slot 2
+	WBUFB(data,(0x0D)-4) = 0x00; //slot 3
+	WBUFB(data,(0x0E)-4) = 0x00; //slot 4
+	WBUFB(data,(0x0F)-4) = 0x00; //slot 5
+	WBUFB(data,(0x10)-4) = 0x00; //slot 6
+	WBUFB(data,(0x11)-4) = 0x00; //slot 7
+	WBUFB(data,(0x12)-4) = 0x00; //slot 8
+	WBUFB(data,(0x13)-4) = 0x00; //slot 9
+	WBUFB(data,(0x14)-4) = 0x00; //slot 10
+	WBUFB(data,(0x15)-4) = 0x00; //slot 11
+
+	WBUFL(data,(0x18)-4) = 0x0A; // ??? also received 0x03, keg's packet 0x01
+	WBUFL(data,(0x1C)-4) = 0x05; // ???
+
+
+	
+	memcpy(data+(0x58)-4,PChar->PPet->GetName(),PChar->PPet->name.size());
+
+	WBUFW(data,(0x68)-4) = PChar->PPet->health.hp;
+	WBUFW(data,(0x6A)-4) = PChar->PPet->GetMaxHP;
+	WBUFW(data,(0x6C)-4) = PChar->PPet->health.mp;
+	WBUFW(data,(0x6E)-4) = PChar->PPet->GetMaxMP;
+
+	WBUFW(data,(0x70)-4) = 0; //current melee skill
+	WBUFW(data,(0x72)-4) = 0; //max melee skill
+	WBUFW(data,(0x74)-4) = 0; //current ranged skill
+	WBUFW(data,(0x76)-4) = 0; //max ranged skill
+	WBUFW(data,(0x78)-4) = 0; //current magic skill
+	WBUFW(data,(0x7A)-4) = 0; //max magic skill
+
+	WBUFW(data,(0x80)-4) = PChar->PPet->STR;
+	WBUFW(data,(0x84)-4) = PChar->PPet->DEX;
+	WBUFW(data,(0x88)-4) = PChar->PPet->VIT;
+	WBUFW(data,(0x8C)-4) = PChar->PPet->AGI;
+	WBUFW(data,(0x90)-4) = PChar->PPet->INT;
+	WBUFW(data,(0x94)-4) = PChar->PPet->MND;
+	WBUFW(data,(0x98)-4) = PChar->PPet->CHR;
+
+
 	uint8 packet[] = {
 							0x12, 0x00, 0x00, 0x00, 0x01, 0x20, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 

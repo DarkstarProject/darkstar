@@ -4297,6 +4297,16 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		}
 	}
 
+	/* Unsurprisingly, this packet is also used for automaton attachments
+	* 0x04 is non-zero if the client is adding an attachment
+	* 0x08 is JOB_PUP
+	* 0x0C is the head slot
+	* 0x0D is the frame slot
+	* 0x0E is the first attachment slot
+	* 0x19 is the last attachment slot
+	* multiple attachment slots may be set with Remove All
+	*/
+
 	return;
 }
 
