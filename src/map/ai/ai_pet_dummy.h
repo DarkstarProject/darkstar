@@ -34,7 +34,7 @@
 *																		*
 ************************************************************************/
 
-#define PET_ROAM_DISTANCE 2.2f
+#define PET_ROAM_DISTANCE 2.0f
 
 class CPetEntity;
 

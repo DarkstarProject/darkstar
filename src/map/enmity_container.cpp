@@ -97,6 +97,9 @@ void CEnmityContainer::AddBaseEnmity(CBattleEntity* PChar)
 
 void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE)
 {
+	// you're too far away so i'm ignoring you
+	if(!IsWithinEnmityRange(PEntity)) return;
+
     EnmityList_t::iterator PEnmity = m_EnmityList.lower_bound(PEntity->id);
 
     // current highest enmity before this update
@@ -149,16 +152,6 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE)
 		}
     }
 
-	// highest enmity holder after this update
-	CBattleEntity* NewEntity = GetHighestEnmity();
-
-	// PEntity is now the target, face the target
-	if (OldEntity != NewEntity && !m_EnmityHolder->isAsleep())
-	{
-		uint8 angle = getangle(m_EnmityHolder->loc.p, PEntity->loc.p);
-		m_EnmityHolder->loc.p.rotation = angle;
-		m_EnmityHolder->loc.zone->PushPacket(m_EnmityHolder,CHAR_INRANGE, new CEntityUpdatePacket(m_EnmityHolder, ENTITY_UPDATE));
-	}
 }
 
 /************************************************************************
@@ -360,4 +353,9 @@ void CEnmityContainer::DecayEnmity()
 		//Should lose 60/sec, and this is called twice a sec, hence 30.
 		PEnmityObject->VE -= PEnmityObject->VE > 30 ? 30 : PEnmityObject->VE;
 	}
+}
+
+bool CEnmityContainer::IsWithinEnmityRange(CBattleEntity* PEntity)
+{
+	return distance(m_EnmityHolder->loc.p, PEntity->loc.p) <= MAX_ENMITY_RANGE;
 }

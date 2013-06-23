@@ -145,15 +145,15 @@ function OnUseAbility(player, target, ability)
 		totalHealing = totalHealing + math.floor(totalHealing * rewardHealingMod / 100);
 	end
 	
-	-- Apply healing.
-	if (petCurrentHP + totalHealing <= petMaxHP) then
-		-- printf("Healing pet for %u HP.", totalHealing);
-		pet:addHP(totalHealing);
-	else
-		-- printf("Total healing more than pet max HP. Restoring pet HP to %u.", petMaxHP);
-		pet:setHP(petMaxHP);
+	local diff = petMaxHP - petCurrentHP;
+
+	if(diff > totalHealing) then
+		totalHealing = diff;
 	end
-	
+
+	pet:addHP(totalHealing);
+	pet:wakeUp();
+
 	-- Apply regen effect.
 
 	pet:delStatusEffect(EFFECT_REGEN);

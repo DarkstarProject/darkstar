@@ -384,6 +384,11 @@ void CAIPetDummy::ActionAbilityUsing()
 		m_ActionType = ACTION_MOBABILITY_FINISH;
 		ActionAbilityFinish();
 	}
+	else
+	{
+		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
+	}
+
 }
 
 void CAIPetDummy::ActionAbilityFinish(){
@@ -458,17 +463,24 @@ void CAIPetDummy::ActionAbilityFinish(){
 
 		Action.messageID = msg;
 
+        if(PTarget->objtype == TYPE_MOB){
+            CMobEntity* mob = (CMobEntity*)PTarget;
+            mob->PEnmityContainer->UpdateEnmityFromDamage(m_PPet, Action.param);
+        }
+
 		m_PPet->m_ActionList.push_back(Action);
 	}
 
 	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
 
-	m_PBattleSubTarget = NULL;
-	m_ActionType = ACTION_ATTACK;
 	if(Action.ActionTarget!=NULL && m_PPet->getPetType()==PETTYPE_AVATAR){ //todo: remove pet type avatar maybe
 		Action.ActionTarget->loc.zone->PushPacket(Action.ActionTarget,CHAR_INRANGE,new CEntityUpdatePacket(Action.ActionTarget,ENTITY_UPDATE));
+
 		m_PPet->loc.zone->PushPacket(m_PPet,CHAR_INRANGE,new CEntityUpdatePacket(m_PPet,ENTITY_UPDATE));
 	}
+
+	m_PBattleSubTarget = NULL;
+	m_ActionType = ACTION_ATTACK;
 }
 
 void CAIPetDummy::ActionAbilityInterrupt(){
@@ -673,8 +685,6 @@ void CAIPetDummy::ActionAttack()
 		{
 			m_PPathFind->FollowPath();
 
-	        m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
-
 	        // recalculate
 			currentDistance = distance(m_PPet->loc.p, m_PBattleTarget->loc.p);
 		}
@@ -774,6 +784,9 @@ void CAIPetDummy::ActionAttack()
                 Monster->m_HiPCLvl = ((CCharEntity*)m_PPet->PMaster)->GetMLevel();
 		}
 	}
+	
+    m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+
 }
 
 void CAIPetDummy::ActionSleep()

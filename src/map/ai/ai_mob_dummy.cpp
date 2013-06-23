@@ -204,7 +204,6 @@ void CAIMobDummy::ActionRoaming()
 			// stay underground
 			m_PMob->HideName(true);
 			m_PMob->animationsub = 0;
-			m_PMob->m_unknown = 2181;
 		}
 		else if(m_PMob->PMaster == NULL && (m_PMob->speed > 0 || m_PMob->m_roamFlags & ROAMFLAG_WORM))
 		{

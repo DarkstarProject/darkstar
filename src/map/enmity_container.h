@@ -27,6 +27,8 @@
 #include "../common/cbasetypes.h"
 #include <map>
 
+// if you're farther than this you will not gain hate
+#define MAX_ENMITY_RANGE 25
 
 struct EnmityObject_t
 {
@@ -59,6 +61,7 @@ public:
 	bool    HasTargetID(uint16 TargetID); //true if ID is in the container
 	void    LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percent, CBattleEntity* HateReceiver); // lower % of hate or transfer it
 	void	DecayEnmity();
+  bool  IsWithinEnmityRange(CBattleEntity* PEntity);
 
 private:
 	
