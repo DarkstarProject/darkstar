@@ -397,7 +397,7 @@ function getMissionRankPoints(player, missionID)
 	elseif (missionID == 23) then crystals = 228;					-- Additional 8 stacks needed, plus mission reward of 36 (87% rank bar)
 	end;
 
-	local points_needed = 1024 * (crystals-.25) / (3*rankPointMath(player:getRank()));
+	points_needed = 1024 * (crystals-.25) / (3*rankPointMath(player:getRank()));
 
 	if(player:getRankPoints() >= points_needed) then
 		return 1;
@@ -407,12 +407,12 @@ function getMissionRankPoints(player, missionID)
 end;
 
 function getMissionMask(player)
-	local rank = player:getRank()
-	local nation = player:getNation();  -- 0 = San d'Oria ; 1 = Bastok ; 2 = Windurst
-	local mission_status =  player:getCurrentMission(nation);
+	rank = player:getRank()
+	nation = player:getNation();  -- 0 = San d'Oria ; 1 = Bastok ; 2 = Windurst
+	mission_status =  player:getCurrentMission(nation);
 
-	local first_mission = 0;
-	local repeat_mission = 0;
+	first_mission = 0;
+	repeat_mission = 0;
 
 	if(nation == WINDURST) then
 		if(rank >= 1) then
@@ -711,8 +711,8 @@ end;
 
 function getMissionOffset(player,guard,pMission,MissionStatus)
 
-	local offset = 0; local cs = 0; local params = {0,0,0,0,0,0,0,0};
-	local nation = player:getNation(); local GuardCS = {};
+	offset = 0; cs = 0; params = {0,0,0,0,0,0,0,0};
+	nation = player:getNation();
 
 	if(nation == SANDORIA) then
 
@@ -789,7 +789,7 @@ end;
 
 function finishMissionTimeline(player,guard,csid,option)
 
-	local nation = player:getNation();
+	nation = player:getNation();
 
 	-- To prevent the cs conflict, use the 1st and 2nd for guard and 3/4 for npc
 	-- missionid, {Guard1CS,option}, {Guard2CS,option}, {NPC1 CS,option}, {NPC2 CS,option}, {{function,value},...},
@@ -807,7 +807,6 @@ function finishMissionTimeline(player,guard,csid,option)
 	-- 12: player:completeMission(nation,mission);
 	-- 13: player:addTitle(number);
 	-- 14: player:setVar("MissionStatus",value);
-	local badoption = {}; local timeline = {}; local messList = {};
 
 	if(nation == SANDORIA) then
 		if((csid == 0x03f1 or csid == 0x07d9) and option ~= 1073741824 and option ~= 31) then

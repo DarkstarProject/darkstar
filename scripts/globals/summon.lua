@@ -11,21 +11,21 @@ MSG_MISS = 188;
 MSG_RESIST = 85;
 
 function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgmodsubsequent,tpeffect,mtp100,mtp200,mtp300)
-	local returninfo = {};
+	returninfo = {};
 
 	--Damage = (D+fSTR) * dmgmod * PDIF
 	-- printf("str: %f, vit: %f", avatar:getStat(MOD_STR), target:getStat(MOD_VIT));
-	local fstr = avatarFSTR(avatar:getStat(MOD_STR), target:getStat(MOD_VIT));
+	fstr = avatarFSTR(avatar:getStat(MOD_STR), target:getStat(MOD_VIT));
 
-	local lvluser = avatar:getMainLvl();
-	local lvltarget = target:getMainLvl();
-	local acc = avatar:getACC();
-	local eva = target:getEVA();
+	lvluser = avatar:getMainLvl();
+	lvltarget = target:getMainLvl();
+	acc = avatar:getACC();
+	eva = target:getEVA();
 
 	local base = avatar:getWeaponDmg() + fstr;
 	local ratio = avatar:getStat(MOD_ATT)/target:getStat(MOD_DEF);
 
-	local lvldiff = lvluser - lvltarget;
+	lvldiff = lvluser - lvltarget;
 
 	--work out hit rate for mobs (bias towards them)
 	hitrate = (acc*accmod) - eva;
@@ -45,9 +45,8 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
 	if(base < 1) then
 		base = 1;
 	end
-	local hitdamage = base * dmgmod1;
-	local subsequenthitdamage = base * dmgmodsubsequent;
-	local maxRatio = 0; local minRatio = 0;
+	hitdamage = base * dmgmod1;
+	subsequenthitdamage = base * dmgmodsubsequent;
 	if(ratio<=1) then
 		maxRatio = 1;
 		minRatio = 1/3;
@@ -73,11 +72,11 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
 
 	-- start the hits
 	local double hitchance = math.random();
-	local finaldmg = 0;
-	local hitsdone = 1; local hitslanded = 0;
+	finaldmg = 0;
+	hitsdone = 1; hitslanded = 0;
 
 	--add on native crit hit rate (guesstimated, it actually follows an exponential curve)
-	local nativecrit = (avatar:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; --assumes +0.5% crit rate per 1 dDEX
+	nativecrit = (avatar:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; --assumes +0.5% crit rate per 1 dDEX
 	nativecrit = nativecrit + (avatar:getMod(MOD_CRITHITRATE)/100);
 
 	if(nativecrit > 0.2) then --caps!
@@ -95,7 +94,6 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
 		hitchance = math.random();
 	end
 
-	local pdif = 0;
 	if crit == true or hitchance*100 <= 95 then
 		pdif = math.random((minRatio * 1000), (maxRatio * 1000));
 		pdif = pdif/1000;
@@ -174,7 +172,7 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
 
 	--Handle shadows depending on shadow behaviour / skilltype
 	if(shadowbehav < 5 and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows.
-		local targShadows = target:getMod(MOD_UTSUSEMI);
+		targShadows = target:getMod(MOD_UTSUSEMI);
 		shadowType = MOD_UTSUSEMI;
 		if(targShadows==0)then --try blink, as utsusemi always overwrites blink this is okay
 			targShadows = target:getMod(MOD_BLINK);
@@ -187,7 +185,7 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
 				skill:setMsg(31);
 				target:setMod(shadowType,(targShadows-shadowbehav));
 				if(shadowType == MOD_UTSUSEMI) then --update icon
-					local effect = target:getStatusEffect(EFFECT_COPY_IMAGE);
+					effect = target:getStatusEffect(EFFECT_COPY_IMAGE);
 					if(effect ~= nil) then
 						if((targShadows-shadowbehav) == 0) then
 							target:delStatusEffect(EFFECT_COPY_IMAGE);
@@ -218,14 +216,14 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
 	end
 
 	--handle Third Eye using shadowbehav as a guide
-	local teye = target:getStatusEffect(EFFECT_THIRD_EYE);
+	teye = target:getStatusEffect(EFFECT_THIRD_EYE);
 	if(teye ~= nil and skilltype==MOBSKILL_PHYSICAL) then --T.Eye only procs when active with PHYSICAL stuff
 		if(shadowbehav == MOBPARAM_WIPE_SHADOWS) then --e.g. aoe moves
 			target:delStatusEffect(EFFECT_THIRD_EYE);
 		elseif(shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --it can be absorbed by shadows
 			--third eye doesnt care how many shadows, so attempt to anticipate, but reduce
 			--chance of anticipate based on previous successful anticipates.
-			local prevAnt = teye:getPower();
+			prevAnt = teye:getPower();
 			if(prevAnt == 0) then
 				--100% proc
 				teye:setPower(1);
@@ -275,7 +273,7 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
 	end
 
 	--handling stoneskin
-	local skin = target:getMod(MOD_STONESKIN);
+	skin = target:getMod(MOD_STONESKIN);
 	if(skin>0) then
 		if(skin >= dmg) then --absorb all damage
 			target:delMod(MOD_STONESKIN,dmg);

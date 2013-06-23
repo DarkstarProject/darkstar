@@ -27,7 +27,7 @@ skeletonKey = 0x45B; -- 1115
 
 function spawnMimic(zone,player)
 	-- zone,mobid
-	local mimic = {147,17379783};
+	mimic = {147,17379783};
 	
 	for nb = 1, table.getn(mimic), 2 do
 		if(zone == mimic[nb]) then
@@ -166,10 +166,10 @@ end
 ---------------------------------------
 
 function thfKeySuccess(trade,playerLVL,treasureLVL)
-	local  sk = trade:hasItemQty(skeletonKey,1);
-	local  lk = trade:hasItemQty(livingKey,1);
-	local ttk = trade:hasItemQty(thftools,1);
-	local success = 0;
+	 sk = trade:hasItemQty(skeletonKey,1);
+	 lk = trade:hasItemQty(livingKey,1);
+	ttk = trade:hasItemQty(thftools,1);
+	success = 0;
 	if( sk ) then
 		success = (playerLVL/treasureLVL) - 0.50 + SK_SUCCESS_INCREMENT;
 	elseif( lk )then
@@ -185,9 +185,9 @@ end
 ---------------------------------------
 
 function isTHFKey(trade)
-	local  sk = trade:hasItemQty(skeletonKey,1);
-	local  lk = trade:hasItemQty(livingKey,1);
-	local ttk = trade:hasItemQty(thftools,1);
+	 sk = trade:hasItemQty(skeletonKey,1);
+	 lk = trade:hasItemQty(livingKey,1);
+	ttk = trade:hasItemQty(thftools,1);
 	if( sk or lk or ttk )then
 		return true;
 	else
@@ -201,11 +201,11 @@ end
 
 function openChance(player,npc,trade,TreasureType,treasureLVL,minLVL,questItemNeeded)
 	
-	local success = 0;
-	local chance_answer = {nil,nil}; -- {success%,messageType}
+	success = 0;
+	chance_answer = {nil,nil}; -- {success%,messageType}
 
-	local weak = player:getStatusEffect(EFFECT_WEAKNESS);
-	local illu = player:getVar("["..player:getZone().."]".."Treasure_"..TreasureType); 
+	weak = player:getStatusEffect(EFFECT_WEAKNESS);
+	illu  = player:getVar("["..player:getZone().."]".."Treasure_"..TreasureType); 
 	
 	-- SE impleted this in order to prevent coffer farming. 
 	-- Noone in the same area can open more than 1 coffer per hour except for AF, maps or quests items.
@@ -254,13 +254,12 @@ Any update should be here with the date which was modified as well as an URL whe
 		      Done : First collection of all the loot and drop rate.		
 --]]-----------------------------------------------
 
-	local gil = {0.387,6040,12100};
-	local gems = {0.320,0x317,0x321,0x31D,0x325,0x323};
-	local items = {0.226,0x104D};
-	local reward = {};
+	gil = {0.387,6040,12100};
+	gems = {0.320,0x317,0x321,0x31D,0x325,0x323};
+	items = {0.226,0x104D};
 	
 	-- Loot calculation 
-	local rand = math.random();
+	rand = math.random();
 	rand = math.random();
 	rand = math.random();
 	
@@ -273,7 +272,7 @@ Any update should be here with the date which was modified as well as an URL whe
 			curr_gem = curr_gem +1;
 			num_gems = num_gems + 1;		
 		end
-		local rand_gem = math.random(1,num_gems) + 1;
+		rand_gem = math.random(1,num_gems) + 1;
 		reward = {"item",gems[rand_gem]};
 	else
 		local num_item = 0;
@@ -282,7 +281,7 @@ Any update should be here with the date which was modified as well as an URL whe
 			curr_item = curr_item +1;
 			 num_item = num_item + 1;		
 		end
-		local rand_item = math.random(1,num_item) + 1;
+		rand_item = math.random(1,num_item) + 1;
 		reward = {"item",items[rand_item]};
 	end
 	return reward;

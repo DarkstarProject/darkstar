@@ -502,7 +502,7 @@ end
 
 function checkRegime(killer,mob,rid,index)
 
-	local partyType = killer:checkSoloPartyAlliance();
+	partyType = killer:checkSoloPartyAlliance();
 
 	if(killer:checkFovAllianceAllowed() == 1) then
 		partyType = 1;

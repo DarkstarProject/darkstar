@@ -41,7 +41,7 @@ function checkForGearSet(player)
 	local legs = player:getEquipID(SLOT_LEGS);	
 	local feet = player:getEquipID(SLOT_FEET);	
 	
-	local playerGetMod = player:getVar("GearSetMod");
+	playerGetMod = player:getVar("GearSetMod");
 	
 	if (playerGetMod > 0) then
 		removeGearSetMod(player,playerGetMod);

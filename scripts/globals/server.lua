@@ -52,7 +52,7 @@ function SetExplorerMoogles()
 		17797245,	-- Mhaura
 	}
 	
-	local i = 1;
+	i = 1;
 	while i <= (table.getn(Moogles)) do	
 		npc = GetNPCByID(Moogles[i]);
 		npc:setStatus(0);
@@ -90,7 +90,7 @@ function SetFieldManual()
         17310099,17310100,17310101,17310102,
 	}
 	
-	local i = 1;
+	i = 1;
 	while i <= (table.getn(FieldManuals)) do	
 		npc = GetNPCByID(FieldManuals[i]);
 		npc:setStatus(0);
@@ -124,7 +124,7 @@ function SetTimedSpawns()
     17301537  -- Adamantoise
   }
 
-  local i = 1;
+  i = 1;
   while i <= (table.getn(NMs)) do
     UpdateNMSpawnPoint(NMs[i]);
     SpawnMob(NMs[i], '', math.random((900),(10800))); --15-180 minutes

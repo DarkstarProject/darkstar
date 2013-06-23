@@ -227,7 +227,7 @@ end;
 ------------------------------
 
 function BlueGetWsc(attacker, params)
-    local wsc = (attacker:getStat(MOD_STR) * params.str_wsc + attacker:getStat(MOD_DEX) * params.dex_wsc +
+    wsc = (attacker:getStat(MOD_STR) * params.str_wsc + attacker:getStat(MOD_DEX) * params.dex_wsc +
 		 attacker:getStat(MOD_VIT) * params.vit_wsc + attacker:getStat(MOD_AGI) * params.agi_wsc +
 		 attacker:getStat(MOD_INT) * params.int_wsc + attacker:getStat(MOD_MND) * params.mnd_wsc +
 		 attacker:getStat(MOD_CHR) * params.chr_wsc) * BlueGetAlpha(attacker:getMainLvl());
@@ -296,8 +296,6 @@ function BluefTP(tp,ftp1,ftp2,ftp3)
 end;
 
 function BluefSTR(dSTR)
-    local fSTR2 = 0;
-
 	if (dSTR >= 12) then
 		fSTR2 = ((dSTR+4)/2);
 	elseif (dSTR >= 6) then
@@ -385,7 +383,7 @@ end;
 
 --obtains alpha, used for working out WSC
 function BlueGetAlpha(level)
-local alpha = 1.00;
+alpha = 1.00;
 if (level <= 5) then
 	alpha = 1.00;
 elseif (level <= 11) then

@@ -77,7 +77,7 @@ function TradeBCNM(player,zone,trade,npc)
 	end
 	--the following is for orb battles, etc
 
-	local id = ItemToBCNMID(player,zone,trade);
+	id = ItemToBCNMID(player,zone,trade);
 	
 	if(id == -1)then --no valid BCNMs with this item
 		--todo: display message based on zone text offset
@@ -85,7 +85,7 @@ function TradeBCNM(player,zone,trade,npc)
 		player:setVar("trade_itemid",0);
 		return false;
 	else --a valid BCNM with this item, start it.
-		local mask = GetBattleBitmask(id,zone,1);
+		mask = GetBattleBitmask(id,zone,1);
 		
 		if(mask == -1)then --Cannot resolve this BCNMID to an event number, edit bcnmid_param_map!
 			print("Item is for a valid BCNM but cannot find the event parameter to display to client.");
@@ -112,8 +112,8 @@ function EventTriggerBCNM(player,npc)
 			player:startEvent(0x7d03); --Run Away or Stay menu
 		else --You're not in the BCNM but you have the Battlefield effect. Think: non-trader in a party
 			status = player:getStatusEffect(EFFECT_BATTLEFIELD);
-			local playerbcnmid = status:getPower();
-			local playermask = GetBattleBitmask(playerbcnmid,player:getZone(),1);
+			playerbcnmid = status:getPower();
+			playermask = GetBattleBitmask(playerbcnmid,player:getZone(),1);
 			if(playermask~=-1) then
 				--This gives players who did not trade to go in the option of entering the fight
 				player:startEvent(0x7d00,0,0,0,playermask,0,0,0,0);
@@ -133,7 +133,7 @@ end;
 
 function EventUpdateBCNM(player,csid,option)
 	-- return false;
-	local id = player:getVar("trade_bcnmid"); --this is 0 if the bcnm isnt handled by new functions
+	id = player:getVar("trade_bcnmid"); --this is 0 if the bcnm isnt handled by new functions
 	
 	print("UPDATE csid "..csid.." option "..option);
 	--seen: option 2,3,0 in that order
@@ -150,7 +150,7 @@ function EventUpdateBCNM(player,csid,option)
 			return true;
 		end
 		
-		local inst = player:bcnmRegister(id);
+		inst = player:bcnmRegister(id);
 		if(inst > 0)then
 			player:setVar("bcnm_instanceid",inst);
 			player:setVar("bcnm_instanceid_tick",0);
@@ -167,13 +167,13 @@ function EventUpdateBCNM(player,csid,option)
 		-- The client will send a total of THREE EventUpdate packets for each one of the free instances.
 		-- If the first instance is free, it should respond to the first packet
 		-- If the second instance is free, it should respond to the second packet, etc
-		local instance = player:getVar("bcnm_instanceid_tick");
+		instance = player:getVar("bcnm_instanceid_tick");
 		instance = instance + 1;
 		player:setVar("bcnm_instanceid_tick",instance);
 		
 		if(instance == player:getVar("bcnm_instanceid"))then
 			--respond to this packet
-			local mask = GetBattleBitmask(id,player:getZone(),2);
+			mask = GetBattleBitmask(id,player:getZone(),2);
 			player:updateEvent(2,mask,0,1,1,0); -- Add mask number for the correct entering CS
 			player:bcnmEnter(id);
 			player:setVar("bcnm_instanceid_tick",0);
@@ -224,9 +224,9 @@ function CheckMaatFights(player,zone,trade,npc)
 	--check for maat fights (one maat fight per zone in the db, but >1 mask entries depending on job, so we
 	--need to choose the right one depending on the players job, and make sure the right testimony is traded,
 	--and make sure the level is right!
-	local itemid = trade:getItem();
-	local job = player:getMainJob();
-	local lvl = player:getMainLvl();
+	itemid = trade:getItem();
+	job = player:getMainJob();
+	lvl = player:getMainLvl();
 	
 	if(itemid >= 1426 and itemid <= 1440) then --The traded item IS A TESTIMONY
 		if(lvl < 66 or player:getVar("maatDefeated") > 0)then --not high enough level for maat fight :( or maat already defeated
@@ -288,8 +288,8 @@ function ItemToBCNMID(player,zone,trade)
 		if(zone==itemid_bcnmid_map[zoneindex])then --matched zone
 			for bcnmindex = 1, table.getn(itemid_bcnmid_map[zoneindex + 1]), 2 do --loop bcnms in this zone
 				if(trade:getItem()==itemid_bcnmid_map[zoneindex+1][bcnmindex])then
-					local item = trade:getItem();
-					local questTimelineOK = 0;
+					item = trade:getItem();
+					questTimelineOK = 0;
 					
 					-- Job/lvl condition for smn battle lvl20
 					if(item >= 1544 and item <= 1549 and player:getMainJob() == 15 and player:getMainLvl() >= 20) then 
@@ -342,7 +342,7 @@ end;
 function checkNonTradeBCNM(player,npc)
 	
 	local mask = 0;
-	local Zone = player:getZone();
+	Zone = player:getZone();
 	
 	if(Zone == 10) then--The_Shrouded_Maw
 	    if(player:getCurrentMission(COP) == DARKNESS_NAMED  and  player:getVar("PromathiaStatus") == 2) then--DARKNESS_NAMED
@@ -387,8 +387,8 @@ function checkNonTradeBCNM(player,npc)
 			player:setVar("trade_bcnmid",0);
 		end
 	elseif(Zone == 140) then -- Ghelsba Outpost
-		local MissionStatus = player:getVar("MissionStatus");
-		local sTcCompleted = player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN)
+		MissionStatus = player:getVar("MissionStatus");
+		sTcCompleted = player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN)
 		if(player:getCurrentMission(SANDORIA) == SAVE_THE_CHILDREN and (sTcCompleted and MissionStatus <= 2 or sTcCompleted == false and MissionStatus == 2)) then -- Sandy Mission 1-3
 			mask = GetBattleBitmask(32,Zone,1);
 			player:setVar("trade_bcnmid",32);

@@ -31,7 +31,7 @@ TAVNAZIA = 6;
 
 function showShop(player, nation, stock)
 
-local correction = 1;
+correction = 1;
 
 	if (nation ~= STATIC) then
 		correction = (1 + (0.20 * (9 - player:getFameLevel(nation)) / 8))*SHOP_PRICE;
@@ -55,10 +55,10 @@ end;
 
 function showNationShop(player, nation, stock)
 
-local conquest = getNationRank(nation);
-local playerNation = player:getNation();
+conquest = getNationRank(nation);
+playerNation = player:getNation();
 
-local correction = 1;
+correction = 1;
 
 	if (nation ~= STATIC) then
 		correction = (1 + (0.20 * (9 - player:getFameLevel(nation)) / 8))*SHOP_PRICE;

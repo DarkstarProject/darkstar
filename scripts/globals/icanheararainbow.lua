@@ -44,15 +44,15 @@ colorsAvailable[125] = { true,  false, true,  false, false, false, false}; -- We
 
 function triggerLightCutscene( player)
 
-	local cutsceneTriggered = false;
+	cutsceneTriggered = false;
 
-	local RED    = 1;
-	local ORANGE = 2;
-	local YELLOW = 3;
-	local GREEN  = 4;
-	local BLUE   = 5;
-	local INDIGO = 6;
-	local VIOLET = 7;
+	RED    = 1;
+	ORANGE = 2;
+	YELLOW = 3;
+	GREEN  = 4;
+	BLUE   = 5;
+	INDIGO = 6;
+	VIOLET = 7;
 	
 	if( player:hasItem( 1125, 0)) then   -- Player has Carbuncle's Ruby?
 
@@ -64,13 +64,13 @@ function triggerLightCutscene( player)
 				colors = 0;
 			end
 
-			local hasRed    = ( tonumber( colors) %   2 >=  1);
-			local hasOrange = ( tonumber( colors) %   4 >=  2);
-			local hasYellow = ( tonumber( colors) %   8 >=  4);
-			local hasGreen  = ( tonumber( colors) %  16 >=  8);
-			local hasBlue   = ( tonumber( colors) %  32 >= 16);
-			local hasIndigo = ( tonumber( colors) %  64 >= 32);
-			local hasViolet = ( tonumber( colors) % 128 >= 64);
+			hasRed    = ( tonumber( colors) %   2 >=  1);
+			hasOrange = ( tonumber( colors) %   4 >=  2);
+			hasYellow = ( tonumber( colors) %   8 >=  4);
+			hasGreen  = ( tonumber( colors) %  16 >=  8);
+			hasBlue   = ( tonumber( colors) %  32 >= 16);
+			hasIndigo = ( tonumber( colors) %  64 >= 32);
+			hasViolet = ( tonumber( colors) % 128 >= 64);
 
 			local zone    = player:getZone();
 			local weather = player:getWeather();
