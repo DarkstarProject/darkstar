@@ -87,7 +87,7 @@ bool CBattleEntity::isInDynamis()
 // return true if the mob has immunity
 bool CBattleEntity::hasImmunity(uint32 imID)
 {
-	if(objtype == TYPE_MOB){
+	if(objtype == TYPE_MOB || objtype == TYPE_PET){
 		IMMUNITY mobImmunity = (IMMUNITY)imID;
 		return (m_Immunity & mobImmunity);
 	}

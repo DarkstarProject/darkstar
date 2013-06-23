@@ -363,7 +363,7 @@ enum SKILLCHAIN_ELEMENT
     SC_DARKNESS_II   = 16, // Lv4 Darkness
 };
 
-enum IMMUNITY
+enum IMMUNITY : uint16
 {
 	IMMUNITY_NONE		= 0x00,
 	IMMUNITY_SLEEP		= 0x01,

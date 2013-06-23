@@ -21,7 +21,7 @@ function OnMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
 
     local typeEffect = EFFECT_POISON;
-    local power = mob:getMainLvl()/10 + 10;
+    local power = mob:getMainLvl()/10 + 3;
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, 3, 60);
 
     target:delHP(dmg);

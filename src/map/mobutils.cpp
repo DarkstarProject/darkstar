@@ -370,6 +370,7 @@ void CalculateStats(CMobEntity * PMob)
 		}
 	}
 
+	// ambush antlions
 	if(PMob->m_Family == 357)
 	{
 		PMob->m_SpecialSkill = 22;
@@ -392,17 +393,17 @@ void CalculateStats(CMobEntity * PMob)
 		else if(PMob->m_Family == 199)
 		{
 			// they stay back forever
-			PMob->m_StandbackTime = 50000;
+			PMob->m_StandbackTime = 65535;
 		}
 		else 
 		{
-			PMob->m_StandbackTime = 35000;
+			PMob->m_StandbackTime = 45000;
 		}
 
 	}
 	else if(mJob == JOB_COR)
 	{
-		PMob->m_StandbackTime = 35000;
+		PMob->m_StandbackTime = 45000;
 	}
 	else if(mJob == JOB_NIN)
 	{
@@ -429,10 +430,35 @@ void CalculateStats(CMobEntity * PMob)
 		// magic pot has high defense bonus
 		PMob->setModifier(MOD_MDEF, 50);
 	}
-	else if(PMob->m_Family == 4 || PMob->m_Family == 74)
+	else if(PMob->m_Family == 4 || PMob->m_Family == 74 || PMob->m_Family == 61 || PMob->m_Family == 169)
 	{
 		// ahriman has magic defense bonus
+		// cardians, corse, demons
 		PMob->setModifier(MOD_MDEF, 25);
+	}
+	else if(PMob->m_Family == 110 || PMob->m_Family == 111 || PMob->m_Family == 171)
+	{
+		// evil weapons
+		PMob->setModifier(MOD_MDEF, 13);
+	}
+	else if(PMob->m_Family == 139)
+	{
+		// hecteyes
+		PMob->setModifier(MOD_EVA, 10);
+	}
+	else if(PMob->m_Family == 176)
+	{
+		PMob->setModifier(MOD_EVA, 10);
+	}
+	else if(PMob->m_Family == 217)
+	{
+		// scorpion
+		PMob->m_Immunity = (IMMUNITY)(uint16)(PMob->m_Immunity | IMMUNITY_POISON);
+	}
+	else if(PMob->m_Family == 258)
+	{
+		// worm
+		PMob->m_MagicRecastTime = 12000;
 	}
 
 	// TODO: this should be put into its own column

@@ -277,7 +277,7 @@ uint8 CItemWeapon::getHitCount(uint8 checkMobHits)
     int distribution = rand()%100;
 
 	uint8 hits = m_maxHit;
-	if (checkMobHits != NULL) hits = checkMobHits;
+	if (checkMobHits != 0) hits = checkMobHits;
 
     switch (hits)
     {
