@@ -19,9 +19,9 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	hpHeal = math.random(90,105);
+	local hpHeal = math.random(90,105);
 
-	dif = target:getMaxHP() - target:getHP();
+	local dif = target:getMaxHP() - target:getHP();
 	if(hpHeal > dif) then
 		hpHeal = dif;
 	end

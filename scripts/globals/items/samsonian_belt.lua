@@ -21,7 +21,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	duration = 900;
+	local duration = 900;
 	target:delStatusEffect(EFFECT_STR_BOOST);
 	target:addStatusEffect(EFFECT_STR_BOOST,3,0,duration);
 end;

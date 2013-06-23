@@ -12,7 +12,7 @@ require("script/globals/status");
 
 function onItemCheck(target)
 
-body = target:getEquipID(SLOT_BODY);
+local body = target:getEquipID(SLOT_BODY);
 
 	if (body == 11363) then
 		target:addSpell(503);

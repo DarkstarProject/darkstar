@@ -13,8 +13,8 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
 
-ring1 = target:getEquipID(SLOT_RING1);
-ring2 = target:getEquipID(SLOT_RING2);
+local ring1 = target:getEquipID(SLOT_RING1);
+local ring2 = target:getEquipID(SLOT_RING2);
 
 	if ((ring1 == 15851 and ring2 == 15850) or
 		(ring1 == 15850 and ring2 == 15851)) then

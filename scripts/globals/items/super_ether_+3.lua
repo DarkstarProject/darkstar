@@ -11,9 +11,9 @@ require("scripts/globals/settings");
 -----------------------------------------
 
 function onItemCheck(target)
-result = 0;
-mMP = target:getMaxMP();
-cMP = target:getMP();
+local result = 0;
+local mMP = target:getMaxMP();
+local cMP = target:getMP();
 
 if (mMP == cMP) then
 	result = 56; -- Does not let player use item if their hp is full

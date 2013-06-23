@@ -17,11 +17,11 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	power = 1;
-	duration = 1800;
+	local power = 1;
+	local duration = 1800;
 	if(target:hasStatusEffect(EFFECT_RERAISE) ==true)then
-		effect = target:getStatusEffect(EFFECT_RERAISE);
-		oPower = effect:getPower();
+		local effect = target:getStatusEffect(EFFECT_RERAISE);
+		local oPower = effect:getPower();
 		if(oPower > power) then
 			target:messageBasic(283); -- Higher Tiered verson means no effect!
 		else

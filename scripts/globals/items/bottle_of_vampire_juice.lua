@@ -19,7 +19,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	worked = 0;
+	local worked = 0;
 	if(target:hasStatusEffect(EFFECT_REGEN) == false) then
 		target:addStatusEffect(EFFECT_REGEN,2,3,90);
 		worked = worked + 1;

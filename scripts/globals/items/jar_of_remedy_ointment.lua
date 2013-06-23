@@ -21,7 +21,7 @@ end;
 
 function onItemUse(target)
 if(target:hasStatusEffect(EFFECT_SILENCE) or target:hasStatusEffect(EFFECT_BLINDNESS) or target:hasStatusEffect(EFFECT_POISON) or target:hasStatusEffect(EFFECT_PARALYSIS) or target:hasStatusEffect(EFFECT_PLAGUE)) then
-	effectRemoved = 0;	
+	local effectRemoved = 0;	
 	while effectRemoved == 0 do
 		num = math.random(1,5);
 		if(num == 1 and target:hasStatusEffect(EFFECT_SILENCE)) then

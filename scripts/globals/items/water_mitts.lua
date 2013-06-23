@@ -16,6 +16,6 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	effect = EFFECT_ENWATER;
+	local effect = EFFECT_ENWATER;
 	doEnspell(target,target,nil,effect);
 end;

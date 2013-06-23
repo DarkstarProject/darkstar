@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-result = 0;
+local result = 0;
 	if (target:getFreeSlotsCount() == 0) then
 		result = 308;
 	end

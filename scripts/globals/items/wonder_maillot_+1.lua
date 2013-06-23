@@ -7,7 +7,7 @@
 require("scripts/globals/teleports");
 
 function onItemCheck(target)
-result = 0;
+local result = 0;
     if (target:isZoneVisited(4) == false) then
         result = 56;
     end

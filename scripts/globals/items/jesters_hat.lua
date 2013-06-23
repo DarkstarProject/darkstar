@@ -19,9 +19,9 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    hpHeal = 90;
+    local hpHeal = 90;
 
-    dif = target:getMaxHP() - target:getHP();
+    local dif = target:getMaxHP() - target:getHP();
     if(hpHeal > dif) then
         hpHeal = dif;
     end

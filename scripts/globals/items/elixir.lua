@@ -11,11 +11,11 @@ require("scripts/globals/settings");
 -----------------------------------------
 
 function onItemCheck(target)
-result = 0;
-mHP = target:getMaxHP();
-cHP = target:getHP();
-mMP = target:getMaxMP();
-cMP = target:getMP();
+local result = 0;
+local mHP = target:getMaxHP();
+local cHP = target:getHP();
+local mMP = target:getMaxMP();
+local cMP = target:getMP();
 
 
 if (mHP == cHP and mMP == cMP) then

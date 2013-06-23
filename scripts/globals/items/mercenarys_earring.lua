@@ -13,10 +13,10 @@ require("scripts/globals/status");
 
 function onItemCheck(target,prevsjob)
 
-sjob = target:getSubJob();
+local sjob = target:getSubJob();
 
-earring1 = target:getEquipID(SLOT_EAR1);
-earring2 = target:getEquipID(SLOT_EAR2);
+local earring1 = target:getEquipID(SLOT_EAR1);
+local earring2 = target:getEquipID(SLOT_EAR2);
 
 	if ((earring1 == 13435 or earring2 == 13435)) then
 		if (sjob == 1) then
