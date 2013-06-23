@@ -15,7 +15,7 @@ MOGLOCKER_PLAYERVAR_EXPIRY_TIMESTAMP = "mog-locker-expiry-timestamp"
 -- Unlocks a mog locker for a player. Returns the 'expired' timestamp (-1)
 function unlockMogLocker(player)
     player:setVar(MOGLOCKER_PLAYERVAR_EXPIRY_TIMESTAMP, -1);
-    currentSize = player:getContainerSize(LOC_MOGLOCKER);
+    local currentSize = player:getContainerSize(LOC_MOGLOCKER);
     if (currentSize == 0) then -- we do this check in case some servers auto-set 80 slots for mog locker items
         player:changeContainerSize(LOC_MOGLOCKER, 30);
     end

@@ -592,7 +592,7 @@ function republicStablesMedal(player)
 end;
 
 function returnRing(player)
-	zone = player:getZone();
+	local zone = player:getZone();
 	-- Ronfaure
 	if(zone == 100 or zone == 101 or zone == 139 or zone == 140 or zone == 141 or zone == 142 or zone == 190 or zone == 167 or zone == 230 or zone == 231 or zone == 232 or zone == 233) then
 		player:setPos(-446, -20 , -220, 0, 100);

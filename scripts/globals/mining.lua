@@ -13,7 +13,7 @@ require("scripts/globals/status");
 -------------------------------------------------
 
 -- Zone, {npcid,npcid,npcid,..}
-npcid = {11,{16822518,16822519,16822520,16822521,16822522,16822523},
+local npcid = {11,{16822518,16822519,16822520,16822521,16822522,16822523},
 		 12,{16826614,16826615,16826616,16826617,16826618,16826619},
 		 61,{17027546,17027547,17027548,17027549,17027550,17027551},
 		 62,{17031708,17031709,17031710,17031711,17031712,17031713},
@@ -24,7 +24,7 @@ npcid = {11,{16822518,16822519,16822520,16822521,16822522,16822523},
 		 196,{17580390,17580391,17580392,17580393,17580394,17580395},
 		 205,{17617215,17617216,17617217,17617218,17617219,17617220}};
 -- Zone, {itemid,drop rate,itemid,drop rate,..}
-drop = {11,{0x0676,0.1155,0x0282,0.2300,0x0280,0.3415,0x0281,0.4530,0x02E0,0.5595,0x0283,0.6590,0x0660,0.7285,0x0659,0.7930,0x0666,0.8525,0x0238,0.9100,0x065F,0.9676,0x0285,0.9762,0x0284,0.9848,0x02E1,0.9924,0x02E2,1.0000},
+local drop = {11,{0x0676,0.1155,0x0282,0.2300,0x0280,0.3415,0x0281,0.4530,0x02E0,0.5595,0x0283,0.6590,0x0660,0.7285,0x0659,0.7930,0x0666,0.8525,0x0238,0.9100,0x065F,0.9676,0x0285,0.9762,0x0284,0.9848,0x02E1,0.9924,0x02E2,1.0000},
 		12,{0x0280,0.2020,0x0281,0.3590,0x0282,0.4690,0x0676,0.6340,0x02E0,0.6900,0x02A6,0.6972,0x0283,0.9192,0x0285,0.9278,0x0284,0.9364,0x02E1,0.9924,0x02E2,1.0000},
 		61,{0x0454,0.1763,0x0483,0.3256,0x0283,0.4629,0x03A0,0.5742,0x0300,0.7055,0x065F,0.7368,0x0660,0.8451,0x0659,0.9181,0x0666,0.9332,0x0870,0.9546,0x0871,0.9680,0x0386,0.9870,0x0286,0.9950,0x02AD,1.0000},
 		62,{0x03A0,0.0725,0x0454,0.1740,0x0483,0.3605,0x0300,0.5190,0x0659,0.5445,0x0660,0.5980,0x0666,0.6045,0x065F,0.6300,0x0870,0.6744,0x0871,0.7088,0x0971,0.9532,0x02E1,0.9876,0x02E3,0.9940,0x08B4,1.0000},
@@ -35,19 +35,18 @@ drop = {11,{0x0676,0.1155,0x0282,0.2300,0x0280,0.3415,0x0281,0.4530,0x02E0,0.559
 		196,{0x4390,0.2071,0x0282,0.3762,0x0280,0.5253,0x0281,0.6704,0x0283,0.8135,0x02E0,0.9116,0x0285,0.9547,0x0301,0.9918,0x02E1,1.0000},
 		205,{0x0300,0.2200,0x0283,0.4400,0x0454,0.6600,0x43A4,0.7300,0x03A0,0.7900,0x0483,0.8500,0x0286,0.8800,0x0285,0.9100,0x084E,0.9400,0x02E3,0.9700,0x0301,1.0000}};
 -- Define array of Colored Rocks, Do not reorder this array or rocks.
-rocks = {0x0301,0x0302,0x0303,0x0304,0x0305,0x0306,0x0308,0x0307};
+local rocks = {0x0301,0x0302,0x0303,0x0304,0x0305,0x0306,0x0308,0x0307};
 
 function startMining(player,zone,npc,trade,csid)
 	
 	if(trade:hasItemQty(605,1) and trade:getItemCount() == 1) then
 		
-		broke = pickaxeBreak(player,trade);
-		item = getItem(player,zone);
+		local broke = pickaxeBreak(player,trade);
+		local item = getItem(player,zone);
+		local full = 0;
 		
 		if(player:getFreeSlotsCount() == 0) then
 			full = 1;
-		else
-			full = 0;
 		end
 		
 		player:startEvent(csid,item,broke,full);
@@ -73,15 +72,17 @@ function pickaxeBreak(player,trade)
 	--------------------
 	
 	local broke = 0;
+	local pickaxebreak = math.random();
+	pickaxebreak = math.random();
 	pickaxebreak = math.random();
 	
 	--------------------
 	-- Begin Gear Bonus
 	--------------------
 	
-	Body = player:getEquipID(SLOT_BODY);
-	Hands = player:getEquipID(SLOT_HANDS);
-	Feet = player:getEquipID(SLOT_FEET);
+	local Body = player:getEquipID(SLOT_BODY);
+	local Hands = player:getEquipID(SLOT_HANDS);
+	local Feet = player:getEquipID(SLOT_FEET);
 
 	if(Body == 14374 or Body == 14375) then
 		pickaxebreak = pickaxebreak + 0.073;
@@ -108,6 +109,9 @@ end
 
 function getItem(player,zone)	
 	
+	local item = 0;
+	local Rate = math.random();
+	Rate = math.random();
 	Rate = math.random();
 	
 	for zon = 1, table.getn(drop), 2 do
@@ -127,8 +131,7 @@ function getItem(player,zone)
 	--------------------
 	
 	if (item == 769) then
-		day = VanadielDayElement();
-		item = rocks[day + 1];
+		item = rocks[VanadielDayElement() + 1];
 	end
 	
 	--------------------

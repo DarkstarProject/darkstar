@@ -103,10 +103,10 @@ end;
 -- if TP_DMG_VARIES -> three values are
 
 function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mtp100,mtp200,mtp300)
-	returninfo = {};
+	local returninfo = {};
 
 	--get dstr (bias to monsters, so no fSTR)
-	dstr = mob:getStat(MOD_STR) - target:getStat(MOD_VIT);
+	local dstr = mob:getStat(MOD_STR) - target:getStat(MOD_VIT);
 	if(dstr < -10) then
 		dstr = -10;
 	end
@@ -115,10 +115,10 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 		dstr = 10;
 	end
 
-	lvluser = mob:getMainLvl();
-	lvltarget = target:getMainLvl();
-	acc = mob:getACC();
-	eva = target:getEVA();
+	local lvluser = mob:getMainLvl();
+	local lvltarget = target:getMainLvl();
+	local acc = mob:getACC();
+	local eva = target:getEVA();
 	--apply WSC
 	local base = mob:getWeaponDmg() + dstr; --todo: change to include WSC
 	if(base < 1) then
@@ -126,7 +126,7 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	end
 
 	--work out and cap ratio
-	ratio = mob:getStat(MOD_ATT)/target:getStat(MOD_DEF);
+	local ratio = mob:getStat(MOD_ATT)/target:getStat(MOD_DEF);
 	if (ratio > 1.5) then
 		ratio = 1.5;
 	end
@@ -135,10 +135,10 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	end
 
 
-	lvldiff = lvluser - lvltarget;
+	local lvldiff = lvluser - lvltarget;
 
 	--work out hit rate for mobs (bias towards them)
-	hitrate = (acc*accmod) - eva + (lvldiff*3) + 85;
+	local hitrate = (acc*accmod) - eva + (lvldiff*3) + 85;
 
 	-- printf("acc: %f, eva: %f, hitrate: %f", acc, eva, hitrate);
 	if (hitrate > 95) then
@@ -150,7 +150,7 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	dmgmod = dmgmod * MobTPMod(skill:getTP());
 
 	--work out the base damage for a single hit
-	hitdamage = (base + lvldiff);
+	local hitdamage = (base + lvldiff);
 	if(hitdamage < 1) then
 		hitdamage = 1;
 	end
@@ -170,9 +170,9 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 
 	-- start the hits
 	local double hitchance = math.random();
-	finaldmg = 0;
-	hitsdone = 1;
-	hitslanded = 0;
+	local finaldmg = 0;
+	local hitsdone = 1;
+	local hitslanded = 0;
 
 	local double chance = math.random();
 
@@ -185,6 +185,7 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 		firstHitChance = hitrate;
 	end
 
+	local pdif = 0;
 	if ((chance*100) <= firstHitChance) then
 		pdif = math.random((minRatio*1000),(maxRatio*1000)) --generate random PDIF
 		pdif = pdif/1000; --multiplier set.
@@ -245,12 +246,12 @@ end
 -- TP_DMG_BONUS and TP=200, tpvalue = 2, assume V=150  --> damage is now 150*(TP*2)/100 = 600
 
 function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
-	returninfo = {};
+	local returninfo = {};
 	--get all the stuff we need
 	local resist = 1;
 
 	-- plus 100 forces it to be a number
-	mab = (100+mob:getMod(MOD_MATT)) / (100+target:getMod(MOD_MDEF));
+	local mab = (100+mob:getMod(MOD_MATT)) / (100+target:getMod(MOD_MDEF));
 
 	if (mab > 1.5) then
 		mab = 1.5;
@@ -260,12 +261,12 @@ function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
 		mab = 0.5;
 	end
 
-	lvluser = mob:getMainLvl();
-	lvltarget = target:getMainLvl();
+	local lvluser = mob:getMainLvl();
+	local lvltarget = target:getMainLvl();
 
-	lvldiff = lvltarget - lvluser;
+	local lvldiff = lvltarget - lvluser;
 
-	damage = dmg + lvldiff;
+	local damage = dmg + lvldiff;
 	if(damage<1) then
 		damage = 1;
 	end
@@ -276,10 +277,10 @@ function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
 
 	-- printf("power: %f, bonus: %f", damage, mab);
 	-- resistence is added last
-	finaldmg = damage * mab * dmgmod;
+	local finaldmg = damage * mab * dmgmod;
 
 	-- get resistence
-	resist = applyPlayerResistance(mob,-1,target,mob:getStat(MOD_INT)-target:getStat(MOD_INT),0,element);
+	local resist = applyPlayerResistance(mob,-1,target,mob:getStat(MOD_INT)-target:getStat(MOD_INT),0,element);
 
 	-- get elemental damage reduction
 	local defense = 1;
@@ -306,11 +307,11 @@ end
 --This determines how much the monsters ability resists on the player.
 --TODO: update all mob moves to use the new function
 function applyPlayerResistance(mob,effect,target,diff,bonus,element)
-    resist = 1.0;
-    magicaccbonus = 0;
+    local resist = 1.0;
+    local magicaccbonus = 0;
 
 	--get the base acc (just skill plus magic acc mod)
-	magicacc = getSkillLvl(1, mob:getMainLvl()) + bonus;
+	local magicacc = getSkillLvl(1, mob:getMainLvl()) + bonus;
 
 	--difference in int/mnd
 	if diff > 10 then
@@ -327,7 +328,7 @@ function applyPlayerResistance(mob,effect,target,diff,bonus,element)
 		magiceva = magiceva + target:getMod(resistMod[element]);
 	end
 
-	p = magicacc - (magiceva * 0.85);
+	local p = magicacc - (magiceva * 0.85);
 
 	--printf("acc: %f, eva: %f, bonus: %f", magicacc, magiceva, magicaccbonus);
 	--double any acc over 50 if it's over 50
@@ -339,7 +340,7 @@ function applyPlayerResistance(mob,effect,target,diff,bonus,element)
 	p = p + 45;
 
 	--add a scaling bonus or penalty based on difference of targets level from caster
-	leveldiff = mob:getMainLvl() - target:getMainLvl();
+	local leveldiff = mob:getMainLvl() - target:getMainLvl();
 	if leveldiff > 0 then
 		p = p - (25 * ( (mob:getMainLvl()) / 75 )) + leveldiff;
 	else
@@ -357,10 +358,10 @@ function applyPlayerResistance(mob,effect,target,diff,bonus,element)
 	p = p / 100;
 
     -- Resistance thresholds based on p.  A higher p leads to lower resist rates, and a lower p leads to higher resist rates.
-    half = (1 - p);
-    quart = ((1 - p)^2);
-    eighth = ((1 - p)^3);
-    sixteenth = ((1 - p)^4);
+    local half = (1 - p);
+    local quart = ((1 - p)^2);
+    local eighth = ((1 - p)^3);
+    local sixteenth = ((1 - p)^4);
     -- printf("HALF: %f", half);
     -- printf("QUART: %f", quart);
     -- printf("EIGHTH: %f", eighth);
@@ -439,36 +440,37 @@ end;
 
 function mobAddBonuses(caster, spell, target, dmg, ele)
 
-	speciesReduction = target:getMod(defenseMod[ele]);
+	local speciesReduction = target:getMod(defenseMod[ele]);
 	speciesReduction = 1.00 - (speciesReduction/1000);
 	dmg = math.floor(dmg * speciesReduction);
 
-	dayWeatherBonus = 1.00;
+	local dayWeatherBonus = 1.00;
+	local casterWx = caster:getWeather(); local casterWaist = caster:getEquipID(SLOT_WAIST);
 
-	if caster:getWeather() == singleWeatherStrong[ele] then
-		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObi[ele] then
+	if casterWx == singleWeatherStrong[ele] then
+		if math.random() < 0.33 or casterWaist == elementalObi[ele] then
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
-	elseif caster:getWeather() == singleWeatherWeak[ele] then
-		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObiWeak[ele] then
+	elseif casterWx == singleWeatherWeak[ele] then
+		if math.random() < 0.33 or casterWaist == elementalObiWeak[ele] then
 			dayWeatherBonus = dayWeatherBonus - 0.10;
 		end
-	elseif caster:getWeather() == doubleWeatherStrong[ele] then
-		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObi[ele] then
+	elseif casterWx == doubleWeatherStrong[ele] then
+		if math.random() < 0.33 or casterWaist == elementalObi[ele] then
 			dayWeatherBonus = dayWeatherBonus + 0.25;
 		end
-	elseif caster:getWeather() == doubleWeatherWeak[ele] then
-		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObiWeak[ele] then
+	elseif casterWx == doubleWeatherWeak[ele] then
+		if math.random() < 0.33 or casterWaist == elementalObiWeak[ele] then
 			dayWeatherBonus = dayWeatherBonus - 0.25;
 		end
 	end
 
 	if VanadielDayElement() == dayStrong[ele] then
-		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObi[ele] then
+		if math.random() < 0.33 or casterWaist == elementalObi[ele] then
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
 	elseif VanadielDayElement() == dayWeak[ele] then
-		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObiWeak[ele] then
+		if math.random() < 0.33 or casterWaist == elementalObiWeak[ele] then
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
 	end
@@ -479,7 +481,7 @@ function mobAddBonuses(caster, spell, target, dmg, ele)
 
 	dmg = math.floor(dmg * dayWeatherBonus);
 
-    burst, burstBonus = calculateMobMagicBurstAndBonus(caster, ele, target);
+    local burst, burstBonus = calculateMobMagicBurstAndBonus(caster, ele, target);
 
 	-- not sure what to do for this yet
     -- if(burst > 1.0) then

@@ -13,7 +13,7 @@ require("scripts/globals/status");
 -------------------------------------------------
 
 -- Zone, {npcid,npcid,npcid,..}
-npcid = {2,{16785763,16785764,16785765,16785766},
+local npcid = {2,{16785763,16785764,16785765,16785766},
 		 24,{16875843,16875844,16875845,16875846,16875847,16875848},
 		 25,{16879959,16879960,16879961,16879962,16879963,16879964},
 		 65,{17044007,17044008,17044009,17044010,17044011,17044012},
@@ -28,7 +28,7 @@ npcid = {2,{16785763,16785764,16785765,16785766},
 		 124,{17285663,17285664,17285665,17285666,17285667,17285668},
 		 140,{17350967,17350968,17350969,17350970}};
 -- Zone, {itemid,drop rate,itemid,drop rate,..}
-drop = {2,{0x1198,0.0900,0x02B0,0.1800,0x02BA,0.2700,0x039B,0.3600,0x02B7,0.4500,0x02B5,0.7050,0x02B8,0.9600,0x02BB,1.0000},
+local drop = {2,{0x1198,0.0900,0x02B0,0.1800,0x02BA,0.2700,0x039B,0.3600,0x02B7,0.4500,0x02B5,0.7050,0x02B8,0.9600,0x02BB,1.0000},
 		24,{0x02B5,0.0950,0x110B,0.1900,0x02B0,0.4400,0x02B3,0.6900,0x02BA,0.9400,0x02B2,0.9600,0x02BB,0.9800,0x1198,1.0000},
 		25,{0x02B0,0.4000,0x02B5,0.4700,0x02B3,0.5400,0x110B,0.7400,0x02BA,0.9400,0x02B2,0.9600,0x02BB,0.9800,0x1198,1.0000},
 		65,{0x15BE,0.2300,0x08A5,0.4600,0x02B6,0.5100,0x02BE,0.5600,0x02B1,0.6100,0x02BD,0.6590,0x09C7,0.7660,0x02D7,0.8730,0x02B0,0.9800,0x02D9,1.0000},
@@ -47,13 +47,12 @@ function startLogging(player,zone,npc,trade,csid)
 	
 	if(trade:hasItemQty(1021,1) and trade:getItemCount() == 1) then
 		
-		broke = hatchetBreak(player,trade);
-		item = getItem(player,zone);
+		local broke = hatchetBreak(player,trade);
+		local item = getItem(player,zone);
+		local full = 0;
 		
 		if(player:getFreeSlotsCount() == 0) then
 			full = 1;
-		else
-			full = 0;
 		end
 		
 		player:startEvent(csid,item,broke,full);
@@ -79,15 +78,17 @@ function hatchetBreak(player,trade)
 	--------------------
 	
 	local broke = 0;
+	local hatchetbreak = math.random();
+	hatchetbreak = math.random();
 	hatchetbreak = math.random();
 
 	--------------------
 	-- Begin Gear Bonus
 	--------------------
 	
-	Body = player:getEquipID(SLOT_BODY);
-	Hands = player:getEquipID(SLOT_HANDS);
-	Legs = player:getEquipID(SLOT_LEGS);
+	local Body = player:getEquipID(SLOT_BODY);
+	local Hands = player:getEquipID(SLOT_HANDS);
+	local Legs = player:getEquipID(SLOT_LEGS);
 
 	if(Body == 14374 or Body == 14375) then
 		hatchetbreak = hatchetbreak + 0.073;
@@ -113,7 +114,10 @@ function hatchetBreak(player,trade)
 end
 
 function getItem(player,zone)	
-	
+
+	local item = 0;
+	local Rate = math.random();
+	Rate = math.random();
 	Rate = math.random();
 	
 	for zon = 1, table.getn(drop), 2 do

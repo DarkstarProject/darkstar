@@ -7,7 +7,8 @@ require("scripts/globals/status");
 -----------------------------------
 
 function isArtifactArmor(itemid)
-	retval = false;
+	local retval = false;
+
 	if    (itemid >= 12511 and itemid <= 12520) then retval = true; -- normal head sets
 	elseif(itemid >= 12638 and itemid <= 12650) then retval = true; -- normal body sets
 	elseif(itemid >= 13961 and itemid <= 13975) then retval = true; -- normal hand sets

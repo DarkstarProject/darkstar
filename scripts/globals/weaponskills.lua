@@ -99,8 +99,7 @@ function doPhysicalWeaponskill(attacker, target, params)
 	if(params.acc100~=0) then
 		--ACCURACY VARIES WITH TP, APPLIED TO ALL HITS.
 		--print("Accuracy varies with TP.");
-		hr = accVariesWithTP(getHitRate(attacker,target,false),attacker:getACC(),attacker:getTP(),params.acc100,params.acc200,params.acc300);
-		hitrate = hr;
+		hitrate = accVariesWithTP(getHitRate(attacker,target,false),attacker:getACC(),attacker:getTP(),params.acc100,params.acc200,params.acc300);
 	end
 
 	local tpHitsLanded = 0;
@@ -221,9 +220,9 @@ end;
 
 function accVariesWithTP(hitrate,acc,tp,a1,a2,a3)
 	--sadly acc varies with tp ALL apply an acc PENALTY, the acc at various %s are given as a1 a2 a3
-	accpct = fTP(tp,a1,a2,a3);
-	acclost = acc - (acc*accpct);
-	hrate = hitrate - (0.005*acclost);
+	local accpct = fTP(tp,a1,a2,a3);
+	local acclost = acc - (acc*accpct);
+	local hrate = hitrate - (0.005*acclost);
 	--cap it
 	if (hrate>0.95) then
 		hrate = 0.95;

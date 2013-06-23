@@ -69,11 +69,14 @@ end;
 ------------------------------------------------------------------
 
 function getMapBitmask(player)
+	local mamook = 0;
+	local halvung = 0;
+	local arrapago = 0;
 	
-	if(player:hasKeyItem(1862)) then mamook = 1 else mamook = 0; end -- Map of Mammok
-	if(player:hasKeyItem(1863)) then halvung = 1 else halvung = 0; end -- Map of Halvung
-	if(player:hasKeyItem(1864)) then arrapago = 1 else arrapago = 0; end -- Map of Arrapago Reef
-	maps = mamook + 2 * halvung + 4 * arrapago;
+	if(player:hasKeyItem(1862)) then mamook = 1; end -- Map of Mammok
+	if(player:hasKeyItem(1863)) then halvung = 1; end -- Map of Halvung
+	if(player:hasKeyItem(1864)) then arrapago = 1; end -- Map of Arrapago Reef
+	local maps = mamook + 2 * halvung + 4 * arrapago;
 	
 	return maps;
 	
@@ -97,7 +100,7 @@ badges = { 0x030C, 0x030F, 0x0310, 0x031A, 0x031B, 0x0339, 0x033A, 0x033B, 0x037
 
 function getMercenaryRank(player)
 	
-	rank = 0;
+	local rank = 0;
 	
 	while player:hasKeyItem(badges[rank + 1]) == true do
 		rank = rank + 1;
@@ -121,7 +124,7 @@ end;
 
 function getSanctionDuration(player) 
 	
-	duration = 10800 + 1200*1;--(getMercenaryRank(player)-1);
+	local duration = 10800 + 1200*1;--(getMercenaryRank(player)-1);
 	
 	if(getAstralCandescence() == 0) then
 		duration = duration / 2;
