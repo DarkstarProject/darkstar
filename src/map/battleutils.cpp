@@ -1968,13 +1968,9 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
         if (PDefender->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING &&
             PDefender->PBattleAI->GetCurrentSpell()->getSpellGroup() != SPELLGROUP_SONG)
         { //try to interrupt the spell
-            if (TryInterruptSpell(PAttacker, PDefender))
+            if (!PDefender->PBattleAI->m_interruptSpell && TryInterruptSpell(PAttacker, PDefender))
             {
-				if(PDefender->objtype == TYPE_PC){
-					CCharEntity* PChar = (CCharEntity*) PDefender;
-					PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 16));
-				}
-                PDefender->PBattleAI->SetCurrentAction(ACTION_MAGIC_INTERRUPT);
+            	PDefender->PBattleAI->m_interruptSpell = true;
             }
         }
 
@@ -2295,7 +2291,7 @@ int32 GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 SlotID)
 uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 {
 	//checking players weapon hit count
-	uint8 num = PWeapon->getHitCount(NULL);
+	uint8 num = PWeapon->getHitCount(0);
 
 	int8 tripleAttack = PEntity->getMod(MOD_TRIPLE_ATTACK);
 	int8 doubleAttack = PEntity->getMod(MOD_DOUBLE_ATTACK);

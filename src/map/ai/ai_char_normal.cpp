@@ -1278,7 +1278,8 @@ void CAICharNormal::ActionMagicStart()
 		MagicStartError(errNo);
 		return;
 	}
-
+	
+	m_interruptSpell = false;
 	m_PChar->m_StartActionPos = m_PChar->loc.p;
 
 	m_LastActionTime = m_Tick;
@@ -1353,7 +1354,14 @@ void CAICharNormal::ActionMagicCasting()
 	if (m_Tick - m_LastActionTime >= totalCastTime ||
         m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
 	{
-		if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE)
+		if(m_interruptSpell)
+		{
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_IS_INTERRUPTED));
+			m_ActionType = ACTION_MAGIC_INTERRUPT;
+			ActionMagicInterrupt();
+			return;
+		}
+		else if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE)
            || m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MUTE))
         {
 			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,MSGBASIC_UNABLE_TO_CAST));

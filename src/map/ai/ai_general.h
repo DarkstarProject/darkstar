@@ -131,6 +131,7 @@ public:
 	~CAIGeneral();
 
     CPathFind*       m_PPathFind; // finds paths
+    bool			 m_interruptSpell; // forces interrupt of current spell being cast
     
 private:
 

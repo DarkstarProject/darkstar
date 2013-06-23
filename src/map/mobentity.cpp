@@ -145,6 +145,11 @@ uint32 CMobEntity::GetRandomGil()
 
 bool CMobEntity::CanDeaggro()
 {
+    if(m_Behaviour & BEHAVIOUR_SCENT)
+    {
+        return false;
+    }
+    
 	return !(m_Type & MOBTYPE_NOTORIOUS || m_Type & MOBTYPE_BATTLEFIELD);
 }
 

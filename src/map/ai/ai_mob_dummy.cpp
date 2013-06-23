@@ -1019,6 +1019,7 @@ void CAIMobDummy::ActionMagicStart()
 {
 	DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
 
+	m_interruptSpell = false;
 	// this must be at the top to RESET magic cast timer
 	m_LastActionTime = m_Tick;
 	m_LastMagicTime = m_Tick;
@@ -1111,14 +1112,25 @@ void CAIMobDummy::ActionMagicCasting()
 		return;
 	}
 
-	m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
+	if(m_PBattleSubTarget != m_PMob)
+	{
+		m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
+	}
 
 	if ( ((m_Tick - m_LastMagicTime) >= (float)m_PSpell->getCastTime()*((100.0f-(float)dsp_cap(m_PMob->getMod(MOD_FASTCAST),-100,50))/100.0f)) ||
         m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL,0))
 	{
-		if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE))
+
+		if(m_interruptSpell)
+		{
+			// I got force interrupted			
+			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PBattleSubTarget,0,0, MSGBASIC_IS_INTERRUPTED));
+			m_ActionType = ACTION_MAGIC_INTERRUPT;
+			ActionMagicInterrupt();
+			return;
+		}
+		else if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE))
         {
-			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PBattleSubTarget,0,0,MSGBASIC_UNABLE_TO_CAST));
 			m_ActionType = ACTION_MAGIC_INTERRUPT;
 			ActionMagicInterrupt();
 			return;
@@ -1149,14 +1161,13 @@ void CAIMobDummy::ActionMagicCasting()
 		ActionMagicFinish();
 
 	}
+
 	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE)); //need to keep HP updating
 }
 
 void CAIMobDummy::ActionMagicInterrupt()
 {
 	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
-
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PBattleSubTarget,0,0, MSGBASIC_IS_INTERRUPTED));
 
 	apAction_t Action;
     m_PMob->m_ActionList.clear();
@@ -1359,36 +1370,39 @@ void CAIMobDummy::ActionAttack()
 		return;
 	}
 
-	if(currentDistance > 20)
+    // try to standback if I can
+	if(m_PMob->m_StandbackTime)
 	{
-		// you're so far away i'm going to standback when I get closer
-		m_CanStandback = true;
-	}
-	else if(m_PSpecialSkill == NULL && !CanCastSpells())
-	{
-		// can't standback anymore cause I don't have any ranged moves
-		m_CanStandback = false;
-	}
-	else if(currentDistance < 17)
-	{
-
-		if(m_CanStandback && m_PMob->m_StandbackTime && currentDistance > m_PMob->m_ModelSize)
-	    {
-	    	uint16 halfStandback = (float)m_PMob->m_StandbackTime/4;
-	    	m_LastStandbackTime = m_Tick + rand()%(halfStandback);
-	    	m_CanStandback = false;
-	    }
-
-	    // try to standback if I can
-		if(m_Tick - m_LastStandbackTime > m_PMob->m_StandbackTime)
+		if(currentDistance > 20)
 		{
-			// speed up my ranged attacks cause i'm waiting here
-			m_LastSpecialTime -= 1000;
-			m_LastMagicTime -= 1000;
-			FinishAttack();
-			return;
+			// you're so far away i'm going to standback when I get closer
+			m_CanStandback = true;
 		}
+		else if(m_PSpecialSkill == NULL && !CanCastSpells())
+		{
+			// can't standback anymore cause I don't have any ranged moves
+			m_CanStandback = false;
+		}
+		else if(currentDistance < 17)
+		{
 
+			if(m_CanStandback && currentDistance > m_PMob->m_ModelSize)
+		    {
+		    	uint16 halfStandback = (float)m_PMob->m_StandbackTime/4;
+		    	m_LastStandbackTime = m_Tick + rand()%(halfStandback);
+		    	m_CanStandback = false;
+		    }
+
+			if(m_Tick - m_LastStandbackTime > m_PMob->m_StandbackTime)
+			{
+				// speed up my ranged attacks cause i'm waiting here
+				m_LastSpecialTime -= 1000;
+				m_LastMagicTime -= 1000;
+				FinishAttack();
+				return;
+			}
+
+		}
 	}
 
 

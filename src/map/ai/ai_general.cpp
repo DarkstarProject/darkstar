@@ -44,6 +44,7 @@ CAIGeneral::CAIGeneral()
     m_PPathFind = NULL;
     m_WaitTime = 0;
     m_LastWaitTime = 0;
+    m_interruptSpell = false;
 	Reset();
 }
 
