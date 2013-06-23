@@ -308,10 +308,13 @@ function getSupplyAvailable(nation,player)
 		mask = 4294967295; -- Need to wait 1 vanadiel day
 	end
 	
-	for nb = 0,18 do
+	for nb = 0,15 do
 		if(player:hasKeyItem(getSupplyKey(nb))) then
 			mask = -1; -- if you have supply run already activated
 		end
+	end
+	if(player:hasKeyItem(getSupplyKey(18) then -- we need to skip 16 and 17 for now
+		mask = -1;
 	end
 	
 	if(mask ~= -1 and mask ~= 4294967295) then
