@@ -313,7 +313,7 @@ function getSupplyAvailable(nation,player)
 			mask = -1; -- if you have supply run already activated
 		end
 	end
-	if(player:hasKeyItem(getSupplyKey(18) then -- we need to skip 16 and 17 for now
+	if(player:hasKeyItem(getSupplyKey(18))) then -- we need to skip 16 and 17 for now
 		mask = -1;
 	end
 	
