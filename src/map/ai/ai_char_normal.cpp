@@ -382,7 +382,7 @@ void CAICharNormal::ActionFall()
 
 	if (!m_PChar->getMijinGakure())
 		charutils::DelExperiencePoints(m_PChar,map_config.exp_retain);
-
+	m_PChar->setMijinGakure(false);
 	charutils::SaveDeathTime(m_PChar);
 
 }
