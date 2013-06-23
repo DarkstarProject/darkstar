@@ -103,13 +103,13 @@ CAutomatonUpdatePacket::CAutomatonUpdatePacket(CCharEntity* PChar)
 	WBUFW(data,(0x78)-4) = 0; //current magic skill
 	WBUFW(data,(0x7A)-4) = 0; //max magic skill
 
-	WBUFW(data,(0x80)-4) = PChar->PPet->STR;
-	WBUFW(data,(0x84)-4) = PChar->PPet->DEX;
-	WBUFW(data,(0x88)-4) = PChar->PPet->VIT;
-	WBUFW(data,(0x8C)-4) = PChar->PPet->AGI;
-	WBUFW(data,(0x90)-4) = PChar->PPet->INT;
-	WBUFW(data,(0x94)-4) = PChar->PPet->MND;
-	WBUFW(data,(0x98)-4) = PChar->PPet->CHR;
+	WBUFW(data,(0x80)-4) = PChar->PPet->STR();
+	WBUFW(data,(0x84)-4) = PChar->PPet->DEX();
+	WBUFW(data,(0x88)-4) = PChar->PPet->VIT();
+	WBUFW(data,(0x8C)-4) = PChar->PPet->AGI();
+	WBUFW(data,(0x90)-4) = PChar->PPet->INT();
+	WBUFW(data,(0x94)-4) = PChar->PPet->MND();
+	WBUFW(data,(0x98)-4) = PChar->PPet->CHR();
 
 
 	uint8 packet[] = {
