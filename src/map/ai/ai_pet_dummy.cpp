@@ -263,6 +263,10 @@ void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg){
 			    m_PBattleSubTarget = m_PBattleTarget;
 			}
 			DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+		}
+
+		if(m_PPet != m_PBattleSubTarget)
+		{
 			m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
 		}
 
@@ -294,12 +298,12 @@ void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg){
 void CAIPetDummy::ActionAbilityUsing()
 {
 	DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL && m_PMobSkill->getValidTargets()==TARGET_ENEMY && m_PPet->getPetType()!=PETTYPE_AVATAR);
+	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL && m_PMobSkill->getValidTargets()==TARGET_ENEMY && m_PPet->getPetType()!=PETTYPE_AVATAR);
 
 	if (m_PPet->objtype == TYPE_MOB)
 	{
-		if(m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget->isDead() ||
-			m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget->getZone() != m_PPet->getZone()){
+		if(m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleSubTarget->isDead() ||
+			m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleSubTarget->getZone() != m_PPet->getZone()){
 			m_ActionType = ACTION_MOBABILITY_INTERRUPT;
 			ActionAbilityInterrupt();
 			return;
@@ -307,8 +311,8 @@ void CAIPetDummy::ActionAbilityUsing()
 	}
 	else
 	{
-		if(m_PPet->getPetType()!=PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget->isDead() ||
-			m_PPet->getPetType()!=PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget->getZone() != m_PPet->getZone()){
+		if(m_PPet->getPetType()!=PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleSubTarget->isDead() ||
+			m_PPet->getPetType()!=PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleSubTarget->getZone() != m_PPet->getZone()){
 			m_ActionType = ACTION_MOBABILITY_INTERRUPT;
 			ActionAbilityInterrupt();
 			return;
@@ -327,6 +331,11 @@ void CAIPetDummy::ActionAbilityUsing()
 		}
 	}
 
+	if(m_PPet != m_PBattleSubTarget)
+	{
+		m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
+	}
+
 	//TODO: Any checks whilst the pet is preparing.
 	//NOTE: RANGE CHECKS ETC ONLY ARE DONE AFTER THE ABILITY HAS FINISHED PREPARING.
 	//      THE ONLY CHECK IN HERE SHOULD BE WITH STUN/SLEEP/TERROR/ETC
@@ -336,22 +345,22 @@ void CAIPetDummy::ActionAbilityUsing()
 		//Range check
 		if (m_PPet->objtype == TYPE_MOB)
 		{
-			if(m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleTarget!=m_PPet &&
-				distance(m_PBattleTarget->loc.p,m_PPet->loc.p) > m_PMobSkill->getDistance()){
+			if(m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleSubTarget!=m_PPet &&
+				distance(m_PBattleSubTarget->loc.p,m_PPet->loc.p) > m_PMobSkill->getDistance()){
 
 				// Pet's target is too far away (and isn't itself)
-				SendTooFarInterruptMessage(m_PBattleTarget);
+				SendTooFarInterruptMessage(m_PBattleSubTarget);
 				return;
 			}
 		}
 		else
 		{
 			if(m_PPet->getPetType()!=PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY &&
-				m_PBattleTarget!=m_PPet &&
-				distance(m_PBattleTarget->loc.p,m_PPet->loc.p) > m_PMobSkill->getDistance()){
+				m_PBattleSubTarget!=m_PPet &&
+				distance(m_PBattleSubTarget->loc.p,m_PPet->loc.p) > m_PMobSkill->getDistance()){
 
 				// Avatar's target is too far away (and isn't the avatar itself)
-				SendTooFarInterruptMessage(m_PBattleTarget);
+				SendTooFarInterruptMessage(m_PBattleSubTarget);
 				return;
 			}
 			else if(m_PPet->getPetType()==PETTYPE_AVATAR && m_PMobSkill->getValidTargets() == TARGET_ENEMY &&
@@ -380,6 +389,12 @@ void CAIPetDummy::ActionAbilityUsing()
 void CAIPetDummy::ActionAbilityFinish(){
 	DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+
+
+	if(m_PPet != m_PBattleSubTarget)
+	{
+		m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
+	}
 
 	// reset AoE finder
     m_PTargetFind->reset();
@@ -521,6 +536,8 @@ void CAIPetDummy::ActionRoaming()
 			m_PBattleTarget = m_PPet->PMaster->PBattleAI->GetBattleTarget();
 		}
 		if(WyvernIsHealing()){
+			m_PPathFind->LookAt(m_PPet->PMaster->loc.p);
+
 			m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
 			if(m_PPet->PMaster->objtype == TYPE_PC){
 				((CCharEntity*)m_PPet->PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)m_PPet->PMaster));
@@ -769,7 +786,7 @@ void CAIPetDummy::ActionSleep()
 		}
 		m_ActionType = (m_PPet->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
     }
-	//TODO: possibly change this so have ActionBeforeSleep then ActionSleep (send ENTITY_UPDATE once only rather than spam)
+    
 	m_PPet->loc.zone->PushPacket(m_PPet,CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
 }
 
