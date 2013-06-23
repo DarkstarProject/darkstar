@@ -92,9 +92,9 @@ CAutomatonUpdatePacket::CAutomatonUpdatePacket(CCharEntity* PChar)
 	memcpy(data+(0x58)-4,PChar->PPet->GetName(),PChar->PPet->name.size());
 
 	WBUFW(data,(0x68)-4) = PChar->PPet->health.hp;
-	WBUFW(data,(0x6A)-4) = PChar->PPet->GetMaxHP;
+	WBUFW(data,(0x6A)-4) = PChar->PPet->GetMaxHP();
 	WBUFW(data,(0x6C)-4) = PChar->PPet->health.mp;
-	WBUFW(data,(0x6E)-4) = PChar->PPet->GetMaxMP;
+	WBUFW(data,(0x6E)-4) = PChar->PPet->GetMaxMP();
 
 	WBUFW(data,(0x70)-4) = 0; //current melee skill
 	WBUFW(data,(0x72)-4) = 0; //max melee skill
