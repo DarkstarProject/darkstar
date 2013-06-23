@@ -16,6 +16,6 @@
 -----------------------------------
 
 function onTrigger(player,target,variable,value)
-	pc = GetPlayerByName(target);
+	local pc = GetPlayerByName(target);
 	pc:setVar(variable,value);
 end;

@@ -13,7 +13,7 @@ require("scripts/globals/keyitems");
 
 function onTrigger(player,target,keyID)
 
-	pc = GetPlayerByName(target);
+	local pc = GetPlayerByName(target);
 
 	pc:delKeyItem(keyID);
 	pc:messageSpecial(KEYITEM_OBTAINED+1,keyID);

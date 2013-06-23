@@ -13,7 +13,7 @@ require("scripts/globals/keyitems");
 function onTrigger(player, target)
 
 
-    keyids = {  383,  385,  386,  387,  388,  389,  390,  391,  392,  393,  394,  395,  396,  397,  398,  399,  400,
+    local keyids = {  383,  385,  386,  387,  388,  389,  390,  391,  392,  393,  394,  395,  396,  397,  398,  399,  400,
 		401,  402,  403,  404,  405,  406,  407,  408,  409,  410,  411,  412,  413,  414,  415,  416,  417,
 		418,  419,  420,  421,  422,  423,  424,  425,  426,  427,  428,  429,  430,  431,  432,  433,  434,
 		435,  436,  437,  438,  439,  440,  441,  442,  443,  444,  445,  446,  447, 1856, 1857, 1858, 1859,
@@ -24,7 +24,7 @@ function onTrigger(player, target)
 		target = player;
 	end
 
-	pc = GetPlayerByName(target); -- If you use this command on yourself you will see an error in your gameserver here, it's OK though.
+	local pc = GetPlayerByName(target); -- If you use this command on yourself you will see an error in your gameserver here, it's OK though.
 	if (pc~=nil) then
 		for i, keyid in ipairs(keyids) do
 			pc:addKeyItem(keyid);

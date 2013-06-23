@@ -9,6 +9,6 @@
 -----------------------------------
 
 function onTrigger(player,target,quantity)
-	pc = GetPlayerByName(target);
+	local pc = GetPlayerByName(target);
 	pc:addGil(quantity);
 end;

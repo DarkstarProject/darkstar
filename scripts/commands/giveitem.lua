@@ -13,7 +13,7 @@
 
 function onTrigger(player,target,itemID,quantity)
 
-	pc = GetPlayerByName(target);
+	local pc = GetPlayerByName(target);
     
     if (pc ~= nil) then
         local TextIDs = "scripts/zones/" .. pc:getZoneName() .. "/TextIDs";

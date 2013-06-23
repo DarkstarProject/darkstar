@@ -13,7 +13,7 @@ function onTrigger(gm, target)
 	--printf("@pardon by %d", player:getID());
 	--printf("Parameters: %s", target);
 	
-	pc = GetPlayerByName(target);
+	local pc = GetPlayerByName(target);
 	
 	if(pc ~= nil) then
 		local pardon_message = string.format("%d pardoning %d(%s)", gm:getID(), pc:getID(), target);

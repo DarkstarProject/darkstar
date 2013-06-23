@@ -28,7 +28,7 @@ MAX_CELL = 32;
 	
 function onTrigger(gm, target, cellNumber, reason)
 		
-	pc = GetPlayerByName(target);
+	local pc = GetPlayerByName(target);
 	
 	if(pc ~= nil) then
 		if(cellNumber == nil or cellNumber == 0 or cellNumber > MAX_CELL) then

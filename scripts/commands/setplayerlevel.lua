@@ -9,6 +9,6 @@
 -----------------------------------
 
 function onTrigger(player,target,level)
-	pc = GetPlayerByName(target);
+	local pc = GetPlayerByName(target);
 	pc:setLevel(level);
 end;

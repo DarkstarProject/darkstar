@@ -9,7 +9,7 @@
 -----------------------------------
 
 function onTrigger(player,target)
-	pc = GetPlayerByName(target)
+	local pc = GetPlayerByName(target)
 	if(pc~=nil) then
 		zone = pc:getZone();
 		targetX = pc:getXPos();
