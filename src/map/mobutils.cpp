@@ -126,6 +126,9 @@ uint16 GetBase(CMobEntity * PMob, uint8 rank)
 void CalculateStats(CMobEntity * PMob)
 {
 	bool isNM = PMob->m_Type & MOBTYPE_NOTORIOUS;
+	JOBTYPE mJob = PMob->GetMJob();
+	JOBTYPE sJob = PMob->GetSJob();
+
 	if(PMob->HPmodifier == 0){
 
 		float growth = 1.06;
@@ -172,7 +175,7 @@ void CalculateStats(CMobEntity * PMob)
 		//printf("HP: %u \n",PMob->health.maxhp);
 	}
 
-	switch(PMob->GetMJob()){
+	switch(mJob){
 	case JOB_PLD:
 	case JOB_WHM:
 	case JOB_BLM:
@@ -311,12 +314,14 @@ void CalculateStats(CMobEntity * PMob)
 		}
 
 	}
-	else if(PMob->GetMJob() == JOB_NIN)
+	else if(mJob == JOB_NIN)
 	{
 		PMob->m_SpecialCoolDown = 30000;
 		PMob->m_SpecialSkill = 16;
+
+		PMob->m_StandbackTime = 10000;
 	}
-	else if(PMob->GetMJob() == JOB_DRG && PMob->m_Family != 193)
+	else if(mJob == JOB_DRG && PMob->m_Family != 193)
 	{
 		PMob->m_SpecialCoolDown = 60000;
 
@@ -342,12 +347,12 @@ void CalculateStats(CMobEntity * PMob)
 	// set recast times for summoning pets
 	if(!PMob->isInDynamis())
 	{
-		if(PMob->GetMJob() == JOB_BST)
+		if(mJob == JOB_BST)
 		{
 			PMob->m_SpecialCoolDown = 120000;
 			PMob->m_SpecialSkill = 761;
 		}
-		else if(PMob->GetMJob() == JOB_DRG && !isNM)
+		else if(mJob == JOB_DRG && !isNM)
 		{
 			// only drgs in 3rd expansion calls wyvern as non-NM
 			// include fomors
@@ -358,7 +363,7 @@ void CalculateStats(CMobEntity * PMob)
 				PMob->m_SpecialCoolDown = 720000;
 			}
 		}
-		else if(PMob->GetMJob() == JOB_PUP)
+		else if(mJob == JOB_PUP)
 		{
 			PMob->m_SpecialSkill = 1645;
 			PMob->m_SpecialCoolDown = 720000;
@@ -373,8 +378,41 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->m_roamFlags |= ROAMFLAG_AMBUSH;
 	}
 
-	// setup standback info
+
+	// handle standback
 	// mobs that stand back: blm, whm, rng, cor
+	if(mJob == JOB_RNG)
+	{
+
+		// giga
+		if(PMob->m_Family == 126 && PMob->m_Family <= 130)
+		{
+			PMob->m_StandbackTime = 20000;
+		}
+		else if(PMob->m_Family == 199)
+		{
+			// they stay back forever
+			PMob->m_StandbackTime = 50000;
+		}
+		else 
+		{
+			PMob->m_StandbackTime = 35000;
+		}
+
+	}
+	else if(mJob == JOB_COR)
+	{
+		PMob->m_StandbackTime = 35000;
+	}
+	else if(mJob == JOB_NIN)
+	{
+		PMob->m_StandbackTime = 20000;
+	}
+	else
+	{
+		PMob->m_StandbackTime = 0;
+	}
+
 
 	// clear current traits first
     for (uint8 i = 0; i < PMob->TraitList.size(); ++i)

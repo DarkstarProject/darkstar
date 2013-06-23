@@ -246,7 +246,7 @@ INSERT INTO `mob_skill` VALUES (109,81,833,'Spinning_Top', 1, 10.0, 2000, 1000, 
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Tarsal_Slam', 4, 10.0, 2000, 1000, 4, 0); -- Only used by certain notorious monsters
 
 -- Memory Receptacle
-INSERT INTO `mob_skill` VALUES (286,181,841,'Empty_Seed', 1, 20.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (286,181,841,'Empty_Seed', 1, 20.0, 2000, 2000, 4, 0);
 -- Weeper
 INSERT INTO `mob_skill` VALUES (961,256,834,'Empty_Cutter', 0, 7.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (962,256,835,'Vacuous_Osculation', 0, 7.0, 2000, 1000, 4, 0);
@@ -595,13 +595,13 @@ INSERT INTO `mob_skill` VALUES (330,136,330,'Blank_Gaze', 0, 7.0, 2000, 1000, 4,
 INSERT INTO `mob_skill` VALUES (331,136,331,'Antiphase', 1, 15.0, 2000, 1000, 4, 0);
 -- Goblin
 INSERT INTO `mob_skill` VALUES(334, 133, 334, 'Goblin_Rush', 0, 6.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES(335, 133, 335, 'Bomb_Toss', 2, 8.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES(335, 133, 335, 'Bomb_Toss', 2, 13.5, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES(336, 133, 336, 'Bomb_Toss_Suicide', 1, 8.0, 2000, 1000, 4, 0);
 -- INSERT INTO `mob_skill` VALUES(0, 0, 0, 'Saucepan', 4, 7.0, 2000, 1000, 4, 0); -- Only by NM
 -- Dynamis Goblin
 INSERT INTO `mob_skill` VALUES (0,327,432,'Two_Hour', 0, 7.0, 2000, 0, 4, 0);
 INSERT INTO `mob_skill` VALUES(334, 327, 334, 'Goblin_Rush', 0, 6.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES(335, 327, 335, 'Bomb_Toss', 2, 8.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES(335, 327, 335, 'Bomb_Toss', 2, 13.5, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (826,327,744,'Smokebomb', 4, 10.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (828,327,746,'Crispy_Candle', 4, 10.0, 2000, 1000, 4, 0);
 INSERT INTO `mob_skill` VALUES (830,327,748,'Paralysis_Shower', 4, 10.0, 2000, 1000, 4, 0);

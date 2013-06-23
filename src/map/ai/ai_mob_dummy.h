@@ -66,6 +66,9 @@ protected:
   uint32 m_StunTime;
   float m_skillTP;
 
+  bool  m_CanStandback;
+  uint32 m_LastStandbackTime;
+
 	void ActionRoaming();
 	void ActionEngage();
 	void ActionDisengage();
@@ -82,6 +85,7 @@ protected:
   void ActionAbilityInterrupt();
 
   void ActionAttack();
+  void FinishAttack();
 
   void ActionSleep();
   void ActionStun();
@@ -95,6 +99,8 @@ protected:
   void ActionSpecialSkill();
 
   // helper functions
+  bool TryDeaggro();
+  void TryLink();
   bool CanCastSpells();
   bool TryCastSpell(); // logic for spell casting, returns true if found one to cast
   bool TrySpecialSkill();

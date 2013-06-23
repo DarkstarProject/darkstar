@@ -76,6 +76,7 @@ CMobEntity::CMobEntity()
 
     m_SpecialCoolDown = 0;
     m_RoamCoolDown = 45000;
+    m_StandbackTime = 0;
 
 	memset(& m_SpawnPoint, 0, sizeof(m_SpawnPoint));
 

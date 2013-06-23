@@ -928,7 +928,7 @@ void DespawnPet(CBattleEntity* PMaster)
 					}
 
 					PMob->isCharmed = false;
-					PMob->charmTime = NULL;
+					PMob->charmTime = 0;
 					PMob->PMaster = NULL;
 
 					delete PMob->PBattleAI;

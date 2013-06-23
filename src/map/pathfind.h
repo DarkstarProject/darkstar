@@ -116,7 +116,7 @@ class CPathFind
     position_t* m_PLastPoint;
 
     uint8 m_pathFlags;
-    uint8 m_roamFlags;
+    uint16 m_roamFlags;
     bool m_onPoint;
     int16 m_currentPoint;
     int16 m_pathLength;

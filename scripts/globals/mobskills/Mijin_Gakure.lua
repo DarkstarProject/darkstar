@@ -27,6 +27,11 @@ function OnMobWeaponSkill(target, mob, skill)
 
     local info = MobMagicalMove(mob,target,skill,baseDmg,ELE_NONE,dmgmod,TP_MAB_BONUS,1);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_IGNORE_SHADOWS);
+
+    -- dynamis mobs will kill themselves
+    -- other mobs might now
+    mob:setHP(0);
+
     target:delHP(dmg);
     return dmg;
 end;

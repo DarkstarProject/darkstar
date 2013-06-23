@@ -53,7 +53,7 @@ enum SPECIALFLAG
   SPECIALFLAG_HIDDEN = 0x1 // only use special when hidden
 };
 
-enum ROAMFLAG
+enum ROAMFLAG : uint16
 {
   ROAMFLAG_NONE = 0x0,
   ROAMFLAG_SMALL = 0x01, // move around less than 5
@@ -112,6 +112,7 @@ public:
   	uint32		m_SpecialCoolDown;					// Cool down time between uses.
     uint16        m_SpecialSkill; // mobskill id to use
     uint16    m_RoamCoolDown; // Amount of time between roam actions
+    uint16    m_StandbackTime; // how long the mob will standback for
 
   uint32    m_DropID;             // номер группы оставляемых монстром предметов после смерти
 
@@ -124,7 +125,7 @@ public:
     float       MPscale;                // MP boost percentage
     uint8       linkRadius;                         // mobs have different link radiuses
 
-    uint8 m_roamFlags; // defines its roaming behaviour
+    uint16 m_roamFlags; // defines its roaming behaviour
     uint8 m_specialFlags; // flags for special skill
 
     // stat ranks
