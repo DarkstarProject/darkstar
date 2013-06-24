@@ -1025,7 +1025,7 @@ void CAIMobDummy::ActionMagicStart()
 	m_LastMagicTime = m_Tick;
 
 	// don't use special right after magic
-	m_LastSpecialTime += rand()%5000 + 1000;
+	m_LastSpecialTime += rand()%5000 + 2000;
 
 	// check valid targets
 	if (m_PSpell->getValidTarget() & TARGET_SELF) {
@@ -1373,23 +1373,26 @@ void CAIMobDummy::ActionAttack()
     // try to standback if I can
 	if(m_PMob->m_StandbackTime)
 	{
-		if(currentDistance > 20)
+		if(currentDistance > 32)
 		{
 			// you're so far away i'm going to standback when I get closer
 			m_CanStandback = true;
 		}
-		else if(m_PSpecialSkill == NULL && !CanCastSpells())
+		else if(m_PSpecialSkill == NULL && !CanCastSpells() || m_PMob->GetHPP() <= 65)
 		{
 			// can't standback anymore cause I don't have any ranged moves
 			m_CanStandback = false;
+
+			// don't stand back again
+			m_LastStandbackTime = m_Tick + m_PMob->m_StandbackTime;
 		}
-		else if(currentDistance < 17)
+		else if(currentDistance < 21)
 		{
 
 			if(m_CanStandback && currentDistance > m_PMob->m_ModelSize)
 		    {
-		    	uint16 halfStandback = (float)m_PMob->m_StandbackTime/4;
-		    	m_LastStandbackTime = m_Tick + rand()%(halfStandback);
+		    	uint16 halfStandback = (float)m_PMob->m_StandbackTime/3;
+		    	m_LastStandbackTime = m_Tick + m_PMob->m_StandbackTime - rand()%(halfStandback);
 		    	m_CanStandback = false;
 		    }
 
@@ -1414,7 +1417,7 @@ void CAIMobDummy::ActionAttack()
 		if(!m_PPathFind->IsFollowingPath() || ++m_ChaseThrottle == 4)
 		{
 			m_ChaseThrottle = 0;
-			m_PPathFind->PathAround(m_PBattleTarget->loc.p, 1.0f, PATHFLAG_WALLHACK | PATHFLAG_RUN);
+			m_PPathFind->PathAround(m_PBattleTarget->loc.p, 2.0f, PATHFLAG_WALLHACK | PATHFLAG_RUN);
 		}
 
 		if(m_PPathFind->IsFollowingPath())

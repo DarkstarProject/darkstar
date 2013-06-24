@@ -260,7 +260,7 @@ bool CMobEntity::CanUseTwoHour()
         return false;
     }
 
-    if(m_Type & MOBTYPE_NOTORIOUS || isInDynamis())
+    if((m_Type & MOBTYPE_NOTORIOUS) || isInDynamis())
     {
         return true;
     }

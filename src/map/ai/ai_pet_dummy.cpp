@@ -564,7 +564,7 @@ void CAIPetDummy::ActionRoaming()
 
 	if (currentDistance > PET_ROAM_DISTANCE)
 	{
-		if(currentDistance <= 28.0f && m_PPathFind->PathAround(m_PPet->PMaster->loc.p, 1.5f, PATHFLAG_RUN | PATHFLAG_WALLHACK))
+		if(currentDistance <= 28.0f && m_PPathFind->PathAround(m_PPet->PMaster->loc.p, 2.0f, PATHFLAG_RUN | PATHFLAG_WALLHACK))
 		{
 			m_PPathFind->FollowPath();
 		}
@@ -677,7 +677,7 @@ void CAIPetDummy::ActionAttack()
 	//go to target if its too far away
 	if (currentDistance > m_PBattleTarget->m_ModelSize)
 	{
-		if(m_PPathFind->PathAround(m_PBattleTarget->loc.p, 1.0f, PATHFLAG_RUN | PATHFLAG_WALLHACK))
+		if(m_PPathFind->PathAround(m_PBattleTarget->loc.p, 2.0f, PATHFLAG_RUN | PATHFLAG_WALLHACK))
 		{
 			m_PPathFind->FollowPath();
 

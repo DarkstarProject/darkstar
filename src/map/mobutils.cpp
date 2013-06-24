@@ -156,7 +156,7 @@ void CalculateStats(CMobEntity * PMob)
 		// pets have lower health
 		if(PMob->PMaster != NULL)
 		{
-			growth = 1.0;
+			growth = 0.95;
 		}
 
 
@@ -296,7 +296,7 @@ void CalculateStats(CMobEntity * PMob)
 	}
 
 	// setup special ability
-	if(PMob->GetMJob() == JOB_RNG)
+	if(mJob == JOB_RNG)
 	{
 
 		// giga
@@ -405,15 +405,15 @@ void CalculateStats(CMobEntity * PMob)
 	}
 	else if(mJob == JOB_BLM)
 	{
-		// PMob->m_StandbackTime = 60000;
+		PMob->m_StandbackTime = 42000;
 	}
 	else if(mJob == JOB_WHM)
 	{
-		// PMob->m_StandbackTime = 50000;
+		PMob->m_StandbackTime = 32000;
 	}
 	else if(mJob == JOB_NIN)
 	{
-		PMob->m_StandbackTime = 30000;
+		PMob->m_StandbackTime = 25000;
 	}
 	else
 	{
@@ -595,7 +595,7 @@ void GetAvailableSpells(CMobEntity* PMob) {
 			buffChance = 30;
 		break;
 		case JOB_NIN:
-			buffChance = 40;
+			buffChance = 32;
 		break;
 		case JOB_BRD:
 			gaChance = 30;

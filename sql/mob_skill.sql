@@ -1377,7 +1377,7 @@ INSERT INTO `mob_skill` VALUES (697,263,655,'Dragon_Breath', 4, 18.0, 2000, 1000
 
 INSERT INTO `mob_skill` VALUES (0,335,432,'Two_Hour', 0, 15.0, 2000, 0, 4, 0);
 INSERT INTO `mob_skill` VALUES (772,335,729,'Tackle', 0, 7.0, 2000, 0, 4, 0);
-INSERT INTO `mob_skill` VALUES (777,335,734,'Dragon_Kick', 0, 7.0, 2000, 0, 4, 0);
+INSERT INTO `mob_skill` VALUES (777,335,734,'Dragon_Kick', 0, 10.0, 2000, 0, 4, 0);
 INSERT INTO `mob_skill` VALUES (778,335,735,'Asuran_Fists', 0, 7.0, 2000, 0, 4, 0);
 
 -- --------------------------------------

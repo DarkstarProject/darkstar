@@ -10,7 +10,7 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnMobSkillCheck(target,mob,skill)
-    if(mob:getHPP() <= 50) then
+    if(mob:getHPP() <= 60) then
         return 0;
     end
     return 1;
@@ -20,17 +20,25 @@ function OnMobWeaponSkill(target, mob, skill)
     local dmgmod = 1;
 
 	if(mob:getHP()~=0) then
-		dmgmod = mob:getHP()/mob:getMaxHP();
+		dmgmod = mob:getHP()/ mob:getMaxHP();
 	end
 
-    local baseDmg = mob:getWeaponDmg() * math.random(22,30) * dmgmod;
+    local randomPower = math.random(18,21);
+
+    if(mob:isInDynamis()) then
+        randomPower = math.random(22,25);
+    end
+
+    local baseDmg = mob:getWeaponDmg() * randomPower * dmgmod;
 
     local info = MobMagicalMove(mob,target,skill,baseDmg,ELE_NONE,dmgmod,TP_MAB_BONUS,1);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_IGNORE_SHADOWS);
 
-    -- dynamis mobs will kill themselves
-    -- other mobs might now
-    mob:setHP(0);
+    if(mob:isInDynamis()) then
+        -- dynamis mobs will kill themselves
+        -- other mobs might now
+        mob:setHP(0);
+    end
 
     target:delHP(dmg);
     return dmg;
