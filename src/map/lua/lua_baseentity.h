@@ -441,7 +441,6 @@ public:
     // int32 RoamAround(lua_State* L); // pick a random point to walk to
     // int32 LimitDistance(lua_State* L); // limits the current path distance to given max distance
 
-    int32 getLastPoint(lua_State* L); // returns last pathfind point at
     int32 atPoint(lua_State* L); // is at given point
     int32 lookAt(lua_State* L); // look at given position
     int32 isFollowingPath(lua_State* L); // checks if the entity is following a path

@@ -107,7 +107,7 @@ int16 CMobSpellContainer::GetSpell()
   }
 
   // almost always use na if I can
-  if(HasNaSpells() && rand()%100 < 60){
+  if(HasNaSpells() && rand()%100 < 50){
     // will return -1 if no proper na spell exists
     spellId = GetNaSpell();
     if(spellId > -1){

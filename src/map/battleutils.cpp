@@ -3929,7 +3929,7 @@ void assistTarget(CCharEntity* PChar, uint16 TargID)
 	// get the player we want to assist
 	CBattleEntity* PlayerToAssist = (CBattleEntity*)PChar->loc.zone->GetEntity(TargID, TYPE_PC);
 
-	if (PlayerToAssist != NULL && PlayerToAssist->m_TargID != NULL && PlayerToAssist->objtype == TYPE_PC)
+	if (PlayerToAssist != NULL && PlayerToAssist->m_TargID != 0 && PlayerToAssist->objtype == TYPE_PC)
 	{
 		// get that players target (mob,player,pet only)
 		CBattleEntity* EntityToLockon = (CBattleEntity*)PChar->loc.zone->GetEntity(PlayerToAssist->m_TargID, TYPE_MOB | TYPE_PC | TYPE_PET);

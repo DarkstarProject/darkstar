@@ -39,7 +39,7 @@ enum PATHFLAG {
   PATHFLAG_NONE = 0,
   PATHFLAG_RUN = 1, // run twice the speed
   PATHFLAG_WALLHACK = 2, // run through walls if path is too long
-  PATHFLAG_REVERSE = 4// reverse the path
+  PATHFLAG_REVERSE = 4 // reverse the path
 };
 
 class CPathFind
@@ -53,6 +53,9 @@ class CPathFind
 
     // find and walk to the given point
     bool PathTo(position_t point, uint8 pathFlags = 0);
+
+    // move some where around the point
+    bool PathAround(position_t point, float distance, uint8 pathFlags = 0);
 
     // walk through the given points. No new points made.
     bool PathThrough(position_t* points, uint8 totalPoints, uint8 pathFlags = 0);
@@ -70,13 +73,14 @@ class CPathFind
     // returns true if entity is on a way point
     bool OnPoint();
 
-    // returns last point in path target was that
-    position_t* GetLastPoint();
-
     // stops pathfinding after moving the given distance
     // this can be used to prevent mobs from walking
     // all the way to a point
     void LimitDistance(float maxDistance);
+
+    // will only get this close towards the final point
+    // useful to stop mobs from walking too close to players
+    void StopWithin(float within);
 
     // tells entity to take one step towards position
     void StepTo(position_t* pos, bool run = false);

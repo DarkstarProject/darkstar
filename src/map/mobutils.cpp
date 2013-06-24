@@ -318,8 +318,6 @@ void CalculateStats(CMobEntity * PMob)
 	{
 		PMob->m_SpecialCoolDown = 30000;
 		PMob->m_SpecialSkill = 16;
-
-		PMob->m_StandbackTime = 10000;
 	}
 	else if(mJob == JOB_DRG && PMob->m_Family != 193)
 	{
@@ -381,7 +379,7 @@ void CalculateStats(CMobEntity * PMob)
 
 
 	// handle standback
-	// mobs that stand back: blm, whm, rng, cor
+	// mobs that stand back: blm, whm, rng, cor, nin
 	if(mJob == JOB_RNG)
 	{
 
@@ -393,21 +391,29 @@ void CalculateStats(CMobEntity * PMob)
 		else if(PMob->m_Family == 199)
 		{
 			// they stay back forever
-			PMob->m_StandbackTime = 65535;
+			PMob->m_StandbackTime = 90000;
 		}
 		else 
 		{
-			PMob->m_StandbackTime = 45000;
+			PMob->m_StandbackTime = 60000;
 		}
 
 	}
 	else if(mJob == JOB_COR)
 	{
-		PMob->m_StandbackTime = 45000;
+		PMob->m_StandbackTime = 60000;
+	}
+	else if(mJob == JOB_BLM)
+	{
+		// PMob->m_StandbackTime = 60000;
+	}
+	else if(mJob == JOB_WHM)
+	{
+		// PMob->m_StandbackTime = 50000;
 	}
 	else if(mJob == JOB_NIN)
 	{
-		PMob->m_StandbackTime = 20000;
+		PMob->m_StandbackTime = 30000;
 	}
 	else
 	{

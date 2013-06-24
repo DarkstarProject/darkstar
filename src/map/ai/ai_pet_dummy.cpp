@@ -265,11 +265,6 @@ void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg){
 			DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 		}
 
-		if(m_PPet != m_PBattleSubTarget)
-		{
-			m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
-		}
-
 		Action.ActionTarget = m_PBattleSubTarget;
 		Action.reaction   = REACTION_HIT;
 		Action.speceffect = SPECEFFECT_HIT;
@@ -333,7 +328,19 @@ void CAIPetDummy::ActionAbilityUsing()
 
 	if(m_PPet != m_PBattleSubTarget)
 	{
-		m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
+
+		// move towards target if i'm too far away
+		float currentDistance = distance(m_PPet->loc.p, m_PBattleSubTarget->loc.p);
+
+		//go to target if its too far away
+		if (currentDistance > m_PMobSkill->getDistance() && m_PPathFind->PathTo(m_PBattleSubTarget->loc.p, PATHFLAG_RUN | PATHFLAG_WALLHACK))
+		{
+			m_PPathFind->FollowPath();
+		}
+		else
+		{
+			m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
+		}
 	}
 
 	//TODO: Any checks whilst the pet is preparing.
@@ -384,22 +391,13 @@ void CAIPetDummy::ActionAbilityUsing()
 		m_ActionType = ACTION_MOBABILITY_FINISH;
 		ActionAbilityFinish();
 	}
-	else
-	{
-		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
-	}
-
+	
+    m_PPet->loc.zone->PushPacket(m_PPet,CHAR_INRANGE,new CEntityUpdatePacket(m_PPet,ENTITY_UPDATE));
 }
 
 void CAIPetDummy::ActionAbilityFinish(){
 	DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
-
-
-	if(m_PPet != m_PBattleSubTarget)
-	{
-		m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
-	}
 
 	// reset AoE finder
     m_PTargetFind->reset();
@@ -475,8 +473,6 @@ void CAIPetDummy::ActionAbilityFinish(){
 
 	if(Action.ActionTarget!=NULL && m_PPet->getPetType()==PETTYPE_AVATAR){ //todo: remove pet type avatar maybe
 		Action.ActionTarget->loc.zone->PushPacket(Action.ActionTarget,CHAR_INRANGE,new CEntityUpdatePacket(Action.ActionTarget,ENTITY_UPDATE));
-
-		m_PPet->loc.zone->PushPacket(m_PPet,CHAR_INRANGE,new CEntityUpdatePacket(m_PPet,ENTITY_UPDATE));
 	}
 
 	m_PBattleSubTarget = NULL;
@@ -568,13 +564,13 @@ void CAIPetDummy::ActionRoaming()
 
 	if (currentDistance > PET_ROAM_DISTANCE)
 	{
-		if(currentDistance <= 28.0f && m_PPathFind->PathTo(m_PPet->PMaster->loc.p, PATHFLAG_RUN | PATHFLAG_WALLHACK))
+		if(currentDistance <= 28.0f && m_PPathFind->PathAround(m_PPet->PMaster->loc.p, 1.5f, PATHFLAG_RUN | PATHFLAG_WALLHACK))
 		{
 			m_PPathFind->FollowPath();
 		}
 		else
 		{
-			m_PPathFind->WarpTo(m_PPet->PMaster->loc.p);
+			m_PPathFind->WarpTo(m_PPet->PMaster->loc.p, PET_ROAM_DISTANCE);
 		}
 
         m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
@@ -597,7 +593,7 @@ void CAIPetDummy::ActionEngage()
 	if(m_PBattleTarget->m_OwnerID.id == m_PPet->PMaster->id)
 		hasClaim = true;
 
-	if(m_PBattleTarget->m_OwnerID.id == NULL)
+	if(m_PBattleTarget->m_OwnerID.id == 0)
 		hasClaim = true;
 
 
@@ -681,7 +677,7 @@ void CAIPetDummy::ActionAttack()
 	//go to target if its too far away
 	if (currentDistance > m_PBattleTarget->m_ModelSize)
 	{
-		if(m_PPathFind->PathTo(m_PBattleTarget->loc.p, PATHFLAG_RUN | PATHFLAG_WALLHACK))
+		if(m_PPathFind->PathAround(m_PBattleTarget->loc.p, 1.0f, PATHFLAG_RUN | PATHFLAG_WALLHACK))
 		{
 			m_PPathFind->FollowPath();
 

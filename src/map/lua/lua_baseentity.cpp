@@ -4766,7 +4766,7 @@ inline int32 CLuaBaseEntity::spawnPet(lua_State *L)
 
 		if(mob->PPet == NULL)
 		{
-			ShowError("lua_baseentity::spawnPet Mob %d pet is NULL\n", mob->id);
+			ShowError("lua_baseentity::spawnPet Mob (%d) pet is NULL\n", mob->id);
 			return 0;
 		}
 
@@ -6908,34 +6908,6 @@ inline int32 CLuaBaseEntity::atPoint(lua_State* L)
 	return 1;
 }
 
-inline int32 CLuaBaseEntity::getLastPoint(lua_State* L)
-{
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-
-	position_t* PLastPoint = m_PBaseEntity->PBattleAI->m_PPathFind->GetLastPoint();
-
-	if(PLastPoint == NULL)
-	{
-		lua_pushnil(L);
-	}
-	else
-	{
-		lua_createtable(L, 3, 0);
-	    int8 newTable = lua_gettop(L);
-
-	    lua_pushnumber(L, m_PBaseEntity->loc.p.x);
-	    lua_rawseti(L, newTable, 1);
-
-	    lua_pushnumber(L, m_PBaseEntity->loc.p.y);
-	    lua_rawseti(L, newTable, 2);
-
-	    lua_pushnumber(L, m_PBaseEntity->loc.p.z);
-	    lua_rawseti(L, newTable, 3);
-	}
-
-	return 1;
-}
-
 /*
 Usage:
 
@@ -7340,7 +7312,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBaseMP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,pathThrough),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,atPoint),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getLastPoint),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,lookAt),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,clearPath),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isFollowingPath),

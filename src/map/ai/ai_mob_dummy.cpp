@@ -561,6 +561,7 @@ void CAIMobDummy::ActionSpawn()
 	if ((m_Tick - m_LastActionTime) > m_PMob->m_RespawnTime)
 	{
 
+		m_LastActionTime = m_Tick + rand() % 8000;
 		m_SpawnTime = m_Tick;
 		m_firstSpell = true;
 		m_ActionType = ACTION_ROAMING;
@@ -610,7 +611,7 @@ void CAIMobDummy::ActionSpawn()
 		}
 
 		if(m_PMob->PMaster != NULL){
-			m_PMob->loc.p = nearPosition(m_PMob->PMaster->loc.p, 2.0f, M_PI);
+			m_PMob->loc.p = nearPosition(m_PMob->PMaster->loc.p, 2.1f, M_PI);
 
 			CMobEntity* PMaster = (CMobEntity*)m_PMob->PMaster;
 
@@ -1413,11 +1414,12 @@ void CAIMobDummy::ActionAttack()
 		if(!m_PPathFind->IsFollowingPath() || ++m_ChaseThrottle == 4)
 		{
 			m_ChaseThrottle = 0;
-			m_PPathFind->PathTo(m_PBattleTarget->loc.p, PATHFLAG_WALLHACK | PATHFLAG_RUN);
+			m_PPathFind->PathAround(m_PBattleTarget->loc.p, 1.0f, PATHFLAG_WALLHACK | PATHFLAG_RUN);
 		}
 
 		if(m_PPathFind->IsFollowingPath())
 		{
+			// m_PPathFind->CurvePath(0.5f);
 			m_PPathFind->FollowPath();
 
 			// recalculate
@@ -1965,7 +1967,7 @@ void CAIMobDummy::FollowPath()
 		{
 
 			// pet should follow me if roaming
-	        position_t targetPoint = nearPosition(m_PMob->loc.p, 2.0f, M_PI);
+	        position_t targetPoint = nearPosition(m_PMob->loc.p, 2.1f, M_PI);
 
 	        PPet->PBattleAI->MoveTo(&targetPoint);
 

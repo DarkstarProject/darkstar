@@ -112,7 +112,7 @@ public:
   	uint32		m_SpecialCoolDown;					// Cool down time between uses.
     uint16        m_SpecialSkill; // mobskill id to use
     uint16    m_RoamCoolDown; // Amount of time between roam actions
-    uint16    m_StandbackTime; // how long the mob will standback for
+    uint32    m_StandbackTime; // how long the mob will standback for
 
   uint32    m_DropID;             // номер группы оставляемых монстром предметов после смерти
 

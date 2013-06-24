@@ -25,6 +25,7 @@ function OnUseAbility(player, target, ability)
     end
 
 	target:addHP(heal);
+	target:wakeUp();
 
     return heal;
 end;

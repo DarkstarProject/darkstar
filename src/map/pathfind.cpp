@@ -29,7 +29,6 @@
 CPathFind::CPathFind(CBaseEntity* PTarget)
 {
   m_PTarget = PTarget;
-  m_PLastPoint = NULL;
   m_pathFlags = 0;
   Clear();
 }
@@ -37,7 +36,6 @@ CPathFind::CPathFind(CBaseEntity* PTarget)
 CPathFind::~CPathFind()
 {
   m_PTarget = NULL;
-  m_PLastPoint = NULL;
   Clear();
 }
 
@@ -133,6 +131,23 @@ bool CPathFind::PathTo(position_t point, uint8 pathFlags)
   return true;
 }
 
+bool CPathFind::PathAround(position_t point, float distance, uint8 pathFlags)
+{
+
+  bool result = PathTo(point, pathFlags);
+
+  if(!result) return false;
+
+  position_t* lastPoint = &m_points[m_pathLength-1];
+
+  float randomRadian = RandomNumber() * M_PI * 2.0f;
+
+  lastPoint->x += cosf(randomRadian) * distance;
+  lastPoint->z += sinf(randomRadian) * distance;
+
+  return true;
+}
+
 bool CPathFind::PathThrough(position_t* points, uint8 totalPoints, uint8 pathFlags)
 {
 
@@ -174,9 +189,49 @@ bool CPathFind::isNavMeshEnabled()
 
 void CPathFind::LimitDistance(float maxLength)
 {
-  if(!IsFollowingPath()) return;
-
   m_maxDistance = maxLength;
+}
+
+void CPathFind::StopWithin(float within)
+{
+  if(!IsFollowingPath()) return;
+  // TODO: cut up path
+
+  position_t* lastPoint = &m_points[m_pathLength-1];
+  position_t* secondLastPoint = NULL;
+
+  if(m_pathLength == 1)
+  {
+    secondLastPoint = &m_PTarget->loc.p;
+  }
+  else
+  {
+    secondLastPoint = &m_points[m_pathLength-2];
+  }
+
+  float distanceTo = distance(*lastPoint, *secondLastPoint);
+
+  if(distanceTo > within)
+  {
+    // reduce last point to stop within the given number
+    float radians = atanf(( secondLastPoint->z - lastPoint->z ) / ( secondLastPoint->x - lastPoint->x )) * (M_PI / 180.0f);
+
+    lastPoint->x -= cosf(radians) * within;
+    lastPoint->z -= sinf(radians) * within;
+  }
+  else
+  {
+    // i'm already there, stop moving
+    if(m_pathLength == 1)
+    {
+      Clear();
+    }
+    else
+    {
+      // remove last point, it'll make me too close
+      m_pathLength--;
+    }
+  }
 }
 
 void CPathFind::FollowPath()
@@ -201,8 +256,6 @@ void CPathFind::FollowPath()
   {
     m_currentPoint++;
 
-    m_PLastPoint = targetPoint;
-
     if(m_currentPoint >= m_pathLength)
     {
       // i'm finished!
@@ -211,16 +264,6 @@ void CPathFind::FollowPath()
 
     m_onPoint = true;
   }
-}
-
-bool CPathFind::OnPoint()
-{
-  return m_onPoint;
-}
-
-position_t* CPathFind::GetLastPoint()
-{
-  return m_PLastPoint;
 }
 
 void CPathFind::StepTo(position_t* pos, bool run)
@@ -250,6 +293,7 @@ void CPathFind::StepTo(position_t* pos, bool run)
   if(distanceTo <= speed)
   {
     m_distanceMoved += distanceTo;
+
     m_PTarget->loc.p.x = pos->x;
     m_PTarget->loc.p.y = pos->y;
     m_PTarget->loc.p.z = pos->z;
@@ -328,6 +372,11 @@ bool CPathFind::FindClosestPath(position_t* start, position_t* end)
 void CPathFind::LookAt(position_t point)
 {
   m_PTarget->loc.p.rotation = getangle(m_PTarget->loc.p, point);
+}
+
+bool CPathFind::OnPoint()
+{
+  return m_onPoint;
 }
 
 float CPathFind::GetRealSpeed()
