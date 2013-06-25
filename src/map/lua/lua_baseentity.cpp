@@ -6252,7 +6252,6 @@ inline int32 CLuaBaseEntity::checkFovAllianceAllowed(lua_State *L){
 inline int32 CLuaBaseEntity::charmPet(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
 	if ( m_PBaseEntity != NULL )
 	{
