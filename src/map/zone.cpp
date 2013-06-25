@@ -531,8 +531,11 @@ void CZone::FindPartyForMob(CBaseEntity* PEntity)
         {
             CMobEntity* PCurrentMob = (CMobEntity*)it->second;
 
-            if (PCurrentMob->m_Link &&
-                PCurrentMob->m_Family == PMob->m_Family)
+            if(!PCurrentMob->m_Link) continue;
+
+            if (PCurrentMob->m_Family == PMob->m_Family ||
+                  PMob->m_SubLinks[0] && PMob->m_SubLinks[0] == PCurrentMob->m_Family ||
+                  PMob->m_SubLinks[1] && PMob->m_SubLinks[1] == PCurrentMob->m_Family)
             {
               if(PCurrentMob->PMaster == NULL || PCurrentMob->PMaster->objtype == TYPE_MOB)
               {

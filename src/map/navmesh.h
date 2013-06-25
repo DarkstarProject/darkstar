@@ -70,6 +70,9 @@ class CNavMesh
     // returns true if end point can be seen from start point
     bool canSeePoint(position_t start, position_t end);
 
+    // returns true if the point is in water
+    bool inWater(position_t point);
+
     // validate the integrity of the navmesh
     bool test(uint16 zoneId);
 

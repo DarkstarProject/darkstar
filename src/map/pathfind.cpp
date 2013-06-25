@@ -134,18 +134,14 @@ bool CPathFind::PathTo(position_t point, uint8 pathFlags)
 bool CPathFind::PathAround(position_t point, float distance, uint8 pathFlags)
 {
 
-  bool result = PathTo(point, pathFlags);
-
-  if(!result) return false;
-
-  position_t* lastPoint = &m_points[m_pathLength-1];
+  position_t* lastPoint = &point;
 
   float randomRadian = RandomNumber() * M_PI * 2.0f;
 
   lastPoint->x += cosf(randomRadian) * distance;
   lastPoint->z += sinf(randomRadian) * distance;
 
-  return true;
+  return PathTo(point, pathFlags);
 }
 
 bool CPathFind::PathThrough(position_t* points, uint8 totalPoints, uint8 pathFlags)

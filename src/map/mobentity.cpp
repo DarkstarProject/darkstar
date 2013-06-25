@@ -61,6 +61,7 @@ CMobEntity::CMobEntity()
 	m_NewSkin = 0;
 	m_SkinID = 0;
 	m_extraVar = 0;
+
     strRank = 3;
     defRank = 3;
     vitRank = 3;
@@ -72,6 +73,11 @@ CMobEntity::CMobEntity()
     defRank = 3;
     accRank = 3;
     evaRank = 3;
+
+    m_Link = 0;
+    m_SubLinks[0] = 0;
+    m_SubLinks[1] = 0;
+
     linkRadius = 10;
 
     m_SpecialCoolDown = 0;

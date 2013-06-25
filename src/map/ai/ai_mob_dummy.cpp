@@ -1406,6 +1406,11 @@ void CAIMobDummy::ActionAttack()
 			}
 
 		}
+		else
+		{
+			// if i'm chasing too much, just melee attack
+			m_LastStandbackTime -= 4000;
+		}
 	}
 
 

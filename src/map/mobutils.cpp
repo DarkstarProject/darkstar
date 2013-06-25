@@ -420,7 +420,6 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->m_StandbackTime = 0;
 	}
 
-
 	// clear current traits first
     for (uint8 i = 0; i < PMob->TraitList.size(); ++i)
     {
@@ -617,6 +616,94 @@ void GetAvailableSpells(CMobEntity* PMob) {
 			PMob->SpellContainer->AddSpell((*it).spellId);
 		}
 	}
+}
+
+void InitializeMob(CMobEntity* PMob)
+{
+
+        // Killer Effect
+        switch (PMob->m_EcoSystem)
+      {
+        case SYSTEM_AMORPH:   PMob->addModifier(MOD_BIRD_KILLER,     5); break;
+        case SYSTEM_AQUAN:    PMob->addModifier(MOD_AMORPH_KILLER,   5); break;
+        case SYSTEM_ARCANA:   PMob->addModifier(MOD_UNDEAD_KILLER,   5); break;
+        case SYSTEM_BEAST:    PMob->addModifier(MOD_LIZARD_KILLER,   5); break;
+        case SYSTEM_BIRD:     PMob->addModifier(MOD_AQUAN_KILLER,    5); break;
+        case SYSTEM_DEMON:    PMob->addModifier(MOD_DRAGON_KILLER,   5); break;
+        case SYSTEM_DRAGON:   PMob->addModifier(MOD_DEMON_KILLER,    5); break;
+        case SYSTEM_LIZARD:   PMob->addModifier(MOD_VERMIN_KILLER,   5); break;
+        case SYSTEM_LUMINION: PMob->addModifier(MOD_LUMORIAN_KILLER, 5); break;
+        case SYSTEM_LUMORIAN: PMob->addModifier(MOD_LUMINION_KILLER, 5); break;
+        case SYSTEM_PLANTOID: PMob->addModifier(MOD_BEAST_KILLER,    5); break;
+        case SYSTEM_UNDEAD:   PMob->addModifier(MOD_ARCANA_KILLER,   5); break;
+        case SYSTEM_VERMIN:   PMob->addModifier(MOD_PLANTOID_KILLER, 5); break;
+      }
+
+      // setup cross family links
+      switch(PMob->m_Family)
+      {
+        // tauris and demons link
+        case 240:
+          PMob->m_SubLinks[0] = 169;
+        break;
+        case 169:
+          PMob->m_SubLinks[0] = 240;
+        break;
+        // warmachine and orcs link
+        case 190:
+          PMob->m_SubLinks[0] = 189;
+        break;
+        case 189:
+          PMob->m_SubLinks[0] = 190;
+        break;
+        // tri bats and bats link
+        case 46:
+          PMob->m_SubLinks[0] = 47;
+          // Vampyrs
+          PMob->m_SubLinks[1] = 253;
+        break;
+        case 47:
+          PMob->m_SubLinks[0] = 46;
+        break;
+        // treant and saplings link
+        case 245:
+          PMob->m_SubLinks[0] = 216;
+        break;
+        case 216:
+          PMob->m_SubLinks[0] = 245;
+        break;
+        // goblin, moblin, bugbear link
+        case 133:
+          PMob->m_SubLinks[0] = 184;
+          PMob->m_SubLinks[1] = 59;
+        break;
+        case 184:
+          PMob->m_SubLinks[0] = 133;
+          PMob->m_SubLinks[1] = 59;
+        break;
+        case 59:
+          PMob->m_SubLinks[0] = 133;
+          PMob->m_SubLinks[1] = 184;
+        break;
+        // Wamoura, Wamouracampa link
+        case 253:
+          PMob->m_SubLinks[0] = 254;
+        break;
+        case 254:
+          PMob->m_SubLinks[0] = 253;
+        break;
+        // Vampyrs, giant bats link
+        case 252:
+          PMob->m_SubLinks[0] = 46;
+        break;
+        // Poroggos, toads (toads dont link with each other) link
+        /*case 196:
+          PMob->m_SubLinks[0] = 196;
+        break;
+        case 196:
+          PMob->m_SubLinks[0] = 196;
+        break;*/
+      }
 }
 
 }; // namespace mobutils
