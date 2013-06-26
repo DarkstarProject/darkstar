@@ -1024,7 +1024,7 @@ void CAIMobDummy::ActionMagicStart()
 	m_LastActionTime = m_Tick;
 
 	// a worm can cast 0-2 spells within 25 seconds
-	m_LastMagicTime = m_Tick - rand()%(uint8)(float)(m_LastMagicTime / 2);
+	m_LastMagicTime = m_Tick - rand()%(uint8)((float)m_PMob->m_MagicRecastTime / 2);
 
 	// don't use special right after magic
 	m_LastSpecialTime += rand()%5000 + 2000;
