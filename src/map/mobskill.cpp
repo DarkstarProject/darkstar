@@ -263,6 +263,17 @@ float CMobSkill::getDistance()
 	return m_Distance;
 }
 
+float CMobSkill::getRadius()
+{
+  if(m_Aoe == 2)
+  {
+    // centered around target, usually 8'
+    return 8.0f;
+  }
+
+  return m_Distance;
+}
+
 uint16 CMobSkill::getValidTargets()
 {
 	return m_ValidTarget;

@@ -37,6 +37,7 @@ class CAINpcDummy : public CAIGeneral
 public:
 
   virtual void CheckCurrentAction(uint32 tick);
+  virtual void WeatherChange(WEATHER weather, uint8 element);
 
   CAINpcDummy(CNpcEntity* PNpc);
 

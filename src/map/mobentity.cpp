@@ -78,7 +78,9 @@ CMobEntity::CMobEntity()
     m_SubLinks[0] = 0;
     m_SubLinks[1] = 0;
 
-    linkRadius = 10;
+    m_hearingRange = 8;
+    m_sightRange = 15;
+    m_linkRadius = 10;
 
     m_SpecialCoolDown = 0;
     m_RoamCoolDown = 45000;

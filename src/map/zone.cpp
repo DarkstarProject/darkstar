@@ -604,26 +604,12 @@ void CZone::SetWeather(WEATHER weather)
 	    8,  //WEATHER_DARKNESS
     };
 
-    for (EntityList_t::const_iterator it = m_mobList.begin(); it != m_mobList.end(); ++it)
+	for (EntityList_t::const_iterator it = m_mobList.begin(); it != m_mobList.end(); ++it)
 	{
 		CMobEntity* PCurrentMob = (CMobEntity*)it->second;
+    PCurrentMob->PBattleAI->WeatherChange(weather, Element[weather]);
+	}
 
-        if (PCurrentMob->m_EcoSystem == SYSTEM_ELEMENTAL && PCurrentMob->PMaster == NULL)
-        {
-            if (PCurrentMob->m_Element == Element[weather])
-			{
-                PCurrentMob->SetDespawnTimer(0);
-                PCurrentMob->m_AllowRespawn = true;
-                PCurrentMob->PBattleAI->SetLastActionTime(0);
-      				PCurrentMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
-			}
-			else
-			{
-				PCurrentMob->SetDespawnTimer(1);
-                PCurrentMob->m_AllowRespawn = false;
-			}
-        }
-    }
     m_Weather = weather;
     m_WeatherChangeTime = CVanaTime::getInstance()->getVanaTime();
 
@@ -916,7 +902,7 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
                         PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE) ||
                         PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CAMOUFLAGE)))
 					{
-                        if (CurrentDistance < 15 && isFaceing(PCurrentMob->loc.p, PChar->loc.p, 40))
+                        if (CurrentDistance < PCurrentMob->m_sightRange && isFaceing(PCurrentMob->loc.p, PChar->loc.p, 40))
 						{
 							PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
 							continue;
@@ -935,16 +921,15 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
           if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_HEARING &&
                        !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
 					{
-						if (CurrentDistance < 8)
+						if (CurrentDistance < PCurrentMob->m_sightRange)
 						{
 							PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
 							continue;
 						}
 					}
-					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_LOWHP &&
-                       !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DEODORIZE))
+					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_LOWHP)
 					{
-						if (PChar->GetHPP() < 66)
+						if (PChar->GetHPP() < 75)
 						{
 							PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
 							continue;
@@ -952,7 +937,7 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 					}
 					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_TRUESIGHT)
 					{
-						if (CurrentDistance < 20 && isFaceing(PCurrentMob->loc.p, PChar->loc.p, 40))
+						if (CurrentDistance < PCurrentMob->m_sightRange && isFaceing(PCurrentMob->loc.p, PChar->loc.p, 40))
 						{
 							PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
 							continue;
@@ -960,7 +945,7 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 					}
 					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_TRUEHEARING)
 					{
-						if (CurrentDistance < 8)
+						if (CurrentDistance < PCurrentMob->m_sightRange)
 						{
 							PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
 							continue;

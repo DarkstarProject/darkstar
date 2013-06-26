@@ -421,6 +421,7 @@ public:
 	skills_t	    WorkingSkills;				// структура всех доступных сущности умений, ограниченных уровнем
 	IMMUNITY		m_Immunity;					// Mob immunity
 	uint16			m_magicEvasion;		// store this so it can be removed easily
+	uint8			m_enmityRange; // only get enmity from entities this close
 
     uint16          STR();
     uint16          DEX();

@@ -132,6 +132,11 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 	}
 }
 
+void CAICharNormal::WeatherChange(WEATHER weather, uint8 element)
+{
+
+}
+
 /************************************************************************
 * Checks to see if the action can be cast on self/player/party/dead		*
 * or mobs.																*

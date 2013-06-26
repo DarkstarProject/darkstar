@@ -36,6 +36,7 @@ CBattleEntity::CBattleEntity()
 
 	m_mjob = JOB_WAR;
 	m_sjob = JOB_WAR;
+	m_enmityRange = 25;
 
 	m_magicEvasion = 0;
 

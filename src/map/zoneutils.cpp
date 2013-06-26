@@ -89,8 +89,8 @@ void UpdateWeather()
                 {
 
                     g_PZoneList[ZoneID]->SetWeather((WEATHER)weather);
-					luautils::OnZoneWeatherChange(ZoneID, weather);
-					break;
+          					luautils::OnZoneWeatherChange(ZoneID, weather);
+          					break;
                 }
             }
         }
@@ -366,7 +366,7 @@ void LoadMOBList(CZone* PZone)
             PMob->defRank = (uint8)Sql_GetIntData(SqlHandle,33);
             PMob->attRank = (uint8)Sql_GetIntData(SqlHandle,55);
             PMob->accRank = (uint8)Sql_GetIntData(SqlHandle,56);
-            PMob->linkRadius = (uint8)Sql_GetIntData(SqlHandle,57);
+            PMob->m_linkRadius = (uint8)Sql_GetIntData(SqlHandle,57);
 
 			PMob->setModifier(MOD_SLASHRES, (uint16)(Sql_GetFloatData(SqlHandle,34) * 1000));
 			PMob->setModifier(MOD_PIERCERES,(uint16)(Sql_GetFloatData(SqlHandle,35) * 1000));

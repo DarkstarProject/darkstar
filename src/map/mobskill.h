@@ -68,6 +68,7 @@ public:
 	float		getTP();
     uint16      getTotalTargets();
     uint16      getMsgForAction();
+    float      getRadius();
 
 	void		setID(uint16 id);
 	void		setAnimationID(uint16 aid);

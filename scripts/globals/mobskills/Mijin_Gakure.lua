@@ -23,10 +23,10 @@ function OnMobWeaponSkill(target, mob, skill)
 		dmgmod = mob:getHP()/ mob:getMaxHP();
 	end
 
-    local randomPower = math.random(18,21);
+    local randomPower = math.random(5,7);
 
     if(mob:isInDynamis()) then
-        randomPower = math.random(22,25);
+        randomPower = math.random(8,12);
     end
 
     local baseDmg = mob:getWeaponDmg() * randomPower * dmgmod;

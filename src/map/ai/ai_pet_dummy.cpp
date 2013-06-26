@@ -95,6 +95,11 @@ void CAIPetDummy::CheckCurrentAction(uint32 tick)
 	}
 }
 
+void CAIPetDummy::WeatherChange(WEATHER weather, uint8 element)
+{
+
+}
+
 void CAIPetDummy::ActionAbilityStart()
 {
 	if(m_PPet->objtype == TYPE_MOB && m_PPet->PMaster->objtype == TYPE_PC)

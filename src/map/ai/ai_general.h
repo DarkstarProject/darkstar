@@ -27,6 +27,7 @@
 #include "../../common/cbasetypes.h"
 #include "../targetfind.h"
 #include "../pathfind.h"
+#include "../packets/weather.h"
 
 enum MASTERCOMMAND //master as in pet's master
 {
@@ -126,6 +127,7 @@ public:
 	void			SetMobAbilityEnabled(bool enabled);
 
 	virtual void	CheckCurrentAction(uint32 tick) = 0;
+	virtual void	WeatherChange(WEATHER weather, uint8 element) = 0;
 
     CAIGeneral();
 	~CAIGeneral();

@@ -27,9 +27,6 @@
 #include "../common/cbasetypes.h"
 #include <map>
 
-// if you're farther than this you will not gain hate
-#define MAX_ENMITY_RANGE 25
-
 struct EnmityObject_t
 {
 	CBattleEntity* PEnmityOwner;	// Enmity Target

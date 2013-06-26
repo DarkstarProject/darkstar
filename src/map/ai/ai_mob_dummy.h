@@ -53,6 +53,13 @@ public:
 	virtual void CheckCurrentAction(uint32 tick);
 
 	CAIMobDummy(CMobEntity* PMob);
+
+	virtual void WeatherChange(WEATHER weather, uint8 element);
+
+  // time of day change, update mobs
+  // TODO:
+  //void TOTDChange();
+
   
 protected:
 

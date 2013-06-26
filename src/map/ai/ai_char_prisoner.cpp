@@ -57,3 +57,8 @@ void CAICharPrisoner::CheckCurrentAction(uint32 tick)
         m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 316));
     }
 }
+
+void CAICharPrisoner::WeatherChange(WEATHER weather, uint8 element)
+{
+
+}

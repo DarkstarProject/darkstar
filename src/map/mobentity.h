@@ -123,7 +123,7 @@ public:
 
     float       HPscale;                // HP boost percentage
     float       MPscale;                // MP boost percentage
-    uint8       linkRadius;                         // mobs have different link radiuses
+    uint8       m_linkRadius;                         // mobs have different link radiuses
 
     uint16 m_roamFlags; // defines its roaming behaviour
     uint8 m_specialFlags; // flags for special skill
@@ -139,9 +139,12 @@ public:
     uint8        attRank;
     uint8        defRank;
     uint8        accRank;
-
     // not used
     uint8        evaRank;
+
+    // aggro ranges
+    uint8 m_hearingRange; // aggro player when within this rnage
+    uint8 m_sightRange; // aggro player when within this range
 
   uint8   m_Type;               // тип монстра
     uint8       m_Link;               // взаимопомощь монстрам своего семейства

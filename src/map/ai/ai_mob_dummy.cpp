@@ -780,6 +780,12 @@ void CAIMobDummy::ActionAbilityUsing()
 		return;
 	}
 
+	// always face my target
+	if(m_PBattleSubTarget != m_PMob)
+	{
+		m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
+	}	
+
 	//TODO: Any checks whilst the monster is preparing.
 	//NOTE: RANGE CHECKS ETC ONLY ARE DONE AFTER THE ABILITY HAS FINISHED PREPARING.
 	//      THE ONLY CHECK IN HERE SHOULD BE WITH STUN/SLEEP/TERROR/ETC
@@ -832,12 +838,6 @@ void CAIMobDummy::ActionAbilityFinish()
 		m_PMob->m_SkillStatus = 1;
 	}
 
-	// always face my target
-	if(m_PMobSkill->getValidTargets() == TARGET_ENEMY)
-	{
-		m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
-	}	
-
 	// store the skill used
 	m_PMob->m_UsedSkillIds[m_PMobSkill->getID()] = m_PMob->GetMLevel();
 
@@ -850,7 +850,7 @@ void CAIMobDummy::ActionAbilityFinish()
     {
 		if(m_PMobSkill->isAoE())
 		{
-	        m_PTargetFind->findWithinArea(m_PBattleSubTarget, (AOERADIUS)m_PMobSkill->getAoe(), distance);
+	        m_PTargetFind->findWithinArea(m_PBattleSubTarget, (AOERADIUS)m_PMobSkill->getAoe(), m_PMobSkill->getRadius());
 		}
 		else if(m_PMobSkill->isConal())
 		{
@@ -1915,7 +1915,7 @@ bool CAIMobDummy::CanLink(CMobEntity* PTarget)
 		   if(!isFaceing(PTarget->loc.p, m_PMob->loc.p, 40)) return false;
 		}
 
-		if(distance(m_PMob->loc.p, PTarget->loc.p) < m_PMob->linkRadius)
+		if(distance(m_PMob->loc.p, PTarget->loc.p) < m_PMob->m_linkRadius)
 		{
 	        return true;
 	    }
@@ -2006,4 +2006,63 @@ void CAIMobDummy::Stun(uint32 stunTime)
 	m_StunTime = stunTime;
     m_LastStunTime = m_Tick;
 	m_ActionType = ACTION_STUN;
+}
+
+void CAIMobDummy::WeatherChange(WEATHER weather, uint8 element)
+{
+
+	if (m_PMob->m_EcoSystem == SYSTEM_ELEMENTAL && m_PMob->PMaster == NULL)
+	{
+		if (m_PMob->m_Element == element)
+		{
+			m_PMob->SetDespawnTimer(0);
+			m_PMob->m_AllowRespawn = true;
+			SetLastActionTime(0);
+			SetCurrentAction(ACTION_SPAWN);
+		}
+		else
+		{
+			m_PMob->SetDespawnTimer(1);
+			m_PMob->m_AllowRespawn = false;
+		}
+	}
+	else if(m_PMob->m_Family == 25)
+	{
+		// antica gain more sound aggro range during sand weather
+		if(weather == WEATHER_DUST_STORM || weather == WEATHER_SAND_STORM)
+		{
+			m_PMob->m_hearingRange = 12;
+		}
+		else
+		{
+			m_PMob->m_hearingRange = 8;
+		}
+	}
+	else if(m_PMob->m_Family == 198)
+	{
+		// puk
+		// what up I gain regain
+		if(weather == WEATHER_WIND || weather == WEATHER_GALES)
+		{
+			m_PMob->addModifier(MOD_REGAIN, 5);
+		}
+		else
+		{
+			m_PMob->delModifier(MOD_REGAIN, 5);
+		}
+	}
+	else if(m_PMob->m_Family == 107 || m_PMob->m_Family == 108)
+	{
+		// eruca
+		// what up I gain regain
+		if(weather == WEATHER_HOT_SPELL || weather == WEATHER_HEAT_WAVE)
+		{
+			m_PMob->addModifier(MOD_REGAIN, 5);
+		}
+		else
+		{
+			m_PMob->delModifier(MOD_REGAIN, 5);
+		}
+	}
+
 }

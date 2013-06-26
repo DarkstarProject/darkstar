@@ -53,6 +53,11 @@ void CAINpcDummy::CheckCurrentAction(uint32 tick)
   }
 }
 
+void CAINpcDummy::WeatherChange(WEATHER weather, uint8 element)
+{
+
+}
+
 void CAINpcDummy::ActionSpawn()
 {
   luautils::OnNpcSpawn(m_PNpc);

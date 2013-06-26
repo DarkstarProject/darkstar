@@ -129,6 +129,12 @@ void CalculateStats(CMobEntity * PMob)
 	JOBTYPE mJob = PMob->GetMJob();
 	JOBTYPE sJob = PMob->GetSJob();
 
+	if(isNM)
+	{
+		// enmity range is larger
+		PMob->m_enmityRange = 28;
+	}
+
 	if(PMob->HPmodifier == 0){
 
 		float growth = 1.06;
