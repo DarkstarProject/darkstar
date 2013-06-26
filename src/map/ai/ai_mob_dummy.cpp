@@ -1022,7 +1022,9 @@ void CAIMobDummy::ActionMagicStart()
 	m_interruptSpell = false;
 	// this must be at the top to RESET magic cast timer
 	m_LastActionTime = m_Tick;
-	m_LastMagicTime = m_Tick;
+
+	// a worm can cast 0-2 spells within 25 seconds
+	m_LastMagicTime = m_Tick - rand()%(uint8)(float)(m_LastMagicTime / 2);
 
 	// don't use special right after magic
 	m_LastSpecialTime += rand()%5000 + 2000;
@@ -1720,7 +1722,7 @@ bool CAIMobDummy::TryDeaggro()
 
     float currentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
 
-	if (m_PMob->CanDeaggro() && currentDistance > 28 && (m_Tick - m_LastActionTime) > 20000)
+	if (m_PMob->CanDeaggro() && currentDistance > 28 && (m_Tick - m_LastActionTime) > MOB_DEAGGRO_TIME)
     {
         //player has been too far away for some time, deaggro if the mob type dictates it
 
@@ -2064,5 +2066,5 @@ void CAIMobDummy::WeatherChange(WEATHER weather, uint8 element)
 			m_PMob->delModifier(MOD_REGAIN, 5);
 		}
 	}
-
+	// TODO: slug auto-regen rain
 }

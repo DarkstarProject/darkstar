@@ -313,6 +313,12 @@ int16 CNavMesh::findRandomPath(position_t start, float maxRadius, position_t* pa
   return findPath(start, end, path, pathSize);
 }
 
+bool CNavMesh::inWater(position_t point)
+{
+  // TODO:
+  return false;
+}
+
 bool CNavMesh::test(uint16 zoneId)
 {
   position_t path[30];

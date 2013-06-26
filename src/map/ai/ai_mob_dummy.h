@@ -34,6 +34,9 @@
 
 #define MOB_SPELL_MAX_RANGE 26.8f
 
+// mobs will deaggro if player is out of range for this long
+#define MOB_DEAGGRO_TIME 25000
+
 // this will make mobs walk back to spawn point instead of despawning
 #define MOB_TRAIN false
 

@@ -921,7 +921,7 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
           if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_HEARING &&
                        !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
 					{
-						if (CurrentDistance < PCurrentMob->m_sightRange)
+						if (CurrentDistance < PCurrentMob->m_hearingRange)
 						{
 							PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
 							continue;
@@ -945,7 +945,7 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 					}
 					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_TRUEHEARING)
 					{
-						if (CurrentDistance < PCurrentMob->m_sightRange)
+						if (CurrentDistance < PCurrentMob->m_hearingRange)
 						{
 							PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
 							continue;

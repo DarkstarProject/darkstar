@@ -42,9 +42,6 @@ CAIGeneral::CAIGeneral()
 {
     m_PTargetFind = NULL;
     m_PPathFind = NULL;
-    m_WaitTime = 0;
-    m_LastWaitTime = 0;
-    m_interruptSpell = false;
 	Reset();
 }
 
@@ -70,6 +67,9 @@ void CAIGeneral::Reset()
     m_LastMeleeTime = 0;
     m_LastMagicTime = 0;
 
+    m_WaitTime = 0;
+    m_LastWaitTime = 0;
+    m_interruptSpell = false;
 	m_PSpell = NULL;
 	m_PWeaponSkill = NULL;
 	m_PItemUsable = NULL;

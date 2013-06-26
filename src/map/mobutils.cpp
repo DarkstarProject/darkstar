@@ -563,21 +563,21 @@ void GetAvailableSpells(CMobEntity* PMob) {
 	{
 		case JOB_BLM:
 		case JOB_BRD:
-			PMob->m_MagicRecastTime = 15000;
+			PMob->m_MagicRecastTime = 30000;
 		break;
 		case JOB_BLU:
-			PMob->m_MagicRecastTime = 25000;
+			PMob->m_MagicRecastTime = 40000;
 		break;
 		case JOB_NIN:
 		case JOB_WHM:
 		case JOB_RDM:
-			PMob->m_MagicRecastTime = 20000;
+			PMob->m_MagicRecastTime = 35000;
 		break;
 		case JOB_SMN:
-			PMob->m_MagicRecastTime = 45000;
+			PMob->m_MagicRecastTime = 70000;
 		break;
 		default:
-			PMob->m_MagicRecastTime = 30000;
+			PMob->m_MagicRecastTime = 45000;
 		break;
 
 	}
