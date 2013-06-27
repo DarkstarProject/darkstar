@@ -150,6 +150,11 @@ bool CSpell::tookEffect()
     return true;
 }
 
+bool CSpell::hasMPCost()
+{
+    return m_spellGroup != SPELLGROUP_SONG && m_spellGroup != SPELLGROUP_NINJUTSU;
+}
+
 bool CSpell::dealsDamage()
 {
     //damage or drain hp

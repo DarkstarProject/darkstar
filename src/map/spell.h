@@ -104,6 +104,7 @@ public:
     uint8       getRequirements();
     uint16      getMeritId();
     bool        tookEffect(); // returns true if the spell landed, not resisted or missed
+    bool        hasMPCost(); // checks if spell costs mp to use
 
     void        setRadius(uint8 radius);
     void        setTotalTargets(uint16 total);

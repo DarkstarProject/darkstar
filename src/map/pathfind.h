@@ -101,6 +101,9 @@ class CPathFind
     // checks if mob is at given point
     bool AtPoint(position_t* pos);
 
+    // returns true if i'm in water
+    bool InWater();
+
   private:
 
     // find a valid path using polys

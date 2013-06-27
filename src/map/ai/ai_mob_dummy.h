@@ -58,6 +58,7 @@ public:
 	CAIMobDummy(CMobEntity* PMob);
 
 	virtual void WeatherChange(WEATHER weather, uint8 element);
+  bool CanAggroTarget(CBattleEntity* PTarget, uint32 expGain);
 
   // time of day change, update mobs
   // TODO:
@@ -74,6 +75,7 @@ protected:
   uint8 m_ChaseThrottle;
   uint32 m_LastStunTime;
   uint32 m_StunTime;
+  uint32 m_DeaggroTime;
   float m_skillTP;
 
   bool  m_CanStandback;
@@ -117,6 +119,7 @@ protected:
   void CastSpell(uint16 spellId); // makes the mob cast a spell
   bool CanLink(CMobEntity* PTarget); // checks if the target can link
   void Stun(uint32 stunTime);
+  void SetupEngage(); // setup timers and trigger callbacks
 
   void FollowPath(); // continues moving
 

@@ -80,6 +80,7 @@ CMobEntity::CMobEntity()
 
     m_hearingRange = 8;
     m_sightRange = 15;
+    m_disableScent = false;
     m_linkRadius = 10;
 
     m_SpecialCoolDown = 0;
@@ -153,11 +154,6 @@ uint32 CMobEntity::GetRandomGil()
 
 bool CMobEntity::CanDeaggro()
 {
-    if(m_Behaviour & BEHAVIOUR_SCENT)
-    {
-        return false;
-    }
-    
 	return !(m_Type & MOBTYPE_NOTORIOUS || m_Type & MOBTYPE_BATTLEFIELD);
 }
 
@@ -200,6 +196,75 @@ void CMobEntity::delRageMode()
         stats.VIT /= 10;
     }
     m_RageMode = false;
+}
+
+bool CMobEntity::CanDetectTarget(CBattleEntity* PTarget, bool forceSight)
+{
+    if(PTarget->isDead() || m_Behaviour == ROAMFLAG_NONE || PTarget->animation == ANIMATION_CHOCOBO) return false;
+
+    float verticalDistance = abs(loc.p.y - PTarget->loc.p.y);
+
+    if(verticalDistance > 8)
+    {
+        return false;
+    }
+
+    float currentDistance = distance(PTarget->loc.p, loc.p) + PTarget->getMod(MOD_STEALTH);
+
+    bool detectSight = (m_Behaviour & BEHAVIOUR_AGGRO_SIGHT) || forceSight;
+
+    if (detectSight && !PTarget->StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_INVISIBLE) && currentDistance < m_sightRange && isFaceing(loc.p, PTarget->loc.p, 40))
+    {
+        return true;
+    }
+
+    if (m_Behaviour & BEHAVIOUR_AGGRO_TRUESIGHT && currentDistance < m_sightRange && isFaceing(loc.p, PTarget->loc.p, 40))
+    {
+        return true;
+    }
+
+    if (m_Behaviour & BEHAVIOUR_AGGRO_TRUEHEARING && currentDistance < m_hearingRange)
+    {
+        return true;
+    }
+
+    if (m_Behaviour & BEHAVIOUR_AGGRO_AMBUSH && currentDistance < 3 && !PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
+    {
+        return true;
+    }
+            
+    if (m_Behaviour & BEHAVIOUR_AGGRO_HEARING && currentDistance < m_hearingRange && !PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
+    {
+        return true;
+    }
+
+    // everything below require distance to be below 20
+    if(currentDistance > 20)
+    {
+        return false;
+    }
+
+    if (m_Behaviour & BEHAVIOUR_AGGRO_LOWHP && PTarget->GetHPP() < 75)
+    {
+        return true;
+    }
+
+    if (m_Behaviour & BEHAVIOUR_AGGRO_MAGIC && PTarget->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING && PTarget->PBattleAI->GetCurrentSpell()->hasMPCost())
+    {
+        return true;
+    }
+
+    if (m_Behaviour & BEHAVIOUR_AGGRO_WEAPONSKILL && PTarget->PBattleAI->GetCurrentAction() == ACTION_WEAPONSKILL_FINISH)
+    {
+        return true;
+    }
+
+    if (m_Behaviour & BEHAVIOUR_AGGRO_JOBABILITY && PTarget->PBattleAI->GetCurrentAction() == ACTION_JOBABILITY_FINISH)
+    {
+        return true;
+    }
+
+    return false;
 }
 
 void CMobEntity::ChangeMJob(uint16 job)

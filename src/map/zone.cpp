@@ -44,6 +44,7 @@
 #include "treasure_pool.h"
 #include "vana_time.h"
 #include "zone.h"
+#include "ai/ai_mob_dummy.h"
 
 #include "lua/luautils.h"
 
@@ -868,7 +869,6 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
         SpawnIDList_t::iterator MOB = PChar->SpawnMOBList.lower_bound(PCurrentMob->id);
 
 		float CurrentDistance = distance(PChar->loc.p, PCurrentMob->loc.p);
-		float VerticalDistance = abs(PCurrentMob->loc.p.y - PChar->loc.p.y);
 
 		if (PCurrentMob->status == STATUS_UPDATE &&
 			CurrentDistance < 50)
@@ -883,106 +883,20 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 			if (PChar->isDead() || PChar->nameflags.flags & FLAG_GM)
 				continue;
 
-            // проверка ночного/дневного сна монстров уже учтена в проверке CurrentAction, т.к. во сне монстры не ходят ^^
+        // проверка ночного/дневного сна монстров уже учтена в проверке CurrentAction, т.к. во сне монстры не ходят ^^
 
-            CurrentDistance += PChar->getMod(MOD_STEALTH);
+        uint16 expGain = (uint16)charutils::GetRealExp(PChar->GetMLevel(),PCurrentMob->GetMLevel());
 
-            if (PCurrentMob->m_Behaviour != BEHAVIOUR_NONE &&
-                PCurrentMob->PMaster == NULL &&
-				PCurrentMob->PBattleAI->GetCurrentAction() == ACTION_ROAMING &&
-				CurrentDistance < 20)
-			{
-				if (PChar->animation != ANIMATION_CHOCOBO &&
-				   (PChar->animation == ANIMATION_HEALING ||
-				   (uint16)(charutils::GetRealExp(PChar->GetMLevel(),PCurrentMob->GetMLevel())) > 50) &&
-				   (VerticalDistance < 8))
-				{
-					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_SIGHT &&
-                      !(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_INVISIBLE) ||
-                        PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE) ||
-                        PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CAMOUFLAGE)))
-					{
-                        if (CurrentDistance < PCurrentMob->m_sightRange && isFaceing(PCurrentMob->loc.p, PChar->loc.p, 40))
-						{
-							PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
-							continue;
-						}
-					}
-          if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_AMBUSH &&
-                       !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
-          {
-            if(CurrentDistance < 3)
-            {
-              PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
-              continue;       
-            }
-          }
-            
-          if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_HEARING &&
-                       !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
-					{
-						if (CurrentDistance < PCurrentMob->m_hearingRange)
-						{
-							PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
-							continue;
-						}
-					}
-					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_LOWHP)
-					{
-						if (PChar->GetHPP() < 75)
-						{
-							PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
-							continue;
-						}
-					}
-					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_TRUESIGHT)
-					{
-						if (CurrentDistance < PCurrentMob->m_sightRange && isFaceing(PCurrentMob->loc.p, PChar->loc.p, 40))
-						{
-							PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
-							continue;
-						}
-					}
-					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_TRUEHEARING)
-					{
-						if (CurrentDistance < PCurrentMob->m_hearingRange)
-						{
-							PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
-							continue;
-						}
-					}
-					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_MAGIC)
-					{
-						if (PChar->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING)
-						{
-							if (PChar->PBattleAI->GetCurrentSpell()->getSpellGroup() != SPELLGROUP_SONG && PChar->PBattleAI->GetCurrentSpell()->getSpellGroup() != SPELLGROUP_NINJUTSU)
-                            {
-								PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
-								continue;
-							}
-						}
-					}
-					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_WEAPONSKILL)
-					{
-						if (PChar->PBattleAI->GetCurrentAction() == ACTION_WEAPONSKILL_FINISH)
-						{
-							PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
-							continue;
-						}
-					}
-					if (PCurrentMob->m_Behaviour & BEHAVIOUR_AGGRO_JOBABILITY)
-					{
-						if (PChar->PBattleAI->GetCurrentAction() == ACTION_JOBABILITY_FINISH)
-						{
-                            PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
-							continue;
-						}
-					}
-				}
-			}
-		}
-        else
+        CAIMobDummy* PAIMob = (CAIMobDummy*)PCurrentMob->PBattleAI;
+
+        if(PAIMob->CanAggroTarget(PChar, expGain))
         {
+          PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
+        }
+
+  		}
+      else
+      {
 			if( MOB != PChar->SpawnMOBList.end() &&
 			  !(PChar->SpawnMOBList.key_comp()(PCurrentMob->id, MOB->first)))
 			{

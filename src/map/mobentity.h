@@ -104,50 +104,50 @@ class CMobEntity : public CBattleEntity
 {
 public:
 
-    bool        m_AllowRespawn;						// монстру разрешено возрождаться
-	uint32		m_RespawnTime;						// отрезок времени, через который монстр возрождается после смерти
-    uint32      m_DropItemTime;						// время анимации смерти монстра
+  bool        m_AllowRespawn;						// монстру разрешено возрождаться
+  uint32		m_RespawnTime;						// отрезок времени, через который монстр возрождается после смерти
+  uint32      m_DropItemTime;						// время анимации смерти монстра
 
-    uint32      m_MagicRecastTime;                  // Amount of time between casts.
-  	uint32		m_SpecialCoolDown;					// Cool down time between uses.
-    uint16        m_SpecialSkill; // mobskill id to use
-    uint16    m_RoamCoolDown; // Amount of time between roam actions
-    uint32    m_StandbackTime; // how long the mob will standback for
+  uint32      m_MagicRecastTime;                  // Amount of time between casts.
+  uint32		m_SpecialCoolDown;					// Cool down time between uses.
+  uint16        m_SpecialSkill; // mobskill id to use
+  uint16    m_RoamCoolDown; // Amount of time between roam actions
+  uint32    m_StandbackTime; // how long the mob will standback for
 
   uint32    m_DropID;             // номер группы оставляемых монстром предметов после смерти
 
   uint8   m_minLevel;             // минимально-возможный  уровень монстра
   uint8   m_maxLevel;             // максимально-возможный уровень монстра
-    uint32      HPmodifier;             // HP in Database (mob_groups)
-    uint32      MPmodifier;             // MP in Database (mob_groups)
+  uint32      HPmodifier;             // HP in Database (mob_groups)
+  uint32      MPmodifier;             // MP in Database (mob_groups)
 
-    float       HPscale;                // HP boost percentage
-    float       MPscale;                // MP boost percentage
-    uint8       m_linkRadius;                         // mobs have different link radiuses
+  float       HPscale;                // HP boost percentage
+  float       MPscale;                // MP boost percentage
+  uint8       m_linkRadius;                         // mobs have different link radiuses
 
-    uint16 m_roamFlags; // defines its roaming behaviour
-    uint8 m_specialFlags; // flags for special skill
+  uint16 m_roamFlags; // defines its roaming behaviour
+  uint8 m_specialFlags; // flags for special skill
 
-    // stat ranks
-    uint8        strRank;
-    uint8        dexRank;
-    uint8        vitRank;
-    uint8        agiRank;
-    uint8        intRank;
-    uint8        mndRank;
-    uint8        chrRank;
-    uint8        attRank;
-    uint8        defRank;
-    uint8        accRank;
-    // not used
-    uint8        evaRank;
+  // stat ranks
+  uint8        strRank;
+  uint8        dexRank;
+  uint8        vitRank;
+  uint8        agiRank;
+  uint8        intRank;
+  uint8        mndRank;
+  uint8        chrRank;
+  uint8        attRank;
+  uint8        defRank;
+  uint8        accRank;
+  uint8        evaRank; // not used
 
-    // aggro ranges
-    uint8 m_hearingRange; // aggro player when within this rnage
-    uint8 m_sightRange; // aggro player when within this range
+  // aggro ranges
+  uint8 m_hearingRange; // aggro player when within this rnage
+  uint8 m_sightRange; // aggro player when within this range
+  bool  m_disableScent; // stop detecting by scent
 
   uint8   m_Type;               // тип монстра
-    uint8       m_Link;               // взаимопомощь монстрам своего семейства
+  uint8       m_Link;               // взаимопомощь монстрам своего семейства
   uint16       m_SubLinks[2];             // will link with these families
   uint16    m_Behaviour;            // поведение монстра в различных ситуациях
   SPAWNTYPE m_SpawnType;            // условие появления монстра
@@ -165,41 +165,43 @@ public:
 	CMobSpellList*      m_SpellListContainer;				// The spells list container for this mob
 	std::map<uint16, uint16>	m_UsedSkillIds;		// mob skill ids used (key) along with mob level (value)
 
-    uint32      m_unknown;							// includes the CFH flag and whether the HP bar should be shown or not (e.g. Yilgeban doesnt)
-    uint8       m_name_prefix;						// The ding bats VS Ding bats
+  uint32      m_unknown;							// includes the CFH flag and whether the HP bar should be shown or not (e.g. Yilgeban doesnt)
+  uint8       m_name_prefix;						// The ding bats VS Ding bats
 
 	CEnmityContainer* PEnmityContainer;				// система ненависти монстров
 
-    bool        hasRageMode();						// If the mob has the rage mode: true
-    void        addRageMode();						// Rage mode ON:  stat x10
-    void        delRageMode();						// Rage mode OFF: stat /10
+  bool        hasRageMode();						// If the mob has the rage mode: true
+  void        addRageMode();						// Rage mode ON:  stat x10
+  void        delRageMode();						// Rage mode OFF: stat /10
+
+  bool  CanDetectTarget(CBattleEntity* PTarget, bool forceSight = true); // can I detect the target?
 
 	void		SetMainSkin(uint32 mobid);			// Set base skin for the mob (if mob or player dieing)
 	void		SetNewSkin(uint8 skinid);			// Set new skin for the mob
 	uint32		GetSkinID();						// Get the last skinid (0 for base skin)
 
-    uint8       TPUseChance(); // return % chance to use TP move
-    bool        CanUseTwoHour(); // checks if the mob can use a two hour
+  uint8       TPUseChance(); // return % chance to use TP move
+  bool        CanUseTwoHour(); // checks if the mob can use a two hour
 
-    void        ChangeMJob(uint16 job); // this will change jobs and update traits, stats, spells
+  void        ChangeMJob(uint16 job); // this will change jobs and update traits, stats, spells
 
-    bool        CanDeaggro();
-    uint32      GetDespawnTimer();
-    void        SetDespawnTimer(uint32 duration);
-    uint32      GetRandomGil(); // returns a random amount of gil
+  bool        CanDeaggro();
+  uint32      GetDespawnTimer();
+  void        SetDespawnTimer(uint32 duration);
+  uint32      GetRandomGil(); // returns a random amount of gil
 
-    CMobSpellContainer* SpellContainer;   // retrieves spells for the mob
-	uint8		m_HasSpellScript;					// 1 if they have a spell script to use for working out what to cast.
+  CMobSpellContainer* SpellContainer;   // retrieves spells for the mob
+  uint8		m_HasSpellScript;					// 1 if they have a spell script to use for working out what to cast.
 
-    CMobEntity();
-   ~CMobEntity();
+  CMobEntity();
+  ~CMobEntity();
 
 private:
 
-    bool        m_RageMode;             // Mode rage
-	bool		m_NewSkin;				// True if skin has changed
-	uint32		m_SkinID;				// Skinid
-    uint32      m_DespawnTimer;         // Despawn Timer to despawn mob after set duration
+  bool        m_RageMode;             // Mode rage
+  bool		m_NewSkin;				// True if skin has changed
+  uint32		m_SkinID;				// Skinid
+  uint32      m_DespawnTimer;         // Despawn Timer to despawn mob after set duration
 
 };
 

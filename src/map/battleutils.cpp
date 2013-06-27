@@ -1710,6 +1710,12 @@ bool IsBlocked(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 
 bool TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender){
 
+	// cannot interrupt when manafont is active
+	if(PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT))
+	{
+		return false;
+	}
+
 	//Reasonable assumption for the time being.
 	int base = 40;
 

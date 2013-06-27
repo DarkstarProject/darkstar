@@ -402,6 +402,16 @@ bool CPathFind::AtPoint(position_t* pos)
   return m_PTarget->loc.p.x == pos->x && m_PTarget->loc.p.z == pos->z;
 }
 
+bool CPathFind::InWater()
+{
+  if(isNavMeshEnabled())
+  {
+    return m_PTarget->loc.zone->m_navMesh->inWater(m_PTarget->loc.p);
+  }
+  
+  return false;
+}
+
 void CPathFind::Clear()
 {
   m_pathFlags = 0;

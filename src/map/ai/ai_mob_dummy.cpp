@@ -68,6 +68,7 @@ CAIMobDummy::CAIMobDummy(CMobEntity* PMob)
 	m_skillTP = 0;
 	m_ChaseThrottle = 0;
 	m_LastStandbackTime = 0;
+	m_DeaggroTime = 0;
 	m_CanStandback = false;
 }
 
@@ -185,13 +186,11 @@ void CAIMobDummy::ActionRoaming()
 		else if(m_PSpecialSkill != NULL && TrySpecialSkill())
 		{
 			// I spawned a pet
-			m_LastActionTime = m_Tick - rand()%(m_PMob->m_RoamCoolDown) + 5000;
 		}
 		else if(CanCastSpells() && rand()%10 < 3 && m_PMob->SpellContainer->HasBuffSpells())
 		{
 			// cast buff
 			CastSpell(m_PMob->SpellContainer->GetBuffSpell());
-			m_LastActionTime = m_Tick - rand()%(m_PMob->m_RoamCoolDown) + 5000;
 		}
 		else if(m_PMob->m_roamFlags & ROAMFLAG_EVENT)
 		{
@@ -251,30 +250,13 @@ void CAIMobDummy::ActionRoaming()
 
 void CAIMobDummy::ActionEngage()
 {
-
-	m_PMob->animation = ANIMATION_ATTACK;
-	m_StartBattle = m_Tick;
-	m_LastActionTime = m_Tick - 1000; // Why do we subtract 1 sec?
+	SetupEngage();
 	m_ActionType = ACTION_ATTACK;
-	m_firstSpell = true;
-	m_CanStandback = true;
 
 	//if (m_PMob->animationsub == 1 || m_PMob->animationsub == 3) m_PMob->animationsub = 2;  //need a better way to do this: it only applies to some mobs!
 
-	m_PPathFind->Clear();
-	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
-
-	// drg shouldn't use jump right away
-	if(m_PMob->GetMJob() == JOB_DRG)
-	{
-		m_LastSpecialTime = m_Tick;
-	}
-
-	//Start luautils::OnMobEngaged
 	if (m_PBattleTarget != NULL)
 	{
-
-		luautils::OnMobEngaged(m_PMob, m_PBattleTarget);
 
 		if((m_PMob->m_roamFlags & ROAMFLAG_AMBUSH) && m_PMob->IsNameHidden())
 		{
@@ -821,7 +803,6 @@ void CAIMobDummy::ActionAbilityUsing()
 void CAIMobDummy::ActionAbilityFinish()
 {
     DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
-    DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
 	// crash fix, a null target made it into CActionPacket
 	if (m_PBattleSubTarget == NULL)
@@ -829,6 +810,8 @@ void CAIMobDummy::ActionAbilityFinish()
 		m_ActionType = ACTION_ATTACK;
 		return;
 	}
+
+	m_DeaggroTime = m_Tick;
 
 	// I think this should be saved for all skills used by the mob
 	// this is useful for funguar remembering its used moves
@@ -885,7 +868,7 @@ void CAIMobDummy::ActionAbilityFinish()
 
         Action.ActionTarget = PTarget;
 
-        // set default message
+	        // set default message
         m_PMobSkill->resetMsg();
 
 		Action.param = luautils::OnMobWeaponSkill(PTarget, m_PMob, m_PMobSkill);
@@ -971,8 +954,6 @@ void CAIMobDummy::ActionAbilityInterrupt()
 
 void CAIMobDummy::ActionSleep()
 {
-	m_firstSpell = true;
-
 	if (m_PMob->isDead()) {
 		m_ActionType = ACTION_FALL;
 		ActionFall();
@@ -981,14 +962,17 @@ void CAIMobDummy::ActionSleep()
 
     if (!m_PMob->StatusEffectContainer->HasPreventActionEffect())
     {
-		//put it in combat if it isn't
-		if( m_PMob->animation == ANIMATION_NONE ){
-			m_PMob->animation = ANIMATION_ATTACK;
-		}
-		m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+		m_ActionType = ACTION_ATTACK;
     }
-	//TODO: possibly change this so have ActionBeforeSleep then ActionSleep (send ENTITY_UPDATE once only rather than spam)
-	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
+
+	if(m_PMob->animation == ANIMATION_NONE)
+	{
+		SetupEngage();
+	}
+	else
+	{
+		m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
+	}
 
 }
 
@@ -1002,7 +986,7 @@ void CAIMobDummy::ActionStun()
 		if(m_PMob->PEnmityContainer->GetHighestEnmity() == NULL){
 			m_ActionType = ACTION_ROAMING;
 		} else {
-			m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_ENGAGE);
+			m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 		}
 	}
 
@@ -1022,9 +1006,7 @@ void CAIMobDummy::ActionMagicStart()
 	m_interruptSpell = false;
 	// this must be at the top to RESET magic cast timer
 	m_LastActionTime = m_Tick;
-
-	// a worm can cast 0-2 spells within 25 seconds
-	m_LastMagicTime = m_Tick - rand()%(uint8)((float)m_PMob->m_MagicRecastTime / 2);
+	m_LastMagicTime = m_Tick;
 
 	// don't use special right after magic
 	m_LastSpecialTime += rand()%5000 + 2000;
@@ -1121,7 +1103,8 @@ void CAIMobDummy::ActionMagicCasting()
 
 	if ( ((m_Tick - m_LastMagicTime) >= (float)m_PSpell->getCastTime()*((100.0f-(float)dsp_cap(m_PMob->getMod(MOD_FASTCAST),-100,50))/100.0f)) ||
         m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL,0))
-	{
+	{	
+		m_LastMagicTime = m_Tick - rand()%(uint8)((float)m_PMob->m_MagicRecastTime / 2);
 
 		if(m_interruptSpell)
 		{
@@ -1196,7 +1179,7 @@ void CAIMobDummy::ActionMagicFinish()
 
 	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL || m_PSpell == NULL);
 
-	m_LastMagicTime = m_Tick; // reset this in case the spell is long casting, don't want to immediately recast
+	m_DeaggroTime = m_Tick;
 
     m_PTargetFind->reset();
     m_PMob->m_ActionList.clear();
@@ -1353,6 +1336,12 @@ void CAIMobDummy::ActionAttack()
     // always face target
     m_PPathFind->LookAt(m_PBattleTarget->loc.p);
 
+    if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_BIND))
+    {
+    	// bind prevents deaggro
+    	m_DeaggroTime = m_Tick;
+    }
+
 	// Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
 	if (currentDistance <= MOB_SPELL_MAX_RANGE && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && TryCastSpell())
 	{
@@ -1411,13 +1400,13 @@ void CAIMobDummy::ActionAttack()
 		else
 		{
 			// if i'm chasing too much, just melee attack
-			m_LastStandbackTime -= 4000;
+			m_LastStandbackTime -= 1000;
 		}
 	}
 
 
 	// move closer to enemy
-	if(currentDistance > m_PMob->m_ModelSize)
+	if(currentDistance > m_PMob->m_ModelSize && m_PMob->speed != 0)
 	{
 		// mobs will find a new path only when enough ticks pass
 		// this is so the server is not overloaded
@@ -1660,6 +1649,7 @@ void CAIMobDummy::ActionAttack()
 				m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
 			}
             m_LastActionTime = m_Tick;
+            m_DeaggroTime = m_Tick;
 		}
 	}
 	else if (rand()%100 < m_PMob->TPUseChance())
@@ -1702,7 +1692,6 @@ bool CAIMobDummy::TryDeaggro()
         }
 
 		m_PMob->PEnmityContainer->Clear(m_PBattleTarget->id);
-		m_PMob->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
 		return true;
 	}
 
@@ -1720,12 +1709,33 @@ bool CAIMobDummy::TryDeaggro()
 		return true;
 	}
 
-    float currentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
+	bool tryDetectDeaggro = false;
+	bool tryTimeDeaggro = true;
 
-	if (m_PMob->CanDeaggro() && currentDistance > 28 && (m_Tick - m_LastActionTime) > MOB_DEAGGRO_TIME)
-    {
-        //player has been too far away for some time, deaggro if the mob type dictates it
+	if((m_PMob->m_Behaviour & BEHAVIOUR_SCENT))
+	{
+		// if mob is in water it will instant aggro if target cannot be detected
+		if(m_PPathFind->InWater())
+		{
+			tryDetectDeaggro = true;
+		}
 
+		// certain weather / deodorize will turn on time deaggro
+		if(m_PMob->m_disableScent ||
+			m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DEODORIZE))
+		{
+			tryTimeDeaggro = true;
+		}
+	}
+	
+	if(tryTimeDeaggro && m_Tick - m_DeaggroTime >= MOB_DEAGGRO_TIME && m_PMob->CanDeaggro())
+	{
+		tryDetectDeaggro = true;
+	}
+
+	// I will now deaggro if I cannot detect my target
+	if(tryDetectDeaggro && !m_PMob->CanDetectTarget(m_PBattleTarget))
+	{
 		if (m_PMob->m_OwnerID.id == m_PBattleTarget->id)
         {
             m_PMob->m_OwnerID.clean();
@@ -1858,6 +1868,7 @@ void CAIMobDummy::ActionSpecialSkill()
     DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
     m_LastActionTime = m_Tick;
+    m_DeaggroTime = m_Tick;
 
     uint16 halfSpecial = (float)m_PMob->m_SpecialCoolDown/2;
     m_LastSpecialTime = m_Tick - rand()%(halfSpecial);
@@ -2010,8 +2021,39 @@ void CAIMobDummy::Stun(uint32 stunTime)
 	m_ActionType = ACTION_STUN;
 }
 
+void CAIMobDummy::SetupEngage()
+{
+
+	m_PMob->animation = ANIMATION_ATTACK;
+	m_StartBattle = m_Tick;
+	m_DeaggroTime = m_Tick;
+	m_LastActionTime = m_Tick - 1000; // Why do we subtract 1 sec?
+	m_firstSpell = true;
+	m_CanStandback = true;
+
+	// drg shouldn't use jump right away
+	if(m_PMob->GetMJob() == JOB_DRG)
+	{
+		m_LastSpecialTime = m_Tick;
+	}
+
+	m_PPathFind->Clear();
+	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
+
+	if(m_PBattleTarget != NULL)
+	{
+		luautils::OnMobEngaged(m_PMob, m_PBattleTarget);
+	}
+}
+
 void CAIMobDummy::WeatherChange(WEATHER weather, uint8 element)
 {
+
+	// can't detect by scent in this weather
+	if(m_PMob->m_Behaviour & BEHAVIOUR_SCENT)
+	{
+		m_PMob->m_disableScent = (weather == WEATHER_RAIN || weather == WEATHER_SQUALL || weather == WEATHER_BLIZZARDS);
+	}
 
 	if (m_PMob->m_EcoSystem == SYSTEM_ELEMENTAL && m_PMob->PMaster == NULL)
 	{
@@ -2067,4 +2109,21 @@ void CAIMobDummy::WeatherChange(WEATHER weather, uint8 element)
 		}
 	}
 	// TODO: slug auto-regen rain
+}
+
+bool CAIMobDummy::CanAggroTarget(CBattleEntity* PTarget, uint32 expGain)
+{
+	if(PTarget->isDead() || expGain <= 50 && PTarget->animation != ANIMATION_HEALING) return false;
+
+	if(m_PMob->m_Behaviour != BEHAVIOUR_NONE && m_PMob->PMaster == NULL && m_ActionType == ACTION_ROAMING)
+	{
+
+		if (PTarget->animation != ANIMATION_CHOCOBO && m_PMob->CanDetectTarget(PTarget))
+		{
+			return true;
+		}
+
+	}
+
+	return false;
 }
