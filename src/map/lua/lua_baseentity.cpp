@@ -5717,7 +5717,7 @@ inline int32 CLuaBaseEntity::isBcnmsFull(lua_State *L){
 inline int32 CLuaBaseEntity::setSpawn(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity != TYPE_MOB);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
 	CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
 
