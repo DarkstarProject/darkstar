@@ -1,6 +1,6 @@
 ---------------------------------------------------
--- Berserk
--- Berserk Ability.
+-- Sandstorm
+-- Kicks up a blinding dust cloud on targets in an area of effect.
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -10,21 +10,17 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnMobSkillCheck(target,mob,skill)
-    if(mob:getHPP() <= 50) then
-        return 0;
-    end
-    return 1;
+	if(mob:isInDynamis() and mob:isMobType(MOBTYPE_NOTORIOUS)) then
+		return 0;
+	end
+	return 1;
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-    target:eraseAllStatusEffect();
+	local typeEffect = EFFECT_CHARM_I;
+    skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 1, 0, 60));
 
-    local maxHeal = target:getMaxHP() - target:getHP();
+    mob:resetEnmity(target);
 
-    target:addHP(maxHeal);
-    target:wakeUp();
-
-    skill:setMsg(MSG_SELF_HEAL);
-
-    return maxHeal;
-end;
+	return typeEffect;
+end

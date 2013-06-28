@@ -5714,6 +5714,23 @@ inline int32 CLuaBaseEntity::isBcnmsFull(lua_State *L){
 	return 1;
 }
 
+inline int32 CLuaBaseEntity::setSpawn(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity != TYPE_MOB);
+
+	CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
+
+	if( !lua_isnil(L,1) && lua_isnumber(L,1) )
+		PMob->m_SpawnPoint.x = (float) lua_tonumber(L,1);
+	if( !lua_isnil(L,2) && lua_isnumber(L,2) )
+		PMob->m_SpawnPoint.y = (float) lua_tonumber(L,2);
+	if( !lua_isnil(L,3) && lua_isnumber(L,3) )
+		PMob->m_SpawnPoint.z = (float) lua_tonumber(L,3);
+
+	return 0;
+}
+
 // Return unique ID for Dynamis
 inline int32 CLuaBaseEntity::getDynamisUniqueID(lua_State *L)
 {
@@ -7323,5 +7340,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isFollowingPath),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,wait),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,knockback),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setSpawn),
 	{NULL,NULL}
 };

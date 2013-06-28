@@ -1,6 +1,9 @@
 Contains a list of mob animation ids for future use.
 Creates by Lautan.
 
+18 - mob 2 hour mijin makure
+20-24 - mob 2 hour EES
+
 86 - super sonic thing
 
 125 - chalmeleon skin
@@ -17,7 +20,18 @@ Creates by Lautan.
 
 695~ - divine might animations
 
+// dynamis skills
 709-717 - All mob two hour animations for dynamis
+
+736 - knock back with slow
+737 - shieldbash
+
+770 - yugado rng two hour
+771 - qua rng two hour
+772 - recover hp
+773 - recover mp
+774 - warp out
+775 - warp in
 
 806+ - CoP animations
 

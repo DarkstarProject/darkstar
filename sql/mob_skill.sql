@@ -632,6 +632,7 @@ INSERT INTO `mob_skill` VALUES (352,334,352,'Arm_Block', 0, 7.0, 2000, 1500, 1, 
 INSERT INTO `mob_skill` VALUES (351,334,351,'Slam_Dunk', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (349,334,349,'Aerial_Wheel', 0, 12.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (350,334,350,'Shoulder_Attack', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (810,334,740,'Fanatic_Dance', 1, 10.0, 2000, 2000, 4, 0);
 
 -- Quadav
 INSERT INTO `mob_skill` VALUES (355,200,355,'Ore_Toss', 0, 10.0, 2000, 1500, 4, 0);
@@ -1026,10 +1027,11 @@ INSERT INTO `mob_skill` VALUES (1389,232,876,'Freeze_Rush', 0, 7.0, 2000, 1500, 
 INSERT INTO `mob_skill` VALUES (1390,232,877,'Cold_Wave', 4, 10.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (1388,232,878,'Hypothermal_Combustion', 1, 20.0, 2000, 2000, 4, 0);
 -- corse
-INSERT INTO `mob_skill` VALUES (276,74,902,'Envoutement', 0, 7.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (275,74,901,'Silence_Seal', 1, 15.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (274,74,900,'Memento_Mori', 0, 7.0, 2000, 1500, 1, 0);
--- INSERT INTO `mob_skill` VALUES (277,74,277,'Danse_Macabre', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (275,74,901,'Silence_Seal', 1, 15.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (276,74,902,'Envoutement', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (277,74,903,'Danse_Macabre', 0, 10.0, 2000, 2000, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (277,74,277,'Gala_Macabre', 0, 7.0, 2000, 1500, 4, 0);
 -- INSERT INTO `mob_skill` VALUES (274,74,1070,'Final_Retribution', 1, 10.0, 2000, 1500, 4, 0);
 -- Spheroids
 INSERT INTO `mob_skill` VALUES (728,234,685,'Electrocharge', 0, 15.0, 2000, 1500, 4, 0);

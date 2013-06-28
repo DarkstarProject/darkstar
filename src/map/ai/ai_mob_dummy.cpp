@@ -819,6 +819,12 @@ void CAIMobDummy::ActionAbilityFinish()
 	if (m_PMobSkill->isTwoHour() && m_PMob->GetMJob() != JOB_DRG) // 2h
 	{
 		m_PMob->m_SkillStatus = 1;
+
+		// force magic spam
+		if(m_PMobSkill->getID() == 436)
+		{
+			m_LastMagicTime = 0;
+		}
 	}
 
 	// store the skill used

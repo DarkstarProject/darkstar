@@ -1168,6 +1168,8 @@ bool CStatusEffectContainer::HasPreventActionEffect()
         HasStatusEffect(EFFECT_SLEEP_II) ||
         HasStatusEffect(EFFECT_PETRIFICATION) ||
         HasStatusEffect(EFFECT_LULLABY) ||
+        HasStatusEffect(EFFECT_CHARM);
+        HasStatusEffect(EFFECT_CHARM_II);
         HasStatusEffect(EFFECT_STUN);
 }
 
