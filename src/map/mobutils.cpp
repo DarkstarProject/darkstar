@@ -308,21 +308,21 @@ void CalculateStats(CMobEntity * PMob)
 		// giga
 		if(PMob->m_Family == 126 && PMob->m_Family <= 130)
 		{
-			PMob->m_SpecialCoolDown = 25000;
+			PMob->m_SpecialCoolDown = 35000;
 			// catapult
 			PMob->m_SpecialSkill = 402;
 		}
 		else
 		{
 			// all other rangers
-			PMob->m_SpecialCoolDown = 15000;
+			PMob->m_SpecialCoolDown = 20000;
 			PMob->m_SpecialSkill = 16;
 		}
 
 	}
 	else if(mJob == JOB_NIN)
 	{
-		PMob->m_SpecialCoolDown = 30000;
+		PMob->m_SpecialCoolDown = 35000;
 		PMob->m_SpecialSkill = 16;
 	}
 	else if(mJob == JOB_DRG && PMob->m_Family != 193)

@@ -171,7 +171,14 @@ inline int32 CLuaBaseEntity::addHP(lua_State *L)
 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
-	int32 result = ((CBattleEntity*)m_PBaseEntity)->addHP(lua_tointeger(L,-1));
+	CBattleEntity* PBattle = (CBattleEntity*)m_PBaseEntity;
+
+	int32 result = PBattle->addHP(lua_tointeger(L,-1));
+
+	// will always remove sleep effect
+    PBattle->StatusEffectContainer->DelStatusEffect(EFFECT_SLEEP);
+    PBattle->StatusEffectContainer->DelStatusEffect(EFFECT_SLEEP_II);
+    PBattle->StatusEffectContainer->DelStatusEffect(EFFECT_LULLABY);
 
 	if( result != 0 &&	m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
 	{
@@ -5044,7 +5051,7 @@ inline int32 CLuaBaseEntity::updateEnmityFromCure(lua_State *L)
 	uint32 amount = lua_tointeger(L,2);
 
     if (PEntity != NULL &&
-        PEntity->GetBaseEntity()->objtype == TYPE_PC)//TODO: Handle people curing skeletons
+        PEntity->GetBaseEntity()->objtype == TYPE_PC)
 	{
 		battleutils::GenerateCureEnmity((CBattleEntity*)m_PBaseEntity, (CBattleEntity*)PEntity->GetBaseEntity(), amount);
 	}
@@ -6288,7 +6295,7 @@ inline int32 CLuaBaseEntity::getObjType(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 
     lua_pushinteger(L, m_PBaseEntity->objtype);
-	return 0;
+	return 1;
 }
 
 inline int32 CLuaBaseEntity::isPC(lua_State *L)

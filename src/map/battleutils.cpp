@@ -3804,6 +3804,18 @@ void ClaimMob(CBattleEntity* PDefender, CBattleEntity* PAttacker)
 	{
         CMobEntity* mob = (CMobEntity*)PDefender;
 
+        if(PAttacker->objtype != TYPE_PC){
+        	if(PAttacker->PMaster != NULL)
+	        {
+	        	// claim by master
+	        	PAttacker = PAttacker->PMaster;
+	        }
+	        else
+	        {
+	        	ShowError("battleutils::ClaimMob Mob being claimed by non-player\n");
+	        }
+        }
+
         mob->PEnmityContainer->AddBaseEnmity(PAttacker);
         mob->m_OwnerID.id = PAttacker->id;
         mob->m_OwnerID.targid = PAttacker->targid;

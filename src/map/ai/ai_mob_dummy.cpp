@@ -1009,7 +1009,7 @@ void CAIMobDummy::ActionMagicStart()
 	m_LastMagicTime = m_Tick;
 
 	// don't use special right after magic
-	m_LastSpecialTime += rand()%5000 + 2000;
+	m_LastSpecialTime -= rand()%5000 + 2000;
 
 	// check valid targets
 	if (m_PSpell->getValidTarget() & TARGET_SELF) {
@@ -1343,12 +1343,12 @@ void CAIMobDummy::ActionAttack()
     }
 
 	// Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
-	if (currentDistance <= MOB_SPELL_MAX_RANGE && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && TryCastSpell())
+	if (currentDistance <= MOB_SPELL_MAX_RANGE && (int32)(m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && TryCastSpell())
 	{
 		FinishAttack();
 		return;
 	}
-	else if(m_PSpecialSkill != NULL && (m_Tick - m_LastSpecialTime) > m_PMob->m_SpecialCoolDown && TrySpecialSkill())
+	else if(m_PSpecialSkill != NULL && (int32)(m_Tick - m_LastSpecialTime) > m_PMob->m_SpecialCoolDown && TrySpecialSkill())
 	{
 		FinishAttack();
 		return;
@@ -1364,7 +1364,7 @@ void CAIMobDummy::ActionAttack()
     // try to standback if I can
 	if(m_PMob->m_StandbackTime)
 	{
-		if(currentDistance > 32)
+		if(currentDistance > 30)
 		{
 			// you're so far away i'm going to standback when I get closer
 			m_CanStandback = true;
@@ -1377,7 +1377,7 @@ void CAIMobDummy::ActionAttack()
 			// don't stand back again
 			m_LastStandbackTime = m_Tick + m_PMob->m_StandbackTime;
 		}
-		else if(currentDistance < 21)
+		else if(currentDistance < 20 && currentDistance > m_PMob->m_ModelSize * 2)
 		{
 
 			if(m_CanStandback && currentDistance > m_PMob->m_ModelSize)
@@ -1387,7 +1387,7 @@ void CAIMobDummy::ActionAttack()
 		    	m_CanStandback = false;
 		    }
 
-			if(m_Tick - m_LastStandbackTime > m_PMob->m_StandbackTime)
+			if((int32)(m_Tick - m_LastStandbackTime) > m_PMob->m_StandbackTime)
 			{
 				// speed up my ranged attacks cause i'm waiting here
 				m_LastSpecialTime -= 1000;
@@ -1440,7 +1440,7 @@ void CAIMobDummy::ActionAttack()
 			WeaponDelay -= (((float)(hasteMagic + hasteAbility) * WeaponDelay) / 1024);
 		}
 
-		if (m_AutoAttackEnabled && (m_Tick - m_LastActionTime) > WeaponDelay)
+		if (m_AutoAttackEnabled && (int32)(m_Tick - m_LastActionTime) > WeaponDelay)
 		{
 			if (battleutils::IsParalised(m_PMob))
 			{
@@ -1854,7 +1854,7 @@ void CAIMobDummy::ActionSpecialSkill()
 
 	if(m_PSpecialSkill == NULL){
 		m_PBattleSubTarget = NULL;
-		m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+		m_ActionType = ACTION_ATTACK;
 		return;
 	}
 
@@ -1870,7 +1870,8 @@ void CAIMobDummy::ActionSpecialSkill()
     m_LastActionTime = m_Tick;
     m_DeaggroTime = m_Tick;
 
-    uint16 halfSpecial = (float)m_PMob->m_SpecialCoolDown/2;
+    uint16 halfSpecial = (float)m_PMob->m_SpecialCoolDown/4;
+
     m_LastSpecialTime = m_Tick - rand()%(halfSpecial);
 
     apAction_t Action;

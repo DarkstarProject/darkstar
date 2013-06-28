@@ -98,7 +98,15 @@ void CEnmityContainer::AddBaseEnmity(CBattleEntity* PChar)
 void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE)
 {
 	// you're too far away so i'm ignoring you
-	if(!IsWithinEnmityRange(PEntity)) return;
+	if(!IsWithinEnmityRange(PEntity))
+	{
+		CE = 0;
+		VE = 0;
+	}
+
+	// Crash fix, PEntity was in ACTION_FALL
+	if (PEntity->PBattleAI->GetCurrentAction() == ACTION_FALL)
+		return;
 
     EnmityList_t::iterator PEnmity = m_EnmityList.lower_bound(PEntity->id);
 
@@ -291,7 +299,6 @@ void CEnmityContainer::UpdateEnmityFromDamage(CBattleEntity* PEntity, uint16 Dam
 	// Crash fix, PEntity was in ACTION_FALL
 	if (PEntity->PBattleAI->GetCurrentAction() == ACTION_FALL)
 		return;
-
 
 	Damage = (Damage < 1 ? 1 : Damage);
 

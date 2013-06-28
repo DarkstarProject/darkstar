@@ -466,10 +466,7 @@ void CAIPetDummy::ActionAbilityFinish(){
 
 		Action.messageID = msg;
 
-        if(PTarget->objtype == TYPE_MOB){
-            CMobEntity* mob = (CMobEntity*)PTarget;
-            mob->PEnmityContainer->UpdateEnmityFromDamage(m_PPet, Action.param);
-        }
+        battleutils::ClaimMob(m_PBattleSubTarget, m_PPet);
 
 		m_PPet->m_ActionList.push_back(Action);
 	}

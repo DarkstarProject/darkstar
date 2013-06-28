@@ -3087,7 +3087,7 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
 		onLimitMode = true;
 
 
-    if (baseexp > 100 && isexpchain)
+    if (baseexp >= 100 && isexpchain)
 	{
 		if (PChar->expChain.chainNumber != 0)
 		{
