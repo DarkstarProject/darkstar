@@ -27,6 +27,7 @@ function onEffectGain(target,effect)
 		target:addMod(MOD_REGEN_EFFECT, regen);
 		target:addMod(MOD_REGEN_DURATION, regen*2);
 	end
+	target:recalculateSkillsTable();
 end;
 
 -----------------------------------
@@ -59,4 +60,5 @@ function onEffectLose(target,effect)
 		target:delMod(MOD_REGEN_EFFECT, regen);
 		target:delMod(MOD_REGEN_DURATION, regen*2);
 	end	
+	target:recalculateSkillsTable();
 end;

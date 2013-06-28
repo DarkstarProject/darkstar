@@ -27,6 +27,7 @@ function onEffectGain(target,effect)
 		target:addMod(MOD_HELIX_EFFECT, helix);
 		target:addMod(MOD_HELIX_DURATION, 72);
 	end
+	target:recalculateSkillsTable();
 end;
 
 -----------------------------------
@@ -59,4 +60,5 @@ function onEffectLose(target,effect)
 		target:delMod(MOD_HELIX_EFFECT, helix);
 		target:delMod(MOD_HELIX_DURATION, 72);
 	end
+	target:recalculateSkillsTable();
 end;

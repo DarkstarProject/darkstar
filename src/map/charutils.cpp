@@ -2011,14 +2011,16 @@ void BuildingCharSkillsTable(CCharEntity* PChar)
 		uint16 MaxSSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PChar->GetSJob(),PChar->GetSLevel());
         uint16 skillBonus = 0;
 
-        if (i >= 32 && i <= 35 && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LIGHT_ARTS))
+        if (i >= 32 && i <= 35 && (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LIGHT_ARTS) ||
+            PChar->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_WHITE)))
         {
             uint16 artsSkill = battleutils::GetMaxSkill(SKILL_ENH,JOB_RDM,PChar->GetMLevel()); //B+ skill
             MaxMSkill = artsSkill > MaxMSkill ? artsSkill : MaxMSkill;
             MaxMSkill += PChar->getMod(MOD_LIGHT_ARTS_SKILL);
             skillBonus += PChar->getMod(MOD_LIGHT_ARTS_SKILL);
         }
-        else if (i >= 35 && i <= 37 && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DARK_ARTS))
+        else if (i >= 35 && i <= 37 && (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DARK_ARTS) ||
+            PChar->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_BLACK)))
         {
             uint16 artsSkill = battleutils::GetMaxSkill(SKILL_ENH,JOB_RDM,PChar->GetMLevel()); //B+ skill
             MaxMSkill = artsSkill > MaxMSkill ? artsSkill : MaxMSkill;
