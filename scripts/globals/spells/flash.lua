@@ -25,9 +25,8 @@ function onSpellCast(caster,target,spell)
     duration = 12 * resist;
 
     if(resist > 0.0625) then
-        if(target:hasStatusEffect(EFFECT_FLASH) == false) then
+        if(target:addStatusEffect(EFFECT_FLASH,100,0,duration)) then
             spell:setMsg(236);
-            target:addStatusEffect(EFFECT_FLASH,100,0,duration);
         else
             spell:setMsg(75);
         end
