@@ -50,6 +50,7 @@ public:
 	uint16	m_MasterCommand; //used for avatars/wyverns atm
 
 protected:
+	virtual void TransitionBack(bool skipWait = false);
 
 	CPetEntity* m_PPet;
     float m_skillTP;

@@ -218,6 +218,12 @@ bool CStatusEffectContainer::CanGainStatusEffect(EFFECT statusEffect, uint16 pow
         break;
     }
 
+    // make sure pets can't be charmed
+    if(m_POwner->PMaster != NULL)
+    {
+        return false;
+    }
+
     CStatusEffect* PStatusEffect;
 
     // check if a status effect blocks this

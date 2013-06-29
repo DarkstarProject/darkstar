@@ -141,6 +141,8 @@ private:
 
 protected:
 
+	virtual void			TransitionBack(bool skipWait) = 0; // transition back to correct state (usually attack or roaming)
+
 	ACTIONTYPE		m_ActionType;			// текущее действие (состояние)
 	uint16			m_ActionTargetID;		// дополнительная цель, участвующая в действии
 	uint32			m_LastActionTime;		// время начала любого действия

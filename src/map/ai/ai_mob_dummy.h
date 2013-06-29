@@ -58,7 +58,9 @@ public:
 	CAIMobDummy(CMobEntity* PMob);
 
 	virtual void WeatherChange(WEATHER weather, uint8 element);
-  bool CanAggroTarget(CBattleEntity* PTarget, uint32 expGain);
+
+  // checks if the given target can be aggroed by this mob
+  bool CanAggroTarget(CBattleEntity* PTarget);
 
   // time of day change, update mobs
   // TODO:
@@ -66,6 +68,8 @@ public:
 
   
 protected:
+
+  virtual void TransitionBack(bool skipWait = false);
 
 	CMobEntity* m_PMob;
   CMobSkill* m_PSpecialSkill;

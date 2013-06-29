@@ -791,11 +791,7 @@ void CAIPetDummy::ActionSleep()
 {
     if (!m_PPet->StatusEffectContainer->HasPreventActionEffect())
     {
-		//put it in combat if it isn't
-		if( m_PPet->animation == ANIMATION_NONE ){
-			m_PPet->animation = ANIMATION_ATTACK;
-		}
-		m_ActionType = (m_PPet->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+    	TransitionBack();
     }
     
 	m_PPet->loc.zone->PushPacket(m_PPet,CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
@@ -912,4 +908,25 @@ void CAIPetDummy::SendTooFarInterruptMessage(CBattleEntity* PTarg)
 	//too far away message = 78
 	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE,new CMessageBasicPacket(PTarg, PTarg, 0, 0, 78));
 	ActionAbilityInterrupt();
+}
+
+void CAIPetDummy::TransitionBack(bool skipWait)
+{
+
+	if(m_PPet->animation == ANIMATION_ATTACK)
+	{
+		m_ActionType = ACTION_ATTACK;
+		if(skipWait)
+		{
+			ActionAttack();
+		}
+	}
+	else
+	{
+		m_ActionType = ACTION_ROAMING;
+		if(skipWait)
+		{
+			ActionRoaming();
+		}
+	}
 }

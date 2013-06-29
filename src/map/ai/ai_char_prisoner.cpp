@@ -62,3 +62,7 @@ void CAICharPrisoner::WeatherChange(WEATHER weather, uint8 element)
 {
 
 }
+
+void CAICharPrisoner::TransitionBack(bool skipWait)
+{
+}

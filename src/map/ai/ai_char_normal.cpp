@@ -243,8 +243,7 @@ bool CAICharNormal::IsMobOwner(CBattleEntity* PBattleTarget)
 
 void CAICharNormal::ActionEngage()
 {
-	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0)
-    DSP_DEBUG_BREAK_IF(m_PBattleTarget != NULL);
+	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
 
 	if (GetValidTarget(&m_PBattleTarget, TARGET_ENEMY))
 	{
@@ -627,7 +626,7 @@ void CAICharNormal::ActionItemFinish()
 		//we may have modified the action via item use! (e.g. sleeping potion)
 		if (m_ActionType == ACTION_ITEM_FINISH)
 		{
-			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+			TransitionBack();
 		}
 		m_PItemUsable = NULL;
 		m_PBattleSubTarget = NULL;
@@ -665,7 +664,7 @@ void CAICharNormal::ActionItemInterrupt()
 
 	m_PChar->pushPacket(new CActionPacket(m_PChar));
 
-	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+	TransitionBack();
 	m_PItemUsable = NULL;
 	m_PBattleSubTarget = NULL;
 }
@@ -689,7 +688,7 @@ void CAICharNormal::ActionRangedStart()
 
 	if( (m_Tick - m_PChar->m_rangedDelay) < m_PChar->GetAmmoDelay(false)){ //cooldown between shots
 		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,MSGBASIC_WAIT_LONGER));
-		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+		TransitionBack();
 		m_ActionTargetID = 0;
 		m_PBattleSubTarget = NULL;
 		return;
@@ -766,7 +765,7 @@ void CAICharNormal::ActionRangedStart()
 			default:
 			{
 				m_ActionTargetID = 0;
-				m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				TransitionBack();
 				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,MSGBASIC_NO_RANGED_WEAPON));
 				return;
 			}
@@ -775,7 +774,7 @@ void CAICharNormal::ActionRangedStart()
 	}else{
 
 		m_ActionTargetID = 0;
-		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+		TransitionBack();
 		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,MSGBASIC_NO_RANGED_WEAPON));
 		return;
 
@@ -785,7 +784,7 @@ void CAICharNormal::ActionRangedStart()
 	{
 		if (m_PBattleSubTarget->isDead())
 		{
-			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+			TransitionBack();
 			m_PBattleSubTarget = NULL;
 			return;
 		}
@@ -793,7 +792,7 @@ void CAICharNormal::ActionRangedStart()
 		{
 			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,MSGBASIC_CANNOT_SEE));
 
-			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+			TransitionBack();
 			m_PBattleSubTarget = NULL;
 			return;
 		}
@@ -801,7 +800,7 @@ void CAICharNormal::ActionRangedStart()
 		{
 			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,MSGBASIC_ALREADY_CLAIMED));
 
-			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+			TransitionBack();
 			m_PBattleSubTarget = NULL;
 			return;
 		}
@@ -809,14 +808,14 @@ void CAICharNormal::ActionRangedStart()
 		{
 			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,MSGBASIC_TOO_FAR_AWAY));
 
-			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+			TransitionBack();
 			m_PBattleSubTarget = NULL;
 			return;
 		}
 	}
 	else
 	{
-		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+		TransitionBack();
 		m_PBattleSubTarget = NULL;
 		return;
 	}
@@ -857,7 +856,7 @@ void CAICharNormal::ActionRangedFinish()
 	if (m_PBattleSubTarget->isDead())
 	{
         m_LastMeleeTime += (m_Tick - m_LastActionTime);
-        m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+        TransitionBack();
         m_PBattleSubTarget = NULL;
         return;
 	}
@@ -867,7 +866,7 @@ void CAICharNormal::ActionRangedFinish()
 	{
 		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_MOVE_AND_INTERRUPT));
         m_LastMeleeTime += (m_Tick - m_LastActionTime);
-		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+        TransitionBack();
 		m_PBattleSubTarget = NULL;
 		return;
 	}
@@ -1068,9 +1067,6 @@ void CAICharNormal::ActionRangedFinish()
         m_PChar->m_ActionList.push_back(Action);
 		m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
-
-		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-
         // TODO: что это ? ....
         // если не ошибаюсь, то TREASURE_HUNTER работает лишь при последнем ударе
 
@@ -1118,10 +1114,9 @@ void CAICharNormal::ActionRangedFinish()
         // only remove detectables
         m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
 
-        m_PBattleSubTarget = NULL;
+		TransitionBack();
         m_PChar->m_rangedDelay = m_Tick; //cooldown between shots
 
-        m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 	}
 }
 
@@ -1150,8 +1145,7 @@ void CAICharNormal::ActionRangedInterrupt()
 
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
-	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-	m_PBattleSubTarget = NULL;
+	TransitionBack();
 }
 
 /************************************************************************
@@ -1201,8 +1195,7 @@ void CAICharNormal::ActionMagicStart()
 		//Either way, this check is required now.
 		m_ActionTargetID = 0;
 		m_PSpell = NULL;
-		m_PBattleSubTarget = NULL;
-		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+		TransitionBack();
 		return;
 	}
 	// TODO: Sift through these core checks and see what can be moved to scripts
@@ -1324,9 +1317,7 @@ void CAICharNormal::MagicStartError(uint16 error, uint16 param)
     m_ActionTargetID = 0;
 
 	m_PSpell = NULL;
-	m_PBattleSubTarget = NULL;
-
-    m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+	TransitionBack();
 }
 
 /************************************************************************
@@ -1653,8 +1644,6 @@ void CAICharNormal::ActionMagicFinish()
 
     m_LastCoolDown = m_Tick;
 
-	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-
     if(m_PBattleSubTarget->objtype == TYPE_MOB)
     {
     	CMobEntity* Monster = (CMobEntity*)m_PBattleSubTarget;
@@ -1665,7 +1654,7 @@ void CAICharNormal::ActionMagicFinish()
     }
 
 	m_PSpell = NULL;
-	m_PBattleSubTarget = NULL;
+    TransitionBack();
 }
 
 /************************************************************************
@@ -1695,9 +1684,8 @@ void CAICharNormal::ActionMagicInterrupt()
 
     m_LastCoolDown = m_Tick;
 
-	m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 	m_PSpell = NULL;
-	m_PBattleSubTarget = NULL;
+	TransitionBack();
 }
 
 /************************************************************************
@@ -1716,9 +1704,8 @@ void CAICharNormal::ActionJobAbilityStart()
         m_ActionTargetID = 0;
         m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_JA2));
 
-        m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
         m_PJobAbility = NULL;
-        m_PBattleSubTarget = NULL;
+        TransitionBack();
         return;
     }
 
@@ -1728,9 +1715,8 @@ void CAICharNormal::ActionJobAbilityStart()
 
 		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_WAIT_LONGER));
 
-        m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 		m_PJobAbility = NULL;
-		m_PBattleSubTarget = NULL;
+		TransitionBack();
 		return;
     }
     if (GetValidTarget(&m_PBattleSubTarget, m_PJobAbility->getValidTarget()))
@@ -1741,18 +1727,16 @@ void CAICharNormal::ActionJobAbilityStart()
             {
                 m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, 0, 0, MSGBASIC_TOO_FAR_AWAY));
 
-                m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
+				TransitionBack();
 				return;
 			}
 		}
 		if(m_PJobAbility->getID() >= ABILITY_HEALING_RUBY){//blood pact
 			if(m_PChar->health.mp < m_PJobAbility->getAnimationID()){ //not enough mp for BP
 				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, 0, 0, MSGBASIC_UNABLE_TO_USE_JA));
-			    m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
 				m_PJobAbility = NULL;
-				m_PBattleSubTarget = NULL;
+				TransitionBack();
 				return;
 			}
 		}
@@ -1780,7 +1764,7 @@ void CAICharNormal::ActionJobAbilityStart()
 					default:
 					{
 						m_ActionTargetID = 0;
-						m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+						TransitionBack();
 						m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,MSGBASIC_NO_RANGED_WEAPON));
 						return;
 					}
@@ -1793,13 +1777,13 @@ void CAICharNormal::ActionJobAbilityStart()
 				   (PItem->getSkillType() != SKILL_THR))
 				{
 					m_ActionTargetID = 0;
-					m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+					TransitionBack();
 					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,MSGBASIC_NO_RANGED_WEAPON));
 					return;
 				}
 
 				m_ActionTargetID = 0;
-					m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				TransitionBack();
 					m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,MSGBASIC_NO_RANGED_WEAPON));
 					return;
 			}
@@ -1811,9 +1795,8 @@ void CAICharNormal::ActionJobAbilityStart()
 		if(errNo != 0)
 		{
 			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, PMsgTarget, 0, 0, errNo));
-			m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+			TransitionBack();
 			m_PJobAbility = NULL;
-			m_PBattleSubTarget = NULL;
 			return;
 		}
 
@@ -1824,9 +1807,8 @@ void CAICharNormal::ActionJobAbilityStart()
             {
                 m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_ALREADY_CLAIMED));
 
-                m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+				TransitionBack();
                 m_PJobAbility = NULL;
-			    m_PBattleSubTarget = NULL;
 				return;
 			}
 		}
@@ -1837,10 +1819,8 @@ void CAICharNormal::ActionJobAbilityStart()
 	}
     m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0, MSGBASIC_UNABLE_TO_USE_JA2));
 
-    m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+    TransitionBack();
     m_PJobAbility = NULL;
-    m_PBattleSubTarget = NULL;
-    return;
 }
 
 /************************************************************************
@@ -2451,8 +2431,7 @@ void CAICharNormal::ActionJobAbilityFinish()
     m_PChar->pushPacket(new CCharSkillsPacket(m_PChar));
 
 	m_PJobAbility = NULL;
-    m_PBattleSubTarget = NULL;
-    m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+	TransitionBack();
 
 	if (m_PChar->getMijinGakure())
 	{
@@ -2581,8 +2560,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	if (m_PBattleSubTarget->isDead())
 	{
 		m_LastMeleeTime += (m_Tick - m_LastActionTime);
-        m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-	    m_PBattleSubTarget = NULL;
+		TransitionBack();
         return;
 	}
 
@@ -2941,8 +2919,7 @@ void CAICharNormal::ActionSleep()
 {
     if (!m_PChar->StatusEffectContainer->HasPreventActionEffect())
     {
-		m_PBattleSubTarget = NULL;
-		m_ActionType = (m_PChar->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+    	TransitionBack();
     }
 
 }
@@ -3455,4 +3432,21 @@ void CAICharNormal::ActionRaiseMenuSelection()
 	m_PChar->setMijinGakure(false);
 
 	m_ActionType = ACTION_NONE;
+}
+
+void CAICharNormal::TransitionBack(bool skipWait)
+{
+	m_PBattleSubTarget = NULL;
+	if(m_PChar->animation == ANIMATION_ATTACK)
+	{
+		m_ActionType = ACTION_ATTACK;
+		if(skipWait)
+		{
+			ActionAttack();
+		}
+	}
+	else
+	{
+		m_ActionType = ACTION_NONE;
+	}
 }

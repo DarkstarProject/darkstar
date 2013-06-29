@@ -174,7 +174,7 @@ public:
   void        addRageMode();						// Rage mode ON:  stat x10
   void        delRageMode();						// Rage mode OFF: stat /10
 
-  bool  CanDetectTarget(CBattleEntity* PTarget, bool forceSight = true); // can I detect the target?
+  bool  CanDetectTarget(CBattleEntity* PTarget, bool forceSight = false); // can I detect the target?
 
 	void		SetMainSkin(uint32 mobid);			// Set base skin for the mob (if mob or player dieing)
 	void		SetNewSkin(uint8 skinid);			// Set new skin for the mob

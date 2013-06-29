@@ -46,6 +46,7 @@ public:
 	CAICharPrisoner(CCharEntity* PChar);
 
 protected:
+  virtual void TransitionBack(bool skipWait = false);
 
 	CCharEntity* m_PChar;	
 

@@ -119,12 +119,6 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
 void CAIMobDummy::ActionRoaming()
 {
 
-	if (m_PMob->GetDespawnTimer() > 0 && m_PMob->GetDespawnTimer() < m_Tick)
-	{
-		m_LastActionTime = m_Tick - 12000;
-		m_PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
-		return;
-	}
 
 	// If there's someone on our enmity list, go from roaming -> engaging
 	if (m_PMob->PEnmityContainer->GetHighestEnmity() != NULL)
@@ -142,6 +136,12 @@ void CAIMobDummy::ActionRoaming()
 
 		m_ActionType = ACTION_ENGAGE;
 		ActionEngage();
+		return;
+	}
+	else if (m_PMob->GetDespawnTimer() > 0 && m_PMob->GetDespawnTimer() < m_Tick)
+	{
+		m_LastActionTime = m_Tick - 12000;
+		m_PMob->PBattleAI->SetCurrentAction(ACTION_DEATH);
 		return;
 	}
 
@@ -640,8 +640,7 @@ void CAIMobDummy::ActionAbilityStart()
     {
     	ShowWarning("CAIMobDummy::ActionAbilityStart No TP moves found for family (%d)\n", m_PMob->m_Family);
         m_PMob->health.tp = 0;
-		m_ActionType = ACTION_ATTACK;
-        ActionAttack();
+        TransitionBack(true);
 		return;
     }
 
@@ -681,14 +680,12 @@ void CAIMobDummy::ActionAbilityStart()
 	if(!valid) {
 		// couldn't find anything so go back to attack
 		m_PMob->health.tp = 0;
-		m_ActionType = ACTION_ATTACK;
-		ActionAttack();
+		TransitionBack(true);
 		return;
 	}
 
 	if(m_PMobSkill->getValidTargets() == TARGET_ENEMY){ //enemy
 	    m_PBattleSubTarget = m_PBattleTarget;
-	    m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
 	}
 	else if(m_PMobSkill->getValidTargets() == TARGET_SELF){ //self
 	    m_PBattleSubTarget = m_PMob;
@@ -696,12 +693,13 @@ void CAIMobDummy::ActionAbilityStart()
 	else
 	{
 		m_PMob->health.tp = 0;
-		m_ActionType = ACTION_ATTACK;
-		ActionAttack();
+		TransitionBack(true);
 		return;
 	}
 
+    m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
     m_LastActionTime = m_Tick;
+    
 	// store the TP the mob currently has as the mob skill TP modifier
 	m_skillTP = m_PMob->health.tp;
 
@@ -763,10 +761,7 @@ void CAIMobDummy::ActionAbilityUsing()
 	}
 
 	// always face my target
-	if(m_PBattleSubTarget != m_PMob)
-	{
-		m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
-	}	
+	m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
 
 	//TODO: Any checks whilst the monster is preparing.
 	//NOTE: RANGE CHECKS ETC ONLY ARE DONE AFTER THE ABILITY HAS FINISHED PREPARING.
@@ -820,8 +815,9 @@ void CAIMobDummy::ActionAbilityFinish()
 	{
 		m_PMob->m_SkillStatus = 1;
 
-		// force magic spam
-		if(m_PMobSkill->getID() == 436)
+		// force magic spam on chainspell, manafont and soul voice
+		int16 skillID = m_PMobSkill->getID();
+		if(skillID == 436 || skillID == 440 || skillID == 435)
 		{
 			m_LastMagicTime = 0;
 		}
@@ -989,11 +985,7 @@ void CAIMobDummy::ActionStun()
 	// lets just chill here for a bit
 	if(m_Tick - m_LastStunTime >= m_StunTime){
 		m_PBattleSubTarget = NULL;
-		if(m_PMob->PEnmityContainer->GetHighestEnmity() == NULL){
-			m_ActionType = ACTION_ROAMING;
-		} else {
-			m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-		}
+		TransitionBack();
 	}
 
 	if(m_PBattleSubTarget != NULL)
@@ -1015,7 +1007,7 @@ void CAIMobDummy::ActionMagicStart()
 	m_LastMagicTime = m_Tick;
 
 	// don't use special right after magic
-	m_LastSpecialTime -= rand()%5000 + 2000;
+	m_LastSpecialTime += rand()%3000 + 1000;
 
 	// check valid targets
 	if (m_PSpell->getValidTarget() & TARGET_SELF) {
@@ -1055,7 +1047,7 @@ void CAIMobDummy::ActionMagicStart()
 
 	if ( (m_PSpell->getValidTarget() & TARGET_ENEMY) && m_PBattleSubTarget->objtype == TYPE_MOB) {
 		if(m_PBattleSubTarget->PMaster == NULL || m_PBattleSubTarget->PMaster->objtype != TYPE_PC){
-			m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+			TransitionBack(true);
 			ShowDebug("Monster Magic Cast on self but spell is enemy... spellId: %d \n", m_PSpell->getID());
 			return;
 		}
@@ -1064,8 +1056,7 @@ void CAIMobDummy::ActionMagicStart()
 	if(luautils::OnMagicCastingCheck(m_PMob, m_PBattleSubTarget, m_PSpell) != 0)
 	{
 		//fail
-		m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-		ActionAttack();
+		TransitionBack(true);
 		return;
 	}
 
@@ -1102,15 +1093,12 @@ void CAIMobDummy::ActionMagicCasting()
 		return;
 	}
 
-	if(m_PBattleSubTarget != m_PMob)
-	{
-		m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
-	}
+	m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
 
 	if ( ((m_Tick - m_LastMagicTime) >= (float)m_PSpell->getCastTime()*((100.0f-(float)dsp_cap(m_PMob->getMod(MOD_FASTCAST),-100,50))/100.0f)) ||
         m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL,0))
 	{	
-		m_LastMagicTime = m_Tick - rand()%(uint8)((float)m_PMob->m_MagicRecastTime / 2);
+		m_LastMagicTime = m_Tick - rand()%(uint32)((float)m_PMob->m_MagicRecastTime / 2);
 
 		if(m_interruptSpell)
 		{
@@ -1177,7 +1165,8 @@ void CAIMobDummy::ActionMagicInterrupt()
 	m_LastMagicTime = m_Tick; // reset this in case the spell is long casting, don't want to immediately recast
 	m_PSpell = NULL;
 	m_PBattleSubTarget = NULL;
-	m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
+
+	TransitionBack();
 }
 
 void CAIMobDummy::ActionMagicFinish()
@@ -1294,12 +1283,15 @@ void CAIMobDummy::ActionMagicFinish()
 
 	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
 
-	m_ActionType = (m_PMob->animation == ANIMATION_ATTACK ? ACTION_ATTACK : ACTION_NONE);
-
-	if (m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL,0) ||
-	    m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT,0)) {
+	if (m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL,0)){
 		// let's make CSing monsters actually use lots of spells.
 		m_LastMagicTime = m_Tick - m_PMob->m_MagicRecastTime;
+	}
+	else if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT,0) ||
+	    m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SOUL_VOICE,0)) 
+	{
+		// cast magic sooner
+		m_LastMagicTime = m_Tick - (float)(m_PMob->m_MagicRecastTime/2);
 	}
 
 	m_PSpell = NULL;
@@ -1349,12 +1341,12 @@ void CAIMobDummy::ActionAttack()
     }
 
 	// Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
-	if (currentDistance <= MOB_SPELL_MAX_RANGE && (int32)(m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && TryCastSpell())
+	if (currentDistance <= MOB_SPELL_MAX_RANGE && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && TryCastSpell())
 	{
 		FinishAttack();
 		return;
 	}
-	else if(m_PSpecialSkill != NULL && (int32)(m_Tick - m_LastSpecialTime) > m_PMob->m_SpecialCoolDown && TrySpecialSkill())
+	else if(m_PSpecialSkill != NULL && (m_Tick - m_LastSpecialTime) > m_PMob->m_SpecialCoolDown && TrySpecialSkill())
 	{
 		FinishAttack();
 		return;
@@ -1393,7 +1385,7 @@ void CAIMobDummy::ActionAttack()
 		    	m_CanStandback = false;
 		    }
 
-			if((int32)(m_Tick - m_LastStandbackTime) > m_PMob->m_StandbackTime)
+			if((m_Tick - m_LastStandbackTime) > m_PMob->m_StandbackTime)
 			{
 				// speed up my ranged attacks cause i'm waiting here
 				m_LastSpecialTime -= 1000;
@@ -1446,7 +1438,7 @@ void CAIMobDummy::ActionAttack()
 			WeaponDelay -= (((float)(hasteMagic + hasteAbility) * WeaponDelay) / 1024);
 		}
 
-		if (m_AutoAttackEnabled && (int32)(m_Tick - m_LastActionTime) > WeaponDelay)
+		if (m_AutoAttackEnabled && (m_Tick - m_LastActionTime) > WeaponDelay)
 		{
 			if (battleutils::IsParalised(m_PMob))
 			{
@@ -1876,7 +1868,7 @@ void CAIMobDummy::ActionSpecialSkill()
     m_LastActionTime = m_Tick;
     m_DeaggroTime = m_Tick;
 
-    uint16 halfSpecial = (float)m_PMob->m_SpecialCoolDown/4;
+    uint32 halfSpecial = (float)m_PMob->m_SpecialCoolDown/2;
 
     m_LastSpecialTime = m_Tick - rand()%(halfSpecial);
 
@@ -2118,14 +2110,14 @@ void CAIMobDummy::WeatherChange(WEATHER weather, uint8 element)
 	// TODO: slug auto-regen rain
 }
 
-bool CAIMobDummy::CanAggroTarget(CBattleEntity* PTarget, uint32 expGain)
+bool CAIMobDummy::CanAggroTarget(CBattleEntity* PTarget)
 {
-	if(PTarget->isDead() || expGain <= 50 && PTarget->animation != ANIMATION_HEALING) return false;
+	if(PTarget->isDead() || PTarget->animation == ANIMATION_CHOCOBO) return false;
 
 	if(m_PMob->m_Behaviour != BEHAVIOUR_NONE && m_PMob->PMaster == NULL && m_ActionType == ACTION_ROAMING)
 	{
 
-		if (PTarget->animation != ANIMATION_CHOCOBO && m_PMob->CanDetectTarget(PTarget))
+		if (m_PMob->CanDetectTarget(PTarget))
 		{
 			return true;
 		}
@@ -2133,4 +2125,24 @@ bool CAIMobDummy::CanAggroTarget(CBattleEntity* PTarget, uint32 expGain)
 	}
 
 	return false;
+}
+
+void CAIMobDummy::TransitionBack(bool skipWait)
+{
+	if(m_PMob->animation == ANIMATION_ATTACK)
+	{
+		m_ActionType = ACTION_ATTACK;
+		if(skipWait)
+		{
+			ActionAttack();
+		}
+	}
+	else
+	{
+		m_ActionType = ACTION_ROAMING;
+		if(skipWait)
+		{
+			ActionRoaming();
+		}
+	}
 }

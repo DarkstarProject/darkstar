@@ -367,7 +367,10 @@ bool CPathFind::FindClosestPath(position_t* start, position_t* end)
 
 void CPathFind::LookAt(position_t point)
 {
-  m_PTarget->loc.p.rotation = getangle(m_PTarget->loc.p, point);
+  // don't look if i'm at that point
+  if(!AtPoint(&point)){
+    m_PTarget->loc.p.rotation = getangle(m_PTarget->loc.p, point);
+  }
 }
 
 bool CPathFind::OnPoint()

@@ -90,3 +90,8 @@ void CAINpcDummy::ActionRoaming()
 
   }
 }
+
+void CAINpcDummy::TransitionBack(bool skipWait)
+{
+  m_ActionType = ACTION_ROAMING;
+}

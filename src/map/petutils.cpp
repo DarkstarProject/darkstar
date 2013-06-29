@@ -543,6 +543,8 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 		return;
 	}
 
+	Pet_t* PPetData = g_PPetList.at(PetID);
+
 	if (PMaster->objtype == TYPE_PC)
 		((CCharEntity*)PMaster)->petZoningInfo.petID = PetID;
 
@@ -745,8 +747,20 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 	else if(PPet->getPetType()==PETTYPE_JUG_PET){
 		PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0f*(240.0f/60.0f)));
 		//TODO: Base off the caps + merits depending on jug type
-		PPet->SetMLevel(PMaster->GetMLevel());
-		LoadJugStats(PPet, g_PPetList.at(PetID)); //follow monster calcs (w/o SJ)
+
+		// get random lvl
+		uint8 highestLvl = PMaster->GetMLevel();
+
+		if(highestLvl > PPetData->maxLevel)
+		{
+			highestLvl = PPetData->maxLevel;
+		}
+
+		// 0-2 lvls lower
+		highestLvl -= rand()%3;
+
+		PPet->SetMLevel(highestLvl);
+		LoadJugStats(PPet, PPetData); //follow monster calcs (w/o SJ)
 	}
 	else if(PPet->getPetType()==PETTYPE_WYVERN){
 		//set the wyvern job based on master's SJ
