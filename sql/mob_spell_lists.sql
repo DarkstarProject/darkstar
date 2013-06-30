@@ -943,3 +943,5 @@ INSERT INTO `mob_spell_lists` VALUES ('EvilWeapon', '42', '232', '75', '255');
 INSERT INTO `mob_spell_lists` VALUES ('EvilWeapon', '42', '253', '25', '45');
 INSERT INTO `mob_spell_lists` VALUES ('EvilWeapon', '42', '259', '46', '255');
 INSERT INTO `mob_spell_lists` VALUES ('EvilWeapon', '42', '260', '32', '255');
+INSERT INTO `mob_spell_lists` VALUES ('WesternSphinx', '43', '357', '1', '255');
+INSERT INTO `mob_spell_lists` VALUES ('EasternSphinx', '44', '360', '1', '255');

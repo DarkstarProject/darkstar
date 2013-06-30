@@ -32,8 +32,8 @@ function onTrigger(player,npc)
 				player:setVar("Mission6-1MobKilled",0);
 				player:setVar("MissionStatus",3);
 			else
-				SpawnMob(17289654):updateEnmity(player);
-				SpawnMob(17289655):updateEnmity(player);
+				SpawnMob(17289654);
+				SpawnMob(17289655);
 			end
 		end
 	else
