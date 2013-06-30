@@ -47,11 +47,11 @@ function onMobDeath(mob, killer)
 	Nidhogg = 17408019;
 	ToD     = GetServerVariable("[POP]Nidhogg");
 	kills   = GetServerVariable("[PH]Nidhogg");
+    DeterMob(Fafnir, true);
 	if (ToD <= os.time(t) and GetMobAction(Nidhogg) == 0) then
 		if (math.random((1),(5)) == 3 or kills > 6) then
 			UpdateNMSpawnPoint(Nidhogg);
 			SpawnMob(Nidhogg, "", math.random((75600),(86400)));
-			DeterMob(Fafnir, true);
 		end
 	else
 		UpdateNMSpawnPoint(Fafnir);

@@ -42,22 +42,22 @@ end;
 
 function onMobDeath(mob, killer)
 
-	killer:addTitle(BEHEMOTHS_BANE);
+    killer:addTitle(BEHEMOTHS_BANE);
 
-  Behemoth      = mob:getID();
-  King_Behemoth = 17297441;
-  ToD     = GetServerVariable("[POP]King_Behemoth");
-  kills   = GetServerVariable("[PH]King_Behemoth");
-  if (ToD <= os.time(t) and GetMobAction(King_Behemoth) == 0) then
-    if (math.random((1),(5)) == 3 or kills > 6) then
-      UpdateNMSpawnPoint(King_Behemoth);
-      SpawnMob(King_Behemoth, "", math.random((75600),(86400)));
-      DeterMob(Behemoth, true);
+    Behemoth      = mob:getID();
+    King_Behemoth = 17297441;
+    ToD     = GetServerVariable("[POP]King_Behemoth");
+    kills   = GetServerVariable("[PH]King_Behemoth");
+    DeterMob(Behemoth, true);
+    if (ToD <= os.time(t) and GetMobAction(King_Behemoth) == 0) then
+        if (math.random((1),(5)) == 3 or kills > 6) then
+            UpdateNMSpawnPoint(King_Behemoth);
+            SpawnMob(King_Behemoth, "", math.random((75600),(86400)));
+        end
+    else
+        UpdateNMSpawnPoint(Behemoth);
+        SpawnMob(Behemoth, '', math.random((75600),(86400)));
+        SetServerVariable("[PH]King_Behemoth", kills + 1);
     end
-  else
-    UpdateNMSpawnPoint(Behemoth);
-    SpawnMob(Behemoth, '', math.random((75600),(86400)));
-    SetServerVariable("[PH]King_Behemoth", kills + 1);
-  end
 
 end;

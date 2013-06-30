@@ -11,6 +11,7 @@ require("/scripts/zones/West_Ronfaure/MobIDs");
 -----------------------------------	
 	
 function onMobDeath(mob,killer)	
+
 	checkRegime(killer,mob,2,1);
     
     mob = mob:getID();
@@ -26,4 +27,5 @@ function onMobDeath(mob,killer)
             end
         end
     end
+    
 end;	

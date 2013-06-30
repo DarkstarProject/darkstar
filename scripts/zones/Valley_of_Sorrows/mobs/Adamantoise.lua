@@ -41,21 +41,21 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:addTitle(TORTOISE_TORTURER);
-	
-  Adamantoise  = mob:getID();
-  Aspidochelone = 17301538; 
-  ToD     = GetServerVariable("[POP]Aspidochelone");
-  kills   = GetServerVariable("[PH]Aspidochelone");
-  if (ToD <= os.time(t) and GetMobAction(Aspidochelone) == 0) then
-    if (math.random((1),(5)) == 3 or kills > 6) then
-      UpdateNMSpawnPoint(Aspidochelone);
-      SpawnMob(Aspidochelone, "", math.random((75600),(86400)));
-      DeterMob(Adamantoise, true);
+    killer:addTitle(TORTOISE_TORTURER);
+
+    Adamantoise  = mob:getID();
+    Aspidochelone = 17301538; 
+    ToD     = GetServerVariable("[POP]Aspidochelone");
+    kills   = GetServerVariable("[PH]Aspidochelone");
+    DeterMob(Adamantoise, true);
+    if (ToD <= os.time(t) and GetMobAction(Aspidochelone) == 0) then
+        if (math.random((1),(5)) == 3 or kills > 6) then
+            UpdateNMSpawnPoint(Aspidochelone);
+            SpawnMob(Aspidochelone, "", math.random((75600),(86400)));
+        end
+    else
+        UpdateNMSpawnPoint(Adamantoise);
+        SpawnMob(Adamantoise, '', math.random((75600),(86400)));
+        SetServerVariable("[PH]Aspidochelone", kills + 1);
     end
-  else
-    UpdateNMSpawnPoint(Adamantoise);
-    SpawnMob(Adamantoise, '', math.random((75600),(86400)));
-    SetServerVariable("[PH]Aspidochelone", kills + 1);
-  end
 end;

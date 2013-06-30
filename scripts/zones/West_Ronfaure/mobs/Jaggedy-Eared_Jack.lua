@@ -3,15 +3,12 @@
 --    NM: Jaggedy-Eared_Jack
 -----------------------------------
 
-require("/scripts/globals/fieldsofvalor");	
-
 -----------------------------------
 -- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,2,1);
-    
+
     -- Set Jaggedy-Eared_Jack's Window Open Time, and disable respawn
     wait = math.random((3000),(21600));
     SetServerVariable("[POP]Jaggedy_Eared_Jack", os.time(t) + wait); -- 50 minutes - 6 hours
@@ -22,5 +19,6 @@ function onMobDeath(mob,killer)
     SetServerVariable("[PH]Jaggedy_Eared_Jack", 0);
     DeterMob(PH, false);
     SpawnMob(PH, '', GetMobRespawnTime(PH));
+    
 end;
 

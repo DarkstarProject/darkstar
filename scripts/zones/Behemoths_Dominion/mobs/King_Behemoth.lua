@@ -45,14 +45,14 @@ function onMobDeath(mob, killer)
 
 	killer:addTitle(BEHEMOTH_DETHRONER);
 
-  -- Set King_Behemoth's Window Open Time
-  wait = 72 * 3600
-  SetServerVariable("[POP]King_Behemoth", os.time(t) + wait); -- 3 days
+    -- Set King_Behemoth's Window Open Time
+    wait = 72 * 3600
+    SetServerVariable("[POP]King_Behemoth", os.time(t) + wait); -- 3 days
 
-  -- Set Behemoth's spawnpoint and respawn time (21-24 hours)
-  SetServerVariable("[PH]King_Behemoth", 0);
-  DeterMob(17297440, false);
-  UpdateNMSpawnPoint(17297440);
-  SpawnMob(17297440, '', math.random((75600),(86400)));
+    -- Set Behemoth's spawnpoint and respawn time (21-24 hours)
+    SetServerVariable("[PH]King_Behemoth", 0);
+    DeterMob(17297440, false);
+    UpdateNMSpawnPoint(17297440);
+    SpawnMob(17297440, '', math.random((75600),(86400)));
 
 end;
