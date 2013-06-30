@@ -2678,7 +2678,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	CBattleEntity* taChar = NULL;
 
 	//trick attack agi bonus for thf main job
-	if (m_PChar->GetMJob() == JOB_THF &&	m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
+	if (m_PChar->GetMJob() == JOB_THF && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
 	{
 		taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
 		if(taChar != NULL) damage += m_PChar->AGI();

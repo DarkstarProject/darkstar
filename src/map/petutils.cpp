@@ -1113,13 +1113,13 @@ void Familiar(CBattleEntity* PPet)
     }
 
     float rate = 0.10f;
-
+    
     if(PPet->PMaster->objtype == TYPE_MOB)
     {
-    	// mobs bst get bigger boost
-    	rate = 0.20f;
+        // mobs bst get bigger boost
+        rate = 0.20f;
     }
-
+    
     // boost hp by 10%
     uint16 boost = (float)PPet->health.maxhp * rate;
 

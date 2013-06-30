@@ -121,8 +121,7 @@ void CAIPetDummy::ActionAbilityStart()
 				// could not find skill
 				if(maxSearch == 0)
 				{
-					m_ActionType = ACTION_ATTACK;
-					ActionAttack();
+					TransitionBack(true);
 					return;
 				}
 
@@ -242,8 +241,8 @@ void CAIPetDummy::ActionAbilityStart()
 			}
 		}
 	}
-	m_ActionType = ACTION_ATTACK;
-	ActionAttack();
+
+	TransitionBack(true);
 }
 
 void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg){
@@ -290,8 +289,7 @@ void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg){
 	}
 	else{
 		ShowWarning("ai_pet_dummy::ActionAbilityFinish Pet skill is null \n");
-		m_ActionType = ACTION_ATTACK;
-		ActionAttack();
+		TransitionBack(true);
 	}
 }
 
@@ -589,7 +587,7 @@ void CAIPetDummy::ActionEngage()
 		ActionFall();
 		return;
 	}
-
+	
 	bool hasClaim = false;
 
 	if(m_PBattleTarget->m_OwnerID.id == m_PPet->PMaster->id)
@@ -625,19 +623,20 @@ void CAIPetDummy::ActionEngage()
 	if(hasClaim)
 	{
 		m_PPet->animation = ANIMATION_ATTACK;
-		m_ActionType = ACTION_ATTACK;
-		m_LastActionTime = m_Tick - 4000;
-		ActionAttack();
+		m_LastActionTime = m_Tick - 1000;
+		TransitionBack(true);
+		m_PPet->loc.zone->PushPacket(m_PPet,CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
 	}
 	else
 	{
+		m_PPet->animation = ANIMATION_NONE;
 		if(m_PPet->PMaster->objtype == TYPE_PC)
 		{
 			((CCharEntity*)m_PPet->PMaster)->pushPacket(new CMessageBasicPacket(((CCharEntity*)m_PPet->PMaster),
 				((CCharEntity*)m_PPet->PMaster),0,0,12));
 			m_ActionType = ACTION_DISENGAGE;
 			return;
-		}
+		}		
 	}
 
 }
@@ -655,7 +654,9 @@ void CAIPetDummy::ActionAttack()
 	//if 2 bsts are in party, make sure their pets cannot fight eachother
 	if (m_PBattleTarget != NULL && m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->PMaster != NULL && m_PBattleTarget->PMaster->objtype == TYPE_PC)
 	{
-		m_PPet->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
+        m_ActionType = ACTION_DISENGAGE;
+        ActionDisengage();
+        return;
 	}
 
 
@@ -669,6 +670,7 @@ void CAIPetDummy::ActionAttack()
         m_PBattleTarget->animation == ANIMATION_CHOCOBO)
 	{
         m_ActionType = ACTION_DISENGAGE;
+        ActionDisengage();
 		return;
 	}
 
@@ -677,7 +679,7 @@ void CAIPetDummy::ActionAttack()
 	float currentDistance = distance(m_PPet->loc.p, m_PBattleTarget->loc.p);
 
 	//go to target if its too far away
-	if (currentDistance > m_PBattleTarget->m_ModelSize)
+	if (currentDistance > m_PBattleTarget->m_ModelSize && m_PPet->speed != 0)
 	{
 		if(m_PPathFind->PathAround(m_PBattleTarget->loc.p, 2.0f, PATHFLAG_RUN | PATHFLAG_WALLHACK))
 		{
@@ -687,6 +689,9 @@ void CAIPetDummy::ActionAttack()
 			currentDistance = distance(m_PPet->loc.p, m_PBattleTarget->loc.p);
 		}
 	}
+
+	// some reason this doesn't get set on engage?
+	m_PPet->animation = ANIMATION_ATTACK;
 
 	if(currentDistance <= m_PBattleTarget->m_ModelSize)
 	{
@@ -770,6 +775,7 @@ void CAIPetDummy::ActionAttack()
 			}
 
 				m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
+
 				if(m_PPet->PMaster != NULL && m_PPet->PMaster->objtype == TYPE_PC && m_PPet->PMaster->PPet != NULL){
 					((CCharEntity*)m_PPet->PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)m_PPet->PMaster));
 				}
@@ -793,8 +799,9 @@ void CAIPetDummy::ActionSleep()
     {
     	TransitionBack();
     }
-    
+
 	m_PPet->loc.zone->PushPacket(m_PPet,CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+    
 }
 
 void CAIPetDummy::ActionDisengage()
@@ -805,10 +812,10 @@ void CAIPetDummy::ActionDisengage()
 		return;
 	}
 
-	m_ActionType = ACTION_ROAMING;
+	m_PPet->animation = ANIMATION_NONE;
 	m_LastActionTime = m_Tick;
 	m_PBattleTarget  = NULL;
-	m_PPet->animation = ANIMATION_NONE;
+	TransitionBack();
 	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
 }
 

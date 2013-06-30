@@ -615,17 +615,17 @@ INSERT INTO `mob_skill` VALUES(335, 327, 335, 'Bomb_Toss', 2, 13.5, 2000, 1500, 
 INSERT INTO `mob_skill` VALUES (826,327,744,'Smokebomb', 4, 10.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (828,327,746,'Crispy_Candle', 4, 10.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (830,327,748,'Paralysis_Shower', 4, 10.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (843,327,750,'Dice_Heal', 1, 10.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (844,327,751,'Dice_Curse', 1, 10.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (845,327,752,'Dice_Damage', 1, 10.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (846,327,753,'Dice_Stun', 1, 10.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (847,327,754,'Dice_Poison', 1, 10.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (848,327,755,'Dice_Disease', 1, 10.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (849,327,756,'Dice_Sleep', 1, 10.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (850,327,757,'Dice_Slow', 1, 10.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (851,327,758,'Dice_TP_Loss', 1, 10.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (852,327,759,'Dice_Dispel', 1, 10.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (853,327,760,'Dice_Reset', 1, 10.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (843,327,750,'Dice_Heal', 1, 10.0, 3000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (844,327,751,'Dice_Curse', 1, 10.0, 3000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (845,327,752,'Dice_Damage', 1, 10.0, 3000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (846,327,753,'Dice_Stun', 1, 10.0, 3000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (847,327,754,'Dice_Poison', 1, 10.0, 3000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (848,327,755,'Dice_Disease', 1, 10.0, 3000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (849,327,756,'Dice_Sleep', 1, 10.0, 3000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (850,327,757,'Dice_Slow', 1, 10.0, 3000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (851,327,758,'Dice_TP_Loss', 1, 10.0, 3000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (852,327,759,'Dice_Dispel', 1, 10.0, 3000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (853,327,760,'Dice_Reset', 1, 10.0, 3000, 1500, 4, 0);
 
 -- Orc
 INSERT INTO `mob_skill` VALUES (377,189,354,'Howl', 1, 20.0, 2000, 1500, 1, 0);

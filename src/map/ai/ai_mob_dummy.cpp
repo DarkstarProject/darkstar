@@ -956,10 +956,8 @@ void CAIMobDummy::ActionSleep()
 	{
 		SetupEngage();
 	}
-	else
-	{
-		m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
-	}
+
+	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 
 }
 
