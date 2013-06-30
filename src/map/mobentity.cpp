@@ -152,7 +152,7 @@ uint32 CMobEntity::GetRandomGil()
 bool CMobEntity::CanRoamHome()
 {
     if(speed == 0 && !(m_roamFlags & ROAMFLAG_WORM)) return false;
-    return (m_Type & MOBTYPE_NOTORIOUS) || (m_Type & MOBTYPE_EVENT) || MOB_TRAIN;
+    return (m_Type & MOBTYPE_NOTORIOUS) || (m_Type & MOBTYPE_EVENT) || isInDynamis() || MOB_TRAIN;
 }
 
 bool CMobEntity::CanRoam()

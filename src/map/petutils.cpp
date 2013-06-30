@@ -1112,18 +1112,26 @@ void Familiar(CBattleEntity* PPet)
         PPet->charmTime += 1800000 - rand()%300000;
     }
 
+    float rate = 0.10f;
+
+    if(PPet->PMaster->objtype == TYPE_MOB)
+    {
+    	// mobs bst get bigger boost
+    	rate = 0.20f;
+    }
+
     // boost hp by 10%
-    uint16 boost = (float)PPet->health.maxhp * 0.10;
+    uint16 boost = (float)PPet->health.maxhp * rate;
 
     PPet->health.maxhp += boost;
     PPet->health.hp += boost;
     PPet->UpdateHealth();
 
     // boost stats by 10%
-    PPet->addModifier(MOD_ATTP, 10);
-    PPet->addModifier(MOD_ACCP, 10);
-    PPet->addModifier(MOD_EVAP, 10);
-    PPet->addModifier(MOD_DEFP, 10);
+    PPet->addModifier(MOD_ATTP, rate * 100.0f);
+    PPet->addModifier(MOD_ACCP, rate * 100.0f);
+    PPet->addModifier(MOD_EVAP, rate * 100.0f);
+    PPet->addModifier(MOD_DEFP, rate * 100.0f);
 
 }
 
