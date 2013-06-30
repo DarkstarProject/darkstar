@@ -231,6 +231,15 @@ INSERT INTO `mob_skill` VALUES (859,92,766,'Torpid_Glare', 4, 15.0, 2000, 1500, 
 INSERT INTO `mob_skill` VALUES (854,94,767,'Seismostomp', 1, 15.0, 3000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (861,94,768,'Lead_Breath', 4, 15.0, 2000, 1500, 4, 0);
 
+-- Dynamis Lord
+-- INSERT INTO `mob_skill` VALUES (861,225,768,'Transfusion', 1, 15.0, 2000, 1500, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (861,225,768,'Manastorm', 1, 15.0, 2000, 1500, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (861,225,768,'Tera_Slash', 1, 15.0, 2000, 1500, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (861,225,768,'Violent_Rupture', 1, 15.0, 2000, 1500, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (861,225,768,'Oblivion_Smash', 1, 15.0, 2000, 1500, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (861,225,768,'Dynamic_Assault', 0, 10.0, 2000, 1500, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (861,225,768,'Dynamic_Implosion', 1, 15.0, 2000, 1500, 4, 0);
+
 -- Buffalo
 INSERT INTO `mob_skill` VALUES (237,57,846,'Rampant_Gnaw', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (238,57,847,'Big_Horn', 0, 7.0, 2000, 1500, 4, 0);

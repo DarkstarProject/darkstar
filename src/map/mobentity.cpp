@@ -74,10 +74,13 @@ CMobEntity::CMobEntity()
     accRank = 3;
     evaRank = 3;
 
+    m_giveExp = false;
+    m_neutral = false;
     m_Link = 0;
     m_SubLinks[0] = 0;
     m_SubLinks[1] = 0;
 
+    m_maxRoamDistance = 20;
     m_hearingRange = 8;
     m_sightRange = 15;
     m_disableScent = false;
@@ -146,6 +149,17 @@ uint32 CMobEntity::GetRandomGil()
     return gil;
 }
 
+bool CMobEntity::CanRoamHome()
+{
+    if(speed == 0 && !(m_roamFlags & ROAMFLAG_WORM)) return false;
+    return (m_Type & MOBTYPE_NOTORIOUS) || (m_Type & MOBTYPE_EVENT) || MOB_TRAIN;
+}
+
+bool CMobEntity::CanRoam()
+{
+    return !(m_Type & MOBTYPE_EVENT) && PMaster == NULL && (speed > 0 || (m_roamFlags & ROAMFLAG_WORM));
+}
+
 /************************************************************************
 *                                                                       *
 *                                                                       *
@@ -198,6 +212,16 @@ void CMobEntity::delRageMode()
     m_RageMode = false;
 }
 
+bool CMobEntity::IsFarFromHome()
+{
+    return distance(loc.p, m_SpawnPoint) > m_maxRoamDistance;
+}
+
+bool CMobEntity::CanBeNeutral()
+{
+    return !(m_Type & MOBTYPE_NOTORIOUS);
+}
+
 bool CMobEntity::CanDetectTarget(CBattleEntity* PTarget, bool forceSight)
 {
     if(PTarget->isDead() || m_Behaviour == ROAMFLAG_NONE || PTarget->animation == ANIMATION_CHOCOBO) return false;
@@ -218,22 +242,22 @@ bool CMobEntity::CanDetectTarget(CBattleEntity* PTarget, bool forceSight)
         return true;
     }
 
-    if (m_Behaviour & BEHAVIOUR_AGGRO_TRUESIGHT && currentDistance < m_sightRange && isFaceing(loc.p, PTarget->loc.p, 40))
+    if ((m_Behaviour & BEHAVIOUR_AGGRO_TRUESIGHT) && currentDistance < m_sightRange && isFaceing(loc.p, PTarget->loc.p, 40))
     {
         return true;
     }
 
-    if (m_Behaviour & BEHAVIOUR_AGGRO_TRUEHEARING && currentDistance < m_hearingRange)
+    if ((m_Behaviour & BEHAVIOUR_AGGRO_TRUEHEARING) && currentDistance < m_hearingRange)
     {
         return true;
     }
 
-    if (m_Behaviour & BEHAVIOUR_AGGRO_AMBUSH && currentDistance < 3 && !PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
+    if ((m_Behaviour & BEHAVIOUR_AGGRO_AMBUSH) && currentDistance < 3 && !PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
     {
         return true;
     }
-            
-    if (m_Behaviour & BEHAVIOUR_AGGRO_HEARING && currentDistance < m_hearingRange && !PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
+
+    if ((m_Behaviour & BEHAVIOUR_AGGRO_HEARING) && currentDistance < m_hearingRange && !PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
     {
         return true;
     }
@@ -244,22 +268,22 @@ bool CMobEntity::CanDetectTarget(CBattleEntity* PTarget, bool forceSight)
         return false;
     }
 
-    if (m_Behaviour & BEHAVIOUR_AGGRO_LOWHP && PTarget->GetHPP() < 75)
+    if ((m_Behaviour & BEHAVIOUR_AGGRO_LOWHP) && PTarget->GetHPP() < 75)
     {
         return true;
     }
 
-    if (m_Behaviour & BEHAVIOUR_AGGRO_MAGIC && PTarget->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING && PTarget->PBattleAI->GetCurrentSpell()->hasMPCost())
+    if ((m_Behaviour & BEHAVIOUR_AGGRO_MAGIC) && PTarget->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING && PTarget->PBattleAI->GetCurrentSpell()->hasMPCost())
     {
         return true;
     }
 
-    if (m_Behaviour & BEHAVIOUR_AGGRO_WEAPONSKILL && PTarget->PBattleAI->GetCurrentAction() == ACTION_WEAPONSKILL_FINISH)
+    if ((m_Behaviour & BEHAVIOUR_AGGRO_WEAPONSKILL) && PTarget->PBattleAI->GetCurrentAction() == ACTION_WEAPONSKILL_FINISH)
     {
         return true;
     }
 
-    if (m_Behaviour & BEHAVIOUR_AGGRO_JOBABILITY && PTarget->PBattleAI->GetCurrentAction() == ACTION_JOBABILITY_FINISH)
+    if ((m_Behaviour & BEHAVIOUR_AGGRO_JOBABILITY) && PTarget->PBattleAI->GetCurrentAction() == ACTION_JOBABILITY_FINISH)
     {
         return true;
     }

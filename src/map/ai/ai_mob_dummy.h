@@ -37,8 +37,8 @@
 // mobs will deaggro if player is out of range for this long
 #define MOB_DEAGGRO_TIME 25000
 
-// this will make mobs walk back to spawn point instead of despawning
-#define MOB_TRAIN false
+// time a mob is neutral after disengaging
+#define MOB_NEUTRAL_TIME 10000
 
 /************************************************************************
 *																		*
@@ -80,6 +80,7 @@ protected:
   uint32 m_LastStunTime;
   uint32 m_StunTime;
   uint32 m_DeaggroTime;
+  uint32 m_NeutralTime;
   float m_skillTP;
 
   bool  m_CanStandback;

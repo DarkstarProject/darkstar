@@ -663,7 +663,7 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 					{
 						while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 						{
-							if (chocoboname1 != NULL && chocoboname2 != NULL)
+							if (chocoboname1 != 0 && chocoboname2 != 0)
 							{
 								g_PPetList.at(PetID)->name.insert(0, Sql_GetData(SqlHandle, 0));
 							}
@@ -764,7 +764,7 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 	}
 	else if(PPet->getPetType()==PETTYPE_WYVERN){
 		//set the wyvern job based on master's SJ
-		if(PMaster->GetSJob()!=NULL){
+		if(PMaster->GetSJob()!=JOB_NON){
 			PPet->SetSJob(PMaster->GetSJob());
 		}
 		PPet->SetMJob(JOB_DRG);
@@ -863,6 +863,10 @@ void SpawnMobPet(CBattleEntity* PMaster, uint32 PetID)
     PPet->setModifier(MOD_LIGHTRES,   petData->lightres);
     PPet->setModifier(MOD_DARKRES,    petData->darkres);
 
+	PPet->m_SpawnPoint = nearPosition(PMaster->loc.p, 2.1f, M_PI);
+
+    // prevent random despawning
+    PPet->SetDespawnTimer(0);
 }
 
 /************************************************************************
@@ -927,12 +931,14 @@ void DespawnPet(CBattleEntity* PMaster)
 					if (PMob->GetHPP() != 0 && PMob->PMaster->GetHPP() != 0)
 					{
 						PMob->PEnmityContainer->UpdateEnmity(PChar, 0, 0);
-						PMob->health.tp = 0;// reset tp to 0 to stop mobAi using tp move on player as soon as charm wears
 					}
 					else
 					{
 						PMob->m_OwnerID.clean();
 					}
+
+					// dirty exp if not full
+					PMob->m_giveExp = PMob->GetHPP() == 100;
 
 					//master using leave command
 					if (PMaster->PBattleAI->GetCurrentAction() == ACTION_JOBABILITY_FINISH && PMaster->PBattleAI->GetCurrentJobAbility()->getID() == 55 || PChar->loc.zoning)
@@ -953,7 +959,7 @@ void DespawnPet(CBattleEntity* PMaster)
 					if (PMob->GetHPP() == 0)
 						PMob->PBattleAI->SetCurrentAction(ACTION_FALL);
 					else
-						PMob->PBattleAI->SetCurrentAction(ACTION_ROAMING);
+						PMob->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
 
 
 					PChar->PPet = NULL;

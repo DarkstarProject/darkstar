@@ -566,7 +566,7 @@ void CAIPetDummy::ActionRoaming()
 
 	if (currentDistance > PET_ROAM_DISTANCE)
 	{
-		if(currentDistance <= 28.0f && m_PPathFind->PathAround(m_PPet->PMaster->loc.p, 2.0f, PATHFLAG_RUN | PATHFLAG_WALLHACK))
+		if(currentDistance < 35.0f && m_PPathFind->PathAround(m_PPet->PMaster->loc.p, 2.0f, PATHFLAG_RUN | PATHFLAG_WALLHACK))
 		{
 			m_PPathFind->FollowPath();
 		}

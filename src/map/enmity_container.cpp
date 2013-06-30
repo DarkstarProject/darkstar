@@ -95,7 +95,7 @@ void CEnmityContainer::AddBaseEnmity(CBattleEntity* PChar)
 *                                                                       *
 ************************************************************************/
 
-void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE)
+void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, bool withMaster)
 {
 	// you're too far away so i'm ignoring you
 	if(!IsWithinEnmityRange(PEntity))
@@ -149,15 +149,15 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE)
 
         m_EnmityList.insert(PEnmity, EnmityList_t::value_type(PEntity->id, PEnmityObject));
 
-		//add master to the enmity list
-		if(PEntity->objtype == TYPE_PET && PEntity->PMaster!=NULL){
-			UpdateEnmity(PEntity->PMaster,0,0);
-		}
-
-		//add master to the enmity list (charmed mob)
-		if(PEntity->objtype == TYPE_MOB && PEntity->PMaster!=NULL && PEntity->PMaster->objtype == TYPE_PC){
-			UpdateEnmity(PEntity->PMaster,0,0);
-		}
+        if(withMaster && PEntity->PMaster != NULL)
+        {
+			//add master to the enmity list
+			//add master to the enmity list (charmed mob)
+        	if(PEntity->objtype == TYPE_PET || PEntity->objtype == TYPE_MOB && PEntity->PMaster!=NULL && PEntity->PMaster->objtype == TYPE_PC)
+        	{
+        		UpdateEnmity(PEntity->PMaster, 0, 0);
+        	}
+        }
     }
 
 }
@@ -201,6 +201,11 @@ void CEnmityContainer::AddPartyEnmity(CCharEntity* PChar)
 
 	}
 
+}
+
+void CEnmityContainer::AddLinkEnmity(CBattleEntity* PEntity)
+{
+    UpdateEnmity(PEntity, 1, 1, false);
 }
 
 bool CEnmityContainer::HasTargetID(uint16 TargetID){

@@ -34,6 +34,9 @@
 // forward declaration
 class CMobSpellContainer;
 
+// this will make mobs walk back to spawn point instead of despawning
+#define MOB_TRAIN false
+
 enum SPAWNTYPE
 {
 	SPAWNTYPE_NORMAL		= 0x00,     // 00:00-24:00
@@ -145,6 +148,7 @@ public:
   uint8 m_hearingRange; // aggro player when within this rnage
   uint8 m_sightRange; // aggro player when within this range
   bool  m_disableScent; // stop detecting by scent
+  uint8 m_maxRoamDistance; // maximum distance mob can be from spawn
 
   uint8   m_Type;               // тип монстра
   uint8       m_Link;               // взаимопомощь монстрам своего семейства
@@ -155,6 +159,8 @@ public:
 
 	uint8		m_CallForHelp;						// в перспективе желательно объединить эту переменную с CNpc->unknown
 
+  bool        m_giveExp; // prevent exp gain
+  bool        m_neutral; // stop linking / aggroing
 	position_t	m_SpawnPoint;						// точка возрождения монстра
 	uint8       m_Element;
 	uint8       m_HiPCLvl;							// Highest Level of Player Character that hit the Monster
@@ -174,6 +180,8 @@ public:
   void        addRageMode();						// Rage mode ON:  stat x10
   void        delRageMode();						// Rage mode OFF: stat /10
 
+  bool  IsFarFromHome(); // check if mob is too far from spawn
+  bool  CanBeNeutral(); // check if mob can have killing pause
   bool  CanDetectTarget(CBattleEntity* PTarget, bool forceSight = false); // can I detect the target?
 
 	void		SetMainSkin(uint32 mobid);			// Set base skin for the mob (if mob or player dieing)
@@ -189,6 +197,8 @@ public:
   uint32      GetDespawnTimer();
   void        SetDespawnTimer(uint32 duration);
   uint32      GetRandomGil(); // returns a random amount of gil
+  bool        CanRoamHome(); // is it possible for me to walk back?
+  bool        CanRoam(); // check if mob can walk around
 
   CMobSpellContainer* SpellContainer;   // retrieves spells for the mob
   uint8		m_HasSpellScript;					// 1 if they have a spell script to use for working out what to cast.

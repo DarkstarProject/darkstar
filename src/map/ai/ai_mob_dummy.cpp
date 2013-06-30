@@ -69,6 +69,7 @@ CAIMobDummy::CAIMobDummy(CMobEntity* PMob)
 	m_ChaseThrottle = 0;
 	m_LastStandbackTime = 0;
 	m_DeaggroTime = 0;
+	m_NeutralTime = 0;
 	m_CanStandback = false;
 }
 
@@ -118,8 +119,6 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
 
 void CAIMobDummy::ActionRoaming()
 {
-
-
 	// If there's someone on our enmity list, go from roaming -> engaging
 	if (m_PMob->PEnmityContainer->GetHighestEnmity() != NULL)
 	{
@@ -127,10 +126,12 @@ void CAIMobDummy::ActionRoaming()
 		ActionEngage();
 		return;
 	}
-	else if (m_PMob->m_OwnerID.id != 0) // if we're claimed by someone
+	else if (m_PMob->m_OwnerID.id != 0) 
 	{
-		// try to resolve the person who owns us
+		// i'm claimed by someone and need hate towards this person
         m_PBattleTarget = (CBattleEntity*)m_PMob->loc.zone->GetEntity(m_PMob->m_OwnerID.targid, TYPE_PC | TYPE_MOB | TYPE_PET);
+
+		battleutils::ClaimMob(m_PMob, m_PBattleTarget);
 
         // TODO: возможно необходимо добавлять цели базовое количество ненависти
 
@@ -151,6 +152,9 @@ void CAIMobDummy::ActionRoaming()
 		return;
 	}
 
+	// don't aggro a little bit after I just disengaged
+	m_PMob->m_neutral = m_PMob->CanBeNeutral() && (m_Tick - m_NeutralTime) <= MOB_NEUTRAL_TIME;
+
 	if(m_PPathFind->IsFollowingPath())
 	{
 		FollowPath();
@@ -158,30 +162,40 @@ void CAIMobDummy::ActionRoaming()
 		m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
 
 	}
-	else if ((m_Tick - m_LastActionTime) > m_PMob->m_RoamCoolDown)
+	else if ((m_Tick - m_LastActionTime) >= m_PMob->m_RoamCoolDown)
 	{
 		// lets buff up or move around
 
 		// recover health
-		m_PMob->Rest(0.1f);
-
-		if(MOB_TRAIN && m_PPathFind->isNavMeshEnabled() && distance(m_PMob->loc.p, m_PMob->m_SpawnPoint) > 20
-		 && m_PPathFind->PathTo(m_PMob->m_SpawnPoint, PATHFLAG_WALLHACK)
-		 ||
-		 (m_PMob->m_Type & MOBTYPE_NOTORIOUS) && distance(m_PMob->loc.p, m_PMob->m_SpawnPoint) > 2
-		 && m_PPathFind->PathTo(m_PMob->m_SpawnPoint, PATHFLAG_WALLHACK))
+		if(!m_PMob->Rest(0.1f))
 		{
-			// walk back to spawn if too far away
+			// undirty exp
+			m_PMob->m_giveExp = true;
+		}
 
-			// limit total path to just 10 or
-			// else we'll move straight back to spawn
-			m_PPathFind->LimitDistance(10.0f);
+		// if i'm too far away from spawn move back to it
+		if(m_PMob->IsFarFromHome())
+		{
+			if(m_PMob->CanRoamHome() && m_PPathFind->PathTo(m_PMob->m_SpawnPoint, PATHFLAG_WALLHACK))
+			{
+				// walk back to spawn if too far away
 
-			FollowPath();
+				// limit total path to just 10 or
+				// else we'll move straight back to spawn
+				m_PPathFind->LimitDistance(10.0f);
 
-			m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
+				FollowPath();
 
-			m_LastActionTime = m_Tick - (float)m_PMob->m_RoamCoolDown / 2.0f;
+				m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
+
+				// move back every 5 seconds
+				m_LastActionTime = m_Tick - m_PMob->m_RoamCoolDown + MOB_NEUTRAL_TIME;
+			}
+			else
+			{
+				// despawn
+				m_ActionType = ACTION_DEATH;
+			}
 		}
 		else if(m_PSpecialSkill != NULL && TrySpecialSkill())
 		{
@@ -204,7 +218,7 @@ void CAIMobDummy::ActionRoaming()
 			m_PMob->HideName(true);
 			m_PMob->animationsub = 0;
 		}
-		else if(m_PMob->PMaster == NULL && (m_PMob->speed > 0 || m_PMob->m_roamFlags & ROAMFLAG_WORM))
+		else if(m_PMob->CanRoam())
 		{
 
 			if(m_PPathFind->RoamAround(m_PMob->m_SpawnPoint, m_PMob->m_roamFlags))
@@ -290,27 +304,13 @@ void CAIMobDummy::ActionEngage()
 
 void CAIMobDummy::ActionDisengage()
 {
-	// Despawn if we're >20 yalms from our spawn point
-	if(m_PMob->m_Type & MOBTYPE_NOTORIOUS || MOB_TRAIN)
-	{
-		m_ActionType = ACTION_ROAMING;
-	}
-	else
-	{
-		position_t* SpawnPoint = &m_PMob->m_SpawnPoint;
-
-		if(m_PMob->PMaster != NULL)
-		{
-			// use my masters spawn point
-			SpawnPoint = &((CMobEntity*)m_PMob->PMaster)->m_SpawnPoint;
-		}
-
-		m_ActionType = (distance(m_PMob->loc.p,*SpawnPoint) > 20 ? ACTION_DEATH : ACTION_ROAMING);
-	}
-
 	m_PPathFind->Clear();
 
-	m_LastActionTime = m_Tick;
+	// this will let me decide to walk home or despawn
+	m_LastActionTime = m_Tick - m_PMob->m_RoamCoolDown + MOB_NEUTRAL_TIME;
+	m_PMob->m_neutral = true;
+
+	m_NeutralTime = m_Tick;
 
 	m_PBattleTarget  = NULL;
 
@@ -322,18 +322,11 @@ void CAIMobDummy::ActionDisengage()
 
 	//if (m_PMob->animationsub == 2) m_PMob->animationsub = 3;
 
-    m_firstSpell = true;
-
-	if(m_PMob->m_roamFlags & ROAMFLAG_AMBUSH)
-	{
-		m_PMob->HideName(true);
-		m_PMob->animationsub = 1;
-	}
+	TransitionBack();
 
 	luautils::OnMobDisengage(m_PMob);
 
 	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
-
 }
 
 /************************************************************************
@@ -370,7 +363,7 @@ void CAIMobDummy::ActionFall()
 
 void CAIMobDummy::ActionDropItems()
 {
-    if ((m_Tick - m_LastActionTime) > m_PMob->m_DropItemTime)
+    if ((m_Tick - m_LastActionTime) >= m_PMob->m_DropItemTime)
 	{
         CCharEntity* PChar = (CCharEntity*)m_PMob->loc.zone->GetEntity(m_PMob->m_OwnerID.targid, TYPE_PC);
 
@@ -384,7 +377,11 @@ void CAIMobDummy::ActionDropItems()
 			{
 				blueutils::TryLearningSpells(PChar, m_PMob);
 				m_PMob->m_UsedSkillIds.clear();
-                charutils::DistributeExperiencePoints(PChar, m_PMob);
+
+				if(m_PMob->m_giveExp)
+				{
+	                charutils::DistributeExperiencePoints(PChar, m_PMob);
+				}
 
                 DropList_t* DropList = itemutils::GetDropList(m_PMob->m_DropID);
 
@@ -540,10 +537,10 @@ void CAIMobDummy::ActionFadeOut()
 
 void CAIMobDummy::ActionSpawn()
 {
-	if ((m_Tick - m_LastActionTime) > m_PMob->m_RespawnTime)
+	if ((m_Tick - m_LastActionTime) >= m_PMob->m_RespawnTime)
 	{
-
-		m_LastActionTime = m_Tick + rand() % 8000;
+		m_NeutralTime = m_Tick;
+		m_LastActionTime = m_Tick + rand() % 8000 + 2000;
 		m_SpawnTime = m_Tick;
 		m_firstSpell = true;
 		m_ActionType = ACTION_ROAMING;
@@ -551,6 +548,7 @@ void CAIMobDummy::ActionSpawn()
 		m_PBattleSubTarget = NULL;
 		m_PSpecialSkill = NULL;
 		m_PMobSkill = NULL;
+		m_PMob->m_giveExp = true;
 		m_PMob->m_SkillStatus = 0;
         m_PMob->m_OwnerID.clean();
 		m_PMob->m_CallForHelp = 0;
@@ -592,27 +590,14 @@ void CAIMobDummy::ActionSpawn()
 			m_PSpecialSkill = battleutils::GetMobSkill(m_PMob->m_SpecialSkill);
 		}
 
-		if(m_PMob->PMaster != NULL){
-			m_PMob->loc.p = nearPosition(m_PMob->PMaster->loc.p, 2.1f, M_PI);
-
-			CMobEntity* PMaster = (CMobEntity*)m_PMob->PMaster;
-
-			if(PMaster->PEnmityContainer->GetHighestEnmity() != NULL)
-		    {
-		        PMaster->PEnmityContainer->AddBaseEnmity(PMaster->PEnmityContainer->GetHighestEnmity());
-		        m_ActionType = ACTION_ATTACK;
-		    }
-
-		    // prevent random despawning
-		    m_PMob->SetDespawnTimer(0);
-		} else {
-			m_PMob->loc.p = m_PMob->m_SpawnPoint;
-		}
+		// spawn somewhere around my point
+		m_PMob->loc.p = m_PMob->m_SpawnPoint;
 
 		if(m_PMob->m_roamFlags & ROAMFLAG_AMBUSH)
 		{
 			m_PMob->HideName(true);
 			m_PMob->animationsub = 0;
+			// this will hide the mob
 			m_PMob->m_unknown = 2181;
 		}
 
@@ -1317,7 +1302,7 @@ void CAIMobDummy::ActionAttack()
 		if(m_PBattleTarget == NULL)
 		{
 			m_ActionType = ACTION_DISENGAGE;
-			m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
+			ActionDisengage();
 		}
 		else
 		{
@@ -1341,12 +1326,12 @@ void CAIMobDummy::ActionAttack()
     }
 
 	// Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
-	if (currentDistance <= MOB_SPELL_MAX_RANGE && (m_Tick - m_LastMagicTime) > m_PMob->m_MagicRecastTime && TryCastSpell())
+	if (currentDistance <= MOB_SPELL_MAX_RANGE && (m_Tick - m_LastMagicTime) >= m_PMob->m_MagicRecastTime && TryCastSpell())
 	{
 		FinishAttack();
 		return;
 	}
-	else if(m_PSpecialSkill != NULL && (m_Tick - m_LastSpecialTime) > m_PMob->m_SpecialCoolDown && TrySpecialSkill())
+	else if(m_PSpecialSkill != NULL && (m_Tick - m_LastSpecialTime) >= m_PMob->m_SpecialCoolDown && TrySpecialSkill())
 	{
 		FinishAttack();
 		return;
@@ -1763,7 +1748,7 @@ void CAIMobDummy::TryLink()
     // my pet should help as well
 	if(m_PMob->PPet != NULL && m_PMob->PPet->PBattleAI->GetCurrentAction() == ACTION_ROAMING)
 	{
-		((CMobEntity*)m_PMob->PPet)->PEnmityContainer->AddBaseEnmity(m_PBattleTarget);
+		((CMobEntity*)m_PMob->PPet)->PEnmityContainer->AddLinkEnmity(m_PBattleTarget);
 	}
 
 	// Handle monster linking if they are close enough
@@ -1773,8 +1758,8 @@ void CAIMobDummy::TryLink()
         {
             CMobEntity* PPartyMember = (CMobEntity*)m_PMob->PParty->members[i];
 
-            if(CanLink(PPartyMember)){
-		        PPartyMember->PEnmityContainer->AddBaseEnmity(m_PBattleTarget);
+            if(!PPartyMember->m_neutral && CanLink(PPartyMember)){
+		        PPartyMember->PEnmityContainer->AddLinkEnmity(m_PBattleTarget);
             }
         }
     }
@@ -1785,7 +1770,7 @@ void CAIMobDummy::TryLink()
     	CMobEntity* PMaster = (CMobEntity*)m_PMob->PMaster;
 
         if(CanLink(PMaster)){
-	        PMaster->PEnmityContainer->AddBaseEnmity(m_PBattleTarget);
+	        PMaster->PEnmityContainer->AddLinkEnmity(m_PBattleTarget);
         }
     }
 
@@ -1927,7 +1912,7 @@ bool CAIMobDummy::CanLink(CMobEntity* PTarget)
 		   if(!isFaceing(PTarget->loc.p, m_PMob->loc.p, 40)) return false;
 		}
 
-		if(distance(m_PMob->loc.p, PTarget->loc.p) < m_PMob->m_linkRadius)
+		if(distance(m_PMob->loc.p, PTarget->loc.p) <= m_PMob->m_linkRadius)
 		{
 	        return true;
 	    }
@@ -2112,16 +2097,15 @@ void CAIMobDummy::WeatherChange(WEATHER weather, uint8 element)
 
 bool CAIMobDummy::CanAggroTarget(CBattleEntity* PTarget)
 {
+	// don't aggro i'm neutral
+	if(m_PMob->m_neutral) return false;
+		
+
 	if(PTarget->isDead() || PTarget->animation == ANIMATION_CHOCOBO) return false;
 
-	if(m_PMob->m_Behaviour != BEHAVIOUR_NONE && m_PMob->PMaster == NULL && m_ActionType == ACTION_ROAMING)
+	if(m_PMob->PMaster == NULL && m_ActionType == ACTION_ROAMING && m_PMob->CanDetectTarget(PTarget))
 	{
-
-		if (m_PMob->CanDetectTarget(PTarget))
-		{
-			return true;
-		}
-
+		return true;
 	}
 
 	return false;

@@ -4773,7 +4773,7 @@ inline int32 CLuaBaseEntity::spawnPet(lua_State *L)
 
 		if(mob->PPet == NULL)
 		{
-			ShowError("lua_baseentity::spawnPet Mob (%d) pet is NULL\n", mob->id);
+			ShowError("lua_baseentity::spawnPet Mob (%d) trying to spawn pet but its NULL\n", mob->id);
 			return 0;
 		}
 

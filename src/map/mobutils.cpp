@@ -204,6 +204,12 @@ void CalculateStats(CMobEntity * PMob)
 		break;
 	}
 
+	if(PMob->m_Family == 193)
+	{
+		// pet wyverns have mp
+		PMob->health.maxmp = (int16)(18.2 * pow(PMob->GetMLevel(),1.1075) * PMob->MPscale);
+	}
+
     PMob->UpdateHealth();
 
 	PMob->health.tp = 0;
@@ -426,6 +432,13 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->m_StandbackTime = 0;
 	}
 
+	// modify sneak / sight ranges
+	if(PMob->m_Family == 87)
+	{
+		PMob->m_sightRange = 18;
+		PMob->m_hearingRange = 10;
+	}
+
 	// clear current traits first
     for (uint8 i = 0; i < PMob->TraitList.size(); ++i)
     {
@@ -487,6 +500,12 @@ void CalculateStats(CMobEntity * PMob)
 	else
 	{
 		PMob->m_roamFlags |= ROAMFLAG_SMALL;
+	}
+
+	if(PMob->m_roamFlags & ROAMFLAG_AMBUSH)
+	{
+		// always stay close to spawn
+		PMob->m_maxRoamDistance = 3;
 	}
 
     PMob->TraitList.clear();

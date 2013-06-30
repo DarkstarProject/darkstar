@@ -73,7 +73,8 @@ enum ACTIONTYPE
     ACTION_RANGED_INTERRUPT,
     ACTION_MOBABILITY_START,
     ACTION_MOBABILITY_USING,
-    ACTION_MOBABILITY_INTERRUPT
+    ACTION_MOBABILITY_INTERRUPT,
+    ACTION_LEAVE
 };
 
 /************************************************************************
