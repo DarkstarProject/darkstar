@@ -51,6 +51,7 @@ CREATE TABLE IF NOT EXISTS `mob_skill` (
 -- abilities
 INSERT INTO `mob_skill` VALUES (16,0,16,'Ranged_Attack', 0, 25.0, 2000, 0, 4, 0);
 INSERT INTO `mob_skill` VALUES (402,0,402,'Catapult', 0, 25.0, 2000, 0, 4, 0);
+-- INSERT INTO `mob_skill` VALUES (402,0,402,'Ranged_Aqua_Ball', 1, 10.0, 2000, 0, 4, 0); -- used in Shooting Fish
 -- INSERT INTO `mob_skill` VALUES (1491,0,1298,'Zarraqa', 0, 25.0, 2000, 0, 4, 0);
 INSERT INTO `mob_skill` VALUES (808,0,351,'Jump', 0, 9.5, 2000, 0, 4, 0);
 INSERT INTO `mob_skill` VALUES (514,0,442,'Jumping_Thrust', 0, 9.5, 2000, 0, 4, 0);
@@ -690,7 +691,7 @@ INSERT INTO `mob_skill` VALUES (367,55,367,'Wing_Cutter', 4, 10.0, 2000, 1500, 4
 INSERT INTO `mob_skill` VALUES (372,51,372,'Wild_Horn', 4, 10.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (373,51,373,'Thunderbolt', 1, 40.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (374,51,374,'Kick_Out', 4, 10.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (375,51,375,'Shock_Wave', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (375,51,375,'Shock_Wave', 4, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (376,51,376,'Flame_Armor', 0, 7.0, 2000, 1500, 1, 0);
 INSERT INTO `mob_skill` VALUES (377,51,377,'Howl', 0, 7.0, 2000, 1500, 1, 0);
 -- INSERT INTO `mob_skill` VALUES (378,51,378,'Meteor', 2, 30.0, 2000, 1500, 4, 0);

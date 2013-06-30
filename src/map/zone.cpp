@@ -237,7 +237,7 @@ void  CZone::HealAllMobs()
 
 void CZone::LoadZoneLines()
 {
-	static const int8* fmtQuery = "SELECT zoneline, tozone, tox, toy, toz, rotation FROM zonelines WHERE fromzone = %u";
+	static const int8 fmtQuery[] = "SELECT zoneline, tozone, tox, toy, toz, rotation FROM zonelines WHERE fromzone = %u";
 
 	int32 ret = Sql_Query(SqlHandle, fmtQuery, m_zoneID);
 

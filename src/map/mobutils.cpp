@@ -630,6 +630,14 @@ void GetAvailableSpells(CMobEntity* PMob) {
 	PMob->SpellContainer->m_gaChance = gaChance;
 	PMob->SpellContainer->m_buffChance = buffChance;
 
+	if(PMob->m_Type & MOBTYPE_NOTORIOUS)
+	{
+		// NMs cure earlier
+		PMob->SpellContainer->m_maxHPHealChance = 50;
+		PMob->SpellContainer->m_healChance = 30;
+
+	}
+
 	// clear spell list
 	PMob->SpellContainer->ClearSpells();
 

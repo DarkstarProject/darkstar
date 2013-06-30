@@ -57,7 +57,7 @@
 #if !defined(__GNUC__) && !defined(MINGW)
 #  define  __attribute__(x)
 #endif
-
+ 
 // define a break macro for debugging.
 #if defined(DEBUG)
 #if defined(_MSC_VER)

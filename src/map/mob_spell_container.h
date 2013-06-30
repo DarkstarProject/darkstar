@@ -69,6 +69,8 @@ public:
 
   int16 m_gaChance;
   int16 m_buffChance;
+  int16 m_healChance;
+  int16 m_maxHPHealChance;
 
 private:
   CMobEntity* m_PMob;

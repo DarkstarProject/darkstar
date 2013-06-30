@@ -1582,11 +1582,11 @@ void CAIMobDummy::ActionAttack()
 						charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_EVA, m_PMob->GetMLevel());
 					}
 
-					bool isBlocked = battleutils::IsBlocked(m_PMob, m_PBattleTarget);
-					if(isBlocked){ Action.reaction = REACTION_BLOCK; }
-
 					if(!isCountered)
 					{
+
+						bool isBlocked = battleutils::IsBlocked(m_PMob, m_PBattleTarget);
+						if(isBlocked){ Action.reaction = REACTION_BLOCK; }
 						if (m_PBattleTarget->objtype == TYPE_PC)
 						{
 							damage = battleutils::HandleSpecialPhysicalDamageReduction((CCharEntity*)m_PBattleTarget,damage,&Action);

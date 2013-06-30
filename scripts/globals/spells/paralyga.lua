@@ -32,8 +32,8 @@ function onSpellCast(caster,target,spell)
 	-- Calculate potency.
 	potency = (multiplier * dMND) / 10;
 
-	if potency > 25 then
-		potency = 25;
+	if potency > 30 then
+		potency = 30;
 	end
 	--printf("Duration : %u",duration);
 	--printf("Potency : %u",potency);

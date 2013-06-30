@@ -3313,9 +3313,9 @@ void CAICharNormal::ActionAttack()
 				}
 
                 bool isBlocked = battleutils::IsBlocked(m_PChar, m_PBattleTarget);
-				if(isBlocked && Action.reaction!=REACTION_EVADE){ Action.reaction = REACTION_BLOCK; }
+				if(isBlocked && Action.reaction != REACTION_EVADE){ Action.reaction = REACTION_BLOCK; }
 
-				if (Action.reaction == REACTION_HIT)
+				if (Action.reaction == REACTION_HIT || Action.reaction == REACTION_BLOCK)
 				{
 					damage = battleutils::CheckForDamageMultiplier(PWeapon,damage,i);
 					Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, isBlocked, fstrslot, 1, taChar, true);

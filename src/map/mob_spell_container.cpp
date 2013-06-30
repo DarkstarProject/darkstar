@@ -30,6 +30,8 @@ CMobSpellContainer::CMobSpellContainer(CMobEntity* PMob)
   m_hasSpells = false;
   m_gaChance = 45;
   m_buffChance = 35;
+  m_healChance = 40;
+  m_maxHPHealChance = 25;
 }
 
 void CMobSpellContainer::ClearSpells()
@@ -90,7 +92,7 @@ bool CMobSpellContainer::HasSpells()
 int16 CMobSpellContainer::GetAggroSpell()
 {
   // high chance to return ga spell
-  if(HasGaSpells() && rand()%100 <= (float)m_gaChance*1.4){
+  if(HasGaSpells() && rand()%100 <= (float)m_gaChance*1.3){
     return GetGaSpell();
   }
 
@@ -102,7 +104,7 @@ int16 CMobSpellContainer::GetSpell()
 {
   int16 spellId = -1;
   // prioritize curing if health low enough
-  if(HasHealSpells() && m_PMob->GetHPP() <= 25 && rand()%100 < 40){
+  if(HasHealSpells() && m_PMob->GetHPP() <= m_maxHPHealChance && rand()%100 < m_healChance){
     return GetHealSpell();
   }
 
