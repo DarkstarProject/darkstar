@@ -37,9 +37,9 @@ function onMobEngaged(mob,target)
 				
 				if(GetMobAction(nbi) == 0) then
 					-- Spawn Mob
-					printf("Spawn Mob: %u \n",nbi);
 					SpawnMob(nbi):updateEnmity(target);
 					GetMobByID(nbi):setPos(X,Y,Z);
+					GetMobByID(nbi):setSpawn(X,Y,Z);
 				end
 			end
 		end

@@ -204,9 +204,9 @@ void CalculateStats(CMobEntity * PMob)
 		break;
 	}
 
-	if(PMob->m_Family == 193)
+	if(PMob->m_Family == 193 || PMob->m_Family == 34)
 	{
-		// pet wyverns have mp
+		// pet wyverns / avatar have mp
 		PMob->health.maxmp = (int16)(18.2 * pow(PMob->GetMLevel(),1.1075) * PMob->MPscale);
 	}
 
@@ -736,6 +736,41 @@ void InitializeMob(CMobEntity* PMob)
         case 196:
           PMob->m_SubLinks[0] = 196;
         break;*/
+        case 359:
+        	// dynamis hydra link with ahriman
+        	PMob->m_SubLinks[0] = 4;
+    	break;
+        case 4:
+        	PMob->m_SubLinks[0] = 359;
+    	break;
+        case 92:
+        	// goblin statue link with dynamis gobs
+        	PMob->m_SubLinks[0] = 327;
+    	break;
+    	case 327:
+    		PMob->m_SubLinks[0] = 92;
+		break;
+        case 93:
+        // orc statue link with dynamis orcs
+        	PMob->m_SubLinks[0] = 334;
+    	break;
+        case 334:
+        	PMob->m_SubLinks[0] = 93;
+    	break;
+        case 94:
+        // quad statue link with dynamis quads
+        	PMob->m_SubLinks[0] = 337;
+    	break;
+    	case 337:
+    		PMob->m_SubLinks[0] = 94;
+		break;
+        case 95:
+        // yagudo statue link with dynamis yagudo
+        	PMob->m_SubLinks[0] = 360;
+    	break;
+        case 360:
+        	PMob->m_SubLinks[0] = 95;
+    	break;
       }
 }
 

@@ -16,7 +16,7 @@ end;
 
 function onSpellCast(caster,target,spell)
     --calculate raw damage
-    dmg = calculateMagicDamage(455,1,caster,spell,target,DIVINE_MAGIC_SKILL,MOD_MND,false);
+    dmg = calculateMagicDamage(480,1,caster,spell,target,DIVINE_MAGIC_SKILL,MOD_MND,false);
     --get resist multiplier (1x if no resist)
     resist = applyResistance(caster,spell,target,caster:getStat(MOD_MND)-target:getStat(MOD_MND),DIVINE_MAGIC_SKILL,1.0);
     --get the resisted damage
