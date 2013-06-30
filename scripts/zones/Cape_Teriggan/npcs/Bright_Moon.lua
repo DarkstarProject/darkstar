@@ -71,6 +71,5 @@ function onEventFinish(player,csid,option)
 		player:delCP(OP_TeleFee(player,region));
         toHomeNation(player);
 	end
-	end
 	
 end;
