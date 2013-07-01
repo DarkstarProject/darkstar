@@ -40,27 +40,50 @@ function onTrigger(player,npc)
 
 	-- COP mission 1-1
 	if(player:getCurrentMission(COP) == THE_RITES_OF_LIFE and  player:getVar("PromathiaStatus") == 1) then
-		player:startEvent(0x000a);
+		player:startEvent(0x000a);--10
 	-- COP mission 1-2
 	elseif(player:getCurrentMission(COP) == BELOW_THE_ARKS  and  player:getVar("PromathiaStatus") == 0) then
-		player:startEvent(0x0009);
+		player:startEvent(0x0009);--9
 	 -- COP mission 3-5
 	elseif(player:getCurrentMission(COP) == DARKNESS_NAMED  and  player:getVar("PromathiaStatus") == 0) then
-		player:startEvent(0x0052); 
+		player:startEvent(0x0052);-- 82
 	elseif(player:getCurrentMission(COP) == DARKNESS_NAMED  and  player:getVar("PromathiaStatus") == 3) then
-		player:startEvent(0x004B); 
+		player:startEvent(0x004B); --75
+	elseif(player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Tenzen_s_Path") == 2) then
+	    player:startEvent(0x004A); --74
+	elseif(player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Tenzen_s_Path") == 4) then
+	    player:startEvent(0x0006);  
 	elseif(CooksPride == QUEST_COMPLETED and TheLostCardien == QUEST_AVAILABLE and player:getVar("theLostCardianVar") == 2) then 
-		player:startEvent(0x0021); -- Long CS & Finish Quest "The Lost Cardian"
+		player:startEvent(0x0021); -- Long CS & Finish Quest "The Lost Cardian" 33
 	elseif(CooksPride == QUEST_COMPLETED and TheLostCardien == QUEST_AVAILABLE and player:getVar("theLostCardianVar") == 3) then 
-		player:startEvent(0x0022); -- Shot CS & Finish Quest "The Lost Cardian"
+		player:startEvent(0x0022); -- Shot CS & Finish Quest "The Lost Cardian" 34
 	elseif(TheLostCardien == QUEST_COMPLETED and player:getQuestStatus(JEUNO,THE_KIND_CARDIAN) == QUEST_ACCEPTED) then 
-		player:startEvent(0x0020);
+		player:startEvent(0x0020); -- 32
 	else
-		player:startEvent(0x001c); -- Standard dialog
+		player:startEvent(0x001c); -- Standard dialog 28
 	end
 	
 end;
+--Door:Infirmary 	2 ++
+--Door:Infirmary 	10 ++
+--Door:Infirmary 	207 ++
+--Door:Infirmary 	82 ++
+--Door:Infirmary 	10059 nonCOP
+--Door:Infirmary 	10060 nonCOP
+--Door:Infirmary 	10205 nonCOP
+--Door:Infirmary 	10061 nonCOP
+--Door:Infirmary 	10062 nonCOP
+--Door:Infirmary 	10207 nonCOP
+--Door:Infirmary 	33 ++
+--Door:Infirmary 	34 ++
+--Door:Infirmary 	2 ++
+--Door:Infirmary 	82 ++
+--Door:Infirmary 	75 ++
+--Door:Infirmary 	10060 nonCOP
+--Door:Infirmary 	10205 nonCOP
 
+--Tenzen 	10011
+--Tenzen 	10012 
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
@@ -77,13 +100,18 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	
-    if(csid == 0x000a)then
+    if(csid == 0x0007)then
+	    player:setVar("COP_Tenzen_s_Path",5);	
+	elseif(csid == 0x004a)then
+	    player:setVar("COP_Tenzen_s_Path",3);
+		player:addKeyItem(ENVELOPE_FROM_MONBERAUX);
+		player:messageSpecial(KEYITEM_OBTAINED,ENVELOPE_FROM_MONBERAUX);
+    elseif(csid == 0x000a)then
 		player:setVar("PromathiaStatus",0);
 		player:addKeyItem(MYSTERIOUS_AMULET_DRAINED);
 		player:completeMission(COP,THE_RITES_OF_LIFE);
 		player:addMission(COP,BELOW_THE_ARKS); -- start the mission 1-2
-		player:startEvent(0x00cf);
+		player:startEvent(0x00cf);  --207
 	elseif(csid == 0x0052) then
         player:setVar("PromathiaStatus",1);
 	elseif(csid == 0x004B) then	

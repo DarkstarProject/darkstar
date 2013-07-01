@@ -60,10 +60,11 @@ function onTrigger(player,npc)
 	local needZone = player:needToZone();
 	local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
 	local waking_dreams = player:getQuestStatus(WINDURST,WAKING_DREAMS)
-	
-	if(player:hasKeyItem(VIAL_OF_DREAM_INCENSE)==false and ((player:hasCompletedMission(COP,DARKNESS_NAMED) and  waking_dreams == QUEST_AVAILABLE ) or(waking_dreams  == QUEST_COMPLETED and realday ~= player:getVar("Darkness_Named_date"))))then
+	 if(player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Ulmia_s_Path") == 3)then  
+	    player:startEvent(0x036c);
+	elseif(player:hasKeyItem(VIAL_OF_DREAM_INCENSE)==false and ((player:hasCompletedMission(COP,DARKNESS_NAMED) and  waking_dreams == QUEST_AVAILABLE ) or(waking_dreams  == QUEST_COMPLETED and realday ~= player:getVar("Darkness_Named_date"))))then
 	    player:addQuest(WINDURST,WAKING_DREAMS);
-	    player:startEvent(0x0396);
+	    player:startEvent(0x0396);--918
     elseif(player:hasKeyItem(WHISPER_OF_DREAMS)==true)then
 		local availRewards = 0
 		if(player:hasItem(17599)) then availRewards = availRewards + 1; end -- Diabolos's Pole
@@ -75,23 +76,23 @@ function onTrigger(player,npc)
 		end	
 		player:startEvent(0x0398,17599,14814,15557,15516,0,0,0,availRewards);
 	elseif(BlueRibbonBlues == QUEST_COMPLETED and needZone) then
-		player:startEvent(0x016b);
+		player:startEvent(0x016b);--363
 	elseif(BlueRibbonBlues == QUEST_ACCEPTED) then
 		local blueRibbonProg = player:getVar("BlueRibbonBluesProg");
 		if(player:hasItem(12521)) then
-			player:startEvent(0x016a);
+			player:startEvent(0x016a);--362
 		elseif(blueRibbonProg == 2 and needZone == false) then
 			local timerDay = player:getVar("BlueRibbonBluesTimer_Day");
 			local currentDay = VanadielDayOfTheYear();
 			
 			if(player:getVar("BlueRibbonBluesTimer_Year") < VanadielYear()) then
-				player:startEvent(0x0168); --  go to the grave
+				player:startEvent(0x0168); --  go to the grave  360
 			elseif(timerDay + 1 == VanadielDayOfTheYear() and player:getVar("BlueRibbonBluesTimer_Hour") <= VanadielHour()) then
-				player:startEvent(0x0168); --  go to the grave
+				player:startEvent(0x0168); --  go to the grave  360
 			elseif(timerDay + 2 <=  VanadielDayOfTheYear()) then
-				player:startEvent(0x0168); --  go to the grave
+				player:startEvent(0x0168); --  go to the grave  360
 			else
-				player:startEvent(0x0167); -- Thanks for the ribbon
+				player:startEvent(0x0167); -- Thanks for the ribbon 359
 			end
 			
 		elseif(blueRibbonProg == 3) then
@@ -147,7 +148,9 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if((csid == 0x0139 and option == 0) or (csid == 0x013a and option == 0)) then
+    if(csid == 0x036c)then
+	    player:setVar("COP_Ulmia_s_Path",4);
+	elseif((csid == 0x0139 and option == 0) or (csid == 0x013a and option == 0)) then
 		player:addQuest(WINDURST,FOOD_FOR_THOUGHT);
 		player:setVar("Kerutoto_Food_var",1);
 	elseif(csid == 0x0139 and option == 1) then

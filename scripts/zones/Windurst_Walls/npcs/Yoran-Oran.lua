@@ -74,6 +74,7 @@ function onTrigger(player,npc)
 	local MandragoraMad = player:getQuestStatus(WINDURST,MANDRAGORA_MAD);
 	local blastFromPast = player:getQuestStatus(WINDURST,BLAST_FROM_THE_PAST);
 	local EMORIES_OF_A_MAIDEN = player:getVar("MEMORIES_OF_A_MAIDEN_Status");
+	local LouverancePath = player:getVar("COP_Louverance_s_Path");
 	
 	if(player:getCurrentMission(COP) == THE_ROAD_FORKS and EMORIES_OF_A_MAIDEN == 3)then
 		player:startEvent(0x01D5);
@@ -83,6 +84,10 @@ function onTrigger(player,npc)
 		player:startEvent(0x01D7);
 	elseif(player:getCurrentMission(COP) == THE_ROAD_FORKS and EMORIES_OF_A_MAIDEN == 11 )then
 		player:startEvent(0x01D8); 
+	elseif(player:getCurrentMission(COP) == THREE_PATHS and LouverancePath == 3 )then	
+	    player:startEvent(0x01E1);
+	elseif(player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Ulmia_s_Path") == 4 )then	
+	    player:startEvent(0x01D9);
 	elseif(blastFromPast == QUEST_ACCEPTED) then
 		local blastPastProg = player:getVar("BlastFromThePast_Prog");
 		if(blastPastProg == 1) then
@@ -134,5 +139,9 @@ function onEventFinish(player,csid,option)
 		player:setVar("MEMORIES_OF_A_MAIDEN_Status",9);
 	elseif(csid == 0x01D8)then	
 		player:setVar("MEMORIES_OF_A_MAIDEN_Status",12);    --end 3-3B: Windurst Route: "Memories of a Maiden"
+	elseif(csid == 0x01E1)then
+	    player:setVar("COP_Louverance_s_Path",4);
+	elseif(csid == 0x01D9)then	
+	    player:setVar("COP_Ulmia_s_Path",5);
 	end
 end;

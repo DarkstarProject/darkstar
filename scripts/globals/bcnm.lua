@@ -10,7 +10,10 @@ require("scripts/globals/quests");
 -- array to map (for each zone) the item id of the valid trade item with the bcnmid in the database
 -- e.g. zone,{itemid,bcnmid,itemid,bcnmid,itemid,bcnmid} 
 -- DO NOT INCLUDE MAAT FIGHTS
-itemid_bcnmid_map = {10,{0,0},--The_Shrouded_Maw
+itemid_bcnmid_map = { 6,{0,0},--Bearclaw_Pinnacle
+                      8,{0,0},--Boneyard_Gully
+                     10,{0,0},--The_Shrouded_Maw
+					 13,{0,0},--Mine_Shaft_2716
                      17,{0,0},--spire of holla
 					 19,{0,0},--spire of dem
 					 21,{0,0},--spire of mea
@@ -37,7 +40,10 @@ itemid_bcnmid_map = {10,{0,0},--The_Shrouded_Maw
 -- The BCNMID is found via the database.
 -- The paramid is a bitmask which you need to find out. Being a bitmask, it will be one of:
 -- 0,1,2,3,4,5,...
-bcnmid_param_map = {10,{704,0,706,2},
+bcnmid_param_map = {6,{640,0},
+                    8,{672,0},
+                    10,{704,0,706,2},
+                    13,{736,0},
                     17,{768,0},
 					19,{800,0},
 					21,{832,0},
@@ -343,8 +349,17 @@ function checkNonTradeBCNM(player,npc)
 	
 	local mask = 0;
 	Zone = player:getZone();
-	
-	if(Zone == 10) then--The_Shrouded_Maw
+	if(Zone == 6) then--Bearclaw_Pinnacle
+	   	if(player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Ulmia_s_Path") == 6) then --flames_for_the_dead
+	    	 mask = GetBattleBitmask(640,Zone,1);   
+	         player:setVar("trade_bcnmid",640);
+		end
+	elseif(Zone == 8) then--Boneyard_Gully
+	   	if(player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Ulmia_s_Path") == 5) then --head_wind
+	    	 mask = GetBattleBitmask(672,Zone,1);   
+	         player:setVar("trade_bcnmid",672);
+		end
+	elseif(Zone == 10) then--The_Shrouded_Maw
 	    if(player:getCurrentMission(COP) == DARKNESS_NAMED  and  player:getVar("PromathiaStatus") == 2) then--DARKNESS_NAMED
 	         mask = GetBattleBitmask(704,Zone,1);   
 	         player:setVar("trade_bcnmid",704);
@@ -352,6 +367,11 @@ function checkNonTradeBCNM(player,npc)
 			 mask = GetBattleBitmask(706,Zone,1);   
 	         player:setVar("trade_bcnmid",706);
 	    end	
+    elseif(Zone == 13) then --Mine_Shaft_2716
+	    if(player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Louverance_s_Path") == 5) then --century_of_hardship
+	    	 mask = GetBattleBitmask(736,Zone,1);   
+	         player:setVar("trade_bcnmid",736);
+		end
 	elseif(Zone == 17) then --Spire of Holla
 	    if(player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(LIGHT_OF_HOLLA) == false) then -- light of holla
 	        mask = GetBattleBitmask(768,Zone,1);

@@ -41,7 +41,10 @@ function onZoneIn(player,prevZone)
 			end	
 			player:setVar("PlayerMainJob",0);	
 		end		
-	end			
+	end		
+	if(player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Ulmia_s_Path") == 1)then
+	         cs =0x0004;
+	end
 	return cs;			
 end;				
 
@@ -75,6 +78,8 @@ function onEventFinish(player,csid,option)
 		player:setPos(0,0,0,0,223);
 	elseif (csid == 0x7534 and option == 0) then	
 		player:setHomePoint();
-		player:messageSpecial(HOMEPOINT_SET);
+		player:messageSpecial(HOMEPOINT_SET);		
+	elseif (csid == 0x0004) then
+	    player:setVar("COP_Ulmia_s_Path",2);
 	end	
 end;

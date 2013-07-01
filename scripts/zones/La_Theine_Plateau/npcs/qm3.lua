@@ -29,6 +29,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+    if(player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Tenzen_s_Path") == 0)then
+			player:startEvent(0x00CB);	   
+	end
 
 end;
 
@@ -59,6 +62,8 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(UNLOCK_CARBUNCLE);
 		player:setVar("ICanHearARainbow",0);
         SetServerVariable("I_Can_Hear_a_Rainbow", 1);
+	elseif(csid == 0x00CB) then	
+	    player:setVar("COP_Tenzen_s_Path",1);
 	end
 end;
 

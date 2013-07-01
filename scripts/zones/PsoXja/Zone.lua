@@ -35,6 +35,8 @@ function onZoneIn(player,prevZone)
 	 end
 	if(playerX == -300 and player:getCurrentMission(COP) == THE_ENDURING_TUMULT_OF_WAR and player:getVar("PromathiaStatus")==2)then
 		cs = 0x0001; -- COP event
+	elseif(playerX == 220 and player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Tenzen_s_Path") == 8)then
+	    cs = 0x0004;
 	end
 	return cs;
 end;
@@ -74,5 +76,7 @@ function onEventFinish(player,csid,option)
 	--printf("RESULT: %u",option);
 	if(csid == 0x0001)then
 	  player:setVar("PromathiaStatus",3);
+	elseif(csid == 0x0004)then
+	  player:setVar("COP_Tenzen_s_Path",9);
 	end
 end;

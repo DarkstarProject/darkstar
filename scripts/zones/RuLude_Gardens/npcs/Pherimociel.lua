@@ -27,6 +27,8 @@ function onTrigger(player,npc)
 		player:startEvent(0x0018);
 	elseif(player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") == 1) then
 		player:startEvent(0x0019);
+	elseif(player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Tenzen_s_Path") == 3) then	
+	    player:startEvent(0x003A);
 	else
 		player:startEvent(0x009b);
 	end
@@ -55,6 +57,8 @@ function onEventFinish(player,csid,option)
 		player:setVar("FirstPromyvionHolla",1);
 		player:setVar("FirstPromyvionMea",1);
 		player:setVar("FirstPromyvionDem",1);
+	elseif(csid == 0x003A) then	
+	    player:setVar("COP_Tenzen_s_Path",4);
 	end
 	
 end;

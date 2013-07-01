@@ -34,17 +34,61 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+           
 	local CidsSecret = player:getQuestStatus(BASTOK,CID_S_SECRET);
 	local LetterKeyItem = player:hasKeyItem(UNFINISHED_LETTER);
 	local currentMission = player:getCurrentMission(BASTOK);
-	if (player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==10)then
+	local currentCOPMission = player:getCurrentMission(COP);
+	local UlmiaPath = player:getVar("COP_Ulmia_s_Path");
+	local TenzenPath = player:getVar("COP_Tenzen_s_Path");
+	local LouverancePath = player:getVar("COP_Louverance_s_Path");
+	local TreePathAv=0;
+
+
+	
+	
+	if(currentCOPMission == THREE_PATHS and LouverancePath == 6 )then
+	        player:startEvent(0x0354); -- COP event
+	elseif(currentCOPMission == THREE_PATHS and LouverancePath == 9 )then	
+	        if(TenzenPath==11 and UlmiaPath==8)then 
+	           TreePathAv=6;    
+			elseif(TenzenPath==11)then
+			   TreePathAv=2;
+			elseif(UlmiaPath==8)then
+			   TreePathAv=4;
+			else
+               TreePathAv=1;		 
+	        end
+	        player:startEvent(0x0355,TreePathAv); -- COP event
+	elseif(currentCOPMission == THREE_PATHS and TenzenPath == 10 )then
+	        if(UlmiaPath==8 and LouverancePath==10)then 
+	           TreePathAv=5;    
+			elseif(LouverancePath==10)then
+			   TreePathAv=3;
+			elseif(UlmiaPath==8)then
+			   TreePathAv=4;
+			else
+               TreePathAv=1;		 
+	        end
+	        player:startEvent(0x0356,TreePathAv); -- COP event
+	elseif(currentCOPMission == THREE_PATHS and UlmiaPath == 7 )then
+	        if(TenzenPath==11 and LouverancePath==10)then 
+	           TreePathAv=3;    
+			elseif(LouverancePath==10)then
+			   TreePathAv=1;
+			elseif(TenzenPath==11)then
+			   TreePathAv=2;
+			else
+               TreePathAv=0;		 
+	        end
+	        player:startEvent(0x0357,TreePathAv); -- COP event
+	elseif (currentCOPMission == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==10)then
 	        player:startEvent(0x0352); -- COP event
-    elseif(player:getCurrentMission(COP) == THE_ENDURING_TUMULT_OF_WAR and player:getVar("PromathiaStatus")==1)then
+    elseif(currentCOPMission == THE_ENDURING_TUMULT_OF_WAR and player:getVar("PromathiaStatus")==1)then
 	        player:startEvent(0x0351); -- COP event
-	elseif(player:getCurrentMission(COP) == THE_CALL_OF_THE_WYRMKING and player:getVar("PromathiaStatus")==1)then
+	elseif(currentCOPMission == THE_CALL_OF_THE_WYRMKING and player:getVar("PromathiaStatus")==1)then
 	        player:startEvent(0x034D); -- COP event
-	elseif(player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status")== 7 and player:getVar("MEMORIES_OF_A_MAIDEN_Status")== 12)then --two paths are finished ?
+	elseif(currentCOPMission == THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status")== 7 and player:getVar("MEMORIES_OF_A_MAIDEN_Status")== 12)then --two paths are finished ?
 			player:startEvent(0x034F); -- COP event 3.3
 	elseif(player:getMainJob() == 8 and player:getMainLvl() >= AF2_QUEST_LEVEL and 
 	   player:getQuestStatus(BASTOK,DARK_LEGACY) == QUEST_COMPLETED and player:getQuestStatus(BASTOK,DARK_PUPPET) == QUEST_AVAILABLE) then
@@ -102,7 +146,15 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-       if(csid == 0x0352)then 
+     if(csid == 0x0357)then	      
+		    player:setVar("COP_Ulmia_s_Path",8);
+    elseif(csid == 0x0356)then	        
+		    player:setVar("COP_Tenzen_s_Path",11);
+    elseif(csid == 0x0355)then	       
+			player:setVar("COP_Louverance_s_Path",10);
+	elseif(csid == 0x0354)then
+	        player:setVar("COP_Louverance_s_Path",7);		
+    elseif(csid == 0x0352)then 
 	 	    player:setVar("PromathiaStatus",0);
 	        player:completeMission(COP,DESIRES_OF_EMPTINESS);
             player:addMission(COP,THREE_PATHS);
@@ -161,4 +213,17 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13570);
 		end
      end
+	 -- complete chapter "tree path"
+	 if(csid == 0x0355 or csid == 0x0356 or csid == 0x0357)then
+	   if (player:getVar("COP_Tenzen_s_Path")==11 and player:getVar("COP_Ulmia_s_Path")==8 and player:getVar("COP_Louverance_s_Path")==10)then
+	     player:completeMission(COP,THREE_PATHS);
+	     player:addMission(COP,FOR_WHOM_THE_VERSE_IS_SUNG);
+         end
+	 end
+	 
+	 
+	 
 end;
+
+
+

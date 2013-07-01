@@ -13,7 +13,7 @@ require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/zones/Windurst_Woods/TextIDs");
-
+require("scripts/globals/missions");
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -49,8 +49,11 @@ function onTrigger(player,npc)
 	local LvL = player:getMainLvl();
 	local Job = player:getMainJob();
 	
-	-- the fanged one
-	if(TheFangedOne ~= QUEST_COMPLETED) then
+	-- COP mission
+	if(player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Louverance_s_Path") == 1) then
+	        player:startEvent(0x02AE);		
+	-- the fanged one		
+	elseif(TheFangedOne ~= QUEST_COMPLETED) then
 		if(TheFangedOne == QUEST_AVAILABLE and player:getMainLvl() >= ADVANCED_JOB_LEVEL) then
 			player:startEvent(0x015f);
 		elseif(TheFangedOne == QUEST_ACCEPTED and player:hasKeyItem(OLD_TIGERS_FANG) == false) then
@@ -174,7 +177,9 @@ function onEventFinish(player,csid,option)
 			player:completeQuest(WINDURST,UNBRIDLED_PASSION);	
 			player:delKeyItem(KOHS_LETTER);				
 			player:setVar("unbridledPassion",0);	
-		end		
+		end	
+    elseif(csid == 0x02AE) then 
+        player:setVar("COP_Louverance_s_Path",2);	
 	end
 
 end;
