@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: Rolanberry Fields (110)
---    NM: Drooling_Daisy
+--  Area: West Sarutabaruta (115)
+--    NM: Nunyenunc
 -----------------------------------
 
 -----------------------------------
@@ -8,16 +8,17 @@
 -----------------------------------
 
 function onMobDeath(mob,killer)	
-  
-    -- Set Drooling_Daisy's Window Open Time
-    SetServerVariable("[POP]Drooling_Daisy", os.time(t) + 3600); -- 1 hour
+
+    -- Set Nunyenunc's Window Open Time
+    wait = math.random((7200),(10800))
+    SetServerVariable("[POP]Nunyenunc", os.time(t) + wait); -- 2-3 hours
     DeterMob(mob:getID(), true);
     
     -- Set PH back to normal, then set to respawn spawn
-    PH = GetServerVariable("[PH]Drooling_Daisy");
-    SetServerVariable("[PH]Drooling_Daisy", 0);
+    PH = GetServerVariable("[PH]Nunyenunc");
+    SetServerVariable("[PH]Nunyenunc", 0);
     DeterMob(PH, false);
     SpawnMob(PH, '', GetMobRespawnTime(PH));
-
+    
 end;
 

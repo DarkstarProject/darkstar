@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: 
+-- Area: Ordelles Caves (193)
 -- NPC:  Morbolger
 -----------------------------------
 
@@ -17,5 +17,12 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
+
 	killer:addTitle(MORBOLBANE);
+    
+    -- Set Morbolger's spawnpoint and respawn time (21-24 hours)
+    Morbolger = mob:getID();
+    UpdateNMSpawnPoint(Morbolger);
+    SpawnMob(Morbolger, '', math.random((75600),(86400)));
+    
 end;

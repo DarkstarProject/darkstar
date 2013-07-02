@@ -121,7 +121,8 @@ function SetTimedSpawns()
     17269106, -- Roc
     17297440, -- Behemoth
     17228242, -- Simurgh
-    17301537  -- Adamantoise
+    17301537, -- Adamantoise
+    17568127  -- Morbolger
   }
 
   i = 1;
