@@ -31,7 +31,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x00ab);
+    if(player:getCurrentMission(COP) ==MORE_QUESTIONS_THAN_ANSWERS and player:getVar("PromathiaStatus")==2)then
+	    player:startEvent(0x2715);
+	else
+	    player:startEvent(0x00ab);
+	end
 end;
 
 -----------------------------------
@@ -50,4 +54,9 @@ end;
 function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
+   if(csid == 0x2715)then
+      player:setVar("PromathiaStatus",0);
+	  player:completeMission(COP,MORE_QUESTIONS_THAN_ANSWERS);
+	  player:addMission(COP,ONE_TO_BE_FEARED);
+   end
 end;

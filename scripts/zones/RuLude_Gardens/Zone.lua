@@ -12,7 +12,8 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onInitialize(zone)
-zone:registerRegion(1,-3,-2,42,3,3,47);
+zone:registerRegion(1,-4,-2,40,4,3,50);
+
 end;
 
 -----------------------------------			
@@ -30,6 +31,9 @@ function onZoneIn(player,prevZone)
 		end	
 		player:setVar("PlayerMainJob",0);	
 	end		
+	if(player:getCurrentMission(COP) == FOR_WHOM_THE_VERSE_IS_SUNG  and  player:getVar("PromathiaStatus") == 2)then
+	       cs = 0x273F;
+	end
 	return cs;		
 end;	
 -----------------------------------		
@@ -39,8 +43,12 @@ end;
 function onRegionEnter(player,region)
 local regionID =region:GetRegionID();
 --printf("regionID: %u",regionID);
+
   if(regionID==1 and player:getCurrentMission(COP) ==A_VESSEL_WITHOUT_A_CAPTAIN and player:getVar("PromathiaStatus")==1)then
   player:startEvent(0x0041,player:getNation());
+  elseif(regionID==1 and player:getCurrentMission(COP) ==A_PLACE_TO_RETURN and player:getVar("PromathiaStatus")==0)then
+  player:startEvent(0x2740);
+
   end	
 end;	
 -----------------------------------		
@@ -76,5 +84,11 @@ function onEventFinish(player,csid,option)
 	elseif (csid == 0x7534 and option == 0) then	
 		player:setHomePoint();
 		player:messageSpecial(HOMEPOINT_SET);
+	elseif (csid == 0x273F)then
+        player:setVar("PromathiaStatus",0);
+		player:completeMission(COP,FOR_WHOM_THE_VERSE_IS_SUNG);
+	    player:addMission(COP,A_PLACE_TO_RETURN);
+    elseif (csid == 0x2740)then	
+        player:setVar("PromathiaStatus",1);
 	end	
 end;		

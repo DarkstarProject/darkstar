@@ -27,8 +27,9 @@ end;
 function onTrigger(player,npc)
 	
 	CurrentMission = player:getCurrentMission(player:getNation());
-	
-	if(player:hasKeyItem(ARCHDUCAL_AUDIENCE_PERMIT) and CurrentMission == 255 and player:getVar("MissionStatus") == 1) then
+	if( player:getCurrentMission(COP) ==MORE_QUESTIONS_THAN_ANSWERS and player:getVar("PromathiaStatus")==1)then
+        player:startEvent(0x2742);
+	elseif(player:hasKeyItem(ARCHDUCAL_AUDIENCE_PERMIT) and CurrentMission == 255 and player:getVar("MissionStatus") == 1) then
 		player:startEvent(0x0080);
 	elseif(player:hasKeyItem(MAGICITE_OPTISTONE) and player:hasKeyItem(MAGICITE_AURASTONE) and player:hasKeyItem(MAGICITE_ORASTONE)) then
 		if(player:hasKeyItem(AIRSHIP_PASS)) then 
@@ -80,6 +81,8 @@ function onEventFinish(player,csid,option)
 			player:addTitle(HAVE_WINGS_WILL_FLY);
 		end
 		player:setVar("MissionStatus",6); -- all that's left is to go back to the embassy
+	elseif(csid == 0x2742) then
+	    player:setVar("PromathiaStatus",2);
 	end
 	
 end;
