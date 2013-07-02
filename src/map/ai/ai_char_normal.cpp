@@ -2564,6 +2564,9 @@ void CAICharNormal::ActionWeaponSkillFinish()
         return;
 	}
 
+	// don't auto-attack while weaponskilling
+	m_LastMeleeTime += 2500;
+
 	//apply TP Bonus
 	float bonusTp = m_PChar->getMod(MOD_TP_BONUS);
 
@@ -2741,6 +2744,8 @@ void CAICharNormal::ActionWeaponSkillFinish()
     m_PChar->m_ActionList.clear();
 
     // TODO: need better way to handle misses
+    // weapon skills cannot properly respond with a miss or dmg was just zero
+    // assume 0 means a miss
     if(damage == 0 && !m_PBattleSubTarget->StatusEffectContainer->HasStatusEffect(EFFECT_STONESKIN))
     {
         Action.reaction = REACTION_EVADE;
@@ -2756,6 +2761,12 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		Action.speceffect = SPECEFFECT_NONE;
 		Action.messageID = 224; //restores mp msg
 		m_PChar->addMP(damage);
+	}
+
+	// try to skill up if ws hit
+	if(Action.reaction == REACTION_HIT)
+	{
+		charutils::TrySkillUP(m_PChar, (SKILLTYPE)m_PWeaponSkill->getType(), m_PBattleSubTarget->GetMLevel());
 	}
 
 	if (m_PWeaponSkill->getID() >= 192 && m_PWeaponSkill->getID() <= 218)
@@ -2790,7 +2801,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
     // DO NOT REMOVE!  This is here for a reason...
     // Skill chains should not be affected by MISSED weapon skills or non-elemental
     // weapon skills such as: Spirits Within, Spirit Taker, Energy Steal, Energy Drain, Starlight, and Moonlight.
-    if((Action.param > 0) && (m_PWeaponSkill->getPrimarySkillchain() != 0))
+    if(Action.reaction == REACTION_HIT && (m_PWeaponSkill->getPrimarySkillchain() != 0))
     {
         // NOTE: GetSkillChainEffect is INSIDE this if statement because it
         //  ALTERS the state of the resonance, which misses and non-elemental skills should NOT do.

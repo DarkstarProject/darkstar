@@ -19,6 +19,6 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_SLEEP_I, 1,0,30);
+    target:addStatusEffect(EFFECT_STUN, 1,0,30);
 end;
 

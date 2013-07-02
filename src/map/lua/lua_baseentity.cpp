@@ -3058,9 +3058,6 @@ inline int32 CLuaBaseEntity::capAllSkills(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
-
-	uint8 skill = lua_tointeger(L, -1);
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
 	for (uint8 i = 1; i < 43; ++i)
@@ -3086,7 +3083,7 @@ inline int32 CLuaBaseEntity::capAllSkills(lua_State* L)
 		PChar->WorkingSkills.skill[i] = maxSkill/10;
 		PChar->WorkingSkills.skill[i] |= 0x8000; //set blue capped flag
 	}
-	charutils::CheckWeaponSkill(PChar, skill);
+	charutils::CheckWeaponSkill(PChar, SKILL_NON);
 	PChar->pushPacket(new CCharSkillsPacket(PChar));
 	return 0;
 }

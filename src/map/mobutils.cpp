@@ -133,6 +133,7 @@ void CalculateStats(CMobEntity * PMob)
 	{
 		// enmity range is larger
 		PMob->m_enmityRange = 28;
+		PMob->m_tpUseChance = 40;
 	}
 
 	if(PMob->HPmodifier == 0){

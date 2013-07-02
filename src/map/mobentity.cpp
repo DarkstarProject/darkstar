@@ -85,7 +85,8 @@ CMobEntity::CMobEntity()
     m_sightRange = 15;
     m_disableScent = false;
     m_linkRadius = 10;
-
+    m_tpUseChance = 30;
+    
     m_SpecialCoolDown = 0;
     m_RoamCoolDown = 45000;
     m_StandbackTime = 0;
@@ -346,7 +347,7 @@ uint8 CMobEntity::TPUseChance()
         return 100;
     }
 
-    return 40;
+    return m_tpUseChance;
 }
 
 bool CMobEntity::CanUseTwoHour()

@@ -127,6 +127,7 @@ public:
   float       HPscale;                // HP boost percentage
   float       MPscale;                // MP boost percentage
   uint8       m_linkRadius;                         // mobs have different link radiuses
+  uint8       m_tpUseChance; // chance of using tp
 
   uint16 m_roamFlags; // defines its roaming behaviour
   uint8 m_specialFlags; // flags for special skill

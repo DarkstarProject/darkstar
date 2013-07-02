@@ -12,7 +12,7 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function OnMobSkillCheck(target,mob,skill)
-    if(mob:isMobType(MOBTYPE_NOTORIOUS) and mob:getHP()/mob:getMaxHP() < 0.25) then
+    if(mob:isMobType(MOBTYPE_NOTORIOUS) and mob:getHP()/mob:getMaxHP() <= 0.25) then
         return 0;
     end
     return 1;
@@ -24,9 +24,9 @@ function OnMobWeaponSkill(target, mob, skill)
     local mobID = mob:getID();
 
     if(target:getID() > 100000) then
-        realDmg = 50 * 100;
+        realDmg = 10 * 100;
     else
-        realDmg = 50 * target:getVar("EVERYONES_GRUDGE_KILLS"); -- Damage is 5 times the amount you have killed
+        realDmg = 10 * target:getVar("EVERYONES_GRUDGE_KILLS"); -- Damage is 5 times the amount you have killed
 
         if(mobID == 17428677 or mobID == 17433008 or mobID == 17433006 or mobID == 17433009 or mobID == 17432994 or mobID == 17433007 or mobID == 17428813 or mobID == 17432659 or mobID == 17432846 or mobID == 17428809) then
             realDmg = realDmg * 10;  -- Sets the Multiplyer to 50 for NM's
@@ -35,9 +35,6 @@ function OnMobWeaponSkill(target, mob, skill)
         end
     end
 
-    local dmgmod = 1;
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg(),ELE_DARK,dmgmod,TP_NO_EFFECT);
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS); -- left this in to make sure it bypasses shadows and such.
     target:delHP(realDmg);
 
     return realDmg;

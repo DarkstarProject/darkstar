@@ -955,7 +955,7 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
 
 	//todo: find a better place to put this?
 	if(effect == EFFECT_SLEEP || effect == EFFECT_SLEEP_II ||
-		effect == EFFECT_STUN || effect == EFFECT_PETRIFICATION || effect == EFFECT_LULLABY)
+		effect == EFFECT_STUN || effect == EFFECT_PETRIFICATION || effect == EFFECT_LULLABY || effect == EFFECT_CHARM || effect == EFFECT_CHARM_II)
     {
 
         // change icon of sleep II and lullaby. Apparently they don't stop player movement.
@@ -1174,8 +1174,8 @@ bool CStatusEffectContainer::HasPreventActionEffect()
         HasStatusEffect(EFFECT_SLEEP_II) ||
         HasStatusEffect(EFFECT_PETRIFICATION) ||
         HasStatusEffect(EFFECT_LULLABY) ||
-        HasStatusEffect(EFFECT_CHARM);
-        HasStatusEffect(EFFECT_CHARM_II);
+        HasStatusEffect(EFFECT_CHARM) ||
+        HasStatusEffect(EFFECT_CHARM_II) ||
         HasStatusEffect(EFFECT_STUN);
 }
 

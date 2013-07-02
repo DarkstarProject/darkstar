@@ -897,8 +897,8 @@ void CAIMobDummy::ActionAbilityFinish()
 	else
 	{
 		// increase magic / ranged timer so its not used right after
-		m_LastMagicTime += m_PMobSkill->getAnimationTime();
-		m_LastSpecialTime += m_PMobSkill->getAnimationTime();
+		m_LastMagicTime += m_PMobSkill->getAnimationTime() + 2000;
+		m_LastSpecialTime += m_PMobSkill->getAnimationTime() + 2000;
 
 		m_ActionType = ACTION_ATTACK;
 	}
@@ -1455,9 +1455,11 @@ void CAIMobDummy::ActionAttack()
 					bool isCountered = false;
 					bool isParried = false;
 					bool isGuarded = false;
+					bool isDodge = false;
 					if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE))
 					{
 						Action.messageID = 32;
+						isDodge = true;
 					}
 					else if ( rand()%100 < battleutils::GetHitRate(m_PMob, m_PBattleTarget) )
 					{
@@ -1564,6 +1566,47 @@ void CAIMobDummy::ActionAttack()
 									}
 								} // Guard skill up
 							}
+
+							if(!isCountered)
+							{
+								bool isBlocked = battleutils::IsBlocked(m_PMob, m_PBattleTarget);
+								if(isBlocked){ Action.reaction = REACTION_BLOCK; }
+								if (m_PBattleTarget->objtype == TYPE_PC)
+								{
+									damage = battleutils::HandleSpecialPhysicalDamageReduction((CCharEntity*)m_PBattleTarget,damage,&Action);
+								}
+
+								Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage, isBlocked ,SLOT_MAIN, 1, NULL, true);
+								m_PMob->PEnmityContainer->UpdateEnmityFromAttack(m_PBattleTarget, Action.param);
+
+								// Block skill up
+								if(m_PBattleTarget->objtype == TYPE_PC && isBlocked || ((map_config.newstyle_skillups & NEWSTYLE_BLOCK) > 0))
+								{
+									if(battleutils::GetBlockRate(m_PMob, m_PBattleTarget) > 0)
+									{
+										charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_SHL, m_PMob->GetMLevel());
+									}
+								} // Block skill up
+
+
+								// spike effect
+								// spikes take priority
+								if(!battleutils::HandleSpikesDamage(m_PMob, m_PBattleTarget, &Action, damage)){
+		                    		// no spikes, handle enspell
+		                    		// TODO: enspell method needs to be refactored to accept just battleentity
+		                    		// battleutils::HandleEnspell(m_PMob, m_PBattleTarget, &Action, i, WeaponDelay, damage);
+								}
+							}
+							else
+							{
+								Action.param = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, 1, NULL, true);
+								if(m_PBattleTarget->objtype == TYPE_PC)
+								{
+									uint8 skilltype = (m_PBattleTarget->m_Weapons[SLOT_MAIN] == NULL ? SKILL_H2H : m_PBattleTarget->m_Weapons[SLOT_MAIN]->getSkillType());
+									charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, (SKILLTYPE)skilltype, m_PMob->GetMLevel());
+								}
+							}
+
 						}
 
 						// Parry skill up
@@ -1575,53 +1618,10 @@ void CAIMobDummy::ActionAttack()
 							}
 						} // Parry skill up
 					}
-					if (m_PBattleTarget->objtype == TYPE_PC && !isCountered && !isParried)
+
+					if (m_PBattleTarget->objtype == TYPE_PC && !isCountered && !isParried && !isDodge)
 					{
 						charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_EVA, m_PMob->GetMLevel());
-					}
-
-					if(!isCountered)
-					{
-
-						bool isBlocked = battleutils::IsBlocked(m_PMob, m_PBattleTarget);
-						if(isBlocked){ Action.reaction = REACTION_BLOCK; }
-						if (m_PBattleTarget->objtype == TYPE_PC)
-						{
-							damage = battleutils::HandleSpecialPhysicalDamageReduction((CCharEntity*)m_PBattleTarget,damage,&Action);
-						}
-
-						Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage, isBlocked ,SLOT_MAIN, 1, NULL, true);
-						m_PMob->PEnmityContainer->UpdateEnmityFromAttack(m_PBattleTarget, Action.param);
-
-						// Block skill up
-						if(m_PBattleTarget->objtype == TYPE_PC && isBlocked || ((map_config.newstyle_skillups & NEWSTYLE_BLOCK) > 0))
-						{
-							if(battleutils::GetBlockRate(m_PMob, m_PBattleTarget) > 0)
-							{
-								charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_SHL, m_PMob->GetMLevel());
-							}
-						} // Block skill up
-
-
-						// spike effect
-						if (Action.reaction != REACTION_EVADE && Action.reaction != REACTION_PARRY)
-						{
-							// spikes take priority
-							if(!battleutils::HandleSpikesDamage(m_PMob, m_PBattleTarget, &Action, damage)){
-	                    		// no spikes, handle enspell
-	                    		// TODO: enspell method needs to be refactored to accept just battleentity
-	                    		// battleutils::HandleEnspell(m_PMob, m_PBattleTarget, &Action, i, WeaponDelay, damage);
-							}
-						}
-					}
-					else
-					{
-						Action.param = battleutils::TakePhysicalDamage(m_PBattleTarget, m_PMob, damage, false, SLOT_MAIN, 1, NULL, true);
-						if(m_PBattleTarget->objtype == TYPE_PC)
-						{
-							uint8 skilltype = (m_PBattleTarget->m_Weapons[SLOT_MAIN] == NULL ? SKILL_H2H : m_PBattleTarget->m_Weapons[SLOT_MAIN]->getSkillType());
-							charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, (SKILLTYPE)skilltype, m_PMob->GetMLevel());
-						}
 					}
 
 					m_PMob->m_ActionList.push_back(Action);
