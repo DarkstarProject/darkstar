@@ -10,10 +10,10 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
 -- Conquest
 CONQUEST = 7224; -- You've earned conquest points!
 
--- Dynamis dialogs
-UNUSUAL_ARRANGEMENT_OF_BRANCHES = 7687; -- There is an unusual arrangement of branches here.
-	   YOU_CANNOT_ENTER_DYNAMIS = 7685; -- You cannot enter Dynamis - Bastok for x day (Vana'diel time)
- PLAYERS_HAVE_NOT_REACHED_LEVEL = 7677; -- Players who have not reached level <number> are prohibited from entering Dynamis.
-
 -- Other
 NOTHING_OUT_OF_ORDINARY = 7645; -- There is nothing out of the ordinary here.
+
+-- Dynamis dialogs
+	   YOU_CANNOT_ENTER_DYNAMIS = 7675; -- You cannot enter Dynamis - Bastok for x day (Vana'diel time)
+ PLAYERS_HAVE_NOT_REACHED_LEVEL = 7677; -- Players who have not reached level <number> are prohibited from entering Dynamis.
+ UNUSUAL_ARRANGEMENT_OF_PEBBLES = 7688; -- There is an unusual arrangement of pebbles here.

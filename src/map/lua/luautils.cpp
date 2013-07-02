@@ -107,6 +107,7 @@ int32 init()
 	lua_register(LuaHandle,"GetMobRespawnTime",luautils::GetMobRespawnTime);
 	lua_register(LuaHandle,"DeterMob",luautils::DeterMob);
 	lua_register(LuaHandle,"UpdateNMSpawnPoint",luautils::UpdateNMSpawnPoint);
+	lua_register(LuaHandle,"SetDropRate",luautils::SetDropRate);
 
 	lua_register(LuaHandle,"getCorsairRollEffect",luautils::getCorsairRollEffect);
     lua_register(LuaHandle,"getSpell",luautils::getSpell);
@@ -264,7 +265,10 @@ int32 GetMobIDByJob(lua_State *L)
 	{
 		CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
 		
-		if(PMob != NULL && !(PMob->m_Type & MOBTYPE_NOTORIOUS) && PMob->GetMJob() == mobJob && PMob->isDead())
+		if(PMob != NULL && 
+		   PMob->isDead() && 
+		   !(PMob->m_Type & MOBTYPE_NOTORIOUS) && 
+		   PMob->GetMJob() == mobJob) // Need to add condition to add just kindred/vanguard mob
 		{
 			lua_pushinteger(L,PMob->id);
 			return 1;
@@ -3085,6 +3089,7 @@ int32 DeterMob(lua_State* L)
 * Update the NM spawn point to a new point, retrieved from the database *
 *                                                                       *
 ************************************************************************/
+
 int32 UpdateNMSpawnPoint(lua_State* L)
 {
 	if( !lua_isnil(L,1) && lua_isnumber(L,1) ) {
@@ -3113,12 +3118,12 @@ int32 UpdateNMSpawnPoint(lua_State* L)
   return 1;
 }
 
-
 /************************************************************************
 *                                                                       *
-*  Get Mob Respawn Time in seconds by Mob ID.                                      *
+*  Get Mob Respawn Time in seconds by Mob ID.                           *
 *                                                                       *
 ************************************************************************/
+
 int32 GetMobRespawnTime(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
@@ -3136,6 +3141,28 @@ int32 GetMobRespawnTime(lua_State* L)
     return 1;
 }
 
+/************************************************************************
+*	Change drop rate of a mob											*
+*  	1st number: dropid in mob_droplist.sql								*
+*	2nd number: itemid in mob_droplist.sql								*
+*	3rd number: new rate												*
+************************************************************************/
+
+int32 SetDropRate(lua_State *L)
+{
+	DropList_t* DropList = itemutils::GetDropList(lua_tointeger(L,1));
+
+	for(uint8 i = 0; i < DropList->size(); ++i)
+	{
+		if(DropList->at(i).ItemID == lua_tointeger(L,2))
+		{
+			DropList->at(i).DropRate = lua_tointeger(L,3);
+			return 1;
+		}
+	}
+
+	return 0;
+}
 
 int32 getCorsairRollEffect(lua_State* L)
 {

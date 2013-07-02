@@ -30,18 +30,19 @@
 class CInstance;
 class CInstanceHandler;
 
-namespace instanceutils{
-	void getLosePosition(CInstance* instance, int (&pPosition)[4]); //returns x y z rot in that order
-	void getWinPosition(CInstance* instance, int (&pPosition)[4]); //returns x y z rot in that order
-	void getStartPosition(uint8 zoneid, int (&pPosition)[4]); //returns lobby position
+namespace instanceutils
+{
+	void getLosePosition(CInstance* instance, int (&pPosition)[4]);		// returns x y z rot in that order
+	void getWinPosition(CInstance* instance, int (&pPosition)[4]);		// returns x y z rot in that order
+	void getStartPosition(uint8 zoneid, int (&pPosition)[4]);			// returns lobby position
 	bool meetsWinningConditions(CInstance* instance, uint32 tick);
 	bool meetsLosingConditions(CInstance* instance, uint32 tick);
 	bool spawnMonstersForBcnm(CInstance* instance);
 	bool spawnTreasureForBcnm(CInstance* instance);
 
-	//void getHighestTHforBcnm(CInstance* instance); apparently not used in bcnm
-	uint8 getMaxLootGroups(CInstance* instance); //returns maximum number of loot groups for a BCNM instance
-	uint16 getRollsPerGroup(CInstance* instance, uint8 groupID); //returns the maximum number of "rolls" in a given group
+	//void getHighestTHforBcnm(CInstance* instance);					// apparently not used in bcnm
+	uint8 getMaxLootGroups(CInstance* instance);						// returns maximum number of loot groups for a BCNM instance
+	uint16 getRollsPerGroup(CInstance* instance, uint8 groupID);		// returns the maximum number of "rolls" in a given group
 	void getChestItems(CInstance* instance);
 	CInstance* loadInstance(CInstanceHandler* hand, uint16 bcnmid);
 

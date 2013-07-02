@@ -382,9 +382,6 @@ namespace instanceutils{
 	instance->winBcnm();
 	}
 
-
-
-
 	bool spawnSecondPartDynamis(CInstance* instance){
 		DSP_DEBUG_BREAK_IF(instance==NULL);
 

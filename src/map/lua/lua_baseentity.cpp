@@ -5803,6 +5803,45 @@ inline int32 CLuaBaseEntity::isInDynamis(lua_State *L)
 
 /************************************************************************
 *                                                                       *
+*  Check if mob is in battlefield list									*
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::isInBattlefieldList(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+	CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
+
+	if(PMob->loc.zone->m_InstanceHandler->checkMonsterInList(PMob))
+		lua_pushboolean(L, true);
+	else
+		lua_pushboolean(L, false);
+
+	return 1;
+}
+
+/************************************************************************
+*                                                                       *
+*  Add mob in battlefield list											*
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::addInBattlefieldList(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+	CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
+
+	PMob->loc.zone->m_InstanceHandler->insertMonsterInList(PMob);
+
+	return 0;
+}
+
+/************************************************************************
+*                                                                       *
 *  Открываем дверь и автоматически закрываем через 7 секунд             *
 *                                                                       *
 ************************************************************************/
@@ -7279,6 +7318,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTimeToDynamis),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,launchDynamisSecondPart),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isInDynamis),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isInBattlefieldList),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addInBattlefieldList),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkDistance),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkBaseExp),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkSoloPartyAlliance),

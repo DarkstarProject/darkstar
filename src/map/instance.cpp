@@ -55,7 +55,7 @@ uint32 CInstance::getTimeLimit(){
 	return m_TimeLimit;
 }
 
-uint8 CInstance::getZoneId(){
+uint16 CInstance::getZoneId(){
 	return m_ZoneID;
 }
 
@@ -104,7 +104,7 @@ void CInstance::setInstanceNumber(uint8 instance){
 	m_InstanceNumber = instance;
 }
 
-void CInstance::setZoneId(uint8 zone){
+void CInstance::setZoneId(uint16 zone){
 	m_ZoneID = zone;
 }
 
@@ -464,13 +464,15 @@ void CInstance::cleanupDynamis(){
 		{
 			uint32 mobid = Sql_GetUIntData(SqlHandle,0);
 			CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
-			PMob->PBattleAI->SetCurrentAction(ACTION_FADE_OUT);
 			
+			if(PMob != NULL)
+				PMob->PBattleAI->SetCurrentAction(ACTION_FADE_OUT);
 		}
 	}
 
 	//wipe mob list
 	m_EnemyList.clear();
+	m_MobList.clear();
 
 	//delete instance
 	if(m_Handler==NULL){
@@ -487,6 +489,23 @@ bool CInstance::delPlayerFromDynamis(CCharEntity* PChar){
 			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_DYNAMIS);
 			PChar->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
 			m_PlayerList.erase(m_PlayerList.begin()+i);
+			return true;
+		}
+	}
+	return false;
+}
+
+void CInstance::addMonsterInList(CMobEntity* PMob)
+{
+	m_MobList.push_back(PMob);
+}
+
+bool CInstance::isMonsterInList(CMobEntity* PMob)
+{
+	for(int i=0; i < m_MobList.size(); i++)
+	{
+		if(PMob->id == m_MobList.at(i)->id)
+		{
 			return true;
 		}
 	}

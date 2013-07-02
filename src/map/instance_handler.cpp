@@ -31,7 +31,7 @@
 #include "lua/luautils.h"
 
 
-CInstanceHandler::CInstanceHandler(uint8 zoneid)
+CInstanceHandler::CInstanceHandler(uint16 zoneid)
 {
 	m_ZoneId = zoneid;
 
@@ -433,4 +433,24 @@ bool CInstanceHandler::disconnectFromDynamis(CCharEntity* PChar){ //includes war
 		}
 	}
 	return false;
+}
+
+void CInstanceHandler::insertMonsterInList(CMobEntity* PMob)
+{
+	CInstance* PInstance = m_Instances[0];
+
+	if(PInstance->isMonsterInList(PMob) == false)
+	{
+		PInstance->addMonsterInList(PMob);
+	}
+}
+
+bool CInstanceHandler::checkMonsterInList(CMobEntity* PMob)
+{
+	CInstance* PInstance = m_Instances[0];
+	
+	if(PInstance->isMonsterInList(PMob))
+		return true;
+	else
+		return false;
 }

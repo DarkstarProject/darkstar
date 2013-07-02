@@ -37,33 +37,36 @@ class CInstanceHandler
 {
 public:
 
-	CInstanceHandler(uint8 zoneid);
-	void	handleInstances(uint32 tick); //called every tick to handle win/lose conditions, locking the bcnm, etc
-	int		registerBcnm(uint16 bcnmid, CCharEntity* PChar); //returns the instance id of the registration, -1 if no free bcnm.
-														//also registers all people in the characters PT, etc.
+	CInstanceHandler(uint16 zoneid);
+	void	handleInstances(uint32 tick);							// called every tick to handle win/lose conditions, locking the bcnm, etc
+	int		registerBcnm(uint16 bcnmid, CCharEntity* PChar);		// returns the instance id of the registration, -1 if no free bcnm.
+																	// also registers all people in the characters PT, etc.
 
-	bool	enterBcnm(uint16 bcnmid, CCharEntity* PChar); //Enters the BCNM instance if you're registered
-	bool	leaveBcnm(uint16 bcnmid, CCharEntity* PChar); //Leaves the BCNM instance if you're registered
-	bool	disconnectFromBcnm(CCharEntity* PChar);		//Disconnects/Warps you from a BCNM
-	bool	winBcnm(uint16 bcnmid, CCharEntity* PChar); //Wins a BCNM instance (e.g. the player opening the chest)
+	bool	enterBcnm(uint16 bcnmid, CCharEntity* PChar);			// Enters the BCNM instance if you're registered
+	bool	leaveBcnm(uint16 bcnmid, CCharEntity* PChar);			// Leaves the BCNM instance if you're registered
+	bool	disconnectFromBcnm(CCharEntity* PChar);					// Disconnects/Warps you from a BCNM
+	bool	winBcnm(uint16 bcnmid, CCharEntity* PChar);				// Wins a BCNM instance (e.g. the player opening the chest)
 
-	uint8	findInstanceIDFor(CCharEntity* PChar); //returns 1 2 3 or 255 if non-existent
-	bool	hasFreeInstance(); //returns true if there is a free instance available
-	uint32	pollTimeLeft(uint16 bcnmid); //returns the shortest time left of all 3 instances of the given BCNM ID
+	uint8	findInstanceIDFor(CCharEntity* PChar);					// returns 1 2 3 or 255 if non-existent
+	bool	hasFreeInstance();										// returns true if there is a free instance available
+	uint32	pollTimeLeft(uint16 bcnmid);							// returns the shortest time left of all 3 instances of the given BCNM ID
 	void	openTreasureChest(CCharEntity* PChar);
 	void	wipeInstance(CInstance* inst);
 	
 	//Dynamis Functions
-	int		getUniqueDynaID(uint16 id);
-	int		registerDynamis(uint16 id, CCharEntity* PChar);
-	int		dynamisAddPlayer(uint16 dynaid, CCharEntity* PChar); //Add a player to the dynamis instance
-	int		dynamisMessage(uint16 Param1, uint16 Param2); //Add message on dynamis param1: messageid, param2: parameter
+	int		getUniqueDynaID(uint16 id);								// 
+	int		registerDynamis(uint16 id, CCharEntity* PChar);			// 
+	int		dynamisAddPlayer(uint16 dynaid, CCharEntity* PChar);	// Add a player to the dynamis instance
+	int		dynamisMessage(uint16 Param1, uint16 Param2);			// Add message on dynamis param1: messageid, param2: parameter
 	void	launchDynamisSecondPart();
 	bool	disconnectFromDynamis(CCharEntity* PChar);
 
+	void	insertMonsterInList(CMobEntity* PMob);
+	bool	checkMonsterInList(CMobEntity* PMob);
+
 private:
-	uint8					m_ZoneId;
-	uint8					m_MaxInstances; //usually 3
+	uint16					m_ZoneId;
+	uint8					m_MaxInstances;							// usually 3 except dynamis, einherjar, besieged, ...
 	CInstance*				m_Instances[3];
 };
 

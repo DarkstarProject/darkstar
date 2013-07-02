@@ -3,8 +3,8 @@
 -- Zone: Xarcabard (112)
 --
 -----------------------------------
-
 package.loaded[ "scripts/zones/Xarcabard/TextIDs"] = nil;
+-----------------------------------
 
 require( "scripts/zones/Xarcabard/TextIDs");
 require( "scripts/globals/icanheararainbow");
@@ -26,7 +26,10 @@ function onZoneIn( player, prevZone)
 	local cs = -1;
 
 	local UnbridledPassionCS = player:getVar("unbridledPassion");	
-
+	
+	if(prevZone == 135) then -- warp player to a correct position after dynamis
+		player:setPos(569.312,-0.098,-270.158,90);
+	end
 	
 	if( player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
 		player:setPos( -136.287, -23.268, 137.302, 91);

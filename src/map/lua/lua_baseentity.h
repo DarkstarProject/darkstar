@@ -238,6 +238,9 @@ public:
 	int32 launchDynamisSecondPart(lua_State*);//Spawn Mob part 2 when mega boss is defeated
 	int32 isInDynamis(lua_State*);			//If player is in Dynamis return true else false
 
+	int32 isInBattlefieldList(lua_State*);	// Return true is the mob is in battlefield list
+	int32 addInBattlefieldList(lua_State*);	// Add the mob to the battlefield list
+
 	int32 getVar(lua_State*);				// Returns a character variable
 	int32 setVar(lua_State*);				// Sets a character variable
     int32 addVar(lua_State*);               // Increments/decriments/sets a character variable
