@@ -48,7 +48,8 @@ local regionID =region:GetRegionID();
   player:startEvent(0x0041,player:getNation());
   elseif(regionID==1 and player:getCurrentMission(COP) ==A_PLACE_TO_RETURN and player:getVar("PromathiaStatus")==0)then
   player:startEvent(0x2740);
-
+  elseif(regionID==1 and player:getCurrentMission(COP) ==FLAMES_IN_THE_DARKNESS and player:getVar("PromathiaStatus")==2)then
+  player:startEvent(0x2743);
   end	
 end;	
 -----------------------------------		
@@ -90,5 +91,7 @@ function onEventFinish(player,csid,option)
 	    player:addMission(COP,A_PLACE_TO_RETURN);
     elseif (csid == 0x2740)then	
         player:setVar("PromathiaStatus",1);
+    elseif (csid == 0x2743)then	
+        player:setVar("PromathiaStatus",3);	
 	end	
 end;		

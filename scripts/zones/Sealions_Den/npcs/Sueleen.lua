@@ -21,6 +21,10 @@ end;
 
 function onTrigger(player,npc)
 	--player:startEvent(0x000c);
+	if(player:getCurrentMission(COP) == FLAMES_IN_THE_DARKNESS and player:getVar("PromathiaStatus") == 1)then
+	  player:startEvent(0x0010); 
+	end
+	
 end;
 
 -----------------------------------
@@ -42,6 +46,8 @@ function onEventFinish(player,csid,option)
 	
 	if(csid == 0x000c and option == 1) then
 		toPalaceEntrance(player)
+	elseif(csid == 0x0010)then
+	  player:setVar("PromathiaStatus",2);
 	end
 	
 end;

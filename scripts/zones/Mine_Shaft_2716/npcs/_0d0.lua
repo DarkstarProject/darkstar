@@ -30,13 +30,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if(EventTriggerBCNM(player,npc))then
-		return 1;
-		else
-		return 1;
+
+	if(player:getCurrentMission(COP) ==FIRE_IN_THE_EYES_OF_MEN and player:getVar("PromathiaStatus")==0)then
+	      player:startEvent(0x0004);
+	elseif(EventTriggerBCNM(player,npc))then
    end
-	
+	return 1;
 end;
 
 -----------------------------------
@@ -63,6 +62,8 @@ function onEventFinish(player,csid,option)
 	if(csid ==0x0003)then
 	  player:setVar("COP_Louverance_s_Path",9);
 	  player:tradeComplete();
+	 elseif(csid ==0x0004)then 
+	  player:setVar("PromathiaStatus",1);
 	elseif(EventFinishBCNM(player,csid,option))then
 		return;
 	end

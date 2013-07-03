@@ -15,6 +15,8 @@ require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/zones/Metalworks/TextIDs");
 
+
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -34,7 +36,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-           
+    local currentday = tonumber(os.date("%j"));       
 	local CidsSecret = player:getQuestStatus(BASTOK,CID_S_SECRET);
 	local LetterKeyItem = player:hasKeyItem(UNFINISHED_LETTER);
 	local currentMission = player:getCurrentMission(BASTOK);
@@ -43,9 +45,11 @@ function onTrigger(player,npc)
 	local TenzenPath = player:getVar("COP_Tenzen_s_Path");
 	local LouverancePath = player:getVar("COP_Louverance_s_Path");
 	local TreePathAv=0;
-
-
-	if(currentCOPMission == ONE_TO_BE_FEARED and player:getVar("PromathiaStatus")==0)then
+    if(currentCOPMission == FIRE_IN_THE_EYES_OF_MEN and player:getVar("PromathiaStatus")==2 and player:getVar("Promathia_CID_timer")~=currentday)then
+	        player:startEvent(0x037A); -- COP event    
+    elseif(currentCOPMission == FIRE_IN_THE_EYES_OF_MEN and player:getVar("PromathiaStatus")==1)then
+          	player:startEvent(0x0359); -- COP event
+	elseif(currentCOPMission == ONE_TO_BE_FEARED and player:getVar("PromathiaStatus")==0)then
 	        player:startEvent(0x0358); -- COP event
 	elseif(currentCOPMission == THREE_PATHS and LouverancePath == 6 )then
 	        player:startEvent(0x0354); -- COP event
@@ -144,9 +148,20 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
+local currentday = tonumber(os.date("%j"));  
+
+
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-     if(csid == 0x0357)then	      
+    if(csid == 0x037A)then
+	        player:setVar("PromathiaStatus",0);
+			player:setVar("Promathia_CID_timer",0);
+			player:completeMission(COP,FIRE_IN_THE_EYES_OF_MEN);
+            player:addMission(COP,CALM_BEFORE_THE_STORM);
+    elseif(csid == 0x0359)then
+	        player:setVar("PromathiaStatus",2);
+			player:setVar("Promathia_CID_timer",currentday);
+    elseif(csid == 0x0357)then	      
 		    player:setVar("COP_Ulmia_s_Path",8);
     elseif(csid == 0x0356)then	        
 		    player:setVar("COP_Tenzen_s_Path",11);
