@@ -45,9 +45,9 @@ function onTrigger(player,npc)
 	local TreePathAv=0;
 
 
-	
-	
-	if(currentCOPMission == THREE_PATHS and LouverancePath == 6 )then
+	if(currentCOPMission == ONE_TO_BE_FEARED and player:getVar("PromathiaStatus")==0)then
+	        player:startEvent(0x0358); -- COP event
+	elseif(currentCOPMission == THREE_PATHS and LouverancePath == 6 )then
 	        player:startEvent(0x0354); -- COP event
 	elseif(currentCOPMission == THREE_PATHS and LouverancePath == 9 )then	
 	        if(TenzenPath==11 and UlmiaPath==8)then 
@@ -160,6 +160,8 @@ function onEventFinish(player,csid,option)
             player:addMission(COP,THREE_PATHS);
     elseif(csid == 0x0351)then 
             player:setVar("PromathiaStatus",2);
+	    elseif(csid == 0x0358)then 
+            player:setVar("PromathiaStatus",1);		
 	elseif (csid == 0x034D)then
 	        player:setVar("PromathiaStatus",0);
 	        player:completeMission(COP,THE_CALL_OF_THE_WYRMKING);

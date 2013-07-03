@@ -5,6 +5,14 @@
 -----------------------------------
 
 require("scripts/globals/titles");
+-----------------------------------
+-- onMobInitialize Action
+-----------------------------------
+
+function onMobInitialize(mob)
+	mob:addStatusEffect(EFFECT_REGEN,1,3,0);
+
+end;
 
 -----------------------------------
 -- onMobSpawn Action
