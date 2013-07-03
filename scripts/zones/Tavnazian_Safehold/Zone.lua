@@ -34,6 +34,8 @@ cs = -1;
 		cs = 0x0065;
 	elseif(player:getCurrentMission(COP) == SHELTERING_DOUBT and player:getVar("PromathiaStatus") == 0)then
         cs = 0x006B;
+	elseif(player:getCurrentMission(COP) == CHAINS_AND_BONDS and player:getVar("PromathiaStatus") == 1) then
+	    cs = 0x0072;
 	end
 	
 	return cs;
@@ -95,6 +97,8 @@ function onEventFinish(player,csid,option)
 		player:setVar("PromathiaStatus",1);
 	elseif(csid == 0x0070) then	
 		player:setVar("PromathiaStatus",1);
+	elseif(csid == 0x0072) then	
+	    player:setVar("PromathiaStatus",2);
 	end
 
 end;

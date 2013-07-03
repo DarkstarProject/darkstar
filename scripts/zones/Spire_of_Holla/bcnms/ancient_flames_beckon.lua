@@ -44,6 +44,7 @@ function OnBcnmLeave(player,instance,leavecode)
 printf("leavecode: %u",leavecode);
 	
 	if(leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
+	    player:addExp(1500);
 	    if(player:getCurrentMission(COP) == THE_MOTHERCRYSTALS)then	
 			if(player:hasKeyItem(LIGHT_OF_HOLLA) == false) then 
 				player:addKeyItem(LIGHT_OF_HOLLA);

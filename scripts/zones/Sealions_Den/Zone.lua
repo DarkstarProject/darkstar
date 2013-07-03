@@ -26,6 +26,8 @@ function onZoneIn(player,prevZone)
 	end	
 	if(player:getCurrentMission(COP) == ONE_TO_BE_FEARED and player:getVar("PromathiaStatus")==1)then
 	  cs=0x000F;
+	elseif(player:getCurrentMission(COP) == CHAINS_AND_BONDS and player:getVar("PromathiaStatus")==2)then
+	  cs=0x000E;
 	end
 	return cs;	
 end;		
@@ -55,5 +57,7 @@ function onEventFinish(player,csid,option)
 	--printf("RESULT: %u",option);
 	if(csid == 0x000F)then
 	   player:setVar("PromathiaStatus",2);
+	elseif(csid == 0x000E)then  
+	   player:setVar("PromathiaStatus",3);
 	end
 end;	

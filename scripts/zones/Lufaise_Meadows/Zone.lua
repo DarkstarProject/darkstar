@@ -31,6 +31,8 @@ cs = -1;
 	
 	if(player:getCurrentMission(COP) == AN_INVITATION_WEST and player:getVar("PromathiaStatus") == 1) then
 		cs = 0x006E;
+	elseif(player:getCurrentMission(COP) == CHAINS_AND_BONDS and player:getVar("PromathiaStatus") == 0) then
+        cs = 0x006F;	
 	end
 	
 	return cs;	
@@ -61,5 +63,8 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 	if (csid == 0x0063) then
 		player:setVar("PromathiaStatus",0);
+    elseif(csid == 0x006F)then
+		player:addItem(14657);
+		player:setVar("PromathiaStatus",1);
 	end
 end;

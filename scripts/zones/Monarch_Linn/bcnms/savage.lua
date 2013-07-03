@@ -27,6 +27,7 @@ function OnBcnmLeave(player,instance,leavecode)
 --printf("leavecode: %u",leavecode);
 	
 	if(leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
+	    player:addExp(1500);
 	   if(player:getCurrentMission(COP) == THE_SAVAGE and player:getVar("PromathiaStatus") == 1) then 
 		player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,1,0);
 		player:setVar("PromathiaStatus",2);

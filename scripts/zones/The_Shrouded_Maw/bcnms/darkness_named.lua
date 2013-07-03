@@ -103,6 +103,7 @@ function OnBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
 	
 	if(leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
+	    player:addExp(1000);
 		if(player:getCurrentMission(COP) == DARKNESS_NAMED  and  player:getVar("PromathiaStatus") == 2) then
 			player:addTitle(TRANSIENT_DREAMER);
 			player:setVar("PromathiaStatus",3);
