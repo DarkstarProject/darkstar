@@ -12,7 +12,19 @@ require("scripts/zones/Port_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+	if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) ==QUEST_ACCEPTED)then
+if(trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getVar("tradeAuvare") == 0)then 
+player:messageSpecial(7121);
+player:setVar("FFR",player:getVar("FFR") - 1);
+player:setVar("tradeAuvare",1);
+player:messageSpecial(7122,17 - player:getVar("FFR"));
+trade:complete();
+elseif(player:getVar("tradeAuvare") ==1)then
+player:messageSpecial(7120);
+ 
+end
+end
+end;
 
 -----------------------------------
 -- onTrigger Action

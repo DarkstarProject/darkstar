@@ -18,7 +18,15 @@ function onTrade(player,npc,trade)
 -- "Flyers for Regine" conditional script
 	local count = trade:getItemCount();
 
-	if (trade:hasItemQty(532,1) == true and count == 1) then
+	if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED and trade:getGil() == 10 and trade:getItemCount() == 1)then
+		if(player:getFreeSlotsCount() > 0) then
+			player:addItem(532,1);
+			player:tradeComplete();
+			player:messageSpecial(ITEM_OBTAINED,532);
+		else
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED_2, 532); -- CANNOT_OBTAIN_ITEM
+		end
+	elseif (trade:hasItemQty(532,1) == true and count == 1) then
 		if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
 			player:messageSpecial(FLYER_REFUSED);
 		end
@@ -37,7 +45,18 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-		player:startEvent(0x1fe);
+if(player:getVar("FFR") ==1)then
+	player:startEvent(0x1fe,2);
+elseif(player:getVar("FFR") ==2)then
+	player:startEvent(0x025b);
+
+elseif(player:getVar("FFR") >2 and not(player:hasItem(532)))then
+	player:startEvent(0x1fe,3);
+elseif(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_AVAILABLE and player:getVar("FFR") == 0)then
+	player:startEvent(0x0259);
+else
+	player:startEvent(0x1fe);
+end
 end;
 
 -----------------------------------
@@ -56,8 +75,39 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-
-	if (csid == 0x1fe) then
+	if(csid == 0x1fe and option == 2) then	
+		if(player:getFreeSlotsCount() > 1) then
+			player:addQuest(SANDORIA,FLYERS_FOR_REGINE);
+			player:setVar("FFR",17);
+			player:addItem(532,12);
+			player:addItem(532,3);
+			player:messageSpecial(ITEM_OBTAINED,532);
+		else
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED_2, 532); -- CANNOT_OBTAIN_ITEM
+		end
+	elseif(csid == 0x0259)then
+		player:setVar("FFR",1);
+	elseif(csid == 0x025b)then
+		player:completeQuest(SANDORIA,FLYERS_FOR_REGINE);
+		player:addGil(GIL_RATE*440)
+		player:messageSpecial(GIL_OBTAINED,GIL_RATE*440);
+		player:addTitle(ADVERTISING_EXECUTIVE);
+		player:setVar("tradeAnswald",0);
+		player:setVar("tradePrietta",0);
+		player:setVar("tradeMiene",0);
+		player:setVar("tradePortaure",0);
+		player:setVar("tradeAuvare",0);
+		player:setVar("tradeGuilberdrier",0);
+		player:setVar("tradeVilion",0);
+		player:setVar("tradeCapiria",0);
+		player:setVar("tradeBoncort",0);
+		player:setVar("tradeCoullene",0);
+		player:setVar("tradeLeuveret",0);
+		player:setVar("tradeBlendare",0);
+		player:setVar("tradeMaugie",0);
+		player:setVar("tradeAdaunel",0);
+		player:setVar("tradeRosel",0);
+	elseif (csid == 0x1fe) then
 		if (option == 0) then
 			stock = {0x1221,1165,1, --Scroll of Diaga
 					 0x1238,837,1,  --Scroll of Slow

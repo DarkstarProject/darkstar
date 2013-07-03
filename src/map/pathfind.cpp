@@ -351,6 +351,8 @@ bool CPathFind::FindClosestPath(position_t* start, position_t* end)
 
   m_pathLength = m_PTarget->loc.zone->m_navMesh->findPath(*start, *end, m_points, MAX_PATH_POINTS);
 
+  // TODO: instead of skipping the path based on too many points
+  // it would make more sense to base it off of height difference is too large
   if(m_pathLength <= 0 || m_pathLength >= 7)
   {
     // f you, too long

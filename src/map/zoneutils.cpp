@@ -461,6 +461,8 @@ void LoadMOBList(CZone* PZone)
       {
         // pet is always spawned by master
         PPet->m_AllowRespawn = false;
+        PPet->m_SpawnType = SPAWNTYPE_SCRIPTED;
+        PPet->PBattleAI->SetCurrentAction(ACTION_NONE);
 
         PMaster->PPet = PPet;
         PPet->PMaster = PMaster;

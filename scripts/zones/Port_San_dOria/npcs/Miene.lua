@@ -16,16 +16,17 @@ require("scripts/zones/Port_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
--- "Flyers for Regine" conditional script
-FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
-
-	if (FlyerForRegine == 1) then
-		count = trade:getItemCount();
-		MagicFlyer = trade:hasItemQty(532,1);
-		if (MagicFlyer == true and count == 1) then
-			player:messageSpecial(FLYER_REFUSED);
-		end
+	if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) ==QUEST_ACCEPTED)then
+	if(trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getVar("tradeMiene") == 0)then 
+		player:messageSpecial(7121);
+		player:setVar("FFR",player:getVar("FFR") - 1);
+		player:setVar("tradeMiene",1);
+		player:messageSpecial(7122, 17 - player:getVar("FFR"));
+		trade:complete();
+	elseif(player:getVar("tradeMiene") == 1)then
+		player:messageSpecial(7120);
 	end
+end
 end; 
 
 -----------------------------------
@@ -73,9 +74,13 @@ function onEventFinish(player,csid,option)
 
 	-- "The Pickpocket" Quest, recieving Eagle Button
 	if (csid == 0x0225 or csid == 0x0263) then
-		if(player:getFreeSlotsCount() > 0 and player:hasItem(578) == false) then
-			player:addItem(578);
-			player:messageSpecial(6403,578);
+		if(player:hasItem(578) == false) then
+			if(player:getFreeSlotsCount() > 0) then
+				player:addItem(578);
+				player:messageSpecial(6403,578);
+			else
+				player:messageSpecial(ITEM_CANNOT_BE_OBTAINED_2, 578); -- CANNOT_OBTAIN_ITEM
+			end
 		else 
 			player:startEvent(0x0228);
 		end;

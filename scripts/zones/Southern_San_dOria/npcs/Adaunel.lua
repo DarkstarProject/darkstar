@@ -16,15 +16,16 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 -- onTrade Action 
 ----------------------------------- 
 
-function onTrade(player,npc,trade) 
--- "Flyers for Regine" conditional script
-FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
-
-	if (FlyerForRegine == 1) then
-		count = trade:getItemCount();
-		MagicFlyer = trade:hasItemQty(532,1);
-		if (MagicFlyer == true and count == 1) then
-			player:messageSpecial(FLYER_REFUSED);
+function onTrade(player,npc,trade)
+	if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED)then
+		if(trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getVar("tradeAdaunel") == 0)then 
+			player:messageSpecial(8709);
+			player:setVar("FFR",player:getVar("FFR") - 1);
+			player:setVar("tradeAdaunel",1);
+		player:messageSpecial(FLYER_ACCEPTED);
+		trade:complete();
+		elseif(player:getVar("tradeAdaunel") ==1)then
+			player:messageSpecial(8710);
 		end
 	end
 end;

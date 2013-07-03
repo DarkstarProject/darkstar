@@ -42,8 +42,8 @@ PORTAURE_MESSAGE = 7984; -- Portaure looks over curiously for a moment.
           COULLAVE_SHOP_DIALOG = 7494; -- Can I help you?
         CROUMANGUE_SHOP_DIALOG = 7495; -- Can't fight on an empty stomach. How about some nourishment?
 
-          VENDAVOQ_OPEN_DIALOG = 7502; -- Vandoolin! Vendavoq vring voods vack vrom Vovalpolos! Vuy! Vuy!
-        VENDAVOQ_CLOSED_DIALOG = 7503; -- Vandoolin... Vendavoq's vream vo vell voods vrom vometown vf Vovalpolos...
+          VENDAVOQ_OPEN_DIALOG = 7485; -- Vandoolin! Vendavoq vring voods vack vrom Vovalpolos! Vuy! Vuy!
+        VENDAVOQ_CLOSED_DIALOG = 7486; -- Vandoolin... Vendavoq's vream vo vell voods vrom vometown vf Vovalpolos...
 		
               FIVA_OPEN_DIALOG = 7496; -- I've got imports from Kolshushu!
              MILVA_OPEN_DIALOG = 7497; -- How about some produce from Sarutabaruta?
