@@ -46,7 +46,13 @@ class dtNodePool
 public:
 	dtNodePool(int maxNodes, int hashSize);
 	~dtNodePool();
-	inline void operator=(const dtNodePool&) {}
+	inline void operator=(const dtNodePool& x)
+	{
+		this->m_nodes = x.m_nodes;
+		this->m_first = x.m_first;
+		this->m_next = x.m_next;
+		this->m_nodeCount = x.m_nodeCount;
+	}
 	void clear();
 	dtNode* getNode(dtPolyRef id);
 	dtNode* findNode(dtPolyRef id);
@@ -98,7 +104,11 @@ class dtNodeQueue
 public:
 	dtNodeQueue(int n);
 	~dtNodeQueue();
-	inline void operator=(dtNodeQueue&) {}
+	inline void operator=(dtNodeQueue& x) 
+	{
+		this->m_heap = x.m_heap;
+		this->m_size = x.m_size;
+	}
 	
 	inline void clear()
 	{

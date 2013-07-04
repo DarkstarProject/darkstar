@@ -109,7 +109,7 @@ void getMSB(uint32* result,uint32 value)
 	_BitScanReverse((unsigned long*)result,value);
 #else
 	while (value >>= 1)
-		*result++;
+		(*result)++;
 #endif
 
 }

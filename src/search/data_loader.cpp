@@ -197,8 +197,6 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr,int* count)
         filterQry.append("))) ");
 	}
 
-	int32 ret = SQL_ERROR;
-
 	std::string fmtQuery = "SELECT charid, partyid, charname, pos_zone, pos_prevzone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, \
                         war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run \
                         FROM accounts_sessions \
@@ -211,7 +209,7 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr,int* count)
 	fmtQuery.append(filterQry);
 	fmtQuery.append("ORDER BY charname ASC");
 
-	ret = Sql_Query(SqlHandle, fmtQuery.c_str());
+	int32 ret = Sql_Query(SqlHandle, fmtQuery.c_str());
 
 	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{

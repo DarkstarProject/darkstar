@@ -92,7 +92,10 @@ void PrintPacket(char* data, int size)
 
 	for (int32 y = 0; y < size; y++) 
 	{
-		sprintf(message,"%s %02hx",message,(uint8)data[y]);
+		int8 msgtmp[50];
+		memset(&msgtmp,0,50);
+		sprintf(msgtmp,"%s %02hx",message,(uint8)data[y]);
+		strncpy(message,msgtmp,50);
 		if (((y+1)%16) == 0) 
 		{
 			message[48] = '\n';

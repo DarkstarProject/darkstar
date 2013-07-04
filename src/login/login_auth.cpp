@@ -154,7 +154,7 @@ int32 login_parse(int32 fd)
 
 				//check for multiple logins from this account id
 				int numCons = 0;
-				for(login_sd_list_t::iterator i = login_sd_list.begin(); i != login_sd_list.end(); i++ ){
+				for(login_sd_list_t::iterator i = login_sd_list.begin(); i != login_sd_list.end(); ++i ){
 					if( (*i)->accid == sd->accid ){
 						numCons++;
 					}
@@ -163,7 +163,7 @@ int32 login_parse(int32 fd)
 				if(numCons>1){
 					ShowInfo("login_parse:" CL_WHITE"<%s>" CL_RESET" has logged in %i times! Removing older logins.\n",login,numCons);
 					for(int j=0; j<(numCons-1); j++){
-						for(login_sd_list_t::iterator i = login_sd_list.begin(); i != login_sd_list.end(); i++ ){
+						for(login_sd_list_t::iterator i = login_sd_list.begin(); i != login_sd_list.end(); ++i ){
 							if( (*i)->accid == sd->accid ){
 								//ShowInfo("Current login fd=%i Removing fd=%i \n",sd->login_fd,(*i)->login_fd);
 								login_sd_list.erase(i);

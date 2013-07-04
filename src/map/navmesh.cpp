@@ -77,6 +77,7 @@ bool CNavMesh::load(char* path)
   {
     ShowError("CNavMesh::load Could not initialize detour for (%s)", path);
     outputError(status);
+	fclose(fp);
     return 0;
   }
 

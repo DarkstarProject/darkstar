@@ -57,7 +57,7 @@ uint32 CTaskMgr::DoTimer(uint32 tick)
 {
 	int32 diff = 1000; 
 
-	while( m_TaskList.size() )
+	while( !m_TaskList.empty() )
 	{
 		CTask * PTask = m_TaskList.top();
 		diff = PTask->m_tick - tick;
