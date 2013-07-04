@@ -62,7 +62,7 @@ function onMobEngaged(mob,target)
 						GetMobByID(mobNBR):setSpawn(X,Y,Z);
 						
 						local MJob = GetMobByID(mobNBR):getMainJob();
-						if(MJob == 9 or MJob == 14 or MJob == 15) then
+						if(MJob == 9 or MJob == 15) then
 							-- Spawn Pet for BST, DRG, and SMN
 							SpawnMob(mobNBR+1):updateEnmity(target);
 							GetMobByID(mobNBR+1):setPos(X,Y,Z);

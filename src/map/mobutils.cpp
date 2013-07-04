@@ -741,8 +741,12 @@ void InitializeMob(CMobEntity* PMob)
         	// dynamis hydra link with ahriman
         	PMob->m_SubLinks[0] = 4;
     	break;
+    	case 358:
+        	PMob->m_SubLinks[0] = 4;
+    	break;
         case 4:
         	PMob->m_SubLinks[0] = 359;
+        	PMob->m_SubLinks[0] = 358;
     	break;
         case 92:
         	// goblin statue link with dynamis gobs

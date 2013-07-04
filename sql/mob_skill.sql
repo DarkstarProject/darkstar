@@ -234,30 +234,30 @@ INSERT INTO `mob_skill` VALUES (861,94,768,'Lead_Breath', 4, 15.0, 2000, 1500, 4
 
 -- Dynamis Lord
 INSERT INTO `mob_skill` VALUES (0,361,432,'Two_Hour', 0, 10.0, 2000, 0, 4, 0);
-INSERT INTO `mob_skill` VALUES (871,361,316,'Dynamic_Implosion', 1, 18.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (872,361,817,'Transfusion', 1, 18.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (873,361,318,'Mana_Storm', 1, 18.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (874,361,320,'Dynamic_Assault', 0, 7.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (875,361,324,'Violent_Rupture', 1, 18.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (877,361,322,'Oblivion_Smash', 1, 18.0, 2000, 1000, 4, 0);
-INSERT INTO `mob_skill` VALUES (878,361,321,'Tera_Slash', 4, 15.0, 2000, 1000, 4, 0);
+INSERT INTO `mob_skill` VALUES (871,361,316,'Dynamic_Implosion', 1, 18.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (872,361,817,'Transfusion', 1, 18.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (873,361,318,'Mana_Storm', 1, 18.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (874,361,320,'Dynamic_Assault', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (875,361,324,'Violent_Rupture', 1, 18.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (877,361,322,'Oblivion_Smash', 1, 18.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (878,361,321,'Tera_Slash', 4, 15.0, 2000, 1500, 4, 0);
 
 -- Animated Weapons
-INSERT INTO `mob_skill` VALUES (932,15,793,'Final_Heaven', 0, 7.0, 2000, 1000, 4, 0); 		-- Animated_Knuckles
-INSERT INTO `mob_skill` VALUES (933,11,797,'Mercy_Stroke', 0, 7.0, 2000, 1000, 4, 0); 		-- Animated_Dagger
-INSERT INTO `mob_skill` VALUES (934,24,792,'Knights_of_Round', 0, 7.0, 2000, 1000, 4, 0); 	-- Animated_Longsword
-INSERT INTO `mob_skill` VALUES (935,14,799,'Scourge', 0, 7.0, 2000, 1000, 4, 0); 			-- Animated_Claymore
-INSERT INTO `mob_skill` VALUES (936,8,795,'Onslaught', 0, 7.0, 2000, 1000, 4, 0); 			-- Animated_Tabar
-INSERT INTO `mob_skill` VALUES (937,12,798,'Metatron_Torment', 0, 7.0, 2000, 1000, 4, 0); 	-- Animated_Great_Axe
-INSERT INTO `mob_skill` VALUES (938,20,796,'Catastrophe', 0, 7.0, 2000, 1000, 4, 0); 		-- Animated_Scythe
-INSERT INTO `mob_skill` VALUES (939,19,800,'Geirskogul', 0, 7.0, 2000, 1000, 4, 0); 		-- Animated_Spear
-INSERT INTO `mob_skill` VALUES (940,17,802,'Blade_Metsu', 0, 7.0, 2000, 1000, 4, 0); 		-- Animated_Kunai
-INSERT INTO `mob_skill` VALUES (941,13,803,'Tachi_Kaiten', 0, 7.0, 2000, 1000, 4, 0); 		-- Animated_Tachi
-INSERT INTO `mob_skill` VALUES (942,9,794,'Randgrith', 0, 7.0, 2000, 1000, 4, 0); 			-- Animated_Hammer
-INSERT INTO `mob_skill` VALUES (943,23,801,'Gate_of_Tartarus', 0, 7.0, 2000, 1000, 4, 0); 	-- Animated_Staff
-INSERT INTO `mob_skill` VALUES (944,7,804,'Namas_Arrow', 0, 18.0, 2000, 1000, 4, 0); 		-- Animated_Longbow
-INSERT INTO `mob_skill` VALUES (945,18,805,'Coronach', 0, 18.0, 2000, 1000, 4, 0); 			-- Animated_Gun
-INSERT INTO `mob_skill` VALUES (1175,22,803,'Shield_Bash', 0, 7.0, 2000, 1000, 4, 0); 		-- Animated_Shield
+INSERT INTO `mob_skill` VALUES (932,15,793,'Final_Heaven', 0, 7.0, 2000, 1500, 4, 0); 		-- Animated_Knuckles
+INSERT INTO `mob_skill` VALUES (933,11,797,'Mercy_Stroke', 0, 7.0, 2000, 1500, 4, 0); 		-- Animated_Dagger
+INSERT INTO `mob_skill` VALUES (934,24,792,'Knights_of_Round', 0, 7.0, 2000, 1500, 4, 0); 	-- Animated_Longsword
+INSERT INTO `mob_skill` VALUES (935,14,799,'Scourge', 0, 7.0, 2000, 1500, 4, 0); 			-- Animated_Claymore
+INSERT INTO `mob_skill` VALUES (936,8,795,'Onslaught', 0, 7.0, 2000, 1500, 4, 0); 			-- Animated_Tabar
+INSERT INTO `mob_skill` VALUES (937,12,798,'Metatron_Torment', 0, 7.0, 2000, 1500, 4, 0); 	-- Animated_Great_Axe
+INSERT INTO `mob_skill` VALUES (938,20,796,'Catastrophe', 0, 7.0, 2000, 1500, 4, 0); 		-- Animated_Scythe
+INSERT INTO `mob_skill` VALUES (939,19,800,'Geirskogul', 0, 7.0, 2000, 1500, 4, 0); 		-- Animated_Spear
+INSERT INTO `mob_skill` VALUES (940,17,802,'Blade_Metsu', 0, 7.0, 2000, 1500, 4, 0); 		-- Animated_Kunai
+INSERT INTO `mob_skill` VALUES (941,13,803,'Tachi_Kaiten', 0, 7.0, 2000, 1500, 4, 0); 		-- Animated_Tachi
+INSERT INTO `mob_skill` VALUES (942,9,794,'Randgrith', 0, 7.0, 2000, 1500, 4, 0); 			-- Animated_Hammer
+INSERT INTO `mob_skill` VALUES (943,23,801,'Gate_of_Tartarus', 0, 7.0, 2000, 1500, 4, 0); 	-- Animated_Staff
+INSERT INTO `mob_skill` VALUES (944,7,804,'Namas_Arrow', 0, 18.0, 2000, 1500, 4, 0); 		-- Animated_Longbow
+INSERT INTO `mob_skill` VALUES (945,18,805,'Coronach', 0, 18.0, 2000, 1500, 4, 0); 			-- Animated_Gun
+INSERT INTO `mob_skill` VALUES (1175,22,803,'Shield_Bash', 0, 7.0, 2000, 1500, 4, 0); 		-- Animated_Shield
 
 -- Buffalo
 INSERT INTO `mob_skill` VALUES (237,57,846,'Rampant_Gnaw', 0, 7.0, 2000, 1500, 4, 0);
@@ -603,18 +603,17 @@ INSERT INTO `mob_skill` VALUES (297,4,297,'Airy_Shield', 0, 7.0, 2000, 1500, 1, 
 INSERT INTO `mob_skill` VALUES (299,4,299,'Magic_Barrier', 0, 7.0, 2000, 1500, 1, 0);
 INSERT INTO `mob_skill` VALUES (301,4,301,'Level_5_Petrify', 1, 15.0, 2000, 1500, 4, 0);
 -- Demon
-INSERT INTO `mob_skill` VALUES (0,169,432,'Two_Hour', 1, 15.0, 2000, 0, 4, 0);
 INSERT INTO `mob_skill` VALUES (303,169,303,'Soul_Drain', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (304,169,304,'Hecatomb_Wave', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (307,169,307,'Demonic_Howl', 1, 10.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (892,169,311,'Condemnation', 4, 10.0, 2000, 1500, 4, 0);
 -- Demon dynamis
-INSERT INTO `mob_skill` VALUES (0,339,432,'Two_Hour', 1, 15.0, 2000, 0, 4, 0);
-INSERT INTO `mob_skill` VALUES (303,339,303,'Soul_Drain', 0, 7.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (304,339,304,'Hecatomb_Wave', 0, 7.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (307,339,307,'Demonic_Howl', 1, 10.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (892,339,311,'Condemnation', 4, 10.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (893,339,313,'Quadrastrike', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (0,358,432,'Two_Hour', 1, 15.0, 2000, 0, 4, 0);
+INSERT INTO `mob_skill` VALUES (303,358,303,'Soul_Drain', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (304,358,304,'Hecatomb_Wave', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (307,358,307,'Demonic_Howl', 1, 10.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (892,358,311,'Condemnation', 4, 10.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (893,358,313,'Quadrastrike', 0, 7.0, 2000, 1500, 4, 0);
 -- Goobbue
 INSERT INTO `mob_skill` VALUES (325,136,325,'Blow', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (327,136,327,'Beatdown', 0, 7.0, 2000, 1500, 4, 0);
