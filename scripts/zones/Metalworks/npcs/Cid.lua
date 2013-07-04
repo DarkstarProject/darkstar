@@ -45,7 +45,9 @@ function onTrigger(player,npc)
 	local TenzenPath = player:getVar("COP_Tenzen_s_Path");
 	local LouverancePath = player:getVar("COP_Louverance_s_Path");
 	local TreePathAv=0;
-    if(currentCOPMission == FIRE_IN_THE_EYES_OF_MEN and player:getVar("PromathiaStatus")==2 and player:getVar("Promathia_CID_timer")~=currentday)then
+	if(currentCOPMission == CALM_BEFORE_THE_STORM and player:hasKeyItem(LETTERS_FROM_ULMIA_AND_PRISHE) == false and player:getVar("COP_Dalham_KILL") == 2 and player:getVar("COP_Boggelmann_KILL") == 2 and player:getVar("Cryptonberry_Executor_KILL")==2)then
+	        player:startEvent(0x037C); -- COP event 
+    elseif(currentCOPMission == FIRE_IN_THE_EYES_OF_MEN and player:getVar("PromathiaStatus")==2 and player:getVar("Promathia_CID_timer")~=currentday)then
 	        player:startEvent(0x037A); -- COP event    
     elseif(currentCOPMission == FIRE_IN_THE_EYES_OF_MEN and player:getVar("PromathiaStatus")==1)then
           	player:startEvent(0x0359); -- COP event
@@ -153,7 +155,10 @@ local currentday = tonumber(os.date("%j"));
 
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-    if(csid == 0x037A)then
+    if(csid == 0x037C)then
+	        player:addKeyItem(LETTERS_FROM_ULMIA_AND_PRISHE);
+	        player:messageSpecial(KEYITEM_OBTAINED,LETTERS_FROM_ULMIA_AND_PRISHE);
+    elseif(csid == 0x037A)then
 	        player:setVar("PromathiaStatus",0);
 			player:setVar("Promathia_CID_timer",0);
 			player:completeMission(COP,FIRE_IN_THE_EYES_OF_MEN);
