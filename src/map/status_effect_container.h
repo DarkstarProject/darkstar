@@ -51,7 +51,7 @@ public:
   bool DelStatusEffect(EFFECT StatusID);
   bool DelStatusEffectSilent(EFFECT StatusID);
   bool DelStatusEffect(EFFECT StatusID, uint16 SubID);
-    void DelStatusEffectsByFlag(uint16 flag);                   // удаляем все эффекты с указанным типом
+    void DelStatusEffectsByFlag(uint16 flag, bool silent = false);                   // удаляем все эффекты с указанным типом
     void DelStatusEffectsByIcon(uint16 IconID);                 // удаляем все эффекты с указанной иконкой
     void DelStatusEffectsByType(uint16 Type);
   bool DelStatusEffectWithPower(EFFECT StatusID, uint16 power);

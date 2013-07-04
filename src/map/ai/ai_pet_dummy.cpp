@@ -849,6 +849,7 @@ void CAIPetDummy::ActionDeath()
 {
 	if(m_Tick-m_LastActionTime > 3000){
 		m_PPet->status = STATUS_DISAPPEAR;
+        m_PPet->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH, true);
 
 		//a charmed pet was killed
 		if(m_PPet->objtype == TYPE_MOB && m_PPet->PMaster->objtype == TYPE_PC)

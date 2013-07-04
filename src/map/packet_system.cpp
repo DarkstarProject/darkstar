@@ -686,11 +686,11 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		break;
 		case 0x0B: // homepoint
 		{
-			PChar->health.hp = PChar->GetMaxHP();
-            PChar->health.mp = PChar->GetMaxMP();
-
             // remove weakness on homepoint
             PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_WEAKNESS);
+
+			PChar->health.hp = PChar->GetMaxHP();
+            PChar->health.mp = PChar->GetMaxMP();
 
 			PChar->setMijinGakure(false);
 			PChar->loc.boundary = 0;

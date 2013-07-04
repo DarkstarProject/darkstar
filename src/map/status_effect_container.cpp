@@ -532,13 +532,13 @@ void CStatusEffectContainer::DelStatusEffectsByType(uint16 Type)
 *                                                                       *
 ************************************************************************/
 
-void CStatusEffectContainer::DelStatusEffectsByFlag(uint16 flag)
+void CStatusEffectContainer::DelStatusEffectsByFlag(uint16 flag, bool silent)
 {
     for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
 	{
         if (m_StatusEffectList.at(i)->GetFlag() & flag)
 		{
-			RemoveStatusEffect(i--);
+			RemoveStatusEffect(i--, silent);
 		}
 	}
 }

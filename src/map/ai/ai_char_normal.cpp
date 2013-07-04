@@ -366,6 +366,9 @@ void CAICharNormal::ActionFall()
 	m_ActionTargetID = 0;
 	m_LastActionTime = m_Tick;
 
+	//falls to the ground
+	m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 20));
+
 	m_PSpell           = NULL;
     m_PJobAbility      = NULL;
 	m_PWeaponSkill     = NULL;
@@ -387,6 +390,7 @@ void CAICharNormal::ActionFall()
 	if (!m_PChar->getMijinGakure())
 		charutils::DelExperiencePoints(m_PChar,map_config.exp_retain);
 
+
 	charutils::SaveDeathTime(m_PChar);
 
 }
@@ -402,7 +406,7 @@ void CAICharNormal::ActionDeath()
     // без задержки удаление эффектов не всегда правильно обрабатывается клиентом
     if ((m_Tick - m_LastActionTime) >= 1000)
     {
-        m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH);
+        m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH, true);
 
         // has reraise, don't stop timer
         // this must be after deleting status effects
@@ -3376,6 +3380,21 @@ void CAICharNormal::ActionRaiseMenuSelection()
 
     m_PChar->animation = ANIMATION_NONE;
 
+    uint8 weaknessLvl = 1;
+    if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_WEAKNESS))
+    {
+        //double weakness!
+        weaknessLvl = 2;
+    }
+
+    //add weakness effect (75% reduction in HP/MP)
+    if (!m_PChar->getMijinGakure())
+    {
+	    CStatusEffect* PWeaknessEffect = new CStatusEffect(EFFECT_WEAKNESS,EFFECT_WEAKNESS,weaknessLvl,0,300);
+		m_PChar->StatusEffectContainer->AddStatusEffect(PWeaknessEffect);
+		m_PChar->UpdateHealth();
+    }
+
     double ratioReturned = 0.0f;
 	uint16 hpReturned = 1;
 
@@ -3410,19 +3429,8 @@ void CAICharNormal::ActionRaiseMenuSelection()
     m_PChar->m_ActionList.push_back(Action);
     m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
-    uint8 weaknessLvl = 1;
-    if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_WEAKNESS))
-    {
-        //double weakness! Calculate stuff here
-        weaknessLvl = 2;
-    }
-    //add weakness effect (75% reduction in HP/MP)
-    CStatusEffect* PWeaknessEffect = new CStatusEffect(EFFECT_WEAKNESS,EFFECT_WEAKNESS,weaknessLvl,0,300);
-    if (!m_PChar->getMijinGakure())
-		m_PChar->StatusEffectContainer->AddStatusEffect(PWeaknessEffect);
-
-    charutils::UpdateHealth(m_PChar);
     m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
+    charutils::UpdateHealth(m_PChar);
 
     uint8 mLevel = (m_PChar->m_LevelRestriction != 0 && m_PChar->m_LevelRestriction < m_PChar->GetMLevel()) ? m_PChar->m_LevelRestriction : m_PChar->GetMLevel();
     uint16 expLost = mLevel <= 67 ? (charutils::GetExpNEXTLevel(mLevel) * 8 ) / 100 : 2400;

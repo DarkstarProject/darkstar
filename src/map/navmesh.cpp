@@ -337,6 +337,11 @@ bool CNavMesh::test(uint16 zoneId)
     end.y = 60;
     end.z = -324;
   }
+  else
+  {
+    ShowWarning("CNavMesh::test Skipping sanity test for zone (%d)\n", zoneId);
+    return true;
+  }
 
   end.y *= -1.0f;
   end.z *= -1.0f;

@@ -269,7 +269,7 @@ void CPathFind::StepTo(position_t* pos, bool run)
 
   if(speed == 0)
   {
-    ShowWarning("CPathFind::StepTo Mobs speed is zero and its trying to move (%d)\n", m_PTarget->id);
+    ShowWarning("CPathFind::StepTo Mob (%d) speed is zero and its trying to move\n", m_PTarget->id);
   }
 
   int8 mode = 1;

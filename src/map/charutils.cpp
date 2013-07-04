@@ -2977,9 +2977,6 @@ void DelExperiencePoints(CCharEntity* PChar, float retainPercent)
 	exploss = exploss*(1-retainPercent);
 	exploss = exploss * map_config.exp_loss_rate;
 
-	//loses xxx exp message
-	PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exploss, 0, 10));
-
 	if( (PChar->jobs.exp[PChar->GetMJob()] - exploss) < 0)
     {
 		//de-level!
@@ -3088,35 +3085,38 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
 	if(PChar->MeritMode == true && PChar->GetMLevel() > 74 && expFromRaise == false)
 		onLimitMode = true;
 
-
-    if (baseexp >= 100 && isexpchain)
+	// exp added from raise shouldn't display a message
+	if(!expFromRaise)
 	{
-		if (PChar->expChain.chainNumber != 0)
+	    if (baseexp >= 100 && isexpchain)
 		{
-			if (onLimitMode)
-				PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exp, PChar->expChain.chainNumber, 372));
-			else
-				PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exp, PChar->expChain.chainNumber, 253));
-		}
-		else
-		{
-			if (onLimitMode)
+			if (PChar->expChain.chainNumber != 0)
 			{
+				if (onLimitMode)
+					PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exp, PChar->expChain.chainNumber, 372));
+				else
+					PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exp, PChar->expChain.chainNumber, 253));
+			}
+			else
+			{
+				if (onLimitMode)
+				{
+					PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exp, 0, 371));
+				}
+				else
+				{
+					PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exp, 0, 8));
+				}
+			}
+			PChar->expChain.chainNumber++;
+		}
+		else if(exp > 0)
+		{
+			if (onLimitMode)
 				PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exp, 0, 371));
-			}
 			else
-			{
 				PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exp, 0, 8));
-			}
 		}
-		PChar->expChain.chainNumber++;
-	}
-	else if(exp > 0)
-	{
-		if (onLimitMode)
-			PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exp, 0, 371));
-		else
-			PChar->pushPacket(new CMessageDebugPacket(PChar, PChar, exp, 0, 8));
 	}
 
 

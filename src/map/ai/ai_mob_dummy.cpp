@@ -218,34 +218,29 @@ void CAIMobDummy::ActionRoaming()
 			m_PMob->HideName(true);
 			m_PMob->animationsub = 0;
 		}
-		else if(m_PMob->CanRoam())
+		else if(m_PMob->CanRoam() && m_PPathFind->RoamAround(m_PMob->m_SpawnPoint, m_PMob->m_roamFlags))
 		{
 
-			if(m_PPathFind->RoamAround(m_PMob->m_SpawnPoint, m_PMob->m_roamFlags))
+			if(m_PMob->m_roamFlags & ROAMFLAG_WORM)
 			{
-				if(m_PMob->m_roamFlags & ROAMFLAG_WORM)
-				{
-					// move down
-					m_PMob->animationsub = 1;
-					m_PMob->HideName(true);
+				// move down
+				m_PMob->animationsub = 1;
+				m_PMob->HideName(true);
 
-					// don't move around until i'm fully in the ground
-					Wait(2000);
-				}
-				else
-				{
-					FollowPath();
-				}
-
-				m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
-
-			} else {
-				m_LastActionTime = m_Tick;
-
-				// output pathfind failed for player
-				m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PMob, 0, 0, 52));
+				// don't move around until i'm fully in the ground
+				Wait(2000);
+			}
+			else
+			{
+				FollowPath();
 			}
 
+			m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
+
+		}
+		else
+		{
+			m_LastActionTime = m_Tick;
 		}
 
 	}
@@ -481,7 +476,7 @@ void CAIMobDummy::ActionDeath()
 {
 	if ((m_Tick - m_LastActionTime) > 12000)
 	{
-		m_PMob->StatusEffectContainer->KillAllStatusEffect();
+        m_PMob->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH, true);
 
 		m_ActionType = ACTION_FADE_OUT;
 		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CFadeOutPacket(m_PMob));

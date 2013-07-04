@@ -488,7 +488,7 @@ void CalculateStats(CMobEntity * PMob)
 
 	// TODO: this should be put into its own column
 	// has not been decided where yet
-	if(PMob->m_Family == 258)
+	if(PMob->m_Family == 258 || PMob->m_Family == 276)
 	{
 		// makes worms roam by going into ground / back up
 		PMob->m_roamFlags |= ROAMFLAG_WORM;
