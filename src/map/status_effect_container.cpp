@@ -327,18 +327,18 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
         // remove effects with same type
         DelStatusEffectsByType(PStatusEffect->GetType());
 
-
         PStatusEffect->SetStartTime(gettick());
-
-        m_POwner->addModifiers(&PStatusEffect->modList);
-        if( m_POwner->health.maxhp != 0) //make sure we're not in the middle of logging in
-        {
-            m_POwner->UpdateHealth();
-        }
 
         m_StatusEffectList.push_back(PStatusEffect);
 
         luautils::OnEffectGain(m_POwner, PStatusEffect);
+
+        m_POwner->addModifiers(&PStatusEffect->modList);
+
+        if( m_POwner->health.maxhp != 0) //make sure we're not in the middle of logging in
+        {
+            m_POwner->UpdateHealth();
+        }
 
         if (m_POwner->objtype == TYPE_PC)
         {

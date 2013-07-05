@@ -11,9 +11,6 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-	if((target:getMod(MOD_MPP) - effect:getPower()) < 0) then
-		effect:setPower(target:getMod(MOD_MPP));
-	end
 	target:addMod(MOD_MPP,-effect:getPower());
 end;
 

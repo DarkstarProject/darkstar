@@ -3393,7 +3393,6 @@ void CAICharNormal::ActionRaiseMenuSelection()
     {
 	    CStatusEffect* PWeaknessEffect = new CStatusEffect(EFFECT_WEAKNESS,EFFECT_WEAKNESS,weaknessLvl,0,300);
 		m_PChar->StatusEffectContainer->AddStatusEffect(PWeaknessEffect);
-		m_PChar->UpdateHealth();
     }
 
     double ratioReturned = 0.0f;
