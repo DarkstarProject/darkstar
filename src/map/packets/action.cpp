@@ -328,7 +328,7 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 				ActionTypeNumber -= 3;
 				break;
 
-			//Magic animations
+			//Dance animations
 			case 174:	// waltz 1
 			case 175:	// waltz 2
 			case 176:	// waltz 3
@@ -343,6 +343,14 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 			case 179:	// divine waltz
 			case 180:	// spectral jig
 			case 181:	// chocobo jig
+            case 185:   // quickstep
+            case 186:   // box step
+            case 187:   // stutter step
+            case 189:   // desperate flourish
+            case 191:   // violent flourish
+            case 193:   // wild flourish
+            case 304:   // konzen-ittai
+
 				ActionTypeNumber += 8;
 				break;
 

@@ -1,25 +1,24 @@
 -----------------------------------
--- Ability: Divine Waltz
+-- Ability: Konzen-Ittai
 -----------------------------------
- 
+
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/weaponskills");
 
 -----------------------------------
 -- OnUseAbility
 -----------------------------------
 
 function OnAbilityCheck(player,target,ability)
-	if (player:hasStatusEffect(EFFECT_TRANCE)) then
-		return 0,0;
-	elseif (player:getTP() < 20) then
-		return MSGBASIC_NOT_ENOUGH_TP,0;
+	if (player:getAnimation() ~= 1) then
+		return MSGBASIC_REQUIRES_COMBAT,0;
 	else
-		player:delTP(20);
-		return 0,0;
-	end;
+		return 0,0;		
+	end
 end;
 
 function OnUseAbility(player, target, ability)
-	target:eraseStatusEffect();	
+	target:addStatusEffectEx(EFFECT_CHAINBOUND, 0, 2, 0, 5, 0, 1);
+	return 0, getFlourishAnimation(player:getWeaponSkillType(SLOT_MAIN)), 1;
 end;

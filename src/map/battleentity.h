@@ -109,8 +109,6 @@ enum SKILLTYPE
 	SKILL_CLB			= 11,
 	SKILL_STF			= 12,
 
-	SKILL_GUN			= 20,
-	SKILL_CNN			= 21,
 	SKILL_ARC			= 25,
 	SKILL_MRK			= 26,
 	SKILL_THR			= 27,

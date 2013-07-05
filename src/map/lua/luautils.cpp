@@ -2709,10 +2709,12 @@ int32 OnPetAbility(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill
 *                                                                       *
 ************************************************************************/
 
-int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility)
+int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility, apAction_t* action)
 {
 	int8 File[255];
 	memset(File,0,sizeof(File));
+
+    int32 oldtop = lua_gettop(LuaHandle);
 
     lua_pushnil(LuaHandle);
     lua_setglobal(LuaHandle, "OnUseAbility");
@@ -2748,7 +2750,26 @@ int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbilit
         lua_pop(LuaHandle, 1);
 		return 0;
 	}
-	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+
+    int32 returns = lua_gettop(LuaHandle) - oldtop;
+
+    if (returns == 3)
+    {
+        action->speceffect = (SPECEFFECT)(!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+        action->animation = (!lua_isnil(LuaHandle,-2) && lua_isnumber(LuaHandle,-2) ? (int32)lua_tonumber(LuaHandle,-2) : 0);
+        return (!lua_isnil(LuaHandle,-3) && lua_isnumber(LuaHandle,-3) ? lua_tonumber(LuaHandle,-3) : 0);
+    } 
+    else if (returns == 2)
+    {
+        action->animation = (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-2) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+        return (!lua_isnil(LuaHandle,-2) && lua_isnumber(LuaHandle,-2) ? lua_tonumber(LuaHandle,-2) : 0);
+    }
+    else
+    {
+        return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? lua_tonumber(LuaHandle,-1) : 0);
+    }
+
+	return 0;
 }
 
 /************************************************************************

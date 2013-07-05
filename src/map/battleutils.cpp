@@ -2760,12 +2760,81 @@ SKILLCHAIN_ELEMENT FormSkillchain(std::list<SKILLCHAIN_ELEMENT> resonance, std::
     return SC_NONE;
 }
 
+SKILLCHAIN_ELEMENT FormSkillchainChainBound(std::list<SKILLCHAIN_ELEMENT> resonance, std::list<SKILLCHAIN_ELEMENT> skill)
+{
+    SKILLCHAIN_ELEMENT result = SC_NONE;
+
+    for(std::list<SKILLCHAIN_ELEMENT>::iterator i = skill.begin(); i != skill.end(); i++)
+    {
+        if (result == SC_NONE)
+        {
+            for(std::list<SKILLCHAIN_ELEMENT>::iterator j = resonance.begin(); j != resonance.end(); j++)
+            {
+                // TODO: This could probably be implemented as a composite key lookup map.  For now I like the way this looks.
+
+                switch(PAIR((*j), (*i)))
+                {
+                    // Level 1 Pairs
+                    case PAIR(SC_TRANSFIXION, SC_COMPRESSION)   : result = (GetSkillchainTier(SC_COMPRESSION) > GetSkillchainTier(result) ? SC_COMPRESSION : result); break;
+                    case PAIR(SC_TRANSFIXION, SC_SCISSION)      : result = (GetSkillchainTier(SC_DISTORTION) > GetSkillchainTier(result) ? SC_DISTORTION : result); break;
+                    case PAIR(SC_TRANSFIXION, SC_REVERBERATION) : result = (GetSkillchainTier(SC_REVERBERATION) > GetSkillchainTier(result) ? SC_REVERBERATION : result); break;
+
+                    case PAIR(SC_COMPRESSION, SC_TRANSFIXION)   : result = (GetSkillchainTier(SC_TRANSFIXION) > GetSkillchainTier(result) ? SC_TRANSFIXION : result); break;
+                    case PAIR(SC_COMPRESSION, SC_DETONATION)    : result = (GetSkillchainTier(SC_DETONATION) > GetSkillchainTier(result) ? SC_DETONATION : result); break;
+
+                    case PAIR(SC_LIQUEFACTION, SC_SCISSION)     : result = (GetSkillchainTier(SC_SCISSION) > GetSkillchainTier(result) ? SC_SCISSION : result); break;
+                    case PAIR(SC_LIQUEFACTION, SC_IMPACTION)    : result = (GetSkillchainTier(SC_FUSION) > GetSkillchainTier(result) ? SC_FUSION : result); break;
+
+                    case PAIR(SC_SCISSION, SC_LIQUEFACTION)     : result = (GetSkillchainTier(SC_LIQUEFACTION) > GetSkillchainTier(result) ? SC_LIQUEFACTION : result); break;
+                    case PAIR(SC_SCISSION, SC_REVERBERATION)    : result = (GetSkillchainTier(SC_REVERBERATION) > GetSkillchainTier(result) ? SC_REVERBERATION : result); break;
+                    case PAIR(SC_SCISSION, SC_DETONATION)       : result = (GetSkillchainTier(SC_DETONATION) > GetSkillchainTier(result) ? SC_DETONATION : result); break;
+
+                    case PAIR(SC_REVERBERATION, SC_INDURATION)  : result = (GetSkillchainTier(SC_INDURATION) > GetSkillchainTier(result) ? SC_INDURATION : result); break;
+                    case PAIR(SC_REVERBERATION, SC_IMPACTION)   : result = (GetSkillchainTier(SC_IMPACTION) > GetSkillchainTier(result) ? SC_IMPACTION : result); break;
+
+                    case PAIR(SC_DETONATION, SC_COMPRESSION)    : result = (GetSkillchainTier(SC_GRAVITATION) > GetSkillchainTier(result) ? SC_GRAVITATION : result); break;
+                    case PAIR(SC_DETONATION, SC_SCISSION)       : result = (GetSkillchainTier(SC_SCISSION) > GetSkillchainTier(result) ? SC_SCISSION : result); break;
+
+                    case PAIR(SC_INDURATION, SC_COMPRESSION)    : result = (GetSkillchainTier(SC_COMPRESSION) > GetSkillchainTier(result) ? SC_COMPRESSION : result); break;
+                    case PAIR(SC_INDURATION, SC_REVERBERATION)  : result = (GetSkillchainTier(SC_FRAGMENTATION) > GetSkillchainTier(result) ? SC_FRAGMENTATION : result); break;
+                    case PAIR(SC_INDURATION, SC_IMPACTION)      : result = (GetSkillchainTier(SC_IMPACTION) > GetSkillchainTier(result) ? SC_IMPACTION : result); break;
+
+                    case PAIR(SC_IMPACTION, SC_LIQUEFACTION)    : result = (GetSkillchainTier(SC_LIQUEFACTION) > GetSkillchainTier(result) ? SC_LIQUEFACTION : result); break;
+                    case PAIR(SC_IMPACTION, SC_DETONATION)      : result = (GetSkillchainTier(SC_DETONATION) > GetSkillchainTier(result) ? SC_DETONATION : result); break;
+
+                    // Level 2 Pairs
+                    case PAIR(SC_GRAVITATION, SC_DISTORTION)    : result = (GetSkillchainTier(SC_DARKNESS) > GetSkillchainTier(result) ? SC_DARKNESS : result); break;
+                    case PAIR(SC_GRAVITATION, SC_FRAGMENTATION) : result = (GetSkillchainTier(SC_FRAGMENTATION) > GetSkillchainTier(result) ? SC_FRAGMENTATION : result); break;
+
+                    case PAIR(SC_DISTORTION, SC_GRAVITATION)    : result = (GetSkillchainTier(SC_DARKNESS) > GetSkillchainTier(result) ? SC_DARKNESS : result); break;
+                    case PAIR(SC_DISTORTION, SC_FUSION)         : result = (GetSkillchainTier(SC_FUSION) > GetSkillchainTier(result) ? SC_FUSION : result); break;
+
+                    case PAIR(SC_FUSION, SC_GRAVITATION)        : result = (GetSkillchainTier(SC_GRAVITATION) > GetSkillchainTier(result) ? SC_GRAVITATION : result); break;
+                    case PAIR(SC_FUSION, SC_FRAGMENTATION)      : result = (GetSkillchainTier(SC_LIGHT) > GetSkillchainTier(result) ? SC_LIGHT : result); break;
+
+                    case PAIR(SC_FRAGMENTATION, SC_DISTORTION)  : result = (GetSkillchainTier(SC_DISTORTION) > GetSkillchainTier(result) ? SC_DISTORTION : result); break;
+                    case PAIR(SC_FRAGMENTATION, SC_FUSION)      : result = (GetSkillchainTier(SC_LIGHT) > GetSkillchainTier(result) ? SC_LIGHT : result); break;
+
+                    // Level 3 Pairs - these aren't even possible with Chainbound but might as well be complete
+                    case PAIR(SC_LIGHT, SC_LIGHT)               : result = (GetSkillchainTier(SC_LIGHT_II) > GetSkillchainTier(result) ? SC_LIGHT_II : result); break;
+                    case PAIR(SC_DARKNESS, SC_DARKNESS)         : result = (GetSkillchainTier(SC_DARKNESS_II) > GetSkillchainTier(result) ? SC_DARKNESS_II : result); break;
+
+                    default: break;
+                }
+            }
+        }
+    }
+
+    return result;
+}
+
 SUBEFFECT GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSkill)
 {
-    CStatusEffect* PEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_SKILLCHAIN, 0);
+    CStatusEffect* PSCEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_SKILLCHAIN, 0);
+    CStatusEffect* PCBEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_CHAINBOUND, 0);
     SKILLCHAIN_ELEMENT skillchain = SC_NONE;
 
-    if (PEffect == NULL)
+    if (PSCEffect == NULL && PCBEffect == NULL)
     {
         // No effect exists, apply an effect using the weaponskill ID as the power with a tier of 0.
         PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, PWeaponSkill->getID(), 0, 6, 0, 0, 0));
@@ -2779,40 +2848,65 @@ SUBEFFECT GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSki
         skillProperties.push_back((SKILLCHAIN_ELEMENT)PWeaponSkill->getTertiarySkillchain());
 
         std::list<SKILLCHAIN_ELEMENT> resonanceProperties;
-        // Previous effect exists
-        if(PEffect->GetTier() == 0)
+
+        // Chainbound active on target
+        if(PCBEffect)
         {
-            DSP_DEBUG_BREAK_IF(!PEffect->GetPower());
+            resonanceProperties.push_back(SC_LIQUEFACTION);
+            resonanceProperties.push_back(SC_IMPACTION);
+            resonanceProperties.push_back(SC_DETONATION);
+            resonanceProperties.push_back(SC_SCISSION);
+            resonanceProperties.push_back(SC_REVERBERATION);
+            resonanceProperties.push_back(SC_INDURATION);
+            resonanceProperties.push_back(SC_COMPRESSION);
+            resonanceProperties.push_back(SC_TRANSFIXION);
+
+            //Konzen-Ittai
+            if (PCBEffect->GetPower() > 1)
+            {
+                resonanceProperties.push_back(SC_DISTORTION);
+                resonanceProperties.push_back(SC_FUSION);
+                resonanceProperties.push_back(SC_GRAVITATION);
+                resonanceProperties.push_back(SC_FRAGMENTATION);
+            }
+            skillchain = FormSkillchainChainBound(resonanceProperties, skillProperties);
+            PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, PWeaponSkill->getID(), 0, 6, 0, 0, 0));
+            PSCEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_SKILLCHAIN, 0);
+        }
+        // Previous effect exists
+        else if(PSCEffect->GetTier() == 0)
+        {
+            DSP_DEBUG_BREAK_IF(!PSCEffect->GetPower());
             // Previous effect is an opening effect, meaning the power is
             // actually the ID of the opening weaponskill.  We need all 3
             // of the possible skillchain properties on the initial link.
-            resonanceProperties.push_back((SKILLCHAIN_ELEMENT)g_PWeaponSkillList[PEffect->GetPower()]->getPrimarySkillchain());
-            resonanceProperties.push_back((SKILLCHAIN_ELEMENT)g_PWeaponSkillList[PEffect->GetPower()]->getSecondarySkillchain());
-            resonanceProperties.push_back((SKILLCHAIN_ELEMENT)g_PWeaponSkillList[PEffect->GetPower()]->getTertiarySkillchain());
+            resonanceProperties.push_back((SKILLCHAIN_ELEMENT)g_PWeaponSkillList[PSCEffect->GetPower()]->getPrimarySkillchain());
+            resonanceProperties.push_back((SKILLCHAIN_ELEMENT)g_PWeaponSkillList[PSCEffect->GetPower()]->getSecondarySkillchain());
+            resonanceProperties.push_back((SKILLCHAIN_ELEMENT)g_PWeaponSkillList[PSCEffect->GetPower()]->getTertiarySkillchain());
+            skillchain = FormSkillchain(resonanceProperties, skillProperties);
         }
         else
         {
             // Previous effect is not an opening effect, meaning the power is
             // The skill chain ID resonating.
-            resonanceProperties.push_back((SKILLCHAIN_ELEMENT)PEffect->GetPower());
+            resonanceProperties.push_back((SKILLCHAIN_ELEMENT)PSCEffect->GetPower());
+            skillchain = FormSkillchain(resonanceProperties, skillProperties);
         }
-
-        skillchain = FormSkillchain(resonanceProperties, skillProperties);
 
         if(skillchain != SC_NONE)
         {
-            PEffect->SetStartTime(gettick());
-            PEffect->SetTier(GetSkillchainTier((SKILLCHAIN_ELEMENT)skillchain));
-            PEffect->SetPower(skillchain);
-            PEffect->SetSubPower(dsp_min(PEffect->GetSubPower() + 1, 5)); // Linked, limited to 5
+            PSCEffect->SetStartTime(gettick());
+            PSCEffect->SetTier(GetSkillchainTier((SKILLCHAIN_ELEMENT)skillchain));
+            PSCEffect->SetPower(skillchain);
+            PSCEffect->SetSubPower(dsp_min(PSCEffect->GetSubPower() + 1, 5)); // Linked, limited to 5
 
             return (SUBEFFECT)GetSkillchainSubeffect((SKILLCHAIN_ELEMENT)skillchain);
         }
 
-        PEffect->SetStartTime(gettick());
-        PEffect->SetTier(0);
-        PEffect->SetPower(PWeaponSkill->getID());
-        PEffect->SetSubPower(0);
+        PSCEffect->SetStartTime(gettick());
+        PSCEffect->SetTier(0);
+        PSCEffect->SetPower(PWeaponSkill->getID());
+        PSCEffect->SetSubPower(0);
 
         return SUBEFFECT_NONE;
     }

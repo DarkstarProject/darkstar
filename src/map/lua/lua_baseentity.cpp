@@ -5883,6 +5883,7 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L) {
 	case 4: actiontype = ACTION_MAGIC_FINISH; break;
 	case 6: actiontype = ACTION_JOBABILITY_FINISH; break;
 	case 11: actiontype = ACTION_MOBABILITY_FINISH; break;
+    case 14: actiontype = ACTION_DANCE; break;
 	}
 
 	apAction_t Action;

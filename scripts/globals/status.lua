@@ -501,7 +501,8 @@ EFFECT_NINJUTSU_ELE_DEBUFF      = 510
 EFFECT_DYNAMIS                  = 800
 EFFECT_HEALING                  = 512
 EFFECT_LEAVEGAME                = 513
-EFFECT_SKILLCHAIN               = 514
+EFFECT_CHAINBOUND				= 798
+EFFECT_SKILLCHAIN               = 799
 
 EFFECT_SKILLCHAIN0              = 0x200
 EFFECT_SKILLCHAIN1              = 0x400
@@ -833,6 +834,7 @@ MOD_HELIX_DURATION		= 0x155
 MOD_STORMSURGE_EFFECT   = 0x190
 MOD_SUBLIMATION_BONUS	= 0x191
 MOD_WYVERN_BREATH       = 0x192
+MOD_STEP_ACCURACY       = 0x193 
 
 -----------------------------------
 -- Merit Definitions
@@ -1325,6 +1327,7 @@ MSGBASIC_NEEDS_2H_WEAPON		= 307 -- That action requires a two-handed weapon.
 MSGBASIC_USES_BUT_MISSES		= 324 -- The <player> uses .. but misses <target>.
 MSGBASIC_CANT_BE_USED_IN_AREA	= 316 -- That action cannot be used in this area.
 MSGBASIC_REQUIRES_SHIELD		= 199 -- That action requires a shield.
+MSGBASIC_REQUIRES_COMBAT		= 525 -- .. can only be performed during battle.
 MSGBASIC_STATUS_PREVENTS      = 569 -- Your current status prevents you from using that ability.
 -- Distance
 MSGBASIC_TARG_OUT_OF_RANGE		= 4 -- <target> is out of range.
@@ -1370,6 +1373,7 @@ MSGBASIC_DOUBLEUP_BUST_SUB		= 427 -- <target> loses the effect of ..
 MSGBASIC_NO_ELIGIBLE_ROLL		= 428 -- There are no rolls eligible for Double-Up. Unable to use ability.
 MSGBASIC_ROLL_ALREADY_ACTIVE	= 429 -- The same roll is already active on the <player>.
 MSGBASIC_EFFECT_ALREADY_ACTIVE  = 523 -- The same effect is already active on <player>.
+MSGBASIC_NO_FINISHINGMOVES		= 524 -- You have not earned enough finishing moves to perform that action.
 
 SPELLGROUP_NONE		 = 0
 SPELLGROUP_SONG		 = 1

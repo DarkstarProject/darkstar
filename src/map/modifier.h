@@ -429,10 +429,11 @@ enum MODIFIER
     MOD_HELIX_DURATION      = 0x155,
     MOD_STORMSURGE_EFFECT   = 0x190,
     MOD_SUBLIMATION_BONUS   = 0x191,
-	MOD_WYVERN_BREATH		= 0x192
+	MOD_WYVERN_BREATH		= 0x192,
+    MOD_STEP_ACCURACY      = 0x193         // Bonus accuracy for Dancer's steps
 };
 
-#define MAX_MODIFIER	       0x193
+#define MAX_MODIFIER	       0x194
 
 
 

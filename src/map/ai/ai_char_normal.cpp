@@ -1798,7 +1798,7 @@ void CAICharNormal::ActionJobAbilityStart()
 		int32 errNo = luautils::OnAbilityCheck(m_PChar, m_PBattleSubTarget, m_PJobAbility, &PMsgTarget);
 		if(errNo != 0)
 		{
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, PMsgTarget, 0, 0, errNo));
+			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, PMsgTarget, m_PJobAbility->getID()+16, m_PJobAbility->getID(), errNo));
 			TransitionBack();
 			m_PJobAbility = NULL;
 			return;
@@ -2119,7 +2119,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 
                 m_PJobAbility->resetMsg();
 
-                Action.param = luautils::OnUseAbility(m_PChar, PTarget, m_PJobAbility);
+                Action.param = luautils::OnUseAbility(m_PChar, PTarget, m_PJobAbility, &Action);
 
                 if(msg == 0){
                     msg = m_PJobAbility->getMessage();
@@ -2234,15 +2234,16 @@ void CAICharNormal::ActionJobAbilityFinish()
     	}
         else
     	{
-            uint16 value = luautils::OnUseAbility(m_PChar, m_PBattleSubTarget, m_PJobAbility);
-
     		Action.ActionTarget = m_PBattleSubTarget;
     		Action.reaction   = REACTION_NONE;
     		Action.speceffect = SPECEFFECT_RECOIL;
     		Action.animation  = m_PJobAbility->getAnimationID();
-    		Action.param      = value;
-            Action.messageID  = m_PJobAbility->getMessage();
+    		Action.param      = 0;
             Action.flag       = 0;
+
+            uint32 value = luautils::OnUseAbility(m_PChar, m_PBattleSubTarget, m_PJobAbility, &Action);
+            Action.messageID  = m_PJobAbility->getMessage();
+            Action.param = value;
 
     		if( m_PJobAbility->getID() == ABILITY_SHADOWBIND )
     		{

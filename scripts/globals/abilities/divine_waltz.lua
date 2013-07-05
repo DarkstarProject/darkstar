@@ -10,10 +10,12 @@ require("scripts/globals/status");
 -----------------------------------
 
 function OnAbilityCheck(player,target,ability)
-	if (player:getTP() < 40) then
-		return MSGBASIC_UNABLE_TO_USE_JA2,0;
-   elseif (target:getHP() == 0) then
-      return MSGBASIC_CANNOT_ON_THAT_TARG,0;
+    if (target:getHP() == 0) then
+		return MSGBASIC_CANNOT_ON_THAT_TARG,0;
+    elseif (player:hasStatusEffect(EFFECT_TRANCE)) then
+		return 0,0;
+	elseif (player:getTP() < 40) then
+		return MSGBASIC_NOT_ENOUGH_TP,0;
 	else
 		player:delTP(40);
 		return 0,0;
@@ -46,7 +48,7 @@ function OnUseAbility(player, target, ability)
 	--Applying server mods....
 	cure = cure * CURE_POWER;
 
-	player:restoreHP(cure);
+	target:restoreHP(cure);
 	player:updateEnmityFromCure(target,cure);
 	
 	return cure;

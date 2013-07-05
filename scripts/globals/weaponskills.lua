@@ -76,9 +76,15 @@ function doPhysicalWeaponskill(attacker, target, params)
 	if(params.canCrit) then --work out critical hit ratios, by +1ing
 		critrate = fTP(attacker:getTP(),params.crit100,params.crit200,params.crit300);
 		--add on native crit hit rate (guesstimated, it actually follows an exponential curve)
+		local flourisheffect = attacker:getStatusEffect(EFFECT_BUILDING_FLOURISH);
+		if flourisheffect ~= nil and flourisheffect:getPower() > 1 then
+			attacker:addMod(MOD_CRITHITRATE, 10 + flourisheffect:getSubPower()/2)
+		end
 		local nativecrit = (attacker:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; --assumes +0.5% crit rate per 1 dDEX
 		nativecrit = nativecrit + (attacker:getMod(MOD_CRITHITRATE)/100);
-
+		if flourisheffect ~= nil and flourisheffect:getPower() > 1 then
+			attacker:delMod(MOD_CRITHITRATE, 10 + flourisheffect:getSubPower()/2)
+		end
 		if(nativecrit > 0.2) then --caps!
 			nativecrit = 0.2;
 		elseif(nativecrit < 0.05) then
@@ -190,7 +196,7 @@ function doPhysicalWeaponskill(attacker, target, params)
 		utils.dmgTaken(target, finaldmg);
 		utils.physicalDmgTaken(target, finaldmg);
 	end
-
+	attacker:delStatusEffectSilent(EFFECT_BUILDING_FLOURISH);
 	return finaldmg, criticalHit, tpHitsLanded, extraHitsLanded;
 end;
 
@@ -234,18 +240,28 @@ function accVariesWithTP(hitrate,acc,tp,a1,a2,a3)
 	return hrate;
 end;
 
-function getHitRate(attacker,target,capHitRate)
-	local int acc = attacker:getACC();
-	local int eva = target:getEVA();
-
+function getHitRate(attacker,target,capHitRate,bonus)
+	local flourisheffect = attacker:getStatusEffect(EFFECT_BUILDING_FLOURISH);
+	if flourisheffect ~= nil and flourisheffect:getPower() > 1 then
+		attacker:addMod(MOD_ACC, 20 + flourisheffect:getSubPower())
+	end
+	local acc = attacker:getACC();
+	local eva = target:getEVA();
+	if flourisheffect ~= nil and flourisheffect:getPower() > 1 then
+		attacker:delMod(MOD_ACC, 20 + flourisheffect:getSubPower())
+	end
+	if (bonus) then
+		acc = acc + bonus;
+	end
+	
 	if(attacker:getMainLvl() > target:getMainLvl()) then --acc bonus!
 		acc = acc + ((attacker:getMainLvl()-target:getMainLvl())*4);
 	elseif(attacker:getMainLvl() < target:getMainLvl()) then --acc penalty :(
 		acc = acc - ((target:getMainLvl()-attacker:getMainLvl())*4);
 	end
 
-	local double hitdiff = 0;
-	local double hitrate = 75;
+	local hitdiff = 0;
+	local hitrate = 75;
 	if (acc>eva) then
 	hitdiff = (acc-eva)/2;
 	end
@@ -327,8 +343,14 @@ end
 --Given the raw ratio value (atk/def) and levels, returns the cRatio (min then max)
 function cMeleeRatio(attacker, defender, params, ignoredDef)
 
+	local flourisheffect = attacker:getStatusEffect(EFFECT_BUILDING_FLOURISH);
+	if flourisheffect ~= nil and flourisheffect:getPower() > 1 then
+		attacker:addMod(MOD_ATTP, 25 + flourisheffect:getSubPower()/2)
+	end
 	local cratio = (attacker:getStat(MOD_ATT)) / (defender:getStat(MOD_DEF) - ignoredDef);
-
+	if flourisheffect ~= nil and flourisheffect:getPower() > 1 then
+		attacker:delMod(MOD_ATTP, 25 + flourisheffect:getSubPower()/2)
+	end
 	local levelcor = 0;
 	if (attacker:getMainLvl() < defender:getMainLvl()) then
 		levelcor = 0.05 * (defender:getMainLvl() - attacker:getMainLvl());
@@ -714,4 +736,56 @@ function generatePdif(cratiomin, cratiomax, melee)
 		pdif = pdif * (math.random(100,105)/100);
 	end
 	return pdif;
+end
+
+function getStepAnimation(skill)
+	if skill <= 1 then
+		return 15;
+	elseif skill <= 3 then
+		return 14;
+	elseif skill == 4 then
+		return 19;
+	elseif skill == 5 then
+		return 16;
+	elseif skill <= 7 then
+		return 18;
+	elseif skill == 8 then
+		return 20;
+	elseif skill == 9 then
+		return 21;
+	elseif skill == 10 then
+		return 22;
+	elseif skill == 11 then
+		return 17;
+	elseif skill == 12 then
+		return 23;
+	else
+		return 0;
+	end	
+end
+
+function getFlourishAnimation(skill)
+	if skill <= 1 then
+		return 25;
+	elseif skill <= 3 then
+		return 24;
+	elseif skill == 4 then
+		return 29;
+	elseif skill == 5 then
+		return 26;
+	elseif skill <= 7 then
+		return 28;
+	elseif skill == 8 then
+		return 30;
+	elseif skill == 9 then
+		return 31;
+	elseif skill == 10 then
+		return 32;
+	elseif skill == 11 then
+		return 27;
+	elseif skill == 12 then
+		return 33;
+	else
+		return 0;
+	end	
 end

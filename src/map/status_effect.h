@@ -527,8 +527,9 @@ enum EFFECT
 	EFFECT_NINJUTSU_ELE_DEBUFF      = 510,
 	EFFECT_HEALING					= 512, // TODO: > 768
 	EFFECT_LEAVEGAME				= 513, // TODO: > 768
-    EFFECT_SKILLCHAIN               = 514, // TODO: > 768
-
+    
+    EFFECT_CHAINBOUND               = 798,
+    EFFECT_SKILLCHAIN               = 799,
 	EFFECT_DYNAMIS					= 800
 };
 

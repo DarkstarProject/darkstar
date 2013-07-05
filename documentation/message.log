@@ -509,9 +509,10 @@
 516 - <player> was unable to capture the target's image.
 517 - The  cannot be used on that target.
 518 - The  cannot be used while under the effect of Invisible or Sneak.
-519 - 
-520 - The <player> uses .. <target> is afflicted with Lethargic Daze (lv...). The <player> uses .. <target> is afflicted with Sluggish Daze (lv...).
+519 - The <player> uses .. <target> is afflicted with Lethargic Daze (lv...).
+520 - The <player> uses .. <target> is afflicted with Sluggish Daze (lv...).
 521 - The <player> uses .. <target> is afflicted with Weakened Daze (lv...).
+522 - The <player> uses Violent Flourish. <target> takes .. points of damage and is stunned.
 523 - The same effect is already active on the <player>.
 524 - You have not earned enough finishing moves to perform that action.
 525 - .. can only be performed during battle.
