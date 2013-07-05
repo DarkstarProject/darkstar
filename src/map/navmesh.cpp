@@ -57,19 +57,19 @@ bool CNavMesh::load(char* path)
   if (header.magic != NAVMESHSET_MAGIC)
   {
     fclose(fp);
-    return 0;
+    return false;
   }
   if (header.version != NAVMESHSET_VERSION)
   {
     fclose(fp);
-    return 0;
+    return false;
   }
 
   m_navMesh = dtAllocNavMesh();
   if (!m_navMesh)
   {
     fclose(fp);
-    return 0;
+    return false;
   }
 
   dtStatus status = m_navMesh->init(&header.params);
@@ -78,7 +78,7 @@ bool CNavMesh::load(char* path)
     ShowError("CNavMesh::load Could not initialize detour for (%s)", path);
     outputError(status);
 	fclose(fp);
-    return 0;
+    return false;
   }
 
   // Read tiles.

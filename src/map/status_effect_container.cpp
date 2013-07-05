@@ -184,10 +184,8 @@ bool CStatusEffectContainer::CanGainStatusEffect(EFFECT statusEffect, uint16 pow
     switch(statusEffect){
         case EFFECT_SLEEP:
         case EFFECT_SLEEP_II:
-            if(m_POwner->hasImmunity(IMMUNITY_SLEEP)) return false;
-        break;
         case EFFECT_LULLABY:
-            if(m_POwner->hasImmunity(IMMUNITY_SLEEP)) return false;
+            if(m_POwner->hasImmunity(IMMUNITY_SLEEP)) return false;  
         break;
         case EFFECT_WEIGHT:
             if(m_POwner->hasImmunity(IMMUNITY_GRAVITY)) return false;
@@ -219,7 +217,7 @@ bool CStatusEffectContainer::CanGainStatusEffect(EFFECT statusEffect, uint16 pow
     }
 
     // make sure pets can't be charmed
-    if(m_POwner->PMaster != NULL)
+    if((statusEffect == EFFECT_CHARM || statusEffect == EFFECT_CHARM_II) && m_POwner->PMaster != NULL)
     {
         return false;
     }

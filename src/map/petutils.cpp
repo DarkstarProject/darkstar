@@ -238,15 +238,23 @@ void AttackTarget(CBattleEntity* PMaster, CBattleEntity* PTarget){
 	DSP_DEBUG_BREAK_IF(PMaster->PPet==NULL);
 
 	CPetEntity* PPet = (CPetEntity*)PMaster->PPet;
-	PPet->PBattleAI->SetBattleTarget(PTarget);
-	PPet->PBattleAI->SetCurrentAction(ACTION_ATTACK);
+
+	if(!PPet->StatusEffectContainer->HasPreventActionEffect())
+	{
+		PPet->PBattleAI->SetBattleTarget(PTarget);
+		PPet->PBattleAI->SetCurrentAction(ACTION_ATTACK);
+	}
 }
 
 void RetreatToMaster(CBattleEntity* PMaster){
 	DSP_DEBUG_BREAK_IF(PMaster->PPet==NULL);
 
 	CPetEntity* PPet = (CPetEntity*)PMaster->PPet;
-	PPet->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
+
+	if(!PPet->StatusEffectContainer->HasPreventActionEffect())
+	{
+		PPet->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
+	}
 }
 
 uint16 GetJugWeaponDamage(CPetEntity* PPet)
@@ -981,8 +989,13 @@ void DespawnPet(CBattleEntity* PMaster)
 
 void MakePetStay(CBattleEntity* PMaster)
 {
-	if(PMaster->PPet != NULL)
-		PMaster->PPet->PBattleAI->SetCurrentAction(ACTION_NONE);
+
+	CPetEntity* PPet = (CPetEntity*)PMaster->PPet;
+
+	if(PPet != NULL && !PPet->StatusEffectContainer->HasPreventActionEffect())
+	{
+		PPet->PBattleAI->SetCurrentAction(ACTION_NONE);
+	}
 }
 
 int16 PerpetuationCost(uint32 id, uint8 level)

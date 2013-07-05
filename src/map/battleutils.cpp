@@ -3695,7 +3695,15 @@ void tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
 		PCharmer->PPet->PBattleAI = new CAIPetDummy((CPetEntity*)PVictim);
 		PCharmer->PPet->PBattleAI->SetLastActionTime(gettick());
 		PCharmer->PPet->charmTime = gettick() + CharmTime;
-		PCharmer->PPet->PBattleAI->SetCurrentAction(ACTION_ROAMING);
+
+		// this will make him transition back to roaming if sleeping
+		PCharmer->PPet->animation = ANIMATION_NONE;
+
+		// only move to roaming action if not asleep
+		if(!PCharmer->PPet->StatusEffectContainer->HasPreventActionEffect())
+		{
+			PCharmer->PPet->PBattleAI->SetCurrentAction(ACTION_ROAMING);
+		}
 
 		charutils::BuildingCharPetAbilityTable((CCharEntity*)PCharmer,(CPetEntity*)PVictim,PVictim->id);
 		((CCharEntity*)PCharmer)->pushPacket(new CCharUpdatePacket((CCharEntity*)PCharmer));

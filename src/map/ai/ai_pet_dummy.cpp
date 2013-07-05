@@ -102,6 +102,11 @@ void CAIPetDummy::WeatherChange(WEATHER weather, uint8 element)
 
 void CAIPetDummy::ActionAbilityStart()
 {
+	if(m_PPet->StatusEffectContainer->HasPreventActionEffect())
+	{
+		return;
+	}
+	
 	if(m_PPet->objtype == TYPE_MOB && m_PPet->PMaster->objtype == TYPE_PC)
 	{
 		if(m_MasterCommand == MASTERCOMMAND_SIC && m_PPet->health.tp >= 100 && m_PBattleTarget != NULL)

@@ -2569,7 +2569,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	}
 
 	// don't auto-attack while weaponskilling
-	m_LastMeleeTime += 2500;
+	m_LastMeleeTime += 5000;
 
 	//apply TP Bonus
 	float bonusTp = m_PChar->getMod(MOD_TP_BONUS);
