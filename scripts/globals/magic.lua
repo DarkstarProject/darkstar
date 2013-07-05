@@ -865,7 +865,7 @@ function doNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,s
 	local resist = applyResistance(caster,spell,target,caster:getStat(modStat)-target:getStat(modStat),skill,resistBonus);
 	--get the resisted damage
 	dmg = dmg*resist;
-	if(skill == NINJUTSU_SKILL)
+	if(skill == NINJUTSU_SKILL) then
 		-- boost ninjitsu damage
 		-- 5% ninjitsu damage
 		local head = caster:getEquipID(SLOT_HEAD);
