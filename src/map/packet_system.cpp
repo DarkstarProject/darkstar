@@ -3181,9 +3181,9 @@ void SmallPacket0x0AD(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	if (RBUFB(data,(0x06)) == '@')
+	if (RBUFB(data,(0x06)) == '@' && CmdHandler.call(PChar, (const int8*)data+7) == 0)
 	{
-		CmdHandler.call(PChar, (const int8*)data+7);
+		//this makes sure a command isn't sent to chat
 	}
     else if (RBUFB(data,(0x06)) == '#' && PChar->nameflags.flags & FLAG_GM)
     {

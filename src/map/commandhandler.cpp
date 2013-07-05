@@ -160,19 +160,14 @@ int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
 	}
 	if (CmdHandler == 0) 
 	{
-		PChar->pushPacket(new CMessageDebugPacket(PChar,PChar,0,0,27));
-		ShowDebug("cmdhandler::call: function <%s> not found\n", cmdname.c_str());
+		//PChar->pushPacket(new CMessageDebugPacket(PChar,PChar,0,0,27));
+		//ShowDebug("cmdhandler::call: function <%s> not found\n", cmdname.c_str());
 		return -1;
 	}
 	if(CmdHandler->CmdPermissionLvl > PChar->m_GMlevel)
 	{
 		ShowWarning("cmdhandler::call: Character %s attempting to use higher permission command %s\n",PChar->name.c_str(),CmdHandler->CmdName.c_str());
 		return -1;
-	}
-	if(PChar->m_GMlevel == 0 && CmdHandler->CmdPermissionLvl > 0)
-	{
-		ShowWarning("cmdhandler::call: Character %s attempting to use GM command %s\n",PChar->name.c_str(),CmdHandler->CmdName.c_str());
-	    return -1;
 	}
 
 	//Загрузка файла команды.

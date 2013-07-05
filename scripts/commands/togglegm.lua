@@ -14,11 +14,11 @@ FLAG_GM_PRODUCER    = 0x07000000;
 FLAG_SENIOR         = 0x01000000; -- Do NOT set these flags. These are here to
 FLAG_LEAD           = 0x02000000; -- ensure all GM status is removed.
 
-MINLVL_GM          = 1; -- Do NOT change this one.
 
 -------
 -- Configurable options
 -------
+MINLVL_GM          = 1; -- For "whitelisting" players to have some commands, but not GM tier commands.
 MINLVL_GM_SENIOR   = 2; -- These are configurable so that commands may be restricted
 MINLVL_GM_LEAD     = 3; -- between different levels of GM's with the same icon.
 MINLVL_GM_PRODUCER = 4;
