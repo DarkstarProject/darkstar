@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
 
-	player:messageSpecial(7168); -- ice lampe
+	player:messageSpecial(ICE_LAMP); -- ice lampe
 	GetNPCByID(16888065):openDoor(7);
 
 	local element = VanadielDayElement();

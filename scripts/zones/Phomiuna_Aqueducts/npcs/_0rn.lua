@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
 
-	player:messageSpecial(7166); -- water lampe
+	player:messageSpecial(WATER_LAMP); -- water lampe
 	GetNPCByID(16888064):openDoor(7);
 
 	local element = VanadielDayElement();
