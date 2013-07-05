@@ -89,6 +89,7 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x0065) then
 		player:completeMission(COP,AN_INVITATION_WEST);
 		player:addMission(COP,THE_LOST_CITY);
+		player:setVar("PromathiaStatus",0);
 	elseif(csid == 0x0069) then
 		player:setVar("PromathiaStatus",0);
 		player:completeMission(COP,AN_ETERNAL_MELODY);

@@ -36,10 +36,10 @@ function onTrigger(player,npc)
     local Assassin2kill= player:getVar("Cryptonberry_Assassins-2_KILL");
     local Assassin3kill= player:getVar("Cryptonberry_Assassins-3_KILL");
     local Executorkill = player:getVar("Cryptonberry_Executor_KILL");
-   	 printf("Assassin1: %u",Assassin1kill);
-	 printf("Assassin2: %u",Assassin2kill);
-     printf("Assassin3: %u",Assassin3kill);
-	 printf("Executor: %u",Executorkill);
+   	 --printf("Assassin1: %u",Assassin1kill);
+	 --printf("Assassin2: %u",Assassin2kill);
+     --printf("Assassin3: %u",Assassin3kill);
+	 --printf("Executor: %u",Executorkill);
    
         if(Executorkill==1 and Assassin1kill ==1 and Assassin2kill==1 and Assassin3kill==1 )then --si tout les mob on été tuer
          player:startEvent(0x0025);

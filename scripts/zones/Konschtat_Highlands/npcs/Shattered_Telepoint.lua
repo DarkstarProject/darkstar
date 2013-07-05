@@ -24,7 +24,7 @@ function onTrigger(player,npc)
 
 	if(player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") == 1) then
 		player:startEvent(0x0390);  
-	elseif(player:getCurrentMission(COP) > BELOW_THE_ARKS)then
+	elseif(player:getCurrentMission(COP) > BELOW_THE_ARKS or hasCompletedMission(COP,THE_LAST_VERSE))then
 		player:startEvent(0x0065);
 	else
 		player:messageSpecial(TELEPOINT_HAS_BEEN_SHATTERED);

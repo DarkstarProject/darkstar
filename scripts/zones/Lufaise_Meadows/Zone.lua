@@ -61,8 +61,8 @@ end;
 function onEventFinish(player,csid,option)	
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if (csid == 0x0063) then
-		player:setVar("PromathiaStatus",0);
+	if (csid == 0x006E) then
+		player:setVar("PromathiaStatus",2);
     elseif(csid == 0x006F)then
 		player:addItem(14657);
 		player:setVar("PromathiaStatus",1);

@@ -23,11 +23,11 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getCurrentMission(COP) == THE_LOST_CITY and player:getVar("PromathiaStatus") == 1)then
+	if(player:getCurrentMission(COP) == THE_LOST_CITY and player:getVar("PromathiaStatus") > 0)then
 		player:startEvent(0x0067);	
     elseif(player:getCurrentMission(COP) == CHAINS_AND_BONDS and player:getVar("PromathiaStatus")==3)then
 	    player:startEvent(0x0073);
-	elseif(player:getCurrentMission(COP) >= DISTANT_BELIEFS)then
+	elseif(player:getCurrentMission(COP) >= DISTANT_BELIEFS or hasCompletedMission(COP,THE_LAST_VERSE))then
 		player:startEvent(0x01f6);
 	else
 		--player:messageSpecial();

@@ -21,7 +21,7 @@ end;
 
 function onTrigger(player,npc)
 
-	if(player:getCurrentMission(COP) > BELOW_THE_ARKS)then
+	if(player:getCurrentMission(COP) > BELOW_THE_ARKS or hasCompletedMission(COP,THE_LAST_VERSE))then
 		player:startEvent(0x0096);
 	else
 		player:messageSpecial(DOOR_IS_CLOSED);
