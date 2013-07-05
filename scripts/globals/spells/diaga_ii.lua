@@ -18,13 +18,13 @@ end;
 function onSpellCast(caster,target,spell)
 
 	--calculate raw damage
-	basedmg = caster:getSkillLevel(ENFEEBLING_MAGIC_SKILL) / 4;
-	dmg = calculateMagicDamage(basedmg,3,caster,spell,target,ENFEEBLING_MAGIC_SKILL,MOD_INT,false);
+	local basedmg = caster:getSkillLevel(ENFEEBLING_MAGIC_SKILL) / 4;
+	local dmg = calculateMagicDamage(basedmg,3,caster,spell,target,ENFEEBLING_MAGIC_SKILL,MOD_INT,false);
 
 	dmg = utils.clamp(dmg, 1, 40);
 
 	--get resist multiplier (1x if no resist)
-	resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT)-target:getStat(MOD_INT),ENFEEBLING_MAGIC_SKILL,1.0);
+	local resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT)-target:getStat(MOD_INT),ENFEEBLING_MAGIC_SKILL,1.0);
 	--get the resisted damage
 	dmg = dmg*resist;
 	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
@@ -32,13 +32,13 @@ function onSpellCast(caster,target,spell)
 	--add in target adjustment
 	dmg = adjustForTarget(target,dmg);
 	--add in final adjustments including the actual damage dealt
-	final = finalMagicAdjustments(caster,target,spell,dmg);
+	local final = finalMagicAdjustments(caster,target,spell,dmg);
 
 	-- Calculate duration.
-	duration = 120;
+	local duration = 120;
 
 	-- Check for Bio.
-	bio = target:getStatusEffect(EFFECT_BIO);
+	local bio = target:getStatusEffect(EFFECT_BIO);
 
 	-- Do it!
 	if(bio == nil or (DIA_OVERWRITE == 0 and bio:getPower() <= 2) or (DIA_OVERWRITE == 1 and bio:getPower() < 2)) then

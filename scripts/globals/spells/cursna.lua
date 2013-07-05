@@ -15,9 +15,9 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-	curse = target:getStatusEffect(EFFECT_CURSE_I);
-	curse2 = target:getStatusEffect(EFFECT_CURSE_II);
-	bane = target:getStatusEffect(EFFECT_BANE);
+	local curse = target:getStatusEffect(EFFECT_CURSE_I);
+	local curse2 = target:getStatusEffect(EFFECT_CURSE_II);
+	local bane = target:getStatusEffect(EFFECT_BANE);
 
 	spell:setMsg(75);
 	if(curse ~= nil and curse2 ~= nil and bane ~= nil) then

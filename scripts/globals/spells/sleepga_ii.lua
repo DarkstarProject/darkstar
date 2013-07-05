@@ -12,13 +12,13 @@ function OnMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	duration = 90;
+	local duration = 90;
 	local typeEffect = EFFECT_SLEEP_II;
-	bonus = AffinityBonus(caster, spell);
-	pINT = caster:getStat(MOD_INT);
-	mINT = target:getStat(MOD_INT);
-	dINT = (pINT - mINT);
-	resm = applyResistance(caster,spell,target,dINT,ENFEEBLING_MAGIC_SKILL,bonus);
+	local bonus = AffinityBonus(caster, spell);
+	local pINT = caster:getStat(MOD_INT);
+	local mINT = target:getStat(MOD_INT);
+	local dINT = (pINT - mINT);
+	local resm = applyResistance(caster,spell,target,dINT,ENFEEBLING_MAGIC_SKILL,bonus);
 	if(resm < 0.5) then
 		spell:setMsg(85);--resist message
 		return typeEffect;

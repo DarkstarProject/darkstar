@@ -16,9 +16,9 @@ end;
 
 function onSpellCast(caster,target,spell)
 	--calculate raw damage (holy 2 values from Foldypaws bluegartr @ Test server findings)
-	dmg = calculateMagicDamage(250,2,caster,spell,target,DIVINE_MAGIC_SKILL,MOD_MND,false);
+	local dmg = calculateMagicDamage(250,2,caster,spell,target,DIVINE_MAGIC_SKILL,MOD_MND,false);
 	--get resist multiplier (1x if no resist)
-	resist = applyResistance(caster,spell,target,caster:getStat(MOD_MND)-target:getStat(MOD_MND),DIVINE_MAGIC_SKILL,1.0);
+	local resist = applyResistance(caster,spell,target,caster:getStat(MOD_MND)-target:getStat(MOD_MND),DIVINE_MAGIC_SKILL,1.0);
 	--get the resisted damage
 	dmg = dmg*resist;
 	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)

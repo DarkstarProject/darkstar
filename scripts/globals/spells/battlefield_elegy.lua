@@ -12,14 +12,14 @@ function OnMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    duration = 120;
-    power = 256;
+    local duration = 120;
+    local power = 256;
 
-    bonus = AffinityBonus(caster, spell);
-    pCHR = caster:getStat(MOD_CHR);
-    mCHR = target:getStat(MOD_CHR);
-    dCHR = (pCHR - mCHR);
-    resm = applyResistance(caster,spell,target,dCHR,SINGING_SKILL,bonus);
+    local bonus = AffinityBonus(caster, spell);
+    local pCHR = caster:getStat(MOD_CHR);
+    local mCHR = target:getStat(MOD_CHR);
+    local dCHR = (pCHR - mCHR);
+    local resm = applyResistance(caster,spell,target,dCHR,SINGING_SKILL,bonus);
     if(resm < 0.5) then
         spell:setMsg(85);--resist message
         return 1;
@@ -28,7 +28,7 @@ function onSpellCast(caster,target,spell)
     if(100 * math.random() < target:getMod(MOD_SLOWRES)) then
         spell:setMsg(85); -- resisted spell
     else
-        local sItem = caster:getEquipID(2);
+        local sItem = caster:getEquipID(SLOT_RANGED);
 
         -- horn +1
         if(sItem == 17371) then

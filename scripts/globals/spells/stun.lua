@@ -12,11 +12,11 @@ function OnMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	duration = 5;
+	local duration = 5;
 
-	taff = AffinityBonus(caster,spell) + 300;
-	dINT = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
-	resist = applyResistance(caster,spell,target,dINT,37,bonus);
+	local taff = AffinityBonus(caster,spell) + 300;
+	local dINT = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
+	local resist = applyResistance(caster,spell,target,dINT,37,bonus);
 	if(resist <= (1/16)) then
 		-- resisted!
 		spell:setMsg(85);

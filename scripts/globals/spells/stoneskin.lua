@@ -16,10 +16,10 @@ function OnMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	pMod = (caster:getSkillLevel(ENHANCING_MAGIC_SKILL)/3)+caster:getStat(MOD_MND);
-	pAbs = 0;
-	pEquipMods = 0;
-	duration = 300;
+	local pMod = (caster:getSkillLevel(ENHANCING_MAGIC_SKILL)/3)+caster:getStat(MOD_MND);
+	local pAbs = 0;
+	local pEquipMods = 0;
+	local duration = 300;
 	if (pMod < 80) then
 		pAbs = pMod;
 	elseif (pMod <= 130) then
@@ -49,7 +49,7 @@ function onSpellCast(caster,target,spell)
 	end
 
 
-	final = pAbs + pEquipMods;
+	local final = pAbs + pEquipMods;
 	if(target:addStatusEffect(EFFECT_STONESKIN,final,0,duration)) then
 		spell:setMsg(230);
 	else

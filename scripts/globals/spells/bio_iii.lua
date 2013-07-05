@@ -18,8 +18,8 @@ end;
 function onSpellCast(caster,target,spell)
 
 	--calculate raw damage
-	basedmg = caster:getSkillLevel(DARK_MAGIC_SKILL) / 4;
-	dmg = calculateMagicDamage(basedmg,3,caster,spell,target,DARK_MAGIC_SKILL,MOD_INT,false);
+	local basedmg = caster:getSkillLevel(DARK_MAGIC_SKILL) / 4;
+	local dmg = calculateMagicDamage(basedmg,3,caster,spell,target,DARK_MAGIC_SKILL,MOD_INT,false);
 
 	-- Softcaps at 32, should always do at least 1
 	if(dmg > 62) then
@@ -30,7 +30,7 @@ function onSpellCast(caster,target,spell)
 	end
 
 	--get resist multiplier (1x if no resist)
-	resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT)-target:getStat(MOD_INT),DARK_MAGIC_SKILL,1.0);
+	local resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT)-target:getStat(MOD_INT),DARK_MAGIC_SKILL,1.0);
 	--get the resisted damage
 	dmg = dmg*resist;
 	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
@@ -38,19 +38,19 @@ function onSpellCast(caster,target,spell)
 	--add in target adjustment
 	dmg = adjustForTarget(target,dmg);
 	--add in final adjustments including the actual damage dealt
-	final = finalMagicAdjustments(caster,target,spell,dmg);
+	local final = finalMagicAdjustments(caster,target,spell,dmg);
 
 	-- Calculate duration.
 
 	local merits = caster:getMerit(MERIT_BIO_III);
 
-	duration = 30 * merits;
+	local duration = 30 * merits;
 
 	-- Check for Dia.
-	dia = target:getStatusEffect(EFFECT_DIA);
+	local dia = target:getStatusEffect(EFFECT_DIA);
 
 	-- Calculate DoT (rough, though fairly accurate)
-	dotdmg = 4 + math.floor(caster:getSkillLevel(DARK_MAGIC_SKILL) / 60);
+	local dotdmg = 4 + math.floor(caster:getSkillLevel(DARK_MAGIC_SKILL) / 60);
 
 	-- Do it!
 	if(dia == nil or (BIO_OVERWRITE == 0 and dia:getPower() <= 3) or (BIO_OVERWRITE == 1 and dia:getPower() < 3)) then

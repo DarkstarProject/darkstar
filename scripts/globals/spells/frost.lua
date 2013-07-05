@@ -20,19 +20,19 @@ function onSpellCast(caster,target,spell)
 	if(target:getStatusEffect(EFFECT_BURN) ~= nil) then
 		spell:setMsg(75); -- no effect
 	else		
-		bonus = AffinityBonus(caster, spell);
-		dINT = caster:getStat(MOD_INT)-target:getStat(MOD_INT);
-		resist = applyResistance(caster,spell,target,dINT,36,bonus);
+		local bonus = AffinityBonus(caster, spell);
+		local dINT = caster:getStat(MOD_INT)-target:getStat(MOD_INT);
+		local resist = applyResistance(caster,spell,target,dINT,36,bonus);
 		if(resist <= 0.125) then
 			spell:setMsg(85);
 		else
 			if(target:getStatusEffect(EFFECT_CHOKE) ~= nil) then
 				target:delStatusEffect(EFFECT_CHOKE);
 			end;
-			sINT = caster:getStat(MOD_INT);
-			DOT = getElementalDebuffDOT(sINT);
-			effect = target:getStatusEffect(EFFECT_FROST);
-			noeffect = false;
+			local sINT = caster:getStat(MOD_INT);
+			local DOT = getElementalDebuffDOT(sINT);
+			local effect = target:getStatusEffect(EFFECT_FROST);
+			local noeffect = false;
 			if(effect ~= nil) then
 				if(effect:getPower() >= DOT) then
 					noeffect = true;
@@ -45,7 +45,7 @@ function onSpellCast(caster,target,spell)
 					target:delStatusEffect(EFFECT_FROST);
 				end;
 				spell:setMsg(237);
-				duration = math.floor(ELEMENTAL_DEBUFF_DURATION * resist);
+				local duration = math.floor(ELEMENTAL_DEBUFF_DURATION * resist);
 				target:addStatusEffect(EFFECT_FROST,DOT, 3, ELEMENTAL_DEBUFF_DURATION,FLAG_ERASBLE);
 			end;
 		end;

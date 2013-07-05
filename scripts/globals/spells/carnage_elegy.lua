@@ -12,14 +12,14 @@ function OnMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    duration = 180;
-    power = 512;
+    local duration = 180;
+    local power = 512;
 
-    bonus = AffinityBonus(caster, spell);
-    pCHR = caster:getStat(MOD_CHR);
-    mCHR = target:getStat(MOD_CHR);
-    dCHR = (pCHR - mCHR);
-    resm = applyResistance(caster,spell,target,dCHR,SINGING_SKILL,bonus);
+    local bonus = AffinityBonus(caster, spell);
+    local pCHR = caster:getStat(MOD_CHR);
+    local mCHR = target:getStat(MOD_CHR);
+    local dCHR = (pCHR - mCHR);
+    local resm = applyResistance(caster,spell,target,dCHR,SINGING_SKILL,bonus);
     if(resm < 0.5) then
         spell:setMsg(85);--resist message
         return 1;

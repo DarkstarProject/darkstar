@@ -16,12 +16,12 @@ end;
 function onSpellCast(caster,target,spell)
 
     -- Pull base stats.
-    dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
-    bonus = AffinityBonus(caster,spell);
-    power = 50; -- 50% reduction
+    local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
+    local bonus = AffinityBonus(caster,spell);
+    local power = 50; -- 50% reduction
 
     -- Duration, including resistance.  Unconfirmed.
-    duration = 120 * applyResistance(caster,spell,target,dINT,35,bonus);
+    local duration = 120 * applyResistance(caster,spell,target,dINT,35,bonus);
 
     if(100 * math.random() >= target:getMod(MOD_GRAVITYRES)) then
         if(duration >= 30) then --Do it!

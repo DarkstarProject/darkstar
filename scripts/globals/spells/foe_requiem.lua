@@ -16,11 +16,11 @@ function onSpellCast(caster,target,spell)
     local duration = 63;
     local power = 1;
 
-    bonus = AffinityBonus(caster, spell);
-    pCHR = caster:getStat(MOD_CHR);
-    mCHR = target:getStat(MOD_CHR);
-    dCHR = (pCHR - mCHR);
-    resm = applyResistance(caster,spell,target,dCHR,SINGING_SKILL,bonus);
+    local bonus = AffinityBonus(caster, spell);
+    local pCHR = caster:getStat(MOD_CHR);
+    local mCHR = target:getStat(MOD_CHR);
+    local dCHR = (pCHR - mCHR);
+    local resm = applyResistance(caster,spell,target,dCHR,SINGING_SKILL,bonus);
     if(resm < 0.5) then
         spell:setMsg(85);--resist message
         return 1;

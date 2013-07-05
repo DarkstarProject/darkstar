@@ -14,11 +14,11 @@ function OnMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    enhskill = caster:getSkillLevel(ENHANCING_MAGIC_SKILL);
-    final = 0;
+    local enhskill = caster:getSkillLevel(ENHANCING_MAGIC_SKILL);
+    local final = 0;
     local merits = caster:getMerit(MERIT_PHALANX_II);
 
-    duration = 90 + (30 * merits);
+    local duration = 90 + (30 * merits);
 
     if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;

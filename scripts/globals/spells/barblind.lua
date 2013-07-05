@@ -13,11 +13,11 @@ function OnMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    enchanceSkill = caster:getSkillLevel(34);
+    local enchanceSkill = caster:getSkillLevel(34);
 
-    duration = 150;
+    local duration = 150;
 
-    power = 1 + 0.02 * enchanceSkill;
+    local power = 1 + 0.02 * enchanceSkill;
 
     if(enchanceSkill >180)then
         duration = 150 + 0.8 * (enchanceSkill - 180);

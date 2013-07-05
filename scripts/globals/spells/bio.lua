@@ -18,8 +18,8 @@ end;
 function onSpellCast(caster,target,spell)
 
 	--calculate raw damage
-	basedmg = caster:getSkillLevel(DARK_MAGIC_SKILL) / 4;
-	dmg = calculateMagicDamage(basedmg,1,caster,spell,target,DARK_MAGIC_SKILL,MOD_INT,false);
+	local basedmg = caster:getSkillLevel(DARK_MAGIC_SKILL) / 4;
+	local dmg = calculateMagicDamage(basedmg,1,caster,spell,target,DARK_MAGIC_SKILL,MOD_INT,false);
 
 	-- Softcaps at 15, should always do at least 1
 	if(dmg > 15) then
@@ -30,7 +30,7 @@ function onSpellCast(caster,target,spell)
 	end
 
 	--get resist multiplier (1x if no resist)
-	resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT)-target:getStat(MOD_INT),DARK_MAGIC_SKILL,1.0);
+	local resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT)-target:getStat(MOD_INT),DARK_MAGIC_SKILL,1.0);
 	--get the resisted damage
 	dmg = dmg*resist;
 	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
@@ -39,16 +39,16 @@ function onSpellCast(caster,target,spell)
 	dmg = adjustForTarget(target,dmg);
 
 	--add in final adjustments including the actual damage dealt
-	final = finalMagicAdjustments(caster,target,spell,dmg);
+	local final = finalMagicAdjustments(caster,target,spell,dmg);
 
 	-- Calculate duration.
-	duration = 60;
+	local duration = 60;
 
 	-- Check for Dia & bio.
-	dia = target:getStatusEffect(EFFECT_DIA);
+	local dia = target:getStatusEffect(EFFECT_DIA);
 
 	-- Calculate DoT (rough, though fairly accurate)
-	dotdmg = 2 + math.floor(caster:getSkillLevel(DARK_MAGIC_SKILL) / 60);
+	local dotdmg = 2 + math.floor(caster:getSkillLevel(DARK_MAGIC_SKILL) / 60);
 
 	-- Do it!
 	if(BIO_OVERWRITE == 0 or (BIO_OVERWRITE == 1 and dia == nil)) then

@@ -845,3 +845,39 @@ function canOverwrite(target, effect, power, mod)
 
     return true;
 end
+
+function doElementalNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
+	return doNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,ELEMENTAL_MAGIC_SKILL,MOD_INT);
+end
+
+function doDivineNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
+	return doNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,DIVINE_MAGIC_SKILL,MOD_MND);
+end
+
+function doNinjutsuNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
+	return doNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,NINJUTSU_SKILL,MOD_INT);
+end
+
+function doNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,skill,modStat)
+	--calculate raw damage
+	local dmg = calculateMagicDamage(V,M,caster,spell,target,skill,modStat,hasMultipleTargetReduction);
+	--get resist multiplier (1x if no resist)
+	local resist = applyResistance(caster,spell,target,caster:getStat(modStat)-target:getStat(modStat),skill,resistBonus);
+	--get the resisted damage
+	dmg = dmg*resist;
+	if(skill == NINJUTSU_SKILL)
+		-- boost ninjitsu damage
+		-- 5% ninjitsu damage
+		local head = caster:getEquipID(SLOT_HEAD);
+		if(head == 15084) then
+			dmg = math.floor(dmg * 1.05);
+		end
+	end
+	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
+	dmg = addBonuses(caster,spell,target,dmg);
+	--add in target adjustment
+	dmg = adjustForTarget(target,dmg);
+	--add in final adjustments
+	dmg = finalMagicAdjustments(caster,target,spell,dmg);
+	return dmg;
+end

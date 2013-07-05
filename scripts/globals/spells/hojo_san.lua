@@ -17,12 +17,12 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-    dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
-    bonus = AffinityBonus(caster,spell);
+    local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
+    local bonus = AffinityBonus(caster,spell);
     --Power for Hojo is a flat 30% reduction
-    power = 300;
+    local power = 300;
     --Duration and Resistance calculation
-    duration = 420 * applyResistance(caster,spell,target,dINT,NINJUTSU_SKILL,bonus);
+    local duration = 420 * applyResistance(caster,spell,target,dINT,NINJUTSU_SKILL,bonus);
     --Calculates the resist chance from Resist Blind trait
     if(math.random(0,100) >= target:getMod(MOD_SLOWRES)) then
         -- Spell succeeds if a 1 or 1/2 resist check is achieved

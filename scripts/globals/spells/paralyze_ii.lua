@@ -18,32 +18,32 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-    -- Calculate duration.
-    local double duration = 180;
-
-    -- Grabbing variables for paralyze potency
-    mLVL = caster:getMainLvl();
-    pMND = caster:getStat(MOD_MND);
-    mMND = target:getStat(MOD_MND);
-
-    local merits = caster:getMerit(MERIT_PARALYZE_II);
-
-    dMND = (pMND - mMND);
-    multiplier = (150 + (merits * 10)) / mLVL;
-
-    -- Calculate potency.
-    potency = (multiplier * dMND) / 10;
-
-    if potency > 30 then
-        potency = 30;
-    end
-    --printf("Duration : %u",duration);
-    --printf("Potency : %u",potency);
     if(target:hasStatusEffect(EFFECT_PARALYSIS)) then --effect already on, do nothing
         spell:setMsg(75);
     elseif(math.random(0,100) >= target:getMod(MOD_PARALYZERES)) then
-        bonus = AffinityBonus(caster, spell);
-        resist = applyResistance(caster,spell,target,dMND,35,bonus);
+		-- Calculate duration.
+		local double duration = 180;
+
+		-- Grabbing variables for paralyze potency
+		local mLVL = caster:getMainLvl();
+		local pMND = caster:getStat(MOD_MND);
+		local mMND = target:getStat(MOD_MND);
+
+		local merits = caster:getMerit(MERIT_PARALYZE_II);
+
+		local dMND = (pMND - mMND);
+		local multiplier = (150 + (merits * 10)) / mLVL;
+
+		-- Calculate potency.
+		local potency = (multiplier * dMND) / 10;
+
+		if potency > 30 then
+			potency = 30;
+		end
+		--printf("Duration : %u",duration);
+		--printf("Potency : %u",potency);
+        local bonus = AffinityBonus(caster, spell);
+        local resist = applyResistance(caster,spell,target,dMND,35,bonus);
 
         if(resist >= 0.25) then
             if(target:addStatusEffect(EFFECT_PARALYSIS,potency,0,duration*resist)) then

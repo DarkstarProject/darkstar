@@ -22,7 +22,7 @@ function onSpellCast(caster,target,spell)
 	-- duration is said to be based on enhancing skill with max 5 minutes, but I could find no
 	-- tests that quantify the relationship so I'm using 5 minutes for now.
 
-	duration = 300;
+	local duration = 300;
 
 	if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
 		duration = duration * 3;

@@ -19,16 +19,16 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-	hp = 20;
+	local hp = 20;
 
-	body = caster:getEquipID(SLOT_BODY);
+	local body = caster:getEquipID(SLOT_BODY);
 	if (body == 15089 or body == 14502) then
 		hp = hp+3;
 	end
 
 	hp = hp + caster:getMod(MOD_REGEN_EFFECT);
 	
-	duration = 60;
+	local duration = 60;
 
 	duration = duration + caster:getMod(MOD_REGEN_DURATION);
 	

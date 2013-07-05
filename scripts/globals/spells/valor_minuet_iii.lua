@@ -17,13 +17,14 @@ function onSpellCast(caster,target,spell)
 
 	local sItem = caster:getEquipID(2);
 	local sLvl = caster:getSkillLevel(40); -- Gets skill level of Singing
+	local power = 0;
 
 	if (sLvl < 123) then -- If your skill level is below 123 your stuck at the minimum
 		power = 30;
 	end
 
 	if (sLvl >= 123 and sLvl <= 193) then -- If your above 122 skill then you get the bonus of 1 more attack for every 4 skill
-		sBoost = math.floor((sLvl - 122)/4);
+		local sBoost = math.floor((sLvl - 122)/4);
 		power = 30 + sBoost;
 	end
 

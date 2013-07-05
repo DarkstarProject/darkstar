@@ -15,6 +15,6 @@ function OnAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-	effect = EFFECT_BLOOD_WEAPON;
+	local effect = EFFECT_BLOOD_WEAPON;
 	doEnspell(player,target,nil,effect);
 end;

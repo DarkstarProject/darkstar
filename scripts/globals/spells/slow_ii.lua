@@ -17,26 +17,25 @@ function OnMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-
-    dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
-    bonus = AffinityBonus(caster,spell);
-
-    local potency = 230 + math.floor(dMND * 1.6);
-
-     -- ([230] + [y * 10] + [floor(dMND * 1.6)])/1024
-
-     if(potency > 350) then
-        potency = 350;
-     end
-
-    local merits = caster:getMerit(MERIT_SLOW_II);
-    --Power.
-    power = (potency  + (merits * 10)) / 1024;
-
-    --Duration, including resistance.
-    duration = 180 * applyResistance(caster,spell,target,dMND,35,bonus);
-
     if(100 * math.random() >= target:getMod(MOD_SLOWRES)) then
+		local dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
+		local bonus = AffinityBonus(caster,spell);
+
+		local potency = 230 + math.floor(dMND * 1.6);
+
+		 -- ([230] + [y * 10] + [floor(dMND * 1.6)])/1024
+
+		 if(potency > 350) then
+			potency = 350;
+		 end
+
+		local merits = caster:getMerit(MERIT_SLOW_II);
+		--Power.
+		local power = (potency  + (merits * 10)) / 1024;
+
+		--Duration, including resistance.
+		local duration = 180 * applyResistance(caster,spell,target,dMND,35,bonus);
+
         if(duration >= 60) then --Do it!
 
             if(target:addStatusEffect(EFFECT_SLOW,power,0,duration)) then

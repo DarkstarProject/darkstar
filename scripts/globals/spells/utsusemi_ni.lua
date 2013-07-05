@@ -13,7 +13,7 @@ function OnMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	effect = target:getStatusEffect(EFFECT_COPY_IMAGE);
+	local effect = target:getStatusEffect(EFFECT_COPY_IMAGE);
 	if (effect == nil) then
 		if caster:getMainJob() == 13 then
 			target:addStatusEffectEx(EFFECT_COPY_IMAGE,EFFECT_COPY_IMAGE_4,4,0,900);

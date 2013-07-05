@@ -18,18 +18,18 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-	dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
-	bonus = AffinityBonus(caster,spell);
-
-	--Power.
-	power = 150 + dMND * 2;
-	if(power > 350) then
-		power = 350;
-	end
-
-	--Duration, including resistance.
-	duration = 120 * applyResistance(caster,spell,target,dMND,35,bonus);
 	if(100 * math.random() >= target:getMod(MOD_SLOWRES)) then
+		local dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
+		local bonus = AffinityBonus(caster,spell);
+
+		--Power.
+		local power = 150 + dMND * 2;
+		if(power > 350) then
+			power = 350;
+		end
+
+		--Duration, including resistance.
+		local duration = 120 * applyResistance(caster,spell,target,dMND,35,bonus);
 		if(duration >= 60) then --Do it!
 
 			if(target:addStatusEffect(EFFECT_SLOW,power,0,duration)) then

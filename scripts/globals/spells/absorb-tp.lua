@@ -17,9 +17,11 @@ end;
 
 function onSpellCast(caster,target,spell)
 
+	local dmg = math.random();
+	dmg = math.random();
     dmg = math.random(10, 80);
     --get resist multiplier (1x if no resist)
-    resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT)-target:getStat(MOD_INT),DARK_MAGIC_SKILL,1.0);
+    local resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT)-target:getStat(MOD_INT),DARK_MAGIC_SKILL,1.0);
     --get the resisted damage
     dmg = dmg*resist;
     --add on bonuses (staff/day/weather/jas/mab/etc all go in this function)

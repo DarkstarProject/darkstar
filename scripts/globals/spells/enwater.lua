@@ -14,7 +14,7 @@ function OnMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	effect = EFFECT_ENWATER;
+	local effect = EFFECT_ENWATER;
 	doEnspell(caster,target,spell,effect);
 	return effect;
 end;

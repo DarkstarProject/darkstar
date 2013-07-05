@@ -18,8 +18,8 @@ end;
 function onSpellCast(caster,target,spell)
 
 	--calculate raw damage
-	basedmg = caster:getSkillLevel(ENFEEBLING_MAGIC_SKILL) / 4;
-	dmg = calculateMagicDamage(basedmg,1,caster,spell,target,ENFEEBLING_MAGIC_SKILL,MOD_INT,false);
+	local basedmg = caster:getSkillLevel(ENFEEBLING_MAGIC_SKILL) / 4;
+	local dmg = calculateMagicDamage(basedmg,1,caster,spell,target,ENFEEBLING_MAGIC_SKILL,MOD_INT,false);
 
 	dmg = utils.clamp(dmg, 1, 12);
 
@@ -33,13 +33,13 @@ function onSpellCast(caster,target,spell)
 	dmg = adjustForTarget(target,dmg);
 
 	--add in final adjustments including the actual damage dealt
-	final = finalMagicAdjustments(caster,target,spell,dmg);
+	local final = finalMagicAdjustments(caster,target,spell,dmg);
 
 	-- Calculate duration.
-	duration = 60;
+	local duration = 60;
 
 	-- Check for Bio.
-	bio = target:getStatusEffect(EFFECT_BIO);
+	local bio = target:getStatusEffect(EFFECT_BIO);
 
 	-- Do it!
 	if(DIA_OVERWRITE == 0 or (DIA_OVERWRITE == 1 and bio == nil)) then

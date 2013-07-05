@@ -35,7 +35,7 @@ function onSpellCast(caster,target,spell)
 
     -- Until someone finds a way to delete Effects by tier we should not allow bard spells to stack.
     -- Since all the tiers use the same effect buff it is hard to delete a specific one.
-    haste = power / 2;
+    local haste = power / 2;
     target:delStatusEffect(EFFECT_MARCH);
     target:addStatusEffect(EFFECT_MARCH,haste,0,duration);
     spell:setMsg(230);
