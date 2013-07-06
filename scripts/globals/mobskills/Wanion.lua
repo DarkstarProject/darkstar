@@ -25,7 +25,9 @@ function OnMobWeaponSkill(target, mob, skill)
         if(mob:hasStatusEffect(effect) == true) then
             effectCount = true;
 
-            local msg = MobStatusEffectMove(mob, target, effect, currentEffect:getPower(), 3, 120));
+            local currentEffect = mob:getStatusEffect(effect);
+
+            local msg = MobStatusEffectMove(mob, target, effect, currentEffect:getPower(), 3, 120);
 
             if(msg == MSG_ENFEEB_IS) then
                 lastEffect = effect;

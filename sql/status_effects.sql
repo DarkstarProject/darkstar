@@ -45,7 +45,7 @@ LOCK TABLES `status_effects` WRITE;
 INSERT INTO `status_effects` VALUES (0,'ko',0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (1,'weakness',0,0,0,3,0,0,0);
 INSERT INTO `status_effects` VALUES (2,'sleep',48,2,19,2,193,0,8);
-INSERT INTO `status_effects` VALUES (3,'poison',32,0,0,1,0,0,3);
+INSERT INTO `status_effects` VALUES (3,'poison',32,0,0,2,0,0,3);
 INSERT INTO `status_effects` VALUES (4,'paralysis',32,0,0,1,0,0,5);
 INSERT INTO `status_effects` VALUES (5,'blindness',32,0,0,1,0,0,8);
 INSERT INTO `status_effects` VALUES (6,'silence',32,0,0,2,0,0,4);

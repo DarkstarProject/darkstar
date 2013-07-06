@@ -43,7 +43,7 @@ function onEventFinish(player,csid,option)
 --print("CSID:",csid);
 --print("OPTION:",option);
 
-    locla price = 100;
+    local price = 100;
 
 	if (csid == 0x2712 and option == 0) then
         if (player:delGil(price)) then

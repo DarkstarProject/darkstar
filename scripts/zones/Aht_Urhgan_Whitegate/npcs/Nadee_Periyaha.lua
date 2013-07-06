@@ -21,7 +21,7 @@ end;
 
 function onTrigger(player,npc)
 	local ratRaceProg = player:getVar("ratraceCS");
-    if(ratRaceProg == 1) then                           v 
+    if(ratRaceProg == 1) then
        player:startEvent(0x0351);
 	elseif(ratRaceProg == 2) then  
        player:startEvent(0x0353);

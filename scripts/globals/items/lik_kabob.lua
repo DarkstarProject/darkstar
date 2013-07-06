@@ -37,7 +37,7 @@ end;
 function onEffectGain(target,effect)
 	target:addMod(MOD_DEX, 3);
 	target:addMod(MOD_ATT, 7);
-	target:addMod(MOD_MND, -2;
+	target:addMod(MOD_MND, -2);
 end;
 
 -----------------------------------------

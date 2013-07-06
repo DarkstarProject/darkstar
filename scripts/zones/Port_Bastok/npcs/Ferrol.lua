@@ -38,7 +38,7 @@ function onTrigger(player,npc)
 		
 		if(EarthFork) then 
 			player:startEvent(0x00fb); -- Dialogue given to remind player to be prepared
-		elseif(EarthFork == false and tonumber(os.date("%j") ~= player:getVar("TrialSizeEarth_date")) then
+		elseif(EarthFork == false and tonumber(os.date("%j")) ~= player:getVar("TrialSizeEarth_date")) then
 			player:startEvent(0x012d,0,1547,1,20); -- Need another mini tuning fork
 		else
 			player:startEvent(0x012f); -- Standard dialog when you loose, and you don't wait 1 real day

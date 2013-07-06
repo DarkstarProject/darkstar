@@ -15,7 +15,7 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-    local needles = 1000 / skill:getTotalTargets();
+    local needles = 10000 / skill:getTotalTargets();
 
 	local dmg = MobFinalAdjustments(needles,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_LIGHT,MOBPARAM_WIPE_SHADOWS);
 
