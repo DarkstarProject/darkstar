@@ -376,7 +376,7 @@ local path = {
 };
 
 function onMobSpawn(mob)
-
+	OnMobRoam(mob);
 end;
 
 function OnMobPath(mob)

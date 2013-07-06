@@ -23,7 +23,7 @@ local path = {
 
 function onMobSpawn(mob)
 	mob:setPos(pathfind.first(path));
-	onMobRoamAction(mob);
+	OnMobRoamAction(mob);
 end;
 
 function OnMobRoamAction(mob)
@@ -34,4 +34,4 @@ end;
 
 function onMobDeath(mob,killer)	
 	checkRegime(killer,mob,56,2);
-end;	
+end;

@@ -1994,6 +1994,7 @@ void CAIMobDummy::SetupEngage()
 	m_LastActionTime = m_Tick - 1000; // Why do we subtract 1 sec?
 	m_firstSpell = true;
 	m_CanStandback = true;
+	m_PPathFind->Clear();
 
 	// drg shouldn't use jump right away
 	if(m_PMob->GetMJob() == JOB_DRG)
@@ -2001,7 +2002,6 @@ void CAIMobDummy::SetupEngage()
 		m_LastSpecialTime = m_Tick;
 	}
 
-	m_PPathFind->Clear();
 	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
 
 	if(m_PBattleTarget != NULL)
