@@ -1116,7 +1116,44 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
 		}
 
 		m_RegenCheckTime = tick;
-		m_POwner->addHP(m_POwner->getMod(MOD_REGEN));
+
+        int8 regen = m_POwner->getMod(MOD_REGEN) - m_POwner->getMod(MOD_REGEN_DOWN);
+        int8 refresh = m_POwner->getMod(MOD_REFRESH) - m_POwner->getMod(MOD_REFRESH_DOWN);
+        int8 regain = m_POwner->getMod(MOD_REGAIN)/10 - m_POwner->getMod(MOD_REGAIN_DOWN);
+
+        if(HasStatusEffect(EFFECT_STONESKIN))
+        {
+            if(regen < 0)
+            {
+                // reduce stoneskin
+                uint16 skin = m_POwner->getMod(MOD_STONESKIN);
+                if(skin >= regen)
+                {
+                    m_POwner->delModifier(MOD_STONESKIN, regen);
+                }
+                else
+                {
+                    DelStatusEffect(EFFECT_STONESKIN);
+                    m_POwner->addHP(-(regen - skin));
+                    WakeUp();
+                }
+            }
+            else
+            {
+                m_POwner->addHP(regen);
+            }
+        }
+        else
+        {
+
+            // always wake up owner even if total regen is positive
+            if(m_POwner->getMod(MOD_REGEN_DOWN))
+            {
+                WakeUp();
+            }
+
+    		m_POwner->addHP(regen);
+        }
 
 		if (m_POwner->getMod(MOD_AVATAR_PERPETUATION) > 0 && (m_POwner->objtype == TYPE_PC))
 		{
@@ -1142,7 +1179,7 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
 				}
 			}
 
-			m_POwner->addMP(m_POwner->getMod(MOD_REFRESH) - perpetuation);
+			m_POwner->addMP(refresh - perpetuation);
 
 			if( m_POwner->health.mp == 0 && m_POwner->PPet != NULL && m_POwner->PPet->objtype == TYPE_PET)
 			{
@@ -1154,10 +1191,10 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
 		}
 		else
 		{
-			m_POwner->addMP(m_POwner->getMod(MOD_REFRESH));
+			m_POwner->addMP(refresh);
 		}
 
-		m_POwner->addTP(m_POwner->getMod(MOD_REGAIN)/10);
+		m_POwner->addTP(regain);
 
 		if( m_POwner->status != STATUS_DISAPPEAR && (m_POwner->objtype == TYPE_PC))
 		{
@@ -1189,6 +1226,13 @@ bool CStatusEffectContainer::CheckForElevenRoll()
 		}
 	}
 	return false;
+}
+
+void CStatusEffectContainer::WakeUp()
+{
+    DelStatusEffect(EFFECT_SLEEP);
+    DelStatusEffect(EFFECT_SLEEP_II);
+    DelStatusEffect(EFFECT_LULLABY);
 }
 
 bool CStatusEffectContainer::HasBustEffect(uint16 id)

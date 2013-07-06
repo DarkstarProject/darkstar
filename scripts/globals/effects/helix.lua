@@ -6,6 +6,7 @@
 
 require("scripts/globals/status");
 require("scripts/globals/magic");
+require("scripts/globals/utils");
 
 -----------------------------------
 -- onEffectGain Action
@@ -20,20 +21,13 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
-	if(target:hasStatusEffect(EFFECT_STONESKIN)) then
-		local skin = target:getMod(MOD_STONESKIN);
-		local dmg = effect:getPower();
-		if(skin >= dmg) then --absorb all damage
-			target:delMod(MOD_STONESKIN,effect:getPower());
-		else
-			target:delStatusEffect(EFFECT_STONESKIN);
-			target:delHP(dmg - skin);
-			target:wakeUp();
-		end
-	else
-		target:delHP(effect:getPower());
+	local dmg = utils.stoneskin(target, effect:getPower());
+
+	if(dmg > 0) then
+		target:delHP(dmg);
 		target:wakeUp();
 	end
+
 	if (effect:getTick() == 3000) then
 		effect:setTick(9000);
 	end

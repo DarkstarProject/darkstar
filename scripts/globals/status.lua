@@ -835,7 +835,9 @@ MOD_STORMSURGE_EFFECT   = 0x190
 MOD_SUBLIMATION_BONUS	= 0x191
 MOD_WYVERN_BREATH       = 0x192
 MOD_STEP_ACCURACY       = 0x193 
-
+MOD_REGEN_DOWN      	 = 0x194			-- poison
+MOD_REFRESH_DOWN		 = 0x195			-- plague, reduce mp
+MOD_REGAIN_DOWN			 = 0x196			-- plague, reduce tp
 -----------------------------------
 -- Merit Definitions
 -----------------------------------

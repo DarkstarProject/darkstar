@@ -397,8 +397,11 @@ enum MODIFIER
 	MOD_MAIN_DMG_RATING		 = 0x16E,			//adds damage rating to main hand weapon (maneater/blau dolch etc hidden effects)
 	MOD_SUB_DMG_RATING		 = 0x16F,			//adds damage rating to off hand weapon
 	MOD_REGAIN				 = 0x170,			//auto regain TP (from items) | this is multiplied by 10 e.g. 20 is 2% TP
+	MOD_REGAIN_DOWN			 = 0x196,			// plague, reduce tp
 	MOD_REFRESH				 = 0x171,			//auto refresh from equipment
+	MOD_REFRESH_DOWN		 = 0x195,			// plague, reduce mp
 	MOD_REGEN				 = 0x172,			//auto regen from equipment
+	MOD_REGEN_DOWN      	 = 0x194,			// poison
 	MOD_CURE_POTENCY		 = 0x176,			//% cure potency | bonus from gear is capped at 50
 	MOD_CURE_POTENCY_RCVD	 = 0x177,			//% potency of received cure | healer's roll, some items have this
 	MOD_RANGED_DMG_RATING	 = 0x178,			//adds damage rating to ranged weapon
@@ -433,7 +436,7 @@ enum MODIFIER
     MOD_STEP_ACCURACY      = 0x193         // Bonus accuracy for Dancer's steps
 };
 
-#define MAX_MODIFIER	       0x194
+#define MAX_MODIFIER	       0x197
 
 
 

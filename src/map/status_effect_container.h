@@ -79,6 +79,7 @@ public:
 
     uint8 GetEffectsCount(uint16 SubID);                        // получаем количество эффектов с указанным subid
 
+  void WakeUp(); // remove sleep effects
   bool CheckForElevenRoll();
   bool HasBustEffect(uint16 id);
   bool HasPreventActionEffect(); // checks if owner has an effect that prevents actions, like stun, petrify, sleep etc
