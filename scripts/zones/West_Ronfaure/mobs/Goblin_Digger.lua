@@ -22,14 +22,20 @@ local path = {
 };
 
 function onMobSpawn(mob)
-	mob:setPos(pathfind.first(path));
-	OnMobRoamAction(mob);
+	OnMobRoam(mob);
 end;
 
 function OnMobRoamAction(mob)
 
 	pathfind.patrol(mob, path, PATHFLAG_REVERSE);
 
+end;
+
+function OnMobRoam(mob)
+	-- move to start position if not moving
+	if(mob:isFollowingPath() == false) then
+		mob:pathThrough(pathfind.first(path));
+	end
 end;
 
 function onMobDeath(mob,killer)	
