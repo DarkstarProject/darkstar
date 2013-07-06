@@ -48,6 +48,7 @@ public:
 	CAIPetDummy(CPetEntity* PPet);
 
 	uint16	m_MasterCommand; //used for avatars/wyverns atm
+    bool  m_queueSic;
 
 protected:
 	virtual void TransitionBack(bool skipWait = false);

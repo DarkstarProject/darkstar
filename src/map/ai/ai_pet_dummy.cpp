@@ -53,6 +53,7 @@
 CAIPetDummy::CAIPetDummy(CPetEntity* PPet)
 {
 	m_PPet = PPet;
+	m_queueSic = false;
     m_PTargetFind = new CTargetFind(PPet);
     m_PPathFind = new CPathFind(PPet);
 }
@@ -106,7 +107,7 @@ void CAIPetDummy::ActionAbilityStart()
 	{
 		return;
 	}
-	
+
 	if(m_PPet->objtype == TYPE_MOB && m_PPet->PMaster->objtype == TYPE_PC)
 	{
 		if(m_MasterCommand == MASTERCOMMAND_SIC && m_PPet->health.tp >= 100 && m_PBattleTarget != NULL)
@@ -679,6 +680,16 @@ void CAIPetDummy::ActionAttack()
 		return;
 	}
 
+	if(m_queueSic && m_PPet->health.tp >= 100)
+	{
+		// now use my tp move
+		m_queueSic = false;
+		m_MasterCommand = MASTERCOMMAND_SIC;
+		m_ActionType = ACTION_MOBABILITY_START;
+		ActionAbilityStart();
+		return;
+	}
+
 	m_PPathFind->LookAt(m_PBattleTarget->loc.p);
 
 	float currentDistance = distance(m_PPet->loc.p, m_PBattleTarget->loc.p);
@@ -816,7 +827,8 @@ void CAIPetDummy::ActionDisengage()
 		ActionFall();
 		return;
 	}
-
+	
+	m_queueSic = false;
 	m_PPet->animation = ANIMATION_NONE;
 	m_LastActionTime = m_Tick;
 	m_PBattleTarget  = NULL;

@@ -3735,6 +3735,7 @@ void tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
 
 		//apply charm time extension from gear
 		uint8 charmModValue = (PCharmer->getMod(MOD_CHARM_TIME));
+		// adds 5% increase
 		float extraCharmTime = (float)(CharmTime*(charmModValue * 0.5f)/10);
 		CharmTime += extraCharmTime;
 

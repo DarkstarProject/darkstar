@@ -2396,14 +2396,21 @@ void CAICharNormal::ActionJobAbilityFinish()
     		charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
     		m_PChar->pushPacket(new CInventoryFinishPacket());
     	}
-    	if(m_PJobAbility->getID() == ABILITY_SIC && m_PChar->PPet != NULL && ((CPetEntity*)m_PChar->PPet)->getPetType() == PETTYPE_JUG_PET){//Sic
-    		((CAIPetDummy*)m_PChar->PPet->PBattleAI)->m_MasterCommand = MASTERCOMMAND_SIC;
-    		m_PChar->PPet->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
-    	}
 
-    	if(m_PJobAbility->getID() == ABILITY_SIC && m_PChar->PPet != NULL && m_PChar->PPet->objtype == TYPE_MOB){//Sic charmed mob
-    		((CAIPetDummy*)m_PChar->PPet->PBattleAI)->m_MasterCommand = MASTERCOMMAND_SIC;
-    		m_PChar->PPet->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
+    	if(m_PJobAbility->getID() == ABILITY_SIC && m_PChar->PPet != NULL){//Sic
+
+    		CAIPetDummy* PPetAI = (CAIPetDummy*)m_PChar->PPet->PBattleAI;
+
+    		if(m_PChar->PPet->health.tp >= 100)
+    		{
+	    		PPetAI->m_MasterCommand = MASTERCOMMAND_SIC;
+	    		PPetAI->SetCurrentAction(ACTION_MOBABILITY_START);
+    		}
+    		else
+    		{
+    			// queue sic and use when ready
+    			PPetAI->m_queueSic = true;
+    		}
     	}
 
     	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
