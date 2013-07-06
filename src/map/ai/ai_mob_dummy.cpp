@@ -195,6 +195,7 @@ void CAIMobDummy::ActionRoaming()
 			{
 				// despawn
 				m_ActionType = ACTION_DEATH;
+				return;
 			}
 		}
 		else if(m_PSpecialSkill != NULL && TrySpecialSkill())
@@ -547,12 +548,6 @@ void CAIMobDummy::ActionSpawn()
 		m_PMob->status = STATUS_UPDATE;
 		m_PMob->animation = ANIMATION_NONE;
 		m_PMob->HideName(false);
-
-		// event mob types will always have custom roaming
-		if(m_PMob->m_Type & MOBTYPE_EVENT)
-		{
-			m_PMob->m_roamFlags = ROAMFLAG_EVENT;
-		}
 
         m_PMob->PEnmityContainer->Clear();
         m_PPathFind->Clear();
@@ -1193,7 +1188,6 @@ void CAIMobDummy::ActionMagicFinish()
         CBattleEntity* PTarget = *it;
 
         Action.ActionTarget = PTarget;
-
 
 		m_PSpell->resetMessage();
         ce = m_PSpell->getCE();

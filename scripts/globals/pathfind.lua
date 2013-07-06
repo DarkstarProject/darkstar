@@ -2,6 +2,11 @@
 
 pathfind = {};
 
+PATHFLAG_NONE = 0
+PATHFLAG_RUN = 1
+PATHFLAG_WALLHACK = 2
+PATHFLAG_REVERSE = 4 
+
 -- returns the point at the given index
 function pathfind.get(points, index)
     local pos = {};
@@ -16,6 +21,10 @@ function pathfind.get(points, index)
 
     return pos;
 end;
+
+function pathfind.length(points)
+    return table.getn(points) / 3;
+end
 
 function pathfind.first(points)
     return pathfind.get(points, 1);
@@ -36,26 +45,32 @@ end;
 function pathfind.random(points)
     local length = table.getn(points);
 
-    return pathfind.get(points, math.random(length));
+    return pathfind.get(points, math.random(1, length));
 end;
 
 -- returns the start path without the first element
 function pathfind.fromStart(points, start)
     start = start or 1;
-    start = start * 3;
 
     local t2 = {}
-    local length = table.getn(points);
 
-    local k = start + 1;
-    local pos = 1;
+    local maxLength = 50;
+    local length = pathfind.length(points);
 
-    while k <= length and pos <= 50*3 do
+    local count = 1;
+    local pos = start + 1;
+    local index = 1;
 
-        t2[pos] = points[k]
+    while pos <= length and count <= maxLength do
+        local pt = pathfind.get(points, pos);
 
-    	pos = pos + 1
-    	k = k + 1
+        t2[index] = pt[1];
+        t2[index+1] = pt[2];
+        t2[index+2] = pt[3];
+
+        pos = pos + 1;
+        count = count + 1;
+        index = index + 3;
     end
 
   return t2
@@ -91,20 +106,20 @@ function pathfind.fromEnd(points, start)
 end;
 
 -- continusly runs the path
-function pathfind.patrol(npc, points)
+function pathfind.patrol(npc, points, flags)
 
 	if(npc:atPoint(pathfind.first(points)) or npc:atPoint(pathfind.last(points))) then
-		npc:pathThrough(pathfind.fromStart(points));
+		npc:pathThrough(pathfind.fromStart(points), flags);
 	else
 
 		local length = table.getn(points) / 3;
 		local currentLength = 0;
-		local i = 50;
+		local i = 51;
 		-- i'm some where inbetween
 		while(i <= length) do
 
 			if(npc:atPoint(pathfind.get(points, i))) then
-				npc:pathThrough(pathfind.fromStart(points, i));
+				npc:pathThrough(pathfind.fromStart(points, i), flags);
 				break;
 			end
 

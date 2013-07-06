@@ -25,7 +25,7 @@ function onZoneIn(player,prevZone)
 		player:setPos(20.37,-21.104,275.782,46);
 	end	
 	return cs;	
-end;		
+end;
 
 -----------------------------------		
 -- onRegionEnter		

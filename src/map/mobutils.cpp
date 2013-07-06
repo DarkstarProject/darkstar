@@ -129,11 +129,23 @@ void CalculateStats(CMobEntity * PMob)
 	JOBTYPE mJob = PMob->GetMJob();
 	JOBTYPE sJob = PMob->GetSJob();
 
+	// event mob types will always have custom roaming
+	if(PMob->m_Type & MOBTYPE_EVENT)
+	{
+		PMob->m_roamFlags = ROAMFLAG_EVENT;
+	}
+
 	if(isNM)
 	{
 		// enmity range is larger
 		PMob->m_enmityRange = 28;
 		PMob->m_tpUseChance = 40;
+
+		if(PMob->m_Family == 267)
+		{
+			// wyverns
+			PMob->m_sightRange = 20;
+		}
 	}
 
 	if(PMob->HPmodifier == 0){
@@ -205,10 +217,34 @@ void CalculateStats(CMobEntity * PMob)
 		break;
 	}
 
+
 	if(PMob->m_Family == 193 || PMob->m_Family == 34)
 	{
 		// pet wyverns / avatar have mp
 		PMob->health.maxmp = (int16)(18.2 * pow(PMob->GetMLevel(),1.1075) * PMob->MPscale);
+	}
+
+	// give mp if subjob is a mage
+	if(PMob->health.maxmp == 0)
+	{
+		switch(sJob){
+		case JOB_PLD:
+		case JOB_WHM:
+		case JOB_BLM:
+		case JOB_RDM:
+		case JOB_DRK:
+		case JOB_BLU:
+		case JOB_SCH:
+		case JOB_SMN:
+			PMob->health.maxmp = (int16)(18.2 * pow(PMob->GetMLevel(),1.1075) * PMob->MPscale);
+			if(isNM){
+			PMob->health.maxmp *= 2.5;
+				if(PMob->GetMLevel()>75){
+					PMob->health.maxmp *= 2.5;
+				}
+			}
+			break;
+		}
 	}
 
     PMob->UpdateHealth();

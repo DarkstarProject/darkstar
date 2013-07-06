@@ -21,8 +21,8 @@ function onSpellCast(caster,target,spell)
 		return 0;
 	end
 
-	-- is ko'd
-	spell:setMsg(203);
+	-- falls to the ground
+	spell:setMsg(20);
 
 	target:setHP(0);
 

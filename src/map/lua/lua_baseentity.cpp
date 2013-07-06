@@ -6870,7 +6870,7 @@ Usage:
 	npc:pathThrough({
 		-217, -57, 379, -- point 1
 		-264, -55, 378 -- point 2
-	}, {run: true});
+	}, PATHFLAG_RUN | PATHFLAG_WALLHACK);
 */
 inline int32 CLuaBaseEntity::pathThrough(lua_State* L)
 {
@@ -6880,8 +6880,6 @@ inline int32 CLuaBaseEntity::pathThrough(lua_State* L)
 
 	uint8 length = lua_objlen(L, 1);
 	uint8 pos = 0;
-
-	bool reverse = lua_isboolean(L, 2);
 
 	DSP_DEBUG_BREAK_IF(length > 50*3);
 
@@ -6905,9 +6903,9 @@ inline int32 CLuaBaseEntity::pathThrough(lua_State* L)
 
 	uint8 flags = 0;
 
-	if(reverse)
+	if(lua_isnumber(L, 2))
 	{
-		flags |= PATHFLAG_REVERSE;
+		flags = lua_tointeger(L, 2);
 	}
 
 	CBattleEntity* PBattle = (CBattleEntity*)m_PBaseEntity;

@@ -10,7 +10,7 @@ require("scripts/globals/pathfind");
 -- onMobDeath	
 -----------------------------------	
 
-path = {
+local path = {
 	-408, -21, -90,
 	-423.6, -22.9, -100.5,
 	-439.9, -24.6, -105.6,
@@ -20,15 +20,15 @@ path = {
 	-445.6, -24.3, -132.4,
 	-417.3, -22.6, -143
 };
-	
+
 function onMobSpawn(mob)
 	mob:setPos(pathfind.first(path));
 	onMobRoamAction(mob);
 end;
 
-function onMobRoamAction(mob)
+function OnMobRoamAction(mob)
 
-	pathfind.patrol(mob, path);
+	pathfind.patrol(mob, path, PATHFLAG_REVERSE);
 
 end;
 
