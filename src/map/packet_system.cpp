@@ -1425,7 +1425,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
             if (boxtype == 0x01)
             {
-			    const int8* fmtQuery = "SELECT itemid, itemsubid, slot, quantity, sender \
+			    const int8* fmtQuery = "SELECT itemid, itemsubid, slot, quantity, sender, signature \
                                         FROM delivery_box \
 							            WHERE charid = %u \
                                         AND box = %u \
@@ -1451,6 +1451,13 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
                                 PItem->setSlotID(Sql_GetIntData(SqlHandle,2));
                                 PItem->setQuantity(Sql_GetUIntData(SqlHandle,3));
                                 PItem->setSender(Sql_GetData(SqlHandle,4));
+
+                                if (PItem->getFlag() & ITEM_FLAG_INSCRIBABLE)
+				                {
+                                    int8 EncodedString [13];
+                                    EncodeStringSignature(Sql_GetData(SqlHandle,5), EncodedString);
+					                PItem->setSignature(EncodedString);
+				                }
 
                                 if (PItem->getSlotID() < 8)
                                 {
@@ -1485,6 +1492,8 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
             uint8 invslot = RBUFB(data, (0x07));
             uint32 quantity = RBUFL(data, (0x08));
             CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invslot);
+            int8 signature[21];
+            DecodeStringSignature((int8*)PItem->getSignature(), signature);
 
             if (PItem && PItem->getQuantity() >= quantity && PChar->UContainer->IsSlotEmpty(slotID) && !(PItem->getFlag() & ITEM_FLAG_EX))
             {
@@ -1494,14 +1503,15 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     uint32 charid = Sql_GetUIntData(SqlHandle, 0);
 
                     ret = Sql_Query(SqlHandle,
-                        "INSERT INTO delivery_box(charid, charname, box, slot, itemid, itemsubid, quantity, senderid, sender) \
-                        VALUES(%u, '%s', 2, %u, %u, %u, %u, %u, '%s'); ",
+                        "INSERT INTO delivery_box(charid, charname, box, slot, itemid, itemsubid, quantity, signature, senderid, sender) \
+                        VALUES(%u, '%s', 2, %u, %u, %u, %u, '%s', %u, '%s'); ",
                         charid,
                         data+0x10,
                         slotID,
                         PItem->getID(),
                         PItem->getSubID(),
                         quantity,
+                        signature,
                         PChar->id,
                         PChar->GetName());
 
@@ -1541,6 +1551,9 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     bool isAutoCommitOn = Sql_GetAutoCommit(SqlHandle);
                     bool commit = false;
 
+                    int8 signature[21];
+                    DecodeStringSignature((int8*)PItem->getSignature(), signature);
+
                     if(Sql_SetAutoCommit(SqlHandle, false) && Sql_TransactionStart(SqlHandle))
                     {
                         int32 ret = Sql_Query(SqlHandle, "SELECT charid FROM chars WHERE charname = '%s' LIMIT 1", PItem->getReceiver());
@@ -1554,13 +1567,14 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
                             if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
                             {
                                 ret = Sql_Query(SqlHandle,
-                                    "INSERT INTO delivery_box(charid, charname, box, itemid, itemsubid, quantity, senderid, sender) \
-                                    VALUES(%u, '%s', 1, %u, %u, %u, %u, '%s'); ",
+                                    "INSERT INTO delivery_box(charid, charname, box, itemid, itemsubid, quantity, signature, senderid, sender) \
+                                    VALUES(%u, '%s', 1, %u, %u, %u, '%s', %u, '%s'); ",
                                     charid,
                                     PItem->getReceiver(),
                                     PItem->getID(),
                                     PItem->getSubID(),
                                     PItem->getQuantity(),
+                                    signature,
                                     PChar->id,
                                     PChar->GetName());
                                 if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
@@ -1758,8 +1772,11 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 uint32 senderID = 0;
                 string_t senderName;
 
-                if(Sql_SetAutoCommit(SqlHandle, false) && Sql_TransactionStart(SqlHandle))
+                if(Sql_SetAutoCommit(SqlHandle, false) && Sql_TransactionStart(SqlHandle) && PItem != NULL)
                 {
+                    int8 signature[21];
+                    DecodeStringSignature((int8*)PItem->getSignature(), signature);
+
                     // Get sender of delivery record
                     int32 ret = Sql_Query(SqlHandle, "SELECT senderid, sender FROM delivery_box WHERE charid = %u AND slot = %u AND box = 1 LIMIT 1;", PChar->id, slotID);
 
@@ -1773,12 +1790,13 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
                             // Insert a return record into delivery_box
                             ret = Sql_Query(SqlHandle,
                                 "INSERT INTO delivery_box(charid, charname, box, itemid, itemsubid, quantity, senderid, sender) \
-                                VALUES(%u, '%s', 1, %u, %u, %u, %u, '%s'); ",
+                                VALUES(%u, '%s', 1,d %u, %u, %u, '%s', %u, '%s'); ",
                                 senderID,
                                 senderName.c_str(),
                                 PItem->getID(),
                                 PItem->getSubID(),
                                 PItem->getQuantity(),
+                                signature,
                                 PChar->id,
                                 PChar->GetName());
 
@@ -4270,27 +4288,46 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			uint8 spellToAdd = RBUFB(data,(0x04)); // this is non-zero if client wants to add.
 			uint8 spellInQuestion = 0;
 			uint8 spellIndex = -1;
-			// loop all 20 slots and find which index they are playing with
-			for (uint8 i = 0x0C; i <= 0x1F; i++) {
-				if ( RBUFB(data,i) > 0 ) {
-					spellInQuestion = RBUFB(data,i);
-					spellIndex = i - 0x0C;
-					break;
+
+			if (spellToAdd == 0x00) {
+				for (uint8 i = 0x0C; i <= 0x1F; i++) {
+					if ( RBUFB(data,i) > 0 ) {
+						spellInQuestion = RBUFB(data,i);
+						spellIndex = i - 0x0C;
+						CSpell* spell = spell::GetSpell(spellInQuestion + 0x200); // the spells in this packet are offsetted by 0x200 from their spell IDs.
+				
+						if (spell != NULL) {
+							blueutils::SetBlueSpell(PChar, spell, spellIndex, (spellToAdd > 0));
+						}
+						else {
+							ShowDebug("Cannot resolve spell id \n");
+						}
+					}
 				}
-			}
+			}				
+			else {
+				// loop all 20 slots and find which index they are playing with
+				for (uint8 i = 0x0C; i <= 0x1F; i++) {
+					if ( RBUFB(data,i) > 0 ) {
+						spellInQuestion = RBUFB(data,i);
+						spellIndex = i - 0x0C;
+						break;
+					}
+				}
 
-			if (spellIndex != -1 && spellInQuestion != 0) {
-				CSpell* spell = spell::GetSpell(spellInQuestion + 0x200); // the spells in this packet are offsetted by 0x200 from their spell IDs.
-
-				if (spell != NULL) {
-					blueutils::SetBlueSpell(PChar, spell, spellIndex, (spellToAdd > 0));
+				if (spellIndex != -1 && spellInQuestion != 0) {
+					CSpell* spell = spell::GetSpell(spellInQuestion + 0x200); // the spells in this packet are offsetted by 0x200 from their spell IDs.
+				
+					if (spell != NULL) {
+						blueutils::SetBlueSpell(PChar, spell, spellIndex, (spellToAdd > 0));
+					}
+					else {
+						ShowDebug("Cannot resolve spell id \n");
+					}
 				}
 				else {
-					ShowDebug("Cannot resolve spell id \n");
+					ShowDebug("No match found. \n");
 				}
-			}
-			else {
-				ShowDebug("No match found. \n");
 			}
 		}
 		else {
