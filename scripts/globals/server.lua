@@ -122,6 +122,10 @@ function SetTimedSpawns()
     17297440, -- Behemoth
     17228242, -- Simurgh
     17301537, -- Adamantoise
+    17436923, -- Duke_Haborym
+    17436913, -- Marquis_Allocen
+    17436918, -- Marquis_Amon
+    17436927, -- Grand_Duke_Batym
     17568127  -- Morbolger
   }
 
