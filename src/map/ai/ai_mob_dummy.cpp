@@ -484,14 +484,7 @@ void CAIMobDummy::ActionDeath()
 
 		luautils::OnMobDespawn(m_PMob);
 	}
-    else if (!m_PMob->isDead())
-    {
-        if (m_PMob->PEnmityContainer->GetHighestEnmity() != NULL)
-	    {
-		    m_ActionType = ACTION_ENGAGE;
-		    ActionEngage();
-	    }
-    }
+    
 }
 
 /************************************************************************

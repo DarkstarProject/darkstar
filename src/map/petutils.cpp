@@ -824,6 +824,7 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 
 void SpawnMobPet(CBattleEntity* PMaster, uint32 PetID)
 {
+	// this is ONLY used for smn elementals / avatars
 	/*
 	This should eventually be merged into one big spawn pet method.
 	At the moment player pets and mob pets are totally different. We need a central place
@@ -870,11 +871,6 @@ void SpawnMobPet(CBattleEntity* PMaster, uint32 PetID)
     PPet->setModifier(MOD_WATERRES,   petData->waterres);
     PPet->setModifier(MOD_LIGHTRES,   petData->lightres);
     PPet->setModifier(MOD_DARKRES,    petData->darkres);
-
-	PPet->m_SpawnPoint = nearPosition(PMaster->loc.p, 2.1f, M_PI);
-
-    // prevent random despawning
-    PPet->SetDespawnTimer(0);
 }
 
 /************************************************************************

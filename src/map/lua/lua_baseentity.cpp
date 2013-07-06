@@ -4765,23 +4765,27 @@ inline int32 CLuaBaseEntity::spawnPet(lua_State *L)
 	}
 	else if( m_PBaseEntity->objtype == TYPE_MOB)
 	{
-		CMobEntity* mob = (CMobEntity*)m_PBaseEntity;
+		CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
 
-		if(mob->PPet == NULL)
+		if(PMob->PPet == NULL)
 		{
-			ShowError("lua_baseentity::spawnPet Mob (%d) trying to spawn pet but its NULL\n", mob->id);
+			ShowError("lua_baseentity::spawnPet PMob (%d) trying to spawn pet but its NULL\n", PMob->id);
 			return 0;
 		}
 
+		CMobEntity* PPet = (CMobEntity*)PMob->PPet;
+
+		// if a number is given its an avatar or elemental spawn
 		if( !lua_isnil(L,1) && lua_isstring(L,1) )
 		{
-			// pick my elemental
-			petutils::SpawnMobPet(mob, lua_tointeger(L,1));
+			petutils::SpawnMobPet(PMob, lua_tointeger(L,1));
 		}
 
+		// always spawn on master
+		PPet->m_SpawnPoint = nearPosition(PMob->loc.p, 2.2f, M_PI);
+
 		// setup AI
-		mob->PPet->PBattleAI->SetCurrentAction(ACTION_SPAWN);
-		mob->PPet->PBattleAI->CheckCurrentAction(0);
+		PPet->PBattleAI->SetCurrentAction(ACTION_SPAWN);
 
 	}
 	return 0;

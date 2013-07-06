@@ -463,6 +463,7 @@ void LoadMOBList(CZone* PZone)
         PPet->m_AllowRespawn = false;
         PPet->m_SpawnType = SPAWNTYPE_SCRIPTED;
         PPet->PBattleAI->SetCurrentAction(ACTION_NONE);
+        PPet->SetDespawnTimer(0);
 
         PMaster->PPet = PPet;
         PPet->PMaster = PMaster;
