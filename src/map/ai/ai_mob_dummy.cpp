@@ -1752,8 +1752,7 @@ void CAIMobDummy::TryLink()
 		        if(PPartyMember->m_roamFlags & ROAMFLAG_IGNORE)
 		        {
 		        	// force into attack action
-					m_ActionType = ACTION_ENGAGE;
-					ActionEngage();
+					PPartyMember->PBattleAI->SetCurrentAction(ACTION_ENGAGE);
 		        }
             }
         }
