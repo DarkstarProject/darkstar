@@ -45,6 +45,9 @@ function OnUseAbility(player, target, ability)
 	--get fstr
 	local fstr = fSTR(player:getStat(MOD_STR),target:getStat(MOD_VIT),player:getWeaponDmgRank());
 
+	local params = {};
+	params.atkmulti = 1;
+	
 	--apply WSC
 	local weaponDamage = player:getWeaponDmg();
 	
@@ -52,16 +55,10 @@ function OnUseAbility(player, target, ability)
 		local h2hSkill = ((player:getSkillLevel(1) * 0.11) + 3);
 		weaponDamage = player:getWeaponDmg()-3;
 
-		if(params.kick == true and player:hasStatusEffect(EFFECT_FOOTWORK)) then
-			weaponDamage = player:getMod(MOD_KICK_DMG);
-		end
-
 		weaponDamage = weaponDamage + h2hSkill;
 	end
 	
 	local base = weaponDamage + fstr
-	local params = {};
-	params.atkmulti = 1;
 	local cratio, ccritratio = cMeleeRatio(player, target, params, 0);
 	local isSneakValid = player:hasStatusEffect(EFFECT_SNEAK_ATTACK);
 	if(isSneakValid and not player:isBehind(target))then
