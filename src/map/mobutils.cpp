@@ -489,6 +489,16 @@ void CalculateStats(CMobEntity * PMob)
         PMob->delModifier(PTrait->getMod(), PTrait->getValue());
     }
 
+    // special case, give spell list to my pet
+    if(PMob->id == 16781327 && PMob->PPet != NULL)
+    {
+    	// Stubborn_Dredvodd
+    	CMobEntity* PPet = (CMobEntity*)PMob->PPet;
+
+    	// same spell list
+    	PPet->m_SpellListContainer = PMob->m_SpellListContainer;
+    }
+
 	// add special traits to families
 	// right now this is hard coded but will eventually be put into a column?
 

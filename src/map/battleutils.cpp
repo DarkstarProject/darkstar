@@ -1589,7 +1589,6 @@ uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender){
 	int eva = PDefender->EVA();
 	hitrate = hitrate + (acc - eva) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
 
-	ShowDebug("ranged acc %d\n", hitrate);
 	uint8 finalhitrate = dsp_cap(hitrate, 20, 95);
 	return finalhitrate;
 }

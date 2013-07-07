@@ -1134,6 +1134,7 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
                 else
                 {
                     DelStatusEffect(EFFECT_STONESKIN);
+                    DelStatusEffect(EFFECT_HEALING);
                     m_POwner->addHP(-(regen - skin));
                     WakeUp();
                 }
@@ -1149,6 +1150,8 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
             // always wake up owner even if total regen is positive
             if(m_POwner->getMod(MOD_REGEN_DOWN))
             {
+                // prevent resting
+                DelStatusEffect(EFFECT_HEALING);
                 WakeUp();
             }
 

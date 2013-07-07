@@ -413,6 +413,8 @@ void LoadMOBList(CZone* PZone)
 			{
 				// Do not move!
 				PMob->m_roamFlags |= ROAMFLAG_EVENT;
+				// make sure everything will link
+				PMob->m_linkRadius = 20;
 			}
 
 			mobutils::InitializeMob(PMob);
