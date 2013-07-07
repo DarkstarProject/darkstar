@@ -314,33 +314,33 @@ namespace conquest
 			else if(g_Conquest[i][1] == 1) basty++;
 			else if(g_Conquest[i][1] == 2) windy++;
 		}
-
+		
 		// Based on the below values, it seems to be in pairs of bits.
 		// Order is Windurst, Bastok, San d'Oria
 		// 01 for first place, 10 for second, 11 for third.
 		// 45 = 0b101101 = Windurst in second, Bastok in third, San d'Oria in first
 		// 30 = 0b011110 = Windurst in first, Bastok in third, San d'Oria in second
-		if(sandy > basty && sandy > windy)
-		{
-			if(windy > basty) return 45;
-			else return 57;
-		}
-		else if(basty > sandy && basty > windy)
-		{
-			if(sandy > windy) return 54;
-			else return 39;
-		}
-		else if(windy > sandy && windy > basty)
-		{
-			if(sandy > basty) return 30;
-			else return 27;
-		}
-		//TODO: add alliance
-		else 
-		{
-			printf("error with conquest::getBalance()");
-			return 0;
-		}
+		
+		uint8 ranking = 63;
+		if(sandy >= basty) 
+			ranking -= 1;
+		
+		if(sandy >= windy) 
+			ranking -= 1;
+		
+		if(basty >= sandy)
+			ranking -= 4;
+		
+		if(basty >= windy)
+			ranking -= 4;
+		
+		if(windy >= sandy)
+			ranking -= 16;
+
+		if(windy >= basty)
+			ranking -= 16;
+		
+		return ranking;
     }
 
     /************************************************************************
