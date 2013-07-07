@@ -392,6 +392,15 @@ enum CONTINENTTYPE : uint8
     OTHER_AREAS             = 4
 };
 
+enum ZONETYPE
+{
+	ZONETYPE_NONE = 0,
+	ZONETYPE_CITY = 1,
+	ZONETYPE_OUTDOORS = 2,
+	ZONETYPE_DUNGEON = 3,
+	ZONETYPE_BATTLEFIELD = 4
+};
+
 enum GLOBAL_MESSAGE_TYPE
 {
 	CHAR_INRANGE,
@@ -466,6 +475,7 @@ class CZone
 public:
 
 	ZONEID          GetID();
+	ZONETYPE        GetType();
     REGIONTYPE      GetRegionID();
     CONTINENTTYPE   GetContinentID();
 	uint32			GetIP();
@@ -478,6 +488,7 @@ public:
 	uint8			GetPartyBattleMusic();
 	uint8			GetBackgroundMusic();
 	zoneLine_t*		GetZoneLine(uint32 zoneLineID);
+	bool 			IsBurningCircle(); // is this zone a BC?
 
 	void			HealAllMobs();
 
@@ -531,12 +542,14 @@ public:
 private:
 
 	ZONEID			m_zoneID;				// ID зоны
+	ZONETYPE        m_zoneType;
     REGIONTYPE      m_regionID;             // ID области
     CONTINENTTYPE   m_continentID;          // ID континента
 	string_t		m_zoneName;				// имя зоны
 	uint16			m_zonePort;				// порт зоны
 	uint32			m_zoneIP;               // IP зоны
     bool 			m_useNavMesh;			// Use navmesh for roaming, chasing
+    bool 			m_isBurningCircle;      // this zone a burning circle?
 
 	WEATHER			m_Weather;              // текущая погода
     uint32          m_WeatherChangeTime;    // время начала текущей погоды

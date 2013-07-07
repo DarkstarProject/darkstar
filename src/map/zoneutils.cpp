@@ -409,6 +409,12 @@ void LoadMOBList(CZone* PZone)
 
 			PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(Sql_GetIntData(SqlHandle,54));
 
+			if(PZone->GetType() == ZONETYPE_BATTLEFIELD)
+			{
+				// Do not move!
+				PMob->m_roamFlags |= ROAMFLAG_EVENT;
+			}
+
 			mobutils::InitializeMob(PMob);
 
 			PZone->InsertMOB(PMob);

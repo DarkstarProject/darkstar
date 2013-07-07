@@ -107,6 +107,7 @@ CZone::CZone(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID)
   ZoneTimer = NULL;
 
   m_zoneID = ZoneID;
+  m_zoneType = ZONETYPE_NONE;
   m_regionID = RegionID;
   m_continentID = ContinentID;
   m_Transport = 0;
@@ -136,6 +137,11 @@ CZone::CZone(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID)
 ZONEID CZone::GetID()
 {
 	return m_zoneID;
+}
+
+ZONETYPE CZone::GetType()
+{
+  return m_zoneType;
 }
 
 REGIONTYPE CZone::GetRegionID()
@@ -215,6 +221,11 @@ zoneLine_t* CZone::GetZoneLine(uint32 zoneLineID)
 		}
 	}
 	return NULL;
+}
+
+bool CZone::IsBurningCircle()
+{
+  return m_isBurningCircle;
 }
 
 void  CZone::HealAllMobs()
@@ -341,6 +352,7 @@ void CZone::LoadZoneSettings()
           "zone.tax,"
           "zone.misc,"
           "zone.navmesh,"
+          "zone.zonetype,"
           "bcnm.name "
         "FROM zone_settings AS zone "
         "LEFT JOIN bcnm_info AS bcnm "
@@ -363,7 +375,9 @@ void CZone::LoadZoneSettings()
     m_miscMask = (uint16)Sql_GetUIntData(SqlHandle,7);
     m_useNavMesh = (bool)Sql_GetIntData(SqlHandle,8);
 
-        if (Sql_GetData(SqlHandle,9) != NULL) // сейчас нельзя использовать bcnmid, т.к. они начинаются с нуля
+    m_zoneType = (ZONETYPE)Sql_GetUIntData(SqlHandle, 9);
+
+        if (Sql_GetData(SqlHandle,10) != NULL) // сейчас нельзя использовать bcnmid, т.к. они начинаются с нуля
         {
             m_InstanceHandler = new CInstanceHandler(m_zoneID);
       }
@@ -526,17 +540,21 @@ void CZone::FindPartyForMob(CBaseEntity* PEntity)
 
     CMobEntity* PMob = (CMobEntity*)PEntity;
 
-    if (PMob->m_Link && PMob->PParty == NULL)
+    // force all mobs in a burning circle to link
+    bool forceLink = GetType() == ZONETYPE_BATTLEFIELD;
+    
+    if ((forceLink || PMob->m_Link) && PMob->PParty == NULL)
     {
         for (EntityList_t::const_iterator it = m_mobList.begin() ; it != m_mobList.end() ; ++it)
         {
             CMobEntity* PCurrentMob = (CMobEntity*)it->second;
 
-            if(!PCurrentMob->m_Link) continue;
+            if(!forceLink && !PCurrentMob->m_Link) continue;
 
-            if (PCurrentMob->m_Family == PMob->m_Family ||
-                  PMob->m_SubLinks[0] && PMob->m_SubLinks[0] == PCurrentMob->m_Family ||
-                  PMob->m_SubLinks[1] && PMob->m_SubLinks[1] == PCurrentMob->m_Family)
+            if (forceLink || 
+                PCurrentMob->m_Family == PMob->m_Family ||
+                PMob->m_SubLinks[0] && PMob->m_SubLinks[0] == PCurrentMob->m_Family ||
+                PMob->m_SubLinks[1] && PMob->m_SubLinks[1] == PCurrentMob->m_Family)
             {
               if(PCurrentMob->PMaster == NULL || PCurrentMob->PMaster->objtype == TYPE_MOB)
               {
