@@ -4225,6 +4225,7 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		// If removing RemoveAllEquipment, please add a charutils::CheckUnarmedItem(PChar) if main hand is empty.
 		charutils::RemoveAllEquipment(PChar); // TODO: разобраться, зачем
 
+        blueutils::UnequipAllBlueSpells(PChar); //TODO: save spells
 
 		charutils::BuildingCharSkillsTable(PChar);
 		charutils::CalculateStats(PChar);

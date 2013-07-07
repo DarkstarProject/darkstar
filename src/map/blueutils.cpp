@@ -29,7 +29,7 @@
 #include <math.h>
 
 #include "packets/message_basic.h"
-#include "packets/char_update.h"
+#include "packets/char_stats.h"
 #include "packets/char_health.h"
 
 #include "battleutils.h"
@@ -51,16 +51,22 @@ void SetBlueSpell(CCharEntity* PChar, CSpell* PSpell, uint8 slotIndex, bool addi
 		if (PSpell != NULL && PSpell->getID() > 0x200) {
 			if (addingSpell) {
 				// Blue spells in SetBlueSpells must be 0x200 ofsetted so it's 1 byte per spell.
+                if (PChar->m_SetBlueSpells[slotIndex] != 0)
+                {
+                    CSpell* POldSpell = spell::GetSpell(PChar->m_SetBlueSpells[slotIndex] + 0x200);
+                    PChar->delModifiers(&POldSpell->modList);
+                }
 				PChar->m_SetBlueSpells[slotIndex] = PSpell->getID() - 0x200;
 				PChar->addModifiers(&PSpell->modList);
 			}
-			else {
+			else
+            {
 				PChar->m_SetBlueSpells[slotIndex] = 0x00;
 				PChar->delModifiers(&PSpell->modList);
 			}
 			PChar->status = STATUS_UPDATE;
 			PChar->pushPacket(new CBlueSetSpellsPacket(PChar));
-			PChar->pushPacket(new CCharUpdatePacket(PChar));
+			PChar->pushPacket(new CCharStatsPacket(PChar));
 			charutils::CalculateStats(PChar);
 			PChar->UpdateHealth();
 			PChar->pushPacket(new CCharHealthPacket(PChar));
@@ -140,5 +146,17 @@ void HasEnoughSetPoints(CCharEntity* PChar, CSpell* PSpellToAdd, uint8 slotToPut
 
 }
 
+void UnequipAllBlueSpells(CCharEntity* PChar)
+{
+    for (int slot = 0; slot < 20; slot++)
+    {
+        if (PChar->m_SetBlueSpells[slot] != 0)
+        {
+            CSpell* PSpell = spell::GetSpell(PChar->m_SetBlueSpells[slot] + 0x200);
+            PChar->m_SetBlueSpells[slot] = 0;
+            PChar->delModifiers(&PSpell->modList);
+        }
+    }
 }
 
+}

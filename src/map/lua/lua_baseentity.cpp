@@ -75,6 +75,7 @@
 
 #include "../ability.h"
 #include "../battleutils.h"
+#include "../blueutils.h"
 #include "../charutils.h"
 #include "../itemutils.h"
 #include "../guildutils.h"
@@ -4248,6 +4249,7 @@ inline int32 CLuaBaseEntity::changeJob(lua_State *L)
 	PChar->jobs.unlocked |= (1 << (uint8)lua_tointeger(L,1));
 	PChar->SetMJob((uint8)lua_tointeger(L,1));
 
+    blueutils::UnequipAllBlueSpells(PChar); //TODO: save spells
     charutils::BuildingCharSkillsTable(PChar);
 	charutils::CalculateStats(PChar);
     charutils::CheckValidEquipment(PChar);
