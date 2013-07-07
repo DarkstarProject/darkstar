@@ -200,13 +200,13 @@ INSERT INTO `mob_skill` VALUES (88,79,88,'Sticky_Thread', 4, 10.0, 2000, 1500, 4
 
 -- Scorpion
 INSERT INTO `mob_skill` VALUES (94,217,94,'Mandible_Bite', 0, 7.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (97,217,97,'Death_Scissors', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (97,217,97,'Death_Scissors', 0, 9.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (98,217,98,'Wild_Rage', 1, 15.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (99,217,99,'Earth_Pounder', 1, 15.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (95,217,95,'Poison_Sting', 0, 7.0, 2000, 1500, 4, 0); -- 1hp/tick
 INSERT INTO `mob_skill` VALUES (93,217,93,'Cold_Breath', 4, 15.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (92,217,92,'Numbing_Breath', 4, 15.0, 2000, 1500, 4, 0);
-INSERT INTO `mob_skill` VALUES (100,217,100,'Sharp_Strike', 0, 7.0, 2000, 1500, 1, 0);
+INSERT INTO `mob_skill` VALUES (100,217,100,'Sharp_Strike', 0, 9.0, 2000, 1500, 1, 0);
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Earthbreaker', 1, 40.0, 2000, 1500, 4, 0); -- NM/HNM only
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Critical_Bite', 0, 7.0, 2000, 1500, 4, 0); -- NM/HNM only
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Venom_Sting', 0, 7.0, 2000, 1500, 4, 0); -- NM/HNM only
@@ -215,6 +215,16 @@ INSERT INTO `mob_skill` VALUES (100,217,100,'Sharp_Strike', 0, 7.0, 2000, 1500, 
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Evasion', 0, 7.0, 2000, 1500, 1, 0); -- NM/HNM only
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Stasis', 0, 7.0, 2000, 1500, 4, 0); -- NM/HNM only
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Hell_Scissors', 0, 7.0, 2000, 1500, 4, 0); -- Campaign NM only
+
+-- serket, someone needs to make REAL skills
+INSERT INTO `mob_skill` VALUES (94,273,94,'Mandible_Bite', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (97,273,97,'Death_Scissors', 0, 9.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (98,273,98,'Wild_Rage', 1, 40.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (99,273,99,'Earth_Pounder', 1, 40.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (95,273,95,'Poison_Sting', 0, 7.0, 2000, 1500, 4, 0); -- 1hp/tick
+INSERT INTO `mob_skill` VALUES (93,273,93,'Cold_Breath', 4, 15.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (92,273,92,'Numbing_Breath', 4, 15.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (100,273,100,'Sharp_Strike', 0, 9.0, 2000, 1500, 1, 0);
 
 -- DynamisStatue-Orc
 INSERT INTO `mob_skill` VALUES (854,93,761,'Seismostomp', 1, 15.0, 3000, 1500, 4, 0);
@@ -1366,11 +1376,14 @@ INSERT INTO `mob_skill` VALUES (1767,168,1368,'Thunderstrike', 1, 18.0, 2000, 15
 -- INSERT INTO `mob_skill` VALUES (1768,168,1371,'Tourbillion', 1, 18.0, 2000, 1500, 4, 0); -- Need a system to lower wings with crits.  Commented out for now.
 
 -- King Vinegaroon
--- INSERT INTO `mob_skill` VALUES (467,274,0,'Earthbreaker', 1, 40.0, 2000, 1500, 4, 0); -- add effect stun
--- INSERT INTO `mob_skill` VALUES (98,274,0,'Wild_Rage', 1, 15.0, 2000, 1500, 4, 0); -- add effect poison
--- INSERT INTO `mob_skill` VALUES (466,274,0,'Venom_Storm', 1, 40.0, 2000, 1500, 4, 0); -- 32hp/tick
--- INSERT INTO `mob_skill` VALUES (464,274,0,'Venom_Sting', 0, 7.0, 2000, 1500, 4, 0); -- 100hp/tick
--- INSERT INTO `mob_skill` VALUES (463,274,0,'Critical_Bite', 0, 7.0, 2000, 1500, 4, 0); -- High damage
+INSERT INTO `mob_skill` VALUES (94,274,94,'Mandible_Bite', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (97,274,97,'Death_Scissors', 0, 9.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (98,274,98,'Wild_Rage', 1, 15.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (99,274,99,'Earth_Pounder', 1, 15.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (95,274,95,'Poison_Sting', 0, 7.0, 2000, 1500, 4, 0); -- 1hp/tick
+INSERT INTO `mob_skill` VALUES (93,274,93,'Cold_Breath', 4, 15.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (92,274,92,'Numbing_Breath', 4, 15.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (100,274,100,'Sharp_Strike', 0, 9.0, 2000, 1500, 1, 0);
 
 -- Ouryu
 -- INSERT INTO `mob_skill` VALUES (384,259,656,'Touchdown',0,6.0,2000,1500,4,0);

@@ -17,7 +17,7 @@ function onMobDeath(mob,killer)
     PH = GetServerVariable("[PH]Sharp_Eared_Ropipi");
     SetServerVariable("[PH]Sharp_Eared_Ropipi", 0);
     DeterMob(PH, false);
-    SpawnMob(PH, '', GetMobRespawnTime(PH));
+    mob:setRespawnTime(GetMobRespawnTime(PH));
   
 end;
 

@@ -12,6 +12,6 @@ function onMobDeath(mob,killer)
     -- Set Grand_Duke_Batym's spawnpoint and respawn time (21-24 hours)
     Grand_Duke_Batym = mob:getID();
     UpdateNMSpawnPoint(Grand_Duke_Batym);
-    SpawnMob(Grand_Duke_Batym, '', math.random((75600),(86400)));
+    mob:setRespawnTime(math.random((75600),(86400)));
 
 end;

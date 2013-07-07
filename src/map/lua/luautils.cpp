@@ -549,8 +549,8 @@ int32 SpawnMob(lua_State* L)
             if( !lua_isnil(L,3) && lua_isnumber(L,3))
             {
                 PMob->m_RespawnTime = (uint32)lua_tointeger(L,3) * 1000;
-                PMob->PBattleAI->SetLastActionTime(gettick() - 1000);
                 PMob->m_AllowRespawn = true;
+                PMob->PBattleAI->SetLastActionTime(gettick());
                 if (PMob->PBattleAI->GetCurrentAction() == ACTION_NONE)
                 {
                     PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
@@ -559,7 +559,7 @@ int32 SpawnMob(lua_State* L)
                 if (PMob->PBattleAI->GetCurrentAction() == ACTION_NONE ||
                     PMob->PBattleAI->GetCurrentAction() == ACTION_SPAWN)
                 {
-                    PMob->PBattleAI->SetLastActionTime(0);
+	                PMob->PBattleAI->SetLastActionTime(0);
                     PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
                 } else {
                     ShowDebug(CL_CYAN"SpawnMob: <%s> is alredy spawned\n" CL_RESET, PMob->GetName());

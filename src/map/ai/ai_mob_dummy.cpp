@@ -365,7 +365,6 @@ void CAIMobDummy::ActionDropItems()
 
         if (PChar != NULL && PChar->id == m_PMob->m_OwnerID.id)
 		{
-			luautils::OnMobDeath(m_PMob, PChar);
 
 			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(PChar,m_PMob,0,0, MSGBASIC_DEFEATS_TARG));
 
@@ -462,6 +461,8 @@ void CAIMobDummy::ActionDropItems()
 			    }
 			}
 			PChar->setWeaponSkillKill(false);
+
+			luautils::OnMobDeath(m_PMob, PChar);
 		}
         m_ActionType = ACTION_DEATH;
 	}
@@ -508,6 +509,7 @@ void CAIMobDummy::ActionFadeOut()
 			PBattleAI->m_LastSpecialTime = m_Tick - rand()%10000;
 		}
 
+		m_LastActionTime = m_Tick;
 		m_PMob->status = STATUS_DISAPPEAR;
         m_PMob->PEnmityContainer->Clear();
 

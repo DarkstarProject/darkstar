@@ -5731,6 +5731,34 @@ inline int32 CLuaBaseEntity::setSpawn(lua_State *L)
 	return 0;
 }
 
+inline int32 CLuaBaseEntity::setRespawnTime(lua_State* L)
+{
+
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+	CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
+
+	if( !lua_isnil(L,1) && lua_isnumber(L,1) )
+	{
+		PMob->m_RespawnTime = lua_tointeger(L, 1) * 1000;
+
+	    PMob->PBattleAI->SetLastActionTime(gettick());
+        if (PMob->PBattleAI->GetCurrentAction() == ACTION_NONE)
+        {
+            PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+        }
+	}
+	else
+	{
+		ShowWarning("CLuaBaseEntity::setRespawnTime (%d) Tried to set respawn without a time\n", PMob->id);
+	}
+	
+	PMob->m_AllowRespawn = true;
+
+	return 0;
+}
+
 // Return unique ID for Dynamis
 inline int32 CLuaBaseEntity::getDynamisUniqueID(lua_State *L)
 {
@@ -7381,5 +7409,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,wait),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,knockback),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setSpawn),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setRespawnTime),
 	{NULL,NULL}
 };
