@@ -3693,7 +3693,7 @@ void tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
 			PVictim->m_EcoSystem == SYSTEM_ELEMENTAL || PVictim->m_EcoSystem == SYSTEM_EMPTY ||
 			PVictim->m_EcoSystem == SYSTEM_LUMORIAN || PVictim->m_EcoSystem == SYSTEM_LUMINION ||
 			PVictim->m_EcoSystem == SYSTEM_UNDEAD || PVictim->PMaster != NULL){
-			((CMobEntity*)PVictim)->PEnmityContainer->UpdateEnmity(PCharmer, 0, 0);
+			ClaimMob(PCharmer, PVictim);
 			PVictim->StatusEffectContainer->AddStatusEffect(
 					new CStatusEffect(EFFECT_BIND,EFFECT_BIND,1,0,5));
 			return;
@@ -3701,36 +3701,34 @@ void tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
 
 		// cannot charm NM
 		if (((CMobEntity*)PVictim)->m_Type & MOBTYPE_NOTORIOUS){
-			((CMobEntity*)PVictim)->PEnmityContainer->UpdateEnmity(PCharmer, 0, 0);
+			ClaimMob(PCharmer, PVictim);
 			return;
 		}
-		else
-		{
-			// mob is charmable
-			uint16 baseExp = charutils::GetRealExp(PCharmer->GetMLevel(),PVictim->GetMLevel());
+		
+		// mob is charmable
+		uint16 baseExp = charutils::GetRealExp(PCharmer->GetMLevel(),PVictim->GetMLevel());
 
-			if(baseExp >= 400) {//IT
-				CharmTime = 22500;
-				base = 90;
-			} else if(baseExp >= 240) {//VT
-				CharmTime = 45000;
-				base = 75;
-			} else if(baseExp >= 120) {//T
-				CharmTime = 90000;
-				base = 60;
-			} else if(baseExp == 100) {//EM
-				CharmTime = 180000;
-				base = 40;
-			} else if(baseExp >=  75) {//DC
-				CharmTime = 600000;
-				base = 30;
-			} else if(baseExp >=  15) {//EP
-				CharmTime = 1200000;
-				base = 20;
-			} else if(baseExp ==   0) {//TW
-				CharmTime = 1800000;
-				base = 10;
-			}
+		if(baseExp >= 400) {//IT
+			CharmTime = 22500;
+			base = 90;
+		} else if(baseExp >= 240) {//VT
+			CharmTime = 45000;
+			base = 75;
+		} else if(baseExp >= 120) {//T
+			CharmTime = 90000;
+			base = 60;
+		} else if(baseExp == 100) {//EM
+			CharmTime = 180000;
+			base = 40;
+		} else if(baseExp >=  75) {//DC
+			CharmTime = 600000;
+			base = 30;
+		} else if(baseExp >=  15) {//EP
+			CharmTime = 1200000;
+			base = 20;
+		} else if(baseExp ==   0) {//TW
+			CharmTime = 1800000;
+			base = 10;
 		}
 
 		//apply charm time extension from gear
@@ -3739,8 +3737,11 @@ void tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
 		float extraCharmTime = (float)(CharmTime*(charmModValue * 0.5f)/10);
 		CharmTime += extraCharmTime;
 
-		//randomize charm time
-		CharmTime += (float)(CharmTime*(((rand()%50)-25) * 0.1f)/10);
+		//randomize charm time if > EM
+		if(baseExp > 100)
+		{
+			CharmTime += (float)(CharmTime*(((rand()%50)-25) * 0.1f)/10);
+		}
 
 
 		if (TryCharm(PCharmer, PVictim, base) == false)
