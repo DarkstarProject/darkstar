@@ -51,9 +51,10 @@ function onMobDeath(mob, killer)
     DeterMob(mob:getID(), true);
     
     -- Set Fafnir's spawnpoint and respawn time (21-24 hours)
+    Fafnir = 17408018;
     SetServerVariable("[PH]Nidhogg", 0);
-    DeterMob(17408018, false);
-    UpdateNMSpawnPoint(17408018);
-    SpawnMob(17408018, '', math.random((75600),(86400)));
+    DeterMob(Fafnir, false);
+    UpdateNMSpawnPoint(Fafnir);
+    GetMobByID(Fafnir):setRespawnTime(math.random((75600),(86400)));
 
 end;

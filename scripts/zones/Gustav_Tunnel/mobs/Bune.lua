@@ -8,10 +8,9 @@
 -----------------------------------	
 	
 function onMobDeath(mob,killer)	
-  
-  -- Set Bune's spawnpoint and respawn time (21-24 hours)
-  Bune = mob:getID();
-  UpdateNMSpawnPoint(Bune);
-  SpawnMob(Bune, '', math.random((75600),(86400)));
+
+    -- Set Bune's spawnpoint and respawn time (21-24 hours)
+    UpdateNMSpawnPoint(mob:getID());
+    mob:setRespawnTime(math.random((75600),(86400)));
   
 end;

@@ -18,7 +18,7 @@ function onMobDeath(mob,killer)
     PH = GetServerVariable("[PH]Fungus_Beetle");
     SetServerVariable("[PH]Fungus_Beetle", 0);
     DeterMob(PH, false);
-    SpawnMob(PH, '', GetMobRespawnTime(PH));
+    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
     
 end;
 

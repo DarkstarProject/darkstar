@@ -10,14 +10,14 @@
 function onMobDeath(mob,killer)	
 
     -- Set Frostmane's Window Open Time
-    wait = math.random((1),(6)) * 3600
-    SetServerVariable("[POP]Frostmane", os.time(t) + wait); -- 1-6 hours
+    wait = math.random((3600),(21600)) -- 1-6 hours
+    SetServerVariable("[POP]Frostmane", os.time(t) + wait); 
     DeterMob(mob:getID(), true);
     
     -- Set PH back to normal, then set to respawn spawn
     PH = GetServerVariable("[PH]Frostmane");
     SetServerVariable("[PH]Frostmane", 0);
     DeterMob(PH, false);
-    SpawnMob(PH, '', GetMobRespawnTime(PH));
+    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
 
 end;

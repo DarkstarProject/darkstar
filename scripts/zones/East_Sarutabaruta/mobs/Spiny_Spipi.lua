@@ -18,7 +18,6 @@ function onMobDeath(mob,killer)
     PH = GetServerVariable("[PH]Spiny_Spipi");
     SetServerVariable("[PH]Spiny_Spipi", 0);
     DeterMob(PH, false);
-    GetMobRespawnTime(PH)
-    mob:setRespawnTime(GetMobRespawnTime(PH));
+    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
     
 end;	

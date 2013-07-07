@@ -21,8 +21,7 @@ function onMobDeath(mob, killer)
 	killer:addTitle(MORBOLBANE);
     
     -- Set Morbolger's spawnpoint and respawn time (21-24 hours)
-    Morbolger = mob:getID();
-    UpdateNMSpawnPoint(Morbolger);
+    UpdateNMSpawnPoint(mob:getID());
     mob:setRespawnTime(math.random((75600),(86400)));
     
 end;

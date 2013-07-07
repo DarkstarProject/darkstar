@@ -18,6 +18,6 @@ function onMobDeath(mob,killer)
     PH = GetServerVariable("[PH]Soulstealer_Skullnix");
     SetServerVariable("[PH]Soulstealer_Skullnix", 0);
     DeterMob(PH, false);
-    SpawnMob(PH, '', GetMobRespawnTime(PH));
+    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
   
 end;

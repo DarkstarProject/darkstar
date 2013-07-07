@@ -18,7 +18,7 @@ function onMobDeath(mob,killer)
     PH = GetServerVariable("[PH]Ashmaker_Gotblut");
     SetServerVariable("[PH]Ashmaker_Gotblut", 0);
     DeterMob(PH, false);
-    mob:setRespawnTime(GetMobRespawnTime(PH));
+    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
 
 end;
 

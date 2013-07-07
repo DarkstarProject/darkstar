@@ -12,17 +12,17 @@ require("scripts/zones/Kuftal_Tunnel/MobIDs");
 	
 function onMobDeath(mob,killer)	
 
-  mob = mob:getID();
-  if (Yowie_PH[mob] ~= nil) then
-  
-    ToD = GetServerVariable("[POP]Yowie");
-    if (ToD <= os.time(t) and GetMobAction(Yowie) == 0) then
-      if (math.random((1),(20)) == 5) then
-        UpdateNMSpawnPoint(Yowie);
-        SpawnMob(Yowie, "", GetMobRespawnTime(mob));
-        SetServerVariable("[PH]Yowie", mob);
-        DeterMob(mob, true);
-      end
+    mob = mob:getID();
+    if (Yowie_PH[mob] ~= nil) then
+
+        ToD = GetServerVariable("[POP]Yowie");
+        if (ToD <= os.time(t) and GetMobAction(Yowie) == 0) then
+            if (math.random((1),(20)) == 5) then
+                UpdateNMSpawnPoint(Yowie);
+                GetMobByID(Yowie):setRespawnTime(GetMobRespawnTime(mob));
+                SetServerVariable("[PH]Yowie", mob);
+                DeterMob(mob, true);
+            end
+        end
     end
-  end
 end;	

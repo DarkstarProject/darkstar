@@ -10,9 +10,8 @@
 function onMobDeath(mob,killer)
 
     -- Set Skewer_Sam's spawnpoint and respawn time (21-24 hours)
-    Skewer_Sam = mob:getID();
-    UpdateNMSpawnPoint(Skewer_Sam);
-    SpawnMob(Skewer_Sam, '', math.random((75600),(86400)));
+    UpdateNMSpawnPoint(mob:getID());
+    mob:setRespawnTime(math.random((75600),(86400)));
     
 end;
 

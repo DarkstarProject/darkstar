@@ -391,10 +391,9 @@ function OnMobRoam(mob)
 end;
 
 function onMobDeath(mob,killer)	
-  
-  -- Set Guivre's spawnpoint and respawn time (18-24 hours)
-  Guivre = mob:getID();
-  UpdateNMSpawnPoint(Guivre);
-  SpawnMob(Guivre, '', math.random((64800),(86400)));
+
+    -- Set Guivre's spawnpoint and respawn time (18-24 hours)
+    UpdateNMSpawnPoint(mob:getID());
+    mob:setRespawnTime(math.random((64800),(86400)));
 
 end;

@@ -20,7 +20,7 @@ function onMobDeath(mob,killer)
         if (ToD <= os.time(t) and GetMobAction(Sharp_Eared_Ropipi) == 0) then
             if (math.random((1),(5)) == 3) then
                 UpdateNMSpawnPoint(Sharp_Eared_Ropipi);
-                SpawnMob(Sharp_Eared_Ropipi, "", GetMobRespawnTime(mob));
+                GetMobByID(Sharp_Eared_Ropipi):setRespawnTime(mob);
                 SetServerVariable("[PH]Sharp_Eared_Ropipi", mob);
                 DeterMob(mob, true);
             end

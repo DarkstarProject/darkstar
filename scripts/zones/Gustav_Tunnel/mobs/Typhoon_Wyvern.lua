@@ -12,18 +12,18 @@ require("/scripts/zones/Gustav_Tunnel/MobIDs");
 	
 function onMobDeath(mob,killer)	
   
-  mob = mob:getID();
-  if (Ungur_PH[mob] ~= nil) then
-  
-    ToD = GetServerVariable("[POP]Ungur");
-    if (ToD <= os.time(t) and GetMobAction(Ungur) == 0) then
-      if (math.random((1),(20)) == 5) then
-        UpdateNMSpawnPoint(Ungur);
-        SpawnMob(Ungur, "", GetMobRespawnTime(mob));
-        SetServerVariable("[PH]Ungur", mob);
-        DeterMob(mob, true);
-      end
+    mob = mob:getID();
+    if (Ungur_PH[mob] ~= nil) then
+
+        ToD = GetServerVariable("[POP]Ungur");
+        if (ToD <= os.time(t) and GetMobAction(Ungur) == 0) then
+            if (math.random((1),(20)) == 5) then
+                UpdateNMSpawnPoint(Ungur);
+                GetMobByID(Ungur):setRespawnTime(GetMobRespawnTime(mob));
+                SetServerVariable("[PH]Ungur", mob);
+                DeterMob(mob, true);
+            end
+        end
     end
-  end
   
 end;	

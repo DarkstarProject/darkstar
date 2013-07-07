@@ -17,7 +17,7 @@ function onMobDeath(mob,killer)
     PH = GetServerVariable("[PH]Deadly_Dodo");
     SetServerVariable("[PH]Deadly_Dodo", 0);
     DeterMob(PH, false);
-    SpawnMob(PH, '', GetMobRespawnTime(PH));
+    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
   
 end;
 

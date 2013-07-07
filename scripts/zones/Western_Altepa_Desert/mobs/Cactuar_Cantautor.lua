@@ -10,7 +10,7 @@
 function onMobDeath(mob,killer)	
 
     -- Set Cactuar_Cantautor's Window Open Time
-    wait = math.random((1),(12)) * 3600
+    wait = math.random((3600),(43200));
     SetServerVariable("[POP]Cactuar_Cantautor", os.time(t) + wait); -- 1-12 hours
     DeterMob(mob:getID(), true);
 
@@ -18,7 +18,7 @@ function onMobDeath(mob,killer)
     PH = GetServerVariable("[PH]Cactuar_Cantautor");
     SetServerVariable("[PH]Cactuar_Cantautor", 0);
     DeterMob(PH, false);
-    SpawnMob(PH, '', GetMobRespawnTime(PH));
+    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
   
 end;
 

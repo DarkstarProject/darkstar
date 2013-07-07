@@ -21,7 +21,7 @@ function onMobDeath(mob,killer)
         if (ToD <= os.time(t) and GetMobAction(Jaggedy_Eared_Jack) == 0) then
             if (math.random((1),(20)) == 5) then
                 UpdateNMSpawnPoint(Jaggedy_Eared_Jack);
-                SpawnMob(Jaggedy_Eared_Jack, "", GetMobRespawnTime(mob));
+                GetMobByID(Jaggedy_Eared_Jack):setRespawnTime(GetMobRespawnTime(mob));
                 SetServerVariable("[PH]Jaggedy_Eared_Jack", mob);
                 DeterMob(mob, true);
             end

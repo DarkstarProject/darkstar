@@ -17,7 +17,7 @@ function onMobDeath(mob,killer)
     PH = GetServerVariable("[PH]Valkurm_Emperor");
     SetServerVariable("[PH]Valkurm_Emperor", 0);
     DeterMob(PH, false);
-    SpawnMob(PH, '', GetMobRespawnTime(PH));
+    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
   
 end;
 
@@ -34,6 +34,6 @@ function OnMobDespawn(mob)
 	PH = GetServerVariable("[PH]Valkurm_Emperor");
 	SetServerVariable("[PH]Valkurm_Emperor", 0);
 	DeterMob(PH, false);
-	SpawnMob(PH, '', GetMobRespawnTime(PH));
+    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
     
 end;

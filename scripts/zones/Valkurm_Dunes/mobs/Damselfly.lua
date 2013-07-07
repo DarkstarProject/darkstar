@@ -22,7 +22,7 @@ function onMobDeath(mob,killer)
         if (VE_ToD <= os.time(t) and GetMobAction(Valkurm_Emperor) == 0) then
             if (math.random((1),(33)) == 5) then
                 UpdateNMSpawnPoint(Valkurm_Emperor);
-                SpawnMob(Valkurm_Emperor, "", GetMobRespawnTime(mob));
+                GetMobByID(Valkurm_Emperor):setRespawnTime(GetMobRespawnTime(mob));
                 SetServerVariable("[PH]Valkurm_Emperor", mob);
                 DeterMob(mob, true);
             end

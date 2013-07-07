@@ -22,7 +22,7 @@ function onMobDeath(mob,killer)
         if (ToD <= os.time(t) and GetMobAction(Fungus_Beetle) == 0) then
             if (math.random((1),(10)) == 5) then
                 UpdateNMSpawnPoint(Fungus_Beetle);
-                SpawnMob(Fungus_Beetle, "", GetMobRespawnTime(mob));
+                GetMobByID(Fungus_Beetle):setRespawnTime(GetMobRespawnTime(mob));
                 SetServerVariable("[PH]Fungus_Beetle", mob);
                 DeterMob(mob, true);
             end

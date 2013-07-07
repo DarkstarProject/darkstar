@@ -21,7 +21,7 @@ function onMobDeath(mob,killer)
         if (ToD <= os.time(t) and GetMobAction(Celphie) == 0) then
             if (math.random((1),(20)) == 5) then
                 UpdateNMSpawnPoint(Celphie);
-                SpawnMob(Celphie, "", GetMobRespawnTime(mob));
+                GetMobByID(Celphie):setRespawnTime(GetMobRespawnTime(mob));
                 SetServerVariable("[PH]Celphie", mob);
                 DeterMob(mob, true);
             end

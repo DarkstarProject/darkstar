@@ -17,7 +17,7 @@ function onMobDeath(mob,killer)
     PH = GetServerVariable("[PH]Hoo_Mjuu_the_Torrent");
     SetServerVariable("[PH]Hoo_Mjuu_the_Torrent", 0);
     DeterMob(PH, false);
-    SpawnMob(PH, '', GetMobRespawnTime(PH));
+    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
 
 end;
 

@@ -10,8 +10,7 @@
 function onMobDeath(mob,killer)	
 
     -- Set Marquis_Allocen's spawnpoint and respawn time (21-24 hours)
-    Marquis_Allocen = mob:getID();
-    UpdateNMSpawnPoint(Marquis_Allocen);
+    UpdateNMSpawnPoint(mob:getID());
     mob:setRespawnTime(math.random((75600),(86400)));
 
 end;

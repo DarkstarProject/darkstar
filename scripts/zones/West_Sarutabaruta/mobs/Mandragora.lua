@@ -21,7 +21,7 @@ function onMobDeath(mob,killer)
         if (ToD <= os.time(t) and GetMobAction(Tom_Tit_Tat) == 0) then
             if (math.random((1),(15)) == 5) then
                 UpdateNMSpawnPoint(Tom_Tit_Tat);
-                SpawnMob(Tom_Tit_Tat, "", GetMobRespawnTime(mob));
+                GetMobByID(Tom_Tit_Tat):setRespawnTime(GetMobRespawnTime(mob));
                 SetServerVariable("[PH]Tom_Tit_Tat", mob);
                 DeterMob(mob, true);
             end

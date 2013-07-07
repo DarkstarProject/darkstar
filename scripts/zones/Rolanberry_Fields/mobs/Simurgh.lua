@@ -21,8 +21,7 @@ function onMobDeath(mob, killer)
 	killer:addTitle(SIMURGH_POACHER);
   
     -- Set Simurgh's spawnpoint and respawn time (21-24 hours)
-    Simurgh = mob:getID();
-    UpdateNMSpawnPoint(Simurgh);
+    UpdateNMSpawnPoint(mob:getID());
     mob:setRespawnTime(math.random((75600),(86400)));
   
 end;

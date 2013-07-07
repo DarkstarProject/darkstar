@@ -10,7 +10,7 @@
 function onMobDeath(mob,killer)	
 
     -- Set Celphie's Window Open Time
-    wait = math.random((2),(8)) * 3600
+    wait = math.random((7200),(28800));
     SetServerVariable("[POP]Celphie", os.time(t) + wait); -- 2-8 hours
     DeterMob(mob:getID(), true);
 
@@ -18,6 +18,6 @@ function onMobDeath(mob,killer)
     PH = GetServerVariable("[PH]Celphie");
     SetServerVariable("[PH]Celphie", 0);
     DeterMob(PH, false);
-    SpawnMob(PH, '', GetMobRespawnTime(PH));
+    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
   
 end;

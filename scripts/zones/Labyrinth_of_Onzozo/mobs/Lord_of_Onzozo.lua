@@ -10,7 +10,7 @@
 function onMobDeath(mob,killer)	
   
     -- Set LoO's Window Open Time
-    wait = math.random((18),(24)) * 3600
+    wait = math.random((75600),(86400));
     SetServerVariable("[POP]Lord_of_Onzozo", os.time(t) + wait); -- 18-24 hours
     DeterMob(mob:getID(), true);
 
@@ -18,6 +18,6 @@ function onMobDeath(mob,killer)
     PH = GetServerVariable("[PH]Lord_of_Onzozo");
     SetServerVariable("[PH]Lord_of_Onzozo", 0);
     DeterMob(PH, false);
-    SpawnMob(PH, '', GetMobRespawnTime(PH));
+    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
   
 end;

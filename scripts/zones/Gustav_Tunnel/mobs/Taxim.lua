@@ -17,6 +17,6 @@ function onMobDeath(mob,killer)
     PH = GetServerVariable("[PH]Taxim");
     SetServerVariable("[PH]Taxim", 0);
     DeterMob(PH, false);
-    SpawnMob(PH, '', GetMobRespawnTime(PH));
+    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
 
 end;

@@ -51,11 +51,11 @@ function onMobDeath(mob, killer)
     if (ToD <= os.time(t) and GetMobAction(Aspidochelone) == 0) then
         if (math.random((1),(5)) == 3 or kills > 6) then
             UpdateNMSpawnPoint(Aspidochelone);
-            SpawnMob(Aspidochelone, "", math.random((75600),(86400)));
+            GetMobByID(Aspidochelone):setRespawnTime(math.random((75600),(86400)));
         end
     else
         UpdateNMSpawnPoint(Adamantoise);
-        SpawnMob(Adamantoise, '', math.random((75600),(86400)));
+        mob:setRespawnTime(math.random((75600),(86400)));
         SetServerVariable("[PH]Aspidochelone", kills + 1);
     end
 end;

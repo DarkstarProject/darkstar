@@ -18,7 +18,7 @@ function onMobDeath(mob,killer)
         if (ToD <= os.time(t) and GetMobAction(Ashmaker_Gotblut) == 0) then
             if (math.random((1),(20)) == 5) then
                 UpdateNMSpawnPoint(Ashmaker_Gotblut);
-                SpawnMob(Ashmaker_Gotblut, "", GetMobRespawnTime(mob));
+                GetMobByID(Ashmaker_Gotblut):setRespawnTime(GetMobRespawnTime(mob));
                 SetServerVariable("[PH]Ashmaker_Gotblut", mob);
                 DeterMob(mob, true);
             end

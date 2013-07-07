@@ -132,7 +132,7 @@ function SetTimedSpawns()
   i = 1;
   while i <= (table.getn(NMs)) do
     UpdateNMSpawnPoint(NMs[i]);
-    SpawnMob(NMs[i], '', math.random((900),(10800))); --15-180 minutes
+    GetMobByID(NMs[i]):setRespawnTime(math.random((900),(10800))); -- 15-180 minute
     i = i + 1;
   end
 
