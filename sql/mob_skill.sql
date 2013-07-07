@@ -160,7 +160,12 @@ INSERT INTO `mob_skill` VALUES (66,212,66,'1000_Needles', 1, 10.0, 2000, 1500, 4
 INSERT INTO `mob_skill` VALUES (68,212,68,'Photosynthesis', 0, 7.0, 2000, 1500, 1, 0);
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'2000_Needles', 1, 10.0, 2000, 1500, 4, 0); -- Only used by Nightmare Sabotender
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'4000_Needles', 1, 10.0, 2000, 1500, 4, 0); -- Only used by Nightmare Sabotender
--- INSERT INTO `mob_skill` VALUES (0,0,0,'10000_Needles', 1, 10.0, 2000, 1500, 4, 0); -- Only used by certain Notorious Monsters
+
+-- Cactrot_Rapido
+INSERT INTO `mob_skill` VALUES (68,362,68,'Photosynthesis', 0, 7.0, 2000, 1500, 1, 0);
+INSERT INTO `mob_skill` VALUES (66,362,66,'1000_Needles', 1, 10.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (65,362,65,'Needleshot', 0, 7.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (66,362,66,'10000_Needles', 1, 10.0, 2000, 1500, 4, 0); -- Only used by certain Notorious Monsters
 
 -- Funguar
 INSERT INTO `mob_skill` VALUES (52,116,52,'Frogkick', 0, 7.0, 2000, 1500, 4, 0);

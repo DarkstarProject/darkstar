@@ -426,6 +426,12 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->m_roamFlags |= ROAMFLAG_AMBUSH;
 	}
 
+	if(PMob->m_Family == 362)
+	{
+		// rapido doesn't stop
+		PMob->m_roamFlags |= ROAMFLAG_IGNORE;
+	}
+
 
 	// handle standback
 	// mobs that stand back: blm, whm, rng, cor, nin
@@ -811,6 +817,13 @@ void InitializeMob(CMobEntity* PMob)
     	break;
         case 360:
         	PMob->m_SubLinks[0] = 95;
+    	break;
+    	case 362:
+    	// rapido links with other sabuaters
+	    	PMob->m_SubLinks[0] = 212;
+    	break;
+    	case 212:
+	    	PMob->m_SubLinks[0] = 362;
     	break;
       }
 }

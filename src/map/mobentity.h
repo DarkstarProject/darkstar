@@ -67,7 +67,8 @@ enum ROAMFLAG : uint16
   ROAMFLAG_GUARD = 0x20, // move less often
   ROAMFLAG_WORM = 0x40, // pop up and down when moving
   ROAMFLAG_AMBUSH = 0x80, // stays hidden until someone comes close (antlion)
-  ROAMFLAG_EVENT = 0x100 // calls lua method for roaming logic
+  ROAMFLAG_EVENT = 0x100, // calls lua method for roaming logic
+  ROAMFLAG_IGNORE = 0x200 // ignore all hate, except linking hate
 };
 
 enum MOBTYPE

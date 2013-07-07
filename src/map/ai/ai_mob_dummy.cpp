@@ -120,13 +120,13 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
 void CAIMobDummy::ActionRoaming()
 {
 	// If there's someone on our enmity list, go from roaming -> engaging
-	if (m_PMob->PEnmityContainer->GetHighestEnmity() != NULL)
+	if (m_PMob->PEnmityContainer->GetHighestEnmity() != NULL && !(m_PMob->m_roamFlags & ROAMFLAG_IGNORE))
 	{
 		m_ActionType = ACTION_ENGAGE;
 		ActionEngage();
 		return;
 	}
-	else if (m_PMob->m_OwnerID.id != 0) 
+	else if (m_PMob->m_OwnerID.id != 0 && !(m_PMob->m_roamFlags & ROAMFLAG_IGNORE)) 
 	{
 		// i'm claimed by someone and need hate towards this person
         m_PBattleTarget = (CBattleEntity*)m_PMob->loc.zone->GetEntity(m_PMob->m_OwnerID.targid, TYPE_PC | TYPE_MOB | TYPE_PET);
@@ -150,6 +150,12 @@ void CAIMobDummy::ActionRoaming()
 	if(m_Tick - m_LastWaitTime < m_WaitTime){
 		m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
 		return;
+	}
+
+	if(m_PMob->m_roamFlags & ROAMFLAG_IGNORE)
+	{
+		// don't claim me if I ignore
+		m_PMob->m_OwnerID.id = 0;
 	}
 
 	// don't aggro a little bit after I just disengaged
