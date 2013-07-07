@@ -200,7 +200,7 @@ void LoadNPCList(CZone* PZone)
           look,\
           name_prefix \
         FROM npc_list \
-        WHERE zoneid = %u AND npcid < 100000000;";
+        WHERE zoneid = %u AND npcid < 1024;";
 
     int32 ret = Sql_Query(SqlHandle, Query, PZone->GetID());
 
@@ -210,8 +210,8 @@ void LoadNPCList(CZone* PZone)
 		{
 			CNpcEntity* PNpc = new CNpcEntity;
 
-			PNpc->id = (uint32)Sql_GetUIntData(SqlHandle,0);
-			PNpc->targid = (uint16)PNpc->id & 0x0FFF;
+			PNpc->targid = (uint16)Sql_GetUIntData(SqlHandle,0);
+			PNpc->id = (uint32)PNpc->targid  + (PZone->GetID() << 3) + 0x1000000;
 
 			PNpc->name.insert(0,Sql_GetData(SqlHandle,1));
 
@@ -240,40 +240,33 @@ void LoadNPCList(CZone* PZone)
 		}
 	}
 
-  /*
-  Load npc patrol list. This will enable the npcs to move around and follow patrol points.
-  */
+	// Load npc patrol list. This will enable the npcs to move around and follow patrol points.
 
-  const int8* QueryPatrol =
-        "SELECT \
-          npc_dummies.npcid \
-        FROM npc_dummies, npc_list \
-        WHERE npc_list.npcid = npc_dummies.npcid \
-        AND npc_list.zoneid = %u;";
+	const int8* QueryPatrol =
+		"SELECT npc_dummies.npcid FROM npc_dummies \
+		LEFT JOIN npc_list ON (npc_list.npcid + (4096 * zoneid) + 0x1000000) = npc_dummies.npcid \
+		WHERE zoneid = %u;";
 
-    ret = Sql_Query(SqlHandle, QueryPatrol, PZone->GetID());
 
-  if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-  {
-    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-    {
+	ret = Sql_Query(SqlHandle, QueryPatrol, PZone->GetID());
 
-      uint32 npcid = (uint32)Sql_GetUIntData(SqlHandle,0);
-    
-      CNpcEntity* PNpc = (CNpcEntity*)PZone->GetEntity(npcid & 0x0FFF, TYPE_NPC);
-
-      if(PNpc == NULL)
-      {
-        ShowError("zoneutils::LoadNPCList Npc could not be found (%d)\n", npcid);
-      } 
-      else 
-      {
-        PNpc->PBattleAI = new CAINpcDummy(PNpc);
-        PNpc->PBattleAI->SetCurrentAction(ACTION_SPAWN);
-      }
-
-    }
-  }
+	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	{
+		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		{
+			uint32 npcid = (uint32)Sql_GetUIntData(SqlHandle,0);
+			CNpcEntity* PNpc = (CNpcEntity*)PZone->GetEntity(npcid & 0x0FFF, TYPE_NPC);
+			if(PNpc == NULL)
+			{
+				ShowError("zoneutils::LoadNPCList Npc could not be found (%d)\n", npcid);
+			} 
+			else 
+			{
+				PNpc->PBattleAI = new CAINpcDummy(PNpc);
+				PNpc->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+			}
+		}
+	}
 }
 
 /************************************************************************
@@ -294,11 +287,10 @@ void LoadMOBList(CZone* PZone)
 			Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
 			mob_pools.familyid, name_prefix, unknown, animationsub, \
 			(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, link_radius \
-			FROM mob_groups, mob_pools, mob_spawn_points, mob_family_system \
-			WHERE mob_groups.poolid = mob_pools.poolid \
-			AND mob_groups.groupid = mob_spawn_points.groupid \
-			AND mob_family_system.familyid = mob_pools.familyid \
-			AND (pos_x <> 0 AND pos_y <> 0 AND pos_z <> 0) \
+			FROM mob_groups LEFT JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
+			LEFT JOIN mob_spawn_points ON mob_groups.groupid = mob_spawn_points.groupid \
+			LEFT JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
+			WHERE (pos_x <> 0 AND pos_y <> 0 AND pos_z <> 0) \
 			AND mob_groups.zoneid = %u;";
 
     int32 ret = Sql_Query(SqlHandle, Query, PZone->GetID());
@@ -313,7 +305,7 @@ void LoadMOBList(CZone* PZone)
 			PMob->id = (uint32)Sql_GetUIntData(SqlHandle,1);
 			PMob->targid = (uint16)PMob->id & 0x0FFF;
 
-      PMob->m_SpawnPoint.rotation = (uint8)Sql_GetIntData(SqlHandle,2);
+			PMob->m_SpawnPoint.rotation = (uint8)Sql_GetIntData(SqlHandle,2);
 			PMob->m_SpawnPoint.x = Sql_GetFloatData(SqlHandle,3);
 			PMob->m_SpawnPoint.y = Sql_GetFloatData(SqlHandle,4);
 			PMob->m_SpawnPoint.z = Sql_GetFloatData(SqlHandle,5);
@@ -333,13 +325,13 @@ void LoadMOBList(CZone* PZone)
 			PMob->SetMJob(Sql_GetIntData(SqlHandle,14));
 			PMob->SetSJob(Sql_GetIntData(SqlHandle,15));
 
-      PMob->m_Weapons[SLOT_MAIN]->setMaxHit(1);
+			PMob->m_Weapons[SLOT_MAIN]->setMaxHit(1);
 			PMob->m_Weapons[SLOT_MAIN]->setSkillType(Sql_GetIntData(SqlHandle,16));
 			PMob->m_Weapons[SLOT_MAIN]->setDelay((Sql_GetIntData(SqlHandle,17) * 1000)/60);
 			PMob->m_Weapons[SLOT_MAIN]->setBaseDelay((Sql_GetIntData(SqlHandle,17) * 1000)/60);
 
 			PMob->m_Behaviour  = (uint16)Sql_GetIntData(SqlHandle,18);
-      PMob->m_Link       = (uint8)Sql_GetIntData(SqlHandle,19);
+			PMob->m_Link       = (uint8)Sql_GetIntData(SqlHandle,19);
 			PMob->m_Type       = (uint8)Sql_GetIntData(SqlHandle,20);
 			PMob->m_Immunity   = (IMMUNITY)Sql_GetIntData(SqlHandle,21);
 			PMob->m_EcoSystem  = (ECOSYSTEM)Sql_GetIntData(SqlHandle,22);
@@ -348,12 +340,12 @@ void LoadMOBList(CZone* PZone)
 			PMob->speed    = (uint8)Sql_GetIntData(SqlHandle,24);
 			PMob->speedsub = (uint8)Sql_GetIntData(SqlHandle,24);
 
-			if(PMob->speed != 0)
+			/*if(PMob->speed != 0)
 			{
-        // PMob->speed += map_config.speed_mod;
+				PMob->speed += map_config.speed_mod;
                 // whats this for?
-				// PMob->speedsub += map_config.speed_mod;
-			}
+				PMob->speedsub += map_config.speed_mod;
+			}*/
 
             PMob->strRank = (uint8)Sql_GetIntData(SqlHandle,25);
             PMob->dexRank = (uint8)Sql_GetIntData(SqlHandle,26);
@@ -401,78 +393,74 @@ void LoadMOBList(CZone* PZone)
 			// phuabo 1: sous l'eau, 2: sort de l'eau, 3: rentre dans l'eau
 			PMob->animationsub = (uint32)Sql_GetIntData(SqlHandle,50);
 
-      // Setup HP / MP Stat Percentage Boost
-      PMob->HPscale = Sql_GetFloatData(SqlHandle,51);
-      PMob->MPscale = Sql_GetFloatData(SqlHandle,52);
+			// Setup HP / MP Stat Percentage Boost
+			PMob->HPscale = Sql_GetFloatData(SqlHandle,51);
+			PMob->MPscale = Sql_GetFloatData(SqlHandle,52);
 
 			PMob->PBattleAI = new CAIMobDummy(PMob);
 
-      if (PMob->m_AllowRespawn = PMob->m_SpawnType == SPAWNTYPE_NORMAL)
-      {
-          PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
-      }
+			if (PMob->m_AllowRespawn = PMob->m_SpawnType == SPAWNTYPE_NORMAL)
+			{
+				PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+			}
 
 			// Check if we should be looking up scripts for this mob
 			PMob->m_HasSpellScript = (uint8)Sql_GetIntData(SqlHandle,53);
 
 			PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(Sql_GetIntData(SqlHandle,54));
 
-      mobutils::InitializeMob(PMob);
+			mobutils::InitializeMob(PMob);
 
 			PZone->InsertMOB(PMob);
 			luautils::OnMobInitialize(PMob);
 		}
 	}
 
-  // attach pets to mobs
-  const int8* PetQuery =
-        "SELECT mob_mobid, pet_offset \
-      FROM mob_groups, mob_spawn_points, mob_pets \
-      WHERE mob_pets.mob_mobid = mob_spawn_points.mobid \
-      AND mob_groups.groupid = mob_spawn_points.groupid \
-      AND mob_groups.zoneid = %u;";
+	// attach pets to mobs
+	const int8* PetQuery =
+		"SELECT mob_mobid, pet_offset \
+		FROM mob_pets \
+		LEFT JOIN mob_spawn_points ON mob_pets.mob_mobid = mob_spawn_points.mobid \
+		LEFT JOIN mob_groups ON mob_spawn_points.groupid = mob_groups.groupid \
+		WHERE mob_groups.zoneid = %u;";
 
-  ret = Sql_Query(SqlHandle, PetQuery, PZone->GetID());
+	ret = Sql_Query(SqlHandle, PetQuery, PZone->GetID());
 
-  if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-  {
-    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-    {
-
-      uint32 masterid = (uint32)Sql_GetUIntData(SqlHandle,0);
-      uint32 petid = masterid + (uint32)Sql_GetUIntData(SqlHandle,1);
+	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	{
+		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		{
+			uint32 masterid = (uint32)Sql_GetUIntData(SqlHandle,0);
+			uint32 petid = masterid + (uint32)Sql_GetUIntData(SqlHandle,1);
 	  
-	  CMobEntity* PMaster = (CMobEntity*)PZone->GetEntity(masterid & 0x0FFF, TYPE_MOB);
-      CMobEntity* PPet = (CMobEntity*)PZone->GetEntity(petid & 0x0FFF, TYPE_MOB);
+			CMobEntity* PMaster = (CMobEntity*)PZone->GetEntity(masterid & 0x0FFF, TYPE_MOB);
+			CMobEntity* PPet = (CMobEntity*)PZone->GetEntity(petid & 0x0FFF, TYPE_MOB);
 
-      if(PMaster == NULL)
-      {
-        ShowError("zoneutils::loadMOBList PMaster is null. masterid: %d. Make sure x,y,z are not zeros!\n", masterid);
-      }
-      else if(PPet == NULL)
-      {
-        ShowError("zoneutils::loadMOBList PPet is null. petid: %d. Make sure x,y,z are not zeros!\n", petid);
-      }
-	  else if(masterid == petid)
-	  {
-		ShowError("zoneutils::loadMOBList Master and Pet are the same entity: %d\n", masterid);
-	  }
-      else
-      {
-        // pet is always spawned by master
-        PPet->m_AllowRespawn = false;
-        PPet->m_SpawnType = SPAWNTYPE_SCRIPTED;
-        PPet->PBattleAI->SetCurrentAction(ACTION_NONE);
-        PPet->SetDespawnTimer(0);
+			if(PMaster == NULL)
+			{
+				ShowError("zoneutils::loadMOBList PMaster is null. masterid: %d. Make sure x,y,z are not zeros!\n", masterid);
+			}
+			else if(PPet == NULL)
+			{
+				ShowError("zoneutils::loadMOBList PPet is null. petid: %d. Make sure x,y,z are not zeros!\n", petid);
+			}
+			else if(masterid == petid)
+			{
+				ShowError("zoneutils::loadMOBList Master and Pet are the same entity: %d\n", masterid);
+			}
+			else
+			{
+				// pet is always spawned by master
+				PPet->m_AllowRespawn = false;
+				PPet->m_SpawnType = SPAWNTYPE_SCRIPTED;
+				PPet->PBattleAI->SetCurrentAction(ACTION_NONE);
+				PPet->SetDespawnTimer(0);
 
-        PMaster->PPet = PPet;
-        PPet->PMaster = PMaster;
-
-      }
-
-    }
-  }
-
+				PMaster->PPet = PPet;
+				PPet->PMaster = PMaster;
+			}
+		}
+	}
 }
 
 /************************************************************************
@@ -490,8 +478,8 @@ void LoadZoneList()
         CZone* PZone = new CZone((ZONEID)ZoneID, GetCurrentRegion(ZoneID), GetCurrentContinent(ZoneID));
 
 		LoadNPCList(PZone);
-    LoadMOBList(PZone);
-
+		LoadMOBList(PZone);
+		
 		PZone->ZoneServer(-1);
 		g_PZoneList[ZoneID] = PZone;
 
