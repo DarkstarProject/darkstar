@@ -1564,9 +1564,17 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender){
 	int acc = 0;
 	int hitrate = 75;
+
 	if(PAttacker->objtype == TYPE_PC){
 		CCharEntity* PChar = (CCharEntity*)PAttacker;
 		CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
+
+		if(PItem==NULL || !PItem->isType(ITEM_WEAPON))
+		{
+			// try throwing weapon
+			PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);
+		}
+
 		if(PItem!=NULL && PItem->isType(ITEM_WEAPON)){
 			int skill = PChar->GetSkill(PItem->getSkillType());
 			acc = skill;
@@ -1577,13 +1585,11 @@ uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender){
 				dsp_min(((100 +  PChar->getMod(MOD_FOOD_RACCP)) * acc)/100,  PChar->getMod(MOD_FOOD_RACC_CAP));
 		}
 	}
-	else{//monster racc not handled yet
-        // NOTE this is handled as a mobskill
-		return 95;
-	}
 
 	int eva = PDefender->EVA();
 	hitrate = hitrate + (acc - eva) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
+
+	ShowDebug("ranged acc %d\n", hitrate);
 	uint8 finalhitrate = dsp_cap(hitrate, 20, 95);
 	return finalhitrate;
 }
@@ -3693,7 +3699,6 @@ void tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
 			PVictim->m_EcoSystem == SYSTEM_ELEMENTAL || PVictim->m_EcoSystem == SYSTEM_EMPTY ||
 			PVictim->m_EcoSystem == SYSTEM_LUMORIAN || PVictim->m_EcoSystem == SYSTEM_LUMINION ||
 			PVictim->m_EcoSystem == SYSTEM_UNDEAD || PVictim->PMaster != NULL){
-			ClaimMob(PCharmer, PVictim);
 			PVictim->StatusEffectContainer->AddStatusEffect(
 					new CStatusEffect(EFFECT_BIND,EFFECT_BIND,1,0,5));
 			return;
@@ -3701,7 +3706,6 @@ void tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
 
 		// cannot charm NM
 		if (((CMobEntity*)PVictim)->m_Type & MOBTYPE_NOTORIOUS){
-			ClaimMob(PCharmer, PVictim);
 			return;
 		}
 		
@@ -3747,7 +3751,7 @@ void tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
 		if (TryCharm(PCharmer, PVictim, base) == false)
 		{
 			//player failed to charm mob - agro mob
-			((CMobEntity*)PVictim)->PEnmityContainer->UpdateEnmity(PCharmer, 0, 0);
+			battleutils::ClaimMob(PVictim, PCharmer);
 			return;
 		}
 	}

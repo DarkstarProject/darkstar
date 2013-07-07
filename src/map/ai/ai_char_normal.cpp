@@ -876,7 +876,7 @@ void CAICharNormal::ActionRangedFinish()
 	}
 
 
-	if ((m_Tick - m_LastActionTime) > m_PChar->m_rangedDelay)
+	if ((m_Tick - m_LastActionTime) >= m_PChar->m_rangedDelay)
 	{
 		m_LastMeleeTime += (m_Tick - m_LastActionTime);
 		m_LastActionTime = m_Tick;
