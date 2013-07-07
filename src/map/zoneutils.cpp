@@ -211,7 +211,7 @@ void LoadNPCList(CZone* PZone)
 			CNpcEntity* PNpc = new CNpcEntity;
 
 			PNpc->targid = (uint16)Sql_GetUIntData(SqlHandle,0);
-			PNpc->id = (uint32)PNpc->targid  + (PZone->GetID() << 3) + 0x1000000;
+			PNpc->id = (uint32)PNpc->targid  + (PZone->GetID() << 12) + 0x1000000;
 
 			PNpc->name.insert(0,Sql_GetData(SqlHandle,1));
 
