@@ -527,7 +527,7 @@ void CalculateStats(CMobEntity * PMob)
 	{
 		PMob->setModifier(MOD_EVA, 10);
 	}
-	else if(PMob->m_Family == 217)
+	else if(PMob->m_Family == 217 || PMob->m_Family == 274 || PMob->m_Family == 273)
 	{
 		// scorpion
 		PMob->m_Immunity = (IMMUNITY)(uint16)(PMob->m_Immunity | IMMUNITY_POISON);

@@ -1127,12 +1127,13 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
             {
                 // reduce stoneskin
                 uint16 skin = m_POwner->getMod(MOD_STONESKIN);
-                if(skin >= regen)
+                if(skin > regen)
                 {
                     m_POwner->delModifier(MOD_STONESKIN, regen);
                 }
                 else
                 {
+                    m_POwner->setModifier(MOD_STONESKIN, 0);
                     DelStatusEffect(EFFECT_STONESKIN);
                     DelStatusEffect(EFFECT_HEALING);
                     m_POwner->addHP(-(regen - skin));
