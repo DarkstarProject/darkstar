@@ -126,6 +126,11 @@ function SetTimedSpawns()
     17436913, -- Marquis_Allocen
     17436918, -- Marquis_Amon
     17436927, -- Grand_Duke_Batym
+    17555890, -- Vrtra
+    17613130, -- Capricious_Cassie
+    17617147, -- Ash Dragon
+    17264828, -- Waraxe Beak
+    17264946, -- Coo Keja the Unseen
     17568127  -- Morbolger
   }
 
