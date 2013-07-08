@@ -31,9 +31,12 @@
 #include "mobutils.h"
 #include "modifier.h"
 #include "spell.h"
+#include <vector>
 
 namespace mobutils
 {
+	std::vector<ModsList_t*> mobFamilyModsList;
+	std::vector<ModsList_t*> mobPoolModsList;
 
 /************************************************************************
 *																		*
@@ -128,6 +131,7 @@ void CalculateStats(CMobEntity * PMob)
 	bool isNM = PMob->m_Type & MOBTYPE_NOTORIOUS;
 	JOBTYPE mJob = PMob->GetMJob();
 	JOBTYPE sJob = PMob->GetSJob();
+	uint8 mLvl = PMob->GetMLevel();
 
 	// event mob types will always have custom roaming
 	if(PMob->m_Type & MOBTYPE_EVENT)
@@ -482,13 +486,6 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->m_hearingRange = 10;
 	}
 
-	// clear current traits first
-    for (uint8 i = 0; i < PMob->TraitList.size(); ++i)
-    {
-        CTrait* PTrait = PMob->TraitList.at(i);
-        PMob->delModifier(PTrait->getMod(), PTrait->getValue());
-    }
-
     // special case, give spell list to my pet
     if(PMob->id == 16781327 && PMob->PPet != NULL)
     {
@@ -501,35 +498,9 @@ void CalculateStats(CMobEntity * PMob)
 
 	// add special traits to families
 	// right now this is hard coded but will eventually be put into a column?
-
-	if(PMob->m_Family == 175)
+	if(PMob->m_Family == 217 || PMob->m_Family == 274 || PMob->m_Family == 273)
 	{
-		// magic pot has high defense bonus
-		PMob->setModifier(MOD_MDEF, 50);
-	}
-	else if(PMob->m_Family == 4 || PMob->m_Family == 74 || PMob->m_Family == 61 || PMob->m_Family == 169)
-	{
-		// ahriman has magic defense bonus
-		// cardians, corse, demons
-		PMob->setModifier(MOD_MDEF, 25);
-	}
-	else if(PMob->m_Family == 110 || PMob->m_Family == 111 || PMob->m_Family == 171)
-	{
-		// evil weapons
-		PMob->setModifier(MOD_MDEF, 13);
-	}
-	else if(PMob->m_Family == 139)
-	{
-		// hecteyes
-		PMob->setModifier(MOD_EVA, 10);
-	}
-	else if(PMob->m_Family == 176)
-	{
-		PMob->setModifier(MOD_EVA, 10);
-	}
-	else if(PMob->m_Family == 217 || PMob->m_Family == 274 || PMob->m_Family == 273)
-	{
-		// scorpion
+		// scorpion are immune to poison
 		PMob->m_Immunity = (IMMUNITY)(uint16)(PMob->m_Immunity | IMMUNITY_POISON);
 	}
 	else if(PMob->m_Family == 258)
@@ -561,27 +532,7 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->m_maxRoamDistance = 3;
 	}
 
-    PMob->TraitList.clear();
-
-    // add double attack bonus 50+
-    if(PMob->GetMLevel() >= 50 && PMob->GetMJob() == JOB_WAR){
-    	PMob->delModifier(MOD_DOUBLE_ATTACK, 10);
-    	PMob->addModifier(MOD_DOUBLE_ATTACK, 10);
-    }
-
-	// add traits for sub and main
-	AddTraits(PMob, PMob->GetMJob(), PMob->GetMLevel());
-	AddTraits(PMob, PMob->GetSJob(), PMob->GetSLevel());
-
-	PMob->delModifier(MOD_MEVA, PMob->m_magicEvasion);
-	//natural magic evasion
-	if(PMob->GetMLevel()<=83){
-	    PMob->m_magicEvasion = battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PMob->GetMLevel());
-		PMob->setModifier(MOD_MEVA, PMob->m_magicEvasion);
-	} else {
-	    PMob->m_magicEvasion = battleutils::GetMaxSkill(SKILL_SWD, JOB_RDM, PMob->GetMLevel());
-		PMob->setModifier(MOD_MEVA, PMob->m_magicEvasion);
-	}
+	AddMods(PMob);
 
 	// cap all magic skills so they play nice with spell scripts
 	for (int i=SKILL_DIV; i <=SKILL_BLU; i++) {
@@ -612,8 +563,65 @@ void AddTraits(CMobEntity* PMob, JOBTYPE jobID, uint8 lvl)
 		if (lvl >= PTrait->getLevel() && PTrait->getLevel() > 0)
 		{
             PMob->addModifier(PTrait->getMod(), PTrait->getValue());
-		PMob->TraitList.push_back(PTrait);
 		}
+	}
+}
+
+void AddMods(CMobEntity* PMob)
+{
+
+	uint8 mLvl = PMob->GetMLevel();
+	JOBTYPE mJob = PMob->GetMJob();
+
+	PMob->clearModifiers();
+
+	SKILLTYPE mEvasionRating = SKILL_ELE;
+
+	if(mLvl > 83)
+	{
+		mEvasionRating = SKILL_SWD;
+	}
+
+	//natural magic evasion
+	PMob->addModifier(MOD_MEVA, battleutils::GetMaxSkill(mEvasionRating, JOB_RDM, mLvl));
+	
+    // add double attack bonus 50+
+    if(mLvl >= 50 && PMob->GetMJob() == JOB_WAR){
+    	PMob->addModifier(MOD_DOUBLE_ATTACK, 10);
+    }
+
+	if(mJob == JOB_WHM && mLvl >= 25)
+	{
+		// whm nms have regen effect
+		PMob->addModifier(MOD_REGEN, PMob->GetMLevel()/2);
+	}
+
+	// add traits for sub and main
+	AddTraits(PMob, PMob->GetMJob(), PMob->GetMLevel());
+	AddTraits(PMob, PMob->GetSJob(), PMob->GetSLevel());
+
+    // Killer Effect
+    switch (PMob->m_EcoSystem)
+      {
+        case SYSTEM_AMORPH:   PMob->addModifier(MOD_BIRD_KILLER,     5); break;
+        case SYSTEM_AQUAN:    PMob->addModifier(MOD_AMORPH_KILLER,   5); break;
+        case SYSTEM_ARCANA:   PMob->addModifier(MOD_UNDEAD_KILLER,   5); break;
+        case SYSTEM_BEAST:    PMob->addModifier(MOD_LIZARD_KILLER,   5); break;
+        case SYSTEM_BIRD:     PMob->addModifier(MOD_AQUAN_KILLER,    5); break;
+        case SYSTEM_DEMON:    PMob->addModifier(MOD_DRAGON_KILLER,   5); break;
+        case SYSTEM_DRAGON:   PMob->addModifier(MOD_DEMON_KILLER,    5); break;
+        case SYSTEM_LIZARD:   PMob->addModifier(MOD_VERMIN_KILLER,   5); break;
+        case SYSTEM_LUMINION: PMob->addModifier(MOD_LUMORIAN_KILLER, 5); break;
+        case SYSTEM_LUMORIAN: PMob->addModifier(MOD_LUMINION_KILLER, 5); break;
+        case SYSTEM_PLANTOID: PMob->addModifier(MOD_BEAST_KILLER,    5); break;
+        case SYSTEM_UNDEAD:   PMob->addModifier(MOD_ARCANA_KILLER,   5); break;
+        case SYSTEM_VERMIN:   PMob->addModifier(MOD_PLANTOID_KILLER, 5); break;
+      }
+
+     // add special mods
+  for (std::vector<CModifier*>::iterator it = PMob->m_modList.begin() ; it != PMob->m_modList.end(); ++it)
+	{
+		PMob->addModifier((*it)->getModID(), (*it)->getModAmount());
 	}
 }
 
@@ -706,24 +714,6 @@ void GetAvailableSpells(CMobEntity* PMob) {
 
 void InitializeMob(CMobEntity* PMob)
 {
-
-        // Killer Effect
-        switch (PMob->m_EcoSystem)
-      {
-        case SYSTEM_AMORPH:   PMob->addModifier(MOD_BIRD_KILLER,     5); break;
-        case SYSTEM_AQUAN:    PMob->addModifier(MOD_AMORPH_KILLER,   5); break;
-        case SYSTEM_ARCANA:   PMob->addModifier(MOD_UNDEAD_KILLER,   5); break;
-        case SYSTEM_BEAST:    PMob->addModifier(MOD_LIZARD_KILLER,   5); break;
-        case SYSTEM_BIRD:     PMob->addModifier(MOD_AQUAN_KILLER,    5); break;
-        case SYSTEM_DEMON:    PMob->addModifier(MOD_DRAGON_KILLER,   5); break;
-        case SYSTEM_DRAGON:   PMob->addModifier(MOD_DEMON_KILLER,    5); break;
-        case SYSTEM_LIZARD:   PMob->addModifier(MOD_VERMIN_KILLER,   5); break;
-        case SYSTEM_LUMINION: PMob->addModifier(MOD_LUMORIAN_KILLER, 5); break;
-        case SYSTEM_LUMORIAN: PMob->addModifier(MOD_LUMINION_KILLER, 5); break;
-        case SYSTEM_PLANTOID: PMob->addModifier(MOD_BEAST_KILLER,    5); break;
-        case SYSTEM_UNDEAD:   PMob->addModifier(MOD_ARCANA_KILLER,   5); break;
-        case SYSTEM_VERMIN:   PMob->addModifier(MOD_PLANTOID_KILLER, 5); break;
-      }
 
       // setup cross family links
       switch(PMob->m_Family)
@@ -836,6 +826,135 @@ void InitializeMob(CMobEntity* PMob)
 	    	PMob->m_SubLinks[0] = 362;
     	break;
       }
+
+      // this only has to be added once
+     AddCustomMods(PMob);
+}
+
+/*
+Loads up custom mob mods from mob_pool_mods and mob_family_mods table. This will allow you to customize
+a mobs regen rate, magic defense, triple attack rate from a table instead of hardcoding it.
+
+Usage:
+
+	Evil weapons have a magic defense boost. So pop that into mob_family_mods table.
+	Goblin Diggers have a vermin killer trait, so find its poolid and put it in mod_pool_mods table.
+
+*/
+void LoadCustomMods()
+{
+
+	// load family mods
+	const int8 QueryFamilyMods[] = "SELECT familyid, modid, value FROM mob_family_mods;";
+
+    int32 ret = Sql_Query(SqlHandle, QueryFamilyMods);
+
+	if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	{
+		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		{
+			ModsList_t* familyMods = GetMobFamilyMods(Sql_GetUIntData(SqlHandle,0), true);
+
+			CModifier* mod = new CModifier((MODIFIER)Sql_GetUIntData(SqlHandle,1));
+			mod->setModAmount(Sql_GetUIntData(SqlHandle,2));
+			
+			familyMods->mods.push_back(mod);
+		}
+	}
+
+	// load pool mods
+	const int8 QueryPoolMods[] = "SELECT poolid, modid, value FROM mob_pool_mods;";
+
+    ret = Sql_Query(SqlHandle, QueryPoolMods);
+
+	if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	{
+		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		{
+			ModsList_t* poolMods = GetMobPoolMods(Sql_GetUIntData(SqlHandle,0), true);
+
+			CModifier* mod = new CModifier((MODIFIER)Sql_GetUIntData(SqlHandle,1));
+			mod->setModAmount(Sql_GetUIntData(SqlHandle,2));
+			
+			poolMods->mods.push_back(mod);
+		}
+	}
+
+}
+
+ModsList_t* GetMobFamilyMods(uint16 familyId, bool create)
+{
+	for(std::vector<ModsList_t*>::iterator it = mobFamilyModsList.begin(); it != mobFamilyModsList.end() ; ++it)
+	{
+		if((*it)->id == familyId)
+		{
+			return *it;
+		}
+	}
+
+	if(create)
+	{
+		// create new one
+		ModsList_t* mods = new ModsList_t;
+		mods->id = familyId;
+
+		mobFamilyModsList.push_back(mods);
+
+		return mods;
+	}
+
+	return NULL;
+}
+
+ModsList_t* GetMobPoolMods(uint32 poolId, bool create)
+{
+	for(std::vector<ModsList_t*>::iterator it = mobPoolModsList.begin(); it != mobPoolModsList.end() ; ++it)
+	{
+		if((*it)->id == poolId)
+		{
+			return *it;
+		}
+	}
+
+	if(create)
+	{
+		// create new one
+		ModsList_t* mods = new ModsList_t;
+		mods->id = poolId;
+
+		mobPoolModsList.push_back(mods);
+
+		return mods;
+	}
+
+	return NULL;
+}
+
+void AddCustomMods(CMobEntity* PMob)
+{
+	// find my families custom mods
+	ModsList_t* PFamilyMods = GetMobFamilyMods(PMob->m_Family);
+
+	if(PFamilyMods != NULL)
+	{
+		// add them
+		for(std::vector<CModifier*>::iterator it = PFamilyMods->mods.begin(); it != PFamilyMods->mods.end() ; ++it)
+		{
+			PMob->m_modList.push_back(*it);
+		}
+	}
+
+	// find my pools custom mods
+	ModsList_t* PPoolMods = GetMobPoolMods(PMob->m_Pool);
+
+	if(PPoolMods != NULL)
+	{
+		// add them
+		for(std::vector<CModifier*>::iterator it = PPoolMods->mods.begin(); it != PPoolMods->mods.end() ; ++it)
+		{
+			PMob->m_modList.push_back(*it);
+		}
+	}
 }
 
 }; // namespace mobutils

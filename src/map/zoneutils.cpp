@@ -286,7 +286,7 @@ void LoadMOBList(CZone* PZone)
 			Slash, Pierce, H2H, Impact, \
 			Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
 			mob_pools.familyid, name_prefix, unknown, animationsub, \
-			(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, link_radius \
+			(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, link_radius, mob_groups.poolid \
 			FROM mob_groups LEFT JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
 			LEFT JOIN mob_spawn_points ON mob_groups.groupid = mob_spawn_points.groupid \
 			LEFT JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
@@ -408,6 +408,8 @@ void LoadMOBList(CZone* PZone)
 			PMob->m_HasSpellScript = (uint8)Sql_GetIntData(SqlHandle,53);
 
 			PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(Sql_GetIntData(SqlHandle,54));
+
+			PMob->m_Pool = Sql_GetUIntData(SqlHandle,58);
 
 			if(PZone->GetType() == ZONETYPE_BATTLEFIELD)
 			{

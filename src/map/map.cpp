@@ -55,6 +55,7 @@
 #include "vana_time.h"
 #include "zoneutils.h"
 #include "conquest_system.h"
+#include "mobutils.h"
 
 #include "ai/ai_char_gm.h"
 #include "ai/ai_char_normal.h"
@@ -190,6 +191,7 @@ int32 do_init(int32 argc, int8** argv)
     battleutils::LoadSkillChainDamageModifiers();
 	petutils::LoadPetList();
 	conquest::LoadConquestSystem();
+	mobutils::LoadCustomMods();
 
 	ShowStatus("do_init: loading zones");
 	zoneutils::LoadZoneList();

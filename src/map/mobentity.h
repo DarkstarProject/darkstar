@@ -169,6 +169,7 @@ public:
 	uint8       m_THLvl;							// Highest Level of Treasure Hunter that apply to drops
 	uint32		m_THPCID;							// ID of last PC that hit the NPC and apply TH onto the NPC
 	uint16		m_Family;
+  uint32    m_Pool;               // pool the mob came from
 	uint8		m_SkillStatus;						// status of skills (used 2h/used epic tp move/etc)
 	CMobSpellList*      m_SpellListContainer;				// The spells list container for this mob
 	std::map<uint16, uint16>	m_UsedSkillIds;		// mob skill ids used (key) along with mob level (value)
@@ -204,6 +205,8 @@ public:
 
   CMobSpellContainer* SpellContainer;   // retrieves spells for the mob
   uint8		m_HasSpellScript;					// 1 if they have a spell script to use for working out what to cast.
+
+  std::vector<CModifier*> m_modList;      // mods
 
   CMobEntity();
   ~CMobEntity();

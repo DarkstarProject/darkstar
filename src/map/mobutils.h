@@ -28,15 +28,30 @@
 #include "../common/mmo.h"
 
 #include "mobentity.h"
+#include "modifier.h"
 
+typedef struct
+{
+  uint32 id;
+  std::vector<CModifier*> mods;
+} ModsList_t;
 
 namespace mobutils
 {
 	void	CalculateStats(CMobEntity* PMob);
   void  AddTraits(CMobEntity* PMob, JOBTYPE jobID, uint8 lvl);
+  void   AddMods(CMobEntity* PMob);
 	uint16	GetWeaponDamage(CMobEntity* PMob);
 	void    GetAvailableSpells(CMobEntity* PMob);
   void  InitializeMob(CMobEntity* PMob);
+  void  LoadCustomMods();
+
+  // returns the families mod list
+  ModsList_t* GetMobFamilyMods(uint16 familyId, bool create = false);
+
+  // returns the pool mod list
+  ModsList_t* GetMobPoolMods(uint32 poolId, bool create = false);
+  void  AddCustomMods(CMobEntity* PMob);
 };
 
 #endif
