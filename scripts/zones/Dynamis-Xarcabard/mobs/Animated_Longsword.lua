@@ -1,17 +1,10 @@
 -----------------------------------
 -- Area: Dynamis Xarcabard
--- NPC:  Animated_Longsword
+-- NPC:  Animated Longsword
 -----------------------------------
 
 require("scripts/globals/status");
-
------------------------------------
--- onMobInitialize Action
------------------------------------
-
-function onMobInitialize(mob,target)
-	mob:addMod(MOD_STUNRES,75); -- Not full resist
-end;
+require("scripts/zones/Dynamis-Xarcabard/TextIDs");
 
 -----------------------------------
 -- onMobEngaged
@@ -19,11 +12,13 @@ end;
 
 function onMobEngaged(mob,target)
 
-	if(GetServerVariable("[DynaXarcabard]Boss_Trigger") == 32767) then
+	if(mob:AnimationSub() == 3) then
 		SetDropRate(111,1573,100);
 	else
 		SetDropRate(111,1573,0);
 	end
+	
+	target:showText(mob,ANIMATED_LONGSWORD_DIALOG);
 	
 	SpawnMob(17330355,120):updateEnmity(target);
 	SpawnMob(17330356,120):updateEnmity(target);
@@ -39,6 +34,15 @@ end;
 -----------------------------------
 
 function onMobFight(mob,target)
+	-- TODO: add battle dialog
+end;
+
+-----------------------------------
+-- onMobDisengage
+-----------------------------------
+
+function onMobDisengage(mob)
+	mob:showText(mob,ANIMATED_LONGSWORD_DIALOG+2);
 end;
 
 -----------------------------------
@@ -46,6 +50,8 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
+	
+	killer:showText(mob,ANIMATED_LONGSWORD_DIALOG+1);
 	
 	DespawnMob(17330355);
 	DespawnMob(17330356);

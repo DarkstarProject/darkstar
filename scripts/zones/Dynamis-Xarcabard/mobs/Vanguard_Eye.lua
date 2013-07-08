@@ -86,22 +86,22 @@ function onMobDeath(mob,killer)
 	
 	-- 035 039: spawn 043 when defeated
 	if(mobID == 17326536) then
-		SpawnDynaMob(17326553);
+		SpawnMob(17326553);
 	-- 058: spawn 60 when defeated
 	elseif(mobID == 17326661 and GetMobAction(17326668) == 0 and GetMobAction(17326673) == 0 or 
 		   mobID == 17326668 and GetMobAction(17326661) == 0 and GetMobAction(17326673) == 0 or 
 		   mobID == 17326673 and GetMobAction(17326661) == 0 and GetMobAction(17326668) == 0) then
-		SpawnDynaMob(17326706);
+		SpawnMob(17326706);
 	-- 114: spawn 112 when defeated
 	elseif(mobID == 17326790) then
-		SpawnDynaMob(17326086);
+		SpawnMob(17326086);
 	-- 144-149: spawn 150 when defeated
 	elseif(mobID >= 17330913 and mobID <= 17330918) then
 		SetServerVariable("[DynaXarcabard]TE150_Trigger",GetServerVariable("[DynaXarcabard]TE150_Trigger") + (mobID - 17330912) ^ 2);
 	end
 	
 	if(GetServerVariable("[DynaXarcabard]TE150_Trigger") == 63) then
-		SpawnDynaMob(17330919); -- 150
+		SpawnMob(17330919); -- 150
 	end
 	
 end;

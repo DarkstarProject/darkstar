@@ -25,7 +25,7 @@ function onZoneIn(player,prevZone)
 	cs = -1;
 	
 	local realDay = os.time();
-	local dynaWaitxDay = 0;--player:getVar("dynaWaitxDay");
+	local dynaWaitxDay = player:getVar("dynaWaitxDay");
 	
 	if((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(569.600,-0.078,-270.000,90);

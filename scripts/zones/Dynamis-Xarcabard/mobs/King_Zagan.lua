@@ -3,15 +3,8 @@
 -- NPC:  King Zagan
 -----------------------------------
 
-require("scripts/globals/status");
 require("scripts/globals/dynamis");
-
------------------------------------
--- onMobInitialize Action
------------------------------------
-
-function onMobInitialize(mob,target)
-end;
+require("scripts/zones/Dynamis-Xarcabard/TextIDs");
 
 -----------------------------------
 -- onMobEngaged
@@ -33,14 +26,25 @@ end;
 
 function onMobDeath(mob,killer)
 	
-	SetServerVariable("[DynaXarcabard]Boss_Trigger",GetServerVariable("[DynaXarcabard]Boss_Trigger") + 2048);
+	local Animate_Trigger = GetServerVariable("[DynaXarcabard]Boss_Trigger");
 	
-	if(GetServerVariable("[DynaXarcabard]Boss_Trigger") == 32767) then
-		SpawnMob(17330911); -- 142
-		SpawnMob(17330912); -- 143
-		SpawnMob(17330183); -- 177
-		SpawnMob(17330184); -- 178
-		activateAnimatedWeapon(); -- Change subanim of all animated weapon
+	if(mob:isInBattlefieldList() == false) then
+		mob:addInBattlefieldList();
+		Animate_Trigger = Animate_Trigger + 2048;
+		SetServerVariable("[DynaXarcabard]Boss_Trigger",Animate_Trigger);
+		
+		if(Animate_Trigger == 32767) then
+			SpawnMob(17330911); -- 142
+			SpawnMob(17330912); -- 143
+			SpawnMob(17330183); -- 177
+			SpawnMob(17330184); -- 178
+			
+			activateAnimatedWeapon(); -- Change subanim of all animated weapon
+		end
+	end
+	
+	if(Animate_Trigger == 32767) then
+		killer:messageSpecial(PRISON_OF_SOULS_HAS_SET_FREE);
 	end
 	
 end;

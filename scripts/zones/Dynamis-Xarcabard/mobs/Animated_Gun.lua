@@ -1,17 +1,10 @@
 -----------------------------------
 -- Area: Dynamis Xarcabard
--- NPC:  Animated_Gun
+-- NPC:  Animated Gun
 -----------------------------------
 
 require("scripts/globals/status");
-
------------------------------------
--- onMobInitialize Action
------------------------------------
-
-function onMobInitialize(mob,target)
-	mob:addMod(MOD_STUNRES,75); -- Not full resist
-end;
+require("scripts/zones/Dynamis-Xarcabard/TextIDs");
 
 -----------------------------------
 -- onMobEngaged
@@ -19,11 +12,13 @@ end;
 
 function onMobEngaged(mob,target)
 
-	if(GetServerVariable("[DynaXarcabard]Boss_Trigger") == 32767) then
+	if(mob:AnimationSub() == 3) then
 		SetDropRate(105,1585,100);
 	else
 		SetDropRate(105,1585,0);
 	end
+	
+	target:showText(mob,ANIMATED_GUN_DIALOG);
 	
 	SpawnMob(17330513,120):updateEnmity(target);
 	SpawnMob(17330514,120):updateEnmity(target);
@@ -39,6 +34,15 @@ end;
 -----------------------------------
 
 function onMobFight(mob,target)
+	-- TODO: add battle dialog
+end;
+
+-----------------------------------
+-- onMobDisengage
+-----------------------------------
+
+function onMobDisengage(mob)
+	mob:showText(mob,ANIMATED_GUN_DIALOG+2);
 end;
 
 -----------------------------------
@@ -46,6 +50,8 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
+	
+	killer:showText(mob,ANIMATED_GUN_DIALOG+1);
 	
 	DespawnMob(17330513);
 	DespawnMob(17330514);

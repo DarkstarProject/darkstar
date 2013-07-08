@@ -268,7 +268,8 @@ int32 GetMobIDByJob(lua_State *L)
 		if(PMob != NULL && 
 		   PMob->isDead() && 
 		   !(PMob->m_Type & MOBTYPE_NOTORIOUS) && 
-		   PMob->GetMJob() == mobJob) // Need to add condition to add just kindred/vanguard mob
+		   (PMob->m_Family < 92 || PMob->m_Family > 95) && PMob->m_Family != 4 && 
+		   PMob->GetMJob() == mobJob)
 		{
 			lua_pushinteger(L,PMob->id);
 			return 1;
