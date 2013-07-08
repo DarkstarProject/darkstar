@@ -58,7 +58,7 @@ function onRegionEnter(player,region)
 local regionID =region:GetRegionID();
 --printf("regionID: %u",regionID);
   if(regionID==1 and player:getCurrentMission(COP) ==THE_CALL_OF_THE_WYRMKING and player:getVar("PromathiaStatus")==0)then
-  player:startEvent(0x131);
+  player:startEvent(0x0131);
   end
 end;
 -----------------------------------

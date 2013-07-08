@@ -7,7 +7,7 @@ package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/AlTaieu/TextIDs");
-
+require("scripts/globals/missions");
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -20,7 +20,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+
+   if(player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus")==1)then
+    player:startEvent(0x00A4);
+    else
 	player:startEvent(0x0064);
+	end
 	return 1;
 end;
 
@@ -43,6 +48,8 @@ function onEventFinish(player,csid,option)
 	
 	if(csid == 0x0064 and option == 1) then
 		player:setPos(-20,0,-355,192,0x22);
+	elseif(csid == 0x00A4)then	
+	    player:setVar("PromathiaStatus",2);
 	end
 	
 end;

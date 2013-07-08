@@ -50,7 +50,7 @@ bcnmid_param_map = {6,{640,0},
 					21,{832,0},
                     23,{864,0},
 					31,{960,0,961,1},
-					32,{992,0},
+					32,{992,0,993,1},
 					139,{0,0,5,5,6,6,7,7,11,11,15,15,17,17},
 					140,{32,0,33,1,34,2,35,3,36,4},
 					144,{64,0,67,3,68,4,70,6,71,7,72,8,81,17,76,12,82,18,79,15},
@@ -406,6 +406,9 @@ function checkNonTradeBCNM(player,npc)
 	    if(player:getCurrentMission(COP) == ONE_TO_BE_FEARED and player:getVar("PromathiaStatus")==2) then -- one_to_be_feared
 	        mask = GetBattleBitmask(992,Zone,1);
 	        player:setVar("trade_bcnmid",992);
+		elseif(player:getCurrentMission(COP) == THE_WARRIOR_S_PATH) then --warriors_path
+			mask = GetBattleBitmask(993,Zone,1);
+	        player:setVar("trade_bcnmid",993);
 	    end				
 	elseif(Zone == 139) then -- Horlais Peak
 		if((player:getCurrentMission(BASTOK) == THE_EMISSARY_SANDORIA2 or 

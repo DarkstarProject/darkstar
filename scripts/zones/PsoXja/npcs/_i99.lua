@@ -28,7 +28,7 @@ function onTrigger(player,npc)
 	player:startEvent(0x006D); --start floor 1 or 3 or 4
 	elseif(player:hasCompletedMission(COP,DESIRES_OF_EMPTINESS) or (player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==7))then
 	player:startEvent(0x0070); --start floor 1 or 3 or 4
-	elseif(player:hasCompletedMission(COP,THE_ENDURING_TUMULT_OF_WAR))then
+	elseif(player:hasCompletedMission(COP,THE_ENDURING_TUMULT_OF_WAR)or player:hasCompletedMission(COP,THE_LAST_VERSE))then
 	player:startEvent(0x0032); --start floor 1
 	else
 	player:messageSpecial(DOOR_LOCKED);

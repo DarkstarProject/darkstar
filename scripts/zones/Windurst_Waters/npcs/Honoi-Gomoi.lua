@@ -11,7 +11,7 @@ package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Windurst_Waters/TextIDs");
-
+require("scripts/globals/keyitems");
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -118,8 +118,8 @@ function onEventFinish(player,csid,option)
 		player:setVar("QuestHatInHand_count",player:getVar("QuestHatInHand_count")+1);
 	elseif (csid == 0x036A)	then
 		player:setVar("MEMORIES_OF_A_MAIDEN_Status",6);
-		player:addKeyItem(581); --Cracked Mimeo Mirror
-		player:messageSpecial(KEYITEM_OBTAINED,581);
+		player:addKeyItem(CRACKED_MIMEO_MIRROR); --Cracked Mimeo Mirror
+		player:messageSpecial(KEYITEM_OBTAINED,CRACKED_MIMEO_MIRROR);
 	end
 end;
 

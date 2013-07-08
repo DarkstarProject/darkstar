@@ -32,7 +32,7 @@ function onTrigger(player,npc)
 	player:startEvent(0x000D);
 	elseif(EventTriggerBCNM(player,npc))then
 		return 0;
-	elseif(player:hasKeyItem(LIGHT_OF_ALTAIEU) == true) then
+	elseif(player:hasKeyItem(LIGHT_OF_ALTAIEU) == true or player:getCurrentMission(COP) > THE_WARRIOR_S_PATH) then
 	player:startEvent(0x000C);
 	end
 	
