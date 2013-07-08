@@ -55,6 +55,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("Ru_aern_3-1KILL",0);
 		player:setVar("Ru_aern_3-2KILL",0);
 		player:setVar("Ru_aern_3-3KILL",0);
+		player:setPos(-20,0,-355,192,0x22);
 	end
 	
 end;

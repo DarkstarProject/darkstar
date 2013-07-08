@@ -13,7 +13,25 @@ require("scripts/zones/Grand_Palace_of_HuXzoi/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-end;
+	
+	zone:registerRegion(1,  -102, -4,  541,  -97, 4, 546); 		-- elvaan tower L-6  52??
+    zone:registerRegion(2,  737, -4,  541,  742, 4, 546); 		-- elvaan tower L-6  52??
+	
+	zone:registerRegion(3,  661, -4,  87,  667, 4, 103); 	
+	zone:registerRegion(4,  -178, -4,  97,  -173, 4, 103); 
+	
+    zone:registerRegion(5,  340, -4,  97,  347, 4, 102); 	
+	zone:registerRegion(6,  -497, -4,  97,  -492, 4, 102); 
+	
+	
+	zone:registerRegion(7,  97, -4,  372,  103, 4, 378); 	
+	zone:registerRegion(8,  -742, -4,  372,  -736, 4, 379); 
+	
+    zone:registerRegion(9,  332, -4,  696,  338, 4, 702); 	
+	zone:registerRegion(10,  -507, -4,  697,  -501, 4, 702); 
+
+ end;		
+
 
 -----------------------------------		
 -- onZoneIn		
@@ -32,8 +50,38 @@ end;
 -----------------------------------		
 
 function onRegionEnter(player,region)	
-end;	
 
+
+  if(player:getVar("Hu-Xzoi-TP")==0 and player:getAnimation()==0)then -- prevent 2cs at same time
+   switch (region:GetRegionID()): caseof {
+        [1] = function (x) player:startEvent(0x0097); player:setVar("Hu-Xzoi-TP",1);end,
+        [2] = function (x) player:startEvent(0x009c);player:setVar("Hu-Xzoi-TP",1); end,
+		
+		
+		[3] = function (x) player:startEvent(0x009D);player:setVar("Hu-Xzoi-TP",1); end,
+        [4] = function (x) player:startEvent(0x0098);player:setVar("Hu-Xzoi-TP",1); end,
+		
+		
+		[5] = function (x) player:startEvent(0x009E);player:setVar("Hu-Xzoi-TP",1); end,
+        [6] = function (x) player:startEvent(0x0099);player:setVar("Hu-Xzoi-TP",1); end,
+		
+		[7] = function (x) player:startEvent(0x009F);player:setVar("Hu-Xzoi-TP",1); end,
+        [8] = function (x) player:startEvent(0x009A);player:setVar("Hu-Xzoi-TP",1); end,
+		
+		[9] = function (x) player:startEvent(0x009B);player:setVar("Hu-Xzoi-TP",1); end,
+        [10] = function (x) player:startEvent(0x0096);player:setVar("Hu-Xzoi-TP",1); end,
+		
+    }
+   end
+	
+end;	
+-----------------------------------	
+-- onRegionLeave	
+-----------------------------------
+	
+function onRegionLeave(player,region)
+end;
+ 
 -----------------------------------	
 -- onEventUpdate	
 -----------------------------------	
@@ -50,4 +98,7 @@ end;
 function onEventFinish(player,csid,option)	
 	--printf("CSID: %u",csid);
 	--printf("RESULT: %u",option);
+	if(csid >0x0095 and csid < 0x00A0)then
+	   player:setVar("Hu-Xzoi-TP",0);
+	end
 end;	
