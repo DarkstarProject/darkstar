@@ -131,6 +131,10 @@ function SetTimedSpawns()
     17617147, -- Ash Dragon
     17264828, -- Waraxe Beak
     17264946, -- Coo Keja the Unseen
+    17207657, -- Ahtu
+    17285460, -- Bisque-heeled Sunberry
+    17285526, -- Bright-handed Kunberry	
+    17285220, -- Woodland Sage
     17568127  -- Morbolger
   }
 
