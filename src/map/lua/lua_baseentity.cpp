@@ -1584,6 +1584,51 @@ inline int32 CLuaBaseEntity::getMaxSkillLevel(lua_State *L)
 
 /************************************************************************
 *                                                                       *
+*  Get craft skill Rank player:getSkillRank(SKILLID)					*
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getSkillRank(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	uint8 rankID = (uint8)lua_tointeger(L,1);
+
+	lua_pushinteger( L, PChar->RealSkills.rank[rankID]);
+	return 1;
+}
+
+/************************************************************************
+*                                                                       *
+*  Set craft skill rank player:setSkillRank(SKILLID,newRank)			*
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::setSkillRank(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+	uint16 skillID = (uint16)lua_tointeger(L,1);
+	uint16 newrank = (uint16)lua_tointeger(L,2);
+
+	PChar->WorkingSkills.rank[skillID] = newrank;
+	PChar->WorkingSkills.skill[skillID] += 1;
+	PChar->RealSkills.rank[skillID] = newrank;
+	//PChar->RealSkills.skill[skillID] += 1;
+
+	charutils::BuildingCharSkillsTable(PChar);
+	charutils::SaveCharSkills(PChar, skillID);
+	PChar->pushPacket(new CCharSkillsPacket(PChar));
+    
+	return 0;
+}
+
+/************************************************************************
+*                                                                       *
 *                                                                       *
 *                                                                       *
 ************************************************************************/

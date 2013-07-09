@@ -445,10 +445,10 @@ uint8 calcSynthResult(CCharEntity* PChar)
 
 int32 doSynthSkillUp(CCharEntity* PChar) 
 {
-	if (PChar->Container->getType() == ELEMENT_LIGHTNING)
-	{
-		return 0;
-	}
+	//if (PChar->Container->getType() == ELEMENT_LIGHTNING)
+	//{
+	//	return 0;
+	//} bad idea, you cannot synth any item with lightning crystal
 
 	double MoonPhase = (double)CVanaTime::getInstance()->getMoonPhase();
 	double MoonCorrection = MoonPhase / 500;
@@ -460,7 +460,7 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 			continue;
 		}
 
-		uint8  skillRank = 9; //PChar->RealSkills.rank[skillID];
+		uint8  skillRank = PChar->RealSkills.rank[skillID];
 		uint16 maxSkill  = (skillRank+1)*100;
 
 		int32  charSkill = PChar->RealSkills.skill[skillID];
