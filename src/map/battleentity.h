@@ -487,7 +487,6 @@ public:
 	void		    addModifiers(std::vector<CModifier*> *modList);
 	void		    setModifiers(std::vector<CModifier*> *modList);
 	void		    delModifiers(std::vector<CModifier*> *modList);
-	void			clearModifiers(); // reset modifiers to zero
 
 	uint8			m_ModelSize;			    // размер модели сущности, для расчета дальности физической атаки
 	ECOSYSTEM		m_EcoSystem;			    // эко-система сущности

@@ -670,11 +670,6 @@ void CBattleEntity::delModifiers(std::vector<CModifier*> *modList)
 	}
 }
 
-void CBattleEntity::clearModifiers()
-{
-	memset(m_modStat,0, sizeof(m_modStat));
-}
-
 /************************************************************************
 *																		*
 *  Получаем текущее значение указанного модификатора					*

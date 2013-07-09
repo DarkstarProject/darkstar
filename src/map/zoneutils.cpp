@@ -419,6 +419,8 @@ void LoadMOBList(CZone* PZone)
 				PMob->m_linkRadius = 20;
 			}
 
+	        mobutils::AddMods(PMob);
+
 			mobutils::InitializeMob(PMob);
 
 			PZone->InsertMOB(PMob);

@@ -532,8 +532,6 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->m_maxRoamDistance = 3;
 	}
 
-	AddMods(PMob);
-
 	// cap all magic skills so they play nice with spell scripts
 	for (int i=SKILL_DIV; i <=SKILL_BLU; i++) {
 		uint16 maxSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PMob->GetMJob(),PMob->GetMLevel());
@@ -572,8 +570,6 @@ void AddMods(CMobEntity* PMob)
 
 	uint8 mLvl = PMob->GetMLevel();
 	JOBTYPE mJob = PMob->GetMJob();
-
-	PMob->clearModifiers();
 
 	SKILLTYPE mEvasionRating = SKILL_ELE;
 
