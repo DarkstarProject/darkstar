@@ -4651,7 +4651,7 @@ void PacketParserInitialize()
     PacketSize[0x0D4] = 0x00; PacketParser[0x0D4] = &SmallPacket0xFFF;	// not implemented
     PacketSize[0x0DB] = 0x00; PacketParser[0x0DB] = &SmallPacket0x0DB;
     PacketSize[0x0DC] = 0x0A; PacketParser[0x0DC] = &SmallPacket0x0DC;
-    PacketSize[0x0DD] = 0x06; PacketParser[0x0DD] = &SmallPacket0x0DD;
+    PacketSize[0x0DD] = 0x08; PacketParser[0x0DD] = &SmallPacket0x0DD;
     PacketSize[0x0DE] = 0x40; PacketParser[0x0DE] = &SmallPacket0x0DE;
     PacketSize[0x0E0] = 0x4C; PacketParser[0x0E0] = &SmallPacket0x0E0;
     PacketSize[0x0E1] = 0x00; PacketParser[0x0E1] = &SmallPacket0x0E1;
