@@ -206,8 +206,6 @@ public:
   CMobSpellContainer* SpellContainer;   // retrieves spells for the mob
   uint8		m_HasSpellScript;					// 1 if they have a spell script to use for working out what to cast.
 
-  std::vector<CModifier*> m_modList;      // mods
-
   CMobEntity();
   ~CMobEntity();
 

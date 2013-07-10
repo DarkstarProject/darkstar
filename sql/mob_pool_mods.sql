@@ -54,3 +54,4 @@ INSERT INTO `mob_pool_mods` VALUES(1648, 224, 5);
 INSERT INTO `mob_pool_mods` VALUES(2790, 244, 7);
 INSERT INTO `mob_pool_mods` VALUES(2790, 240, 7);
 INSERT INTO `mob_pool_mods` VALUES(2790, 168, 50);
+INSERT INTO `mob_pool_mods` VALUES(3549, 370, 50);

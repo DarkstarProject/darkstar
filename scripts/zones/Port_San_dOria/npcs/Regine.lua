@@ -107,6 +107,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("tradeMaugie",0);
 		player:setVar("tradeAdaunel",0);
 		player:setVar("tradeRosel",0);
+		player:setVar("FFR",0);
 	elseif (csid == 0x1fe) then
 		if (option == 0) then
 			stock = {0x1221,1165,1, --Scroll of Diaga

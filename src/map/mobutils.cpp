@@ -594,12 +594,6 @@ void AddMods(CMobEntity* PMob)
 	// add traits for sub and main
 	AddTraits(PMob, PMob->GetMJob(), PMob->GetMLevel());
 	AddTraits(PMob, PMob->GetSJob(), PMob->GetSLevel());
-
-    // add special mods
-	for (std::vector<CModifier*>::iterator it = PMob->m_modList.begin() ; it != PMob->m_modList.end(); ++it)
-	{
-		PMob->addModifier((*it)->getModID(), (*it)->getModAmount());
-	}
 }
 
 /* Gets the available spells for the specified monster. This looks up the types of spells the monster
@@ -930,6 +924,7 @@ ModsList_t* GetMobPoolMods(uint32 poolId, bool create)
 
 void AddCustomMods(CMobEntity* PMob)
 {
+
 	// find my families custom mods
 	ModsList_t* PFamilyMods = GetMobFamilyMods(PMob->m_Family);
 
@@ -938,7 +933,7 @@ void AddCustomMods(CMobEntity* PMob)
 		// add them
 		for(std::vector<CModifier*>::iterator it = PFamilyMods->mods.begin(); it != PFamilyMods->mods.end() ; ++it)
 		{
-			PMob->m_modList.push_back(*it);
+			PMob->addModifier((*it)->getModID(), (*it)->getModAmount());
 		}
 	}
 
@@ -950,7 +945,7 @@ void AddCustomMods(CMobEntity* PMob)
 		// add them
 		for(std::vector<CModifier*>::iterator it = PPoolMods->mods.begin(); it != PPoolMods->mods.end() ; ++it)
 		{
-			PMob->m_modList.push_back(*it);
+			PMob->addModifier((*it)->getModID(), (*it)->getModAmount());
 		}
 	}
 }
