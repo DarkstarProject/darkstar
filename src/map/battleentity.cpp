@@ -48,6 +48,8 @@ CBattleEntity::CBattleEntity()
 	memset(& stats,  0, sizeof(stats));
 	memset(& health, 0, sizeof(health));
 	memset(m_modStat,0, sizeof(m_modStat));
+	memset(m_modStatSave,0, sizeof(m_modStatSave));
+
 	memset(& WorkingSkills, 0, sizeof(WorkingSkills));
 
 	PPet      = NULL;
@@ -654,6 +656,16 @@ void CBattleEntity::setModifiers(std::vector<CModifier*> *modList)
 void CBattleEntity::delModifier(uint16 type, int16 amount)
 {
 	m_modStat[(type < MAX_MODIFIER ? type : MOD_NONE)] -= amount;
+}
+
+void CBattleEntity::saveModifiers()
+{
+	memcpy(m_modStatSave,m_modStat, sizeof(m_modStat));
+}
+
+void CBattleEntity::restoreModifiers()
+{
+	memcpy(m_modStat,m_modStatSave, sizeof(m_modStatSave));
 }
 
 /************************************************************************

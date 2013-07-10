@@ -1117,46 +1117,39 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
 
 		m_RegenCheckTime = tick;
 
-        int8 regen = m_POwner->getMod(MOD_REGEN) - m_POwner->getMod(MOD_REGEN_DOWN);
+        int8 regen = m_POwner->getMod(MOD_REGEN);
+        int8 poison = m_POwner->getMod(MOD_REGEN_DOWN);
         int8 refresh = m_POwner->getMod(MOD_REFRESH) - m_POwner->getMod(MOD_REFRESH_DOWN);
         int8 regain = m_POwner->getMod(MOD_REGAIN)/10 - m_POwner->getMod(MOD_REGAIN_DOWN);
 
-        if(HasStatusEffect(EFFECT_STONESKIN))
+		m_POwner->addHP(regen);
+
+        if(poison)
         {
-            if(regen < 0)
+            if(HasStatusEffect(EFFECT_STONESKIN))
             {
                 // reduce stoneskin
                 uint16 skin = m_POwner->getMod(MOD_STONESKIN);
-                if(skin > regen)
+                if(skin >= poison)
                 {
-                    m_POwner->delModifier(MOD_STONESKIN, regen);
+                    m_POwner->delModifier(MOD_STONESKIN, poison);
                 }
                 else
                 {
                     m_POwner->setModifier(MOD_STONESKIN, 0);
                     DelStatusEffect(EFFECT_STONESKIN);
                     DelStatusEffect(EFFECT_HEALING);
-                    m_POwner->addHP(-(regen - skin));
+                    m_POwner->addHP(-(poison - skin));
                     WakeUp();
                 }
             }
             else
             {
-                m_POwner->addHP(regen);
-            }
-        }
-        else
-        {
-
-            // always wake up owner even if total regen is positive
-            if(m_POwner->getMod(MOD_REGEN_DOWN))
-            {
+                m_POwner->addHP(-poison);
                 // prevent resting
                 DelStatusEffect(EFFECT_HEALING);
                 WakeUp();
             }
-
-    		m_POwner->addHP(regen);
         }
 
 		if (m_POwner->getMod(MOD_AVATAR_PERPETUATION) > 0 && (m_POwner->objtype == TYPE_PC))

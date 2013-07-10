@@ -195,7 +195,6 @@ void CalculateStats(CMobEntity * PMob)
 
 	} else {
 		PMob->health.maxhp = PMob->HPmodifier;
-		//printf("HP: %u \n",PMob->health.maxhp);
 	}
 
 	switch(mJob){
@@ -256,13 +255,6 @@ void CalculateStats(CMobEntity * PMob)
 	PMob->health.tp = 0;
     PMob->health.hp = PMob->GetMaxHP();
     PMob->health.mp = PMob->GetMaxMP();
-
-	uint16 evaRank = battleutils::GetSkillRank(SKILL_EVA, PMob->GetMJob());
-
-	PMob->setModifier(MOD_DEF, GetBase(PMob,PMob->defRank));
-	PMob->setModifier(MOD_EVA, GetBase(PMob,evaRank));
-	PMob->setModifier(MOD_ATT, GetBase(PMob,PMob->attRank));
-	PMob->setModifier(MOD_ACC, GetBase(PMob,PMob->accRank));
 
 	PMob->m_Weapons[SLOT_MAIN]->setDamage(GetWeaponDamage(PMob));
 
@@ -550,6 +542,7 @@ void CalculateStats(CMobEntity * PMob)
 		}
 	}
 
+	AddMods(PMob);
 }
 
 void AddTraits(CMobEntity* PMob, JOBTYPE jobID, uint8 lvl)
@@ -568,8 +561,19 @@ void AddTraits(CMobEntity* PMob, JOBTYPE jobID, uint8 lvl)
 void AddMods(CMobEntity* PMob)
 {
 
+	// remove all to keep mods in sync
+	PMob->StatusEffectContainer->KillAllStatusEffect();
+	PMob->restoreModifiers();
+
 	uint8 mLvl = PMob->GetMLevel();
 	JOBTYPE mJob = PMob->GetMJob();
+
+	uint8 evaRank = battleutils::GetSkillRank(SKILL_EVA, PMob->GetMJob());
+
+    PMob->addModifier(MOD_DEF, GetBase(PMob,PMob->defRank));
+    PMob->addModifier(MOD_EVA, GetBase(PMob,evaRank));
+    PMob->addModifier(MOD_ATT, GetBase(PMob,PMob->attRank));
+    PMob->addModifier(MOD_ACC, GetBase(PMob,PMob->accRank));
 
 	SKILLTYPE mEvasionRating = SKILL_ELE;
 
@@ -580,42 +584,19 @@ void AddMods(CMobEntity* PMob)
 
 	//natural magic evasion
 	PMob->addModifier(MOD_MEVA, battleutils::GetMaxSkill(mEvasionRating, JOB_RDM, mLvl));
-	
-    // add double attack bonus 50+
-    if(mLvl >= 50 && PMob->GetMJob() == JOB_WAR){
-    	PMob->addModifier(MOD_DOUBLE_ATTACK, 10);
-    }
 
-	if(mJob == JOB_WHM && mLvl >= 25)
+	if((PMob->m_Type & MOBTYPE_NOTORIOUS) && mJob == JOB_WHM && mLvl >= 25)
 	{
-		// whm nms have regen effect
-		PMob->addModifier(MOD_REGEN, PMob->GetMLevel()/2);
+		// whm nms have stronger regen effect
+		PMob->addModifier(MOD_REGEN, PMob->GetMLevel()/4);
 	}
 
 	// add traits for sub and main
 	AddTraits(PMob, PMob->GetMJob(), PMob->GetMLevel());
 	AddTraits(PMob, PMob->GetSJob(), PMob->GetSLevel());
 
-    // Killer Effect
-    switch (PMob->m_EcoSystem)
-      {
-        case SYSTEM_AMORPH:   PMob->addModifier(MOD_BIRD_KILLER,     5); break;
-        case SYSTEM_AQUAN:    PMob->addModifier(MOD_AMORPH_KILLER,   5); break;
-        case SYSTEM_ARCANA:   PMob->addModifier(MOD_UNDEAD_KILLER,   5); break;
-        case SYSTEM_BEAST:    PMob->addModifier(MOD_LIZARD_KILLER,   5); break;
-        case SYSTEM_BIRD:     PMob->addModifier(MOD_AQUAN_KILLER,    5); break;
-        case SYSTEM_DEMON:    PMob->addModifier(MOD_DRAGON_KILLER,   5); break;
-        case SYSTEM_DRAGON:   PMob->addModifier(MOD_DEMON_KILLER,    5); break;
-        case SYSTEM_LIZARD:   PMob->addModifier(MOD_VERMIN_KILLER,   5); break;
-        case SYSTEM_LUMINION: PMob->addModifier(MOD_LUMORIAN_KILLER, 5); break;
-        case SYSTEM_LUMORIAN: PMob->addModifier(MOD_LUMINION_KILLER, 5); break;
-        case SYSTEM_PLANTOID: PMob->addModifier(MOD_BEAST_KILLER,    5); break;
-        case SYSTEM_UNDEAD:   PMob->addModifier(MOD_ARCANA_KILLER,   5); break;
-        case SYSTEM_VERMIN:   PMob->addModifier(MOD_PLANTOID_KILLER, 5); break;
-      }
-
-     // add special mods
-  for (std::vector<CModifier*>::iterator it = PMob->m_modList.begin() ; it != PMob->m_modList.end(); ++it)
+    // add special mods
+	for (std::vector<CModifier*>::iterator it = PMob->m_modList.begin() ; it != PMob->m_modList.end(); ++it)
 	{
 		PMob->addModifier((*it)->getModID(), (*it)->getModAmount());
 	}
@@ -825,6 +806,27 @@ void InitializeMob(CMobEntity* PMob)
 
       // this only has to be added once
      AddCustomMods(PMob);
+
+    // Killer Effect
+    switch (PMob->m_EcoSystem)
+      {
+        case SYSTEM_AMORPH:   PMob->addModifier(MOD_BIRD_KILLER,     5); break;
+        case SYSTEM_AQUAN:    PMob->addModifier(MOD_AMORPH_KILLER,   5); break;
+        case SYSTEM_ARCANA:   PMob->addModifier(MOD_UNDEAD_KILLER,   5); break;
+        case SYSTEM_BEAST:    PMob->addModifier(MOD_LIZARD_KILLER,   5); break;
+        case SYSTEM_BIRD:     PMob->addModifier(MOD_AQUAN_KILLER,    5); break;
+        case SYSTEM_DEMON:    PMob->addModifier(MOD_DRAGON_KILLER,   5); break;
+        case SYSTEM_DRAGON:   PMob->addModifier(MOD_DEMON_KILLER,    5); break;
+        case SYSTEM_LIZARD:   PMob->addModifier(MOD_VERMIN_KILLER,   5); break;
+        case SYSTEM_LUMINION: PMob->addModifier(MOD_LUMORIAN_KILLER, 5); break;
+        case SYSTEM_LUMORIAN: PMob->addModifier(MOD_LUMINION_KILLER, 5); break;
+        case SYSTEM_PLANTOID: PMob->addModifier(MOD_BEAST_KILLER,    5); break;
+        case SYSTEM_UNDEAD:   PMob->addModifier(MOD_ARCANA_KILLER,   5); break;
+        case SYSTEM_VERMIN:   PMob->addModifier(MOD_PLANTOID_KILLER, 5); break;
+      }
+
+     // this will save the state of mods and so it can be restored later
+     PMob->saveModifiers();
 }
 
 /*

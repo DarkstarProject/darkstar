@@ -487,6 +487,8 @@ public:
 	void		    addModifiers(std::vector<CModifier*> *modList);
 	void		    setModifiers(std::vector<CModifier*> *modList);
 	void		    delModifiers(std::vector<CModifier*> *modList);
+	void 		    saveModifiers(); // save current state of modifiers
+	void 		    restoreModifiers(); // restore to saved state
 
 	uint8			m_ModelSize;			    // размер модели сущности, для расчета дальности физической атаки
 	ECOSYSTEM		m_EcoSystem;			    // эко-система сущности
@@ -515,6 +517,7 @@ private:
 	uint8		m_slvl;						// ТЕКУЩИЙ уровень дополнительной профессии
 
 	int16		m_modStat[MAX_MODIFIER];	// массив модификаторов
+	int16		m_modStatSave[MAX_MODIFIER];	// saved state
 };
 
 #endif
