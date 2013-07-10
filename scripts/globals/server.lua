@@ -135,6 +135,8 @@ function SetTimedSpawns()
     17285460, -- Bisque-heeled Sunberry
     17285526, -- Bright-handed Kunberry	
     17285220, -- Woodland Sage
+    17461338, -- Drexerion the Condemned
+    17461343, -- Phanduron the Condemned
     17568127  -- Morbolger
   }
 
