@@ -108,7 +108,7 @@ int32 lobbydata_parse(int32 fd)
 	if( RFIFOREST(fd) >= 1 )
 	{
 		unsigned char *buff = session[fd]->rdata;
-		if (RBUFB(buff,0) == 0x0d) ShowDebug(CL_RED"Posible Crash Attempt from IP: "CL_WHITE"<%s>\n"CL_RESET,ip2str(session[fd]->client_addr,NULL),NULL);
+		if (RBUFB(buff,0) == 0x0d) ShowDebug(CL_RED"Posible Crash Attempt from IP: " CL_WHITE"<%s>\n" CL_RESET,ip2str(session[fd]->client_addr,NULL),NULL);
 		ShowDebug("lobbydata_parse:Incoming Packet:" CL_WHITE"<%x>" CL_RESET" from ip:<%s>\n",RBUFB(buff,0),ip2str(sd->client_addr,NULL));
 
 		int32 code = RBUFB(buff,0);
