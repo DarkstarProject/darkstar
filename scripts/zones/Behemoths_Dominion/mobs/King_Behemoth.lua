@@ -53,7 +53,7 @@ function onMobDeath(mob, killer)
     SetServerVariable("[PH]King_Behemoth", 0);
     Behemoth = 17297440;
     DeterMob(Behemoth, false);
-    UpdateNMSpawnPoint(17297440);
+    UpdateNMSpawnPoint(Behemoth);
     GetMobByID(Behemoth):setRespawnTime(math.random((75600),(86400)));
 
 end;

@@ -120,6 +120,7 @@ function SetTimedSpawns()
     17596507, -- Skewer Sam
     17269106, -- Roc
     17297440, -- Behemoth
+    17396134, -- Yagudo Avatar
     17228242, -- Simurgh
     17301537, -- Adamantoise
     17436923, -- Duke_Haborym
