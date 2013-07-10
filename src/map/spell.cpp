@@ -25,6 +25,7 @@
 
 #include "map.h"
 #include "spell.h"
+#include "blueutils.h"
 
 
 CSpell::CSpell(uint16 id)
@@ -569,6 +570,17 @@ namespace spell
                         usable = true;
                     }
                 }
+                else if (SpellID > 0x200)
+                {
+                    if (PCaster->objtype == TYPE_PC)
+                    {
+                        usable = blueutils::IsSpellSet((CCharEntity*)PCaster, spell);
+                    }
+                    else
+                    {
+                        usable = true;
+                    }
+                }
                 else
                 {
                     usable = true;
@@ -590,6 +602,17 @@ namespace spell
                 else if (requirements & SPELLREQ_ADDENDUM_WHITE && PCaster->GetSJob() == JOB_SCH)
                 {
                     if (PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_WHITE))
+                    {
+                        usable = true;
+                    }
+                }
+                else if (SpellID > 0x200)
+                {
+                    if (PCaster->objtype == TYPE_PC)
+                    {
+                        usable = blueutils::IsSpellSet((CCharEntity*)PCaster, spell);
+                    }
+                    else
                     {
                         usable = true;
                     }

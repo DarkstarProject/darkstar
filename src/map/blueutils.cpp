@@ -44,12 +44,11 @@ namespace blueutils
 {
 
 void SetBlueSpell(CCharEntity* PChar, CSpell* PSpell, uint8 slotIndex, bool addingSpell) {
-	// for now lets just let them do what they want
 
 	//sanity check
 	if (slotIndex < 20) {
 		if (PSpell != NULL && PSpell->getID() > 0x200) {
-			if (addingSpell) {
+			if (addingSpell && !IsSpellSet(PChar, PSpell)) {
 				// Blue spells in SetBlueSpells must be 0x200 ofsetted so it's 1 byte per spell.
                 if (PChar->m_SetBlueSpells[slotIndex] != 0)
                 {
@@ -157,6 +156,21 @@ void UnequipAllBlueSpells(CCharEntity* PChar)
             PChar->delModifiers(&PSpell->modList);
         }
     }
+}
+
+bool IsSpellSet(CCharEntity* PChar, CSpell* PSpell)
+{
+    for (int slot = 0; slot < 20; slot++)
+    {
+        if (PChar->m_SetBlueSpells[slot] != 0)
+        {
+            if (PChar->m_SetBlueSpells[slot] == PSpell->getID() - 0x200)
+            {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 }
