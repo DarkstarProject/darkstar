@@ -4,15 +4,14 @@ Source Host: localhost
 Source Database: dspdb
 Target Host: localhost
 Target Database: dspdb
-Date: 1/28/2013 6:43:56 PM
+Date: 7/9/2013 8:48:45 PM
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 -- Table structure for blue_spell_list
 -- ----------------------------
-DROP TABLE IF EXISTS `blue_spell_list`;
-CREATE TABLE `blue_spell_list` (
+DROP TABLE IF EXISTS `blue_spell_list`;CREATE TABLE `blue_spell_list` (
   `spellid` smallint(3) NOT NULL,
   `mob_skill_id` smallint(4) unsigned NOT NULL,
   `set_points` smallint(2) NOT NULL,
@@ -71,9 +70,9 @@ INSERT INTO `blue_spell_list` VALUES ('576', '1457', '0', '0', '1');
 INSERT INTO `blue_spell_list` VALUES ('577', '1', '0', '0', '1');
 INSERT INTO `blue_spell_list` VALUES ('578', '67', '0', '0', '1');
 INSERT INTO `blue_spell_list` VALUES ('579', '1451', '0', '0', '1');
-INSERT INTO `blue_spell_list` VALUES ('581', '31', '0', '0', '1');
+INSERT INTO `blue_spell_list` VALUES ('581', '31', '4', '2', '1');
 INSERT INTO `blue_spell_list` VALUES ('582', '397', '0', '0', '1');
-INSERT INTO `blue_spell_list` VALUES ('584', '8', '0', '0', '1');
+INSERT INTO `blue_spell_list` VALUES ('584', '8', '2', '2', '1');
 INSERT INTO `blue_spell_list` VALUES ('585', '10', '0', '0', '1');
 INSERT INTO `blue_spell_list` VALUES ('587', '17', '0', '0', '1');
 INSERT INTO `blue_spell_list` VALUES ('588', '241', '0', '0', '1');
@@ -82,12 +81,12 @@ INSERT INTO `blue_spell_list` VALUES ('591', '544', '0', '0', '1');
 INSERT INTO `blue_spell_list` VALUES ('592', '36', '0', '0', '1');
 INSERT INTO `blue_spell_list` VALUES ('593', '39', '0', '0', '1');
 INSERT INTO `blue_spell_list` VALUES ('594', '328', '0', '0', '1');
-INSERT INTO `blue_spell_list` VALUES ('595', '66', '0', '0', '1');
+INSERT INTO `blue_spell_list` VALUES ('595', '66', '5', '1', '1');
 INSERT INTO `blue_spell_list` VALUES ('596', '73', '0', '0', '1');
-INSERT INTO `blue_spell_list` VALUES ('597', '431', '0', '0', '1');
+INSERT INTO `blue_spell_list` VALUES ('597', '431', '2', '1', '1');
 INSERT INTO `blue_spell_list` VALUES ('598', '178', '0', '0', '1');
 INSERT INTO `blue_spell_list` VALUES ('599', '54', '0', '0', '1');
-INSERT INTO `blue_spell_list` VALUES ('603', '46', '0', '0', '1');
+INSERT INTO `blue_spell_list` VALUES ('603', '46', '3', '1', '1');
 INSERT INTO `blue_spell_list` VALUES ('604', '63', '0', '0', '1');
 INSERT INTO `blue_spell_list` VALUES ('605', '260', '0', '0', '1');
 INSERT INTO `blue_spell_list` VALUES ('608', '121', '0', '0', '1');
