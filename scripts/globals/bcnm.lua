@@ -20,6 +20,8 @@ itemid_bcnmid_map = { 6,{0,0},--Bearclaw_Pinnacle
 					 23,{0,0},--Spire_of_Vahzl
 					 31,{0,0},--Monarch Linn
 					 32,{0,0},--Sealion's Den
+					 35,{0,0},--The_Garden_of_RuHmet
+					 36,{0,0},--empyreal paradox
 					 139,{1553,11,1175,15,1180,17}, -- Horlais Peak
 					 140,{1551,34,1552,35,1552,36}, -- Ghelsba Outpost
 					 144,{1166,68,1178,81,1553,76,1180,82,1130,79}, -- Waughroon Shrine
@@ -51,6 +53,8 @@ bcnmid_param_map = {6,{640,0},
                     23,{864,0},
 					31,{960,0,961,1},
 					32,{992,0,993,1},
+					35,{1024,0},
+                    36,{1056,0},
 					139,{0,0,5,5,6,6,7,7,11,11,15,15,17,17},
 					140,{32,0,33,1,34,2,35,3,36,4},
 					144,{64,0,67,3,68,4,70,6,71,7,72,8,81,17,76,12,82,18,79,15},
@@ -187,7 +191,7 @@ function EventUpdateBCNM(player,csid,option)
 			player:setVar("bcnm_instanceid_tick",0);
 		elseif(player:getVar("bcnm_instanceid") == 255)then --none free
 			--print("nfa");
-			--player:updateEvent(2,5,0,0,1,0);
+			--player:updateEvent(2,5,0,0,1,0);  --@cs 32000 0 0 0 0 0 0 0 2
 			--param1
 			--2=generic enter cs
 			--3=spam increment instance requests
@@ -209,6 +213,7 @@ end;
 function EventFinishBCNM(player,csid,option)
 	print("FINISH csid "..csid.." option "..option);
 	
+
 	if(player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then -- Temp condition for normal bcnm (started with onTrigger)
 		return false;
 	else
@@ -409,7 +414,18 @@ function checkNonTradeBCNM(player,npc)
 		elseif(player:getCurrentMission(COP) == THE_WARRIOR_S_PATH) then --warriors_path
 			mask = GetBattleBitmask(993,Zone,1);
 	        player:setVar("trade_bcnmid",993);
-	    end				
+	    end			
+	elseif(Zone == 35) then --The_Garden_of_RuHmet
+	    if(player:getCurrentMission(COP) == WHEN_ANGELS_FALL and player:getVar("PromathiaStatus")==4) then --when_angels_fall
+	        mask = GetBattleBitmask(1024,Zone,1);
+	        player:setVar("trade_bcnmid",1024);
+	    end	
+	elseif(Zone == 36) then --empyreal paradox
+	    if(player:getCurrentMission(COP) ==  DAWN and player:getVar("PromathiaStatus")==2) then --dawn
+	        mask = GetBattleBitmask(1056,Zone,1);
+	        player:setVar("trade_bcnmid",1056);
+	    end	
+		
 	elseif(Zone == 139) then -- Horlais Peak
 		if((player:getCurrentMission(BASTOK) == THE_EMISSARY_SANDORIA2 or 
 			player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_SANDORIA2) and player:getVar("MissionStatus") == 9) then -- Mission 2-3

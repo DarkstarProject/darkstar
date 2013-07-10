@@ -42,6 +42,7 @@ function onZoneIn(player,prevZone)
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(-20,-1.5,-355.482,192);
 	end	
+	player:setVar("Hu-Xzoi-TP",0);
 	return cs;	
 end;		
 
@@ -54,22 +55,22 @@ function onRegionEnter(player,region)
 
   if(player:getVar("Hu-Xzoi-TP")==0 and player:getAnimation()==0)then -- prevent 2cs at same time
    switch (region:GetRegionID()): caseof {
-        [1] = function (x) player:startEvent(0x0097); player:setVar("Hu-Xzoi-TP",1);end,
-        [2] = function (x) player:startEvent(0x009c);player:setVar("Hu-Xzoi-TP",1); end,
+        [1] = function (x) player:startEvent(0x0097);end,
+        [2] = function (x) player:startEvent(0x009c);end,
 		
 		
-		[3] = function (x) player:startEvent(0x009D);player:setVar("Hu-Xzoi-TP",1); end,
-        [4] = function (x) player:startEvent(0x0098);player:setVar("Hu-Xzoi-TP",1); end,
+		[3] = function (x) player:startEvent(0x009D); end,
+        [4] = function (x) player:startEvent(0x0098);end,
 		
 		
-		[5] = function (x) player:startEvent(0x009E);player:setVar("Hu-Xzoi-TP",1); end,
-        [6] = function (x) player:startEvent(0x0099);player:setVar("Hu-Xzoi-TP",1); end,
+		[5] = function (x) player:startEvent(0x009E);end,
+        [6] = function (x) player:startEvent(0x0099);end,
 		
-		[7] = function (x) player:startEvent(0x009F);player:setVar("Hu-Xzoi-TP",1); end,
-        [8] = function (x) player:startEvent(0x009A);player:setVar("Hu-Xzoi-TP",1); end,
+		[7] = function (x) player:startEvent(0x009F); end,
+        [8] = function (x) player:startEvent(0x009A); end,
 		
-		[9] = function (x) player:startEvent(0x009B);player:setVar("Hu-Xzoi-TP",1); end,
-        [10] = function (x) player:startEvent(0x0096);player:setVar("Hu-Xzoi-TP",1); end,
+		[9] = function (x) player:startEvent(0x009B);end,
+        [10] = function (x) player:startEvent(0x0096);end,
 		
     }
    end
@@ -89,6 +90,9 @@ end;
 function onEventUpdate(player,csid,option)	
 	--printf("CSID: %u",csid);
 	--printf("RESULT: %u",option);
+	if(csid >0x0095 and csid < 0x00A0)then
+	 player:setVar("Hu-Xzoi-TP",1);
+	end
 end;	
 
 -----------------------------------	

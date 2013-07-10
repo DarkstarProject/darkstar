@@ -28,6 +28,8 @@ function onZoneIn(player,prevZone)
 	end	
 	if(player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus")==0)then
 	   cs=0x0001;
+	elseif(player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus")==0)then  
+      cs=0x00A7;
 	end
 	return cs;	
 end;		
@@ -59,6 +61,8 @@ function onEventFinish(player,csid,option)
 	player:setVar("PromathiaStatus",1);
 		    player:addKeyItem(LIGHT_OF_ALTAIEU);
 	        player:messageSpecial(KEYITEM_OBTAINED,LIGHT_OF_ALTAIEU);
-            player:addTitle(SEEKER_OF_THE_LIGHT);			
+            player:addTitle(SEEKER_OF_THE_LIGHT);	
+     elseif(csid == 0x00A7)then		
+           player:setVar("PromathiaStatus",1);
 	end
 end;	
