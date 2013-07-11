@@ -18,8 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if(player:hasCompletedMission(COP,SHELTERING_DOUBT)) then
+	if(player:hasCompletedMission(COP,DARKNESS_NAMED)) then
 		player:sendMenu(3);
 	end
 	
