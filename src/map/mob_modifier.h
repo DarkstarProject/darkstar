@@ -25,8 +25,6 @@
 
 /*
 This is a list of mob specific modifiers. They can be added to pools / families.
-
-None of these are implemented. I'm posting this for some feedback / mod ideas.
 */
 
 enum MOBMODIFIER
@@ -43,17 +41,19 @@ enum MOBMODIFIER
   MOBMOD_HP_HEAL_CHANCE = 9, // can cast cures below this HP %
   MOBMOD_SUBLINK_0 = 10, // link with this family
   MOBMOD_SUBLINK_1 = 11, // link with this family
-  MOBMOD_DRAW_IN = 12, // 1 - player draw in, 2 - alliance draw in
-  MOBMOD_RAGE = 13, // define rage timer
-  MOBMOD_CUSTOM_SKILLS = 14, // use a custom mob skill list
-  MOBMOD_MUG_GIL = 15, // amount gil carried for mugging
-  MOBMOD_MAIN_2HOUR = 16, // give mob its main job two hour, value can maybe be sent to skill
+  MOBMOD_DRAW_IN = 12, // 1 - player draw in, 2 - alliance draw in -- not impl
+  MOBMOD_RAGE = 13, // define rage timer -- not impl
+  MOBMOD_SKILLS = 14, // use a custom mob skill list
+  MOBMOD_MUG_GIL = 15, // amount gil carried for mugging -- not impl
+  MOBMOD_MAIN_2HOUR = 16, // give mob its main job two hour, value can maybe be sent to skill -- not impl
   MOBMOD_NO_DESPAWN = 17, // do not despawn when too far from spawn. Gob Diggers have this.
-  MOBMOD_STEAL = 18, // set item can be stolen
-  MOBMOD_SUB_2HOUR = 19, // give mob its sub job two hour (dynamis NM)
-  MOBMOD_2HOUR_MULTI = 20 // two hour multiple times
+  MOBMOD_STEAL = 18, // set item can be stolen -- not impl
+  MOBMOD_SUB_2HOUR = 19, // give mob its sub job two hour (dynamis NM) -- not impl
+  MOBMOD_TP_USE_CHANCE = 20, // % chance to use tp
+  MOBMOD_PET_SPELL_LIST = 21, // set pet spell list
+  MOBMOD_NA_CHANCE = 22 // % chance to cast -na
 };
 
-#define MAX_MOBMODIFIER         21
+#define MAX_MOBMODIFIER         23
 
 #endif

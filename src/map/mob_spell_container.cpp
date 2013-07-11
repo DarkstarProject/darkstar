@@ -28,10 +28,6 @@ CMobSpellContainer::CMobSpellContainer(CMobEntity* PMob)
 {
   m_PMob = PMob;
   m_hasSpells = false;
-  m_gaChance = 45;
-  m_buffChance = 35;
-  m_healChance = 40;
-  m_maxHPHealChance = 25;
 }
 
 void CMobSpellContainer::ClearSpells()
@@ -92,7 +88,7 @@ bool CMobSpellContainer::HasSpells()
 int16 CMobSpellContainer::GetAggroSpell()
 {
   // high chance to return ga spell
-  if(HasGaSpells() && rand()%100 <= (float)m_gaChance*1.3){
+  if(HasGaSpells() && rand()%100 <= (float)m_PMob->getMobMod(MOBMOD_GA_CHANCE)*1.3){
     return GetGaSpell();
   }
 
@@ -104,12 +100,12 @@ int16 CMobSpellContainer::GetSpell()
 {
   int16 spellId = -1;
   // prioritize curing if health low enough
-  if(HasHealSpells() && m_PMob->GetHPP() <= m_maxHPHealChance && rand()%100 < m_healChance){
+  if(HasHealSpells() && m_PMob->GetHPP() <= m_PMob->getMobMod(MOBMOD_HP_HEAL_CHANCE) && rand()%100 < m_PMob->getMobMod(MOBMOD_HEAL_CHANCE)){
     return GetHealSpell();
   }
 
   // almost always use na if I can
-  if(HasNaSpells() && rand()%100 < 50){
+  if(HasNaSpells() && rand()%100 < m_PMob->getMobMod(MOBMOD_NA_CHANCE)){
     // will return -1 if no proper na spell exists
     spellId = GetNaSpell();
     if(spellId > -1){
@@ -118,11 +114,11 @@ int16 CMobSpellContainer::GetSpell()
   }
 
   // try ga spell
-  if(HasGaSpells() && rand()%100 < m_gaChance){
+  if(HasGaSpells() && rand()%100 < m_PMob->getMobMod(MOBMOD_GA_CHANCE)){
     return GetGaSpell();
   }
 
-  if(HasBuffSpells() && rand()%100 < m_buffChance){
+  if(HasBuffSpells() && rand()%100 < m_PMob->getMobMod(MOBMOD_BUFF_CHANCE)){
     return GetBuffSpell();
   }
 

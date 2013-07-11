@@ -551,11 +551,15 @@ void CZone::FindPartyForMob(CBaseEntity* PEntity)
 
             if(!forceLink && !PCurrentMob->m_Link) continue;
 
+            int16 sublink0 = PMob->getMobMod(MOBMOD_SUBLINK_0);
+            int16 sublink1 = PMob->getMobMod(MOBMOD_SUBLINK_1);
+            
             if (forceLink || 
                 PCurrentMob->m_Family == PMob->m_Family ||
-                PMob->m_SubLinks[0] && PMob->m_SubLinks[0] == PCurrentMob->m_Family ||
-                PMob->m_SubLinks[1] && PMob->m_SubLinks[1] == PCurrentMob->m_Family)
+                sublink0 && sublink0 == PCurrentMob->m_Family ||
+                sublink1 && sublink1 == PCurrentMob->m_Family)
             {
+              
               if(PCurrentMob->PMaster == NULL || PCurrentMob->PMaster->objtype == TYPE_MOB)
               {
                 PCurrentMob->PParty->AddMember(PMob);

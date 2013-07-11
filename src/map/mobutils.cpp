@@ -30,13 +30,14 @@
 #include "trait.h"
 #include "mobutils.h"
 #include "mob_modifier.h"
+#include "mob_spell_list.h"
 #include "spell.h"
 #include <vector>
 
 namespace mobutils
 {
-	std::vector<ModsList_t*> mobFamilyModsList;
-	std::vector<ModsList_t*> mobPoolModsList;
+	ModsMap_t mobFamilyModsList;
+	ModsMap_t mobPoolModsList;
 
 /************************************************************************
 *																		*
@@ -143,13 +144,6 @@ void CalculateStats(CMobEntity * PMob)
 	{
 		// enmity range is larger
 		PMob->m_enmityRange = 28;
-		PMob->m_tpUseChance = 40;
-
-		if(PMob->m_Family == 267)
-		{
-			// wyverns
-			PMob->m_sightRange = 20;
-		}
 	}
 
 	if(PMob->HPmodifier == 0){
@@ -466,21 +460,14 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->m_StandbackTime = 0;
 	}
 
-	// modify sneak / sight ranges
-	if(PMob->m_Family == 87)
-	{
-		PMob->m_sightRange = 18;
-		PMob->m_hearingRange = 10;
-	}
-
     // special case, give spell list to my pet
-    if(PMob->id == 16781327 && PMob->PPet != NULL)
+    if(PMob->getMobMod(MOBMOD_PET_SPELL_LIST) && PMob->PPet != NULL)
     {
     	// Stubborn_Dredvodd
     	CMobEntity* PPet = (CMobEntity*)PMob->PPet;
 
-    	// same spell list
-    	PPet->m_SpellListContainer = PMob->m_SpellListContainer;
+    	// give pet spell list
+    	PPet->m_SpellListContainer = mobSpellList::GetMobSpellList(PMob->getMobMod(MOBMOD_PET_SPELL_LIST));
     }
 
 	// add special traits to families
@@ -628,42 +615,43 @@ void GetAvailableSpells(CMobEntity* PMob) {
 
 	}
 
-	uint16 gaChance = 40;
-	uint16 buffChance = 30;
 	// change spell chances
 	switch(PMob->GetMJob())
 	{
 		case JOB_SMN:
 			// smn only has "buffs"
-			buffChance = 100;
+			PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 100);
 		break;
 		case JOB_BLM:
-			gaChance = 40;
-			buffChance = 15;
+			PMob->defaultMobMod(MOBMOD_GA_CHANCE, 40);
+			PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 15);
 		break;
 		case JOB_RDM:
-			gaChance = 15;
-			buffChance = 30;
+			PMob->defaultMobMod(MOBMOD_GA_CHANCE, 15);
+			PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 40);
 		break;
 		case JOB_NIN:
-			buffChance = 32;
+			PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 30);
 		break;
 		case JOB_BRD:
-			gaChance = 30;
-			buffChance = 60;
+			PMob->defaultMobMod(MOBMOD_GA_CHANCE, 25);
+			PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 60);
 		break;
 	}
-
-	PMob->SpellContainer->m_gaChance = gaChance;
-	PMob->SpellContainer->m_buffChance = buffChance;
 
 	if(PMob->m_Type & MOBTYPE_NOTORIOUS)
 	{
 		// NMs cure earlier
-		PMob->SpellContainer->m_maxHPHealChance = 50;
-		PMob->SpellContainer->m_healChance = 30;
-
+		PMob->defaultMobMod(MOBMOD_HP_HEAL_CHANCE, 50);
+		PMob->defaultMobMod(MOBMOD_HEAL_CHANCE, 40);
 	}
+
+	// catch all non-defaulted spell chances
+	PMob->defaultMobMod(MOBMOD_GA_CHANCE, 45);
+	PMob->defaultMobMod(MOBMOD_NA_CHANCE, 40);
+	PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 35);
+	PMob->defaultMobMod(MOBMOD_HEAL_CHANCE, 40);
+	PMob->defaultMobMod(MOBMOD_HP_HEAL_CHANCE, 25);
 
 	// clear spell list
 	PMob->SpellContainer->ClearSpells();
@@ -678,132 +666,24 @@ void GetAvailableSpells(CMobEntity* PMob) {
 	}
 }
 
-void InitializeMob(CMobEntity* PMob)
+void InitializeMob(CMobEntity* PMob, CZone* PZone)
 {
-
-      // setup cross family links
-      switch(PMob->m_Family)
-      {
-        // tauris and demons link
-        case 240:
-          PMob->m_SubLinks[0] = 169;
-        break;
-        case 169:
-          PMob->m_SubLinks[0] = 240;
-        break;
-        // warmachine and orcs link
-        case 190:
-          PMob->m_SubLinks[0] = 189;
-        break;
-        case 189:
-          PMob->m_SubLinks[0] = 190;
-        break;
-        // tri bats and bats link
-        case 46:
-          PMob->m_SubLinks[0] = 47;
-          // Vampyrs
-          PMob->m_SubLinks[1] = 253;
-        break;
-        case 47:
-          PMob->m_SubLinks[0] = 46;
-        break;
-        // treant and saplings link
-        case 245:
-          PMob->m_SubLinks[0] = 216;
-        break;
-        case 216:
-          PMob->m_SubLinks[0] = 245;
-        break;
-        // goblin, moblin, bugbear link
-        case 133:
-          PMob->m_SubLinks[0] = 184;
-          PMob->m_SubLinks[1] = 59;
-        break;
-        case 184:
-          PMob->m_SubLinks[0] = 133;
-          PMob->m_SubLinks[1] = 59;
-        break;
-        case 59:
-          PMob->m_SubLinks[0] = 133;
-          PMob->m_SubLinks[1] = 184;
-        break;
-        // Wamoura, Wamouracampa link
-        case 253:
-          PMob->m_SubLinks[0] = 254;
-        break;
-        case 254:
-          PMob->m_SubLinks[0] = 253;
-        break;
-        // Vampyrs, giant bats link
-        case 252:
-          PMob->m_SubLinks[0] = 46;
-        break;
-        // Poroggos, toads (toads dont link with each other) link
-        /*case 196:
-          PMob->m_SubLinks[0] = 196;
-        break;
-        case 196:
-          PMob->m_SubLinks[0] = 196;
-        break;*/
-        case 359:
-        	// dynamis hydra link with ahriman
-        	PMob->m_SubLinks[0] = 4;
-    	break;
-    	case 358:
-        	PMob->m_SubLinks[0] = 4;
-    	break;
-        case 4:
-        	PMob->m_SubLinks[0] = 359;
-        	PMob->m_SubLinks[0] = 358;
-    	break;
-        case 92:
-        	// goblin statue link with dynamis gobs
-        	PMob->m_SubLinks[0] = 327;
-    	break;
-    	case 327:
-    		PMob->m_SubLinks[0] = 92;
-		break;
-        case 93:
-        // orc statue link with dynamis orcs
-        	PMob->m_SubLinks[0] = 334;
-    	break;
-        case 334:
-        	PMob->m_SubLinks[0] = 93;
-    	break;
-        case 94:
-        // quad statue link with dynamis quads
-        	PMob->m_SubLinks[0] = 337;
-    	break;
-    	case 337:
-    		PMob->m_SubLinks[0] = 94;
-		break;
-        case 95:
-        // yagudo statue link with dynamis yagudo
-        	PMob->m_SubLinks[0] = 360;
-    	break;
-        case 360:
-        	PMob->m_SubLinks[0] = 95;
-    	break;
-    	case 362:
-    	// rapido links with other sabuaters
-	    	PMob->m_SubLinks[0] = 212;
-    	break;
-    	case 212:
-	    	PMob->m_SubLinks[0] = 362;
-    	break;
-      }
-
 	// add special mob mods
 
       // this only has to be added once
      AddCustomMods(PMob);
 
+     uint16 zoneId = PZone->GetID();
+     bool inDynamis = (zoneId > 184 && zoneId < 189 ||  zoneId > 133 && zoneId < 136);
+
 	// do not despawn if I match this criteria
-	if((PMob->m_Type & MOBTYPE_NOTORIOUS) || (PMob->m_Type & MOBTYPE_EVENT) || PMob->isInDynamis() || PMob->loc.zone->GetType() == ZONETYPE_BATTLEFIELD || MOB_TRAIN)
+	if((PMob->m_Type & MOBTYPE_NOTORIOUS) || (PMob->m_Type & MOBTYPE_EVENT) || inDynamis || PZone->GetType() == ZONETYPE_BATTLEFIELD || MOB_NO_DESPAWN)
 	{
-		// goblin diggers
 		PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
 	}
+
+	PMob->defaultMobMod(MOBMOD_SKILLS, PMob->m_Family);
+	PMob->defaultMobMod(MOBMOD_TP_USE_CHANCE, MOB_TP_USE_CHANCE);
 
     // Killer Effect
     switch (PMob->m_EcoSystem)
@@ -852,7 +732,7 @@ void LoadCustomMods()
 			ModsList_t* familyMods = GetMobFamilyMods(Sql_GetUIntData(SqlHandle,0), true);
 
 			CModifier* mod = new CModifier(Sql_GetUIntData(SqlHandle,1));
-			mod->setModAmount(Sql_GetUIntData(SqlHandle,2));
+			mod->setModAmount(Sql_GetIntData(SqlHandle,2));
 			
 			uint16 type = Sql_GetUIntData(SqlHandle,3);
 			if(type == 1)
@@ -896,12 +776,9 @@ void LoadCustomMods()
 
 ModsList_t* GetMobFamilyMods(uint16 familyId, bool create)
 {
-	for(std::vector<ModsList_t*>::iterator it = mobFamilyModsList.begin(); it != mobFamilyModsList.end() ; ++it)
+	if(mobFamilyModsList[familyId])
 	{
-		if((*it)->id == familyId)
-		{
-			return *it;
-		}
+		return mobFamilyModsList[familyId];
 	}
 
 	if(create)
@@ -910,7 +787,7 @@ ModsList_t* GetMobFamilyMods(uint16 familyId, bool create)
 		ModsList_t* mods = new ModsList_t;
 		mods->id = familyId;
 
-		mobFamilyModsList.push_back(mods);
+		mobFamilyModsList[familyId] = mods;
 
 		return mods;
 	}
@@ -920,12 +797,9 @@ ModsList_t* GetMobFamilyMods(uint16 familyId, bool create)
 
 ModsList_t* GetMobPoolMods(uint32 poolId, bool create)
 {
-	for(std::vector<ModsList_t*>::iterator it = mobPoolModsList.begin(); it != mobPoolModsList.end() ; ++it)
+	if(mobPoolModsList[poolId])
 	{
-		if((*it)->id == poolId)
-		{
-			return *it;
-		}
+		return mobPoolModsList[poolId];
 	}
 
 	if(create)
@@ -934,7 +808,7 @@ ModsList_t* GetMobPoolMods(uint32 poolId, bool create)
 		ModsList_t* mods = new ModsList_t;
 		mods->id = poolId;
 
-		mobPoolModsList.push_back(mods);
+		mobPoolModsList[poolId] = mods;
 
 		return mods;
 	}

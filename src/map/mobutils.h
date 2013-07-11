@@ -37,6 +37,8 @@ typedef struct
   std::vector<CModifier*> mobMods;
 } ModsList_t;
 
+typedef std::map<uint16,ModsList_t*> ModsMap_t;
+
 namespace mobutils
 {
 	void	CalculateStats(CMobEntity* PMob);
@@ -44,7 +46,7 @@ namespace mobutils
   void   AddMods(CMobEntity* PMob);
 	uint16	GetWeaponDamage(CMobEntity* PMob);
 	void    GetAvailableSpells(CMobEntity* PMob);
-  void  InitializeMob(CMobEntity* PMob);
+  void  InitializeMob(CMobEntity* PMob, CZone* PZone);
   void  LoadCustomMods();
 
   // returns the families mod list

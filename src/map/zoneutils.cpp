@@ -419,9 +419,11 @@ void LoadMOBList(CZone* PZone)
 				PMob->m_linkRadius = 20;
 			}
 
+			// this has to be above insertMOB
+			mobutils::InitializeMob(PMob, PZone);
+
 			PZone->InsertMOB(PMob);
 			
-			mobutils::InitializeMob(PMob);
 			luautils::OnMobInitialize(PMob);
 		}
 	}

@@ -67,11 +67,6 @@ public:
   std::vector<int16> m_healList;
   std::vector<int16> m_naList;
 
-  int16 m_gaChance;
-  int16 m_buffChance;
-  int16 m_healChance;
-  int16 m_maxHPHealChance;
-
 private:
   CMobEntity* m_PMob;
   bool m_hasSpells;

@@ -608,7 +608,7 @@ void CAIMobDummy::ActionAbilityStart()
 {
 	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
 
-    std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(m_PMob->m_Family);
+    std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(m_PMob->getMobMod(MOBMOD_SKILLS));
 
     // не у всех монстов прописаны способности, так что выходим из процедуры, если способность не найдена
 	// We don't have any skills we can use, so let's go back to attacking
@@ -2053,11 +2053,11 @@ void CAIMobDummy::WeatherChange(WEATHER weather, uint8 element)
 		// antica gain more sound aggro range during sand weather
 		if(weather == WEATHER_DUST_STORM || weather == WEATHER_SAND_STORM)
 		{
-			m_PMob->m_hearingRange = 12;
+			m_PMob->setMobMod(MOBMOD_SOUND_RANGE, 12);
 		}
 		else
 		{
-			m_PMob->m_hearingRange = 8;
+			m_PMob->setMobMod(MOBMOD_SOUND_RANGE, MOB_SOUND_RANGE);
 		}
 	}
 	else if(m_PMob->m_Family == 198)

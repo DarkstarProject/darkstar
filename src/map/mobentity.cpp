@@ -83,12 +83,12 @@ CMobEntity::CMobEntity()
     m_SubLinks[1] = 0;
 
     m_maxRoamDistance = 20;
-    m_hearingRange = 8;
-    m_sightRange = 15;
     m_disableScent = false;
     m_linkRadius = 10;
-    m_tpUseChance = 30;
     
+    setMobMod(MOBMOD_SIGHT_RANGE, MOB_SIGHT_RANGE);
+    setMobMod(MOBMOD_SOUND_RANGE, MOB_SOUND_RANGE);
+
     m_SpecialCoolDown = 0;
     m_RoamCoolDown = 45000;
     m_StandbackTime = 0;
@@ -124,8 +124,8 @@ void CMobEntity::SetDespawnTimer(uint32 duration)
 uint32 CMobEntity::GetRandomGil()
 {
 
-    uint16 min = getMobMod(MOBMOD_GIL_MIN);
-    uint16 max = getMobMod(MOBMOD_GIL_MAX);
+    int16 min = getMobMod(MOBMOD_GIL_MIN);
+    int16 max = getMobMod(MOBMOD_GIL_MAX);
 
     if(min && max)
     {
@@ -190,7 +190,7 @@ bool CMobEntity::CanRoamHome()
 
 bool CMobEntity::CanRoam()
 {
-    return !(m_Type & MOBTYPE_EVENT) && PMaster == NULL && (speed > 0 || (m_roamFlags & ROAMFLAG_WORM));
+    return !(m_roamFlags & ROAMFLAG_EVENT) && PMaster == NULL && (speed > 0 || (m_roamFlags & ROAMFLAG_WORM));
 }
 
 /************************************************************************
@@ -270,17 +270,17 @@ bool CMobEntity::CanDetectTarget(CBattleEntity* PTarget, bool forceSight)
 
     bool detectSight = (m_Behaviour & BEHAVIOUR_AGGRO_SIGHT) || forceSight;
 
-    if (detectSight && !PTarget->StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_INVISIBLE) && currentDistance < m_sightRange && isFaceing(loc.p, PTarget->loc.p, 40))
+    if (detectSight && !PTarget->StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_INVISIBLE) && currentDistance < getMobMod(MOBMOD_SIGHT_RANGE) && isFaceing(loc.p, PTarget->loc.p, 40))
     {
         return true;
     }
 
-    if ((m_Behaviour & BEHAVIOUR_AGGRO_TRUESIGHT) && currentDistance < m_sightRange && isFaceing(loc.p, PTarget->loc.p, 40))
+    if ((m_Behaviour & BEHAVIOUR_AGGRO_TRUESIGHT) && currentDistance < getMobMod(MOBMOD_SIGHT_RANGE) && isFaceing(loc.p, PTarget->loc.p, 40))
     {
         return true;
     }
 
-    if ((m_Behaviour & BEHAVIOUR_AGGRO_TRUEHEARING) && currentDistance < m_hearingRange)
+    if ((m_Behaviour & BEHAVIOUR_AGGRO_TRUEHEARING) && currentDistance < getMobMod(MOBMOD_SOUND_RANGE))
     {
         return true;
     }
@@ -290,7 +290,7 @@ bool CMobEntity::CanDetectTarget(CBattleEntity* PTarget, bool forceSight)
         return true;
     }
 
-    if ((m_Behaviour & BEHAVIOUR_AGGRO_HEARING) && currentDistance < m_hearingRange && !PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
+    if ((m_Behaviour & BEHAVIOUR_AGGRO_HEARING) && currentDistance < getMobMod(MOBMOD_SOUND_RANGE) && !PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
     {
         return true;
     }
@@ -379,7 +379,7 @@ uint8 CMobEntity::TPUseChance()
         return 100;
     }
 
-    return m_tpUseChance;
+    return getMobMod(MOBMOD_TP_USE_CHANCE);
 }
 
 bool CMobEntity::CanUseTwoHour()
@@ -396,6 +396,11 @@ bool CMobEntity::CanUseTwoHour()
     }
 
     if(m_EcoSystem == SYSTEM_BEASTMEN)
+    {
+        return true;
+    }
+
+    if(getMobMod(MOBMOD_MAIN_2HOUR))
     {
         return true;
     }
@@ -471,5 +476,32 @@ int16 CMobEntity::getMobMod(uint16 type)
     {
         ShowError("CMobEntity::getMobMod Trying to get value out of range (%d)\n", type);
         return -1;
+    }
+}
+
+void CMobEntity::addMobMod(uint16 type, int16 value)
+{
+    if (type < MAX_MOBMODIFIER)
+    {
+        m_mobModStat[type] = m_mobModStat[type] + value;
+    }
+    else
+    {
+        ShowError("CMobEntity::addMobMod Trying to set value out of range (%d)\n", type);
+    }
+}
+
+void CMobEntity::defaultMobMod(uint16 type, int16 value)
+{
+    if (type < MAX_MOBMODIFIER)
+    {
+        if(m_mobModStat[type] == 0)
+        {
+            m_mobModStat[type] = value;
+        }
+    }
+    else
+    {
+        ShowError("CMobEntity::addMobMod Trying to set value out of range (%d)\n", type);
     }
 }

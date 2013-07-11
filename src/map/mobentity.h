@@ -36,7 +36,10 @@
 class CMobSpellContainer;
 
 // this will make mobs walk back to spawn point instead of despawning
-#define MOB_TRAIN false
+#define MOB_NO_DESPAWN false
+#define MOB_SOUND_RANGE 8
+#define MOB_SIGHT_RANGE 15
+#define MOB_TP_USE_CHANCE 30 // 30% chance to use tp if over 100
 
 enum SPAWNTYPE
 {
@@ -129,7 +132,6 @@ public:
   float       HPscale;                // HP boost percentage
   float       MPscale;                // MP boost percentage
   uint8       m_linkRadius;                         // mobs have different link radiuses
-  uint8       m_tpUseChance; // chance of using tp
 
   uint16 m_roamFlags; // defines its roaming behaviour
   uint8 m_specialFlags; // flags for special skill
@@ -148,8 +150,6 @@ public:
   uint8        evaRank; // not used
 
   // aggro ranges
-  uint8 m_hearingRange; // aggro player when within this rnage
-  uint8 m_sightRange; // aggro player when within this range
   bool  m_disableScent; // stop detecting by scent
   uint8 m_maxRoamDistance; // maximum distance mob can be from spawn
 
@@ -209,6 +209,8 @@ public:
 
   void setMobMod(uint16 type, int16 value);
   int16 getMobMod(uint16 type);
+  void addMobMod(uint16 type, int16 value);
+  void defaultMobMod(uint16 type, int16 value); // set value if value has not been already set
 
   CMobEntity();
   ~CMobEntity();
