@@ -4206,11 +4206,20 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 		if ((mjob > 0x00) && (mjob < MAX_JOBTYPE))
 		{
+            JOBTYPE prevjob = PChar->GetMJob();
 			PChar->resetPetZoningInfo();
 
 			PChar->SetMJob(mjob);
 			PChar->SetMLevel(PChar->jobs.job[PChar->GetMJob()]);
 			PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
+
+		    // If removing RemoveAllEquipment, please add a charutils::CheckUnarmedItem(PChar) if main hand is empty.
+		    charutils::RemoveAllEquipment(PChar); // TODO: разобраться, зачем
+
+            if (mjob == JOB_BLU)
+                blueutils::LoadSetSpells(PChar);
+            else if (prevjob == JOB_BLU)
+                blueutils::UnequipAllBlueSpells(PChar);
 		}
 		if ((sjob > 0x00) && (sjob < MAX_JOBTYPE))
 		{
@@ -4220,12 +4229,12 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
 
 			charutils::CheckEquipLogic(PChar, SCRIPT_CHANGESJOB, prevsjob);
+            if (sjob == JOB_BLU)
+                blueutils::LoadSetSpells(PChar);
+            else if (prevsjob == JOB_BLU)
+                blueutils::UnequipAllBlueSpells(PChar);
+
 		}
-
-		// If removing RemoveAllEquipment, please add a charutils::CheckUnarmedItem(PChar) if main hand is empty.
-		charutils::RemoveAllEquipment(PChar); // TODO: разобраться, зачем
-
-        blueutils::UnequipAllBlueSpells(PChar); //TODO: save spells
 
 		charutils::BuildingCharSkillsTable(PChar);
 		charutils::CalculateStats(PChar);

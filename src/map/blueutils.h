@@ -38,6 +38,13 @@ namespace blueutils
 	void	TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob);
     void    UnequipAllBlueSpells(CCharEntity* PChar);
     bool    IsSpellSet(CCharEntity* PChar, CSpell* PSpell);
+    void    CompactSpells(CCharEntity* PChar);
+    void    CheckSpellLevels(CCharEntity* PChar);
+    uint8   GetTotalSlots(CCharEntity* PChar);
+    uint8   GetTotalBlueMagicPoints(CCharEntity* PChar);
+    void    SaveSetSpells(CCharEntity* PChar);
+    void    LoadSetSpells(CCharEntity* PChar);
+    void    ValidateBlueSpells(CCharEntity* PChar);
 };
 
 #endif

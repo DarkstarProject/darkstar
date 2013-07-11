@@ -2012,6 +2012,7 @@ inline int32 CLuaBaseEntity::levelRestriction(lua_State* L)
 			PChar->SetMLevel(NewMLevel);
 			PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
 
+            blueutils::LoadSetSpells(PChar);
 			charutils::BuildingCharSkillsTable(PChar);
 			charutils::CalculateStats(PChar);
 			charutils::BuildingCharTraitsTable(PChar);
@@ -4294,7 +4295,14 @@ inline int32 CLuaBaseEntity::changeJob(lua_State *L)
 	PChar->jobs.unlocked |= (1 << (uint8)lua_tointeger(L,1));
 	PChar->SetMJob((uint8)lua_tointeger(L,1));
 
-    blueutils::UnequipAllBlueSpells(PChar); //TODO: save spells
+    if (lua_tointeger(L,1) == JOB_BLU)
+    {
+        blueutils::LoadSetSpells(PChar);
+    }
+    else
+    {
+        blueutils::UnequipAllBlueSpells(PChar);
+    }
     charutils::BuildingCharSkillsTable(PChar);
 	charutils::CalculateStats(PChar);
     charutils::CheckValidEquipment(PChar);
@@ -4341,6 +4349,15 @@ inline int32 CLuaBaseEntity::changesJob(lua_State *L)
 
     PChar->jobs.unlocked |= (1 << (uint8)lua_tointeger(L,1));
     PChar->SetSJob((uint8)lua_tointeger(L,1));
+
+    if (lua_tointeger(L,1) == JOB_BLU)
+    {
+        blueutils::LoadSetSpells(PChar);
+    }
+    else
+    {
+        blueutils::UnequipAllBlueSpells(PChar);
+    }
 
 	charutils::UpdateSubJob(PChar);
 

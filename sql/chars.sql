@@ -34,6 +34,7 @@ CREATE TABLE `chars` (
   `quests` blob,
   `keyitems` blob,
   `spells` blob,
+  `set_blue_spells` blob,
   `abilities` blob,
   `titles` blob,
   `zones` blob,

@@ -62,6 +62,7 @@
 
 #include "ability.h"
 #include "battleutils.h"
+#include "blueutils.h"
 #include "charentity.h"
 #include "charutils.h"
 #include "grades.h"
@@ -668,6 +669,7 @@ void LoadChar(CCharEntity* PChar)
 	PChar->PMeritPoints->SetMeritPoints(meritPoints);
 	PChar->PMeritPoints->SetLimitPoints(limitPoints);
 
+    blueutils::LoadSetSpells(PChar);
 	BuildingCharSkillsTable(PChar);
     PChar->PRecastContainer->ResetAbilities();
 	BuildingCharAbilityTable(PChar);
