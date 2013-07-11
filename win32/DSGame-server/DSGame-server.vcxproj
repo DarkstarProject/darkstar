@@ -384,7 +384,6 @@
     <ClCompile Include="..\..\src\map\mob_spell_container.cpp" />
     <ClCompile Include="..\..\src\map\mob_spell_list.cpp" />
     <ClCompile Include="..\..\src\map\modifier.cpp" />
-    <ClCompile Include="..\..\src\map\mob_modifier.cpp" />
     <ClCompile Include="..\..\src\map\navmesh.cpp" />
     <ClCompile Include="..\..\src\map\npcentity.cpp" />
     <ClCompile Include="..\..\src\map\packets\action.cpp" />

@@ -742,9 +742,6 @@
     <ClCompile Include="..\..\src\map\modifier.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\mob_modifier.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\map\npcentity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
