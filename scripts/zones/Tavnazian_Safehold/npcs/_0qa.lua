@@ -29,7 +29,9 @@ function onTrigger(player,npc)
 	elseif(player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 0) then 	
 	    player:startEvent(0x006F);
 	elseif(player:getCurrentMission(COP) == CHAINS_AND_BONDS and player:getVar("PromathiaStatus")==4)then
-	    player:startEvent(0x0074);		
+	    player:startEvent(0x0074);	
+	elseif(player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus")==5)then		
+		player:startEvent(0x021F);
 	end
 	return 1;
 end;
@@ -57,6 +59,8 @@ function onEventFinish(player,csid,option)
 	    player:setVar("PromathiaStatus",0);
 		player:completeMission(COP,CHAINS_AND_BONDS);
 		player:addMission(COP,FLAMES_IN_THE_DARKNESS);
+	elseif(csid == 0x021F)then
+	    player:setVar("PromathiaStatus",6);
 	end
 	
 end;

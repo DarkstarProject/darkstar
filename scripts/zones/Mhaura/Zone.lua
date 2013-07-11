@@ -7,7 +7,7 @@
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 require("scripts/globals/keyitems");
 require("scripts/zones/Mhaura/TextIDs");
-
+require("scripts/globals/missions");
 -----------------------------------
 -- onInitialize
 -----------------------------------
@@ -21,6 +21,7 @@ end;
 
 function onZoneIn(player,prevZone)
 local cs = -1;	
+local currentday = tonumber(os.date("%j")); 
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
 		if (prevZone == 221 or prevZone == 47) then
 			cs = 0x00ca;
@@ -28,6 +29,9 @@ local cs = -1;
 		else
 			player:setPos(0.003,-6.252,117.971,65);
 		end
+	end
+	if(player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus")==3 and player:getVar("Promathia_kill_day") ~= currentday and player:getVar("COP_shikarees_story")== 0 )then
+	   cs=0x0142;
 	end
 return cs;
 end;
@@ -74,5 +78,7 @@ function onEventFinish(player,csid,option)
       else
          player:setPos(8,-1,5,62,249); -- Something went wrong, dump them on the dock for safety.
       end
+   elseif(csid == 0x0142)then
+       player:setVar("COP_shikarees_story",1);
    end
 end;

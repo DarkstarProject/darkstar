@@ -187,9 +187,9 @@ CALM_BEFORE_THE_STORM            = 80 -- ± --
 THE_WARRIOR_S_PATH               = 81 -- ± --
 EMPTINESS_BLEEDS                 = 82 -- ± ---- Category
 GARDEN_OF_ANTIQUITY              = 87 -- ± --
-A_FATE_DECIDED                   = 90
-WHEN_ANGELS_FALL                 = 91
-DAWN                             = 92
+A_FATE_DECIDED                   = 90 -- ± --
+WHEN_ANGELS_FALL                 = 91 -- ± --
+DAWN                             = 92 -- ± --
 THE_LAST_VERSE                   = 94
 
 -----------------------------------

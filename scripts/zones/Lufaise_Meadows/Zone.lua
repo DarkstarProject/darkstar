@@ -6,7 +6,7 @@
 
 require("scripts/globals/settings");
 require("scripts/globals/missions");
-
+require("scripts/globals/titles");
 -----------------------------------
 -- onInitialize
 -----------------------------------
@@ -15,6 +15,8 @@ function onInitialize(zone)
 
 	local Colorful_Leshy = 16875762;
 	GetMobByID(Colorful_Leshy):setExtraVar(os.time() + math.random((43200), (86400)));
+	
+zone:registerRegion(1,179,-26,327,219,-18,347);
 
 end;
 
@@ -42,9 +44,18 @@ end;
 -- onRegionEnter		
 -----------------------------------		
 
-function onRegionEnter(player,region)	
+function onRegionEnter(player,region)
+local regionID =region:GetRegionID();
+  if(regionID==1 and player:getCurrentMission(COP) == DAWN 	and player:getVar("PromathiaStatus") == 6)then
+      player:startEvent(0x0074);
+  end
 end;	
+-----------------------------------		
+-- onRegionLeave		
+-----------------------------------		
 
+function onRegionLeave(player,region)	
+end;
 -----------------------------------	
 -- onEventUpdate	
 -----------------------------------	
@@ -66,5 +77,8 @@ function onEventFinish(player,csid,option)
     elseif(csid == 0x006F)then
 		player:addItem(14657);
 		player:setVar("PromathiaStatus",1);
+	 elseif(csid == 0x0074)then
+	 player:setVar("PromathiaStatus",7);
+	 player:addTitle(BANISHER_OF_EMPTINESS);
 	end
 end;

@@ -50,6 +50,10 @@ local regionID =region:GetRegionID();
   player:startEvent(0x2740);
   elseif(regionID==1 and player:getCurrentMission(COP) ==FLAMES_IN_THE_DARKNESS and player:getVar("PromathiaStatus")==2)then
   player:startEvent(0x2743);
+  elseif(regionID==1 and player:getCurrentMission(COP) == DAWN )then
+    if(player:getVar("COP_3-taru_story")==2 and player:getVar("COP_shikarees_story")==1 and player:getVar("COP_louverance_story")==3 and player:getVar("COP_tenzen_story")==1 and player:getVar("COP_jabbos_story")==1)then
+	  player:startEvent(0x007A);
+	end
   end	
 end;	
 -----------------------------------		
@@ -93,5 +97,12 @@ function onEventFinish(player,csid,option)
         player:setVar("PromathiaStatus",1);
     elseif (csid == 0x2743)then	
         player:setVar("PromathiaStatus",3);	
+	elseif (csid == 0x007A)then	
+	    player:setVar("PromathiaStatus",4);
+	    player:setVar("COP_3-taru_story",0);
+	    player:setVar("COP_shikarees_story",0);	
+	    player:setVar("COP_louverance_story",0);
+	    player:setVar("COP_tenzen_story",0);	
+	    player:setVar("COP_jabbos_story",0);
 	end	
 end;		

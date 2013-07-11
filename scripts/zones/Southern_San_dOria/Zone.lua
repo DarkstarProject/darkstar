@@ -14,6 +14,7 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+zone:registerRegion(1, -292,-10,90 ,-258,10,105);
 end;			
 
 -----------------------------------			
@@ -45,9 +46,18 @@ end;
 -- onRegionEnter			
 -----------------------------------			
 
-function onRegionEnter(player,region)	
+function onRegionEnter(player,region)
+local regionID =region:GetRegionID();
+  if(regionID==1 and player:getCurrentMission(COP) == DAWN and player:getVar("COP_louverance_story")== 2)then
+      player:startEvent(0x02F6);
+  end	
 end;	
+-----------------------------------		
+-- onRegionLeave		
+-----------------------------------		
 
+function onRegionLeave(player,region)	
+end;
 -----------------------------------	
 -- onEventUpdate	
 -----------------------------------	
@@ -69,5 +79,7 @@ function onEventFinish(player,csid,option)
 	elseif (csid == 0x7534 and option == 0) then	
 		player:setHomePoint();
 		player:messageSpecial(HOMEPOINT_SET);
+	elseif(csid == 0x02F6)then
+	  player:setVar("COP_louverance_story",3);
 	end	
 end;		

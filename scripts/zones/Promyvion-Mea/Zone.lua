@@ -74,7 +74,7 @@ end;
 -----------------------------------		
  
 function onRegionEnter(player,region)	
-	
+if(player:getAnimation()==0)then	
 	switch (region:GetRegionID()): caseof
 	{
 		[11] = function (x) player:startEvent(0x002e); end,
@@ -156,7 +156,7 @@ function onRegionEnter(player,region)
 			end
 		end,
 	}
-	
+  end	
  end;
  
 -----------------------------------	
