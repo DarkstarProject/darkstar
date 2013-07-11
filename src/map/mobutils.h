@@ -34,6 +34,7 @@ typedef struct
 {
   uint32 id;
   std::vector<CModifier*> mods;
+  std::vector<CModifier*> mobMods;
 } ModsList_t;
 
 namespace mobutils

@@ -44,6 +44,8 @@ CMobEntity::CMobEntity()
     m_roamFlags = ROAMFLAG_NONE;
     m_specialFlags = SPECIALFLAG_NONE;
 
+    memset(m_mobModStat,0, sizeof(m_mobModStat));
+
     m_AllowRespawn = 0;
 	m_CallForHelp  = 0;
     m_DespawnTimer = 0;
@@ -122,6 +124,26 @@ void CMobEntity::SetDespawnTimer(uint32 duration)
 uint32 CMobEntity::GetRandomGil()
 {
 
+    uint16 min = getMobMod(MOBMOD_GIL_MIN);
+    uint16 max = getMobMod(MOBMOD_GIL_MAX);
+
+    if(min && max)
+    {
+        // make sure divide won't crash server
+        if(max <= min)
+        {
+            max = min+1;
+        }
+
+        if(max-min <= 2)
+        {
+            max = min+2;
+            ShowWarning("CMobEntity::GetRandomGil Max value is set too low, defauting\n");
+        }
+
+        return rand()%(max-min)+min;
+    }
+
     float gil = pow(GetMLevel(), 1.05f);
 
     if(gil < 1){
@@ -129,6 +151,11 @@ uint32 CMobEntity::GetRandomGil()
     }
 
     uint16 highGil = (float)(gil) / 3 + 4;
+
+    if(max)
+    {
+        highGil = max;
+    }
 
     if(highGil < 2){
         highGil = 2;
@@ -147,13 +174,18 @@ uint32 CMobEntity::GetRandomGil()
         gil = (float)gil * 1.5;
     }
 
+    if(min && gil < min)
+    {
+        gil = min;
+    }
+
     return gil;
 }
 
 bool CMobEntity::CanRoamHome()
 {
     if(speed == 0 && !(m_roamFlags & ROAMFLAG_WORM)) return false;
-    return (m_Type & MOBTYPE_NOTORIOUS) || (m_Type & MOBTYPE_EVENT) || isInDynamis() || MOB_TRAIN;
+    return getMobMod(MOBMOD_NO_DESPAWN);
 }
 
 bool CMobEntity::CanRoam()
@@ -415,4 +447,29 @@ void CMobEntity::SetNewSkin(uint8 skinid)
 uint32 CMobEntity::GetSkinID()
 {
 	return m_SkinID;
+}
+
+void CMobEntity::setMobMod(uint16 type, int16 value)
+{
+    if (type < MAX_MOBMODIFIER)
+    {
+        m_mobModStat[type] = value;
+    }
+    else
+    {
+        ShowError("CMobEntity::setMobMod Trying to set value out of range (%d)\n", type);
+    }
+}
+
+int16 CMobEntity::getMobMod(uint16 type)
+{
+    if (type < MAX_MOBMODIFIER)
+    {
+        return m_mobModStat[type];
+    }
+    else
+    {
+        ShowError("CMobEntity::getMobMod Trying to get value out of range (%d)\n", type);
+        return -1;
+    }
 }

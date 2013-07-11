@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS `mob_pool_mods` (
   `poolid` smallint(5) unsigned NOT NULL,
   `modid` smallint(5) unsigned NOT NULL,
   `value` smallint(5) NOT NULL DEFAULT '0',
+  `type` smallint(5) NOT NULL DEFAULT '0',
   PRIMARY KEY (`poolid`,`modid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=13 PACK_KEYS=1;
 
@@ -37,21 +38,26 @@ CREATE TABLE IF NOT EXISTS `mob_pool_mods` (
 -- Contenu de la table `mob_pool_mods`
 --
 
-INSERT INTO `mob_pool_mods` VALUES(519, 160, -50);
-INSERT INTO `mob_pool_mods` VALUES(532, 160, -50);
-INSERT INTO `mob_pool_mods` VALUES(676, 160, -50);
-INSERT INTO `mob_pool_mods` VALUES(2643, 160, -50);
-INSERT INTO `mob_pool_mods` VALUES(2647, 160, -50);
-INSERT INTO `mob_pool_mods` VALUES(733, 302, 5);
-INSERT INTO `mob_pool_mods` VALUES(2677, 288, 55);
-INSERT INTO `mob_pool_mods` VALUES(21, 29, 100);
-INSERT INTO `mob_pool_mods` VALUES(2156, 370, 30);
-INSERT INTO `mob_pool_mods` VALUES(2262, 370, 125);
-INSERT INTO `mob_pool_mods` VALUES(4261, 370, 125);
-INSERT INTO `mob_pool_mods` VALUES(4261, 29, 50);
-INSERT INTO `mob_pool_mods` VALUES(2420, 302, 10);
-INSERT INTO `mob_pool_mods` VALUES(1648, 224, 5);
-INSERT INTO `mob_pool_mods` VALUES(2790, 244, 7);
-INSERT INTO `mob_pool_mods` VALUES(2790, 240, 7);
-INSERT INTO `mob_pool_mods` VALUES(2790, 168, 50);
-INSERT INTO `mob_pool_mods` VALUES(3549, 370, 50);
+INSERT INTO `mob_pool_mods` VALUES(519, 160, -50, 0);
+INSERT INTO `mob_pool_mods` VALUES(532, 160, -50, 0);
+INSERT INTO `mob_pool_mods` VALUES(676, 160, -50, 0);
+INSERT INTO `mob_pool_mods` VALUES(2643, 160, -50, 0);
+INSERT INTO `mob_pool_mods` VALUES(2647, 160, -50, 0);
+INSERT INTO `mob_pool_mods` VALUES(733, 302, 5, 0);
+INSERT INTO `mob_pool_mods` VALUES(2677, 288, 55, 0);
+INSERT INTO `mob_pool_mods` VALUES(21, 29, 100, 0);
+INSERT INTO `mob_pool_mods` VALUES(2156, 370, 30, 0);
+INSERT INTO `mob_pool_mods` VALUES(2262, 370, 125, 0);
+INSERT INTO `mob_pool_mods` VALUES(4261, 370, 125, 0);
+INSERT INTO `mob_pool_mods` VALUES(4261, 29, 50, 0);
+INSERT INTO `mob_pool_mods` VALUES(2420, 302, 10, 0);
+INSERT INTO `mob_pool_mods` VALUES(1648, 224, 5, 0);
+INSERT INTO `mob_pool_mods` VALUES(2790, 244, 7, 0);
+INSERT INTO `mob_pool_mods` VALUES(2790, 240, 7, 0);
+INSERT INTO `mob_pool_mods` VALUES(2790, 168, 50, 0);
+INSERT INTO `mob_pool_mods` VALUES(3549, 370, 50, 0);
+INSERT INTO `mob_pool_mods` VALUES(1648, 17, 1, 1);
+INSERT INTO `mob_pool_mods` VALUES(3549, 1, 19000, 1);
+INSERT INTO `mob_pool_mods` VALUES(3549, 2, 34000, 1);
+INSERT INTO `mob_pool_mods` VALUES(3376, 1, 15000, 1);
+INSERT INTO `mob_pool_mods` VALUES(3376, 2, 30545, 1);

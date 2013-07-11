@@ -29,7 +29,7 @@
 #include "grades.h"
 #include "trait.h"
 #include "mobutils.h"
-#include "modifier.h"
+#include "mob_modifier.h"
 #include "spell.h"
 #include <vector>
 
@@ -197,6 +197,8 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->health.maxhp = PMob->HPmodifier;
 	}
 
+	bool hasMp = false;
+
 	switch(mJob){
 	case JOB_PLD:
 	case JOB_WHM:
@@ -206,6 +208,30 @@ void CalculateStats(CMobEntity * PMob)
 	case JOB_BLU:
 	case JOB_SCH:
 	case JOB_SMN:
+		hasMp = true;
+		break;
+	}
+
+	switch(sJob){
+	case JOB_PLD:
+	case JOB_WHM:
+	case JOB_BLM:
+	case JOB_RDM:
+	case JOB_DRK:
+	case JOB_BLU:
+	case JOB_SCH:
+	case JOB_SMN:
+		hasMp = true;
+		break;
+	}
+
+	if(PMob->getMobMod(MOBMOD_MP_BASE))
+	{
+		hasMp = true;
+	}
+
+	if(hasMp)
+	{
 		if(PMob->MPmodifier == 0){
 			PMob->health.maxmp = (int16)(18.2 * pow(PMob->GetMLevel(),1.1075) * PMob->MPscale);
 			if(isNM){
@@ -216,37 +242,6 @@ void CalculateStats(CMobEntity * PMob)
 			}
 		} else {
 			PMob->health.maxmp = PMob->MPmodifier;
-		}
-		break;
-	}
-
-
-	if(PMob->m_Family == 193 || PMob->m_Family == 34)
-	{
-		// pet wyverns / avatar have mp
-		PMob->health.maxmp = (int16)(18.2 * pow(PMob->GetMLevel(),1.1075) * PMob->MPscale);
-	}
-
-	// give mp if subjob is a mage
-	if(PMob->health.maxmp == 0)
-	{
-		switch(sJob){
-		case JOB_PLD:
-		case JOB_WHM:
-		case JOB_BLM:
-		case JOB_RDM:
-		case JOB_DRK:
-		case JOB_BLU:
-		case JOB_SCH:
-		case JOB_SMN:
-			PMob->health.maxmp = (int16)(18.2 * pow(PMob->GetMLevel(),1.1075) * PMob->MPscale);
-			if(isNM){
-			PMob->health.maxmp *= 2.5;
-				if(PMob->GetMLevel()>75){
-					PMob->health.maxmp *= 2.5;
-				}
-			}
-			break;
 		}
 	}
 
@@ -798,8 +793,17 @@ void InitializeMob(CMobEntity* PMob)
     	break;
       }
 
+	// add special mob mods
+
       // this only has to be added once
      AddCustomMods(PMob);
+
+	// do not despawn if I match this criteria
+	if((PMob->m_Type & MOBTYPE_NOTORIOUS) || (PMob->m_Type & MOBTYPE_EVENT) || PMob->isInDynamis() || PMob->loc.zone->GetType() == ZONETYPE_BATTLEFIELD || MOB_TRAIN)
+	{
+		// goblin diggers
+		PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
+	}
 
     // Killer Effect
     switch (PMob->m_EcoSystem)
@@ -837,7 +841,7 @@ void LoadCustomMods()
 {
 
 	// load family mods
-	const int8 QueryFamilyMods[] = "SELECT familyid, modid, value FROM mob_family_mods;";
+	const int8 QueryFamilyMods[] = "SELECT familyid, modid, value, type FROM mob_family_mods;";
 
     int32 ret = Sql_Query(SqlHandle, QueryFamilyMods);
 
@@ -847,15 +851,23 @@ void LoadCustomMods()
 		{
 			ModsList_t* familyMods = GetMobFamilyMods(Sql_GetUIntData(SqlHandle,0), true);
 
-			CModifier* mod = new CModifier((MODIFIER)Sql_GetUIntData(SqlHandle,1));
+			CModifier* mod = new CModifier(Sql_GetUIntData(SqlHandle,1));
 			mod->setModAmount(Sql_GetUIntData(SqlHandle,2));
 			
-			familyMods->mods.push_back(mod);
+			uint16 type = Sql_GetUIntData(SqlHandle,3);
+			if(type == 1)
+			{
+				familyMods->mobMods.push_back(mod);
+			}
+			else
+			{
+				familyMods->mods.push_back(mod);
+			}
 		}
 	}
 
 	// load pool mods
-	const int8 QueryPoolMods[] = "SELECT poolid, modid, value FROM mob_pool_mods;";
+	const int8 QueryPoolMods[] = "SELECT poolid, modid, value, type FROM mob_pool_mods;";
 
     ret = Sql_Query(SqlHandle, QueryPoolMods);
 
@@ -865,10 +877,18 @@ void LoadCustomMods()
 		{
 			ModsList_t* poolMods = GetMobPoolMods(Sql_GetUIntData(SqlHandle,0), true);
 
-			CModifier* mod = new CModifier((MODIFIER)Sql_GetUIntData(SqlHandle,1));
+			CModifier* mod = new CModifier(Sql_GetUIntData(SqlHandle,1));
 			mod->setModAmount(Sql_GetUIntData(SqlHandle,2));
 			
-			poolMods->mods.push_back(mod);
+			uint16 type = Sql_GetUIntData(SqlHandle,3);
+			if(type == 1)
+			{
+				poolMods->mobMods.push_back(mod);
+			} 
+			else 
+			{
+				poolMods->mods.push_back(mod);
+			}
 		}
 	}
 
@@ -935,6 +955,11 @@ void AddCustomMods(CMobEntity* PMob)
 		{
 			PMob->addModifier((*it)->getModID(), (*it)->getModAmount());
 		}
+
+		for(std::vector<CModifier*>::iterator it = PFamilyMods->mobMods.begin(); it != PFamilyMods->mobMods.end() ; ++it)
+		{
+			PMob->addModifier((*it)->getModID(), (*it)->getModAmount());
+		}
 	}
 
 	// find my pools custom mods
@@ -944,6 +969,11 @@ void AddCustomMods(CMobEntity* PMob)
 	{
 		// add them
 		for(std::vector<CModifier*>::iterator it = PPoolMods->mods.begin(); it != PPoolMods->mods.end() ; ++it)
+		{
+			PMob->addModifier((*it)->getModID(), (*it)->getModAmount());
+		}
+
+		for(std::vector<CModifier*>::iterator it = PPoolMods->mobMods.begin(); it != PPoolMods->mobMods.end() ; ++it)
 		{
 			PMob->addModifier((*it)->getModID(), (*it)->getModAmount());
 		}

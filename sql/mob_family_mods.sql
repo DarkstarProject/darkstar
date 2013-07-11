@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS `mob_family_mods` (
   `familyid` smallint(5) unsigned NOT NULL,
   `modid` smallint(5) unsigned NOT NULL,
   `value` smallint(5) NOT NULL DEFAULT '0',
+  `type` smallint(5) NOT NULL DEFAULT '0',
   PRIMARY KEY (`familyid`,`modid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=13 PACK_KEYS=1;
 
@@ -37,16 +38,18 @@ CREATE TABLE IF NOT EXISTS `mob_family_mods` (
 -- Contenu de la table `mob_family_mods`
 --
 
-INSERT INTO `mob_family_mods` VALUES(175, 29, 50);
-INSERT INTO `mob_family_mods` VALUES(4, 29, 25);
-INSERT INTO `mob_family_mods` VALUES(74, 29, 25);
-INSERT INTO `mob_family_mods` VALUES(61, 29, 25);
-INSERT INTO `mob_family_mods` VALUES(169, 29, 25);
-INSERT INTO `mob_family_mods` VALUES(110, 29, 13);
-INSERT INTO `mob_family_mods` VALUES(111, 29, 13);
-INSERT INTO `mob_family_mods` VALUES(171, 29, 13);
-INSERT INTO `mob_family_mods` VALUES(139, 31, 10);
-INSERT INTO `mob_family_mods` VALUES(176, 31, 10);
-INSERT INTO `mob_family_mods` VALUES(47, 240, 2);
-INSERT INTO `mob_family_mods` VALUES(46, 240, 2);
-INSERT INTO `mob_family_mods` VALUES(4, 244, 2);
+INSERT INTO `mob_family_mods` VALUES(175, 29, 50, 0);
+INSERT INTO `mob_family_mods` VALUES(4, 29, 25, 0);
+INSERT INTO `mob_family_mods` VALUES(74, 29, 25, 0);
+INSERT INTO `mob_family_mods` VALUES(61, 29, 25, 0);
+INSERT INTO `mob_family_mods` VALUES(169, 29, 25, 0);
+INSERT INTO `mob_family_mods` VALUES(110, 29, 13, 0);
+INSERT INTO `mob_family_mods` VALUES(111, 29, 13, 0);
+INSERT INTO `mob_family_mods` VALUES(171, 29, 13, 0);
+INSERT INTO `mob_family_mods` VALUES(139, 31, 10, 0);
+INSERT INTO `mob_family_mods` VALUES(176, 31, 10, 0);
+INSERT INTO `mob_family_mods` VALUES(47, 240, 2, 0);
+INSERT INTO `mob_family_mods` VALUES(46, 240, 2, 0);
+INSERT INTO `mob_family_mods` VALUES(4, 244, 2, 0);
+INSERT INTO `mob_family_mods` VALUES(193, 3, 40, 1);
+INSERT INTO `mob_family_mods` VALUES(34, 3, 100, 1);

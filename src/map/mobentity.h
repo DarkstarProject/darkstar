@@ -27,6 +27,7 @@
 #include "battleentity.h"
 #include "enmity_container.h"
 #include "mobutils.h"
+#include "mob_modifier.h"
 
 #include "mob_spell_container.h"
 #include "mob_spell_list.h"
@@ -206,6 +207,9 @@ public:
   CMobSpellContainer* SpellContainer;   // retrieves spells for the mob
   uint8		m_HasSpellScript;					// 1 if they have a spell script to use for working out what to cast.
 
+  void setMobMod(uint16 type, int16 value);
+  int16 getMobMod(uint16 type);
+
   CMobEntity();
   ~CMobEntity();
 
@@ -215,7 +219,7 @@ private:
   bool		m_NewSkin;				// True if skin has changed
   uint32		m_SkinID;				// Skinid
   uint32      m_DespawnTimer;         // Despawn Timer to despawn mob after set duration
-
+  int16   m_mobModStat[MAX_MOBMODIFIER];  // mob specific mods
 };
 
 #endif

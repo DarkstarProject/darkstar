@@ -3015,9 +3015,13 @@ void CAICharNormal::ActionAttack()
 									if (PTarget->m_OwnerID.id == m_PChar->PParty->m_PAlliance->partyList.at(a)->members[i]->id ||
 										(PTarget->m_OwnerID.id == 0 && PTarget->PBattleAI->GetBattleTarget() == m_PChar->PParty->m_PAlliance->partyList.at(a)->members[i]))
 									{
-										m_PBattleTarget = PTarget;
-										m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
-										return;
+
+				                    	if(!PTarget->isCharmed)
+				                    	{
+											m_PBattleTarget = PTarget;
+											m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
+											return;
+				                    	}
 									}
 								}
 							}
@@ -3029,9 +3033,13 @@ void CAICharNormal::ActionAttack()
 			                    if (PTarget->m_OwnerID.id == m_PChar->PParty->members[i]->id ||
                                    (PTarget->m_OwnerID.id == 0 && PTarget->PBattleAI->GetBattleTarget() == m_PChar->PParty->members[i]))
 			                    {
-                                    m_PBattleTarget = PTarget;
-				                    m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
-                                    return;
+
+			                    	if(!PTarget->isCharmed)
+			                    	{
+	                                    m_PBattleTarget = PTarget;
+					                    m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
+	                                    return;
+	                                }
 			                    }
 		                    }
                         }
@@ -3039,11 +3047,12 @@ void CAICharNormal::ActionAttack()
                     else if (PTarget->m_OwnerID.id == m_PChar->id ||
                             (PTarget->m_OwnerID.id == 0 && PTarget->PBattleAI->GetBattleTarget() == m_PChar))
                     {
-                        m_PBattleTarget = PTarget;
-
 						// lock on to the new, if its not charmed
-						if (!m_PBattleTarget->isCharmed)
+                    	if(!PTarget->isCharmed)
+                    	{
+	                        m_PBattleTarget = PTarget;
 							m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
+                    	}
 
 						return;
                     }
