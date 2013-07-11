@@ -958,7 +958,7 @@ void AddCustomMods(CMobEntity* PMob)
 
 		for(std::vector<CModifier*>::iterator it = PFamilyMods->mobMods.begin(); it != PFamilyMods->mobMods.end() ; ++it)
 		{
-			PMob->addModifier((*it)->getModID(), (*it)->getModAmount());
+			PMob->setMobMod((*it)->getModID(), (*it)->getModAmount());
 		}
 	}
 
@@ -975,7 +975,7 @@ void AddCustomMods(CMobEntity* PMob)
 
 		for(std::vector<CModifier*>::iterator it = PPoolMods->mobMods.begin(); it != PPoolMods->mobMods.end() ; ++it)
 		{
-			PMob->addModifier((*it)->getModID(), (*it)->getModAmount());
+			PMob->setMobMod((*it)->getModID(), (*it)->getModAmount());
 		}
 	}
 }
