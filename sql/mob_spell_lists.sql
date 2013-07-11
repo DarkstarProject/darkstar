@@ -1,3 +1,4 @@
+
 /*
 MySQL Data Transfer
 Source Host: localhost
@@ -1163,3 +1164,7 @@ INSERT INTO `mob_spell_lists` VALUES ('Animated_Knuckles', '95', '249', '37', '2
 INSERT INTO `mob_spell_lists` VALUES ('Animated_Shield', '96', '106', '37', '255');
 INSERT INTO `mob_spell_lists` VALUES ('Animated_Shield', '96', '273', '37', '255');
 INSERT INTO `mob_spell_lists` VALUES ('Stubborn_Dredvodd', '97', '54', '1', '255');
+INSERT INTO `mob_spell_lists` VALUES ('Demonic_Tiphia', '98', '5', '1', '255');
+INSERT INTO `mob_spell_lists` VALUES ('Demonic_Tiphia', '98', '143', '1', '255');
+INSERT INTO `mob_spell_lists` VALUES ('Demonic_Tiphia', '98', '274', '1', '255');
+INSERT INTO `mob_spell_lists` VALUES ('Demonic_Tiphia', '98', '356', '1', '255');
