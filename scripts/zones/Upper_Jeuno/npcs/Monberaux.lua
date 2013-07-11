@@ -37,7 +37,6 @@ end;
 function onTrigger(player,npc)
 	local TheLostCardien = player:getQuestStatus(JEUNO,THE_LOST_CARDIAN);
 	local CooksPride = player:getQuestStatus(JEUNO,COOK_S_PRIDE);
-
 	-- COP mission 1-1
 	if(player:getCurrentMission(COP) == THE_RITES_OF_LIFE and  player:getVar("PromathiaStatus") == 1) then
 		player:startEvent(0x000a);--10
@@ -100,7 +99,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-    if(csid == 0x0007)then
+    if(csid == 0x0006)then
 	    player:setVar("COP_Tenzen_s_Path",5);	
 	elseif(csid == 0x004a)then
 	    player:setVar("COP_Tenzen_s_Path",3);
