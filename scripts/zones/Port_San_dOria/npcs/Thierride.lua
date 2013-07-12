@@ -21,20 +21,17 @@ require("scripts/zones/Port_San_dOria/TextIDs");
 
 function onTrade(player,npc,trade)
 	local count = trade:getItemCount();
-	if (player:getQuestStatus(SANDORIA, A_TASTE_FOR_MEAT) == QUEST_ACCEPTED) then
-		if (trade:hasItemQty(4358, 5) and count == 5) then
+
+	if (trade:hasItemQty(4358, 5) and count == 5) then
+		if(player:getQuestStatus(SANDORIA, A_TASTE_FOR_MEAT) == QUEST_ACCEPTED) then
 			player:startEvent(0x0210);
 		else
 			player:startEvent(0x020e);
 		end
-
-		
-	elseif (player:getQuestStatus(SANDORIA,THE_BRUGAIRE_CONSORTIUM) == QUEST_ACCEPTED) then
-		if (trade:hasItemQty(595,1) == true and count == 1) then
-			player:tradeComplete(); 
-			player:startEvent(0x021b);
-			player:setVar("TheBrugaireConsortium-Parcels", 31);
-		end
+	elseif (player:getQuestStatus(SANDORIA,THE_BRUGAIRE_CONSORTIUM) == QUEST_ACCEPTED and trade:hasItemQty(595,1) == true and count == 1) then
+		player:tradeComplete();
+		player:startEvent(0x021b);
+		player:setVar("TheBrugaireConsortium-Parcels", 31);
 	else
 		player:startEvent(0x0211);
 	end
@@ -51,7 +48,7 @@ function onTrigger(player,npc)
 	if (aTasteForMeat == QUEST_AVAILABLE and player:getVar("aTasteForMeat") == 1 or aTasteForMeat == QUEST_ACCEPTED) then
 		player:startEvent(0x020e);
 	else
-	player:delQuest(SANDORIA, A_TASTE_FOR_MEAT);
+		player:delQuest(SANDORIA, A_TASTE_FOR_MEAT);
 		player:startEvent(0x020c);
 	end;
 	

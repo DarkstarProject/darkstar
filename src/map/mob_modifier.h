@@ -51,9 +51,13 @@ enum MOBMODIFIER
   MOBMOD_SUB_2HOUR = 19, // give mob its sub job two hour (dynamis NM) -- not impl
   MOBMOD_TP_USE_CHANCE = 20, // % chance to use tp
   MOBMOD_PET_SPELL_LIST = 21, // set pet spell list
-  MOBMOD_NA_CHANCE = 22 // % chance to cast -na
+  MOBMOD_NA_CHANCE = 22, // % chance to cast -na
+  MOBMOD_IMMUNITY = 23, // immune to set status effects -- not impl
+  MOBMOD_GRADUAL_RAGE = 24, // gradually get stronger -- not impl
+  MOBMOD_BUILD_RESIST = 25, // build resistance to given effects -- not impl
+  MOBMOD_INSTANT_CAST = 26 // instantly cast spells -- not impl
 };
 
-#define MAX_MOBMODIFIER         23
+#define MAX_MOBMODIFIER         27
 
 #endif
