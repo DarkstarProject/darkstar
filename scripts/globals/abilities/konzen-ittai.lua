@@ -19,7 +19,11 @@ function OnAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-	target:addStatusEffectEx(EFFECT_CHAINBOUND, 0, 2, 0, 5, 0, 1);
+	if (not target:hasStatusEffect(EFFECT_CHAINBOUND, 0) and not target:hasStatusEffect(EFFECT_SKILLCHAIN, 0)) then
+		target:addStatusEffectEx(EFFECT_CHAINBOUND, 0, 2, 0, 5, 0, 1);
+	else
+		ability:setMsg(156);
+	end
 	local skill = player:getWeaponSkillType(SLOT_MAIN);
 	local anim = 36;
 	if skill <= 1 then

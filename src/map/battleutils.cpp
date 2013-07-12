@@ -2790,25 +2790,25 @@ SUBEFFECT GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSki
         // Chainbound active on target
         if(PCBEffect)
         {
-            resonanceProperties.push_back(SC_LIQUEFACTION);
-            resonanceProperties.push_back(SC_REVERBERATION);
-            resonanceProperties.push_back(SC_INDURATION);
-            resonanceProperties.push_back(SC_IMPACTION);
-            resonanceProperties.push_back(SC_COMPRESSION);
-            resonanceProperties.push_back(SC_DETONATION);
-            resonanceProperties.push_back(SC_SCISSION);
-            resonanceProperties.push_back(SC_TRANSFIXION);
-
             //Konzen-Ittai
             if (PCBEffect->GetPower() > 1)
             {
-                resonanceProperties.push_back(SC_DISTORTION);
-                resonanceProperties.push_back(SC_FUSION);
+                resonanceProperties.push_back(SC_LIGHT);
+                resonanceProperties.push_back(SC_DARKNESS);
                 resonanceProperties.push_back(SC_GRAVITATION);
                 resonanceProperties.push_back(SC_FRAGMENTATION);
+                resonanceProperties.push_back(SC_DISTORTION);
+                resonanceProperties.push_back(SC_FUSION);
             }
+            resonanceProperties.push_back(SC_LIQUEFACTION);
+            resonanceProperties.push_back(SC_INDURATION);
+            resonanceProperties.push_back(SC_REVERBERATION);
+            resonanceProperties.push_back(SC_IMPACTION);
+            resonanceProperties.push_back(SC_COMPRESSION);
+
             skillchain = FormSkillchain(resonanceProperties, skillProperties);
             PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, PWeaponSkill->getID(), 0, 6, 0, 0, 0));
+            PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_CHAINBOUND);
             PSCEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_SKILLCHAIN, 0);
         }
         // Previous effect exists

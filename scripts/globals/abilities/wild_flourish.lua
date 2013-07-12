@@ -38,6 +38,10 @@ function OnAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-	target:addStatusEffectEx(EFFECT_CHAINBOUND, 0, 1, 0, 5, 0, 1);
+	if (not target:hasStatusEffect(EFFECT_CHAINBOUND, 0) and not target:hasStatusEffect(EFFECT_SKILLCHAIN, 0)) then
+		target:addStatusEffectEx(EFFECT_CHAINBOUND, 0, 1, 0, 5, 0, 1);
+	else
+		ability:setMsg(156);
+	end
 	return 0, getFlourishAnimation(player:getWeaponSkillType(SLOT_MAIN)), 1;
 end;
