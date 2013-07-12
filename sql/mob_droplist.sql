@@ -4498,7 +4498,6 @@ INSERT INTO `mob_droplist` VALUES(828, 2, 17296, 0);
 INSERT INTO `mob_droplist` VALUES(829, 0, 4107, 100);
 INSERT INTO `mob_droplist` VALUES(829, 0, 4107, 40);
 INSERT INTO `mob_droplist` VALUES(829, 0, 4107, 15);
-INSERT INTO `mob_droplist` VALUES(830, 0, 1062, 2);
 INSERT INTO `mob_droplist` VALUES(830, 0, 4107, 100);
 INSERT INTO `mob_droplist` VALUES(830, 0, 4107, 40);
 INSERT INTO `mob_droplist` VALUES(830, 0, 4107, 15);
