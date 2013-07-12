@@ -92,6 +92,7 @@ function onEventFinish(player,csid,option)
 		player:addGil(GIL_RATE*440)
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*440);
 		player:addTitle(ADVERTISING_EXECUTIVE);
+		player:addFame(SANDORIA,SAN_FAME*30);
 		player:setVar("tradeAnswald",0);
 		player:setVar("tradePrietta",0);
 		player:setVar("tradeMiene",0);

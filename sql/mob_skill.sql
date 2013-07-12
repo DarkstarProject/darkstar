@@ -653,7 +653,7 @@ INSERT INTO `mob_skill` VALUES (853,327,760,'Dice_Reset', 1, 10.0, 3000, 1500, 4
 
 -- Orc
 INSERT INTO `mob_skill` VALUES (377,189,354,'Howl', 1, 20.0, 2000, 1500, 1, 0);
-INSERT INTO `mob_skill` VALUES (353,189,353,'Battle_Dance', 1, 15.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (353,189,353,'Battle_Dance', 1, 12.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (352,189,352,'Arm_Block', 0, 7.0, 2000, 1500, 1, 0);
 INSERT INTO `mob_skill` VALUES (351,189,351,'Slam_Dunk', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (349,189,349,'Aerial_Wheel', 0, 12.0, 2000, 1500, 4, 0);
@@ -661,7 +661,7 @@ INSERT INTO `mob_skill` VALUES (350,189,350,'Shoulder_Attack', 0, 7.0, 2000, 150
 
 -- Orcish NM
 INSERT INTO `mob_skill` VALUES (0,334,432,'Two_Hour', 0, 8.0, 2000, 0, 4, 0);
-INSERT INTO `mob_skill` VALUES (353,334,353,'Battle_Dance', 1, 15.0, 2000, 1500, 4, 0);
+INSERT INTO `mob_skill` VALUES (353,334,353,'Battle_Dance', 1, 12.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (352,334,352,'Arm_Block', 0, 7.0, 2000, 1500, 1, 0);
 INSERT INTO `mob_skill` VALUES (351,334,351,'Slam_Dunk', 0, 7.0, 2000, 1500, 4, 0);
 INSERT INTO `mob_skill` VALUES (349,334,349,'Aerial_Wheel', 0, 12.0, 2000, 1500, 4, 0);
