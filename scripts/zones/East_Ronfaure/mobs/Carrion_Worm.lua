@@ -4,7 +4,7 @@
 -----------------------------------	
 	
 require("/scripts/globals/fieldsofvalor");	
--- require("scripts/zones/East_Ronfaure/MobIDs");
+require("scripts/zones/East_Ronfaure/MobIDs");
 
 -----------------------------------	
 -- onMobDeath	

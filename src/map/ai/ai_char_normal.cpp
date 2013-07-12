@@ -3316,7 +3316,10 @@ void CAICharNormal::ActionAttack()
 						// do soul eater effect
 						damage = battleutils::doSoulEaterEffect(m_PChar, damage);
 
-						charutils::TrySkillUP(m_PChar, (SKILLTYPE)PWeapon->getSkillType(), m_PBattleTarget->GetMLevel());
+						if(damage > 0)
+						{
+							charutils::TrySkillUP(m_PChar, (SKILLTYPE)PWeapon->getSkillType(), m_PBattleTarget->GetMLevel());						
+						}
 						zanshin = false;
 					}
 				}

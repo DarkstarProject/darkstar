@@ -17,7 +17,8 @@ require("scripts/globals/quests");
 function onTrade(player,npc,trade)
    local npcid = npc:getID();
    if (trade:getItemCount() == 1 and trade:hasItemQty(4105,1) == true) then -- Ice Cluster Trade
-      GetNPCByID(npcid+5):openDoor();
+      GetNPCByID(npcid+5):openDoor(10);
+      player:tradeComplete();
    end
 end; 
 
