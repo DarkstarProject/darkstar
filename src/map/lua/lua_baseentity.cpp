@@ -2012,7 +2012,7 @@ inline int32 CLuaBaseEntity::levelRestriction(lua_State* L)
 			PChar->SetMLevel(NewMLevel);
 			PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
 
-            blueutils::LoadSetSpells(PChar);
+            blueutils::ValidateBlueSpells(PChar);
 			charutils::BuildingCharSkillsTable(PChar);
 			charutils::CalculateStats(PChar);
 			charutils::BuildingCharTraitsTable(PChar);
