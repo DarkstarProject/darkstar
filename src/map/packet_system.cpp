@@ -4234,6 +4234,13 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
             else if (prevsjob == JOB_BLU)
                 blueutils::UnequipAllBlueSpells(PChar);
 
+            uint16 subType = PChar->m_Weapons[SLOT_SUB]->getDmgType();
+
+			if (subType > 0 && subType < 4)
+            {
+                charutils::UnequipItem(PChar, SLOT_SUB);
+            }
+
 		}
 
 		charutils::BuildingCharSkillsTable(PChar);
