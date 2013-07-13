@@ -46,16 +46,16 @@ function onTrigger(player,npc)
 
 	
    if(player:hasKeyItem(ORCISH_HUT_KEY)) then
-         if(player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN)) then   
-            player:startEvent(0x0003);   
-         else      
-            player:startEvent(0x0037);      
-         end      
-      else      
-         if(EventTriggerBCNM(player,npc))then      
-            return;      
-         end
-      end
+	if(player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN)) then   
+		player:startEvent(0x0003);   
+	else      
+		player:startEvent(0x0037);      
+	end      
+  else      
+ 	if(EventTriggerBCNM(player,npc))then      
+		return;      
+    end
+  end
 
 	
 end;

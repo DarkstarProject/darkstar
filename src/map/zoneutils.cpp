@@ -411,14 +411,6 @@ void LoadMOBList(CZone* PZone)
 
 			PMob->m_Pool = Sql_GetUIntData(SqlHandle,58);
 
-			if(PZone->GetType() == ZONETYPE_BATTLEFIELD)
-			{
-				// Do not move!
-				PMob->m_roamFlags |= ROAMFLAG_EVENT;
-				// make sure everything will link
-				PMob->m_linkRadius = 20;
-			}
-
 			// this has to be above insertMOB
 			mobutils::InitializeMob(PMob, PZone);
 

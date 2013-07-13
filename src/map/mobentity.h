@@ -203,6 +203,9 @@ public:
   uint32      GetRandomGil(); // returns a random amount of gil
   bool        CanRoamHome(); // is it possible for me to walk back?
   bool        CanRoam(); // check if mob can walk around
+  bool        CanLink(position_t* pos, int16 superLink = 0);
+  bool        CanDropGil(); // mob has gil to drop
+  bool        CanMug(); // not every mob with gil can be mugged // TODO implement
 
   CMobSpellContainer* SpellContainer;   // retrieves spells for the mob
   uint8		m_HasSpellScript;					// 1 if they have a spell script to use for working out what to cast.

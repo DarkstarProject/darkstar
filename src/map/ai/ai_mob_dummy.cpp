@@ -405,7 +405,7 @@ void CAIMobDummy::ActionDropItems()
 						}
 				    }
 					//check for gil (beastmen drop gil, some NMs drop gil)
-					if(m_PMob->m_EcoSystem == SYSTEM_BEASTMEN || m_PMob->m_Type & MOBTYPE_NOTORIOUS)
+					if(m_PMob->CanDropGil())
                     {
 						charutils::DistributeGil(PChar, m_PMob); // TODO: REALISATION MUST BE IN TREASUREPOOL
 					}
@@ -469,6 +469,29 @@ void CAIMobDummy::ActionDropItems()
 			PChar->setWeaponSkillKill(false);
 
 			luautils::OnMobDeath(m_PMob, PChar);
+
+			int16 titleID = m_PMob->getMobMod(MOBMOD_TITLE);
+
+			if(titleID)
+			{
+				// set title for party
+			    m_PTargetFind->reset();
+
+			    // players can gain title even if dead
+			    m_PTargetFind->m_targetDead = true;
+
+			    // have to be within 50 of mob to gain title
+		        m_PTargetFind->findWithinArea(PChar, AOERADIUS_ATTACKER, 50.0f);
+
+	            for (std::vector<CBattleEntity*>::iterator it = m_PTargetFind->m_targets.begin() ; it != m_PTargetFind->m_targets.end(); ++it)
+	            {
+	            	if((*it)->objtype != TYPE_PC) continue;
+
+	                charutils::setTitle((CCharEntity*)*it, titleID);
+	            }	        
+				
+			}
+
 		}
         m_ActionType = ACTION_DEATH;
 	}
@@ -1069,8 +1092,9 @@ void CAIMobDummy::ActionMagicCasting()
 
 	m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
 
-	if ( ((m_Tick - m_LastMagicTime) >= (float)m_PSpell->getCastTime()*((100.0f-(float)dsp_cap(m_PMob->getMod(MOD_FASTCAST),-100,50))/100.0f)) ||
-        m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL,0))
+	uint32 totalCastTime = m_PSpell->getCastTime()*((100.0f-(float)dsp_cap(m_PMob->getMod(MOD_FASTCAST),-100,50) + m_PMob->getMod(MOD_UFASTCAST))/100.0f);
+
+	if ((m_Tick - m_LastMagicTime) >= totalCastTime)
 	{	
 		m_LastMagicTime = m_Tick - rand()%(uint32)((float)m_PMob->m_MagicRecastTime / 2);
 
@@ -1746,7 +1770,7 @@ void CAIMobDummy::TryLink()
         {
             CMobEntity* PPartyMember = (CMobEntity*)m_PMob->PParty->members[i];
 
-            if(!PPartyMember->m_neutral && CanLink(PPartyMember)){
+            if(!PPartyMember->m_neutral && PPartyMember->PBattleAI->GetCurrentAction() == ACTION_ROAMING && PPartyMember->CanLink(&m_PMob->loc.p, m_PMob->getMobMod(MOBMOD_SUPERLINK))){
 		        PPartyMember->PEnmityContainer->AddLinkEnmity(m_PBattleTarget);
 
 		        if(PPartyMember->m_roamFlags & ROAMFLAG_IGNORE)
@@ -1763,7 +1787,7 @@ void CAIMobDummy::TryLink()
     {
     	CMobEntity* PMaster = (CMobEntity*)m_PMob->PMaster;
 
-        if(CanLink(PMaster)){
+        if(!PMaster->m_neutral && PMaster->PBattleAI->GetCurrentAction() == ACTION_ROAMING && PMaster->CanLink(&m_PMob->loc.p, m_PMob->getMobMod(MOBMOD_SUPERLINK))){
 	        PMaster->PEnmityContainer->AddLinkEnmity(m_PBattleTarget);
         }
     }
@@ -1894,24 +1918,6 @@ void CAIMobDummy::CastSpell(uint16 spellId)
 		m_ActionType = ACTION_MAGIC_START;
 		ActionMagicStart();
 	}
-}
-
-bool CAIMobDummy::CanLink(CMobEntity* PTarget)
-{
-	if (PTarget->PBattleAI->GetCurrentAction() == ACTION_ROAMING){
-
-		// link only if I see him
-		if((PTarget->m_Behaviour & BEHAVIOUR_AGGRO_SIGHT) || (PTarget->m_Behaviour & BEHAVIOUR_AGGRO_TRUESIGHT)){
-
-		   if(!isFaceing(PTarget->loc.p, m_PMob->loc.p, 40)) return false;
-		}
-
-		if(distance(m_PMob->loc.p, PTarget->loc.p) <= m_PMob->m_linkRadius)
-		{
-	        return true;
-	    }
-	}
-	return false;
 }
 
 bool CAIMobDummy::TrySpecialSkill()

@@ -38,6 +38,7 @@ namespace mobutils
 {
 	ModsMap_t mobFamilyModsList;
 	ModsMap_t mobPoolModsList;
+	ModsMap_t mobSpawnModsList;
 
 /************************************************************************
 *																		*
@@ -470,6 +471,11 @@ void CalculateStats(CMobEntity * PMob)
     	PPet->m_SpellListContainer = mobSpellList::GetMobSpellList(PMob->getMobMod(MOBMOD_PET_SPELL_LIST));
     }
 
+    if(PMob->getMobMod(MOBMOD_SPELL_LIST))
+    {
+    	PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(PMob->getMobMod(MOBMOD_SPELL_LIST));
+    }
+
 	// add special traits to families
 	// right now this is hard coded but will eventually be put into a column?
 	if(PMob->m_Family == 217 || PMob->m_Family == 274 || PMob->m_Family == 273)
@@ -670,6 +676,12 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
 {
 	// add special mob mods
 
+	if(PZone->GetType() == ZONETYPE_BATTLEFIELD)
+	{
+		// all mobs super link, make sure mobs are put in a party
+		PMob->m_Link = 1;
+	}
+
       // this only has to be added once
      AddCustomMods(PMob);
 
@@ -772,6 +784,31 @@ void LoadCustomMods()
 		}
 	}
 
+	// load spawn mods
+	const int8 QuerySpawnMods[] = "SELECT mobid, modid, value, type FROM mob_spawn_mods;";
+
+    ret = Sql_Query(SqlHandle, QuerySpawnMods);
+
+	if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	{
+		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		{
+			ModsList_t* spawnMods = GetMobSpawnMods(Sql_GetUIntData(SqlHandle,0), true);
+
+			CModifier* mod = new CModifier(Sql_GetUIntData(SqlHandle,1));
+			mod->setModAmount(Sql_GetUIntData(SqlHandle,2));
+			
+			uint16 type = Sql_GetUIntData(SqlHandle,3);
+			if(type == 1)
+			{
+				spawnMods->mobMods.push_back(mod);
+			} 
+			else 
+			{
+				spawnMods->mods.push_back(mod);
+			}
+		}
+	}
 }
 
 ModsList_t* GetMobFamilyMods(uint16 familyId, bool create)
@@ -816,6 +853,27 @@ ModsList_t* GetMobPoolMods(uint32 poolId, bool create)
 	return NULL;
 }
 
+ModsList_t* GetMobSpawnMods(uint32 mobId, bool create)
+{
+	if(mobSpawnModsList[mobId])
+	{
+		return mobSpawnModsList[mobId];
+	}
+
+	if(create)
+	{
+		// create new one
+		ModsList_t* mods = new ModsList_t;
+		mods->id = mobId;
+
+		mobSpawnModsList[mobId] = mods;
+
+		return mods;
+	}
+
+	return NULL;
+}
+
 void AddCustomMods(CMobEntity* PMob)
 {
 
@@ -848,6 +906,23 @@ void AddCustomMods(CMobEntity* PMob)
 		}
 
 		for(std::vector<CModifier*>::iterator it = PPoolMods->mobMods.begin(); it != PPoolMods->mobMods.end() ; ++it)
+		{
+			PMob->setMobMod((*it)->getModID(), (*it)->getModAmount());
+		}
+	}
+
+	// find my pools custom mods
+	ModsList_t* PSpawnMods = GetMobSpawnMods(PMob->id);
+
+	if(PSpawnMods != NULL)
+	{
+		// add them
+		for(std::vector<CModifier*>::iterator it = PSpawnMods->mods.begin(); it != PSpawnMods->mods.end() ; ++it)
+		{
+			PMob->addModifier((*it)->getModID(), (*it)->getModAmount());
+		}
+
+		for(std::vector<CModifier*>::iterator it = PSpawnMods->mobMods.begin(); it != PSpawnMods->mobMods.end() ; ++it)
 		{
 			PMob->setMobMod((*it)->getModID(), (*it)->getModAmount());
 		}

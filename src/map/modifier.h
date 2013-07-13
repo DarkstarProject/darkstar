@@ -212,6 +212,7 @@ enum MODIFIER
 	MOD_SPELLINTERRUPT		= 0xA8,				// % Spell Interruption Rate
 	MOD_MOVE				= 0xA9,				// % Movement Speed
 	MOD_FASTCAST			= 0xAA,				// Increases Spell Cast Time (TRAIT)
+	MOD_UFASTCAST			= 0x197,				// uncapped fast cast
 	MOD_DELAY				= 0xAB,				// Increase/Decrease Delay
 	MOD_RANGED_DELAY		= 0xAC,				// Increase/Decrease Ranged Delay
 	MOD_MARTIAL_ARTS		= 0xAD,				// The integer amount of delay to reduce from H2H weapons' base delay. (TRAIT)
@@ -436,7 +437,7 @@ enum MODIFIER
     MOD_STEP_ACCURACY      = 0x193         // Bonus accuracy for Dancer's steps
 };
 
-#define MAX_MODIFIER	       0x197
+#define MAX_MODIFIER	       0x198
 
 
 

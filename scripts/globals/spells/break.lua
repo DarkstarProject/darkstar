@@ -18,9 +18,9 @@ function onSpellCast(caster,target,spell)
     -- Pull base stats.
     local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
     local bonus = AffinityBonus(caster,spell);
-
+    local resist = applyResistance(caster,spell,target,dINT,35,bonus);
     -- Duration, including resistance.  Unconfirmed.
-    local duration = 30 * applyResistance(caster,spell,target,dINT,35,bonus);
+    local duration = 30 * resist;
 
     if(resist > 0.0625) then
         if(target:addStatusEffect(EFFECT_PETRIFICATION,1,0,duration)) then

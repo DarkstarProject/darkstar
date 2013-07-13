@@ -2328,6 +2328,15 @@ int32 delTitle(CCharEntity* PChar, uint16 Title)
 	return delBit(Title, PChar->m_TitleList, sizeof(PChar->m_TitleList));
 }
 
+void setTitle(CCharEntity* PChar, uint16 Title)
+{
+    PChar->profile.title = Title;
+    PChar->pushPacket(new CCharStatsPacket(PChar));
+
+    addTitle(PChar, Title);
+    SaveTitles(PChar);
+}
+
 /************************************************************************
 *																		*
 *  Методы для работы с основными способностями							*
@@ -4206,7 +4215,12 @@ uint32  CalculateSpellcastTime(CCharEntity* PChar, CSpell* PSpell)
             cast = cast * (1.0f + PChar->getMod(MOD_WHITE_MAGIC_CAST)/100.0f);
         }
     }
-    return cast * ((100.0f-(float)dsp_cap(PChar->getMod(MOD_FASTCAST),-100,50))/100.0f);
+
+    int8 fastCast = dsp_cap(PChar->getMod(MOD_FASTCAST),-100,50);
+    int8 uncappedFastCast = dsp_cap(PChar->getMod(MOD_UFASTCAST),-100,100);
+    float sumFastCast = dsp_cap(fastCast + uncappedFastCast, -100, 100);
+    
+    return cast * ((100.0f - sumFastCast)/100.0f);
 }
 
 uint32  CalculateSpellRecastTime(CCharEntity* PChar, CSpell* PSpell)

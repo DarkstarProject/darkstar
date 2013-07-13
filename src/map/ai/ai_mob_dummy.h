@@ -122,7 +122,6 @@ protected:
   bool TryCastSpell(); // logic for spell casting, returns true if found one to cast
   bool TrySpecialSkill();
   void CastSpell(uint16 spellId); // makes the mob cast a spell
-  bool CanLink(CMobEntity* PTarget); // checks if the target can link
   void Stun(uint32 stunTime);
   void SetupEngage(); // setup timers and trigger callbacks
 

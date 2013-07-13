@@ -35,11 +35,13 @@
 #include "zoneutils.h"
 
 
-CInstance::CInstance(CInstanceHandler* hand, uint16 id){
+CInstance::CInstance(CInstanceHandler* hand, uint16 id, INSTANCETYPE type){
+	m_Type = type;
 	m_BcnmID = id;
 	m_Handler = hand;
 	locked = false;
 	m_FastestTime = 3600;
+	m_DynaUniqueID = 0;
 	treasureChestSpawned = false;
 }
 
@@ -53,6 +55,11 @@ uint8 CInstance::getInstanceNumber(){
 
 uint32 CInstance::getTimeLimit(){
 	return m_TimeLimit;
+}
+
+INSTANCETYPE CInstance::getType()
+{
+	return m_Type;
 }
 
 uint16 CInstance::getZoneId(){

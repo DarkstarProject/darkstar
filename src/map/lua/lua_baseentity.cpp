@@ -2759,17 +2759,8 @@ inline int32 CLuaBaseEntity::setTitle(lua_State *L)
 
     uint16 TitleID = (uint16)lua_tointeger(L,-1);
 
-    if (charutils::hasTitle(PChar, TitleID) != 0)
-    {
-        PChar->profile.title = TitleID;
-        PChar->pushPacket(new CCharStatsPacket(PChar));
-
-        charutils::SaveTitles(PChar);
-    }
-    else
-    {
-        ShowDebug(CL_CYAN"%s don't have title %u\n" CL_RESET, PChar->GetName(), TitleID);
-    }
+    charutils::setTitle(PChar, TitleID);
+    
     return 0;
 }
 

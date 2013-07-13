@@ -82,7 +82,7 @@ CMobEntity::CMobEntity()
     m_SubLinks[0] = 0;
     m_SubLinks[1] = 0;
 
-    m_maxRoamDistance = 20;
+    m_maxRoamDistance = 30;
     m_disableScent = false;
     m_linkRadius = 10;
     
@@ -182,6 +182,16 @@ uint32 CMobEntity::GetRandomGil()
     return gil;
 }
 
+bool CMobEntity::CanDropGil()
+{
+    if(getMobMod(MOBMOD_GIL_MIN) || getMobMod(MOBMOD_GIL_MAX))
+    {
+        return true;
+    }
+
+    return m_EcoSystem == SYSTEM_BEASTMEN || m_Type & MOBTYPE_NOTORIOUS;
+}
+
 bool CMobEntity::CanRoamHome()
 {
     if(speed == 0 && !(m_roamFlags & ROAMFLAG_WORM)) return false;
@@ -191,6 +201,24 @@ bool CMobEntity::CanRoamHome()
 bool CMobEntity::CanRoam()
 {
     return !(m_roamFlags & ROAMFLAG_EVENT) && PMaster == NULL && (speed > 0 || (m_roamFlags & ROAMFLAG_WORM));
+}
+
+bool CMobEntity::CanLink(position_t* pos, int16 superLink)
+{
+    // handle super linking
+    if(getMobMod(MOBMOD_SUPERLINK) != 0 && getMobMod(MOBMOD_SUPERLINK) == superLink)
+    {
+        return true;
+    }
+
+    // link only if I see him
+    if((m_Behaviour & BEHAVIOUR_AGGRO_SIGHT) || (m_Behaviour & BEHAVIOUR_AGGRO_TRUESIGHT)){
+
+       if(!isFaceing(loc.p, *pos, 40)) return false;
+    }
+
+    // link if close enough
+    return distance(loc.p, *pos) <= m_linkRadius;
 }
 
 /************************************************************************

@@ -53,11 +53,13 @@ enum MOBMODIFIER
   MOBMOD_PET_SPELL_LIST = 21, // set pet spell list
   MOBMOD_NA_CHANCE = 22, // % chance to cast -na
   MOBMOD_IMMUNITY = 23, // immune to set status effects -- not impl
-  MOBMOD_GRADUAL_RAGE = 24, // gradually get stronger -- not impl
-  MOBMOD_BUILD_RESIST = 25, // build resistance to given effects -- not impl
-  MOBMOD_INSTANT_CAST = 26 // instantly cast spells -- not impl
+  MOBMOD_GRADUAL_RAGE = 24, // gradually rages -- not impl
+  MOBMOD_BUILD_RESIST = 25, // builds resistance to given effects -- not impl
+  MOBMOD_SUPERLINK = 26, // super link group. Only use this in mob_spawn_mods!
+  MOBMOD_SPELL_LIST = 27, // set spell list
+  MOBMOD_TITLE = 28 // set title to all party members on death. Only use this in mob_spawn_mods!
 };
 
-#define MAX_MOBMODIFIER         27
+#define MAX_MOBMODIFIER         29
 
 #endif

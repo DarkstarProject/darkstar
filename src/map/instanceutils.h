@@ -30,6 +30,11 @@
 class CInstance;
 class CInstanceHandler;
 
+enum INSTANCETYPE {
+	INSTANCETYPE_DYNAMIS,
+	INSTANCETYPE_BCNM
+};
+
 namespace instanceutils
 {
 	void getLosePosition(CInstance* instance, int (&pPosition)[4]);		// returns x y z rot in that order
@@ -44,7 +49,7 @@ namespace instanceutils
 	uint8 getMaxLootGroups(CInstance* instance);						// returns maximum number of loot groups for a BCNM instance
 	uint16 getRollsPerGroup(CInstance* instance, uint8 groupID);		// returns the maximum number of "rolls" in a given group
 	void getChestItems(CInstance* instance);
-	CInstance* loadInstance(CInstanceHandler* hand, uint16 bcnmid);
+	CInstance* loadInstance(CInstanceHandler* hand, uint16 bcnmid, INSTANCETYPE type);
 
 	bool spawnSecondPartDynamis(CInstance* instance);
 };

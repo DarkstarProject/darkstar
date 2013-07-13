@@ -2337,6 +2337,7 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 			default:
 				break;
 		}
+
 	}
 
     doubleAttack = dsp_cap(doubleAttack,0,100);

@@ -104,6 +104,7 @@ namespace charutils
     int32   hasTitle(CCharEntity* PChar, uint16 Title);
     int32   addTitle(CCharEntity* PChar, uint16 Title);
     int32   delTitle(CCharEntity* PChar, uint16 Title);
+    void   setTitle(CCharEntity* PChar, uint16 Title); // set title if not, save and update player
 
 	int32	hasPetAbility(CCharEntity* PChar, uint16 AbilityID);	        //same as Ability but for pet commands (e.g. Healing Ruby)
 	int32	addPetAbility(CCharEntity* PChar, uint16 AbilityID);

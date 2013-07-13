@@ -223,7 +223,7 @@ int CInstanceHandler::registerBcnm(uint16 id, CCharEntity* PChar){
 	if(!hasFreeInstance()){
 		return -1;
 	}
-	CInstance* PInstance = instanceutils::loadInstance(this,id);
+	CInstance* PInstance = instanceutils::loadInstance(this,id, INSTANCETYPE_BCNM);
 	if(PInstance==NULL){
 		return -1;
 	}
@@ -369,7 +369,7 @@ int CInstanceHandler::registerDynamis(uint16 id, CCharEntity* PChar){
 	if(!hasFreeInstance()){
 		return -1;
 	}
-	CInstance* PInstance = instanceutils::loadInstance(this,id);
+	CInstance* PInstance = instanceutils::loadInstance(this,id,INSTANCETYPE_DYNAMIS);
 	if(PInstance==NULL){
 		return -1;
 	}

@@ -1351,8 +1351,7 @@ void CAICharNormal::ActionMagicCasting()
 
     uint32 totalCastTime = charutils::CalculateSpellcastTime(m_PChar, m_PSpell);
 
-	if (m_Tick - m_LastActionTime >= totalCastTime ||
-        m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
+	if (m_Tick - m_LastActionTime >= totalCastTime)
 	{
 		if(m_interruptSpell)
 		{
@@ -2107,8 +2106,6 @@ void CAICharNormal::ActionJobAbilityFinish()
             float distance = m_PJobAbility->getRange();
 
             m_PTargetFind->findWithinArea(m_PChar, AOERADIUS_ATTACKER, distance);
-
-            uint16 actionsLength = m_PTargetFind->m_targets.size();
 
             uint16 msg = 0;
             for (std::vector<CBattleEntity*>::iterator it = m_PTargetFind->m_targets.begin() ; it != m_PTargetFind->m_targets.end(); ++it)

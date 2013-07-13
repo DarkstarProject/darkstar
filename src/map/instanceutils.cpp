@@ -40,7 +40,7 @@ namespace instanceutils{
 		Loads the given instance from the database and returns
 		a new Instance object.
 	****************************************************************/
-	CInstance* loadInstance(CInstanceHandler* hand, uint16 bcnmid){
+	CInstance* loadInstance(CInstanceHandler* hand, uint16 bcnmid, INSTANCETYPE type){
 		const int8* fmtQuery = "SELECT name, bcnmId, fastestName, fastestTime, timeLimit, levelCap, lootDropId, rules, partySize, zoneId \
 						    FROM bcnm_info \
 							WHERE bcnmId = %u";
@@ -55,7 +55,7 @@ namespace instanceutils{
 		}
 		else
 		{
-				CInstance* PInstance = new CInstance(hand,Sql_GetUIntData(SqlHandle,1));
+				CInstance* PInstance = new CInstance(hand,Sql_GetUIntData(SqlHandle,1), type);
 				int8* tmpName;
 				Sql_GetData(SqlHandle,0,&tmpName,NULL);
 				PInstance->setBcnmName(tmpName);
@@ -100,6 +100,25 @@ namespace instanceutils{
 				if (PMob != NULL)
 				{
 
+					// Do not move!
+					PMob->m_roamFlags |= ROAMFLAG_EVENT;
+					PMob->SetDespawnTimer(0); //never despawn
+					// don't despawn if I deaggro out of my spawn area
+					PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
+
+					if(instance->getType() == INSTANCETYPE_DYNAMIS)
+					{
+						// super link with nothing
+						PMob->setMobMod(MOBMOD_SUPERLINK, 0);
+					}
+					else
+					{
+						// all mobs in BCNM super link
+						// use instance number so mobs from other instances will not link!
+						// most bcnm maps have multiple bcnms arenas
+						PMob->setMobMod(MOBMOD_SUPERLINK, instance->getInstanceNumber());
+					}
+
 					if (condition & CONDITION_SPAWNED_AT_START)
 					{
 						// This condition is needed for some mob at dynamis, else he don't pop
@@ -125,7 +144,6 @@ namespace instanceutils{
 								// this is kind a hacky but make nin and mnk maat always double attack
 								switch(PMob->GetMJob()){
 									case JOB_NIN:
-									case JOB_MNK:
 										PMob->setModifier(MOD_DOUBLE_ATTACK, 100);
 										PMob->m_Weapons[SLOT_MAIN]->resetDelay();
 									break;
@@ -138,7 +156,6 @@ namespace instanceutils{
 								instance->m_RuleMask &= ~(1 << RULES_ALLOW_SUBJOBS);
 
 							}
-							PMob->SetDespawnTimer(0); //never despawn
 							//ShowDebug("Spawned %s (%u) id %i inst %i \n",PMob->GetName(),PMob->id,instance->getID(),instance->getInstanceNumber());
 							instance->addEnemy(PMob, condition);
 						} else {
@@ -409,6 +426,20 @@ namespace instanceutils{
 				    {
 				        PMob->PBattleAI->SetLastActionTime(0);
 				        PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+						PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
+
+						if(instance->getType() == INSTANCETYPE_DYNAMIS)
+						{
+							// super link with nothing
+							PMob->setMobMod(MOBMOD_SUPERLINK, 0);
+						}
+						else
+						{
+							// all mobs in BCNM super link
+							// use instance number so mobs from other instances will not link!
+							// most bcnm maps have multiple bcnms arenas
+							PMob->setMobMod(MOBMOD_SUPERLINK, instance->getInstanceNumber());
+						}
 
 				        PMob->SetDespawnTimer(0); //never despawn
 						ShowDebug("Spawned %s (%u) id %i inst %i \n",PMob->GetName(),PMob->id,instance->getID(),instance->getInstanceNumber());

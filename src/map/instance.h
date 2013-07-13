@@ -64,11 +64,12 @@ class CInstance
 {
 public:
 
-	CInstance(CInstanceHandler* hand, uint16 bcnmid);
+	CInstance(CInstanceHandler* hand, uint16 bcnmid, INSTANCETYPE type);
 
 	//bcnm related functions
 	uint16		getID();
 	uint32		getTimeLimit();
+	INSTANCETYPE		getType();
 	const int8* getBcnmName();
 	uint16		getZoneId();
 	uint8       getInstanceNumber();
@@ -153,6 +154,7 @@ private:
 	uint16		m_BcnmID;
 	string_t	m_name;
 	uint16      m_ZoneID;
+	INSTANCETYPE m_Type;
 	uint8		m_InstanceNumber;
 	uint32		m_StartTime;
 	uint32		m_AllDeadTime;											// time when every pt member has fallen

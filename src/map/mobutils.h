@@ -49,11 +49,11 @@ namespace mobutils
   void  InitializeMob(CMobEntity* PMob, CZone* PZone);
   void  LoadCustomMods();
 
-  // returns the families mod list
+  // get modifiers for pool / family / spawn
   ModsList_t* GetMobFamilyMods(uint16 familyId, bool create = false);
-
-  // returns the pool mod list
   ModsList_t* GetMobPoolMods(uint32 poolId, bool create = false);
+  ModsList_t* GetMobSpawnMods(uint32 mobId, bool create = false);
+
   void  AddCustomMods(CMobEntity* PMob);
 };
 
