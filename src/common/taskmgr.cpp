@@ -55,7 +55,7 @@ void CTaskMgr::RemoveTask(std::string TaskName)
 
 uint32 CTaskMgr::DoTimer(uint32 tick)
 {
-	int32 diff = 1000; 
+	size_t diff = 1000; 
 
 	while( !m_TaskList.empty() )
 	{

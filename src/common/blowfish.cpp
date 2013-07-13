@@ -298,7 +298,7 @@ inline uint32 TT(uint32 working, uint32* S)
 void blowfish_encipher(uint32* xl, uint32* xr, uint32* P, uint32* S)
 {	
 	
-#ifdef WIN32 
+#if defined (WIN32) && defined (_M_X86)
 
 	uint32  Xr;
 	uint32   i;
@@ -397,7 +397,7 @@ cycle:
 void blowfish_decipher(uint32* xl, uint32* xr, uint32* P, uint32* S)
 {
 
-#ifdef WIN32
+#if defined (WIN32) && defined (_M_X86)
 
    uint32  Xr;
    uint32   i;
