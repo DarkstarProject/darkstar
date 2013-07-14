@@ -38,7 +38,7 @@ class CServerMessagePacket: public CBasicPacket
 {
 public:
 
-	CServerMessagePacket(const int8* message = 0);
+	CServerMessagePacket(const int8* message = 0, int16 language = 0);
 };
 
 #endif

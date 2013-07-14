@@ -822,8 +822,10 @@ int32 map_config_default()
 	map_config.mysql_database = "dspdb";
 	map_config.mysql_port     = 3306;
     map_config.server_message = "";
+	map_config.fr_server_message = "";
 	map_config.buffer_size    = 1800;
     map_config.exp_rate       = 1.0f;
+	map_config.exp_loss_rate  = 1.0f;
 	map_config.exp_retain     = 0.0f;
 	map_config.exp_loss_level = 4;
 	map_config.speed_mod      = 0;
@@ -988,6 +990,20 @@ int32 map_config_read(const int8* cfgName)
                 if (RBUFW(map_config.server_message, count) == 0x6E5C) //  \n = 0x6E5C in hex
                 {
                     WBUFW(map_config.server_message, count) =  0x0A0D;
+                }
+	        }
+        }
+		else if (strcmpi(w1,"fr_server_message") == 0)
+        {
+            map_config.fr_server_message = aStrdup(w2);
+
+            uint32 length = (uint32)strlen(map_config.fr_server_message);
+
+            for(uint32 count = 0; count < length; ++count)
+            {
+                if (RBUFW(map_config.fr_server_message, count) == 0x6E5C) //  \n = 0x6E5C in hex
+                {
+                    WBUFW(map_config.fr_server_message, count) =  0x0A0D;
                 }
 	        }
         }

@@ -125,7 +125,7 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
 	WBUFF(data,(0x10)-4) = PChar->loc.p.y;				
 	WBUFF(data,(0x14)-4) = PChar->loc.p.z;
 
-    WBUFB(data,(0x1C)-4) = PChar->GetSpeed();
+	WBUFB(data,(0x1C)-4) = PChar->GetSpeed();
 	WBUFB(data,(0x1D)-4) = PChar->speedsub;
 	WBUFB(data,(0x1E)-4) = PChar->GetHPP();
 	WBUFB(data,(0x1F)-4) = PChar->animation;
@@ -160,7 +160,7 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
 	  //WBUFB(data,(0x1F)-4) = 4;								// предположительно animation
 	  //WBUFB(data,(0x20)-4) = 2;
 
-		WBUFB(data,(0x40)-4) = PChar->getZone();
+		WBUFW(data,(0x40)-4) = PChar->getZone();
 		WBUFW(data,(0x62)-4) = PChar->getZone();
 		WBUFW(data,(0x64)-4) = csid;
 	}

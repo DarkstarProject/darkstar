@@ -30,7 +30,7 @@
 // максимальный размер сообщения - 230 байт
 // переход на новую строку - \r\n
 
-CServerMessagePacket::CServerMessagePacket(const int8* message) 
+CServerMessagePacket::CServerMessagePacket(const int8* message, int16 language) 
 {
 	this->type = 0x4D;
 	this->size = 0x0E;
@@ -38,7 +38,12 @@ CServerMessagePacket::CServerMessagePacket(const int8* message)
 	WBUFB(data,(0x04)-4) = 0x01;
 	WBUFB(data,(0x05)-4) = 0x01;
 	WBUFB(data,(0x06)-4) = 0x01;
-	WBUFB(data,(0x07)-4) = 0x02;
+
+	if(language == 205) //French
+		WBUFB(data,(0x07)-4) = 0x04;
+	else
+		WBUFB(data,(0x07)-4) = 0x02;
+	
 	WBUFB(data,(0x08)-4) = 0x6A;
 	WBUFB(data,(0x09)-4) = 0x21;
 	WBUFB(data,(0x0A)-4) = 0x24;

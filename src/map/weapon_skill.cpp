@@ -57,7 +57,7 @@ bool CWeaponSkill::isAoE()
 
 void CWeaponSkill::setJob(int8* jobs)
 {
-	memcpy(&m_Job[1], jobs, 20);
+	memcpy(&m_Job[1], jobs, 22);
 }
 
 void CWeaponSkill::setSkillLevel(uint16 level)

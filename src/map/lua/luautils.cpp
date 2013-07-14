@@ -25,6 +25,7 @@
 #include "../../common/showmsg.h"
 #include "../../common/timer.h"
 #include "../../common/utils.h"
+#include "../../common/malloc.h"
 
 #include <string.h>
 
@@ -103,6 +104,7 @@ int32 init()
 	lua_register(LuaHandle,"GetServerVariable",luautils::GetServerVariable);
 	lua_register(LuaHandle,"SetServerVariable",luautils::SetServerVariable);
     lua_register(LuaHandle,"SendUncnown0x39Packet",luautils::SendUncnown0x39Packet);
+	lua_register(LuaHandle,"UpdateServerMessage",luautils::UpdateServerMessage);
 
 	lua_register(LuaHandle,"GetMobRespawnTime",luautils::GetMobRespawnTime);
 	lua_register(LuaHandle,"DeterMob",luautils::DeterMob);
@@ -3211,6 +3213,65 @@ int32 getSpell(lua_State* L)
 		lua_pcall(L,2,1,0);
 
 		return 1;
+	}
+	return 0;
+}
+
+int32 UpdateServerMessage(lua_State* L)
+{
+	int8 line[1024], w1[1024], w2[1024];
+	FILE* fp;
+
+	fp = fopen("./conf/map_darkstar.conf","r");
+	if( fp == NULL )
+	{
+		ShowError("Map configuration file not found at: %s\n", "./conf/map_darkstar.conf");
+		return 1;
+	}
+
+	while( fgets(line, sizeof(line), fp) )
+	{
+		int8* ptr;
+        
+		if( line[0] == '#' )
+			continue;
+		if( sscanf(line, "%[^:]: %[^\t\r\n]", w1, w2) < 2 )
+			continue;
+
+		//Strip trailing spaces
+		ptr = w2 + strlen(w2);
+		while (--ptr >= w2 && *ptr == ' ');
+		ptr++;
+		*ptr = '\0';
+
+		if (strcmpi(w1,"server_message") == 0)
+        {
+            map_config.server_message = aStrdup(w2);
+
+            uint32 length = (uint32)strlen(map_config.server_message);
+
+            for(uint32 count = 0; count < length; ++count)
+            {
+                if (RBUFW(map_config.server_message, count) == 0x6E5C) //  \n = 0x6E5C in hex
+                {
+                    WBUFW(map_config.server_message, count) =  0x0A0D;
+                }
+	        }
+        }
+		else if (strcmpi(w1,"fr_server_message") == 0)
+        {
+            map_config.fr_server_message = aStrdup(w2);
+
+            uint32 length = (uint32)strlen(map_config.fr_server_message);
+
+            for(uint32 count = 0; count < length; ++count)
+            {
+                if (RBUFW(map_config.fr_server_message, count) == 0x6E5C) //  \n = 0x6E5C in hex
+                {
+                    WBUFW(map_config.fr_server_message, count) =  0x0A0D;
+                }
+	        }
+        }
 	}
 	return 0;
 }

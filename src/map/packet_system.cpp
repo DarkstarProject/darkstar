@@ -1380,7 +1380,12 @@ void SmallPacket0x042(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x04B(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    PChar->pushPacket(new CServerMessagePacket(map_config.server_message));
+    if(PChar->search.language == 205) // French
+		PChar->pushPacket(new CServerMessagePacket(map_config.fr_server_message,PChar->search.language));
+	//TODO: add another language
+	else
+		PChar->pushPacket(new CServerMessagePacket(map_config.server_message,PChar->search.language));
+	
 	return;
 }
 

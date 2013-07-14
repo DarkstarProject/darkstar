@@ -84,7 +84,7 @@ uint8 CSpell::getJob(JOBTYPE JobID)
 
 void CSpell::setJob(int8* jobs)
 {
-	memcpy(&m_job[1], jobs, 20);
+	memcpy(&m_job[1], jobs, 22);
 }
 
 uint32 CSpell::getCastTime()

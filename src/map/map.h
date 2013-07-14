@@ -69,6 +69,7 @@ struct map_config_t
 	const int8 *mysql_database;		// mysql database -> default dspdb
 
     const int8 *server_message;     // сообщение сервера
+	const int8 *fr_server_message;  // Message for french client
 
 	uint32 max_time_lastupdate;		// max interval wait of last update player char
     int32  vanadiel_time_offset;    // смещение игрового времени относительно реального времени
