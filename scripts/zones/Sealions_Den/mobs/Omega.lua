@@ -10,7 +10,6 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onMobInitialize(mob)
-	mob:addStatusEffect(EFFECT_REGEN,1,3,0);
 
 end;
 

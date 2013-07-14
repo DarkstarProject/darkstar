@@ -14,7 +14,6 @@ require("scripts/zones/Dynamis-Xarcabard/TextIDs");
 -----------------------------------
 
 function onMobInitialize(mob,target)
-	mob:addStatusEffect(EFFECT_SHELL,100,0,0);
 end;
 
 -----------------------------------

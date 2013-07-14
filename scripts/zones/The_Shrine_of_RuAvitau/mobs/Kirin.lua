@@ -13,9 +13,6 @@ require( "scripts/globals/status" );
 -- onMobInitialize Action
 -----------------------------------
 function onMobInitialize( mob )
-    -- Add regen and gain effects..
-	mob:addStatusEffect( EFFECT_REGEN, 50, 3, 0 );
-	mob:addStatusEffect( EFFECT_REGAIN, 15, 3, 0 );
 end
 
 -----------------------------------

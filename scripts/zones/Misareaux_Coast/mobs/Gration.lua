@@ -11,10 +11,11 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-	mob:addStatusEffect(EFFECT_REGAIN,7,3,0);
-	mob:addStatusEffect(EFFECT_KILLER_INSTINCT,40,0,0);
 end;
 
+function onMobSpawn(mob)
+	mob:addStatusEffect(EFFECT_KILLER_INSTINCT,40,0,0);
+end;
 -----------------------------------
 -- onMobFight Action
 -----------------------------------

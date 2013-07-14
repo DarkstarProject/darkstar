@@ -1120,7 +1120,7 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
         int8 regen = m_POwner->getMod(MOD_REGEN);
         int8 poison = m_POwner->getMod(MOD_REGEN_DOWN);
         int8 refresh = m_POwner->getMod(MOD_REFRESH) - m_POwner->getMod(MOD_REFRESH_DOWN);
-        int8 regain = m_POwner->getMod(MOD_REGAIN)/10 - m_POwner->getMod(MOD_REGAIN_DOWN);
+        float regain = (float)m_POwner->getMod(MOD_REGAIN)/10.0f - m_POwner->getMod(MOD_REGAIN_DOWN);
 
 		m_POwner->addHP(regen);
 

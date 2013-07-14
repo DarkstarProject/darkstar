@@ -16,7 +16,9 @@ require( "scripts/zones/The_Shrine_of_RuAvitau/TextIDs" );
 -----------------------------------
 function onMobInitialize(mob)
    mob:setExtraVar(os.time()); -- Need this for onMobRoam
+end
 
+function onMobSpawn(mob)
 	mob:addStatusEffectEx(EFFECT_SHOCK_SPIKES,0,60,0,0); -- ~60 damage
    -- TODO: Effect can be stolen, giving a THF (Aura Steal) or BLU (Voracious Trunk) a 60 minute shock spikes effect (unknown potency).
    -- TODO: Additional Effect for ~100 damage (theme suggests enthunder)
