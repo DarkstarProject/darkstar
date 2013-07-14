@@ -134,11 +134,13 @@ void CalculateStats(CMobEntity * PMob)
 	JOBTYPE mJob = PMob->GetMJob();
 	JOBTYPE sJob = PMob->GetSJob();
 	uint8 mLvl = PMob->GetMLevel();
+	ZONETYPE zoneType = PMob->loc.zone->GetType();
 
 	// event mob types will always have custom roaming
 	if(PMob->m_Type & MOBTYPE_EVENT)
 	{
-		PMob->m_roamFlags = ROAMFLAG_EVENT;
+		PMob->m_roamFlags |= ROAMFLAG_EVENT;
+		PMob->m_maxRoamDistance = 0.5f; // always go back to spawn
 	}
 
 	if(isNM)
@@ -378,7 +380,7 @@ void CalculateStats(CMobEntity * PMob)
 
 	// all pets must be defined in the mob_pets file
 	// set recast times for summoning pets
-	if(!PMob->isInDynamis())
+	if(PMob->loc.zone->GetType() != ZONETYPE_DYNAMIS)
 	{
 		if(mJob == JOB_BST)
 		{
@@ -509,7 +511,7 @@ void CalculateStats(CMobEntity * PMob)
 	if(PMob->m_roamFlags & ROAMFLAG_AMBUSH)
 	{
 		// always stay close to spawn
-		PMob->m_maxRoamDistance = 3;
+		PMob->m_maxRoamDistance = 3.0f;
 	}
 
 	// cap all magic skills so they play nice with spell scripts
@@ -528,6 +530,22 @@ void CalculateStats(CMobEntity * PMob)
 				PMob->WorkingSkills.skill[i] = maxSubSkill;
 			}
 		}
+	}
+
+	if(zoneType == ZONETYPE_DYNAMIS || zoneType == ZONETYPE_BATTLEFIELD)
+	{
+		// never despawn
+		PMob->SetDespawnTimer(0);
+		// do not roam around
+		PMob->m_roamFlags |= ROAMFLAG_EVENT;
+		PMob->m_maxRoamDistance = 0.5f;
+	}
+
+	if(zoneType == ZONETYPE_BATTLEFIELD)
+	{
+		// force all mobs in same instance to superlink
+		// plus one in case id is zero
+		PMob->setMobMod(MOBMOD_SUPERLINK, PMob->m_instanceID);
 	}
 
 	AddMods(PMob);
@@ -679,11 +697,19 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
     // this only has to be added once
     AddCustomMods(PMob);
 
+    ZONETYPE zoneType = PZone->GetType();
 
 	// do not despawn if I match this criteria
-	if((PMob->m_Type & MOBTYPE_NOTORIOUS) || (PMob->m_Type & MOBTYPE_EVENT) || MOB_NO_DESPAWN)
+	if((PMob->m_Type & MOBTYPE_NOTORIOUS) || (PMob->m_Type & MOBTYPE_EVENT) || MOB_NO_DESPAWN || zoneType == ZONETYPE_DYNAMIS || zoneType == ZONETYPE_BATTLEFIELD)
 	{
 		PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
+	}
+
+	if(zoneType == ZONETYPE_DYNAMIS)
+	{
+		// no gil drop and no mugging!
+		PMob->setMobMod(MOBMOD_GIL_MAX, -1);
+		PMob->setMobMod(MOBMOD_MUG_GIL, -1);
 	}
 
 	PMob->defaultMobMod(MOBMOD_SKILLS, PMob->m_Family);
@@ -918,6 +944,25 @@ void AddCustomMods(CMobEntity* PMob)
 		{
 			PMob->setMobMod((*it)->getModID(), (*it)->getModAmount());
 		}
+	}
+}
+
+void SetupMaat(CMobEntity* PMob, JOBTYPE job)
+{
+	//set job based on characters job
+	PMob->ChangeMJob(job);
+
+	// reset just incase
+	AddMods(PMob);
+	
+	PMob->m_Weapons[SLOT_MAIN]->setDelay((240*1000)/60);
+
+	// this is kind a hacky but make nin maat always double attack
+	switch(PMob->GetMJob()){
+		case JOB_NIN:
+			PMob->setModifier(MOD_DOUBLE_ATTACK, 100);
+			PMob->m_Weapons[SLOT_MAIN]->resetDelay();
+		break;
 	}
 }
 

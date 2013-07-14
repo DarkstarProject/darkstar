@@ -96,6 +96,7 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
 		case ACTION_DROPITEMS:			  ActionDropItems();        break;
 		case ACTION_DEATH:				  ActionDeath();            break;
 		case ACTION_FADE_OUT:			  ActionFadeOut();          break;
+		case ACTION_DESPAWN:			  ActionDespawn();          break;
 		case ACTION_SPAWN:				  ActionSpawn();            break;
 		case ACTION_ATTACK:				  ActionAttack();           break;
         case ACTION_SLEEP:                ActionSleep();            break;
@@ -183,7 +184,6 @@ void CAIMobDummy::ActionRoaming()
 		// if I just disengaged check if I should despawn
 		if(m_checkDespawn && m_PMob->IsFarFromHome())
 		{
-			m_checkDespawn = false;
 			if(m_PMob->CanRoamHome() && m_PPathFind->PathTo(m_PMob->m_SpawnPoint, PATHFLAG_WALLHACK))
 			{
 				// walk back to spawn if too far away
@@ -206,50 +206,57 @@ void CAIMobDummy::ActionRoaming()
 				return;
 			}
 		}
-		else if(m_PSpecialSkill != NULL && TrySpecialSkill())
+		else
 		{
-			// I spawned a pet
-		}
-		else if(CanCastSpells() && rand()%10 < 3 && m_PMob->SpellContainer->HasBuffSpells())
-		{
-			// cast buff
-			CastSpell(m_PMob->SpellContainer->GetBuffSpell());
-		}
-		else if(m_PMob->m_roamFlags & ROAMFLAG_EVENT)
-		{
-			// allow custom event action
-			luautils::OnMobRoamAction(m_PMob);
-			m_LastActionTime = m_Tick;
-		}
-		else if(m_PMob->m_roamFlags & ROAMFLAG_AMBUSH)
-		{
-			// stay underground
-			m_PMob->HideName(true);
-			m_PMob->animationsub = 0;
-		}
-		else if(m_PMob->CanRoam() && m_PPathFind->RoamAround(m_PMob->m_SpawnPoint, m_PMob->m_roamFlags))
-		{
+			// do not check for despawning because i'm at home
+			m_checkDespawn = false;
 
-			if(m_PMob->m_roamFlags & ROAMFLAG_WORM)
+			if(m_PSpecialSkill != NULL && TrySpecialSkill())
 			{
-				// move down
-				m_PMob->animationsub = 1;
+				// I spawned a pet
+			}
+			else if(CanCastSpells() && rand()%10 < 3 && m_PMob->SpellContainer->HasBuffSpells())
+			{
+				// cast buff
+				CastSpell(m_PMob->SpellContainer->GetBuffSpell());
+			}
+			else if(m_PMob->m_roamFlags & ROAMFLAG_EVENT)
+			{
+				// allow custom event action
+				luautils::OnMobRoamAction(m_PMob);
+				m_LastActionTime = m_Tick;
+			}
+			else if(m_PMob->m_roamFlags & ROAMFLAG_AMBUSH)
+			{
+				// stay underground
 				m_PMob->HideName(true);
+				m_PMob->animationsub = 0;
+			}
+			else if(m_PMob->CanRoam() && m_PPathFind->RoamAround(m_PMob->m_SpawnPoint, m_PMob->m_roamFlags))
+			{
+				
+				if(m_PMob->m_roamFlags & ROAMFLAG_WORM)
+				{
+					// move down
+					m_PMob->animationsub = 1;
+					m_PMob->HideName(true);
 
-				// don't move around until i'm fully in the ground
-				Wait(2000);
+					// don't move around until i'm fully in the ground
+					Wait(2000);
+				}
+				else
+				{
+					FollowPath();
+				}
+
+				m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
+
 			}
 			else
 			{
-				FollowPath();
+				m_LastActionTime = m_Tick;
 			}
-
-			m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
-
-		}
-		else
-		{
-			m_LastActionTime = m_Tick;
+			
 		}
 
 	}
@@ -547,6 +554,17 @@ void CAIMobDummy::ActionFadeOut()
 
         m_ActionType  = m_PMob->m_AllowRespawn ? ACTION_SPAWN : ACTION_NONE;
 
+	}
+}
+
+void CAIMobDummy::ActionDespawn()
+{
+	ActionFadeOut();
+
+	// do not go into action spawn!!!
+	if(m_ActionType == ACTION_SPAWN)
+	{
+		m_ActionType = ACTION_NONE;
 	}
 }
 
@@ -1060,14 +1078,6 @@ void CAIMobDummy::ActionMagicStart()
 		m_PBattleSubTarget = m_PBattleTarget;
 	}
 
-	if ( (m_PSpell->getValidTarget() & TARGET_ENEMY) && m_PBattleSubTarget->objtype == TYPE_MOB) {
-		if(m_PBattleSubTarget->PMaster == NULL || m_PBattleSubTarget->PMaster->objtype != TYPE_PC){
-			TransitionBack(true);
-			ShowDebug("Monster Magic Cast on self but spell is enemy... spellId: %d \n", m_PSpell->getID());
-			return;
-		}
-	}
-
 	if(luautils::OnMagicCastingCheck(m_PMob, m_PBattleSubTarget, m_PSpell) != 0)
 	{
 		//fail
@@ -1110,7 +1120,11 @@ void CAIMobDummy::ActionMagicCasting()
 
 	m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
 
-	uint32 totalCastTime = m_PSpell->getCastTime()*((100.0f-(float)dsp_cap(m_PMob->getMod(MOD_FASTCAST),-100,50) + m_PMob->getMod(MOD_UFASTCAST))/100.0f);
+    int8 fastCast = dsp_cap(m_PMob->getMod(MOD_FASTCAST),-100,50);
+    int8 uncappedFastCast = dsp_cap(m_PMob->getMod(MOD_UFASTCAST),-100,100);
+    float sumFastCast = dsp_cap(fastCast + uncappedFastCast, -100, 100);
+
+	uint32 totalCastTime = m_PSpell->getCastTime()*((100.0f - sumFastCast)/100.0f);
 
 	if ((m_Tick - m_LastMagicTime) >= totalCastTime)
 	{	
@@ -1300,7 +1314,7 @@ void CAIMobDummy::ActionMagicFinish()
 
 	if (m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL,0)){
 		// let's make CSing monsters actually use lots of spells.
-		m_LastMagicTime = m_Tick - m_PMob->m_MagicRecastTime;
+		m_LastMagicTime = m_Tick - m_PMob->m_MagicRecastTime + 5000;
 	}
 	else if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT,0) ||
 	    m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SOUL_VOICE,0)) 
@@ -2039,6 +2053,12 @@ void CAIMobDummy::SetupEngage()
 	if(m_PMob->GetMJob() == JOB_DRG)
 	{
 		m_LastSpecialTime = m_Tick;
+	}
+
+	if(m_PMob->m_roamFlags & ROAMFLAG_WORM)
+	{
+		m_PMob->animationsub = 0;
+		m_PMob->HideName(false);
 	}
 
 	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();

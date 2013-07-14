@@ -95,7 +95,10 @@ protected:
 	void ActionDropItems();
 	void ActionDeath();
 	void ActionFadeOut();
-	void ActionSpawn();
+  void ActionSpawn();
+
+  // despawn and go to action none
+	void ActionDespawn();
 
 	void ActionAbilityStart();
 	void ActionAbilityUsing();

@@ -62,8 +62,9 @@ bool CMobSkill::isSingle()
 
 bool CMobSkill::isTwoHour()
 {
-  // no easy way to define two hour skill
-  return m_Flag == SKILLFLAG_TWO_HOUR;
+  // id zero means it was put on mob skill list
+  // flag means this skill is a real two hour
+  return m_ID == 0 || m_Flag == SKILLFLAG_TWO_HOUR;
 }
 
 void CMobSkill::setID(uint16 id)

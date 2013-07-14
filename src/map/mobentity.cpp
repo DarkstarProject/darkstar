@@ -80,8 +80,8 @@ CMobEntity::CMobEntity()
     m_giveExp = false;
     m_neutral = false;
     m_Link = 0;
-    m_SubLinks[0] = 0;
-    m_SubLinks[1] = 0;
+
+    m_instanceID = 0;
 
     m_maxRoamDistance = 30.0f;
     m_disableScent = false;
@@ -185,7 +185,10 @@ uint32 CMobEntity::GetRandomGil()
 
 bool CMobEntity::CanDropGil()
 {
-    if(getMobMod(MOBMOD_GIL_MIN) || getMobMod(MOBMOD_GIL_MAX))
+    // smaller than 0 means drop no gil
+    if(getMobMod(MOBMOD_GIL_MAX) < 0) return false;
+
+    if(getMobMod(MOBMOD_GIL_MIN) > 0 || getMobMod(MOBMOD_GIL_MAX))
     {
         return true;
     }

@@ -1776,7 +1776,9 @@ INSERT INTO `mob_skill` VALUES (1127,329,1018,'Glacier_Splitter', 0, 7.0, 2000, 
 -- Avatar Ixon
 -- INSERT INTO `mob_skill` VALUES (2078,39,1612,'Wrath_of_Zeus',1,10.0,2000,1500,12,0, 0);
 
+---------------------------------------------------------------------------------
 -- NOTE: all skills below are special skill lists given to NMs / special families
+---------------------------------------------------------------------------------
 
 -- Demonic_Tiphia
 INSERT INTO `mob_skill` VALUES (80,700,80,'Final_Sting', 0, 7.0, 2000, 1500, 4, 0, 35);

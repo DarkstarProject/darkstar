@@ -16,7 +16,7 @@ end;
 function OnUseAbility(player, target, ability)
     local gil = 0;
 
-    if(math.random()<0.9) then
+    if(math.random()<0.9 and target:getMobMod(MOBMOD_MUG_GIL) > -1) then
     	gil = target:getGil();
 
         -- is notorious

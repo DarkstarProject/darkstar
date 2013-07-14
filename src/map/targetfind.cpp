@@ -121,6 +121,12 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
       m_findType = FIND_MONSTER_MONSTER;
     }
 
+    // do not include pets in monster AoE buffs
+    if(m_findType == FIND_MONSTER_MONSTER && m_PTarget->PMaster == NULL)
+    {
+      withPet = PETS_CAN_AOE_BUFF;
+    }
+
     if(m_PMasterTarget->PParty != NULL)
     {
       if(m_PMasterTarget->PParty->m_PAlliance != NULL)

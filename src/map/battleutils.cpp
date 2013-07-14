@@ -223,6 +223,11 @@ void LoadMobSkillsList()
 			PMobSkill->m_SkillConditionValue = 0;
 			g_PMobSkillList[PMobSkill->getID()] = PMobSkill;
 
+			if(PMobSkill->getfamilyID() >= MAX_MOB_FAMILY)
+			{
+				ShowError("battleutils::LoadMobSkillsList Defined skill (%d) is out of range of (%d)\n", PMobSkill->getfamilyID(), MAX_MOB_FAMILY);
+			}
+
             g_PMobFamilySkills[PMobSkill->getfamilyID()].push_back(PMobSkill);
 		}
 	}

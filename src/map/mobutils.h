@@ -55,6 +55,7 @@ namespace mobutils
   ModsList_t* GetMobSpawnMods(uint32 mobId, bool create = false);
 
   void  AddCustomMods(CMobEntity* PMob);
+  void  SetupMaat(CMobEntity* PMob, JOBTYPE job);
 };
 
 #endif

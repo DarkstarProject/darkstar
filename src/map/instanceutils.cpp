@@ -34,7 +34,6 @@
 #include "instance_handler.h"
 #include "packets/entity_update.h"
 
-
 namespace instanceutils{
 	/***************************************************************
 		Loads the given instance from the database and returns
@@ -100,25 +99,8 @@ namespace instanceutils{
 				if (PMob != NULL)
 				{
 
-					// Do not move!
-					PMob->m_roamFlags |= ROAMFLAG_EVENT;
-					PMob->SetDespawnTimer(0); //never despawn
-					// don't despawn if I deaggro out of my spawn area
-					PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
-
-					if(instance->getType() == INSTANCETYPE_DYNAMIS)
-					{
-						// super link with nothing
-						PMob->setMobMod(MOBMOD_SUPERLINK, 0);
-					}
-					else
-					{
-						// all mobs in BCNM super link
-						// use instance number so mobs from other instances will not link!
-						// most bcnm maps have multiple bcnms arenas
-						PMob->setMobMod(MOBMOD_SUPERLINK, instance->getInstanceNumber());
-					}
-
+					PMob->m_instanceID = instance->getInstanceNumber();
+			
 					if (condition & CONDITION_SPAWNED_AT_START)
 					{
 						// This condition is needed for some mob at dynamis, else he don't pop
@@ -133,21 +115,7 @@ namespace instanceutils{
 							PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
 
 							if(strcmp(PMob->GetName(),"Maat")==0){
-
-								// reset just incase
-								PMob->setModifier(MOD_DOUBLE_ATTACK, 0);
-								PMob->m_Weapons[SLOT_MAIN]->setDelay((240*1000)/60);
-
-								//set job based on characters job
-								PMob->ChangeMJob(instance->getPlayerMainJob());
-
-								// this is kind a hacky but make nin and mnk maat always double attack
-								switch(PMob->GetMJob()){
-									case JOB_NIN:
-										PMob->setModifier(MOD_DOUBLE_ATTACK, 100);
-										PMob->m_Weapons[SLOT_MAIN]->resetDelay();
-									break;
-								}
+								mobutils::SetupMaat(PMob, (JOBTYPE)instance->getPlayerMainJob());
 
 								// disable players subjob
 								instance->disableSubJob();
@@ -426,22 +394,9 @@ namespace instanceutils{
 				    {
 				        PMob->PBattleAI->SetLastActionTime(0);
 				        PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
-						PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
 
-						if(instance->getType() == INSTANCETYPE_DYNAMIS)
-						{
-							// super link with nothing
-							PMob->setMobMod(MOBMOD_SUPERLINK, 0);
-						}
-						else
-						{
-							// all mobs in BCNM super link
-							// use instance number so mobs from other instances will not link!
-							// most bcnm maps have multiple bcnms arenas
-							PMob->setMobMod(MOBMOD_SUPERLINK, instance->getInstanceNumber());
-						}
+						PMob->m_instanceID = instance->getInstanceNumber();
 
-				        PMob->SetDespawnTimer(0); //never despawn
 						ShowDebug("Spawned %s (%u) id %i inst %i \n",PMob->GetName(),PMob->id,instance->getID(),instance->getInstanceNumber());
 						instance->addEnemy(PMob, CONDITION_SPAWNED_AT_START & CONDITION_WIN_REQUIREMENT);
 				    } else {
