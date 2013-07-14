@@ -27,6 +27,15 @@ JOB_SCH             = 20;
 JOB_GEO             = 21;
 JOB_RUN             = 22;
 
+STATUS_NORMAL			= 0;
+STATUS_UPDATE			= 1;
+STATUS_DISAPPEAR		= 2;
+STATUS_3				= 3;
+STATUS_4				= 4;
+STATUS_CUTSCENE_ONLY	= 6;
+STATUS_18				= 18;
+STATUS_SHUTDOWN			= 20;
+
 -----------------------------------
 -- These codes represent the actual status effects.
 -- They are simply for convenience.

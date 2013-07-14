@@ -8,6 +8,7 @@ package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
 
 require("scripts/zones/Valkurm_Dunes/TextIDs");
 require("scripts/globals/icanheararainbow");
+require("scripts/globals/status");
 require("scripts/globals/weather");
 
 -----------------------------------
@@ -72,8 +73,8 @@ end;
 function OnZoneWeatherChange(weather)
 	local qm1 = GetNPCByID(17199692); -- Quest: An Empty Vessel
 	if(weather == WEATHER_DUST_STORM) then
-		qm1:setStatus(0);
+		qm1:setStatus(STATUS_NORMAL);
 	else
-		qm1:setStatus(3);
+		qm1:setStatus(STATUS_DISAPPEAR);
 	end
 end;
