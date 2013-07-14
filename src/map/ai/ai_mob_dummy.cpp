@@ -62,6 +62,7 @@ CAIMobDummy::CAIMobDummy(CMobEntity* PMob)
     m_PTargetFind = new CTargetFind(PMob);
     m_PPathFind = new CPathFind(PMob);
 
+    m_checkDespawn = false;
 	m_PSpecialSkill = NULL;
 	m_firstSpell = true;
 	m_LastSpecialTime = 0;
@@ -179,9 +180,10 @@ void CAIMobDummy::ActionRoaming()
 			m_PMob->m_giveExp = true;
 		}
 
-		// if i'm too far away from spawn move back to it
-		if(m_PMob->IsFarFromHome())
+		// if I just disengaged check if I should despawn
+		if(m_checkDespawn && m_PMob->IsFarFromHome())
 		{
+			m_checkDespawn = false;
 			if(m_PMob->CanRoamHome() && m_PPathFind->PathTo(m_PMob->m_SpawnPoint, PATHFLAG_WALLHACK))
 			{
 				// walk back to spawn if too far away
@@ -281,7 +283,7 @@ void CAIMobDummy::ActionEngage()
 
 			m_PMob->animationsub = 1;
 			m_PMob->HideName(false);
-			m_PMob->m_unknown = 0;
+			m_PMob->HideModel(false);
 		}
 		else
 		{
@@ -312,6 +314,7 @@ void CAIMobDummy::ActionDisengage()
 	m_LastActionTime = m_Tick - m_PMob->m_RoamCoolDown + MOB_NEUTRAL_TIME;
 	m_PMob->m_neutral = true;
 
+	m_checkDespawn = true;
 	m_NeutralTime = m_Tick;
 
 	m_PBattleTarget  = NULL;
@@ -612,7 +615,7 @@ void CAIMobDummy::ActionSpawn()
 			m_PMob->HideName(true);
 			m_PMob->animationsub = 0;
 			// this will hide the mob
-			m_PMob->m_unknown = 2181;
+			m_PMob->HideModel(true);
 		}
 
 		// add people to my posse
@@ -991,6 +994,8 @@ void CAIMobDummy::ActionSleep()
 
 void CAIMobDummy::ActionStun()
 {
+
+	m_DeaggroTime = m_Tick;
 
 	// lets just chill here for a bit
 	if(m_Tick - m_LastStunTime >= m_StunTime){
@@ -1372,7 +1377,7 @@ void CAIMobDummy::ActionAttack()
     // try to standback if I can
 	if(m_PMob->m_StandbackTime)
 	{
-		if(currentDistance > 30)
+		if(currentDistance > 28)
 		{
 			// you're so far away i'm going to standback when I get closer
 			m_CanStandback = true;
@@ -1980,6 +1985,7 @@ void CAIMobDummy::FollowPath()
 
 	if(m_ActionType == ACTION_ROAMING)
 	{
+
 		CBattleEntity* PPet = m_PMob->PPet;
 		if(PPet != NULL && PPet->PBattleAI->GetCurrentAction() == ACTION_ROAMING)
 		{
@@ -1995,7 +2001,7 @@ void CAIMobDummy::FollowPath()
 		// if I just finished reset my last action time
 		if(!m_PPathFind->IsFollowingPath())
 		{
-			m_LastActionTime = m_Tick - rand()%m_PMob->m_RoamCoolDown + 5000;
+			m_LastActionTime = m_Tick - rand()%m_PMob->m_RoamCoolDown + 10000;
 
 			// i'm a worm pop back up
 			if(m_PMob->m_roamFlags & ROAMFLAG_WORM)
@@ -2020,7 +2026,7 @@ void CAIMobDummy::Stun(uint32 stunTime)
 
 void CAIMobDummy::SetupEngage()
 {
-
+	m_checkDespawn = false;
 	m_PMob->animation = ANIMATION_ATTACK;
 	m_StartBattle = m_Tick;
 	m_DeaggroTime = m_Tick;

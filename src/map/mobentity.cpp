@@ -39,6 +39,7 @@ CMobEntity::CMobEntity()
 
     HPscale = 1.0;
     MPscale = 1.0;
+    m_unknown = 0;
 
     // default to normal roaming
     m_roamFlags = ROAMFLAG_NONE;
@@ -82,7 +83,7 @@ CMobEntity::CMobEntity()
     m_SubLinks[0] = 0;
     m_SubLinks[1] = 0;
 
-    m_maxRoamDistance = 30;
+    m_maxRoamDistance = 30.0f;
     m_disableScent = false;
     m_linkRadius = 10;
     
@@ -538,4 +539,23 @@ void CMobEntity::defaultMobMod(uint16 type, int16 value)
     {
         ShowError("CMobEntity::addMobMod Trying to set value out of range (%d)\n", type);
     }
+}
+
+void CMobEntity::HideModel(bool hide)
+{
+    if(hide)
+    {
+        // I got this from ambush antlion
+        // i'm not sure if this is right
+        m_unknown = 2181;
+    }
+    else
+    {
+        m_unknown = 0;
+    }
+}
+
+bool CMobEntity::IsModelHidden()
+{
+    return m_unknown == 0;
 }

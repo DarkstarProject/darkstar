@@ -151,7 +151,7 @@ public:
 
   // aggro ranges
   bool  m_disableScent; // stop detecting by scent
-  uint8 m_maxRoamDistance; // maximum distance mob can be from spawn
+  float m_maxRoamDistance; // maximum distance mob can be from spawn
 
   uint8   m_Type;               // тип монстра
   uint8       m_Link;               // взаимопомощь монстрам своего семейства
@@ -214,6 +214,9 @@ public:
   int16 getMobMod(uint16 type);
   void addMobMod(uint16 type, int16 value);
   void defaultMobMod(uint16 type, int16 value); // set value if value has not been already set
+
+  void      HideModel(bool hide); // hide / show model
+  bool      IsModelHidden();
 
   CMobEntity();
   ~CMobEntity();

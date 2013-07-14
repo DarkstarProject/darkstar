@@ -497,7 +497,7 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->m_roamFlags |= ROAMFLAG_WORM;
 	}
 
-	if(PMob->m_Behaviour != BEHAVIOUR_NONE)
+	if(PMob->m_Behaviour != BEHAVIOUR_NONE && PMob->loc.zone->GetType() == ZONETYPE_OUTDOORS)
 	{
 		PMob->m_roamFlags |= ROAMFLAG_MEDIUM;
 	}
