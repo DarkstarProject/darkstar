@@ -54,7 +54,7 @@ function onTrade(player,npc,trade)
 					-- print("loot array: "); -- debug
 					-- print("[1]", loot[1]); -- debug
 					-- print("[2]", loot[2]); -- debug
-				if(player:getQuestStatus(SANDORIA,SIGNED_IN_BLOOD) == QUEST_ACCEPTED and player:getVar("SIGNED_IN_BLOOD_Prog") >= 1 and player:hasItemQty(TORN_OUT_PAGES) == false) then	
+				if(player:getQuestStatus(SANDORIA,SIGNED_IN_BLOOD) == QUEST_ACCEPTED and player:getVar("SIGNED_IN_BLOOD_Prog") >= 1 and player:hasKeyItem(TORN_OUT_PAGES) == false) then	
 					player:addKeyItem(TORN_OUT_PAGES);
 					player:messageSpecial(KEYITEM_OBTAINED,TORN_OUT_PAGES);
 				elseif(loot[1]=="gil") then
