@@ -7,6 +7,7 @@
 package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 require("scripts/zones/Dangruf_Wadi/TextIDs");
 
 -----------------------------------
