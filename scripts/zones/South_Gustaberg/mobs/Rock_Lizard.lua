@@ -28,7 +28,7 @@ function onMobDeath(mob,killer)
 
             -- printf("LL window open");
             -- Give Rock_Lizard 5 percent chance to pop LL
-            if (math.random((1),(20)) == 5) then
+            if (math.random(1,20) == 5) then
                 -- printf("LL will pop");
                 UpdateNMSpawnPoint(Leaping_Lizzy);
                 GetMobByID(Leaping_Lizzy):setRespawnTime(GetMobRespawnTime(mob));
