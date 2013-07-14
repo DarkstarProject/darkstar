@@ -676,20 +676,12 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
 {
 	// add special mob mods
 
-	if(PZone->GetType() == ZONETYPE_BATTLEFIELD)
-	{
-		// all mobs super link, make sure mobs are put in a party
-		PMob->m_Link = 1;
-	}
+    // this only has to be added once
+    AddCustomMods(PMob);
 
-      // this only has to be added once
-     AddCustomMods(PMob);
-
-     uint16 zoneId = PZone->GetID();
-     bool inDynamis = (zoneId > 184 && zoneId < 189 ||  zoneId > 133 && zoneId < 136);
 
 	// do not despawn if I match this criteria
-	if((PMob->m_Type & MOBTYPE_NOTORIOUS) || (PMob->m_Type & MOBTYPE_EVENT) || inDynamis || PZone->GetType() == ZONETYPE_BATTLEFIELD || MOB_NO_DESPAWN)
+	if((PMob->m_Type & MOBTYPE_NOTORIOUS) || (PMob->m_Type & MOBTYPE_EVENT) || MOB_NO_DESPAWN)
 	{
 		PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
 	}

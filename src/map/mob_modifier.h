@@ -24,7 +24,7 @@
 #define _CMOBMODIFIER_H
 
 /*
-This is a list of mob specific modifiers. They can be added to pools / families.
+This is a list of mob specific modifiers. They can be added to pools / families / spawn points.
 */
 
 enum MOBMODIFIER
@@ -39,8 +39,8 @@ enum MOBMODIFIER
   MOBMOD_GA_CHANCE = 7, // % chance to use -ga spell
   MOBMOD_HEAL_CHANCE = 8, // % chance to use heal
   MOBMOD_HP_HEAL_CHANCE = 9, // can cast cures below this HP %
-  MOBMOD_SUBLINK_0 = 10, // link with this family
-  MOBMOD_SUBLINK_1 = 11, // link with this family
+  MOBMOD_SUBLINK = 10, // link with this family
+  MOBMOD_UNUSED = 11, // 
   MOBMOD_DRAW_IN = 12, // 1 - player draw in, 2 - alliance draw in -- not impl
   MOBMOD_RAGE = 13, // define rage timer -- not impl
   MOBMOD_SKILLS = 14, // use a custom mob skill list
@@ -57,9 +57,10 @@ enum MOBMODIFIER
   MOBMOD_BUILD_RESIST = 25, // builds resistance to given effects -- not impl
   MOBMOD_SUPERLINK = 26, // super link group. Only use this in mob_spawn_mods!
   MOBMOD_SPELL_LIST = 27, // set spell list
-  MOBMOD_TITLE = 28 // set title to all party members on death. Only use this in mob_spawn_mods!
+  MOBMOD_TITLE = 28, // set title to all party members on death. Only use this in mob_spawn_mods!
+  MOBMOD_ASSIST = 29 // mobs will assist me
 };
 
-#define MAX_MOBMODIFIER         29
+#define MAX_MOBMODIFIER         30
 
 #endif

@@ -14,6 +14,7 @@ require("scripts/zones/Dynamis-Beaucedine/TextIDs");
 -----------------------------------
 
 function onMobSpawn(mob)
+	mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 end;
 
 -----------------------------------
@@ -37,7 +38,7 @@ function onMobEngaged(mob,target)
 				
 				if(GetMobAction(nbi) == 0) then
 					-- Spawn Mob
-					SpawnMob(nbi):updateEnmity(target);
+					SpawnMob(nbi):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 					GetMobByID(nbi):setPos(X,Y,Z);
 					GetMobByID(nbi):setSpawn(X,Y,Z);
 				end

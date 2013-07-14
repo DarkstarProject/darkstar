@@ -615,6 +615,19 @@ void CAIMobDummy::ActionSpawn()
 			m_PMob->m_unknown = 2181;
 		}
 
+		// add people to my posse
+		if(m_PMob->getMobMod(MOBMOD_ASSIST))
+		{
+			for(int8 i=1; i<m_PMob->getMobMod(MOBMOD_ASSIST)+1; i++)
+			{
+				CMobEntity* PMob = (CMobEntity*)m_PMob->loc.zone->GetEntity(m_PMob->getShortID() + i, TYPE_MOB);
+				if(PMob != NULL)
+				{
+					PMob->setMobMod(MOBMOD_SUPERLINK, m_PMob->getShortID());
+				}
+			}
+		}
+
         luautils::OnMobSpawn( m_PMob );
 
 		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_SPAWN));
@@ -1770,7 +1783,7 @@ void CAIMobDummy::TryLink()
         {
             CMobEntity* PPartyMember = (CMobEntity*)m_PMob->PParty->members[i];
 
-            if(!PPartyMember->m_neutral && PPartyMember->PBattleAI->GetCurrentAction() == ACTION_ROAMING && PPartyMember->CanLink(&m_PMob->loc.p, m_PMob->getMobMod(MOBMOD_SUPERLINK))){
+            if(PPartyMember->PBattleAI->GetCurrentAction() == ACTION_ROAMING && PPartyMember->CanLink(&m_PMob->loc.p, m_PMob->getMobMod(MOBMOD_SUPERLINK))){
 		        PPartyMember->PEnmityContainer->AddLinkEnmity(m_PBattleTarget);
 
 		        if(PPartyMember->m_roamFlags & ROAMFLAG_IGNORE)
@@ -1787,7 +1800,7 @@ void CAIMobDummy::TryLink()
     {
     	CMobEntity* PMaster = (CMobEntity*)m_PMob->PMaster;
 
-        if(!PMaster->m_neutral && PMaster->PBattleAI->GetCurrentAction() == ACTION_ROAMING && PMaster->CanLink(&m_PMob->loc.p, m_PMob->getMobMod(MOBMOD_SUPERLINK))){
+        if(PMaster->PBattleAI->GetCurrentAction() == ACTION_ROAMING && PMaster->CanLink(&m_PMob->loc.p, m_PMob->getMobMod(MOBMOD_SUPERLINK))){
 	        PMaster->PEnmityContainer->AddLinkEnmity(m_PBattleTarget);
         }
     }

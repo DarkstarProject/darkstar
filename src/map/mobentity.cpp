@@ -206,9 +206,15 @@ bool CMobEntity::CanRoam()
 bool CMobEntity::CanLink(position_t* pos, int16 superLink)
 {
     // handle super linking
-    if(getMobMod(MOBMOD_SUPERLINK) != 0 && getMobMod(MOBMOD_SUPERLINK) == superLink)
+    if(superLink && getMobMod(MOBMOD_SUPERLINK) == superLink)
     {
         return true;
+    }
+
+    // can't link right now
+    if(m_neutral)
+    {
+        return false;
     }
 
     // link only if I see him

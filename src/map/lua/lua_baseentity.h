@@ -92,6 +92,7 @@ public:
 	int32 leavegame(lua_State*);			// Character leaving game
 
 	int32 getID(lua_State *L);				// Gets Entity Id
+	int32 getShortID(lua_State *L);
 	int32 getName(lua_State *L);			// Gets Entity Name
 
 	int32 getHPP(lua_State*);				// Returns Entity Health %
@@ -333,6 +334,9 @@ public:
 	int32 getMod(lua_State*);				// Retrieves Modifier Value
 	int32 delMod(lua_State*);				// Subtracts Modifier Value
 	int32 setMod(lua_State*);				// Sets Modifier Value
+
+	int32 getMobMod(lua_State*);
+	int32 setMobMod(lua_State*);
 
 	int32 hasTrait(lua_State*);
 

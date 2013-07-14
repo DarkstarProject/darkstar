@@ -14,6 +14,7 @@ require("scripts/zones/Dynamis-Beaucedine/TextIDs");
 -----------------------------------
 
 function onMobSpawn(mob)
+	mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 end;
 
 -----------------------------------
@@ -39,23 +40,23 @@ function onMobEngaged(mob,target)
 					
 					if(DynaMob ~= nil) then
 						-- Spawn Mob
-						SpawnMob(DynaMob):updateEnmity(target);
+						SpawnMob(DynaMob):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 						GetMobByID(DynaMob):setPos(X,Y,Z);
 						GetMobByID(DynaMob):setSpawn(X,Y,Z);
 						-- Spawn Pet for BST, DRG, and SMN
 						if(mobNBR == 9 or mobNBR == 14 or mobNBR == 15) then
-							SpawnMob(DynaMob + 1):updateEnmity(target);
+							SpawnMob(DynaMob + 1):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 							GetMobByID(DynaMob + 1):setPos(X,Y,Z);
 							GetMobByID(DynaMob + 1):setSpawn(X,Y,Z);
 						end
 					end
 				elseif(mobNBR > 20) then
-					SpawnMob(mobNBR):updateEnmity(target);
+					SpawnMob(mobNBR):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 					
 					local MJob = GetMobByID(mobNBR):getMainJob();
 					if(MJob == 9 or MJob == 14 or MJob == 15) then
 						-- Spawn Pet for BST, DRG, and SMN
-						SpawnMob(mobNBR + 1):updateEnmity(target);
+						SpawnMob(mobNBR + 1):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 						GetMobByID(mobNBR + 1):setPos(X,Y,Z);
 						GetMobByID(mobNBR + 1):setSpawn(X,Y,Z);
 					end

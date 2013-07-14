@@ -541,7 +541,7 @@ void CZone::FindPartyForMob(CBaseEntity* PEntity)
     CMobEntity* PMob = (CMobEntity*)PEntity;
 
     // force all mobs in a burning circle to link
-    bool forceLink = GetType() == ZONETYPE_BATTLEFIELD;
+    bool forceLink = GetType() == ZONETYPE_BATTLEFIELD || GetType() == ZONETYPE_DYNAMIS;
     
     if ((forceLink || PMob->m_Link) && PMob->PParty == NULL)
     {
@@ -551,13 +551,11 @@ void CZone::FindPartyForMob(CBaseEntity* PEntity)
 
             if(!forceLink && !PCurrentMob->m_Link) continue;
 
-            int16 sublink0 = PMob->getMobMod(MOBMOD_SUBLINK_0);
-            int16 sublink1 = PMob->getMobMod(MOBMOD_SUBLINK_1);
+            int16 sublink = PMob->getMobMod(MOBMOD_SUBLINK);
             
             if (forceLink || 
                 PCurrentMob->m_Family == PMob->m_Family ||
-                sublink0 && sublink0 == PCurrentMob->m_Family ||
-                sublink1 && sublink1 == PCurrentMob->m_Family)
+                sublink && sublink == PCurrentMob->getMobMod(MOBMOD_SUBLINK))
             {
               
               if(PCurrentMob->PMaster == NULL || PCurrentMob->PMaster->objtype == TYPE_MOB)

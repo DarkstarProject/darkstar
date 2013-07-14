@@ -4248,6 +4248,31 @@ inline int32 CLuaBaseEntity::setMod(lua_State *L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::getMobMod(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_MOB));
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+    lua_pushinteger(L,((CMobEntity*)m_PBaseEntity)->getMobMod(lua_tointeger(L,1)));
+    return 1;
+}
+
+inline int32 CLuaBaseEntity::setMobMod(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_MOB));
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
+
+    ((CMobEntity*)m_PBaseEntity)->setMobMod(
+		lua_tointeger(L,1),
+        lua_tointeger(L,2));
+    return 0;
+}
+
 /************************************************************************
 *                                                                       *
 *  Добавляем очки опыта персонажу                                       *
@@ -5229,6 +5254,14 @@ inline int32 CLuaBaseEntity::getID(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 
 	lua_pushinteger( L, m_PBaseEntity->id );
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::getShortID(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+	lua_pushinteger( L, m_PBaseEntity->getShortID() );
 	return 1;
 }
 
@@ -7168,6 +7201,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,warp),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,leavegame),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getID),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getShortID),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getName),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getHP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getHPP),
@@ -7316,6 +7350,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMod),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMod),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delMod),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMobMod),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMobMod),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setFlag),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,moghouseFlag),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,injectPacket),
