@@ -37,6 +37,7 @@ CMobSkill::CMobSkill(uint16 id)
     m_AnimationTime = 0;
     m_ActivationTime = 0;
 	m_Message = 0;
+  m_Param = 0;
 }
 
 bool CMobSkill::hasMissMsg()
@@ -62,7 +63,7 @@ bool CMobSkill::isSingle()
 bool CMobSkill::isTwoHour()
 {
   // no easy way to define two hour skill
-  return m_ID == 0 || (m_AnimID >= 709 && m_AnimID <= 724);
+  return m_Flag == SKILLFLAG_TWO_HOUR;
 }
 
 void CMobSkill::setID(uint16 id)
@@ -177,7 +178,7 @@ uint16 CMobSkill::getMsgForAction()
   uint16 id = getID();
     uint16 messageid = 256 + id;
     uint8 flag = getFlag();
-    if (flag == 1)
+    if (flag == SKILLFLAG_WS)
     {
       switch (id)
       {
@@ -272,6 +273,16 @@ float CMobSkill::getRadius()
   }
 
   return m_Distance;
+}
+
+int16 CMobSkill::getParam()
+{
+  return m_Param;
+}
+
+void CMobSkill::setParam(int16 value)
+{
+  m_Param = value;
 }
 
 uint16 CMobSkill::getValidTargets()

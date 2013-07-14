@@ -15,15 +15,12 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-	local m = math.random(1,6)+15;
-	local base = (target:getMaxHP()/100)* m;
-	local mobHP = target:getHP();
-	local mobMaxHP = target:getMaxHP();
-	if(mobHP+base > mobMaxHP) then
-		base = mobMaxHP - mobHP; --cap it
-	end
+
+	local potency = skill:getParam() or 12;
+
+	potency = potency + math.random(0, potency/2);
+
 	skill:setMsg(MSG_SELF_HEAL);
-	target:addHP(base);
-	target:wakeUp();
-	return base;
+
+	return MobHealMove(mob, mob:getHPP() * potency);
 end;

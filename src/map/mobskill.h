@@ -42,6 +42,13 @@ enum SKILLBEHAVIOUR
 	SKILLBEHAVIOUR_USE_AT_FULL_HP			= 0x80,
 };
 
+enum SKILLFLAG
+{
+	SKILLFLAG_NONE = 0,
+	SKILLFLAG_WS = 1,
+	SKILLFLAG_TWO_HOUR = 2
+};
+
 class CMobSkill
 {
 public:
@@ -69,6 +76,7 @@ public:
     uint16      getTotalTargets();
     uint16      getMsgForAction();
     float      getRadius();
+    int16		getParam();
 
 	void		setID(uint16 id);
 	void		setAnimationID(uint16 aid);
@@ -83,6 +91,7 @@ public:
 	void		setValidTargets(uint16 targ);
 	void		setTP(float tp);
     void        setTotalTargets(uint16 targets);
+    void 		setParam(int16 value);
 
 	const int8* getName();
 	void		setName(int8* name);
@@ -95,6 +104,7 @@ private:
 	uint16		m_ID;
     uint16      m_TotalTargets;
 	uint16      m_FamilyID;
+	int16		m_Param;
 	uint16		m_AnimID;			//animation id
 	uint8       m_Aoe;              // не используется
 	float		m_Distance;         // не используется

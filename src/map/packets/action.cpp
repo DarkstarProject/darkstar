@@ -361,7 +361,7 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 	}
 	else if (ActionType == ACTION_MOBABILITY_FINISH)
 	{
-		if (PEntity->PBattleAI->GetCurrentMobSkill()->getFlag() == 1)
+		if (PEntity->PBattleAI->GetCurrentMobSkill()->getFlag() == SKILLFLAG_WS)
 		{
 			ActionTypeNumber -= 8;
 		}

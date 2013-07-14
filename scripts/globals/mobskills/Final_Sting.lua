@@ -11,7 +11,13 @@ require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");
 ---------------------------------------------
 function OnMobSkillCheck(target,mob,skill)
-	return 0;
+	local param = skill:getParam() or 50;
+
+	if(mob:getHPP() <= param) then
+		return 0;
+	end
+
+	return 1;
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
@@ -21,7 +27,12 @@ function OnMobWeaponSkill(target, mob, skill)
 
 	local mobHP = mob:getHP();
 	local hpMod = mobHP/mob:getMaxHP();
-	dmgmod = dmgmod + hpMod * 13;
+	dmgmod = dmgmod + hpMod * 14;
+
+	if(mob:isMobType(MOBTYPE_NOTORIOUS)) then
+		dmgmod = dmgmod * 5;
+	end
+
 	mob:setHP(0);
 
 	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);

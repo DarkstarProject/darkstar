@@ -125,6 +125,14 @@ inline int32 CLuaMobSkill::getID(lua_State* L)
 	return 1;
 }
 
+inline int32 CLuaMobSkill::getParam(lua_State* L)
+{
+  DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == NULL);
+
+  lua_pushinteger( L, m_PLuaMobSkill->getParam() );
+  return 1;
+}
+
 /*************************************************************************
 
 			get the TP for calculations
@@ -154,6 +162,7 @@ Lunar<CLuaMobSkill>::Register_t CLuaMobSkill::methods[] =
     LUNAR_DECLARE_METHOD(CLuaMobSkill,isAoE),
     LUNAR_DECLARE_METHOD(CLuaMobSkill,isConal),
     LUNAR_DECLARE_METHOD(CLuaMobSkill,isSingle),
+    LUNAR_DECLARE_METHOD(CLuaMobSkill,getParam),
   LUNAR_DECLARE_METHOD(CLuaMobSkill,getID),
 	LUNAR_DECLARE_METHOD(CLuaMobSkill,getTotalTargets),
 	LUNAR_DECLARE_METHOD(CLuaMobSkill,getTP),

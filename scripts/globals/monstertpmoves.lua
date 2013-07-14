@@ -728,6 +728,22 @@ function MobBuffMove(mob, typeEffect, power, tick, duration)
 	return MSG_NO_EFFECT;
 end;
 
+function MobHealMove(target, heal)
+
+	local mobHP = target:getHP();
+	local mobMaxHP = target:getMaxHP();
+
+	if(mobHP+heal > mobMaxHP) then 
+		heal = mobMaxHP - mobHP;
+	end
+
+	target:wakeUp();
+
+	target:addHP(heal);
+
+	return heal;
+end
+
 function MobTakeAoEShadow(mob, target, max)
 
 	-- local chance = 75;
