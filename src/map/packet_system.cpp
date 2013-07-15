@@ -2530,7 +2530,7 @@ void SmallPacket0x061(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	PChar->pushPacket(new CCharStatsPacket(PChar));
 	PChar->pushPacket(new CCharSkillsPacket(PChar));
 	PChar->pushPacket(new CMenuMeritPacket(PChar));
-	if (PChar->GetMJob() == JOB_BLU) {
+	if (PChar->GetMJob() == JOB_BLU || PChar->GetSJob() == JOB_BLU) {
 		PChar->pushPacket(new CBlueSetSpellsPacket(PChar));
 	}
 	return;
@@ -4287,8 +4287,8 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, int8* dat
 {
 	if (PChar->GetMJob() == JOB_BLU || PChar->GetSJob() == JOB_BLU) {
 		// This may be a request to add or remove set spells, so lets check.
-		uint8 mjob = RBUFB(data,(0x08));
-		if (mjob == JOB_BLU) {
+		uint8 job = RBUFB(data,(0x08));
+		if (job == JOB_BLU) {
 			uint8 spellToAdd = RBUFB(data,(0x04)); // this is non-zero if client wants to add.
 			uint8 spellInQuestion = 0;
 			uint8 spellIndex = -1;
@@ -4308,6 +4308,12 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, int8* dat
 						}
 					}
 				}
+			    PChar->status = STATUS_UPDATE;
+			    PChar->pushPacket(new CBlueSetSpellsPacket(PChar));
+			    PChar->pushPacket(new CCharStatsPacket(PChar));
+			    charutils::CalculateStats(PChar);
+			    PChar->UpdateHealth();
+			    PChar->pushPacket(new CCharHealthPacket(PChar));
 			}				
 			else {
 				// loop all 20 slots and find which index they are playing with
@@ -4324,6 +4330,12 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, int8* dat
 				
 					if (spell != NULL) {
 						blueutils::SetBlueSpell(PChar, spell, spellIndex, (spellToAdd > 0));
+			            PChar->status = STATUS_UPDATE;
+			            PChar->pushPacket(new CBlueSetSpellsPacket(PChar));
+			            PChar->pushPacket(new CCharStatsPacket(PChar));
+			            charutils::CalculateStats(PChar);
+			            PChar->UpdateHealth();
+			            PChar->pushPacket(new CCharHealthPacket(PChar));
 					}
 					else {
 						ShowDebug("Cannot resolve spell id \n");

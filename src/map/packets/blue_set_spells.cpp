@@ -34,7 +34,11 @@ CBlueSetSpellsPacket::CBlueSetSpellsPacket(CCharEntity* PChar)
 	this->type = 0x44;
 	this->size = 0x4E;
 
-	WBUFL(data,(0x04)-4) = JOB_BLU;
+	WBUFB(data,(0x04)-4) = JOB_BLU;
+    if (PChar->GetSJob() == JOB_BLU)
+    {
+        WBUFB(data,(0x05)-4) = 0x01;
+    }
 
 	memcpy(data+(0x08)-4, &PChar->m_SetBlueSpells, 20);
 

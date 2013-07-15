@@ -47,10 +47,10 @@ void SetBlueSpell(CCharEntity* PChar, CSpell* PSpell, uint8 slotIndex, bool addi
 
 	//sanity check
 	if (slotIndex < 20) {
-		if (PSpell != NULL && PSpell->getID() > 0x200) {
+		if (PSpell != NULL && PSpell->getID() > 0x200 && !IsSpellSet(PChar, PSpell)) {
 			if (addingSpell) {
 				// Blue spells in SetBlueSpells must be 0x200 ofsetted so it's 1 byte per spell.
-                if (PChar->m_SetBlueSpells[slotIndex] != 0 && !IsSpellSet(PChar, PSpell))
+                if (PChar->m_SetBlueSpells[slotIndex] != 0)
                 {
                     CSpell* POldSpell = spell::GetSpell(PChar->m_SetBlueSpells[slotIndex] + 0x200);
                     PChar->delModifiers(&POldSpell->modList);
@@ -63,12 +63,6 @@ void SetBlueSpell(CCharEntity* PChar, CSpell* PSpell, uint8 slotIndex, bool addi
 				PChar->m_SetBlueSpells[slotIndex] = 0x00;
 				PChar->delModifiers(&PSpell->modList);
 			}
-			PChar->status = STATUS_UPDATE;
-			PChar->pushPacket(new CBlueSetSpellsPacket(PChar));
-			PChar->pushPacket(new CCharStatsPacket(PChar));
-			charutils::CalculateStats(PChar);
-			PChar->UpdateHealth();
-			PChar->pushPacket(new CCharHealthPacket(PChar));
             SaveSetSpells(PChar);
 		}
 	}
@@ -317,12 +311,6 @@ void LoadSetSpells(CCharEntity* PChar)
             }
         }
         ValidateBlueSpells(PChar);
-        PChar->status = STATUS_UPDATE;
-	    PChar->pushPacket(new CBlueSetSpellsPacket(PChar));
-	    PChar->pushPacket(new CCharStatsPacket(PChar));
-	    charutils::CalculateStats(PChar);
-	    PChar->UpdateHealth();
-	    PChar->pushPacket(new CCharHealthPacket(PChar));
     }
 }
 
@@ -361,6 +349,12 @@ void ValidateBlueSpells(CCharEntity* PChar)
         }
     }
     SaveSetSpells(PChar);
+    PChar->status = STATUS_UPDATE;
+	PChar->pushPacket(new CBlueSetSpellsPacket(PChar));
+	PChar->pushPacket(new CCharStatsPacket(PChar));
+	charutils::CalculateStats(PChar);
+	PChar->UpdateHealth();
+	PChar->pushPacket(new CCharHealthPacket(PChar));
 }
 
 }
