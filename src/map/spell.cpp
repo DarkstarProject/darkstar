@@ -145,7 +145,7 @@ bool CSpell::isBuff()
 
 bool CSpell::tookEffect()
 {
-    if(m_message == 75 || m_message == 284){
+    if(m_message == 75 || m_message == 284 || m_message == 283 || m_message == 85){
         return false;
     }
     return true;
