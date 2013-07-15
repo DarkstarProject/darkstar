@@ -2518,6 +2518,7 @@ void CAICharNormal::ActionWeaponSkillStart()
 
 		}
         m_ActionType = ACTION_WEAPONSKILL_FINISH;
+		m_LastMeleeTime += 5000;
         return;
     }
 
@@ -2526,6 +2527,8 @@ void CAICharNormal::ActionWeaponSkillStart()
 		if(battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID()))
         {
 			m_ActionType = ACTION_WEAPONSKILL_FINISH;
+			m_LastMeleeTime += 5000;
+
 			return;
 		}
 	}
@@ -2572,9 +2575,6 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		TransitionBack();
         return;
 	}
-
-	// don't auto-attack while weaponskilling
-	m_LastMeleeTime += 5000;
 
 	//apply TP Bonus
 	float bonusTp = m_PChar->getMod(MOD_TP_BONUS);

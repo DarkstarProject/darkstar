@@ -40,6 +40,8 @@ function onTrigger(player,npc)
 			player:startEvent(0x0073);
 		elseif(MissionStatus == 11) then
 			player:showText(npc, RESCUE_DRILL + 30);
+		else
+			player:startEvent(0x0005);
 		end
 	else
 		player:startEvent(0x0005);

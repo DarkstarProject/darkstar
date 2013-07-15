@@ -45,6 +45,8 @@ function onTrigger(player,npc)
 			end
 		elseif(MissionStatus >= 10) then
 			player:showText(npc, RESCUE_DRILL + 30);
+		else
+			player:showText(npc, RESCUE_DRILL);
 		end
 	else
 		player:showText(npc, RESCUE_DRILL);

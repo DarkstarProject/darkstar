@@ -33,6 +33,8 @@ function onTrigger(player,npc)
 			player:showText(npc, RESCUE_DRILL + 21);
 		elseif(mission_status >= 9) then
 			player:showText(npc, RESCUE_DRILL + 26);
+		else
+			player:showText(npc, RESCUE_DRILL);
 		end
 	else
 		player:showText(npc, RESCUE_DRILL);

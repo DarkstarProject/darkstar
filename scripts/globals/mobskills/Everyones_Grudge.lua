@@ -25,7 +25,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	local power = 5;
 
 	if(target:getID() > 100000) then
-		realDmg = power * 100;
+		realDmg = power * math.random(30,100);
 	else
 		realDmg = power * target:getVar("EVERYONES_GRUDGE_KILLS"); -- Damage is 5 times the amount you have killed
 
