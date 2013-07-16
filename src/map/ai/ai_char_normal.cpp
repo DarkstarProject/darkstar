@@ -1228,6 +1228,12 @@ void CAICharNormal::ActionMagicStart()
             MagicStartError(12);
 			return;
 		}
+		// cannot cast magic on people with battlefield if i'm not in it
+		if(m_PBattleSubTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD) && !m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD))
+		{
+            MagicStartError(155);
+			return;
+		}
 		if (m_PSpell->getSpellGroup() == SPELLGROUP_NINJUTSU)
 		{
             if(!battleutils::HasNinjaTool(m_PChar, m_PSpell, false))
