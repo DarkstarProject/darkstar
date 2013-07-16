@@ -1835,7 +1835,7 @@ uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender)
     	else if(PDefender->GetMJob() == JOB_PLD && (PDefender->m_EcoSystem == SYSTEM_BEASTMEN || PDefender->m_EcoSystem == SYSTEM_UNDEAD))
     	{
     		// set fake size
-    		size = 2;
+    		size = 3;
     		defSkill = GetMaxSkill(SKILL_SHL,JOB_PLD,PDefender->GetMLevel());
 
     		// this is dumb, mobs / npcs / pet should always have capped stats
