@@ -1803,19 +1803,63 @@ low level monsters as they miss too much. Presuming a min cap of -10%.
 ************************************************************************/
 uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender)
 {
-    if(PDefender->objtype == TYPE_PC && battleutils::IsEngauged(PDefender))
+
+    if(battleutils::IsEngauged(PDefender))
     {
-		CCharEntity* PChar = (CCharEntity*)PDefender;
-		CItemArmor* PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
-		if(PItem!=NULL && PItem->getID()!=65535 && PItem->getShieldSize()>0 && PItem->getShieldSize()<=5)
-        {
-			float chance = ((5-PItem->getShieldSize())*10.0f)+ //base
-				dsp_max(((float)(PChar->GetSkill(SKILL_SHL)+PChar->getMod(MOD_SHIELD)-GetMaxSkill(SKILL_SHL,JOB_PLD,PAttacker->GetMLevel()))/4.6f),-10);
+
+    	uint16 defSkill = 0;
+    	uint16 atkSkill = 0;
+    	uint8 size = 0;
+
+    	if(PDefender->objtype == TYPE_PC)
+    	{
+			CCharEntity* PChar = (CCharEntity*)PDefender;
+			CItemArmor* PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
+
+			if(PItem!=NULL && PItem->getID()!=65535 && PItem->getShieldSize()>0 && PItem->getShieldSize()<=5)
+			{
+				if(PItem->getShieldSize()==5){return 65;}//aegis, presume capped? need info.
+				
+				size = PItem->getShieldSize();
+		    	atkSkill = GetMaxSkill(SKILL_SHL,JOB_PLD,PAttacker->GetMLevel());
+		    	defSkill = PDefender->GetSkill(SKILL_SHL);
+
+			}
+			else
+			{
+				// no valid shield
+				return 0;
+			}
+			
+    	}
+    	else if(PDefender->GetMJob() == JOB_PLD && (PDefender->m_EcoSystem == SYSTEM_BEASTMEN || PDefender->m_EcoSystem == SYSTEM_UNDEAD))
+    	{
+    		// set fake size
+    		size = 2;
+    		defSkill = GetMaxSkill(SKILL_SHL,JOB_PLD,PDefender->GetMLevel());
+
+    		// this is dumb, mobs / npcs / pet should always have capped stats
+    		if(PAttacker->objtype == TYPE_PC)
+    		{
+		    	atkSkill = PAttacker->GetSkill(SKILL_SHL);
+    		}
+    		else
+    		{
+	    		atkSkill = GetMaxSkill(SKILL_SHL,JOB_PLD,PDefender->GetMLevel());
+    		}
+    	}
+    	else
+    	{
+    		return 0;
+    	}
+
+		//TODO: HANDLE OCHAIN
+
+    	float chance = ((5 - size)*10.0f)+
+				dsp_max(((float)(defSkill - atkSkill)/4.6f),-10);
 			//TODO: HANDLE OCHAIN
-			if(PItem->getShieldSize()==5){return 65;}//aegis, presume capped? need info.
 			//65% cap
-			return dsp_cap(chance,5,65);
-		}
+		return dsp_cap(chance,5,65);
 	}
 
 	return 0;
@@ -1824,7 +1868,6 @@ uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender)
 uint8 GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 {
     CItemWeapon* PWeapon = GetEntityWeapon(PDefender, SLOT_MAIN);
-
     if(PWeapon != NULL && PWeapon->getID() != 0 && PWeapon->getID() != 65535 &&
        PWeapon->getSkillType() != SKILL_H2H && battleutils::IsEngauged(PDefender))
     {
@@ -1833,10 +1876,26 @@ uint8 GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
             PDefender->GetMJob() == JOB_PLD || PDefender->GetMJob() == JOB_WAR || PDefender->GetMJob() == JOB_BRD ||
             PDefender->GetMJob() == JOB_DRK || PDefender->GetMJob() == JOB_RDM || PDefender->GetMJob() == JOB_COR)
         {
-            int skill = PDefender->GetSkill(SKILL_PAR) + PDefender->getMod(MOD_PARRY); //max A-, so need gear+ for 20% parry
-            int max = GetMaxSkill(SKILL_SHL, JOB_PLD, PDefender->GetMLevel()); //A+ skill
-            int chance = 20 * ((double)skill / (double)max);
-            return dsp_cap(chance, 1, 20);//20% max parry rate
+        	// http://wiki.ffxiclopedia.org/wiki/Talk:Parrying_Skill
+        	// {(Parry Skill x .125) + ([Player Agi - Enemy Dex] x .125)} x Diff
+
+            float skill = PDefender->GetSkill(SKILL_PAR) + PDefender->getMod(MOD_PARRY);
+
+        	float diff = 1.0f + (((float)PDefender->GetMLevel() - PAttacker->GetMLevel()) / 10.0f);
+
+        	if(PWeapon->isTwoHanded())
+        	{
+        		// two handed weapons get a small bonus
+        		diff += 0.2f;
+        	}
+
+        	if(diff < 0.4f) diff = 0.4f;
+        	if(diff > 1.4f) diff = 1.4f;
+
+        	float dex = PAttacker->DEX();
+        	float agi = PDefender->AGI();
+
+            return dsp_cap((skill * 0.125f + (agi - dex) * 0.125f) * diff, 5, 25);//25% max parry rate
         }
     }
 
@@ -1851,10 +1910,18 @@ uint8 GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
     if(PWeapon == NULL || PWeapon->getID() == 0 || PWeapon->getID() == 65535 ||
         PWeapon->getSkillType() == SKILL_H2H  && battleutils::IsEngauged(PDefender))
     {
-        int skill = PDefender->GetSkill(SKILL_GRD) + PDefender->getMod(MOD_GUARD);
-        int max = GetMaxSkill(SKILL_SHL, JOB_PLD, PDefender->GetMLevel());
-        int chance = 20 * ((double)skill / (double)max);
-        return dsp_cap(chance, 1, 20);
+    	// assuming this is like parry
+        float skill = PDefender->GetSkill(SKILL_GRD) + PDefender->getMod(MOD_GUARD);
+
+    	float diff = 1.0f + (((float)PDefender->GetMLevel() - PAttacker->GetMLevel()) / 10.0f);
+
+    	if(diff < 0.4f) diff = 0.4f;
+    	if(diff > 1.4f) diff = 1.4f;
+
+    	float dex = PAttacker->DEX();
+    	float agi = PDefender->AGI();
+
+        return dsp_cap((skill * 0.125f + (agi - dex) * 0.125f) * diff, 5, 25);
     }
 
     return 0;
@@ -1901,9 +1968,22 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 			case DAMAGE_HTH:	  damage = (damage * (PDefender->getMod(MOD_HTHRES)))	 / 1000; break;
 		}
 
-		if (isBlocked && PDefender->m_Weapons[SLOT_SUB]->IsShield())
+		if(isBlocked)
 		{
-			damage = (damage * PDefender->m_Weapons[SLOT_SUB]->getShieldAbsorption()) / 100;
+			uint8 absorb = 100.0f;
+			if(PDefender->objtype == TYPE_PC)
+			{
+				if(PDefender->m_Weapons[SLOT_SUB]->IsShield())
+				{
+					absorb = PDefender->m_Weapons[SLOT_SUB]->getShieldAbsorption();
+				}
+			}
+			else
+			{
+				absorb = 50.0f;
+			}
+
+			damage = (damage * absorb) / 100;
 		}
 	}
 	damage = dsp_max(damage - PDefender->getMod(MOD_PHALANX),0);

@@ -514,7 +514,7 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->m_maxRoamDistance = 3.0f;
 	}
 
-	// cap all magic skills so they play nice with spell scripts
+	// cap all stats for lvl / job
 	for (int i=SKILL_DIV; i <=SKILL_BLU; i++) {
 		uint16 maxSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PMob->GetMJob(),PMob->GetMLevel());
 		if (maxSkill != 0) {

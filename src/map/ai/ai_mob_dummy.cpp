@@ -1502,12 +1502,13 @@ void CAIMobDummy::ActionAttack()
 					bool isParried = false;
 					bool isGuarded = false;
 					bool isDodge = false;
+
 					if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE))
 					{
 						Action.messageID = 32;
 						isDodge = true;
 					}
-					else if ( rand()%100 < battleutils::GetHitRate(m_PMob, m_PBattleTarget) )
+					else if ( rand()%100 < battleutils::GetHitRate(m_PMob, m_PBattleTarget))
 					{
 						if (battleutils::IsParried(m_PMob, m_PBattleTarget))
 						{
