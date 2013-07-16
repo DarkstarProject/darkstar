@@ -523,6 +523,15 @@ void CAICharNormal::ActionItemUsing()
 		ActionItemInterrupt();
 		return;
 	}
+	
+	if (m_PBattleSubTarget->objtype == TYPE_MOB && !IsMobOwner(m_PBattleSubTarget))
+	{
+		m_ActionType = ACTION_ITEM_INTERRUPT;
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,MSGBASIC_ALREADY_CLAIMED));
+
+		ActionItemInterrupt();
+		return;
+	}
 
 	if ((m_Tick - m_LastActionTime) >= m_PItemUsable->getActivationTime())
 	{
@@ -875,6 +884,15 @@ void CAICharNormal::ActionRangedFinish()
 		return;
 	}
 
+	if (m_PBattleSubTarget->objtype == TYPE_MOB && !IsMobOwner(m_PBattleSubTarget))
+	{
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,MSGBASIC_ALREADY_CLAIMED));
+
+        m_LastMeleeTime += (m_Tick - m_LastActionTime);
+        TransitionBack();
+		m_PBattleSubTarget = NULL;
+		return;
+	}
 
 	if ((m_Tick - m_LastActionTime) >= m_PChar->m_rangedDelay)
 	{
