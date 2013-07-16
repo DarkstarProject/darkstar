@@ -308,7 +308,70 @@ xarcabardList = {--[[001]] 17330293,{12,12}, 		--[[002]] 17330302,{15,15}, 		--[
 				 --[[139]] 17330908,{17330430}, 	--[[140]] 17330909,{17330440}, 		--[[141]] 17330910,{17330415}, 		--[[144]] 17330913,{4,3}, 
 				 --[[145]] 17330914,{4,3}, 			--[[146]] 17330915,{4,3}, 			--[[147]] 17330916,{14,14}, 		--[[148]] 17330917,{8,8}, 
 				 --[[149]] 17330918,{7,7}};
+----------------------------------- 		
+-- Dynamis-Valkurm
+----------------------------------- 
 
+--                   Manifest_Icon	mobid, {spawnlist: mob1, mob2,...}
+ValkurmYagudoList = {
+				 16937258,{16937240,16937241,16937242},-- sp
+				 16937259,{16937244,16937245,16937246,16937254},-- sp
+				 16937260,{16937248,16937249,16937250,16937255},-- sp
+				 16937261,{16937251,16937252,16937253,16937256},-- sp
+				 16937544,{16937526,16937527,16937528},--
+				 16937545,{16937531,16937532,16937533},--
+				 16937546,{16937534,16937535,16937536},--
+				 16937547,{16937529,16937539},--
+				 16937548,{16937537,16937540},--	
+				 16937549,{16937542,16937541}--					
+		 	 };	 
+--                   Goblin_Replica mobid, {spawnlist: mob1, mob2,...}				 
+ValkurmGoblinList = {	
+				 16937283,{16937265,16937266,16937268},-- HP
+				 16937284,{16937270,16937271,16937278,16937279},-- MP
+				 16937285,{16937272,16937273,16937274,16937280},-- sp
+				 16937286,{16937275,16937276,16937277,16937281},-- sp
+				 16937569,{16937551,16937552,16937553},--
+				 16937570,{16937554,16937555,16937557},--
+				 16937571,{16937558,16937559,16937560},--
+				 16937572,{16937561,16937563},--
+				 16937573,{16937564,16937565},--
+				 16937574,{16937566,16937567}--		 
+			  };			  
+--			         Serjeant_Tombstone mobid, {spawnlist: mob1, mob2,...}
+ValkurmOrcishList = {
+				 16937208,{16937190,16937191,16937192,16937204},-- sp
+				 16937209,{16937193,16937194,16937195,16937205},-- sp
+				 16937210,{16937196,16937197,16937198,16937206},-- sp   
+				 16937211,{16937200,16937201,16937202},-- sp 
+				 16937494,{16937476,16937477,16937478},--
+				 16937495,{16937479,16937482,16937484},--
+				 16937496,{16937484,16937485,16937488},--
+				 16937497,{16937480,16937489},--
+				 16937498,{16937486,16937490},--
+				 16937499,{16937492,16937491}--				 
+			  };  
+--                   Adamantking_Effigy  mobid, {spawnlist: mob1, mob2,...}			  
+ValkurmQuadavList = {
+                 16937233,{16937215,16937216,16937217},-- HP
+				 16937234,{16937218,16937219,16937221,16937229},-- sp
+				 16937235,{16937222,16937223,16937224,16937230},-- sp
+				 16937236,{16937225,16937227,16937228,16937231},-- sp
+				 16937519,{16937501,16937502,16937503},--
+				 16937520,{16937504,16937505,16937508},--
+				 16937521,{16937509,16937512,16937513},--
+				 16937522,{16937506,16937514},--
+				 16937523,{16937510,16937515},--
+				 16937524,{16937517,16937516},--		 
+			  };				 
+
+TimerStatueRandomPos = {
+                        1,{-363,-7,235},
+                        2,{-255,-7,85},
+                        3,{-286,0.1,-31},
+                        4,{-68,0.1,19}						
+			           };
+			  
 --------------------------------------------------		
 -- getListDynaMob
 -- List of mobid by zone and job
@@ -341,7 +404,7 @@ function getDynaMob(player,mobjob,list)
 		return GetMobIDByJob(17326208,17326274,mobjob); -- Orcish's Vanguard
 	-- Dynamis Xarcabard --------------------------------
 	elseif(pZone == 135) then 
-		return GetMobIDByJob(17330215,17330768,mobjob);
+		return GetMobIDByJob(17330215,17330768,mobjob);		
 	end
 	
 end;
@@ -398,7 +461,15 @@ function alreadyReceived(player,number)
 	elseif(pZone == 134) then
 		dynaVar = GetServerVariable("[DynaBeaucedine]Already_Received");
 	elseif(pZone == 135) then
-		dynaVar = GetServerVariable("[DynaXarcabard]Already_Received");
+		dynaVar = GetServerVariable("[DynaXarcabard]Already_Received");		
+	elseif(pZone == 39) then	
+		dynaVar = GetServerVariable("[DynaValkurm]Already_Received");
+	elseif(pZone == 40) then
+		dynaVar = GetServerVariable("[DynaBuburimu]Already_Received");
+    elseif(pZone == 41) then
+		dynaVar = GetServerVariable("[DynaQufim]Already_Received");
+    elseif(pZone == 42) then	
+		dynaVar = GetServerVariable("[DynaTavnazia]Already_Received");		
 	end
 
 	for i = 12,0,-1 do 		
@@ -439,6 +510,14 @@ function addDynamisList(player,number)
 		SetServerVariable("[DynaBeaucedine]Already_Received",GetServerVariable("[DynaBeaucedine]Already_Received") + number);
 	elseif(pZone == 135) then
 		SetServerVariable("[DynaXarcabard]Already_Received",GetServerVariable("[DynaXarcabard]Already_Received") + number);
+	elseif(pZone == 39) then	
+		SetServerVariable("[DynaValkurm]Already_Received",GetServerVariable("[DynaValkurm]Already_Received") + number);
+	elseif(pZone == 40) then
+		SetServerVariable("[DynaBuburimu]Already_Received",GetServerVariable("[DynaBuburimu]Already_Received") + number);
+    elseif(pZone == 41) then
+		SetServerVariable("[DynaQufim]Already_Received",GetServerVariable("[DynaQufim]Already_Received") + number);
+    elseif(pZone == 42) then	
+		SetServerVariable("[DynaTavnazia]Already_Received",GetServerVariable("[DynaTavnazia]Already_Received") + number);
 	end
 	
 end;

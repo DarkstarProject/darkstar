@@ -5629,7 +5629,7 @@ inline int32 CLuaBaseEntity::bcnmRegister(lua_State *L){
 
 	if(PChar->loc.zone->m_InstanceHandler->hasFreeInstance()){
 		int Pzone = PChar->getZone();
-		if(Pzone > 184 && Pzone < 189 || Pzone > 133 && Pzone < 136){
+		if(Pzone > 184 && Pzone < 189 || Pzone > 133 && Pzone < 136 || Pzone > 38  && Pzone < 43 ){
 			ShowDebug("Free Dynamis Instance found for BCNMID %i \n",lua_tointeger(L,1));
 			instance = PChar->loc.zone->m_InstanceHandler->registerDynamis(lua_tointeger(L,1),PChar);
 		}
@@ -5669,7 +5669,7 @@ inline int32 CLuaBaseEntity::bcnmEnter(lua_State *L){
 	DSP_DEBUG_BREAK_IF(PChar->loc.zone->m_InstanceHandler == NULL);
 
 	int Pzone = PChar->getZone();
-	if(Pzone > 184 && Pzone < 189 || Pzone > 133 && Pzone < 136){
+	if(Pzone > 184 && Pzone < 189 || Pzone > 133 && Pzone < 136 || Pzone > 38  && Pzone < 43 ){
 		if(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DYNAMIS, 0)){
 			uint16 effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_DYNAMIS,0)->GetPower();
 			if(PChar->loc.zone->m_InstanceHandler->enterBcnm(effect_bcnmid,PChar)){

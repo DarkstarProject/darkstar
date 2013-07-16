@@ -37,7 +37,7 @@ CInstanceHandler::CInstanceHandler(uint16 zoneid)
 
 	//Dynamis zone (need to add COP dyna zone)  
 	//added ghelsba outpost here, 1 instance only
-	if (m_ZoneId > 184 && m_ZoneId < 189 ||  m_ZoneId > 133 && m_ZoneId < 136 || m_ZoneId == 140 || m_ZoneId == 35) 
+	if (m_ZoneId > 184 && m_ZoneId < 189 ||  m_ZoneId > 133 && m_ZoneId < 136 || m_ZoneId == 140 || m_ZoneId == 35 || m_ZoneId > 38  && m_ZoneId < 43 ) 
     {
 		m_MaxInstances = 1;
 	}
@@ -55,7 +55,7 @@ void CInstanceHandler::handleInstances(uint32 tick){
 			int instzone = PInstance->getZoneId();
 
 			//Dynamis zone (need to add COP Dyna)
-			if(instzone > 184 && instzone < 189 || instzone > 133 && instzone < 136){
+			if(instzone > 184 && instzone < 189 || instzone > 133 && instzone < 136 || instzone > 38  && instzone < 43){
 				//handle death time
 				if(PInstance->allPlayersDead()){//set dead time
 					if(PInstance->getDeadTime()==0){

@@ -16,3 +16,10 @@ NOTHING_OUT_OF_ORDINARY = 6395; -- You find nothing out of the ordinary here.
 
 -- Other Dialog
 AN_EMPTY_LIGHT_SWIRLS =  7676; -- An empty light swirls about the cave, eating away at the surroundings..
+
+
+	  YOU_CANNOT_ENTER_DYNAMIS = 7790; -- You cannot enter Dynamis - San d'Oria for x day (Vana'diel time)
+	  
+PLAYERS_HAVE_NOT_REACHED_LEVEL = 7792; -- Players who have not reached level <number> are prohibited from entering Dynamis.
+
+MYSTERIOUS_VOICE = 7791;
