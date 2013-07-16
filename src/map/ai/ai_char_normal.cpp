@@ -2591,12 +2591,47 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	DSP_DEBUG_BREAK_IF(m_PWeaponSkill == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
+	m_LastMeleeTime += (m_Tick - m_LastActionTime);
+
 	if (m_PBattleSubTarget->isDead())
 	{
-		m_LastMeleeTime += (m_Tick - m_LastActionTime);
+		m_PWeaponSkill = NULL;
+	    m_PBattleSubTarget = NULL;
 		TransitionBack();
         return;
 	}
+
+    float Distance = distance(m_PChar->loc.p, m_PBattleSubTarget->loc.p);
+
+    // check if mob is too far away, loose tp
+    if ((Distance - m_PBattleSubTarget->m_ModelSize) > m_PWeaponSkill->getRange())
+    {
+		m_PWeaponSkill = NULL;
+	    m_PBattleSubTarget = NULL;
+
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_TARG_OUT_OF_RANGE));
+
+	    // this is stupid but lose tp
+	    // this whole thing has to be refactored
+		if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
+		{
+			m_PChar->addTP(-100);
+			m_PChar->PLatentEffectContainer->CheckLatentsTP(m_PChar->health.tp);
+		}
+		else if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SEKKANOKI))
+		{
+			m_PChar->addTP(-100);
+			m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SEKKANOKI);
+			m_PChar->PLatentEffectContainer->CheckLatentsTP(m_PChar->health.tp);
+		}
+		else
+		{
+			m_PChar->health.tp = 0;
+		}
+
+    	TransitionBack();
+    	return;
+    }
 	
 	//apply TP Bonus
 	float bonusTp = m_PChar->getMod(MOD_TP_BONUS);
@@ -2944,8 +2979,6 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	{
 		m_PChar->setWeaponSkillKill(true);
 	}
-
-	m_LastMeleeTime += 5000;
 
 	m_PWeaponSkill = NULL;
     m_PBattleSubTarget = NULL;

@@ -88,7 +88,7 @@ bool CMobSpellContainer::HasSpells()
 int16 CMobSpellContainer::GetAggroSpell()
 {
   // high chance to return ga spell
-  if(HasGaSpells() && rand()%100 <= (float)m_PMob->getMobMod(MOBMOD_GA_CHANCE)*1.3){
+  if(HasGaSpells() && rand()%100 <= m_PMob->getMobMod(MOBMOD_GA_CHANCE)){
     return GetGaSpell();
   }
 
