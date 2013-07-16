@@ -358,7 +358,7 @@ void CalculateStats(CMobEntity * PMob)
 	}
 	else if(mJob == JOB_DRG && PMob->m_Family != 193)
 	{
-		PMob->m_SpecialCoolDown = 60000;
+		PMob->m_SpecialCoolDown = 45000;
 
 		// sahigans
 		if(PMob->m_Family == 213)

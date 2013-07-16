@@ -2060,7 +2060,7 @@ void CAIMobDummy::SetupEngage()
 	// drg shouldn't use jump right away
 	if(m_PMob->GetMJob() == JOB_DRG)
 	{
-		m_LastSpecialTime = m_Tick;
+		m_LastSpecialTime = m_Tick - rand()%m_PMob->m_SpecialCoolDown + 5000;
 	}
 
 	if(m_PMob->m_roamFlags & ROAMFLAG_WORM)

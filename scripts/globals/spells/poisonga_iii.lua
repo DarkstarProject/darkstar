@@ -17,7 +17,7 @@ function onSpellCast(caster,target,spell)
     local effect = EFFECT_POISON;
 	
     if(math.random(0,100) >= target:getMod(MOD_POISONRES)) then
-		local duration = 60;
+		local duration = 180;
 
 		local pINT = caster:getStat(MOD_INT);
 		local mINT = target:getStat(MOD_INT);
