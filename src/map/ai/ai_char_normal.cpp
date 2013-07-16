@@ -2518,7 +2518,6 @@ void CAICharNormal::ActionWeaponSkillStart()
 
 		}
         m_ActionType = ACTION_WEAPONSKILL_FINISH;
-		m_LastMeleeTime += 5000;
         return;
     }
 
@@ -2527,7 +2526,6 @@ void CAICharNormal::ActionWeaponSkillStart()
 		if(battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID()))
         {
 			m_ActionType = ACTION_WEAPONSKILL_FINISH;
-			m_LastMeleeTime += 5000;
 
 			return;
 		}
@@ -2575,7 +2573,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		TransitionBack();
         return;
 	}
-
+	
 	//apply TP Bonus
 	float bonusTp = m_PChar->getMod(MOD_TP_BONUS);
 
@@ -2922,6 +2920,8 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	{
 		m_PChar->setWeaponSkillKill(true);
 	}
+
+	m_LastMeleeTime += 5000;
 
 	m_PWeaponSkill = NULL;
     m_PBattleSubTarget = NULL;
@@ -3315,7 +3315,7 @@ void CAICharNormal::ActionAttack()
 
 						if(damage > 0)
 						{
-							charutils::TrySkillUP(m_PChar, (SKILLTYPE)PWeapon->getSkillType(), m_PBattleTarget->GetMLevel());						
+							charutils::TrySkillUP(m_PChar, (SKILLTYPE)PWeapon->getSkillType(), m_PBattleTarget->GetMLevel());
 						}
 						zanshin = false;
 					}

@@ -945,8 +945,8 @@ void CAIMobDummy::ActionAbilityFinish()
 	else
 	{
 		// increase magic / ranged timer so its not used right after
-		m_LastMagicTime += m_PMobSkill->getAnimationTime() + 2000;
-		m_LastSpecialTime += m_PMobSkill->getAnimationTime() + 2000;
+		m_LastMagicTime += m_PMobSkill->getAnimationTime() + 4000;
+		m_LastSpecialTime += m_PMobSkill->getAnimationTime() + 4000;
 
 		m_ActionType = ACTION_ATTACK;
 	}
@@ -1038,9 +1038,6 @@ void CAIMobDummy::ActionMagicStart()
 	// this must be at the top to RESET magic cast timer
 	m_LastActionTime = m_Tick;
 	m_LastMagicTime = m_Tick;
-
-	// don't use special right after magic
-	m_LastSpecialTime += rand()%3000 + 1000;
 
 	// check valid targets
 	if (m_PSpell->getValidTarget() & TARGET_SELF) {
@@ -1370,12 +1367,12 @@ void CAIMobDummy::ActionAttack()
     }
 
 	// Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
-	if (currentDistance <= MOB_SPELL_MAX_RANGE && (m_Tick - m_LastMagicTime) >= m_PMob->m_MagicRecastTime && TryCastSpell())
+	if(m_PSpecialSkill != NULL && !m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL) && (m_Tick - m_LastSpecialTime) >= m_PMob->m_SpecialCoolDown && TrySpecialSkill())
 	{
 		FinishAttack();
 		return;
 	}
-	else if(m_PSpecialSkill != NULL && (m_Tick - m_LastSpecialTime) >= m_PMob->m_SpecialCoolDown && TrySpecialSkill())
+	else if (currentDistance <= MOB_SPELL_MAX_RANGE && (m_Tick - m_LastMagicTime) >= m_PMob->m_MagicRecastTime && TryCastSpell())
 	{
 		FinishAttack();
 		return;
@@ -1850,6 +1847,15 @@ bool CAIMobDummy::TryCastSpell()
 	}
 
 	int chosenSpellId = -1;
+
+	// only cast first spell if target is out of range
+	if(m_firstSpell && m_PBattleTarget != NULL && distance(m_PMob->loc.p, m_PBattleTarget->loc.p) <= m_PMob->m_ModelSize){
+
+		m_firstSpell = false;
+		m_LastMagicTime = m_Tick - m_PMob->m_MagicRecastTime + rand()%5000 + 3000;
+		return false;
+	}
+
 	if (m_PMob->m_HasSpellScript) {
 		// skip logic and follow script
 		chosenSpellId = luautils::OnMonsterMagicPrepare(m_PMob, m_PBattleTarget);
@@ -1860,7 +1866,8 @@ bool CAIMobDummy::TryCastSpell()
 	} else {
 		// find random spell
 
-		if(m_firstSpell){
+		if(m_firstSpell)
+		{
 			// mobs first spell, should be aggro spell
 			chosenSpellId = m_PMob->SpellContainer->GetAggroSpell();
 			m_firstSpell = false;
@@ -1904,6 +1911,9 @@ void CAIMobDummy::ActionSpecialSkill()
     uint32 halfSpecial = (float)m_PMob->m_SpecialCoolDown/2;
 
     m_LastSpecialTime = m_Tick - rand()%(halfSpecial);
+
+    // don't use magic right after
+    m_LastMagicTime = m_Tick + m_PMob->m_MagicRecastTime + rand()%5000 + 4000;
 
     apAction_t Action;
     m_PMob->m_ActionList.clear();
@@ -2136,7 +2146,6 @@ bool CAIMobDummy::CanAggroTarget(CBattleEntity* PTarget)
 {
 	// don't aggro i'm neutral
 	if(m_PMob->m_neutral) return false;
-		
 
 	if(PTarget->isDead() || PTarget->animation == ANIMATION_CHOCOBO) return false;
 
