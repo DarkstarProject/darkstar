@@ -997,7 +997,7 @@ INSERT INTO `mob_spell_lists` VALUES ('Waraxe_Beak', '55', '192', '1', '255');
 INSERT INTO `mob_spell_lists` VALUES ('Lumber_Jack', '56', '255', '1', '255');
 INSERT INTO `mob_spell_lists` VALUES ('Lumber_Jack', '56', '192', '1', '255');
 -- INSERT INTO `mob_spell_lists` VALUES ('Lumber_Jack', '103', '103', '1', '255');
-INSERT INTO `mob_spell_lists` VALUES ('Vrtra', '57', '232', '1', '255');
+INSERT INTO `mob_spell_lists` VALUES ('Vrtra', '57', '233', '1', '255');
 INSERT INTO `mob_spell_lists` VALUES ('Vrtra', '57', '360', '1', '255');
 INSERT INTO `mob_spell_lists` VALUES ('Vrtra', '57', '361', '1', '255');
 INSERT INTO `mob_spell_lists` VALUES ('Vrtra', '57', '274', '1', '255');
