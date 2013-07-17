@@ -478,6 +478,7 @@ void CAIMobDummy::ActionDropItems()
 			}
 			PChar->setWeaponSkillKill(false);
 
+			// TODO: merge mob death and title together
 			luautils::OnMobDeath(m_PMob, PChar);
 
 			int16 titleID = m_PMob->getMobMod(MOBMOD_TITLE);
@@ -487,11 +488,8 @@ void CAIMobDummy::ActionDropItems()
 				// set title for party
 			    m_PTargetFind->reset();
 
-			    // players can gain title even if dead
-			    m_PTargetFind->m_targetDead = true;
-
 			    // have to be within 50 of mob to gain title
-		        m_PTargetFind->findWithinArea(PChar, AOERADIUS_ATTACKER, 50.0f);
+		        m_PTargetFind->findWithinArea(PChar, AOERADIUS_ATTACKER, 50.0f, FINDFLAGS_DEAD | FINDFLAGS_ALLIANCE);
 
 	            for (std::vector<CBattleEntity*>::iterator it = m_PTargetFind->m_targets.begin() ; it != m_PTargetFind->m_targets.end(); ++it)
 	            {

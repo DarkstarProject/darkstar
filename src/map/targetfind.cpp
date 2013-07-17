@@ -46,7 +46,7 @@ void CTargetFind::reset()
   m_conal = false;
   m_radius = 0.0f;
   m_zone = 0;
-  m_targetDead = false;
+  m_findFlags = FINDFLAGS_NONE;
 
   m_APoint = NULL;
   m_PRadiusAround = NULL;
@@ -63,8 +63,9 @@ void CTargetFind::findSingleTarget(CBattleEntity* PTarget)
   addEntity(PTarget, false);
 }
 
-void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, float radius)
+void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, float radius, uint8 flags)
 {
+  m_findFlags = flags;
   m_radius = radius;
   m_zone = m_PBattleEntity->getZone();
 
@@ -80,7 +81,7 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
 
   // no not include pets if this AoE is a buff spell
   // this is a buff because i'm targetting my self
-  bool withPet = PETS_CAN_AOE_BUFF || (m_PMasterTarget->objtype != m_PBattleEntity->objtype);
+  bool withPet = PETS_CAN_AOE_BUFF || (m_findFlags & FINDFLAGS_PET) || (m_PMasterTarget->objtype != m_PBattleEntity->objtype);
 
   // always add original target first
   addEntity(PTarget, false); // pet will be added later
@@ -104,8 +105,15 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
 
       if(m_PMasterTarget->PParty != NULL)
       {
-        // add party members
-        addAllInParty(m_PMasterTarget, withPet);
+        if((m_findFlags & FINDFLAGS_ALLIANCE) && m_PMasterTarget->PParty->m_PAlliance != NULL)
+        {
+          addAllInAlliance(m_PMasterTarget, withPet);
+        }
+        else
+        {
+          // add party members
+          addAllInParty(m_PMasterTarget, withPet);
+        }
       } else {
         // just add myself
         addEntity(m_PMasterTarget, withPet);
@@ -144,8 +152,9 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
 
 }
 
-void CTargetFind::findWithinCone(CBattleEntity* PTarget, float distance, float angle)
+void CTargetFind::findWithinCone(CBattleEntity* PTarget, float distance, float angle, uint8 flags)
 {
+  m_findFlags = flags;
   m_conal = true;
 
   // TODO: a point should be based on targets position
@@ -300,7 +309,7 @@ bool CTargetFind::validEntity(CBattleEntity* PTarget)
 {
   if(m_targets.size() > MAX_AOE_TARGETS) return false;
 
-  if(!m_targetDead && PTarget->isDead())
+  if(!(m_findFlags & FINDFLAGS_DEAD) && PTarget->isDead())
   {
     return false;
   }

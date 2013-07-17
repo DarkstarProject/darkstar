@@ -140,10 +140,10 @@ INSERT INTO `mob_family_system` VALUES (71,'Coeurl',6,'Beast',1,10,60,94,90,1,1,
 INSERT INTO `mob_family_system` VALUES (72,'Colibri',8,'Bird',0,10,60,90,140,4,4,5,5,1,3,4,3,3,3,3,1,1.25,1,1,0.875,1,0.5,0.875,0.875,0.875,1,0.875,3);
 INSERT INTO `mob_family_system` VALUES (73,'Corpselights',19,'Undead',0,10,40,100,120,3,3,3,3,3,3,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,8);
 INSERT INTO `mob_family_system` VALUES (74,'Corse',19,'Undead',1,10,40,111,140,1,3,3,3,1,5,1,3,3,3,3,0.875,0.5,1.125,1.25,1.25,0.875,0.75,0.75,0.75,0.75,1.25,0.5,8);
-INSERT INTO `mob_family_system` VALUES (75,'Crab',2,'Aquan',0,10,40,108,120,4,3,1,5,3,3,4,3,3,3,3,0.9,0.9,0.9,0.9,1,1.25,1,1,1.25,0.875,1,1,6);
-INSERT INTO `mob_family_system` VALUES (76,'Crab',2,'Aquan',0,10,40,108,120,4,3,1,5,3,3,4,3,3,3,3,0.9,0.9,0.9,0.9,0.875,1,0.875,0.875,1,0.75,0.875,0.875,6);
-INSERT INTO `mob_family_system` VALUES (77,'Crab',2,'Aquan',0,10,40,108,120,4,3,1,5,3,3,4,3,3,3,3,1,1,1,1,1,1.25,1,1,1.25,0.875,1,1,6);
-INSERT INTO `mob_family_system` VALUES (78,'Craver',12,'Empty',0,10,40,120,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
+INSERT INTO `mob_family_system` VALUES (75,'Crab',2,'Aquan',0,10,40,108,120,4,3,1,5,3,3,4,3,2,3,3,1.0,1.0,1.0,1.0,1,1.25,1,1,1.25,0.875,1,1,6);
+INSERT INTO `mob_family_system` VALUES (76,'Crab',2,'Aquan',0,10,40,108,120,4,3,1,5,3,3,4,3,2,3,3,1.0,1.0,1.0,1.0,0.875,1,0.875,0.875,1,0.75,0.875,0.875,6);
+INSERT INTO `mob_family_system` VALUES (77,'Crab',2,'Aquan',0,10,40,108,120,4,3,1,5,3,3,4,3,2,3,3,1,1,1,1,1,1.25,1,1,1.25,0.875,1,1,6);
+INSERT INTO `mob_family_system` VALUES (78,'Craver',12,'Empty',0,10,40,120,90,1,3,4,3,6,6,5,2,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
 INSERT INTO `mob_family_system` VALUES (79,'Crawler',20,'Vermin',1,10,40,105,120,3,3,4,3,3,6,5,3,5,3,3,1,1,1,1,1,1.25,1,1,1.25,1,1.125,1.25,4);
 INSERT INTO `mob_family_system` VALUES (80,'Dhalmel',6,'Beast',1,10,40,110,120,3,4,4,4,4,4,5,3,3,3,3,1,1,1,1,1,1,1.25,1,1.25,1,1,1,4);
 INSERT INTO `mob_family_system` VALUES (81,'Diremite',20,'Vermin',1,10,40,86,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1,1.25,1.25,1,3);

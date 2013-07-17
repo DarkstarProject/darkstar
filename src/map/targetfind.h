@@ -46,6 +46,14 @@ enum AOERADIUS
   AOERADIUS_TARGET = 2
 };
 
+enum FINDFLAGS
+{
+  FINDFLAGS_NONE = 0,
+  FINDFLAGS_DEAD = 1, // target dead
+  FINDFLAGS_ALLIANCE = 2, // force target alliance
+  FINDFLAGS_PET = 4, // force target pet
+};
+
 /*
 
 Every targetfinder has a context in which to find targets. See below.
@@ -82,8 +90,8 @@ public:
 
   // Main methods for finding targets
   void findSingleTarget(CBattleEntity* PTarget);
-  void findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, float radius);
-  void findWithinCone(CBattleEntity* PTarget, float distance, float angle);
+  void findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, float radius, uint8 flags = FINDFLAGS_NONE);
+  void findWithinCone(CBattleEntity* PTarget, float distance, float angle, uint8 flags = FINDFLAGS_NONE);
 
   // add all targets in contexts
   void addAllInAlliance(CBattleEntity* PTarget, bool withPet);
@@ -102,7 +110,6 @@ public:
   bool isWithinRange(CBattleEntity* PTarget, float range);
 
   std::vector<CBattleEntity*> m_targets; // contains all found entities
-  bool m_targetDead;
 
 protected:
 
@@ -117,6 +124,7 @@ protected:
 
   uint16 m_zone;
   FINDTYPE m_findType;
+  uint8 m_findFlags;
 
   // conal vars
   bool m_conal;

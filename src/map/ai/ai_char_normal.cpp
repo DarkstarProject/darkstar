@@ -1504,8 +1504,13 @@ void CAICharNormal::ActionMagicFinish()
     m_PTargetFind->reset();
     m_PChar->m_ActionList.clear();
 
+    uint8 flags = FINDFLAGS_NONE;
+
     // can this spell target the dead?
-    m_PTargetFind->m_targetDead = (m_PSpell->getValidTarget() & TARGET_PLAYER_DEAD);
+    if(m_PSpell->getValidTarget() & TARGET_PLAYER_DEAD)
+    {
+    	flags |= FINDFLAGS_DEAD;
+    }
 
     uint8 aoeType = battleutils::GetSpellAoEType(m_PChar, m_PSpell);
 
@@ -1513,14 +1518,14 @@ void CAICharNormal::ActionMagicFinish()
     {
         float radius = spell::GetSpellRadius(m_PSpell, m_PChar);
 
-        m_PTargetFind->findWithinArea(m_PBattleSubTarget, AOERADIUS_TARGET, radius);
+        m_PTargetFind->findWithinArea(m_PBattleSubTarget, AOERADIUS_TARGET, radius, flags);
     }
     else if (aoeType == SPELLAOE_CONAL)
     {
         //TODO: actual angle calculation
         float radius = spell::GetSpellRadius(m_PSpell, m_PChar);
 
-        m_PTargetFind->findWithinCone(m_PBattleSubTarget, radius, 45);
+        m_PTargetFind->findWithinCone(m_PBattleSubTarget, radius, 45, flags);
     }
     else
     {
@@ -1607,6 +1612,12 @@ void CAICharNormal::ActionMagicFinish()
             else if(Action.param > 0 && m_PSpell->dealsDamage())
             {
                 PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
+            }
+
+            if(Action.param == 0 || !m_PSpell->tookEffect())
+            {
+            	ve = 0;
+            	ce = 1;
             }
         }
 
