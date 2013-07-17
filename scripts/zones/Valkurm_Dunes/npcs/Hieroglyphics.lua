@@ -26,7 +26,7 @@ end;
 
 function onTrigger(player,npc)  
 
-	if(player:hasCompletedMission(COP,DARKNESS_NAMED)) then
+	if(player:hasCompletedMission(COP,DARKNESS_NAMED) or FREE_COP_DYNAMIS == 1) then
 		local firstDyna = 0;
 		local realDay = os.time();
 		local dynaWaitxDay = player:getVar("dynaWaitxDay");
