@@ -39,7 +39,7 @@ function onSpellCast(caster,target,spell)
 	-- Calculate duration.
 	local merits = caster:getMerit(MERIT_DIA_III);
 
-	local duration = 30 * merits * resist;
+	local duration = 30 * merits;
 
 	-- Check for Bio.
 	local bio = target:getStatusEffect(EFFECT_BIO);

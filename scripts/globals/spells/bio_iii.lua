@@ -44,7 +44,7 @@ function onSpellCast(caster,target,spell)
 
 	local merits = caster:getMerit(MERIT_BIO_III);
 
-	local duration = 30 * merits * resist;
+	local duration = 30 * merits;
 
 	-- Check for Dia.
 	local dia = target:getStatusEffect(EFFECT_DIA);

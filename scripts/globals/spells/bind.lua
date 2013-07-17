@@ -18,9 +18,7 @@ function onSpellCast(caster,target,spell)
 	local bonus = AffinityBonus(caster,spell);
 
 	--Duration, including resistance.  May need more research.
-	local duration = math.random();
-	duration = math.random();
-	duration = math.random(5,60);
+	local duration = 60;
 
 	--Resist
 	local resist = applyResistance(caster,spell,target,dINT,35,bonus);
@@ -28,10 +26,10 @@ function onSpellCast(caster,target,spell)
 	if(100 * math.random() >= target:getMod(MOD_BINDRES)) then
 		if(resist >= 0.5) then --Do it!
 			--Try to erase a weaker bind.
-			if(target:addStatusEffect(EFFECT_BIND,target:speed(),0,duration)) then
-						spell:setMsg(236);
-					else
-						spell:setMsg(75);
+			if(target:addStatusEffect(EFFECT_BIND,target:speed(),0,duration*resist)) then
+				spell:setMsg(236);
+			else
+				spell:setMsg(75);
 			end
 		else
 			spell:setMsg(85);

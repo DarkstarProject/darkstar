@@ -42,7 +42,7 @@ function onSpellCast(caster,target,spell)
 
 	-- Calculate duration.
 
-	local duration = 180 * resist;
+	local duration = 180;
 
 	-- Check for Dia.
 	local dia = target:getStatusEffect(EFFECT_DIA);

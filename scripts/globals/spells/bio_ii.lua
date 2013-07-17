@@ -41,7 +41,7 @@ function onSpellCast(caster,target,spell)
 	local final = finalMagicAdjustments(caster,target,spell,dmg);
 
 	-- Calculate duration.
-	local duration = 120 * resist;
+	local duration = 120;
 
 	-- Check for Dia.
 	local dia = target:getStatusEffect(EFFECT_DIA);
