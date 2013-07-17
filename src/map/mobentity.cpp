@@ -85,7 +85,6 @@ CMobEntity::CMobEntity()
 
     m_maxRoamDistance = 30.0f;
     m_disableScent = false;
-    m_linkRadius = 10;
     
     setMobMod(MOBMOD_SIGHT_RANGE, MOB_SIGHT_RANGE);
     setMobMod(MOBMOD_SOUND_RANGE, MOB_SOUND_RANGE);
@@ -228,7 +227,7 @@ bool CMobEntity::CanLink(position_t* pos, int16 superLink)
     }
 
     // link if close enough
-    return distance(loc.p, *pos) <= m_linkRadius;
+    return distance(loc.p, *pos) <= getMobMod(MOBMOD_LINK_RADIUS);
 }
 
 /************************************************************************

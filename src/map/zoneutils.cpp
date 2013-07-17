@@ -286,7 +286,7 @@ void LoadMOBList(CZone* PZone)
 			Slash, Pierce, H2H, Impact, \
 			Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
 			mob_pools.familyid, name_prefix, unknown, animationsub, \
-			(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, link_radius, mob_groups.poolid \
+			(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid \
 			FROM mob_groups LEFT JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
 			LEFT JOIN mob_spawn_points ON mob_groups.groupid = mob_spawn_points.groupid \
 			LEFT JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
@@ -358,7 +358,6 @@ void LoadMOBList(CZone* PZone)
             PMob->defRank = (uint8)Sql_GetIntData(SqlHandle,33);
             PMob->attRank = (uint8)Sql_GetIntData(SqlHandle,55);
             PMob->accRank = (uint8)Sql_GetIntData(SqlHandle,56);
-            PMob->m_linkRadius = (uint8)Sql_GetIntData(SqlHandle,57);
 
 			PMob->setModifier(MOD_SLASHRES, (uint16)(Sql_GetFloatData(SqlHandle,34) * 1000));
 			PMob->setModifier(MOD_PIERCERES,(uint16)(Sql_GetFloatData(SqlHandle,35) * 1000));
@@ -409,7 +408,7 @@ void LoadMOBList(CZone* PZone)
 
 			PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(Sql_GetIntData(SqlHandle,54));
 
-			PMob->m_Pool = Sql_GetUIntData(SqlHandle,58);
+			PMob->m_Pool = Sql_GetUIntData(SqlHandle,57);
 
 			PZone->InsertMOB(PMob);
 			

@@ -713,6 +713,7 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
 	}
 
 	PMob->defaultMobMod(MOBMOD_SKILLS, PMob->m_Family);
+	PMob->defaultMobMod(MOBMOD_LINK_RADIUS, MOB_LINK_RADIUS);
 	PMob->defaultMobMod(MOBMOD_TP_USE_CHANCE, MOB_TP_USE_CHANCE);
 
     // Killer Effect
