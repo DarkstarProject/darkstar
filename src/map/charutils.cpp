@@ -2652,13 +2652,12 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
                         default: break;
                         }
                     }
-                    if (PMob->m_Family == 58 && PMob->getZone() == 65) monsterbonus = 1.05f;
-                    else if (PMob->m_Family == 245 && PMob->getZone() == 51) monsterbonus = 1.05f;
-                    else if (PMob->m_Family == 186 && PMob->getZone() == 153) monsterbonus = 1.23f;
-                    else if (PMob->m_Family == 179 && PMob->getZone() == 113) monsterbonus = 1.10f;
-                    else if (PMob->m_Family == 266 && PMob->getZone() == 174) monsterbonus = 1.23f;
-                    else if (PMob->m_Family == 206 && PMob->getZone() == 5) monsterbonus = 1.10f;
-                    else if (PMob->m_Family == 208 && PMob->getZone() == 24) monsterbonus = 1.23f;
+
+                    if(PMob->getMobMod(MOBMOD_EXP_BONUS))
+                    {
+                    	monsterbonus = (float)PMob->getMobMod(MOBMOD_EXP_BONUS)/100.0f;
+                    }
+
                     if (monsterbonus > 1.00f) exp *= monsterbonus;
                     permonstercap = ((PMember->PParty != NULL && pcinzone > 1) ? 1.35f : 1.15f);
                     if (PMember->GetMLevel() <= 50)

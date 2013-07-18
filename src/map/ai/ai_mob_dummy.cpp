@@ -478,27 +478,8 @@ void CAIMobDummy::ActionDropItems()
 			}
 			PChar->setWeaponSkillKill(false);
 
-			// TODO: merge mob death and title together
+			// NOTE: this is called for all alliance / party members!
 			luautils::OnMobDeath(m_PMob, PChar);
-
-			int16 titleID = m_PMob->getMobMod(MOBMOD_TITLE);
-
-			if(titleID)
-			{
-				// set title for party
-			    m_PTargetFind->reset();
-
-			    // have to be within 50 of mob to gain title
-		        m_PTargetFind->findWithinArea(PChar, AOERADIUS_ATTACKER, 50.0f, FINDFLAGS_DEAD | FINDFLAGS_ALLIANCE);
-
-	            for (std::vector<CBattleEntity*>::iterator it = m_PTargetFind->m_targets.begin() ; it != m_PTargetFind->m_targets.end(); ++it)
-	            {
-	            	if((*it)->objtype != TYPE_PC) continue;
-
-	                charutils::setTitle((CCharEntity*)*it, titleID);
-	            }	        
-				
-			}
 
 		}
         m_ActionType = ACTION_DEATH;

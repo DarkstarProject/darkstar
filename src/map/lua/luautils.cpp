@@ -2019,9 +2019,11 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 					if (PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i) == PChar || PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i)->getZone() != PChar->getZone())
 						continue;
 
-					((CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members[i])->m_event.reset();
-					((CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members[i])->m_event.Target = PMob;
-					((CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members[i])->m_event.Script.insert(0,File);
+					CCharEntity* PMember = (CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members[i];
+
+					PMember->m_event.reset();
+					PMember->m_event.Target = PMob;
+					PMember->m_event.Script.insert(0,File);
 
 					lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobDeath");
 					if (lua_isnil(LuaHandle,-1))
@@ -2051,9 +2053,10 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 					PChar->PParty->members[i]->getZone() != PChar->getZone())
 					continue;
 
-				((CCharEntity*)PChar->PParty->members[i])->m_event.reset();
-				((CCharEntity*)PChar->PParty->members[i])->m_event.Target = PMob;
-				((CCharEntity*)PChar->PParty->members[i])->m_event.Script.insert(0,File);
+				CCharEntity* PMember = (CCharEntity*)PChar->PParty->members[i];
+				PMember->m_event.reset();
+				PMember->m_event.Target = PMob;
+				PMember->m_event.Script.insert(0,File);
 
 				lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobDeath");
 				if (lua_isnil(LuaHandle,-1))

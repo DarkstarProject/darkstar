@@ -57,7 +57,7 @@ enum MOBMODIFIER
   MOBMOD_BUILD_RESIST = 25, // builds resistance to given effects -- not impl
   MOBMOD_SUPERLINK = 26, // super link group. Only use this in mob_spawn_mods!
   MOBMOD_SPELL_LIST = 27, // set spell list
-  MOBMOD_TITLE = 28, // set title to all party members on death. Only use this in mob_spawn_mods!
+  MOBMOD_EXP_BONUS = 28, // bonus exp (bonus / 100)
   MOBMOD_ASSIST = 29 // mobs will assist me
 };
 
