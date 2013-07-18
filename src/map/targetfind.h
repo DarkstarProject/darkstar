@@ -89,7 +89,7 @@ public:
   void reset(); // remove all found targets
 
   // Main methods for finding targets
-  void findSingleTarget(CBattleEntity* PTarget);
+  void findSingleTarget(CBattleEntity* PTarget, uint8 flags = FINDFLAGS_NONE);
   void findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, float radius, uint8 flags = FINDFLAGS_NONE);
   void findWithinCone(CBattleEntity* PTarget, float distance, float angle, uint8 flags = FINDFLAGS_NONE);
 

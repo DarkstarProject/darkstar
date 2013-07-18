@@ -1529,7 +1529,7 @@ void CAICharNormal::ActionMagicFinish()
     }
     else
     {
-        m_PTargetFind->findSingleTarget(m_PBattleSubTarget);
+        m_PTargetFind->findSingleTarget(m_PBattleSubTarget, flags);
     }
 
     uint16 totalTargets = m_PTargetFind->m_targets.size();
@@ -1719,6 +1719,9 @@ void CAICharNormal::ActionMagicInterrupt()
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
 	m_LastMeleeTime += (m_Tick - m_LastActionTime);
+	
+	// small magic delay
+	m_LastCoolDown = m_Tick;
 
 	m_PSpell = NULL;
 	TransitionBack();

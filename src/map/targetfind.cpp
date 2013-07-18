@@ -54,8 +54,9 @@ void CTargetFind::reset()
   m_PMasterTarget = NULL;
 }
 
-void CTargetFind::findSingleTarget(CBattleEntity* PTarget)
+void CTargetFind::findSingleTarget(CBattleEntity* PTarget, uint8 flags)
 {
+  m_findFlags = flags;
   m_zone = m_PBattleEntity->getZone();
   m_PTarget = NULL;
   m_PRadiusAround = &PTarget->loc.p;
