@@ -58,9 +58,10 @@ enum MOBMODIFIER
   MOBMOD_SUPERLINK = 26, // super link group. Only use this in mob_spawn_mods!
   MOBMOD_SPELL_LIST = 27, // set spell list
   MOBMOD_EXP_BONUS = 28, // bonus exp (bonus / 100)
-  MOBMOD_ASSIST = 29 // mobs will assist me
+  MOBMOD_ASSIST = 29, // mobs will assist me
+  MOBMOD_SPECIAL_SKILL = 30 // give special skill
 };
 
-#define MAX_MOBMODIFIER         30
+#define MAX_MOBMODIFIER         31
 
 #endif

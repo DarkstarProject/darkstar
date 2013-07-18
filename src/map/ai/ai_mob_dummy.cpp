@@ -157,7 +157,7 @@ void CAIMobDummy::ActionRoaming()
 	if(m_PMob->m_roamFlags & ROAMFLAG_IGNORE)
 	{
 		// don't claim me if I ignore
-		m_PMob->m_OwnerID.id = 0;
+		m_PMob->m_OwnerID.clean();
 	}
 
 	// don't aggro a little bit after I just disengaged
@@ -210,7 +210,7 @@ void CAIMobDummy::ActionRoaming()
 		{
 			// do not check for despawning because i'm at home
 			m_checkDespawn = false;
-
+			
 			if(m_PSpecialSkill != NULL && TrySpecialSkill())
 			{
 				// I spawned a pet
@@ -220,17 +220,22 @@ void CAIMobDummy::ActionRoaming()
 				// cast buff
 				CastSpell(m_PMob->SpellContainer->GetBuffSpell());
 			}
+			else if((m_PMob->m_roamFlags & ROAMFLAG_AMBUSH))
+			{
+				// stay underground
+				m_PMob->HideName(true);
+				m_PMob->HideModel(true);
+				m_PMob->animationsub = 0;
+
+				m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
+			}
 			else if(m_PMob->m_roamFlags & ROAMFLAG_EVENT)
 			{
 				// allow custom event action
 				luautils::OnMobRoamAction(m_PMob);
 				m_LastActionTime = m_Tick;
-			}
-			else if(m_PMob->m_roamFlags & ROAMFLAG_AMBUSH)
-			{
-				// stay underground
-				m_PMob->HideName(true);
-				m_PMob->animationsub = 0;
+
+				m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
 			}
 			else if(m_PMob->CanRoam() && m_PPathFind->RoamAround(m_PMob->m_SpawnPoint, m_PMob->m_roamFlags))
 			{
@@ -276,13 +281,11 @@ void CAIMobDummy::ActionRoaming()
 void CAIMobDummy::ActionEngage()
 {
 	SetupEngage();
-	m_ActionType = ACTION_ATTACK;
 
 	//if (m_PMob->animationsub == 1 || m_PMob->animationsub == 3) m_PMob->animationsub = 2;  //need a better way to do this: it only applies to some mobs!
 
 	if (m_PBattleTarget != NULL)
 	{
-
 		if((m_PMob->m_roamFlags & ROAMFLAG_AMBUSH) && m_PMob->IsNameHidden())
 		{
 			// jump out at you
@@ -297,6 +300,7 @@ void CAIMobDummy::ActionEngage()
 			ActionAttack();
 		}
 
+		m_ActionType = ACTION_ATTACK;
 	}
 	else
 	{
@@ -1319,16 +1323,9 @@ void CAIMobDummy::ActionAttack()
 
 	if(TryDeaggro())
 	{
-		if(m_PBattleTarget == NULL)
-		{
-			m_ActionType = ACTION_DISENGAGE;
-			ActionDisengage();
-		}
-		else
-		{
-			ActionAttack();
-		}
-		
+		Deaggro();
+		m_ActionType = ACTION_DISENGAGE;
+		ActionDisengage();
 		return;
 	}
 
@@ -1689,13 +1686,6 @@ bool CAIMobDummy::TryDeaggro()
 	// mob should not attack another mob with no master
 	if(m_PBattleTarget != NULL && (m_PBattleTarget->objtype == TYPE_MOB || m_PBattleTarget->objtype == TYPE_PET) && m_PBattleTarget->PMaster == NULL)
 	{
-
-        if (m_PMob->m_OwnerID.id == m_PBattleTarget->id)
-        {
-            m_PMob->m_OwnerID.clean();
-        }
-
-		m_PMob->PEnmityContainer->Clear(m_PBattleTarget->id);
 		return true;
 	}
 
@@ -1705,11 +1695,6 @@ bool CAIMobDummy::TryDeaggro()
         m_PBattleTarget->animation == ANIMATION_CHOCOBO ||
 		m_PBattleTarget->loc.zone->GetID() != m_PMob->loc.zone->GetID())
 	{
-        if (m_PMob->m_OwnerID.id == m_PBattleTarget->id)
-        {
-            m_PMob->m_OwnerID.clean();
-        }
-		m_PMob->PEnmityContainer->Clear(m_PBattleTarget->id);
 		return true;
 	}
 
@@ -1737,11 +1722,6 @@ bool CAIMobDummy::TryDeaggro()
 	// I will now deaggro if I cannot detect my target
 	if(tryDetectDeaggro && !m_PMob->CanDetectTarget(m_PBattleTarget))
 	{
-		if (m_PMob->m_OwnerID.id == m_PBattleTarget->id)
-        {
-            m_PMob->m_OwnerID.clean();
-        }
-		m_PMob->PEnmityContainer->Clear(m_PBattleTarget->id);
 		return true;
 	}
 
@@ -2145,6 +2125,18 @@ bool CAIMobDummy::CanAggroTarget(CBattleEntity* PTarget)
 	}
 
 	return false;
+}
+
+void CAIMobDummy::Deaggro()
+{
+	if(m_PBattleTarget != NULL)
+	{
+		m_PMob->PEnmityContainer->Clear(m_PBattleTarget->id);
+	}
+
+    m_PMob->m_OwnerID.clean();
+    
+	m_PBattleTarget = NULL;
 }
 
 void CAIMobDummy::TransitionBack(bool skipWait)
