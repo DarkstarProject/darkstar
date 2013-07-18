@@ -28,12 +28,14 @@ function onMobDeath(mob,killer)
 	
 		local mobID = mob:getID();
 	
-    if(mobID == 16937264)then
+    if(mobID == 16937264 and alreadyReceived(killer,2) == false)then
 		killer:addTimeToDynamis(10);
 		--print("addtime 10min");
-	elseif(mobID == 16937262)then
+		addDynamisList(killer,2);
+	elseif(mobID == 16937262 and alreadyReceived(killer,5) == false)then
 	    killer:addTimeToDynamis(20);
 		--print("addtime 20min");
+		addDynamisList(killer,16);
 	end
 	
 	

@@ -67,11 +67,13 @@ function onMobDeath(mob,killer)
 	if( mobID == 16937233)then --hp
 		killer:messageBasic(024,(killer:getMaxHP()-killer:getHP()));
 	    killer:restoreHP(3000);
-	elseif(mobID == 16937239)then
+	elseif(mobID == 16937239 and alreadyReceived(killer,1) == false)then
 		killer:addTimeToDynamis(10);
+		addDynamisList(killer,1);
 		--print("addtime 10min");
-	elseif(mobID == 16937237)then
+	elseif(mobID == 16937237 and alreadyReceived(killer,5) == false)then
 	    killer:addTimeToDynamis(20);
+		addDynamisList(killer,16);
 		--print("addtime 20min");
 	end
 end;
