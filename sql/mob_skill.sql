@@ -1048,10 +1048,10 @@ INSERT INTO `mob_skill` VALUES (253,359,253,'Barbed_Crescent', 0, 7.0, 2000, 0, 
 
 -- taurus
 INSERT INTO `mob_skill` VALUES (242,240,851,'Triclip', 0, 7.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (243,240,852,'Back_Swish', 0, 7.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (243,240,852,'Back_Swish', 4, 13.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (244,240,853,'Mow', 1, 7.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (245,240,854,'Frightful_Roar', 1, 7.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (246,240,855,'Mortal_Ray', 4, 10.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (245,240,854,'Frightful_Roar', 1, 12.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (246,240,855,'Mortal_Ray', 4, 10.0, 2000, 2500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (247,240,856,'Unblessed_Armor', 0, 7.0, 2000, 1500, 1, 0, 0);
 -- cluster
 INSERT INTO `mob_skill` VALUES (311,68,866,'Sling_Bomb', 0, 7.0, 2000, 1500, 4, 0, 0);

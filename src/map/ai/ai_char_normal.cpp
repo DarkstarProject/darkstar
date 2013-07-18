@@ -1720,8 +1720,6 @@ void CAICharNormal::ActionMagicInterrupt()
 
 	m_LastMeleeTime += (m_Tick - m_LastActionTime);
 
-    m_LastCoolDown = m_Tick;
-
 	m_PSpell = NULL;
 	TransitionBack();
 }

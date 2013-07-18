@@ -52,6 +52,7 @@ function onSpellCast(caster,target,spell)
 		-- remove doom
 		final = EFFECT_DOOM;
 		target:delStatusEffect(EFFECT_DOOM);
+		spell:setMsg(83);
 		spell:setMsg(359);
 	end
 	return final;
