@@ -56,6 +56,7 @@
 #include "../packets/auction_house.h"
 #include "../packets/char_sync.h"
 #include "../packets/char_update.h"
+#include "../packets/entity_update.h"
 #include "../packets/char.h"
 #include "../packets/menu_raisetractor.h"
 #include "../packets/message_basic.h"
@@ -105,7 +106,7 @@ int32 init()
 	lua_register(LuaHandle,"SetServerVariable",luautils::SetServerVariable);
     lua_register(LuaHandle,"SendUncnown0x39Packet",luautils::SendUncnown0x39Packet);
 	lua_register(LuaHandle,"UpdateServerMessage",luautils::UpdateServerMessage);
-
+	lua_register(LuaHandle,"UpdateTreasureSpawnPoint",luautils::UpdateTreasureSpawnPoint);
 	lua_register(LuaHandle,"GetMobRespawnTime",luautils::GetMobRespawnTime);
 	lua_register(LuaHandle,"DeterMob",luautils::DeterMob);
 	lua_register(LuaHandle,"UpdateNMSpawnPoint",luautils::UpdateNMSpawnPoint);
@@ -3189,6 +3190,40 @@ int32 SetDropRate(lua_State *L)
 	}
 
 	return 0;
+}
+
+/******************************************************************************
+*                                                                             *
+* Update the Treasure spawn point to a new point, retrieved from the database *
+*                                                                             *
+*******************************************************************************/
+int32 UpdateTreasureSpawnPoint(lua_State* L)
+{
+	// TODO: check respawn time
+	if ( !lua_isnil(L,1) && lua_isnumber(L,1) ) {
+		uint32 npcid = (uint32)lua_tointeger(L,1);
+		
+		uint32 OpenTime = 300000; // 5 min respawn
+
+		if ( !lua_isnil(L,2) && lua_isboolean(L,2) ) {
+			if ( lua_toboolean(L,2) == 1 ) {
+				OpenTime = 3000; // respawn immediately (3 sec)
+			}
+		}
+
+		zoneutils::UpdateTreasureSpawnPoint(npcid, OpenTime);
+
+		CBaseEntity* PNpc = zoneutils::GetEntity(npcid, TYPE_NPC);
+		if(PNpc)
+		{
+			PNpc->status = STATUS_DISAPPEAR;
+			PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc, ENTITY_DESPAWN));
+		}
+
+		return 0;
+	}
+	lua_pushnil(L);
+	return 1;
 }
 
 int32 getCorsairRollEffect(lua_State* L)

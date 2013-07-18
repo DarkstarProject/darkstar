@@ -512,6 +512,16 @@ inline int32 CLuaBaseEntity::getZPos(lua_State *L)
 	return 1;
 }
 
+inline int32 CLuaBaseEntity::getRotPos(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+	lua_pushnumber(L, m_PBaseEntity->GetRotPos());
+	return 1;
+}
+
+//======================================================//
+
 //======================================================//
 
 inline int32 CLuaBaseEntity::getRace(lua_State *L)
@@ -7227,6 +7237,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getXPos),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getYPos),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZPos),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRotPos),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZone),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZoneName),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCurrentRegion),

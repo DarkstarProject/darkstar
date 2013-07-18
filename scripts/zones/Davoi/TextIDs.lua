@@ -8,6 +8,15 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
          ITEMS_OBTAINED = 6384; -- You obtain <param2 number> <param1 item>
  FISHING_MESSAGE_OFFSET = 7163; -- You can't fish here
 
+-- Treasure Coffer/Chest Dialog
+CHEST_UNLOCKED = 7416; -- You unlock the chest!
+    CHEST_FAIL = 7417; -- Fails to open the chest. 
+    CHEST_TRAP = 7418; -- The chest was trapped! 
+    CHEST_WEAK = 7419; -- You cannot open the chest when you are in a weakened state.
+   CHEST_MIMIC = 7420; -- The chest was a mimic! 
+  CHEST_MOOGLE = 7421; -- You cannot open the chest while participating in the moogle event.
+CHEST_ILLUSION = 7422; -- The chest was but an illusion...
+  CHEST_LOCKED = 7423; -- The chest appears to be locked.
 
 -- General Text
             YOU_SEE_NOTHING = 7354; -- There is nothing here.

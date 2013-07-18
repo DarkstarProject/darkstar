@@ -24,6 +24,7 @@
 #include "../common/showmsg.h"
 
 #include <string.h>
+#include "../common/timer.h"
 
 #include "ai/ai_mob_dummy.h"
 #include "ai/ai_npc_dummy.h"
@@ -37,6 +38,7 @@
 #include "zoneutils.h"
 #include "mobutils.h"
 #include "mob_spell_list.h"
+#include "packets/entity_update.h"
 
 
 CZone* g_PZoneList[MAX_ZONEID];	// глобальный массив указателей на игровые зоны
@@ -57,6 +59,30 @@ void TOTDCharnge(TIMETYPE TOTD)
 	for (uint16 ZoneID = 0; ZoneID < MAX_ZONEID; ZoneID++)
 	{
 		g_PZoneList[ZoneID]->TOTDChange(TOTD);
+	}
+}
+
+void UpdateTreasureSpawnPoint(uint32 npcid, uint32 respawnTime)
+{
+	CBaseEntity* PNpc = zoneutils::GetEntity(npcid, TYPE_NPC);
+
+	if (PNpc != NULL) {	
+
+		int32 ret = Sql_Query(SqlHandle, "SELECT pos, pos_rot, pos_x, pos_y, pos_z FROM `treasure_spawn_points` WHERE npcid=%u ORDER BY RAND() LIMIT 1", npcid);
+
+		if ( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS) {	
+			PNpc->loc.p.rotation = Sql_GetIntData(SqlHandle,1);
+			PNpc->loc.p.x = Sql_GetFloatData(SqlHandle,2);
+			PNpc->loc.p.y = Sql_GetFloatData(SqlHandle,3);
+			PNpc->loc.p.z = Sql_GetFloatData(SqlHandle,4);
+			// ShowDebug(CL_YELLOW"zoneutils::UpdateTreasureSpawnPoint: After %i - %d (%f, %f, %f), %d\n" CL_RESET, Sql_GetIntData(SqlHandle,0), PNpc->id, PNpc->loc.p.x,PNpc->loc.p.y,PNpc->loc.p.z, PNpc->loc.zone->GetID());
+		} else {
+			ShowDebug(CL_RED"zonetuils::UpdateTreasureSpawnPoint: SQL error or treasure <%u> not found in treasurespawnpoints table.\n" CL_RESET, npcid);
+		}
+
+		CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("reappear_npc", gettick()+respawnTime, PNpc, CTaskMgr::TASK_ONCE, reappear_npc));
+	} else {
+		ShowDebug(CL_RED"zonetuils::UpdateTreasureSpawnPoint: treasure <%u> not found\n" CL_RESET, npcid);
 	}
 }
 

@@ -7,6 +7,16 @@ ITEM_CANNOT_BE_OBTAINED = 6534; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6540; -- Obtained key item: <keyitem>
  FISHING_MESSAGE_OFFSET = 7163; -- You can't fish here
 
+-- Treasure Coffer/Chest Dialog
+CHEST_UNLOCKED = 7338; -- You unlock the chest!
+    CHEST_FAIL = 7339; -- Fails to open the chest. 
+    CHEST_TRAP = 7340; -- The chest was trapped! 
+    CHEST_WEAK = 7341; -- You cannot open the chest when you are in a weakened state.
+   CHEST_MIMIC = 7342; -- The chest was a mimic! 
+  CHEST_MOOGLE = 7343; -- You cannot open the chest while participating in the moogle event.
+CHEST_ILLUSION = 7344; -- The chest was but an illusion...
+  CHEST_LOCKED = 7345; -- The chest appears to be locked.
+
 -- Quest Dialog
   A_SQUIRE_S_TEST_II_DIALOG_I = 7303; -- You place your hands into the pool.
  A_SQUIRE_S_TEST_II_DIALOG_II = 7306; -- The dew from the stalactite slips through your fingers.

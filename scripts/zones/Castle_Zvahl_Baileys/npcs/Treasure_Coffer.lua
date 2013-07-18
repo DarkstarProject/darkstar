@@ -49,7 +49,7 @@ function onTrade(player,npc,trade)
 		end
 		--------------------------------------
 		
-		local  pack = openChance(player,npc,trade,TreasureType,TreasureLvL,TreasureMinLvL,questItemNeeded);
+		local pack = openChance(player,npc,trade,TreasureType,TreasureLvL,TreasureMinLvL,questItemNeeded);
 		local  success = 0;
 		if(pack[2] ~= nil) then
 			player:messageSpecial(pack[2]);
@@ -79,7 +79,7 @@ function onTrade(player,npc,trade)
 				else
 					player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME)); 
 					
-					local loot = chestLoot(zone,npc);
+					local loot = cofferLoot(zone,npc);
 					-- print("loot array: "); -- debug
 					-- print("[1]", loot[1]); -- debug
 					-- print("[2]", loot[2]); -- debug
@@ -93,6 +93,11 @@ function onTrade(player,npc,trade)
 						player:messageSpecial(ITEM_OBTAINED,loot[2]);
 					end
 				end
+				UpdateTreasureSpawnPoint(npc:getID());
+			else
+				player:messageSpecial(CHEST_MIMIC);
+				spawnMimic(zone,npc,player);
+				UpdateTreasureSpawnPoint(npc:getID(), true);
 			end
 		end
 	end

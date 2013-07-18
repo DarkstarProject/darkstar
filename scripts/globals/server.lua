@@ -32,6 +32,9 @@ function onServerStart()
   
   -- Timed Spawns
   SetTimedSpawns();
+
+  -- Treasure Spawns;
+  SetTreasureSpawns();
   
   -- Spawns Silk Caterpillar (temporary until someone implements a way to make it spawn properly)
   SpawnMob(17227782,300,660);
@@ -148,4 +151,75 @@ function SetTimedSpawns()
     i = i + 1;
   end
 
+end;
+
+----------------------------------
+-- SetTreasureSpawns
+----------------------------------
+
+function SetTreasureSpawns()
+   local chests  = 
+   {
+       16814554,
+       16822524,
+       16892176,
+       17355005,
+       17359045,
+       17363363,
+       17371601,
+       17379835,
+       17388020,
+       17396203,
+       17420669,
+       17424556,
+       17436990,
+       17441081,
+       17498609,
+       17555947,
+       17559917,
+       17563907,
+       17568185,
+       17572283,
+       17576350,
+       17580396,
+       17584468,
+       17588766,
+       17596802,
+       17613219,
+       17649890
+   }
+
+   local coffers  = 
+   {
+       16826620,
+       17310019,
+       17379836,
+       17391842,
+       17396204,
+       17404383,
+       17428979,
+       17433071,
+       17436991,
+       17469828,
+       17490294,
+       17498610,
+       17502692,
+       17576351,
+       17584469,
+       17596803,
+       17617214,
+       17629729
+   }
+
+   i = 1;
+   while i <= (table.getn(chests)) do
+       UpdateTreasureSpawnPoint(chests[i], true);
+       i = i + 1;
+   end
+
+   i = 1;
+   while i <= (table.getn(coffers)) do
+       UpdateTreasureSpawnPoint(coffers[i], true);
+       i = i + 1;
+   end
 end;

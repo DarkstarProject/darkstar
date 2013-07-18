@@ -74,6 +74,8 @@ function onTrade(player,npc,trade)
 						player:messageSpecial(ITEM_OBTAINED,loot[2]);
 					end
 				end
+				
+				UpdateTreasureSpawnPoint(npc:getID());
 			end
 		end
 	end

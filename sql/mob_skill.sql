@@ -977,6 +977,8 @@ INSERT INTO `mob_skill` VALUES (17,279,17,'Claw_Cyclone', 4, 15.0, 2000, 1500, 4
 
 -- offsets shift some more.. (tpid - 72 - 89 (-161)
 
+-- mimic
+INSERT INTO `mob_skill` VALUES (332,183,107,'Death_Trap', 1, 30.0, 2000, 2000, 4, 0, 0);
 
 -- bugbear
 INSERT INTO `mob_skill` VALUES (105,59,828,'Earth_Shock', 1, 10.0, 2000, 1500, 4, 0, 0);

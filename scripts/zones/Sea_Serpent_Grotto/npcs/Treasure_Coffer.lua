@@ -86,20 +86,25 @@ function onTrade(player,npc,trade)
 				else
 					player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME)); 
 					
-					local loot = chestLoot(zone,npc);
+					local loot = cofferLoot(zone,npc);
 					-- print("loot array: "); -- debug
 					-- print("[1]", loot[1]); -- debug
 					-- print("[2]", loot[2]); -- debug
 					
 					if(loot[1]=="gil") then
-						player:addGil(loot[2]);
-						player:messageSpecial(GIL_OBTAINED,loot[2]);
+						player:addGil(loot[2]*GIL_RATE);
+						player:messageSpecial(GIL_OBTAINED,loot[2]*GIL_RATE);
 					else
 						-- Item
 						player:addItem(loot[2]);
 						player:messageSpecial(ITEM_OBTAINED,loot[2]);
 					end
 				end
+				UpdateTreasureSpawnPoint(npc:getID());
+			else
+				player:messageSpecial(CHEST_MIMIC);
+				spawnMimic(zone,npc,player);
+				UpdateTreasureSpawnPoint(npc:getID(), true);
 			end
 		end
 	end

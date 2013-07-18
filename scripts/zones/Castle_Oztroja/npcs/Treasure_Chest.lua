@@ -3,6 +3,7 @@
 -- NPC:  Treasure Chest
 -- Involved In Quest: Scattered into Shadow
 -- @pos 7.378 -16.293 -193.590 151
+-- @zone 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
@@ -33,7 +34,7 @@ function onTrade(player,npc,trade)
 	if((trade:hasItemQty(1035,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
 		
 		local zone = player:getZone();
-		-- IMPORTANT ITEM: AF1 BST QUEST -----------
+		-- IMPORTANT ITEM: AF1 BST QUEST Beast collar  -----------
 		if(player:getQuestStatus(JEUNO,SCATTERED_INTO_SHADOW) == QUEST_ACCEPTED and 
 		   player:getVar("scatIntoShadowCS") == 1 and player:hasItem(13121) == false) then 
 			questItemNeeded = 1;
@@ -76,6 +77,7 @@ function onTrade(player,npc,trade)
 						player:messageSpecial(ITEM_OBTAINED,loot[2]);
 					end
 				end
+				UpdateTreasureSpawnPoint(npc:getID());
 			end
 		end
 	end

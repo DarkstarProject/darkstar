@@ -53,14 +53,11 @@ function onTrade(player,npc,trade)
 		local success = 0;
 		if(pack[2] ~= nil) then
 			player:messageSpecial(pack[2]);
-			success = pack[1];
-		else
-			success = pack[1];
 		end
+		success = pack[1];
 		
 		if(success ~= -2) then
 			player:tradeComplete();
-			
 			if(math.random() <= success) then
 				-- Succeded to open the coffer
 				player:messageSpecial(CHEST_UNLOCKED);
@@ -79,7 +76,7 @@ function onTrade(player,npc,trade)
 				else
 					player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME)); 
 					
-					local loot = chestLoot(zone,npc);
+					local loot = cofferLoot(zone,npc);
 					-- print("loot array: "); -- debug
 					-- print("[1]", loot[1]); -- debug
 					-- print("[2]", loot[2]); -- debug
@@ -93,6 +90,11 @@ function onTrade(player,npc,trade)
 						player:messageSpecial(ITEM_OBTAINED,loot[2]);
 					end
 				end
+				UpdateTreasureSpawnPoint(npc:getID());
+			else
+				player:messageSpecial(CHEST_MIMIC);
+				spawnMimic(zone,npc,player);
+				UpdateTreasureSpawnPoint(npc:getID(), true);
 			end
 		end
 	end
