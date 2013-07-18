@@ -17,3 +17,5 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
  LIGHTNING_LAMP =7179;
  LIGHT_LAMP =7180;
  DARK_LAMP =7181;
+
+ NOTHING_OUT_HERE=7281 -- There is nothing our of the ordinary here.

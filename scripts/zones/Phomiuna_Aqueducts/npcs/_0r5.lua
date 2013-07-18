@@ -25,7 +25,7 @@ function onTrigger(player,npc)
 	if(player:getCurrentMission(COP) == DISTANT_BELIEFS and player:getVar("PromathiaStatus") == 2)then
         player:startEvent(0x0024);
     else
-		return -1;
+    	player:messageSpecial(NOTHING_OUT_HERE);
     end
 	
 end; 
