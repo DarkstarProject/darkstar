@@ -107,6 +107,7 @@ end;
 function onMobDeath(mob,killer)
   if(killer:hasKeyItem(DYNAMIS_VALKURM_SLIVER ) == false)then 
        killer:addKeyItem(DYNAMIS_VALKURM_SLIVER);
+	   killer:messageSpecial(KEYITEM_OBTAINED,DYNAMIS_VALKURM_SLIVER);
   end
        killer:addTitle(DYNAMISVALKURM_INTERLOPER);
 end;
