@@ -85,6 +85,7 @@ namespace luautils
 	int32 StartElevator(lua_State*); 
 	int32 GetServerVariable(lua_State*);
 	int32 SetServerVariable(lua_State *);
+	int32 clearVarFromAll(lua_State *);											// Deletes a specific player variable from all players
 
     int32 GetTextIDVariable(uint16 ZoneID, const char* variable);               // загружаем значение переменной TextID указанной зоны
 

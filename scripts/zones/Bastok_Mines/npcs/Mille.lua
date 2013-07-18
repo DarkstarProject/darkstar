@@ -1,9 +1,10 @@
 -----------------------------------
---	Area: Bastok_Mines
---	NPC: Mille
---	Only sells when Bastok controlls Norvallen Region
+--      Area: Bastok_Mines
+--      NPC: Mille
+--      Only sells when Bastok controlls Norvallen Region
 -----------------------------------
 
+require("scripts/globals/harvest_festivals");
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
@@ -14,6 +15,7 @@ require("scripts/zones/Bastok_Mines/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	onHalloweenTrade(player,trade,npc)
 end;
 
 -----------------------------------
@@ -24,19 +26,19 @@ function onTrigger(player,npc)
 
 RegionOwner = GetRegionOwner(NORVALLEN);
 
-if (RegionOwner ~= BASTOK) then 
-	player:showText(npc,MILLE_CLOSED_DIALOG);
+if (RegionOwner ~= BASTOK) then
+        player:showText(npc,MILLE_CLOSED_DIALOG);
 else
-	player:showText(npc,MILLE_OPEN_DIALOG);
-	
-	stock = {0x02b0,18,	--Arrowwood Log
-			 0x026d,25,	--Crying Mustard
-			 0x026a,25,	--Blue Peas
-			 0x02ba,88}	--Ash Log
+        player:showText(npc,MILLE_OPEN_DIALOG);
+       
+        stock = {0x02b0,18,     --Arrowwood Log
+                         0x026d,25,     --Crying Mustard
+                         0x026a,25,     --Blue Peas
+                         0x02ba,88}     --Ash Log
  
 showShop(player,BASTOK,stock);
 end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

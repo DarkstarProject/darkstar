@@ -104,6 +104,7 @@ int32 init()
 	lua_register(LuaHandle,"RunElevator",luautils::StartElevator);
 	lua_register(LuaHandle,"GetServerVariable",luautils::GetServerVariable);
 	lua_register(LuaHandle,"SetServerVariable",luautils::SetServerVariable);
+	lua_register(LuaHandle,"clearVarFromAll",luautils::clearVarFromAll);
     lua_register(LuaHandle,"SendUncnown0x39Packet",luautils::SendUncnown0x39Packet);
 	lua_register(LuaHandle,"UpdateServerMessage",luautils::UpdateServerMessage);
 	lua_register(LuaHandle,"UpdateTreasureSpawnPoint",luautils::UpdateTreasureSpawnPoint);
@@ -2776,6 +2777,18 @@ int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbilit
         return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? lua_tonumber(LuaHandle,-1) : 0);
     }
 
+	return 0;
+}
+
+int32 clearVarFromAll(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isstring(L, -1));
+
+	const int8* varname = lua_tostring(L, -1);
+
+	Sql_Query(SqlHandle, "DELETE FROM char_vars WHERE varname = '%s';", varname);
+		
+	lua_pushnil(L);
 	return 0;
 }
 

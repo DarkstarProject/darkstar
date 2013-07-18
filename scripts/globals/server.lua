@@ -4,6 +4,7 @@
 -- 
 -----------------------------------
 
+require("scripts/globals/harvest_festivals");
 require("scripts/globals/conquest");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
@@ -25,6 +26,12 @@ function onServerStart()
     if (FIELD_MANUALS == 1) then
         SetFieldManual();
     end
+
+	-- Harvest Festival
+	if(isHalloweenEnabled() ~= 0) then
+		applyHalloweenNpcCostumes()
+	end
+	
 	SetRegionalConquestOverseers()
   
   -- Charybdis PH alternates, remove one

@@ -1,13 +1,14 @@
 -----------------------------------
---	Area: Southern San d'Oria
---	NPC: Apairemant
---	Only sells when San d'Oria controls Gustaberg Region
--- 	@zone 230 
---	@pos 72 2 0
+--      Area: Southern San d'Oria
+--      NPC: Apairemant
+--      Only sells when San d'Oria controls Gustaberg Region
+--      @zone 230
+--      @pos 72 2 0
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/harvest_festivals");
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
@@ -19,15 +20,14 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
--- "Flyers for Regine" conditional script
-FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
-
-	if (FlyerForRegine == 1) then
-		count = trade:getItemCount();
-		MagicFlyer = trade:hasItemQty(532,1);
-		if (MagicFlyer == true and count == 1) then
-			player:messageSpecial(FLYER_REFUSED);
+	
+	-- "Flyers for Regine" conditional script
+	if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == 1) then
+		if (trade:hasItemQty(532,1) == true and trade:getItemCount() == 1) then
+				player:messageSpecial(FLYER_REFUSED);
 		end
+	else
+		onHalloweenTrade(player,trade,npc);
 	end
 end;
 
@@ -38,20 +38,20 @@ end;
 function onTrigger(player,npc)
 	RegionOwner = GetRegionOwner(GUSTABERG);
 
-	if (RegionOwner ~= SANDORIA) then 
-		player:showText(npc,APAIREMANT_CLOSED_DIALOG);
+	if (RegionOwner ~= SANDORIA) then
+			player:showText(npc,APAIREMANT_CLOSED_DIALOG);
 	else
-		player:showText(npc,APAIREMANT_OPEN_DIALOG);
-		
-		stock = {0x0454,703,	-- Sulfur
-				 0x026b,43,		-- Popoto
-				 0x0263,36,		-- Rye Flour
-				 0x1124,40}		-- Eggplant
-				  
-		showShop(player,SANDORIA,stock);
+			player:showText(npc,APAIREMANT_OPEN_DIALOG);
+		   
+			stock = {0x0454,703,    -- Sulfur
+							 0x026b,43,             -- Popoto
+							 0x0263,36,             -- Rye Flour
+							 0x1124,40}             -- Eggplant
+							 
+			showShop(player,SANDORIA,stock);
 	end
 
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

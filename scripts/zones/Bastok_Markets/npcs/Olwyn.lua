@@ -4,6 +4,7 @@
 -- Standard Merchant NPC
 -----------------------------------
 
+require("scripts/globals/harvest_festivals");
 require("scripts/globals/shop");
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 require("scripts/zones/Bastok_Markets/TextIDs");
@@ -13,26 +14,27 @@ require("scripts/zones/Bastok_Markets/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+	onHalloweenTrade(player,trade,npc)
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+       
 player:showText(npc,OLWYN_SHOP_DIALOG);
 
-stock = {0x1020,445,1,		-- Ether
+stock = {0x1020,445,1,          -- Ether
 
-	 0x1037,736,2,		-- Echo Drops
-	 0x1010,837,2,		-- Potion
+         0x1037,736,2,          -- Echo Drops
+         0x1010,837,2,          -- Potion
 
-	 0x1036,2387,3,		-- Eye Drops
-	 0x1034,290,3}		-- Antidote
+         0x1036,2387,3,         -- Eye Drops
+         0x1034,290,3}          -- Antidote
  
 showNationShop(player, BASTOK, stock);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -51,6 +53,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-

@@ -1,10 +1,11 @@
 -----------------------------------
---	Area: Windurst Waters
---	NPC:  Ahyeekih
--- 	Only sells when Windurst controls Kolshushu
---	Working 100%
+--      Area: Windurst Waters
+--      NPC:  Ahyeekih
+--      Only sells when Windurst controls Kolshushu
+--      Working 100%
 -----------------------------------
 
+require("scripts/globals/harvest_festivals")
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
@@ -15,6 +16,7 @@ require("scripts/zones/Windurst_Waters/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	onHalloweenTrade(player,trade,npc);
 end;
 
 -----------------------------------
@@ -25,20 +27,20 @@ function onTrigger(player,npc)
 
 RegionOwner = GetRegionOwner(KOLSHUSHU);
 
-if (RegionOwner ~= WINDURST) then 
-	player:showText(npc,AHYEEKIH_CLOSED_DIALOG);
+if (RegionOwner ~= WINDURST) then
+        player:showText(npc,AHYEEKIH_CLOSED_DIALOG);
 else
-	player:showText(npc,AHYEEKIH_OPEN_DIALOG);
-	
-	stock = {0x1197,184,  --Buburimu Grape
-			 0x0460,1620, --Casablanca
-			 0x1107,220,  --Dhalmel Meat
-			 0x0266,72,   --Mhaura Garlic
-			 0x115d,40}   --Yagudo Cherry
+        player:showText(npc,AHYEEKIH_OPEN_DIALOG);
+       
+        stock = {0x1197,184,  --Buburimu Grape
+                         0x0460,1620, --Casablanca
+                         0x1107,220,  --Dhalmel Meat
+                         0x0266,72,   --Mhaura Garlic
+                         0x115d,40}   --Yagudo Cherry
 
 showShop(player,WINDURST,stock);
 end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

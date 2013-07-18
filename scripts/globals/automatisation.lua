@@ -2,6 +2,8 @@
 -- Author: Ezekyel
 -- this function is used for npcs that change position every vanadiel game day
 -----------------------------------
+require("scripts/globals/harvest_festivals");
+-----------------------------------
 function OnGameDayAutomatisation()
 	
 	-- Storage Hole in Davoi
@@ -64,6 +66,13 @@ function OnGameDayAutomatisation()
 	if (ToD <= os.time(t)) then
 		DeterMob(16806215, false);
 	end
+	
+	-- Removes daily the bit mask that tracks the treats traded for Harvest Festival.
+	if (isHalloweenEnabled() ~= 0) then
+		clearVarFromAll("harvestFestTreats");
+		clearVarFromAll("harvestFestTreats2");
+	end
+	
 end;
 
 function OnGameHourAutomatisation()
