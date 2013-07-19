@@ -14,6 +14,7 @@ require("scripts/zones/Dynamis-Valkurm/TextIDs");
 -----------------------------------
 
 function onMobSpawn(mob)
+	mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 end;
 
 -----------------------------------
@@ -36,7 +37,7 @@ function onMobEngaged(mob,target)
 				--printf("Serjeant_Tombstone => mob %u \n",mobNBR);			
 				   if(mobNBR ~= nil) then
 						-- Spawn Mob
-						SpawnMob(mobNBR):updateEnmity(target);
+						SpawnMob(mobNBR):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 						GetMobByID(mobNBR):setPos(X,Y,Z);
 						GetMobByID(mobNBR):setSpawn(X,Y,Z);
 						-- Spawn Pet for BST, DRG, and SMN
@@ -46,7 +47,7 @@ function onMobEngaged(mob,target)
 								--	printf("mobjob %u \n",MJob);
 					  if(MJob == 9 or MJob == 14 or MJob == 15) then
 						-- Spawn Pet for BST , DRG , and SMN  
-						SpawnMob(mobNBR + 1):updateEnmity(target);
+						SpawnMob(mobNBR + 1):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 						GetMobByID(mobNBR + 1):setPos(X,Y,Z);
 						GetMobByID(mobNBR + 1):setSpawn(X,Y,Z);
 					  end		
