@@ -28,7 +28,10 @@ function onTrigger(player,npc)
 	
 	pFame = player:getFameLevel(BASTOK);
 	
-	if (pFame < 2) then
+	if(player:needToZone()) then
+		-- chat about my work
+		player:startEvent(127);
+	elseif (pFame < 2) then
 		MomTheAdventurer = player:getQuestStatus(BASTOK,MOM_THE_ADVENTURER);
 		questStatus = player:getVar("MomTheAdventurer_Event");
 
@@ -89,7 +92,7 @@ function onEventFinish(player,csid,option)
 		else
 			gilReward = 200;
 		end
-		
+		player:needToZone(true);
 		player:delKeyItem(LETTER_FROM_ROH_LATTEH);
 		player:addTitle(RINGBEARER);
 		player:addGil(GIL_RATE*gilReward);
