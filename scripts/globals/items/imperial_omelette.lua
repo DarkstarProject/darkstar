@@ -1,3 +1,4 @@
+
 -----------------------------------------
 -- ID: 4331
 -- Item: imperial_omelette
@@ -12,6 +13,10 @@
 -- Attack Cap 70
 -- Ranged ATT % 22
 -- Ranged ATT Cap 70
+-----------------------------------------
+-- Elvaan Stats
+-- Strength 6
+-- Health 20
 -- Elvaan Stats
 -- Strength 6
 -- Health 20
@@ -23,7 +28,6 @@
 -- Attack Cap 85
 -- Ranged ATT % 22
 -- Ranged ATT Cap 85
-
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -98,7 +102,7 @@ function onEffectLose(target,effect)
 		target:delMod(MOD_DEX, 2);
 		target:delMod(MOD_INT, -2);
 		target:delMod(MOD_MND, 5);
-        target:delMod(MOD_CHR, 4);
+		target:delMod(MOD_CHR, 4);
 		target:delMod(MOD_FOOD_ATTP, 22);
 		target:delMod(MOD_FOOD_ATT_CAP, 85);
 		target:delMod(MOD_FOOD_RATTP, 22);

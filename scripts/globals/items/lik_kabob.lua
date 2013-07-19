@@ -1,7 +1,7 @@
 -----------------------------------------
 -- ID: 5647
--- Item: lik_kabob
--- Food Effect: 30Min, All Races
+-- Item: Lik Kabob
+-- Food Effect: 30 Min, All Races
 -----------------------------------------
 -- Dexterity 3
 -- Attack 7

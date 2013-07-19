@@ -59,7 +59,7 @@ enum MOBMODIFIER
   MOBMOD_SPELL_LIST = 27, // set spell list
   MOBMOD_EXP_BONUS = 28, // bonus exp (bonus / 100)
   MOBMOD_ASSIST = 29, // mobs will assist me
-  MOBMOD_SPECIAL_SKILL = 30 // give special skill
+  MOBMOD_SPECIAL_SKILL = 30 // give special skill -- not impl
 };
 
 #define MAX_MOBMODIFIER         31

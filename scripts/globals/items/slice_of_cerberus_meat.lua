@@ -14,13 +14,18 @@ require("scripts/globals/status");
 -----------------------------------------
 -- OnItemCheck
 -----------------------------------------
-
 function onItemCheck(target)
 local result = 0;
+	if (target:getRace() ~= 8) then
+		result = 247;
+	end
+	if(target:getMod(MOD_EAT_RAW_MEAT) == 1) then
+		result = 0;
+	end
 	if (target:hasStatusEffect(EFFECT_FOOD) == true) then
 		result = 246;
 	end
-return result;
+	return result;
 end;
 
 -----------------------------------------

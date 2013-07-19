@@ -848,6 +848,9 @@ MOD_STEP_ACCURACY       = 0x193
 MOD_REGEN_DOWN      	 = 0x194			-- poison
 MOD_REFRESH_DOWN		 = 0x195			-- plague, reduce mp
 MOD_REGAIN_DOWN			 = 0x196			-- plague, reduce tp
+
+MOD_EAT_RAW_FISH			  = 409
+MOD_EAT_RAW_MEAT			  = 410
 -----------------------------------
 -- Merit Definitions
 -----------------------------------
@@ -1424,3 +1427,4 @@ MOBMOD_SUPERLINK = 26
 MOBMOD_SPELL_LIST = 27
 MOBMOD_EXP_BONUS = 28
 MOBMOD_ASSIST = 29
+MOBMOD_SPECIAL_SKILL = 30

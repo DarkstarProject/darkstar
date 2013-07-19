@@ -19,10 +19,14 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
+	local body = caster:getEquipID(SLOT_BODY);
 	if(target:hasStatusEffect(EFFECT_REGEN) == false) then
-		target:addStatusEffect(EFFECT_REGEN,1,3,180);
+		if (body == 14520) then -- Dream Robe +1
+			target:addStatusEffect(EFFECT_REGEN,1,3,150);
+		else
+			target:addStatusEffect(EFFECT_REGEN,1,3,120);
+		end
 	else
 		target:messageBasic(423);
 	end
 end;
-

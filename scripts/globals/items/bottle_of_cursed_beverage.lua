@@ -1,7 +1,7 @@
 -----------------------------------------
 -- ID: 4157
 -- Item: Cursed Beverage
--- Item Effect: Removes 15 HP over 900 seconds
+-- Item Effect: Removes 25 HP over 180 seconds
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -20,7 +20,7 @@ end;
 
 function onItemUse(target)
     if(target:hasStatusEffect(EFFECT_POISON) == false) then
-        target:addStatusEffect(EFFECT_POISON,15,3,180);
+        target:addStatusEffect(EFFECT_POISON,25,3,180);
     else
         target:messageBasic(423);
     end
