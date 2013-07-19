@@ -693,7 +693,7 @@
       <Filter>Header Files\ai</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\blue_spell.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1286,7 +1286,7 @@
       <Filter>Source Files\ai</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\blue_spell.cpp">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
