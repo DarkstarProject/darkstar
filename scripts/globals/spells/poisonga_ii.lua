@@ -31,7 +31,7 @@ function onSpellCast(caster,target,spell)
         local bonus = AffinityBonus(caster, spell);
         local resist = applyResistance(caster,spell,target,dINT,ENFEEBLING_MAGIC_SKILL,bonus);
         if(resist == 1 or resist == 0.5) then -- effect taken
-            duration = duration / resist;
+            duration = duration * resist;
 
             if(target:addStatusEffect(effect,power,3,duration)) then
                 spell:setMsg(236);

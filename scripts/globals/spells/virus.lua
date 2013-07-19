@@ -1,5 +1,5 @@
 -----------------------------------------
---  Spell: Poisonga
+--	Spell: Virus
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -14,26 +14,22 @@ function OnMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	local effect = EFFECT_POISON;
-
-	if(math.random(0,100) >= target:getMod(MOD_POISONRES)) then
+	local effect = EFFECT_PLAGUE;
+	
+    if(math.random(0,100) >= target:getMod(MOD_VIRUSRES)) then
 		local duration = 60;
 
 		local pINT = caster:getStat(MOD_INT);
 		local mINT = target:getStat(MOD_INT);
 
 		local dINT = (pINT - mINT);
-		local power = caster:getSkillLevel(ENFEEBLING_MAGIC_SKILL) / 20 + 1;
-		if power > 6 then
-			power = 6;
-		end
-
+		
         local bonus = AffinityBonus(caster, spell);
         local resist = applyResistance(caster,spell,target,dINT,ENFEEBLING_MAGIC_SKILL,bonus);
-        if(resist == 1 or resist == 0.5) then -- effect taken
+        if(resist >= 0.25) then -- effect taken
             duration = duration * resist;
 
-            if(target:addStatusEffect(effect,power,3,duration)) then
+            if(target:addStatusEffect(effect,5,3,duration)) then
                 spell:setMsg(236);
             else
                 spell:setMsg(75);
