@@ -215,6 +215,7 @@
     <ClInclude Include="..\..\src\map\battleentity.h" />
     <ClInclude Include="..\..\src\map\battleutils.h" />
     <ClInclude Include="..\..\src\map\blueutils.h" />
+    <ClInclude Include="..\..\src\map\blue_spell.h" />
     <ClInclude Include="..\..\src\map\charentity.h" />
     <ClInclude Include="..\..\src\map\charutils.h" />
     <ClInclude Include="..\..\src\map\commandhandler.h" />
@@ -415,6 +416,7 @@
     <ClCompile Include="..\..\src\map\battleentity.cpp" />
     <ClCompile Include="..\..\src\map\battleutils.cpp" />
     <ClCompile Include="..\..\src\map\blueutils.cpp" />
+    <ClCompile Include="..\..\src\map\blue_spell.cpp" />
     <ClCompile Include="..\..\src\map\charentity.cpp" />
     <ClCompile Include="..\..\src\map\charutils.cpp" />
     <ClCompile Include="..\..\src\map\commandhandler.cpp" />

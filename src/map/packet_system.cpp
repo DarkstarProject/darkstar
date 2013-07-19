@@ -4298,7 +4298,7 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, int8* dat
 					if ( RBUFB(data,i) > 0 ) {
 						spellInQuestion = RBUFB(data,i);
 						spellIndex = i - 0x0C;
-						CSpell* spell = spell::GetSpell(spellInQuestion + 0x200); // the spells in this packet are offsetted by 0x200 from their spell IDs.
+						CBlueSpell* spell = (CBlueSpell*)spell::GetSpell(spellInQuestion + 0x200); // the spells in this packet are offsetted by 0x200 from their spell IDs.
 				
 						if (spell != NULL) {
 							blueutils::SetBlueSpell(PChar, spell, spellIndex, (spellToAdd > 0));
@@ -4326,7 +4326,7 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, int8* dat
 				}
 
 				if (spellIndex != -1 && spellInQuestion != 0) {
-					CSpell* spell = spell::GetSpell(spellInQuestion + 0x200); // the spells in this packet are offsetted by 0x200 from their spell IDs.
+					CBlueSpell* spell = (CBlueSpell*)spell::GetSpell(spellInQuestion + 0x200); // the spells in this packet are offsetted by 0x200 from their spell IDs.
 				
 					if (spell != NULL) {
 						blueutils::SetBlueSpell(PChar, spell, spellIndex, (spellToAdd > 0));

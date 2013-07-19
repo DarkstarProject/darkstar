@@ -692,6 +692,9 @@
     <ClInclude Include="..\..\src\map\ai\ai_npc_dummy.h">
       <Filter>Header Files\ai</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\blue_spell.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
@@ -1281,6 +1284,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\ai\ai_npc_dummy.cpp">
       <Filter>Source Files\ai</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\blue_spell.cpp">
+      <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

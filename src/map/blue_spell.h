@@ -21,31 +21,40 @@
 ===========================================================================
 */
 
-#ifndef _BLUEUTILS_H
-#define _BLUEUTILS_H
+#ifndef _CBLUESPELL_H
+#define _CBLUESPELL_H
 
-#include "../common/cbasetypes.h"
-#include "../common/mmo.h"
-
-#include "charentity.h"
-#include "mobentity.h"
 #include "spell.h"
-#include "blue_spell.h"
 
-namespace blueutils
+class CBlueSpell : public CSpell
 {
-	void	SetBlueSpell(CCharEntity* PChar, CBlueSpell* PSpell, uint8 slotIndex, bool addingSpell);
-	bool	HasEnoughSetPoints(CCharEntity* PChar, CBlueSpell* PSpellToAdd, uint8 slotToPut);
-	void	TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob);
-    void    UnequipAllBlueSpells(CCharEntity* PChar);
-    bool    IsSpellSet(CCharEntity* PChar, CBlueSpell* PSpell);
-    void    CompactSpells(CCharEntity* PChar);
-    void    CheckSpellLevels(CCharEntity* PChar);
-    uint8   GetTotalSlots(CCharEntity* PChar);
-    uint8   GetTotalBlueMagicPoints(CCharEntity* PChar);
-    void    SaveSetSpells(CCharEntity* PChar);
-    void    LoadSetSpells(CCharEntity* PChar);
-    void    ValidateBlueSpells(CCharEntity* PChar);
+public:
+
+    CBlueSpell(uint16 id);
+
+    uint16		getMonsterSkillId();
+    uint8       getSetPoints();
+    uint8       getEcosystem();
+    uint8       getTraitCategory();
+    uint8       getTraitWeight();
+
+	void		setMonsterSkillId(uint16 skillid);
+    void        setSetPoints(uint8 setpoints);
+    void        setEcosystem(uint8 ecosystem);
+    void        setTraitCategory(uint8 category);
+    void        setTraitWeight(uint8 weight);
+    void		addModifier(CModifier* modifier);
+
+	std::vector<CModifier*> modList;					// modifiers added when blue spell is equipped
+
+private:
+
+	uint16		m_monsterSkillId;						// matching skill for a blue spell
+    uint8       m_setPoints;
+    uint8       m_ecosystem;
+    uint8       m_traitCategory;
+    uint8       m_traitWeight;
+
 };
 
 #endif

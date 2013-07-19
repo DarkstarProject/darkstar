@@ -39,24 +39,30 @@
 #include "merit.h"
 #include "modifier.h"
 #include "spell.h"
+#include "blue_spell.h"
 
 namespace blueutils
 {
 
-void SetBlueSpell(CCharEntity* PChar, CSpell* PSpell, uint8 slotIndex, bool addingSpell) {
+void SetBlueSpell(CCharEntity* PChar, CBlueSpell* PSpell, uint8 slotIndex, bool addingSpell) {
 
 	//sanity check
 	if (slotIndex < 20) {
-		if (PSpell != NULL && PSpell->getID() > 0x200 && !IsSpellSet(PChar, PSpell)) {
-			if (addingSpell) {
-				// Blue spells in SetBlueSpells must be 0x200 ofsetted so it's 1 byte per spell.
-                if (PChar->m_SetBlueSpells[slotIndex] != 0)
+		if (PSpell != NULL && PSpell->getID() > 0x200)
+        {
+			if (addingSpell) 
+            {
+                if (!IsSpellSet(PChar, PSpell) && HasEnoughSetPoints(PChar, PSpell, slotIndex))
                 {
-                    CSpell* POldSpell = spell::GetSpell(PChar->m_SetBlueSpells[slotIndex] + 0x200);
-                    PChar->delModifiers(&POldSpell->modList);
+				    // Blue spells in SetBlueSpells must be 0x200 ofsetted so it's 1 byte per spell.
+                    if (PChar->m_SetBlueSpells[slotIndex] != 0)
+                    {
+                        CBlueSpell* POldSpell = (CBlueSpell*)spell::GetSpell(PChar->m_SetBlueSpells[slotIndex] + 0x200);
+                        PChar->delModifiers(&POldSpell->modList);
+                    }
+				    PChar->m_SetBlueSpells[slotIndex] = PSpell->getID() - 0x200;
+				    PChar->addModifiers(&PSpell->modList);
                 }
-				PChar->m_SetBlueSpells[slotIndex] = PSpell->getID() - 0x200;
-				PChar->addModifiers(&PSpell->modList);
 			}
 			else
             {
@@ -136,8 +142,29 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob) {
 	}
 }
 
-void HasEnoughSetPoints(CCharEntity* PChar, CSpell* PSpellToAdd, uint8 slotToPut) {
+bool HasEnoughSetPoints(CCharEntity* PChar, CBlueSpell* PSpellToAdd, uint8 slotToPut)
+{
+    uint8 setpoints = 0;
+    for (int slot = 0; slot < 20; slot++)
+    {
+        if (slot != slotToPut && PChar->m_SetBlueSpells[slot] != 0)
+        {
+            CBlueSpell* setSpell = (CBlueSpell*)spell::GetSpell(PChar->m_SetBlueSpells[slot] + 0x200);
+            if (setSpell)
+            {
+                setpoints += setSpell->getSetPoints();
+            }
+        }
+    }
 
+    if (setpoints + PSpellToAdd->getSetPoints() <= GetTotalBlueMagicPoints(PChar))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 void UnequipAllBlueSpells(CCharEntity* PChar)
@@ -146,7 +173,7 @@ void UnequipAllBlueSpells(CCharEntity* PChar)
     {
         if (PChar->m_SetBlueSpells[slot] != 0)
         {
-            CSpell* PSpell = spell::GetSpell(PChar->m_SetBlueSpells[slot] + 0x200);
+            CBlueSpell* PSpell = (CBlueSpell*)spell::GetSpell(PChar->m_SetBlueSpells[slot] + 0x200);
             PChar->m_SetBlueSpells[slot] = 0;
             PChar->delModifiers(&PSpell->modList);
         }
@@ -160,7 +187,7 @@ void UnequipAllBlueSpells(CCharEntity* PChar)
     SaveSetSpells(PChar);
 }
 
-bool IsSpellSet(CCharEntity* PChar, CSpell* PSpell)
+bool IsSpellSet(CCharEntity* PChar, CBlueSpell* PSpell)
 {
     for (int slot = 0; slot < 20; slot++)
     {
@@ -212,7 +239,7 @@ void CheckSpellLevels(CCharEntity* PChar)
         {
             if (PChar->m_SetBlueSpells[slot] != 0)
             {
-                CSpell* PSpell = spell::GetSpell(PChar->m_SetBlueSpells[slot] + 0x200);
+                CBlueSpell* PSpell = (CBlueSpell*)spell::GetSpell(PChar->m_SetBlueSpells[slot] + 0x200);
                 if (PSpell && level < PSpell->getJob(JOB_BLU))
                 {
                     SetBlueSpell(PChar, PSpell, slot, false);
@@ -306,7 +333,7 @@ void LoadSetSpells(CCharEntity* PChar)
         {
             if (PChar->m_SetBlueSpells[slot] != 0)
             {
-                CSpell* PSpell = spell::GetSpell(PChar->m_SetBlueSpells[slot] + 0x200);
+                CBlueSpell* PSpell = (CBlueSpell*)spell::GetSpell(PChar->m_SetBlueSpells[slot] + 0x200);
                 PChar->addModifiers(&PSpell->modList);
             }
         }
@@ -317,6 +344,26 @@ void LoadSetSpells(CCharEntity* PChar)
 void ValidateBlueSpells(CCharEntity* PChar)
 {
     CheckSpellLevels(PChar);
+
+    uint8 maxSetPoints = GetTotalBlueMagicPoints(PChar);
+    uint8 currentPoints = 0;
+
+    for (int slot = 0; slot < 20; slot++)
+    {
+        if (PChar->m_SetBlueSpells[slot] != 0)
+        {
+            CBlueSpell* PSpell = (CBlueSpell*)spell::GetSpell(PChar->m_SetBlueSpells[slot] + 0x200);
+            if (currentPoints + PSpell->getSetPoints() > maxSetPoints)
+            {
+                SetBlueSpell(PChar, PSpell, slot, false);
+            }
+            else
+            {
+                currentPoints += PSpell->getSetPoints();
+            }
+        }
+    }
+
     CompactSpells(PChar);
 
     uint8 maxSlots = GetTotalSlots(PChar);
@@ -325,29 +372,10 @@ void ValidateBlueSpells(CCharEntity* PChar)
     {
         if (PChar->m_SetBlueSpells[slot] != 0)
         {
-            SetBlueSpell(PChar, spell::GetSpell(PChar->m_SetBlueSpells[slot] + 0x200), slot, false);
+            SetBlueSpell(PChar, (CBlueSpell*)spell::GetSpell(PChar->m_SetBlueSpells[slot] + 0x200), slot, false);
         }
     }
 
-    uint8 maxSetPoints = GetTotalBlueMagicPoints(PChar);
-    uint8 currentPoints = 0;
-
-    //TODO: add set points as core member - probably subclass CSpell
-    for (int slot = 0; slot < 20; slot++)
-    {
-        if (PChar->m_SetBlueSpells[slot] != 0)
-        {
-            CSpell* PSpell = spell::GetSpell(PChar->m_SetBlueSpells[slot] + 0x200);
-            if (currentPoints > maxSetPoints)
-            {
-                SetBlueSpell(PChar, PSpell, slot, false);
-            }
-            else
-            {
-                //currentPoints += setpoints;
-            }
-        }
-    }
     SaveSetSpells(PChar);
     PChar->status = STATUS_UPDATE;
 	PChar->pushPacket(new CBlueSetSpellsPacket(PChar));

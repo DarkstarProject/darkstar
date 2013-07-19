@@ -4315,6 +4315,7 @@ inline int32 CLuaBaseEntity::changeJob(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    JOBTYPE prevjob = PChar->GetMJob();
 
 	PChar->resetPetZoningInfo();
 
@@ -4323,9 +4324,12 @@ inline int32 CLuaBaseEntity::changeJob(lua_State *L)
 
     if (lua_tointeger(L,1) == JOB_BLU)
     {
-        blueutils::LoadSetSpells(PChar);
+        if (prevjob != JOB_BLU)
+        {
+            blueutils::LoadSetSpells(PChar);
+        }
     }
-    else
+    else if (PChar->GetSJob() != JOB_BLU)
     {
         blueutils::UnequipAllBlueSpells(PChar);
     }
@@ -4376,6 +4380,8 @@ inline int32 CLuaBaseEntity::changesJob(lua_State *L)
     PChar->jobs.unlocked |= (1 << (uint8)lua_tointeger(L,1));
     PChar->SetSJob((uint8)lua_tointeger(L,1));
 
+	charutils::UpdateSubJob(PChar);
+
     if (lua_tointeger(L,1) == JOB_BLU)
     {
         blueutils::LoadSetSpells(PChar);
@@ -4384,8 +4390,6 @@ inline int32 CLuaBaseEntity::changesJob(lua_State *L)
     {
         blueutils::UnequipAllBlueSpells(PChar);
     }
-
-	charutils::UpdateSubJob(PChar);
 
 	return 0;
 }
@@ -4459,6 +4463,8 @@ inline int32 CLuaBaseEntity::setLevel(lua_State *L)
 	PChar->jobs.exp[PChar->GetMJob()] = 0;
 	PChar->jobs.job[PChar->GetMJob()] = (uint8)lua_tointeger(L,1);
 	PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
+
+    blueutils::ValidateBlueSpells(PChar);
 
 	charutils::CalculateStats(PChar);
     charutils::CheckValidEquipment(PChar);

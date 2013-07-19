@@ -25,6 +25,7 @@
 
 #include "map.h"
 #include "spell.h"
+#include "blue_spell.h"
 #include "blueutils.h"
 
 
@@ -349,16 +350,6 @@ uint32 CSpell::getModifiedRecast()
 	return m_modifiedRecastTime;
 }
 
-uint16 CSpell::getMonsterSkillId()
-{
-	return m_monsterSkillId;
-}
-
-void CSpell::setMonsterSkillId(uint16 skillid)
-{
-	m_monsterSkillId = skillid;
-}
-
 uint8 CSpell::getRequirements()
 {
 	return m_requirements;
@@ -377,11 +368,6 @@ uint16 CSpell::getMeritId()
 void CSpell::setMeritId(uint16 meritId)
 {
 	m_meritId = meritId;
-}
-
-void CSpell::addModifier(CModifier* modifier)
-{
-    modList.push_back(modifier);
 }
 
 /************************************************************************
@@ -416,7 +402,18 @@ namespace spell
 	    {
 		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		    {
-			    CSpell* PSpell = new CSpell(Sql_GetIntData(SqlHandle,0));
+			    CSpell* PSpell = NULL;
+
+                uint16 id = Sql_GetUIntData(SqlHandle,0);
+
+                if (id > 0x200)
+                {
+                    PSpell = new CBlueSpell(id);
+                }
+                else
+                {
+                    PSpell = new CSpell(id);
+                }
 
 			    PSpell->setName(Sql_GetData(SqlHandle,1));
 			    PSpell->setJob(Sql_GetData(SqlHandle,2));
@@ -461,12 +458,15 @@ namespace spell
 		    {
 				// Sanity check the spell ID
 				uint16 spellId = Sql_GetIntData(SqlHandle,0);
-				if (spellId > MAX_SPELL_ID) {
-					ShowWarning("Tried to load a blue magic spell with ID %u which is higher than the max (%u)\n", spellId, MAX_SPELL_ID);
+				if (spellId > MAX_SPELL_ID || spellId < 0x200) {
+					ShowWarning("Tried to load a blue magic spell with ID %u which is higher than the max (%u) or less than 0x200!\n", spellId, MAX_SPELL_ID);
 					continue;
 				}
 
-				PSpellList[spellId]->setMonsterSkillId(Sql_GetIntData(SqlHandle,1));
+				((CBlueSpell*)PSpellList[spellId])->setMonsterSkillId(Sql_GetIntData(SqlHandle,1));
+                ((CBlueSpell*)PSpellList[spellId])->setSetPoints(Sql_GetIntData(SqlHandle,2));
+                ((CBlueSpell*)PSpellList[spellId])->setTraitCategory(Sql_GetIntData(SqlHandle,3));
+                ((CBlueSpell*)PSpellList[spellId])->setTraitWeight(Sql_GetIntData(SqlHandle,4));
 				PMobSkillToBlueSpell->insert(std::make_pair(Sql_GetIntData(SqlHandle,1), spellId));
 			}
 		}
@@ -480,9 +480,9 @@ namespace spell
 			    uint16 modID  = (uint16)Sql_GetUIntData(SqlHandle,1);
 			    int16  value  = (int16) Sql_GetIntData (SqlHandle,2);
 
-			    if (!(spellId > MAX_SPELL_ID) && (PSpellList[spellId] != NULL))
+			    if (!(spellId > MAX_SPELL_ID) && (PSpellList[spellId] != NULL) && spellId > 0x200)
 			    {
-                    PSpellList[spellId]->addModifier(new CModifier(modID,value));
+                    ((CBlueSpell*)PSpellList[spellId])->addModifier(new CModifier(modID,value));
 			    }
 		    }
 	    }
@@ -574,7 +574,7 @@ namespace spell
                 {
                     if (PCaster->objtype == TYPE_PC)
                     {
-                        usable = blueutils::IsSpellSet((CCharEntity*)PCaster, spell);
+                        usable = blueutils::IsSpellSet((CCharEntity*)PCaster, (CBlueSpell*)spell);
                     }
                     else
                     {
@@ -610,7 +610,7 @@ namespace spell
                 {
                     if (PCaster->objtype == TYPE_PC)
                     {
-                        usable = blueutils::IsSpellSet((CCharEntity*)PCaster, spell);
+                        usable = blueutils::IsSpellSet((CCharEntity*)PCaster, (CBlueSpell*)spell);
                     }
                     else
                     {
