@@ -79,11 +79,6 @@ uint8 CBaseEntity::GetRotPos()
 	return loc.p.rotation;
 }
 
-int16 CBaseEntity::getShortID()
-{
-	return id & 0x0FFF;
-}
-
 void CBaseEntity::HideName(bool hide)
 {
 	if(hide)

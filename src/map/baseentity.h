@@ -133,7 +133,6 @@ public:
 	float			GetYPos();			// позиция по координате Y
 	float			GetZPos();			// позиция по координате Z
 	uint8			GetRotPos();
-	int16			getShortID();		// id & 0xFFF
 	void			HideName(bool hide); // hide / show name
 	bool			IsNameHidden();		// checks if name is hidden
 

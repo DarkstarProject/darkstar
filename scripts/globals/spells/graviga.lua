@@ -10,7 +10,7 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function OnMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
@@ -25,9 +25,11 @@ function onSpellCast(caster,target,spell)
 
     if(100 * math.random() >= target:getMod(MOD_GRAVITYRES)) then
         if(duration >= 30) then --Do it!
-            target:delStatusEffect(EFFECT_WEIGHT);
-            target:addStatusEffect(EFFECT_WEIGHT,power,0,duration);
-                    spell:setMsg(236);
+            if(target:addStatusEffect(EFFECT_WEIGHT,power,0,duration)) then
+                spell:setMsg(236);
+            else
+                spell:setMsg(284);
+            end
         else
 --          if(spell:isAOE() == false) then
 --              spell:setMsg(85);

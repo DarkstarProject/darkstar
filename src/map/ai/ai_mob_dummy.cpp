@@ -282,6 +282,7 @@ void CAIMobDummy::ActionEngage()
 {
 	SetupEngage();
 
+	m_ActionType = ACTION_ATTACK;
 	//if (m_PMob->animationsub == 1 || m_PMob->animationsub == 3) m_PMob->animationsub = 2;  //need a better way to do this: it only applies to some mobs!
 
 	if (m_PBattleTarget != NULL)
@@ -300,7 +301,6 @@ void CAIMobDummy::ActionEngage()
 			ActionAttack();
 		}
 
-		m_ActionType = ACTION_ATTACK;
 	}
 	else
 	{
@@ -624,10 +624,10 @@ void CAIMobDummy::ActionSpawn()
 		{
 			for(int8 i=1; i<m_PMob->getMobMod(MOBMOD_ASSIST)+1; i++)
 			{
-				CMobEntity* PMob = (CMobEntity*)m_PMob->loc.zone->GetEntity(m_PMob->getShortID() + i, TYPE_MOB);
+				CMobEntity* PMob = (CMobEntity*)m_PMob->loc.zone->GetEntity(m_PMob->targid + i, TYPE_MOB);
 				if(PMob != NULL)
 				{
-					PMob->setMobMod(MOBMOD_SUPERLINK, m_PMob->getShortID());
+					PMob->setMobMod(MOBMOD_SUPERLINK, m_PMob->targid);
 				}
 			}
 		}
@@ -1079,6 +1079,7 @@ void CAIMobDummy::ActionMagicStart()
 	m_PMob->m_ActionList.push_back(Action);
 
 	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+
     m_ActionType = ACTION_MAGIC_CASTING;
 }
 
@@ -1107,7 +1108,8 @@ void CAIMobDummy::ActionMagicCasting()
 	uint32 totalCastTime = m_PSpell->getCastTime()*((100.0f - sumFastCast)/100.0f);
 
 	if ((m_Tick - m_LastMagicTime) >= totalCastTime)
-	{	
+	{
+		
 		m_LastMagicTime = m_Tick - rand()%(uint32)((float)m_PMob->m_MagicRecastTime / 2);
 
 		if(m_interruptSpell)
@@ -1851,7 +1853,7 @@ void CAIMobDummy::ActionSpecialSkill()
 
 	if(m_PSpecialSkill == NULL){
 		m_PBattleSubTarget = NULL;
-		m_ActionType = ACTION_ATTACK;
+		TransitionBack();
 		return;
 	}
 

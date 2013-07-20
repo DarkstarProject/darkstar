@@ -149,6 +149,64 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->m_enmityRange = 28;
 	}
 
+	// set a random job
+	if(PMob->getMobMod(MOBMOD_RAND_JOB))
+	{
+		bool firstOption = rand()%2 == 0;
+		SKILLTYPE meleeSkill = SKILL_NON;
+		JOBTYPE job = JOB_NON;
+		uint16 spellList = 0;
+
+		// skeleton
+		if(PMob->m_Family == 227)
+		{
+			if(firstOption)
+			{
+				// blm
+				job = JOB_BLM;
+				// taken from mob_pools modelid
+				int8 look[23] = {0x00, 0x00, 0x34, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+				memcpy(&PMob->look, look, 23);
+				spellList = 28; // undead spell list
+				meleeSkill = SKILL_SYH;
+			}
+			else
+			{
+				// war
+				job = JOB_WAR;
+				int8 look[23] = {0x00, 0x00, 0x3C, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+				memcpy(&PMob->look, look, 23);
+				meleeSkill = SKILL_AXE;
+			}
+		}
+		// evil weapon
+		else if(PMob->m_Family == 110 || PMob->m_Family == 111)
+		{
+			if(firstOption)
+			{
+				// rdm
+				job = JOB_RDM;
+				meleeSkill = SKILL_SWD;
+				spellList = 42; // evil weapon spell list
+			}
+			else
+			{
+				// war
+				job = JOB_WAR;
+				meleeSkill = SKILL_AXE;
+			}
+		}
+		else
+		{
+			ShowError("mobutils::CalculateStats Undefined family is being set as a random job %d\n", PMob->m_Family);
+		}
+
+		PMob->SetMJob(job);
+		PMob->SetSJob(job);
+		PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(spellList);
+		PMob->m_Weapons[SLOT_MAIN]->setSkillType(meleeSkill);
+	}
+
 	if(PMob->HPmodifier == 0){
 
 		float growth = 1.06;
@@ -229,8 +287,15 @@ void CalculateStats(CMobEntity * PMob)
 
 	if(hasMp)
 	{
+		float scale = PMob->MPscale;
+
+		if(PMob->getMobMod(MOBMOD_MP_BASE))
+		{
+			scale = (float)PMob->getMobMod(MOBMOD_MP_BASE) / 100.0f;
+		}
+
 		if(PMob->MPmodifier == 0){
-			PMob->health.maxmp = (int16)(18.2 * pow(PMob->GetMLevel(),1.1075) * PMob->MPscale);
+			PMob->health.maxmp = (int16)(18.2 * pow(PMob->GetMLevel(),1.1075) * scale);
 			if(isNM){
 			PMob->health.maxmp *= 2.5;
 				if(PMob->GetMLevel()>75){

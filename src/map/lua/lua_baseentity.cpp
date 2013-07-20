@@ -5273,11 +5273,12 @@ inline int32 CLuaBaseEntity::getID(lua_State *L)
 	return 1;
 }
 
+// TODO: should be renamed to targid
 inline int32 CLuaBaseEntity::getShortID(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 
-	lua_pushinteger( L, m_PBaseEntity->getShortID() );
+	lua_pushinteger( L, m_PBaseEntity->targid );
 	return 1;
 }
 

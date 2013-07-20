@@ -435,7 +435,7 @@ void LoadMOBList(CZone* PZone)
 			PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(Sql_GetIntData(SqlHandle,54));
 
 			PMob->m_Pool = Sql_GetUIntData(SqlHandle,57);
-
+			
 			PZone->InsertMOB(PMob);
 			
 			mobutils::InitializeMob(PMob, PZone);
