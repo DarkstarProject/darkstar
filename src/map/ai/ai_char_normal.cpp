@@ -1504,7 +1504,7 @@ void CAICharNormal::ActionMagicFinish()
 	// remove effects based on spell cast first
     int16 effectFlags = EFFECTFLAG_MAGIC_END;
 
-    if((m_PSpell->getValidTarget() & TARGET_ENEMY) && !(m_PSpell->getValidTarget() & TARGET_SELF))
+    if(m_PSpell->canTargetEnemy())
     {
     	effectFlags |= EFFECTFLAG_DETECTABLE;
     }

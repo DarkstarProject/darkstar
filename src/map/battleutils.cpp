@@ -1819,7 +1819,7 @@ uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender)
 			if(PItem!=NULL && PItem->getID()!=65535 && PItem->getShieldSize()>0 && PItem->getShieldSize()<=5)
 			{
 				if(PItem->getShieldSize()==5){return 65;}//aegis, presume capped? need info.
-				
+
 				size = PItem->getShieldSize();
 		    	atkSkill = GetMaxSkill(SKILL_SHL,JOB_PLD,PAttacker->GetMLevel());
 		    	defSkill = PDefender->GetSkill(SKILL_SHL);
@@ -1830,7 +1830,7 @@ uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender)
 				// no valid shield
 				return 0;
 			}
-			
+
     	}
     	else if(PDefender->GetMJob() == JOB_PLD && (PDefender->m_EcoSystem == SYSTEM_BEASTMEN || PDefender->m_EcoSystem == SYSTEM_UNDEAD))
     	{
@@ -1885,7 +1885,7 @@ uint8 GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 
         	if(PWeapon->isTwoHanded())
         	{
-        		// two handed weapons get a small bonus
+        		// two handed weapons get a bonus
         		diff += 0.2f;
         	}
 
@@ -1895,7 +1895,7 @@ uint8 GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
         	float dex = PAttacker->DEX();
         	float agi = PDefender->AGI();
 
-            return dsp_cap((skill * 0.125f + (agi - dex) * 0.125f) * diff, 5, 25);//25% max parry rate
+            return dsp_cap((skill * 0.125f + (agi - dex) * 0.125f + 10) * diff, 5, 30);//30% max parry rate
         }
     }
 
@@ -1921,7 +1921,7 @@ uint8 GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
     	float dex = PAttacker->DEX();
     	float agi = PDefender->AGI();
 
-        return dsp_cap((skill * 0.125f + (agi - dex) * 0.125f) * diff, 5, 25);
+        return dsp_cap((skill * 0.125f + (agi - dex) * 0.125f + 10) * diff, 5, 30);
     }
 
     return 0;
@@ -3727,7 +3727,7 @@ void tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
 		if (((CMobEntity*)PVictim)->m_Type & MOBTYPE_NOTORIOUS){
 			return;
 		}
-		
+
 		// mob is charmable
 		uint16 baseExp = charutils::GetRealExp(PCharmer->GetMLevel(),PVictim->GetMLevel());
 

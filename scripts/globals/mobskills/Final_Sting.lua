@@ -11,7 +11,10 @@ require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");
 ---------------------------------------------
 function OnMobSkillCheck(target,mob,skill)
-	local param = skill:getParam() or 50;
+	local param = skill:getParam();
+	if(param == 0) then
+		param = 50;
+	end
 
 	if(mob:getHPP() <= param) then
 		return 0;

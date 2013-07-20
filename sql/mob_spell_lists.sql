@@ -267,6 +267,7 @@ INSERT INTO `mob_spell_lists` VALUES ('Beastmen_DRK', '5', '225', '26', '50');
 INSERT INTO `mob_spell_lists` VALUES ('Beastmen_DRK', '5', '230', '15', '39');
 INSERT INTO `mob_spell_lists` VALUES ('Beastmen_DRK', '5', '231', '40', '69');
 INSERT INTO `mob_spell_lists` VALUES ('Beastmen_DRK', '5', '232', '68', '255');
+INSERT INTO `mob_spell_lists` VALUES ('Beastmen_DRK', '5', '258', '20', '255');
 INSERT INTO `mob_spell_lists` VALUES ('Beastmen_DRK', '5', '242', '61', '255');
 INSERT INTO `mob_spell_lists` VALUES ('Beastmen_DRK', '5', '245', '10', '255');
 INSERT INTO `mob_spell_lists` VALUES ('Beastmen_DRK', '5', '247', '20', '255');

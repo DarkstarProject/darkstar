@@ -14,7 +14,11 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-    local potency = skill:getParam() or 10;
+    local potency = skill:getParam();
+
+    if(potency == 0) then
+    	potency = 10;
+    end
 
     potency = potency + math.random(0, potency/2);
 
