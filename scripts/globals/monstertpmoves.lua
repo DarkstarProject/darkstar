@@ -682,6 +682,7 @@ end;
 
 -- Adds a status effect to a target
 function MobStatusEffectMove(mob, target, typeEffect, power, tick, duration)
+
 	if(target:canGainStatusEffect(typeEffect, power)) then
 		local statmod = MOD_INT;
 		local element = mob:getStatusEffectElement(typeEffect);

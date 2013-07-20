@@ -37,9 +37,8 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	local hasPamamas = 0;
 
-	target:addStatusEffect(EFFECT_FOOD,hasPamamas,0,1800,4596);
+	target:addStatusEffect(EFFECT_FOOD,PamamasEquip(target),0,1800,4596);
 end;
 
 -----------------------------------

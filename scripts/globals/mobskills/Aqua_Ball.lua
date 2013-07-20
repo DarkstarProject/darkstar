@@ -15,8 +15,11 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_STR_DOWN;
+	local power = 20;
+	local tick = 3;
+	local duration = power * tick;
 
-	MobStatusEffectMove(mob, target, typeEffect, 10, 3, 120);
+	MobStatusEffectMove(mob, target, typeEffect, power, tick, duration);
 
 	local dmgmod = 1;
 	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg() * 3,ELE_WATER,dmgmod,TP_MAB_BONUS,1);

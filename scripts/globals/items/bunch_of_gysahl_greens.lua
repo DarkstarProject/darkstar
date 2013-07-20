@@ -28,8 +28,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	local hasChocoShirt = 0;
-	target:addStatusEffect(EFFECT_FOOD,hasChocoShirt,0,300,4545);
+	target:addStatusEffect(EFFECT_FOOD,ChocoboShirt(target),0,300,4545);
 end;
 
 -----------------------------------
