@@ -173,7 +173,7 @@ INSERT INTO `mob_skill` VALUES (52,116,52,'Frogkick', 0, 7.0, 2000, 1500, 4, 0, 
 INSERT INTO `mob_skill` VALUES (53,116,53,'Spore', 0, 7.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (58,116,58,'Silence_Gas', 4, 13.5, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (59,116,59,'Dark_Spore', 4, 13.5, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (54,116,54,'Queasyshroom', 0, 13.5, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (54,116,54,'Queasyshroom', 0, 14.7, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (55,116,55,'Numbshroom', 0, 14.7, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (56,116,56,'Shakeshroom', 0, 14.7, 2000, 1500, 4, 0, 0);
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Microspores', 1, 10.0, 2000, 1500, 4, 0, 0); -- Only used by certain Notorious Monsters

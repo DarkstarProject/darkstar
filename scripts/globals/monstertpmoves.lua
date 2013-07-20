@@ -1,6 +1,7 @@
 require("scripts/globals/magic");
 require("scripts/globals/magicburst")
 require("scripts/globals/status")
+require("scripts/globals/utils")
 
 -- Foreword: A lot of this is good estimating since the FFXI playerbase has not found all of info for individual moves.
 --			What is known is that they roughly follow player Weaponskill calculations (pDIF, dMOD, ratio, etc) so this is what
@@ -327,7 +328,7 @@ function applyPlayerResistance(mob,effect,target,diff,bonus,element)
 		magiceva = magiceva + target:getMod(resistMod[element]);
 	end
 
-	p = magicacc - (magiceva * 0.85);
+	p = magicacc - (magiceva * 0.8);
 
 	--printf("acc: %f, eva: %f, bonus: %f", magicacc, magiceva, magicaccbonus);
 	--double any acc over 50 if it's over 50
@@ -689,7 +690,7 @@ function MobStatusEffectMove(mob, target, typeEffect, power, tick, duration)
 
 		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,element);
 
-		if(resist >= 0.5) then
+		if(resist >= 0.25) then
 			target:addStatusEffect(typeEffect,power,tick,duration*resist);
 			return MSG_ENFEEB_IS;
 		end
@@ -734,7 +735,7 @@ function MobHealMove(target, heal)
 	local mobHP = target:getHP();
 	local mobMaxHP = target:getMaxHP();
 
-	if(mobHP+heal > mobMaxHP) then 
+	if(mobHP+heal > mobMaxHP) then
 		heal = mobMaxHP - mobHP;
 	end
 
