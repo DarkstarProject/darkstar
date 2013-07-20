@@ -128,7 +128,7 @@ void CAIMobDummy::ActionRoaming()
 		ActionEngage();
 		return;
 	}
-	else if (m_PMob->m_OwnerID.id != 0 && !(m_PMob->m_roamFlags & ROAMFLAG_IGNORE)) 
+	else if (m_PMob->m_OwnerID.id != 0 && !(m_PMob->m_roamFlags & ROAMFLAG_IGNORE))
 	{
 		// i'm claimed by someone and need hate towards this person
         m_PBattleTarget = (CBattleEntity*)m_PMob->loc.zone->GetEntity(m_PMob->m_OwnerID.targid, TYPE_PC | TYPE_MOB | TYPE_PET);
@@ -210,7 +210,7 @@ void CAIMobDummy::ActionRoaming()
 		{
 			// do not check for despawning because i'm at home
 			m_checkDespawn = false;
-			
+
 			if(m_PSpecialSkill != NULL && TrySpecialSkill())
 			{
 				// I spawned a pet
@@ -239,7 +239,7 @@ void CAIMobDummy::ActionRoaming()
 			}
 			else if(m_PMob->CanRoam() && m_PPathFind->RoamAround(m_PMob->m_SpawnPoint, m_PMob->m_roamFlags))
 			{
-				
+
 				if(m_PMob->m_roamFlags & ROAMFLAG_WORM)
 				{
 					// move down
@@ -261,7 +261,7 @@ void CAIMobDummy::ActionRoaming()
 			{
 				m_LastActionTime = m_Tick;
 			}
-			
+
 		}
 
 	}
@@ -508,7 +508,7 @@ void CAIMobDummy::ActionDeath()
 
 		luautils::OnMobDespawn(m_PMob);
 	}
-    
+
 }
 
 /************************************************************************
@@ -715,7 +715,7 @@ void CAIMobDummy::ActionAbilityStart()
 
     m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
     m_LastActionTime = m_Tick;
-    
+
 	// store the TP the mob currently has as the mob skill TP modifier
 	m_skillTP = m_PMob->health.tp;
 
@@ -1005,7 +1005,7 @@ void CAIMobDummy::ActionStun()
 	}
 
 	if(m_PBattleSubTarget != NULL)
-	{	
+	{
 	    // always face target
 	    m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
 	}
@@ -1109,12 +1109,12 @@ void CAIMobDummy::ActionMagicCasting()
 
 	if ((m_Tick - m_LastMagicTime) >= totalCastTime)
 	{
-		
+
 		m_LastMagicTime = m_Tick - rand()%(uint32)((float)m_PMob->m_MagicRecastTime / 2);
 
 		if(m_interruptSpell)
 		{
-			// I got force interrupted			
+			// I got force interrupted
 			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PBattleSubTarget,0,0, MSGBASIC_IS_INTERRUPTED));
 			m_ActionType = ACTION_MAGIC_INTERRUPT;
 			ActionMagicInterrupt();
@@ -1278,17 +1278,6 @@ void CAIMobDummy::ActionMagicFinish()
 
 	    Action.messageID = msg;
 
-		if (PTarget->objtype == TYPE_MOB && m_PMob->id != PTarget->id && !m_PSpell->isBuff())
-        {
-            if (PTarget->isDead())
-            {
-                ((CMobEntity*)PTarget)->m_DropItemTime = m_PSpell->getAnimationTime();
-            }
-            ((CMobEntity*)PTarget)->m_OwnerID.id = m_PMob->id;
-            ((CMobEntity*)PTarget)->m_OwnerID.targid = m_PMob->targid;
-            ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmity(m_PMob, ce, ve);
-        }
-
         m_PMob->m_ActionList.push_back(Action);
     }
 
@@ -1299,7 +1288,7 @@ void CAIMobDummy::ActionMagicFinish()
 		m_LastMagicTime = m_Tick - m_PMob->m_MagicRecastTime + 5000;
 	}
 	else if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT,0) ||
-	    m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SOUL_VOICE,0)) 
+	    m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SOUL_VOICE,0))
 	{
 		// cast magic sooner
 		m_LastMagicTime = m_Tick - (float)(m_PMob->m_MagicRecastTime/2);
@@ -1715,7 +1704,7 @@ bool CAIMobDummy::TryDeaggro()
 		tryTimeDeaggro = m_PMob->m_disableScent ||
 			m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DEODORIZE);
 	}
-	
+
 	if(tryTimeDeaggro && m_Tick - m_DeaggroTime >= MOB_DEAGGRO_TIME && m_PMob->CanDeaggro())
 	{
 		tryDetectDeaggro = true;
@@ -1996,7 +1985,7 @@ void CAIMobDummy::FollowPath()
 			// face spawn rotation if I just moved back to spawn
 			// used by dynamis mobs, bcnm mobs etc
 			if((m_PMob->m_roamFlags & ROAMFLAG_EVENT) &&
-				m_PMob->m_SpawnPoint.x == m_PMob->loc.p.x && 
+				m_PMob->m_SpawnPoint.x == m_PMob->loc.p.x &&
 				m_PMob->m_SpawnPoint.y == m_PMob->loc.p.y &&
 				m_PMob->m_SpawnPoint.z == m_PMob->loc.p.z)
 			{
@@ -2137,7 +2126,7 @@ void CAIMobDummy::Deaggro()
 	}
 
     m_PMob->m_OwnerID.clean();
-    
+
 	m_PBattleTarget = NULL;
 }
 

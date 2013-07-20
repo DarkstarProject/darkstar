@@ -1895,7 +1895,7 @@ uint8 GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
         	float dex = PAttacker->DEX();
         	float agi = PDefender->AGI();
 
-            return dsp_cap((skill * 0.125f + (agi - dex) * 0.125f + 10) * diff, 5, 30);//30% max parry rate
+            return dsp_cap((skill * 0.125f + (agi - dex) * 0.125f + 15) * diff, 5, 30);
         }
     }
 
@@ -1921,7 +1921,7 @@ uint8 GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
     	float dex = PAttacker->DEX();
     	float agi = PDefender->AGI();
 
-        return dsp_cap((skill * 0.125f + (agi - dex) * 0.125f + 10) * diff, 5, 30);
+        return dsp_cap((skill * 0.125f + (agi - dex) * 0.125f + 15) * diff, 5, 30);
     }
 
     return 0;
