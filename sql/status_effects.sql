@@ -107,7 +107,7 @@ INSERT INTO `status_effects` VALUES (65,'sneak_attack',37,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (66,'copy_image',33,0,0,0,0,36,4);
 INSERT INTO `status_effects` VALUES (67,'third_eye',33,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (68,'warcry',33,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (69,'invisible',3445,0,0,2,0,0,4);
+INSERT INTO `status_effects` VALUES (69,'invisible',3573,0,0,2,0,0,4);
 INSERT INTO `status_effects` VALUES (70,'deodorize',2357,0,0,2,0,0,4);
 INSERT INTO `status_effects` VALUES (71,'sneak',2357,0,0,2,0,0,4);
 INSERT INTO `status_effects` VALUES (72,'sharpshot',33,0,0,0,0,0,0);

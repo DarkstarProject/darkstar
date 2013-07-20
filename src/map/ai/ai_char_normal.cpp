@@ -523,7 +523,7 @@ void CAICharNormal::ActionItemUsing()
 		ActionItemInterrupt();
 		return;
 	}
-	
+
 	if (m_PBattleSubTarget->objtype == TYPE_MOB && !IsMobOwner(m_PBattleSubTarget))
 	{
 		m_ActionType = ACTION_ITEM_INTERRUPT;
@@ -712,7 +712,7 @@ void CAICharNormal::ActionRangedStart()
 
     CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
 
-	if (PRanged != NULL && PRanged->isType(ITEM_WEAPON) || 
+	if (PRanged != NULL && PRanged->isType(ITEM_WEAPON) ||
         PAmmo != NULL && PAmmo->isThrowing())
 	{
 		uint8 SkillType = 0;
@@ -1304,7 +1304,7 @@ void CAICharNormal::ActionMagicStart()
 		MagicStartError(errNo);
 		return;
 	}
-	
+
 	m_interruptSpell = false;
 	m_PChar->m_StartActionPos = m_PChar->loc.p;
 
@@ -1501,6 +1501,18 @@ void CAICharNormal::ActionMagicFinish()
         m_PChar->PRecastContainer->Add(RECAST_MAGIC, m_PSpell->getID(), 2000);
 	}
 
+	// remove effects based on spell cast first
+    int16 effectFlags = EFFECTFLAG_MAGIC_END;
+
+    if((m_PSpell->getValidTarget() & TARGET_ENEMY) && !(m_PSpell->getValidTarget() & TARGET_SELF))
+    {
+    	effectFlags |= EFFECTFLAG_DETECTABLE;
+    }
+
+    // если заклинание атакующее, то дополнительно удаляем эффекты с флагом атаки
+    m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(effectFlags);
+
+    // find targets for spell
     m_PTargetFind->reset();
     m_PChar->m_ActionList.clear();
 
@@ -1614,6 +1626,7 @@ void CAICharNormal::ActionMagicFinish()
                 PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
             }
 
+            // spells that deal 0 damage or took no effect don't generate enmity
             if(Action.param == 0 || !m_PSpell->tookEffect())
             {
             	ve = 0;
@@ -1658,8 +1671,6 @@ void CAICharNormal::ActionMagicFinish()
         m_PChar->m_ActionList.push_back(Action);
     }
     charutils::RemoveStratagems(m_PChar, m_PSpell);
-    // если заклинание атакующее, то дополнительно удаляем эффекты с флагом атаки
-    m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_MAGIC_END | ((m_PSpell->getValidTarget() & TARGET_ENEMY) ? EFFECTFLAG_DETECTABLE : EFFECTFLAG_NONE));
 
 	charutils::UpdateHealth(m_PChar);
 
@@ -1719,7 +1730,7 @@ void CAICharNormal::ActionMagicInterrupt()
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
 	m_LastMeleeTime += (m_Tick - m_LastActionTime);
-	
+
 	// small magic delay
 	m_LastCoolDown = m_Tick;
 
@@ -2644,7 +2655,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
     	TransitionBack();
     	return;
     }
-	
+
 	//apply TP Bonus
 	float bonusTp = m_PChar->getMod(MOD_TP_BONUS);
 
@@ -3415,8 +3426,8 @@ void CAICharNormal::ActionAttack()
 
                 bool isBlocked = battleutils::IsBlocked(m_PChar, m_PBattleTarget);
 				if(isBlocked && Action.reaction != REACTION_EVADE)
-				{ 
-					Action.reaction = REACTION_BLOCK; 
+				{
+					Action.reaction = REACTION_BLOCK;
 				}
 
 				if (Action.reaction == REACTION_HIT || Action.reaction == REACTION_BLOCK || Action.reaction == REACTION_GUARD)
