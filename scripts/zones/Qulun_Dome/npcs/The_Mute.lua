@@ -1,7 +1,7 @@
 -----------------------------------
--- Area: Beadeaux
--- NPC:  ???
--- @zone 147
+-- Area: Qulun Dome
+-- NPC:  The Mute
+-- @zone 148
 -- @pos <many>
 -----------------------------------
 package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
@@ -21,11 +21,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if(player:hasStatusEffect(EFFECT_MUTE) == false) then
-		player:addStatusEffect(EFFECT_MUTE,0,0,300,0,0);
+	local duration = math.random(600,900);
+
+	if(player:hasStatusEffect(EFFECT_SILENCE) == false) then
+		player:addStatusEffect(EFFECT_SILENCE,0,0,duration);
 	end
-	
 end;
 
 -----------------------------------

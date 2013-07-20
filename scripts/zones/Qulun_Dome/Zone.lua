@@ -15,39 +15,39 @@ require("scripts/zones/Qulun_Dome/TextIDs");
 function onInitialize(zone)
 end;
 
------------------------------------		
--- onZoneIn		
------------------------------------		
+-----------------------------------
+-- onZoneIn
+-----------------------------------
 
-function onZoneIn(player,prevZone)		
-	cs = -1;	
-	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
+function onZoneIn(player,prevZone)
+	cs = -1;
+	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
 		player:setPos(337.901,38.091,20.087,129);
-	end	
-	return cs;	
-end;		
+	end
+	return cs;
+end;
 
------------------------------------		
--- onRegionEnter		
------------------------------------		
+-----------------------------------
+-- onRegionEnter
+-----------------------------------
 
-function onRegionEnter(player,region)	
-end;	
+function onRegionEnter(player,region)
+end;
 
------------------------------------	
--- onEventUpdate	
------------------------------------	
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
 
-function onEventUpdate(player,csid,option)	
+function onEventUpdate(player,csid,option)
 	--printf("CSID: %u",csid);
 	--printf("RESULT: %u",option);
-end;	
+end;
 
------------------------------------	
--- onEventFinish	
------------------------------------	
+-----------------------------------
+-- onEventFinish
+-----------------------------------
 
-function onEventFinish(player,csid,option)	
+function onEventFinish(player,csid,option)
 	--printf("CSID: %u",csid);
 	--printf("RESULT: %u",option);
-end;	
+end;
