@@ -674,19 +674,19 @@ INSERT INTO `mob_skill` VALUES (355,200,355,'Ore_Toss', 0, 10.0, 2000, 1500, 4, 
 INSERT INTO `mob_skill` VALUES (377,200,354,'Howl', 1, 20.0, 2000, 1500, 1, 0, 0);
 INSERT INTO `mob_skill` VALUES (356,200,356,'Head_Butt', 0, 7.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (357,200,357,'Shell_Bash', 0, 7.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (358,200,1560,'Shell_Guard', 0, 7.0, 2000, 1500, 1, 0, 0);
+INSERT INTO `mob_skill` VALUES (358,200,358,'Shell_Guard', 0, 7.0, 2000, 1500, 1, 0, 0);
 
 INSERT INTO `mob_skill` VALUES (377,201,354,'Howl', 1, 20.0, 2000, 1500, 1, 0, 0);
 INSERT INTO `mob_skill` VALUES (355,201,355,'Ore_Toss', 0, 10.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (356,201,356,'Head_Butt', 0, 7.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (357,201,357,'Shell_Bash', 0, 7.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (358,201,1560,'Shell_Guard', 0, 7.0, 2000, 1500, 1, 0, 0);
+INSERT INTO `mob_skill` VALUES (358,201,358,'Shell_Guard', 0, 7.0, 2000, 1500, 1, 0, 0);
 
 INSERT INTO `mob_skill` VALUES (377,202,354,'Howl', 1, 20.0, 2000, 1500, 1, 0, 0);
 INSERT INTO `mob_skill` VALUES (355,202,355,'Ore_Toss', 0, 10.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (356,202,356,'Head_Butt', 0, 7.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (357,202,357,'Shell_Bash', 0, 7.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (358,202,1560,'Shell_Guard', 0, 7.0, 2000, 1500, 1, 0, 0);
+INSERT INTO `mob_skill` VALUES (358,202,358,'Shell_Guard', 0, 7.0, 2000, 1500, 1, 0, 0);
 
 -- Quadav NM
 INSERT INTO `mob_skill` VALUES (0,337,432,'Two_Hour', 0, 8.0, 2000, 0, 4, 0, 0);
@@ -694,7 +694,7 @@ INSERT INTO `mob_skill` VALUES (377,337,354,'Howl', 1, 20.0, 2000, 1500, 1, 0, 0
 INSERT INTO `mob_skill` VALUES (355,337,355,'Ore_Toss', 0, 10.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (356,337,356,'Head_Butt', 0, 7.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (357,337,357,'Shell_Bash', 0, 7.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (358,337,1560,'Shell_Guard', 0, 7.0, 2000, 1500, 1, 0, 0);
+INSERT INTO `mob_skill` VALUES (358,337,358,'Shell_Guard', 0, 7.0, 2000, 1500, 1, 0, 0);
 
 -- Yagudo
 INSERT INTO `mob_skill` VALUES (361,270,361,'Feather_Storm', 0, 7.0, 2000, 1500, 4, 0, 0);
@@ -1337,7 +1337,7 @@ INSERT INTO `mob_skill` VALUES (0,354,432,'Two_Hour', 1, 15.0, 2000, 0, 4, 0, 0)
 INSERT INTO `mob_skill` VALUES (675,354,633,'Cross_Reaver',4,7,2000,0,4,0, 0);
 INSERT INTO `mob_skill` VALUES (682,354,640,'Circle_Blade',1,7,2000,0,4,0, 0);
 INSERT INTO `mob_skill` VALUES (683,354,641,'Swift_Blade',0,7,2000,0,4,0, 0);
--- Ark Angel MR 
+-- Ark Angel MR
 INSERT INTO `mob_skill` VALUES (0,355,432,'Two_Hour', 1, 15.0, 2000, 0, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (676,355,634,'Havoc_Spiral',1,7,2000,0,4,0, 0);
 INSERT INTO `mob_skill` VALUES (684,355,644,'Rampage',0,7,2000,0,4,0, 0);
