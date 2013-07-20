@@ -22,5 +22,9 @@ function OnAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-	player:petAttack(target);
+	local pet = player:getPet();
+
+	if(player:checkDistance(pet) <= 25) then
+		player:petAttack(target);
+	end
 end;

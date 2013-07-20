@@ -823,6 +823,7 @@ void CAIMobDummy::ActionAbilityFinish()
 	}
 
 	m_DeaggroTime = m_Tick;
+    m_PBattleSubTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
 
 	// I think this should be saved for all skills used by the mob
 	// this is useful for funguar remembering its used moves
@@ -1188,6 +1189,18 @@ void CAIMobDummy::ActionMagicFinish()
 
 	m_DeaggroTime = m_Tick;
 
+
+	// remove effects based on spell cast first
+    int16 effectFlags = EFFECTFLAG_MAGIC_END | EFFECTFLAG_INVISIBLE;
+
+    if(m_PSpell->canTargetEnemy())
+    {
+    	effectFlags |= EFFECTFLAG_DETECTABLE;
+    }
+
+    m_PMob->StatusEffectContainer->DelStatusEffectsByFlag(effectFlags);
+    m_PBattleSubTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
+
     m_PTargetFind->reset();
     m_PMob->m_ActionList.clear();
 
@@ -1443,6 +1456,8 @@ void CAIMobDummy::ActionAttack()
 			}
 			else
 			{
+	            m_PBattleTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
+
 				apAction_t Action;
 				m_PMob->m_ActionList.clear();
 
@@ -1865,6 +1880,7 @@ void CAIMobDummy::ActionSpecialSkill()
     // don't use magic right after
     m_LastMagicTime = m_Tick + m_PMob->m_MagicRecastTime + rand()%5000 + 4000;
 
+    m_PBattleSubTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
     apAction_t Action;
     m_PMob->m_ActionList.clear();
 

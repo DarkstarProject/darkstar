@@ -1502,7 +1502,7 @@ void CAICharNormal::ActionMagicFinish()
 	}
 
 	// remove effects based on spell cast first
-    int16 effectFlags = EFFECTFLAG_MAGIC_END;
+    int16 effectFlags = EFFECTFLAG_MAGIC_END | EFFECTFLAG_INVISIBLE;
 
     if(m_PSpell->canTargetEnemy())
     {
@@ -1923,12 +1923,15 @@ void CAICharNormal::ActionJobAbilityFinish()
     } else {
 
         // remove invisible if aggresive
-        if(m_PBattleSubTarget != NULL && m_PBattleSubTarget->objtype == TYPE_MOB){
-            // aggresive action
-            m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
-        } else {
-            // remove invisible only
-            m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_INVISIBLE);
+        if(m_PJobAbility->getID() != ABILITY_FIGHT)
+        {
+	        if(m_PJobAbility->getValidTarget() & TARGET_ENEMY){
+	            // aggresive action
+	            m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
+	        } else if(m_PJobAbility->getID() != ABILITY_TRICK_ATTACK) {
+	            // remove invisible only
+	            m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_INVISIBLE);
+	        }
         }
 
     	if(m_PJobAbility->getID() == ABILITY_REWARD){
@@ -2656,6 +2659,8 @@ void CAICharNormal::ActionWeaponSkillFinish()
     	TransitionBack();
     	return;
     }
+
+    m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
 
 	//apply TP Bonus
 	float bonusTp = m_PChar->getMod(MOD_TP_BONUS);
@@ -3462,7 +3467,7 @@ void CAICharNormal::ActionAttack()
                 if (m_PChar->m_ActionList.size() == 8) break;
 			}
 
-			m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK);
+			m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK | EFFECTFLAG_DETECTABLE);
 			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 		}
 	}
