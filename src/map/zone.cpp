@@ -223,11 +223,6 @@ zoneLine_t* CZone::GetZoneLine(uint32 zoneLineID)
 	return NULL;
 }
 
-bool CZone::IsBurningCircle()
-{
-  return m_isBurningCircle;
-}
-
 void  CZone::HealAllMobs()
 {
   for (EntityList_t::const_iterator it = m_mobList.begin() ; it != m_mobList.end() ; ++it)
@@ -542,7 +537,7 @@ void CZone::FindPartyForMob(CBaseEntity* PEntity)
 
     // force all mobs in a burning circle to link
     bool forceLink = GetType() == ZONETYPE_BATTLEFIELD || GetType() == ZONETYPE_DYNAMIS;
-    
+
     if ((forceLink || PMob->m_Link) && PMob->PParty == NULL)
     {
         for (EntityList_t::const_iterator it = m_mobList.begin() ; it != m_mobList.end() ; ++it)
@@ -552,12 +547,12 @@ void CZone::FindPartyForMob(CBaseEntity* PEntity)
             if(!forceLink && !PCurrentMob->m_Link) continue;
 
             int16 sublink = PMob->getMobMod(MOBMOD_SUBLINK);
-            
-            if (forceLink || 
+
+            if (forceLink ||
                 PCurrentMob->m_Family == PMob->m_Family ||
                 sublink && sublink == PCurrentMob->getMobMod(MOBMOD_SUBLINK))
             {
-              
+
               if(PCurrentMob->PMaster == NULL || PCurrentMob->PMaster->objtype == TYPE_MOB)
               {
                 PCurrentMob->PParty->AddMember(PMob);

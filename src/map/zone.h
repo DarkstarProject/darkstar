@@ -489,7 +489,6 @@ public:
 	uint8			GetPartyBattleMusic();
 	uint8			GetBackgroundMusic();
 	zoneLine_t*		GetZoneLine(uint32 zoneLineID);
-	bool 			IsBurningCircle(); // is this zone a BC?
 
 	void			HealAllMobs();
 
@@ -516,7 +515,7 @@ public:
 	void			InsertMOB(CBaseEntity* PMob);									// добавляем в зону mob
 	void			InsertPET(CBaseEntity* PPet);									// добавляем в зону pet
 	void			DeletePET(CBaseEntity* PPet);       	                        // derefs the pet's ID from this zone
-	void			InsertPatrol(CBaseEntity* PNpc);								
+	void			InsertPatrol(CBaseEntity* PNpc);
 
     void            FindPartyForMob(CBaseEntity* PEntity);                          // ищем группу для монстра
     void            TransportDepart(CBaseEntity* PTransportNPC);                    // транспотр отправляется, необходимо собрать пассажиров
@@ -550,7 +549,6 @@ private:
 	uint16			m_zonePort;				// порт зоны
 	uint32			m_zoneIP;               // IP зоны
     bool 			m_useNavMesh;			// Use navmesh for roaming, chasing
-    bool 			m_isBurningCircle;      // this zone a burning circle?
 
 	WEATHER			m_Weather;              // текущая погода
     uint32          m_WeatherChangeTime;    // время начала текущей погоды
