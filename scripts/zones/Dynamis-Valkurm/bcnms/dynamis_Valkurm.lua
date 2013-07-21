@@ -9,7 +9,7 @@
 function OnBcnmRegister(player,instance)
 	
 	SetServerVariable("[DynaValkurm]UniqueID",player:getDynamisUniqueID(1286));
-	--SetServerVariable("[DynaValkurm]Boss_Trigger",0);
+	SetServerVariable("[DynaValkurm]Boss_Trigger",0);
 	SetServerVariable("[DynaValkurm]Already_Received",0);
 	
 	    local RNDpositionTable=TimerStatueRandomPos;

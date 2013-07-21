@@ -1493,3 +1493,228 @@ INSERT INTO `bcnm_instance` VALUES ('1286', '1','16937161', '3');
 INSERT INTO `bcnm_instance` VALUES ('1286', '1','16937162', '3');
 INSERT INTO `bcnm_instance` VALUES ('1286', '1','16937163', '3');
 INSERT INTO `bcnm_instance` VALUES ('1286', '1','16937164', '3');
+-- dyna buburimu
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941057', '3'); -- Apocalyptic_Beast
+-- statue
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941190', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941191', '3');  -- Ree_Nata_the_Melomanic
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941192', '3');  -- Koo_Rahi_the_Levinblade			
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941208', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941209', '3');  -- Doo_Peku_the_Fleetfoot
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941210', '3');  -- Baa_Dava_the_Bibliophage
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941471', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941472', '3');  -- Va_Rhu_Bodysnatcher
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941473', '3');  -- Te_Zha_Ironclad											
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941485', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941486', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941487', '3'); 		
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941068', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941069', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941070', '3');  -- Woodnix_Shrillwhistle
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941083', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941084', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941085', '3');  -- Shamblix_Rottenheart
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941098', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941099', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941100', '3');  -- Gosspix_Blabberlips				
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941381', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941382', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941383', '3'); 						
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941395', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941396', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941397', '3'); 					
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941118', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941119 ', '3'); -- Flamecaller_Zoeqdoq
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941120', '3');  -- Elvaansticker_Bxafraff
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941135', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941136', '3');  -- Hamfist_Gukhbuk
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941137', '3');  -- Lyncean_Juwgneg				
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941411', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941412', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941413', '3'); 				
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941425', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941426', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941427', '3'); 	 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941153', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941154', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941155', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941171', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941172', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941173', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941440', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941441', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941442', '3'); 					
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941455', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941456', '3'); 
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941457', '3'); 
+
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941364' , '3');      -- BOSS
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941365' , '3');      -- BOSS
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941366' ,'3');       -- BOSS
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941367' ,'3');    -- BOSS
+
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941458' , '3');  -- timer  statue
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941121' , '3');   -- timer  statue
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941071' , '3');   -- timer  statue
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941211' , '3');   -- timer  statue
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941086' , '3');  -- timer  statue
+--  'Nightmare_Crab'
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941212' ,'3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941213' ,'3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941214' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941215' ,'3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941216' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941217' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941218' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941219' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941220' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941221' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941222' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941223' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941224' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941225' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941226' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941227' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941228' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941229' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941230' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941231' , '3');
+--  'Nightmare_Dhalmel'
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941232' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941233' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941234' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941235' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941236' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941237' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941238' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941239' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941240' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941241' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941242' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941243' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941244' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941245' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941246' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941247' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941248' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941249' ,  '3');
+-- 'Nightmare_Uragnite'
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941250' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941251' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941252' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941253' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941254' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941255' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941256' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941257' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941258' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941259' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941260' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941261' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941262' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941263' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941264' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941265' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941266' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941267' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941268' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941269' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941270' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941271' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941272' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941273' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941274' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941275' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941276' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941277' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941278' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941279' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941280' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941281' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941282' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941283' ,  '3');
+-- 'Nightmare_Bunny'
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941284' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941285' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941286' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941287' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941288' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941289' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941290' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941291' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941292' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941293' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941294' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941295' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941296' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941297' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941298' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941299' ,  '3');
+-- 'Nightmare_Mandragora'
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941300' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941301' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941302' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941303' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941304' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941305' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941306' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941307' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941308' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941309' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941310' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941311' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941312' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941313' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941314' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941315' ,  '3');
+-- 'Nightmare_Crawler'
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941316' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941317' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941318' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941319' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941320' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941321' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941322' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941323' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941324' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941325' ,  '3');
+-- 'Nightmare_Raven'
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941326' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941327' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941328' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941329' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941330' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941331' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941332' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941333' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941334' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941335' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941336' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941337' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941338' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941339' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941340' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941341' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941342' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941343' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941344' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941345' ,  '3');
+-- 'Nightmare_Eft'
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941346' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941347' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941348' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941349' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941350' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941351' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941352' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941353' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941354' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941355' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941356' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941357' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941358' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941359' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941360' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941361' , '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941362' ,  '3');
+INSERT INTO `bcnm_instance` VALUES ('1287', '1','16941363' ,  '3');

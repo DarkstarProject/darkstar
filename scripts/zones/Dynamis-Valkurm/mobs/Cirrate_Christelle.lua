@@ -21,7 +21,8 @@ end;
 -----------------------------------
 
 function onMobEngaged(mob,target)
-	
+
+if(GetServerVariable("[DynaValkurm]Boss_Trigger")==0)then	
    --spwan additional mob :
            -- print("Serjeant_Tombstone:");
            for Serjeant_Tombstone = 16937494, 16937499, 1 do
@@ -97,7 +98,11 @@ function onMobEngaged(mob,target)
 	       for Nightmare_Goobbue = 16937291, 16937310, 1 do
 		   -- printf("addmob %u \n",Nightmare_Goobbue);
 		   SpawnMob(Nightmare_Goobbue);
-		   end		 
+		   end	
+     SetServerVariable("[DynaValkurm]Boss_Trigger",1);
+   end
+
+		   
 end;
                			
 -----------------------------------
