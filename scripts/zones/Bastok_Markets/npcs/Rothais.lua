@@ -10,7 +10,7 @@
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 
 -----------------------------------
@@ -29,7 +29,7 @@ vanatime = VanadielHour();
 		player:startEvent(0x00ce);
 	end
 
-end; 
+end;
 
 
 -----------------------------------

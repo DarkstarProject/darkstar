@@ -43,7 +43,6 @@ namespace mobutils
 {
 	void	CalculateStats(CMobEntity* PMob);
   void  AddTraits(CMobEntity* PMob, JOBTYPE jobID, uint8 lvl);
-  void   AddMods(CMobEntity* PMob);
 	uint16	GetWeaponDamage(CMobEntity* PMob);
 	void    GetAvailableSpells(CMobEntity* PMob);
   void  InitializeMob(CMobEntity* PMob, CZone* PZone);

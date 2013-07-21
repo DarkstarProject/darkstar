@@ -130,11 +130,17 @@ uint16 GetBase(CMobEntity * PMob, uint8 rank)
 
 void CalculateStats(CMobEntity * PMob)
 {
+	// remove all to keep mods in sync
+	PMob->StatusEffectContainer->KillAllStatusEffect();
+	PMob->restoreModifiers();
+	PMob->restoreMobModifiers();
+
 	bool isNM = PMob->m_Type & MOBTYPE_NOTORIOUS;
 	JOBTYPE mJob = PMob->GetMJob();
 	JOBTYPE sJob = PMob->GetSJob();
 	uint8 mLvl = PMob->GetMLevel();
 	ZONETYPE zoneType = PMob->loc.zone->GetType();
+
 
 	// event mob types will always have custom roaming
 	if(PMob->m_Type & MOBTYPE_EVENT)
@@ -205,6 +211,12 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->SetSJob(job);
 		PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(spellList);
 		PMob->m_Weapons[SLOT_MAIN]->setSkillType(meleeSkill);
+	}
+
+	if(mJob == JOB_DRG)
+	{
+		// drg can use 2 hour multiple times
+		PMob->setMobMod(MOBMOD_2HOUR_MULTI, 1);
 	}
 
 	if(PMob->HPmodifier == 0){
@@ -381,8 +393,6 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->stats.CHR *= 1.5;
 	}
 
-	PMob->m_SpecialSkill = 0;
-
 	PMob->m_RoamCoolDown = 45000;
 
 	if(PMob->m_Family == 258)
@@ -406,20 +416,20 @@ void CalculateStats(CMobEntity * PMob)
 		{
 			PMob->m_SpecialCoolDown = 35000;
 			// catapult
-			PMob->m_SpecialSkill = 402;
+			PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 402);
 		}
 		else
 		{
 			// all other rangers
 			PMob->m_SpecialCoolDown = 20000;
-			PMob->m_SpecialSkill = 16;
+			PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 16);
 		}
 
 	}
 	else if(mJob == JOB_NIN)
 	{
 		PMob->m_SpecialCoolDown = 35000;
-		PMob->m_SpecialSkill = 16;
+		PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 16);
 	}
 	else if(mJob == JOB_DRG && PMob->m_Family != 193)
 	{
@@ -428,19 +438,13 @@ void CalculateStats(CMobEntity * PMob)
 		// sahigans
 		if(PMob->m_Family == 213)
 		{
-			PMob->m_SpecialSkill = 514;
+			PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 514);
 		}
 		else
 		{
 			// all other dragoons
-			PMob->m_SpecialSkill = 808;
+			PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 808);
 		}
-	}
-
-	// maat shouldn't have a special skill
-	if(PMob->m_Family == 335)
-	{
-		PMob->m_SpecialSkill = 0;
 	}
 
 	// all pets must be defined in the mob_pets file
@@ -450,7 +454,7 @@ void CalculateStats(CMobEntity * PMob)
 		if(mJob == JOB_BST)
 		{
 			PMob->m_SpecialCoolDown = 120000;
-			PMob->m_SpecialSkill = 761;
+			PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 761);
 		}
 		else if(mJob == JOB_DRG && !isNM)
 		{
@@ -459,13 +463,13 @@ void CalculateStats(CMobEntity * PMob)
 			if(PMob->loc.zone->GetContinentID() == THE_ARADJIAH_CONTINENT || PMob->m_Family == 115)
 			{
 				// 20 min recast
-				PMob->m_SpecialSkill = 476;
+				PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 476);
 				PMob->m_SpecialCoolDown = 720000;
 			}
 		}
 		else if(mJob == JOB_PUP)
 		{
-			PMob->m_SpecialSkill = 1645;
+			PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 1645);
 			PMob->m_SpecialCoolDown = 720000;
 		}
 	}
@@ -473,7 +477,7 @@ void CalculateStats(CMobEntity * PMob)
 	// ambush antlions
 	if(PMob->m_Family == 357)
 	{
-		PMob->m_SpecialSkill = 22;
+		PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 22);
 		PMob->m_SpecialCoolDown = 1000;
 		PMob->m_specialFlags |= SPECIALFLAG_HIDDEN;
 		PMob->m_roamFlags |= ROAMFLAG_AMBUSH;
@@ -613,32 +617,6 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->setMobMod(MOBMOD_SUPERLINK, PMob->m_instanceID);
 	}
 
-	AddMods(PMob);
-}
-
-void AddTraits(CMobEntity* PMob, JOBTYPE jobID, uint8 lvl)
-{
-	TraitList_t* PTraitsList = traits::GetTraits(jobID);
-    for (uint8 i = 0; i <  PTraitsList->size(); ++i)
-	{
-		CTrait* PTrait = PTraitsList->at(i);
-		if (lvl >= PTrait->getLevel() && PTrait->getLevel() > 0)
-		{
-            PMob->addModifier(PTrait->getMod(), PTrait->getValue());
-		}
-	}
-}
-
-void AddMods(CMobEntity* PMob)
-{
-	// remove all to keep mods in sync
-	PMob->StatusEffectContainer->KillAllStatusEffect();
-	PMob->restoreModifiers();
-	PMob->restoreMobModifiers();
-
-	uint8 mLvl = PMob->GetMLevel();
-	JOBTYPE mJob = PMob->GetMJob();
-
 	uint8 evaRank = battleutils::GetSkillRank(SKILL_EVA, PMob->GetMJob());
 
     PMob->addModifier(MOD_DEF, GetBase(PMob,PMob->defRank));
@@ -663,8 +641,21 @@ void AddMods(CMobEntity* PMob)
 	}
 
 	// add traits for sub and main
-	AddTraits(PMob, PMob->GetMJob(), PMob->GetMLevel());
+	AddTraits(PMob, mJob, mLvl);
 	AddTraits(PMob, PMob->GetSJob(), PMob->GetSLevel());
+}
+
+void AddTraits(CMobEntity* PMob, JOBTYPE jobID, uint8 lvl)
+{
+	TraitList_t* PTraitsList = traits::GetTraits(jobID);
+    for (uint8 i = 0; i <  PTraitsList->size(); ++i)
+	{
+		CTrait* PTrait = PTraitsList->at(i);
+		if (lvl >= PTrait->getLevel() && PTrait->getLevel() > 0)
+		{
+            PMob->addModifier(PTrait->getMod(), PTrait->getValue());
+		}
+	}
 }
 
 /* Gets the available spells for the specified monster. This looks up the types of spells the monster
@@ -775,6 +766,21 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
 		// no gil drop and no mugging!
 		PMob->setMobMod(MOBMOD_GIL_MAX, -1);
 		PMob->setMobMod(MOBMOD_MUG_GIL, -1);
+	}
+
+	// add two hours
+	// this mod should be added to all NMs that two hour.
+	// for dynamis mobs the statue should give mobs its two hour
+	if(PMob->GetMLevel() >= 10)
+	{
+		if(PMob->m_Type & MOBTYPE_NOTORIOUS || zoneType == ZONETYPE_DYNAMIS)
+		{
+			if(PMob->m_EcoSystem == SYSTEM_BEASTMEN ||
+				PMob->m_EcoSystem == SYSTEM_HUMANOID)
+			{
+				PMob->defaultMobMod(MOBMOD_MAIN_2HOUR, 1);
+			}
+		}
 	}
 
 	PMob->defaultMobMod(MOBMOD_SKILLS, PMob->m_Family);
@@ -1021,11 +1027,11 @@ void SetupMaat(CMobEntity* PMob, JOBTYPE job)
 	PMob->ChangeMJob(job);
 
 	// reset just incase
-	AddMods(PMob);
+	CalculateStats(PMob);
 
 	PMob->m_Weapons[SLOT_MAIN]->setDelay((240*1000)/60);
 
-	// this is kind a hacky but make nin maat always double attack
+	// this is kind a hacky but make nin maat always double attacks
 	switch(PMob->GetMJob()){
 		case JOB_NIN:
 			PMob->setModifier(MOD_DOUBLE_ATTACK, 100);

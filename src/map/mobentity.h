@@ -119,7 +119,6 @@ public:
 
   uint32      m_MagicRecastTime;                  // Amount of time between casts.
   uint32		m_SpecialCoolDown;					// Cool down time between uses.
-  uint16        m_SpecialSkill; // mobskill id to use
   uint16    m_RoamCoolDown; // Amount of time between roam actions
   uint32    m_StandbackTime; // how long the mob will standback for
 
@@ -171,7 +170,6 @@ public:
 	uint32		m_THPCID;							// ID of last PC that hit the NPC and apply TH onto the NPC
 	uint16		m_Family;
   uint32    m_Pool;               // pool the mob came from
-	uint8		m_SkillStatus;						// status of skills (used 2h/used epic tp move/etc)
 	CMobSpellList*      m_SpellListContainer;				// The spells list container for this mob
 	std::map<uint16, uint16>	m_UsedSkillIds;		// mob skill ids used (key) along with mob level (value)
 
@@ -193,7 +191,6 @@ public:
 	uint32		GetSkinID();						// Get the last skinid (0 for base skin)
 
   uint8       TPUseChance(); // return % chance to use TP move
-  bool        CanUseTwoHour(); // checks if the mob can use a two hour
 
   void        ChangeMJob(uint16 job); // this will change jobs and update traits, stats, spells
 
@@ -214,6 +211,7 @@ public:
   int16 getMobMod(uint16 type);
   void addMobMod(uint16 type, int16 value);
   void defaultMobMod(uint16 type, int16 value); // set value if value has not been already set
+  void resetMobMod(uint16 type); // resets mob mod to original value
   void        saveMobModifiers(); // save current state of modifiers
   void        restoreMobModifiers(); // restore to saved state
 

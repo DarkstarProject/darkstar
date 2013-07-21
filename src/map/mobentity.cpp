@@ -32,7 +32,6 @@ CMobEntity::CMobEntity()
 	objtype = TYPE_MOB;
 
 	m_DropID = 0;
-    m_SpecialSkill = 0;
 
 	m_minLevel = 1;
 	m_maxLevel = 1;
@@ -420,32 +419,6 @@ uint8 CMobEntity::TPUseChance()
     return getMobMod(MOBMOD_TP_USE_CHANCE);
 }
 
-bool CMobEntity::CanUseTwoHour()
-{
-
-    // mobs below lvl 10 cannot two hour
-    if(GetMLevel() < 10){
-        return false;
-    }
-
-    if((m_Type & MOBTYPE_NOTORIOUS) || isInDynamis())
-    {
-        return true;
-    }
-
-    if(m_EcoSystem == SYSTEM_BEASTMEN)
-    {
-        return true;
-    }
-
-    if(getMobMod(MOBMOD_MAIN_2HOUR))
-    {
-        return true;
-    }
-
-    return false;
-}
-
 /************************************************************************
 *                                                                       *
 *  Change Skin of the Mob                                               *
@@ -521,7 +494,7 @@ void CMobEntity::addMobMod(uint16 type, int16 value)
 {
     if (type < MAX_MOBMODIFIER)
     {
-        m_mobModStat[type] = m_mobModStat[type] + value;
+        m_mobModStat[type] += value;
     }
     else
     {
@@ -537,6 +510,18 @@ void CMobEntity::defaultMobMod(uint16 type, int16 value)
         {
             m_mobModStat[type] = value;
         }
+    }
+    else
+    {
+        ShowError("CMobEntity::addMobMod Trying to set value out of range (%d)\n", type);
+    }
+}
+
+void CMobEntity::resetMobMod(uint16 type)
+{
+    if (type < MAX_MOBMODIFIER)
+    {
+        m_mobModStat[type] = m_mobModStatSave[type];
     }
     else
     {

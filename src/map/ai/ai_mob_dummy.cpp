@@ -573,7 +573,6 @@ void CAIMobDummy::ActionSpawn()
 		m_PSpecialSkill = NULL;
 		m_PMobSkill = NULL;
 		m_PMob->m_giveExp = true;
-		m_PMob->m_SkillStatus = 0;
         m_PMob->m_OwnerID.clean();
 		m_PMob->m_CallForHelp = 0;
 		m_PMob->m_HiPCLvl = 0;
@@ -603,9 +602,9 @@ void CAIMobDummy::ActionSpawn()
 		mobutils::GetAvailableSpells(m_PMob);
 
 		// get my special skill
-		if(m_PMob->m_SpecialSkill)
+		if(m_PMob->getMobMod(MOBMOD_SPECIAL_SKILL))
 		{
-			m_PSpecialSkill = battleutils::GetMobSkill(m_PMob->m_SpecialSkill);
+			m_PSpecialSkill = battleutils::GetMobSkill(m_PMob->getMobMod(MOBMOD_SPECIAL_SKILL));
 		}
 
 		// spawn somewhere around my point
@@ -664,13 +663,32 @@ void CAIMobDummy::ActionAbilityStart()
 
 	// lets try to use my two hour
 	// two hour is assumed to be at the front
-	if(m_PMob->m_SkillStatus == 0)
+	if(m_PMob->getMobMod(MOBMOD_MAIN_2HOUR))
 	{
-		if(MobSkills[0]->isTwoHour() && m_PMob->CanUseTwoHour()){
-			// get my job two hour
-			m_PMobSkill = battleutils::GetTwoHourMobSkill(m_PMob->GetMJob());
 
-			valid = (m_PMobSkill != NULL && luautils::OnMobSkillCheck(m_PBattleTarget, m_PMob, m_PMobSkill) == 0);
+		// get my job two hour
+		m_PMobSkill = battleutils::GetTwoHourMobSkill(m_PMob->GetMJob());
+
+		valid = (m_PMobSkill != NULL && luautils::OnMobSkillCheck(m_PBattleTarget, m_PMob, m_PMobSkill) == 0);
+
+		if(valid)
+		{
+			// set param so 2hour can be customized
+			m_PMobSkill->setParam(m_PMob->getMobMod(MOBMOD_MAIN_2HOUR));
+
+			// don't use again unless I can use it multiple times
+			if (!m_PMob->getMobMod(MOBMOD_2HOUR_MULTI))
+			{
+				// don't use it again
+				m_PMob->setMobMod(MOBMOD_MAIN_2HOUR, 0);
+			}
+
+			// force magic spam on chainspell, manafont and soul voice
+			int16 skillID = m_PMobSkill->getID();
+			if(skillID == 436 || skillID == 440 || skillID == 435)
+			{
+				m_LastMagicTime = m_Tick + 4000;
+			}
 		}
 	}
 
@@ -824,21 +842,6 @@ void CAIMobDummy::ActionAbilityFinish()
 
 	m_DeaggroTime = m_Tick;
     m_PBattleSubTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
-
-	// I think this should be saved for all skills used by the mob
-	// this is useful for funguar remembering its used moves
-	// drg can use their two hour multiple times
-	if (m_PMobSkill->isTwoHour() && m_PMob->GetMJob() != JOB_DRG) // 2h
-	{
-		m_PMob->m_SkillStatus = 1;
-
-		// force magic spam on chainspell, manafont and soul voice
-		int16 skillID = m_PMobSkill->getID();
-		if(skillID == 436 || skillID == 440 || skillID == 435)
-		{
-			m_LastMagicTime = 0;
-		}
-	}
 
 	// store the skill used
 	m_PMob->m_UsedSkillIds[m_PMobSkill->getID()] = m_PMob->GetMLevel();
@@ -1793,7 +1796,8 @@ bool CAIMobDummy::CanCastSpells()
 	if ( !m_MagicCastingEnabled || !m_PMob->SpellContainer->HasSpells()) return false;
 
 	// check for spell blockers e.g. silence
-	if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE)) {
+	if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE) ||
+		m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_MUTE)) {
 		return false;
 	}
 

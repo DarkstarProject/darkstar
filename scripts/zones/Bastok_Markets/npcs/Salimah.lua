@@ -23,25 +23,27 @@ function onTrade(player,npc,trade)
 		local hasSleepshroom = trade:hasItemQty(4374,1);
 		local hasTreantBulb = trade:hasItemQty(953,1);
 		local hasWildOnion = trade:hasItemQty(4387,1);
-				
+
 		if (hasSleepshroom or hasTreantBulb or hasWildOnion) then
 			if(count == 1) then
 				local vanatime = VanadielHour();
-				local item = "0";
+				local item = 0;
+				local event = 203;
+
 				if (hasSleepshroom) then
-					item = "4374";
+					item = 4374;
 					if (vanatime>=18 or vanatime<6) then
-						event = "0x00ca";
+						event = 201;
 					end
 				elseif (hasTreantBulb) then
-					item = "953";
+					item = 953;
 					if (vanatime>=6 and vanatime<12) then
-						event = "0x00ca";
+						event = 201;
 					end
 				elseif (hasWildOnion) then
-					item = "4387";
+					item = 4387;
 					if (vanatime>=12 and vanatime<18) then
-						event = "0x00ca";
+						event = 202;
 					end
 				end
 
@@ -49,7 +51,7 @@ function onTrade(player,npc,trade)
 			end
 		end
 	end
-end; 
+end;
 
 
 -----------------------------------
@@ -64,7 +66,7 @@ function onTrigger(player,npc)
 		player:startEvent(0x00c8);
 	end
 
-end; 
+end;
 
 
 -----------------------------------
@@ -99,13 +101,13 @@ function onEventFinish(player,csid,option)
 
 		local gil=350;
 		local fame=120;
-		if (csid == 0x00ca) then
+		if (csid == 201) then
 			gil=200;
-		elseif (csid == 0x00cb) then
+		elseif (csid == 203) then
 			gil=100;
 			fame=60;
 		end
-		
+
 		player:addGil(gil*GIL_RATE);
 		player:messageSpecial(GIL_OBTAINED,gil*GIL_RATE);
 		player:addFame(BASTOK,BAS_FAME*fame);

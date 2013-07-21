@@ -45,7 +45,7 @@ enum MOBMODIFIER
   MOBMOD_RAGE = 13, // define rage timer -- not impl
   MOBMOD_SKILLS = 14, // use a custom mob skill list
   MOBMOD_MUG_GIL = 15, // amount gil carried for mugging -- not impl
-  MOBMOD_MAIN_2HOUR = 16, // give mob its main job two hour, value can maybe be sent to skill -- not impl
+  MOBMOD_MAIN_2HOUR = 16, // give mob its main job two hour, value can maybe be sent to skill
   MOBMOD_NO_DESPAWN = 17, // do not despawn when too far from spawn. Gob Diggers have this.
   MOBMOD_VAR = 18, // temp var for whatever
   MOBMOD_SUB_2HOUR = 19, // give mob its sub job two hour (dynamis NM) -- not impl
@@ -59,10 +59,15 @@ enum MOBMODIFIER
   MOBMOD_SPELL_LIST = 27, // set spell list
   MOBMOD_EXP_BONUS = 28, // bonus exp (bonus / 100)
   MOBMOD_ASSIST = 29, // mobs will assist me
-  MOBMOD_SPECIAL_SKILL = 30, // give special skill -- not impl
-  MOBMOD_RAND_JOB = 31 // can spawn as a random job depending on its family
+  MOBMOD_SPECIAL_SKILL = 30, // give special skill
+  MOBMOD_RAND_JOB = 31, // can spawn as a random job depending on its family
+  MOBMOD_2HOUR_MULTI = 32, // can use two hour multiple times
+  MOBMOD_SPECIAL_COOL = 33, // cool down for special -- not impl
+  MOBMOD_MAGIC_COOL = 34, // cool down for magic -- not impl
+  MOBMOD_STANDBACK_TIME = 35, // amount of time the mob stands back -- not impl
+  MOBMOD_ROAM_COOL = 36 // cool down for roaming -- not impl
 };
 
-#define MAX_MOBMODIFIER         32
+#define MAX_MOBMODIFIER         37
 
 #endif
