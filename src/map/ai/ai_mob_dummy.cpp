@@ -979,6 +979,8 @@ void CAIMobDummy::ActionSleep()
 		return;
 	}
 
+	m_DeaggroTime = m_Tick;
+
     if (!m_PMob->StatusEffectContainer->HasPreventActionEffect())
     {
 		m_ActionType = ACTION_ATTACK;
@@ -990,7 +992,6 @@ void CAIMobDummy::ActionSleep()
 	}
 
 	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
-
 }
 
 
