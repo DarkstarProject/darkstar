@@ -88,7 +88,7 @@ function onMobFight(mob,target)
 			-- mob:setDelay(3250);
 			-- mob:setDamage(75);
 		elseif (randnum == 3) then -- Staff Form, ~4s delay, ~10 seconds between spell ends and next cast
-			mob:setSpellCooldown(10000);
+			mob:setMobMod(MOBMOD_MAGIC_COOL, 10);
 			mob:SetMagicCastingEnabled(true);
 			-- mob:setDelay(700);
 			-- mob:setDamage(40);

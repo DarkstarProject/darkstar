@@ -31,27 +31,27 @@ function onMobFight(mob,target)
 
 	if(mob:getID() < 17453060) then -- first phase AI
 		if(mob:getHP() / mob:getMaxHP() <= 0.5) then
-		
+
 			local changeTime, changeHP = mob:getExtraVar(2);
-		
+
 			if(mob:AnimationSub() == 0) then
 				mob:AnimationSub(1);
 				mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
 				mob:addStatusEffectEx(EFFECT_MAGIC_SHIELD, 0, 1, 0, 0);
 				mob:SetAutoAttackEnabled(false);
 				mob:SetMagicCastingEnabled(true);
-				mob:setSpellCooldown(2000);
+				mob:setMobMod(MOBMOD_MAGIC_COOL, 2);
 				mob:setExtraVar(mob:getBattleTime(), mob:getHP());
-			elseif(mob:AnimationSub() == 2 and (mob:getHP() <= changeHP - 1000 or 
+			elseif(mob:AnimationSub() == 2 and (mob:getHP() <= changeHP - 1000 or
 					mob:getBattleTime() - changeTime > 300)) then
 				mob:AnimationSub(1);
 				mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
 				mob:addStatusEffectEx(EFFECT_MAGIC_SHIELD, 0, 1, 0, 0);
 				mob:SetAutoAttackEnabled(false);
 				mob:SetMagicCastingEnabled(true);
-				mob:setSpellCooldown(2000);
+				mob:setMobMod(MOBMOD_MAGIC_COOL, 2);
 				mob:setExtraVar(mob:getBattleTime(), mob:getHP());
-			elseif(mob:AnimationSub() == 1 and (mob:getHP() <= changeHP - 1000 or 
+			elseif(mob:AnimationSub() == 1 and (mob:getHP() <= changeHP - 1000 or
 					mob:getBattleTime() - changeTime > 300)) then
 				mob:useMobAbility(417);
 				mob:AnimationSub(2);
@@ -59,7 +59,7 @@ function onMobFight(mob,target)
 				mob:addStatusEffectEx(EFFECT_PHYSICAL_SHIELD, 0, 1, 0, 0);
 				mob:SetAutoAttackEnabled(true);
 				mob:SetMagicCastingEnabled(false);
-				mob:setSpellCooldown(10000);
+				mob:setMobMod(MOBMOD_MAGIC_COOL, 10);
 				mob:setExtraVar(mob:getBattleTime(), mob:getHP());
 			end
 		end
@@ -75,7 +75,7 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	
+
 	if(mob:getID() < 17453060) then
 		killer:startEvent(0x7d04);
 		killer:setVar("mobid",mob:getID());
@@ -85,11 +85,10 @@ function onMobDeath(mob,killer)
 	mob:AnimationSub(0);
 	mob:SetAutoAttackEnabled(true);
 	mob:SetMagicCastingEnabled(true);
-	mob:setSpellCooldown(10000);
 	mob:delStatusEffect(EFFECT_MAGIC_SHIELD);
 	mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
 	mob:setExtraVar(0);
-	
+
 end;
 
 -----------------------------------
@@ -108,17 +107,17 @@ end;
 function onEventFinish(player,csid,option)
 --printf("finishCSID: %u",csid);
 --printf("RESULT: %u",option);
-	
+
 	if(csid == 0x7d04) then
 		local mobid = player:getVar("mobid");
 		DespawnMob(mobid);
 		player:setVar("mobid",0);
-		
+
 		mob = SpawnMob(mobid+3);
 		mob:updateEnmity(player);
 		mob:SetMagicCastingEnabled(false);
 		mob:SetAutoAttackEnabled(false);
 		mob:SetMobAbilityEnabled(false);
 	end
-	
+
 end;

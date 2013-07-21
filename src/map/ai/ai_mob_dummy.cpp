@@ -171,7 +171,7 @@ void CAIMobDummy::ActionRoaming()
 		m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
 
 	}
-	else if ((m_Tick - m_LastActionTime) >= m_PMob->m_RoamCoolDown)
+	else if ((m_Tick - m_LastActionTime) >= m_PMob->getBigMobMod(MOBMOD_ROAM_COOL))
 	{
 		// lets buff up or move around
 
@@ -198,7 +198,7 @@ void CAIMobDummy::ActionRoaming()
 				m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
 
 				// move back every 5 seconds
-				m_LastActionTime = m_Tick - m_PMob->m_RoamCoolDown + MOB_NEUTRAL_TIME;
+				m_LastActionTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_ROAM_COOL) + MOB_NEUTRAL_TIME;
 			}
 			else
 			{
@@ -323,7 +323,7 @@ void CAIMobDummy::ActionDisengage()
 	m_PPathFind->Clear();
 
 	// this will let me decide to walk home or despawn
-	m_LastActionTime = m_Tick - m_PMob->m_RoamCoolDown + MOB_NEUTRAL_TIME;
+	m_LastActionTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_ROAM_COOL) + MOB_NEUTRAL_TIME;
 	m_PMob->m_neutral = true;
 
 	m_checkDespawn = true;
@@ -1116,7 +1116,7 @@ void CAIMobDummy::ActionMagicCasting()
 	if ((m_Tick - m_LastMagicTime) >= totalCastTime)
 	{
 
-		m_LastMagicTime = m_Tick - rand()%(uint32)((float)m_PMob->m_MagicRecastTime / 2);
+		m_LastMagicTime = m_Tick - rand()%(uint32)((float)m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) / 2);
 
 		if(m_interruptSpell)
 		{
@@ -1303,13 +1303,13 @@ void CAIMobDummy::ActionMagicFinish()
 
 	if (m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL,0)){
 		// let's make CSing monsters actually use lots of spells.
-		m_LastMagicTime = m_Tick - m_PMob->m_MagicRecastTime + 5000;
+		m_LastMagicTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + 5000;
 	}
 	else if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT,0) ||
 	    m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SOUL_VOICE,0))
 	{
 		// cast magic sooner
-		m_LastMagicTime = m_Tick - (float)(m_PMob->m_MagicRecastTime/2);
+		m_LastMagicTime = m_Tick - (float)(m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL)/2);
 	}
 
 	m_PSpell = NULL;
@@ -1352,12 +1352,12 @@ void CAIMobDummy::ActionAttack()
     }
 
 	// Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
-	if(m_PSpecialSkill != NULL && !m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL) && (m_Tick - m_LastSpecialTime) >= m_PMob->m_SpecialCoolDown && TrySpecialSkill())
+	if(m_PSpecialSkill != NULL && !m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL) && (m_Tick - m_LastSpecialTime) >= m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL) && TrySpecialSkill())
 	{
 		FinishAttack();
 		return;
 	}
-	else if (currentDistance <= MOB_SPELL_MAX_RANGE && (m_Tick - m_LastMagicTime) >= m_PMob->m_MagicRecastTime && TryCastSpell())
+	else if (currentDistance <= MOB_SPELL_MAX_RANGE && (m_Tick - m_LastMagicTime) >= m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) && TryCastSpell())
 	{
 		FinishAttack();
 		return;
@@ -1371,7 +1371,7 @@ void CAIMobDummy::ActionAttack()
 	}
 
     // try to standback if I can
-	if(m_PMob->m_StandbackTime)
+	if(m_PMob->getBigMobMod(MOBMOD_STANDBACK_TIME))
 	{
 		if(currentDistance > 28)
 		{
@@ -1384,23 +1384,23 @@ void CAIMobDummy::ActionAttack()
 			m_CanStandback = false;
 
 			// don't stand back again
-			m_LastStandbackTime = m_Tick + m_PMob->m_StandbackTime;
+			m_LastStandbackTime = m_Tick + m_PMob->getBigMobMod(MOBMOD_STANDBACK_TIME);
 		}
 		else if(currentDistance < 20 && currentDistance > m_PMob->m_ModelSize * 2)
 		{
 
 			if(m_CanStandback && currentDistance > m_PMob->m_ModelSize)
 		    {
-		    	uint16 halfStandback = (float)m_PMob->m_StandbackTime/3;
-		    	m_LastStandbackTime = m_Tick + m_PMob->m_StandbackTime - rand()%(halfStandback);
+		    	uint16 halfStandback = (float)m_PMob->getBigMobMod(MOBMOD_STANDBACK_TIME)/3;
+		    	m_LastStandbackTime = m_Tick + m_PMob->getBigMobMod(MOBMOD_STANDBACK_TIME) - rand()%(halfStandback);
 		    	m_CanStandback = false;
 		    }
 
-			if((m_Tick - m_LastStandbackTime) > m_PMob->m_StandbackTime)
+			if((m_Tick - m_LastStandbackTime) > m_PMob->getBigMobMod(MOBMOD_STANDBACK_TIME))
 			{
 				// speed up my ranged attacks cause i'm waiting here
 				m_LastSpecialTime -= 1000;
-				m_LastMagicTime -= 1000;
+				m_LastMagicTime -= 500;
 				FinishAttack();
 				return;
 			}
@@ -1703,10 +1703,16 @@ void CAIMobDummy::ActionAttack()
 
 void CAIMobDummy::FinishAttack()
 {
-
-	if(m_PMob->m_Type & MOBTYPE_NOTORIOUS && (m_Tick - m_StartBattle) % 3000 <= 400) // launch OnMobFight every 3 sec (not everytime at 0 but 0~400)
+	// launch OnMobFight every 3 sec (not everytime at 0 but 0~400)
+	if((m_PMob->m_Type & MOBTYPE_NOTORIOUS) && (m_Tick - m_StartBattle) % 3000 <= 400)
 	{
 		luautils::OnMobFight(m_PMob,m_PBattleTarget);
+	}
+
+	if(m_PMob->getMobMod(MOBMOD_RAGE) && !m_PMob->hasRageMode() && m_Tick - m_StartBattle >= m_PMob->getBigMobMod(MOBMOD_RAGE))
+	{
+		// come at me bro
+		m_PMob->addRageMode();
 	}
 
 	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
@@ -1849,7 +1855,7 @@ bool CAIMobDummy::TryCastSpell()
 	if(m_firstSpell && m_PBattleTarget != NULL && distance(m_PMob->loc.p, m_PBattleTarget->loc.p) <= m_PMob->m_ModelSize){
 
 		m_firstSpell = false;
-		m_LastMagicTime = m_Tick - m_PMob->m_MagicRecastTime + rand()%5000 + 3000;
+		m_LastMagicTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + rand()%5000 + 3000;
 		return false;
 	}
 
@@ -1905,12 +1911,12 @@ void CAIMobDummy::ActionSpecialSkill()
     m_LastActionTime = m_Tick;
     m_DeaggroTime = m_Tick;
 
-    uint32 halfSpecial = (float)m_PMob->m_SpecialCoolDown/2;
+    uint32 halfSpecial = (float)m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL)/2;
 
     m_LastSpecialTime = m_Tick - rand()%(halfSpecial);
 
     // don't use magic right after
-    m_LastMagicTime = m_Tick + m_PMob->m_MagicRecastTime + rand()%5000 + 4000;
+    m_LastMagicTime = m_Tick + m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + rand()%5000 + 4000;
 
     m_PBattleSubTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
     apAction_t Action;
@@ -2021,7 +2027,7 @@ void CAIMobDummy::FollowPath()
 		// if I just finished reset my last action time
 		if(!m_PPathFind->IsFollowingPath())
 		{
-			m_LastActionTime = m_Tick - rand()%m_PMob->m_RoamCoolDown + 10000;
+			m_LastActionTime = m_Tick - rand()%m_PMob->getBigMobMod(MOBMOD_ROAM_COOL) + 10000;
 
 			// i'm a worm pop back up
 			if(m_PMob->m_roamFlags & ROAMFLAG_WORM)
@@ -2069,7 +2075,7 @@ void CAIMobDummy::SetupEngage()
 	// drg shouldn't use jump right away
 	if(m_PMob->GetMJob() == JOB_DRG)
 	{
-		m_LastSpecialTime = m_Tick - rand()%m_PMob->m_SpecialCoolDown + 5000;
+		m_LastSpecialTime = m_Tick - rand()%m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL) + 5000;
 	}
 
 	if(m_PMob->m_roamFlags & ROAMFLAG_WORM)

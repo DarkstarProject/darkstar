@@ -88,10 +88,7 @@ CMobEntity::CMobEntity()
 
     setMobMod(MOBMOD_SIGHT_RANGE, MOB_SIGHT_RANGE);
     setMobMod(MOBMOD_SOUND_RANGE, MOB_SOUND_RANGE);
-
-    m_SpecialCoolDown = 0;
-    m_RoamCoolDown = 45000;
-    m_StandbackTime = 0;
+    setMobMod(MOBMOD_ROAM_COOL, 45);
 
 	memset(& m_SpawnPoint, 0, sizeof(m_SpawnPoint));
 
@@ -527,6 +524,11 @@ void CMobEntity::resetMobMod(uint16 type)
     {
         ShowError("CMobEntity::addMobMod Trying to set value out of range (%d)\n", type);
     }
+}
+
+int32 CMobEntity::getBigMobMod(uint16 type)
+{
+    return getMobMod(type) * 1000;
 }
 
 void CMobEntity::saveMobModifiers()

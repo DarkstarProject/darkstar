@@ -117,11 +117,6 @@ public:
   uint32		m_RespawnTime;						// отрезок времени, через который монстр возрождается после смерти
   uint32      m_DropItemTime;						// время анимации смерти монстра
 
-  uint32      m_MagicRecastTime;                  // Amount of time between casts.
-  uint32		m_SpecialCoolDown;					// Cool down time between uses.
-  uint16    m_RoamCoolDown; // Amount of time between roam actions
-  uint32    m_StandbackTime; // how long the mob will standback for
-
   uint32    m_DropID;             // номер группы оставляемых монстром предметов после смерти
 
   uint8   m_minLevel;             // минимально-возможный  уровень монстра
@@ -212,6 +207,7 @@ public:
   void addMobMod(uint16 type, int16 value);
   void defaultMobMod(uint16 type, int16 value); // set value if value has not been already set
   void resetMobMod(uint16 type); // resets mob mod to original value
+  int32 getBigMobMod(uint16 type); // multiplies mod by 1000
   void        saveMobModifiers(); // save current state of modifiers
   void        restoreMobModifiers(); // restore to saved state
 

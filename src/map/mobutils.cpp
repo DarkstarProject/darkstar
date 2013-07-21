@@ -393,18 +393,10 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->stats.CHR *= 1.5;
 	}
 
-	PMob->m_RoamCoolDown = 45000;
-
-	if(PMob->m_Family == 258)
-	{
-		// worms don't act as often
-		PMob->m_RoamCoolDown = 60000;
-	}
-
 	// aggro mobs move around a bit more often
-	if(PMob->m_Behaviour != BEHAVIOUR_NONE)
+	if(PMob->m_Behaviour != BEHAVIOUR_NONE && PMob->speed != 0)
 	{
-		PMob->m_RoamCoolDown = 30000;
+		PMob->setMobMod(MOBMOD_ROAM_COOL, 30);
 	}
 
 	// setup special ability
@@ -414,26 +406,26 @@ void CalculateStats(CMobEntity * PMob)
 		// giga
 		if(PMob->m_Family == 126 && PMob->m_Family <= 130)
 		{
-			PMob->m_SpecialCoolDown = 35000;
+			PMob->setMobMod(MOBMOD_SPECIAL_COOL, 35);
 			// catapult
 			PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 402);
 		}
 		else
 		{
 			// all other rangers
-			PMob->m_SpecialCoolDown = 20000;
+			PMob->setMobMod(MOBMOD_SPECIAL_COOL, 20);
 			PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 16);
 		}
 
 	}
 	else if(mJob == JOB_NIN)
 	{
-		PMob->m_SpecialCoolDown = 35000;
+		PMob->setMobMod(MOBMOD_SPECIAL_COOL, 35);
 		PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 16);
 	}
 	else if(mJob == JOB_DRG && PMob->m_Family != 193)
 	{
-		PMob->m_SpecialCoolDown = 45000;
+		PMob->setMobMod(MOBMOD_SPECIAL_COOL, 45);
 
 		// sahigans
 		if(PMob->m_Family == 213)
@@ -453,7 +445,7 @@ void CalculateStats(CMobEntity * PMob)
 	{
 		if(mJob == JOB_BST)
 		{
-			PMob->m_SpecialCoolDown = 120000;
+			PMob->setMobMod(MOBMOD_SPECIAL_COOL, 120);
 			PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 761);
 		}
 		else if(mJob == JOB_DRG && !isNM)
@@ -464,13 +456,13 @@ void CalculateStats(CMobEntity * PMob)
 			{
 				// 20 min recast
 				PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 476);
-				PMob->m_SpecialCoolDown = 720000;
+				PMob->setMobMod(MOBMOD_SPECIAL_COOL, 720);
 			}
 		}
 		else if(mJob == JOB_PUP)
 		{
 			PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 1645);
-			PMob->m_SpecialCoolDown = 720000;
+			PMob->setMobMod(MOBMOD_SPECIAL_COOL, 720);
 		}
 	}
 
@@ -478,7 +470,7 @@ void CalculateStats(CMobEntity * PMob)
 	if(PMob->m_Family == 357)
 	{
 		PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 22);
-		PMob->m_SpecialCoolDown = 1000;
+		PMob->setMobMod(MOBMOD_SPECIAL_COOL, 1);
 		PMob->m_specialFlags |= SPECIALFLAG_HIDDEN;
 		PMob->m_roamFlags |= ROAMFLAG_AMBUSH;
 	}
@@ -498,44 +490,40 @@ void CalculateStats(CMobEntity * PMob)
 		// giga
 		if(PMob->m_Family == 126 && PMob->m_Family <= 130)
 		{
-			PMob->m_StandbackTime = 20000;
+			PMob->setMobMod(MOBMOD_STANDBACK_TIME, 20);
 		}
 		else if(PMob->m_Family == 199)
 		{
 			// they stay back forever
-			PMob->m_StandbackTime = 90000;
+			PMob->setMobMod(MOBMOD_STANDBACK_TIME, 90);
 		}
 		else
 		{
-			PMob->m_StandbackTime = 60000;
+			PMob->setMobMod(MOBMOD_STANDBACK_TIME, 60);
 		}
 
 	}
 	else if(mJob == JOB_COR)
 	{
-		PMob->m_StandbackTime = 60000;
+		PMob->setMobMod(MOBMOD_STANDBACK_TIME, 60);
 	}
 	else if(mJob == JOB_BLM)
 	{
-		PMob->m_StandbackTime = 42000;
+		PMob->setMobMod(MOBMOD_STANDBACK_TIME, 42);
 	}
 	else if(mJob == JOB_WHM)
 	{
-		PMob->m_StandbackTime = 32000;
+		PMob->setMobMod(MOBMOD_STANDBACK_TIME, 32);
 	}
 	else if(mJob == JOB_NIN)
 	{
-		PMob->m_StandbackTime = 25000;
-	}
-	else
-	{
-		PMob->m_StandbackTime = 0;
+		PMob->setMobMod(MOBMOD_STANDBACK_TIME, 25);
 	}
 
 	// mobs with zero speed cannot standback
 	if(PMob->speed == 0)
 	{
-		PMob->m_StandbackTime = 0;
+		PMob->setMobMod(MOBMOD_STANDBACK_TIME, 0);
 	}
 
     // special case, give spell list to my pet
@@ -552,19 +540,6 @@ void CalculateStats(CMobEntity * PMob)
     {
     	PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(PMob->getMobMod(MOBMOD_SPELL_LIST));
     }
-
-	// add special traits to families
-	// right now this is hard coded but will eventually be put into a column?
-	if(PMob->m_Family == 217 || PMob->m_Family == 274 || PMob->m_Family == 273)
-	{
-		// scorpion are immune to poison
-		PMob->m_Immunity = (IMMUNITY)(uint16)(PMob->m_Immunity | IMMUNITY_POISON);
-	}
-	else if(PMob->m_Family == 258)
-	{
-		// worm
-		PMob->m_MagicRecastTime = 12000;
-	}
 
 	// TODO: this should be put into its own column
 	// has not been decided where yet
@@ -682,21 +657,21 @@ void GetAvailableSpells(CMobEntity* PMob) {
 	{
 		case JOB_BLM:
 		case JOB_BRD:
-			PMob->m_MagicRecastTime = 30000;
+			PMob->setMobMod(MOBMOD_MAGIC_COOL, 30);
 		break;
 		case JOB_BLU:
-			PMob->m_MagicRecastTime = 40000;
+			PMob->setMobMod(MOBMOD_MAGIC_COOL, 40);
 		break;
 		case JOB_NIN:
 		case JOB_WHM:
 		case JOB_RDM:
-			PMob->m_MagicRecastTime = 35000;
+			PMob->setMobMod(MOBMOD_MAGIC_COOL, 35);
 		break;
 		case JOB_SMN:
-			PMob->m_MagicRecastTime = 70000;
+			PMob->setMobMod(MOBMOD_MAGIC_COOL, 70);
 		break;
 		default:
-			PMob->m_MagicRecastTime = 45000;
+			PMob->setMobMod(MOBMOD_MAGIC_COOL, 45);
 		break;
 
 	}
@@ -789,9 +764,11 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
 		}
 	}
 
+	PMob->m_Immunity |= PMob->getMobMod(MOBMOD_IMMUNITY);
 	PMob->defaultMobMod(MOBMOD_SKILLS, PMob->m_Family);
 	PMob->defaultMobMod(MOBMOD_LINK_RADIUS, MOB_LINK_RADIUS);
 	PMob->defaultMobMod(MOBMOD_TP_USE_CHANCE, MOB_TP_USE_CHANCE);
+	PMob->defaultMobMod(MOBMOD_ROAM_COOL, 45);
 
     // Killer Effect
     switch (PMob->m_EcoSystem)

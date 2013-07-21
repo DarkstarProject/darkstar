@@ -1633,7 +1633,7 @@ inline int32 CLuaBaseEntity::setSkillRank(lua_State *L)
 	charutils::BuildingCharSkillsTable(PChar);
 	charutils::SaveCharSkills(PChar, skillID);
 	PChar->pushPacket(new CCharSkillsPacket(PChar));
-    
+
 	return 0;
 }
 
@@ -2770,7 +2770,7 @@ inline int32 CLuaBaseEntity::setTitle(lua_State *L)
     uint16 TitleID = (uint16)lua_tointeger(L,-1);
 
     charutils::setTitle(PChar, TitleID);
-    
+
     return 0;
 }
 
@@ -5858,7 +5858,7 @@ inline int32 CLuaBaseEntity::setRespawnTime(lua_State* L)
 	{
 		ShowWarning("CLuaBaseEntity::setRespawnTime (%d) Tried to set respawn without a time\n", PMob->id);
 	}
-	
+
 	PMob->m_AllowRespawn = true;
 
 	return 0;
@@ -6630,18 +6630,6 @@ inline int32 CLuaBaseEntity::useMobAbility(lua_State* L)
 	} else {
 		((CMobEntity*)m_PBaseEntity)->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
 	}
-	return 0;
-}
-
-inline int32 CLuaBaseEntity::setSpellCooldown(lua_State* L)
-{
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
-
-	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L, 1));
-
-	((CMobEntity*)m_PBaseEntity)->m_MagicRecastTime = lua_tointeger(L, 1);
-
 	return 0;
 }
 
@@ -7487,7 +7475,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setDamage),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,castSpell),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,useMobAbility),
-	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setSpellCooldown),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetAutoAttackEnabled),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetMagicCastingEnabled),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetMobAbilityEnabled),

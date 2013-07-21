@@ -42,7 +42,7 @@ enum MOBMODIFIER
   MOBMOD_SUBLINK = 10, // link with this family
   MOBMOD_LINK_RADIUS = 11, // link radius
   MOBMOD_DRAW_IN = 12, // 1 - player draw in, 2 - alliance draw in
-  MOBMOD_RAGE = 13, // define rage timer -- not impl
+  MOBMOD_RAGE = 13, // define rage timer
   MOBMOD_SKILLS = 14, // use a custom mob skill list
   MOBMOD_MUG_GIL = 15, // amount gil carried for mugging -- not impl
   MOBMOD_MAIN_2HOUR = 16, // give mob its main job two hour, value can maybe be sent to skill
@@ -52,20 +52,20 @@ enum MOBMODIFIER
   MOBMOD_TP_USE_CHANCE = 20, // % chance to use tp
   MOBMOD_PET_SPELL_LIST = 21, // set pet spell list
   MOBMOD_NA_CHANCE = 22, // % chance to cast -na
-  MOBMOD_IMMUNITY = 23, // immune to set status effects -- not impl
+  MOBMOD_IMMUNITY = 23, // immune to set status effects. This only works from the db, not scripts
   MOBMOD_GRADUAL_RAGE = 24, // gradually rages -- not impl
   MOBMOD_BUILD_RESIST = 25, // builds resistance to given effects -- not impl
-  MOBMOD_SUPERLINK = 26, // super link group. Only use this in mob_spawn_mods!
+  MOBMOD_SUPERLINK = 26, // super link group. Only use this in mob_spawn_mods / scripts!
   MOBMOD_SPELL_LIST = 27, // set spell list
   MOBMOD_EXP_BONUS = 28, // bonus exp (bonus / 100)
   MOBMOD_ASSIST = 29, // mobs will assist me
   MOBMOD_SPECIAL_SKILL = 30, // give special skill
   MOBMOD_RAND_JOB = 31, // can spawn as a random job depending on its family
   MOBMOD_2HOUR_MULTI = 32, // can use two hour multiple times
-  MOBMOD_SPECIAL_COOL = 33, // cool down for special -- not impl
-  MOBMOD_MAGIC_COOL = 34, // cool down for magic -- not impl
-  MOBMOD_STANDBACK_TIME = 35, // amount of time the mob stands back -- not impl
-  MOBMOD_ROAM_COOL = 36 // cool down for roaming -- not impl
+  MOBMOD_SPECIAL_COOL = 33, // cool down for special
+  MOBMOD_MAGIC_COOL = 34, // cool down for magic
+  MOBMOD_STANDBACK_TIME = 35, // amount of time the mob stands back
+  MOBMOD_ROAM_COOL = 36 // cool down for roaming
 };
 
 #define MAX_MOBMODIFIER         37
