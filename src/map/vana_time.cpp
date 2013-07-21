@@ -176,7 +176,7 @@ uint32 CVanaTime::getMoonPhase()
 	}else{
 		phase = (int32)(100*daysmod/42 + 0.5);
 	}
-	
+
 	return phase;
 }
 
@@ -202,17 +202,13 @@ TIMETYPE CVanaTime::SyncTime()
 	timeb SysTime;
 	ftime(&SysTime);
 
-	uint64 rawtime = SysTime.time * 1000 + SysTime.millitm;
-
 	//Convert real time into Vana minutes
 
-	m_vanaDate  = (uint32)((rawtime - 1024844400000) / 2400);
-	m_vanaDate += m_customOffset;
-	m_vanaDate += ((898 * 360 + 30) * VTIME_DAY);
+	m_vanaDate  = (uint32)((SysTime.time + 92514960 ) / 60.0 * 25 );
 
 	m_vYear = (uint32)( m_vanaDate / VTIME_YEAR);
 	m_vMon  = (uint32)((m_vanaDate / VTIME_MONTH) % 12) + 1;
-	m_vDate = (uint32)((m_vanaDate % VTIME_MONTH) / VTIME_DAY) + 1;
+	m_vDate = (uint32)((m_vanaDate / VTIME_DAY) % 30 ) + 1;
 	m_vDay  = (uint32)((m_vanaDate % VTIME_WEEK)  / VTIME_DAY);
 	m_vHour = (uint32)((m_vanaDate % VTIME_DAY)   / VTIME_HOUR);
 	m_vMin  = (uint32)( m_vanaDate % VTIME_HOUR);
