@@ -4137,12 +4137,12 @@ void DrawIn(CBattleEntity* PEntity, position_t* pos, float offset)
 	// see tractor
 	if(PEntity->isDead()) return;
 
-	position_t near = nearPosition(*pos, offset, M_PI);
+	position_t nearEntity = nearPosition(*pos, offset, M_PI);
 
 	// draw in!
-	PEntity->loc.p.x = near.x;
-	PEntity->loc.p.y = near.y;
-	PEntity->loc.p.z = near.z;
+	PEntity->loc.p.x = nearEntity.x;
+	PEntity->loc.p.y = nearEntity.y;
+	PEntity->loc.p.z = nearEntity.z;
 
 	if(PEntity->objtype == TYPE_PC)
 	{
