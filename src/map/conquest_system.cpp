@@ -27,7 +27,7 @@
 
 #include "lua/luautils.h"
 
-int32 g_Conquest[19][6];
+int32 g_Conquest[19][7];
 
 /************************************************************************
 *                                                                       *
@@ -46,14 +46,14 @@ namespace conquest
 	void LoadConquestSystem()
 	{
 		int8 regNum = 0;
-		const int8* Query =  
+		const int8* Query =
         "SELECT region_id, region_control, sandoria_influence, bastok_influence, windurst_influence, beastmen_influence, graphics_arrows FROM conquest_system";
 
 		int32 ret = Sql_Query(SqlHandle, Query);
 
-		if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0) 
-		{	
-			while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+		{
+			while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 			{
 				g_Conquest[regNum][0] = (uint32)Sql_GetIntData(SqlHandle,0); // Region ID
 				g_Conquest[regNum][1] = (uint32)Sql_GetIntData(SqlHandle,1); // Region Control
@@ -78,7 +78,7 @@ namespace conquest
 		for (uint8 i=0; i <= 18; i++)
 		{
 			g_Conquest[i][6] = CreateInfluenceGraphics(i);
-			
+
 			const int8* Query =  "UPDATE conquest_system "
 								 "SET region_control = %u, sandoria_influence = %u, bastok_influence = %u, windurst_influence = %u, beastmen_influence = %u, graphics_arrows = %u "
 								 "WHERE region_id = %u";
@@ -110,50 +110,50 @@ namespace conquest
 	{
 		REGIONTYPE region = PChar->loc.zone->GetRegionID();
 		int8 point = 0;
-		
+
 		switch (region)
 		{
 			case REGION_RONFAURE:
-			case REGION_GUSTABERG: 
-			case REGION_SARUTABARUTA: 
+			case REGION_GUSTABERG:
+			case REGION_SARUTABARUTA:
 			{
 				point = 1;
 			}
-			case REGION_ZULKHEIM: 
-			case REGION_KOLSHUSHU: 
-			case REGION_NORVALLEN: 
-			case REGION_DERFLAND: 
-			case REGION_ARAGONEU: 
+			case REGION_ZULKHEIM:
+			case REGION_KOLSHUSHU:
+			case REGION_NORVALLEN:
+			case REGION_DERFLAND:
+			case REGION_ARAGONEU:
 			{
 				point = 3;
 			}
-			case REGION_QUFIMISLAND: 
-			case REGION_LITELOR: 
-			case REGION_KUZOTZ: 
-			case REGION_ELSHIMOLOWLANDS: 
+			case REGION_QUFIMISLAND:
+			case REGION_LITELOR:
+			case REGION_KUZOTZ:
+			case REGION_ELSHIMOLOWLANDS:
 			{
 				point = 6;
 			}
-			case REGION_VOLLBOW: 
-			case REGION_VALDEAUNIA: 
-			case REGION_FAUREGANDI: 
-			case REGION_ELSHIMOUPLANDS: 
+			case REGION_VOLLBOW:
+			case REGION_VALDEAUNIA:
+			case REGION_FAUREGANDI:
+			case REGION_ELSHIMOUPLANDS:
 			{
 				point = 9;
 			}
-			case REGION_TULIA: 
-			case REGION_MOVALPOLOS: 
-			case REGION_TAVNAZIA: 
+			case REGION_TULIA:
+			case REGION_MOVALPOLOS:
+			case REGION_TAVNAZIA:
 			{
 				point = 12;
 			}
-		} 
-		
+		}
+
 		if(g_Conquest[region][PChar->profile.nation + 2] >= point)
 		{
 			g_Conquest[region][PChar->profile.nation + 2] -= point;
 		}
-		
+
 		g_Conquest[region][5] += point;
 	}
 
@@ -176,31 +176,31 @@ namespace conquest
 
 	uint8 CreateInfluenceGraphics(uint8 RegionID)
 	{
-		//if all nations and beastmen == 0 
+		//if all nations and beastmen == 0
 		if(g_Conquest[RegionID][2] == 0 && g_Conquest[RegionID][3] == 0 && g_Conquest[RegionID][4] == 0 && g_Conquest[RegionID][5] == 0)
 		{
 			return 0;
 		}
 		//if all nations and beastmen, has same number
-		else if(g_Conquest[RegionID][2] == g_Conquest[RegionID][3] && 
-				g_Conquest[RegionID][2] == g_Conquest[RegionID][4] && 
-				g_Conquest[RegionID][2] == g_Conquest[RegionID][5] && 
-				g_Conquest[RegionID][3] == g_Conquest[RegionID][4] && 
-				g_Conquest[RegionID][3] == g_Conquest[RegionID][5] && 
+		else if(g_Conquest[RegionID][2] == g_Conquest[RegionID][3] &&
+				g_Conquest[RegionID][2] == g_Conquest[RegionID][4] &&
+				g_Conquest[RegionID][2] == g_Conquest[RegionID][5] &&
+				g_Conquest[RegionID][3] == g_Conquest[RegionID][4] &&
+				g_Conquest[RegionID][3] == g_Conquest[RegionID][5] &&
 				g_Conquest[RegionID][4] == g_Conquest[RegionID][5])
 		{
 			return 0;
 		}
 		//if Beast influence > all nations
-		else if(g_Conquest[RegionID][5] > g_Conquest[RegionID][2] && 
-				g_Conquest[RegionID][5] > g_Conquest[RegionID][3] && 
+		else if(g_Conquest[RegionID][5] > g_Conquest[RegionID][2] &&
+				g_Conquest[RegionID][5] > g_Conquest[RegionID][3] &&
 				g_Conquest[RegionID][5] > g_Conquest[RegionID][4])
 		{
 			return 64;
 		}
 		else
 		{
-			uint8 offset = 0; 
+			uint8 offset = 0;
 			int32 maxP = 0;
 
 			if(g_Conquest[RegionID][2] > g_Conquest[RegionID][3] && g_Conquest[RegionID][2] > g_Conquest[RegionID][4]) maxP = g_Conquest[RegionID][2];
@@ -208,7 +208,7 @@ namespace conquest
 			else maxP = g_Conquest[RegionID][4];
 
 			int32 lev = maxP / 4;
-			
+
 			//Sandoria
 			if(g_Conquest[RegionID][2] >= maxP)			offset = 3;
 			else if(g_Conquest[RegionID][2] >= lev * 3) offset = 2;
@@ -262,19 +262,19 @@ namespace conquest
 
 	void UpdateWeekConquest()
 	{
-		//TODO: 
+		//TODO:
 		//launch conquest message in all zone (monday server midnight)
 
 		//change region control with the best influence
 		for (uint8 i=0; i <= 18; i++)
 		{
-			if(g_Conquest[i][2] > g_Conquest[i][3] && g_Conquest[i][2] > g_Conquest[i][4] && g_Conquest[i][2] > g_Conquest[i][5]) 
+			if(g_Conquest[i][2] > g_Conquest[i][3] && g_Conquest[i][2] > g_Conquest[i][4] && g_Conquest[i][2] > g_Conquest[i][5])
 				g_Conquest[i][1] = 0;
-			else if(g_Conquest[i][3] > g_Conquest[i][2] && g_Conquest[i][3] > g_Conquest[i][4] && g_Conquest[i][3] > g_Conquest[i][5]) 
+			else if(g_Conquest[i][3] > g_Conquest[i][2] && g_Conquest[i][3] > g_Conquest[i][4] && g_Conquest[i][3] > g_Conquest[i][5])
 				g_Conquest[i][1] = 1;
-			else if(g_Conquest[i][4] > g_Conquest[i][2] && g_Conquest[i][4] > g_Conquest[i][3] && g_Conquest[i][4] > g_Conquest[i][5]) 
+			else if(g_Conquest[i][4] > g_Conquest[i][2] && g_Conquest[i][4] > g_Conquest[i][3] && g_Conquest[i][4] > g_Conquest[i][5])
 				g_Conquest[i][1] = 2;
-			else if(g_Conquest[i][5] > g_Conquest[i][2] && g_Conquest[i][5] > g_Conquest[i][3] && g_Conquest[i][5] > g_Conquest[i][4]) 
+			else if(g_Conquest[i][5] > g_Conquest[i][2] && g_Conquest[i][5] > g_Conquest[i][3] && g_Conquest[i][5] > g_Conquest[i][4])
 				g_Conquest[i][1] = 3;
 			else
 				g_Conquest[i][1] = rand() % 3; //random 0,1,2
@@ -286,7 +286,7 @@ namespace conquest
 			g_Conquest[i][5] = 0;
 			g_Conquest[i][6] = 0;
 		}
-		
+
 		luautils::SetRegionalConquestOverseers();
 
 		//launch end message ?
@@ -295,7 +295,7 @@ namespace conquest
 		UpdateConquestSystem();
 		ShowDebug(CL_CYAN"Conquest Weekly Update is finished\n" CL_RESET);
 	}
-	
+
 	/************************************************************************
     *                                                                       *
     *	GetBalance					                                        *
@@ -314,32 +314,32 @@ namespace conquest
 			else if(g_Conquest[i][1] == 1) basty++;
 			else if(g_Conquest[i][1] == 2) windy++;
 		}
-		
+
 		// Based on the below values, it seems to be in pairs of bits.
 		// Order is Windurst, Bastok, San d'Oria
 		// 01 for first place, 10 for second, 11 for third.
 		// 45 = 0b101101 = Windurst in second, Bastok in third, San d'Oria in first
 		// 30 = 0b011110 = Windurst in first, Bastok in third, San d'Oria in second
-		
+
 		uint8 ranking = 63;
-		if(sandy >= basty) 
+		if(sandy >= basty)
 			ranking -= 1;
-		
-		if(sandy >= windy) 
+
+		if(sandy >= windy)
 			ranking -= 1;
-		
+
 		if(basty >= sandy)
 			ranking -= 4;
-		
+
 		if(basty >= windy)
 			ranking -= 4;
-		
+
 		if(windy >= sandy)
 			ranking -= 16;
 
 		if(windy >= basty)
 			ranking -= 16;
-		
+
 		return ranking;
     }
 
@@ -398,30 +398,30 @@ namespace conquest
 
     uint32 AddConquestPoints(CCharEntity* PChar, uint32 exp)
     {
-        // ВНИМЕНИЕ: не нужно отправлять персонажу CConquestPacket, 
+        // ВНИМЕНИЕ: не нужно отправлять персонажу CConquestPacket,
         // т.к. клиент сам запрашивает этот пакет через фиксированный промежуток времени
 
         REGIONTYPE region = PChar->loc.zone->GetRegionID();
 
         if(region != REGION_UNKNOWN)
         {
-            // 10% if region control is player's nation 
+            // 10% if region control is player's nation
             // 15% otherwise
-            
+
             PChar->RegionPoints[PChar->profile.nation] += exp * (PChar->profile.nation == GetRegionOwner(region) ? 0.1 : 0.15);
         }
         return 0; // added conquest points (пока не вижу в этом определенного смысла)
     }
 
-	
+
 	//GetConquestInfluence(region,nation)
 	//AddConquestInfluence(region,nation)
 	//ResetConquestInfluence()
 	//UpdateConquestInfluence()
 
 	//gain/loss influence
-	//Dying in the Outlands decrease your Allegiance influence and increase the influence of the Beastmen hordes instead. 
-	//Gain: XP/CP, Garrison quests, Expeditionary Forces, trade items to Outpost Vendors (influence only) 
+	//Dying in the Outlands decrease your Allegiance influence and increase the influence of the Beastmen hordes instead.
+	//Gain: XP/CP, Garrison quests, Expeditionary Forces, trade items to Outpost Vendors (influence only)
 
 	//Region control
 	//0: sandoria
