@@ -26,7 +26,7 @@
 #include <string.h>
 
 #include "shop_items.h"
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 
 CShopItemsPacket::CShopItemsPacket(CCharEntity * PChar)

@@ -26,7 +26,7 @@
 #include <string.h>
 
 #include "wide_scan_track.h"
-#include "../baseentity.h"
+#include "../entities/baseentity.h"
 
 
 CWideScanTrackPacket::CWideScanTrackPacket(CBaseEntity * PEntity) 

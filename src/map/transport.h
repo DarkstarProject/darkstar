@@ -28,7 +28,7 @@
 
 #include <vector>
 
-#include "npcentity.h"
+#include "entities/npcentity.h"
 
 enum ELEVATOR
 {

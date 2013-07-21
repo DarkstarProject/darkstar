@@ -25,7 +25,7 @@
 
 #include "message_debug.h"
 
-#include "../baseentity.h"
+#include "../entities/baseentity.h"
 
 
 CMessageDebugPacket::CMessageDebugPacket(CBaseEntity* PSender, CBaseEntity* PTarget, int32 param0, int32 param1, uint16 messageID)

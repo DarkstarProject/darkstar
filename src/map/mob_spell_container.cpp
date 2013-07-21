@@ -22,7 +22,7 @@
 */
 
 #include "mob_spell_container.h"
-#include "battleutils.h"
+#include "utils/battleutils.h"
 
 CMobSpellContainer::CMobSpellContainer(CMobEntity* PMob)
 {

@@ -28,8 +28,8 @@
 
 #include "char_check.h"
 
-#include "../charentity.h"
-#include "../itemutils.h"
+#include "../entities/charentity.h"
+#include "../utils/itemutils.h"
 #include "../vana_time.h"
 
 

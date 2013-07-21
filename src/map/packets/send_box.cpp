@@ -23,7 +23,7 @@
 
 #include "../../common/socket.h"
 
-#include "../itemutils.h"
+#include "../utils/itemutils.h"
 
 #include <string.h>
 

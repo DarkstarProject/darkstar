@@ -27,7 +27,7 @@
 #include "../common/cbasetypes.h"
 #include "../common/mmo.h"
 
-#include "battleentity.h"
+#include "entities/battleentity.h"
 
 enum ADDTYPE
 {

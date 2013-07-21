@@ -26,7 +26,7 @@
 #include <string.h>
 
 #include "wide_scan.h"
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 
 CWideScanPacket::CWideScanPacket(WIDESCAN_STATUS status) 

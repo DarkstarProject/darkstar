@@ -24,7 +24,7 @@
 #include "../../common/socket.h"
 
 #include "release.h"
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 
 CReleasePacket::CReleasePacket(CCharEntity * PChar, RELEASE_TYPE releaseType) 

@@ -23,14 +23,14 @@
 
 #include "../../common/utils.h"
 
-#include "../battleutils.h"
-#include "../charutils.h"
-#include "../charentity.h"
-#include "../petentity.h"
+#include "../utils/battleutils.h"
+#include "../utils/charutils.h"
+#include "../entities/charentity.h"
+#include "../entities/petentity.h"
 #include "../zone.h"
 #include "../mobskill.h"
-#include "../petutils.h"
-#include "../targetfind.h"
+#include "../utils/petutils.h"
+#include "helpers/targetfind.h"
 
 #include "../lua/luautils.h"
 
@@ -39,7 +39,7 @@
 #include "../packets/char_update.h"
 #include "../packets/pet_sync.h"
 #include "../packets/message_basic.h"
-#include "../mobentity.h"
+#include "../entities/mobentity.h"
 
 #include "../alliance.h"
 #include "ai_pet_dummy.h"

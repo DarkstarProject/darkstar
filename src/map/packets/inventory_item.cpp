@@ -28,7 +28,7 @@
 
 #include "inventory_item.h"
 
-#include "../itemutils.h"
+#include "../utils/itemutils.h"
 #include "../vana_time.h"
 
 

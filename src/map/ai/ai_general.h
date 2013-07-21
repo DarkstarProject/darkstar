@@ -25,8 +25,8 @@
 #define _CAIGENERAL_H
 
 #include "../../common/cbasetypes.h"
-#include "../targetfind.h"
-#include "../pathfind.h"
+#include "helpers/targetfind.h"
+#include "helpers/pathfind.h"
 #include "../packets/weather.h"
 
 enum MASTERCOMMAND //master as in pet's master

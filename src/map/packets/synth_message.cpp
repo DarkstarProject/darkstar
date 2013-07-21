@@ -24,7 +24,7 @@
 #include "../../common/socket.h"
 
 #include "synth_message.h"
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 
 CSynthMessagePacket::CSynthMessagePacket(CCharEntity * PChar, SYNTH_MESSAGE messageID, uint16 itemID, uint8 quantity)

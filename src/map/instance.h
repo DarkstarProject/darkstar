@@ -27,7 +27,7 @@
 #include "../common/cbasetypes.h"
 #include "../common/mmo.h"
 #include <vector>
-#include "instanceutils.h"
+#include "utils/instanceutils.h"
 
 enum BCRULES{
 	RULES_ALLOW_SUBJOBS = 0x01,

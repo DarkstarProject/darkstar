@@ -26,7 +26,7 @@
 
 #include "../common/cbasetypes.h"
 
-#include "charentity.h"
+#include "entities/charentity.h"
 
 struct map_session_data_t;
 

@@ -26,7 +26,7 @@
 
 #include "../common/cbasetypes.h"
 
-#include "battleentity.h"
+#include "entities/battleentity.h"
 
 
 namespace grade

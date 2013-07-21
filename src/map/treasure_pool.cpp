@@ -30,8 +30,8 @@
 
 #include <string.h>
 
-#include "charutils.h"
-#include "mobentity.h"
+#include "utils/charutils.h"
+#include "entities/mobentity.h"
 #include "treasure_pool.h"
 
 

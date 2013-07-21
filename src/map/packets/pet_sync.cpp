@@ -25,7 +25,7 @@
 
 #include "pet_sync.h"
 
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 /************************************************************************
 *																		*

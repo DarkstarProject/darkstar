@@ -23,7 +23,7 @@
 
 #include "../../common/socket.h"
 
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 #include "trade_request.h"
 

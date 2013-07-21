@@ -25,9 +25,9 @@
 #include "../weapon_skill.h"
 #include "../ability.h"
 #include "../mobskill.h"
-#include "../battleutils.h"
-#include "../targetfind.h"
-#include "../pathfind.h"
+#include "../utils/battleutils.h"
+#include "helpers/targetfind.h"
+#include "helpers/pathfind.h"
 
 #include "ai_general.h"
 

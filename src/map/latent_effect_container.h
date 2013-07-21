@@ -28,7 +28,7 @@
 #include "../common/taskmgr.h"
 
 #include "latent_effect.h"
-#include "petentity.h"
+#include "entities/petentity.h"
 
 /************************************************************************
 *                                                                       *

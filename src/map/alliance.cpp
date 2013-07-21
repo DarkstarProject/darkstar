@@ -26,10 +26,10 @@
 
 #include <string.h>
 
-#include "battleentity.h"
-#include "charutils.h"
+#include "entities/battleentity.h"
+#include "utils/charutils.h"
 #include "conquest_system.h"
-#include "jailutils.h"
+#include "utils/jailutils.h"
 #include "map.h"
 #include "party.h"
 #include "treasure_pool.h"

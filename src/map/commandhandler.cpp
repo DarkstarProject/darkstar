@@ -24,7 +24,7 @@
 #include <sstream>
 
 #include "commandhandler.h"
-#include "charentity.h"
+#include "entities/charentity.h"
 
 #include "lua/lua_baseentity.h"
 

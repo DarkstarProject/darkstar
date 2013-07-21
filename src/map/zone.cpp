@@ -31,15 +31,15 @@
 
 #include <string.h>
 
-#include "battleutils.h"
-#include "charutils.h"
+#include "utils/battleutils.h"
+#include "utils/charutils.h"
 #include "enmity_container.h"
-#include "itemutils.h"
+#include "utils/itemutils.h"
 #include "map.h"
-#include "mobutils.h"
-#include "npcentity.h"
-#include "petentity.h"
-#include "petutils.h"
+#include "utils/mobutils.h"
+#include "entities/npcentity.h"
+#include "entities/petentity.h"
+#include "utils/petutils.h"
 #include "spell.h"
 #include "treasure_pool.h"
 #include "vana_time.h"

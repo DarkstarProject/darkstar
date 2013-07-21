@@ -32,12 +32,12 @@
 #include "packets/linkshell_equip.h"
 #include "packets/message_system.h"
 
-#include "charutils.h"
+#include "utils/charutils.h"
 #include "conquest_system.h"
-#include "itemutils.h"
+#include "utils/itemutils.h"
 #include "linkshell.h"
 #include "items/item_linkshell.h"
-#include "jailutils.h"
+#include "utils/jailutils.h"
 #include "map.h"
 
 /************************************************************************

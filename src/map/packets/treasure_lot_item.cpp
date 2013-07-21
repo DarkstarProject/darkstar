@@ -28,7 +28,7 @@
 
 #include "treasure_lot_item.h"
 
-#include "../baseentity.h"
+#include "../entities/baseentity.h"
 
 
 CTreasureLotItemPacket::CTreasureLotItemPacket(uint8 slotID, ITEMLOTTYPE MessageType) 

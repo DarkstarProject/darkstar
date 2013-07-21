@@ -25,7 +25,7 @@
 
 #include "char_sync.h"
 
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 
 CCharSyncPacket::CCharSyncPacket(CCharEntity* PChar)

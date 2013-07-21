@@ -24,7 +24,7 @@
 #include "../../common/socket.h"
 
 #include "message_text.h"
-#include "../baseentity.h"
+#include "../entities/baseentity.h"
 
 
 CMessageTextPacket::CMessageTextPacket(CBaseEntity* PEntity, uint16 messageID)

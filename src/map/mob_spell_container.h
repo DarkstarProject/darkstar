@@ -30,7 +30,7 @@
 #include "../common/mmo.h"
 
 #include "spell.h"
-#include "mobentity.h"
+#include "entities/mobentity.h"
 
 class CMobSpellContainer
 {

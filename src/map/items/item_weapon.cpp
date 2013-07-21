@@ -20,9 +20,9 @@
 
 ===========================================================================
 */
-#include "../battleentity.h"
-#include "../charutils.h"
-#include "../itemutils.h"
+#include "../entities/battleentity.h"
+#include "../utils/charutils.h"
+#include "../utils/itemutils.h"
 
 #include "item_weapon.h"
 

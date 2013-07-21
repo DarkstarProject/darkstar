@@ -27,8 +27,8 @@
 #include "../common/cbasetypes.h"
 #include "../common/mmo.h"
 
-#include "battleentity.h"
-#include "charentity.h"
+#include "entities/battleentity.h"
+#include "entities/charentity.h"
 
 #define CANNOT_USE_SPELL	0
 #define MAX_SPELL_ID		800

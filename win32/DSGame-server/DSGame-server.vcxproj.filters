@@ -54,24 +54,33 @@
     <Filter Include="Source Files\common\detour">
       <UniqueIdentifier>{99c3c980-7b14-412b-a585-84bbee3f3fdc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ai\helpers">
+      <UniqueIdentifier>{556ece7c-5f18-47dc-aa93-6bd3e6225c69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ai\states">
+      <UniqueIdentifier>{8db3e752-e6d6-4c05-b46e-d0536d7fd12a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ai\helpers">
+      <UniqueIdentifier>{7c17288c-6809-4a52-a845-38ebebf68ccd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ai\states">
+      <UniqueIdentifier>{fdb481b8-fdae-46b8-b9dd-43817c653c5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\entities">
+      <UniqueIdentifier>{93413ffb-8f9a-409e-8c55-6b14935a15d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\utils">
+      <UniqueIdentifier>{4f11b8a9-6e51-4eba-872a-969709b3f41a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\entities">
+      <UniqueIdentifier>{250c67bd-9d39-4846-a96d-48410fa927c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\utils">
+      <UniqueIdentifier>{4809b9f1-e6f6-4976-a83b-e246e6dc5671}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\map\ability.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\map\baseentity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\map\battleentity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\map\battleutils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\map\charentity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\map\charutils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\commandhandler.h">
@@ -89,16 +98,7 @@
     <ClInclude Include="..\..\src\map\item_container.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\itemutils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\map\map.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\map\mobentity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\map\mobutils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\modifier.h">
@@ -111,9 +111,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\packet_system.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\map\petentity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\petutils.h">
@@ -129,9 +126,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\status_effect_container.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\map\synthutils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\time_server.h">
@@ -150,9 +144,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\zone.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\map\zoneutils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\ai\ai_char_gm.h">
@@ -530,9 +521,6 @@
     <ClInclude Include="..\..\src\map\weapon_skill.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\guildutils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\map\items\item_shop.h">
       <Filter>Header Files\items</Filter>
     </ClInclude>
@@ -596,9 +584,6 @@
     <ClInclude Include="..\..\src\map\instance_handler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\instanceutils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\map\lua\lua_instance.h">
       <Filter>Header Files\lua</Filter>
     </ClInclude>
@@ -619,9 +604,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\map\packets\blue_set_spells.h">
       <Filter>Header Files\packets</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\map\blueutils.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\latent_effect.h">
       <Filter>Header Files</Filter>
@@ -646,9 +628,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\map\packets\send_box.h">
       <Filter>Header Files\packets</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\map\targetfind.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\common\detour\DetourAlloc.h">
       <Filter>Header Files\common\detour</Filter>
@@ -686,33 +665,78 @@
     <ClInclude Include="..\..\src\map\navmesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\pathfind.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\map\ai\ai_npc_dummy.h">
       <Filter>Header Files\ai</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\blue_spell.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\ai\helpers\pathfind.h">
+      <Filter>Header Files\ai\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\ai\helpers\targetfind.h">
+      <Filter>Header Files\ai\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\entities\baseentity.h">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\entities\battleentity.h">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\entities\charentity.h">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\entities\npcentity.h">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\entities\petentity.h">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\entities\mobentity.h">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\utils\battleutils.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\utils\blueutils.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\utils\charutils.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\utils\fishingutils.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\utils\guildutils.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\utils\instanceutils.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\utils\itemutils.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\utils\jailutils.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\utils\mobutils.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\utils\petutils.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\utils\synthutils.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\utils\zoneutils.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\ai\states\magic_state.h">
+      <Filter>Header Files\ai\states</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\baseentity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\battleentity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\battleutils.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\charentity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\charutils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\commandhandler.cpp">
@@ -730,31 +754,13 @@
     <ClCompile Include="..\..\src\map\item_container.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\itemutils.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\map\map.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\mobentity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\mobutils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\modifier.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\npcentity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\map\packet_system.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\petentity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\petutils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\region.cpp">
@@ -767,9 +773,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\status_effect_container.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\synthutils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\time_server.cpp">
@@ -788,9 +791,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\zone.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\zoneutils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\ai\ai_char_gm.cpp">
@@ -1099,9 +1099,6 @@
     <ClCompile Include="..\..\src\map\packets\zone_visited.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\fishingutils.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\map\universal_container.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1133,9 +1130,6 @@
       <Filter>Source Files\packets</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\weapon_skill.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\guildutils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\items\item_shop.cpp">
@@ -1204,14 +1198,8 @@
     <ClCompile Include="..\..\src\map\instance_handler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\instanceutils.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\map\lua\lua_instance.cpp">
       <Filter>Source Files\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\jailutils.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\ai\ai_char_prisoner.cpp">
       <Filter>Source Files\ai</Filter>
@@ -1227,9 +1215,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\blue_set_spells.cpp">
       <Filter>Source Files\packets</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\blueutils.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\latent_effect_container.cpp">
       <Filter>Source Files</Filter>
@@ -1255,9 +1240,6 @@
     <ClCompile Include="..\..\src\map\packets\send_box.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\targetfind.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\common\detour\DetourAlloc.cpp">
       <Filter>Source Files\common\detour</Filter>
     </ClCompile>
@@ -1279,14 +1261,74 @@
     <ClCompile Include="..\..\src\map\navmesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\pathfind.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\map\ai\ai_npc_dummy.cpp">
       <Filter>Source Files\ai</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\blue_spell.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\helpers\pathfind.cpp">
+      <Filter>Source Files\ai\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\helpers\targetfind.cpp">
+      <Filter>Source Files\ai\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\entities\baseentity.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\entities\battleentity.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\entities\charentity.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\entities\npcentity.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\entities\petentity.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\entities\mobentity.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\utils\battleutils.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\utils\charutils.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\utils\zoneutils.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\utils\itemutils.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\utils\instanceutils.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\utils\jailutils.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\utils\petutils.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\utils\blueutils.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\utils\mobutils.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\utils\synthutils.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\utils\fishingutils.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\utils\guildutils.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\states\magic_state.cpp">
+      <Filter>Source Files\ai\states</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

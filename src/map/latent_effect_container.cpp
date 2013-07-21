@@ -24,8 +24,8 @@
 #include "latent_effect_container.h"
 
 #include "latent_effect.h"
-#include "charentity.h"
-#include "battleentity.h"
+#include "entities/charentity.h"
+#include "entities/battleentity.h"
 
 CLatentEffectContainer::CLatentEffectContainer(CCharEntity* PEntity)
 	:m_POwner(PEntity)

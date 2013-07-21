@@ -25,7 +25,7 @@
 
 #include "char_health.h"
 
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 
 CCharHealthPacket::CCharHealthPacket(CCharEntity* PChar)

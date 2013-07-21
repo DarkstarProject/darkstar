@@ -23,7 +23,7 @@
 
 #include "../common/utils.h"
 
-#include "battleentity.h"
+#include "entities/battleentity.h"
 #include "status_effect.h"
 
 

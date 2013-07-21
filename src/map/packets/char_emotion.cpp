@@ -26,7 +26,7 @@
 #include <string.h>
 
 #include "char_emotion.h"
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 
 CCharEmotionPacket::CCharEmotionPacket(CCharEntity * PChar, int8* buff) 

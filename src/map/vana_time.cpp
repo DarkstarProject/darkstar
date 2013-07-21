@@ -27,7 +27,7 @@
 #include <sys/timeb.h>
 
 #include "vana_time.h"
-#include "zoneutils.h"
+#include "utils/zoneutils.h"
 
 #define VTIME_BASEDATE		1024844400		// Real starting date for Vana time
 #define VTIME_YEAR			518400			// 360 * GameDay

@@ -23,7 +23,7 @@
 
 #include "../../common/socket.h"
 
-#include "../baseentity.h"
+#include "../entities/baseentity.h"
 
 #include "uncnown_39.h"
 

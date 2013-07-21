@@ -23,8 +23,8 @@
 
 #include <string.h>
 
-#include "baseentity.h"
-#include "itemutils.h"
+#include "entities/baseentity.h"
+#include "utils/itemutils.h"
 #include "universal_container.h"
 
 

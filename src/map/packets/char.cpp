@@ -27,8 +27,8 @@
 
 #include "char.h"
 
-#include "../charentity.h"
-#include "../itemutils.h"
+#include "../entities/charentity.h"
+#include "../utils/itemutils.h"
 
 
 CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type)

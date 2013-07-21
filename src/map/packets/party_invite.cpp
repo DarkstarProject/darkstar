@@ -27,7 +27,7 @@
 
 #include "party_invite.h"
 
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 
 CPartyInvitePacket::CPartyInvitePacket(CCharEntity* PChar, CCharEntity* PInviter, INVITETYPE InviteType)

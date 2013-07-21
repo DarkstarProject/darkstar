@@ -27,7 +27,7 @@
 
 #include "chat_message.h"
 
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 
 CChatMessagePacket::CChatMessagePacket(CCharEntity* PChar, CHAT_MESSAGE_TYPE MessageType, int8* buff) 

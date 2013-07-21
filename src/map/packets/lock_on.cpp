@@ -25,8 +25,8 @@
 
 #include "lock_on.h"
 
-#include "../battleentity.h"
-#include "../charentity.h"
+#include "../entities/battleentity.h"
+#include "../entities/charentity.h"
 
 
 CLockOnPacket::CLockOnPacket(CCharEntity* PChar, CBattleEntity* PTarget)

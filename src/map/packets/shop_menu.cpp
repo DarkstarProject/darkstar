@@ -24,7 +24,7 @@
 #include "../../common/socket.h"
 
 #include "shop_menu.h"
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 
 CShopMenuPacket::CShopMenuPacket(CCharEntity * PChar) 

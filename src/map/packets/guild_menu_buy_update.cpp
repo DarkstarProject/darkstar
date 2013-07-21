@@ -27,7 +27,7 @@
 
 #include "guild_menu_buy_update.h"
 
-#include "../charentity.h"
+#include "../entities/charentity.h"
 #include "../item_container.h"
 
 #include "../items/item_shop.h"

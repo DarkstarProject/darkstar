@@ -27,10 +27,10 @@
 
 #include "entity_update.h"
 
-#include "../baseentity.h"
-#include "../mobentity.h"
-#include "../npcentity.h"
-#include "../petentity.h"
+#include "../entities/baseentity.h"
+#include "../entities/mobentity.h"
+#include "../entities/npcentity.h"
+#include "../entities/petentity.h"
 
 
 CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type)

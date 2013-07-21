@@ -26,7 +26,7 @@
 #include <string.h>
 
 #include "quest_mission_log.h"
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 
 CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID, uint8 status) 

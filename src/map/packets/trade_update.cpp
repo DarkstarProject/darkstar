@@ -26,7 +26,7 @@
 
 #include <string.h>
 
-#include "../itemutils.h"
+#include "../utils/itemutils.h"
 #include "../vana_time.h"
 
 #include "trade_update.h"

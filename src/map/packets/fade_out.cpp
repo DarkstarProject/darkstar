@@ -25,7 +25,7 @@
 
 #include "fade_out.h"
 
-#include "../baseentity.h"
+#include "../entities/baseentity.h"
 
 
 CFadeOutPacket::CFadeOutPacket(CBaseEntity * PEntity)

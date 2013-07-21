@@ -24,7 +24,7 @@
 #include "../../common/socket.h"
 
 #include "event_update.h"
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 
 CEventUpdatePacket::CEventUpdatePacket(

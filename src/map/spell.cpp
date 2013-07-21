@@ -26,7 +26,7 @@
 #include "map.h"
 #include "spell.h"
 #include "blue_spell.h"
-#include "blueutils.h"
+#include "utils/blueutils.h"
 
 
 CSpell::CSpell(uint16 id)

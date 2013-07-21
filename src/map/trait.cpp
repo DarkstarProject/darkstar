@@ -23,7 +23,7 @@
 
 #include <string.h>
 
-#include "battleentity.h"
+#include "entities/battleentity.h"
 #include "map.h"
 #include "trait.h"
 

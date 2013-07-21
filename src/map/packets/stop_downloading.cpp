@@ -26,7 +26,7 @@
 #include <string.h>
 
 #include "stop_downloading.h"
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 // действительное назначение пакета неизвестно, но без него перестают работать
 // эмоции, некоторые сообщения действий монстров, некоторые стандартные сообщения,

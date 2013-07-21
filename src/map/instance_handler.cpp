@@ -24,9 +24,9 @@
 #include <string.h>
 
 #include "alliance.h"
-#include "charentity.h"
+#include "entities/charentity.h"
 #include "instance_handler.h"
-#include "mobentity.h"
+#include "entities/mobentity.h"
 
 #include "lua/luautils.h"
 

@@ -28,8 +28,8 @@
 
 #include "char_stats.h"
 
-#include "../charentity.h"
-#include "../charutils.h"
+#include "../entities/charentity.h"
+#include "../utils/charutils.h"
 #include "../modifier.h"
 
 

@@ -27,7 +27,7 @@
 
 #include "caught_fish.h"
 
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 
 CCaughtFishPacket::CCaughtFishPacket(CCharEntity * PChar, uint16 param0, uint16 messageID) 

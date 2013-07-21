@@ -26,7 +26,7 @@
 #include <string.h>
 
 #include "char_jobs.h"
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 
 CCharJobsPacket::CCharJobsPacket(CCharEntity * PChar) 

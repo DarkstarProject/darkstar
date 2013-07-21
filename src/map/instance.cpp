@@ -24,15 +24,15 @@
 #include "instance.h"
 
 #include "../common/timer.h"
-#include "charentity.h"
-#include "mobentity.h"
-#include "baseentity.h"
+#include "entities/charentity.h"
+#include "entities/mobentity.h"
+#include "entities/baseentity.h"
 #include "packets/fade_out.h"
 #include "packets/entity_update.h"
 #include "packets/position.h"
 #include "packets/message_basic.h"
 #include "lua/luautils.h"
-#include "zoneutils.h"
+#include "utils/zoneutils.h"
 
 
 CInstance::CInstance(CInstanceHandler* hand, uint16 id, INSTANCETYPE type){

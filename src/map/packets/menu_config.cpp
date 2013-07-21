@@ -25,7 +25,7 @@
 
 #include "menu_config.h"
 
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 
 CMenuConfigPacket::CMenuConfigPacket(CCharEntity* PChar) 

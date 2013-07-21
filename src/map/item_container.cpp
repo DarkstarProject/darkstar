@@ -27,7 +27,7 @@
 #include <string.h>
 
 #include "item_container.h"
-#include "itemutils.h"
+#include "utils/itemutils.h"
 
 
 CItemContainer::CItemContainer(uint16 LocationID)

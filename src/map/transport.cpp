@@ -23,11 +23,11 @@
 
 #include "transport.h"
 
-#include "charentity.h"
+#include "entities/charentity.h"
 #include "map.h"
 #include "vana_time.h"
 #include "zone.h"
-#include "zoneutils.h"
+#include "utils/zoneutils.h"
 
 #include "packets/event.h"
 #include "packets/entity_update.h"

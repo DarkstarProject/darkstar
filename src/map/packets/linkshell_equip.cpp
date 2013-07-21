@@ -25,7 +25,7 @@
 
 #include "linkshell_equip.h"
 
-#include "../charentity.h"
+#include "../entities/charentity.h"
 #include "../linkshell.h"
 
 

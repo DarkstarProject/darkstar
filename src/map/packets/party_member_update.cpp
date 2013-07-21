@@ -27,7 +27,7 @@
 
 #include "party_member_update.h"
 
-#include "../charentity.h"
+#include "../entities/charentity.h"
 #include "../alliance.h"
 #include "../party.h"
 

@@ -27,7 +27,7 @@
 #include "packets/inventory_item.h"
 #include "packets/inventory_finish.h"
 
-#include "charentity.h"
+#include "entities/charentity.h"
 #include "recast_container.h"
 
 

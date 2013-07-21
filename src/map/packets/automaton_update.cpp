@@ -27,7 +27,7 @@
 
 #include "automaton_update.h"
 
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 /* It seems the 0x44 packet contains extended information about a specific job. For PUPs it's automaton information, for BLUs it's set spell info:
 

@@ -28,7 +28,7 @@
 
 #include "merit_points_categories.h"
 
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 /************************************************************************
 *                                                                       *

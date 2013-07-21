@@ -24,7 +24,7 @@
 #include "../../common/showmsg.h"
 
 #include "lua_spell.h"
-#include "../battleutils.h"
+#include "../utils/battleutils.h"
 
 
 /************************************************************************

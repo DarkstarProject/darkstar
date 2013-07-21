@@ -26,7 +26,7 @@
 #include <string.h>
 
 #include "event.h"
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 
 CEventPacket::CEventPacket(

@@ -26,7 +26,7 @@
 
 #include <string.h>
 
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 #include "char_skills.h"
 

@@ -23,7 +23,7 @@
 
 #include "ai_char_prisoner.h"
 
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 #include "../packets/message_basic.h"
 

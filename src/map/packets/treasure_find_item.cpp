@@ -23,7 +23,7 @@
 
 #include "../../common/socket.h"
 
-#include "../baseentity.h"
+#include "../entities/baseentity.h"
 #include "../treasure_pool.h"
 
 #include "treasure_find_item.h"

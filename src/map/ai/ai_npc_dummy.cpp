@@ -27,8 +27,8 @@
 
 #include "../packets/entity_update.h"
 
-#include "../npcentity.h"
-#include "../pathfind.h"
+#include "../entities/npcentity.h"
+#include "helpers/pathfind.h"
 #include "../zone.h"
 
 #include "ai_npc_dummy.h"

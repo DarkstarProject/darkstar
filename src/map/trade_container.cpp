@@ -23,7 +23,7 @@
 
 #include <string.h>
 
-#include "itemutils.h"
+#include "utils/itemutils.h"
 #include "trade_container.h"
 
 

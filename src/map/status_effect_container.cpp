@@ -43,14 +43,14 @@ When a status effect is gained twice on a player. It can do one or more of the f
 #include "packets/char_update.h"
 #include "packets/message_basic.h"
 
-#include "charutils.h"
-#include "battleentity.h"
-#include "charentity.h"
-#include "itemutils.h"
+#include "utils/charutils.h"
+#include "entities/battleentity.h"
+#include "entities/charentity.h"
+#include "utils/itemutils.h"
 #include "map.h"
 #include "status_effect_container.h"
-#include "zoneutils.h"
-#include "petutils.h"
+#include "utils/zoneutils.h"
+#include "utils/petutils.h"
 
 /************************************************************************
 *                                                                       *

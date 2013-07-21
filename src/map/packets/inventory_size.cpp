@@ -23,9 +23,9 @@
 
 #include "../../common/socket.h"
 
-#include "../charutils.h"
+#include "../utils/charutils.h"
 #include "inventory_size.h"
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 /************************************************************************
 *																		*

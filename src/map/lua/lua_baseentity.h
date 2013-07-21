@@ -26,7 +26,7 @@
 
 #include "../../common/cbasetypes.h"
 #include "../../common/lua/lunar.h"
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 
 

@@ -25,7 +25,7 @@
 
 #include "message_basic.h"
 
-#include "../baseentity.h"
+#include "../entities/baseentity.h"
 
 
 CMessageBasicPacket::CMessageBasicPacket(CBaseEntity* PSender, CBaseEntity* PTarget, int32 param, int32 value, uint16 messageID)

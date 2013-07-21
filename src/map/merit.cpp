@@ -25,8 +25,8 @@
 
 #include "map.h"
 #include "merit.h"
-#include "charentity.h"
-#include "charutils.h"
+#include "entities/charentity.h"
+#include "utils/charutils.h"
 #include "packets/char_spells.h"
 
 /************************************************************************

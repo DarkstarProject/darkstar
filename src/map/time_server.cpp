@@ -23,11 +23,11 @@
 
 #include "../common/showmsg.h"
 
-#include "guildutils.h"
+#include "utils/guildutils.h"
 #include "time_server.h"
 #include "transport.h"
 #include "vana_time.h"
-#include "zoneutils.h"
+#include "utils/zoneutils.h"
 #include "conquest_system.h"
 #include "lua/luautils.h"
 

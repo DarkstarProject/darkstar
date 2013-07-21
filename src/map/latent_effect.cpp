@@ -21,7 +21,7 @@
 ===========================================================================
 */
 
-#include "battleentity.h"
+#include "entities/battleentity.h"
 
 #include "latent_effect.h"
 

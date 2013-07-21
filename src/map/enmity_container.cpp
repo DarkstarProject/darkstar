@@ -24,10 +24,10 @@
 #include "../common/showmsg.h"
 #include "../common/utils.h"
 
-#include "battleentity.h"
+#include "entities/battleentity.h"
 #include "enmity_container.h"
-#include "battleutils.h"
-#include "charentity.h"
+#include "utils/battleutils.h"
+#include "entities/charentity.h"
 #include "alliance.h"
 #include "packets/entity_update.h"
 

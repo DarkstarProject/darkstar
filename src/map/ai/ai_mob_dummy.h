@@ -29,7 +29,7 @@
 
 #include <vector>
 
-#include "../battleentity.h"
+#include "../entities/battleentity.h"
 #include "ai_general.h"
 
 #define MOB_SPELL_MAX_RANGE 26.8f

@@ -22,7 +22,7 @@
 */
 
 #include "conquest_system.h"
-#include "charentity.h"
+#include "entities/charentity.h"
 #include "vana_time.h"
 
 #include "lua/luautils.h"

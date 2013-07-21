@@ -25,7 +25,7 @@
 
 #include "cs_position.h"
 
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 
 CCSPositionPacket::CCSPositionPacket(CCharEntity* PChar) 

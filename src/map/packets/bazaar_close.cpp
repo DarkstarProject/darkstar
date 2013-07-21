@@ -26,7 +26,7 @@
 #include <string.h>
 
 #include "bazaar_close.h"
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 
 CBazaarClosePacket::CBazaarClosePacket(CCharEntity * PChar) 

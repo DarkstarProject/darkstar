@@ -27,10 +27,10 @@
 
 #include "zone_in.h"
 
-#include "../charentity.h"
+#include "../entities/charentity.h"
 #include "../../common/timer.h"
 #include "../vana_time.h"
-#include "../zoneutils.h"
+#include "../utils/zoneutils.h"
 
 /************************************************************************
 *                                                                       *

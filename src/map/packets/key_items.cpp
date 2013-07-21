@@ -26,7 +26,7 @@
 #include <string.h>
 
 #include "key_items.h"
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 
 CKeyItemsPacket::CKeyItemsPacket(CCharEntity * PChar, KEYS_TABLE KeyTable)

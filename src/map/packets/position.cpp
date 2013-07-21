@@ -24,7 +24,7 @@
 #include "../../common/socket.h"
 
 #include "position.h"
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 
 CPositionPacket::CPositionPacket(CCharEntity* PChar) 

@@ -27,7 +27,7 @@
 
 #include "blue_set_spells.h"
 
-#include "../charentity.h"
+#include "../entities/charentity.h"
 
 CBlueSetSpellsPacket::CBlueSetSpellsPacket(CCharEntity* PChar)
 {

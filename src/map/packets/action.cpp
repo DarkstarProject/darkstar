@@ -29,12 +29,12 @@
 
 #include "action.h"
 
-#include "../battleentity.h"
+#include "../entities/battleentity.h"
 #include "../spell.h"
 #include "../weapon_skill.h"
 #include "../ability.h"
 #include "../mobskill.h"
-#include "../battleutils.h"
+#include "../utils/battleutils.h"
 
 /************************************************************************
 *																		*

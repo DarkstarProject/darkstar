@@ -25,7 +25,7 @@
 
 #include "party_define.h"
 
-#include "../charentity.h"
+#include "../entities/charentity.h"
 #include "../party.h"
 #include "../alliance.h"
 

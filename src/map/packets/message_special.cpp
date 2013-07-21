@@ -27,7 +27,7 @@
 
 #include "message_special.h"
 
-#include "../baseentity.h"
+#include "../entities/baseentity.h"
 
 
 CMessageSpecialPacket::CMessageSpecialPacket(

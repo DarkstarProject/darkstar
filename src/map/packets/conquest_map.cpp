@@ -25,7 +25,7 @@
 
 #include <string.h>
 
-#include "../charentity.h"
+#include "../entities/charentity.h"
 #include "../conquest_system.h"
 
 #include "conquest_map.h"
