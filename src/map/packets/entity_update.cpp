@@ -204,14 +204,3 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 		break;
 	}
 }
-
-// speed
-
-// Cactrot Rapido	180;
-// Manticore		75;
-// Raptor			70;
-// Demons			70;
-// Tiger			68;
-// Coeurl			60;
-// Hungerer			30;
-// Adamantoise		27;

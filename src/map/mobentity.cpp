@@ -189,7 +189,7 @@ bool CMobEntity::CanDropGil()
         return true;
     }
 
-    return m_EcoSystem == SYSTEM_BEASTMEN || m_Type & MOBTYPE_NOTORIOUS;
+    return m_EcoSystem == SYSTEM_BEASTMEN;
 }
 
 bool CMobEntity::CanRoamHome()

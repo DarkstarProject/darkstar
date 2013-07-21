@@ -39,7 +39,7 @@ enum MOBMODIFIER
   MOBMOD_GA_CHANCE = 7, // % chance to use -ga spell
   MOBMOD_HEAL_CHANCE = 8, // % chance to use heal
   MOBMOD_HP_HEAL_CHANCE = 9, // can cast cures below this HP %
-  MOBMOD_SUBLINK = 10, // link with this family
+  MOBMOD_SUBLINK = 10, // sub link group
   MOBMOD_LINK_RADIUS = 11, // link radius
   MOBMOD_DRAW_IN = 12, // 1 - player draw in, 2 - alliance draw in
   MOBMOD_RAGE = 13, // define rage timer
@@ -66,9 +66,10 @@ enum MOBMODIFIER
   MOBMOD_MAGIC_COOL = 34, // cool down for magic
   MOBMOD_STANDBACK_TIME = 35, // amount of time the mob stands back
   MOBMOD_ROAM_COOL = 36, // cool down for roaming
-  MOBMOD_ALWAYS_AGGRO = 37 // aggro regardless of level. Spheroids
+  MOBMOD_ALWAYS_AGGRO = 37, // aggro regardless of level. Spheroids
+  MOBMOD_REFLECT = 38 // colibri
 };
 
-#define MAX_MOBMODIFIER         38
+#define MAX_MOBMODIFIER         39
 
 #endif
