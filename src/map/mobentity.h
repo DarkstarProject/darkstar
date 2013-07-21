@@ -214,6 +214,8 @@ public:
   int16 getMobMod(uint16 type);
   void addMobMod(uint16 type, int16 value);
   void defaultMobMod(uint16 type, int16 value); // set value if value has not been already set
+  void        saveMobModifiers(); // save current state of modifiers
+  void        restoreMobModifiers(); // restore to saved state
 
   void      HideModel(bool hide); // hide / show model
   bool      IsModelHidden();
@@ -228,6 +230,7 @@ private:
   uint32		m_SkinID;				// Skinid
   uint32      m_DespawnTimer;         // Despawn Timer to despawn mob after set duration
   int16   m_mobModStat[MAX_MOBMODIFIER];  // mob specific mods
+  int16   m_mobModStatSave[MAX_MOBMODIFIER];  // saved state
 };
 
 #endif

@@ -501,7 +501,7 @@ void CalculateStats(CMobEntity * PMob)
 			// they stay back forever
 			PMob->m_StandbackTime = 90000;
 		}
-		else 
+		else
 		{
 			PMob->m_StandbackTime = 60000;
 		}
@@ -631,10 +631,10 @@ void AddTraits(CMobEntity* PMob, JOBTYPE jobID, uint8 lvl)
 
 void AddMods(CMobEntity* PMob)
 {
-
 	// remove all to keep mods in sync
 	PMob->StatusEffectContainer->KillAllStatusEffect();
 	PMob->restoreModifiers();
+	PMob->restoreMobModifiers();
 
 	uint8 mLvl = PMob->GetMLevel();
 	JOBTYPE mJob = PMob->GetMJob();
@@ -799,8 +799,10 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
         case SYSTEM_VERMIN:   PMob->addModifier(MOD_PLANTOID_KILLER, 5); break;
       }
 
-     // this will save the state of mods and so it can be restored later
+     // this will save the state of mods and so it can be restored on spawn
+     // this lets scripts modify the values without worrying about resetting them
      PMob->saveModifiers();
+     PMob->saveMobModifiers();
 }
 
 /*
@@ -829,7 +831,7 @@ void LoadCustomMods()
 
 			CModifier* mod = new CModifier(Sql_GetUIntData(SqlHandle,1));
 			mod->setModAmount(Sql_GetIntData(SqlHandle,2));
-			
+
 			uint16 type = Sql_GetUIntData(SqlHandle,3);
 			if(type == 1)
 			{
@@ -855,13 +857,13 @@ void LoadCustomMods()
 
 			CModifier* mod = new CModifier(Sql_GetUIntData(SqlHandle,1));
 			mod->setModAmount(Sql_GetUIntData(SqlHandle,2));
-			
+
 			uint16 type = Sql_GetUIntData(SqlHandle,3);
 			if(type == 1)
 			{
 				poolMods->mobMods.push_back(mod);
-			} 
-			else 
+			}
+			else
 			{
 				poolMods->mods.push_back(mod);
 			}
@@ -881,13 +883,13 @@ void LoadCustomMods()
 
 			CModifier* mod = new CModifier(Sql_GetUIntData(SqlHandle,1));
 			mod->setModAmount(Sql_GetUIntData(SqlHandle,2));
-			
+
 			uint16 type = Sql_GetUIntData(SqlHandle,3);
 			if(type == 1)
 			{
 				spawnMods->mobMods.push_back(mod);
-			} 
-			else 
+			}
+			else
 			{
 				spawnMods->mods.push_back(mod);
 			}
@@ -1020,7 +1022,7 @@ void SetupMaat(CMobEntity* PMob, JOBTYPE job)
 
 	// reset just incase
 	AddMods(PMob);
-	
+
 	PMob->m_Weapons[SLOT_MAIN]->setDelay((240*1000)/60);
 
 	// this is kind a hacky but make nin maat always double attack

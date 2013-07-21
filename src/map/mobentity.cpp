@@ -46,6 +46,7 @@ CMobEntity::CMobEntity()
     m_specialFlags = SPECIALFLAG_NONE;
 
     memset(m_mobModStat,0, sizeof(m_mobModStat));
+    memset(m_mobModStatSave,0, sizeof(m_mobModStatSave));
 
     m_AllowRespawn = 0;
 	m_CallForHelp  = 0;
@@ -85,7 +86,7 @@ CMobEntity::CMobEntity()
 
     m_maxRoamDistance = 30.0f;
     m_disableScent = false;
-    
+
     setMobMod(MOBMOD_SIGHT_RANGE, MOB_SIGHT_RANGE);
     setMobMod(MOBMOD_SOUND_RANGE, MOB_SOUND_RANGE);
 
@@ -541,6 +542,16 @@ void CMobEntity::defaultMobMod(uint16 type, int16 value)
     {
         ShowError("CMobEntity::addMobMod Trying to set value out of range (%d)\n", type);
     }
+}
+
+void CMobEntity::saveMobModifiers()
+{
+    memcpy(m_mobModStatSave, m_mobModStat, sizeof(m_mobModStat));
+}
+
+void CMobEntity::restoreMobModifiers()
+{
+    memcpy(m_mobModStat, m_mobModStatSave, sizeof(m_mobModStatSave));
 }
 
 void CMobEntity::HideModel(bool hide)

@@ -138,6 +138,7 @@ public:
 	bool		finishDynamis();										// finish dynamis
 	void		cleanupDynamis();										// cleanup all mobs in dynamis
 	bool		delPlayerFromDynamis(CCharEntity* PChar);				// delete player in m_PlayerList
+	void		clearPlayerEnmity(CCharEntity* PChar); 					// erase chars enmity
 
 	uint16		m_RuleMask;
 	bool		locked;

@@ -18,6 +18,6 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_PARALYSIS;
-    skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 25, 0, 180));
+    skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 25, 0, 120));
 	return typeEffect;
 end

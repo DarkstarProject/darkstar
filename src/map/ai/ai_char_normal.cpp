@@ -364,6 +364,7 @@ void CAICharNormal::ActionFall()
 {
 	m_ActionType = ACTION_DEATH;
 	m_ActionTargetID = 0;
+
 	m_LastActionTime = m_Tick;
 
 	//falls to the ground

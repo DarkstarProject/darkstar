@@ -35,8 +35,7 @@
 #define MOB_SPELL_MAX_RANGE 26.8f
 
 // mobs will deaggro if player is out of range for this long
-// #define MOB_DEAGGRO_TIME 25000
-#define MOB_DEAGGRO_TIME 10000
+#define MOB_DEAGGRO_TIME 25000
 
 // time a mob is neutral after disengaging
 #define MOB_NEUTRAL_TIME 10000
@@ -67,7 +66,7 @@ public:
   // TODO:
   //void TOTDChange();
 
-  
+
 protected:
 
   virtual void TransitionBack(bool skipWait = false);

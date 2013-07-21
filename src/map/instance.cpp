@@ -228,6 +228,7 @@ bool CInstance::delPlayerFromBcnm(CCharEntity* PChar){
 			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_BATTLEFIELD);
 			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
 			PChar->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
+			clearPlayerEnmity(PChar);
 			m_PlayerList.erase(m_PlayerList.begin()+i);
 			return true;
 		}
@@ -471,7 +472,7 @@ void CInstance::cleanupDynamis(){
 		{
 			uint32 mobid = Sql_GetUIntData(SqlHandle,0);
 			CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
-			
+
 			if(PMob != NULL)
 				PMob->PBattleAI->SetCurrentAction(ACTION_FADE_OUT);
 		}
@@ -517,4 +518,14 @@ bool CInstance::isMonsterInList(CMobEntity* PMob)
 		}
 	}
 	return false;
+}
+
+void CInstance::clearPlayerEnmity(CCharEntity* PChar)
+{
+	for (std::vector<CMobEntity*>::iterator it = m_MobList.begin() ; it != m_MobList.end(); ++it)
+	{
+		CMobEntity* PMob = *it;
+
+		PMob->PEnmityContainer->Clear(PChar->id);
+	}
 }

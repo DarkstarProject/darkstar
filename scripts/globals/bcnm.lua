@@ -4,11 +4,11 @@ require("scripts/globals/missions");
 require("scripts/globals/quests");
 
 -- NEW SYSTEM BCNM NOTES
--- The "core" functions TradeBCNM EventUpdateBCNM EventTriggerBCNM EventFinishBCNM all return TRUE if the action performed is covered by the function. 
+-- The "core" functions TradeBCNM EventUpdateBCNM EventTriggerBCNM EventFinishBCNM all return TRUE if the action performed is covered by the function.
 -- This means all the old code will still be executed if the new functions don't support it. This means that there is effectively 'backwards compatibility' with the old system.
 
 -- array to map (for each zone) the item id of the valid trade item with the bcnmid in the database
--- e.g. zone,{itemid,bcnmid,itemid,bcnmid,itemid,bcnmid} 
+-- e.g. zone,{itemid,bcnmid,itemid,bcnmid,itemid,bcnmid}
 -- DO NOT INCLUDE MAAT FIGHTS
 itemid_bcnmid_map = { 6,{0,0},--Bearclaw_Pinnacle
                       8,{0,0},--Boneyard_Gully
@@ -36,7 +36,7 @@ itemid_bcnmid_map = { 6,{0,0},--Bearclaw_Pinnacle
 					 207,{1544,545}, -- Cloister of Flames
 					 209,{1547,578,1169,577}, -- Cloister of Tremors
 					 211,{1549,609}}; -- Cloister of Tides
-					 
+
 -- array to map (for each zone) the BCNM ID to the Event Parameter corresponding to this ID.
 -- DO NOT INCLUDE MAAT FIGHTS (only included one for testing!)
 -- bcnmid,paramid,bcnmid,paramid,etc
@@ -68,7 +68,7 @@ bcnmid_param_map = {6,{640,0},
 					201,{416,0,417,1,418,2},
 					202,{448,0,449,1,450,2},
 					203,{480,0,481,1,482,2},
-					206,{512,0,517,5,518,6,519,7}, 
+					206,{512,0,517,5,518,6,519,7},
 					207,{544,0,545,1},
 					209,{576,0,577,1,578,2},
 					211,{608,0,609,1}};
@@ -83,14 +83,14 @@ function TradeBCNM(player,zone,trade,npc)
 		player:messageBasic(56,0,0); -- i need correct dialog
 		return false;
 	end
-	
+
 	if(CheckMaatFights(player,zone,trade,npc))then --This function returns true for maat fights
 		return true;
 	end
 	--the following is for orb battles, etc
 
 	id = ItemToBCNMID(player,zone,trade);
-	
+
 	if(id == -1)then --no valid BCNMs with this item
 		--todo: display message based on zone text offset
 		player:setVar("trade_bcnmid",0);
@@ -98,7 +98,7 @@ function TradeBCNM(player,zone,trade,npc)
 		return false;
 	else --a valid BCNM with this item, start it.
 		mask = GetBattleBitmask(id,zone,1);
-		
+
 		if(mask == -1)then --Cannot resolve this BCNMID to an event number, edit bcnmid_param_map!
 			print("Item is for a valid BCNM but cannot find the event parameter to display to client.");
 			player:setVar("trade_bcnmid",0);
@@ -118,7 +118,7 @@ end;
 function EventTriggerBCNM(player,npc)
 	player:setVar("trade_bcnmid",0);
 	player:setVar("trade_itemid",0);
-	
+
 	if(player:hasStatusEffect(EFFECT_BATTLEFIELD)) then
 		if(player:isInBcnm() == 1) then
 			player:startEvent(0x7d03); --Run Away or Stay menu
@@ -139,14 +139,14 @@ function EventTriggerBCNM(player,npc)
 			return true;
 		end
 	end
-	
+
 	return false;
 end;
 
 function EventUpdateBCNM(player,csid,option)
 	-- return false;
 	id = player:getVar("trade_bcnmid"); --this is 0 if the bcnm isnt handled by new functions
-	
+
 	print("UPDATE csid "..csid.." option "..option);
 	--seen: option 2,3,0 in that order
 	if(csid == 0x7d03 and option == 2)then --leaving a BCNM the player is currently in.
@@ -161,14 +161,14 @@ function EventUpdateBCNM(player,csid,option)
 			player:setVar("bcnm_instanceid",player:getInstanceID()); --returns 255 if non-existent.
 			return true;
 		end
-		
+
 		inst = player:bcnmRegister(id);
 		if(inst > 0)then
 			player:setVar("bcnm_instanceid",inst);
 			player:setVar("bcnm_instanceid_tick",0);
 			player:updateEvent(0,3,0,0,1,0);
 			--player:tradeComplete();
-		else 
+		else
 			--no free battlefields at the moment!
 			print("no free instances");
 			player:setVar("bcnm_instanceid",255);
@@ -182,7 +182,7 @@ function EventUpdateBCNM(player,csid,option)
 		instance = player:getVar("bcnm_instanceid_tick");
 		instance = instance + 1;
 		player:setVar("bcnm_instanceid_tick",instance);
-		
+
 		if(instance == player:getVar("bcnm_instanceid"))then
 			--respond to this packet
 			mask = GetBattleBitmask(id,player:getZone(),2);
@@ -206,20 +206,20 @@ function EventUpdateBCNM(player,csid,option)
 		--player:updateEvent(msgid,bcnmFight,0,record,numadventurers,skip); skip=1 to skip anim
 		--msgid 1=wait a little longer, 2=enters
 	end
-	
+
 	return true;
 end;
 
 function EventFinishBCNM(player,csid,option)
 	print("FINISH csid "..csid.." option "..option);
-	
+
 
 	if(player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then -- Temp condition for normal bcnm (started with onTrigger)
 		return false;
 	else
 		local id = player:getVar("trade_bcnmid");
 		local item = player:getVar("trade_itemid");
-		
+
 		if(id == 68 or id == 418 or id == 450 or id == 482 or id == 545 or id == 578 or id == 609 or id == 293) then
 			player:tradeComplete(); -- Removes the item
 		elseif((item >= 1426 and item <= 1440) or item == 1130 or item == 1131 or item == 1175 or item == 1177 or item == 1180 or item == 1178 or item == 1551 or item == 1552 or item == 1553) then -- Orb and Testimony (one time item)
@@ -227,7 +227,7 @@ function EventFinishBCNM(player,csid,option)
 		end
 		return true;
 	end
-	
+
 end;
 
 --Returns TRUE if you're trying to do a maat fight, regardless of outcome e.g. if you trade testimony on wrong job, this will return true in order to prevent further execution of TradeBCNM. Returns FALSE if you're not doing a maat fight (in other words, not trading a testimony!!)
@@ -240,25 +240,25 @@ function CheckMaatFights(player,zone,trade,npc)
 	itemid = trade:getItem();
 	job = player:getMainJob();
 	lvl = player:getMainLvl();
-	
+
 	if(itemid >= 1426 and itemid <= 1440) then --The traded item IS A TESTIMONY
 		if(lvl < 66 or player:getVar("maatDefeated") > 0)then --not high enough level for maat fight :( or maat already defeated
 			return true;
 		end
-		
+
 		if(player:isBcnmsFull() == 1)then --temp measure, this will precheck the instances
 			print("all bcnm instances are currently occupied.");
 			npc:messageBasic(246,0,0);
 			return true;
 		end
-		
+
 		--Zone,{item,job,menu,bcnmid,...}
 		maatList = {139,{1426,1,32,5,1429,4,64,6,1436,11,128,7},		-- Horlais Peak [WAR BLM RNG]
 					144,{1430,5,64,70,1431,6,128,71,1434,9,256,72},		-- Waughroon Shrine [RDM THF BST]
 					146,{1427,2,32,101,1428,3,64,102,1440,15,128,103},	-- Balga's Dais [MNK WHM SMN]
 					168,{1437,12,4,194,1438,13,8,195,1439,14,16,196},	-- Chamber of Oracles [SAM NIN DRG]
 					206,{1432,7,32,517,1433,8,64,518,1435,10,128,519} };-- Qu'Bia Arena [PLD DRK BRD]
-		
+
 		for nb = 1, table.getn(maatList), 2 do
 			if(maatList[nb] == zone) then
 				for nbi = 1, table.getn(maatList[nb + 1]), 4 do
@@ -271,7 +271,7 @@ function CheckMaatFights(player,zone,trade,npc)
 				end
 			end
 		end
-		
+
 		return true;
 	end
 	--if it got this far then its not a testimony
@@ -303,13 +303,13 @@ function ItemToBCNMID(player,zone,trade)
 				if(trade:getItem()==itemid_bcnmid_map[zoneindex+1][bcnmindex])then
 					item = trade:getItem();
 					questTimelineOK = 0;
-					
+
 					-- Job/lvl condition for smn battle lvl20
-					if(item >= 1544 and item <= 1549 and player:getMainJob() == 15 and player:getMainLvl() >= 20) then 
+					if(item >= 1544 and item <= 1549 and player:getMainJob() == 15 and player:getMainLvl() >= 20) then
 						questTimelineOK = 1;
 					elseif(item == 1166 and player:getVar("aThiefinNorgCS") == 6) then -- AF3 SAM condition
 						questTimelineOK = 1;
-					elseif(item == 1551) then -- BCNM20 
+					elseif(item == 1551) then -- BCNM20
 						questTimelineOK = 1;
 					elseif(item == 1552) then -- BCNM30
 						questTimelineOK = 1;
@@ -336,13 +336,13 @@ function ItemToBCNMID(player,zone,trade)
 					elseif(item == 1174 and player:getVar("CarbuncleDebacleProgress") == 6) then -- Carbuncle Debacle (Ogmios)
 						questTimelineOK = 1;
 					end
-					
+
 					if(questTimelineOK == 1) then
 						player:setVar("trade_bcnmid",itemid_bcnmid_map[zoneindex+1][bcnmindex+1]);
 						player:setVar("trade_itemid",itemid_bcnmid_map[zoneindex+1][bcnmindex]);
 						return itemid_bcnmid_map[zoneindex+1][bcnmindex+1];
 					end
-			
+
 				end
 			end
 		end
@@ -353,30 +353,30 @@ end;
 -- E.g. mission checks go here, you must know the right bcnmid for the mission you want to code.
 --      You also need to know the bitmask (event param) which should be put in bcnmid_param_map
 function checkNonTradeBCNM(player,npc)
-	
+
 	local mask = 0;
 	Zone = player:getZone();
 	if(Zone == 6) then--Bearclaw_Pinnacle
 	   	if(player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Ulmia_s_Path") == 6) then --flames_for_the_dead
-	    	 mask = GetBattleBitmask(640,Zone,1);   
+	    	 mask = GetBattleBitmask(640,Zone,1);
 	         player:setVar("trade_bcnmid",640);
 		end
 	elseif(Zone == 8) then--Boneyard_Gully
 	   	if(player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Ulmia_s_Path") == 5) then --head_wind
-	    	 mask = GetBattleBitmask(672,Zone,1);   
+	    	 mask = GetBattleBitmask(672,Zone,1);
 	         player:setVar("trade_bcnmid",672);
 		end
 	elseif(Zone == 10) then--The_Shrouded_Maw
 	    if(player:getCurrentMission(COP) == DARKNESS_NAMED  and  player:getVar("PromathiaStatus") == 2) then--DARKNESS_NAMED
-	         mask = GetBattleBitmask(704,Zone,1);   
+	         mask = GetBattleBitmask(704,Zone,1);
 	         player:setVar("trade_bcnmid",704);
 		elseif(player:hasKeyItem(VIAL_OF_DREAM_INCENSE)==true)then --waking_dreams (diabolos avatar quest)
-			 mask = GetBattleBitmask(706,Zone,1);   
+			 mask = GetBattleBitmask(706,Zone,1);
 	         player:setVar("trade_bcnmid",706);
-	    end	
+	    end
     elseif(Zone == 13) then --Mine_Shaft_2716
 	    if(player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Louverance_s_Path") == 5) then --century_of_hardship
-	    	 mask = GetBattleBitmask(736,Zone,1);   
+	    	 mask = GetBattleBitmask(736,Zone,1);
 	         player:setVar("trade_bcnmid",736);
 		end
 	elseif(Zone == 17) then --Spire of Holla
@@ -388,7 +388,7 @@ function checkNonTradeBCNM(player,npc)
 	    if(player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(LIGHT_OF_DEM) == false) then -- light of dem
 	        mask = GetBattleBitmask(800,Zone,1);
 	        player:setVar("trade_bcnmid",800);
-	    end	
+	    end
 	elseif(Zone == 21) then --Spire of Mea
 	    if(player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(LIGHT_OF_MEA) == false) then -- light of mea
 	        mask = GetBattleBitmask(832,Zone,1);
@@ -398,7 +398,7 @@ function checkNonTradeBCNM(player,npc)
 	    if(player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==8) then -- desires of emptiness
 	        mask = GetBattleBitmask(864,Zone,1);
 	        player:setVar("trade_bcnmid",864);
-	    end	
+	    end
 	elseif(Zone == 31) then --Monarch Linn
 	    if(player:getCurrentMission(COP) == ANCIENT_VOWS and player:getVar("PromathiaStatus") == 2) then  -- Ancient Vows bcnm
 	      	mask = GetBattleBitmask(960,Zone,1);
@@ -406,7 +406,7 @@ function checkNonTradeBCNM(player,npc)
 		elseif(player:getCurrentMission(COP) == THE_SAVAGE and player:getVar("PromathiaStatus") == 1) then
 	      	mask = GetBattleBitmask(961,Zone,1);
 	        player:setVar("trade_bcnmid",961);
-	    end  	    
+	    end
 	elseif(Zone == 32) then --Sealion's Den
 	    if(player:getCurrentMission(COP) == ONE_TO_BE_FEARED and player:getVar("PromathiaStatus")==2) then -- one_to_be_feared
 	        mask = GetBattleBitmask(992,Zone,1);
@@ -414,20 +414,20 @@ function checkNonTradeBCNM(player,npc)
 		elseif(player:getCurrentMission(COP) == THE_WARRIOR_S_PATH) then --warriors_path
 			mask = GetBattleBitmask(993,Zone,1);
 	        player:setVar("trade_bcnmid",993);
-	    end			
+	    end
 	elseif(Zone == 35) then --The_Garden_of_RuHmet
 	    if(player:getCurrentMission(COP) == WHEN_ANGELS_FALL and player:getVar("PromathiaStatus")==4) then --when_angels_fall
 	        mask = GetBattleBitmask(1024,Zone,1);
 	        player:setVar("trade_bcnmid",1024);
-	    end	
+	    end
 	elseif(Zone == 36) then --empyreal paradox
 	    if(player:getCurrentMission(COP) ==  DAWN and player:getVar("PromathiaStatus")==2) then --dawn
 	        mask = GetBattleBitmask(1056,Zone,1);
 	        player:setVar("trade_bcnmid",1056);
-	    end	
-		
+	    end
+
 	elseif(Zone == 139) then -- Horlais Peak
-		if((player:getCurrentMission(BASTOK) == THE_EMISSARY_SANDORIA2 or 
+		if((player:getCurrentMission(BASTOK) == THE_EMISSARY_SANDORIA2 or
 			player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_SANDORIA2) and player:getVar("MissionStatus") == 9) then -- Mission 2-3
 			mask = GetBattleBitmask(0,Zone,1);
 			player:setVar("trade_bcnmid",0);
@@ -443,7 +443,7 @@ function checkNonTradeBCNM(player,npc)
 			player:setVar("trade_bcnmid",33);
 		end
 	elseif(Zone == 144) then -- Waughroon Shrine
-		if((player:getCurrentMission(SANDORIA) == JOURNEY_TO_BASTOK2 or 
+		if((player:getCurrentMission(SANDORIA) == JOURNEY_TO_BASTOK2 or
 			player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_BASTOK2) and player:getVar("MissionStatus") == 10) then -- Mission 2-3
 			mask = GetBattleBitmask(64,Zone,1);
 			player:setVar("trade_bcnmid",64);
@@ -455,7 +455,7 @@ function checkNonTradeBCNM(player,npc)
 		if(player:hasKeyItem(DARK_KEY)) then -- Mission 2-3
 			mask = GetBattleBitmask(96,Zone,1);
 			player:setVar("trade_bcnmid",96);
-		end 
+		end
 	elseif(Zone == 163) then -- Sacrificial Chamber
 		if(player:hasKeyItem(SACRIFICIAL_CHAMBER_KEY)) then -- Zilart Mission 4
 			mask = GetBattleBitmask(128,Zone,1);
@@ -537,7 +537,7 @@ function checkNonTradeBCNM(player,npc)
 			player:setVar("trade_bcnmid",608);
 		end
 	end
-	
+
 	if(mask == -1) then
 		print("BCNMID/Mask pair not found"); -- something went wrong
 		return true;

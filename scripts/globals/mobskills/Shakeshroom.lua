@@ -30,7 +30,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
     local typeEffect = EFFECT_DISEASE;
 
-    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 360);
+    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 180);
 
     target:delHP(dmg);
     return dmg;
