@@ -65,9 +65,10 @@ enum MOBMODIFIER
   MOBMOD_SPECIAL_COOL = 33, // cool down for special
   MOBMOD_MAGIC_COOL = 34, // cool down for magic
   MOBMOD_STANDBACK_TIME = 35, // amount of time the mob stands back
-  MOBMOD_ROAM_COOL = 36 // cool down for roaming
+  MOBMOD_ROAM_COOL = 36, // cool down for roaming
+  MOBMOD_ALWAYS_AGGRO = 37 // aggro regardless of level. Spheroids
 };
 
-#define MAX_MOBMODIFIER         37
+#define MAX_MOBMODIFIER         38
 
 #endif

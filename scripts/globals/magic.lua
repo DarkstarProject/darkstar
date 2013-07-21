@@ -302,7 +302,7 @@ function applyResistance(player,spell,target,diff,skill,bonus)
 		magicacc = magicacc + player:getStatusEffect(EFFECT_ALTRUISM):getPower();
 	end
 	if player:hasStatusEffect(EFFECT_FOCALIZATION) and spell:getSpellGroup() == SPELLGROUP_BLACK then
-		magicacc = magicacc + player:getStatusEffect(EFFECT_FOCALIZATION):getPower();	
+		magicacc = magicacc + player:getStatusEffect(EFFECT_FOCALIZATION):getPower();
 	end
 	--difference in int/mnd
 	if(diff > 10) then
@@ -542,7 +542,7 @@ function getSkillLvl(rank,level)
 
     -- Only add TP if the target is a mob
     if (target:getObjType() ~= TYPE_PC) then
-        target:addTP(10);
+        target:addTP(100);
     end
 
     return dmg;
@@ -698,7 +698,7 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
     end
 
 	dmg = math.floor(dmg * mab);
-	
+
 	if (caster:hasStatusEffect(EFFECT_EBULLIENCE)) then
 		local equippedHead = caster:getEquipID(SLOT_HEAD);
 		if(equippedHead == 11183) then
@@ -710,9 +710,9 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
 		end
 		caster:delStatusEffectSilent(EFFECT_EBULLIENCE);
 	end
-	
+
 	dmg = math.floor(dmg);
-	
+
 	-- Applies "Damage Taken" and "Magic Damage Taken" mods.
 	-- The formulas look crazy because SE.
 	-- Note that MOD_DMGMAGIC is stored in item_mods in amount/256 format

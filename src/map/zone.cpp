@@ -904,7 +904,9 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 
         CAIMobDummy* PAIMob = (CAIMobDummy*)PCurrentMob->PBattleAI;
 
-        if((expGain > 50 || PChar->animation == ANIMATION_HEALING) && PAIMob->CanAggroTarget(PChar))
+        bool validAggro = expGain > 50 || PChar->animation == ANIMATION_HEALING || PCurrentMob->getMobMod(MOBMOD_ALWAYS_AGGRO);
+
+        if(validAggro && PAIMob->CanAggroTarget(PChar))
         {
           PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
         }

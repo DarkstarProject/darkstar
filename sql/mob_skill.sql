@@ -83,15 +83,6 @@ INSERT INTO `mob_skill` VALUES (476,0,723,'Call_Wyvern', 0, 7.0, 2000, 0, 1, 2, 
 INSERT INTO `mob_skill` VALUES (1,206,1,'Foot_Kick', 0, 7.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (2,206,2,'Dust_Cloud', 4, 10.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (3,206,3,'Whirl_Claws', 1, 5.0, 2000, 1500, 4, 0, 0);
--- With Cure (317)
-INSERT INTO `mob_skill` VALUES (1,317,1,'Foot_Kick', 0, 7.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (2,317,2,'Dust_Cloud', 4, 10.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (3,317,3,'Whirl_Claws', 1, 5.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES(67, 317, 37, 'Wild_Carrot', 0, 20.0, 2000, 1500, 1, 0, 0); -- animation needs to be found
--- Snowy Area (318)
-INSERT INTO `mob_skill` VALUES (3,318, 3,'Whirl_Claws', 1, 5.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES(67, 318, 37, 'Wild_Carrot', 0, 20.0, 2000, 1500, 1, 0, 0);
-INSERT INTO `mob_skill` VALUES(405, 318, 970, 'Snow_Cloud', 4, 10.0, 2000, 1500, 4, 0, 0);
 
 -- Sheep
 INSERT INTO `mob_skill` VALUES (4,226,4,'Lamb_Chop', 0, 7.0, 2000, 1500, 4, 0, 0);
@@ -162,12 +153,6 @@ INSERT INTO `mob_skill` VALUES (66,212,66,'1000_Needles', 1, 10.0, 2000, 1500, 4
 INSERT INTO `mob_skill` VALUES (68,212,68,'Photosynthesis', 0, 7.0, 2000, 1500, 1, 0, 0);
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'2000_Needles', 1, 10.0, 2000, 1500, 4, 0, 0); -- Only used by Nightmare Sabotender
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'4000_Needles', 1, 10.0, 2000, 1500, 4, 0, 0); -- Only used by Nightmare Sabotender
-
--- Cactrot_Rapido
-INSERT INTO `mob_skill` VALUES (68,362,68,'Photosynthesis', 0, 7.0, 2000, 1500, 1, 0, 0);
-INSERT INTO `mob_skill` VALUES (66,362,66,'1000_Needles', 1, 10.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (65,362,65,'Needleshot', 0, 7.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (864,362,66,'10000_Needles', 1, 10.0, 2000, 1500, 4, 0, 0);
 
 -- Funguar
 INSERT INTO `mob_skill` VALUES (52,116,52,'Frogkick', 0, 7.0, 2000, 1500, 4, 0, 0);
@@ -566,9 +551,6 @@ INSERT INTO `mob_skill` VALUES (258,110,258,'Whirl_of_Rage', 1, 10.0, 2000, 1500
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Furious_Flurry', 0, 7.0, 2000, 1500, 4, 0, 0);
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Whispers_of_Ire', 1, 10.0, 2000, 1500, 4, 0, 0); -- Only used by certain NM
 -- INSERT INTO `mob_skill` VALUES (0,110,259,'Flurry_of_Rage', 0, 7.0, 2000, 1500, 4, 0, 0); -- Only used by certain NM
-
-INSERT INTO `mob_skill` VALUES (257,111,257,'Smite_of_Rage', 0, 7.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (258,111,258,'Whirl_of_Rage', 1, 7.0, 2000, 1500, 4, 0, 0);
 
 -- Magic Pot
 INSERT INTO `mob_skill` VALUES (269,175,269,'Battery_Charge', 0, 7.0, 2000, 1500, 1, 0, 0);
@@ -992,18 +974,6 @@ INSERT INTO `mob_skill` VALUES (23,26,813,'Mandibular_Bite', 0, 7.0, 2000, 1500,
 -- INSERT INTO `mob_skill` VALUES (23,26,813,'Gravitic_Horn', 0, 7.0, 2000, 1500, 4, 0, 0);
 -- INSERT INTO `mob_skill` VALUES (23,26,813,'Quake_Blast', 0, 7.0, 2000, 1500, 4, 0, 0);
 -- eft
-INSERT INTO `mob_skill` VALUES (259,96,814,'Toxic_Spit', 0, 9.5, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (260,96,815,'Geist_Wall', 1, 10.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (261,96,816,'Numbing_Noise', 4, 10.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (262,96,817,'Nimble_Snap', 0, 7.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (263,96,818,'Cyclotail', 1, 10.0, 2000, 1500, 4, 0, 0);
-
-INSERT INTO `mob_skill` VALUES (259,97,814,'Toxic_Spit', 0, 9.5, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (260,97,815,'Geist_Wall', 1, 10.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (261,97,816,'Numbing_Noise', 4, 10.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (262,97,817,'Nimble_Snap', 0, 7.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (263,97,818,'Cyclotail', 1, 10.0, 2000, 1500, 4, 0, 0);
-
 INSERT INTO `mob_skill` VALUES (259,98,814,'Toxic_Spit', 0, 9.5, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (260,98,815,'Geist_Wall', 1, 10.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (261,98,816,'Numbing_Noise', 4, 10.0, 2000, 1500, 4, 0, 0);
@@ -1763,3 +1733,20 @@ INSERT INTO `mob_skill` VALUES (1127,329,1018,'Glacier_Splitter', 0, 7.0, 2000, 
 INSERT INTO `mob_skill` VALUES (80,700,80,'Final_Sting', 0, 7.0, 2000, 1500, 4, 0, 35);
 INSERT INTO `mob_skill` VALUES (79,700,79,'Pollen', 0, 7.0, 2000, 1500, 1, 0, 40);
 INSERT INTO `mob_skill` VALUES (78,700,78,'Sharp_Sting', 0, 10.0, 2000, 1500, 4, 0, 0);
+
+-- rabbit With Cure
+INSERT INTO `mob_skill` VALUES (1,701,1,'Foot_Kick', 0, 7.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (2,701,2,'Dust_Cloud', 4, 10.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (3,701,3,'Whirl_Claws', 1, 5.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES(67, 701, 37, 'Wild_Carrot', 0, 20.0, 2000, 1500, 1, 0, 0);
+
+-- rabbit Snowy Area
+INSERT INTO `mob_skill` VALUES (3,702, 3,'Whirl_Claws', 1, 5.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES(67, 702, 37, 'Wild_Carrot', 0, 20.0, 2000, 1500, 1, 0, 0);
+INSERT INTO `mob_skill` VALUES(405, 702, 970, 'Snow_Cloud', 4, 10.0, 2000, 1500, 4, 0, 0);
+
+-- Cactrot_Rapido
+INSERT INTO `mob_skill` VALUES (68,703,68,'Photosynthesis', 0, 7.0, 2000, 1500, 1, 0, 0);
+INSERT INTO `mob_skill` VALUES (66,703,66,'1000_Needles', 1, 10.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (65,703,65,'Needleshot', 0, 7.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (864,703,66,'10000_Needles', 1, 10.0, 2000, 1500, 4, 0, 0);
