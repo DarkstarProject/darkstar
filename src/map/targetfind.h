@@ -52,6 +52,7 @@ enum FINDFLAGS
   FINDFLAGS_DEAD = 1, // target dead
   FINDFLAGS_ALLIANCE = 2, // force target alliance
   FINDFLAGS_PET = 4, // force target pet
+  FINDFLAGS_UNLIMITED = 8 // unlimited distance
 };
 
 /*

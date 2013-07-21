@@ -24,13 +24,18 @@ function onMobDeath(mob, killer)
     -- Set King_Vinegarroon's spawnpoint and respawn time (21-24 hours)
     UpdateNMSpawnPoint(mob:getID());
     mob:setRespawnTime(math.random((75600),(86400)));
-  
+
+end;
+
+function onMobDrawIn(mob, target)
+	-- todo make him use AoE tp move
+	mob:addTP(300);
 end;
 
 function onMobDisengage(mob, weather)
-	
+
 	if(weather ~= WEATHER_DUST_STORM and weather ~= WEATHER_SAND_STORM) then
 		DespawnMob(mob:getID());
 	end
-	
+
 end;

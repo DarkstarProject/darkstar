@@ -83,6 +83,7 @@ protected:
   uint32 m_DeaggroTime;
   uint32 m_NeutralTime;
   float m_skillTP;
+  bool m_drawnIn;
 
   bool  m_CanStandback;
   uint32 m_LastStandbackTime;

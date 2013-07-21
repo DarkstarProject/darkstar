@@ -72,6 +72,7 @@ CAIMobDummy::CAIMobDummy(CMobEntity* PMob)
 	m_DeaggroTime = 0;
 	m_NeutralTime = 0;
 	m_CanStandback = false;
+	m_drawnIn = false;
 }
 
 /************************************************************************
@@ -1414,23 +1415,49 @@ void CAIMobDummy::ActionAttack()
 
 
 	// move closer to enemy
-	if(currentDistance > m_PMob->m_ModelSize && m_PMob->speed != 0)
+	if(currentDistance > m_PMob->m_ModelSize)
 	{
-		// mobs will find a new path only when enough ticks pass
-		// this is so the server is not overloaded
-		if(!m_PPathFind->IsFollowingPath() || ++m_ChaseThrottle == 4)
+		if(m_PMob->getMobMod(MOBMOD_DRAW_IN))
 		{
-			m_ChaseThrottle = 0;
-			m_PPathFind->PathAround(m_PBattleTarget->loc.p, 2.0f, PATHFLAG_WALLHACK | PATHFLAG_RUN);
+			// prevent double drawin
+			// I think it happens because the server moves the char
+			// then the char gets updated from the client in the old position
+			// this causing draw in to happen twice unless this if is here
+			if(!m_drawnIn)
+			{
+				battleutils::DrawIn(m_PBattleTarget, &m_PMob->loc.p, m_PMob->m_ModelSize - 0.2f);
+
+				luautils::OnMobDrawIn(m_PMob, m_PBattleTarget);
+
+				m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PBattleTarget,m_PBattleTarget,0,0, 232));
+
+			    currentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
+
+			    m_drawnIn = true;
+			}
+			else
+			{
+				m_drawnIn = false;
+			}
 		}
-
-		if(m_PPathFind->IsFollowingPath())
+		else if(m_PMob->speed != 0)
 		{
-			// m_PPathFind->CurvePath(0.5f);
-			m_PPathFind->FollowPath();
+			// mobs will find a new path only when enough ticks pass
+			// this is so the server is not overloaded
+			if(!m_PPathFind->IsFollowingPath() || ++m_ChaseThrottle == 4)
+			{
+				m_ChaseThrottle = 0;
+				m_PPathFind->PathAround(m_PBattleTarget->loc.p, 2.0f, PATHFLAG_WALLHACK | PATHFLAG_RUN);
+			}
 
-			// recalculate
-		    currentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
+			if(m_PPathFind->IsFollowingPath())
+			{
+				// m_PPathFind->CurvePath(0.5f);
+				m_PPathFind->FollowPath();
+
+				// recalculate
+			    currentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
+			}
 		}
 	}
 

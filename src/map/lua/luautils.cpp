@@ -268,11 +268,11 @@ int32 GetMobIDByJob(lua_State *L)
 	for(uint32 mobid = id_min; mobid <= id_max; mobid++)
 	{
 		CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
-		
-		if(PMob != NULL && 
-		   PMob->isDead() && 
-		   !(PMob->m_Type & MOBTYPE_NOTORIOUS) && 
-		   (PMob->m_Family < 92 || PMob->m_Family > 95) && PMob->m_Family != 4 && 
+
+		if(PMob != NULL &&
+		   PMob->isDead() &&
+		   !(PMob->m_Type & MOBTYPE_NOTORIOUS) &&
+		   (PMob->m_Family < 92 || PMob->m_Family > 95) && PMob->m_Family != 4 &&
 		   PMob->GetMJob() == mobJob)
 		{
 			lua_pushinteger(L,PMob->id);
@@ -503,9 +503,9 @@ int32 VanadielMoonDirection(lua_State* L)
 int32 IsMoonFull(lua_State* L)
 {
 	// Full moon occurs when:
-	// Waxing (increasing) from 90% to 100%, 
-	// Waning (decending) from 100% to 95%. 
-	
+	// Waxing (increasing) from 90% to 100%,
+	// Waning (decending) from 100% to 95%.
+
 	uint8 phase = CVanaTime::getInstance()->getMoonPhase();
 
 	switch (CVanaTime::getInstance()->getMoonDirection())
@@ -1857,6 +1857,56 @@ int32 OnMobDisengage(CBaseEntity* PMob)
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
+int32 OnMobDrawIn(CBaseEntity* PMob, CBaseEntity* PTarget)
+{
+	DSP_DEBUG_BREAK_IF(PTarget == NULL || PMob == NULL);
+
+
+	CCharEntity* PChar = (CCharEntity*)PTarget;
+
+	CLuaBaseEntity LuaMobEntity(PMob);
+	CLuaBaseEntity LuaKillerEntity(PTarget);
+
+	int8 File[255];
+	memset(File,0,sizeof(File));
+
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onMobDrawIn");
+
+	snprintf( File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
+
+	if(PTarget->objtype != TYPE_PET && PTarget->objtype != TYPE_MOB)
+	{
+		PChar->m_event.reset();
+		PChar->m_event.Target = PMob;
+		PChar->m_event.Script.insert(0,File);
+	}
+
+	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+	{
+        lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobDrawIn");
+	if( lua_isnil(LuaHandle,-1) )
+	{
+		return -1;
+	}
+
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaKillerEntity);
+
+	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
+	{
+		ShowError("luautils::onMobDrawIn: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
+}
+
 /************************************************************************
 *																		*
 *  Сalled every 3 sec when a player fight monster						*
@@ -2129,9 +2179,9 @@ int32 OnMobSpawn(CBaseEntity* PMob)
 int32 OnMobRoamAction(CBaseEntity* PMob)
 {
     DSP_DEBUG_BREAK_IF(PMob == NULL || PMob->objtype != TYPE_MOB)
-    
+
 	CLuaBaseEntity LuaMobEntity(PMob);
-	
+
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
@@ -2153,7 +2203,7 @@ int32 OnMobRoamAction(CBaseEntity* PMob)
 	}
 
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
-	
+
 	if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnMobRoamAction: %s\n",lua_tostring(LuaHandle,-1));
@@ -2173,9 +2223,9 @@ int32 OnMobRoamAction(CBaseEntity* PMob)
 int32 OnMobRoam(CBaseEntity* PMob)
 {
     DSP_DEBUG_BREAK_IF(PMob == NULL || PMob->objtype != TYPE_MOB)
-    
+
 	CLuaBaseEntity LuaMobEntity(PMob);
-	
+
 	int8 File[255];
 	memset(File,0,sizeof(File));
 
@@ -2197,7 +2247,7 @@ int32 OnMobRoam(CBaseEntity* PMob)
 	}
 
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
-	
+
 	if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnMobRoam: %s\n",lua_tostring(LuaHandle,-1));
@@ -2766,7 +2816,7 @@ int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbilit
         action->speceffect = (SPECEFFECT)(!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
         action->animation = (!lua_isnil(LuaHandle,-2) && lua_isnumber(LuaHandle,-2) ? (int32)lua_tonumber(LuaHandle,-2) : 0);
         return (!lua_isnil(LuaHandle,-3) && lua_isnumber(LuaHandle,-3) ? lua_tonumber(LuaHandle,-3) : 0);
-    } 
+    }
     else if (returns == 2)
     {
         action->animation = (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-2) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
@@ -2787,7 +2837,7 @@ int32 clearVarFromAll(lua_State *L)
 	const int8* varname = lua_tostring(L, -1);
 
 	Sql_Query(SqlHandle, "DELETE FROM char_vars WHERE varname = '%s';", varname);
-		
+
 	lua_pushnil(L);
 	return 0;
 }
@@ -2902,7 +2952,7 @@ int32 SetServerVariable(lua_State *L)
 		return 0;
 	}
 	Sql_Query(SqlHandle, "INSERT INTO server_variables VALUES ('%s', %i) ON DUPLICATE KEY UPDATE value = %i;", name, value, value);
-	
+
 	lua_pushnil(L);
 	return 0;
 }
@@ -3215,7 +3265,7 @@ int32 UpdateTreasureSpawnPoint(lua_State* L)
 	// TODO: check respawn time
 	if ( !lua_isnil(L,1) && lua_isnumber(L,1) ) {
 		uint32 npcid = (uint32)lua_tointeger(L,1);
-		
+
 		uint32 OpenTime = 300000; // 5 min respawn
 
 		if ( !lua_isnil(L,2) && lua_isboolean(L,2) ) {
@@ -3283,7 +3333,7 @@ int32 UpdateServerMessage(lua_State* L)
 	while( fgets(line, sizeof(line), fp) )
 	{
 		int8* ptr;
-        
+
 		if( line[0] == '#' )
 			continue;
 		if( sscanf(line, "%[^:]: %[^\t\r\n]", w1, w2) < 2 )

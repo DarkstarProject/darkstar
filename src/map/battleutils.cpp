@@ -53,6 +53,7 @@
 #include "items.h"
 #include "packets/pet_sync.h"
 #include "packets/char_sync.h"
+#include "packets/position.h"
 #include "packets/lock_on.h"
 #include "ai/ai_pet_dummy.h"
 #include "zoneutils.h"
@@ -4128,6 +4129,30 @@ WEATHER GetWeather(CBattleEntity* PEntity, bool ignoreScholar)
         return zoneWeather;
     else
         return scholarSpell;
+}
+
+void DrawIn(CBattleEntity* PEntity, position_t* pos, float offset)
+{
+	// don't draw in dead players for now!
+	// see tractor
+	if(PEntity->isDead()) return;
+
+	position_t near = nearPosition(*pos, offset, M_PI);
+
+	// draw in!
+	PEntity->loc.p.x = near.x;
+	PEntity->loc.p.y = near.y;
+	PEntity->loc.p.z = near.z;
+
+	if(PEntity->objtype == TYPE_PC)
+	{
+		CCharEntity* PChar = (CCharEntity*)PEntity;
+		PChar->pushPacket(new CPositionPacket(PChar));
+	}
+	else
+	{
+		PEntity->loc.zone->PushPacket(PEntity,CHAR_INRANGE, new CEntityUpdatePacket(PEntity,ENTITY_UPDATE));
+	}
 }
 
 };

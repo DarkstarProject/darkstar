@@ -163,7 +163,7 @@ Pi will make the position behind the target (180 degrees).
 position_t nearPosition(position_t A, float offset, float radian)
 {
 	// PI * 0.75 offsets the rotation to the proper place
-	float totalRadians = rotationToRadian(A.rotation) + radian + M_PI * 0.75;
+	float totalRadians = rotationToRadian(A.rotation) + radian + M_PI * 0.8;
 	position_t B;
 
 	B.x = A.x + cosf(totalRadians) * offset;

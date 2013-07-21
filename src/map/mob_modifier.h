@@ -41,7 +41,7 @@ enum MOBMODIFIER
   MOBMOD_HP_HEAL_CHANCE = 9, // can cast cures below this HP %
   MOBMOD_SUBLINK = 10, // link with this family
   MOBMOD_LINK_RADIUS = 11, // link radius
-  MOBMOD_DRAW_IN = 12, // 1 - player draw in, 2 - alliance draw in -- not impl
+  MOBMOD_DRAW_IN = 12, // 1 - player draw in, 2 - alliance draw in
   MOBMOD_RAGE = 13, // define rage timer -- not impl
   MOBMOD_SKILLS = 14, // use a custom mob skill list
   MOBMOD_MUG_GIL = 15, // amount gil carried for mugging -- not impl

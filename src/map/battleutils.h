@@ -179,6 +179,7 @@ namespace battleutils
 
     uint8               GetSpellAoEType(CBattleEntity* PCaster, CSpell* PSpell);
     WEATHER             GetWeather(CBattleEntity* PEntity, bool ignoreScholar);
+    void				DrawIn(CBattleEntity* PEntity, position_t* pos, float offset);
 
 };
 

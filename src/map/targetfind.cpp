@@ -377,7 +377,7 @@ bool CTargetFind::checkIsPlayer()
 
 bool CTargetFind::isWithinArea(CBattleEntity* PTarget)
 {
-   return distance(*m_PRadiusAround, PTarget->loc.p) <= m_radius;
+   return (m_findFlags & FINDFLAGS_UNLIMITED) || distance(*m_PRadiusAround, PTarget->loc.p) <= m_radius;
 }
 
 bool CTargetFind::isWithinCone(CBattleEntity* PTarget)

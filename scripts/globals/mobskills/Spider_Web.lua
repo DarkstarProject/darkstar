@@ -17,7 +17,7 @@ function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_SLOW;
 	local power = 300;
 
-	skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, power, 0, duration));
+	skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, power, 0, 90));
 
 	return typeEffect;
 end;

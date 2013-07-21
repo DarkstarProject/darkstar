@@ -532,6 +532,12 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->m_StandbackTime = 0;
 	}
 
+	// mobs with zero speed cannot standback
+	if(PMob->speed == 0)
+	{
+		PMob->m_StandbackTime = 0;
+	}
+
     // special case, give spell list to my pet
     if(PMob->getMobMod(MOBMOD_PET_SPELL_LIST) && PMob->PPet != NULL)
     {

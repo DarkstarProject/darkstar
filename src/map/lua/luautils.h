@@ -73,16 +73,16 @@ namespace luautils
 	int32 VanadielTOTD(lua_State*);												// текущее игровое время суток
 	int32 VanadielHour(lua_State*);												// текущие Vanadiel часы
 	int32 VanadielMinute(lua_State*);											// текущие Vanadiel минуты
-	int32 VanadielDayOfTheYear(lua_State*);										// Gets Integer Value for Day of the Year (Jan 01 = Day 1) 
+	int32 VanadielDayOfTheYear(lua_State*);										// Gets Integer Value for Day of the Year (Jan 01 = Day 1)
 	int32 VanadielDayOfTheMonth(lua_State*);									// Gets day of the month (Feb 6 = Day 6)
 	int32 VanadielYear(lua_State*);												// Gets the current Vanadiel Year
-	int32 VanadielMonth(lua_State*);											// Gets the current Vanadiel Month 
+	int32 VanadielMonth(lua_State*);											// Gets the current Vanadiel Month
 	int32 VanadielDayElement(lua_State*);										// Gets element of the day (0: fire, ...)
 	int32 VanadielMoonPhase(lua_State*);										// Gets the current Vanadiel Moon Phase
 	int32 VanadielMoonDirection(lua_State* L);									// Gets the current Vanadiel Moon Phasing direction (waxing, waning, neither)
     int32 SetVanadielTimeOffset(lua_State* L);
 	int32 IsMoonFull(lua_State* L);												// Returns true if the moon is full
-	int32 StartElevator(lua_State*); 
+	int32 StartElevator(lua_State*);
 	int32 GetServerVariable(lua_State*);
 	int32 SetServerVariable(lua_State *);
 	int32 clearVarFromAll(lua_State *);											// Deletes a specific player variable from all players
@@ -95,14 +95,14 @@ namespace luautils
 	int32 OnGameHourAutomatisation();											// Automatic action of NPC every game hour
 	int32 OnZoneWeatherChange(uint16 ZoneID, uint8 weather);
 	int32 OnTOTDChange(uint16 ZoneID, uint8 TOTD);
-		
+
     int32 OnGameIn(CCharEntity* PChar);											//
 	int32 OnZoneIn(CCharEntity* PChar);											// triggers when a player zones into a zone
 	int32 OnZoneInitialise(uint16 ZoneID);										// triggers when zone is loaded
 	int32 OnRegionEnter(CCharEntity* PChar, CRegion* PRegion);					// when player enters a region of a zone
 	int32 OnRegionLeave(CCharEntity* PChar, CRegion* Pregion);					// when player leaves a region of a zone
     int32 OnTransportEvent(CCharEntity* PChar, uint32 TransportID);
-	
+
 	int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc);						// triggered when user targets npc and clicks action button
 	int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result);		// triggered when game triggers event update during cutscene
 	int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result);		// triggered when cutscene/event is completed
@@ -129,6 +129,7 @@ namespace luautils
 	int32 OnMobRoam(CBaseEntity* PMob);
 	int32 OnMobEngaged(CBaseEntity* PMob, CBaseEntity* PTarget);				// triggers on mob engaging a target
 	int32 OnMobDisengage(CBaseEntity* PMob);									// triggers on mob disengaging (no more targets)
+	int32 OnMobDrawIn(CBaseEntity* PMob, CBaseEntity* PTarget);
 	int32 OnMobFight(CBaseEntity* PMob, CBaseEntity* PTarget);					// Сalled every 3 sec when a player fight monster
 	int32 OnCriticalHit(CBattleEntity* PTarget);
 	int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller);					// triggers on mob death
@@ -138,7 +139,7 @@ namespace luautils
 	int32 OnBcnmLeave(CCharEntity* PChar, CInstance* PInstance, uint8 LeaveCode);	//triggers when leaving a bcnm
 																					//Code 1=via Circle 2=warp/dc 3=win 4=lose
 	int32 OnBcnmRegister(CCharEntity* PChar, CInstance* PInstance);					//triggers when successfully registered a bcnm
-	
+
 	int32 OnMobWeaponSkill(CBaseEntity* PChar, CBaseEntity* PMob, CMobSkill* PMobSkill);							// triggers when mob weapon skill is used
 	int32 OnMobSkillCheck(CBaseEntity* PChar, CBaseEntity* PMob, CMobSkill* PMobSkill);								// triggers before mob weapon skill is used, returns 0 if the move is valid
 	int32 OnMagicCastingCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CSpell* PSpell);							// triggers when a player attempts to cast a spell
