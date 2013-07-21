@@ -1872,10 +1872,15 @@ uint8 GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
     if(PWeapon != NULL && PWeapon->getID() != 0 && PWeapon->getID() != 65535 &&
        PWeapon->getSkillType() != SKILL_H2H && battleutils::IsEngauged(PDefender))
     {
-        if( PDefender->GetMJob() == JOB_NIN || PDefender->GetMJob() == JOB_SAM ||
-            PDefender->GetMJob() == JOB_THF || PDefender->GetMJob() == JOB_BST || PDefender->GetMJob() == JOB_DRG ||
-            PDefender->GetMJob() == JOB_PLD || PDefender->GetMJob() == JOB_WAR || PDefender->GetMJob() == JOB_BRD ||
-            PDefender->GetMJob() == JOB_DRK || PDefender->GetMJob() == JOB_RDM || PDefender->GetMJob() == JOB_COR)
+    	JOBTYPE job = PDefender->GetMJob();
+
+        if( job == JOB_NIN || job == JOB_SAM ||
+            job == JOB_THF || job == JOB_BST || job == JOB_DRG ||
+            job == JOB_PLD || job == JOB_WAR || job == JOB_BRD ||
+            job == JOB_DRK || job == JOB_RDM || job == JOB_COR ||
+            job == JOB_DNC || job == JOB_PUP || job == JOB_RUN ||
+            job == JOB_BLU || job == JOB_MNK || job == JOB_GEO ||
+            job == JOB_SCH)
         {
         	// http://wiki.ffxiclopedia.org/wiki/Talk:Parrying_Skill
         	// {(Parry Skill x .125) + ([Player Agi - Enemy Dex] x .125)} x Diff
@@ -4135,7 +4140,7 @@ void DrawIn(CBattleEntity* PEntity, position_t* pos, float offset)
 {
 	// don't draw in dead players for now!
 	// see tractor
-	if(PEntity->isDead()) return;
+	if(PEntity->isDead() || PEntity->animation == ANIMATION_CHOCOBO) return;
 
 	position_t nearEntity = nearPosition(*pos, offset, M_PI);
 
