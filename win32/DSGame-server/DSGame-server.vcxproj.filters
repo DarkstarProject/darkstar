@@ -113,9 +113,6 @@
     <ClInclude Include="..\..\src\map\packet_system.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\petutils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\map\region.h">
       <Filter>Header Files</Filter>
     </ClInclude>
