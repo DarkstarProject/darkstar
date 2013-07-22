@@ -29,6 +29,7 @@
 
 #include "../entities/charentity.h"
 #include "../entities/mobentity.h"
+
 #include "../spell.h"
 #include "../blue_spell.h"
 
@@ -46,6 +47,7 @@ namespace blueutils
     void    SaveSetSpells(CCharEntity* PChar);
     void    LoadSetSpells(CCharEntity* PChar);
     void    ValidateBlueSpells(CCharEntity* PChar);
+    void    CalculateTraits(CCharEntity* PChar);
 };
 
 #endif

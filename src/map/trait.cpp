@@ -26,6 +26,7 @@
 #include "entities/battleentity.h"
 #include "map.h"
 #include "trait.h"
+#include "blue_trait.h"
 
 /************************************************************************
 *                                                                       *
@@ -116,6 +117,21 @@ void CTrait::setValue(int16 value)
 
 /************************************************************************
 *                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+uint8 CTrait::getRank()
+{
+    return m_rank;
+}
+
+void CTrait::setRank(uint8 rank)
+{
+    m_rank = rank;
+}
+/************************************************************************
+*                                                                       *
 *  Реализация namespase для работы с traits                             *
 *                                                                       *
 ************************************************************************/
@@ -132,10 +148,10 @@ namespace traits
 
     void LoadTraitsList()
     {
-	    const int8* Query = "SELECT traitid, job, level, modifier, value \
+	    const int8* Query = "SELECT traitid, job, level, rank, modifier, value \
 							 FROM traits \
                              WHERE traitid < %u \
-							 ORDER BY job, traitid, level ASC";
+							 ORDER BY job, traitid ASC, rank DESC";
 
 	    int32 ret = Sql_Query(SqlHandle, Query, MAX_TRAIT_ID);
 
@@ -147,10 +163,34 @@ namespace traits
 
 			    PTrait->setJob(Sql_GetIntData(SqlHandle,1));
 			    PTrait->setLevel(Sql_GetIntData(SqlHandle,2));
+                PTrait->setRank(Sql_GetIntData(SqlHandle,3));
+                PTrait->setMod(Sql_GetIntData(SqlHandle,4));
+                PTrait->setValue(Sql_GetIntData(SqlHandle,5));
+
+			    PTraitsList[PTrait->getJob()].push_back(PTrait);
+		    }
+	    }
+
+	    Query = "SELECT trait_category, trait_points_needed, traitid, modifier, value \
+							 FROM blue_traits \
+                             WHERE traitid < %u \
+							 ORDER BY trait_category ASC, trait_points_needed DESC";
+
+	    ret = Sql_Query(SqlHandle, Query, MAX_TRAIT_ID);
+
+	    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	    {
+		    while (Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		    {
+			    CBlueTrait* PTrait = new CBlueTrait(Sql_GetIntData(SqlHandle,0), Sql_GetIntData(SqlHandle,2));
+
+			    PTrait->setJob(JOB_BLU);
+                PTrait->setRank(1);
+                PTrait->setPoints(Sql_GetIntData(SqlHandle,1));
                 PTrait->setMod(Sql_GetIntData(SqlHandle,3));
                 PTrait->setValue(Sql_GetIntData(SqlHandle,4));
 
-			    PTraitsList[PTrait->getJob()].push_back(PTrait);
+			    PTraitsList[JOB_BLU].push_back(PTrait);
 		    }
 	    }
     }

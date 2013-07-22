@@ -4308,6 +4308,7 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, int8* dat
 						}
 					}
 				}
+                charutils::BuildingCharTraitsTable(PChar);
 			    PChar->status = STATUS_UPDATE;
 			    PChar->pushPacket(new CBlueSetSpellsPacket(PChar));
 			    PChar->pushPacket(new CCharStatsPacket(PChar));
@@ -4330,6 +4331,7 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, int8* dat
 				
 					if (spell != NULL) {
 						blueutils::SetBlueSpell(PChar, spell, spellIndex, (spellToAdd > 0));
+                        charutils::BuildingCharTraitsTable(PChar);
 			            PChar->status = STATUS_UPDATE;
 			            PChar->pushPacket(new CBlueSetSpellsPacket(PChar));
 			            PChar->pushPacket(new CCharStatsPacket(PChar));

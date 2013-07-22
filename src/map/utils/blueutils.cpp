@@ -40,6 +40,7 @@
 #include "../modifier.h"
 #include "../spell.h"
 #include "../blue_spell.h"
+#include "../blue_trait.h"
 
 namespace blueutils
 {
@@ -179,6 +180,7 @@ void UnequipAllBlueSpells(CCharEntity* PChar)
         }
     }
     PChar->status = STATUS_UPDATE;
+    charutils::BuildingCharTraitsTable(PChar);
 	PChar->pushPacket(new CBlueSetSpellsPacket(PChar));
 	PChar->pushPacket(new CCharStatsPacket(PChar));
 	charutils::CalculateStats(PChar);
@@ -378,11 +380,104 @@ void ValidateBlueSpells(CCharEntity* PChar)
 
     SaveSetSpells(PChar);
     PChar->status = STATUS_UPDATE;
+    charutils::BuildingCharTraitsTable(PChar);
 	PChar->pushPacket(new CBlueSetSpellsPacket(PChar));
 	PChar->pushPacket(new CCharStatsPacket(PChar));
 	charutils::CalculateStats(PChar);
 	PChar->UpdateHealth();
 	PChar->pushPacket(new CCharHealthPacket(PChar));
+}
+
+void CalculateTraits(CCharEntity* PChar)
+{
+    TraitList_t* PTraitsList = traits::GetTraits(JOB_BLU);
+    std::map<uint8, uint8> points;
+
+    for (int slot = 0; slot < 20; slot++)
+    {
+        if (PChar->m_SetBlueSpells[slot] != 0)
+        {
+            CBlueSpell* PSpell = (CBlueSpell*)spell::GetSpell(PChar->m_SetBlueSpells[slot] + 0x200);
+
+            if (PSpell)
+            {
+                uint8 category = PSpell->getTraitCategory();
+                uint8 weight = PSpell->getTraitWeight();
+                std::map<uint8, uint8>::iterator iter = points.find(category);
+
+                if (iter != points.end())
+                {
+                    iter->second += iter->second + weight;
+                }
+                else
+                {
+                    points.insert(std::make_pair(category, weight));
+                }
+            }
+        }
+    }
+
+    for (std::map<uint8, uint8>::iterator iter = points.begin(); iter != points.end(); iter++)
+    {
+        uint8 category = iter->first;
+        uint8 totalWeight = iter->second;
+
+	    for (uint8 i = 0; i <  PTraitsList->size(); ++i)
+	    {
+            if (PTraitsList->at(i)->getLevel() == 0)
+            {
+		        CBlueTrait* PTrait = (CBlueTrait*)PTraitsList->at(i);
+
+                if (PTrait && PTrait->getCategory() == category)
+                {
+
+                    bool add = true;
+
+                    for (uint8 j = 0; j < PChar->TraitList.size(); ++j)
+	                {
+		                CTrait* PExistingTrait = PChar->TraitList.at(j);
+
+                        if (PExistingTrait->getID() == PTrait->getID())
+                        {
+                            if (PExistingTrait->getLevel() == 0 && ((CBlueTrait*)PExistingTrait)->getCategory() == PTrait->getCategory())
+                            {
+                                add = false;
+                                break;
+                            }
+                            if (PExistingTrait->getRank() < PTrait->getRank())
+                            {
+                                PChar->delModifier(PExistingTrait->getMod(), PExistingTrait->getValue());
+                                charutils::delTrait(PChar, PExistingTrait->getID());
+                            }
+                            else if (PExistingTrait->getRank() > PTrait->getRank())
+                            {
+                                add = false;
+                                break;
+                            }
+                            else
+                            {
+                                if (PExistingTrait->getMod() == PTrait->getMod())
+                                {
+                                    add = false;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    if (totalWeight >= PTrait->getPoints() && add)
+                    {
+			            charutils::addTrait(PChar, PTrait->getID());
+
+                        PChar->TraitList.push_back(PTrait);
+                        PChar->addModifier(PTrait->getMod(), PTrait->getValue());
+
+                        break;
+                    }
+                }
+	        }
+        }
+    }
 }
 
 }

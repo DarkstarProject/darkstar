@@ -2093,7 +2093,37 @@ void BuildingCharTraitsTable(CCharEntity* PChar)
     for (uint8 i = 0; i <  PTraitsList->size(); ++i)
 	{
 		CTrait* PTrait = PTraitsList->at(i);
-		if (PChar->GetMLevel() >= PTrait->getLevel() && PTrait->getLevel() > 0)
+
+        bool add = true;
+
+        for (uint8 j = 0; j < PChar->TraitList.size(); ++j)
+	    {
+		    CTrait* PExistingTrait = PChar->TraitList.at(j);
+
+            if (PExistingTrait->getID() == PTrait->getID())
+            {
+                if (PExistingTrait->getRank() < PTrait->getRank())
+                {
+                    PChar->delModifier(PExistingTrait->getMod(), PExistingTrait->getValue());
+                    delTrait(PChar, PExistingTrait->getID());
+                }
+                else if (PExistingTrait->getRank() > PTrait->getRank())
+                {
+                    add = false;
+                    break;
+                }
+                else
+                {
+                    if (PExistingTrait->getMod() == PTrait->getMod())
+                    {
+                        add = false;
+                        break;
+                    }
+                }
+            }
+
+        }
+		if (PChar->GetMLevel() >= PTrait->getLevel() && PTrait->getLevel() > 0 && add)
 		{
             addTrait(PChar, PTrait->getID());
 
@@ -2106,14 +2136,50 @@ void BuildingCharTraitsTable(CCharEntity* PChar)
 	for (uint8 i = 0; i <  PTraitsList->size(); ++i)
 	{
 		CTrait* PTrait = PTraitsList->at(i);
-		if (PChar->GetSLevel() >= PTrait->getLevel() && PTrait->getLevel() > 0)
+
+        bool add = true;
+
+        for (uint8 j = 0; j < PChar->TraitList.size(); ++j)
+	    {
+		    CTrait* PExistingTrait = PChar->TraitList.at(j);
+
+            if (PExistingTrait->getID() == PTrait->getID())
+            {
+                if (PExistingTrait->getRank() < PTrait->getRank())
+                {
+                    PChar->delModifier(PExistingTrait->getMod(), PExistingTrait->getValue());
+                    delTrait(PChar, PExistingTrait->getID());
+                }
+                else if (PExistingTrait->getRank() > PTrait->getRank())
+                {
+                    add = false;
+                    break;
+                }
+                else
+                {
+                    if (PExistingTrait->getMod() == PTrait->getMod())
+                    {
+                        add = false;
+                        break;
+                    }
+                }
+            }
+        }
+
+		if (PChar->GetSLevel() >= PTrait->getLevel() && PTrait->getLevel() > 0 && add)
 		{
 			addTrait(PChar, PTrait->getID());
 
             PChar->TraitList.push_back(PTrait);
             PChar->addModifier(PTrait->getMod(), PTrait->getValue());
 		}
-	}
+    }
+
+    if (PChar->GetMJob() == JOB_BLU || PChar->GetSJob() == JOB_BLU)
+    {
+        blueutils::CalculateTraits(PChar);
+    }
+
     PChar->delModifier(MOD_MEVA, PChar->m_magicEvasion);
 
     PChar->m_magicEvasion = battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PChar->GetMLevel());
