@@ -213,6 +213,7 @@
     <ClInclude Include="..\..\src\map\ai\helpers\pathfind.h" />
     <ClInclude Include="..\..\src\map\ai\helpers\targetfind.h" />
     <ClInclude Include="..\..\src\map\ai\states\magic_state.h" />
+    <ClInclude Include="..\..\src\map\ai\states\state.h" />
     <ClInclude Include="..\..\src\map\alliance.h" />
     <ClInclude Include="..\..\src\map\blue_spell.h" />
     <ClInclude Include="..\..\src\map\commandhandler.h" />
@@ -418,6 +419,7 @@
     <ClCompile Include="..\..\src\map\ai\helpers\pathfind.cpp" />
     <ClCompile Include="..\..\src\map\ai\helpers\targetfind.cpp" />
     <ClCompile Include="..\..\src\map\ai\states\magic_state.cpp" />
+    <ClCompile Include="..\..\src\map\ai\states\state.cpp" />
     <ClCompile Include="..\..\src\map\alliance.cpp" />
     <ClCompile Include="..\..\src\map\blue_spell.cpp" />
     <ClCompile Include="..\..\src\map\commandhandler.cpp" />

@@ -731,6 +731,9 @@
     <ClInclude Include="..\..\src\map\ai\states\magic_state.h">
       <Filter>Header Files\ai\states</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\ai\states\state.h">
+      <Filter>Header Files\ai\states</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
@@ -1325,6 +1328,9 @@
       <Filter>Source Files\utils</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\ai\states\magic_state.cpp">
+      <Filter>Source Files\ai\states</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\states\state.cpp">
       <Filter>Source Files\ai\states</Filter>
     </ClCompile>
   </ItemGroup>
