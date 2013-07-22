@@ -16,3 +16,8 @@ NOW_THAT_NIGHT_HAS_FALLEN = 7275; -- Now that night has fallen. The flowers bloo
 
 -- Other Dialog
 AN_EMPTY_LIGHT_SWIRLS =  7682; -- An empty light swirls about the cave, eating away at the surroundings...
+	  YOU_CANNOT_ENTER_DYNAMIS = 7792; -- You cannot enter Dynamis - San d'Oria for x day (Vana'diel time) 
+	  
+PLAYERS_HAVE_NOT_REACHED_LEVEL = 7794; -- Players who have not reached level <number> are prohibited from entering Dynamis.
+
+MYSTERIOUS_VOICE = 7789;
