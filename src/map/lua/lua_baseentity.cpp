@@ -7268,6 +7268,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delKeyItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSkillLevel),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaxSkillLevel),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSkillRank),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setSkillRank),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addSpell),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasSpell),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,canLearnSpell),
