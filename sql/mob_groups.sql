@@ -1432,57 +1432,57 @@ INSERT INTO `mob_groups` VALUES (1389,4199,41,0,128,3983,0,0,75,80) ; -- Vanguar
 INSERT INTO `mob_groups` VALUES (1390,4289,41,0,128,4074,4000,0,75,75) ; -- Warchief_Tombstone
 INSERT INTO `mob_groups` VALUES (1391,4309,41,0,128,0,6000,600,78,78) ; -- Water_Elemental
 --  -----------------------------------------------------------------  dyna tavanazia  - ---------------------
-INSERT INTO `mob_groups` VALUES (1392,1028,42,0,128,0,0,0,0,0) ; -- Diabolos_Club
-INSERT INTO `mob_groups` VALUES (1393,1029,42,0,128,0,0,0,0,0) ; -- Diabolos_Diamond
-INSERT INTO `mob_groups` VALUES (1394,1030,42,0,128,0,0,0,0,0) ; -- Diabolos_Heart
-INSERT INTO `mob_groups` VALUES (1395,1031,42,0,128,0,0,0,0,0) ; -- Diabolos_Spade
-INSERT INTO `mob_groups` VALUES (1396,1032,42,0,128,0,0,0,0,0) ; -- Diabolos_s_Shard
-INSERT INTO `mob_groups` VALUES (1397,2019,42,0,128,1722,0,0,0,0) ; -- Hydra_Bard
-INSERT INTO `mob_groups` VALUES (1398,2020,42,0,128,1724,0,0,0,0) ; -- Hydra_Beastmaster
-INSERT INTO `mob_groups` VALUES (1399,2021,42,0,128,1726,0,0,0,0) ; -- Hydra_Black_Mage
-INSERT INTO `mob_groups` VALUES (1400,2022,42,0,128,1728,0,0,0,0) ; -- Hydra_Dark_Knight
-INSERT INTO `mob_groups` VALUES (1401,2023,42,0,128,1730,0,0,0,0) ; -- Hydra_Dragoon
-INSERT INTO `mob_groups` VALUES (1402,2024,42,0,128,1732,0,0,0,0) ; -- Hydra_Monk
-INSERT INTO `mob_groups` VALUES (1403,2025,42,0,128,1734,0,0,0,0) ; -- Hydra_Ninja
-INSERT INTO `mob_groups` VALUES (1404,2026,42,0,128,1736,0,0,0,0) ; -- Hydra_Paladin
-INSERT INTO `mob_groups` VALUES (1405,2027,42,0,128,1738,0,0,0,0) ; -- Hydra_Ranger
-INSERT INTO `mob_groups` VALUES (1406,2028,42,0,128,1740,0,0,0,0) ; -- Hydra_Red_Mage
-INSERT INTO `mob_groups` VALUES (1407,2029,42,0,128,1742,0,0,0,0) ; -- Hydra_Samurai
-INSERT INTO `mob_groups` VALUES (1408,2030,42,0,128,1744,0,0,0,0) ; -- Hydra_Summoner
-INSERT INTO `mob_groups` VALUES (1409,2031,42,0,128,0,0,0,0,0) ; -- Hydra_s_Avatar
-INSERT INTO `mob_groups` VALUES (1410,2032,42,0,128,0,0,0,0,0) ; -- Hydra_s_Hound
-INSERT INTO `mob_groups` VALUES (1411,2033,42,0,128,0,0,0,0,0) ; -- Hydra_s_Wyvern
-INSERT INTO `mob_groups` VALUES (1412,2034,42,0,128,1746,0,0,0,0) ; -- Hydra_Thief
-INSERT INTO `mob_groups` VALUES (1413,2035,42,0,128,1748,0,0,0,0) ; -- Hydra_Warrior
-INSERT INTO `mob_groups` VALUES (1414,2036,42,0,128,1750,0,0,0,0) ; -- Hydra_White_Mage
-INSERT INTO `mob_groups` VALUES (1415,2232,42,0,128,1898,0,0,0,0) ; -- Kindred_Bard
-INSERT INTO `mob_groups` VALUES (1416,2233,42,0,128,1900,0,0,0,0) ; -- Kindred_Beastmaster
-INSERT INTO `mob_groups` VALUES (1417,2234,42,0,128,1903,0,0,0,0) ; -- Kindred_Black_Mage
-INSERT INTO `mob_groups` VALUES (1418,2235,42,0,128,1906,0,0,0,0) ; -- Kindred_Dark_Knight
-INSERT INTO `mob_groups` VALUES (1419,2236,42,0,128,1908,0,0,0,0) ; -- Kindred_Dragoon
-INSERT INTO `mob_groups` VALUES (1420,2237,42,0,128,1910,0,0,0,0) ; -- Kindred_Monk
-INSERT INTO `mob_groups` VALUES (1421,2238,42,0,128,1912,0,0,0,0) ; -- Kindred_Ninja
-INSERT INTO `mob_groups` VALUES (1422,2239,42,0,128,1914,0,0,0,0) ; -- Kindred_Paladin
-INSERT INTO `mob_groups` VALUES (1423,2240,42,0,128,1916,0,0,0,0) ; -- Kindred_Ranger
-INSERT INTO `mob_groups` VALUES (1424,2241,42,0,128,1918,0,0,0,0) ; -- Kindred_Red_Mage
-INSERT INTO `mob_groups` VALUES (1425,2242,42,0,128,1920,0,0,0,0) ; -- Kindred_Samurai
-INSERT INTO `mob_groups` VALUES (1426,2243,42,0,128,1923,0,0,0,0) ; -- Kindred_Summoner
-INSERT INTO `mob_groups` VALUES (1427,2244,42,0,128,0,0,0,0,0) ; -- Kindred_s_Avatar
-INSERT INTO `mob_groups` VALUES (1428,2246,42,0,128,0,0,0,0,0) ; -- Kindred_s_Vouivre
-INSERT INTO `mob_groups` VALUES (1429,2247,42,0,128,0,0,0,0,0) ; -- Kindred_s_Wyvern
-INSERT INTO `mob_groups` VALUES (1430,2248,42,0,128,1925,0,0,0,0) ; -- Kindred_Thief
-INSERT INTO `mob_groups` VALUES (1431,2249,42,0,128,1928,0,0,0,0) ; -- Kindred_Warrior
-INSERT INTO `mob_groups` VALUES (1432,2250,42,0,128,1930,0,0,0,0) ; -- Kindred_White_Mage
-INSERT INTO `mob_groups` VALUES (1433,2841,42,0,128,0,0,0,0,0) ; -- Nightmare_Antlion
-INSERT INTO `mob_groups` VALUES (1434,2843,42,0,128,0,0,0,0,0) ; -- Nightmare_Bugard
-INSERT INTO `mob_groups` VALUES (1435,2845,42,0,128,2431,0,0,0,0) ; -- Nightmare_Cluster
-INSERT INTO `mob_groups` VALUES (1436,2855,42,0,128,2441,0,0,0,0) ; -- Nightmare_Hornet
-INSERT INTO `mob_groups` VALUES (1437,2857,42,0,128,2443,0,0,0,0) ; -- Nightmare_Leech
-INSERT INTO `mob_groups` VALUES (1438,2858,42,0,128,2444,0,0,0,0) ; -- Nightmare_Makara
-INSERT INTO `mob_groups` VALUES (1439,2870,42,0,128,0,0,0,0,0) ; -- Nightmare_Taurus
-INSERT INTO `mob_groups` VALUES (1440,2875,42,0,128,2460,0,0,0,0) ; -- Nightmare_Worm
-INSERT INTO `mob_groups` VALUES (1441,4091,42,0,128,0,0,0,0,0) ; -- Umbral_Diabolos
-INSERT INTO `mob_groups` VALUES (1442,4149,42,0,128,3763,0,0,0,0) ; -- Vanguard_Eye
+INSERT INTO `mob_groups` VALUES (1392,1028,42,0,128,0,0,0,80,80) ; -- Diabolos_Club
+INSERT INTO `mob_groups` VALUES (1393,1029,42,0,128,0,0,0,80,80) ; -- Diabolos_Diamond
+INSERT INTO `mob_groups` VALUES (1394,1030,42,0,128,0,0,0,80,80) ; -- Diabolos_Heart
+INSERT INTO `mob_groups` VALUES (1395,1031,42,0,128,0,0,0,80,80) ; -- Diabolos_Spade
+INSERT INTO `mob_groups` VALUES (1396,1032,42,0,128,0,4000,0,60,65) ; -- Diabolos_s_Shard
+INSERT INTO `mob_groups` VALUES (1397,2019,42,0,128,1722,7000,0,78,79) ; -- Hydra_Bard
+INSERT INTO `mob_groups` VALUES (1398,2020,42,0,128,1724,7000,0,78,79) ; -- Hydra_Beastmaster
+INSERT INTO `mob_groups` VALUES (1399,2021,42,0,128,1726,7000,0,78,79) ; -- Hydra_Black_Mage
+INSERT INTO `mob_groups` VALUES (1400,2022,42,0,128,1728,7000,0,78,79) ; -- Hydra_Dark_Knight
+INSERT INTO `mob_groups` VALUES (1401,2023,42,0,128,1730,7000,0,78,79) ; -- Hydra_Dragoon
+INSERT INTO `mob_groups` VALUES (1402,2024,42,0,128,1732,7000,0,78,79) ; -- Hydra_Monk
+INSERT INTO `mob_groups` VALUES (1403,2025,42,0,128,1734,7000,0,78,79) ; -- Hydra_Ninja
+INSERT INTO `mob_groups` VALUES (1404,2026,42,0,128,1736,7000,0,78,79) ; -- Hydra_Paladin
+INSERT INTO `mob_groups` VALUES (1405,2027,42,0,128,1738,7000,0,78,79) ; -- Hydra_Ranger
+INSERT INTO `mob_groups` VALUES (1406,2028,42,0,128,1740,7000,0,78,79) ; -- Hydra_Red_Mage
+INSERT INTO `mob_groups` VALUES (1407,2029,42,0,128,1742,7000,0,78,79) ; -- Hydra_Samurai
+INSERT INTO `mob_groups` VALUES (1408,2030,42,0,128,1744,7000,0,75,75) ; -- Hydra_Summoner
+INSERT INTO `mob_groups` VALUES (1409,2031,42,0,128,0,3000,0,75,75) ; -- Hydra_s_Avatar
+INSERT INTO `mob_groups` VALUES (1410,2032,42,0,128,0,3000,0,75,75) ; -- Hydra_s_Hound
+INSERT INTO `mob_groups` VALUES (1411,2033,42,0,128,0,3000,0,75,75) ; -- Hydra_s_Wyvern
+INSERT INTO `mob_groups` VALUES (1412,2034,42,0,128,1746,7000,0,78,79) ; -- Hydra_Thief
+INSERT INTO `mob_groups` VALUES (1413,2035,42,0,128,1748,7000,0,78,79) ; -- Hydra_Warrior
+INSERT INTO `mob_groups` VALUES (1414,2036,42,0,128,1750,7000,0,78,79) ; -- Hydra_White_Mage
+INSERT INTO `mob_groups` VALUES (1415,2232,42,0,128,1898,7000,0,78,79) ; -- Kindred_Bard
+INSERT INTO `mob_groups` VALUES (1416,2233,42,0,128,1900,7000,0,78,79) ; -- Kindred_Beastmaster
+INSERT INTO `mob_groups` VALUES (1417,2234,42,0,128,1903,7000,0,78,79) ; -- Kindred_Black_Mage
+INSERT INTO `mob_groups` VALUES (1418,2235,42,0,128,1906,7000,0,78,79) ; -- Kindred_Dark_Knight
+INSERT INTO `mob_groups` VALUES (1419,2236,42,0,128,1908,7000,0,78,79) ; -- Kindred_Dragoon
+INSERT INTO `mob_groups` VALUES (1420,2237,42,0,128,1910,7000,0,78,79) ; -- Kindred_Monk
+INSERT INTO `mob_groups` VALUES (1421,2238,42,0,128,1912,7000,0,78,79) ; -- Kindred_Ninja
+INSERT INTO `mob_groups` VALUES (1422,2239,42,0,128,1914,7000,0,78,79) ; -- Kindred_Paladin
+INSERT INTO `mob_groups` VALUES (1423,2240,42,0,128,1916,7000,0,78,79) ; -- Kindred_Ranger
+INSERT INTO `mob_groups` VALUES (1424,2241,42,0,128,1918,7000,0,78,79) ; -- Kindred_Red_Mage
+INSERT INTO `mob_groups` VALUES (1425,2242,42,0,128,1920,7000,0,78,79) ; -- Kindred_Samurai
+INSERT INTO `mob_groups` VALUES (1426,2243,42,0,128,1923,7000,0,78,79) ; -- Kindred_Summoner
+INSERT INTO `mob_groups` VALUES (1427,2244,42,0,128,0,3000,0,75,75) ; -- Kindred_s_Avatar
+INSERT INTO `mob_groups` VALUES (1428,2246,42,0,128,0,3000,0,75,75) ; -- Kindred_s_Vouivre
+INSERT INTO `mob_groups` VALUES (1429,2247,42,0,128,0,3000,0,75,75) ; -- Kindred_s_Wyvern
+INSERT INTO `mob_groups` VALUES (1430,2248,42,0,128,1925,7000,0,78,79) ; -- Kindred_Thief
+INSERT INTO `mob_groups` VALUES (1431,2249,42,0,128,1928,7000,0,78,79) ; -- Kindred_Warrior
+INSERT INTO `mob_groups` VALUES (1432,2250,42,0,128,1930,7000,0,78,79) ; -- Kindred_White_Mage
+INSERT INTO `mob_groups` VALUES (1433,2841,42,0,128,0,8000,0,78,79) ; -- Nightmare_Antlion
+INSERT INTO `mob_groups` VALUES (1434,2843,42,0,128,0,8000,0,78,79) ; -- Nightmare_Bugard
+INSERT INTO `mob_groups` VALUES (1435,2845,42,0,128,2431,7000,0,78,79) ; -- Nightmare_Cluster
+INSERT INTO `mob_groups` VALUES (1436,2855,42,0,128,2441,7000,0,78,79) ; -- Nightmare_Hornet
+INSERT INTO `mob_groups` VALUES (1437,2857,42,0,128,2443,7000,0,78,79) ; -- Nightmare_Leech
+INSERT INTO `mob_groups` VALUES (1438,2858,42,0,128,2444,7000,0,78,79) ; -- Nightmare_Makara
+INSERT INTO `mob_groups` VALUES (1439,2870,42,0,128,4407,7000,0,78,79) ; -- Nightmare_Taurus
+INSERT INTO `mob_groups` VALUES (1440,2875,42,0,128,2460,7000,0,78,79) ; -- Nightmare_Worm
+INSERT INTO `mob_groups` VALUES (1441,4091,42,0,128,0,0,0,80,80) ; -- Umbral_Diabolos
+INSERT INTO `mob_groups` VALUES (1442,4149,42,0,128,3763,6000,0,80,80) ; -- Vanguard_Eye
 --  -----------------------------------------------------------------  fin
 INSERT INTO `mob_groups` VALUES (1443,1361,44,0,0,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (1444,3190,44,0,128,0,0,0,0,0);
@@ -11011,12 +11011,8 @@ INSERT INTO `mob_groups` VALUES (11173,1716,41,0,128,0,3000,0,75,75); -- Goblin_
 INSERT INTO `mob_groups` VALUES (11176,5111,41,0,128,21,3000,1000,80,80);-- Adamantking_Image
 INSERT INTO `mob_groups` VALUES (11179,4649,41,0,128,3791,0,0,75,75); -- Vanguard_Dragontamer
 -- dyna tav
-INSERT INTO `mob_groups` VALUES (11164,43,42,0,128,0,3000,0,75,75); -- 'Adamantking_Effigy'
-INSERT INTO `mob_groups` VALUES (11165,5122,42,0,128,0,3000,0,75,75); -- 'Manifest_Icon'
-INSERT INTO `mob_groups` VALUES (11166,5121,42,0,128,0,5000,0,80,80); -- 'Prototype_Eye'
-INSERT INTO `mob_groups` VALUES (11167,1707,42,0,128,1431,3000,1000,80,80); -- Goblin_Replica
-INSERT INTO `mob_groups` VALUES (11170,3548,42,0,128,0,3000,0,75,75); -- Serjeant_Tombstone
 
+INSERT INTO `mob_groups` VALUES (11166,5121,42,0,128,0,5000,0,80,80); -- 'Prototype_Eye'
 INSERT INTO `mob_groups` VALUES (11171,2047,42,0,128,0,3000,0,75,75); -- 'Icon_Prototype'
 INSERT INTO `mob_groups` VALUES (11174,3759,42,0,128,0,3000,0,75,75); -- 'Statue_Prototype'
 INSERT INTO `mob_groups` VALUES (11177,1178,42,0,128,21,3000,1000,80,80); -- 'Effigy_Prototype'

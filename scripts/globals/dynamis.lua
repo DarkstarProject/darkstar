@@ -494,41 +494,96 @@ QufimQuadavList = {
 -- Dynamis-Tavnazia
 ----------------------------------- 
 			  
-TavnaziaQuadavList = {		  
-                        16949269,{},
-                        16949270,{},
-                        16949271,{},
-                        16949369,{},
-                        16949370,{},
-                        16949371,{}
+TavnaziaEyesList	={		  
+--  1: WAR   2: MNK   3: WHM   4: BLM   5: RDM   6: THF   7: PLD   8: DRK 
+--  9: BST  10: BRD  11: RNG  12: SAM  13: NIN  14: DRG  15: SMN 
+					  
+                      -- eyes third floor
+                        16949475, {11,12}, --  'Vanguard_Eye' 
+                        16949476, {1,6}, --  'Vanguard_Eye' 
+                        16949477, {7,8,15}, --  'Vanguard_Eye'
+                        16949478, {5,10,14}, --  'Vanguard_Eye' 
+                        16949479, {4,9,13}, --  'Vanguard_Eye' 
+                        16949480, {2,3}, --  'Vanguard_Eye'
+                        16949481, {8,11}, --  'Vanguard_Eye' 
+                        16949482, {2}, --  'Vanguard_Eye'
+                        16949483, {6,12,9}, --  'Vanguard_Eye'
+                        16949484, {15,7,10}, --  'Vanguard_Eye'
+                        16949485, {1,13,14}, --  'Vanguard_Eye'						
+                        16949486, {2,9,15}, --  'Vanguard_Eye'
+                      -- eyes second floor					  			  
+                        16949487, {1,5,11}, --  'Vanguard_Eye'  - war rdm rng
+                        16949488, {9,15}, --  'Vanguard_Eye's
+                        16949489, {7,3,12}, --  'Vanguard_Eye'
+                        16949490, {10,13}, --  'Vanguard_Eye'
+                        16949491, {14,15,9}, --  'Vanguard_Eye'
+                        16949492, {7,8,9}, --  'Vanguard_Eye'
+                        16949493, {1,12,6,2}, --  'Vanguard_Eye'
+                        16949494, {5,4,3} --  'Vanguard_Eye'
+};
+TavnaziaTautusList	= {
+                        16949475, {1}, 
+                        16949476, {1}, 
+                        16949477, {1},
+                        16949478, {1}, 
+                        16949479, {1},
+                        16949480, {1}, 
+                        16949481, {1}, 
+                        16949482, {3},
+                        16949483, {0},
+                        16949484, {0},
+                        16949485, {0},					
+                        16949486, {3}
+                      };
+
+
+
+
+
+TavnaziaCloneList = {
+                        16949332, {16949431,16949432}, --  'Nightmare_Cluster'
+                        16949333, {16949433,16949434}, --  'Nightmare_Cluster' 
+                        16949334, {16949435,16949436}, --  'Nightmare_Cluster'
+                        16949335, {16949437,16949438}, --  'Nightmare_Cluster' 
+                        16949336, {16949439,16949440}, --  'Nightmare_Cluster' 
+                        16949337, {16949441,16949442}, --  'Nightmare_Cluster' 
+                        16949338, {16949443,16949444}, --  'Nightmare_Cluster' 
+                        16949339, {16949445,16949446}, --  'Nightmare_Cluster'
+                        16949340, {16949447,16949448}, --  'Nightmare_Cluster' 
+						
+                        16949341, {16949449,16949450}, --  'Nightmare_Leech' 
+                        16949342, {16949451,16949452}, --  'Nightmare_Leech'
+                        16949343, {16949453,16949454}, --  'Nightmare_Leech' 
+                        16949344, {16949455,16949456}, --  'Nightmare_Leech' 
+                        16949345, {16949457,16949458}, --  'Nightmare_Leech' 
+                        16949346, {16949459,16949460}, --  'Nightmare_Leech' 
+                        16949347, {16949461,16949462}, --  'Nightmare_Leech' 
+                        16949348, {16949463,16949464}, --  'Nightmare_Leech' 
+						
+                        16949317, {16949465,16949466}, --  'Nightmare_Makara' 
+                        16949318, {16949467,16949468}, --  'Nightmare_Makara'
+                        16949319, {16949469,16949470}, --  'Nightmare_Makara' 
+                        16949320, {16949471,16949472}, --  'Nightmare_Makara' 
+                        16949321, {16949473,16949474}, --  'Nightmare_Makara'
+						
+                        16949273, {16949415,16949416}, --  'Nightmare_Hornet' 
+                        16949274, {16949417,16949418}, --  'Nightmare_Hornet'
+                        16949275, {16949419,16949420}, --  'Nightmare_Hornet' 
+                        16949276, {16949421,16949422}, --  'Nightmare_Hornet' 
+                        16949277, {16949423,16949424}, --  'Nightmare_Hornet'
+                        16949278, {16949425,16949426}, --  'Nightmare_Hornet'
+                        16949279, {16949427,16949428}, --  'Nightmare_Hornet'
+                        16949280, {16949429,16949430} --  'Nightmare_Hornet'
 };
 
-TavnaziaYagudoList = {
-                        16949303,{},
-                        16949304,{},
-                        16949305,{},
-                        16949362,{},
-                        16949363,{},
-                        16949364,{}
-};
-TavnaziaGoblinList = {	
-                        16949322,{},
-                        16949323,{},
-                        16949324,{},
-                        16949356,{},
-                        16949357,{},
-                        16949358,{}
+TavnaziaDiabolosList = {
+                         16949249, -- Diabolos_Spade
+                         16949250, -- Diabolos_Heart
+                         16949251, -- Diabolos_Diamond
+                         16949252 -- Diabolos_Club
 };
 
 
-TavnaziaOrcishList = {
-                        16949289,{},
-                        16949290,{},
-                        16949291,{},
-                        16949376,{},
-                        16949377,{},
-                        16949378,{}
-};  
 --------------------------------------------------		
 -- getListDynaMob
 -- List of mobid by zone and job
@@ -561,9 +616,13 @@ function getDynaMob(player,mobjob,list)
 		return GetMobIDByJob(17326208,17326274,mobjob); -- Orcish's Vanguard
 	-- Dynamis Xarcabard --------------------------------
 	elseif(pZone == 135) then 
-		return GetMobIDByJob(17330215,17330768,mobjob);		
+		return GetMobIDByJob(17330215,17330768,mobjob);	
+	-- Dynamis Tavnazia
+    elseif(pZone == 42 and list == 1) then 
+		return GetMobIDByJob(16949281,16949302,mobjob); -- hydra
+	elseif(pZone == 42 and list == 2) then 
+		return GetMobIDByJob(16949349,16949375,mobjob); -- kindred		
 	end
-	
 end;
 
 --------------------------------------------------		

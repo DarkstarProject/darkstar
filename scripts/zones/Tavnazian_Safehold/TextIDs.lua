@@ -21,3 +21,9 @@ CAIPHIMONRIDE_SHOP_DIALOG = 0; -- [UNKNOWN]
        MIGRAN_SHOP_DIALOG = 0; -- [UNKNOWN]
    NILEROUCHE_SHOP_DIALOG = 0; -- [UNKNOWN]
    MISSEULIEU_SHOP_DIALOG = 0; -- [UNKNOWN]
+   
+YOU_CANNOT_ENTER_DYNAMIS = 11748; -- You cannot enter Dynamis - San d'Oria for x day (Vana'diel time) 
+	  
+PLAYERS_HAVE_NOT_REACHED_LEVEL = 11750; -- Players who have not reached level <number> are prohibited from entering Dynamis.
+
+MYSTERIOUS_VOICE = 11737;
