@@ -2094,42 +2094,46 @@ void BuildingCharTraitsTable(CCharEntity* PChar)
 	{
 		CTrait* PTrait = PTraitsList->at(i);
 
-        bool add = true;
+        if (PChar->GetMLevel() >= PTrait->getLevel() && PTrait->getLevel() > 0 )
+        {
 
-        for (uint8 j = 0; j < PChar->TraitList.size(); ++j)
-	    {
-		    CTrait* PExistingTrait = PChar->TraitList.at(j);
+            bool add = true;
 
-            if (PExistingTrait->getID() == PTrait->getID())
-            {
-                if (PExistingTrait->getRank() < PTrait->getRank())
+            for (uint8 j = 0; j < PChar->TraitList.size(); ++j)
+	        {
+		        CTrait* PExistingTrait = PChar->TraitList.at(j);
+
+                if (PExistingTrait->getID() == PTrait->getID())
                 {
-                    PChar->delModifier(PExistingTrait->getMod(), PExistingTrait->getValue());
-                    delTrait(PChar, PExistingTrait->getID());
-                }
-                else if (PExistingTrait->getRank() > PTrait->getRank())
-                {
-                    add = false;
-                    break;
-                }
-                else
-                {
-                    if (PExistingTrait->getMod() == PTrait->getMod())
+                    if (PExistingTrait->getRank() < PTrait->getRank())
+                    {
+                        PChar->delModifier(PExistingTrait->getMod(), PExistingTrait->getValue());
+                        delTrait(PChar, PExistingTrait->getID());
+                    }
+                    else if (PExistingTrait->getRank() > PTrait->getRank())
                     {
                         add = false;
                         break;
                     }
+                    else
+                    {
+                        if (PExistingTrait->getMod() == PTrait->getMod())
+                        {
+                            add = false;
+                            break;
+                        }
+                    }
                 }
+
             }
+            if ( add)
+		    {
+                addTrait(PChar, PTrait->getID());
 
+                PChar->TraitList.push_back(PTrait);
+                PChar->addModifier(PTrait->getMod(), PTrait->getValue());
+		    }
         }
-		if (PChar->GetMLevel() >= PTrait->getLevel() && PTrait->getLevel() > 0 && add)
-		{
-            addTrait(PChar, PTrait->getID());
-
-            PChar->TraitList.push_back(PTrait);
-            PChar->addModifier(PTrait->getMod(), PTrait->getValue());
-		}
 	}
 
 	PTraitsList = traits::GetTraits(PChar->GetSJob());
@@ -2137,42 +2141,46 @@ void BuildingCharTraitsTable(CCharEntity* PChar)
 	{
 		CTrait* PTrait = PTraitsList->at(i);
 
-        bool add = true;
+        if (PChar->GetSLevel() >= PTrait->getLevel() && PTrait->getLevel() > 0)
+        {
 
-        for (uint8 j = 0; j < PChar->TraitList.size(); ++j)
-	    {
-		    CTrait* PExistingTrait = PChar->TraitList.at(j);
+            bool add = true;
 
-            if (PExistingTrait->getID() == PTrait->getID())
-            {
-                if (PExistingTrait->getRank() < PTrait->getRank())
+            for (uint8 j = 0; j < PChar->TraitList.size(); ++j)
+	        {
+		        CTrait* PExistingTrait = PChar->TraitList.at(j);
+
+                if (PExistingTrait->getID() == PTrait->getID())
                 {
-                    PChar->delModifier(PExistingTrait->getMod(), PExistingTrait->getValue());
-                    delTrait(PChar, PExistingTrait->getID());
-                }
-                else if (PExistingTrait->getRank() > PTrait->getRank())
-                {
-                    add = false;
-                    break;
-                }
-                else
-                {
-                    if (PExistingTrait->getMod() == PTrait->getMod())
+                    if (PExistingTrait->getRank() < PTrait->getRank())
+                    {
+                        PChar->delModifier(PExistingTrait->getMod(), PExistingTrait->getValue());
+                        delTrait(PChar, PExistingTrait->getID());
+                    }
+                    else if (PExistingTrait->getRank() > PTrait->getRank())
                     {
                         add = false;
                         break;
                     }
+                    else
+                    {
+                        if (PExistingTrait->getMod() == PTrait->getMod())
+                        {
+                            add = false;
+                            break;
+                        }
+                    }
                 }
             }
+
+		    if (add)
+		    {
+			    addTrait(PChar, PTrait->getID());
+
+                PChar->TraitList.push_back(PTrait);
+                PChar->addModifier(PTrait->getMod(), PTrait->getValue());
+		    }
         }
-
-		if (PChar->GetSLevel() >= PTrait->getLevel() && PTrait->getLevel() > 0 && add)
-		{
-			addTrait(PChar, PTrait->getID());
-
-            PChar->TraitList.push_back(PTrait);
-            PChar->addModifier(PTrait->getMod(), PTrait->getValue());
-		}
     }
 
     if (PChar->GetMJob() == JOB_BLU || PChar->GetSJob() == JOB_BLU)
