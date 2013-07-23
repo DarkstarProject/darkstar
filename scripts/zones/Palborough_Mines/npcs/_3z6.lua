@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	RunElevator(16);
+	RunElevator(22);
 end;
 
 -----------------------------------
@@ -30,7 +30,6 @@ end;
 function onEventUpdate(player,csid,option)
 --printf("CSID2: %u",csid);
 --printf("RESULT2: %u",option);
-
 end;
 
 -----------------------------------

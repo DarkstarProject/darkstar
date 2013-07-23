@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	RunElevator(16);
+	RunElevator(22);
 end;
 
 -----------------------------------
