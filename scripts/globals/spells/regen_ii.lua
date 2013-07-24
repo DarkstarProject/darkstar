@@ -27,13 +27,13 @@ function onSpellCast(caster,target,spell)
 	end
 
 	hp = hp + caster:getMod(MOD_REGEN_EFFECT);
-	
+
 	local duration = 60;
 
 	duration = duration + caster:getMod(MOD_REGEN_DURATION);
-	
-	if (target:getMainLvl() < 66) then
-		duration = duration * target:getMainLvl() / 66;
+
+	if (target:getMainLvl() < 44) then
+		duration = duration * target:getMainLvl() / 44;
 	end
 
 	if(target:addStatusEffect(EFFECT_REGEN,hp,3,duration)) then
