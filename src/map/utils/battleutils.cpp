@@ -1981,7 +1981,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 			{
 				if(PDefender->m_Weapons[SLOT_SUB]->IsShield())
 				{
-					absorb = PDefender->m_Weapons[SLOT_SUB]->getShieldAbsorption();
+					absorb = 100.0f - PDefender->m_Weapons[SLOT_SUB]->getShieldAbsorption();
 				}
 			}
 			else
