@@ -9,6 +9,7 @@
 CMagicState::CMagicState(CBattleEntity* PEntity, CTargetFind* PTargetFind, float maxStartDistance, float maxFinishDistance)
 : CState(PEntity, PTargetFind)
 {
+	m_PSpell = NULL;
 	m_disableCasting = false;
 	m_maxStartDistance = maxStartDistance;
 	m_maxFinishDistance = maxFinishDistance;
@@ -66,9 +67,19 @@ bool CMagicState::CanCastSpell(CSpell* PSpell, CBattleEntity* PTarget, uint8 fla
 	return true;
 }
 
-void CMagicState::Interrupt()
+bool CMagicState::IsInterrupted()
+{
+	return m_interruptSpell;
+}
+
+void CMagicState::ForceInterrupt()
 {
 	m_interruptSpell = true;
+}
+
+CSpell* CMagicState::GetSpell()
+{
+	return m_PSpell;
 }
 
 STATESTATUS CMagicState::Update(uint32 tick)
@@ -283,4 +294,20 @@ void CMagicState::FinishSpell()
 	m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(m_PEntity));
 
 	Clear();
+}
+
+bool CMagicState::TryHitInterrupt(CBattleEntity* PAttacker)
+{
+
+    if (!IsCasting() || IsInterrupted() || m_PSpell->getSpellGroup() == SPELLGROUP_SONG)
+    {
+    	return false;
+    }
+
+    return battleutils::TryInterruptSpell(PAttacker, m_PEntity);
+}
+
+bool CMagicState::IsCasting()
+{
+	return m_PSpell != NULL;
 }

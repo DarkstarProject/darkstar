@@ -50,7 +50,12 @@ class CMagicState : public CState
     virtual void Clear();
 
     // force spell interrupt
-    void Interrupt();
+    void ForceInterrupt();
+    bool IsInterrupted();
+    CSpell* GetSpell();
+
+    bool TryHitInterrupt(CBattleEntity* PAttacker);
+    bool IsCasting();
 
     bool m_disableCasting;
     float m_maxStartDistance;

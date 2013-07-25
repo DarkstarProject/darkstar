@@ -2013,12 +2013,17 @@ void CAIMobDummy::Deaggro()
 	if(m_PBattleTarget != NULL)
 	{
 		m_PMob->PEnmityContainer->Clear(m_PBattleTarget->id);
-	}
 
-	if(m_PMob->m_OwnerID.id == m_PBattleTarget->id)
+		if(m_PMob->m_OwnerID.id == m_PBattleTarget->id)
+		{
+		    m_PMob->m_OwnerID.clean();
+		}
+	}
+	else
 	{
 	    m_PMob->m_OwnerID.clean();
 	}
+
 
 	m_PBattleTarget = NULL;
 }

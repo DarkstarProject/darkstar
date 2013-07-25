@@ -127,7 +127,7 @@ namespace battleutils
 	bool				IsParried(CBattleEntity* PAttacker, CBattleEntity* PDefender);
     bool				IsGuarded(CBattleEntity* PAttacker, CBattleEntity* PDefender);
     bool				IsBlocked(CBattleEntity* PAttacker, CBattleEntity* PDefender);
-
+	bool TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	float				GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	void				HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action);
     uint16              CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 spikesType);
@@ -141,7 +141,6 @@ namespace battleutils
     uint8				GetEnmityMod(uint8 level, uint8 modType);
 	bool				Enfeeble(CBattleEntity* PCaster, CBattleEntity* PDefender, EFFECT Effect);
 	bool				isValidSelfTargetWeaponskill(int wsid);
-	bool				TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	float				CalculateBaseTP(int delay, int stp);
     void				GenerateCureEnmity(CBattleEntity* PSource, CBattleEntity* PTarget, uint16 amount);
 

@@ -2088,7 +2088,13 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
     if (damage > 0)
     {
 
-        if (PDefender->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING &&
+    	// try to interrupt spell
+    	if(PDefender->PBattleAI->m_PMagicState != NULL)
+    	{
+    		// use new method
+	    	PDefender->PBattleAI->m_PMagicState->TryHitInterrupt(PAttacker);
+    	}
+    	else if (PDefender->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING &&
             PDefender->PBattleAI->GetCurrentSpell()->getSpellGroup() != SPELLGROUP_SONG)
         { //try to interrupt the spell
             if (!PDefender->PBattleAI->m_interruptSpell && TryInterruptSpell(PAttacker, PDefender))
