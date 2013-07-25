@@ -320,7 +320,7 @@ enum MERIT_TYPE
     MERIT_APEX_ARROW                = MCATEGORY_WS + 0x18,
     MERIT_LAST_STAND                = MCATEGORY_WS + 0x1A,
 
-	// unknown 
+	// unknown
 	//MERIT_UNKNOWN1					= MCATEGORY_UNK_0 + 0x00,
     //MERIT_UNKNOWN2					= MCATEGORY_UNK_1 + 0x00,
     //MERIT_UNKNOWN3					= MCATEGORY_UNK_2 + 0x00,
@@ -474,9 +474,9 @@ enum MERIT_TYPE
 
 struct Merit_t
 {
-    union 
-    {        
-        struct 
+    union
+    {
+        struct
         {
             uint16 id;      // id мерита
             uint8  next;    // необходимое количество меритов для следующего усиления
@@ -513,7 +513,7 @@ class CMeritPoints
 
         bool        AddLimitPoints(uint16 points);                  // automatically adds merit points > 10000
         bool        IsMeritExist(MERIT_TYPE merit);                 // проверяем существование merit
-        
+
         void        RaiseMerit(MERIT_TYPE merit); // add upgrade
         void        LowerMerit(MERIT_TYPE merit); // del upgrade
 

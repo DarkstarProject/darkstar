@@ -1181,7 +1181,7 @@ void SmallPacket0x036(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	// Moogles are zone dependent, and zoneid = 0 is for all residential areas, so if a char trades to a moogle
 	// then you won't find the right NPC if you used zoneid=0. Thankfully, the prevzone is the real zone we want
 	// so this should return an NPC.
-	if (PNpc == NULL && PChar->loc.prevzone != NULL) {
+	if (PNpc == NULL && PChar->loc.prevzone != 0) {
 		PNpc = zoneutils::GetZone(PChar->loc.prevzone)->GetEntity(targid, TYPE_NPC);
 		if (strcmp(PNpc->GetName(),"Moogle") != 0) {
 			// we must restrict this check only for Moogles else other NPCs could be interpreted
@@ -1385,7 +1385,7 @@ void SmallPacket0x04B(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	//TODO: add another language
 	else
 		PChar->pushPacket(new CServerMessagePacket(map_config.server_message,PChar->search.language));
-	
+
 	return;
 }
 
@@ -1531,7 +1531,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
             uint8 send_items = 0;
             for (int i = 0; i < 8; i++)
             {
-                if (!PChar->UContainer->IsSlotEmpty(i) && 
+                if (!PChar->UContainer->IsSlotEmpty(i) &&
                     !PChar->UContainer->GetItem(i)->isSent())
                 {
                     send_items++;
@@ -4299,7 +4299,7 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, int8* dat
 						spellInQuestion = RBUFB(data,i);
 						spellIndex = i - 0x0C;
 						CBlueSpell* spell = (CBlueSpell*)spell::GetSpell(spellInQuestion + 0x200); // the spells in this packet are offsetted by 0x200 from their spell IDs.
-				
+
 						if (spell != NULL) {
 							blueutils::SetBlueSpell(PChar, spell, spellIndex, (spellToAdd > 0));
 						}
@@ -4315,7 +4315,7 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			    charutils::CalculateStats(PChar);
 			    PChar->UpdateHealth();
 			    PChar->pushPacket(new CCharHealthPacket(PChar));
-			}				
+			}
 			else {
 				// loop all 20 slots and find which index they are playing with
 				for (uint8 i = 0x0C; i <= 0x1F; i++) {
@@ -4328,7 +4328,7 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 				if (spellIndex != -1 && spellInQuestion != 0) {
 					CBlueSpell* spell = (CBlueSpell*)spell::GetSpell(spellInQuestion + 0x200); // the spells in this packet are offsetted by 0x200 from their spell IDs.
-				
+
 					if (spell != NULL) {
 						blueutils::SetBlueSpell(PChar, spell, spellIndex, (spellToAdd > 0));
                         charutils::BuildingCharTraitsTable(PChar);

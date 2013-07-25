@@ -19,7 +19,7 @@ require("scripts/zones/Northern_San_dOria/TextIDs");
 
 function onTrade(player,npc,trade)
 	-- "Flyers for Regine" conditional script
-	if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE); == 1) then
+	if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == 1) then
 		if (trade:hasItemQty(532,1) == true and trade:getItemCount() == 1) then
 			player:messageSpecial(FLYER_REFUSED);
 		end
@@ -40,10 +40,10 @@ RegionOwner = GetRegionOwner(LITELOR);
                 player:showText(npc,ATTARENA_CLOSED_DIALOG);
         else
                 player:showText(npc,ATTARENA_OPEN_DIALOG);
-               
+
                 stock = {0x026f,119,            -- Bay Leaves
                                  0x103a,6440}           -- Holy Water
-                                 
+
                 showShop(player,SANDORIA,stock);
         end
 end;

@@ -43,7 +43,7 @@ static uint8 upgrade[9][16] =
     {1,2,3,4,5,5,5,5,5,7,7,7,9,9,9},    // HP-MP
     {3,6,9,9,9,12,12,12,12,15,15,15},   // Attributes
     {1,2,3,3,3,3,3,3},                  // Combat Skills
-    {1,2,3,3},                          // Defensive Skills 
+    {1,2,3,3},                          // Defensive Skills
     {1,2,3,3,3,3,3,3},                  // Magic Skills
     {1,2,3,4,5},                        // Others
     {1,2,3,4,5},                        // Job Group 1
@@ -54,16 +54,16 @@ static uint8 upgrade[9][16] =
 //#define MAX_MERIT_POINTS  30            // максимальное количество неиспользованных merit
 
 // option to change max points, kept the original above
-#define MAX_MERIT_POINTS  map_config.max_merit_points 
+#define MAX_MERIT_POINTS  map_config.max_merit_points
 
 #else
 static uint8 upgrade[9][9] =
 {
     {1,2,3,4,5,5,5,5},			        //0 HP-MP
     {3,6,9,9,9},				        //1 Attributes
-    {1,2,3,3,3,3,3,3},			        //2 Combat Skills	
-    {1,2,3,3},					        //3 Defensive Skills 
-    {1,2,3,3,3,3,3,3},			        //4 Magic Skills	
+    {1,2,3,3,3,3,3,3},			        //2 Combat Skills
+    {1,2,3,3},					        //3 Defensive Skills
+    {1,2,3,3,3,3,3,3},			        //4 Magic Skills
     {1,2,3,4,5},					    //5 Others
     {1,2,3,4,5},				        //6 Job Group 1
     {3,4,5,5,5},				        //7 Job Group 2
@@ -73,9 +73,9 @@ static uint8 upgrade[9][9] =
 //#define MAX_MERIT_POINTS  100         // максимальное количество неиспользованных merit
 
 // option to change max points, kept the original above
-#define MAX_MERIT_POINTS  map_config.max_merit_points 
+#define MAX_MERIT_POINTS  map_config.max_merit_points
 
-#endif 
+#endif
 
 // TODO: скорее всего придется все это перенести в базу
 
@@ -86,15 +86,15 @@ static uint8 upgrade[9][9] =
 ************************************************************************/
 
 static uint8 cap[100] =
-{   
-    0,0,0,0,0,0,0,0,0,0,    // 0-9   0 
-    1,1,1,1,1,1,1,1,1,1,    // 10-19 1 
-    2,2,2,2,2,2,2,2,2,2,    // 20-29 2 
-    3,3,3,3,3,3,3,3,3,3,    // 30-39 3 
-    4,4,4,4,4,4,4,4,4,4,    // 40-49 4 
-    5,5,5,5,5,              // 50-54 5 
-    6,6,6,6,6,              // 55-59 6 
-    7,7,7,7,7,              // 60-64 7 
+{
+    0,0,0,0,0,0,0,0,0,0,    // 0-9   0
+    1,1,1,1,1,1,1,1,1,1,    // 10-19 1
+    2,2,2,2,2,2,2,2,2,2,    // 20-29 2
+    3,3,3,3,3,3,3,3,3,3,    // 30-39 3
+    4,4,4,4,4,4,4,4,4,4,    // 40-49 4
+    5,5,5,5,5,              // 50-54 5
+    6,6,6,6,6,              // 55-59 6
+    7,7,7,7,7,              // 60-64 7
     8,8,8,8,8,              // 65-69 8
     8,8,8,8,8,8,8,8,8,8,    // 70-79 8
     8,8,8,8,8,8,8,8,8,8,    // 80-89 8
@@ -116,61 +116,61 @@ struct MeritCategoryInfo_t
 
 static const MeritCategoryInfo_t meritCatInfo[] =
 {
-    {2,15,0},  //MCATEGORY_HP_MP      
-    {7,12,1},  //MCATEGORY_ATTRIBUTES 
-    {19,32,2}, //MCATEGORY_COMBAT 
-    {12,24,4}, //MCATEGORY_MAGIC 
-    {5,10,5},  //MCATEGORY_OTHERS 
+    {2,15,0},  //MCATEGORY_HP_MP
+    {7,12,1},  //MCATEGORY_ATTRIBUTES
+    {19,32,2}, //MCATEGORY_COMBAT
+    {12,24,4}, //MCATEGORY_MAGIC
+    {5,10,5},  //MCATEGORY_OTHERS
 
-    {5,10,6},  //MCATEGORY_WAR_1 
-    {5,10,6},  //MCATEGORY_MNK_1 
-    {5,10,6},  //MCATEGORY_WHM_1 
-    {7,10,6},  //MCATEGORY_BLM_1 
-    {7,10,6},  //MCATEGORY_RDM_1 
-    {5,10,6},  //MCATEGORY_THF_1 
-    {5,10,6},  //MCATEGORY_PLD_1 
-    {5,10,6},  //MCATEGORY_DRK_1 
-    {5,10,6},  //MCATEGORY_BST_1 
-    {5,10,6},  //MCATEGORY_BRD_1 
-    {5,10,6},  //MCATEGORY_RNG_1 
-    {5,10,6},  //MCATEGORY_SAM_1 
-    {7,10,6},  //MCATEGORY_NIN_1 
-    {5,10,6},  //MCATEGORY_DRG_1 
-    {5,10,6},  //MCATEGORY_SMN_1 
-    {5,10,6},  //MCATEGORY_BLU_1 
-    {5,10,6},  //MCATEGORY_COR_1 
-    {5,10,6},  //MCATEGORY_PUP_1 
-    {4,10,6},  //MCATEGORY_DNC_1 
-    {4,10,6},  //MCATEGORY_SCH_1 
+    {5,10,6},  //MCATEGORY_WAR_1
+    {5,10,6},  //MCATEGORY_MNK_1
+    {5,10,6},  //MCATEGORY_WHM_1
+    {7,10,6},  //MCATEGORY_BLM_1
+    {7,10,6},  //MCATEGORY_RDM_1
+    {5,10,6},  //MCATEGORY_THF_1
+    {5,10,6},  //MCATEGORY_PLD_1
+    {5,10,6},  //MCATEGORY_DRK_1
+    {5,10,6},  //MCATEGORY_BST_1
+    {5,10,6},  //MCATEGORY_BRD_1
+    {5,10,6},  //MCATEGORY_RNG_1
+    {5,10,6},  //MCATEGORY_SAM_1
+    {7,10,6},  //MCATEGORY_NIN_1
+    {5,10,6},  //MCATEGORY_DRG_1
+    {5,10,6},  //MCATEGORY_SMN_1
+    {5,10,6},  //MCATEGORY_BLU_1
+    {5,10,6},  //MCATEGORY_COR_1
+    {5,10,6},  //MCATEGORY_PUP_1
+    {4,10,6},  //MCATEGORY_DNC_1
+    {4,10,6},  //MCATEGORY_SCH_1
 
     {14,15,8}, //MCATEGORY_WS
 
 	{0,0,8},   //MCATEGORY_UNK_0	26
-    {0,0,8},   //MCATEGORY_UNK_1 
-    {0,0,8},   //MCATEGORY_UNK_2 
-    {0,0,8},   //MCATEGORY_UNK_3 
+    {0,0,8},   //MCATEGORY_UNK_1
+    {0,0,8},   //MCATEGORY_UNK_2
+    {0,0,8},   //MCATEGORY_UNK_3
     {0,0,8},   //MCATEGORY_UNK_4	30
 
-    {4,10,7},  //MCATEGORY_WAR_2 
-    {4,10,7},  //MCATEGORY_MNK_2 
-    {4,10,7},  //MCATEGORY_WHM_2 
-    {6,10,7},  //MCATEGORY_BLM_2 
-    {6,10,7},  //MCATEGORY_RDM_2 
-    {4,10,7},  //MCATEGORY_THF_2 
-    {4,10,7},  //MCATEGORY_PLD_2 
-    {4,10,7},  //MCATEGORY_DRK_2 
-    {4,10,7},  //MCATEGORY_BST_2 
-    {4,10,7},  //MCATEGORY_BRD_2 
-    {4,10,7},  //MCATEGORY_RNG_2 
-    {4,10,7},  //MCATEGORY_SAM_2 
-    {8,10,7},  //MCATEGORY_NIN_2 
-    {4,10,7},  //MCATEGORY_DRG_2 
-    {6,10,7},  //MCATEGORY_SMN_2 
-    {4,10,7},  //MCATEGORY_BLU_2 
-    {4,10,7},  //MCATEGORY_COR_2 
-    {4,10,7},  //MCATEGORY_PUP_2 
-    {4,10,7},  //MCATEGORY_DNC_2 
-    {6,10,7},  //MCATEGORY_SHC_2 
+    {4,10,7},  //MCATEGORY_WAR_2
+    {4,10,7},  //MCATEGORY_MNK_2
+    {4,10,7},  //MCATEGORY_WHM_2
+    {6,10,7},  //MCATEGORY_BLM_2
+    {6,10,7},  //MCATEGORY_RDM_2
+    {4,10,7},  //MCATEGORY_THF_2
+    {4,10,7},  //MCATEGORY_PLD_2
+    {4,10,7},  //MCATEGORY_DRK_2
+    {4,10,7},  //MCATEGORY_BST_2
+    {4,10,7},  //MCATEGORY_BRD_2
+    {4,10,7},  //MCATEGORY_RNG_2
+    {4,10,7},  //MCATEGORY_SAM_2
+    {8,10,7},  //MCATEGORY_NIN_2
+    {4,10,7},  //MCATEGORY_DRG_2
+    {6,10,7},  //MCATEGORY_SMN_2
+    {4,10,7},  //MCATEGORY_BLU_2
+    {4,10,7},  //MCATEGORY_COR_2
+    {4,10,7},  //MCATEGORY_PUP_2
+    {4,10,7},  //MCATEGORY_DNC_2
+    {6,10,7},  //MCATEGORY_SHC_2
 };
 
 #define GetMeritCategory(merit) ((merit >> 6) - 1)      // получаем категорию из merit
@@ -188,7 +188,7 @@ CMeritPoints::CMeritPoints(CCharEntity* PChar)
 	DSP_DEBUG_BREAK_IF(sizeof(merits) != sizeof(merits::GMeritsTemplate));
 
     memcpy(merits, merits::GMeritsTemplate, sizeof(merits));
-	
+
     for (uint8 m = 0, i = 0; i < sizeof(Categories)/sizeof(Merit_t*); ++i)
     {
         Categories[i] = &merits[m];
@@ -241,11 +241,11 @@ void CMeritPoints::LoadMeritPoints(uint32 charid)
 			   {
 
 				   if (catNumber > 25 && catNumber < 31) // point these to valid merits to prevent crash
-						Categories[catNumber] = &merits[163];			   
+						Categories[catNumber] = &merits[163];
 				   else
 						Categories[catNumber] = &merits[i];
-				   
-				   catNumber++;   
+
+				   catNumber++;
 			   }
 
                merits[i].count = points[i];
@@ -397,8 +397,8 @@ void CMeritPoints::SetMeritPoints(uint16 points)
 
 bool CMeritPoints::IsMeritExist(MERIT_TYPE merit)
 {
-    if (merit <  MCATEGORY_START) return false;
-    if (merit >= MCATEGORY_COUNT) return false;
+    if ((int16)merit <  MCATEGORY_START) return false;
+    if ((int16)merit >= MCATEGORY_COUNT) return false;
 
     if ((GetMeritID(merit)) >= meritCatInfo[GetMeritCategory(merit)].MeritsInCat) return false;
 
@@ -515,7 +515,7 @@ int32 CMeritPoints::GetMeritValue(MERIT_TYPE merit, CCharEntity* PChar)
 {
     Merit_t* PMerit = GetMeritPointer(merit);
 	uint8 meritValue = 0;
-    
+
     if (PMerit->catid < 5 || (PMerit->jobs & (1 << (PChar->GetMJob() - 1)) && PChar->GetMLevel() >= 75))
         meritValue = dsp_min(PMerit->count, cap[PChar->GetMLevel()]);
 
@@ -544,7 +544,7 @@ int32 CMeritPoints::GetMeritValue(Merit_t* merit, CCharEntity* PChar)
 
 namespace meritNameSpace
 {
-	Merit_t GMeritsTemplate[MERITS_COUNT] = {0};		// global list of merits and their properties 
+	Merit_t GMeritsTemplate[MERITS_COUNT] = {0};		// global list of merits and their properties
 	int16 groupOffset[MCATEGORY_COUNT/64-1] = {0};		// the first merit offset of each catagory
 
     /************************************************************************
@@ -570,7 +570,7 @@ namespace meritNameSpace
 			int8 catMeritIndex = 0;		// counts number of merits in a catagory
 
 
-		    while( Sql_NextRow(SqlHandle) == SQL_SUCCESS ) 
+		    while( Sql_NextRow(SqlHandle) == SQL_SUCCESS )
 		    {
                 Merit_t Merit = {0};								// creat a new merit template.
 
@@ -579,7 +579,7 @@ namespace meritNameSpace
                 Merit.jobs		= Sql_GetUIntData(SqlHandle,2);
                 Merit.upgrade	= Sql_GetUIntData(SqlHandle,3);
 				Merit.upgradeid = Sql_GetUIntData(SqlHandle,4);
-				Merit.catid		= Sql_GetUIntData(SqlHandle,5);	
+				Merit.catid		= Sql_GetUIntData(SqlHandle,5);
 				Merit.next      = upgrade[Merit.upgradeid][0];
                 Merit.spellid   = Sql_GetUIntData(SqlHandle, 6);
 
@@ -587,7 +587,7 @@ namespace meritNameSpace
 
 
 				previousCatIndex = Merit.catid;						// previousCatIndex is set on everyloop to detect a catogory change.
-				
+
 				if (previousCatIndex != catIndex)					// check for catagory change.
 				{
 					groupOffset[catIndex] = index - catMeritIndex;	// set index offset, first merit of each group.
@@ -601,14 +601,14 @@ namespace meritNameSpace
 				catMeritIndex++;									// next index within catagory.
 				index++;											// next global template index.
 		    }
-			
+
 			groupOffset[catIndex] = index - catMeritIndex;			// add the last offset manually since loop finishes before hand.
 
            /* ret = Sql_Query(SqlHandle, "SELECT meritid, spellid FROM merits INNER JOIN spell_list ON merits.name = spell_list.name");
 
             if (ret != SQL_ERROR)
             {
-		        while( Sql_NextRow(SqlHandle) == SQL_SUCCESS ) 
+		        while( Sql_NextRow(SqlHandle) == SQL_SUCCESS )
 		        {
                     GMeritsTemplate
 		        }

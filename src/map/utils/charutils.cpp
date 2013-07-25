@@ -3904,7 +3904,7 @@ void ResetAllTwoHours()
 }
 
 bool hasMogLockerAccess(CCharEntity* PChar) {
-	int8* fmtQuery = "SELECT value FROM char_vars WHERE charid = %u AND varname = '%s' ";
+	int8 fmtQuery[] = "SELECT value FROM char_vars WHERE charid = %u AND varname = '%s' ";
 	int32 ret = Sql_Query(SqlHandle,fmtQuery, PChar->id, "mog-locker-expiry-timestamp");
 
 	if(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
@@ -3999,7 +3999,7 @@ uint8 AvatarPerpetuationReduction(CCharEntity* PChar)
 
 void loadCharWsPoints(CCharEntity* PChar)
 {
-	int8* fmtQuery = "SELECT itemindex, points "
+	int8 fmtQuery[] = "SELECT itemindex, points "
 					 "FROM char_weapon_skill_points "
 					 "WHERE charid = %u "
 					 "ORDER BY itemindex ASC;";

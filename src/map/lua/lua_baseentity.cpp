@@ -4613,12 +4613,12 @@ inline int32 CLuaBaseEntity::injectPacket(lua_State *L)
 		CBasicPacket * PPacket = new CBasicPacket();
 
 		fseek(File,1,SEEK_SET);
-		fread(&size,1,1,File);
+		uint16 returnSize = fread(&size,1,1,File);
 
 		if (size <= 128)
 		{
 			fseek(File,0,SEEK_SET);
-			fread(PPacket,1,size*2,File);
+			uint16 size = fread(PPacket,1,size*2,File);
 			fclose(File);
 
 			((CCharEntity*)m_PBaseEntity)->pushPacket(PPacket);

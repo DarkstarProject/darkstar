@@ -26,7 +26,7 @@
 #include "../../common/utils.h"
 
 #include <math.h>
-#include <string.h> 
+#include <string.h>
 
 #include "../packets/char_skills.h"
 #include "../packets/char_update.h"
@@ -74,20 +74,20 @@ namespace synthutils
 /************************************************************************
 *																		*
 *  Проверяем наличие рецепта и возможности его синтеза (если его		*
-*  сложность выше на 15 уровней, чем умение персонажа, то рецепт		* 
+*  сложность выше на 15 уровней, чем умение персонажа, то рецепт		*
 *  считается сверх трудным и синтех отменяется). Так же собираем всю	*
 *  необходимую информацию о рецепте, чтобы не обращаться к базе			*
 *  несколько раз														*
-*																		*		
+*																		*
 *  в поля itemID девятой ячейки сохраняем ID рецепта					*
 *  в поля quantity 9-16 ячеек записываем требуемые значения skills		*
 *  в поля itemID и slotID 10-14 ячеек записываем результаты синтеза		*
 *																		*
 ************************************************************************/
 
-bool isRightRecipe(CCharEntity* PChar) 
+bool isRightRecipe(CCharEntity* PChar)
 {
-	const int8* fmtQuery = 
+	const int8* fmtQuery =
 
 		"SELECT ID, KeyItem, Wood, Smith, Gold, Cloth, Leather, Bone, Alchemy, Cook, \
 			Result, ResultHQ1, ResultHQ2, ResultHQ3, ResultQty, ResultHQ1Qty, ResultHQ2Qty, ResultHQ3Qty \
@@ -106,18 +106,18 @@ bool isRightRecipe(CCharEntity* PChar)
 	int32 ret = Sql_Query(
 		SqlHandle,
 		fmtQuery,
-		PChar->Container->getItemID(0), 
 		PChar->Container->getItemID(0),
-		PChar->Container->getItemID(1), 
-		PChar->Container->getItemID(2), 
-		PChar->Container->getItemID(3), 
-		PChar->Container->getItemID(4), 
-		PChar->Container->getItemID(5), 
-		PChar->Container->getItemID(6), 
-		PChar->Container->getItemID(7), 
+		PChar->Container->getItemID(0),
+		PChar->Container->getItemID(1),
+		PChar->Container->getItemID(2),
+		PChar->Container->getItemID(3),
+		PChar->Container->getItemID(4),
+		PChar->Container->getItemID(5),
+		PChar->Container->getItemID(6),
+		PChar->Container->getItemID(7),
 		PChar->Container->getItemID(8));
 
-	if (ret != SQL_ERROR && 
+	if (ret != SQL_ERROR &&
 		Sql_NumRows(SqlHandle) != 0 &&
 		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 	{
@@ -137,16 +137,16 @@ bool isRightRecipe(CCharEntity* PChar)
 			PChar->Container->setItem(10 + 4, (uint16)Sql_GetUIntData(SqlHandle,13), (uint8)Sql_GetUIntData(SqlHandle,17), 0);	// RESULT_HQ3
 
 			uint16 skillValue   = 0;
-			uint16 currentSkill = 0; 
+			uint16 currentSkill = 0;
 
 			for (uint8 skillID = 49; skillID < 57; ++skillID)
 			{
-				skillValue   = (uint16)Sql_GetUIntData(SqlHandle,(skillID-49+2));	
+				skillValue   = (uint16)Sql_GetUIntData(SqlHandle,(skillID-49+2));
 				currentSkill = PChar->RealSkills.skill[skillID];
 
 				// skill записываем в поле quantity ячеек 9-16
 				PChar->Container->setQuantity(skillID-40, skillValue);
-				
+
 				#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 				ShowDebug(CL_CYAN"Current skill = %u, Recipe skill = %u\n" CL_RESET, currentSkill, skillValue*10);
 				#endif
@@ -192,8 +192,8 @@ double getSynthDifficulty(CCharEntity* PChar, uint8 skillID)
 	uint8  crystalElement = PChar->Container->getType();
 	uint8  direction = (PChar->loc.p.rotation - 16)/32;
 	uint8  strongElement[8] = {2,3,5,4,0,1,7,6};
-	uint16 ModID = 0; 
-	
+	uint16 ModID = 0;
+
 	switch (direction)
 	{
 		case 0: ElementDirection = ELEMENT_WIND;	  break;
@@ -237,7 +237,7 @@ double getSynthDifficulty(CCharEntity* PChar, uint8 skillID)
 	}else if (WeekDay == LIGHTSDAY){
 		difficult -= 1;
 	}else if (WeekDay == DARKSDAY){
-		difficult += 1;	
+		difficult += 1;
 	}
 
 	#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
@@ -246,7 +246,7 @@ double getSynthDifficulty(CCharEntity* PChar, uint8 skillID)
 	ShowDebug(CL_CYAN"Moon = %g\n" CL_RESET, MoonPhase);
 	ShowDebug(CL_CYAN"Difficulty = %g\n" CL_RESET, difficult);
 	#endif
-	
+
 	return difficult;
 }
 
@@ -259,7 +259,7 @@ double getSynthDifficulty(CCharEntity* PChar, uint8 skillID)
 
 bool canSynthesizeHQ(CCharEntity* PChar, uint8 skillID)
 {
-	uint16 ModID = 0; 
+	uint16 ModID = 0;
 
 	switch (skillID)
 	{
@@ -287,8 +287,8 @@ uint8 getGeneralCraft(CCharEntity* PChar)
 {
 	uint8 skillValue   = 0;
 	uint8 generalCraft = 0;
-	
-	for(uint8 skillID = 49; skillID < 57; skillID ++) 
+
+	for(uint8 skillID = 49; skillID < 57; skillID ++)
 	{
 		if (PChar->Container->getQuantity(skillID-40) > skillValue)
 		{
@@ -310,7 +310,7 @@ uint8 getGeneralCraft(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-uint8 calcSynthResult(CCharEntity* PChar) 
+uint8 calcSynthResult(CCharEntity* PChar)
 {
 	uint8 count  = 0;
 	uint8 result = 0;
@@ -319,16 +319,16 @@ uint8 calcSynthResult(CCharEntity* PChar)
 	double success = 0;
 	double chance  = 0;
 
-	for(uint8 skillID = 49; skillID < 57; ++skillID) 
+	for(uint8 skillID = 49; skillID < 57; ++skillID)
 	{
 		uint8 checkSkill = PChar->Container->getQuantity(skillID-40);
-		if(checkSkill != 0) 
+		if(checkSkill != 0)
 		{
 			double synthDiff = getSynthDifficulty(PChar, skillID);
 			hqtier = 0;
 			count++;
 
-			if(synthDiff <= 0) 
+			if(synthDiff <= 0)
 			{
 				success = 0.95;
 
@@ -344,7 +344,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
 				}else if (synthDiff <= -71)
 					hqtier = 5;
 			}else{
-				success = 0.95 - (synthDiff / 10) - (double)(PChar->Container->getType() == ELEMENT_LIGHTNING) * 0.2;			
+				success = 0.95 - (synthDiff / 10) - (double)(PChar->Container->getType() == ELEMENT_LIGHTNING) * 0.2;
 				if(success < 0.05)
 					success = 0.05;
 			}
@@ -354,16 +354,16 @@ uint8 calcSynthResult(CCharEntity* PChar)
 			ShowDebug(CL_CYAN"Success: %g  Random: %g\n" CL_RESET, success, random);
 			#endif
 
-			if(random < success) 
+			if(random < success)
 			{
-				for(int32 i = 0; i < 3; ++i) 
+				for(int32 i = 0; i < 3; ++i)
 				{
 					random = rand() / ((double) RAND_MAX);
 					#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 					ShowDebug(CL_CYAN"HQ Tier: %i  Random: %g\n" CL_RESET, hqtier, random);
 					#endif
-					
-					switch(hqtier) 
+
+					switch(hqtier)
 					{
 						case 5:  chance = 0.700; break;
 						case 4:  chance = 0.500; break;
@@ -443,7 +443,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-int32 doSynthSkillUp(CCharEntity* PChar) 
+int32 doSynthSkillUp(CCharEntity* PChar)
 {
 	//if (PChar->Container->getType() == ELEMENT_LIGHTNING)
 	//{
@@ -453,7 +453,7 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 	double MoonPhase = (double)CVanaTime::getInstance()->getMoonPhase();
 	double MoonCorrection = MoonPhase / 500;
 
-	for(uint8 skillID = 49; skillID < 57; ++skillID) 
+	for(uint8 skillID = 49; skillID < 57; ++skillID)
 	{
 		if (PChar->Container->getQuantity(skillID-40) == 0)	// получаем необходимый уровень умения рецепта
 		{
@@ -500,15 +500,15 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 					satier = 5;
 				//if (skillRank > 5)
 				//	satier--;
-					
-				for(uint8 i = 0; i < 4; i ++) 
+
+				for(uint8 i = 0; i < 4; i ++)
 				{
 					random = rand() / ((double)RAND_MAX);
 					#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 					ShowDebug(CL_CYAN"SkillAmount Tier: %i  Random: %g\n" CL_RESET, satier, random);
 					#endif
-						
-					switch(satier) 
+
+					switch(satier)
 					{
 						case 5:  chance = 0.900; break;
 						case 4:  chance = 0.700; break;
@@ -528,15 +528,15 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 					skillAmount = maxSkill - charSkill;
 				}
 
-				PChar->RealSkills.skill[skillID] += skillAmount; 
+				PChar->RealSkills.skill[skillID] += skillAmount;
 				PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, skillID, skillAmount, 38));
 
-				if((charSkill/10) < (charSkill + skillAmount)/10) 
+				if((charSkill/10) < (charSkill + skillAmount)/10)
 				{
 					PChar->WorkingSkills.skill[skillID] += 0x20;
 
 					PChar->pushPacket(new CCharSkillsPacket(PChar));
-					PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, skillID, (charSkill + skillAmount)/10, 53));	
+					PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, skillID, (charSkill + skillAmount)/10, 53));
 				}
 
 				charutils::SaveCharSkills(PChar, skillID);
@@ -551,11 +551,11 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 *  Синтез завершился неудачей. Решаем вопрос, сколько ингредиентов		*
 *  потеряет персонаж. Вероятность потери зависить от умения, из-за		*
 *  которого синтез провалился. ID умения сохранен в slotID ячейки		*
-*  кристалла.															*	
+*  кристалла.															*
 *																		*
 ************************************************************************/
 
-int32 doSynthFail(CCharEntity* PChar) 
+int32 doSynthFail(CCharEntity* PChar)
 {
 	uint8  carrentCraft = PChar->Container->getInvSlotID(0);
 	double synthDiff    = getSynthDifficulty(PChar, carrentCraft);
@@ -564,7 +564,7 @@ int32 doSynthFail(CCharEntity* PChar)
 	if (PChar->getZone() == 0) // неправильное условие, т.к. аура действует лишь в собственном доме
 	{
 		// Проверяем элемент синтеза
-		switch (PChar->Container->getType()) 
+		switch (PChar->Container->getType())
 		{
 			case ELEMENT_FIRE:		moghouseAura = 0.05 * charutils::hasKeyItem(PChar,MOGHANCEMENT_FIRE);	   break;
 			case ELEMENT_EARTH:		moghouseAura = 0.05 * charutils::hasKeyItem(PChar,MOGHANCEMENT_EARTH);	   break;
@@ -610,17 +610,17 @@ int32 doSynthFail(CCharEntity* PChar)
 	uint8 invSlotID  = 0;
 	uint8 nextSlotID = 0;
 	uint8 lostCount  = 0;
-		
+
 	double random   = 0;
 	double lostItem = 0.15 - moghouseAura + (synthDiff > 0 ? synthDiff/20 : 0);
 
 	invSlotID = PChar->Container->getInvSlotID(1);
 
-	for(uint8 slotID = 1; slotID <= 8; ++slotID) 
+	for(uint8 slotID = 1; slotID <= 8; ++slotID)
 	{
 		if (slotID != 8)
 			nextSlotID = PChar->Container->getInvSlotID(slotID+1);
-		
+
 		random = rand() / ((double) RAND_MAX);
 		#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 		ShowDebug(CL_CYAN"Lost Item: %g  Random: %g\n" CL_RESET, lostItem, random);
@@ -631,7 +631,7 @@ int32 doSynthFail(CCharEntity* PChar)
 			lostCount++;
 		}
 
-		if(invSlotID != nextSlotID) 
+		if(invSlotID != nextSlotID)
 		{
 			CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
 
@@ -639,22 +639,22 @@ int32 doSynthFail(CCharEntity* PChar)
 			{
 				PItem->setSubType(ITEM_UNLOCKED);
 
-				if(lostCount > 0) 
+				if(lostCount > 0)
 				{
 					#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 					ShowDebug(CL_CYAN"Removing quantity %u from inventory slot %u\n" CL_RESET, lostCount, invSlotID);
 					#endif
-					
+
 					charutils::UpdateItem(PChar, LOC_INVENTORY, invSlotID, -(int32)lostCount);
 					lostCount = 0;
-				}else{				
+				}else{
 					PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NORMAL));
 				}
 			}
 			invSlotID  = nextSlotID;
 			nextSlotID = 0;
 		}
-		if(invSlotID == 0xFF)		
+		if(invSlotID == 0xFF)
 			break;
 	}
 
@@ -687,7 +687,7 @@ int32 startSynth(CCharEntity* PChar)
 
 	uint16 crystalType = PChar->Container->getItemID(0);
 
-	switch(crystalType) 
+	switch(crystalType)
 	{
 		case 0x1000:
 		case 0x108E:
@@ -733,25 +733,25 @@ int32 startSynth(CCharEntity* PChar)
 
 	PChar->Container->setType(element);
 
-	if (!isRightRecipe(PChar)) 
+	if (!isRightRecipe(PChar))
 	{
 		return 0;
 	}
 
 	// удаляем кристалл
-	charutils::UpdateItem(PChar, LOC_INVENTORY, PChar->Container->getInvSlotID(0), -1);	
+	charutils::UpdateItem(PChar, LOC_INVENTORY, PChar->Container->getInvSlotID(0), -1);
 
 	uint8 result = calcSynthResult(PChar);
 
 	uint8  invSlotID  = 0;
 	uint8  tempSlotID = 0;
 	uint16 itemID     = 0;
-	uint32 quantity   = 0;	
+	uint32 quantity   = 0;
 
-	for(uint8 slotID = 1; slotID <= 8; ++slotID) 
+	for(uint8 slotID = 1; slotID <= 8; ++slotID)
 	{
 		tempSlotID = PChar->Container->getInvSlotID(slotID);
-		if ((tempSlotID != 0xFF) && (tempSlotID != invSlotID)) 
+		if ((tempSlotID != 0xFF) && (tempSlotID != invSlotID))
 		{
 			invSlotID = tempSlotID;
 
@@ -770,13 +770,13 @@ int32 startSynth(CCharEntity* PChar)
 
     if(PChar->loc.zone->GetID() != 255 && PChar->loc.zone->GetID() != 0)
     {
-        PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CSynthAnimationPacket(PChar,effect,result));  
+        PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CSynthAnimationPacket(PChar,effect,result));
     }
     else
     {
         PChar->pushPacket(new CSynthAnimationPacket(PChar, effect, result));
     }
-    
+
 	return 0;
 }
 
@@ -786,7 +786,7 @@ int32 startSynth(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-int32 doSynthResult(CCharEntity* PChar) 
+int32 doSynthResult(CCharEntity* PChar)
 {
 	uint8 m_synthResult = PChar->Container->getQuantity(0);
 
@@ -802,12 +802,12 @@ int32 doSynthResult(CCharEntity* PChar)
 		uint8 removeCount = 0;
 
 		invSlotID = PChar->Container->getInvSlotID(1);
-			
-		for(uint8 slotID = 1; slotID <= 8; ++slotID) 
+
+		for(uint8 slotID = 1; slotID <= 8; ++slotID)
 		{
 			nextSlotID = (slotID != 8 ? PChar->Container->getInvSlotID(slotID+1) : 0);
 			removeCount++;
-				
+
 			if (invSlotID != nextSlotID)
 			{
 				if (invSlotID != 0xFF)
@@ -816,7 +816,7 @@ int32 doSynthResult(CCharEntity* PChar)
 					ShowDebug(CL_CYAN"Removing quantity %u from inventory slot %u\n" CL_RESET,removeCount,invSlotID);
 					#endif
 					PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)->setSubType(ITEM_UNLOCKED);
-					charutils::UpdateItem(PChar, LOC_INVENTORY, invSlotID, -(int32)removeCount); 
+					charutils::UpdateItem(PChar, LOC_INVENTORY, invSlotID, -(int32)removeCount);
 				}
 				invSlotID   = nextSlotID;
 				nextSlotID  = 0;
@@ -839,9 +839,9 @@ int32 doSynthResult(CCharEntity* PChar)
 
                 int8 signature_esc[31]; //max charname: 15 chars * 2 + 1
 				Sql_EscapeStringLen(SqlHandle,signature_esc,PChar->name.c_str(),strlen(PChar->name.c_str()));
-				 
-				int8* fmtQuery = "UPDATE char_inventory SET signature = '%s' WHERE charid = %u AND location = 0 AND slot = %u;\0";
-				
+
+				int8 fmtQuery[] = "UPDATE char_inventory SET signature = '%s' WHERE charid = %u AND location = 0 AND slot = %u;\0";
+
 				Sql_Query(SqlHandle,fmtQuery,signature_esc,PChar->id, invSlotID);
 			}
 			PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_INVENTORY, invSlotID));
@@ -872,8 +872,8 @@ int32 doSynthResult(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-int32 sendSynthDone(CCharEntity* PChar) 
-{	
+int32 sendSynthDone(CCharEntity* PChar)
+{
 	doSynthResult(PChar);
 
 	PChar->animation = ANIMATION_NONE;

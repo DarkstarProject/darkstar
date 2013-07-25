@@ -236,7 +236,7 @@ bool CRecastContainer::HasRecast(RECASTTYPE type, uint16 id)
 
 void CRecastContainer::Check(uint32 tick)
 {
-	DSP_DEBUG_BREAK_IF(tick == NULL);
+	DSP_DEBUG_BREAK_IF(tick == 0);
 
     for (uint8 type = 0; type < MAX_RECASTTPE_SIZE; ++type)
     {

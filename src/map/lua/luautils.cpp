@@ -2663,14 +2663,15 @@ int32 OnAbilityCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CAbility* PAbilit
     lua_pushnil(LuaHandle);
     lua_setglobal(LuaHandle, "OnAbilityCheck");
 
-    char* filePath = "scripts/globals/abilities/%s.lua";
+    char filePath[40] = "scripts/globals/abilities/%s.lua";
 
     if(PAbility->isAvatarAbility())
     {
-        filePath = "scripts/globals/abilities/pets/%s.lua";
+        memcpy(filePath,"scripts/globals/abilities/pets/%s.lua",38);
     }
 
 	snprintf(File, sizeof(File), filePath, PAbility->getName());
+
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
