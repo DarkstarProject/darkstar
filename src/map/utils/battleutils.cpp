@@ -534,10 +534,10 @@ uint16 CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, 
 bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint16 damage)
 {
     uint16 spikes = PDefender->getMod(MOD_SPIKES);
-    Action->submessageID = 44;
+    Action->spikesMessage = 44;
     if(spikes)
     {
-        Action->subparam = CalculateSpikeDamage(PAttacker, PDefender, spikes, damage);
+        Action->spikesParam = CalculateSpikeDamage(PAttacker, PDefender, spikes, damage);
 
         // handle level diff
         int lvlDiff = dsp_cap((PDefender->GetMLevel() - PAttacker->GetMLevel()), -5, 5)*2;
@@ -545,18 +545,18 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
         switch(spikes){
 
             case SPIKE_BLAZE:
-            Action->subeffect = SUBEFFECT_BLAZE_SPIKES;
-            PAttacker->addHP(-Action->subparam);
+            Action->spikesEffect = SUBEFFECT_BLAZE_SPIKES;
+            PAttacker->addHP(-Action->spikesParam);
             break;
 
             case SPIKE_ICE:
-            Action->subeffect = SUBEFFECT_ICE_SPIKES;
-            PAttacker->addHP(-Action->subparam);
+            Action->spikesEffect = SUBEFFECT_ICE_SPIKES;
+            PAttacker->addHP(-Action->spikesParam);
             break;
 
             case SPIKE_SHOCK:
-            Action->subeffect = SUBEFFECT_SHOCK_SPIKES;
-            PAttacker->addHP(-Action->subparam);
+            Action->spikesEffect = SUBEFFECT_SHOCK_SPIKES;
+            PAttacker->addHP(-Action->spikesParam);
             break;
 
             case SPIKE_DREAD:
@@ -564,23 +564,23 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
                     // is undead no effect
                     return false;
                 } else {
-                    Action->submessageID = 132;
+                    Action->addEffectMessage = 132;
 
-                    PAttacker->addHP(-Action->subparam);
-                    PDefender->addHP(Action->subparam);
+                    PAttacker->addHP(-Action->spikesParam);
+                    PDefender->addHP(Action->spikesParam);
 
                     if(PDefender->objtype == TYPE_PC){
                         charutils::UpdateHealth((CCharEntity*)PDefender);
                     }
 
-                    Action->subeffect = SUBEFFECT_DREAD_SPIKES;
+                    Action->spikesEffect = SUBEFFECT_DREAD_SPIKES;
                 }
             break;
 
             case SPIKE_REPRISAL:
                 if(Action->reaction == REACTION_BLOCK){
-                    Action->subeffect = SUBEFFECT_REPRISAL;
-                    PAttacker->addHP(-Action->subparam);
+                    Action->spikesEffect = SUBEFFECT_REPRISAL;
+                    PAttacker->addHP(-Action->spikesParam);
                 } else {
                     // only works on shield blocks
                     return false;
@@ -592,13 +592,12 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
             charutils::UpdateHealth((CCharEntity*)PAttacker);
         }
 
-        Action->flag = 2;
         return true;
     } else if(PDefender->objtype == TYPE_PC){
         CCharEntity* PCharDef = (CCharEntity*)PDefender;
         bool activate = false;
         uint8 chance;
-        SUBEFFECT spikesEffect = (SUBEFFECT)0;
+        SUBEFFECT spikesEffect = SUBEFFECT_NONE;
         uint8 damage;
 
 
@@ -868,16 +867,14 @@ bool HandleSpikesEquip(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAct
 
     if(rand()%100 <= chance+lvlDiff){
         // spikes landed
-        Action->subeffect = spikesType;
-        Action->flag = 2;
 
         if(spikesType == SUBEFFECT_CURSE_SPIKES){
-            Action->submessageID = 0; // log says nothing?
-            Action->subparam = EFFECT_CURSE;
+            Action->spikesMessage = 0; // log says nothing?
+            Action->spikesParam = EFFECT_CURSE;
         } else {
             uint8 ratio = (float)damage/4;
-            Action->subparam = damage - rand()%ratio + rand()%ratio;
-            PAttacker->addHP(-Action->subparam);
+            Action->spikesParam = damage - rand()%ratio + rand()%ratio;
+            PAttacker->addHP(-Action->spikesParam);
         }
 
         return true;
@@ -892,7 +889,7 @@ void HandleSpikesStatusEffect(CBattleEntity* PAttacker, apAction_t* Action)
     if( Action->ActionTarget ){
         lvlDiff = dsp_cap((Action->ActionTarget->GetMLevel() - PAttacker->GetMLevel()), -5, 5)*2;
     }
-    switch(Action->subeffect)
+    switch(Action->spikesEffect)
 	{
         case SUBEFFECT_CURSE_SPIKES:
             if(PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_CURSE) == false){
@@ -933,66 +930,76 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 		switch(PAttacker->getMod(MOD_ENSPELL))
 		{
 			case ENSPELL_I_FIRE:
-				Action->subeffect = SUBEFFECT_FIRE_DAMAGE;
-				Action->submessageID = 163;
-				Action->flag = 3;
-				Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,1,FIRE);
-				PDefender->addHP(-Action->subparam);
+
+		        Action->additionalEffect = SUBEFFECT_FIRE_DAMAGE;
+		        Action->addEffectMessage = 163;
+				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,2,FIRE);
+
+				PDefender->addHP(-Action->addEffectParam);
 				return;
 			case ENSPELL_I_EARTH:
-				Action->subeffect = SUBEFFECT_EARTH_DAMAGE;
-				Action->submessageID = 163;
-				Action->flag = 1;
-				Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,1,EARTH);
-				PDefender->addHP(-Action->subparam);
+
+		        Action->additionalEffect = SUBEFFECT_EARTH_DAMAGE;
+		        Action->addEffectMessage = 163;
+				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,2,EARTH);
+
+				PDefender->addHP(-Action->addEffectParam);
 				return;
 			case ENSPELL_I_WATER:
-				Action->subeffect = SUBEFFECT_WATER_DAMAGE;
-				Action->submessageID = 163;
-				Action->flag = 1;
-				Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,1,WATER);
-				PDefender->addHP(-Action->subparam);
+
+		        Action->additionalEffect = SUBEFFECT_WATER_DAMAGE;
+		        Action->addEffectMessage = 163;
+				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,2,WATER);
+
+				PDefender->addHP(-Action->addEffectParam);
 				return;
 			case ENSPELL_I_WIND:
-				Action->subeffect = SUBEFFECT_WIND_DAMAGE;
-				Action->submessageID = 163;
-				Action->flag = 3;
-				Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,1,WIND);
-				PDefender->addHP(-Action->subparam);
+
+		        Action->additionalEffect = SUBEFFECT_WIND_DAMAGE;
+		        Action->addEffectMessage = 163;
+				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,2,WIND);
+
+				PDefender->addHP(-Action->addEffectParam);
 				return;
 			case ENSPELL_I_ICE:
-				Action->subeffect = SUBEFFECT_ICE_DAMAGE;
-				Action->submessageID = 163;
-				Action->flag = 1;
-				Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,1,ICE);
-				PDefender->addHP(-Action->subparam);
+
+		        Action->additionalEffect = SUBEFFECT_ICE_DAMAGE;
+		        Action->addEffectMessage = 163;
+				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,2,ICE);
+
+				PDefender->addHP(-Action->addEffectParam);
 				return;
 			case ENSPELL_I_THUNDER:
-				Action->subeffect = SUBEFFECT_LIGHTNING_DAMAGE;
-				Action->submessageID = 163;
-				Action->flag = 3;
-				Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,1,THUNDER);
-				PDefender->addHP(-Action->subparam);
+
+		        Action->additionalEffect = SUBEFFECT_LIGHTNING_DAMAGE;
+		        Action->addEffectMessage = 163;
+				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,2,THUNDER);
+
+				PDefender->addHP(-Action->addEffectParam);
 				return;
 			case ENSPELL_I_LIGHT:
-				Action->subeffect = SUBEFFECT_LIGHT_DAMAGE;
-				Action->submessageID = 163;
-				Action->flag = 3;
-				Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,1,LIGHT);
-				PDefender->addHP(-Action->subparam);
+
+		        Action->additionalEffect = SUBEFFECT_LIGHT_DAMAGE;
+		        Action->addEffectMessage = 163;
+				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,2,LIGHT);
+
+				PDefender->addHP(-Action->addEffectParam);
 				return;
 			case ENSPELL_I_DARK:
-				Action->subeffect = SUBEFFECT_DARKNESS_DAMAGE;
-				Action->submessageID = 163;
-				Action->flag = 1;
-				Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,1,DARK);
-				PDefender->addHP(-Action->subparam);
+
+		        Action->additionalEffect = SUBEFFECT_DARKNESS_DAMAGE;
+		        Action->addEffectMessage = 163;
+				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,2,DARK);
+
+				PDefender->addHP(-Action->addEffectParam);
 				return;
 			case ENSPELL_BLOOD_WEAPON:
-				Action->subeffect = SUBEFFECT_BLOOD_WEAPON;
-				Action->submessageID = 167;
-				Action->flag = 1;
-				Action->subparam = PAttacker->addHP(Action->param);
+
+                Action->additionalEffect = SUBEFFECT_HP_DRAIN;
+		        Action->addEffectMessage = 163;
+
+				Action->addEffectParam= PAttacker->addHP(Action->param);
+
 				if(PAttacker->objtype == TYPE_PC){
 					charutils::UpdateHealth((CCharEntity*)PAttacker);
 				}
@@ -1001,51 +1008,57 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 			// No DA or multihit works for enspell II - Retail behaviour
 			case ENSPELL_II_FIRE:
 				if(hitNumber>0){break;}
-				Action->subeffect = SUBEFFECT_FIRE_DAMAGE;
-				Action->submessageID = 163;
-				Action->flag = 3;
-				Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,2,FIRE);
-				PDefender->addHP(-Action->subparam);
+
+		        Action->additionalEffect = SUBEFFECT_FIRE_DAMAGE;
+		        Action->addEffectMessage = 163;
+				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,2,FIRE);
+
+				PDefender->addHP(-Action->addEffectParam);
 				return;
 			case ENSPELL_II_EARTH:
 				if(hitNumber>0){break;}
-				Action->subeffect = SUBEFFECT_EARTH_DAMAGE;
-				Action->submessageID = 163;
-				Action->flag = 1;
-				Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,2,EARTH);
-				PDefender->addHP(-Action->subparam);
+
+		        Action->additionalEffect = SUBEFFECT_EARTH_DAMAGE;
+		        Action->addEffectMessage = 163;
+				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,2,EARTH);
+
+				PDefender->addHP(-Action->addEffectParam);
 				return;
 			case ENSPELL_II_WATER:
 				if(hitNumber>0){break;}
-				Action->subeffect = SUBEFFECT_WATER_DAMAGE;
-				Action->submessageID = 163;
-				Action->flag = 1;
-				Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,2,WATER);
-				PDefender->addHP(-Action->subparam);
+
+		        Action->additionalEffect = SUBEFFECT_WATER_DAMAGE;
+		        Action->addEffectMessage = 163;
+				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,2,WATER);
+
+				PDefender->addHP(-Action->addEffectParam);
 				return;
 			case ENSPELL_II_WIND:
 				if(hitNumber>0){break;}
-				Action->subeffect = SUBEFFECT_WIND_DAMAGE;
-				Action->submessageID = 163;
-				Action->flag = 3;
-				Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,2,WIND);
-				PDefender->addHP(-Action->subparam);
+
+		        Action->additionalEffect = SUBEFFECT_WIND_DAMAGE;
+		        Action->addEffectMessage = 163;
+				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,2,WIND);
+
+				PDefender->addHP(-Action->addEffectParam);
 				return;
 			case ENSPELL_II_ICE:
 				if(hitNumber>0){break;}
-				Action->subeffect = SUBEFFECT_ICE_DAMAGE;
-				Action->submessageID = 163;
-				Action->flag = 1;
-				Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,2,ICE);
-				PDefender->addHP(-Action->subparam);
+
+		        Action->additionalEffect = SUBEFFECT_ICE_DAMAGE;
+		        Action->addEffectMessage = 163;
+				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,2,ICE);
+
+				PDefender->addHP(-Action->addEffectParam);
 				return;
 			case ENSPELL_II_THUNDER:
 				if(hitNumber>0){break;}
-				Action->subeffect = SUBEFFECT_LIGHTNING_DAMAGE;
-				Action->submessageID = 163;
-				Action->flag = 3;
-				Action->subparam = CalculateEnspellDamage(PAttacker,PDefender,2,THUNDER);
-				PDefender->addHP(-Action->subparam);
+
+		        Action->additionalEffect = SUBEFFECT_LIGHTNING_DAMAGE;
+		        Action->addEffectMessage = 163;
+				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,2,THUNDER);
+
+				PDefender->addHP(-Action->addEffectParam);
 				return;
 			case ENSPELL_DRAIN_SAMBA:
 				if (hitNumber <= 2 &&
@@ -1107,10 +1120,10 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
             Samba = 0;
         }
 
-		Action->subeffect = SUBEFFECT_HP_DRAIN;
-		Action->submessageID = 161;
-		Action->flag = 3;
-		Action->subparam = Samba;
+		Action->additionalEffect = SUBEFFECT_HP_DRAIN;
+		Action->addEffectMessage = 161;
+		Action->addEffectParam = Samba;
+
 		PAttacker->addHP(Samba);	// does not do any additional drain to targets HP, only a portion of it
         if(PAttacker->objtype == TYPE_PC){
     		charutils::UpdateHealth(PAttacker);
@@ -1124,10 +1137,10 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 
 		if (Samba >= finaldamage / 4) { Samba = finaldamage / 4; }
 
-		Action->subeffect = SUBEFFECT_HP_DRAIN;
-		Action->submessageID = 162;
-		Action->flag = 3;
-		Action->subparam = Samba;
+		Action->additionalEffect = SUBEFFECT_HP_DRAIN;
+		Action->addEffectMessage = 162;
+		Action->addEffectParam = Samba;
+
 		PAttacker->addMP(Samba);
         if(PAttacker->objtype == TYPE_PC){
     		charutils::UpdateHealth(PAttacker);
@@ -1175,11 +1188,10 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 				//30 % chance to drain, will heal 30% of damage done
 				if (rand()%100 >= 30 || PWeapon==NULL) return;
 
-				Action->subeffect = SUBEFFECT_HP_DRAIN;
-				Action->submessageID = 161;
-				Action->flag = 3;
-				Action->subparam  = (float)(Action->param * 0.3f);
-				PAttacker->addHP(Action->subparam);
+		        Action->additionalEffect = SUBEFFECT_HP_DRAIN;
+		        Action->addEffectMessage = 161;
+				Action->addEffectParam = (float)(Action->param * 0.3f);
+
 
                 if(PAttacker->objtype == TYPE_PC){
     				charutils::UpdateHealth(PAttacker);
@@ -1234,10 +1246,10 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 
         if(PDefender->StatusEffectContainer->AddStatusEffect(
                 new CStatusEffect(EFFECT_SILENCE,EFFECT_SILENCE,1,0,60))){
-            Action->subeffect = SUBEFFECT_SILENCE;
-            Action->subparam  = EFFECT_SILENCE;
-            Action->submessageID = 160;
-            Action->flag = 3;
+
+		    Action->additionalEffect = SUBEFFECT_SILENCE;
+		    Action->addEffectMessage = 160;
+			Action->addEffectParam  = EFFECT_SILENCE;
         }
     }
     break;
@@ -1248,10 +1260,10 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 
         if(PDefender->StatusEffectContainer->AddStatusEffect(
                 new CStatusEffect(EFFECT_ATTACK_DOWN,EFFECT_ATTACK_DOWN,12,0,60))){
-            Action->subeffect = SUBEFFECT_DEFENSE_DOWN;
-            Action->subparam  = EFFECT_ATTACK_DOWN;
-            Action->submessageID = 160;
-            Action->flag = 1;
+
+		    Action->additionalEffect = SUBEFFECT_DEFENSE_DOWN;
+		    Action->addEffectMessage = 160;
+			Action->addEffectParam  = EFFECT_ATTACK_DOWN;
         }
 
     }
@@ -1262,10 +1274,10 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 
         if(PDefender->StatusEffectContainer->AddStatusEffect(
             new CStatusEffect(EFFECT_STUN,EFFECT_STUN,1,0,4))){
-            Action->subeffect = SUBEFFECT_STUN;
-            Action->subparam  = EFFECT_STUN;
-            Action->submessageID = 160;
-            Action->flag = 3;
+
+		    Action->additionalEffect = SUBEFFECT_STUN;
+		    Action->addEffectMessage = 160;
+			Action->addEffectParam  = EFFECT_STUN;
         }
     }
     break;
@@ -1282,10 +1294,10 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 
             if(PDefender->StatusEffectContainer->AddStatusEffect(
                 new CStatusEffect(EFFECT_PARALYSIS,EFFECT_PARALYSIS,power,0,30))){
-                Action->subeffect = SUBEFFECT_PARALYSIS;
-                Action->subparam  = EFFECT_PARALYSIS;
-                Action->submessageID = 160;
-                Action->flag = 1;
+
+		        Action->additionalEffect = SUBEFFECT_PARALYSIS;
+		        Action->addEffectMessage = 160;
+			    Action->addEffectParam  = EFFECT_PARALYSIS;
             }
     }
     break;
@@ -1294,9 +1306,10 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 	//there isn't a formula, but INT affects damage, so this is guesstimated. It seems to be level
 	//invarient since its used on harder monsters for damage occasionally. Assuming the modifier
 	//is simply AGI with a degree of randomisation
-			Action->subeffect = SUBEFFECT_WIND_DAMAGE;
-			Action->submessageID = 163;
-			Action->flag = 3;
+
+		    Action->additionalEffect = SUBEFFECT_WIND_DAMAGE;
+		    Action->addEffectMessage = 163;
+
 			//calculate damage
 			uint8 damage = (PAttacker->AGI() - PDefender->AGI())/2;
 			damage = dsp_cap(damage,0,50);
@@ -1304,7 +1317,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			damage += rand()%8; //10~67 randomised
             damage += (float)damage * ((float)PDefender->getMod(MOD_WINDRES)/-100);
 			//set damage TODO: handle resi st/staff/day
-			Action->subparam  = damage;
+			Action->addEffectParam = damage;
 			PDefender->addHP(-damage);
 		}
 		break;
@@ -1313,9 +1326,10 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 	//there isn't a formula, but VIT affects damage, so this is guesstimated. It seems to be level
 	//invarient since its used on harder monsters for damage occasionally. Assuming the modifier
 	//is simply VIT with a degree of randomisation
-			Action->subeffect = SUBEFFECT_EARTH_DAMAGE;
-			Action->submessageID = 163;
-			Action->flag = 1;
+
+		    Action->additionalEffect = SUBEFFECT_EARTH_DAMAGE;
+		    Action->addEffectMessage = 163;
+
 			//calculate damage
 			uint8 damage = (PAttacker->VIT() - PDefender->VIT())/2;
 			damage = dsp_cap(damage,0,50);
@@ -1324,7 +1338,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			//set damage TODO: handle resist/staff/day
 
             damage += (float)damage * ((float)PDefender->getMod(MOD_EARTHRES)/-100);
-			Action->subparam  = damage;
+			Action->addEffectParam  = damage;
 			PDefender->addHP(-damage);
 		}
 		break;
@@ -1333,9 +1347,10 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 	//there isn't a formula, but INT affects damage, so this is guesstimated. It seems to be level
 	//invarient since its used on harder monsters for damage occasionally. Assuming the modifier
 	//is simply MND with a degree of randomisation
-			Action->subeffect = SUBEFFECT_WATER_DAMAGE;
-			Action->submessageID = 163;
-			Action->flag = 1;
+
+		    Action->additionalEffect = SUBEFFECT_WATER_DAMAGE;
+		    Action->addEffectMessage = 163;
+
 			//calculate damage
 			uint8 damage = (PAttacker->MND() - PDefender->MND())/2;
 			damage = dsp_cap(damage,0,50);
@@ -1343,30 +1358,31 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			damage += rand()%8; //10~67 randomised
 			//set damage TODO: handle resist/staff/day
             damage += (float)damage * ((float)PDefender->getMod(MOD_WATERRES)/-100);
-			Action->subparam  = damage;
+			Action->addEffectParam  = damage;
 			PDefender->addHP(-damage);
 		}
 		break;
 	case 18158:{//Sleep Arrow
-			if(!PDefender->isDead() && PDefender->hasImmunity(1) == false){
+		    if(!PDefender->isDead() && PDefender->hasImmunity(1) == false){
 
-            int duration = 25 - (PDefender->GetMLevel() - PAttacker->GetMLevel())*5 - ((float)PDefender->getMod(MOD_LIGHTRES)/5);
+                int duration = 25 - (PDefender->GetMLevel() - PAttacker->GetMLevel())*5 - ((float)PDefender->getMod(MOD_LIGHTRES)/5);
 
-            if(duration <= 1){
-                duration = 1;
-            } else {
-                //randomize sleep duration
-                duration -= rand()%(duration/2);
-            }
+                if(duration <= 1){
+                    duration = 1;
+                } else {
+                    //randomize sleep duration
+                    duration -= rand()%(duration/2);
+                }
 
-			duration = dsp_cap(duration,1,25);
-			if(PDefender->StatusEffectContainer->AddStatusEffect(
-					new CStatusEffect(EFFECT_SLEEP,EFFECT_SLEEP,1,0,duration))){
-                Action->subeffect = SUBEFFECT_SLEEP;
-                Action->subparam  = EFFECT_SLEEP;
-                Action->submessageID = 160;
-                Action->flag = 3;
-            }
+			    duration = dsp_cap(duration,1,25);
+			    if(PDefender->StatusEffectContainer->AddStatusEffect(
+				    new CStatusEffect(EFFECT_SLEEP,EFFECT_SLEEP,1,0,duration))){
+
+		            Action->additionalEffect = SUBEFFECT_SLEEP;
+		            Action->addEffectMessage = 160;
+			        Action->addEffectParam  = EFFECT_SLEEP;
+
+                }
 			}
 		}
 		break;
@@ -1379,10 +1395,10 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 				//4hp/tick for 30secs
 				if(PDefender->StatusEffectContainer->AddStatusEffect(
 					new CStatusEffect(EFFECT_POISON,EFFECT_POISON,4,3,30))){
-                    Action->subeffect = SUBEFFECT_POISON;
-                    Action->subparam  = EFFECT_POISON;
-                    Action->submessageID = 160;
-                    Action->flag = 1;
+
+		            Action->additionalEffect = SUBEFFECT_POISON;
+		            Action->addEffectMessage = 160;
+			        Action->addEffectParam  = EFFECT_POISON;
                 }
 			}
 		}
@@ -1392,9 +1408,10 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 	//there isn't a formula, but MND affects damage, so this is guesstimated. It seems to be level
 	//invarient since its used on harder monsters for damage occasionally. Assuming the modifier
 	//is simply MND with a degree of randomisation
-			Action->subeffect = SUBEFFECT_LIGHT_DAMAGE;
-			Action->submessageID = 163;
-			Action->flag = 3;
+
+		    Action->additionalEffect = SUBEFFECT_LIGHT_DAMAGE;
+		    Action->addEffectMessage = 163;
+
 			//calculate damage
 			uint8 damage = (PAttacker->MND() - PDefender->MND())/2;
 			damage = dsp_cap(damage,0,50);
@@ -1402,7 +1419,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			damage += rand()%8; //10~67 randomised
 			//set damage TODO: handle resist/staff/day
             damage += (float)damage * ((float)PDefender->getMod(MOD_LIGHTRES)/-100);
-			Action->subparam  = damage;
+			Action->addEffectParam  = damage;
 			PDefender->addHP(-damage);
 		}
 		break;
@@ -1413,9 +1430,10 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
            rand()%100 <= PDefender->getMod(MOD_DARKRES)){return;}
 	//INT/2 is a semi-confirmed damage calculation. Also affected by level of target. Resists strongly
 	//and even doesn't proc on mobs strong to dark e.g. bats/skeles.
-			Action->subeffect = SUBEFFECT_HP_DRAIN;
-			Action->submessageID = 161;
-			Action->flag = 3;
+
+		    Action->additionalEffect = SUBEFFECT_HP_DRAIN;
+		    Action->addEffectMessage = 161;
+
 			int damage = (PAttacker->INT() - PDefender->INT())/2;
 			damage += (PAttacker->GetMLevel() - PDefender->GetMLevel());
 			damage = dsp_cap(damage,0,50);
@@ -1424,7 +1442,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 
             damage += (float)damage * ((float)PDefender->getMod(MOD_DARKRES)/-100);
 
-			Action->subparam  = damage;
+			Action->addEffectParam  = damage;
 			PDefender->addHP(-damage);
 			PAttacker->addHP(damage);
 			charutils::UpdateHealth(PAttacker);
@@ -1438,10 +1456,10 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 				//4hp/tick for 30secs
 				if(PDefender->StatusEffectContainer->AddStatusEffect(
 					new CStatusEffect(EFFECT_POISON,EFFECT_POISON,4,3,30))){
-                    Action->subeffect = SUBEFFECT_POISON;
-                    Action->subparam  = EFFECT_POISON;
-                    Action->submessageID = 160;
-                    Action->flag = 1;
+
+		            Action->additionalEffect = SUBEFFECT_POISON;
+		            Action->addEffectMessage = 160;
+			        Action->addEffectParam  = EFFECT_POISON;
                 }
 			}
 		}
@@ -1453,10 +1471,10 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 
                 if(PDefender->StatusEffectContainer->AddStatusEffect(
                     new CStatusEffect(EFFECT_BLINDNESS,EFFECT_BLINDNESS,10,0,30))){
-    				Action->subeffect = SUBEFFECT_BLIND;
-    				Action->subparam  = EFFECT_BLINDNESS;
-    				Action->submessageID = 160;
-    				Action->flag = 1;
+
+		            Action->additionalEffect = SUBEFFECT_BLIND;
+		            Action->addEffectMessage = 160;
+			        Action->addEffectParam  = EFFECT_BLINDNESS;
                 }
 			}
 		}
@@ -1464,25 +1482,24 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 	case 18149:{//Sleep Bolt
 			if(!PDefender->isDead() && PDefender->hasImmunity(1) == false){
 
-			int duration = 25 - (PDefender->GetMLevel() - PAttacker->GetMLevel())*5 - ((float)PDefender->getMod(MOD_LIGHTRES)/5);
+			    int duration = 25 - (PDefender->GetMLevel() - PAttacker->GetMLevel())*5 - ((float)PDefender->getMod(MOD_LIGHTRES)/5);
 
-            if(duration <= 1){
-                duration = 1;
-            } else {
-                //randomize sleep duration
-                duration -= rand()%(duration/2);
-            }
+                if(duration <= 1){
+                    duration = 1;
+                } else {
+                    //randomize sleep duration
+                    duration -= rand()%(duration/2);
+                }
 
-            duration = dsp_cap(duration,1,25);
+                duration = dsp_cap(duration,1,25);
 
-			if(PDefender->StatusEffectContainer->AddStatusEffect(
-					new CStatusEffect(EFFECT_SLEEP,EFFECT_SLEEP,1,0,duration))){
+			    if(PDefender->StatusEffectContainer->AddStatusEffect(
+					    new CStatusEffect(EFFECT_SLEEP,EFFECT_SLEEP,1,0,duration))){
 
-                Action->subeffect = SUBEFFECT_SLEEP;
-                Action->subparam  = EFFECT_SLEEP;
-                Action->submessageID = 160;
-                Action->flag = 3;
-            }
+		            Action->additionalEffect = SUBEFFECT_SLEEP;
+		            Action->addEffectMessage = 160;
+			        Action->addEffectParam  = EFFECT_SLEEP;
+                }
 			}
 		}
 		break;
@@ -1493,10 +1510,10 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 
             if(PDefender->StatusEffectContainer->AddStatusEffect(
                     new CStatusEffect(EFFECT_DEFENSE_DOWN,EFFECT_DEFENSE_DOWN,12,0,60))){
-        		Action->subeffect = SUBEFFECT_DEFENSE_DOWN;
-        		Action->subparam  = EFFECT_DEFENSE_DOWN;
-        		Action->submessageID = 160;
-        		Action->flag = 1;
+
+		            Action->additionalEffect = SUBEFFECT_DEFENSE_DOWN;
+		            Action->addEffectMessage = 160;
+			        Action->addEffectParam  = EFFECT_DEFENSE_DOWN;
             }
 
 		}
@@ -1506,9 +1523,10 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 	//there isn't a formula. It seems to be level
 	//invarient since its used on harder monsters for damage occasionally. Assuming the modifier
 	//is simply DEX with a degree of randomisation
-			Action->subeffect = SUBEFFECT_LIGHTNING_DAMAGE;
-			Action->submessageID = 163;
-			Action->flag = 3;
+
+		    Action->additionalEffect = SUBEFFECT_LIGHTNING_DAMAGE;
+		    Action->addEffectMessage = 163;
+
 			//calculate damage
 			uint8 damage = (PAttacker->DEX() - PDefender->DEX())/2;
 			damage = dsp_cap(damage,0,50);
@@ -1516,7 +1534,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			damage += rand()%8; //10~67 randomised
 			//set damage TODO: handle resist/staff/day
             damage += (float)damage * ((float)PDefender->getMod(MOD_THUNDERRES)/-100);
-			Action->subparam  = damage;
+			Action->addEffectParam  = damage;
 			PDefender->addHP(-damage);
 		}
 		break;
@@ -1525,9 +1543,10 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 	//there isn't a formula, but INT affects damage, so this is guesstimated. It seems to be level
 	//invarient since its used on harder monsters for damage occasionally. Assuming the modifier
 	//is simply INT with a degree of randomisation
-			Action->subeffect = SUBEFFECT_ICE_DAMAGE;
-			Action->submessageID = 163;
-			Action->flag = 1;
+
+		    Action->additionalEffect = SUBEFFECT_ICE_DAMAGE;
+		    Action->addEffectMessage = 163;
+
 			//calculate damage
 			uint8 damage = (PAttacker->INT() - PDefender->INT())/2;
 			damage = dsp_cap(damage,0,50);
@@ -1535,7 +1554,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			damage += rand()%8; //10~67 randomised
 			//set damage TODO: handle resist/staff/day
             damage += (float)damage * ((float)PDefender->getMod(MOD_ICERES)/-100);
-			Action->subparam  = damage;
+			Action->addEffectParam  = damage;
 			PDefender->addHP(-damage);
 		}
 		break;
@@ -1545,9 +1564,10 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 	//there isn't a formula, but INT affects damage, so this is guesstimated. It seems to be level
 	//invarient since its used on harder monsters for damage occasionally. Assuming the modifier
 	//is simply INT with a degree of randomisation
-			Action->subeffect = SUBEFFECT_FIRE_DAMAGE;
-			Action->submessageID = 163;
-			Action->flag = 3;
+
+		    Action->additionalEffect = SUBEFFECT_FIRE_DAMAGE;
+		    Action->addEffectMessage = 163;
+
 			//calculate damage
 			uint8 damage = (PAttacker->INT() - PDefender->INT())/2;
 			damage = dsp_cap(damage,0,50);
@@ -1561,7 +1581,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
                 damage *= 2;
             }
 
-			Action->subparam  = damage;
+			Action->addEffectParam  = damage;
 			PDefender->addHP(-damage);
 		}
 		break;

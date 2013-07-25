@@ -261,66 +261,63 @@ enum SPECEFFECT
 enum SUBEFFECT
 {
     //ATTACK
+    SUBEFFECT_FIRE_DAMAGE		 = 1,	// 110000	 3
+	SUBEFFECT_ICE_DAMAGE		 = 2,	// 1-01000	 5
+	SUBEFFECT_WIND_DAMAGE		 = 3,	// 111000	 7
+	SUBEFFECT_EARTH_DAMAGE		 = 4,	// 1-00100	 9
+	SUBEFFECT_LIGHTNING_DAMAGE	 = 5,	// 110100	11
+	SUBEFFECT_WATER_DAMAGE		 = 6,	// 1-01100	13
+	SUBEFFECT_LIGHT_DAMAGE		 = 7,	// 111100	15
+	SUBEFFECT_DARKNESS_DAMAGE	 = 8,	// 1-00010	17
+	SUBEFFECT_SLEEP			  	 = 9,	// 110010	19
+	SUBEFFECT_POISON			 = 10,	// 1-01010	21
+	SUBEFFECT_PARALYSIS			 = 11,
+	SUBEFFECT_BLIND				 = 12,	// 1-00110	25
+	SUBEFFECT_SILENCE            = 13,
+	SUBEFFECT_PETRIFY			 = 14,
+	SUBEFFECT_PLAGUE    		 = 15,
+	SUBEFFECT_STUN               = 16,
+	SUBEFFECT_CURSE              = 17,
+	SUBEFFECT_DEFENSE_DOWN		 = 18,	// 1-01001	37
+	SUBEFFECT_SHIELD			 = 20,
+	SUBEFFECT_HP_DRAIN			 = 21,	// 1-10101	43
+	SUBEFFECT_TP_DRAIN			 = 22,
+    SUBEFFECT_HASTE              = 23,
 
-	//flag 1
-	SUBEFFECT_ICE_DAMAGE		 = 1,	// 101000	 5
-	SUBEFFECT_EARTH_DAMAGE		 = 2,	// 100100	 9
-	SUBEFFECT_WATER_DAMAGE		 = 3,	// 101100	13
-	SUBEFFECT_DARKNESS_DAMAGE	 = 4,	// 100010	17
-	SUBEFFECT_POISON			 = 5,	// 101010	21
-	SUBEFFECT_BLIND				 = 6,	// 100110	25
-	SUBEFFECT_PETRIFY			 = 7,
-	SUBEFFECT_PARALYSIS			 = 8,
-	SUBEFFECT_DEFENSE_DOWN		 = 9,	// 101001	37
-	SUBEFFECT_SHIELD			 = 10,
-	SUBEFFECT_BLOOD_WEAPON		 = 11,
+    //SPIKES
 
-	//flag 2
-	SUBEFFECT_BLAZE_SPIKES		= 1,	// 011000	 6
-	SUBEFFECT_ICE_SPIKES		= 2,	// 010100	10
-	SUBEFFECT_DREAD_SPIKES		= 3,	// 011100	14
-	SUBEFFECT_CURSE_SPIKES		= 4,	// 010010	18
-	SUBEFFECT_SHOCK_SPIKES		= 5, 	// 011010	22
-	SUBEFFECT_REPRISAL		 	= 6,	// 010110	26
-
-	//flag 3
-	SUBEFFECT_FIRE_DAMAGE		= 0,	// 110000	 3
-	SUBEFFECT_WIND_DAMAGE		= 1,	// 111000	 7
-	SUBEFFECT_LIGHTNING_DAMAGE	= 2,	// 110100	11
-	SUBEFFECT_LIGHT_DAMAGE		= 3,	// 111100	15
-	SUBEFFECT_SLEEP				= 4,	// 110010	19
-	SUBEFFECT_SILENCE = 5, // 5 dark?
-	SUBEFFECT_STUN = 6,
-	SUBEFFECT_CURSE = 7,
-	SUBEFFECT_IMPAIRS_EVASION = 8,
-	// 9 weight? or evasion down?
-	SUBEFFECT_HP_DRAIN			= 10,	// 110101	43
-	SUBEFFECT_TP_DRAIN			= 11,
+	SUBEFFECT_BLAZE_SPIKES		= 1,	// 01-1000	 6
+	SUBEFFECT_ICE_SPIKES		= 2,	// 01-0100	10
+	SUBEFFECT_DREAD_SPIKES		= 3,	// 01-1100	14
+	SUBEFFECT_CURSE_SPIKES		= 4,	// 01-0010	18
+	SUBEFFECT_SHOCK_SPIKES		= 5, 	// 01-1010	22
+	SUBEFFECT_REPRISAL		 	= 6,	// 01-0110	26
+    SUBEFFECT_WIND_SPIKES       = 7,
+    SUBEFFECT_STONE_SPIKES      = 8,
+    SUBEFFECT_COUNTER           = 63,
 
 	//SKILLCHAINS
 
-	//flag 1
-	SUBEFFECT_DARKNESS          = 1,
-	SUBEFFECT_FRAGMENTATION     = 2,
-	SUBEFFECT_FUSION            = 3,
-	SUBEFFECT_LIQUEFACATION     = 4,
-	SUBEFFECT_REVERBERATION     = 5,
-	SUBEFFECT_SCISSION			= 6,
-	SUBEFFECT_IMPACTION			= 7,
+	SUBEFFECT_LIGHT				= 1,
+	SUBEFFECT_DARKNESS          = 2,
+	SUBEFFECT_GRAVITATION		= 3,
+	SUBEFFECT_FRAGMENTATION     = 4,
+	SUBEFFECT_DISTORTION		= 5,
+	SUBEFFECT_FUSION            = 6,
+	SUBEFFECT_COMPRESSION		= 7,
+	SUBEFFECT_LIQUEFACATION     = 8,
+	SUBEFFECT_INDURATION		= 9,
+	SUBEFFECT_REVERBERATION     = 10,
+	SUBEFFECT_TRANSFIXION		= 11,
+	SUBEFFECT_SCISSION			= 12,
+	SUBEFFECT_DETONATION		= 13,
+	SUBEFFECT_IMPACTION			= 14,
 
-	//flag 3
-	SUBEFFECT_LIGHT				= 10,   // 0
-	SUBEFFECT_GRAVITATION		= 11,   // 1
-	SUBEFFECT_DISTORTION		= 12,   // 2
-	SUBEFFECT_COMPRESSION		= 13,   // 3
-	SUBEFFECT_INDURATION		= 14,   // 4
-	SUBEFFECT_TRANSFIXION		= 15,   // 5
-	SUBEFFECT_DETONATION		= 16,   // 6
-
-    SUBEFFECT_NONE				= 255,
+    SUBEFFECT_NONE				= 0,
 
     //UNKNOWN
 
+    SUBEFFECT_IMPAIRS_EVASION,
 	SUBEFFECT_MP_DRAIN,
 	SUBEFFECT_BIND,
 	SUBEFFECT_WEIGHT,
@@ -381,17 +378,35 @@ enum IMMUNITY : uint16
 
 struct apAction_t
 {
-	CBattleEntity*	ActionTarget;		// 32 bits
-	REACTION		reaction;			//  5 bits
-	uint16			animation;			// 10 bits
-	SPECEFFECT		speceffect;			//  9 bits
-	uint16			param;				// 16 bits
-	uint16			messageID;			// 10 bits
-  //...
-	uint8			flag;				//  2 bits
-	SUBEFFECT		subeffect;			//	9 bits
-	uint16			subparam;			// 14 bits
-	uint16			submessageID;		// 10 bits
+	CBattleEntity*    ActionTarget;		    // 32 bits
+	REACTION		  reaction;			    //  5 bits
+	uint16			  animation;			// 10 bits
+	SPECEFFECT		  speceffect;			//  9 bits
+	uint16			  param;				// 16 bits
+	uint16			  messageID;			// 10 bits
+    SUBEFFECT         additionalEffect;     // 10 bits
+    uint16            addEffectParam;       // 17 bits
+    uint16            addEffectMessage;     // 10 bits
+    SUBEFFECT         spikesEffect;         // 10 bits
+    uint16            spikesParam;          // 14 bits
+    uint16            spikesMessage;        // 10 bits
+    
+    apAction_t()
+    {
+        ActionTarget = NULL;
+        reaction = REACTION_NONE;
+        animation = 0;
+        speceffect = SPECEFFECT_NONE;
+        param = 0;
+        messageID = 0;
+        additionalEffect = SUBEFFECT_NONE;
+        addEffectParam = 0;
+        addEffectMessage = 0;
+        spikesEffect = SUBEFFECT_NONE;
+        spikesParam = 0;
+        spikesMessage = 0;
+    }
+
 };
 
 /************************************************************************

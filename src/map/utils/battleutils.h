@@ -68,11 +68,11 @@ enum SPIKES
 {
     SPIKE_NONE            = 0,
     SPIKE_BLAZE           = 1,
-    SPIKE_ICE           = 2,
+    SPIKE_ICE             = 2,
     SPIKE_DREAD           = 3,
     SPIKE_CURSE           = 4,
-    SPIKE_SHOCK             = 5,
-    SPIKE_REPRISAL             = 6
+    SPIKE_SHOCK           = 5,
+    SPIKE_REPRISAL        = 6
 };
 
 namespace battleutils
@@ -133,7 +133,7 @@ namespace battleutils
     uint16              CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 spikesType);
     bool                HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action, uint16 damage);
     bool                HandleSpikesEquip(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint8 damage, SUBEFFECT spikesType, uint8 chance);
-	void				HandleSpikesStatusEffect(CBattleEntity* PAttacker, apAction_t* Action);
+    void                HandleSpikesStatusEffect(CBattleEntity* PAttacker, apAction_t* Action);
 	void				HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action, uint8 hitNumber, uint16 delay, uint16 damage);
 	uint8				GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	uint16				CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 Tier, uint8 element);

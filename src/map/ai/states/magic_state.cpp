@@ -38,7 +38,6 @@ STATESTATUS CMagicState::CastSpell(CSpell* PSpell, CBattleEntity* PTarget, uint8
 	action.animation  = 0;
 	action.param	  = m_PSpell->getID();
 	action.messageID  = 327; // starts casting
-	action.flag		  = 0;
 
     m_PEntity->m_ActionList.clear();
 	m_PEntity->m_ActionList.push_back(action);
@@ -165,7 +164,6 @@ void CMagicState::InterruptSpell()
 	action.animation  = m_PSpell->getAnimationID();
 	action.param	  = 0;
 	action.messageID  = 0;
-	action.flag		  = 0;
 
     m_PEntity->m_ActionList.clear();
 	m_PEntity->m_ActionList.push_back(action);
@@ -224,7 +222,6 @@ void CMagicState::FinishSpell()
 	action.animation  = m_PSpell->getAnimationID();
 	action.param      = 0;
 	action.messageID  = 0;
-	action.flag		  = 0;
 
 	uint16 msg = 0;
     int16 ce = 0;

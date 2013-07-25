@@ -393,32 +393,31 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 		bitOffset = packBitsBE(data, Action.param, bitOffset, 17);					// параметр сообщения (урон)
 		bitOffset = packBitsBE(data, Action.messageID,  bitOffset, 10);				// сообщение
 		bitOffset += 31;
-		bitOffset = packBitsBE(data, Action.flag,		bitOffset,  2);				// флаг, ??? наличие дополнительного эффекта ???
 
-		if (Action.flag != 0)
-		{
-			// all subeffect 9 bit
-			uint8 subeffectLength = 9;
-			uint8 subparamLength = 16;
-			uint8 subOffset = 1;
 
-			// flag 2 subeffect 10 bit
-			// only change for spikes
-			if(Action.flag == 2 && Action.subeffect >= 1 && Action.subeffect <= 6){
-				subeffectLength = 10;
-				subparamLength = 13;
-				subOffset = 0;
-				battleutils::HandleSpikesStatusEffect(PEntity, &Action);
-			}
-
-			bitOffset = packBitsBE(data, Action.subeffect,		bitOffset, subeffectLength);
-			// анимация эффекта, точный размер не известен (эффектов не так уж и много, около десяти)
-			bitOffset = packBitsBE(data, Action.subparam,		bitOffset, subparamLength);		// параметр сообщения (урон)
-			bitOffset += 1;
-			bitOffset = packBitsBE(data, Action.submessageID,	bitOffset, 10);		// сообщение
-			bitOffset += subOffset;	// extra off set needed for multiple hits
-
-		}
+        if (Action.addEffectParam != SUBEFFECT_NONE)
+        {
+            bitOffset = packBitsBE(data, 1, bitOffset, 1);
+            bitOffset = packBitsBE(data, Action.additionalEffect, bitOffset, 10);
+            bitOffset = packBitsBE(data, Action.addEffectParam, bitOffset, 17);
+            bitOffset = packBitsBE(data, Action.addEffectMessage, bitOffset, 10);
+        }
+        else
+        {
+            bitOffset += 1;
+        }
+        if (Action.spikesEffect != SUBEFFECT_NONE)
+        {
+            bitOffset = packBitsBE(data, 1, bitOffset, 1);
+            bitOffset = packBitsBE(data, Action.spikesEffect, bitOffset, 10);
+            bitOffset = packBitsBE(data, Action.spikesParam, bitOffset, 14);
+            bitOffset = packBitsBE(data, Action.spikesMessage, bitOffset, 10);
+            battleutils::HandleSpikesStatusEffect(PEntity, &Action);
+        }
+        else
+        {
+            bitOffset += 1;
+        }
 		ActionNum++;
 	}
     packBitsBE(data, ActionNum, 150, 4);

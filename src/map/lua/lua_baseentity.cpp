@@ -6031,7 +6031,6 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L) {
 	Action.animation  = anim;
 	Action.param      = 10;
 	Action.messageID  = 0;
-	Action.flag		  = 0;
 
 	// If you use ACTION_MOBABILITY_FINISH, the first param = anim, the second param = skill id.
 	if (actiontype == ACTION_MOBABILITY_FINISH) {
@@ -6053,7 +6052,6 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L) {
 		CMobSkill* skill = new CMobSkill(anim);
 		skill->setAnimationID(anim);
 		Action.animation = anim;
-		Action.subparam = (uint16)lua_tointeger(L,3) + 256;
 		skill->setMsg(185); // takes damage default msg
 		Action.messageID = 185;
 		PMob->PBattleAI->SetCurrentMobSkill(skill);
@@ -6614,7 +6612,6 @@ inline int32 CLuaBaseEntity::useMobAbility(lua_State* L)
 					Action.animation  = 0;
 					Action.param	  = mobskill->getMsgForAction();//m_PMobSkill->getAnimationID();
 					Action.messageID  = 43; //readies message
-					Action.flag		  = 0;
 
 					((CMobEntity*)m_PBaseEntity)->m_ActionList.push_back(Action);
 					((CMobEntity*)m_PBaseEntity)->loc.zone->PushPacket(((CMobEntity*)m_PBaseEntity), CHAR_INRANGE, new CActionPacket((CMobEntity*)m_PBaseEntity));

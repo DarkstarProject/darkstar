@@ -495,7 +495,6 @@ void CAICharNormal::ActionItemStart()
 	Action.animation  = 0;
 	Action.param	  = m_PItemUsable->getID();
 	Action.messageID  = 28;
-	Action.flag		  = 0;
 
 	m_PChar->m_ActionList.push_back(Action);
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
@@ -587,7 +586,6 @@ void CAICharNormal::ActionItemUsing()
 		Action.animation  = m_PItemUsable->getAnimationID();
 		Action.param	  = 0;
 		Action.messageID  = 0;
-		Action.flag		  = 0;
 
 		m_PChar->m_ActionList.push_back(Action);
 
@@ -671,7 +669,6 @@ void CAICharNormal::ActionItemInterrupt()
 	Action.animation  = 54;
 	Action.param	  = 0;
 	Action.messageID  = 0;
-	Action.flag		  = 0;
 
 	m_PChar->m_ActionList.push_back(Action);
 
@@ -847,7 +844,6 @@ void CAICharNormal::ActionRangedStart()
 	Action.animation  = ANIMATION_RANGED;
 	Action.param	  = 0;
 	Action.messageID  = 0;
-	Action.flag		  = 0;
 
 	m_PChar->m_ActionList.push_back(Action);
 
@@ -909,7 +905,6 @@ void CAICharNormal::ActionRangedFinish()
 		Action.speceffect = SPECEFFECT_HIT;		//0x60 (SPECEFFECT_HIT + SPECEFFECT_RECOIL)
 		Action.animation  = 0;
 		Action.messageID  = 352;
-		Action.flag = 0;
 
         CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
 
@@ -1161,7 +1156,6 @@ void CAICharNormal::ActionRangedInterrupt()
 	Action.animation  = ANIMATION_RANGED;
 	Action.param	  = 0;
 	Action.messageID  = 0;
-	Action.flag		  = 0;
 
 	m_PChar->m_ActionList.push_back(Action);
 
@@ -1319,7 +1313,6 @@ void CAICharNormal::ActionMagicStart()
 	Action.animation  = 0;
 	Action.param	  = m_PSpell->getID();
 	Action.messageID  = 327;
-	Action.flag		  = 0;
 
 	m_PChar->m_ActionList.push_back(Action);
 
@@ -1555,7 +1548,6 @@ void CAICharNormal::ActionMagicFinish()
     Action.animation  = m_PSpell->getAnimationID();
     Action.param      = 0;
     Action.messageID  = 0;
-    Action.flag       = 0;
 
     uint16 msg = 0;
     int16 ce = 0;
@@ -1724,7 +1716,6 @@ void CAICharNormal::ActionMagicInterrupt()
 	Action.animation  = m_PSpell->getAnimationID();
 	Action.param	  = 0;
 	Action.messageID  = 0;
-	Action.flag		  = 0;
 
 	m_PChar->m_ActionList.push_back(Action);
 
@@ -1972,7 +1963,6 @@ void CAICharNormal::ActionJobAbilityFinish()
     		Action.speceffect = (SPECEFFECT)roll;
     		Action.animation  = m_PJobAbility->getAnimationID();
     		Action.param	  = roll;
-    		Action.flag		  = 0;
 
     		if (m_PChar->PParty != NULL)
     		{
@@ -2035,7 +2025,6 @@ void CAICharNormal::ActionJobAbilityFinish()
     		Action.reaction		= REACTION_NONE;
     		Action.speceffect	= (SPECEFFECT)roll;
     		Action.param		= total;
-    		Action.flag			= 0;
 
     		if (total == 12) //bust!
     		{
@@ -2123,7 +2112,6 @@ void CAICharNormal::ActionJobAbilityFinish()
     			Action.reaction   = REACTION_NONE;
     			Action.speceffect = SPECEFFECT_RECOIL;
     			Action.param      = 0;
-    			Action.flag       = 0;
     			Action.messageID  = 0;
 
     			if(m_PJobAbility->getID() == ABILITY_SEARING_LIGHT || m_PJobAbility->getID() == ABILITY_AERIAL_BLAST || m_PJobAbility->getID() == ABILITY_EARTHEN_FURY){
@@ -2149,7 +2137,6 @@ void CAICharNormal::ActionJobAbilityFinish()
             Action.speceffect = SPECEFFECT_NONE;
             Action.animation  = m_PJobAbility->getAnimationID();
             Action.messageID  = m_PJobAbility->getMessage();
-            Action.flag       = 0;
 
             m_PTargetFind->reset();
             m_PChar->m_ActionList.clear();
@@ -2189,7 +2176,6 @@ void CAICharNormal::ActionJobAbilityFinish()
     		Action.speceffect = SPECEFFECT_HIT;		//0x60 (SPECEFFECT_HIT + SPECEFFECT_RECOIL)
     		Action.animation  = m_PJobAbility->getAnimationID();;
     		Action.messageID  = MSGBASIC_USES_JA_TAKE_DAMAGE;
-    		Action.flag = 0;
 
     		bool hitOccured = false;	// track if player hit mob at all
     		if (m_PBattleSubTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE,0))
@@ -2287,7 +2273,6 @@ void CAICharNormal::ActionJobAbilityFinish()
     		Action.speceffect = SPECEFFECT_RECOIL;
     		Action.animation  = m_PJobAbility->getAnimationID();
     		Action.param      = 0;
-            Action.flag       = 0;
 
             uint32 value = luautils::OnUseAbility(m_PChar, m_PBattleSubTarget, m_PJobAbility, &Action);
             Action.messageID  = m_PJobAbility->getMessage();
@@ -2833,7 +2818,6 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	Action.speceffect = SPECEFFECT_RECOIL;
 	Action.animation = m_PWeaponSkill->getAnimationId();
 	Action.param = damage;
-	Action.flag = 0;
 
     m_PTargetFind->reset();
     m_PChar->m_ActionList.clear();
@@ -2905,39 +2889,11 @@ void CAICharNormal::ActionWeaponSkillFinish()
         {
 	        uint16 skillChainDamage = battleutils::TakeSkillchainDamage(m_PChar, m_PBattleSubTarget, damage);
 
-	        switch(effect)
-	        {
-		        case SUBEFFECT_DARKNESS:
-		        case SUBEFFECT_FRAGMENTATION:
-		        case SUBEFFECT_FUSION:
-		        case SUBEFFECT_LIQUEFACATION:
-		        case SUBEFFECT_REVERBERATION:
-		        case SUBEFFECT_SCISSION:
-		        case SUBEFFECT_IMPACTION:
-		        {
-			        Action.flag = 1;
-			        Action.subeffect = effect;
-			        Action.subparam = skillChainDamage;
-			        Action.submessageID = 287;
-		        }
-		        break;
 
-		        case SUBEFFECT_LIGHT:
-		        case SUBEFFECT_GRAVITATION:
-		        case SUBEFFECT_DISTORTION:
-		        case SUBEFFECT_COMPRESSION:
-		        case SUBEFFECT_INDURATION:
-		        case SUBEFFECT_TRANSFIXION:
-		        case SUBEFFECT_DETONATION:
-		        {
-			        Action.flag = 3;
-			        Action.subeffect = SUBEFFECT(effect - 10);
-			        Action.subparam = skillChainDamage;
-			        Action.submessageID = 288;
-		        }
-		        break;
-	        }
-	        Action.submessageID += Action.subeffect * 2;
+            Action.addEffectParam = skillChainDamage;
+            Action.addEffectMessage = 287 + effect;
+            Action.additionalEffect = effect;
+
         }
     }
 
@@ -3279,9 +3235,6 @@ void CAICharNormal::ActionAttack()
 						}
 				}
 
-
-				Action.flag	= 0;
-
 				uint8 hitRate = 0;
 				if(i < numattacksRightHand){
 					if (zanshin){
@@ -3338,7 +3291,6 @@ void CAICharNormal::ActionAttack()
 							Action.reaction   = REACTION_HIT;
 							Action.speceffect = SPECEFFECT_CRITICAL_HIT;
 							Action.messageID  = 67;
-							Action.flag = 0;
 							luautils::OnCriticalHit(m_PBattleTarget);
 						}
 						else
@@ -3450,12 +3402,8 @@ void CAICharNormal::ActionAttack()
 
 				if (Action.reaction != REACTION_EVADE && Action.reaction != REACTION_PARRY)
 				{
-
-                    // spikes take priority over enspells
-					if(!battleutils::HandleSpikesDamage(m_PChar, m_PBattleTarget, &Action, damage)){
-                        // no spikes, handle enspell
-                       battleutils::HandleEnspell(m_PChar, m_PBattleTarget, &Action, i, WeaponDelay, damage);
-                   }
+                    battleutils::HandleEnspell(m_PChar, m_PBattleTarget, &Action, i, WeaponDelay, damage);
+					battleutils::HandleSpikesDamage(m_PChar, m_PBattleTarget, &Action, damage);
                 }
                 m_PChar->m_ActionList.push_back(Action);
 
@@ -3529,7 +3477,6 @@ void CAICharNormal::ActionRaiseMenuSelection()
     Action.reaction   = REACTION_NONE;
     Action.speceffect = SPECEFFECT_RAISE;
     Action.messageID  = 0;
-    Action.flag = 0;
 
     m_PChar->m_ActionList.push_back(Action);
     m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));

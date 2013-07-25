@@ -771,7 +771,6 @@ void CAIMobDummy::ActionAbilityStart()
 		Action.animation  = 0;
 		Action.param	  = m_PMobSkill->getMsgForAction();
 		Action.messageID  = 43; //readies message
-		Action.flag		  = 0;
 
 		m_PMob->m_ActionList.push_back(Action);
 		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
@@ -880,9 +879,7 @@ void CAIMobDummy::ActionAbilityFinish()
 	Action.reaction   = REACTION_HIT;
 	Action.speceffect = SPECEFFECT_HIT;
 	Action.animation  = m_PMobSkill->getAnimationID();
-	Action.subparam   = m_PMobSkill->getID() + 256;
 	Action.messageID  = m_PMobSkill->getMsg();
-	Action.flag		  = 0;
 
 
     uint16 msg = 0;
@@ -961,7 +958,6 @@ void CAIMobDummy::ActionAbilityInterrupt()
 		Action.animation  = m_PMobSkill->getID();
 	    Action.param	  = 0;
 		Action.messageID  = 0;
-        Action.flag       = 0;
 
 	m_PMob->m_ActionList.push_back(Action);
 	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
@@ -1296,7 +1292,6 @@ void CAIMobDummy::ActionAttack()
 					Action.animation  = 0;
 					Action.param	  = 0;
 					Action.messageID  = 15;
-					Action.flag		  = 0;
 					if(m_PBattleTarget->isDead()){
 						break;
 					}
@@ -1371,8 +1366,9 @@ void CAIMobDummy::ActionAttack()
 								float DamageRatio = battleutils::GetDamageRatio(m_PBattleTarget, m_PMob,isCritical, 0);
 								damage = (uint16)((m_PBattleTarget->GetMainWeaponDmg() + naturalh2hDMG + battleutils::GetFSTR(m_PBattleTarget, m_PMob,SLOT_MAIN)) * DamageRatio);
 
-								Action.subparam = (damage * 2);
-								Action.flag = 2;
+                                Action.spikesParam = damage;
+                                Action.spikesEffect = SUBEFFECT_COUNTER;
+
 							}
 							else if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_COUNTER))
 							{ //Perfect Counter only counters hits that normal counter misses
@@ -1723,10 +1719,10 @@ void CAIMobDummy::ActionSpecialSkill()
 	Action.speceffect = SPECEFFECT_HIT;
     Action.ActionTarget = m_PBattleSubTarget;
 	Action.animation  = m_PMobSkill->getAnimationID();
-	Action.subparam   = m_PMobSkill->getMsgForAction();
+    //Why is this even here? if flag = 0, it doesn't even do anything.
+	//Action.subparam   = m_PMobSkill->getMsgForAction();
 	Action.param	  = luautils::OnMobWeaponSkill(m_PBattleSubTarget, m_PMob, m_PMobSkill);
 	Action.messageID  = m_PMobSkill->getMsg();
-	Action.flag       = 0;
 
 	// display hit or miss
 	if(m_PMobSkill->hasMissMsg())
