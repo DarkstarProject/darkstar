@@ -3940,6 +3940,12 @@ void SmallPacket0x0E8(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	{
 		case ANIMATION_NONE:
 		{
+			// cannot rest while stunned, slept etc
+			if(PChar->StatusEffectContainer->HasPreventActionEffect())
+			{
+				return;
+			}
+
 			if (PChar->PPet == NULL ||
 			   (PChar->PPet->m_EcoSystem != SYSTEM_AVATAR &&
 				PChar->PPet->m_EcoSystem != SYSTEM_ELEMENTAL))
