@@ -25,9 +25,10 @@
 #define _CAIGENERAL_H
 
 #include "../../common/cbasetypes.h"
+#include "../packets/weather.h"
 #include "helpers/targetfind.h"
 #include "helpers/pathfind.h"
-#include "../packets/weather.h"
+#include "states/magic_state.h"
 
 enum MASTERCOMMAND //master as in pet's master
 {
@@ -90,7 +91,6 @@ class CBattleEntity;
 class CAbility;
 class CWeaponSkill;
 class CMobSkill;
-class CTargetFinder;
 
 class CAIGeneral
 {
@@ -136,7 +136,10 @@ public:
 
     CPathFind*       m_PPathFind; // finds paths
     bool			 m_interruptSpell; // forces interrupt of current spell being cast
-    
+
+    // states
+    CMagicState*     m_PMagicState;
+
 private:
 
     //uint32			m_StartBattle;			// Battle start time
@@ -165,7 +168,7 @@ protected:
 	CAbility*		m_PJobAbility;
 	CMobSkill*		m_PMobSkill;
     CTargetFind*  m_PTargetFind; // finds targets for AoEs
-    
+
 	uint32 m_WaitTime;
 	uint32 m_LastWaitTime;
 

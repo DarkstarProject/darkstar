@@ -71,6 +71,11 @@ protected:
 	void ActionAbilityFinish();
 	bool WyvernIsHealing(); //true if wyvern is healing
 
+	void ActionMagicStart();
+	void ActionMagicCasting();
+	void ActionMagicFinish();
+	void ActionMagicInterrupt();
+
 private:
 
 	void SendTooFarInterruptMessage(CBattleEntity* PTarg);

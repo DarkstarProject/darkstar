@@ -30,7 +30,6 @@
 #include "../zone.h"
 #include "../mobskill.h"
 #include "../utils/petutils.h"
-#include "helpers/targetfind.h"
 
 #include "../lua/luautils.h"
 
@@ -40,6 +39,8 @@
 #include "../packets/pet_sync.h"
 #include "../packets/message_basic.h"
 #include "../entities/mobentity.h"
+
+#include "states/magic_state.h"
 
 #include "../alliance.h"
 #include "ai_pet_dummy.h"
@@ -56,6 +57,8 @@ CAIPetDummy::CAIPetDummy(CPetEntity* PPet)
 	m_queueSic = false;
     m_PTargetFind = new CTargetFind(PPet);
     m_PPathFind = new CPathFind(PPet);
+
+    m_PMagicState = new CMagicState(PPet, m_PTargetFind);
 }
 
 /************************************************************************
@@ -91,6 +94,9 @@ void CAIPetDummy::CheckCurrentAction(uint32 tick)
 		case ACTION_MOBABILITY_USING: ActionAbilityUsing(); break;
 		case ACTION_MOBABILITY_FINISH: ActionAbilityFinish(); break;
 		case ACTION_MOBABILITY_INTERRUPT: ActionAbilityInterrupt(); break;
+		case ACTION_MAGIC_START: ActionMagicStart(); break;
+		case ACTION_MAGIC_CASTING: ActionMagicCasting(); break;
+		case ACTION_MAGIC_FINISH: ActionMagicFinish(); break;
 
 		default : DSP_DEBUG_BREAK_IF(true);
 	}
@@ -400,7 +406,7 @@ void CAIPetDummy::ActionAbilityUsing()
 		m_ActionType = ACTION_MOBABILITY_FINISH;
 		ActionAbilityFinish();
 	}
-	
+
     m_PPet->loc.zone->PushPacket(m_PPet,CHAR_INRANGE,new CEntityUpdatePacket(m_PPet,ENTITY_UPDATE));
 }
 
@@ -568,6 +574,21 @@ void CAIPetDummy::ActionRoaming()
 
 	float currentDistance = distance(m_PPet->loc.p, m_PPet->PMaster->loc.p);
 
+
+	// this is broken until pet / mob relationship gets fixed
+	// pets need to extend mob or be a mob because pet has no spell list!
+	if(m_PPet->getPetType() == PETTYPE_AVATAR && m_PPet->m_Family == 104 && (m_Tick - m_LastActionTime) >= 30000 && currentDistance < PET_ROAM_DISTANCE * 2)
+	{
+		int16 spellID = 108;
+		// define this so action picks it up
+		m_PSpell = spell::GetSpell(spellID);
+		m_PBattleSubTarget = m_PPet->PMaster;
+
+		m_ActionType = ACTION_MAGIC_START;
+		ActionMagicStart();
+		return;
+	}
+
 	if (currentDistance > PET_ROAM_DISTANCE)
 	{
 		if(currentDistance < 35.0f && m_PPathFind->PathAround(m_PPet->PMaster->loc.p, 2.0f, PATHFLAG_RUN | PATHFLAG_WALLHACK))
@@ -593,7 +614,7 @@ void CAIPetDummy::ActionEngage()
 		ActionFall();
 		return;
 	}
-	
+
 	bool hasClaim = false;
 
 	if(m_PBattleTarget->m_OwnerID.id == m_PPet->PMaster->id)
@@ -642,7 +663,7 @@ void CAIPetDummy::ActionEngage()
 				((CCharEntity*)m_PPet->PMaster),0,0,12));
 			m_ActionType = ACTION_DISENGAGE;
 			return;
-		}		
+		}
 	}
 
 }
@@ -804,7 +825,7 @@ void CAIPetDummy::ActionAttack()
                 Monster->m_HiPCLvl = ((CCharEntity*)m_PPet->PMaster)->GetMLevel();
 		}
 	}
-	
+
     m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
 
 }
@@ -817,7 +838,7 @@ void CAIPetDummy::ActionSleep()
     }
 
 	m_PPet->loc.zone->PushPacket(m_PPet,CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
-    
+
 }
 
 void CAIPetDummy::ActionDisengage()
@@ -827,7 +848,7 @@ void CAIPetDummy::ActionDisengage()
 		ActionFall();
 		return;
 	}
-	
+
 	m_queueSic = false;
 	m_PPet->animation = ANIMATION_NONE;
 	m_LastActionTime = m_Tick;
@@ -897,6 +918,87 @@ void CAIPetDummy::ActionDeath()
 		m_PPet->PMaster = NULL;
 		m_ActionType = ACTION_NONE;
 	}
+}
+
+void CAIPetDummy::ActionMagicStart()
+{
+	// disabled
+	DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+
+	m_LastActionTime = m_Tick;
+	m_LastMagicTime = m_Tick;
+
+	STATESTATUS status = m_PMagicState->CastSpell(m_PSpell, m_PBattleSubTarget);
+
+	if(status == STATESTATUS_START)
+	{
+		m_ActionType = ACTION_MAGIC_CASTING;
+
+		m_PPet->loc.zone->PushPacket(m_PPet,CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+	}
+	else
+	{
+		TransitionBack(true);
+	}
+
+}
+
+void CAIPetDummy::ActionMagicCasting()
+{
+	m_PPathFind->LookAt(m_PMagicState->GetTarget()->loc.p);
+
+	STATESTATUS status = m_PMagicState->Update(m_Tick);
+
+	if(status == STATESTATUS_INTERRUPT)
+	{
+		m_ActionType = ACTION_MAGIC_INTERRUPT;
+		ActionMagicInterrupt();
+	}
+	else if(status == STATESTATUS_ERROR)
+	{
+		TransitionBack(true);
+	}
+	else if(status == STATESTATUS_FINISH)
+	{
+		m_ActionType = ACTION_MAGIC_FINISH;
+		ActionMagicFinish();
+	}
+	else
+	{
+		m_PPet->loc.zone->PushPacket(m_PPet,CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+	}
+
+}
+
+void CAIPetDummy::ActionMagicFinish()
+{
+	m_LastActionTime = m_Tick;
+	m_LastMagicTime = m_Tick;
+
+	m_PMagicState->FinishSpell();
+
+	m_PPet->loc.zone->PushPacket(m_PPet,CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+
+	m_PSpell = NULL;
+	m_PBattleSubTarget = NULL;
+
+	TransitionBack();
+}
+
+void CAIPetDummy::ActionMagicInterrupt()
+{
+	m_LastActionTime = m_Tick;
+	m_LastMagicTime = m_Tick;
+
+	m_PMagicState->InterruptSpell();
+
+	m_PPet->loc.zone->PushPacket(m_PPet,CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+
+	m_PSpell = NULL;
+	m_PBattleSubTarget = NULL;
+
+	TransitionBack();
 }
 
 /************************************************************************

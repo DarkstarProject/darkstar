@@ -69,10 +69,6 @@ CBattleEntity::CBattleEntity()
 
 CBattleEntity::~CBattleEntity()
 {
-	if(PBattleAI != NULL)
-	{
-	    delete PBattleAI;
-	}
 	delete StatusEffectContainer;
 }
 

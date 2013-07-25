@@ -24,6 +24,8 @@
 #include <string.h>
 
 #include "petentity.h"
+#include "../mob_spell_container.h"
+#include "../mob_spell_list.h"
 
 
 CPetEntity::CPetEntity(PETTYPE petType)
@@ -31,6 +33,11 @@ CPetEntity::CPetEntity(PETTYPE petType)
 	objtype = TYPE_PET;
 	m_PetType = petType;
 	m_EcoSystem = SYSTEM_UNCLASSIFIED;
+}
+
+CPetEntity::~CPetEntity()
+{
+
 }
 
 PETTYPE CPetEntity::getPetType(){
@@ -74,8 +81,4 @@ WYVERNTYPE CPetEntity::getWyvernType()
   };
 
 
-}
-
-CPetEntity::~CPetEntity()
-{
 }

@@ -26,7 +26,7 @@
 #include "../map.h"
 #include "../zone.h"
 
-CBaseEntity::CBaseEntity() 
+CBaseEntity::CBaseEntity()
 {
 	m_TargID = 0;
 	namevis = 1;
@@ -35,10 +35,10 @@ CBaseEntity::CBaseEntity()
 
 	speed    = 40 + map_config.speed_mod;
 	speedsub = 40 + map_config.speed_mod;
-	
+
 	animationsub = 0;
 	animation    = ANIMATION_NONE;
-	
+
 	status = STATUS_DISAPPEAR;
 
 	memset(&loc,  0, sizeof(loc));
@@ -47,6 +47,10 @@ CBaseEntity::CBaseEntity()
 
 CBaseEntity::~CBaseEntity()
 {
+	if(PBattleAI != NULL)
+	{
+	    delete PBattleAI;
+	}
 }
 
 const int8* CBaseEntity::GetName()
@@ -68,7 +72,7 @@ float CBaseEntity::GetYPos()
 {
 	return loc.p.y;
 }
-	
+
 float CBaseEntity::GetZPos()
 {
 	return loc.p.z;

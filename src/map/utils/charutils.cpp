@@ -871,7 +871,7 @@ void SendQuestMissionLog(CCharEntity* PChar)
 			PChar->pushPacket(new CQuestMissionLogPacket(PChar, areaID, status));
 		}
 	}
-	
+
 	// Treasures of Aht Urhgan
 	// Wings of the Goddess Missions
 	PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ZILART, 0x02));
@@ -1020,9 +1020,9 @@ uint8 AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem)
     {
         uint8 charges = (PItem->isType(ITEM_USABLE) ? ((CItemUsable*)PItem)->getCurrentCharges() : 0);
 
-        const int8* Query = 
+        const int8* Query =
             "INSERT INTO char_inventory("
-                "charid," 
+                "charid,"
                 "location,"
                 "slot,"
                 "itemId,"
@@ -1046,13 +1046,13 @@ uint8 AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem)
             DecodeStringSignature((int8*)PItem->getSignature(), signature);
         }
 
-        if( Sql_Query(SqlHandle, Query, 
-            PChar->id, 
-            LocationID, 
-            SlotID, 
-            PItem->getID(), 
-            PItem->getQuantity(), 
-            signature, 
+        if( Sql_Query(SqlHandle, Query,
+            PChar->id,
+            LocationID,
+            SlotID,
+            PItem->getID(),
+            PItem->getQuantity(),
+            signature,
             charges,
             PItem->isType(ITEM_ARMOR) ? ((CItemArmor*)PItem)->getAugment(0) : 0,
             PItem->isType(ITEM_ARMOR) ? ((CItemArmor*)PItem)->getAugment(1) : 0,
@@ -3928,33 +3928,33 @@ uint8 AvatarPerpetuationReduction(CCharEntity* PChar)
 	uint8 reduction = PChar->getMod(MOD_PERPETUATION_REDUCTION);
 
 	static const MODIFIER strong[8] = {
-        MOD_FIRE_AFFINITY, 
-        MOD_EARTH_AFFINITY, 
-        MOD_WATER_AFFINITY, 
-        MOD_WIND_AFFINITY, 
-        MOD_ICE_AFFINITY, 
-        MOD_THUNDER_AFFINITY, 
-        MOD_LIGHT_AFFINITY, 
+        MOD_FIRE_AFFINITY,
+        MOD_EARTH_AFFINITY,
+        MOD_WATER_AFFINITY,
+        MOD_WIND_AFFINITY,
+        MOD_ICE_AFFINITY,
+        MOD_THUNDER_AFFINITY,
+        MOD_LIGHT_AFFINITY,
         MOD_DARK_AFFINITY};
 
 	static const MODIFIER weak[8] = {
-        MOD_WATER_AFFINITY, 
-        MOD_WIND_AFFINITY, 
-        MOD_THUNDER_AFFINITY, 
-        MOD_ICE_AFFINITY, 
-        MOD_FIRE_AFFINITY, 
-        MOD_EARTH_AFFINITY, 
-        MOD_DARK_AFFINITY, 
+        MOD_WATER_AFFINITY,
+        MOD_WIND_AFFINITY,
+        MOD_THUNDER_AFFINITY,
+        MOD_ICE_AFFINITY,
+        MOD_FIRE_AFFINITY,
+        MOD_EARTH_AFFINITY,
+        MOD_DARK_AFFINITY,
         MOD_LIGHT_AFFINITY};
 
     static const WEATHER weatherStrong[8] = {
-        WEATHER_HOT_SPELL, 
-        WEATHER_DUST_STORM, 
-        WEATHER_RAIN, 
-        WEATHER_WIND, 
-        WEATHER_SNOW, 
-        WEATHER_THUNDER, 
-        WEATHER_AURORAS, 
+        WEATHER_HOT_SPELL,
+        WEATHER_DUST_STORM,
+        WEATHER_RAIN,
+        WEATHER_WIND,
+        WEATHER_SNOW,
+        WEATHER_THUNDER,
+        WEATHER_AURORAS,
         WEATHER_GLOOM};
 
 	uint8 element = ((CPetEntity*)(PChar->PPet))->m_Element - 1;
@@ -4289,7 +4289,7 @@ uint32  CalculateSpellcastTime(CCharEntity* PChar, CSpell* PSpell)
     int8 fastCast = dsp_cap(PChar->getMod(MOD_FASTCAST),-100,50);
     int8 uncappedFastCast = dsp_cap(PChar->getMod(MOD_UFASTCAST),-100,100);
     float sumFastCast = dsp_cap(fastCast + uncappedFastCast, -100, 100);
-    
+
     return cast * ((100.0f - sumFastCast)/100.0f);
 }
 

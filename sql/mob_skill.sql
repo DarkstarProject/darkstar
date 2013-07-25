@@ -187,8 +187,8 @@ INSERT INTO `mob_skill` VALUES (85,49,85,'Rhino_Guard', 0, 7.0, 2000, 1500, 1, 0
 
 -- Crawler
 INSERT INTO `mob_skill` VALUES (90,79,90,'Cocoon', 0, 7.0, 2000, 1500, 1, 0, 0);
-INSERT INTO `mob_skill` VALUES (89,79,89,'Poison_Breath', 4, 10.0, 2000, 1500, 4, 0, 0); --  Not used by Eruca
-INSERT INTO `mob_skill` VALUES (88,79,88,'Sticky_Thread', 4, 10.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (89,79,89,'Poison_Breath', 4, 12.0, 2000, 1500, 4, 0, 0); --  Not used by Eruca
+INSERT INTO `mob_skill` VALUES (88,79,88,'Sticky_Thread', 4, 12.0, 2000, 1500, 4, 0, 0);
 
 -- Scorpion
 INSERT INTO `mob_skill` VALUES (94,217,94,'Mandible_Bite', 0, 7.0, 2000, 1500, 4, 0, 0);

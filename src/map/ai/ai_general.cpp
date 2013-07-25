@@ -28,6 +28,7 @@
 #include "../utils/battleutils.h"
 #include "helpers/targetfind.h"
 #include "helpers/pathfind.h"
+#include "states/magic_state.h"
 
 #include "ai_general.h"
 
@@ -42,13 +43,26 @@ CAIGeneral::CAIGeneral()
 {
     m_PTargetFind = NULL;
     m_PPathFind = NULL;
+    m_PMagicState = NULL;
 	Reset();
 }
 
 CAIGeneral::~CAIGeneral()
 {
-    delete m_PTargetFind;
-    delete m_PPathFind;
+	if(m_PTargetFind != NULL)
+	{
+	    delete m_PTargetFind;
+	}
+
+	if(m_PPathFind != NULL)
+	{
+	    delete m_PPathFind;
+	}
+
+	if(m_PMagicState != NULL)
+	{
+		delete m_PMagicState;
+	}
 }
 
 /************************************************************************
@@ -441,6 +455,6 @@ void CAIGeneral::Wait(int32 waitTime)
 	{
 		m_WaitTime = waitTime;
 	}
-	
+
     m_LastWaitTime = m_Tick;
 }

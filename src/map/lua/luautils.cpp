@@ -1583,9 +1583,9 @@ int32 CheckForGearSet(CBaseEntity* PTarget)
 *																		*
 ************************************************************************/
 
-int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget)
+int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell)
 {
-	if(PCaster->PBattleAI->GetCurrentSpell()->getSpellGroup() == SPELLGROUP_SONG){
+	if(PSpell->getSpellGroup() == SPELLGROUP_SONG){
 		EFFECT effectId = (EFFECT)battleutils::SingSong(PCaster,PTarget,PCaster->PBattleAI->GetCurrentSpell());
         if(effectId != EFFECT_NONE){
             return effectId;
@@ -1596,8 +1596,6 @@ int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget)
 
     lua_pushnil(LuaHandle);
     lua_setglobal(LuaHandle, "onSpellCast");
-
-	CSpell* PSpell = PCaster->PBattleAI->GetCurrentSpell();
 
     DSP_DEBUG_BREAK_IF(PSpell == NULL);
 

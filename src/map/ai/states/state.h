@@ -25,4 +25,47 @@
 #ifndef _CSTATE_H
 #define _CSTATE_H
 
+#include "../../../common/utils.h"
+#include "../../packets/message_basic.h"
+#include "../../packets/action.h"
+
+class CBattleEntity;
+class CTargetFind;
+
+enum STATESTATUS {
+  STATESTATUS_NONE,
+  STATESTATUS_START,
+  STATESTATUS_TICK,
+  STATESTATUS_FINISH,
+  STATESTATUS_ERROR,
+  STATESTATUS_INTERRUPT
+};
+
+class CState
+{
+
+  public:
+    CState(CBattleEntity* PEntity, CTargetFind* PTargetFind);
+    ~CState();
+
+    virtual STATESTATUS Update(uint32 tick);
+    virtual void Clear();
+
+    CBattleEntity* GetTarget();
+    bool CheckValidTarget(CBattleEntity* PTarget);
+    bool TooFar(position_t* point, float maxDistance);
+
+  protected:
+    void PushMessage(MSGBASIC_ID msgID, int32 param = 0, int32 value = 0, bool personal = false);
+
+    CBattleEntity* m_PEntity;
+    CBattleEntity* m_PTarget;
+
+    CTargetFind* m_PTargetFind;
+    uint8 m_flags;
+
+  private:
+
+};
+
 #endif

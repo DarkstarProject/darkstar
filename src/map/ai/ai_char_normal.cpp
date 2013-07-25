@@ -36,7 +36,6 @@
 #include "../vana_time.h"
 #include "../weapon_skill.h"
 #include "../zone.h"
-#include "helpers/targetfind.h"
 
 #include "../lua/luautils.h"
 
@@ -1590,7 +1589,7 @@ void CAICharNormal::ActionMagicFinish()
         }
         else
         {
-            Action.param = luautils::OnSpellCast(m_PChar, PTarget);
+            Action.param = luautils::OnSpellCast(m_PChar, PTarget, m_PSpell);
 
             // remove effects from damage
             if (m_PSpell->canTargetEnemy() && Action.param > 0 && m_PSpell->dealsDamage())

@@ -37,7 +37,6 @@
 #include "../zone.h"
 #include "../alliance.h"
 #include "../map.h"
-#include "helpers/targetfind.h"
 
 #include "ai_mob_dummy.h"
 
@@ -61,6 +60,8 @@ CAIMobDummy::CAIMobDummy(CMobEntity* PMob)
 	m_PMob = PMob;
     m_PTargetFind = new CTargetFind(PMob);
     m_PPathFind = new CPathFind(PMob);
+
+    m_PMagicState = new CMagicState(PMob, m_PTargetFind);
 
     m_checkDespawn = false;
 	m_PSpecialSkill = NULL;
@@ -1022,284 +1023,61 @@ void CAIMobDummy::ActionStun()
 void CAIMobDummy::ActionMagicStart()
 {
 	DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
-	m_interruptSpell = false;
 	// this must be at the top to RESET magic cast timer
-	m_LastActionTime = m_Tick;
 	m_LastMagicTime = m_Tick;
 
-	// check valid targets
-	if (m_PSpell->getValidTarget() & TARGET_SELF) {
-		m_PBattleSubTarget = m_PMob;
+	STATESTATUS status = m_PMagicState->CastSpell(m_PSpell, m_PBattleSubTarget);
 
-		// only buff other targets if i'm roaming
-		if((m_PSpell->getValidTarget() & TARGET_PLAYER_PARTY))
-		{
-			// chance to target my master
-			if(m_PMob->PMaster != NULL && rand()%2 == 0)
-			{
-				// target my master
-				m_PBattleSubTarget = m_PMob->PMaster;
-			}
-			else if(rand()%2 == 0)
-			{
-				// chance to target party
-				m_PTargetFind->reset();
-				m_PTargetFind->findWithinArea(m_PMob, AOERADIUS_ATTACKER, MOB_SPELL_MAX_RANGE);
 
-				uint16 totalTargets = m_PTargetFind->m_targets.size();
+	if(status == STATESTATUS_START)
+	{
+		m_ActionType = ACTION_MAGIC_CASTING;
 
-				if(totalTargets)
-				{
-					// randomly select a target
-					m_PBattleSubTarget = m_PTargetFind->m_targets[rand()%totalTargets];
-				}
-
-			}
-		}
-
+		m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
 	}
 	else
 	{
-		m_PBattleSubTarget = m_PBattleTarget;
-	}
-
-	if(luautils::OnMagicCastingCheck(m_PMob, m_PBattleSubTarget, m_PSpell) != 0)
-	{
-		//fail
 		TransitionBack(true);
-		return;
 	}
 
-	apAction_t Action;
-    m_PMob->m_ActionList.clear();
-
-	Action.ActionTarget = m_PBattleSubTarget;
-	Action.reaction   = REACTION_NONE;
-	Action.speceffect = SPECEFFECT_NONE;
-	Action.animation  = 0;
-	Action.param	  = m_PSpell->getID();
-	Action.messageID  = 327;
-	Action.flag		  = 0;
-
-	m_PMob->m_ActionList.push_back(Action);
-
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
-
-    m_ActionType = ACTION_MAGIC_CASTING;
 }
 
 void CAIMobDummy::ActionMagicCasting()
 {
-	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+	m_PPathFind->LookAt(m_PMagicState->GetTarget()->loc.p);
 
-	if (m_PBattleSubTarget->isDead() || m_PBattleSubTarget->getZone() != m_PMob->getZone()) {
+	STATESTATUS status = m_PMagicState->Update(m_Tick);
+
+	if(status == STATESTATUS_INTERRUPT)
+	{
 		m_ActionType = ACTION_MAGIC_INTERRUPT;
 		ActionMagicInterrupt();
-		return;
 	}
-
-	if (m_PMob->isDead()) {
-		m_ActionType = ACTION_FALL;
-		ActionFall();
-		return;
-	}
-
-	m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
-
-    int8 fastCast = dsp_cap(m_PMob->getMod(MOD_FASTCAST),-100,50);
-    int8 uncappedFastCast = dsp_cap(m_PMob->getMod(MOD_UFASTCAST),-100,100);
-    float sumFastCast = dsp_cap(fastCast + uncappedFastCast, -100, 100);
-
-	uint32 totalCastTime = m_PSpell->getCastTime()*((100.0f - sumFastCast)/100.0f);
-
-	if ((m_Tick - m_LastMagicTime) >= totalCastTime)
+	else if(status == STATESTATUS_ERROR)
 	{
-
-		m_LastMagicTime = m_Tick - rand()%(uint32)((float)m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) / 2);
-
-		if(m_interruptSpell)
-		{
-			// I got force interrupted
-			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PBattleSubTarget,0,0, MSGBASIC_IS_INTERRUPTED));
-			m_ActionType = ACTION_MAGIC_INTERRUPT;
-			ActionMagicInterrupt();
-			return;
-		}
-		else if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE))
-        {
-			m_ActionType = ACTION_MAGIC_INTERRUPT;
-			ActionMagicInterrupt();
-			return;
-		}
-		else if (battleutils::IsParalised(m_PMob))
-		{
-			m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PBattleSubTarget,0,0,MSGBASIC_IS_PARALYZED));
-			m_ActionType = ACTION_MAGIC_INTERRUPT;
-			ActionMagicInterrupt();
-			return;
-		}
-		else if (!(m_PSpell->getValidTarget() & TARGET_SELF) && battleutils::IsIntimidated(m_PMob, m_PBattleSubTarget))
-		{
-		    m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PBattleSubTarget,0,0,MSGBASIC_IS_INTIMIDATED));
-		    m_ActionType = ACTION_MAGIC_INTERRUPT;
-			ActionMagicInterrupt();
-			return;
-		}
-
-		float currentDistance = distance(m_PMob->loc.p, m_PBattleSubTarget->loc.p);
-		if (currentDistance > 28.5) {
-			m_ActionType = ACTION_MAGIC_INTERRUPT;
-			ActionMagicInterrupt();
-			return;
-		}
-
+		TransitionBack(true);
+	}
+	else if(status == STATESTATUS_FINISH)
+	{
 		m_ActionType = ACTION_MAGIC_FINISH;
 		ActionMagicFinish();
-
 	}
-
-	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE)); //need to keep HP updating
-}
-
-void CAIMobDummy::ActionMagicInterrupt()
-{
-	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
-
-	apAction_t Action;
-    m_PMob->m_ActionList.clear();
-
-	Action.ActionTarget = m_PMob;
-	Action.reaction   = REACTION_NONE;
-	Action.speceffect = SPECEFFECT_NONE;
-	Action.animation  = m_PSpell->getAnimationID();
-	Action.param	  = 0;
-	Action.messageID  = 0;
-	Action.flag		  = 0;
-
-	m_PMob->m_ActionList.push_back(Action);
-
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
-	m_LastMagicTime = m_Tick; // reset this in case the spell is long casting, don't want to immediately recast
-	m_PSpell = NULL;
-	m_PBattleSubTarget = NULL;
-
-	TransitionBack();
+	else
+	{
+		m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
+	}
 }
 
 void CAIMobDummy::ActionMagicFinish()
 {
 
-	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL || m_PSpell == NULL);
-
+	m_LastActionTime = m_Tick;
+	m_LastMagicTime = m_Tick - rand()%(uint32)((float)m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) / 2);
 	m_DeaggroTime = m_Tick;
 
-
-	// remove effects based on spell cast first
-    int16 effectFlags = EFFECTFLAG_MAGIC_END | EFFECTFLAG_INVISIBLE;
-
-    if(m_PSpell->canTargetEnemy())
-    {
-    	effectFlags |= EFFECTFLAG_DETECTABLE;
-    }
-
-    m_PMob->StatusEffectContainer->DelStatusEffectsByFlag(effectFlags);
-    m_PBattleSubTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
-
-    m_PTargetFind->reset();
-    m_PMob->m_ActionList.clear();
-
-    uint8 aoeType = battleutils::GetSpellAoEType(m_PMob, m_PSpell);
-
-    if(m_PTargetFind->isWithinRange(m_PBattleSubTarget, MOB_SPELL_MAX_RANGE))
-    {
-		if (aoeType == SPELLAOE_RADIAL) {
-			float distance = spell::GetSpellRadius(m_PSpell, m_PMob);
-
-	        m_PTargetFind->findWithinArea(m_PBattleSubTarget, AOERADIUS_TARGET, distance);
-
-        } else if (aoeType == SPELLAOE_CONAL)
-        {
-            //TODO: actual angle calculation
-            float radius = spell::GetSpellRadius(m_PSpell, m_PMob);
-
-            m_PTargetFind->findWithinCone(m_PBattleSubTarget, radius, 45);
-		} else {
-			// only add target
-			m_PTargetFind->findSingleTarget(m_PBattleSubTarget);
-		}
-	}
-
-    uint16 actionsLength = m_PTargetFind->m_targets.size();
-
-	m_PSpell->setTotalTargets(actionsLength);
-
-	apAction_t Action;
-	Action.ActionTarget = m_PBattleSubTarget;
-	Action.reaction   = REACTION_NONE;
-	Action.speceffect = SPECEFFECT_NONE;
-	Action.animation  = m_PSpell->getAnimationID();
-	Action.param      = 0;
-	Action.messageID  = 0;
-	Action.flag		  = 0;
-
-	uint16 msg = 0;
-    int16 ce = 0;
-    int16 ve = 0;
-	for (std::vector<CBattleEntity*>::iterator it = m_PTargetFind->m_targets.begin() ; it != m_PTargetFind->m_targets.end(); ++it)
-	{
-
-        CBattleEntity* PTarget = *it;
-
-        Action.ActionTarget = PTarget;
-
-		m_PSpell->resetMessage();
-        ce = m_PSpell->getCE();
-        ve = m_PSpell->getVE();
-
-        // take all shadows
-        if(m_PSpell->canTargetEnemy() && aoeType > 0)
-        {
-        	PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BLINK);
-        	PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
-        }
-
-        // TODO: this is really hacky and should eventually be moved into lua
-        if(m_PSpell->canTargetEnemy() && aoeType == SPELLAOE_NONE && battleutils::IsAbsorbByShadow(PTarget))
-        {
-        	// take shadow
-        	msg = 31;
-        	Action.param = 1;
-            ve = 0;
-            ce = 0;
-        }
-        else
-        {
-	        Action.param = luautils::OnSpellCast(m_PMob, PTarget);
-
-		    // remove effects from damage
-			if (m_PSpell->canTargetEnemy() && Action.param > 0 && m_PSpell->dealsDamage())
-			{
-				PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
-			}
-
-			if(msg == 0)
-			{
-		        msg = m_PSpell->getMessage();
-		    }
-		    else
-		    {
-				msg = m_PSpell->getAoEMessage();
-		    }
-
-	    }
-
-	    Action.messageID = msg;
-
-        m_PMob->m_ActionList.push_back(Action);
-    }
-
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+	m_PMagicState->FinishSpell();
 
 	if (m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL,0)){
 		// let's make CSing monsters actually use lots of spells.
@@ -1309,15 +1087,31 @@ void CAIMobDummy::ActionMagicFinish()
 	    m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SOUL_VOICE,0))
 	{
 		// cast magic sooner
-		m_LastMagicTime = m_Tick - (float)(m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL)/2);
+		m_LastMagicTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + 10000;
 	}
 
+	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
+
+	// this shouldn't have to exist all the way through
 	m_PSpell = NULL;
 	m_PBattleSubTarget = NULL;
 
 	// display animation, then continue fighting
-
 	Stun(1000);
+}
+
+void CAIMobDummy::ActionMagicInterrupt()
+{
+	m_LastActionTime = m_Tick;
+
+	m_PMagicState->InterruptSpell();
+
+	m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE));
+
+	m_PSpell = NULL;
+	m_PBattleSubTarget = NULL;
+
+	TransitionBack();
 }
 
 /************************************************************************
@@ -1952,13 +1746,59 @@ void CAIMobDummy::ActionSpecialSkill()
 	m_PMobSkill = NULL;
 }
 
-void CAIMobDummy::CastSpell(uint16 spellId)
+void CAIMobDummy::CastSpell(uint16 spellId, CBattleEntity* PTarget)
 {
 	m_PSpell = spell::GetSpell(spellId);
 
 	if(m_PSpell == NULL){
 		ShowWarning(CL_YELLOW"ai_mob_dummy::CastSpell: SpellId <%i> is not found\n" CL_RESET, spellId);
 	} else {
+
+		if(PTarget == NULL)
+		{
+			// find my own target
+			// check valid targets
+			if (m_PSpell->getValidTarget() & TARGET_SELF) {
+				m_PBattleSubTarget = m_PMob;
+
+				// only buff other targets if i'm roaming
+				if((m_PSpell->getValidTarget() & TARGET_PLAYER_PARTY))
+				{
+					// chance to target my master
+					if(m_PMob->PMaster != NULL && rand()%2 == 0)
+					{
+						// target my master
+						m_PBattleSubTarget = m_PMob->PMaster;
+					}
+					else if(rand()%2 == 0)
+					{
+						// chance to target party
+						m_PTargetFind->reset();
+						m_PTargetFind->findWithinArea(m_PMob, AOERADIUS_ATTACKER, MOB_SPELL_MAX_RANGE);
+
+						uint16 totalTargets = m_PTargetFind->m_targets.size();
+
+						if(totalTargets)
+						{
+							// randomly select a target
+							m_PBattleSubTarget = m_PTargetFind->m_targets[rand()%totalTargets];
+						}
+
+					}
+				}
+
+			}
+			else
+			{
+				m_PBattleSubTarget = m_PBattleTarget;
+			}
+
+		}
+		else
+		{
+			m_PBattleSubTarget = PTarget;
+		}
+
 		m_ActionType = ACTION_MAGIC_START;
 		ActionMagicStart();
 	}
@@ -2186,7 +2026,12 @@ void CAIMobDummy::Deaggro()
 
 void CAIMobDummy::TransitionBack(bool skipWait)
 {
-	if(m_PMob->animation == ANIMATION_ATTACK)
+	if(m_PMob->isDead())
+	{
+		m_ActionType = ACTION_FALL;
+		ActionFall();
+	}
+	else if(m_PMob->animation == ANIMATION_ATTACK)
 	{
 		m_ActionType = ACTION_ATTACK;
 		if(skipWait)

@@ -21,7 +21,52 @@
 ===========================================================================
 */
 
-#ifndef _MAGIC_STATE_H
-#define _MAGIC_STATE_H
+#ifndef _CMAGIC_STATE_H
+#define _CMAGIC_STATE_H
+
+#include "state.h"
+
+class CSpell;
+
+enum MAGICFLAGS {
+  MAGICFLAGS_NONE = 0,
+  MAGICFLAGS_IGNORE_MP = 1,
+  MAGICFLAGS_IGNORE_TOOLS = 2
+};
+
+class CMagicState : public CState
+{
+  public:
+    CMagicState(CBattleEntity* PEntity, CTargetFind* PTargetFind, float maxStartDistance = 26.8f, float maxFinishDistance = 28.5f);
+
+    bool CanCastSpell(CSpell* PSpell, CBattleEntity* PTarget, uint8 flags = MAGICFLAGS_NONE);
+
+    STATESTATUS CastSpell(CSpell* PSpell, CBattleEntity* PTarget, uint8 flags = MAGICFLAGS_NONE);
+
+    void InterruptSpell();
+    void FinishSpell();
+
+    virtual STATESTATUS Update(uint32 tick);
+    virtual void Clear();
+
+    // force spell interrupt
+    void Interrupt();
+
+    bool m_disableCasting;
+    float m_maxStartDistance;
+    float m_maxFinishDistance;
+
+  private:
+    CSpell* m_PSpell;
+    uint32 m_startTime;
+    uint32 m_castTime;
+
+    bool m_interruptSpell;
+
+
+    bool CheckInterrupt();
+    void CalculateCastTime();
+    bool ValidCast();
+};
 
 #endif

@@ -413,7 +413,7 @@ bool CPathFind::InWater()
   {
     return m_PTarget->loc.zone->m_navMesh->inWater(m_PTarget->loc.p);
   }
-  
+
   return false;
 }
 

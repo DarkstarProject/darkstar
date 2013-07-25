@@ -237,7 +237,7 @@ void FreePetList()
 void AttackTarget(CBattleEntity* PMaster, CBattleEntity* PTarget){
 	DSP_DEBUG_BREAK_IF(PMaster->PPet==NULL);
 
-	CPetEntity* PPet = (CPetEntity*)PMaster->PPet;
+	CBattleEntity* PPet = PMaster->PPet;
 
 	if(!PPet->StatusEffectContainer->HasPreventActionEffect())
 	{
@@ -249,7 +249,7 @@ void AttackTarget(CBattleEntity* PMaster, CBattleEntity* PTarget){
 void RetreatToMaster(CBattleEntity* PMaster){
 	DSP_DEBUG_BREAK_IF(PMaster->PPet==NULL);
 
-	CPetEntity* PPet = (CPetEntity*)PMaster->PPet;
+	CBattleEntity* PPet = PMaster->PPet;
 
 	if(!PPet->StatusEffectContainer->HasPreventActionEffect())
 	{
@@ -499,6 +499,7 @@ void LoadAvatarStats(CPetEntity* PChar)
 	}
 	PChar->setModifier(MOD_EVA,eva);
 
+
 	//Начало расчета характеристик
 	uint8 counter = 0;
 	for (uint8 StatIndex = 2; StatIndex <=8; ++StatIndex)
@@ -557,7 +558,7 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 		((CCharEntity*)PMaster)->petZoningInfo.petID = PetID;
 
 	PETTYPE petType = PETTYPE_JUG_PET;
-	
+
 	if (PetID <= PETID_CAIT_SITH)
 	{
 		petType = PETTYPE_AVATAR;
@@ -725,6 +726,7 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 		if(PetID==PETID_CARBUNCLE){
 			PPet->m_Weapons[SLOT_MAIN]->setDamage(floor(PPet->GetMLevel()*0.67f));
 		}
+
 		//Set B+ weapon skill (assumed capped for level derp)
 		//attack is madly high for avatars (roughly x2)
 		PPet->setModifier(MOD_ATT, 2*battleutils::GetMaxSkill(SKILL_CLB,JOB_WHM,PPet->GetMLevel()));
@@ -824,7 +826,7 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 
 void SpawnMobPet(CBattleEntity* PMaster, uint32 PetID)
 {
-	// this is ONLY used for smn elementals / avatars
+	// this is ONLY used for mob smn elementals / avatars
 	/*
 	This should eventually be merged into one big spawn pet method.
 	At the moment player pets and mob pets are totally different. We need a central place
@@ -1122,13 +1124,13 @@ void Familiar(CBattleEntity* PPet)
     }
 
     float rate = 0.10f;
-    
+
     if(PPet->PMaster->objtype == TYPE_MOB)
     {
         // mobs bst get bigger boost
         rate = 0.20f;
     }
-    
+
     // boost hp by 10%
     uint16 boost = (float)PPet->health.maxhp * rate;
 

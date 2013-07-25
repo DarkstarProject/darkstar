@@ -28,7 +28,6 @@
 #include "../packets/entity_update.h"
 
 #include "../entities/npcentity.h"
-#include "helpers/pathfind.h"
 #include "../zone.h"
 
 #include "ai_npc_dummy.h"
@@ -61,7 +60,7 @@ void CAINpcDummy::WeatherChange(WEATHER weather, uint8 element)
 void CAINpcDummy::ActionSpawn()
 {
   luautils::OnNpcSpawn(m_PNpc);
-  
+
   m_ActionType = ACTION_ROAMING;
 }
 
