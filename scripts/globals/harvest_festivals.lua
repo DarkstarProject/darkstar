@@ -32,37 +32,6 @@ function isHalloweenEnabled()
 end;
 
 
-
-function playerCostumeCheck(player,npc)
--- Other neat looking halloween type costumes
--- two dragon skins: @420/421
--- @422 dancing weapon
--- @ 433/432 golem
--- 265 dark eye, 266 Giant version
--- 290 dark bombs
--- 301 dark mandy 
--- 313 black spiders
--- 488 gob
--- 531 - 548 shade
--- 564/579 skele
-	
-	-- Possible costume values:
-	Yagudo = math.random(580,607);
-	Quadav = math.random(644,671);
-	Shade = math.random(535,538);
-	Orc = math.random(612,639);
-	Ghost = 368;
-	Hound = 365;
-	Skeleton = 564;
-	Dark_Stalker = math.random(531,534);
-	
-	halloween_costume_list = {Quadav,Orc,Yagudo,Shade,Ghost,Hound,Skeleton,Dark_Stalker}; 
-	costumeID = halloween_costume_list[math.random(1,table.getn(halloween_costume_list)) ];
-	player:addStatusEffect(EFFECT_COSTUME,costumeID,0,3600);
-	return costumeID;
-end;
-
-
 function halloweenItemsCheck(player)
 	local headSlot = player:getEquipID(SLOT_HEAD);
 	local mainHand = player:getEquipID(SLOT_MAIN);
