@@ -881,3 +881,11 @@ function doNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,s
 	dmg = finalMagicAdjustments(caster,target,spell,dmg);
 	return dmg;
 end
+
+function calculateDurationForLvl(duration, spellLvl, targetLvl)
+	if(targetLvl < spellLvl) then
+		return duration * targetLvl / spellLvl;
+	end
+
+	return duration;
+end

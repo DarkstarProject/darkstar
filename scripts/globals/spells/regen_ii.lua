@@ -7,6 +7,7 @@
 -- Composure increases duration 3x
 -----------------------------------------
 
+require("scripts/globals/magic");
 require("scripts/globals/status");
 
 -----------------------------------------
@@ -32,9 +33,7 @@ function onSpellCast(caster,target,spell)
 
 	duration = duration + caster:getMod(MOD_REGEN_DURATION);
 
-	if (target:getMainLvl() < 44) then
-		duration = duration * target:getMainLvl() / 44;
-	end
+	duration = calculateDurationForLvl(duration, 44, target:getMainLvl());
 
 	if(target:addStatusEffect(EFFECT_REGEN,hp,3,duration)) then
 		spell:setMsg(230);

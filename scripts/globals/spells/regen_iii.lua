@@ -8,6 +8,7 @@
 -----------------------------------------
 
 require("scripts/globals/status");
+require("scripts/globals/magic");
 
 -----------------------------------------
 -- OnSpellCast
@@ -32,9 +33,7 @@ function onSpellCast(caster,target,spell)
 
 	duration = duration + caster:getMod(MOD_REGEN_DURATION);
 
-	if (target:getMainLvl() < 66) then
-		duration = duration * target:getMainLvl() / 66;
-	end
+	duration = calculateDurationForLvl(duration, 66, target:getMainLvl());
 
 	if(target:addStatusEffect(EFFECT_REGEN,hp,3,duration)) then
 		spell:setMsg(230);

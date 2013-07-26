@@ -3,6 +3,7 @@
 -----------------------------------------
 
 require("scripts/globals/status");
+require("scripts/globals/magic");
 
 -----------------------------------------
 -- OnSpellCast
@@ -15,6 +16,8 @@ end;
 function onSpellCast(caster,target,spell)
     local power = 62;
     local duration = 1800;
+
+    duration = calculateDurationForLvl(duration, 75, target:getMainLvl());
 
     local typeEffect = EFFECT_SHELL;
     if(target:addStatusEffect(typeEffect, power, 0, duration)) then
