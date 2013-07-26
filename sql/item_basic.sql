@@ -11740,7 +11740,7 @@ INSERT INTO `item_basic` VALUES(16853, 'lizard_piercer', 'lizard_piercer', 1, 20
 INSERT INTO `item_basic` VALUES(16854, 'vougiers_contus', 'vougiers_contus', 1, 63568, 0, 1, 0);
 INSERT INTO `item_basic` VALUES(16855, 'colossal_lance', 'colossal_lance', 1, 2048, 8, 0, 6599);
 INSERT INTO `item_basic` VALUES(16856, 'obelisk', 'obelisk', 1, 2048, 8, 0, 110);
-INSERT INTO `item_basic` VALUES(16857, 'wind_spear', 'wind_spear', 1, 34816, 8, 0, 4619);
+INSERT INTO `item_basic` VALUES(16857, 'wind_spear', 'wind_spear', 1, 34816, 8, 0, 12630);
 INSERT INTO `item_basic` VALUES(16858, 'sacred_lance', 'sacred_lance', 1, 3104, 8, 0, 4997);
 INSERT INTO `item_basic` VALUES(16859, 'bronze_spear_+1', 'bronze_spear_+1', 1, 2080, 8, 0, 280);
 INSERT INTO `item_basic` VALUES(16860, 'holy_lance', 'holy_lance', 1, 2080, 8, 0, 3109);

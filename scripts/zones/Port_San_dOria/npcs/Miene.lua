@@ -39,13 +39,13 @@ function onTrigger(player,npc)
 	thePickpocket = player:getQuestStatus(SANDORIA, THE_PICKPOCKET);
 
 	-- "The Pickpocket" Quest events
-	if (false and player:getVar("thePickpocket") == 1 and thePickpocket == QUEST_AVAILABLE) then -- skips the original cut scene for "The Pickpocket" Quest if already seen.
+	if (player:getVar("thePickpocket") == 1 and thePickpocket == QUEST_AVAILABLE) then -- skips the original cut scene for "The Pickpocket" Quest if already seen.
 		player:startEvent(0x022a);
-	elseif (false and thePickpocket == QUEST_AVAILABLE) then
+	elseif (thePickpocket == QUEST_AVAILABLE) then
 		player:startEvent(0x01f6);
 		player:setVar("thePickpocket",1);
 	-- "The Pickpocket" giving Eagle Button, but checking if they already have it.
-	elseif (true or thePickpocket == QUEST_ACCEPTED and player:getVar("thePickpocketEagleButton") == 0) then
+	elseif (thePickpocket == QUEST_ACCEPTED and player:getVar("thePickpocketEagleButton") == 0) then
 		player:startEvent(0x0225);
 		player:setVar("thePickpocketEagleButton",1);
 	elseif(thePickpocket == QUEST_ACCEPTED and player:getVar("thePickpocketEagleButton") == 1) then
