@@ -17,7 +17,7 @@ require("scripts/zones/Port_San_dOria/TextIDs");
 
 function onTrade(player,npc,trade)
 	if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) ==QUEST_ACCEPTED)then
-	if(trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getVar("tradeMiene") == 0)then 
+	if(trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getVar("tradeMiene") == 0)then
 		player:messageSpecial(7121);
 		player:setVar("FFR",player:getVar("FFR") - 1);
 		player:setVar("tradeMiene",1);
@@ -27,7 +27,7 @@ function onTrade(player,npc,trade)
 		player:messageSpecial(7120);
 	end
 end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -37,15 +37,15 @@ function onTrigger(player,npc)
 
 	-- "The Pickpocket" Quest status
 	thePickpocket = player:getQuestStatus(SANDORIA, THE_PICKPOCKET);
-	
+
 	-- "The Pickpocket" Quest events
-	if (player:getVar("thePickpocket") == 1 and thePickpocket == QUEST_AVAILABLE) then -- skips the original cut scene for "The Pickpocket" Quest if already seen.
+	if (false and player:getVar("thePickpocket") == 1 and thePickpocket == QUEST_AVAILABLE) then -- skips the original cut scene for "The Pickpocket" Quest if already seen.
 		player:startEvent(0x022a);
-	elseif (thePickpocket == QUEST_AVAILABLE) then
+	elseif (false and thePickpocket == QUEST_AVAILABLE) then
 		player:startEvent(0x01f6);
 		player:setVar("thePickpocket",1);
 	-- "The Pickpocket" giving Eagle Button, but checking if they already have it.
-	elseif (thePickpocket == QUEST_ACCEPTED and player:getVar("thePickpocketEagleButton") == 0) then
+	elseif (true or thePickpocket == QUEST_ACCEPTED and player:getVar("thePickpocketEagleButton") == 0) then
 		player:startEvent(0x0225);
 		player:setVar("thePickpocketEagleButton",1);
 	elseif(thePickpocket == QUEST_ACCEPTED and player:getVar("thePickpocketEagleButton") == 1) then
@@ -75,13 +75,8 @@ function onEventFinish(player,csid,option)
 	-- "The Pickpocket" Quest, recieving Eagle Button
 	if (csid == 0x0225 or csid == 0x0263) then
 		if(player:hasItem(578) == false) then
-			if(player:getFreeSlotsCount() > 0) then
-				player:addItem(578);
-				player:messageSpecial(6403,578);
-			else
-				player:messageSpecial(ITEM_CANNOT_BE_OBTAINED_2, 578); -- CANNOT_OBTAIN_ITEM
-			end
-		else 
+			npcUtil.giveItem(player, 578);
+		else
 			player:startEvent(0x0228);
 		end;
 	end;

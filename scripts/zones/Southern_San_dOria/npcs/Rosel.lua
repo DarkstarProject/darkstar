@@ -3,7 +3,7 @@
 -- NPC:  Rosel
 -- Starts and Finishes Quest: Rosel the Armorer
 -- @zone 230
--- @pos 
+-- @pos
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -15,13 +15,13 @@ require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
------------------------------------ 
--- onTrade Action 
------------------------------------ 
+-----------------------------------
+-- onTrade Action
+-----------------------------------
 
 function onTrade(player,npc,trade)
 if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) ==QUEST_ACCEPTED)then
-if(trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getVar("tradeRosel") == 0)then 
+if(trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getVar("tradeRosel") == 0)then
 player:messageSpecial(8709);
 player:setVar("FFR",player:getVar("FFR") - 1);
 player:setVar("tradeRosel",1);
@@ -33,15 +33,15 @@ end
 end
 end;
 
------------------------------------ 
--- onTrigger Action 
 -----------------------------------
- 
-function onTrigger(player,npc) 
-	
+-- onTrigger Action
+-----------------------------------
+
+function onTrigger(player,npc)
+
 	RoselTheArmorer = player:getQuestStatus(SANDORIA,ROSEL_THE_ARMORER);
 	receiprForThePrince = player:hasKeyItem(RECEIPT_FOR_THE_PRINCE);
-	
+
 	if(player:getVar("RefuseRoselTheArmorerQuest") == 1 and RoselTheArmorer == QUEST_AVAILABLE) then
 		player:startEvent(0x020c);
 	elseif(RoselTheArmorer == QUEST_AVAILABLE) then
@@ -52,8 +52,8 @@ function onTrigger(player,npc)
 	elseif(RoselTheArmorer == QUEST_ACCEPTED and receiprForThePrince == false) then
 		player:startEvent(0x020f);
 	end
-	
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -80,13 +80,12 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(KEYITEM_OBTAINED,RECEIPT_FOR_THE_PRINCE);
 	-- Rosel the Armorer, finished quest, recieve 200gil
 	elseif(csid == 0x020f) then
-		player:addTitle(ENTRANCE_DENIED);
-		player:addGil(GIL_RATE*200);
-		player:messageSpecial(GIL_OBTAINED,GIL_RATE*200);
-		player:addFame(SANDORIA,SAN_FAME*30);
-		player:completeQuest(SANDORIA,ROSEL_THE_ARMORER);
+		npcUtil.completeQuest(player, SANDORIA, ROSEL_THE_ARMORER, {
+			title= ENTRANCE_DENIED,
+			gil= 200
+			});
 	end
-	
+
 end;
 
 

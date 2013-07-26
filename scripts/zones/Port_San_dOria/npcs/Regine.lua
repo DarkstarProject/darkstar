@@ -45,18 +45,17 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-if(player:getVar("FFR") ==1)then
-	player:startEvent(0x1fe,2);
-elseif(player:getVar("FFR") ==2)then
-	player:startEvent(0x025b);
-
-elseif(player:getVar("FFR") >2 and not(player:hasItem(532)))then
-	player:startEvent(0x1fe,3);
-elseif(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_AVAILABLE and player:getVar("FFR") == 0)then
-	player:startEvent(0x0259);
-else
-	player:startEvent(0x1fe);
-end
+	if(player:getVar("FFR") ==1)then
+		player:startEvent(0x1fe,2);
+	elseif(player:getVar("FFR") ==2)then
+		player:startEvent(0x025b);
+	elseif(player:getVar("FFR") >2 and not(player:hasItem(532)))then
+		player:startEvent(0x1fe,3);
+	elseif(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_AVAILABLE and player:getVar("FFR") == 0)then
+		player:startEvent(0x0259);
+	else
+		player:startEvent(0x1fe);
+	end
 end;
 
 -----------------------------------
@@ -75,15 +74,10 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if(csid == 0x1fe and option == 2) then	
-		if(player:getFreeSlotsCount() > 1) then
+	if(csid == 0x1fe and option == 2) then
+		if(npcUtil.giveItem(player, {{532, 12}, {532, 3}})) then
 			player:addQuest(SANDORIA,FLYERS_FOR_REGINE);
 			player:setVar("FFR",17);
-			player:addItem(532,12);
-			player:addItem(532,3);
-			player:messageSpecial(ITEM_OBTAINED,532);
-		else
-			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED_2, 532); -- CANNOT_OBTAIN_ITEM
 		end
 	elseif(csid == 0x0259)then
 		player:setVar("FFR",1);

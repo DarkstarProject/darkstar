@@ -1,3 +1,4 @@
+require("scripts/globals/npc_util");
 -----------------------------------
 --
 --  QUESTS ID
@@ -67,7 +68,7 @@ ADVANCED_TEAMWORK               = 65;
 GRIMY_SIGNPOSTS                 = 66; -- + --
 A_JOB_FOR_THE_CONSORTIUM        = 67;
 TROUBLE_AT_THE_SLUICE           = 68; -- + --
-THE_MERCHANT_S_BIDDING          = 69; -- ± -- 
+THE_MERCHANT_S_BIDDING          = 69; -- ± --
 UNEXPECTED_TREASURE             = 70;
 BLACKMAIL                       = 71; -- + --
 THE_SETTING_SUN                 = 72; -- + --
@@ -114,7 +115,7 @@ OVER_THE_HILLS_AND_FAR_AWAY     = 112;
 LURE_OF_THE_WILDCAT_SAN_D_ORIA  = 113; -- ± --
 ATELLOUNE_S_LAMENT              = 114;
 
-THICK_SHELLS                    = 117; -- ± -- 
+THICK_SHELLS                    = 117; -- ± --
 FOREST_FOR_THE_TREES            = 118;
 
 -----------------------------------
@@ -164,7 +165,7 @@ MINESWEEPER                     = 39; -- ± --
 THE_DARKSMITH                   = 40; -- ± --
 BUCKETS_OF_GOLD                 = 41; -- ± --
 THE_STARS_OF_IFRIT              = 42;
-LOVE_AND_ICE                    = 43; 
+LOVE_AND_ICE                    = 43;
 BRYGID_THE_STYLIST              = 44; -- ± --
 THE_GUSTABERG_TOUR              = 45;
 BITE_THE_DUST                   = 46; -- ± --
@@ -255,7 +256,7 @@ MANDRAGORA_MAD                  = 34; -- + --
 TO_BEE_OR_NOT_TO_BEE            = 35; -- + --
 TRUTH_JUSTICE_AND_THE_ONION_WAY = 36; -- + --
 MAKING_HEADLINES                = 37; -- + --
-SCOOPED                         = 38; 
+SCOOPED                         = 38;
 CREEPY_CRAWLIES                 = 39; -- + --
 KNOW_ONE_S_ONIONS               = 40; -- + --
 INSPECTOR_S_GADGET              = 41; -- + --
@@ -522,7 +523,7 @@ BOMBS_AWAY                      = 96;
 MITHRAN_DELICACIES              = 97;
 
 -----------------------------------
---  Outlands -- 
+--  Outlands --
 -----------------------------------
 
 -- Kazham(1-15)
