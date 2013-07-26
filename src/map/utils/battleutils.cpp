@@ -1824,66 +1824,63 @@ low level monsters as they miss too much. Presuming a min cap of -10%.
 ************************************************************************/
 uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender)
 {
+	int8 shieldSize = 0;
+	float skill = 0.0f;
 
-    if(battleutils::IsEngauged(PDefender))
-    {
+	if(PDefender->objtype == TYPE_PC)
+	{
+		CCharEntity* PChar = (CCharEntity*)PDefender;
+		CItemArmor* PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
 
-    	uint16 defSkill = 0;
-    	uint16 atkSkill = 0;
-    	uint8 size = 0;
+		if(PItem!=NULL && PItem->getID()!=65535 && PItem->getShieldSize()>0 && PItem->getShieldSize()<=5)
+		{
+			shieldSize = PItem->getShieldSize();
 
-    	if(PDefender->objtype == TYPE_PC)
-    	{
-			CCharEntity* PChar = (CCharEntity*)PDefender;
-			CItemArmor* PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
-
-			if(PItem!=NULL && PItem->getID()!=65535 && PItem->getShieldSize()>0 && PItem->getShieldSize()<=5)
+			if(shieldSize == 5)
 			{
-				if(PItem->getShieldSize()==5){return 65;}//aegis, presume capped? need info.
-
-				size = PItem->getShieldSize();
-		    	atkSkill = GetMaxSkill(SKILL_SHL,JOB_PLD,PAttacker->GetMLevel());
-		    	defSkill = PDefender->GetSkill(SKILL_SHL);
-
-			}
-			else
-			{
-				// no valid shield
-				return 0;
+				// aegis
+				shieldSize = 0;
 			}
 
-    	}
-    	else if(PDefender->GetMJob() == JOB_PLD && (PDefender->m_EcoSystem == SYSTEM_BEASTMEN || PDefender->m_EcoSystem == SYSTEM_UNDEAD))
-    	{
-    		// set fake size
-    		size = 3;
-    		defSkill = GetMaxSkill(SKILL_SHL,JOB_PLD,PDefender->GetMLevel());
-
-    		// this is dumb, mobs / npcs / pet should always have capped stats
-    		if(PAttacker->objtype == TYPE_PC)
-    		{
-		    	atkSkill = PAttacker->GetSkill(SKILL_SHL);
-    		}
-    		else
-    		{
-	    		atkSkill = GetMaxSkill(SKILL_SHL,JOB_PLD,PDefender->GetMLevel());
-    		}
+    		skill = PDefender->GetSkill(SKILL_SHL) + PDefender->getMod(MOD_SHIELD);
     	}
     	else
     	{
+    		// no shield no chance
     		return 0;
     	}
+	}
+	else if(PDefender->objtype == TYPE_MOB && PDefender->GetMJob() == JOB_PLD)
+	{
+		CMobEntity* PMob = (CMobEntity*)PDefender;
 
-		//TODO: HANDLE OCHAIN
-
-    	float chance = ((5 - size)*10.0f)+
-				dsp_max(((float)(defSkill - atkSkill)/4.6f),-10);
-			//TODO: HANDLE OCHAIN
-			//65% cap
-		return dsp_cap(chance,5,65);
+		if(PMob->m_Family == SYSTEM_UNDEAD || SYSTEM_BEASTMEN)
+		{
+			// fake it
+			skill = GetMaxSkill(SKILL_SHL,JOB_PLD,PDefender->GetMLevel());
+			shieldSize = 3;
+		}
+		else
+		{
+			return 0;
+		}
+	}
+	else
+	{
+		return 0;
 	}
 
-	return 0;
+	float diff = 1.0f + (((float)PDefender->GetMLevel() - PAttacker->GetMLevel()) / 15.0f);
+
+	if(diff < 0.4f) diff = 0.4f;
+	if(diff > 1.4f) diff = 1.4f;
+
+	float dex = PAttacker->DEX();
+	float agi = PDefender->AGI();
+
+	float base = (5.0 - shieldSize) * 5.0f;
+
+    return dsp_cap((skill * 0.1f + (agi - dex) * 0.125f + base) * diff, 5, 65);
 }
 
 uint8 GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
@@ -1907,12 +1904,12 @@ uint8 GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 
             float skill = PDefender->GetSkill(SKILL_PAR) + PDefender->getMod(MOD_PARRY);
 
-        	float diff = 1.0f + (((float)PDefender->GetMLevel() - PAttacker->GetMLevel()) / 10.0f);
+        	float diff = 1.0f + (((float)PDefender->GetMLevel() - PAttacker->GetMLevel()) / 15.0f);
 
         	if(PWeapon->isTwoHanded())
         	{
         		// two handed weapons get a bonus
-        		diff += 0.2f;
+        		diff += 0.1f;
         	}
 
         	if(diff < 0.4f) diff = 0.4f;
@@ -1920,8 +1917,7 @@ uint8 GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 
         	float dex = PAttacker->DEX();
         	float agi = PDefender->AGI();
-
-            return dsp_cap((skill * 0.125f + (agi - dex) * 0.125f + 15) * diff, 5, 30);
+            return dsp_cap((skill * 0.1f + (agi - dex) * 0.125f + 10.0f) * diff, 5, 25);
         }
     }
 
@@ -1939,7 +1935,7 @@ uint8 GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
     	// assuming this is like parry
         float skill = PDefender->GetSkill(SKILL_GRD) + PDefender->getMod(MOD_GUARD);
 
-    	float diff = 1.0f + (((float)PDefender->GetMLevel() - PAttacker->GetMLevel()) / 10.0f);
+    	float diff = 1.0f + (((float)PDefender->GetMLevel() - PAttacker->GetMLevel()) / 15.0f);
 
     	if(diff < 0.4f) diff = 0.4f;
     	if(diff > 1.4f) diff = 1.4f;
@@ -1947,7 +1943,7 @@ uint8 GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
     	float dex = PAttacker->DEX();
     	float agi = PDefender->AGI();
 
-        return dsp_cap((skill * 0.125f + (agi - dex) * 0.125f + 15) * diff, 5, 30);
+        return dsp_cap((skill * 0.1f + (agi - dex) * 0.125f + 10.0f) * diff, 5, 25);
     }
 
     return 0;
