@@ -1495,7 +1495,7 @@ void CAICharNormal::ActionMagicFinish()
 	}
 
 	// remove effects based on spell cast first
-    int16 effectFlags = EFFECTFLAG_MAGIC_END | EFFECTFLAG_INVISIBLE;
+    int16 effectFlags = EFFECTFLAG_INVISIBLE;
 
     if(m_PSpell->canTargetEnemy())
     {
@@ -1671,6 +1671,8 @@ void CAICharNormal::ActionMagicFinish()
     if(m_PSpell->tookEffect()){
         charutils::TrySkillUP(m_PChar, (SKILLTYPE)m_PSpell->getSkillType(), m_PBattleSubTarget->GetMLevel());
     }
+
+    m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_MAGIC_END);
 
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
 

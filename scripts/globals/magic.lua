@@ -311,9 +311,7 @@ function applyResistance(player,spell,target,diff,skill,bonus)
 		magicacc = magicacc + diff;
 	end
 	--add acc for ele/dark seal
-    if(player:getStatusEffect(EFFECT_ELEMENTAL_SEAL) ~= nil) then
-        magicaccbonus = magicaccbonus + 256;
-    elseif(player:getStatusEffect(EFFECT_DARK_SEAL) ~= nil and skill == DARK_MAGIC_SKILL) then
+    if(player:getStatusEffect(EFFECT_DARK_SEAL) ~= nil and skill == DARK_MAGIC_SKILL) then
         magicaccbonus = magicaccbonus + 256;
     end
 	--add acc for staves

@@ -148,7 +148,7 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 		hitrate = 30;
 	end
 
-	dmgmod = dmgmod * MobTPMod(skill:getTP());
+	dmgmod = dmgmod + MobTPMod(skill:getTP());
 
 	--work out the base damage for a single hit
 	hitdamage = (base + lvldiff);
@@ -270,6 +270,8 @@ function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
 	if(damage<1) then
 		damage = 1;
 	end
+
+	dmgmod = dmgmod + MobTPMod(skill:getTP());
 
 	if(tpeffect==TP_DMG_BONUS) then
 		damage = damage * ((skill:getTP()*tpvalue)/100);
@@ -772,7 +774,7 @@ function MobTPMod(tp)
 	elseif(tp >= 200) then
 		return 1.5;
 	end
-	return 1;
+	return 0;
 end;
 
 function fTP(tp,ftp1,ftp2,ftp3)

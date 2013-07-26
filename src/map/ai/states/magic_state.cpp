@@ -188,7 +188,7 @@ void CMagicState::FinishSpell()
 	DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
 
 	// remove effects based on spell cast first
-    int16 effectFlags = EFFECTFLAG_MAGIC_END | EFFECTFLAG_INVISIBLE;
+    int16 effectFlags = EFFECTFLAG_INVISIBLE;
 
     if(m_PSpell->canTargetEnemy())
     {
@@ -290,6 +290,8 @@ void CMagicState::FinishSpell()
 
         m_PEntity->m_ActionList.push_back(action);
     }
+
+    m_PEntity->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_MAGIC_END);
 
 	m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(m_PEntity));
 

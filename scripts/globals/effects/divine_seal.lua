@@ -13,7 +13,6 @@ require("scripts/globals/common");
 -----------------------------------
 
 function onEffectGain(target,effect)
-   target:addMod(CURE_POWER,2);
 end;
 
 -----------------------------------
@@ -28,7 +27,6 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	target:delMod(CURE_POWER,2);
 end;
 
 
