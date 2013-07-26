@@ -22,12 +22,12 @@ function OnMobWeaponSkill(target, mob, skill)
     local potency = skill:getParam();
 
     if(potency == 0) then
-    	potency = 8;
+    	potency = 9;
     end
 
     potency = potency + math.random(0, potency/2);
 
     skill:setMsg(MSG_SELF_HEAL);
 
-    return MobHealMove(mob, mob:getHPP() * potency);
+    return MobHealMove(mob, mob:getMaxHP() * potency / 100);
 end;

@@ -25,7 +25,7 @@ function npcUtil.giveKeyItem(player, keyitem)
 end
 
 -- give items to player with message
--- will fail not enough slots are available
+-- will fail if not enough slots are available
 -- npcUtil.giveItem(player, {{927, 5}, 927})
 ---
 --- Usage:
@@ -145,7 +145,8 @@ function npcUtil.completeQuest(player, area, quest, options)
 end
 
 -- returns true if the trade conditions are met
--- npcUtil.tradeHas(trade, {532}, gil = nil)
+-- npcUtil.tradeHas(trade, 532)
+-- npcUtil.tradeHas(trade, {532, 927})
 -- npcUtil.tradeHas(trade, nil, 5)
 function npcUtil.tradeHas(trade, items, gil)
 	local itemCount = {};
@@ -159,6 +160,11 @@ function npcUtil.tradeHas(trade, items, gil)
 	end
 
 	if(items ~= nil) then
+
+		if(type(items) == "number") then
+			items = {items}
+		end
+
 		-- given different amount of items
 		if(trade:getItemCount() ~= table.getn(items)) then
 			return false;
