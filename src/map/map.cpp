@@ -838,6 +838,7 @@ int32 map_config_default()
 	map_config.max_time_lastupdate  = 60000;
     map_config.newstyle_skillups    = 7;
     map_config.max_merit_points    = 30;
+	map_config.audit_chat = 0;
 	return 0;
 }
 
@@ -1018,6 +1019,10 @@ int32 map_config_read(const int8* cfgName)
 		else if (strcmp(w1,"max_merit_points") == 0)
 		{
 			map_config.max_merit_points = atoi(w2);
+		}
+		else if (strcmp(w1,"audit_chat") == 0)
+		{
+			map_config.audit_chat = atoi(w2);
 		}
 		else
 		{

@@ -32,7 +32,6 @@
 #include "../common/utils.h"
 
 #include <string.h>
-
 #include "alliance.h"
 #include "utils/blueutils.h"
 #include "party.h"
@@ -3217,13 +3216,52 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
         {
             switch(RBUFB(data,(0x04)))
             {
-                case MESSAGE_SAY:		PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_SAY,     data+6)); break;
+                case MESSAGE_SAY:	
+					{
+						if (map_config.audit_chat == 1)
+						{
+							std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
+							qStr +=PChar->GetName();
+							qStr +="','SAY','";
+							qStr += escape(data+6);
+							qStr +="',current_timestamp());";
+							const char * cC = qStr.c_str();
+							Sql_QueryStr(SqlHandle, cC);
+						}
+						PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_SAY,     data+6)); 
+					}
+					break;
                 case MESSAGE_EMOTION:	PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_EMOTION, data+6)); break;
-                case MESSAGE_SHOUT:		PChar->loc.zone->PushPacket(PChar, CHAR_INSHOUT, new CChatMessagePacket(PChar, MESSAGE_SHOUT,   data+6)); break;
+                case MESSAGE_SHOUT:		
+					{
+						if (map_config.audit_chat == 1)
+						{
+							std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
+							qStr +=PChar->GetName();
+							qStr +="','SHOUT','";
+							qStr += escape(data+6);
+							qStr +="',current_timestamp());";
+							const char * cC = qStr.c_str();
+							Sql_QueryStr(SqlHandle, cC);
+						}
+						PChar->loc.zone->PushPacket(PChar, CHAR_INSHOUT, new CChatMessagePacket(PChar, MESSAGE_SHOUT,   data+6));
+						
+					}
+					break;
                 case MESSAGE_LINKSHELL:
                 {
                     if (PChar->PLinkshell != NULL)
                     {
+						if (map_config.audit_chat == 1)
+						{
+							std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
+							qStr +=PChar->GetName();
+							qStr +="','LINKSHELL','";
+							qStr += escape(data+6);
+							qStr +="',current_timestamp());";
+							const char * cC = qStr.c_str();
+							Sql_QueryStr(SqlHandle, cC);
+						}
                         PChar->PLinkshell->PushPacket(PChar, new CChatMessagePacket(PChar, MESSAGE_LINKSHELL, data+6));
                     }
                 }
@@ -3234,6 +3272,16 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     {
 						if (PChar->PParty->m_PAlliance == NULL)
 						{
+							if (map_config.audit_chat == 1)
+							{
+								std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
+								qStr +=PChar->GetName();
+								qStr +="','PARTY','";
+								qStr += escape(data+6);
+								qStr +="',current_timestamp());";
+								const char * cC = qStr.c_str();
+								Sql_QueryStr(SqlHandle, cC);
+							}
 							PChar->PParty->PushPacket(PChar, 0, new CChatMessagePacket(PChar, MESSAGE_PARTY, data+6));
 
 						}else{ //alliance party chat
@@ -3241,11 +3289,34 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
 								{
 									PChar->PParty->m_PAlliance->partyList.at(i)->PushPacket(PChar, 0, new CChatMessagePacket(PChar, MESSAGE_PARTY, data+6));
 								}
+								if (map_config.audit_chat == 1)
+								{
+									std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
+									qStr +=PChar->GetName();
+									qStr +="','ALLIANCE','";
+									qStr += escape(data+6);
+									qStr +="',current_timestamp());";
+									const char * cC = qStr.c_str();
+									Sql_QueryStr(SqlHandle, cC);
+								}
 							}
 					}
                 }
                 break;
-                case MESSAGE_YELL: PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 256)); break;
+                case MESSAGE_YELL:
+					{
+						if (map_config.audit_chat == 1)
+						{
+							std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
+							qStr +=PChar->GetName();
+							qStr +="','YELL','";
+							qStr += escape(data+6);
+							qStr +="',current_timestamp());";
+							const char * cC = qStr.c_str();
+							Sql_QueryStr(SqlHandle, cC);
+						}
+						PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 256)); 
+					}break;
             }
         }
 	}
@@ -3306,6 +3377,18 @@ void SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			{
 				PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 181));
 				return;
+			}
+			if (map_config.audit_chat == 1)
+			{
+				std::string qStr = ("INSERT into audit_chat (speaker,type,recipient,message,datetime) VALUES('");
+				qStr +=PChar->GetName();
+				qStr +="','TELL','";
+				qStr +=PTellRecipient->GetName();
+				qStr +="','";
+				qStr += escape(data+20);
+				qStr +="',current_timestamp());";			
+				const char * cC = qStr.c_str();
+				Sql_QueryStr(SqlHandle, cC);
 			}
 			PTellRecipient->pushPacket(new CChatMessagePacket(PChar, MESSAGE_TELL, data+20));
 			return;

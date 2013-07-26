@@ -534,3 +534,16 @@ float RandomNumber()
 {
   return ((double) rand() / (RAND_MAX));
 }
+
+std::string escape(std::string const &s)
+{
+	std::size_t n = s.length();
+	std::string escaped;
+	escaped.reserve(n * 2);
+	for (std::size_t i=0;i<n;++i){
+		if (s[i]=='\\' || s[i]=='\'')
+			escaped+='\\';
+		escaped +=s[i];
+	}
+	return escaped;
+}
