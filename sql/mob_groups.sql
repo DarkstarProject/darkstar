@@ -11018,7 +11018,8 @@ INSERT INTO `mob_groups` VALUES (11174,3759,42,0,128,0,3000,0,75,75); -- 'Statue
 INSERT INTO `mob_groups` VALUES (11177,1178,42,0,128,21,3000,1000,80,80); -- 'Effigy_Prototype'
 INSERT INTO `mob_groups` VALUES (11178,3941,42,0,128,4072,3000,0,78,78); -- 'Tombstone_Prototype'
 
-
+-- goblins rarab
+INSERT INTO `mob_groups` VALUES (11180,1731,4,0,128,0,0,0,66,69);
 
 
 /*!40000 ALTER TABLE `mob_groups` ENABLE KEYS */;
