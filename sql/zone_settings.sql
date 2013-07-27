@@ -308,8 +308,8 @@ INSERT INTO `zone_settings` VALUES (259,0,0016777343,54230,'Rala_Waterways_U',61
 INSERT INTO `zone_settings` VALUES (260,0,0016777343,54230,'Yahse_Hunting_Grounds',60,57,57,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (261,0,0016777343,54230,'Ceizak_Battlegrounds',60,57,57,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (262,0,0016777343,54230,'Foret_de_Hennetiel',60,0,0,0,0.00,0,0);
-INSERT INTO `zone_settings` VALUES (263,0,0016777343,54230,'Yorcia_Weald',60,0,0,0,0.00,0,0);
-INSERT INTO `zone_settings` VALUES (264,0,0016777343,54230,'Yorcia_Weald_U',60,0,0,0,0.00,0,0);
+INSERT INTO `zone_settings` VALUES (263,0,0016777343,54230,'Yorcia_Weald',61,0,0,0,0.00,0,0);
+INSERT INTO `zone_settings` VALUES (264,0,0016777343,54230,'Yorcia_Weald_U',61,0,0,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (265,0,0016777343,54230,'Morimar_Basalt_Fields',60,0,0,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (266,0,0016777343,54230,'Marjami_Ravine',60,0,0,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (267,0,0016777343,54230,'noname',0,0,0,0,0.00,0,0);
