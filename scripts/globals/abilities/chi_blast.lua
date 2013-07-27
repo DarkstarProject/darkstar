@@ -22,6 +22,8 @@ function OnUseAbility(player, target, ability)
 	
 	local dmg = math.floor(player:getStat(MOD_MND)*(0.5+(math.random()/2))) * multiplier;
 
+	dmg = utils.stoneskin(target, dmg);
+	
 	target:delHP(dmg);
     target:updateEnmityFromDamage(player,dmg);
 	player:delStatusEffect(EFFECT_BOOST);

@@ -81,6 +81,11 @@ function OnUseAbility(player, target, ability)
 			ability:setMsg(110);
 		end
 		
+		dmg = utils.stoneskin(target, dmg);
+		
+		target:delHP(dmg);
+		target:updateEnmityFromDamage(player,dmg);
+		
 		return dmg, getFlourishAnimation(player:getWeaponSkillType(SLOT_MAIN)), hit;
 	else
 		ability:setMsg(158);
