@@ -24,6 +24,7 @@ function OnUseAbility(player, target, ability)
         heal = maxHeal;
     end
 
+    player:updateEnmityFromCure(target,heal);
 	target:addHP(heal);
 	target:wakeUp();
 
