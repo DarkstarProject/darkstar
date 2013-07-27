@@ -35,7 +35,7 @@ path = {
 -54.351425, 2.000000, -21.365578,
 -53.286743, 2.000000, -21.589529,
 -23.770412, 2.000000, -27.508755,
--13.354427, 1.700000, -29.593290, 
+-13.354427, 1.700000, -29.593290,
 -14.421194, 1.700000, -29.379389, -- auction house
 -43.848141, 2.000000, -23.492155,
 -56.516224, 2.000000, -20.955723,
@@ -93,7 +93,7 @@ function onPath(npc)
 		lus:showText(npc, RAMINEL_DELIVERY);
 		npc:showText(lus, LUSIANE_THANK);
 
-		-- wait default duration 3 seconds
+		-- wait default duration 4 seconds
 		-- then continue path
 		npc:wait();
 	elseif(npc:atPoint(pathfind.last(path))) then
@@ -113,13 +113,13 @@ end;
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
+
 	if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
 		if(trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart Flyer
 			player:messageSpecial(FLYER_REFUSED);
 		end
 	end
-	
+
 	if(player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_1") == 1) then
 		if(trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
 			player:setVar("ridingOnTheClouds_1",0);
@@ -128,7 +128,7 @@ function onTrade(player,npc,trade)
 			player:messageSpecial(KEYITEM_OBTAINED,SCOWLING_STONE);
 		end
 	end
-	
+
 end;
 
 -----------------------------------

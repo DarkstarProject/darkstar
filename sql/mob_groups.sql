@@ -1232,7 +1232,7 @@ INSERT INTO `mob_groups` VALUES (1190,4289,39,0,128,4072,3000,0,78,78);
 INSERT INTO `mob_groups` VALUES (1191,43,40,0,128,21,0,0,75,75); -- Adamantking_Effigy
 INSERT INTO `mob_groups` VALUES (1192,73,40,0,128,44,0,0,80,80); -- Aitvaras
 INSERT INTO `mob_groups` VALUES (1193,85,40,0,128,53,0,0,80,80); -- Alklha
-INSERT INTO `mob_groups` VALUES (1194,198,40,0,128,153,0,0,80,80); -- Apocalyptic_Beast 
+INSERT INTO `mob_groups` VALUES (1194,198,40,0,128,153,0,0,80,80); -- Apocalyptic_Beast
 INSERT INTO `mob_groups` VALUES (1195,317,40,0,128,225,0,0,0,79); -- Baa_Dava_the_Bibliophage
 INSERT INTO `mob_groups` VALUES (1196,318,40,0,128,0,0,0,64,68); -- Baa_s_Avatar
 INSERT INTO `mob_groups` VALUES (1197,347,40,0,128,246,0,0,80,80); --  Barong
@@ -1343,7 +1343,7 @@ INSERT INTO `mob_groups` VALUES (1301,4363,40,0,128,0,4000,0,64,68); -- Woodnix_
 --  ---------------------------------------------------------------  dyna qfirm  --------------
 INSERT INTO `mob_groups` VALUES (1302,43,41,0,128,21,4000,0,75,75); -- Adamantking_Effigy
 INSERT INTO `mob_groups` VALUES (1303,71,41,0,128,0,6000,600,78,78); -- Air_Elemental
-INSERT INTO `mob_groups` VALUES (1304,162,41,0,128,119,0,0,80,80); -- Antaeus 
+INSERT INTO `mob_groups` VALUES (1304,162,41,0,128,119,0,0,80,80); -- Antaeus
 INSERT INTO `mob_groups` VALUES (1305,913,41,0,128,0,6000,600,78,78); -- Dark_Elemental
 INSERT INTO `mob_groups` VALUES (1306,1160,41,0,128,0,6000,600,78,78); -- Earth_Elemental
 INSERT INTO `mob_groups` VALUES (1307,1341,41,0,128,0,6000,600,78,78); -- Fire_Elemental
@@ -9658,7 +9658,7 @@ INSERT INTO `mob_groups` VALUES (9632,1985,193,840,0,1703,0,0,17,20);
 INSERT INTO `mob_groups` VALUES (9633,2146,193,660,0,1844,0,0,26,28);
 INSERT INTO `mob_groups` VALUES (9634,2633,193,0,128,0,0,0,34,38);
 INSERT INTO `mob_groups` VALUES (9635,2742,193,86400,128,2350,0,0,42,44);
-INSERT INTO `mob_groups` VALUES (9636,2808,193,792,0,2417,0,0,31,33);
+INSERT INTO `mob_groups` VALUES (9636,2808,193,300,0,2417,0,0,31,33);
 INSERT INTO `mob_groups` VALUES (9637,2817,193,0,128,0,0,0,30,30);
 INSERT INTO `mob_groups` VALUES (9638,3165,193,840,0,2812,0,0,25,27);
 INSERT INTO `mob_groups` VALUES (9639,3169,193,0,128,0,0,0,45,45);

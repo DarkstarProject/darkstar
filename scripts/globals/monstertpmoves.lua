@@ -148,14 +148,14 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 		hitrate = 30;
 	end
 
-	dmgmod = dmgmod + MobTPMod(skill:getTP());
 
 	--work out the base damage for a single hit
 	hitdamage = (base + lvldiff);
 	if(hitdamage < 1) then
 		hitdamage = 1;
 	end
-	hitdamage = hitdamage * dmgmod;
+
+	hitdamage = hitdamage * dmgmod * MobTPMod(skill:getTP());
 
 	--work out min and max cRatio
 	maxRatio = ratio * 1.2;
@@ -179,12 +179,12 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 
 	-- first hit has a higher chance to land
 	local firstHitChance = hitrate * 1.5;
-	firstHitChance = utils.clamp(firstHitChance, 50, 95);
 
-	-- range attacks have a normal hit rate
-	if(tpeffect == TP_RANGED) then
-		firstHitChance = hitrate;
+	if(tpeffect==TP_RANGED) then
+		firstHitChance = hitrate * 1.2;
 	end
+
+	firstHitChance = utils.clamp(firstHitChance, 50, 95);
 
 	if ((chance*100) <= firstHitChance) then
 		pdif = math.random((minRatio*1000),(maxRatio*1000)) --generate random PDIF
@@ -271,7 +271,7 @@ function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
 		damage = 1;
 	end
 
-	dmgmod = dmgmod + MobTPMod(skill:getTP());
+	damage = damage * MobTPMod(skill:getTP());
 
 	if(tpeffect==TP_DMG_BONUS) then
 		damage = damage * ((skill:getTP()*tpvalue)/100);
@@ -774,7 +774,7 @@ function MobTPMod(tp)
 	elseif(tp >= 200) then
 		return 1.5;
 	end
-	return 0;
+	return 1;
 end;
 
 function fTP(tp,ftp1,ftp2,ftp3)
