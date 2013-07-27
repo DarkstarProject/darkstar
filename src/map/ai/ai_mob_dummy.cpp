@@ -433,7 +433,7 @@ void CAIMobDummy::ActionDropItems()
 					*/
 					uint8 Pzone = PChar->getZone();
 					if(charutils::GetRealExp(PChar->GetMLevel(),m_PMob->GetMLevel())>0 &&
-						rand()%100 < 40 && m_PMob->m_Type == MOBTYPE_NORMAL && ((Pzone > 0 &&
+						rand()%100 < 30 && m_PMob->m_Type == MOBTYPE_NORMAL && ((Pzone > 0 &&
 						Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255))){ //exp-yielding monster and drop is successful
 						//TODO: The drop is actually based on a 5 minute timer, and not a probability of dropping!
 
@@ -650,6 +650,14 @@ void CAIMobDummy::ActionAbilityStart()
 	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
 
     std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(m_PMob->getMobMod(MOBMOD_SKILLS));
+
+    if(m_PMob->m_EcoSystem == SYSTEM_ELEMENTAL)
+    {
+    	// elementals have no tp moves
+    	m_PMob->health.tp = 0;
+    	TransitionBack(true);
+    	return;
+    }
 
     // не у всех монстов прописаны способности, так что выходим из процедуры, если способность не найдена
 	// We don't have any skills we can use, so let's go back to attacking
