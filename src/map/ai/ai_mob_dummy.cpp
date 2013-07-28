@@ -177,7 +177,7 @@ void CAIMobDummy::ActionRoaming()
 		// lets buff up or move around
 
 		// recover health
-		if(!m_PMob->Rest(0.1f))
+		if(!m_PMob->getMod(MOD_REGEN_DOWN) && !m_PMob->Rest(0.1f))
 		{
 			// undirty exp
 			m_PMob->m_giveExp = true;
