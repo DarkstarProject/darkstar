@@ -41,8 +41,8 @@ enum MOBMODIFIER
   MOBMOD_HP_HEAL_CHANCE = 9, // can cast cures below this HP %
   MOBMOD_SUBLINK = 10, // sub link group
   MOBMOD_LINK_RADIUS = 11, // link radius
-  MOBMOD_DRAW_IN = 12, // 1 - player draw in, 2 - alliance draw in
-  MOBMOD_RAGE = 13, // define rage timer
+  MOBMOD_DRAW_IN = 12, // 1 - player draw in, 2 - alliance draw in -- only add as a spawn mod!
+  MOBMOD_RAGE = 13, // define rage timer -- only add as a spawn mod!
   MOBMOD_SKILLS = 14, // use a custom mob skill list
   MOBMOD_MUG_GIL = 15, // amount gil carried for mugging -- not impl
   MOBMOD_MAIN_2HOUR = 16, // give mob its main job two hour, value can maybe be sent to skill

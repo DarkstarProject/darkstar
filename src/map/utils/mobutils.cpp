@@ -146,7 +146,7 @@ void CalculateStats(CMobEntity * PMob)
 	if(PMob->m_Type & MOBTYPE_EVENT)
 	{
 		PMob->m_roamFlags |= ROAMFLAG_EVENT;
-		PMob->m_maxRoamDistance = 0.5f; // always go back to spawn
+		PMob->m_maxRoamDistance = 0.2f; // always go back to spawn
 	}
 
 	if(isNM)
@@ -309,9 +309,9 @@ void CalculateStats(CMobEntity * PMob)
 		if(PMob->MPmodifier == 0){
 			PMob->health.maxmp = (int16)(18.2 * pow(PMob->GetMLevel(),1.1075) * scale);
 			if(isNM){
-			PMob->health.maxmp *= 2.5;
+			PMob->health.maxmp *= 1.5;
 				if(PMob->GetMLevel()>75){
-					PMob->health.maxmp *= 2.5;
+					PMob->health.maxmp *= 1.5;
 				}
 			}
 		} else {
@@ -561,7 +561,7 @@ void CalculateStats(CMobEntity * PMob)
 	if(PMob->m_roamFlags & ROAMFLAG_AMBUSH)
 	{
 		// always stay close to spawn
-		PMob->m_maxRoamDistance = 3.0f;
+		PMob->m_maxRoamDistance = 2.0f;
 	}
 
 	// cap all stats for lvl / job

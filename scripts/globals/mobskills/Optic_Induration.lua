@@ -19,7 +19,7 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_PETRIFICATION;
 
-	MobStatusEffectMove(mob, target, typeEffect, 1, 0, math.random(30, 60));
+	MobStatusEffectMove(mob, target, typeEffect, 1, 0, 60);
 
 	local dmgmod = 1;
 	local accmod = 1;

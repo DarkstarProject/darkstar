@@ -57,6 +57,10 @@ class CMagicState : public CState
     bool TryHitInterrupt(CBattleEntity* PAttacker);
     bool IsCasting();
 
+    uint32 CalculateCastTime(CSpell* PSpell);
+    int16 CalculateMPCost(CSpell* PSpell);
+    uint32 CalculateRecastTime(CSpell* PSpell);
+
     bool m_disableCasting;
     float m_maxStartDistance;
     float m_maxFinishDistance;
@@ -68,10 +72,10 @@ class CMagicState : public CState
 
     bool m_interruptSpell;
 
-
+    void SpendCost(CSpell* SpendCost);
     bool CheckInterrupt();
-    void CalculateCastTime();
-    bool ValidCast();
+    bool ValidCast(CSpell* SpendCost);
+    bool ValidCharCast(CSpell* SpendCost);
 };
 
 #endif

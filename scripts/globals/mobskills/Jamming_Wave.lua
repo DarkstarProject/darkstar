@@ -17,6 +17,6 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_SILENCE;
 
-    skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 1, 0, math.random(30, 60)));
+    skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 1, 0, 45));
     return typeEffect;
 end;

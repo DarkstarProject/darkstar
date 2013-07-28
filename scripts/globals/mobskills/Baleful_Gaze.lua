@@ -19,7 +19,7 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_PETRIFICATION;
-	local duration = math.random(8, 15) + mob:getMainLvl()/3;
+	local duration = 45;
 
 	skill:setMsg(MobGazeMove(mob, target, typeEffect, 1, 0, duration));
 

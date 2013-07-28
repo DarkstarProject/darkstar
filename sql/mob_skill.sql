@@ -704,19 +704,19 @@ INSERT INTO `mob_skill` VALUES (381,190,381,'Firebomb', 4, 9.5, 2000, 1500, 4, 0
 INSERT INTO `mob_skill` VALUES (382,190,382,'Blastbomb', 2, 13.5, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (383,190,383,'Fountain', 4, 9.5, 2000, 1500, 4, 0, 0);
 -- Dragon - 4 foot kind
-INSERT INTO `mob_skill` VALUES (386,87,386,'Flame_Breath', 4, 7.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (387,87,387,'Poison_Breath', 4, 7.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (388,87,388,'Wind_Breath', 4, 7.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (386,87,386,'Flame_Breath', 4, 12.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (387,87,387,'Poison_Breath', 4, 12.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (388,87,388,'Wind_Breath', 4, 12.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (389,87,389,'Body_Slam', 1, 15.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (390,87,390,'Heavy_Stomp', 1, 10.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (391,87,391,'Chaos_Blade', 4, 9.5, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (392,87,392,'Petro_Eyes', 4, 9.5, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (393,87,393,'Voidsong', 1, 20.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (394,87,394,'Thornsong', 0, 7.0, 2000, 1500, 1, 0, 0);
+INSERT INTO `mob_skill` VALUES (394,87,394,'Thornsong', 0, 15.0, 2000, 1500, 1, 0, 0);
 INSERT INTO `mob_skill` VALUES (395,87,395,'Lodesong', 1, 20.0, 2000, 1500, 4, 0, 0);
 -- Fly
 INSERT INTO `mob_skill` VALUES (403,113,403,'Cursed_Sphere', 2, 10.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (404,113,404,'Venom', 0, 9.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (404,113,404,'Venom', 0, 10.0, 2000, 1500, 4, 0, 0);
 -- Gigas
 INSERT INTO `mob_skill` VALUES (406,126,406,'Lightning_Roar', 4, 9.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (407,126,407,'Ice_Roar', 4, 9.0, 2000, 1500, 4, 0, 0);

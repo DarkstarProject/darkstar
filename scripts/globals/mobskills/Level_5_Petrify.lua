@@ -21,7 +21,7 @@ function OnMobWeaponSkill(target, mob, skill)
     if(target:getMainLvl()%5 == 0) then
 
 
-        local power = math.random(0, 25) + 5;
+        local power = 45;
 
         skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 1, 0, power));
 

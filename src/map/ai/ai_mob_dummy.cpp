@@ -1225,7 +1225,7 @@ void CAIMobDummy::ActionAttack()
 	// move closer to enemy
 	if(currentDistance > m_PMob->m_ModelSize)
 	{
-		if(m_PMob->getMobMod(MOBMOD_DRAW_IN))
+		if(m_PMob->getMobMod(MOBMOD_DRAW_IN) && distance(m_PMob->m_SpawnPoint, m_PBattleTarget->loc.p) > m_PMob->getMobMod(MOBMOD_DRAW_IN))
 		{
 			// prevent double drawin
 			// I think it happens because the server moves the char

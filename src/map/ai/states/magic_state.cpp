@@ -29,7 +29,7 @@ STATESTATUS CMagicState::CastSpell(CSpell* PSpell, CBattleEntity* PTarget, uint8
 	m_flags = flags;
 
 	m_startTime = 0;
-	CalculateCastTime();
+	m_castTime = CalculateCastTime(PSpell);
 
 	apAction_t action;
 
@@ -55,7 +55,13 @@ bool CMagicState::CanCastSpell(CSpell* PSpell, CBattleEntity* PTarget, uint8 fla
 
 	if(TooFar(&PTarget->loc.p, m_maxStartDistance)) return false;
 
-	if(!ValidCast())
+    // player specific
+    if(m_PEntity->objtype == TYPE_PC && !ValidCharCast(PSpell))
+    {
+        return false;
+    }
+
+	if(!ValidCast(PSpell))
 	{
 		return false;
 	}
@@ -114,13 +120,193 @@ void CMagicState::Clear()
 	m_interruptSpell = false;
 }
 
-void CMagicState::CalculateCastTime()
+uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
 {
+    if(PSpell == NULL)
+    {
+        ShowWarning("CMagicState::CalculateCastTime Spell is NULL\n");
+        return 0;
+    }
+
+    bool applyArts = true;
+    uint32 base = PSpell->getCastTime();
+    uint32 cast = base;
+
+    if (PSpell->getSpellGroup() == SPELLGROUP_BLACK)
+    {
+        if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ALACRITY))
+        {
+            uint16 bonus = m_PEntity->getMod(MOD_ALACRITY_CELERITY_EFFECT);
+            cast -= base * ((100 - (50 + bonus)) / 100.0f);
+            applyArts = false;
+        }
+        else if (applyArts)
+        {
+            cast = cast * (1.0f + m_PEntity->getMod(MOD_BLACK_MAGIC_CAST)/100.0f);
+        }
+    }
+    else if (PSpell->getSpellGroup() == SPELLGROUP_WHITE)
+    {
+        if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_CELERITY))
+        {
+            uint16 bonus = m_PEntity->getMod(MOD_ALACRITY_CELERITY_EFFECT);
+            cast -= base * ((100 - (50 + bonus)) / 100.0f);
+            applyArts = false;
+        }
+        else if (applyArts)
+        {
+            cast = cast * (1.0f + m_PEntity->getMod(MOD_WHITE_MAGIC_CAST)/100.0f);
+        }
+    }
+
     int8 fastCast = dsp_cap(m_PEntity->getMod(MOD_FASTCAST),-100,50);
     int8 uncappedFastCast = dsp_cap(m_PEntity->getMod(MOD_UFASTCAST),-100,100);
     float sumFastCast = dsp_cap(fastCast + uncappedFastCast, -100, 100);
 
-	m_castTime = m_PSpell->getCastTime()*((100.0f - sumFastCast)/100.0f);
+    return cast * ((100.0f - sumFastCast)/100.0f);
+}
+
+int16 CMagicState::CalculateMPCost(CSpell* PSpell)
+{
+    if(PSpell == NULL)
+    {
+        ShowWarning("CMagicState::CalculateMPCost Spell is NULL\n");
+        return 0;
+    }
+
+    // ninja tools or bard song
+    if(!PSpell->hasMPCost())
+    {
+        return 0;
+    }
+
+    bool applyArts = true;
+    uint16 base = PSpell->getMPCost();
+    if (PSpell->getID() == 478 || PSpell->getID() == 502) //Embrava/Kaustra
+    {
+        base = m_PEntity->health.maxmp * 0.2;
+    }
+
+    int16 cost = base;
+
+    if (PSpell->getSpellGroup() == SPELLGROUP_BLACK)
+    {
+        if (PSpell->getAOE() == SPELLAOE_RADIAL_MANI && m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MANIFESTATION))
+        {
+            cost *= 2;
+            applyArts = false;
+        }
+        if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_PARSIMONY))
+        {
+            cost /= 2;
+            applyArts = false;
+        }
+        else if (applyArts)
+        {
+            cost += base * (m_PEntity->getMod(MOD_BLACK_MAGIC_COST)/100.0f);
+        }
+    }
+    else if (PSpell->getSpellGroup() == SPELLGROUP_WHITE)
+    {
+        if (PSpell->getAOE() == SPELLAOE_RADIAL_ACCE && m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ACCESSION))
+        {
+            cost *= 2;
+            applyArts = false;
+        }
+        if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_PENURY))
+        {
+            cost /= 2;
+            applyArts = false;
+        }
+        else if (applyArts)
+        {
+            cost += base * (m_PEntity->getMod(MOD_WHITE_MAGIC_COST)/100.0f);
+        }
+    }
+    return dsp_cap(cost, 0, 9999);
+}
+
+uint32 CMagicState::CalculateRecastTime(CSpell* PSpell)
+{
+    if(PSpell == NULL)
+    {
+        ShowWarning("CMagicState::CalculateRecastTime Spell is NULL\n");
+        return 0;
+    }
+
+    bool applyArts = true;
+    uint32 base = PSpell->getRecastTime();
+    uint32 recast = base;
+    uint8 applyHaste = 0;
+
+    if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_COMPOSURE))
+    {
+        recast *= 1.25;
+    }
+
+    if (PSpell->getSpellGroup() == SPELLGROUP_BLACK)
+    {
+        if (PSpell->getAOE() == SPELLAOE_RADIAL_MANI && m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MANIFESTATION))
+        {
+            if (m_PEntity->GetMJob() == JOB_SCH)
+            {
+                recast *= 2;
+            }
+            else
+            {
+                recast *= 3;
+            }
+            applyArts = false;
+            applyHaste++;
+        }
+        if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ALACRITY))
+        {
+            uint16 bonus = m_PEntity->getMod(MOD_ALACRITY_CELERITY_EFFECT);
+            recast *=  ((50 + bonus) / 100.0f);
+
+            applyArts = false;
+            applyHaste++;
+        }
+        if (applyArts)
+        {
+            recast = recast * (1.0f + m_PEntity->getMod(MOD_BLACK_MAGIC_RECAST)/100.0f);
+        }
+    }
+    else if (PSpell->getSpellGroup() == SPELLGROUP_WHITE)
+    {
+        if (PSpell->getAOE() == SPELLAOE_RADIAL_ACCE && m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ACCESSION))
+        {
+            if (m_PEntity->GetMJob() == JOB_SCH)
+            {
+                recast *= 2;
+            }
+            else
+            {
+                recast *= 3;
+            }
+            applyArts = false;
+            applyHaste++;
+        }
+        if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_CELERITY))
+        {
+            uint16 bonus = m_PEntity->getMod(MOD_ALACRITY_CELERITY_EFFECT);
+            recast *=  ((50 + bonus) / 100.0f);
+
+            applyArts = false;
+            applyHaste++;
+        }
+        if (applyArts)
+        {
+            recast = recast * (1.0f + m_PEntity->getMod(MOD_WHITE_MAGIC_RECAST)/100.0f);
+        }
+    }
+    int16 haste = m_PEntity->getMod(MOD_HASTE_MAGIC) + m_PEntity->getMod(MOD_HASTE_GEAR);
+
+    if ( haste < 0 || applyHaste == 0 || applyHaste == 2)
+    {
+        recast = recast * ((float)(1024-dsp_cap(haste,-1024,256))/1024);
+    }
+    return recast * ((100.0f-dsp_cap((float)m_PEntity->getMod(MOD_FASTCAST)/2.0f,0.0f,25.0f))/100.0f);
 }
 
 bool CMagicState::CheckInterrupt()
@@ -133,7 +319,7 @@ bool CMagicState::CheckInterrupt()
 
 	if(TooFar(&m_PTarget->loc.p, m_maxFinishDistance)) return true;
 
-	if(!ValidCast())
+	if(!ValidCast(m_PSpell))
 	{
 		return true;
 	}
@@ -153,7 +339,7 @@ bool CMagicState::CheckInterrupt()
 	return false;
 }
 
-bool CMagicState::ValidCast()
+bool CMagicState::ValidCast(CSpell* PSpell)
 {
 	if(m_disableCasting ||
 		m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE) ||
@@ -161,6 +347,12 @@ bool CMagicState::ValidCast()
 	{
 		return false;
 	}
+
+    // check has mp available
+    if(!m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT) && CalculateMPCost(PSpell) > m_PEntity->health.mp)
+    {
+        return false;
+    }
 
 	return true;
 }
@@ -186,6 +378,8 @@ void CMagicState::InterruptSpell()
 void CMagicState::FinishSpell()
 {
 	DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
+
+    SpendCost(m_PSpell);
 
 	// remove effects based on spell cast first
     int16 effectFlags = EFFECTFLAG_INVISIBLE;
@@ -312,4 +506,37 @@ bool CMagicState::TryHitInterrupt(CBattleEntity* PAttacker)
 bool CMagicState::IsCasting()
 {
 	return m_PSpell != NULL;
+}
+
+bool CMagicState::ValidCharCast(CSpell* SpendCost)
+{
+
+    // has spell and can use it
+
+    // check recast
+
+    // can use msic
+
+    // check summoning
+
+    // valid target
+
+    // is owner
+
+    // cannot cast magic on on battlefield targets
+
+    // has tool
+}
+
+void CMagicState::SpendCost(CSpell* PSpell)
+{
+
+    if (PSpell->hasMPCost() && !m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT))
+    {
+        int16 cost = CalculateMPCost(PSpell);
+        m_PEntity->addMP(-cost);
+    }
+
+    // handle ninja tools
+
 }

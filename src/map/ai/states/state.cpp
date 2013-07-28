@@ -53,7 +53,7 @@ bool CState::CheckValidTarget(CBattleEntity* PTarget)
 		return false;
 	}
 
-	return !(PTarget->isDead() || PTarget->getZone() != m_PEntity->getZone());
+	return !(PTarget->isDead() || m_PEntity->loc.zone == NULL || PTarget->getZone() != m_PEntity->getZone());
 }
 
 void CState::Clear()
