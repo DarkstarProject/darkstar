@@ -92,6 +92,7 @@ CMobEntity::CMobEntity()
 
 	memset(& m_SpawnPoint, 0, sizeof(m_SpawnPoint));
 
+    m_SpellListContainer = NULL;
     PEnmityContainer = new CEnmityContainer(this);
     SpellContainer = new CMobSpellContainer(this);
 }
@@ -393,11 +394,7 @@ void CMobEntity::ChangeMJob(uint16 job)
             break;
         }
 
-        if(spellList > 0){
-            m_SpellListContainer = mobSpellList::GetMobSpellList(spellList);
-        } else {
-            m_SpellListContainer = NULL;
-        }
+        m_SpellListContainer = mobSpellList::GetMobSpellList(spellList);
     }
 
     // give spells and proper traits
