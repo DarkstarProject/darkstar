@@ -673,7 +673,7 @@ void CAIMobDummy::ActionAbilityStart()
 
 	// lets try to use my two hour
 	// two hour is assumed to be at the front
-	if(m_PMob->getMobMod(MOBMOD_MAIN_2HOUR))
+	if(m_PMob->getMobMod(MOBMOD_MAIN_2HOUR) > 0)
 	{
 
 		// get my job two hour

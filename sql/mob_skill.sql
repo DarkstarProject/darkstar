@@ -594,12 +594,12 @@ INSERT INTO `mob_skill` VALUES (299,4,299,'Magic_Barrier', 0, 7.0, 2000, 1500, 1
 INSERT INTO `mob_skill` VALUES (301,4,301,'Level_5_Petrify', 1, 15.0, 2000, 1500, 4, 0, 0);
 -- Demon
 INSERT INTO `mob_skill` VALUES (303,169,303,'Soul_Drain', 0, 7.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (304,169,304,'Hecatomb_Wave', 0, 7.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (304,169,304,'Hecatomb_Wave', 4, 7.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (307,169,307,'Demonic_Howl', 1, 10.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (892,169,311,'Condemnation', 4, 10.0, 2000, 1500, 4, 0, 0);
 -- Demon dynamis
 INSERT INTO `mob_skill` VALUES (303,358,303,'Soul_Drain', 0, 7.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (304,358,304,'Hecatomb_Wave', 0, 7.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (304,358,304,'Hecatomb_Wave', 4, 7.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (307,358,307,'Demonic_Howl', 1, 10.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (892,358,311,'Condemnation', 4, 10.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (893,358,313,'Quadrastrike', 0, 7.0, 2000, 1500, 4, 0, 0);

@@ -10,6 +10,10 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnMobSkillCheck(target,mob,skill)
+    -- not always used
+    if(skill:getParam() == 2 and math.random() <= 0.3) then
+        return 1;
+    end
     if(mob:getHPP() <= 60) then
         return 0;
     end
@@ -24,6 +28,12 @@ function OnMobWeaponSkill(target, mob, skill)
 	end
 
     local randomPower = math.random(6,8);
+
+    -- weaker mijin
+    -- used by Zhuu_Buxu_the_Silent
+    if(skill:getParam() == 2) then
+        randomPower = randomPower / 2;
+    end
 
     if(mob:isInDynamis()) then
         randomPower = math.random(12,15);

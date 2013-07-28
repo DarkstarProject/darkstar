@@ -16,9 +16,9 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_BLINDNESS;
-    MobStatusEffectMove(mob, target, typeEffect, 15, 0, 260);
+    MobStatusEffectMove(mob, target, typeEffect, 15, 0, 180);
 
-	local dmgmod = MobBreathMove(mob, target, 0.25, 1.5, ELE_WIND);
+	local dmgmod = MobBreathMove(mob, target, 0.1, 1.5, ELE_WIND, 400);
 
 	local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_WIND,MOBPARAM_IGNORE_SHADOWS);
 	target:delHP(dmg);
