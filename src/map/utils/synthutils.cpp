@@ -478,9 +478,9 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 			skillUpChance = skillUpChance/(1 + (PChar->Container->getQuantity(0) == SYNTHESIS_FAIL));		// результат синтеза хранится в quantity нулевой ячейки
 
 			double random = rand() / ((double)RAND_MAX);
-			// #ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+			#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 			ShowDebug(CL_CYAN"Skill up chance: %g  Random: %g\n" CL_RESET, skillUpChance, random);
-			// #endif
+			#endif
 
 			if (random < skillUpChance)
 			{
