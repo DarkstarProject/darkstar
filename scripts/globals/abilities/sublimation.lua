@@ -40,7 +40,13 @@ function OnUseAbility(player, target, ability)
 		player:delStatusEffectSilent(EFFECT_SUBLIMATION_ACTIVATED);
 		ability:setMsg(451);
 	else
-		player:addStatusEffect(EFFECT_SUBLIMATION_ACTIVATED,0,3,7200);
+		local refresh = player:getStatusEffect(EFFECT_REFRESH);
+		if refresh == nil or refresh:getSubPower() < 3 then
+			player:delStatusEffect(EFFECT_REFRESH);
+			player:addStatusEffect(EFFECT_SUBLIMATION_ACTIVATED,0,3,7200);
+		else
+			ability:setMsg(323);
+		end
 	end
     return mp;
 end;

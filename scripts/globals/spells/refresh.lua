@@ -26,7 +26,10 @@ function onSpellCast(caster,target,spell)
 	if (target:getMainLvl() < 41) then
 		duration = duration * target:getMainLvl() / 41;
 	end
-
+	if (target:hasStatusEffect(EFFECT_SUBLIMATION_ACTIVATED) or target:hasStatusEffect(EFFECT_SUBLIMATION_COMPLETE)) then
+		spell:setMsg(75);
+		return 0;
+	end
 	target:delStatusEffect(EFFECT_REFRESH);
 	target:addStatusEffect(EFFECT_REFRESH,mp,3,duration);
 

@@ -337,7 +337,7 @@ function finishFov(player,csid,option,r1,r2,r3,r4,r5,msg_offset)
 local msg_accept = msg_offset;
 local msg_jobs = msg_offset+1;
 local msg_cancel = msg_offset+2;
-local tabs = player:getPoint(TABS);
+local tabs = 1000;--player:getPoint(TABS);
 -- ================= FIELD SUPPORT ===============================================
 if(option==FOV_MENU_REGEN) then --Chose Regen. Regen from FoV removes all forms of regen.
 	--Decrease tabs
@@ -354,8 +354,10 @@ elseif(option==FOV_MENU_REFRESH) then --Chose Refresh, removes all other refresh
         player:delPoint(TABS,20);
         --Removes refresh if on player
         player:delStatusEffect(EFFECT_REFRESH);
+		player:delStatusEffect(EFFECT_SUBLIMATION_COMPLETE);
+		player:delStatusEffect(EFFECT_SUBLIMATION_ACTIVATED);
         --Add refresh
-        player:addStatusEffect(EFFECT_REFRESH,1,3,3600);
+        player:addStatusEffect(EFFECT_REFRESH,1,3,3600, 0, 3);
     end
 elseif(option==FOV_MENU_PROTECT) then --Chose Protect, removes all other protect.
 	--Decrease tabs
