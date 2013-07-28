@@ -22,7 +22,7 @@ function onSpellCast(caster,target,spell)
 	--get the resisted damage
 	dmg = dmg*resist;
 	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
-	dmg = addBonuses(caster,spell,target,dmg);
+	dmg = addBonuses(caster,spell:getElement(),target,dmg);
 	--TODO: no additional bonus from Afflatus Solace yet
 	--add in target adjustment
 	dmg = adjustForTarget(target,dmg);

@@ -198,7 +198,7 @@ function BlueMagicalSpell(caster, target, spell, params, statMod)
 	local multTargetReduction = 1.0; -- TODO: Make this dynamically change, temp static till implemented.
 	magicAttack = math.floor(D * multTargetReduction);
 	magicAttack = math.floor(magicAttack * applyResistance(caster,spell,target,caster:getStat(MOD_INT) - target:getStat(MOD_INT),BLUE_SKILL,1.0));
-	dmg = math.floor(addBonuses(caster, spell, target, magicAttack));
+	dmg = math.floor(addBonuses(caster, spell:getElement(), target, magicAttack));
 
 	return dmg;
 end;

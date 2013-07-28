@@ -14,7 +14,7 @@ end;
 function onSpellCast(caster,target,spell)
 	local duration = 90;
 	local typeEffect = EFFECT_SLEEP_II;
-	local bonus = AffinityBonus(caster, spell);
+	local bonus = AffinityBonus(caster, spell:getElement());
 	local pINT = caster:getStat(MOD_INT);
 	local mINT = target:getStat(MOD_INT);
 	local dINT = (pINT - mINT);

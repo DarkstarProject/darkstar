@@ -17,7 +17,7 @@ function onSpellCast(caster,target,spell)
     if(100 * math.random() >= target:getMod(MOD_SILENCERES)) then
 		--Pull base stats.
 		local dINT = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
-		local bonus = AffinityBonus(caster,spell);
+		local bonus = AffinityBonus(caster,spell:getElement());
 
 		--Duration, including resistance.  May need more research.
 		local duration = 180;

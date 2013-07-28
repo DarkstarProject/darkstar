@@ -64,6 +64,7 @@ public:
     int32 setTier(lua_State*);
 	int32 setDuration(lua_State*);
     int32 setTick(lua_State*);
+    int32 setStartTime(lua_State*);
 
     int32 resetStartTime(lua_State*);
 

@@ -28,7 +28,7 @@ function onSpellCast(caster,target,spell)
 	--get the resisted damage
 	dmg = dmg*resist;
 	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
-	dmg = addBonuses(caster,spell,target,dmg);
+	dmg = addBonuses(caster,spell:getElement(),target,dmg);
 	--add in target adjustment
 	dmg = adjustForTarget(target,dmg);
 	--add in final adjustments including the actual damage dealt
@@ -42,7 +42,7 @@ function onSpellCast(caster,target,spell)
 
 	-- Do it!
 	if(bio == nil or (DIA_OVERWRITE == 0 and bio:getPower() <= 3) or (DIA_OVERWRITE == 1 and bio:getPower() < 3)) then
-		target:addStatusEffect(EFFECT_DIA,3,3,duration,FLAG_ERASABLE);
+		target:addStatusEffect(EFFECT_DIA,3,3,duration,FLAG_ERASABLE, 0, 15);
 		spell:setMsg(2);
 	else
 		spell:setMsg(75);

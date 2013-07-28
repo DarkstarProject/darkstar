@@ -24,7 +24,7 @@ function onSpellCast(caster,target,spell)
 
 		local dINT = (pINT - mINT);
 		
-        local bonus = AffinityBonus(caster, spell);
+        local bonus = AffinityBonus(caster, spell:getElement());
         local resist = applyResistance(caster,spell,target,dINT,ENFEEBLING_MAGIC_SKILL,bonus);
         if(resist >= 0.25) then -- effect taken
             duration = duration * resist;

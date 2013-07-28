@@ -17,7 +17,7 @@ function onSpellCast(caster,target,spell)
 
     -- Pull base stats.
     local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
-    local bonus = AffinityBonus(caster,spell);
+    local bonus = AffinityBonus(caster,spell:getElement());
     local power = 50; -- 50% reduction
 
     -- Duration, including resistance.  Unconfirmed.

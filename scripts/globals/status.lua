@@ -851,6 +851,7 @@ MOD_REGAIN_DOWN			 = 0x196			-- plague, reduce tp
 
 MOD_EAT_RAW_FISH			  = 409
 MOD_EAT_RAW_MEAT			  = 410
+MOD_QUICK_DRAW_DMG = 411
 -----------------------------------
 -- Merit Definitions
 -----------------------------------
@@ -1436,3 +1437,51 @@ MOBMOD_STANDBACK_TIME = 35
 MOBMOD_ROAM_COOL = 36
 MOBMOD_ALWAYS_AGGRO = 37
 MOBMOD_REFLECT = 38
+
+--skills
+
+    SKILL_NON           = 0
+	SKILL_H2H			= 1
+	SKILL_DAG			= 2
+	SKILL_SWD			= 3
+	SKILL_GSD			= 4
+	SKILL_AXE			= 5
+	SKILL_GAX			= 6
+	SKILL_SYH			= 7
+	SKILL_POL			= 8
+	SKILL_KAT			= 9
+	SKILL_GKT			= 10
+	SKILL_CLB			= 11
+	SKILL_STF			= 12
+
+	SKILL_ARC			= 25
+	SKILL_MRK			= 26
+	SKILL_THR			= 27
+	SKILL_GRD			= 28
+	SKILL_EVA			= 29
+	SKILL_SHL			= 30
+	SKILL_PAR			= 31
+	SKILL_DIV			= 32
+	SKILL_HEA			= 33
+	SKILL_ENH			= 34
+	SKILL_ENF			= 35
+	SKILL_ELE			= 36
+	SKILL_DRK			= 37
+	SKILL_SUM			= 38
+	SKILL_NIN			= 39
+	SKILL_SNG			= 40
+	SKILL_STR			= 41
+	SKILL_WND			= 42
+	SKILL_BLU			= 43
+
+	SKILL_FSH			= 48
+	SKILL_WDW			= 49
+	SKILL_SMT			= 50
+	SKILL_GLD			= 51
+	SKILL_CLT			= 52
+	SKILL_LTH			= 53
+	SKILL_BON			= 54
+	SKILL_ALC			= 55
+	SKILL_COK			= 56
+	SKILL_SYN			= 57
+	SKILL_RID			= 58

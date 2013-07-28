@@ -42,7 +42,7 @@ function onSpellCast(caster,target,spell)
 		end
 		--printf("Duration : %u",duration);
 		--printf("Potency : %u",potency);
-        local bonus = AffinityBonus(caster, spell);
+        local bonus = AffinityBonus(caster, spell:getElement());
         local resist = applyResistance(caster,spell,target,dMND,35,bonus);
 
         if(resist >= 0.25) then

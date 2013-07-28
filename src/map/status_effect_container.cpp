@@ -610,7 +610,7 @@ EFFECT CStatusEffectContainer::DispelStatusEffect()
 	{
 		uint16 rndIdx = rand() % dispelableList.size();
 		EFFECT result = m_StatusEffectList.at(dispelableList.at(rndIdx))->GetStatusID();
-		RemoveStatusEffect(dispelableList.at(rndIdx));
+		RemoveStatusEffect(dispelableList.at(rndIdx), true);
 		return result;
 	}
 	return EFFECT_NONE;
@@ -628,7 +628,7 @@ uint8 CStatusEffectContainer::DispelAllStatusEffect()
         if (m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_DISPELABLE &&
             m_StatusEffectList.at(i)->GetDuration() > 0)
         {
-            RemoveStatusEffect(i);
+            RemoveStatusEffect(i, true);
             count++;
         }
     }

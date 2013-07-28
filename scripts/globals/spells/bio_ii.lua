@@ -34,7 +34,7 @@ function onSpellCast(caster,target,spell)
 	--get the resisted damage
 	dmg = dmg*resist;
 	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
-	dmg = addBonuses(caster,spell,target,dmg);
+	dmg = addBonuses(caster,spell:getElement(),target,dmg);
 	--add in target adjustment
 	dmg = adjustForTarget(target,dmg);
 	--add in final adjustments including the actual damage dealt
@@ -52,7 +52,7 @@ function onSpellCast(caster,target,spell)
 	-- Do it!
 	if(dia == nil or (BIO_OVERWRITE == 0 and dia:getPower() <= 2) or (BIO_OVERWRITE == 1 and dia:getPower() < 2)) then
 		target:delStatusEffect(EFFECT_BIO); -- delete old bio
-		target:addStatusEffect(EFFECT_BIO,dotdmg,3,duration,FLAG_ERASABLE);
+		target:addStatusEffect(EFFECT_BIO,dotdmg,3,duration,FLAG_ERASABLE, 10);
 	end
 
 	--Try to kill same tier Dia (default behavior)

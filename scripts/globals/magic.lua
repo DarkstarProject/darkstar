@@ -249,11 +249,9 @@ end;
 -- affinities that strengthen/weaken the index element
 
 
-function AffinityBonus(caster,spell)
+function AffinityBonus(caster,ele)
 
 	local bonus = 1.00;
-
-    local ele = spell:getElement();
 
     local affinity = caster:getMod(strongAffinity[ele]) - caster:getMod(weakAffinity[ele]);
 
@@ -315,7 +313,7 @@ function applyResistance(player,spell,target,diff,skill,bonus)
         magicaccbonus = magicaccbonus + 256;
     end
 	--add acc for staves
-	local affinityBonus = AffinityBonus(player, spell);
+	local affinityBonus = AffinityBonus(player, spell:getElement());
 	magicaccbonus = magicaccbonus + (affinityBonus-1) * 200;
 
     local skillchainTier, skillchainCount = FormMagicBurst(spell, target);
@@ -340,6 +338,101 @@ function applyResistance(player,spell,target,diff,skill,bonus)
 	p = p + magicaccbonus;
     -- printf("acc: %f, eva: %f, bonus: %f", magicacc, magiceva, magicaccbonus);
 
+
+	--double any acc over 50 if it's over 50
+	if(p > 5) then
+		p = 5 + (p - 5) * 2;
+	end
+
+	--add a flat bonus that won't get doubled in the previous step
+	p = p + 45;
+
+	--add a scaling bonus or penalty based on difference of targets level from caster
+	local leveldiff = player:getMainLvl() - target:getMainLvl();
+	if(leveldiff < 0) then
+		p = p - (25 * ( (player:getMainLvl()) / 75 )) + leveldiff;
+	else
+		p = p + (25 * ( (player:getMainLvl()) / 75 )) + leveldiff;
+	end
+	--cap accuracy
+    if(p > 95) then
+        p = 95;
+    elseif(p < 5) then
+        p = 5;
+    end
+
+	p = p / 100;
+
+    -- Resistance thresholds based on p.  A higher p leads to lower resist rates, and a lower p leads to higher resist rates.
+    local half = (1 - p);
+    local quart = ((1 - p)^2);
+    local eighth = ((1 - p)^3);
+    local sixteenth = ((1 - p)^4);
+    -- print("HALF:",half);
+    -- print("QUART:",quart);
+    -- print("EIGHTH:",eighth);
+    -- print("SIXTEENTH:",sixteenth);
+
+    local resvar = math.random();
+
+    -- Determine final resist based on which thresholds have been crossed.
+    if(resvar <= sixteenth) then
+        resist = 0.0625;
+        --printf("Spell resisted to 1/16!!!  Threshold = %u",sixteenth);
+    elseif(resvar <= eighth) then
+        resist = 0.125;
+        --printf("Spell resisted to 1/8!  Threshold = %u",eighth);
+    elseif(resvar <= quart) then
+        resist = 0.25;
+        --printf("Spell resisted to 1/4.  Threshold = %u",quart);
+    elseif(resvar <= half) then
+        resist = 0.5;
+        --printf("Spell resisted to 1/2.  Threshold = %u",half);
+    else
+        resist = 1.0;
+        --printf("1.0");
+    end
+
+    return resist;
+
+end;
+
+--Applies resistance for things that may not be spells - ie. Quick Draw
+function applyResistanceMinimal(player,target,element,skill,bonus)
+    -- resist everything if magic shield is active
+    if(target:hasStatusEffect(EFFECT_MAGIC_SHIELD, 0)) then
+        return 0;
+    end
+
+    local resist = 1.0;
+    local magicaccbonus = 0;
+
+    if(bonus ~= nil) then
+        magicaccbonus = magicaccbonus + bonus;
+    end
+
+	--get the base acc (just skill plus magic acc mod)
+	local magicacc = player:getSkillLevel(skill) + player:getMod(79 + skill) + player:getMod(MOD_MACC);
+
+	--add acc for staves
+	local affinityBonus = AffinityBonus(player, element);
+	magicaccbonus = magicaccbonus + (affinityBonus-1) * 200;
+
+	--base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
+	local magiceva = target:getMod(MOD_MEVA) + target:getMod(resistMod[element]);
+
+	--get the difference of acc and eva, scale with level (3.33 at 10 to 0.44 at 75)
+	local multiplier = 0;
+	if player:getMainLvl() < 40 then
+		multiplier = 100 / 120;
+	else
+		multiplier = 100 / (player:getMainLvl() * 3);
+	end;
+	local p = (magicacc * multiplier) - (magiceva * 0.45);
+	magicaccbonus = magicaccbonus / 2;
+	--add magicacc bonus
+	p = p + magicaccbonus;
+    -- printf("acc: %f, eva: %f, bonus: %f", magicacc, magiceva, magicaccbonus);
 
 	--double any acc over 50 if it's over 50
 	if(p > 5) then
@@ -611,10 +704,13 @@ function calculateMagicBurstAndBonus(caster, spell, target)
     return burst, burstBonus;
 end;
 
-function addBonuses(caster, spell, target, dmg, bonusmab)
-	local ele = spell:getElement();
+function addBonuses(caster, ele, target, dmg, bonusmab, isHelix)
 
-	local affinityBonus = AffinityBonus(caster, spell);
+	if (isHelix == nil) then
+		isHelix = false;
+	end
+
+	local affinityBonus = AffinityBonus(caster, ele);
 	dmg = math.floor(dmg * affinityBonus);
 
 	local speciesReduction = target:getMod(defenseMod[ele]);
@@ -629,29 +725,29 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
 	if(weather == singleWeatherStrong[ele]) then
 		-- Iridescence
 		if(equippedMain == 18632 or equippedMain == 18633) then
-			if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
+			if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelix) then
 				dayWeatherBonus = dayWeatherBonus + 0.10;
 			end
 		end
-		if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
+		if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelix) then
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
 	elseif(caster:getWeather() == singleWeatherWeak[ele]) then
-		if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] or isHelixSpell(spell)) then
+		if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] or isHelix) then
 			dayWeatherBonus = dayWeatherBonus - 0.10;
 		end
 	elseif(weather == doubleWeatherStrong[ele]) then
 		-- Iridescence
 		if(equippedMain == 18632 or equippedMain == 186330) then
-			if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
+			if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelix) then
 				dayWeatherBonus = dayWeatherBonus + 0.10;
 			end
 		end
-		if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
+		if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelix) then
 			dayWeatherBonus = dayWeatherBonus + 0.25;
 		end
 	elseif(weather == doubleWeatherWeak[ele]) then
-		if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] or isHelixSpell(spell)) then
+		if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] or isHelix) then
 			dayWeatherBonus = dayWeatherBonus - 0.25;
 		end
 	end
@@ -662,11 +758,11 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
 		if(equippedLegs == 15120 or equippedLegs == 15583) then
 			dayWeatherBonus = dayWeatherBonus + 0.05;
 		end
-		if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
+		if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelix) then
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
 	elseif(dayElement == dayWeak[ele]) then
-		if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] or isHelixSpell(spell)) then
+		if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] or isHelix) then
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
 	end
@@ -792,7 +888,7 @@ end;
 
 function handleThrenody(caster, target, spell, basePower, baseDuration, modifier)
 	-- Process resitances
-	local staff = AffinityBonus(caster, spell);
+	local staff = AffinityBonus(caster, spell:getElement());
 	-- print("staff=" .. staff);
 	local dCHR = (caster:getStat(MOD_CHR) - target:getStat(MOD_CHR));
 	-- print("dCHR=" .. dCHR);
@@ -872,7 +968,7 @@ function doNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,s
 		end
 	end
 	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
-	dmg = addBonuses(caster,spell,target,dmg);
+	dmg = addBonuses(caster,spell:getElement(),target,dmg, 0, isHelixSpell(spell));
 	--add in target adjustment
 	dmg = adjustForTarget(target,dmg);
 	--add in final adjustments

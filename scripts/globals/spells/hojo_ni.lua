@@ -18,7 +18,7 @@ end;
 function onSpellCast(caster,target,spell)
 
 	local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
-	local bonus = AffinityBonus(caster,spell);
+	local bonus = AffinityBonus(caster,spell:getElement());
 	--Power for Hojo is a flat 19.5% reduction
 	local power = 200;
 	--Duration and Resistance calculation

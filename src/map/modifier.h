@@ -366,10 +366,30 @@ enum MODIFIER
 	MOD_ROLL_DANCERS              =0x14A,// Tracks totals
 	MOD_ROLL_SCHOLARS             =0x14B,// Tracks totals
 	MOD_BUST                      =0x14C,// # of busts
+    MOD_QUICK_DRAW_DMG            = 411,
 
 	// Puppetmaster
 	// Dancer
 	MOD_FINISHING_MOVES           =0x14D,// Tracks # of finishing moves
+
+    //Scholar
+    MOD_BLACK_MAGIC_COST          =0x189,// MP cost for black magic (light/dark arts)
+	MOD_WHITE_MAGIC_COST          =0x18A,// MP cost for white magic (light/dark arts)
+	MOD_BLACK_MAGIC_CAST          =0x18B,// Cast time for black magic (light/dark arts)
+	MOD_WHITE_MAGIC_CAST          =0x18C,// Cast time for black magic (light/dark arts)
+	MOD_BLACK_MAGIC_RECAST        =0x18D,// Recast time for black magic (light/dark arts)
+	MOD_WHITE_MAGIC_RECAST        =0x18E,// Recast time for white magic (light/dark arts)
+	MOD_ALACRITY_CELERITY_EFFECT  =0x18F,// Bonus for celerity/alacrity effect
+	MOD_LIGHT_ARTS_EFFECT         =0x14E,
+	MOD_DARK_ARTS_EFFECT          =0x14F,
+	MOD_LIGHT_ARTS_SKILL          =0x150,
+	MOD_DARK_ARTS_SKILL           =0x151,
+	MOD_REGEN_EFFECT              =0x152,
+	MOD_REGEN_DURATION            =0x153,
+	MOD_HELIX_EFFECT              =0x154,
+	MOD_HELIX_DURATION            =0x155,
+	MOD_STORMSURGE_EFFECT         =0x190,
+	MOD_SUBLIMATION_BONUS         =0x191,
 
 	MOD_ENSPELL                   =0x155,//stores the type of enspell active (0 if nothing)
 	MOD_SPIKES                    =0x156,//store the type of spike spell active (0 if nothing)
@@ -416,23 +436,6 @@ enum MODIFIER
 	MOD_KICK_DMG                  =0x182,// increases kick attack damage
 	MOD_WEAPON_BASH               =0x188,
 
-	MOD_BLACK_MAGIC_COST          =0x189,// MP cost for black magic (light/dark arts)
-	MOD_WHITE_MAGIC_COST          =0x18A,// MP cost for white magic (light/dark arts)
-	MOD_BLACK_MAGIC_CAST          =0x18B,// Cast time for black magic (light/dark arts)
-	MOD_WHITE_MAGIC_CAST          =0x18C,// Cast time for black magic (light/dark arts)
-	MOD_BLACK_MAGIC_RECAST        =0x18D,// Recast time for black magic (light/dark arts)
-	MOD_WHITE_MAGIC_RECAST        =0x18E,// Recast time for white magic (light/dark arts)
-	MOD_ALACRITY_CELERITY_EFFECT  =0x18F,// Bonus for celerity/alacrity effect
-	MOD_LIGHT_ARTS_EFFECT         =0x14E,
-	MOD_DARK_ARTS_EFFECT          =0x14F,
-	MOD_LIGHT_ARTS_SKILL          =0x150,
-	MOD_DARK_ARTS_SKILL           =0x151,
-	MOD_REGEN_EFFECT              =0x152,
-	MOD_REGEN_DURATION            =0x153,
-	MOD_HELIX_EFFECT              =0x154,
-	MOD_HELIX_DURATION            =0x155,
-	MOD_STORMSURGE_EFFECT         =0x190,
-	MOD_SUBLIMATION_BONUS         =0x191,
 	MOD_WYVERN_BREATH             =0x192,
 	MOD_STEP_ACCURACY             =0x193,// Bonus accuracy for Dancer's steps
 
@@ -441,7 +444,7 @@ enum MODIFIER
 	MOD_EAT_RAW_MEAT			  = 410
 };
 
-#define MAX_MODIFIER	       411
+#define MAX_MODIFIER	       412
 
 
 

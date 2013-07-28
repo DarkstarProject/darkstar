@@ -4,14 +4,13 @@ Source Host: localhost
 Source Database: dspdb
 Target Host: localhost
 Target Database: dspdb
-Date: 7/3/2013 11:08:35 PM
+Date: 7/28/2013 12:53:33 AM
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 -- Table structure for abilities
 -- ----------------------------
-DROP TABLE IF EXISTS `abilities`;
 CREATE TABLE `abilities` (
   `abilityId` smallint(5) unsigned NOT NULL,
   `name` tinytext,
@@ -138,12 +137,12 @@ INSERT INTO `abilities` VALUES ('100', 'dancers_roll', '17', '61', '1', '60', '1
 INSERT INTO `abilities` VALUES ('101', 'scholars_roll', '17', '64', '1', '60', '193', '420', '0', '168', '8.0', '1', '1', '80', '0', '8');
 INSERT INTO `abilities` VALUES ('107', 'double-up', '17', '5', '1', '8', '194', '424', '0', '116', '8.0', '0', '1', '80', '0', '0');
 INSERT INTO `abilities` VALUES ('108', 'quick_draw', '17', '40', '1', '199', '0', '0', '0', '0', '18.0', '0', '0', '0', '1410', '0');
-INSERT INTO `abilities` VALUES ('109', 'fire_shot', '17', '40', '4', '60', '195', '0', '0', '125', '18.0', '0', '0', '0', '0', '0');
-INSERT INTO `abilities` VALUES ('110', 'ice_shot', '17', '40', '4', '60', '195', '0', '0', '126', '18.0', '0', '0', '0', '0', '0');
-INSERT INTO `abilities` VALUES ('111', 'wind_shot', '17', '40', '4', '60', '195', '0', '0', '127', '18.0', '0', '0', '0', '0', '0');
-INSERT INTO `abilities` VALUES ('112', 'earth_shot', '17', '40', '4', '60', '195', '0', '0', '128', '18.0', '0', '0', '0', '0', '0');
-INSERT INTO `abilities` VALUES ('113', 'thunder_shot', '17', '40', '4', '60', '195', '0', '0', '129', '18.0', '0', '0', '0', '0', '0');
-INSERT INTO `abilities` VALUES ('114', 'water_shot', '17', '40', '4', '60', '195', '0', '0', '130', '18.0', '0', '0', '0', '0', '0');
+INSERT INTO `abilities` VALUES ('109', 'fire_shot', '17', '40', '4', '60', '195', '110', '0', '125', '18.0', '0', '0', '0', '0', '0');
+INSERT INTO `abilities` VALUES ('110', 'ice_shot', '17', '40', '4', '60', '195', '110', '0', '126', '18.0', '0', '0', '0', '0', '0');
+INSERT INTO `abilities` VALUES ('111', 'wind_shot', '17', '40', '4', '60', '195', '110', '0', '127', '18.0', '0', '0', '0', '0', '0');
+INSERT INTO `abilities` VALUES ('112', 'earth_shot', '17', '40', '4', '60', '195', '110', '0', '128', '18.0', '0', '0', '0', '0', '0');
+INSERT INTO `abilities` VALUES ('113', 'thunder_shot', '17', '40', '4', '60', '195', '110', '0', '129', '18.0', '0', '0', '0', '0', '0');
+INSERT INTO `abilities` VALUES ('114', 'water_shot', '17', '40', '4', '60', '195', '0', '110', '130', '18.0', '0', '0', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('115', 'light_shot', '17', '40', '4', '60', '195', '0', '0', '123', '18.0', '0', '0', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('116', 'dark_shot', '17', '40', '4', '60', '195', '0', '0', '124', '18.0', '0', '0', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('117', 'random_deal', '17', '50', '1', '1200', '196', '0', '0', '131', '20.0', '1', '1', '300', '1414', '0');

@@ -19,7 +19,7 @@ function onSpellCast(caster,target,spell)
     local dINT = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
 
     -- apply bonus, flash is hard to fully resist
-    local bonus = AffinityBonus(caster,spell) + 200;
+    local bonus = AffinityBonus(caster, spell:getElement()) + 200;
 
     local resist = applyResistance(caster,spell,target,dINT,DIVINE_MAGIC_SKILL,bonus);
     local duration = 12 * resist;

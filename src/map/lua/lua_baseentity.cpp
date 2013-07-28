@@ -5376,19 +5376,19 @@ inline int32 CLuaBaseEntity::getWeaponSkillType(lua_State *L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-	if( !lua_isnil(L,1) && lua_isstring(L,1) )
+	if( !lua_isnil(L,1) && lua_isnumber(L,1) )
 	{
 		uint8 SLOT = (uint8)lua_tointeger(L,1);
-		if (SLOT > 1)
+		if (SLOT > 3)
 		{
 			lua_pushinteger(L,0);
 			return 1;
 		}
 		CItemWeapon* weapon = ((CBattleEntity*)m_PBaseEntity)->m_Weapons[SLOT];
 		if(weapon == NULL)
-		{
-		    ShowDebug(CL_CYAN"lua::getWeaponSkillType weapon in main slot is null!\n" CL_RESET);
-			return 0;
+        {
+            lua_pushinteger(L,0);
+			return 1;
 		}
 		lua_pushinteger( L, weapon->getSkillType() );
 		return 1;

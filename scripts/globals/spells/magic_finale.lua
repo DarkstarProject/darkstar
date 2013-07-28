@@ -16,7 +16,7 @@ function onSpellCast(caster,target,spell)
     local dINT = (caster:getStat(MOD_CHR) - target:getStat(MOD_CHR));
 
     -- apply bonus, flash is hard to fully resist
-    local bonus = AffinityBonus(caster,spell) + 300;
+    local bonus = AffinityBonus(caster, spell:getElement()) + 300;
 
     local resist = applyResistance(caster,spell,target,dINT,SINGING_SKILL,bonus);
     local effect = EFFECT_NONE;

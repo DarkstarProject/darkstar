@@ -15,7 +15,7 @@ function onSpellCast(caster,target,spell)
     local duration = 180;
     local power = 512;
 
-    local bonus = AffinityBonus(caster, spell);
+    local bonus = AffinityBonus(caster, spell:getElement());
     local pCHR = caster:getStat(MOD_CHR);
     local mCHR = target:getStat(MOD_CHR);
     local dCHR = (pCHR - mCHR);
