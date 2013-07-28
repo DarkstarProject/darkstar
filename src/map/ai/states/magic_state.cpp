@@ -351,6 +351,10 @@ bool CMagicState::ValidCast(CSpell* PSpell)
     // check has mp available
     if(!m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT) && CalculateMPCost(PSpell) > m_PEntity->health.mp)
     {
+        if(m_PEntity->objtype == TYPE_MOB && m_PEntity->health.maxmp == 0)
+        {
+            ShowWarning("CMagicState::ValidCast Mob (%u) tried to cast magic with no mp!\n", m_PEntity->id);
+        }
         return false;
     }
 
