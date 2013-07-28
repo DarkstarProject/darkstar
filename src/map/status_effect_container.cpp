@@ -185,7 +185,7 @@ bool CStatusEffectContainer::CanGainStatusEffect(EFFECT statusEffect, uint16 pow
         case EFFECT_SLEEP:
         case EFFECT_SLEEP_II:
         case EFFECT_LULLABY:
-            if(m_POwner->hasImmunity(IMMUNITY_SLEEP)) return false;  
+            if(m_POwner->hasImmunity(IMMUNITY_SLEEP)) return false;
         break;
         case EFFECT_WEIGHT:
             if(m_POwner->hasImmunity(IMMUNITY_GRAVITY)) return false;
@@ -1137,8 +1137,8 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
                 else
                 {
                     m_POwner->setModifier(MOD_STONESKIN, 0);
-                    DelStatusEffect(EFFECT_STONESKIN);
-                    DelStatusEffect(EFFECT_HEALING);
+                    DelStatusEffectSilent(EFFECT_STONESKIN);
+                    DelStatusEffectSilent(EFFECT_HEALING);
                     m_POwner->addHP(-(poison - skin));
                     WakeUp();
                 }
@@ -1147,7 +1147,7 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
             {
                 m_POwner->addHP(-poison);
                 // prevent resting
-                DelStatusEffect(EFFECT_HEALING);
+                DelStatusEffectSilent(EFFECT_HEALING);
                 WakeUp();
             }
         }

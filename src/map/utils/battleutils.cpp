@@ -2664,10 +2664,10 @@ bool IsAbsorbByShadow(CBattleEntity* PDefender)
         {
 			switch(modShadow){
 			case MOD_UTSUSEMI:
-				PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
+				PDefender->StatusEffectContainer->DelStatusEffectSilent(EFFECT_COPY_IMAGE);
 				break;
 			case MOD_BLINK:
-				PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_BLINK);
+				PDefender->StatusEffectContainer->DelStatusEffectSilent(EFFECT_BLINK);
 				break;
 			}
         }

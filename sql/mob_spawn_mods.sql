@@ -37,3 +37,10 @@ CREATE TABLE IF NOT EXISTS `mob_spawn_mods` (
 --
 -- Contenu de la table `mob_spawn_mods`
 --
+
+INSERT INTO `mob_spawn_mods` VALUES(17371142, 16, -1, 1);
+INSERT INTO `mob_spawn_mods` VALUES(17371142, 1, 20, 1);
+INSERT INTO `mob_spawn_mods` VALUES(17371142, 2, 33, 1);
+INSERT INTO `mob_spawn_mods` VALUES(17371143, 16, 2, 1);
+INSERT INTO `mob_spawn_mods` VALUES(17371143, 1, 20, 1);
+INSERT INTO `mob_spawn_mods` VALUES(17371143, 2, 25, 1);
