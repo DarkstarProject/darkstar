@@ -8,9 +8,11 @@ Date: 7/28/2013 12:53:33 AM
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
 -- ----------------------------
 -- Table structure for abilities
 -- ----------------------------
+DROP TABLE IF EXISTS `abilities`;
 CREATE TABLE `abilities` (
   `abilityId` smallint(5) unsigned NOT NULL,
   `name` tinytext,
@@ -32,7 +34,7 @@ CREATE TABLE `abilities` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56;
 
 -- ----------------------------
--- Records 
+-- Records
 -- ----------------------------
 INSERT INTO `abilities` VALUES ('0', 'mighty_strikes', '1', '0', '1', '7200', '0', '0', '0', '33', '20.0', '0', '1', '300', '0', '0');
 INSERT INTO `abilities` VALUES ('1', 'hundred_fists', '2', '0', '1', '7200', '0', '0', '0', '34', '20.0', '0', '1', '300', '0', '0');

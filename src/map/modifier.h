@@ -440,8 +440,8 @@ enum MODIFIER
 	MOD_STEP_ACCURACY             =0x193,// Bonus accuracy for Dancer's steps
 
 	MOD_MAG_BURST_BONUS           =408,
-	MOD_EAT_RAW_FISH			  = 409,
-	MOD_EAT_RAW_MEAT			  = 410
+	MOD_EAT_RAW_FISH			  = 409, // not implemented
+	MOD_EAT_RAW_MEAT			  = 410 // not implemented
 };
 
 #define MAX_MODIFIER	       412

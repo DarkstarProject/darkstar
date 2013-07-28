@@ -459,9 +459,15 @@ namespace spell
 				// Sanity check the spell ID
 				uint16 spellId = Sql_GetIntData(SqlHandle,0);
 				if (spellId > MAX_SPELL_ID || spellId < 0x200) {
-					ShowWarning("Tried to load a blue magic spell with ID %u which is higher than the max (%u) or less than 0x200!\n", spellId, MAX_SPELL_ID);
-					continue;
-				}
+                    ShowWarning("Tried to load a blue magic spell with ID %u which is higher than the max (%u) or less than 0x200!\n", spellId, MAX_SPELL_ID);
+                    continue;
+                }
+
+                if(PSpellList[spellId] == NULL)
+                {
+					ShowWarning("spell::LoadSpellList Tried to load NULL blue spell (%u)\n", spellId);
+                    continue;
+                }
 
 				((CBlueSpell*)PSpellList[spellId])->setMonsterSkillId(Sql_GetIntData(SqlHandle,1));
                 ((CBlueSpell*)PSpellList[spellId])->setSetPoints(Sql_GetIntData(SqlHandle,2));
