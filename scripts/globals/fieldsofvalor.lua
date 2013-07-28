@@ -337,7 +337,7 @@ function finishFov(player,csid,option,r1,r2,r3,r4,r5,msg_offset)
 local msg_accept = msg_offset;
 local msg_jobs = msg_offset+1;
 local msg_cancel = msg_offset+2;
-local tabs = 1000;--player:getPoint(TABS);
+local tabs = player:getPoint(TABS);
 -- ================= FIELD SUPPORT ===============================================
 if(option==FOV_MENU_REGEN) then --Chose Regen. Regen from FoV removes all forms of regen.
 	--Decrease tabs
