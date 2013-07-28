@@ -21,4 +21,4 @@ CHEST_ILLUSION = 7295; -- The chest was but an illusion...
 -- Other dialog
   NOTHING_OUT_OF_ORDINARY = 6392; -- There is nothing out of the ordinary here.
 IT_IS_ALREADY_FUNCTIONING = 7256; -- It is already functioning.
-           SKY_GOD_OFFSET = 7307; -- A strange insignia pointing north is carved into the wall.
+           SKY_GOD_OFFSET = 7308; -- A strange insignia pointing north is carved into the wall.
