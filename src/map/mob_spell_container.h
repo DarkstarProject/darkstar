@@ -49,6 +49,7 @@ public:
   int16 GetSpell(); // return a random spell
 
   bool HasSpells();
+  bool HasMPSpells();
   bool HasNaSpell(int16 spellId);
   bool HasGaSpells();
   bool HasDamageSpells();

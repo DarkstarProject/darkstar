@@ -157,6 +157,16 @@ bool CSpell::hasMPCost()
     return m_spellGroup != SPELLGROUP_SONG && m_spellGroup != SPELLGROUP_NINJUTSU;
 }
 
+bool CSpell::isHeal()
+{
+    return (getValidTarget() & TARGET_SELF) && getSkillType() == SKILL_HEA || m_ID == 549 || m_ID == 578 || m_ID == 581 || m_ID == 593;
+}
+
+bool CSpell::isNa()
+{
+    return m_ID >= 14 && m_ID <= 20;
+}
+
 bool CSpell::dealsDamage()
 {
     //damage or drain hp

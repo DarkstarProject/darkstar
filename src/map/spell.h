@@ -41,7 +41,7 @@ enum SPELLGROUP
 	SPELLGROUP_BLUE		 = 3,
 	SPELLGROUP_NINJUTSU	 = 4,
 	SPELLGROUP_SUMMONING = 5,
-	SPELLGROUP_WHITE	 = 6, 
+	SPELLGROUP_WHITE	 = 6,
 	SPELLGROUP_GEOMANCY  = 7
 };
 
@@ -103,6 +103,8 @@ public:
     uint16      getMeritId();
     bool        tookEffect(); // returns true if the spell landed, not resisted or missed
     bool        hasMPCost(); // checks if spell costs mp to use
+    bool        isHeal(); // is a heal spell
+    bool        isNa(); // is a -na spell
 
     void        setRadius(uint8 radius);
     void        setTotalTargets(uint16 total);

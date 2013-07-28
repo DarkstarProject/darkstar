@@ -63,11 +63,11 @@ void CMobSpellContainer::AddSpell(int16 spellId)
     // add to damage list
     m_damageList.push_back(spellId);
 
-  } else if(spellId >= 14 && spellId <= 20 || spellId == 143){
+  } else if(spell->isNa() || spellId == 143){
     // na spell and erase
     m_naList.push_back(spellId);
 
-  } else if((spell->getValidTarget() & TARGET_SELF) && spell->getSkillType() == SKILL_HEA || spellId == 549 || spellId == 578 || spellId == 581 || spellId == 593){ // includes blue mage healing spells, wild carrot etc
+  } else if(spell->isHeal()){ // includes blue mage healing spells, wild carrot etc
     // add to healing
     m_healList.push_back(spellId);
 
@@ -83,6 +83,26 @@ void CMobSpellContainer::AddSpell(int16 spellId)
 bool CMobSpellContainer::HasSpells()
 {
   return m_hasSpells;
+}
+
+bool CMobSpellContainer::HasMPSpells()
+{
+
+  for (std::vector<int16>::iterator it = m_damageList.begin() ; it != m_damageList.end(); ++it)
+  {
+    if(spell::GetSpell((*it))->hasMPCost()){
+      return true;
+    }
+  }
+
+  for (std::vector<int16>::iterator it = m_buffList.begin() ; it != m_buffList.end(); ++it)
+  {
+    if(spell::GetSpell((*it))->hasMPCost()){
+      return true;
+    }
+  }
+
+  return false;
 }
 
 int16 CMobSpellContainer::GetAggroSpell()

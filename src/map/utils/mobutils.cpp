@@ -135,26 +135,6 @@ void CalculateStats(CMobEntity * PMob)
 	PMob->restoreModifiers();
 	PMob->restoreMobModifiers();
 
-	bool isNM = PMob->m_Type & MOBTYPE_NOTORIOUS;
-	JOBTYPE mJob = PMob->GetMJob();
-	JOBTYPE sJob = PMob->GetSJob();
-	uint8 mLvl = PMob->GetMLevel();
-	ZONETYPE zoneType = PMob->loc.zone->GetType();
-
-
-	// event mob types will always have custom roaming
-	if(PMob->m_Type & MOBTYPE_EVENT)
-	{
-		PMob->m_roamFlags |= ROAMFLAG_EVENT;
-		PMob->m_maxRoamDistance = 0.2f; // always go back to spawn
-	}
-
-	if(isNM)
-	{
-		// enmity range is larger
-		PMob->m_enmityRange = 28;
-	}
-
 	// set a random job
 	if(PMob->getMobMod(MOBMOD_RAND_JOB))
 	{
@@ -211,6 +191,25 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->SetSJob(job);
 		PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(spellList);
 		PMob->m_Weapons[SLOT_MAIN]->setSkillType(meleeSkill);
+	}
+
+	bool isNM = PMob->m_Type & MOBTYPE_NOTORIOUS;
+	JOBTYPE mJob = PMob->GetMJob();
+	JOBTYPE sJob = PMob->GetSJob();
+	uint8 mLvl = PMob->GetMLevel();
+	ZONETYPE zoneType = PMob->loc.zone->GetType();
+
+	// event mob types will always have custom roaming
+	if(PMob->m_Type & MOBTYPE_EVENT)
+	{
+		PMob->m_roamFlags |= ROAMFLAG_EVENT;
+		PMob->m_maxRoamDistance = 0.2f; // always go back to spawn
+	}
+
+	if(isNM)
+	{
+		// enmity range is larger
+		PMob->m_enmityRange = 28;
 	}
 
 	if(mJob == JOB_DRG)
@@ -724,6 +723,12 @@ void GetAvailableSpells(CMobEntity* PMob) {
 		{
 			PMob->SpellContainer->AddSpell((*it).spellId);
 		}
+	}
+
+	// make sure mob has mp to cast spells
+	if(PMob->health.maxmp == 0 && PMob->SpellContainer != NULL && PMob->SpellContainer->HasMPSpells())
+	{
+		ShowError("mobutils::CalculateStats Mob (%u) has no mp for casting spells!\n", PMob->id);
 	}
 }
 
