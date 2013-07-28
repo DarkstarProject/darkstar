@@ -44,3 +44,6 @@ INSERT INTO `mob_spawn_mods` VALUES(17371142, 2, 33, 1);
 INSERT INTO `mob_spawn_mods` VALUES(17371143, 16, 2, 1);
 INSERT INTO `mob_spawn_mods` VALUES(17371143, 1, 20, 1);
 INSERT INTO `mob_spawn_mods` VALUES(17371143, 2, 25, 1);
+INSERT INTO `mob_spawn_mods` VALUES(17433009, 1, 15000, 1);
+INSERT INTO `mob_spawn_mods` VALUES(17433009, 2, 18000, 1);
+INSERT INTO `mob_spawn_mods` VALUES(17433009, 302, 15, 0);
