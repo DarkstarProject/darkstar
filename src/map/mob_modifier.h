@@ -30,8 +30,8 @@ This is a list of mob specific modifiers. They can be added to pools / families 
 enum MOBMODIFIER
 {
   MOBMOD_NONE = 0,
-  MOBMOD_GIL_MIN = 1, // minimum gil drop
-  MOBMOD_GIL_MAX = 2, // maximum gil drop
+  MOBMOD_GIL_MIN = 1, // minimum gil drop -- spawn mod only
+  MOBMOD_GIL_MAX = 2, // maximum gil drop -- spawn mod only
   MOBMOD_MP_BASE = 3, // Give mob mp. Used for mobs that are not mages, wyverns, avatars
   MOBMOD_SIGHT_RANGE = 4, // sight range
   MOBMOD_SOUND_RANGE = 5, // sound range

@@ -842,9 +842,13 @@ void LoadCustomMods()
 	{
 		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		{
-			ModsList_t* poolMods = GetMobPoolMods(Sql_GetUIntData(SqlHandle,0), true);
+			uint16 pool = Sql_GetUIntData(SqlHandle,0);
+			ModsList_t* poolMods = GetMobPoolMods(pool, true);
 
-			CModifier* mod = new CModifier(Sql_GetUIntData(SqlHandle,1));
+			uint16 id = Sql_GetUIntData(SqlHandle,1);
+
+
+			CModifier* mod = new CModifier(id);
 			mod->setModAmount(Sql_GetUIntData(SqlHandle,2));
 
 			uint16 type = Sql_GetUIntData(SqlHandle,3);
