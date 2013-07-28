@@ -44,6 +44,15 @@ struct Recast_t
     uint32     RecastTime;
     uint32     chargeTime;
     uint8      maxCharges;
+
+    Recast_t()
+    {
+        ID = 0;
+        TimeStamp = 0;
+        RecastTime = 0;
+        chargeTime = 0;
+        maxCharges = 0;
+    }
 };
 
 /************************************************************************
