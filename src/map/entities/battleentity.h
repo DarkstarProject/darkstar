@@ -109,6 +109,9 @@ enum SKILLTYPE
 	SKILL_CLB			= 11,
 	SKILL_STF			= 12,
 
+    SKILL_AME           = 22,
+    SKILL_ARA           = 23,
+    SKILL_AMA           = 24,
 	SKILL_ARC			= 25,
 	SKILL_MRK			= 26,
 	SKILL_THR			= 27,
@@ -128,6 +131,8 @@ enum SKILLTYPE
 	SKILL_STR			= 41,
 	SKILL_WND			= 42,
 	SKILL_BLU			= 43,
+    SKILL_GEO           = 44,
+    SKILL_HND           = 45,
 
 	SKILL_FSH			= 48,
 	SKILL_WDW			= 49,

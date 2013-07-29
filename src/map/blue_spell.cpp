@@ -82,6 +82,36 @@ void CBlueSpell::setTraitWeight(uint8 weight)
 	m_traitWeight = weight;
 }
 
+uint8 CBlueSpell::getDamageType()
+{
+    return m_damageType;
+}
+
+void CBlueSpell::setDamageType(uint8 type)
+{
+    m_damageType = type;
+}
+
+uint8 CBlueSpell::getPrimarySkillchain()
+{
+    return m_PrimarySkillchain;
+}
+
+void CBlueSpell::setPrimarySkillchain(uint8 sc)
+{
+    m_PrimarySkillchain = sc;
+}
+
+uint8 CBlueSpell::getSecondarySkillchain()
+{
+    return m_SecondarySkillchain;
+}
+
+void CBlueSpell::setSecondarySkillchain(uint8 sc)
+{
+    m_SecondarySkillchain = sc;
+}
+
 void CBlueSpell::addModifier(CModifier* modifier)
 {
     modList.push_back(modifier);
