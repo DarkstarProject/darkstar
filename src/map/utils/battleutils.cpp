@@ -1854,7 +1854,7 @@ uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender)
 	{
 		CMobEntity* PMob = (CMobEntity*)PDefender;
 
-		if(PMob->m_Family == SYSTEM_UNDEAD || SYSTEM_BEASTMEN)
+		if(PMob->m_EcoSystem == SYSTEM_UNDEAD || PMob->m_EcoSystem == SYSTEM_BEASTMEN)
 		{
 			// fake it
 			skill = GetMaxSkill(SKILL_SHL,JOB_PLD,PDefender->GetMLevel());

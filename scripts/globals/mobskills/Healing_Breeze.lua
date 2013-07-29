@@ -22,7 +22,7 @@ function OnMobWeaponSkill(target, mob, skill)
 		potency = 12;
 	end
 
-	potency = potency - math.random(0, potency/3);
+	potency = potency - math.random(0, potency/4);
 
 	skill:setMsg(MSG_SELF_HEAL);
 
