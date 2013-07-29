@@ -29,38 +29,6 @@
 
 #include "../entities/charentity.h"
 
-/* It seems the 0x44 packet contains extended information about a specific job. For PUPs it's automaton information, for BLUs it's set spell info:
-
-ON ZONE IN MUST SEND A 0x44 packet like:
-
-44 4E 05 00 10 00 00 00 01 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00
-
-possibly offset 0x04 == job this is affecting because 0x10 = 16 = JOBBLU and below there is implementation for 0x12 = 18 = JOB_PUP
-
-offset 0x05 onwards: This is potentially a bitmask (?) of BLU spells set. Sending this will activate the spell setting packets on the client.
-Without this, you won't get them when you try to select spells on the UI.
-
-SPELL SETTING PACKETS = 0x102
-
-unknown:
-abs 0x08 is always 0x10.
-
-only set for add:
-abs 0x04 with the byte.
-
-always set for add/rem:
-abs offset 0x1C is the spell (shifted by 0x200) e.g. spellid 0x02A6 becomes 0xA6
-
-*/
 
 CAutomatonUpdatePacket::CAutomatonUpdatePacket(CCharEntity* PChar)
 {
@@ -69,6 +37,31 @@ CAutomatonUpdatePacket::CAutomatonUpdatePacket(CCharEntity* PChar)
 	/*
 	WBUFB(data,(0x04)-4) = JOB_PUP;
 
+    harlequin head: 0x01
+    valoredge head: 0x02
+    sharpshot head: 0x03
+    stormwaker head: 0x04
+    soulsoother head: 0x05
+    spiritreaver head: 0x06
+
+    harlequin frame: 0x20
+    valoredge frame: 0x21
+    sharpshot frame: 0x22
+    stormwaker frame: 0x23
+
+    tension spring: 0x02 (2)
+    disruptor: 0xE8 (232)
+
+    32 attachment slots for each element (except fire)
+    0x01-0x1F fire
+    0x20-0x3F ice
+    0x40-0x5F wind
+    0x60-0x7F earth
+    0x80-0x9F water
+    0xA0-0xBF thunder
+    0xC0-0xDF light
+    0xE0-0xFF dark
+    
 	WBUFB(data,(0x08)-4) = 0x03; //sharpshot head, harlequin = 0x01
 	WBUFB(data,(0x09)-4) = 0x22; //sharpshot frame, harlequin = 0x20
 	WBUFB(data,(0x0A)-4) = 0x00; //attachment slot 0
@@ -85,8 +78,9 @@ CAutomatonUpdatePacket::CAutomatonUpdatePacket(CCharEntity* PChar)
 	WBUFB(data,(0x15)-4) = 0x00; //slot 11
 
 	WBUFL(data,(0x18)-4) = 0x0A; // ??? also received 0x03, keg's packet 0x01
+    // pup99 (all frames, any attachments, different animators inc. alternator, different skill levels) -> 0x7E
 	WBUFL(data,(0x1C)-4) = 0x05; // ???
-
+    // pup99 (all frames, any attachments, different animators inc. alternator, different skill levels) -> 0x0F
 
 	
 	memcpy(data+(0x58)-4,PChar->PPet->GetName(),PChar->PPet->name.size());
@@ -103,15 +97,22 @@ CAutomatonUpdatePacket::CAutomatonUpdatePacket(CCharEntity* PChar)
 	WBUFW(data,(0x78)-4) = 0; //current magic skill
 	WBUFW(data,(0x7A)-4) = 0; //max magic skill
 
-	WBUFW(data,(0x80)-4) = PChar->PPet->STR();
-	WBUFW(data,(0x84)-4) = PChar->PPet->DEX();
-	WBUFW(data,(0x88)-4) = PChar->PPet->VIT();
-	WBUFW(data,(0x8C)-4) = PChar->PPet->AGI();
-	WBUFW(data,(0x90)-4) = PChar->PPet->INT();
-	WBUFW(data,(0x94)-4) = PChar->PPet->MND();
-	WBUFW(data,(0x98)-4) = PChar->PPet->CHR();
-
-	*/
+	WBUFW(data,(0x80)-4) = PChar->PPet->stats.STR;
+    WBUFW(data,(0x82)-4) = PChar->PPet->getMod(MOD_STR);
+    WBUFW(data,(0x84)-4) = PChar->PPet->stats.DEX;
+    WBUFW(data,(0x86)-4) = PChar->PPet->getMod(MOD_DEX);
+    WBUFW(data,(0x88)-4) = PChar->PPet->stats.VIT;
+    WBUFW(data,(0x8A)-4) = PChar->PPet->getMod(MOD_VIT);
+	WBUFW(data,(0x8C)-4) = PChar->PPet->stats.AGI;
+    WBUFW(data,(0x8E)-4) = PChar->PPet->getMod(MOD_AGI);
+	WBUFW(data,(0x90)-4) = PChar->PPet->stats.INT;
+    WBUFW(data,(0x92)-4) = PChar->PPet->getMod(MOD_INT);
+	WBUFW(data,(0x94)-4) = PChar->PPet->stats.MND;
+    WBUFW(data,(0x96)-4) = PChar->PPet->getMod(MOD_MND);
+	WBUFW(data,(0x98)-4) = PChar->PPet->stats.CHR;
+    WBUFW(data,(0x9A)-4) = PChar->PPet->getMod(MOD_CHR);
+    */
+	
 	uint8 packet[] = {
 							0x12, 0x00, 0x00, 0x00, 0x01, 0x20, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 
