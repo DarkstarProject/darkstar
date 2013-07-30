@@ -316,7 +316,7 @@ function applyResistance(player,spell,target,diff,skill,bonus)
 	local affinityBonus = AffinityBonus(player, spell:getElement());
 	magicaccbonus = magicaccbonus + (affinityBonus-1) * 200;
 
-    local skillchainTier, skillchainCount = FormMagicBurst(spell, target);
+    local skillchainTier, skillchainCount = FormMagicBurst(spell:getElement(), target);
     --add acc for skillchains
     if(skillchainTier > 0) then
 		magicaccbonus = magicaccbonus + 25;
@@ -652,6 +652,10 @@ function calculateMagicBurstAndBonus(caster, spell, target)
     local burst = 1.0;
     local burstBonus = 1.0;
 
+	if (spell:getSpellGroup() == 3 and not caster:hasStatusEffect(EFFECT_BURST_AFFINITY)) then
+		return burst, burstBonus;
+	end
+	
     local skillchainTier, skillchainCount = FormMagicBurst(spell:getElement(), target);
 
     if(skillchainTier > 0) then
