@@ -77,11 +77,18 @@ CAutomatonUpdatePacket::CAutomatonUpdatePacket(CCharEntity* PChar)
 	WBUFB(data,(0x14)-4) = 0x00; //slot 10
 	WBUFB(data,(0x15)-4) = 0x00; //slot 11
 
-	WBUFL(data,(0x18)-4) = 0x0A; // ??? also received 0x03, keg's packet 0x01
-    // pup99 (all frames, any attachments, different animators inc. alternator, different skill levels) -> 0x7E
-	WBUFL(data,(0x1C)-4) = 0x05; // ???
-    // pup99 (all frames, any attachments, different animators inc. alternator, different skill levels) -> 0x0F
+	WBUFL(data,(0x18)-4) = 0x0A; // unlocked automaton heads (all heads: 0x7E - not sure what bit 0 is)
+	WBUFL(data,(0x1C)-4) = 0x05; // unlocked automaton frames (all frames: 0x0F)
 
+    //unlocked attachments: bit # = itemID (second itemID, 8000+ one) & 0x1F (0-31), or itemID & 0xFF - (32*element)
+    WBUFL(data,(0x35)-4) = 0x00; // unlocked fire attachments
+    WBUFL(data,(0x35)-4) = 0x00; // unlocked ice attachments
+    WBUFL(data,(0x35)-4) = 0x00; // unlocked wind attachments
+    WBUFL(data,(0x35)-4) = 0x00; // unlocked earth attachments
+    WBUFL(data,(0x35)-4) = 0x00; // unlocked lightning attachments
+    WBUFL(data,(0x35)-4) = 0x00; // unlocked water attachments
+    WBUFL(data,(0x35)-4) = 0x00; // unlocked light attachments
+    WBUFL(data,(0x35)-4) = 0x00; // unlocked dark attachments
 	
 	memcpy(data+(0x58)-4,PChar->PPet->GetName(),PChar->PPet->name.size());
 
