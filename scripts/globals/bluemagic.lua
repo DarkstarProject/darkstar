@@ -199,6 +199,8 @@ function BlueMagicalSpell(caster, target, spell, params, statMod)
 	magicAttack = math.floor(D * multTargetReduction);
 	magicAttack = math.floor(magicAttack * applyResistance(caster,spell,target,caster:getStat(MOD_INT) - target:getStat(MOD_INT),BLUE_SKILL,1.0));
 	dmg = math.floor(addBonuses(caster, spell, target, magicAttack));
+	
+	caster:delStatusEffectSilent(EFFECT_BURST_AFFINITY);
 
 	return dmg;
 end;
