@@ -39,17 +39,17 @@ local matches = -- [element id][resonance id]
 }
 
 -- Returns a boolean if the spell's element matches the resonace given
-function doesSpellElementMatchResonance(spell, resonance)
-	isMatch = matches[spell:getElement() + 1][resonance:getPower() + 1];
+function doesSpellElementMatchResonance(ele, resonance)
+	isMatch = matches[ele + 1][resonance:getPower() + 1];
 	return (isMatch ~= nil and isMatch > 0);
 end
 
 -- Returns the burst level for a spell / target combination
-function FormMagicBurst(spell, target)
+function FormMagicBurst(ele, target)
     local resonance = target:getStatusEffect(EFFECT_SKILLCHAIN);
 
     if(resonance ~= nil and resonance:getTier() > 0) then -- Resonance exists, ignore it if its tier 0
-		if(doesSpellElementMatchResonance(spell, resonance) == true) then
+		if(doesSpellElementMatchResonance(ele, resonance) == true) then
 			return resonance:getTier(), resonance:getSubPower();
 		end
     end -- if resonance

@@ -55,6 +55,7 @@ public:
 	int32 getElement(lua_State*);
 	int32 getID(lua_State*);
     int32 getSpellGroup(lua_State*);
+    int32 getDamageType(lua_State*);
 };
 
 #endif

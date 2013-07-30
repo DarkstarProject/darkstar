@@ -28,17 +28,16 @@ function onSpellCast(caster,target,spell)
 	if(dmg < 1) then
 		dmg = 1;
 	end
-	print("abd");
+
 	--get resist multiplier (1x if no resist)
 	local resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT)-target:getStat(MOD_INT),DARK_MAGIC_SKILL,1.0);
 	--get the resisted damage
-	print("assses");
 	dmg = dmg*resist;
 	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
-	print("dicks");
-	dmg = addBonuses(caster,spell:getElement(),target,dmg);
+	dmg = addBonuses(caster,spell,target,dmg);
 	--add in target adjustment
 	dmg = adjustForTarget(target,dmg);
+
 	--add in final adjustments including the actual damage dealt
 	local final = finalMagicAdjustments(caster,target,spell,dmg);
 

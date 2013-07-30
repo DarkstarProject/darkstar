@@ -25,6 +25,7 @@
 
 #include "../ability.h"
 #include "../alliance.h"
+#include "../blue_spell.h"
 #include "../utils/battleutils.h"
 #include "../utils/charutils.h"
 #include "../conquest_system.h"
@@ -1626,10 +1627,6 @@ void CAICharNormal::ActionMagicFinish()
             }
         }
 
-        if(Action.param >= 2000){
-            ShowDebug("Super high magic damage warning: %d\n", Action.param);
-        }
-
         if (PTarget->objtype == TYPE_MOB)
         {
             if (PTarget->isDead())
@@ -1659,6 +1656,32 @@ void CAICharNormal::ActionMagicFinish()
                 m_PChar->delModifier(MOD_ENMITY, -m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_EQUANIMITY)->GetPower());
                 m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_EQUANIMITY);
             }
+        }
+
+        if(Action.param > 0 && m_PSpell->dealsDamage() && m_PSpell->getSpellGroup() == SPELLGROUP_BLUE && 
+            m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAIN_AFFINITY) && ((CBlueSpell*)m_PSpell)->getPrimarySkillchain() != 0)
+        {
+
+            SUBEFFECT effect = battleutils::GetSkillChainEffect(m_PBattleSubTarget, (CBlueSpell*)m_PSpell);
+            if (effect != SUBEFFECT_NONE)
+            {
+	            uint16 skillChainDamage = battleutils::TakeSkillchainDamage(m_PChar, m_PBattleSubTarget, Action.param);
+
+
+                Action.addEffectParam = skillChainDamage;
+                Action.addEffectMessage = 287 + effect;
+                Action.additionalEffect = effect;
+
+            }
+            if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SEKKANOKI) || m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
+            {
+                m_PChar->health.tp = (m_PChar->health.tp > 100 ? m_PChar->health.tp - 100 : 0);
+            }
+            else
+            {
+                m_PChar->health.tp = 0;
+            }
+            m_PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHAIN_AFFINITY);
         }
 
         m_PChar->m_ActionList.push_back(Action);
@@ -2427,9 +2450,25 @@ void CAICharNormal::ActionJobAbilityFinish()
 
         // TODO: все перенести в скрипты, т.к. система позволяет получать указатель на питомца
 
-    	if(m_PJobAbility->getID() == ABILITY_CALL_BEAST || m_PJobAbility->getID() == ABILITY_REWARD || 
+    	if(m_PJobAbility->getID() == ABILITY_CALL_BEAST || m_PJobAbility->getID() == ABILITY_REWARD ||
             (m_PJobAbility->getID() >= ABILITY_FIRE_SHOT && m_PJobAbility->getID() <= ABILITY_DARK_SHOT )){
     		charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
+            if (m_PJobAbility->getID() >= ABILITY_FIRE_SHOT && m_PJobAbility->getID() <= ABILITY_DARK_SHOT )
+            {
+                CItemContainer* inventory = m_PChar->getStorage(LOC_INVENTORY);
+                uint8 slotID = inventory->SearchItem(2176 + m_PJobAbility->getID() - ABILITY_FIRE_SHOT); //Elemental Card
+
+                if (slotID != ERROR_SLOTID)
+                {
+                    charutils::UpdateItem(m_PChar, LOC_INVENTORY, slotID, -1);
+                }
+                else
+                {
+                    slotID = inventory->SearchItem(2974); //Trump Card
+                    DSP_DEBUG_BREAK_IF(slotID == ERROR_SLOTID);
+                    charutils::UpdateItem(m_PChar, LOC_INVENTORY, slotID, -1);
+                }
+            }
     		m_PChar->pushPacket(new CInventoryFinishPacket());
     	}
 

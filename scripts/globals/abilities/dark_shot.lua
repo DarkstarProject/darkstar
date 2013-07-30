@@ -26,7 +26,7 @@ end;
 function OnUseAbility(player, target, ability)
 	
 	local duration = 60;
-	local resist = applyResistanceMinimal(player,target,ELE_DARK,SKILL_MRK);
+	local resist = applyResistanceAbility(player,target,ELE_DARK,SKILL_MRK);
 	
 	if(resist < 0.25) then
 		ability:setMsg(324);--resist message

@@ -25,6 +25,7 @@
 #define _BATTLEUTILS_H
 
 #include "../../common/cbasetypes.h"
+#include "../blue_spell.h"
 
 #include <list>
 
@@ -97,6 +98,7 @@ namespace battleutils
     void				FreeSkillChainDamageModifiers();
 
     SUBEFFECT			GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSkill);
+    SUBEFFECT			GetSkillChainEffect(CBattleEntity* PDefender, CBlueSpell* PSpell);
     SKILLCHAIN_ELEMENT  FormSkillchain(std::list<SKILLCHAIN_ELEMENT> resonance, std::list<SKILLCHAIN_ELEMENT> skill);
     uint8				GetSkillchainTier(SKILLCHAIN_ELEMENT skillchain);
     uint8				GetSkillchainSubeffect(SKILLCHAIN_ELEMENT skillchain);

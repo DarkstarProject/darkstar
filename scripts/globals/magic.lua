@@ -398,7 +398,7 @@ function applyResistance(player,spell,target,diff,skill,bonus)
 end;
 
 --Applies resistance for things that may not be spells - ie. Quick Draw
-function applyResistanceMinimal(player,target,element,skill,bonus)
+function applyResistanceAbility(player,target,element,skill,bonus)
     -- resist everything if magic shield is active
     if(target:hasStatusEffect(EFFECT_MAGIC_SHIELD, 0)) then
         return 0;
@@ -652,7 +652,7 @@ function calculateMagicBurstAndBonus(caster, spell, target)
     local burst = 1.0;
     local burstBonus = 1.0;
 
-    local skillchainTier, skillchainCount = FormMagicBurst(spell, target);
+    local skillchainTier, skillchainCount = FormMagicBurst(spell:getElement(), target);
 
     if(skillchainTier > 0) then
 		if(skillchainCount == 1) then
@@ -704,13 +704,10 @@ function calculateMagicBurstAndBonus(caster, spell, target)
     return burst, burstBonus;
 end;
 
-function addBonuses(caster, ele, target, dmg, bonusmab, isHelix)
+function addBonuses(caster, spell, target, dmg, bonusmab)
+	local ele = spell:getElement();
 
-	if (isHelix == nil) then
-		isHelix = false;
-	end
-
-	local affinityBonus = AffinityBonus(caster, ele);
+	local affinityBonus = AffinityBonus(caster, spell:getElement());
 	dmg = math.floor(dmg * affinityBonus);
 
 	local speciesReduction = target:getMod(defenseMod[ele]);
@@ -725,29 +722,29 @@ function addBonuses(caster, ele, target, dmg, bonusmab, isHelix)
 	if(weather == singleWeatherStrong[ele]) then
 		-- Iridescence
 		if(equippedMain == 18632 or equippedMain == 18633) then
-			if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelix) then
+			if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
 				dayWeatherBonus = dayWeatherBonus + 0.10;
 			end
 		end
-		if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelix) then
+		if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
 	elseif(caster:getWeather() == singleWeatherWeak[ele]) then
-		if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] or isHelix) then
+		if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] or isHelixSpell(spell)) then
 			dayWeatherBonus = dayWeatherBonus - 0.10;
 		end
 	elseif(weather == doubleWeatherStrong[ele]) then
 		-- Iridescence
 		if(equippedMain == 18632 or equippedMain == 186330) then
-			if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelix) then
+			if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
 				dayWeatherBonus = dayWeatherBonus + 0.10;
 			end
 		end
-		if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelix) then
+		if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
 			dayWeatherBonus = dayWeatherBonus + 0.25;
 		end
 	elseif(weather == doubleWeatherWeak[ele]) then
-		if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] or isHelix) then
+		if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] or isHelixSpell(spell)) then
 			dayWeatherBonus = dayWeatherBonus - 0.25;
 		end
 	end
@@ -758,11 +755,11 @@ function addBonuses(caster, ele, target, dmg, bonusmab, isHelix)
 		if(equippedLegs == 15120 or equippedLegs == 15583) then
 			dayWeatherBonus = dayWeatherBonus + 0.05;
 		end
-		if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelix) then
+		if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
 	elseif(dayElement == dayWeak[ele]) then
-		if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] or isHelix) then
+		if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] or isHelixSpell(spell)) then
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
 	end
@@ -806,6 +803,101 @@ function addBonuses(caster, ele, target, dmg, bonusmab, isHelix)
 	end
 
 	dmg = math.floor(dmg);
+
+	-- Applies "Damage Taken" and "Magic Damage Taken" mods.
+	-- The formulas look crazy because SE.
+	-- Note that MOD_DMGMAGIC is stored in item_mods in amount/256 format
+
+    dmg = utils.dmgTaken(target, dmg);
+    dmg = utils.magicDmgTaken(target, dmg);
+
+	-- print(affinityBonus);
+	-- print(speciesReduction);
+	-- print(dayWeatherBonus);
+	-- print(burst);
+	-- print(mab);
+	-- print(magicDmgMod);
+
+    return dmg;
+end;
+
+function addBonusesAbility(caster, ele, target, dmg, bonusmab)
+
+	local affinityBonus = AffinityBonus(caster, ele);
+	dmg = math.floor(dmg * affinityBonus);
+
+	local speciesReduction = target:getMod(defenseMod[ele]);
+	speciesReduction = 1.00 - (speciesReduction/1000);
+	dmg = math.floor(dmg * speciesReduction);
+
+	local dayWeatherBonus = 1.00;
+	local equippedMain = caster:getEquipID(SLOT_MAIN);
+	local equippedWaist = caster:getEquipID(SLOT_WAIST);
+	local weather = caster:getWeather();
+
+	if(weather == singleWeatherStrong[ele]) then
+		-- Iridescence
+		if(equippedMain == 18632 or equippedMain == 18633) then
+			if(math.random() < 0.33 or equippedWaist == elementalObi[ele] ) then
+				dayWeatherBonus = dayWeatherBonus + 0.10;
+			end
+		end
+		if(math.random() < 0.33 or equippedWaist == elementalObi[ele] ) then
+			dayWeatherBonus = dayWeatherBonus + 0.10;
+		end
+	elseif(caster:getWeather() == singleWeatherWeak[ele]) then
+		if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] ) then
+			dayWeatherBonus = dayWeatherBonus - 0.10;
+		end
+	elseif(weather == doubleWeatherStrong[ele]) then
+		-- Iridescence
+		if(equippedMain == 18632 or equippedMain == 186330) then
+			if(math.random() < 0.33 or equippedWaist == elementalObi[ele] ) then
+				dayWeatherBonus = dayWeatherBonus + 0.10;
+			end
+		end
+		if(math.random() < 0.33 or equippedWaist == elementalObi[ele] ) then
+			dayWeatherBonus = dayWeatherBonus + 0.25;
+		end
+	elseif(weather == doubleWeatherWeak[ele]) then
+		if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] ) then
+			dayWeatherBonus = dayWeatherBonus - 0.25;
+		end
+	end
+
+	local dayElement = VanadielDayElement();
+	if(dayElement == dayStrong[ele]) then
+		local equippedLegs = caster:getEquipID(SLOT_LEGS);
+		if(equippedLegs == 15120 or equippedLegs == 15583) then
+			dayWeatherBonus = dayWeatherBonus + 0.05;
+		end
+		if(math.random() < 0.33 or equippedWaist == elementalObi[ele] ) then
+			dayWeatherBonus = dayWeatherBonus + 0.10;
+		end
+	elseif(dayElement == dayWeak[ele]) then
+		if(math.random() < 0.33 or equippedWaist == elementalObiWeak[ele] ) then
+			dayWeatherBonus = dayWeatherBonus + 0.10;
+		end
+	end
+
+	if dayWeatherBonus > 1.35 then
+		dayWeatherBonus = 1.35;
+	end
+
+	dmg = math.floor(dmg * dayWeatherBonus);
+
+	local mab = 0;
+	if (bonusmab ~= nil) then
+		mab = (100 + caster:getMod(MOD_MATT) + bonusmab) / (100 + target:getMod(MOD_MDEF));
+	else
+		mab = (100 + caster:getMod(MOD_MATT)) / (100 + target:getMod(MOD_MDEF));
+	end
+
+    if(mab < 0) then
+        mab = 0;
+    end
+
+	dmg = math.floor(dmg * mab);
 
 	-- Applies "Damage Taken" and "Magic Damage Taken" mods.
 	-- The formulas look crazy because SE.
@@ -968,7 +1060,7 @@ function doNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,s
 		end
 	end
 	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
-	dmg = addBonuses(caster,spell:getElement(),target,dmg, 0, isHelixSpell(spell));
+	dmg = addBonuses(caster,spell,target,dmg);
 	--add in target adjustment
 	dmg = adjustForTarget(target,dmg);
 	--add in final adjustments

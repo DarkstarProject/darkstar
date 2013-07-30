@@ -17,7 +17,7 @@ function onSpellCast(caster,target,spell)
 
 	-- Pull base stats.
 	local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
-	local bonus = AffinityBonus(caster,spell:getElement());
+	local bonus = AffinityBonus(caster, spell:getElement());
 
 	-- Base power.  May need more research.
 	local power = math.floor((dINT + 60) / 4);

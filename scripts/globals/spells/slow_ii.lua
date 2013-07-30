@@ -19,7 +19,7 @@ end;
 function onSpellCast(caster,target,spell)
     if(100 * math.random() >= target:getMod(MOD_SLOWRES)) then
 		local dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
-		local bonus = AffinityBonus(caster,spell:getElement());
+		local bonus = AffinityBonus(caster, spell:getElement());
 
 		local potency = 230 + math.floor(dMND * 1.6);
 

@@ -17,7 +17,7 @@ function onSpellCast(caster,target,spell)
     local effect = EFFECT_POISON;
     -- Base Stats
     local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
-    local bonus = AffinityBonus(caster,spell:getElement());
+    local bonus = AffinityBonus(caster, spell:getElement());
     --Duration Calculation
     local duration = 60 * applyResistance(caster,spell,target,dINT,NINJUTSU_SKILL,bonus);
     local power = 3;
