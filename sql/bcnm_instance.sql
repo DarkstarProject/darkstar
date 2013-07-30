@@ -1981,5 +1981,48 @@ INSERT INTO `bcnm_instance` VALUES ('1289', '1','16949491' , '3');
 INSERT INTO `bcnm_instance` VALUES ('1289', '1','16949492' ,  '3');
 INSERT INTO `bcnm_instance` VALUES ('1289', '1','16949493' ,'3');
 INSERT INTO `bcnm_instance` VALUES ('1289', '1','16949494' ,'3');
+-- //////////////////////////////////////////////////////////////
+--               APPOLYON  SE
+-- //////////////////////////////////////////////////////////////
+-- FIRST FLOOR
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16932993','1');-- 'Metalloid_Amoeba'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16932994','1');-- 'Metalloid_Amoeba'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16932995','1');-- 'Metalloid_Amoeba'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16932996','1');-- 'Metalloid_Amoeba'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16932997','1');-- 'Metalloid_Amoeba'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16932998','1');-- 'Metalloid_Amoeba'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16932999','1');-- 'Metalloid_Amoeba'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933000','1');-- 'Metalloid_Amoeba'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16932992','1');-- 'Ghost_Clot'
+-- Second Floor
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933007','1');-- 'Adamantshell'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933008','1');-- 'Adamantshell'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933009','1');-- 'Adamantshell'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933010','1');-- 'Adamantshell'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933011','1');-- 'Adamantshell'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933012','1');-- 'Adamantshell'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933013','1');-- 'Adamantshell'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933014','1');-- 'Adamantshell'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933006','1');-- 'Tieholtsodi'
+-- Third Floor
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933021','1');-- 'Inhumer'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933022','1');-- 'Inhumer'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933023','1');-- 'Inhumer'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933024','1');-- 'Inhumer'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933025','1');-- 'Inhumer'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933026','1');-- 'Inhumer'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933027','1');-- 'Inhumer'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933028','1');-- 'Inhumer'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933020','1');-- 'Grave_Digger'
+-- Fourth Floor
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933032','1');-- 'Evil_Armory'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933033','1');-- 'Flying_Spear'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933034','1');-- 'Flying_Spear'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933035','1');-- 'Flying_Spear'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933036','1');-- 'Flying_Spear'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933037','1');-- 'Flying_Spear'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933038','1');-- 'Flying_Spear'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933039','1');-- 'Flying_Spear'
+INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933040','1');-- 'Flying_Spear'
 
-
+-- ----------------------------------------------------------------

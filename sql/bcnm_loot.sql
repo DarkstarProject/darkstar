@@ -549,3 +549,68 @@ INSERT INTO `bcnm_loot` VALUES ('35', '15274', '131', '7');
 INSERT INTO `bcnm_loot` VALUES ('35', '744', '79', '7');
 INSERT INTO `bcnm_loot` VALUES ('35', '806', '131', '7');
 INSERT INTO `bcnm_loot` VALUES ('35', '0', '600', '7');
+-- limbus                      lootID,ItemID,Roll,lootgroup
+-- SE Appollyon first floor
+INSERT INTO `bcnm_loot` VALUES ('110', '1875', '1000', '0'); -- ancient beastcoin*4
+INSERT INTO `bcnm_loot` VALUES ('110', '1875', '1000', '1'); 
+INSERT INTO `bcnm_loot` VALUES ('110', '1875', '1000', '2'); 
+INSERT INTO `bcnm_loot` VALUES ('110', '1875', '1000', '3'); 
+INSERT INTO `bcnm_loot` VALUES ('110', '1939', '350', '4'); --  RDM,
+INSERT INTO `bcnm_loot` VALUES ('110', '1941', '278', '4'); --  THF,
+INSERT INTO `bcnm_loot` VALUES ('110', '1959', '174', '4'); --   SMN,
+INSERT INTO `bcnm_loot` VALUES ('110', '1949', '200', '4');  --  BRD
+INSERT INTO `bcnm_loot` VALUES ('110', '1945', '47', '5');  --  DRK,
+INSERT INTO `bcnm_loot` VALUES ('110', '1951', '49', '5');  --  RNG,
+INSERT INTO `bcnm_loot` VALUES ('110', '1955', '200', '5');  --  NIN,
+INSERT INTO `bcnm_loot` VALUES ('110', '2659', '62', '5');  --  COR,
+INSERT INTO `bcnm_loot` VALUES ('110', '2715', '407', '5');  --  DNC
+-- -------------------------------------
+-- SE Appollyon Second floor
+-- -------------------------------------
+INSERT INTO `bcnm_loot` VALUES ('111', '1875', '1000', '0'); -- ancient beastcoin*4
+INSERT INTO `bcnm_loot` VALUES ('111', '1875', '1000', '1'); 
+INSERT INTO `bcnm_loot` VALUES ('111', '1875', '1000', '2'); 
+INSERT INTO `bcnm_loot` VALUES ('111', '1875', '1000', '3'); 
+INSERT INTO `bcnm_loot` VALUES ('111', '1959', '47', '4'); --   SMN,
+INSERT INTO `bcnm_loot` VALUES ('111', '1949', '30', '4');  --  BRD
+INSERT INTO `bcnm_loot` VALUES ('111', '1943', '200', '4'); -- PLD,
+INSERT INTO `bcnm_loot` VALUES ('111', '1947', '460', '4'); --  BST,
+INSERT INTO `bcnm_loot` VALUES ('111', '2661', '400', '4'); --  PUP
+INSERT INTO `bcnm_loot` VALUES ('111', '1951', '20', '5');  --  RNG,
+INSERT INTO `bcnm_loot` VALUES ('111', '1955', '80', '5');  --  NIN,
+INSERT INTO `bcnm_loot` VALUES ('111', '1945', '90', '5');  --  DRK,
+INSERT INTO `bcnm_loot` VALUES ('111', '2659', '100', '5');  --  COR,
+INSERT INTO `bcnm_loot` VALUES ('111', '2715', '120', '5');  --  DNC
+-- SE Appollyon Third floor
+-- -------------------------------------
+INSERT INTO `bcnm_loot` VALUES ('112', '1875', '1000', '0'); -- ancient beastcoin*4
+INSERT INTO `bcnm_loot` VALUES ('112', '1875', '1000', '1'); 
+INSERT INTO `bcnm_loot` VALUES ('112', '1875', '1000', '2'); 
+INSERT INTO `bcnm_loot` VALUES ('112', '1875', '1000', '3'); 
+INSERT INTO `bcnm_loot` VALUES ('112', '1955', '59', '4');  --  NIN,
+INSERT INTO `bcnm_loot` VALUES ('112', '1959', '139', '4'); --   SMN,
+INSERT INTO `bcnm_loot` VALUES ('112', '1949', '39', '4');  --  BRD
+INSERT INTO `bcnm_loot` VALUES ('112', '1681', '39', '4'); --   Light Steel 
+INSERT INTO `bcnm_loot` VALUES ('112', '645', '39', '4');  --  Darksteel Ore
+INSERT INTO `bcnm_loot` VALUES ('112', '1933', '627', '4'); --  MNK,
+INSERT INTO `bcnm_loot` VALUES ('112', '1954', '159', '5');  --  DRK,
+INSERT INTO `bcnm_loot` VALUES ('112', '1951', '139', '5');  --  RNG,
+INSERT INTO `bcnm_loot` VALUES ('112', '2659', '39', '5');  --  COR,
+INSERT INTO `bcnm_loot` VALUES ('112', '664', '20', '5');  --  Darksteel Sheet
+INSERT INTO `bcnm_loot` VALUES ('112', '646', '20', '5');  --   Adaman Ore
+INSERT INTO `bcnm_loot` VALUES ('112', '1931', '200', '5'); --  WAR,
+-- ---SE Appollyon fourth floor-------------------------
+INSERT INTO `bcnm_loot` VALUES ('113', '1875', '1000', '0'); -- ancient beastcoin*5
+INSERT INTO `bcnm_loot` VALUES ('113', '1875', '1000', '1'); 
+INSERT INTO `bcnm_loot` VALUES ('113', '1875', '1000', '2'); 
+INSERT INTO `bcnm_loot` VALUES ('113', '1875', '1000', '3'); 
+INSERT INTO `bcnm_loot` VALUES ('113', '1875', '1000', '4'); 
+INSERT INTO `bcnm_loot` VALUES ('113', '1935', '220', '5'); --  WHM,
+INSERT INTO `bcnm_loot` VALUES ('113', '1937', '300', '5'); -- BLM, 
+INSERT INTO `bcnm_loot` VALUES ('113', '1957', '260', '5'); --  DRG, 
+INSERT INTO `bcnm_loot` VALUES ('113', '1953', '340', '5');  --  SAM,
+INSERT INTO `bcnm_loot` VALUES ('113', '2657', '220', '6');  --  BLU,
+INSERT INTO `bcnm_loot` VALUES ('113', '2717', '180', '6');  --  SCH
+INSERT INTO `bcnm_loot` VALUES ('113', '1931', '300', '6');  -- WAR,
+INSERT INTO `bcnm_loot` VALUES ('113', '1909', '1000', '7'); --  Smalt Chip,
+INSERT INTO `bcnm_loot` VALUES ('113', '2127', '59', '8');  --  metal chip

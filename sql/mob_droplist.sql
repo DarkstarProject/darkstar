@@ -31425,3 +31425,14 @@ INSERT INTO `mob_droplist` VALUES(4407,0,15681,2);
 INSERT INTO `mob_droplist` VALUES(4407,0,15682,2);
 INSERT INTO `mob_droplist` VALUES(4407,0,15683,1);
 INSERT INTO `mob_droplist` VALUES(4408, 0, 12298, 100);
+
+INSERT INTO `mob_droplist` VALUES(4409, 0, 1875, 30); -- Ancient beastcoin 30%
+INSERT INTO `mob_droplist` VALUES(4410, 0, 1875, 40); -- Ancient beastcoin 40%
+INSERT INTO `mob_droplist` VALUES(4411, 0, 1875, 50); -- Ancient beastcoin 50%
+INSERT INTO `mob_droplist` VALUES(4412, 0, 1875, 70); -- Ancient beastcoin 70%
+INSERT INTO `mob_droplist` VALUES(4413, 0, 1875, 80); -- Ancient beastcoin 80%
+INSERT INTO `mob_droplist` VALUES(4414, 0, 1875, 100); -- Ancient beastcoin 100%
+
+INSERT INTO `mob_droplist` VALUES(4415, 0, 1875, 100); -- Ancient beastcoin 200%
+INSERT INTO `mob_droplist` VALUES(4415, 0, 1875, 100); -- Ancient beastcoin 200%
+

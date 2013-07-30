@@ -232,8 +232,14 @@ public:
 	int32 bcnmLeave(lua_State*);			//Leave a bcnm instance
 	int32 isInBcnm(lua_State*);				//true if you're INSIDE the bc (not just the status)
 	int32 isBcnmsFull(lua_State*);			//true if all 3 instances are full
+    int32 isSpecialIntanceEmpty(lua_State*); // 1 if this instance is full 
+	int32 getSpecialInstanceLeftTime(lua_State*);// return left time of the specific instance
+	int32 addTimeToSpecialInstance(lua_State*); // add time of the specific instance
+	int32 BCNMSetLoot(lua_State*);           // set a lootlist for a special inctance
+	int32 RestoreAndHealOnInstance(lua_State*); // restore ability , PM and PV on the specific instance
 	int32 getInstanceID(lua_State*);		//returns 1 2 or 3 if the player can enter a bcnm with the instance assigned
 	int32 getBCNMloot(lua_State*);			//triggers if the player opens the chest inside bcnm
+	int32 addPlayerToSpecialInstance(lua_State*); //for limbus
 
 	int32 setSpawn(lua_State*);					// Sets spawn point
 	int32 setRespawnTime(lua_State*);		// set respawn time

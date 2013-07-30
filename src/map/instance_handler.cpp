@@ -27,8 +27,10 @@
 #include "entities/charentity.h"
 #include "instance_handler.h"
 #include "entities/mobentity.h"
-
+#include "utils/zoneutils.h"
+#include "utils/charutils.h"
 #include "lua/luautils.h"
+#include "packets/char_skills.h"
 
 
 CInstanceHandler::CInstanceHandler(uint16 zoneid)
@@ -41,6 +43,16 @@ CInstanceHandler::CInstanceHandler(uint16 zoneid)
     {
 		m_MaxInstances = 1;
 	}
+	else
+	   if(m_ZoneId == 37)   
+	   {
+		   m_MaxInstances = 8;
+	   }
+	else
+	   if(m_ZoneId == 38)   
+	   {
+		   m_MaxInstances = 6;
+	   }
 	else
     {
 		m_MaxInstances = 3;
@@ -88,6 +100,36 @@ void CInstanceHandler::handleInstances(uint32 tick){
 					ShowDebug("Dynamis %i instance %i : Dynamis is finished. Exiting battlefield.\n",PInstance->getID(),PInstance->getInstanceNumber());
 					PInstance->finishDynamis();
 				}
+			}
+			else
+				if(instzone == 37 || instzone == 38){ //limbus ///////////////////////////////////////////////////////////
+								//handle death time
+				      if(PInstance->allPlayersDead()){//set dead time
+					       if(PInstance->getDeadTime()==0){
+						     PInstance->setDeadTime(tick);
+						     ShowDebug("Limbus %i instance %i : All players have fallen.\n",PInstance->getID(),PInstance->getInstanceNumber());
+					       }
+				      }
+				      else{
+					       if(PInstance->getDeadTime()!=0){
+						     PInstance->setDeadTime(0); //reset dead time when people are alive
+						     ShowDebug("Limbus %i instance %i : Death counter reset as a player is now alive.\n",PInstance->getID(),PInstance->getInstanceNumber());
+					       }
+				      }
+					  //handle time remaining prompts (since its useful!) Prompts every minute
+				      int Tremaining = (tick - PInstance->getStartTime())/1000;
+					  				
+				if(((tick - PInstance->getStartTime())/1000) % 60 == 0){
+						PInstance->pushMessageToAllInBcnm(202,((PInstance->getTimeLimit()-Tremaining)/60));
+				}
+
+				//if the time is finished, exiting Limbus
+				if(instanceutils::meetsLosingConditions(PInstance,tick)){
+
+					ShowDebug("Limbus %i instance %i : Limbus is finished. Exiting battlefield.\n",PInstance->getID(),PInstance->getInstanceNumber());
+					PInstance->loseBcnm();
+				}
+				///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			}
 			else{
 				//handle locking of bcnm when engaged
@@ -227,13 +269,74 @@ int CInstanceHandler::registerBcnm(uint16 id, CCharEntity* PChar){
 	if(PInstance==NULL){
 		return -1;
 	}
-	for(int i=0; i<m_MaxInstances; i++){
+	if(id > 1289 && id < 1308){
+     
+	  switch(id)
+	  {
+	  case 1290: 
+		{PInstance->setInstanceNumber(1);}
+       break;
+	  case 1291: 
+        {PInstance->setInstanceNumber(2);}
+       break;
+	   	  case 1292: 
+	    {PInstance->setInstanceNumber(3);}
+       break;
+	   	  case 1293: 
+		{PInstance->setInstanceNumber(4);}
+       break;
+	   	  case 1294: 
+		{PInstance->setInstanceNumber(5);}
+       break;
+	   	  case 1295: 
+		{PInstance->setInstanceNumber(5);}
+       break;
+	   	  case 1296: 
+		{PInstance->setInstanceNumber(6);}
+       break;
+	   	  case 1297: 
+		{PInstance->setInstanceNumber(6);}
+       break;
+	   	 case 1298: 
+		{PInstance->setInstanceNumber(1);}
+       break;
+	   	 case 1299: 
+		{PInstance->setInstanceNumber(2);}
+       break;
+	    case 1300: 
+		{PInstance->setInstanceNumber(3);}
+       break;
+	    case 1301: 
+		{PInstance->setInstanceNumber(4);}
+       break;
+	    case 1302: 
+		{PInstance->setInstanceNumber(4);}
+       break;
+	   case 1303: 
+		{PInstance->setInstanceNumber(5);}
+       break;
+	   case 1304: 
+		{PInstance->setInstanceNumber(6);}
+       break;
+	  case 1305: 
+		{PInstance->setInstanceNumber(7);}
+      break;
+	  case 1306: 
+		{PInstance->setInstanceNumber(8);}
+      break;
+	  case 1307: 
+		{PInstance->setInstanceNumber(8);}
+      break;
+	  }
+	}
+	else{
+	  for(int i=0; i<m_MaxInstances; i++){
 		if(m_Instances[i]==NULL){
 			PInstance->setInstanceNumber(i+1);
 			break;
 		}
+	  }
 	}
-
 	switch(PInstance->getMaxParticipants()){
 	case 1:
 		if(PInstance->addPlayerToBcnm(PChar)){
@@ -322,13 +425,146 @@ int CInstanceHandler::registerBcnm(uint16 id, CCharEntity* PChar){
 	return PInstance->getInstanceNumber();
 }
 
+bool CInstanceHandler::hasFreeSpecialInstance(uint16 id){ //reserved for special instance like limbus
+
+ switch(id)
+	  {
+	  case 1290: 
+		{ if( m_Instances[0] == NULL){return true;}}
+       break;
+	  case 1291: 
+        { if( m_Instances[1] == NULL){return true;}}
+       break;
+	   	  case 1292: 
+	    { if( m_Instances[2] == NULL){return true;}}
+       break;
+	   	  case 1293: 
+		{ if( m_Instances[3] == NULL){return true;}}
+       break;
+	   	  case 1294: 
+		{ if( m_Instances[4] == NULL){return true;}}
+       break;
+	   	  case 1295: 
+		{ if( m_Instances[4] == NULL){return true;}}
+       break;
+	   	  case 1296: 
+		{ if( m_Instances[5] == NULL){return true;}}
+       break;
+	   	  case 1297: 
+		{ if( m_Instances[5] == NULL){return true;}}
+       break;
+	   	 case 1298: 
+		{ if( m_Instances[0] == NULL){return true;}}
+       break;
+	   	 case 1299: 
+		{if( m_Instances[1] == NULL){return true;}}
+       break;
+	    case 1300: 
+		{if( m_Instances[2] == NULL){return true;}}
+       break;
+	    case 1301: 
+		{if( m_Instances[3] == NULL){return true;}}
+       break;
+	    case 1302: 
+		{if( m_Instances[3] == NULL){return true;}}
+       break;
+	   case 1303: 
+		{if( m_Instances[4] == NULL){return true;}}
+       break;
+	   case 1304: 
+		{if( m_Instances[5] == NULL){return true;}}
+       break;
+	  case 1305: 
+		{if( m_Instances[6] == NULL){return true;}}
+      break;
+	  case 1306: 
+		{if( m_Instances[7] == NULL){return true;}}
+      break;
+	  case 1307: 
+		{if( m_Instances[7] == NULL){return true;}}
+      break;
+	  default:
+        return false;
+	 break;
+	  }	
+  return false;
+}
+
+bool CInstanceHandler::hasSpecialInstanceEmpty(uint16 id){ //reserved for special instance like limbus
+  if(id <= m_MaxInstances &&  id!=NULL){
+	  if(m_Instances[id-1] != NULL){		   
+					 return false;			 
+	  }
+   }  	
+ return true;
+}
+void CInstanceHandler::SetLootToBCNM(uint16 LootID,uint16 id,uint32 npcID){	
+	m_Instances[id-1]->setLootId(LootID);	
+	CBaseEntity* PNpc = (CBaseEntity*)zoneutils::GetEntity(npcID, TYPE_NPC);
+	m_Instances[id-1]->addNpc(PNpc);
+}
+void CInstanceHandler::RestoreOnInstance(uint16 id){ 
+int playermaxMP = 0;
+int playermaxHP = 0;
+  if(id <= m_MaxInstances &&  id>NULL){
+	  	CInstance* PInstance = m_Instances[id-1];
+       for(int i=0; i<PInstance->m_PlayerList.size(); i++){	
+		   if(PInstance->m_PlayerList.at(i)->animation != ANIMATION_DEATH){
+
+		   PInstance->m_PlayerList.at(i)->PRecastContainer->Del(RECAST_MAGIC);
+		   PInstance->m_PlayerList.at(i)->PRecastContainer->Del(RECAST_ABILITY);
+
+	       playermaxMP = PInstance->m_PlayerList.at(i)->GetMaxMP();
+		   playermaxHP = PInstance->m_PlayerList.at(i)->GetMaxHP();
+
+		   PInstance->m_PlayerList.at(i)->addHP(playermaxHP);
+           PInstance->m_PlayerList.at(i)->addMP(playermaxMP);
+
+		   PInstance->m_PlayerList.at(i)->pushPacket(new CCharSkillsPacket(PInstance->m_PlayerList.at(i)));
+		   charutils::UpdateHealth(PInstance->m_PlayerList.at(i));
+
+
+            //361 - All of <target>'s abilities are recharged.
+		    PInstance->m_PlayerList.at(i)->pushPacket(new CMessageBasicPacket(PInstance->m_PlayerList.at(i)  ,PInstance->m_PlayerList.at(i) ,0,0,361));
+
+            //357 - <target> regains .. HP.		
+		    PInstance->m_PlayerList.at(i)->pushPacket(new CMessageBasicPacket(PInstance->m_PlayerList.at(i)  ,PInstance->m_PlayerList.at(i) ,playermaxHP,playermaxHP,357));
+
+             //357 - <target> regains .. HP.		
+		    PInstance->m_PlayerList.at(i)->pushPacket(new CMessageBasicPacket(PInstance->m_PlayerList.at(i)  ,PInstance->m_PlayerList.at(i) ,playermaxMP,playermaxMP,358));
+		   }
+	    }
+    }  	
+}
+int CInstanceHandler::SpecialInstanceLeftTime(uint16 id,uint32 tick){ //reserved for special instance like limbus
+
+  if(id <= m_MaxInstances &&  id>NULL){
+
+	 if(m_Instances[id-1] != NULL){
+	    int Tremaining = (tick -  m_Instances[id-1]->getStartTime())/1000;  //66
+	    int timelimit =  m_Instances[id-1]->getTimeLimit();		  	 ///3600			
+					 return (timelimit-Tremaining)/60 ;	
+	  }
+   }  	
+ return 0;
+}
+int CInstanceHandler::GiveTimeToInstance(uint16 id, uint16 Time){
+   if(id <= m_MaxInstances &&  id>NULL){
+	  if(m_Instances[id-1] != NULL){
+	          CInstance* PInstance = m_Instances[id-1];
+	          PInstance->addTimeLimit(Time*60);
+	  }
+   }
+  return 1;
+}
 bool CInstanceHandler::hasFreeInstance(){
-	for(int i=0; i<m_MaxInstances; i++){
-		if(m_Instances[i] == NULL){
-			return true;
-		}
-	}
-	return false;
+
+ for(int i=0; i<m_MaxInstances; i++){
+ if(m_Instances[i] == NULL){
+			     return true;
+	 }
+  }
+ return false;
 }
 
 uint8 CInstanceHandler::findInstanceIDFor(CCharEntity* PChar){
@@ -401,6 +637,74 @@ int CInstanceHandler::dynamisAddPlayer(uint16 dynaid, CCharEntity* PChar){
 	return 1;
 }
 
+int CInstanceHandler::SpecialInstanceAddPlayer(uint16 id, CCharEntity* PChar)
+{
+	
+
+	short Inst =0;
+ switch(id){
+	  case 1290: 
+		  {Inst = 0;}
+       break;
+	  case 1291: 
+        { Inst = 1;}
+       break;
+	   	  case 1292: 
+	    { Inst = 2;}
+       break;
+	   	  case 1293: 
+		{ Inst = 3;}
+       break;
+	   	  case 1294: 
+		{ Inst = 4;}
+       break;
+	   	  case 1295: 
+		{ Inst = 4;}
+       break;
+	   	  case 1296: 
+		{ Inst = 5;}
+       break;
+	   	  case 1297: 
+		{ Inst = 5;}
+       break;
+	   	 case 1298: 
+		{ Inst = 0;}
+       break;
+	   	 case 1299: 
+		{Inst = 1;}
+       break;
+	    case 1300: 
+		{Inst = 2;}
+       break;
+	    case 1301: 
+		{Inst = 3;}
+       break;
+	    case 1302: 
+		{Inst = 3;}
+       break;
+	   case 1303: 
+		{Inst = 4;}
+       break;
+	   case 1304: 
+		{Inst = 5;}
+       break;
+	  case 1305: 
+		{Inst = 6;}
+      break;
+	  case 1306: 
+		{Inst = 7;}
+      break;
+	  case 1307: 
+		{Inst = 7;}
+      break;
+
+ }
+
+	if(m_Instances[Inst]->addPlayerToBcnm(PChar)){   
+		ShowDebug("InstanceHandler ::Registration for Special Instance by %s succeeded \n",PChar->GetName());
+	}
+	return 1;
+}
 int CInstanceHandler::dynamisMessage(uint16 Param1, uint16 Param2){
 	
 	CInstance* PInstance = m_Instances[0];

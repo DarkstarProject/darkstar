@@ -49,10 +49,17 @@ public:
 
 	uint8	findInstanceIDFor(CCharEntity* PChar);					// returns 1 2 3 or 255 if non-existent
 	bool	hasFreeInstance();										// returns true if there is a free instance available
+	bool	hasFreeSpecialInstance(uint16 id);	
+	bool    hasSpecialInstanceEmpty(uint16 id);                     // return 1 if one or more player is still on the special instance
+	int     SpecialInstanceLeftTime(uint16 id,uint32 tick);         //return left Time of the specific instance
+	int     GiveTimeToInstance(uint16 id,uint16 Time);              // give time to specific instance
+	void    SetLootToBCNM(uint16 LootID,uint16 id,uint32 npcID); 	
+	void    RestoreOnInstance(uint16 id);                          //restor MP HP ability on a specific instance
 	uint32	pollTimeLeft(uint16 bcnmid);							// returns the shortest time left of all 3 instances of the given BCNM ID
 	void	openTreasureChest(CCharEntity* PChar);
 	void	wipeInstance(CInstance* inst);
 	
+	int     SpecialInstanceAddPlayer(uint16 id, CCharEntity* PChar);
 	//Dynamis Functions
 	int		getUniqueDynaID(uint16 id);								// 
 	int		registerDynamis(uint16 id, CCharEntity* PChar);			// 
@@ -67,7 +74,7 @@ public:
 private:
 	uint16					m_ZoneId;
 	uint8					m_MaxInstances;							// usually 3 except dynamis, einherjar, besieged, ...
-	CInstance*				m_Instances[3];
+	CInstance*				m_Instances[8];
 };
 
 #endif

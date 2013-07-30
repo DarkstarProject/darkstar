@@ -333,18 +333,28 @@ namespace instanceutils{
 	Get loot from the armoury crate
 	****************************************************************/
 
-	void getChestItems(CInstance* instance){
+  void getChestItems(CInstance* instance){
+    int instzone = instance->getZoneId();
+	uint8 maxloot = 0;
 		LootList_t* LootList = itemutils::GetLootList(instance->getLootId());
-		if (LootList == NULL)
-		{
+
+		if (LootList == NULL){
 			ShowError("BCNM Chest opened with no valid loot list!");
 			//no loot available for bcnm. End bcnm.
 			instance->winBcnm();
 			return;
 		}
-
-		for (uint8 group = 0; group <= getMaxLootGroups(instance); ++group)
+		else
 		{
+		  for (uint8 sizeoflist=0; sizeoflist < LootList->size() ; ++sizeoflist){
+			    if(LootList->at(sizeoflist).LootGroupId > maxloot){    
+			    maxloot= LootList->at(sizeoflist).LootGroupId;
+				}
+		  }
+		}
+		//getMaxLootGroups(instance);
+	   if(maxloot!=0){
+		 for (uint8 group = 0; group <= maxloot; ++group){
 			uint16 maxRolls = getRollsPerGroup(instance,group);
 			uint16 groupRoll = (uint16)rand()%maxRolls;
 			uint16 itemRolls = 0;
@@ -361,12 +371,18 @@ namespace instanceutils{
 					}
 				}
 			}
-		}
-
+		  }
+		}	   
 	//user opened chest, complete bcnm
-	instance->winBcnm();
+		  if(instzone!=37 && instzone!=38 ){
+	       instance->winBcnm();
+		  }
+		  else{
+		   instance->m_NpcList.clear();
+		 }
+		
 	}
-
+	
 	bool spawnSecondPartDynamis(CInstance* instance){
 		DSP_DEBUG_BREAK_IF(instance==NULL);
 
