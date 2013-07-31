@@ -15,7 +15,7 @@ function onSpellCast(caster,target,spell)
 
 	--Pull base stats.
 	dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
-	bonus = AffinityBonus(caster,spell);
+	bonus = AffinityBonus(caster,spell:getElement());
 
 	--Duration, including resistance.  May need more research.
 	duration = math.random(5,60);

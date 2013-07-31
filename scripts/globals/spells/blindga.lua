@@ -17,7 +17,7 @@ function onSpellCast(caster,target,spell)
 
 	-- Pull base stats.
 	dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
-	bonus = AffinityBonus(caster,spell);
+	bonus = AffinityBonus(caster,spell:getElement());
 
 	-- Base power.  May need more research.
 	power = math.floor((dINT + 60) / 4);
