@@ -1,4 +1,4 @@
-﻿/*
+/*
 ===========================================================================
 
   Copyright (c) 2010-2012 Darkstar Dev Teams
@@ -21,8 +21,8 @@
 ===========================================================================
 */
 
-#ifndef _CAUTOMATONUPDATEPACKET_H_
-#define _CAUTOMATONUPDATEPACKET_H_
+#ifndef _CCHARJOBEXTRA_H_
+#define _CCHARJOBEXTRA_H_
 
 #include "../../common/cbasetypes.h"
 
@@ -36,11 +36,11 @@
 
 class CCharEntity;
 
-class CAutomatonUpdatePacket : public CBasicPacket
+class CCharJobExtraPacket : public CBasicPacket
 {
 public:
 
-	CAutomatonUpdatePacket(CCharEntity* PChar);
+	CCharJobExtraPacket(CCharEntity* PChar, bool mjob);
 };
 
 #endif

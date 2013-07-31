@@ -36,11 +36,11 @@
 
 #include "../alliance.h"
 
-#include "../packets/automaton_update.h"
 #include "../packets/char_abilities.h"
 #include "../packets/char_appearance.h"
 #include "../packets/char_equip.h"
 #include "../packets/char_jobs.h"
+#include "../packets/char_job_extra.h"
 #include "../packets/char_health.h"
 #include "../packets/char_skills.h"
 #include "../packets/char_stats.h"
@@ -2109,6 +2109,8 @@ void BuildingCharTraitsTable(CCharEntity* PChar)
                     {
                         PChar->delModifier(PExistingTrait->getMod(), PExistingTrait->getValue());
                         delTrait(PChar, PExistingTrait->getID());
+                        PChar->TraitList.erase(PChar->TraitList.begin()+j);
+                        break;
                     }
                     else if (PExistingTrait->getRank() > PTrait->getRank())
                     {
@@ -2156,6 +2158,8 @@ void BuildingCharTraitsTable(CCharEntity* PChar)
                     {
                         PChar->delModifier(PExistingTrait->getMod(), PExistingTrait->getValue());
                         delTrait(PChar, PExistingTrait->getID());
+                        PChar->TraitList.erase(PChar->TraitList.begin()+j);
+                        break;
                     }
                     else if (PExistingTrait->getRank() > PTrait->getRank())
                     {
@@ -3085,7 +3089,8 @@ void DelExperiencePoints(CCharEntity* PChar, float retainPercent)
         PChar->pushPacket(new CCharSkillsPacket(PChar));
         PChar->pushPacket(new CCharAbilitiesPacket(PChar));
         PChar->pushPacket(new CMenuMeritPacket(PChar));
-        PChar->pushPacket(new CAutomatonUpdatePacket(PChar));
+        PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
+        PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
         PChar->pushPacket(new CCharSyncPacket(PChar));
 
         SaveCharStats(PChar);
@@ -3269,7 +3274,8 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
             PChar->pushPacket(new CCharSkillsPacket(PChar));
             PChar->pushPacket(new CCharAbilitiesPacket(PChar));
             PChar->pushPacket(new CMenuMeritPacket(PChar));
-            PChar->pushPacket(new CAutomatonUpdatePacket(PChar));
+            PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
+            PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
             PChar->pushPacket(new CCharSyncPacket(PChar));
 
             UpdateHealth(PChar);

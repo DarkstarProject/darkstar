@@ -269,9 +269,6 @@
     <ClInclude Include="..\..\src\map\packets\action.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\packets\automaton_update.h">
-      <Filter>Header Files\packets</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\map\packets\basic.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
@@ -599,9 +596,6 @@
     <ClInclude Include="..\..\src\map\merit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\packets\blue_set_spells.h">
-      <Filter>Header Files\packets</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\map\latent_effect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -754,6 +748,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\map\ai\states\weaponskill_state.h">
       <Filter>Header Files\ai\states</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\char_job_extra.h">
+      <Filter>Header Files\packets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -908,9 +905,6 @@
       <Filter>Source Files\lua</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\action.cpp">
-      <Filter>Source Files\packets</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\packets\automaton_update.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\basic.cpp">
@@ -1234,9 +1228,6 @@
     <ClCompile Include="..\..\src\map\merit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\packets\blue_set_spells.cpp">
-      <Filter>Source Files\packets</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\map\latent_effect_container.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1374,6 +1365,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\ai\states\weaponskill_state.cpp">
       <Filter>Source Files\ai\states</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\char_job_extra.cpp">
+      <Filter>Source Files\packets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

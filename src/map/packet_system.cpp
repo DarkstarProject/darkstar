@@ -58,14 +58,12 @@
 #include "lua/luautils.h"
 
 #include "packets/auction_house.h"
-#include "packets/automaton_update.h"
 #include "packets/bazaar_check.h"
 #include "packets/bazaar_close.h"
 #include "packets/bazaar_confirmation.h"
 #include "packets/bazaar_item.h"
 #include "packets/bazaar_message.h"
 #include "packets/bazaar_purchase.h"
-#include "packets/blue_set_spells.h"
 #include "packets/campaing_map.h"
 #include "packets/char.h"
 #include "packets/char_abilities.h"
@@ -74,6 +72,7 @@
 #include "packets/char_equip.h"
 #include "packets/char_emotion.h"
 #include "packets/char_jobs.h"
+#include "packets/char_job_extra.h"
 #include "packets/char_health.h"
 #include "packets/char_skills.h"
 #include "packets/char_spells.h"
@@ -454,7 +453,6 @@ void SmallPacket0x00F(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 	PChar->pushPacket(new CCharSpellsPacket(PChar));
 	PChar->pushPacket(new CCharAbilitiesPacket(PChar));
-	PChar->pushPacket(new CAutomatonUpdatePacket(PChar));
 	PChar->pushPacket(new CCharSyncPacket(PChar));
 	PChar->pushPacket(new CBazaarMessagePacket(PChar));
     PChar->pushPacket(new CMeritPointsCategoriesPacket(PChar));
@@ -2529,9 +2527,9 @@ void SmallPacket0x061(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	PChar->pushPacket(new CCharStatsPacket(PChar));
 	PChar->pushPacket(new CCharSkillsPacket(PChar));
 	PChar->pushPacket(new CMenuMeritPacket(PChar));
-	if (PChar->GetMJob() == JOB_BLU || PChar->GetSJob() == JOB_BLU) {
-		PChar->pushPacket(new CBlueSetSpellsPacket(PChar));
-	}
+	PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
+    PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
+    
 	return;
 }
 
@@ -3457,7 +3455,8 @@ void SmallPacket0x0BE(map_session_data_t* session, CCharEntity* PChar, int8* dat
 					PChar->pushPacket(new CCharStatsPacket(PChar));
 					PChar->pushPacket(new CCharSkillsPacket(PChar));
 					PChar->pushPacket(new CCharAbilitiesPacket(PChar));
-					PChar->pushPacket(new CAutomatonUpdatePacket(PChar));
+                    PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
+                    PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
 					PChar->pushPacket(new CCharSyncPacket(PChar));
 				}
             }
@@ -4359,7 +4358,8 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		PChar->pushPacket(new CCharStatsPacket(PChar));
 		PChar->pushPacket(new CCharSkillsPacket(PChar));
 		PChar->pushPacket(new CCharAbilitiesPacket(PChar));
-		PChar->pushPacket(new CAutomatonUpdatePacket(PChar));
+		PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
+        PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
 		PChar->pushPacket(new CMenuMeritPacket(PChar));
 		PChar->pushPacket(new CCharSyncPacket(PChar));
 	}
@@ -4399,7 +4399,8 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, int8* dat
 				}
                 charutils::BuildingCharTraitsTable(PChar);
 			    PChar->status = STATUS_UPDATE;
-			    PChar->pushPacket(new CBlueSetSpellsPacket(PChar));
+			    PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
+			    PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
 			    PChar->pushPacket(new CCharStatsPacket(PChar));
 			    charutils::CalculateStats(PChar);
 			    PChar->UpdateHealth();
@@ -4422,7 +4423,8 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, int8* dat
 						blueutils::SetBlueSpell(PChar, spell, spellIndex, (spellToAdd > 0));
                         charutils::BuildingCharTraitsTable(PChar);
 			            PChar->status = STATUS_UPDATE;
-			            PChar->pushPacket(new CBlueSetSpellsPacket(PChar));
+			            PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
+			            PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
 			            PChar->pushPacket(new CCharStatsPacket(PChar));
 			            charutils::CalculateStats(PChar);
 			            PChar->UpdateHealth();

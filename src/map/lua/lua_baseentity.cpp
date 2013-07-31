@@ -34,10 +34,10 @@
 
 #include "../packets/action.h"
 #include "../packets/auction_house.h"
-#include "../packets/automaton_update.h"
 #include "../packets/char_abilities.h"
 #include "../packets/char_appearance.h"
 #include "../packets/char_jobs.h"
+#include "../packets/char_job_extra.h"
 #include "../packets/char_equip.h"
 #include "../packets/char_health.h"
 #include "../packets/char_skills.h"
@@ -2075,7 +2075,8 @@ inline int32 CLuaBaseEntity::sjRestriction(lua_State* L)
 	PChar->pushPacket(new CCharStatsPacket(PChar));
 	PChar->pushPacket(new CCharSkillsPacket(PChar));
 	PChar->pushPacket(new CCharAbilitiesPacket(PChar));
-	PChar->pushPacket(new CAutomatonUpdatePacket(PChar));
+    PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
+    PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
 	PChar->pushPacket(new CMenuMeritPacket(PChar));
 	PChar->pushPacket(new CCharSyncPacket(PChar));
 	return 0;

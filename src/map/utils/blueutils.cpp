@@ -23,7 +23,7 @@
 
 #include "../../common/utils.h"
 
-#include "../packets/blue_set_spells.h"
+#include "../packets/char_job_extra.h"
 #include "../packets/char_spells.h"
 
 #include <math.h>
@@ -181,7 +181,8 @@ void UnequipAllBlueSpells(CCharEntity* PChar)
     }
     PChar->status = STATUS_UPDATE;
     charutils::BuildingCharTraitsTable(PChar);
-	PChar->pushPacket(new CBlueSetSpellsPacket(PChar));
+	PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
+	PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
 	PChar->pushPacket(new CCharStatsPacket(PChar));
 	charutils::CalculateStats(PChar);
 	PChar->UpdateHealth();
@@ -381,7 +382,8 @@ void ValidateBlueSpells(CCharEntity* PChar)
     SaveSetSpells(PChar);
     PChar->status = STATUS_UPDATE;
     charutils::BuildingCharTraitsTable(PChar);
-	PChar->pushPacket(new CBlueSetSpellsPacket(PChar));
+	PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
+	PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
 	PChar->pushPacket(new CCharStatsPacket(PChar));
 	charutils::CalculateStats(PChar);
 	PChar->UpdateHealth();
@@ -448,6 +450,8 @@ void CalculateTraits(CCharEntity* PChar)
                             {
                                 PChar->delModifier(PExistingTrait->getMod(), PExistingTrait->getValue());
                                 charutils::delTrait(PChar, PExistingTrait->getID());
+                                PChar->TraitList.erase(PChar->TraitList.begin()+j);
+                                break;
                             }
                             else if (PExistingTrait->getRank() > PTrait->getRank())
                             {

@@ -273,7 +273,6 @@
     <ClInclude Include="..\..\src\map\npcentity.h" />
     <ClInclude Include="..\..\src\map\packets\action.h" />
     <ClInclude Include="..\..\src\map\packets\auction_house.h" />
-    <ClInclude Include="..\..\src\map\packets\automaton_update.h" />
     <ClInclude Include="..\..\src\map\packets\basic.h" />
     <ClInclude Include="..\..\src\map\packets\bazaar_confirmation.h" />
     <ClInclude Include="..\..\src\map\packets\bazaar_purchase.h" />
@@ -281,7 +280,6 @@
     <ClInclude Include="..\..\src\map\packets\bazaar_close.h" />
     <ClInclude Include="..\..\src\map\packets\bazaar_item.h" />
     <ClInclude Include="..\..\src\map\packets\bazaar_message.h" />
-    <ClInclude Include="..\..\src\map\packets\blue_set_spells.h" />
     <ClInclude Include="..\..\src\map\packets\campaing_map.h" />
     <ClInclude Include="..\..\src\map\packets\caught_fish.h" />
     <ClInclude Include="..\..\src\map\packets\char.h" />
@@ -291,6 +289,7 @@
     <ClInclude Include="..\..\src\map\packets\char_emotion.h" />
     <ClInclude Include="..\..\src\map\packets\char_equip.h" />
     <ClInclude Include="..\..\src\map\packets\char_health.h" />
+    <ClInclude Include="..\..\src\map\packets\char_job_extra.h" />
     <ClInclude Include="..\..\src\map\packets\char_jobs.h" />
     <ClInclude Include="..\..\src\map\packets\char_skills.h" />
     <ClInclude Include="..\..\src\map\packets\char_spells.h" />
@@ -482,7 +481,6 @@
     <ClCompile Include="..\..\src\map\navmesh.cpp" />
     <ClCompile Include="..\..\src\map\packets\action.cpp" />
     <ClCompile Include="..\..\src\map\packets\auction_house.cpp" />
-    <ClCompile Include="..\..\src\map\packets\automaton_update.cpp" />
     <ClCompile Include="..\..\src\map\packets\basic.cpp" />
     <ClCompile Include="..\..\src\map\packets\bazaar_confirmation.cpp" />
     <ClCompile Include="..\..\src\map\packets\bazaar_purchase.cpp" />
@@ -490,7 +488,6 @@
     <ClCompile Include="..\..\src\map\packets\bazaar_close.cpp" />
     <ClCompile Include="..\..\src\map\packets\bazaar_item.cpp" />
     <ClCompile Include="..\..\src\map\packets\bazaar_message.cpp" />
-    <ClCompile Include="..\..\src\map\packets\blue_set_spells.cpp" />
     <ClCompile Include="..\..\src\map\packets\campaing_map.cpp" />
     <ClCompile Include="..\..\src\map\packets\caught_fish.cpp" />
     <ClCompile Include="..\..\src\map\packets\char.cpp" />
@@ -500,6 +497,7 @@
     <ClCompile Include="..\..\src\map\packets\char_emotion.cpp" />
     <ClCompile Include="..\..\src\map\packets\char_equip.cpp" />
     <ClCompile Include="..\..\src\map\packets\char_health.cpp" />
+    <ClCompile Include="..\..\src\map\packets\char_job_extra.cpp" />
     <ClCompile Include="..\..\src\map\packets\char_jobs.cpp" />
     <ClCompile Include="..\..\src\map\packets\char_skills.cpp" />
     <ClCompile Include="..\..\src\map\packets\char_spells.cpp" />
