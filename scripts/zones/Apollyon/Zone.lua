@@ -35,6 +35,12 @@ zone:registerRegion(20,   396,-4,-522,   403,4,-516); -- appolyon SE telporter f
 zone:registerRegion(21,   116,-4,-443,   123,4,-436); -- appolyon SE telporter floor2 to floor3
 zone:registerRegion(22,   276,-4,-283,   283,4,-276); -- appolyon SE telporter floor3 to floor4
 zone:registerRegion(23,   517,-4,-323,   523,4,-316); -- appolyon SE telporter floor4 to entrance
+
+zone:registerRegion(24,   396,-4,76,   403,4,83); -- appolyon NE telporter floor1 to floor2
+zone:registerRegion(25,   276,-4,356,   283,4,363); -- appolyon NE telporter floor2 to floor3
+zone:registerRegion(26,   236,-4,517,   243,4,523); -- appolyon NE telporter floor3 to floor4
+zone:registerRegion(27,   517,-4,637,   523,4,643); -- appolyon NE telporter floor4 to floor5
+zone:registerRegion(28,   557,-4,356,   563,4,363); -- appolyon NE telporter floor5 to entrance
 end;
 
 -----------------------------------
@@ -70,7 +76,7 @@ function onRegionEnter(player,region)
 		end,
 		[2] = function (x) 
 		     player:startEvent(0x0065); -- APPOLLYON_NW_SW exit
-			 print("APPOLLYON_NW_SW");
+			-- print("APPOLLYON_NW_SW");
 		end,
 		[3] = function (x) 
 		      if(player:hasStatusEffect(EFFECT_BATTLEFIELD) == false)then 
@@ -87,23 +93,44 @@ function onRegionEnter(player,region)
 		
 		-- ///////////////////////APPOLLYON SE TELEPORTER///////////////////////////////////////////
 		[20] = function (x) 
-              print("SE_telporter_f1_to_f2");
-			 if(GetMobAction(16932992)==0 and player:getAnimation()==0)then player:startEvent(0x00DB);end
+             -- print("SE_telporter_f1_to_f2");
+			 if(IsMobDead(16932992)==true and player:getAnimation()==0)then player:startEvent(0x00DB);end
 		end,
 		[21] = function (x) 
-              print("SE_telporter_f2_to_f3");
-		      if(GetMobAction(16933006)==0 and player:getAnimation()==0)then player:startEvent(0x00DA);end
+             -- print("SE_telporter_f2_to_f3");
+		      if(IsMobDead(16933006)==true and player:getAnimation()==0)then player:startEvent(0x00DA);end
 		end,	
 		[22] = function (x) 
-              print("SE_telporter_f3_to_f4");
-		      if(GetMobAction(16933020)==0 and player:getAnimation()==0)then player:startEvent(0x00D8);end
+            --  print("SE_telporter_f3_to_f4");
+		      if(IsMobDead(16933020)==true and player:getAnimation()==0)then player:startEvent(0x00D8);end
 		 end,		
 		[23] = function (x) 
-              print("SE_telporter_f3_to_entrance");
-		      if(GetMobAction(16933032)==0 and player:getAnimation()==0)then player:startEvent(0x00D9);end
+             -- print("SE_telporter_f3_to_entrance");
+		      if(IsMobDead(16933032)==true and player:getAnimation()==0)then player:startEvent(0x00D9);end
 	     end,
          -- ///////////////////////////////////////////////////////////////////////////////////////////		 
-		
+		 -- /////////////////////    APPOLLYON NE TELEPORTER           ////////////////////////////////
+		[24] = function (x) 
+             -- print("NE_telporter_f1_to_f2");
+		      if(IsMobDead(16933044)==true and player:getAnimation()==0)then player:startEvent(0x00D6);end 
+	     end,
+		 [25] = function (x) 
+             -- print("NE_telporter_f2_to_f3");
+		      if(IsMobDead(16933064)==true and player:getAnimation()==0)then player:startEvent(0x00D4);end  --212
+	     end,
+		 [26] = function (x) 
+            --  print("NE_telporter_f3_to_f4");
+		      if(IsMobDead(16933086)==true and player:getAnimation()==0)then player:startEvent(0x00D2);end  --210
+	     end,
+		 [27] = function (x) 
+            --  print("NE_telporter_f4_to_f5");
+		      if(IsMobDead(16933101)==true and player:getAnimation()==0)then player:startEvent(0x00D7);end    --215
+	     end,
+		 [28] = function (x) 
+            --  print("NE_telporter_f5_to_entrance");
+		      if( (IsMobDead(16933114)==true or IsMobDead(16933113)==true) and player:getAnimation()==0)then player:startEvent(0x00D5);end --213
+	     end,
+		 -- //////////////////////////////////////////////////////////////////////////////////////////////////
 	}
 	
 end;

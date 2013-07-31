@@ -17,7 +17,7 @@ CS_Apollyon =5;
 Central_Apollyon =6;
 
 APPOLLYON_SE_NE_BCNM_LIST = { --instanceID ,white ,red ,black,bitmap,bit,instanceRegion
-                        --     1292,{false,false,true,8,NE_Apollyon}, -- 'NE_Apollyon'  region 3  438 0 -89
+                             1292,{false,false,true,8,NE_Apollyon}, -- 'NE_Apollyon'  region 3  438 0 -89
                              1293,{false,false,true,4,SE_Apollyon}, -- 'SE_Apollyon'            468 0 -625
                        --      1294,{false,false,false,32,CS_Apollyon}, -- 'CS_Apollyon'          0   0 -210     
                         --     1295,{false,false,false,64,CS_Apollyon}, -- 'CS_Apollyon_II'       0   0 -133
@@ -58,77 +58,80 @@ TEMENOS_LIST = {
 	cMIMIC=4;
 ARMOURY_CRATES_LIST_APPOLLYON= { 
 -- appolyon list
-	1	,{cTIME,SE_Apollyon,5,false,0,0}, -- time    SE_Appollyon floor 1
-	2	,{cITEM,SE_Apollyon,0,false,0,110}, -- items	
-	3	,{cRESTORE,SE_Apollyon,0,false,0,0}, -- restore
+	1	,{cTIME,SE_Apollyon,5,false,0,0}, -- time          SE_Appollyon floor 1
+	2	,{cITEM,SE_Apollyon,0,false,0,110}, -- items       SE_Appollyon floor 1	
+	3	,{cRESTORE,SE_Apollyon,0,false,0,0}, -- restore    SE_Appollyon floor 1
 
-	14	,{cTIME,NE_Apollyon,10,false,0,0}, -- time   NE_Apollyon
-	15	,{cITEM,NE_Apollyon,0,false,0,10}, -- items
-	16	,{cRESTORE,NE_Apollyon,0,false,0,0}, -- restore
+	14	,{cTIME,SW_Apollyon,10,false,0,0}, -- time                                               SW_Appollyon floor 1
+	15	,{cITEM,SW_Apollyon,0,false,0,10}, -- items                                              SW_Appollyon floor 1
+	16	,{cRESTORE,SW_Apollyon,0,false,0,0}, -- restore                                          SW_Appollyon floor 1
 
-	32	,{}, 
-	33	,{}, 
-	34	,{}, 
-	35	,{}, 
-	36	,{}, 
-	37	,{}, 
-	38	,{}, 
-	39	,{}, 
-	40	,{}, 
-	41	,{}, 
-	42	,{}, 
-	43	,{}, 
-	44	,{}, 
-	45	,{}, 
+	32	,{}, --mimic
+	33	,{}, --mimic 
+	34	,{},  --mimic 
+	35	,{},  --mimic
+	36	,{},  --mimic
+	37	,{},  --mimic
+	38	,{},  --mimic
+	39	,{},  --mimic
+	40	,{cTIME,NW_Apollyon,5,false,0,0},  -- time   NW_Appollyon floor 1 T1
+	41	,{cTIME,NW_Apollyon,5,false,0,0},  -- time   NW_Appollyon floor 1 T2
+	42	,{cTIME,NW_Apollyon,5,false,0,0},  -- time   NW_Appollyon floor 1 T3
+	43	,{cTIME,NW_Apollyon,5,false,0,0},  -- time   NW_Appollyon floor 2 T1
+	44	,{cTIME,NW_Apollyon,5,false,0,0},  -- time   NW_Appollyon floor 2 T2
+	45	,{cTIME,NW_Apollyon,5,false,0,0},  -- time   NW_Appollyon floor 2 T3
 
-	70	,{cTIME,SW_Apollyon,10,false,0,0}, -- time   -- SW_Apollyon
-	71	,{cITEM,SW_Apollyon,0,false,0,10}, -- items
-	72	,{cRESTORE,SW_Apollyon,0,false,0,0}, -- restore
+	70	,{cTIME,SW_Apollyon,10,false,0,0}, -- time                                               SW_Appollyon floor 2
+	71	,{cITEM,SW_Apollyon,0,false,0,10}, -- items                                              SW_Appollyon floor 2
+	72	,{cRESTORE,SW_Apollyon,0,false,0,0}, -- restore                                          SW_Appollyon floor 2
 
-	81	,{}, 
-	82	,{}, 
-	83	,{}, 
-	84	,{}, 
-	85	,{}, 
+	81	,{cTIME,NE_Apollyon,5,false,0,0}, -- time                        NE_Appollyon floor 1 T2
+	82	,{cTIME,NE_Apollyon,5,false,0,0}, -- time                        NE_Appollyon floor 1 T3
+	
+	83	,{cTIME,NE_Apollyon,5,false,0,0}, -- time                        NE_Appollyon floor 2 T2	
+	84	,{cTIME,NE_Apollyon,5,false,0,0}, -- time                        NE_Appollyon floor 2 T3
+	
+	85	,{cTIME,NE_Apollyon,5,false,0,0}, -- time                        NE_Appollyon floor 3 T2
+	94	,{cTIME,NE_Apollyon,5,false,0,0}, -- time                        NE_Appollyon floor 3 T3
+	
+	95	,{cTIME,NE_Apollyon,5,false,0,0}, -- time                        NE_Appollyon floor 4 T2
+	96	,{cTIME,NE_Apollyon,5,false,0,0}, -- time                        NE_Appollyon floor 4 T3
+	
+	97	,{cTIME,NW_Apollyon,5,false,0,0},  -- time
+	98	,{cTIME,NW_Apollyon,5,false,0,0},  -- time
 
-	94	,{}, 
-	95	,{}, 
-	96	,{}, 
-	97	,{}, 
-	98	,{}, 
+	107	,{cITEM,NW_Apollyon,0,false,0,0},-- item       NW_Appollyon floor 1
+	108	,{cITEM,NW_Apollyon,0,false,0,0},-- item       NW_Appollyon floor 2
+	109	,{cITEM,NW_Apollyon,0,false,0,0},-- item       NW_Appollyon floor 3
+	110	,{cITEM,NW_Apollyon,0,false,0,0}, -- item      NW_Appollyon floor 4
+	111	,{cITEM,NW_Apollyon,0,false,0,0}, -- item      NW_Appollyon floor 5
 
-	107	,{}, 
-	108	,{}, 
-	109	,{}, 
-	110	,{}, 
-	111	,{}, 
+	118	,{cTIME,NE_Apollyon,5,false,0,0}, -- time          NE_Appollyon floor 1 T1
+	119	,{cITEM,NE_Apollyon,0,false,0,114}, -- items        NE_Appollyon floor 1
+	120	,{cRESTORE,NE_Apollyon,0,false,0,0}, -- restore    NE_Appollyon floor 1
 
-	118	,{cTIME,NW_Apollyon,10,false,0,0}, -- time    -- NW
-	119	,{cITEM,NW_Apollyon,0,false,0,10}, -- items
-	120	,{cRESTORE,NW_Apollyon,0,false,0,0}, -- restore
+	125	,{cTIME,NE_Apollyon,5,false,0,10}, -- time         NE_Appollyon floor 2 T1
+	126	,{cITEM,NE_Apollyon,0,false,0,115}, -- items        NE_Appollyon floor 2
+	127	,{cRESTORE,NE_Apollyon,0,false,0,0}, -- restore    NE_Appollyon floor 2
 
-	125	,{cTIME,CS_Apollyon,10,false,010}, -- time   -- 'CS_Apollyon'
-	126	,{cITEM,CS_Apollyon,0,false,0,10}, -- items
-	127	,{cRESTORE,CS_Apollyon,0,false,0,0}, -- restore
+	139	,{cTIME,NE_Apollyon,5,false,0,0}, -- time          NE_Appollyon floor 3 T1
+	140	,{cITEM,NE_Apollyon,0,false,0,116}, -- items        NE_Appollyon floor 3
+	141	,{cRESTORE,NE_Apollyon,0,false,0,0}, -- restore    NE_Appollyon floor 3
 
-	139	,{cTIME,CS_Apollyon,10,false,0,0}, -- time  -- 'CS_Apollyon_II'
-	140	,{cITEM,CS_Apollyon,0,false,0,10}, -- items
-	141	,{cRESTORE,CS_Apollyon,0,false,0,0}, -- restore
-
-	153	,{cTIME,Central_Apollyon,10,false,0,0}, -- time  -- 'Central_Apollyon' 
-	154	,{cITEM,Central_Apollyon,0,false,0,10}, -- items
-	155	,{cRESTORE,Central_Apollyon,0,false,0,0}, -- restore
+	153	,{cTIME,NE_Apollyon,5,false,0,0}, -- time          NE_Appollyon floor 4 T1
+	154	,{cITEM,NE_Apollyon,0,false,0,117}, -- items        NE_Appollyon floor 4
+	155	,{cRESTORE,NE_Apollyon,0,false,0,0}, -- restore    NE_Appollyon floor 4
  
-	177	,{cTIME,Central_Apollyon,10,false,0,0}, -- time -- 'Central_Apollyon_II'
-	178	,{cITEM,Central_Apollyon,0,false,0,10}, -- items
-	179	,{cRESTORE,Central_Apollyon,0,false,0,0}, -- restore
+	177	,{cTIME,NW_Apollyon,5,false,0,0}, -- time               NW_Apollyon floor 3 T1
+	178	,{cITEM,NE_Apollyon,0,false,0,118}, -- items        NE_Appollyon floor 5
+	179	,{cRESTORE,0,0,false,0,0}, -- restore
 
-	189	,{}, 
-	190	,{}, 
+	189	,{cTIME,NW_Apollyon,5,false,0,0},  -- time                           NW_Appollyon floor 3 T2 
+	190	,{cTIME,NW_Apollyon,5,false,0,0},  -- time                           NW_Appollyon floor 3 T3
 
-	195	,{cTIME}, -- time
-	196	,{cITEM}, -- items
-	197	,{cRESTORE}, -- restore
+	195	,{cTIME,SW_Apollyon,5,false,0,0}, -- time                                                              SW_Appollyon floor 3
+	196	,{cITEM,SW_Apollyon,5,false,0,0}, -- items                                                             SW_Appollyon floor 3
+	197	,{cRESTORE,SW_Apollyon,0,false,0,0}, -- restore                                                        SW_Appollyon floor 3
 
 	210	,{}, 
 	211	,{}, 
@@ -138,25 +141,25 @@ ARMOURY_CRATES_LIST_APPOLLYON= {
 	215	,{}, 
 	216	,{}, 
 
-	232	,{cTIME,SE_Apollyon,5,false,0,0}, -- time  SE_Appollyon floor 2
-	233	,{cITEM,SE_Apollyon,0,false,0,111}, -- items  SE_Appollyon floor 2
+	232	,{cTIME,SE_Apollyon,5,false,0,0}, -- time        SE_Appollyon floor 2
+	233	,{cITEM,SE_Apollyon,0,false,0,111}, -- items     SE_Appollyon floor 2
 	234	,{cRESTORE,SE_Apollyon,0,false,0,0}, -- restore  SE_Appollyon floor 2
 
-	246	,{cTIME,SE_Apollyon,10,false,0,0}, -- time  SE_Appollyon floor 3							
-	247	,{cITEM,SE_Apollyon,0,false,0,112}, -- items  SE_Appollyon floor 3
+	246	,{cTIME,SE_Apollyon,10,false,0,0}, -- time       SE_Appollyon floor 3							
+	247	,{cITEM,SE_Apollyon,0,false,0,112}, -- items     SE_Appollyon floor 3
 	248	,{cRESTORE,SE_Apollyon,0,false,0,0}, -- restore  SE_Appollyon floor 3
 
 	259	,{}, 				
 
-	262	,{cTIME}, -- time       
-	263	,{cITEM,SE_Apollyon,0,false,0,113}, -- items  SE_Appollyon floor 4
-	264	,{cRESTORE},  -- restore
+	262	,{cTIME,NW_Apollyon,5,false,0,0}, -- time                              NW_Appollyon floor 4 T1     
+	263	,{cITEM,SE_Apollyon,0,false,0,113}, -- items     SE_Appollyon floor 4
+	264	,{cRESTORE,NW_Apollyon,0,false,0,0},  -- restore                       NW_Apollyon floor 1
 
-	289	,{}, 
+	289	,{cRESTORE,NW_Apollyon,0,false,0,0},   -- restore                      NW_Apollyon floor 2
 
-	313	,{}, 
+	313	,{cITEM,SW_Apollyon,0,false,0,0}, -- items                                                             SW_Appollyon floor 4
 
-	327	,{}, 
+	327	,{cRESTORE,NW_Apollyon,0,false,0,0},   -- restore                      NW_Apollyon floor 3
 
 --::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -300,6 +303,14 @@ function GetLimbusKeyFromInstance(instanceID)
     return Instancekey ;
 end;
 
+function IsMobDead(mobID)
+local ActionValue=GetMobAction(mobID);
+if(ActionValue==0 or ActionValue==21 or ActionValue==22 or ActionValue==23)then
+      return true;
+  else
+     return false;
+  end
+end;
 
 function ResetKeyForEmptyLimbus(player,instanceID)
    instancestatus=player:isSpecialIntanceEmpty(GetInstanceRegion(instanceID));

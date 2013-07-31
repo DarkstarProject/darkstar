@@ -3,13 +3,11 @@
 -- Name: SE_Apollyon
 -----------------------------------
 require("scripts/globals/limbus");
-
+require("scripts/globals/keyitems");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function OnBcnmRegister(player,instance)
 	SetServerVariable("[SE_Apollyon]UniqueID",GenerateLimbusKey());
-	SetServerVariable("[SE_Apollyon]Boss_Trigger",0);
-	SetServerVariable("[SE_Apollyon]Already_Received",0);	
 	HideArmouryCrates(GetInstanceRegion(1293),APPOLLYON_SE_NE);
 end;
 
