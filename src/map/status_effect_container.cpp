@@ -1165,9 +1165,17 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
                     CCharEntity* PChar = (CCharEntity*)m_POwner;
 					CItem* hands = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_HANDS]);
 
-					if (hands && hands->getID() == 14062){
-						perpetuation /= 2;
-					}
+                    if(m_POwner->PPet->objtype == TYPE_PET)
+                    {
+
+                        CPetEntity* PPet = (CPetEntity*)m_POwner->PPet;
+
+                        // carbuncle mitts only work on carbuncle
+    					if (hands && hands->getID() == 14062 && PPet->m_Family == 34){
+    						perpetuation /= 2;
+    					}
+                    }
+
 
 					perpetuation -= charutils::AvatarPerpetuationReduction(PChar);
 

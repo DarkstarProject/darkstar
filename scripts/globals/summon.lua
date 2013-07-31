@@ -314,7 +314,7 @@ end;
 --------
 --  Checks if the summoner is in a Trial Size Avatar Mini Fight (used to restrict summoning while in bcnm)
 --------
-function avatarMiniFightCheck(caster) 
+function avatarMiniFightCheck(caster)
    local result = 0;
    local bcnmid;
    if (caster:hasStatusEffect(EFFECT_BATTLEFIELD) == true) then
