@@ -71,6 +71,8 @@ CAICharNormal::CAICharNormal(CCharEntity* PChar)
     m_PTargetFind = new CTargetFind(PChar);
 	m_AttackMessageTime = 0;
     m_LastCoolDown = 0;
+
+    m_PMagicState = new CMagicState(PChar, m_PTargetFind, 21.5, 21.5);
 }
 
 /************************************************************************
@@ -1175,150 +1177,31 @@ void CAICharNormal::ActionRangedInterrupt()
 
 void CAICharNormal::ActionMagicStart()
 {
+    // keeping this for legacy
+    // m_PSpell will eventually be refactored out
+    // needed for packets
     DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
 	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
-    DSP_DEBUG_BREAK_IF(m_PBattleSubTarget != NULL);
 
-    if(m_Tick - m_LastCoolDown < COOL_DOWN_TIME){
-        MagicStartError(94);
+    if(m_PMagicState->IsOnCoolDown(m_Tick))
+    {
+        MagicStartError();
         return;
     }
 
-	if (!charutils::hasSpell(m_PChar, m_PSpell->getID()) ||
-	    !spell::CanUseSpell(m_PChar, m_PSpell->getID()))
-	{
-        MagicStartError(MSGBASIC_CANNOT_CAST_SPELL, m_PSpell->getID());
-		return;
-	}
+    STATESTATUS status = m_PMagicState->CastSpell(m_PSpell, m_PTargetFind->getValidTarget(m_ActionTargetID, m_PSpell->getValidTarget()));
 
-    // mute 049
-    if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE) ||
-        m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MUTE))
+    m_ActionTargetID = 0;
+
+    if(status == STATESTATUS_START)
     {
-        MagicStartError(MSGBASIC_UNABLE_TO_CAST_SPELLS);
-		return;
+        m_LastActionTime = m_Tick;
+        m_ActionType = ACTION_MAGIC_CASTING;
     }
-
-    if (m_PChar->PRecastContainer->Has(RECAST_MAGIC, m_PSpell->getID()))
+    else
     {
-        MagicStartError(18);
-        return;
+        MagicStartError();
     }
-
-    DSP_DEBUG_BREAK_IF(m_PChar->loc.zone == NULL);
-
-	if(m_PChar->loc.zone==NULL){ //crash occured on the next if (CanUseMisc) because zone was null.
-		//Can't really explain how that's possible, possibly timing the spell as you zone..?
-		//Either way, this check is required now.
-		m_ActionTargetID = 0;
-		m_PSpell = NULL;
-		TransitionBack();
-		return;
-	}
-	// TODO: Sift through these core checks and see what can be moved to scripts
-    if (!m_PChar->loc.zone->CanUseMisc(m_PSpell->getZoneMisc()))
-    {
-        MagicStartError(40);
-		return;
-    }
-    if (m_PSpell->getSpellGroup() == SPELLGROUP_SUMMONING)
-	{
-        if (m_PChar->PPet != NULL)
-        {
-            MagicStartError(315);
-		    return;
-        }
-	}
-	if (GetValidTarget(&m_PBattleSubTarget, m_PSpell->getValidTarget()))
-	{
-		if (m_PBattleSubTarget->isDead() && !(m_PSpell->getValidTarget() & TARGET_PLAYER_DEAD))
-		{
-			MagicStartError(0); // TODO: узнать сообщение
-			return;
-		}
-		if (m_PBattleSubTarget->objtype == TYPE_MOB && !IsMobOwner(m_PBattleSubTarget))
-		{
-            MagicStartError(12);
-			return;
-		}
-		// cannot cast magic on people with battlefield if i'm not in it
-		if(m_PBattleSubTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD) && !m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD))
-		{
-            MagicStartError(155);
-			return;
-		}
-		if (m_PSpell->getSpellGroup() == SPELLGROUP_NINJUTSU)
-		{
-            if(!battleutils::HasNinjaTool(m_PChar, m_PSpell, false))
-            {
-                MagicStartError(35);
-                return;
-            }
-		}
-		else
-		{
-            uint16 cost = charutils::CalculateManaCost(m_PChar, m_PSpell);
-			if (cost > m_PChar->health.mp && !m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT))
-			{
-                MagicStartError(34);
-				return;
-			}
-		}
-	}
-	else if (m_PBattleSubTarget != NULL)
-	{
-        MagicStartError(48);
-		return;
-	}
-	else
-	{
-        MagicStartError(0);
-		return;
-	}
-
-	if (m_PBattleSubTarget != m_PChar)
-	{
-		float Distance = distance(m_PChar->loc.p, m_PBattleSubTarget->loc.p);
-
-		if (Distance > 25)
-		{
-            MagicStartError(78);
-			return;
-		}
-		if (Distance > 21.5)
-		{
-            MagicStartError(313);
-			return;
-		}
-	}
-	// End of core checks, so pass it along to the script checking function
-	int32 errNo = luautils::OnMagicCastingCheck(m_PBattleSubTarget, m_PChar, m_PSpell);
-
-	if(errNo != 0)
-	{
-		MagicStartError(errNo);
-		return;
-	}
-
-	m_interruptSpell = false;
-	m_PChar->m_StartActionPos = m_PChar->loc.p;
-
-	m_LastActionTime = m_Tick;
-
-	apAction_t Action;
-    m_PChar->m_ActionList.clear();
-
-	Action.ActionTarget = m_PBattleSubTarget;
-	Action.reaction   = REACTION_NONE;
-	Action.speceffect = SPECEFFECT_NONE;
-	Action.animation  = 0;
-	Action.param	  = m_PSpell->getID();
-	Action.messageID  = 327;
-
-	m_PChar->m_ActionList.push_back(Action);
-
-	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-    m_ActionType = ACTION_MAGIC_CASTING;
 }
 
 /************************************************************************
@@ -1327,14 +1210,9 @@ void CAICharNormal::ActionMagicStart()
 *                                                                       *
 ************************************************************************/
 
-void CAICharNormal::MagicStartError(uint16 error, uint16 param)
+void CAICharNormal::MagicStartError()
 {
     DSP_DEBUG_BREAK_IF(m_ActionType != ACTION_MAGIC_START);
-
-    if (error != 0)
-    {
-        m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, (m_PBattleSubTarget != NULL ? m_PBattleSubTarget : m_PChar), m_PSpell->getID(), param, error));
-    }
 
     m_ActionTargetID = 0;
 
@@ -1350,122 +1228,22 @@ void CAICharNormal::MagicStartError(uint16 error, uint16 param)
 
 void CAICharNormal::ActionMagicCasting()
 {
-	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+    STATESTATUS status = m_PMagicState->Update(m_Tick);
 
-    if (m_PBattleSubTarget->isDead() && !(m_PSpell->getValidTarget() & TARGET_PLAYER_DEAD))
-	{
-		m_ActionType = ACTION_MAGIC_INTERRUPT;
-		ActionMagicInterrupt();
-		return;
-	}
-	if (m_PBattleSubTarget->objtype == TYPE_MOB && !IsMobOwner(m_PBattleSubTarget))
-	{
-		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,MSGBASIC_ALREADY_CLAIMED));
-
-		m_ActionType = ACTION_MAGIC_INTERRUPT;
-		ActionMagicInterrupt();
-		return;
-	}
-
-    uint32 totalCastTime = charutils::CalculateSpellcastTime(m_PChar, m_PSpell);
-
-	if (m_Tick - m_LastActionTime >= totalCastTime)
-	{
-		if(m_interruptSpell)
-		{
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_IS_INTERRUPTED));
-			m_ActionType = ACTION_MAGIC_INTERRUPT;
-			ActionMagicInterrupt();
-			return;
-		}
-		else if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE)
-           || m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MUTE))
-        {
-			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,MSGBASIC_UNABLE_TO_CAST));
-			m_ActionType = ACTION_MAGIC_INTERRUPT;
-			ActionMagicInterrupt();
-			return;
-		}
-		else if (battleutils::IsParalised(m_PChar))
-		{
-			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,MSGBASIC_IS_PARALYZED));
-			m_ActionType = ACTION_MAGIC_INTERRUPT;
-			ActionMagicInterrupt();
-			return;
-		}
-		else if (!(m_PSpell->getValidTarget() & TARGET_SELF) && battleutils::IsIntimidated(m_PChar, m_PBattleSubTarget))
-		{
-		    m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,MSGBASIC_IS_INTIMIDATED));
-		    m_ActionType = ACTION_MAGIC_INTERRUPT;
-			ActionMagicInterrupt();
-			return;
-		}
-
-		if (!charutils::hasSpell(m_PChar, m_PSpell->getID()) ||
-            !spell::CanUseSpell(m_PChar, m_PSpell->getID()))
-		{
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,m_PSpell->getID(),0, MSGBASIC_CANNOT_CAST_SPELL));
-
-			m_ActionType = ACTION_MAGIC_INTERRUPT;
-			ActionMagicInterrupt();
-			return;
-		}
-		//the check for player position only occurs AFTER the cast time is up, you can move so long as x/z is the same on finish.
-		//furthermore, it's actually quite lenient, hence the rounding to 1 dp
-		if (floorf(m_PChar->m_StartActionPos.x * 10 + 0.5) / 10 != floorf(m_PChar->loc.p.x * 10 + 0.5) / 10 ||
-		floorf(m_PChar->m_StartActionPos.z * 10 + 0.5) / 10 != floorf(m_PChar->loc.p.z * 10 + 0.5) / 10 ||
-        m_PChar->StatusEffectContainer->HasPreventActionEffect())
-		{
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_IS_INTERRUPTED));
-
-			m_ActionType = ACTION_MAGIC_INTERRUPT;
-			ActionMagicInterrupt();
-			return;
-		}
-		if ((m_PBattleSubTarget != m_PChar) &&
-			(distance(m_PChar->loc.p,m_PBattleSubTarget->loc.p) > 21.5))
-		{
-			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,MSGBASIC_TOO_FAR_AWAY));
-
-			m_ActionType = ACTION_MAGIC_INTERRUPT;
-			ActionMagicInterrupt();
-			return;
-		}
-
-		if (m_PSpell->getSpellGroup() == SPELLGROUP_NINJUTSU)
-		{
-            if(!battleutils::HasNinjaTool(m_PChar, m_PSpell, true))
-            {
-                m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, m_PSpell->getID(), 0, MSGBASIC_NO_NINJA_TOOLS));
-
-                m_ActionType = ACTION_MAGIC_INTERRUPT;
-                ActionMagicInterrupt();
-                return;
-            }
-		}
-        else
-        {
-            uint16 cost = charutils::CalculateManaCost(m_PChar, m_PSpell);
-			if (cost > m_PChar->health.mp && !m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT))
-			{
-				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,m_PSpell->getID(),0,MSGBASIC_NOT_ENOUGH_MP));
-
-				m_ActionType = ACTION_MAGIC_INTERRUPT;
-				ActionMagicInterrupt();
-				return;
-			}
-            else
-            {
-				if (!m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT))
-				{
-					m_PChar->addMP(-(int16)cost);
-				}
-			}
-		}
-
-		m_ActionType = ACTION_MAGIC_FINISH;
-		ActionMagicFinish();
-	}
+    if(status == STATESTATUS_INTERRUPT)
+    {
+        m_ActionType = ACTION_MAGIC_INTERRUPT;
+        ActionMagicInterrupt();
+    }
+    else if(status == STATESTATUS_ERROR)
+    {
+        TransitionBack();
+    }
+    else if(status == STATESTATUS_FINISH)
+    {
+        m_ActionType = ACTION_MAGIC_FINISH;
+        ActionMagicFinish();
+    }
 }
 
 /************************************************************************
@@ -1476,282 +1254,35 @@ void CAICharNormal::ActionMagicCasting()
 
 void CAICharNormal::ActionMagicFinish()
 {
-	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
+    m_PMagicState->FinishSpell();
 
-    m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_MAGIC_BEGIN);
+    m_LastMeleeTime += (m_Tick - m_LastActionTime);
 
-    if (!m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
-    {
-	    uint32 RecastTime = charutils::CalculateSpellRecastTime(m_PChar, m_PSpell);
+    m_PMagicState->SetLastCoolTime(m_Tick);
 
-		//needed so the client knows of the reduced recast time!
-		m_PSpell->setModifiedRecast(RecastTime);
+    m_PSpell = NULL;
+    m_PBattleSubTarget = NULL;
 
-        m_PChar->PRecastContainer->Add(RECAST_MAGIC, m_PSpell->getID(), RecastTime);
-    }
-	else //chainspell does have a small delay between casts sadly!
-    {
-		m_PSpell->setModifiedRecast(2000);
-        m_PChar->PRecastContainer->Add(RECAST_MAGIC, m_PSpell->getID(), 2000);
-	}
-
-	// remove effects based on spell cast first
-    int16 effectFlags = EFFECTFLAG_INVISIBLE;
-
-    if(m_PSpell->canTargetEnemy())
-    {
-    	effectFlags |= EFFECTFLAG_DETECTABLE;
-    }
-
-    // если заклинание атакующее, то дополнительно удаляем эффекты с флагом атаки
-    m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(effectFlags);
-
-    // find targets for spell
-    m_PTargetFind->reset();
-    m_PChar->m_ActionList.clear();
-
-    uint8 flags = FINDFLAGS_NONE;
-
-    // can this spell target the dead?
-    if(m_PSpell->getValidTarget() & TARGET_PLAYER_DEAD)
-    {
-    	flags |= FINDFLAGS_DEAD;
-    }
-
-    uint8 aoeType = battleutils::GetSpellAoEType(m_PChar, m_PSpell);
-
-    if (aoeType == SPELLAOE_RADIAL)
-    {
-        float radius = spell::GetSpellRadius(m_PSpell, m_PChar);
-
-        m_PTargetFind->findWithinArea(m_PBattleSubTarget, AOERADIUS_TARGET, radius, flags);
-    }
-    else if (aoeType == SPELLAOE_CONAL)
-    {
-        //TODO: actual angle calculation
-        float radius = spell::GetSpellRadius(m_PSpell, m_PChar);
-
-        m_PTargetFind->findWithinCone(m_PBattleSubTarget, radius, 45, flags);
-    }
-    else
-    {
-        m_PTargetFind->findSingleTarget(m_PBattleSubTarget, flags);
-    }
-
-    uint16 totalTargets = m_PTargetFind->m_targets.size();
-
-    m_PSpell->setTotalTargets(totalTargets);
-
-    apAction_t Action;
-    Action.ActionTarget = m_PBattleSubTarget;
-    Action.reaction   = REACTION_NONE;
-    Action.speceffect = SPECEFFECT_NONE;
-    Action.animation  = m_PSpell->getAnimationID();
-    Action.param      = 0;
-    Action.messageID  = 0;
-
-    uint16 msg = 0;
-    int16 ce = 0;
-    int16 ve = 0;
-    for (std::vector<CBattleEntity*>::iterator it = m_PTargetFind->m_targets.begin() ; it != m_PTargetFind->m_targets.end(); ++it)
-    {
-        CBattleEntity* PTarget = *it;
-
-        Action.ActionTarget = PTarget;
-
-        m_PSpell->resetMessage();
-
-        ce = m_PSpell->getCE();
-        ve = m_PSpell->getVE();
-
-        // take all shadows
-        if(m_PSpell->canTargetEnemy() && aoeType > 0)
-        {
-            PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BLINK);
-            PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
-        }
-
-        // TODO: this is really hacky and should eventually be moved into lua
-        if(m_PSpell->canTargetEnemy() && aoeType > SPELLAOE_NONE && battleutils::IsAbsorbByShadow(PTarget))
-        {
-            // take shadow
-            msg = 31;
-            Action.param = 1;
-            ve = 0;
-            ce = 0;
-        }
-        else
-        {
-            Action.param = luautils::OnSpellCast(m_PChar, PTarget, m_PSpell);
-
-            // remove effects from damage
-            if (m_PSpell->canTargetEnemy() && Action.param > 0 && m_PSpell->dealsDamage())
-            {
-                PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
-            }
-
-            if(msg == 0)
-            {
-                msg = m_PSpell->getMessage();
-            }
-            else
-            {
-                msg = m_PSpell->getAoEMessage();
-            }
-
-        }
-
-        Action.messageID = msg;
-
-        if (m_PSpell->canTargetEnemy()) {
-            // wipe shadows if needed
-            if (m_PSpell->getAOE() == SPELLAOE_NONE && battleutils::IsAbsorbByShadow(PTarget))
-            {
-                Action.param = 1;
-                Action.messageID = 31;
-
-                // handle hate
-                ve = 0;
-                ce = 0;
-            }
-            else if(Action.param > 0 && m_PSpell->dealsDamage())
-            {
-                PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
-            }
-
-            // spells that deal 0 damage or took no effect don't generate enmity
-            if(Action.param == 0 || !m_PSpell->tookEffect())
-            {
-            	ve = 0;
-            	ce = 1;
-            }
-        }
-
-        if (PTarget->objtype == TYPE_MOB)
-        {
-            if (PTarget->isDead())
-            {
-                ((CMobEntity*)PTarget)->m_DropItemTime = m_PSpell->getAnimationTime();
-            }
-
-            ((CMobEntity*)PTarget)->m_OwnerID.id = m_PChar->id;
-            ((CMobEntity*)PTarget)->m_OwnerID.targid = m_PChar->targid;
-
-            if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRANQUILITY) && m_PSpell->getSpellGroup() == SPELLGROUP_WHITE)
-            {
-                m_PChar->addModifier(MOD_ENMITY, -m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_TRANQUILITY)->GetPower());
-            }
-            if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_EQUANIMITY) && m_PSpell->getSpellGroup() == SPELLGROUP_BLACK)
-            {
-                m_PChar->addModifier(MOD_ENMITY, -m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_EQUANIMITY)->GetPower());
-            }
-            ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmity(m_PChar, ce, ve);
-            if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRANQUILITY) && m_PSpell->getSpellGroup() == SPELLGROUP_WHITE)
-            {
-                m_PChar->delModifier(MOD_ENMITY, -m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_TRANQUILITY)->GetPower());
-                m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_TRANQUILITY);
-            }
-            if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_EQUANIMITY) && m_PSpell->getSpellGroup() == SPELLGROUP_BLACK)
-            {
-                m_PChar->delModifier(MOD_ENMITY, -m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_EQUANIMITY)->GetPower());
-                m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_EQUANIMITY);
-            }
-        }
-
-        if(Action.param > 0 && m_PSpell->dealsDamage() && m_PSpell->getSpellGroup() == SPELLGROUP_BLUE && 
-            m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAIN_AFFINITY) && ((CBlueSpell*)m_PSpell)->getPrimarySkillchain() != 0)
-        {
-
-            SUBEFFECT effect = battleutils::GetSkillChainEffect(m_PBattleSubTarget, (CBlueSpell*)m_PSpell);
-            if (effect != SUBEFFECT_NONE)
-            {
-	            uint16 skillChainDamage = battleutils::TakeSkillchainDamage(m_PChar, m_PBattleSubTarget, Action.param);
-
-
-                Action.addEffectParam = skillChainDamage;
-                Action.addEffectMessage = 287 + effect;
-                Action.additionalEffect = effect;
-
-            }
-            if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SEKKANOKI) || m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
-            {
-                m_PChar->health.tp = (m_PChar->health.tp > 100 ? m_PChar->health.tp - 100 : 0);
-            }
-            else
-            {
-                m_PChar->health.tp = 0;
-            }
-            m_PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHAIN_AFFINITY);
-        }
-
-        m_PChar->m_ActionList.push_back(Action);
-    }
-    charutils::RemoveStratagems(m_PChar, m_PSpell);
-
-	charutils::UpdateHealth(m_PChar);
-
-    // only skill up if the effect landed
-    if(m_PSpell->tookEffect()){
-        charutils::TrySkillUP(m_PChar, (SKILLTYPE)m_PSpell->getSkillType(), m_PBattleSubTarget->GetMLevel());
-    }
-
-    m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_MAGIC_END);
-
-	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
-
-	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-
-	if(m_PChar->PPet!=NULL && ((CPetEntity*)m_PChar->PPet)->getPetType() == PETTYPE_WYVERN)
-    {
-		((CAIPetDummy*)m_PChar->PPet->PBattleAI)->m_MasterCommand = MASTERCOMMAND_HEALING_BREATH;
-		m_PChar->PPet->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
-	}
-
-	m_LastMeleeTime += (m_Tick - m_LastActionTime);
-
-    m_LastCoolDown = m_Tick;
-
-    if(m_PBattleSubTarget->objtype == TYPE_MOB)
-    {
-    	CMobEntity* Monster = (CMobEntity*)m_PBattleSubTarget;
-    	if (Monster->m_HiPCLvl < m_PChar->GetMLevel())
-        {
-            Monster->m_HiPCLvl = m_PChar->GetMLevel();
-        }
-    }
-
-	m_PSpell = NULL;
     TransitionBack();
 }
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 void CAICharNormal::ActionMagicInterrupt()
 {
-	apAction_t Action;
-    m_PChar->m_ActionList.clear();
+    m_PMagicState->InterruptSpell();
 
-	Action.ActionTarget = m_PChar;
-	Action.reaction   = REACTION_NONE;
-	Action.speceffect = SPECEFFECT_NONE;
-	Action.animation  = m_PSpell->getAnimationID();
-	Action.param	  = 0;
-	Action.messageID  = 0;
+    m_LastMeleeTime += (m_Tick - m_LastActionTime);
 
-	m_PChar->m_ActionList.push_back(Action);
-
-	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
-
-	m_LastMeleeTime += (m_Tick - m_LastActionTime);
-
-	// small magic delay
-	m_LastCoolDown = m_Tick;
+    m_PMagicState->SetLastCoolTime(m_Tick);
 
 	m_PSpell = NULL;
+    m_PBattleSubTarget = NULL;
+
 	TransitionBack();
 }
 

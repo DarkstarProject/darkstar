@@ -23,8 +23,12 @@
 
 #include "magic_state.h"
 #include "../../entities/mobentity.h"
+#include "../../entities/charentity.h"
 #include "../../lua/luautils.h"
 #include "../../utils/battleutils.h"
+#include "../../utils/charutils.h"
+#include "../ai_pet_dummy.h"
+#include "../../packets/char_update.h"
 
 #include "../../spell.h"
 
@@ -49,6 +53,7 @@ STATESTATUS CMagicState::CastSpell(CSpell* PSpell, CBattleEntity* PTarget, uint8
 	m_PSpell = PSpell;
 	m_PTarget = PTarget;
 	m_flags = flags;
+    m_startPosition = m_PEntity->loc.p;
 
 	m_startTime = 0;
 	m_castTime = CalculateCastTime(PSpell);
@@ -73,9 +78,29 @@ bool CMagicState::CanCastSpell(CSpell* PSpell, CBattleEntity* PTarget, uint8 fla
 {
 	if(PSpell == NULL) return false;
 
-	if(!CheckValidTarget(PTarget)) return false;
+	if(!ValidCast(PSpell, PTarget))
+	{
+		return false;
+	}
 
-	if(TooFar(&PTarget->loc.p, m_maxStartDistance)) return false;
+    if(m_PEntity->objtype == TYPE_PC)
+    {
+        float distanceValue = distance(m_PEntity->loc.p, PTarget->loc.p);
+        // pc has special messages
+        if(distanceValue > 25)
+        {
+            PushError(MSGBASIC_TOO_FAR_AWAY, PSpell->getID());
+            return false;
+        }
+        else if(distanceValue > m_maxStartDistance)
+        {
+            PushError(MSGBASIC_OUT_OF_RANGE_UNABLE_CAST, m_PSpell->getID());
+            return false;
+        }
+    }
+    else if(!m_PTargetFind->isWithinRange(&PTarget->loc.p, m_maxStartDistance)){
+        return false;
+    }
 
     // player specific
     if(m_PEntity->objtype == TYPE_PC && !ValidCharCast(PSpell))
@@ -83,12 +108,10 @@ bool CMagicState::CanCastSpell(CSpell* PSpell, CBattleEntity* PTarget, uint8 fla
         return false;
     }
 
-	if(!ValidCast(PSpell))
-	{
-		return false;
-	}
 
-	if(luautils::OnMagicCastingCheck(m_PEntity, PTarget, PSpell) != 0){
+    int32 msgID = luautils::OnMagicCastingCheck(m_PEntity, PTarget, PSpell);
+	if(msgID){
+        PushError((MSGBASIC_ID)msgID, PSpell->getID());
 		return false;
 	}
 
@@ -339,9 +362,20 @@ bool CMagicState::CheckInterrupt()
 		return true;
 	}
 
-	if(TooFar(&m_PTarget->loc.p, m_maxFinishDistance)) return true;
+	if(!m_PTargetFind->isWithinRange(&m_PTarget->loc.p, m_maxFinishDistance))
+    {
+        PushError(MSGBASIC_OUT_OF_RANGE_UNABLE_CAST, m_PSpell->getID());
+         return true;
+    }
 
-	if(!ValidCast(m_PSpell))
+    // check if in same place
+    if(m_PEntity->objtype == TYPE_PC && HasMoved())
+    {
+        PushError(MSGBASIC_IS_INTERRUPTED, m_PSpell->getID());
+        return true;
+    }
+
+	if(!ValidCast(m_PSpell, m_PTarget))
 	{
 		return true;
 	}
@@ -361,22 +395,44 @@ bool CMagicState::CheckInterrupt()
 	return false;
 }
 
-bool CMagicState::ValidCast(CSpell* PSpell)
+bool CMagicState::ValidCast(CSpell* PSpell, CBattleEntity* PTarget)
 {
+    if(!CheckValidTarget(PTarget)) return false;
+
 	if(m_disableCasting ||
 		m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE) ||
 		m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MUTE))
 	{
+        PushError(MSGBASIC_UNABLE_TO_CAST_SPELLS, PSpell->getID());
 		return false;
 	}
 
+    if (PSpell->getSpellGroup() == SPELLGROUP_NINJUTSU)
+    {
+        if(m_PEntity->objtype == TYPE_PC && !(m_flags & MAGICFLAGS_IGNORE_TOOLS) && !battleutils::HasNinjaTool(m_PEntity, PSpell, false))
+        {
+            PushError(MSGBASIC_NO_NINJA_TOOLS, PSpell->getID());
+            return false;
+        }
+    }
     // check has mp available
-    if(!m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT) && CalculateMPCost(PSpell) > m_PEntity->health.mp)
+    else if(!m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT) && !(m_flags & MAGICFLAGS_IGNORE_MP) && CalculateMPCost(PSpell) > m_PEntity->health.mp)
     {
         if(m_PEntity->objtype == TYPE_MOB && m_PEntity->health.maxmp == 0)
         {
             ShowWarning("CMagicState::ValidCast Mob (%u) tried to cast magic with no mp!\n", m_PEntity->id);
         }
+        PushError(MSGBASIC_NOT_ENOUGH_MP, PSpell->getID());
+        return false;
+    }
+
+    if(PTarget->isDead() && !(PSpell->getValidTarget() & TARGET_PLAYER_DEAD))
+    {
+        return false;
+    }
+
+    if(!PTarget->isDead() && (PSpell->getValidTarget() & TARGET_PLAYER_DEAD))
+    {
         return false;
     }
 
@@ -406,9 +462,10 @@ void CMagicState::FinishSpell()
 	DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
 
     SpendCost(m_PSpell);
+    SetRecast(m_PSpell);
 
 	// remove effects based on spell cast first
-    int16 effectFlags = EFFECTFLAG_INVISIBLE;
+    int16 effectFlags = EFFECTFLAG_INVISIBLE | EFFECTFLAG_MAGIC_BEGIN;
 
     if(m_PSpell->canTargetEnemy())
     {
@@ -421,12 +478,21 @@ void CMagicState::FinishSpell()
     m_PTargetFind->reset();
     m_PEntity->m_ActionList.clear();
 
+    // setup special targeting flags
+    // can this spell target the dead?
+
+    uint8 flags = FINDFLAGS_NONE;
+    if(m_PSpell->getValidTarget() & TARGET_PLAYER_DEAD)
+    {
+        flags |= FINDFLAGS_DEAD;
+    }
+
     uint8 aoeType = battleutils::GetSpellAoEType(m_PEntity, m_PSpell);
 
 	if (aoeType == SPELLAOE_RADIAL) {
 		float distance = spell::GetSpellRadius(m_PSpell, m_PEntity);
 
-        m_PTargetFind->findWithinArea(m_PTarget, AOERADIUS_TARGET, distance);
+        m_PTargetFind->findWithinArea(m_PTarget, AOERADIUS_TARGET, distance, flags);
 
     }
     else if (aoeType == SPELLAOE_CONAL)
@@ -434,17 +500,17 @@ void CMagicState::FinishSpell()
         //TODO: actual radius calculation
         float radius = spell::GetSpellRadius(m_PSpell, m_PEntity);
 
-        m_PTargetFind->findWithinCone(m_PTarget, radius, 45);
+        m_PTargetFind->findWithinCone(m_PTarget, radius, 45, flags);
 	}
 	else
 	{
 		// only add target
-		m_PTargetFind->findSingleTarget(m_PTarget);
+		m_PTargetFind->findSingleTarget(m_PTarget, flags);
 	}
 
-    uint16 actionsLength = m_PTargetFind->m_targets.size();
+    uint16 totalTargets = m_PTargetFind->m_targets.size();
 
-	m_PSpell->setTotalTargets(actionsLength);
+	m_PSpell->setTotalTargets(totalTargets);
 
 	apAction_t action;
 	action.ActionTarget = m_PTarget;
@@ -477,7 +543,7 @@ void CMagicState::FinishSpell()
         }
 
         // TODO: this is really hacky and should eventually be moved into lua
-        if(m_PSpell->canTargetEnemy() && aoeType == SPELLAOE_NONE && battleutils::IsAbsorbByShadow(PTarget))
+        if(m_PSpell->canHitShadow() && aoeType == SPELLAOE_NONE && battleutils::IsAbsorbByShadow(PTarget))
         {
         	// take shadow
         	msg = 31;
@@ -504,18 +570,126 @@ void CMagicState::FinishSpell()
 				msg = m_PSpell->getAoEMessage();
 		    }
 
+            if(!m_PSpell->tookEffect())
+            {
+                ve = 0;
+                ce = 0;
+            }
+
 	    }
 
 	    action.messageID = msg;
 
+        CharOnTarget(&action, ce, ve);
+
         m_PEntity->m_ActionList.push_back(action);
     }
+
+    CharAfterFinish();
 
     m_PEntity->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_MAGIC_END);
 
 	m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(m_PEntity));
 
 	Clear();
+}
+
+void CMagicState::CharOnTarget(apAction_t* action, int16 ce, int16 ve)
+{
+    if(m_PEntity->objtype != TYPE_PC)
+    {
+        return;
+    }
+
+    CBattleEntity* PTarget = action->ActionTarget;
+
+    if (PTarget->objtype == TYPE_MOB)
+    {
+        if (PTarget->isDead())
+        {
+            ((CMobEntity*)PTarget)->m_DropItemTime = m_PSpell->getAnimationTime();
+        }
+
+        ((CMobEntity*)PTarget)->m_OwnerID.id = m_PEntity->id;
+        ((CMobEntity*)PTarget)->m_OwnerID.targid = m_PEntity->targid;
+
+        if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_TRANQUILITY) && m_PSpell->getSpellGroup() == SPELLGROUP_WHITE)
+        {
+            m_PEntity->addModifier(MOD_ENMITY, -m_PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_TRANQUILITY)->GetPower());
+        }
+        if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_EQUANIMITY) && m_PSpell->getSpellGroup() == SPELLGROUP_BLACK)
+        {
+            m_PEntity->addModifier(MOD_ENMITY, -m_PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_EQUANIMITY)->GetPower());
+        }
+        ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmity(m_PEntity, ce, ve);
+        if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_TRANQUILITY) && m_PSpell->getSpellGroup() == SPELLGROUP_WHITE)
+        {
+            m_PEntity->delModifier(MOD_ENMITY, -m_PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_TRANQUILITY)->GetPower());
+            m_PEntity->StatusEffectContainer->DelStatusEffect(EFFECT_TRANQUILITY);
+        }
+        if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_EQUANIMITY) && m_PSpell->getSpellGroup() == SPELLGROUP_BLACK)
+        {
+            m_PEntity->delModifier(MOD_ENMITY, -m_PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_EQUANIMITY)->GetPower());
+            m_PEntity->StatusEffectContainer->DelStatusEffect(EFFECT_EQUANIMITY);
+        }
+    }
+
+    if(action->param > 0 && m_PSpell->dealsDamage() && m_PSpell->getSpellGroup() == SPELLGROUP_BLUE &&
+        m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_CHAIN_AFFINITY) && ((CBlueSpell*)m_PSpell)->getPrimarySkillchain() != 0)
+    {
+
+        SUBEFFECT effect = battleutils::GetSkillChainEffect(PTarget, (CBlueSpell*)m_PSpell);
+        if (effect != SUBEFFECT_NONE)
+        {
+            uint16 skillChainDamage = battleutils::TakeSkillchainDamage(m_PEntity, PTarget, action->param);
+
+
+            action->addEffectParam = skillChainDamage;
+            action->addEffectMessage = 287 + effect;
+            action->additionalEffect = effect;
+
+        }
+        if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SEKKANOKI) || m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
+        {
+            m_PEntity->health.tp = (m_PEntity->health.tp > 100 ? m_PEntity->health.tp - 100 : 0);
+        }
+        else
+        {
+            m_PEntity->health.tp = 0;
+        }
+
+        m_PEntity->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHAIN_AFFINITY);
+    }
+}
+
+void CMagicState::CharAfterFinish()
+{
+    if(m_PEntity->objtype != TYPE_PC)
+    {
+        return;
+    }
+
+    CCharEntity* PChar = (CCharEntity*)m_PEntity;
+
+    charutils::RemoveStratagems(PChar, m_PSpell);
+
+    charutils::UpdateHealth(PChar);
+
+    // only skill up if the effect landed
+    if(m_PSpell->tookEffect()){
+        charutils::TrySkillUP(PChar, (SKILLTYPE)m_PSpell->getSkillType(), m_PTarget->GetMLevel());
+    }
+
+    PChar->pushPacket(new CCharUpdatePacket(PChar));
+
+    // make wyvern use breath
+    if(PChar->PPet!=NULL && ((CPetEntity*)PChar->PPet)->getPetType() == PETTYPE_WYVERN)
+    {
+        ((CAIPetDummy*)PChar->PPet->PBattleAI)->m_MasterCommand = MASTERCOMMAND_HEALING_BREATH;
+        PChar->PPet->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
+    }
+
+    SetHiPCLvl(m_PTarget, PChar->GetMLevel());
 }
 
 bool CMagicState::TryHitInterrupt(CBattleEntity* PAttacker)
@@ -534,36 +708,80 @@ bool CMagicState::IsCasting()
 	return m_PSpell != NULL;
 }
 
-bool CMagicState::ValidCharCast(CSpell* SpendCost)
+bool CMagicState::ValidCharCast(CSpell* PSpell)
 {
+    CCharEntity* PChar = (CCharEntity*)m_PEntity;
 
     // has spell and can use it
+    int16 spellID = PSpell->getID();
+
+    if (!charutils::hasSpell(PChar, spellID) || !spell::CanUseSpell(PChar, spellID))
+    {
+        PushError(MSGBASIC_CANNOT_CAST_SPELL, spellID);
+        return false;
+    }
 
     // check recast
+    if (PChar->PRecastContainer->Has(RECAST_MAGIC, spellID))
+    {
+        PushError(MSGBASIC_UNABLE_TO_CAST, spellID);
+        return false;
+    }
 
     // can use msic
+    if (!m_PEntity->loc.zone->CanUseMisc(PSpell->getZoneMisc()))
+    {
+        PushError(MSGBASIC_CANNOT_USE_IN_AREA, spellID);
+        return false;
+    }
 
     // check summoning
+    if (PSpell->getSpellGroup() == SPELLGROUP_SUMMONING && PChar->PPet != NULL)
+    {
+        PushError(MSGBASIC_ALREADY_HAS_A_PET, spellID);
+        return false;
+    }
 
-    // valid target
-
-    // is owner
-
-    // cannot cast magic on on battlefield targets
-
-    // has tool
-    return false;
+    return true;
 }
 
 void CMagicState::SpendCost(CSpell* PSpell)
 {
-
-    if (PSpell->hasMPCost() && !m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT))
+    if(m_PSpell->getSpellGroup() == SPELLGROUP_NINJUTSU)
+    {
+        if(!(m_flags & MAGICFLAGS_IGNORE_TOOLS))
+        {
+            // handle ninja tools
+            battleutils::HasNinjaTool(m_PEntity, PSpell, true);
+        }
+    }
+    else if (PSpell->hasMPCost() && !m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT) && !(m_flags & MAGICFLAGS_IGNORE_MP))
     {
         int16 cost = CalculateMPCost(PSpell);
         m_PEntity->addMP(-cost);
     }
 
-    // handle ninja tools
+}
 
+void CMagicState::SetRecast(CSpell* PSpell)
+{
+
+    // only applies to pcs
+    if(m_PEntity->objtype != TYPE_PC)
+    {
+        return;
+    }
+
+    CCharEntity* PChar = (CCharEntity*)m_PEntity;
+
+    uint32 RecastTime = 3000;
+
+    if (!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
+    {
+        RecastTime = CalculateRecastTime(PSpell);
+    }
+
+    //needed so the client knows of the reduced recast time!
+    PSpell->setModifiedRecast(RecastTime);
+    PChar->PRecastContainer->Add(RECAST_MAGIC, PSpell->getID(), RecastTime);
 }

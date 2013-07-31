@@ -1,8 +1,10 @@
 
 #include "state.h"
 #include "../../entities/battleentity.h"
-#include "../helpers/targetfind.h"
+#include "../../entities/mobentity.h"
 #include "../../entities/charentity.h"
+#include "../helpers/targetfind.h"
+
 #include "../../packets/action.h"
 
 CState::CState(CBattleEntity* PEntity, CTargetFind* PTargetFind)
@@ -13,6 +15,9 @@ CState::CState(CBattleEntity* PEntity, CTargetFind* PTargetFind)
 	m_PTargetFind = PTargetFind;
 	m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE);
 
+	m_coolTime = COOL_DOWN_TIME;
+	m_lastCoolTime = 0;
+
 	Clear();
 }
 
@@ -21,17 +26,34 @@ CState::~CState()
 
 }
 
-void CState::PushMessage(MSGBASIC_ID msgID, int32 param, int32 value, bool personal)
+void CState::PushMessage(MSGBASIC_ID msgID, int32 param, int32 value)
 {
-	if(personal && m_PEntity->objtype == TYPE_PC)
+
+	CBattleEntity* PTarget = m_PTarget;
+	// always need an entity sent
+	if(PTarget == NULL)
+	{
+		PTarget = m_PEntity;
+	}
+
+	m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PEntity,PTarget,param,value,msgID));
+}
+
+void CState::PushError(MSGBASIC_ID msgID, int32 param, int32 value)
+{
+	if(m_PEntity->objtype == TYPE_PC)
 	{
 		CCharEntity* PChar = (CCharEntity*)m_PEntity;
 
-		PChar->pushPacket(new CMessageBasicPacket(PChar,m_PTarget,param,value,msgID));
-	}
-	else
-	{
-		m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PEntity,m_PTarget,param,value,msgID));
+		CBattleEntity* PTarget = m_PTarget;
+
+		// always need an entity sent
+		if(PTarget == NULL)
+		{
+			PTarget = m_PEntity;
+		}
+
+		PChar->pushPacket(new CMessageBasicPacket(PChar,PTarget,param,value,msgID));
 	}
 }
 
@@ -53,7 +75,21 @@ bool CState::CheckValidTarget(CBattleEntity* PTarget)
 		return false;
 	}
 
-	return !(PTarget->isDead() || m_PEntity->loc.zone == NULL || PTarget->getZone() != m_PEntity->getZone());
+    // is owner
+    if(!m_PTargetFind->isMobOwner(PTarget))
+    {
+    	PushError(MSGBASIC_ALREADY_CLAIMED);
+    	return false;
+    }
+
+    // act on battlefield targets unless I have it too
+    if(m_PEntity->objtype == TYPE_PC && PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD) && !m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD))
+    {
+        PushError(MSGBASIC_CANNOT_ON_THAT_TARG);
+        return false;
+    }
+
+	return !(m_PEntity->loc.zone == NULL || PTarget->getZone() != m_PEntity->getZone() || PTarget->IsNameHidden());
 }
 
 void CState::Clear()
@@ -67,7 +103,41 @@ CBattleEntity* CState::GetTarget()
 	return m_PTarget;
 }
 
-bool CState::TooFar(position_t* point, float maxDistance)
+bool CState::HasMoved()
 {
-	return distance(m_PEntity->loc.p, *point) > maxDistance;
+	return floorf(m_startPosition.x * 10 + 0.5) / 10 != floorf(m_PEntity->loc.p.x * 10 + 0.5) / 10 ||
+	floorf(m_startPosition.z * 10 + 0.5) / 10 != floorf(m_PEntity->loc.p.z * 10 + 0.5) / 10;
+}
+
+bool CState::IsOnCoolDown(uint32 tick)
+{
+	if(tick - m_lastCoolTime < m_coolTime)
+	{
+		PushError(MSGBASIC_WAIT_LONGER);
+		return true;
+	}
+
+	return false;
+}
+
+void CState::SetLastCoolTime(uint32 tick)
+{
+	m_lastCoolTime = tick;
+}
+
+void CState::SetCoolDown(uint32 coolDown)
+{
+	m_coolTime = coolDown;
+}
+
+void CState::SetHiPCLvl(CBattleEntity* PTarget, uint8 lvl)
+{
+    if(PTarget->objtype == TYPE_MOB)
+    {
+        CMobEntity* Monster = (CMobEntity*)PTarget;
+        if (Monster->m_HiPCLvl < lvl)
+        {
+            Monster->m_HiPCLvl = lvl;
+        }
+    }
 }

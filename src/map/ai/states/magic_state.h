@@ -27,6 +27,7 @@
 #include "state.h"
 
 class CSpell;
+struct apAction_t;
 
 enum MAGICFLAGS {
   MAGICFLAGS_NONE = 0,
@@ -65,17 +66,25 @@ class CMagicState : public CState
     float m_maxStartDistance;
     float m_maxFinishDistance;
 
+    void SpendCost(CSpell* PSpell);
+    void SetRecast(CSpell* PSpell);
+
   private:
     CSpell* m_PSpell;
     uint32 m_startTime;
     uint32 m_castTime;
 
+    void ErrorMessage(MSGBASIC_ID msgID);
+
     bool m_interruptSpell;
 
-    void SpendCost(CSpell* SpendCost);
+    // handle char stuff after casting magic
+    void CharOnTarget(apAction_t* action, int16 ce, int16 ve);
+    void CharAfterFinish();
+
     bool CheckInterrupt();
-    bool ValidCast(CSpell* SpendCost);
-    bool ValidCharCast(CSpell* SpendCost);
+    bool ValidCast(CSpell* PSpell, CBattleEntity* PTarget);
+    bool ValidCharCast(CSpell* PSpell);
 };
 
 #endif

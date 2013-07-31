@@ -870,7 +870,7 @@ void CAIMobDummy::ActionAbilityFinish()
 
     float distance = m_PMobSkill->getDistance();
 
-    if(m_PTargetFind->isWithinRange(m_PBattleSubTarget, distance))
+    if(m_PTargetFind->isWithinRange(&m_PBattleSubTarget->loc.p, distance))
     {
 		if(m_PMobSkill->isAoE())
 		{
@@ -1043,7 +1043,6 @@ void CAIMobDummy::ActionMagicStart()
 	m_LastMagicTime = m_Tick;
 
 	STATESTATUS status = m_PMagicState->CastSpell(m_PSpell, m_PBattleSubTarget);
-
 
 	if(status == STATESTATUS_START)
 	{

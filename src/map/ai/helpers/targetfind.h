@@ -106,9 +106,11 @@ public:
   bool validEntity(CBattleEntity* PTarget);
   bool checkIsPlayer();
 
-  bool isWithinArea(CBattleEntity* PTarget);
-  bool isWithinCone(CBattleEntity* PTarget);
-  bool isWithinRange(CBattleEntity* PTarget, float range);
+  bool isWithinArea(position_t* pos);
+  bool isWithinCone(position_t* pos);
+  bool isWithinRange(position_t* pos, float range);
+
+  CBattleEntity* getValidTarget(uint16 actionTargetID, uint8 validTargetFlags);
 
   std::vector<CBattleEntity*> m_targets; // contains all found entities
 

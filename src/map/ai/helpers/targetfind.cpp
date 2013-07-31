@@ -266,6 +266,12 @@ CBattleEntity* CTargetFind::findMaster(CBattleEntity* PTarget)
 
 bool CTargetFind::isMobOwner(CBattleEntity* PTarget)
 {
+  if(m_PBattleEntity->objtype != TYPE_PC || PTarget->objtype != TYPE_MOB)
+  {
+    // always true for mobs, npcs, pets
+    return true;
+  }
+
   if (PTarget->m_OwnerID.id == 0 || PTarget->m_OwnerID.id == m_PBattleEntity->id)
   {
     return true;
@@ -351,14 +357,14 @@ bool CTargetFind::validEntity(CBattleEntity* PTarget)
   // this will be removed when conal targetting is polished
   if(m_conal)
   {
-    if(isWithinCone(PTarget))
+    if(isWithinCone(&PTarget->loc.p))
     {
       return true;
     }
   }
   else
   {
-    if(isWithinArea(PTarget))
+    if((m_findFlags & FINDFLAGS_UNLIMITED) || isWithinArea(&PTarget->loc.p))
     {
       return true;
     }
@@ -375,22 +381,21 @@ bool CTargetFind::checkIsPlayer()
   return m_PBattleEntity->PMaster != NULL && m_PBattleEntity->PMaster->objtype == TYPE_PC;
 }
 
-bool CTargetFind::isWithinArea(CBattleEntity* PTarget)
+bool CTargetFind::isWithinArea(position_t* pos)
 {
-   return (m_findFlags & FINDFLAGS_UNLIMITED) || distance(*m_PRadiusAround, PTarget->loc.p) <= m_radius;
+   return distance(*m_PRadiusAround, *pos) <= m_radius;
 }
 
-bool CTargetFind::isWithinCone(CBattleEntity* PTarget)
+bool CTargetFind::isWithinCone(position_t* pos)
 {
-
   position_t PPoint;
 
   // holds final weight
   position_t WPoint;
 
   // move origin to one vertex
-  PPoint.x = PTarget->loc.p.x - m_APoint->x;
-  PPoint.z = PTarget->loc.p.z - m_APoint->z;
+  PPoint.x = pos->x - m_APoint->x;
+  PPoint.z = pos->z - m_APoint->z;
 
   WPoint.x = (PPoint.x * (m_BPoint.z - m_CPoint.z) + PPoint.z * (m_CPoint.x - m_BPoint.x) + m_BPoint.x * m_CPoint.z - m_CPoint.x * m_BPoint.z) / m_scalar;
 
@@ -417,7 +422,54 @@ bool CTargetFind::isWithinCone(CBattleEntity* PTarget)
   return true;
 }
 
-bool CTargetFind::isWithinRange(CBattleEntity* PTarget, float range)
+bool CTargetFind::isWithinRange(position_t* pos, float range)
 {
-   return distance(m_PBattleEntity->loc.p, PTarget->loc.p) <= range;
+   return distance(m_PBattleEntity->loc.p, *pos) <= range;
+}
+
+CBattleEntity* CTargetFind::getValidTarget(uint16 actionTargetID, uint8 validTargetFlags)
+{
+
+  DSP_DEBUG_BREAK_IF(actionTargetID == 0);
+
+  CBattleEntity* PTarget = (CBattleEntity*)m_PBattleEntity->loc.zone->GetEntity(actionTargetID, TYPE_MOB | TYPE_PC | TYPE_PET);
+
+  if (PTarget == NULL)
+  {
+    return NULL;
+  }
+
+  if (validTargetFlags & TARGET_ENEMY)
+  {
+    if (!PTarget->isDead())
+    {
+      if (PTarget->objtype == TYPE_MOB ||
+      (PTarget->objtype == TYPE_PC && ((CCharEntity*)PTarget)->m_PVPFlag))
+      {
+        return PTarget;
+      }
+    }
+  }
+
+  if (PTarget->objtype == TYPE_PC)
+  {
+    if ((validTargetFlags & TARGET_SELF) && PTarget->targid == m_PBattleEntity->targid)
+    {
+      return PTarget;
+    }
+    if (validTargetFlags & TARGET_PLAYER)
+    {
+      return PTarget;
+    }
+    if ((validTargetFlags & TARGET_PLAYER_PARTY) && (m_PBattleEntity->PParty != NULL && m_PBattleEntity->PParty == PTarget->PParty))
+    {
+      return PTarget;
+    }
+    if ((validTargetFlags & TARGET_PLAYER_DEAD) && PTarget->isDead())
+    {
+      return PTarget;
+    }
+    return NULL;
+  }
+  return NULL;
 }

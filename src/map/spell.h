@@ -105,6 +105,7 @@ public:
     bool        hasMPCost(); // checks if spell costs mp to use
     bool        isHeal(); // is a heal spell
     bool        isNa(); // is a -na spell
+    bool        canHitShadow(); // check if spell ignores shadows
 
     void        setRadius(uint8 radius);
     void        setTotalTargets(uint16 total);

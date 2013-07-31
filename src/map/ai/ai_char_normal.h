@@ -29,9 +29,6 @@
 #include "ai_general.h"
 #include <math.h>
 
-// delay for casting next spell
-#define COOL_DOWN_TIME 3000
-
 /************************************************************************
 *																		*
 *  AI поведения обычного персонажа										*
@@ -81,7 +78,7 @@ protected:
 	void ActionChangeBattleTarget();
 	void ActionRaiseMenuSelection();
 
-    void MagicStartError(uint16 error, uint16 param = 0);
+    void MagicStartError();
     void WeaponSkillStartError(uint16 error);
 
 	bool IsMobOwner(CBattleEntity* PBattleTarget);

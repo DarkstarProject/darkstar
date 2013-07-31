@@ -32,6 +32,9 @@
 class CBattleEntity;
 class CTargetFind;
 
+// delay for casting next spell
+#define COOL_DOWN_TIME 3000
+
 enum STATESTATUS {
   STATESTATUS_NONE,
   STATESTATUS_START,
@@ -51,18 +54,40 @@ class CState
     virtual STATESTATUS Update(uint32 tick);
     virtual void Clear();
 
-    CBattleEntity* GetTarget();
     bool CheckValidTarget(CBattleEntity* PTarget);
-    bool TooFar(position_t* point, float maxDistance);
+
+    bool IsOnCoolDown(uint32 tick);
+
+    void SetCoolDown(uint32 coolDown);
+    void SetLastCoolTime(uint32 tick);
+    void SetHiPCLvl(CBattleEntity* PTarget, uint8 lvl);
+
+    CBattleEntity* GetTarget();
+
+    // has moved from start position
+    bool HasMoved();
 
   protected:
-    void PushMessage(MSGBASIC_ID msgID, int32 param = 0, int32 value = 0, bool personal = false);
+    // push message for everyone to see
+    void PushMessage(MSGBASIC_ID msgID, int32 param = 0, int32 value = 0);
+
+    // push message for only target to see
+    // outputs nothing for any other than char
+    void PushError(MSGBASIC_ID msgID, int32 param = 0, int32 value = 0);
 
     CBattleEntity* m_PEntity;
     CBattleEntity* m_PTarget;
 
     CTargetFind* m_PTargetFind;
     uint8 m_flags;
+
+    // last cool down time
+    uint32 m_lastCoolTime;
+
+    // amount of time to wait on cool down
+    uint32 m_coolTime;
+
+    position_t m_startPosition;
 
   private:
 

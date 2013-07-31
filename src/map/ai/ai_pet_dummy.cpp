@@ -419,7 +419,7 @@ void CAIPetDummy::ActionAbilityFinish(){
 
     float distance = m_PMobSkill->getDistance();
 
-    if(m_PTargetFind->isWithinRange(m_PBattleSubTarget, distance))
+    if(m_PTargetFind->isWithinRange(&m_PBattleSubTarget->loc.p, distance))
     {
 	    if(m_PMobSkill->isAoE())
 	    {

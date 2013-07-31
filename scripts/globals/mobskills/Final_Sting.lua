@@ -30,7 +30,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
 	local mobHP = mob:getHP();
 	local hpMod = mobHP/mob:getMaxHP();
-	dmgmod = dmgmod + hpMod * 14;
+	dmgmod = dmgmod + hpMod * 14 + math.random(2,6);
 
 	if(mob:isMobType(MOBTYPE_NOTORIOUS)) then
 		dmgmod = dmgmod * 5;

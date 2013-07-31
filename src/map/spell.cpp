@@ -167,6 +167,11 @@ bool CSpell::isNa()
     return m_ID >= 14 && m_ID <= 20;
 }
 
+bool CSpell::canHitShadow()
+{
+    return m_ID != 244 && canTargetEnemy();
+}
+
 bool CSpell::dealsDamage()
 {
     //damage or drain hp
