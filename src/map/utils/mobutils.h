@@ -37,7 +37,7 @@ typedef struct
   std::vector<CModifier*> mobMods;
 } ModsList_t;
 
-typedef std::map<uint16,ModsList_t*> ModsMap_t;
+typedef std::map<uint32,ModsList_t*> ModsMap_t;
 
 namespace mobutils
 {
