@@ -14,9 +14,8 @@ end;
 function onSpellCast(caster,target,spell)
 	local duration = 5;
 
-	local taff = AffinityBonus(caster,spell:getElement()) + 300;
 	local dINT = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
-	local resist = applyResistance(caster,spell,target,dINT,37,bonus);
+	local resist = applyResistance(caster,spell,target,dINT,37);
 	if(resist <= (1/16)) then
 		-- resisted!
 		spell:setMsg(85);
