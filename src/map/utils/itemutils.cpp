@@ -274,8 +274,8 @@ namespace itemutils
                 "b.flags,"          //  3
                 "b.aH,"             //  4
                 "b.BaseSell,"       //  5
+			    "b.subid,"          //  6
 
-			    "u.subid,"          //  6
                 "u.validTargets,"   //  7
                 "u.activation,"     //  8
                 "u.animation,"      //  9
@@ -327,6 +327,7 @@ namespace itemutils
 				    PItem->setFlag(Sql_GetUIntData(SqlHandle,3));
 				    PItem->setAHCat(Sql_GetUIntData(SqlHandle,4));
 				    PItem->setBasePrice(Sql_GetUIntData(SqlHandle,5));
+					PItem->setSubID(Sql_GetUIntData(SqlHandle,6));
 				
 				    if (PItem->isType(ITEM_GENERAL))
 				    {
@@ -334,7 +335,6 @@ namespace itemutils
 				    }
 				    if (PItem->isType(ITEM_USABLE))
 				    {
-					    ((CItemUsable*)PItem)->setSubID(Sql_GetUIntData(SqlHandle,6));
 					    ((CItemUsable*)PItem)->setValidTarget(Sql_GetUIntData(SqlHandle,7));
 					    ((CItemUsable*)PItem)->setActivationTime(Sql_GetUIntData(SqlHandle,8)*1000);
 					    ((CItemUsable*)PItem)->setAnimationID(Sql_GetUIntData(SqlHandle,9));
