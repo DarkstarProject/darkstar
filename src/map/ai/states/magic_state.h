@@ -40,6 +40,10 @@ class CMagicState : public CState
   public:
     CMagicState(CBattleEntity* PEntity, CTargetFind* PTargetFind, float maxStartDistance = 26.8f, float maxFinishDistance = 28.5f);
 
+    // can cast any magic
+    // TODO:
+    bool CanCast();
+
     bool CanCastSpell(CSpell* PSpell, CBattleEntity* PTarget, uint8 flags = MAGICFLAGS_NONE);
 
     STATESTATUS CastSpell(CSpell* PSpell, CBattleEntity* PTarget, uint8 flags = MAGICFLAGS_NONE);
@@ -62,7 +66,7 @@ class CMagicState : public CState
     int16 CalculateMPCost(CSpell* PSpell);
     uint32 CalculateRecastTime(CSpell* PSpell);
 
-    bool m_disableCasting;
+    bool m_enableCasting;
     float m_maxStartDistance;
     float m_maxFinishDistance;
 

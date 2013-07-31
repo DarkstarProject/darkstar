@@ -952,18 +952,21 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
     StatusEffect->SetType(effects::EffectsParams[effect].Type);
 
 	//todo: find a better place to put this?
-	if(effect == EFFECT_SLEEP || effect == EFFECT_SLEEP_II ||
-		effect == EFFECT_STUN || effect == EFFECT_PETRIFICATION || effect == EFFECT_LULLABY || effect == EFFECT_CHARM || effect == EFFECT_CHARM_II)
+    if(!m_POwner->isDead())
     {
-
-        // change icon of sleep II and lullaby. Apparently they don't stop player movement.
-        if(effect == EFFECT_SLEEP_II || effect == EFFECT_LULLABY)
+    	if(effect == EFFECT_SLEEP || effect == EFFECT_SLEEP_II ||
+    		effect == EFFECT_STUN || effect == EFFECT_PETRIFICATION || effect == EFFECT_LULLABY || effect == EFFECT_CHARM || effect == EFFECT_CHARM_II)
         {
-            StatusEffect->SetIcon(EFFECT_SLEEP);
-        }
 
-		m_POwner->PBattleAI->SetCurrentAction(ACTION_SLEEP);
-	}
+            // change icon of sleep II and lullaby. Apparently they don't stop player movement.
+            if(effect == EFFECT_SLEEP_II || effect == EFFECT_LULLABY)
+            {
+                StatusEffect->SetIcon(EFFECT_SLEEP);
+            }
+
+    		m_POwner->PBattleAI->SetCurrentAction(ACTION_SLEEP);
+    	}
+    }
 }
 
 /************************************************************************

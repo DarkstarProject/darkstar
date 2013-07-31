@@ -655,7 +655,7 @@ function calculateMagicBurstAndBonus(caster, spell, target)
 	if (spell:getSpellGroup() == 3 and not caster:hasStatusEffect(EFFECT_BURST_AFFINITY)) then
 		return burst, burstBonus;
 	end
-	
+
     local skillchainTier, skillchainCount = FormMagicBurst(spell:getElement(), target);
 
     if(skillchainTier > 0) then

@@ -144,8 +144,8 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	-- printf("acc: %f, eva: %f, hitrate: %f", acc, eva, hitrate);
 	if (hitrate > 95) then
 		hitrate = 95;
-	elseif (hitrate < 30) then
-		hitrate = 30;
+	elseif (hitrate < 40) then
+		hitrate = 40;
 	end
 
 
@@ -184,7 +184,7 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 		firstHitChance = hitrate * 1.2;
 	end
 
-	firstHitChance = utils.clamp(firstHitChance, 50, 95);
+	firstHitChance = utils.clamp(firstHitChance, 60, 95);
 
 	if ((chance*100) <= firstHitChance) then
 		pdif = math.random((minRatio*1000),(maxRatio*1000)) --generate random PDIF

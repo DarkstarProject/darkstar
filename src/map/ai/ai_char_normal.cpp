@@ -2552,6 +2552,13 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
 void CAICharNormal::ActionSleep()
 {
+    if(m_PChar->isDead())
+    {
+        m_ActionType = ACTION_FALL;
+        ActionFall();
+        return;
+    }
+
     if (!m_PChar->StatusEffectContainer->HasPreventActionEffect())
     {
     	TransitionBack();

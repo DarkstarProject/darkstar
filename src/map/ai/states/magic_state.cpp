@@ -36,7 +36,7 @@ CMagicState::CMagicState(CBattleEntity* PEntity, CTargetFind* PTargetFind, float
 : CState(PEntity, PTargetFind)
 {
 	m_PSpell = NULL;
-	m_disableCasting = false;
+	m_enableCasting = true;
 	m_maxStartDistance = maxStartDistance;
 	m_maxFinishDistance = maxFinishDistance;
 }
@@ -399,7 +399,7 @@ bool CMagicState::ValidCast(CSpell* PSpell, CBattleEntity* PTarget)
 {
     if(!CheckValidTarget(PTarget)) return false;
 
-	if(m_disableCasting ||
+	if(!m_enableCasting ||
 		m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE) ||
 		m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MUTE))
 	{

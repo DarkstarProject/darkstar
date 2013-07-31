@@ -157,7 +157,6 @@ protected:
     uint32			m_StartBattle;			// Battle start time
 	uint16			m_CorsairDoubleUp;		// Last used corsair roll eligible for DU
 	bool			m_AutoAttackEnabled;    // Flag to enable/disable auto attack
-	bool			m_MagicCastingEnabled;	// Flag to enable/disable casting magic
 	bool			m_MobAbilityEnabled;		// Flag to enable/disable mob skills
 
 	CSpell*			m_PSpell;				// читаемое заклинание

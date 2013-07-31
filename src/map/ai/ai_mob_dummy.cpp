@@ -1633,7 +1633,7 @@ void CAIMobDummy::TryLink()
 bool CAIMobDummy::CanCastSpells()
 {
 
-	if ( !m_MagicCastingEnabled || !m_PMob->SpellContainer->HasSpells()) return false;
+	if (!m_PMob->SpellContainer->HasSpells()) return false;
 
 	// check for spell blockers e.g. silence
 	if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE) ||

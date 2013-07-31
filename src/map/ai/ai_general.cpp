@@ -92,7 +92,6 @@ void CAIGeneral::Reset()
 	m_PJobAbility = NULL;
 	m_PMobSkill = NULL;
 	m_AutoAttackEnabled = true;
-	m_MagicCastingEnabled = true;
 	m_MobAbilityEnabled = true;
 }
 
@@ -428,7 +427,10 @@ void CAIGeneral::SetAutoAttackEnabled(bool enabled)
 }
 void CAIGeneral::SetMagicCastingEnabled(bool enabled)
 {
-	m_MagicCastingEnabled = enabled;
+    if(m_PMagicState != NULL)
+    {
+        m_PMagicState->m_enableCasting = enabled;
+    }
 }
 void CAIGeneral::SetMobAbilityEnabled(bool enabled)
 {
