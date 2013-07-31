@@ -19,6 +19,7 @@ function utils.stoneskin(target, dmg)
             return 0;
         else --absorbs some damage then wear
             target:delStatusEffect(EFFECT_STONESKIN);
+            target:setMod(MOD_STONESKIN, 0);
             return dmg - skin;
         end
     end

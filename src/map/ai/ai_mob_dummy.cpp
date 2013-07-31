@@ -1453,13 +1453,10 @@ void CAIMobDummy::ActionAttack()
 								} // Block skill up
 
 
-								// spike effect
-								// spikes take priority
-								if(!battleutils::HandleSpikesDamage(m_PMob, m_PBattleTarget, &Action, damage)){
-		                    		// no spikes, handle enspell
-		                    		// TODO: enspell method needs to be refactored to accept just battleentity
-		                    		// battleutils::HandleEnspell(m_PMob, m_PBattleTarget, &Action, i, WeaponDelay, damage);
-								}
+								// additional effects
+			                    battleutils::HandleEnspell(m_PMob, m_PBattleTarget, &Action, i, WeaponDelay, damage);
+
+								battleutils::HandleSpikesDamage(m_PMob, m_PBattleTarget, &Action, damage);
 							}
 							else
 							{

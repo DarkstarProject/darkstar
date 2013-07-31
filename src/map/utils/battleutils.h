@@ -136,7 +136,7 @@ namespace battleutils
     bool                HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action, uint16 damage);
     bool                HandleSpikesEquip(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint8 damage, SUBEFFECT spikesType, uint8 chance);
     void                HandleSpikesStatusEffect(CBattleEntity* PAttacker, apAction_t* Action);
-	void				HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action, uint8 hitNumber, uint16 delay, uint16 damage);
+	void				HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action, uint8 hitNumber, uint16 delay, uint16 damage);
 	uint8				GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	uint16				CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 Tier, uint8 element);
 
@@ -175,6 +175,10 @@ namespace battleutils
     int32               MagicDmgTaken(CBattleEntity* PDefender, int32 damage);
     int32               PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage);
     int32               RangedDmgTaken(CBattleEntity* PDefender, int32 damage);
+
+    // returns damage taken
+    int32               HandleStoneskin(CBattleEntity* PDefender, int32 damage);
+
 	void				assistTarget(CCharEntity* PChar, uint16 TargID);
     CMobSkill*          GetTwoHourMobSkill(JOBTYPE job);
 

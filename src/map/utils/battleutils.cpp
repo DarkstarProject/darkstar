@@ -383,28 +383,41 @@ std::vector<CMobSkill*> GetMobSkillsByFamily(uint16 FamilyID)
 }
 
 uint16	CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 Tier, uint8 element){
-	//Tier 1 enspells have their damaged pre-calculated AT CAST TIME and is stored in MOD_ENSPELL_DMG
-	if(Tier==1){return PAttacker->getMod(MOD_ENSPELL_DMG);}
+    uint16 damage = 0;
 
-	//Tier 2 enspells calculate the damage on each hit and increment the potency in MOD_ENSPELL_DMG per hit
-	uint16 skill = PAttacker->GetSkill(SKILL_ENH) + PAttacker->getMod(MOD_ENHANCE);
-	uint16 cap = 3 + ((6*skill)/100);
-	if(skill>200){
-		cap = 5 + ((5*skill)/100);
-	}
-	cap *= 2;
-	if(PAttacker->getMod(MOD_ENSPELL_DMG) > cap){
-		PAttacker->setModifier(MOD_ENSPELL_DMG,cap);
-		return cap;
-	}
-	if(PAttacker->getMod(MOD_ENSPELL_DMG) == cap) { return cap; }
-	if(PAttacker->getMod(MOD_ENSPELL_DMG) < cap){
-		PAttacker->addModifier(MOD_ENSPELL_DMG,1);
-		return PAttacker->getMod(MOD_ENSPELL_DMG)-1;
-	}
-	//Unhandled Scenario
-	DSP_DEBUG_BREAK_IF(true);
-	return 0;
+	//Tier 1 enspells have their damaged pre-calculated AT CAST TIME and is stored in MOD_ENSPELL_DMG
+	if(Tier==1)
+    {
+        damage = PAttacker->getMod(MOD_ENSPELL_DMG);
+    }
+    else
+    {
+
+    	//Tier 2 enspells calculate the damage on each hit and increment the potency in MOD_ENSPELL_DMG per hit
+    	uint16 skill = PAttacker->GetSkill(SKILL_ENH) + PAttacker->getMod(MOD_ENHANCE);
+    	uint16 cap = 3 + ((6*skill)/100);
+    	if(skill>200){
+    		cap = 5 + ((5*skill)/100);
+    	}
+    	cap *= 2;
+
+    	if(PAttacker->getMod(MOD_ENSPELL_DMG) > cap)
+        {
+    		PAttacker->setModifier(MOD_ENSPELL_DMG,cap);
+    		damage = cap;
+    	}
+        else if(PAttacker->getMod(MOD_ENSPELL_DMG) == cap)
+        {
+         damage =  cap;
+        }
+    	else if(PAttacker->getMod(MOD_ENSPELL_DMG) < cap)
+        {
+    		PAttacker->addModifier(MOD_ENSPELL_DMG,1);
+    		damage = PAttacker->getMod(MOD_ENSPELL_DMG)-1;
+    	}
+    }
+
+    return HandleStoneskin(PDefender, damage);
 }
 
 
@@ -537,7 +550,7 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
     Action->spikesMessage = 44;
     if(spikes)
     {
-        Action->spikesParam = CalculateSpikeDamage(PAttacker, PDefender, spikes, damage);
+        Action->spikesParam = HandleStoneskin(PAttacker, CalculateSpikeDamage(PAttacker, PDefender, spikes, damage));
 
         // handle level diff
         int lvlDiff = dsp_cap((PDefender->GetMLevel() - PAttacker->GetMLevel()), -5, 5)*2;
@@ -873,7 +886,7 @@ bool HandleSpikesEquip(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAct
             Action->spikesParam = EFFECT_CURSE;
         } else {
             uint8 ratio = (float)damage/4;
-            Action->spikesParam = damage - rand()%ratio + rand()%ratio;
+            Action->spikesParam = HandleStoneskin(PAttacker, damage - rand()%ratio + rand()%ratio);
             PAttacker->addHP(-Action->spikesParam);
         }
 
@@ -898,7 +911,7 @@ void HandleSpikesStatusEffect(CBattleEntity* PAttacker, apAction_t* Action)
         break;
 		case SUBEFFECT_ICE_SPIKES:
 		{
-			if(rand()%100 <= 30+lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_PARALYSIS) == false){
+			if(rand()%100 <= 20+lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_PARALYSIS) == false){
 				PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_PARALYSIS, EFFECT_PARALYSIS, 20, 0, 30));
 			}
 			break;
@@ -921,10 +934,16 @@ void HandleSpikesStatusEffect(CBattleEntity* PAttacker, apAction_t* Action)
 *                                                                       *
 ************************************************************************/
 
-void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint8 hitNumber, uint16 delay, uint16 finaldamage)
+void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint8 hitNumber, uint16 delay, uint16 finaldamage)
 {
-	// Enspell overwrites weapon effects
+    CCharEntity* PChar = NULL;
 
+    if(PAttacker->objtype == TYPE_PC)
+    {
+        PChar = (CCharEntity*)PAttacker;
+    }
+
+	// Enspell overwrites weapon effects
 	 if (PAttacker->getMod(MOD_ENSPELL) > 0)
 	 {
 		switch(PAttacker->getMod(MOD_ENSPELL))
@@ -932,8 +951,9 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 			case ENSPELL_I_FIRE:
 
 		        Action->additionalEffect = SUBEFFECT_FIRE_DAMAGE;
+                Action->addEffectMessage = 163;
 		        Action->addEffectMessage = 163;
-				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,2,FIRE);
+				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,1,FIRE);
 
 				PDefender->addHP(-Action->addEffectParam);
 				return;
@@ -941,7 +961,7 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 
 		        Action->additionalEffect = SUBEFFECT_EARTH_DAMAGE;
 		        Action->addEffectMessage = 163;
-				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,2,EARTH);
+				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,1,EARTH);
 
 				PDefender->addHP(-Action->addEffectParam);
 				return;
@@ -949,7 +969,7 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 
 		        Action->additionalEffect = SUBEFFECT_WATER_DAMAGE;
 		        Action->addEffectMessage = 163;
-				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,2,WATER);
+				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,1,WATER);
 
 				PDefender->addHP(-Action->addEffectParam);
 				return;
@@ -957,7 +977,7 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 
 		        Action->additionalEffect = SUBEFFECT_WIND_DAMAGE;
 		        Action->addEffectMessage = 163;
-				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,2,WIND);
+				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,1,WIND);
 
 				PDefender->addHP(-Action->addEffectParam);
 				return;
@@ -965,7 +985,7 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 
 		        Action->additionalEffect = SUBEFFECT_ICE_DAMAGE;
 		        Action->addEffectMessage = 163;
-				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,2,ICE);
+				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,1,ICE);
 
 				PDefender->addHP(-Action->addEffectParam);
 				return;
@@ -973,7 +993,7 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 
 		        Action->additionalEffect = SUBEFFECT_LIGHTNING_DAMAGE;
 		        Action->addEffectMessage = 163;
-				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,2,THUNDER);
+				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,1,THUNDER);
 
 				PDefender->addHP(-Action->addEffectParam);
 				return;
@@ -996,12 +1016,12 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 			case ENSPELL_BLOOD_WEAPON:
 
                 Action->additionalEffect = SUBEFFECT_HP_DRAIN;
-		        Action->addEffectMessage = 163;
+		        Action->addEffectMessage = 161;
 
-				Action->addEffectParam= PAttacker->addHP(Action->param);
+				Action->addEffectParam = PAttacker->addHP(Action->param);
 
-				if(PAttacker->objtype == TYPE_PC){
-					charutils::UpdateHealth((CCharEntity*)PAttacker);
+				if(PChar != NULL){
+					charutils::UpdateHealth(PChar);
 				}
 				return;
 
@@ -1125,8 +1145,8 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 		Action->addEffectParam = Samba;
 
 		PAttacker->addHP(Samba);	// does not do any additional drain to targets HP, only a portion of it
-        if(PAttacker->objtype == TYPE_PC){
-    		charutils::UpdateHealth(PAttacker);
+        if(PChar != NULL){
+    		charutils::UpdateHealth(PChar);
         }
 		return;
  	}
@@ -1142,25 +1162,32 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 		Action->addEffectParam = Samba;
 
 		PAttacker->addMP(Samba);
-        if(PAttacker->objtype == TYPE_PC){
-    		charutils::UpdateHealth(PAttacker);
+        if(PChar != NULL){
+    		charutils::UpdateHealth(PChar);
         }
 		return;
 	}
+
 	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE_DAZE))
 	{
-	if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE)){return;}
-	PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HASTE, EFFECT_HASTE, 50, 0, 10));
-	return;
+    	if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE)){return;}
+    	PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HASTE, EFFECT_HASTE, 50, 0, 10));
+    	return;
 	}
+
+    // ignore i'm a mob!
+    if(PChar == NULL)
+    {
+        return;
+    }
 
     // elemental damage equation = (weapDmg / 2) +- (weapDmg / 4)
 
 	// no enspells active, check weapon additional effects
-	CItemWeapon* PWeapon = (CItemWeapon*)PAttacker->getStorage(LOC_INVENTORY)->GetItem(PAttacker->equip[SLOT_MAIN]);
+	CItemWeapon* PWeapon = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]);
 
 	if (Action->animation == 1)
-		PWeapon = (CItemWeapon*)PAttacker->getStorage(LOC_INVENTORY)->GetItem(PAttacker->equip[SLOT_SUB]);
+		PWeapon = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
 	if(PWeapon != NULL)
 	{
         EFFECT dispelled;
@@ -1192,10 +1219,7 @@ void HandleEnspell(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t*
 		        Action->addEffectMessage = 161;
 				Action->addEffectParam = (float)(Action->param * 0.3f);
 
-
-                if(PAttacker->objtype == TYPE_PC){
-    				charutils::UpdateHealth(PAttacker);
-                }
+    				charutils::UpdateHealth(PChar);
 				return;
 
 
@@ -1316,6 +1340,8 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			damage += 10; //10~60
 			damage += rand()%8; //10~67 randomised
             damage += (float)damage * ((float)PDefender->getMod(MOD_WINDRES)/-100);
+
+            damage = HandleStoneskin(PDefender, damage);
 			//set damage TODO: handle resi st/staff/day
 			Action->addEffectParam = damage;
 			PDefender->addHP(-damage);
@@ -1338,6 +1364,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			//set damage TODO: handle resist/staff/day
 
             damage += (float)damage * ((float)PDefender->getMod(MOD_EARTHRES)/-100);
+            damage = HandleStoneskin(PDefender, damage);
 			Action->addEffectParam  = damage;
 			PDefender->addHP(-damage);
 		}
@@ -1358,6 +1385,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			damage += rand()%8; //10~67 randomised
 			//set damage TODO: handle resist/staff/day
             damage += (float)damage * ((float)PDefender->getMod(MOD_WATERRES)/-100);
+            damage = HandleStoneskin(PDefender, damage);
 			Action->addEffectParam  = damage;
 			PDefender->addHP(-damage);
 		}
@@ -1419,6 +1447,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			damage += rand()%8; //10~67 randomised
 			//set damage TODO: handle resist/staff/day
             damage += (float)damage * ((float)PDefender->getMod(MOD_LIGHTRES)/-100);
+            damage = HandleStoneskin(PDefender, damage);
 			Action->addEffectParam  = damage;
 			PDefender->addHP(-damage);
 		}
@@ -1441,6 +1470,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			damage += rand()%20; //At 75 -> 37~56 low or 87~106 high
 
             damage += (float)damage * ((float)PDefender->getMod(MOD_DARKRES)/-100);
+            damage = HandleStoneskin(PDefender, damage);
 
 			Action->addEffectParam  = damage;
 			PDefender->addHP(-damage);
@@ -1534,6 +1564,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			damage += rand()%8; //10~67 randomised
 			//set damage TODO: handle resist/staff/day
             damage += (float)damage * ((float)PDefender->getMod(MOD_THUNDERRES)/-100);
+            damage = HandleStoneskin(PDefender, damage);
 			Action->addEffectParam  = damage;
 			PDefender->addHP(-damage);
 		}
@@ -1554,6 +1585,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			damage += rand()%8; //10~67 randomised
 			//set damage TODO: handle resist/staff/day
             damage += (float)damage * ((float)PDefender->getMod(MOD_ICERES)/-100);
+            damage = HandleStoneskin(PDefender, damage);
 			Action->addEffectParam  = damage;
 			PDefender->addHP(-damage);
 		}
@@ -1580,6 +1612,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
             if(PAmmo->getID() == 17327){
                 damage *= 2;
             }
+            damage = HandleStoneskin(PDefender, damage);
 
 			Action->addEffectParam  = damage;
 			PDefender->addHP(-damage);
@@ -2010,18 +2043,7 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 	}
 	damage = dsp_max(damage - PDefender->getMod(MOD_PHALANX),0);
 
-    if (damage > 0 && PDefender->getMod(MOD_STONESKIN) > 0)
-    {
-        int16 absorb = dsp_cap(PDefender->getMod(MOD_STONESKIN), 0, damage);
-
-        PDefender->delModifier(MOD_STONESKIN, absorb);
-
-        if(PDefender->getMod(MOD_STONESKIN) == 0)
-        {
-			PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_STONESKIN);
-		}
-        damage -= absorb;
-    }
+    damage = HandleStoneskin(PDefender, damage);
 
     PDefender->addHP(-damage);
 
@@ -2664,10 +2686,10 @@ bool IsAbsorbByShadow(CBattleEntity* PDefender)
         {
 			switch(modShadow){
 			case MOD_UTSUSEMI:
-				PDefender->StatusEffectContainer->DelStatusEffectSilent(EFFECT_COPY_IMAGE);
+				PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
 				break;
 			case MOD_BLINK:
-				PDefender->StatusEffectContainer->DelStatusEffectSilent(EFFECT_BLINK);
+				PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_BLINK);
 				break;
 			}
         }
@@ -4156,6 +4178,24 @@ int32 RangedDmgTaken(CBattleEntity* PDefender, int32 damage)
     return damage * resist;
 }
 
+int32 HandleStoneskin(CBattleEntity* PDefender, int32 damage)
+{
+    int16 skin = PDefender->getMod(MOD_STONESKIN);
+    if (damage > 0 && skin > 0)
+    {
+        if(skin > damage)
+        {
+            PDefender->delModifier(MOD_STONESKIN, damage);
+            return 0;
+        }
+
+        PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_STONESKIN);
+        PDefender->setModifier(MOD_STONESKIN, 0);
+        return damage - skin;
+    }
+
+    return damage;
+}
 
 /************************************************************************
 *                                                                       *
