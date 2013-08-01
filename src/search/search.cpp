@@ -30,8 +30,22 @@
 #include "../common/socket.h"
 #include "../common/utils.h"
 
-#include <winsock2.h>
-#include <ws2tcpip.h>
+#ifdef WIN32
+	#include <winsock2.h>
+	#include <ws2tcpip.h>
+#else
+	#include <unistd.h>
+	#include <sys/types.h>
+	#include <sys/socket.h>
+	#include <netdb.h>
+	#include <netinet/in.h>
+	#include <errno.h>
+        #include <pthread.h>
+	typedef u_int SOCKET;
+	#define INVALID_SOCKET  (SOCKET)(~0)
+	#define SOCKET_ERROR            (-1)
+#endif
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -62,7 +76,11 @@ struct SearchCommInfo
 
 const int8* SEARCH_CONF_FILENAME = "./conf/search_server.conf";
 
+#ifdef WIN32
 ppuint32 __stdcall TCPComm(void* lpParam);
+#else
+void * TCPComm(void* lpParam);
+#endif
 
 extern void HandleSearchRequest(CTCPRequestPacket* PTCPRequest);
 extern void HandleSearchComment(CTCPRequestPacket* PTCPRequest);
@@ -119,7 +137,9 @@ void PrintPacket(char* data, int size)
 
 int32 main (int32 argc, int8 **argv) 
 {
+#ifdef WIN32
     WSADATA wsaData;
+#endif
 
     int iResult;
 
@@ -131,7 +151,19 @@ int32 main (int32 argc, int8 **argv)
 
     search_config_default();
     search_config_read(SEARCH_CONF_FILENAME);
+#ifndef WIN32
+    pthread_t thread1;
+    pthread_attr_t threadAttr;
+    int ptherr;
 
+    ptherr = 0;
+    ptherr = pthread_attr_init(&threadAttr);
+    if (ptherr != 0)
+        errno = ptherr;
+        perror("pthread_attr_init");
+#endif
+
+#ifdef WIN32
     // Initialize Winsock
     iResult = WSAStartup(MAKEWORD(2,2), &wsaData);
     if (iResult != 0) 
@@ -141,6 +173,10 @@ int32 main (int32 argc, int8 **argv)
     }
 
     ZeroMemory(&hints, sizeof(hints));
+#else
+    memset(&hints, 0, sizeof(hints));
+#endif
+
     hints.ai_family = AF_INET;
     hints.ai_socktype = SOCK_STREAM;
     hints.ai_protocol = IPPROTO_TCP;
@@ -151,7 +187,9 @@ int32 main (int32 argc, int8 **argv)
     if (iResult != 0)
 	{
         ShowError("getaddrinfo failed with error: %d\n", iResult);
+#ifdef WIN32
         WSACleanup();
+#endif
         return 1;
     }
 
@@ -159,9 +197,14 @@ int32 main (int32 argc, int8 **argv)
     ListenSocket = socket(result->ai_family, result->ai_socktype, result->ai_protocol);
     if (ListenSocket == INVALID_SOCKET) 
 	{
+#ifdef WIN32
         ShowError("socket failed with error: %ld\n", WSAGetLastError());
         freeaddrinfo(result);
         WSACleanup();
+#else
+        ShowError("socket failed with error: %ld\n", errno);
+        freeaddrinfo(result);
+#endif
         return 1;
     }
 
@@ -169,10 +212,16 @@ int32 main (int32 argc, int8 **argv)
     iResult = bind( ListenSocket, result->ai_addr, (int)result->ai_addrlen);
     if (iResult == SOCKET_ERROR) 
 	{
+#ifdef WIN32
         ShowError("bind failed with error: %d\n", WSAGetLastError());
         freeaddrinfo(result);
         closesocket(ListenSocket);
         WSACleanup();
+#else
+        ShowError("bind failed with error: %d\n", errno);
+        freeaddrinfo(result);
+        close(ListenSocket);
+#endif
         return 1;
     }
 
@@ -181,9 +230,14 @@ int32 main (int32 argc, int8 **argv)
 	iResult = listen(ListenSocket, SOMAXCONN);
 	if (iResult == SOCKET_ERROR) 
 	{
+#ifdef WIN32
 		ShowError("listen failed with error: %d\n", WSAGetLastError());
 		closesocket(ListenSocket);
 		WSACleanup();
+#else
+		ShowError("listen failed with error: %d\n", errno);
+		close(ListenSocket);
+#endif
 		return 1;
 	}
 
@@ -197,7 +251,11 @@ int32 main (int32 argc, int8 **argv)
 		ClientSocket = accept(ListenSocket, NULL, NULL);
 		if (ClientSocket == INVALID_SOCKET) 
 		{
+#ifdef WIN32
 			ShowError("accept failed with error: %d\n", WSAGetLastError());
+#else
+			ShowError("accept failed with error: %d\n", errno);
+#endif
 			continue;
 		}
 		SearchCommInfo CommInfo;
@@ -206,23 +264,50 @@ int32 main (int32 argc, int8 **argv)
 		CommInfo.ip = 0;
 		CommInfo.port = 0;
 
+#ifdef WIN32
 		CreateThread(0,0,TCPComm,&CommInfo,0,0);
+#else
+		ptherr = 0;
+		ptherr = pthread_create(&thread1,&threadAttr,&TCPComm,&CommInfo);
+		if (ptherr != 0)
+			errno = ptherr;
+			perror("pthread_attr_init");
+#endif
+
 	}
     // TODO: сейчас мы никогда сюда не попадем
 
     // shutdown the connection since we're done
+#ifdef WIN32
     iResult = shutdown(ClientSocket, SD_SEND);
+#else
+    iResult = shutdown(ClientSocket, SHUT_WR);
+#endif
     if (iResult == SOCKET_ERROR) 
 	{
+#ifdef WIN32
         ShowError("shutdown failed with error: %d\n", WSAGetLastError());
         closesocket(ClientSocket);
         WSACleanup();
+#else
+        ShowError("shutdown failed with error: %d\n", errno);
+        close(ClientSocket);
+#endif
         return 1;
     }
 
     // cleanup
+#ifdef WIN32
     closesocket(ClientSocket);
     WSACleanup();
+#else
+    close(ClientSocket);
+    ptherr = 0;
+    ptherr = pthread_attr_destroy(&threadAttr);
+    if (ptherr != 0)
+        errno = ptherr;
+        perror("pthread_attr_init");
+#endif
     return 0;
 }
 
@@ -307,8 +392,11 @@ void search_config_read(const int8* file)
 *																		*
 *																		*
 ************************************************************************/
-
+#ifdef WIN32
 ppuint32 __stdcall TCPComm(void* lpParam)
+#else 
+void * TCPComm(void* lpParam)
+#endif
 {
 	SearchCommInfo CommInfo = *((SearchCommInfo*)lpParam);
 
@@ -359,7 +447,11 @@ ppuint32 __stdcall TCPComm(void* lpParam)
 		break;
 	}
 	delete PTCPRequest;
+#ifdef WIN32
 	return 1;
+#else
+	return NULL;
+#endif
 }
 
 /************************************************************************
@@ -417,6 +509,8 @@ void HandleGroupListRequest(CTCPRequestPacket* PTCPRequest)
 
 /************************************************************************
 *                                                                       *
+
+
 *                                                                       *
 *                                                                       *
 ************************************************************************/
@@ -472,6 +566,8 @@ void HandleSearchRequest(CTCPRequestPacket* PTCPRequest)
 
 /************************************************************************
 *                                                                       *
+
+
 *                                                                       *
 *                                                                       *
 ************************************************************************/

@@ -28,8 +28,22 @@
 #include "../common/socket.h"
 #include "../common/utils.h"
 
-#include <winsock2.h>
-#include <ws2tcpip.h>
+#ifdef WIN32
+	#include <winsock2.h>
+	#include <ws2tcpip.h>
+#else
+	#include <unistd.h>
+	#include <sys/types.h>
+	#include <sys/socket.h>
+	#include <netdb.h>
+	#include <netinet/in.h>
+	#include <errno.h>
+        #include <pthread.h>
+	typedef u_int SOCKET;
+	#define INVALID_SOCKET  (SOCKET)(~0)
+	#define SOCKET_ERROR            (-1)
+#endif
+
 #include <vector>
 #include <string.h>
 
@@ -65,8 +79,13 @@ CTCPRequestPacket::~CTCPRequestPacket()
 {
     delete[] m_data;
 
+#ifdef WIN32
     shutdown(*m_socket,SD_SEND);
     closesocket(*m_socket);
+#else
+    shutdown(*m_socket,SHUT_WR);
+    close(*m_socket);
+#endif
 }
 
 /************************************************************************
@@ -104,7 +123,11 @@ int32 CTCPRequestPacket::ReceiveFromSocket()
 	m_size = recv(*m_socket, recvbuf, DEFAULT_BUFLEN, 0);
 	if (m_size == -1) 
 	{
+#ifdef WIN32
 		ShowError(CL_RED"recv failed with error: %d\n" CL_RESET, WSAGetLastError());
+#else
+		ShowError(CL_RED"recv failed with error: %d\n" CL_RESET, errno);
+#endif
 		return 0;
 	}
     if (m_size == 0) 
@@ -139,7 +162,11 @@ int32 CTCPRequestPacket::SendRawToSocket(uint8* data, uint32 length)
     iResult = send(*m_socket, (const int8*)data, length, 0);
     if (iResult == SOCKET_ERROR) 
     {
+#ifdef WIN32
         ShowError("send failed with error: %d\n", WSAGetLastError());
+#else
+        ShowError("send failed with error: %d\n", errno);
+#endif
         return 0;
     }
 	return 1;
@@ -177,7 +204,11 @@ int32 CTCPRequestPacket::SendToSocket(uint8* data, uint32 length)
     iResult = send(*m_socket, (const int8*)data, length, 0);
     if (iResult == SOCKET_ERROR) 
     {
+#ifdef WIN32
         ShowError("send failed with error: %d\n", WSAGetLastError());
+#else
+        ShowError("send failed with error: %d\n", errno);
+#endif
         return 0;
     }
     return ReceiveFromSocket();

@@ -27,7 +27,15 @@
 #include "../common/cbasetypes.h"
 #include "../common/mmo.h"
 
-#include <winsock2.h>
+#ifdef WIN32
+	#include <winsock2.h>
+#else
+	#include <sys/types.h>
+	#include <sys/socket.h>
+	#include <netinet/in.h>
+	#include <errno.h>
+        typedef u_int SOCKET;
+#endif
 
 enum TCPREQUESTTYPE
 {

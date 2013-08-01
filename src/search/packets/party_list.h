@@ -25,6 +25,7 @@
 #define _CPARTYLISTPACKET_H_
 
 #include "../../common/cbasetypes.h"
+#include <string.h>
 
 class CPartyListPacket
 {

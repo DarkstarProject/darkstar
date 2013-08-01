@@ -28,6 +28,8 @@
 
 #include <list>
 #include <vector>
+#include <stdio.h>
+#include <string.h>
 
 struct Sql_t;
 struct search_req;
