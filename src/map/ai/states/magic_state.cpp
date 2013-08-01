@@ -94,7 +94,7 @@ bool CMagicState::CanCastSpell(CSpell* PSpell, CBattleEntity* PTarget, uint8 fla
         }
         else if(distanceValue > m_maxStartDistance)
         {
-            PushError(MSGBASIC_OUT_OF_RANGE_UNABLE_CAST, m_PSpell->getID());
+            PushError(MSGBASIC_OUT_OF_RANGE_UNABLE_CAST, PSpell->getID());
             return false;
         }
     }

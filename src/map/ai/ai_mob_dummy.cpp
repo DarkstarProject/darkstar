@@ -420,77 +420,78 @@ void CAIMobDummy::ActionDropItems()
 							tries++;
 						}
 				    }
-					//check for gil (beastmen drop gil, some NMs drop gil)
-					if(m_PMob->CanDropGil())
-                    {
-						charutils::DistributeGil(PChar, m_PMob); // TODO: REALISATION MUST BE IN TREASUREPOOL
-					}
-					//check for seal drops
-					/* MobLvl >= 1 = Beastmen Seals ID=1126
-					          >= 50 = Kindred Seals ID=1127
-							  >= 75 = Kindred Crests ID=2955
-							  >= 90 = High Kindred Crests ID=2956
-					*/
-
-					uint8 Pzone = PChar->getZone();
-					bool validZone = ((Pzone > 0 && Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255));
-
-					if(charutils::GetRealExp(PChar->GetMLevel(),m_PMob->GetMLevel())>0 && m_PMob->m_Type == MOBTYPE_NORMAL && validZone){ //exp-yielding monster and drop is successful
-						//TODO: The drop is actually based on a 5 minute timer, and not a probability of dropping!
-
-						if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && m_PMob->m_Element > 0 && rand()%100 < 15) // Need to move to SIGNET_CHANCE constant
-						{
-							PChar->PTreasurePool->AddItem(4095 + m_PMob->m_Element, m_PMob);
-						}
-						if(rand()%100 < 30)
-						{
-
-							//RULES: Only 1 kind may drop per mob
-							if(m_PMob->GetMLevel() < 50){ //b.seal only
-								PChar->PTreasurePool->AddItem(1126, m_PMob);
-							}
-							else if(m_PMob->GetMLevel() < 75){ //b.seal & k.seal only
-								if(rand()%2 == 0){
-									PChar->PTreasurePool->AddItem(1126, m_PMob);
-								}
-								else{
-									PChar->PTreasurePool->AddItem(1127, m_PMob);
-								}
-							}
-							else if(m_PMob->GetMLevel() < 90){ //b.seal & k.seal & k.crest
-								switch(rand()%3){
-								case 0:
-									PChar->PTreasurePool->AddItem(1126, m_PMob);
-									break;
-								case 1:
-									PChar->PTreasurePool->AddItem(1127, m_PMob);
-									break;
-								case 2:
-									PChar->PTreasurePool->AddItem(2955, m_PMob);
-									break;
-								}
-							}
-							else if(m_PMob->GetMLevel() >= 90){ //all 4
-								switch(rand()%4){
-								case 0:
-									PChar->PTreasurePool->AddItem(1126, m_PMob);
-									break;
-								case 1:
-									PChar->PTreasurePool->AddItem(1127, m_PMob);
-									break;
-								case 2:
-									PChar->PTreasurePool->AddItem(2955, m_PMob);
-									break;
-								case 3:
-									PChar->PTreasurePool->AddItem(2956, m_PMob);
-									break;
-								}
-							}
-
-						}
-					}
 
 			    }
+
+				//check for gil (beastmen drop gil, some NMs drop gil)
+				if(m_PMob->CanDropGil())
+                {
+					charutils::DistributeGil(PChar, m_PMob); // TODO: REALISATION MUST BE IN TREASUREPOOL
+				}
+				//check for seal drops
+				/* MobLvl >= 1 = Beastmen Seals ID=1126
+				          >= 50 = Kindred Seals ID=1127
+						  >= 75 = Kindred Crests ID=2955
+						  >= 90 = High Kindred Crests ID=2956
+				*/
+
+				uint8 Pzone = PChar->getZone();
+				bool validZone = ((Pzone > 0 && Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255));
+
+				if(charutils::GetRealExp(PChar->GetMLevel(),m_PMob->GetMLevel())>0 && m_PMob->m_Type == MOBTYPE_NORMAL && validZone){ //exp-yielding monster and drop is successful
+					//TODO: The drop is actually based on a 5 minute timer, and not a probability of dropping!
+
+					if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && m_PMob->m_Element > 0 && rand()%100 < 15) // Need to move to SIGNET_CHANCE constant
+					{
+						PChar->PTreasurePool->AddItem(4095 + m_PMob->m_Element, m_PMob);
+					}
+					if(rand()%100 < 15)
+					{
+
+						//RULES: Only 1 kind may drop per mob
+						if(m_PMob->GetMLevel() < 50){ //b.seal only
+							PChar->PTreasurePool->AddItem(1126, m_PMob);
+						}
+						else if(m_PMob->GetMLevel() < 75){ //b.seal & k.seal only
+							if(rand()%2 == 0){
+								PChar->PTreasurePool->AddItem(1126, m_PMob);
+							}
+							else{
+								PChar->PTreasurePool->AddItem(1127, m_PMob);
+							}
+						}
+						else if(m_PMob->GetMLevel() < 90){ //b.seal & k.seal & k.crest
+							switch(rand()%3){
+							case 0:
+								PChar->PTreasurePool->AddItem(1126, m_PMob);
+								break;
+							case 1:
+								PChar->PTreasurePool->AddItem(1127, m_PMob);
+								break;
+							case 2:
+								PChar->PTreasurePool->AddItem(2955, m_PMob);
+								break;
+							}
+						}
+						else if(m_PMob->GetMLevel() >= 90){ //all 4
+							switch(rand()%4){
+							case 0:
+								PChar->PTreasurePool->AddItem(1126, m_PMob);
+								break;
+							case 1:
+								PChar->PTreasurePool->AddItem(1127, m_PMob);
+								break;
+							case 2:
+								PChar->PTreasurePool->AddItem(2955, m_PMob);
+								break;
+							case 3:
+								PChar->PTreasurePool->AddItem(2956, m_PMob);
+								break;
+							}
+						}
+
+					}
+				}
 			}
 			PChar->setWeaponSkillKill(false);
 
