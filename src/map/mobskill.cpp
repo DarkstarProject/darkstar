@@ -281,6 +281,11 @@ int16 CMobSkill::getParam()
   return m_Param;
 }
 
+bool CMobSkill::isDamageMsg()
+{
+  return m_Message == 110 || m_Message == 185 || m_Message == 197 || m_Message == 264 || m_Message == 187 || m_Message == 225 || m_Message == 226;
+}
+
 void CMobSkill::setParam(int16 value)
 {
   m_Param = value;

@@ -104,7 +104,7 @@ public:
   bool isMobOwner(CBattleEntity* PTarget);
   CBattleEntity* findMaster(CBattleEntity* PTarget);
   bool validEntity(CBattleEntity* PTarget);
-  bool checkIsPlayer();
+  bool checkIsPlayer(CBattleEntity* PTarget);
 
   bool isWithinArea(position_t* pos);
   bool isWithinCone(position_t* pos);

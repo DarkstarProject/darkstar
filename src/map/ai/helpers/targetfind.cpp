@@ -88,7 +88,7 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
   addEntity(PTarget, false); // pet will be added later
 
   m_PTarget = PTarget;
-  isPlayer = checkIsPlayer();
+  isPlayer = checkIsPlayer(m_PBattleEntity);
 
   if(isPlayer){
     // handle this as a player
@@ -373,12 +373,13 @@ bool CTargetFind::validEntity(CBattleEntity* PTarget)
   return false;
 }
 
-bool CTargetFind::checkIsPlayer()
+bool CTargetFind::checkIsPlayer(CBattleEntity* PTarget)
 {
-  if(m_PBattleEntity->objtype == TYPE_PC) return true;
+  if(PTarget == NULL) return false;
+  if(PTarget->objtype == TYPE_PC) return true;
 
   // check if i'm owned by a pc
-  return m_PBattleEntity->PMaster != NULL && m_PBattleEntity->PMaster->objtype == TYPE_PC;
+  return PTarget->PMaster != NULL && PTarget->PMaster->objtype == TYPE_PC;
 }
 
 bool CTargetFind::isWithinArea(position_t* pos)

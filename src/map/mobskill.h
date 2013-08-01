@@ -78,6 +78,8 @@ public:
     float      getRadius();
     int16		getParam();
 
+    bool        isDamageMsg();
+
 	void		setID(uint16 id);
 	void		setAnimationID(uint16 aid);
 	void		setfamilyID(uint16 familyID);

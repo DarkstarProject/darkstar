@@ -71,9 +71,13 @@ function onTrigger(player,npc)
 
     ChocobosWounds = player:getQuestStatus(JEUNO,CHOCOBO_S_WOUNDS);
 
-    if (ChocobosWounds == 0) then
+    if(ChocobosWounds == QUEST_COMPLETED and player:hasKeyItem(CHOCOBO_LICENSE) == false) then
+        -- this is a quick hack to let people get their license if it was lost
+        player:addKeyItem(CHOCOBO_LICENSE);
+        player:messageSpecial(KEYITEM_OBTAINED, CHOCOBO_LICENSE);
+    elseif (ChocobosWounds == QUEST_AVAILABLE) then
         player:startEvent(0x003e);
-    elseif (ChocobosWounds == 1) then
+    elseif (ChocobosWounds == QUEST_ACCEPTED) then
         feed = player:getVar("ChocobosWounds_Event");
 
         if (feed == 1) then

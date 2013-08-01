@@ -475,6 +475,11 @@ void CAIPetDummy::ActionAbilityFinish(){
 
         battleutils::ClaimMob(m_PBattleSubTarget, m_PPet);
 
+        if(PTarget->objtype == TYPE_MOB && !m_PTargetFind->checkIsPlayer(PTarget) && m_PMobSkill->isDamageMsg())
+        {
+            ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PPet, Action.param);
+        }
+
 		m_PPet->m_ActionList.push_back(Action);
 	}
 
