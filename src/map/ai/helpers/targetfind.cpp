@@ -93,20 +93,15 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
   if(isPlayer){
     // handle this as a player
 
-    if(m_PMasterTarget->objtype == TYPE_MOB)
+    if(m_PMasterTarget->objtype == TYPE_PC)
     {
-      m_findType = FIND_PLAYER_MONSTER;
-      // special case to add all mobs in range
-      addAllInMobList(m_PMasterTarget, false);
-
-    } else {
 
       // players will never need to add whole alliance
       m_findType = FIND_PLAYER_PLAYER;
 
       if(m_PMasterTarget->PParty != NULL)
       {
-        if((m_findFlags & FINDFLAGS_ALLIANCE) && m_PMasterTarget->PParty->m_PAlliance != NULL)
+        if(m_PMasterTarget->PParty->m_PAlliance != NULL)
         {
           addAllInAlliance(m_PMasterTarget, withPet);
         }
@@ -119,12 +114,17 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
         // just add myself
         addEntity(m_PMasterTarget, withPet);
       }
+
+    } else {
+      m_findType = FIND_PLAYER_MONSTER;
+      // special case to add all mobs in range
+      addAllInMobList(m_PMasterTarget, false);
     }
 
   } else {
     // handle this as a mob
 
-    if(PTarget->objtype == TYPE_PC){
+    if(m_PMasterTarget->objtype == TYPE_PC){
       m_findType = FIND_MONSTER_PLAYER;
     } else {
       m_findType = FIND_MONSTER_MONSTER;
@@ -266,7 +266,7 @@ CBattleEntity* CTargetFind::findMaster(CBattleEntity* PTarget)
 
 bool CTargetFind::isMobOwner(CBattleEntity* PTarget)
 {
-  if(m_PBattleEntity->objtype != TYPE_PC || PTarget->objtype != TYPE_MOB)
+  if(m_PBattleEntity->objtype != TYPE_PC)
   {
     // always true for mobs, npcs, pets
     return true;

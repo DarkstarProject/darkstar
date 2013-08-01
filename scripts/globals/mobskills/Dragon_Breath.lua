@@ -20,6 +20,11 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 
     local dmgmod = MobBreathMove(mob, target, 0.2, 1.25, ELE_FIRE, 1600);
+
+    local dis = ((mob:checkDistance(target)*2) / 20);
+    -- lower damage when closer to front feet
+    dmgmod = dmgmod * dis;
+
 	local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_FIRE,MOBPARAM_IGNORE_SHADOWS);
 	target:delHP(dmg);
 	return dmg;

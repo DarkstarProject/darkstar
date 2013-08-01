@@ -5,7 +5,7 @@
 --  Type: Physical
 --  2-3 Shadows
 --  Range: Melee
--- Special weaponskill unique to Ark Angel GK. Deals ~100-300 damage. 
+-- Special weaponskill unique to Ark Angel GK. Deals ~100-300 damage.
 ---------------------------------------------
 require("/scripts/globals/settings");
 require("/scripts/globals/status");
@@ -22,7 +22,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
 	local numhits = 1;
 	local accmod = 1;
-	local dmgmod = 1.25;
+	local dmgmod = 2.7;
 	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,MOBPARAM_2_SHADOW);
 

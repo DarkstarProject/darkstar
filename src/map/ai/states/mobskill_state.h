@@ -35,11 +35,12 @@ class CMobSkillState : public CState
     CMobSkillState(CBattleEntity* PEntity, CTargetFind* PTargetFind);
 
     bool CanUseSkill(CMobSkill* PMobSkill, CBattleEntity* PTarget);
-
     bool CanUseTwoHour(CBattleEntity* PTarget);
+    bool CanUseSpecial(CBattleEntity* PTarget);
 
     STATESTATUS UseSkill(CMobSkill* PMobSkill, CBattleEntity* PTarget);
     STATESTATUS UseTwoHour(CBattleEntity* PTarget);
+    STATESTATUS UseSpecial(CBattleEntity* PTarget);
 
     void InterruptSkill();
     void FinishSkill();
