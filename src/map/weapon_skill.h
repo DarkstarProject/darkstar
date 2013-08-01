@@ -61,8 +61,6 @@ public:
 	void        setAnimationId(int8 animation);
 	void		setType(uint8 type);
 
-	bool        hasElement(uint8 elements);
-
     uint8       getPrimarySkillchain();
     uint8       getSecondarySkillchain();
     uint8       getTertiarySkillchain();

@@ -206,8 +206,8 @@ INSERT INTO `mob_family_system` VALUES (138,'Gorger',12,'Empty',1,40,112,90,1,3,
 INSERT INTO `mob_family_system` VALUES (139,'Hecteyes',1,'Amorph',1,40,87,140,6,3,6,3,1,5,2,3,3,3,3,1,1,0.75,0.75,1,1,1,1,1,1,1,0.875,8);
 INSERT INTO `mob_family_system` VALUES (140,'Hippogryph',8,'Bird',1,60,90,140,4,1,4,2,1,5,4,3,3,3,3,1,1.25,1,1,1,1,1,1.25,1,1,1,1,7);
 INSERT INTO `mob_family_system` VALUES (141,'Hippogryph',8,'Bird',1,60,90,140,4,1,4,2,1,5,4,3,3,3,3,1,1.25,1,1,0.5,0.5,0.5,0.625,0.5,0.5,0.5,0.5,7);
-INSERT INTO `mob_family_system` VALUES (142,'Hound',19,'Undead',1,40,102,120,1,3,3,4,4,5,6,3,3,3,3,1.688,1.5,1.5,1.5,1.875,1.313,1.5,1.5,1.5,1.5,1.875,1.313,8);
-INSERT INTO `mob_family_system` VALUES (143,'Hound',19,'Undead',1,40,102,120,1,3,3,4,4,5,6,3,3,3,3,1.125,1,1,1,1.25,0.875,1,1,1,1,1.25,0.875,8);
+INSERT INTO `mob_family_system` VALUES (142,'Hound',19,'Undead',1,40,102,120,1,3,3,4,4,5,6,3,5,3,3,1.688,1.5,1.5,1.5,1.875,1.313,1.5,1.5,1.5,1.5,1.875,1.313,8);
+INSERT INTO `mob_family_system` VALUES (143,'Hound',19,'Undead',1,40,102,120,1,3,3,4,4,5,6,3,5,3,3,1.125,1,1,1,1.25,0.875,1,1,1,1,1.25,0.875,8);
 INSERT INTO `mob_family_system` VALUES (144,'Hpemde',15,'Luminian',1,40,90,120,4,1,4,2,3,6,6,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
 INSERT INTO `mob_family_system` VALUES (145,'Humanoid-Elvaan',13,'Humanoid',0,40,100,90,2,5,3,6,6,2,4,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
 INSERT INTO `mob_family_system` VALUES (146,'Humanoid-Galka',13,'Humanoid',0,40,120,100,3,4,1,5,5,4,6,3,3,3,3,1,1,1,1,1.125,1.125,1.125,1.125,1.125,1.125,1.125,1.125,0);

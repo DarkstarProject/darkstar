@@ -18,7 +18,6 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_DOOM;
 
-
     skill:setMsg(MobGazeMove(mob, target, typeEffect, 10, 3, 30));
 
 	return typeEffect;

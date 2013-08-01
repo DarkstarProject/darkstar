@@ -76,6 +76,19 @@ enum SPIKES
     SPIKE_REPRISAL        = 6
 };
 
+enum ELEMENT
+{
+    ELEMENT_NONE = 0,
+    ELEMENT_FIRE = 1,
+    ELEMENT_EARTH = 2,
+    ELEMENT_WATER = 3,
+    ELEMENT_WIND = 4,
+    ELEMENT_ICE = 5,
+    ELEMENT_THUNDER = 6,
+    ELEMENT_LIGHT = 7,
+    ELEMENT_DARK = 8
+};
+
 namespace battleutils
 {
 	void			LoadSkillTable();

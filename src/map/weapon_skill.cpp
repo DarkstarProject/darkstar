@@ -151,11 +151,6 @@ uint8 CWeaponSkill::getRange()
 	return m_Range;
 }
 
-bool CWeaponSkill::hasElement(uint8 elements)
-{
-	return (m_Element & elements) == elements;
-}
-
 uint8 CWeaponSkill::getPrimarySkillchain()
 {
     return m_PrimarySkillchain;

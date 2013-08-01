@@ -1159,9 +1159,12 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
 
 		Action->additionalEffect = SUBEFFECT_HP_DRAIN;
 		Action->addEffectMessage = 162;
-		Action->addEffectParam = Samba;
 
-		PAttacker->addMP(Samba);
+        int16 mpDrained = PDefender->addMP(-Samba);
+
+        PAttacker->addMP(mpDrained);
+        Action->addEffectParam = mpDrained;
+
         if(PChar != NULL){
     		charutils::UpdateHealth(PChar);
         }
@@ -1218,8 +1221,9 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
 		        Action->additionalEffect = SUBEFFECT_HP_DRAIN;
 		        Action->addEffectMessage = 161;
 				Action->addEffectParam = (float)(Action->param * 0.3f);
+                PAttacker->addHP(Action->addEffectParam);
 
-    				charutils::UpdateHealth(PChar);
+				charutils::UpdateHealth(PChar);
 				return;
 
 

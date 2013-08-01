@@ -144,8 +144,8 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	-- printf("acc: %f, eva: %f, hitrate: %f", acc, eva, hitrate);
 	if (hitrate > 95) then
 		hitrate = 95;
-	elseif (hitrate < 40) then
-		hitrate = 40;
+	elseif (hitrate < 60) then
+		hitrate = 60;
 	end
 
 
