@@ -1238,6 +1238,7 @@ INSERT INTO `mob_skill` VALUES (2374,187,1830,'Pelagic_Tempest', 0, 7.0, 2000, 1
 INSERT INTO `mob_skill` VALUES (2375,5,1831,'Osmosis', 0, 7.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (2376,5,1832,'Vacuole_Discharge', 0, 7.0, 2000, 1500, 4, 0, 0);
 -- pet wyvern
+-- mob wyverns use custom skill list
 INSERT INTO `mob_skill` VALUES (638,193,621,'healing_breath_i', 0, 10.0, 2000, 2000, 2, 0, 0);
 INSERT INTO `mob_skill` VALUES (639,193,622,'healing_breath_ii', 0, 10.0, 2000, 2000, 2, 0, 0);
 INSERT INTO `mob_skill` VALUES (640,193,623,'healing_breath_iii', 0, 10.0, 2000, 2000, 2, 0, 0);
@@ -1250,14 +1251,6 @@ INSERT INTO `mob_skill` VALUES (646,193,629,'gust_breath', 0, 10.0, 2000, 1500, 
 INSERT INTO `mob_skill` VALUES (647,193,630,'sand_breath', 0, 10.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (648,193,631,'lightning_breath', 0, 10.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (649,193,632,'hydro_breath', 0, 10.0, 2000, 1500, 4, 0, 0);
-
--- mob wyvern
-INSERT INTO `mob_skill` VALUES (644,347,627,'Wyvern_Flame_Breath', 0, 10.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (645,347,628,'Wyvern_Frost_Breath', 0, 10.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (646,347,629,'Wyvern_Gust_Breath', 0, 10.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (647,347,630,'Wyvern_Sand_Breath', 0, 10.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (648,347,631,'Wyvern_Lightning_Breath', 0, 10.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (649,347,632,'Wyvern_Hydro_Breath', 0, 10.0, 2000, 1500, 4, 0, 0);
 
 -- --------------------------------------
 -- NM / HNM
@@ -1750,3 +1743,11 @@ INSERT INTO `mob_skill` VALUES (68,703,68,'Photosynthesis', 0, 7.0, 2000, 1500, 
 INSERT INTO `mob_skill` VALUES (66,703,66,'1000_Needles', 1, 10.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (65,703,65,'Needleshot', 0, 7.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (864,703,66,'10000_Needles', 1, 10.0, 2000, 1500, 4, 0, 0);
+
+-- mob wyvern
+INSERT INTO `mob_skill` VALUES (644,704,627,'Wyvern_Flame_Breath', 0, 10.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (645,704,628,'Wyvern_Frost_Breath', 0, 10.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (646,704,629,'Wyvern_Gust_Breath', 0, 10.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (647,704,630,'Wyvern_Sand_Breath', 0, 10.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (648,704,631,'Wyvern_Lightning_Breath', 0, 10.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (649,704,632,'Wyvern_Hydro_Breath', 0, 10.0, 2000, 1500, 4, 0, 0);

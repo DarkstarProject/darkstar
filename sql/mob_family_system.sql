@@ -410,7 +410,7 @@ INSERT INTO `mob_family_system` VALUES (343,'Heartwing',3,'Arcana',0,40,90,90,1,
 INSERT INTO `mob_family_system` VALUES (344,'Cracklaw',2,'Aquan',0,40,108,120,4,3,1,5,3,3,4,3,3,3,3,0.9,0.9,0.9,0.9,0.875,1,0.875,0.875,1,0.75,0.875,0.875,6);
 INSERT INTO `mob_family_system` VALUES (345,'Bloated_Acuex',1,'Amorph',1,40,100,120,1,3,3,4,3,6,1,3,3,3,3,0.5,0.5,0.25,0.25,1.5,1.5,1.5,1.5,1.5,0.75,1.5,1.5,6);
 INSERT INTO `mob_family_system` VALUES (346,'Knotted_Root',1,'Amorph',0,0,70,200,4,3,6,4,3,4,4,3,3,3,3,1,1,1,1,1,1,1.25,0.875,1,1,1.25,0.875,4);
-INSERT INTO `mob_family_system` VALUES (347,'Golem',3,'Asperous_Marolith',1,40,130,130,2,3,3,3,3,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1.125,1,1,1,7);
+INSERT INTO `mob_family_system` VALUES (347,'NotUsed',3,'Asperous_Marolith',1,40,130,130,2,3,3,3,3,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1.125,1,1,1,7);
 INSERT INTO `mob_family_system` VALUES (348,'Matamata',14,'Lizard',3,30,120,90,2,5,1,6,6,4,3,3,3,3,4,1,1,1,1,1,1.25,1,0.875,1.125,0.875,1,1,4);
 INSERT INTO `mob_family_system` VALUES (349,'Geyser',1,'Amorph',0,0,130,180,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1.25,0.875,1,1,1.25,0.875,4);
 INSERT INTO `mob_family_system` VALUES (350,'Iron_Giant',3,'Arcana',1,40,130,130,2,3,3,3,3,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1.125,1,1,1,7);

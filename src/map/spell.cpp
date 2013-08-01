@@ -462,8 +462,7 @@ namespace spell
 		    }
 	    }
 
-		const int8* blueQuery = "SELECT spellid, mob_skill_id, set_points, trait_category, trait_category_weight, \
-                                type, primary_sc, secondary_sc \
+		const int8* blueQuery = "SELECT spellid, mob_skill_id, set_points, trait_category, trait_category_weight, primary_sc, secondary_sc \
 							 FROM blue_spell_list;";
 
 	    ret = Sql_Query(SqlHandle, blueQuery);
@@ -489,9 +488,8 @@ namespace spell
                 ((CBlueSpell*)PSpellList[spellId])->setSetPoints(Sql_GetIntData(SqlHandle,2));
                 ((CBlueSpell*)PSpellList[spellId])->setTraitCategory(Sql_GetIntData(SqlHandle,3));
                 ((CBlueSpell*)PSpellList[spellId])->setTraitWeight(Sql_GetIntData(SqlHandle,4));
-                ((CBlueSpell*)PSpellList[spellId])->setDamageType(Sql_GetIntData(SqlHandle,5));
-                ((CBlueSpell*)PSpellList[spellId])->setPrimarySkillchain(Sql_GetIntData(SqlHandle,6));
-                ((CBlueSpell*)PSpellList[spellId])->setSecondarySkillchain(Sql_GetIntData(SqlHandle,7));
+                ((CBlueSpell*)PSpellList[spellId])->setPrimarySkillchain(Sql_GetIntData(SqlHandle,5));
+                ((CBlueSpell*)PSpellList[spellId])->setSecondarySkillchain(Sql_GetIntData(SqlHandle,6));
 				PMobSkillToBlueSpell->insert(std::make_pair(Sql_GetIntData(SqlHandle,1), spellId));
 			}
 		}

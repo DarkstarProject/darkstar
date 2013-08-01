@@ -30,6 +30,7 @@ CBlueSpell::CBlueSpell(uint16 id) : CSpell(id)
     m_ecosystem      = 0;
     m_traitCategory  = 0;
     m_traitWeight    = 0;
+    m_damageType = 0;
 }
 
 uint16 CBlueSpell::getMonsterSkillId()
