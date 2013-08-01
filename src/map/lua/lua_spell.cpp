@@ -126,18 +126,6 @@ inline int32 CLuaSpell::getSpellGroup(lua_State *L)
 	return 1;
 }
 
-inline int32 CLuaSpell::getDamageType(lua_State *L)
-{
-    DSP_DEBUG_BREAK_IF(m_PLuaSpell == NULL);
-    if (m_PLuaSpell->getSpellGroup() == SPELLGROUP_BLUE)
-    {
-        lua_pushinteger(L,((CBlueSpell*)m_PLuaSpell)->getDamageType());
-        return 1;
-    }
-    lua_pushinteger(L, 0);
-    return 1;
-}
-
 /************************************************************************
 *																		*
 *  Инициализация методов в lua											*
@@ -155,6 +143,5 @@ Lunar<CLuaSpell>::Register_t CLuaSpell::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaSpell,getTotalTargets),
 	LUNAR_DECLARE_METHOD(CLuaSpell,getID),
 	LUNAR_DECLARE_METHOD(CLuaSpell,getSpellGroup),
-    LUNAR_DECLARE_METHOD(CLuaSpell,getDamageType),
 	{NULL,NULL}
 };

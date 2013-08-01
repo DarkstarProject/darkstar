@@ -37,7 +37,6 @@ public:
     uint8       getEcosystem();
     uint8       getTraitCategory();
     uint8       getTraitWeight();
-    uint8       getDamageType();
     uint8       getPrimarySkillchain();
     uint8       getSecondarySkillchain();
 
@@ -46,7 +45,6 @@ public:
     void        setEcosystem(uint8 ecosystem);
     void        setTraitCategory(uint8 category);
     void        setTraitWeight(uint8 weight);
-    void        setDamageType(uint8 type);
     void        setPrimarySkillchain(uint8 sc);
     void        setSecondarySkillchain(uint8 sc);
     void		addModifier(CModifier* modifier);
@@ -60,7 +58,6 @@ private:
     uint8       m_ecosystem;
     uint8       m_traitCategory;
     uint8       m_traitWeight;
-    uint8       m_damageType;
     uint8       m_PrimarySkillchain;
     uint8       m_SecondarySkillchain;
 

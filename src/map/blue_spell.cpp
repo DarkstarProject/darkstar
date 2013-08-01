@@ -30,7 +30,6 @@ CBlueSpell::CBlueSpell(uint16 id) : CSpell(id)
     m_ecosystem      = 0;
     m_traitCategory  = 0;
     m_traitWeight    = 0;
-    m_damageType = 0;
 }
 
 uint16 CBlueSpell::getMonsterSkillId()
@@ -81,16 +80,6 @@ uint8 CBlueSpell::getTraitWeight()
 void CBlueSpell::setTraitWeight(uint8 weight)
 {
 	m_traitWeight = weight;
-}
-
-uint8 CBlueSpell::getDamageType()
-{
-    return m_damageType;
-}
-
-void CBlueSpell::setDamageType(uint8 type)
-{
-    m_damageType = type;
 }
 
 uint8 CBlueSpell::getPrimarySkillchain()
