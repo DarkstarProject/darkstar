@@ -473,7 +473,6 @@ void CMagicState::FinishSpell()
     }
 
     m_PEntity->StatusEffectContainer->DelStatusEffectsByFlag(effectFlags);
-    m_PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
 
     m_PTargetFind->reset();
     m_PEntity->m_ActionList.clear();

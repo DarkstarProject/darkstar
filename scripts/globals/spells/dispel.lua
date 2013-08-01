@@ -1,3 +1,6 @@
+
+require("scripts/globals/magic");
+require("scripts/globals/status");
 -----------------------------------------
 -- Spell: Dispel
 --
@@ -16,10 +19,7 @@ function onSpellCast(caster,target,spell)
     -- Pull base stats.
     local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
 
-    -- apply bonus, flash is hard to fully resist
-    local bonus = AffinityBonus(caster,spell) + 300;
-
-    local resist = applyResistance(caster,spell,target,dINT,ENFEEBLING_MAGIC_SKILL,bonus);
+    local resist = applyResistance(caster,spell,target,dINT,ENFEEBLING_MAGIC_SKILL);
     local effect = EFFECT_NONE;
 
     if(resist > 0.0625) then

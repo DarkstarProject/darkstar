@@ -128,11 +128,11 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 
 	--work out and cap ratio
 	ratio = mob:getStat(MOD_ATT)/target:getStat(MOD_DEF);
-	if (ratio > 1.4) then
-		ratio = 1.4;
+	if (ratio > 1.3) then
+		ratio = 1.3;
 	end
-	if (ratio < 0.4) then
-		ratio = 0.4;
+	if (ratio < 0.7) then
+		ratio = 0.7;
 	end
 
 
@@ -257,8 +257,8 @@ function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
 		mab = 1.3;
 	end
 
-	if (mab < 0.3) then
-		mab = 0.3;
+	if (mab < 0.7) then
+		mab = 0.7;
 	end
 
 	lvluser = mob:getMainLvl();

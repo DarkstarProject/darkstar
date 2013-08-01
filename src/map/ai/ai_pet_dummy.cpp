@@ -728,8 +728,9 @@ void CAIPetDummy::ActionAttack()
 
 	if(currentDistance <= m_PBattleTarget->m_ModelSize)
 	{
+		int32 WeaponDelay = m_PPet->m_Weapons[SLOT_MAIN]->getDelay();
 		//try to attack
-		if((m_Tick - m_LastActionTime) > m_PPet->m_Weapons[SLOT_MAIN]->getDelay()){
+		if((m_Tick - m_LastActionTime) > WeaponDelay){
 			if (battleutils::IsParalised(m_PPet))
 			{
 				m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CMessageBasicPacket(m_PPet,m_PBattleTarget,0,0,29));
@@ -800,6 +801,8 @@ void CAIPetDummy::ActionAttack()
 	                // spike effect
 					if (Action.reaction != REACTION_EVADE && Action.reaction != REACTION_PARRY)
 					{
+
+	                    battleutils::HandleEnspell(m_PPet, m_PBattleTarget, &Action, i, WeaponDelay, damage);
 						battleutils::HandleSpikesDamage(m_PPet, m_PBattleTarget, &Action, damage);
 					}
 

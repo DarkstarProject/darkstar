@@ -225,7 +225,7 @@ void CSpell::setMPCost(uint16 MP)
 
 bool CSpell::canTargetEnemy()
 {
-    return getValidTarget() & TARGET_ENEMY && !(getValidTarget() & TARGET_SELF);
+    return (getValidTarget() & TARGET_ENEMY) && !(getValidTarget() & TARGET_SELF);
 }
 
 uint8 CSpell::getAOE()

@@ -11,6 +11,7 @@
 require("/scripts/globals/settings");
 require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");
+require("/scripts/globals/utils");
 
 ---------------------------------------------
 function OnMobSkillCheck(target,mob,skill)
@@ -24,6 +25,8 @@ function OnMobWeaponSkill(target, mob, skill)
     local dis = ((mob:checkDistance(target)*2) / 20);
     -- lower damage when closer to front feet
     dmgmod = dmgmod * dis;
+
+    utils.clamp(dmgmod, 50, 1600);
 
 	local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_FIRE,MOBPARAM_IGNORE_SHADOWS);
 	target:delHP(dmg);

@@ -1,3 +1,6 @@
+
+require("scripts/globals/magic");
+require("scripts/globals/status");
 -----------------------------------------
 -- Spell: Magic Finale
 --
