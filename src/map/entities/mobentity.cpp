@@ -292,7 +292,7 @@ bool CMobEntity::CanBeNeutral()
 
 bool CMobEntity::CanDetectTarget(CBattleEntity* PTarget, bool forceSight)
 {
-    if(PTarget->isDead() || m_Behaviour == ROAMFLAG_NONE || PTarget->animation == ANIMATION_CHOCOBO) return false;
+    if(PTarget->isDead() || m_Behaviour == BEHAVIOUR_NONE || PTarget->animation == ANIMATION_CHOCOBO) return false;
 
     float verticalDistance = abs(loc.p.y - PTarget->loc.p.y);
 

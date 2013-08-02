@@ -266,7 +266,7 @@ CBattleEntity* CTargetFind::findMaster(CBattleEntity* PTarget)
 
 bool CTargetFind::isMobOwner(CBattleEntity* PTarget)
 {
-  if(m_PBattleEntity->objtype != TYPE_PC)
+  if(m_PBattleEntity->objtype != TYPE_PC || PTarget->objtype == TYPE_PC)
   {
     // always true for mobs, npcs, pets
     return true;

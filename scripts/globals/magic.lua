@@ -115,7 +115,7 @@ function doEnspell(caster,target,spell,effect)
     end
 
     -- enhancing sword
-    if(target:getEquipID(SLOT_MAIN) == 16605) then
+    if(target:getEquipID(SLOT_MAIN) == 16605 or target:getEquipID(SLOT_SUB) == 16605) then
         potency = potency + 5;
     end
 
