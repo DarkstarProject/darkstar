@@ -1197,10 +1197,10 @@ void CAICharNormal::ActionMagicStart()
 
     STATESTATUS status = m_PMagicState->CastSpell(m_PSpell, m_PTargetFind->getValidTarget(m_ActionTargetID, m_PSpell->getValidTarget()));
 
-    m_ActionTargetID = 0;
 
     if(status == STATESTATUS_START)
     {
+        m_ActionTargetID = 0;
         m_LastActionTime = m_Tick;
         m_ActionType = ACTION_MAGIC_CASTING;
     }

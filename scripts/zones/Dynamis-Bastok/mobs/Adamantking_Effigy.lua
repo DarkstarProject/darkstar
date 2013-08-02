@@ -29,19 +29,19 @@ function onMobEngaged(mob,target)
 	local Y = mob:getYPos();
 	local Z = mob:getZPos();
 	local spawnList = bastyList;
-	
+
 	for nb = 1, table.getn(spawnList), 2 do
 		if(mobID == spawnList[nb]) then
 			for nbi = 1, table.getn(spawnList[nb + 1]), 1 do
 				if((nbi % 2) == 0) then X=X+2; Z=Z+2; else X=X-2; Z=Z-2; end
 				local mobNBR = spawnList[nb + 1][nbi];
-				
+
 				if(mobNBR <= 20) then
 					if(mobNBR == 0) then mobNBR = math.random(1,15);  end -- Spawn random Vanguard (TEMPORARY)
 					local DynaMob = getDynaMob(target,mobNBR,1);
-					
+
 					--printf("Adamantking Effigy => mob %u \n",DynaMob);
-					
+
 					if(DynaMob ~= nil) then
 						-- Spawn Mob
 						SpawnMob(DynaMob):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
@@ -57,7 +57,7 @@ function onMobEngaged(mob,target)
 					end
 				elseif(mobNBR > 20) then
 					SpawnMob(mobNBR):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
-					
+
 					local MJob = GetMobByID(mobNBR):getMainJob();
 					if(MJob == 9 or MJob == 15) then
 						-- Spawn Pet for BST, DRG, and SMN
@@ -69,7 +69,7 @@ function onMobEngaged(mob,target)
 			end
 		end
 	end
-	
+
 end;
 
 -----------------------------------
@@ -77,7 +77,7 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	
+
 	local mobID = mob:getID();
 	-- Time Bonus: 001 019 041
 	if(mobID == 17539350 and alreadyReceived(killer,1) == false) then
@@ -90,15 +90,15 @@ function onMobDeath(mob,killer)
 		killer:addTimeToDynamis(20);
 		addDynamisList(killer,4);
 	-- HP Bonus: 007 008 025 042 082 085 092
-	elseif(mobID == 17539356 or mobID == 17539357 or mobID == 17539374 or mobID == 17539387 or 
-		   mobID == 17539426 or mobID == 17539429 or mobID == 17539171) then 
+	elseif(mobID == 17539356 or mobID == 17539357 or mobID == 17539374 or mobID == 17539387 or
+		   mobID == 17539426 or mobID == 17539429 or mobID == 17539171) then
 		killer:restoreHP(2000);
 		killer:messageBasic(024,(killer:getMaxHP()-killer:getHP()));
 	-- MP Bonus: 026 031 038 081 104
-	elseif(mobID == 17539118 or mobID == 17539161 or mobID == 17539383 or 
-		   mobID == 17539425 or mobID == 17539446) then 
+	elseif(mobID == 17539118 or mobID == 17539161 or mobID == 17539383 or
+		   mobID == 17539425 or mobID == 17539446) then
 		killer:restoreMP(2000);
 		killer:messageBasic(025,(killer:getMaxMP()-killer:getMP()));
 	end
-	
+
 end;

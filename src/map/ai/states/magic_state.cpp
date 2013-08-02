@@ -441,25 +441,28 @@ bool CMagicState::ValidCast(CSpell* PSpell, CBattleEntity* PTarget)
 
 void CMagicState::InterruptSpell()
 {
+    DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
+    DSP_DEBUG_BREAK_IF(m_PEntity->PBattleAI->GetCurrentAction() != ACTION_MAGIC_INTERRUPT);
 
-	apAction_t action;
-	action.ActionTarget = m_PEntity;
-	action.reaction   = REACTION_NONE;
-	action.speceffect = SPECEFFECT_NONE;
-	action.animation  = m_PSpell->getAnimationID();
-	action.param	  = 0;
-	action.messageID  = 0;
+    apAction_t action;
+    action.ActionTarget = m_PEntity;
+    action.reaction   = REACTION_NONE;
+    action.speceffect = SPECEFFECT_NONE;
+    action.animation  = m_PSpell->getAnimationID();
+    action.param      = 0;
+    action.messageID  = 0;
 
     m_PEntity->m_ActionList.clear();
-	m_PEntity->m_ActionList.push_back(action);
+    m_PEntity->m_ActionList.push_back(action);
 
-	m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(m_PEntity));
-	Clear();
+    m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(m_PEntity));
+    Clear();
 }
 
 void CMagicState::FinishSpell()
 {
-	DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
+    DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
+	DSP_DEBUG_BREAK_IF(m_PEntity->PBattleAI->GetCurrentAction() != ACTION_MAGIC_FINISH);
 
     SpendCost(m_PSpell);
     SetRecast(m_PSpell);
@@ -552,22 +555,22 @@ void CMagicState::FinishSpell()
         }
         else
         {
-	        action.param = luautils::OnSpellCast(m_PEntity, PTarget, m_PSpell);
+            action.param = luautils::OnSpellCast(m_PEntity, PTarget, m_PSpell);
 
-		    // remove effects from damage
-			if (m_PSpell->canTargetEnemy() && action.param > 0 && m_PSpell->dealsDamage())
-			{
-				PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
-			}
+            // remove effects from damage
+            if (m_PSpell->canTargetEnemy() && action.param > 0 && m_PSpell->dealsDamage())
+            {
+                PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
+            }
 
-			if(msg == 0)
-			{
-		        msg = m_PSpell->getMessage();
-		    }
-		    else
-		    {
-				msg = m_PSpell->getAoEMessage();
-		    }
+            if(msg == 0)
+            {
+                msg = m_PSpell->getMessage();
+            }
+            else
+            {
+                msg = m_PSpell->getAoEMessage();
+            }
 
             if(!m_PSpell->tookEffect())
             {
@@ -575,9 +578,9 @@ void CMagicState::FinishSpell()
                 ce = 0;
             }
 
-	    }
+        }
 
-	    action.messageID = msg;
+        action.messageID = msg;
 
         CharOnTarget(&action, ce, ve);
 
@@ -588,6 +591,7 @@ void CMagicState::FinishSpell()
 
     m_PEntity->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_MAGIC_END);
 
+    DSP_DEBUG_BREAK_IF(m_PEntity->PBattleAI->GetCurrentAction() != ACTION_MAGIC_FINISH);
 	m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(m_PEntity));
 
 	Clear();

@@ -4194,7 +4194,6 @@ int32 HandleStoneskin(CBattleEntity* PDefender, int32 damage)
         }
 
         PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_STONESKIN);
-        PDefender->setModifier(MOD_STONESKIN, 0);
         return damage - skin;
     }
 

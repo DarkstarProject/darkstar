@@ -1591,38 +1591,39 @@ int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell
             return effectId;
         }
 	}
-	int8 File[255];
-	memset(File,0,sizeof(File));
+
+    int8 File[255];
+    memset(File,0,sizeof(File));
 
     lua_pushnil(LuaHandle);
     lua_setglobal(LuaHandle, "onSpellCast");
 
     DSP_DEBUG_BREAK_IF(PSpell == NULL);
 
-	snprintf(File, sizeof(File), (PSpell->getSpellGroup() == SPELLGROUP_BLUE ? "scripts/globals/spells/bluemagic/%s.lua" : "scripts/globals/spells/%s.lua"), PSpell->getName());
+    snprintf(File, sizeof(File), (PSpell->getSpellGroup() == SPELLGROUP_BLUE ? "scripts/globals/spells/bluemagic/%s.lua" : "scripts/globals/spells/%s.lua"), PSpell->getName());
 
-	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
-	{
-		ShowError("luautils::OnSpellCast: %s\n",lua_tostring(LuaHandle,-1));
+    if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+    {
+        ShowError("luautils::OnSpellCast: %s\n",lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
-		return 0;
-	}
+        return 0;
+    }
 
     lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onSpellCast");
-	if( lua_isnil(LuaHandle,-1) )
-	{
-		ShowError("luautils::OnSpellCast: undefined procedure onSpellCast\n");
-		return 0;
-	}
+    if( lua_isnil(LuaHandle,-1) )
+    {
+        ShowError("luautils::OnSpellCast: undefined procedure onSpellCast\n");
+        return 0;
+    }
 
-	CLuaBaseEntity LuaCasterEntity(PCaster);
-	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaCasterEntity);
+    CLuaBaseEntity LuaCasterEntity(PCaster);
+    Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaCasterEntity);
 
-	CLuaBaseEntity LuaTargetEntity(PTarget);
-	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaTargetEntity);
+    CLuaBaseEntity LuaTargetEntity(PTarget);
+    Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaTargetEntity);
 
-	CLuaSpell LuaSpell(PSpell);
-	Lunar<CLuaSpell>::push(LuaHandle,&LuaSpell);
+    CLuaSpell LuaSpell(PSpell);
+    Lunar<CLuaSpell>::push(LuaHandle,&LuaSpell);
 
 	if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
 	{
@@ -1630,6 +1631,7 @@ int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell
         lua_pop(LuaHandle, 1);
 		return 0;
 	}
+
 	return (!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
 }
 
