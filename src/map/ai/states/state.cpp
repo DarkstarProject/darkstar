@@ -82,12 +82,25 @@ bool CState::CheckValidTarget(CBattleEntity* PTarget)
     	return false;
     }
 
-    // act on battlefield targets unless I have it too
-    if(m_PEntity->objtype == TYPE_PC && PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD) && !m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD))
+    // pc only checks
+    if(m_PEntity->objtype == TYPE_PC)
     {
-        PushError(MSGBASIC_CANNOT_ON_THAT_TARG);
-        return false;
+        // assert you cannot target pets for anything
+        if(PTarget->PMaster != NULL && PTarget->PMaster->objtype == TYPE_PC)
+        {
+            // this is someones pet. cannot target
+            PushError(MSGBASIC_THAT_SOMEONES_PET);
+            return false;
+        }
+
+        // act on battlefield targets unless I have it too
+        if(PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD) && !m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD))
+        {
+            PushError(MSGBASIC_CANNOT_ON_THAT_TARG);
+            return false;
+        }
     }
+
 
 	return !(m_PEntity->loc.zone == NULL || PTarget->getZone() != m_PEntity->getZone() || PTarget->IsNameHidden());
 }

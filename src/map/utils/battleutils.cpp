@@ -2070,18 +2070,24 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
     }
 
     float TP = 0;
+    PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
+
+    if(PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_BIND) && rand()%10 < 4)
+    {
+        // chance to remove it
+        PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_BIND);
+    }
+
     switch (PDefender->objtype)
     {
         case TYPE_PC:
         {
-            PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
             battleutils::MakeEntityStandUp(PDefender);
             charutils::UpdateHealth((CCharEntity*)PDefender);
         }
         break;
         case TYPE_MOB:
         {
-            PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
             if (PDefender->PMaster == NULL)
             {
                 PDefender->addTP(TP);
@@ -3960,7 +3966,6 @@ void tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
 		if(PCharmer->PPet->PBattleAI != NULL && PCharmer->PPet->PBattleAI->GetCurrentAction() == ACTION_ENGAGE){
 			PCharmer->PPet->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
 		}
-
 
 		//clear the victims emnity list
 		((CMobEntity*)PVictim)->PEnmityContainer->Clear();

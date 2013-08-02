@@ -502,7 +502,7 @@ void CAIPetDummy::ActionAbilityInterrupt(){
 		Action.ActionTarget = m_PPet;
 		Action.reaction   = REACTION_NONE;
 		Action.speceffect = SPECEFFECT_NONE;
-		Action.animation  = 0; //m_PMobSkill->getID(); null skill would cause crash
+		Action.animation  = 0;
 	    Action.param	  = 0;
 		Action.messageID  = 0;
 

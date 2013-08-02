@@ -55,7 +55,6 @@ STATESTATUS CMagicState::CastSpell(CSpell* PSpell, CBattleEntity* PTarget, uint8
 	m_flags = flags;
     m_startPosition = m_PEntity->loc.p;
 
-	m_startTime = 0;
 	m_castTime = CalculateCastTime(PSpell);
 
 	apAction_t action;
@@ -163,6 +162,7 @@ void CMagicState::Clear()
 
 	m_PSpell = NULL;
 	m_interruptSpell = false;
+    m_startTime = 0;
 }
 
 uint32 CMagicState::CalculateCastTime(CSpell* PSpell)

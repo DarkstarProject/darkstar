@@ -316,7 +316,7 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
         return false;
     }
 
-	if(PStatusEffect != NULL && CanGainStatusEffect((EFFECT)statusId, PStatusEffect->GetPower()))
+	if(CanGainStatusEffect((EFFECT)statusId, PStatusEffect->GetPower()))
 	{
         // remove clean up other effects
         OverwriteStatusEffect(PStatusEffect);

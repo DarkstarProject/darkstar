@@ -438,7 +438,7 @@ void CAIMobDummy::ActionDropItems()
 				uint8 Pzone = PChar->getZone();
 				bool validZone = ((Pzone > 0 && Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255));
 
-				if(charutils::GetRealExp(PChar->GetMLevel(),m_PMob->GetMLevel())>0 && m_PMob->m_Type == MOBTYPE_NORMAL && validZone){ //exp-yielding monster and drop is successful
+				if(validZone && charutils::GetRealExp(PChar->GetMLevel(),m_PMob->GetMLevel())>0 && m_PMob->m_Type == MOBTYPE_NORMAL){ //exp-yielding monster and drop is successful
 					//TODO: The drop is actually based on a 5 minute timer, and not a probability of dropping!
 
 					if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && m_PMob->m_Element > 0 && rand()%100 < 20) // Need to move to SIGNET_CHANCE constant
@@ -493,6 +493,7 @@ void CAIMobDummy::ActionDropItems()
 					}
 				}
 			}
+
 			PChar->setWeaponSkillKill(false);
 
 			// NOTE: this is called for all alliance / party members!
