@@ -81,6 +81,7 @@ public:
 
   void WakeUp(); // remove sleep effects
   bool CheckForElevenRoll();
+  bool IsAsleep();
   bool HasBustEffect(uint16 id);
   bool HasPreventActionEffect(); // checks if owner has an effect that prevents actions, like stun, petrify, sleep etc
 

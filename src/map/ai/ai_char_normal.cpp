@@ -1223,6 +1223,8 @@ void CAICharNormal::MagicStartError()
     m_ActionTargetID = 0;
 
 	m_PSpell = NULL;
+    m_PBattleSubTarget = NULL;
+
 	TransitionBack();
 }
 

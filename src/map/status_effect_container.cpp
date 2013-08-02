@@ -51,6 +51,7 @@ When a status effect is gained twice on a player. It can do one or more of the f
 #include "status_effect_container.h"
 #include "utils/zoneutils.h"
 #include "utils/petutils.h"
+#include "utils/battleutils.h"
 
 /************************************************************************
 *                                                                       *
@@ -1120,6 +1121,12 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
 			return;
 		}
 
+        CCharEntity* PChar = NULL;
+        if(m_POwner->objtype == TYPE_PC)
+        {
+            PChar = (CCharEntity*)m_POwner;
+        }
+
 		m_RegenCheckTime = tick;
 
         int8 regen = m_POwner->getMod(MOD_REGEN);
@@ -1131,28 +1138,12 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
 
         if(poison)
         {
-            if(HasStatusEffect(EFFECT_STONESKIN))
+            int16 damage = battleutils::HandleStoneskin(m_POwner, poison);
+
+            if(damage > 0)
             {
-                // reduce stoneskin
-                uint16 skin = m_POwner->getMod(MOD_STONESKIN);
-                if(skin >= poison)
-                {
-                    m_POwner->delModifier(MOD_STONESKIN, poison);
-                }
-                else
-                {
-                    m_POwner->setModifier(MOD_STONESKIN, 0);
-                    DelStatusEffectSilent(EFFECT_STONESKIN);
-                    DelStatusEffectSilent(EFFECT_HEALING);
-                    m_POwner->addHP(-(poison - skin));
-                    WakeUp();
-                }
-            }
-            else
-            {
-                m_POwner->addHP(-poison);
-                // prevent resting
                 DelStatusEffectSilent(EFFECT_HEALING);
+                m_POwner->addHP(-damage);
                 WakeUp();
             }
         }
@@ -1165,15 +1156,14 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
 				perpetuation = 0;
 			else
 			{
-				if (m_POwner->PPet != NULL && (m_POwner->objtype == TYPE_PC))
+				if (m_POwner->PPet != NULL && PChar != NULL)
 				{
-                    CCharEntity* PChar = (CCharEntity*)m_POwner;
-					CItem* hands = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_HANDS]);
 
                     if(m_POwner->PPet->objtype == TYPE_PET)
                     {
 
                         CPetEntity* PPet = (CPetEntity*)m_POwner->PPet;
+    					CItem* hands = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_HANDS]);
 
                         // carbuncle mitts only work on carbuncle
     					if (hands && hands->getID() == 14062 && PPet->m_Family == 34){
@@ -1203,6 +1193,18 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
 		{
 			m_POwner->addMP(refresh);
 		}
+
+        if(PChar != NULL && IsAsleep())
+        {
+            CItem* neck = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_NECK]);
+
+            // opo-opo necklace
+            if(neck != NULL && neck->getID() == 13143)
+            {
+                // add tp
+                regain += 2.5f;
+            }
+        }
 
 		m_POwner->addTP(regain);
 
@@ -1237,6 +1239,13 @@ bool CStatusEffectContainer::CheckForElevenRoll()
 		}
 	}
 	return false;
+}
+
+bool CStatusEffectContainer::IsAsleep()
+{
+    return HasStatusEffect(EFFECT_SLEEP) ||
+        HasStatusEffect(EFFECT_SLEEP_II) ||
+        HasStatusEffect(EFFECT_LULLABY);
 }
 
 void CStatusEffectContainer::WakeUp()

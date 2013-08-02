@@ -19,29 +19,52 @@
 function onTrigger(player,target,id, power, duration)
 
     if(target == nil) then
+        printf("target nil")
         return;
-    end
-
-    if(power == 0 or power == nil) then
-        power = 1
-    end
-
-    if(duration == 0 or duration == nil) then
-        duration = 60
     end
 
     local effectTarget = player;
     -- check if target name was entered
     local num = tonumber(target)
     if(type(num) == "number") then
-        duration = power
-        power = id
-        id = target
+        if(power == 0 or power == nil) then
+            duration = 60
+        else
+            duration = power
+        end
+
+        if(id == 0 or id == nil) then
+            power = 1
+        else
+            power = id
+        end
+
+        id = num
     else
         local pc = GetPlayerByName(target);
         if(pc ~= nil) then
             effectTarget = pc;
+        else
+            return;
         end
+
+        if(power == 0 or power == nil) then
+            power = 1
+        end
+
+        if(duration == 0 or duration == nil) then
+            duration = 60
+        end
+
+        if(id == 0 or id == nil) then
+            id = 1
+        end
+
+    end
+
+    if(id == nil) then
+        printf("addeffect: id is nil");
+        return;
     end
 
     if(effectTarget:addStatusEffect(id, power, 3, duration)) then
