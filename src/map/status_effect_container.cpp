@@ -1045,6 +1045,8 @@ void CStatusEffectContainer::SaveStatusEffects()
                 PStatusEffect->SetPower(m_POwner->getMod(MOD_UTSUSEMI));
             } else if(PStatusEffect->GetStatusID() == EFFECT_BLINK){
                 PStatusEffect->SetPower(m_POwner->getMod(MOD_BLINK));
+            } else if(PStatusEffect->GetStatusID() == EFFECT_STONESKIN){
+                PStatusEffect->SetPower(m_POwner->getMod(MOD_STONESKIN));
             }
 
 			Sql_Query(SqlHandle, Query,

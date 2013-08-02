@@ -215,7 +215,7 @@ public:
 	int32 messageSpecial(lua_State*);		// Sends Special Message
 	int32 messageSystem(lua_State*);		// Sends System Message
     int32 messageBasic(lua_State*);         // Sends Basic Message
-    int32 messageTarget(lua_State*);         // Sends Basic Message With Target
+    int32 messagePublic(lua_State*);         // Sends a public Basic Message
     int32 clearTargID(lua_State*);			// clears target of entity
 
 	int32 release(lua_State*);				// Stops event
@@ -232,7 +232,7 @@ public:
 	int32 bcnmLeave(lua_State*);			//Leave a bcnm instance
 	int32 isInBcnm(lua_State*);				//true if you're INSIDE the bc (not just the status)
 	int32 isBcnmsFull(lua_State*);			//true if all 3 instances are full
-    int32 isSpecialIntanceEmpty(lua_State*); // 1 if this instance is full 
+    int32 isSpecialIntanceEmpty(lua_State*); // 1 if this instance is full
 	int32 getSpecialInstanceLeftTime(lua_State*);// return left time of the specific instance
 	int32 addTimeToSpecialInstance(lua_State*); // add time of the specific instance
 	int32 BCNMSetLoot(lua_State*);           // set a lootlist for a special inctance

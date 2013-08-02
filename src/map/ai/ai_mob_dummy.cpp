@@ -441,11 +441,11 @@ void CAIMobDummy::ActionDropItems()
 				if(charutils::GetRealExp(PChar->GetMLevel(),m_PMob->GetMLevel())>0 && m_PMob->m_Type == MOBTYPE_NORMAL && validZone){ //exp-yielding monster and drop is successful
 					//TODO: The drop is actually based on a 5 minute timer, and not a probability of dropping!
 
-					if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && m_PMob->m_Element > 0 && rand()%100 < 15) // Need to move to SIGNET_CHANCE constant
+					if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && m_PMob->m_Element > 0 && rand()%100 < 20) // Need to move to SIGNET_CHANCE constant
 					{
 						PChar->PTreasurePool->AddItem(4095 + m_PMob->m_Element, m_PMob);
 					}
-					if(rand()%100 < 15)
+					if(rand()%100 < 20)
 					{
 
 						//RULES: Only 1 kind may drop per mob

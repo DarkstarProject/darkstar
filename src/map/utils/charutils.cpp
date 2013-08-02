@@ -1433,12 +1433,12 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
     if ((PChar->m_EquipBlock & (1 << equipSlotID)) ||
        !(PItem->getJobs() & (1 << (PChar->GetMJob() - 1))) ||
         (PItem->getReqLvl() > PChar->GetMLevel()))
-		return false;
+        return false;
 
-	UnequipItem(PChar,equipSlotID);
+    UnequipItem(PChar,equipSlotID);
 
-	if (PItem->getEquipSlotId() & (1 << equipSlotID))
-	{
+    if (PItem->getEquipSlotId() & (1 << equipSlotID))
+    {
 		uint8 removeSlotID = PItem->getRemoveSlotId();
 
 		if(removeSlotID > 0)
@@ -1492,14 +1492,14 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 			break;
 			case SLOT_SUB:
 			{
-				CItemWeapon* weapon = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]);
-				if (weapon == NULL || !weapon->isType(ITEM_WEAPON))
-				{
-					if (PItem->isType(ITEM_WEAPON))
-					{
-						return false;
-					}
-				}
+                CItemWeapon* weapon = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]);
+                if (weapon == NULL || !weapon->isType(ITEM_WEAPON))
+                {
+                    if (PItem->isType(ITEM_WEAPON))
+                    {
+                        return false;
+                    }
+                }
                 else
                 {
 					switch (weapon->getSkillType())
@@ -1508,20 +1508,20 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 						{
 							if (!PItem->isType(ITEM_WEAPON))
 							{
-								UnequipItem(PChar,SLOT_MAIN);
-							}
-						}
-						case SKILL_DAG:
-						case SKILL_SWD:
-						case SKILL_AXE:
-						case SKILL_KAT:
-						case SKILL_CLB:
-						{
-							if (PItem->isType(ITEM_WEAPON) && !charutils::hasTrait(PChar, TRAIT_DUAL_WIELD))
-							{
-								PChar->m_EquipSwap = true;
-								return false;
-							}
+                                UnequipItem(PChar,SLOT_MAIN);
+                            }
+                        }
+                        case SKILL_DAG:
+                        case SKILL_SWD:
+                        case SKILL_AXE:
+                        case SKILL_KAT:
+                        case SKILL_CLB:
+                        {
+                            if (PItem->isType(ITEM_WEAPON) && !charutils::hasTrait(PChar, TRAIT_DUAL_WIELD))
+                            {
+                                PChar->m_EquipSwap = true;
+                                return false;
+                            }
 							PChar->m_Weapons[SLOT_SUB] = (CItemWeapon*)PItem;
 
 						}
@@ -1664,11 +1664,12 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 		PChar->pushPacket(new CEquipPacket(slotID, equipSlotID));
 	}
 	else
-	{
-		CItemArmor* PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
+    {
+        CItemArmor* PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
 
-		if ((PItem != NULL) && PItem->isType(ITEM_ARMOR))
-		{
+        if ((PItem != NULL) && PItem->isType(ITEM_ARMOR))
+        {
+
 			if (!PItem->isSubType(ITEM_LOCKED) && EquipArmor(PChar, slotID, equipSlotID))
 			{
 				if (PItem->getScriptType() & SCRIPT_EQUIP)
@@ -1750,29 +1751,20 @@ void CheckValidEquipment(CCharEntity* PChar)
 
 	for(uint8 slotID = 0; slotID < 16; ++slotID)
 	{
-		PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[slotID]);
+        PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[slotID]);
 
-		if ((PItem != NULL) && PItem->isType(ITEM_ARMOR))
-		{
-			if ((PItem->getJobs() & (1 << (PChar->GetMJob() - 1))) &&
-                (PItem->getReqLvl() <= PChar->GetMLevel()) &&
-                (PItem->getEquipSlotId() & (1 << slotID)))
-			{
-                continue;
-			}
-            UnequipItem(PChar, slotID);
+        if(PItem != NULL && PChar->equip[slotID] != 0)
+        {
+            // this hacks the item to let me equip it again
+            // TODO: we should have a general isvalidequip method and just unequip
+            // i'm forced to try equiping again to unequip invalid stuff
+            PItem->setSubType(ITEM_UNLOCKED);
+            EquipItem(PChar, PChar->equip[slotID], slotID);
         }
-	}
-	// Unarmed H2H weapon check
-	if (!PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN])->isType(ITEM_ARMOR) || PChar->m_Weapons[SLOT_MAIN] == itemutils::GetUnarmedH2HItem())
-	{
-		CheckUnarmedWeapon(PChar);
 	}
 
 	PChar->pushPacket(new CCharAppearancePacket(PChar));
 
-
-    BuildingCharWeaponSkills(PChar);
 	SaveCharEquip(PChar);
 }
 
@@ -2137,7 +2129,6 @@ void BuildingCharTraitsTable(CCharEntity* PChar)
 		    }
         }
 	}
-
 	PTraitsList = traits::GetTraits(PChar->GetSJob());
 	for (uint8 i = 0; i <  PTraitsList->size(); ++i)
 	{

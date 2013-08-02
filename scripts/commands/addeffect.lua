@@ -22,8 +22,13 @@ function onTrigger(player,target,id, power, duration)
         return;
     end
 
-    power = power or 1
-    duration = duration or 60
+    if(power == 0 or power == nil) then
+        power = 1
+    end
+
+    if(duration == 0 or duration == nil) then
+        duration = 60
+    end
 
     local effectTarget = player;
     -- check if target name was entered
@@ -38,9 +43,9 @@ function onTrigger(player,target,id, power, duration)
     end
 
     if(effectTarget:addStatusEffect(id, power, 3, duration)) then
-        effectTarget:messageBasic(280,id,id);
+        effectTarget:messagePublic(280,effectTarget, id, id);
     else
-        effectTarget:messageBasic(283,id);
+        effectTarget:messagePublic(283, effectTarget, id);
     end
 
 end;

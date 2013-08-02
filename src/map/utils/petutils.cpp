@@ -327,17 +327,17 @@ void LoadJugStats(CPetEntity* PMob, Pet_t* petStats){
 	//give hp boost every 10 levels after 25
 	//special boosts at 25 and 50
 	if(lvl > 75){
-		growth = 1.25;
-	}else if(lvl > 65){
-		growth = 1.24;
-	} else if(lvl > 55){
 		growth = 1.22;
-	} else if(lvl > 50){
+	}else if(lvl > 65){
+		growth = 1.20;
+	} else if(lvl > 55){
 		growth = 1.18;
+	} else if(lvl > 50){
+		growth = 1.16;
 	} else if(lvl > 45){
-		growth = 1.14;
+		growth = 1.12;
 	} else if(lvl > 35){
-		growth = 1.11;
+		growth = 1.09;
 	} else if(lvl > 25){
 		growth = 1.07;
 	}

@@ -2060,9 +2060,9 @@ inline int32 CLuaBaseEntity::sjRestriction(lua_State* L)
 
 	charutils::BuildingCharSkillsTable(PChar);
 	charutils::CalculateStats(PChar);
-	charutils::CheckValidEquipment(PChar);
 	charutils::BuildingCharAbilityTable(PChar);
 	charutils::BuildingCharTraitsTable(PChar);
+	charutils::CheckValidEquipment(PChar);
 	charutils::BuildingCharWeaponSkills(PChar);
 
 	PChar->UpdateHealth();
@@ -3018,11 +3018,11 @@ inline int32 CLuaBaseEntity::messageBasic(lua_State* L)
 }
 
 /*
-	Similar to message basic except you can send a target entity.
+	Prodcast a message to public.
 	Example:
-		player:messageTarget(125, mob, 41, stolen);
+		player:messagePublic(125, mob, 41, stolen);
 */
-inline int32 CLuaBaseEntity::messageTarget(lua_State* L)
+inline int32 CLuaBaseEntity::messagePublic(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 
@@ -3042,12 +3042,7 @@ inline int32 CLuaBaseEntity::messageTarget(lua_State* L)
 	    if( !lua_isnil(L,3) && lua_isnumber(L,4) )
 	        param1 = (uint32)lua_tointeger(L,4);
 
-		if(m_PBaseEntity->objtype == TYPE_PC){
-			((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageBasicPacket(m_PBaseEntity, PEntity->GetBaseEntity(), param0, param1, messageID));
-		}
-		else{//broadcast in range
-			m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity,CHAR_INRANGE,new CMessageBasicPacket(m_PBaseEntity, PEntity->GetBaseEntity(), param0, param1, messageID));
-		}
+		m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity,CHAR_INRANGE_SELF,new CMessageBasicPacket(m_PBaseEntity, PEntity->GetBaseEntity(), param0, param1, messageID));
     }
 	return 0;
 }
@@ -5667,7 +5662,7 @@ inline int32 CLuaBaseEntity::bcnmRegister(lua_State *L){
 	  }
 	  else
 	  if(PChar->loc.zone->m_InstanceHandler->hasFreeInstance()){
-	 	
+
 		    if(Pzone > 184 && Pzone < 189 || Pzone > 133 && Pzone < 136 || Pzone > 38  && Pzone < 43 ){
 			   ShowDebug("Free Dynamis Instance found for BCNMID %i \n",lua_tointeger(L,1));
 			   instance = PChar->loc.zone->m_InstanceHandler->registerDynamis(lua_tointeger(L,1),PChar);
@@ -7416,7 +7411,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,openSendBox),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,showText),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageBasic),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageTarget),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,messagePublic),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageSpecial),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageSystem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,clearTargID),

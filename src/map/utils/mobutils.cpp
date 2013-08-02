@@ -444,7 +444,7 @@ void CalculateStats(CMobEntity * PMob)
 	{
 		if(mJob == JOB_BST)
 		{
-			PMob->setMobMod(MOBMOD_SPECIAL_COOL, 120);
+			PMob->setMobMod(MOBMOD_SPECIAL_COOL, 100);
 			PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 761);
 		}
 		else if(mJob == JOB_DRG && !isNM)
