@@ -1,4 +1,4 @@
-﻿    /*
+﻿/*
 ===========================================================================
 
   Copyright (c) 2010-2012 Darkstar Dev Teams
@@ -390,7 +390,7 @@ void CAICharNormal::ActionFall()
 	//influence for conquest system
 	conquest::LoseInfluencePoints(m_PChar);
 
-	if (!m_PChar->getMijinGakure())
+	if (!m_PChar->getMijinGakure() && !m_PChar->m_PVPFlag)
 		charutils::DelExperiencePoints(m_PChar,map_config.exp_retain);
 
 
@@ -410,6 +410,12 @@ void CAICharNormal::ActionDeath()
     if ((m_Tick - m_LastActionTime) >= 1000)
     {
         m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH, true);
+
+        if(m_PChar->m_PVPFlag)
+        {
+            // always reraise
+            m_PChar->m_hasRaise = 1;
+        }
 
         // has reraise, don't stop timer
         // this must be after deleting status effects
@@ -3022,7 +3028,7 @@ void CAICharNormal::ActionRaiseMenuSelection()
     }
 
     //add weakness effect (75% reduction in HP/MP)
-    if (!m_PChar->getMijinGakure())
+    if (!m_PChar->getMijinGakure() && !m_PChar->m_PVPFlag)
     {
 	    CStatusEffect* PWeaknessEffect = new CStatusEffect(EFFECT_WEAKNESS,EFFECT_WEAKNESS,weaknessLvl,0,300);
 		m_PChar->StatusEffectContainer->AddStatusEffect(PWeaknessEffect);
@@ -3066,6 +3072,7 @@ void CAICharNormal::ActionRaiseMenuSelection()
 
     uint8 mLevel = (m_PChar->m_LevelRestriction != 0 && m_PChar->m_LevelRestriction < m_PChar->GetMLevel()) ? m_PChar->m_LevelRestriction : m_PChar->GetMLevel();
     uint16 expLost = mLevel <= 67 ? (charutils::GetExpNEXTLevel(mLevel) * 8 ) / 100 : 2400;
+
     uint16 xpNeededToLevel = charutils::GetExpNEXTLevel(m_PChar->jobs.job[m_PChar->GetMJob()]) - m_PChar->jobs.exp[m_PChar->GetMJob()];
 
     // Exp is enough to level you and (you're not under a level restriction, or the level restriction is higher than your current main level).
@@ -3077,8 +3084,10 @@ void CAICharNormal::ActionRaiseMenuSelection()
 
     uint16 xpReturned = ceil(expLost * ratioReturned);
 
-    if (!m_PChar->getMijinGakure())
+    if (!m_PChar->getMijinGakure() && !m_PChar->m_PVPFlag)
+    {
 		charutils::AddExperiencePoints(true, m_PChar, m_PChar, xpReturned);
+    }
 
 	m_PChar->setMijinGakure(false);
 

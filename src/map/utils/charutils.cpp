@@ -2213,6 +2213,12 @@ void BuildingCharTraitsTable(CCharEntity* PChar)
 
 void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
 {
+    // can't skill up if in pvp
+    if(PChar->m_PVPFlag)
+    {
+        return;
+    }
+
 	// This usually happens after a crash
 	DSP_DEBUG_BREAK_IF(SkillID >= MAX_SKILLTYPE);	// выход за пределы допустимых умений
 

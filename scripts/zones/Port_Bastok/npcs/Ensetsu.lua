@@ -26,13 +26,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+
 	AyameAndKaede = player:getQuestStatus(BASTOK,AYAME_AND_KAEDE);
-	
+
 	if(AyameAndKaede == QUEST_ACCEPTED) then
-		
+
 		questStatus = player:getVar("AyameAndKaede_Event")
-		
+
 		if((questStatus == 1 or questStatus == 2) and player:hasKeyItem(STRANGELY_SHAPED_CORAL) == false) then
 			player:startEvent(0x00f2);
 		elseif(questStatus == 2 and player:hasKeyItem(STRANGELY_SHAPED_CORAL) == true) then
@@ -41,6 +41,8 @@ function onTrigger(player,npc)
 			player:startEvent(0x00f3);
 		elseif(player:hasKeyItem(SEALED_DAGGER)) then
 			player:startEvent(0x00f6,SEALED_DAGGER);
+		else
+			player:startEvent(0x001b);
 		end
 	elseif(AyameAndKaede == QUEST_COMPLETED and player:getQuestStatus(OUTLANDS,TWENTY_IN_PIRATE_YEARS) == QUEST_AVAILABLE) then
 		player:startEvent(0x00f7);
@@ -55,7 +57,7 @@ function onTrigger(player,npc)
 	else
 		player:startEvent(0x001b);
 	end
-	
+
 end;
 
 -- 0x001b  0x00f0  0x00f2  0x00f3  0x00f5  0x00f6  0x00f7  0x0106  0x0107  0x0108  0x0109  0x0105
@@ -94,5 +96,5 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0108) then
 		player:setVar("illTakeTheBigBoxCS",1);
 	end
-	
+
 end;
