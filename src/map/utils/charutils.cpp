@@ -1747,25 +1747,40 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 
 void CheckValidEquipment(CCharEntity* PChar)
 {
-	CItemArmor* PItem  = NULL;
+    CItemArmor* PItem  = NULL;
 
-	for(uint8 slotID = 0; slotID < 16; ++slotID)
-	{
+    for(uint8 slotID = 0; slotID < 16; ++slotID)
+    {
         PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[slotID]);
 
-        if(PItem != NULL && PChar->equip[slotID] != 0)
+        if ((PItem != NULL) && PItem->isType(ITEM_ARMOR))
         {
-            // this hacks the item to let me equip it again
-            // TODO: we should have a general isvalidequip method and just unequip
-            // i'm forced to try equiping again to unequip invalid stuff
-            PItem->setSubType(ITEM_UNLOCKED);
-            EquipItem(PChar, PChar->equip[slotID], slotID);
+            if(slotID == SLOT_SUB && !charutils::hasTrait(PChar, TRAIT_DUAL_WIELD))
+            {
+                UnequipItem(PChar, slotID);
+                continue;
+            }
+
+            if ((PItem->getJobs() & (1 << (PChar->GetMJob() - 1))) &&
+                (PItem->getReqLvl() <= PChar->GetMLevel()) &&
+                (PItem->getEquipSlotId() & (1 << slotID)))
+            {
+                continue;
+            }
+            UnequipItem(PChar, slotID);
         }
-	}
+    }
+    // Unarmed H2H weapon check
+    if (!PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN])->isType(ITEM_ARMOR) || PChar->m_Weapons[SLOT_MAIN] == itemutils::GetUnarmedH2HItem())
+    {
+        CheckUnarmedWeapon(PChar);
+    }
 
-	PChar->pushPacket(new CCharAppearancePacket(PChar));
+    PChar->pushPacket(new CCharAppearancePacket(PChar));
 
-	SaveCharEquip(PChar);
+
+    BuildingCharWeaponSkills(PChar);
+    SaveCharEquip(PChar);
 }
 
 void RemoveAllEquipment(CCharEntity* PChar)

@@ -34,6 +34,8 @@ function onTrigger(player,target,id, power, duration)
     -- check if target name was entered
     local num = tonumber(target)
     if(type(num) == "number") then
+        duration = power
+        power = id
         id = target
     else
         local pc = GetPlayerByName(target);
