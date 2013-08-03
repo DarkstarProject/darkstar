@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `status_effects`;
 CREATE TABLE `status_effects` (
   `id` smallint(5) unsigned NOT NULL,
   `name` varchar(50) NOT NULL,
-  `flags` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `flags` int(8) unsigned NOT NULL DEFAULT '0',
   `type` smallint(5) unsigned NOT NULL DEFAULT '0',
   `negative_id` smallint(5) unsigned DEFAULT '0',
   `overwrite` smallint(5) unsigned NOT NULL DEFAULT '0',
@@ -50,7 +50,7 @@ INSERT INTO `status_effects` VALUES (4,'paralysis',32,0,0,1,0,0,5);
 INSERT INTO `status_effects` VALUES (5,'blindness',32,0,0,1,0,0,8);
 INSERT INTO `status_effects` VALUES (6,'silence',32,0,0,2,0,0,4);
 INSERT INTO `status_effects` VALUES (7,'petrification',32,7,0,2,10,0,2);
-INSERT INTO `status_effects` VALUES (8,'disease',32,8,0,2,0,0,1);
+INSERT INTO `status_effects` VALUES (8,'disease',4128,8,0,2,0,0,1);
 INSERT INTO `status_effects` VALUES (9,'curse',32,9,0,2,0,0,8);
 INSERT INTO `status_effects` VALUES (10,'stun',34,0,0,2,7,0,6);
 INSERT INTO `status_effects` VALUES (11,'bind',34,0,0,2,0,0,5);
@@ -62,14 +62,14 @@ INSERT INTO `status_effects` VALUES (16,'amnesia',32,0,0,2,0,0,1);
 INSERT INTO `status_effects` VALUES (17,'charm',32,0,0,2,0,0,7);
 INSERT INTO `status_effects` VALUES (18,'gradual_petrification',32,7,0,2,0,0,2);
 INSERT INTO `status_effects` VALUES (19,'sleep',48,2,0,2,0,0,8);
-INSERT INTO `status_effects` VALUES (20,'curse',32,9,0,2,0,0,8);
+INSERT INTO `status_effects` VALUES (20,'curse',4128,9,0,2,0,0,8);
 INSERT INTO `status_effects` VALUES (21,'addle',32,0,0,2,0,0,1);
 INSERT INTO `status_effects` VALUES (22,'intimidate',32,0,0,2,0,0,0);
 INSERT INTO `status_effects` VALUES (23,'kaustra',32,0,228,0,0,0,0);
 INSERT INTO `status_effects` VALUES (28,'terror',32,7,0,0,0,0,8);
 INSERT INTO `status_effects` VALUES (29,'mute',32,0,0,2,0,6,4);
 INSERT INTO `status_effects` VALUES (30,'bane',32,0,0,2,0,9,8);
-INSERT INTO `status_effects` VALUES (31,'plague',32,8,0,2,0,0,1);
+INSERT INTO `status_effects` VALUES (31,'plague',4128,8,0,2,0,0,1);
 INSERT INTO `status_effects` VALUES (32,'flee',33,0,12,0,0,0,4);
 INSERT INTO `status_effects` VALUES (33,'haste',33,0,13,0,0,0,4);
 INSERT INTO `status_effects` VALUES (34,'blaze_spikes',33,34,0,0,0,0,1);

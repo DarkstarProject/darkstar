@@ -167,7 +167,7 @@ uint8 CBattleEntity::GetSpeed()
 
 bool CBattleEntity::Rest(float rate)
 {
-	if(health.hp != health.maxhp && health.mp != health.maxmp){
+	if(health.hp != health.maxhp || health.mp != health.maxmp){
         // recover 20% HP
         uint32 recoverHP = (float)health.maxhp*rate;
         uint32 recoverMP = (float)health.maxmp*rate;

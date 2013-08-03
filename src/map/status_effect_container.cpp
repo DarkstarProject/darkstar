@@ -954,8 +954,9 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
 
 
     //todo: find a better place to put this?
-    if(!m_POwner->isDead())
+    if(!m_POwner->isDead() && m_POwner->objtype == TYPE_PC)
     {
+        // this should actually go into a char charm AI
         if(m_POwner->PPet != NULL)
         {
             if(effect == EFFECT_CHARM || effect == EFFECT_CHARM_II)

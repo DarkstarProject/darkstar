@@ -177,7 +177,8 @@ void CAIMobDummy::ActionRoaming()
 		// lets buff up or move around
 
 		// recover health
-		if(!m_PMob->getMod(MOD_REGEN_DOWN) && !m_PMob->Rest(0.1f))
+		// can't rest when taking hp damage
+		if(!m_PMob->getMod(MOD_REGEN_DOWN) && !m_PMob->StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_NO_REST) && !m_PMob->Rest(0.1f))
 		{
 			// undirty exp
 			m_PMob->m_giveExp = true;

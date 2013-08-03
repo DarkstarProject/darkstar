@@ -4268,6 +4268,13 @@ inline int32 CLuaBaseEntity::getMobMod(lua_State *L)
 inline int32 CLuaBaseEntity::setMobMod(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+    // putting this in here to find elusive bug
+    if(!(m_PBaseEntity->objtype & TYPE_MOB))
+    {
+    	ShowError("CLuaBaseEntity::setMobMod Expected type mob (%d)\n", m_PBaseEntity->id);
+    }
+
     DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_MOB));
 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));

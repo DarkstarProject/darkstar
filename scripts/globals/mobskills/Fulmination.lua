@@ -19,9 +19,9 @@ function OnMobSkillCheck(target,mob,skill)
       return 0;
    elseif (family == 315 and mobhp <= 50) then -- Tyger < 50%
       return 0;
-   else
-      return 1;
    end
+
+   return 1;
 end;
 
 function OnMobWeaponSkill(target, mob, skill)

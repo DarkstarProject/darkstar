@@ -395,7 +395,7 @@ struct apAction_t
     SUBEFFECT         spikesEffect;         // 10 bits
     uint16            spikesParam;          // 14 bits
     uint16            spikesMessage;        // 10 bits
-    
+
     apAction_t()
     {
         ActionTarget = NULL;
@@ -499,6 +499,7 @@ public:
 
 	int16		    getMod(uint16 modID);		// величина модификатора
 
+    bool            CanRest(); // checks if able to heal
 	bool			Rest(float rate); // heal an amount of hp / mp
 
 	void		    addModifier(uint16 type, int16 amount);
