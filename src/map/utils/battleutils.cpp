@@ -1117,65 +1117,68 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
 	// Generic drain for anyone able to do melee damage to a dazed target
 	delay = delay / 10;
 
+    if(PAttacker->PMaster == NULL)
+    {
 
-	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_DAZE))
-	{
-		uint8 Samba = rand()%((delay * 3) / 100) + 1;
+    	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_DAZE))
+    	{
+    		uint8 Samba = rand()%((delay * 3) / 100) + 1;
 
-        // vary damage based on lvl diff
-        int8 lvlDiff = (PDefender->GetMLevel() - PAttacker->GetMLevel())/2;
+            // vary damage based on lvl diff
+            int8 lvlDiff = (PDefender->GetMLevel() - PAttacker->GetMLevel())/2;
 
-        if(lvlDiff < -5){
-            lvlDiff = -5;
-        }
+            if(lvlDiff < -5){
+                lvlDiff = -5;
+            }
 
-        Samba -= lvlDiff;
+            Samba -= lvlDiff;
 
-        if (Samba > (finaldamage / 2)){
-            Samba = finaldamage / 2;
-        }
+            if (Samba > (finaldamage / 2)){
+                Samba = finaldamage / 2;
+            }
 
-        if(finaldamage <= 2){
-            Samba = 0;
-        }
+            if(finaldamage <= 2){
+                Samba = 0;
+            }
 
-		Action->additionalEffect = SUBEFFECT_HP_DRAIN;
-		Action->addEffectMessage = 161;
-		Action->addEffectParam = Samba;
+    		Action->additionalEffect = SUBEFFECT_HP_DRAIN;
+    		Action->addEffectMessage = 161;
+    		Action->addEffectParam = Samba;
 
-		PAttacker->addHP(Samba);	// does not do any additional drain to targets HP, only a portion of it
-        if(PChar != NULL){
-    		charutils::UpdateHealth(PChar);
-        }
-		return;
- 	}
+    		PAttacker->addHP(Samba);	// does not do any additional drain to targets HP, only a portion of it
+            if(PChar != NULL){
+        		charutils::UpdateHealth(PChar);
+            }
+    		return;
+     	}
 
-	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ASPIR_DAZE))
-	{
-		uint8 Samba = Samba = rand()%(delay * 1 / 100) + 1;
+    	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ASPIR_DAZE))
+    	{
+    		uint8 Samba = Samba = rand()%(delay * 1 / 100) + 1;
 
-		if (Samba >= finaldamage / 4) { Samba = finaldamage / 4; }
+    		if (Samba >= finaldamage / 4) { Samba = finaldamage / 4; }
 
-		Action->additionalEffect = SUBEFFECT_HP_DRAIN;
-		Action->addEffectMessage = 162;
+    		Action->additionalEffect = SUBEFFECT_HP_DRAIN;
+    		Action->addEffectMessage = 162;
 
-        int16 mpDrained = PDefender->addMP(-Samba);
+            int16 mpDrained = PDefender->addMP(-Samba);
 
-        PAttacker->addMP(mpDrained);
-        Action->addEffectParam = mpDrained;
+            PAttacker->addMP(mpDrained);
+            Action->addEffectParam = mpDrained;
 
-        if(PChar != NULL){
-    		charutils::UpdateHealth(PChar);
-        }
-		return;
-	}
+            if(PChar != NULL){
+        		charutils::UpdateHealth(PChar);
+            }
+    		return;
+    	}
 
-	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE_DAZE))
-	{
-    	if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE)){return;}
-    	PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HASTE, EFFECT_HASTE, 50, 0, 10));
-    	return;
-	}
+    	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE_DAZE))
+    	{
+        	if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE)){return;}
+        	PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HASTE, EFFECT_HASTE, 50, 0, 10));
+        	return;
+    	}
+    }
 
     // ignore i'm a mob!
     if(PChar == NULL)
