@@ -1953,7 +1953,7 @@ void CAIMobDummy::WeatherChange(WEATHER weather, uint8 element)
 		m_PMob->m_disableScent = (weather == WEATHER_RAIN || weather == WEATHER_SQUALL || weather == WEATHER_BLIZZARDS);
 	}
 	
-	if (m_PMob->m_EcoSystem == SYSTEM_ELEMENTAL && m_PMob->PMaster && m_PMob->getZone()!=37  && m_PMob->getZone()!=38 )
+	if (m_PMob->m_EcoSystem == SYSTEM_ELEMENTAL && m_PMob->PMaster == NULL && m_PMob->getZone()!=37  && m_PMob->getZone()!=38 )
 	{
 		if (m_PMob->m_Element == element)
 		{
