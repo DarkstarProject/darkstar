@@ -384,6 +384,7 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 	if (PChar->status == STATUS_SHUTDOWN)
 	{
+
 		if (PChar->PParty != NULL)
 		{
 			if(PChar->PParty->m_PAlliance != NULL)
@@ -422,7 +423,20 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* dat
             // удаляем персонажа из linkshell
             PChar->PLinkshell->DelMember(PChar);
         }
-		CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("close_session", gettick()+2500, session, CTaskMgr::TASK_ONCE, map_close_session));
+
+        // safeguarding against weird double logout bug
+        int32 ret = Sql_Query(SqlHandle,"SELECT session_key FROM accounts_sessions WHERE charid = %u", PChar->id);
+
+        // if session doesn't exist don't close session again
+        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        {
+    		CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("close_session", gettick()+2500, session, CTaskMgr::TASK_ONCE, map_close_session));
+        }
+        else
+        {
+            ShowError("SmallPacket0x00D Tried to double logout user\n");
+        }
+
 	}
 	else  // проверка именно при покидании зоны, чтобы не делать двойную проверку при входе в игру
 	{
@@ -2529,7 +2543,7 @@ void SmallPacket0x061(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	PChar->pushPacket(new CMenuMeritPacket(PChar));
 	PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
     PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
-    
+
 	return;
 }
 
@@ -3214,7 +3228,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
         {
             switch(RBUFB(data,(0x04)))
             {
-                case MESSAGE_SAY:	
+                case MESSAGE_SAY:
 					{
 						if (map_config.audit_chat == 1)
 						{
@@ -3226,11 +3240,11 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
 							const char * cC = qStr.c_str();
 							Sql_QueryStr(SqlHandle, cC);
 						}
-						PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_SAY,     data+6)); 
+						PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_SAY,     data+6));
 					}
 					break;
                 case MESSAGE_EMOTION:	PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_EMOTION, data+6)); break;
-                case MESSAGE_SHOUT:		
+                case MESSAGE_SHOUT:
 					{
 						if (map_config.audit_chat == 1)
 						{
@@ -3243,7 +3257,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
 							Sql_QueryStr(SqlHandle, cC);
 						}
 						PChar->loc.zone->PushPacket(PChar, CHAR_INSHOUT, new CChatMessagePacket(PChar, MESSAGE_SHOUT,   data+6));
-						
+
 					}
 					break;
                 case MESSAGE_LINKSHELL:
@@ -3313,7 +3327,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
 							const char * cC = qStr.c_str();
 							Sql_QueryStr(SqlHandle, cC);
 						}
-						PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 256)); 
+						PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 256));
 					}break;
             }
         }
@@ -3384,7 +3398,7 @@ void SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, int8* dat
 				qStr +=PTellRecipient->GetName();
 				qStr +="','";
 				qStr += escape(data+20);
-				qStr +="',current_timestamp());";			
+				qStr +="',current_timestamp());";
 				const char * cC = qStr.c_str();
 				Sql_QueryStr(SqlHandle, cC);
 			}
