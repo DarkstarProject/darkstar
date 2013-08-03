@@ -109,6 +109,12 @@ struct map_session_data_t
 	time_t		last_update;				// time of last packet recv
 	blowfish_t  blowfish;					// unique decypher keys
 	CCharEntity *PChar;						// game char
+    bool        shuttingDown;               // prevents double session closing
+
+    map_session_data_t()
+    {
+        shuttingDown = false;
+    }
 };
 
 extern map_config_t map_config;
