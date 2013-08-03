@@ -952,9 +952,18 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
     StatusEffect->SetFlag(effects::EffectsParams[effect].Flag);
     StatusEffect->SetType(effects::EffectsParams[effect].Type);
 
-	//todo: find a better place to put this?
+
+    //todo: find a better place to put this?
     if(!m_POwner->isDead())
     {
+        if(m_POwner->PPet != NULL)
+        {
+            if(effect == EFFECT_CHARM || effect == EFFECT_CHARM_II)
+            {
+                petutils::DespawnPet(m_POwner);
+            }
+        }
+
     	if(effect == EFFECT_SLEEP || effect == EFFECT_SLEEP_II ||
     		effect == EFFECT_STUN || effect == EFFECT_PETRIFICATION || effect == EFFECT_LULLABY || effect == EFFECT_CHARM || effect == EFFECT_CHARM_II || effect == EFFECT_PENALTY)
         {

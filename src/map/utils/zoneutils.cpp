@@ -66,11 +66,11 @@ void UpdateTreasureSpawnPoint(uint32 npcid, uint32 respawnTime)
 {
 	CBaseEntity* PNpc = zoneutils::GetEntity(npcid, TYPE_NPC);
 
-	if (PNpc != NULL) {	
+	if (PNpc != NULL) {
 
 		int32 ret = Sql_Query(SqlHandle, "SELECT pos, pos_rot, pos_x, pos_y, pos_z FROM `treasure_spawn_points` WHERE npcid=%u ORDER BY RAND() LIMIT 1", npcid);
 
-		if ( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS) {	
+		if ( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
 			PNpc->loc.p.rotation = Sql_GetIntData(SqlHandle,1);
 			PNpc->loc.p.x = Sql_GetFloatData(SqlHandle,2);
 			PNpc->loc.p.y = Sql_GetFloatData(SqlHandle,3);
@@ -285,8 +285,8 @@ void LoadNPCList(CZone* PZone)
 			if(PNpc == NULL)
 			{
 				ShowError("zoneutils::LoadNPCList Npc could not be found (%d)\n", npcid);
-			} 
-			else 
+			}
+			else
 			{
 				PNpc->PBattleAI = new CAINpcDummy(PNpc);
 				PNpc->PBattleAI->SetCurrentAction(ACTION_SPAWN);
@@ -435,10 +435,12 @@ void LoadMOBList(CZone* PZone)
 			PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(Sql_GetIntData(SqlHandle,54));
 
 			PMob->m_Pool = Sql_GetUIntData(SqlHandle,57);
-			
-			PZone->InsertMOB(PMob);
-			
+
+            // must be here first to define mobmods
 			mobutils::InitializeMob(PMob, PZone);
+
+            PZone->InsertMOB(PMob);
+
 			luautils::OnMobInitialize(PMob);
 		}
 	}
@@ -459,7 +461,7 @@ void LoadMOBList(CZone* PZone)
 		{
 			uint32 masterid = (uint32)Sql_GetUIntData(SqlHandle,0);
 			uint32 petid = masterid + (uint32)Sql_GetUIntData(SqlHandle,1);
-	  
+
 			CMobEntity* PMaster = (CMobEntity*)PZone->GetEntity(masterid & 0x0FFF, TYPE_MOB);
 			CMobEntity* PPet = (CMobEntity*)PZone->GetEntity(petid & 0x0FFF, TYPE_MOB);
 
@@ -506,7 +508,7 @@ void LoadZoneList()
 
 		LoadNPCList(PZone);
 		LoadMOBList(PZone);
-		
+
 		PZone->ZoneServer(-1);
 		g_PZoneList[ZoneID] = PZone;
 

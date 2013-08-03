@@ -1033,7 +1033,7 @@ INSERT INTO `mob_skill` VALUES (274,74,900,'Memento_Mori', 0, 7.0, 2000, 1500, 1
 INSERT INTO `mob_skill` VALUES (275,74,901,'Silence_Seal', 1, 15.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (276,74,902,'Envoutement', 0, 7.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (277,74,903,'Danse_Macabre', 0, 10.0, 2000, 2000, 4, 0, 0);
--- INSERT INTO `mob_skill` VALUES (277,74,277,'Gala_Macabre', 0, 7.0, 2000, 1500, 4, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1073,74,903,'Gala_Macabre', 1, 10.0, 2000, 2000, 4, 0, 0);
 -- INSERT INTO `mob_skill` VALUES (274,74,1070,'Final_Retribution', 1, 10.0, 2000, 1500, 4, 0, 0);
 -- Spheroids
 INSERT INTO `mob_skill` VALUES (728,234,685,'Electrocharge', 0, 15.0, 2000, 1500, 4, 0, 0);

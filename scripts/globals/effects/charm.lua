@@ -23,4 +23,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+    target:setTP(0);
 end;

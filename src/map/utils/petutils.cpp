@@ -265,55 +265,55 @@ uint16 GetJugWeaponDamage(CPetEntity* PPet)
 uint16 GetJugBase(CPetEntity * PMob, uint8 rank)
  {
 
- 	uint8 lvl = PMob->GetMLevel();
- 	if(lvl > 50){
- 		switch(rank){
- 			case 1:
- 				return (float)153+(lvl-50)*5.0;
- 			case 2:
- 				return (float)147+(lvl-50)*4.9;
- 			case 3:
- 				return (float)136+(lvl-50)*4.8;
- 			case 4:
- 				return (float)126+(lvl-50)*4.7;
- 			case 5:
- 				return (float)116+(lvl-50)*4.5;
- 			case 6:
- 				return (float)106+(lvl-50)*4.4;
- 			case 7:
- 				return (float)96+(lvl-50)*4.3;
- 		}
- 	} else {
- 		switch(rank){
- 			case 1:
- 				return (float)6+(lvl-1)*3.0;
- 			case 2:
- 				return (float)5+(lvl-1)*2.9;
- 			case 3:
- 				return (float)5+(lvl-1)*2.8;
- 			case 4:
- 				return (float)4+(lvl-1)*2.7;
- 			case 5:
- 				return (float)4+(lvl-1)*2.5;
- 			case 6:
- 				return (float)3+(lvl-1)*2.4;
- 			case 7:
- 				return (float)3+(lvl-1)*2.3;
- 		}
- 	}
-	return 0;
+    uint8 lvl = PMob->GetMLevel();
+    if(lvl > 50){
+        switch(rank){
+            case 1:
+                return (float)153+(lvl-50)*5.0;
+            case 2:
+                return (float)147+(lvl-50)*4.9;
+            case 3:
+                return (float)136+(lvl-50)*4.8;
+            case 4:
+                return (float)126+(lvl-50)*4.7;
+            case 5:
+                return (float)116+(lvl-50)*4.5;
+            case 6:
+                return (float)106+(lvl-50)*4.4;
+            case 7:
+                return (float)96+(lvl-50)*4.3;
+        }
+    } else {
+        switch(rank){
+            case 1:
+                return (float)6+(lvl-1)*3.0;
+            case 2:
+                return (float)5+(lvl-1)*2.9;
+            case 3:
+                return (float)5+(lvl-1)*2.8;
+            case 4:
+                return (float)4+(lvl-1)*2.7;
+            case 5:
+                return (float)4+(lvl-1)*2.5;
+            case 6:
+                return (float)3+(lvl-1)*2.4;
+            case 7:
+                return (float)3+(lvl-1)*2.3;
+        }
+    }
+    return 0;
 }
 uint16 GetBaseToRank(uint8 rank, uint16 lvl)
 {
 	switch (rank)
 	{
-		case 1: return (5+((lvl-1)*50)/100);
-		case 2: return (4+((lvl-1)*45)/100);
-		case 3: return (4+((lvl-1)*40)/100);
-		case 4: return (3+((lvl-1)*35)/100);
-		case 5: return (3+((lvl-1)*30)/100);
-		case 6: return (2+((lvl-1)*25)/100);
-		case 7: return (2+((lvl-1)*20)/100);
+		case 1: return (5+((lvl-1)*50)/100) * 0.9;
+		case 2: return (4+((lvl-1)*45)/100) * 0.9;
+		case 3: return (4+((lvl-1)*40)/100) * 0.9;
+		case 4: return (3+((lvl-1)*35)/100) * 0.9;
+		case 5: return (3+((lvl-1)*30)/100) * 0.9;
+		case 6: return (2+((lvl-1)*25)/100) * 0.9;
+		case 7: return (2+((lvl-1)*20)/100) * 0.9;
 	}
 	return 0;
 }
@@ -342,7 +342,7 @@ void LoadJugStats(CPetEntity* PMob, Pet_t* petStats){
 		growth = 1.07;
 	}
 
-	PMob->health.maxhp = (int16)(18.0 * pow(lvl, growth) * petStats->HPscale);
+	PMob->health.maxhp = (int16)(17.0 * pow(lvl, growth) * petStats->HPscale);
 
 	switch(PMob->GetMJob()){
 	case JOB_PLD:
@@ -352,7 +352,7 @@ void LoadJugStats(CPetEntity* PMob, Pet_t* petStats){
 	case JOB_DRK:
 	case JOB_BLU:
 	case JOB_SCH:
-		PMob->health.maxmp = (int16)(18.2 * pow(lvl,1.1075) * petStats->MPscale);
+		PMob->health.maxmp = (int16)(15.2 * pow(lvl,1.1075) * petStats->MPscale);
 		break;
 	}
 
@@ -1127,12 +1127,6 @@ void Familiar(CBattleEntity* PPet)
     }
 
     float rate = 0.10f;
-
-    if(PPet->PMaster->objtype == TYPE_MOB)
-    {
-        // mobs bst get bigger boost
-        rate = 0.20f;
-    }
 
     // boost hp by 10%
     uint16 boost = (float)PPet->health.maxhp * rate;
