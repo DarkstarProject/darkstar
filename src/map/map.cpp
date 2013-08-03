@@ -1040,4 +1040,5 @@ int32 map_config_read(const int8* cfgName)
 int32 map_garbage_collect(uint32 tick, CTaskMgr::CTask* PTask)
 {
 	luautils::garbageCollect();
+	return 0;
 }
