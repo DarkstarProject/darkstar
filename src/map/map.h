@@ -78,7 +78,7 @@ struct map_config_t
 	float  exp_loss_rate;			// same as exp rate but applies when player dies
 	uint8  thf_in_party_for_drops;	// if 1 thf has to be in party for drops and within exp distance from mob
 	uint8  exp_party_gap_penalties;	// if 1 Party Gap Penalties will apply
-	uint8  fov_party_gap_penalties;	// if 1 FOV Pages Party Gap Panalties will apply 
+	uint8  fov_party_gap_penalties;	// if 1 FOV Pages Party Gap Panalties will apply
 	uint8  fov_allow_alliance;		// if 1 allow alliance to farm fov pages
 	float  exp_retain;				// percentage of normally lost experience to retain upon death
 	int8   exp_loss_level;			// Minimum main job level at which a character may lose experience points.
@@ -107,7 +107,7 @@ struct map_session_data_t
 	int8*		server_packet_data; 		// указатель на собранный пакет, который был ранее отправлен клиенту
 	size_t		server_packet_size;			// размер пакета, который был ранее отправлен клиенту
 	time_t		last_update;				// time of last packet recv
-	blowfish_t  blowfish;					// unique decypher keys 
+	blowfish_t  blowfish;					// unique decypher keys
 	CCharEntity *PChar;						// game char
 };
 
@@ -126,7 +126,7 @@ extern inline map_session_data_t* mapsession_createsession(uint32 ip,uint16 port
 //=======================================================================
 
 int32 recv_parse(int8 *buff,size_t* buffsize,sockaddr_in *from,map_session_data_t*);	// main function to parse recv packets
-int32 parse(int8 *buff,size_t* buffsize,sockaddr_in *from,map_session_data_t*);			// main function parsing the packets 
+int32 parse(int8 *buff,size_t* buffsize,sockaddr_in *from,map_session_data_t*);			// main function parsing the packets
 int32 send_parse(int8 *buff,size_t* buffsize, sockaddr_in *from,map_session_data_t*);	// main function is building big packet
 
 void  map_helpscreen(int32 flag);														// Map-Server Version Screen [venom]
@@ -137,6 +137,8 @@ int32 map_config_default();
 
 int32 map_cleanup(uint32 tick,CTaskMgr::CTask *PTask);									// Clean up timed out players
 int32 map_close_session(uint32 tick,CTaskMgr::CTask *PTask);							// завершение сессии
+
+int32 map_garbage_collect(uint32 tick, CTaskMgr::CTask* PTask);
 
 #endif //_MAP_H
 

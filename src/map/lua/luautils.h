@@ -51,6 +51,7 @@ namespace luautils
 
 	int32 init();
 	int32 free();
+    int32 garbageCollect(); // performs a full garbage collecting cycle
 	int32 print(lua_State*);
 
     int32 SendUncnown0x39Packet(lua_State*);                                    // временное решение для работы гейзеров в Dangruf_Wadi

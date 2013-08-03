@@ -144,6 +144,14 @@ int32 free()
 	return 0;
 }
 
+int32 garbageCollect()
+{
+    ShowStatus(CL_WHITE"luautils::garbageCollect" CL_RESET":lua collecting...");
+    lua_gc(LuaHandle, LUA_GCCOLLECT, 1);
+    ShowMessage("\t - " CL_GREEN"[OK]" CL_RESET"\n");
+    return 0;
+}
+
 /************************************************************************
 *																		*
 *  Переопределение официальной lua функции print						*

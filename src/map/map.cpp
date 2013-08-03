@@ -209,6 +209,9 @@ int32 do_init(int32 argc, int8** argv)
 	CTaskMgr::getInstance()->AddTask("time_server", gettick(), NULL, CTaskMgr::TASK_INTERVAL, time_server, 2400);
 	CTaskMgr::getInstance()->AddTask("map_cleanup", gettick(), NULL, CTaskMgr::TASK_INTERVAL, map_cleanup, 5000);
 
+	// run garbage collect every 20 mins
+	CTaskMgr::getInstance()->AddTask("garbage_collect", gettick(), NULL, CTaskMgr::TASK_INTERVAL, map_garbage_collect, 20 * 60 * 1000);
+
 	CREATE(g_PBuff,   int8, map_config.buffer_size + 20);
     CREATE(PTempBuff, int8, map_config.buffer_size + 20);
 	aFree((void*)map_config.mysql_login);
@@ -1032,4 +1035,9 @@ int32 map_config_read(const int8* cfgName)
 
 	fclose(fp);
 	return 0;
+}
+
+int32 map_garbage_collect(uint32 tick, CTaskMgr::CTask* PTask)
+{
+	luautils::garbageCollect();
 }
