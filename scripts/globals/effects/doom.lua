@@ -27,7 +27,7 @@ function onEffectTick(target,effect)
         target:setHP(0);
     else
         -- doom counter
-        target:messageBasic(112, effect:getPower(), effect:getPower());
+        target:messagePublic(112, target, effect:getPower(), effect:getPower());
     end
 end;
 

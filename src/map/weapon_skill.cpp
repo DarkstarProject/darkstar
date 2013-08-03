@@ -36,6 +36,7 @@ CWeaponSkill::CWeaponSkill(uint16 id)
 	m_PrimarySkillchain   = SC_NONE;
     m_SecondarySkillchain = SC_NONE;
     m_TertiarySkillchain  = SC_NONE;
+    m_mainOnly = 0;
 
 	memset(m_Job, 0, sizeof(m_Job));
 }
@@ -53,6 +54,16 @@ void CWeaponSkill::setType(uint8 type)
 bool CWeaponSkill::isAoE()
 {
     return m_AOE == 2;
+}
+
+bool CWeaponSkill::mainOnly()
+{
+    return m_mainOnly;
+}
+
+void CWeaponSkill::setMainOnly(uint8 main)
+{
+    m_mainOnly = main;
 }
 
 void CWeaponSkill::setJob(int8* jobs)

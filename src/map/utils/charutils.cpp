@@ -1880,8 +1880,7 @@ void BuildingCharWeaponSkills(CCharEntity* PChar)
 	for (std::list<CWeaponSkill*>::iterator it = WeaponSkillList.begin(); it != WeaponSkillList.end(); ++it)
 	{
 		CWeaponSkill* PSkill = *it;
-
-		if (PChar->GetSkill(skill) >=  PSkill->getSkillLevel() && (PSkill->getJob(curMainJob) > 0 || PSkill->getJob(curSubJob) > 0)
+		if (PChar->GetSkill(skill) >=  PSkill->getSkillLevel() && (PSkill->getJob(curMainJob) > 0 || PSkill->getJob(curSubJob) > 0 && !PSkill->mainOnly())
 			|| PSkill->getID() == wsIDs[SLOT_MAIN] || PSkill->getID() == wsIDs[SLOT_SUB]
 			|| isInDynamis && (PSkill->getID() == wsDynIDs[SLOT_MAIN] || PSkill->getID() == wsDynIDs[SLOT_SUB]))
 		{
@@ -1898,7 +1897,7 @@ void BuildingCharWeaponSkills(CCharEntity* PChar)
 		for (std::list<CWeaponSkill*>::iterator it = WeaponSkillList.begin(); it != WeaponSkillList.end(); ++it)
 		{
 			CWeaponSkill* PSkill = *it;
-			if (PChar->GetSkill(skill) >=  PSkill->getSkillLevel() && (PSkill->getJob(curMainJob) > 0 || PSkill->getJob (curSubJob) > 0)
+			if (PChar->GetSkill(skill) >=  PSkill->getSkillLevel() && (PSkill->getJob(curMainJob) > 0 || PSkill->getJob (curSubJob) > 0 && !PSkill->mainOnly())
 				|| PSkill->getID() == wsIDs[SLOT_RANGED]
 				|| isInDynamis && (PSkill->getID() == wsDynIDs[SLOT_RANGED]))
 			{

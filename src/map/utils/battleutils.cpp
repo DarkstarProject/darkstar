@@ -153,7 +153,7 @@ void LoadWeaponSkillsList()
 {
 	memset(g_PWeaponSkillList,0,sizeof(g_PWeaponSkillList));
 
-	const int8* fmtQuery = "SELECT weaponskillid, name, jobs, type, skilllevel, element, animation, `range`, aoe, primary_sc, secondary_sc, tertiary_sc \
+	const int8* fmtQuery = "SELECT weaponskillid, name, jobs, type, skilllevel, element, animation, `range`, aoe, primary_sc, secondary_sc, tertiary_sc, main_only \
 							FROM weapon_skills \
 							WHERE weaponskillid < %u \
 							ORDER BY type, skilllevel ASC";
@@ -177,6 +177,7 @@ void LoadWeaponSkillsList()
             PWeaponSkill->setPrimarySkillchain(Sql_GetIntData(SqlHandle, 9));
             PWeaponSkill->setSecondarySkillchain(Sql_GetIntData(SqlHandle, 10));
             PWeaponSkill->setTertiarySkillchain(Sql_GetIntData(SqlHandle, 11));
+            PWeaponSkill->setMainOnly(Sql_GetIntData(SqlHandle, 12));
 
 			g_PWeaponSkillList[PWeaponSkill->getID()] = PWeaponSkill;
 			g_PWeaponSkillsList[PWeaponSkill->getType()].push_back(PWeaponSkill);
