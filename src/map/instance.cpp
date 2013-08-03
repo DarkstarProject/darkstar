@@ -43,6 +43,7 @@ CInstance::CInstance(CInstanceHandler* hand, uint16 id, INSTANCETYPE type){
 	m_FastestTime = 3600;
 	m_DynaUniqueID = 0;
 	treasureChestSpawned = false;
+	fightTick = 0;
 }
 
 uint16 CInstance::getID(){

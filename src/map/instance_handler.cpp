@@ -135,6 +135,7 @@ void CInstanceHandler::handleInstances(uint32 tick){
 				//handle locking of bcnm when engaged
 				if(!PInstance->locked && PInstance->isPlayersFighting()){
 					PInstance->lockBcnm();
+					PInstance->fightTick = tick;
 					PInstance->locked = true;
 					ShowDebug("BCNM %i instance %i : Battlefield has been locked. No more players can enter.\n",PInstance->getID(),PInstance->getInstanceNumber());
 				}

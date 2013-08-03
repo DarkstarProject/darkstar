@@ -100,7 +100,7 @@ namespace instanceutils{
 				{
 
 					PMob->m_instanceID = instance->getInstanceNumber();
-			
+
 					if (condition & CONDITION_SPAWNED_AT_START)
 					{
 						// This condition is needed for some mob at dynamis, else he don't pop
@@ -195,8 +195,15 @@ namespace instanceutils{
 		//handle odd cases e.g. stop fight @ x% HP
 
 		//handle Maat fights
-		if(instance->getID()==1){//maat_horlais
-			if(instance->isEnemyBelowHPP(50)){
+		if(instance->locked && (instance->m_RuleMask & RULES_MAAT))
+		{
+			// survive for 5 mins
+			if(instance->getPlayerMainJob() == JOB_WHM && (tick - instance->fightTick) > 5 * 60 * 1000)
+			{
+				return true;
+			}
+
+			if((instance->m_RuleMask & RULES_MAAT) && instance->isEnemyBelowHPP(10)){
 				return true;
 			}
 		}
@@ -347,7 +354,7 @@ namespace instanceutils{
 		else
 		{
 		  for (uint8 sizeoflist=0; sizeoflist < LootList->size() ; ++sizeoflist){
-			    if(LootList->at(sizeoflist).LootGroupId > maxloot){    
+			    if(LootList->at(sizeoflist).LootGroupId > maxloot){
 			    maxloot= LootList->at(sizeoflist).LootGroupId;
 				}
 		  }
@@ -372,7 +379,7 @@ namespace instanceutils{
 				}
 			}
 		  }
-		}	   
+		}
 	//user opened chest, complete bcnm
 		  if(instzone!=37 && instzone!=38 ){
 	       instance->winBcnm();
@@ -380,9 +387,9 @@ namespace instanceutils{
 		  else{
 		   instance->m_NpcList.clear();
 		 }
-		
+
 	}
-	
+
 	bool spawnSecondPartDynamis(CInstance* instance){
 		DSP_DEBUG_BREAK_IF(instance==NULL);
 

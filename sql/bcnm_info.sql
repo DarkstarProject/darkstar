@@ -34,16 +34,16 @@ CREATE TABLE `bcnm_info` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56;
 
 -- ----------------------------
--- Records 
+-- Records
 -- ----------------------------
 INSERT INTO `bcnm_info` VALUES ('0', '139', 'rank_2_mission', null, null, '1800', '25', '6', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('1', '139', 'tails_of_woe', null, null, '1800', '40', '6', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('2', '139', 'dismemberment_brigade', null, null, '1800', '60', '6', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('3', '139', 'the_secret_weapon', null, null, '1800', '99', '6', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('4', '139', 'hostile_herbivores', null, null, '1800', '50', '6', '0', '15');
-INSERT INTO `bcnm_info` VALUES ('5', '139', 'shattering_stars', null, null, '600', '99', '1', '0', '6');
-INSERT INTO `bcnm_info` VALUES ('6', '139', 'shattering_stars', null, null, '600', '99', '1', '0', '6');
-INSERT INTO `bcnm_info` VALUES ('7', '139', 'shattering_stars', null, null, '600', '99', '1', '0', '6');
+INSERT INTO `bcnm_info` VALUES ('5', '139', 'shattering_stars', null, null, '600', '99', '1', '0', '22');
+INSERT INTO `bcnm_info` VALUES ('6', '139', 'shattering_stars', null, null, '600', '99', '1', '0', '22');
+INSERT INTO `bcnm_info` VALUES ('7', '139', 'shattering_stars', null, null, '600', '99', '1', '0', '22');
 INSERT INTO `bcnm_info` VALUES ('8', '139', 'carapace_combatants', null, null, '900', '30', '3', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('9', '139', 'shooting_fish', null, null, '900', '20', '3', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('10', '139', 'dropping_like_flies', null, null, '1800', '30', '6', '0', '15');
@@ -69,9 +69,9 @@ INSERT INTO `bcnm_info` VALUES ('66', '144', 'grimshell_shocktroopers', null, nu
 INSERT INTO `bcnm_info` VALUES ('67', '144', 'on_my_way', null, null, '1800', '99', '6', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('68', '144', 'thief_in_norg', null, null, '1800', '99', '6', '0', '6');
 INSERT INTO `bcnm_info` VALUES ('69', '144', '3_2_1', null, null, '1800', '50', '6', '0', '15');
-INSERT INTO `bcnm_info` VALUES ('70', '144', 'shattering_stars', null, null, '600', '99', '1', '0', '6');
-INSERT INTO `bcnm_info` VALUES ('71', '144', 'shattering_stars', null, null, '600', '99', '1', '0', '6');
-INSERT INTO `bcnm_info` VALUES ('72', '144', 'shattering_stars', null, null, '600', '99', '1', '0', '6');
+INSERT INTO `bcnm_info` VALUES ('70', '144', 'shattering_stars', null, null, '600', '99', '1', '0', '22');
+INSERT INTO `bcnm_info` VALUES ('71', '144', 'shattering_stars', null, null, '600', '99', '1', '0', '22');
+INSERT INTO `bcnm_info` VALUES ('72', '144', 'shattering_stars', null, null, '600', '99', '1', '0', '22');
 INSERT INTO `bcnm_info` VALUES ('73', '144', 'birds_of_a_feather', null, null, '900', '30', '3', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('74', '144', 'crustacean_conundrum', null, null, '900', '20', '3', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('75', '144', 'grove_guardians', null, null, '1800', '30', '6', '0', '15');
@@ -90,9 +90,9 @@ INSERT INTO `bcnm_info` VALUES ('97', '146', 'steamed_sprouts', null, null, '180
 INSERT INTO `bcnm_info` VALUES ('98', '146', 'divine_punishers', null, null, '1800', '60', '6', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('99', '146', 'saintly_invitation', null, null, '1800', '99', '6', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('100', '146', 'treasures_and_tribulations', null, null, '1800', '50', '6', '0', '15');
-INSERT INTO `bcnm_info` VALUES ('101', '146', 'shattering_stars', null, null, '600', '99', '1', '0', '6');
-INSERT INTO `bcnm_info` VALUES ('102', '146', 'shattering_stars', null, null, '600', '99', '1', '0', '6');
-INSERT INTO `bcnm_info` VALUES ('103', '146', 'shattering_stars', null, null, '600', '99', '1', '0', '6');
+INSERT INTO `bcnm_info` VALUES ('101', '146', 'shattering_stars', null, null, '600', '99', '1', '0', '22');
+INSERT INTO `bcnm_info` VALUES ('102', '146', 'shattering_stars', null, null, '600', '99', '1', '0', '22');
+INSERT INTO `bcnm_info` VALUES ('103', '146', 'shattering_stars', null, null, '600', '99', '1', '0', '22');
 INSERT INTO `bcnm_info` VALUES ('104', '146', 'creeping_doom', null, null, '900', '30', '3', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('105', '146', 'charming_trio', null, null, '900', '20', '3', '105', '15');
 INSERT INTO `bcnm_info` VALUES ('106', '146', 'harem_scarem', null, null, '1800', '30', '6', '0', '15');
@@ -118,9 +118,9 @@ INSERT INTO `bcnm_info` VALUES ('163', '165', 'survival_of_the_wisest', null, nu
 INSERT INTO `bcnm_info` VALUES ('164', '165', 'smash_a_malevolent_menace', null, null, '1800', '90', '6', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('192', '168', 'through_the_quicksand_caves', null, null, '1800', '99', '6', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('193', '168', 'legion_xi_comitatensis', null, null, '1800', '60', '6', '0', '15');
-INSERT INTO `bcnm_info` VALUES ('194', '168', 'shattering_stars', null, null, '600', '99', '1', '0', '6');
-INSERT INTO `bcnm_info` VALUES ('195', '168', 'shattering_stars', null, null, '600', '99', '1', '0', '6');
-INSERT INTO `bcnm_info` VALUES ('196', '168', 'shattering_stars', null, null, '600', '99', '1', '0', '6');
+INSERT INTO `bcnm_info` VALUES ('194', '168', 'shattering_stars', null, null, '600', '99', '1', '0', '22');
+INSERT INTO `bcnm_info` VALUES ('195', '168', 'shattering_stars', null, null, '600', '99', '1', '0', '22');
+INSERT INTO `bcnm_info` VALUES ('196', '168', 'shattering_stars', null, null, '600', '99', '1', '0', '22');
 INSERT INTO `bcnm_info` VALUES ('197', '168', 'cactuar_suave', null, null, '1800', '0', '6', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('198', '168', 'eye_of_the_storm', null, null, '1800', '0', '6', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('199', '168', 'scarlet_king', null, null, '1800', '0', '6', '0', '15');
@@ -168,9 +168,9 @@ INSERT INTO `bcnm_info` VALUES ('513', '206', 'come_into_my_parlor', null, null,
 INSERT INTO `bcnm_info` VALUES ('514', '206', 'e-vase-ive_action', null, null, '1800', '0', '6', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('515', '206', 'infernal_swarm', null, null, '1800', '0', '6', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('516', '206', 'heir_to_the_light', null, null, '1800', '99', '6', '0', '5');
-INSERT INTO `bcnm_info` VALUES ('517', '206', 'shattering_stars', null, null, '600', '99', '1', '0', '6');
-INSERT INTO `bcnm_info` VALUES ('518', '206', 'shattering_stars', null, null, '600', '99', '1', '0', '6');
-INSERT INTO `bcnm_info` VALUES ('519', '206', 'shattering_stars', null, null, '600', '99', '1', '0', '6');
+INSERT INTO `bcnm_info` VALUES ('517', '206', 'shattering_stars', null, null, '600', '99', '1', '0', '22');
+INSERT INTO `bcnm_info` VALUES ('518', '206', 'shattering_stars', null, null, '600', '99', '1', '0', '22');
+INSERT INTO `bcnm_info` VALUES ('519', '206', 'shattering_stars', null, null, '600', '99', '1', '0', '22');
 INSERT INTO `bcnm_info` VALUES ('520', '206', 'demolition_squad', null, null, '1800', '60', '6', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('521', '206', 'die_by_the_sword', null, null, '900', '30', '3', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('522', '206', 'let_sleeping_dogs_die', null, null, '1800', '30', '6', '0', '15');
@@ -285,7 +285,7 @@ INSERT INTO `bcnm_info` VALUES ('1295', '38', 'CS_Apollyon_II', null, null, '180
 INSERT INTO `bcnm_info` VALUES ('1296', '38', 'Central_Apollyon', null, null, '2700', '0', '18', '0', '7');
 INSERT INTO `bcnm_info` VALUES ('1297', '38', 'Central_Apollyon_II', null, null, '2700', '0', '18', '0', '7');
 
-INSERT INTO `bcnm_info` VALUES ('1298', '37', 'Temenos_Western_Tower', null, null,  '1800', '0', '18', '0', '7');	
+INSERT INTO `bcnm_info` VALUES ('1298', '37', 'Temenos_Western_Tower', null, null,  '1800', '0', '18', '0', '7');
 INSERT INTO `bcnm_info` VALUES ('1299', '37', 'Temenos_Northern_Tower', null, null,  '1800', '0', '18', '0', '7');
 INSERT INTO `bcnm_info` VALUES ('1300', '37', 'Temenos_Eastern_Tower', null, null,  '1800', '0', '18', '0', '7');
 INSERT INTO `bcnm_info` VALUES ('1301', '37', 'Central_Temenos_Basement', null, null,	 '2700', '0', '18', '0', '7');
@@ -295,7 +295,3 @@ INSERT INTO `bcnm_info` VALUES ('1304', '37', 'Central_Temenos_2nd_Floor', null,
 INSERT INTO `bcnm_info` VALUES ('1305', '37', 'Central_Temenos_3rd_Floor', null, null,	 '2700', '0', '18', '0', '7');
 INSERT INTO `bcnm_info` VALUES ('1306', '37', 'Central_Temenos_4th_Floor', null, null, '3600', '0', '18', '0', '7');
 INSERT INTO `bcnm_info` VALUES ('1307', '37', 'Central_Temenos_4th_Floor_II', null, null, '3600', '0', '18', '0', '7');
-   
-
-
-
