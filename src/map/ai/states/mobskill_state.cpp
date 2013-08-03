@@ -22,6 +22,7 @@
 */
 
 #include "mobskill_state.h"
+#include "../../mobskill.h"
 #include "../../entities/mobentity.h"
 
 CMobSkillState::CMobSkillState(CBattleEntity* PEntity, CTargetFind* PTargetFind)
@@ -32,6 +33,12 @@ CMobSkillState::CMobSkillState(CBattleEntity* PEntity, CTargetFind* PTargetFind)
   m_PMobSkill = NULL;
   m_startTime = 0;
   m_useTime = 0;
+}
+
+CMobSkill* CMobSkillState::PickSkill(PICKSKILL pickFlags = PICKSKILL_RANDOM)
+{
+  // pick and return a random skill
+  return NULL;
 }
 
 bool CMobSkillState::CanUseSkill(CMobSkill* PMobSkill, CBattleEntity* PTarget)

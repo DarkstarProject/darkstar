@@ -63,6 +63,7 @@ CBattleEntity::CBattleEntity()
 	m_modStat[MOD_HTHRES]	 = 1000;
 	m_modStat[MOD_IMPACTRES] = 1000;
 
+	m_Immunity = 0;
 	charmTime = 0;
 	isCharmed = false;
 }

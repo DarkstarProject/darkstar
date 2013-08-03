@@ -29,24 +29,13 @@
 
 #define MAX_MOBSKILL_ID	4096
 
-enum SKILLBEHAVIOUR
-{
-	SKILLBEHAVIOUR_NONE						= 0x00,
-	SKILLBEHAVIOUR_USE_ONCE					= 0x01,
-	SKILLBEHAVIOUR_BELOW_PCT				= 0x02,
-	SKILLBEHAVIOUR_ABOVE_PCT				= 0x04,
-	SKILLBEHAVIOUR_USE_ALWAYS				= 0x08,
-	SKILLBEHAVIOUR_USE_ON_RECEIVE_MAGIC		= 0x10,
-	SKILLBEHAVIOUR_USE_ON_RECEIVE_PHYSICAL	= 0x20,
-	SKILLBEHAVIOUR_USE_BEFORE_DEATH			= 0x40,
-	SKILLBEHAVIOUR_USE_AT_FULL_HP			= 0x80,
-};
-
+// TODO: implement this
 enum SKILLFLAG
 {
 	SKILLFLAG_NONE = 0,
 	SKILLFLAG_WS = 1,
-	SKILLFLAG_TWO_HOUR = 2
+	SKILLFLAG_TWO_HOUR = 2,
+    SKILLFLAG_SPECIAL = 3
 };
 
 class CMobSkill
@@ -98,9 +87,6 @@ public:
 	const int8* getName();
 	void		setName(int8* name);
 
-	uint16		m_SkillCondition;		//the condition of the skill, used for special tp moves, e.g. used sub 50% HP
-	uint16		m_SkillConditionValue;	//the condition value, e.g. SkillCondition=BELOW_PCT SkillConditionValue=50
-										//					so TP move can only be used below 50% HP
 private:
 
 	uint16		m_ID;

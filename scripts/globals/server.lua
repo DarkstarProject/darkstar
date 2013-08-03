@@ -1,7 +1,7 @@
 -----------------------------------
 -- Note from Tenjou:
 -- now you can customize it a little more in the settings!
--- 
+--
 -----------------------------------
 
 require("scripts/globals/harvest_festivals");
@@ -31,18 +31,18 @@ function onServerStart()
 	if(isHalloweenEnabled() ~= 0) then
 		applyHalloweenNpcCostumes()
 	end
-	
+
 	SetRegionalConquestOverseers()
-  
+
   -- Charybdis PH alternates, remove one
   DespawnMob(17498518);
-  
+
   -- Timed Spawns
   SetTimedSpawns();
 
   -- Treasure Spawns;
   SetTreasureSpawns();
-  
+
   -- Spawns Silk Caterpillar (temporary until someone implements a way to make it spawn properly)
   SpawnMob(17227782,300,660);
 end;
@@ -53,7 +53,7 @@ end;
 
 function SetExplorerMoogles()
 
-	local Moogles  = 
+	local Moogles  =
 	{
 		17723639,	-- Northern_San_d'Oria
 		17735848,	-- Bastok_Mines
@@ -61,9 +61,9 @@ function SetExplorerMoogles()
 		17793123,	-- Selbina
 		17797245,	-- Mhaura
 	}
-	
+
 	i = 1;
-	while i <= (table.getn(Moogles)) do	
+	while i <= (table.getn(Moogles)) do
 		npc = GetNPCByID(Moogles[i]);
 		npc:setStatus(0);
 		i = i + 1;
@@ -77,7 +77,7 @@ end;
 
 function SetFieldManual()
 
-	local FieldManuals  = 
+	local FieldManuals  =
 	{
         17187512,17187513,17191493,17191494,
         17195670,17195671,17199744,17199745,
@@ -99,9 +99,9 @@ function SetFieldManual()
         17301585,17301586,17310097,17310098,
         17310099,17310100,17310101,17310102,
 	}
-	
+
 	i = 1;
-	while i <= (table.getn(FieldManuals)) do	
+	while i <= (table.getn(FieldManuals)) do
 		npc = GetNPCByID(FieldManuals[i]);
 		npc:setStatus(0);
 		i = i + 1;
@@ -115,15 +115,15 @@ end;
 
 function SetTimedSpawns()
 
-  local NMs  = 
+  local NMs  =
   {
-    17649693, -- Mysticmaker Profblix 
+    17649693, -- Mysticmaker Profblix
     17645578, -- Bune
     17240413, -- Kreutzet
     17490234, -- Guivre
     17289575, -- King Vinegarroon
     17244539, -- Cactrot Rapido
-    17244372, -- Centurio_XII-I	
+    17244372, -- Centurio_XII-I
     17408018, -- Fafnir
     17596720, -- Serket
     17596506, -- Old Two-Wings
@@ -144,7 +144,7 @@ function SetTimedSpawns()
     17264946, -- Coo Keja the Unseen
     17207657, -- Ahtu
     17285460, -- Bisque-heeled Sunberry
-    17285526, -- Bright-handed Kunberry	
+    17285526, -- Bright-handed Kunberry
     17285220, -- Woodland Sage
     17461338, -- Drexerion the Condemned
     17461343, -- Phanduron the Condemned
@@ -153,8 +153,13 @@ function SetTimedSpawns()
 
   i = 1;
   while i <= (table.getn(NMs)) do
-    UpdateNMSpawnPoint(NMs[i]);
-    GetMobByID(NMs[i]):setRespawnTime(math.random((900),(10800))); -- 15-180 minute
+    local mob = GetMobByID(NMs[i]);
+    if(mob == nil) then
+      printf("Error trying to load undefined mob (%d)", NMs[i]);
+    else
+      UpdateNMSpawnPoint(NMs[i]);
+      mob:setRespawnTime(math.random((900),(10800))); -- 15-180 minute
+    end
     i = i + 1;
   end
 
@@ -165,7 +170,7 @@ end;
 ----------------------------------
 
 function SetTreasureSpawns()
-   local chests  = 
+   local chests  =
    {
        16814554,
        16822524,
@@ -196,7 +201,7 @@ function SetTreasureSpawns()
        17649890
    }
 
-   local coffers  = 
+   local coffers  =
    {
        16826620,
        17310019,

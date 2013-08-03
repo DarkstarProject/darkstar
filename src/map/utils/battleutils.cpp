@@ -220,8 +220,6 @@ void LoadMobSkillsList()
 			PMobSkill->setFlag(Sql_GetIntData(SqlHandle,9));
 			PMobSkill->setParam(Sql_GetIntData(SqlHandle,10));
 			PMobSkill->setMsg(185); //standard damage message. Scripters will change this.
-			PMobSkill->m_SkillCondition = SKILLBEHAVIOUR_NONE;
-			PMobSkill->m_SkillConditionValue = 0;
 			g_PMobSkillList[PMobSkill->getID()] = PMobSkill;
 
 			if(PMobSkill->getfamilyID() >= MAX_MOB_FAMILY)

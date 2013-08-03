@@ -29,10 +29,18 @@
 class CMobSkill;
 class CMobEntity;
 
+enum PICKSKILL {
+  PICKSKILL_RANDOM = 0,
+  PICKSKILL_AOE = 1,
+  PICKSKILL_SINGLE = 2
+};
+
 class CMobSkillState : public CState
 {
   public:
     CMobSkillState(CBattleEntity* PEntity, CTargetFind* PTargetFind);
+
+    CMobSkill* PickSkill(PICKSKILL pickFlags);
 
     bool CanUseSkill(CMobSkill* PMobSkill, CBattleEntity* PTarget);
     bool CanUseTwoHour(CBattleEntity* PTarget);

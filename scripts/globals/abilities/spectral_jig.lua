@@ -1,7 +1,7 @@
 -----------------------------------
 -- Ability: Spectral jig
 -----------------------------------
- 
+
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
@@ -29,8 +29,8 @@ function OnUseAbility(player, target, ability)
    end
 
    if(player:hasStatusEffect(EFFECT_SNEAK) == false) then
-      player:addStatusEffect(EFFECT_SNEAK,0,10,finalDuration);
-      player:addStatusEffect(EFFECT_INVISIBLE,0,10,finalDuration);
+      player:addStatusEffect(EFFECT_SNEAK,0,10,finalDuration * SNEAK_INVIS_DURATION_MULTIPLIER);
+      player:addStatusEffect(EFFECT_INVISIBLE,0,10,finalDuration * SNEAK_INVIS_DURATION_MULTIPLIER);
       ability:setMsg(532); -- Gains the effect of sneak and invisible
    else
       ability:setMsg(283); -- no effect on player.
