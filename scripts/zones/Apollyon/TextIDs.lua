@@ -7,3 +7,4 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
 
 CONDITION_FOR_LIMBUS = 7028;
+CHIP_TRADE = 7022;

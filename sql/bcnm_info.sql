@@ -280,8 +280,8 @@ INSERT INTO `bcnm_info` VALUES ('1291', '38', 'SW_Apollyon', null, null, '1800',
 
 INSERT INTO `bcnm_info` VALUES ('1292', '38', 'NE_Apollyon', null, null, '1800', '0', '18', '0', '7');
 INSERT INTO `bcnm_info` VALUES ('1293', '38', 'SE_Apollyon', null, null, '1800', '0', '18', '0', '7');
-INSERT INTO `bcnm_info` VALUES ('1294', '38', 'CS_Apollyon' , null, null, '1800', '0', '18', '0', '7');
-INSERT INTO `bcnm_info` VALUES ('1295', '38', 'CS_Apollyon_II', null, null, '1800', '0', '18', '0', '7');
+INSERT INTO `bcnm_info` VALUES ('1294', '38', 'CS_Apollyon' , null, null, '1200', '0', '18', '0', '7');
+INSERT INTO `bcnm_info` VALUES ('1295', '38', 'CS_Apollyon_II', null, null, '1200', '0', '18', '0', '7');
 INSERT INTO `bcnm_info` VALUES ('1296', '38', 'Central_Apollyon', null, null, '2700', '0', '18', '0', '7');
 INSERT INTO `bcnm_info` VALUES ('1297', '38', 'Central_Apollyon_II', null, null, '2700', '0', '18', '0', '7');
 

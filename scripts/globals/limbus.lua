@@ -258,8 +258,52 @@ end
  
  return daykill;
 end;
+--------------------------------------------------
+-- alreadyReceived
+-- I use this function for TE and Boss Trigger
+--------------------------------------------------
+
+function alreadyReceived(player,number,region)
+
+	local dynaVar = 0;
+	local bit = {};
+	local pZone = player:getZone();
 
 
+    if(pZone == 37) then
+		
+    elseif(pZone == 38) then
+		LimbusVar = GetServerVariable("[CS_Apollyon]Already_Received");
+	end
+
+	for i = 12,0,-1 do
+		twop = 2^i;
+		if(LimbusVar >= twop) then
+			bit[i+1] = 1;
+			LimbusVar = LimbusVar - twop;
+		else
+			bit[i+1] = 0;
+		end;
+	end;
+	-- printf("received %u",bit[number]);
+	if(bit[number] == 0) then
+		return false;
+	else
+		return true;
+	end
+end;
+
+function addLimbusList(player,number,Region)
+
+	local pZone = player:getZone();
+
+	if(pZone == 37) then
+	elseif(pZone == 38) then
+		SetServerVariable("[CS_Apollyon]Already_Received",GetServerVariable("[CS_Apollyon]Already_Received") + number);
+	end
+
+
+end;
 function IsKeyExist(Key) -- return true if Key already exist for another linbus
 local H= false;
 local KeyAlreadyExist = {
@@ -362,6 +406,17 @@ if(ActionValue==0 or ActionValue==21 or ActionValue==22 or ActionValue==23)then
   else
      return false;
   end
+end;
+function despawnLimbusCS()
+ for n= 16933130,16933136,1 do
+   if(IsMobDead(n)==false)then DespawnMob(n);end
+ end
+ for n= 16933138,16933143,1 do
+   if(IsMobDead(n)==false)then DespawnMob(n);end
+ end
+ for n= 16933145,16933152,1 do
+   if(IsMobDead(n)==false)then DespawnMob(n);end
+ end
 end;
 
 function SpawnCofferSWfloor3()

@@ -2197,35 +2197,11 @@ INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932988','1');-- 'Kronprinz_Be
 --               APPOLYON CS
 -- //////////////////////////////////////////////////////////////
 INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933129','1');-- 'Carnagechief_Jackbodokk'
-INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933130','1');-- 'Grognard_Mesmerizer'
-INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933131','1');-- 'Grognard_Neckchopper'
-INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933132','1');-- 'GrognardFootso'
-INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933133','1');-- 'GrognardGrappl'
-INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933134','1');-- 'GrognardPredat'
-INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933135','1');-- 'GrognardImpale'
-INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933136','1');-- 'Orc sWyvern'
-
 INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933137','1');-- 'Na QbaChirurge'
-INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933138','1');-- 'StarRubyQuada'
-INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933139','1');-- 'WootzQuadav'
-INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933140','1');-- 'FossilQuadav'
-INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933141','1');-- 'StarSapphireQ'
-INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933142','1');-- 'WhitegoldQuada'
-INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933143','1');-- 'LightsteelQuad'
-
 INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933144','1');-- 'DeeWapatheDe'
-INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933145','1');-- 'Yagudo sElemen'
-INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933146','1');-- 'Yagudo sAvatar'
-INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933147','1');-- 'YagudoArchprie'
-INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933148','1');-- 'YagudoKnightT'
-INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933149','1');-- 'YagudoDiscipli'
-INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933150','1');-- 'YagudoPrelates'
-INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933151','1');-- 'YagudoKapellme'
-INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933152','1');-- 'YagudoEradicat'
 -- //////////////////////////////////////////////////////////////
 --               APPOLYON CENTRAL
 -- //////////////////////////////////////////////////////////////
-
 INSERT INTO `bcnm_instance` VALUES ('1296', '6','16933124','1');-- 'Proto-Omega'
 
 

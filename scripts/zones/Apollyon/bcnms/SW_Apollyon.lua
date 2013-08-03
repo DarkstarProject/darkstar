@@ -3,7 +3,7 @@
 -- Name: 
 -----------------------------------
 require("scripts/globals/limbus");
-
+require("scripts/globals/keyitems");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function OnBcnmRegister(player,instance)

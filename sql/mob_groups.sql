@@ -1088,13 +1088,13 @@ INSERT INTO `mob_groups` VALUES (1046,341,38,0,128,4409,8250,0,15,17); -- Bardha
 INSERT INTO `mob_groups` VALUES (1047,345,38,0,128,4409,8500,0,75,80); -- Barometz            dropp OK  HP OK MP OK
 INSERT INTO `mob_groups` VALUES (1048,409,38,0,128,4410,10000,0,80,85); -- Bialozar           dropp OK  HP OK MP OK
 INSERT INTO `mob_groups` VALUES (1049,507,38,0,128,4409,7000,0,75,80); -- Borametz            dropp OK  HP OK MP OK
-INSERT INTO `mob_groups` VALUES (1050,644,38,0,128,4416,10000,0,80,85); -- Carnagechief_Jackbodokk
+INSERT INTO `mob_groups` VALUES (1050,644,38,0,128,4416,15000,0,80,85); -- Carnagechief_Jackbodokk
 INSERT INTO `mob_groups` VALUES (1051,796,38,0,128,4410,9000,0,75,80); -- Cornu          dropp OK  HP OK MP OK
 INSERT INTO `mob_groups` VALUES (1052,841,38,0,128,4415,13000,0,80,85); -- Criosphinx   dropp OK  HP OK MP OK
 INSERT INTO `mob_groups` VALUES (1053,843,38,0,128,4413,12000,0,80,85); -- Cronos       dropp OK  HP OK MP OK
 INSERT INTO `mob_groups` VALUES (1054,883,38,0,128,4411,15000,0,80,85); -- Cynoprosopi             dropp OK  HP OK MP OK
 INSERT INTO `mob_groups` VALUES (1055,913,38,0,128,4414,8000,2000,75,80); -- Dark_Elemental          dropp OK  HP OK MP OK
-INSERT INTO `mob_groups` VALUES (1056,952,38,0,128,4416,10000,0,0,0); -- Dee_Wapa_the_Desolator          dropp OK  HP OK MP OK
+INSERT INTO `mob_groups` VALUES (1056,952,38,0,128,4416,15000,0,0,0); -- Dee_Wapa_the_Desolator          dropp OK  HP OK MP OK
 INSERT INTO `mob_groups` VALUES (1057,1160,38,0,128,4414,8000,0,75,80); -- Earth_Elemental          dropp OK  HP OK MP OK
 INSERT INTO `mob_groups` VALUES (1058,1263,38,0,128,4413,12000,0,80,85); -- Evil_Armory       dropp OK  HP OK MP OK
 INSERT INTO `mob_groups` VALUES (1059,1341,38,0,128,4414,8000,2000,75,80); -- Fire_Elemental          dropp OK  HP OK MP OK
@@ -1125,7 +1125,7 @@ INSERT INTO `mob_groups` VALUES (1083,2413,38,0,128,4414,8000,2000,75,80); -- Li
 INSERT INTO `mob_groups` VALUES (1084,2634,38,0,128,4409,7500,0,75,80); --  Metalloid_Amoeba   dropp OK  HP OK MP OK
 INSERT INTO `mob_groups` VALUES (1085,2661,38,0,128,4411,19000,0,80,85); -- Millenary_Mossback  dropp OK  HP OK MP OK
 INSERT INTO `mob_groups` VALUES (1086,2757,38,0,128,4410,9000,0,75,80); -- Mountain_Buffalo   dropp OK  HP OK MP OK
-INSERT INTO `mob_groups` VALUES (1087,2815,38,0,128,4416,10000,0,80,85); -- Na_Qba_Chirurgeon          dropp OK  HP OK MP OK
+INSERT INTO `mob_groups` VALUES (1087,2815,38,0,128,4416,15000,0,80,85); -- Na_Qba_Chirurgeon          dropp OK  HP OK MP OK
 INSERT INTO `mob_groups` VALUES (1088,2959,38,0,128,4413,12000,0,80,85); -- Okeanos       dropp OK  HP OK MP OK
 INSERT INTO `mob_groups` VALUES (1089,3048,38,0,128,0,3000,500,60,64); -- Orc_s_Wyvern          dropp OK  HP OK MP OK
 INSERT INTO `mob_groups` VALUES (1090,3160,38,0,128,4409,11000,0,80,85); -- Pluto       dropp OK  HP OK MP OK

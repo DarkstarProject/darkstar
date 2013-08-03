@@ -31,6 +31,8 @@ zone:registerRegion(4, 421,-4,-98,   455,4,-78); -- appolyon NE register
 zone:registerRegion(5, -470,-4,-629,  -459,4,-620); -- appolyon SW register
 zone:registerRegion(6, -455,-4,-95,   -425,4,-67); -- appolyon NW register
 
+zone:registerRegion(7, -3,-4,-214,   3,4,-210); -- appolyon CS register
+zone:registerRegion(8, -3,-4, 207,   3,4, 215); -- appolyon Center register
 
 zone:registerRegion(20,   396,-4,-522,   403,4,-516); -- appolyon SE telporter floor1 to floor2
 zone:registerRegion(21,   116,-4,-443,   123,4,-436); -- appolyon SE telporter floor2 to floor3
@@ -111,8 +113,16 @@ function onRegionEnter(player,region)
 			      RegisterLimbusInstance(player,1290);
 			  end	--create instance appolyon NW	  
 		end,
-		
-		
+		[7] = function (x) 
+		      if(player:hasStatusEffect(EFFECT_BATTLEFIELD) == false)then 
+			      RegisterLimbusInstance(player,1294);
+			  end	--create instance appolyon CS	  
+		end,		
+		[8] = function (x) 
+		      if(player:hasStatusEffect(EFFECT_BATTLEFIELD) == false)then 
+			      RegisterLimbusInstance(player,1296);
+			  end	--create instance appolyon CENTER	  
+		end,	
 		
 		-- ///////////////////////APPOLLYON SE TELEPORTER///////////////////////////////////////////
 		[20] = function (x) 
