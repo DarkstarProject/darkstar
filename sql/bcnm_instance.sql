@@ -2026,6 +2026,9 @@ INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933039','1');-- 'Flying_Spear
 INSERT INTO `bcnm_instance` VALUES ('1293', '4','16933040','1');-- 'Flying_Spear'
 
 -- ----------------------------------------------------------------
+-- //////////////////////////////////////////////////////////////
+--               APPOLYON  NE
+-- //////////////////////////////////////////////////////////////
 INSERT INTO `bcnm_instance` VALUES ('1292', '3','16933044','1');-- 'Goobbue_Harvestet'
 INSERT INTO `bcnm_instance` VALUES ('1292', '3','16933045','1');-- 'Barometz'
 INSERT INTO `bcnm_instance` VALUES ('1292', '3','16933046','1');-- 'Borametz'
@@ -2090,3 +2093,145 @@ INSERT INTO `bcnm_instance` VALUES ('1292', '3','16933119','1');-- 'Troglodyte_D
 INSERT INTO `bcnm_instance` VALUES ('1292', '3','16933120','1');-- 'Troglodyte_Dhalmel'
 INSERT INTO `bcnm_instance` VALUES ('1292', '3','16933121','1');-- 'Troglodyte_Dhalmel'
 INSERT INTO `bcnm_instance` VALUES ('1292', '3','16933122','1');-- 'Troglodyte_Dhalmel'
+-- //////////////////////////////////////////////////////////////
+--               APPOLYON  NW
+-- //////////////////////////////////////////////////////////////
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932868','1');-- 'FirBholg'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932869','1');-- 'FirBholg'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932870','1');-- 'FirBholg'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932871','1');-- 'FirBholg'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932872','1');-- 'FirBholg'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932873','1');-- 'FirBholg'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932874','1');-- 'FirBholg'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932875','1');-- 'FirBholg'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932876','1');-- 'FirBholg'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932877','1');-- 'FirBholg'
+
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932882','1');-- 'Jidra'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932883','1');-- 'Jidra'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932884','1');-- 'Jidra'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932885','1');-- 'Jidra'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932886','1');-- 'Jidra'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932887','1');-- 'Jidra'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932888','1');-- 'Jidra'
+
+-- INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932889','1');-- 'Arboricole_Hornet'
+-- INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932890','1');-- 'Arboricole_Raven'
+-- INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932891','1');-- 'Arboricole_Opo-opo'
+-- INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932892','1');-- 'Arboricole_Spider'
+-- INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932893','1');-- 'Arboricole_Beetle'
+-- INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932894','1');-- 'Arboricole_Crawler'
+-- INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932895','1');-- 'Apollyon_Sapling'
+
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932896','1');-- 'Armoury_Crate'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932897','1');-- 'Armoury_Crate'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932898','1');-- 'Armoury_Crate'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932899','1');-- 'Armoury_Crate'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932900','1');-- 'Armoury_Crate'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932901','1');-- 'Armoury_Crate'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932902','1');-- 'Armoury_Crate'
+
+
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932910','1');-- 'Air_Elemental'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932911','1');-- 'Dark_Elemental'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932912','1');-- 'Earth_Elemental'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932913','1');-- 'Fire_Elemental'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932914','1');-- 'Ice_Elemental'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932915','1');-- 'Light_Elemental'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932916','1');-- 'Water_Elemental'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932917','1');-- 'ThunderElement'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932918','1');-- 'Air_Elemental'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932919','1');-- 'Dark_Elemental'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932920','1');-- 'Earth_Elemental'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932921','1');-- 'Fire_Elemental'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932922','1');-- 'Ice_Elemental'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932923','1');-- 'Light_Elemental'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932924','1');-- 'Water_Elemental'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932925','1');-- 'ThunderElement'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932926','1');-- 'Air_Elemental'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932927','1');-- 'Dark_Elemental'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932928','1');-- 'Earth_Elemental'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932929','1');-- 'Fire_Elemental'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932930','1');-- 'Ice_Elemental'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932931','1');-- 'Light_Elemental'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932932','1');-- 'Water_Elemental'
+INSERT INTO `bcnm_instance` VALUES ('1291', '2','16932933','1');-- 'Thunder_Elemental'
+-- //////////////////////////////////////////////////////////////
+--               APPOLYON SW
+-- //////////////////////////////////////////////////////////////
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932937','1');-- 'Pluto'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932938','1');-- 'Bardha'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932939','1');-- 'Bardha'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932940','1');-- 'Bardha'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932941','1');-- 'Bardha'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932942','1');-- 'Bardha'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932943','1');-- 'Bardha'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932944','1');-- 'Bardha'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932950','1');-- 'Zlatorog'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932951','1');-- 'Mountain_Buffalo'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932952','1');-- 'Mountain_Buffalo'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932953','1');-- 'Mountain_Buffalo'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932954','1');-- 'Mountain_Buffalo'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932955','1');-- 'Mountain_Buffalo'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932956','1');-- 'Mountain_Buffalo'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932957','1');-- 'Mountain_Buffalo'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932963','1');-- 'Millenary_Mossback'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932964','1');-- 'Apollyon_Scavenger'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932965','1');-- 'Apollyon_Scavenger'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932966','1');-- 'Apollyon_Scavenger'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932967','1');-- 'Apollyon_Scavenger'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932968','1');-- 'Apollyon_Scavenger'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932969','1');-- 'Apollyon_Scavenger'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932970','1');-- 'Apollyon_Scavenger'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932976','1');-- 'Cynoprosopi'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932977','1');-- 'Gorynich'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932978','1');-- 'Gorynich'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932979','1');-- 'Gorynich'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932980','1');-- 'Gorynich'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932981','1');-- 'Gorynich'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932985','1');-- 'Kaiser_Behemoth'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932986','1');-- 'Kronprinz_Behemoth'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932987','1');-- 'Kronprinz_Behemoth'
+INSERT INTO `bcnm_instance` VALUES ('1290', '1','16932988','1');-- 'Kronprinz_Behemoth'
+-- //////////////////////////////////////////////////////////////
+--               APPOLYON CS
+-- //////////////////////////////////////////////////////////////
+INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933129','1');-- 'Carnagechief_Jackbodokk'
+INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933130','1');-- 'Grognard_Mesmerizer'
+INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933131','1');-- 'Grognard_Neckchopper'
+INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933132','1');-- 'GrognardFootso'
+INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933133','1');-- 'GrognardGrappl'
+INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933134','1');-- 'GrognardPredat'
+INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933135','1');-- 'GrognardImpale'
+INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933136','1');-- 'Orc sWyvern'
+
+INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933137','1');-- 'Na QbaChirurge'
+INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933138','1');-- 'StarRubyQuada'
+INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933139','1');-- 'WootzQuadav'
+INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933140','1');-- 'FossilQuadav'
+INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933141','1');-- 'StarSapphireQ'
+INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933142','1');-- 'WhitegoldQuada'
+INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933143','1');-- 'LightsteelQuad'
+
+INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933144','1');-- 'DeeWapatheDe'
+INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933145','1');-- 'Yagudo sElemen'
+INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933146','1');-- 'Yagudo sAvatar'
+INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933147','1');-- 'YagudoArchprie'
+INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933148','1');-- 'YagudoKnightT'
+INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933149','1');-- 'YagudoDiscipli'
+INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933150','1');-- 'YagudoPrelates'
+INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933151','1');-- 'YagudoKapellme'
+INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933152','1');-- 'YagudoEradicat'
+-- //////////////////////////////////////////////////////////////
+--               APPOLYON CENTRAL
+-- //////////////////////////////////////////////////////////////
+
+INSERT INTO `bcnm_instance` VALUES ('1296', '6','16933124','1');-- 'Proto-Omega'
+
+
+
+
+
+
+
+

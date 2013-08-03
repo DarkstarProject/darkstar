@@ -19,19 +19,19 @@ Central_Apollyon =6;
 APPOLLYON_SE_NE_BCNM_LIST = { --instanceID ,white ,red ,black,bitmap,bit,instanceRegion
                              1292,{false,false,true,8,NE_Apollyon}, -- 'NE_Apollyon'  region 3  438 0 -89
                              1293,{false,false,true,4,SE_Apollyon}, -- 'SE_Apollyon'            468 0 -625
-                       --      1294,{false,false,false,32,CS_Apollyon}, -- 'CS_Apollyon'          0   0 -210     
-                        --     1295,{false,false,false,64,CS_Apollyon}, -- 'CS_Apollyon_II'       0   0 -133
-                       --      1296,{false,false,false,16,Central_Apollyon}, -- 'Central_Apollyon'     0   0 210
-                       --      1297,{false,false,false,128,Central_Apollyon} -- 'Central_Apollyon_II'  0   0 210
+                             1294,{false,false,false,32,CS_Apollyon}, -- 'CS_Apollyon'          0   0 -210     
+                             1295,{false,false,false,64,CS_Apollyon}, -- 'CS_Apollyon_II'       0   0 -133
+                             1296,{false,false,false,16,Central_Apollyon}, -- 'Central_Apollyon'     0   0 210
+                             1297,{false,false,false,128,Central_Apollyon} -- 'Central_Apollyon_II'  0   0 210
                              };
 
 APPOLLYON_NW_SW_BCNM_LIST = {
-                       --      1290,{false,true,false,2,NW_Apollyon}, -- 'NW_Apollyon'            -439  0 -89
-                       --      1291,{false,true,false,1,SW_Apollyon}, -- 'SW_Apollyon'            -468  0 -626
-                       --      1294,{false,false,false,32,CS_Apollyon}, -- 'CS_Apollyon'            0   0 -210      
-                       --      1295,{false,false,false,64,CS_Apollyon}, -- 'CS_Apollyon_II'         0   0 -133
-                       --      1296,{false,false,false,16,Central_Apollyon}, -- 'Central_Apollyon'       0   0 210
-                        --     1297,{false,false,false,128,Central_Apollyon} -- 'Central_Apollyon_II'    0   0 210
+                               1290,{false,true,false,2,NW_Apollyon}, -- 'NW_Apollyon'            -439  0 -89
+                               1291,{false,true,false,1,SW_Apollyon}, -- 'SW_Apollyon'            -468  0 -626
+                               1294,{false,false,false,32,CS_Apollyon}, -- 'CS_Apollyon'            0   0 -210      
+                               1295,{false,false,false,64,CS_Apollyon}, -- 'CS_Apollyon_II'         0   0 -133
+                               1296,{false,false,false,16,Central_Apollyon}, -- 'Central_Apollyon'       0   0 210
+                               1297,{false,false,false,128,Central_Apollyon} -- 'Central_Apollyon_II'    0   0 210
                             };
 
 TEMENOS_LIST = {
@@ -47,6 +47,17 @@ TEMENOS_LIST = {
                              1307,{false,false,false,0,8} -- 'Central_Temenos_4th_Floor_II'
                 };
 
+MIMICPOSITION={
+              1,{-363,0,-282};
+              2,{-359,0,-277};
+              3,{-326,0,-301};
+              4,{-331,0,-330};
+              5,{-340,0,-330};
+              6,{-345,0,-311};
+			  7,{-339,0,-300};
+			  8,{-335,0,-281};
+              };				
+				
 				
 				       -- armoryID,(type,regionID,time, despawnothercoffer, mimicID ,lootID)
 		
@@ -63,17 +74,17 @@ ARMOURY_CRATES_LIST_APPOLLYON= {
 	3	,{cRESTORE,SE_Apollyon,0,false,0,0}, -- restore    SE_Appollyon floor 1
 
 	14	,{cTIME,SW_Apollyon,10,false,0,0}, -- time                                               SW_Appollyon floor 1
-	15	,{cITEM,SW_Apollyon,0,false,0,10}, -- items                                              SW_Appollyon floor 1
+	15	,{cITEM,SW_Apollyon,0,false,0,119}, -- items                                              SW_Appollyon floor 1
 	16	,{cRESTORE,SW_Apollyon,0,false,0,0}, -- restore                                          SW_Appollyon floor 1
 
-	32	,{}, --mimic
-	33	,{}, --mimic 
-	34	,{},  --mimic 
-	35	,{},  --mimic
-	36	,{},  --mimic
-	37	,{},  --mimic
-	38	,{},  --mimic
-	39	,{},  --mimic
+	--32	,{}, --mimic
+	--33	,{}, --mimic 
+	--34	,{},  --mimic 
+	--35	,{},  --mimic
+	--36	,{},  --mimic
+	--37	,{},  --mimic
+	--38	,{},  --mimic
+	39	,{},  -- omega
 	40	,{cTIME,NW_Apollyon,5,false,0,0},  -- time   NW_Appollyon floor 1 T1
 	41	,{cTIME,NW_Apollyon,5,false,0,0},  -- time   NW_Appollyon floor 1 T2
 	42	,{cTIME,NW_Apollyon,5,false,0,0},  -- time   NW_Appollyon floor 1 T3
@@ -81,9 +92,9 @@ ARMOURY_CRATES_LIST_APPOLLYON= {
 	44	,{cTIME,NW_Apollyon,5,false,0,0},  -- time   NW_Appollyon floor 2 T2
 	45	,{cTIME,NW_Apollyon,5,false,0,0},  -- time   NW_Appollyon floor 2 T3
 
-	70	,{cTIME,SW_Apollyon,10,false,0,0}, -- time                                               SW_Appollyon floor 2
-	71	,{cITEM,SW_Apollyon,0,false,0,10}, -- items                                              SW_Appollyon floor 2
-	72	,{cRESTORE,SW_Apollyon,0,false,0,0}, -- restore                                          SW_Appollyon floor 2
+	70	,{cTIME,SW_Apollyon,10,true,0,0}, -- time                                               SW_Appollyon floor 2
+	71	,{cITEM,SW_Apollyon,0,true,0,120}, -- items                                              SW_Appollyon floor 2
+	72	,{cRESTORE,SW_Apollyon,0,true,0,0}, -- restore                                          SW_Appollyon floor 2
 
 	81	,{cTIME,NE_Apollyon,5,false,0,0}, -- time                        NE_Appollyon floor 1 T2
 	82	,{cTIME,NE_Apollyon,5,false,0,0}, -- time                        NE_Appollyon floor 1 T3
@@ -97,14 +108,14 @@ ARMOURY_CRATES_LIST_APPOLLYON= {
 	95	,{cTIME,NE_Apollyon,5,false,0,0}, -- time                        NE_Appollyon floor 4 T2
 	96	,{cTIME,NE_Apollyon,5,false,0,0}, -- time                        NE_Appollyon floor 4 T3
 	
-	97	,{cTIME,NW_Apollyon,5,false,0,0},  -- time
-	98	,{cTIME,NW_Apollyon,5,false,0,0},  -- time
+	97	,{cTIME,NW_Apollyon,5,false,0,0},  -- time        NW_Appollyon floor 4 T2
+	98	,{cTIME,NW_Apollyon,5,false,0,0},  -- time       NW_Appollyon floor 4  T3
 
-	107	,{cITEM,NW_Apollyon,0,false,0,0},-- item       NW_Appollyon floor 1
-	108	,{cITEM,NW_Apollyon,0,false,0,0},-- item       NW_Appollyon floor 2
-	109	,{cITEM,NW_Apollyon,0,false,0,0},-- item       NW_Appollyon floor 3
-	110	,{cITEM,NW_Apollyon,0,false,0,0}, -- item      NW_Appollyon floor 4
-	111	,{cITEM,NW_Apollyon,0,false,0,0}, -- item      NW_Appollyon floor 5
+	107	,{cITEM,NW_Apollyon,0,false,0,123},-- item       NW_Appollyon floor 1
+	108	,{cITEM,NW_Apollyon,0,false,0,124},-- item       NW_Appollyon floor 2
+	109	,{cITEM,NW_Apollyon,0,false,0,125},-- item       NW_Appollyon floor 3
+	110	,{cITEM,NW_Apollyon,0,false,0,126}, -- item      NW_Appollyon floor 4
+	111	,{cITEM,NW_Apollyon,0,false,0,127}, -- item      NW_Appollyon floor 5
 
 	118	,{cTIME,NE_Apollyon,5,false,0,0}, -- time          NE_Appollyon floor 1 T1
 	119	,{cITEM,NE_Apollyon,0,false,0,114}, -- items        NE_Appollyon floor 1
@@ -124,22 +135,22 @@ ARMOURY_CRATES_LIST_APPOLLYON= {
  
 	177	,{cTIME,NW_Apollyon,5,false,0,0}, -- time               NW_Apollyon floor 3 T1
 	178	,{cITEM,NE_Apollyon,0,false,0,118}, -- items        NE_Appollyon floor 5
-	179	,{cRESTORE,0,0,false,0,0}, -- restore
+	179	,{cRESTORE,NW_Apollyon,0,false,0,0}, -- restore                     NW_Apollyon floor 4
 
 	189	,{cTIME,NW_Apollyon,5,false,0,0},  -- time                           NW_Appollyon floor 3 T2 
 	190	,{cTIME,NW_Apollyon,5,false,0,0},  -- time                           NW_Appollyon floor 3 T3
 
-	195	,{cTIME,SW_Apollyon,5,false,0,0}, -- time                                                              SW_Appollyon floor 3
-	196	,{cITEM,SW_Apollyon,5,false,0,0}, -- items                                                             SW_Appollyon floor 3
+	195	,{cTIME,SW_Apollyon,10,false,0,0}, -- time                                                              SW_Appollyon floor 3
+	196	,{cITEM,SW_Apollyon,5,false,0,121}, -- items                                                             SW_Appollyon floor 3
 	197	,{cRESTORE,SW_Apollyon,0,false,0,0}, -- restore                                                        SW_Appollyon floor 3
 
-	210	,{}, 
-	211	,{}, 
-	212	,{}, 
-	213	,{}, 
-	214	,{}, 
-	215	,{}, 
-	216	,{}, 
+	210	,{cMIMIC,SW_Apollyon,0,false,0,0},  --PH for mimic
+	211	,{cMIMIC,SW_Apollyon,0,false,0,0},  --PH for mimic
+	212	,{cMIMIC,SW_Apollyon,0,false,0,0},  --PH for mimic
+	213	,{cMIMIC,SW_Apollyon,0,false,0,0},  --PH for mimic
+	214	,{cMIMIC,SW_Apollyon,0,false,0,0},  --PH for mimic
+	215	,{cMIMIC,SW_Apollyon,0,false,0,0},  --PH for mimic
+	216	,{cMIMIC,SW_Apollyon,0,false,0,0},  --PH for mimic
 
 	232	,{cTIME,SE_Apollyon,5,false,0,0}, -- time        SE_Appollyon floor 2
 	233	,{cITEM,SE_Apollyon,0,false,0,111}, -- items     SE_Appollyon floor 2
@@ -149,7 +160,7 @@ ARMOURY_CRATES_LIST_APPOLLYON= {
 	247	,{cITEM,SE_Apollyon,0,false,0,112}, -- items     SE_Appollyon floor 3
 	248	,{cRESTORE,SE_Apollyon,0,false,0,0}, -- restore  SE_Appollyon floor 3
 
-	259	,{}, 				
+	259	,{},   -- Pod			
 
 	262	,{cTIME,NW_Apollyon,5,false,0,0}, -- time                              NW_Appollyon floor 4 T1     
 	263	,{cITEM,SE_Apollyon,0,false,0,113}, -- items     SE_Appollyon floor 4
@@ -157,7 +168,7 @@ ARMOURY_CRATES_LIST_APPOLLYON= {
 
 	289	,{cRESTORE,NW_Apollyon,0,false,0,0},   -- restore                      NW_Apollyon floor 2
 
-	313	,{cITEM,SW_Apollyon,0,false,0,0}, -- items                                                             SW_Appollyon floor 4
+	313	,{cITEM,SW_Apollyon,0,false,0,122}, -- items                                                             SW_Appollyon floor 4
 
 	327	,{cRESTORE,NW_Apollyon,0,false,0,0},   -- restore                      NW_Apollyon floor 3
 
@@ -207,6 +218,47 @@ function HideArmouryCrates(Region,Zone)
        end
   end   
 end;
+function IselementalDayAreDead()
+ local day = GetServerVariable("[SW_Apollyon]ElementalTrigger") - 1;
+ local daykill=false;
+if(day==0)then -- fire
+   if(IsMobDead(16932913)==true and IsMobDead(16932921)==true  and IsMobDead(16932929)==true )then
+   daykill=true;
+   end
+elseif(day==1)then-- earth
+   if(IsMobDead(16932912)==true  and IsMobDead(16932920)==true  and IsMobDead(16932928)==true )then
+   daykill=true;
+   end
+elseif(day==2)then-- water
+   if(IsMobDead(16932916)==true and IsMobDead(16932924)==true  and IsMobDead(16932932)==true )then
+   daykill=true;
+   end
+elseif(day==3)then-- wind
+   if(IsMobDead(16932910)==true and IsMobDead(16932918)==true  and IsMobDead(16932926)==true )then
+   daykill=true;
+   end
+elseif(day==4)then-- ice
+   if(IsMobDead(16932914)==true and IsMobDead(16932922)==true  and IsMobDead(16932930)==true )then
+   daykill=true;
+   end
+elseif(day==5)then-- lightning
+   if(IsMobDead(16932917)==true and IsMobDead(16932925)==true  and IsMobDead(16932933)==true )then
+   daykill=true;
+   end
+elseif(day==6)then-- ligth
+   if(IsMobDead(16932931)==true and IsMobDead(16932915)==true  and IsMobDead(16932923)==true )then
+   daykill=true;
+   end
+elseif(day==7)then -- dark
+   if(IsMobDead(16932911)==true and IsMobDead(16932919)==true  and IsMobDead(16932927)==true )then
+   daykill=true;
+   end
+end
+ 
+ 
+ return daykill;
+end;
+
 
 function IsKeyExist(Key) -- return true if Key already exist for another linbus
 local H= false;
@@ -312,6 +364,24 @@ if(ActionValue==0 or ActionValue==21 or ActionValue==22 or ActionValue==23)then
   end
 end;
 
+function SpawnCofferSWfloor3()
+print("spawn_coffer");
+  	GetNPCByID(16932864+210):setPos(MIMICPOSITION[2][1],MIMICPOSITION[2][2],MIMICPOSITION[2][3]);
+	GetNPCByID(16932864+210):setStatus(STATUS_NORMAL);	
+  	GetNPCByID(16932864+211):setPos(MIMICPOSITION[4][1],MIMICPOSITION[4][2],MIMICPOSITION[4][3]);
+	GetNPCByID(16932864+211):setStatus(STATUS_NORMAL);
+  	GetNPCByID(16932864+212):setPos(MIMICPOSITION[6][1],MIMICPOSITION[6][2],MIMICPOSITION[6][3]);
+	GetNPCByID(16932864+212):setStatus(STATUS_NORMAL);
+  	GetNPCByID(16932864+213):setPos(MIMICPOSITION[8][1],MIMICPOSITION[8][2],MIMICPOSITION[8][3]);
+	GetNPCByID(16932864+213):setStatus(STATUS_NORMAL);
+  	GetNPCByID(16932864+214):setPos(MIMICPOSITION[10][1],MIMICPOSITION[10][2],MIMICPOSITION[10][3]);
+	GetNPCByID(16932864+214):setStatus(STATUS_NORMAL);
+  	GetNPCByID(16932864+215):setPos(MIMICPOSITION[12][1],MIMICPOSITION[12][2],MIMICPOSITION[12][3]);
+	GetNPCByID(16932864+215):setStatus(STATUS_NORMAL);
+  	GetNPCByID(16932864+216):setPos(MIMICPOSITION[14][1],MIMICPOSITION[14][2],MIMICPOSITION[14][3]);
+	GetNPCByID(16932864+216):setStatus(STATUS_NORMAL);	
+SetServerVariable("[SW_Apollyon]MimicTrigger",1);
+end;
 function ResetKeyForEmptyLimbus(player,instanceID)
    instancestatus=player:isSpecialIntanceEmpty(GetInstanceRegion(instanceID));
    
@@ -419,7 +489,12 @@ local inst=0;
 			          player:bcnmEnter(playerLimbusID);	
 					  printf("BCNM_CREATE_WITH_REGION: %u",inst);
                 else
-				      player:setPos(643,0.1,-600); player:messageSpecial(7006);
+					  if(playerLimbusID== 1290 or playerLimbusID== 1291 or playerLimbusID== 1294 or playerLimbusID== 1295 or playerLimbusID== 1296 or playerLimbusID== 1297)then
+		                 player:setPos(-668,0.1,-666);
+	                   else
+	                   	 player:setPos(643,0.1,-600);
+	                  end
+					  player:messageSpecial(7006);
 					  ResetPlayerLimbusVariable(player);  
 					  print("BCNM_cant_be _create");
                 end				

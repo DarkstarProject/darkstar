@@ -36,7 +36,7 @@ printf("currentlimbus: %u",currentlimbus);
   
    if(player:hasKeyItem(COSMOCLEANSE))then  
        if(player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then  
-	      player:getVar("Limbus_Trade_Item")
+	     local LimbusTradeItem = player:getVar("Limbus_Trade_Item");
 	       for nt = 1,table.getn (instancelist),2 do
                  --   printf("list d'instance: %u",instancelist[nt]);  	 
                if(instancelist[nt+1][1]==true and player:hasKeyItem(WHITE_CARD))then
@@ -55,7 +55,7 @@ printf("currentlimbus: %u",currentlimbus);
 			     --   printf("bitmapadd: %u",instancelist[nt+1][4]);
 		       end	  	  
            end
-		limbusbitmap= limbusbitmap + player:getVar("Limbus_Trade_Item");
+		limbusbitmap= limbusbitmap + LimbusTradeItem;
 	  ----- /////////////////////////////////////////////on doit ajouter le mipmap pour l'item trade ici
 	   else
 	     	local    status = player:getStatusEffect(EFFECT_BATTLEFIELD);

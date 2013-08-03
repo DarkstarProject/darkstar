@@ -7,10 +7,18 @@ require("scripts/globals/limbus");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function OnBcnmRegister(player,instance)		
+	SetServerVariable("[NW_Apollyon]UniqueID",GenerateLimbusKey());
+	HideArmouryCrates(GetInstanceRegion(1290),APPOLLYON_NW_SW);
+	
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function OnBcnmEnter(player,instance)
+	player:setVar("limbusbitmap",0);
+	player:setVar("characterLimbusKey",GetServerVariable("[NW_Apollyon]UniqueID"));
+	player:setVar("LimbusID",1290);	
+	player:delKeyItem(COSMOCLEANSE);
+	player:delKeyItem(RED_CARD);
 end;
 
 -- Leaving the Dynamis by every mean possible, given by the LeaveCode
@@ -20,11 +28,9 @@ end;
 function OnBcnmLeave(player,instance,leavecode)
 --print("leave code "..leavecode);
 	
-	if(leavecode == 2 or leavecode == 3 or leavecode == 4) then
-	 --	player:setPos(0,0,0,0,0x00);
-	end
 	if(leavecode == 4) then
-		--SetServerVariable("[]UniqueID",0);
+        player:setPos(-668,0.1,-666);
+		ResetPlayerLimbusVariable(player)
 	end
 	
 end;
