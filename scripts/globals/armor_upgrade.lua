@@ -253,3 +253,19 @@
 99       , {	16359	,	16311	,	2716	,	2717	,	1993	,	25	},--	
 100       , {	11395	,	11395	,	2716	,	2717	,	2288	,	25	}--																													
 };
+-- ------------------------------------------------------------------------------------------------
+--                           HOMAN NASHIRA ARMOR
+-- ------------------------------------------------------------------------------------------------
+LIMBUSARMOR={	
+            1928,{15576},  -- Omega's Hindleg  (Homam Cosciales)
+            1929,{15661},  -- Omega's Tail     (Homam Gambieras)
+            1925,{15240},  -- Omega's Eye      (Homam Zucchetto)
+            1927,{14905},  -- Omega's Foreleg  (Homam Manopolas)
+            1926,{14488},  -- Omega's Heart    (Homam Corazza)
+	
+            1920,{15241},  -- Ultima's Cerebrum (Nashira Turban) 
+            1921,{14489},  -- Ultima's Heart    (Nashira Manteel) 
+            1922,{14906},  -- Ultima's Claw     (Nashira Gages)
+            1923,{15577},  -- Ultima's Leg      (Nashira Seraweels)
+            1924,{15662}   -- Ultima's Tail     (Nashira Crackows)
+	         };
