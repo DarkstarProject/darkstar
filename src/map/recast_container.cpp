@@ -285,8 +285,8 @@ void CRecastContainer::ResetAbilities()
     Recast_t* twoHour = GetRecast(RECAST_ABILITY, 0);
     if (twoHour != NULL)
     {
-        uint32 timestamp = twoHour->TimeStamp;
-        uint32 recastTime = twoHour->RecastTime;
+        timestamp = twoHour->TimeStamp;
+        recastTime = twoHour->RecastTime;
     }
     PRecastList->clear();
     if (twoHour != NULL)
