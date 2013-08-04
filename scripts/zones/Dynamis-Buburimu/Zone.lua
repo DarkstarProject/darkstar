@@ -28,7 +28,7 @@ cs = -1;
 	local realDay = os.time();
 	local dynaWaitxDay = player:getVar("dynaWaitxDay");
 	
-	if((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) < realDay or player:getVar("DynamisID") == GetServerVariable("[DynaValkurm]UniqueID")) then
+	if((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) < realDay or player:getVar("DynamisID") == GetServerVariable("[DynaBuburimu]UniqueID")) then
 		if(player:isBcnmsFull() == 1) then
 			if(player:hasStatusEffect(EFFECT_DYNAMIS, 0) == false) then
 				inst = player:addPlayerToDynamis(1287);
