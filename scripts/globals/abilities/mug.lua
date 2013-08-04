@@ -25,10 +25,10 @@ function OnUseAbility(player, target, ability)
 
     local mugChance = 90 + thfLevel - target:getMainLvl();
 
-    if(target:isMob() and math.random(100) < mugChance and target:getMobMod(MOBMOD_MUG_GIL) > 0) then
+    if(target:isMob() and math.random(100) < mugChance and target:getMobMod(MOBMOD_MUG_GIL) > -1) then
     	gil = target:getGil();
 
-        if(target:getMobMod(MOBMOD_MUG_GIL)) then
+        if(target:getMobMod(MOBMOD_MUG_GIL) > 0) then
             local range = target:getMobMod(MOBMOD_MUG_GIL);
             -- remove 1-10% of total
             gil = range - (range * (math.random(1,10) / 100));
