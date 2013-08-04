@@ -15,6 +15,7 @@ require("scripts/zones/Apollyon/TextIDs");
 
 function onTrade(player,npc,trade)
 local count = trade:getItemCount();
+if(player:hasKeyItem(COSMOCLEANSE))then 
   if(count==1 and trade:hasItemQty(2127,1))then-- metal chip
      player:setVar("Limbus_Trade_Item",32);
      player:tradeComplete();
@@ -22,12 +23,17 @@ local count = trade:getItemCount();
 	 	player:startEvent(0x7d00,0,0,0,32,0,0,0,0);
 		player:setVar("limbusbitmap",32);
   elseif(count==4 and trade:hasItemQty(1988,1) and trade:hasItemQty(1987,1) and trade:hasItemQty(1910,1) and trade:hasItemQty(1909,1))then
-    --  player:setVar("Limbus_Trade_Item",16);
-    --  player:tradeComplete();
-	-- player:messageSpecial(CHIP_TRADE); 
-	-- player:startEvent(0x7d00,0,0,0,16,0,0,0,0);
-	-- player:setVar("limbusbitmap",16);
-  end	
+    player:setVar("Limbus_Trade_Item",16);
+    player:tradeComplete();
+	player:messageSpecial(CHIP_TRADE); 
+	player:startEvent(0x7d00,0,0,0,16,0,0,0,0);
+	player:setVar("limbusbitmap",16);
+  end
+ else
+  	 player:messageSpecial(CONDITION_FOR_LIMBUS); 
+	 print("error player  don't have cosmo clean");
+ end 
+  
 end;
 
 -----------------------------------

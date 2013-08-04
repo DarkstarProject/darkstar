@@ -874,3 +874,58 @@ INSERT INTO `bcnm_loot` VALUES ('127', '1931', '130', '7');--  WAR,
 INSERT INTO `bcnm_loot` VALUES ('127', '1935', '109', '7');--  WHM
 INSERT INTO `bcnm_loot` VALUES ('127', '1988', '1000', '8');-- magenta-chip
 INSERT INTO `bcnm_loot` VALUES ('127', '2127', '59', '9');-- Metal Chip
+
+-- ----------  CENTRAL APOLLYON --------------------------------
+
+INSERT INTO `bcnm_loot` VALUES ('128', '1875', '1000', '0');
+INSERT INTO `bcnm_loot` VALUES ('128', '1875', '1000', '1');
+INSERT INTO `bcnm_loot` VALUES ('128', '1875', '1000', '2');
+INSERT INTO `bcnm_loot` VALUES ('128', '1875', '1000', '3');
+INSERT INTO `bcnm_loot` VALUES ('128', '1875', '1000', '4');
+INSERT INTO `bcnm_loot` VALUES ('128', '1925', '659', '5'); -- Omega's Eye
+INSERT INTO `bcnm_loot` VALUES ('128', '1927', '394', '5'); -- Omega's Foreleg
+INSERT INTO `bcnm_loot` VALUES ('128', '1928', '388', '5'); -- Omega's Hind Leg
+INSERT INTO `bcnm_loot` VALUES ('128', '1929', '404', '5'); -- Omega's Tail
+
+INSERT INTO `bcnm_loot` VALUES ('128', '1928', '394', '6'); -- Omega's Hind Leg
+INSERT INTO `bcnm_loot` VALUES ('128', '1929', '402', '6'); -- Omega's Tail
+INSERT INTO `bcnm_loot` VALUES ('128', '1925', '659', '6'); -- Omega's Eye
+INSERT INTO `bcnm_loot` VALUES ('128', '1927', '383', '6'); -- Omega's Foreleg
+
+INSERT INTO `bcnm_loot` VALUES ('128', '1926', '26.5', '7'); -- Omega's Heart
+-- -----------------------------------------------------------------
+
+INSERT INTO `bcnm_loot` VALUES ('129', '1933', '9', '0'); -- Ancient Brass (MNK)(0%)
+INSERT INTO `bcnm_loot` VALUES ('129', '1931', '53', '0'); -- Argyro Rivet (WAR)(5.3%)
+INSERT INTO `bcnm_loot` VALUES ('129', '1959', '6', '0'); -- Astral Leather (SMN)(0.6%)
+INSERT INTO `bcnm_loot` VALUES ('129', '1935', '12', '0'); -- Benedict Yarn (WHM)(1.2%)
+INSERT INTO `bcnm_loot` VALUES ('129', '1954', '29', '0'); -- Black Rivet (DRK)(2.9%)
+INSERT INTO `bcnm_loot` VALUES ('129', '1957', '12', '0'); -- Blue Rivet (DRG)(1.2%)
+INSERT INTO `bcnm_loot` VALUES ('129', '1949', '35', '0'); -- Brown Doeskin (BRD)(3.5%)
+INSERT INTO `bcnm_loot` VALUES ('129', '2659', '35', '0'); -- Canvas Toile (COR)(3.5%)
+INSERT INTO `bcnm_loot` VALUES ('129', '1939', '12', '0'); -- Cardinal Cloth (RDM) (1.2%)
+INSERT INTO `bcnm_loot` VALUES ('129', '1951', '12', '0'); -- Charcoal Cotton (RNG) (1.2%)
+INSERT INTO `bcnm_loot` VALUES ('129', '2661', '12', '0'); -- Corduroy Cloth (PUP) (1.2%)
+INSERT INTO `bcnm_loot` VALUES ('129', '1937', '18', '0'); -- Diabolic Yarn (BLM)(1.8%)
+INSERT INTO `bcnm_loot` VALUES ('129', '1955', '29', '0'); -- Ebony Lacquer (NIN) (2.9%)
+INSERT INTO `bcnm_loot` VALUES ('129', '2717', '12', '0'); -- Electrum Stud (SCH)(1.2%)
+INSERT INTO `bcnm_loot` VALUES ('129', '1947', '12', '0'); -- Fetid Lanolin (BST)(1.2%)
+INSERT INTO `bcnm_loot` VALUES ('129', '2657', '18', '0'); -- Flameshun Cloth (BLU)(1.8%)
+INSERT INTO `bcnm_loot` VALUES ('129', '2715', '5', '0'); -- Gold Stud (DNC) (0%)
+INSERT INTO `bcnm_loot` VALUES ('129', '1953', '35', '0'); -- Kurogane (SAM)(3.5%)
+INSERT INTO `bcnm_loot` VALUES ('129', '1941', '41', '0'); -- Light Filament (THF)(4.1%)
+INSERT INTO `bcnm_loot` VALUES ('129', '1943', '18', '0'); -- White Rivet (PLD)(1.8%)
+INSERT INTO `bcnm_loot` VALUES ('129', '1987', '53', '0'); -- Charcoal Chip (5.3%)
+INSERT INTO `bcnm_loot` VALUES ('129', '1988', '76', '0'); -- Magenta Chip (7.6%)
+INSERT INTO `bcnm_loot` VALUES ('129', '1909', '64', '0'); -- Smalt Chip (6.4%)
+INSERT INTO `bcnm_loot` VALUES ('129', '1910', '41', '0'); -- Smoky Chip (4.1%)
+INSERT INTO `bcnm_loot` VALUES ('129', '646', '50', '1');--  Adaman Ore,
+INSERT INTO `bcnm_loot` VALUES ('129', '1633', '50', '1');--  Clot Plasma,
+INSERT INTO `bcnm_loot` VALUES ('129', '664', '50', '1');--  Darksteel Sheet,
+INSERT INTO `bcnm_loot` VALUES ('129', '645', '50', '1');--  Darksteel Ore,
+INSERT INTO `bcnm_loot` VALUES ('129', '1311', '50', '1');--  Oxblood,
+INSERT INTO `bcnm_loot` VALUES ('129', '1681', '50', '1');--  Light Steel,
+INSERT INTO `bcnm_loot` VALUES ('129', '821', '50', '1');--  Rainbow Thread,
+INSERT INTO `bcnm_loot` VALUES ('129', '1883', '50', '1');--  Shell Powder
+
+

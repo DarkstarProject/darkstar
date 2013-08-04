@@ -84,7 +84,7 @@ ARMOURY_CRATES_LIST_APPOLLYON= {
 	--36	,{},  --mimic
 	--37	,{},  --mimic
 	--38	,{},  --mimic
-	39	,{},  -- omega
+	39	,{cITEM,Central_Apollyon,0,false,0,128},  -- omega
 	40	,{cTIME,NW_Apollyon,5,false,0,0},  -- time   NW_Appollyon floor 1 T1
 	41	,{cTIME,NW_Apollyon,5,false,0,0},  -- time   NW_Appollyon floor 1 T2
 	42	,{cTIME,NW_Apollyon,5,false,0,0},  -- time   NW_Appollyon floor 1 T3
@@ -160,7 +160,7 @@ ARMOURY_CRATES_LIST_APPOLLYON= {
 	247	,{cITEM,SE_Apollyon,0,false,0,112}, -- items     SE_Appollyon floor 3
 	248	,{cRESTORE,SE_Apollyon,0,false,0,0}, -- restore  SE_Appollyon floor 3
 
-	259	,{},   -- Pod			
+	259	,{cITEM,Central_Apollyon,0,false,0,129},   -- Pod			
 
 	262	,{cTIME,NW_Apollyon,5,false,0,0}, -- time                              NW_Appollyon floor 4 T1     
 	263	,{cITEM,SE_Apollyon,0,false,0,113}, -- items     SE_Appollyon floor 4
@@ -265,7 +265,7 @@ end;
 
 function alreadyReceived(player,number,region)
 
-	local dynaVar = 0;
+	local LimbusVar = 0;
 	local bit = {};
 	local pZone = player:getZone();
 
