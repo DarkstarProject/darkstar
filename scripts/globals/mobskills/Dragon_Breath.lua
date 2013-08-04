@@ -15,6 +15,11 @@ require("/scripts/globals/utils");
 
 ---------------------------------------------
 function OnMobSkillCheck(target,mob,skill)
+ local mobID = mob:getID();
+   if (mobID == 16904202 or mobID == 16904203 or mobID == 16904204  )then -- dragon is not ouryu's mission
+	  return 1;
+   end
+    
 	return 0;
 end;
 

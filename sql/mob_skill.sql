@@ -1757,12 +1757,12 @@ INSERT INTO `mob_skill` VALUES (648,704,631,'Wyvern_Lightning_Breath', 0, 10.0, 
 INSERT INTO `mob_skill` VALUES (649,704,632,'Wyvern_Hydro_Breath', 0, 10.0, 2000, 1500, 4, 0, 0);
 
 -- Biotechnological Weapons
-INSERT INTO `mob_skill` VALUES (1278,54,1090,"Guided_Missile",2, 10.0, 2000, 1500, 4, 0, 0); --  Targeted 10'(?) AoE ~400-750 physical damage, absorbed by Utsusemi
--- INSERT INTO `mob_skill` VALUES (982,54,928,"Target_Analysis",4, 10.0, 2000, 1500, 4, 0, 0);      --     : 10'(?) AoE Absorb-ALL, absorbed by Utsusemi
--- INSERT INTO `mob_skill` VALUES (1277,54,1089,"Pile_Pitch",0, 10.0, 2000, 1500, 4, 0, 0);         --    : Massive damage, hate reset and Bind (30 sec), ignores Utsusemi (90% of current HP, reduced by -physical damage gear)
--- INSERT INTO `mob_skill` VALUES (1271,54,1086,"Laser_Shower",2, 10.0, 2000, 1500, 4, 0, 0);
--- INSERT INTO `mob_skill` VALUES (1270,54,1085,"Colossal_Blow",0, 10.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (1269,54,1090,"Guided_Missile_II",2, 15.0, 2000, 1500, 4, 0, 0);      --   Targeted 15'(?) AoE ~475 magic damage, ignores Utsusemi
--- INSERT INTO `mob_skill` VALUES (1272,54,1087,"Floodlight",2, 15.0, 2000, 1500, 4, 0, 0);         --    : Targeted 15'(?) AoE ~300 magic damage, Flash, Blind and Silence, ignores Utsusemi
--- INSERT INTO `mob_skill` VALUES (1273,54,1088,"Hyper_Pulse",4, 20.0, 2000, 1500, 4, 0, 0);        --  : 20' AoE ~300 magic damage, Gravity and short Bind, wipes Utsusemi
--- INSERT INTO `mob_skill` VALUES (1274,54,1089,"Stun_Cannon",2, 20.0, 2000, 1500, 4, 0, 0);      --  : Targeted 20'(?) AoE ~300 magic damage and Paralysis, ignores Utsusemi 
+INSERT INTO `mob_skill` VALUES (1278,54,1090,"Guided_Missile",2, 10.0, 2000, 1500, 4, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (982,54,928,"Target_Analysis",4, 10.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (1277,54,1089,"Pile_Pitch",0, 10.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (1271,54,1086,"Laser_Shower",2, 10.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (1270,54,1085,"Colossal_Blow",0, 10.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (1269,54,1090,"Guided_Missile_II",2, 15.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (1272,54,1087,"Floodlight",2, 15.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (1273,54,1088,"Hyper_Pulse",4, 20.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (1274,54,1089,"Stun_Cannon",2, 20.0, 2000, 1500, 4, 0, 0);
