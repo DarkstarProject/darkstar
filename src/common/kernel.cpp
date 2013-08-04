@@ -161,7 +161,54 @@ const char* get_svn_revision(void)
 {
 	FILE *fp;
 
-	if(*dsp_svn_version)
+    //
+    // Subversion 1.7 and above.. (Uses Sqlite)
+    //
+
+    if (dsp_svn_version[0] != '\0')
+        return dsp_svn_version;
+
+    if ( (fp = fopen( ".svn/wc.db", "rb" )) != NULL )
+    {
+        fseek( fp, 0L, SEEK_END );
+        size_t nLength = ftell( fp );
+        fseek( fp, 0L, SEEK_SET );
+        
+        char* buffer = (char*)aMalloc( nLength + 1 );
+        nLength = fread( buffer, 1, nLength, fp );
+        buffer[ nLength ] = '\0';
+        fclose( fp );
+
+        const char* prefix = "!svn/ver/";
+        const char* postfix = "/trunk";
+
+        for (size_t x = strlen( prefix ) + 1; x + strlen( postfix ) <= nLength; ++x)
+        {
+            if (buffer[x] != postfix[0] || memcmp( buffer + x, postfix, sizeof( postfix ) ) != 0)
+                continue;
+
+            size_t y = 0;
+            for (y = x; y > 0; --y)
+                if (!ISDIGIT(buffer[y - 1]))
+                    break;
+
+            if (memcmp( buffer + y - strlen( prefix ), prefix, sizeof( prefix ) ) != 0)
+                continue;
+
+            snprintf(dsp_svn_version, sizeof(dsp_svn_version), "%d", atoi(buffer + y));
+        }
+        
+        aFree( buffer );
+        
+        if (dsp_svn_version[0] != '\0')
+            return dsp_svn_version;
+    }
+
+    //
+    // Subversion 1.6 and below..
+    //
+
+    if(*dsp_svn_version)
 		return dsp_svn_version;
 
 	if ((fp = fopen(".svn/entries", "r")) != NULL)
