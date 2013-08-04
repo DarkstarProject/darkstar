@@ -420,6 +420,11 @@ INSERT INTO `mob_skill` VALUES (177,228,177,'Digest', 0, 7.0, 2000, 1500, 4, 0, 
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Dissolve', 4, 10.0, 2000, 1500, 4, 0, 0); -- Only used by certain NM
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Cytokinesis', 0, 7.0, 2000, 1500, 4, 0, 0); -- Only used by certain NM
 
+-- clot
+INSERT INTO `mob_skill` VALUES (175,66,175,'Fluid_Spread', 1, 10.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (176,66,176,'Fluid_Toss', 0, 15.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (177,66,177,'Digest', 0, 7.0, 2000, 1500, 4, 0, 0);
+
 INSERT INTO `mob_skill` VALUES (175,229,175,'Fluid_Spread', 1, 10.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (176,229,176,'Fluid_Toss', 0, 18.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (177,229,177,'Digest', 0, 7.0, 2000, 1500, 4, 0, 0);
