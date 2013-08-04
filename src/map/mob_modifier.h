@@ -44,7 +44,7 @@ enum MOBMODIFIER
   MOBMOD_DRAW_IN = 12, // 1 - player draw in, 2 - alliance draw in -- only add as a spawn mod!
   MOBMOD_RAGE = 13, // define rage timer -- only add as a spawn mod!
   MOBMOD_SKILLS = 14, // use a custom mob skill list
-  MOBMOD_MUG_GIL = 15, // amount gil carried for mugging -- not impl
+  MOBMOD_MUG_GIL = 15, // amount gil carried for mugging
   MOBMOD_MAIN_2HOUR = 16, // give mob its main job two hour, value can maybe be sent to skill
   MOBMOD_NO_DESPAWN = 17, // do not despawn when too far from spawn. Gob Diggers have this.
   MOBMOD_VAR = 18, // temp var for whatever

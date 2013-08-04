@@ -25,13 +25,13 @@ function OnUseAbility(player, target, ability)
 
     local mugChance = 90 + thfLevel - target:getMainLvl();
 
-    if(target:isMob() and math.random(100) < mugChance and target:getMobMod(MOBMOD_MUG_GIL) > -1) then
+    if(target:isMob() and math.random(100) < mugChance and target:getMobMod(MOBMOD_MUG_GIL) > 0) then
     	gil = target:getGil();
 
-        -- is notorious
-        -- all notorious monsters can be mugged
-        if(target:isMobType(2) and gil <= 0) then
-            gil = target:getMainLvl() * 20;
+        if(target:getMobMod(MOBMOD_MUG_GIL)) then
+            local range = target:getMobMod(MOBMOD_MUG_GIL);
+            -- remove 1-10% of total
+            gil = range - (range * (math.random(1,10) / 100));
         end
 
         if(gil <= 0) then
