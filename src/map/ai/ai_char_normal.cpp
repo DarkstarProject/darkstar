@@ -204,7 +204,7 @@ bool CAICharNormal::IsMobOwner(CBattleEntity* PBattleTarget)
 {
     DSP_DEBUG_BREAK_IF(PBattleTarget == NULL);
 
-	if (PBattleTarget->m_OwnerID.id == 0 || PBattleTarget->m_OwnerID.id == m_PChar->id)
+	if (PBattleTarget->m_OwnerID.id == 0 || PBattleTarget->m_OwnerID.id == m_PChar->id || PBattleTarget->objtype == TYPE_PC)
 	{
 		return true;
 	}
@@ -3050,7 +3050,18 @@ void CAICharNormal::ActionRaiseMenuSelection()
     m_PChar->m_ActionList.clear();
 
     Action.ActionTarget = m_PChar;
-    if(m_PChar->m_hasRaise == 1)
+    if(m_PChar->m_PVPFlag)
+    {
+        // ballista pvp logic
+        Action.animation = 511;
+        hpReturned = m_PChar->GetMaxHP();
+
+        if(m_PChar->GetMPP() < 50.0f)
+        {
+            m_PChar->health.mp = m_PChar->health.maxmp * 0.5f;
+        }
+    }
+    else if(m_PChar->m_hasRaise == 1)
     {
         Action.animation = 511;
         hpReturned = (m_PChar->getMijinGakure()) ? m_PChar->GetMaxHP()*0.5 : m_PChar->GetMaxHP()*0.1;

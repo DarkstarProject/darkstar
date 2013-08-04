@@ -50,7 +50,7 @@ function OnUseAbility(player, target, ability)
 
 	local stealChance = 50 + stealMod * 2 + thfLevel - target:getMainLvl();
 
-	if(math.random(100) < stealChance) then
+	if(target:isMob() and math.random(100) < stealChance) then
 		stolen = target:getStealItem();
 
 		if (checkThfAfQuest(player, target) == true) then

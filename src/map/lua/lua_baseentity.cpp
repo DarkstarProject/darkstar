@@ -5083,7 +5083,12 @@ inline int32 CLuaBaseEntity::getFamily(lua_State* L)
 inline int32 CLuaBaseEntity::isMobType(lua_State *L)
 {
    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-   DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+   if(m_PBaseEntity->objtype != TYPE_MOB)
+   {
+   	lua_pushboolean(L, false);
+   	return 1;
+   }
 
    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 

@@ -14,9 +14,18 @@ function OnAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
+    local thfLevel;
     local gil = 0;
 
-    if(math.random()<0.9 and target:getMobMod(MOBMOD_MUG_GIL) > -1) then
+    if(player:getMainJob() == JOB_THF) then
+        thfLevel = player:getMainLvl();
+    else
+        thfLevel = player:getSubLvl();
+    end
+
+    local mugChance = 90 + thfLevel - target:getMainLvl();
+
+    if(target:isMob() and math.random(100) < mugChance and target:getMobMod(MOBMOD_MUG_GIL) > -1) then
     	gil = target:getGil();
 
         -- is notorious
