@@ -148,15 +148,7 @@ int32 garbageCollect()
 {
     ShowStatus(CL_CYAN"Running Lua Garbage Collector..." CL_RESET"\n");
 
-    uint32 left = lua_gc(LuaHandle, LUA_GCCOUNT, 1);
-
     lua_gc(LuaHandle, LUA_GCSTEP, 10);
-
-    uint32 after = lua_gc(LuaHandle, LUA_GCCOUNT, 1);
-
-    // temporary debug message will eventually be removed when GC is fine turned
-    ShowDebug("Lua was using " CL_GREEN"[%uKBs]" CL_RESET", after collecting " CL_GREEN"[%uKBs]" CL_RESET"\n", left, after);
-
 
     return 0;
 }

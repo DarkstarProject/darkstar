@@ -236,13 +236,14 @@ bool CStatusEffectContainer::CanGainStatusEffect(EFFECT statusEffect, uint16 pow
     if(negativeId != 0){
         PStatusEffect = GetStatusEffect(negativeId);
 
-        if(statusEffect == EFFECT_HASTE && PStatusEffect->GetStatusID() == EFFECT_SLOW && PStatusEffect->GetSubPower() == 1)
-        {
-            // slow i remote
-            return true;
-        }
-
         if(PStatusEffect != NULL){
+
+            if(statusEffect == EFFECT_HASTE && PStatusEffect->GetStatusID() == EFFECT_SLOW && PStatusEffect->GetSubPower() == 1)
+            {
+                // slow i remote
+                return true;
+            }
+
             // new status effect must be stronger
             return power >= PStatusEffect->GetPower();
         }

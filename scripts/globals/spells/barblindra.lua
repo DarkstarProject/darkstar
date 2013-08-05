@@ -22,6 +22,7 @@ function onSpellCast(caster,target,spell)
 	if(enchanceSkill >180)then
 		duration = 150 + 0.8 * (enchanceSkill - 180);
 	end
+
 	if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
 		duration = duration * 3;
 	end

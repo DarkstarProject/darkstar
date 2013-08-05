@@ -71,7 +71,6 @@ bool CState::CheckValidTarget(CBattleEntity* PTarget)
 {
 	if(PTarget == NULL)
 	{
-		ShowWarning("CState::CheckValidTarget Null target sent\n");
 		return false;
 	}
 

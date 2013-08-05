@@ -169,7 +169,6 @@ uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
 {
     if(PSpell == NULL)
     {
-        ShowWarning("CMagicState::CalculateCastTime Spell is NULL\n");
         return 0;
     }
 
@@ -275,7 +274,6 @@ uint32 CMagicState::CalculateRecastTime(CSpell* PSpell)
 {
     if(PSpell == NULL)
     {
-        ShowWarning("CMagicState::CalculateRecastTime Spell is NULL\n");
         return 0;
     }
 
