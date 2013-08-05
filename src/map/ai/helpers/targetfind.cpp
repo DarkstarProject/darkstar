@@ -101,6 +101,7 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
 
       if(m_PMasterTarget->PParty != NULL)
       {
+        // player -ra spells should never hit whole alliance
         if((m_findFlags & FINDFLAGS_ALLIANCE) && m_PMasterTarget->PParty->m_PAlliance != NULL)
         {
           addAllInAlliance(m_PMasterTarget, withPet);

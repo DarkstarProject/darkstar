@@ -717,7 +717,7 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
                     PChar->loc.zone->SpawnPCs(PChar);
                 }
             }
-		    if (!map_session_data->shuttingDown && (time(NULL) - map_session_data->last_update) > map_config.max_time_lastupdate)
+		    if ((time(NULL) - map_session_data->last_update) > map_config.max_time_lastupdate)
 		    {
 			    if (PChar != NULL)
 			    {
@@ -745,7 +745,7 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
 
 				    PChar->status = STATUS_SHUTDOWN;
                     PacketParser[0x00D](map_session_data, PChar, 0);
-			    } else {
+			    } else if(!map_session_data->shuttingDown){
 
 				    ShowWarning(CL_YELLOW"map_cleanup: WHITHOUT CHAR timed out, session closed\n" CL_RESET);
 
