@@ -1090,6 +1090,9 @@ void CAICharNormal::ActionRangedFinish()
             battleutils::ClaimMob(m_PBattleSubTarget, m_PChar);
         }
 
+        if (Action.speceffect == SPECEFFECT_HIT && Action.param > 0)
+            Action.speceffect = SPECEFFECT_RECOIL;
+
         m_PChar->m_ActionList.push_back(Action);
 		m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
@@ -2508,8 +2511,6 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
         	m_PChar->health.tp = afterWsTP;
 
-        	Action.param = battleutils::TakePhysicalDamage(m_PChar, PTarget, damage, false, SLOT_MAIN, 0, taChar, true);
-
         	if(msg == 0)
         	{
         		msg = 185;
@@ -2523,7 +2524,9 @@ void CAICharNormal::ActionWeaponSkillFinish()
                 msg = 188;
             }
 
-            Action.messageID = msg; //but misses
+        	Action.param = battleutils::TakePhysicalDamage(m_PChar, PTarget, damage, false, SLOT_MAIN, 0, taChar, true);
+
+            Action.messageID = msg;
 
             // create hate on mob
             if(PTarget->objtype == TYPE_MOB){
@@ -2531,6 +2534,9 @@ void CAICharNormal::ActionWeaponSkillFinish()
                 CMobEntity* mob = (CMobEntity*)PTarget;
                 mob->PEnmityContainer->UpdateEnmityFromDamage(m_PChar, Action.param);
             }
+
+            if (Action.speceffect == SPECEFFECT_HIT && Action.param > 0)
+                Action.speceffect = SPECEFFECT_RECOIL;
 
             m_PChar->m_ActionList.push_back(Action);
         }
@@ -3000,6 +3006,10 @@ void CAICharNormal::ActionAttack()
                     battleutils::HandleEnspell(m_PChar, m_PBattleTarget, &Action, i, WeaponDelay, damage);
 					battleutils::HandleSpikesDamage(m_PChar, m_PBattleTarget, &Action, damage);
                 }
+
+                if (Action.speceffect == SPECEFFECT_HIT && Action.param > 0)
+                    Action.speceffect = SPECEFFECT_RECOIL;
+
                 m_PChar->m_ActionList.push_back(Action);
 
 				// to catch high damage bugs

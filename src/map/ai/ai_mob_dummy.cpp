@@ -931,6 +931,8 @@ void CAIMobDummy::ActionAbilityFinish()
 		    Action.reaction   = REACTION_HIT;
 		}
 
+        if (Action.speceffect == SPECEFFECT_HIT && Action.param > 0)
+            Action.speceffect = SPECEFFECT_RECOIL;
 
 		m_PMob->m_ActionList.push_back(Action);
 	}
@@ -1488,6 +1490,9 @@ void CAIMobDummy::ActionAttack()
 					{
 						charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_EVA, m_PMob->GetMLevel());
 					}
+
+                    if (Action.speceffect == SPECEFFECT_HIT && Action.param > 0)
+                        Action.speceffect = SPECEFFECT_RECOIL;
 
 					m_PMob->m_ActionList.push_back(Action);
 				}
