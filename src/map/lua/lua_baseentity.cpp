@@ -3544,6 +3544,8 @@ inline int32 CLuaBaseEntity::setPVPFlag(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
     ((CCharEntity*)m_PBaseEntity)->m_PVPFlag = 0x08;
+
+	m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_UPDATE));
     return 0;
 }
 

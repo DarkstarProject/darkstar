@@ -821,7 +821,8 @@ void CZone::IncreaseZoneCounter(CCharEntity* PChar)
     PChar->loc.zoning = false;
     PChar->loc.destination = 0;
     PChar->m_InsideRegionID = 0;
-    PChar->m_PVPFlag = 0;
+
+    PChar->m_PVPFlag = CanUseMisc(MISC_PVP);
 
 	m_charList[PChar->targid] = PChar;
 	ShowDebug(CL_CYAN"CZone:: %s IncreaseZoneCounter <%u> %s \n" CL_RESET, GetName(), m_charList.size(),PChar->GetName());
@@ -840,16 +841,17 @@ void CZone::IncreaseZoneCounter(CCharEntity* PChar)
 	//remove status effects that wear on zone
 	PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE);
 
-    if (PChar->animation == ANIMATION_CHOCOBO && !CanUseMisc(MISC_CHOCOBO))
-    {
-        PChar->animation = ANIMATION_NONE;
-        PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
-    }
-    if (PChar->m_Costum != 0)
-    {
-        PChar->m_Costum = 0;
-        PChar->StatusEffectContainer->DelStatusEffect(EFFECT_COSTUME);
-    }
+  if (PChar->animation == ANIMATION_CHOCOBO && !CanUseMisc(MISC_CHOCOBO))
+  {
+      PChar->animation = ANIMATION_NONE;
+      PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
+  }
+  if (PChar->m_Costum != 0)
+  {
+      PChar->m_Costum = 0;
+      PChar->StatusEffectContainer->DelStatusEffect(EFFECT_COSTUME);
+  }
+
 	if (m_TreasurePool != NULL)
 	{
 		PChar->PTreasurePool = m_TreasurePool;

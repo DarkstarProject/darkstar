@@ -89,7 +89,7 @@ INSERT INTO `zone_settings` VALUES (40,5,0016777343,54230,'Dynamis-Buburimu',121
 INSERT INTO `zone_settings` VALUES (41,5,0016777343,54230,'Dynamis-Qufim',121,218,219,0,0.00,400,0);
 INSERT INTO `zone_settings` VALUES (42,5,0016777343,54230,'Dynamis-Tavnazia',121,218,219,0,0.00,400,0);
 INSERT INTO `zone_settings` VALUES (43,2,0016777343,54230,'Diorama_Abdhaljs-Ghelsba',0,218,219,0,0.00,152,0);
-INSERT INTO `zone_settings` VALUES (44,2,0016777343,54230,'Abdhaljs_Isle-Purgonorgo',0,218,219,0,0.00,152,0);
+INSERT INTO `zone_settings` VALUES (44,2,0016777343,54230,'Abdhaljs_Isle-Purgonorgo',0,218,219,0,0.00,664,0);
 INSERT INTO `zone_settings` VALUES (45,2,0016777343,54230,'Abyssea-Tahrongi',51,52,52,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (46,2,0016777343,54230,'Open_sea_route_to_Al_Zahbi',147,139,139,0,0.00,152,0);
 INSERT INTO `zone_settings` VALUES (47,2,0016777343,54230,'Open_sea_route_to_Mhaura',147,139,139,0,0.00,152,0);

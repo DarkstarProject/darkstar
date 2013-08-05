@@ -92,10 +92,10 @@ function utils.thirdeye(target)
 
     if( prevAnt == 0 or (math.random()*100) < (80-(prevAnt*10)) ) then
         --anticipated!
-        teye:setPower(prevAnt+1);
         target:delStatusEffect(EFFECT_THIRD_EYE);
         return true;
     end
+
     return false;
 end
 

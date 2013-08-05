@@ -29,6 +29,3 @@ function onSpellCast(caster,target,spell)
 
 	return EFFECT_HASTE;
 end;
-
-
-

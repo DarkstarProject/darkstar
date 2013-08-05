@@ -16,6 +16,6 @@ function onTrigger(player,target,value)
     local pc = GetPlayerByName(target);
 
     if (pc ~= nil) then
-        pc:setPVPFlag(value == 1);
+        pc:setPVPFlag(value);
     end
 end;
