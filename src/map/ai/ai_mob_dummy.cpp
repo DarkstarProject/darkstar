@@ -269,10 +269,11 @@ void CAIMobDummy::ActionRoaming()
 
 	}
 
-	if ((m_Tick - m_SpawnTime) % 3000 <= 400)
-	{
-		luautils::OnMobRoam(m_PMob);
-	}
+	// this is called way too often and consumes too many resources
+	// if ((m_Tick - m_SpawnTime) % 3000 <= 400)
+	// {
+	// 	luautils::OnMobRoam(m_PMob);
+	// }
 }
 
 /************************************************************************

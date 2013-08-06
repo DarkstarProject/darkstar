@@ -147,6 +147,11 @@ uint8 CWeaponSkill::getElement()
 	return m_Element;
 }
 
+bool CWeaponSkill::isElemental()
+{
+    return m_Element != 0;
+}
+
 uint8 CWeaponSkill::getAnimationId()
 {
 	return m_AnimationId;

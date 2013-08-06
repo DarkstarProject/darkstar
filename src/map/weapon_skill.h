@@ -43,6 +43,7 @@ public:
 	uint16		getSkillLevel();
 	uint8		getRange();
 	uint8       getElement();
+    bool        isElemental();
 
     bool       isAoE();
     bool        mainOnly(); // can only be used as main job

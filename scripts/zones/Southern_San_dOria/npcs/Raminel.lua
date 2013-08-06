@@ -13,7 +13,7 @@ require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/pathfind");
 
-path = {
+local path = {
 -138.436340, -2.000000, 16.227097,
 -137.395432, -2.000000, 15.831898,
 -136.317108, -2.000000, 15.728185,
