@@ -3777,13 +3777,14 @@ void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 // TODO: Логическая ошибка использовать exp для определения сложности боя
                 // необходимы условия, основанные на разницах уровня
                 // не стоит забывать, что эта разница увеличивается с ростом уровня персонажа
+                // NOTE: message 0x41: Incredibly Easy Prey
 
-				if      (baseExp >= 400) MessageValue = 0x46;
-				else if (baseExp >= 240) MessageValue = 0x45;
- 				else if (baseExp >= 120) MessageValue = 0x44;
- 				else if (baseExp == 100) MessageValue = 0x43;
- 				else if (baseExp >=  75) MessageValue = 0x42;
- 				else if (baseExp >=  15) MessageValue = 0x41;
+				if      (baseExp >= 400) MessageValue = 0x47;
+				else if (baseExp >= 240) MessageValue = 0x46;
+ 				else if (baseExp >= 120) MessageValue = 0x45;
+ 				else if (baseExp == 100) MessageValue = 0x44;
+ 				else if (baseExp >=  75) MessageValue = 0x43;
+ 				else if (baseExp >=  15) MessageValue = 0x42;
  				else if (baseExp ==   0) MessageValue = 0x40;
                 if      (mobDef > charAtt && (mobEva - 30) > charAcc)
 					PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, MessageValue, 170));//high eva high def
