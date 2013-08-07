@@ -2203,9 +2203,286 @@ INSERT INTO `bcnm_instance` VALUES ('1294', '5','16933144','1');-- 'DeeWapatheDe
 --               APPOLYON CENTRAL
 -- //////////////////////////////////////////////////////////////
 INSERT INTO `bcnm_instance` VALUES ('1296', '6','16933124','1');-- 'Proto-Omega'
-
-
-
+-- ------------------------------------
+-- ------Temenos - Northern Tower
+-- ------------------------------------
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928772','1');-- Goblin Slaughterman
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928773','1');-- Goblin Slaughterman
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928774','1');-- Moblin Dustman
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928775','1');-- Moblin Dustman
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928776','1');-- Moblin Dustman
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928777','1');-- Moblin Dustman
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928781','1');-- Skadi
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928782','1');-- Thrym
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928783','1');-- Beli
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928784','1');-- Kari
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928788','1');-- Telchines Bard
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928789','1');-- Telchines White Mage
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928790','1');-- Telchines Dragoon
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928791','1');-- Telchines's Wyvern
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928792','1');-- Telchines Monk
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928793','1');-- Telchines Monk
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928797','1');-- Kindred Warrior
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928798','1');-- Kindred Dark Knight
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928799','1');-- Kindred Summoner
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928800','1');-- Kindred's Elemental
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928802','1');-- Kindred Black Mage
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928803','1');-- Kindred Black Mage
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928804','1');-- Kindred Black Mage
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928805','1');-- Kindred Black Mage
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928809','1');-- Praetorian Guard CCXX
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928810','1');-- Praetorian Guard LXXIII
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928811','1');-- Praetorian Guard CXLVIII
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928812','1');-- Praetorian Guard CCCXI
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928816','1');-- Cryptonberry Charmer
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928817','1');-- Cryptonberry Skulker
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928818','1');-- Cryptonberry Abductor
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928819','1');-- Cryptonberry Designator
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928820','1');-- Tonberry's Elemental
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928822','1');-- Cryptonberry Abductor
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928823','1');-- Cryptonberry Designator
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928824','1');-- Tonberry's Elemental
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928826','1');-- Cryptonberry Abductor
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928827','1');-- Cryptonberry Designator
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928828','1');-- Tonberry's Elemental
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928831','1');-- Goblin Warlord
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928832','1');-- Goblin Fencer
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928833','1');-- Goblin Theurgist
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928834','1');-- Goblin Fencer
+INSERT INTO `bcnm_instance` VALUES ('1299', '2','16928835','1');-- Goblin Theurgist
+-- ------------------------
+-- --Temenos - Eastern Tower
+-- ------------------------
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928840','1');-- Fire Elemental
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928841','1');-- Fire Elemental
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928842','1');-- Fire Elemental
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928843','1');-- Fire Elemental
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928844','1');-- Mystic Avatar
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928849','1');-- Ice Elemental
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928850','1');-- Ice Elemental
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928851','1');-- Ice Elemental
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928852','1');-- Ice Elemental
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928853','1');-- Mystic Avatar
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928858','1');-- Air Elemental
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928859','1');-- Air Elemental
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928860','1');-- Air Elemental
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928861','1');-- Air Elemental
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928862','1');-- Mystic Avatar
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928867','1');-- Earth Elemental
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928868','1');-- Earth Elemental
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928869','1');-- Earth Elemental
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928870','1');-- Earth Elemental
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928871','1');-- Mystic Avatar
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928876','1');-- Thunder Elemental
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928877','1');-- Thunder Elemental
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928878','1');-- Thunder Elemental
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928879','1');-- Thunder Elemental
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928880','1');-- Mystic Avatar
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928885','1');-- Water Elemental
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928886','1');-- Water Elemental
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928887','1');-- Water Elemental
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928888','1');-- Water Elemental
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928889','1');-- Mystic Avatar
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928892','1');-- Dark Elemental
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928893','1');-- Dark Elemental
+INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928894','1');-- Mystic Avatar
+-- ------------------------
+-- Temenos - Western Tower
+-- ------------------------
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928898','1');-- Enhanced Tiger
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928899','1');-- Enhanced Tiger
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928900','1');-- Enhanced Tiger
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928901','1');-- Enhanced Tiger
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928902','1');-- Enhanced Tiger
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928903','1');-- Enhanced Tiger
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928904','1');-- Enhanced Tiger
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928905','1');-- Enhanced Tiger
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928906','1');-- Enhanced Tiger
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928910','1');-- Enhanced Mandragora
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928911','1');-- Enhanced Mandragora
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928912','1');-- Enhanced Mandragora
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928913','1');-- Enhanced Mandragora
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928914','1');-- Enhanced Mandragora
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928915','1');-- Enhanced Mandragora
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928916','1');-- Enhanced Mandragora
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928917','1');-- Enhanced Mandragora
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928918','1');-- Enhanced Mandragora
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928922','1');-- Enhanced Beetle
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928923','1');-- Enhanced Beetle
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928924','1');-- Enhanced Beetle
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928925','1');-- Enhanced Beetle
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928926','1');-- Enhanced Beetle
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928927','1');-- Enhanced Beetle
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928931','1');-- Enhanced Lizard
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928932','1');-- Enhanced Lizard
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928933','1');-- Enhanced Lizard
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928934','1');-- Enhanced Lizard
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928935','1');-- Enhanced Lizard
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928936','1');-- Enhanced Lizard
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928937','1');-- Enhanced Lizard
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928938','1');-- Enhanced Lizard
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928939','1');-- Enhanced Lizard
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928943','1');-- Enhanced Slime
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928944','1');-- Enhanced Slime
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928945','1');-- Enhanced Slime
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928946','1');-- Enhanced Slime
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928947','1');-- Enhanced Slime
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928948','1');-- Enhanced Slime
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928952','1');-- Enhanced Pugil
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928953','1');-- Enhanced Pugil
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928954','1');-- Enhanced Pugil
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928955','1');-- Enhanced Pugil
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928956','1');-- Enhanced Pugil
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928957','1');-- Enhanced Pugil
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928959','1');-- Enhanced Vulture
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928960','1');-- Enhanced Vulture
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928961','1');-- Enhanced Vulture
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928962','1');-- Enhanced Vulture
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928963','1');-- Enhanced Vulture
+INSERT INTO `bcnm_instance` VALUES ('1298', '1','16928964','1');-- Enhanced Vulture
+-- ----------------------------
+-- Central Temenos - 4th Floor
+-- ----------------------------
+INSERT INTO `bcnm_instance` VALUES ('1306', '8','16928966','1');-- Proto-Ultima
+INSERT INTO `bcnm_instance` VALUES ('1306', '8','16928986','1');-- Kingslayer Doggvdegg
+INSERT INTO `bcnm_instance` VALUES ('1306', '8','16928987','1');-- Ji'Gho Ageless
+INSERT INTO `bcnm_instance` VALUES ('1306', '8','16928988','1');-- Koo Buzu the Theomanic
+INSERT INTO `bcnm_instance` VALUES ('1306', '8','16928989','1');-- Yagudo's Elemental
+INSERT INTO `bcnm_instance` VALUES ('1306', '8','16928990','1');-- Yagudo's Avatar
+INSERT INTO `bcnm_instance` VALUES ('1306', '8','16928991','1');-- Mystic Avatar
+INSERT INTO `bcnm_instance` VALUES ('1306', '8','16928992','1');-- Mystic Avatar
+INSERT INTO `bcnm_instance` VALUES ('1306', '8','16928993','1');-- Mystic Avatar
+INSERT INTO `bcnm_instance` VALUES ('1306', '8','16928994','1');-- Mystic Avatar
+INSERT INTO `bcnm_instance` VALUES ('1306', '8','16928995','1');-- Mystic Avatar
+INSERT INTO `bcnm_instance` VALUES ('1306', '8','16928996','1');-- Mystic Avatar
+INSERT INTO `bcnm_instance` VALUES ('1306', '8','16928997','1');-- Enhanced Koenigstiger
+INSERT INTO `bcnm_instance` VALUES ('1306', '8','16928998','1');-- Enhanced Pygmaioi
+INSERT INTO `bcnm_instance` VALUES ('1306', '8','16928999','1');-- Enhanced Kettenkaefer
+INSERT INTO `bcnm_instance` VALUES ('1306', '8','16929000','1');-- Enhanced Salamander
+INSERT INTO `bcnm_instance` VALUES ('1306', '8','16929001','1');-- Enhanced Jelly
+INSERT INTO `bcnm_instance` VALUES ('1306', '8','16929002','1');-- Enhanced Makara
+INSERT INTO `bcnm_instance` VALUES ('1306', '8','16929003','1');-- Enhanced Akbaba
+-- --------------------------------
+-- Central Temenos - 3rd Floor
+-- --------------------------------
+INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929005','1');-- Abyssdweller Jhabdebb
+INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929006','1');-- Orichalcum Quadav
+INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929007','1');-- Pee Qoho the Python
+INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929008','1');-- Yagudo's Elemental
+INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929009','1');-- Yagudo's Avatar
+INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929010','1');-- Grognard Mesmerizer
+INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929011','1');-- Grognard Footsoldier
+INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929012','1');-- Grognard Predator
+INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929013','1');-- Grognard Neckchopper
+INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929014','1');-- Grognard Grappler
+INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929015','1');-- Grognard Impaler
+INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929016','1');-- Orc's Wyvern
+INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929017','1');-- Star Ruby Quadav
+INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929018','1');-- Fossil Quadav
+INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929019','1');-- Whitegold Quadav
+INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929020','1');-- Wootz Quadav
+INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929021','1');-- Star Sapphire Quadav
+INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929022','1');-- Lightsteel Quadav
+INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929023','1');-- Yagudo Archpriest
+INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929024','1');-- Yagudo Disciplinant
+INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929025','1');-- Yagudo Kapellmeister
+INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929026','1');-- Yagudo Knight Templar
+INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929027','1');-- Yagudo Prelatess
+INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929028','1');-- Yagudo Eradicator
+-- -----------------------------
+-- Central Temenos - 2nd Floor
+-- ------------------------------
+INSERT INTO `bcnm_instance` VALUES ('1304', '6','16929030','1');-- Mystic Avatar
+INSERT INTO `bcnm_instance` VALUES ('1304', '6','16929031','1');-- Light Elemental
+INSERT INTO `bcnm_instance` VALUES ('1304', '6','16929032','1');-- Light Elemental
+INSERT INTO `bcnm_instance` VALUES ('1304', '6','16929033','1');-- Fire Elemental
+INSERT INTO `bcnm_instance` VALUES ('1304', '6','16929034','1');-- Ice Elemental
+INSERT INTO `bcnm_instance` VALUES ('1304', '6','16929035','1');-- Air Elemental
+INSERT INTO `bcnm_instance` VALUES ('1304', '6','16929036','1');-- Earth Elemental
+INSERT INTO `bcnm_instance` VALUES ('1304', '6','16929037','1');-- Thunder Elemental
+INSERT INTO `bcnm_instance` VALUES ('1304', '6','16929038','1');-- Water Elemental
+INSERT INTO `bcnm_instance` VALUES ('1304', '6','16929039','1');-- Mystic Avatar
+INSERT INTO `bcnm_instance` VALUES ('1304', '6','16929040','1');-- Mystic Avatar
+INSERT INTO `bcnm_instance` VALUES ('1304', '6','16929041','1');-- Mystic Avatar
+INSERT INTO `bcnm_instance` VALUES ('1304', '6','16929042','1');-- Mystic Avatar
+INSERT INTO `bcnm_instance` VALUES ('1304', '6','16929043','1');-- Mystic Avatar
+INSERT INTO `bcnm_instance` VALUES ('1304', '6','16929044','1');-- Mystic Avatar
+-- -----------------------------
+-- Central Temenos - 1st Floor
+-- -----------------------------
+INSERT INTO `bcnm_instance` VALUES ('1303', '5','16929046','1');-- Airi
+INSERT INTO `bcnm_instance` VALUES ('1303', '5','16929047','1');-- Temenos Cleaner
+INSERT INTO `bcnm_instance` VALUES ('1303', '5','16929048','1');-- Iruci
+INSERT INTO `bcnm_instance` VALUES ('1303', '5','16929049','1');-- Temenos Weapon
+INSERT INTO `bcnm_instance` VALUES ('1303', '5','16929050','1');-- Enhanced Dragon
+INSERT INTO `bcnm_instance` VALUES ('1303', '5','16929051','1');-- Enhanced Ahriman
+-- -------------------------------
+-- Central Temenos - Basement 1
+-- ------------------------------
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929053','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929054','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929055','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929056','1');-- Aern's Wynav
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929057','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929058','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929059','1');-- Aern's Euvhi
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929060','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929061','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929062','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929063','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929064','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929065','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929066','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929067','1');-- Aern's Elemental
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929068','1');-- Aern's Avatar
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929069','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929070','1');-- Aern's Wynav
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929071','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929072','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929073','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929074','1');-- Aern's Euvhi
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929075','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929076','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929077','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929078','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929079','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929080','1');-- Aern's Elemental
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929081','1');-- Aern's Avatar
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929082','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929083','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929084','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929085','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929086','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929087','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929088','1');-- Temenos Ghrah
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929090','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929091','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929092','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929093','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929094','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929095','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929096','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929097','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929098','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929099','1');-- Aern's Wynav
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929100','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929101','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929102','1');-- Aern's Wynav
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929103','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929104','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929105','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929106','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929107','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929108','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929109','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929110','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929111','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929112','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929113','1');-- Temenos Aern
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929114','1');-- Aern's Elemental
+INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929115','1');-- Aern's Avatar
+-- -----------------------------------------
+-- -----------------------------------------
 
 
 

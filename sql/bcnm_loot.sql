@@ -614,7 +614,7 @@ INSERT INTO `bcnm_loot` VALUES ('113', '2717', '180', '6');  --  SCH
 INSERT INTO `bcnm_loot` VALUES ('113', '1931', '300', '6');  -- WAR,
 INSERT INTO `bcnm_loot` VALUES ('113', '1909', '1000', '7'); --  Smalt Chip,
 INSERT INTO `bcnm_loot` VALUES ('113', '2127', '59', '8');  --  metal chip
-
+INSERT INTO `bcnm_loot` VALUES ('113', '1875', '100', '8'); 
 --  ----NE APOLLYON FIRST FLOOR ----------------------------
 INSERT INTO `bcnm_loot` VALUES ('114', '1875', '1000', '0');
 INSERT INTO `bcnm_loot` VALUES ('114', '1875', '1000', '1');
@@ -699,7 +699,7 @@ INSERT INTO `bcnm_loot` VALUES ('118', '1875', '1000', '3');
 INSERT INTO `bcnm_loot` VALUES ('118', '1875', '1000', '4');
 INSERT INTO `bcnm_loot` VALUES ('118', '1875', '1000', '5');
 INSERT INTO `bcnm_loot` VALUES ('118', '1875', '1000', '6');
-
+INSERT INTO `bcnm_loot` VALUES ('118', '1875', '100', '7');
 INSERT INTO `bcnm_loot` VALUES ('118', '2127', '59', '7'); -- Metal Chip. 
 INSERT INTO `bcnm_loot` VALUES ('118', '1910', '1000', '8'); -- Smoky Chip.
 
@@ -779,7 +779,7 @@ INSERT INTO `bcnm_loot` VALUES ('122', '2715', '170', '6');-- DNC
 
 INSERT INTO `bcnm_loot` VALUES ('122', '1987', '1000', '7');-- Charcoal Chip
 INSERT INTO `bcnm_loot` VALUES ('122', '2127', '59', '8');-- Metal Chip
-
+INSERT INTO `bcnm_loot` VALUES ('122', '1875', '100', '8');
 --  ----NW APOLLYON FIRST FLOOR ----------------------------
 INSERT INTO `bcnm_loot` VALUES ('123', '1875', '1000', '0');
 INSERT INTO `bcnm_loot` VALUES ('123', '1875', '1000', '1');
@@ -874,7 +874,7 @@ INSERT INTO `bcnm_loot` VALUES ('127', '1931', '130', '7');--  WAR,
 INSERT INTO `bcnm_loot` VALUES ('127', '1935', '109', '7');--  WHM
 INSERT INTO `bcnm_loot` VALUES ('127', '1988', '1000', '8');-- magenta-chip
 INSERT INTO `bcnm_loot` VALUES ('127', '2127', '59', '9');-- Metal Chip
-
+INSERT INTO `bcnm_loot` VALUES ('127', '1875', '100', '9');
 -- ----------  CENTRAL APOLLYON --------------------------------
 
 INSERT INTO `bcnm_loot` VALUES ('128', '1875', '1000', '0');
@@ -893,6 +893,7 @@ INSERT INTO `bcnm_loot` VALUES ('128', '1925', '659', '6'); -- Omega's Eye
 INSERT INTO `bcnm_loot` VALUES ('128', '1927', '383', '6'); -- Omega's Foreleg
 
 INSERT INTO `bcnm_loot` VALUES ('128', '1926', '26.5', '7'); -- Omega's Heart
+INSERT INTO `bcnm_loot` VALUES ('128', '1875', '100', '7');
 -- -----------------------------------------------------------------
 
 INSERT INTO `bcnm_loot` VALUES ('129', '1933', '9', '0'); -- Ancient Brass (MNK)(0%)
@@ -928,4 +929,128 @@ INSERT INTO `bcnm_loot` VALUES ('129', '1681', '50', '1');--  Light Steel,
 INSERT INTO `bcnm_loot` VALUES ('129', '821', '50', '1');--  Rainbow Thread,
 INSERT INTO `bcnm_loot` VALUES ('129', '1883', '50', '1');--  Shell Powder
 
+-- ------------------------------------------------------------------------------------
 
+
+
+-- Temenos_Northern_Tower --------------------------------------------------------------
+-- F1
+INSERT INTO `bcnm_loot` VALUES ('130', '1875', '1000', '0');
+INSERT INTO `bcnm_loot` VALUES ('130', '1875', '1000', '1');
+INSERT INTO `bcnm_loot` VALUES ('130', '1875', '1000', '2');
+INSERT INTO `bcnm_loot` VALUES ('130', '1954', '159', '3'); -- NIN 
+INSERT INTO `bcnm_loot` VALUES ('130', '1940', '146', '3'); -- THF
+INSERT INTO `bcnm_loot` VALUES ('130', '1932', '85', '3'); -- MNK
+INSERT INTO `bcnm_loot` VALUES ('130', '1956', '171', '3'); -- DRG
+INSERT INTO `bcnm_loot` VALUES ('130', '1934', '110', '3'); -- WHM
+INSERT INTO `bcnm_loot` VALUES ('130', '2658', '220', '3'); -- COR 
+INSERT INTO `bcnm_loot` VALUES ('130', '2716', '98', '3'); -- SCH
+
+-- F2
+INSERT INTO `bcnm_loot` VALUES ('131', '1875', '1000', '0');
+INSERT INTO `bcnm_loot` VALUES ('131', '1875', '1000', '1');
+INSERT INTO `bcnm_loot` VALUES ('131', '1875', '1000', '2');
+INSERT INTO `bcnm_loot` VALUES ('131', '1932', '333', '3'); -- MNK
+INSERT INTO `bcnm_loot` VALUES ('131', '1954', '200', '3'); -- NIN
+INSERT INTO `bcnm_loot` VALUES ('131', '1950', '100', '3'); -- RNG
+INSERT INTO `bcnm_loot` VALUES ('131', '1940', '90', '3'); -- THF
+INSERT INTO `bcnm_loot` VALUES ('131', '1942', '70', '3'); -- PLD
+INSERT INTO `bcnm_loot` VALUES ('131', '1934', '90', '3'); -- WHM
+INSERT INTO `bcnm_loot` VALUES ('131', '1936', '100', '3'); -- BLM
+INSERT INTO `bcnm_loot` VALUES ('131', '1958', '90', '3'); -- SMN
+INSERT INTO `bcnm_loot` VALUES ('131', '2656', '67', '3'); -- BLU
+INSERT INTO `bcnm_loot` VALUES ('131', '1956', '167', '3'); -- DRG
+
+-- F3
+INSERT INTO `bcnm_loot` VALUES ('132', '1875', '1000', '0');
+INSERT INTO `bcnm_loot` VALUES ('132', '1875', '1000', '1');
+INSERT INTO `bcnm_loot` VALUES ('132', '1875', '1000', '2');
+INSERT INTO `bcnm_loot` VALUES ('132', '1956', '27', '3'); -- DRG
+INSERT INTO `bcnm_loot` VALUES ('132', '1932', '324', '3'); -- MNK
+INSERT INTO `bcnm_loot` VALUES ('132', '1950', '80', '3'); -- RNG
+INSERT INTO `bcnm_loot` VALUES ('132', '1934', '189', '3'); -- WHM
+INSERT INTO `bcnm_loot` VALUES ('132', '1930', '50', '3'); -- WAR
+INSERT INTO `bcnm_loot` VALUES ('132', '1940', '27', '4'); -- THF
+INSERT INTO `bcnm_loot` VALUES ('132', '1936', '81', '4'); -- BLM
+INSERT INTO `bcnm_loot` VALUES ('132', '1944', '80', '4'); -- DRK
+INSERT INTO `bcnm_loot` VALUES ('132', '1958', '81', '4'); -- SMN
+INSERT INTO `bcnm_loot` VALUES ('132', '2658', '270', '4'); -- COR
+INSERT INTO `bcnm_loot` VALUES ('132', '2714', '108', '4'); -- DNC
+
+-- F4
+INSERT INTO `bcnm_loot` VALUES ('133', '1875', '1000', '0');
+INSERT INTO `bcnm_loot` VALUES ('133', '1875', '1000', '1');
+INSERT INTO `bcnm_loot` VALUES ('133', '1875', '1000', '2');
+INSERT INTO `bcnm_loot` VALUES ('133', '1942', '90', '3'); -- PLD
+INSERT INTO `bcnm_loot` VALUES ('133', '1934', '435', '3'); -- WHM
+INSERT INTO `bcnm_loot` VALUES ('133', '1956', '80', '3'); -- DRG
+INSERT INTO `bcnm_loot` VALUES ('133', '1940', '174', '3'); -- THF
+INSERT INTO `bcnm_loot` VALUES ('133', '1958', '87', '3'); -- SMN
+INSERT INTO `bcnm_loot` VALUES ('133', '1954', '90', '3'); -- NIN
+INSERT INTO `bcnm_loot` VALUES ('133', '1936', '87', '3'); -- BLM 
+INSERT INTO `bcnm_loot` VALUES ('133', '1930', '43', '3'); -- WAR
+INSERT INTO `bcnm_loot` VALUES ('133', '2656', '27', '3'); -- BLU
+INSERT INTO `bcnm_loot` VALUES ('133', '2658', '261', '3'); -- COR
+
+-- F5
+INSERT INTO `bcnm_loot` VALUES ('134', '1875', '1000', '0');
+INSERT INTO `bcnm_loot` VALUES ('134', '1875', '1000', '1');
+INSERT INTO `bcnm_loot` VALUES ('134', '1875', '1000', '2');
+INSERT INTO `bcnm_loot` VALUES ('134', '1875', '1000', '3');
+INSERT INTO `bcnm_loot` VALUES ('134', '1954', '67', '4'); -- NIN
+INSERT INTO `bcnm_loot` VALUES ('134', '1940', '353', '4'); -- THF
+INSERT INTO `bcnm_loot` VALUES ('134', '1936', '87', '4'); -- BLM
+INSERT INTO `bcnm_loot` VALUES ('134', '1956', '110', '4'); -- DRG 
+INSERT INTO `bcnm_loot` VALUES ('134', '1958', '87', '4'); -- SMN
+INSERT INTO `bcnm_loot` VALUES ('134', '1942', '50', '4'); -- PLD
+INSERT INTO `bcnm_loot` VALUES ('134', '1950', '60', '4'); -- RNG
+INSERT INTO `bcnm_loot` VALUES ('134', '1932', '59', '4'); -- MNK
+INSERT INTO `bcnm_loot` VALUES ('134', '2716', '100', '4'); -- SCH
+INSERT INTO `bcnm_loot` VALUES ('134', '2714', '110', '4'); -- DNC
+
+-- F6
+INSERT INTO `bcnm_loot` VALUES ('135', '1875', '1000', '0');
+INSERT INTO `bcnm_loot` VALUES ('135', '1875', '1000', '1');
+INSERT INTO `bcnm_loot` VALUES ('135', '1875', '1000', '2');
+INSERT INTO `bcnm_loot` VALUES ('135', '1875', '1000', '3');
+INSERT INTO `bcnm_loot` VALUES ('135', '1954', '263', '4'); -- NIN
+INSERT INTO `bcnm_loot` VALUES ('135', '1932', '59', '4'); -- MNK
+INSERT INTO `bcnm_loot` VALUES ('135', '1942', '53', '4'); -- PLD
+INSERT INTO `bcnm_loot` VALUES ('135', '1934', '60', '4'); -- WHM
+INSERT INTO `bcnm_loot` VALUES ('135', '1956', '526', '4'); -- DRG
+INSERT INTO `bcnm_loot` VALUES ('135', '1930', '60', '5'); -- WAR
+INSERT INTO `bcnm_loot` VALUES ('135', '1936', '53', '5'); -- BLM
+INSERT INTO `bcnm_loot` VALUES ('135', '1950', '158', '5'); -- RNG
+INSERT INTO `bcnm_loot` VALUES ('135', '2716', '105', '5'); -- SCH
+
+-- F7
+INSERT INTO `bcnm_loot` VALUES ('136', '1875', '1000', '0');
+INSERT INTO `bcnm_loot` VALUES ('136', '1875', '1000', '1');
+INSERT INTO `bcnm_loot` VALUES ('136', '1875', '1000', '2');
+INSERT INTO `bcnm_loot` VALUES ('136', '1875', '1000', '3');
+INSERT INTO `bcnm_loot` VALUES ('136', '1875', '1000', '4');
+INSERT INTO `bcnm_loot` VALUES ('136', '1875', '1000', '5');
+INSERT INTO `bcnm_loot` VALUES ('136', '1956', '240', '6'); -- DRG
+INSERT INTO `bcnm_loot` VALUES ('136', '1932', '120', '6'); -- MNK
+INSERT INTO `bcnm_loot` VALUES ('136', '1940', '200', '6'); -- THF
+INSERT INTO `bcnm_loot` VALUES ('136', '1934', '40', '7'); -- WHM
+INSERT INTO `bcnm_loot` VALUES ('136', '1954', '120', '7'); -- NIN
+INSERT INTO `bcnm_loot` VALUES ('136', '2658', '200', '7'); -- COR
+INSERT INTO `bcnm_loot` VALUES ('136', '2716', '80', '7'); -- SCH 
+INSERT INTO `bcnm_loot` VALUES ('136', '1875', '100', '8');
+INSERT INTO `bcnm_loot` VALUES ('136', '2127', '55', '8'); -- Metal Chip
+INSERT INTO `bcnm_loot` VALUES ('136', '1904', '1000', '9'); -- Ivory Chip
+
+-- Temenos_Western_Tower --------------------------------------------------------------
+
+-- Temenos_Eastern_Tower --------------------------------------------------------------
+
+-- Central_Temenos_Basement --------------------------------------------------------------
+
+-- Central_Temenos_1st_Floor --------------------------------------------------------------
+
+-- Central_Temenos_2nd_Floor --------------------------------------------------------------
+
+-- Central_Temenos_3rd_Floor --------------------------------------------------------------
+
+-- Central_Temenos_4th_Floor --------------------------------------------------------------

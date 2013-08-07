@@ -15,6 +15,14 @@ NE_Apollyon =3;
 SE_Apollyon =4; 
 CS_Apollyon =5;
 Central_Apollyon =6;
+Temenos_Western_Tower=1;
+Temenos_Northern_Tower=2;
+Temenos_Eastern_Tower=3;
+Central_Temenos_Basement=4;
+Central_Temenos_1st_Floor=5;
+Central_Temenos_2nd_Floor=6;
+Central_Temenos_3rd_Floor=7;
+Central_Temenos_4th_Floor=8;
 
 APPOLLYON_SE_NE_BCNM_LIST = { --instanceID ,white ,red ,black,bitmap,bit,instanceRegion
                              1292,{false,false,true,8,NE_Apollyon}, -- 'NE_Apollyon'  region 3  438 0 -89
@@ -35,16 +43,16 @@ APPOLLYON_NW_SW_BCNM_LIST = {
                             };
 
 TEMENOS_LIST = {
-                             1298,{true,false,false,0,1}, -- 'Temenos_Western_Tower'	
-                             1299,{true,false,false,0,2}, -- 'Temenos_Northern_Tower'
-                             1300,{true,false,false,0,3}, -- 'Temenos_Eastern_Tower'
-                             1301,{true,false,false,0,4}, -- 'Central_Temenos_Basement'
-                             1302,{true,false,false,0,4}, -- 'Central_Temenos_Basement_II'
-                             1303,{true,false,false,0,5}, -- 'Central_Temenos_1st_Floor'
-                             1304,{true,false,false,0,6}, -- 'Central_Temenos_2nd_Floor'
-                             1305,{true,false,false,0,7}, -- 'Central_Temenos_3rd_Floor'
-                             1306,{false,false,false,0,8}, -- 'Central_Temenos_4th_Floor'
-                             1307,{false,false,false,0,8} -- 'Central_Temenos_4th_Floor_II'
+                  --           1298,{true,false,false,4,Temenos_Western_Tower}, -- 'Temenos_Western_Tower'	380 71 -184
+                             1299,{true,false,false,1,Temenos_Northern_Tower}, -- 'Temenos_Northern_Tower'   380 71 375
+                  --           1300,{true,false,false,2,Temenos_Eastern_Tower}, -- 'Temenos_Eastern_Tower'    380 -2 96
+                             1301,{false,false,false,128,Central_Temenos_Basement}, -- 'Central_Temenos_Basement' 580 -2 -544
+                             1302,{false,false,false,256,Central_Temenos_Basement_II}, -- 'Central_Temenos_Basement_II' 540 -2 -544
+                             1303,{false,false,false,64,Central_Temenos_1st_Floor}, -- 'Central_Temenos_1st_Floor' 260 -162 -504
+                             1304,{false,false,false,32,Central_Temenos_2nd_Floor}, -- 'Central_Temenos_2nd_Floor' 20 -2 -544
+                             1305,{false,false,false,16,Central_Temenos_3rd_Floor}, -- 'Central_Temenos_3rd_Floor' -296 -162 -500
+                             1306,{false,false,false,8,Central_Temenos_4th_Floor}, -- 'Central_Temenos_4th_Floor'  -540 -2  -584
+                             1307,{false,false,false,512,Central_Temenos_4th_Floor_II} -- 'Central_Temenos_4th_Floor_II'  -540 -2  -584
                 };
 
 MIMICPOSITION={
@@ -178,7 +186,116 @@ ARMOURY_CRATES_LIST_APPOLLYON= {
 
 } 				
 ARMOURY_CRATES_LIST_TEMENOS={
-                             
+1	,{cITEM,Temenos_Western_Tower,0,false,0,137},
+2	,{cITEM,Temenos_Western_Tower,0,false,0,138},
+3	,{cITEM,Temenos_Western_Tower,0,false,0,139},
+10	,{cITEM,Temenos_Western_Tower,0,false,0,140},
+11	,{cITEM,Temenos_Western_Tower,0,false,0,141},
+12	,{cITEM,Temenos_Western_Tower,0,false,0,142},
+17	,{cITEM,Temenos_Western_Tower,0,false,0,143},
+
+18	,{cITEM,Temenos_Northern_Tower,0,true,0,130},-- F1
+19	,{cITEM,Temenos_Northern_Tower,0,true,0,131},-- F2
+26	,{cITEM,Temenos_Northern_Tower,0,true,0,132},-- F3
+27	,{cITEM,Temenos_Northern_Tower,0,true,0,133},-- F4
+28	,{cITEM,Temenos_Northern_Tower,0,true,0,134},-- F5
+38	,{cITEM,Temenos_Northern_Tower,0,true,0,135},-- F6
+39	,{cITEM,Temenos_Northern_Tower,0,false,0,136},-- F7
+
+40	,{cITEM,Temenos_Eastern_Tower,0,true,0,144},
+45	,{cITEM,Temenos_Eastern_Tower,0,true,0,145},
+46	,{cITEM,Temenos_Eastern_Tower,0,true,0,146},
+47	,{cITEM,Temenos_Eastern_Tower,0,true,0,147},
+68	,{cITEM,Temenos_Eastern_Tower,0,true,0,148},
+69	,{cITEM,Temenos_Eastern_Tower,0,true,0,149},
+70	,{cITEM,Temenos_Eastern_Tower,0,true,0,150},
+
+71	,{cITEM,Central_Temenos_1st_Floor,0,false,0,151},
+
+77	,{cITEM,Central_Temenos_2nd_Floor,0,false,0,152},
+
+78	,{cITEM,Central_Temenos_3rd_Floor,0,false,0,153},
+
+
+-- central 4eme floor -------------------------------
+79	,{ },
+80	,{ },
+86	,{ },
+87	,{ },
+88	,{ },
+89	,{ },
+95	,{ },
+96	,{ },
+97	,{ },
+98	,{ },
+104	,{ },
+105	,{ },
+106	,{ },
+107	,{ },
+113	,{ },
+114	,{ },
+115	,{ },
+116	,{ },
+122	,{ },
+123	,{ },
+127	,{ },
+-- -----------------------------------------
+128	,{cTIME,Temenos_Western_Tower,15,false,0,0},
+129	,{cTIME,Temenos_Western_Tower,15,false,0,0},
+139	,{cTIME,Temenos_Western_Tower,15,false,0,0},
+140	,{cTIME,Temenos_Western_Tower,15,false,0,0},
+141	,{cTIME,Temenos_Western_Tower,15,false,0,0},
+151	,{cTIME,Temenos_Western_Tower,15,false,0,0},
+
+152	,{cTIME,Temenos_Northern_Tower,15,true,0,0},-- F1
+153	,{cTIME,Temenos_Northern_Tower,15,true,0,0},-- F2
+160	,{cTIME,Temenos_Northern_Tower,15,true,0,0},-- F3
+161	,{cTIME,Temenos_Northern_Tower,15,true,0,0},-- F4
+162	,{cTIME,Temenos_Northern_Tower,15,true,0,0},-- F5
+172	,{cTIME,Temenos_Northern_Tower,15,true,0,0},-- F6
+
+173	,{cTIME,Temenos_Eastern_Tower,15,true,0,0},
+174	,{cTIME,Temenos_Eastern_Tower,15,true,0,0},
+181	,{cTIME,Temenos_Eastern_Tower,15,true,0,0},
+182	,{cTIME,Temenos_Eastern_Tower,15,true,0,0},
+183	,{cTIME,Temenos_Eastern_Tower,15,true,0,0},
+190	,{cTIME,Temenos_Eastern_Tower,15,true,0,0},
+
+197	,{cTIME,Central_Temenos_Basement,5,false,0,0},
+199	,{cTIME,Central_Temenos_Basement,5,false,0,0},
+200	,{cTIME,Central_Temenos_Basement,5,false,0,0},
+201	,{cTIME,Central_Temenos_Basement,5,false,0,0},
+202	,{cTIME,Central_Temenos_Basement,5,false,0,0},
+
+
+203	,{cRESTORE,Temenos_Western_Tower,0,false,0,0},
+204	,{cRESTORE,Temenos_Western_Tower,0,false,0,0},
+205	,{cRESTORE,Temenos_Western_Tower,0,false,0,0},
+206	,{cRESTORE,Temenos_Western_Tower,0,false,0,0},
+207	,{cRESTORE,Temenos_Western_Tower,0,false,0,0},
+208	,{cRESTORE,Temenos_Western_Tower,0,false,0,0},
+
+209	,{cRESTORE,Temenos_Northern_Tower,0,true,0,0},-- F1
+210	,{cRESTORE,Temenos_Northern_Tower,0,true,0,0},-- F2
+211	,{cRESTORE,Temenos_Northern_Tower,0,true,0,0},-- F3
+212	,{cRESTORE,Temenos_Northern_Tower,0,true,0,0},-- F4
+213	,{cRESTORE,Temenos_Northern_Tower,0,true,0,0},-- F5
+214	,{cRESTORE,Temenos_Northern_Tower,0,true,0,0},-- F6
+
+215	,{cRESTORE,Temenos_Eastern_Tower,0,true,0,0},
+216	,{cRESTORE,Temenos_Eastern_Tower,0,true,0,0},
+217	,{cRESTORE,Temenos_Eastern_Tower,0,true,0,0},
+236	,{cRESTORE,Temenos_Eastern_Tower,0,true,0,0},
+261	,{cRESTORE,Temenos_Eastern_Tower,0,true,0,0},
+277	,{cRESTORE,Temenos_Eastern_Tower,0,true,0,0},
+
+
+284	,{cMIMIC },
+321	,{cMIMIC },
+348	,{cMIMIC },
+360	,{cMIMIC },
+393	,{cMIMIC }
+
                             };				
 function LimbusEntrance(player,entrance)
   switch (entrance): caseof {
@@ -215,9 +332,37 @@ function HideArmouryCrates(Region,Zone)
            if(ARMOURY_CRATES_LIST_TEMENOS[X+1][2] ==  Region)then
 	          GetNPCByID((ARMOURY_CRATES_LIST_TEMENOS[X])+16928768):setStatus(STATUS_DISAPPEAR);
            end
-       end
+       end	
   end   
 end;
+function HideTemenosDoor(Region)
+       if(Region==Temenos_Northern_Tower)then
+	   GetNPCByID((450)+16928768):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((451)+16928768):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((452)+16928768):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((453)+16928768):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((454)+16928768):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((455)+16928768):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((456)+16928768):setStatus(STATUS_DISAPPEAR);
+	   elseif(Region==Temenos_Eastern_Tower)then
+	   GetNPCByID((457)+16928768):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((458)+16928768):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((459)+16928768):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((460)+16928768):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((461)+16928768):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((462)+16928768):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((463)+16928768):setStatus(STATUS_DISAPPEAR);
+	   elseif(Region==Temenos_Western_Tower)then
+	   GetNPCByID((464)+16928768):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((465)+16928768):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((466)+16928768):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((467)+16928768):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((468)+16928768):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((469)+16928768):setStatus(STATUS_DISAPPEAR);
+	   GetNPCByID((470)+16928768):setStatus(STATUS_DISAPPEAR);
+       end
+end;
+
 function IselementalDayAreDead()
  local day = GetServerVariable("[SW_Apollyon]ElementalTrigger") - 1;
  local daykill=false;

@@ -288,8 +288,8 @@ INSERT INTO `bcnm_info` VALUES ('1297', '38', 'Central_Apollyon_II', null, null,
 INSERT INTO `bcnm_info` VALUES ('1298', '37', 'Temenos_Western_Tower', null, null,  '1800', '0', '18', '0', '7');
 INSERT INTO `bcnm_info` VALUES ('1299', '37', 'Temenos_Northern_Tower', null, null,  '1800', '0', '18', '0', '7');
 INSERT INTO `bcnm_info` VALUES ('1300', '37', 'Temenos_Eastern_Tower', null, null,  '1800', '0', '18', '0', '7');
-INSERT INTO `bcnm_info` VALUES ('1301', '37', 'Central_Temenos_Basement', null, null,	 '2700', '0', '18', '0', '7');
-INSERT INTO `bcnm_info` VALUES ('1302', '37', 'Central_Temenos_Basement_II', null, null,  '2700', '0', '18', '0', '7');
+INSERT INTO `bcnm_info` VALUES ('1301', '37', 'Central_Temenos_Basement', null, null,	 '900', '0', '18', '0', '7');
+INSERT INTO `bcnm_info` VALUES ('1302', '37', 'Central_Temenos_Basement_II', null, null,  '900', '0', '18', '0', '7');
 INSERT INTO `bcnm_info` VALUES ('1303', '37', 'Central_Temenos_1st_Floor', null, null,	 '2700', '0', '18', '0', '7');
 INSERT INTO `bcnm_info` VALUES ('1304', '37', 'Central_Temenos_2nd_Floor', null, null, 	 '2700', '0', '18', '0', '7');
 INSERT INTO `bcnm_info` VALUES ('1305', '37', 'Central_Temenos_3rd_Floor', null, null,	 '2700', '0', '18', '0', '7');
