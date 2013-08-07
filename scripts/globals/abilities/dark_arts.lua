@@ -17,7 +17,7 @@ function OnAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-	player:delStatusEffect(EFFECT_LIGHT_ARTS);
+	player:delStatusEffectSilent(EFFECT_LIGHT_ARTS);
 	player:delStatusEffect(EFFECT_ADDENDUM_WHITE);
 	player:delStatusEffect(EFFECT_PENURY);
 	player:delStatusEffect(EFFECT_CELERITY);

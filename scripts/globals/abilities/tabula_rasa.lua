@@ -24,7 +24,9 @@ function OnUseAbility(player, target, ability)
 	if (player:getMainJob() == JOB_SCH and player:getMainLvl() >= 20) then
 		helixbonus = math.floor(player:getMainLvl() / 4);
 	end
-
+	player:resetRecast(RECAST_ABILITY, 228);
+	player:resetRecast(RECAST_ABILITY, 231);
+	player:resetRecast(RECAST_ABILITY, 232);
 	player:addStatusEffect(EFFECT_TABULA_RASA,math.floor(helixbonus*1.5),0,180,0,math.floor(regenbonus*1.5));
 
     return EFFECT_TABULA_RASA;

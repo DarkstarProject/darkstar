@@ -17,7 +17,7 @@ function OnAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-	player:delStatusEffect(EFFECT_DARK_ARTS);
+	player:delStatusEffectSilent(EFFECT_DARK_ARTS);
 	player:delStatusEffect(EFFECT_ADDENDUM_BLACK);
 	player:delStatusEffect(EFFECT_PARSIMONY);
 	player:delStatusEffect(EFFECT_ALACRITY);

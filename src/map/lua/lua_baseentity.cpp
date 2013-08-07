@@ -5637,6 +5637,34 @@ inline int32 CLuaBaseEntity::resetRecasts(lua_State *L)
 	return 0;
 }
 
+//==========================================================//
+
+inline int32 CLuaBaseEntity::resetRecast(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
+
+    // only reset for players
+    if(m_PBaseEntity->objtype == TYPE_PC){
+		CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+        RECASTTYPE recastContainer = (RECASTTYPE)lua_tointeger(L,1);
+        uint16 recastID = lua_tointeger(L,2);
+
+        if (PChar->PRecastContainer->Has(recastContainer, recastID))
+        {
+	        PChar->PRecastContainer->Del(recastContainer, recastID);
+            PChar->PRecastContainer->Add(recastContainer, recastID, 0);
+        }
+
+		PChar->pushPacket(new CCharSkillsPacket(PChar));
+		return 0;
+	}
+
+	return 0;
+}
+
 /***************************************************************
   Attempts to register a BCNM or Dynamis instance.
   INPUT: The BCNM ID to register.
@@ -7547,6 +7575,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addAllSpells),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMeleeHitDamage),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetRecasts),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetRecast),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,bcnmRegister),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,bcnmEnter),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,bcnmLeave),

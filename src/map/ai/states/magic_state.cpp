@@ -280,7 +280,15 @@ uint32 CMagicState::CalculateRecastTime(CSpell* PSpell)
     bool applyArts = true;
     uint32 base = PSpell->getRecastTime();
     uint32 recast = base;
-    uint8 applyHaste = 0;
+
+    //apply Fast Cast
+    recast *= ((100.0f-dsp_cap((float)m_PEntity->getMod(MOD_FASTCAST)/2.0f,0.0f,25.0f))/100.0f);
+
+    int16 haste = m_PEntity->getMod(MOD_HASTE_MAGIC) + m_PEntity->getMod(MOD_HASTE_GEAR);
+
+    recast *= ((float)(1024-haste)/1024);
+
+    recast = dsp_max(recast, base * 0.2f);
 
     if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_COMPOSURE))
     {
@@ -300,19 +308,17 @@ uint32 CMagicState::CalculateRecastTime(CSpell* PSpell)
                 recast *= 3;
             }
             applyArts = false;
-            applyHaste++;
         }
         if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ALACRITY))
         {
             uint16 bonus = m_PEntity->getMod(MOD_ALACRITY_CELERITY_EFFECT);
-            recast *=  ((50 + bonus) / 100.0f);
+            recast *=  ((50 - bonus) / 100.0f);
 
             applyArts = false;
-            applyHaste++;
         }
         if (applyArts)
         {
-            recast = recast * (1.0f + m_PEntity->getMod(MOD_BLACK_MAGIC_RECAST)/100.0f);
+            recast *= (1.0f + m_PEntity->getMod(MOD_BLACK_MAGIC_RECAST)/100.0f);
         }
     }
     else if (PSpell->getSpellGroup() == SPELLGROUP_WHITE)
@@ -328,28 +334,21 @@ uint32 CMagicState::CalculateRecastTime(CSpell* PSpell)
                 recast *= 3;
             }
             applyArts = false;
-            applyHaste++;
         }
         if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_CELERITY))
         {
             uint16 bonus = m_PEntity->getMod(MOD_ALACRITY_CELERITY_EFFECT);
-            recast *=  ((50 + bonus) / 100.0f);
+            recast *=  ((50 - bonus) / 100.0f);
 
             applyArts = false;
-            applyHaste++;
         }
         if (applyArts)
         {
-            recast = recast * (1.0f + m_PEntity->getMod(MOD_WHITE_MAGIC_RECAST)/100.0f);
+            recast *= (1.0f + m_PEntity->getMod(MOD_WHITE_MAGIC_RECAST)/100.0f);
         }
     }
-    int16 haste = m_PEntity->getMod(MOD_HASTE_MAGIC) + m_PEntity->getMod(MOD_HASTE_GEAR);
 
-    if ( haste < 0 || applyHaste == 0 || applyHaste == 2)
-    {
-        recast = recast * ((float)(1024-dsp_cap(haste,-1024,256))/1024);
-    }
-    return recast * ((100.0f-dsp_cap((float)m_PEntity->getMod(MOD_FASTCAST)/2.0f,0.0f,25.0f))/100.0f);
+    return recast;
 }
 
 bool CMagicState::CheckInterrupt()
