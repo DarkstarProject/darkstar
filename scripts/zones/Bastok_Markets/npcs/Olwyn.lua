@@ -2,6 +2,8 @@
 -- Area: Bastok Markets
 -- NPC: Olwyn
 -- Standard Merchant NPC
+--
+-- Updated Aug-09-2013 by Zerahn, based on bgwiki and gamerescape
 -----------------------------------
 
 require("scripts/globals/harvest_festivals");
@@ -22,18 +24,19 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-       
-player:showText(npc,OLWYN_SHOP_DIALOG);
+    player:showText(npc,OLWYN_SHOP_DIALOG);
 
-stock = {0x1020,445,1,          -- Ether
+    stock = {
+        0x1020,   445,1,     --Ether
 
-         0x1037,736,2,          -- Echo Drops
-         0x1010,837,2,          -- Potion
+        0x1037,   736,2,     --Echo Drops
+        0x1010,   837,2,     --Potion
 
-         0x1036,2387,3,         -- Eye Drops
-         0x1034,290,3}          -- Antidote
- 
-showNationShop(player, BASTOK, stock);
+        0x1036,  2387,3,     --Eye Drops
+        0x1034,   290,3      --Antidote
+    }
+    showNationShop(player, BASTOK, stock);
+
 end;
 
 -----------------------------------

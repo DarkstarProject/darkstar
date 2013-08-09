@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Bastok Mines
---	NPC: Tibelda
---	Only sells when Bastok controlls Valdeaunia Region
+-- Area: Bastok Mines
+-- NPC: Tibelda
+-- Only sells when Bastok controlls Valdeaunia Region
 -----------------------------------
 
 require("scripts/globals/shop");
@@ -21,19 +21,19 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+    RegionOwner = GetRegionOwner(VALDEAUNIA);
+    if (RegionOwner ~= BASTOK) then 
+        player:showText(npc,TIBELDA_CLOSED_DIALOG);
+    else
+        player:showText(npc,TIBELDA_OPEN_DIALOG);
+        stock = {
+            0x111e,    29,   --Frost Turnip
+            0x027e,   170    --Sage
+        }
+        showShop(player,BASTOK,stock);
 
-RegionOwner = GetRegionOwner(VALDEAUNIA);
+    end
 
-if (RegionOwner ~= BASTOK) then 
-	player:showText(npc,TIBELDA_CLOSED_DIALOG);
-else
-	player:showText(npc,TIBELDA_OPEN_DIALOG);
-	
-	stock = {0x111e,29,		-- Frost Turnip
-		 0x027e,170}		-- Sage
-			  
-showShop(player,BASTOK,stock);
-end
 end; 
 
 -----------------------------------
@@ -53,6 +53,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-

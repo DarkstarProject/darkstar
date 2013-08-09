@@ -2,6 +2,8 @@
 -- Area: Bastok Markets
 -- NPC: Raghd
 -- Standard Merchant NPC
+--
+-- Updated Aug-09-2013 by Zerahn, based on bgwiki and gamerescape
 -----------------------------------
 
 require("scripts/globals/shop");
@@ -20,17 +22,18 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-player:showText(npc,RAGHD_SHOP_DIALOG);
+    player:showText(npc,RAGHD_SHOP_DIALOG);
 
-stock = {0x3490,1125,1,		-- Silver Ring
-	 0x340F,1125,1,		-- Silver Earring
+    stock = {
+        0x3490,  1125,1,     --Silver Ring
+        0x340F,  1125,1,     --Silver Earring
 
-	 0x3499,180,2,		-- Brass Ring
+        0x3499,   180,2,     --Brass Ring
 
-	 0x348E,68,3}		-- Copper Ring
- 
-showNationShop(player, BASTOK, stock);
+        0x348E,    68,3      --Copper Ring
+    }
+    showNationShop(player, BASTOK, stock);
+
 end; 
 
 -----------------------------------
@@ -50,6 +53,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-
