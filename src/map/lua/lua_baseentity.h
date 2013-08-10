@@ -220,6 +220,7 @@ public:
 
 	int32 release(lua_State*);				// Stops event
 	int32 startEvent(lua_State*);			// Begins Event
+    int32 startEventString(lua_State*);     // Begins Event with string param (0x33 packet)
 	int32 updateEvent(lua_State*);			// Updates event
     int32 getEventTarget(lua_State*);       //
     int32 openSendBox(lua_State*);          // Opens send box (to deliver items)
@@ -257,6 +258,7 @@ public:
     int32 addVar(lua_State*);               // Increments/decriments/sets a character variable
 
 	int32 setPetName(lua_State*);
+    int32 getAutomatonName(lua_State*);
 
 	int32 setMaskBit(lua_State*);			// Sets a single bit in a character variable
 	int32 getMaskBit(lua_State*);			// Retrieves a single bit in a character variable
@@ -265,6 +267,7 @@ public:
 
 	int32 setHomePoint(lua_State*);			// Sets character's homepoint
 	int32 tradeComplete(lua_State*);		// Complete trade with an npc
+	int32 confirmTrade(lua_State*);			// Complete trade with an npc, only removing confirmed items
 
     int32 hasTitle(lua_State*);
 	int32 getTitle(lua_State*);				// Gets character's title
@@ -464,6 +467,8 @@ public:
     int32 isFollowingPath(lua_State* L); // checks if the entity is following a path
     int32 clearPath(lua_State* L); // removes current pathfind and stops moving
     int32 wait(lua_State* L); // make the npc wait a number of ms and then back into roam
+
+	int32 unlockAttachment(lua_State* L);
 };
 
 #endif

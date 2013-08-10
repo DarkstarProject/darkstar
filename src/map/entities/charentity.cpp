@@ -54,6 +54,8 @@ CCharEntity::CCharEntity()
 	m_Mogsatchel = new CItemContainer(LOC_MOGSATCHEL);
 	m_Mogsack	 = new CItemContainer(LOC_MOGSACK);
 
+    m_AutomatonName = "";
+
 	memset(& jobs,  0, sizeof(jobs));
 	memset(& keys,  0, sizeof(keys));
     memset(& equip, 0, sizeof(equip));
@@ -72,6 +74,7 @@ CCharEntity::CCharEntity()
     memset(& m_PetCommands,  0, sizeof(m_PetCommands));
 	memset(& m_WeaponSkills, 0, sizeof(m_WeaponSkills));
 	memset(& m_SetBlueSpells, 0, sizeof(m_SetBlueSpells));
+	memset(& m_unlockedAttachments, 0, sizeof(m_unlockedAttachments));
 
 	memset(& m_questLog,    0, sizeof(m_questLog));
 	memset(& m_missionLog,  0, sizeof(m_missionLog));

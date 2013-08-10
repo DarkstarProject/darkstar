@@ -49,6 +49,7 @@
 #include "../packets/send_box.h"
 #include "../packets/entity_update.h"
 #include "../packets/event.h"
+#include "../packets/event_string.h"
 #include "../packets/event_update.h"
 #include "../packets/guild_menu.h"
 #include "../packets/guild_menu_buy.h"
@@ -79,6 +80,7 @@
 #include "../utils/charutils.h"
 #include "../utils/itemutils.h"
 #include "../utils/guildutils.h"
+#include "../utils/puppetutils.h"
 #include "../map.h"
 #include "../alliance.h"
 #include "../entities/mobentity.h"
@@ -2184,6 +2186,85 @@ inline int32 CLuaBaseEntity::startEvent(lua_State *L)
     return 0;
 }
 
+/************************************************************************
+*                                                                       *
+*  Start event with string (0x33 packet)                                *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::startEventString(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+
+    if (m_PBaseEntity->animation == ANIMATION_HEALING)
+    {
+        ((CCharEntity*)m_PBaseEntity)->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
+    }
+
+    uint16 EventID = (uint16)lua_tointeger(L,1);
+
+    string_t string0 = "";
+    string_t string1 = "";
+    string_t string2 = "";
+    string_t string3 = "";
+
+    uint32 param0 = 0;
+    uint32 param1 = 0;
+    uint32 param2 = 0;
+    uint32 param3 = 0;
+    uint32 param4 = 0;
+    uint32 param5 = 0;
+    uint32 param6 = 0;
+    uint32 param7 = 0;
+
+    if( !lua_isnil(L,2) && lua_isstring(L,2) )
+        string0 = lua_tolstring(L,2,NULL);
+    if( !lua_isnil(L,3) && lua_isstring(L,3) )
+        string1 = lua_tolstring(L,3,NULL);
+    if( !lua_isnil(L,4) && lua_isstring(L,4) )
+        string2 = lua_tolstring(L,4,NULL);
+    if( !lua_isnil(L,5) && lua_isstring(L,5) )
+        string3 = lua_tolstring(L,5,NULL);
+    if( !lua_isnil(L,6) && lua_isnumber(L,6) )
+        param0 = (uint32)lua_tointeger(L,6);
+    if( !lua_isnil(L,7) && lua_isnumber(L,7) )
+        param1 = (uint32)lua_tointeger(L,7);
+    if( !lua_isnil(L,8) && lua_isnumber(L,8) )
+        param2 = (uint32)lua_tointeger(L,8);
+    if( !lua_isnil(L,9) && lua_isnumber(L,9) )
+        param3 = (uint32)lua_tointeger(L,9);
+    if( !lua_isnil(L,10) && lua_isnumber(L,10) )
+        param4 = (uint32)lua_tointeger(L,10);
+    if( !lua_isnil(L,11) && lua_isnumber(L,11) )
+        param5 = (uint32)lua_tointeger(L,11);
+    if( !lua_isnil(L,12) && lua_isnumber(L,12) )
+        param6 = (uint32)lua_tointeger(L,12);
+    if( !lua_isnil(L,13) && lua_isnumber(L,13) )
+        param7 = (uint32)lua_tointeger(L,13);
+
+    ((CCharEntity*)m_PBaseEntity)->pushPacket(
+        new CEventStringPacket(
+            (CCharEntity*)m_PBaseEntity,
+            EventID,
+            string0,
+            string1,
+            string2,
+            string3,
+            param0,
+            param1,
+            param2,
+            param3,
+            param4,
+            param5,
+            param6,
+            param7));
+
+    return 0;
+}
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::updateEvent(lua_State *L)
@@ -2531,16 +2612,16 @@ inline int32 CLuaBaseEntity::setPetName(lua_State *L)
 
 		if (petType == PETTYPE_WYVERN)
 		{
-			Sql_Query(SqlHandle, "INSERT INTO char_pet_name SET charid = %u, wyvernid = %u ON DUPLICATE KEY UPDATE wyvernid = %u;", m_PBaseEntity->id, value, value);
+			Sql_Query(SqlHandle, "INSERT INTO char_pet SET charid = %u, wyvernid = %u ON DUPLICATE KEY UPDATE wyvernid = %u;", m_PBaseEntity->id, value, value);
 		}
 		else if (petType == PETTYPE_AUTOMATON)
 		{
-			Sql_Query(SqlHandle, "INSERT INTO char_pet_name SET charid = %u, automatonid = %u ON DUPLICATE KEY UPDATE automatonid = %u;", m_PBaseEntity->id, value, value);
+			Sql_Query(SqlHandle, "INSERT INTO char_pet SET charid = %u, automatonid = %u ON DUPLICATE KEY UPDATE automatonid = %u;", m_PBaseEntity->id, value, value);
 		}
 		/*
 		else if (petType == PETTYPE_ADVENTURING_FELLOW)
 		{
-			Sql_Query(SqlHandle, "INSERT INTO char_pet_name SET charid = %u, adventuringfellowid = %u ON DUPLICATE KEY UPDATE adventuringfellowid = %u;", m_PBaseEntity->id, value, value);
+			Sql_Query(SqlHandle, "INSERT INTO char_pet SET charid = %u, adventuringfellowid = %u ON DUPLICATE KEY UPDATE adventuringfellowid = %u;", m_PBaseEntity->id, value, value);
 		}
 		*/
 	}
@@ -2553,10 +2634,16 @@ inline int32 CLuaBaseEntity::setPetName(lua_State *L)
 
 			uint32 value = chocoboname1 + chocoboname2;
 
-			Sql_Query(SqlHandle, "INSERT INTO char_pet_name SET charid = %u, chocoboid = %u ON DUPLICATE KEY UPDATE chocoboid = %u;", m_PBaseEntity->id, value, value);
+			Sql_Query(SqlHandle, "INSERT INTO char_pet SET charid = %u, chocoboid = %u ON DUPLICATE KEY UPDATE chocoboid = %u;", m_PBaseEntity->id, value, value);
 		}
 	}
     return 0;
+}
+
+inline int32 CLuaBaseEntity::getAutomatonName(lua_State* L)
+{
+    lua_pushstring(L, ((CCharEntity*)m_PBaseEntity)->m_AutomatonName.c_str());
+    return 1;
 }
 
 /************************************************************************
@@ -2707,6 +2794,35 @@ inline int32 CLuaBaseEntity::tradeComplete(lua_State *L)
 	for (uint8 slotID = 0; slotID < TRADE_CONTAINER_SIZE; ++slotID)
 	{
 		if(PChar->Container->getInvSlotID(slotID) != 0xFF)
+		{
+			uint8 invSlotID = PChar->Container->getInvSlotID(slotID);
+			int32 quantity  = PChar->Container->getQuantity(slotID);
+
+			charutils::UpdateItem(PChar, LOC_INVENTORY, invSlotID, -quantity);
+		}
+	}
+	PChar->Container->Clean();
+	PChar->pushPacket(new CInventoryFinishPacket());
+	return 0;
+}
+
+/************************************************************************
+*																		*
+*  Used in place of traceComplete when a trade uses confirmItem to      *
+*  confirm traded items.												*
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::confirmTrade(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	for (uint8 slotID = 0; slotID < TRADE_CONTAINER_SIZE; ++slotID)
+	{
+		if(PChar->Container->getInvSlotID(slotID) != 0xFF && PChar->Container->getConfirmedStatus(slotID))
 		{
 			uint8 invSlotID = PChar->Container->getInvSlotID(slotID);
 			int32 quantity  = PChar->Container->getQuantity(slotID);
@@ -7349,6 +7465,18 @@ inline int32 CLuaBaseEntity::wait(lua_State* L)
 	return 1;
 }
 
+inline int32 CLuaBaseEntity::unlockAttachment(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L,-1));
+
+	uint16 itemID = lua_tointeger(L, -1);
+
+	CItem* PItem = itemutils::GetItem(itemID);
+	lua_pushboolean(L,puppetutils::UnlockAttachment((CCharEntity*)m_PBaseEntity, PItem));
+	return 1;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -7442,12 +7570,14 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setVar),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addVar),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setPetName),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAutomatonName),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMaskBit),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaskBit),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,countMaskBits),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isMaskFull),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,release),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,startEvent),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,startEventString),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEvent),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEventTarget),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,openSendBox),
@@ -7461,6 +7591,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendGuild),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setHomePoint),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,tradeComplete),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,confirmTrade),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasTitle),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getTitle),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTitle),
@@ -7667,5 +7798,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,knockback),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setSpawn),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setRespawnTime),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,unlockAttachment),
 	{NULL,NULL}
 };

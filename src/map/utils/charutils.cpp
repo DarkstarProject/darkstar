@@ -63,6 +63,7 @@
 #include "../ability.h"
 #include "battleutils.h"
 #include "blueutils.h"
+#include "puppetutils.h"
 #include "../entities/charentity.h"
 #include "charutils.h"
 #include "../grades.h"
@@ -317,28 +318,28 @@ void LoadChar(CCharEntity* PChar)
 
 	const int8* fmtQuery =
         "SELECT "
-          "charname,"       //  0
-          "pos_zone,"       //  1
-          "pos_prevzone,"   //  2
-          "pos_rot,"        //  3
-          "pos_x,"          //  4
-          "pos_y,"          //  5
-          "pos_z,"          //  6
-          "boundary,"       //  7
-          "home_zone,"      //  8
-          "home_rot,"       //  9
-          "home_x,"         // 10
-          "home_y,"         // 11
-          "home_z,"         // 12
-          "nation,"         // 13
-		  "quests,"         // 14
-          "keyitems,"       // 15
-          "spells,"         // 16
-		  "abilities,"		// 17
-          "titles,"         // 18
-          "zones,"          // 19
-          "missions,"       // 20
-		  "playtime "		// 21
+          "charname,"				//  0
+          "pos_zone,"				//  1
+          "pos_prevzone,"			//  2
+          "pos_rot,"				//  3
+          "pos_x,"					//  4
+          "pos_y,"					//  5
+          "pos_z,"					//  6
+          "boundary,"				//  7
+          "home_zone,"				//  8
+          "home_rot,"				//  9
+          "home_x,"					// 10
+          "home_y,"					// 11
+          "home_z,"					// 12
+          "nation,"					// 13
+		  "quests,"					// 14
+          "keyitems,"				// 15
+          "spells,"					// 16
+		  "abilities,"				// 17
+          "titles,"					// 18
+          "zones,"					// 19
+          "missions,"				// 20
+		  "playtime "				// 21
         "FROM chars "
         "WHERE charid = %u";
 
@@ -670,6 +671,7 @@ void LoadChar(CCharEntity* PChar)
 	PChar->PMeritPoints->SetLimitPoints(limitPoints);
 
     blueutils::LoadSetSpells(PChar);
+    puppetutils::LoadAutomaton(PChar);
 	BuildingCharSkillsTable(PChar);
     PChar->PRecastContainer->ResetAbilities();
 	BuildingCharAbilityTable(PChar);
@@ -678,9 +680,9 @@ void LoadChar(CCharEntity* PChar)
 
 	PChar->animation = (PChar->health.hp == 0 ? ANIMATION_DEATH : ANIMATION_NONE);
 
-		fmtQuery = "SELECT gmlevel \
-				FROM chars \
-				WHERE charid = %u;";
+	fmtQuery = "SELECT gmlevel \
+			FROM chars \
+			WHERE charid = %u;";
 
 	ret = Sql_Query(SqlHandle,fmtQuery,PChar->id);
 
@@ -689,7 +691,6 @@ void LoadChar(CCharEntity* PChar)
 		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 	{
 		PChar->m_GMlevel = (uint8)Sql_GetUIntData(SqlHandle,0);
-
 	}
 
 }

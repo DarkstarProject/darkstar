@@ -143,6 +143,13 @@ struct AuctionHistory_t
 	uint8		status; //e.g. if sold/not sold/on market
 };
 
+struct UnlockedAttachments_t
+{
+	uint8 heads;
+	uint8 frames;
+	uint32 attachments[8];
+};
+
 /************************************************************************
 *                                                                       *
 *                                                                       *
@@ -159,38 +166,40 @@ class CCharEntity : public CBattleEntity
 {
 public:
 
-	jobs_t			  jobs;							// доступрые профессии персонажа
-	keyitems_t		  keys;							// таблица ключевых предметов
-	event_t			  m_event;						// структура для запуска событый
-	skills_t		  RealSkills;					// структура всех реальных умений персонажа, с точностью до 0.1 и не ограниченных уровнем
-	nameflags_t		  nameflags;                    // флаги перед именем персонажа
-	profile_t		  profile;						// профиль персонажа (все, что связывает города и персонажа)
-	expChain_t		  expChain;						// Exp Chains
-	search_t		  search;						// данные и комментарий, отображаемые в окне поиска
-	bazaar_t		  bazaar;						// все данные, необходимые для таботы bazaar
-	uint16			  m_EquipFlag;					// текущие события, обрабатываемые экипировкой (потом упакую в структуру, вместе с equip[])
-    uint16            m_EquipBlock;                 // заблокированные ячейки экипировки
-	bool			  m_EquipSwap;					// true if equipment was recently changed
-	uint8			  equip[17];                    // экипировка персонажа
+	jobs_t					jobs;							// доступрые профессии персонажа
+	keyitems_t				keys;							// таблица ключевых предметов
+	event_t					m_event;						// структура для запуска событый
+	skills_t				RealSkills;						// структура всех реальных умений персонажа, с точностью до 0.1 и не ограниченных уровнем
+	nameflags_t				nameflags;						// флаги перед именем персонажа
+	profile_t				profile;						// профиль персонажа (все, что связывает города и персонажа)
+	expChain_t				expChain;						// Exp Chains
+	search_t				search;							// данные и комментарий, отображаемые в окне поиска
+	bazaar_t				bazaar;							// все данные, необходимые для таботы bazaar
+	uint16					m_EquipFlag;					// текущие события, обрабатываемые экипировкой (потом упакую в структуру, вместе с equip[])
+    uint16					m_EquipBlock;					// заблокированные ячейки экипировки
+	bool					m_EquipSwap;					// true if equipment was recently changed
+	uint8					equip[17];						// экипировка персонажа
 
-	uint8			  m_ZonesList[36];				// список посещенных персонажем зон
-	uint8			  m_SpellList[128];				// список изученных заклинаний
-    uint8             m_TitleList[94];              // список заслуженных завний
-	uint8			  m_Abilities[46];				// список текущих способностей
-	uint8			  m_LearnedAbilities[46];		// learnable abilities (corsair rolls)
-	uint8			  m_TraitList[16];				// список постянно активных способностей в виде битовой маски
-    uint8             m_PetCommands[32];            // список доступных команд питомцу
-	uint8             m_WeaponSkills[32];
-	questlog_t		  m_questLog[MAX_QUESTAREA];    // список всех квестов
-	missionlog_t	  m_missionLog[MAX_MISSIONAREA];// список миссий
-	assaultlog_t	  m_assaultLog;					// список assault миссий
-	campaignlog_t	  m_campaignLog;                // список campaing миссий
-    uint32            m_rangedDelay;                // ranged attack delay (with timestamp for repeat attacks, hence 32bit)for items, abilities and magic
-	bool			  m_insideBCNM;					// true if user is inside a bcnm
-	uint32			  m_lastBcnmTimePrompt;			// the last message prompt in seconds
-	PetInfo_t		  petZoningInfo;				// used to repawn dragoons pets ect on zone
-	void			  resetPetZoningInfo();			// reset pet zoning info (when changing job ect)
-	uint8			  m_SetBlueSpells[20];			// The 0x200 offsetted blue magic spell IDs which the user has set. (1 byte per spell)
+	uint8					m_ZonesList[36];				// список посещенных персонажем зон
+	uint8					m_SpellList[128];				// список изученных заклинаний
+    uint8					m_TitleList[94];				// список заслуженных завний
+	uint8					m_Abilities[46];				// список текущих способностей
+	uint8					m_LearnedAbilities[46];			// learnable abilities (corsair rolls)
+	uint8					m_TraitList[16];				// список постянно активных способностей в виде битовой маски
+    uint8					m_PetCommands[32];				// список доступных команд питомцу
+	uint8					m_WeaponSkills[32];
+	questlog_t				m_questLog[MAX_QUESTAREA];		// список всех квестов
+	missionlog_t			m_missionLog[MAX_MISSIONAREA];	// список миссий
+	assaultlog_t			m_assaultLog;					// список assault миссий
+	campaignlog_t			m_campaignLog;					// список campaing миссий
+    uint32					m_rangedDelay;					// ranged attack delay (with timestamp for repeat attacks, hence 32bit)for items, abilities and magic
+	bool					m_insideBCNM;					// true if user is inside a bcnm
+	uint32					m_lastBcnmTimePrompt;			// the last message prompt in seconds
+	PetInfo_t				petZoningInfo;					// used to repawn dragoons pets ect on zone
+	void					resetPetZoningInfo();			// reset pet zoning info (when changing job ect)
+	uint8					m_SetBlueSpells[20];			// The 0x200 offsetted blue magic spell IDs which the user has set. (1 byte per spell)
+	UnlockedAttachments_t	m_unlockedAttachments;			// Unlocked Automaton Attachments (1 bit per attachment)
+    string_t                m_AutomatonName;                // TEMP AUTOMATON NAME
 
 	// Эти миссии не нуждаются в списке пройденных, т.к. клиент автоматически
 	// отображает более ранние миссии выплненными

@@ -570,10 +570,10 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 		const int8* Query =
 			"SELECT\
 				pet_name.name,\
-				char_pet_name.wyvernid\
-			FROM pet_name, char_pet_name\
-			WHERE pet_name.id = char_pet_name.wyvernid AND \
-            char_pet_name.charid = %u";
+				char_pet.wyvernid\
+			FROM pet_name, char_pet\
+			WHERE pet_name.id = char_pet.wyvernid AND \
+            char_pet.charid = %u";
 
 		if ( Sql_Query(SqlHandle, Query, PMaster->id) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 		{
@@ -596,10 +596,10 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 		const int8* Query =
 			"SELECT\
 				pet_name.name,\
-				char_pet_name.automatonid\
-			FROM pet_name, char_pet_name\
-			WHERE pet_name.id = char_pet_name.automatonid\
-            char_pet_name.charid = %u";
+				char_pet.automatonid\
+			FROM pet_name, char_pet\
+			WHERE pet_name.id = char_pet.automatonid\
+            char_pet.charid = %u";
 
 		if ( Sql_Query(SqlHandle, Query, PMaster->id) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 		{
@@ -623,9 +623,9 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 		const int8* Query =
 			"SELECT\
 				pet_name.name,\
-				char_pet_name.adventuringfellowid\
-			FROM pet_name, char_pet_name\
-			WHERE pet_name.id = char_pet_name.adventuringfellowid";
+				char_pet.adventuringfellowid\
+			FROM pet_name, char_pet\
+			WHERE pet_name.id = char_pet.adventuringfellowid";
 
 		if ( Sql_Query(SqlHandle, Query) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 		{
@@ -648,9 +648,9 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 
 		const int8* Query =
 			"SELECT\
-				char_pet_name.chocoboid\
-			FROM char_pet_name\
-            char_pet_name.charid = %u";
+				char_pet.chocoboid\
+			FROM char_pet\
+            char_pet.charid = %u";
 
 		if ( Sql_Query(SqlHandle, Query, PMaster->id) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 		{

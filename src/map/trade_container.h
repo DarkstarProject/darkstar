@@ -51,6 +51,7 @@ public:
 	uint16	getItemID(uint8 slotID);						
 	uint8	getInvSlotID(uint8 slotID);
 	uint32	getQuantity(uint8 slotID);						// количество предметов в ячейке
+	bool	getConfirmedStatus(uint8 slotID);
 	uint32	getItemQuantity(uint16 itemID);					// количество предметов одного типа
 
 	void	setType(uint8 type);
@@ -59,6 +60,7 @@ public:
 	void	setItemID(uint8 slotID, uint16 itemID);
 	void	setInvSlotID(uint8 slotID, uint8 invSlotID);
 	void	setQuantity(uint8 slotID, uint32 quantity);
+	void	setConfirmedStatus(uint8 slotID, bool confirmed);
 	void	setItem(uint8 slotID, uint16 itemID, uint8 invSlotID, uint32 quantity, CItem* item = NULL);
 
 	void	Clean();										// отчищаем контейнер
@@ -72,6 +74,7 @@ private:
 	uint8	m_slotID[CONTAINER_SIZE];
 	uint16	m_itemID[CONTAINER_SIZE];
 	uint32	m_quantity[CONTAINER_SIZE];
+	bool	m_confirmed[CONTAINER_SIZE];
 };
 
 #endif

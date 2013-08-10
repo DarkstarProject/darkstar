@@ -305,6 +305,7 @@
     <ClInclude Include="..\..\src\map\packets\downloading_data.h" />
     <ClInclude Include="..\..\src\map\packets\entity_update.h" />
     <ClInclude Include="..\..\src\map\packets\event.h" />
+    <ClInclude Include="..\..\src\map\packets\event_string.h" />
     <ClInclude Include="..\..\src\map\packets\event_update.h" />
     <ClInclude Include="..\..\src\map\packets\fade_out.h" />
     <ClInclude Include="..\..\src\map\packets\fishing.h" />
@@ -388,6 +389,7 @@
     <ClInclude Include="..\..\src\map\utils\jailutils.h" />
     <ClInclude Include="..\..\src\map\utils\mobutils.h" />
     <ClInclude Include="..\..\src\map\utils\petutils.h" />
+    <ClInclude Include="..\..\src\map\utils\puppetutils.h" />
     <ClInclude Include="..\..\src\map\utils\synthutils.h" />
     <ClInclude Include="..\..\src\map\utils\zoneutils.h" />
     <ClInclude Include="..\..\src\map\vana_time.h" />
@@ -513,6 +515,7 @@
     <ClCompile Include="..\..\src\map\packets\downloading_data.cpp" />
     <ClCompile Include="..\..\src\map\packets\entity_update.cpp" />
     <ClCompile Include="..\..\src\map\packets\event.cpp" />
+    <ClCompile Include="..\..\src\map\packets\event_string.cpp" />
     <ClCompile Include="..\..\src\map\packets\event_update.cpp" />
     <ClCompile Include="..\..\src\map\packets\fade_out.cpp" />
     <ClCompile Include="..\..\src\map\packets\fishing.cpp" />
@@ -596,6 +599,7 @@
     <ClCompile Include="..\..\src\map\utils\jailutils.cpp" />
     <ClCompile Include="..\..\src\map\utils\mobutils.cpp" />
     <ClCompile Include="..\..\src\map\utils\petutils.cpp" />
+    <ClCompile Include="..\..\src\map\utils\puppetutils.cpp" />
     <ClCompile Include="..\..\src\map\utils\synthutils.cpp" />
     <ClCompile Include="..\..\src\map\utils\zoneutils.cpp" />
     <ClCompile Include="..\..\src\map\vana_time.cpp" />

@@ -1,4 +1,4 @@
-﻿/*
+/*
 ===========================================================================
 
   Copyright (c) 2010-2012 Darkstar Dev Teams
@@ -21,39 +21,17 @@
 ===========================================================================
 */
 
-#ifndef _LUATRADECONTAINER_H
-#define _LUATRADECONTAINER_H
+#ifndef _PUPUTILS_H
+#define _PUPUTILS_H
 
-#include "../../common/cbasetypes.h"
-#include "../../common/lua/lunar.h"
+#include "../entities/charentity.h"
+#include "../items/item_puppet.h"
 
-#include "../trade_container.h"
-
-
-class CLuaTradeContainer
+namespace puppetutils
 {
-	CTradeContainer *m_pMyTradeContainer;
-public:
-
-	static const int8 className[];
-	static Lunar<CLuaTradeContainer>::Register_t methods[];
-
-	CLuaTradeContainer(lua_State*);
-	CLuaTradeContainer(CTradeContainer*);
-
-	CTradeContainer* GetTradeContainer()const
-	{
-		return m_pMyTradeContainer;
-	}
-
-	int32 getGil(lua_State*);
-	int32 getItem(lua_State*);
-	int32 getItemSubId(lua_State*);
-	int32 getItemQty(lua_State*);
-	int32 hasItemQty(lua_State*);
-	int32 getSlotQty(lua_State*);		// количество предметов в указанной ячейке
-	int32 getItemCount(lua_State*);		// общее количество предметов
-	int32 confirmItem(lua_State*);
+	void LoadAutomaton(CCharEntity* PChar);
+	void SaveAutomaton(CCharEntity* PChar);
+	bool UnlockAttachment(CCharEntity* PChar, CItem* PItem);
 };
 
 #endif

@@ -1,4 +1,4 @@
-﻿/*
+/*
 ===========================================================================
 
   Copyright (c) 2010-2012 Darkstar Dev Teams
@@ -21,39 +21,43 @@
 ===========================================================================
 */
 
-#ifndef _LUATRADECONTAINER_H
-#define _LUATRADECONTAINER_H
+#ifndef _CEVENTSTRINGPACKET_H
+#define _CEVENTSTRINGPACKET_H
 
 #include "../../common/cbasetypes.h"
-#include "../../common/lua/lunar.h"
+#include "../../common/mmo.h"
 
-#include "../trade_container.h"
+#include <string>
 
+#include "basic.h"
 
-class CLuaTradeContainer
+/************************************************************************
+*																		*
+*  																		*
+*																		*
+************************************************************************/
+
+class CCharEntity;
+
+class CEventStringPacket : public CBasicPacket
 {
-	CTradeContainer *m_pMyTradeContainer;
 public:
 
-	static const int8 className[];
-	static Lunar<CLuaTradeContainer>::Register_t methods[];
-
-	CLuaTradeContainer(lua_State*);
-	CLuaTradeContainer(CTradeContainer*);
-
-	CTradeContainer* GetTradeContainer()const
-	{
-		return m_pMyTradeContainer;
-	}
-
-	int32 getGil(lua_State*);
-	int32 getItem(lua_State*);
-	int32 getItemSubId(lua_State*);
-	int32 getItemQty(lua_State*);
-	int32 hasItemQty(lua_State*);
-	int32 getSlotQty(lua_State*);		// количество предметов в указанной ячейке
-	int32 getItemCount(lua_State*);		// общее количество предметов
-	int32 confirmItem(lua_State*);
+	CEventStringPacket(
+		CCharEntity* PChar,
+		uint16 EventID, 
+        string_t string0 = "",
+        string_t string1 = "",
+        string_t string2 = "",
+        string_t string3 = "",
+		uint32 param0 = 0,
+		uint32 param1 = 0,
+		uint32 param2 = 0,
+		uint32 param3 = 0,
+		uint32 param4 = 0,
+		uint32 param5 = 0,
+		uint32 param6 = 0,
+		uint32 param7 = 0);
 };
 
 #endif

@@ -68,6 +68,15 @@ uint32 CTradeContainer::getQuantity(uint8 slotID)
 	return 0;
 }
 
+bool CTradeContainer::getConfirmedStatus(uint8 slotID)
+{
+	if (slotID < CONTAINER_SIZE)
+	{
+		return m_confirmed[slotID];
+	}
+	return false;
+}
+
 uint32 CTradeContainer::getItemQuantity(uint16 itemID)
 {
 	uint32 quantity = 0;
@@ -140,6 +149,14 @@ void CTradeContainer::setQuantity(uint8 slotID, uint32 quantity)
 	return;
 }
 
+void CTradeContainer::setConfirmedStatus(uint8 slotID, bool confirmed)
+{
+	if (slotID < CONTAINER_SIZE)
+	{
+		m_confirmed[slotID] = true;
+	}
+}
+
 void CTradeContainer::setItem(uint8 slotID, uint16 itemID, uint8 invSlotID, uint32 quantity, CItem* item)
 {
 	if (slotID < CONTAINER_SIZE)
@@ -183,4 +200,5 @@ void CTradeContainer::Clean()
 	memset(m_itemID,   0x00, sizeof(m_itemID));
 	memset(m_slotID,   0xFF, sizeof(m_slotID));
 	memset(m_quantity, 0x00, sizeof(m_quantity));
+	memset(m_confirmed, false, sizeof(m_confirmed));
 }
