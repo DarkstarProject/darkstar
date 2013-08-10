@@ -304,12 +304,16 @@ namespace itemutils
                 "f.storage,"        // 29
                 "f.moghancement,"   // 30
                 "f.element,"        // 31
-                "f.aura "           // 32
+                "f.aura,"           // 32
+
+                "p.slot,"           // 33
+                "p.element "        // 34
 		    "FROM item_basic AS b "
 		    "LEFT JOIN item_usable AS u USING (itemId) "
 		    "LEFT JOIN item_armor  AS a USING (itemId) "
 		    "LEFT JOIN item_weapon AS w USING (itemId) "
 		    "LEFT JOIN item_furnishing AS f USING (itemId) "
+            "LEFT JOIN item_puppet AS p USING (itemId) "
 		    "WHERE itemId < %u;";
 
 	    int32 ret = Sql_Query(SqlHandle, Query, MAX_ITEMID);
@@ -347,7 +351,8 @@ namespace itemutils
 				    }
 				    if (PItem->isType(ITEM_PUPPET))
 				    {
-
+                        ((CItemPuppet*)PItem)->setEquipSlot(Sql_GetUIntData(SqlHandle,33));
+                        ((CItemPuppet*)PItem)->setElementSlots(Sql_GetUIntData(SqlHandle,34));
 				    }
 				    if (PItem->isType(ITEM_ARMOR))
 				    {

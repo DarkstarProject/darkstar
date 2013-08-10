@@ -74,8 +74,10 @@ bool UnlockAttachment(CCharEntity* PChar, CItem* PItem)
 
 	if (!PItem->isType(ITEM_PUPPET))
 		return false;
+
+    uint8 slot = ((CItemPuppet*)PItem)->getEquipSlot();
 	
-	if (id & 0x2100) //automaton attachment
+	if (slot == 3) //automaton attachment
 	{
 		if (addBit(id & 0xFF, (uint8*)PChar->m_unlockedAttachments.attachments, sizeof(PChar->m_unlockedAttachments.attachments)))
 		{
@@ -84,7 +86,7 @@ bool UnlockAttachment(CCharEntity* PChar, CItem* PItem)
 		}
 		return false;
 	}
-	else if (id & 0x2020) //automaton frame
+	else if (slot == 2) //automaton frame
 	{
 		if (addBit(id & 0x0F, &PChar->m_unlockedAttachments.frames, sizeof(PChar->m_unlockedAttachments.frames)))
 		{
@@ -93,7 +95,7 @@ bool UnlockAttachment(CCharEntity* PChar, CItem* PItem)
 		}
 		return false;
 	}
-	else if (id & 0x2000) //automaton head
+	else if (slot == 1) //automaton head
 	{
 		if (addBit(id & 0x0F, &PChar->m_unlockedAttachments.heads, sizeof(PChar->m_unlockedAttachments.heads)))
 		{

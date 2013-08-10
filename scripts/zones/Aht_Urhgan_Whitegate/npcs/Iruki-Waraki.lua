@@ -71,6 +71,8 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(5699); -- "You can now become a puppetmaster."
 			player:setVar("NoStringsAttachedProgress",0);
 			player:setVar("Automaton_Name",option+1); -- must add +1 to var or if you choose the first name, or it wont be stored
+			player:unlockAttachment(8224); --Harlequin Frame
+			player:unlockAttachment(8193); --Harlequin Head
 		else
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17859);
 		end;

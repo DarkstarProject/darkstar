@@ -31,3 +31,20 @@ CItemPuppet::CItemPuppet(uint16 id) : CItem(id)
 CItemPuppet::~CItemPuppet()
 {
 }
+
+uint8 CItemPuppet::getEquipSlot()
+{
+    return m_equipSlot;
+}
+void CItemPuppet::setEquipSlot(uint32 slot)
+{
+    m_equipSlot = slot;
+}
+uint32 CItemPuppet::getElementSlots()
+{
+    return m_elementSlots;
+}
+void CItemPuppet::setElementSlots(uint32 slots)
+{
+    m_elementSlots = slots;
+}
