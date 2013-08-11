@@ -3884,7 +3884,7 @@ INSERT INTO `item_basic` VALUES (4541,0,'bottle_of_goblin_drink','goblin_drink',
 INSERT INTO `item_basic` VALUES (4542,0,'bowl_of_brain_stew','brain_stew',1,1536,55,0,2220);
 INSERT INTO `item_basic` VALUES (4543,0,'goblin_mushpot','goblin_mushpot',1,1536,54,0,490);
 INSERT INTO `item_basic` VALUES (4544,0,'bowl_of_mushroom_stew','mushroom_stew',1,1536,55,0,1142);
-INSERT INTO `item_basic` VALUES (4545,0,'bunch_of_gysahl_greens','gysahl_greens',12,1536,15,0,17);
+INSERT INTO `item_basic` VALUES (4545,0,'bunch_of_gysahl_greens','gysahl_greens',12,1536,48,0,17);
 INSERT INTO `item_basic` VALUES (4546,0,'piece_of_raisin_bread','raisin_bread',12,1536,56,0,344);
 INSERT INTO `item_basic` VALUES (4547,0,'bowl_of_boiled_cockatrice','boiled_cockatrice',1,1536,52,0,464);
 INSERT INTO `item_basic` VALUES (4548,0,'plate_of_coeurl_sautee','coeurl_sautee',1,1536,52,0,628);
