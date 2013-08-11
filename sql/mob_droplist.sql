@@ -23119,6 +23119,7 @@ INSERT INTO `mob_droplist` VALUES(3747, 0, 1453, 1);
 INSERT INTO `mob_droplist` VALUES(3747, 0, 1455, 7);
 INSERT INTO `mob_droplist` VALUES(3747, 0, 1456, 1);
 INSERT INTO `mob_droplist` VALUES(3747, 0, 4249, 100);
+INSERT INTO `mob_droplist` VALUES(3747, 0, 1589, 35);
 INSERT INTO `mob_droplist` VALUES(3748, 2, 1455, 0);
 INSERT INTO `mob_droplist` VALUES(3748, 0, 1455, 9);
 INSERT INTO `mob_droplist` VALUES(3748, 0, 1456, 1);
