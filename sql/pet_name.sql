@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS `pet_name` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
+INSERT INTO `pet_name` VALUES (0,'');
 INSERT INTO `pet_name` VALUES (1, 'Azure');
 INSERT INTO `pet_name` VALUES (2, 'Cerulean');
 INSERT INTO `pet_name` VALUES (3, 'Rygor');
