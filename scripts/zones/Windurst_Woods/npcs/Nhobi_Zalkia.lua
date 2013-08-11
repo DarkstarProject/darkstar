@@ -1,8 +1,8 @@
 -----------------------------------
---      Area: Windurst_Woods
---      NPC: Nhobi Zalkia
---      Only sells when Windurst controlls Kuzotz Region
---      Working 100%
+-- Area: Windurst_Woods
+-- NPC:  Nhobi Zalkia
+-- Only sells when Windurst controlls Kuzotz Region
+-- Confirmed shop stock, August 2013
 -----------------------------------
 
 require("scripts/globals/harvest_festivals")
@@ -24,20 +24,21 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-RegionOwner = GetRegionOwner(KUZOTZ);
-
-if (RegionOwner ~= WINDURST) then
+    RegionOwner = GetRegionOwner(KUZOTZ);
+    if (RegionOwner ~= WINDURST) then
         player:showText(npc,NHOBI_ZALKIA_CLOSED_DIALOG);
-else
+    else
         player:showText(npc,NHOBI_ZALKIA_OPEN_DIALOG);
        
-        stock = {0x0394,855, --Cactuar Needle
-                         0x113c,299, --Thundermelon
-                         0x118b,184} --Watermelon
+        stock = {
+            0x0394,   855,   --Cactuar Needle
+            0x113C,   299,   --Thundermelon
+            0x118B,   184    --Watermelon
+        }
+        showShop(player,WINDURST,stock);
 
-showShop(player,WINDURST,stock);
-end
+    end
+
 end;
 
 -----------------------------------
@@ -57,6 +58,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-

@@ -1,8 +1,8 @@
 -----------------------------------
---      Area: Windurst Waters
---      NPC: Maqu Molpih
---      Only sells when Windurst controlls Aragoneu Region
---      Working 100%
+-- Area: Windurst Waters
+-- NPC:  Maqu Molpih
+-- Only sells when Windurst controlls Aragoneu Region
+-- Confirmed shop stock, August 2013
 -----------------------------------
 
 require("scripts/globals/harvest_festivals")
@@ -24,22 +24,23 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-RegionOwner = GetRegionOwner(ARAGONEU);
-
-if (RegionOwner ~= WINDURST) then
+    RegionOwner = GetRegionOwner(ARAGONEU);
+    if (RegionOwner ~= WINDURST) then
         player:showText(npc,MAQUMOLPIH_CLOSED_DIALOG);
-else
+    else
         player:showText(npc,MAQUMOLPIH_OPEN_DIALOG);
-       
-        stock = {0x0277,36,      --Horo Flour
-                         0x0275,44,      --Millioncorn
-                         0x113f,114, --Roasted Corn
-                         0x1199,92,      --Sunflower Seeds
-                         0x0349,36}      --Yagudo Feather
-                         
-showShop(player,WINDURST,stock);
-end
+
+        stock = {
+            0x0277,    36,   --Horo Flour
+            0x0275,    44,   --Millioncorn
+            0x113F,   114,   --Roasted Corn
+            0x1199,    92,   --Sunflower Seeds
+            0x0349,    36    --Yagudo Feather
+        }
+        showShop(player,WINDURST,stock);
+
+    end
+
 end;
 
 -----------------------------------

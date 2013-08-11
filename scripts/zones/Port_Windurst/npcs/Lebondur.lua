@@ -3,6 +3,7 @@
 -- NPC: Lebondur
 -- Regional Marchant NPC 
 -- Only sells when Windurst controls Vollbow.
+-- Confirmed shop stock, August 2013
 -----------------------------------
 
 require("scripts/globals/shop");
@@ -22,21 +23,22 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+    RegionOwner = GetRegionOwner(VOLLBOW);
+    if (RegionOwner ~= WINDURST) then 
+        player:showText(npc,LEBONDUR_CLOSED_DIALOG);
+    else
+        player:showText(npc,LEBONDUR_OPEN_DIALOG);
 
-RegionOwner = GetRegionOwner(VOLLBOW);
+        stock = {
+            0x027C,   119,   --Chamomile
+            0x0360,    88,   --Fish Scales
+            0x03a8,    14,   --Rock Salt
+            0x0582,  1656    --Sweet William
+        }
+        showShop(player,WINDURST,stock);	
 
-if (RegionOwner ~= WINDURST) then 
-	player:showText(npc,LEBONDUR_CLOSED_DIALOG);
-else
-	player:showText(npc,LEBONDUR_OPEN_DIALOG);
+    end
 
-	stock = {0x27c,119,  --Chamomile
-			 0x360,88,   --Fish Scales
-			 0x3a8,14,   --Rock Salt
-			 0x582,1656} --Sweet William
-	
-showShop(player,WINDURST,stock);	
-end
 end; 
 
 -----------------------------------
@@ -56,6 +58,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-

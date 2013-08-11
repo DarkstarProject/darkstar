@@ -1,9 +1,9 @@
 -----------------------------------
---	Area: Port Windurst
---	NPC: Sattsuh Ahkanpari
---	Regional Marchant NPC 
---	Only sells when Windurst controlls Elshimo Uplands
---	Working 100%
+-- Area: Port Windurst
+-- NPC: Sattsuh Ahkanpari
+-- Regional Marchant NPC 
+-- Only sells when Windurst controlls Elshimo Uplands
+-- Confirmed shop stock, August 2013
 -----------------------------------
 
 require("scripts/globals/shop");
@@ -23,21 +23,22 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+    RegionOwner = GetRegionOwner(ELSHIMOUPLANDS);
+    if (RegionOwner ~= WINDURST) then 
+        player:showText(npc,SATTSUHAHKANPARI_CLOSED_DIALOG);
+    else
+        player:showText(npc,SATTSUHAHKANPARI_OPEN_DIALOG);
 
-RegionOwner = GetRegionOwner(ELSHIMOUPLANDS);
+        stock = {
+            0x0585,  1656,   --Cattleya
+            0x0274,   239,   --Cinnamon
+            0x1174,    73,   --Pamamas
+            0x02d1,   147    --Rattan Lumber
+        }
+        showShop(player,WINDURST,stock);
 
-if (RegionOwner ~= WINDURST) then 
-	player:showText(npc,SATTSUHAHKANPARI_CLOSED_DIALOG);
-else
-	player:showText(npc,SATTSUHAHKANPARI_OPEN_DIALOG);
+    end
 
-	stock = {0x0585,1656, --Cattleya
-			 0x0274,239,  --Cinnamon
-			 0x1174,73,   --Pamamas
-			 0x02d1,147}  --Rattan Lumber
-			  
-showShop(player,WINDURST,stock);
-end
 end; 
 
 -----------------------------------
@@ -57,6 +58,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-

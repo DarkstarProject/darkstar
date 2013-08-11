@@ -1,8 +1,8 @@
 -----------------------------------
---	Area: Windurst Waters
---	NPC: Jourille
---	Only sells when Windurst controlls Ronfaure Region
---	Working 100%
+-- Area: Windurst Waters
+-- NPC:  Jourille
+-- Only sells when Windurst controlls Ronfaure Region
+-- Confirmed shop stock, August 2013
 -----------------------------------
 
 require("scripts/globals/shop");
@@ -22,22 +22,23 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+    RegionOwner = GetRegionOwner(RONFAURE);
+    if (RegionOwner ~= WINDURST) then 
+        player:showText(npc,JOURILLE_CLOSED_DIALOG);
+    else
+        player:showText(npc,JOURILLE_OPEN_DIALOG);
 
-RegionOwner = GetRegionOwner(RONFAURE);
+        stock = {
+            0x027F,   110,   --Chestnut
+            0x1125,    29,   --San d'Orian Carrot
+            0x0262,    55,   --San d'Orian Flour
+            0x114F,    69,   --San d'Orian Grape
+        }
+        showShop(player,WINDURST,stock);
 
-if (RegionOwner ~= WINDURST) then 
-	player:showText(npc,JOURILLE_CLOSED_DIALOG);
-else
-	player:showText(npc,JOURILLE_OPEN_DIALOG);
-	
-	stock = {0x1125,29,	 --San d'Orian Carrot
-			 0x114f,69,	 --San d'Orian Grape
-			 0x027f,110, --Chestnut
-			 0x0262,55}	 --San d'Orian Flour
-			  
-showShop(player,WINDURST,stock);
-end
-end; 
+    end
+
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -56,6 +57,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-

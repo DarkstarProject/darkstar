@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Windurst Waters
--- NPC: Ness Rugetomal
+-- NPC:  Ness Rugetomal
 -- Standard Merchant NPC
--- Working 100%
+-- Confirmed shop stock, August 2013
 -----------------------------------
 
 require("scripts/globals/harvest_festivals")
@@ -23,24 +23,25 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-       
-player:showText(npc,NESSRUGETOMALL_SHOP_DIALOG);
+    player:showText(npc,NESSRUGETOMALL_SHOP_DIALOG);
 
-stock = {0x112a,10,1,   --Ginger Cookie
-                 0x1137,727,1,  --Carp Sushi
-                 0x1149,323,1,  --Tomato Juice
-                 0x116b,1656,1, --Nebimonite Bake
+    stock = {
+        0x112A,    10,1,     --Ginger Cookie
+        0x1137,   727,1,     --Carp Sushi
+        0x1149,   323,1,     --Tomato Juice
+        0x116B,  1656,1,     --Nebimonite Bake
 
-                 0x112d,14,2,   --Cinna-cookie
-                 0x1146,184,2,  --Orange Juice
-                 0x1168,2070,2, --Boiled Crab
+        0x112D,    14,2,     --Cinna-cookie
+        0x1146,   184,2,     --Orange Juice
+        0x1168,  2070,2,     --Boiled Crab
 
-                 0x119e,21,3,   --Acorn Cookie
-                 0x1118,108,3,  --Meat Jerky
-                 0x119d,10,3,   --Distilled Water
-                 0x11ba,846}    --Roast Pipira
- 
-showNationShop(player, WINDURST, stock);
+        0x119E,    21,3,     --Acorn Cookie
+        0x1118,   108,3,     --Meat Jerky
+        0x119D,    10,3,     --Distilled Water
+        0x11BA,   846,3      --Roast Pipira
+    }
+    showNationShop(player, WINDURST, stock);
+
 end;
 
 -----------------------------------
@@ -60,6 +61,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-

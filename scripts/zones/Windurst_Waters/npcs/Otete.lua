@@ -1,8 +1,8 @@
 -----------------------------------
---	Area: Windurst_Waters
---	NPC: Otete
---	Only sells when Windurst controlls Li'Telor Region
---	Working 100%
+-- Area: Windurst_Waters
+-- NPC:  Otete
+-- Only sells when Windurst controlls Li'Telor Region
+-- Confirmed shop stock, August 2013
 -----------------------------------
 
 require("scripts/globals/shop");
@@ -22,20 +22,21 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+    RegionOwner = GetRegionOwner(LITELOR);
+    if (RegionOwner ~= WINDURST) then 
+        player:showText(npc,OTETE_CLOSED_DIALOG);
+    else
+        player:showText(npc,OTETE_OPEN_DIALOG);
 
-RegionOwner = GetRegionOwner(LITELOR);
+        stock = {
+            0x026F,   119,   --Bay Leaves
+            0x103A,  6440    --Holy Water
+        }
+        showShop(player,WINDURST,stock);
 
-if (RegionOwner ~= WINDURST) then 
-	player:showText(npc,OTETE_CLOSED_DIALOG);
-else
-	player:showText(npc,OTETE_OPEN_DIALOG);
-	
-	stock = {0x026f,119,  --Bay Leaves
-			 0x103a,6440} --Holy Water
-			  
-showShop(player,WINDURST,stock);
-end
-end; 
+    end
+
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -54,6 +55,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-

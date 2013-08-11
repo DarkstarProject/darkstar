@@ -1,7 +1,8 @@
 -----------------------------------
---	Area: Port Bastok
---	NPC: Evelyn
---	Only sells when Bastok controlls Gustaberg Region
+-- Area: Port Bastok
+-- NPC: Evelyn
+-- Only sells when Bastok controlls Gustaberg Region
+-- Confirmed shop stock, August 2013
 -----------------------------------
 
 require("scripts/globals/shop");
@@ -21,21 +22,22 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+    RegionOwner = GetRegionOwner(GUSTABERG);
+    if (RegionOwner ~= BASTOK) then 
+        player:showText(npc,EVELYN_CLOSED_DIALOG);
+    else
+        player:showText(npc,EVELYN_OPEN_DIALOG);
 
-RegionOwner = GetRegionOwner(GUSTABERG);
+        stock = {
+            0x0454,   703,   --Sulfur
+            0x026B,    43,   --Popoto
+            0x0263,    36,   --Rye Flour
+            0x1124,    40    --Eggplant
+        }
+        showShop(player,BASTOK,stock);
 
-if (RegionOwner ~= BASTOK) then 
-	player:showText(npc,EVELYN_CLOSED_DIALOG);
-else
-	player:showText(npc,EVELYN_OPEN_DIALOG);
-	
-	stock = {0x0454,703,		-- Sulfur
-		 0x026b,43,		-- Popoto
-		 0x0263,36,		-- Rye Flour
-		 0x1124,40}		-- Eggplant
-			  
-showShop(player,BASTOK,stock);
-end
+    end
+
 end; 
 
 -----------------------------------
@@ -55,6 +57,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-
