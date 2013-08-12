@@ -23,7 +23,7 @@ end;
 function onTrigger(player,npc)
   GateID =  (npc:getID())-16928768;
   
-  print("GateID" ..GateID);
+  -- print("GateID" ..GateID);
   
   
  switch (GateID): caseof {

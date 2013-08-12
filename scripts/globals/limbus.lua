@@ -43,7 +43,7 @@ APPOLLYON_NW_SW_BCNM_LIST = {
                             };
 
 TEMENOS_LIST = {
-                  --           1298,{true,false,false,4,Temenos_Western_Tower}, -- 'Temenos_Western_Tower'	380 71 -184
+                             1298,{true,false,false,4,Temenos_Western_Tower}, -- 'Temenos_Western_Tower'	380 71 -184
                              1299,{true,false,false,1,Temenos_Northern_Tower}, -- 'Temenos_Northern_Tower'   380 71 375
                   --           1300,{true,false,false,2,Temenos_Eastern_Tower}, -- 'Temenos_Eastern_Tower'    380 -2 96
                              1301,{false,false,false,128,Central_Temenos_Basement}, -- 'Central_Temenos_Basement' 580 -2 -544
@@ -565,7 +565,7 @@ function despawnLimbusCS()
 end;
 
 function SpawnCofferSWfloor3()
-print("spawn_coffer");
+--print("spawn_coffer");
   	GetNPCByID(16932864+210):setPos(MIMICPOSITION[2][1],MIMICPOSITION[2][2],MIMICPOSITION[2][3]);
 	GetNPCByID(16932864+210):setStatus(STATUS_NORMAL);	
   	GetNPCByID(16932864+211):setPos(MIMICPOSITION[4][1],MIMICPOSITION[4][2],MIMICPOSITION[4][3]);
@@ -582,6 +582,94 @@ print("spawn_coffer");
 	GetNPCByID(16932864+216):setStatus(STATUS_NORMAL);	
 SetServerVariable("[SW_Apollyon]MimicTrigger",1);
 end;
+
+function Randomcoffer(Floor,region)
+ local cofferID=0;
+ local cofferType=0;
+ local spawnchance=math.random(0,100);
+
+	   if(spawnchance < 31)then
+	      if(spawnchance < 15)then
+		  cofferType=cITEM;
+		  elseif(spawnchance < 25)then
+		  cofferType=cRESTORE;
+		  elseif(spawnchance < 30)then
+		  cofferType=cTIME;
+		  end	   
+	   else
+--	    print("nothing_spawn");
+       end
+	   
+       if(region==Temenos_Western_Tower and cofferType==cITEM)then
+	        switch (Floor): caseof {
+                 [1] = function (x)
+                    cofferID=1;
+		         end, 
+                 [2] = function (x)
+                    cofferID=2;
+		         end, 
+                 [3] = function (x)
+                    cofferID=3;
+		         end, 
+                 [4] = function (x)
+                    cofferID=10;
+		         end, 
+                 [5] = function (x)
+                   cofferID=11;
+		         end, 
+                 [6] = function (x)
+                    cofferID=12;
+		         end, 				 			 				 
+				                        }
+	   elseif(region==Temenos_Western_Tower and cofferType==cRESTORE)then
+	        switch (Floor): caseof {
+                 [1] = function (x)
+                     cofferID=203;                   
+		         end, 
+                 [2] = function (x)
+                      cofferID=204;                  
+		         end, 
+                 [3] = function (x)
+                      cofferID=205;                  
+		         end, 
+                 [4] = function (x)
+                      cofferID=206;                  
+		         end, 
+                 [5] = function (x)
+                      cofferID=207;                  
+		         end, 
+                 [6] = function (x)
+                      cofferID=208;                    
+		         end, 				 			 				 
+				                        }
+	   elseif(region==Temenos_Western_Tower and cofferType==cTIME)then
+	        switch (Floor): caseof {
+                 [1] = function (x)
+                     cofferID=128;                   
+		         end, 
+                 [2] = function (x)
+                      cofferID=129;                  
+		         end, 
+                 [3] = function (x)
+                      cofferID=139;                  
+		         end, 
+                 [4] = function (x)
+                      cofferID=140;                   
+		         end, 
+                 [5] = function (x)
+                       cofferID=141;                 
+		         end, 
+                 [6] = function (x)
+                       cofferID=151;
+		         end, 				 			 				 
+				                        }
+	   end
+--	   print("cofferID" ..cofferID);
+	return cofferID;
+end;
+
+
+
 function ResetKeyForEmptyLimbus(player,instanceID)
    instancestatus=player:isSpecialIntanceEmpty(GetInstanceRegion(instanceID));
    

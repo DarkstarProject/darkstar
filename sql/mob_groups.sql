@@ -995,20 +995,20 @@ INSERT INTO `mob_groups` VALUES (954,913,37,0,128,0,0,0,75,80);  -- Dark_Element
 INSERT INTO `mob_groups` VALUES (955,1160,37,0,128,0,0,0,75,80);  -- Earth_Elemental
 INSERT INTO `mob_groups` VALUES (956,1216,37,0,128,0,0,0,75,80);  -- Enhanced_Ahriman
 INSERT INTO `mob_groups` VALUES (957,1217,37,0,128,0,0,0,75,80);  -- Enhanced_Akbaba
-INSERT INTO `mob_groups` VALUES (958,1218,37,0,128,0,0,0,75,80);  -- Enhanced_Beetle
+INSERT INTO `mob_groups` VALUES (958,1218,37,0,128,4412,10000,1000,75,80);  -- Enhanced_Beetle         ok
 INSERT INTO `mob_groups` VALUES (959,1219,37,0,128,0,0,0,75,80);  -- Enhanced_Dragon
 INSERT INTO `mob_groups` VALUES (960,1220,37,0,128,0,0,0,75,80);  -- Enhanced_Jelly
 INSERT INTO `mob_groups` VALUES (961,1221,37,0,128,0,0,0,75,80);  -- Enhanced_Kettenkaefer
 INSERT INTO `mob_groups` VALUES (962,1222,37,0,128,0,0,0,75,80);  -- Enhanced_Koenigstiger
-INSERT INTO `mob_groups` VALUES (963,1223,37,0,128,0,0,0,75,80);  -- Enhanced_Lizard
+INSERT INTO `mob_groups` VALUES (963,1223,37,0,128,4413,10000,0,75,80);  -- Enhanced_Lizard         ok
 INSERT INTO `mob_groups` VALUES (964,1224,37,0,128,0,0,0,75,80);  -- Enhanced_Makara
-INSERT INTO `mob_groups` VALUES (965,1225,37,0,128,0,0,0,75,80);  -- Enhanced_Mandragora
-INSERT INTO `mob_groups` VALUES (966,1226,37,0,128,0,0,0,75,80);  -- Enhanced_Pugil
+INSERT INTO `mob_groups` VALUES (965,1225,37,0,128,4411,10000,0,75,80);  -- Enhanced_Mandragora         ok
+INSERT INTO `mob_groups` VALUES (966,1226,37,0,128,4411,10000,0,75,80);  -- Enhanced_Pugil         ok
 INSERT INTO `mob_groups` VALUES (967,1227,37,0,128,0,0,0,75,80);  -- Enhanced_Pygmaioi
 INSERT INTO `mob_groups` VALUES (968,1228,37,0,128,0,0,0,75,80);  -- Enhanced_Salamander
-INSERT INTO `mob_groups` VALUES (969,1229,37,0,128,0,0,0,75,80);  -- Enhanced_Slime
-INSERT INTO `mob_groups` VALUES (970,1230,37,0,128,0,0,0,75,80);  -- Enhanced_Tiger
-INSERT INTO `mob_groups` VALUES (971,1231,37,0,128,0,0,0,75,80);  -- Enhanced_Vulture
+INSERT INTO `mob_groups` VALUES (969,1229,37,0,128,4409,10000,1000,75,80);  -- Enhanced_Slime         ok
+INSERT INTO `mob_groups` VALUES (970,1230,37,0,128,4411,10000,0,75,80);  -- Enhanced_Tiger            ok
+INSERT INTO `mob_groups` VALUES (971,1231,37,0,128,4413,11000,1000,75,80);  -- Enhanced_Vulture         ok
 INSERT INTO `mob_groups` VALUES (972,1341,37,0,128,0,0,0,75,80);  -- Fire_Elemental
 INSERT INTO `mob_groups` VALUES (973,1410,37,0,128,0,0,0,75,80);  -- Fossil_Quadav
 INSERT INTO `mob_groups` VALUES (974,1656,37,0,128,4415,11000,1000,75,80);  -- Goblin_Fencer         ok
