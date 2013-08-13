@@ -2257,35 +2257,28 @@ INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928840','1');-- Fire Elementa
 INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928841','1');-- Fire Elemental
 INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928842','1');-- Fire Elemental
 INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928843','1');-- Fire Elemental
-INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928844','1');-- Mystic Avatar
 INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928849','1');-- Ice Elemental
 INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928850','1');-- Ice Elemental
 INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928851','1');-- Ice Elemental
 INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928852','1');-- Ice Elemental
-INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928853','1');-- Mystic Avatar
 INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928858','1');-- Air Elemental
 INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928859','1');-- Air Elemental
 INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928860','1');-- Air Elemental
 INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928861','1');-- Air Elemental
-INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928862','1');-- Mystic Avatar
 INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928867','1');-- Earth Elemental
 INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928868','1');-- Earth Elemental
 INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928869','1');-- Earth Elemental
 INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928870','1');-- Earth Elemental
-INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928871','1');-- Mystic Avatar
 INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928876','1');-- Thunder Elemental
 INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928877','1');-- Thunder Elemental
 INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928878','1');-- Thunder Elemental
 INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928879','1');-- Thunder Elemental
-INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928880','1');-- Mystic Avatar
 INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928885','1');-- Water Elemental
 INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928886','1');-- Water Elemental
 INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928887','1');-- Water Elemental
 INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928888','1');-- Water Elemental
-INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928889','1');-- Mystic Avatar
 INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928892','1');-- Dark Elemental
 INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928893','1');-- Dark Elemental
-INSERT INTO `bcnm_instance` VALUES ('1300', '3','16928894','1');-- Mystic Avatar
 -- ------------------------
 -- Temenos - Western Tower
 -- ------------------------

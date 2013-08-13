@@ -45,7 +45,7 @@ APPOLLYON_NW_SW_BCNM_LIST = {
 TEMENOS_LIST = {
                              1298,{true,false,false,4,Temenos_Western_Tower}, -- 'Temenos_Western_Tower'	380 71 -184
                              1299,{true,false,false,1,Temenos_Northern_Tower}, -- 'Temenos_Northern_Tower'   380 71 375
-                  --           1300,{true,false,false,2,Temenos_Eastern_Tower}, -- 'Temenos_Eastern_Tower'    380 -2 96
+                             1300,{true,false,false,2,Temenos_Eastern_Tower}, -- 'Temenos_Eastern_Tower'    380 -2 96
                              1301,{false,false,false,128,Central_Temenos_Basement}, -- 'Central_Temenos_Basement' 580 -2 -544
                              1302,{false,false,false,256,Central_Temenos_Basement_II}, -- 'Central_Temenos_Basement_II' 540 -2 -544
                              1303,{false,false,false,64,Central_Temenos_1st_Floor}, -- 'Central_Temenos_1st_Floor' 260 -162 -504
@@ -237,8 +237,8 @@ ARMOURY_CRATES_LIST_TEMENOS={
 115	,{ },
 116	,{ },
 122	,{ },
-123	,{ },
-127	,{ },
+123	,{cMIMIC,Temenos_Eastern_Tower,0,true,0,0},
+127	,{cMIMIC,Temenos_Eastern_Tower,0,true,0,0},
 -- -----------------------------------------
 128	,{cTIME,Temenos_Western_Tower,15,false,0,0},
 129	,{cTIME,Temenos_Western_Tower,15,false,0,0},
@@ -290,11 +290,11 @@ ARMOURY_CRATES_LIST_TEMENOS={
 277	,{cRESTORE,Temenos_Eastern_Tower,0,true,0,0},
 
 
-284	,{cMIMIC },
-321	,{cMIMIC },
-348	,{cMIMIC },
-360	,{cMIMIC },
-393	,{cMIMIC }
+284	,{cMIMIC,Temenos_Eastern_Tower,0,true,0,0},
+321	,{cMIMIC,Temenos_Eastern_Tower,0,true,0,0},
+348	,{cMIMIC,Temenos_Eastern_Tower,0,true,0,0},
+360	,{cMIMIC,Temenos_Eastern_Tower,0,true,0,0},
+393	,{cMIMIC,Temenos_Eastern_Tower,0,true,0,0}
 
                             };				
 function LimbusEntrance(player,entrance)

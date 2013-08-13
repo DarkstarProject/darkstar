@@ -67,19 +67,19 @@ function onTrigger(player,npc)
        if(player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then  
 	     local LimbusTradeItem = player:getVar("Limbus_Trade_Item-T");
 	       for nt = 1,table.getn (instancelist),2 do
-                    printf("list d'instance: %u",instancelist[nt]);  	 
+                --    printf("list d'instance: %u",instancelist[nt]);  	 
                if(instancelist[nt+1][1]==true and player:hasKeyItem(WHITE_CARD))then
-		           print("player_have_white_card");
+		       --    print("player_have_white_card");
 			       limbusbitmap = limbusbitmap + instancelist[nt+1][4];
 			      printf("bitmapadd: %u",instancelist[nt+1][4]);
 		       end
                if(instancelist[nt+1][2]==true and player:hasKeyItem(RED_CARD))then
-		          print("player_have_red_card");
+		        --  print("player_have_red_card");
 			        limbusbitmap = limbusbitmap + instancelist[nt+1][4];
 			       printf("bitmapadd: %u",instancelist[nt+1][4]);
 		       end	  
                if(instancelist[nt+1][3]==true and player:hasKeyItem(BLACK_CARD))then
-		          print("player_have_black_card");
+		         -- print("player_have_black_card");
 			        limbusbitmap = limbusbitmap + instancelist[nt+1][4];
 			       printf("bitmapadd: %u",instancelist[nt+1][4]);
 		       end	  	  

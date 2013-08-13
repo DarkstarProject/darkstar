@@ -1160,6 +1160,134 @@ INSERT INTO `bcnm_loot` VALUES ('143', '2127', '55', '7'); -- Metal Chip
 INSERT INTO `bcnm_loot` VALUES ('143', '1906', '1000', '8'); -- Emerald Chip
 -- Temenos_Eastern_Tower --------------------------------------------------------------
 
+-- F1
+INSERT INTO `bcnm_loot` VALUES ('144', '1875', '1000', '0');
+INSERT INTO `bcnm_loot` VALUES ('144', '1875', '1000', '1');
+INSERT INTO `bcnm_loot` VALUES ('144', '1875', '1000', '2');
+INSERT INTO `bcnm_loot` VALUES ('144', '1875', '1000', '3');
+INSERT INTO `bcnm_loot` VALUES ('144', '1875', '1000', '4');
+INSERT INTO `bcnm_loot` VALUES ('144', '1875', '1000', '5');
+INSERT INTO `bcnm_loot` VALUES ('144', '1944', '65', '6'); -- DRK
+INSERT INTO `bcnm_loot` VALUES ('144', '1936', '97', '6'); -- BLM
+INSERT INTO `bcnm_loot` VALUES ('144', '1946', '40', '6'); -- BST
+INSERT INTO `bcnm_loot` VALUES ('144', '1942', '95', '6'); -- PLD
+INSERT INTO `bcnm_loot` VALUES ('144', '2660', '194', '6'); -- PUP
+INSERT INTO `bcnm_loot` VALUES ('144', '2714', '32', '6'); -- DNC
+INSERT INTO `bcnm_loot` VALUES ('144', '1950', '161', '6'); -- RNG
+INSERT INTO `bcnm_loot` VALUES ('144', '2716', '190', '6'); -- SCH
+INSERT INTO `bcnm_loot` VALUES ('144', '2656', '210', '6'); -- BLU
+-- F2
+INSERT INTO `bcnm_loot` VALUES ('145', '1875', '1000', '0');
+INSERT INTO `bcnm_loot` VALUES ('145', '1875', '1000', '1');
+INSERT INTO `bcnm_loot` VALUES ('145', '1875', '1000', '2');
+INSERT INTO `bcnm_loot` VALUES ('145', '1875', '1000', '3');
+INSERT INTO `bcnm_loot` VALUES ('145', '1875', '1000', '4');
+INSERT INTO `bcnm_loot` VALUES ('145', '1875', '1000', '5');
+INSERT INTO `bcnm_loot` VALUES ('145', '1936', '367', '6'); -- BLM
+INSERT INTO `bcnm_loot` VALUES ('145', '1952', '70', '6'); -- SAM
+INSERT INTO `bcnm_loot` VALUES ('145', '1950', '40', '6'); -- RNG
+INSERT INTO `bcnm_loot` VALUES ('145', '1942', '333', '6'); -- PLD
+INSERT INTO `bcnm_loot` VALUES ('145', '1958', '20', '6'); -- SMN 
+INSERT INTO `bcnm_loot` VALUES ('145', '1956', '106', '7'); -- DRG
+INSERT INTO `bcnm_loot` VALUES ('145', '1938', '33', '7'); -- RDM
+INSERT INTO `bcnm_loot` VALUES ('145', '1944', '76', '7'); -- DRK
+INSERT INTO `bcnm_loot` VALUES ('145', '1948', '95', '7'); -- BRD
+INSERT INTO `bcnm_loot` VALUES ('145', '2658', '67', '7'); -- COR
+INSERT INTO `bcnm_loot` VALUES ('145', '1946', '133', '7'); -- BST
+
+-- F3
+INSERT INTO `bcnm_loot` VALUES ('146', '1875', '1000', '0');
+INSERT INTO `bcnm_loot` VALUES ('146', '1875', '1000', '1');
+INSERT INTO `bcnm_loot` VALUES ('146', '1875', '1000', '2');
+INSERT INTO `bcnm_loot` VALUES ('146', '1875', '1000', '3');
+INSERT INTO `bcnm_loot` VALUES ('146', '1875', '1000', '4');
+INSERT INTO `bcnm_loot` VALUES ('146', '1875', '1000', '5');
+INSERT INTO `bcnm_loot` VALUES ('146', '1875', '1000', '6');
+INSERT INTO `bcnm_loot` VALUES ('146', '1942', '625', '7'); -- PLD
+INSERT INTO `bcnm_loot` VALUES ('146', '1944', '102', '7'); -- DRK
+INSERT INTO `bcnm_loot` VALUES ('146', '1950', '42', '7'); -- RNG
+INSERT INTO `bcnm_loot` VALUES ('146', '1952', '83', '7'); -- SAM
+INSERT INTO `bcnm_loot` VALUES ('146', '1946', '50', '7'); -- BST
+INSERT INTO `bcnm_loot` VALUES ('146', '1940', '83', '8'); -- THF
+INSERT INTO `bcnm_loot` VALUES ('146', '1936', '70', '8'); -- BLM
+INSERT INTO `bcnm_loot` VALUES ('146', '1938', '42', '8'); -- RDM
+INSERT INTO `bcnm_loot` VALUES ('146', '1948', '42', '8'); -- BRD
+INSERT INTO `bcnm_loot` VALUES ('146', '2660', '292', '8'); -- PUP
+
+-- F4
+INSERT INTO `bcnm_loot` VALUES ('147', '1875', '1000', '0');
+INSERT INTO `bcnm_loot` VALUES ('147', '1875', '1000', '1');
+INSERT INTO `bcnm_loot` VALUES ('147', '1875', '1000', '2');
+INSERT INTO `bcnm_loot` VALUES ('147', '1875', '1000', '3');
+INSERT INTO `bcnm_loot` VALUES ('147', '1875', '1000', '4');
+INSERT INTO `bcnm_loot` VALUES ('147', '1875', '1000', '5');
+INSERT INTO `bcnm_loot` VALUES ('147', '1950', '417', '6'); -- RNG
+INSERT INTO `bcnm_loot` VALUES ('147', '1956', '75', '6'); -- DRG
+INSERT INTO `bcnm_loot` VALUES ('147', '1944', '208', '6'); -- DRK
+INSERT INTO `bcnm_loot` VALUES ('147', '1940', '167', '6'); -- THF
+INSERT INTO `bcnm_loot` VALUES ('147', '1946', '62', '7'); -- BST
+INSERT INTO `bcnm_loot` VALUES ('147', '1936', '69', '7'); -- BLM
+INSERT INTO `bcnm_loot` VALUES ('147', '2660', '208', '7'); -- PUP
+INSERT INTO `bcnm_loot` VALUES ('147', '1952', '42', '7'); -- SAM
+INSERT INTO `bcnm_loot` VALUES ('147', '2658', '83', '7'); -- COR
+
+-- F5
+INSERT INTO `bcnm_loot` VALUES ('148', '1875', '1000', '0');
+INSERT INTO `bcnm_loot` VALUES ('148', '1875', '1000', '1');
+INSERT INTO `bcnm_loot` VALUES ('148', '1875', '1000', '2');
+INSERT INTO `bcnm_loot` VALUES ('148', '1875', '1000', '3');
+INSERT INTO `bcnm_loot` VALUES ('148', '1875', '1000', '4');
+INSERT INTO `bcnm_loot` VALUES ('148', '1875', '1000', '5');
+INSERT INTO `bcnm_loot` VALUES ('148', '1875', '1000', '6');
+INSERT INTO `bcnm_loot` VALUES ('148', '1944', '208', '7'); -- DRK
+INSERT INTO `bcnm_loot` VALUES ('148', '1938', '42', '7'); -- RDM
+INSERT INTO `bcnm_loot` VALUES ('148', '1946', '36', '7'); -- BST
+INSERT INTO `bcnm_loot` VALUES ('148', '1940', '83', '7'); -- THF
+INSERT INTO `bcnm_loot` VALUES ('148', '1942', '20', '7'); -- PLD
+INSERT INTO `bcnm_loot` VALUES ('148', '1952', '94', '8'); -- SAM
+INSERT INTO `bcnm_loot` VALUES ('148', '1956', '42', '8'); -- DRG
+INSERT INTO `bcnm_loot` VALUES ('148', '1936', '49', '8'); -- BLM
+INSERT INTO `bcnm_loot` VALUES ('148', '1950', '167', '8'); -- RNG
+INSERT INTO `bcnm_loot` VALUES ('148', '2714', '458', '8'); -- DNC
+
+-- F6
+INSERT INTO `bcnm_loot` VALUES ('149', '1875', '1000', '0');
+INSERT INTO `bcnm_loot` VALUES ('149', '1875', '1000', '1');
+INSERT INTO `bcnm_loot` VALUES ('149', '1875', '1000', '2');
+INSERT INTO `bcnm_loot` VALUES ('149', '1875', '1000', '3');
+INSERT INTO `bcnm_loot` VALUES ('149', '1875', '1000', '4');
+INSERT INTO `bcnm_loot` VALUES ('149', '1875', '1000', '5');
+INSERT INTO `bcnm_loot` VALUES ('149', '1942', '68', '6'); -- PLD
+INSERT INTO `bcnm_loot` VALUES ('149', '1948', '74', '6'); -- BRD
+INSERT INTO `bcnm_loot` VALUES ('149', '1936', '259', '6'); -- BLM
+INSERT INTO `bcnm_loot` VALUES ('149', '1940', '74', '6'); -- THF
+INSERT INTO `bcnm_loot` VALUES ('149', '1956', '74', '6'); -- DRG
+INSERT INTO `bcnm_loot` VALUES ('149', '1950', '62', '6'); -- RNG
+INSERT INTO `bcnm_loot` VALUES ('149', '2656', '150', '7'); -- BLU
+INSERT INTO `bcnm_loot` VALUES ('149', '1938', '76', '7'); -- RDM
+INSERT INTO `bcnm_loot` VALUES ('149', '1952', '53', '7'); -- SAM
+INSERT INTO `bcnm_loot` VALUES ('149', '2658', '111', '7'); -- COR
+INSERT INTO `bcnm_loot` VALUES ('149', '2714', '370', '7'); -- DNC
+INSERT INTO `bcnm_loot` VALUES ('149', '1946', '333', '7'); -- BST
+
+-- F7
+INSERT INTO `bcnm_loot` VALUES ('150', '1875', '1000', '0');
+INSERT INTO `bcnm_loot` VALUES ('150', '1875', '1000', '1');
+INSERT INTO `bcnm_loot` VALUES ('150', '1875', '1000', '2');
+INSERT INTO `bcnm_loot` VALUES ('150', '1875', '1000', '3');
+INSERT INTO `bcnm_loot` VALUES ('150', '1875', '1000', '4');
+INSERT INTO `bcnm_loot` VALUES ('150', '1875', '1000', '5');
+INSERT INTO `bcnm_loot` VALUES ('150', '1875', '1000', '6');
+INSERT INTO `bcnm_loot` VALUES ('150', '1942', '38', '7'); -- PLD
+INSERT INTO `bcnm_loot` VALUES ('150', '1950', '67', '7'); -- RNG
+INSERT INTO `bcnm_loot` VALUES ('150', '1944', '100', '7'); -- DRK
+INSERT INTO `bcnm_loot` VALUES ('150', '1936', '233', '7'); -- BLM
+INSERT INTO `bcnm_loot` VALUES ('150', '1946', '80', '7'); -- BST
+INSERT INTO `bcnm_loot` VALUES ('150', '2660', '333', '7'); -- PUP
+INSERT INTO `bcnm_loot` VALUES ('150', '2714', '67', '7'); -- DNC 
+INSERT INTO `bcnm_loot` VALUES ('150', '1875', '100', '8');
+INSERT INTO `bcnm_loot` VALUES ('150', '2127', '55', '8'); -- Metal Chip
+INSERT INTO `bcnm_loot` VALUES ('150', '1905', '1000', '9'); -- Scarlet Chip,
 -- Central_Temenos_Basement --------------------------------------------------------------
 
 -- Central_Temenos_1st_Floor --------------------------------------------------------------
