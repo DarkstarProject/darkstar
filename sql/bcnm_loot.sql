@@ -1306,6 +1306,21 @@ INSERT INTO `bcnm_loot` VALUES ('151', '2656', '235', '7'); -- BLU
 INSERT INTO `bcnm_loot` VALUES ('151', '1986', '1000', '8'); -- Orchid Chip
 
 -- Central_Temenos_2nd_Floor --------------------------------------------------------------
+INSERT INTO `bcnm_loot` VALUES ('152', '1875', '1000', '0');
+INSERT INTO `bcnm_loot` VALUES ('152', '1875', '1000', '1');
+INSERT INTO `bcnm_loot` VALUES ('152', '1875', '1000', '2');
+INSERT INTO `bcnm_loot` VALUES ('152', '1875', '1000', '3');
+INSERT INTO `bcnm_loot` VALUES ('152', '1875', '1000', '4');
+INSERT INTO `bcnm_loot` VALUES ('152', '1875', '1000', '5');
+INSERT INTO `bcnm_loot` VALUES ('152', '1875', '1000', '6');
+INSERT INTO `bcnm_loot` VALUES ('152', '1944', '250', '7'); -- DRK
+INSERT INTO `bcnm_loot` VALUES ('152', '1936', '94', '7'); -- BLM
+INSERT INTO `bcnm_loot` VALUES ('152', '1950', '63', '7'); -- RNG
+INSERT INTO `bcnm_loot` VALUES ('152', '1942', '125', '7'); -- PLD
+INSERT INTO `bcnm_loot` VALUES ('152', '1946', '63', '7'); -- BST
+INSERT INTO `bcnm_loot` VALUES ('152', '2660', '281', '7'); -- PUP
+INSERT INTO `bcnm_loot` VALUES ('152', '2714', '125', '7'); -- DNC
+INSERT INTO `bcnm_loot` VALUES ('152', '1908', '1000', '8'); -- Cerulean Chip
 
 -- Central_Temenos_3rd_Floor --------------------------------------------------------------
 

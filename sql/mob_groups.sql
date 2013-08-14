@@ -1034,9 +1034,9 @@ INSERT INTO `mob_groups` VALUES (993,2249,37,0,128,4413,6000,0,75,80);  -- Kindr
 INSERT INTO `mob_groups` VALUES (994,2252,37,0,128,0,0,0,75,80);  -- Kingslayer_Doggvdegg
 INSERT INTO `mob_groups` VALUES (995,2279,37,0,128,0,0,0,75,80);  -- Koo_Buzu_the_Theomanic
 INSERT INTO `mob_groups` VALUES (996,2412,37,0,128,0,0,0,75,80);  -- Lightsteel_Quadav
-INSERT INTO `mob_groups` VALUES (997,2413,37,0,128,0,0,0,75,80);  -- Light_Elemental
+INSERT INTO `mob_groups` VALUES (997,2413,37,0,128,4416,7000,1000,75,80);  -- Light_Elemental      OK
 INSERT INTO `mob_groups` VALUES (998,2691,37,0,128,4411,9000,500,75,80);  -- Moblin_Dustman          OK
-INSERT INTO `mob_groups` VALUES (999,2791,37,0,128,0,5000,0,75,80);  -- Mystic_Avatar (carbuncle)
+INSERT INTO `mob_groups` VALUES (999,636,37,0,128,0,15000,0,75,80);  -- Mystic_Avatar (carbuncle)
 INSERT INTO `mob_groups` VALUES (1000,2836,37,0,128,0,0,0,75,80);  -- Nguruvilu
 INSERT INTO `mob_groups` VALUES (1001,3048,37,0,128,0,0,0,60,64);  -- Orc_s_Wyvern
 INSERT INTO `mob_groups` VALUES (1002,3052,37,0,128,0,0,0,75,80);  -- Orichalcum_Quadav

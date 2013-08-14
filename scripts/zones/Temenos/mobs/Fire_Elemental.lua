@@ -33,7 +33,6 @@ function onMobDeath(mob,killer)
    local mobY = mob:getYPos();
    local mobZ = mob:getZPos();		
 	 switch (mobID): caseof {
-         -- 100 a 106 inclut (Temenos -Northern Tower )
         [16928840] = function (x)
 		   GetNPCByID(16928768+173):setPos(mobX,mobY,mobZ);
            GetNPCByID(16928768+173):setStatus(STATUS_NORMAL);
@@ -50,5 +49,11 @@ function onMobDeath(mob,killer)
 		   GetNPCByID(16928768+40):setPos(mobX,mobY,mobZ);
            GetNPCByID(16928768+40):setStatus(STATUS_NORMAL);
 		end	, 
+		[16929033] = function (x)		   
+           if(IsMobDead(16929034)==false)then -- ice
+		     DespawnMob(16929034);
+			 SpawnMob(16929040);
+		   end
+		end	,
 	 }
 end;

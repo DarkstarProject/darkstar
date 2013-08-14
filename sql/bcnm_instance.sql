@@ -2394,12 +2394,6 @@ INSERT INTO `bcnm_instance` VALUES ('1304', '6','16929035','1');-- Air Elemental
 INSERT INTO `bcnm_instance` VALUES ('1304', '6','16929036','1');-- Earth Elemental
 INSERT INTO `bcnm_instance` VALUES ('1304', '6','16929037','1');-- Thunder Elemental
 INSERT INTO `bcnm_instance` VALUES ('1304', '6','16929038','1');-- Water Elemental
-INSERT INTO `bcnm_instance` VALUES ('1304', '6','16929039','1');-- Mystic Avatar
-INSERT INTO `bcnm_instance` VALUES ('1304', '6','16929040','1');-- Mystic Avatar
-INSERT INTO `bcnm_instance` VALUES ('1304', '6','16929041','1');-- Mystic Avatar
-INSERT INTO `bcnm_instance` VALUES ('1304', '6','16929042','1');-- Mystic Avatar
-INSERT INTO `bcnm_instance` VALUES ('1304', '6','16929043','1');-- Mystic Avatar
-INSERT INTO `bcnm_instance` VALUES ('1304', '6','16929044','1');-- Mystic Avatar
 -- -----------------------------
 -- Central Temenos - 1st Floor
 -- -----------------------------

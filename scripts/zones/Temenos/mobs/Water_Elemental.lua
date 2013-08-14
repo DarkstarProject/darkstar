@@ -49,6 +49,12 @@ function onMobDeath(mob,killer)
 		[16928888] = function (x)		   
 		   GetNPCByID(16928768+69):setPos(mobX,mobY,mobZ);
            GetNPCByID(16928768+69):setStatus(STATUS_NORMAL);
-		end	, 
+		end	,
+		[16929038] = function (x)		   
+           if(IsMobDead(16929033)==false)then  
+		     DespawnMob(16929033);
+			 SpawnMob(16929039);
+		   end
+		end	,
 	 }
 end;

@@ -1498,8 +1498,8 @@ INSERT INTO `mob_skill` VALUES (637,320,599,'Judgment_Bolt', 1, 10.0, 616, 1500,
 -- Carbuncle
 INSERT INTO `mob_skill` VALUES (650,34,605,'healing_ruby', 0, 10.0, 496, 1500, 2, 0, 0);
 INSERT INTO `mob_skill` VALUES (651,34,606,'poison_nails', 0, 10.0, 497, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (652,34,607,'shining_ruby', 1, 10.0, 498, 1500, 1, 0, 0);
-INSERT INTO `mob_skill` VALUES (653,34,608,'glittering_ruby', 1, 10.0, 499, 1500, 1, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (652,34,607,'shining_ruby', 1, 10.0, 498, 1500, 1, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (653,34,608,'glittering_ruby', 1, 10.0, 499, 1500, 1, 0, 0);
 INSERT INTO `mob_skill` VALUES (654,34,609,'meteorite', 0, 10.0, 500, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (655,34,610,'healing_ruby_ii', 1, 10.0, 501, 1500, 1, 0, 0);
 INSERT INTO `mob_skill` VALUES (656,34,611,'searing_light', 1, 10.0, 502, 1500, 4, 0, 0);
