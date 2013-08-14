@@ -1288,9 +1288,22 @@ INSERT INTO `bcnm_loot` VALUES ('150', '2714', '67', '7'); -- DNC
 INSERT INTO `bcnm_loot` VALUES ('150', '1875', '100', '8');
 INSERT INTO `bcnm_loot` VALUES ('150', '2127', '55', '8'); -- Metal Chip
 INSERT INTO `bcnm_loot` VALUES ('150', '1905', '1000', '9'); -- Scarlet Chip,
--- Central_Temenos_Basement --------------------------------------------------------------
 
 -- Central_Temenos_1st_Floor --------------------------------------------------------------
+INSERT INTO `bcnm_loot` VALUES ('151', '1875', '1000', '0');
+INSERT INTO `bcnm_loot` VALUES ('151', '1875', '1000', '1');
+INSERT INTO `bcnm_loot` VALUES ('151', '1875', '1000', '2');
+INSERT INTO `bcnm_loot` VALUES ('151', '1875', '1000', '3');
+INSERT INTO `bcnm_loot` VALUES ('151', '1875', '1000', '4');
+INSERT INTO `bcnm_loot` VALUES ('151', '1875', '1000', '5');
+INSERT INTO `bcnm_loot` VALUES ('151', '1875', '1000', '6');
+INSERT INTO `bcnm_loot` VALUES ('151', '1930', '265', '7'); -- WAR
+INSERT INTO `bcnm_loot` VALUES ('151', '1938', '118', '7'); -- RDM
+INSERT INTO `bcnm_loot` VALUES ('151', '1948', '147', '7'); -- BRD
+INSERT INTO `bcnm_loot` VALUES ('151', '1958', '147', '7'); -- SMN
+INSERT INTO `bcnm_loot` VALUES ('151', '1952', '118', '7'); -- SAM
+INSERT INTO `bcnm_loot` VALUES ('151', '2656', '235', '7'); -- BLU
+INSERT INTO `bcnm_loot` VALUES ('151', '1986', '1000', '8'); -- Orchid Chip
 
 -- Central_Temenos_2nd_Floor --------------------------------------------------------------
 

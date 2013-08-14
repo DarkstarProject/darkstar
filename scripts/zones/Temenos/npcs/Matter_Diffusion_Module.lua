@@ -14,34 +14,35 @@ require("scripts/zones/Temenos/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
---local count = trade:getItemCount();
--- local InstanceTrade=0;
---if(player:hasKeyItem(COSMOCLEANSE) and player:hasKeyItem(WHITE_CARD) )then 
+local count = trade:getItemCount();
+local InstanceTrade=0;
+if(player:hasKeyItem(COSMOCLEANSE) and player:hasKeyItem(WHITE_CARD) )then 
 
 
- -- if(count==1 and trade:hasItemQty(2127,1))then -- Central Temenos - Basement 1
- --   InstanceTrade=128;
- -- elseif(count==1 and trade:hasItemQty(1906,1))then -- Central Temenos - 1st Floor
---    InstanceTrade=64;
- -- elseif(count==1 and trade:hasItemQty(1905,1))then -- Central Temenos - 2st Floor
- --   InstanceTrade=32;
---  elseif(count==1 and trade:hasItemQty(1904,1))then -- Central Temenos - 3st Floor
---    InstanceTrade=16;
---  end
---elseif(player:hasKeyItem(COSMOCLEANSE) and count==3 and trade:hasItemQty(1986,1) and trade:hasItemQty(1908,1) and trade:hasItemQty(1907,1))then --proto-ultima
---    InstanceTrade=8;
---else
- -- 	 player:messageSpecial(CONDITION_FOR_LIMBUS_T); 
---	 print("error player  don't have cosmo clean");
---end 
+  -- if(count==1 and trade:hasItemQty(2127,1))then -- Central Temenos - Basement 1
+   --  InstanceTrade=128;
+ -- else
+     if(count==1 and trade:hasItemQty(1906,1))then -- Central Temenos - 1st Floor
+       InstanceTrade=64;
+ --  elseif(count==1 and trade:hasItemQty(1905,1))then -- Central Temenos - 2st Floor
+ --    InstanceTrade=32;
+--   elseif(count==1 and trade:hasItemQty(1904,1))then -- Central Temenos - 3st Floor
+--     InstanceTrade=16;
+--   elseif(player:hasKeyItem(COSMOCLEANSE) and count==3 and trade:hasItemQty(1986,1) and trade:hasItemQty(1908,1) and trade:hasItemQty(1907,1))then --proto-ultima
+--     InstanceTrade=8;
+     end
+  else
+  	 player:messageSpecial(CONDITION_FOR_LIMBUS_T); 
+	 print("error player  don't have cosmo clean");
+  end 
   
---   if(InstanceTrade~=0)then
---    player:setVar("Limbus_Trade_Item-T",InstanceTrade);
---    player:tradeComplete();
---	player:messageSpecial(CHIP_TRADE_T); 
---	player:startEvent(0x7d00,0,0,0,InstanceTrade,0,0,0,0);
---	player:setVar("limbusbitmap",InstanceTrade);
- -- end
+   if(InstanceTrade~=0)then
+   player:setVar("Limbus_Trade_Item-T",InstanceTrade);
+   player:tradeComplete();
+   player:messageSpecial(CHIP_TRADE_T); 
+   player:startEvent(0x7d00,0,0,0,InstanceTrade,0,0,0,0);
+   player:setVar("limbusbitmap",InstanceTrade);
+   end
   
   
   

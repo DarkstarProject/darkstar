@@ -93,6 +93,22 @@ function onTrigger(player,npc)
 		[470] = function (x)
              player:startEvent(120);
 		end	, 
+		--
+		[471] = function (x)
+             player:startEvent(120);
+		end	,
+		[472] = function (x)
+             player:startEvent(120);
+		end	,
+		[473] = function (x)
+             player:startEvent(120);
+		end	,
+		[474] = function (x)
+             player:startEvent(120);
+		end	,
+		[475] = function (x)
+             player:startEvent(120);
+		end	,
 	                       	}
 end;
 

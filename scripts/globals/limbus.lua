@@ -360,6 +360,16 @@ function HideTemenosDoor(Region)
 	   GetNPCByID((468)+16928768):setStatus(STATUS_DISAPPEAR);
 	   GetNPCByID((469)+16928768):setStatus(STATUS_DISAPPEAR);
 	   GetNPCByID((470)+16928768):setStatus(STATUS_DISAPPEAR);
+	   elseif(Region==Central_Temenos_1st_Floor)then
+	   GetNPCByID((471)+16928768):setStatus(STATUS_DISAPPEAR);
+	   elseif(Region==Central_Temenos_2nd_Floor)then
+	   GetNPCByID((472)+16928768):setStatus(STATUS_DISAPPEAR);	   
+	   elseif(Region==Central_Temenos_3rd_Floor)then
+	   GetNPCByID((473)+16928768):setStatus(STATUS_DISAPPEAR);	   
+	   elseif(Region==Central_Temenos_4th_Floor)then
+	   GetNPCByID((474)+16928768):setStatus(STATUS_DISAPPEAR);   
+	   elseif(Region==Central_Temenos_Basement)then
+	   GetNPCByID((475)+16928768):setStatus(STATUS_DISAPPEAR);   
        end
 end;
 
