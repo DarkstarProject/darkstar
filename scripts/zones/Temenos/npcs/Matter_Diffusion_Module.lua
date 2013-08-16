@@ -26,8 +26,8 @@ if(player:hasKeyItem(COSMOCLEANSE) and player:hasKeyItem(WHITE_CARD) )then
        InstanceTrade=64;
      elseif(count==1 and trade:hasItemQty(1905,1))then -- Central Temenos - 2st Floor
        InstanceTrade=32;
---   elseif(count==1 and trade:hasItemQty(1904,1))then -- Central Temenos - 3st Floor
---     InstanceTrade=16;
+     elseif(count==1 and trade:hasItemQty(1904,1))then -- Central Temenos - 3st Floor
+       InstanceTrade=16;
 --   elseif(player:hasKeyItem(COSMOCLEANSE) and count==3 and trade:hasItemQty(1986,1) and trade:hasItemQty(1908,1) and trade:hasItemQty(1907,1))then --proto-ultima
 --     InstanceTrade=8;
      end

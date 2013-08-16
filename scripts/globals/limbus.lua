@@ -733,7 +733,7 @@ function ResetKeyForEmptyLimbus(player,instanceID)
 		    SetServerVariable("[C_Temenos_2nd]UniqueID",0); 	print("[C_Temenos_2nd]KeyDelete");	
 		end	,
        [1305] = function (x)			
-		    StServerVariable("[C_Temenos_3rd]UniqueID",0); 	print("[C_Temenos_3rd]KeyDelete");	
+		    SetServerVariable("[C_Temenos_3rd]UniqueID",0); 	print("[C_Temenos_3rd]KeyDelete");	
 		end	,		
 	   [1306] = function (x)			
 		    SetServerVariable("[C_Temenos_4th]UniqueID",0); 	print("[C_Temenos_4th]KeyDelete");	

@@ -2361,7 +2361,6 @@ INSERT INTO `bcnm_instance` VALUES ('1306', '8','16929003','1');-- Enhanced Akba
 INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929005','1');-- Abyssdweller Jhabdebb
 INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929006','1');-- Orichalcum Quadav
 INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929007','1');-- Pee Qoho the Python
-INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929008','1');-- Yagudo's Elemental
 INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929009','1');-- Yagudo's Avatar
 INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929010','1');-- Grognard Mesmerizer
 INSERT INTO `bcnm_instance` VALUES ('1305', '7','16929011','1');-- Grognard Footsoldier
