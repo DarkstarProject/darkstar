@@ -3,7 +3,7 @@
 -- Polearm weapon skill	
 -- Skill Level: 150	
 -- Delivers a five-hit attack. params.accuracy varies with TP.	
--- PDIF calculates lower, with an approximate 0.3 mitigation, resulting in Penta Thrust's lower damage. Verification Needed	
+-- 0.875 Attack penalty	
 -- Will stack with Sneak Attack.	
 -- Aligned with the Shadow Gorget.	
 -- Aligned with the Shadow Belt.	
@@ -27,7 +27,7 @@ function OnUseWeaponSkill(player, target, wsID)
 	params.crit100 = 0.0; params.crit200 = 0.0; params.crit300 = 0.0;
 	params.canCrit = false;
 	params.acc100 = 0.8; params.acc200= 0.9; params.acc300= 1;
-	params.atkmulti = 1;
+	params.atkmulti = 0.875;
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 	
 	return tpHits, extraHits, criticalHit, damage;
