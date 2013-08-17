@@ -32,7 +32,7 @@ end;
 function onTrigger(player,npc)
 	local FearofFlying = player:getQuestStatus(BASTOK,FEAR_OF_FLYING);
 	-- csid 0x00Ad ?
-	if (FearofFlying == QUEST_AVAILABLE and	player:getFameLevel(BASTOK) <=3) then
+	if (FearofFlying == QUEST_AVAILABLE and	player:getFameLevel(BASTOK) >=3) then
 		player:startEvent(0x00AA); -- Quest Start Dialogue
 	elseif (FearofFlying == QUEST_COMPLETED) then
 		player:startEvent(0x00AC); -- Dialogue after Completion
