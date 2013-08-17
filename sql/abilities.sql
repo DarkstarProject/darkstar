@@ -1,10 +1,16 @@
 /*
-MySQL Data Transfer
-Source Host: localhost
-Source Database: dspdb
-Target Host: localhost
-Target Database: dspdb
-Date: 7/28/2013 12:53:33 AM
+Navicat MySQL Data Transfer
+
+Source Server         : DarkStar Project
+Source Server Version : 50613
+Source Host           : localhost:3306
+Source Database       : dspdb
+
+Target Server Type    : MYSQL
+Target Server Version : 50613
+File Encoding         : 65001
+
+Date: 2013-08-16 13:36:38
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,7 +40,7 @@ CREATE TABLE `abilities` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56;
 
 -- ----------------------------
--- Records
+-- Records of abilities
 -- ----------------------------
 INSERT INTO `abilities` VALUES ('0', 'mighty_strikes', '1', '0', '1', '7200', '0', '0', '0', '33', '20.0', '0', '1', '300', '0', '0');
 INSERT INTO `abilities` VALUES ('1', 'hundred_fists', '2', '0', '1', '7200', '0', '0', '0', '34', '20.0', '0', '1', '300', '0', '0');
@@ -61,7 +67,7 @@ INSERT INTO `abilities` VALUES ('21', 'dodge', '2', '15', '1', '300', '14', '121
 INSERT INTO `abilities` VALUES ('22', 'chakra', '2', '35', '1', '300', '15', '102', '0', '6', '20.0', '0', '1', '300', '452', '0');
 INSERT INTO `abilities` VALUES ('23', 'boost', '2', '5', '1', '15', '16', '116', '0', '7', '20.0', '0', '1', '300', '0', '0');
 INSERT INTO `abilities` VALUES ('24', 'counterstance', '2', '45', '1', '300', '17', '0', '0', '8', '20.0', '0', '1', '900', '0', '0');
-INSERT INTO `abilities` VALUES ('25', 'steal', '6', '5', '4', '300', '61', '125', '0', '181', '4.4', '0', '1', '300', '0', '0');
+INSERT INTO `abilities` VALUES ('25', 'steal', '6', '5', '4', '300', '60', '125', '0', '181', '4.4', '0', '1', '300', '0', '0');
 INSERT INTO `abilities` VALUES ('26', 'flee', '6', '25', '1', '300', '62', '126', '0', '9', '20.0', '0', '1', '80', '704', '0');
 INSERT INTO `abilities` VALUES ('27', 'hide', '6', '45', '1', '300', '63', '0', '0', '10', '20.0', '0', '0', '0', '706', '0');
 INSERT INTO `abilities` VALUES ('28', 'sneak_attack', '6', '15', '1', '60', '64', '0', '0', '17', '20.0', '0', '1', '0', '708', '0');
@@ -113,8 +119,8 @@ INSERT INTO `abilities` VALUES ('74', 'release', '15', '1', '1', '10', '172', '0
 INSERT INTO `abilities` VALUES ('75', 'blood_pact_rage', '15', '1', '1', '0', '173', '0', '0', '0', '20.0', '0', '0', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('76', 'rampart', '7', '62', '1', '300', '77', '0', '0', '91', '20.0', '1', '1', '300', '776', '0');
 INSERT INTO `abilities` VALUES ('77', 'azure_lore', '16', '0', '1', '7200', '0', '0', '0', '142', '20.0', '0', '1', '300', '0', '0');
-INSERT INTO `abilities` VALUES ('78', 'chain_affinity', '16', '25', '1', '120', '181', '0', '0', '140', '20.0', '0', '1', '300', '1344', '0');
-INSERT INTO `abilities` VALUES ('79', 'burst_affinity', '16', '40', '1', '120', '182', '0', '0', '141', '20.0', '0', '1', '300', '1346', '0');
+INSERT INTO `abilities` VALUES ('78', 'chain_affinity', '16', '40', '1', '120', '181', '0', '0', '140', '20.0', '0', '1', '300', '1344', '0');
+INSERT INTO `abilities` VALUES ('79', 'burst_affinity', '16', '25', '1', '120', '182', '0', '0', '141', '20.0', '0', '1', '300', '1346', '0');
 INSERT INTO `abilities` VALUES ('80', 'wild_card', '17', '0', '1', '7200', '0', '0', '0', '132', '20.0', '1', '1', '300', '0', '0');
 INSERT INTO `abilities` VALUES ('81', 'phantom_roll', '17', '5', '1', '0', '193', '0', '0', '0', '18.0', '0', '1', '80', '1408', '0');
 INSERT INTO `abilities` VALUES ('82', 'fighters_roll', '17', '49', '1', '60', '193', '420', '0', '98', '8.0', '1', '1', '80', '0', '8');
@@ -241,8 +247,8 @@ INSERT INTO `abilities` VALUES ('208', 'velocity_shot', '11', '45', '1', '300', 
 INSERT INTO `abilities` VALUES ('209', 'snarl', '9', '45', '1', '30', '107', '0', '0', '87', '20.0', '0', '0', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('210', 'retaliation', '1', '60', '1', '180', '8', '0', '0', '185', '20.0', '0', '1', '80', '0', '0');
 INSERT INTO `abilities` VALUES ('211', 'footwork', '2', '65', '1', '300', '21', '0', '0', '197', '20.0', '0', '1', '80', '0', '0');
-INSERT INTO `abilities` VALUES ('213', 'pianissimo', '10', '45', '1', '15', '111', '0', '0', '194', '20.0', '0', '1', '80', '0', '0');
-INSERT INTO `abilities` VALUES ('214', 'sekkanoki', '12', '60', '1', '300', '140', '0', '0', '199', '20.0', '0', '1', '80', '0', '0');
+INSERT INTO `abilities` VALUES ('213', 'pianissimo', '10', '20', '1', '15', '112', '0', '0', '194', '20.0', '0', '1', '80', '0', '0');
+INSERT INTO `abilities` VALUES ('214', 'sekkanoki', '12', '40', '1', '300', '140', '0', '0', '199', '20.0', '0', '1', '80', '0', '0');
 INSERT INTO `abilities` VALUES ('216', 'elemental_siphon', '15', '50', '1', '300', '175', '0', '0', '201', '20.0', '0', '1', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('217', 'sublimation', '20', '35', '1', '30', '234', '0', '0', '189', '20.0', '0', '1', '80', '0', '0');
 INSERT INTO `abilities` VALUES ('218', 'addendum_white', '20', '10', '1', '0', '231', '0', '0', '191', '20.0', '0', '1', '80', '0', '16');
