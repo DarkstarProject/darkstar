@@ -1757,7 +1757,7 @@ INSERT INTO `mob_skill` VALUES (648,704,631,'Wyvern_Lightning_Breath', 0, 10.0, 
 INSERT INTO `mob_skill` VALUES (649,704,632,'Wyvern_Hydro_Breath', 0, 10.0, 2000, 1500, 4, 0, 0);
 
 -- Biotechnological Weapons
-INSERT INTO `mob_skill` VALUES (1278,54,1090,"Guided_Missile",2, 10.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (1278,54,1090,"Guided_Missile",2, 10.0, 2000, 1500, 4, 0, 0); -- 
 -- INSERT INTO `mob_skill` VALUES (982,54,928,"Target_Analysis",4, 10.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (1277,54,1089,"Pile_Pitch",0, 10.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (1271,54,1086,"Laser_Shower",2, 10.0, 2000, 1500, 4, 0, 0);
@@ -1766,3 +1766,19 @@ INSERT INTO `mob_skill` VALUES (1269,54,1090,"Guided_Missile_II",2, 15.0, 2000, 
 INSERT INTO `mob_skill` VALUES (1272,54,1087,"Floodlight",2, 15.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (1273,54,1088,"Hyper_Pulse",4, 20.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (1274,54,1089,"Stun_Cannon",2, 20.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (1003,54,944,"Wire_Cutter",0, 10.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (1004,54,945,"Antimatter",0, 10.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (1005,54,946,"Equalizer",2, 10.0, 2000, 1500, 4, 1, 0); 
+INSERT INTO `mob_skill` VALUES (1006,54,947,"Flame_Thrower",4, 10.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (1007,54,948,"Cryo_Jet",4, 10.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (1008,54,949,"Turbofan",4, 10.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (1009,54,950,"Smoke_Discharger",4, 10.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (1010,54,951,"High-Tension_Discharger",4, 10.0, 2000, 1500, 4, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1011,54,952,"Hydro_Canon",4, 10.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (1012,54,953,"Nuclear_Waste",2, 15.0, 2000, 1500, 4, 0, 0); -- : 15' AoE lower all resistances, followed by one of:
+INSERT INTO `mob_skill` VALUES (1013,54,954,"Chemical_Bomb",0, 10.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (1265,54,1081,"Armor_Buster",2, 10.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (1266,54,1082,"Energy_Screen",0, 10, 2000, 1500, 1, 0, 0);
+INSERT INTO `mob_skill` VALUES (1267,54,1083,"Mana_Screen",0, 10, 2000, 1500, 1, 0, 0);
+INSERT INTO `mob_skill` VALUES (1268,54,1084,"Dissipation",2, 20.0, 2000, 1500, 4, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1284,54,0,"Citadel_Buster",1, 20.0, 2000, 30000, 4, 0, 0); --

@@ -28,8 +28,8 @@ if(player:hasKeyItem(COSMOCLEANSE) and player:hasKeyItem(WHITE_CARD) )then
        InstanceTrade=32;
      elseif(count==1 and trade:hasItemQty(1904,1))then -- Central Temenos - 3st Floor
        InstanceTrade=16;
---   elseif(player:hasKeyItem(COSMOCLEANSE) and count==3 and trade:hasItemQty(1986,1) and trade:hasItemQty(1908,1) and trade:hasItemQty(1907,1))then --proto-ultima
---     InstanceTrade=8;
+     elseif(count==3 and trade:hasItemQty(1986,1) and trade:hasItemQty(1908,1) and trade:hasItemQty(1907,1))then --proto-ultima
+       InstanceTrade=8;
      end
   else
   	 player:messageSpecial(CONDITION_FOR_LIMBUS_T); 
@@ -72,17 +72,17 @@ function onTrigger(player,npc)
                if(instancelist[nt+1][1]==true and player:hasKeyItem(WHITE_CARD))then
 		       --    print("player_have_white_card");
 			       limbusbitmap = limbusbitmap + instancelist[nt+1][4];
-			      printf("bitmapadd: %u",instancelist[nt+1][4]);
+			   --   printf("bitmapadd: %u",instancelist[nt+1][4]);
 		       end
                if(instancelist[nt+1][2]==true and player:hasKeyItem(RED_CARD))then
 		        --  print("player_have_red_card");
 			        limbusbitmap = limbusbitmap + instancelist[nt+1][4];
-			       printf("bitmapadd: %u",instancelist[nt+1][4]);
+			    --   printf("bitmapadd: %u",instancelist[nt+1][4]);
 		       end	  
                if(instancelist[nt+1][3]==true and player:hasKeyItem(BLACK_CARD))then
 		         -- print("player_have_black_card");
 			        limbusbitmap = limbusbitmap + instancelist[nt+1][4];
-			       printf("bitmapadd: %u",instancelist[nt+1][4]);
+			     --  printf("bitmapadd: %u",instancelist[nt+1][4]);
 		       end	  	  
            end
 		limbusbitmap= limbusbitmap + LimbusTradeItem;

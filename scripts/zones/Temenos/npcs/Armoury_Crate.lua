@@ -56,8 +56,28 @@ function onTrigger(player,npc)
     if(CofferType == cTIME)then 
 	        player:addTimeToSpecialInstance(InstanceRegion,addtime);
 	elseif(CofferType == cITEM)then
+	   if(InstanceRegion == Central_Temenos_4th_Floor and coffer~=79)then
+	       local randmimic = math.random(1,24)
+		   print("randmimic" ..randmimic);
+	        if( randmimic < 19)then
+              local MimicList={16928986,16928987,16928988,16928989,16928990,16928991,16928992,16928993,16928994,16928995,16928996,16928997,16928998,16928999,16929000,16929001,16929002,16929003};
+	           GetMobByID(MimicList[randmimic]):setSpawn(X,Y,Z);
+		       SpawnMob(MimicList[randmimic]):setPos(X,Y,Z);
+			   GetMobByID(MimicList[randmimic]):updateEnmity(player);		
+			else
+			   player:BCNMSetLoot(lootID,InstanceRegion,CofferID);
+               player:getBCNMloot();
+	        end
+			-- despawn les coffer du meme groupe
+		    for coffer = 1,table.getn (ARMOURY_CRATES_LIST_TEMENOS),2 do
+               if(ARMOURY_CRATES_LIST_TEMENOS[coffer+1][5] == MimicID)then	 	  
+		            GetNPCByID(16928768+ARMOURY_CRATES_LIST_TEMENOS[coffer]):setStatus(STATUS_DISAPPEAR);
+	           end	  
+            end				
+	   else
             player:BCNMSetLoot(lootID,InstanceRegion,CofferID);
             player:getBCNMloot();
+	   end	
     elseif(CofferType == cRESTORE)then 
 			player:RestoreAndHealOnInstance(InstanceRegion);
 	elseif(CofferType == cMIMIC)then 

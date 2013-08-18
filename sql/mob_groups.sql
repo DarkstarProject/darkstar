@@ -1042,7 +1042,7 @@ INSERT INTO `mob_groups` VALUES (1001,3048,37,0,128,0,0,0,60,64);  -- Orc_s_Wyve
 INSERT INTO `mob_groups` VALUES (1002,3052,37,0,128,4416,0,0,75,80);  -- Orichalcum_Quadav
 INSERT INTO `mob_groups` VALUES (1003,3112,37,0,128,4416,0,0,75,80);  -- Pee_Qoho_the_Python
 INSERT INTO `mob_groups` VALUES (1004,3192,37,0,128,4411,9500,500,75,80);  -- Praetorian_Guard_CCCXI ok
-INSERT INTO `mob_groups` VALUES (1005,3209,37,0,128,0,0,0,80,85);  -- Proto-Ultima
+INSERT INTO `mob_groups` VALUES (1005,3209,37,0,128,0,26000,2000,80,85);  -- Proto-Ultima
 INSERT INTO `mob_groups` VALUES (1006,3642,37,0,128,4413,11000,0,75,80);  -- Skadi                   ok
 INSERT INTO `mob_groups` VALUES (1007,3757,37,0,128,4414,0,0,75,80);  -- Star_Ruby_Quadav
 INSERT INTO `mob_groups` VALUES (1008,3758,37,0,128,4414,0,0,75,80);  -- Star_Sapphire_Quadav

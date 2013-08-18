@@ -64,9 +64,7 @@ MIMICPOSITION={
               6,{-345,0,-311};
 			  7,{-339,0,-300};
 			  8,{-335,0,-281};
-              };				
-				
-				
+              };											
 				       -- armoryID,(type,regionID,time, despawnothercoffer, mimicID ,lootID)
 		
 	STATUS_NORMAL = 0;
@@ -218,25 +216,31 @@ ARMOURY_CRATES_LIST_TEMENOS={
 
 
 -- central 4eme floor -------------------------------
-79	,{ },
-80	,{ },
-86	,{ },
-87	,{ },
-88	,{ },
-89	,{ },
-95	,{ },
-96	,{ },
-97	,{ },
-98	,{ },
-104	,{ },
-105	,{ },
-106	,{ },
-107	,{ },
-113	,{ },
-114	,{ },
-115	,{ },
-116	,{ },
-122	,{ },
+79	,{cITEM,Central_Temenos_4th_Floor,0,false,0,154},
+-- 
+80	,{cITEM,Central_Temenos_4th_Floor,0,false,1,155},
+86	,{cITEM,Central_Temenos_4th_Floor,0,false,1,155},
+87	,{cITEM,Central_Temenos_4th_Floor,0,false,1,155},
+88	,{cITEM,Central_Temenos_4th_Floor,0,false,1,155},
+
+89	,{cITEM,Central_Temenos_4th_Floor,0,false,2,155},
+95	,{cITEM,Central_Temenos_4th_Floor,0,false,2,155},
+96	,{cITEM,Central_Temenos_4th_Floor,0,false,2,155},
+97	,{cITEM,Central_Temenos_4th_Floor,0,false,2,155},
+
+98	,{cITEM,Central_Temenos_4th_Floor,0,false,3,155},
+104	,{cITEM,Central_Temenos_4th_Floor,0,false,3,155},
+105	,{cITEM,Central_Temenos_4th_Floor,0,false,3,155},
+106	,{cITEM,Central_Temenos_4th_Floor,0,false,3,155},
+
+107	,{cITEM,Central_Temenos_4th_Floor,0,false,4,155},
+113	,{cITEM,Central_Temenos_4th_Floor,0,false,4,155},
+114	,{cITEM,Central_Temenos_4th_Floor,0,false,4,155},
+
+115	,{cITEM,Central_Temenos_4th_Floor,0,false,5,155},
+116	,{cITEM,Central_Temenos_4th_Floor,0,false,5,155},
+122	,{cITEM,Central_Temenos_4th_Floor,0,false,5,155},
+--
 123	,{cMIMIC,Temenos_Eastern_Tower,0,true,0,0},
 127	,{cMIMIC,Temenos_Eastern_Tower,0,true,0,0},
 -- -----------------------------------------
@@ -592,7 +596,49 @@ function SpawnCofferSWfloor3()
 	GetNPCByID(16932864+216):setStatus(STATUS_NORMAL);	
 SetServerVariable("[SW_Apollyon]MimicTrigger",1);
 end;
-
+function SpawnCofferTemenosCFloor4()
+--print("spawn_coffer");
+  	GetNPCByID(16928768+80):setPos(-560,-6,-459);
+	GetNPCByID(16928768+80):setStatus(STATUS_NORMAL);	
+  	GetNPCByID(16928768+86):setPos(-540,-6,-459);
+	GetNPCByID(16928768+86):setStatus(STATUS_NORMAL);	
+  	GetNPCByID(16928768+87):setPos(-576,-6,-459);
+	GetNPCByID(16928768+87):setStatus(STATUS_NORMAL);
+  	GetNPCByID(16928768+88):setPos(-528,-6,-459);
+	GetNPCByID(16928768+88):setStatus(STATUS_NORMAL);
+	
+  	GetNPCByID(16928768+89):setPos(-592,-6,-487);
+	GetNPCByID(16928768+89):setStatus(STATUS_NORMAL);
+  	GetNPCByID(16928768+95):setPos(-566,-6,-486);
+	GetNPCByID(16928768+95):setStatus(STATUS_NORMAL);
+  	GetNPCByID(16928768+96):setPos(-566,-6,-513);
+	GetNPCByID(16928768+96):setStatus(STATUS_NORMAL);
+  	GetNPCByID(16928768+97):setPos(-592,-6,-513);
+	GetNPCByID(16928768+97):setStatus(STATUS_NORMAL);
+	
+	GetNPCByID(16928768+98):setPos(-531,-0.5,-501);
+	GetNPCByID(16928768+98):setStatus(STATUS_NORMAL);
+	GetNPCByID(16928768+104):setPos(-527,-6,-512);
+	GetNPCByID(16928768+104):setStatus(STATUS_NORMAL);
+	GetNPCByID(16928768+105):setPos(-552,-6,-512);
+	GetNPCByID(16928768+105):setStatus(STATUS_NORMAL);
+	GetNPCByID(16928768+106):setPos(-552,-6,-488);
+	GetNPCByID(16928768+106):setStatus(STATUS_NORMAL);
+	
+	GetNPCByID(16928768+107):setPos(-488,2,-510);
+	GetNPCByID(16928768+107):setStatus(STATUS_NORMAL);
+	GetNPCByID(16928768+113):setPos(-486,2,-491);
+	GetNPCByID(16928768+113):setStatus(STATUS_NORMAL);
+	GetNPCByID(16928768+114):setPos(-508,2,-513);
+	GetNPCByID(16928768+114):setStatus(STATUS_NORMAL);
+	
+	GetNPCByID(16928768+115):setPos(-488,2,-408);
+	GetNPCByID(16928768+115):setStatus(STATUS_NORMAL);
+	GetNPCByID(16928768+116):setPos(-485,2,-423);
+	GetNPCByID(16928768+116):setStatus(STATUS_NORMAL);
+	GetNPCByID(16928768+122):setPos(-506,2,-406);
+	GetNPCByID(16928768+122):setStatus(STATUS_NORMAL);
+end;
 function Randomcoffer(Floor,region)
  local cofferID=0;
  local cofferType=0;

@@ -1340,3 +1340,32 @@ INSERT INTO `bcnm_loot` VALUES ('153', '2658', '211', '7'); -- COR
 INSERT INTO `bcnm_loot` VALUES ('153', '2716', '105', '7'); -- SCH
 INSERT INTO `bcnm_loot` VALUES ('153', '1907', '1000', '8'); -- Silver Chip
 -- Central_Temenos_4th_Floor --------------------------------------------------------------
+INSERT INTO `bcnm_loot` VALUES ('154', '1875', '1000', '0');
+INSERT INTO `bcnm_loot` VALUES ('154', '1875', '1000', '1');
+INSERT INTO `bcnm_loot` VALUES ('154', '1875', '1000', '2');
+INSERT INTO `bcnm_loot` VALUES ('154', '1875', '1000', '3');
+INSERT INTO `bcnm_loot` VALUES ('154', '1875', '1000', '4');
+INSERT INTO `bcnm_loot` VALUES ('154', '1875', '1000', '5');
+INSERT INTO `bcnm_loot` VALUES ('154', '1875', '1000', '6');
+INSERT INTO `bcnm_loot` VALUES ('154', '1920', '659', '7'); -- Ultima's Cerebrum 
+INSERT INTO `bcnm_loot` VALUES ('154', '1924', '394', '7'); -- Ultima's Tail
+INSERT INTO `bcnm_loot` VALUES ('154', '1923', '388', '7'); -- ultimas-leg
+INSERT INTO `bcnm_loot` VALUES ('154', '1922', '404', '7'); -- Ultima's Claw
+INSERT INTO `bcnm_loot` VALUES ('154', '1924', '394', '8'); -- Ultima's Tail
+INSERT INTO `bcnm_loot` VALUES ('154', '1922', '402', '8'); -- Ultima's Claw
+INSERT INTO `bcnm_loot` VALUES ('154', '1920', '659', '8'); -- Ultima's Cerebrum 
+INSERT INTO `bcnm_loot` VALUES ('154', '1923', '383', '8'); -- ultimas-leg
+INSERT INTO `bcnm_loot` VALUES ('154', '1921', '26.5', '9'); -- Ultima's Heart
+INSERT INTO `bcnm_loot` VALUES ('154', '1875', '100', '9');
+
+INSERT INTO `bcnm_loot` VALUES ('155', '1875', '1000', '0');
+INSERT INTO `bcnm_loot` VALUES ('155', '1875', '1000', '1');
+INSERT INTO `bcnm_loot` VALUES ('155', '1875', '1000', '2');
+INSERT INTO `bcnm_loot` VALUES ('155', '1875', '1000', '3');
+INSERT INTO `bcnm_loot` VALUES ('155', '1875', '1000', '4');
+INSERT INTO `bcnm_loot` VALUES ('155', '1875', '1000', '5');
+INSERT INTO `bcnm_loot` VALUES ('155', '1934', '200', '6'); -- WHM
+INSERT INTO `bcnm_loot` VALUES ('155', '1930', '200', '6'); -- WAR
+INSERT INTO `bcnm_loot` VALUES ('155', '1958', '200', '6'); -- SMN
+INSERT INTO `bcnm_loot` VALUES ('155', '2658', '400', '6'); -- COR
+INSERT INTO `bcnm_loot` VALUES ('155', '1940', '200', '6'); -- THF

@@ -5,7 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/titles");
-
+require("scripts/globals/limbus");
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
@@ -19,4 +19,7 @@ end;
 
 function onMobDeath(mob, killer)
 	killer:addTitle(TEMENOS_LIBERATOR);
+	GetNPCByID(16928768+79):setPos(-559,5,-357);
+	GetNPCByID(16928768+79):setStatus(STATUS_NORMAL);
+	GetNPCByID(16928768+474):setStatus(STATUS_NORMAL);
 end;
