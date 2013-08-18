@@ -424,17 +424,11 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* dat
             PChar->PLinkshell->DelMember(PChar);
         }
 
-        // safeguarding against weird double logout bug
-        int32 ret = Sql_Query(SqlHandle,"SELECT session_key FROM accounts_sessions WHERE charid = %u", PChar->id);
-
-        // if session doesn't exist don't close session again
-        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        if (!session->shuttingDown)
         {
+            // prevent double shutdown
+            session->shuttingDown = true;
     		CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("close_session", gettick()+2500, session, CTaskMgr::TASK_ONCE, map_close_session));
-        }
-        else
-        {
-            ShowError("SmallPacket0x00D Tried to double logout user\n");
         }
 
 	}

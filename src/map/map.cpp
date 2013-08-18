@@ -741,11 +741,12 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
 						petutils::DespawnPet(PChar);
 
 
-				    ShowDebug(CL_CYAN"map_cleanup: %s timed out, session closed\n" CL_RESET, PChar->GetName());
+				    ShowDebug(CL_CYAN"map_cleanup: %s timed out, closing session\n" CL_RESET, PChar->GetName());
 
 				    PChar->status = STATUS_SHUTDOWN;
                     PacketParser[0x00D](map_session_data, PChar, 0);
-			    } else {
+			    } else if(!map_session_data->shuttingDown){
+
 				    ShowWarning(CL_YELLOW"map_cleanup: WHITHOUT CHAR timed out, session closed\n" CL_RESET);
 
 				    const int8* Query = "DELETE FROM accounts_sessions WHERE client_addr = %u AND client_port = %u";
