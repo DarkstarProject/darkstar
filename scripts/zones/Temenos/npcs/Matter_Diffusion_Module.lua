@@ -19,10 +19,9 @@ local InstanceTrade=0;
 if(player:hasKeyItem(COSMOCLEANSE) and player:hasKeyItem(WHITE_CARD) )then 
 
 
-  -- if(count==1 and trade:hasItemQty(2127,1))then -- Central Temenos - Basement 1
-   --  InstanceTrade=128;
- -- else
-     if(count==1 and trade:hasItemQty(1906,1))then -- Central Temenos - 1st Floor
+     if(count==1 and trade:hasItemQty(2127,1))then -- Central Temenos - Basement 1
+       InstanceTrade=128;
+     elseif(count==1 and trade:hasItemQty(1906,1))then -- Central Temenos - 1st Floor
        InstanceTrade=64;
      elseif(count==1 and trade:hasItemQty(1905,1))then -- Central Temenos - 2st Floor
        InstanceTrade=32;

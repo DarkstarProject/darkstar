@@ -1774,8 +1774,8 @@ INSERT INTO `mob_skill` VALUES (1007,54,948,"Cryo_Jet",4, 10.0, 2000, 1500, 4, 0
 INSERT INTO `mob_skill` VALUES (1008,54,949,"Turbofan",4, 10.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (1009,54,950,"Smoke_Discharger",4, 10.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (1010,54,951,"High-Tension_Discharger",4, 10.0, 2000, 1500, 4, 0, 0);
--- INSERT INTO `mob_skill` VALUES (1011,54,952,"Hydro_Canon",4, 10.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (1012,54,953,"Nuclear_Waste",2, 15.0, 2000, 1500, 4, 0, 0); -- : 15' AoE lower all resistances, followed by one of:
+INSERT INTO `mob_skill` VALUES (1011,54,952,"Hydro_Canon",4, 10.0, 2000, 1500, 4, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1012,54,953,"Nuclear_Waste",2, 15.0, 2000, 1500, 4, 0, 0); -- : 15' AoE lower all resistances, followed by one of:
 INSERT INTO `mob_skill` VALUES (1013,54,954,"Chemical_Bomb",0, 10.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (1265,54,1081,"Armor_Buster",2, 10.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (1266,54,1082,"Energy_Screen",0, 10, 2000, 1500, 1, 0, 0);

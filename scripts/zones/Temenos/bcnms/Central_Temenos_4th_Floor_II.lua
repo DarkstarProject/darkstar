@@ -13,7 +13,7 @@ end;
 function OnBcnmEnter(player,instance)
 end;
 
--- Leaving the Dynamis by every mean possible, given by the LeaveCode
+-- Leaving by every mean possible, given by the LeaveCode
 -- 3=Disconnected or warped out (if dyna is empty: launch 4 after 3)
 -- 4=Finish he dynamis
 
@@ -24,7 +24,4 @@ function OnBcnmLeave(player,instance,leavecode)
 	 --	player:setPos(0,0,0,0,0x00);
 	end
 	if(leavecode == 4) then
-		--SetServerVariable("[]UniqueID",0);
-	end
-	
 end;

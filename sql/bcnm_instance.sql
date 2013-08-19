@@ -2402,7 +2402,6 @@ INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929064','1');-- Temenos Aern
 INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929065','1');-- Temenos Aern
 INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929066','1');-- Temenos Aern
 INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929067','1');-- Aern's Elemental
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929068','1');-- Aern's Avatar
 INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929069','1');-- Temenos Aern
 INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929070','1');-- Aern's Wynav
 INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929071','1');-- Temenos Aern
@@ -2415,40 +2414,12 @@ INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929077','1');-- Temenos Aern
 INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929078','1');-- Temenos Aern
 INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929079','1');-- Temenos Aern
 INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929080','1');-- Aern's Elemental
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929081','1');-- Aern's Avatar
 INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929082','1');-- Temenos Aern
 INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929083','1');-- Temenos Aern
 INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929084','1');-- Temenos Aern
 INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929085','1');-- Temenos Aern
 INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929086','1');-- Temenos Aern
 INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929087','1');-- Temenos Aern
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929088','1');-- Temenos Ghrah
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929090','1');-- Temenos Aern
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929091','1');-- Temenos Aern
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929092','1');-- Temenos Aern
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929093','1');-- Temenos Aern
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929094','1');-- Temenos Aern
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929095','1');-- Temenos Aern
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929096','1');-- Temenos Aern
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929097','1');-- Temenos Aern
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929098','1');-- Temenos Aern
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929099','1');-- Aern's Wynav
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929100','1');-- Temenos Aern
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929101','1');-- Temenos Aern
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929102','1');-- Aern's Wynav
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929103','1');-- Temenos Aern
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929104','1');-- Temenos Aern
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929105','1');-- Temenos Aern
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929106','1');-- Temenos Aern
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929107','1');-- Temenos Aern
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929108','1');-- Temenos Aern
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929109','1');-- Temenos Aern
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929110','1');-- Temenos Aern
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929111','1');-- Temenos Aern
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929112','1');-- Temenos Aern
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929113','1');-- Temenos Aern
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929114','1');-- Aern's Elemental
-INSERT INTO `bcnm_instance` VALUES ('1301', '4','16929115','1');-- Aern's Avatar
 -- -----------------------------------------
 -- -----------------------------------------
 

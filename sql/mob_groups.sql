@@ -1051,9 +1051,9 @@ INSERT INTO `mob_groups` VALUES (1010,3863,37,0,128,4409,8000,0,75,80);  -- Telc
 INSERT INTO `mob_groups` VALUES (1011,3864,37,0,128,4409,8000,0,75,80);  -- Telchines_Monk           ok
 INSERT INTO `mob_groups` VALUES (1012,3865,37,0,128,0,2000,300,60,64);  -- Telchines_s_Wyvern        ok
 INSERT INTO `mob_groups` VALUES (1013,3866,37,0,128,4409,300,0,75,80);  -- Telchines_White_Mage      ok
-INSERT INTO `mob_groups` VALUES (1014,3867,37,0,128,0,0,0,75,80);  -- Temenos_Aern
+INSERT INTO `mob_groups` VALUES (1014,3867,37,0,128,4415,6500,300,75,80);  -- Temenos_Aern
 INSERT INTO `mob_groups` VALUES (1015,3868,37,0,128,4416,16000,1000,75,80);  -- Temenos_Cleaner      ok
-INSERT INTO `mob_groups` VALUES (1016,3869,37,0,128,0,0,0,75,80);  -- Temenos_Ghrah
+INSERT INTO `mob_groups` VALUES (1016,3869,37,0,128,4416,9000,300,75,80);  -- Temenos_Ghrah
 INSERT INTO `mob_groups` VALUES (1017,3870,37,0,128,4416,16000,1000,75,80);  -- Temenos_Weapon      ok
 INSERT INTO `mob_groups` VALUES (1018,3908,37,0,128,4413,11000,0,75,80);  -- Thrym                   ok
 INSERT INTO `mob_groups` VALUES (1019,3912,37,0,128,4412,8000,3000,75,80);  -- Thunder_Elemental     ok

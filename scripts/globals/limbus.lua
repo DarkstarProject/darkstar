@@ -47,12 +47,12 @@ TEMENOS_LIST = {
                              1299,{true,false,false,1,Temenos_Northern_Tower}, -- 'Temenos_Northern_Tower'   380 71 375
                              1300,{true,false,false,2,Temenos_Eastern_Tower}, -- 'Temenos_Eastern_Tower'    380 -2 96
                              1301,{false,false,false,128,Central_Temenos_Basement}, -- 'Central_Temenos_Basement' 580 -2 -544
-                             1302,{false,false,false,256,Central_Temenos_Basement_II}, -- 'Central_Temenos_Basement_II' 540 -2 -544
+                             1302,{false,false,false,256,Central_Temenos_Basement}, -- 'Central_Temenos_Basement_II' 540 -2 -544
                              1303,{false,false,false,64,Central_Temenos_1st_Floor}, -- 'Central_Temenos_1st_Floor' 260 -162 -504
                              1304,{false,false,false,32,Central_Temenos_2nd_Floor}, -- 'Central_Temenos_2nd_Floor' 20 -2 -544
                              1305,{false,false,false,16,Central_Temenos_3rd_Floor}, -- 'Central_Temenos_3rd_Floor' -296 -162 -500
                              1306,{false,false,false,8,Central_Temenos_4th_Floor}, -- 'Central_Temenos_4th_Floor'  -540 -2  -584
-                             1307,{false,false,false,512,Central_Temenos_4th_Floor_II} -- 'Central_Temenos_4th_Floor_II'  -540 -2  -584
+                             1307,{false,false,false,512,Central_Temenos_4th_Floor} -- 'Central_Temenos_4th_Floor_II'  -540 -2  -584
                 };
 
 MIMICPOSITION={
