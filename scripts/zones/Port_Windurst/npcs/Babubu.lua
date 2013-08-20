@@ -21,7 +21,7 @@ end;
 
 function onTrigger(player,npc)
 	if(player:sendGuild(517,3,18,5)) then
-		player:showText(npc,FISHING_GUILD);
+		player:showText(npc,BABUBU_SHOP_DIALOG);
 	end
 end;
 
