@@ -34,9 +34,9 @@ end;
 
 function onTrigger(player,npc)
 	
-	player:showText(npc,THADIENE_SHOP_DIALOG);
+	player:showText(npc,ASH_THADI_ENE_SHOP_DIALOG);
 
-	stock = {0x4380,1575,1,	 --Boomerang
+	local stock = {0x4380,1575,1,	 --Boomerang
 			 0x430a,19630,1, --Great Bow
 			 --0x43a9,16,1,	 --Silver Arrow
 			 0x4302,7128,1,	 --Wrapped Bow

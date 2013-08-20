@@ -36,9 +36,9 @@ end;
 
 function onTrigger(player,npc)
 	  
-	player:showText(npc,ASHENE_SHOP_DIALOG);
+	player:showText(npc,ASH_THADI_ENE_SHOP_DIALOG);
 
-	stock = {0x4047,4309,1,		--Baselard
+	local stock = {0x4047,4309,1,		--Baselard
 			 0x4094,16934,1,	--Gladius
 			 0x40a1,21067,1,	--Broadsword
 			 0x40c0,35769,1,	--Hunting Sword
