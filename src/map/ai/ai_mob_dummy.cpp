@@ -454,7 +454,7 @@ void CAIMobDummy::ActionDropItems()
 						if(m_PMob->GetMLevel() < 50){ //b.seal only
 							PChar->PTreasurePool->AddItem(1126, m_PMob);
 						}
-						else if(m_PMob->GetMLevel() < 75){ //b.seal & k.seal only
+						else if(m_PMob->GetMLevel() < 70){ //b.seal & k.seal only
 							if(rand()%2 == 0){
 								PChar->PTreasurePool->AddItem(1126, m_PMob);
 							}
@@ -462,7 +462,7 @@ void CAIMobDummy::ActionDropItems()
 								PChar->PTreasurePool->AddItem(1127, m_PMob);
 							}
 						}
-						else if(m_PMob->GetMLevel() < 90){ //b.seal & k.seal & k.crest
+						else if(m_PMob->GetMLevel() < 75){ //b.seal & k.seal & k.crest
 							switch(rand()%3){
 							case 0:
 								PChar->PTreasurePool->AddItem(1126, m_PMob);
@@ -475,7 +475,7 @@ void CAIMobDummy::ActionDropItems()
 								break;
 							}
 						}
-						else if(m_PMob->GetMLevel() >= 90){ //all 4
+						else if(m_PMob->GetMLevel() >= 75){ //all 4
 							switch(rand()%4){
 							case 0:
 								PChar->PTreasurePool->AddItem(1126, m_PMob);
