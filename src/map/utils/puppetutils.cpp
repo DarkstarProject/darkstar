@@ -22,6 +22,7 @@
 */
 
 #include "puppetutils.h"
+#include "battleutils.h"
 #include "../packets/char_job_extra.h"
 
 namespace puppetutils
@@ -287,6 +288,63 @@ void setHead(CCharEntity* PChar, uint8 head)
         for (int i = 0; i < 8; i++)
             PChar->PAutomaton->setElementMax(i, tempElementMax[i]);
     }
+
+}
+
+uint8 getSkillCap(CCharEntity* PChar, SKILLTYPE skill)
+{
+    int8 rank = 0;
+    if (skill < SKILL_AME || skill > SKILL_AME)
+        return 0;
+    switch (PChar->PAutomaton->getFrame())
+    {
+        case FRAME_HARLEQUIN:
+            rank = 5;
+            break;
+        case FRAME_VALOREDGE:
+            if (skill == SKILL_AME)
+                rank = 2;
+            break;
+        case FRAME_SHARPSHOT:
+            if (skill == SKILL_AME)
+                rank = 6;
+            else if (skill == SKILL_ARA)
+                rank = 3;
+            break;
+        case FRAME_STORMWAKER:
+            if (skill == SKILL_AME)
+                rank = 7;
+            else if (skill == SKILL_AMA)
+                rank = 3;
+            break;
+    }
+
+    switch (PChar->PAutomaton->getHead())
+    {
+        case HEAD_VALOREDGE:
+            if (skill == SKILL_AME)
+                rank -= 1;
+            break;
+        case HEAD_SHARPSHOT:
+            if (skill == SKILL_ARA)
+                rank -= 1;
+            break;
+        case HEAD_STORMWAKER:
+            if (skill == SKILL_AME || skill == SKILL_AMA)
+                rank -= 1;
+            break;
+        case HEAD_SOULSOOTHER:
+        case HEAD_SPIRITREAVER:
+            if (skill == SKILL_AMA)
+                rank -= 2;
+            break;
+    }
+
+    //only happens if a head gives bonus to a rank of 0 - making it G or F rank
+    if (rank < 0)
+        rank = 14 + rank;
+
+    return battleutils::GetMaxSkill(rank, PChar->PAutomaton->GetMLevel());
 
 }
 

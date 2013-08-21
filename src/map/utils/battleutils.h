@@ -99,6 +99,7 @@ namespace battleutils
 
 	uint8			GetSkillRank(SKILLTYPE SkillID, JOBTYPE JobID);
 	uint16			GetMaxSkill(SKILLTYPE SkillID, JOBTYPE JobID, uint8 level);
+    uint16          GetMaxSkill(uint8 rank, uint8 level);
 
 	CWeaponSkill*	GetWeaponSkill(uint16 WSkillID);
 	CMobSkill*		GetMobSkill(uint16 SkillID);

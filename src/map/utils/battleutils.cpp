@@ -303,6 +303,11 @@ uint16 GetMaxSkill(SKILLTYPE SkillID, JOBTYPE JobID, uint8 level)
 	return g_SkillTable[level][g_SkillRanks[SkillID][JobID]];
 }
 
+uint16 GetMaxSkill(uint8 rank, uint8 level)
+{
+    return g_SkillTable[level][rank];
+}
+
 bool isValidSelfTargetWeaponskill(int wsid){
 	switch(wsid){
 	case 163: //starlight
