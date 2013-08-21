@@ -60,18 +60,24 @@ public:
 	~CAutomatonEntity();        	                
 
     automaton_equip_t m_Equip;
+    uint8 m_ElementMax[8];
+    uint8 m_ElementEquip[8];
 
     void setFrame(AUTOFRAMETYPE frame);
     void setHead(AUTOHEADTYPE head);
     void setAttachment(uint8 slot, uint8 id);
 
+    void setElementMax(uint8 element, uint8 max);
+    void addElementCapacity(uint8 element, int8 value);
+
     AUTOFRAMETYPE getFrame();
     AUTOHEADTYPE getHead();
     uint8 getAttachment(uint8 slot);
 
+    uint8 getElementMax(uint8 element);
+    uint8 getElementCapacity(uint8 element);
+
 private:
-    uint8 m_ElementMax[8];
-    uint8 m_ElementEquip[8];
 
     uint16 m_Burden[8];
 };

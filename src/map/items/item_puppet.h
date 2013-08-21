@@ -28,6 +28,13 @@
 
 #include "item.h"
 
+enum ITEM_PUPPET_EQUIPSLOT
+{
+    ITEM_PUPPET_HEAD = 1,
+    ITEM_PUPPET_FRAME = 2,
+    ITEM_PUPPET_ATTACHMENT = 3
+};
+
 class CItemPuppet : public CItem
 {
 public:

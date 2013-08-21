@@ -22,6 +22,7 @@
 */
 
 #include "automatonentity.h"
+#include "../utils/puppetutils.h"
 
 CAutomatonEntity::CAutomatonEntity()
     : CPetEntity(PETTYPE_AUTOMATON)
@@ -30,9 +31,6 @@ CAutomatonEntity::CAutomatonEntity()
     memset(&m_ElementMax, 0, sizeof m_ElementMax);
     memset(&m_ElementEquip, 0, sizeof m_ElementEquip);
     memset(&m_Burden, 0, sizeof m_Burden);
-
-    m_Equip.Head = HEAD_HARLEQUIN;
-    m_Equip.Frame = FRAME_HARLEQUIN;
 }
 
 CAutomatonEntity::~CAutomatonEntity()
@@ -74,5 +72,31 @@ uint8 CAutomatonEntity::getAttachment(uint8 slotid)
     {
         return m_Equip.Attachments[slotid];
     }
+    return 0;
+}
+
+void CAutomatonEntity::setElementMax(uint8 element, uint8 max)
+{
+    if (element < 8)
+        m_ElementMax[element] = max;
+}
+
+uint8 CAutomatonEntity::getElementMax(uint8 element)
+{
+    if (element < 8)
+        return m_ElementMax[element];
+    return 0;
+}
+
+void CAutomatonEntity::addElementCapacity(uint8 element, int8 value)
+{
+    if (element < 8)
+        m_ElementEquip[element] += value;
+}
+
+uint8 CAutomatonEntity::getElementCapacity(uint8 element)
+{
+    if (element < 8)
+        return m_ElementEquip[element];
     return 0;
 }

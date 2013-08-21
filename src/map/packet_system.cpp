@@ -4455,10 +4455,13 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
         if (attachment == 0x00)
         {
-            //remove all attachments
-            for (uint8 i = 0; i < 12; i++)
+            //remove all attachments specified
+            for (uint8 i = 0x0E; i < 0x1A; i++)
             {
-                puppetutils::setAttachment(PChar, i, 0x00);
+                if (RBUFB(data,i) != 0)
+                {
+                    puppetutils::setAttachment(PChar, i - 0x0E, 0x00);
+                }
             }
         }
         else

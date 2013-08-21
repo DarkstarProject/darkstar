@@ -51,9 +51,14 @@ void LoadAutomaton(CCharEntity* PChar)
             PChar->PAutomaton = new CAutomatonEntity();
             PChar->PAutomaton->name.insert(0,Sql_GetData(SqlHandle, 1));
 
+            automaton_equip_t tempEquip;
 		    attachments = NULL;
 		    Sql_GetData(SqlHandle,2,&attachments,&length);
-		    memcpy(&PChar->PAutomaton->m_Equip, attachments, (length > sizeof(PChar->PAutomaton->m_Equip) ? sizeof(PChar->PAutomaton->m_Equip) : length));
+		    memcpy(&tempEquip, attachments, (length > sizeof(tempEquip) ? sizeof(tempEquip) : length));
+            setHead(PChar, tempEquip.Head);
+            setFrame(PChar, tempEquip.Frame);
+            for (int i = 0; i < 8; i++)
+                setAttachment(PChar, i, tempEquip.Attachments[i]);
         }
 
     }
@@ -129,26 +134,160 @@ bool UnlockAttachment(CCharEntity* PChar, CItem* PItem)
 
 void setAttachment(CCharEntity* PChar, uint8 slotId, uint8 attachment)
 {
-    if (PChar->PAutomaton->getAttachment(slotId) != 0x00)
+    if (attachment != 0)
     {
-        //unequip previous attachment
+        for (int i = 0; i < 12; i++)
+        {
+            if (attachment == PChar->PAutomaton->getAttachment(i))
+                return;
+        }
     }
 
-    //TODO: validity checks
-    PChar->PAutomaton->setAttachment(slotId, attachment);
+    uint8 oldAttachment = PChar->PAutomaton->getAttachment(slotId);
+    if (attachment != 0 && oldAttachment != 0)
+    {
+        setAttachment(PChar, slotId, 0);
+    }
 
+    if (attachment != 0)
+    {
+        CItemPuppet* PAttachment = (CItemPuppet*)itemutils::GetItemPointer(0x2100 + attachment);
+
+        bool valid = false;
+
+        if (PAttachment && PAttachment->getEquipSlot() == ITEM_PUPPET_ATTACHMENT)
+        {
+            valid = true;
+            for (int i = 0; i < 8; i++)
+            {
+                if (PChar->PAutomaton->getElementCapacity(i) + ((PAttachment->getElementSlots() >> (i * 4)) & 0xF) > PChar->PAutomaton->getElementMax(i))
+                {
+                    valid = false;
+                    break;
+                }
+            }
+        }
+
+        if (valid)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                PChar->PAutomaton->addElementCapacity(i, (PAttachment->getElementSlots() >> (i * 4)) & 0xF);
+            }
+            PChar->PAutomaton->setAttachment(slotId, attachment);
+        }
+        else
+        {
+            setAttachment(PChar, slotId, oldAttachment);
+        }
+    }
+    else
+    {
+        attachment = PChar->PAutomaton->getAttachment(slotId);
+
+        if (attachment != 0)
+        {
+            CItemPuppet* PAttachment = (CItemPuppet*)itemutils::GetItemPointer(0x2100 + attachment);
+
+            if (PAttachment && PAttachment->getEquipSlot() == ITEM_PUPPET_ATTACHMENT)
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    PChar->PAutomaton->addElementCapacity(i, -((PAttachment->getElementSlots() >> (i * 4)) & 0xF));
+                    PChar->PAutomaton->setAttachment(slotId, 0);
+                }
+            }
+        }
+    }
 }
 
 void setFrame(CCharEntity* PChar, uint8 frame)
 {
-    //TODO: validate attachments with new elemental capacities
-    PChar->PAutomaton->setFrame((AUTOFRAMETYPE)frame);
+    uint8 tempElementMax[8];
+
+    for (int i = 0; i < 8; i++)
+        tempElementMax[i] = PChar->PAutomaton->getElementMax(i);
+
+    if (PChar->PAutomaton->getFrame() != 0)
+    {
+        CItemPuppet* POldFrame = (CItemPuppet*)itemutils::GetItemPointer(0x2000 + PChar->PAutomaton->getFrame());
+        if (POldFrame == NULL || POldFrame->getEquipSlot() != ITEM_PUPPET_FRAME)
+            return;
+        for (int i = 0; i < 8; i ++)
+        {
+            tempElementMax[i] -= (POldFrame->getElementSlots() >> (i * 4)) & 0xF;
+        }
+    }
+    CItemPuppet* PFrame = (CItemPuppet*)itemutils::GetItemPointer(0x2000 + frame);
+    if (PFrame == NULL || PFrame->getEquipSlot() != ITEM_PUPPET_FRAME)
+        return;
+    for (int i = 0; i < 8; i ++)
+    {
+        tempElementMax[i] += (PFrame->getElementSlots() >> (i * 4)) & 0xF;
+    }
+
+    bool valid = true;
+
+    for (int i = 0; i < 8; i++)
+    {
+        if (tempElementMax[i] < PChar->PAutomaton->getElementCapacity(i))
+        {
+            valid = false;
+            break;
+        }
+    }
+
+    if (valid)
+    {
+        PChar->PAutomaton->setFrame((AUTOFRAMETYPE)frame);
+        for (int i = 0; i < 8; i++)
+            PChar->PAutomaton->setElementMax(i, tempElementMax[i]);
+    }
 }
 
 void setHead(CCharEntity* PChar, uint8 head)
 {
-    //TODO: validate attachments with new elemental capacities
-    PChar->PAutomaton->setHead((AUTOHEADTYPE)head);
+    uint8 tempElementMax[8];
+
+    for (int i = 0; i < 8; i++)
+        tempElementMax[i] = PChar->PAutomaton->getElementMax(i);
+
+    if (PChar->PAutomaton->getHead() != 0)
+    {
+        CItemPuppet* POldHead = (CItemPuppet*)itemutils::GetItemPointer(0x2000 + PChar->PAutomaton->getHead());
+        if (POldHead == NULL || POldHead->getEquipSlot() != ITEM_PUPPET_HEAD)
+            return;
+        for (int i = 0; i < 8; i ++)
+        {
+            tempElementMax[i] -= (POldHead->getElementSlots() >> (i * 4)) & 0xF;
+        }
+    }
+    CItemPuppet* PHead = (CItemPuppet*)itemutils::GetItemPointer(0x2000 + head);
+    if (PHead == NULL || PHead->getEquipSlot() != ITEM_PUPPET_HEAD)
+        return;
+    for (int i = 0; i < 8; i ++)
+    {
+        tempElementMax[i] += (PHead->getElementSlots() >> (i * 4)) & 0xF;
+    }
+
+    bool valid = true;
+
+    for (int i = 0; i < 8; i++)
+    {
+        if (tempElementMax[i] < PChar->PAutomaton->getElementCapacity(i))
+        {
+            valid = false;
+            break;
+        }
+    }
+
+    if (valid)
+    {
+        PChar->PAutomaton->setHead((AUTOHEADTYPE)head);
+        for (int i = 0; i < 8; i++)
+            PChar->PAutomaton->setElementMax(i, tempElementMax[i]);
+    }
+
 }
 
 }
