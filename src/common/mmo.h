@@ -92,8 +92,10 @@ struct skills_t
 			uint16 unknown1;
 			// SkillID  1-12
 			uint16 h2h, dagger, sword, gsword, axe, gaxe, scythe, polearm, katana, gkatana, club, staff;
-			// SkillID 13-24
-			uint16 reserved1[12];
+			// SkillID 13-21
+			uint16 reserved1[9];
+            // SkillID 22-24
+            uint16 automaton_melee, automaton_ranged, automaton_magic;
 			// SkillID 25-33
 			uint16 archery, marksmanship, throwing, guarding, evasion, shield, parrying, divine, healing;
 			// SkillID 34-43

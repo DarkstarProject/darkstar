@@ -10,12 +10,13 @@
 
 function onTrade(player,npc,trade)
 	local tradeStatus = player:getVar('TateeyaTradeStatus');
+	local automatonName = player:getAutomatonName();
 	if (tradeStatus == 1) then
 		for i=0,7 do
 			local subid = trade:getItemSubId(i);
 			if (subid >= 0x2000 and subid < 0x2800) then
 				if (player:unlockAttachment(subid)) then
-					player:startEventString(0x028B, player:getAutomatonName(), player:getAutomatonName(), player:getAutomatonName(), player:getAutomatonName(), subid); --unlock attachment event
+					player:startEventString(0x028B, automatonName, automatonName, automatonName, automatonName, subid); --unlock attachment event
 					trade:confirmItem(i);
 					player:confirmTrade();
 				else
@@ -33,14 +34,15 @@ end;
 
 function onTrigger(player,npc)
 	local tradeStatus = player:getVar('TateeyaTradeStatus');
+	local automatonName = player:getAutomatonName();
 	if (tradeStatus == 0) then
 		if (player:getMainJob() == JOB_PUP) then
-			player:startEventString(0x028A, player:getAutomatonName(), player:getAutomatonName(), player:getAutomatonName(), player:getAutomatonName()); --trade me to unlock attachments
+			player:startEventString(0x028A, automatonName, automatonName, automatonName, automatonName); --trade me to unlock attachments
 		else
 			player:startEvent(0x0102); --default no PUP CS
 		end
 	else
-		player:startEventString(0x028A, player:getAutomatonName(), player:getAutomatonName(), player:getAutomatonName(), player:getAutomatonName(), 1);
+		player:startEventString(0x028A, automatonName, automatonName, automatonName, automatonName, 1);
 	end
 end; 
 

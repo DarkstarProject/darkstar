@@ -2642,8 +2642,22 @@ inline int32 CLuaBaseEntity::setPetName(lua_State *L)
 
 inline int32 CLuaBaseEntity::getAutomatonName(lua_State* L)
 {
-    lua_pushstring(L, ((CCharEntity*)m_PBaseEntity)->m_AutomatonName.c_str());
-    return 1;
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	const int8* Query =
+        "SELECT name FROM "
+            "char_pet LEFT JOIN pet_name ON automatonid = id "
+            "WHERE charid = %u;";
+
+    int32 ret = Sql_Query(SqlHandle,Query,m_PBaseEntity->id);
+
+    if (ret != SQL_ERROR &&
+        Sql_NumRows(SqlHandle) != 0 &&
+        Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    {
+        lua_pushstring(L,Sql_GetData(SqlHandle, 0));
+        return 1;
+    }
+    return 0;
 }
 
 /************************************************************************

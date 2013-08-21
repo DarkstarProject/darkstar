@@ -51,92 +51,65 @@ CCharJobExtraPacket::CCharJobExtraPacket(CCharEntity* PChar, bool mjob)
     {
 	    memcpy(data+(0x08)-4, &PChar->m_SetBlueSpells, 20);
     }
-    else if (job == JOB_PUP)
+    else if (job == JOB_PUP && PChar->PAutomaton != NULL)
     {
-	    /*
-        harlequin head: 0x01
-        valoredge head: 0x02
-        sharpshot head: 0x03
-        stormwaker head: 0x04
-        soulsoother head: 0x05
-        spiritreaver head: 0x06
+	    WBUFB(data,(0x08)-4) = PChar->PAutomaton->getHead();
+	    WBUFB(data,(0x09)-4) = PChar->PAutomaton->getFrame();
+	    WBUFB(data,(0x0A)-4) = PChar->PAutomaton->getAttachment(0);
+	    WBUFB(data,(0x0B)-4) = PChar->PAutomaton->getAttachment(1);
+	    WBUFB(data,(0x0C)-4) = PChar->PAutomaton->getAttachment(2);
+	    WBUFB(data,(0x0D)-4) = PChar->PAutomaton->getAttachment(3);
+	    WBUFB(data,(0x0E)-4) = PChar->PAutomaton->getAttachment(4);
+	    WBUFB(data,(0x0F)-4) = PChar->PAutomaton->getAttachment(5);
+	    WBUFB(data,(0x10)-4) = PChar->PAutomaton->getAttachment(6);
+	    WBUFB(data,(0x11)-4) = PChar->PAutomaton->getAttachment(7);
+	    WBUFB(data,(0x12)-4) = PChar->PAutomaton->getAttachment(8);
+	    WBUFB(data,(0x13)-4) = PChar->PAutomaton->getAttachment(9);
+	    WBUFB(data,(0x14)-4) = PChar->PAutomaton->getAttachment(10);
+	    WBUFB(data,(0x15)-4) = PChar->PAutomaton->getAttachment(11);
 
-        harlequin frame: 0x20
-        valoredge frame: 0x21
-        sharpshot frame: 0x22
-        stormwaker frame: 0x23
-
-        tension spring: 0x02 (2)
-        disruptor: 0xE8 (232)
-
-        32 attachment slots for each element (except fire)
-        0x01-0x1F fire
-        0x20-0x3F ice
-        0x40-0x5F wind
-        0x60-0x7F earth
-        0x80-0x9F water
-        0xA0-0xBF thunder
-        0xC0-0xDF light
-        0xE0-0xFF dark
-    
-	    WBUFB(data,(0x08)-4) = 0x03; //sharpshot head, harlequin = 0x01
-	    WBUFB(data,(0x09)-4) = 0x22; //sharpshot frame, harlequin = 0x20
-	    WBUFB(data,(0x0A)-4) = 0x00; //attachment slot 0
-	    WBUFB(data,(0x0B)-4) = 0x00; //slot 1
-	    WBUFB(data,(0x0C)-4) = 0x00; //slot 2
-	    WBUFB(data,(0x0D)-4) = 0x00; //slot 3
-	    WBUFB(data,(0x0E)-4) = 0x00; //slot 4
-	    WBUFB(data,(0x0F)-4) = 0x00; //slot 5
-	    WBUFB(data,(0x10)-4) = 0x00; //slot 6
-	    WBUFB(data,(0x11)-4) = 0x00; //slot 7
-	    WBUFB(data,(0x12)-4) = 0x00; //slot 8
-	    WBUFB(data,(0x13)-4) = 0x00; //slot 9
-	    WBUFB(data,(0x14)-4) = 0x00; //slot 10
-	    WBUFB(data,(0x15)-4) = 0x00; //slot 11
-
-	    WBUFL(data,(0x18)-4) = 0x7E; // unlocked automaton heads (all heads: 0x7E - not sure what bit 0 is)
-	    WBUFL(data,(0x1C)-4) = 0x0F; // unlocked automaton frames (all frames: 0x0F)
+	    WBUFL(data,(0x18)-4) = PChar->m_unlockedAttachments.heads;
+	    WBUFL(data,(0x1C)-4) = PChar->m_unlockedAttachments.frames;
 
         //unlocked attachments: bit # = itemID (second itemID, 8000+ one) & 0x1F (0-31), or itemID & 0xFF - (32*element)
-        WBUFL(data,(0x35)-4) = 0xFFFFFFFF; // unlocked fire attachments
-        WBUFL(data,(0x35)-4) = 0xFFFFFFFF; // unlocked ice attachments
-        WBUFL(data,(0x35)-4) = 0xFFFFFFFF; // unlocked wind attachments
-        WBUFL(data,(0x35)-4) = 0xFFFFFFFF; // unlocked earth attachments
-        WBUFL(data,(0x35)-4) = 0xFFFFFFFF; // unlocked lightning attachments
-        WBUFL(data,(0x35)-4) = 0xFFFFFFFF; // unlocked water attachments
-        WBUFL(data,(0x35)-4) = 0xFFFFFFFF; // unlocked light attachments
-        WBUFL(data,(0x35)-4) = 0xFFFFFFFF; // unlocked dark attachments
+        WBUFL(data,(0x38)-4) = PChar->m_unlockedAttachments.attachments[0];
+        WBUFL(data,(0x3C)-4) = PChar->m_unlockedAttachments.attachments[1];
+        WBUFL(data,(0x40)-4) = PChar->m_unlockedAttachments.attachments[2];
+        WBUFL(data,(0x44)-4) = PChar->m_unlockedAttachments.attachments[3];
+        WBUFL(data,(0x48)-4) = PChar->m_unlockedAttachments.attachments[4];
+        WBUFL(data,(0x4C)-4) = PChar->m_unlockedAttachments.attachments[5];
+        WBUFL(data,(0x50)-4) = PChar->m_unlockedAttachments.attachments[6];
+        WBUFL(data,(0x54)-4) = PChar->m_unlockedAttachments.attachments[7];
 	
-	    //memcpy(data+(0x58)-4,PChar->PPet->GetName(),PChar->PPet->name.size());
-        memcpy(data+(0x58)-4,"Aurelie",sizeof "Aurelie");
+	    memcpy(data+(0x58)-4,PChar->PAutomaton->GetName(),PChar->PAutomaton->name.size());
 
-	    WBUFW(data,(0x68)-4) = 50;//PChar->PPet->health.hp;
-	    WBUFW(data,(0x6A)-4) = 50;//PChar->PPet->GetMaxHP();
-	    WBUFW(data,(0x6C)-4) = 50;//PChar->PPet->health.mp;
-	    WBUFW(data,(0x6E)-4) = 50;//PChar->PPet->GetMaxMP();
+	    WBUFW(data,(0x68)-4) = PChar->PAutomaton->health.hp;
+	    WBUFW(data,(0x6A)-4) = PChar->PAutomaton->GetMaxHP();
+	    WBUFW(data,(0x6C)-4) = PChar->PAutomaton->health.mp;
+	    WBUFW(data,(0x6E)-4) = PChar->PAutomaton->GetMaxMP();
 
-	    WBUFW(data,(0x70)-4) = 400; //current melee skill
-	    WBUFW(data,(0x72)-4) = 404; //max melee skill
-	    WBUFW(data,(0x74)-4) = 400; //current ranged skill
-	    WBUFW(data,(0x76)-4) = 404; //max ranged skill
-	    WBUFW(data,(0x78)-4) = 401; //current magic skill
-	    WBUFW(data,(0x7A)-4) = 404; //max magic skill
+        //TODO: find a better way to store automaton skills? might not play well with built in rank for WorkingSkills
+        WBUFW(data,(0x70)-4) = PChar->WorkingSkills.automaton_melee;
+	    WBUFW(data,(0x72)-4) = 424; //add function in puppetutils to get this
+	    WBUFW(data,(0x74)-4) = PChar->WorkingSkills.automaton_ranged;
+	    WBUFW(data,(0x76)-4) = 424;
+	    WBUFW(data,(0x78)-4) = PChar->WorkingSkills.automaton_magic;
+	    WBUFW(data,(0x7A)-4) = 424;
 
-	    WBUFW(data,(0x80)-4) = 50;//PChar->PPet->stats.STR;
-        WBUFW(data,(0x82)-4) = 50;//PChar->PPet->getMod(MOD_STR);
-        WBUFW(data,(0x84)-4) = 50;//PChar->PPet->stats.DEX;
-        WBUFW(data,(0x86)-4) = 50;//PChar->PPet->getMod(MOD_DEX);
-        WBUFW(data,(0x88)-4) = 50;//PChar->PPet->stats.VIT;
-        WBUFW(data,(0x8A)-4) = 50;//PChar->PPet->getMod(MOD_VIT);
-	    WBUFW(data,(0x8C)-4) = 50;//PChar->PPet->stats.AGI;
-        WBUFW(data,(0x8E)-4) = 50;//PChar->PPet->getMod(MOD_AGI);
-	    WBUFW(data,(0x90)-4) = 50;//PChar->PPet->stats.INT;
-        WBUFW(data,(0x92)-4) = 50;//PChar->PPet->getMod(MOD_INT);
-	    WBUFW(data,(0x94)-4) = 50;//PChar->PPet->stats.MND;
-        WBUFW(data,(0x96)-4) = 50;//PChar->PPet->getMod(MOD_MND);
-	    WBUFW(data,(0x98)-4) = 50;//PChar->PPet->stats.CHR;
-        WBUFW(data,(0x9A)-4) = 50;//PChar->PPet->getMod(MOD_CHR);
-        */
+	    WBUFW(data,(0x80)-4) = PChar->PAutomaton->stats.STR;
+        WBUFW(data,(0x82)-4) = PChar->PAutomaton->getMod(MOD_STR);
+        WBUFW(data,(0x84)-4) = PChar->PAutomaton->stats.DEX;
+        WBUFW(data,(0x86)-4) = PChar->PAutomaton->getMod(MOD_DEX);
+        WBUFW(data,(0x88)-4) = PChar->PAutomaton->stats.VIT;
+        WBUFW(data,(0x8A)-4) = PChar->PAutomaton->getMod(MOD_VIT);
+	    WBUFW(data,(0x8C)-4) = PChar->PAutomaton->stats.AGI;
+        WBUFW(data,(0x8E)-4) = PChar->PAutomaton->getMod(MOD_AGI);
+	    WBUFW(data,(0x90)-4) = PChar->PAutomaton->stats.INT;
+        WBUFW(data,(0x92)-4) = PChar->PAutomaton->getMod(MOD_INT);
+	    WBUFW(data,(0x94)-4) = PChar->PAutomaton->stats.MND;
+        WBUFW(data,(0x96)-4) = PChar->PAutomaton->getMod(MOD_MND);
+	    WBUFW(data,(0x98)-4) = PChar->PAutomaton->stats.CHR;
+        WBUFW(data,(0x9A)-4) = PChar->PAutomaton->getMod(MOD_CHR);
     }
 
 }

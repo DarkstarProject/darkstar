@@ -22,6 +22,7 @@
 */
 
 #include "puppetutils.h"
+#include "../packets/char_job_extra.h"
 
 namespace puppetutils
 {
@@ -29,7 +30,7 @@ namespace puppetutils
 void LoadAutomaton(CCharEntity* PChar)
 {
 	const int8* Query =
-        "SELECT name, unlocked_attachments FROM "
+        "SELECT unlocked_attachments, name FROM "
             "char_pet LEFT JOIN pet_name ON automatonid = id "
             "WHERE charid = %u;";
 
@@ -39,14 +40,19 @@ void LoadAutomaton(CCharEntity* PChar)
         Sql_NumRows(SqlHandle) != 0 &&
         Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
-        PChar->m_AutomatonName.insert(0,Sql_GetData(SqlHandle, 0));
-
 		size_t length = 0;
 		int8* attachments = NULL;
-		Sql_GetData(SqlHandle,1,&attachments,&length);
+		Sql_GetData(SqlHandle,0,&attachments,&length);
 		memcpy(&PChar->m_unlockedAttachments, attachments, (length > sizeof(PChar->m_unlockedAttachments) ? sizeof(PChar->m_unlockedAttachments) : length));
+
+        if (PChar->GetMJob() == JOB_PUP || PChar->GetSJob() == JOB_PUP)
+        {
+            //TODO: populate stats/head/frame/attachments
+            PChar->PAutomaton = new CAutomatonEntity();
+            PChar->PAutomaton->name.insert(0,Sql_GetData(SqlHandle, 1));
+        }
+
     }
-	//TODO: PUP only: Create Automaton member, populate stats/head/frame/attachments
 }
 
 void SaveAutomaton(CCharEntity* PChar)
@@ -82,6 +88,7 @@ bool UnlockAttachment(CCharEntity* PChar, CItem* PItem)
 		if (addBit(id & 0xFF, (uint8*)PChar->m_unlockedAttachments.attachments, sizeof(PChar->m_unlockedAttachments.attachments)))
 		{
 			SaveAutomaton(PChar);
+            PChar->pushPacket(new CCharJobExtraPacket(PChar, PChar->GetMJob() == JOB_PUP));
 			return true;
 		}
 		return false;
@@ -91,6 +98,7 @@ bool UnlockAttachment(CCharEntity* PChar, CItem* PItem)
 		if (addBit(id & 0x0F, &PChar->m_unlockedAttachments.frames, sizeof(PChar->m_unlockedAttachments.frames)))
 		{
 			SaveAutomaton(PChar);
+            PChar->pushPacket(new CCharJobExtraPacket(PChar, PChar->GetMJob() == JOB_PUP));
 			return true;
 		}
 		return false;
@@ -100,6 +108,7 @@ bool UnlockAttachment(CCharEntity* PChar, CItem* PItem)
 		if (addBit(id & 0x0F, &PChar->m_unlockedAttachments.heads, sizeof(PChar->m_unlockedAttachments.heads)))
 		{
 			SaveAutomaton(PChar);
+            PChar->pushPacket(new CCharJobExtraPacket(PChar, PChar->GetMJob() == JOB_PUP));
 			return true;
 		}
 		return false;

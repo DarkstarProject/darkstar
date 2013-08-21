@@ -35,6 +35,7 @@
 #include "../item_container.h"
 #include "../linkshell.h"
 #include "petentity.h"
+#include "automatonentity.h"
 
 #include "../recast_container.h"
 #include "../latent_effect_container.h"
@@ -198,8 +199,10 @@ public:
 	PetInfo_t				petZoningInfo;					// used to repawn dragoons pets ect on zone
 	void					resetPetZoningInfo();			// reset pet zoning info (when changing job ect)
 	uint8					m_SetBlueSpells[20];			// The 0x200 offsetted blue magic spell IDs which the user has set. (1 byte per spell)
+
 	UnlockedAttachments_t	m_unlockedAttachments;			// Unlocked Automaton Attachments (1 bit per attachment)
-    string_t                m_AutomatonName;                // TEMP AUTOMATON NAME
+    CAutomatonEntity*       PAutomaton;                     // Automaton statistics
+
 
 	// Эти миссии не нуждаются в списке пройденных, т.к. клиент автоматически
 	// отображает более ранние миссии выплненными

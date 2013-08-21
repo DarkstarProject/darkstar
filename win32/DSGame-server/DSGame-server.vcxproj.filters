@@ -752,11 +752,14 @@
     <ClInclude Include="..\..\src\map\packets\char_job_extra.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\utils\puppetutils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\map\packets\event_string.h">
       <Filter>Header Files\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\entities\automatonentity.h">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\utils\puppetutils.h">
+      <Filter>Header Files\utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1375,11 +1378,14 @@
     <ClCompile Include="..\..\src\map\packets\char_job_extra.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\utils\puppetutils.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\map\packets\event_string.cpp">
       <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\utils\puppetutils.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\entities\automatonentity.cpp">
+      <Filter>Source Files\entities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

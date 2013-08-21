@@ -671,12 +671,12 @@ void LoadChar(CCharEntity* PChar)
 	PChar->PMeritPoints->SetLimitPoints(limitPoints);
 
     blueutils::LoadSetSpells(PChar);
-    puppetutils::LoadAutomaton(PChar);
 	BuildingCharSkillsTable(PChar);
     PChar->PRecastContainer->ResetAbilities();
 	BuildingCharAbilityTable(PChar);
 	BuildingCharTraitsTable(PChar);
 	CalculateStats(PChar);
+    puppetutils::LoadAutomaton(PChar);
 
 	PChar->animation = (PChar->health.hp == 0 ? ANIMATION_DEATH : ANIMATION_NONE);
 

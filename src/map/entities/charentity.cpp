@@ -54,8 +54,6 @@ CCharEntity::CCharEntity()
 	m_Mogsatchel = new CItemContainer(LOC_MOGSATCHEL);
 	m_Mogsack	 = new CItemContainer(LOC_MOGSACK);
 
-    m_AutomatonName = "";
-
 	memset(& jobs,  0, sizeof(jobs));
 	memset(& keys,  0, sizeof(keys));
     memset(& equip, 0, sizeof(equip));
