@@ -40,6 +40,7 @@
 #include "utils/battleutils.h"
 #include "utils/charutils.h"
 #include "utils/petutils.h"
+#include "utils/puppetutils.h"
 #include "utils/fishingutils.h"
 #include "utils/itemutils.h"
 #include "utils/jailutils.h"
@@ -4383,85 +4384,108 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	if (PChar->GetMJob() == JOB_BLU || PChar->GetSJob() == JOB_BLU) {
+    uint8 job = RBUFB(data,(0x08));
+	if ((PChar->GetMJob() == JOB_BLU || PChar->GetSJob() == JOB_BLU) && job == JOB_BLU) {
 		// This may be a request to add or remove set spells, so lets check.
-		uint8 job = RBUFB(data,(0x08));
-		if (job == JOB_BLU) {
-			uint8 spellToAdd = RBUFB(data,(0x04)); // this is non-zero if client wants to add.
-			uint8 spellInQuestion = 0;
-			uint8 spellIndex = -1;
 
-			if (spellToAdd == 0x00) {
-				for (uint8 i = 0x0C; i <= 0x1F; i++) {
-					if ( RBUFB(data,i) > 0 ) {
-						spellInQuestion = RBUFB(data,i);
-						spellIndex = i - 0x0C;
-						CBlueSpell* spell = (CBlueSpell*)spell::GetSpell(spellInQuestion + 0x200); // the spells in this packet are offsetted by 0x200 from their spell IDs.
+		uint8 spellToAdd = RBUFB(data,(0x04)); // this is non-zero if client wants to add.
+		uint8 spellInQuestion = 0;
+		uint8 spellIndex = -1;
 
-						if (spell != NULL) {
-							blueutils::SetBlueSpell(PChar, spell, spellIndex, (spellToAdd > 0));
-						}
-						else {
-							ShowDebug("Cannot resolve spell id \n");
-						}
-					}
-				}
-                charutils::BuildingCharTraitsTable(PChar);
-			    PChar->status = STATUS_UPDATE;
-			    PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
-			    PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
-			    PChar->pushPacket(new CCharStatsPacket(PChar));
-			    charutils::CalculateStats(PChar);
-			    PChar->UpdateHealth();
-			    PChar->pushPacket(new CCharHealthPacket(PChar));
-			}
-			else {
-				// loop all 20 slots and find which index they are playing with
-				for (uint8 i = 0x0C; i <= 0x1F; i++) {
-					if ( RBUFB(data,i) > 0 ) {
-						spellInQuestion = RBUFB(data,i);
-						spellIndex = i - 0x0C;
-						break;
-					}
-				}
-
-				if (spellIndex != -1 && spellInQuestion != 0) {
+		if (spellToAdd == 0x00) {
+			for (uint8 i = 0x0C; i <= 0x1F; i++) {
+				if ( RBUFB(data,i) > 0 ) {
+					spellInQuestion = RBUFB(data,i);
+					spellIndex = i - 0x0C;
 					CBlueSpell* spell = (CBlueSpell*)spell::GetSpell(spellInQuestion + 0x200); // the spells in this packet are offsetted by 0x200 from their spell IDs.
 
 					if (spell != NULL) {
 						blueutils::SetBlueSpell(PChar, spell, spellIndex, (spellToAdd > 0));
-                        charutils::BuildingCharTraitsTable(PChar);
-			            PChar->status = STATUS_UPDATE;
-			            PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
-			            PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
-			            PChar->pushPacket(new CCharStatsPacket(PChar));
-			            charutils::CalculateStats(PChar);
-			            PChar->UpdateHealth();
-			            PChar->pushPacket(new CCharHealthPacket(PChar));
 					}
 					else {
 						ShowDebug("Cannot resolve spell id \n");
 					}
 				}
-				else {
-					ShowDebug("No match found. \n");
-				}
 			}
+            charutils::BuildingCharTraitsTable(PChar);
+			PChar->status = STATUS_UPDATE;
+			PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
+			PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
+			PChar->pushPacket(new CCharStatsPacket(PChar));
+			charutils::CalculateStats(PChar);
+			PChar->UpdateHealth();
+			PChar->pushPacket(new CCharHealthPacket(PChar));
 		}
 		else {
-			ShowDebug("Got 0x102 but it's not for JOB_BLU.");
+			// loop all 20 slots and find which index they are playing with
+			for (uint8 i = 0x0C; i <= 0x1F; i++) {
+				if ( RBUFB(data,i) > 0 ) {
+					spellInQuestion = RBUFB(data,i);
+					spellIndex = i - 0x0C;
+					break;
+				}
+			}
+
+			if (spellIndex != -1 && spellInQuestion != 0) {
+				CBlueSpell* spell = (CBlueSpell*)spell::GetSpell(spellInQuestion + 0x200); // the spells in this packet are offsetted by 0x200 from their spell IDs.
+
+				if (spell != NULL) {
+					blueutils::SetBlueSpell(PChar, spell, spellIndex, (spellToAdd > 0));
+                    charutils::BuildingCharTraitsTable(PChar);
+			        PChar->status = STATUS_UPDATE;
+			        PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
+			        PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
+			        PChar->pushPacket(new CCharStatsPacket(PChar));
+			        charutils::CalculateStats(PChar);
+			        PChar->UpdateHealth();
+			        PChar->pushPacket(new CCharHealthPacket(PChar));
+				}
+				else {
+					ShowDebug("Cannot resolve spell id \n");
+				}
+			}
+			else {
+				ShowDebug("No match found. \n");
+			}
 		}
 	}
+    else if ((PChar->GetMJob() == JOB_PUP || PChar->GetSJob() == JOB_PUP) && job == JOB_PUP)
+    {
+        uint8 attachment = RBUFB(data, 0x04);
 
-	/* Unsurprisingly, this packet is also used for automaton attachments
-	* 0x04 is non-zero if the client is adding an attachment
-	* 0x08 is JOB_PUP
-	* 0x0C is the head slot
-	* 0x0D is the frame slot
-	* 0x0E is the first attachment slot
-	* 0x19 is the last attachment slot
-	* multiple attachment slots may be set with Remove All
-	*/
+        if (attachment == 0x00)
+        {
+            //remove all attachments
+            for (uint8 i = 0; i < 12; i++)
+            {
+                puppetutils::setAttachment(PChar, i, 0x00);
+            }
+        }
+        else
+        {
+            if (RBUFB(data,0x0C) != 0)
+            {
+                puppetutils::setHead(PChar, RBUFB(data,0x0C));
+            }
+            else if (RBUFB(data,0x0D) != 0)
+            {
+                puppetutils::setFrame(PChar, RBUFB(data,0x0D));
+            }
+            else
+            {
+                for (uint8 i = 0x0E; i < 0x1A; i++)
+                {
+                    if (RBUFB(data,i) != 0)
+                    {
+                        puppetutils::setAttachment(PChar, i - 0x0E, RBUFB(data,i));
+                    }
+                }
+            }
+        }
+        PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
+        PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
+        puppetutils::SaveAutomaton(PChar);
+    }
 
 	return;
 }
