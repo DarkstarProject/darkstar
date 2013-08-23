@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
--- NPC:  Alkyoneus
+-- NPC:  Pallas
 -----------------------------------
 
 -----------------------------------
@@ -15,5 +15,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	GetNPCByID(17424518):hideNPC(900);
+	GetNPCByID(17424519):hideNPC(900);
 end;

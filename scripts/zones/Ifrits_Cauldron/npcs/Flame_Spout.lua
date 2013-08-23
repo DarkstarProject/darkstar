@@ -1,8 +1,7 @@
 ----------------------------------
 -- Area: Ifrit's Cauldron
--- NPC: Altar of Ashes
--- @pos: I-9 (X:16, Y:0, Z:-58)
--- Involved in Quest: Greetings to the Guardian
+-- NPC: Flame Spout
+-- @pos 193.967 -0.400 19.492 205
 -----------------------------------
 
 
@@ -17,7 +16,7 @@ require("scripts/globals/quests");
 function onTrade(player,npc,trade)
    local npcid = npc:getID();
    if (trade:getItemCount() == 1 and trade:hasItemQty(4105,1) == true) then -- Ice Cluster Trade
-      GetNPCByID(npcid+5):openDoor(10);
+      GetNPCByID(npcid+5):openDoor(90);
       player:tradeComplete();
    end
 end; 

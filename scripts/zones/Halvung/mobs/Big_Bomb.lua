@@ -1,20 +1,19 @@
 -----------------------------------
--- Area: Riverne - Site B01
--- NPC:  Unstable Cluster
--- @pos 307.500 -1.500 -706.500 29
+-- Area: Halvung
+-- NPC:  Big Bomb
 -----------------------------------
 
 -----------------------------------
--- onMobSpawn Action
+-- OnMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
-end;
+function onMobSpawn(mob)
+end; 
 
 -----------------------------------
--- onMobDeath
+-- OnMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	GetNPCByID(16896175):hideNPC(900);
+function onMobDeath(mob,killer)
+	GetNPCByID(17031608):hideNPC(900);
 end;

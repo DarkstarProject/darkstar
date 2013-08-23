@@ -1,14 +1,15 @@
 -----------------------------------
--- Area: Riverne - Site B01
--- NPC:  Unstable Cluster
--- @pos 307.500 -1.500 -706.500 29
+-- Area: Pso'xja
+-- NPC:  Golden-Tongued Culberry 
 -----------------------------------
 
+
+
 -----------------------------------
--- onMobSpawn Action
+-- onMobFight Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobFight(mob,target)
 end;
 
 -----------------------------------
@@ -16,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	GetNPCByID(16896175):hideNPC(900);
+	GetNPCByID(16814434):hideNPC(900);
 end;

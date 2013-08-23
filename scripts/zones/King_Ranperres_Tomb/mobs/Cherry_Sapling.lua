@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Riverne - Site B01
--- NPC:  Boroka
+-- Area: 
+-- NPC:  Cherry Sapling
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -10,6 +10,7 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function OnMobSpawn(mob)
+	SetServerVariable("[POP]Cemetery Cherry",0);
 end;
 
 -----------------------------------
@@ -17,6 +18,13 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	killer:addTitle(BOROKA_BELEAGUERER);
-	mob:setRespawnTime(math.random((75600),(86400))); -- 21-24 hour respawn
+	
+	SetServerVariable("[POP]Cemetery Cherry",GetServerVariable("[POP]Cemetery Cherry") + 1);
+	
+	if(GetServerVariable("[POP]Cemetery Cherry") == 8) then
+		SetServerVariable("[POP]Cemetery Cherry",0);
+		SpawnMob(17555863,600); -- Pop Cemetery Cherry !
+		
+	end
+	
 end;

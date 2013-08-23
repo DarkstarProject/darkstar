@@ -1,8 +1,9 @@
 -----------------------------------
--- Area: Riverne - Site B01
--- NPC:  Unstable Cluster
--- @pos 307.500 -1.500 -706.500 29
+-- Area: Crawler's Nest
+-- NPC:  Matron Crawler
+-- @pos -141.158 -33.689 20.944 197
 -----------------------------------
+
 
 -----------------------------------
 -- onMobSpawn Action
@@ -16,5 +17,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	GetNPCByID(16896175):hideNPC(900);
+	GetNPCByID(17584457):hideNPC(900);
 end;

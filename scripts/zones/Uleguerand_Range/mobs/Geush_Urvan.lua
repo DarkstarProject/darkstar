@@ -1,20 +1,21 @@
 -----------------------------------
--- Area: Riverne - Site B01
--- NPC:  Unstable Cluster
--- @pos 307.500 -1.500 -706.500 29
+-- Area: Uleguerand_Range
+-- NPC:  Geush Urvan
+-- @pos 563.638 -35.719 110.362 5
+
 -----------------------------------
 
 -----------------------------------
--- onMobSpawn Action
+-- OnMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
-end;
+function onMobSpawn(mob)
+end; 
 
 -----------------------------------
--- onMobDeath
+-- OnMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	GetNPCByID(16896175):hideNPC(900);
+function onMobDeath(mob,killer)
+	GetNPCByID(16798094):hideNPC(900);
 end;
