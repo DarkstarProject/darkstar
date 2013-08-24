@@ -1854,9 +1854,17 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
                         if (ret != SQL_ERROR &&  Sql_AffectedRows(SqlHandle) != 0)
                         {
-                            charutils::AddItem(PChar, LOC_INVENTORY, PItem->getID(), PItem->getQuantity());
+                            if( PItem->isType(ITEM_CURRENCY))
+                            {
+                                charutils::UpdateItem(PChar, LOC_INVENTORY, 0, PItem->getQuantity());
+                                commit = true;
+                            }
+                            else
+                            {
+                                if (charutils::AddItem(PChar, LOC_INVENTORY, PItem->getID(), PItem->getQuantity()) != ERROR_SLOTID)
+                                    commit = true;
+                            }
                             PChar->pushPacket(new CDeliveryBoxPacket(action, PItem, PChar->UContainer->GetItemsCount()));
-                            commit = true;
                         }
                     }
                     else if (boxtype == 0x02)
@@ -1869,13 +1877,14 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
                             if(loc != ERROR_SLOTID)
                             {
                                 charutils::UpdateItem(PChar, LOC_INVENTORY, loc, PItem->getQuantity());
+                                commit = true;
                             }
                             else
                             {
-                                charutils::AddItem(PChar, LOC_INVENTORY, PItem->getID(), PItem->getQuantity());
+                                if (charutils::AddItem(PChar, LOC_INVENTORY, PItem->getID(), PItem->getQuantity()))
+                                    commit = true;
                             }
                             PChar->pushPacket(new CSendBoxPacket(action, PItem, slotID, PChar->UContainer->GetItemsCount()));
-                            commit = true;
                         } else {
                             PChar->pushPacket(new CSendBoxPacket(action, PItem, slotID, PChar->UContainer->GetItemsCount(), 0xEB));
                         }
