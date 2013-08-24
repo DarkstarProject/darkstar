@@ -4,9 +4,9 @@
 --
 -----------------------------------
 
-package.loaded[ "scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
+package.loaded[ "scripts/zones/Jugner_Forest/TextIDs"] = nil;
 
-require( "scripts/zones/Valkurm_Dunes/TextIDs");
+require( "scripts/zones/Jugner_Forest/TextIDs");
 require( "scripts/globals/icanheararainbow");
 
 -----------------------------------
