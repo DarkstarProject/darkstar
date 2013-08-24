@@ -115,9 +115,13 @@ function onEventFinish(player,csid,option)
 							itemCP = inventory[Item + 1] + 8000;
 						end;
 					end;
-					player:delCP(itemCP);
-					player:addItem(inventory[Item + 2],1);
-					player:messageSpecial(ITEM_OBTAINED,inventory[Item + 2]);
+					if(player:hasItem(inventory[Item + 2]) == false) then
+						player:delCP(itemCP);
+						player:addItem(inventory[Item + 2],1);
+						player:messageSpecial(ITEM_OBTAINED,inventory[Item + 2]);
+					else
+						player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,inventory[Item + 2]);
+					end;
 				else
 					player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,inventory[Item + 2]);
 				end;
