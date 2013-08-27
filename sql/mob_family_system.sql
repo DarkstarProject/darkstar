@@ -426,6 +426,10 @@ INSERT INTO `mob_family_system` VALUES (359,'Fomor',19,'Undead',0,40,105,90,2,5,
 INSERT INTO `mob_family_system` VALUES (360,'Yagudo',7,'Beastmen',0,40,85,120,2,2,5,2,4,5,2,3,3,3,3,1,1,1,1,1,1.25,1,1,1,1,1,1,3);
 INSERT INTO `mob_family_system` VALUES (361,'DynamisLord',18,'Unclassified',1,40,120,140,1,1,1,1,1,1,1,3,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,8);
 INSERT INTO `mob_family_system` VALUES (362,'NotUsed',17,'Plantoid',0,50,100,90,3,2,1,6,6,4,1,3,3,3,3,1,1,1,1,1,1.25,1,1,1,0.5,0.875,1.25,6);
+INSERT INTO `mob_family_system` VALUES (363,'Automaton_Harlequin',18,'Unclassified',0,40,100,100,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0);
+INSERT INTO `mob_family_system` VALUES (364,'Automaton_Valoredge',18,'Unclassified',0,40,100,100,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0);
+INSERT INTO `mob_family_system` VALUES (365,'Automaton_Sharpshot',18,'Unclassified',0,40,100,100,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0);
+INSERT INTO `mob_family_system` VALUES (366,'Automaton_Stormwaker',18,'Unclassified',0,40,100,100,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0);
 /*!40000 ALTER TABLE `mob_family_system` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
