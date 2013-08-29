@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(520,3,18,5)) then
+	if(player:sendGuild(517,3,18,5)) then
 		player:showText(npc,TextID_Selbina.FISHING_SHOP_DIALOG);
 	end
 end; 

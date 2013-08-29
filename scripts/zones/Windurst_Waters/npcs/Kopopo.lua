@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:sendGuild(525,5,20,7)) then
+	if (player:sendGuild(5251,5,20,7)) then
 		player:showText(npc,KOPOPO_SHOP_DIALOG);
 	end
 end; 
