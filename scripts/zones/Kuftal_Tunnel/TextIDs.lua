@@ -16,5 +16,5 @@ CHEST_UNLOCKED = 7262; -- You unlock the chest!
   CHEST_MOOGLE = 7267; -- You cannot open the chest while participating in the moogle event.
 CHEST_ILLUSION = 7268; -- The chest was but an illusion...
   CHEST_LOCKED = 7269; -- The chest appears to be locked.
-          FELL = 7280; -- wood fell
+          FELL = 7282; -- wood fell
           EVIL = 7281; -- evil presence

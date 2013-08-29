@@ -49,6 +49,15 @@ Pelican_PH={
   [17490098] = '1', -- 179.394, 20.061, -34.062
 }; 
 
+-- Dervo's Ghost
+Dervo_s_Ghost=17489927;
+
+-- Gizerl's Ghost
+Gizerl_s_Ghost=17489928;
+
+-- Gordov's Ghost
+Gordov_s_Ghost=17489926;
+
 -- Phantom Worm
 Phantom_Worm=17490233;
 
