@@ -93,7 +93,7 @@ function onEventFinish(player,csid,option)
 		player:tradeComplete();
 		player:delKeyItem(OLD_POCKET_WATCH);
 		player:addKeyItem(OLD_BOOTS);
-		player:messagerSpecial(KEYITEM_OBTAINED,OLD_BOOTS);
+		player:messageSpecial(KEYITEM_OBTAINED,OLD_BOOTS);
 	end
 	
 end;
