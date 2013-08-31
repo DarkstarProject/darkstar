@@ -63,7 +63,7 @@
 *	lists used in battleutils											*
 ************************************************************************/
 
-uint16 g_SkillTable[100][12];									// All Skills by level/skilltype
+uint16 g_SkillTable[100][13];									// All Skills by level/skilltype
 uint8  g_EnmityTable[100][2];		                            // Holds Enmity Modifier Values
 uint8  g_SkillRanks[MAX_SKILLTYPE][MAX_JOBTYPE];				// Holds skill ranks by skilltype and job
 uint16 g_SkillChainDamageModifiers[MAX_SKILLCHAIN_LEVEL + 1][MAX_SKILLCHAIN_COUNT + 1]; // Holds damage modifiers for skill chains [chain level][chain count]
@@ -107,7 +107,7 @@ void LoadSkillTable()
 	memset(g_SkillTable,0, sizeof(g_SkillTable));
 	memset(g_SkillRanks,0, sizeof(g_SkillRanks));
 
-	const int8* fmtQuery = "SELECT r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11 \
+	const int8* fmtQuery = "SELECT r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12 \
 						    FROM skill_caps \
 							ORDER BY level \
 							LIMIT 100";
@@ -118,7 +118,7 @@ void LoadSkillTable()
 	{
 		for (uint32 x = 0; x < 100 && Sql_NextRow(SqlHandle) == SQL_SUCCESS; ++x)
 		{
-			for (uint32 y = 0; y < 12; ++y)
+			for (uint32 y = 0; y < 13; ++y)
 			{
 				g_SkillTable[x][y] = (uint16)Sql_GetIntData(SqlHandle,y);
 			}

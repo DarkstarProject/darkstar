@@ -22,6 +22,7 @@
 */
 
 #include "puppetutils.h"
+#include "petutils.h"
 #include "battleutils.h"
 #include "../packets/char_job_extra.h"
 
@@ -60,6 +61,7 @@ void LoadAutomaton(CCharEntity* PChar)
             setFrame(PChar, tempEquip.Frame);
             for (int i = 0; i < 8; i++)
                 setAttachment(PChar, i, tempEquip.Attachments[i]);
+            LoadAutomatonStats(PChar);
         }
 
     }
@@ -243,6 +245,7 @@ void setFrame(CCharEntity* PChar, uint8 frame)
         PChar->PAutomaton->setFrame((AUTOFRAMETYPE)frame);
         for (int i = 0; i < 8; i++)
             PChar->PAutomaton->setElementMax(i, tempElementMax[i]);
+        LoadAutomatonStats(PChar);
     }
 }
 
@@ -291,10 +294,10 @@ void setHead(CCharEntity* PChar, uint8 head)
 
 }
 
-uint8 getSkillCap(CCharEntity* PChar, SKILLTYPE skill)
+uint16 getSkillCap(CCharEntity* PChar, SKILLTYPE skill)
 {
     int8 rank = 0;
-    if (skill < SKILL_AME || skill > SKILL_AME)
+    if (skill < SKILL_AME || skill > SKILL_AMA)
         return 0;
     switch (PChar->PAutomaton->getFrame())
     {
@@ -342,10 +345,32 @@ uint8 getSkillCap(CCharEntity* PChar, SKILLTYPE skill)
 
     //only happens if a head gives bonus to a rank of 0 - making it G or F rank
     if (rank < 0)
-        rank = 14 + rank;
+        rank = 13 + rank;
 
     return battleutils::GetMaxSkill(rank, PChar->PAutomaton->GetMLevel());
 
+}
+
+void LoadAutomatonStats(CCharEntity* PChar)
+{
+    switch (PChar->PAutomaton->getFrame())
+    {
+        case FRAME_HARLEQUIN:
+            petutils::LoadPet(PChar, PETID_HARLEQUINFRAME, false);
+            break;
+        case FRAME_VALOREDGE:
+            petutils::LoadPet(PChar, PETID_VALOREDGEFRAME, false);
+            break;
+        case FRAME_SHARPSHOT:
+            petutils::LoadPet(PChar, PETID_SHARPSHOTFRAME, false);
+            break;
+        case FRAME_STORMWAKER:
+            petutils::LoadPet(PChar, PETID_STORMWAKERFRAME, false);
+            break;
+    }
+    PChar->PPet = NULL; //already saved as PAutomaton, don't need it twice unless it's summoned
+    PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
+    PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
 }
 
 }

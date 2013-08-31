@@ -90,12 +90,15 @@ CCharJobExtraPacket::CCharJobExtraPacket(CCharEntity* PChar, bool mjob)
 	    WBUFW(data,(0x6E)-4) = PChar->PAutomaton->GetMaxMP();
 
         //TODO: find a better way to store automaton skills? might not play well with built in rank for WorkingSkills
-        WBUFW(data,(0x70)-4) = PChar->WorkingSkills.automaton_melee;
-	    WBUFW(data,(0x72)-4) = puppetutils::getSkillCap(PChar, SKILL_AME);
-	    WBUFW(data,(0x74)-4) = PChar->WorkingSkills.automaton_ranged;
-	    WBUFW(data,(0x76)-4) = puppetutils::getSkillCap(PChar, SKILL_ARA);
-	    WBUFW(data,(0x78)-4) = PChar->WorkingSkills.automaton_magic;
-	    WBUFW(data,(0x7A)-4) = puppetutils::getSkillCap(PChar, SKILL_AMA);
+        WBUFW(data,(0x70)-4) = PChar->GetSkill(SKILL_AME) > puppetutils::getSkillCap(PChar, SKILL_AME) ? 
+            puppetutils::getSkillCap(PChar, SKILL_AME) + PChar->getMod(MOD_AUTO_MELEE_SKILL) : PChar->GetSkill(SKILL_AME) + PChar->getMod(MOD_AUTO_MELEE_SKILL);
+	    WBUFW(data,(0x72)-4) = puppetutils::getSkillCap(PChar, SKILL_AME) + PChar->getMod(MOD_AUTO_MELEE_SKILL);
+	    WBUFW(data,(0x74)-4) = PChar->GetSkill(SKILL_ARA) > puppetutils::getSkillCap(PChar, SKILL_ARA) ?
+            puppetutils::getSkillCap(PChar, SKILL_ARA) + PChar->getMod(MOD_AUTO_RANGED_SKILL) : PChar->GetSkill(SKILL_ARA) + PChar->getMod(MOD_AUTO_RANGED_SKILL);
+	    WBUFW(data,(0x76)-4) = puppetutils::getSkillCap(PChar, SKILL_ARA) + PChar->getMod(MOD_AUTO_RANGED_SKILL);
+	    WBUFW(data,(0x78)-4) = PChar->GetSkill(SKILL_AMA) > puppetutils::getSkillCap(PChar, SKILL_AMA) ?
+            puppetutils::getSkillCap(PChar, SKILL_AMA) + PChar->getMod(MOD_AUTO_MAGIC_SKILL) : PChar->GetSkill(SKILL_AMA) + PChar->getMod(MOD_AUTO_MAGIC_SKILL);
+	    WBUFW(data,(0x7A)-4) = puppetutils::getSkillCap(PChar, SKILL_AMA) + PChar->getMod(MOD_AUTO_MAGIC_SKILL);
 
 	    WBUFW(data,(0x80)-4) = PChar->PAutomaton->stats.STR;
         WBUFW(data,(0x82)-4) = PChar->PAutomaton->getMod(MOD_STR);

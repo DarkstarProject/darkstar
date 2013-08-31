@@ -366,9 +366,12 @@ enum MODIFIER
 	MOD_ROLL_DANCERS              =0x14A,// Tracks totals
 	MOD_ROLL_SCHOLARS             =0x14B,// Tracks totals
 	MOD_BUST                      =0x14C,// # of busts
-    MOD_QUICK_DRAW_DMG            = 411,
+    MOD_QUICK_DRAW_DMG            =411,
 
 	// Puppetmaster
+    MOD_AUTO_MELEE_SKILL          =412,
+    MOD_AUTO_RANGED_SKILL         =413,
+    MOD_AUTO_MAGIC_SKILL          =414,
 	// Dancer
 	MOD_FINISHING_MOVES           =0x14D,// Tracks # of finishing moves
 
@@ -444,7 +447,7 @@ enum MODIFIER
 	MOD_EAT_RAW_MEAT			  = 410 // not implemented
 };
 
-#define MAX_MODIFIER	       412
+#define MAX_MODIFIER	       415
 
 
 
