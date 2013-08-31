@@ -2050,11 +2050,11 @@ void BuildingCharSkillsTable(CCharEntity* PChar)
 
 		if (MaxMSkill != 0)
 		{
-			PChar->WorkingSkills.skill[i] = skillBonus + (PChar->RealSkills.skill[i]/10 > MaxMSkill ? MaxMSkill + 0x8000 : PChar->RealSkills.skill[i]/10);
+			PChar->WorkingSkills.skill[i] = skillBonus + (PChar->RealSkills.skill[i]/10 >= MaxMSkill ? MaxMSkill + 0x8000 : PChar->RealSkills.skill[i]/10);
 		}
 		else if (MaxSSkill != 0)
 		{
-			PChar->WorkingSkills.skill[i] =  skillBonus + (PChar->RealSkills.skill[i]/10 > MaxSSkill ? MaxSSkill + 0x8000 : PChar->RealSkills.skill[i]/10);
+			PChar->WorkingSkills.skill[i] =  skillBonus + (PChar->RealSkills.skill[i]/10 >= MaxSSkill ? MaxSSkill + 0x8000 : PChar->RealSkills.skill[i]/10);
 		}
 		else
 		{
