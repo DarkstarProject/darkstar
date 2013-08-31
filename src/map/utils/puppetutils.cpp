@@ -63,6 +63,11 @@ void LoadAutomaton(CCharEntity* PChar)
                 setAttachment(PChar, i, tempEquip.Attachments[i]);
             LoadAutomatonStats(PChar);
         }
+        else if (PChar->PAutomaton != NULL)
+        {
+            delete PChar->PAutomaton;
+            PChar->PAutomaton = NULL;
+        }
 
     }
 }
