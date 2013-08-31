@@ -3271,6 +3271,10 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
                 BuildingCharAbilityTable(PChar);
                 BuildingCharTraitsTable(PChar);
                 BuildingCharWeaponSkills(PChar);
+                if (PChar->PAutomaton != NULL && PChar->PAutomaton != PChar->PPet)
+                {
+                    puppetutils::LoadAutomatonStats(PChar);
+                }
             }
             PChar->UpdateHealth();
 

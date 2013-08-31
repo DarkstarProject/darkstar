@@ -705,7 +705,7 @@ void LoadAvatarStats(CPetEntity* PChar)
 
 void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 {
-    //automaton stats are already loaded
+    DSP_DEBUG_BREAK_IF(PMaster->PPet != NULL);
     LoadPet(PMaster, PetID, spawningFromZone);
 
     CPetEntity* PPet = (CPetEntity*)PMaster->PPet;
@@ -1316,6 +1316,8 @@ void LoadPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 	PPet->status = STATUS_NORMAL;
 	PPet->m_ModelSize += g_PPetList.at(PetID)->size;
 	PPet->m_EcoSystem  = g_PPetList.at(PetID)->EcoSystem;
+
+    PMaster->PPet = PPet;
 }
 
 }; // namespace petutils
