@@ -123,6 +123,8 @@ CCharEntity::CCharEntity()
 	PTreasurePool = NULL;
 	PWideScanTarget = NULL;
 
+    PAutomaton = NULL;
+
     PRecastContainer = new CRecastContainer(this);
 	PLatentEffectContainer = new CLatentEffectContainer(this);
 
