@@ -3842,7 +3842,7 @@ INSERT INTO `item_basic` VALUES (4499,0,'loaf_of_iron_bread','iron_bread',12,153
 INSERT INTO `item_basic` VALUES (4500,0,'greedie','greedie',12,1536,51,0,11);
 INSERT INTO `item_basic` VALUES (4501,0,'fat_greedie','fat_greedie',1,63040,0,1,0);
 INSERT INTO `item_basic` VALUES (4502,0,'marron_glace','marron_glace',1,1536,57,0,320);
-INSERT INTO `item_basic` VALUES (4503,0,'bunch_of_buburimu_grapes','buburimu_grape',12,1536,59,0,387);
+INSERT INTO `item_basic` VALUES (4503,0,'bunch_of_buburimu_grapes','buburimu_grape',12,1536,59,0,38);
 INSERT INTO `item_basic` VALUES (4504,0,'acorn','acorn',12,0,59,0,2);
 INSERT INTO `item_basic` VALUES (4505,0,'handful_of_sunflower_seeds','sunflower_seeds',12,1536,59,0,24);
 INSERT INTO `item_basic` VALUES (4506,0,'mutton_tortilla','mutton_tortilla',12,1536,56,0,405);
