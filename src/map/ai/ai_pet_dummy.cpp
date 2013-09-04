@@ -917,8 +917,9 @@ void CAIPetDummy::ActionDeath()
 			m_PPet->PMaster->setModifier(MOD_AVATAR_PERPETUATION, 0);
 		}
 
-
-		m_PPet->PMaster = NULL;
+        if (m_PPet->getPetType() != PETTYPE_AUTOMATON){
+		    m_PPet->PMaster = NULL;
+        }
 		m_ActionType = ACTION_NONE;
 	}
 }

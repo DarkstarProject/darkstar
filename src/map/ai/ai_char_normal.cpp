@@ -1471,6 +1471,10 @@ void CAICharNormal::ActionJobAbilityFinish()
         if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TABULA_RASA))
             RecastTime = 0;
     }
+    else if ( m_PJobAbility->getID() == ABILITY_DEACTIVATE && m_PChar->PAutomaton && m_PChar->PAutomaton->health.hp == m_PChar->PAutomaton->GetMaxHP())
+    {
+        m_PChar->PRecastContainer->Del(RECAST_ABILITY, 205); //Activate RecastGroup
+    }
     else if( m_PJobAbility->getID() >= ABILITY_HEALING_RUBY)
     {
         if(m_PChar->getMod(MOD_BP_DELAY) > 15){

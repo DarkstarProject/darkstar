@@ -1179,8 +1179,15 @@ void LoadPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
     // spawn me randomly around master
 	PPet->loc.p = nearPosition(PMaster->loc.p, PET_ROAM_DISTANCE, M_PI);
 
-	PPet->look = g_PPetList.at(PetID)->look;
-	PPet->name = g_PPetList.at(PetID)->name;
+    if (petType != PETTYPE_AUTOMATON)
+    {
+	    PPet->look = g_PPetList.at(PetID)->look;
+	    PPet->name = g_PPetList.at(PetID)->name;
+    }
+    else
+    {
+        PPet->look.size = MODEL_AUTOMATON;
+    }
 	PPet->m_Family = g_PPetList.at(PetID)->m_Family;
 	PPet->SetMJob(g_PPetList.at(PetID)->mJob);
 	PPet->m_Element = g_PPetList.at(PetID)->m_Element;
@@ -1282,7 +1289,6 @@ void LoadPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 	}
     else if (PPet->getPetType() == PETTYPE_AUTOMATON && PMaster->objtype == TYPE_PC)
     {
-        //TODO: set proper look
         CAutomatonEntity* PAutomaton = (CAutomatonEntity*)PPet;
         switch (PAutomaton->getFrame())
         {

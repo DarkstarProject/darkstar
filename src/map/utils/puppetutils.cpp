@@ -49,10 +49,8 @@ void LoadAutomaton(CCharEntity* PChar)
 
         if (PChar->GetMJob() == JOB_PUP || PChar->GetSJob() == JOB_PUP)
         {
-            //TODO: populate stats
             PChar->PAutomaton = new CAutomatonEntity();
             PChar->PAutomaton->name.insert(0,Sql_GetData(SqlHandle, 1));
-
             automaton_equip_t tempEquip;
 		    attachments = NULL;
 		    Sql_GetData(SqlHandle,2,&attachments,&length);
@@ -248,10 +246,24 @@ void setFrame(CCharEntity* PChar, uint8 frame)
     if (valid)
     {
         PChar->PAutomaton->setFrame((AUTOFRAMETYPE)frame);
+        uint8 head = PChar->PAutomaton->getHead();
+        PChar->PAutomaton->look.race = 0x07;
+        if (head == 3)
+            PChar->PAutomaton->look.face = 0xBD + ((frame - 32) * 5);
+        else if (head == 4)
+            PChar->PAutomaton->look.face = 0xBC + ((frame - 32) * 5);
+        else if (head == 5)
+            PChar->PAutomaton->look.face = 0xD3 + ((frame - 32));
+        else if (head == 6)
+            PChar->PAutomaton->look.face = 0xD7 + ((frame - 32));
+        else
+            PChar->PAutomaton->look.face = 0xB9 + ((frame - 32) * 5) + (head-1);
         for (int i = 0; i < 8; i++)
             PChar->PAutomaton->setElementMax(i, tempElementMax[i]);
         LoadAutomatonStats(PChar);
     }
+
+    
 }
 
 void setHead(CCharEntity* PChar, uint8 head)
@@ -293,6 +305,18 @@ void setHead(CCharEntity* PChar, uint8 head)
     if (valid)
     {
         PChar->PAutomaton->setHead((AUTOHEADTYPE)head);
+        uint8 frame = PChar->PAutomaton->getFrame();
+        PChar->PAutomaton->look.race = 0x07;
+        if (head == 3)
+            PChar->PAutomaton->look.face = 0xBC + ((frame - 32) * 5);
+        else if (head == 4)
+            PChar->PAutomaton->look.face = 0xBB + ((frame - 32) * 5);
+        else if (head == 5)
+            PChar->PAutomaton->look.face = 0xD3 + ((frame - 32));
+        else if (head == 6)
+            PChar->PAutomaton->look.face = 0xD7 + ((frame - 32));
+        else
+            PChar->PAutomaton->look.face = 0xB9 + ((frame - 32) * 5) + (head-1);
         for (int i = 0; i < 8; i++)
             PChar->PAutomaton->setElementMax(i, tempElementMax[i]);
     }

@@ -173,7 +173,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 			{
 				case MODEL_STANDARD:
 				case MODEL_UNK_5:
-				case MODEL_UNK_6:
+				case MODEL_AUTOMATON:
 				{
 					WBUFB(data,(0x0A)-4) = 0x0F;
 					WBUFL(data,(0x30)-4) = RBUFL(&PEntity->look,0);

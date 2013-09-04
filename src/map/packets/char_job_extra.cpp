@@ -84,7 +84,7 @@ CCharJobExtraPacket::CCharJobExtraPacket(CCharEntity* PChar, bool mjob)
 	
 	    memcpy(data+(0x58)-4,PChar->PAutomaton->GetName(),PChar->PAutomaton->name.size());
 
-	    WBUFW(data,(0x68)-4) = PChar->PAutomaton->health.hp;
+	    WBUFW(data,(0x68)-4) = PChar->PAutomaton->health.hp == 0 ? PChar->PAutomaton->GetMaxHP() : PChar->PAutomaton->health.hp;
 	    WBUFW(data,(0x6A)-4) = PChar->PAutomaton->GetMaxHP();
 	    WBUFW(data,(0x6C)-4) = PChar->PAutomaton->health.mp;
 	    WBUFW(data,(0x6E)-4) = PChar->PAutomaton->GetMaxMP();
