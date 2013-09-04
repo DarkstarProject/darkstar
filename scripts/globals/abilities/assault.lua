@@ -1,5 +1,5 @@
 -----------------------------------
--- Ability: Assault
+-- Ability: Deploy
 -----------------------------------
 
 require("scripts/globals/settings");

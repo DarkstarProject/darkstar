@@ -56,6 +56,8 @@ public:
 	uint8 m_Element;
 	uint32 m_PetID;
 
+    uint8 m_name_prefix;
+
     WYVERNTYPE getWyvernType();
 
 	std::vector<CMobSkill*> PetSkills;

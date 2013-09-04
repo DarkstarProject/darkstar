@@ -1,5 +1,5 @@
 -----------------------------------
--- Ability: Call Wyvern
+-- Ability: Activate
 -----------------------------------
 
 require("scripts/globals/settings");

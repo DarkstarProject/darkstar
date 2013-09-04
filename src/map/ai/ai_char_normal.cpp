@@ -1473,7 +1473,9 @@ void CAICharNormal::ActionJobAbilityFinish()
     }
     else if ( m_PJobAbility->getID() == ABILITY_DEACTIVATE && m_PChar->PAutomaton && m_PChar->PAutomaton->health.hp == m_PChar->PAutomaton->GetMaxHP())
     {
-        m_PChar->PRecastContainer->Del(RECAST_ABILITY, 205); //Activate RecastGroup
+        CAbility* PAbility = ability::GetAbility(ABILITY_ACTIVATE);
+        if (PAbility)
+            m_PChar->PRecastContainer->Del(RECAST_ABILITY, PAbility->getRecastId());
     }
     else if( m_PJobAbility->getID() >= ABILITY_HEALING_RUBY)
     {

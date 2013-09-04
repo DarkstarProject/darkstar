@@ -162,7 +162,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 					else{
 						this->size = 0x24;
 						WBUFB (data,(0x1E)-4) = ((CPetEntity*)PEntity)->GetHPP();
-						WBUFB (data,(0x27)-4) = 0x08;
+						WBUFB (data,(0x27)-4) = 0x08 | ((CPetEntity*)PEntity)->m_name_prefix;
 						memcpy(data+(0x34)-4, PEntity->GetName(),(PEntity->name.size() > 15 ? 15 : PEntity->name.size()));
 					}
 				}

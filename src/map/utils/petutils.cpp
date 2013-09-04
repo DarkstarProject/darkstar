@@ -55,6 +55,7 @@ struct Pet_t
 	uint8		minLevel;	// минимально-возможный  уровень
 	uint8		maxLevel;	// максимально-возможный уровень
 
+    uint8       name_prefix;
 	uint8		size;		// размер модели
 	uint16		m_Family;
 	uint32		time;		// время существования (будет использоваться для задания длительности статус эффекта)
@@ -151,7 +152,7 @@ void LoadPetList()
           hasSpellScript, spellList, \
           Slash, Pierce, H2H, Impact, \
 		  Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, \
-          cmbDelay \
+          cmbDelay, name_prefix \
         FROM pet_list, mob_pools, mob_family_system \
         WHERE pet_list.poolid = mob_pools.poolid AND mob_pools.familyid = mob_family_system.familyid";
 
@@ -218,6 +219,7 @@ void LoadPetList()
 			Pet->darkres = (uint16)((Sql_GetFloatData(SqlHandle, 36) - 1) * -100);
 
             Pet->cmbDelay = (uint16)Sql_GetIntData(SqlHandle, 37);
+            Pet->name_prefix = (uint8)Sql_GetUIntData(SqlHandle, 38);
 
 			g_PPetList.push_back(Pet);
 		}
@@ -1188,6 +1190,7 @@ void LoadPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
     {
         PPet->look.size = MODEL_AUTOMATON;
     }
+    PPet->m_name_prefix = g_PPetList.at(PetID)->name_prefix;
 	PPet->m_Family = g_PPetList.at(PetID)->m_Family;
 	PPet->SetMJob(g_PPetList.at(PetID)->mJob);
 	PPet->m_Element = g_PPetList.at(PetID)->m_Element;
