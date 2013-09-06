@@ -90,24 +90,6 @@ function getTestItem(player,npc,craftID)
 end;
 
 -----------------------------------
--- hasAlreadyArtisanRank Action
------------------------------------
-
-function hasAlreadyArtisanRank(player,craftID)
-
-	for i = 49,57,1 do
-		local Rank = player:getSkillRank(i) + 1;
-
-		if(i ~= craftID and Rank >= 7) then
-			return 1
-		end
-	end
-
-	return 0;
-
-end;
-
------------------------------------
 -- canGetNewRank Action
 -----------------------------------
 
@@ -127,9 +109,7 @@ function canGetNewRank(player,skillLvL,craftID)
 	   Rank == 8 and skillLvL >= 2503 or
 	   Rank == 9 and skillLvL >= 2824 or
 	   Rank == 10 and skillLvL >= 3145) then
-		if(Rank < 6 or Rank == 6 and hasAlreadyArtisanRank(player,craftID) == 0) then
 			canGet = 1;
-		end
 	end
 
 	return canGet;
