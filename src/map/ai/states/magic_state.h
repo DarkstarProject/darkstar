@@ -74,7 +74,6 @@ class CMagicState : public CState
     void SetRecast(CSpell* PSpell);
     int16 ConserveMP(int16 cost);
 
-
   private:
     CSpell* m_PSpell;
     uint32 m_startTime;

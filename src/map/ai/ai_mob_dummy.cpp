@@ -956,8 +956,8 @@ void CAIMobDummy::ActionAbilityFinish()
 	else
 	{
 		// increase magic / ranged timer so its not used right after
-		m_LastMagicTime += m_PMobSkill->getAnimationTime() + 4000;
-		m_LastSpecialTime += m_PMobSkill->getAnimationTime() + 4000;
+		m_LastMagicTime += m_PMobSkill->getAnimationTime() + 5000;
+		m_LastSpecialTime += m_PMobSkill->getAnimationTime() + 5000;
 
 		m_ActionType = ACTION_ATTACK;
 	}

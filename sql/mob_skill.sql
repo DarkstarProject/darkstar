@@ -508,8 +508,8 @@ INSERT INTO `mob_skill` VALUES (214,143,214,'Methane_Breath', 4, 12.0, 2000, 150
 
 -- Ghost
 INSERT INTO `mob_skill` VALUES (220,121,220,'Curse', 1, 15.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (218,121,218,'Fear_Touch', 0, 7.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (219,121,219,'Terror_Touch', 0, 7.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (218,121,218,'Fear_Touch', 0, 7.0, 3000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (219,121,219,'Terror_Touch', 0, 7.0, 3000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (217,121,217,'Ectosmash', 0, 7.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (221,121,221,'Dark_Sphere', 0, 7.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (216,121,216,'Grave_Reel', 1, 10.0, 2000, 1500, 4, 0, 0);

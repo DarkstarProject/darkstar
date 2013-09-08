@@ -700,7 +700,13 @@ bool CMagicState::TryHitInterrupt(CBattleEntity* PAttacker)
     	return false;
     }
 
-    return battleutils::TryInterruptSpell(PAttacker, m_PEntity);
+    if(battleutils::TryInterruptSpell(PAttacker, m_PEntity))
+    {
+        ForceInterrupt();
+        return true;
+    }
+
+    return false;
 }
 
 bool CMagicState::IsCasting()
