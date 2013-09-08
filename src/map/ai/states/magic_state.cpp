@@ -758,9 +758,23 @@ void CMagicState::SpendCost(CSpell* PSpell)
     else if (PSpell->hasMPCost() && !m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT) && !(m_flags & MAGICFLAGS_IGNORE_MP))
     {
         int16 cost = CalculateMPCost(PSpell);
+
+        // conserve mp
+        int16 rate = m_PEntity->getMod(MOD_CONSERVE_MP);
+
+        if(rand()%100 < rate)
+        {
+            cost = ConserveMP(cost);
+        }
+
         m_PEntity->addMP(-cost);
     }
 
+}
+
+int16 CMagicState::ConserveMP(int16 cost)
+{
+    return cost * ( (float)(rand()%8 + 8.0f) / 16.0f );
 }
 
 void CMagicState::SetRecast(CSpell* PSpell)

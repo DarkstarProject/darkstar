@@ -1561,14 +1561,13 @@ bool CAIMobDummy::TryDeaggro()
 	if(m_PMob->m_Behaviour & BEHAVIOUR_SCENT)
 	{
 		// if mob is in water it will instant aggro if target cannot be detected
-		if(m_PPathFind->InWater())
+		if(m_PPathFind->InWater() || m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DEODORIZE))
 		{
 			tryDetectDeaggro = true;
 		}
 
 		// certain weather / deodorize will turn on time deaggro
-		tryTimeDeaggro = m_PMob->m_disableScent ||
-			m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DEODORIZE);
+		tryTimeDeaggro = m_PMob->m_disableScent;
 	}
 
 	if(tryTimeDeaggro && m_Tick - m_DeaggroTime >= MOB_DEAGGRO_TIME && m_PMob->CanDeaggro())
