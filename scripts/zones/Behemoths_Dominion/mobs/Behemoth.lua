@@ -28,6 +28,10 @@ end;
 
 function onMobFight(mob,target)
 
+	if(mob:getBattleTime() == 1800) then
+		mob:rageMode();
+	end
+
 end;
 
 -----------------------------------

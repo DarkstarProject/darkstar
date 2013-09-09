@@ -46,7 +46,7 @@ bool CMobSkillState::CanUseSkill(CMobSkill* PMobSkill, CBattleEntity* PTarget)
   return false;
 }
 
-bool CMobSkillState::CanUseTwoHour(CBattleEntity* PTarget)
+bool CMobSkillState::CanUseTwoHour(CBattleEntity* PTarget, JOBTYPE job)
 {
   return false;
 }
@@ -56,7 +56,7 @@ STATESTATUS CMobSkillState::UseSkill(CMobSkill* PMobSkill, CBattleEntity* PTarge
   return STATESTATUS_ERROR;
 }
 
-STATESTATUS CMobSkillState::UseTwoHour(CBattleEntity* PTarget)
+STATESTATUS CMobSkillState::UseTwoHour(CBattleEntity* PTarget, JOBTYPE job)
 {
   return STATESTATUS_ERROR;
 }

@@ -19,5 +19,5 @@ end;
 
 function onMobDeath(mob, killer)
 	killer:showText(mob,SKY_GOD_OFFSET + 12);
-	GetNPCByID(17310049):hideNPC(900);
+	GetNPCByID(17310049):hideNPC(120);
 end;

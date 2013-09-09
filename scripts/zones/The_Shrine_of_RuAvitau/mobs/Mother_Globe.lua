@@ -82,6 +82,8 @@ end
 -- onMobDeath
 -----------------------------------
 function onMobDeath( mob, killer )
+	mob:setRespawnTime(math.random((10800),(21600))); -- respawn 3-6 hrs
+
    for i = 17506397, 17506402 do
       if (GetMobAction(i) ~= 0) then
          DespawnMob(i);

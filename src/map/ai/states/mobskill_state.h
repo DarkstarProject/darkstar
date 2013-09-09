@@ -25,6 +25,7 @@
 #define _CMOBSKILLSTATE_STATE_H
 
 #include "state.h"
+#include "../../entities/battleentity.h"
 
 class CMobSkill;
 class CMobEntity;
@@ -43,11 +44,13 @@ class CMobSkillState : public CState
     CMobSkill* PickSkill(PICKSKILL pickFlags);
 
     bool CanUseSkill(CMobSkill* PMobSkill, CBattleEntity* PTarget);
-    bool CanUseTwoHour(CBattleEntity* PTarget);
+
+    // defaults to main job 2 hour
+    bool CanUseTwoHour(CBattleEntity* PTarget, JOBTYPE job = JOB_NON);
     bool CanUseSpecial(CBattleEntity* PTarget);
 
     STATESTATUS UseSkill(CMobSkill* PMobSkill, CBattleEntity* PTarget);
-    STATESTATUS UseTwoHour(CBattleEntity* PTarget);
+    STATESTATUS UseTwoHour(CBattleEntity* PTarget, JOBTYPE job = JOB_NON);
     STATESTATUS UseSpecial(CBattleEntity* PTarget);
 
     void InterruptSkill();

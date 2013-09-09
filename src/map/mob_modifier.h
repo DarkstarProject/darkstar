@@ -67,7 +67,7 @@ enum MOBMODIFIER
   MOBMOD_STANDBACK_TIME = 35, // amount of time the mob stands back
   MOBMOD_ROAM_COOL = 36, // cool down for roaming
   MOBMOD_ALWAYS_AGGRO = 37, // aggro regardless of level. Spheroids
-  MOBMOD_REFLECT = 38 // colibri
+  MOBMOD_REFLECT = 38 // colibri -- not impl
 };
 
 #define MAX_MOBMODIFIER         39

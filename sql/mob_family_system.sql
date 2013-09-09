@@ -430,6 +430,8 @@ INSERT INTO `mob_family_system` VALUES (363,'Automaton_Harlequin',18,'Unclassifi
 INSERT INTO `mob_family_system` VALUES (364,'Automaton_Valoredge',18,'Unclassified',0,40,155,0,6,5,6,4,4,5,5,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0);
 INSERT INTO `mob_family_system` VALUES (365,'Automaton_Sharpshot',18,'Unclassified',0,40,115,0,4,5,4,6,5,5,6,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0);
 INSERT INTO `mob_family_system` VALUES (366,'Automaton_Stormwaker',18,'Unclassified',0,40,90,110,5,5,5,4,5,6,5,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0);
+INSERT INTO `mob_family_system` VALUES (367,'Doll',3,'Arcana',1,80,108,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1.25,1,1,1,2);
+INSERT INTO `mob_family_system` VALUES (368,'Doll',3,'Arcana',1,45,108,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1.25,1,1,1,2);
 /*!40000 ALTER TABLE `mob_family_system` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
