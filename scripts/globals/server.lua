@@ -172,55 +172,55 @@ end;
 function SetTreasureSpawns()
    local chests  =
    {
-       16814554,
-       16822524,
-       16892176,
-       17355005,
-       17359045,
-       17363363,
-       17371601,
-       17379835,
-       17388020,
-       17396203,
-       17420669,
-       17424556,
-       17436990,
-       17441081,
-       17498609,
-       17555947,
-       17559917,
-       17563907,
-       17568185,
-       17572283,
-       17576350,
-       17580396,
-       17584468,
-       17588766,
-       17596802,
-       17613219,
-       17649890
+       16814554, -- PsoXja
+       16822524, -- Oldton Movalpolos
+       16892176, -- Sacrarium
+       17355005, -- Fort Ghelsba
+       17359045, -- Yughott Grotto
+       17363363, -- Palborough Mines
+       17371601, -- Giddeus
+       17379835, -- Beadeaux
+       17388020, -- Davoi
+       17396203, -- Castle Oztroja
+       17420669, -- Middle Dulkfutts Tower
+       17424556, -- Upper Dulkfutts Tower
+       17436990, -- Castle Zvahl Keep
+       17441081, -- Castle Zvahl Baileys
+       17498609, -- Sea Serpent Grotto
+       17555947, -- King Ranperres Tomb
+       17559917, -- Dangruf Wadi
+       17563907, -- Inner Horutoto Ruins
+       17568185, -- Ordelles Caves
+       17572283, -- Outer Horutoto Ruins
+       17576350, -- The Eldieme Necropolis
+       17580396, -- Gusgen Mines
+       17584468, -- Crawlers Nest
+       17588766, -- Maze of Shakhrami
+       17596802, -- Garliage Citadel
+       17613219, -- FeiYin
+       17649890  -- Labyrinth of Onzozo
    }
 
    local coffers  =
    {
-       16826620,
-       17310019,
-       17379836,
-       17391842,
-       17396204,
-       17404383,
-       17428979,
-       17433071,
-       17436991,
-       17469828,
-       17490294,
-       17498610,
-       17502692,
-       17576351,
-       17584469,
-       17596803,
-       17617214,
-       17629729
+       16826620, -- Newton Movalpolos
+       17310019, -- RuAun Gardens
+       17379836, -- Beadeaux
+       17391842, -- Monastic Cavern
+       17396204, -- Castle Oztroja
+       17404383, -- The Boyahda Tree
+       17428979, -- Temple of Uggalepih
+       17433071, -- Den of Rancor
+       17436991, -- Castle Zvahl Keep
+       17469828, -- Toraimarai Canal
+       17490294, -- Kuftal Tunnel
+       17498610, -- Sea Serpent Grotto
+       17502692, -- VeLugannon Palace
+       17576351, -- The Eldieme Necropolis
+       17584469, -- Crawlers Nest
+       17596803, -- Garliage Citadel
+       17617214, -- Ifrits Cauldron
+       17629729  -- Quicksand Caves
    }
 
    i = 1;
