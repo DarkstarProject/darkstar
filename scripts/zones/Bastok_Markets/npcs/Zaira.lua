@@ -31,8 +31,8 @@ function onTrigger(player,npc)
         0x12DC,    82,2,     --Scroll of Poison
         0x12FD,  2250,2,     --Scroll of Sleep
 
-        0x11FF,    61,3,     --Scroll of Stone
-        0x12A9,   140,3      --Scroll of Water
+        0x129F,    61,3,     --Scroll of Stone
+        0x12A9,   140,3,      --Scroll of Water
         0x129A,   324,3,     --Scroll of Aero
         0x1290,   837,3,     --Scroll of Fire
         0x1295,  1584,3,     --Scroll of Blizzard

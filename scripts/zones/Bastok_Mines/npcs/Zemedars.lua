@@ -13,7 +13,7 @@ require("scripts/zones/Bastok_Mines/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -39,12 +39,12 @@ function onTrigger(player,npc)
         0x3208, 11592,3,     --Chain Gose
         0x32A0,   117,3,     --Bronze Leggins
         0x3288,  7120,3,     --Greaves
-        0x3002,   556,3      --Maple Shield
+        0x3002,   556,3,      --Maple Shield
         0x3001,   110,3      --Lauan Shield
     }
     showNationShop(player, BASTOK, stock);
 
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

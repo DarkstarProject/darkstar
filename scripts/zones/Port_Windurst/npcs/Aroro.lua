@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC: Aroro 
+-- NPC: Aroro
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
@@ -14,7 +14,7 @@ require("scripts/zones/Port_Windurst/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -28,9 +28,9 @@ function onTrigger(player,npc)
 
         0x12DC,    84,2,     --Poison
         0x12E6,   368,2,     --Bio
-        0x12FD,  2300,2,     --Sleep 
-		 
-        0x129D,    62,3,     --Stone
+        0x12FD,  2300,2,     --Sleep
+
+        0x129F,    62,3,     --Stone
         0x12A9,   143,3,     --Water
         0x129A,   331,3,     --Aero
         0x1290,   855,3,     --Fire

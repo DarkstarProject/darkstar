@@ -1,12 +1,12 @@
 -----------------------------------
 -- Area: Temenos
--- Name: 
+-- Name:
 -----------------------------------
 
 
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function OnBcnmRegister(player,instance)		
+function OnBcnmRegister(player,instance)
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
@@ -19,9 +19,10 @@ end;
 
 function OnBcnmLeave(player,instance,leavecode)
 --print("leave code "..leavecode);
-	
+
 	if(leavecode == 2 or leavecode == 3 or leavecode == 4) then
 	 --	player:setPos(0,0,0,0,0x00);
 	end
 	if(leavecode == 4) then
+    end
 end;

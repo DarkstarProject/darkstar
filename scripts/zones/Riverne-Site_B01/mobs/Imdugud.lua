@@ -13,14 +13,14 @@
 function OnMobSpawn(mob)
 end;
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
+function onMobDeath(mob,killer)
 
     -- Set Imduguds ToD
-    SetServerVariable("[POP]Imdugud", os.time(t) + 75600); -- 21 hour 
+    SetServerVariable("[POP]Imdugud", os.time(t) + 75600); -- 21 hour
     DeterMob(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn
@@ -28,4 +28,4 @@ function onMobDeath(mob,killer)
     SetServerVariable("[PH]Imdugud", 0);
     DeterMob(PH, false);
     GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
-  
+end
