@@ -172,3 +172,4 @@ INSERT INTO `mob_pool_mods` VALUES(4672, 3, 100, 1);
 INSERT INTO `mob_pool_mods` VALUES(4673, 3, 100, 1);
 INSERT INTO `mob_pool_mods` VALUES(154, 163, -70, 0);
 INSERT INTO `mob_pool_mods` VALUES(3208, 370, 20, 0);
+INSERT INTO `mob_pool_mods` VALUES(876, 16, 1, 1);
