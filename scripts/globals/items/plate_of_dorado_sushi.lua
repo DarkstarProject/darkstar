@@ -38,6 +38,7 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
+	target:addMod(MOD_ENMITY, 3);
 	target:addMod(MOD_DEX, 5);
 	target:addMod(MOD_FOOD_ACCP, 15);
 	target:addMod(MOD_FOOD_ACC_CAP, 75);
@@ -51,6 +52,7 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
+	target:delMod(MOD_ENMITY, 3);
 	target:delMod(MOD_DEX, 5);
 	target:delMod(MOD_FOOD_ACCP, 15);
 	target:delMod(MOD_FOOD_ACC_CAP, 75);
