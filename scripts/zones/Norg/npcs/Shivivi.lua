@@ -58,7 +58,7 @@ path = {
 
 function onSpawn(npc)
 	npc:setPos(pathfind.first(path));
-	onPath(npc);
+	-- onPath(npc);
 end;
 
 function onPath(npc)
@@ -69,7 +69,7 @@ end;
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -78,7 +78,7 @@ end;
 function onTrigger(player,npc)
 	DampScroll = player:getQuestStatus(OUTLANDS,SECRET_OF_THE_DAMP_SCROLL);
 	mLvl = player:getMainLvl();
-	
+
 	if(DampScroll == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 3 and mLvl >= 10 and player:hasItem(1210) == true) then
 		player:startEvent(0x001f,1210); -- Start the quest
 	elseif(DampScroll == QUEST_ACCEPTED) then
@@ -88,7 +88,7 @@ function onTrigger(player,npc)
 	end
 
 	npc:wait(0);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

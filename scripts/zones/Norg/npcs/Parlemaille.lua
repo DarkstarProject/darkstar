@@ -34,7 +34,7 @@ path = {
 
 function onSpawn(npc)
 	npc:setPos(pathfind.first(path));
-	onPath(npc);
+	-- onPath(npc);
 end;
 
 function onPath(npc)
@@ -46,7 +46,7 @@ end;
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -55,7 +55,7 @@ end;
 function onTrigger(player,npc)
 player:startEvent(0x0058);
 npc:wait(-1);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
