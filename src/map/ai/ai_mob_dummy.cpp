@@ -269,11 +269,12 @@ void CAIMobDummy::ActionRoaming()
 
 	}
 
-	// this is called way too often and consumes too many resources
-	// if ((m_Tick - m_SpawnTime) % 3000 <= 400)
-	// {
-	// 	luautils::OnMobRoam(m_PMob);
-	// }
+	// call every 3 seconds
+	// NOTE: a lot of NMs use this like Taisai
+	if ((m_Tick - m_SpawnTime) % 3000 <= 400)
+	{
+		luautils::OnMobRoam(m_PMob);
+	}
 }
 
 /************************************************************************

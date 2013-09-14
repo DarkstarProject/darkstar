@@ -208,6 +208,11 @@ namespace instanceutils{
 			}
 		}
 
+		// savage
+		if(instance->getID() == 961 && instance->isEnemyBelowHPP(30)){
+			return true;
+		}
+
 		//generic cases, kill all mobs
 		if(instance->allEnemiesDefeated()){
 			return true;

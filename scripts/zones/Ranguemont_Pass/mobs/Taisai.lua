@@ -1,10 +1,10 @@
------------------------------------	
+-----------------------------------
 -- Area: Ranguemont Pass
 -- MOB:  Taisai
------------------------------------	
-	
+-----------------------------------
+
 function OnMobRoam(mob)
-	
+
 	local Taisaijin = 17457216;
 	local Taisaijin_PH = 0;
 	local Taisaijin_PH_Table =
@@ -14,7 +14,7 @@ function OnMobRoam(mob)
 		17457215
 	};
 	local Taisaijin_ToD = GetMobByID(Taisaijin):getExtraVar(1);
-	
+
 	if (Taisaijin_ToD <= os.time()) then
 		Taisaijin_PH = math.random((0), (table.getn(Taisaijin_PH_Table)));
 		if (Taisaijin_PH_Table[Taisaijin_PH] ~= nil) then
@@ -27,15 +27,15 @@ function OnMobRoam(mob)
 			end
 		end
 	end
-	
+
 end;
 
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob, killer)	
-	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, killer)
+
 	local Taisai = mob:getID();
 	local Taisaijin = 17457216;
 	local Taisaijin_PH_Table =
@@ -44,7 +44,7 @@ function onMobDeath(mob, killer)
 		17457214,
 		17457215
 	};
-		
+
 	for i = 1, table.getn(Taisaijin_PH_Table), 1 do
 		if (Taisaijin_PH_Table[i] ~= nil) then
 			if (Taisai == Taisaijin_PH_Table[i]) then
@@ -52,5 +52,5 @@ function onMobDeath(mob, killer)
 			end
 		end
 	end
-	
-end;	
+
+end;
