@@ -23,7 +23,7 @@ function onEffectTick(target,effect)
 	local boostCHR_effect_size = effect:getPower();
 	if(boostCHR_effect_size > 0) then
 		effect:setPower(boostCHR_effect_size - 1)
-		target:delMod(MOD_AGI,1); 
+		target:delMod(MOD_CHR,1); 
 	end
 end;
 
