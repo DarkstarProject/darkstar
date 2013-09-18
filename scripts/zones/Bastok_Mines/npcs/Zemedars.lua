@@ -22,7 +22,7 @@ end;
 function onTrigger(player,npc)
     player:showText(npc,ZEMEDARS_SHOP_DIALOG);
 
-    local stock = {
+    stock = {
         0x3224, 23316,1,     --Iron Subligar
         0x3219,  5003,1,     --Lizard Trousers
         0x32A2, 14484,1,     --Leggins
