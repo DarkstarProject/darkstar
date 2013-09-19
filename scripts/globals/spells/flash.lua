@@ -18,7 +18,7 @@ function onSpellCast(caster,target,spell)
     -- Pull base stats.
     local dINT = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
 
-    local resist = applyResistance(caster,spell,target,dINT,DIVINE_MAGIC_SKILL);
+    local resist = applyResistance(caster,spell,target,dINT,DIVINE_MAGIC_SKILL, 150);
     local duration = 12 * resist;
 
     if(resist > 0.0625) then
