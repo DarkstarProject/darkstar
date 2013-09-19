@@ -2,12 +2,13 @@
 --  Area: Northern San d'Oria
 --  NPC: Lucretia
 --  Guild Merchant NPC: Blacksmithing Guild 
---  @zone: 231
---  @pos: -193.729 3.999 159.412
---
+--  @pos -193.729 3.999 159.412 231
+-----------------------------------
+package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+require("scripts/globals/settings");
+require("scripts/globals/shop");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
@@ -22,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(526,8,23,2)) then
+	if(player:sendGuild(5312,8,23,2)) then
 		player:showText(npc,LUCRETIA_SHOP_DIALOG);
 	end
 end;

@@ -2,7 +2,7 @@
 -- Area: Northern San d'Oria
 -- NPC: Cauzeriste
 -- Guild Merchant NPC: Woodworking Guild 
--- @zone 231
+-- @pos -175.946 3.999 280.301 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -17,7 +17,6 @@ require("scripts/zones/Northern_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
 end;
 
 -----------------------------------
@@ -25,7 +24,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(5131,6,21,0)) then
+	if(player:sendGuild(513,6,21,0)) then
 		player:showText(npc,CAUZERISTE_SHOP_DIALOG);
 	end
 end; 

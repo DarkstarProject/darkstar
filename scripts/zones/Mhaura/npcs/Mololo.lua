@@ -2,11 +2,13 @@
 -- Area: Mhaura
 -- NPC:  Mololo
 -- Guild Merchant NPC: Blacksmithing Guild 
--- @zone 249
+-- @pos -64.278 -16.624 34.120 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/settings");
+require("scripts/globals/shop");
 require("scripts/zones/Mhaura/TextIDs");
 
 -----------------------------------
@@ -23,7 +25,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(527,8,23,2)) then
+	if(player:sendGuild(532,8,23,2)) then
 		player:showText(npc,SMITHING_GUILD);
 	end
 end;

@@ -2,10 +2,14 @@
 -- Area: Selbina
 -- NPC:  Mendoline
 -- Guild Merchant NPC: Fishing Guild 
--- @zone 248
+-- @pos -13.603 -7.287 10.916 248
+-----------------------------------
+package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/shop");
+require("scripts/zones/Selbina/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -19,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(517,3,18,5)) then
+	if(player:sendGuild(5182,3,18,5)) then
 		player:showText(npc,TextID_Selbina.FISHING_SHOP_DIALOG);
 	end
 end; 

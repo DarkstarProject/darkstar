@@ -6,7 +6,7 @@ ITEM_CANNOT_BE_OBTAINED = 7996; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6379; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
  FISHING_MESSAGE_OFFSET = 6994; -- You can't fish here
- 
+
  --Other Texts
    ITEM_DELIVERY_DIALOG = 7741;
 
@@ -15,3 +15,8 @@ ITEM_CANNOT_BE_OBTAINED = 7996; -- You cannot obtain the item <item> come back a
       CHAYAYA_SHOP_DIALOG = 7518; -- Chayaya's Projectiles! Get your darts and more at Chayaya's Projectiles! Just don't touch the stuff in the high drawers, okay? -verify-
 KAHAHHOBICHAI_SHOP_DIALOG = 7500; -- Step rrright up to Kahah Hobichai's Blades!\nWe've got everything your battle-thirrrsty heart desires! -verify-
         ZAFIF_SHOP_DIALOG = 7512; -- Welcome... I'm Zafif, and this is my magic shop...\nI hope you can find something of use here.
+
+DEHBI_MOSHAL_SHOP_DIALOG = 7746; -- Welcome to the Carpenters' Guild!
+       NDEGO_SHOP_DIALOG = 7748; -- The Blacksmiths' Guild thanks you for your business!
+     BORNAHN_SHOP_DIALOG = 7750; -- Welcome! We have all your goldsmithing needs right here!
+TATEN_BILTEN_SHOP_DIALOG = 7752; -- Weave something beautiful with the materials you buy here, okay?

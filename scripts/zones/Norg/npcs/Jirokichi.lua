@@ -1,15 +1,16 @@
 -----------------------------------
--- Area: Windurst Woods
--- NPC: Meriri
--- Guild Merchant NPC: Clothcrafting Guild 
--- @pos: -76.471 -3.55 -128.341 241
+--  Area: Norg
+--   NPC: Jirokichi
+--  Type: Tenshodo Merchant
+--  @pos -1.463 0.000 18.846 252
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
+package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
-require("scripts/zones/Windurst_Woods/TextIDs");
+require("scripts/globals/keyitems");
+require("scripts/zones/Norg/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -23,8 +24,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(515,6,21,0)) then
-		player:showText(npc,MERIRI_DIALOG);
+	if (player:hasKeyItem(TENSHODO_MEMBERS_CARD)) then 
+		if(player:sendGuild(60423,9,23,7)) then
+			player:showText(npc, JIROKICHI_SHOP_DIALOG);
+		end
+	else
+		player:startEvent(0x0096);
 	end
 end;
 

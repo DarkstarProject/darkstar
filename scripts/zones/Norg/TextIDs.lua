@@ -27,9 +27,9 @@ YOU_CAN_NOW_BECOME_A_SAMURAI = 10124; -- You accept the Mumeito from Gilgamesh. 
 			   FOUIVA_DIALOG = 10487; -- Oi 'av naw business wi' de likes av you.
 
 -- Shop Texts
-   JIROKICHI_SHOP_DIALOG = 10271; -- Heh-heh-heh. Feast your eyes on these beauties. You won't find stuff like this anywhere!
-     VULIAIE_SHOP_DIALOG = 10272; -- Please, stay and have a look. You may find something you can only buy here.
-      ACHIKA_SHOP_DIALOG = 10273; -- Can I interest you in some armor forged in the surrounding regions?
-       CHIYO_SHOP_DIALOG = 10274; -- Magic scrolls! Magic scrolls! We've got parchment hot off the sheep!
+   JIROKICHI_SHOP_DIALOG = 10273; -- Heh-heh-heh. Feast your eyes on these beauties. You won't find stuff like this anywhere!
+     VULIAIE_SHOP_DIALOG = 10274; -- Please, stay and have a look. You may find something you can only buy here.
+      ACHIKA_SHOP_DIALOG = 10275; -- Can I interest you in some armor forged in the surrounding regions?
+       CHIYO_SHOP_DIALOG = 10276; -- Magic scrolls! Magic scrolls! We've got parchment hot off the sheep!
 	   
 SOLBYMAHOLBY_SHOP_DIALOG = 10501; -- Hiya! My name's Solby-Maholby! I'm new here, so they put me on tooty-fruity shop duty. I'll give you a super-duper deal on unwanted items!

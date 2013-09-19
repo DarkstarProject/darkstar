@@ -71,7 +71,6 @@ class CMobSkillState : public CState
     uint32 m_useTime;
 
     bool ValidUse();
-    bool CheckInterrupt();
 };
 
 #endif

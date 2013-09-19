@@ -1,16 +1,15 @@
 -----------------------------------
 --  Area: Lower Jeuno
---   NPC: Amalasanda
+--  NPC: Amalasanda
 --  Type: Tenshodo Merchant
--- @zone: 245
---  @pos: 28.149 2.899 -44.780
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 28.149 2.899 -44.780 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/settings");
 require("scripts/globals/shop");
+require("scripts/globals/keyitems");
 require("scripts/zones/Lower_Jeuno/TextIDs");
 
 -----------------------------------
@@ -26,9 +25,11 @@ end;
 
 function onTrigger(player,npc)
 	if (player:hasKeyItem(TENSHODO_MEMBERS_CARD)) then 
-		if(player:sendGuild(60420,1,23,2)) then
+		if(player:sendGuild(60416,1,23,1)) then
 			player:showText(npc, AMALASANDA_SHOP_DIALOG);
 		end
+	else
+		player:startEvent(0x0096);
 	end
 end;
 

@@ -2,8 +2,7 @@
 -- Area: Southern San d'Oria
 -- NPC: Cletae
 -- Guild Merchant NPC: Leathercrafting Guild 
--- @zone 230
--- @pos -189 -8 14
+-- @pos -189.142 -8.800 14.449 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -34,7 +33,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:sendGuild(524,3,18,4)) then
+	if (player:sendGuild(5292,3,18,4)) then
 		player:showText(npc,CLETAE_DIALOG);
 	end
 end; 

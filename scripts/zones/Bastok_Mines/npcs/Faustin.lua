@@ -33,7 +33,7 @@ function onTrigger(player,npc)
             0x027F,   110,   --Chestnut
             0x1125,    29,   --San d'Orian Carrot
             0x0262,    55,    --San d'Orian Flour
-            0x114F,    69,   --San d'Orian Grape
+            0x114F,    69   --San d'Orian Grape
         };
         showShop(player,BASTOK,stock);
 

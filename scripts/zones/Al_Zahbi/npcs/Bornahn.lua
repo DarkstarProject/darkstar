@@ -1,15 +1,15 @@
 -----------------------------------
--- Area: Windurst Woods
--- NPC: Meriri
--- Guild Merchant NPC: Clothcrafting Guild 
--- @pos: -76.471 -3.55 -128.341 241
+--  Area: Al Zahbi
+--  NPC: Bornahn
+--  Guild Merchant NPC: Goldsmithing Guild 
+--  @pos 46.011 0.000 -42.713 48
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
+package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
-require("scripts/zones/Windurst_Woods/TextIDs");
+require("scripts/zones/Al_Zahbi/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -23,8 +23,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(515,6,21,0)) then
-		player:showText(npc,MERIRI_DIALOG);
+	if(player:sendGuild(60429,8,23,4)) then
+		player:showText(npc,BORNAHN_SHOP_DIALOG);
 	end
 end;
 

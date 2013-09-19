@@ -2,11 +2,13 @@
 --  Area: Bastok Markets
 --  NPC: Visala
 --  Guild Merchant NPC: Goldsmithing Guild 
---  @zone: 235
---  @pos: -202.000 -7.814 -56.823
+--  @pos -202.000 -7.814 -56.823 235
+-----------------------------------
+package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
+require("scripts/globals/settings");
+require("scripts/globals/shop");
 require("scripts/zones/Bastok_Markets/TextIDs");
 
 -----------------------------------
@@ -21,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(522,8,23,4)) then
+	if(player:sendGuild(5272,8,23,4)) then
 		player:showText(npc, VISALA_SHOP_DIALOG);
 	end	
 end;

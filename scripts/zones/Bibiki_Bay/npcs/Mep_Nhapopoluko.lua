@@ -2,11 +2,13 @@
 -- Area: Bibiki Bay
 -- NPC: Mep Nhapopoluko
 -- Guild Merchant NPC: Fishing Guild 
--- @zone: 4
--- @pos: 464.350 -6 752.731
+-- @pos 464.350 -6 752.731 4
+-----------------------------------
+package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;
+require("scripts/globals/settings");
+require("scripts/globals/shop");
 require("scripts/zones/Bibiki_Bay/TextIDs");
 
 -----------------------------------
@@ -21,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(518,1,23,5)) then
+	if(player:sendGuild(519,1,18,5)) then
 		player:showText(npc, MEP_NHAPOPOLUKO_DIALOG);
 	end
 end;

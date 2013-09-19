@@ -1,15 +1,15 @@
 -----------------------------------
--- Area: Windurst Woods
--- NPC: Meriri
--- Guild Merchant NPC: Clothcrafting Guild 
--- @pos: -76.471 -3.55 -128.341 241
+--  Area: Aht Urhgan Whitegate
+--  NPC: Wahnid
+--  Guild Merchant NPC: Fishing Guild
+--  @pos -31.720 -6.000 -94.919 50
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
+package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
-require("scripts/zones/Windurst_Woods/TextIDs");
+require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -23,8 +23,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(515,6,21,0)) then
-		player:showText(npc,MERIRI_DIALOG);
+	if(player:sendGuild(60426,1,18,6)) then
+		player:showText(npc,WAHNID_SHOP_DIALOG);
 	end
 end;
 

@@ -2,10 +2,13 @@
 -- Area: Ship bound for Mhaura
 -- NPC: Lokhong
 -- Guild Merchant NPC: Fishing Guild 
+-- @pos 1.841 -2.101 -9.000 221
+-----------------------------------
+package.loaded["scripts/zones/Ship_bound_for_Mhaura/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Ship_bound_for_Mhaura/TextIDs"] = nil;
-
+require("scripts/globals/settings");
+require("scripts/globals/shop");
 require("scripts/zones/Ship_bound_for_Mhaura/TextIDs");
 
 -----------------------------------
@@ -20,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(519,1,23,5)) then
+	if(player:sendGuild(521,1,23,5)) then
 		player:showText(npc,LOKHONG_SHOP_DIALOG);
 	end
 end; 

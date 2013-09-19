@@ -1,16 +1,15 @@
 -----------------------------------
 --  Area: Norg
---   NPC: Vuliaie
+--  NPC: Vuliaie
 --  Type: Tenshodo Merchant
--- @zone: 252
---  @pos: -24 0 -19
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -24.259 0.891 -19.556 252
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/settings");
 require("scripts/globals/shop");
+require("scripts/globals/keyitems");
 require("scripts/zones/Norg/TextIDs");
 
 -----------------------------------
@@ -26,10 +25,11 @@ end;
 
 function onTrigger(player,npc)
 	if (player:hasKeyItem(TENSHODO_MEMBERS_CARD)) then 
-		if(player:sendGuild(60421,1,23,7)) then
+		if(player:sendGuild(60424,9,23,7)) then
 			player:showText(npc, VULIAIE_SHOP_DIALOG);
 		end
 	else
+		player:startEvent(0x0096);
 	end
 end;
 

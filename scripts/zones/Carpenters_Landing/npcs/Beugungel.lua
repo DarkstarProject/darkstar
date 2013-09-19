@@ -1,15 +1,15 @@
 -----------------------------------
--- Area: Windurst Woods
--- NPC: Meriri
--- Guild Merchant NPC: Clothcrafting Guild 
--- @pos: -76.471 -3.55 -128.341 241
+--  Area: Carpenters' Landing
+--  NPC: Beugungel
+--  Guild Merchant NPC: Woodworking Guild 
+--  @pos -333.729, -5.512, 475.647 2
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
+package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
-require("scripts/zones/Windurst_Woods/TextIDs");
+require("scripts/zones/Carpenters_Landing/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -23,8 +23,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(515,6,21,0)) then
-		player:showText(npc,MERIRI_DIALOG);
+	if(player:sendGuild(534,5,22,0)) then
+		player:showText(npc,BEUGUNGEL_SHOP_DIALOG);
 	end
 end;
 

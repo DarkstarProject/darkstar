@@ -82,7 +82,7 @@ STATESTATUS CMobSkillState::Update(uint32 tick)
 
   if(tick - m_startTime >= m_useTime)
   {
-    if(CheckInterrupt())
+    if(!ValidUse())
     {
       return STATESTATUS_INTERRUPT;
     }
@@ -110,11 +110,6 @@ CMobSkill* CMobSkillState::GetSkill()
 bool CMobSkillState::IsUsing()
 {
   return m_PMobSkill != NULL;
-}
-
-bool CMobSkillState::CheckInterrupt()
-{
-  return !ValidUse();
 }
 
 bool CMobSkillState::ValidUse()

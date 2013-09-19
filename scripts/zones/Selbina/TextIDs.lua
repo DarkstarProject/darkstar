@@ -18,8 +18,8 @@ NOMAD_MOOGLE_DIALOG = 6554, -- I'm a traveling moogle, kupo. I help adventurers 
 -- Shop Texts
   HERMINIA_SHOP_DIALOG = 6930, -- Hello there. What can I do for you?
  TORAPIONT_SHOP_DIALOG = 6931, -- Arm yourself before you step outside.
-CLOTHCRAFT_SHOP_DIALOG = 6933, -- Welcome to the Weavers' Guild salesroom.
-   FISHING_SHOP_DIALOG = 6934, -- Welcome to the Fishermen's Guild salesroom.
+CLOTHCRAFT_SHOP_DIALOG = 6935, -- Welcome to the Weavers' Guild salesroom.
+   FISHING_SHOP_DIALOG = 6936, -- Welcome to the Fishermen's Guild salesroom.
    QUELPIA_SHOP_DIALOG = 6935, -- In need of otherworldly protection?
 CHUTARMIRE_SHOP_DIALOG = 6936, -- I have items for those who delve in the black arts!
   DOHDJUMA_SHOP_DIALOG = 6932, -- I'm Dohdjuma, and I sell all kinds of things.

@@ -1,13 +1,14 @@
 -----------------------------------
 -- Area: Northern San d'Oria
 -- NPC: Gaudylox
--- Standard Merchant NPC
+-- Standard merchant, though he acts like a guild merchant
+-- @pos -147.593 11.999 222.550 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
---require("scripts/globals/shop");
+require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
@@ -33,19 +34,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(60418,11,22,1)) then
+	if(player:sendGuild(60418,11,22,0)) then
 	player:showText(npc,GAUDYLOX_SHOP_DIALOG);
-
---	stock = {0x01e1,21000,		-- Black Chip
---			 0x01db,21000,		-- Blue Chip
---			 0x01de,21000,		-- Clear Chip
---			 0x01dd,21000,		-- Green Chip
---			 0x01de,21000,		-- Purple Chip
---			 0x01da,21000,		-- Red Chip
---			 0x01e0,21000,		-- White Chip
---			 0x01dc,21000}		-- Yellow Chip
---	 
---	showShop(player, STATIC, stock);
 	end
 end; 
 

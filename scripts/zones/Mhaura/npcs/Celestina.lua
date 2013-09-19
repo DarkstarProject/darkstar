@@ -4,12 +4,13 @@
 -- Finish Quest: The Sand Charm
 -- Involved in Quest: Riding on the Clouds
 -- Guild Merchant NPC: Goldsmithing Guild 
--- @zone 249
--- @pos -36 -16 72
+-- @pos -37.624 -16.050 75.681 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/settings");
+require("scripts/globals/shop");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/zones/Mhaura/TextIDs");
@@ -45,7 +46,7 @@ function onTrigger(player,npc)
 	
 	if(player:getVar("theSandCharmVar") == 3) then 
 		player:startEvent(0x007e,13095); -- During quest "The Sand Charm" - 3rd dialog
-	elseif(player:sendGuild(523,8,23,4)) then
+	elseif(player:sendGuild(528,8,23,4)) then
 		player:showText(npc,GOLDSMITHING_GUILD);
 	end
 	

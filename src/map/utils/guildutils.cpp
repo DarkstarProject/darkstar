@@ -75,7 +75,7 @@ void Initialize()
     {
 		CItemContainer* PGuild = *iter;
 
-		fmtQuery = "SELECT itemid, min_price, max_price, quantity, daily_increase \
+		fmtQuery = "SELECT itemid, min_price, max_price, max_quantity, daily_increase, initial_quantity \
 				    FROM guild_shops \
 					WHERE guildid = %u \
                     LIMIT %u";
@@ -93,15 +93,13 @@ void Initialize()
 				PItem->setMinPrice(Sql_GetIntData(SqlHandle,1));
 				PItem->setMaxPrice(Sql_GetIntData(SqlHandle,2));
 				PItem->setStackSize(Sql_GetIntData(SqlHandle,3));
-				PItem->setDailyIncreace(Sql_GetIntData(SqlHandle,4));
+                PItem->setDailyIncrease(Sql_GetIntData(SqlHandle,4));
+				PItem->setInitialQuantity(Sql_GetIntData(SqlHandle,5));
 
                 //TODO: set price based on previous day stock
-                PItem->setBasePrice(Sql_GetIntData(SqlHandle,1));
+                PItem->setBasePrice(PItem->getMinPrice());
 
-				if (PItem->IsDailyIncrease())
-				{
-					PItem->setQuantity((PItem->getStackSize() * 75) / 100);
-				}
+				PItem->setQuantity(PItem->getInitialQuantity());
 				PGuild->InsertItem(PItem);
 			}
 		}
@@ -127,13 +125,7 @@ void UpdateGuildsStock()
 
             if (PItem->IsDailyIncrease())
             {
-                PItem->setQuantity(PItem->getQuantity() + (PItem->getStackSize() * 25) / 100);
-            }
-
-            uint32 limit = (PItem->getStackSize() * 75) / 100;
-            if (PItem->getQuantity() > limit)
-            {
-                PItem->setQuantity(limit);
+                PItem->setQuantity(PItem->getQuantity() + PItem->getDailyIncrease());
             }
 
             //TODO: set price based on previous day stock

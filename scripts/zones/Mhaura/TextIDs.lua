@@ -16,8 +16,8 @@ PANORU_DELIVERY_DIALOG =  7951; -- Looking for a delivery company that isn't lam
 	 
 -- Quest Dialog
      SUBJOB_UNLOCKED = 6955; -- You can now use support jobs!
-  GOLDSMITHING_GUILD = 7058; -- Everything you need for your goldsmithing needs!
-      SMITHING_GUILD = 7059; -- Welcome to the Blacksmiths' Guild salesroom!
+  GOLDSMITHING_GUILD = 7060; -- Everything you need for your goldsmithing needs!
+      SMITHING_GUILD = 7061; -- Welcome to the Blacksmiths' Guild salesroom!
  NOMAD_MOOGLE_DIALOG = 6715; -- I'm a traveling moogle, kupo. I help adventurers in the Outlands access items they have stored in a Mog House elsewhere, kupo.
       RAMUH_UNLOCKED = 7272; -- You are now able to summon Ramuh.
 

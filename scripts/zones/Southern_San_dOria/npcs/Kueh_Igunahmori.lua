@@ -2,8 +2,7 @@
 -- Area: Southern San d'Oria
 -- NPC: Kueh Igunahmori
 -- Guild Merchant NPC: Leathercrafting Guild 
--- @zone 230
--- @pos -189 -8 14
+-- @pos -194.791 -8.800 13.130 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -25,7 +24,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:sendGuild(5241,3,18,4)) then
+	if (player:sendGuild(529,3,18,4)) then
 		player:showText(npc,KUEH_IGUNAHMORI_DIALOG);
 	end
 end; 

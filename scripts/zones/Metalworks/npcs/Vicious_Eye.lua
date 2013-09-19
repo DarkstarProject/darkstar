@@ -2,11 +2,13 @@
 -- Area: Metalworks
 -- NPC: Vicious Eye
 -- Guild Merchant NPC: Blacksmithing Guild 
--- @zone: 237
--- @pos: -106.132 0.999 -28.757
+-- @pos -106.132 0.999 -28.757 237
+-----------------------------------
+package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
+require("scripts/globals/settings");
+require("scripts/globals/shop");
 require("scripts/zones/Metalworks/TextIDs");
 
 -----------------------------------
@@ -21,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:sendGuild(528,8,23,2)) then
+	if(player:sendGuild(533,8,23,2)) then
 		player:showText(npc, VICIOUS_EYE_SHOP_DIALOG);
 	end
 end;

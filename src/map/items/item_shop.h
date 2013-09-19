@@ -43,20 +43,24 @@ public:
 
     uint32  getMinPrice();
     uint32  getMaxPrice();
-	
+
     bool    IsInMenu();
     bool    IsDailyIncrease();
-	
+
     void    setMinPrice(uint32 price);
     void    setMaxPrice(uint32 price);
-    void    setDailyIncreace(uint8 quantity);
+    void    setDailyIncrease(uint16 quantity);
+    uint16  getDailyIncrease();
+    void    setInitialQuantity(uint16 quantity);
+    uint16  getInitialQuantity();
 
 private:
 
     uint32  m_MinPrice;
     uint32  m_MaxPrice;
 
-    bool    m_DailyIncrease;
+    uint16    m_DailyIncrease;
+    uint16    m_InitialQuantity;
 };
 
 #endif

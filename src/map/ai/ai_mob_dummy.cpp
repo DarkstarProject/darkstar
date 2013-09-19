@@ -1802,6 +1802,11 @@ void CAIMobDummy::CastSpell(uint16 spellId, CBattleEntity* PTarget)
 						{
 							// randomly select a target
 							m_PBattleSubTarget = m_PTargetFind->m_targets[rand()%totalTargets];
+
+							// only target if are on same action
+							if(m_PBattleSubTarget->PBattleAI->GetCurrentAction() != GetCurrentAction()){
+								m_PBattleSubTarget = m_PMob;
+							}
 						}
 
 					}

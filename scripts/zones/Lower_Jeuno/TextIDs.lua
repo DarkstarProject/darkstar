@@ -31,5 +31,5 @@ CONQUEST = 7929; -- You've earned conquest points!
      HASIM_SHOP_DIALOG = 7008; -- Welcome to Waag-Deeg's Magic Shop.
       TAZA_SHOP_DIALOG = 7008; -- Welcome to Waag-Deeg's Magic Shop.
       SUSU_SHOP_DIALOG = 7008; -- Welcome to Waag-Deeg's Magic Shop.
- AKAMAFULA_SHOP_DIALOG = 7557; -- We ain't cheap, but you get what you pay for! Take your time, have a look around, see if there's somethin' you like.
-AMALASANDA_SHOP_DIALOG = 7556; -- Welcome to the Tenshodo. You want something, we got it. We got all kinds of special merchandise you won't find anywhere else!
+ AKAMAFULA_SHOP_DIALOG = 7560; -- We ain't cheap, but you get what you pay for! Take your time, have a look around, see if there's somethin' you like.
+AMALASANDA_SHOP_DIALOG = 7559; -- Welcome to the Tenshodo. You want something, we got it. We got all kinds of special merchandise you won't find anywhere else!
