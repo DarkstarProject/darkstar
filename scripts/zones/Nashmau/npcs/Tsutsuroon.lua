@@ -17,19 +17,19 @@ require("scripts/zones/Nashmau/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:hasKeyItem(TENSHODO_MEMBERS_CARD)) then 
-		if (player:sendGuild(60431, 1, 23, 7)) then 
+	if (player:hasKeyItem(TENSHODO_MEMBERS_CARD)) then
+		if (player:sendGuild(60431, 1, 23, 7)) then
 			player:showText(npc,TSUTSUROON_SHOP_DIALOG);
 		end
 	else
-		player:startEvent(0x0096);
+		-- player:startEvent(0x0096);
 	end
 end;
 
@@ -49,4 +49,4 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-end;
+end;
