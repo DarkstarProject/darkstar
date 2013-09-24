@@ -1183,3 +1183,5 @@ INSERT INTO `mob_spell_lists` VALUES ('Cwn_Cyrff', '104', '356', '1', '255');
 INSERT INTO `mob_spell_lists` VALUES ('Cwn_Cyrff', '104', '274', '1', '255');
 INSERT INTO `mob_spell_lists` VALUES ('Cwn_Cyrff', '104', '361', '1', '255');
 INSERT INTO `mob_spell_lists` VALUES ('Cwn_Cyrff', '104', '257', '1', '255');
+INSERT INTO `mob_spell_lists` VALUES ('Nunyunuwi', '105', '360', '1', '255');
+INSERT INTO `mob_spell_lists` VALUES ('Nunyunuwi', '105', '362', '1', '255');

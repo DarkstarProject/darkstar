@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Behemoth's Dominion
---  HNM: Behemoth
+-- HNM: Behemoth
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -11,26 +11,6 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-
-end;
-
------------------------------------
--- onMobEngaged Action
------------------------------------
-
-function onMobEngaged(mob,target)
-	Behemoth_Engaged = os.time(t);
-end;
-
------------------------------------
--- onMobFight Action
------------------------------------
-
-function onMobFight(mob,target)
-
-	if(mob:getBattleTime() == 1800) then
-		mob:rageMode();
-	end
 
 end;
 

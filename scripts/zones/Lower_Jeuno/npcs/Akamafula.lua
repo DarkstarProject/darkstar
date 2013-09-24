@@ -29,7 +29,7 @@ function onTrigger(player,npc)
 			player:showText(npc, AKAMAFULA_SHOP_DIALOG);
 		end
 	else
-		player:startEvent(0x0096);
+		-- player:startEvent(0x0096);
 	end
 end;
 

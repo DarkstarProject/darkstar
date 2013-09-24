@@ -10,7 +10,6 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function OnMobSpawn(mob)
-
 end;
 
 -----------------------------------
@@ -18,12 +17,8 @@ end;
 -----------------------------------
 
 function onMobFight(mob,target)
-
-	if(mob:getBattleTime() == 1200) then
-		mob:rageMode();
-	end
-
 end;
+
 
 -----------------------------------
 -- onMobDeath

@@ -369,7 +369,7 @@ INSERT INTO `mob_family_system` VALUES (302,'Wulgaru',3,'Arcana',2,40,90,90,1,3,
 INSERT INTO `mob_family_system` VALUES (303,'ZareehklTheJu',19,'Undead',1,40,100,140,1,3,3,3,1,5,4,3,3,3,3,2,2,2,2,2.25,1.75,2,2,2,2,2.25,1,8);
 INSERT INTO `mob_family_system` VALUES (304,'ArmedGears',4,'ArchaicMachine',1,40,90,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1.125,1,1,0.875,1,1,1,0);
 INSERT INTO `mob_family_system` VALUES (305,'GotohZhaTheRe',7,'Beastmen',2,40,100,120,2,1,3,3,3,3,3,3,3,3,3,1,1,1,1,1,1.125,0.875,1,1,1,0.875,1,3);
-INSERT INTO `mob_family_system` VALUES (306,'Dea',14,'Lizard',4,40,120,90,2,5,1,6,6,3,3,3,3,3,3,1,1,1,1,1,1.125,1.125,1,1,1,1,1,4);
+INSERT INTO `mob_family_system` VALUES (306,'Dea',14,'Lizard',4,43,120,90,2,5,1,6,6,3,3,3,3,3,3,1,1,1,1,1,1.125,1.125,1,1,1,1,1,4);
 INSERT INTO `mob_family_system` VALUES (307,'Achamoth',20,'Vermin',2,40,90,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,0.5,1.125,1,1,1,1,1,1,1);
 INSERT INTO `mob_family_system` VALUES (308,'Khromasoul',7,'Beastmen',2,40,120,120,1,2,1,3,3,3,3,3,3,3,3,1,1,1,1,0.875,1,1,1,1,1.125,1,1,1);
 INSERT INTO `mob_family_system` VALUES (309,'Nosferatu',19,'Undead',2,40,100,120,1,3,3,4,3,6,6,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,8);
@@ -432,6 +432,10 @@ INSERT INTO `mob_family_system` VALUES (365,'Automaton_Sharpshot',18,'Unclassifi
 INSERT INTO `mob_family_system` VALUES (366,'Automaton_Stormwaker',18,'Unclassified',0,40,90,110,5,5,5,4,5,6,5,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0);
 INSERT INTO `mob_family_system` VALUES (367,'Doll',3,'Arcana',1,80,108,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1.25,1,1,1,2);
 INSERT INTO `mob_family_system` VALUES (368,'Doll',3,'Arcana',1,45,108,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1.25,1,1,1,2);
+INSERT INTO `mob_family_system` VALUES (369,'Leech',1,'Amorph',1,40,90,90,1,3,2,3,6,6,5,3,3,3,2,1,1,0.75,0.75,1.25,1.25,1.25,1.25,1.25,0.75,1.50,1.25,6);
+INSERT INTO `mob_family_system` VALUES (370,'Spider',20,'Vermin',0,40,87,130,1,3,5,3,2,6,5,3,3,3,3,1,1,1,1,1,1.25,1,1,1,1,1,1,4);
+INSERT INTO `mob_family_system` VALUES (371,'Marid',6,'Beast',2,40,150,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1.125,1,1,1,1,1,1,4);
+INSERT INTO `mob_family_system` VALUES (372,'Crab',2,'Aquan',0,40,108,120,4,3,1,5,3,3,4,3,2,3,3,.50,.50,.50,.50,1,1.25,1,1,1.25,0.875,1,1,6);
 /*!40000 ALTER TABLE `mob_family_system` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

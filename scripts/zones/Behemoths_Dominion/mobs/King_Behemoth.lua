@@ -13,25 +13,6 @@ require("scripts/globals/status");
 function onMobInitialize(mob)
 end;
 
------------------------------------
--- onMobEngaged Action
------------------------------------
-
-function onMobEngaged(mob,target)
-	KingBehemoth_Engaged = os.time(t);
-end;
-
------------------------------------
--- onMobFight Action
------------------------------------
-
-function onMobFight(mob,target)
-
-	if(mob:getBattleTime() == 3600) then
-		mob:rageMode();
-	end
-
-end;
 
 -----------------------------------
 -- onMobDeath

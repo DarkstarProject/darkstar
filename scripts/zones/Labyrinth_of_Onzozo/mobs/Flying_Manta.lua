@@ -28,7 +28,7 @@ function onMobDeath(mob,killer)
 
         ToD = GetServerVariable("[POP]Peg_Powler");
         if (ToD <= os.time(t) and GetMobAction(Peg_Powler) == 0) then
-            if (math.random((1),(25)) >= 5) then
+            if (math.random((1),(25)) == 5) then
                 UpdateNMSpawnPoint(Peg_Powler);
                 GetMobByID(Peg_Powler):setRespawnTime(GetMobRespawnTime(mob));
                 SetServerVariable("[PH]Peg_Powler", mob);

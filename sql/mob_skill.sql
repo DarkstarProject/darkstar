@@ -402,6 +402,15 @@ INSERT INTO `mob_skill` VALUES (164,172,164,'TP_Drainkiss', 0, 7.0, 2000, 1500, 
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Deep_Kiss', 0, 7.0, 2000, 1500, 4, 0, 0); -- Only used by certain NM
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Random_Kiss', 0, 7.0, 2000, 1500, 4, 0, 0); -- Only used by certain NM
 
+INSERT INTO `mob_skill` VALUES (158,369,158,'Suction', 0, 7.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (159,369,159,'Acid_Mist', 1, 15.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (160,369,160,'Sand_Breath', 4, 10.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (161,369,161,'Drainkiss', 0, 7.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (167,369,167,'Brain_Drain', 0, 7.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (162,369,162,'Regeneration', 0, 7.0, 2000, 1500, 1, 0, 0);
+INSERT INTO `mob_skill` VALUES (165,369,165,'MP_Drainkiss', 0, 7.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (164,369,164,'TP_Drainkiss', 0, 7.0, 2000, 1500, 4, 0, 0);
+
 -- Worm
 INSERT INTO `mob_skill` VALUES (168,258,168,'Full-Force_Blow', 0, 7.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (169,258,169,'Gastric_Bomb', 0, 18.0, 2000, 1500, 4, 0, 0);
@@ -459,6 +468,12 @@ INSERT INTO `mob_skill` VALUES (187,77,187,'Bubble_Curtain', 0, 7.0, 2000, 1500,
 INSERT INTO `mob_skill` VALUES (186,77,186,'Bubble_Shower', 1, 14.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (192,77,192,'Metallic_Body', 0, 7.0, 2000, 1500, 1, 0, 0);
 INSERT INTO `mob_skill` VALUES (189,77,189,'Scissor_Guard', 0, 7.0, 2000, 1500, 1, 0, 0); -- +100% defense boost
+
+INSERT INTO `mob_skill` VALUES (188,372,188,'Big_Scissors', 0, 7.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (187,372,187,'Bubble_Curtain', 0, 7.0, 2000, 1500, 1, 0, 0); -- Shell -50% magic damage taken
+INSERT INTO `mob_skill` VALUES (186,372,186,'Bubble_Shower', 1, 12.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (192,372,192,'Metallic_Body', 0, 7.0, 2000, 1500, 1, 0, 0); -- 25HP Stoneskin
+INSERT INTO `mob_skill` VALUES (189,372,189,'Scissor_Guard', 0, 7.0, 2000, 1500, 1, 0, 0); -- +100% defense boost
 
 -- Shadow
 INSERT INTO `mob_skill` VALUES (190,221,190,'Dimensional_Death', 0, 7.0, 2000, 0, 4, 1, 0);
@@ -588,6 +603,12 @@ INSERT INTO `mob_skill` VALUES (283,85,283,'Typhoon', 1, 7.0, 2000, 1500, 4, 0, 
 INSERT INTO `mob_skill` VALUES (287,85,287,'Meltdown', 1, 15.0, 2000, 2000, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (285,85,285,'Gravity_Field', 2, 10.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (281,85,281,'Berserk', 0, 7.0, 2000, 1500, 1, 0, 0);
+
+INSERT INTO `mob_skill` VALUES (283,367,283,'Typhoon', 1, 7.0, 2000, 1500, 4, 0, 0);
+
+INSERT INTO `mob_skill` VALUES (280,368,280,'Panzerfaust', 0, 7.0, 2000, 1500, 4, 0, 0);
+
+
 -- Ahriman
 INSERT INTO `mob_skill` VALUES (292,4,292,'Blindeye', 0, 7.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (293,4,293,'Eyes_On_Me', 0, 13.0, 2000, 1500, 4, 0, 0);
@@ -1079,6 +1100,9 @@ INSERT INTO `mob_skill` VALUES (1449,180,1172,'Stampede', 0, 7.0, 2000, 1500, 4,
 INSERT INTO `mob_skill` VALUES (1450,180,1173,'Flailing_Trunk', 4, 10.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (1451,180,1174,'Voracious_Trunk', 0, 7.0, 2000, 1500, 4, 0, 0);
 -- INSERT INTO `mob_skill` VALUES (1452,180,1175,'Proboscis_Shower', 0, 7.0, 2000, 1500, 4, 0, 0); -- NM only
+
+INSERT INTO `mob_skill` VALUES (1449,371,1172,'Stampede', 0, 7.0, 2000, 1500, 4, 0, 0);
+
 -- Colibri
 INSERT INTO `mob_skill` VALUES (1443,72,1176,'Pecking_Flurry', 0, 7.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (1444,72,1177,'Snatch_Morsel', 0, 7.0, 2000, 1500, 4, 0, 0);
@@ -1735,7 +1759,7 @@ INSERT INTO `mob_skill` VALUES (78,700,78,'Sharp_Sting', 0, 10.0, 2000, 1500, 4,
 INSERT INTO `mob_skill` VALUES (1,701,1,'Foot_Kick', 0, 7.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (2,701,2,'Dust_Cloud', 4, 10.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (3,701,3,'Whirl_Claws', 1, 5.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES(67, 701, 37, 'Wild_Carrot', 0, 20.0, 2000, 1500, 1, 0, 0);
+INSERT INTO `mob_skill` VALUES (67, 701, 37, 'Wild_Carrot', 0, 20.0, 2000, 1500, 1, 0, 0);
 
 -- rabbit Snowy Area
 INSERT INTO `mob_skill` VALUES (3,702, 3,'Whirl_Claws', 1, 5.0, 2000, 1500, 4, 0, 0);

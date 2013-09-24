@@ -29,7 +29,7 @@ function onTrigger(player,npc)
 			player:showText(npc,TENSHODO_SHOP_OPEN_DIALOG);
 		end
 	else
-		player:startEvent(0x0096);
+		-- player:startEvent(0x0096);
 	end
 end;
 
@@ -49,4 +49,4 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-end;
+end;

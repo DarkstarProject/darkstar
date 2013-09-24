@@ -14,28 +14,6 @@ function onMobInitialize(mob)
 end;
 
 -----------------------------------
--- onMobEngaged Action
------------------------------------
-
-function onMobEngaged(mob,target)
-	Adamantoise_Engaged = os.time(t);
-end;
-
------------------------------------
--- onMobFight Action
------------------------------------
-
-function onMobFight(mob,target)
-
-	if (mob:getBattleTime() % 60 == 0) then -- Check every minute to reduce load
-		if(os.time(t) >= (Adamantoise_Engaged + 1800)) then
-			mob:rageMode(); -- Stats = Stats * 10
-		end
-	end
-
-end;
-
------------------------------------
 -- onMobDeath
 -----------------------------------
 

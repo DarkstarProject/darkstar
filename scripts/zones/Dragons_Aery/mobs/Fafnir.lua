@@ -13,26 +13,6 @@ require("scripts/globals/status");
 function onMobInitialize(mob)
 end;
 
------------------------------------
--- onMobEngaged Action
------------------------------------
-
-function onMobEngaged(mob,target)
-	Fafnir_Engaged = os.time(t);
-end;
-
------------------------------------
--- onMobFight Action
------------------------------------
-
-function onMobFight(mob,target)
-
-	if (mob:getBattleTime() % 60 == 0) then -- Check every minute to reduce load
-		if(os.time(t) >= (Fafnir_Engaged + 3600)) then
-			mob:rageMode(); -- Stats = Stats * 10
-		end
-	end
-end;
 
 -----------------------------------
 -- onMobDeath

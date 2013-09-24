@@ -1,19 +1,8 @@
 ----------------------------------
 -- Area: Labyrinth of Onzozo
---   NM: Lord of Onzozo
+-- NM: Lord of Onzozo
 -----------------------------------
 
------------------------------------
--- onMobFight Action
------------------------------------
-
-function onMobFight(mob,target)
-
-	if(mob:getBattleTime() == 1200) then
-		mob:rageMode();
-	end
-
-end;
 
 -----------------------------------
 -- onMobDeath

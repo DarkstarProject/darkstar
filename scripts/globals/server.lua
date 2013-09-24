@@ -148,7 +148,11 @@ function SetTimedSpawns()
     17285220, -- Woodland Sage
     17461338, -- Drexerion the Condemned
     17461343, -- Phanduron the Condemned
-    17568127  -- Morbolger
+    17568127, -- Morbolger
+    17203447, -- Fraelissa
+    16990252, -- Harvestman
+    16785593, -- Tempest Tigon
+    17461478 -- Bloodsucker
   }
 
   i = 1;
