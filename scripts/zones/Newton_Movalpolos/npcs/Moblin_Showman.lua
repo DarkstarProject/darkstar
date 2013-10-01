@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Newton Movalpolos
 -- NPC:  Moblin Showman - Bugbear Matman
--- @pos 124 20 -60 82
+-- @pos 124.544 19.988 -60.670 12
 -----------------------------------
 package.loaded["scripts/zones/Newton_Movalpolos/TextIDs"] = nil;
 -----------------------------------
@@ -14,11 +14,10 @@ require("scripts/zones/Newton_Movalpolos/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	if(trade:hasItemQty(1878,1) and trade:getItemCount() == 1) then -- Air tank 
+	if(GetMobAction(17424444) == 0 and trade:hasItemQty(1878,1) and trade:getItemCount() == 1) then -- Air tank 
 		player:tradeComplete();
 		player:showText(npc, SHOWMAN_ACCEPT); -- Moblin Showman's dialogue
-		SpawnMob(16826570,120):updateEnmity(player); -- Bugbear Matman
-		npc:hideNPC(900);
+		SpawnMob(16826570,300):updateEnmity(player); -- Bugbear Matman
 	else
 		player:showText(npc, SHOWMAN_DECLINE); -- Moblin Showman refuses your trade
 	end

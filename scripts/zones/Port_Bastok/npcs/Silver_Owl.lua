@@ -29,7 +29,7 @@ function onTrigger(player,npc)
 			player:showText(npc,TENSHODO_SHOP_OPEN_DIALOG);
 		end
 	else
-		-- player:startEvent(0x0096);
+		player:startEvent(0x0096,1)
 	end
 end;
 
