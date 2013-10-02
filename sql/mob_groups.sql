@@ -1231,29 +1231,29 @@ INSERT INTO `mob_groups` VALUES (1188,4198,39,0,128,3976,0,0,78,78);
 INSERT INTO `mob_groups` VALUES (1189,4199,39,0,128,3981,0,0,78,78);
 INSERT INTO `mob_groups` VALUES (1190,4289,39,0,128,4072,3000,0,78,78);
 --  ---------------------------------------------------------  dyna bubu  -------------
-INSERT INTO `mob_groups` VALUES (1191,43,40,0,128,21,0,0,75,75); -- Adamantking_Effigy
-INSERT INTO `mob_groups` VALUES (1192,73,40,0,128,44,0,0,80,80); -- Aitvaras
-INSERT INTO `mob_groups` VALUES (1193,85,40,0,128,53,0,0,80,80); -- Alklha
-INSERT INTO `mob_groups` VALUES (1194,198,40,0,128,153,0,0,80,80); -- Apocalyptic_Beast
+INSERT INTO `mob_groups` VALUES (1191,43,40,0,128,21,1000,0,75,75); -- Adamantking_Effigy
+INSERT INTO `mob_groups` VALUES (1192,73,40,0,128,44,15000,0,80,80); -- Aitvaras
+INSERT INTO `mob_groups` VALUES (1193,85,40,0,128,53,15000,0,80,80); -- Alklha
+INSERT INTO `mob_groups` VALUES (1194,198,40,0,128,153,27000,0,80,80); -- Apocalyptic_Beast
 INSERT INTO `mob_groups` VALUES (1195,317,40,0,128,225,0,0,0,79); -- Baa_Dava_the_Bibliophage
 INSERT INTO `mob_groups` VALUES (1196,318,40,0,128,0,0,0,64,68); -- Baa_s_Avatar
-INSERT INTO `mob_groups` VALUES (1197,347,40,0,128,246,0,0,80,80); --  Barong
-INSERT INTO `mob_groups` VALUES (1198,354,40,0,128,0,0,0,80,80); -- Basilic
+INSERT INTO `mob_groups` VALUES (1197,347,40,0,128,246,15000,0,80,80); --  Barong
+INSERT INTO `mob_groups` VALUES (1198,354,40,0,128,0,15000,0,80,80); -- Basilic
 INSERT INTO `mob_groups` VALUES (1199,591,40,0,128,0,0,0,64,68); -- Bxafraff_s_Wyvern
 INSERT INTO `mob_groups` VALUES (1200,1088,40,0,128,777,0,0,80,80); -- Doo_Peku_the_Fleetfoot
 INSERT INTO `mob_groups` VALUES (1201,1104,40,0,128,0,0,0,68,72); -- Dragon_s_Avatar
 INSERT INTO `mob_groups` VALUES (1202,1105,40,0,128,0,0,0,68,72); -- Dragon_s_Wyvern
 INSERT INTO `mob_groups` VALUES (1203,1205,40,0,128,860,0,0,80,80); -- Elvaansticker_Bxafraff
 INSERT INTO `mob_groups` VALUES (1204,1354,40,0,128,967,0,0,80,80); -- Flamecaller_Zoeqdoq
-INSERT INTO `mob_groups` VALUES (1205,1610,40,0,128,0,0,0,80,80); -- Gi_Bhe_Fleshfeaster
-INSERT INTO `mob_groups` VALUES (1206,1707,40,0,128,1432,0,0,75,75); -- Goblin_Replica
+INSERT INTO `mob_groups` VALUES (1205,1610,40,0,128,4467,0,0,80,80); -- Gi_Bhe_Fleshfeaster
+INSERT INTO `mob_groups` VALUES (1206,1707,40,0,128,1432,1000,0,75,75); -- Goblin_Replica
 INSERT INTO `mob_groups` VALUES (1207,1772,40,0,128,1535,0,0,80,80); -- Gosspix_Blabberlips
 INSERT INTO `mob_groups` VALUES (1208,1886,40,0,128,1624,0,0,80,80); -- Hamfist_Gukhbuk
-INSERT INTO `mob_groups` VALUES (1209,2169,40,0,128,0,0,0,80,80); -- Jurik
+INSERT INTO `mob_groups` VALUES (1209,2169,40,0,128,0,17000,0,80,80); -- Jurik
 INSERT INTO `mob_groups` VALUES (1210,2280,40,0,128,1952,0,0,80,80); -- Koo_Rahi_the_Levinblade
-INSERT INTO `mob_groups` VALUES (1211,2284,40,0,128,0,0,0,80,80); -- Koshchei
+INSERT INTO `mob_groups` VALUES (1211,2284,40,0,128,0,17000,0,80,80); -- Koshchei
 INSERT INTO `mob_groups` VALUES (1212,2457,40,0,128,2103,0,0,80,80); -- Lyncean_Juwgneg
-INSERT INTO `mob_groups` VALUES (1213,2550,40,0,128,2191,0,0,75,74); -- Avatar_Icon
+INSERT INTO `mob_groups` VALUES (1213,2550,40,0,128,2191,1000,0,75,74); -- Avatar_Icon
 INSERT INTO `mob_groups` VALUES (1214,2844,40,0,128,2430,5000,0,77,77); -- Nightmare_Bunny
 INSERT INTO `mob_groups` VALUES (1215,2846,40,0,128,2432,5000,0,77,77); -- Nightmare_Cockatrice ???
 INSERT INTO `mob_groups` VALUES (1216,2847,40,0,128,2433,5000,0,77,77); -- Nightmare_Crab
@@ -1264,13 +1264,13 @@ INSERT INTO `mob_groups` VALUES (1220,2859,40,0,128,2445,5000,0,77,77); -- Night
 INSERT INTO `mob_groups` VALUES (1221,2863,40,0,128,2448,5000,0,77,77); -- Nightmare_Raven
 INSERT INTO `mob_groups` VALUES (1222,2866,40,0,128,2451,5000,0,77,77); -- Nightmare_Scorpion
 INSERT INTO `mob_groups` VALUES (1223,2872,40,0,128,2456,5000,0,77,77); -- Nightmare_Uragnite
-INSERT INTO `mob_groups` VALUES (1224,3299,40,0,128,0,0,0,80,80); -- Qu_Pho_Bloodspiller
+INSERT INTO `mob_groups` VALUES (1224,3299,40,0,128,4468,0,0,80,80); -- Qu_Pho_Bloodspiller
 INSERT INTO `mob_groups` VALUES (1225,3347,40,0,128,2945,0,0,80,80); -- Ree_Nata_the_Melomanic
 INSERT INTO `mob_groups` VALUES (1226,3583,40,0,128,3175,0,0,80,80); -- Shamblix_Rottenheart
-INSERT INTO `mob_groups` VALUES (1227,3773,40,0,128,3362,0,0,80,80); -- Stihi
-INSERT INTO `mob_groups` VALUES (1228,3778,40,0,128,0,0,0,80,80); -- Stollenwurm
-INSERT INTO `mob_groups` VALUES (1229,3843,40,0,128,0,0,0,80,80); -- Tarasca
-INSERT INTO `mob_groups` VALUES (1230,3884,40,0,128,0,0,0,80,80); -- Te_Zha_Ironclad
+INSERT INTO `mob_groups` VALUES (1227,3773,40,0,128,3362,17000,0,80,80); -- Stihi
+INSERT INTO `mob_groups` VALUES (1228,3778,40,0,128,0,17000,0,80,80); -- Stollenwurm
+INSERT INTO `mob_groups` VALUES (1229,3843,40,0,128,0,17000,0,80,80); -- Tarasca
+INSERT INTO `mob_groups` VALUES (1230,3884,40,0,128,4469,0,0,80,80); -- Te_Zha_Ironclad
 INSERT INTO `mob_groups` VALUES (1231,4133,40,0,128,3688,0,0,75,80); -- Vanguard_Alchemist
 INSERT INTO `mob_groups` VALUES (1232,4134,40,0,128,3693,0,0,75,80); -- Vanguard_Ambusher
 INSERT INTO `mob_groups` VALUES (1233,4135,40,0,128,3698,0,0,75,80); -- Vanguard_Amputator
@@ -1337,9 +1337,9 @@ INSERT INTO `mob_groups` VALUES (1293,4196,40,0,128,3967,0,0,75,80); -- Vanguard
 INSERT INTO `mob_groups` VALUES (1294,4197,40,0,128,3972,0,0,75,80); -- Vanguard_Vindicator
 INSERT INTO `mob_groups` VALUES (1295,4198,40,0,128,3977,0,0,75,80); -- Vanguard_Visionary
 INSERT INTO `mob_groups` VALUES (1296,4199,40,0,128,3982,0,0,75,80); -- Vanguard_Welldigger
-INSERT INTO `mob_groups` VALUES (1297,4209,40,0,128,0,0,0,80,85); -- Va_Rhu_Bodysnatcher
-INSERT INTO `mob_groups` VALUES (1298,4241,40,0,128,0,0,0,80,85); -- Vishap
-INSERT INTO `mob_groups` VALUES (1299,4289,40,0,128,4073,0,0,75,80); -- Warchief_Tombstone
+INSERT INTO `mob_groups` VALUES (1297,4209,40,0,128,4470,0,0,80,85); -- Va_Rhu_Bodysnatcher
+INSERT INTO `mob_groups` VALUES (1298,4241,40,0,128,0,17000,0,80,85); -- Vishap
+INSERT INTO `mob_groups` VALUES (1299,4289,40,0,128,4073,1000,0,75,80); -- Warchief_Tombstone
 INSERT INTO `mob_groups` VALUES (1300,4362,40,0,128,4175,0,0,80,85); -- Woodnix_Shrillwhistle
 INSERT INTO `mob_groups` VALUES (1301,4363,40,0,128,0,4000,0,64,68); -- Woodnix_s_Slime
 --  ---------------------------------------------------------------  dyna qfirm  --------------
@@ -10990,16 +10990,16 @@ INSERT INTO `mob_groups` VALUES (11148,5109,39,0,128,4343,5000,0,75,75); -- Nigh
 INSERT INTO `mob_groups` VALUES (11149,5110,39,0,128,4344,5000,0,75,75); -- Nightmare_Goobbue
 INSERT INTO `mob_groups` VALUES (11150,5107,39,0,128,4345,5000,0,75,75); -- Nightmare_Funguar
 -- dyna bubu
-INSERT INTO `mob_groups` VALUES (11151,5122,40,0,128,0,3000,0,75,75); -- 'Manifest_Icon'
-INSERT INTO `mob_groups` VALUES (11152,295,40,0,128,0,3000,0,75,75); -- 'Avatar_Idol'
+INSERT INTO `mob_groups` VALUES (11151,5122,40,0,128,2191,1000,0,75,75); -- 'Manifest_Icon'
+INSERT INTO `mob_groups` VALUES (11152,295,40,0,128,0,1000,0,75,75); -- 'Avatar_Idol'
 INSERT INTO `mob_groups` VALUES (11153,5112,40,0,128,0,0,0,90,90); -- 'Arch_Apocalyptic_Beast'
 INSERT INTO `mob_groups` VALUES (11154,5113,40,0,128,0,0,0,90,90); -- 'Lost_Barong'
 INSERT INTO `mob_groups` VALUES (11155,5114,40,0,128,0,0,0,90,90); -- 'Lost_Stihi'
 INSERT INTO `mob_groups` VALUES (11156,5115,40,0,128,0,0,0,90,90); -- 'Lost_Alklha'
 INSERT INTO `mob_groups` VALUES (11157,5116,40,0,128,0,0,0,90,90); -- 'Lost_Aitvaras'
-INSERT INTO `mob_groups` VALUES (11168,3548,40,0,128,0,3000,0,75,75); -- Serjeant_Tombstone
-INSERT INTO `mob_groups` VALUES (11172,1716,40,0,128,0,3000,0,75,75); -- Goblin_Statue
-INSERT INTO `mob_groups` VALUES (11175,5111,40,0,128,21,3000,1000,80,80); -- Adamantking_Image
+INSERT INTO `mob_groups` VALUES (11168,3548,40,0,128,4472,1000,0,75,75); -- Serjeant_Tombstone
+INSERT INTO `mob_groups` VALUES (11172,1716,40,0,128,4471,1000,0,75,75); -- Goblin_Statue
+INSERT INTO `mob_groups` VALUES (11175,5111,40,0,128,21,1000,1000,80,80); -- Adamantking_Image
 -- dyna qufirm
 
 INSERT INTO `mob_groups` VALUES (11158,5122,41,0,128,0,3000,0,75,75); -- 'Manifest_Icon'
