@@ -80,8 +80,10 @@ bool CBattleEntity::isDead()
 
 bool CBattleEntity::isInDynamis()
 {
-	uint8 Pzone = getZone();
-	return (Pzone > 184 && Pzone < 189 ||  Pzone > 133 && Pzone < 136);
+	if(loc.zone != NULL){
+		return loc.zone->GetType() == ZONETYPE_DYNAMIS;
+	}
+	return false;
 }
 
 // return true if the mob has immunity
