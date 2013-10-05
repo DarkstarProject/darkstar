@@ -13,9 +13,9 @@ function OnMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	local enchanceSkill = caster:getSkillLevel(34);
+	enchanceSkill = caster:getSkillLevel(ENHANCING_MAGIC_SKILL);
 
-	local power = 40 + 0.2 * enchanceSkill;
+	local power = calculateBarspellPower(caster,enhanceSkill);
 
 	local duration = 150;
 

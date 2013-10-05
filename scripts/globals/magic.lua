@@ -1079,3 +1079,22 @@ function calculateDurationForLvl(duration, spellLvl, targetLvl)
 
 	return duration;
 end
+
+function calculateBarspellPower(caster,enhanceSkill)
+	if (enhanceSkill == nil or enhanceSkill < 0) then
+		enhanceSkill = 0;
+	end
+
+	local power = 40 + 0.2 * enchanceSkill;
+	
+	local equippedLegs = caster:getEquipID(SLOT_LEGS);
+	if(equippedLegs == 15119) then
+		power = power + 20;
+	elseif(equippedLegs == 15582) then
+		power = power + 22;
+	elseif(equippedLegs == 10712) then
+		power = power + 25;
+	end
+	
+	return power;
+end
