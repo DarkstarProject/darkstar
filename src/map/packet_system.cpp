@@ -4327,7 +4327,7 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 		    // If removing RemoveAllEquipment, please add a charutils::CheckUnarmedItem(PChar) if main hand is empty.
 		    charutils::RemoveAllEquipment(PChar); // TODO: разобраться, зачем
-
+            puppetutils::LoadAutomaton(PChar);
             if (mjob == JOB_BLU)
                 blueutils::LoadSetSpells(PChar);
             else if (prevjob == JOB_BLU)
@@ -4341,6 +4341,7 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
 
 			charutils::CheckEquipLogic(PChar, SCRIPT_CHANGESJOB, prevsjob);
+            puppetutils::LoadAutomaton(PChar);
             if (sjob == JOB_BLU)
                 blueutils::LoadSetSpells(PChar);
             else if (prevsjob == JOB_BLU)
