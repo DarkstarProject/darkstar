@@ -21,5 +21,5 @@ function OnAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-	target:eraseStatusEffect();	
+	target:healingWaltz();	
 end;

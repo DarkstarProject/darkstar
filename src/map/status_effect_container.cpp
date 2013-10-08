@@ -578,6 +578,29 @@ EFFECT CStatusEffectContainer::EraseStatusEffect()
     return EFFECT_NONE;
 }
 
+EFFECT CStatusEffectContainer::HealingWaltz()
+{
+   EFFECT effect_id;
+   std::vector<uint16> waltzableList;
+   for( uint16 i = 0; i < m_StatusEffectList.size(); ++i )
+   {
+      if( ( m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_WALTZABLE || 
+          m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_ERASABLE ) &&
+          m_StatusEffectList.at(i)->GetDuration() > 0 )
+      {
+         waltzableList.push_back(i);
+      }
+   }
+   if( !waltzableList.empty() )
+   {
+      uint16 rndIdx = rand() % waltzableList.size();
+      EFFECT result = m_StatusEffectList.at(waltzableList.at(rndIdx))->GetStatusID();
+      RemoveStatusEffect(waltzableList.at(rndIdx));
+      return result;
+   }
+    return EFFECT_NONE;
+}
+
 /*
 Erases all negative status effects
 returns number of erased effects

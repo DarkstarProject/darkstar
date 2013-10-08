@@ -4231,6 +4231,14 @@ inline int32 CLuaBaseEntity::eraseStatusEffect(lua_State *L)
     return 1;
 }
 
+inline int32 CLuaBaseEntity::healingWaltz(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->HealingWaltz());
+    return 1;
+}
 /************************************************************************
 *                                                                       *
 *                             *
@@ -7648,6 +7656,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delStatusEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delStatusEffectSilent),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,eraseStatusEffect),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,healingWaltz),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,dispelStatusEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,dispelAllStatusEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,eraseAllStatusEffect),

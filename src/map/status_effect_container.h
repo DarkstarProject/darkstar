@@ -62,6 +62,7 @@ public:
     bool HasStatusEffectByFlag(uint16 flag);
 
   EFFECT EraseStatusEffect();                                 // удаляем первый отрицательный эффект
+  EFFECT HealingWaltz();				// dancers healing waltz
     uint8 EraseAllStatusEffect();               // erases all status effects
   EFFECT DispelStatusEffect();                                // удаляем первый положительный эффект
     uint8 DispelAllStatusEffect();                // dispels all status effects
