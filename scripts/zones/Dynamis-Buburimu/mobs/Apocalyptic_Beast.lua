@@ -40,10 +40,6 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-
-	 killer:addTimeToDynamis(60);
--- addDynamisList(killer,number);
---print("addtime 60min");
 		
   if(killer:hasKeyItem(DYNAMIS_BUBURIMU_SLIVER ) == false)then 
        killer:addKeyItem(DYNAMIS_BUBURIMU_SLIVER);
