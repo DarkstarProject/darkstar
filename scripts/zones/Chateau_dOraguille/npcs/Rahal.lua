@@ -64,6 +64,11 @@ function onTrigger(player,npc)
 		end
 	elseif (player:getVar("KnightStalker_Option2") == 1) then
 		player:startEvent(118); -- Optional CS after Knight Stalker
+		-- Mission 8-2 San dOria --
+	elseif(player:getCurrentMission(SANDORIA) == LIGHTBRINGER and player:getVar("MissionStatus") == 1) then
+		player:startEvent(0x006A)
+	elseif(player:getCurrentMission(SANDORIA) == LIGHTBRINGER and player:getVar("MissionStatus") == 2) then
+		player:startEvent(0x006b);
 	end
 	
 end;
@@ -105,6 +110,14 @@ function onEventFinish(player,csid,option)
 		player:setVar("KnightStalker_Progress",4);
 	elseif (csid == 118) then
 		player:setVar("KnightStalker_Option2",0);
+	elseif(csid == 0x006A) then
+		if(player:hasKeyItem(CRYSTAL_DOWSER)) then
+			player:delKeyItem(CRYSTAL_DOWSER); -- To prevent them getting a message about already having the keyitem
+		else
+			player:setVar("MissionStatus",2);
+			player:addKeyItem(CRYSTAL_DOWSER);
+			player:messageSpecial(KEYITEM_OBTAINED,CRYSTAL_DOWSER);
+		end
 	end
 end;
 

@@ -55,7 +55,7 @@ bcnmid_param_map = {6,{640,0},
 					32,{992,0,993,1},
 					35,{1024,0},
                     36,{1056,0},
-					139,{0,0,5,5,6,6,7,7,11,11,15,15,17,17},
+					139,{0,0,3,3,5,5,6,6,7,7,11,11,15,15,17,17},
 					140,{32,0,33,1,34,2,35,3,36,4},
 					144,{64,0,67,3,68,4,70,6,71,7,72,8,81,17,76,12,82,18,79,15},
 					146,{96,0,101,5,102,6,103,7,107,11,105,9},
@@ -431,6 +431,9 @@ function checkNonTradeBCNM(player,npc)
 			player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_SANDORIA2) and player:getVar("MissionStatus") == 9) then -- Mission 2-3
 			mask = GetBattleBitmask(0,Zone,1);
 			player:setVar("trade_bcnmid",0);
+		elseif(player:getCurrentMission(SANDORIA) == THE_SECRET_WEAPON and player:getVar("SecretWeaponStatus") == 2) then
+			mask = GetBattleBitmask(3,Zone,1)
+			player:setVar("trade_bcnmid",3);
 		end
 	elseif(Zone == 140) then -- Ghelsba Outpost
 		MissionStatus = player:getVar("MissionStatus");

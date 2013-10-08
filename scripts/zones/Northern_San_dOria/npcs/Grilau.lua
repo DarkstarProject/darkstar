@@ -51,6 +51,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+
+local PresOfPapsqueCompleted = player:hasCompletedMission(SANDORIA,PRESTIGE_OF_THE_PAPSQUE);
 	
 	if(player:getNation() ~= SANDORIA) then
 		player:startEvent(0x03f3); -- for Non-San d'Orians
@@ -76,6 +78,10 @@ function onTrigger(player,npc)
 		    player:startEvent(0x040f);
 		elseif(CurrentMission == RANPERRE_S_FINAL_REST and player:getVar("MissionStatus") == 9) then
 		    player:startEvent(0x0409);
+		elseif(CurrentMission ~= THE_SECRET_WEAPON and pRank == 7 and PresOfPapsqueCompleted == true and getMissionRankPoints(player,19) == 1 and player:getVar("SecretWeaponStatus") == 0) then
+			player:startEvent(0x0034);
+		elseif(CurrentMission == THE_SECRET_WEAPON and player:getVar("SecretWeaponStatus") == 3) then
+			player:startEvent(0x0413);
 		elseif(CurrentMission ~= 255) then
 			player:startEvent(0x03e9); -- Have mission already activated
 		else
@@ -115,5 +121,10 @@ function onEventFinish(player,csid,option)
 	   player:setVar("Wait1DayForRanperre_date",0);
 	elseif(csid == 0x0409) then
 	   finishMissionTimeline(player,2,csid,option);
+	elseif(csid == 0x0034) then
+		player:setVar("SecretWeaponStatus",1);
+	elseif(csid == 0x0413) then
+		finishMissionTimeline(player,2,csid,option);
 	end
+	
 end;

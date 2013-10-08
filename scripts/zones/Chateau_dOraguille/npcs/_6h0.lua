@@ -2,7 +2,7 @@
 -- Area: Chateau d'Oraguille
 -- Door: Prince Royal's
 -- Finishes Quest: A Boy's Dream
--- Involved in Missions: 3-1, 5-2
+-- Involved in Missions: 3-1, 5-2, 8-2
 -- @pos -38 -3 73 233
 -----------------------------------
 package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
@@ -43,6 +43,8 @@ function onTrigger(player,npc)
 	    player:startEvent(0x0051);
 	elseif(currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 7) then
 	    player:startEvent(0x0015);
+	elseif(player:hasCompletedMission(SANDORIA,LIGHTBRINGER) and player:getRank() == 9 and player:getVar("Cutscenes_8-2") == 0) then
+		player:startEvent(0x003F);
 	else
 		player:startEvent(0x020a);
 	end
@@ -92,6 +94,8 @@ function onEventFinish(player,csid,option)
 	    player:setVar("MissionStatus",1);
 	elseif(csid == 0x0015) then
 	    player:setVar("MissionStatus",8);
+	elseif(csid == 0x003F) then
+		player:setVar("Cutscenes_8-2",1)
 	end
 	
 end;

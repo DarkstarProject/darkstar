@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Chateau d'Oraguille
 -- NPC:  Halver
--- Involved in Mission 2-3, 3-3, 5-1, 5-2
+-- Involved in Mission 2-3, 3-3, 5-1, 5-2, 8-1
 -- Involved in Quest: Lure of the Wildcat (San d'Oria)
 -- @pos 2 0 0 233
 -----------------------------------
@@ -86,6 +86,11 @@ function onTrigger(player,npc)
 			player:startEvent(0x0018);		
 		elseif(player:getCurrentMission(SANDORIA) == LEAUTE_S_LAST_WISHES and MissionStatus == 3) then
 			player:startEvent(0x0016);
+		-- Mission San d'Oria 8-1 Coming of Age -- 
+		elseif(player:getCurrentMission(SANDORIA) == COMING_OF_AGE and MissionStatus == 1) then
+			player:startEvent(0x003A);
+		elseif(player:getCurrentMission(SANDORIA) == COMING_OF_AGE and player:hasKeyItem(DROPS_OF_AMNIO) and MissionStatus == 3) then
+			player:startEvent(0x0066);
 		end
 	elseif(pNation == BASTOK) then
 		if(currentMission == THE_EMISSARY) then
@@ -165,6 +170,11 @@ function onEventFinish(player,csid,option)
 		player:setVar("MissionStatus",1);
 	elseif(csid == 0x0016) then
 		player:setVar("MissionStatus",4);
+	elseif(csid == 0x003A) then
+		player:setVar("MissionStatus",2);
+	elseif(csid == 0x0066) then
+		finishMissionTimeline(player,3,csid,option);
+		player:setVar("Wait1DayM8-1_date", os.date("%j"));
 		
 	end
 	

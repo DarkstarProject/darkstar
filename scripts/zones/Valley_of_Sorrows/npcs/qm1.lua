@@ -7,7 +7,8 @@ package.loaded["scripts/zones/Dragons_Aery/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/Valley_of_Sorrows/TextIDs");
-
+require("scripts/globals/keyitems");
+require("scripts/globals/missions");
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -33,9 +34,16 @@ end;
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
+local KEYITEM_OBTAINED = 6381; -- Put this as a local until the TextIDs have all been fixed.
 
 function onTrigger(player,npc)
-	player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+	if(player:getCurrentMission(SANDORIA) == BREAKING_BARRIERS and player:getVar("MissionStatus") == 1) then
+		player:addKeyItem(FIGURE_OF_TITAN);
+		player:messageSpecial(KEYITEM_OBTAINED,FIGURE_OF_TITAN);
+		player:setVar("MissionStatus",2);
+	else
+		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+	end
 end;
 
 -----------------------------------

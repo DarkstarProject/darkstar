@@ -36,10 +36,10 @@ THE_SHADOW_LORD         = 15; -- ± --
 LEAUTE_S_LAST_WISHES    = 16; -- ± --
 RANPERRE_S_FINAL_REST   = 17; -- ± --
 PRESTIGE_OF_THE_PAPSQUE = 18; -- ± --
-THE_SECRET_WEAPON       = 19;
-COMING_OF_AGE           = 20;
-LIGHTBRINGER            = 21;
-BREAKING_BARRIERS       = 22;
+THE_SECRET_WEAPON       = 19; -- ± --
+COMING_OF_AGE           = 20; -- ± --
+LIGHTBRINGER            = 21; -- ± --
+BREAKING_BARRIERS       = 22; -- ± --
 THE_HEIR_TO_THE_LIGHT   = 23;
 
 -----------------------------------
@@ -306,7 +306,7 @@ LEST_WE_FORGET             = 53;
 
 
 -----------------------------------
---  Assualt (7)
+--  Assault (7)
 -----------------------------------
 
 LEUJAOAM_CLEANSING                = 1;
@@ -590,7 +590,7 @@ function getMissionMask(player)
 			if(player:hasCompletedMission(SANDORIA,COMING_OF_AGE) == false and getMissionRankPoints(player,20) == 1) then
 				-- 8-1
 				first_mission = first_mission + 1048576;
-			elseif(player:hasCompletedMission(SANDORIA,LIGHTBRINGER) == false and getMissionRankPoints(player,21) == 1) then
+			elseif(player:hasCompletedMission(SANDORIA,LIGHTBRINGER) == false and getMissionRankPoints(player,21) == 1 and player:getVar("Mission8-1Completed") == 1) then
 				-- 8-2
 				first_mission = first_mission + 2097152;
 			end
@@ -599,7 +599,7 @@ function getMissionMask(player)
 			if(player:hasCompletedMission(SANDORIA,BREAKING_BARRIERS) == false and getMissionRankPoints(player,22) == 1) then
 				-- 9-1
 				first_mission = first_mission + 4194304;
-			elseif(player:hasCompletedMission(SANDORIA,THE_HEIR_TO_THE_LIGHT) == false and getMissionRankPoints(player,23) == 1) then
+			if(player:hasCompletedMission(SANDORIA,BREAKING_BARRIERS) == false and getMissionRankPoints(player,22) == 1 and player:getVar("Cutscenes_8-2") == 2) then
 				-- 9-2
 				first_mission = first_mission + 8388608;
 			end
@@ -825,7 +825,7 @@ function finishMissionTimeline(player,guard,csid,option)
 			timeline = {
 				 -- MissionID,{Guard#1 DialogID, option},{Guard#2 DialogID, option},{NPC#1 DialogID, option},{NPC#2 DialogID, option},{function list}
 				 0,{0x03e8,0},{0x07d0,0},{0,0},		{0,0},{{1},{2}}, 													-- MISSION 1-1 (First Mission [START])
-				 0,{0x03fc,0},{0x07e4,0},{0,0},		{0,0},{{4},{5,150},{12},{14,0}}, 											-- MISSION 1-1
+				 0,{0x03fc,0},{0x07e4,0},{0,0},		{0,0},{{4},{5,150},{12},{14,0}}, 									-- MISSION 1-1
 				 0,{0x03ea,0},{0x07d2,0},{0,0},		{0,0},{{4},{5,150},{12}},											-- MISSION 1-1 [Repeat]
 				 1,{0x03ff,0},{0x07e7,0},{0,0},		{0,0},{{4},{14,0},{5,200},{12}}, 									-- MISSION 1-2
 				 1,{0x03eb,0},{0x07d3,0},{0,0},		{0,0},{{4},{14,0},{5,200},{12}},									-- MISSION 1-2 [Repeat]
@@ -846,9 +846,13 @@ function finishMissionTimeline(player,guard,csid,option)
 				15,{0,0},	  {0,0},	 {0x0224,0},{0,0},{{11,6},{14,4}}, 												-- MISSION 5-2 (Finish 1st Part (Halver))
 				15,{0,0},	  {0,0},	 {0x003D,0},{0,0},{{14,0},{9,74},{8,20000},{6},{12}}, 							-- MISSION 5-2 (Finish 2nd Part (Trion in Great Hall))
 				16,{0,0},	  {0,0},	 {0x006f,0},{0,0},{{14,0},{9,268},{10,270},{12}}, 								-- MISSION 6-1 (Finish (Chalvatot))
-				17,{0x040a,0},{0x0409,0},{0,0},{0,0},{{14,0},{11,7},{8,40000},{6},{12}},									-- MISSION 6-2 (Finish (Guard))
+				17,{0x040a,0},{0x0409,0},{0,0},{0,0},{{14,0},{11,7},{8,40000},{6},{12}},								-- MISSION 6-2 (Finish (Guard))
 				18,{0,0},	  {0,0},	 {0x0007,0},{0,0},{{14,1}}, 													-- MISSION 7-1 (setVar("MissionStatus",1) (Door: Papal Chambers))
-				18,{0,0},	  {0,0},	 {0x0008,0},{0,0},{{14,0},{9,283},{5,1000},{12}} 								-- MISSION 7-1 (Finish (Door: Papal Chambers))
+				18,{0,0},	  {0,0},	 {0x0008,0},{0,0},{{14,0},{9,283},{5,1000},{12}}, 								-- MISSION 7-1 (Finish (Door: Papal Chambers))
+				19,{0x0414,0},{0x0413,0},{0,0},{0,0},{{14,0},{6},{3,"SecretWeaponStatus",0},{9,284},{11,8},{8,60000},{12}}, -- MISSION 7-2 (Finish)
+				20,{0,0},	  {0,0},	 {0x0066,0},{0,0},{{14,0},{9,288},{5,800},{12}},									-- MISSION 8-1 (Finish)
+				21,{0,0},     {0,0},     {0x0068,0},{0,0},{{14,0},{9,284},{11,9},{8,80000},{6},{12}}					-- MISSION 8-2 (Finish (Door: Great Hall))
+				22,{0,0},	  {0,0},	 {0x004c,0},{0,0},{{14,0},{9,481},{9,482},{9,483},{5,900},{12}}					-- MISSION 9-1 (Finish (Door: Great Hall))
 				--[[0,{0,0},{0,0},{0,0},{0,0},{0},{0,0},{0,0},{0,0},{0,0},{0},
 				0,{0,0},{0,0},{0,0},{0,0},{0},{0,0},{0,0},{0,0},{0,0},{0}, ]]--
 						};
@@ -878,6 +882,7 @@ function finishMissionTimeline(player,guard,csid,option)
 				18,{0x02fc,0},{0,0},{0,0},{0,0},{{14,0},{9,289},{5,700},{12}}, 											-- MISSION 7-1 (Finish (Cid))
 				19,{0x02fe,0},{0,0},{0,0},{0,0},{{14,0},{6},{11,8},{8,60000},{3,"OptionalCSforOMW",1},{12}}, 			-- MISSION 7-2 (Finish (Karst))
 				20,{0x0300,0},{0,0},{0,0},{0,0},{{14,0},{5,1133},{12}}                                                  -- MISSION 8-1 (Finish (Iron Eater))
+				
 						};
 		end
 	elseif(nation == WINDURST) then
