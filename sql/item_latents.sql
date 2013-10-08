@@ -17,10 +17,22 @@ CREATE TABLE IF NOT EXISTS `item_latents` (
   `latentParam` smallint(5) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=13 PACK_KEYS=1;
 
+
+
+
+-- INSERT INTO `item_latents` VALUES(itemID, modId, modValue, latentId, latentParam);
+
+INSERT INTO `item_latents` VALUES(13145, 28, 8, 4, 51);
+INSERT INTO `item_latents` VALUES(13289, 28, 10, 2, 76);
 INSERT INTO `item_latents` VALUES(14008, 23, 8, 0, 75);
 INSERT INTO `item_latents` VALUES(14008, 1, 16, 0, 75);
 INSERT INTO `item_latents` VALUES(14009, 23, 9, 0, 75);
 INSERT INTO `item_latents` VALUES(14009, 1, 17, 0, 75);
+INSERT INTO `item_latents` VALUES(14055, 23, 7, 46, 75);
+INSERT INTO `item_latents` VALUES(14448, 10, 6, 46, 71);
+INSERT INTO `item_latents` VALUES(15209, 8, 3, 46, 75);
+INSERT INTO `item_latents` VALUES(15345, 384, 3, 46, 75);
+INSERT INTO `item_latents` VALUES(15406, 31, 4, 46, 75);
 INSERT INTO `item_latents` VALUES(15530, 368, 10, 10, 50);
 INSERT INTO `item_latents` VALUES(16355, 25, 25, 0, 25);
 INSERT INTO `item_latents` VALUES(16355, 23, 25, 0, 25);
