@@ -599,7 +599,7 @@ function getMissionMask(player)
 			if(player:hasCompletedMission(SANDORIA,BREAKING_BARRIERS) == false and getMissionRankPoints(player,22) == 1) then
 				-- 9-1
 				first_mission = first_mission + 4194304;
-			if(player:hasCompletedMission(SANDORIA,BREAKING_BARRIERS) == false and getMissionRankPoints(player,22) == 1 and player:getVar("Cutscenes_8-2") == 2) then
+			elseif(player:hasCompletedMission(SANDORIA,BREAKING_BARRIERS) == false and getMissionRankPoints(player,22) == 1 and player:getVar("Cutscenes_8-2") == 2) then
 				-- 9-2
 				first_mission = first_mission + 8388608;
 			end
@@ -851,7 +851,7 @@ function finishMissionTimeline(player,guard,csid,option)
 				18,{0,0},	  {0,0},	 {0x0008,0},{0,0},{{14,0},{9,283},{5,1000},{12}}, 								-- MISSION 7-1 (Finish (Door: Papal Chambers))
 				19,{0x0414,0},{0x0413,0},{0,0},{0,0},{{14,0},{6},{3,"SecretWeaponStatus",0},{9,284},{11,8},{8,60000},{12}}, -- MISSION 7-2 (Finish)
 				20,{0,0},	  {0,0},	 {0x0066,0},{0,0},{{14,0},{9,288},{5,800},{12}},									-- MISSION 8-1 (Finish)
-				21,{0,0},     {0,0},     {0x0068,0},{0,0},{{14,0},{9,284},{11,9},{8,80000},{6},{12}}					-- MISSION 8-2 (Finish (Door: Great Hall))
+				21,{0,0},     {0,0},     {0x0068,0},{0,0},{{14,0},{9,284},{11,9},{8,80000},{6},{12}},					-- MISSION 8-2 (Finish (Door: Great Hall))
 				22,{0,0},	  {0,0},	 {0x004c,0},{0,0},{{14,0},{9,481},{9,482},{9,483},{5,900},{12}}					-- MISSION 9-1 (Finish (Door: Great Hall))
 				--[[0,{0,0},{0,0},{0,0},{0,0},{0},{0,0},{0,0},{0,0},{0,0},{0},
 				0,{0,0},{0,0},{0,0},{0,0},{0},{0,0},{0,0},{0,0},{0,0},{0}, ]]--
