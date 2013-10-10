@@ -6,9 +6,6 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6379; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
 
--- Other dialog
-     NOTHING_OUT_OF_ORDINARY = 7256; -- There is nothing out of the ordinary here.
-THE_MAGICITE_GLOWS_OMINOUSLY = 7222; -- The magicite glows ominously.
 
 -- Treasure Coffer/Chest Dialog
 CHEST_UNLOCKED = 7240; -- You unlock the chest!
@@ -19,3 +16,12 @@ CHEST_UNLOCKED = 7240; -- You unlock the chest!
   CHEST_MOOGLE = 7245; -- You cannot open the chest while participating in the moogle event.
 CHEST_ILLUSION = 7246; -- The chest was but an illusion...
   CHEST_LOCKED = 7247; -- The chest appears to be locked.
+  
+-- Other dialog
+     NOTHING_OUT_OF_ORDINARY = 7256; -- There is nothing out of the ordinary here.
+THE_MAGICITE_GLOWS_OMINOUSLY = 7222; -- The magicite glows ominously.
+
+ORCISH_WARLORD_ENGAGE = 7254; -- Intruders? Get outs here! We gots us some adventurers!
+ ORCISH_WARLORD_DEATH = 7255; -- Gahahahaha... You fell for our trick. I'm not the big boss. He don't need to be troubled by runty little rarabs like you.
+      ORC_KING_ENGAGE = 7256; -- Ungh? Who are you? So, you've come to kill big boss Bakgodek? I'll crush your scrawny bones myself!
+       ORC_KING_DEATH = 7257; -- Unghh... Foolish children of Altana. Defeating me won't change anything. There will be others from the north... 

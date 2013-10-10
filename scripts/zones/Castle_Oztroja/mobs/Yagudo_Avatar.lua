@@ -1,13 +1,32 @@
 -----------------------------------
 --  Area: Castle Oztroja (151)
---   Mob: Yagudo_Avatar
+--   Mob: Yagudo_Avatar (Tzee Xicu the Manifest PH)
 -----------------------------------
+
+require("scripts/zones/Castle_Oztroja/TextIDs");
+
+-----------------------------------
+-- onMobSpawn Action
+-----------------------------------
+
+function OnMobSpawn(mob)
+end;
+
+-----------------------------------
+-- onMobEngaged
+-----------------------------------
+
+function OnMobEngaged(mob,target)
+-- target:showText(mob,YAGUDO_AVATAR_ENGAGE);
+end;
 
 -----------------------------------
 -- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob,killer)	
+
+-- killer:showText(mob,YAGUDO_AVATAR_DEATH);
 
     Yagudo_Avatar = mob:getID();
     Tzee_Xicu_the_Manifest = 17396137;

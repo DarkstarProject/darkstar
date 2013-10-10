@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Monastic Cavern
--- NPC:  Overlord Bakgodek
+-- NPC:  Orcish Warlord (Overlord Bakgodek PH)
 -----------------------------------
 
-require("scripts/globals/titles");
 require("scripts/zones/Monastic_Cavern/TextIDs");
 
 -----------------------------------
@@ -18,7 +17,7 @@ end;
 -----------------------------------
 
 function OnMobEngaged(mob,target)
--- mob:messagePublic(mob,ORC_KING_ENGAGE);
+-- target:showText(mob,ORCISH_WARLORD_ENGAGE);
 end;
 
 -----------------------------------
@@ -26,6 +25,6 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-		killer:addTitle(OVERLORD_OVERTHROWER);
--- mob:messagePublic(mob,ORC_KING_DEATH);
+-- killer:showText(mob,ORCISH_WARLORD_DEATH);
+		mob:setRespawnTime(math.random((75600),(86400))); -- 21 to 24 hours
 end;

@@ -468,7 +468,7 @@ INSERT INTO `guild_shops` VALUES ('517', '4464', '172', '1122', '255', '0', '100
 INSERT INTO `guild_shops` VALUES ('517', '4469', '580', '2400', '55', '0', '22');
 INSERT INTO `guild_shops` VALUES ('517', '4470', '4112', '4186', '55', '0', '22');
 INSERT INTO `guild_shops` VALUES ('517', '4471', '2100', '13328', '55', '0', '22');
-INSERT INTO `guild_shops` VALUES ('517', '4472', '30', '65', '255', '48', '100');
+-- INSERT INTO `guild_shops` VALUES ('517', '4472', '30', '65', '255', '48', '100');
 -- INSERT INTO `guild_shops` VALUES ('517', '4473', '2310', '2833', '55', '0', '22');
 -- INSERT INTO `guild_shops` VALUES ('517', '4477', '7400', '7880', '30', '0', '12');
 -- INSERT INTO `guild_shops` VALUES ('517', '4479', '1368', '8280', '55', '0', '22');
@@ -491,7 +491,7 @@ INSERT INTO `guild_shops` VALUES ('517', '4472', '30', '65', '255', '48', '100')
 -- INSERT INTO `guild_shops` VALUES ('517', '16998', '38', '214', '255', '48', '100');
 -- INSERT INTO `guild_shops` VALUES ('517', '16999', '52', '240', '255', '48', '100');
 -- INSERT INTO `guild_shops` VALUES ('517', '17000', '52', '240', '255', '48', '100');
--- INSERT INTO `guild_shops` VALUES ('517', '17380', '25740', '25740', '30', '5', '5');
+INSERT INTO `guild_shops` VALUES ('517', '17380', '25740', '25740', '30', '5', '5');
 -- INSERT INTO `guild_shops` VALUES ('517', '17382', '9657', '9657', '30', '5', '10');
 -- INSERT INTO `guild_shops` VALUES ('517', '17383', '1980', '1980', '30', '10', '20');
 -- INSERT INTO `guild_shops` VALUES ('517', '17387', '4077', '4077', '30', '5', '15');

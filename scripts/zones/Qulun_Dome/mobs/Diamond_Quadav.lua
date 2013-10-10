@@ -1,10 +1,9 @@
 -----------------------------------
--- Area: Monastic Cavern
--- NPC:  Overlord Bakgodek
+-- Area: Qulun_Dome
+-- NPC:  Diamond_Quadav (Za Dha Adamantking PH)
 -----------------------------------
 
-require("scripts/globals/titles");
-require("scripts/zones/Monastic_Cavern/TextIDs");
+require("scripts/zones/Qulun_Dome/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action
@@ -18,14 +17,14 @@ end;
 -----------------------------------
 
 function OnMobEngaged(mob,target)
--- mob:messagePublic(mob,ORC_KING_ENGAGE);
+-- target:showText(mob,DIAMOND_QUADAV_ENGAGE);
 end;
 
 -----------------------------------
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-		killer:addTitle(OVERLORD_OVERTHROWER);
--- mob:messagePublic(mob,ORC_KING_DEATH);
+function onMobDeath(mob, killer)
+-- killer:showText(mob,DIAMOND_QUADAV_DEATH);
+	mob:setRespawnTime(math.random((75600),(86400))); -- 21 to 24 hours
 end;

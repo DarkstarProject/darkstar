@@ -636,27 +636,35 @@ INSERT INTO `mob_skill` VALUES (328,136,328,'Uppercut', 0, 7.0, 2000, 1500, 4, 0
 INSERT INTO `mob_skill` VALUES (330,136,330,'Blank_Gaze', 0, 7.0, 2000, 2000, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (331,136,331,'Antiphase', 1, 15.0, 2000, 1500, 4, 0, 0);
 -- Goblin
-INSERT INTO `mob_skill` VALUES(334, 133, 334, 'Goblin_Rush', 0, 6.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES(335, 133, 335, 'Bomb_Toss', 2, 13.5, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES(336, 133, 336, 'Bomb_Toss_Suicide', 1, 13.5, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (334, 133, 334, 'Goblin_Rush', 0, 6.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (335, 133, 335, 'Bomb_Toss', 2, 13.5, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (336, 133, 336, 'Bomb_Toss_Suicide', 1, 13.5, 2000, 1500, 4, 0, 0);
 -- INSERT INTO `mob_skill` VALUES(0, 0, 0, 'Saucepan', 4, 7.0, 2000, 1500, 4, 0, 0); -- Only by NM
--- Dynamis Goblin
-INSERT INTO `mob_skill` VALUES(334, 327, 334, 'Goblin_Rush', 0, 6.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES(335, 327, 335, 'Bomb_Toss', 2, 13.5, 2000, 1500, 4, 0, 0);
+
+-- Dynamis Goblin (Vanguard Type)
+INSERT INTO `mob_skill` VALUES (334,327,334, 'Goblin_Rush', 0, 6.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (335,327,335, 'Bomb_Toss', 2, 13.5, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (826,327,744,'Smokebomb', 4, 10.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (828,327,746,'Crispy_Candle', 4, 10.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (830,327,748,'Paralysis_Shower', 4, 10.0, 2000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (843,327,750,'Dice_Heal', 1, 10.0, 3000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (844,327,751,'Dice_Curse', 1, 10.0, 3000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (845,327,752,'Dice_Damage', 1, 10.0, 3000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (846,327,753,'Dice_Stun', 1, 10.0, 3000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (847,327,754,'Dice_Poison', 1, 10.0, 3000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (848,327,755,'Dice_Disease', 1, 10.0, 3000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (849,327,756,'Dice_Sleep', 1, 10.0, 3000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (850,327,757,'Dice_Slow', 1, 10.0, 3000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (851,327,758,'Dice_TP_Loss', 1, 10.0, 3000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (852,327,759,'Dice_Dispel', 1, 10.0, 3000, 1500, 4, 0, 0);
-INSERT INTO `mob_skill` VALUES (853,327,760,'Dice_Reset', 1, 10.0, 3000, 1500, 4, 0, 0);
+
+-- Dynamis Goblin (Vanguard NM Type)
+INSERT INTO `mob_skill` VALUES (334,373,334, 'Goblin_Rush', 0, 6.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (335,373,335, 'Bomb_Toss', 2, 13.5, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (826,373,744,'Smokebomb', 4, 10.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (828,373,746,'Crispy_Candle', 4, 10.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (830,373,748,'Paralysis_Shower', 4, 10.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (843,373,750,'Dice_Heal', 1, 10.0, 3000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (844,373,751,'Dice_Curse', 1, 10.0, 3000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (845,373,752,'Dice_Damage', 1, 10.0, 3000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (846,373,753,'Dice_Stun', 1, 10.0, 3000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (847,373,754,'Dice_Poison', 1, 10.0, 3000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (848,373,755,'Dice_Disease', 1, 10.0, 3000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (849,373,756,'Dice_Sleep', 1, 10.0, 3000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (850,373,757,'Dice_Slow', 1, 10.0, 3000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (851,373,758,'Dice_TP_Loss', 1, 10.0, 3000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (852,373,759,'Dice_Dispel', 1, 10.0, 3000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (853,373,760,'Dice_Reset', 1, 10.0, 3000, 1500, 4, 0, 0);
 
 -- Orc
 INSERT INTO `mob_skill` VALUES (377,189,354,'Howl', 1, 20.0, 2000, 1500, 1, 0, 0);

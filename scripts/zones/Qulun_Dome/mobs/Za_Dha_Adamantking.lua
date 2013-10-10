@@ -1,10 +1,10 @@
 -----------------------------------
--- Area: Monastic Cavern
--- NPC:  Overlord Bakgodek
+-- Area: Qulun_Dome
+-- NPC:  Za_Dha_Adamantking
 -----------------------------------
 
 require("scripts/globals/titles");
-require("scripts/zones/Monastic_Cavern/TextIDs");
+require("scripts/zones/Qulun_Dome/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function OnMobEngaged(mob,target)
--- mob:messagePublic(mob,ORC_KING_ENGAGE);
+-- mob:messagePublic(QUADAV_KING_ENGAGE,mob);
 end;
 
 -----------------------------------
@@ -26,6 +26,6 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-		killer:addTitle(OVERLORD_OVERTHROWER);
--- mob:messagePublic(mob,ORC_KING_DEATH);
+		killer:addTitle(ADAMANTKING_USURPER);
+-- mob:messagePublic(QUADAV_KING_DEATH,mob);
 end;
