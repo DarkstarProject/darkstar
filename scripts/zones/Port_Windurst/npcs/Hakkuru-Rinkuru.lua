@@ -54,8 +54,11 @@ function onTrigger(player,npc)
 	needToZone = player:needToZone();
 	pFame = player:getFameLevel(WINDURST);
 	
+		-- ~[ Windurst Mission 6-1 Full Moon Fountain ]~ --
+	if(player:getCurrentMission(WINDURST) == FULL_MOON_FOUNTAIN and player:getVar("MissionStatus") == 0) then
+			player:startEvent(0x01C8,0,248)
 	-- Check if we are on Windurst Mission 1-1
-	if(player:getCurrentMission(WINDURST) == THE_HORUTOTO_RUINS_EXPERIMENT) then
+	elseif(player:getCurrentMission(WINDURST) == THE_HORUTOTO_RUINS_EXPERIMENT) then
 		MissionStatus = player:getVar("MissionStatus");
 		if(MissionStatus == 0) then
 			player:startEvent(0x005a);
@@ -161,6 +164,11 @@ function onEventFinish(player,csid,option)
 			player:addTitle(DOCTOR_SHANTOTTOS_GUINEA_PIG);
 			player:completeQuest(WINDURST,WONDER_WANDS);
 		end
+		-- ~[ Windurst Mission 6-1 Full Moon Fountain ]~ --
+	elseif(csid == 0x01C8) then
+			player:setVar("MissionStatus",1);
+			player:addKeyItem(SOUTHWESTERN_STAR_CHARM);
+			player:messageSpecial(KEYITEM_OBTAINED,SOUTHWESTERN_STAR_CHARM);
 	end
 	
 end;
