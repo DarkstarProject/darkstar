@@ -10,5 +10,3 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
 
 -- Shops
 PASHI_MACCALEH_SHOP_DIALOG = 7261; -- Step right up for the best fishing gear in these parts!
--- Shops
-PASHI_MACCALEH_SHOP_DIALOG = 7261; -- Step right up for the best fishing gear in these parts!

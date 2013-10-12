@@ -10,7 +10,3 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
  
 -- Shops
 		 YAHLIQ_SHOP_DIALOG = 7261; -- You've picked the best place to shop for your items, guaranteed!
-
-
--- Shops
-		 YAHLIQ_SHOP_DIALOG = 7261; -- You've picked the best place to shop for your items, guaranteed!
