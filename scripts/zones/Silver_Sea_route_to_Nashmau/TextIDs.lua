@@ -9,4 +9,7 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
  
 
 -- Shops
-		JIDWAHN_SHOP_DIALOG = 7261; -- Would you care for some items to use on your travels?
+		JIDWAHN_SHOP_DIALOG = 7261; -- Would you care for some items to use on your travels? 
+
+-- Shops
+		JIDWAHN_SHOP_DIALOG = 7261; -- Would you care for some items to use on your travels?

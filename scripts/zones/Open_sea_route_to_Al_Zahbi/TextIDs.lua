@@ -10,3 +10,6 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
     
 -- Shops
 CEHN_TEYOHNGO_SHOP_DIALOG = 7261; -- If you're looking for fishing gear, you've come to the right place!
+    
+-- Shops
+CEHN_TEYOHNGO_SHOP_DIALOG = 7261; -- If you're looking for fishing gear, you've come to the right place!
