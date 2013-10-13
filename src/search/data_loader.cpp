@@ -207,7 +207,7 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr,int* count)
 						LEFT JOIN char_profile USING(charid) \
 						WHERE charname IS NOT NULL ";
 	fmtQuery.append(filterQry);
-	fmtQuery.append("ORDER BY charname ASC");
+	fmtQuery.append(" ORDER BY charname ASC");
 
 	int32 ret = Sql_Query(SqlHandle, fmtQuery.c_str());
 
