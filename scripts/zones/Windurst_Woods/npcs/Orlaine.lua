@@ -6,7 +6,7 @@
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-
+require("scripts/globals/quests");
 
 -----------------------------------
 -- onTrade Action
@@ -25,9 +25,10 @@ function onTrigger(player,npc)
 price = 100;
 gil = player:getGil();
 hasLicense = player:hasKeyItem(CHOCOBO_LICENSE);
+ChocobosWounds = player:getQuestStatus(JEUNO,CHOCOBO_S_WOUNDS);
 level = player:getMainLvl();
 
-	if (hasLicense and level >= 15) then
+	if ((hasLicense and level >= 15) or (level >=15 and ChocobosWounds == QUEST_COMPLETED)) then
 		player:startEvent(0x2712,price,gil);
 	else
 		player:startEvent(0x2715,price,gil);
