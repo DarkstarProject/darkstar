@@ -33,6 +33,9 @@ CREATE TABLE `bcnm_treasure_chests` (
 INSERT INTO `bcnm_treasure_chests` VALUES ('11', '1', '17346597');
 INSERT INTO `bcnm_treasure_chests` VALUES ('11', '2', '17346601');
 INSERT INTO `bcnm_treasure_chests` VALUES ('11', '3', '17346605');
+INSERT INTO `bcnm_treasure_chests` VALUES ('12', '1', '17346653');
+INSERT INTO `bcnm_treasure_chests` VALUES ('12', '2', '17346662');
+INSERT INTO `bcnm_treasure_chests` VALUES ('12', '3', '17346671');
 INSERT INTO `bcnm_treasure_chests` VALUES ('15', '1', '17346608');
 INSERT INTO `bcnm_treasure_chests` VALUES ('15', '2', '17346611');
 INSERT INTO `bcnm_treasure_chests` VALUES ('15', '3', '17346614');
