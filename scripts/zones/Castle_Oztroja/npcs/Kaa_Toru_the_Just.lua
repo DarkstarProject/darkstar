@@ -1,13 +1,14 @@
 -----------------------------------
 --  Area: Castle Oztroja
---   NPC: Kaa Toru the Just
---  Type: Mission NPC
--- @zone: 151
+--  NPC: Kaa Toru the Just
+--  Type: Mission NPC ~[ Windurst Mission 6-2 NPC ]~
+--  @zone: 151
 --  @pos: -100.188 -62.125 145.422
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--	Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
+require("scripts/zones/Castle_Oztroja/TextIDs");
+require("scripts/globals/keyitems");
 -----------------------------------
 
 -----------------------------------
@@ -22,7 +23,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x002d);
+	if(player:getCurrentMission(WINDURST) == SAINTLY_INVITATION and player:getVar("MissionStatus") == 2) then 
+		player:startEvent(0x002d,0,200);
+	else
+		player:startEvent(0x002e);
+	end
 end;
 
 -----------------------------------
@@ -41,5 +46,13 @@ end;
 function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
+	if(csid == 0x002d) then
+		player:delKeyItem(HOLY_ONES_INVITATION);
+		player:addKeyItem(HOLY_ONES_OATH);
+		player:messageSpecial(KEYITEM_OBTAINED,HOLY_ONES_OATH);
+		player:addItem(13134); -- Ashura Necklace
+		player:messageSpecial(ITEM_OBTAINED,13134);
+		player:setVar("MissionStatus",3);
+	end
 end;
 

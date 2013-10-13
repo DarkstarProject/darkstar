@@ -58,7 +58,7 @@ bcnmid_param_map = {6,{640,0},
 					139,{0,0,3,3,5,5,6,6,7,7,11,11,15,15,17,17},
 					140,{32,0,33,1,34,2,35,3,36,4},
 					144,{64,0,67,3,68,4,70,6,71,7,72,8,81,17,76,12,82,18,79,15},
-					146,{96,0,101,5,102,6,103,7,107,11,105,9},
+					146,{99,3,96,0,101,5,102,6,103,7,107,11,105,9},
 					163,{128,0},
 					165,{160,0},
 					168,{192,0,194,2,195,3,196,4},
@@ -458,6 +458,12 @@ function checkNonTradeBCNM(player,npc)
 		if(player:hasKeyItem(DARK_KEY)) then -- Mission 2-3
 			mask = GetBattleBitmask(96,Zone,1);
 			player:setVar("trade_bcnmid",96);
+		elseif((player:getCurrentMission(WINDURST) == SAINTLY_INVITATION) and (player:getVar("MissionStatus") == 1)) then -- Mission 6-2
+			mask = GetBattleBitmask(99,Zone,1);
+			player:setVar("trade_bcnmid",99);
+		elseif(player:hasKeyItem(BALGA_CHAMPION_CERTIFICATE)) then -- Repeat Fight after finishing Mission
+			mask = GetBattleBitmask(99,Zone,1);
+			player:setVar("trade_bcnmid",99);
 		end
 	elseif(Zone == 163) then -- Sacrificial Chamber
 		if(player:hasKeyItem(SACRIFICIAL_CHAMBER_KEY)) then -- Zilart Mission 4

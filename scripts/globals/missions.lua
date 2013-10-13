@@ -911,8 +911,9 @@ function finishMissionTimeline(player,guard,csid,option)
 				13,{0x0025,0},{0,0},	 {0,0},		{0,0},	   {{11,5},{14,0},{13,212},{10,71},{6},{8,10000},{12}}, 	-- MISSION 4-1 (Finish (Pakh Jatalfih))
 				14,{0x00C0,0},{0,0},	 {0,0},		{0,0},	   {{14,0},{9,73},{5,600},{12}}, 							-- MISSION 5-1 (Finish (Star Sibyl))
 				15,{0x00D8,0},{0,0},	 {0,0},		{0,0},	   {{11,6},{14,0},{9,74},{8,20000},{6},{12}}, 				-- MISSION 5-2 (Finish (Star Sibyl))
-				16,{0,0},	  {0,0},	 {0x0032,0},{0,0},	   {{14,0},{5,650},{0,0},{0,0},{0,0},{12}}					-- MISSION 6-1 (Finish (Zone: Full Moon Fountain))
-						};
+				16,{0,0},	  {0,0},	 {0x0032,0},{0,0},	   {{14,0},{5,650},{0,0},{0,0},{0,0},{12}},					-- MISSION 6-1 (Finish (Zone: Full Moon Fountain))
+				17,{0,0},	  {0,0},	 {0x0138,0},{0,0},	   {{14,0},{11,7},{8,40000},{6},{0,0},{12}}					-- MISSION 6-2 (Finish (Star Sibyl))
+ 						};
 		end
 	end
 
