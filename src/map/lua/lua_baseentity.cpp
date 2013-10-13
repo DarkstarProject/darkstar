@@ -7502,6 +7502,18 @@ inline int32 CLuaBaseEntity::unlockAttachment(lua_State* L)
 	return 1;
 }
 
+inline int32 CLuaBaseEntity::hasAttachment(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L,-1));
+
+	uint16 itemID = lua_tointeger(L, -1);
+
+	CItem* PItem = itemutils::GetItem(itemID);
+    lua_pushboolean(L,puppetutils::HasAttachment((CCharEntity*)m_PBaseEntity, PItem));
+    return 1;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";

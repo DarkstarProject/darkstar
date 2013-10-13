@@ -118,6 +118,19 @@ inline int32 CLuaTradeContainer::getItemCount(lua_State *L)
 
 //======================================================//
 
+inline int32 CLuaTradeContainer::getSlotCount(lua_State *L)
+{
+	if( m_pMyTradeContainer != NULL) 
+	{
+		lua_pushinteger( L, m_pMyTradeContainer->getSlotCount());
+		return 1;
+	}
+	lua_pushnil(L);
+	return 1;
+}
+
+//======================================================//
+
 inline int32 CLuaTradeContainer::getItemQty(lua_State *L)
 {
 	if( m_pMyTradeContainer != NULL) 
@@ -200,6 +213,7 @@ Lunar<CLuaTradeContainer>::Register_t CLuaTradeContainer::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaTradeContainer,getItem),
 	LUNAR_DECLARE_METHOD(CLuaTradeContainer,getItemSubId),
 	LUNAR_DECLARE_METHOD(CLuaTradeContainer,getItemCount),
+    LUNAR_DECLARE_METHOD(CLuaTradeContainer,getSlotCount),
 	LUNAR_DECLARE_METHOD(CLuaTradeContainer,getItemQty),
 	LUNAR_DECLARE_METHOD(CLuaTradeContainer,getSlotQty),
 	LUNAR_DECLARE_METHOD(CLuaTradeContainer,hasItemQty),

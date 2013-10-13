@@ -138,6 +138,31 @@ bool UnlockAttachment(CCharEntity* PChar, CItem* PItem)
     return false;
 }
 
+bool HasAttachment(CCharEntity* PChar, CItem* PItem)
+{
+	uint16 id = PItem->getID();
+
+	if (!PItem->isType(ITEM_PUPPET))
+		return false;
+
+    uint8 slot = ((CItemPuppet*)PItem)->getEquipSlot();
+	
+	if (slot == 3) //automaton attachment
+	{
+		return hasBit(id & 0xFF, (uint8*)PChar->m_unlockedAttachments.attachments, sizeof(PChar->m_unlockedAttachments.attachments));
+	}
+	else if (slot == 2) //automaton frame
+	{
+		return hasBit(id & 0x0F, &PChar->m_unlockedAttachments.frames, sizeof(PChar->m_unlockedAttachments.frames));
+
+	}
+	else if (slot == 1) //automaton head
+	{
+		return hasBit(id & 0x0F, &PChar->m_unlockedAttachments.heads, sizeof(PChar->m_unlockedAttachments.heads));
+	}
+    return false;
+}
+
 void setAttachment(CCharEntity* PChar, uint8 slotId, uint8 attachment)
 {
     if (attachment != 0)

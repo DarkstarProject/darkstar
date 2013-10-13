@@ -470,6 +470,7 @@ public:
     int32 wait(lua_State* L); // make the npc wait a number of ms and then back into roam
 
 	int32 unlockAttachment(lua_State* L);
+    int32 hasAttachment(lua_State* L);
 };
 
 #endif
