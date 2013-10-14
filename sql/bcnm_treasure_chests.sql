@@ -73,6 +73,9 @@ INSERT INTO `bcnm_treasure_chests` VALUES ('107', '2', '17375284');
 INSERT INTO `bcnm_treasure_chests` VALUES ('107', '3', '17375286');
 
 -- Sacrificial Chamber
+INSERT INTO `bcnm_treasure_chests` VALUES ('129', '1', '17444884');
+INSERT INTO `bcnm_treasure_chests` VALUES ('129', '2', '17444891');
+INSERT INTO `bcnm_treasure_chests` VALUES ('129', '3', '17444898');
 
 -- Throne Room
 

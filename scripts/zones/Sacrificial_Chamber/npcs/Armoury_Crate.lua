@@ -1,15 +1,13 @@
 -----------------------------------
--- Area: Ghelsba_Outpost
+-- Area: Sacrificial Chamber
 -- NPC:  Armoury Crate
--- Ghelsba_Outpost Armoury_Crate
 -------------------------------------
-package.loaded["scripts/zones/Ghelsba_Outpost/TextIDs"] = nil;
+package.loaded["scripts/zones/Sacrificial_Chamber/TextIDs"] = nil;
 package.loaded["scripts/globals/bcnm"] = nil;
 -------------------------------------
 
 require("scripts/globals/bcnm");
-require("scripts/zones/Ghelsba_Outpost/TextIDs");
-
+require("scripts/zones/Sacrificial_Chamber/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -22,7 +20,7 @@ end;
 -- onTrigger Action
 -----------------------------------
 
-function onTrigger(player,npc)z
+function onTrigger(player,npc)
 	player:getBCNMloot();
 end;
 

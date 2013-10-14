@@ -1,12 +1,12 @@
 -----------------------------------
--- Area: Horlias peak
--- Name: under_observation
--- BCNM40
+-- Area: Sacrificial Chamber
+-- Name: jungle_boogymen
+-- BCNM60
 -----------------------------------
-package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
------------------------------------
+package.loaded["scripts/zones/Sacrificial_Chamber/TextIDs"] = nil;
+-------------------------------------
 
-require("scripts/zones/Horlais_Peak/TextIDs");
+require("scripts/zones/Sacrificial_Chamber/TextIDs");
 
 -----------------------------------
 -- EXAMPLE SCRIPT
@@ -41,7 +41,7 @@ function OnBcnmLeave(player,instance,leavecode)
 	
 	
 	if(leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-		player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,12,0);
+		player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,1,0);
 	elseif(leavecode == 4) then
 		player:startEvent(0x7d02);
 	end
