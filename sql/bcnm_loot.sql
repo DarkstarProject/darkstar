@@ -315,7 +315,7 @@ INSERT INTO `bcnm_loot` VALUES ('10', '653', '153', '4');
 INSERT INTO `bcnm_loot` VALUES ('10', '801', '30', '4');
 INSERT INTO `bcnm_loot` VALUES ('10', '802', '30', '4');
 INSERT INTO `bcnm_loot` VALUES ('10', '803', '30', '4');
-INSERT INTO `bcnm_loot` VALUES ('10', '805', '30', '4'); -- lots of unknown groupings.. in grp 4
+INSERT INTO `bcnm_loot` VALUES ('10', '805', '30', '4'); -- lots of unknown groupings in group 4
 INSERT INTO `bcnm_loot` VALUES ('10', '791', '30', '4');
 INSERT INTO `bcnm_loot` VALUES ('10', '702', '30', '4');
 INSERT INTO `bcnm_loot` VALUES ('10', '700', '30', '4');
@@ -325,7 +325,7 @@ INSERT INTO `bcnm_loot` VALUES ('10', '802', '134', '5');
 INSERT INTO `bcnm_loot` VALUES ('10', '652', '154', '5');
 INSERT INTO `bcnm_loot` VALUES ('10', '801', '50', '5');
 INSERT INTO `bcnm_loot` VALUES ('10', '4173', '154', '5');
-INSERT INTO `bcnm_loot` VALUES ('10', '784', '121', '5'); -- lots of unknown groupings.. in grp 5
+INSERT INTO `bcnm_loot` VALUES ('10', '784', '121', '5'); -- lots of unknown groupings in group 5
 INSERT INTO `bcnm_loot` VALUES ('10', '837', '10', '5');
 INSERT INTO `bcnm_loot` VALUES ('10', '1110', '10', '5');
 INSERT INTO `bcnm_loot` VALUES ('10', '769', '30', '5');
@@ -421,6 +421,50 @@ INSERT INTO `bcnm_loot` VALUES ('11', '703', '563', '10');
 INSERT INTO `bcnm_loot` VALUES ('11', '1446', '296', '10');
 INSERT INTO `bcnm_loot` VALUES ('11', '831', '14', '10');
 INSERT INTO `bcnm_loot` VALUES ('11', '722', '141', '10');
+INSERT INTO `bcnm_loot` VALUES ('14', '13251', '95', '0'); -- Adding ~5% chance for this group to drop "Zero Items" (%'s add to 95)
+INSERT INTO `bcnm_loot` VALUES ('14', '13254', '95', '0');
+INSERT INTO `bcnm_loot` VALUES ('14', '13253', '95', '0');
+INSERT INTO `bcnm_loot` VALUES ('14', '13255', '95', '0');
+INSERT INTO `bcnm_loot` VALUES ('14', '13252', '95', '0');
+INSERT INTO `bcnm_loot` VALUES ('14', '13256', '95', '0');
+INSERT INTO `bcnm_loot` VALUES ('14', '13259', '95', '0');
+INSERT INTO `bcnm_loot` VALUES ('14', '13258', '95', '0');
+INSERT INTO `bcnm_loot` VALUES ('14', '13260', '95', '0');
+INSERT INTO `bcnm_loot` VALUES ('14', '13257', '95', '0');
+INSERT INTO `bcnm_loot` VALUES ('14', '13292', '64', '1');
+INSERT INTO `bcnm_loot` VALUES ('14', '13287', '65', '1');
+INSERT INTO `bcnm_loot` VALUES ('14', '13300', '65', '1');
+INSERT INTO `bcnm_loot` VALUES ('14', '13298', '65', '1');
+INSERT INTO `bcnm_loot` VALUES ('14', '13293', '65', '1');
+INSERT INTO `bcnm_loot` VALUES ('14', '13289', '65', '1');
+INSERT INTO `bcnm_loot` VALUES ('14', '13286', '64', '1');
+INSERT INTO `bcnm_loot` VALUES ('14', '13294', '65', '1');
+INSERT INTO `bcnm_loot` VALUES ('14', '13296', '64', '1');
+INSERT INTO `bcnm_loot` VALUES ('14', '13299', '65', '1');
+INSERT INTO `bcnm_loot` VALUES ('14', '13290', '65', '1');
+INSERT INTO `bcnm_loot` VALUES ('14', '13295', '65', '1');
+INSERT INTO `bcnm_loot` VALUES ('14', '13288', '64', '1');
+INSERT INTO `bcnm_loot` VALUES ('14', '13291', '65', '1');
+INSERT INTO `bcnm_loot` VALUES ('14', '13297', '64', '1');
+INSERT INTO `bcnm_loot` VALUES ('14', '13447', '30', '1');
+INSERT INTO `bcnm_loot` VALUES ('14', '4818', '176', '2'); -- Group 2 ~16.6% chance to drop zero items
+INSERT INTO `bcnm_loot` VALUES ('14', '4902', '10', '2');
+INSERT INTO `bcnm_loot` VALUES ('14', '4814', '176', '2');
+INSERT INTO `bcnm_loot` VALUES ('14', '4719', '176', '2');
+INSERT INTO `bcnm_loot` VALUES ('14', '4172', '60', '2');
+INSERT INTO `bcnm_loot` VALUES ('14', '4174', '60', '2');
+INSERT INTO `bcnm_loot` VALUES ('14', '4621', '176', '2');
+INSERT INTO `bcnm_loot` VALUES ('14', '895', '59', '3'); -- Scaled back this groups wiki %'s a bit to == 100
+INSERT INTO `bcnm_loot` VALUES ('14', '700', '59', '3');
+INSERT INTO `bcnm_loot` VALUES ('14', '653', '200', '3');
+INSERT INTO `bcnm_loot` VALUES ('14', '1116', '59', '3');
+INSERT INTO `bcnm_loot` VALUES ('14', '866', '90', '3');
+INSERT INTO `bcnm_loot` VALUES ('14', '1122', '90', '3');
+INSERT INTO `bcnm_loot` VALUES ('14', '703', '176', '3');
+INSERT INTO `bcnm_loot` VALUES ('14', '654', '59', '3');
+INSERT INTO `bcnm_loot` VALUES ('14', '749', '59', '3');
+INSERT INTO `bcnm_loot` VALUES ('14', '859', '59', '3');
+INSERT INTO `bcnm_loot` VALUES ('14', '746', '90', '3');
 INSERT INTO `bcnm_loot` VALUES ('15', '18378', '222', '0');
 INSERT INTO `bcnm_loot` VALUES ('15', '17699', '302', '0');
 INSERT INTO `bcnm_loot` VALUES ('15', '17509', '245', '0');

@@ -698,6 +698,9 @@ INSERT INTO `mob_pets` VALUES (17436888, 1, 15);
 -- INSERT INTO `mob_pets` VALUES (17436895, 1, 15);
 INSERT INTO `mob_pets` VALUES (17436899, 1, 15);
 INSERT INTO `mob_pets` VALUES (16998636, 1, 15);
+INSERT INTO `mob_pets` VALUES (17444883, 2, 15);
+INSERT INTO `mob_pets` VALUES (17444890, 2, 15);
+INSERT INTO `mob_pets` VALUES (17444897, 2, 15);
 
 INSERT INTO `mob_pets` VALUES (16875666, 1, 14); -- Fomor_s_Wyvern
 INSERT INTO `mob_pets` VALUES (16879886, 1, 14); -- Fomor_s_Wyvern
