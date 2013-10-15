@@ -187,9 +187,26 @@ function EventUpdateBCNM(player,csid,option)
 		if(instance == player:getVar("bcnm_instanceid"))then
 			--respond to this packet
 			mask = GetBattleBitmask(id,player:getZone(),2);
+			status = player:getStatusEffect(EFFECT_BATTLEFIELD);
+			playerbcnmid = status:getPower();
+			if(mask < playerbcnmid) then
+			mask = GetBattleBitmask(playerbcnmid,player:getZone(),2);
 			player:updateEvent(2,mask,0,1,1,0); -- Add mask number for the correct entering CS
 			player:bcnmEnter(id);
 			player:setVar("bcnm_instanceid_tick",0);
+			print("mask is "..mask)
+			print("playerbcnmid is "..playerbcnmid);
+			
+			mask = GetBattleBitmask(id,player:getZone(),2);
+			elseif(mask >= playerbcnmid) then
+			player:updateEvent(2,mask,0,1,1,0); -- Add mask number for the correct entering CS
+			player:bcnmEnter(id);
+			player:setVar("bcnm_instanceid_tick",0);
+			print("mask2 is "..mask)
+			print("playerbcnmid2 is "..playerbcnmid);
+			end
+			
+			
 		elseif(player:getVar("bcnm_instanceid") == 255)then --none free
 			--print("nfa");
 			--player:updateEvent(2,5,0,0,1,0);  --@cs 32000 0 0 0 0 0 0 0 2
@@ -462,7 +479,7 @@ function checkNonTradeBCNM(player,npc)
 		elseif((player:getCurrentMission(WINDURST) == SAINTLY_INVITATION) and (player:getVar("MissionStatus") == 1)) then -- Mission 6-2
 			mask = GetBattleBitmask(99,Zone,1);
 			player:setVar("trade_bcnmid",99);
-		elseif(player:hasKeyItem(BALGA_CHAMPION_CERTIFICATE)) then -- Repeat Fight after finishing Mission
+		elseif(player:hasCompletedMission(WINDURST,SAINTLY_INVITATION) and player:hasKeyItem(BALGA_CHAMPION_CERTIFICATE)) then -- Repeat Fight after finishing Mission
 			mask = GetBattleBitmask(99,Zone,1);
 			player:setVar("trade_bcnmid",99);
 		end
