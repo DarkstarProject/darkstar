@@ -751,6 +751,11 @@ INSERT INTO `mob_skill` VALUES (395,87,395,'Lodesong', 1, 20.0, 2000, 1500, 4, 0
 -- Fly
 INSERT INTO `mob_skill` VALUES (403,113,403,'Cursed_Sphere', 2, 10.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (404,113,404,'Venom', 0, 10.0, 2000, 1500, 4, 0, 0);
+
+INSERT INTO `mob_skill` VALUES (404,374,404,'Venom', 0, 10.0, 2000, 1500, 4, 0, 0);
+
+INSERT INTO `mob_skill` VALUES (62,375,401,'Somersault', 0, 7.0, 2000, 1500, 4, 0, 0);
+INSERT INTO `mob_skill` VALUES (403,375,403,'Cursed_Sphere', 2, 10.0, 2000, 1500, 4, 0, 0);
 -- Gigas
 INSERT INTO `mob_skill` VALUES (406,126,406,'Lightning_Roar', 4, 9.0, 2000, 1500, 4, 0, 0);
 INSERT INTO `mob_skill` VALUES (407,126,407,'Ice_Roar', 4, 9.0, 2000, 1500, 4, 0, 0);

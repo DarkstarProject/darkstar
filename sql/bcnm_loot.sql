@@ -421,6 +421,31 @@ INSERT INTO `bcnm_loot` VALUES ('11', '703', '563', '10');
 INSERT INTO `bcnm_loot` VALUES ('11', '1446', '296', '10');
 INSERT INTO `bcnm_loot` VALUES ('11', '831', '14', '10');
 INSERT INTO `bcnm_loot` VALUES ('11', '722', '141', '10');
+INSERT INTO `bcnm_loot` VALUES ('12', '846', '1000', '0'); -- LootID 12 needs 100% chance to drop 4k gil
+INSERT INTO `bcnm_loot` VALUES ('12', '1601', '1000', '1');
+INSERT INTO `bcnm_loot` VALUES ('12', '12486', '364', '2');
+INSERT INTO `bcnm_loot` VALUES ('12', '846', '636', '2'); -- Temp fix for Chance to get zero items (This item doesnt drop here)  ~63.6%
+INSERT INTO `bcnm_loot` VALUES ('12', '12400', '175', '3');
+INSERT INTO `bcnm_loot` VALUES ('12', '12399', '175', '3');
+INSERT INTO `bcnm_loot` VALUES ('12', '12395', '175', '3');
+INSERT INTO `bcnm_loot` VALUES ('12', '12390', '175', '3');
+INSERT INTO `bcnm_loot` VALUES ('12', '809', '100', '3');
+INSERT INTO `bcnm_loot` VALUES ('12', '795', '100', '3');
+INSERT INTO `bcnm_loot` VALUES ('12', '796', '100', '3');
+INSERT INTO `bcnm_loot` VALUES ('12', '13659', '250', '4');
+INSERT INTO `bcnm_loot` VALUES ('12', '13668', '250', '4');
+INSERT INTO `bcnm_loot` VALUES ('12', '13662', '250', '4');
+INSERT INTO `bcnm_loot` VALUES ('12', '13672', '250', '4');
+INSERT INTO `bcnm_loot` VALUES ('12', '4947', '70', '5');
+INSERT INTO `bcnm_loot` VALUES ('12', '5070', '70', '5');
+INSERT INTO `bcnm_loot` VALUES ('12', '17863', '150', '5');
+INSERT INTO `bcnm_loot` VALUES ('12', '799', '100', '5');
+INSERT INTO `bcnm_loot` VALUES ('12', '795', '100', '5');
+INSERT INTO `bcnm_loot` VALUES ('12', '796', '100', '5');
+INSERT INTO `bcnm_loot` VALUES ('12', '4868', '150', '5'); -- putting all 4 unkown groups in this collumn
+INSERT INTO `bcnm_loot` VALUES ('12', '4751', '100', '5');
+INSERT INTO `bcnm_loot` VALUES ('12', '690', '90', '5');
+INSERT INTO `bcnm_loot` VALUES ('12', '1602', '70', '5');
 INSERT INTO `bcnm_loot` VALUES ('14', '939', '50', '0'); --  Temp fix for Chance to get zero items (This item doesnt drop here)  ~5%
 INSERT INTO `bcnm_loot` VALUES ('14', '13254', '95', '0');
 INSERT INTO `bcnm_loot` VALUES ('14', '13253', '95', '0');
