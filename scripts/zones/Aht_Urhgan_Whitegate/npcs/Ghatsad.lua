@@ -363,18 +363,21 @@ function onEventFinish(player,csid,option)
 		local unlockedAttachments = player:getVar("PUP_AttachmentUnlock");
 		if (attachmentStatus == 8) then
 			player:unlockAttachment(8225);
+			player:unlockAttachment(8194);
 			player:setVar("PUP_AttachmentStatus", 0);
 			player:setVar("PUP_Attachments", attachments+1);
 			player:setVar("PUP_AttachmentUnlock", unlockedAttachments+2);
 			player:setVar("PUP_AttachmentReady", 0);
 		elseif (attachmentStatus == 9) then
 			player:unlockAttachment(8226);
+			player:unlockAttachment(8195);
 			player:setVar("PUP_AttachmentStatus", 0);
 			player:setVar("PUP_Attachments", attachments+1);
 			player:setVar("PUP_AttachmentUnlock", unlockedAttachments+4);
 			player:setVar("PUP_AttachmentReady", 0);
 		elseif (attachmentStatus == 10) then
 			player:unlockAttachment(8227);
+			player:unlockAttachment(8196);
 			player:setVar("PUP_AttachmentStatus", 0);
 			player:setVar("PUP_Attachments", attachments+1);
 			player:setVar("PUP_AttachmentUnlock", unlockedAttachments+8);
