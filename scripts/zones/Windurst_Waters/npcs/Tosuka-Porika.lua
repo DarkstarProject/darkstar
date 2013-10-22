@@ -14,6 +14,7 @@ require("scripts/globals/titles");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/zones/Windurst_Walls/TextIDs");
+require("scripts/globals/keyitems");
 
 -----------------------------------
 -- onTrade Action
@@ -74,6 +75,13 @@ function onTrigger(player,npc)
 		player:startEvent(0x019c);
 	elseif(chasingStatus == QUEST_ACCEPTED) then
 		player:startEvent(0x0196); --  Add folllow up cutscene
+		-- Windurst Mission 7-1 --
+	elseif(player:getCurrentMission(WINDURST) == THE_SIXTH_MINISTRY and player:getVar("MissionStatus") == 0) then
+		player:startEvent(0x02cb,0,OPTISTERY_RING);
+	elseif(player:getCurrentMission(WINDURST) == THE_SIXTH_MINISTRY and player:getVar("MissionStatus") == 1) then
+		player:startEvent(0x02cc,0,OPTISTERY_RING);
+	elseif(player:getCurrentMission(WINDURST) == THE_SIXTH_MINISTRY and player:getVar("MissionStatus") == 2) then
+		player:startEvent(0x02d4);
 	else
 		player:startEvent(0x0172); -- Standard Conversation
 	end
@@ -110,6 +118,13 @@ function onEventFinish(player,csid,option)
 	    player:addQuest(WINDURST,CHASING_TALES);
 	elseif(csid ==0x036B)then
 		player:setVar("MEMORIES_OF_A_MAIDEN_Status",11);	
+	elseif(csid == 0x02cb) then
+		player:addKeyItem(OPTISTERY_RING);
+		player:messageSpecial(KEYITEM_OBTAINED,OPTISTERY_RING);
+		player:setVar("MissionStatus",1);
+	elseif(csid == 0x02d4) then
+		finishMissionTimeline(player,3,csid,option);
+		player:setVar("Windurst_7-1Kills",0);
 	end
 	
 end;
