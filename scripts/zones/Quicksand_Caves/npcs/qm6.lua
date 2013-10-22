@@ -24,9 +24,9 @@ function onTrigger(player,npc)
 		if (timesincelastclear < QM_RESET_TIME) then
 			player:startEvent(0x0B);
 		elseif (GetMobAction(CENTURIO_BASTOK) == 0) and (GetMobAction(TRIARIUS_BASTOK) == 0) and (GetMobAction(PRINCEPS_BASTOK) == 0) then
-			SpawnMob(CENTURIO_BASTOK, 0, 0):updateEnmity(player); -- Centurio IV-VII
-			SpawnMob(TRIARIUS_BASTOK, 0, 0):updateEnmity(player); -- Triarius IV-XIV
-			SpawnMob(PRINCEPS_BASTOK, 0, 0):updateEnmity(player); -- Princeps IV-XLV
+			SpawnMob(CENTURIO_BASTOK, 0):updateEnmity(player); -- Centurio IV-VII
+			SpawnMob(TRIARIUS_BASTOK, 0):updateEnmity(player); -- Triarius IV-XIV
+			SpawnMob(PRINCEPS_BASTOK, 0):updateEnmity(player); -- Princeps IV-XLV
 			player:messageSpecial(SENSE_OF_FOREBODING); -- sense of foreboding
 			npc:setStatus(2); -- Disappear
 			SetServerVariable("BastokFight8_1", 3);
