@@ -139,7 +139,7 @@ function onHalloweenTrade(player,trade,npc)
 		for itemInList = 1, table.getn(treats_table)  do
 
 			if(item == treats_table[itemInList]) then
-
+				local itemReward = halloweenItemsCheck(player);
 				local varName = "harvestFestTreats";
 				local harvestFestTreats;
 				if(itemInList < 32) then -- The size of the list is too big for int 32 used that stores the bit mask, as such there are two lists
@@ -151,73 +151,72 @@ function onHalloweenTrade(player,trade,npc)
 					harvestFestTreats = player:getVar(varName); --  this is the second list
 					itemInList = itemInList - 32;
 				end
+				
+				local AlreadyTradedChk = player:getMaskBit(harvestFestTreats,itemInList)
+				if(itemReward ~= 0 and player:getFreeSlotsCount() >= 1 and math.random(1,3) < 2) then -- Math.random added so you have 33% chance on getting item
 
+					player:messageSpecial(HERE_TAKE_THIS);
+					player:addItem(itemReward);
+					player:messageSpecial(ITEM_OBTAINED,itemReward);
 
-				if(player:getMaskBit(harvestFestTreats,itemInList) == false) then
-
-					local itemReward = halloweenItemsCheck(player);
+				elseif(player:canUseCostume() and AlreadyTradedChk == false) then
+				-- Other neat looking halloween type costumes
+				-- two dragon skins: @420/421
+				-- @422 dancing weapon
+				-- @ 433/432 golem
+				-- 265 dark eye, 266 Giant version
+				-- 290 dark bombs
+				-- 301 dark mandy 
+				-- 313 black spiders
+				-- 488 gob
+				-- 531 - 548 shade
+				-- 564/579 skele
 					
-					if(itemReward ~= 0 and player:getFreeSlotsCount() >= 1 and math.random(1,3) < 2) then -- Math.random added so you have 33% chance on getting item
+					-- Possible costume values:
+					Yagudo = math.random(580,607);
+					Quadav = math.random(644,671);
+					Shade = math.random(535,538);
+					Orc = math.random(612,639);
+					Ghost = 368;
+					Hound = 365;
+					Skeleton = 564;
+					Dark_Stalker = math.random(531,534);
+					
+					halloween_costume_list = {Quadav,Orc,Yagudo,Shade,Ghost,Hound,Skeleton,Dark_Stalker}; 
 
-						player:messageSpecial(HERE_TAKE_THIS);
-						player:addItem(itemReward);
-						player:messageSpecial(ITEM_OBTAINED,itemReward);
+					local costumePicked = halloween_costume_list[math.random(1,table.getn(halloween_costume_list))]; -- will randomly pick one of the costumes in the list
+					player:addStatusEffect(EFFECT_COSTUME,costumePicked,0,3600);
 
-					elseif(player:canUseCostume()) then
-					-- Other neat looking halloween type costumes
-					-- two dragon skins: @420/421
-					-- @422 dancing weapon
-					-- @ 433/432 golem
-					-- 265 dark eye, 266 Giant version
-					-- 290 dark bombs
-					-- 301 dark mandy 
-					-- 313 black spiders
-					-- 488 gob
-					-- 531 - 548 shade
-					-- 564/579 skele
-						
-						-- Possible costume values:
-						Yagudo = math.random(580,607);
-						Quadav = math.random(644,671);
-						Shade = math.random(535,538);
-						Orc = math.random(612,639);
-						Ghost = 368;
-						Hound = 365;
-						Skeleton = 564;
-						Dark_Stalker = math.random(531,534);
-						
-						halloween_costume_list = {Quadav,Orc,Yagudo,Shade,Ghost,Hound,Skeleton,Dark_Stalker}; 
+					-- pitchForkCostumeList defines the special costumes per zone that can trigger the pitch fork requirement
+					-- zone, costumeID
+					pitchForkCostumeList = {234,Shade,Skeleton, -- Bastok mines 
+											235,Hound,Ghost,      -- Bastok Markets
+											230,Ghost,Skeleton, -- Southern Sandoria
+											231,Hound,Skeleton,   -- Northern Sandoria
+											241,Ghost,Shade,    -- Windurst Woods
+											238,Shade,Hound};     -- Windurst Woods
 
-						local costumePicked = halloween_costume_list[math.random(1,table.getn(halloween_costume_list))]; -- will randomly pick one of the costumes in the list
-						player:addStatusEffect(EFFECT_COSTUME,costumePicked,0,3600);
+					for zi = 1, table.getn(pitchForkCostumeList), 3 do
 
-						-- pitchForkCostumeList defines the special costumes per zone that can trigger the pitch fork requirement
-						-- zone, costumeID
-						pitchForkCostumeList = {234,Shade,Skeleton, -- Bastok mines 
-												235,Hound,Ghost,      -- Bastok Markets
-												230,Ghost,Skeleton, -- Southern Sandoria
-												231,Hound,Skeleton,   -- Northern Sandoria
-												241,Ghost,Shade,    -- Windurst Woods
-												238,Shade,Hound};     -- Windurst Woods
+						if(zone == pitchForkCostumeList[zi] and (costumePicked == pitchForkCostumeList[zi + 1] or zone == pitchForkCostumeList[zi] and costumePicked == pitchForkCostumeList[zi + 2])) then -- Gives special hint for pitch fork costume
+							player:messageSpecial(IF_YOU_WEAR_THIS);
 
-						for zi = 1, table.getn(pitchForkCostumeList), 3 do
-
-							if(zone == pitchForkCostumeList[zi] and (costumePicked == pitchForkCostumeList[zi + 1] or zone == pitchForkCostumeList[zi] and costumePicked == pitchForkCostumeList[zi + 2])) then -- Gives special hint for pitch fork costume
-								player:messageSpecial(IF_YOU_WEAR_THIS);
-
-							elseif(zi == 16) then
-								player:messageSpecial(THANK_YOU_TREAT);	
-
-							end
+						elseif(zi == 16) then
+							player:messageSpecial(THANK_YOU_TREAT);	
 
 						end
-					else
-						player:messageSpecial(THANK_YOU);
-					end
-				end
-				player:tradeComplete();
 
-				player:setMaskBit(harvestFestTreats,varName,itemInList,true);
+					end
+				else
+					player:messageSpecial(THANK_YOU);
+				end
+				
+				if (AlreadyTradedChk == false) then
+					player:setMaskBit(harvestFestTreats,varName,itemInList,true);
+				end
+				
+				player:tradeComplete();
+				
 				break;
 			end
 		end

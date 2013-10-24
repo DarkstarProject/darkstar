@@ -7,13 +7,15 @@
 require("scripts/globals/shop");
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 require("scripts/zones/Bastok_Mines/TextIDs");
+require("scripts/globals/harvest_festivals");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+	onHalloweenTrade(player,trade,npc)
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -38,7 +40,7 @@ function onTrigger(player,npc)
     }
     showShop(player, STATIC, stock);
 
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
