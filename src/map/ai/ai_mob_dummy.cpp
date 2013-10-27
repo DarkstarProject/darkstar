@@ -1938,7 +1938,7 @@ void CAIMobDummy::SetupEngage()
 	m_PPathFind->Clear();
 
 	// drg shouldn't use jump right away
-	if(m_PMob->GetMJob() == JOB_DRG)
+	if(m_PMob->GetMJob() == JOB_DRG && m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL) != 0)
 	{
 		m_LastSpecialTime = m_Tick - rand()%m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL) + 5000;
 	}
