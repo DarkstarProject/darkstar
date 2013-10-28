@@ -14,6 +14,7 @@ function OnMobSkillCheck(target,mob,skill)
     if(mob:getMainJob() ~= JOB_WAR) then
     	return 0;
     end
+	return 1;
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
