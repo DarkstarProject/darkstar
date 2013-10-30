@@ -72,10 +72,14 @@ function onEventFinish(player,csid,option)
 
 	if(csid == 0x0245) then
 		if(player:getCurrentMission(BASTOK) == THE_EMISSARY) then
-			player:setVar("MissionStatus",2);
-			player:delKeyItem(LETTER_TO_THE_CONSULS_BASTOK);
-		else
-			player:setVar("MissionStatus",7.5);
+			if(player:getVar("MissionStatus") < 2) then
+				player:setVar("MissionStatus",2);
+				player:delKeyItem(LETTER_TO_THE_CONSULS_BASTOK);
+				
+			elseif(player:getVar("MissionStatus") == 7) then
+				player:setVar("MissionStatus",7.5);
+				
+			end
 		end
 	end
 	
