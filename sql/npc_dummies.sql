@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `npc_dummies` (
 
 INSERT INTO `npc_dummies` VALUES('17187457');
 INSERT INTO `npc_dummies` VALUES('17784896');
-INSERT INTO `npc_dummies` VALUES('17461503');
+INSERT INTO `npc_dummies` VALUES('17461504');
 INSERT INTO `npc_dummies` VALUES('17387987');
 INSERT INTO `npc_dummies` VALUES('17801294');
 INSERT INTO `npc_dummies` VALUES('17780794');
