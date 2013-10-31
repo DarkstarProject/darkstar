@@ -1,6 +1,6 @@
 -----------------------------------------
 --
---   Mysterious Light
+--   Magnetite Cloud
 --
 -----------------------------------------
 
@@ -29,7 +29,7 @@ function onSpellCast(caster,target,spell)
 	if(damage > 0 and resist > 0.0625) then
 		local typeEffect = EFFECT_WEIGHT;
 		target:delStatusEffect(typeEffect);
-		target:addStatusEffect(typeEffect,4,0,getBlueEffectDuration(caster,resist,typeEffect));
+		target:addStatusEffect(typeEffect,25,0,getBlueEffectDuration(caster,resist,typeEffect));
 	end
 	
     return damage;

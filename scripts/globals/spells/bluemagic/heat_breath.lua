@@ -1,17 +1,10 @@
------------------------------------------
---
---   Mind Blast
---
------------------------------------------
-
+---------------------------------------------
+--  Heat Breath
+--------------------------------------------- 
 require("scripts/globals/magic");
 require("scripts/globals/status");
 require("scripts/globals/bluemagic");
-
------------------------------------------
--- OnSpellCast
------------------------------------------
-
+---------------------------------------------
 function OnMagicCastingCheck(caster,target,spell)
 	return 0;
 end;
@@ -19,7 +12,7 @@ end;
 function onSpellCast(caster,target,spell)
     local params = {};
     -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
-	local multi = 7.08;
+	local multi = 6.38;
 	if(caster:hasStatusEffect(EFFECT_AZURE_LORE)) then
 		multi = multi + 0.50;
 	end
@@ -29,12 +22,5 @@ function onSpellCast(caster,target,spell)
     damage = BlueFinalAdjustments(caster, target, spell, damage, params);
 
 	local resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT) - target:getStat(MOD_INT),BLUE_SKILL,1.0);
-
-	if(damage > 0 and resist > 0.3) then
-		local typeEffect = EFFECT_PARALYSIS;
-		target:delStatusEffect(typeEffect); -- Wiki says it can overwrite itself or other binds
-		target:addStatusEffect(typeEffect,52,0,getBlueEffectDuration(caster,resist,typeEffect)); -- No info for power on the internet, static to 12 for now.
-	end
-
-    return damage;
+	return damage;
 end;
