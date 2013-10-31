@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Windurst Waters
 -- NPC:  Leepe-Hoppe
--- Involved in Mission 1-3
+-- Involved in Mission 1-3, Mission 7-2
 -- @pos 13 -9 -197 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
@@ -76,7 +76,14 @@ function onTrigger(player,npc)
 			player:startEvent(0x034f,0,1125); -- Yes, this will indefinitely replace his standard dialogue!
 		end
 	---------------------------
-		
+	elseif(player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 0) then
+		player:startEvent(0x02DE);
+	elseif(player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 1) then
+		player:startEvent(0x02DF);
+	elseif(player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 2) then
+		player:startEvent(0x02E3);
+	elseif(player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 5 and player:hasKeyItem(BOOK_OF_THE_GODS)) then
+		player:startEvent(0x02E6);
 	else
 		player:startEvent(0x0159); -- Standard Dialogue?
 	end
@@ -192,6 +199,10 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0350) then
 		player:addKeyItem(MOON_BAUBLE);
 		player:messageSpecial(KEYITEM_OBTAINED,MOON_BAUBLE);
+	elseif(csid == 0x02DE) then
+		player:setVar("MissionStatus",1);
+	elseif(csid == 0x02E6) then
+		finishMissionTimeline(player,3,csid,option);
 	end
 	
 end;

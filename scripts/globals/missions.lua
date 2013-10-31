@@ -91,10 +91,10 @@ A_NEW_JOURNEY                 = 12; -- ± --
 MAGICITE                      = 13; -- ± --
 THE_FINAL_SEAL                = 14; -- ± --
 THE_SHADOW_AWAITS             = 15; -- ± --
-FULL_MOON_FOUNTAIN            = 16;
-SAINTLY_INVITATION            = 17;
-THE_SIXTH_MINISTRY            = 18;
-AWAKENING_OF_THE_GODS         = 19;
+FULL_MOON_FOUNTAIN            = 16; -- ± --
+SAINTLY_INVITATION            = 17; -- ± --
+THE_SIXTH_MINISTRY            = 18; -- ± --
+AWAKENING_OF_THE_GODS         = 19; -- ± --
 VAIN                          = 20;
 THE_JESTER_WHO_D_BE_KING      = 21;
 DOLL_OF_THE_DEAD              = 22;
@@ -912,7 +912,9 @@ function finishMissionTimeline(player,guard,csid,option)
 				14,{0x00C0,0},{0,0},	 {0,0},		{0,0},	   {{14,0},{9,73},{5,600},{12}}, 							-- MISSION 5-1 (Finish (Star Sibyl))
 				15,{0x00D8,0},{0,0},	 {0,0},		{0,0},	   {{11,6},{14,0},{9,74},{8,20000},{6},{12}}, 				-- MISSION 5-2 (Finish (Star Sibyl))
 				16,{0,0},	  {0,0},	 {0x0032,0},{0,0},	   {{14,0},{5,650},{0,0},{0,0},{0,0},{12}},					-- MISSION 6-1 (Finish (Zone: Full Moon Fountain))
-				17,{0,0},	  {0,0},	 {0x0138,0},{0,0},	   {{14,0},{11,7},{8,40000},{6},{0,0},{12}}					-- MISSION 6-2 (Finish (Star Sibyl))
+				17,{0,0},	  {0,0},	 {0x0138,0},{0,0},	   {{14,0},{11,7},{8,40000},{6},{0,0},{12}},				-- MISSION 6-2 (Finish (Star Sibyl))
+				18,{0,0},	  {0,0},	 {0x02d4,0},{0,0},	   {{14,0},{5,700},{10,251},{0,0},{0,0},{12}},				-- MISSION 7-1 (Finish (Tosuka-Porika))
+				19,{0,0},	  {0,0},	 {0x02E6,0},{0,0},	   {{14,0},{11,8},{8,60000},{6},{0,0},{12}}					-- MISSION 7-2 (Finish (Leepe-Hoppe))
  						};
 		end
 	end

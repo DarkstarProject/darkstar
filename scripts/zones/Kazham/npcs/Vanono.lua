@@ -9,7 +9,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/globals/missions");
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -22,7 +22,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0106);
+
+	if(player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 3) then
+		player:startEvent(0x0108);
+	elseif(player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") > 3) then
+		player:startEvent(0x010C);
+	else
+		player:startEvent(0x0106);
+	end
+	
 end;
 
 -----------------------------------
@@ -41,5 +49,10 @@ end;
 function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
+	
+	if(csid == 0x0108) then
+		player:setVar("MissionStatus",4);
+	end
+	
 end;
 

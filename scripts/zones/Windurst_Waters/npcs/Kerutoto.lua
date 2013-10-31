@@ -8,7 +8,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/globals/missions");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
@@ -60,11 +60,24 @@ function onTrigger(player,npc)
 	local needZone = player:needToZone();
 	local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
 	local waking_dreams = player:getQuestStatus(WINDURST,WAKING_DREAMS)
-	 if(player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Ulmia_s_Path") == 3)then  
+	
+	-- Awakening of the Gods --
+	if(player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 0) then
+		player:startEvent(0x02E1);
+	elseif(player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 1) then
+		player:startEvent(0x02E0);
+	elseif(player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 2) then
+		player:startEvent(0x02E2);
+		
+	-- Three Paths --
+	elseif(player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Ulmia_s_Path") == 3)then  
 	    player:startEvent(0x036c);
+		
+	-- Waking Dreams --
 	elseif(player:hasKeyItem(VIAL_OF_DREAM_INCENSE)==false and ((player:hasCompletedMission(COP,DARKNESS_NAMED) and  waking_dreams == QUEST_AVAILABLE ) or(waking_dreams  == QUEST_COMPLETED and realday ~= player:getVar("Darkness_Named_date"))))then
 	    player:addQuest(WINDURST,WAKING_DREAMS);
 	    player:startEvent(0x0396);--918
+
     elseif(player:hasKeyItem(WHISPER_OF_DREAMS)==true)then
 		local availRewards = 0
 		if(player:hasItem(17599)) then availRewards = availRewards + 1; end -- Diabolos's Pole
@@ -75,6 +88,8 @@ function onTrigger(player,npc)
 		else availRewards = availRewards + 16 -- Gil
 		end	
 		player:startEvent(0x0398,17599,14814,15557,15516,0,0,0,availRewards);
+		
+	-- Blue Ribbon Blues --	
 	elseif(BlueRibbonBlues == QUEST_COMPLETED and needZone) then
 		player:startEvent(0x016b);--363
 	elseif(BlueRibbonBlues == QUEST_ACCEPTED) then
@@ -109,7 +124,7 @@ function onTrigger(player,npc)
 	elseif(BlueRibbonBlues == QUEST_AVAILABLE and player:getQuestStatus(WINDURST,WATER_WAY_TO_GO) == QUEST_COMPLETED and player:getFameLevel(WINDURST) >= 5) then
 		player:startEvent(0x0165);
 		
-		
+	-- Food for Thought --
 	elseif(FoodForThought == QUEST_AVAILABLE) then
 		if(OhbiruFood == 1 and KerutotoFood ~= 256) then -- Player knows the researchers are hungry and quest not refused
 			player:startEvent(0x0139,0,4371); -- Offered Quest 1 (Including Order ifYES)
@@ -126,6 +141,7 @@ function onTrigger(player,npc)
 		end
 	elseif(FoodForThought == QUEST_COMPLETED and needZone) then
 		player:startEvent(0x0130); -- NPC is sleeping but feels full (post Food for Thought)
+		
 	else
 		player:startEvent(0x0132); -- Standard Conversation 
 	end
@@ -240,17 +256,9 @@ function onEventFinish(player,csid,option)
 		 elseif ( option ~= 5 and  (( item == 0 and  addspell==0 ) or (item > 0 and player:getFreeSlotsCount()==0) ) )then		
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,item);
 		end
-
+		elseif(csid == 0x02E0) then
+			player:setVar("MissionStatus",2);
 		
 	end
 	
 end;
-
-
-			
-
-
-
-	
-
-		
