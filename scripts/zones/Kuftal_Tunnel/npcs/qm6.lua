@@ -23,19 +23,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	local missionStatus = player:getVar("MissionStatus");
-
-	if(player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER and player:getVar("MissionStatus") == 1) then
-		if(GetMobAction(17489928) == 0 and GetMobAction(17489927) == 0 and GetMobAction(17489926) == 0) then
-			if(player:getVar("Mission8-2MobKilled") >= 1) then
-				player:setVar("Mission8-2MobKilled",0);
+	
+	if(player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER and player:getVar("MissionStatus") == 3) then
 				player:startEvent(0x00D);
-			else				
-				SpawnMob(17489926, 120):updateEnmity(player);
-				SpawnMob(17489927, 120):updateEnmity(player);
-				SpawnMob(17489928, 120):updateEnmity(player);
-			end
-		end
 	else
 		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 	end
@@ -61,8 +51,7 @@ function onEventFinish(player,csid,option)
 -- printf("RESULT: %u",option);
 	
 	if(csid == 0x00D) then
-		player:setVar("MissionStatus",2);
-		player:setVar("Mission8-2WoodFell",0);
+		player:setVar("MissionStatus",4);
 		player:addKeyItem(OLD_PIECE_OF_WOOD);
 		player:messageSpecial(KEYITEM_OBTAINED,OLD_PIECE_OF_WOOD);
 	end

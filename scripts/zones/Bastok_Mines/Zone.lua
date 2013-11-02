@@ -8,7 +8,8 @@ package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 require("scripts/globals/server");
 require("scripts/globals/settings");
 require("scripts/zones/Bastok_Mines/TextIDs");
-
+require("scripts/globals/missions");
+require("scripts/globals/titles");
 -----------------------------------
 -- onInitialize
 -----------------------------------
@@ -38,7 +39,13 @@ function onZoneIn(player,prevZone)
 			cs = 0x7534;
 		end	
 		player:setVar("PlayerMainJob",0);	
-	end		
+	end	
+	if(prevZone == 172) then
+		if(player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER and player:getVar("MissionStatus") == 5) then
+			cs = 0x00b0
+		end
+	end -- this if was leaking into the other functions
+		
 	return cs;		
 end;			
 
@@ -70,5 +77,7 @@ function onEventFinish(player,csid,option)
 	elseif (csid == 0x7534 and option == 0) then	
 		player:setHomePoint();
 		player:messageSpecial(HOMEPOINT_SET);
-	end	
-end;		
+	elseif(csid == 0x00b0) then
+		finishMissionTimeline(player,1,csid,option);
+		end -- you're not useing the script i sent youuu
+end;
