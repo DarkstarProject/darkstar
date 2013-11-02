@@ -295,10 +295,10 @@ uint16 CCharEntity::addTP(float tp)
 {
 	float oldtp = health.tp;
 	tp = CBattleEntity::addTP(tp);
-	if ((oldtp < 100 && health.tp >= 100 ) || (oldtp >= 100 && health.tp < 100))
-	{
+//	if ((oldtp < 100 && health.tp >= 100 ) || (oldtp >= 100 && health.tp < 100))
+//	{
 		PLatentEffectContainer->CheckLatentsTP(health.tp);
-	}
+//	}
 	return abs(tp);
 }
 
