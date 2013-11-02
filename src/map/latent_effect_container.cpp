@@ -194,8 +194,8 @@ void CLatentEffectContainer::CheckLatentsTP(float tp)
 	{
 		switch(m_LatentEffectList.at(i)->GetConditionsID())
 		{
-			case LATENT_TP_UNDER_100:
-				if (tp < 100)
+			case LATENT_TP_UNDER:
+				if (m_POwner->health.tp < m_LatentEffectList.at(i)->GetConditionsValue())
 				{
 					m_LatentEffectList.at(i)->Activate();
 				}
@@ -204,8 +204,8 @@ void CLatentEffectContainer::CheckLatentsTP(float tp)
 					m_LatentEffectList.at(i)->Deactivate();
 				}
 				break;
-			case LATENT_TP_OVER_100:
-				if (tp >= 100)
+			case LATENT_TP_OVER:
+				if (m_POwner->health.tp > m_LatentEffectList.at(i)->GetConditionsValue())
 				{
 					m_LatentEffectList.at(i)->Activate();
 				}
@@ -363,8 +363,8 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
 						m_LatentEffectList.at(i)->Deactivate();
 					}
 					break;
-				case LATENT_TP_UNDER_100:
-					if (m_POwner->health.tp < 100)
+				case LATENT_TP_UNDER:
+					if (m_POwner->health.tp < m_LatentEffectList.at(i)->GetConditionsValue())
 					{
 						m_LatentEffectList.at(i)->Activate();
 					}
@@ -373,8 +373,8 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
 						m_LatentEffectList.at(i)->Deactivate();
 					}
 					break;
-				case LATENT_TP_OVER_100:
-					if (m_POwner->health.tp >= 100)
+				case LATENT_TP_OVER:
+					if (m_POwner->health.tp > m_LatentEffectList.at(i)->GetConditionsValue())
 					{
 						m_LatentEffectList.at(i)->Activate();
 					}

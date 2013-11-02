@@ -37,8 +37,8 @@ enum LATENT
 	LATENT_MP_UNDER_PERCENT			= 4,  //mp less than or equal to % - PARAM: MP PERCENT
 	LATENT_MP_UNDER					= 5,  //mp less than # - PARAM: MP #
 	LATENT_MP_UNDER_VISIBLE_GEAR	= 45, //mp less than or equal to %, calculated using MP bonuses from visible gear only
-	LATENT_TP_UNDER_100				= 6,  //tp under 100 and during WS - PARAM: NONE
-	LATENT_TP_OVER_100				= 7,  //tp over 100 - PARAM: NONE
+	LATENT_TP_UNDER					= 6,  //tp under # and during WS - PARAM: TP VALUE
+	LATENT_TP_OVER					= 7,  //tp over # - PARAM: TP VALUE
 	LATENT_SUBJOB					= 8,  //subjob - PARAM: JOBTYPE
 	LATENT_PET_ID					= 9,  //pettype - PARAM: PETID
 	LATENT_WEAPON_DRAWN				= 10, //weapon drawn
