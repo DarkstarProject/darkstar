@@ -15,12 +15,12 @@ require("scripts/globals/weather");
 -- onInitialize
 -----------------------------------
 
-function onInitialize(zone)		
-end;		
+function onInitialize(zone)
+end;
 
------------------------------------		
--- onZoneIn		
------------------------------------		
+-----------------------------------
+-- onZoneIn
+-----------------------------------
 
 function onZoneIn( player, prevZone)
 
@@ -33,45 +33,45 @@ function onZoneIn( player, prevZone)
 	if( triggerLightCutscene( player)) then -- Quest: I Can Hear A Rainbow
 		cs = 0x0003;
 	end
-	
-	return cs;		
-end;			
 
------------------------------------			
--- onRegionEnter			
------------------------------------			
+	return cs;
+end;
 
-function onRegionEnter( player, region)			
-end;			
+-----------------------------------
+-- onRegionEnter
+-----------------------------------
 
------------------------------------			
--- onEventUpdate			
------------------------------------			
+function onRegionEnter( player, region)
+end;
 
-function onEventUpdate( player, csid, option)			
---printf("CSID: %u",csid);		
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
+
+function onEventUpdate( player, csid, option)
+--printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if( csid == 0x0003) then		
+	if( csid == 0x0003) then
 		lightCutsceneUpdate( player);  -- Quest: I Can Hear A Rainbow
-	end		
-end;			
+	end
+end;
 
------------------------------------			
--- onEventFinish			
------------------------------------			
+-----------------------------------
+-- onEventFinish
+-----------------------------------
 
-function onEventFinish( player, csid, option)			
---printf("CSID: %u",csid);		
+function onEventFinish( player, csid, option)
+--printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if( csid == 0x0003) then		
+	if( csid == 0x0003) then
 		lightCutsceneFinish( player);  -- Quest: I Can Hear A Rainbow
-	end		
+	end
 end;
 
 function OnZoneWeatherChange(weather)
-	local qm1 = GetNPCByID(17199692); -- Quest: An Empty Vessel
+	local qm1 = GetNPCByID(17199693); -- Quest: An Empty Vessel
 	if(weather == WEATHER_DUST_STORM) then
 		qm1:setStatus(STATUS_NORMAL);
 	else
