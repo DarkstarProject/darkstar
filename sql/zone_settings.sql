@@ -312,13 +312,13 @@ INSERT INTO `zone_settings` VALUES (263,0,0016777343,54230,'Yorcia_Weald',61,0,0
 INSERT INTO `zone_settings` VALUES (264,0,0016777343,54230,'Yorcia_Weald_U',61,0,0,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (265,0,0016777343,54230,'Morimar_Basalt_Fields',60,0,0,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (266,0,0016777343,54230,'Marjami_Ravine',60,0,0,0,0.00,0,0);
-INSERT INTO `zone_settings` VALUES (267,0,0016777343,54230,'noname',0,0,0,0,0.00,0,0);
+INSERT INTO `zone_settings` VALUES (267,0,0016777343,54230,'Kamihr_Drifts',72,0,0,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (268,0,0016777343,54230,'Sih_Gates',0,0,0,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (269,0,0016777343,54230,'Moh_Gates',0,0,0,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (270,0,0016777343,54230,'Cirdas_Caverns',0,0,0,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (271,0,0016777343,54230,'Cirdas_Caverns_U',0,0,0,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (272,0,0016777343,54230,'Dho_Gates',0,0,0,0,0.00,0,0);
-INSERT INTO `zone_settings` VALUES (273,0,0016777343,54230,'noname',0,0,0,0,0.00,0,0);
+INSERT INTO `zone_settings` VALUES (273,0,0016777343,54230,'Woh_Gates',0,0,0,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (274,0,0016777343,54230,'noname',0,0,0,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (275,0,0016777343,54230,'noname',0,0,0,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (276,0,0016777343,54230,'noname',0,0,0,0,0.00,0,0);
