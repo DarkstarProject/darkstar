@@ -16,6 +16,8 @@ require("scripts/zones/Bastok_Mines/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+
+--	player:startEvent(0x0202); -- event that follows egg trading
 end;
 
 -----------------------------------
@@ -23,7 +25,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0xff02);
+
+	player:startEvent(0x01fc);
 end;
 
 -----------------------------------
@@ -43,4 +46,3 @@ function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
 end;
-

@@ -79,17 +79,17 @@ function SetFieldManual()
 
 	local FieldManuals  =
 	{
-        17187512,17187513,17191494,17191495, -- West Ronfaure 2, East Ronfaure 2
+        17187511,17187512,17191493,17191494, -- West Ronfaure 2, East Ronfaure 2
         17195671,17195672,17199745,17199746, -- La Theine 2, Valkurm 2
         17199747,17203877,17203878,17207859, -- Valkurm 1, Jugner 2, Batallia 1
         17207860,17212073,17212074,17212075, -- Batallia 1, North Gustaberg 3
         17216141,17216142,17220159,17220160, -- South Gustaberg 2, Konschtat 2
         17224345,17224346,17228369,17228370, -- Pashhow 2, Rolanberry 2
         17232273,17232274,17232275,17232276, -- Beaucedine all 4
-        17236337,17236338,17240508,17240509, -- Xarcabard 2, Cape Terrigan 2
-        17244645,17244646,17244647,17248815, -- Eastern Altepa 3, West Sarutabaruta 1
-        17248816,17248817,17253023,17253024, -- West Sarutabaruta 2, East Sarutabaruta 2
-        17253025,17257068,17257069,17257070, -- East Sarutabaruta 1, Tahrongi 3
+        17236337,17236338,17240507,17240508, -- Xarcabard 2, Cape Teriggan 2
+        17244645,17244646,17244647,17248814, -- Eastern Altepa 3, West Sarutabaruta 1
+        17248815,17248816,17253023,17253024, -- West Sarutabaruta 2, East Sarutabaruta 2
+        17253025,17257067,17257068,17257069, -- East Sarutabaruta 1, Tahrongi 3
         17261192,17261193,17265285,17265286, -- Buburimu 2, Meriphataud Mountains 2
         17265287,17269254,17269255,17273411, -- Meriphataud Mountains 1, Sauromugue 2, Zi'Tah 1
         17273412,17277203,17277204,17281639, -- Zi'Tah 1, Ro'Maeve 2, Yuhtunga Jungle 1
@@ -176,7 +176,7 @@ end;
 function SetTreasureSpawns()
    local chests  =
    {
-       16814554, -- PsoXja
+       16814554, -- Pso'Xja
        16822524, -- Oldton Movalpolos
        16892176, -- Sacrarium
        17355006, -- Fort Ghelsba
@@ -191,24 +191,24 @@ function SetTreasureSpawns()
        17436991, -- Castle Zvahl Baileys
        17441082, -- Castle Zvahl Keep
        17498609, -- Sea Serpent Grotto
-       17555948, -- King Ranperres Tomb
+       17555948, -- King Ranperre's Tomb
        17559918, -- Dangruf Wadi
        17563908, -- Inner Horutoto Ruins
-       17568186, -- Ordelles Caves
+       17568186, -- Ordelle's Caves
        17572283, -- Outer Horutoto Ruins
        17576351, -- The Eldieme Necropolis
        17580397, -- Gusgen Mines
-       17584469, -- Crawlers Nest
+       17584469, -- Crawler's Nest
        17588767, -- Maze of Shakhrami
-       17596803, -- Garliage Citadel
-       17613220, -- FeiYin
+       17596803, -- Garlaige Citadel
+       17613220, -- Fei'Yin
        17649890  -- Labyrinth of Onzozo
    }
 
    local coffers  =
    {
        16826620, -- Newton Movalpolos
-       17310019, -- RuAun Gardens
+       17310019, -- Ru'Aun Gardens
        17379837, -- Beadeaux
        17391843, -- Monastic Cavern
        17396205, -- Castle Oztroja
@@ -219,11 +219,11 @@ function SetTreasureSpawns()
        17469829, -- Toraimarai Canal
        17490294, -- Kuftal Tunnel
        17498610, -- Sea Serpent Grotto
-       17502692, -- VeLugannon Palace
+       17502692, -- Ve'Lugannon Palace
        17576352, -- The Eldieme Necropolis
-       17584470, -- Crawlers Nest
-       17596804, -- Garliage Citadel
-       17617214, -- Ifrits Cauldron
+       17584470, -- Crawler's Nest
+       17596804, -- Garlaige Citadel
+       17617214, -- Ifrit's Cauldron
        17629729  -- Quicksand Caves
    }
 

@@ -507,7 +507,7 @@ function toOutpost(player,option)
 	-- Derfland
 	elseif(option == 9) then
 		player:setPos(465, 24 , 422, 29, 109); 
-	-- Sarutabatura
+	-- Sarutabaruta
 	elseif(option == 10) then
 		player:setPos(-15, -13 , 318, 128, 115); 
 	-- Kolshushu
@@ -525,7 +525,7 @@ function toOutpost(player,option)
 	-- Qufim Island
 	elseif(option == 15) then
 		player:setPos(-246, -20 , 301, 192, 126); 
-	-- Lil'Telor
+	-- Li'Telor
 	elseif(option == 16) then
 		player:setPos(-38, 0, -140, 69, 121); 
 	-- Kuzotz
@@ -540,7 +540,7 @@ function toOutpost(player,option)
 	-- Elshimo Uplands
 	elseif(option == 20) then
 		player:setPos(203, 0, -82, 36, 124); 
-	-- Tulia ?!
+	-- Tu'Lia ?!
 	elseif(option == 21) then
 		player:setPos(4, -54, -600, 192, 130); 
 	-- Tavnazia
@@ -601,25 +601,25 @@ switch (region): caseof {
 
 	npc  = {
 	--
-		17187488,SANDORIA,	-- Doladepaiton, R.K.
-		17187495,SANDORIA,	-- Ballie, R.K.
-		17187491,SANDORIA,	-- Flag 
-		17187499,SANDORIA,	-- Flag
+		17187487,SANDORIA,	-- Doladepaiton, R.K.
+		17187494,SANDORIA,	-- Ballie, R.K.
+		17187490,SANDORIA,	-- Flag 
+		17187498,SANDORIA,	-- Flag
 	--
-		17187489,BASTOK,	-- Yoshihiro, I.M.
-		17187496,BASTOK,	-- Molting Moth, I.M.
-		17187492,BASTOK,	-- Flag 
-		17187500,BASTOK,	-- Flag
+		17187488,BASTOK,	-- Yoshihiro, I.M.
+		17187495,BASTOK,	-- Molting Moth, I.M.
+		17187491,BASTOK,	-- Flag 
+		17187499,BASTOK,	-- Flag
 	--
-		17187490,WINDURST,	-- Kyanta-Pakyanta, W.W.
-		17187497,WINDURST,	-- Tottoto, W.W.
-		17187493,WINDURST,	-- Flag 	
-		17187501,WINDURST,	-- Flag
+		17187489,WINDURST,	-- Kyanta-Pakyanta, W.W.
+		17187496,WINDURST,	-- Tottoto, W.W.
+		17187492,WINDURST,	-- Flag 	
+		17187500,WINDURST,	-- Flag
 	--
-		17187494,BEASTMEN,	-- Flag 
-		17187502,BEASTMEN,	-- Flag
+		17187493,BEASTMEN,	-- Flag 
+		17187501,BEASTMEN,	-- Flag
 	--
-		17187498,OTHER,		-- Harvetour
+		17187497,OTHER,		-- Harvetour
 	}	
   end,
 
@@ -631,23 +631,23 @@ switch (region): caseof {
 	npc  = {
 	-- 
 		17199699,SANDORIA,	-- Quanteilleron, R.K.
-		17199706,SANDORIA,	-- Prunilla, R.K. 	 
+		17199706,SANDORIA,	-- Prunilla, R.K.
 		17199702,SANDORIA,	-- flag
 		17199710,SANDORIA,	-- flag
 	-- 
 		17199700,BASTOK,	-- Tsunashige, I.M.
-		17199707,BASTOK,	-- Fighting Ant, I.M. 	
+		17199707,BASTOK,	-- Fighting Ant, I.M.
 		17199703,BASTOK,	-- flag
 		17199711,BASTOK,	-- flag
 	-- 
 		17199701,WINDURST,	-- Nyata-Mobuta, W.W.
-		17199708,WINDURST,	-- Tebubu, W.W. 
+		17199708,WINDURST,	-- Tebubu, W.W.
 		17199704,WINDURST,	-- flag
 		17199712,WINDURST,	-- flag
 	--
 		17199705,BEASTMEN,	-- flag
 		17199713,BEASTMEN,	-- flag
-		17199714,BEASTMEN,	-- flag
+		17199722,BEASTMEN,	-- flag
 	--	
 		17199709,OTHER,		-- Medicine Axe
 	}
@@ -749,25 +749,25 @@ switch (region): caseof {
 	
 	npc  = {
 	-- 
-		17248788,SANDORIA,	-- Naguipeillont, R.K.
-		17248795,SANDORIA,	-- Banege, R.K. 
-		17248791,SANDORIA,	-- flag
-		17248799,SANDORIA,	-- flag
+		17248787,SANDORIA,	-- Naguipeillont, R.K.
+		17248794,SANDORIA,	-- Banege, R.K. 
+		17248790,SANDORIA,	-- flag
+		17248798,SANDORIA,	-- flag
 	-- 
-		17248789,BASTOK,	-- Ryokei, I.M.
-		17248796,BASTOK,	-- Slow Axe, I.M.
-		17248792,BASTOK,	-- flag
-		17248800,BASTOK,	-- flag
+		17248788,BASTOK,	-- Ryokei, I.M.
+		17248795,BASTOK,	-- Slow Axe, I.M.
+		17248791,BASTOK,	-- flag
+		17248799,BASTOK,	-- flag
 	-- 
-		17248790,WINDURST,	-- Roshina-Kuleshuna, W.W.
-		17248797,WINDURST,	-- Darumomo, W.W. 
-		17248793,WINDURST,	-- flag
-		17248801,WINDURST,	-- flag
+		17248789,WINDURST,	-- Roshina-Kuleshuna, W.W.
+		17248796,WINDURST,	-- Darumomo, W.W. 
+		17248792,WINDURST,	-- flag
+		17248800,WINDURST,	-- flag
 	-- 
-		17248794,BEASTMEN,	-- flag
-	    17248802,BEASTMEN,	-- flag
+		17248793,BEASTMEN,	-- flag
+	    17248801,BEASTMEN,	-- flag
 	--
-		17248798,OTHER,		-- Mahien-Uhien
+		17248797,OTHER,		-- Mahien-Uhien
 	}	
   end,
   
@@ -929,28 +929,28 @@ switch (region): caseof {
 	npc  = {
 	-- 
 		17273359,SANDORIA,	-- Credaurion, R.K.
-		17273365,SANDORIA,	-- Limion, R.K.
+		17273366,SANDORIA,	-- Limion, R.K.
 		17273362,SANDORIA,	-- flag
-		17273369,SANDORIA,	-- flag
+		17273370,SANDORIA,	-- flag
 	-- 
 		17273360,BASTOK,	-- Calliope, I.M.
-		17273366,BASTOK,	-- Dedden, I.M. 
+		17273367,BASTOK,	-- Dedden, I.M.
 		17273363,BASTOK,	-- flag
-		17273370,BASTOK,	-- flag
+		17273371,BASTOK,	-- flag
 	-- 
 		17273361,WINDURST,	-- Ajimo-Majimo, W.W.
-		17273367,WINDURST,	-- Ochocho, W.W. 
+		17273368,WINDURST,	-- Ochocho, W.W.
 		17273364,WINDURST,	-- flag
-		17273371,WINDURST,	-- flag
+		17273372,WINDURST,	-- flag
 	-- 
-		17273388,BEASTMEN,	-- flag
-		17273372,BEASTMEN,	-- flag
+		17273365,BEASTMEN,	-- flag
 		17273373,BEASTMEN,	-- flag
-	--	
-		17273368,OTHER,		-- Kasim
+		17273389,BEASTMEN,	-- flag
+	-- 
+		17273369,OTHER,		-- Kasim
 	}
   end,
-  
+
   ---------------------------------
   [KUZOTZ] = function (x) -- Eastern_Altepa_Desert (114)
   ---------------------------------
@@ -988,26 +988,26 @@ switch (region): caseof {
 	
 	npc  = {
 	-- 
-		17240464,SANDORIA,	-- Salimardi, R.K.
-		17240471,SANDORIA,	-- Paise, R.K. 
-		17240467,SANDORIA,	-- flag
-		17240475,SANDORIA,	-- flag
+		17240463,SANDORIA,	-- Salimardi, R.K.
+		17240470,SANDORIA,	-- Paise, R.K. 
+		17240466,SANDORIA,	-- flag
+		17240474,SANDORIA,	-- flag
 	-- 
-		17240465,BASTOK,	-- Sarmistha, I.M.
-		17240472,BASTOK,	-- Dultwa, I.M. 
-		17240468,BASTOK,	-- flag
-		17240476,BASTOK,	-- flag
+		17240464,BASTOK,	-- Sarmistha, I.M.
+		17240471,BASTOK,	-- Dultwa, I.M. 
+		17240467,BASTOK,	-- flag
+		17240475,BASTOK,	-- flag
 	-- 
-		17240466,WINDURST,	-- Voranbo-Natanbo, W.W.
-		17240473,WINDURST,	-- Orukeke, W.W. 
-		17240469,WINDURST,	-- flag
-		17240477,WINDURST,	-- flag
+		17240465,WINDURST,	-- Voranbo-Natanbo, W.W.
+		17240472,WINDURST,	-- Orukeke, W.W. 
+		17240468,WINDURST,	-- flag
+		17240476,WINDURST,	-- flag
 	-- 
-		17240470,BEASTMEN,	-- flag
-	    17240478,BEASTMEN,	-- flag 
-	    17240488,BEASTMEN,	-- flag
+		17240469,BEASTMEN,	-- flag
+	    17240477,BEASTMEN,	-- flag 
+	    17240487,BEASTMEN,	-- flag
 	--
-		17240474,OTHER,		-- Bright Moon
+		17240473,OTHER,		-- Bright Moon
 	}	
   end,
   
