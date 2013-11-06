@@ -504,6 +504,7 @@ void CAICharNormal::ActionItemStart()
 	Action.animation  = 0;
 	Action.param	  = m_PItemUsable->getID();
 	Action.messageID  = 28;
+    Action.knockback  = 0;
 
 	m_PChar->m_ActionList.push_back(Action);
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
@@ -595,6 +596,7 @@ void CAICharNormal::ActionItemUsing()
 		Action.animation  = m_PItemUsable->getAnimationID();
 		Action.param	  = 0;
 		Action.messageID  = 0;
+        Action.knockback  = 0;
 
 		m_PChar->m_ActionList.push_back(Action);
 
@@ -678,6 +680,7 @@ void CAICharNormal::ActionItemInterrupt()
 	Action.animation  = 54;
 	Action.param	  = 0;
 	Action.messageID  = 0;
+    Action.knockback  = 0;
 
 	m_PChar->m_ActionList.push_back(Action);
 
@@ -853,6 +856,7 @@ void CAICharNormal::ActionRangedStart()
 	Action.animation  = ANIMATION_RANGED;
 	Action.param	  = 0;
 	Action.messageID  = 0;
+    Action.knockback  = 0;
 
 	m_PChar->m_ActionList.push_back(Action);
 
@@ -914,6 +918,7 @@ void CAICharNormal::ActionRangedFinish()
 		Action.speceffect = SPECEFFECT_HIT;		//0x60 (SPECEFFECT_HIT + SPECEFFECT_RECOIL)
 		Action.animation  = 0;
 		Action.messageID  = 352;
+        Action.knockback  = 0;
 
         CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
 
@@ -1168,6 +1173,7 @@ void CAICharNormal::ActionRangedInterrupt()
 	Action.animation  = ANIMATION_RANGED;
 	Action.param	  = 0;
 	Action.messageID  = 0;
+    Action.knockback  = 0;
 
 	m_PChar->m_ActionList.push_back(Action);
 
@@ -1542,6 +1548,7 @@ void CAICharNormal::ActionJobAbilityFinish()
     		Action.speceffect = (SPECEFFECT)roll;
     		Action.animation  = m_PJobAbility->getAnimationID();
     		Action.param	  = roll;
+            Action.knockback  = 0;
 
     		if (m_PChar->PParty != NULL)
     		{
@@ -2417,6 +2424,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	Action.speceffect = SPECEFFECT_RECOIL;
 	Action.animation = m_PWeaponSkill->getAnimationId();
 	Action.param = damage;
+    Action.knockback  = 0;
 
     m_PTargetFind->reset();
     m_PChar->m_ActionList.clear();
@@ -2770,6 +2778,7 @@ void CAICharNormal::ActionAttack()
             m_PChar->m_ActionList.clear();
 
 			Action.ActionTarget = m_PBattleTarget;
+            Action.knockback  = 0;
 			uint8 numattacksLeftHand = 0;
 			uint8 numKickAttacks = 0;
 
@@ -3105,6 +3114,7 @@ void CAICharNormal::ActionRaiseMenuSelection()
     Action.reaction   = REACTION_NONE;
     Action.speceffect = SPECEFFECT_RAISE;
     Action.messageID  = 0;
+    Action.knockback  = 0;
 
     m_PChar->m_ActionList.push_back(Action);
     m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));

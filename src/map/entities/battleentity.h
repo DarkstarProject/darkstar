@@ -389,6 +389,7 @@ struct apAction_t
 	SPECEFFECT		  speceffect;			//  9 bits
 	uint16			  param;				// 16 bits
 	uint16			  messageID;			// 10 bits
+    uint8             knockback;            // 4 bits
     SUBEFFECT         additionalEffect;     // 10 bits
     uint16            addEffectParam;       // 17 bits
     uint16            addEffectMessage;     // 10 bits
@@ -410,6 +411,7 @@ struct apAction_t
         spikesEffect = SUBEFFECT_NONE;
         spikesParam = 0;
         spikesMessage = 0;
+        knockback = 0;
     }
 
 };

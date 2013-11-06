@@ -287,7 +287,7 @@ void CAIPetDummy::preparePetAbility(CBattleEntity* PTarg){
 		Action.animation  = 0;
 		Action.param	  = m_PMobSkill->getMsgForAction();
 		Action.messageID  = 43; //readies message
-
+        Action.knockback  = 0;
 
 		m_PPet->health.tp = 0;
 		m_skillTP = m_PPet->health.tp;
@@ -448,6 +448,7 @@ void CAIPetDummy::ActionAbilityFinish(){
 	Action.reaction   = REACTION_HIT;
 	Action.speceffect = SPECEFFECT_HIT;
 	Action.animation  = m_PMobSkill->getAnimationID();
+    Action.knockback  = 0;
 
 	uint16 msg = 0;
 	for (std::vector<CBattleEntity*>::iterator it = m_PTargetFind->m_targets.begin() ; it != m_PTargetFind->m_targets.end(); ++it)
@@ -505,6 +506,7 @@ void CAIPetDummy::ActionAbilityInterrupt(){
 		Action.animation  = 0;
 	    Action.param	  = 0;
 		Action.messageID  = 0;
+        Action.knockback  = 0;
 
 		m_PPet->m_ActionList.push_back(Action);
 		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
@@ -759,6 +761,7 @@ void CAIPetDummy::ActionAttack()
 					Action.animation  = 0;
 					Action.param	  = 0;
 					Action.messageID  = 15;
+                    Action.knockback  = 0;
 					//ShowDebug("pet hp %i and atk %i def %i eva is %i \n",m_PPet->health.hp,m_PPet->ATT(),m_PPet->DEF(),m_PPet->getMod(MOD_EVA));
 					uint16 damage = 0;
 

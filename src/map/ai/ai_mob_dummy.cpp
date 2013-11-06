@@ -795,6 +795,7 @@ void CAIMobDummy::ActionAbilityStart()
 		Action.animation  = 0;
 		Action.param	  = m_PMobSkill->getMsgForAction();
 		Action.messageID  = 43; //readies message
+        Action.knockback  = 0;
 
 		m_PMob->m_ActionList.push_back(Action);
 		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
@@ -904,7 +905,7 @@ void CAIMobDummy::ActionAbilityFinish()
 	Action.speceffect = SPECEFFECT_HIT;
 	Action.animation  = m_PMobSkill->getAnimationID();
 	Action.messageID  = m_PMobSkill->getMsg();
-
+    Action.knockback  = 0;
 
     uint16 msg = 0;
     for (std::vector<CBattleEntity*>::iterator it = m_PTargetFind->m_targets.begin() ; it != m_PTargetFind->m_targets.end(); ++it)
@@ -984,6 +985,7 @@ void CAIMobDummy::ActionAbilityInterrupt()
 		Action.animation  = m_PMobSkill->getID();
 	    Action.param	  = 0;
 		Action.messageID  = 0;
+        Action.knockback  = 0;
 
 	m_PMob->m_ActionList.push_back(Action);
 	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
@@ -1317,6 +1319,7 @@ void CAIMobDummy::ActionAttack()
 					Action.animation  = 0;
 					Action.param	  = 0;
 					Action.messageID  = 15;
+                    Action.knockback  = 0;
 					if(m_PBattleTarget->isDead()){
 						break;
 					}
@@ -1747,6 +1750,7 @@ void CAIMobDummy::ActionSpecialSkill()
 	//Action.subparam   = m_PMobSkill->getMsgForAction();
 	Action.param	  = luautils::OnMobWeaponSkill(m_PBattleSubTarget, m_PMob, m_PMobSkill);
 	Action.messageID  = m_PMobSkill->getMsg();
+    Action.knockback  = 0;
 
 	// display hit or miss
 	if(m_PMobSkill->hasMissMsg())
