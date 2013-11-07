@@ -172,12 +172,6 @@ bool CPathFind::WarpTo(position_t point, float maxDistance)
   return true;
 }
 
-bool CPathFind::Knockback(position_t from, float power)
-{
-  // pushes entity back from the given position
-	return false;
-}
-
 bool CPathFind::isNavMeshEnabled()
 {
   return m_PTarget->loc.zone && m_PTarget->loc.zone->m_navMesh != NULL;

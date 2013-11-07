@@ -459,7 +459,6 @@ public:
     // == Pathfind Methods ==
     int32 pathThrough(lua_State* L); // walk at normal speed through the given points
     // int32 WarpTo(lua_State* L); // warp to the given point
-    int32 knockback(lua_State* L); // knockback target with given power
     // int32 RoamAround(lua_State* L); // pick a random point to walk to
     // int32 LimitDistance(lua_State* L); // limits the current path distance to given max distance
 

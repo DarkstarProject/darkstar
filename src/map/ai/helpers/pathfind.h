@@ -64,9 +64,6 @@ class CPathFind
     // this will make sure you're not in a wall
     bool WarpTo(position_t point, float maxDistance = 2.0f);
 
-    // this will push the entity backwards by the given power
-    bool Knockback(position_t from, float power);
-
     // moves mob to next point
     void FollowPath();
 

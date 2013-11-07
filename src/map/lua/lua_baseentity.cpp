@@ -7337,11 +7337,6 @@ inline int32 CLuaBaseEntity::pathThrough(lua_State* L)
 	return 1;
 }
 
-inline int32 CLuaBaseEntity::knockback(lua_State* L)
-{
-	return 0; // KnockBack is bit in ActionPacket. Don't need to do something in scripts
-}
-
 /*
 Usage:
 
@@ -7833,7 +7828,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,clearPath),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isFollowingPath),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,wait),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,knockback),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setSpawn),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setRespawnTime),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,unlockAttachment),
