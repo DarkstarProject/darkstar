@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `npc_dummies` (
 
 INSERT INTO `npc_dummies` VALUES('17187456'); -- Aaveleon, West Ronfaure
 INSERT INTO `npc_dummies` VALUES('17187458'); -- Zovriace, West Ronfaure
-INSERT INTO `npc_dummies` VALUES('17387988'); -- Quemaricond, Davoi
+INSERT INTO `npc_dummies` VALUES('17387987'); -- Quemaricond, Davoi
 INSERT INTO `npc_dummies` VALUES('17461504'); -- Novalmauge, Bostaunieux Oubliette
 INSERT INTO `npc_dummies` VALUES('17719326'); -- Raminel, Southern San d'Oria
 INSERT INTO `npc_dummies` VALUES('17719328'); -- Glenne, Southern San d'Oria

@@ -1,7 +1,7 @@
 -------------------------------------------------
 --	Author: Ezekyel
 --	Excavation functions
---  Info from: 
+--  Info from:
 --      http://wiki.ffxiclopedia.org/wiki/Excavation
 -------------------------------------------------
 
@@ -18,7 +18,7 @@ npcid = {7,{16806335,16806336,16806337,16806338,16806339,16806340},    -- Attohw
 		 68,{17056226,17056227,17056228},							   -- Aydeewa Subterrane
 		 117,{17257043,17257044,17257045,17257046,17257047,17257048},  -- Tahrongi Canyon
 		 173,{17486246,17486247,17486248,17486249,17486250,17486251},  -- Korroloka Tunnel
-		 198,{17588768,17588769,17588770,17588771,17588772,17588773}}; -- Maze of Shakhrami
+		 198,{17588767,17588768,17588769,17588770,17588771,17588772}}; -- Maze of Shakhrami
 -- Zone, {itemid,drop rate,itemid,drop rate,..}
 drop = {7,{0x0370,0.2220,0x0382,0.4440,0x037B,0.5660,0x43F4,0.6880,0x0381,0.7600,0x0380,0.8320,0x09C7,0.8740,0x04D4,0.9160,0x05C1,0.9580,0x0301,1.0000},
 		68,{},
@@ -29,32 +29,32 @@ drop = {7,{0x0370,0.2220,0x0382,0.4440,0x037B,0.5660,0x43F4,0.6880,0x0381,0.7600
 rocks = {0x0301,0x0302,0x0303,0x0304,0x0305,0x0306,0x0308,0x0307};
 
 function startExcavation(player,zone,npc,trade,csid)
-	
+
 	if(trade:hasItemQty(605,1) and trade:getItemCount() == 1) then
-		
+
 		broke = pickaxeBreak(player,trade);
 		item = getItem(player,zone);
-		
+
 		if(player:getFreeSlotsCount() == 0) then
 			full = 1;
 		else
 			full = 0;
 		end
-		
+
 		player:startEvent(csid,item,broke,full);
-		
+
 		if(item ~= 0 and full == 0) then
 			player:addItem(item);
 			SetServerVariable("[EXCAVATION]Zone "..zone,GetServerVariable("[EXCAVATION]Zone "..zone) + 1);
 		end
-		
+
 		if(GetServerVariable("[EXCAVATION]Zone "..zone) >= 3) then
 			getNewPositionNPC(player,npc,zone);
 		end
-	
+
 		if(broke ~= 1 and player:getQuestStatus(AHT_URHGAN,OLDUUM) == QUEST_ACCEPTED and player:hasKeyItem(ELECTROCELL) == false and player:hasKeyItem(ELECTROPOT) == false and player:hasKeyItem(ELECTROLOCOMOTIVE) == false and zone == 68) then
 			local randPick = math.random(0,2);
-			
+
 			if randPick == 1 then
 				player:addKeyItem(ELECTROCELL);
 				player:messageSpecial(KEYITEM_OBTAINED,ELECTROCELL);
@@ -70,7 +70,7 @@ function startExcavation(player,zone,npc,trade,csid)
 	else
 		player:messageSpecial(MINING_IS_POSSIBLE_HERE,605);
 	end
-	
+
 end
 
 -----------------------------------
@@ -78,63 +78,61 @@ end
 -----------------------------------
 
 function pickaxeBreak(player,trade)
-	
 
-	
 	local broke = 0;
 	pickaxebreak = math.random();
-	
+
 	if(pickaxebreak < EXCAVATION_BREAK_CHANCE) then
 		broke = 1;
 		player:tradeComplete();
 	end
-	
+
 	return broke;
-	
+
 end
 
 -----------------------------------
 -- Get an item
 -----------------------------------
 
-function getItem(player,zone)	
-	
+function getItem(player,zone)
+
 	Rate = math.random();
-	
+
 	for zon = 1, table.getn(drop), 2 do
 		if(drop[zon] == zone) then
 			for itemlist = 1, table.getn(drop[zon + 1]), 2 do
 				if(Rate <= drop[zon + 1][itemlist + 1]) then
-					item = drop[zon + 1][itemlist];		
-					break;			
+					item = drop[zon + 1][itemlist];
+					break;
 				end
 			end
 			break;
 		end
 	end
-	
+
 	--------------------
 	-- Determine result if Colored Rock
 	--------------------
-	
+
 	if (item == 769) then
 		day = VanadielDayElement();
 		item = rocks[day + 1];
 	end
-	
+
 	--------------------
 	-- Determine chance of no item mined
 	-- Default rate is 50%
 	--------------------
-	
+
 	Rate = math.random();
-	
+
 	if(Rate <= (1 - EXCAVATION_RATE)) then
 		item = 0;
 	end
-	
+
 	return item;
-	
+
 end
 
 -----------------------------------------
@@ -142,9 +140,9 @@ end
 -----------------------------------------
 
 function getNewPositionNPC(player,npc,zone)
-	
+
 	local newnpcid = npc:getID();
-	
+
 	for u = 1, table.getn(npcid), 2 do
 		if(npcid[u] == zone) then
 			nbNPC = table.getn(npcid[u + 1]);
@@ -155,9 +153,8 @@ function getNewPositionNPC(player,npc,zone)
 			break;
 		end
 	end
-	
+
 	npc:setStatus(2);
 	GetNPCByID(newnpcid):setStatus(0);
 	SetServerVariable("[EXCAVATION]Zone "..zone,0);
-	
 end

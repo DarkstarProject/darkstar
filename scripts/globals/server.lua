@@ -81,8 +81,8 @@ function SetFieldManual()
 	{
         17187511,17187512,17191493,17191494, -- West Ronfaure 2, East Ronfaure 2
         17195671,17195672,17199745,17199746, -- La Theine 2, Valkurm 2
-        17199747,17203877,17203878,17207859, -- Valkurm 1, Jugner 2, Batallia 1
-        17207860,17212073,17212074,17212075, -- Batallia 1, North Gustaberg 3
+        17199747,17203877,17203878,17207858, -- Valkurm 1, Jugner 2, Batallia 1
+        17207859,17212072,17212073,17212074, -- Batallia 1, North Gustaberg 3
         17216141,17216142,17220159,17220160, -- South Gustaberg 2, Konschtat 2
         17224345,17224346,17228369,17228370, -- Pashhow 2, Rolanberry 2
         17232273,17232274,17232275,17232276, -- Beaucedine all 4
@@ -180,11 +180,11 @@ function SetTreasureSpawns()
        16822524, -- Oldton Movalpolos
        16892176, -- Sacrarium
        17355006, -- Fort Ghelsba
-       17359046, -- Yughott Grotto
-       17363364, -- Palborough Mines
-       17371602, -- Giddeus
+       17359045, -- Yughott Grotto
+       17363363, -- Palborough Mines
+       17371601, -- Giddeus
        17379836, -- Beadeaux
-       17388021, -- Davoi
+       17388020, -- Davoi
        17396204, -- Castle Oztroja
        17420669, -- Middle Delkfutt's Tower
        17424556, -- Upper Delkfutt's Tower
@@ -197,9 +197,9 @@ function SetTreasureSpawns()
        17568186, -- Ordelle's Caves
        17572283, -- Outer Horutoto Ruins
        17576351, -- The Eldieme Necropolis
-       17580397, -- Gusgen Mines
+       17580396, -- Gusgen Mines
        17584469, -- Crawler's Nest
-       17588767, -- Maze of Shakhrami
+       17588766, -- Maze of Shakhrami
        17596803, -- Garlaige Citadel
        17613220, -- Fei'Yin
        17649890  -- Labyrinth of Onzozo

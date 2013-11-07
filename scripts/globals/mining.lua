@@ -1,7 +1,7 @@
 -------------------------------------------------
 --	Author: Ezekyel
 --	Mining functions
---  Info from: 
+--  Info from:
 --      http://wiki.ffxiclopedia.org/wiki/Mining
 -------------------------------------------------
 
@@ -18,10 +18,10 @@ npcid = {11,{16822518,16822519,16822520,16822521,16822522,16822523},   -- Oldton
 		 61,{17027546,17027547,17027548,17027549,17027550,17027551},   -- Mount Zhayolm
 		 62,{17031708,17031709,17031710,17031711,17031712,17031713},   -- Halvung
 		 88,{},														   -- North Gustaberg [S]
-		 142,{17359047,17359048,17359049,17359050,17359051,17359052},  -- Yughott Grotto
-		 143,{17363358,17363359,17363360,17363361,17363362,17363363},  -- Palborough Mines
+		 142,{17359046,17359047,17359048,17359049,17359050,17359051},  -- Yughott Grotto
+		 143,{17363357,17363358,17363359,17363360,17363361,17363362},  -- Palborough Mines
 		 172,{17481831,17481832,17481833,17481834,17481835,17481836},  -- Zeruhn Mines
-		 196,{17580391,17580392,17580393,17580394,17580395,17580396},  -- Gusgen Mines
+		 196,{17580390,17580391,17580392,17580393,17580394,17580395},  -- Gusgen Mines
 		 205,{17617215,17617216,17617217,17617218,17617219,17617220}}; -- Ifrit's Cauldron
 -- Zone, {itemid,drop rate,itemid,drop rate,..}
 drop = {11,{0x0676,0.1155,0x0282,0.2300,0x0280,0.3415,0x0281,0.4530,0x02E0,0.5595,0x0283,0.6590,0x0660,0.7285,0x0659,0.7930,0x0666,0.8525,0x0238,0.9100,0x065F,0.9676,0x0285,0.9762,0x0284,0.9848,0x02E1,0.9924,0x02E2,1.0000},
@@ -38,47 +38,46 @@ drop = {11,{0x0676,0.1155,0x0282,0.2300,0x0280,0.3415,0x0281,0.4530,0x02E0,0.559
 rocks = {0x0301,0x0302,0x0303,0x0304,0x0305,0x0306,0x0308,0x0307};
 
 function startMining(player,zone,npc,trade,csid)
-	
+
 	if(trade:hasItemQty(605,1) and trade:getItemCount() == 1) then
-		
+
 		broke = pickaxeBreak(player,trade);
 		item = getItem(player,zone);
-		
+
 		if(player:getFreeSlotsCount() == 0) then
 			full = 1;
 		else
 			full = 0;
 		end
-		
+
 		player:startEvent(csid,item,broke,full);
-		
+
 		if(item ~= 0 and full == 0) then
 			player:addItem(item);
 			SetServerVariable("[MINING]Zone "..zone,GetServerVariable("[MINING]Zone "..zone) + 1);
 		end
-		
+
 		if(GetServerVariable("[MINING]Zone "..zone) >= 3) then
 			getNewPositionNPC(player,npc,zone);
 		end
 	else
 		player:messageSpecial(MINING_IS_POSSIBLE_HERE,605);
 	end
-	
 end
 
 function pickaxeBreak(player,trade)
-	
+
 	--------------------
 	-- Determine if Sickle breaks
 	--------------------
-	
+
 	local broke = 0;
 	pickaxebreak = math.random();
-	
+
 	--------------------
 	-- Begin Gear Bonus
 	--------------------
-	
+
 	Body = player:getEquipID(SLOT_BODY);
 	Hands = player:getEquipID(SLOT_HANDS);
 	Feet = player:getEquipID(SLOT_FEET);
@@ -92,64 +91,64 @@ function pickaxeBreak(player,trade)
 	if(Feet == 14176 or Feet == 14177) then
 		pickaxebreak = pickaxebreak + 0.073;
 	end
-	
+
 	--------------------
 	-- End Gear Bonus
 	--------------------
-	
+
 	if(pickaxebreak < MINING_BREAK_CHANCE) then
 		broke = 1;
 		player:tradeComplete();
 	end
-	
+
 	return broke;
-	
+
 end
 
-function getItem(player,zone)	
-	
+function getItem(player,zone)
+
 	Rate = math.random();
-	
+
 	for zon = 1, table.getn(drop), 2 do
 		if(drop[zon] == zone) then
 			for itemlist = 1, table.getn(drop[zon + 1]), 2 do
 				if(Rate <= drop[zon + 1][itemlist + 1]) then
-					item = drop[zon + 1][itemlist];		
-					break;			
+					item = drop[zon + 1][itemlist];
+					break;
 				end
 			end
 			break;
 		end
 	end
-	
+
 	--------------------
 	-- Determine result if Colored Rock
 	--------------------
-	
+
 	if (item == 769) then
 		day = VanadielDayElement();
 		item = rocks[day + 1];
 	end
-	
+
 	--------------------
 	-- Determine chance of no item mined
 	-- Default rate is 50%
 	--------------------
-	
+
 	Rate = math.random();
 
 	if(Rate <= (1 - MINING_RATE)) then
 		item = 0;
 	end
-	
+
 	return item;
-	
+
 end
 
 function getNewPositionNPC(player,npc,zone)
-	
+
 	local newnpcid = npc:getID();
-	
+
 	for u = 1, table.getn(npcid), 2 do
 		if(npcid[u] == zone) then
 			nbNPC = table.getn(npcid[u + 1]);
@@ -160,9 +159,8 @@ function getNewPositionNPC(player,npc,zone)
 			break;
 		end
 	end
-	
+
 	npc:setStatus(2);
 	GetNPCByID(newnpcid):setStatus(0);
 	SetServerVariable("[MINING]Zone "..zone,0);
-	
 end
