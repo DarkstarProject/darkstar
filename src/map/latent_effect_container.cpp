@@ -428,6 +428,20 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
 						m_LatentEffectList.at(i)->Deactivate();
 					}
 					break;
+				case LATENT_FOOD_ACTIVE:
+				case LATENT_NO_FOOD_ACTIVE:
+						CheckLatentsFoodEffect();
+					break;
+			/*	case LATENT_FOOD_OVERWRITE:
+					{
+						//TODO: overwrite/replace item's current mods with item_latents mods (see http://wiki.ffxiclopedia.com/wiki/Latent_and_Hidden_Effects)
+					//		"These effects are in place of the original effects"
+					}
+					break; 
+			*/
+				case LATENT_STATUS_EFFECT_ACTIVE:
+						CheckLatentsStatusEffect();
+					break;
 			}
 		}
 	}
@@ -495,6 +509,57 @@ void CLatentEffectContainer::CheckLatentsStatusEffect()
 		if( m_LatentEffectList.at(i)->GetConditionsID() == LATENT_STATUS_EFFECT_ACTIVE)
 		{
 			if( m_POwner->StatusEffectContainer->HasStatusEffect((EFFECT)m_LatentEffectList.at(i)->GetConditionsValue()))
+			{
+				m_LatentEffectList.at(i)->Activate();
+			}
+			else
+			{
+				m_LatentEffectList.at(i)->Deactivate();
+			}
+		}
+	}
+}
+
+/************************************************************************
+*																		*
+*  Checks latents that are affected by food effects. Usage:				*
+*  LATENT_FOOD_ACTIVE: (49,foodItemId)									*
+*  LATENT_NO_FOOD_ACTIVE: (14,0)										*
+*																		*
+************************************************************************/
+
+void CLatentEffectContainer::CheckLatentsFoodEffect()
+{
+
+	for (uint16 i = 0; i < m_LatentEffectList.size(); ++i) 
+	{
+		if(m_LatentEffectList.at(i)->GetConditionsID() == LATENT_FOOD_ACTIVE)
+		{
+			if( m_POwner->StatusEffectContainer->HasStatusEffect(EFFECT_FOOD) && 
+				m_POwner->StatusEffectContainer->GetStatusEffect(EFFECT_FOOD)->GetSubID() == m_LatentEffectList.at(i)->GetConditionsValue() )
+			{
+				m_LatentEffectList.at(i)->Activate();
+			}
+			else
+			{
+				m_LatentEffectList.at(i)->Deactivate();
+			}
+		}
+		if(m_LatentEffectList.at(i)->GetConditionsID() == LATENT_NO_FOOD_ACTIVE)
+		{
+			if(!m_POwner->StatusEffectContainer->HasStatusEffect(EFFECT_FOOD))
+			{
+				m_LatentEffectList.at(i)->Activate();
+			}
+			else
+			{
+				m_LatentEffectList.at(i)->Deactivate();
+			}
+		}
+		if(m_LatentEffectList.at(i)->GetConditionsID() == LATENT_FOOD_OVERWRITE)
+		{
+			if( m_POwner->StatusEffectContainer->HasStatusEffect(EFFECT_FOOD) && 
+				m_POwner->StatusEffectContainer->GetStatusEffect(EFFECT_FOOD)->GetSubID() == m_LatentEffectList.at(i)->GetConditionsValue() )
 			{
 				m_LatentEffectList.at(i)->Activate();
 			}

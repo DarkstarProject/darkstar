@@ -361,6 +361,12 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
 
 			if( m_POwner->health.maxhp != 0) //make sure we're not in the middle of logging in
 			{
+				//check for latents
+				CLatentEffectContainer* PLatentEffectContainer;
+				PChar->PLatentEffectContainer->CheckLatentsFoodEffect();
+				PChar->PLatentEffectContainer->CheckLatentsStatusEffect();
+				PChar->UpdateHealth();
+
 				PChar->pushPacket(new CCharHealthPacket(PChar));
 			}
             PChar->pushPacket(new CCharSyncPacket(PChar));
@@ -402,6 +408,12 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
 				PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PStatusEffect->GetIcon(), 0, 206));
 			}
         }
+		//check for latents
+		CLatentEffectContainer* PLatentEffectContainer;
+		PChar->PLatentEffectContainer->CheckLatentsFoodEffect();
+		PChar->PLatentEffectContainer->CheckLatentsStatusEffect();
+		PChar->UpdateHealth();
+
         if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
 
         PChar->pushPacket(new CCharHealthPacket(PChar));

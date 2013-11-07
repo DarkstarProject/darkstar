@@ -22,6 +22,20 @@ CREATE TABLE IF NOT EXISTS `item_latents` (
 
 -- INSERT INTO `item_latents` VALUES(itemID, modId, modValue, latentId, latentParam);
 
+INSERT INTO `item_latents` VALUES(13870, 14, 14, 49, 4468);
+INSERT INTO `item_latents` VALUES(13870, 12, 1, 49, 4468);
+INSERT INTO `item_latents` VALUES(13870, 11, -3, 49, 4468); -- Opo-opo Crown, AGI+1 to AGI-2
+INSERT INTO `item_latents` VALUES(13870, 8, -3, 49, 4468); -- Opo-opo Crown, STR+1 to STR-2
+INSERT INTO `item_latents` VALUES(13870, 5, 50, 49, 4468);
+INSERT INTO `item_latents` VALUES(13870, 2, 50, 49, 4468);
+INSERT INTO `item_latents` VALUES(13870, 14, 14, 49, 4596);
+INSERT INTO `item_latents` VALUES(13870, 12, 1, 49, 4596);
+INSERT INTO `item_latents` VALUES(13870, 11, -3, 49, 4596); -- Opo-opo Crown, AGI+1 to AGI-2
+INSERT INTO `item_latents` VALUES(13870, 8, -3, 49, 4596); -- Opo-opo Crown, STR+1 to STR-2
+INSERT INTO `item_latents` VALUES(13870, 5, 50, 49, 4596);
+INSERT INTO `item_latents` VALUES(13870, 2, 50, 49, 4596);
+INSERT INTO `item_latents` VALUES(17073, 406, 3, 7, 2); -- Mistilteinn drains 3TP if TP >= 3
+INSERT INTO `item_latents` VALUES(17073, 369, 1, 7, 2); -- Mistilteinn adds Refresh 1MP per tick
 INSERT INTO `item_latents` VALUES(13145, 28, 8, 4, 51);
 INSERT INTO `item_latents` VALUES(13289, 28, 10, 2, 76);
 INSERT INTO `item_latents` VALUES(14008, 23, 8, 0, 75);

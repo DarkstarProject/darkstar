@@ -48,6 +48,7 @@ public:
 	void CheckLatentsEquip(uint8 slot);
 	void CheckLatentsWeaponDraw(bool drawn);
 	void CheckLatentsStatusEffect();
+	void CheckLatentsFoodEffect();
 	void CheckLatentsRollSong(bool active);
 	void CheckLatentsDay();
 	void CheckLatentsPartyMembers(uint8 members);

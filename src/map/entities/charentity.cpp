@@ -313,7 +313,7 @@ int32 CCharEntity::addHP(int32 hp)
 int32 CCharEntity::addMP(int32 mp)
 {
 	mp = CBattleEntity::addMP(mp);
-	//PLatentEffectContainer->CheckLatentsHP(health.mp);
+	PLatentEffectContainer->CheckLatentsHP(health.mp);
 
 	return abs(mp);
 }
