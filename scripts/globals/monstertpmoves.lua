@@ -702,12 +702,6 @@ function MobStatusEffectMove(mob, target, typeEffect, power, tick, duration)
 	return MSG_NO_EFFECT; -- no effect
 end;
 
-function MobPhysicalKnockback(skill, mob, target, power)
-	if(MobPhysicalHit(skill)) then
-		target:knockback(mob:getXPos(), mob:getYPos(), mob:getZPos(), power);
-	end
-end;
-
 -- similar to status effect move except, this will not land if the attack missed
 function MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, tick, duration)
 
