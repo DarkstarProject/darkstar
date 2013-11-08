@@ -198,7 +198,7 @@ void LoadMobSkillsList()
 
 	const int8* fmtQuery = "SELECT mob_skill_id, family_id, mob_anim_id, mob_skill_name, \
 						   mob_skill_aoe, mob_skill_distance, mob_anim_time, mob_prepare_time, \
-						   mob_valid_targets, mob_skill_flag, mob_skill_param \
+						   mob_valid_targets, mob_skill_flag, mob_skill_param, knockback \
 						   FROM mob_skill \
 						   WHERE mob_skill_id < %u \
 						   ORDER BY family_Id, mob_skill_id ASC";
@@ -220,6 +220,7 @@ void LoadMobSkillsList()
 			PMobSkill->setValidTargets(Sql_GetIntData(SqlHandle,8));
 			PMobSkill->setFlag(Sql_GetIntData(SqlHandle,9));
 			PMobSkill->setParam(Sql_GetIntData(SqlHandle,10));
+            PMobSkill->setKnockback(Sql_GetUIntData(SqlHandle,11));
 			PMobSkill->setMsg(185); //standard damage message. Scripters will change this.
 			g_PMobSkillList[PMobSkill->getID()] = PMobSkill;
 

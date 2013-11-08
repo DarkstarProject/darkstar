@@ -281,6 +281,11 @@ int16 CMobSkill::getParam()
   return m_Param;
 }
 
+uint8 CMobSkill::getKnockback()
+{
+    return m_knockback;
+}
+
 bool CMobSkill::isDamageMsg()
 {
   return m_Message == 110 || m_Message == 185 || m_Message == 197 || m_Message == 264 || m_Message == 187 || m_Message == 225 || m_Message == 226;
@@ -289,6 +294,11 @@ bool CMobSkill::isDamageMsg()
 void CMobSkill::setParam(int16 value)
 {
   m_Param = value;
+}
+
+void CMobSkill::setKnockback(uint8 knockback)
+{
+    m_knockback = knockback;
 }
 
 uint16 CMobSkill::getValidTargets()

@@ -385,11 +385,11 @@ struct apAction_t
 {
 	CBattleEntity*    ActionTarget;		    // 32 bits
 	REACTION		  reaction;			    //  5 bits
-	uint16			  animation;			// 10 bits
-	SPECEFFECT		  speceffect;			//  9 bits
+	uint16			  animation;			// 12 bits
+	SPECEFFECT		  speceffect;			// 7 bits
+    uint8             knockback;            // 3 bits
 	uint16			  param;				// 16 bits
 	uint16			  messageID;			// 10 bits
-    uint8             knockback;            // 4 bits
     SUBEFFECT         additionalEffect;     // 10 bits
     uint16            addEffectParam;       // 17 bits
     uint16            addEffectMessage;     // 10 bits

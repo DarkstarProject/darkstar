@@ -64,8 +64,9 @@ public:
 	float		getTP();
     uint16      getTotalTargets();
     uint16      getMsgForAction();
-    float      getRadius();
+    float       getRadius();
     int16		getParam();
+    uint8       getKnockback();
 
     bool        isDamageMsg();
 
@@ -83,6 +84,7 @@ public:
 	void		setTP(float tp);
     void        setTotalTargets(uint16 targets);
     void 		setParam(int16 value);
+    void        setKnockback(uint8 knockback);
 
 	const int8* getName();
 	void		setName(int8* name);
@@ -102,6 +104,7 @@ private:
     uint16      m_ActivationTime;	//how long the mob prepares the tp move for
 	uint16		m_Message;			//message param, scripters can edit this depending on self/resist/etc.
 	float		m_TP;				//the tp at the time of finish readying (for scripts)
+    uint8       m_knockback;        //knockback value (0-7)
 
 	string_t	m_name;
 };
