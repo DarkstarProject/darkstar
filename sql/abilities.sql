@@ -301,7 +301,7 @@ INSERT INTO `abilities` VALUES ('547', 'megalith_throw', '15', '35', '4', '60', 
 INSERT INTO `abilities` VALUES ('548', 'earthen_ward', '15', '46', '1', '60', '174', '0', '0', '92', '18.0', '0', '1', '60', '0', '0');
 INSERT INTO `abilities` VALUES ('549', 'stone_iv', '15', '60', '4', '60', '173', '0', '0', '118', '18.0', '0', '1', '60', '0', '0');
 INSERT INTO `abilities` VALUES ('550', 'mountain_buster', '15', '70', '4', '60', '173', '0', '0', '164', '18.0', '0', '1', '60', '0', '0');
-INSERT INTO `abilities` VALUES ('551', 'geocrush', '15', '75', '4', '60', '173', '0', '0', '182', '18.0', '0', '1', '60', '2946', '1');
+INSERT INTO `abilities` VALUES ('551', 'geocrush', '15', '75', '4', '60', '173', '0', '0', '182', '18.0', '0', '1', '60', '2950', '1');
 INSERT INTO `abilities` VALUES ('552', 'earthen_fury', '15', '1', '4', '60', '173', '0', '0', '0', '18.0', '1', '1', '60', '0', '2');
 INSERT INTO `abilities` VALUES ('560', 'barracuda_dive', '15', '1', '4', '60', '173', '0', '0', '8', '18.0', '0', '1', '60', '0', '0');
 INSERT INTO `abilities` VALUES ('561', 'water_ii', '15', '10', '4', '60', '173', '0', '0', '24', '18.0', '0', '1', '60', '0', '0');

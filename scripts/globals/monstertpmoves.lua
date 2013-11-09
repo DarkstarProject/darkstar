@@ -245,14 +245,14 @@ end
 -- TP_DMG_BONUS and TP=100, tpvalue = 2, assume V=150  --> damage is now 150*(TP*2)/100 = 300
 -- TP_DMG_BONUS and TP=200, tpvalue = 2, assume V=150  --> damage is now 150*(TP*2)/100 = 600
 
-function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
+function MobMagicalMove(mob,target,skill,damage,element,dmgmod,tpeffect,tpvalue)
 	returninfo = {};
 	--get all the stuff we need
 	local resist = 1;
 
 	-- plus 100 forces it to be a number
 	mab = (100+mob:getMod(MOD_MATT)) / (100+target:getMod(MOD_MDEF));
-
+	
 	if (mab > 1.3) then
 		mab = 1.3;
 	end
@@ -260,18 +260,6 @@ function MobMagicalMove(mob,target,skill,dmg,element,dmgmod,tpeffect,tpvalue)
 	if (mab < 0.7) then
 		mab = 0.7;
 	end
-
-	lvluser = mob:getMainLvl();
-	lvltarget = target:getMainLvl();
-
-	lvldiff = lvltarget - lvluser;
-
-	damage = dmg + lvldiff;
-	if(damage<1) then
-		damage = 1;
-	end
-
-	damage = damage * MobTPMod(skill:getTP());
 
 	if(tpeffect==TP_DMG_BONUS) then
 		damage = damage * ((skill:getTP()*tpvalue)/100);
@@ -449,29 +437,29 @@ function mobAddBonuses(caster, spell, target, dmg, ele)
 	dayWeatherBonus = 1.00;
 
 	if caster:getWeather() == singleWeatherStrong[ele] then
-		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObi[ele] then
+		if math.random() < 0.33 then
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
 	elseif caster:getWeather() == singleWeatherWeak[ele] then
-		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObiWeak[ele] then
+		if math.random() < 0.33 then
 			dayWeatherBonus = dayWeatherBonus - 0.10;
 		end
 	elseif caster:getWeather() == doubleWeatherStrong[ele] then
-		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObi[ele] then
+		if math.random() < 0.33 then
 			dayWeatherBonus = dayWeatherBonus + 0.25;
 		end
 	elseif caster:getWeather() == doubleWeatherWeak[ele] then
-		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObiWeak[ele] then
+		if math.random() < 0.33 then
 			dayWeatherBonus = dayWeatherBonus - 0.25;
 		end
 	end
 
 	if VanadielDayElement() == dayStrong[ele] then
-		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObi[ele] then
+		if math.random() < 0.33 then
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
 	elseif VanadielDayElement() == dayWeak[ele] then
-		if math.random() < 0.33 or caster:getEquipID(SLOT_WAIST) == elementalObiWeak[ele] then
+		if math.random() < 0.33 then
 			dayWeatherBonus = dayWeatherBonus + 0.10;
 		end
 	end

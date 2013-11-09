@@ -1,5 +1,5 @@
 ---------------------------------------------------
--- Aero 4
+-- Geocrush
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -14,15 +14,29 @@ function OnAbilityCheck(player, target, ability)
 end;
 
 function OnPetAbility(target, pet, skill)
-		--calculate raw damage
-	local dmg = calculateMagicDamage(512,1.5,pet,skill,target,ELEMENTAL_MAGIC_SKILL,MOD_INT,false);
-	dmg = dmg + (1+skill:getTP())*1.72;
-	--get resist multiplier (1x if no resist)
-	local statmod = MOD_INT;
-	local resist = applyPlayerResistance(pet,-1,target,pet:getStat(MOD_INT)-target:getStat(MOD_INT),ELEMENTAL_MAGIC_SKILL,ELE_WIND);
-	--get the resisted damage
-	dmg = dmg*resist;
-	--add in final adjustments
-	dmg = finalMagicAdjustments(pet,target,spell,dmg);
-	return dmg;
+
+	local dINT = math.floor(pet:getStat(MOD_INT) - target:getStat(MOD_INT));
+	local tp = pet:getTP();
+	local master = pet:getMaster();
+	local merits = 0;
+	if (master ~= nil and master:isPC()) then
+		merits = master:getMerit(MERIT_WIND_BLADE);
+	end
+	
+	tp = tp + (merits - 1) * 40;
+	if (tp > 300) then
+		tp = 300;
+	end
+	
+	--note: this formula is only accurate for level 75 - 76+ may have a different intercept and/or slope
+	local damage = math.floor(512 + 1.72*(tp+1));
+	damage = damage + (dINT * 1.5);
+	damage = MobMagicalMove(pet,target,skill,damage,ELE_WIND,1,TP_NO_EFFECT,0);
+	damage = mobAddBonuses(pet, nil, target, damage.dmg, ELE_WIND);
+	damage = AvatarFinalAdjustments(damage,pet,skill,target,MOBSKILL_MAGICAL,MOBPARAM_NONE,1);
+
+	target:delHP(damage);
+	target:updateEnmityFromDamage(pet,damage);
+
+	return damage;
 end
