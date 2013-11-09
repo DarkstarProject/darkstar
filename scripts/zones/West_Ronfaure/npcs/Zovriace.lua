@@ -1015,7 +1015,7 @@ function onPath(npc)
 
 	if(npc:atPoint(pathfind.get(path, 288))) then
 
-		local col = GetNPCByID(17187462);
+		local col = GetNPCByID(17187458);
 
 		col:showText(npc, ZOVRIACE_REPORT);
 

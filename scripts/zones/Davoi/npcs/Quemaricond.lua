@@ -78,5 +78,5 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(KEYITEM_OBTAINED,ROYAL_KNIGHTS_DAVOI_REPORT);
 	end
 
-	GetNPCByID(17387987):wait(0);
+	GetNPCByID(17387988):wait(0);
 end;
