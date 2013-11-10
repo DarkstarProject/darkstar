@@ -33,5 +33,7 @@ CREATE TABLE IF NOT EXISTS `char_storage` (
   `locker` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `satchel` tinyint(2) unsigned NOT NULL DEFAULT '30',
   `sack` tinyint(2) unsigned NOT NULL DEFAULT '30',
+  `case` tinyint(2) unsigned NOT NULL DEFAULT '80',
+
   PRIMARY KEY (`charid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

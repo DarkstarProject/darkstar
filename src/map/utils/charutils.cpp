@@ -443,7 +443,8 @@ void LoadChar(CCharEntity* PChar)
           "safe,"       // 1
           "locker,"     // 2
           "satchel,"    // 3
-          "sack "       // 4
+          "sack,"       // 4
+          "`case` "     // 5
         "FROM char_storage "
 		"WHERE charid = %u;";
 
@@ -459,6 +460,7 @@ void LoadChar(CCharEntity* PChar)
 		PChar->getStorage(LOC_MOGLOCKER)->AddBuff((uint8)Sql_GetIntData(SqlHandle,2));
 		PChar->getStorage(LOC_MOGSATCHEL)->AddBuff((uint8)Sql_GetIntData(SqlHandle,3));
 		PChar->getStorage(LOC_MOGSACK)->AddBuff((uint8)Sql_GetIntData(SqlHandle,4));
+		PChar->getStorage(LOC_MOGCASE)->AddBuff((uint8)Sql_GetIntData(SqlHandle,5));
 	}
 
 	fmtQuery = "SELECT face, race, size, head, body, hands, legs, feet, main, sub, ranged \
@@ -3508,7 +3510,8 @@ void SaveCharInventoryCapacity(CCharEntity* PChar)
           "safe = %u,"
           "locker = %u,"
           "satchel = %u,"
-          "sack = %u "
+          "sack = %u, "
+          "`case` = %u "
         "WHERE charid = %u";
 
 	Sql_Query(SqlHandle, Query,
@@ -3517,6 +3520,7 @@ void SaveCharInventoryCapacity(CCharEntity* PChar)
         PChar->getStorage(LOC_MOGLOCKER)->GetSize(),
         PChar->getStorage(LOC_MOGSATCHEL)->GetSize(),
 		PChar->getStorage(LOC_MOGSACK)->GetSize(),
+		PChar->getStorage(LOC_MOGCASE)->GetSize(),
         PChar->id);
 }
 
