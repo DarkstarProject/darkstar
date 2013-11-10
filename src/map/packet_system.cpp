@@ -3234,7 +3234,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
             {
                 case MESSAGE_SAY:
 					{
-						if (map_config.audit_chat == 1)
+						if (map_config.audit_chat == 1 && map_config.audit_say == 1)
 						{
 							std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
 							qStr +=PChar->GetName();
@@ -3250,7 +3250,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 case MESSAGE_EMOTION:	PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_EMOTION, data+6)); break;
                 case MESSAGE_SHOUT:
 					{
-						if (map_config.audit_chat == 1)
+						if (map_config.audit_chat == 1 && map_config.audit_shout == 1)
 						{
 							std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
 							qStr +=PChar->GetName();
@@ -3268,7 +3268,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 {
                     if (PChar->PLinkshell != NULL)
                     {
-						if (map_config.audit_chat == 1)
+						if (map_config.audit_chat == 1 && map_config.audit_linkshell == 1)
 						{
 							std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
 							qStr +=PChar->GetName();
@@ -3288,7 +3288,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     {
 						if (PChar->PParty->m_PAlliance == NULL)
 						{
-							if (map_config.audit_chat == 1)
+							if (map_config.audit_chat == 1 && map_config.audit_party == 1)
 							{
 								std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
 								qStr +=PChar->GetName();
@@ -3305,7 +3305,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
 								{
 									PChar->PParty->m_PAlliance->partyList.at(i)->PushPacket(PChar, 0, new CChatMessagePacket(PChar, MESSAGE_PARTY, data+6));
 								}
-								if (map_config.audit_chat == 1)
+								if (map_config.audit_chat == 1 && map_config.audit_party == 1)
 								{
 									std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
 									qStr +=PChar->GetName();
@@ -3321,7 +3321,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 break;
                 case MESSAGE_YELL:
 					{
-						if (map_config.audit_chat == 1)
+						if (map_config.audit_chat == 1 && map_config.audit_yell == 1)
 						{
 							std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
 							qStr +=PChar->GetName();
@@ -3394,7 +3394,7 @@ void SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, int8* dat
 				PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 181));
 				return;
 			}
-			if (map_config.audit_chat == 1)
+			if (map_config.audit_chat == 1 && map_config.audit_tell == 1)
 			{
 				std::string qStr = ("INSERT into audit_chat (speaker,type,recipient,message,datetime) VALUES('");
 				qStr +=PChar->GetName();

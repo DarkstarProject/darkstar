@@ -841,6 +841,12 @@ int32 map_config_default()
     map_config.newstyle_skillups    = 7;
     map_config.max_merit_points    = 30;
 	map_config.audit_chat = 0;
+	map_config.audit_say = 0;
+	map_config.audit_shout = 0;
+	map_config.audit_tell = 0;
+	map_config.audit_yell = 0;
+	map_config.audit_party = 0;
+	map_config.audit_linkshell = 0;
 	return 0;
 }
 
@@ -1025,6 +1031,30 @@ int32 map_config_read(const int8* cfgName)
 		else if (strcmp(w1,"audit_chat") == 0)
 		{
 			map_config.audit_chat = atoi(w2);
+		}
+		else if (strcmp(w1,"audit_say") == 0)
+		{
+			map_config.audit_say = atoi(w2);
+		}
+		else if (strcmp(w1,"audit_shout") == 0)
+		{
+			map_config.audit_shout = atoi(w2);
+		}
+		else if (strcmp(w1,"audit_tell") == 0)
+		{
+			map_config.audit_tell = atoi(w2);
+		}
+		else if (strcmp(w1,"audit_yell") == 0)
+		{
+			map_config.audit_yell = atoi(w2);
+		}
+		else if (strcmp(w1,"audit_linkshell") == 0)
+		{
+			map_config.audit_linkshell = atoi(w2);
+		}
+		else if (strcmp(w1,"audit_party") == 0)
+		{
+			map_config.audit_party = atoi(w2);
 		}
 		else
 		{

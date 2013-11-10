@@ -90,6 +90,12 @@ struct map_config_t
     uint8  newstyle_skillups;       // Allows failed parries and blocks to trigger skill up chance.
 	uint8  max_merit_points;		// global variable, amount of merit points players are allowed
 	bool   audit_chat;
+	bool   audit_say;
+	bool   audit_shout;
+	bool   audit_tell;
+	bool   audit_yell;
+	bool   audit_linkshell;
+	bool   audit_party;
 };
 
 /************************************************************************
