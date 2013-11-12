@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Caedarva Mire
 -- NPC:  Runic Portal
--- Caedarva Mire Teleporter Back to Aht Urgan Whitegate
--- @pos 524 -28 -503 79 (Azouph)
--- @pos -264 -6 -28 79 (Dvucca)
+-- Caedarva Mire Teleporter Back to Aht Urhgan Whitegate
+-- @pos  524 -28 -503 79 (Azouph)
+-- @pos  -264 -6 -28 79 (Dvucca)
 -----------------------------------
 package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
 -----------------------------------
@@ -24,7 +24,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+
 	if(npc:getID() == 17101261) then -- Azouph
 		if(hasRunicPortal(player,1) == 1) then
 			player:startEvent(0x0083);
@@ -38,8 +38,7 @@ function onTrigger(player,npc)
 			player:startEvent(0x007d);
 		end
 	end
-	
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -57,7 +56,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	
+
 	if(option == 1) then
 		if(csid == 0x007c) then
 			player:addNationTeleport(AHTURHGAN,2);
@@ -66,5 +65,4 @@ function onEventFinish(player,csid,option)
 		end
 		toChamberOfPassage(player);
 	end
-	
 end;

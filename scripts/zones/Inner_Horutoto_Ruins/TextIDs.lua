@@ -1,23 +1,23 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6544; -- You cannot obtain the item <item> come back again after sorting your inventory
-          ITEM_OBTAINED = 6547; -- Obtained: <item>
-           GIL_OBTAINED = 6548; -- Obtained <number> gil
-       KEYITEM_OBTAINED = 6550; -- Obtained key item: <keyitem>
-     DOOR_FIRMLY_CLOSED = 7217; -- The door is firmly closed.
-         NOT_BROKEN_ORB = 7189; -- The Mana Orb in this receptacle is not broken.
-    EXAMINED_RECEPTACLE = 7190; -- You have already examined this receptacle.
+ITEM_CANNOT_BE_OBTAINED = 6544; -- You cannot obtain the item <item>. Come back after sorting your inventory.
+          ITEM_OBTAINED = 6547; -- Obtained: <item>.
+           GIL_OBTAINED = 6548; -- Obtained <number> gil.
+       KEYITEM_OBTAINED = 6550; -- Obtained key item: <keyitem>.
+         NOT_BROKEN_ORB = 7197; -- The Mana Orb in this receptacle is not broken.
+    EXAMINED_RECEPTACLE = 7198; -- You have already examined this receptacle.
+     DOOR_FIRMLY_CLOSED = 7225; -- The door is firmly closed.
 
 -- Treasure Coffer/Chest Dialog
-CHEST_UNLOCKED = 7292; -- You unlock the chest!
-    CHEST_FAIL = 7293; -- Fails to open the chest. 
-    CHEST_TRAP = 7294; -- The chest was trapped! 
-    CHEST_WEAK = 7295; -- You cannot open the chest when you are in a weakened state.
-   CHEST_MIMIC = 7296; -- The chest was a mimic! 
-  CHEST_MOOGLE = 7297; -- You cannot open the chest while participating in the moogle event.
-CHEST_ILLUSION = 7298; -- The chest was but an illusion...
-  CHEST_LOCKED = 7299; -- The chest appears to be locked.
+CHEST_UNLOCKED = 7300; -- You unlock the chest!
+    CHEST_FAIL = 7301; -- Fails to open the chest.
+    CHEST_TRAP = 7302; -- The chest was trapped!
+    CHEST_WEAK = 7303; -- You cannot open the chest when you are in a weakened state.
+   CHEST_MIMIC = 7304; -- The chest was a mimic!
+  CHEST_MOOGLE = 7305; -- You cannot open the chest while participating in the moogle event.
+CHEST_ILLUSION = 7306; -- The chest was but an illusion...
+  CHEST_LOCKED = 7307; -- The chest appears to be locked.
 
 -- Other texts
  PORTAL_SEALED_BY_3_MAGIC = 8; -- The Sealed Portal is sealed by three kinds of magic.

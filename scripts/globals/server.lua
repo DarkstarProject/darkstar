@@ -80,11 +80,11 @@ function SetFieldManual()
 	local FieldManuals  =
 	{
         17187511,17187512,17191493,17191494, -- West Ronfaure 2, East Ronfaure 2
-        17195671,17195672,17199745,17199746, -- La Theine 2, Valkurm 2
-        17199747,17203877,17203878,17207858, -- Valkurm 1, Jugner 2, Batallia 1
+        17195670,17195671,17199744,17199745, -- La Theine 2, Valkurm 2
+        17199746,17203876,17203877,17207858, -- Valkurm 1, Jugner 2, Batallia 1
         17207859,17212072,17212073,17212074, -- Batallia 1, North Gustaberg 3
-        17216141,17216142,17220159,17220160, -- South Gustaberg 2, Konschtat 2
-        17224345,17224346,17228369,17228370, -- Pashhow 2, Rolanberry 2
+        17216141,17216142,17220158,17220159, -- South Gustaberg 2, Konschtat 2
+        17224344,17224345,17228369,17228370, -- Pashhow 2, Rolanberry 2
         17232273,17232274,17232275,17232276, -- Beaucedine all 4
         17236337,17236338,17240507,17240508, -- Xarcabard 2, Cape Teriggan 2
         17244645,17244646,17244647,17248814, -- Eastern Altepa 3, West Sarutabaruta 1
@@ -185,7 +185,7 @@ function SetTreasureSpawns()
        17371601, -- Giddeus
        17379836, -- Beadeaux
        17388020, -- Davoi
-       17396204, -- Castle Oztroja
+       17396203, -- Castle Oztroja
        17420669, -- Middle Delkfutt's Tower
        17424556, -- Upper Delkfutt's Tower
        17436991, -- Castle Zvahl Baileys
@@ -193,7 +193,7 @@ function SetTreasureSpawns()
        17498609, -- Sea Serpent Grotto
        17555948, -- King Ranperre's Tomb
        17559918, -- Dangruf Wadi
-       17563908, -- Inner Horutoto Ruins
+       17563907, -- Inner Horutoto Ruins
        17568186, -- Ordelle's Caves
        17572283, -- Outer Horutoto Ruins
        17576351, -- The Eldieme Necropolis
@@ -211,7 +211,7 @@ function SetTreasureSpawns()
        17310019, -- Ru'Aun Gardens
        17379837, -- Beadeaux
        17391843, -- Monastic Cavern
-       17396205, -- Castle Oztroja
+       17396204, -- Castle Oztroja
        17404383, -- The Boyahda Tree
        17428979, -- Temple of Uggalepih
        17433071, -- Den of Rancor

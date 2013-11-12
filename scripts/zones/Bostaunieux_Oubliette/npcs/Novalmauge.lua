@@ -41,7 +41,7 @@ end;
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
+
 	if(player:getVar("troubleAtTheSluiceVar") == 2) then
 		if(trade:hasItemQty(959,1) and trade:getItemCount() == 1) then -- Trade Dahlia
 			player:startEvent(0x0011);
@@ -68,7 +68,7 @@ function onTrigger(player,npc)
 	TheHolyCrest = player:getVar("TheHolyCrest_Event");
 	tatsVar = player:getVar("troubleAtTheSluiceVar");
 	theRumor = player:getQuestStatus(SANDORIA,THE_RUMOR);
-	
+
 	npc:wait(-1);
 
 	-- The Holy Crest Quest
@@ -110,7 +110,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	
+
 	if(csid == 0x0006) then
 		player:setVar("TheHolyCrest_Event",2);
 	elseif(csid == 0x0011) then
@@ -119,9 +119,9 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(KEYITEM_OBTAINED,NEUTRALIZER);
 		player:setVar("troubleAtTheSluiceVar",0);
 	elseif(csid == 0x000d and option == 1) then
-		player:addQuest(SANDORIA,THE_RUMOR);			
+		player:addQuest(SANDORIA,THE_RUMOR);
 	elseif(csid == 0x000c) then
-		if (player:getFreeSlotsCount() == 0) then 
+		if (player:getFreeSlotsCount() == 0) then
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4853); -- Scroll of Drain
 		else
 			player:tradeComplete();
@@ -132,10 +132,9 @@ function onEventFinish(player,csid,option)
 			player:completeQuest(SANDORIA,THE_RUMOR);
 		end
 	end
-	
-	local npc = GetNPCByID(17461504);
+
+	local npc = GetNPCByID(17461503);
 	if(npc ~= nil) then
 		npc:wait(0);
 	end
-
 end;

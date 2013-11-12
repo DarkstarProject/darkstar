@@ -1,15 +1,10 @@
 -----------------------------------
--- Area: Konschtat Highlands
--- NPC:  qm1
--- Continues Quests: Past Perfect
--- @pos  -201 16 80 108
+-- Area: Port Jeuno
+-- NPC:  Treasure Coffer
+-- @pos:  -52 0 -11 246
 -----------------------------------
-package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/quests");
-require("scripts/globals/settings");
-require("scripts/zones/Konschtat_Highlands/TextIDs");
+package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
+require("scripts/zones/Port_Jeuno/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -24,14 +19,7 @@ end;
 
 function onTrigger(player,npc)
 
-PastPerfect = player:getQuestStatus(BASTOK,PAST_PERFECT);
-
-	if (PastPerfect == QUEST_ACCEPTED) then
-		player:addKeyItem(0x6d);
-		player:messageSpecial(KEYITEM_OBTAINED,0x6d); -- Tattered Mission Orders
-	else
-		player:messageSpecial(FIND_NOTHING);
-	end
+	player:messageSpecial(CHEST_IS_EMPTY);
 end;
 
 -----------------------------------
@@ -39,8 +27,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------

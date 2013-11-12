@@ -630,26 +630,26 @@ switch (region): caseof {
 
 	npc  = {
 	--
-		17199699,SANDORIA,	-- Quanteilleron, R.K.
-		17199706,SANDORIA,	-- Prunilla, R.K.
-		17199702,SANDORIA,	-- flag
-		17199710,SANDORIA,	-- flag
-	-- 
-		17199700,BASTOK,	-- Tsunashige, I.M.
-		17199707,BASTOK,	-- Fighting Ant, I.M.
-		17199703,BASTOK,	-- flag
-		17199711,BASTOK,	-- flag
-	-- 
-		17199701,WINDURST,	-- Nyata-Mobuta, W.W.
-		17199708,WINDURST,	-- Tebubu, W.W.
-		17199704,WINDURST,	-- flag
-		17199712,WINDURST,	-- flag
+		17199698,SANDORIA,	-- Quanteilleron, R.K.
+		17199705,SANDORIA,	-- Prunilla, R.K.
+		17199701,SANDORIA,	-- flag
+		17199709,SANDORIA,	-- flag
 	--
-		17199705,BEASTMEN,	-- flag
-		17199713,BEASTMEN,	-- flag
-		17199722,BEASTMEN,	-- flag
-	--	
-		17199709,OTHER,		-- Medicine Axe
+		17199699,BASTOK,	-- Tsunashige, I.M.
+		17199706,BASTOK,	-- Fighting Ant, I.M.
+		17199702,BASTOK,	-- flag
+		17199710,BASTOK,	-- flag
+	--
+		17199700,WINDURST,	-- Nyata-Mobuta, W.W.
+		17199707,WINDURST,	-- Tebubu, W.W.
+		17199703,WINDURST,	-- flag
+		17199711,WINDURST,	-- flag
+	--
+		17199704,BEASTMEN,	-- flag
+		17199712,BEASTMEN,	-- flag
+		17199721,BEASTMEN,	-- flag
+	--
+		17199708,OTHER,		-- Medicine Axe
 	}
   end,
 
@@ -657,30 +657,30 @@ switch (region): caseof {
   [NORVALLEN] = function (x) -- Jugner_Forest (104)
   ---------------------------------
 	--print("NORVALLEN");
-	
+
 	npc  = {
-	-- 
-		17203838,SANDORIA,	-- Chaplion, R.K.
-		17203845,SANDORIA,	-- Taumiale, R.K. 
-		17203841,SANDORIA,	-- flag
-	    17203849,SANDORIA,	-- flag
-	-- 
-		17203839,BASTOK,	-- Takamoto, I.M.
-		17203846,BASTOK,	-- Pure Heart, I.M. 
-		17203842,BASTOK,	-- flag
-		17203850,BASTOK,	-- flag
-	-- 
-		17203840,WINDURST,	-- Bubchu-Bibinchu, W.W.
-		17203847,WINDURST,	-- Geruru, W.W.  
-		17203843,WINDURST,	-- flag
-		17203851,WINDURST,	-- flag
-	-- 
-		17203844,BEASTMEN,	-- flag
-	    17203852,BEASTMEN,	-- flag
-	    17203863,BEASTMEN,	-- flag
 	--
-		17203848,OTHER,		-- Mionie
-	} 
+		17203837,SANDORIA,	-- Chaplion, R.K.
+		17203844,SANDORIA,	-- Taumiale, R.K.
+		17203840,SANDORIA,	-- flag
+	    17203848,SANDORIA,	-- flag
+	--
+		17203838,BASTOK,	-- Takamoto, I.M.
+		17203845,BASTOK,	-- Pure Heart, I.M.
+		17203841,BASTOK,	-- flag
+		17203849,BASTOK,	-- flag
+	--
+		17203839,WINDURST,	-- Bubchu-Bibinchu, W.W.
+		17203846,WINDURST,	-- Geruru, W.W.
+		17203842,WINDURST,	-- flag
+		17203850,WINDURST,	-- flag
+	--
+		17203843,BEASTMEN,	-- flag
+	    17203851,BEASTMEN,	-- flag
+	    17203862,BEASTMEN,	-- flag
+	--
+		17203847,OTHER,		-- Mionie
+	}
   end,
 
   ---------------------------------
@@ -716,29 +716,29 @@ switch (region): caseof {
   [DERFLAND] = function (x) -- Pashhow_Marshlands (109)
   ---------------------------------
 	--print("DERFLAND");
-  
+
 	npc  = {
-	-- 
-		17224316,SANDORIA,	-- Mesachedeau, R.K.
-		17224323,SANDORIA,	-- Ioupie, R.K. 
-		17224319,SANDORIA,	-- flag
-		17224327,SANDORIA,	-- flag
-	-- 
-		17224317,BASTOK,	-- Souun, I.M.
-		17224324,BASTOK,	-- Sharp Tooth, I.M. 
-		17224320,BASTOK,	-- flag
-		17224328,BASTOK,	-- flag
-	-- 
-		17224318,WINDURST,	-- Mokto-Lankto, W.W.
-		17224325,WINDURST,	-- Shikoko, W.W. 
-		17224321,WINDURST,	-- flag
-		17224329,WINDURST,	-- flag
-	-- 
-		17224322,BEASTMEN,	-- flag
-	    17224330,BEASTMEN,	-- flag
+	--
+		17224315,SANDORIA,	-- Mesachedeau, R.K.
+		17224322,SANDORIA,	-- Ioupie, R.K.
+		17224318,SANDORIA,	-- flag
+		17224326,SANDORIA,	-- flag
+	--
+		17224316,BASTOK,	-- Souun, I.M.
+		17224323,BASTOK,	-- Sharp Tooth, I.M.
+		17224319,BASTOK,	-- flag
+		17224327,BASTOK,	-- flag
+	--
+		17224317,WINDURST,	-- Mokto-Lankto, W.W.
+		17224324,WINDURST,	-- Shikoko, W.W.
+		17224320,WINDURST,	-- flag
+		17224328,WINDURST,	-- flag
+	--
+		17224321,BEASTMEN,	-- flag
+	    17224329,BEASTMEN,	-- flag
 	    17224335,BEASTMEN,	-- flag
 	--
-		17224326,OTHER,		-- Tahmasp
+		17224325,OTHER,		-- Tahmasp
 	}
   end,
 
@@ -777,60 +777,60 @@ switch (region): caseof {
 	--print("KOLSHUSHU");
 
 	npc  = {
-	-- 
-		17261139,SANDORIA,	-- Bonbavour, R.K. 
+	--
+		17261139,SANDORIA,	-- Bonbavour, R.K.
 		17261146,SANDORIA,	-- Craigine, R.K.
-		17261142,SANDORIA,	-- flag	
+		17261142,SANDORIA,	-- flag
 		17261150,SANDORIA,	-- flag
-	-- 
-		17261140,BASTOK,	-- Ishin, I.M. 
+	--
+		17261140,BASTOK,	-- Ishin, I.M.
 		17261147,BASTOK,	-- Wise Turtle, I.M.
 		17261143,BASTOK,	-- flag
 		17261151,BASTOK,	-- flag
-	-- 
+	--
 		17261141,WINDURST,	-- Ganemu-Punnemu, W.W.
 		17261148,WINDURST,	-- Mashasha, W.W.
-		17261144,WINDURST,	-- flag	
-		17261152,WINDURST,	-- flag	
-	-- 
+		17261144,WINDURST,	-- flag
+		17261152,WINDURST,	-- flag
+	--
 		17261145,BEASTMEN,	-- flag
 		17261153,BEASTMEN,	-- flag
 	    17261173,BEASTMEN,	-- flag
 	--
 		17261149,OTHER,		-- Lobho Ukipturi
-	}	
+	}
   end,
-  
+
   ---------------------------------
   [ARAGONEU] = function (x) -- Meriphataud_Mountains (119)
   ---------------------------------
 	--print("ARAGONEU");
 
 	npc  = {
-	-- 
+	--
 		17265261,SANDORIA,	-- Chegourt, R.K.
-		17265268,SANDORIA,	-- Buliame, R.K. 
+		17265268,SANDORIA,	-- Buliame, R.K.
 		17265264,SANDORIA,	-- flag
 		17265272,SANDORIA,	-- flag
-	-- 
+	--
 		17265262,BASTOK,	-- Akane, I.M.
-		17265269,BASTOK,	-- Three Steps, I.M.  
+		17265269,BASTOK,	-- Three Steps, I.M.
 		17265265,BASTOK,	-- flag
 		17265273,BASTOK,	-- flag
-	-- 
+	--
 		17265263,WINDURST,	-- Donmo-Boronmo, W.W.
-		17265270,WINDURST,	-- Daruru, W.W. 
+		17265270,WINDURST,	-- Daruru, W.W.
 		17265266,WINDURST,	-- flag
 		17265274,WINDURST,	-- flag
-	-- 
+	--
 		17265267,BEASTMEN,	-- flag
 	    17265275,BEASTMEN,	-- flag
 	    17265277,BEASTMEN,	-- flag
 	--
 		17265271,OTHER,		-- Mushosho
-	}	
+	}
   end,
-  
+
   ---------------------------------
   [FAUREGANDI] = function (x) -- Beaucedine_Glacier (111)
   ---------------------------------
@@ -1112,25 +1112,25 @@ switch (region): caseof {
 
 	npc  = {
 	--
-		16875826,SANDORIA,	-- Jemmoquel, R.K.
-		16875833,SANDORIA,	-- Chilaumme, R.K.
-		16875829,SANDORIA,	-- flag
-		16875837,SANDORIA,	-- flag
+		16875825,SANDORIA,	-- Jemmoquel, R.K.
+		16875832,SANDORIA,	-- Chilaumme, R.K.
+		16875828,SANDORIA,	-- flag
+		16875836,SANDORIA,	-- flag
 	--
-		16875827,BASTOK,	-- Yoram, I.M.
-		16875834,BASTOK,	-- Ghost Talker, I.M.
-		16875830,BASTOK,	-- flag
-		16875838,BASTOK,	-- flag
+		16875826,BASTOK,	-- Yoram, I.M.
+		16875833,BASTOK,	-- Ghost Talker, I.M.
+		16875829,BASTOK,	-- flag
+		16875837,BASTOK,	-- flag
 	--
-		16875828,WINDURST,	-- Teldo-Moroldo, W.W.
-		16875835,WINDURST,	-- Cotete, W.W.
-		16875831,WINDURST,	-- flag
-		16875839,WINDURST,	-- flag
+		16875827,WINDURST,	-- Teldo-Moroldo, W.W.
+		16875834,WINDURST,	-- Cotete, W.W.
+		16875830,WINDURST,	-- flag
+		16875838,WINDURST,	-- flag
 	--
-		16875832,BEASTMEN,	-- flag
-        16875840,BEASTMEN,	-- flag
+		16875831,BEASTMEN,	-- flag
+        16875839,BEASTMEN,	-- flag
 	--
-		16875836,OTHER,		-- Jersey
+		16875835,OTHER,		-- Jersey
 	}
   end,
   }

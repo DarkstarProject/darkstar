@@ -132,19 +132,19 @@ INSERT INTO `treasure_spawn_points` VALUES (17388020,8,99,-109.608,2.693,50.392)
 INSERT INTO `treasure_spawn_points` VALUES (17388020,9,191,-59.329,-0.672,10.691); -- Davoi
 INSERT INTO `treasure_spawn_points` VALUES (17388020,10,64,-59.163,-0.459,69.200); -- Davoi
 INSERT INTO `treasure_spawn_points` VALUES (17388020,11,173,-14.535,0.583,-67.930); -- Davoi
-INSERT INTO `treasure_spawn_points` VALUES (17396204,0,158,7.378,-16.293,-193.590);
-INSERT INTO `treasure_spawn_points` VALUES (17396204,1,96,-52.531,24.218,-12.087);
-INSERT INTO `treasure_spawn_points` VALUES (17396204,2,66,-79.345,23.731,-39.930);
-INSERT INTO `treasure_spawn_points` VALUES (17396204,3,223,-107.048,24.218,-67.696);
-INSERT INTO `treasure_spawn_points` VALUES (17396204,4,43,113.076,-16.326,-85.606);
-INSERT INTO `treasure_spawn_points` VALUES (17396204,5,132,50.230,-16.000,-186.078);
-INSERT INTO `treasure_spawn_points` VALUES (17396204,6,0,66.460,-4.285,-140.403);
-INSERT INTO `treasure_spawn_points` VALUES (17396204,7,40,-167.569,-16.293,193.410);
-INSERT INTO `treasure_spawn_points` VALUES (17396204,8,230,-274.293,-16.285,193.509);
-INSERT INTO `treasure_spawn_points` VALUES (17396204,9,192,-206.721,-16.000,85.103);
-INSERT INTO `treasure_spawn_points` VALUES (17396204,10,253,-213.101,-4.285,139.820);
-INSERT INTO `treasure_spawn_points` VALUES (17396204,11,5,-102.026,-52.000,180.448);
-INSERT INTO `treasure_spawn_points` VALUES (17396204,12,65,-19.589,-15.750,-15.309);
+INSERT INTO `treasure_spawn_points` VALUES (17396203,0,158,7.378,-16.293,-193.590); -- Castle Oztroja
+INSERT INTO `treasure_spawn_points` VALUES (17396203,1,96,-52.531,24.218,-12.087); -- Castle Oztroja
+INSERT INTO `treasure_spawn_points` VALUES (17396203,2,66,-79.345,23.731,-39.930); -- Castle Oztroja
+INSERT INTO `treasure_spawn_points` VALUES (17396203,3,223,-107.048,24.218,-67.696); -- Castle Oztroja
+INSERT INTO `treasure_spawn_points` VALUES (17396203,4,43,113.076,-16.326,-85.606); -- Castle Oztroja
+INSERT INTO `treasure_spawn_points` VALUES (17396203,5,132,50.230,-16.000,-186.078); -- Castle Oztroja
+INSERT INTO `treasure_spawn_points` VALUES (17396203,6,0,66.460,-4.285,-140.403); -- Castle Oztroja
+INSERT INTO `treasure_spawn_points` VALUES (17396203,7,40,-167.569,-16.293,193.410); -- Castle Oztroja
+INSERT INTO `treasure_spawn_points` VALUES (17396203,8,230,-274.293,-16.285,193.509); -- Castle Oztroja
+INSERT INTO `treasure_spawn_points` VALUES (17396203,9,192,-206.721,-16.000,85.103); -- Castle Oztroja
+INSERT INTO `treasure_spawn_points` VALUES (17396203,10,253,-213.101,-4.285,139.820); -- Castle Oztroja
+INSERT INTO `treasure_spawn_points` VALUES (17396203,11,5,-102.026,-52.000,180.448); -- Castle Oztroja
+INSERT INTO `treasure_spawn_points` VALUES (17396203,12,65,-19.589,-15.750,-15.309); -- Castle Oztroja
 INSERT INTO `treasure_spawn_points` VALUES (17420669,0,254,-339.909,-127.601,20.816);
 INSERT INTO `treasure_spawn_points` VALUES (17420669,1,65,-420.058,-127.601,99.913);
 INSERT INTO `treasure_spawn_points` VALUES (17420669,2,255,-398.356,-127.424,20.397);
@@ -213,7 +213,7 @@ INSERT INTO `treasure_spawn_points` VALUES (17559918,11,190,-198.482,4.000,506.6
 INSERT INTO `treasure_spawn_points` VALUES (17559918,12,60,-264.091,3.255,460.409);
 INSERT INTO `treasure_spawn_points` VALUES (17559918,13,223,-337.859,3.228,384.203);
 INSERT INTO `treasure_spawn_points` VALUES (17559918,14,195,-419.957,3.876,335.875);
-INSERT INTO `treasure_spawn_points` VALUES (17563908,0,125,-177.956,-0.002,-220.058);
+INSERT INTO `treasure_spawn_points` VALUES (17563907,0,125,-177.956,-0.002,-220.058); -- Inner Horutoto Ruins
 INSERT INTO `treasure_spawn_points` VALUES (17568186,0,165,-111.515,27.986,-90.305);
 INSERT INTO `treasure_spawn_points` VALUES (17568186,1,150,-109.446,-0.021,-90.724);
 INSERT INTO `treasure_spawn_points` VALUES (17568186,2,103,-108.188,28.338,-29.797);
@@ -313,16 +313,16 @@ INSERT INTO `treasure_spawn_points` VALUES (17391843,6,60,17.613,-1.386,-91.632)
 INSERT INTO `treasure_spawn_points` VALUES (17391843,7,32,-65.136,-0.739,-142.362);
 INSERT INTO `treasure_spawn_points` VALUES (17391843,8,30,-68.553,-1.002,-186.570);
 INSERT INTO `treasure_spawn_points` VALUES (17391843,9,107,-21.343,-0.797,-177.934);
-INSERT INTO `treasure_spawn_points` VALUES (17396205,0,223,-102.723,-60.000,-222.555);
-INSERT INTO `treasure_spawn_points` VALUES (17396205,1,0,-266.089,-15.750,-20.133);
-INSERT INTO `treasure_spawn_points` VALUES (17396205,2,0,-262.641,-20.000,-60.291);
-INSERT INTO `treasure_spawn_points` VALUES (17396205,3,34,-144.194,-39.729,-15.149);
-INSERT INTO `treasure_spawn_points` VALUES (17396205,4,130,-80.274,-40.203,-80.277);
-INSERT INTO `treasure_spawn_points` VALUES (17396205,5,100,-15.114,-39.745,-134.880);
-INSERT INTO `treasure_spawn_points` VALUES (17396205,6,160,-13.623,-39.834,-184.540);
-INSERT INTO `treasure_spawn_points` VALUES (17396205,7,193,-60.369,-71.750,-146.231);
-INSERT INTO `treasure_spawn_points` VALUES (17396205,8,63,-139.729,-71.750,-53.252);
-INSERT INTO `treasure_spawn_points` VALUES (17396205,9,65,-100.197,-72.511,-13.141);
+INSERT INTO `treasure_spawn_points` VALUES (17396204,0,223,-102.723,-60.000,-222.555); -- Castle Oztroja
+INSERT INTO `treasure_spawn_points` VALUES (17396204,1,0,-266.089,-15.750,-20.133); -- Castle Oztroja
+INSERT INTO `treasure_spawn_points` VALUES (17396204,2,0,-262.641,-20.000,-60.291); -- Castle Oztroja
+INSERT INTO `treasure_spawn_points` VALUES (17396204,3,34,-144.194,-39.729,-15.149); -- Castle Oztroja
+INSERT INTO `treasure_spawn_points` VALUES (17396204,4,130,-80.274,-40.203,-80.277); -- Castle Oztroja
+INSERT INTO `treasure_spawn_points` VALUES (17396204,5,100,-15.114,-39.745,-134.880); -- Castle Oztroja
+INSERT INTO `treasure_spawn_points` VALUES (17396204,6,160,-13.623,-39.834,-184.540); -- Castle Oztroja
+INSERT INTO `treasure_spawn_points` VALUES (17396204,7,193,-60.369,-71.750,-146.231); -- Castle Oztroja
+INSERT INTO `treasure_spawn_points` VALUES (17396204,8,63,-139.729,-71.750,-53.252); -- Castle Oztroja
+INSERT INTO `treasure_spawn_points` VALUES (17396204,9,65,-100.197,-72.511,-13.141); -- Castle Oztroja
 INSERT INTO `treasure_spawn_points` VALUES (17404383,0,95,28.477,6.335,145.925);
 INSERT INTO `treasure_spawn_points` VALUES (17404383,1,120,-62.707,8.787,80.017);
 INSERT INTO `treasure_spawn_points` VALUES (17404383,2,5,-100.194,7.716,71.802);
