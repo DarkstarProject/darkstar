@@ -1,10 +1,13 @@
 -----------------------------------
--- Area: Lower Jeuno
--- NPC:  Guide Stone
--- @pos  19 -3 47 245
+-- Area: Qufim Island
+-- NPC:  Giant Footprint
+-- Involved in quest: Regaining Trust
+-- @pos  501 -11 354 126
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
-require("scripts/zones/Lower_Jeuno/TextIDs");
+package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/zones/Qufim_Island/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -19,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
 
-	player:messageSpecial(GUIDE_STONE);
+	player:messageSpecial(GIGANTIC_FOOTPRINT);
 end;
 
 -----------------------------------
@@ -28,7 +31,7 @@ end;
 
 function onEventUpdate(player,csid,option)
 --printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+--printf("updateRESULT: %u",option);
 end;
 
 -----------------------------------
@@ -37,5 +40,5 @@ end;
 
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+--printf("finishRESULT: %u",option);
 end;

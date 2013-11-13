@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: South Gustaberg
--- NPC: ???
+-- NPC:  qm1
 -- Involved in Quest: The Cold Light of Day
+-- @pos  744 0 -671 107
 -----------------------------------
 
 package.loaded["scripts/zones/South_Gustaberg/TextIDs"] = nil;
@@ -30,6 +31,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+player:messageSpecial(MONSTER_TRACKS);
 end;
 
 -----------------------------------
