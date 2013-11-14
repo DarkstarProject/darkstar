@@ -1,4 +1,15 @@
+-----------------------------------
+--  Area: Korroloka Tunnel
+--  Mob:  Korroloka Leech
+--  Involved in Quest: Ayame and Kaede
+-----------------------------------
+
 require("scripts/globals/settings");
+
+-----------------------------------
+
+
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------

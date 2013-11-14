@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: East Ronfaure
---   NPC: Croteillard
+--  NPC: Croteillard
 --  Type: Gate Guard
--- @zone: 101
---  @pos: 87.426 -62.999 266.709
---
--- Auto-Script: Requires Verification
+--  @pos 87.426 -62.999 266.709 101
 -----------------------------------
 package.loaded["scripts/zones/East_Ronfaure/TextIDs"] = nil;
 -----------------------------------

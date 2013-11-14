@@ -19,10 +19,6 @@ end;
 -- onTrade Action
 -----------------------------------
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 
 local x = npc:getXPos(); 
@@ -45,4 +41,5 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+	player:messageSpecial(MORION_WORM_1);
 end;

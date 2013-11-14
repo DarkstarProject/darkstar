@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Ranguemont Pass
---   NPC: Perchond
+--  NPC: Perchond
 --  Type: NPC
--- @zone: 166
---  @pos: -182.844 4 -164.948
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -182.844 4 -164.948 166
 -----------------------------------
 package.loaded["scripts/zones/Ranguemont_Pass/TextIDs"] = nil;
 -----------------------------------

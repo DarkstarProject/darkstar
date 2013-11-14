@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Ranguemont Pass
---   NPC: Myffore
+--  NPC: Myffore
 --  Type: NPC
--- @zone: 166
---  @pos: -179.951 4 -172.234
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -179.951 4 -172.234 166
 -----------------------------------
 package.loaded["scripts/zones/Ranguemont_Pass/TextIDs"] = nil;
 -----------------------------------

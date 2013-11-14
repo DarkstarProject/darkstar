@@ -1,10 +1,8 @@
 -----------------------------------
 --  Area: East Ronfaure
---   NPC: Cheval_River
--- @zone: 101
---  @pos: 223 -58 426
---
--- Involved in Quest: Waters of Cheval
+--  NPC: Cheval_River
+--  @pos 223 -58 426 101
+--  Involved in Quest: Waters of Cheval
 -----------------------------------
 package.loaded["scripts/zones/East_Ronfaure/TextIDs"] = nil;
 -----------------------------------

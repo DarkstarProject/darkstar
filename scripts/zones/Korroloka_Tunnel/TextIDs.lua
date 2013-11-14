@@ -13,3 +13,6 @@ MINING_IS_POSSIBLE_HERE = 7263; -- Mining is possible here if you have <item>.
 -- Quest dialog
 NOTHING_OUT_OF_ORDINARY = 7341; -- There is nothing out of the ordinary here.
     SENSE_OF_BOREBODING = 6393; -- You are suddenly overcome with a sense of foreboding...
+
+-- Other
+MORION_WORM_1 = 7284; -- It appears to be a hole made by some kind of animal. Fragments of iron ore are scattered around the area...

@@ -2,8 +2,7 @@
 -- Area: Ranguemont Pass
 -- NPC: Waters of Oblivion
 -- Finish Quest: Painful Memory (BARD AF1)
--- @zone 166
--- @pos -284 -45 210 
+-- @pos -284 -45 210 166
 -----------------------------------
 package.loaded["scripts/zones/Ranguemont_Pass/TextIDs"] = nil;
 -----------------------------------

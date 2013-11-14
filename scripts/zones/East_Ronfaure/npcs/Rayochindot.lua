@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: East Ronfaure
---   NPC: Rayochindot
+--  NPC: Rayochindot
 --  Type: Gate Guard
--- @zone: 101
---  @pos: 93.159 -62.999 272.601
---
--- Auto-Script: Requires Verification
+--  @pos 93.159 -62.999 272.601 101
 -----------------------------------
 package.loaded["scripts/zones/East_Ronfaure/TextIDs"] = nil;
 -----------------------------------
