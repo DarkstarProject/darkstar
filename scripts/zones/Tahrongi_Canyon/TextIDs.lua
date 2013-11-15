@@ -21,3 +21,9 @@ SPROUT_DOES_NOT_NEED_WATER = 7484; -- The sprout does not need any more water no
 
 -- Other Texts
 TELEPOINT_HAS_BEEN_SHATTERED = 7439; -- The telepoint has been shattered into a thousand pieces...
+
+-- Signs
+ SIGN_1 = 7338; -- North: Meriphataud Mountains | Northeast: Crag of Mea | South: East Sarutabaruta
+ SIGN_3 = 7339; -- North: Meriphataud Mountains | East: Crag of Mea | South: East Sarutabaruta
+ SIGN_5 = 7340; -- North: Meriphataud Mountains | East: Buburimu Peninsula | South: East Sarutabaruta
+ SIGN_7 = 7341; -- East: Buburimu Peninsula | West: East Sarutabaruta

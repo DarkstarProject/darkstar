@@ -27,3 +27,14 @@ KOLAPO_OILAPO_DIALOG = 7343; -- Hi-diddly-diddly! This is the gateway to Windurs
 -- Other Dialog
 		NOTHING_HAPPENS = 7263; -- Nothing happens...
 NOTHING_OUT_OF_ORDINARY = 7357; -- There is nothing out of the ordinary here.
+
+-- Signs
+ SIGN_1 = 7332; -- Northeast: Central Tower, Horutoto Ruins | Northwest: Giddeus | South: Port Windurst
+ SIGN_3 = 7333; -- East: East Sarutabaruta | West: Giddeus
+ SIGN_5 = 7334; -- Northeast: Central Tower, Horutoto Ruins | East: East Sarutabaruta | West: Giddeus
+ SIGN_7 = 7335; -- Windurst | East: East Sarutabaruta
+ SIGN_9 = 7336; -- West: Giddeus | North: East Sarutabaruta | South: Windurst
+SIGN_11 = 7337; -- North: East Sarutabaruta | Southeast: Windurst
+SIGN_13 = 7338; -- East: Port Windurst | West: West Tower, Horutoto Ruins
+SIGN_15 = 7339; -- East: East Sarutabaruta | West: Giddeus | Southeast: Windurst
+SIGN_17 = 7340; -- Northwest: Northwest Tower, Horutoto Ruins | East: Outpost | Southwest: Giddeus

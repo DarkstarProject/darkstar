@@ -21,25 +21,25 @@ end;
  
 function onTrigger(player,npc)
 
-    if (npc:getID() == 17203803) then
+    if (npc:getID() == 17203802) then
         if (player:getQuestStatus(SANDORIA,GRIMY_SIGNPOSTS) == QUEST_ACCEPTED and not player:getMaskBit(player:getVar("CleanSignPost"),0)) then
             player:startEvent(0x0006,1);
         else
             player:startEvent(0x0001);
         end
-    elseif (npc:getID() == 17203804) then
+    elseif (npc:getID() == 17203803) then
         if (player:getQuestStatus(SANDORIA,GRIMY_SIGNPOSTS) == QUEST_ACCEPTED and not player:getMaskBit(player:getVar("CleanSignPost"),1)) then
             player:startEvent(0x0007,1);
         else
             player:startEvent(0x0002);
         end
-    elseif (npc:getID() == 17203805) then
+    elseif (npc:getID() == 17203804) then
         if (player:getQuestStatus(SANDORIA,GRIMY_SIGNPOSTS) == QUEST_ACCEPTED and not player:getMaskBit(player:getVar("CleanSignPost"),2)) then
             player:startEvent(0x0008,1);
         else
             player:startEvent(0x0003);
         end
-    elseif (npc:getID() == 17203806) then
+    elseif (npc:getID() == 17203805) then
         if (player:getQuestStatus(SANDORIA,GRIMY_SIGNPOSTS) == QUEST_ACCEPTED and not player:getMaskBit(player:getVar("CleanSignPost"),3)) then
             player:startEvent(0x0009,1);
         else

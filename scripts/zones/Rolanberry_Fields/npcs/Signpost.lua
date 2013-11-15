@@ -10,7 +10,7 @@ require("/scripts/globals/settings");
 -----------------------------------	
 	
 function onTrigger(player,npc)	
-	player:messageSpecial(7318);
+	player:messageSpecial(SIGN);
 end;	
 	
 -----------------------------------	
