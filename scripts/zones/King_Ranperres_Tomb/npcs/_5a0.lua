@@ -41,6 +41,8 @@ function onTrigger(player,npc)
 	     player:startEvent(0x0007);
 	elseif(currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 8) then
 	     player:startEvent(0x0005);
+	else
+			 player:messageSpecial(HEAVY_DOOR);
 	end
 end; 
 

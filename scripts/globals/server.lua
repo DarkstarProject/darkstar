@@ -91,7 +91,7 @@ function SetFieldManual()
         17248815,17248816,17253023,17253024, -- West Sarutabaruta 2, East Sarutabaruta 2
         17253025,17257067,17257068,17257069, -- East Sarutabaruta 1, Tahrongi 3
         17261192,17261193,17265284,17265285, -- Buburimu 2, Meriphataud Mountains 2
-        17265286,17269254,17269255,17273410, -- Meriphataud Mountains 1, Sauromugue 2, Zi'Tah 1
+        17265286,17269253,17269254,17273410, -- Meriphataud Mountains 1, Sauromugue 2, Zi'Tah 1
         17273411,17277203,17277204,17281639, -- Zi'Tah 1, Ro'Maeve 2, Yuhtunga Jungle 1
         17281640,17281641,17281642,17285689, -- Yuhtunga Jungle 3, Yhoator Jungle 1
         17285690,17285691,17289789,17289790, -- Yhoator Jungle 2, Western Altepa 2
@@ -179,7 +179,7 @@ function SetTreasureSpawns()
        16814554, -- Pso'Xja
        16822524, -- Oldton Movalpolos
        16892176, -- Sacrarium
-       17355006, -- Fort Ghelsba
+       17355005, -- Fort Ghelsba
        17359045, -- Yughott Grotto
        17363363, -- Palborough Mines
        17371601, -- Giddeus
@@ -191,7 +191,7 @@ function SetTreasureSpawns()
        17436991, -- Castle Zvahl Baileys
        17441082, -- Castle Zvahl Keep
        17498609, -- Sea Serpent Grotto
-       17555948, -- King Ranperre's Tomb
+       17555947, -- King Ranperre's Tomb
        17559918, -- Dangruf Wadi
        17563907, -- Inner Horutoto Ruins
        17568186, -- Ordelle's Caves
@@ -210,7 +210,7 @@ function SetTreasureSpawns()
        16826620, -- Newton Movalpolos
        17310019, -- Ru'Aun Gardens
        17379837, -- Beadeaux
-       17391843, -- Monastic Cavern
+       17391842, -- Monastic Cavern
        17396204, -- Castle Oztroja
        17404383, -- The Boyahda Tree
        17428979, -- Temple of Uggalepih

@@ -33,12 +33,12 @@ function onTrigger(player,npc)
            if (player:getVar("circleTime") == 7) then
                SpawnMob(17391804,180):updateEnmity(player); -- Spawn bugaboo
            elseif (player:getVar("circleTime") == 8) then
-               player:startEvent(0x03); -- Show final CS
-           end
+               player:startEvent(0x03); -- Show final CS  
+           end  
        end
+	 else
+    	player:messageSpecial(ALTAR)     
    end
-
-
 end;
 
 -----------------------------------
