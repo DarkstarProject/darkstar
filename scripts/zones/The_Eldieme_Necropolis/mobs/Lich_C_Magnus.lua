@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: 
+-- Area: The Eldieme Necropolis
 -- NPC:  Lich_C_Magnus
 -----------------------------------
 
