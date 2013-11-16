@@ -196,7 +196,7 @@ function SetTreasureSpawns()
        17563907, -- Inner Horutoto Ruins
        17568186, -- Ordelle's Caves
        17572283, -- Outer Horutoto Ruins
-       17576351, -- The Eldieme Necropolis
+       17576349, -- The Eldieme Necropolis
        17580396, -- Gusgen Mines
        17584469, -- Crawler's Nest
        17588766, -- Maze of Shakhrami
@@ -220,7 +220,7 @@ function SetTreasureSpawns()
        17490294, -- Kuftal Tunnel
        17498610, -- Sea Serpent Grotto
        17502692, -- Ve'Lugannon Palace
-       17576352, -- The Eldieme Necropolis
+       17576350, -- The Eldieme Necropolis
        17584470, -- Crawler's Nest
        17596804, -- Garlaige Citadel
        17617214, -- Ifrit's Cauldron

@@ -230,16 +230,16 @@ INSERT INTO `treasure_spawn_points` VALUES (17568186,12,194,-112.788,-0.035,230.
 INSERT INTO `treasure_spawn_points` VALUES (17568186,13,236,-169.325,0.008,231.696);
 INSERT INTO `treasure_spawn_points` VALUES (17568186,14,62,-167.160,0.068,289.223);
 INSERT INTO `treasure_spawn_points` VALUES (17572283,0,250,-423.066,0.000,672.483);
-INSERT INTO `treasure_spawn_points` VALUES (17576351,0,254,171.927,-7.999,20.008);
-INSERT INTO `treasure_spawn_points` VALUES (17576351,1,1,261.094,-33.250,100.014);
-INSERT INTO `treasure_spawn_points` VALUES (17576351,2,127,98.908,-33.250,100.046);
-INSERT INTO `treasure_spawn_points` VALUES (17576351,3,127,98.894,-33.250,-60.000);
-INSERT INTO `treasure_spawn_points` VALUES (17576351,4,1,260.965,-33.250,-59.905);
-INSERT INTO `treasure_spawn_points` VALUES (17576351,5,193,179.926,-32.000,-51.239);
-INSERT INTO `treasure_spawn_points` VALUES (17576351,6,128,251.208,-32.000,20.054);
-INSERT INTO `treasure_spawn_points` VALUES (17576351,7,1,-518.830,-8.000,500.082);
-INSERT INTO `treasure_spawn_points` VALUES (17576351,8,127,-411.948,8.000,499.879);
-INSERT INTO `treasure_spawn_points` VALUES (17576351,9,190,-438.279,0.350,304.854);
+INSERT INTO `treasure_spawn_points` VALUES (17576349,0,254,171.927,-7.999,20.008); -- The Eldieme Necropolis
+INSERT INTO `treasure_spawn_points` VALUES (17576349,1,1,261.094,-33.250,100.014); -- The Eldieme Necropolis
+INSERT INTO `treasure_spawn_points` VALUES (17576349,2,127,98.908,-33.250,100.046); -- The Eldieme Necropolis
+INSERT INTO `treasure_spawn_points` VALUES (17576349,3,127,98.894,-33.250,-60.000); -- The Eldieme Necropolis
+INSERT INTO `treasure_spawn_points` VALUES (17576349,4,1,260.965,-33.250,-59.905); -- The Eldieme Necropolis
+INSERT INTO `treasure_spawn_points` VALUES (17576349,5,193,179.926,-32.000,-51.239); -- The Eldieme Necropolis
+INSERT INTO `treasure_spawn_points` VALUES (17576349,6,128,251.208,-32.000,20.054); -- The Eldieme Necropolis
+INSERT INTO `treasure_spawn_points` VALUES (17576349,7,1,-518.830,-8.000,500.082); -- The Eldieme Necropolis
+INSERT INTO `treasure_spawn_points` VALUES (17576349,8,127,-411.948,8.000,499.879); -- The Eldieme Necropolis
+INSERT INTO `treasure_spawn_points` VALUES (17576349,9,190,-438.279,0.350,304.854); -- The Eldieme Necropolis
 INSERT INTO `treasure_spawn_points` VALUES (17580396,0,216,-14.130,-39.999,-85.554); -- Gusgen Mines
 INSERT INTO `treasure_spawn_points` VALUES (17584469,0,13,39.767,-0.178,-313.865);
 INSERT INTO `treasure_spawn_points` VALUES (17584469,1,255,98.913,-1.981,-344.437);
@@ -407,15 +407,15 @@ INSERT INTO `treasure_spawn_points` VALUES (17498610,8,174,-227.255,10.000,-65.4
 INSERT INTO `treasure_spawn_points` VALUES (17498610,9,191,-259.927,8.705,-133.028);
 INSERT INTO `treasure_spawn_points` VALUES (17498610,10,254,-356.233,15.475,-104.030);
 INSERT INTO `treasure_spawn_points` VALUES (17502692,0,1,101.588,15.837,380.587);
-INSERT INTO `treasure_spawn_points` VALUES (17576352,0,31,159.011,-27.999,161.005);
-INSERT INTO `treasure_spawn_points` VALUES (17576352,1,64,179.864,-32.000,91.100);
-INSERT INTO `treasure_spawn_points` VALUES (17576352,2,1,108.749,-32.000,19.951);
-INSERT INTO `treasure_spawn_points` VALUES (17576352,3,223,39.264,-28.000,-0.712);
-INSERT INTO `treasure_spawn_points` VALUES (17576352,4,6,174.753,-0.418,-100.369);
-INSERT INTO `treasure_spawn_points` VALUES (17576352,5,63,299.967,0.000,69.413);
-INSERT INTO `treasure_spawn_points` VALUES (17576352,6,194,300.082,0.000,-29.448);
-INSERT INTO `treasure_spawn_points` VALUES (17576352,7,174,188.319,-0.590,128.702);
-INSERT INTO `treasure_spawn_points` VALUES (17576352,8,2,-386.548,-3.000,335.046);
+INSERT INTO `treasure_spawn_points` VALUES (17576350,0,31,159.011,-27.999,161.005); -- The Eldieme Necropolis
+INSERT INTO `treasure_spawn_points` VALUES (17576350,1,64,179.864,-32.000,91.100); -- The Eldieme Necropolis
+INSERT INTO `treasure_spawn_points` VALUES (17576350,2,1,108.749,-32.000,19.951); -- The Eldieme Necropolis
+INSERT INTO `treasure_spawn_points` VALUES (17576350,3,223,39.264,-28.000,-0.712); -- The Eldieme Necropolis
+INSERT INTO `treasure_spawn_points` VALUES (17576350,4,6,174.753,-0.418,-100.369); -- The Eldieme Necropolis
+INSERT INTO `treasure_spawn_points` VALUES (17576350,5,63,299.967,0.000,69.413); -- The Eldieme Necropolis
+INSERT INTO `treasure_spawn_points` VALUES (17576350,6,194,300.082,0.000,-29.448); -- The Eldieme Necropolis
+INSERT INTO `treasure_spawn_points` VALUES (17576350,7,174,188.319,-0.590,128.702); -- The Eldieme Necropolis
+INSERT INTO `treasure_spawn_points` VALUES (17576350,8,2,-386.548,-3.000,335.046); -- The Eldieme Necropolis
 INSERT INTO `treasure_spawn_points` VALUES (17584470,0,211,-95.676,-0.436,205.557);
 INSERT INTO `treasure_spawn_points` VALUES (17584470,1,229,-103.267,-1.766,-392.964);
 INSERT INTO `treasure_spawn_points` VALUES (17584470,2,235,-185.774,-0.282,-379.022);
