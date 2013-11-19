@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Cape Teriggan
 -- NPC:  Bright Moon
+-- Type: Outpost Vendor
 -- @pos -185 7 -63 113
 -----------------------------------
 package.loaded["scripts/zones/Cape_Teriggan/TextIDs"] = nil;

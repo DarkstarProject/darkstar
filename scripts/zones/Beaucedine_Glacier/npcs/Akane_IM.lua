@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Beaucedine Glacier
 -- NPC:  Akane, I.M.
--- Outpost Conquest Guards
+-- Type: Outpost Conquest Guards
 -- @pos -24.351 -60.421 -114.215 111
 -------------------------------------
 package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;

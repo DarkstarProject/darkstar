@@ -2,8 +2,7 @@
 --  Area: West Sarutabaruta
 --  NPC: Ipupu
 --  Involved in Quest: Glyph Hanger
---  @zone 115
---  @pos 251.745 -5.5 35.539
+--  @pos 251.745 -5.5 35.539 115
 -----------------------------------
 package.loaded["scripts/zones/West_Sarutabaruta/TextIDs"] = nil;
 -----------------------------------

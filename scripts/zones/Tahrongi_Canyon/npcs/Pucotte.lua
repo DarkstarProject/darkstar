@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Tahrongi Canyon
--- NPC: Pucotte
--- Chocobo Vendor
+-- NPC:  Pucotte
+-- Type: Chocobo Vendor
+-- @pos 101.591 39.999 360.898 117
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -14,7 +15,6 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
 end;
-
 
 -----------------------------------
 -- onTrigger Action
@@ -36,7 +36,6 @@ level = player:getMainLvl();
 
 end;
 
-  
 -----------------------------------
 -- onEventFinish Action
 -----------------------------------

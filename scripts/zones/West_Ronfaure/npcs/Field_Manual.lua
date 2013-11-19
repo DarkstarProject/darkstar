@@ -1,6 +1,6 @@
 -----------------------------------	
--- Field Manual	
 -- Area: West Ronfaure	
+-- NPC:  Field Manual	
 -----------------------------------	
 	
 require("/scripts/globals/settings");	

@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: West Ronfaure
 -- NPC:  Harvetour
+-- Type: Outpost Vendor
 -- @pos -448 -19 -214 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;

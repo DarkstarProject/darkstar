@@ -1,9 +1,8 @@
 -----------------------------------
 --  Area: West Ronfaure
---   NPC: Zovriace
+--  NPC: Zovriace
 --  Type: Patrol
--- @zone: 100
--- 
+--  @zone 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------

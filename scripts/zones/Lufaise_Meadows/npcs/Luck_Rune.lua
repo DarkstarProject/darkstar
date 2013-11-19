@@ -1,28 +1,28 @@
 -----------------------------------
--- Area: Western Altepa Desert
--- NPC:  Altepa Gate
--- @pos -19 12 131 125
+--  Area: Lufaise Meadows
+--  NPC:  Luck Rune
+--  Involved in Quest: Mhaura Fortune
+--  @pos 276.507 1.917 -139.961 24
 -----------------------------------
-package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
------------------------------------
+package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil;
+-------------------------------------
 
-require("scripts/zones/Western_Altepa_Desert/TextIDs");
+require("scripts/zones/Lufaise_Meadows/TextIDs");
 
 -----------------------------------
--- onTrade Action
+-- onTrade
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
--- onTrigger Action
+-- onTrigger
 -----------------------------------
 
 function onTrigger(player,npc)
---GetNPCByID(17289738):openDoor();
-	--return 0;
-end; 
+	player:messageSpecial(NOTHING_OUT_OF_THE_ORDINARY);
+end;
 
 -----------------------------------
 -- onEventUpdate

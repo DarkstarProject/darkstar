@@ -1,6 +1,6 @@
 -----------------------------------	
--- Field Manual	
 -- Area: Jugner Forest	
+-- NPC: Field Manual	
 -----------------------------------	
 	
 require("/scripts/globals/settings");	

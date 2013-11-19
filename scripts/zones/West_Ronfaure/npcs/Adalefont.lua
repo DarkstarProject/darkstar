@@ -1,7 +1,7 @@
 -----------------------------------
 --	Area: West Ronfaure
---	NPC:  Aaveleon
---
+--	NPC:  Adalefont
+--  @pos -176.000 -61.999 377.460 100
 -----------------------------------
 
 require("scripts/globals/settings");

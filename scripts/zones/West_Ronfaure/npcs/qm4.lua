@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Ronfaure
--- NPC:  ???
+-- NPC:  qm4 (???)
 -- Involved in Quest: The Dismayed Customer
 -- @pos -399 -10 -438 100
 -----------------------------------
@@ -17,7 +17,6 @@ require("scripts/zones/West_Ronfaure/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
 end; 
 
 -----------------------------------

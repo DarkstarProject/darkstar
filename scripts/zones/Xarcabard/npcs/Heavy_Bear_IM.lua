@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Xarcabard
 -- NPC:  Heavy Bear, I.M.
--- Border Conquest Guards
+-- Type: Border Conquest Guards
 -- @pos -133.678 -22.517 112.224 112
 -----------------------------------
 package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;

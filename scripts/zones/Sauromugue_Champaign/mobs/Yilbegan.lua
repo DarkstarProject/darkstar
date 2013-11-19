@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: 
--- NPC:  Yilbegan
+-- Area: Sauromugue Champaign	
+-- NM:   Yilbegan
 -----------------------------------
 
 require("scripts/globals/titles");

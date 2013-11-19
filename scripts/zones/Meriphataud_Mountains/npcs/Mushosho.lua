@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Meriphataud Mountains
 -- NPC:  Mushosho
+-- Type: Outpost Vendor
 -- @pos -290 16 415 119
 -----------------------------------
 package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;

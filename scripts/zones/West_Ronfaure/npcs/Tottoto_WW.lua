@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: West Ronfaure
 -- NPC:  Tottoto, W.W.
--- Border Conquest Guards
+-- Type: Border Conquest Guards
 -- @pos -560.292 -0.961 -576.655 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;

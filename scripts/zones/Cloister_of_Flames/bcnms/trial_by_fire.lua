@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cloister of Flames
--- Name: Trial by Fire
+-- BCNM: Trial by Fire
 -- @pos -721 0 -598 207
 -----------------------------------
 package.loaded["scripts/zones/Cloister_of_Flames/TextIDs"] = nil;

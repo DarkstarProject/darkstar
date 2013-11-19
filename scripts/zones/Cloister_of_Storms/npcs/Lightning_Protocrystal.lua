@@ -2,13 +2,13 @@
 -- Area: Cloister of Storms
 -- NPC:  Lightning Protocrystal
 -- Involved in Quests: Trial by Lightning
--- @zone 202
--- @pos 534.5 -13 492
+-- @pos 534.5 -13 492 202
 -----------------------------------
 package.loaded["scripts/zones/Cloister_of_Storms/TextIDs"] = nil;
 package.loaded["scripts/globals/bcnm"] = nil;
 -------------------------------------
 
+require("scripts/globals/keyitems");
 require("scripts/globals/bcnm");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
@@ -33,6 +33,8 @@ function onTrigger(player,npc)
 
 	if(EventTriggerBCNM(player,npc))then
 		return;
+	else
+		player:messageSpecial(PROTOCRYSTAL);			
 	end
 end;
 

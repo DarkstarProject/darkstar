@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Xarcabard
--- NPC:  ??? (for Boreal Coeurl)
--- Involved in Quests: Atop the Highest Mountains
--- @zone 112
--- @pos 580 -9 290
+-- NPC:  qm3 (???)
+-- Involved in Quests: Atop the Highest Mountains (for Boreal Coeurl)
+-- @pos 580 -9 290 112
 -----------------------------------
 package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
 -----------------------------------

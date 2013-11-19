@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Xarcabard
 -- NPC:  Pelogrant
+-- Type: Outpost Vendor
 -- @pos 210 -22 -201 112
 -----------------------------------
 package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;

@@ -1,6 +1,6 @@
 -----------------------------------	
--- Field Manual	
 -- Area: Sauromugue Champaign
+-- Field Manual	
 -----------------------------------	
 	
 require("/scripts/globals/settings");	

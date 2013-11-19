@@ -1,6 +1,6 @@
 -----------------------------------	
 -- Area: Sauromugue Champaign	
--- MOB:  Climbpix Highrise	
+-- NM:   Climbpix Highrise	
 -----------------------------------	
 	
 require("/scripts/globals/fieldsofvalor");	

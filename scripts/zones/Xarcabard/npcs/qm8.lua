@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Xarcabard
--- NPC:  ???
+-- NPC:  qm8 (???)
 -- Involved in Quests: The Three Magi
--- @zone 112
 -- @pos 243 -27 101 112
 -----------------------------------
 package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: West Ronfaure
 -- NPC:  Doladepaiton, R.K.
--- Outpost Conquest Guards
+-- Type: Outpost Conquest Guards
 -- @pos -448 -19 -214 100
 -------------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Qufim_Island
 -- NPC:  Hieroglyphics
--- Dynamis dyna Qufim Enter
+-- Dynamis Qufim Entrance
 -- @pos 117 -10 133 172 118
 -----------------------------------
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;

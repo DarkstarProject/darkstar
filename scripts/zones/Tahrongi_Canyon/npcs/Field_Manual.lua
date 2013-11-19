@@ -1,6 +1,6 @@
 -----------------------------------	
--- Field Manual	
 -- Area: Tahrongi Canyon	
+-- NPC:  Field Manual	
 -----------------------------------	
 	
 require("/scripts/globals/settings");	

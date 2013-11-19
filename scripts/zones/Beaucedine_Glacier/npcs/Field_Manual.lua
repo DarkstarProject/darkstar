@@ -1,6 +1,6 @@
 -----------------------------------	
--- Field Manual	
 -- Area: Beaucedine Glacier	
+-- NPC:  Field Manual	
 -----------------------------------	
 	
 require("/scripts/globals/settings");	

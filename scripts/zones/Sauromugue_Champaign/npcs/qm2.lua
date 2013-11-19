@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Sauromugue Champaign
---   NPC: qm2 (Tower 2) 
---  Type: Standard NPC
---
--- THF Quest "As Thick As Thieves"
--- @zone: 120
--- @where x193, y32, z211
+--  NPC: qm2 (???) (Tower 2) 
+--  Involved in Quest: THF AF "As Thick As Thieves"
+--  @pos 196.830 31.300 206.078 120
 -----------------------------------
 package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
 -----------------------------------
@@ -13,6 +10,7 @@ package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 require("scripts/zones/Sauromugue_Champaign/TextIDs");
 
 -----------------------------------
@@ -21,11 +19,22 @@ require("scripts/zones/Sauromugue_Champaign/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	thickAsThievesGrapplingCS = player:getVar("thickAsThievesGrapplingCS");
+	local thickAsThievesGrapplingCS = player:getVar("thickAsThievesGrapplingCS");
 
 	if(thickAsThievesGrapplingCS >= 2 and thickAsThievesGrapplingCS <= 7) then
 		if(trade:hasItemQty(17474,1) and trade:getItemCount() == 1) then -- Trade grapel
-			player:startEvent(0x0002); -- complete grappling part of the quest			
+			if(player:getEquipID(SLOT_MAIN) == 0 and player:getEquipID(SLOT_SUB) == 0 and 
+				player:getEquipID(SLOT_RANGED) == 0 and player:getEquipID(SLOT_AMMO) == 0 and 
+				player:getEquipID(SLOT_HEAD) == 0 and player:getEquipID(SLOT_BODY) == 0 and 
+				player:getEquipID(SLOT_HANDS) == 0 and player:getEquipID(SLOT_LEGS) == 0 and
+				player:getEquipID(SLOT_FEET) == 0 and player:getEquipID(SLOT_NECK) == 0 and
+				player:getEquipID(SLOT_WAIST) == 0 and player:getEquipID(SLOT_EAR1) == 0 and
+				player:getEquipID(SLOT_EAR2) == 0 and player:getEquipID(SLOT_RING1) == 0 and
+				player:getEquipID(SLOT_RING2) == 0 and player:getEquipID(SLOT_BACK) == 0) then
+				player:startEvent(0x0002); -- complete grappling part of the quest			
+			else 
+				player:messageSpecial(THF_AF_3,0,17474);	
+			end	
 		end
 	end
 end;
@@ -36,12 +45,22 @@ end;
 
 function onTrigger(player,npc)
 
-	thickAsThieves = player:getQuestStatus(WINDURST,AS_THICK_AS_THIEVES);
-	thickAsThievesGrapplingCS = player:getVar("thickAsThievesGrapplingCS");
+	local thickAsThieves = player:getQuestStatus(WINDURST,AS_THICK_AS_THIEVES);
+	local thickAsThievesGrapplingCS = player:getVar("thickAsThievesGrapplingCS");
 	
 	if(thickAsThievesGrapplingCS == 2) then
+		player:messageSpecial(THF_AF_MOB);	
 		SpawnMob(17269107,120):updateEnmity(player); -- Climbpix Highrise
-		setMobPos(17269107,193,32,211,0);		
+		setMobPos(17269107,193,32,211,0);	
+	elseif(thickAsThievesGrapplingCS == 0 or thickAsThievesGrapplingCS == 1 or
+		thickAsThievesGrapplingCS == 3 or thickAsThievesGrapplingCS == 4 or
+		thickAsThievesGrapplingCS == 5 or thickAsThievesGrapplingCS == 6 or
+		thickAsThievesGrapplingCS == 7) then
+		player:messageSpecial(THF_AF_1);		
+	elseif(thickAsThievesGrapplingCS == 8) then
+		player:messageSpecial(THF_AF_2);	
+	else 
+		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);			
 	end
 	
 end;

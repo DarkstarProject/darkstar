@@ -2,8 +2,7 @@
 -- Area: Valkurm Dunes
 -- NPC:  Song Runes
 -- Finishes Quest: Path of the Bard
--- @zone 103
--- @pos -721 -7 102
+-- @pos -721 -7 102 103
 -----------------------------------
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
 -----------------------------------

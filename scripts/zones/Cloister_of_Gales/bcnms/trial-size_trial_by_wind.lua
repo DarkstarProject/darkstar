@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cloister of Gales
--- Name: Trial-size Trial by Wind
+-- BCNM: Trial-size Trial by Wind
 -- @zone -361 1 -381 201
 -----------------------------------
 package.loaded["scripts/zones/Cloister_of_Gales/TextIDs"] = nil;

@@ -1,7 +1,7 @@
 -----------------------------------	
 -- Area: North Gustaberg	
 -- MOB:  Maneating Hornet	
--- Place Holder For Stinging Sophie
+-- Note: Place Holder For Stinging Sophie
 -----------------------------------	
 
 require("/scripts/zones/North_Gustaberg/MobIDs");	

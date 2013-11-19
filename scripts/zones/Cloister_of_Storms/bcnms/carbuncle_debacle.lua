@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cloister of Storms
--- Name: Carbuncle Debacle
+-- BCNM: Carbuncle Debacle
 -----------------------------------
 package.loaded["scripts/zones/Cloister_of_Storms/TextIDs"] = nil;
 -------------------------------------

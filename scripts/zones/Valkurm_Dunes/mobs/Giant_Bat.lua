@@ -1,6 +1,7 @@
 -----------------------------------
 --  Area: Valkurm Dunes (103)
---   Mob: Giant_Bat
+--  Mob: Giant_Bat
+--  PH for Golden Bat
 -----------------------------------
 
 require("scripts/zones/Valkurm_Dunes/MobIDs");

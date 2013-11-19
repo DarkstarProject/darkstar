@@ -1,6 +1,6 @@
 ----------------------------------	
 -- Area: North Gustaberg
---   NM: Stinging Sophie
+-- NM: Stinging Sophie
 -----------------------------------	
 
 require("/scripts/globals/fieldsofvalor");	

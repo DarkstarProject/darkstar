@@ -1,6 +1,7 @@
 -----------------------------------	
 -- Area: East Sarutabaruta	
 -- MOB:  Crawler	
+-- Note: PH for Spiny Spipi
 -----------------------------------	
 	
 require("/scripts/globals/fieldsofvalor");	

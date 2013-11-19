@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rolanberry Fields (110)
---  HMN: Simurgh
+-- HMN:  Simurgh
 -----------------------------------
 
 require("scripts/globals/titles");

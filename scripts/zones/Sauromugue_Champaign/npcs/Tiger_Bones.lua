@@ -2,8 +2,7 @@
 -- Area: Sauromugue Champaign
 -- NPC:  Tiger Bones
 -- Involed in Quest: The Fanged One.
--- @zone 120
--- @pos 666 -8 -379
+-- @pos 666 -8 -379 120
 -------------------------------------
 package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
 -------------------------------------

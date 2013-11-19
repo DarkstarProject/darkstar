@@ -1,6 +1,6 @@
 -----------------------------------	
--- Field Manual	
 -- Area: Valley of Sorrows
+-- Field Manual	
 -----------------------------------	
 	
 require("/scripts/globals/settings");	

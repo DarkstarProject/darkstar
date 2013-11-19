@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cloister of Storms
--- Name: Trial by Lightning
+-- BCNM: Trial by Lightning
 -----------------------------------
 package.loaded["scripts/zones/Cloister_of_Storms/TextIDs"] = nil;
 -----------------------------------

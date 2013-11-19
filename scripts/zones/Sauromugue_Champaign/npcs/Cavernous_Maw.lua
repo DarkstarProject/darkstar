@@ -1,5 +1,6 @@
 -----------------------------------
--- Cavernous Maw
+-- Area: Sauromugue Champaign
+-- NPC:  Cavernous Maw
 -- Teleports Players to Sauromugue_Champaign_S
 -- @pos 369 8 -227 120
 -----------------------------------

@@ -1,6 +1,6 @@
 ----------------------------------	
 -- Area: North Gustaberg
---   NM: Maighdean Uaine
+-- NM: 	 Maighdean Uaine
 -----------------------------------	
 
 require("/scripts/globals/fieldsofvalor");	

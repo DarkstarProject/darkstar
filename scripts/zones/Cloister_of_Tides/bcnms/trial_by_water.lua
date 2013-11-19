@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cloister of Tides
--- Name: Trial by Water
+-- BCNM: Trial by Water
 -----------------------------------
 package.loaded["scripts/zones/Cloister_of_Tides/TextIDs"] = nil;
 -----------------------------------

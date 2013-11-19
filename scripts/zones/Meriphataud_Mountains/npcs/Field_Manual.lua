@@ -1,6 +1,6 @@
 -----------------------------------	
--- Field Manual	
 -- Area: Meriphataud Mountains
+-- NPC:  Field Manual	
 -----------------------------------	
 	
 require("/scripts/globals/settings");	

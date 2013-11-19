@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Xarcabard
--- NPC:  ??? (RNG AF3 quest)
--- Involved in Quests: unbridled Passion
--- @zone 112
+-- NPC:  qm6 (???)
+-- Involved in Quests: RNG AF3 - Unbridled Passion
+-- @pos -254.883 -17.003 -150.818 112
 -----------------------------------
 package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
 -----------------------------------

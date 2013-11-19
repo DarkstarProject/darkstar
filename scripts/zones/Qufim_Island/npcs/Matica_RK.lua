@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Qufim Island
 -- NPC:  Matica, R.K.
--- Border Conquest Guards
+-- Type: Border Conquest Guards
 -- @pos 179.093 -21.575 -15.282 126
 -----------------------------------
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;

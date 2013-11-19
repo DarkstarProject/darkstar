@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cape Teriggan
--- NPC:  Axesarion the Wanderer
+-- NM:   Axesarion the Wanderer
 -----------------------------------
 
 -----------------------------------

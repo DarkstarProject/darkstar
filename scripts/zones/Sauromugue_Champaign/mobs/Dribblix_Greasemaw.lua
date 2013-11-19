@@ -1,6 +1,6 @@
 -----------------------------------	
 -- Area: Sauromugue Champaign	
--- MOB:  Dribblix Greasemaw	
+-- NM:   Dribblix Greasemaw	
 -----------------------------------	
 	
 require("/scripts/globals/fieldsofvalor");	

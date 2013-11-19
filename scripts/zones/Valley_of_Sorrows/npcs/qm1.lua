@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Valley of Sorrows
--- NPC:  ??? (Spawn Aspidochelone)
--- @pos 91 -3 -16
+-- NPC:  qm1 (???)
+-- Note: Used to spawn Aspidochelone
+-- @pos 91 -3 -16 128
 -----------------------------------
 package.loaded["scripts/zones/Dragons_Aery/TextIDs"] = nil;
 -----------------------------------
@@ -9,6 +10,7 @@ package.loaded["scripts/zones/Dragons_Aery/TextIDs"] = nil;
 require("scripts/zones/Valley_of_Sorrows/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------

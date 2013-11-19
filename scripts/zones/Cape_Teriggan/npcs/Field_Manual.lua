@@ -1,6 +1,6 @@
 -----------------------------------	
--- Field Manual	
 -- Area: Cape Teriggan
+-- Type: Field Manual	
 -----------------------------------	
 	
 require("/scripts/globals/settings");	

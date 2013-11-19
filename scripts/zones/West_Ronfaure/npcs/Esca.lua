@@ -1,16 +1,16 @@
 -----------------------------------
--- Area: Port San d'Oria
--- NPC: Esca
--- NPC for Quest "The Pickpocket"
--- @pos 100
+-- Area: West Ronfaure
+-- NPC:  Esca
+-- Involved in Quest "The Pickpocket"
+-- @pos -624.231 -51.499 278.369 100
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
+package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Port_San_dOria/TextIDs");
+require("scripts/zones/West_Ronfaure/TextIDs");
 
 
 -----------------------------------

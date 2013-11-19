@@ -1,6 +1,6 @@
 -----------------------------------	
--- Field Manual	
 -- Area: Xarcabard
+-- NPC:  Field Manual	
 -----------------------------------	
 	
 require("/scripts/globals/settings");	

@@ -1,6 +1,6 @@
 -----------------------------------
 --  Area: Sauromugue Champaign (120)
---   Mob: Roc
+--  HNM:  Roc
 -----------------------------------
 
 require("scripts/globals/titles");

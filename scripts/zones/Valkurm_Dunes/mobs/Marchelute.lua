@@ -2,8 +2,7 @@
 -- Area: Valkurm Dunes
 -- NPC:  Marchelute
 -- Involved In Quest: Messenger from Beyond
--- @zone 103
--- @pos -716 -10 66
+-- @pos -716 -10 66 103
 -----------------------------------
 
 -----------------------------------

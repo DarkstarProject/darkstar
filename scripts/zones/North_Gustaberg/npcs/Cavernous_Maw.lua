@@ -1,5 +1,6 @@
 -----------------------------------
--- Cavernous Maw
+-- Area: North Gustaberg
+-- NPC:  Cavernous Maw
 -- Teleports Players to North Gustaberg [S]
 -- @pos 466 0 479 106
 -----------------------------------

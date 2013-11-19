@@ -28,11 +28,11 @@ function onTrigger(player,npc)
 	if(player:getCurrentMission(ZILART) == HEADSTONE_PILGRIMAGE) then
 		if(player:hasKeyItem(EARTH_FRAGMENT) == false) then
 			player:startEvent(0x00C8,EARTH_FRAGMENT);
-		elseif(player:getCurrentMission(ZILART) == HEADSTONE_PILGRIMAGE) and (player:hasKeyItem(239)) and (player:hasKeyItem(240)) and  -- All 8 Fragments already 
-		(player:hasKeyItem(241)) and (player:hasKeyItem(242)) and (player:hasKeyItem(243)) and (player:hasKeyItem(244)) and 
-		(player:hasKeyItem(245)) and (player:hasKeyItem(246)) then
+		elseif(player:hasKeyItem(239) and player:hasKeyItem(240) and player:hasKeyItem(241) and 
+			player:hasKeyItem(242) and player:hasKeyItem(243) and player:hasKeyItem(244) and 
+			player:hasKeyItem(245) and player:hasKeyItem(246)) then
 			player:messageSpecial(ALREADY_HAVE_ALL_FRAGS);	
-		else
+		elseif(player:hasKeyItem(EARTH_FRAGMENT) then
 			player:messageSpecial(ALREADY_OBTAINED_FRAG,EARTH_FRAGMENT);
 		end
 	elseif(player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE)) then

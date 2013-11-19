@@ -1,8 +1,10 @@
 ----------------------------------	
 -- Area: Cape Teriggan	
---   NM: Kruetzet
+-- NM:  Kruetzet
 -----------------------------------	
+
 require("scripts/globals/weather");
+
 -----------------------------------	
 -- onMobDeath	
 -----------------------------------	
@@ -14,6 +16,10 @@ function onMobDeath(mob,killer)
     mob:setRespawnTime(math.random((32400),(43200)));
 
 end;
+
+-----------------------------------	
+-- onMobDisengage
+-----------------------------------	
 
 function onMobDisengage(mob, weather)
 	

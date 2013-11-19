@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: West Ronfaure
---   NPC: Cerite
+--  NPC:  Colmaie
 --  Type: Standard NPC
--- @zone: 100
---  @pos: -263.577 -72.999 425.885
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -133.627 -61.999 272.373 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------

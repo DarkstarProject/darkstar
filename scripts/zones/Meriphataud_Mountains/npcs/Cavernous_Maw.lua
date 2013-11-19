@@ -1,5 +1,6 @@
 -----------------------------------
--- Cavernous Maw
+-- Area: Meriphataud Mountains
+-- NPC:  Cavernous Maw
 -- Teleports Players to Meriphataud Mountains [S]
 -- @pos 597 -32 279 119
 -----------------------------------

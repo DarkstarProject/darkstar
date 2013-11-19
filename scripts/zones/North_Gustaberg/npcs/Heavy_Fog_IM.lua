@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: North Gustaberg
 -- NPC:  Heavy Fog, I.M.
--- Border Conquest Guards
+-- Type: Border Conquest Guards
 -- @pos -520.704 38.75 560.258 106
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;

@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Konschtat Highlands
--- NPC: Plaiaude
+-- NPC:  Plaiaude
 -- Chocobo Vendor
+-- @pos 244.705 24.034 296.973 108
 -----------------------------------
 
 require("scripts/globals/settings");

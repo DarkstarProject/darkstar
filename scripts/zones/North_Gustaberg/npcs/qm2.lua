@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: North Gustaberg
--- NPC: ??? / qm2
--- Involved In Quest: As Thick As Thieves
--- @zone: 106
--- @pos x:-230 y:98 x:440
+-- NPC: qm2 (???)
+-- Involved in Quest "As Thick As Thieves"
+-- @pos -232.924 99.107 442.990 106
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
 -----------------------------------

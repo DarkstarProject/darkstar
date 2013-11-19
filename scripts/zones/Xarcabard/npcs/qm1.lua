@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Xarcabard
--- NPC:  ???
--- Involved in Quests: The Three Magi
--- @zone 112
--- @pos -331 -29 -49
+-- NPC:  qm1 (???)
+-- Involved in Quests: The Three Magi (for Boreal Hound)
+-- @pos -331 -29 -49 112
 -----------------------------------
 package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
 -----------------------------------

@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: West Ronfaure
---   NPC: Cerite
+--  NPC:  Chatarre
 --  Type: Standard NPC
--- @zone: 100
---  @pos: -263.577 -72.999 425.885
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -266.850 -72.000 421.370 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------

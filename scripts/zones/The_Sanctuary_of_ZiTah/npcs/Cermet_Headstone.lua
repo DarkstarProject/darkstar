@@ -45,10 +45,14 @@ function onTrigger(player,npc)
 		else
 			player:messageSpecial(ALREADY_OBTAINED_FRAG,LIGHT_FRAGMENT);
 		end
+  elseif(player:hasCompletedMission(ZILART,THE_CHAMBER_OF_ORACLES) and player:hasCompleteQuest(OUTLANDS,SOUL_SEARCHING) == false) then	
+		player:addQuest(OUTLANDS,SOUL_SEARCHING);
+	  player:startEvent(0x00CA,PRISMATIC_FRAGMENT);  
 	elseif(player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE)) then
 		player:messageSpecial(ZILART_MONUMENT);
 	else
 		player:messageSpecial(CANNOT_REMOVE_FRAG);
+		
 	end
 	
 end; 
@@ -73,6 +77,15 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x00C8 and option == 1) then
 		SpawnMob(17272839,300):updateEnmity(player); -- Doomed Pilgrims
 		SetServerVariable("[ZM4]Light_Headstone_Active",0);
+	elseif(csid == 0x00CA) then
+		if(player:getFreeSlotsCount() == 0) then
+			 player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13416);
+		else		
+			player:tradeComplete();
+			player:addItem(13416);		
+			player:messageSpecial(ITEM_OBTAINED,13416);			
+			player:completeQuest(OUTLANDS,SOUL_SEARCHING);			
+			player:addTitle(GUIDER_OF_SOULS_TO_THE_SANCTUARY);	
+		end			
 	end
-	
 end;

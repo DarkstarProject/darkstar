@@ -1,10 +1,8 @@
 -----------------------------------
 --  Area: West Ronfaure
---   NPC: ???
--- @zone: 100
---  @pos: -453 -20 -230
---
--- Involved in Quest: The Dismayed Customer
+--  NPC:  qm1 (???)
+--  Involved in Quest: The Dismayed Customer
+--  @pos -453 -20 -230 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------

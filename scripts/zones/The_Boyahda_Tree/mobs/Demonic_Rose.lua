@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: The Boyahda Tree
 -- Mob:  Demonic Rose
--- Note: Placeholfer V. Vivian
+-- Note: Placeholder V. Vivian
 -----------------------------------
 
 require("/scripts/zones/The_Boyahda_Tree/MobIDs");

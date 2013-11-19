@@ -1,5 +1,6 @@
 -----------------------------------
--- Cavernous Maw
+-- Area: Jugner Forest
+-- NPC: Cavernous Maw
 -- Teleports Players to Jugner Forest [S]
 -- @pos -118 -8 -518 104
 -----------------------------------

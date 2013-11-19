@@ -17,6 +17,17 @@ require("scripts/zones/Yuhtunga_Jungle/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	if(trade:hasItemQty(790,1) and trade:getItemCount() == 1) then
+		if(player:getCurrentMission(ZILART) == HEADSTONE_PILGRIMAGE and player:hasKeyItem(FIRE_FRAGMENT) and player:hasCompleteQuest(OUTLANDS,WRATH_OF_THE_OPO_OPOS) == false) then
+			 player:addQuest(OUTLANDS,WRATH_OF_THE_OPO_OPOS);
+			 player:startEvent(0x00CA,790);
+		elseif(player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE) and player:hasCompleteQuest(OUTLANDS,WRATH_OF_THE_OPO_OPOS) == false) then 	 
+			 player:addQuest(OUTLANDS,WRATH_OF_THE_OPO_OPOS);
+			 player:startEvent(0x00CA,790);
+		else
+			 player:messageSpecial(NOTHING_HAPPENS);	 
+		end	 
+	end	
 end; 
 
 -----------------------------------
@@ -75,6 +86,15 @@ function onEventFinish(player,csid,option)
 		SpawnMob(17281031,300):updateEnmity(player); -- Carthi
 		SpawnMob(17281030,300):updateEnmity(player); -- Tipha
 		SetServerVariable("[ZM4]Fire_Headstone_Active",0);
+	elseif(csid == 0x00CA) then
+		if(player:getFreeSlotsCount() == 0) then
+			 player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13143);
+		else		
+			player:tradeComplete();
+			player:addItem(13143);		
+			player:messageSpecial(ITEM_OBTAINED,13143);			
+			player:completeQuest(OUTLANDS,WRATH_OF_THE_OPO_OPOS);		
+			player:addTitle(FRIEND_OF_THE_OPOOPOS);
+		end			
 	end
-	
 end;

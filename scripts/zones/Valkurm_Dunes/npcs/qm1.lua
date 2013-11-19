@@ -2,7 +2,7 @@
 -- Area: Valkurm Dunes
 -- NPC:  qm1 (???)
 -- Involved In Quest: An Empty Vessel
--- @pos 
+-- @pos 238.524 2.661 -148.784 103
 -----------------------------------
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getFreeSlotsCount() > 0) then
+	if(player:getFreeSlotsCount() > 0) and player:hasItem(503) == false) then
 		player:addItem(503);
 		player:messageSpecial(ITEM_OBTAINED,503);
 	else

@@ -2,8 +2,7 @@
 -- Area: Sauromuge Champaign
 -- NPC:  Old Sabertooth
 -- Involved in Quest: The Fanged One
--- @zone 120
--- @pos 676 -10 -366
+-- @pos 676 -10 -366 120
 -----------------------------------
 
 require("scripts/globals/settings");

@@ -1,6 +1,7 @@
 -----------------------------------	
 -- Area: East Sarutabaruta	
 -- MOB:  Savanna Rarab	
+-- Note: PH for Sharp Eared Ropipi
 -----------------------------------	
 	
 require("/scripts/globals/fieldsofvalor");	

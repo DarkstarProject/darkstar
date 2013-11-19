@@ -2,8 +2,11 @@
 -- Area: Cloister of Tides
 -- NPC:  Water Protocrystal
 -- Involved in Quests: Trial by Water, Trial Size Trial by Water
--- @zone 560 36 560 211
+-- @pos 560 36 560 211
 -----------------------------------
+package.loaded["scripts/zones/Cloister_of_Tides/TextIDs"] = nil;
+package.loaded["scripts/globals/bcnm"] = nil;
+-------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/bcnm");
@@ -29,6 +32,8 @@ function onTrigger(player,npc)
 	
 	if(EventTriggerBCNM(player,npc))then
 		return;
+	else
+		player:messageSpecial(PROTOCRYSTAL);			
 	end
 	
 end;

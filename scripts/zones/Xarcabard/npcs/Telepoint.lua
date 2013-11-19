@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Xarcabard
 -- NPC:  Telepoint
+-- @pos 150.258 -21.047 -37.256 112
 -----------------------------------
 package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
 -----------------------------------

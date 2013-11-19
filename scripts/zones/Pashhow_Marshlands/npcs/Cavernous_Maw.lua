@@ -1,5 +1,6 @@
 -----------------------------------
--- Cavernous Maw
+-- Area: Pashhow Marshlands	
+-- NPC: Cavernous Maw
 -- Teleports Players to Pashhow Marshlands [S]
 -- @pos 418 25 27 109
 -----------------------------------

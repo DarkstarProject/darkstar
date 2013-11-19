@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Jugner Forest
 -- NPC:  Bubchu-Bibinchu, W.W.
--- Outpost Conquest Guards
+-- Type: Outpost Conquest Guards
 -- @pos 60.087 -0.602 -11.847 104
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;

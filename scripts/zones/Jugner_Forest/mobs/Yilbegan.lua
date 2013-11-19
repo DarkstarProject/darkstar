@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: 
--- NPC:  Yilbegan
+-- Area: Jugner Forest
+-- VNM:  Yilbegan
 -----------------------------------
 
 require("scripts/globals/titles");

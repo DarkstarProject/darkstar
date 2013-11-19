@@ -1,6 +1,7 @@
 -----------------------------------	
 -- Area: West Sarutabaruta	
 -- MOB:  Mandragora	
+-- Note: PH for Tom Tit Tat
 -----------------------------------	
 	
 require("/scripts/globals/fieldsofvalor");	

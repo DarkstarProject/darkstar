@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Konschtat Highlands
--- NPC:  ???
+-- NPC:  qm2 (???)
 -- Involved in Quest: Forge Your Destiny
--- @zone 108
--- @pos -709 2 102
+-- @pos -709 2 102 108
 -----------------------------------
 package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
 -----------------------------------

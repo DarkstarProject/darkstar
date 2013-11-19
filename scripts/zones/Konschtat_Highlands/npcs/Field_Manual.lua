@@ -1,6 +1,6 @@
 -----------------------------------	
--- Field Manual	
 -- Area: Konschtat Highlands
+-- Field Manual	
 -----------------------------------	
 	
 require("/scripts/globals/settings");	

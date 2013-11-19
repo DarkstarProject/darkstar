@@ -1,6 +1,6 @@
 -----------------------------------
 --	Area: East Sarutabaruta
--- 	NPC: Sama Gohjima
+-- 	NPC:  Sama Gohjima
 --  Involved in Mission: The Horutoto Ruins Experiment (optional)
 --	@pos 377 -13 98 116
 -----------------------------------

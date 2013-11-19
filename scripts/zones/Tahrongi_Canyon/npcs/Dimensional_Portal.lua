@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Tahrongi_Canyon
 -- NPC:  Dimensional_Portal
+-- @pos 260.000 35.150 340.000 117
 -----------------------------------
 package.loaded["scripts/zones/Tahrongi_Canyon/TextIDs"] = nil;
 -----------------------------------
@@ -13,7 +14,6 @@ require("scripts/zones/Tahrongi_Canyon/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
 end;
 
 -----------------------------------

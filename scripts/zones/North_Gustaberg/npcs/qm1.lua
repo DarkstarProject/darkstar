@@ -1,10 +1,9 @@
 -----------------------------------
 -- Area: North Gustaberg
--- NPC: ??? / qm1
--- Involved In Quest: The Siren's Tear
--- @zone: 106
--- @pos: 309.600, 2.600, 324.000 | DB start position
--- @pos: 290.000, 0.600, 332.100 | alternative start position
+-- NPC: qm1 (???)
+-- Involved in Quest "The Siren's Tear"
+-- @pos 309.600, 2.600, 324.000 106 | DB start position
+-- @pos 290.000, 0.600, 332.100 106 | alternative start position
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
 -----------------------------------

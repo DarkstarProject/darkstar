@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Meriphataud Mountains
 -- NPC:  Chegourt, R.K.
--- Outpost Conquest Guards
+-- Type: Outpost Conquest Guards
 -- @pos -295 16 418 119
 -------------------------------------
 package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;

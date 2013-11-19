@@ -1,10 +1,11 @@
 -----------------------------------
 --	Area: East Sarutabaruta
--- 	NPC: Heih Porhiaap
---	Working 100%
+-- 	NPC:  Heih Porhiaap
+--	@pos -118.876 -4.088 -515.731 116
+-----------------------------------
+package.loaded["scripts/zones/East_Sarutabaruta/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/East_Sarutabaruta/TextIDs"] = nil;
 require("scripts/zones/East_Sarutabaruta/TextIDs");
 
 -----------------------------------

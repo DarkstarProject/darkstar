@@ -8,9 +8,10 @@ ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item> come back a
  FISHING_MESSAGE_OFFSET = 7174; -- You can't fish here.
 
 -- Conquest
-		CONQUEST = 7466; -- You've earned conquest points!
+CONQUEST = 7466; -- You've earned conquest points!
 
-	COLMAIE_DIALOG = 7267; -- Orcish scouts lurk in the shadows. Consider yourself warned!
+-- Other
+	  COLMAIE_DIALOG = 7267; -- Orcish scouts lurk in the shadows. Consider yourself warned!
   GACHEMAGE_DIALOG = 7267; -- Orcish scouts lurk in the shadows. Consider yourself warned!
   ADALEFONT_DIALOG = 7268; -- If you sense danger, just flee into the city. I'll not endanger myself on your account!
    LAILLERA_DIALOG = 7269; -- I mustn't chat while on duty. Sorry.

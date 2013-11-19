@@ -1,7 +1,8 @@
 -----------------------------------
--- Area: beaucedine glacier
--- NPC:  Door: "Iron_Grate"
-
+-- Area: Beaucedine Glacier
+-- NPC:  Iron Grate
+-- Type: Door
+-- @pos 241.000 5.000 -20.000 111
 -----------------------------------
 package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
 -----------------------------------
@@ -14,7 +15,6 @@ require("scripts/zones/Beaucedine_Glacier/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
 end; 
 
 -----------------------------------

@@ -1,5 +1,6 @@
 -----------------------------------
--- Cavernous Maw
+-- Area: Rolanberry Fields	
+-- NPC:  Cavernous Maw
 -- Teleports Players to Rolanberry_Fields_S
 -- @pos -198 8 361 110
 -----------------------------------

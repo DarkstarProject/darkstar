@@ -1,11 +1,7 @@
 -----------------------------------
 --  Area: Beaucedine Glacier
---   NPC: Leigon-Moigon
---  Type: NPC
--- @zone: 111
---  @pos: 106.567 -21.249 140.770
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  NPC:  Leigon-Moigon
+--  @pos: 106.567 -21.249 140.770 111
 -----------------------------------
 package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
 -----------------------------------

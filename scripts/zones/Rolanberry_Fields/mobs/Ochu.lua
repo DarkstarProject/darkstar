@@ -1,6 +1,7 @@
 -----------------------------------	
 -- Area: Rolanberry Fields	
 -- MOB:  Ochu	
+-- Note: PH for Drooling Daisy
 -----------------------------------	
 	
 require("/scripts/globals/fieldsofvalor");	

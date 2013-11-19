@@ -1,6 +1,7 @@
 -----------------------------------
 --  Area: Beaucedine Glacier (111)
---   Mob: Stone_Golem
+--  Mob:  Stone_Golem
+--  Note: PH for Gargantua
 -----------------------------------
 
 require("/scripts/zones/Beaucedine_Glacier/MobIDs");

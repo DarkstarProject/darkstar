@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: North Gustaberg
---   NPC: Field Parchment
+--  NPC:  Field Parchment
 --  Type: Fields of Valor NMs
--- @zone: 106
---  @pos: 400.000 -21.5 560.000
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos: 400.000 -21.5 560.000 106
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
 -----------------------------------

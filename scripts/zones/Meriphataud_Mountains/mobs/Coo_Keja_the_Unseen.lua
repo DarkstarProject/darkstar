@@ -1,6 +1,6 @@
 -----------------------------------
 --  Area: Meriphataud Mountains (119)
---   Mob: Coo_Keja_the_Unseen
+--  NM:   Coo_Keja_the_Unseen
 -----------------------------------
 
 -----------------------------------

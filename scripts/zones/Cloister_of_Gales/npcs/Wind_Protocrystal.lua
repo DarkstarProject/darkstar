@@ -32,6 +32,8 @@ function onTrigger(player,npc)
 	
 	if(EventTriggerBCNM(player,npc))then
 		return;
+	else
+		player:messageSpecial(PROTOCRYSTAL);					
 	end
 	
 end;

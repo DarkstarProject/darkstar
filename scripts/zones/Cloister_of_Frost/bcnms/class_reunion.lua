@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cloister of Tremors
--- Name: Class Reunion
+-- BCNM: Class Reunion
 -----------------------------------
 package.loaded["scripts/zones/Cloister_of_Frost/TextIDs"] = nil;
 -------------------------------------

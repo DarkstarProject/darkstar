@@ -1,6 +1,6 @@
 -----------------------------------	
--- Field Manual	
--- Area: West Sarutabaruta	
+-- Area: West Sarutabaruta
+-- NPC:  Field Manual	
 -----------------------------------	
 	
 require("/scripts/globals/settings");	

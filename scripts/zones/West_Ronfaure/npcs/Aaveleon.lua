@@ -2,8 +2,7 @@
 -- Area: West Ronfaure
 -- NPC:  Aaveleon
 -- Involved in Quest: A Sentry's Peril
--- @zone 100
--- @pos -431 -45 343
+-- @pos -431 -45 343 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------

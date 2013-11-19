@@ -1,6 +1,6 @@
 -----------------------------------	
--- Field Manual	
 -- Area: Pashhow Marshlands	
+-- NPC:  Field Manual	
 -----------------------------------	
 	
 require("/scripts/globals/settings");	

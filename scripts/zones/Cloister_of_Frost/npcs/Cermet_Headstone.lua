@@ -28,7 +28,11 @@ function onTrigger(player,npc)
 	if(player:getCurrentMission(ZILART) == HEADSTONE_PILGRIMAGE) then
 		if(player:hasKeyItem(ICE_FRAGMENT) == false) then
 			player:startEvent(0x00C8,ICE_FRAGMENT);
-		else
+		elseif(player:hasKeyItem(239) and player:hasKeyItem(240) and player:hasKeyItem(241) and 
+			player:hasKeyItem(242) and player:hasKeyItem(243) and player:hasKeyItem(244) and 
+			player:hasKeyItem(245) and player:hasKeyItem(246)) then
+			player:messageSpecial(ALREADY_HAVE_ALL_FRAGS);					
+		elseif(player:hasKeyItem(ICE_FRAGMENT) then
 			player:messageSpecial(ALREADY_OBTAINED_FRAG,ICE_FRAGMENT);
 		end
 	elseif(player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE)) then

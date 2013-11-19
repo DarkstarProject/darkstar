@@ -27,7 +27,8 @@ FAURBELLANT_3 = 7378; -- Please deliver that <item> to the high priest in the Sa
 FAURBELLANT_4 = 7379; -- My thanks again for your services. May the Gates of Paradise open to all.
 
 -- ZM4 Dialog
-      ZILART_MONUMENT = 7539; -- Its an ancient Zilart Monument.
-ALREADY_OBTAINED_FRAG = 7536; -- You have already obtained this monuments...
-      FOUND_ALL_FRAGS = 7538; -- You have obtained <frag>! You now have all 8 fragments.
-   CANNOT_REMOVE_FRAG = 7535; -- It is an oddly shaped monument. A shiny stone... cannot be removed.
+    CANNOT_REMOVE_FRAG = 7535; -- It is an oddly shaped monument. A shiny stone... cannot be removed.
+ ALREADY_OBTAINED_FRAG = 7536; -- You have already obtained this monuments...
+ALREADY_HAVE_ALL_FRAGS = 7537; -- You have obtained all of the fragments. You must hurry to the ruins of the ancient shrine!
+       FOUND_ALL_FRAGS = 7538; -- You have obtained <frag>! You now have all 8 fragments.
+       ZILART_MONUMENT = 7539; -- Its an ancient Zilart Monument.

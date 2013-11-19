@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: West Ronfaure
---   NPC: Cerite
+--  NPC:  Ramaufont
 --  Type: Standard NPC
--- @zone: 100
---  @pos: -263.577 -72.999 425.885
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -267.956 -71.999 414.399 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------
@@ -22,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	-- player:startEvent(136);
+		-- player:startEvent(0x0088);
 end;
 
 -----------------------------------

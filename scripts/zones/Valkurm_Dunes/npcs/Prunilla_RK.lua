@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Valkurm Dunes
 -- NPC:  Prunilla, R.K.
--- Border Conquest Guards
+-- Type: Border Conquest Guards
 -- @pos 908.245 -1.171 -411.504 103
 -----------------------------------
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;

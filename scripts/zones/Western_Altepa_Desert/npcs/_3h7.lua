@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
--- NPC:  Emerald Column
+-- NPC:  _3h7 (Emerald Column)
 -- Mechanism for Altepa Gate
 -- @pos -775 2 -460 125
 -----------------------------------
@@ -22,12 +22,13 @@ end;
 
 function onTrigger(player,npc)
 	
-	Ruby = GetNPCByID(17289739):getAnimation();
-	Topaz = GetNPCByID(17289740):getAnimation();
-	Emerald = GetNPCByID(17289741):getAnimation();
-	Sapphire = GetNPCByID(17289742):getAnimation();
+	local Ruby = GetNPCByID(17289743):getAnimation();
+	local Topaz = GetNPCByID(17289744):getAnimation();
+	local Emerald = GetNPCByID(17289745):getAnimation();
+	local Sapphire = GetNPCByID(17289746):getAnimation();
 	
 	if(Emerald ~= 8) then
+		GetNPCByID(17289745):setAnimation(8);	
 		GetNPCByID(17289741):setAnimation(8);
 	end
 	

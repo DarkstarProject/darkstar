@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Lufaise Meadows
 -- NPC:  ??? - Kurrea spawn
--- @pos -249 16 41 160
+-- @pos -249.320 -16.189 41.497 24
 -----------------------------------
 package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil;
 -----------------------------------

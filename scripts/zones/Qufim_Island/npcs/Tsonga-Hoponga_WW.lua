@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Qufim Island
 -- NPC:  Tsonga-Hoponga, W.W.
--- Outpost Conquest Guards
+-- Type: Outpost Conquest Guards
 -- @pos -245.366 -20.344 299.502 126
 -----------------------------------
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;

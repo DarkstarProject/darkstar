@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Western Altepa Desert
--- NPC:  Topaz Column
+-- NPC:  _3h8 (Sapphire Column)
 -- Mechanism for Altepa Gate
--- @pos -260 10 -344 125
+-- @pos -499 10 224 125
 -----------------------------------
 package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
 -----------------------------------
@@ -22,16 +22,17 @@ end;
 
 function onTrigger(player,npc)
 	
-	Ruby = GetNPCByID(17289739):getAnimation();
-	Topaz = GetNPCByID(17289740):getAnimation();
-	Emerald = GetNPCByID(17289741):getAnimation();
-	Sapphire = GetNPCByID(17289742):getAnimation();
+	local Ruby = GetNPCByID(17289743):getAnimation();
+	local Topaz = GetNPCByID(17289744):getAnimation();
+	local Emerald = GetNPCByID(17289745):getAnimation();
+	local Sapphire = GetNPCByID(17289746):getAnimation();
 	
-	if(Topaz ~= 8) then
-		GetNPCByID(17289740):setAnimation(8);
+	if(Sapphire ~= 8) then
+		GetNPCByID(17289746):setAnimation(8);	
+		GetNPCByID(17289742):setAnimation(8);
 	end
 	
-	if(Emerald == 8 and Ruby == 8 and Sapphire == 8) then
+	if(Emerald == 8 and Ruby == 8 and Topaz == 8) then
 		rand = math.random(15,30);
 		timeDoor = rand * 60;
 		

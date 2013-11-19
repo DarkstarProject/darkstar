@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cloister of Frost
--- Name: Trial-size Trial by Ice
+-- BCNM: Trial-size Trial by Ice
 -- @pos 558 0 596 203
 -----------------------------------
 package.loaded["scripts/zones/Cloister_of_Frost/TextIDs"] = nil;
@@ -49,8 +49,8 @@ function onEventFinish(player,csid,option)
 	
 	if(csid == 0x7d01) then
 		if(player:hasSpell(302) == false) then
-		player:addSpell(302); -- Shiva
-		player:messageSpecial(SHIVA_UNLOCKED,0,0,4);
+			player:addSpell(302); -- Shiva
+			player:messageSpecial(SHIVA_UNLOCKED,0,0,4);
 		end
 		if(player:hasItem(4181) == false) then
 			player:addItem(4181);

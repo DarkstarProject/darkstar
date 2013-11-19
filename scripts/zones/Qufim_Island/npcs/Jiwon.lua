@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Qufim Island
 -- NPC:  Jiwon
+-- Type: Outpost Vendor
 -- @pos -249 -19 300 126
 -----------------------------------
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;

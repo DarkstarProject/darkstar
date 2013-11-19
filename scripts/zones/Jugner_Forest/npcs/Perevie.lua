@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Jugner Forest
---   NPC: Perevie
+--  NPC:  Perevie
 --  Type: Armor Storer
--- @zone: 104
---  @pos: 5.190 -0.647 11.563
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos: 5.190 -0.647 11.563 104
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
 -----------------------------------

@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Xarcabard
--- NPC:  Boreal Hound
+-- NM:   Boreal Hound
 -- Involved in Quests: Atop the Highest Mountains
--- @zone 112
--- @pos -21 -25 -490
+-- @pos -21 -25 -490 112
 -----------------------------------
 
 require("scripts/globals/keyitems");

@@ -1,7 +1,7 @@
 -----------------------------------
 --	Area: West Ronfaure
---	NPC:  Aaveleon
---
+--	NPC:  Laillera
+--	@pos -127.297 -62.000 266.800 100
 -----------------------------------
 
 require("scripts/globals/settings");

@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Valkurm Dunes
 -- NPC:  Medicine Axe
+-- Type: Outpost Vendor
 -- @pos 144 -7 104 103
 -----------------------------------
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;

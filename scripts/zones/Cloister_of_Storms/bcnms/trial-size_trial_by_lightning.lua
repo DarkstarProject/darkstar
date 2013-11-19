@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cloister of Storms
--- Name: Trial by Lightning
+-- BCNM: Trial by Lightning
 -----------------------------------
 package.loaded["scripts/zones/Cloister_of_Storms/TextIDs"] = nil;
 -----------------------------------
@@ -58,9 +58,16 @@ function onEventFinish(player,csid,option)
 
 	if(csid == 0x7d01) then
 		if(player:hasSpell(303) == false) then
-			player:addSpell(303)
+			player:addSpell(303) -- Ramuh
+			player:messageSpecial(RAMUH_UNLOCKED,0,0,5);			
 		end
-	player:addItem(4181) -- Warp Scroll
-	player:messageSpecial(ITEM_OBTAINED,4181);
-	end
+		if(player:hasItem(4181) == false) then
+			player:addItem(4181);
+			player:messageSpecial(ITEM_OBTAINED,4181); -- Scroll of instant warp
+		end
+		player:setVar("TrialSizeLightning_date", 0);
+		player:addFame(MHAURA,WIN_FAME*30);
+		player:completeQuest(OTHER_AREAS,TRIAL_SIZE_TRIAL_BY_LIGHTNING);
+	end		
+
 end;	

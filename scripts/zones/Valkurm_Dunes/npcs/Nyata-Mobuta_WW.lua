@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Valkurm Dunes
 -- NPC:  Nyata-Mobuta, W.W.
--- Outpost Conquest Guards
+-- Type: Outpost Conquest Guards
 -- @pos 139.394 -7.885 100.384 103
 -----------------------------------
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;

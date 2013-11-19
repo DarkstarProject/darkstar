@@ -20,3 +20,6 @@ NOTHING_OUT_OF_ORDINARY = 6392; -- There is nothing out of the ordinary here.
 ALREADY_OBTAINED_FRAG = 7621; -- You have already obtained this monument's...
       FOUND_ALL_FRAGS = 7623; -- You have obtained <frag>! You now have all 8 fragments of light!
       ZILART_MONUMENT = 7624; -- Its an ancient Zilart Monument.
+
+-- Other
+NOTHING_HAPPENS = 119; -- Nothing Happens   

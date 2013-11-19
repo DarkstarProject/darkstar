@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: East Sarutabaruta
---   NPC: Kesha Shopehllok
+--  NPC:  Kesha Shopehllok
 --  Type: Goldfish Scooping
--- @zone: 116
---  @pos: -22.316 -2.79 -50.815
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -22.316 -2.79 -50.815 116
 -----------------------------------
 package.loaded["scripts/zones/East_Sarutabaruta/TextIDs"] = nil;
 -----------------------------------

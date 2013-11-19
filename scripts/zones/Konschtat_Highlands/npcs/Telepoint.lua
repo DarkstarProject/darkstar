@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Konschtat Highlands
 -- NPC:  Telepoint
+-- @pos 220.000 19.104 300.000 106
 -----------------------------------
 package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
 -----------------------------------

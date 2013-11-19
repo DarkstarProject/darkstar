@@ -1,6 +1,7 @@
 -----------------------------------	
 -- Area: West Sarutabaruta	
 -- MOB:  Carrion Crow	
+-- Note: PH for Nunyenunc
 -----------------------------------	
 	
 require("/scripts/globals/fieldsofvalor");	

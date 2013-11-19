@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Xarcabard
--- NPC:  ??? (for Boreal Hound)
+-- NPC:  qm4 (???)
 -- Involved in Quests: Atop the Highest Mountains
--- @zone 112
--- @pos -21 -25 -490
+-- @pos -21 -25 -490 112
 -----------------------------------
 package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cloister of Tremors
--- Name: Trial-size Trial by Earth
+-- BCNM: Trial-size Trial by Earth
 -- @pos -539 1 -493 209
 -----------------------------------
 package.loaded["scripts/zones/Cloister_of_Tremors/TextIDs"] = nil;

@@ -1,9 +1,8 @@
 -----------------------------------
 --  Area: Jugner Forest
---  NPC: Alexius
+--  NPC: 	Alexius
 --  Involved in Quest: A purchase of Arms & Sin Hunting
---  @zone 104
---  @pos  105 1 382
+--  @pos  105 1 382 104
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
 -----------------------------------

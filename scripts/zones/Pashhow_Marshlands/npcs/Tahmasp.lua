@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Pashhow Marshlands
 -- NPC:  Tahmasp
+-- Type: Outpost Vendor
 -- @pos 464 24 416 109
 -----------------------------------
 package.loaded["scripts/zones/Pashhow_Marshlands/TextIDs"] = nil;

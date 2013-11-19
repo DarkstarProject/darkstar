@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: North Gustaberg
--- NPC: Monument
--- Continues Quest: Hearts of Mythril
+-- NPC:  Monument
+-- Involved in Quest "Hearts of Mythril"
+-- @pos 300.000 -62.803 498.200 106
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
 -----------------------------------

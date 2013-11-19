@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: The Boyahda Tree
---   NPC: Mandragora Warden
+--  NPC:  Mandragora Warden
 --  Type: Mission NPC
--- @zone: 153
---  @pos: 81.981 7.593 139.556
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos: 81.981 7.593 139.556 153
 -----------------------------------
 package.loaded["scripts/zones/The_Boyahda_Tree/TextIDs"] = nil;
 -----------------------------------

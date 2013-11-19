@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Meriphataud Mountains
 -- NPC:  Three Steps, I.M.
--- Border Conquest Guards
+-- Type: Border Conquest Guards
 -- @pos -120.393 -25.822 -592.604 119
 -----------------------------------
 package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;

@@ -1,6 +1,6 @@
 -----------------------------------
 --  Area: Jugner Forest
---  NPC: Singpost
+--  NPC: 	Signpost
 --  General Info NPC
 -------------------------------------
 

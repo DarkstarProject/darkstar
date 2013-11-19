@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cloister of Frost
--- Name: Trial by Ice
+-- BCNM: Trial by Ice
 -- @pos 558 0 596 203
 -----------------------------------
 package.loaded["scripts/zones/Cloister_of_Frost/TextIDs"] = nil;

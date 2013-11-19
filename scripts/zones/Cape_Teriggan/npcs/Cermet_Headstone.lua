@@ -17,6 +17,17 @@ require("scripts/zones/Cape_Teriggan/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	if(trade:hasItemQty(949,1) and trade:getItemCount() == 1) then
+		if(player:getCurrentMission(ZILART) == HEADSTONE_PILGRIMAGE and player:hasKeyItem(WIND_FRAGMENT) and player:hasCompleteQuest(OUTLANDS,WANDERING_SOULS) == false) then
+			 player:addQuest(OUTLANDS,WANDERING_SOULS);
+			 player:startEvent(0x00CA,949);
+		elseif(player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE) and player:hasCompleteQuest(OUTLANDS,WANDERING_SOULS) == false) then 	 
+			 player:addQuest(OUTLANDS,WANDERING_SOULS);
+			 player:startEvent(0x00CA,949);
+		else
+			 player:messageSpecial(NOTHING_HAPPENS);	 
+		end	 
+	end	
 end; 
 
 -----------------------------------
@@ -73,6 +84,15 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x00C8 and option == 1) then
 		SpawnMob(17240414,300):updateEnmity(player); -- Axesarion the Wanderer
 		SetServerVariable("[ZM4]Wind_Headstone_Active",0);
-	end
-	
+	elseif(csid == 0x00CA) then
+		if(player:getFreeSlotsCount() == 0) then
+			 player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13248);
+		else	 
+			player:tradeComplete();
+			player:addItem(13248);		
+			player:messageSpecial(ITEM_OBTAINED,13248);			
+			player:completeQuest(OUTLANDS,WANDERING_SOULS);			
+			player:addTitle(BEARER_OF_BONDS_BEYOND_TIME);	
+		end			
+	end	
 end;

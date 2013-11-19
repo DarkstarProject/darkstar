@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Qufim Island
--- NPC: Night Flowers
+-- NPC:  Nightflowers
 -- Involved in Quest: Save My Son (Beastmaster Flag #1)
+-- @pos -264.775 -3.718 28.767 126
 -----------------------------------
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
 -----------------------------------

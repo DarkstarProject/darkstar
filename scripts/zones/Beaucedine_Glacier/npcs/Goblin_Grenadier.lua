@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Beaucedine Glacier
---   NPC: Goblin Grenadier
+--  NPC:  Goblin Grenadier
 --  Type: Mission NPC
--- @zone: 111
---  @pos: -26.283 -60.49 -76.640
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos: -26.283 -60.49 -76.640 111
 -----------------------------------
 package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
 -----------------------------------

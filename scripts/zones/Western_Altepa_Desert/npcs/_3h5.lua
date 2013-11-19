@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
--- NPC:  Ruby Column
+-- NPC:  _3h5 (Ruby Column)
 -- Mechanism for Altepa Gate
 -- @pos 59 10 -104 125
 -----------------------------------
@@ -22,15 +22,16 @@ end;
 
 function onTrigger(player,npc)
 	
-	Ruby = GetNPCByID(17289739):getAnimation();
-	Topaz = GetNPCByID(17289740):getAnimation();
-	Emerald = GetNPCByID(17289741):getAnimation();
-	Sapphire = GetNPCByID(17289742):getAnimation();
+	local Ruby = GetNPCByID(17289743):getAnimation();
+	local Topaz = GetNPCByID(17289744):getAnimation();
+	local Emerald = GetNPCByID(17289745):getAnimation();
+	local Sapphire = GetNPCByID(17289746):getAnimation();
 	printf("Ruby: %u",Ruby);
 	printf("Topaz: %u",Topaz);
 	printf("Emerald: %u",Emerald);
 	printf("Sapphire: %u",Sapphire);
 	if(Ruby ~= 8) then
+		GetNPCByID(17289743):setAnimation(8);
 		GetNPCByID(17289739):setAnimation(8);
 	end
 	

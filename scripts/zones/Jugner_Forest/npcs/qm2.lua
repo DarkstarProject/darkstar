@@ -1,8 +1,8 @@
 -----------------------------------
 --  Area: Jugner Forest
---  NPC: ???
+--  NPC:  qm2 (???)
 --  Involved in Quest: Sin Hunting - RNG AF1
---  @zone 104
+--  @pos -10.946,-1.000,313.810 104
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
 -----------------------------------

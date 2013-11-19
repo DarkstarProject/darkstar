@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: 
--- NPC:  Krabkatoa
+-- Area: Jugner Forest
+-- VNM:  Krabkatoa
 -----------------------------------
 
 require("scripts/globals/titles");

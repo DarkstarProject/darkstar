@@ -1,7 +1,8 @@
 -----------------------------------
 --	Area: West Ronfaure
---	NPC:  Aaveleon
---
+--	NPC:  Gachemage
+--  Type: Gate Guard
+--  @pos -176.000 -61.999 382.425 100
 -----------------------------------
 
 require("scripts/globals/settings");

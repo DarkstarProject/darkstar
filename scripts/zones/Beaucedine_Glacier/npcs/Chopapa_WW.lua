@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Beaucedine Glacier
 -- NPC:  Chopapa, W.W.
--- Border Conquest Guards
+-- Type: Border Conquest Guards
 -- @pos -227.956 -81.475 260.442 111
 -----------------------------------
 package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;

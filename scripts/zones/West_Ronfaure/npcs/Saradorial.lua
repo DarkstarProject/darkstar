@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: West Ronfaure
---   NPC: Saradorial
+--  NPC:  Saradorial
 --  Type: Goldfish Scooping
--- @zone: 100
---  @pos: -399.671 -10.999 -438.910
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -399.671 -10.999 -438.910 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------

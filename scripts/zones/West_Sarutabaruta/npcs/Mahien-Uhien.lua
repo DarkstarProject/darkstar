@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: West Sarutabaruta
 -- NPC:  Mahien-Uhien
+-- Type: Outpost Vendor
 -- @pos -13 -12 311 115
 -----------------------------------
 package.loaded["scripts/zones/West_Sarutabaruta/TextIDs"] = nil;

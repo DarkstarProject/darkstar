@@ -2,6 +2,7 @@
 --  Area: Qufim Island
 --  NPC:  Swirling Vortex
 --  Entrance to Qufim Island
+--  @pos -436.000 -13.499 340.117 126
 -----------------------------------
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
 -----------------------------------

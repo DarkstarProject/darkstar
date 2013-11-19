@@ -2,6 +2,7 @@
 --  Area: Valkurm Dunes
 --  NPC:  Swirling Vortex
 --  Entrance to Lufaise Meadows
+--	@pos 420.057 0.000 -199.905 103 
 -----------------------------------
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
 -----------------------------------

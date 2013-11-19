@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
--- Mob:  Voluptuous Vivian (NM)
+-- NM:   Voluptuous Vivian (NM)
 -- @pos -198.000 5.000 203.000 153
 -----------------------------------
 

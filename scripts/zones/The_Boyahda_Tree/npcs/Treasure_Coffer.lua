@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: The Boyahada Tree
 -- NPC:  Treasure Coffer
--- @zone 153
--- @pos 27 6 144
+-- @pos 27 6 144 153
 -----------------------------------
 package.loaded["scripts/zones/The_Boyahda_Tree/TextIDs"] = nil;
 -----------------------------------

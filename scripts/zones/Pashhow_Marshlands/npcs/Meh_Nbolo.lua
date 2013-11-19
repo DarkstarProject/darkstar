@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Pashhow Marshlands
---   NPC: Meh Nbolo
+--  NPC: Meh Nbolo
 --  Type: Armor Storer
--- @zone: 109
---  @pos: 80.899 23.999 176.643
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 80.899 23.999 176.643 109
 -----------------------------------
 package.loaded["scripts/zones/Pashhow_Marshlands/TextIDs"] = nil;
 -----------------------------------

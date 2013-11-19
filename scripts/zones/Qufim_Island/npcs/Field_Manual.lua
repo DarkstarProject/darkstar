@@ -1,6 +1,6 @@
 -----------------------------------	
--- Field Manual	
 -- Area: Qufim Island	
+-- Field Manual	
 -----------------------------------	
 	
 require("/scripts/globals/settings");	

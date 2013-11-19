@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Jugner Forest
 -- NPC:  Mionie
+-- Type: Outpost Vendor
 -- @pos 54 0 -11 104
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;

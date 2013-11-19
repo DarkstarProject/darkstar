@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Meriphataud Mountains
---   NPC: Muzeze
+--  NPC:  Muzeze
 --  Type: Armor Storer
--- @zone: 119
---  @pos: -6.782 -18.428 208.185
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos: -6.782 -18.428 208.185 119
 -----------------------------------
 package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;
 -----------------------------------

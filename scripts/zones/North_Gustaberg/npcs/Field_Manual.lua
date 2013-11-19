@@ -1,6 +1,6 @@
 -----------------------------------	
--- Field Manual	
 -- Area: North Gustaberg	
+-- NPC:  Field Manual	
 -----------------------------------	
 	
 require("/scripts/globals/settings");	

@@ -2,8 +2,7 @@
 -- Area: Valkurm Dunes
 -- NPC:  qm2 (???)
 -- Involved In Quest: Messenger from Beyond
--- @zone 103
--- @pos -716 -10 66
+-- @pos -716 -10 66 103
 -----------------------------------
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
 -----------------------------------

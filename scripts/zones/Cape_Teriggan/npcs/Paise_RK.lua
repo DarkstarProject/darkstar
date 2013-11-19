@@ -1,11 +1,11 @@
 -----------------------------------
 -- Area: Cape Teriggan
 -- NPC:  Bright Moon
--- Border Conquest Guards
+-- Type: Border Conquest Guards
 -- @pos 119 0 282 113
 -----------------------------------
 package.loaded["scripts/zones/Cape_Teriggan/TextIDs"] = nil;
------------------------------------
+-----------------------------------
 require("scripts/globals/conquest");
 require("scripts/zones/Cape_Teriggan/TextIDs");
 

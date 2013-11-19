@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Meriphataud Mountains
--- NPC: ???
+-- NPC: qm1 (???)
 -- Involved in Quest: The Holy Crest
--- @zone 119
--- @pos 641 -15 7
+-- @pos 641 -15 7 119
 -----------------------------------
 
 package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;

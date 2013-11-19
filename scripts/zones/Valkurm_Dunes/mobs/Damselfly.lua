@@ -1,6 +1,6 @@
 -----------------------------------	
 -- Area: Valkurm Dunes	
---  MOB: Damselfly
+-- MOB: Damselfly
 -- Note: Place holder Valkurm Emperor 
 -----------------------------------	
 

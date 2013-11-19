@@ -1,6 +1,6 @@
 -----------------------------------	
--- Signpost	
 -- Area: Rolanberry Fields	
+-- NPC:  Signpost		
 -----------------------------------	
 	
 require("/scripts/globals/settings");	

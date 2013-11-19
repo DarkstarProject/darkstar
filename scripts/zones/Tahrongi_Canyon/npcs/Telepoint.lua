@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Tahrongi Canyon
 -- NPC:  Telepoint
+-- @pos 100.000 35.150 340.000 117
 -----------------------------------
 package.loaded["scripts/zones/Tahrongi_Canyon/TextIDs"] = nil;
 -----------------------------------
