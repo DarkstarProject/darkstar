@@ -99,7 +99,8 @@ int32 init()
 	lua_register(LuaHandle,"VanadielDayElement",luautils::VanadielDayElement);
 	lua_register(LuaHandle,"VanadielMoonPhase",luautils::VanadielMoonPhase);
 	lua_register(LuaHandle,"VanadielMoonDirection", luautils::VanadielMoonDirection);
-    lua_register(LuaHandle,"SetVanadielTimeOffset",luautils::SetVanadielTimeOffset);
+    lua_register(LuaHandle,"SetVanadielTimeOffset",luautils::SetVanadielTimeOffset);   	
+	lua_register(LuaHandle,"IsMoonNew",luautils::IsMoonNew);    	
 	lua_register(LuaHandle,"IsMoonFull",luautils::IsMoonFull);
 	lua_register(LuaHandle,"RunElevator",luautils::StartElevator);
 	lua_register(LuaHandle,"GetServerVariable",luautils::GetServerVariable);
@@ -512,6 +513,44 @@ int32 VanadielMoonDirection(lua_State* L)
 }
 
 
+/************************************************************************
+*																		*
+*	is new moon?														*
+*																		*
+************************************************************************/
+	
+int32 IsMoonNew(lua_State* L)
+{
+		// New moon occurs when:
+		// Waning (decreasing) from 10% to 0%,
+		// Waxing (increasing) from 0% to 5%.
+	
+		uint8 phase = CVanaTime::getInstance()->getMoonPhase();
+	
+		switch (CVanaTime::getInstance()->getMoonDirection())
+		{
+			case 0: // None
+				lua_pushboolean(L, false);
+				return 0;
+	
+			case 1: // Waning (decending)
+				if (phase <= 10 && phase >= 0) {
+					lua_pushboolean(L, true);
+					return 1;
+				}
+	
+			case 2: // Waxing (increasing)
+				if (phase >= 0 && phase <= 5) {
+					lua_pushboolean(L, true);
+					return 1;
+				}
+		}
+		lua_pushboolean(L, false);
+		return 0;
+}		
+		
+	
+		
 /************************************************************************
 *																		*
 *	is full moon?														*

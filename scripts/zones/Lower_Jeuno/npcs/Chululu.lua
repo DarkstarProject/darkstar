@@ -2,8 +2,8 @@
 -- Area: Lower Jeuno
 -- NPC:  Chululu
 -- Starts and Finishes Quest: Collect Tarut Cards, Rubbish Day
--- @zone 245
--- @pos -13 -6 -42
+-- Optional Cutscene at end of Quest: Searching for the Right Words
+-- @pos -13 -6 -42 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -32,8 +32,10 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	CollectTarutCards = player:getQuestStatus(JEUNO,COLLECT_TARUT_CARDS);
-	RubbishDay = player:getQuestStatus(JEUNO,RUBBISH_DAY);
+	local CollectTarutCards = player:getQuestStatus(JEUNO,COLLECT_TARUT_CARDS);
+	local RubbishDay = player:getQuestStatus(JEUNO,RUBBISH_DAY);
+	local SearchingForTheRightWords = player:getQuestStatus(JEUNO,SEARCHING_FOR_THE_RIGHT_WORDS);
+	
 	
 	if(player:getFameLevel(JEUNO) >= 3 and CollectTarutCards == QUEST_AVAILABLE) then 
 		player:startEvent(0x001C); -- Start quest "Collect Tarut Cards" with option
@@ -52,8 +54,17 @@ function onTrigger(player,npc)
 		player:startEvent(0x0031); -- During quest "Rubbish Day"
 	elseif(RubbishDay == QUEST_ACCEPTED and player:getVar("RubbishDayVar") == 1) then 
 		player:startEvent(0x00c5); -- Finish quest "Rubbish Day"
+		
+	elseif(SearchingForTheRightWords == QUEST_COMPLETED) then 
+		if (player:getVar("SearchingForRightWords_postcs") < -1) then
+			player:startEvent(0x0038);
+		else
+			player:startEvent(0x0057); -- final state, after all quests complete
+		end
+
 	elseif(RubbishDay == QUEST_COMPLETED) then 
-		player:startEvent(0x0038); -- New standard dialog
+		player:startEvent(0x0057); -- New standard dialog
+	
 	else
 		player:startEvent(0x001A); -- Standard dialog
 	end
