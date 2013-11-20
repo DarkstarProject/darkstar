@@ -100,7 +100,7 @@ INSERT INTO `mob_skill` VALUES (8,167,8,'Sheep_Song', 1, 15.0, 2000, 1500, 4, 0,
 
 -- Ram
 INSERT INTO `mob_skill` VALUES (9,208,9,'Rage', 0, 7.0, 2000, 1500, 1, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (10,208,10,'Ram_Charge', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (10,208,10,'Ram_Charge', 0, 7.0, 2000, 1500, 4, 0, 0, 2);
 INSERT INTO `mob_skill` VALUES (11,208,11,'Rumble', 1, 10.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (12,208,12,'Great_Bleat', 1, 12.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (13,208,13,'Petribreath', 4, 15.0, 2000, 1500, 4, 0, 0, 0);
@@ -413,7 +413,7 @@ INSERT INTO `mob_skill` VALUES (165,369,165,'MP_Drainkiss', 0, 7.0, 2000, 1500, 
 INSERT INTO `mob_skill` VALUES (164,369,164,'TP_Drainkiss', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
 
 -- Worm
-INSERT INTO `mob_skill` VALUES (168,258,168,'Full-Force_Blow', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (168,258,168,'Full-Force_Blow', 0, 7.0, 2000, 1500, 4, 0, 0, 1);
 INSERT INTO `mob_skill` VALUES (169,258,169,'Gastric_Bomb', 0, 18.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (170,258,170,'Sandspin', 1, 12.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (171,258,171,'Tremors', 1, 12.0, 2000, 1500, 4, 0, 0, 0);
@@ -584,7 +584,7 @@ INSERT INTO `mob_skill` VALUES (268,175,268,'Mind_Drain', 0, 7.0, 2000, 1500, 4,
 INSERT INTO `mob_skill` VALUES (278,83,278,'Kartstrahl', 0, 15.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (279,83,279,'Blitzstrahl', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (280,83,280,'Panzerfaust', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (283,83,283,'Typhoon', 1, 7.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (283,83,283,'Typhoon', 1, 7.0, 2000, 1500, 4, 0, 0, 1);
 INSERT INTO `mob_skill` VALUES (287,83,287,'Meltdown', 1, 15.0, 2000, 2000, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (285,83,285,'Gravity_Field', 2, 10.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (281,83,281,'Berserk', 0, 7.0, 2000, 1500, 1, 0, 0, 0);
@@ -592,7 +592,7 @@ INSERT INTO `mob_skill` VALUES (281,83,281,'Berserk', 0, 7.0, 2000, 1500, 1, 0, 
 INSERT INTO `mob_skill` VALUES (278,84,278,'Kartstrahl', 0, 15.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (279,84,279,'Blitzstrahl', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (280,84,280,'Panzerfaust', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (283,84,283,'Typhoon', 1, 7.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (283,84,283,'Typhoon', 1, 7.0, 2000, 1500, 4, 0, 0, 1);
 INSERT INTO `mob_skill` VALUES (287,84,287,'Meltdown', 1, 15.0, 2000, 2000, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (285,84,285,'Gravity_Field', 2, 10.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (281,84,281,'Berserk', 0, 7.0, 2000, 1500, 1, 0, 0, 0);
@@ -600,12 +600,12 @@ INSERT INTO `mob_skill` VALUES (281,84,281,'Berserk', 0, 7.0, 2000, 1500, 1, 0, 
 INSERT INTO `mob_skill` VALUES (278,85,278,'Kartstrahl', 0, 15.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (279,85,279,'Blitzstrahl', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (280,85,280,'Panzerfaust', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (283,85,283,'Typhoon', 1, 7.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (283,85,283,'Typhoon', 1, 7.0, 2000, 1500, 4, 0, 0, 1);
 INSERT INTO `mob_skill` VALUES (287,85,287,'Meltdown', 1, 15.0, 2000, 2000, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (285,85,285,'Gravity_Field', 2, 10.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (281,85,281,'Berserk', 0, 7.0, 2000, 1500, 1, 0, 0, 0);
 
-INSERT INTO `mob_skill` VALUES (283,367,283,'Typhoon', 1, 7.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (283,367,283,'Typhoon', 1, 7.0, 2000, 1500, 4, 0, 0, 1);
 
 INSERT INTO `mob_skill` VALUES (280,368,280,'Panzerfaust', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
 
