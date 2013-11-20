@@ -88,8 +88,8 @@ function SetFieldManual()
         17232272,17232273,17232274,17232275, -- Beaucedine all 4
         17236337,17236338,17240507,17240508, -- Xarcabard 2, Cape Teriggan 2
         17244644,17244645,17244646,17248814, -- Eastern Altepa 3, West Sarutabaruta 1
-        17248815,17248816,17253023,17253024, -- West Sarutabaruta 2, East Sarutabaruta 2
-        17253025,17257067,17257068,17257069, -- East Sarutabaruta 1, Tahrongi 3
+        17248815,17248816,17253022,17253023, -- West Sarutabaruta 2, East Sarutabaruta 2
+        17253024,17257067,17257068,17257069, -- East Sarutabaruta 1, Tahrongi 3
         17261192,17261193,17265284,17265285, -- Buburimu 2, Meriphataud Mountains 2
         17265286,17269253,17269254,17273410, -- Meriphataud Mountains 1, Sauromugue 2, Zi'Tah 1
         17273411,17277203,17277204,17281639, -- Zi'Tah 1, Ro'Maeve 2, Yuhtunga Jungle 1
@@ -183,7 +183,7 @@ function SetTreasureSpawns()
        17359045, -- Yughott Grotto
        17363363, -- Palborough Mines
        17371601, -- Giddeus
-       17379836, -- Beadeaux
+       17379835, -- Beadeaux
        17388020, -- Davoi
        17396203, -- Castle Oztroja
        17420669, -- Middle Delkfutt's Tower
@@ -192,13 +192,13 @@ function SetTreasureSpawns()
        17441082, -- Castle Zvahl Keep
        17498609, -- Sea Serpent Grotto
        17555947, -- King Ranperre's Tomb
-       17559918, -- Dangruf Wadi
+       17559917, -- Dangruf Wadi
        17563907, -- Inner Horutoto Ruins
-       17568186, -- Ordelle's Caves
+       17568185, -- Ordelle's Caves
        17572283, -- Outer Horutoto Ruins
        17576349, -- The Eldieme Necropolis
        17580396, -- Gusgen Mines
-       17584469, -- Crawler's Nest
+       17584468, -- Crawler's Nest
        17588766, -- Maze of Shakhrami
        17596803, -- Garlaige Citadel
        17613220, -- Fei'Yin
@@ -209,7 +209,7 @@ function SetTreasureSpawns()
    {
        16826620, -- Newton Movalpolos
        17310019, -- Ru'Aun Gardens
-       17379837, -- Beadeaux
+       17379836, -- Beadeaux
        17391842, -- Monastic Cavern
        17396204, -- Castle Oztroja
        17404383, -- The Boyahda Tree
@@ -221,7 +221,7 @@ function SetTreasureSpawns()
        17498610, -- Sea Serpent Grotto
        17502692, -- Ve'Lugannon Palace
        17576350, -- The Eldieme Necropolis
-       17584470, -- Crawler's Nest
+       17584469, -- Crawler's Nest
        17596804, -- Garlaige Citadel
        17617214, -- Ifrit's Cauldron
        17629729  -- Quicksand Caves

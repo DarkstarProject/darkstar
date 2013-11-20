@@ -108,18 +108,18 @@ INSERT INTO `treasure_spawn_points` VALUES (17371601,7,5,100.137,1.387,-230.499)
 INSERT INTO `treasure_spawn_points` VALUES (17371601,8,28,113.058,1.000,-224.402); -- Giddeus
 INSERT INTO `treasure_spawn_points` VALUES (17371601,9,1,182.259,0.915,-230.619); -- Giddeus
 INSERT INTO `treasure_spawn_points` VALUES (17371601,10,236,213.192,-2.309,-299.255); -- Giddeus
-INSERT INTO `treasure_spawn_points` VALUES (17379836,0,238,81.814,-3.250,1.523);
-INSERT INTO `treasure_spawn_points` VALUES (17379836,1,206,122.451,-2.468,132.482);
-INSERT INTO `treasure_spawn_points` VALUES (17379836,2,18,159.081,-3.275,78.207);
-INSERT INTO `treasure_spawn_points` VALUES (17379836,3,94,150.931,-2.969,30.893);
-INSERT INTO `treasure_spawn_points` VALUES (17379836,4,159,252.520,-3.000,-56.725);
-INSERT INTO `treasure_spawn_points` VALUES (17379836,5,139,161.465,-3.000,-58.075);
-INSERT INTO `treasure_spawn_points` VALUES (17379836,6,210,274.491,-3.249,45.577);
-INSERT INTO `treasure_spawn_points` VALUES (17379836,7,171,272.330,-3.338,125.156);
-INSERT INTO `treasure_spawn_points` VALUES (17379836,8,40,170.554,-3.000,174.293);
-INSERT INTO `treasure_spawn_points` VALUES (17379836,9,47,107.592,-3.000,215.188);
-INSERT INTO `treasure_spawn_points` VALUES (17379836,10,167,82.216,-3.196,117.415);
-INSERT INTO `treasure_spawn_points` VALUES (17379836,11,214,22.898,-2.981,84.606);
+INSERT INTO `treasure_spawn_points` VALUES (17379835,0,238,81.814,-3.250,1.523); -- Beadeaux
+INSERT INTO `treasure_spawn_points` VALUES (17379835,1,206,122.451,-2.468,132.482); -- Beadeaux
+INSERT INTO `treasure_spawn_points` VALUES (17379835,2,18,159.081,-3.275,78.207); -- Beadeaux
+INSERT INTO `treasure_spawn_points` VALUES (17379835,3,94,150.931,-2.969,30.893); -- Beadeaux
+INSERT INTO `treasure_spawn_points` VALUES (17379835,4,159,252.520,-3.000,-56.725); -- Beadeaux
+INSERT INTO `treasure_spawn_points` VALUES (17379835,5,139,161.465,-3.000,-58.075); -- Beadeaux
+INSERT INTO `treasure_spawn_points` VALUES (17379835,6,210,274.491,-3.249,45.577); -- Beadeaux
+INSERT INTO `treasure_spawn_points` VALUES (17379835,7,171,272.330,-3.338,125.156); -- Beadeaux
+INSERT INTO `treasure_spawn_points` VALUES (17379835,8,40,170.554,-3.000,174.293); -- Beadeaux
+INSERT INTO `treasure_spawn_points` VALUES (17379835,9,47,107.592,-3.000,215.188); -- Beadeaux
+INSERT INTO `treasure_spawn_points` VALUES (17379835,10,167,82.216,-3.196,117.415); -- Beadeaux
+INSERT INTO `treasure_spawn_points` VALUES (17379835,11,214,22.898,-2.981,84.606); -- Beadeaux
 INSERT INTO `treasure_spawn_points` VALUES (17388020,0,79,235.907,3.629,-251.378); -- Davoi
 INSERT INTO `treasure_spawn_points` VALUES (17388020,1,169,290.556,2.731,-291.040); -- Davoi
 INSERT INTO `treasure_spawn_points` VALUES (17388020,2,86,297.370,3.250,-219.350); -- Davoi
@@ -198,37 +198,37 @@ INSERT INTO `treasure_spawn_points` VALUES (17555947,10,171,-19.585,6.630,14.740
 INSERT INTO `treasure_spawn_points` VALUES (17555947,11,0,-118.680,9.000,60.010); -- King Ranperre's Tomb
 INSERT INTO `treasure_spawn_points` VALUES (17555947,12,194,-56.994,7.359,155.155); -- King Ranperre's Tomb
 INSERT INTO `treasure_spawn_points` VALUES (17555947,13,193,-40.195,-0.008,-130.093); -- King Ranperre's Tomb
-INSERT INTO `treasure_spawn_points` VALUES (17559918,0,254,-499.709,3.262,215.970);
-INSERT INTO `treasure_spawn_points` VALUES (17559918,1,73,-117.128,3.970,134.104);
-INSERT INTO `treasure_spawn_points` VALUES (17559918,2,105,-60.745,3.063,295.362);
-INSERT INTO `treasure_spawn_points` VALUES (17559918,3,105,-62.183,3.215,416.434);
-INSERT INTO `treasure_spawn_points` VALUES (17559918,4,27,-287.324,3.538,328.969);
-INSERT INTO `treasure_spawn_points` VALUES (17559918,5,50,-273.053,4.406,332.914);
-INSERT INTO `treasure_spawn_points` VALUES (17559918,6,0,-100.291,3.277,495.744);
-INSERT INTO `treasure_spawn_points` VALUES (17559918,7,0,-62.243,0.228,564.120);
-INSERT INTO `treasure_spawn_points` VALUES (17559918,8,60,-206.223,3.874,571.662);
-INSERT INTO `treasure_spawn_points` VALUES (17559918,9,60,-247.736,3.743,576.783);
-INSERT INTO `treasure_spawn_points` VALUES (17559918,10,190,-239.459,4.000,505.813);
-INSERT INTO `treasure_spawn_points` VALUES (17559918,11,190,-198.482,4.000,506.684);
-INSERT INTO `treasure_spawn_points` VALUES (17559918,12,60,-264.091,3.255,460.409);
-INSERT INTO `treasure_spawn_points` VALUES (17559918,13,223,-337.859,3.228,384.203);
-INSERT INTO `treasure_spawn_points` VALUES (17559918,14,195,-419.957,3.876,335.875);
+INSERT INTO `treasure_spawn_points` VALUES (17559917,0,254,-499.709,3.262,215.970); -- Dangruf Wadi
+INSERT INTO `treasure_spawn_points` VALUES (17559917,1,73,-117.128,3.970,134.104); -- Dangruf Wadi
+INSERT INTO `treasure_spawn_points` VALUES (17559917,2,105,-60.745,3.063,295.362); -- Dangruf Wadi
+INSERT INTO `treasure_spawn_points` VALUES (17559917,3,105,-62.183,3.215,416.434); -- Dangruf Wadi
+INSERT INTO `treasure_spawn_points` VALUES (17559917,4,27,-287.324,3.538,328.969); -- Dangruf Wadi
+INSERT INTO `treasure_spawn_points` VALUES (17559917,5,50,-273.053,4.406,332.914); -- Dangruf Wadi
+INSERT INTO `treasure_spawn_points` VALUES (17559917,6,0,-100.291,3.277,495.744); -- Dangruf Wadi
+INSERT INTO `treasure_spawn_points` VALUES (17559917,7,0,-62.243,0.228,564.120); -- Dangruf Wadi
+INSERT INTO `treasure_spawn_points` VALUES (17559917,8,60,-206.223,3.874,571.662); -- Dangruf Wadi
+INSERT INTO `treasure_spawn_points` VALUES (17559917,9,60,-247.736,3.743,576.783); -- Dangruf Wadi
+INSERT INTO `treasure_spawn_points` VALUES (17559917,10,190,-239.459,4.000,505.813); -- Dangruf Wadi
+INSERT INTO `treasure_spawn_points` VALUES (17559917,11,190,-198.482,4.000,506.684); -- Dangruf Wadi
+INSERT INTO `treasure_spawn_points` VALUES (17559917,12,60,-264.091,3.255,460.409); -- Dangruf Wadi
+INSERT INTO `treasure_spawn_points` VALUES (17559917,13,223,-337.859,3.228,384.203); -- Dangruf Wadi
+INSERT INTO `treasure_spawn_points` VALUES (17559917,14,195,-419.957,3.876,335.875); -- Dangruf Wadi
 INSERT INTO `treasure_spawn_points` VALUES (17563907,0,125,-177.956,-0.002,-220.058); -- Inner Horutoto Ruins
-INSERT INTO `treasure_spawn_points` VALUES (17568186,0,165,-111.515,27.986,-90.305);
-INSERT INTO `treasure_spawn_points` VALUES (17568186,1,150,-109.446,-0.021,-90.724);
-INSERT INTO `treasure_spawn_points` VALUES (17568186,2,103,-108.188,28.338,-29.797);
-INSERT INTO `treasure_spawn_points` VALUES (17568186,3,40,-168.397,28.112,-28.818);
-INSERT INTO `treasure_spawn_points` VALUES (17568186,4,192,-32.101,-0.040,-90.118);
-INSERT INTO `treasure_spawn_points` VALUES (17568186,5,236,-50.539,27.989,-88.427);
-INSERT INTO `treasure_spawn_points` VALUES (17568186,6,8,-51.511,28.085,-28.593);
-INSERT INTO `treasure_spawn_points` VALUES (17568186,7,198,-15.960,28.372,-31.662);
-INSERT INTO `treasure_spawn_points` VALUES (17568186,8,94,10.390,28.396,-30.526);
-INSERT INTO `treasure_spawn_points` VALUES (17568186,9,185,8.064,27.984,-90.003);
-INSERT INTO `treasure_spawn_points` VALUES (17568186,10,188,-98.103,-27.613,-285.174);
-INSERT INTO `treasure_spawn_points` VALUES (17568186,11,190,-140.193,0.546,176.329);
-INSERT INTO `treasure_spawn_points` VALUES (17568186,12,194,-112.788,-0.035,230.281);
-INSERT INTO `treasure_spawn_points` VALUES (17568186,13,236,-169.325,0.008,231.696);
-INSERT INTO `treasure_spawn_points` VALUES (17568186,14,62,-167.160,0.068,289.223);
+INSERT INTO `treasure_spawn_points` VALUES (17568185,0,165,-111.515,27.986,-90.305); -- Ordelle's Caves
+INSERT INTO `treasure_spawn_points` VALUES (17568185,1,150,-109.446,-0.021,-90.724); -- Ordelle's Caves
+INSERT INTO `treasure_spawn_points` VALUES (17568185,2,103,-108.188,28.338,-29.797); -- Ordelle's Caves
+INSERT INTO `treasure_spawn_points` VALUES (17568185,3,40,-168.397,28.112,-28.818); -- Ordelle's Caves
+INSERT INTO `treasure_spawn_points` VALUES (17568185,4,192,-32.101,-0.040,-90.118); -- Ordelle's Caves
+INSERT INTO `treasure_spawn_points` VALUES (17568185,5,236,-50.539,27.989,-88.427); -- Ordelle's Caves
+INSERT INTO `treasure_spawn_points` VALUES (17568185,6,8,-51.511,28.085,-28.593); -- Ordelle's Caves
+INSERT INTO `treasure_spawn_points` VALUES (17568185,7,198,-15.960,28.372,-31.662); -- Ordelle's Caves
+INSERT INTO `treasure_spawn_points` VALUES (17568185,8,94,10.390,28.396,-30.526); -- Ordelle's Caves
+INSERT INTO `treasure_spawn_points` VALUES (17568185,9,185,8.064,27.984,-90.003); -- Ordelle's Caves
+INSERT INTO `treasure_spawn_points` VALUES (17568185,10,188,-98.103,-27.613,-285.174); -- Ordelle's Caves
+INSERT INTO `treasure_spawn_points` VALUES (17568185,11,190,-140.193,0.546,176.329); -- Ordelle's Caves
+INSERT INTO `treasure_spawn_points` VALUES (17568185,12,194,-112.788,-0.035,230.281); -- Ordelle's Caves
+INSERT INTO `treasure_spawn_points` VALUES (17568185,13,236,-169.325,0.008,231.696); -- Ordelle's Caves
+INSERT INTO `treasure_spawn_points` VALUES (17568185,14,62,-167.160,0.068,289.223); -- Ordelle's Caves
 INSERT INTO `treasure_spawn_points` VALUES (17572283,0,250,-423.066,0.000,672.483);
 INSERT INTO `treasure_spawn_points` VALUES (17576349,0,254,171.927,-7.999,20.008); -- The Eldieme Necropolis
 INSERT INTO `treasure_spawn_points` VALUES (17576349,1,1,261.094,-33.250,100.014); -- The Eldieme Necropolis
@@ -241,19 +241,19 @@ INSERT INTO `treasure_spawn_points` VALUES (17576349,7,1,-518.830,-8.000,500.082
 INSERT INTO `treasure_spawn_points` VALUES (17576349,8,127,-411.948,8.000,499.879); -- The Eldieme Necropolis
 INSERT INTO `treasure_spawn_points` VALUES (17576349,9,190,-438.279,0.350,304.854); -- The Eldieme Necropolis
 INSERT INTO `treasure_spawn_points` VALUES (17580396,0,216,-14.130,-39.999,-85.554); -- Gusgen Mines
-INSERT INTO `treasure_spawn_points` VALUES (17584469,0,13,39.767,-0.178,-313.865);
-INSERT INTO `treasure_spawn_points` VALUES (17584469,1,255,98.913,-1.981,-344.437);
-INSERT INTO `treasure_spawn_points` VALUES (17584469,2,65,-7.115,-0.562,-382.455);
-INSERT INTO `treasure_spawn_points` VALUES (17584469,3,199,9.410,-0.930,-418.559);
-INSERT INTO `treasure_spawn_points` VALUES (17584469,4,170,-93.078,-0.276,-393.625);
-INSERT INTO `treasure_spawn_points` VALUES (17584469,5,255,-57.575,-0.238,-279.965);
-INSERT INTO `treasure_spawn_points` VALUES (17584469,6,218,24.264,-0.439,165.450);
-INSERT INTO `treasure_spawn_points` VALUES (17584469,7,20,11.445,-0.168,211.587);
-INSERT INTO `treasure_spawn_points` VALUES (17584469,8,85,54.721,-0.346,233.897);
-INSERT INTO `treasure_spawn_points` VALUES (17584469,9,148,35.373,-0.586,264.295);
-INSERT INTO `treasure_spawn_points` VALUES (17584469,10,216,-15.799,-0.464,245.820);
-INSERT INTO `treasure_spawn_points` VALUES (17584469,11,24,-32.961,-0.351,294.132);
-INSERT INTO `treasure_spawn_points` VALUES (17584469,12,46,-89.586,-9.624,95.296);
+INSERT INTO `treasure_spawn_points` VALUES (17584468,0,13,39.767,-0.178,-313.865); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584468,1,255,98.913,-1.981,-344.437); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584468,2,65,-7.115,-0.562,-382.455); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584468,3,199,9.410,-0.930,-418.559); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584468,4,170,-93.078,-0.276,-393.625); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584468,5,255,-57.575,-0.238,-279.965); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584468,6,218,24.264,-0.439,165.450); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584468,7,20,11.445,-0.168,211.587); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584468,8,85,54.721,-0.346,233.897); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584468,9,148,35.373,-0.586,264.295); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584468,10,216,-15.799,-0.464,245.820); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584468,11,24,-32.961,-0.351,294.132); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584468,12,46,-89.586,-9.624,95.296); -- Crawler's Nest
 INSERT INTO `treasure_spawn_points` VALUES (17588766,0,9,290.287,20.225,-138.060); -- Maze of Shakhrami
 INSERT INTO `treasure_spawn_points` VALUES (17596803,0,128,-163.053,0.000,351.988);
 INSERT INTO `treasure_spawn_points` VALUES (17596803,1,124,-352.798,15.602,266.998);
@@ -295,14 +295,14 @@ INSERT INTO `treasure_spawn_points` VALUES (16826620,6,60,140.090,20.000,-44.821
 INSERT INTO `treasure_spawn_points` VALUES (16826620,7,90,94.145,15.995,71.251); -- Newton Movalpolos
 INSERT INTO `treasure_spawn_points` VALUES (16826620,8,190,140.432,19.989,84.637); -- Newton Movalpolos
 INSERT INTO `treasure_spawn_points` VALUES (17310019,0,155,-306.824,-23.999,230.783); -- Ru'Aun Gardens
-INSERT INTO `treasure_spawn_points` VALUES (17379837,0,135,216.974,39.702,68.790);
-INSERT INTO `treasure_spawn_points` VALUES (17379837,1,255,369.956,24.075,59.954);
-INSERT INTO `treasure_spawn_points` VALUES (17379837,2,210,414.430,23.859,91.361);
-INSERT INTO `treasure_spawn_points` VALUES (17379837,3,60,380.187,24.019,150.749);
-INSERT INTO `treasure_spawn_points` VALUES (17379837,4,255,330.943,24.244,99.591);
-INSERT INTO `treasure_spawn_points` VALUES (17379837,5,45,256.112,39.805,149.514);
-INSERT INTO `treasure_spawn_points` VALUES (17379837,6,45,187.398,39.999,95.752);
-INSERT INTO `treasure_spawn_points` VALUES (17379837,7,25,170.601,39.831,25.066);
+INSERT INTO `treasure_spawn_points` VALUES (17379836,0,135,216.974,39.702,68.790); -- Beadeaux
+INSERT INTO `treasure_spawn_points` VALUES (17379836,1,255,369.956,24.075,59.954); -- Beadeaux
+INSERT INTO `treasure_spawn_points` VALUES (17379836,2,210,414.430,23.859,91.361); -- Beadeaux
+INSERT INTO `treasure_spawn_points` VALUES (17379836,3,60,380.187,24.019,150.749); -- Beadeaux
+INSERT INTO `treasure_spawn_points` VALUES (17379836,4,255,330.943,24.244,99.591); -- Beadeaux
+INSERT INTO `treasure_spawn_points` VALUES (17379836,5,45,256.112,39.805,149.514); -- Beadeaux
+INSERT INTO `treasure_spawn_points` VALUES (17379836,6,45,187.398,39.999,95.752); -- Beadeaux
+INSERT INTO `treasure_spawn_points` VALUES (17379836,7,25,170.601,39.831,25.066); -- Beadeaux
 INSERT INTO `treasure_spawn_points` VALUES (17391842,0,187,9.376,-1.345,-223.188); -- Monastic Cavern
 INSERT INTO `treasure_spawn_points` VALUES (17391842,1,148,106.335,-0.829,-106.411); -- Monastic Cavern
 INSERT INTO `treasure_spawn_points` VALUES (17391842,2,45,60.765,-0.333,-93.267); -- Monastic Cavern
@@ -416,13 +416,13 @@ INSERT INTO `treasure_spawn_points` VALUES (17576350,5,63,299.967,0.000,69.413);
 INSERT INTO `treasure_spawn_points` VALUES (17576350,6,194,300.082,0.000,-29.448); -- The Eldieme Necropolis
 INSERT INTO `treasure_spawn_points` VALUES (17576350,7,174,188.319,-0.590,128.702); -- The Eldieme Necropolis
 INSERT INTO `treasure_spawn_points` VALUES (17576350,8,2,-386.548,-3.000,335.046); -- The Eldieme Necropolis
-INSERT INTO `treasure_spawn_points` VALUES (17584470,0,211,-95.676,-0.436,205.557);
-INSERT INTO `treasure_spawn_points` VALUES (17584470,1,229,-103.267,-1.766,-392.964);
-INSERT INTO `treasure_spawn_points` VALUES (17584470,2,235,-185.774,-0.282,-379.022);
-INSERT INTO `treasure_spawn_points` VALUES (17584470,3,150,-45.265,-0.477,224.265);
-INSERT INTO `treasure_spawn_points` VALUES (17584470,4,22,-113.889,-0.449,255.583);
-INSERT INTO `treasure_spawn_points` VALUES (17584470,5,74,-129.480,-0.945,378.933);
-INSERT INTO `treasure_spawn_points` VALUES (17584470,6,206,-150.126,-0.904,341.438);
+INSERT INTO `treasure_spawn_points` VALUES (17584469,0,211,-95.676,-0.436,205.557); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584469,1,229,-103.267,-1.766,-392.964); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584469,2,235,-185.774,-0.282,-379.022); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584469,3,150,-45.265,-0.477,224.265); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584469,4,22,-113.889,-0.449,255.583); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584469,5,74,-129.480,-0.945,378.933); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584469,6,206,-150.126,-0.904,341.438); -- Crawler's Nest
 INSERT INTO `treasure_spawn_points` VALUES (17596804,0,247,9.831,5.781,10.208);
 INSERT INTO `treasure_spawn_points` VALUES (17596804,1,65,-20.193,5.144,85.064);
 INSERT INTO `treasure_spawn_points` VALUES (17596804,2,65,100.057,-3.250,103.200);
