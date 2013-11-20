@@ -281,7 +281,16 @@ uint16 CBattleEntity::GetMainWeaponDmg()
 {
 	if( m_Weapons[SLOT_MAIN] )
 	{
-		return m_Weapons[SLOT_MAIN]->getDamage() + getMod(MOD_MAIN_DMG_RATING);
+        if (m_Weapons[SLOT_MAIN]->getReqLvl() > GetMLevel())
+        {
+            uint16 dmg = m_Weapons[SLOT_MAIN]->getDamage();
+            dmg *= GetMLevel() * 3;
+            dmg /= 4;
+            dmg /= m_Weapons[SLOT_MAIN]->getReqLvl();
+            return dmg + getMod(MOD_MAIN_DMG_RATING);
+        }
+        else
+		    return m_Weapons[SLOT_MAIN]->getDamage() + getMod(MOD_MAIN_DMG_RATING);
 	}
 	//Unhandled Scenario
 	DSP_DEBUG_BREAK_IF(true);
@@ -292,7 +301,16 @@ uint16 CBattleEntity::GetSubWeaponDmg()
 {
 	if( m_Weapons[SLOT_SUB] )
 	{
-		return m_Weapons[SLOT_SUB]->getDamage() + getMod(MOD_SUB_DMG_RATING);
+        if (m_Weapons[SLOT_SUB]->getReqLvl() > GetMLevel())
+        {
+            uint16 dmg = m_Weapons[SLOT_SUB]->getDamage();
+            dmg *= GetMLevel() * 3;
+            dmg /= 4;
+            dmg /= m_Weapons[SLOT_SUB]->getReqLvl();
+            return dmg + getMod(MOD_SUB_DMG_RATING);
+        }
+        else
+		    return m_Weapons[SLOT_SUB]->getDamage() + getMod(MOD_SUB_DMG_RATING);
 	}
 	//Unhandled Scenario
 	DSP_DEBUG_BREAK_IF(true);
@@ -304,11 +322,29 @@ uint16 CBattleEntity::GetRangedWeaponDmg()
 	uint8 dmg = 0;
 	if( m_Weapons[SLOT_RANGED] )
 	{
-		dmg += m_Weapons[SLOT_RANGED]->getDamage();
+        if (m_Weapons[SLOT_RANGED]->getReqLvl() > GetMLevel())
+        {
+            uint16 scaleddmg = m_Weapons[SLOT_RANGED]->getDamage();
+            scaleddmg *= GetMLevel() * 3;
+            scaleddmg /= 4;
+            scaleddmg /= m_Weapons[SLOT_RANGED]->getReqLvl();
+            dmg += scaleddmg;
+        }
+        else
+		    dmg += m_Weapons[SLOT_RANGED]->getDamage();
 	}
 	if( m_Weapons[SLOT_AMMO] )
 	{
-		dmg += m_Weapons[SLOT_AMMO]->getDamage();
+        if (m_Weapons[SLOT_AMMO]->getReqLvl() > GetMLevel())
+        {
+            uint16 scaleddmg = m_Weapons[SLOT_AMMO]->getDamage();
+            scaleddmg *= GetMLevel() * 3;
+            scaleddmg /= 4;
+            scaleddmg /= m_Weapons[SLOT_AMMO]->getReqLvl();
+            dmg += scaleddmg;
+        }
+        else
+		    dmg += m_Weapons[SLOT_AMMO]->getDamage();
 	}
 	return dmg + getMod(MOD_RANGED_DMG_RATING);
 }
@@ -621,6 +657,58 @@ void CBattleEntity::addModifiers(std::vector<CModifier*> *modList)
 	}
 }
 
+void CBattleEntity::addEquipModifiers(std::vector<CModifier*> *modList, uint8 itemLevel)
+{
+    if (GetMLevel() >= itemLevel)
+    {
+	    for (uint16 i = 0; i < modList->size(); ++i)
+	    {
+		    m_modStat[modList->at(i)->getModID()] += modList->at(i)->getModAmount();
+	    }
+    }
+    else
+    {
+	    for (uint16 i = 0; i < modList->size(); ++i)
+	    {
+            int16 modAmount = GetMLevel() * modList->at(i)->getModAmount();
+            switch (modList->at(i)->getModID())
+            {
+            case MOD_DEF:
+            case MOD_MAIN_DMG_RATING:
+            case MOD_SUB_DMG_RATING:
+            case MOD_RANGED_DMG_RATING:
+                modAmount *= 3;
+                modAmount /= 4;
+                break;
+            case MOD_HP:
+            case MOD_MP:
+                modAmount /= 2;
+                break;
+            case MOD_STR:
+            case MOD_DEX:
+            case MOD_VIT:
+            case MOD_AGI:
+            case MOD_INT:
+            case MOD_MND:
+            case MOD_CHR:
+            case MOD_ATT:
+            case MOD_RATT:
+            case MOD_ACC:
+            case MOD_RACC:
+            case MOD_MATT:
+            case MOD_MACC:
+                modAmount /= 3;
+                break;
+            default:
+                modAmount = 0;
+                break;
+            }
+            modAmount /= itemLevel;
+            m_modStat[modList->at(i)->getModID()] += modAmount;
+	    }
+    }
+}
+
 /************************************************************************
 *																		*
 *  Устанавливаем модификатор											*
@@ -679,6 +767,52 @@ void CBattleEntity::delModifiers(std::vector<CModifier*> *modList)
 	{
 		m_modStat[modList->at(i)->getModID()] -= modList->at(i)->getModAmount();
 	}
+}
+
+void CBattleEntity::delEquipModifiers(std::vector<CModifier*> *modList, uint8 itemLevel)
+{
+    if (GetMLevel() >= itemLevel)
+    {
+	    for (uint16 i = 0; i < modList->size(); ++i)
+	    {
+		    m_modStat[modList->at(i)->getModID()] -= modList->at(i)->getModAmount();
+	    }
+    }
+    else
+    {
+	    for (uint16 i = 0; i < modList->size(); ++i)
+	    {
+            int16 modAmount = GetMLevel() * modList->at(i)->getModAmount();
+            switch (modList->at(i)->getModID())
+            {
+            case MOD_DEF:
+            case MOD_MAIN_DMG_RATING:
+            case MOD_SUB_DMG_RATING:
+            case MOD_RANGED_DMG_RATING:
+                modAmount *= 3;
+                modAmount /= 4;
+                break;
+            case MOD_HP:
+            case MOD_MP:
+                modAmount /= 2;
+                break;
+            case MOD_STR:
+            case MOD_DEX:
+            case MOD_VIT:
+            case MOD_AGI:
+            case MOD_INT:
+            case MOD_MND:
+            case MOD_CHR:
+                modAmount /= 3;
+                break;
+            default:
+                modAmount = 0;
+                break;
+            }
+            modAmount /= itemLevel;
+            m_modStat[modList->at(i)->getModID()] -= modAmount;
+	    }
+    }
 }
 
 /************************************************************************

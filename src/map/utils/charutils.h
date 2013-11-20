@@ -158,6 +158,9 @@ namespace charutils
     bool    CheckAbilityAddtype(CCharEntity* PChar, CAbility* PAbility);
 
     void    RemoveStratagems(CCharEntity* PChar, CSpell* PSpell);
+
+    void    RemoveAllEquipMods(CCharEntity* PChar);
+    void    ApplyAllEquipMods(CCharEntity* PChar);
 };
 
 #endif

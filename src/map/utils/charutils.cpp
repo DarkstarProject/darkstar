@@ -1338,9 +1338,9 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 				CheckUnarmedWeapon(PChar);
 			}
 		} else {
-			PChar->delModifiers(&((CItemArmor*)PItem)->modList);
+			PChar->delEquipModifiers(&((CItemArmor*)PItem)->modList, ((CItemArmor*)PItem)->getReqLvl());
 		}
-		PChar->PLatentEffectContainer->DelLatentEffects(equipSlotID);
+		
 
 		PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NORMAL));
 		PChar->pushPacket(new CEquipPacket(0, equipSlotID));
@@ -1413,6 +1413,10 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 			}
 			break;
 		}
+        charutils::BuildingCharSkillsTable(PChar);
+        charutils::CalculateStats(PChar);
+
+        PChar->UpdateHealth();
 		PChar->m_EquipSwap = true;
 	}
 }
@@ -1435,7 +1439,7 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 
     if ((PChar->m_EquipBlock & (1 << equipSlotID)) ||
        !(PItem->getJobs() & (1 << (PChar->GetMJob() - 1))) ||
-        (PItem->getReqLvl() > PChar->GetMLevel()))
+        (PItem->getReqLvl() > PChar->jobs.job[PChar->GetMJob()]))
         return false;
 
     UnequipItem(PChar,equipSlotID);
@@ -1522,7 +1526,6 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
                         {
                             if (PItem->isType(ITEM_WEAPON) && !charutils::hasTrait(PChar, TRAIT_DUAL_WIELD))
                             {
-                                PChar->m_EquipSwap = true;
                                 return false;
                             }
 							PChar->m_Weapons[SLOT_SUB] = (CItemWeapon*)PItem;
@@ -1710,10 +1713,9 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 						CheckUnarmedWeapon(PChar);
 					}
 				} else {
-					PChar->addModifiers(&PItem->modList);
+					PChar->addEquipModifiers(&PItem->modList, ((CItemArmor*)PItem)->getReqLvl());
 				}
-				PChar->PLatentEffectContainer->AddLatentEffects(&PItem->latentList, equipSlotID);
-				PChar->PLatentEffectContainer->CheckLatentsEquip(equipSlotID);
+
 
 				PChar->status = STATUS_UPDATE;
 				PChar->pushPacket(new CEquipPacket(slotID, equipSlotID));
@@ -1739,6 +1741,10 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
         BuildingCharWeaponSkills(PChar);
     }
 
+    charutils::BuildingCharSkillsTable(PChar);
+    charutils::CalculateStats(PChar);
+
+    PChar->UpdateHealth();
 	PChar->m_EquipSwap = true;
 }
 
@@ -1765,7 +1771,7 @@ void CheckValidEquipment(CCharEntity* PChar)
             }
 
             if ((PItem->getJobs() & (1 << (PChar->GetMJob() - 1))) &&
-                (PItem->getReqLvl() <= PChar->GetMLevel()) &&
+                (PItem->getReqLvl() <= PChar->jobs.job[PChar->GetMJob()]) &&
                 (PItem->getEquipSlotId() & (1 << slotID)))
             {
                 continue;
@@ -3076,7 +3082,7 @@ void DelExperiencePoints(CCharEntity* PChar, float retainPercent)
 	exploss = exploss*(1-retainPercent);
 	exploss = exploss * map_config.exp_loss_rate;
 
-	if( (PChar->jobs.exp[PChar->GetMJob()] - exploss) < 0)
+	if( PChar->jobs.exp[PChar->GetMJob()] < exploss)
     {
 		//de-level!
 		int32 diff = abs(PChar->jobs.exp[PChar->GetMJob()] - exploss);
@@ -4256,4 +4262,44 @@ void RemoveStratagems(CCharEntity* PChar, CSpell* PSpell)
     }
 }
 
-} // namespace charutils
+void RemoveAllEquipMods(CCharEntity* PChar)
+{
+    for(uint8 slotID = 0; slotID < 16; ++slotID)
+    {
+        if (PChar->equip[slotID] != 0)
+        {
+            CItemArmor* PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[slotID]);
+            if (PItem)
+            {
+                PChar->delEquipModifiers(&PItem->modList, PItem->getReqLvl());
+                if (PItem->getReqLvl() <= PChar->GetMJob())
+                {
+                    PChar->PLatentEffectContainer->DelLatentEffects(slotID);
+                    PChar->PLatentEffectContainer->CheckLatentsEquip(slotID);
+                }
+            }
+        }
+    }
+}
+
+void ApplyAllEquipMods(CCharEntity* PChar)
+{
+    for(uint8 slotID = 0; slotID < 16; ++slotID)
+    {
+        if (PChar->equip[slotID] != 0)
+        {
+            CItemArmor* PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[slotID]);
+            if (PItem)
+            {
+                PChar->addEquipModifiers(&PItem->modList, PItem->getReqLvl());
+                if (PItem->getReqLvl() <= PChar->GetMJob())
+                {
+                    PChar->PLatentEffectContainer->AddLatentEffects(&PItem->latentList, slotID);
+				    PChar->PLatentEffectContainer->CheckLatentsEquip(slotID);
+                }
+            }
+        }
+    }
+}
+
+}; // namespace charutils

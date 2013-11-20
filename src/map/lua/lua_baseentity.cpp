@@ -2021,8 +2021,10 @@ inline int32 CLuaBaseEntity::levelRestriction(lua_State* L)
 
 		if (PChar->GetMLevel()!= NewMLevel)
 		{
+            charutils::RemoveAllEquipMods(PChar);
 			PChar->SetMLevel(NewMLevel);
 			PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
+            charutils::ApplyAllEquipMods(PChar);
 
             blueutils::ValidateBlueSpells(PChar);
 			charutils::BuildingCharSkillsTable(PChar);

@@ -1433,7 +1433,7 @@ void CAIMobDummy::ActionAttack()
 									DamageRatio -= 1.0f; // Guard lowers pDif by 1.0
 								}
 
-								damage = (uint16)((m_PMob->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PMob, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);
+								damage = (uint16)((m_PMob->GetMainWeaponDmg() + battleutils::GetFSTR(m_PMob, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);
 
 								//  Guard skill up
 								if(m_PBattleTarget->objtype == TYPE_PC && isGuarded || ((map_config.newstyle_skillups & NEWSTYLE_GUARD) > 0))

@@ -89,10 +89,7 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
     {
         m_PChar->pushPacket(new CCharAppearancePacket(m_PChar));
         m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
-        charutils::BuildingCharSkillsTable(m_PChar);
-        charutils::CalculateStats(m_PChar);
 
-        m_PChar->UpdateHealth();
         m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
         m_PChar->m_EquipSwap = false;
     }

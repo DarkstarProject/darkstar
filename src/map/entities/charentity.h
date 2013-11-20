@@ -270,10 +270,10 @@ public:
 
 	int8			  getShieldSize();
 
-	bool			getWeaponSkillKill();
-	void			setWeaponSkillKill(bool isWeaponSkillKill);
-	bool			getMijinGakure();
-	void			setMijinGakure(bool isMijinGakure);
+	bool			  getWeaponSkillKill();
+	void			  setWeaponSkillKill(bool isWeaponSkillKill);
+	bool			  getMijinGakure();
+	void			  setMijinGakure(bool isMijinGakure);
 
 	bool			  isWeaponUnlocked(uint16 indexid);					// return if weapon is broken
 	bool			  addWsPoints(uint8 points, uint16 WeaponIndex);	// return if weapon is broken

@@ -793,7 +793,7 @@ void CAIPetDummy::ActionAttack()
 								Action.messageID  = 67;
 							}
 
-							damage = (uint16)((m_PPet->m_Weapons[SLOT_MAIN]->getDamage() + battleutils::GetFSTR(m_PPet, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);
+							damage = (uint16)((m_PPet->GetMainWeaponDmg() + battleutils::GetFSTR(m_PPet, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);
 						}
 					}
 					if (m_PBattleTarget->objtype == TYPE_PC)
