@@ -1,13 +1,14 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis (S)
--- NPC: Layton
--- Standard Merchant NPC
--- Available during Campaign battles
--- Partitially implemented
+-- NPC:  Layton
+-- Type: Standard Merchant NPC
+-- Note: Available during Campaign battles
+-- @pos 382.679 -39.999 3.541 175
+-----------------------------------
+package.loaded["scripts/zones/The_Eldieme_Necropolis_[S]/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/shop");
-package.loaded["scripts/zones/The_Eldieme_Necropolis_[S]/TextIDs"] = nil;
 require("scripts/zones/The_Eldieme_Necropolis_[S]/TextIDs");
 
 -----------------------------------
@@ -33,14 +34,14 @@ stock = {0x17A5,5200,		--    Sandstorm Schema
 	 0x17A3,9100,		-- Thunderstorm Schema
 	 0x17A8,10725,		--    Voidstorm Schema
 	 0x17A7,11440,		--  Aurorastorm Schema
-	 0x179D,12675,		--     Geohelix Schema
-	 0x179A,13325,		--   Hydrohelix Schema
-	 0x179E,13975,		--   Anemohelix Schema
-	 0x1799,15750,		--    Pyrohelix Schema
-	 0x179C,16450,		--    Cryohelix Schema
-	 0x179B,18375,		--    Ionohelix Schema
-	 0x17A0,19125,		--   Noctohelix Schema
-	 0x179F,19875}		--  Luminohelix Schema
+	 0x179D,6591,		--     Geohelix Schema
+	 0x179A,6786,		--   Hydrohelix Schema
+	 0x179E,6981,		--   Anemohelix Schema
+	 0x1799,7714,		--    Pyrohelix Schema
+	 0x179C,7896,		--    Cryohelix Schema
+	 0x179B,8625,		--    Ionohelix Schema
+	 0x17A0,8790,		--   Noctohelix Schema
+	 0x179F,8940}		--  Luminohelix Schema
 
  
 showShop(player, STATIC, stock);

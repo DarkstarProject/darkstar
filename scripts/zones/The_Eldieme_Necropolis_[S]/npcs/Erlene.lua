@@ -1,9 +1,12 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis (S)
--- NPC: Erlene
+-- NPC:  Erlene
+-- Involved in Quest: "A Little Knowledge"
+-- @pos 376.936 -39.999 17.914 175
+-----------------------------------
+package.loaded["scripts/zones/The_Eldieme_Necropolis_[S]/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/The_Eldieme_Necropolis_[S]/TextIDs"] = nil;
 require("scripts/zones/The_Eldieme_Necropolis_[S]/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");

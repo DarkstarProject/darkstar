@@ -2,7 +2,7 @@
 -- Area: Qulun Dome
 -- NPC:  Door
 -- Involved in Mission: Magicite
--- @pos 60 24 -2 147
+-- @pos 60 24 -2 148
 -----------------------------------
 package.loaded["scripts/zones/Qulun_Dome/TextIDs"] = nil;
 -----------------------------------

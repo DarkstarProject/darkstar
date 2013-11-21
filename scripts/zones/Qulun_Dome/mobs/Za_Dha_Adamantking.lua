@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Qulun_Dome
--- NPC:  Za_Dha_Adamantking
+-- Area: Qulun Dome
+-- NM:   Za Dha Adamantking
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -18,7 +18,10 @@ end;
 -----------------------------------
 
 function OnMobEngaged(mob,target)
+
+-- Note: Couldnt get messagePublic to work..
 -- mob:messagePublic(QUADAV_KING_ENGAGE,mob);
+
 end;
 
 -----------------------------------

@@ -2,7 +2,7 @@
 -- Area: Qulun Dome
 -- NPC:  Door
 -- Involved in Mission: Limit Break 3
--- @pos 300 40 45 147
+-- @pos 299.999 37.864 47.067 148
 -----------------------------------
 package.loaded["scripts/zones/Qulun_Dome/TextIDs"] = nil;
 -----------------------------------

@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Qulun_Dome
--- NPC:  Diamond_Quadav (Za Dha Adamantking PH)
+-- NM:   Diamond_Quadav 
+-- Note: PH for Za Dha Adamantking PH
 -----------------------------------
 
 require("scripts/zones/Qulun_Dome/TextIDs");
@@ -17,7 +18,10 @@ end;
 -----------------------------------
 
 function OnMobEngaged(mob,target)
+
+-- Note: Couldnt get messagePublic to work..
 -- target:showText(mob,DIAMOND_QUADAV_ENGAGE);
+
 end;
 
 -----------------------------------
