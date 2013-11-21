@@ -78,6 +78,9 @@ public:
     void RemoveMember(CBattleEntity* PEntity);          // удаление персонажа из группы
     void RemoveMemberByName(int8* MemberName);			// удаление персонажа из группы по имени
     void AssignPartyRole(int8* MemberName, uint8 role);	// назначаем роли участникам группы
+    void DisableSync();
+	void SetSyncTarget(CBattleEntity* PEntity, uint16 message);         // устанавливаем цель синхронизации уровней3
+    void RefreshSync();
 
     void PushPacket(CCharEntity* PPartyMember, uint8 ZoneID, CBasicPacket* packet);		// отправляем пакет всем членам группы, за исключением PPartyMember
 	
@@ -99,7 +102,6 @@ private:
 
 
 	void SetLeader(CBattleEntity* PEntity);             // устанавливаем лидера группы
-	void SetSyncTarget(CBattleEntity* PEntity);         // устанавливаем цель синхронизации уровней
 	void SetQuaterMaster(CBattleEntity* PEntity);       // устанавливаем владельца сокровищ
 
 	void RemovePartyLeader(CBattleEntity* PEntity);     // лидер покидает группу

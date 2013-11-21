@@ -281,7 +281,7 @@ uint16 CBattleEntity::GetMainWeaponDmg()
 {
 	if( m_Weapons[SLOT_MAIN] )
 	{
-        if (m_Weapons[SLOT_MAIN]->getReqLvl() > GetMLevel())
+        if ((m_Weapons[SLOT_MAIN]->getReqLvl() > GetMLevel()) && objtype == TYPE_PC)
         {
             uint16 dmg = m_Weapons[SLOT_MAIN]->getDamage();
             dmg *= GetMLevel() * 3;
@@ -301,7 +301,7 @@ uint16 CBattleEntity::GetSubWeaponDmg()
 {
 	if( m_Weapons[SLOT_SUB] )
 	{
-        if (m_Weapons[SLOT_SUB]->getReqLvl() > GetMLevel())
+        if ((m_Weapons[SLOT_SUB]->getReqLvl() > GetMLevel()) && objtype == TYPE_PC)
         {
             uint16 dmg = m_Weapons[SLOT_SUB]->getDamage();
             dmg *= GetMLevel() * 3;
@@ -322,7 +322,7 @@ uint16 CBattleEntity::GetRangedWeaponDmg()
 	uint8 dmg = 0;
 	if( m_Weapons[SLOT_RANGED] )
 	{
-        if (m_Weapons[SLOT_RANGED]->getReqLvl() > GetMLevel())
+        if ((m_Weapons[SLOT_RANGED]->getReqLvl() > GetMLevel())  && objtype == TYPE_PC)
         {
             uint16 scaleddmg = m_Weapons[SLOT_RANGED]->getDamage();
             scaleddmg *= GetMLevel() * 3;
@@ -335,7 +335,7 @@ uint16 CBattleEntity::GetRangedWeaponDmg()
 	}
 	if( m_Weapons[SLOT_AMMO] )
 	{
-        if (m_Weapons[SLOT_AMMO]->getReqLvl() > GetMLevel())
+        if ((m_Weapons[SLOT_AMMO]->getReqLvl() > GetMLevel()) && objtype == TYPE_PC)
         {
             uint16 scaleddmg = m_Weapons[SLOT_AMMO]->getDamage();
             scaleddmg *= GetMLevel() * 3;

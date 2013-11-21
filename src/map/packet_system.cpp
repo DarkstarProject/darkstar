@@ -2643,6 +2643,11 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			    return;
 		    }
 
+            if(PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC) || PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_RESTRICTION))
+            {
+                PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 236));
+                return;
+            }
 
 			//check to see if user is adding a party leader for alliance
 			if (PInvitee->PParty != NULL)// && PChar->Party != NULL
@@ -2851,19 +2856,26 @@ void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		//the rest is for a standard party invitation
         if (PChar->PParty == NULL)
 		{
-			if (PInviter->PParty == NULL)
-			{
-				CParty* PParty = new CParty(PInviter);
-			}
-            if (PInviter->PParty->GetLeader() == PInviter)
+            if (!(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC) && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_RESTRICTION)))
             {
-				if(PInviter->PParty->members.size()==6){//someone else accepted invitation
-					PInviter->pushPacket(new CMessageStandardPacket(PInviter, 0, 0, 14));
-					PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 14));
-				}
-				else{
-					PInviter->PParty->AddMember(PChar);
-				}
+			    if (PInviter->PParty == NULL)
+			    {
+				    CParty* PParty = new CParty(PInviter);
+			    }
+                if (PInviter->PParty->GetLeader() == PInviter)
+                {
+				    if(PInviter->PParty->members.size()==6){//someone else accepted invitation
+					    PInviter->pushPacket(new CMessageStandardPacket(PInviter, 0, 0, 14));
+					    PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 14));
+				    }
+				    else{
+					    PInviter->PParty->AddMember(PChar);
+				    }
+                }
+            }
+            else
+            {
+                PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 237));
             }
 		}
 	}

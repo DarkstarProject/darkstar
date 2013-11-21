@@ -7511,6 +7511,17 @@ inline int32 CLuaBaseEntity::hasAttachment(lua_State* L)
     return 1;
 }
 
+inline int32 CLuaBaseEntity::disableLevelSync(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    if (PChar->PParty && PChar->PParty->GetSyncTarget() == PChar)
+        PChar->PParty->DisableSync();
+    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CCharSyncPacket(PChar));
+    return 0;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -7833,5 +7844,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setSpawn),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setRespawnTime),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,unlockAttachment),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,disableLevelSync),
 	{NULL,NULL}
 };

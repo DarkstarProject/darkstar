@@ -22,6 +22,7 @@
 */
 
 #include "../common/showmsg.h"
+#include "../common/timer.h"
 
 #include <vector>
 #include <string.h>
@@ -29,6 +30,7 @@
 #include "entities/battleentity.h"
 #include "utils/charutils.h"
 #include "conquest_system.h"
+#include "utils/blueutils.h"
 #include "utils/jailutils.h"
 #include "map.h"
 #include "party.h"
@@ -37,6 +39,7 @@
 #include "packets/char_sync.h"
 #include "packets/char_update.h"
 #include "packets/menu_config.h"
+#include "packets/message_standard.h"
 #include "packets/party_define.h"
 #include "packets/party_member_update.h"
 
@@ -74,7 +77,7 @@ CParty::CParty(CBattleEntity* PEntity)
 
 void CParty::DisbandParty()
 {
-	SetSyncTarget(NULL);
+	DisableSync();
 	SetQuaterMaster(NULL);
 
 	m_PLeader = NULL;
@@ -101,6 +104,13 @@ void CParty::DisbandParty()
 			    PChar->PTreasurePool->AddMember(PChar);
                 PChar->PTreasurePool->UpdatePool(PChar);
 		    }
+            CStatusEffect* sync = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_LEVEL_SYNC);
+            if (sync && sync->GetDuration() == 0)
+            {
+    			PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 30, 553));
+                sync->SetStartTime(gettick());
+                sync->SetDuration(30000);
+            }
 	    }
         Sql_Query(SqlHandle,"UPDATE accounts_sessions SET partyid = %u WHERE partyid = %u", 0, m_PartyID);
     }
@@ -128,7 +138,8 @@ void CParty::AssignPartyRole(int8* MemberName, uint8 role)
 				case 0: SetLeader(PChar);		break;
 				case 4: SetQuaterMaster(PChar); break;
 				case 5: SetQuaterMaster(NULL);	break;
-			    case 6: SetSyncTarget(PChar);	break;
+			    case 6: SetSyncTarget(PChar, 238);	break;
+                case 7: SetSyncTarget(NULL, 553);    break;
 			}
             ReloadParty();
 		    return;
@@ -211,13 +222,34 @@ void CParty::RemoveMember(CBattleEntity* PEntity)
 				    }
 				    if (m_PSyncTarget == PChar)
 				    {
-					    SetSyncTarget(NULL);
+					    SetSyncTarget(NULL, 553);
+                        CStatusEffect* sync = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_LEVEL_SYNC);
+                        if (sync && sync->GetDuration() == 0)
+                        {
+			                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 30, 553));
+                            sync->SetStartTime(gettick());
+                            sync->SetDuration(30000);
+                        }
+                        DisableSync();
 				    }
+                    if (m_PSyncTarget != NULL && m_PSyncTarget != PChar)
+                    {
+                        if (PChar->status != STATUS_DISAPPEAR &&
+                             PChar->getZone() == m_PSyncTarget->getZone() )
+		                {
+                            CStatusEffect* sync = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_LEVEL_SYNC);
+                            if (sync && sync->GetDuration() == 0)
+                            {
+			                    PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 30, 553));
+                                sync->SetStartTime(gettick());
+                                sync->SetDuration(30000);
+                            }
+		                }
+                    }
 
 				    PChar->pushPacket(new CPartyDefinePacket(NULL));
 				    PChar->pushPacket(new CPartyMemberUpdatePacket(PChar, 0, PChar->getZone()));
 				    PChar->pushPacket(new CCharUpdatePacket(PChar));
-				    PChar->pushPacket(new CCharSyncPacket(PChar));
 				    PChar->PParty = NULL;
 
 				    ReloadParty();
@@ -303,6 +335,23 @@ void CParty::AddMember(CBattleEntity* PEntity)
 		    PChar->pushPacket(new CCharSyncPacket(PChar));
 	    }
 	    PChar->PTreasurePool->UpdatePool(PChar);
+
+        //Apply level sync if the party is level synced 
+        if (m_PSyncTarget != NULL)
+        {
+            if (PChar->getZone() == m_PSyncTarget->getZone() )
+		    {
+			    PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, m_PSyncTarget->GetMLevel(), 540));
+                PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(
+                    EFFECT_LEVEL_SYNC,
+                    EFFECT_LEVEL_SYNC,
+                    m_PSyncTarget->GetMLevel(),
+                    0,
+                    0), true);
+                PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH);
+                PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CCharSyncPacket(PChar));
+            }
+        }
 
 	    Sql_Query(SqlHandle,"UPDATE accounts_sessions SET partyid = %u WHERE charid = %u", m_PartyID, PChar->id);
     }
@@ -563,9 +612,82 @@ void CParty::SetLeader(CBattleEntity* PEntity)
 *																		*
 ************************************************************************/
 
-void CParty::SetSyncTarget(CBattleEntity* PEntity)
+void CParty::SetSyncTarget(CBattleEntity* PEntity, uint16 message)
 {
-    m_PSyncTarget = PEntity;
+    if (map_config.level_sync_enable)
+    {
+        if (PEntity)
+        {
+            //enable level sync
+            if (PEntity->GetMLevel() < 10 )
+            {
+                ((CCharEntity*)GetLeader())->pushPacket(new CMessageBasicPacket((CCharEntity*)GetLeader(), (CCharEntity*)GetLeader(), 0, 10, 541));
+                return;
+            }
+            else if (PEntity->getZone() != GetLeader()->getZone())
+            {
+                ((CCharEntity*)GetLeader())->pushPacket(new CMessageBasicPacket((CCharEntity*)GetLeader(), (CCharEntity*)GetLeader(), 0, 0, 542));
+                return;
+            }
+            else
+            {
+                for (uint32 i = 0; i < members.size(); ++i)
+                {
+                    if(members.at(i)->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_RESTRICTION))
+                    {
+                        ((CCharEntity*)GetLeader())->pushPacket(new CMessageBasicPacket((CCharEntity*)GetLeader(), (CCharEntity*)GetLeader(), 0, 0, 543));
+                        return;
+                    }
+                }
+                m_PSyncTarget = PEntity;
+	            for (uint32 i = 0; i < members.size(); ++i)
+	            {
+		            if(members.at(i)->objtype != TYPE_PC) continue;
+
+		            CCharEntity* member = (CCharEntity*)members.at(i);
+
+                    if (member->status != STATUS_DISAPPEAR &&
+                         member->getZone() == PEntity->getZone() )
+		            {
+			            member->pushPacket(new CMessageStandardPacket(PEntity->GetMLevel(), 0, 0, 0, message));
+                        member->StatusEffectContainer->AddStatusEffect(new CStatusEffect(
+                            EFFECT_LEVEL_SYNC,
+                            EFFECT_LEVEL_SYNC,
+                            PEntity->GetMLevel(),
+                            0,
+                            0), true);
+                        member->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH);
+                        member->loc.zone->PushPacket(member, CHAR_INRANGE, new CCharSyncPacket(member));
+		            }
+	            }
+            }
+        }
+        else
+        {
+            if (m_PSyncTarget != NULL)
+            {
+                //disable level sync
+                for (uint32 i = 0; i < members.size(); ++i)
+	            {
+		            if(members.at(i)->objtype != TYPE_PC) continue;
+
+		            CCharEntity* member = (CCharEntity*)members.at(i);
+
+                    if (member->status != STATUS_DISAPPEAR &&
+                         member->getZone() == m_PSyncTarget->getZone() )
+		            {
+                        CStatusEffect* sync = member->StatusEffectContainer->GetStatusEffect(EFFECT_LEVEL_SYNC);
+                        if (sync && sync->GetDuration() == 0)
+                        {
+			                member->pushPacket(new CMessageBasicPacket(member, member, 10, 30, message));
+                            sync->SetStartTime(gettick());
+                            sync->SetDuration(30000);
+                        }
+		            }
+	            }
+            }
+        }
+    }
 }
 
 /************************************************************************
@@ -606,4 +728,52 @@ void CParty::PushPacket(CCharEntity* PPartyMember, uint8 ZoneID, CBasicPacket* p
 		}
 	}
 	delete packet;
+}
+
+void CParty::DisableSync()
+{
+    m_PSyncTarget = NULL;
+    ReloadParty();
+}
+
+void CParty::RefreshSync()
+{
+    CCharEntity* sync = (CCharEntity*)m_PSyncTarget;
+    uint8 syncLevel = sync->jobs.job[sync->GetMJob()];
+    if (syncLevel < 10)
+    {
+        SetSyncTarget(NULL, 554);
+    }
+    for (uint32 i = 0; i < members.size(); ++i)
+	{
+		if(members.at(i)->objtype != TYPE_PC) continue;
+
+		CCharEntity* member = (CCharEntity*)members.at(i);
+
+        uint8 NewMLevel = 0;
+
+		if (syncLevel < member->jobs.job[member->GetMJob()])
+		{
+			NewMLevel = syncLevel;
+		}else{
+			NewMLevel = member->jobs.job[member->GetMJob()];
+		}
+
+		if (member->GetMLevel()!= NewMLevel)
+		{
+            charutils::RemoveAllEquipMods(member);
+			member->SetMLevel(NewMLevel);
+			member->SetSLevel(member->jobs.job[member->GetSJob()]);
+            charutils::ApplyAllEquipMods(member);
+
+            blueutils::ValidateBlueSpells(member);
+			charutils::BuildingCharSkillsTable(member);
+			charutils::CalculateStats(member);
+			charutils::BuildingCharTraitsTable(member);
+			charutils::BuildingCharAbilityTable(member);
+			charutils::CheckValidEquipment(member); // Handles rebuilding weapon skills as well.
+		}
+        member->pushPacket(new CMessageBasicPacket(member, member, 0, syncLevel, 540));
+	}
+    m_PSyncTarget = sync;
 }

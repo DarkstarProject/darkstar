@@ -470,6 +470,7 @@ public:
 
 	int32 unlockAttachment(lua_State* L);
     int32 hasAttachment(lua_State* L);
+    int32 disableLevelSync(lua_State* L);
 };
 
 #endif

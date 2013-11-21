@@ -830,6 +830,7 @@ int32 map_config_default()
 	map_config.exp_loss_rate  = 1.0f;
 	map_config.exp_retain     = 0.0f;
 	map_config.exp_loss_level = 4;
+    map_config.level_sync_enable = 0;
 	map_config.speed_mod      = 0;
 	map_config.skillup_multiplier   = 2.5f;
 	map_config.craft_multiplier     = 2.6f;
@@ -956,6 +957,10 @@ int32 map_config_read(const int8* cfgName)
 		{
 			map_config.exp_loss_level = atoi(w2);
 		}
+		else if (strcmp(w1,"level_sync_enable") == 0)
+		{
+			map_config.level_sync_enable = atoi(w2);
+        }
 		else if (strcmp(w1,"speed_mod") == 0)
 		{
 			map_config.speed_mod = atoi(w2);

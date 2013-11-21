@@ -25,4 +25,5 @@ end;
 
 function onEffectLose(target,effect)
 	target:levelRestriction(0);
+	target:disableLevelSync();
 end;

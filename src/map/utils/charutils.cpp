@@ -2690,12 +2690,26 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
     bool chainactive = false;
     if (PChar->PParty != NULL)
     {
+        if (PChar->PParty->GetSyncTarget() != NULL)
+        {
+            if (distance(PMob->loc.p, PChar->PParty->GetSyncTarget()->loc.p) >= 100 || PChar->PParty->GetSyncTarget()->health.hp == 0)
+            {
+                for (uint8 i = 0; i < PChar->PParty->members.size(); i++)
+                {
+                    CCharEntity* PMember = (CCharEntity*)PChar->PParty->members.at(i);
+                    if (PMember->getZone() == PMob->getZone() && distance(PMember->loc.p, PMob->loc.p) < 100)
+                    {
+                        PMember->pushPacket(new CMessageBasicPacket(PMember, PMember, 0, 0, 545));
+                    }
+                }
+                return;
+            }
+        }
         for (uint8 i = 0; i < PChar->PParty->members.size(); i++)
         {
             CBattleEntity* PBattle = PChar->PParty->members[i];
             if (PBattle->getZone() == PMob->getZone() && distance(PBattle->loc.p, PMob->loc.p) < 100)
             {
-
                 if (PBattle->PPet != NULL && PBattle->PPet->GetMLevel() > maxlevel) maxlevel = PBattle->PPet->GetMLevel();
                 if (PBattle->GetMLevel() > maxlevel) maxlevel = PBattle->GetMLevel();
                 else if (PBattle->GetMLevel() < minlevel) minlevel = PBattle->GetMLevel();
@@ -3117,6 +3131,14 @@ void DelExperiencePoints(CCharEntity* PChar, float retainPercent)
         SaveCharStats(PChar);
         SaveCharJob(PChar, PChar->GetMJob());
 
+        if (PChar->PParty != NULL)
+        {
+            if (PChar->PParty->GetSyncTarget() == PChar)
+            {
+                PChar->PParty->RefreshSync();
+            }
+        }
+
 		PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar, PChar, PChar->jobs.job[PChar->GetMJob()], 0, 11));
 	}
 	else
@@ -3303,9 +3325,17 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
             PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
             PChar->pushPacket(new CCharSyncPacket(PChar));
 
-            UpdateHealth(PChar);
             PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar, PMob, PChar->jobs.job[PChar->GetMJob()], 0, 9));
 			PChar->pushPacket(new CCharStatsPacket(PChar));
+
+            if (PChar->PParty != NULL)
+            {
+                if (PChar->PParty->GetSyncTarget() == PChar)
+                {
+                    PChar->PParty->RefreshSync();
+                }
+            }
+
 			return;
         }
     }

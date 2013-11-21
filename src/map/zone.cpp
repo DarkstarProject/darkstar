@@ -50,6 +50,7 @@
 
 #include "packets/action.h"
 #include "packets/char.h"
+#include "packets/char_sync.h"
 #include "packets/char_update.h"
 #include "packets/entity_update.h"
 #include "packets/fade_out.h"
@@ -743,7 +744,7 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 		ZoneTimer->m_type = CTaskMgr::TASK_REMOVE;
 		ZoneTimer = NULL;
 
-    HealAllMobs();
+        HealAllMobs();
 	}
 	else
 	{
@@ -761,6 +762,28 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 	}
 	if (PChar->m_LevelRestriction != 0)
 	{
+        if (PChar->PParty)
+        {
+            if (PChar->PParty->GetSyncTarget() == PChar || PChar->PParty->GetLeader() == PChar)
+            {
+                PChar->PParty->SetSyncTarget(NULL, 551);
+            }
+            if (PChar->PParty->GetSyncTarget() != NULL)
+            {
+                uint8 count = 0;
+                for (uint32 i = 0; i < PChar->PParty->members.size(); ++i)
+                {
+                    if (PChar->PParty->members.at(i) != PChar && PChar->PParty->members.at(i)->getZone() == PChar->PParty->GetSyncTarget()->getZone())
+                    {
+                        count++;
+                    }
+                }
+                if (count < 2) //3, because one is zoning out - thus at least 2 will be left
+                {
+                    PChar->PParty->SetSyncTarget(NULL, 552);
+                }
+            }
+        }
 		PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_SYNC);
 		PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
 	}
@@ -851,16 +874,36 @@ void CZone::IncreaseZoneCounter(CCharEntity* PChar)
       PChar->m_Costum = 0;
       PChar->StatusEffectContainer->DelStatusEffect(EFFECT_COSTUME);
   }
-
-	if (m_TreasurePool != NULL)
-	{
-		PChar->PTreasurePool = m_TreasurePool;
-		PChar->PTreasurePool->AddMember(PChar);
-	}
-	else if (PChar->PParty != NULL)
-	{
-		PChar->PParty->ReloadTreasurePool(PChar);
-	}
+    if (PChar->PParty != NULL)
+    {
+	    if (m_TreasurePool != NULL)
+	    {
+		    PChar->PTreasurePool = m_TreasurePool;
+		    PChar->PTreasurePool->AddMember(PChar);
+	    }
+	    else
+	    {
+		    PChar->PParty->ReloadTreasurePool(PChar);
+	    }
+        if (PChar->PParty->GetSyncTarget() != NULL)
+        {
+            if (PChar->getZone() == PChar->PParty->GetSyncTarget()->getZone() )
+		    {
+                if (PChar->PParty->GetSyncTarget()->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC) &&
+                    PChar->PParty->GetSyncTarget()->StatusEffectContainer->GetStatusEffect(EFFECT_LEVEL_SYNC)->GetDuration() == 0)
+                {
+			        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, PChar->PParty->GetSyncTarget()->GetMLevel(), 540));
+                    PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(
+                        EFFECT_LEVEL_SYNC,
+                        EFFECT_LEVEL_SYNC,
+                        PChar->PParty->GetSyncTarget()->GetMLevel(),
+                        0,
+                        0), true);
+                    PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH);
+                }
+            }
+        }
+    }
 	else
 	{
 		PChar->PTreasurePool = new CTreasurePool(TREASUREPOOL_SOLO);
@@ -1019,9 +1062,11 @@ void CZone::SpawnPCs(CCharEntity* PChar)
 				{
 					PChar->SpawnPCList[PCurrentChar->id] = PCurrentChar;
 					PChar->pushPacket(new CCharPacket(PCurrentChar,ENTITY_SPAWN));
+                    PChar->pushPacket(new CCharSyncPacket(PCurrentChar));
 
 					PCurrentChar->SpawnPCList[PChar->id] = PChar;
 					PCurrentChar->pushPacket(new CCharPacket(PChar,ENTITY_SPAWN));
+                    PCurrentChar->pushPacket(new CCharSyncPacket(PChar));
 				}else{
 					PCurrentChar->pushPacket(new CCharPacket(PChar,ENTITY_UPDATE));
 				}
