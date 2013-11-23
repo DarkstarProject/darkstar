@@ -33,20 +33,22 @@ end;
 
 function onTrigger(player,npc)
 
-	thickAsThieves = player:getQuestStatus(WINDURST,AS_THICK_AS_THIEVES);
-	thickAsThievesGrapplingCS = player:getVar("thickAsThievesGrapplingCS");
+	local thickAsThieves = player:getQuestStatus(WINDURST,AS_THICK_AS_THIEVES);
+	local thickAsThievesGrapplingCS = player:getVar("thickAsThievesGrapplingCS");
 	
-	if(thickAsThievesGrapplingCS == 7) then
-		player:messageSpecial(THF_AF_MOB);	
-		SpawnMob(17269107,120):updateEnmity(player); -- Climbpix Highrise
-		setMobPos(17269107,194,15,269,0);		
-	elseif(thickAsThievesGrapplingCS == 0 or thickAsThievesGrapplingCS == 1 or
-		thickAsThievesGrapplingCS == 2 or thickAsThievesGrapplingCS == 3 or
-		thickAsThievesGrapplingCS == 4 or thickAsThievesGrapplingCS == 5 or
-		thickAsThievesGrapplingCS == 6) then
-		player:messageSpecial(THF_AF_1);		
-	elseif(thickAsThievesGrapplingCS == 8) then
-		player:messageSpecial(THF_AF_2);	
+	if(thickAsThieves == QUEST_ACCEPTED) then
+		if(thickAsThievesGrapplingCS == 7) then
+			player:messageSpecial(THF_AF_MOB);	
+			SpawnMob(17269107,120):updateEnmity(player); -- Climbpix Highrise
+			setMobPos(17269107,194,15,269,0);		
+		elseif(thickAsThievesGrapplingCS == 0 or thickAsThievesGrapplingCS == 1 or
+			thickAsThievesGrapplingCS == 2 or thickAsThievesGrapplingCS == 3 or
+			thickAsThievesGrapplingCS == 4 or thickAsThievesGrapplingCS == 5 or
+			thickAsThievesGrapplingCS == 6) then
+			player:messageSpecial(THF_AF_1);		
+		elseif(thickAsThievesGrapplingCS == 8) then
+			player:messageSpecial(THF_AF_2);	
+		end	
 	else 
 		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);		
 	end
