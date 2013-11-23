@@ -29,4 +29,4 @@ INSERT INTO `abilities_charges` VALUES ('231', '20', '30', '2', '120');
 INSERT INTO `abilities_charges` VALUES ('231', '20', '50', '3', '80');
 INSERT INTO `abilities_charges` VALUES ('231', '20', '70', '4', '60');
 INSERT INTO `abilities_charges` VALUES ('231', '20', '90', '5', '48');
-INSERT INTO `abilities_charges` VALUES ('199', '17', '40', '2', '60');
+INSERT INTO `abilities_charges` VALUES ('195', '17', '40', '2', '60');

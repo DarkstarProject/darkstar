@@ -26,7 +26,7 @@ end;
 function OnUseAbility(player, target, ability)
 	
 	local duration = 60;
-	local resist = applyResistanceAbility(player,target,ELE_LIGHT,SKILL_MRK);
+	local resist = applyResistanceAbility(player,target,ELE_LIGHT,SKILL_MRK, (player:getStat(MOD_AGI)/2) + player:getMerit(MERIT_QUICK_DRAW_ACCURACY));
 	
 	if(resist < 0.5) then
 		ability:setMsg(324);--resist message
