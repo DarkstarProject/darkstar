@@ -616,18 +616,24 @@ void CParty::SetSyncTarget(CBattleEntity* PEntity, uint16 message)
 {
     if (map_config.level_sync_enable)
     {
-        if (PEntity)
+        if (PEntity && PEntity->objtype == TYPE_PC)
         {
+            CCharEntity* PChar = (CCharEntity*)PEntity;
             //enable level sync
-            if (PEntity->GetMLevel() < 10 )
+            if (PChar->GetMLevel() < 10 )
             {
                 ((CCharEntity*)GetLeader())->pushPacket(new CMessageBasicPacket((CCharEntity*)GetLeader(), (CCharEntity*)GetLeader(), 0, 10, 541));
                 return;
             }
-            else if (PEntity->getZone() != GetLeader()->getZone())
+            else if (PChar->getZone() != GetLeader()->getZone())
             {
                 ((CCharEntity*)GetLeader())->pushPacket(new CMessageBasicPacket((CCharEntity*)GetLeader(), (CCharEntity*)GetLeader(), 0, 0, 542));
                 return;
+            }
+            else if( PChar->jobs.job[PChar->GetMJob()] == PChar->jobs.genkai && 
+                charutils::GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) - 1 == PChar->jobs.exp[PChar->GetMJob()])
+            {
+
             }
             else
             {
@@ -639,7 +645,7 @@ void CParty::SetSyncTarget(CBattleEntity* PEntity, uint16 message)
                         return;
                     }
                 }
-                m_PSyncTarget = PEntity;
+                m_PSyncTarget = PChar;
 	            for (uint32 i = 0; i < members.size(); ++i)
 	            {
 		            if(members.at(i)->objtype != TYPE_PC) continue;
@@ -647,13 +653,13 @@ void CParty::SetSyncTarget(CBattleEntity* PEntity, uint16 message)
 		            CCharEntity* member = (CCharEntity*)members.at(i);
 
                     if (member->status != STATUS_DISAPPEAR &&
-                         member->getZone() == PEntity->getZone() )
+                         member->getZone() == PChar->getZone() )
 		            {
-			            member->pushPacket(new CMessageStandardPacket(PEntity->GetMLevel(), 0, 0, 0, message));
+			            member->pushPacket(new CMessageStandardPacket(PChar->GetMLevel(), 0, 0, 0, message));
                         member->StatusEffectContainer->AddStatusEffect(new CStatusEffect(
                             EFFECT_LEVEL_SYNC,
                             EFFECT_LEVEL_SYNC,
-                            PEntity->GetMLevel(),
+                            PChar->GetMLevel(),
                             0,
                             0), true);
                         member->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH);

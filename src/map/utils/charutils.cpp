@@ -3284,6 +3284,10 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
         if (PChar->jobs.job[PChar->GetMJob()] == PChar->jobs.genkai)
         {
             PChar->jobs.exp[PChar->GetMJob()]  = GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) - 1;
+            if (PChar->PParty && PChar->PParty->GetSyncTarget() == PChar)
+            {
+                PChar->PParty->SetSyncTarget(NULL,556);
+            }
         }
         else
         {
