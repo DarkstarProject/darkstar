@@ -41,6 +41,5 @@ function onSpellCast(caster,target,spell)
         target:delMP(dmg);
     end
 
-    spell:setMsg(228); --change msg to 'xxx mp drained from the yyyy.'
     return dmg;
 end;

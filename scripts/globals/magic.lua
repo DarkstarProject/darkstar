@@ -776,13 +776,18 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
 
     local burst, burstBonus = calculateMagicBurstAndBonus(caster, spell, target);
 
-    if(burst > 1.0) then
+	if(spell:getID() >= 245 and spell:getID() <= 248) then
+		burst = 1
+  elseif(burst > 1.0) then
 		spell:setMsg(spell:getMagicBurstMessage()); -- "Magic Burst!"
 	end
 
 	dmg = math.floor(dmg * burst);
 	local mab = 0;
-	if (bonusmab ~= nil) then
+
+	if(spell:getID() >= 245 and spell:getID() <= 248) then
+		mab = 1
+	elseif (bonusmab ~= nil) then
 		mab = (100 + caster:getMod(MOD_MATT) + bonusmab) / (100 + target:getMod(MOD_MDEF));
 	else
 		mab = (100 + caster:getMod(MOD_MATT)) / (100 + target:getMod(MOD_MDEF));
