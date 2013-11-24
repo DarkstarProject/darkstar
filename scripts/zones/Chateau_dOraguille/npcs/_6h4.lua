@@ -29,7 +29,7 @@ function onTrigger(player,npc)
 	
 	if(currentMission == APPOINTMENT_TO_JEUNO and player:getVar("MissionStatus") == 2) then
 		player:startEvent(0x0219);
-	elseif(currentMission == THE_SHADOW_LORD and player:getVar("MissionStatus") == 4) then
+	elseif(currentMission == THE_SHADOW_LORD and player:getVar("MissionStatus") == 5) then
 		player:startEvent(0x003D);
 	elseif(currentMission == LEAUTE_S_LAST_WISHES and player:getVar("MissionStatus") == 1) then
 	    player:startEvent(87);

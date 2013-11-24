@@ -63,9 +63,9 @@ function onTrigger(player,npc)
 			player:startEvent(0x0216);
 		elseif(currentMission == THE_SHADOW_LORD and MissionStatus == 0) then
 			player:startEvent(0x0222);
-		elseif(player:hasKeyItem(SHADOW_FRAGMENT) and MissionStatus == 3) then
+		elseif(player:hasKeyItem(SHADOW_FRAGMENT) and MissionStatus == 4) then
 			player:startEvent(0x0224);
-		elseif(currentMission == THE_SHADOW_LORD and MissionStatus == 4) then
+		elseif(currentMission == THE_SHADOW_LORD and MissionStatus == 5) then
 			player:showText(npc,HALVER_OFFSET+471);
 		elseif(player:hasCompletedMission(SANDORIA,THE_SHADOW_LORD) and currentMission == 255) then
 			player:showText(npc,HALVER_OFFSET+500);

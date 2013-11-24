@@ -52,11 +52,11 @@ function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 	
 	if(csid == 0x7d01) then
-		if(player:getCurrentMission(player:getNation()) == 15 and player:getVar("MissionStatus") == 2) then
+		if(player:getCurrentMission(player:getNation()) == 15 and player:getVar("MissionStatus") == 3) then
 			player:addMission(ZILART,THE_NEW_FRONTIER);
 			player:addKeyItem(SHADOW_FRAGMENT);
 			player:messageSpecial(KEYITEM_OBTAINED,SHADOW_FRAGMENT);
-			player:setVar("MissionStatus",3);
+			player:setVar("MissionStatus",4);
 		end
 		-- You will be transported back to the entrance of Castle Zvahl Baileys
 		player:setPos(378.222,-12,-20.299,125,0xA1);

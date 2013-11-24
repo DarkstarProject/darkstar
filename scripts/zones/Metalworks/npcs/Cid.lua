@@ -211,7 +211,7 @@ local currentday = tonumber(os.date("%j"));
 	elseif(csid == 0x01f9 and option == 0) then
 		if(player:getVar("MissionStatus") == 0) then
 			if(player:getFreeSlotsCount(0) >= 1) then
-				crystal = math.random(4096,4104);
+				crystal = math.random(4096,4103);
 				player:addItem(crystal);
 				player:messageSpecial(ITEM_OBTAINED, crystal);
 				player:setVar("MissionStatus",1);
@@ -228,13 +228,13 @@ local currentday = tonumber(os.date("%j"));
     elseif(csid == 0x01fb) then
         player:addQuest(BASTOK,CID_S_SECRET);
     elseif(csid == 0x01fd) then
-		if(player:getFreeSlotsCount(0) >= 1) then
-			player:delKeyItem(UNFINISHED_LETTER);
-			player:setVar("CidsSecret_Event",0);
-			player:addItem(13570);
-			player:messageSpecial(ITEM_OBTAINED,13570); -- Ram Mantle
-			player:addFame(BASTOK,BAS_FAME*30);
-			player:completeQuest(BASTOK,CID_S_SECRET);
+			if(player:getFreeSlotsCount(0) >= 1) then
+				player:delKeyItem(UNFINISHED_LETTER);
+				player:setVar("CidsSecret_Event",0);
+				player:addItem(13570);
+				player:messageSpecial(ITEM_OBTAINED,13570); -- Ram Mantle
+				player:addFame(BASTOK,BAS_FAME*30);
+				player:completeQuest(BASTOK,CID_S_SECRET);
 		else
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13570);
 		end

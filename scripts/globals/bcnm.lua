@@ -491,7 +491,7 @@ function checkNonTradeBCNM(player,npc)
 			player:setVar("trade_bcnmid",128);
 		end
 	elseif(Zone == 165) then -- Throne Room
-		if(player:getCurrentMission(player:getNation()) == 15 and player:getVar("MissionStatus") == 2) then -- Mission 5-2
+		if(player:getCurrentMission(player:getNation()) == 15 and player:getVar("MissionStatus") == 3) then -- Mission 5-2
 			mask = GetBattleBitmask(160,Zone,1);
 			player:setVar("trade_bcnmid",160);
 		end

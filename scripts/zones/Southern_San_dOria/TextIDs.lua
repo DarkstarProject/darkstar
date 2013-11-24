@@ -13,8 +13,8 @@ FULL_INVENTORY_AFTER_TRADE =  6402; --Try trading again after sorting your inven
 CONQUEST =  8391; --You've earned conquest points!
 
 -- Mission Dialogs
-ORIGINAL_MISSION_OFFSET =  7108; --Bring me one of those axes, and your mission will be a success. No running away now; we've a proud country to defend!
- YOU_ACCEPT_THE_MISSION =  7119; --You accept the mission.
+ YOU_ACCEPT_THE_MISSION =  7108; --You accept the mission.
+ORIGINAL_MISSION_OFFSET =  7119; --Bring me one of those axes, and your mission will be a success. No running away now; we've a proud country to defend!
  
 -- Dynamis dialogs
       YOU_CANNOT_ENTER_DYNAMIS =  7321; --You cannot enter Dynamis - <<<Multiple Choice (Parameter 1)>>>

@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Throne Room
--- Door: Throne Room
+-- NPC:  Throne Room
+-- Type: Door
 -- @pos -111 -6 0 165
 -------------------------------------
 package.loaded["scripts/zones/Throne_Room/TextIDs"] = nil;
@@ -48,7 +49,9 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(EventTriggerBCNM(player,npc))then
+	if(player:getCurrentMission(player:getNation()) == 15 and player:getVar("MissionStatus") == 2) then
+		player:startEvent(0x0006);	
+	elseif(EventTriggerBCNM(player,npc))then
 		return 1;
 	end
 	
@@ -76,7 +79,9 @@ function onEventFinish(player,csid,option)
 --printf("onFinish CSID: %u",csid);
 --printf("onFinish RESULT: %u",option);
 	
-	if(EventFinishBCNM(player,csid,option))then
+	if(csid == 0x0006) then
+		player:setVar("MissionStatus",3);
+	elseif(EventFinishBCNM(player,csid,option))then
 		return;
 	end
 	
