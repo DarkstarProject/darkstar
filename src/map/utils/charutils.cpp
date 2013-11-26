@@ -1472,7 +1472,18 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 							CItemArmor* armor = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
 							if ((armor != NULL) && armor->isType(ITEM_ARMOR))
 							{
-								UnequipItem(PChar,SLOT_SUB);
+                                if (armor->isType(ITEM_WEAPON))
+                                {
+                                    CItemWeapon* PWeapon = (CItemWeapon*)armor;
+                                    if (PWeapon->getSkillType() != SKILL_NON || ((CItemWeapon*)PItem)->getSkillType() == SKILL_H2H)
+                                    {
+                                        UnequipItem(PChar,SLOT_SUB);
+                                    }
+                                }
+                                else
+                                {
+								    UnequipItem(PChar,SLOT_SUB);
+                                }
 							}
 							if (((CItemWeapon*)PItem)->getSkillType() == SKILL_H2H)
 							{
@@ -1524,12 +1535,11 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
                         case SKILL_KAT:
                         case SKILL_CLB:
                         {
-                            if (PItem->isType(ITEM_WEAPON) && !charutils::hasTrait(PChar, TRAIT_DUAL_WIELD))
+                            if (PItem->isType(ITEM_WEAPON) && (!charutils::hasTrait(PChar, TRAIT_DUAL_WIELD) || ((CItemWeapon*)PItem)->getSkillType() == SKILL_NON))
                             {
                                 return false;
                             }
 							PChar->m_Weapons[SLOT_SUB] = (CItemWeapon*)PItem;
-
 						}
 						break;
 						default:
