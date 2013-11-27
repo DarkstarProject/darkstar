@@ -2547,7 +2547,7 @@ uint16 SingSong(CBattleEntity* PCaster,CBattleEntity* PTarget,CSpell* PSpell){
 	}
 	else if(PSpell->getID() >= 403 && PSpell->getID() <= 404){
 		effect = EFFECT_MAMBO;
-		tier = PSpell->getID()-382;
+		tier = PSpell->getID()-402;
 	}
 	else if(PSpell->getID() >= 386 && PSpell->getID() <= 388){
 		effect = EFFECT_BALLAD;
