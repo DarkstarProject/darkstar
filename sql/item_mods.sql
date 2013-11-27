@@ -15275,3 +15275,99 @@ INSERT INTO `item_mods` VALUES(18739, 26, 10);
 INSERT INTO `item_mods` VALUES(18739, 24, 20);
 INSERT INTO `item_mods` VALUES(18740, 26, 40);
 INSERT INTO `item_mods` VALUES(18740, 24, 10);
+
+---------------------------------------------------------
+-- Iga Garb +2
+---------------------------------------------------------
+-- Head (Iga zukin +2)
+INSERT INTO `item_mods` VALUES(11076, 1, 37); -- def
+INSERT INTO `item_mods` VALUES(11076, 9, 10); -- dex
+INSERT INTO `item_mods` VALUES(11076, 384, 6); -- haste
+INSERT INTO `item_mods` VALUES(11076, 259, 5); -- dual wield
+
+-- Body (Iga Ningi +2)
+INSERT INTO `item_mods` VALUES(11096, 1, 62); -- def
+INSERT INTO `item_mods` VALUES(11096, 9, 12); -- dex
+INSERT INTO `item_mods` VALUES(11096, 8, 12); -- str
+INSERT INTO `item_mods` VALUES(11096, 25, 17); -- accuracy
+INSERT INTO `item_mods` VALUES(11096, 23, 17); -- attack
+INSERT INTO `item_mods` VALUES(11096, 165, 5); -- crit rate
+
+-- Hands (Iga Tekko +2)
+INSERT INTO `item_mods` VALUES(11116, 1, 27); -- def
+INSERT INTO `item_mods` VALUES(11116, 9, 10); -- dex
+INSERT INTO `item_mods` VALUES(11116, 11, 10); -- agi
+INSERT INTO `item_mods` VALUES(11116, 25, 8); -- accuracy
+INSERT INTO `item_mods` VALUES(11116, 68, 8); -- evasion
+
+-- Legs (Iga Hakama +2)
+INSERT INTO `item_mods` VALUES(11136, 1, 48); -- def
+INSERT INTO `item_mods` VALUES(11136, 25, 8); -- accuracy
+INSERT INTO `item_mods` VALUES(11136, 88, 5); -- katana skill
+INSERT INTO `item_mods` VALUES(11136, 384, 7); -- haste
+
+-- Feet (Iga Kyahan +2)
+INSERT INTO `item_mods` VALUES(11156, 1, 23); -- def
+INSERT INTO `item_mods` VALUES(11156, 9, 5); -- dex
+INSERT INTO `item_mods` VALUES(11156, 8, 5); -- str
+INSERT INTO `item_mods` VALUES(11156, 384, 4); -- haste
+
+---------------------------------------------------------
+-- Iga Garb
+---------------------------------------------------------
+-- Head (Iga zukin)
+INSERT INTO `item_mods` VALUES(12020, 1, 32); -- def
+INSERT INTO `item_mods` VALUES(12020, 9, 3); -- dex
+
+-- Body (Iga Ningi)
+INSERT INTO `item_mods` VALUES(12040, 1, 56); -- def
+INSERT INTO `item_mods` VALUES(12040, 25, 5); -- accuracy
+INSERT INTO `item_mods` VALUES(12040, 23, 5); -- attack
+
+-- Hands (Iga Tekko)
+INSERT INTO `item_mods` VALUES(12060, 1, 22); -- def
+INSERT INTO `item_mods` VALUES(12060, 9, 3); -- dex
+INSERT INTO `item_mods` VALUES(12060, 11, 3); -- agi
+
+-- Legs (Iga Hakama)
+INSERT INTO `item_mods` VALUES(12080, 1, 43); -- def
+INSERT INTO `item_mods` VALUES(12080, 25, 3); -- accuracy
+
+-- Feet (Iga Kyahan)
+INSERT INTO `item_mods` VALUES(12100, 1, 18); -- def
+INSERT INTO `item_mods` VALUES(12100, 384, 1); -- haste
+
+---------------------------------------------------------
+-- Iga Garb +1
+---------------------------------------------------------
+-- Head (Iga zukin +1)
+INSERT INTO `item_mods` VALUES(11176, 1, 35); -- def
+INSERT INTO `item_mods` VALUES(11176, 9, 7); -- dex
+INSERT INTO `item_mods` VALUES(11176, 384, 5); -- haste
+
+-- Body (Iga Ningi +1)
+INSERT INTO `item_mods` VALUES(11196, 1, 56); -- def
+INSERT INTO `item_mods` VALUES(11196, 9, 8); -- dex
+INSERT INTO `item_mods` VALUES(11196, 8, 8); -- str
+INSERT INTO `item_mods` VALUES(11196, 25, 14); -- accuracy
+INSERT INTO `item_mods` VALUES(11196, 23, 14); -- attack
+INSERT INTO `item_mods` VALUES(11196, 165, 3); -- crit rate
+
+-- Hands (Iga Tekko +1)
+INSERT INTO `item_mods` VALUES(11216, 1, 25); -- def
+INSERT INTO `item_mods` VALUES(11216, 9, 7); -- dex
+INSERT INTO `item_mods` VALUES(11216, 11, 7); -- agi
+INSERT INTO `item_mods` VALUES(11216, 25, 6); -- accuracy
+INSERT INTO `item_mods` VALUES(11216, 68, 6); -- evasion
+
+-- Legs (Iga Hakama +1)
+INSERT INTO `item_mods` VALUES(11236, 1, 46); -- def
+INSERT INTO `item_mods` VALUES(11236, 25, 6); -- accuracy
+INSERT INTO `item_mods` VALUES(11236, 88, 3); -- katana skill
+INSERT INTO `item_mods` VALUES(11236, 384, 6); -- haste
+
+-- Feet (Iga Kyahan +1)
+INSERT INTO `item_mods` VALUES(11256, 1, 21); -- def
+INSERT INTO `item_mods` VALUES(11256, 9, 4); -- dex
+INSERT INTO `item_mods` VALUES(11256, 8, 4); -- str
+INSERT INTO `item_mods` VALUES(11256, 384, 3); -- haste
