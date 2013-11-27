@@ -30,10 +30,13 @@ function onMobFight(mob,target)
 	-- the Shadow Lord will do nothing but his Implosion attack. This attack hits everyone in the battlefield, but he only has 4000 HP
 
 	if(mob:getID() < 17453060) then -- first phase AI
+		--once he's under 50% HP, start changing immunities and attack patterns
 		if(mob:getHP() / mob:getMaxHP() <= 0.5) then
-
+			
+			--have to keep track of both the last time he changed immunity and the HP he changed at
 			local changeTime, changeHP = mob:getExtraVar(2);
 
+			--subanimation 0 is first phase subanim, so just go straight to magic mode
 			if(mob:AnimationSub() == 0) then
 				mob:AnimationSub(1);
 				mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
@@ -41,7 +44,9 @@ function onMobFight(mob,target)
 				mob:SetAutoAttackEnabled(false);
 				mob:SetMagicCastingEnabled(true);
 				mob:setMobMod(MOBMOD_MAGIC_COOL, 2);
+				--and record the time and HP this immunity was started
 				mob:setExtraVar(mob:getBattleTime(), mob:getHP());
+			-- subanimation 2 is physical mode, so check if he should change into magic mode
 			elseif(mob:AnimationSub() == 2 and (mob:getHP() <= changeHP - 1000 or
 					mob:getBattleTime() - changeTime > 300)) then
 				mob:AnimationSub(1);
@@ -51,8 +56,10 @@ function onMobFight(mob,target)
 				mob:SetMagicCastingEnabled(true);
 				mob:setMobMod(MOBMOD_MAGIC_COOL, 2);
 				mob:setExtraVar(mob:getBattleTime(), mob:getHP());
+			-- subanimation 1 is magic mode, so check if he should change into physical mode
 			elseif(mob:AnimationSub() == 1 and (mob:getHP() <= changeHP - 1000 or
 					mob:getBattleTime() - changeTime > 300)) then
+				-- and use an ability before changing
 				mob:useMobAbility(417);
 				mob:AnimationSub(2);
 				mob:delStatusEffect(EFFECT_MAGIC_SHIELD);
@@ -64,6 +71,7 @@ function onMobFight(mob,target)
 			end
 		end
 	else --second phase AI
+		-- Implode every 9 seconds
 		if( mob:getBattleTime() % 9 < 2 ) then
 			mob:useMobAbility(413);
 		end
@@ -82,6 +90,7 @@ function onMobDeath(mob,killer)
 	else
 		killer:addTitle(SHADOW_BANISHER);
 	end
+	--reset everything on death
 	mob:AnimationSub(0);
 	mob:SetAutoAttackEnabled(true);
 	mob:SetMagicCastingEnabled(true);
@@ -89,6 +98,16 @@ function onMobDeath(mob,killer)
 	mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
 	mob:setExtraVar(0);
 
+end;
+
+function onMobDespawn(mob)
+	--reset everything on despawn
+	mob:AnimationSub(0);
+	mob:SetAutoAttackEnabled(true);
+	mob:SetMagicCastingEnabled(true);
+	mob:delStatusEffect(EFFECT_MAGIC_SHIELD);
+	mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
+	mob:setExtraVar(0);
 end;
 
 -----------------------------------
@@ -113,6 +132,8 @@ function onEventFinish(player,csid,option)
 		DespawnMob(mobid);
 		player:setVar("mobid",0);
 
+		--first phase dies, spawn second phase ID, make him engage, and disable 
+		--  magic, auto attack, and abilities (all he does is case Implode by script)
 		mob = SpawnMob(mobid+3);
 		mob:updateEnmity(player);
 		mob:SetMagicCastingEnabled(false);
