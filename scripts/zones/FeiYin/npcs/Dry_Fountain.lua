@@ -2,8 +2,7 @@
 -- Area: FeiYin
 -- NPC:  Dry Fountain
 -- Involved In Quest: Peace for the Spirit
--- @zone 204
--- @pos -17 -16 71
+-- @pos -17 -16 71 204
 -----------------------------------
 package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;
 -----------------------------------

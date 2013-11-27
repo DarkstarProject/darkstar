@@ -1,8 +1,90 @@
 -----------------------------------	
--- Area: Promyvion Mea	
--- MOB: Memory_Receptacle
+-- Area: Promyvion-Holla
+-- MOB:  Memory Receptacle
 -----------------------------------	
-	
+package.loaded["scripts/zones/Promyvion-Holla/TextIDs"] = nil;
+-----------------------------------
+
+require( "scripts/zones/Promyvion-Holla/TextIDs" );
+
+-----------------------------------
+-- onMobEngaged Action
+-----------------------------------	
+function onMobEngaged(mob,target)	
+	 mob:setTP(99);
+end;	
+
+-----------------------------------
+-- onMobFight Action
+-----------------------------------
+function onMobFight(mob, target)
+
+	 local Mem_Recep = mob:getID(); 
+
+	-- This will serve as a ghetto Regain (not damage dependent) based on kjlotus's testing. Caps at 100
+	 
+	 if (mob:getTP() < 90) then
+	 		mob:addTP(10);
+	 end
+
+	 if(Mem_Recep == 16842781) then -- Floor 1
+  	 for i = Mem_Recep+1, Mem_Recep+3 do -- Keep pets linked
+      	if (GetMobAction(i) == 16) then
+      	   GetMobByID(i):updateEnmity(target);
+     	  end
+   	 end
+	 elseif(Mem_Recep == 16842839 or Mem_Recep == 16842846 or Mem_Recep == 16842853 or Mem_Recep == 16842860) then -- Floor 2
+  	 for i = Mem_Recep+1, Mem_Recep+5 do 
+      	if (GetMobAction(i) == 16) then
+      	   GetMobByID(i):updateEnmity(target);
+     	  end
+   	 end   	 
+	 elseif(Mem_Recep == 16842886 or Mem_Recep == 16842895 or Mem_Recep == 16842904 or Mem_Recep == 16842938 or Mem_Recep == 16842947 or -- Floor 3
+	  Mem_Recep == 16842956) then 
+  	 for i = Mem_Recep+1, Mem_Recep+7 do 
+      	if (GetMobAction(i) == 16) then
+      	   GetMobByID(i):updateEnmity(target);
+     	  end
+   	 end  
+   end	 
+
+   -- Summons a single stray every 30 seconds. 
+   
+   if (mob:getBattleTime() % 30 < 3 and mob:getBattleTime() > 3 and (Mem_Recep == 16842781) and mob:AnimationSub() == 2) then -- Floor 1
+      for i = Mem_Recep+1, Mem_Recep+3 do
+         if (GetMobAction(i) == 0) then -- My Stray is deeaaaaaad!
+         		mob:AnimationSub(1);
+            SpawnMob(i):updateEnmity(target);
+            GetMobByID(i):setPos(mob:getXPos()+1, mob:getYPos(), mob:getZPos()+1); -- Set stray x and z position +1 from Recepticle
+            return;
+         end
+      end
+   elseif (mob:getBattleTime() % 30 < 3 and mob:getBattleTime() > 3 and (Mem_Recep == 16842839 or Mem_Recep == 16842846 or Mem_Recep == 16842853 or -- Floor 2
+    Mem_Recep == 16842860) and mob:AnimationSub() == 2) then 
+      for i = Mem_Recep+1, Mem_Recep+5 do
+         if (GetMobAction(i) == 0) then 
+         		mob:AnimationSub(1);
+            SpawnMob(i):updateEnmity(target);
+            GetMobByID(i):setPos(mob:getXPos()+1, mob:getYPos(), mob:getZPos()+1); -- Set stray x and z position +1 from Recepticle
+            return;
+         end
+      end
+   elseif (mob:getBattleTime() % 30 < 3 and mob:getBattleTime() > 3 and (Mem_Recep == 16842886 or Mem_Recep == 16842895 or Mem_Recep == 16842904 or -- Floor 3
+    Mem_Recep == 16842938 or Mem_Recep == 16842947 or Mem_Recep == 16842956) and mob:AnimationSub() == 2) then 
+      for i = Mem_Recep+1, Mem_Recep+7 do
+         if (GetMobAction(i) == 0) then 
+         		mob:AnimationSub(1);
+            SpawnMob(i):updateEnmity(target);
+            GetMobByID(i):setPos(mob:getXPos()+1, mob:getYPos(), mob:getZPos()+1);
+            return;
+         end
+      end
+   else
+   		mob:AnimationSub(2); 
+   end   
+end
+
+
 -----------------------------------	
 -- onMobDeath	
 -----------------------------------	
@@ -15,7 +97,10 @@ function onMobDeath(mob,killer)
 	local difZ = killer:getZPos()-mob:getZPos();
 	local killeranimation = killer:getAnimation();
 	local Distance = math.sqrt( math.pow(difX,2) + math.pow(difY,2) + math.pow(difZ,2) ); --calcul de la distance entre les "killer" et le memory receptacle
-	print(mobID);
+	-- print(mobID);
+	
+	mob:AnimationSub(0); -- Set ani. sub to default or the recepticles wont work properly
+	
 	if(VanadielMinute() % 2 == 1) then
 		killer:setVar("MemoryReceptacle",2);
 		rnd = 2;
@@ -130,3 +215,5 @@ function onEventFinish(player,csid,option)
 	player:setVar("MemoryReceptacle",0);
 	end
 end;
+
+

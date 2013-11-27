@@ -2016,9 +2016,9 @@ INSERT INTO `item_usable` VALUES (19181,'moogles_largesse',1,12,0,0,9,10,259200,
 INSERT INTO `item_usable` VALUES (19204,'fiendtrapper',20,0,0,0,12,10,30,0);
 INSERT INTO `item_usable` VALUES (19246,'moggiebag',1,3,0,0,8,10,259200,0);
 INSERT INTO `item_usable` VALUES (11788,'jesters_hat',1,3,0,0,1,10,600000,0);
-INSERT INTO `item_usable` VALUES (15956,'temple_knights_quiver',1,1,80,2,1,30,604800,0);
-INSERT INTO `item_usable` VALUES (15957,'iron_musketeers_quiver',1,1,80,2,1,30,604800,0);
-INSERT INTO `item_usable` VALUES (15958,'combat_casters_quiver',1,1,80,2,1,30,604800,0);
+INSERT INTO `item_usable` VALUES (15956,'temple_knights_quiver',1,1,55,0,1,30,604800,0);
+INSERT INTO `item_usable` VALUES (15957,'iron_musketeers_quiver',1,1,55,0,1,30,604800,0);
+INSERT INTO `item_usable` VALUES (15958,'combat_casters_quiver',1,1,55,0,1,30,604800,0);
 /*!40000 ALTER TABLE `item_usable` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

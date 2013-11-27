@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: FeiYin
--- NPC:  ???
+-- NPC:  qm1 (???)
 -- Involved In Quest: Pieuje's Decision
--- @zone 204
--- @pos -55 -16 69
+-- @pos -55 -16 69 204
 -----------------------------------
 package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;
 -----------------------------------

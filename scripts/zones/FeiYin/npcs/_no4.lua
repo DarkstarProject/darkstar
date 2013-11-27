@@ -1,18 +1,18 @@
 -----------------------------------
 --  Area: Fei'Yin
---  NPC: Cermet Door (triggers Rukususu dialog)
+--  NPC:  Cermet Door (triggers Rukususu dialog)
 --  Type: Quest NPC
---  @zone: 204
---  @pos: -183 0 190
--- 	Involved in quests: Curses, Foiled A-Golem!?,SMN AF2: Class Reunion, SMN AF3: Carbuncle Debacle
+--  @pos -183 0 190 204
+-- 	Involved in Quests: Curses, Foiled A-Golem!?,SMN AF2: Class Reunion, SMN AF3: Carbuncle Debacle
 --	Involved in Missions: Windurst 5-1/7-2/8-2
 -----------------------------------
 package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/FeiYin/TextIDs");
 require("scripts/globals/keyitems");
------------------------------------
 
 -----------------------------------
 -- onTrade Action

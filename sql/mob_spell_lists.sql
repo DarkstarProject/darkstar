@@ -629,7 +629,7 @@ INSERT INTO `mob_spell_lists` VALUES ('Eald_Narche',22,212,75,255);
 INSERT INTO `mob_spell_lists` VALUES ('Eald_Narche',22,214,75,255);
 INSERT INTO `mob_spell_lists` VALUES ('Eald_Narche',22,274,75,255);
 INSERT INTO `mob_spell_lists` VALUES ('Eald_Narche',22,362,76,255);
-INSERT INTO `mob_spell_lists` VALUES ('Kirin',23,159,1,255);
+INSERT INTO `mob_spell_lists` VALUES ('Kirin',23,163,1,255);
 INSERT INTO `mob_spell_lists` VALUES ('Kirin',23,192,1,255);
 INSERT INTO `mob_spell_lists` VALUES ('Kirin',23,210,1,255);
 INSERT INTO `mob_spell_lists` VALUES ('Kirin',23,238,1,255);
