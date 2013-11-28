@@ -11,7 +11,8 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 -- Table structure for blue_spell_list
 -- ----------------------------
-DROP TABLE IF EXISTS `blue_spell_list`;CREATE TABLE `blue_spell_list` (
+DROP TABLE IF EXISTS `blue_spell_list`;
+CREATE TABLE `blue_spell_list` (
   `spellid` smallint(3) NOT NULL,
   `mob_skill_id` smallint(4) unsigned NOT NULL,
   `set_points` smallint(2) NOT NULL,
