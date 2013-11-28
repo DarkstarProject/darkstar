@@ -15282,7 +15282,7 @@ INSERT INTO `item_mods` VALUES(18740, 24, 10);
 -- Head (Iga zukin +2)
 INSERT INTO `item_mods` VALUES(11076, 1, 37); -- def
 INSERT INTO `item_mods` VALUES(11076, 9, 10); -- dex
-INSERT INTO `item_mods` VALUES(11076, 384, 6); -- haste
+INSERT INTO `item_mods` VALUES(11076, 384, 60); -- haste
 INSERT INTO `item_mods` VALUES(11076, 259, 5); -- dual wield
 
 -- Body (Iga Ningi +2)
@@ -15304,13 +15304,13 @@ INSERT INTO `item_mods` VALUES(11116, 68, 8); -- evasion
 INSERT INTO `item_mods` VALUES(11136, 1, 48); -- def
 INSERT INTO `item_mods` VALUES(11136, 25, 8); -- accuracy
 INSERT INTO `item_mods` VALUES(11136, 88, 5); -- katana skill
-INSERT INTO `item_mods` VALUES(11136, 384, 7); -- haste
+INSERT INTO `item_mods` VALUES(11136, 384, 70); -- haste
 
 -- Feet (Iga Kyahan +2)
 INSERT INTO `item_mods` VALUES(11156, 1, 23); -- def
 INSERT INTO `item_mods` VALUES(11156, 9, 5); -- dex
 INSERT INTO `item_mods` VALUES(11156, 8, 5); -- str
-INSERT INTO `item_mods` VALUES(11156, 384, 4); -- haste
+INSERT INTO `item_mods` VALUES(11156, 384, 40); -- haste
 
 -- -------------------------------------------------------
 -- Iga Garb
@@ -15335,7 +15335,7 @@ INSERT INTO `item_mods` VALUES(12080, 25, 3); -- accuracy
 
 -- Feet (Iga Kyahan)
 INSERT INTO `item_mods` VALUES(12100, 1, 18); -- def
-INSERT INTO `item_mods` VALUES(12100, 384, 1); -- haste
+INSERT INTO `item_mods` VALUES(12100, 384, 10); -- haste
 
 -- -------------------------------------------------------
 -- Iga Garb +1
@@ -15343,7 +15343,7 @@ INSERT INTO `item_mods` VALUES(12100, 384, 1); -- haste
 -- Head (Iga zukin +1)
 INSERT INTO `item_mods` VALUES(11176, 1, 35); -- def
 INSERT INTO `item_mods` VALUES(11176, 9, 7); -- dex
-INSERT INTO `item_mods` VALUES(11176, 384, 5); -- haste
+INSERT INTO `item_mods` VALUES(11176, 384, 50); -- haste
 
 -- Body (Iga Ningi +1)
 INSERT INTO `item_mods` VALUES(11196, 1, 56); -- def
@@ -15364,10 +15364,10 @@ INSERT INTO `item_mods` VALUES(11216, 68, 6); -- evasion
 INSERT INTO `item_mods` VALUES(11236, 1, 46); -- def
 INSERT INTO `item_mods` VALUES(11236, 25, 6); -- accuracy
 INSERT INTO `item_mods` VALUES(11236, 88, 3); -- katana skill
-INSERT INTO `item_mods` VALUES(11236, 384, 6); -- haste
+INSERT INTO `item_mods` VALUES(11236, 384, 60); -- haste
 
 -- Feet (Iga Kyahan +1)
 INSERT INTO `item_mods` VALUES(11256, 1, 21); -- def
 INSERT INTO `item_mods` VALUES(11256, 9, 4); -- dex
 INSERT INTO `item_mods` VALUES(11256, 8, 4); -- str
-INSERT INTO `item_mods` VALUES(11256, 384, 3); -- haste
+INSERT INTO `item_mods` VALUES(11256, 384, 30); -- haste
