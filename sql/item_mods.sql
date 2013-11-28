@@ -15276,9 +15276,9 @@ INSERT INTO `item_mods` VALUES(18739, 24, 20);
 INSERT INTO `item_mods` VALUES(18740, 26, 40);
 INSERT INTO `item_mods` VALUES(18740, 24, 10);
 
----------------------------------------------------------
+-- -------------------------------------------------------
 -- Iga Garb +2
----------------------------------------------------------
+-- -------------------------------------------------------
 -- Head (Iga zukin +2)
 INSERT INTO `item_mods` VALUES(11076, 1, 37); -- def
 INSERT INTO `item_mods` VALUES(11076, 9, 10); -- dex
@@ -15312,9 +15312,9 @@ INSERT INTO `item_mods` VALUES(11156, 9, 5); -- dex
 INSERT INTO `item_mods` VALUES(11156, 8, 5); -- str
 INSERT INTO `item_mods` VALUES(11156, 384, 4); -- haste
 
----------------------------------------------------------
+-- -------------------------------------------------------
 -- Iga Garb
----------------------------------------------------------
+-- -------------------------------------------------------
 -- Head (Iga zukin)
 INSERT INTO `item_mods` VALUES(12020, 1, 32); -- def
 INSERT INTO `item_mods` VALUES(12020, 9, 3); -- dex
@@ -15337,9 +15337,9 @@ INSERT INTO `item_mods` VALUES(12080, 25, 3); -- accuracy
 INSERT INTO `item_mods` VALUES(12100, 1, 18); -- def
 INSERT INTO `item_mods` VALUES(12100, 384, 1); -- haste
 
----------------------------------------------------------
+-- -------------------------------------------------------
 -- Iga Garb +1
----------------------------------------------------------
+-- -------------------------------------------------------
 -- Head (Iga zukin +1)
 INSERT INTO `item_mods` VALUES(11176, 1, 35); -- def
 INSERT INTO `item_mods` VALUES(11176, 9, 7); -- dex
