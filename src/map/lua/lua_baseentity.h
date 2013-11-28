@@ -326,7 +326,7 @@ public:
 	int32 delStatusEffect(lua_State*);		// Removes Status Effect
     int32 delStatusEffectSilent(lua_State*);// Removes Status Effect, suppresses message
 	int32 eraseStatusEffect(lua_State*);	// Used with "Erase" spell
-        int32 healingWaltz(lua_State*);         // Used with "Healing Waltz" ability
+    int32 healingWaltz(lua_State*);         // Used with "Healing Waltz" ability
 	int32 dispelStatusEffect(lua_State*);	// Used with "Dispel" spell
 	int32 stealStatusEffect(lua_State*);    // Used in mob skills to steal effects
 	int32 dispelAllStatusEffect(lua_State*);    // Dispels all effects and returns number erased
@@ -471,6 +471,7 @@ public:
 	int32 unlockAttachment(lua_State* L);
     int32 hasAttachment(lua_State* L);
     int32 disableLevelSync(lua_State* L);
+    int32 updateHealth(lua_State* L);
 };
 
 #endif

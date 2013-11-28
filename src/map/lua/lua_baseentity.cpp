@@ -6873,8 +6873,11 @@ inline int32 CLuaBaseEntity::castSpell(lua_State* L)
 
 	if (lua_isnumber(L,1))
 	{
-		((CMobEntity*)m_PBaseEntity)->PBattleAI->SetCurrentSpell(lua_tointeger(L, 1));
-		((CMobEntity*)m_PBaseEntity)->PBattleAI->SetCurrentAction(ACTION_MAGIC_START);
+        quAction_t action;
+        action.action = ACTION_MAGIC_START;
+        action.param = lua_tointeger(L,1);
+        action.target = NULL;
+        ((CMobEntity*)m_PBaseEntity)->PBattleAI->m_actionQueue.push(action);
 	} else {
 		((CMobEntity*)m_PBaseEntity)->PBattleAI->SetLastMagicTime(0);
 	}
@@ -6885,46 +6888,12 @@ inline int32 CLuaBaseEntity::useMobAbility(lua_State* L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
-	if (lua_isnumber(L,1))
-	{
-		if (((CMobEntity*)m_PBaseEntity)->PBattleAI->GetBattleTarget() != NULL)
-		{
-			uint16 mobskillId = lua_tointeger(L, 1);
-			CMobSkill* mobskill = battleutils::GetMobSkill(mobskillId);
+    quAction_t action;
+    action.action = ACTION_MOBABILITY_START;
+    action.param = (lua_isnumber(L,1) ? lua_tointeger(L,1) : 0);
+    action.target = NULL;
+    ((CMobEntity*)m_PBaseEntity)->PBattleAI->m_actionQueue.push(action);
 
-			if(mobskill != NULL)
-			{
-				((CMobEntity*)m_PBaseEntity)->PBattleAI->SetCurrentMobSkill(mobskill);
-				if( mobskill->getActivationTime() != 0)
-				{
-					apAction_t Action;
-					((CMobEntity*)m_PBaseEntity)->m_ActionList.clear();
-					if(mobskill->getValidTargets() == TARGET_ENEMY){ //enemy
-						Action.ActionTarget = ((CMobEntity*)m_PBaseEntity)->PBattleAI->GetBattleTarget();
-					}
-					else if(mobskill->getValidTargets() == TARGET_SELF){ //self
-						Action.ActionTarget = ((CMobEntity*)m_PBaseEntity);
-					}
-					Action.reaction   = REACTION_HIT;
-					Action.speceffect = SPECEFFECT_HIT;
-					Action.animation  = 0;
-					Action.param	  = mobskill->getMsgForAction();//m_PMobSkill->getAnimationID();
-					Action.messageID  = 43; //readies message
-
-					((CMobEntity*)m_PBaseEntity)->m_ActionList.push_back(Action);
-					((CMobEntity*)m_PBaseEntity)->loc.zone->PushPacket(((CMobEntity*)m_PBaseEntity), CHAR_INRANGE, new CActionPacket((CMobEntity*)m_PBaseEntity));
-				}
-				((CMobEntity*)m_PBaseEntity)->PBattleAI->SetBattleSubTarget(((CMobEntity*)m_PBaseEntity)->PBattleAI->GetBattleTarget());
-				((CMobEntity*)m_PBaseEntity)->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_USING);
-			}
-			else
-			{
-				ShowWarning("lua_baseentity::useMobAbility NULL mobskill used %d", mobskillId);
-			}
-		}
-	} else {
-		((CMobEntity*)m_PBaseEntity)->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
-	}
 	return 0;
 }
 
@@ -7522,6 +7491,13 @@ inline int32 CLuaBaseEntity::disableLevelSync(lua_State* L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::updateHealth(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    ((CBattleEntity*)m_PBaseEntity)->UpdateHealth();
+    return 0;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -7845,5 +7821,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setRespawnTime),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,unlockAttachment),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,disableLevelSync),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateHealth),
 	{NULL,NULL}
 };

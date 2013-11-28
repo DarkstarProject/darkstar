@@ -213,7 +213,7 @@ INSERT INTO `abilities` VALUES ('174', 'curing_waltz', '19', '15', '27', '6', '2
 INSERT INTO `abilities` VALUES ('175', 'curing_waltz_ii', '19', '30', '27', '8', '217', '306', '0', '7', '20.0', '0', '3', '3', '0', '0');
 INSERT INTO `abilities` VALUES ('176', 'curing_waltz_iii', '19', '50', '27', '10', '217', '306', '0', '8', '20.0', '0', '3', '3', '0', '0');
 INSERT INTO `abilities` VALUES ('177', 'curing_waltz_iv', '19', '70', '27', '17', '217', '306', '0', '9', '20.0', '0', '3', '3', '0', '0');
-INSERT INTO `abilities` VALUES ('178', 'healing_waltz', '19', '35', '27', '15', '217', '0', '0', '10', '20.0', '1', '1', '300', '0', '0');
+INSERT INTO `abilities` VALUES ('178', 'healing_waltz', '19', '35', '27', '15', '217', '0', '0', '10', '20.0', '0', '1', '300', '0', '0');
 INSERT INTO `abilities` VALUES ('179', 'divine_waltz', '19', '25', '27', '13', '217', '306', '0', '11', '20.0', '1', '3', '3', '0', '0');
 INSERT INTO `abilities` VALUES ('180', 'spectral_jig', '19', '25', '1', '30', '218', '0', '0', '12', '20.0', '0', '1', '300', '0', '0');
 INSERT INTO `abilities` VALUES ('181', 'chocobo_jig', '19', '55', '1', '60', '218', '126', '0', '13', '20.0', '0', '1', '300', '0', '0');

@@ -3840,7 +3840,11 @@ uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
 		((CMobEntity*)PVictim)->PEnmityContainer->LowerEnmityByPercent(PAttacker , enmityReduction, NULL);
 	}
 
-	// try skill up (CharEntity only)
+	// Under Spirit Surge, High Jump lowers the target's TP proportionately to the amount of damage dealt (TP is reduced by damage * 2)
+	if (tier == 2 && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_SPIRIT_SURGE))
+		PVictim->addTP(-(totalDamage * 2));
+ 
+ 	// try skill up (CharEntity only)
 	if (PAttacker->objtype == TYPE_PC)
 		charutils::TrySkillUP((CCharEntity*)PAttacker, (SKILLTYPE)PWeapon->getSkillType(), PVictim->GetMLevel());
 
