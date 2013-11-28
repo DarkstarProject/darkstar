@@ -153,7 +153,7 @@ CNpcEntity* GetTrigger(uint16 TargID, uint16 ZoneID)
 
 CBaseEntity* GetEntity(uint32 ID, uint8 filter)
 {
-    return g_PZoneList[(uint8)(ID >> 12)]->GetEntity((uint16)(ID & 0x0FFF), filter);
+    return g_PZoneList[(uint16)((ID >> 12) & 0x0FFF)]->GetEntity((uint16)(ID & 0x0FFF), filter);
 }
 
 /************************************************************************
