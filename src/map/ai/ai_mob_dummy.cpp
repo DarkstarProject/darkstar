@@ -1449,9 +1449,14 @@ void CAIMobDummy::ActionAttack()
 							{
 								bool isBlocked = battleutils::IsBlocked(m_PMob, m_PBattleTarget);
 								if(isBlocked){ Action.reaction = REACTION_BLOCK; }
+								
+								// Try Null damage chance
 								if (m_PBattleTarget->objtype == TYPE_PC)
 								{
-									damage = battleutils::HandleSpecialPhysicalDamageReduction((CCharEntity*)m_PBattleTarget,damage,&Action);
+									if (rand()%100 > m_PBattleTarget->getMod(MOD_NULL_PHYSICAL_DAMAGE))
+									{
+										damage = 0;
+									}
 								}
 
 								Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage, isBlocked ,SLOT_MAIN, 1, NULL, true);

@@ -442,9 +442,31 @@ enum MODIFIER
 	MOD_WYVERN_BREATH             =0x192,
 	MOD_STEP_ACCURACY             =0x193,// Bonus accuracy for Dancer's steps
 
+
+	/// Gear set modifiers
+	MOD_DA_DOUBLE_DAMAGE		  =0x198,// Double attack's double damage chance %.
+	MOD_TA_TRIPLE_DAMAGE		  =0x199,// Triple attack's triple damage chance %.
+	MOD_ZANSHIN_DOUBLE_DAMAGE	  =0x19A,// Zanshin's double damage chance %.
+	MOD_RAPID_SHOT_DOUBLE_DAMAGE  =0x19B,// Rapid shot's double damage chance %.
+	MOD_ABSORB_DMG_CHANCE		  =0x19C,// Chance to absorb damage %
+	MOD_EXTRA_DUAL_WIELD_ATTACK   =0x19D,// Chance to land an extra attack when dual wielding
+	MOD_EXTRA_KICK_ATTACK		  =0x19E,// Occasionally allows a second Kick Attack during an attack round without the use of Footwork. 
+	MOD_SAMBA_DOUBLE_DAMAGE		  =0x19F,// Double damage chance when samba is up.
+	MOD_NULL_PHYSICAL_DAMAGE	  =0x1A0,// Chance to null physical damage.
+	MOD_QUICK_DRAW_TRIPLE_DAMAGE  =0x1A1,// Chance to do triple damage with quick draw.
+
+	// MOD_SPARE	=0x1A2,
+	// MOD_SPARE	=0x1A3,
+	// MOD_SPARE	=0x1A4,
+	// MOD_SPARE	=0x1A5,
+	// MOD_SPARE	=0x1A6,
+	// MOD_SPARE	=0x1A7,
+	// MOD_SPARE	=0x1A8,
+	// MOD_SPARE	=0x1A9,
+
 	MOD_MAG_BURST_BONUS           =408,
-	MOD_EAT_RAW_FISH			  = 409, // not implemented
-	MOD_EAT_RAW_MEAT			  = 410 // not implemented
+	MOD_EAT_RAW_FISH			  =409, // not implemented
+	MOD_EAT_RAW_MEAT			  =410, // not implemented
 };
 
 #define MAX_MODIFIER	       415

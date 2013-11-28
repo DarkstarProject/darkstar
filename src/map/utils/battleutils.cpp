@@ -495,35 +495,9 @@ uint32 CheckForDamageMultiplier(CItemWeapon* PWeapon, uint32 damage, uint8 hitNu
 
 /************************************************************************
 *                                                                       *
-*  Handles damage reduction gear							            *
+*  Calculates Spike Damage									            *
 *                                                                       *
 ************************************************************************/
-
-uint32 HandleSpecialPhysicalDamageReduction(CCharEntity* PChar, uint32 damage, apAction_t* Action)
-{
-	// check for special damage reducing gear
-	CItemArmor* PArmor = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_BACK]);
-
-	uint32 originalDamage = damage;
-	if(PArmor != NULL)
-	{
-		switch(PArmor->getID())
-		{
-			//shadow mantle 10% chance to annual damage
-			case 13658:
-				if (rand()%100 > 10) return originalDamage;
-				damage = 0;
-				break;
-
-
-			default:
-				return originalDamage;
-		}
-	}
-	return damage;
-
-}
-
 uint16 CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 spikesType, uint16 damageTaken)
 {
     uint16 damage = PDefender->getMod(MOD_SPIKES_DMG);

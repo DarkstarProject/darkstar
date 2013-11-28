@@ -4559,7 +4559,13 @@ INSERT INTO `item_mods` VALUES(13656, 27, -5);
 INSERT INTO `item_mods` VALUES(13657, 1, 10);
 INSERT INTO `item_mods` VALUES(13657, 5, 32);
 INSERT INTO `item_mods` VALUES(13657, 27, -6);
-INSERT INTO `item_mods` VALUES(13658, 1, 15);
+
+-- -------------------------------------------------------
+-- Shadow Mantle
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(13658, 1, 15);-- Defence
+INSERT INTO `item_mods` VALUES(13658, 416, 15);-- Physical null damage chance
+
 INSERT INTO `item_mods` VALUES(13659, 1, 2);
 INSERT INTO `item_mods` VALUES(13660, 1, 2);
 INSERT INTO `item_mods` VALUES(13661, 1, 2);

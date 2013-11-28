@@ -685,7 +685,7 @@ MOD_HASTE_MAGIC			= 0xA7
 MOD_SPELLINTERRUPT      = 0xA8
 MOD_MOVE			= 0xA9
 MOD_FASTCAST			= 0xAA
-MOD_UFASTCAST			= 0x0197
+MOD_UFASTCAST			= 0x197
 MOD_DELAY			= 0xAB
 MOD_RANGED_DELAY		= 0xAC
 MOD_MARTIAL_ARTS		= 0xAD
@@ -848,6 +848,18 @@ MOD_STEP_ACCURACY       = 0x193
 MOD_REGEN_DOWN      	 = 0x194			-- poison
 MOD_REFRESH_DOWN		 = 0x195			-- plague, reduce mp
 MOD_REGAIN_DOWN			 = 0x196			-- plague, reduce tp
+
+-- Gear set modifiers
+MOD_DA_DOUBLE_DAMAGE		  =0x198 -- Double attack's double damage chance %.
+MOD_TA_TRIPLE_DAMAGE		  =0x199 -- Triple attack's triple damage chance %.
+MOD_ZANSHIN_DOUBLE_DAMAGE	  =0x19A -- Zanshin's double damage chance %.
+MOD_RAPID_SHOT_DOUBLE_DAMAGE  =0x19B -- Rapid shot's double damage chance %.
+MOD_ABSORB_DMG_CHANCE		  =0x19C -- Chance to absorb damage %
+MOD_EXTRA_DUAL_WIELD_ATTACK   =0x19D -- Chance to land an extra attack when dual wielding
+MOD_EXTRA_KICK_ATTACK		  =0x19E -- Occasionally allows a second Kick Attack during an attack round without the use of Footwork. 
+MOD_SAMBA_DOUBLE_DAMAGE		  =0x19F -- Double damage chance when samba is up.
+MOD_NULL_PHYSICAL_DAMAGE	  =0x1A0 -- Chance to null physical damage.
+MOD_QUICK_DRAW_TRIPLE_DAMAGE  =0x1A1 -- Chance to do triple damage with quick draw.
 
 MOD_EAT_RAW_FISH			  = 409
 MOD_EAT_RAW_MEAT			  = 410
