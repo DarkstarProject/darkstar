@@ -361,7 +361,7 @@ void CAIPetDummy::ActionAbilityUsing()
 	//NOTE: RANGE CHECKS ETC ONLY ARE DONE AFTER THE ABILITY HAS FINISHED PREPARING.
 	//      THE ONLY CHECK IN HERE SHOULD BE WITH STUN/SLEEP/TERROR/ETC
 
-	if ((m_Tick - m_LastActionTime) > m_PMobSkill->getActivationTime())
+	if (m_Tick > m_LastActionTime + m_PMobSkill->getActivationTime())
     {
 		//Range check
 		if (m_PPet->objtype == TYPE_MOB)
@@ -580,7 +580,7 @@ void CAIPetDummy::ActionRoaming()
 
 	// this is broken until pet / mob relationship gets fixed
 	// pets need to extend mob or be a mob because pet has no spell list!
-	if(m_PPet->getPetType() == PETTYPE_AVATAR && m_PPet->m_Family == 104 && (m_Tick - m_LastActionTime) >= 30000 && currentDistance < PET_ROAM_DISTANCE * 2)
+	if(m_PPet->getPetType() == PETTYPE_AVATAR && m_PPet->m_Family == 104 && m_Tick >= m_LastActionTime + 30000 && currentDistance < PET_ROAM_DISTANCE * 2)
 	{
 		int16 spellID = 108;
 		// define this so action picks it up
@@ -737,7 +737,7 @@ void CAIPetDummy::ActionAttack()
 	{
 		int32 WeaponDelay = m_PPet->m_Weapons[SLOT_MAIN]->getDelay();
 		//try to attack
-		if((m_Tick - m_LastActionTime) > WeaponDelay){
+		if(m_Tick > m_LastActionTime + WeaponDelay){
 			if (battleutils::IsParalised(m_PPet))
 			{
 				m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CMessageBasicPacket(m_PPet,m_PBattleTarget,0,0,29));
@@ -1023,7 +1023,7 @@ void CAIPetDummy::ActionSpawn()
 		return;
 	}
 
-	if ((m_Tick - m_LastActionTime) > 4000)
+	if (m_Tick > m_LastActionTime + 4000)
 	{
 		m_ActionType = ACTION_ROAMING;
 	}

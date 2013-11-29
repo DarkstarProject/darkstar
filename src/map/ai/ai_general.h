@@ -24,6 +24,8 @@
 #ifndef _CAIGENERAL_H
 #define _CAIGENERAL_H
 
+#include <queue>
+
 #include "../../common/cbasetypes.h"
 #include "../packets/weather.h"
 #include "helpers/targetfind.h"
@@ -78,6 +80,15 @@ enum ACTIONTYPE
     ACTION_MOBABILITY_INTERRUPT,
     ACTION_LEAVE
 };
+
+struct quAction_t
+{
+    ACTIONTYPE action;
+    uint16 param;
+    CBattleEntity* target;
+};
+
+typedef std::queue<quAction_t> ActionQueue_t;
 
 /************************************************************************
 *																		*
@@ -139,6 +150,8 @@ public:
 
     // states
     CMagicState*     m_PMagicState;
+    ActionQueue_t    m_actionQueue;
+
 
 private:
 

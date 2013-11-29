@@ -250,7 +250,7 @@ void CAICharNormal::ActionEngage()
 		{
 			if (distance(m_PChar->loc.p, m_PBattleTarget->loc.p) <= 30)
 			{
-				if ((m_Tick - m_LastMeleeTime) > m_PChar->m_Weapons[SLOT_MAIN]->getDelay())
+				if (m_Tick > m_LastMeleeTime + m_PChar->m_Weapons[SLOT_MAIN]->getDelay())
 				{
                     if (m_PChar->animation == ANIMATION_CHOCOBO)
                     {
@@ -404,7 +404,7 @@ void CAICharNormal::ActionFall()
 void CAICharNormal::ActionDeath()
 {
     // без задержки удаление эффектов не всегда правильно обрабатывается клиентом
-    if ((m_Tick - m_LastActionTime) >= 1000)
+    if (m_Tick >= m_LastActionTime + 1000)
     {
         m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH, true);
 
@@ -424,7 +424,7 @@ void CAICharNormal::ActionDeath()
 
     // show reraise menu after sometime
     // this also prevents the menu from appearing before you're totally dead
-    if (m_PChar->m_hasRaise && (m_Tick - m_LastActionTime) >= 8000)
+    if (m_PChar->m_hasRaise && m_Tick >= m_LastActionTime + 8000)
     {
         m_LastActionTime = m_Tick;
         m_ActionType = ACTION_NONE;
@@ -539,7 +539,7 @@ void CAICharNormal::ActionItemUsing()
 		return;
 	}
 
-	if ((m_Tick - m_LastActionTime) >= m_PItemUsable->getActivationTime())
+	if (m_Tick >= m_LastActionTime + m_PItemUsable->getActivationTime())
 	{
         // обновление времени необходимо для правильной работы задержки анимации
         m_LastMeleeTime += (m_Tick - m_LastActionTime);
@@ -615,7 +615,7 @@ void CAICharNormal::ActionItemFinish()
 	DSP_DEBUG_BREAK_IF(m_PItemUsable == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
-	if ((m_Tick - m_LastActionTime) >= m_PItemUsable->getAnimationTime())
+	if (m_Tick >= m_LastActionTime + m_PItemUsable->getAnimationTime())
 	{
         if(battleutils::IsParalised(m_PChar)){
             m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleSubTarget,0,0,MSGBASIC_IS_PARALYZED));
@@ -705,7 +705,7 @@ void CAICharNormal::ActionRangedStart()
 	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
     DSP_DEBUG_BREAK_IF(m_PBattleSubTarget != NULL);
 
-	if( (m_Tick - m_PChar->m_rangedDelay) < m_PChar->GetAmmoDelay(false)){ //cooldown between shots
+	if( m_Tick < m_PChar->m_rangedDelay + m_PChar->GetAmmoDelay(false)){ //cooldown between shots
 		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PChar,0,0,MSGBASIC_WAIT_LONGER));
 		TransitionBack();
 		m_ActionTargetID = 0;
@@ -900,7 +900,7 @@ void CAICharNormal::ActionRangedFinish()
 		return;
 	}
 
-	if ((m_Tick - m_LastActionTime) >= m_PChar->m_rangedDelay)
+	if (m_Tick >= m_LastActionTime + m_PChar->m_rangedDelay)
 	{
 		m_LastMeleeTime += (m_Tick - m_LastActionTime);
 		m_LastActionTime = m_Tick;
@@ -2740,11 +2740,11 @@ void CAICharNormal::ActionAttack()
 
 	uint16 WeaponDelay = m_PChar->GetWeaponDelay(false);
 
-	if ((m_Tick - m_LastMeleeTime) > WeaponDelay)
+	if (m_Tick > m_LastMeleeTime + WeaponDelay)
 	{
 		if (!isFaceing(m_PChar->loc.p, m_PBattleTarget->loc.p, 40))
 		{
-			if ((m_Tick - m_AttackMessageTime) > WeaponDelay)
+			if (m_Tick > m_AttackMessageTime + WeaponDelay)
 			{
 				m_AttackMessageTime = m_Tick;
 				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,MSGBASIC_UNABLE_TO_SEE_TARG));
@@ -2753,7 +2753,7 @@ void CAICharNormal::ActionAttack()
 		}
 		if (Distance > m_PBattleTarget->m_ModelSize)
 		{
-			if ((m_Tick - m_AttackMessageTime) > WeaponDelay)
+			if (m_Tick > m_AttackMessageTime + WeaponDelay)
 			{
 				m_AttackMessageTime = m_Tick;
 				m_PChar->pushPacket(new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,MSGBASIC_TARG_OUT_OF_RANGE));

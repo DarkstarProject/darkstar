@@ -151,7 +151,7 @@ void CAIMobDummy::ActionRoaming()
 	}
 
 	// wait my time
-	if(m_Tick - m_LastWaitTime < m_WaitTime){
+	if(m_Tick < m_LastWaitTime + m_WaitTime){
 		m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
 		return;
 	}
@@ -163,7 +163,7 @@ void CAIMobDummy::ActionRoaming()
 	}
 
 	// don't aggro a little bit after I just disengaged
-	m_PMob->m_neutral = m_PMob->CanBeNeutral() && (m_Tick - m_NeutralTime) <= MOB_NEUTRAL_TIME;
+	m_PMob->m_neutral = m_PMob->CanBeNeutral() && m_Tick <= m_NeutralTime + MOB_NEUTRAL_TIME;
 
 	if(m_PPathFind->IsFollowingPath())
 	{
@@ -172,7 +172,7 @@ void CAIMobDummy::ActionRoaming()
 		m_PMob->loc.zone->PushPacket(m_PMob,CHAR_INRANGE, new CEntityUpdatePacket(m_PMob,ENTITY_UPDATE));
 
 	}
-	else if ((m_Tick - m_LastActionTime) >= m_PMob->getBigMobMod(MOBMOD_ROAM_COOL))
+    else if (m_Tick >= m_LastActionTime + m_PMob->getBigMobMod(MOBMOD_ROAM_COOL))
 	{
 		// lets buff up or move around
 
@@ -384,7 +384,7 @@ void CAIMobDummy::ActionFall()
 
 void CAIMobDummy::ActionDropItems()
 {
-    if ((m_Tick - m_LastActionTime) >= m_PMob->m_DropItemTime)
+    if (m_Tick >= m_LastActionTime + m_PMob->m_DropItemTime)
 	{
         CCharEntity* PChar = (CCharEntity*)m_PMob->loc.zone->GetEntity(m_PMob->m_OwnerID.targid, TYPE_PC);
 
@@ -515,7 +515,7 @@ void CAIMobDummy::ActionDropItems()
 
 void CAIMobDummy::ActionDeath()
 {
-	if ((m_Tick - m_LastActionTime) > 12000)
+	if (m_Tick > m_LastActionTime + 12000)
 	{
         m_PMob->StatusEffectContainer->KillAllStatusEffect();
 
@@ -539,7 +539,7 @@ void CAIMobDummy::ActionDeath()
 
 void CAIMobDummy::ActionFadeOut()
 {
-	if ((m_Tick - m_LastActionTime) > 15000 )
+	if (m_Tick > m_LastActionTime + 15000 )
 	{
 		// reset pet cast time to now
 		if(m_PMob->PMaster != NULL && m_PMob->PMaster->objtype == TYPE_MOB)
@@ -578,7 +578,7 @@ void CAIMobDummy::ActionDespawn()
 
 void CAIMobDummy::ActionSpawn()
 {
-	if ((m_Tick - m_LastActionTime) >= m_PMob->m_RespawnTime)
+	if (m_Tick >= m_LastActionTime + m_PMob->m_RespawnTime)
 	{
 		m_NeutralTime = m_Tick;
 		m_LastActionTime = m_Tick + rand() % 8000 + 2000;
@@ -827,7 +827,7 @@ void CAIMobDummy::ActionAbilityUsing()
 	//NOTE: RANGE CHECKS ETC ONLY ARE DONE AFTER THE ABILITY HAS FINISHED PREPARING.
 	//      THE ONLY CHECK IN HERE SHOULD BE WITH STUN/SLEEP/TERROR/ETC
 
-	if ((m_Tick - m_LastActionTime) >= m_PMobSkill->getActivationTime())
+	if (m_Tick >= m_LastActionTime + m_PMobSkill->getActivationTime())
     {
 		//Range check
 		if(m_PMobSkill->getValidTargets() == TARGET_ENEMY &&
@@ -961,8 +961,8 @@ void CAIMobDummy::ActionAbilityFinish()
 	else
 	{
 		// increase magic / ranged timer so its not used right after
-		m_LastMagicTime += m_PMobSkill->getAnimationTime() + 5000;
-		m_LastSpecialTime += m_PMobSkill->getAnimationTime() + 5000;
+		m_LastMagicTime = m_Tick + m_PMobSkill->getAnimationTime();
+		m_LastSpecialTime = m_Tick + m_PMobSkill->getAnimationTime();
 
 		m_ActionType = ACTION_ATTACK;
 	}
@@ -1033,7 +1033,7 @@ void CAIMobDummy::ActionStun()
 	m_DeaggroTime = m_Tick;
 
 	// lets just chill here for a bit
-	if(m_Tick - m_LastStunTime >= m_StunTime){
+    if (m_Tick >= m_LastStunTime + m_StunTime){
 		m_PBattleSubTarget = NULL;
 		TransitionBack();
 	}
@@ -1171,13 +1171,74 @@ void CAIMobDummy::ActionAttack()
     	m_DeaggroTime = m_Tick;
     }
 
+    if(!m_actionQueue.empty() && m_Tick >= m_LastSpecialTime)
+    {
+        quAction_t action = m_actionQueue.front();
+        m_actionQueue.pop();
+        switch(action.action)
+        {
+            case ACTION_MAGIC_START:
+            {
+                m_LastActionTime = m_Tick;
+                CastSpell(action.param, action.target);
+                FinishAttack();
+                break;
+            }
+            case ACTION_MOBABILITY_START:
+            {
+	            if (action.param != 0)
+	            {
+		            if (m_PMob->PBattleAI->GetBattleTarget() != NULL)
+		            {
+			            CMobSkill* mobskill = battleutils::GetMobSkill(action.param);
+
+			            if(mobskill != NULL)
+			            {
+				            m_PMob->PBattleAI->SetCurrentMobSkill(mobskill);
+                            m_LastActionTime = m_Tick;
+				            if( mobskill->getActivationTime() != 0)
+				            {
+					            apAction_t apAction;
+					            m_PMob->m_ActionList.clear();
+					            if(mobskill->getValidTargets() == TARGET_ENEMY){ //enemy
+						            apAction.ActionTarget = (action.target != NULL ? action.target : m_PMob->PBattleAI->GetBattleTarget());
+					            }
+					            else if(mobskill->getValidTargets() == TARGET_SELF){ //self
+						            apAction.ActionTarget = m_PMob;
+					            }
+					            apAction.reaction   = REACTION_HIT;
+					            apAction.speceffect = SPECEFFECT_HIT;
+					            apAction.animation  = 0;
+					            apAction.param	  = mobskill->getMsgForAction();//m_PMobSkill->getAnimationID();
+					            apAction.messageID  = 43; //readies message
+
+                                m_PMob->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
+					            m_PMob->m_ActionList.push_back(apAction);
+					            m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
+				            }
+				            m_PMob->PBattleAI->SetBattleSubTarget(m_PMob->PBattleAI->GetBattleTarget());
+				            m_PMob->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_USING);
+			            }
+			            else
+			            {
+				            ShowWarning("lua_baseentity::useMobAbility NULL mobskill used %d", action.param);
+			            }
+		            }
+	            } else {
+		            m_PMob->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
+	            }
+            }
+        }
+        return;
+    }
+
 	// Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
-	if(m_PSpecialSkill != NULL && !m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL) && (m_Tick - m_LastSpecialTime) >= m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL) && TrySpecialSkill())
+    if (m_PSpecialSkill != NULL && !m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL) && (m_Tick >= m_LastSpecialTime + m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL)) && TrySpecialSkill())
 	{
 		FinishAttack();
 		return;
 	}
-	else if (currentDistance <= MOB_SPELL_MAX_RANGE && (m_Tick - m_LastMagicTime) >= m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) && TryCastSpell())
+    else if (currentDistance <= MOB_SPELL_MAX_RANGE && (m_Tick >= m_LastMagicTime + m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL)) && TryCastSpell())
 	{
 		FinishAttack();
 		return;
@@ -1216,7 +1277,7 @@ void CAIMobDummy::ActionAttack()
 		    	m_CanStandback = false;
 		    }
 
-			if((m_Tick - m_LastStandbackTime) > m_PMob->getBigMobMod(MOBMOD_STANDBACK_TIME))
+			if(m_Tick >= m_LastStandbackTime + m_PMob->getBigMobMod(MOBMOD_STANDBACK_TIME))
 			{
 				// speed up my ranged attacks cause i'm waiting here
 				m_LastSpecialTime -= 1000;
@@ -1295,7 +1356,7 @@ void CAIMobDummy::ActionAttack()
 			WeaponDelay -= (((float)(hasteMagic + hasteAbility) * WeaponDelay) / 1024);
 		}
 
-		if (m_AutoAttackEnabled && (m_Tick - m_LastActionTime) > WeaponDelay)
+		if (m_AutoAttackEnabled && m_Tick > m_LastActionTime + WeaponDelay)
 		{
 			if (battleutils::IsParalised(m_PMob))
 			{
@@ -1453,7 +1514,7 @@ void CAIMobDummy::ActionAttack()
 								// Try Null damage chance
 								if (m_PBattleTarget->objtype == TYPE_PC)
 								{
-									if (rand()%100 > m_PBattleTarget->getMod(MOD_NULL_PHYSICAL_DAMAGE))
+									if (rand()%100 < m_PBattleTarget->getMod(MOD_NULL_PHYSICAL_DAMAGE))
 									{
 										damage = 0;
 									}
@@ -1535,7 +1596,7 @@ void CAIMobDummy::FinishAttack()
 		luautils::OnMobFight(m_PMob,m_PBattleTarget);
 	}
 
-	if(m_PMob->getMobMod(MOBMOD_RAGE) && !m_PMob->hasRageMode() && m_Tick - m_StartBattle >= m_PMob->getBigMobMod(MOBMOD_RAGE))
+	if(m_PMob->getMobMod(MOBMOD_RAGE) && !m_PMob->hasRageMode() && m_Tick >= m_StartBattle + m_PMob->getBigMobMod(MOBMOD_RAGE))
 	{
 		// come at me bro
 		m_PMob->addRageMode();
@@ -1582,7 +1643,7 @@ bool CAIMobDummy::TryDeaggro()
 		tryTimeDeaggro = m_PMob->m_disableScent;
 	}
 
-	if(tryTimeDeaggro && m_Tick - m_DeaggroTime >= MOB_DEAGGRO_TIME && m_PMob->CanDeaggro())
+	if(tryTimeDeaggro && m_Tick >= m_DeaggroTime + MOB_DEAGGRO_TIME && m_PMob->CanDeaggro())
 	{
 		tryDetectDeaggro = true;
 	}

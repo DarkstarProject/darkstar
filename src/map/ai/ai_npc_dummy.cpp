@@ -68,7 +68,7 @@ void CAINpcDummy::ActionRoaming()
 {
 
   // wait my time
-  if(m_Tick - m_LastWaitTime < m_WaitTime){
+  if(m_Tick < m_LastWaitTime + m_WaitTime){
     return;
   }
 
