@@ -2156,6 +2156,7 @@ void CAICharNormal::ActionWeaponSkillStart()
 			}
 
 		}
+        m_LastActionTime = m_Tick;
         m_ActionType = ACTION_WEAPONSKILL_FINISH;
         return;
     }
@@ -2164,6 +2165,7 @@ void CAICharNormal::ActionWeaponSkillStart()
     {
 		if(battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID()))
         {
+            m_LastActionTime = m_Tick;
 			m_ActionType = ACTION_WEAPONSKILL_FINISH;
 
 			return;
@@ -2314,7 +2316,6 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
 
 	float wsTP = m_PChar->health.tp;
-	m_LastActionTime = m_Tick;
 	uint16 tpHitsLanded = 0;
 	uint16 extraHitsLanded = 0;
 	uint16 damage = 0;
