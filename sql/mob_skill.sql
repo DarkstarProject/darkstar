@@ -344,11 +344,19 @@ INSERT INTO `mob_skill` VALUES (115,174,115,'Plague_Breath', 4, 10.0, 2000, 1500
 
 -- Raptor
 INSERT INTO `mob_skill` VALUES (123,210,123,'Chomp_Rush', 0, 7.0, 2000, 1500, 4, 0, 0, 0); -- para 25%
-INSERT INTO `mob_skill` VALUES (121,210,121,'Frost_Breath', 4, 15.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (124,210,124,'Scythe_Tail', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (120,210,120,'Foul_Breath', 4, 15.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (122,210,122,'Thunderbolt_Breath', 4, 15.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (120,210,120,'Foul_Breath', 4, 15.0, 2000, 1500, 4, 0, 0, 0); -- only used in dry desert/mountainous areas
 INSERT INTO `mob_skill` VALUES (118,210,118,'Ripper_Fang', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
+
+INSERT INTO `mob_skill` VALUES (122,376,122,'Thunderbolt_Breath', 4, 15.0, 2000, 1500, 4, 0, 0, 0); -- only used by raptors in stormy areas (S. Champagn, ???)
+INSERT INTO `mob_skill` VALUES (123,376,123,'Chomp_Rush', 0, 7.0, 2000, 1500, 4, 0, 0, 0); 
+INSERT INTO `mob_skill` VALUES (124,376,124,'Scythe_Tail', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (118,376,118,'Ripper_Fang', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
+
+INSERT INTO `mob_skill` VALUES (123,377,123,'Chomp_Rush', 0, 7.0, 2000, 1500, 4, 0, 0, 0); 
+INSERT INTO `mob_skill` VALUES (124,377,124,'Scythe_Tail', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (121,377,121,'Frost_Breath', 4, 15.0, 2000, 1500, 4, 0, 0, 0); -- only the raptors in Uleguerand Range will use this move
+INSERT INTO `mob_skill` VALUES (118,377,118,'Ripper_Fang', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
 
 -- Bugard
 INSERT INTO `mob_skill` VALUES (126,58,819,'Tail_Roll', 0, 7.0, 2000, 1500, 4, 0, 0, 0);

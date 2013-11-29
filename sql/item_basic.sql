@@ -12995,8 +12995,8 @@ INSERT INTO `item_basic` VALUES (18132,0,'combat_casters_boomerang_+1','cmbcstbm
 INSERT INTO `item_basic` VALUES (18133,0,'combat_casters_boomerang_+2','cmbcstbmrng_+2',1,2080,13,0,3900);
 INSERT INTO `item_basic` VALUES (18134,0,'junior_musketeers_chakram_+1','jrmskchakram_+1',1,2080,13,0,3987);
 INSERT INTO `item_basic` VALUES (18135,0,'junior_musketeers_chakram_+2','jrmskchakram_+2',1,2080,13,0,4983);
-INSERT INTO `item_basic` VALUES (18136,0,'morion_tathlum','morion_tathlum',12,2048,99,0,95);
-INSERT INTO `item_basic` VALUES (18137,0,'holy_ampulla','holy_ampulla',12,2048,99,0,200);
+INSERT INTO `item_basic` VALUES (18136,0,'morion_tathlum','morion_tathlum',12,2048,15,0,95);
+INSERT INTO `item_basic` VALUES (18137,0,'holy_ampulla','holy_ampulla',12,2048,15,0,200);
 INSERT INTO `item_basic` VALUES (18138,0,'bailathorn','bailathorn',12,2048,15,0,425);
 INSERT INTO `item_basic` VALUES (18139,0,'bomb_core','bomb_core',12,2048,15,0,512);
 INSERT INTO `item_basic` VALUES (18140,0,'phantom_tathlum','phtm_tathlum',12,2048,15,0,550);

@@ -50,7 +50,7 @@ function onEventUpdate(player,csid,option)
 end;
 	
 function onEventFinish(player,csid,option)
--- print(bc finish csid ..csid.. and option ..option);
+-- print("bc finish csid: "..csid.."and option: "..option);
 	
 	if(csid == 0x7d01 and option ~= 0 and player:hasKeyItem(DRAGON_CURSE_REMEDY) == true) then
 		player:addTitle(HEIR_TO_THE_HOLY_CREST);
@@ -60,9 +60,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("TheHolyCrest_Event",0);
 		player:addFame(SANDORIA,SAN_FAME*30);
 		player:completeQuest(SANDORIA,THE_HOLY_CREST);
-      if (option >= 2147483648 and option <= 2147483679) then -- Safety, in case the cutscene spews idk what.
-         player:setPetName(PETTYPE_WYVERN,option-2147483647);
-      end
+    player:setPetName(PETTYPE_WYVERN,option);
 	end
 	
 end;

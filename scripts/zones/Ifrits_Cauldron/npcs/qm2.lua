@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
--- NPC:  ??? (Bomb Queen's Spawn)
--- Allows players to spawn Bomb Queen NM with 3 pinches of Bomb Queen Ash and a Bomb Queen Core.
--- @pos 19.395, 23, -99.967
+-- NPC:  qm2 (???) 
+-- Notes: Used to spawn Bomb Queen
+-- @pos 18 20 -104 205
 -----------------------------------
 package.loaded["scripts/zones/Ifrits_Cauldron/TextIDs"] = nil;
 -----------------------------------

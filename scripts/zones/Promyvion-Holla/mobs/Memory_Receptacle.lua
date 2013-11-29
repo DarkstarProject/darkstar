@@ -20,6 +20,8 @@ end;
 function onMobFight(mob, target)
 
 	 local Mem_Recep = mob:getID(); 
+	 
+	 mob:SetAutoAttackEnabled(false); -- Recepticles only use TP moves.	 
 
 	-- This will serve as a ghetto Regain (not damage dependent) based on kjlotus's testing. Caps at 100
 	 
@@ -82,7 +84,7 @@ function onMobFight(mob, target)
    else
    		mob:AnimationSub(2); 
    end   
-end
+end;
 
 
 -----------------------------------	
