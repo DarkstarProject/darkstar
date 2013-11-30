@@ -1,8 +1,8 @@
 -----------------------------------
--- Area: Tavnazian_Safehold
--- NPC:  Hieroglyphics
--- Dynamis dyna Tavnazia Enter
--- @pos 
+-- Area:  Tavnazian_Safehold
+-- NPC:   Hieroglyphics
+-- Notes: Dynamis Tavnazia Enter
+-- @pos 3.674 -7.278 -27.856 26
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
 -----------------------------------

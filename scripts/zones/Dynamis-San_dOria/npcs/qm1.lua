@@ -1,6 +1,7 @@
 -----------------------------------
--- Area: Dynamis San d'Oria
--- NPC:  ??? (Spawn when mega is defeated)
+-- Area:  Dynamis San d'Oria
+-- NPC:   qm1 (???)
+-- Notes: Spawns when Megaboss is defeated
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -25,6 +26,8 @@ function onTrigger(player,npc)
 		player:setVar("DynaSandoria_Win",1);
 		player:addKeyItem(HYDRA_CORPS_COMMAND_SCEPTER);
 		player:messageSpecial(KEYITEM_OBTAINED,HYDRA_CORPS_COMMAND_SCEPTER);
+	else
+		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 	end
 	
 end;

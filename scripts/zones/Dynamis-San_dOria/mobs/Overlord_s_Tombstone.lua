@@ -46,4 +46,10 @@ function onMobDeath(mob,killer)
 		killer:launchDynamisSecondPart(); -- Spawn dynamis second part
 	end
 	
+	for i = 17534978, 17534979 do
+      if (GetMobAction(i) ~= 0) then
+         DespawnMob(i);
+      end
+	end
+	
 end;

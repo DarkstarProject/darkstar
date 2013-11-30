@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Dynamis Windurst
--- NPC:  ??? (Spawn when mega is defeated)
+-- NPC:  qm1 (???)
+-- Notes: Spawns when Megaboss is defeated
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Windurst/TextIDs"] = nil;
 -----------------------------------
@@ -25,6 +26,8 @@ function onTrigger(player,npc)
 		player:setVar("DynaWindurst_Win",1);
 		player:addKeyItem(HYDRA_CORPS_LANTERN);
 		player:messageSpecial(KEYITEM_OBTAINED,HYDRA_CORPS_LANTERN);
+	else
+		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);		
 	end
 	
 end;

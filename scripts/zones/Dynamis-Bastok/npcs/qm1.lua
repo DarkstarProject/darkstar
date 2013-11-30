@@ -1,6 +1,7 @@
 -----------------------------------
--- Area: Dynamis Bastok
--- NPC:  ??? (Spawn when mega is defeated)
+-- Area:  Dynamis Bastok
+-- NPC:   qm1 (???)
+-- Notes: Spawns when Megaboss is defeated
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Bastok/TextIDs"] = nil;
 -----------------------------------
@@ -25,6 +26,8 @@ function onTrigger(player,npc)
 		player:setVar("DynaBastok_Win",1);
 		player:addKeyItem(HYDRA_CORPS_EYEGLASS);
 		player:messageSpecial(KEYITEM_OBTAINED,HYDRA_CORPS_EYEGLASS);
+	else
+		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);		
 	end
 	
 end;
