@@ -13,16 +13,20 @@ require("scripts/zones/Western_Altepa_Desert/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
---GetNPCByID(17289738):openDoor();
-	--return 0;
-end; 
+
+	if(player:getZPos() > 137) then
+		GetNPCByID(17289738):openDoor(3.2);
+			else
+				player:messageSpecial(THE_DOOR_IS_LOCKED);
+	end
+end;
 
 -----------------------------------
 -- onEventUpdate

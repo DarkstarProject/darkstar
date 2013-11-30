@@ -44,15 +44,15 @@ LOCK TABLES `treasure_spawn_points` WRITE;
 -- Chests
 --
 
-INSERT INTO `treasure_spawn_points` VALUES (16814554,0,0,-393.000,16.000,-208.000);
-INSERT INTO `treasure_spawn_points` VALUES (16814554,1,0,-392.950,16.000,-236.012);
-INSERT INTO `treasure_spawn_points` VALUES (16814554,2,20,-349.409,16.000,-232.783);
-INSERT INTO `treasure_spawn_points` VALUES (16814554,3,64,-379.409,16.000,-207.245);
-INSERT INTO `treasure_spawn_points` VALUES (16814554,4,192,-329.944,0.247,-271.769);
-INSERT INTO `treasure_spawn_points` VALUES (16814554,5,161,-322.799,32.000,-276.970);
-INSERT INTO `treasure_spawn_points` VALUES (16814554,6,64,-349.915,32.247,-169.891);
-INSERT INTO `treasure_spawn_points` VALUES (16814554,7,161,-362.928,32.000,-236.722);
-INSERT INTO `treasure_spawn_points` VALUES (16814554,8,0,-389.971,32.247,-229.970);
+INSERT INTO `treasure_spawn_points` VALUES (16814554,0,0,-393.000,16.000,-208.000); -- Pso'Xja
+INSERT INTO `treasure_spawn_points` VALUES (16814554,1,0,-392.950,16.000,-236.012); -- Pso'Xja
+INSERT INTO `treasure_spawn_points` VALUES (16814554,2,20,-349.409,16.000,-232.783); -- Pso'Xja
+INSERT INTO `treasure_spawn_points` VALUES (16814554,3,64,-379.409,16.000,-207.245); -- Pso'Xja
+INSERT INTO `treasure_spawn_points` VALUES (16814554,4,192,-329.944,0.247,-271.769); -- Pso'Xja
+INSERT INTO `treasure_spawn_points` VALUES (16814554,5,161,-322.799,32.000,-276.970); -- Pso'Xja
+INSERT INTO `treasure_spawn_points` VALUES (16814554,6,64,-349.915,32.247,-169.891); -- Pso'Xja
+INSERT INTO `treasure_spawn_points` VALUES (16814554,7,161,-362.928,32.000,-236.722); -- Pso'Xja
+INSERT INTO `treasure_spawn_points` VALUES (16814554,8,0,-389.971,32.247,-229.970); -- Pso'Xja
 INSERT INTO `treasure_spawn_points` VALUES (16822524,0,192,-140.636,7.999,200.498); -- Oldton Movalpolos
 INSERT INTO `treasure_spawn_points` VALUES (16822524,1,66,-138.897,8.000,157.084); -- Oldton Movalpolos
 INSERT INTO `treasure_spawn_points` VALUES (16822524,2,0,-236.521,12.001,32.003); -- Oldton Movalpolos
@@ -145,34 +145,34 @@ INSERT INTO `treasure_spawn_points` VALUES (17396203,9,192,-206.721,-16.000,85.1
 INSERT INTO `treasure_spawn_points` VALUES (17396203,10,253,-213.101,-4.285,139.820); -- Castle Oztroja
 INSERT INTO `treasure_spawn_points` VALUES (17396203,11,5,-102.026,-52.000,180.448); -- Castle Oztroja
 INSERT INTO `treasure_spawn_points` VALUES (17396203,12,65,-19.589,-15.750,-15.309); -- Castle Oztroja
-INSERT INTO `treasure_spawn_points` VALUES (17420669,0,254,-339.909,-127.601,20.816);
-INSERT INTO `treasure_spawn_points` VALUES (17420669,1,65,-420.058,-127.601,99.913);
-INSERT INTO `treasure_spawn_points` VALUES (17420669,2,255,-398.356,-127.424,20.397);
-INSERT INTO `treasure_spawn_points` VALUES (17420669,3,65,-499.848,-127.601,20.397);
-INSERT INTO `treasure_spawn_points` VALUES (17420669,4,105,-359.633,-111.424,-39.286);
-INSERT INTO `treasure_spawn_points` VALUES (17420669,5,82,-416.369,-112.000,62.454);
-INSERT INTO `treasure_spawn_points` VALUES (17420669,6,60,-425.616,-111.424,-0.879);
-INSERT INTO `treasure_spawn_points` VALUES (17420669,7,247,-504.196,-112.000,55.353);
-INSERT INTO `treasure_spawn_points` VALUES (17424556,0,191,-380.060,-143.601,20.603);
-INSERT INTO `treasure_spawn_points` VALUES (17424556,1,255,-333.356,-144.016,-0.481);
-INSERT INTO `treasure_spawn_points` VALUES (17424556,2,231,-250.738,-144.019,72.633);
-INSERT INTO `treasure_spawn_points` VALUES (17424556,3,191,-220.087,-143.601,19.370);
-INSERT INTO `treasure_spawn_points` VALUES (17436991,0,190,110.041,-20.002,106.811);
-INSERT INTO `treasure_spawn_points` VALUES (17436991,1,0,-69.716,-19.468,35.659);
-INSERT INTO `treasure_spawn_points` VALUES (17436991,2,190,-120.003,-24.000,136.748);
-INSERT INTO `treasure_spawn_points` VALUES (17436991,3,65,-120.064,-24.000,103.328);
-INSERT INTO `treasure_spawn_points` VALUES (17436991,4,190,-119.996,-24.000,-63.515);
-INSERT INTO `treasure_spawn_points` VALUES (17436991,5,65,-119.933,-24.000,-95.999);
-INSERT INTO `treasure_spawn_points` VALUES (17436991,6,65,-19.920,-20.010,-29.472);
-INSERT INTO `treasure_spawn_points` VALUES (17436991,7,65,9.900,-20.000,12.662);
-INSERT INTO `treasure_spawn_points` VALUES (17436991,8,190,9.900,-20.000,27.921);
-INSERT INTO `treasure_spawn_points` VALUES (17436991,9,190,-20.354,-20.200,68.930);
-INSERT INTO `treasure_spawn_points` VALUES (17436991,10,65,110.250,-20.011,-67.377);
-INSERT INTO `treasure_spawn_points` VALUES (17436991,11,65,99.899,-24.065,64.915);
-INSERT INTO `treasure_spawn_points` VALUES (17436991,12,190,99.899,-24.077,-25.562);
-INSERT INTO `treasure_spawn_points` VALUES (17436991,13,0,57.319,-24.000,20.112);
-INSERT INTO `treasure_spawn_points` VALUES (17436991,14,127,52.638,-24.000,20.112);
-INSERT INTO `treasure_spawn_points` VALUES (17441082,0,62,-299.787,-48.000,24.873);
+INSERT INTO `treasure_spawn_points` VALUES (17420669,0,254,-339.909,-127.601,20.816); -- Middle Delkfutt's Tower
+INSERT INTO `treasure_spawn_points` VALUES (17420669,1,65,-420.058,-127.601,99.913); -- Middle Delkfutt's Tower
+INSERT INTO `treasure_spawn_points` VALUES (17420669,2,255,-398.356,-127.424,20.397); -- Middle Delkfutt's Tower
+INSERT INTO `treasure_spawn_points` VALUES (17420669,3,65,-499.848,-127.601,20.397); -- Middle Delkfutt's Tower
+INSERT INTO `treasure_spawn_points` VALUES (17420669,4,105,-359.633,-111.424,-39.286); -- Middle Delkfutt's Tower
+INSERT INTO `treasure_spawn_points` VALUES (17420669,5,82,-416.369,-112.000,62.454); -- Middle Delkfutt's Tower
+INSERT INTO `treasure_spawn_points` VALUES (17420669,6,60,-425.616,-111.424,-0.879); -- Middle Delkfutt's Tower
+INSERT INTO `treasure_spawn_points` VALUES (17420669,7,247,-504.196,-112.000,55.353); -- Middle Delkfutt's Tower
+INSERT INTO `treasure_spawn_points` VALUES (17424556,0,191,-380.060,-143.601,20.603); -- Upper Delkfutt's Tower
+INSERT INTO `treasure_spawn_points` VALUES (17424556,1,255,-333.356,-144.016,-0.481); -- Upper Delkfutt's Tower
+INSERT INTO `treasure_spawn_points` VALUES (17424556,2,231,-250.738,-144.019,72.633); -- Upper Delkfutt's Tower
+INSERT INTO `treasure_spawn_points` VALUES (17424556,3,191,-220.087,-143.601,19.370); -- Upper Delkfutt's Tower
+INSERT INTO `treasure_spawn_points` VALUES (17436990,0,190,110.041,-20.002,106.811); -- Castle Zvahl Baileys
+INSERT INTO `treasure_spawn_points` VALUES (17436990,1,0,-69.716,-19.468,35.659); -- Castle Zvahl Baileys
+INSERT INTO `treasure_spawn_points` VALUES (17436990,2,190,-120.003,-24.000,136.748); -- Castle Zvahl Baileys
+INSERT INTO `treasure_spawn_points` VALUES (17436990,3,65,-120.064,-24.000,103.328); -- Castle Zvahl Baileys
+INSERT INTO `treasure_spawn_points` VALUES (17436990,4,190,-119.996,-24.000,-63.515); -- Castle Zvahl Baileys
+INSERT INTO `treasure_spawn_points` VALUES (17436990,5,65,-119.933,-24.000,-95.999); -- Castle Zvahl Baileys
+INSERT INTO `treasure_spawn_points` VALUES (17436990,6,65,-19.920,-20.010,-29.472); -- Castle Zvahl Baileys
+INSERT INTO `treasure_spawn_points` VALUES (17436990,7,65,9.900,-20.000,12.662); -- Castle Zvahl Baileys
+INSERT INTO `treasure_spawn_points` VALUES (17436990,8,190,9.900,-20.000,27.921); -- Castle Zvahl Baileys
+INSERT INTO `treasure_spawn_points` VALUES (17436990,9,190,-20.354,-20.200,68.930); -- Castle Zvahl Baileys
+INSERT INTO `treasure_spawn_points` VALUES (17436990,10,65,110.250,-20.011,-67.377); -- Castle Zvahl Baileys
+INSERT INTO `treasure_spawn_points` VALUES (17436990,11,65,99.899,-24.065,64.915); -- Castle Zvahl Baileys
+INSERT INTO `treasure_spawn_points` VALUES (17436990,12,190,99.899,-24.077,-25.562); -- Castle Zvahl Baileys
+INSERT INTO `treasure_spawn_points` VALUES (17436990,13,0,57.319,-24.000,20.112); -- Castle Zvahl Baileys
+INSERT INTO `treasure_spawn_points` VALUES (17436990,14,127,52.638,-24.000,20.112); -- Castle Zvahl Baileys
+INSERT INTO `treasure_spawn_points` VALUES (17441081,0,62,-299.787,-48.000,24.873); -- Castle Zvahl Keep
 INSERT INTO `treasure_spawn_points` VALUES (17498609,0,129,189.673,18.999,30.161);
 INSERT INTO `treasure_spawn_points` VALUES (17498609,1,16,173.566,20.431,42.832);
 INSERT INTO `treasure_spawn_points` VALUES (17498609,2,124,413.783,8.448,-60.001);
@@ -229,7 +229,7 @@ INSERT INTO `treasure_spawn_points` VALUES (17568185,11,190,-140.193,0.546,176.3
 INSERT INTO `treasure_spawn_points` VALUES (17568185,12,194,-112.788,-0.035,230.281); -- Ordelle's Caves
 INSERT INTO `treasure_spawn_points` VALUES (17568185,13,236,-169.325,0.008,231.696); -- Ordelle's Caves
 INSERT INTO `treasure_spawn_points` VALUES (17568185,14,62,-167.160,0.068,289.223); -- Ordelle's Caves
-INSERT INTO `treasure_spawn_points` VALUES (17572283,0,250,-423.066,0.000,672.483);
+INSERT INTO `treasure_spawn_points` VALUES (17572283,0,250,-423.066,0.000,672.483); -- Outer Horutoto Ruins
 INSERT INTO `treasure_spawn_points` VALUES (17576349,0,254,171.927,-7.999,20.008); -- The Eldieme Necropolis
 INSERT INTO `treasure_spawn_points` VALUES (17576349,1,1,261.094,-33.250,100.014); -- The Eldieme Necropolis
 INSERT INTO `treasure_spawn_points` VALUES (17576349,2,127,98.908,-33.250,100.046); -- The Eldieme Necropolis
@@ -255,16 +255,16 @@ INSERT INTO `treasure_spawn_points` VALUES (17584468,10,216,-15.799,-0.464,245.8
 INSERT INTO `treasure_spawn_points` VALUES (17584468,11,24,-32.961,-0.351,294.132); -- Crawler's Nest
 INSERT INTO `treasure_spawn_points` VALUES (17584468,12,46,-89.586,-9.624,95.296); -- Crawler's Nest
 INSERT INTO `treasure_spawn_points` VALUES (17588766,0,9,290.287,20.225,-138.060); -- Maze of Shakhrami
-INSERT INTO `treasure_spawn_points` VALUES (17596803,0,128,-163.053,0.000,351.988);
-INSERT INTO `treasure_spawn_points` VALUES (17596803,1,124,-352.798,15.602,266.998);
-INSERT INTO `treasure_spawn_points` VALUES (17596803,2,7,-84.561,5.269,139.762);
-INSERT INTO `treasure_spawn_points` VALUES (17596803,3,128,-62.448,0.000,88.577);
-INSERT INTO `treasure_spawn_points` VALUES (17596803,4,128,-122.826,0.000,112.010);
-INSERT INTO `treasure_spawn_points` VALUES (17596803,5,65,-220.049,0.000,167.949);
-INSERT INTO `treasure_spawn_points` VALUES (17596803,6,101,14.274,6.000,214.198);
-INSERT INTO `treasure_spawn_points` VALUES (17596803,7,192,-7.949,-0.143,296.822);
-INSERT INTO `treasure_spawn_points` VALUES (17596803,8,2,-88.405,4.784,299.916);
-INSERT INTO `treasure_spawn_points` VALUES (17596803,9,128,-142.400,0.000,328.437);
+INSERT INTO `treasure_spawn_points` VALUES (17596802,0,128,-163.053,0.000,351.988); -- Garlaige Citadel
+INSERT INTO `treasure_spawn_points` VALUES (17596802,1,124,-352.798,15.602,266.998); -- Garlaige Citadel
+INSERT INTO `treasure_spawn_points` VALUES (17596802,2,7,-84.561,5.269,139.762); -- Garlaige Citadel
+INSERT INTO `treasure_spawn_points` VALUES (17596802,3,128,-62.448,0.000,88.577); -- Garlaige Citadel
+INSERT INTO `treasure_spawn_points` VALUES (17596802,4,128,-122.826,0.000,112.010); -- Garlaige Citadel
+INSERT INTO `treasure_spawn_points` VALUES (17596802,5,65,-220.049,0.000,167.949); -- Garlaige Citadel
+INSERT INTO `treasure_spawn_points` VALUES (17596802,6,101,14.274,6.000,214.198); -- Garlaige Citadel
+INSERT INTO `treasure_spawn_points` VALUES (17596802,7,192,-7.949,-0.143,296.822); -- Garlaige Citadel
+INSERT INTO `treasure_spawn_points` VALUES (17596802,8,2,-88.405,4.784,299.916); -- Garlaige Citadel
+INSERT INTO `treasure_spawn_points` VALUES (17596802,9,128,-142.400,0.000,328.437); -- Garlaige Citadel
 INSERT INTO `treasure_spawn_points` VALUES (17613220,0,91,170.680,-24.000,210.826);
 INSERT INTO `treasure_spawn_points` VALUES (17613220,1,156,172.161,-24.006,-88.152);
 INSERT INTO `treasure_spawn_points` VALUES (17613220,2,131,210.956,-24.000,-31.915);
@@ -323,20 +323,20 @@ INSERT INTO `treasure_spawn_points` VALUES (17396204,6,160,-13.623,-39.834,-184.
 INSERT INTO `treasure_spawn_points` VALUES (17396204,7,193,-60.369,-71.750,-146.231); -- Castle Oztroja
 INSERT INTO `treasure_spawn_points` VALUES (17396204,8,63,-139.729,-71.750,-53.252); -- Castle Oztroja
 INSERT INTO `treasure_spawn_points` VALUES (17396204,9,65,-100.197,-72.511,-13.141); -- Castle Oztroja
-INSERT INTO `treasure_spawn_points` VALUES (17404383,0,95,28.477,6.335,145.925);
-INSERT INTO `treasure_spawn_points` VALUES (17404383,1,120,-62.707,8.787,80.017);
-INSERT INTO `treasure_spawn_points` VALUES (17404383,2,5,-100.194,7.716,71.802);
-INSERT INTO `treasure_spawn_points` VALUES (17404383,3,27,26.121,6.102,95.937);
-INSERT INTO `treasure_spawn_points` VALUES (17404383,4,180,68.144,6.428,54.531);
-INSERT INTO `treasure_spawn_points` VALUES (17404383,5,234,108.235,7.085,26.143);
-INSERT INTO `treasure_spawn_points` VALUES (17404383,6,139,136.094,10.600,26.152);
-INSERT INTO `treasure_spawn_points` VALUES (17404383,7,81,176.461,8.172,65.105);
-INSERT INTO `treasure_spawn_points` VALUES (17404383,8,200,184.816,5.867,-52.454);
-INSERT INTO `treasure_spawn_points` VALUES (17404383,9,0,201.244,8.791,-163.229);
-INSERT INTO `treasure_spawn_points` VALUES (17404383,10,66,260.650,8.445,-73.685);
-INSERT INTO `treasure_spawn_points` VALUES (17404383,11,18,215.152,8.210,16.315);
-INSERT INTO `treasure_spawn_points` VALUES (17404383,12,42,251.260,5.078,24.927);
-INSERT INTO `treasure_spawn_points` VALUES (17404383,13,12,251.809,6.141,-18.487);
+INSERT INTO `treasure_spawn_points` VALUES (17404383,0,95,28.477,6.335,145.925); -- The Boyahda Tree
+INSERT INTO `treasure_spawn_points` VALUES (17404383,1,120,-62.707,8.787,80.017); -- The Boyahda Tree
+INSERT INTO `treasure_spawn_points` VALUES (17404383,2,5,-100.194,7.716,71.802); -- The Boyahda Tree
+INSERT INTO `treasure_spawn_points` VALUES (17404383,3,27,26.121,6.102,95.937); -- The Boyahda Tree
+INSERT INTO `treasure_spawn_points` VALUES (17404383,4,180,68.144,6.428,54.531); -- The Boyahda Tree
+INSERT INTO `treasure_spawn_points` VALUES (17404383,5,234,108.235,7.085,26.143); -- The Boyahda Tree
+INSERT INTO `treasure_spawn_points` VALUES (17404383,6,139,136.094,10.600,26.152); -- The Boyahda Tree
+INSERT INTO `treasure_spawn_points` VALUES (17404383,7,81,176.461,8.172,65.105); -- The Boyahda Tree
+INSERT INTO `treasure_spawn_points` VALUES (17404383,8,200,184.816,5.867,-52.454); -- The Boyahda Tree
+INSERT INTO `treasure_spawn_points` VALUES (17404383,9,0,201.244,8.791,-163.229); -- The Boyahda Tree
+INSERT INTO `treasure_spawn_points` VALUES (17404383,10,66,260.650,8.445,-73.685); -- The Boyahda Tree
+INSERT INTO `treasure_spawn_points` VALUES (17404383,11,18,215.152,8.210,16.315); -- The Boyahda Tree
+INSERT INTO `treasure_spawn_points` VALUES (17404383,12,42,251.260,5.078,24.927); -- The Boyahda Tree
+INSERT INTO `treasure_spawn_points` VALUES (17404383,13,12,251.809,6.141,-18.487); -- The Boyahda Tree
 INSERT INTO `treasure_spawn_points` VALUES (17428979,0,192,-219.944,-0.800,30.638);
 INSERT INTO `treasure_spawn_points` VALUES (17428979,1,65,-130.001,0.000,32.935);
 INSERT INTO `treasure_spawn_points` VALUES (17428979,2,255,-220.044,-0.000,-19.961);
@@ -359,29 +359,29 @@ INSERT INTO `treasure_spawn_points` VALUES (17433071,8,62,122.006,15.312,-56.013
 INSERT INTO `treasure_spawn_points` VALUES (17433071,9,105,142.462,15.834,-21.777);
 INSERT INTO `treasure_spawn_points` VALUES (17433071,10,125,372.407,-5.088,340.338);
 INSERT INTO `treasure_spawn_points` VALUES (17433071,11,65,460.201,5.092,331.775);
-INSERT INTO `treasure_spawn_points` VALUES (17436992,0,125,-72.899,0.137,19.549);
-INSERT INTO `treasure_spawn_points` VALUES (17436992,1,0,-49.542,0.137,19.549);
-INSERT INTO `treasure_spawn_points` VALUES (17436992,2,190,-59.511,0.137,30.749);
-INSERT INTO `treasure_spawn_points` VALUES (17436992,3,65,-59.511,0.137,10.051);
-INSERT INTO `treasure_spawn_points` VALUES (17436992,4,190,-223.298,-8.000,-143.759);
-INSERT INTO `treasure_spawn_points` VALUES (17436992,5,65,-223.298,-8.000,183.912);
-INSERT INTO `treasure_spawn_points` VALUES (17436992,6,190,103.469,-8.000,-143.759);
-INSERT INTO `treasure_spawn_points` VALUES (17436992,7,65,103.469,-8.000,183.912);
-INSERT INTO `treasure_spawn_points` VALUES (17469829,0,62,219.993,16.003,-49.049);
-INSERT INTO `treasure_spawn_points` VALUES (17469829,1,192,-88.634,16.000,-31.234);
-INSERT INTO `treasure_spawn_points` VALUES (17469829,2,0,-191.180,21.502,-100.104);
-INSERT INTO `treasure_spawn_points` VALUES (17469829,3,0,-191.211,21.502,-140.088);
-INSERT INTO `treasure_spawn_points` VALUES (17469829,4,192,-59.985,21.502,-191.163);
-INSERT INTO `treasure_spawn_points` VALUES (17469829,5,128,111.091,21.502,-180.065);
-INSERT INTO `treasure_spawn_points` VALUES (17469829,6,192,114.148,16.000,-226.101);
-INSERT INTO `treasure_spawn_points` VALUES (17469829,7,128,72.746,16.000,-180.041);
-INSERT INTO `treasure_spawn_points` VALUES (17469829,8,226,26.746,16.500,-212.454);
-INSERT INTO `treasure_spawn_points` VALUES (17469829,9,0,6.567,16.000,-180.089);
-INSERT INTO `treasure_spawn_points` VALUES (17469829,10,192,179.943,21.502,-271.297);
-INSERT INTO `treasure_spawn_points` VALUES (17469829,11,128,310.808,21.502,-179.957);
-INSERT INTO `treasure_spawn_points` VALUES (17469829,12,66,285.821,18.000,-59.620);
-INSERT INTO `treasure_spawn_points` VALUES (17469829,13,31,143.977,9.500,-103.950);
-INSERT INTO `treasure_spawn_points` VALUES (17469829,14,159,95.977,21.500,-56.045);
+INSERT INTO `treasure_spawn_points` VALUES (17436991,0,125,-72.899,0.137,19.549); -- Castle Zvahl Baileys
+INSERT INTO `treasure_spawn_points` VALUES (17436991,1,0,-49.542,0.137,19.549); -- Castle Zvahl Baileys
+INSERT INTO `treasure_spawn_points` VALUES (17436991,2,190,-59.511,0.137,30.749); -- Castle Zvahl Baileys
+INSERT INTO `treasure_spawn_points` VALUES (17436991,3,65,-59.511,0.137,10.051); -- Castle Zvahl Baileys
+INSERT INTO `treasure_spawn_points` VALUES (17436991,4,190,-223.298,-8.000,-143.759); -- Castle Zvahl Baileys
+INSERT INTO `treasure_spawn_points` VALUES (17436991,5,65,-223.298,-8.000,183.912); -- Castle Zvahl Baileys
+INSERT INTO `treasure_spawn_points` VALUES (17436991,6,190,103.469,-8.000,-143.759); -- Castle Zvahl Baileys
+INSERT INTO `treasure_spawn_points` VALUES (17436991,7,65,103.469,-8.000,183.912); -- Castle Zvahl Baileys
+INSERT INTO `treasure_spawn_points` VALUES (17469828,0,62,219.993,16.003,-49.049); -- Toraimarai Canal
+INSERT INTO `treasure_spawn_points` VALUES (17469828,1,192,-88.634,16.000,-31.234); -- Toraimarai Canal
+INSERT INTO `treasure_spawn_points` VALUES (17469828,2,0,-191.180,21.502,-100.104); -- Toraimarai Canal
+INSERT INTO `treasure_spawn_points` VALUES (17469828,3,0,-191.211,21.502,-140.088); -- Toraimarai Canal
+INSERT INTO `treasure_spawn_points` VALUES (17469828,4,192,-59.985,21.502,-191.163); -- Toraimarai Canal
+INSERT INTO `treasure_spawn_points` VALUES (17469828,5,128,111.091,21.502,-180.065); -- Toraimarai Canal
+INSERT INTO `treasure_spawn_points` VALUES (17469828,6,192,114.148,16.000,-226.101); -- Toraimarai Canal
+INSERT INTO `treasure_spawn_points` VALUES (17469828,7,128,72.746,16.000,-180.041); -- Toraimarai Canal
+INSERT INTO `treasure_spawn_points` VALUES (17469828,8,226,26.746,16.500,-212.454); -- Toraimarai Canal
+INSERT INTO `treasure_spawn_points` VALUES (17469828,9,0,6.567,16.000,-180.089); -- Toraimarai Canal
+INSERT INTO `treasure_spawn_points` VALUES (17469828,10,192,179.943,21.502,-271.297); -- Toraimarai Canal
+INSERT INTO `treasure_spawn_points` VALUES (17469828,11,128,310.808,21.502,-179.957); -- Toraimarai Canal
+INSERT INTO `treasure_spawn_points` VALUES (17469828,12,66,285.821,18.000,-59.620); -- Toraimarai Canal
+INSERT INTO `treasure_spawn_points` VALUES (17469828,13,31,143.977,9.500,-103.950); -- Toraimarai Canal
+INSERT INTO `treasure_spawn_points` VALUES (17469828,14,159,95.977,21.500,-56.045); -- Toraimarai Canal
 INSERT INTO `treasure_spawn_points` VALUES (17490294,0,191,103.708,-11.326,208.367);
 INSERT INTO `treasure_spawn_points` VALUES (17490294,1,13,127.993,-11.318,96.500);
 INSERT INTO `treasure_spawn_points` VALUES (17490294,2,181,126.990,-1.319,49.802);
@@ -423,13 +423,13 @@ INSERT INTO `treasure_spawn_points` VALUES (17584469,3,150,-45.265,-0.477,224.26
 INSERT INTO `treasure_spawn_points` VALUES (17584469,4,22,-113.889,-0.449,255.583); -- Crawler's Nest
 INSERT INTO `treasure_spawn_points` VALUES (17584469,5,74,-129.480,-0.945,378.933); -- Crawler's Nest
 INSERT INTO `treasure_spawn_points` VALUES (17584469,6,206,-150.126,-0.904,341.438); -- Crawler's Nest
-INSERT INTO `treasure_spawn_points` VALUES (17596804,0,247,9.831,5.781,10.208);
-INSERT INTO `treasure_spawn_points` VALUES (17596804,1,65,-20.193,5.144,85.064);
-INSERT INTO `treasure_spawn_points` VALUES (17596804,2,65,100.057,-3.250,103.200);
-INSERT INTO `treasure_spawn_points` VALUES (17596804,3,0,-183.168,-3.250,59.951);
-INSERT INTO `treasure_spawn_points` VALUES (17596804,4,0,-127.756,0.000,379.906);
-INSERT INTO `treasure_spawn_points` VALUES (17596804,5,193,-20.570,-3.250,296.848);
-INSERT INTO `treasure_spawn_points` VALUES (17596804,6,193,20.042,-9.250,376.955);
+INSERT INTO `treasure_spawn_points` VALUES (17596803,0,247,9.831,5.781,10.208); -- Garlaige Citadel
+INSERT INTO `treasure_spawn_points` VALUES (17596803,1,65,-20.193,5.144,85.064); -- Garlaige Citadel
+INSERT INTO `treasure_spawn_points` VALUES (17596803,2,65,100.057,-3.250,103.200); -- Garlaige Citadel
+INSERT INTO `treasure_spawn_points` VALUES (17596803,3,0,-183.168,-3.250,59.951); -- Garlaige Citadel
+INSERT INTO `treasure_spawn_points` VALUES (17596803,4,0,-127.756,0.000,379.906); -- Garlaige Citadel
+INSERT INTO `treasure_spawn_points` VALUES (17596803,5,193,-20.570,-3.250,296.848); -- Garlaige Citadel
+INSERT INTO `treasure_spawn_points` VALUES (17596803,6,193,20.042,-9.250,376.955);  -- Garlaige Citadel
 INSERT INTO `treasure_spawn_points` VALUES (17617214,0,159,190.735,-0.191,-30.485); -- Ifrit's Cauldron
 INSERT INTO `treasure_spawn_points` VALUES (17617214,1,208,-71.694,19.585,-21.956); -- Ifrit's Cauldron
 INSERT INTO `treasure_spawn_points` VALUES (17617214,2,58,-64.669,20.035,-38.858); -- Ifrit's Cauldron

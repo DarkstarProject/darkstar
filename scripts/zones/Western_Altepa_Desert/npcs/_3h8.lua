@@ -14,28 +14,30 @@ require("scripts/zones/Western_Altepa_Desert/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+
 	local Ruby = GetNPCByID(17289743):getAnimation();
 	local Topaz = GetNPCByID(17289744):getAnimation();
 	local Emerald = GetNPCByID(17289745):getAnimation();
 	local Sapphire = GetNPCByID(17289746):getAnimation();
-	
+
 	if(Sapphire ~= 8) then
-		GetNPCByID(17289746):setAnimation(8);	
+		GetNPCByID(17289746):setAnimation(8);
 		GetNPCByID(17289742):setAnimation(8);
+			else
+				player:messageSpecial(DOES_NOT_RESPOND);
 	end
-	
+
 	if(Emerald == 8 and Ruby == 8 and Topaz == 8) then
 		rand = math.random(15,30);
 		timeDoor = rand * 60;
-		
+
 		-- Add timer for the door
 		GetNPCByID(17289738):openDoor(timeDoor);
 		-- Add same timer for the 4 columns
@@ -44,8 +46,7 @@ function onTrigger(player,npc)
 		GetNPCByID(17289741):openDoor(timeDoor);
 		GetNPCByID(17289742):openDoor(timeDoor);
 	end
-	
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

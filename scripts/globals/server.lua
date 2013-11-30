@@ -188,8 +188,8 @@ function SetTreasureSpawns()
        17396203, -- Castle Oztroja
        17420669, -- Middle Delkfutt's Tower
        17424556, -- Upper Delkfutt's Tower
-       17436991, -- Castle Zvahl Baileys
-       17441082, -- Castle Zvahl Keep
+       17436990, -- Castle Zvahl Baileys
+       17441081, -- Castle Zvahl Keep
        17498609, -- Sea Serpent Grotto
        17555947, -- King Ranperre's Tomb
        17559917, -- Dangruf Wadi
@@ -200,7 +200,7 @@ function SetTreasureSpawns()
        17580396, -- Gusgen Mines
        17584468, -- Crawler's Nest
        17588766, -- Maze of Shakhrami
-       17596803, -- Garlaige Citadel
+       17596802, -- Garlaige Citadel
        17613220, -- Fei'Yin
        17649890  -- Labyrinth of Onzozo
    }
@@ -215,14 +215,14 @@ function SetTreasureSpawns()
        17404383, -- The Boyahda Tree
        17428979, -- Temple of Uggalepih
        17433071, -- Den of Rancor
-       17436992, -- Castle Zvahl Baileys
-       17469829, -- Toraimarai Canal
+       17436991, -- Castle Zvahl Baileys
+       17469828, -- Toraimarai Canal
        17490294, -- Kuftal Tunnel
        17498610, -- Sea Serpent Grotto
        17502692, -- Ve'Lugannon Palace
        17576350, -- The Eldieme Necropolis
        17584469, -- Crawler's Nest
-       17596804, -- Garlaige Citadel
+       17596803, -- Garlaige Citadel
        17617214, -- Ifrit's Cauldron
        17629729  -- Quicksand Caves
    }

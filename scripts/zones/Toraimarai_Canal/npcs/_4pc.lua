@@ -2,8 +2,7 @@
 -- Area: Toraimarai Canal
 -- NPC:  Marble Door
 -- Involved In Windurst Mission 7-1
--- @zone 169
--- @pos 132 12 -19 169
+-- @pos 132 12 -19 169 169
 -----------------------------------
 package.loaded["scripts/zones/Toraimarai_Canal/TextIDs"] = nil;
 require("scripts/zones/Toraimarai_Canal/TextIDs");
@@ -14,14 +13,12 @@ require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
 
-
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -32,7 +29,7 @@ local CurrentMission = player:getCurrentMission(WINDURST);
 local MissionStatus = player:getVar("MissionStatus");
 local WindyKills = player:getVar("Windurst_7-1Kills");
 
--- NOTE: MobAction is 25(ACTION_SPAWN) when they're dead/despawned and 16(ACTION_ROAMING) when spawned. 
+-- NOTE: MobAction is 25(ACTION_SPAWN) when they're dead/despawned and 16(ACTION_ROAMING) when spawned.
 --		 Not really sure why but this seems to work.
 --		 print("HingeOil 1 Action: "..GetMobAction(17469666));
 
@@ -41,14 +38,14 @@ local WindyKills = player:getVar("Windurst_7-1Kills");
 			(GetMobAction(17469667) == 25) and
 			(GetMobAction(17469668) == 25) and
 			(GetMobAction(17469669) == 25)) then
-			
+
 			GetNPCByID(17469795):openDoor(2.5);
 		else
 			player:messageSpecial(3); -- It's sealed shut with incredibly strong magic
 		end
-	
+			else
+				player:messageSpecial(SEALED_SHUT);
 	end
-
 end;
 
 -----------------------------------
@@ -58,7 +55,6 @@ end;
 function onEventUpdate(player,csid,option)
 --printf("CSID2: %u",csid);
 --printf("RESULT2: %u",option);
-
 end;
 
 -----------------------------------
@@ -68,9 +64,4 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-
 end;
-
-
-
-
