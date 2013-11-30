@@ -2706,6 +2706,37 @@ inline int32 CLuaBaseEntity::addGearSetMod(lua_State *L)
 	return 1;
 }
 
+/************************************************************************
+*																		*
+*  Checks if character has a gear set mod								*
+*																		*
+************************************************************************/
+
+inline int32 CLuaBaseEntity::hasGearSetMod(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+	uint8 modNameId = lua_tonumber(L, 1);
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	for (uint8 i = 0; i < PChar->m_GearSetMods.size(); ++i)
+	{
+		GearSetMod_t* exsistingMod = &(GearSetMod_t)PChar->m_GearSetMods.at(i);
+		
+		if (modNameId == exsistingMod->modNameId)
+		{
+			lua_pushboolean(L, true);
+			return 1;
+		}
+	}  
+
+	lua_pushboolean(L, false);
+	return 1;
+}
+
+
 inline int32 CLuaBaseEntity::getAutomatonName(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
@@ -7656,6 +7687,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addVar),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,clearGearSetMods),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addGearSetMod),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasGearSetMod),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setPetName),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAutomatonName),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMaskBit),

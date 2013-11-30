@@ -2294,8 +2294,9 @@ void SmallPacket0x050(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 	charutils::EquipItem(PChar, slotID, equipSlotID);
     charutils::SaveCharEquip(PChar);
-
 	luautils::CheckForGearSet(PChar); // check for gear set on gear change
+    PChar->UpdateHealth();
+
 	return;
 }
 

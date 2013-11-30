@@ -455,7 +455,7 @@ enum MODIFIER
 	MOD_NULL_PHYSICAL_DAMAGE	  =0x1A0,// Chance to null physical damage.
 	MOD_QUICK_DRAW_TRIPLE_DAMAGE  =0x1A1,// Chance to do triple damage with quick draw.
 	MOD_BAR_ELEMENT_NULL_CHANCE	  =0x1A2,// Bar Elemental spells will occasionally nullify damage of the same element.
-
+	MOD_GRIMOIRE_INSTANT_CAST	  =0x1A3,// Spells that match your current Arts will occasionally cast instantly, without recast. 
 
 	// MOD_SPARE	=0x1A3,
 	// MOD_SPARE	=0x1A4,

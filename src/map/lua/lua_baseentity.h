@@ -259,6 +259,7 @@ public:
 
 	int32 clearGearSetMods(lua_State*);		// Clears a characters gear set mods
     int32 addGearSetMod(lua_State*);        // Sets the characters gear set mod
+    int32 hasGearSetMod(lua_State*);        // Checks if character already has a gear set mod
 
 	int32 setPetName(lua_State*);
     int32 getAutomatonName(lua_State*);
