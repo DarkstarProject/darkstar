@@ -440,17 +440,13 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
 			}
 
 			// наверное создание персонажа лучше вынести в метод charutils::LoadChar() и загрузку инвентаря туда же сунуть
-
 			CCharEntity* PChar = new CCharEntity();
-
 			PChar->id = CharID;
 			PChar->PBattleAI = new CAICharNormal(PChar);
 
 			charutils::LoadChar(PChar);
 			charutils::LoadInventory(PChar);
-
             luautils::OnGameIn(PChar);
-			luautils::CheckForGearSet(PChar); // check for gear set on login
 
             PChar->status = STATUS_DISAPPEAR;
 

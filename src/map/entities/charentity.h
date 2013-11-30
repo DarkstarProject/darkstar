@@ -151,6 +151,13 @@ struct UnlockedAttachments_t
 	uint32 attachments[8];
 };
 
+struct GearSetMod_t
+{
+	uint8	modNameId;
+	uint16	modId;
+	uint16	modValue;
+};
+
 /************************************************************************
 *                                                                       *
 *                                                                       *
@@ -283,6 +290,7 @@ public:
 	int32 addHP(int32 hp);
 	int32 addMP(int32 mp);
 
+	std::vector<GearSetMod_t> m_GearSetMods;		// The list of gear set mods currently applied to the character.
     std::vector<AuctionHistory_t> m_ah_history;		// AH history list (в будущем нужно использовать UContainer)
 
 	 CCharEntity();									// конструктор

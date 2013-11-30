@@ -3,194 +3,192 @@
 -- Gear sets
 -- Allows the use of gear sets with modifiers
 -----------------------------------
-
 require("scripts/globals/status");
-
 -----------------------------------
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- 			 Id, Name, Head, Body, Hand, Legs, Feet, Main, Sub, Neck, Back, ear1, ear2, ring1, ring2, ranged, ammo, Mod, Value 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+GearSets =  {1, {"Usukane",	16092,14554,14969,15633,15719,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,MOD_HASTE_GEAR,50},		--	Usukane's set (5% Haste)
+			 2, {"Skadi",	16088,14550,14965,15629,15715,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,MOD_CRITHITRATE,5}, 	--  Skadi's set (5% critrate is guess) 
+			 3, {"Ares",	16084,14546,14961,15625,15711,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,MOD_DOUBLE_ATTACK,5}, 	--	Ares's set (5% DA)
+			 4, {"Denali",	16107,14569,14984,15648,15734,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,MOD_ACC,20}, 			--	Denali Jacket Set (Increases Accuracy +20)
+			 5, {"Askar",	16106,14568,14983,15647,15733,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,MOD_HPP,10}, 			--	Askar Korazin Set (Max HP Boost %10)	
+		     6, {"Pahluwan",16069,14530,14940,15609,15695,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,MOD_SUBTLE_BLOW,8}, 	-- 	Pahluwan Khazagand Set (8% is guess) 
+			 7, {"Morrigan",16100,14562,14977,15641,15727,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,MOD_MATT,5}, 			-- 	Morrigan's Robe Set (+5 Magic. Atk Bonus) 			
+			 8, {"Marduk",	16096,14558,14973,15637,15723,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,MOD_FASTCAST,5}, 		--	Marduk's Jubbah Set (5% fastcast) 						
+			 9, {"Goliard",	16108,14570,14985,15649,15735,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,MOD_MDEF,10},			--  Goliard Saio Set - Total Set Bonus +10% Magic Def. Bonus
+			 10,{"Yigit",	16064,14527,14935,15606,15690,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,MOD_REFRESH,1}, 		--  Yigit Gomlek Set (1mp per tick) Adds "Refresh" effect
+			 11,{"Perle",	11503,13759,12745,14210,11413,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,MOD_HASTE_GEAR,50}, 	--  Perle Hauberk Set 5% haste
+			 12,{"Aurore",	11504,13760,12746,14257,11414,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,MOD_STORETP,8}, 		--  Aurore Doublet Set  store tp +8			
+			 13,{"TealSaio",11505,13778,12747,14258,11415,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,MOD_FASTCAST,10}, 		--  Teal Saio Set  fastcast 10%			
+			 14,{"Calma",	10890,10462,10512,11980,10610,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,MOD_HASTE_GEAR,61}, 	--  Calma Armor Set haste%6	
+			 15,{"Magavan",	10892,10464,10514,11982,10612,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,MOD_MACC,5}, 			--  Magavan Armor Set  magic accuracy +5
+			 16,{"Mustela",	10891,10463,10513,11981,10611,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,MOD_CRITHITRATE,5}, 	--  Mustela Harness Set  crit rate 5%
+			 17,{"IronRamH",16146,14588,15009,16315,15755,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},					--  Iron Ram Haubert Set
+			 18,{"FourthB", 16147,14589,15010,16316,15756,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0}, 					--  Fourth Division Brune Set
+			 19,{"CobraH",  16148,14590,15011,16317,15757,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0}, 					--  Cobra Unit Harness Set
+			 20,{"CobraR",  16149,14591,15012,16318,15758,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0}, 					--  Cobra Unit Robe Set
+			 21,{"IronRamC",6141,14581,15005,16312,15749,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0}, 					--  Iron Ram Chainmail Set. Double mod here! It is why it has 2 IDs.	
+			 23,{"FourthC", 16142,14582,15006,16313,15750,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0}, 					--  Fourth Division Cuirass Set
+			 24,{"CobraC",  16143,14583,15007,16314,15751,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0}, 					--  Cobra Unit Coat Set		
+			 25,{"Amir",    16062,14525,14933,15604,15688,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0}, 					--  Amir Korazin Set - Double mod here! It is why it has 2 IDs.
+			 27,{"Hachiryu",-1,11281,15015,16337,11364,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0}, 					--  Hachiryu Haramaki Set - Store tp
+			 28,{"Ravager", 11064,11084,11104,11124,11144,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},					--  Ravager's Armor +2 Set - Double attack double damage chance			 
+			 29,{"Fazheluo",11808,11850,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},							--  Fazheluo Mail Set. Set Bonus: "Double Attack"+5%. Active with any 2 pieces.
+			 29,{"Fazheluo",11808,11858,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},							--  Fazheluo Mail Set. Set Bonus: "Double Attack"+5%. Active with any 2 pieces.
+			 29,{"Fazheluo",11808,11857,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},							--  Fazheluo Mail Set. Set Bonus: "Double Attack"+5%. Active with any 2 pieces.
+			 29,{"Fazheluo",11824,11850,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},							--  Fazheluo Mail Set. Set Bonus: "Double Attack"+5%. Active with any 2 pieces.
+			 29,{"Fazheluo",11824,11858,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},							--  Fazheluo Mail Set. Set Bonus: "Double Attack"+5%. Active with any 2 pieces.
+			 29,{"Fazheluo",11824,11857,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},							--  Fazheluo Mail Set. Set Bonus: "Double Attack"+5%. Active with any 2 pieces.		 
+			 30,{"Cuauhtli",11809,11851,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},							--  Cuauhtli Harness Set. Set Bonus: Haste+8%. Active with any 2 pieces.
+			 30,{"Cuauhtli",11809,11859,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},							--  Cuauhtli Harness Set. Set Bonus: Haste+8%. Active with any 2 pieces.
+			 30,{"Cuauhtli",11825,11851,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},							--  Cuauhtli Harness Set. Set Bonus: Haste+8%. Active with any 2 pieces.
+			 30,{"Cuauhtli",11825,11859,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},							--  Cuauhtli Harness Set. Set Bonus: Haste+8%. Active with any 2 pieces.			 
+			 31,{"Hyskos",11810,11852,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},								--  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.
+			 31,{"Hyskos",11810,11860,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},								--  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.
+			 31,{"Hyskos",11826,11852,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},								--  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.	 
+			 31,{"Hyskos",11826,11860,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0}};							--  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.
+			 
 
--- 5 peice sets with 1 mod only
--- The order of id's must be as follows:
--- Head, Body, Hands, Legs, Feet, Mod, Value 
-
-item_set = {16084,{14546,14961,15625,15711,MOD_DOUBLE_ATTACK,5}, 	-- 	Ares's set (5% DA)
-			16088,{14550,14965,15629,15715,MOD_CRITHITRATE,5}, 		--  Skadi's set (5% critrate is guess) 
-			16092,{14554,14969,15633,15719,MOD_HASTE_GEAR,50},			--	Usukane's set (5% Haste)
-			16107,{14569,14984,15648,15734,MOD_ACC,20}, 			--	Denali Jacket Set (Increases Accuracy +20)
-			16106,{14568,14983,15647,15733,MOD_HPP,10}, 			--	Askar Korazin Set (Max HP Boost %10)	
-			16069,{14530,14940,15609,15695,MOD_SUBTLE_BLOW,8}, 		-- 	Pahluwan Khazagand Set (8% is guess) 
-			16100,{14562,14977,15641,15727,MOD_MATT,5}, 			-- 	Morrigan's Robe Set (+5 Magic. Atk Bonus) 			
-			16096,{14558,14973,15637,15723,MOD_FASTCAST,5}, 		--	Marduk's Jubbah Set (5% fastcast) 						
-			16108,{14570,14985,15649,15735,MOD_MDEF,10},			--  Goliard Saio Set - Total Set Bonus +10% Magic Def. Bonus
-			16064,{14527,14935,15606,15690,MOD_REFRESH,1}, 			--  Yigit Gomlek Set (1mp per tick) Adds "Refresh" effect
-			11503,{13759,12745,14210,11413,MOD_HASTE_GEAR,50}, 			--  Perle Hauberk Set 5% haste
-			11504,{13760,12746,14257,11414,MOD_STORETP,8}, 			--  Aurore Doublet Set  store tp +8			
-			11505,{13778,12747,14258,11415,MOD_FASTCAST,10}, 		--  Teal Saio Set  fastcast 10%			
-			10890,{10462,10512,11980,10610,MOD_HASTE_GEAR,61}, 			--  Calma Armor Set haste%6	
-			10892,{10464,10514,11982,10612,MOD_MACC,5}, 			--  Magavan Armor Set  magic accuracy +5
-			10891,{10463,10513,11981,10611,MOD_CRITHITRATE,5}}; 	--  Mustela Harness Set  crit rate 5%
-
-			
 		
-
+-------------------------------------------
+-- Checks for gear sets present on a player
+-------------------------------------------
 function checkForGearSet(player)
 
+	-- print("---Removed exsisting gear set mods!---\n");	
+	player:clearGearSetMods();
+	
 	local head = player:getEquipID(SLOT_HEAD);
 	local body = player:getEquipID(SLOT_BODY);
 	local hands = player:getEquipID(SLOT_HANDS);
 	local legs = player:getEquipID(SLOT_LEGS);	
 	local feet = player:getEquipID(SLOT_FEET);	
+	local main = player:getEquipID(SLOT_MAIN);
+	local sub = player:getEquipID(SLOT_SUB);	
+	local neck = player:getEquipID(SLOT_NECK);
+	local back = player:getEquipID(SLOT_BACK);	
+	local ear1 = player:getEquipID(SLOT_EAR1);
+	local ear2 = player:getEquipID(SLOT_EAR2);
+	local ring1 = player:getEquipID(SLOT_RING1);	
+	local ring2 = player:getEquipID(SLOT_RING2);
+	local ranged = player:getEquipID(SLOT_RANGED);
+	local ammo = player:getEquipID(SLOT_AMMO);	
 	
-	playerGetMod = player:getVar("GearSetMod");
-	
-	if (playerGetMod > 0) then
-		removeGearSetMod(player,playerGetMod);
+	for setIndex = 1, table.getn(GearSets), 2 do	
+		local matches = 0;			
+		if (head == GearSets[setIndex+1][2]) then matches = matches + 1; end;
+		if (body == GearSets[setIndex+1][3]) then matches = matches + 1; end;
+		if (hands == GearSets[setIndex+1][4]) then matches = matches + 1; end;
+		if (legs == GearSets[setIndex+1][5]) then matches = matches + 1; end;
+		if (feet == GearSets[setIndex+1][6]) then matches = matches + 1; end;
+		if (main == GearSets[setIndex+1][7]) then matches = matches + 1; end;
+		if (sub == GearSets[setIndex+1][8]) then matches = matches + 1; end;
+		if (neck == GearSets[setIndex+1][9]) then matches = matches + 1; end;
+		if (back == GearSets[setIndex+1][10]) then matches = matches + 1; end;
+		if (ear1 == GearSets[setIndex+1][11]) then matches = matches + 1; end;
+		if (ear2 == GearSets[setIndex+1][12]) then matches = matches + 1; end;
+		if (ring1 == GearSets[setIndex+1][13]) then matches = matches + 1; end;
+		if (ring2 == GearSets[setIndex+1][14]) then matches = matches + 1; end;		
+		if (ranged == GearSets[setIndex+1][15]) then matches = matches + 1; end;
+		if (ammo == GearSets[setIndex+1][16]) then matches = matches + 1; end;		
+		if (matches > 1) then
+			SearchMods(player, GearSets[setIndex], GearSets[setIndex+1][1], matches);
+		end		
 	end
+end;
+
+---------------------------------------
+-- Applys a gear set mod
+---------------------------------------
+function ApplyMod(player, modNameId, modId, modValue)
+
+	player:addGearSetMod(modNameId, modId, modValue);
+	-- print("---Gear set found!!!!!!!!!!!!!!!!!!!!!!!---\n");
+end;
+
+---------------------------------------
+-- Searchs for a gear set mod
+---------------------------------------
+function SearchMods(player, modNameId, name, matches)
+
+	if (name == "Ares" and matches == 5) then 		ApplyMod(player, modNameId, MOD_DOUBLE_ATTACK, 5); return; end
+	if (name == "Skadi" and matches == 5) then 		ApplyMod(player, modNameId, MOD_CRITHITRATE, 5); return; end	
+	if (name == "Usukane" and matches == 5) then 	ApplyMod(player, modNameId, MOD_HASTE_GEAR, 50); return; end		
+	if (name == "Denali" and matches == 5) then		ApplyMod(player, modNameId, MOD_ACC, 20); return; end		
+	if (name == "Askar" and matches == 5) then 		ApplyMod(player, modNameId, MOD_HPP, 10); return; end	
+	if (name == "Pahluwan" and matches == 5) then 	ApplyMod(player, modNameId, MOD_SUBTLE_BLOW, 8); return; end	
+	if (name == "Morrigan" and matches == 5) then 	ApplyMod(player, modNameId, MOD_MATT, 5); return; end		
+	if (name == "Marduk" and matches == 5) then 	ApplyMod(player, modNameId, MOD_FASTCAST, 5); return; end		
+	if (name == "Goliard" and matches == 5) then 	ApplyMod(player, modNameId, MOD_MDEF, 10); return; end		
+	if (name == "Yigit" and matches == 5) then 		ApplyMod(player, modNameId, MOD_REFRESH, 1); return; end							
+	if (name == "Perle" and matches == 5) then 		ApplyMod(player, modNameId, MOD_HASTE_GEAR, 50); return; end			
+	if (name == "Aurore" and matches == 5) then 	ApplyMod(player, modNameId, MOD_STORETP, 8); return; end		
+	if (name == "TealSaio" and matches == 5) then 	ApplyMod(player, modNameId, MOD_FASTCAST, 10); return; end		
+	if (name == "Calma" and matches == 5) then 		ApplyMod(player, modNameId, MOD_HASTE_GEAR, 61); return; end		
+	if (name == "Magavan" and matches == 5) then 	ApplyMod(player, modNameId, MOD_MACC, 5); return; end	
+	if (name == "Mustela" and matches == 5) then 	ApplyMod(player, modNameId, MOD_CRITHITRATE, 5); return; end	
+	if (name == "Ravager" and matches == 5) then 	ApplyMod(player, modNameId, MOD_DA_DOUBLE_DAMAGE, 5); return; end
+	if (name == "CobraR" and matches > 1) then 		ApplyMod(player, modNameId, MOD_MACC, matches-1); return; end		
+	if (name == "CobraH" and matches > 1) then 		ApplyMod(player, modNameId, MOD_COUNTER, matches-1); return; end	
+	if (name == "FourthC" and matches > 1) then		ApplyMod(player, modNameId, MOD_HP, matches -1 * 10); return; end 	-- Bonus increases by +10 after the 2nd piece.
+	if (name == "CobraC" and matches > 1) then 		ApplyMod(player, modNameId, MOD_MP, matches -1 * 10); return; end 	-- Bonus increases by +10 after the 2nd piece.			
+	if (name == "FourthB" and matches > 2) then 	ApplyMod(player, modNameId, MOD_ATT, matches -2 * 5); return; end	-- increases in multiples of 5 after the 2nd piece.	
+	if (name == "Fazheluo" and matches > 1) then 	ApplyMod(player, modNameId, MOD_DOUBLE_ATTACK, 5); return; end		-- Fazheluo Mail Set. Set Bonus: "Double Attack"+5%. Active with any 2 pieces.	
+	if (name == "Cuauhtli" and matches > 1) then 	ApplyMod(player, modNameId, MOD_HASTE_GEAR, 80); return; end		-- Cuauhtli Harness Set. Set Bonus: Haste+8%. 2 peice set.
+	if (name == "Hyskos" and matches > 1) then 		ApplyMod(player, modNameId, MOD_MATT, 5); return; end				-- Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.	
+						
 	
-	for setIndex = 1, table.getn(item_set), 2 do
-		if (head == item_set[setIndex]) then
-			if (body == item_set[setIndex+1][1]) then
-				if (hands == item_set[setIndex+1][2]) then
-					if (legs == item_set[setIndex+1][3]) then
-						if (feet == item_set[setIndex+1][4]) then
-							player:setVar("GearSetMod",head);
-							player:addMod(item_set[setIndex+1][5],item_set[setIndex+1][6]);
-							-- print("---Gear set found!---\n"); -- these notes can be removed after all gear sets are complete
-							return;
-						end					
-					end				
-				end
-			end
+	-- Each piece +5 resistance after the first one. Additional +10 for the whole set. Set Bonus: Increases resistance against all elements. (+30 Resist)
+	if (name == "IronRamH" and matches > 1) then 
+		local modValue = matches -1 * 5;
+		if (matches == 5) then 
+			modValue = modValue + 10; 
 		end
-	end
+		-- TODO: need the correct mod name for this
+		-- ApplyMod(player, modNameId, MOD_ALL_ELEMENTAL_RESISTANCE, modValue);	
+		return;
+	end		
+	
+	-- Set Bonus: Increases Attack and Accuracy -- Bonus increases by 1 each after the 2nd piece. -- 2 Pieces: +1 Accuracy / +1 Attack -- 3 Pieces: +2 Accuracy / +2 Attack -- 4 Pieces: +3 Accuracy / +3 Attack -- 5 Pieces: +4 Accuracy / +4 Attack
+	if (name == "IronRamC" and matches > 1) then
+		ApplyMod(player, modNameId, MOD_ACC, matches-1);
+		ApplyMod(player, modNameId +1, MOD_ATT, matches-1);		
+	end			
+	
+	-- Set Bonus: Reduces magic and breath damage (10%)
+	if (name == "Amir" and matches == 5) then
+		-- TODO: find correct mod names. mod values are already correct
+		-- ApplyMod(player, modNameId, MOD_REDUCE_BREATH_DAMAGE, matches-1);
+		-- ApplyMod(player, modNameId+1, MOD_REDUCE MAGIC_DAMAGE, matches-1);		
+	end		
+	
+	-- Set Bonus: Enhances "Store TP" Effect -- 2 pieces: +5 Store TP -- 3 pieces: +10 Store TP -- 4 pieces: +20 Store TP	
+	if (name == "Hachiryu" and matches > 1) then
+		local modValue = 0;		
+		if (matches == 2) then modValue = 5; end
+		if (matches == 3) then modValue = 10; end
+		if (matches == 4) then modValue = 20; end				
+		ApplyMod(player, modNameId, MOD_STORETP, modValue);
+	end	
+	
 end;
 
 
 
 
 
-function removeGearSetMod(player, itemid)
-	
-	for setIndex = 1, table.getn(item_set), 2 do
-		if (itemid == item_set[setIndex]) then
-			player:setVar("GearSetMod",0);
-			player:delMod(item_set[setIndex+1][5],item_set[setIndex+1][6]);
-			-- print("---Gear set mod removed!---\n"); -- these notes can be removed after all gear sets are complete
-			return;
-		end
-	end
-end;
+
+
+
+
 
 
 
 
 
 --[[ 	Unimplemented sets below
-
-
-
--- Amir Korazin Set
--------------
-16062 -- Amir Puggaree
-14525 -- Amir Korazin
-14933 -- Amir Kolluks
-15604 -- Amir Dirs
-15688 -- Amir Boots
--- Set Bonus: Reduces magic and breath damage
--- -8% magic and breath damage unconfirmed. Only active with full set. (!--'-10% would round value out better at 2x5)
-
-
-
-=======
-Campaign Allied Notes
-=======
-
--- Iron Ram Haubert Set 
--------------
-16146 -- Iron Ram Sallet
-14588 -- Iron Ram Hauberk
-15009 -- Iron Ram Dastanas
-16315 -- Iron Ram Hose
-15755 -- Iron Ram Greaves
--- Set Bonus: Increases resistance against all elements. (+30 Resist)
--- Each piece +5 resistance after the first one.
--- Additional +10 for the whole set.
-
--- Fourth Division Brune Set
--------------
-16147 -- Fourth Division Haube
-14589 -- Fourth Division Brunne
-15010 -- Fourth Division Hentzes
-16316 -- Fourth Division Schoss
-15756 -- Fourth Division Schuhs
--- Set Bonus: Increases Attack
--- Set increases in multiples of 5 after the 2nd piece.
--- 2 pieces: Attack+1
--- 3 pieces: Attack+5
--- 4 Pieces: Attack+10
--- Full Set: Attack+15
-
--- Cobra Unit Harness Set
--------------
-16148 -- Cobra Unit Cap
-14590 -- Cobra Unit Harness
-15011 -- Cobra Unit Mittens
-16317 -- Cobra Unit Subligar
-15757 -- Cobra Unit Leggings
--- Set Bonus: Enhances "Counter" effect
--- Counter +1 per piece after the first (+4 Counter)
-
--- Cobra Unit Robe Set
--------------
-16149 -- Cobra Unit Cloche
-14591 -- Cobra Unit Robe
-15012 -- Cobra Unit Gloves
-16318 -- Cobra Unit Trews
-15758 -- Cobra Unit Crackows
--- Set Bonus: Increases Magic Accuracy
--- +1 each piece after the first. (+4 Magic Accuracy)
-
--- Iron Ram Chainmail Set
--------------
-16141 -- Iron Ram Helm
-14581 -- Iron Ram Chainmail
-15005 -- Iron Ram Mufflers
-16312 -- Iron Ram Breeches
-15749 -- Iron Ram Sollerets
--- Set Bonus: Increases Attack and Accuracy
--- Bonus increases by 1 each after the 2nd piece.
--- 2 Pieces: +1 Accuracy / +1 Attack
--- 3 Pieces: +2 Accuracy / +2 Attack
--- 4 Pieces: +3 Accuracy / +3 Attack
--- 5 Pieces: +4 Accuracy / +4 Attack
-
--- Fourth Division Cuirass Set
--------------
-16142 -- Fourth Division Armet
-14582 -- Fourth Division Cuirass
-15006 -- Fourth Division Gauntlets
-16313 -- Fourth Division Cuisses
-15750 -- Fourth Division Sabatons
--- Set Bonus: Increases HP
--- Bonus increases by +10 after the 2nd piece.
--- 2 pieces: +10 HP
--- 3 pieces: +20 HP
--- 4 pieces: +30 HP
--- 5 pieces: +40 HP
-
--- Cobra Unit Coat Set
--------------
-16143 -- Cobra Unit Hat
-14583 -- Cobra Unit Coat
-15007 -- Cobra Unit Cuffs
-16314 -- Cobra Unit Slops
-15751 -- Cobra Unit Pigaches
--- Set Bonus: Increases MP
--- Bonus increases by +10 after the 2nd piece.
--- 2 pieces: +10 MP
--- 3 pieces: +20 MP
--- 4 pieces: +30 MP
--- 5 pieces: +40 MP
 
 =======
 Stronghold NM(WOTG)
@@ -247,51 +245,6 @@ Stronghold NM(WOTG)
 -- Set Bonus: Enhances "Souleater" Effect
 
 =======
-ZNM
-=======
-
---Hachiryu Haramaki Set
--------------
--- NO HEADPIECE
-11281 -- Hachiryu Haramaki
-15015 -- Hachiryu Kote
-16337 -- Hachiryu Haidate
-11364 -- Hachiryu Sune-Ate
--- Set Bonus: Enhances "Store TP" Effect
--- 2 pieces: +5 Store TP
--- 3 pieces: +10 Store TP
--- 4 pieces: +20 Store TP
-
-
-
---Fazheluo Mail Set
--------------
-11808 -- Fazheluo Helm
-11824 -- Fazleluo Helm+1
-11850 -- Fazheluo Mail
-11858 -- Fazheluo Mail+1
-11857 -- Fazheluo Radiant Mail
--- Set Bonus: "Double Attack"+5%
--- active with any 2 pieces.
-
---Cuauhtli Harness Set
--------------
-11809 -- Cuauhtli Headpiece
-11825 -- Cuauhtli Headpiece+1
-11851 -- Cuauhtli Harness
-11859 -- Cuauhtli Harness+1
--- Set Bonus: Haste+8%
--- active with any 2 pieces.
-
---Hyskos Robe Set
--------------
-11810 -- Hyksos Khat
-11826 -- Hyksos Khat+1
-11852 -- Hyksos Robe
-11860 -- Hyksos Robe+1
--- Set Bonus: Magic Accuracy+5
-
-=======
 Abyssea (Shinryu)
 =======
 --Twilight Mail Set
@@ -334,9 +287,6 @@ Voidwatch
 -- Set Bonus: Enhances "Fast Cast" Effect
 -- 2 or 3 pieces equipped: Fast Cast +4
 -- 4 or 5 pieces equipped: Fast Cast +10 
-
-
-
 
 =======
 Empyrean +2
@@ -523,15 +473,7 @@ Empyrean +2
 -- Set Bonus: Augments "Triple Attack"
 -- "Triple Attack" - Occasionally causes the second and third hits of a Triple Attack to deal triple damage.Verification Needed Requires a minimum of two pieces. 
 
---Ravager's Armor +2 Set
--------------
-11064 -- Ravager's Mask+2
-11084 -- Ravager's Lorica+2
-11104 -- Ravager's Mufflers+2
-11124 -- Ravager's Cuisses+2
-11144 -- Ravager's Calligae+2
--- Set Bonus: Augments "Double Attack"
--- Causes Double Attacks to occasionally deal double damage. 
+
 
 --Orison Attire +2 Set
 -------------

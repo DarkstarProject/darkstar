@@ -15377,3 +15377,10 @@ INSERT INTO `item_mods` VALUES(11256, 1, 21); -- def
 INSERT INTO `item_mods` VALUES(11256, 9, 4); -- dex
 INSERT INTO `item_mods` VALUES(11256, 8, 4); -- str
 INSERT INTO `item_mods` VALUES(11256, 384, 30); -- haste
+
+-- -------------------------------------------------------
+-- Tiercel Necklace
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11578, 289, 5); -- subtle blow
+INSERT INTO `item_mods` VALUES(11578, 384, 10); -- haste
+

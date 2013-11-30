@@ -11,6 +11,7 @@ require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/status");
 require("scripts/globals/titles");
+require("scripts/globals/gear_sets");
 
 -----------------------------------
 -- onGameIn
@@ -20,8 +21,8 @@ function onGameIn(player, firstlogin)
     if (firstlogin) then
         CharCreate(player);
     end;
-
-
+	
+	checkForGearSet(player);
 
     if (player:getVar("GodMode") == 1) then
 	player:addStatusEffect(EFFECT_SENTINEL,100,0,0);

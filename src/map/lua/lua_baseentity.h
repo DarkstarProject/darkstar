@@ -257,6 +257,9 @@ public:
 	int32 setVar(lua_State*);				// Sets a character variable
     int32 addVar(lua_State*);               // Increments/decriments/sets a character variable
 
+	int32 clearGearSetMods(lua_State*);		// Clears a characters gear set mods
+    int32 addGearSetMod(lua_State*);        // Sets the characters gear set mod
+
 	int32 setPetName(lua_State*);
     int32 getAutomatonName(lua_State*);
 
@@ -472,6 +475,7 @@ public:
     int32 hasAttachment(lua_State* L);
     int32 disableLevelSync(lua_State* L);
     int32 updateHealth(lua_State* L);
+
 };
 
 #endif

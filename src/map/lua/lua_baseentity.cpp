@@ -91,7 +91,7 @@
 #include "../spell.h"
 #include "../trade_container.h"
 #include "../utils/zoneutils.h"
-
+#include "../entities/charentity.h"
 
 
 CLuaBaseEntity::CLuaBaseEntity(lua_State* L)
@@ -2640,6 +2640,70 @@ inline int32 CLuaBaseEntity::setPetName(lua_State *L)
 		}
 	}
     return 0;
+}
+
+/************************************************************************
+*																		*
+*  Clears a characters gear set mods									*
+*																		*
+************************************************************************/
+
+inline int32 CLuaBaseEntity::clearGearSetMods(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	for (uint8 i = 0; i < PChar->m_GearSetMods.size(); ++i)
+	{
+		GearSetMod_t* gearSetMod = &(GearSetMod_t)PChar->m_GearSetMods.at(i);
+		PChar->delModifier(gearSetMod->modId, gearSetMod->modValue);
+	}  
+	PChar->m_GearSetMods.clear();
+
+	lua_pushnil(L);
+	return 1;
+}
+
+/************************************************************************
+*																		*
+*  Adds a gear set mod													*
+*																		*
+************************************************************************/
+
+inline int32 CLuaBaseEntity::addGearSetMod(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L,3) || !lua_isnumber(L,3));
+
+	GearSetMod_t gearSetMod;
+	gearSetMod.modNameId = lua_tonumber(L, 1);
+	gearSetMod.modId = lua_tonumber(L, 2);
+	gearSetMod.modValue = lua_tonumber(L, 3);
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	for (uint8 i = 0; i < PChar->m_GearSetMods.size(); ++i)
+	{
+		GearSetMod_t* exsistingMod = &(GearSetMod_t)PChar->m_GearSetMods.at(i);
+		
+		if (gearSetMod.modNameId == exsistingMod->modNameId)
+		{
+			lua_pushnil(L);
+			return 1;
+		}
+	}  
+
+	PChar->m_GearSetMods.push_back(gearSetMod);
+	PChar->addModifier(gearSetMod.modId, gearSetMod.modValue);
+
+	lua_pushnil(L);
+	return 1;
 }
 
 inline int32 CLuaBaseEntity::getAutomatonName(lua_State* L)
@@ -7590,6 +7654,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getVar),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setVar),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addVar),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,clearGearSetMods),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addGearSetMod),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setPetName),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAutomatonName),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMaskBit),
