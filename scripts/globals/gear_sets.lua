@@ -45,13 +45,24 @@ GearSets =  {1, {"Usukane",	16092,14554,14969,15633,15719,-1,-1,-1,-1,-1,-1,-1,-
 			 30,{"Cuauhtli",11809,11859,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},							--  Cuauhtli Harness Set. Set Bonus: Haste+8%. Active with any 2 pieces.
 			 30,{"Cuauhtli",11825,11851,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},							--  Cuauhtli Harness Set. Set Bonus: Haste+8%. Active with any 2 pieces.
 			 30,{"Cuauhtli",11825,11859,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},							--  Cuauhtli Harness Set. Set Bonus: Haste+8%. Active with any 2 pieces.			 
-			 31,{"Hyskos",11810,11852,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},								--  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.
-			 31,{"Hyskos",11810,11860,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},								--  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.
-			 31,{"Hyskos",11826,11852,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},								--  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.	 
-			 31,{"Hyskos",11826,11860,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0}};							--  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.
+			 31,{"Hyskos",	11810,11852,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},							--  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.
+			 31,{"Hyskos",	11810,11860,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},							--  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.
+			 31,{"Hyskos",	11826,11852,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},							--  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.	 
+			 31,{"Hyskos",	11826,11860,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},							--  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.
+			 32,{"Ogier", 	10876,10450,10500,11969,10600,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},					--  Ogier's Armor Set. Set Bonus: Adds "Refresh" Effect. Provides 1 mp/tick for 2-3 pieces worn, 2 mp/tick for 4-5 pieces worn.
+			 33,{"Athos", 	10877,10451,10501,11970,10601,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},					--  Athos's Armor Set. Set Bonus: Increases rate of critical hits. Gives +3% for the first 2 pieces and +1% for every additional piece. 
+			 34,{"Rubeus",	10878,10452,10502,11971,10602,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},					--  Rubeus Armor Set. Set Bonus: Enhances "Fast Cast" Effect. 2 or 3 pieces equipped: Fast Cast +4, 4 or 5 pieces equipped: Fast Cast +10 	
+			 35,{"Navarch",	11080,11100,11120,11140,11160,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},					--  Navarch's Attire +2 Set. Set Bonus: Augments "Quick Draw". Quick Draw will occasionally deal triple damage.
+			 36,{"Charis",	11082,11102,11122,11142,11162,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},					--  Charis Attire +2 Set. Set Bonus: Augments "Samba". Occasionally doubles damage with Samba up. Adds approximately 1-2% per piece past the first. 		
+			 37,{"Iga",		11076,11096,11116,11136,11156,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},					--	Iga Garb +2 Set. Set Bonus: Augments "Dual Wield". Attacks made while dual wielding occasionally add an extra attack
+			 38,{"Sylvan",	11074,11094,11114,11134,11154,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},					--	Sylvan Attire +2 Set. Set Bonus: Augments "Rapid Shot". Rapid Shots occasionally deal double damage.	 
+			 39,{"Creed",	11070,11090,11110,11130,11150,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},					--	Creed Armor +2 Set. Set Bonus: Occasionally absorbs damage taken. Set proc believed to be somewhere around 5%, more testing needed. Verification Needed Absorb rate likely varies with # of set pieces.  
+			 40,{"Unkai",	11075,11095,11115,11135,11155,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},					--	Unkai Domaru +2 Set. Set Bonus: Augments "Zanshin". Zanshin attacks will occasionally deal double damage.
+			 41,{"Tantra",	11065,11085,11105,11125,11145,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},					--	Tantra Attire +2 Set. Set Bonus: Augments "Kick Attacks". Occasionally allows a second Kick Attack during an attack round without the use of Footwork. 	
+			 42,{"Raider",	11069,11089,11109,11129,11149,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0},					--	Raider's Attire +2 Set. Set Bonus: Augments "Triple Attack". Occasionally causes the second and third hits of a Triple Attack to deal triple damage.Verification Needed Requires a minimum of two pieces. 
+			 43,{"Orison",	11066,11086,11106,11126,11146,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0}};					--	Orison Attire +2 Set. Set Bonus: Augments elemental resistance spells. Bar Elemental spells will occasionally nullify damage of the same element.	 
 			 
-
-		
+	
 -------------------------------------------
 -- Checks for gear sets present on a player
 -------------------------------------------
@@ -105,7 +116,7 @@ end;
 function ApplyMod(player, modNameId, modId, modValue)
 
 	player:addGearSetMod(modNameId, modId, modValue);
-	-- print("---Gear set found!!!!!!!!!!!!!!!!!!!!!!!---\n");
+	 print("---Gear set found!!!!!!!!!!!!!!!!!!!!!!!---\n");
 end;
 
 ---------------------------------------
@@ -113,6 +124,10 @@ end;
 ---------------------------------------
 function SearchMods(player, modNameId, name, matches)
 
+	local extraDamageChance = 35;
+	local extraAttackChance = 25;
+	local nullDamageChance = 15;
+	
 	if (name == "Ares" and matches == 5) then 		ApplyMod(player, modNameId, MOD_DOUBLE_ATTACK, 5); return; end
 	if (name == "Skadi" and matches == 5) then 		ApplyMod(player, modNameId, MOD_CRITHITRATE, 5); return; end	
 	if (name == "Usukane" and matches == 5) then 	ApplyMod(player, modNameId, MOD_HASTE_GEAR, 50); return; end		
@@ -137,9 +152,91 @@ function SearchMods(player, modNameId, name, matches)
 	if (name == "FourthB" and matches > 2) then 	ApplyMod(player, modNameId, MOD_ATT, matches -2 * 5); return; end	-- increases in multiples of 5 after the 2nd piece.	
 	if (name == "Fazheluo" and matches > 1) then 	ApplyMod(player, modNameId, MOD_DOUBLE_ATTACK, 5); return; end		-- Fazheluo Mail Set. Set Bonus: "Double Attack"+5%. Active with any 2 pieces.	
 	if (name == "Cuauhtli" and matches > 1) then 	ApplyMod(player, modNameId, MOD_HASTE_GEAR, 80); return; end		-- Cuauhtli Harness Set. Set Bonus: Haste+8%. 2 peice set.
-	if (name == "Hyskos" and matches > 1) then 		ApplyMod(player, modNameId, MOD_MATT, 5); return; end				-- Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.	
-						
+	if (name == "Hyskos" and matches > 1) then 		ApplyMod(player, modNameId, MOD_MATT, 5); return; end				-- Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.			
+				 
+	--	Orison Attire +2 Set. Set Bonus: Augments elemental resistance spells. Bar Elemental spells will occasionally nullify damage of the same element.	 
+	if (name == "Orison" and matches > 4) then
+		ApplyMod(player, modNameId, MOD_BAR_ELEMENT_NULL_CHANCE, nullDamageChance);
+		return;		
+	end		
 	
+	--	Raider's Attire +2 Set. Set Bonus: Augments "Triple Attack". Occasionally causes the second and third hits of a Triple Attack to deal triple damage.Verification Needed Requires a minimum of two pieces. 
+	if (name == "Raider" and matches > 1) then
+		ApplyMod(player, modNameId, MOD_TA_TRIPLE_DAMAGE, extraDamageChance);
+		return;		
+	end			 
+	
+	--	Tantra Attire +2 Set. Set Bonus: Augments "Kick Attacks". Occasionally allows a second Kick Attack during an attack round without the use of Footwork. 	
+	if (name == "Tantra" and matches > 4) then
+		ApplyMod(player, modNameId, MOD_EXTRA_KICK_ATTACK, extraAttackChance);
+		return;		
+	end
+			 
+	--	Unkai Domaru +2 Set. Set Bonus: Augments "Zanshin". Zanshin attacks will occasionally deal double damage.
+	if (name == "Unkai" and matches > 4) then
+		ApplyMod(player, modNameId, MOD_ZANSHIN_DOUBLE_DAMAGE, extraDamageChance);
+		return;
+	end				
+		
+	--	Creed Armor +2 Set. Set Bonus: Occasionally absorbs damage taken. Set proc believed to be somewhere around 5%, more testing needed. Verification Needed Absorb rate likely varies with # of set pieces.  
+	if (name == "Creed" and matches > 4) then
+		ApplyMod(player, modNameId, MOD_ABSORB_DMG_CHANCE, 5);
+		return;		
+	end	
+					
+	--	Sylvan Attire +2 Set. Set Bonus: Augments "Rapid Shot". Rapid Shots occasionally deal double damage.	 
+	if (name == "Sylvan" and matches > 4) then
+		ApplyMod(player, modNameId, MOD_RAPID_SHOT_DOUBLE_DAMAGE, extraDamageChance);	
+		return;
+	end
+	 
+	--Iga Garb +2 Set. Set Bonus: Augments "Dual Wield". Attacks made while dual wielding occasionally add an extra attack
+	if (name == "Iga" and matches > 4) then
+		ApplyMod(player, modNameId, MOD_EXTRA_DUAL_WIELD_ATTACK, extraAttackChance);
+		return;		
+	end
+
+	--  Charis Attire +2 Set. Set Bonus: Augments "Samba". Occasionally doubles damage with Samba up. Adds approximately 1-2% per piece past the first. 
+	if (name == "Charis" and matches > 4) then
+		ApplyMod(player, modNameId, MOD_SAMBA_DOUBLE_DAMAGE, extraDamageChance);
+		return;		
+	end
+				
+	--  Navarch's Attire +2 Set. Set Bonus: Augments "Quick Draw". Quick Draw will occasionally deal triple damage.
+	if (name == "Navarch" and matches > 4) then
+		ApplyMod(player, modNameId, MOD_QUICK_DRAW_TRIPLE_DAMAGE, extraDamageChance);
+		return;		
+	end	
+	
+	--  Rubeus Armor Set. Set Bonus: Enhances "Fast Cast" Effect. 2 or 3 pieces equipped: Fast Cast +4. 4 or 5 pieces equipped: Fast Cast +10 
+	if (name == "Rubeus" and matches > 1) then
+		local modValue = 0;
+		if (matches > 1 and matches < 4) then modValue = 4;	end -- 2 or 3 peices
+		if (matches > 3) then modValue = 10;	end -- 4 or 5 peices	
+		ApplyMod(player, modNameId, MOD_FASTCAST, modValue);
+		return;		
+	end
+	
+	--  Athos's Armor Set. Set Bonus: Increases rate of critical hits. Gives +3% for the first 2 pieces and +1% for every additional piece. 
+	if (name == "Athos" and matches > 1) then
+		local modValue = 0;
+		if (matches > 1) then modValue = 3;	end -- 2 peices
+		if (matches > 2) then modValue = modValue+1; end -- 3 peices
+		if (matches > 3) then modValue = modValue+1; end -- 4 peices
+		if (matches > 4) then modValue = modValue+1; end -- 5 peices		
+		ApplyMod(player, modNameId, MOD_CRITHITRATE, modValue);
+		return;	
+	end	
+					
+	--  Ogier's Armor Set. Set Bonus: Adds "Refresh" Effect. Provides 1 mp/tick for 2-3 pieces worn, 2 mp/tick for 4-5 pieces worn.
+	if (name == "Ogier" and matches > 1) then
+		local modValue = 0;
+		if (matches > 1 and matches < 4) then modValue = 1;	end
+		if (matches > 3) then modValue = 2; end
+		ApplyMod(player, modNameId, MOD_REFRESH, modValue);
+		return;
+	end
+						
 	-- Each piece +5 resistance after the first one. Additional +10 for the whole set. Set Bonus: Increases resistance against all elements. (+30 Resist)
 	if (name == "IronRamH" and matches > 1) then 
 		local modValue = matches -1 * 5;
@@ -154,14 +251,16 @@ function SearchMods(player, modNameId, name, matches)
 	-- Set Bonus: Increases Attack and Accuracy -- Bonus increases by 1 each after the 2nd piece. -- 2 Pieces: +1 Accuracy / +1 Attack -- 3 Pieces: +2 Accuracy / +2 Attack -- 4 Pieces: +3 Accuracy / +3 Attack -- 5 Pieces: +4 Accuracy / +4 Attack
 	if (name == "IronRamC" and matches > 1) then
 		ApplyMod(player, modNameId, MOD_ACC, matches-1);
-		ApplyMod(player, modNameId +1, MOD_ATT, matches-1);		
+		ApplyMod(player, modNameId +1, MOD_ATT, matches-1);
+		return;		
 	end			
 	
 	-- Set Bonus: Reduces magic and breath damage (10%)
 	if (name == "Amir" and matches == 5) then
 		-- TODO: find correct mod names. mod values are already correct
 		-- ApplyMod(player, modNameId, MOD_REDUCE_BREATH_DAMAGE, matches-1);
-		-- ApplyMod(player, modNameId+1, MOD_REDUCE MAGIC_DAMAGE, matches-1);		
+		-- ApplyMod(player, modNameId+1, MOD_REDUCE MAGIC_DAMAGE, matches-1);
+		return;		
 	end		
 	
 	-- Set Bonus: Enhances "Store TP" Effect -- 2 pieces: +5 Store TP -- 3 pieces: +10 Store TP -- 4 pieces: +20 Store TP	
@@ -171,21 +270,10 @@ function SearchMods(player, modNameId, name, matches)
 		if (matches == 3) then modValue = 10; end
 		if (matches == 4) then modValue = 20; end				
 		ApplyMod(player, modNameId, MOD_STORETP, modValue);
+		return;	
 	end	
 	
 end;
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 --[[ 	Unimplemented sets below
@@ -254,41 +342,6 @@ Abyssea (Shinryu)
 -- Set Bonus: Auto-Reraise
 
 =======
-Voidwatch
-=======
-
---Ogier's Armor Set
--------------
-10876 -- Ogier's Helm
-10450 -- Ogier's Surcoat
-10500 -- Ogier's Gauntlets
-11969 -- Ogier's Breeches
-10600 -- Ogier's Leggings
--- Set Bonus: Adds "Refresh" Effect
--- Provides 1 mp/tick for 2-3 pieces worn, 2 mp/tick for 4-5 pieces worn.
-
---Athos's Armor Set
--------------
-10877 -- Athos's Chapeau
-10451 -- Athos's Tabard
-10501 -- Athos's Gloves
-11970 -- Athos's Tights
-10601 -- Athos's Boots
--- Set Bonus: Increases rate of critical hits.
--- Gives +3% for the first 2 pieces and +1% for every additional piece. 
-
---Rubeus Armor Set
--------------
-10878 -- Rubeus Bandeau
-10452 -- Rubeus Jacket
-10502 -- Rubeus Gloves
-11971 -- Rubeus Spats
-10602 -- Rubeus Boots
--- Set Bonus: Enhances "Fast Cast" Effect
--- 2 or 3 pieces equipped: Fast Cast +4
--- 4 or 5 pieces equipped: Fast Cast +10 
-
-=======
 Empyrean +2
 =======
 
@@ -333,25 +386,6 @@ Empyrean +2
 -- Set Bonus: Occ. augments blue magic spells.
 -- no damn clue!
 
---Navarch's Attire +2 Set
--------------
-11080 -- Navarch's Tricorne+2
-11100 -- Navarch's Frac+2
-11120 -- Navarch's Gants+2
-11140 -- Navarch's Culottes+2
-11160 -- Navarch's Bottes+2
--- Set Bonus: Augments "Quick Draw"
--- Quick Draw will occasionally deal triple damage.
-
---Charis Attire +2 Set
--------------
-11082 -- Charis Tiara+2
-11102 -- Charis Casaque+2
-11122 -- Charis Bangles+2
-11142 -- Charis Tights+2
-11162 -- Charis Toeshoes+2
--- Set Bonus: Augments "Samba"
--- Occasionally doubles damage with Samba up. Adds approximately 1-2% per piece past the first. 
 
 --Bale Armor +2 Set
 -------------
@@ -373,35 +407,6 @@ Empyrean +2
 -- Set Bonus: Attack occasionally varies with wyvern's HP.
 -- Damage increases proportionate to Wyvern's HP, at 100%, damage is doubled. 2+ pieces required, more pieces increase proc rate. Full +2 set is about a 10% proc rate. (Confirmation needed)
 
---Tantra Attire +2 Set
--------------
-11065 -- Tantra Crown+2
-11085 -- Tantra Cyclas+2
-11105 -- Tantra Gloves+2
-11125 -- Tantra Hose+2
-11145 -- Tantra Gaiters+2
--- Set Bonus: Augments "Kick Attacks"
--- Occasionally allows a second Kick Attack during an attack round without the use of Footwork. 
-
---Iga Garb +2 Set
--------------
-11076 -- Iga Zukin+2
-11096 -- Iga Ningi+2
-11116 -- Iga Tekko+2
-11136 -- Iga Hakama+2
-11156 -- Iga Kyahan+2
--- Set Bonus: Augments "Dual Wield"
--- Attacks made while dual wielding occasionally add an extra attack
-
---Creed Armor +2 Set
--------------
-11070 -- Creed Armet+2
-11090 -- Creed Cuirass+2
-11110 -- Creed Gauntlets+2
-11130 -- Creed Cuisses+2
-11150 -- Creed Sabatons+2
--- Set Bonus: Occasionally absorbs damage taken.
--- Set proc believed to be somewhere around 5%, more testing needed. Verification Needed Absorb rate likely varies with # of set pieces. 
 
 --Cirque Attire +2 Set
 -------------
@@ -413,16 +418,6 @@ Empyrean +2
 -- Set Bonus: Attack occasionally varies with automaton's HP.
 -- Occasionally increases damage in direct proportion to the percentage of Automaton's current HP. At 100% HP, damage is doubled when triggered, at 50% HP, damage increases by 50%, and so on. 
 
---Sylvan Attire +2 Set
--------------
-11074 -- Sylvan Gapette+2
-11094 -- Sylvan Caban+2
-11114 -- Sylvan Glovelettes+2
-11134 -- Sylvan Bragues+2
-11154 -- Sylvan Bottillons+2
--- Set Bonus: Augments "Rapid Shot"
--- Rapid Shots occasionally deal double damage. 
-
 --Estoqueur's Attire +2 Set
 -------------
 11068 -- Estoqueur's Chappel+2
@@ -432,16 +427,7 @@ Empyrean +2
 11148 -- Estoqueur's Houseaux+2
 -- Set Bonus: Augments "Composure"
 -- Enhances duration of Enhancing Magic cast on OTHERS while under the effect of Composure by 10% for the first 2 pieces, and 15% for any additional pieces thereafter, up to 35% increase for 4 pieces and 50% for all 5 pieces. The "Increases enhancing magic effect duration" of the Estoqueur's Cape, Estoqueur's Houseaux +1 and Estoqueur's Houseaux +2 is multiplicative to this total. 
-
---Unkai Domaru +2 Set
--------------
-11075 -- Unkai Kabuto+2
-11095 -- Unkai Domaru+2
-11115 -- Unkai Kote+2
-11135 -- Unkai Haidate+2
-11155 -- Unkai Sune-Ate+2
--- Set Bonus: Augments "Zanshin"
--- Zanshin attacks will occasionally deal double damage. 
+ 
 
 --Savant's Attire +2 Set
 -------------
@@ -462,29 +448,5 @@ Empyrean +2
 11158 -- Caller's Pigaches+2
 -- Set Bonus: Augments "Blood Boon"
 -- Occasionally increases damage of Blood Pacts when Blood Boon is triggered. Increased amount is proportional to the ratio of MP conserved. 
-
---Raider's Attire +2 Set
--------------
-11069 -- Raider's Bonnet+2
-11089 -- Raider's Vest+2
-11109 -- Raider's Armlets+2
-11129 -- Raider's Culottes+2
-11149 -- Raider's Poulaines+2
--- Set Bonus: Augments "Triple Attack"
--- "Triple Attack" - Occasionally causes the second and third hits of a Triple Attack to deal triple damage.Verification Needed Requires a minimum of two pieces. 
-
-
-
---Orison Attire +2 Set
--------------
-11066 -- Orison Cap+2
-11086 -- Orison Bliaud+2
-11106 -- Orison Mitts+2
-11126 -- Orison Pantaloons+2
-11146 -- Orison Duckbills+2
--- Set Bonus: Augments elemental resistance spells
--- Bar Elemental spells will occasionally nullify damage of the same element.
-
-
 
 ]]--
