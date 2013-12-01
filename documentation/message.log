@@ -370,7 +370,7 @@
 370 - The <player> uses .. .. status effects are drained from <target>.
 371 - The <player> gains 0 limit points.
 372 - Limit chain #..! The <player> gains 0 limit points.
-378 - The <player> uses .. <target>'s stun effect disappears!
+378 - The <player> uses .. <target>'s stun effect disappears! -- Probably item related)
 379 - The <player> uses .. Magic Burst! <target> takes .. points of damage.
 382 - The <player>'s ranged attack hits <target>. <target> recovers .. hit points!
 383 - <target>'s spikes restore 0 HP to the <player>. 
@@ -391,7 +391,7 @@
 398 - Skillchain: Impaction. <target> recovers 0 hit points!
 399 - The <player> uses .. All of <target>'s Petras vanish!
 400 - The <player> uses .. .. of <target>'s status ailments disappear!
-401 - The <player> uses .. .. of <target>'s effects disappear!
+401 - The <player> uses .. .. of <target>'s effects disappear! -- Item related. 
 402 - The <player> uses .. <target>'s magic defense is enhanced.
 403 - .. of <target>'s attributes are drained.
 404 - .. status effects are drained from <target>.
