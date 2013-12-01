@@ -89,6 +89,42 @@ enum ELEMENT
     ELEMENT_DARK = 8
 };
 
+enum PHYSICAL_ATTACK_TYPE
+{
+	ATTACK_NORMAL	= 0,
+	DOUBLE_ATTACK	= 1,
+	TRIPLE_ATTACK	= 2,
+	ZANSHIN_ATTACK	= 3,
+	KICK_ATTACK		= 4,
+};
+
+enum PHYSICAL_ATTACK_DIRECTION
+{
+	LEFTATTACK = 0,
+	RIGHTATTACK = 1,
+};
+
+struct attackSwing_t
+{
+	PHYSICAL_ATTACK_TYPE		attackType;
+	PHYSICAL_ATTACK_DIRECTION	attackDirection;
+};
+
+struct attackSwingRound_t
+{
+	attackSwingRound_t()
+	{
+		zanshinOccured = false;
+		sataOccured = false;
+		doubleAttackOccured = false;
+	};
+
+	std::vector<attackSwing_t>* attackSwings;
+	bool zanshinOccured;
+	bool sataOccured;
+	bool doubleAttackOccured;
+};
+
 namespace battleutils
 {
 	void			LoadSkillTable();
@@ -96,6 +132,14 @@ namespace battleutils
 	void			LoadMobSkillsList();
 	void			LoadEnmityTable();
     void			LoadSkillChainDamageModifiers();
+
+	uint8			CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon);
+    void			CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon, attackSwingRound_t* attackRound, PHYSICAL_ATTACK_DIRECTION direction);
+	void			AddAttackSwing(attackSwingRound_t* attackRound, PHYSICAL_ATTACK_TYPE type, PHYSICAL_ATTACK_DIRECTION direction, uint8 count);
+	uint8			getHitCount(uint8 hits);
+	uint8			CheckMobMultiHits(CBattleEntity* PEntity);
+	void			CheckPlayersZanshin(CCharEntity* PChar, attackSwingRound_t* attackRound);
+	void			CheckPlayersKickAttack(CCharEntity* PChar, CItemWeapon* PWeapon, attackSwingRound_t* attackRound);
 
 	uint8			GetSkillRank(SKILLTYPE SkillID, JOBTYPE JobID);
 	uint16			GetMaxSkill(SKILLTYPE SkillID, JOBTYPE JobID, uint8 level);
@@ -129,7 +173,6 @@ namespace battleutils
 	uint8				GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 attackNumber);
 	uint8				GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 attackNumber, uint8 offsetAccuracy);
 	uint8				GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool ignoreSneakTrickAttack);
-    uint8				CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon);
 	uint8				GetBlockRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
     uint8				GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
     uint8				GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
@@ -167,7 +210,7 @@ namespace battleutils
     void				MakeEntityStandUp(CBattleEntity* PEntity);
     bool				IsEngauged(CBattleEntity* PEntity);
 	CBattleEntity*		getAvailableTrickAttackChar(CBattleEntity* taUser, CBattleEntity* PMob);
-	uint32				CheckForDamageMultiplier(CItemWeapon* PWeapon, uint32 damage, uint8 hitNumber);
+	uint32				CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32 damage, attackSwingRound_t* attackRound);
     bool				HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool);
 
 	bool				TryCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 base);

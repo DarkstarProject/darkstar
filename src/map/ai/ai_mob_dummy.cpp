@@ -1375,7 +1375,7 @@ void CAIMobDummy::ActionAttack()
 
 				Action.ActionTarget = m_PBattleTarget;
 
-				uint8 numAttacks = battleutils::CheckMultiHits(m_PMob, m_PMob->m_Weapons[SLOT_MAIN]);
+				uint8 numAttacks = battleutils::CheckMobMultiHits(m_PMob);
 
 				for(uint8 i=0; i<numAttacks; i++){
 					Action.reaction   = REACTION_EVADE;

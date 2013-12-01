@@ -219,9 +219,18 @@ function SearchMods(player, modNameId, name, matches)
 	if (name == "FourthB" and matches > 2) then 	ApplyMod(player, modNameId, MOD_ATT, matches -2 * 5); return; end	-- increases in multiples of 5 after the 2nd piece.	
 	if (name == "Fazheluo" and matches > 1) then 	ApplyMod(player, modNameId, MOD_DOUBLE_ATTACK, 5); return; end		-- Fazheluo Mail Set. Set Bonus: "Double Attack"+5%. Active with any 2 pieces.	
 	if (name == "Cuauhtli" and matches > 1) then 	ApplyMod(player, modNameId, MOD_HASTE_GEAR, 80); return; end		-- Cuauhtli Harness Set. Set Bonus: Haste+8%. 2 peice set.
-	if (name == "Hyskos" and matches > 1) then 		ApplyMod(player, modNameId, MOD_MATT, 5); return; end				-- Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.			
-										 
-			 
+	if (name == "Hyskos" and matches > 1) then 		ApplyMod(player, modNameId, MOD_MATT, 5); return; end				-- Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.		
+	if (name == "Savant" and matches > 4) then		ApplyMod(player, modNameId, MOD_GRIMOIRE_INSTANT_CAST, instantCastChance); return; end		--	Savant's Attire +2 Set. Set Bonus: Augments Grimoire. Spells that match your current Arts will occasionally cast instantly, without recast. 				 
+	if (name == "Orison" and matches > 4) then		ApplyMod(player, modNameId, MOD_BAR_ELEMENT_NULL_CHANCE, nullDamageChance);	return;	end		--	Orison Attire +2 Set. Set Bonus: Augments elemental resistance spells. Bar Elemental spells will occasionally nullify damage of the same element.		
+	if (name == "Raider" and matches > 1) then		ApplyMod(player, modNameId, MOD_TA_TRIPLE_DAMAGE, extraDamageChance);	return;	end			--	Raider's Attire +2 Set. Set Bonus: Augments "Triple Attack". Occasionally causes the second and third hits of a Triple Attack to deal triple damage.Verification Needed Requires a minimum of two pieces. 	 
+	if (name == "Tantra" and matches > 4) then		ApplyMod(player, modNameId, MOD_EXTRA_KICK_ATTACK, extraAttackChance); return; end			--	Tantra Attire +2 Set. Set Bonus: Augments "Kick Attacks". Occasionally allows a second Kick Attack during an attack round without the use of Footwork. 	
+	if (name == "Unkai" and matches > 4) then		ApplyMod(player, modNameId, MOD_ZANSHIN_DOUBLE_DAMAGE, extraDamageChance); return; end		--	Unkai Domaru +2 Set. Set Bonus: Augments "Zanshin". Zanshin attacks will occasionally deal double damage.			
+	if (name == "Creed" and matches > 4) then		ApplyMod(player, modNameId, MOD_ABSORB_DMG_CHANCE, 5); return; end							--	Creed Armor +2 Set. Set Bonus: Occasionally absorbs damage taken. Set proc believed to be somewhere around 5%, more testing needed. Verification Needed Absorb rate likely varies with # of set pieces. 
+	if (name == "Sylvan" and matches > 4) then		ApplyMod(player, modNameId, MOD_RAPID_SHOT_DOUBLE_DAMAGE, extraDamageChance); return; end	--	Sylvan Attire +2 Set. Set Bonus: Augments "Rapid Shot". Rapid Shots occasionally deal double damage.
+	if (name == "Iga" and matches > 4) then			ApplyMod(player, modNameId, MOD_EXTRA_DUAL_WIELD_ATTACK, extraAttackChance); return; end 	--  Iga Garb +2 Set. Set Bonus: Augments "Dual Wield". Attacks made while dual wielding occasionally add an extra attack
+	if (name == "Charis" and matches > 4) then		ApplyMod(player, modNameId, MOD_SAMBA_DOUBLE_DAMAGE, extraDamageChance); return; end		--  Charis Attire +2 Set. Set Bonus: Augments "Samba". Occasionally doubles damage with Samba up. Adds approximately 1-2% per piece past the first. 
+	if (name == "Navarch" and matches > 4) then		ApplyMod(player, modNameId, MOD_QUICK_DRAW_TRIPLE_DAMAGE, extraDamageChance); return; end	--  Navarch's Attire +2 Set. Set Bonus: Augments "Quick Draw". Quick Draw will occasionally deal triple damage.
+				 
 	--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)	
 	if (name == "Supremacy" and matches > 1) then
 		ApplyMod(player, modNameId, MOD_STR, 6);
@@ -239,66 +248,6 @@ function SearchMods(player, modNameId, name, matches)
 		ApplyMod(player, modNameId +3, MOD_RACC, 6);
 		return;
 	end	 
-	
-	--	Savant's Attire +2 Set. Set Bonus: Augments Grimoire. Spells that match your current Arts will occasionally cast instantly, without recast. 			 
-	if (name == "Savant" and matches > 4) then
-		ApplyMod(player, modNameId, MOD_GRIMOIRE_INSTANT_CAST, instantCastChance);
-		return;		
-	end					 
-	
-	--	Orison Attire +2 Set. Set Bonus: Augments elemental resistance spells. Bar Elemental spells will occasionally nullify damage of the same element.	 
-	if (name == "Orison" and matches > 4) then
-		ApplyMod(player, modNameId, MOD_BAR_ELEMENT_NULL_CHANCE, nullDamageChance);
-		return;		
-	end		
-	
-	--	Raider's Attire +2 Set. Set Bonus: Augments "Triple Attack". Occasionally causes the second and third hits of a Triple Attack to deal triple damage.Verification Needed Requires a minimum of two pieces. 
-	if (name == "Raider" and matches > 1) then
-		ApplyMod(player, modNameId, MOD_TA_TRIPLE_DAMAGE, extraDamageChance);
-		return;		
-	end			 
-	
-	--	Tantra Attire +2 Set. Set Bonus: Augments "Kick Attacks". Occasionally allows a second Kick Attack during an attack round without the use of Footwork. 	
-	if (name == "Tantra" and matches > 4) then
-		ApplyMod(player, modNameId, MOD_EXTRA_KICK_ATTACK, extraAttackChance);
-		return;		
-	end
-			 
-	--	Unkai Domaru +2 Set. Set Bonus: Augments "Zanshin". Zanshin attacks will occasionally deal double damage.
-	if (name == "Unkai" and matches > 4) then
-		ApplyMod(player, modNameId, MOD_ZANSHIN_DOUBLE_DAMAGE, extraDamageChance);
-		return;
-	end				
-		
-	--	Creed Armor +2 Set. Set Bonus: Occasionally absorbs damage taken. Set proc believed to be somewhere around 5%, more testing needed. Verification Needed Absorb rate likely varies with # of set pieces.  
-	if (name == "Creed" and matches > 4) then
-		ApplyMod(player, modNameId, MOD_ABSORB_DMG_CHANCE, 5);
-		return;		
-	end	
-					
-	--	Sylvan Attire +2 Set. Set Bonus: Augments "Rapid Shot". Rapid Shots occasionally deal double damage.	 
-	if (name == "Sylvan" and matches > 4) then
-		ApplyMod(player, modNameId, MOD_RAPID_SHOT_DOUBLE_DAMAGE, extraDamageChance);	
-		return;
-	end
-	 
-	--Iga Garb +2 Set. Set Bonus: Augments "Dual Wield". Attacks made while dual wielding occasionally add an extra attack
-	if (name == "Iga" and matches > 4) then
-		ApplyMod(player, modNameId, MOD_EXTRA_DUAL_WIELD_ATTACK, extraAttackChance);
-		return;		
-	end
-
-	--  Charis Attire +2 Set. Set Bonus: Augments "Samba". Occasionally doubles damage with Samba up. Adds approximately 1-2% per piece past the first. 
-	if (name == "Charis" and matches > 4) then
-		ApplyMod(player, modNameId, MOD_SAMBA_DOUBLE_DAMAGE, extraDamageChance);
-		return;		
-	end
-				
-	--  Navarch's Attire +2 Set. Set Bonus: Augments "Quick Draw". Quick Draw will occasionally deal triple damage.
-	if (name == "Navarch" and matches > 4) then
-		ApplyMod(player, modNameId, MOD_QUICK_DRAW_TRIPLE_DAMAGE, extraDamageChance);
-		return;		
-	end	
 	
 	--  Rubeus Armor Set. Set Bonus: Enhances "Fast Cast" Effect. 2 or 3 pieces equipped: Fast Cast +4. 4 or 5 pieces equipped: Fast Cast +10 
 	if (name == "Rubeus" and matches > 1) then

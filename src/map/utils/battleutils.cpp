@@ -425,74 +425,6 @@ uint16	CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender
     return HandleStoneskin(PDefender, damage);
 }
 
-
-/************************************************************************
-*                                                                       *
-*  Handles damage multiplier, relic weapons ect				            *
-*                                                                       *
-************************************************************************/
-
-uint32 CheckForDamageMultiplier(CItemWeapon* PWeapon, uint32 damage, uint8 hitNumber)
-{
-	if (PWeapon==NULL)
-		return damage;
-
-	uint32 originalDamage = damage;
-
-	switch (PWeapon->getID())
-	{
-		//relic weapons have 16% (ffxiclopedia) chance to do x times damage, cannot proc with weapon skills
-
-		// Relic: 2.5 times damage
-		case 18264:		// Spharai, h2h
-		case 18276:		// Excalibur, sword
-		case 18282:		// Ragnarok, great sword
-		case 18288:		// Guttler, axe
-		case 18300:		// Gungnir, polearm
-		case 18318:		// Amanomurakumo, great katana
-		case 18330:		// Claustrum, staff
-			if (rand()%100 > 16) return originalDamage;
-			return (damage = (damage * (float)2.5));
-			break;
-
-		// Relic: 3 times damage
-		case 18270:		// Mandau, dagger
-		case 18312:		// Kikoku, katana
-		case 18324:		// Mjollnir, club
-		case 18336:		// Annihilator, marksmanship
-		case 18348:		// Yoichinoyumi, archery
-			if (rand()%100 >= 16) return originalDamage;
-			return (damage = (damage * 3));
-			break;
-
-		// Relic: 2 times damage
-		case 18294:		// Bravura, great axe
-		case 18306:		// Apocalypse, scythe
-			if (rand()%100 >= 16) return originalDamage;
-			return (damage = (damage * 2));
-			break;
-
-
-		//mythic weapons, same distribution as multi attacking weapons
-
-		// Mythic: 2 time damage
-		case 19001:		// Gastraphetes(lvl75), marksmanship
-		case 19007:		// Death Penalty(lvl75), marksmanship
-			if (rand()%100 < 55) return originalDamage;
-			return (damage = (damage * 2));
-			break;
-
-
-		default:
-			return originalDamage;			// just to be sure
-			break;
-	}
-
-
-
-}
-
-
 /************************************************************************
 *                                                                       *
 *  Calculates Spike Damage									            *
@@ -2419,14 +2351,128 @@ int32 GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 SlotID)
 
 /************************************************************************
 *                                                                       *
-*  Returns the number of hits for multihit weapons if applicable        *
+*  Multihit calculator											        *
 *                                                                       *
+************************************************************************/
+
+uint8 getHitCount(uint8 hits)
+{
+    uint8 distribution = rand()%100;
+    uint8 num = 1;
+
+	switch (hits)
+    {
+        case 0: break;
+        case 1: break;
+        case 2: // cdf = 55,100
+		    if(distribution < 55){ break; }
+		    else{ num+=1; break;}
+		    break;
+        case 3: // cdf = 30,80,100
+		    if(distribution < 30){ break; }
+		    else if(distribution < 80){ num+=1; break; }
+		    else{ num+=2; break; }
+		    break;
+        case 4: // cdf = 20,50,80,100
+		    if(distribution < 20){ break; }
+		    else if(distribution < 50){ num+=1; break; }
+		    else if(distribution < 80){ num+=2; break; }
+		    else{ num+=3; break; }
+		    break;
+        case 5: // cdf = 10,30,60,90,100
+		    if(distribution < 10){ break; }
+		    else if(distribution < 30){ num+=1; break; }
+		    else if(distribution < 60){ num+=2; break; }
+		    else if(distribution < 90){ num+=3; break; }
+		    else{ num+=4; break; }
+		    break;
+        case 6: // cdf = 10,30,50,70,90,100
+            if(distribution < 10){ break; }
+		    else if(distribution < 30){num+=1; break; }
+		    else if(distribution < 50){num+=2; break; }
+		    else if(distribution < 70){num+=3; break; }
+		    else if(distribution < 90){num+=4; break; }
+		    else{ num+=5; break; }
+            break;
+        case 7: // cdf = 5,20,45,70,85,95,100
+            if(distribution < 5){ break; }
+		    else if(distribution < 20){num+=1; break; }
+		    else if(distribution < 45){num+=2; break; }
+		    else if(distribution < 70){num+=3; break; }
+		    else if(distribution < 85){num+=4; break; }
+		    else if(distribution < 95){num+=5; break; }
+		    else{ num+=6; break; }
+            break;
+        case 8: // cdf = 5,20,45,70,85,95,98,100
+		    if(distribution < 5){ break; }
+		    else if(distribution < 20){num+=1; break; }
+		    else if(distribution < 45){num+=2; break; }
+		    else if(distribution < 70){num+=3; break; }
+		    else if(distribution < 85){num+=4; break; }
+		    else if(distribution < 95){num+=5; break; }
+		    else if(distribution < 98){num+=6; break; }
+		    else{ num+=7; break; }
+            break;
+	}
+    return dsp_min(num,8); // не более восьми ударов за одну атаку
+}
+
+/************************************************************************
+*                                                                       *
+*  Returns a mob / pets multihits								        *
+*                                                                       *
+************************************************************************/
+
+uint8 CheckMobMultiHits(CBattleEntity* PEntity)
+{		
+
+	if (PEntity->objtype == TYPE_MOB || PEntity->objtype == TYPE_PET)
+	{ 
+		uint8 num = 1;
+
+		//Monk
+		if(PEntity->GetMJob() == JOB_MNK)
+		{
+			num = 2;
+		}
+
+		//check for unique mobs
+		switch (PEntity->id)
+		{
+			case 17498522:// Charybdis 2-6
+				return (2 + getHitCount(5));
+
+			default:
+				break;
+		}
+
+		int8 tripleAttack = PEntity->getMod(MOD_TRIPLE_ATTACK);
+		int8 doubleAttack = PEntity->getMod(MOD_DOUBLE_ATTACK);
+		doubleAttack = dsp_cap(doubleAttack,0,100);
+		tripleAttack = dsp_cap(tripleAttack,0,100);
+		if (rand()%100 < tripleAttack)
+		{
+			num +=2;
+		}
+		else if (rand()%100 < doubleAttack)
+		{
+			num +=1;
+		}
+		return num;
+	}
+	return 0;
+}
+
+/************************************************************************
+*                                                                       *
+*  Returns the number of hits for multihit weapons if applicable        *
+*  (Keeping this for backwards compatibility with the old system)       *
 ************************************************************************/
 
 uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 {
 	//checking players weapon hit count
-	uint8 num = PWeapon->getHitCount(0);
+	uint8 num = PWeapon->getHitCount();
 
 	int8 tripleAttack = PEntity->getMod(MOD_TRIPLE_ATTACK);
 	int8 doubleAttack = PEntity->getMod(MOD_DOUBLE_ATTACK);
@@ -2444,26 +2490,6 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 			doubleAttack += PChar->PMeritPoints->GetMeritValue(MERIT_DOUBLE_ATTACK_RATE,(CCharEntity*)PEntity);
 		}
 	}
-	else if (PEntity->objtype == TYPE_MOB || PEntity->objtype == TYPE_PET)
-	{
-		//Monk
-		if(PEntity->GetMJob() == JOB_MNK)
-		{
-			num = 2;
-		}
-
-		//check for unique mobs
-		switch (PEntity->id)
-		{
-			case 17498522:// Charybdis 2-6
-				num = (2 + PWeapon->getHitCount(5));
-
-			default:
-				break;
-		}
-
-	}
-
     doubleAttack = dsp_cap(doubleAttack,0,100);
     tripleAttack = dsp_cap(tripleAttack,0,100);
 
@@ -2476,9 +2502,7 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 		num +=1;
 	}
 
-
-	// hasso occasionally triggers Zanshin after landing a normal attack,
-	// only active while Samurai is set as Main Job
+	// hasso occasionally triggers Zanshin after landing a normal attack, only active while Samurai is set as Main
 	if(PEntity->GetMJob() == JOB_SAM)
 	{
 		if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO))
@@ -2491,10 +2515,222 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 				num++;
 		}
 	}
-
-
 	return dsp_min(num, 8);
 }
+
+/************************************************************************
+*                                                                       *
+*  Returns the number of hits for multihit weapons if applicable        *
+*                                                                       *
+************************************************************************/
+
+void CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon, attackSwingRound_t* attackRound, PHYSICAL_ATTACK_DIRECTION direction)
+{
+	// Checking the players weapon hit count
+	AddAttackSwing(attackRound, ATTACK_NORMAL, direction, PWeapon->getHitCount());
+
+	// Checking the players triple/double attack
+	int8 tripleAttack = PEntity->getMod(MOD_TRIPLE_ATTACK);
+	int8 doubleAttack = PEntity->getMod(MOD_DOUBLE_ATTACK);
+
+	//check for merit upgrades
+	if (PEntity->objtype == TYPE_PC)
+	{
+		CCharEntity* PChar = (CCharEntity*)PEntity;
+
+		//merit chance only applies if player has the job trait
+		if (charutils::hasTrait(PChar, TRAIT_TRIPLE_ATTACK)) 
+		{
+			tripleAttack += PChar->PMeritPoints->GetMeritValue(MERIT_TRIPLE_ATTACK_RATE,(CCharEntity*)PEntity);
+		}
+		if (charutils::hasTrait(PChar, TRAIT_DOUBLE_ATTACK)) 
+		{
+			doubleAttack += PChar->PMeritPoints->GetMeritValue(MERIT_DOUBLE_ATTACK_RATE,(CCharEntity*)PEntity);
+		}
+	}
+    doubleAttack = dsp_cap(doubleAttack,0,100);
+    tripleAttack = dsp_cap(tripleAttack,0,100);
+
+	if (rand()%100 < tripleAttack)
+	{
+		AddAttackSwing(attackRound, TRIPLE_ATTACK, direction, 2);
+	}
+	else if (rand()%100 < doubleAttack)
+	{
+		AddAttackSwing(attackRound, DOUBLE_ATTACK, direction, 1);
+		attackRound->doubleAttackOccured = true;
+	}
+
+	// Try other extra attacks
+	if (direction == LEFTATTACK && rand()%100 < PEntity->getMod(MOD_EXTRA_DUAL_WIELD_ATTACK)) // Extra attack chance whilst dual wield is on.
+	{
+		AddAttackSwing(attackRound, ATTACK_NORMAL, RIGHTATTACK, 1);
+	}
+}
+
+/************************************************************************
+*                                                                       *
+*  Try to zanshin (Players only)								        *
+*                                                                       *
+************************************************************************/
+
+void CheckPlayersZanshin(CCharEntity* PChar, attackSwingRound_t* attackRound)
+{
+	// Zanshin effects from gear, food or buffs do not require the job trait to be enabled.
+	if (!attackRound->zanshinOccured && 
+		!attackRound->doubleAttackOccured && 
+		attackRound->attackSwings->at(0).attackType != ZANSHIN_ATTACK)
+	{
+		uint8 zanshinChance = PChar->getMod(MOD_ZANSHIN) + PChar->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, PChar);
+		zanshinChance = dsp_cap(zanshinChance, 0, 100);
+		if (rand()%100 < zanshinChance)
+		{
+			// Flag this attack to repeat
+			attackRound->zanshinOccured = true;
+		}
+		else
+		{
+			attackRound->zanshinOccured = false;
+		}
+	}
+}
+
+/************************************************************************
+*                                                                       *
+*  Try to kick attack (Players only)							        *
+*                                                                       *
+************************************************************************/
+
+void CheckPlayersKickAttack(CCharEntity* PChar, CItemWeapon* PWeapon, attackSwingRound_t* attackRound)
+{
+	if (PWeapon->getDmgType() == DAMAGE_HTH)
+	{
+		// kick attack mod (All jobs)
+		uint8 kickAttack = PChar->getMod(MOD_KICK_ATTACK); 
+
+		if (PChar->GetMJob() == JOB_MNK) // MNK (Main job)
+		{
+			kickAttack += PChar->PMeritPoints->GetMeritValue(MERIT_KICK_ATTACK_RATE, PChar);
+		}
+
+		kickAttack = dsp_cap(kickAttack, 0, 100);
+		if (rand()%100 < kickAttack)
+		{
+			AddAttackSwing(attackRound, KICK_ATTACK, RIGHTATTACK, 1);
+		}
+	}
+}
+
+
+/************************************************************************
+*                                                                       *
+*  Handles damage multiplier, relic weapons ect				            *
+*                                                                       *
+************************************************************************/
+
+uint32 CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32 damage, attackSwingRound_t* attackRound)
+{
+	if (PWeapon==NULL)
+	{
+		return damage;
+	}
+	uint32 originalDamage = damage;
+
+	switch (PWeapon->getID())
+	{
+		//relic weapons have 16% (ffxiclopedia) chance to do x times damage, cannot proc with weapon skills
+
+		// Relic: 2.5 times damage
+		case 18264:		// Spharai, h2h
+		case 18276:		// Excalibur, sword
+		case 18282:		// Ragnarok, great sword
+		case 18288:		// Guttler, axe
+		case 18300:		// Gungnir, polearm
+		case 18318:		// Amanomurakumo, great katana
+		case 18330:		// Claustrum, staff
+			if (rand()%100 > 16) return originalDamage;
+			return (damage = (damage * (float)2.5));
+			break;
+
+		// Relic: 3 times damage
+		case 18270:		// Mandau, dagger
+		case 18312:		// Kikoku, katana
+		case 18324:		// Mjollnir, club
+		case 18336:		// Annihilator, marksmanship
+		case 18348:		// Yoichinoyumi, archery
+			if (rand()%100 >= 16) return originalDamage;
+			return (damage = (damage * 3));
+			break;
+
+		// Relic: 2 times damage
+		case 18294:		// Bravura, great axe
+		case 18306:		// Apocalypse, scythe
+			if (rand()%100 >= 16) return originalDamage;
+			return (damage = (damage * 2));
+			break;
+
+
+		//mythic weapons, same distribution as multi attacking weapons
+
+		// Mythic: 2 time damage
+		case 19001:		// Gastraphetes(lvl75), marksmanship
+		case 19007:		// Death Penalty(lvl75), marksmanship
+			if (rand()%100 < 55) return originalDamage;
+			return (damage = (damage * 2));
+			break;
+
+		default:			
+			break;
+	}
+
+	switch (attackRound->attackSwings->at(0).attackType)
+	{
+		case ZANSHIN_ATTACK:
+			if (rand()%100 < PChar->getMod(MOD_ZANSHIN_DOUBLE_DAMAGE))
+			{
+				return originalDamage * 2;
+			}
+
+		case TRIPLE_ATTACK:
+			if (rand()%100 < PChar->getMod(MOD_TA_TRIPLE_DAMAGE))
+			{
+				return originalDamage * 3;
+			}
+		case DOUBLE_ATTACK:
+			if (rand()%100 < PChar->getMod(MOD_DA_DOUBLE_DAMAGE))
+			{
+				return originalDamage * 2;
+			}
+
+		default: 
+			break;
+	}	
+	return originalDamage;
+}
+
+/************************************************************************
+*																		*
+*  Adds an attack swing to the characters cycle							*
+*																		*
+************************************************************************/
+void AddAttackSwing(attackSwingRound_t* attackRound, PHYSICAL_ATTACK_TYPE type, PHYSICAL_ATTACK_DIRECTION direction, uint8 count)
+{
+	if (attackRound->attackSwings->size() < 8)
+	{
+		for (uint8 i = 0; i < count; ++i)
+		{
+			attackSwing_t swing;
+			swing.attackType = type;
+			swing.attackDirection = direction;
+			attackRound->attackSwings->push_back(swing);
+			if (attackRound->attackSwings->size() == 8)
+			{
+				return;
+			}
+		}
+	}
+}
+
 
 /*****************************************************************************
 	Handles song buff effects. Returns true if the song has been handled
@@ -3368,6 +3604,11 @@ bool HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool)
 
 CBattleEntity* getAvailableTrickAttackChar(CBattleEntity* taUser, CBattleEntity* PMob)
 {
+	if (!taUser->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
+	{
+		return NULL;
+	}
+
 	float taUserX = taUser->loc.p.x;
 	float taUserZ = taUser->loc.p.z;
 	float mobX = PMob->loc.p.x;
@@ -3777,11 +4018,10 @@ uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
     				realHits++;
 
         			// incase player has gungnir^^ (or any other damage increases weapons)
-        			damageForRound = battleutils::CheckForDamageMultiplier(PWeapon,damageForRound,i);
-
+        			// TODO: link
+					//damageForRound = battleutils::CheckForDamageMultiplier((CCharEntity*)PAttacker, PWeapon, damageForRound, NULL);
 
         			totalDamage += damageForRound;
-
                 }
             }
 		}

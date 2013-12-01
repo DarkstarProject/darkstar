@@ -282,7 +282,7 @@ enum MODIFIER
 	// Monk
 	MOD_SUBTLE_BLOW               =0x121,// How much TP to reduce.
 	MOD_COUNTER                   =0x123,// Percent chance to counter
-	MOD_KICK_ATTACK               =0x124,// Percent chance to kick
+	MOD_KICK_ATTACK				  =0x124,// Percent chance to kick
 
 	// White Mage
 	MOD_AFFLATUS_SOLACE           =0x125,// Pool of HP accumulated during Afflatus Solace
@@ -319,7 +319,7 @@ enum MODIFIER
 	MOD_WIDESCAN                  =0x154,
 
 	// Samurai
-	MOD_ZANSHIN                   =0x132,// Percent chance to counter
+	MOD_ZANSHIN					  =0x132,// Zanshin percent chance
 
 	// Ninja
 	MOD_UTSUSEMI                  =0x133,// Everyone's favorite --tracks shadows.
@@ -457,7 +457,6 @@ enum MODIFIER
 	MOD_BAR_ELEMENT_NULL_CHANCE	  =0x1A2,// Bar Elemental spells will occasionally nullify damage of the same element.
 	MOD_GRIMOIRE_INSTANT_CAST	  =0x1A3,// Spells that match your current Arts will occasionally cast instantly, without recast. 
 
-	// MOD_SPARE	=0x1A3,
 	// MOD_SPARE	=0x1A4,
 	// MOD_SPARE	=0x1A5,
 	// MOD_SPARE	=0x1A6,

@@ -993,7 +993,8 @@ void CAICharNormal::ActionRangedFinish()
 
                         if(slot == SLOT_RANGED)
                         {
-        					damage = battleutils::CheckForDamageMultiplier(PItem,damage, 0);
+							// TODO: link
+        					//damage = battleutils::CheckForDamageMultiplier(m_PChar, PItem, damage, NULL);
 
                             if(PItem != NULL)
                             {
@@ -1800,7 +1801,8 @@ void CAICharNormal::ActionJobAbilityFinish()
         			hitOccured = true;
 
         			damage = (damage + m_PChar->GetRangedWeaponDmg() + battleutils::GetFSTR(m_PChar,m_PBattleSubTarget,SLOT_RANGED)) * pdif * 5;
-        			damage = battleutils::CheckForDamageMultiplier(PItem,damage, 0);
+        			//TODO: link
+					//damage = battleutils::CheckForDamageMultiplier(m_PChar, PItem, damage, NULL);
 
                     damage = battleutils::RangedDmgTaken(m_PBattleSubTarget, damage);
                 }
@@ -2775,105 +2777,140 @@ void CAICharNormal::ActionAttack()
 			apAction_t Action;
             m_PChar->m_ActionList.clear();
 
+			// Create an attack round
+			attackSwingRound_t attackRound;
+			std::vector<attackSwing_t> swingList;
+			attackRound.attackSwings = &swingList;
+			
 			Action.ActionTarget = m_PBattleTarget;
             Action.knockback  = 0;
-			uint8 numattacksLeftHand = 0;
-			uint8 numKickAttacks = 0;
-
-			CBattleEntity* taChar = NULL;
-
+			CBattleEntity* taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
 			uint16 subType = m_PChar->m_Weapons[SLOT_SUB]->getDmgType();
-
-			if ((subType > 0 && subType < 4))//sub weapon is equipped!
-			{
-				numattacksLeftHand = battleutils::CheckMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_SUB]);
-			}
-
-            bool isHTH = m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH;
-
-			if(isHTH){ //h2h equipped!
-
-				numattacksLeftHand = battleutils::CheckMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_MAIN]);
-				if(m_PChar->GetMJob() == JOB_MNK)
-				{
-					uint8 kickAttackChance = m_PChar->getMod(MOD_KICK_ATTACK);
-					kickAttackChance += m_PChar->PMeritPoints->GetMeritValue(MERIT_KICK_ATTACK_RATE,m_PChar);
-					numKickAttacks = ((rand()%100 <= kickAttackChance) ? 1 : 0);
-				}
-			}
-
-			uint8 numattacksRightHand = battleutils::CheckMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_MAIN]);
-
 			CItemWeapon* PWeapon = m_PChar->m_Weapons[SLOT_MAIN];
 			uint8 fstrslot = SLOT_MAIN;
-			bool zanshin = false;
-			bool SATAhit = false; //SA/TA+Assassin guarantee every hit in a round to connect
-            uint8 totalHits = numattacksLeftHand + numattacksRightHand + numKickAttacks;
 
-			if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
-				taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
 
-			for (uint8 i = 0; i < totalHits; ++i)
+			// Main weapon check
+			battleutils::CheckMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_MAIN], &attackRound, RIGHTATTACK);
+
+			// Off hand weapon check
+			if ((subType > 0 && subType < 4))
+			{
+				battleutils::CheckMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_SUB], &attackRound, LEFTATTACK);
+			}
+
+			// H2H Weapon check
+            bool isHTH = m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH;
+			if(isHTH)
+			{
+				battleutils::CheckMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_MAIN], &attackRound, LEFTATTACK);
+				battleutils::CheckPlayersKickAttack(m_PChar, m_PChar->m_Weapons[SLOT_MAIN], &attackRound);
+			}
+
+			// Start of the attack loop
+			for (uint8 i = 0; i < attackRound.attackSwings->size(); ++i)
 			{
 				if (i != 0)
 				{
-
 					if (m_PBattleTarget->isDead())
 					{
 						break;
 					}
 					Action.ActionTarget = NULL;
 
-					if (!isHTH && i>=numattacksRightHand)
+					if (!isHTH && attackRound.attackSwings->at(0).attackDirection == LEFTATTACK)
 					{
 						PWeapon = m_PChar->m_Weapons[SLOT_SUB];
 						fstrslot = SLOT_SUB;
+					}
+					if (!isHTH && attackRound.attackSwings->at(0).attackDirection == RIGHTATTACK)
+					{
+						PWeapon = m_PChar->m_Weapons[SLOT_MAIN];
+						fstrslot = SLOT_MAIN;
 					}
 				}
 
 				uint16 damage = 0;
 
-				if(m_PChar->GetMJob() == JOB_MNK && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_FOOTWORK)){
-						if(i < numattacksRightHand){
+				// Do attack animation (kick, melee)
+				if (m_PChar->GetMJob() == JOB_MNK && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_FOOTWORK))
+				{
+					if (attackRound.attackSwings->at(0).attackDirection == RIGHTATTACK)
+					{
+						Action.animation = 2;//kick right leg
+					}
+					else
+					{
+						Action.animation = 3;//kick left leg
+					}
+				}
+				else
+				{
+					// Try normal kick attacks (without footwork)
+					if (attackRound.attackSwings->at(0).attackType == KICK_ATTACK)
+					{
+						if (attackRound.attackSwings->at(0).attackDirection == RIGHTATTACK)
+						{
 							Action.animation = 2;//kick right leg
-						}else if(i >= numattacksLeftHand + numattacksRightHand){
-							Action.animation = 2;//kick right leg
-						}else{
+
+							// Try the second kick during this condition (left kick without footwork active)
+							if (rand()%100 < m_PChar->getMod(MOD_EXTRA_KICK_ATTACK))
+							{
+								battleutils::AddAttackSwing(&attackRound, KICK_ATTACK, LEFTATTACK, 1);
+							}
+						}
+						else
+						{
 							Action.animation = 3;//kick left leg
 						}
-				}else{
-						if(i < numattacksRightHand){
+					}
+					else
+					{
+						// Normal melee attacks
+						if (attackRound.attackSwings->at(0).attackDirection == RIGHTATTACK)
+						{
 							Action.animation = 0;//attack right hand
-						}else if(i >= numattacksLeftHand + numattacksRightHand){
-							Action.animation = 2;//kick right leg
-						}else{
-							Action.animation = 1;//attack left hand
 						}
+						else
+						{
+							Action.animation = 1;//attack left hand
+						}	
+					}
 				}
 
 				uint8 hitRate = 0;
-				if(i < numattacksRightHand){
-					if (zanshin){
+
+				// Right hand hitrate
+				if (attackRound.attackSwings->at(0).attackDirection == RIGHTATTACK && attackRound.attackSwings->at(0).attackType != KICK_ATTACK)
+				{
+					if (attackRound.attackSwings->at(0).attackType == ZANSHIN_ATTACK)
+					{
 						hitRate = battleutils::GetHitRate(m_PChar,m_PBattleTarget,0,(uint8)35);
 					}
-					else{
+					else
+					{
 						hitRate = battleutils::GetHitRate(m_PChar,m_PBattleTarget,0);
 					}
 				}
-				else if ( i < numattacksLeftHand + numattacksRightHand){
-					if (zanshin){
+				// Left hand hitrate
+				else if (attackRound.attackSwings->at(0).attackDirection == LEFTATTACK && attackRound.attackSwings->at(0).attackType != KICK_ATTACK)
+				{
+					if (attackRound.attackSwings->at(0).attackType == ZANSHIN_ATTACK)
+					{
 						hitRate = battleutils::GetHitRate(m_PChar,m_PBattleTarget,1,(uint8)35);
 					}
-					else{
+					else
+					{
 						hitRate = battleutils::GetHitRate(m_PChar,m_PBattleTarget,1);
 					}
 					//deciding this here because SA/TA wears on attack, before the 2nd+ hits go off
 					if (hitRate = 100)
 					{
-						SATAhit = true;
+						attackRound.sataOccured = true;
 					}
 				}
-				else if ( i >= numattacksLeftHand + numattacksRightHand )
+				// Kick hit rate
+				else if (attackRound.attackSwings->at(0).attackType == KICK_ATTACK)
 				{
 					hitRate = battleutils::GetHitRate(m_PChar,m_PBattleTarget,2);
 				}
@@ -2885,7 +2922,7 @@ void CAICharNormal::ActionAttack()
 					Action.reaction   = REACTION_EVADE;
 					Action.speceffect = SPECEFFECT_NONE;
 				}
-				else if ( rand()%100 < hitRate || SATAhit)
+				else if ( rand()%100 < hitRate || attackRound.sataOccured)
 				{
 
                     // attack hit, try to be absorbed by shadow
@@ -2940,13 +2977,12 @@ void CAICharNormal::ActionAttack()
 						if (isHTH)
 						{
 							// (ffxiclopedia h2h) remove 3 dmg from weapon, DB has an extra 3 for weapon rank
-
 							// get natural h2h damage (h2hSkill*0.11+3)
 							uint16 naturalH2hDmg = (float)(m_PChar->GetSkill(SKILL_H2H) * 0.11f)+3;
-
                             int16 baseDamage = m_PChar->GetMainWeaponDmg()-3;
 
-                            if(Action.animation == 2 || Action.animation == 3){
+                            if(Action.animation == 2 || Action.animation == 3)
+							{
                                 // this is a kick attack
                                 baseDamage = m_PChar->getMod(MOD_KICK_DMG);
                             }
@@ -2958,15 +2994,15 @@ void CAICharNormal::ActionAttack()
 						{
 							if( fstrslot == SLOT_MAIN )
 							{
-								damage = (uint16)(((m_PChar->GetMainWeaponDmg() + bonusDMG +
+								damage = (uint16)(((m_PChar->GetMainWeaponDmg() + bonusDMG + 
 									battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
-							} else if( fstrslot == SLOT_SUB )
+							} 
+							else if( fstrslot == SLOT_SUB )
 							{
 								damage = (uint16)(((m_PChar->GetSubWeaponDmg() + bonusDMG +
 									battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
 							}
 						}
-
 
 						// do soul eater effect
 						damage = battleutils::doSoulEaterEffect(m_PChar, damage);
@@ -2975,31 +3011,23 @@ void CAICharNormal::ActionAttack()
 						{
 							charutils::TrySkillUP(m_PChar, (SKILLTYPE)PWeapon->getSkillType(), m_PBattleTarget->GetMLevel());
 						}
-						zanshin = false;
+
+						// Try zanshin (hasso - non miss)
+						if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO))
+						{
+							battleutils::CheckPlayersZanshin(m_PChar, &attackRound);
+						}
 					}
 				}
 				else
 				{
-					// player misses the target
+					// Player misses the target
 					Action.reaction   = REACTION_EVADE;
 					Action.speceffect = SPECEFFECT_NONE;
 					Action.messageID  = 15;
 
-					uint8 zanshinChance = 0;
-
-					// Zanshin effects from gear, food or buffs do not require the job trait to be enabled.
-					if (!zanshin)
-						zanshinChance += m_PChar->getMod(MOD_ZANSHIN) + m_PChar->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, m_PChar);
-
-					if (!zanshin && rand()%100 < zanshinChance && (( i == 0 && numattacksRightHand == 1 ) || (i == numattacksRightHand && numattacksLeftHand == 1)) )
-					{
-						zanshin = true;
-						i > numattacksRightHand ? numattacksLeftHand++ : numattacksRightHand++;
-					}
-					else
-					{
-						zanshin = false;
-					}
+					// Try to zanshin (miss)
+					battleutils::CheckPlayersZanshin(m_PChar, &attackRound);
 				}
 
                 bool isBlocked = battleutils::IsBlocked(m_PChar, m_PBattleTarget);
@@ -3010,13 +3038,12 @@ void CAICharNormal::ActionAttack()
 
 				if (Action.reaction == REACTION_HIT || Action.reaction == REACTION_BLOCK || Action.reaction == REACTION_GUARD)
 				{
-					damage = battleutils::CheckForDamageMultiplier(PWeapon,damage,i);
+					damage = battleutils::CheckForDamageMultiplier(m_PChar, PWeapon, damage, &attackRound);
 					Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, isBlocked, fstrslot, 1, taChar, true);
 				}
 				else
 				{
 					Action.param = 0;
-
                     battleutils::ClaimMob(m_PBattleTarget, m_PChar);
 				}
 
@@ -3027,17 +3054,35 @@ void CAICharNormal::ActionAttack()
                 }
 
                 if (Action.speceffect == SPECEFFECT_HIT && Action.param > 0)
+				{
                     Action.speceffect = SPECEFFECT_RECOIL;
-
+				}
                 m_PChar->m_ActionList.push_back(Action);
+
+				// Repeat the attack if Zanshin is triggered, otherwise, remove this swing
+				if (!attackRound.zanshinOccured)
+				{
+					attackRound.attackSwings->erase(attackRound.attackSwings->begin());
+					i--;
+				}
+				else
+				{
+					attackRound.attackSwings->at(0).attackType = ZANSHIN_ATTACK;
+					attackRound.zanshinOccured = false;
+					i--;
+				}
 
 				// to catch high damage bugs
 				if (damage > 8000)
+				{
 					ShowError(CL_RED"Warning: %s did 8000+ melee damage, job = %u \n" CL_RESET, m_PChar->GetName(), m_PChar->GetMJob());
+				}
 
-
-                if (m_PChar->m_ActionList.size() == 8) break;
-			}
+                if (m_PChar->m_ActionList.size() == 8) 
+				{
+					break;
+				}
+			} // End of attack loop
 
 			m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK | EFFECTFLAG_DETECTABLE);
 			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));

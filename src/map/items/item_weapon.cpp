@@ -23,6 +23,7 @@
 #include "../entities/battleentity.h"
 #include "../utils/charutils.h"
 #include "../utils/itemutils.h"
+#include "../utils/battleutils.h"
 
 #include "item_weapon.h"
 
@@ -271,69 +272,9 @@ void CItemWeapon::setMaxHit(uint8 hit)
 *                                                                       *
 ************************************************************************/
 
-uint8 CItemWeapon::getHitCount(uint8 checkMobHits)
+uint8 CItemWeapon::getHitCount()
 {
-    int num = 1;
-    int distribution = rand()%100;
-
-	uint8 hits = m_maxHit;
-	if (checkMobHits != 0) hits = checkMobHits;
-
-    switch (hits)
-    {
-        case 0: break;
-        case 1: break;
-        case 2: // cdf = 55,100
-		    if(distribution < 55){ break; }
-		    else{ num+=1; break;}
-		    break;
-        case 3: // cdf = 30,80,100
-		    if(distribution < 30){ break; }
-		    else if(distribution < 80){ num+=1; break; }
-		    else{ num+=2; break; }
-		    break;
-        case 4: // cdf = 20,50,80,100
-		    if(distribution < 20){ break; }
-		    else if(distribution < 50){ num+=1; break; }
-		    else if(distribution < 80){ num+=2; break; }
-		    else{ num+=3; break; }
-		    break;
-        case 5: // cdf = 10,30,60,90,100
-		    if(distribution < 10){ break; }
-		    else if(distribution < 30){ num+=1; break; }
-		    else if(distribution < 60){ num+=2; break; }
-		    else if(distribution < 90){ num+=3; break; }
-		    else{ num+=4; break; }
-		    break;
-        case 6: // cdf = 10,30,50,70,90,100
-            if(distribution < 10){ break; }
-		    else if(distribution < 30){num+=1; break; }
-		    else if(distribution < 50){num+=2; break; }
-		    else if(distribution < 70){num+=3; break; }
-		    else if(distribution < 90){num+=4; break; }
-		    else{ num+=5; break; }
-            break;
-        case 7: // cdf = 5,20,45,70,85,95,100
-            if(distribution < 5){ break; }
-		    else if(distribution < 20){num+=1; break; }
-		    else if(distribution < 45){num+=2; break; }
-		    else if(distribution < 70){num+=3; break; }
-		    else if(distribution < 85){num+=4; break; }
-		    else if(distribution < 95){num+=5; break; }
-		    else{ num+=6; break; }
-            break;
-        case 8: // cdf = 5,20,45,70,85,95,98,100
-		    if(distribution < 5){ break; }
-		    else if(distribution < 20){num+=1; break; }
-		    else if(distribution < 45){num+=2; break; }
-		    else if(distribution < 70){num+=3; break; }
-		    else if(distribution < 85){num+=4; break; }
-		    else if(distribution < 95){num+=5; break; }
-		    else if(distribution < 98){num+=6; break; }
-		    else{ num+=7; break; }
-            break;
-	}
-    return dsp_min(num,8); // не более восьми ударов за одну атаку
+	return battleutils::getHitCount(m_maxHit);
 }
 
 
