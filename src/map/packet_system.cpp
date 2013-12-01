@@ -4334,12 +4334,12 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
             JOBTYPE prevjob = PChar->GetMJob();
 			PChar->resetPetZoningInfo();
 
+            charutils::RemoveAllEquipment(PChar); // TODO: разобраться, зачем
 			PChar->SetMJob(mjob);
 			PChar->SetMLevel(PChar->jobs.job[PChar->GetMJob()]);
 			PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
 
 		    // If removing RemoveAllEquipment, please add a charutils::CheckUnarmedItem(PChar) if main hand is empty.
-		    charutils::RemoveAllEquipment(PChar); // TODO: разобраться, зачем
             puppetutils::LoadAutomaton(PChar);
             if (mjob == JOB_BLU)
                 blueutils::LoadSetSpells(PChar);
