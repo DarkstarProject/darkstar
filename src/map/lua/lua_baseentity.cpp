@@ -3331,7 +3331,7 @@ inline int32 CLuaBaseEntity::capAllSkills(lua_State* L)
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-	for (uint8 i = 1; i < 43; ++i)
+	for (uint8 i = 1; i < 45; ++i)
 	{
 		const int8* Query = "INSERT INTO char_skills "
 						"SET "

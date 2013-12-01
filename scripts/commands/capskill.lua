@@ -61,6 +61,8 @@ function onTrigger(player,skill)
 		player:capSkill(42);
     elseif(skill=="blue") then
 		player:capSkill(43);
+	elseif(skill=="geomancy") then
+		player:capSkill(44);
 	else
 		--print("Unknown skill type: "..skill);
 		player:PrintToPlayer("Unknown skill type: "..skill);

@@ -282,3 +282,69 @@ INSERT INTO `traits` VALUES ('94','fine-tuning','18','75','1','0','0');
 INSERT INTO `traits` VALUES ('95','optimization','18','75','1','0','0');
 INSERT INTO `traits` VALUES ('96','closed position','19','75','1','0','0');
 INSERT INTO `traits` VALUES ('97','stormsurge','20','75','1','0','0');
+
+-- --- RUNE FENCER --- -- (Tenacity needs verifying)
+-- Tenacity Tier I
+INSERT INTO `traits` VALUES ('117','tenacity','22','5','1','240','5');
+INSERT INTO `traits` VALUES ('117','tenacity','22','5','1','241','5');
+INSERT INTO `traits` VALUES ('117','tenacity','22','5','1','242','5');
+INSERT INTO `traits` VALUES ('117','tenacity','22','5','1','243','5');
+INSERT INTO `traits` VALUES ('117','tenacity','22','5','1','244','5');
+INSERT INTO `traits` VALUES ('117','tenacity','22','5','1','245','5');
+INSERT INTO `traits` VALUES ('117','tenacity','22','5','1','246','5');
+INSERT INTO `traits` VALUES ('117','tenacity','22','5','1','247','5');
+INSERT INTO `traits` VALUES ('117','tenacity','22','5','1','248','5');
+-- Tenacity Tier II
+INSERT INTO `traits` VALUES ('117','tenacity','22','25','2','240','7');
+INSERT INTO `traits` VALUES ('117','tenacity','22','25','2','241','7');
+INSERT INTO `traits` VALUES ('117','tenacity','22','25','2','242','7');
+INSERT INTO `traits` VALUES ('117','tenacity','22','25','2','243','7');
+INSERT INTO `traits` VALUES ('117','tenacity','22','25','2','244','7');
+INSERT INTO `traits` VALUES ('117','tenacity','22','25','2','245','7');
+INSERT INTO `traits` VALUES ('117','tenacity','22','25','2','246','7');
+INSERT INTO `traits` VALUES ('117','tenacity','22','25','2','247','7');
+INSERT INTO `traits` VALUES ('117','tenacity','22','25','2','248','7');
+-- Tenacity Tier III
+INSERT INTO `traits` VALUES ('117','tenacity','22','45','3','240','9');
+INSERT INTO `traits` VALUES ('117','tenacity','22','45','3','241','9');
+INSERT INTO `traits` VALUES ('117','tenacity','22','45','3','242','9');
+INSERT INTO `traits` VALUES ('117','tenacity','22','45','3','243','9');
+INSERT INTO `traits` VALUES ('117','tenacity','22','45','3','244','9');
+INSERT INTO `traits` VALUES ('117','tenacity','22','45','3','245','9');
+INSERT INTO `traits` VALUES ('117','tenacity','22','45','3','246','9');
+INSERT INTO `traits` VALUES ('117','tenacity','22','45','3','247','9');
+INSERT INTO `traits` VALUES ('117','tenacity','22','45','3','248','9');
+-- Tenacity Tier IV
+INSERT INTO `traits` VALUES ('117','tenacity','22','75','4','240','11');
+INSERT INTO `traits` VALUES ('117','tenacity','22','75','4','241','11');
+INSERT INTO `traits` VALUES ('117','tenacity','22','75','4','242','11');
+INSERT INTO `traits` VALUES ('117','tenacity','22','75','4','243','11');
+INSERT INTO `traits` VALUES ('117','tenacity','22','75','4','244','11');
+INSERT INTO `traits` VALUES ('117','tenacity','22','75','4','245','11');
+INSERT INTO `traits` VALUES ('117','tenacity','22','75','4','246','11');
+INSERT INTO `traits` VALUES ('117','tenacity','22','75','4','247','11');
+INSERT INTO `traits` VALUES ('117','tenacity','22','75','4','248','11');
+-- Magic Def Tiers I ~ IV --
+INSERT INTO `traits` VALUES ('6','magic def. bonus','22','10','1','29','10');
+INSERT INTO `traits` VALUES ('6','magic def. bonus','22','30','2','29','12');
+INSERT INTO `traits` VALUES ('6','magic def. bonus','22','50','3','29','14');
+INSERT INTO `traits` VALUES ('6','magic def. bonus','22','70','4','29','16');
+-- Auto Regen Tiers I ~ II --
+INSERT INTO `traits` VALUES ('9','auto regen','22','35','1','370','1');
+INSERT INTO `traits` VALUES ('9','auto regen','22','65','2','370','2');
+
+-- --- GEOMANCER --- --
+-- Conserve MP Tiers I ~ V --
+INSERT INTO `traits` VALUES ('13','conserve mp','21','10','1','296','25');
+INSERT INTO `traits` VALUES ('13','conserve mp','21','25','2','296','28');
+INSERT INTO `traits` VALUES ('13','conserve mp','21','40','3','296','31');
+INSERT INTO `traits` VALUES ('13','conserve mp','21','55','4','296','34');
+INSERT INTO `traits` VALUES ('13','conserve mp','21','70','5','296','37');
+-- Clear Mind Tiers I ~ III
+INSERT INTO `traits` VALUES ('24','clear mind','21','20','1','71','3');
+INSERT INTO `traits` VALUES ('24','clear mind','21','40','2','71','6');
+INSERT INTO `traits` VALUES ('24','clear mind','21','60','3','71','9');
+INSERT INTO `traits` VALUES ('24','clear mind','21','60','3','295','1');
+-- Max MP Boost Tiers I ~ II
+INSERT INTO `traits` VALUES ('8','max mp boost','21','30','1','5','10');
+INSERT INTO `traits` VALUES ('8','max mp boost','21','60','2','5','20');

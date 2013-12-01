@@ -521,6 +521,7 @@ INSERT INTO `status_effects` VALUES (489,'afterglow',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (510,'ninjutsu_ele_debuff',544,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (512,'healing',48,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (513,'leavegame',48,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (797,'teleport',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (798,'chainbound',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (799,'skillchain',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (800,'dynamis',0,0,0,0,0,0,0);

@@ -107,7 +107,7 @@ void LoadSkillTable()
 	memset(g_SkillTable,0, sizeof(g_SkillTable));
 	memset(g_SkillRanks,0, sizeof(g_SkillRanks));
 
-	const int8* fmtQuery = "SELECT r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12 \
+	const int8* fmtQuery = "SELECT r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13 \
 						    FROM skill_caps \
 							ORDER BY level \
 							LIMIT 100";
@@ -118,7 +118,7 @@ void LoadSkillTable()
 	{
 		for (uint32 x = 0; x < 100 && Sql_NextRow(SqlHandle) == SQL_SUCCESS; ++x)
 		{
-			for (uint32 y = 0; y < 13; ++y)
+			for (uint32 y = 0; y < 14; ++y)
 			{
 				g_SkillTable[x][y] = (uint16)Sql_GetIntData(SqlHandle,y);
 			}
