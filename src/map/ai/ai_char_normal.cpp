@@ -746,7 +746,7 @@ void CAICharNormal::ActionRangedStart()
 		SnapShotReductionPercent += m_PChar->getMod(MOD_SNAP_SHOT);
 		if (SnapShotReductionPercent > 0)
 		{
-			m_PChar->m_rangedDelay -= (float)(m_PChar->m_rangedDelay * ( (float)SnapShotReductionPercent / 100));
+			m_PChar->m_rangedDelay -= (float)(m_PChar->m_rangedDelay * ((float)SnapShotReductionPercent / 100));
 		}
 
 		// do chance for rapid shot
@@ -941,10 +941,10 @@ void CAICharNormal::ActionRangedFinish()
 		uint8 realHits = 0;			// to store the real number of hit for tp multipler
 		bool hitOccured = false;	// track if player hit mob at all
         bool isSange = false;
-
+		bool isBarrage = m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE,0);
 
         // if barrage is detected, getBarrageShotCount also checks for ammo count
-        if (!ammoThrowing && !rangedThrowing && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE,0))
+        if (!ammoThrowing && !rangedThrowing && isBarrage)
         {
             hitCount += battleutils::getBarrageShotCount(m_PChar);
         }
@@ -964,7 +964,7 @@ void CAICharNormal::ActionRangedFinish()
 					Action.speceffect = SPECEFFECT_NONE;
 					i = hitCount; // end barrage, shot missed
 				}
-				else if(rand()%100 < battleutils::GetRangedHitRate(m_PChar,m_PBattleSubTarget)) // hit!
+				else if(rand()%100 < battleutils::GetRangedHitRate(m_PChar,m_PBattleSubTarget, isBarrage)) // hit!
 				{
                     // absorbed by shadow
                     if (battleutils::IsAbsorbByShadow(m_PBattleSubTarget))
@@ -974,12 +974,14 @@ void CAICharNormal::ActionRangedFinish()
 					else 
 					{
     					float pdif = battleutils::GetRangedPDIF(m_PChar,m_PBattleSubTarget);
+						bool isCrit = false;
 
     					if(rand()%100 < battleutils::GetCritHitRate(m_PChar,m_PBattleSubTarget, true))
     					{
     						pdif *= 1.25; //uncapped
     						Action.speceffect = SPECEFFECT_CRITICAL_HIT;
     						Action.messageID = 353;
+							isCrit = true;
     					}
 
     					// at least 1 hit occured
@@ -1014,6 +1016,11 @@ void CAICharNormal::ActionRangedFinish()
                         {
     						charutils::TrySkillUP(m_PChar, (SKILLTYPE)PAmmo->getSkillType(), m_PBattleSubTarget->GetMLevel());
                         }
+
+						if (isCrit)
+						{	
+							damage += (damage * (float)m_PChar->getMod(MOD_CRIT_DMG_INCREASE) / 100);
+						}
                     }
 				}
 				else //miss
@@ -1769,9 +1776,8 @@ void CAICharNormal::ActionJobAbilityFinish()
     			Action.reaction   = REACTION_EVADE;
     			Action.speceffect = SPECEFFECT_NONE;
     		}
-    		else if(rand()%100 < battleutils::GetRangedHitRate(m_PChar,m_PBattleSubTarget)) // hit!
+    		else if(rand()%100 < battleutils::GetRangedHitRate(m_PChar,m_PBattleSubTarget, false)) // hit!
     		{
-
                 //check for shadow absorb
                 if (battleutils::IsAbsorbByShadow(m_PBattleSubTarget)) {
                     Action.messageID = 0;
@@ -2830,6 +2836,7 @@ void CAICharNormal::ActionAttack()
 				}
 
 				uint16 damage = 0;
+				bool isCritical = false;
 
 				// Do attack animation (kick, melee)
 				if (m_PChar->GetMJob() == JOB_MNK && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_FOOTWORK))
@@ -2934,7 +2941,7 @@ void CAICharNormal::ActionAttack()
                     else
                     {
 						bool ignoreSneakTrickAttack = (i != 0); // Sneak attack critical effect should only be given on the first swing.
-						bool isCritical = (rand()%100 < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget, ignoreSneakTrickAttack));
+						isCritical = (rand()%100 < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget, ignoreSneakTrickAttack));
 
 						float DamageRatio = battleutils::GetDamageRatio(m_PChar, m_PBattleTarget, isCritical, 0);
 
@@ -3037,7 +3044,18 @@ void CAICharNormal::ActionAttack()
 
 				if (Action.reaction == REACTION_HIT || Action.reaction == REACTION_BLOCK || Action.reaction == REACTION_GUARD)
 				{
+
+					if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_SAMBA))
+					{
+						attackRound.attackSwings->at(0).attackType = SAMBA_ATTACK;
+					}
 					damage = battleutils::CheckForDamageMultiplier(m_PChar, PWeapon, damage, attackRound.attackSwings->at(0).attackType);
+
+					if (isCritical)
+					{	
+						damage += (damage * (float)m_PChar->getMod(MOD_CRIT_DMG_INCREASE) / 100);
+					}
+
 					Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, isBlocked, fstrslot, 1, taChar, true);
 				}
 				else

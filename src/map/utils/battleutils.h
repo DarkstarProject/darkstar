@@ -98,6 +98,7 @@ enum PHYSICAL_ATTACK_TYPE
 	KICK_ATTACK			= 4,
 	RANGED_ATTACK		= 5,
 	RAPID_SHOT_ATTACK	= 6,
+	SAMBA_ATTACK		= 7,
 };
 
 enum PHYSICAL_ATTACK_DIRECTION
@@ -197,7 +198,7 @@ namespace battleutils
     bool                HandleSpikesEquip(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint8 damage, SUBEFFECT spikesType, uint8 chance);
     void                HandleSpikesStatusEffect(CBattleEntity* PAttacker, apAction_t* Action);
 	void				HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action, uint8 hitNumber, uint16 delay, uint16 damage);
-	uint8				GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
+	uint8				GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isBarrage);
 	uint16				CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 Tier, uint8 element);
 
     uint8				GetEnmityMod(uint8 level, uint8 modType);

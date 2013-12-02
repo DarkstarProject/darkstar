@@ -2026,11 +2026,16 @@ INSERT INTO `item_mods` VALUES(12517, 1, 22);
 INSERT INTO `item_mods` VALUES(12517, 2, 15);
 INSERT INTO `item_mods` VALUES(12517, 12, 5);
 INSERT INTO `item_mods` VALUES(12517, 360, 4);
-INSERT INTO `item_mods` VALUES(12518, 1, 21);
-INSERT INTO `item_mods` VALUES(12518, 2, 13);
-INSERT INTO `item_mods` VALUES(12518, 12, 3);
-INSERT INTO `item_mods` VALUES(12518, 24, 5);
-INSERT INTO `item_mods` VALUES(12518, 359, 5);
+
+-- -------------------------------------------------------
+-- Hunters beret
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(12518, 1, 21); -- Defence
+INSERT INTO `item_mods` VALUES(12518, 2, 13); -- HP
+INSERT INTO `item_mods` VALUES(12518, 12, 3); -- INT
+INSERT INTO `item_mods` VALUES(12518, 24, 5); -- Ranged attack
+INSERT INTO `item_mods` VALUES(12518, 359, 5); -- Rapidshot (proc rate)
+
 INSERT INTO `item_mods` VALUES(12519, 1, 16);
 INSERT INTO `item_mods` VALUES(12519, 2, 12);
 INSERT INTO `item_mods` VALUES(12519, 13, 5);
@@ -15379,8 +15384,70 @@ INSERT INTO `item_mods` VALUES(11256, 8, 4); -- str
 INSERT INTO `item_mods` VALUES(11256, 384, 30); -- haste
 
 -- -------------------------------------------------------
+-- Iga Erimaki
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11598, 25, 7); -- accuracy
+INSERT INTO `item_mods` VALUES(11598, 68, 7); -- evasion
+INSERT INTO `item_mods` VALUES(11598, 421, 2); -- Crit hit damage % increase
+
+-- -------------------------------------------------------
+-- Iga Dochugappa
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(16207, 1, 10); -- Defence
+INSERT INTO `item_mods` VALUES(16207, 9, 5); -- DEX
+INSERT INTO `item_mods` VALUES(16207, 165, 3); -- crit rate
+INSERT INTO `item_mods` VALUES(16207, 73, 5); -- Store tp
+
+-- -------------------------------------------------------
+-- Iga Mimikazari
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11715, 68, 5); -- evasion
+INSERT INTO `item_mods` VALUES(11715, 259, 1); -- dual wield
+
+-- -------------------------------------------------------
 -- Tiercel Necklace
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES(11578, 289, 5); -- subtle blow
 INSERT INTO `item_mods` VALUES(11578, 384, 10); -- haste
 
+-- -------------------------------------------------------
+-- Gastraphetes (75)
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(19001, 365, 5); -- Snap shot (Ranged delay decrease)
+INSERT INTO `item_mods` VALUES(19001, 450, 10); -- Barrage accuracy
+
+-- -------------------------------------------------------
+-- Gastraphetes (80)
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(19070, 365, 5); -- Snap shot (Ranged delay decrease)
+INSERT INTO `item_mods` VALUES(19070, 450, 15); -- Barrage accuracy
+
+-- -------------------------------------------------------
+-- Gastraphetes (85)
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(19090, 365, 5); -- Snap shot (Ranged delay decrease)
+INSERT INTO `item_mods` VALUES(19090, 450, 20); -- Barrage accuracy
+
+-- -------------------------------------------------------
+-- Gastraphetes (90)
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(19622, 365, 5); -- Snap shot (Ranged delay decrease)
+INSERT INTO `item_mods` VALUES(19622, 450, 25); -- Barrage accuracy
+
+-- -------------------------------------------------------
+-- Gastraphetes (95)
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(19720, 365, 5); -- Snap shot (Ranged delay decrease)
+INSERT INTO `item_mods` VALUES(19720, 450, 30); -- Barrage accuracy
+
+-- -------------------------------------------------------
+-- Gastraphetes (99)
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(19829, 365, 5); -- Snap shot (Ranged delay decrease)
+INSERT INTO `item_mods` VALUES(19829, 450, 35); -- Barrage accuracy
+
+-- -------------------------------------------------------
+-- Gastraphetes (Afterglow)
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(19958, 365, 5); -- Snap shot (Ranged delay decrease)
+INSERT INTO `item_mods` VALUES(19958, 450, 35); -- Barrage accuracy

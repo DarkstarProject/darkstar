@@ -1539,11 +1539,18 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 	}
 }
 
-uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender){
+uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isBarrage)
+{
 	int acc = 0;
 	int hitrate = 75;
 
-	if(PAttacker->objtype == TYPE_PC){
+	if (isBarrage && PAttacker->objtype == TYPE_PC)
+	{
+		hitrate += PAttacker->getMod(MOD_BARRAGE_ACC);
+	}
+
+	if(PAttacker->objtype == TYPE_PC)
+	{
 		CCharEntity* PChar = (CCharEntity*)PAttacker;
 		CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
 
@@ -1553,12 +1560,16 @@ uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender){
 			PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);
 		}
 
-		if(PItem!=NULL && PItem->isType(ITEM_WEAPON)){
+		if(PItem!=NULL && PItem->isType(ITEM_WEAPON))
+		{
 			int skill = PChar->GetSkill(PItem->getSkillType());
 			acc = skill;
-			if(skill>200){ acc = 200 + (skill-200)*0.9;}
+			if (skill > 200)
+			{ 
+				acc = 200 + (skill-200)*0.9;
+			}
 			acc += PChar->getMod(MOD_RACC);
-			acc += PChar->AGI()/2;
+			acc += PChar->AGI() / 2;
 			acc = ((100 +  PChar->getMod(MOD_RACCP)) * acc)/100 +
 				dsp_min(((100 +  PChar->getMod(MOD_FOOD_RACCP)) * acc)/100,  PChar->getMod(MOD_FOOD_RACC_CAP));
 		}
@@ -2704,6 +2715,12 @@ uint32 CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32
 
 		case RAPID_SHOT_ATTACK:
 			if (rand()%100 < PChar->getMod(MOD_RAPID_SHOT_DOUBLE_DAMAGE))
+			{
+				return originalDamage * 2;
+			}
+
+		case SAMBA_ATTACK:
+			if (rand()%100 < PChar->getMod(MOD_SAMBA_DOUBLE_DAMAGE))
 			{
 				return originalDamage * 2;
 			}

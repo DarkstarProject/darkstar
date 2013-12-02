@@ -204,6 +204,7 @@ enum MODIFIER
 	MOD_UDMGRANGE                 =0x186,
 
 	MOD_CRITHITRATE               =0xA5,// Raises chance to crit
+	MOD_CRIT_DMG_INCREASE		  =0x1A5,// Raises the damage of critcal hit by percent %
 	MOD_ENEMYCRITRATE             =0xA6,// Raises chance enemy will crit
 
 	MOD_HASTE_MAGIC               =0xA7,// Haste (and Slow) from magic - 1024 base! (448 cap)
@@ -317,6 +318,7 @@ enum MODIFIER
 	MOD_SNAP_SHOT                 =0x16D,// Percent reduction to range attack delay
 	MOD_RAPID_SHOT                =0x167,// Percent chance to proc rapid shot
 	MOD_WIDESCAN                  =0x154,
+	MOD_BARRAGE_ACC			      =0x1A4,// Barrage accuracy
 
 	// Samurai
 	MOD_ZANSHIN					  =0x132,// Zanshin percent chance
@@ -457,12 +459,12 @@ enum MODIFIER
 	MOD_BAR_ELEMENT_NULL_CHANCE	  =0x1A2,// Bar Elemental spells will occasionally nullify damage of the same element.
 	MOD_GRIMOIRE_INSTANT_CAST	  =0x1A3,// Spells that match your current Arts will occasionally cast instantly, without recast. 
 
-	// MOD_SPARE	=0x1A4,
-	// MOD_SPARE	=0x1A5,
 	// MOD_SPARE	=0x1A6,
 	// MOD_SPARE	=0x1A7,
 	// MOD_SPARE	=0x1A8,
 	// MOD_SPARE	=0x1A9,
+	// MOD_SPARE	=0x1AA,
+	// MOD_SPARE	=0x1AB,
 
 	MOD_MAG_BURST_BONUS           =408,
 	MOD_EAT_RAW_FISH			  =409, // not implemented

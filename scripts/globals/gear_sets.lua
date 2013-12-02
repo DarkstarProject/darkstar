@@ -228,9 +228,15 @@ function SearchMods(player, modNameId, name, matches)
 	if (name == "Creed" and matches > 4) then		ApplyMod(player, modNameId, MOD_ABSORB_DMG_CHANCE, 5); return; end							--	Creed Armor +2 Set. Set Bonus: Occasionally absorbs damage taken. Set proc believed to be somewhere around 5%, more testing needed. Verification Needed Absorb rate likely varies with # of set pieces. 
 	if (name == "Sylvan" and matches > 4) then		ApplyMod(player, modNameId, MOD_RAPID_SHOT_DOUBLE_DAMAGE, extraDamageChance); return; end	--	Sylvan Attire +2 Set. Set Bonus: Augments "Rapid Shot". Rapid Shots occasionally deal double damage.
 	if (name == "Iga" and matches > 4) then			ApplyMod(player, modNameId, MOD_EXTRA_DUAL_WIELD_ATTACK, extraAttackChance); return; end 	--  Iga Garb +2 Set. Set Bonus: Augments "Dual Wield". Attacks made while dual wielding occasionally add an extra attack
-	if (name == "Charis" and matches > 4) then		ApplyMod(player, modNameId, MOD_SAMBA_DOUBLE_DAMAGE, extraDamageChance); return; end		--  Charis Attire +2 Set. Set Bonus: Augments "Samba". Occasionally doubles damage with Samba up. Adds approximately 1-2% per piece past the first. 
 	if (name == "Navarch" and matches > 4) then		ApplyMod(player, modNameId, MOD_QUICK_DRAW_TRIPLE_DAMAGE, extraDamageChance); return; end	--  Navarch's Attire +2 Set. Set Bonus: Augments "Quick Draw". Quick Draw will occasionally deal triple damage.
-				 
+
+	--  Charis Attire +2 Set. Set Bonus: Augments "Samba". Occasionally doubles damage with Samba up. Adds approximately 1-2% per piece past the first. 
+	if (name == "Charis" and matches > 1) then
+		local chance = matches - 1;
+		ApplyMod(player, modNameId, MOD_SAMBA_DOUBLE_DAMAGE, chance * 2); 
+		return; 
+	end		
+	
 	--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)	
 	if (name == "Supremacy" and matches > 1) then
 		ApplyMod(player, modNameId, MOD_STR, 6);

@@ -1443,7 +1443,7 @@ void CAIMobDummy::ActionAttack()
 								Action.reaction   = REACTION_HIT;
 								Action.speceffect = SPECEFFECT_NONE;
 
-								bool isCritical = ( rand()%100 < battleutils::GetCritHitRate(m_PBattleTarget, m_PMob,false) );
+								bool isCritical = (rand()%100 < battleutils::GetCritHitRate(m_PBattleTarget, m_PMob,false));
 								bool isHTH = m_PBattleTarget->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH;
 								if (!isHTH && m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->GetMJob() == JOB_MNK)
 								{
