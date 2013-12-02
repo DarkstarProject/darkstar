@@ -713,9 +713,9 @@ void CAICharNormal::ActionRangedStart()
 		return;
 	}
 
+	m_PChar->isRapidShot = false;
+
 	CItemWeapon* PRanged = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
-
-
     CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
 
 	if (PRanged != NULL && PRanged->isType(ITEM_WEAPON) ||
@@ -744,17 +744,20 @@ void CAICharNormal::ActionRangedStart()
 
 		// get any snapshotreduction from gear
 		SnapShotReductionPercent += m_PChar->getMod(MOD_SNAP_SHOT);
-
 		if (SnapShotReductionPercent > 0)
+		{
 			m_PChar->m_rangedDelay -= (float)(m_PChar->m_rangedDelay * ( (float)SnapShotReductionPercent / 100));
-
+		}
 
 		// do chance for rapid shot
 		if (charutils::hasTrait(m_PChar, TRAIT_RAPID_SHOT))
 		{
 			uint16 chance = (m_PChar->getMod(MOD_RAPID_SHOT) + m_PChar->PMeritPoints->GetMeritValue(MERIT_RAPID_SHOT_RATE, m_PChar));
 			if (rand()%100 < chance)
+			{
 				m_PChar->m_rangedDelay = 0;
+				m_PChar->isRapidShot = true;
+			}
 		}
 
         if(m_PChar->m_rangedDelay <= 0){
@@ -766,7 +769,6 @@ void CAICharNormal::ActionRangedStart()
 		{
 			case SKILL_THR:
             {
-
                 // remove barrage, doesn't work here
                 m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BARRAGE);
             }
@@ -918,19 +920,18 @@ void CAICharNormal::ActionRangedFinish()
         Action.knockback  = 0;
 
         CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
-
         CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
 
         bool ammoThrowing = PAmmo->isThrowing();
         bool rangedThrowing = PItem->isThrowing();
         uint8 slot = SLOT_RANGED;
 
-        if(ammoThrowing)
+        if (ammoThrowing)
         {
             slot = SLOT_AMMO;
             PItem = NULL;
         }
-        if(rangedThrowing)
+        if (rangedThrowing)
         {
             PAmmo = NULL;
         }
@@ -969,8 +970,9 @@ void CAICharNormal::ActionRangedFinish()
                     if (battleutils::IsAbsorbByShadow(m_PBattleSubTarget))
                     {
                         shadowsTaken++;
-
-                    } else {
+                    } 
+					else 
+					{
     					float pdif = battleutils::GetRangedPDIF(m_PChar,m_PBattleSubTarget);
 
     					if(rand()%100 < battleutils::GetCritHitRate(m_PChar,m_PBattleSubTarget, true))
@@ -984,7 +986,8 @@ void CAICharNormal::ActionRangedFinish()
     					hitOccured = true;
     					realHits ++;
 
-                        if(isSange){
+                        if(isSange)
+						{
                             // change message to sange
                             Action.messageID = 77;
                         }
@@ -993,8 +996,14 @@ void CAICharNormal::ActionRangedFinish()
 
                         if(slot == SLOT_RANGED)
                         {
-							// TODO: link
-        					//damage = battleutils::CheckForDamageMultiplier(m_PChar, PItem, damage, NULL);
+							if (m_PChar->isRapidShot)
+							{
+        						damage = battleutils::CheckForDamageMultiplier(m_PChar, PItem, damage, RAPID_SHOT_ATTACK);
+							}
+							else
+							{
+        						damage = battleutils::CheckForDamageMultiplier(m_PChar, PItem, damage, RANGED_ATTACK);
+							}
 
                             if(PItem != NULL)
                             {
@@ -1005,9 +1014,7 @@ void CAICharNormal::ActionRangedFinish()
                         {
     						charutils::TrySkillUP(m_PChar, (SKILLTYPE)PAmmo->getSkillType(), m_PBattleSubTarget->GetMLevel());
                         }
-
                     }
-
 				}
 				else //miss
 				{
@@ -1020,25 +1027,23 @@ void CAICharNormal::ActionRangedFinish()
 					i = hitCount; // end barrage, shot missed
 				}
 
-
 				// check for recycle chance
-
 				uint8 recycleChance = m_PChar->getMod(MOD_RECYCLE);
-
 				if (charutils::hasTrait(m_PChar,TRAIT_RECYCLE))
+				{
 					recycleChance += m_PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE,m_PChar);
+				}
 
-                // only remove on hit
+                // Only remove unlimited shot on hit
                 if(hitOccured && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_UNLIMITED_SHOT))
                 {
                     m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_UNLIMITED_SHOT);
                     recycleChance = 100;
                 }
 
-				if(PAmmo != NULL && rand()%100 > recycleChance)
+				if (PAmmo != NULL && rand()%100 > recycleChance)
 				{
-
-					if ( (PAmmo->getQuantity()-1) < 1) // ammo will run out after this shot, make sure we remove it from equip
+					if ((PAmmo->getQuantity()-1) < 1) // ammo will run out after this shot, make sure we remove it from equip
 					{
 						uint8 slot = m_PChar->equip[SLOT_AMMO];
 						charutils::UnequipItem(m_PChar,SLOT_AMMO);
@@ -1049,12 +1054,9 @@ void CAICharNormal::ActionRangedFinish()
 					{
 						charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
 					}
-
 					m_PChar->pushPacket(new CInventoryFinishPacket());
 				}
-
                 damage = battleutils::RangedDmgTaken(m_PBattleSubTarget, damage);
-
 				totalDamage += damage;
 		}
 
@@ -1148,7 +1150,6 @@ void CAICharNormal::ActionRangedFinish()
 
 		TransitionBack();
         m_PChar->m_rangedDelay = m_Tick; //cooldown between shots
-
 	}
 }
 
@@ -1801,9 +1802,7 @@ void CAICharNormal::ActionJobAbilityFinish()
         			hitOccured = true;
 
         			damage = (damage + m_PChar->GetRangedWeaponDmg() + battleutils::GetFSTR(m_PChar,m_PBattleSubTarget,SLOT_RANGED)) * pdif * 5;
-        			//TODO: link
-					//damage = battleutils::CheckForDamageMultiplier(m_PChar, PItem, damage, NULL);
-
+					damage = battleutils::CheckForDamageMultiplier(m_PChar, PItem, damage, ATTACK_NORMAL);
                     damage = battleutils::RangedDmgTaken(m_PBattleSubTarget, damage);
                 }
     		}
@@ -3038,7 +3037,7 @@ void CAICharNormal::ActionAttack()
 
 				if (Action.reaction == REACTION_HIT || Action.reaction == REACTION_BLOCK || Action.reaction == REACTION_GUARD)
 				{
-					damage = battleutils::CheckForDamageMultiplier(m_PChar, PWeapon, damage, &attackRound);
+					damage = battleutils::CheckForDamageMultiplier(m_PChar, PWeapon, damage, attackRound.attackSwings->at(0).attackType);
 					Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, isBlocked, fstrslot, 1, taChar, true);
 				}
 				else

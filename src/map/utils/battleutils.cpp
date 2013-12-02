@@ -2628,7 +2628,7 @@ void CheckPlayersKickAttack(CCharEntity* PChar, CItemWeapon* PWeapon, attackSwin
 *                                                                       *
 ************************************************************************/
 
-uint32 CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32 damage, attackSwingRound_t* attackRound)
+uint32 CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32 damage, PHYSICAL_ATTACK_TYPE attackType)
 {
 	if (PWeapon==NULL)
 	{
@@ -2683,7 +2683,7 @@ uint32 CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32
 			break;
 	}
 
-	switch (attackRound->attackSwings->at(0).attackType)
+	switch (attackType)
 	{
 		case ZANSHIN_ATTACK:
 			if (rand()%100 < PChar->getMod(MOD_ZANSHIN_DOUBLE_DAMAGE))
@@ -2698,6 +2698,12 @@ uint32 CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32
 			}
 		case DOUBLE_ATTACK:
 			if (rand()%100 < PChar->getMod(MOD_DA_DOUBLE_DAMAGE))
+			{
+				return originalDamage * 2;
+			}
+
+		case RAPID_SHOT_ATTACK:
+			if (rand()%100 < PChar->getMod(MOD_RAPID_SHOT_DOUBLE_DAMAGE))
 			{
 				return originalDamage * 2;
 			}
@@ -3890,10 +3896,9 @@ uint8 getBarrageShotCount(CCharEntity* PChar)
 	CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
 
 	if(PItem && PItem->getSkillType() != 25 && PItem->getSkillType() != 26)
+	{
 		return 0;
-
-
-
+	}
 
 	uint8 lvl = PChar->jobs.job[JOB_RNG];		// Get Ranger level of char
 	uint8 shotCount = 0;					// the total number of extra hits
@@ -4018,8 +4023,7 @@ uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
     				realHits++;
 
         			// incase player has gungnir^^ (or any other damage increases weapons)
-        			// TODO: link
-					//damageForRound = battleutils::CheckForDamageMultiplier((CCharEntity*)PAttacker, PWeapon, damageForRound, NULL);
+					damageForRound = battleutils::CheckForDamageMultiplier((CCharEntity*)PAttacker, PWeapon, damageForRound, ATTACK_NORMAL);
 
         			totalDamage += damageForRound;
                 }

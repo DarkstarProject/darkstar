@@ -91,11 +91,13 @@ enum ELEMENT
 
 enum PHYSICAL_ATTACK_TYPE
 {
-	ATTACK_NORMAL	= 0,
-	DOUBLE_ATTACK	= 1,
-	TRIPLE_ATTACK	= 2,
-	ZANSHIN_ATTACK	= 3,
-	KICK_ATTACK		= 4,
+	ATTACK_NORMAL		= 0,
+	DOUBLE_ATTACK		= 1,
+	TRIPLE_ATTACK		= 2,
+	ZANSHIN_ATTACK		= 3,
+	KICK_ATTACK			= 4,
+	RANGED_ATTACK		= 5,
+	RAPID_SHOT_ATTACK	= 6,
 };
 
 enum PHYSICAL_ATTACK_DIRECTION
@@ -140,6 +142,7 @@ namespace battleutils
 	uint8			CheckMobMultiHits(CBattleEntity* PEntity);
 	void			CheckPlayersZanshin(CCharEntity* PChar, attackSwingRound_t* attackRound);
 	void			CheckPlayersKickAttack(CCharEntity* PChar, CItemWeapon* PWeapon, attackSwingRound_t* attackRound);
+	uint32			CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32 damage, PHYSICAL_ATTACK_TYPE attackType);
 
 	uint8			GetSkillRank(SKILLTYPE SkillID, JOBTYPE JobID);
 	uint16			GetMaxSkill(SKILLTYPE SkillID, JOBTYPE JobID, uint8 level);
@@ -210,7 +213,7 @@ namespace battleutils
     void				MakeEntityStandUp(CBattleEntity* PEntity);
     bool				IsEngauged(CBattleEntity* PEntity);
 	CBattleEntity*		getAvailableTrickAttackChar(CBattleEntity* taUser, CBattleEntity* PMob);
-	uint32				CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32 damage, attackSwingRound_t* attackRound);
+
     bool				HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool);
 
 	bool				TryCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 base);
