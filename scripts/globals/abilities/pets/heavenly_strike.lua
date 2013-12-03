@@ -23,7 +23,7 @@ function OnPetAbility(target, pet, skill)
 		merits = master:getMerit(MERIT_HEAVENLY_STRIKE);
 	end
 	
-	tp = tp + (merits - 1) * 40;
+	tp = tp + (merits - 40);
 	if (tp > 300) then
 		tp = 300;
 	end

@@ -1467,7 +1467,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 	// get any available merit recast reduction
 	uint8 meritRecastReduction = 0;
 
-	if (((CAbility*)m_PJobAbility)->getMeritModID() > 0)
+    if (m_PJobAbility->getMeritModID() > 0 && !(m_PJobAbility->getAddType() & ADDTYPE_MERIT))
 	{
 		meritRecastReduction = m_PChar->PMeritPoints->GetMeritValue((Merit_t*)m_PChar->PMeritPoints->GetMerit((MERIT_TYPE)m_PJobAbility->getMeritModID()), m_PChar);
 	}
@@ -1603,6 +1603,20 @@ void CAICharNormal::ActionJobAbilityFinish()
             //TODO: some reason cosair double up chance is sometimes null
     		uint8 roll = (rand() % 6) + 1;
     		CStatusEffect* doubleUpEffect = m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_DOUBLE_UP_CHANCE);
+
+            if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNAKE_EYE))
+            {
+                //check for instant 11 via Snake Eye merits
+                if (doubleUpEffect->GetPower() >= 5 && rand() % 100 < m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_SNAKE_EYE)->GetPower())
+                {
+                    roll = 11 - doubleUpEffect->GetPower();
+                }
+                else
+                {
+                    roll = 1;
+                }
+                m_PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_SNAKE_EYE);
+            }
 
     		uint8 total = doubleUpEffect->GetPower() + roll;
     		if (total > 12)
