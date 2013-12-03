@@ -730,24 +730,10 @@ void CAICharNormal::ActionRangedStart()
         }
 
 		//ranged weapon delay is stored in the db as offset from 240 for some reason.
-
 		m_PChar->m_rangedDelay = m_PChar->GetRangedWeaponDelay(false);
-
-		// apply snapshot reduction
-		uint32 SnapShotReductionPercent = 0;
-
-		if (charutils::hasTrait(m_PChar, TRAIT_SNAPSHOT))
-		{
-			// reduction from merits should only apply if the user has the trait
-			SnapShotReductionPercent = m_PChar->PMeritPoints->GetMeritValue(MERIT_SNAPSHOT, m_PChar);
-		}
-
-		// get any snapshotreduction from gear
-		SnapShotReductionPercent += m_PChar->getMod(MOD_SNAP_SHOT);
-		if (SnapShotReductionPercent > 0)
-		{
-			m_PChar->m_rangedDelay -= (float)(m_PChar->m_rangedDelay * ((float)SnapShotReductionPercent / 100));
-		}
+		
+		// Get Snapshot reduction
+		battleutils::GetSnapshotReduction(m_PChar);
 
 		// do chance for rapid shot
 		if (charutils::hasTrait(m_PChar, TRAIT_RAPID_SHOT))

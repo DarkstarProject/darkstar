@@ -15005,7 +15005,6 @@ INSERT INTO `item_mods` VALUES(10500, 73, 10);
 INSERT INTO `item_mods` VALUES(14878, 73, 9);
 INSERT INTO `item_mods` VALUES(14404, 73, 9);
 INSERT INTO `item_mods` VALUES(17810, 73, 8);
-INSERT INTO `item_mods` VALUES(11134, 73, 9);
 INSERT INTO `item_mods` VALUES(14876, 73, 8);
 INSERT INTO `item_mods` VALUES(11075, 73, 8);
 INSERT INTO `item_mods` VALUES(10455, 73, 8);
@@ -15451,3 +15450,131 @@ INSERT INTO `item_mods` VALUES(19829, 450, 35); -- Barrage accuracy
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES(19958, 365, 5); -- Snap shot (Ranged delay decrease)
 INSERT INTO `item_mods` VALUES(19958, 450, 35); -- Barrage accuracy
+
+-- -------------------------------------------------------
+-- Sylvan Scarf
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11596, 11, 6); -- agi
+INSERT INTO `item_mods` VALUES(11596, 26, 8); -- ranged attack
+INSERT INTO `item_mods` VALUES(11596, 27, -3); -- enmity
+
+-- -------------------------------------------------------
+-- Sylvan Chlamys
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(16205, 1, 9); -- Defence
+INSERT INTO `item_mods` VALUES(16205, 11, 6); -- agi
+INSERT INTO `item_mods` VALUES(16205, 8, 6); -- str
+INSERT INTO `item_mods` VALUES(16205, 27, -3); -- enmity
+INSERT INTO `item_mods` VALUES(16205, 73, 5); -- Store tp
+
+-- -------------------------------------------------------
+-- Sylvan Earring
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11713, 11, 4); -- agi
+INSERT INTO `item_mods` VALUES(11713, 27, -2); -- enmity
+
+-- -------------------------------------------------------
+-- Sylvan Attire
+-- -------------------------------------------------------
+-- Head (Sylvan Gapette)
+INSERT INTO `item_mods` VALUES(12018, 1, 29); -- def
+INSERT INTO `item_mods` VALUES(12018, 24, 3); -- ranged attack
+INSERT INTO `item_mods` VALUES(12018, 26, 3); -- ranged accuracy
+
+-- Body (Sylvan Caban)
+INSERT INTO `item_mods` VALUES(12038, 1, 55); -- def
+INSERT INTO `item_mods` VALUES(12038, 8, 3); -- str
+INSERT INTO `item_mods` VALUES(12038, 11, 3); -- agi
+INSERT INTO `item_mods` VALUES(12038, 26, 6); -- ranged accuracy
+
+-- Hands (Sylvan Glovelettes)
+INSERT INTO `item_mods` VALUES(12058, 1, 20); -- def
+INSERT INTO `item_mods` VALUES(12058, 8, 3); -- str
+
+-- Legs (Sylvan Brague)
+INSERT INTO `item_mods` VALUES(12078, 1, 41); -- def
+INSERT INTO `item_mods` VALUES(12078, 24, 3); -- ranged attack
+
+-- Feet (Sylvan Bottillons)
+INSERT INTO `item_mods` VALUES(12098, 1, 17); -- def
+INSERT INTO `item_mods` VALUES(12098, 11, 4); -- agi
+
+-- -------------------------------------------------------
+-- Sylvan Attire +1
+-- -------------------------------------------------------
+-- Head (Sylvan Gapette +1)
+INSERT INTO `item_mods` VALUES(11174, 1, 32); -- def
+INSERT INTO `item_mods` VALUES(11174, 24, 9); -- ranged attack
+INSERT INTO `item_mods` VALUES(11174, 26, 9); -- ranged accuracy
+INSERT INTO `item_mods` VALUES(11174, 289, 5); -- subtle blow
+INSERT INTO `item_mods` VALUES(11174, 365, 5); -- Snap shot (Ranged delay decrease)
+INSERT INTO `item_mods` VALUES(11174, 422, 5); -- Double shot proc rate
+
+-- Body (Sylvan Caban +1)
+INSERT INTO `item_mods` VALUES(11194, 1, 58); -- def
+INSERT INTO `item_mods` VALUES(11194, 8, 8); -- str
+INSERT INTO `item_mods` VALUES(11194, 11, 8); -- agi
+INSERT INTO `item_mods` VALUES(11194, 26, 15); -- ranged accuracy
+INSERT INTO `item_mods` VALUES(11194, 27, -7); -- enmity
+INSERT INTO `item_mods` VALUES(11194, 423, 5); -- Ranged attack boost and snapshot(+5) whilst velocity shot is up
+
+-- Hands (Sylvan Glovelettes +1)
+INSERT INTO `item_mods` VALUES(11214, 1, 23); -- def
+INSERT INTO `item_mods` VALUES(11214, 8, 7); -- str
+INSERT INTO `item_mods` VALUES(11214, 104, 5); -- archery skill
+INSERT INTO `item_mods` VALUES(11214, 73, 4); -- Store tp
+-- TODO bounty shot. Increases the Base Treasure Hunter Effect on Bounty Shot from 2 to 3.
+
+-- Legs (Sylvan Brague +1)
+INSERT INTO `item_mods` VALUES(11234, 1, 44); -- def
+INSERT INTO `item_mods` VALUES(11234, 24, 9); -- ranged attack
+INSERT INTO `item_mods` VALUES(11234, 165, 2); -- crit rate
+INSERT INTO `item_mods` VALUES(11234, 73, 6); -- Store tp
+-- TODO true shot. Increases damage from ideal ranged attack distance ("sweet spot") by 3-7%. Trait also applies to Weapon Skills. 
+
+-- Feet (Sylvan Bottillons +1)
+INSERT INTO `item_mods` VALUES(11254, 20, 17); -- def
+INSERT INTO `item_mods` VALUES(11254, 12, 4); -- agi
+INSERT INTO `item_mods` VALUES(11254, 105, 5); -- marksmanship skill
+INSERT INTO `item_mods` VALUES(11254, 27, -5); -- enmity
+-- TODO Unlimited shot. Allows the next ranged attack to receive the bonuses of the "sweet spot" distance at any distance (will receive the pummeling message at any distance). 
+
+-- -------------------------------------------------------
+-- Sylvan Attire +2
+-- -------------------------------------------------------
+-- Head (Sylvan Gapette +2)
+INSERT INTO `item_mods` VALUES(11074, 1, 34); -- def
+INSERT INTO `item_mods` VALUES(11074, 24, 13); -- ranged attack
+INSERT INTO `item_mods` VALUES(11074, 26, 13); -- ranged accuracy
+INSERT INTO `item_mods` VALUES(11074, 289, 10); -- subtle blow
+INSERT INTO `item_mods` VALUES(11074, 365, 5); -- Snap shot (Ranged delay decrease)
+INSERT INTO `item_mods` VALUES(11074, 422, 5); -- Double shot proc rate
+
+-- Body (Sylvan Caban +2)
+INSERT INTO `item_mods` VALUES(11094, 1, 61); -- def
+INSERT INTO `item_mods` VALUES(11094, 8, 12); -- str
+INSERT INTO `item_mods` VALUES(11094, 11, 12); -- agi
+INSERT INTO `item_mods` VALUES(11094, 26, 20); -- ranged accuracy
+INSERT INTO `item_mods` VALUES(11094, 27, -9); -- enmity
+INSERT INTO `item_mods` VALUES(11094, 423, 5); -- Ranged attack boost and snapshot(+5) whilst velocity shot is up
+
+-- Hands (Sylvan Glovelettes +2)
+INSERT INTO `item_mods` VALUES(11114, 1, 25); -- def
+INSERT INTO `item_mods` VALUES(11114, 8, 10); -- str
+INSERT INTO `item_mods` VALUES(11114, 104, 7); -- archery skill
+INSERT INTO `item_mods` VALUES(11114, 73, 7); -- Store tp
+-- TODO bounty shot. Increases the Base Treasure Hunter Effect on Bounty Shot from 2 to 3.
+
+-- Legs (Sylvan Brague +2)
+INSERT INTO `item_mods` VALUES(11134, 1, 46); -- def
+INSERT INTO `item_mods` VALUES(11134, 24, 12); -- ranged attack
+INSERT INTO `item_mods` VALUES(11134, 165, 3); -- crit rate
+INSERT INTO `item_mods` VALUES(11134, 73, 9); -- Store tp
+-- TODO true shot. Increases damage from ideal ranged attack distance ("sweet spot") by 3-7%. Trait also applies to Weapon Skills. 
+
+-- Feet (Sylvan Bottillons +2)
+INSERT INTO `item_mods` VALUES(11154, 20, 22); -- def
+INSERT INTO `item_mods` VALUES(11154, 12, 15); -- agi
+INSERT INTO `item_mods` VALUES(11154, 105, 7); -- marksmanship skill
+INSERT INTO `item_mods` VALUES(11154, 27, -8); -- enmity
+-- TODO Unlimited shot. Allows the next ranged attack to receive the bonuses of the "sweet spot" distance at any distance (will receive the pummeling message at any distance). 

@@ -2659,8 +2659,7 @@ uint32 CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32
 		case 18300:		// Gungnir, polearm
 		case 18318:		// Amanomurakumo, great katana
 		case 18330:		// Claustrum, staff
-			if (rand()%100 > 16) return originalDamage;
-			return (damage = (damage * (float)2.5));
+			if (rand()%100 <= 16) return (damage = (damage * (float)2.5));
 			break;
 
 		// Relic: 3 times damage
@@ -2669,15 +2668,13 @@ uint32 CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32
 		case 18324:		// Mjollnir, club
 		case 18336:		// Annihilator, marksmanship
 		case 18348:		// Yoichinoyumi, archery
-			if (rand()%100 >= 16) return originalDamage;
-			return (damage = (damage * 3));
+			if (rand()%100 <= 16) return (damage = (damage * 3));
 			break;
 
 		// Relic: 2 times damage
 		case 18294:		// Bravura, great axe
 		case 18306:		// Apocalypse, scythe
-			if (rand()%100 >= 16) return originalDamage;
-			return (damage = (damage * 2));
+			if (rand()%100 <= 16) return (damage = (damage * 2));
 			break;
 
 
@@ -2686,8 +2683,7 @@ uint32 CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32
 		// Mythic: 2 time damage
 		case 19001:		// Gastraphetes(lvl75), marksmanship
 		case 19007:		// Death Penalty(lvl75), marksmanship
-			if (rand()%100 < 55) return originalDamage;
-			return (damage = (damage * 2));
+			if (rand()%100 > 55) return (damage = (damage * 2));
 			break;
 
 		default:			
@@ -4576,5 +4572,38 @@ void DrawIn(CBattleEntity* PEntity, position_t* pos, float offset)
 		PEntity->loc.zone->PushPacket(PEntity,CHAR_INRANGE, new CEntityUpdatePacket(PEntity,ENTITY_UPDATE));
 	}
 }
+
+/************************************************************************
+*                                                                       *
+*	Get the Snapshot shot time reduction                                *
+*                                                                       *
+************************************************************************/
+void GetSnapshotReduction(CCharEntity* m_PChar)
+{
+	// Set this to zero to start with
+	uint32 SnapShotReductionPercent = 0;
+
+	// Reduction from gear.
+	SnapShotReductionPercent += m_PChar->getMod(MOD_SNAP_SHOT);
+		
+	// Reduction from merits.
+	if (charutils::hasTrait(m_PChar, TRAIT_SNAPSHOT))
+	{
+		SnapShotReductionPercent += m_PChar->PMeritPoints->GetMeritValue(MERIT_SNAPSHOT, m_PChar); 
+	}									  
+
+	// Reduction from velocity shot mod
+	if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_VELOCITY_SHOT))
+	{
+		SnapShotReductionPercent += m_PChar->getMod(MOD_VELOCITY_SHOT_BONUS);		
+	}
+
+	// Only apply if we have snapshot bonus to offer.
+	if (SnapShotReductionPercent > 0)
+	{
+		m_PChar->m_rangedDelay -= (float)(m_PChar->m_rangedDelay * ((float)SnapShotReductionPercent / 100));
+	}
+}
+
 
 };

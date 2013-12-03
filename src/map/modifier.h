@@ -319,6 +319,8 @@ enum MODIFIER
 	MOD_RAPID_SHOT                =0x167,// Percent chance to proc rapid shot
 	MOD_WIDESCAN                  =0x154,
 	MOD_BARRAGE_ACC			      =0x1A4,// Barrage accuracy
+	MOD_DOUBLE_SHOT_RATE		  =0x1A6,// The rate that double shot can proc
+	MOD_VELOCITY_SHOT_BONUS		  =0x1A7,// Increases Ranged Attack boost from Velocity Shot. Snapshot+
 
 	// Samurai
 	MOD_ZANSHIN					  =0x132,// Zanshin percent chance
@@ -459,19 +461,20 @@ enum MODIFIER
 	MOD_BAR_ELEMENT_NULL_CHANCE	  =0x1A2,// Bar Elemental spells will occasionally nullify damage of the same element.
 	MOD_GRIMOIRE_INSTANT_CAST	  =0x1A3,// Spells that match your current Arts will occasionally cast instantly, without recast. 
 
-	// MOD_SPARE	=0x1A6,
-	// MOD_SPARE	=0x1A7,
 	// MOD_SPARE	=0x1A8,
 	// MOD_SPARE	=0x1A9,
 	// MOD_SPARE	=0x1AA,
 	// MOD_SPARE	=0x1AB,
+	// MOD_SPARE	=0x1AC,
+	// MOD_SPARE	=0x1AD,
+	// MOD_SPARE	=0x1AE,
 
 	MOD_MAG_BURST_BONUS           =408,
 	MOD_EAT_RAW_FISH			  =409, // not implemented
 	MOD_EAT_RAW_MEAT			  =410, // not implemented
 };
 
-#define MAX_MODIFIER	       418
+#define MAX_MODIFIER	       424
 
 
 

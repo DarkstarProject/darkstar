@@ -514,7 +514,7 @@ uint16 CBattleEntity::ATT()
 
 uint16 CBattleEntity::RATT(uint8 skill)
 {
-    int32 ATT = 8 + GetSkill(skill) + m_modStat[MOD_RATT] + STR() / 2;
+    int32 ATT = 8 + GetSkill(skill) + m_modStat[MOD_RATT] + m_modStat[MOD_VELOCITY_SHOT_BONUS] + STR() / 2;
 
     return ATT + (ATT * m_modStat[MOD_RATTP] / 100) +
         dsp_min((ATT * m_modStat[MOD_FOOD_RATTP] / 100), m_modStat[MOD_FOOD_RATT_CAP]);
