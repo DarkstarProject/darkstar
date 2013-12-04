@@ -4595,7 +4595,7 @@ void GetSnapshotReduction(CCharEntity* m_PChar)
 	// Reduction from velocity shot mod
 	if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_VELOCITY_SHOT))
 	{
-		SnapShotReductionPercent += m_PChar->getMod(MOD_VELOCITY_SHOT_BONUS);		
+		SnapShotReductionPercent += m_PChar->getMod(MOD_VELOCITY_SNAPSHOT_BONUS);		
 	}
 
 	// Only apply if we have snapshot bonus to offer.

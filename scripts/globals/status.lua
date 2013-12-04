@@ -867,7 +867,8 @@ MOD_BAR_ELEMENT_NULL_CHANCE	  =0x1A2 -- Bar Elemental spells will occasionally n
 MOD_GRIMOIRE_INSTANT_CAST	  =0x1A3 -- Spells that match your current Arts will occasionally cast instantly, without recast. 
 
 MOD_DOUBLE_SHOT_RATE		  =0x1A6 -- The rate that double shot can proc
-MOD_VELOCITY_SHOT_BONUS		  =0x1A7 -- Increases Ranged Attack boost from Velocity Shot. Snapshot+
+MOD_VELOCITY_SNAPSHOT_BONUS	  =0x1A7 -- Increases Snapshot whilst Velocity Shot is up.
+MOD_VELOCITY_RATT_BONUS		  =0x1A8 -- Increases Ranged Attack whilst Velocity Shot is up.
 
 MOD_EAT_RAW_FISH			  = 409
 MOD_EAT_RAW_MEAT			  = 410

@@ -320,7 +320,8 @@ enum MODIFIER
 	MOD_WIDESCAN                  =0x154,
 	MOD_BARRAGE_ACC			      =0x1A4,// Barrage accuracy
 	MOD_DOUBLE_SHOT_RATE		  =0x1A6,// The rate that double shot can proc
-	MOD_VELOCITY_SHOT_BONUS		  =0x1A7,// Increases Ranged Attack boost from Velocity Shot. Snapshot+
+	MOD_VELOCITY_SNAPSHOT_BONUS	  =0x1A7,// Increases Snapshot whilst Velocity Shot is up.
+	MOD_VELOCITY_RATT_BONUS		  =0x1A8,// Increases Ranged Attack whilst Velocity Shot is up.
 
 	// Samurai
 	MOD_ZANSHIN					  =0x132,// Zanshin percent chance
@@ -457,11 +458,10 @@ enum MODIFIER
 	MOD_EXTRA_KICK_ATTACK		  =0x19E,// Occasionally allows a second Kick Attack during an attack round without the use of Footwork. 
 	MOD_SAMBA_DOUBLE_DAMAGE		  =0x19F,// Double damage chance when samba is up.
 	MOD_NULL_PHYSICAL_DAMAGE	  =0x1A0,// Chance to null physical damage.
-	MOD_QUICK_DRAW_TRIPLE_DAMAGE  =0x1A1,// Chance to do triple damage with quick draw.
+	MOD_QUICK_DRAW_TRIPLE_DAMAGE  =0x1A1,// Chance to do triple damage with quick draw. warr
 	MOD_BAR_ELEMENT_NULL_CHANCE	  =0x1A2,// Bar Elemental spells will occasionally nullify damage of the same element.
 	MOD_GRIMOIRE_INSTANT_CAST	  =0x1A3,// Spells that match your current Arts will occasionally cast instantly, without recast. 
 
-	// MOD_SPARE	=0x1A8,
 	// MOD_SPARE	=0x1A9,
 	// MOD_SPARE	=0x1AA,
 	// MOD_SPARE	=0x1AB,
@@ -474,7 +474,7 @@ enum MODIFIER
 	MOD_EAT_RAW_MEAT			  =410, // not implemented
 };
 
-#define MAX_MODIFIER	       424
+#define MAX_MODIFIER	       425
 
 
 

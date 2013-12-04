@@ -15516,7 +15516,8 @@ INSERT INTO `item_mods` VALUES(11194, 8, 8); -- str
 INSERT INTO `item_mods` VALUES(11194, 11, 8); -- agi
 INSERT INTO `item_mods` VALUES(11194, 26, 15); -- ranged accuracy
 INSERT INTO `item_mods` VALUES(11194, 27, -7); -- enmity
-INSERT INTO `item_mods` VALUES(11194, 423, 5); -- Ranged attack boost and snapshot(+5) whilst velocity shot is up
+INSERT INTO `item_mods` VALUES(11194, 423, 5); -- Increases Snapshot whilst Velocity Shot is up.
+INSERT INTO `item_mods` VALUES(11194, 424, 10); -- Increases Ranged Attack whilst Velocity Shot is up.
 
 -- Hands (Sylvan Glovelettes +1)
 INSERT INTO `item_mods` VALUES(11214, 1, 23); -- def
@@ -15556,7 +15557,8 @@ INSERT INTO `item_mods` VALUES(11094, 8, 12); -- str
 INSERT INTO `item_mods` VALUES(11094, 11, 12); -- agi
 INSERT INTO `item_mods` VALUES(11094, 26, 20); -- ranged accuracy
 INSERT INTO `item_mods` VALUES(11094, 27, -9); -- enmity
-INSERT INTO `item_mods` VALUES(11094, 423, 5); -- Ranged attack boost and snapshot(+5) whilst velocity shot is up
+INSERT INTO `item_mods` VALUES(11094, 423, 5); -- Increases Snapshot whilst Velocity Shot is up.
+INSERT INTO `item_mods` VALUES(11094, 424, 10); -- Increases Ranged Attack whilst Velocity Shot is up.
 
 -- Hands (Sylvan Glovelettes +2)
 INSERT INTO `item_mods` VALUES(11114, 1, 25); -- def
