@@ -2822,13 +2822,16 @@ void CAICharNormal::ActionAttack()
 						break;
 					}
 					Action.ActionTarget = NULL;
+				}
 
-					if (!isHTH && attackRound.attackSwings->at(0).attackDirection == LEFTATTACK)
+				if (!isHTH) 
+				{
+					if (attackRound.attackSwings->at(0).attackDirection == LEFTATTACK)
 					{
 						PWeapon = m_PChar->m_Weapons[SLOT_SUB];
 						fstrslot = SLOT_SUB;
 					}
-					if (!isHTH && attackRound.attackSwings->at(0).attackDirection == RIGHTATTACK)
+					else
 					{
 						PWeapon = m_PChar->m_Weapons[SLOT_MAIN];
 						fstrslot = SLOT_MAIN;
