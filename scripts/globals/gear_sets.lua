@@ -225,11 +225,11 @@ function SearchMods(player, modNameId, name, matches)
 	if (name == "Raider" and matches > 1) then		ApplyMod(player, modNameId, MOD_TA_TRIPLE_DAMAGE, extraDamageChance);	return;	end			--	Raider's Attire +2 Set. Set Bonus: Augments "Triple Attack". Occasionally causes the second and third hits of a Triple Attack to deal triple damage.Verification Needed Requires a minimum of two pieces. 	 
 	if (name == "Tantra" and matches > 4) then		ApplyMod(player, modNameId, MOD_EXTRA_KICK_ATTACK, extraAttackChance); return; end			--	Tantra Attire +2 Set. Set Bonus: Augments "Kick Attacks". Occasionally allows a second Kick Attack during an attack round without the use of Footwork. 	
 	if (name == "Unkai" and matches > 4) then		ApplyMod(player, modNameId, MOD_ZANSHIN_DOUBLE_DAMAGE, extraDamageChance); return; end		--	Unkai Domaru +2 Set. Set Bonus: Augments "Zanshin". Zanshin attacks will occasionally deal double damage.			
-	if (name == "Creed" and matches > 4) then		ApplyMod(player, modNameId, MOD_ABSORB_DMG_CHANCE, 5); return; end							--	Creed Armor +2 Set. Set Bonus: Occasionally absorbs damage taken. Set proc believed to be somewhere around 5%, more testing needed. Verification Needed Absorb rate likely varies with # of set pieces. 
 	if (name == "Sylvan" and matches > 4) then		ApplyMod(player, modNameId, MOD_RAPID_SHOT_DOUBLE_DAMAGE, extraDamageChance); return; end	--	Sylvan Attire +2 Set. Set Bonus: Augments "Rapid Shot". Rapid Shots occasionally deal double damage.
 	if (name == "Iga" and matches > 4) then			ApplyMod(player, modNameId, MOD_EXTRA_DUAL_WIELD_ATTACK, extraAttackChance); return; end 	--  Iga Garb +2 Set. Set Bonus: Augments "Dual Wield". Attacks made while dual wielding occasionally add an extra attack
 	if (name == "Navarch" and matches > 4) then		ApplyMod(player, modNameId, MOD_QUICK_DRAW_TRIPLE_DAMAGE, extraDamageChance); return; end	--  Navarch's Attire +2 Set. Set Bonus: Augments "Quick Draw". Quick Draw will occasionally deal triple damage.
-
+	if (name == "Creed" and matches > 1) then		ApplyMod(player, modNameId, MOD_ABSORB_DMG_CHANCE, matches); return; end					--	Creed Armor +2 Set. Set Bonus: Occasionally absorbs damage taken. At least 2 peices needed. Each adds 1% (5% total)					
+	
 	--  Charis Attire +2 Set. Set Bonus: Augments "Samba". Occasionally doubles damage with Samba up. Adds approximately 1-2% per piece past the first. 
 	if (name == "Charis" and matches > 1) then
 		local chance = matches - 1;

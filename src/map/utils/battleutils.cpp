@@ -2751,6 +2751,52 @@ void AddAttackSwing(attackSwingRound_t* attackRound, PHYSICAL_ATTACK_TYPE type, 
 }
 
 
+/************************************************************************
+*																		*
+*  Try's to absorb MP from a physical attack.							*
+*																		*
+************************************************************************/
+void TryAbsorbMPfromPhysicalAttack(CBattleEntity* battleEntity, uint16 damage)
+{
+	if (battleEntity->objtype != TYPE_PC)
+	{
+		return;
+	}
+
+	// Absorbs a percentage of damage to MP (100% rate)
+	if (battleEntity->getMod(MOD_ABSORB_DMG_TO_MP) != 0)
+	{
+		uint16 absorbedMP = (float)(damage * 5 / 100);
+		battleEntity->addMP(absorbedMP);
+		battleEntity->loc.zone->PushPacket(battleEntity, CHAR_INRANGE_SELF, new CMessageBasicPacket(battleEntity, battleEntity, 0, absorbedMP, 276)); // 276 - <target> recovers .. MP.
+		return;
+	}
+}
+
+/************************************************************************
+*																		*
+*  Try's to absorb HP from a physical attack.							*
+*																		*
+************************************************************************/
+bool TryAbsorbHPfromPhysicalAttack(CBattleEntity* battleEntity, uint16 damage)
+{
+	if (battleEntity->objtype != TYPE_PC)
+	{
+		return false;
+	}
+
+	// Do chance to absorb damage
+	if (rand()%100 < battleEntity->getMod(MOD_ABSORB_DMG_CHANCE))
+	{
+		battleEntity->addHP(damage);
+		battleEntity->loc.zone->PushPacket(battleEntity, CHAR_INRANGE_SELF, new CMessageBasicPacket(battleEntity, battleEntity, 0, damage, 263)); // 263 - <target> recovers .. HP.
+		return true;
+	}
+	return false;
+}
+
+
+
 /*****************************************************************************
 	Handles song buff effects. Returns true if the song has been handled
 	or false if the song effect has not been implemented. This is used in
@@ -4066,8 +4112,10 @@ uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
 		uint16 enmityReduction = PAttacker->getMod(MOD_HIGH_JUMP_ENMITY_REDUCTION) + 50;
 
 		// cap it
-		if (enmityReduction > 100) enmityReduction = 100;
-
+		if (enmityReduction > 100) 
+		{
+			enmityReduction = 100;
+		}
 		((CMobEntity*)PVictim)->PEnmityContainer->LowerEnmityByPercent(PAttacker , enmityReduction, NULL);
 	}
 

@@ -1511,14 +1511,22 @@ void CAIMobDummy::ActionAttack()
 								bool isBlocked = battleutils::IsBlocked(m_PMob, m_PBattleTarget);
 								if(isBlocked){ Action.reaction = REACTION_BLOCK; }
 								
-								// Try Null damage chance
-								if (m_PBattleTarget->objtype == TYPE_PC)
+
+								// Try Null damage chance (The target)
+								if (rand()%100 < m_PBattleTarget->getMod(MOD_NULL_PHYSICAL_DAMAGE) && m_PBattleTarget->objtype == TYPE_PC)
 								{
-									if (rand()%100 < m_PBattleTarget->getMod(MOD_NULL_PHYSICAL_DAMAGE))
-									{
-										damage = 0;
-									}
+									damage = 0;
 								}
+
+								// Try absorb HP chance (The target)
+								if (battleutils::TryAbsorbHPfromPhysicalAttack(m_PBattleTarget, damage))
+								{
+									Action.messageID = 0;
+									damage = 0;
+								}
+
+								// Try to absorb MP (The target)
+								battleutils::TryAbsorbMPfromPhysicalAttack(m_PBattleTarget, damage);
 
 								Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage, isBlocked ,SLOT_MAIN, 1, NULL, true);
 								m_PMob->PEnmityContainer->UpdateEnmityFromAttack(m_PBattleTarget, Action.param);

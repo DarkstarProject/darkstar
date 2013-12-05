@@ -869,6 +869,8 @@ MOD_GRIMOIRE_INSTANT_CAST	  =0x1A3 -- Spells that match your current Arts will o
 MOD_DOUBLE_SHOT_RATE		  =0x1A6 -- The rate that double shot can proc
 MOD_VELOCITY_SNAPSHOT_BONUS	  =0x1A7 -- Increases Snapshot whilst Velocity Shot is up.
 MOD_VELOCITY_RATT_BONUS		  =0x1A8 -- Increases Ranged Attack whilst Velocity Shot is up.
+MOD_SHADOW_BIND_EXT		  	  =0x1A9 -- Extends the time of shadowbind
+MOD_ABSORB_DMG_TO_MP		  =0x1AA --	Absorbs a percentage of damage taken to MP.
 
 MOD_EAT_RAW_FISH			  = 409
 MOD_EAT_RAW_MEAT			  = 410

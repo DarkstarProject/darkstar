@@ -1889,6 +1889,11 @@ void CAICharNormal::ActionJobAbilityFinish()
 			 * Blade of Death quests are active.
 			 */
 
+    		if(m_PJobAbility->getID() == ABILITY_SHADOWBIND)
+    		{
+				m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 11, 277)); 
+			}
+
 			// handle jump abilities---
 
     		// Jump
@@ -1929,10 +1934,13 @@ void CAICharNormal::ActionJobAbilityFinish()
 
     		// handle enmity transfer abilities
     		if (m_PJobAbility->getID() == ABILITY_ACCOMPLICE)
+			{
     			battleutils::TransferEnmity(m_PChar, m_PBattleSubTarget, (CMobEntity*)m_PBattleSubTarget->PBattleAI->GetBattleTarget(), 50);
-    		else if (m_PJobAbility->getID() == ABILITY_COLLABORATOR)
+			}
+			else if (m_PJobAbility->getID() == ABILITY_COLLABORATOR)
+			{
     			battleutils::TransferEnmity(m_PChar, m_PBattleSubTarget, (CMobEntity*)m_PBattleSubTarget->PBattleAI->GetBattleTarget(), 25);
-
+				}
 
     		m_PChar->m_ActionList.push_back(Action);
 
@@ -3058,6 +3066,22 @@ void CAICharNormal::ActionAttack()
 					{	
 						damage += (damage * (float)m_PChar->getMod(MOD_CRIT_DMG_INCREASE) / 100);
 					}
+
+					// Try Null damage chance (The target)
+					if (m_PBattleTarget->objtype == TYPE_PC && rand()%100 < m_PBattleTarget->getMod(MOD_NULL_PHYSICAL_DAMAGE))
+					{
+						damage = 0;
+					}
+
+					// Try absorb HP chance (The target)
+					if (battleutils::TryAbsorbHPfromPhysicalAttack(m_PBattleTarget, damage))
+					{
+						Action.messageID = 0;
+						damage = 0;
+					}
+
+					// Try to absorb MP (The target)
+					battleutils::TryAbsorbMPfromPhysicalAttack(m_PBattleTarget, damage);
 
 					Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, isBlocked, fstrslot, 1, taChar, true);
 				}

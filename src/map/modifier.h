@@ -304,6 +304,8 @@ enum MODIFIER
 	MOD_TREASURE_HUNTER           =0x12F,// Percent chance
 
 	// Paladin
+	MOD_ABSORB_DMG_TO_MP		  =0x1AA,//	Absorbs a percentage of damage taken to MP.
+
 	// Dark Knight
 	// Beastmaster
 	MOD_TAME                      =0x130,// Additional percent chance to charm
@@ -322,6 +324,7 @@ enum MODIFIER
 	MOD_DOUBLE_SHOT_RATE		  =0x1A6,// The rate that double shot can proc
 	MOD_VELOCITY_SNAPSHOT_BONUS	  =0x1A7,// Increases Snapshot whilst Velocity Shot is up.
 	MOD_VELOCITY_RATT_BONUS		  =0x1A8,// Increases Ranged Attack whilst Velocity Shot is up.
+	MOD_SHADOW_BIND_EXT		  	  =0x1A9,// Extends the time of shadowbind
 
 	// Samurai
 	MOD_ZANSHIN					  =0x132,// Zanshin percent chance
@@ -462,19 +465,19 @@ enum MODIFIER
 	MOD_BAR_ELEMENT_NULL_CHANCE	  =0x1A2,// Bar Elemental spells will occasionally nullify damage of the same element.
 	MOD_GRIMOIRE_INSTANT_CAST	  =0x1A3,// Spells that match your current Arts will occasionally cast instantly, without recast. 
 
-	// MOD_SPARE	=0x1A9,
-	// MOD_SPARE	=0x1AA,
 	// MOD_SPARE	=0x1AB,
 	// MOD_SPARE	=0x1AC,
 	// MOD_SPARE	=0x1AD,
 	// MOD_SPARE	=0x1AE,
+	// MOD_SPARE	=0x1AF,
+	// MOD_SPARE	=0x1B0,
 
 	MOD_MAG_BURST_BONUS           =408,
 	MOD_EAT_RAW_FISH			  =409, // not implemented
 	MOD_EAT_RAW_MEAT			  =410, // not implemented
 };
 
-#define MAX_MODIFIER	       425
+#define MAX_MODIFIER	       426
 
 
 

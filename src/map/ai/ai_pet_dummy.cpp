@@ -804,6 +804,22 @@ void CAIPetDummy::ActionAttack()
 					bool isBlocked = (rand()%100 < battleutils::GetBlockRate(m_PPet,m_PBattleTarget));
 					if(isBlocked){ Action.reaction = REACTION_BLOCK; }
 
+					// Try Null damage chance (The target)
+					if (m_PBattleTarget->objtype == TYPE_PC && rand()%100 < m_PBattleTarget->getMod(MOD_NULL_PHYSICAL_DAMAGE))
+					{
+						damage = 0;
+					}
+
+					// Try absorb HP chance (The target)
+					if (battleutils::TryAbsorbHPfromPhysicalAttack(m_PBattleTarget, damage))
+					{
+						Action.messageID = 0;
+						damage = 0;
+					}
+
+					// Try to absorb MP (The target)
+					battleutils::TryAbsorbMPfromPhysicalAttack(m_PBattleTarget, damage);
+
 	                Action.param = battleutils::TakePhysicalDamage(m_PPet, m_PBattleTarget, damage, isBlocked, SLOT_MAIN, 1, NULL, true);
 
 	                // spike effect
