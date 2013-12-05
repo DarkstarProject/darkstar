@@ -461,7 +461,7 @@ enum MODIFIER
 	MOD_EXTRA_KICK_ATTACK		  =0x19E,// Occasionally allows a second Kick Attack during an attack round without the use of Footwork. 
 	MOD_SAMBA_DOUBLE_DAMAGE		  =0x19F,// Double damage chance when samba is up.
 	MOD_NULL_PHYSICAL_DAMAGE	  =0x1A0,// Chance to null physical damage.
-	MOD_QUICK_DRAW_TRIPLE_DAMAGE  =0x1A1,// Chance to do triple damage with quick draw. warr
+	MOD_QUICK_DRAW_TRIPLE_DAMAGE  =0x1A1,// Chance to do triple damage with quick draw.
 	MOD_BAR_ELEMENT_NULL_CHANCE	  =0x1A2,// Bar Elemental spells will occasionally nullify damage of the same element.
 	MOD_GRIMOIRE_INSTANT_CAST	  =0x1A3,// Spells that match your current Arts will occasionally cast instantly, without recast. 
 

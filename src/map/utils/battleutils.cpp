@@ -2766,7 +2766,7 @@ void TryAbsorbMPfromPhysicalAttack(CBattleEntity* battleEntity, uint16 damage)
 	// Absorbs a percentage of damage to MP (100% rate)
 	if (battleEntity->getMod(MOD_ABSORB_DMG_TO_MP) != 0)
 	{
-		uint16 absorbedMP = (float)(damage * 5 / 100);
+		uint16 absorbedMP = (float)(damage * battleEntity->getMod(MOD_ABSORB_DMG_TO_MP) / 100);
 		battleEntity->addMP(absorbedMP);
 		battleEntity->loc.zone->PushPacket(battleEntity, CHAR_INRANGE_SELF, new CMessageBasicPacket(battleEntity, battleEntity, 0, absorbedMP, 276)); // 276 - <target> recovers .. MP.
 		return;
