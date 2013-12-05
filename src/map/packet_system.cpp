@@ -1858,13 +1858,24 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
                             {
                                 charutils::UpdateItem(PChar, LOC_INVENTORY, 0, PItem->getQuantity());
                                 commit = true;
+                                PChar->pushPacket(new CDeliveryBoxPacket(action, PItem, PChar->UContainer->GetItemsCount()));
                             }
                             else
                             {
-                                if (charutils::AddItem(PChar, LOC_INVENTORY, PItem->getID(), PItem->getQuantity()) != ERROR_SLOTID)
+                                if (PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() == 0)
+                                {
+                                    PChar->pushPacket(new CDeliveryBoxPacket(action, PItem, PChar->UContainer->GetItemsCount(), 0xB9));
+                                }
+                                if (charutils::AddItem(PChar, LOC_INVENTORY, PItem->getID(), PItem->getQuantity(), true) != ERROR_SLOTID)
+                                {
                                     commit = true;
+                                    PChar->pushPacket(new CDeliveryBoxPacket(action, PItem, PChar->UContainer->GetItemsCount()));
+                                }
+                                else
+                                {
+                                    PChar->pushPacket(new CDeliveryBoxPacket(action, PItem, PChar->UContainer->GetItemsCount(), 0xBA));
+                                }
                             }
-                            PChar->pushPacket(new CDeliveryBoxPacket(action, PItem, PChar->UContainer->GetItemsCount()));
                         }
                     }
                     else if (boxtype == 0x02)
@@ -1889,14 +1900,17 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
                             PChar->pushPacket(new CSendBoxPacket(action, PItem, slotID, PChar->UContainer->GetItemsCount(), 0xEB));
                         }
                     }
-                    PChar->pushPacket(new CInventoryFinishPacket());
-                    PChar->UContainer->SetItem(slotID, NULL);
-                    delete PItem;
                 }
                 if(!commit || !Sql_TransactionCommit(SqlHandle))
                 {
                     Sql_TransactionRollback(SqlHandle);
-                    ShowError("Could not finalize receive transaction. PlayerID: %d ItemID: %d Quantity: %d", PChar->id, PItem->getID(), PItem->getQuantity());
+                    ShowError("Could not finalize receive transaction. PlayerID: %d Action: 0x0A", PChar->id);
+                }
+                else
+                {
+                    PChar->pushPacket(new CInventoryFinishPacket());
+                    PChar->UContainer->SetItem(slotID, NULL);
+                    delete PItem;
                 }
 
                 Sql_SetAutoCommit(SqlHandle, isAutoCommitOn);

@@ -987,7 +987,7 @@ uint8 AddItem(CCharEntity* PChar, uint8 LocationID, uint16 ItemID, uint32 quanti
 	if (PItem != NULL)
 	{
 		PItem->setQuantity(quantity);
-        return AddItem(PChar, LocationID, PItem);
+        return AddItem(PChar, LocationID, PItem, silence);
 	}
 	ShowWarning(CL_YELLOW"charplugin::AddItem: Item <%i> is not found in a database\n" CL_RESET, ItemID);
 	return ERROR_SLOTID;
@@ -999,7 +999,7 @@ uint8 AddItem(CCharEntity* PChar, uint8 LocationID, uint16 ItemID, uint32 quanti
 *																		*
 ************************************************************************/
 
-uint8 AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem)
+uint8 AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem, bool silence)
 {
     if (PItem->isType(ITEM_CURRENCY))
     {
@@ -1011,7 +1011,8 @@ uint8 AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem)
     {
         if (HasItem(PChar, PItem->getID()))
         {
-            PChar->pushPacket(new CMessageStandardPacket(PChar, PItem->getID(), 0, 220));
+            if (!silence)
+                PChar->pushPacket(new CMessageStandardPacket(PChar, PItem->getID(), 0, 220));
             delete PItem;
             return ERROR_SLOTID;
         }
