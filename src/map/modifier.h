@@ -305,6 +305,7 @@ enum MODIFIER
 
 	// Paladin
 	MOD_ABSORB_DMG_TO_MP		  =0x1AA,//	Absorbs a percentage of damage taken to MP.
+	MOD_ENMITY_REDUCTION_PHYSICAL =0x1AB,// Reduces Enmity decrease when taking physical damage
 
 	// Dark Knight
 	// Beastmaster
@@ -465,7 +466,6 @@ enum MODIFIER
 	MOD_BAR_ELEMENT_NULL_CHANCE	  =0x1A2,// Bar Elemental spells will occasionally nullify damage of the same element.
 	MOD_GRIMOIRE_INSTANT_CAST	  =0x1A3,// Spells that match your current Arts will occasionally cast instantly, without recast. 
 
-	// MOD_SPARE	=0x1AB,
 	// MOD_SPARE	=0x1AC,
 	// MOD_SPARE	=0x1AD,
 	// MOD_SPARE	=0x1AE,
@@ -477,7 +477,7 @@ enum MODIFIER
 	MOD_EAT_RAW_MEAT			  =410, // not implemented
 };
 
-#define MAX_MODIFIER	       426
+#define MAX_MODIFIER	       427
 
 
 

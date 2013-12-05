@@ -15132,7 +15132,6 @@ INSERT INTO `item_mods` VALUES(15539, 370, 1);
 INSERT INTO `item_mods` VALUES(15540, 370, 1);
 INSERT INTO `item_mods` VALUES(18708, 370, 1);
 INSERT INTO `item_mods` VALUES(18709, 370, 1);
-INSERT INTO `item_mods` VALUES(11595, 369, 1);
 INSERT INTO `item_mods` VALUES(12623, 369, 1);
 INSERT INTO `item_mods` VALUES(14364, 369, 1);
 INSERT INTO `item_mods` VALUES(14369, 369, 1);
@@ -15582,3 +15581,132 @@ INSERT INTO `item_mods` VALUES(11154, 12, 15); -- agi
 INSERT INTO `item_mods` VALUES(11154, 105, 7); -- marksmanship skill
 INSERT INTO `item_mods` VALUES(11154, 27, -8); -- enmity
 -- TODO Unlimited shot. Allows the next ranged attack to receive the bonuses of the "sweet spot" distance at any distance (will receive the pummeling message at any distance). 
+
+-- -------------------------------------------------------
+-- Creed Collar
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11595, 427, 1); -- TODO: Reduces Enmity decrease when taking physical damage
+INSERT INTO `item_mods` VALUES(11595, 369, 1); -- Refresh
+
+-- -------------------------------------------------------
+-- Creed Baudrier
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11750, 1, 10); -- def
+INSERT INTO `item_mods` VALUES(11750, 2, 40); -- HP
+INSERT INTO `item_mods` VALUES(11750, 29, 4); -- Magic defence
+INSERT INTO `item_mods` VALUES(11750, 27, 5); -- enmity
+
+-- -------------------------------------------------------
+-- Creed Earring
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11709, 109, 3); -- Shield skill
+INSERT INTO `item_mods` VALUES(11709, 2, 30); -- HP
+
+-- -------------------------------------------------------
+-- Creed Armor +2
+-- -------------------------------------------------------
+-- Head (Creed Armet +2)
+INSERT INTO `item_mods` VALUES(11070, 1, 44); -- def
+INSERT INTO `item_mods` VALUES(11070, 2, 40); -- HP
+INSERT INTO `item_mods` VALUES(11070, 4, 40); -- MP
+INSERT INTO `item_mods` VALUES(11070, 109, 7); -- Shield skill
+INSERT INTO `item_mods` VALUES(11070, 426, 5); -- Absorbs a percentage of damage taken to MP
+INSERT INTO `item_mods` VALUES(11070, 170, 5); -- fastcast
+
+-- Body (Creed Cuirass +2)
+INSERT INTO `item_mods` VALUES(11090, 1, 77); -- def
+INSERT INTO `item_mods` VALUES(11090, 2, 65); -- HP
+INSERT INTO `item_mods` VALUES(11090, 4, 65); -- MP
+INSERT INTO `item_mods` VALUES(11090, 25, 20); -- accuracy
+INSERT INTO `item_mods` VALUES(11090, 23, 20); -- attack
+INSERT INTO `item_mods` VALUES(11090, 27, 10); -- enmity
+-- TODO: Mitigates damage taken based on enmity. Low Enmity:Aprox. -2.4% Damage Taken. Reduction is active even when not on the hate list. High Enmity:Aprox. -10.2% Damage Taken 
+
+-- Hands (Creed Gauntlets +2)
+INSERT INTO `item_mods` VALUES(11110, 1, 35); -- def
+INSERT INTO `item_mods` VALUES(11110, 8, 11); -- STR
+INSERT INTO `item_mods` VALUES(11110, 10, 11); -- VIT
+INSERT INTO `item_mods` VALUES(11110, 82, 7); -- Sword skill
+INSERT INTO `item_mods` VALUES(11110, 384, 4); -- haste gear
+-- TODO: Enhances "Shield Defense Bonus" effect
+
+-- Legs (Creed Cuisses +2)
+INSERT INTO `item_mods` VALUES(11130, 1, 58); -- def
+INSERT INTO `item_mods` VALUES(11130, 2, 50); -- HP
+INSERT INTO `item_mods` VALUES(11130, 384, 4); -- haste gear
+INSERT INTO `item_mods` VALUES(11130, 82, 7); -- Sword skill
+INSERT INTO `item_mods` VALUES(11130, 161, -5); -- Physical Damage % multiplier
+INSERT INTO `item_mods` VALUES(11130, 427, 1); -- TODO: Reduces Enmity decrease when taking physical damage
+
+-- Feet (Creed Sabatons +2)
+INSERT INTO `item_mods` VALUES(11150, 1, 30); -- def
+INSERT INTO `item_mods` VALUES(11150, 25, 14); -- accuracy
+INSERT INTO `item_mods` VALUES(11150, 384, 4); -- haste gear
+INSERT INTO `item_mods` VALUES(11150, 27, 7); -- enmity
+
+-- -------------------------------------------------------
+-- Creed Armor +1
+-- -------------------------------------------------------
+-- Head (Creed Armet +1)
+INSERT INTO `item_mods` VALUES(11170, 1, 42); -- def
+INSERT INTO `item_mods` VALUES(11170, 2, 30); -- HP
+INSERT INTO `item_mods` VALUES(11170, 4, 30); -- MP
+INSERT INTO `item_mods` VALUES(11170, 109, 5); -- Shield skill
+INSERT INTO `item_mods` VALUES(11170, 426, 3); -- Absorbs a percentage of damage taken to MP
+
+-- Body (Creed Cuirass +1)
+INSERT INTO `item_mods` VALUES(11190, 1, 74); -- def
+INSERT INTO `item_mods` VALUES(11190, 2, 40); -- HP
+INSERT INTO `item_mods` VALUES(11190, 4, 40); -- MP
+INSERT INTO `item_mods` VALUES(11190, 25, 14); -- accuracy
+INSERT INTO `item_mods` VALUES(11190, 23, 14); -- attack
+INSERT INTO `item_mods` VALUES(11190, 27, 7); -- enmity
+-- TODO: Mitigates damage taken based on enmity. Low Enmity:Aprox. -2.4% Damage Taken. Reduction is active even when not on the hate list. High Enmity:Aprox. -10.2% Damage Taken 
+
+-- Hands (Creed Gauntlets +1)
+INSERT INTO `item_mods` VALUES(11210, 1, 33); -- def
+INSERT INTO `item_mods` VALUES(11210, 8, 7); -- STR
+INSERT INTO `item_mods` VALUES(11210, 10, 7); -- VIT
+INSERT INTO `item_mods` VALUES(11210, 82, 5); -- Sword skill
+INSERT INTO `item_mods` VALUES(11210, 384, 3); -- haste gear
+-- TODO: Enhances "Shield Defense Bonus" effect
+
+-- Legs (Creed Cuisses +1)
+INSERT INTO `item_mods` VALUES(11230, 1, 56); -- def
+INSERT INTO `item_mods` VALUES(11230, 2, 30); -- HP
+INSERT INTO `item_mods` VALUES(11230, 384, 3); -- haste gear
+INSERT INTO `item_mods` VALUES(11230, 161, -3); -- Physical Damage % multiplier
+INSERT INTO `item_mods` VALUES(11230, 427, 1); -- TODO: Reduces Enmity decrease when taking physical damage
+
+-- Feet (Creed Sabatons +1)
+INSERT INTO `item_mods` VALUES(11250, 1, 28); -- def
+INSERT INTO `item_mods` VALUES(11250, 25, 10); -- accuracy
+INSERT INTO `item_mods` VALUES(11250, 384, 3); -- haste gear
+INSERT INTO `item_mods` VALUES(11250, 27, 4); -- enmity
+
+-- -------------------------------------------------------
+-- Creed Armor
+-- -------------------------------------------------------
+-- Head (Creed Armet)
+INSERT INTO `item_mods` VALUES(12014, 1, 39); -- def
+INSERT INTO `item_mods` VALUES(12014, 2, 15); -- HP
+INSERT INTO `item_mods` VALUES(12014, 4, 15); -- MP
+
+-- Body (Creed Cuirass)
+INSERT INTO `item_mods` VALUES(12034, 1, 71); -- def
+INSERT INTO `item_mods` VALUES(12034, 25, 6); -- accuracy
+INSERT INTO `item_mods` VALUES(12034, 23, 6); -- attack
+INSERT INTO `item_mods` VALUES(12034, 27, 3); -- enmity
+
+-- Hands (Creed Gauntlets)
+INSERT INTO `item_mods` VALUES(12054, 1, 30); -- def
+INSERT INTO `item_mods` VALUES(12054, 8, 3); -- STR
+INSERT INTO `item_mods` VALUES(12054, 10, 3); -- VIT
+
+-- Legs (Creed Cuisses)
+INSERT INTO `item_mods` VALUES(12074, 1, 53); -- def
+INSERT INTO `item_mods` VALUES(12074, 2, 15); -- HP
+
+-- Feet (Creed Sabatons)
+INSERT INTO `item_mods` VALUES(12094, 1, 25); -- def
+INSERT INTO `item_mods` VALUES(12094, 25, 4); -- accuracy
