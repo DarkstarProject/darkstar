@@ -3303,6 +3303,10 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
         else
         {
             PChar->jobs.exp[PChar->GetMJob()] -= GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]);
+            if (PChar->jobs.exp[PChar->GetMJob()] >= GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]+1))
+            {
+                PChar->jobs.exp[PChar->GetMJob()] = GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()] + 1) - 1;
+            }
             PChar->jobs.job[PChar->GetMJob()] += 1;
 
             if (PChar->m_LevelRestriction == 0 ||
