@@ -27,7 +27,7 @@
 #include "status_effect.h"
 
 
-CStatusEffect::CStatusEffect(EFFECT id, uint16 icon, uint16 power, uint32 tick, uint32 duration, uint16 subid, uint16 subPower, uint16 tier)
+CStatusEffect::CStatusEffect(EFFECT id, uint16 icon, uint16 power, uint32 tick, uint32 duration, uint32 subid, uint16 subPower, uint16 tier)
 {
 	m_StatusID = id;
     m_Type     = 0;
@@ -70,7 +70,7 @@ CBattleEntity* CStatusEffect::GetOwner()
 	return m_POwner;
 }
 
-uint16 CStatusEffect::GetSubID()
+uint32 CStatusEffect::GetSubID()
 {
 	return m_SubID;
 }

@@ -841,6 +841,59 @@ bool CStatusEffectContainer::ApplyCorsairEffect(CStatusEffect* PStatusEffect, ui
 	return false;
 }
 
+bool CStatusEffectContainer::HasCorsairEffect(uint32 charid)
+{
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+    {
+        if ((m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
+            m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_SCHOLARS_ROLL) ||
+            m_StatusEffectList.at(i)->GetStatusID() == EFFECT_BUST)//is a cor effect
+        {
+            if (m_StatusEffectList.at(i)->GetSubID() == charid ||
+                m_StatusEffectList.at(i)->GetStatusID() == EFFECT_BUST)
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+void CStatusEffectContainer::Fold(uint32 charid)
+{
+    CStatusEffect* oldestRoll = NULL;
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+    {
+        if ((m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
+            m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_SCHOLARS_ROLL) ||
+            m_StatusEffectList.at(i)->GetStatusID() == EFFECT_BUST)//is a cor effect
+        {
+            if (m_StatusEffectList.at(i)->GetSubID() == charid ||
+                m_StatusEffectList.at(i)->GetStatusID() == EFFECT_BUST)
+            {
+                if (oldestRoll == NULL)
+                {
+                    oldestRoll = m_StatusEffectList.at(i);
+                }
+                else if (oldestRoll->GetStatusID() != EFFECT_BUST && m_StatusEffectList.at(i)->GetStatusID() == EFFECT_BUST)
+                {
+                    oldestRoll = m_StatusEffectList.at(i);
+                }
+                else if (m_StatusEffectList.at(i)->GetDuration() + m_StatusEffectList.at(i)->GetStartTime() <
+                    oldestRoll->GetDuration() + oldestRoll->GetStartTime())
+                {
+                    oldestRoll = m_StatusEffectList.at(i);
+                }
+            }
+        }
+    }
+    if (oldestRoll != NULL)
+    {
+        DelStatusEffectSilent(oldestRoll->GetStatusID());
+        DelStatusEffectSilent(EFFECT_DOUBLE_UP_CHANCE);
+    }
+}
+
 /************************************************************************
 *                                                                       *
 *  Проверяем наличие статус-эффекта	в контейнере с уникальным subid     *

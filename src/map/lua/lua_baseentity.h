@@ -344,6 +344,8 @@ public:
 	int32 hasPartyEffect(lua_State*);		// Has Effect from all party members
 	int32 addCorsairRoll(lua_State*);		// Adds corsair roll effect
 	int32 hasPartyJob(lua_State*);
+    int32 fold(lua_State*);
+    int32 hasCorsairEffect(lua_State*);
 
 	int32 addMod(lua_State*);				// Adds Modifier Value
 	int32 getMod(lua_State*);				// Retrieves Modifier Value

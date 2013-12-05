@@ -555,7 +555,7 @@ class CStatusEffect
 public:
 
 	EFFECT	GetStatusID();
-	uint16 	GetSubID();
+	uint32 	GetSubID();
     uint16  GetIcon();
 	uint16	GetPower();
     uint16  GetSubPower();
@@ -597,7 +597,7 @@ public:
 		 uint16 power,
 		 uint32 tick,
 		 uint32 duration,
-		 uint16 subid = 0,
+		 uint32 subid = 0,
          uint16 subPower = 0,
          uint16 tier = 0);
 
@@ -608,7 +608,7 @@ private:
     CBattleEntity* m_POwner;            // владелец
 
 	EFFECT		m_StatusID;				// основной тип эффекта
-	uint16		m_SubID;				// дополнительный тип эффекта
+	uint32		m_SubID;				// дополнительный тип эффекта
     uint16      m_Icon;                 // иконка эффекта
 	uint16		m_Power;				// сила эффекта
     uint16		m_SubPower;				// Secondary power of the effect

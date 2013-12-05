@@ -1347,6 +1347,7 @@ MSGBASIC_DEFEATS_TARG			= 6 -- The <player> defeats <target>.
 MSGBASIC_ALREADY_CLAIMED		= 12 -- Cannot attack. Your target is already claimed.
 MSGBASIC_IS_INTERRUPTED			= 16 -- The <player>'s casting is interrupted.
 MSGBASIC_UNABLE_TO_CAST			= 18 -- Unable to cast spells at this time.
+MSGBASIC_CANNOT_PERFORM         = 71 -- The <player> cannot perform that action.
 MSGBASIC_UNABLE_TO_USE_JA		= 87 -- Unable to use job ability.
 MSGBASIC_UNABLE_TO_USE_JA2		= 88 -- Unable to use job ability.
 MSGBASIC_IS_PARALYZED			= 29 -- The <player> is paralyzed.
@@ -1411,6 +1412,7 @@ MSGBASIC_DOUBLEUP_BUST			= 426 -- The <player> uses Double-Up. Bust! <target> lo
 MSGBASIC_DOUBLEUP_BUST_SUB		= 427 -- <target> loses the effect of ..
 MSGBASIC_NO_ELIGIBLE_ROLL		= 428 -- There are no rolls eligible for Double-Up. Unable to use ability.
 MSGBASIC_ROLL_ALREADY_ACTIVE	= 429 -- The same roll is already active on the <player>.
+
 MSGBASIC_EFFECT_ALREADY_ACTIVE  = 523 -- The same effect is already active on <player>.
 MSGBASIC_NO_FINISHINGMOVES		= 524 -- You have not earned enough finishing moves to perform that action.
 

@@ -42,51 +42,54 @@ class CStatusEffectContainer
 public:
 
 	uint64	m_Flags;											// биты переполнения байтов m_StatusIcons (по два бита на каждый эффект)
-  uint8 m_StatusIcons[32];                  // иконки статус-эффектов
+    uint8 m_StatusIcons[32];                  // иконки статус-эффектов
 
-  bool ApplyBardEffect(CStatusEffect* PStatusEffect, uint8 maxSongs);
-  bool ApplyCorsairEffect(CStatusEffect* PStatusEffect, uint8 maxRolls, uint8 bustDuration);
+    bool ApplyBardEffect(CStatusEffect* PStatusEffect, uint8 maxSongs);
     bool CanGainStatusEffect(EFFECT statusEffect, uint16 power); // returns true if the status effect will take effect
-  bool AddStatusEffect(CStatusEffect* StatusEffect, bool silent = false);
-  bool DelStatusEffect(EFFECT StatusID);
-  bool DelStatusEffectSilent(EFFECT StatusID);
-  bool DelStatusEffect(EFFECT StatusID, uint16 SubID);
+    bool AddStatusEffect(CStatusEffect* StatusEffect, bool silent = false);
+    bool DelStatusEffect(EFFECT StatusID);
+    bool DelStatusEffectSilent(EFFECT StatusID);
+    bool DelStatusEffect(EFFECT StatusID, uint16 SubID);
     void DelStatusEffectsByFlag(uint16 flag, bool silent = false);                   // удаляем все эффекты с указанным типом
     void DelStatusEffectsByIcon(uint16 IconID);                 // удаляем все эффекты с указанной иконкой
     void DelStatusEffectsByType(uint16 Type);
-  bool DelStatusEffectWithPower(EFFECT StatusID, uint16 power);
-  void KillAllStatusEffect();
+    bool DelStatusEffectWithPower(EFFECT StatusID, uint16 power);
+    void KillAllStatusEffect();
 
     bool HasStatusEffect(EFFECT StatusID);                      // проверяем наличие эффекта
-  bool HasStatusEffect(EFFECT StatusID, uint16 SubID);        // проверяем наличие эффекта с уникальным subid
+    bool HasStatusEffect(EFFECT StatusID, uint16 SubID);        // проверяем наличие эффекта с уникальным subid
     bool HasStatusEffectByFlag(uint16 flag);
 
-  EFFECT EraseStatusEffect();                                 // удаляем первый отрицательный эффект
-  EFFECT HealingWaltz();				// dancers healing waltz
+    EFFECT EraseStatusEffect();                                 // удаляем первый отрицательный эффект
+    EFFECT HealingWaltz();				// dancers healing waltz
     uint8 EraseAllStatusEffect();               // erases all status effects
-  EFFECT DispelStatusEffect();                                // удаляем первый положительный эффект
+    EFFECT DispelStatusEffect();                                // удаляем первый положительный эффект
     uint8 DispelAllStatusEffect();                // dispels all status effects
     CStatusEffect* StealStatusEffect();             // dispels one effect and returns it
 
-  CStatusEffect* GetStatusEffect(EFFECT StatusID);
+    CStatusEffect* GetStatusEffect(EFFECT StatusID);
     CStatusEffect* GetStatusEffect(EFFECT StatusID, uint16 SubID);
 
     void UpdateStatusIcons();                                   // пересчитываем иконки эффектов
-  void CheckEffects(uint32 tick);
-  void CheckRegen(uint32 tick);
+    void CheckEffects(uint32 tick);
+    void CheckRegen(uint32 tick);
 
-  void LoadStatusEffects();                 // загружаем эффекты персонажа
-  void SaveStatusEffects();                 // сохраняем эффекты персонажа
+    void LoadStatusEffects();                 // загружаем эффекты персонажа
+    void SaveStatusEffects();                 // сохраняем эффекты персонажа
 
     uint8 GetEffectsCount(uint16 SubID);                        // получаем количество эффектов с указанным subid
 
-  void WakeUp(); // remove sleep effects
-  bool CheckForElevenRoll();
-  bool IsAsleep();
-  bool HasBustEffect(uint16 id);
-  bool HasPreventActionEffect(); // checks if owner has an effect that prevents actions, like stun, petrify, sleep etc
+    bool ApplyCorsairEffect(CStatusEffect* PStatusEffect, uint8 maxRolls, uint8 bustDuration);
+    bool CheckForElevenRoll();
+    bool HasBustEffect(uint16 id);
+    bool HasCorsairEffect(uint32 charid);
+    void Fold(uint32 charid);
 
-	 CStatusEffectContainer(CBattleEntity* PEntity);
+    void WakeUp(); // remove sleep effects
+    bool IsAsleep();
+    bool HasPreventActionEffect(); // checks if owner has an effect that prevents actions, like stun, petrify, sleep etc
+
+	CStatusEffectContainer(CBattleEntity* PEntity);
 	~CStatusEffectContainer();
 
 private:
