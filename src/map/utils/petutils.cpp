@@ -845,7 +845,7 @@ void DespawnPet(CBattleEntity* PMaster)
 					PMob->PEnmityContainer->Clear();
 
 					// charm time is up, mob attacks player now
-					if (PMob->GetHPP() != 0 && PMob->PMaster->GetHPP() != 0)
+					if (PMob->GetHPP() != 0 && PMob->PMaster->GetHPP() != 0 && distance(PMob->loc.p, PMob->PMaster->loc.p) < 30)
 					{
 						PMob->PEnmityContainer->UpdateEnmity(PChar, 0, 0);
 					}

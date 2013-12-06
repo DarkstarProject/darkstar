@@ -30,8 +30,10 @@
 #include "entities/battleentity.h"
 #include "utils/charutils.h"
 #include "conquest_system.h"
+#include "utils/battleutils.h"
 #include "utils/blueutils.h"
 #include "utils/jailutils.h"
+#include "utils/petutils.h"
 #include "map.h"
 #include "party.h"
 #include "treasure_pool.h"
@@ -630,11 +632,6 @@ void CParty::SetSyncTarget(CBattleEntity* PEntity, uint16 message)
                 ((CCharEntity*)GetLeader())->pushPacket(new CMessageBasicPacket((CCharEntity*)GetLeader(), (CCharEntity*)GetLeader(), 0, 0, 542));
                 return;
             }
-            else if( PChar->jobs.job[PChar->GetMJob()] == PChar->jobs.genkai && 
-                charutils::GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) - 1 == PChar->jobs.exp[PChar->GetMJob()])
-            {
-
-            }
             else
             {
                 for (uint32 i = 0; i < members.size(); ++i)
@@ -662,7 +659,20 @@ void CParty::SetSyncTarget(CBattleEntity* PEntity, uint16 message)
                             PChar->GetMLevel(),
                             0,
                             0), true);
-                        member->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH);
+                        member->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE);
+                        if (member->PPet)
+                        {
+                            CPetEntity* PPet = (CPetEntity*)member->PPet;
+                            if (PPet->getPetType() == PETTYPE_WYVERN)
+                            {
+                                //TODO: recalculate stats instead of despawn
+                                petutils::DespawnPet(member);
+                            }
+                            else
+                            {
+                                petutils::DespawnPet(member);
+                            }
+                        }
                         member->loc.zone->PushPacket(member, CHAR_INRANGE, new CCharSyncPacket(member));
 		            }
 	            }
@@ -765,7 +775,7 @@ void CParty::RefreshSync()
 			NewMLevel = member->jobs.job[member->GetMJob()];
 		}
 
-		if (member->GetMLevel()!= NewMLevel)
+		if (member->GetMLevel() != NewMLevel)
 		{
             charutils::RemoveAllEquipMods(member);
 			member->SetMLevel(NewMLevel);
