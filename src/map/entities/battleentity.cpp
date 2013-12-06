@@ -657,12 +657,23 @@ void CBattleEntity::addModifiers(std::vector<CModifier*> *modList)
 	}
 }
 
-void CBattleEntity::addEquipModifiers(std::vector<CModifier*> *modList, uint8 itemLevel)
+void CBattleEntity::addEquipModifiers(std::vector<CModifier*> *modList, uint8 itemLevel, uint8 slotid)
 {
     if (GetMLevel() >= itemLevel)
     {
 	    for (uint16 i = 0; i < modList->size(); ++i)
 	    {
+            if (slotid == SLOT_SUB)
+            {
+                if (modList->at(i)->getModID() == MOD_MAIN_DMG_RANK)
+                {
+                    m_modStat[MOD_SUB_DMG_RANK] += modList->at(i)->getModAmount();
+                }
+                else
+                {
+                    m_modStat[modList->at(i)->getModID()] += modList->at(i)->getModAmount();
+                }
+            }
 		    m_modStat[modList->at(i)->getModID()] += modList->at(i)->getModAmount();
 	    }
     }
@@ -769,13 +780,24 @@ void CBattleEntity::delModifiers(std::vector<CModifier*> *modList)
 	}
 }
 
-void CBattleEntity::delEquipModifiers(std::vector<CModifier*> *modList, uint8 itemLevel)
+void CBattleEntity::delEquipModifiers(std::vector<CModifier*> *modList, uint8 itemLevel, uint8 slotid)
 {
     if (GetMLevel() >= itemLevel)
     {
 	    for (uint16 i = 0; i < modList->size(); ++i)
 	    {
-		    m_modStat[modList->at(i)->getModID()] -= modList->at(i)->getModAmount();
+            if (slotid == SLOT_SUB)
+            {
+                if (modList->at(i)->getModID() == MOD_MAIN_DMG_RANK)
+                {
+                    m_modStat[MOD_SUB_DMG_RANK] -= modList->at(i)->getModAmount();
+                }
+                else
+                {
+                    m_modStat[modList->at(i)->getModID()] -= modList->at(i)->getModAmount();
+                }
+            }
+            m_modStat[modList->at(i)->getModID()] -= modList->at(i)->getModAmount();
 	    }
     }
     else

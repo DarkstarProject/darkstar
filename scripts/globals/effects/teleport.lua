@@ -31,7 +31,6 @@ end;
 
 function onEffectLose(target,effect)
 
-   local effect = target:getStatusEffect(EFFECT_TELEPORT);
    local Teleport = effect:getPower();
 	if(Teleport == TELEPORT_DEM) then
 		toDem(target);

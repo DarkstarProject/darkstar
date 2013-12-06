@@ -1322,26 +1322,13 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 		PItem->setSubType(ITEM_UNLOCKED);
 
 		if( equipSlotID == SLOT_SUB ){
-			for (uint16 i = 0; i < (((CItemArmor*)PItem)->modList.size()); ++i)
-			{
-				if( ((CItemArmor*)PItem)->modList.at(i)->getModID() == MOD_MAIN_DMG_RANK )
-				{
-					PChar->delModifier(MOD_SUB_DMG_RANK,
-					((CItemArmor*)PItem)->modList.at(i)->getModAmount());
-				} else {
-					PChar->delModifier(((CItemArmor*)PItem)->modList.at(i)->getModID(),
-						((CItemArmor*)PItem)->modList.at(i)->getModAmount());
-				}
-			}
 			// Removed sub item, if main hand is empty, then possibly eligible for H2H weapon
 			if (!PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN])->isType(ITEM_ARMOR))
 			{
 				CheckUnarmedWeapon(PChar);
 			}
-		} else {
-			PChar->delEquipModifiers(&((CItemArmor*)PItem)->modList, ((CItemArmor*)PItem)->getReqLvl());
 		}
-		
+		PChar->delEquipModifiers(&((CItemArmor*)PItem)->modList, ((CItemArmor*)PItem)->getReqLvl(), equipSlotID);
 
 		PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NORMAL));
 		PChar->pushPacket(new CEquipPacket(0, equipSlotID));
@@ -1706,27 +1693,15 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 		        }
 				PItem->setSubType(ITEM_LOCKED);
 
-				if( equipSlotID == SLOT_SUB ){
-					for (uint16 i = 0; i < (((CItemArmor*)PItem)->modList.size()); ++i)
-					{
-						if( ((CItemArmor*)PItem)->modList.at(i)->getModID() == MOD_MAIN_DMG_RANK )
-						{
-							PChar->addModifier(MOD_SUB_DMG_RANK,
-							((CItemArmor*)PItem)->modList.at(i)->getModAmount());
-						} else {
-							PChar->addModifier(((CItemArmor*)PItem)->modList.at(i)->getModID(),
-								((CItemArmor*)PItem)->modList.at(i)->getModAmount());
-						}
-					}
-					// If main hand is empty, check which UnarmedItem to use.
-					if (!PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN])->isType(ITEM_ARMOR))
-					{
-						CheckUnarmedWeapon(PChar);
-					}
-				} else {
-					PChar->addEquipModifiers(&PItem->modList, ((CItemArmor*)PItem)->getReqLvl());
-				}
+                if (equipSlotID == SLOT_SUB){
+                    // If main hand is empty, check which UnarmedItem to use.
+                    if (!PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN])->isType(ITEM_ARMOR))
+                    {
+                        CheckUnarmedWeapon(PChar);
+                    }
+                }
 
+				PChar->addEquipModifiers(&PItem->modList, ((CItemArmor*)PItem)->getReqLvl(), equipSlotID);
 
 				PChar->status = STATUS_UPDATE;
 				PChar->pushPacket(new CEquipPacket(slotID, equipSlotID));
@@ -4320,7 +4295,7 @@ void RemoveAllEquipMods(CCharEntity* PChar)
             CItemArmor* PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[slotID]);
             if (PItem)
             {
-                PChar->delEquipModifiers(&PItem->modList, PItem->getReqLvl());
+                PChar->delEquipModifiers(&PItem->modList, PItem->getReqLvl(), slotID);
                 if (PItem->getReqLvl() <= PChar->GetMJob())
                 {
                     PChar->PLatentEffectContainer->DelLatentEffects(slotID);
@@ -4340,7 +4315,7 @@ void ApplyAllEquipMods(CCharEntity* PChar)
             CItemArmor* PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[slotID]);
             if (PItem)
             {
-                PChar->addEquipModifiers(&PItem->modList, PItem->getReqLvl());
+                PChar->addEquipModifiers(&PItem->modList, PItem->getReqLvl(), slotID);
                 if (PItem->getReqLvl() <= PChar->GetMJob())
                 {
                     PChar->PLatentEffectContainer->AddLatentEffects(&PItem->latentList, slotID);
