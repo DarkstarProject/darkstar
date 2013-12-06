@@ -2032,6 +2032,21 @@ inline int32 CLuaBaseEntity::levelRestriction(lua_State* L)
 			charutils::BuildingCharTraitsTable(PChar);
 			charutils::BuildingCharAbilityTable(PChar);
 			charutils::CheckValidEquipment(PChar); // Handles rebuilding weapon skills as well.
+
+            if (PChar->PPet)
+            {
+                CPetEntity* PPet = (CPetEntity*)PChar->PPet;
+                if (PPet->getPetType() == PETTYPE_WYVERN)
+                {
+                    //TODO: recalculate stats instead of despawn
+                    petutils::DespawnPet(PChar);
+                }
+                else
+                {
+                    petutils::DespawnPet(PChar);
+                }
+            }
+
 		}
 	}
 	lua_pushinteger( L, PChar->m_LevelRestriction );

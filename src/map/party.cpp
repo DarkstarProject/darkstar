@@ -660,19 +660,6 @@ void CParty::SetSyncTarget(CBattleEntity* PEntity, uint16 message)
                             0,
                             0), true);
                         member->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE);
-                        if (member->PPet)
-                        {
-                            CPetEntity* PPet = (CPetEntity*)member->PPet;
-                            if (PPet->getPetType() == PETTYPE_WYVERN)
-                            {
-                                //TODO: recalculate stats instead of despawn
-                                petutils::DespawnPet(member);
-                            }
-                            else
-                            {
-                                petutils::DespawnPet(member);
-                            }
-                        }
                         member->loc.zone->PushPacket(member, CHAR_INRANGE, new CCharSyncPacket(member));
 		            }
 	            }
