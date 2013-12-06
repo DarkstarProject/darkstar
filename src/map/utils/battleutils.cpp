@@ -2451,7 +2451,7 @@ uint8 CheckMobMultiHits(CBattleEntity* PEntity)
 		switch (PEntity->id)
 		{
 			case 17498522:// Charybdis 2-6
-				return (2 + getHitCount(5));
+				return (1 + getHitCount(5));
 
 			default:
 				break;
@@ -2538,7 +2538,13 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 void CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon, attackSwingRound_t* attackRound, PHYSICAL_ATTACK_DIRECTION direction)
 {
 	// Checking the players weapon hit count
-	AddAttackSwing(attackRound, ATTACK_NORMAL, direction, PWeapon->getHitCount());
+    uint8 num = 1;
+    if (PWeapon->getReqLvl() <= PEntity->GetMLevel())
+    {
+        num = PWeapon->getHitCount();
+    }
+
+	AddAttackSwing(attackRound, ATTACK_NORMAL, direction, num);
 
 	// Checking the players triple/double attack
 	int8 tripleAttack = PEntity->getMod(MOD_TRIPLE_ATTACK);
@@ -2562,11 +2568,11 @@ void CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon, attackSwingRou
     doubleAttack = dsp_cap(doubleAttack,0,100);
     tripleAttack = dsp_cap(tripleAttack,0,100);
 
-	if (rand()%100 < tripleAttack)
+	if (num == 1 && rand()%100 < tripleAttack)
 	{
 		AddAttackSwing(attackRound, TRIPLE_ATTACK, direction, 2);
 	}
-	else if (rand()%100 < doubleAttack)
+	else if (num == 1 && rand()%100 < doubleAttack && num == 1)
 	{
 		AddAttackSwing(attackRound, DOUBLE_ATTACK, direction, 1);
 		attackRound->doubleAttackOccured = true;
