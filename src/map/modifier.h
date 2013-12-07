@@ -284,6 +284,8 @@ enum MODIFIER
 	MOD_SUBTLE_BLOW               =0x121,// How much TP to reduce.
 	MOD_COUNTER                   =0x123,// Percent chance to counter
 	MOD_KICK_ATTACK				  =0x124,// Percent chance to kick
+	MOD_PERFECT_COUNTER_ATT		  =0x1AC,// TODO: Raises weapon damage by 20 when countering while under the Perfect Counter effect. This also affects Weapon Rank (though not if fighting barehanded).
+	MOD_FOOTWORK_ATT_BONUS		  =0x1AD,// TODO: Raises the attack bonus of Footwork. (Tantra Gaiters +2 raise 100/1024 to 152/1024)
 
 	// White Mage
 	MOD_AFFLATUS_SOLACE           =0x125,// Pool of HP accumulated during Afflatus Solace
@@ -305,7 +307,7 @@ enum MODIFIER
 
 	// Paladin
 	MOD_ABSORB_DMG_TO_MP		  =0x1AA,//	Absorbs a percentage of damage taken to MP.
-	MOD_ENMITY_REDUCTION_PHYSICAL =0x1AB,// Reduces Enmity decrease when taking physical damage
+	MOD_ENMITY_REDUCTION_PHYSICAL =0x1AB,// TODO: Reduces Enmity decrease when taking physical damage
 
 	// Dark Knight
 	// Beastmaster
@@ -466,8 +468,6 @@ enum MODIFIER
 	MOD_BAR_ELEMENT_NULL_CHANCE	  =0x1A2,// Bar Elemental spells will occasionally nullify damage of the same element.
 	MOD_GRIMOIRE_INSTANT_CAST	  =0x1A3,// Spells that match your current Arts will occasionally cast instantly, without recast. 
 
-	// MOD_SPARE	=0x1AC,
-	// MOD_SPARE	=0x1AD,
 	// MOD_SPARE	=0x1AE,
 	// MOD_SPARE	=0x1AF,
 	// MOD_SPARE	=0x1B0,

@@ -267,6 +267,7 @@ INSERT INTO `abilities` VALUES ('230', 'afflatus_misery', '3', '40', '1', '60', 
 INSERT INTO `abilities` VALUES ('231', 'composure', '5', '50', '1', '300', '50', '0', '0', '215', '20.0', '0', '1', '80', '0', '0');
 INSERT INTO `abilities` VALUES ('232', 'yonin', '13', '40', '1', '180', '146', '0', '0', '218', '20.0', '0', '1', '600', '0', '4');
 INSERT INTO `abilities` VALUES ('233', 'innin', '13', '40', '1', '180', '147', '0', '0', '219', '20.0', '0', '1', '60', '0', '4');
+INSERT INTO `abilities` VALUES ('241', 'double_shot', '11', '79', '1', '180', '129', '0', '0', '225', '20.0', '0', '1', '300', '0', '0');
 INSERT INTO `abilities` VALUES ('304', 'konzen-ittai', '12', '65', '4', '180', '132', '529', '0', '36', '4.4', '0', '1', '300', '0', '0');
 INSERT INTO `abilities` VALUES ('327', 'bolster', '21', '0', '1', '7200', '0', '0', '0', '33', '20.0', '0', '1', '300', '0', '0');
 INSERT INTO `abilities` VALUES ('340', 'elemental_sforzo', '22', '0', '1', '7200', '0', '0', '0', '33', '20.0', '0', '1', '300', '0', '0');

@@ -15710,3 +15710,130 @@ INSERT INTO `item_mods` VALUES(12074, 2, 15); -- HP
 -- Feet (Creed Sabatons)
 INSERT INTO `item_mods` VALUES(12094, 1, 25); -- def
 INSERT INTO `item_mods` VALUES(12094, 25, 4); -- accuracy
+
+-- -------------------------------------------------------
+-- Tantra Necklace
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11592, 292, 2); -- kick attacks
+INSERT INTO `item_mods` VALUES(11592, 25, 5); -- accuracy
+
+-- -------------------------------------------------------
+-- Tantra Tathlum
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(19254, 8, 3); -- STR
+INSERT INTO `item_mods` VALUES(19254, 10, 3); -- VIT
+INSERT INTO `item_mods` VALUES(19254, 25, 6); -- accuracy
+
+-- -------------------------------------------------------
+-- Tantra Earring
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11704, 2, 10); -- HP
+INSERT INTO `item_mods` VALUES(11704, 292, 1); -- kick attacks
+
+-- -------------------------------------------------------
+-- Tantra Attire +2
+-- -------------------------------------------------------
+-- Head (Tantra Crown +2)
+INSERT INTO `item_mods` VALUES(11065, 1, 36); -- def
+INSERT INTO `item_mods` VALUES(11065, 8, 7); -- STR
+INSERT INTO `item_mods` VALUES(11065, 289, 10); -- subtle blow
+INSERT INTO `item_mods` VALUES(11065, 384, 7); -- Haste gear
+INSERT INTO `item_mods` VALUES(11065, 428, 20); -- TODO: Perfect counter: Raises weapon damage by 20 when countering while under the Perfect Counter effect. This also affects Weapon Rank (though not if fighting barehanded).
+
+-- Body (Tantra Cyclas +2)
+INSERT INTO `item_mods` VALUES(11085, 1, 64); -- def
+INSERT INTO `item_mods` VALUES(11085, 8, 12); -- STR
+INSERT INTO `item_mods` VALUES(11085, 10, 12); -- VIT
+INSERT INTO `item_mods` VALUES(11085, 25, 15); -- accuracy
+INSERT INTO `item_mods` VALUES(11085, 23, 15); -- attack
+INSERT INTO `item_mods` VALUES(11085, 173, 5); -- Martial Arts
+-- TODO Increases Critical Hit Damage by 1%/1 Impetus Count 
+
+-- Hands (Tantra Gloves +2)
+INSERT INTO `item_mods` VALUES(11105, 1, 27); -- def
+INSERT INTO `item_mods` VALUES(11105, 25, 10); -- accuracy
+INSERT INTO `item_mods` VALUES(11105, 80, 7); -- H2H
+INSERT INTO `item_mods` VALUES(11105, 384, 3); -- Haste gear
+-- TODO enhances tactical guard effect
+
+-- Legs (Tantra Hose +2)
+INSERT INTO `item_mods` VALUES(11125, 1, 49); -- def
+INSERT INTO `item_mods` VALUES(11125, 25, 10); -- accuracy
+INSERT INTO `item_mods` VALUES(11125, 23, 10); -- attack
+INSERT INTO `item_mods` VALUES(11125, 73, 6); -- Store tp
+INSERT INTO `item_mods` VALUES(11125, 384, 6); -- Haste gear
+INSERT INTO `item_mods` VALUES(11125, 292, 7); -- kick attacks
+
+-- Feet (Tantra Gaiters +2)
+INSERT INTO `item_mods` VALUES(11145, 1, 25); -- def
+INSERT INTO `item_mods` VALUES(11145, 8, 8); -- STR
+INSERT INTO `item_mods` VALUES(11145, 25, 8); -- accuracy
+INSERT INTO `item_mods` VALUES(11145, 386, 45); -- TODO: Raises kick damage by 45 (equivalent to weapon with DMG +45). 
+INSERT INTO `item_mods` VALUES(11145, 429, 52); -- TODO: Raises the attack bonus of Footwork. (Tantra Gaiters +2 raise 100/1024 to 152/1024) 
+
+-- -------------------------------------------------------
+-- Tantra Attire +1
+-- -------------------------------------------------------
+-- Head (Tantra Crown +1)
+INSERT INTO `item_mods` VALUES(11165, 1, 34); -- def
+INSERT INTO `item_mods` VALUES(11165, 289, 8); -- subtle blow
+INSERT INTO `item_mods` VALUES(11165, 384, 6); -- Haste gear
+INSERT INTO `item_mods` VALUES(11165, 428, 10); -- TODO: Perfect counter: Raises weapon damage by 10 when countering while under the Perfect Counter effect. This also affects Weapon Rank (though not if fighting barehanded).
+
+-- Body (Tantra Cyclas +1)
+INSERT INTO `item_mods` VALUES(11185, 1, 61); -- def
+INSERT INTO `item_mods` VALUES(11185, 8, 8); -- STR
+INSERT INTO `item_mods` VALUES(11185, 10, 8); -- VIT
+INSERT INTO `item_mods` VALUES(11185, 25, 12); -- accuracy
+INSERT INTO `item_mods` VALUES(11185, 23, 12); -- attack
+-- TODO Increases Critical Hit Damage by 1%/1 Impetus Count 
+
+-- Hands (Tantra Gloves +1)
+INSERT INTO `item_mods` VALUES(11205, 1, 25); -- def
+INSERT INTO `item_mods` VALUES(11205, 25, 8); -- accuracy
+INSERT INTO `item_mods` VALUES(11205, 80, 5); -- H2H
+INSERT INTO `item_mods` VALUES(11205, 384, 2); -- Haste gear
+-- TODO enhances tactical guard effect
+
+-- Legs (Tantra Hose +1)
+INSERT INTO `item_mods` VALUES(11225, 1, 47); -- def
+INSERT INTO `item_mods` VALUES(11225, 25, 7); -- accuracy
+INSERT INTO `item_mods` VALUES(11225, 23, 7); -- attack
+INSERT INTO `item_mods` VALUES(11225, 384, 5); -- Haste gear
+INSERT INTO `item_mods` VALUES(11225, 292, 5); -- kick attacks
+
+-- Feet (Tantra Gaiters +1)
+INSERT INTO `item_mods` VALUES(11245, 1, 23); -- def
+INSERT INTO `item_mods` VALUES(11245, 8, 6); -- STR
+INSERT INTO `item_mods` VALUES(11245, 25, 6); -- accuracy
+INSERT INTO `item_mods` VALUES(11245, 386, 40); -- TODO: Raises kick damage by 45 (equivalent to weapon with DMG +45). 
+INSERT INTO `item_mods` VALUES(11245, 429, 32); -- TODO: Raises the attack bonus of Footwork. (Tantra Gaiters +2 raise 100/1024 to 152/1024) 
+
+-- -------------------------------------------------------
+-- Tantra Attire
+-- -------------------------------------------------------
+-- Head (Tantra Crown)
+INSERT INTO `item_mods` VALUES(12009, 1, 31); -- def
+INSERT INTO `item_mods` VALUES(12009, 289, 3); -- subtle blow
+
+-- Body (Tantra Cyclas)
+INSERT INTO `item_mods` VALUES(12029, 1, 58); -- def
+INSERT INTO `item_mods` VALUES(12029, 8, 3); -- STR
+INSERT INTO `item_mods` VALUES(12029, 10, 3); -- VIT
+INSERT INTO `item_mods` VALUES(12029, 25, 4); -- accuracy
+INSERT INTO `item_mods` VALUES(12029, 23, 4); -- attack
+
+-- Hands (Tantra Gloves)
+INSERT INTO `item_mods` VALUES(12049, 1, 22); -- def
+INSERT INTO `item_mods` VALUES(12049, 25, 3); -- accuracy
+
+-- Legs (Tantra Hose)
+INSERT INTO `item_mods` VALUES(12069, 1, 44); -- def
+INSERT INTO `item_mods` VALUES(12069, 25, 3); -- accuracy
+INSERT INTO `item_mods` VALUES(12069, 23, 3); -- attack
+
+-- Feet (Tantra Gaiters)
+INSERT INTO `item_mods` VALUES(12089, 1, 20); -- def
+INSERT INTO `item_mods` VALUES(12089, 8, 3); -- STR
+INSERT INTO `item_mods` VALUES(12089, 25, 3); -- accuracy
+
