@@ -60,8 +60,8 @@ public:
 	void CheckLatentsZone();
 
 	void AddLatentEffect(CLatentEffect* LatentEffect);
-	void AddLatentEffects(std::vector<CLatentEffect*> *latentList, uint8 slot);
-	void DelLatentEffects(uint8 slot);   
+	void AddLatentEffects(std::vector<CLatentEffect*> *latentList, uint8 reqLvl, uint8 slot);
+	void DelLatentEffects(uint8 reqLvl, uint8 slot);   
 
     CLatentEffect* GetLatentEffect(uint8 slot, uint16 modId);
 

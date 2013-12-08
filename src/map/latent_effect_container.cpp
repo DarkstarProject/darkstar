@@ -53,21 +53,25 @@ void CLatentEffectContainer::AddLatentEffect(CLatentEffect* LatentEffect)
 	LatentEffect->SetOwner(m_POwner);
 }
 
-void CLatentEffectContainer::AddLatentEffects(std::vector<CLatentEffect*> *latentList, uint8 slot)
+void CLatentEffectContainer::AddLatentEffects(std::vector<CLatentEffect*> *latentList, uint8 reqLvl, uint8 slot)
 {
-	for (uint16 i = 0; i < latentList->size(); ++i)
-	{
-		if( latentList->at(i)->GetModValue() == MOD_MAIN_DMG_RATING && slot == SLOT_SUB )
-		{
-			AddLatentEffect(new CLatentEffect(latentList->at(i)->GetConditionsID(), 
-				latentList->at(i)->GetConditionsValue(), slot, MOD_SUB_DMG_RATING,
-				latentList->at(i)->GetModPower()));
-		} else {
-			AddLatentEffect(new CLatentEffect(latentList->at(i)->GetConditionsID(), 
-				latentList->at(i)->GetConditionsValue(), slot, latentList->at(i)->GetModValue(),
-				latentList->at(i)->GetModPower()));
-		}
-	}
+    if (m_POwner->GetMLevel() >= reqLvl)
+    {
+        for (uint16 i = 0; i < latentList->size(); ++i)
+        {
+            if (latentList->at(i)->GetModValue() == MOD_MAIN_DMG_RATING && slot == SLOT_SUB)
+            {
+                AddLatentEffect(new CLatentEffect(latentList->at(i)->GetConditionsID(),
+                    latentList->at(i)->GetConditionsValue(), slot, MOD_SUB_DMG_RATING,
+                    latentList->at(i)->GetModPower()));
+            }
+            else {
+                AddLatentEffect(new CLatentEffect(latentList->at(i)->GetConditionsID(),
+                    latentList->at(i)->GetConditionsValue(), slot, latentList->at(i)->GetModValue(),
+                    latentList->at(i)->GetModPower()));
+            }
+        }
+    }
 }
 
 /************************************************************************
@@ -76,7 +80,7 @@ void CLatentEffectContainer::AddLatentEffects(std::vector<CLatentEffect*> *laten
 *																		*
 ************************************************************************/
 
-void CLatentEffectContainer::DelLatentEffects(uint8 slot)
+void CLatentEffectContainer::DelLatentEffects(uint8 reqLvl, uint8 slot)
 {
 	for (int16 i = m_LatentEffectList.size()-1; i >= 0; --i) 
 	{

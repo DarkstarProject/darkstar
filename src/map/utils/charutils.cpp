@@ -1329,6 +1329,7 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 			}
 		}
 		PChar->delEquipModifiers(&((CItemArmor*)PItem)->modList, ((CItemArmor*)PItem)->getReqLvl(), equipSlotID);
+        PChar->PLatentEffectContainer->DelLatentEffects(((CItemArmor*)PItem)->getReqLvl(), equipSlotID);
 
 		PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NORMAL));
 		PChar->pushPacket(new CEquipPacket(0, equipSlotID));
@@ -1702,6 +1703,7 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
                 }
 
 				PChar->addEquipModifiers(&PItem->modList, ((CItemArmor*)PItem)->getReqLvl(), equipSlotID);
+                PChar->PLatentEffectContainer->AddLatentEffects(&PItem->latentList, ((CItemArmor*)PItem)->getReqLvl(), equipSlotID);
 
 				PChar->status = STATUS_UPDATE;
 				PChar->pushPacket(new CEquipPacket(slotID, equipSlotID));
@@ -4298,7 +4300,7 @@ void RemoveAllEquipMods(CCharEntity* PChar)
                 PChar->delEquipModifiers(&PItem->modList, PItem->getReqLvl(), slotID);
                 if (PItem->getReqLvl() <= PChar->GetMJob())
                 {
-                    PChar->PLatentEffectContainer->DelLatentEffects(slotID);
+                    PChar->PLatentEffectContainer->DelLatentEffects(PItem->getReqLvl(), slotID);
                     PChar->PLatentEffectContainer->CheckLatentsEquip(slotID);
                 }
             }
@@ -4318,7 +4320,7 @@ void ApplyAllEquipMods(CCharEntity* PChar)
                 PChar->addEquipModifiers(&PItem->modList, PItem->getReqLvl(), slotID);
                 if (PItem->getReqLvl() <= PChar->GetMJob())
                 {
-                    PChar->PLatentEffectContainer->AddLatentEffects(&PItem->latentList, slotID);
+                    PChar->PLatentEffectContainer->AddLatentEffects(&PItem->latentList, PItem->getReqLvl(), slotID);
 				    PChar->PLatentEffectContainer->CheckLatentsEquip(slotID);
                 }
             }
