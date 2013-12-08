@@ -1441,7 +1441,11 @@ void CAICharNormal::ActionJobAbilityFinish()
     DSP_DEBUG_BREAK_IF(m_PJobAbility == NULL);
     DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
-    if (m_PChar->animation == ANIMATION_ATTACK) m_LastActionTime = m_Tick;
+    if (m_PChar->animation == ANIMATION_ATTACK)
+    {
+        m_LastActionTime = m_Tick;
+        m_LastMeleeTime += 1000;
+    }
 
 
     if (m_PJobAbility->getLevel() == 0)
