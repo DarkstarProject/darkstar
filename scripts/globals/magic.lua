@@ -107,16 +107,11 @@ function doEnspell(caster,target,spell,effect)
         duration = duration * 3;
     end
     --calculate potency
-    local magicskill = target:getSkillLevel(ENHANCING_MAGIC_SKILL) + target:getMod(79 + ENHANCING_MAGIC_SKILL);
+    local magicskill = target:getSkillLevel(ENHANCING_MAGIC_SKILL);
 
-    local potency = 3 + ((6*magicskill)/100);
+    local potency = 3 + math.floor((6*magicskill)/100);
     if(magicskill>200) then
-        potency = 5 + ((5*magicskill)/100);
-    end
-
-    -- enhancing sword
-    if(target:getEquipID(SLOT_MAIN) == 16605 or target:getEquipID(SLOT_SUB) == 16605) then
-        potency = potency + 5;
+        potency = 5 + math.floor((5*magicskill)/100);
     end
 
     if(target:addStatusEffect(effect,potency,0,duration)) then

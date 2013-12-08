@@ -399,7 +399,7 @@ uint16	CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender
     {
 
     	//Tier 2 enspells calculate the damage on each hit and increment the potency in MOD_ENSPELL_DMG per hit
-    	uint16 skill = PAttacker->GetSkill(SKILL_ENH) + PAttacker->getMod(MOD_ENHANCE);
+    	uint16 skill = PAttacker->GetSkill(SKILL_ENH);
     	uint16 cap = 3 + ((6*skill)/100);
     	if(skill>200){
     		cap = 5 + ((5*skill)/100);
@@ -421,6 +421,91 @@ uint16	CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender
     		damage = PAttacker->getMod(MOD_ENSPELL_DMG)-1;
     	}
     }
+    
+    //enhancing sword adds 5 dmg to all enspells
+    if(PAttacker->objtype == TYPE_PC){
+    	CCharEntity* PCharAtk = (CCharEntity*)PAttacker;
+    	CItem* PMain = PCharAtk->getStorage(LOC_INVENTORY)->GetItem(PCharAtk->equip[SLOT_MAIN]);
+    	if(PMain){
+    		if(PMain->getID() == 16605){
+    			damage += 5;
+    		}
+    		else{
+    			CItem* PSub = PCharAtk->getStorage(LOC_INVENTORY)->GetItem(PCharAtk->equip[SLOT_SUB]);
+    			if(PSub){
+    				if(PSub->getID() == 16605){
+    					damage += 5;
+    				}
+    			}
+    		}
+    	}
+    }
+    
+    //matching day 10% bonus, matching weather 10% or 25% for double weather
+    float dBonus = 1.0;
+    if(CVanaTime::getInstance()->getWeekday() == element)
+    	dBonus += 0.1;
+    WEATHER weather = GetWeather(PAttacker, false);
+    switch(element){
+    	
+    	case FIRE:
+    		if(weather == WEATHER_HOT_SPELL)
+    			dBonus += 0.1;
+    		else if(weather == WEATHER_HEAT_WAVE)
+    			dBonus += 0.25;
+    		break;
+    	
+    	case EARTH:
+    		if(weather == WEATHER_DUST_STORM)
+    			dBonus += 0.1;
+    		else if(weather == WEATHER_SAND_STORM)
+    			dBonus += 0.25;
+    		break;
+    	
+    	case WATER:
+    		if(weather == WEATHER_RAIN)
+    			dBonus += 0.1;
+    		else if(weather == WEATHER_SQUALL)
+    			dBonus += 0.25;
+    		break;
+    	
+    	case WIND:
+    		if(weather == WEATHER_WIND)
+    			dBonus += 0.1;
+    		else if(weather == WEATHER_GALES)
+    			dBonus += 0.25;
+    		break;
+    	
+    	case ICE:
+    		if(weather == WEATHER_SNOW)
+    			dBonus += 0.1;
+    		else if(weather == WEATHER_BLIZZARDS)
+    			dBonus += 0.25;
+    		break;
+    	
+    	case THUNDER:
+    		if(weather == WEATHER_THUNDER)
+    			dBonus += 0.1;
+    		else if(weather == WEATHER_THUNDERSTORMS)
+    			dBonus += 0.25;
+    		break;
+    	
+    	case LIGHT:
+    		if(weather == WEATHER_AURORAS)
+    			dBonus += 0.1;
+    		else if(weather == WEATHER_STELLAR_GLARE)
+    			dBonus += 0.25;
+    		break;
+    	
+    	case DARK:
+    		if(weather == WEATHER_GLOOM)
+    			dBonus += 0.1;
+    		else if(weather == WEATHER_DARKNESS)
+    			dBonus += 0.25;
+    		break;
+    	
+    }
+    damage = (damage * (float)dBonus);
 
     return HandleStoneskin(PDefender, damage);
 }
