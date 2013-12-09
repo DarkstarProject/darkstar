@@ -149,6 +149,7 @@ namespace battleutils
 	bool			TryAbsorbHPfromPhysicalAttack(CBattleEntity* battleEntity, uint16 damage);
 
 	void			GetSnapshotReduction(CCharEntity* m_PChar);
+	int32			GetRangedAttackBonuses(CBattleEntity* battleEntity);
 
 	uint8			GetSkillRank(SKILLTYPE SkillID, JOBTYPE JobID);
 	uint16			GetMaxSkill(SKILLTYPE SkillID, JOBTYPE JobID, uint8 level);

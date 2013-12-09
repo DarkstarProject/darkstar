@@ -4759,5 +4759,27 @@ void GetSnapshotReduction(CCharEntity* m_PChar)
 	}
 }
 
+/************************************************************************
+*                                                                       *
+*	Get any ranged attack bonuses here	                                *
+*                                                                       *
+************************************************************************/
+int32 GetRangedAttackBonuses(CBattleEntity* battleEntity)
+{
+	if (battleEntity->objtype != TYPE_PC)
+	{
+		return 0;
+	}
+
+	int32 bonus = 0;
+
+	// Reduction from velocity shot mod
+	if (battleEntity->StatusEffectContainer->HasStatusEffect(EFFECT_VELOCITY_SHOT))
+	{
+		bonus += battleEntity->getMod(MOD_VELOCITY_RATT_BONUS);
+	}
+
+	return bonus;
+}
 
 };
