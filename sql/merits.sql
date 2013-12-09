@@ -238,7 +238,7 @@ INSERT INTO `merits` VALUES ('2690', 'flashy_shot', '5', '1', '1024', '7', '41')
 INSERT INTO `merits` VALUES ('2692', 'snapshot', '5', '2', '1024', '7', '41');
 INSERT INTO `merits` VALUES ('2694', 'recycle', '5', '5', '1024', '7', '41');
 INSERT INTO `merits` VALUES ('2752', 'shikikoyo', '5', '12', '2048', '7', '42');
-INSERT INTO `merits` VALUES ('2754', 'blade_bash', '5', '5', '2048', '7', '42');
+INSERT INTO `merits` VALUES ('2754', 'blade_bash', '5', '15', '2048', '7', '42');
 INSERT INTO `merits` VALUES ('2756', 'ikishoten', '5', '3', '2048', '7', '42');
 INSERT INTO `merits` VALUES ('2758', 'overwhelm', '5', '5', '2048', '7', '42');
 INSERT INTO `merits` VALUES ('2816', 'sange', '5', '25', '4096', '7', '43');

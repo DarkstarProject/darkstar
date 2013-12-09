@@ -1,5 +1,7 @@
 -----------------------------------
--- Ability: Weapon Bash
+-- Ability: Blade Bash
+-- @author Katrinka (SinisterSkies)
+-- @version 131207
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -18,22 +20,30 @@ function OnAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-	-- Applying Weapon Bash stun. Rate is said to be near 100%, so let's say 99%.
-	if(math.random()*100 < 99) then
+	-- Stun rate
+	if(math.random(1,100) < 99) then
 		target:addStatusEffect(EFFECT_STUN,1,0,6);
 	end
 	
-	-- Weapon Bash deals damage dependant of Dark Knight level
+	-- Yes, even Blade Bash deals damage dependant of Dark Knight level
 	local darkKnightLvl = 0;
+    local damage = 0;
 	if(player:getMainJob()==JOB_DRK) then
-		darkKnightLvl = player:getMainLvl();	-- Use Mainjob Lvl
+        damage = math.floor(((player:getMainLvl() + 11) / 4) + player:getMod(MOD_WEAPON_BASH));
 	elseif(player:getSubJob()==JOB_DRK) then
-		darkKnightLvl = player:getSubLvl();	-- Use Subjob Lvl
+        damage = math.floor(((player:getSubLvl() + 11) / 4) + player:getMod(MOD_WEAPON_BASH));
 	end
 	
-	-- Calculating and applying Weapon Bash damage
-	local damage = math.floor(((darkKnightLvl + 11) / 4) + player:getMod(MOD_WEAPON_BASH));
+	-- Calculating and applying Blade Bash damage
 	target:delHP(damage);
 	target:updateEnmityFromDamage(player,damage);
+    
+	-- Applying Plague based on merit level.
+    if(math.random(1,100) < 65) then
+        target:addStatusEffect(EFFECT_PLAGUE,5,0,15 + player:getMerit(MERIT_BLADE_BASH));
+    end
+	
+    ability:setMsg(110)
+    
 	return damage;
 end;
