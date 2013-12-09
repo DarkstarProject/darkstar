@@ -443,12 +443,13 @@ uint16	CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender
     
     //matching day 10% bonus, matching weather 10% or 25% for double weather
     float dBonus = 1.0;
-    if(CVanaTime::getInstance()->getWeekday() == element)
-    	dBonus += 0.1;
+    uint8 WeekDay = (uint8)CVanaTime::getInstance()->getWeekday();
     WEATHER weather = GetWeather(PAttacker, false);
     switch(element){
     	
     	case FIRE:
+    		if(WeekDay == FIRESDAY)
+    			dBonus += 0.1;
     		if(weather == WEATHER_HOT_SPELL)
     			dBonus += 0.1;
     		else if(weather == WEATHER_HEAT_WAVE)
@@ -456,6 +457,8 @@ uint16	CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender
     		break;
     	
     	case EARTH:
+    		if(WeekDay == EARTHSDAY)
+    			dBonus += 0.1;
     		if(weather == WEATHER_DUST_STORM)
     			dBonus += 0.1;
     		else if(weather == WEATHER_SAND_STORM)
@@ -463,6 +466,8 @@ uint16	CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender
     		break;
     	
     	case WATER:
+    		if(WeekDay == WATERSDAY)
+    			dBonus += 0.1;
     		if(weather == WEATHER_RAIN)
     			dBonus += 0.1;
     		else if(weather == WEATHER_SQUALL)
@@ -470,6 +475,8 @@ uint16	CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender
     		break;
     	
     	case WIND:
+    		if(WeekDay == WINDSDAY)
+    			dBonus += 0.1;
     		if(weather == WEATHER_WIND)
     			dBonus += 0.1;
     		else if(weather == WEATHER_GALES)
@@ -477,6 +484,8 @@ uint16	CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender
     		break;
     	
     	case ICE:
+    		if(WeekDay == ICEDAY)
+    			dBonus += 0.1;
     		if(weather == WEATHER_SNOW)
     			dBonus += 0.1;
     		else if(weather == WEATHER_BLIZZARDS)
@@ -484,6 +493,8 @@ uint16	CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender
     		break;
     	
     	case THUNDER:
+    		if(WeekDay == LIGHTNINGDAY)
+    			dBonus += 0.1;
     		if(weather == WEATHER_THUNDER)
     			dBonus += 0.1;
     		else if(weather == WEATHER_THUNDERSTORMS)
@@ -491,6 +502,8 @@ uint16	CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender
     		break;
     	
     	case LIGHT:
+    		if(WeekDay == LIGHTSDAY)
+    			dBonus += 0.1;
     		if(weather == WEATHER_AURORAS)
     			dBonus += 0.1;
     		else if(weather == WEATHER_STELLAR_GLARE)
@@ -498,6 +511,8 @@ uint16	CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender
     		break;
     	
     	case DARK:
+    		if(WeekDay == DARKSDAY)
+    			dBonus += 0.1;
     		if(weather == WEATHER_GLOOM)
     			dBonus += 0.1;
     		else if(weather == WEATHER_DARKNESS)

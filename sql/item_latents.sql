@@ -14,7 +14,8 @@ CREATE TABLE IF NOT EXISTS `item_latents` (
   `modId` smallint(5) unsigned NOT NULL,
   `value` smallint(5) NOT NULL DEFAULT '0',
   `latentId` smallint(5) NOT NULL,
-  `latentParam` smallint(5) NOT NULL
+  `latentParam` smallint(5) NOT NULL,
+  PRIMARY KEY (`itemId`,`modId`, `value`, `latentId`, `latentParam`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=13 PACK_KEYS=1;
 
 
@@ -373,8 +374,7 @@ INSERT INTO `item_latents` VALUES(18217, 366, 13, 47, 0);
 INSERT INTO `item_latents` VALUES(18217, 165, 6, 47, 0);
 INSERT INTO `item_latents` VALUES(17944, 366, 13, 47, 0);
 INSERT INTO `item_latents` VALUES(17944, 165, 6, 47, 0);
-INSERT INTO `item_latents` VALUES(17589, 376, 13, 47, 0);
-INSERT INTO `item_latents` VALUES(17589, 165, 6, 47, 0);
+INSERT INTO `item_latents` VALUES(17207, 376, 13, 47, 0);
 INSERT INTO `item_latents` VALUES(17275, 376, 13, 47, 0);
 INSERT INTO `item_latents` VALUES(17275, 165, 6, 47, 0);
 INSERT INTO `item_latents` VALUES(18144, 2, -20, 47, 0);
@@ -561,28 +561,3 @@ INSERT INTO `item_latents` VALUES(18346, 59, 9, 48, 0);
 INSERT INTO `item_latents` VALUES(15067, 1, 21, 48, 0);
 INSERT INTO `item_latents` VALUES(15068, 1, 6, 48, 0);
 INSERT INTO `item_latents` VALUES(15069, 385, 200, 48, 0);
--- Enhancing Sword
-INSERT INTO `item_latents` VALUES(16605, 23, 16, 13, 94);
-INSERT INTO `item_latents` VALUES(16605, 23, 16, 13, 95);
-INSERT INTO `item_latents` VALUES(16605, 23, 16, 13, 96);
-INSERT INTO `item_latents` VALUES(16605, 23, 16, 13, 97);
-INSERT INTO `item_latents` VALUES(16605, 23, 16, 13, 98);
-INSERT INTO `item_latents` VALUES(16605, 23, 16, 13, 99);
-INSERT INTO `item_latents` VALUES(16605, 23, 16, 13, 277);
-INSERT INTO `item_latents` VALUES(16605, 23, 16, 13, 278);
-INSERT INTO `item_latents` VALUES(16605, 23, 16, 13, 279);
-INSERT INTO `item_latents` VALUES(16605, 23, 16, 13, 280);
-INSERT INTO `item_latents` VALUES(16605, 23, 16, 13, 281);
-INSERT INTO `item_latents` VALUES(16605, 23, 16, 13, 282);
-INSERT INTO `item_latents` VALUES(16605, 25, 8, 13, 94);
-INSERT INTO `item_latents` VALUES(16605, 25, 8, 13, 95);
-INSERT INTO `item_latents` VALUES(16605, 25, 8, 13, 96);
-INSERT INTO `item_latents` VALUES(16605, 25, 8, 13, 97);
-INSERT INTO `item_latents` VALUES(16605, 25, 8, 13, 98);
-INSERT INTO `item_latents` VALUES(16605, 25, 8, 13, 99);
-INSERT INTO `item_latents` VALUES(16605, 25, 8, 13, 277);
-INSERT INTO `item_latents` VALUES(16605, 25, 8, 13, 278);
-INSERT INTO `item_latents` VALUES(16605, 25, 8, 13, 279);
-INSERT INTO `item_latents` VALUES(16605, 25, 8, 13, 280);
-INSERT INTO `item_latents` VALUES(16605, 25, 8, 13, 281);
-INSERT INTO `item_latents` VALUES(16605, 25, 8, 13, 282)
