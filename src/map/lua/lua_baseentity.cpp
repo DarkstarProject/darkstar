@@ -2672,8 +2672,8 @@ inline int32 CLuaBaseEntity::clearGearSetMods(lua_State *L)
 
 	for (uint8 i = 0; i < PChar->m_GearSetMods.size(); ++i)
 	{
-		GearSetMod_t* gearSetMod = &(GearSetMod_t)PChar->m_GearSetMods.at(i);
-		PChar->delModifier(gearSetMod->modId, gearSetMod->modValue);
+		GearSetMod_t gearSetMod = PChar->m_GearSetMods.at(i);
+		PChar->delModifier(gearSetMod.modId, gearSetMod.modValue);
 	}  
 	PChar->m_GearSetMods.clear();
 
@@ -2705,9 +2705,9 @@ inline int32 CLuaBaseEntity::addGearSetMod(lua_State *L)
 
 	for (uint8 i = 0; i < PChar->m_GearSetMods.size(); ++i)
 	{
-		GearSetMod_t* exsistingMod = &(GearSetMod_t)PChar->m_GearSetMods.at(i);
+		GearSetMod_t exsistingMod = PChar->m_GearSetMods.at(i);
 		
-		if (gearSetMod.modNameId == exsistingMod->modNameId)
+		if (gearSetMod.modNameId == exsistingMod.modNameId)
 		{
 			lua_pushnil(L);
 			return 1;
@@ -2738,9 +2738,9 @@ inline int32 CLuaBaseEntity::hasGearSetMod(lua_State *L)
 
 	for (uint8 i = 0; i < PChar->m_GearSetMods.size(); ++i)
 	{
-		GearSetMod_t* exsistingMod = &(GearSetMod_t)PChar->m_GearSetMods.at(i);
+		GearSetMod_t exsistingMod = PChar->m_GearSetMods.at(i);
 		
-		if (modNameId == exsistingMod->modNameId)
+		if (modNameId == exsistingMod.modNameId)
 		{
 			lua_pushboolean(L, true);
 			return 1;
