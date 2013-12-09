@@ -674,7 +674,10 @@ void CBattleEntity::addEquipModifiers(std::vector<CModifier*> *modList, uint8 it
                     m_modStat[modList->at(i)->getModID()] += modList->at(i)->getModAmount();
                 }
             }
-		    m_modStat[modList->at(i)->getModID()] += modList->at(i)->getModAmount();
+            else
+            {
+                m_modStat[modList->at(i)->getModID()] += modList->at(i)->getModAmount();
+            }
 	    }
     }
     else
@@ -715,7 +718,21 @@ void CBattleEntity::addEquipModifiers(std::vector<CModifier*> *modList, uint8 it
                 break;
             }
             modAmount /= itemLevel;
-            m_modStat[modList->at(i)->getModID()] += modAmount;
+            if (slotid == SLOT_SUB)
+            {
+                if (modList->at(i)->getModID() == MOD_MAIN_DMG_RANK)
+                {
+                    m_modStat[MOD_SUB_DMG_RANK] += modAmount;
+                }
+                else
+                {
+                    m_modStat[modList->at(i)->getModID()] += modAmount;
+                }
+            }
+            else
+            {
+                m_modStat[modList->at(i)->getModID()] += modAmount;
+            }
 	    }
     }
 }
@@ -825,6 +842,12 @@ void CBattleEntity::delEquipModifiers(std::vector<CModifier*> *modList, uint8 it
             case MOD_INT:
             case MOD_MND:
             case MOD_CHR:
+            case MOD_ATT:
+            case MOD_RATT:
+            case MOD_ACC:
+            case MOD_RACC:
+            case MOD_MATT:
+            case MOD_MACC:
                 modAmount /= 3;
                 break;
             default:
@@ -832,7 +855,21 @@ void CBattleEntity::delEquipModifiers(std::vector<CModifier*> *modList, uint8 it
                 break;
             }
             modAmount /= itemLevel;
-            m_modStat[modList->at(i)->getModID()] -= modAmount;
+            if (slotid == SLOT_SUB)
+            {
+                if (modList->at(i)->getModID() == MOD_MAIN_DMG_RANK)
+                {
+                    m_modStat[MOD_SUB_DMG_RANK] -= modAmount;
+                }
+                else
+                {
+                    m_modStat[modList->at(i)->getModID()] -= modAmount;
+                }
+            }
+            else
+            {
+                m_modStat[modList->at(i)->getModID()] -= modAmount;
+            }
 	    }
     }
 }
