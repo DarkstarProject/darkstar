@@ -282,7 +282,8 @@ public:
 	bool			  getMijinGakure();
 	void			  setMijinGakure(bool isMijinGakure);
 
-	bool			  isRapidShot;	// Flag to track rapid shot
+	bool			  isRapidShot;										// Flag to track rapid shot
+	bool			  secondDoubleShotTaken;							// Flag to track number of double shots taken
 
 	bool			  isWeaponUnlocked(uint16 indexid);					// return if weapon is broken
 	bool			  addWsPoints(uint8 points, uint16 WeaponIndex);	// return if weapon is broken

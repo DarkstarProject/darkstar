@@ -714,6 +714,7 @@ void CAICharNormal::ActionRangedStart()
 	}
 
 	m_PChar->isRapidShot = false;
+	m_PChar->secondDoubleShotTaken = false;
 
 	CItemWeapon* PRanged = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
     CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
@@ -1103,21 +1104,7 @@ void CAICharNormal::ActionRangedFinish()
 		{
 			Monster->m_HiPCLvl = m_PChar->GetMLevel();
 		}
-
-
-		if (charutils::hasTrait(m_PChar, TRAIT_TREASURE_HUNTER))
-		{
-			if (Monster->m_THLvl == 0)
-			{
-				Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER);
-				Monster->m_THPCID = m_PChar->id;
-			}
-			else if ((Monster->m_THPCID != m_PChar->id) && (Monster->m_THLvl < m_PChar->getMod(MOD_TREASURE_HUNTER))) Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER)+1;
-			else if ((Monster->m_THPCID == m_PChar->id) && (Monster->m_THLvl < m_PChar->getMod(MOD_TREASURE_HUNTER))) Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER);
-
-			if (Monster->m_THLvl > 12)
-				Monster->m_THLvl = 12;
-		}
+		battleutils::SetMonsterTreasureHunterLevel(m_PChar, Monster);
 
 		// to catch high damage bugs
 		if (damage > 8000)
@@ -1129,7 +1116,6 @@ void CAICharNormal::ActionRangedFinish()
         }
         else if(isSange)
         {
-
             uint16 power = m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_SANGE)->GetPower();
 
             // remove shadows
@@ -1141,8 +1127,22 @@ void CAICharNormal::ActionRangedFinish()
         // only remove detectables
         m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
 
+		// Try to double shot
+		// Will instantly trigger another ranged attack
+		if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DOUBLE_SHOT,0) && !m_PChar->secondDoubleShotTaken &&	!isBarrage && !isSange)
+		{
+			uint8 doubleShotChance = m_PChar->getMod(MOD_DOUBLE_SHOT_RATE);
+			if (rand()%100 < doubleShotChance)
+			{
+				m_PChar->secondDoubleShotTaken = true;
+				m_ActionType = ACTION_RANGED_FINISH;
+				m_PChar->m_rangedDelay = 0;
+				return;
+			}
+		}
+
 		TransitionBack();
-        m_PChar->m_rangedDelay = m_Tick; //cooldown between shots
+		m_PChar->m_rangedDelay = m_Tick; //cooldown between shots
 	}
 }
 
@@ -2659,24 +2659,11 @@ void CAICharNormal::ActionAttack()
 
 
 	CMobEntity* Monster = (CMobEntity*)m_PBattleTarget;
-
-
 	if (Monster->m_HiPCLvl < m_PChar->GetMLevel())
-		Monster->m_HiPCLvl = m_PChar->GetMLevel();
-
-
-	if (charutils::hasTrait(m_PChar, TRAIT_TREASURE_HUNTER))
 	{
-		if (Monster->m_THLvl == 0)
-			{
-				Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER);
-				Monster->m_THPCID = m_PChar->id;
-			}
-			else if ((Monster->m_THPCID != m_PChar->id) && (Monster->m_THLvl < m_PChar->getMod(MOD_TREASURE_HUNTER))) Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER)+1;
-			else if ((Monster->m_THPCID == m_PChar->id) && (Monster->m_THLvl < m_PChar->getMod(MOD_TREASURE_HUNTER))) Monster->m_THLvl = m_PChar->getMod(MOD_TREASURE_HUNTER);
-			if (Monster->m_THLvl > 12) Monster->m_THLvl = 12;
+		Monster->m_HiPCLvl = m_PChar->GetMLevel();
 	}
-
+	battleutils::SetMonsterTreasureHunterLevel(m_PChar, Monster);
 
 	if (m_PBattleTarget->isDead())
 	{

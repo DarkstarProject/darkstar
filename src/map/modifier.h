@@ -324,7 +324,7 @@ enum MODIFIER
 	MOD_RAPID_SHOT                =0x167,// Percent chance to proc rapid shot
 	MOD_WIDESCAN                  =0x154,
 	MOD_BARRAGE_ACC			      =0x1A4,// Barrage accuracy
-	MOD_DOUBLE_SHOT_RATE		  =0x1A6,// The rate that double shot can proc
+	MOD_DOUBLE_SHOT_RATE		  =0x1A6,// The rate that double shot can proc. Without this, the default is 40%.
 	MOD_VELOCITY_SNAPSHOT_BONUS	  =0x1A7,// Increases Snapshot whilst Velocity Shot is up.
 	MOD_VELOCITY_RATT_BONUS		  =0x1A8,// Increases Ranged Attack whilst Velocity Shot is up.
 	MOD_SHADOW_BIND_EXT		  	  =0x1A9,// Extends the time of shadowbind
