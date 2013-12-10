@@ -32,7 +32,7 @@ function onTrigger(player,npc)
 			player:hasKeyItem(242) and player:hasKeyItem(243) and player:hasKeyItem(244) and 
 			player:hasKeyItem(245) and player:hasKeyItem(246)) then
 			player:messageSpecial(ALREADY_HAVE_ALL_FRAGS);				
-		elseif(player:hasKeyItem(WATER_FRAGMENT) then
+		elseif(player:hasKeyItem(WATER_FRAGMENT) == true) then
 			player:messageSpecial(ALREADY_OBTAINED_FRAG,WATER_FRAGMENT);
 		end
 	elseif(player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE)) then
