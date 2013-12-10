@@ -1644,11 +1644,6 @@ uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool 
 	int acc = 0;
 	int hitrate = 75;
 
-	if (isBarrage && PAttacker->objtype == TYPE_PC)
-	{
-		hitrate += PAttacker->getMod(MOD_BARRAGE_ACC);
-	}
-
 	if(PAttacker->objtype == TYPE_PC)
 	{
 		CCharEntity* PChar = (CCharEntity*)PAttacker;
@@ -1668,7 +1663,8 @@ uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool 
 			{ 
 				acc = 200 + (skill-200)*0.9;
 			}
-			acc += PChar->getMod(MOD_RACC);
+			acc += PChar->getMod(MOD_RACC); 
+			acc += battleutils::GetRangedAccuracyBonuses(PAttacker);
 			acc += PChar->AGI() / 2;
 			acc = ((100 +  PChar->getMod(MOD_RACCP)) * acc)/100 +
 				dsp_min(((100 +  PChar->getMod(MOD_FOOD_RACCP)) * acc)/100,  PChar->getMod(MOD_FOOD_RACC_CAP));
@@ -4777,6 +4773,30 @@ int32 GetRangedAttackBonuses(CBattleEntity* battleEntity)
 	if (battleEntity->StatusEffectContainer->HasStatusEffect(EFFECT_VELOCITY_SHOT))
 	{
 		bonus += battleEntity->getMod(MOD_VELOCITY_RATT_BONUS);
+	}
+
+	return bonus;
+}
+
+
+/************************************************************************
+*                                                                       *
+*	Get any ranged accuracy bonuses here	                            *
+*                                                                       *
+************************************************************************/
+int32 GetRangedAccuracyBonuses(CBattleEntity* battleEntity)
+{
+	if (battleEntity->objtype != TYPE_PC)
+	{
+		return 0;
+	}
+
+	int32 bonus = 0;
+
+	// Bonus from barrage mod
+	if (battleEntity->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE))
+	{
+		bonus += battleEntity->getMod(MOD_BARRAGE_ACC);
 	}
 
 	return bonus;

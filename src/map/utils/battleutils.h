@@ -150,6 +150,7 @@ namespace battleutils
 
 	void			GetSnapshotReduction(CCharEntity* m_PChar);
 	int32			GetRangedAttackBonuses(CBattleEntity* battleEntity);
+	int32			GetRangedAccuracyBonuses(CBattleEntity* battleEntity);
 
 	void			SetMonsterTreasureHunterLevel(CCharEntity* PChar, CMobEntity* Monster);
 
