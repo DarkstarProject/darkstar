@@ -1893,12 +1893,23 @@ void CAICharNormal::ActionJobAbilityFinish()
 			 * Blade of Death quests are active.
 			 */
 
+
+			/// Shadow Bind
     		if(m_PJobAbility->getID() == ABILITY_SHADOWBIND)
     		{
-				m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 11, 277)); 
+				uint16 shadowBindDuration = 30 + m_PChar->getMod(MOD_SHADOW_BIND_EXT);
+				if (rand()%100 >= m_PBattleSubTarget->getMod(MOD_BINDRES))
+				{
+					// Shadow bind success!
+					m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 11, 277)); 
+					m_PBattleSubTarget->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_BIND, EFFECT_BIND, 1, 0, shadowBindDuration));
+				}
+				else
+				{
+					// Shadowbind failed!
+					m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 11, 283)); 
+				}
 			}
-
-			// handle jump abilities---
 
     		// Jump
     		if(m_PJobAbility->getID() == ABILITY_JUMP)
@@ -1914,6 +1925,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 					m_PChar->setWeaponSkillKill(true);
 				}
     		}
+
     		// High Jump
     		else if(m_PJobAbility->getID() == ABILITY_HIGH_JUMP)
     		{
@@ -1928,6 +1940,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 					m_PChar->setWeaponSkillKill(true);
 				}
     		}
+
     		// Super Jump
     		else if(m_PJobAbility->getID() == ABILITY_SUPER_JUMP)
     		{
@@ -1944,7 +1957,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 			else if (m_PJobAbility->getID() == ABILITY_COLLABORATOR)
 			{
     			battleutils::TransferEnmity(m_PChar, m_PBattleSubTarget, (CMobEntity*)m_PBattleSubTarget->PBattleAI->GetBattleTarget(), 25);
-				}
+			}
 
     		m_PChar->m_ActionList.push_back(Action);
 
