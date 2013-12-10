@@ -10619,8 +10619,6 @@ INSERT INTO `item_mods` VALUES(15539, 241, 2);
 INSERT INTO `item_mods` VALUES(15540, 1, 2);
 INSERT INTO `item_mods` VALUES(15540, 23, 7);
 INSERT INTO `item_mods` VALUES(15540, 241, 2);
-INSERT INTO `item_mods` VALUES(15543, 289, 5);
-INSERT INTO `item_mods` VALUES(15544, 27, 3);
 INSERT INTO `item_mods` VALUES(15545, 27, -3);
 INSERT INTO `item_mods` VALUES(15545, 5, 30);
 INSERT INTO `item_mods` VALUES(15545, 12, 5);
@@ -15023,7 +15021,6 @@ INSERT INTO `item_mods` VALUES(14590, 73, 6);
 INSERT INTO `item_mods` VALUES(14437, 73, 6);
 INSERT INTO `item_mods` VALUES(11857, 73, 6);
 INSERT INTO `item_mods` VALUES(11548, 73, 6);
-INSERT INTO `item_mods` VALUES(15543, 73, 5);
 INSERT INTO `item_mods` VALUES(14568, 73, 5);
 INSERT INTO `item_mods` VALUES(18446, 73, 2);
 INSERT INTO `item_mods` VALUES(19213, 73, 2);
@@ -15837,3 +15834,13 @@ INSERT INTO `item_mods` VALUES(12089, 1, 20); -- def
 INSERT INTO `item_mods` VALUES(12089, 8, 3); -- STR
 INSERT INTO `item_mods` VALUES(12089, 25, 3); -- accuracy
 
+-- -------------------------------------------------------
+-- Rajas Ring
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(15543, 73, 5); -- Store tp
+INSERT INTO `item_mods` VALUES(15543, 289, 5); -- subtle blow
+
+-- -------------------------------------------------------
+-- Sattva Ring
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(15544, 27, 3); -- enmity

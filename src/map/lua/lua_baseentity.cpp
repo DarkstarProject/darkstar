@@ -4588,6 +4588,7 @@ inline int32 CLuaBaseEntity::changeJob(lua_State *L)
     {
         blueutils::UnequipAllBlueSpells(PChar);
     }
+	luautils::CheckForGearSet(PChar); // check for gear set on gear change
     charutils::BuildingCharSkillsTable(PChar);
 	charutils::CalculateStats(PChar);
     charutils::CheckValidEquipment(PChar);

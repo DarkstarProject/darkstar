@@ -4355,10 +4355,15 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		    // If removing RemoveAllEquipment, please add a charutils::CheckUnarmedItem(PChar) if main hand is empty.
             puppetutils::LoadAutomaton(PChar);
             if (mjob == JOB_BLU)
+			{
                 blueutils::LoadSetSpells(PChar);
+			}
             else if (prevjob == JOB_BLU)
+			{
                 blueutils::UnequipAllBlueSpells(PChar);
+			}
 		}
+
 		if ((sjob > 0x00) && (sjob < MAX_JOBTYPE))
 		{
 			JOBTYPE prevsjob = PChar->GetSJob();
@@ -4381,6 +4386,7 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
             }
 
 		}
+		luautils::CheckForGearSet(PChar); // check for gear set on gear change
 
 		charutils::BuildingCharSkillsTable(PChar);
 		charutils::CalculateStats(PChar);
@@ -4390,6 +4396,7 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
         charutils::BuildingCharWeaponSkills(PChar);
 
         PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE);
+
 
         PChar->UpdateHealth();
 
