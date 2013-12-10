@@ -121,12 +121,8 @@ GearSets =  {1, {"Usukane",	16092,14554,14969,15633,15719,-1,-1,-1,-1,-1,-1,-1,-
   			 49,{"Supremacy",-1,-1,-1,-1,-1,18128,-1,-1,-1,-1,16004,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
   			 49,{"Supremacy",-1,-1,-1,-1,-1,18500,-1,-1,-1,-1,16004,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
   			 49,{"Supremacy",-1,-1,-1,-1,-1,18951,-1,-1,-1,-1,16004,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
-  			 49,{"Supremacy",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,16004,-1,-1,19218,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)		 
-			 53,{"Raja",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 15543, -1,-1,-1,1},						--	Raja's ring, Strength and Dexterity bonuses increase by 1 every 15 levels: [18 - 29* = +1] , [30 - 44 = +2] , [45 - 59 = +3] , [60 - 74 = +4] , 75+ = +5] * Level sync. 
-			 53,{"Raja",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, -1, 15543,-1,-1,1},						--	Raja's ring, Strength and Dexterity bonuses increase by 1 every 15 levels: [18 - 29* = +1] , [30 - 44 = +2] , [45 - 59 = +3] , [60 - 74 = +4] , 75+ = +5] * Level sync. 			 
-			 55,{"Sattva",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 15544, -1,-1,-1,1},						--	The Vitality and Agility stats increase by 1 for every 15 levels, from +2 at level 30 up to +5 at level 75. The HP stat increases by 1 for every 3 levels, from +15 at level 30 to +30 at level 75. Level 30: VIT+2, AGI+2, HP+15. Level 45: VIT+3, AGI+3, HP+20. Level 60: VIT+4, AGI+4, HP+25. Level 75: VIT+5, AGI+5, HP+30. 
-			 55,{"Sattva",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, -1, 15544,-1,-1,1}};					--	The Vitality and Agility stats increase by 1 for every 15 levels, from +2 at level 30 up to +5 at level 75. The HP stat increases by 1 for every 3 levels, from +15 at level 30 to +30 at level 75. Level 30: VIT+2, AGI+2, HP+15. Level 45: VIT+3, AGI+3, HP+20. Level 60: VIT+4, AGI+4, HP+25. Level 75: VIT+5, AGI+5, HP+30. 
-			 -- Link: Next id must be 57.
+  			 49,{"Supremacy",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,16004,-1,-1,19218,-1,2}};				--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)		 
+			 -- Link: Next id must be 53.
 			 
 -- 			 Head, Body, Hand, Legs, Feet, Main, Sub, Neck, Back, ear1, ear2, ring1, ring2, ranged, ammo, matches-required	
 	
@@ -235,75 +231,12 @@ function SearchMods(player, modNameId, name, matches)
 	if (name == "Navarch" and matches > 4) then		ApplyMod(player, modNameId, MOD_QUICK_DRAW_TRIPLE_DAMAGE, extraDamageChance); return; end	--  Navarch's Attire +2 Set. Set Bonus: Augments "Quick Draw". Quick Draw will occasionally deal triple damage.
 	if (name == "Creed" and matches > 1) then		ApplyMod(player, modNameId, MOD_ABSORB_DMG_CHANCE, matches); return; end					--	Creed Armor +2 Set. Set Bonus: Occasionally absorbs damage taken. At least 2 peices needed. Each adds 1% (5% total)					
 	
-	
-	--	Raja's ring, Strength and Dexterity bonuses increase by 1 every 15 levels: [18 - 29* = +1] , [30 - 44 = +2] , [45 - 59 = +3] , [60 - 74 = +4] , 75+ = +5] * Level sync. 
-	if (name == "Raja") then
-		local lvl = player:getMainLvl();
-		if (lvl >= 75) then
-			ApplyMod(player, modNameId, MOD_STR, 5);
-			ApplyMod(player, modNameId +1, MOD_DEX, 5);
-			return;
-		end
-		if (lvl >= 60) then
-			ApplyMod(player, modNameId, MOD_STR, 4);
-			ApplyMod(player, modNameId +1, MOD_DEX, 4);
-			return;
-		end	
-		if (lvl >= 45) then
-			ApplyMod(player, modNameId, MOD_STR, 3);
-			ApplyMod(player, modNameId +1, MOD_DEX, 3);
-			return;
-		end	
-		if (lvl >= 30) then
-			ApplyMod(player, modNameId, MOD_STR, 2);
-			ApplyMod(player, modNameId +1, MOD_DEX, 2);
-			return;
-		end	
-		if (lvl >= 18) then
-			ApplyMod(player, modNameId, MOD_STR, 1);
-			ApplyMod(player, modNameId +1, MOD_DEX, 1);
-			return;
-		end		
-		return;	
-	end			 
-			 
-	--	The Vitality and Agility stats increase by 1 for every 15 levels, from +2 at level 30 up to +5 at level 75. 
-	--  The HP stat increases by 1 for every 3 levels, from +15 at level 30 to +30 at level 75. Level 30: VIT+2, AGI+2, HP+15. Level 45: VIT+3, AGI+3, HP+20. Level 60: VIT+4, AGI+4, HP+25. Level 75: VIT+5, AGI+5, HP+30. 
-	if (name == "Sattva") then
-		local lvl = player:getMainLvl();
-		if (lvl >= 75) then
-			ApplyMod(player, modNameId, MOD_VIT, 5);
-			ApplyMod(player, modNameId +1, MOD_AGI, 5);
-			ApplyMod(player, modNameId +2, MOD_HP, 30);
-			return;
-		end
-		if (lvl >= 60) then
-			ApplyMod(player, modNameId, MOD_VIT, 4);
-			ApplyMod(player, modNameId +1, MOD_AGI, 4);
-			ApplyMod(player, modNameId +2, MOD_HP, 25);
-			return;
-		end	
-		if (lvl >= 45) then
-			ApplyMod(player, modNameId, MOD_VIT, 3);
-			ApplyMod(player, modNameId +1, MOD_AGI, 3);
-			ApplyMod(player, modNameId +2, MOD_HP, 20);
-			return;
-		end	
-		if (lvl >= 30) then
-			ApplyMod(player, modNameId, MOD_VIT, 2);
-			ApplyMod(player, modNameId +1, MOD_AGI, 2);
-			ApplyMod(player, modNameId +2, MOD_HP, 15);
-			return;
-		end	
-		return;	
-	end
-	
 	--  Charis Attire +2 Set. Set Bonus: Augments "Samba". Occasionally doubles damage with Samba up. Adds approximately 1-2% per piece past the first. 
 	if (name == "Charis" and matches > 1) then
 		local chance = matches - 1;
 		ApplyMod(player, modNameId, MOD_SAMBA_DOUBLE_DAMAGE, chance * 2); 
 		return; 
-	end		
+	end
 	
 	--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)	
 	if (name == "Supremacy" and matches > 1) then
