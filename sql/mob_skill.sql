@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 3.3.8
 -- http://www.phpmyadmin.net
 --
@@ -1379,7 +1379,7 @@ INSERT INTO `mob_skill` VALUES (99,274,99,'Earth_Pounder', 1, 15.0, 2000, 1500, 
 
 -- Ouryu
 -- INSERT INTO `mob_skill` VALUES (384,259,656,'Touchdown',0,6.0,2000,1500,4,0, 0, 0);
-INSERT INTO `mob_skill` VALUES (695,259,653,'Hurricane_Wing', 1, 30.0, 2000, 1500, 4, 0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (695,259,653,'Hurricane_Wing', 1, 30.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (696,259,654,'Spike_Flail', 4, 23.0, 2000, 2000, 4, 0, 0, 0);
 -- INSERT INTO `mob_skill` VALUES (701,259,651,'Absolute_Terror', 0, 18.0, 2000, 1500, 4, 0, 0, 0);
 -- INSERT INTO `mob_skill` VALUES (702,259,652,'Horrid_Roar', 0, 18.0, 2000, 1500, 4, 0, 0, 0);
