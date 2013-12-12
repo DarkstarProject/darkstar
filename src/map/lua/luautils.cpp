@@ -180,16 +180,22 @@ int32 print(lua_State* LuaHandle)
 int32 SendUncnown0x39Packet(lua_State* L)
 {
     if((!lua_isnil(L,1) && lua_isnumber(L,1)) &&
-       (!lua_isnil(L,2) && lua_isnumber(L,2)) )
+       (!lua_isnil(L,2) && lua_isnumber(L,2)) &&
+	   (!lua_isnil(L,3) && lua_isnumber(L,3)) &&
+	   (!lua_isnil(L,4) && lua_isnumber(L,4)) &&
+	   (!lua_isnil(L,5) && lua_isnumber(L,5)) )
 	{
 		uint32 npcid = (uint32)lua_tointeger(L,1);
-        uint8  param = (uint8)lua_tointeger(L,2);
+        uint8  param1 = (uint8)lua_tointeger(L,2);
+		uint8  param2 = (uint8)lua_tointeger(L,3);
+		uint8  param3 = (uint8)lua_tointeger(L,4);
+		uint8  param4 = (uint8)lua_tointeger(L,5);
 
 		CBaseEntity* PNpc = zoneutils::GetEntity(npcid, TYPE_NPC);
 
         if (PNpc != NULL)
         {
-            PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CUncnown0x39Packet(PNpc, param));
+            PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CUncnown0x39Packet(PNpc, param1, param2, param3, param4));
         }
 		return 0;
 	}
