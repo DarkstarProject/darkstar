@@ -90,7 +90,7 @@ function onTrigger(player,npc)
                TreePathAv=0;		 
 	        end
 	        player:startEvent(0x0357,TreePathAv); -- COP event
-	elseif (currentCOPMission == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==10)then
+	elseif (currentCOPMission == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus") > 8)then
 	        player:startEvent(0x0352); -- COP event
     elseif(currentCOPMission == THE_ENDURING_TUMULT_OF_WAR and player:getVar("PromathiaStatus")==1)then
 	        player:startEvent(0x0351); -- COP event
