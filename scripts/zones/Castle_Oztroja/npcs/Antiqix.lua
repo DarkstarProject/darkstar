@@ -1,6 +1,6 @@
 -----------------------------------
 --  Area: Castle Oztroja
---   NPC: Antiqix
+--  NPC:  Antiqix
 --  Type: Dynamis Vendor
 --  @pos -207.835 -0.751 -25.498 151
 -----------------------------------

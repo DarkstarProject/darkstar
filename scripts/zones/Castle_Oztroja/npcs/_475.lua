@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Castle Oztroja
--- NPC:  Brass Door
+-- NPC:  _475 (Brass Door)
 -- Involved in Mission: Magicite
--- @zone 151
--- @pos -99 24 -105
+-- @pos -99 24 -105 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
@@ -23,8 +22,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(ITS_LOCKED);
-	return 1;
+
+	if(npc:getAnimation() == 9) then
+		player:messageSpecial(ITS_LOCKED);
+		return 1;
+	end	
+	
 end;
 
 -----------------------------------

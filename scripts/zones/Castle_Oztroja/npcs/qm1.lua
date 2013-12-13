@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Castle Oztroja
--- NPC:  ???
--- Used In Quest: True Strength
--- @zone 151
--- @pos -100 -71 -132
+-- NPC:  qm1 (???)
+-- Involved in Quest: True Strength
+-- @pos -100 -71 -132 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------

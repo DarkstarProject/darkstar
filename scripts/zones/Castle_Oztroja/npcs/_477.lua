@@ -1,9 +1,8 @@
 -----------------------------------
--- Area: Castle Oztroja
--- NPC:  Brass Door
--- Open by 4 torch stand
--- @zone 151
--- @pos -100 -71 -49
+-- Area:  Castle Oztroja
+-- NPC:   _477 (Brass Door)
+-- Notes: Open by 4 torch stands
+-- @pos -100 -71 -49 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
@@ -16,8 +15,10 @@ require("scripts/zones/Castle_Oztroja/TextIDs");
 
 function onTrigger(player,npc)
 	
-	player:messageSpecial(ITS_LOCKED);
-	return 1;
+	if(npc:getAnimation() == 9) then
+		player:messageSpecial(ITS_LOCKED);
+		return 1;
+	end	
 	
 end;
 

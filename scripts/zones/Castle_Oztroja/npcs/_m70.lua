@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Castle Oztroja
--- NPC:  Torch (L)
+-- NPC:  _m70 (Torch Stand)
 -- Involved in Mission: Magicite
--- @zone 151
--- @pos -99 24 -105
+-- @pos -97.134 24.250 -105.979 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------

@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area:  Castle Oztroja
--- NPC:   _47k (Torch Stand)
--- Notes: Opens door _472 near password #1
--- @pos -57.412 -1.864 -30.627 151
+-- NPC:   _47l (Torch Stand)
+-- Notes: Opens door _471 near password #3
+-- @pos -45.228 -17.832 22.392 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------

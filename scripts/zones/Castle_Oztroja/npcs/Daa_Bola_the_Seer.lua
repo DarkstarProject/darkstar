@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Castle Oztroja
---   NPC: Daa Bola the Seer
+--  NPC:  Daa Bola the Seer
 --  Type: Quest NPC
--- @zone: 151
---  @pos: -157.978 -18.179 193.458
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos: -157.978 -18.179 193.458 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------

@@ -1,9 +1,8 @@
 -----------------------------------
--- Area: Castle Oztroja
--- NPC:  Handle
--- Open door (_471)
--- @zone 151
--- @pos -182 -15 -19
+-- Area:  Castle Oztroja
+-- NPC:   _47h (Handle)
+-- Notes: Opens door _471
+-- @pos -182 -15 -19 151
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -14,7 +13,7 @@ require("scripts/globals/settings");
 
 function onTrigger(player,npc)
 
-	--GetNPCByID(17396157):openDoor();
+-- To be implemented
 	
 end;
 

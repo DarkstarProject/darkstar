@@ -1,9 +1,8 @@
 -----------------------------------
--- Area: Castle Oztroja
--- NPC:  Brass Door
--- Open by handle near password 2
--- @zone 151
--- @pos -60 24 -77
+-- Area:  Castle Oztroja
+-- NPC:   Brass Door
+-- Notes: Open by handle near password 2
+-- @pos -60 24 -77 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
@@ -16,8 +15,10 @@ require("scripts/zones/Castle_Oztroja/TextIDs");
 
 function onTrigger(player,npc)
 	
-	player:messageSpecial(ITS_LOCKED);
-	return 1;
+	if(npc:getAnimation() == 9) then
+		player:messageSpecial(ITS_LOCKED);
+		return 1;
+	end	
 	
 end;
 

@@ -2,13 +2,15 @@
 -- Area: Castle Oztroja
 -- NPC:  Brass Statue
 -- Type: Passageway Machine
--- @zone 151
--- @pos -60.061 -4.348 -61.538	(1)
--- @pos -60 22 -100				(2)
--- @pos -100 -72 -19			(3)
+-- @pos -60.061 -4.348 -61.538 151	(1)
+-- @pos -18.599 -19.307 20.024 151	(2)
+-- @pos -60 22 -100	151 			(3)
+-- @pos -100 -72 -19 151			(4)
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/Castle_Oztroja/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -23,14 +25,21 @@ end;
 
 function onTrigger(player,npc)
 	
-	Z = npc:getZPos();
+	local Z = npc:getZPos();
 	
 	if(Z < -15 and Z > -19) then
-		GetNPCByID(17396188):openDoor();
-	end
-	--player:startEvent(0x000d);
-	
+		
+		local Brass4 = npc:getID();		
+		local DoorID = GetNPCByID(Brass4):getID() - 1;		
+		local DoorA = GetNPCByID(DoorID):getAnimation();		
+		
+		if(DoorA == 9) then
+			GetNPCByID(DoorID):openDoor(6);
+		end 
+	end	
 end;
+
+	--player:startEvent(0x000d); -- Password event
 
 -----------------------------------
 -- onEventUpdate

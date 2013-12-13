@@ -1,11 +1,13 @@
 -----------------------------------
--- Area: Castle Oztroja
--- NPC:  Handle (left)
--- Open door (_472)
--- @zone 151
--- @pos -59 0 -28
+-- Area:  Castle Oztroja
+-- NPC:   _47j (Torch Stand)
+-- Notes: Opens door _472 near password #1
+-- @pos -62.533 -1.859 -30.634 151
+-----------------------------------
+package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/zones/Castle_Oztroja/TextIDs");
 require("scripts/globals/settings");
 
 -----------------------------------
@@ -14,9 +16,15 @@ require("scripts/globals/settings");
 
 function onTrigger(player,npc)
 	
-	if(VanadielDayOfTheYear() % 2 == 0) then
-		GetNPCByID(17396163):openDoor();
-	end
+	DoorID = npc:getID() - 4;
+	local DoorA = GetNPCByID(DoorID):getAnimation();
+	local TorchStandA = npc:getAnimation();
+	Torch1 = npc:getID();	
+	Torch2 = npc:getID() - 1;		
+	
+	if(DoorA == 9 and TorchStandA == 9) then
+		player:startEvent(0x000a);	
+	end	
 	
 end;
 
@@ -34,6 +42,14 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
+
+	if (option == 1) then
+		GetNPCByID(Torch1):openDoor(10); -- Torch Lighting
+		GetNPCByID(Torch2):openDoor(10); -- Torch Lighting
+		GetNPCByID(DoorID):openDoor(6); 		
+	end	
+
+end;
+
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-end;

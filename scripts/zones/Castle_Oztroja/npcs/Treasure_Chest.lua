@@ -3,7 +3,6 @@
 -- NPC:  Treasure Chest
 -- Involved In Quest: Scattered into Shadow
 -- @pos 7.378 -16.293 -193.590 151
--- @zone 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------

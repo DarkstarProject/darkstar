@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Castle Oztroja
--- NPC:  ???
+-- NPC:  qm2 (???)
 -- Used In Quest: Whence Blows the Wind 
--- @zone 151
--- @pos -100 -63 58
+-- @pos -100 -63 58 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
