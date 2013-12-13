@@ -60,7 +60,7 @@
 #include "../packets/char.h"
 #include "../packets/menu_raisetractor.h"
 #include "../packets/message_basic.h"
-#include "../packets/uncnown_39.h"
+#include "../packets/entity_visual.h"
 
 namespace luautils
 {
@@ -106,7 +106,7 @@ int32 init()
 	lua_register(LuaHandle,"GetServerVariable",luautils::GetServerVariable);
 	lua_register(LuaHandle,"SetServerVariable",luautils::SetServerVariable);
 	lua_register(LuaHandle,"clearVarFromAll",luautils::clearVarFromAll);
-    lua_register(LuaHandle,"SendUncnown0x39Packet",luautils::SendUncnown0x39Packet);
+    lua_register(LuaHandle,"SendEntityVisualPacket",luautils::SendEntityVisualPacket);
 	lua_register(LuaHandle,"UpdateServerMessage",luautils::UpdateServerMessage);
 	lua_register(LuaHandle,"UpdateTreasureSpawnPoint",luautils::UpdateTreasureSpawnPoint);
 	lua_register(LuaHandle,"GetMobRespawnTime",luautils::GetMobRespawnTime);
@@ -177,7 +177,7 @@ int32 print(lua_State* LuaHandle)
 *                                                                       *
 ************************************************************************/
 
-int32 SendUncnown0x39Packet(lua_State* L)
+int32 SendEntityVisualPacket(lua_State* L)
 {
     if((!lua_isnil(L,1) && lua_isnumber(L,1)) &&
        (!lua_isnil(L,2) && lua_isnumber(L,2)) &&
@@ -195,7 +195,7 @@ int32 SendUncnown0x39Packet(lua_State* L)
 
         if (PNpc != NULL)
         {
-            PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CUncnown0x39Packet(PNpc, param1, param2, param3, param4));
+            PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityVisualPacket(PNpc, param1, param2, param3, param4));
         }
 		return 0;
 	}

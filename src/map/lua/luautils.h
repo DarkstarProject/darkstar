@@ -54,7 +54,7 @@ namespace luautils
     int32 garbageCollect(); // performs a full garbage collecting cycle
 	int32 print(lua_State*);
 
-    int32 SendUncnown0x39Packet(lua_State*);                                    // временное решение для работы гейзеров в Dangruf_Wadi
+    int32 SendEntityVisualPacket(lua_State*);                                    // временное решение для работы гейзеров в Dangruf_Wadi
 
 	int32 GetNPCByID(lua_State*);												// Returns NPC By Id
 	int32 GetMobByID(lua_State*);												// Returns Mob By Id
