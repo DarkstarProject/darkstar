@@ -36,7 +36,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    local currentday = tonumber(os.date("%j"));       
+	local currentday = tonumber(os.date("%j"));
+    
 	local CidsSecret = player:getQuestStatus(BASTOK,CID_S_SECRET);
 	local LetterKeyItem = player:hasKeyItem(UNFINISHED_LETTER);
 	local currentMission = player:getCurrentMission(BASTOK);
@@ -49,7 +50,7 @@ function onTrigger(player,npc)
 	       player:startEvent(0x0381); -- COP event 
 	elseif(currentCOPMission == CALM_BEFORE_THE_STORM and player:hasKeyItem(LETTERS_FROM_ULMIA_AND_PRISHE) == false and player:getVar("COP_Dalham_KILL") == 2 and player:getVar("COP_Boggelmann_KILL") == 2 and player:getVar("Cryptonberry_Executor_KILL")==2)then
 	        player:startEvent(0x037C); -- COP event 
-    elseif(currentCOPMission == FIRE_IN_THE_EYES_OF_MEN and player:getVar("PromathiaStatus")==2 and player:getVar("Promathia_CID_timer")~=currentday)then
+    elseif(currentCOPMission == FIRE_IN_THE_EYES_OF_MEN and player:getVar("PromathiaStatus")==2 and player:getVar("Promathia_CID_timer")~=VanadielDayOfTheYear())then
 	        player:startEvent(0x037A); -- COP event    
     elseif(currentCOPMission == FIRE_IN_THE_EYES_OF_MEN and player:getVar("PromathiaStatus")==1)then
           	player:startEvent(0x0359); -- COP event
@@ -152,7 +153,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-local currentday = tonumber(os.date("%j"));  
+-- local currentday = tonumber(os.date("%j"));  
 
 
 --printf("CSID: %u",csid);
@@ -169,7 +170,7 @@ local currentday = tonumber(os.date("%j"));
             player:addMission(COP,CALM_BEFORE_THE_STORM);
     elseif(csid == 0x0359)then
 	        player:setVar("PromathiaStatus",2);
-			player:setVar("Promathia_CID_timer",currentday);
+			player:setVar("Promathia_CID_timer",VanadielDayOfTheYear());
     elseif(csid == 0x0357)then	      
 		    player:setVar("COP_Ulmia_s_Path",8);
     elseif(csid == 0x0356)then	        
