@@ -446,6 +446,16 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
 				case LATENT_STATUS_EFFECT_ACTIVE:
 						CheckLatentsStatusEffect();
 					break;
+				case LATENT_JOB_IN_PARTY:
+						CheckLatentsPartyJobs();
+					break;
+				case LATENT_PARTY_MEMBERS:
+						CheckLatentsPartyMembers(m_LatentEffectList.at(i)->GetConditionsValue());
+					break;
+				case LATENT_AVATAR_IN_PARTY:
+						CheckLatentsPartyAvatar();
+					break;
+
 			}
 		}
 	}
@@ -610,12 +620,12 @@ void CLatentEffectContainer::CheckLatentsRollSong(bool active)
 //probably call this at 00:00 vana time only
 void CLatentEffectContainer::CheckLatentsDay()
 {
-	
+
 }
 
 /************************************************************************
 *																		*
-*  Checks all latents that are affected by number of party members and  *
+*  Checks all latents that are affected by party members and			*
 *  activates them if the conditions are met.							*
 *																		*
 ************************************************************************/
@@ -624,19 +634,63 @@ void CLatentEffectContainer::CheckLatentsPartyMembers(uint8 members)
 {
 	for (uint16 i = 0; i < m_LatentEffectList.size(); ++i) 
 	{
-		if( m_LatentEffectList.at(i)->GetConditionsID() == LATENT_PARTY_MEMBERS)
+		if(m_LatentEffectList.at(i)->GetConditionsID() == LATENT_PARTY_MEMBERS)
 		{
-			CLatentEffect* latent = m_LatentEffectList.at(i);
-			if( latent->GetConditionsValue() <= members )
+
+			if(m_LatentEffectList.at(i)->GetConditionsValue() <= members )
 			{
-				latent->Activate();
+				m_LatentEffectList.at(i)->Activate();
 			}
 			else
 			{
-				latent->Deactivate();
+				m_LatentEffectList.at(i)->Deactivate();
 			}
 		}
 	}
+
+	m_POwner->UpdateHealth();
+}
+
+void CLatentEffectContainer::CheckLatentsPartyJobs()
+{
+	for (uint16 i = 0; i < m_LatentEffectList.size(); ++i) 
+	{
+		if(m_LatentEffectList.at(i)->GetConditionsID() == LATENT_JOB_IN_PARTY)
+		{
+			if(m_POwner->PParty == NULL)
+			{
+				if(m_LatentEffectList.at(i)->IsActivated() == true)
+				{
+					m_LatentEffectList.at(i)->Deactivate();
+				}
+			}
+
+			bool ActivateLatent = false;
+
+			if(m_POwner->PParty != NULL)
+			{
+				for(uint8 m = 0; m < m_POwner->PParty->members.size(); m++)
+				{
+					CCharEntity* PMember = (CCharEntity*)m_POwner->PParty->members[m];
+					if(PMember->id != m_POwner->id)
+					{
+						if(PMember->GetMJob() == m_LatentEffectList.at(i)->GetConditionsValue())
+						{
+							ActivateLatent = true;
+						}
+					}
+				}
+
+				if((ActivateLatent == true) && (m_LatentEffectList.at(i)->IsActivated() != true))
+					m_LatentEffectList.at(i)->Activate();
+			}
+
+			if((ActivateLatent == false) && (m_LatentEffectList.at(i)->IsActivated() == true))
+				m_LatentEffectList.at(i)->Deactivate();
+		}
+	}
+
+	m_POwner->UpdateHealth();
 }
 
 /************************************************************************

@@ -94,6 +94,8 @@ void CParty::DisbandParty()
 		    CCharEntity* PChar = (CCharEntity*)members.at(i);
 
 		    PChar->PParty = NULL;
+			PChar->PLatentEffectContainer->CheckLatentsPartyJobs();
+			PChar->PLatentEffectContainer->CheckLatentsPartyMembers(members.size());
 		    PChar->pushPacket(new CPartyMemberUpdatePacket(PChar, 0, PChar->getZone()));
 
 		    // TODO: TreasurePool должен оставаться у последнего персонажа, но сейчас это не критично
@@ -475,6 +477,8 @@ void CParty::ReloadParty()
 	{
 		CCharEntity* PChar = (CCharEntity*)members.at(i);
 
+		PChar->PLatentEffectContainer->CheckLatentsPartyJobs();
+		PChar->PLatentEffectContainer->CheckLatentsPartyMembers(members.size());
 		PChar->pushPacket(new CPartyDefinePacket(this));
 			for (uint8 y = 0; y < members.size(); ++y)
 			{
@@ -518,6 +522,8 @@ void CParty::ReloadPartyMembers(CCharEntity* PChar)
 
     for (uint8 i = 0; i < members.size(); ++i)
 	{
+		PChar->PLatentEffectContainer->CheckLatentsPartyJobs();
+		PChar->PLatentEffectContainer->CheckLatentsPartyMembers(members.size());
         PChar->pushPacket(new CPartyMemberUpdatePacket((CCharEntity*)members.at(i), i, PChar->getZone()));
     }
 }

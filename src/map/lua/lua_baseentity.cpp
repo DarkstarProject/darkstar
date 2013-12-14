@@ -4596,6 +4596,15 @@ inline int32 CLuaBaseEntity::changeJob(lua_State *L)
     charutils::BuildingCharAbilityTable(PChar);
     charutils::BuildingCharTraitsTable(PChar);
     charutils::BuildingCharWeaponSkills(PChar);
+	
+	if(PChar->PParty != NULL) // check latents affected by party jobs
+	{
+		for(uint8 i = 0; i < PChar->PParty->members.size(); ++i)
+		{
+			CCharEntity* PMember = (CCharEntity*)PChar->PParty->members.at(i);
+			PMember->PLatentEffectContainer->CheckLatentsPartyJobs();
+		}
+	}
 
 	PChar->UpdateHealth();
     PChar->health.hp = PChar->GetMaxHP();

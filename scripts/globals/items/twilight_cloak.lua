@@ -4,7 +4,7 @@
 --	Able to cast "Impact"
 -----------------------------------------
 
-require("script/globals/status");
+require("scripts/globals/status");
 
 -----------------------------------------
 -- OnItemCheck

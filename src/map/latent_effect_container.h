@@ -52,6 +52,7 @@ public:
 	void CheckLatentsRollSong(bool active);
 	void CheckLatentsDay();
 	void CheckLatentsPartyMembers(uint8 members);
+	void CheckLatentsPartyJobs();
 	void CheckLatentsPartyAvatar();
 	void CheckLatentsJobLevel();
 	void CheckLatentsPetType(PETTYPE petID);

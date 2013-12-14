@@ -4397,6 +4397,15 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
         PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE);
 
+		if(PChar->PParty != NULL) // check latents affected by party jobs
+		{
+			for(uint8 i = 0; i < PChar->PParty->members.size(); ++i)
+			{
+				CCharEntity* PMember = (CCharEntity*)PChar->PParty->members.at(i);
+				PMember->PLatentEffectContainer->CheckLatentsPartyJobs();
+			}
+		}
+
 
         PChar->UpdateHealth();
 
