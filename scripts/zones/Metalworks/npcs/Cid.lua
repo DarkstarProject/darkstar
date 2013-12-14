@@ -244,6 +244,7 @@ local currentday = tonumber(os.date("%j"));
 	   if (player:getVar("COP_Tenzen_s_Path")==11 and player:getVar("COP_Ulmia_s_Path")==8 and player:getVar("COP_Louverance_s_Path")==10)then
 	     player:completeMission(COP,THREE_PATHS);
 	     player:addMission(COP,FOR_WHOM_THE_VERSE_IS_SUNG);
+		 player:setVar("PromathiaStatus",0);
          end
 	 end
 	 
