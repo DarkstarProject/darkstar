@@ -19,7 +19,8 @@ function onSpellCast(caster, target, spell)
 	if (caster:hasStatusEffect(EFFECT_DEFENSE_BOOST) and caster:hasStatusEffect(EFFECT_ICE_SPIKES) == true) then
 		spell:setMsg(75);
 	else
-		caster:addStatusEffect(EFFECT_DEFENSE_BOOST,25,0,120) and caster:addStatusEffect(EFFECT_ICE_SPIKES,5,0,120)
+		caster:addStatusEffect(EFFECT_DEFENSE_BOOST,25,0,120);
+		caster:addStatusEffect(EFFECT_ICE_SPIKES,5,0,120);
 		spell:setMsg(230);
 	end
 
