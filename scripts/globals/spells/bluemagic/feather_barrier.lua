@@ -1,9 +1,9 @@
 -----------------------------------------
--- Spell: Warp II
--- Transports player to their home point. Can cast on allies.
+-- Spell: Feather Barrier
 -----------------------------------------
 require("scripts/globals/status");
-require("scripts/globals/teleports");
+require("scripts/globals/magic");
+require("scripts/globals/bluemagic");
 -----------------------------------------
 -- OnSpellCast
 -----------------------------------------
@@ -13,7 +13,12 @@ function OnMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	target:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_WARP,0,3.4);
-    spell:setMsg(93);
-	return 0;
+
+    if(caster:hasStatusEffect(EFFECT_EVASION_BOOST) == true) then
+    	spell:setMsg(75);
+	else
+		caster:addStatusEffect(EFFECT_EVASION_BOOST,10,0,300);
+    end
+
+    return EFFECT_EVASION_BOOST;
 end;
