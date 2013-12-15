@@ -814,7 +814,10 @@ void CBattleEntity::delEquipModifiers(std::vector<CModifier*> *modList, uint8 it
                     m_modStat[modList->at(i)->getModID()] -= modList->at(i)->getModAmount();
                 }
             }
-            m_modStat[modList->at(i)->getModID()] -= modList->at(i)->getModAmount();
+            else
+            {
+                m_modStat[modList->at(i)->getModID()] -= modList->at(i)->getModAmount();
+            }
 	    }
     }
     else
