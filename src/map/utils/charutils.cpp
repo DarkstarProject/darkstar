@@ -4298,7 +4298,7 @@ void RemoveAllEquipMods(CCharEntity* PChar)
             if (PItem)
             {
                 PChar->delEquipModifiers(&PItem->modList, PItem->getReqLvl(), slotID);
-                if (PItem->getReqLvl() <= PChar->GetMJob())
+                if (PItem->getReqLvl() <= PChar->GetMLevel())
                 {
                     PChar->PLatentEffectContainer->DelLatentEffects(PItem->getReqLvl(), slotID);
                     PChar->PLatentEffectContainer->CheckLatentsEquip(slotID);
@@ -4318,7 +4318,7 @@ void ApplyAllEquipMods(CCharEntity* PChar)
             if (PItem)
             {
                 PChar->addEquipModifiers(&PItem->modList, PItem->getReqLvl(), slotID);
-                if (PItem->getReqLvl() <= PChar->GetMJob())
+                if (PItem->getReqLvl() <= PChar->GetMLevel())
                 {
                     PChar->PLatentEffectContainer->AddLatentEffects(&PItem->latentList, PItem->getReqLvl(), slotID);
 				    PChar->PLatentEffectContainer->CheckLatentsEquip(slotID);
