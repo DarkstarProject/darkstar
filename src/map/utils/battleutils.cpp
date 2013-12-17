@@ -988,7 +988,7 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
         {
             EFFECT daze = EFFECT_NONE;
             uint16 power = 0;
-            if (PAttacker->PParty != NULL)
+            if (PAttacker->PParty != NULL && PAttacker->objtype == TYPE_PC)
             {
                 for (uint8 i = 0; i < PAttacker->PParty->members.size(); i++)
                 {
