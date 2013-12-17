@@ -23,6 +23,29 @@ CREATE TABLE IF NOT EXISTS `item_latents` (
 
 -- INSERT INTO `item_latents` VALUES(itemID, modId, modValue, latentId, latentParam);
 
+-- Brisingamen+1 stats need to be found on retail so they can be corrected
+INSERT INTO `item_latents` VALUES(13162, 2, 10, 26, 0); -- Brisingamen +1, HP+10 if Daytime (needs HQ stats)
+INSERT INTO `item_latents` VALUES(13162, 5, 10, 26, 1); -- Brisingamen +1, MP+10 if Nighttime (needs HQ stats)
+INSERT INTO `item_latents` VALUES(13162, 8, 5, 28, 0);  -- Brisingamen +1, STR+5 if Firesday (needs HQ stats)
+INSERT INTO `item_latents` VALUES(13162, 10, 5, 29, 0); -- Brisingamen +1, VIT+5 if Earthsday (needs HQ stats)
+INSERT INTO `item_latents` VALUES(13162, 13, 5, 30, 0); -- Brisingamen +1, MND+5 if Watersday (needs HQ stats)
+INSERT INTO `item_latents` VALUES(13162, 11, 5, 31, 0); -- Brisingamen +1, AGI+5 if Windsday (needs HQ stats)
+INSERT INTO `item_latents` VALUES(13162, 12, 5, 34, 0); -- Brisingamen +1, INT+5 if Iceday (needs HQ stats)
+INSERT INTO `item_latents` VALUES(13162, 9, 5, 35, 0);  -- Brisingamen +1, DEX+5 if Lightningsday (needs HQ stats)
+INSERT INTO `item_latents` VALUES(13162, 14, 5, 36, 0); -- Brisingamen +1, CHR+5 if Lightsday (needs HQ stats)
+
+INSERT INTO `item_latents` VALUES(13097, 2, 10, 26, 0); -- Brisingamen, HP+10 if Daytime
+INSERT INTO `item_latents` VALUES(13097, 5, 10, 26, 1); -- Brisingamen, MP+10 if Nighttime
+INSERT INTO `item_latents` VALUES(13097, 8, 5, 28, 0);  -- Brisingamen, STR+5 if Firesday
+INSERT INTO `item_latents` VALUES(13097, 10, 5, 29, 0); -- Brisingamen, VIT+5 if Earthsday
+INSERT INTO `item_latents` VALUES(13097, 13, 5, 30, 0); -- Brisingamen, MND+5 if Watersday
+INSERT INTO `item_latents` VALUES(13097, 11, 5, 31, 0); -- Brisingamen, AGI+5 if Windsday
+INSERT INTO `item_latents` VALUES(13097, 12, 5, 34, 0); -- Brisingamen, INT+5 if Iceday
+INSERT INTO `item_latents` VALUES(13097, 9, 5, 35, 0);  -- Brisingamen, DEX+5 if Lightningsday
+INSERT INTO `item_latents` VALUES(13097, 14, 5, 36, 0); -- Brisingamen, CHR+5 if Lightsday
+
+INSERT INTO `item_latents` VALUES(14288, 7, 20, 26, 0); -- Clowns Subligar, Converts 20HP to MP from 17:00 to 7:00
+
 INSERT INTO `item_latents` VALUES(16031, 314, 1, 22, 18); -- Affinity Earring, Enhances Pet Att. if PUP is in party
 INSERT INTO `item_latents` VALUES(16017, 28, 1, 22, 4); -- Ardent Earring, MATT+1 if BLM is in party
 INSERT INTO `item_latents` VALUES(16018, 30, 1, 22, 5); -- Ataraxy Earring, MACC+1 if RDM is in party
@@ -43,7 +66,7 @@ INSERT INTO `item_latents` VALUES(16027, 25, 1, 22, 14); -- Seeker Earring, ACC+
 INSERT INTO `item_latents` VALUES(16030, 26, 1, 22, 17); -- Soarer Earring, RACC+1 if COR is in party
 INSERT INTO `item_latents` VALUES(16014, 23, 4, 22, 1); -- Stormer Earring, ATT+4 if WAR is in party
 INSERT INTO `item_latents` VALUES(16020, 10, 1, 22, 7); -- Survivor Earring, VIT+1 if PLD is in party
-INSERT INTO `item_latents` VALUES(16033, 71, 1, 22, 20); -- Sylph Earring, MP While Healing +1 if SCH is in party
+INSERT INTO `item_latents` VALUES(16033, 71, 1, 22, 20); -- Sylph Earring, Healing MP +1 if SCH is in party
 
 INSERT INTO `item_latents` VALUES(13870, 14, 14, 49, 4468);
 INSERT INTO `item_latents` VALUES(13870, 12, 1, 49, 4468);

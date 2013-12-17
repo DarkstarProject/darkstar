@@ -30,11 +30,13 @@
 #include "utils/zoneutils.h"
 #include "conquest_system.h"
 #include "lua/luautils.h"
+#include "entities/charentity.h"
 
 
 int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
 {
 	TIMETYPE VanadielTOTD = CVanaTime::getInstance()->SyncTime();
+	uint8 WeekDay = (uint8)CVanaTime::getInstance()->getWeekday();
 
 	if (CVanaTime::getInstance()->getHour() % 4 == 0 && CVanaTime::getInstance()->getMinute() == 30)
 	{
@@ -44,6 +46,32 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
 	if (CVanaTime::getInstance()->getMinute() == 0)
 	{
 		luautils::OnGameHourAutomatisation();
+
+		for(uint16 zone = 0; zone < MAX_ZONEID; ++zone)
+		{
+			EntityList_t	m_charList = zoneutils::GetZone(zone)->GetCharList();
+
+			for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
+			{
+				CCharEntity* PChar = (CCharEntity*)it->second;
+				PChar->PLatentEffectContainer->CheckLatentsHours();
+			}
+		}
+
+	}
+	
+	if (CVanaTime::getInstance()->getHour() == 0 && CVanaTime::getInstance()->getMinute() == 0)
+	{
+		for(uint16 zone = 0; zone < MAX_ZONEID; ++zone)
+		{
+			EntityList_t	m_charList = zoneutils::GetZone(zone)->GetCharList();
+
+			for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
+			{
+				CCharEntity* PChar = (CCharEntity*)it->second;
+				PChar->PLatentEffectContainer->CheckLatentsWeekDay();
+			}
+		}
 	}
 
     if (VanadielTOTD != TIME_NONE)
@@ -62,6 +90,20 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
 		        conquest::UpdateWeekConquest();
 	        }
         }
+
+		if((VanadielTOTD == TIME_DAY) || (VanadielTOTD == TIME_DUSK) || (VanadielTOTD == TIME_NIGHT))
+		{
+			for(uint16 zone = 0; zone < MAX_ZONEID; ++zone)
+			{
+				EntityList_t	m_charList = zoneutils::GetZone(zone)->GetCharList();
+
+				for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
+				{
+					CCharEntity* PChar = (CCharEntity*)it->second;
+					PChar->PLatentEffectContainer->CheckLatentsDay();
+				}
+			}
+		}
 	}
 
 	CTransportHandler::getInstance()->TransportTimer();

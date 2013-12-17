@@ -27,6 +27,8 @@
 #include "entities/charentity.h"
 #include "entities/battleentity.h"
 
+#include "time_server.h"
+
 CLatentEffectContainer::CLatentEffectContainer(CCharEntity* PEntity)
 	:m_POwner(PEntity)
 {
@@ -450,10 +452,30 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
 						CheckLatentsPartyJobs();
 					break;
 				case LATENT_PARTY_MEMBERS:
-						CheckLatentsPartyMembers(m_LatentEffectList.at(i)->GetConditionsValue());
+					{
+						if(m_POwner->PParty != NULL)
+							CheckLatentsPartyMembers(m_POwner->PParty->members.size());
+					}
 					break;
 				case LATENT_AVATAR_IN_PARTY:
 						CheckLatentsPartyAvatar();
+					break;
+				case LATENT_TIME_OF_DAY:
+						CheckLatentsDay();
+					break;
+				case LATENT_HOUR_OF_DAY:
+						CheckLatentsHours();
+					break;
+
+				case LATENT_FIRESDAY:
+				case LATENT_EARTHSDAY:
+				case LATENT_WATERSDAY:
+				case LATENT_WINDSDAY:
+				case LATENT_DARKSDAY:
+				case LATENT_ICEDAY:
+				case LATENT_LIGHTNINGSDAY:
+				case LATENT_LIGHTSDAY:
+						CheckLatentsWeekDay();
 					break;
 
 			}
@@ -621,6 +643,358 @@ void CLatentEffectContainer::CheckLatentsRollSong(bool active)
 void CLatentEffectContainer::CheckLatentsDay()
 {
 
+	TIMETYPE VanadielTOTD = CVanaTime::getInstance()->SyncTime();
+	uint32 VanadielHour = CVanaTime::getInstance()->getHour();
+
+	for(uint16 i = 0; i < m_LatentEffectList.size(); ++i)
+	{
+		/* Time of Day */
+
+		if(m_LatentEffectList.at(i)->GetConditionsID() == LATENT_TIME_OF_DAY)
+		{
+
+			//daytime: 06:00 to 18:00
+			if(m_LatentEffectList.at(i)->GetConditionsValue() == 0)
+			{
+				if(VanadielHour > 5 && VanadielHour < 18)
+				{
+					if(m_LatentEffectList.at(i)->IsActivated())
+							m_LatentEffectList.at(i)->Deactivate();
+						
+					m_LatentEffectList.at(i)->Activate();
+				}
+				else
+				{
+					if(m_LatentEffectList.at(i)->IsActivated())
+					{
+						m_LatentEffectList.at(i)->Deactivate();
+					}
+				}
+			}
+				
+			//nighttime: 18:00 to 06:00
+			if(m_LatentEffectList.at(i)->GetConditionsValue() ==  1)
+			{
+				if((VanadielHour >= 18) || (VanadielHour < 6))
+				{
+					if(m_LatentEffectList.at(i)->IsActivated())
+						m_LatentEffectList.at(i)->Deactivate();
+						
+					m_LatentEffectList.at(i)->Activate();
+				}
+				else
+				{
+					if(m_LatentEffectList.at(i)->IsActivated())
+					{
+						m_LatentEffectList.at(i)->Deactivate();
+					}
+				}
+			}
+
+			//dusk - dawn: 17:00 to 7:00
+			if(m_LatentEffectList.at(i)->GetConditionsValue() == 2)
+				{
+					if((VanadielHour >= 17) || (VanadielHour < 7))
+					{
+						if(m_LatentEffectList.at(i)->IsActivated())
+							m_LatentEffectList.at(i)->Deactivate();
+
+						m_LatentEffectList.at(i)->Activate();
+					}
+					else
+					{
+						if(m_LatentEffectList.at(i)->IsActivated())
+						{
+							m_LatentEffectList.at(i)->Deactivate();
+						}
+					}
+				}
+
+		}
+	}
+	m_POwner->UpdateHealth();
+}
+
+/************************************************************************
+*																		*
+*  Checks latents that are affected by the day of the week and			*
+*  activates them if the conditions are met.							*
+*																		*
+************************************************************************/
+
+void CLatentEffectContainer::CheckLatentsWeekDay()
+{
+
+	uint8 WeekDay = (uint8)CVanaTime::getInstance()->getWeekday();
+
+	for(uint16 i = 0; i < m_LatentEffectList.size(); ++i)
+	{
+
+		if(m_LatentEffectList.at(i)->GetConditionsID() == LATENT_FIRESDAY)
+		{
+			if(WeekDay == FIRESDAY)
+			{
+				if(!m_LatentEffectList.at(i)->IsActivated())
+				{
+					m_LatentEffectList.at(i)->Activate();
+				}
+			}
+			else
+			{
+				if(m_LatentEffectList.at(i)->IsActivated())
+				{
+					m_LatentEffectList.at(i)->Deactivate();
+				}
+			}
+		}
+
+		if(m_LatentEffectList.at(i)->GetConditionsID() == LATENT_EARTHSDAY)
+		{
+			if(WeekDay == EARTHSDAY)
+			{
+				if(!m_LatentEffectList.at(i)->IsActivated())
+				{
+					m_LatentEffectList.at(i)->Activate();
+				}
+			}
+			else
+			{
+				if(m_LatentEffectList.at(i)->IsActivated())
+				{
+					m_LatentEffectList.at(i)->Deactivate();
+				}
+			}
+		}
+				
+		if(m_LatentEffectList.at(i)->GetConditionsID() == LATENT_WATERSDAY)
+		{
+			if(WeekDay == WATERSDAY)
+			{
+				if(!m_LatentEffectList.at(i)->IsActivated())
+				{
+					m_LatentEffectList.at(i)->Activate();
+				}
+			}
+			else
+			{
+				if(m_LatentEffectList.at(i)->IsActivated())
+				{
+					m_LatentEffectList.at(i)->Deactivate();
+				}
+			}
+		}
+
+		if(m_LatentEffectList.at(i)->GetConditionsID() == LATENT_WINDSDAY)
+		{
+			if(WeekDay == WINDSDAY)
+			{
+				if(!m_LatentEffectList.at(i)->IsActivated())
+				{
+					m_LatentEffectList.at(i)->Activate();
+				}
+			}
+			else
+			{
+				if(m_LatentEffectList.at(i)->IsActivated())
+				{
+					m_LatentEffectList.at(i)->Deactivate();
+				}
+			}
+		}
+
+		if(m_LatentEffectList.at(i)->GetConditionsID() == LATENT_DARKSDAY)
+		{
+			if(WeekDay == DARKSDAY)
+			{
+				if(!m_LatentEffectList.at(i)->IsActivated())
+				{
+					m_LatentEffectList.at(i)->Activate();
+				}
+			}
+			else
+			{
+				if(m_LatentEffectList.at(i)->IsActivated())
+				{
+					m_LatentEffectList.at(i)->Deactivate();
+				}
+			}
+		}
+
+		if(m_LatentEffectList.at(i)->GetConditionsID() == LATENT_ICEDAY)
+		{
+			if(WeekDay == ICEDAY)
+				{
+					if(!m_LatentEffectList.at(i)->IsActivated())
+					{
+						m_LatentEffectList.at(i)->Activate();
+					}
+			}
+			else
+			{
+				if(m_LatentEffectList.at(i)->IsActivated())
+				{
+					m_LatentEffectList.at(i)->Deactivate();
+				}
+			}
+		}
+
+		if(m_LatentEffectList.at(i)->GetConditionsID() == LATENT_LIGHTNINGSDAY)
+		{
+			if(WeekDay == LIGHTNINGDAY)
+			{
+				if(!m_LatentEffectList.at(i)->IsActivated())
+				{
+					m_LatentEffectList.at(i)->Activate();
+				}
+			}
+			else
+			{
+				if(m_LatentEffectList.at(i)->IsActivated())
+				{
+					m_LatentEffectList.at(i)->Deactivate();
+				}
+			}
+		}
+
+		if(m_LatentEffectList.at(i)->GetConditionsID() == LATENT_LIGHTSDAY)
+		{
+			if(WeekDay == LIGHTSDAY)	
+			{
+				if(!m_LatentEffectList.at(i)->IsActivated())
+				{
+					m_LatentEffectList.at(i)->Activate();
+				}
+			}
+			else
+			{
+				if(m_LatentEffectList.at(i)->IsActivated())
+				{
+					m_LatentEffectList.at(i)->Deactivate();
+				}
+			}
+		}
+	}
+	m_POwner->UpdateHealth();
+}
+
+/************************************************************************
+*																		*
+*  Checks latents that are affected the hour and activates them			*
+*  if the conditions are met.											*
+*																		*
+************************************************************************/
+void CLatentEffectContainer::CheckLatentsHours()
+{
+	uint32 VanadielHour = CVanaTime::getInstance()->getHour();
+
+	for(uint16 i = 0; i < m_LatentEffectList.size(); ++i)
+	{
+		if(m_LatentEffectList.at(i)->GetConditionsID() == LATENT_HOUR_OF_DAY)
+		{
+			//new day
+			if(m_LatentEffectList.at(i)->GetConditionsValue() == 1)
+			{
+				if(VanadielHour == 4)
+				{
+					if(m_LatentEffectList.at(i)->IsActivated())
+						m_LatentEffectList.at(i)->Deactivate();
+						
+					m_LatentEffectList.at(i)->Activate();
+				}
+				else
+				{
+					if(m_LatentEffectList.at(i)->IsActivated())
+						m_LatentEffectList.at(i)->Deactivate();
+				}
+			}
+
+			//dawn
+			if(m_LatentEffectList.at(i)->GetConditionsValue() == 2)
+			{
+				if(VanadielHour == 6)
+				{
+					if(m_LatentEffectList.at(i)->IsActivated())
+						m_LatentEffectList.at(i)->Deactivate();
+						
+					m_LatentEffectList.at(i)->Activate();
+				}
+				else
+				{
+					if(m_LatentEffectList.at(i)->IsActivated())
+						m_LatentEffectList.at(i)->Deactivate();
+				}
+			}
+
+			//day
+			if(m_LatentEffectList.at(i)->GetConditionsValue() == 3)
+			{
+				if(VanadielHour >= 7 && VanadielHour < 17)
+				{
+					if(m_LatentEffectList.at(i)->IsActivated())
+						m_LatentEffectList.at(i)->Deactivate();
+						
+					m_LatentEffectList.at(i)->Activate();
+				}
+				else
+				{
+					if(m_LatentEffectList.at(i)->IsActivated())
+						m_LatentEffectList.at(i)->Deactivate();
+				}
+			}
+
+			//dusk
+			if(m_LatentEffectList.at(i)->GetConditionsValue() == 4)
+			{
+				if(VanadielHour >= 16 && VanadielHour < 18)
+				{
+					if(m_LatentEffectList.at(i)->IsActivated())
+						m_LatentEffectList.at(i)->Deactivate();
+						
+					m_LatentEffectList.at(i)->Activate();
+				}
+				else
+				{
+					if(m_LatentEffectList.at(i)->IsActivated())
+						m_LatentEffectList.at(i)->Deactivate();
+				}
+			}
+
+			//evening
+			if(m_LatentEffectList.at(i)->GetConditionsValue() == 5)
+			{
+				if(VanadielHour >= 18 && VanadielHour < 20)
+				{
+					if(m_LatentEffectList.at(i)->IsActivated())
+						m_LatentEffectList.at(i)->Deactivate();
+						
+					m_LatentEffectList.at(i)->Activate();
+				}
+				else
+				{
+					if(m_LatentEffectList.at(i)->IsActivated())
+						m_LatentEffectList.at(i)->Deactivate();
+				}
+			}
+
+			//dead of night
+			if(m_LatentEffectList.at(i)->GetConditionsValue() == 6)
+			{
+				if((VanadielHour < 4 ) || (VanadielHour <= 20))
+				{
+					if(m_LatentEffectList.at(i)->IsActivated())
+						m_LatentEffectList.at(i)->Deactivate();
+						
+					m_LatentEffectList.at(i)->Activate();
+				}
+				else
+				{
+					if(m_LatentEffectList.at(i)->IsActivated())
+						m_LatentEffectList.at(i)->Deactivate();
+				}
+			}
+		}
+	}
+	m_POwner->UpdateHealth();
 }
 
 /************************************************************************

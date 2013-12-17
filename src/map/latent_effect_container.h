@@ -51,6 +51,8 @@ public:
 	void CheckLatentsFoodEffect();
 	void CheckLatentsRollSong(bool active);
 	void CheckLatentsDay();
+	void CheckLatentsHours();
+	void CheckLatentsWeekDay();
 	void CheckLatentsPartyMembers(uint8 members);
 	void CheckLatentsPartyJobs();
 	void CheckLatentsPartyAvatar();
