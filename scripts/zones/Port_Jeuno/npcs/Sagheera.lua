@@ -13,7 +13,7 @@ require("scripts/globals/keyitems");
 require("scripts/globals/armor_upgrade");
 
   local ABreward={15244,14812,14813,15475,15476,15477,15488,14815,15961,2127};
-  local ABremove={150  ,   75,   75,   75,  150,  150,   75,   75,   75,  75};
+  local ABremove={150  ,   75,   75,   75,  150,   75,   75,   75,   75,  75};
 -----------------------------------
 -- onTrade Action
 -----------------------------------
