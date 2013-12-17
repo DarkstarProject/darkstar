@@ -145,8 +145,8 @@ namespace battleutils
 	void			CheckPlayersKickAttack(CCharEntity* PChar, CItemWeapon* PWeapon, attackSwingRound_t* attackRound);
 	uint32			CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32 damage, PHYSICAL_ATTACK_TYPE attackType);
 
-	void			TryAbsorbMPfromPhysicalAttack(CBattleEntity* battleEntity, uint16 damage);
-	bool			TryAbsorbHPfromPhysicalAttack(CBattleEntity* battleEntity, uint16 damage);
+	void			TryAbsorbMPfromPhysicalAttack(CBattleEntity* battleEntity, uint32 damage);
+	bool			TryAbsorbHPfromPhysicalAttack(CBattleEntity* battleEntity, uint32 damage);
 
 	void			GetSnapshotReduction(CCharEntity* m_PChar);
 	int32			GetRangedAttackBonuses(CBattleEntity* battleEntity);
@@ -191,7 +191,7 @@ namespace battleutils
     uint8				GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	float				GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical, uint16 bonusAttPercent);
 
-	uint16				TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim);
+	uint32				TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int32 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim);
     uint16				TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint16 lastSkillDamage);
 	uint32				MagicCalculateCure(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber, CZone* PZone);
 
@@ -199,14 +199,14 @@ namespace battleutils
 	bool				IsParried(CBattleEntity* PAttacker, CBattleEntity* PDefender);
     bool				IsGuarded(CBattleEntity* PAttacker, CBattleEntity* PDefender);
     bool				IsBlocked(CBattleEntity* PAttacker, CBattleEntity* PDefender);
-	bool TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender);
+	bool                TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	float				GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	void				HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action);
     uint16              CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 spikesType);
     bool                HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action, uint16 damage);
     bool                HandleSpikesEquip(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint8 damage, SUBEFFECT spikesType, uint8 chance);
     void                HandleSpikesStatusEffect(CBattleEntity* PAttacker, apAction_t* Action);
-	void				HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action, uint8 hitNumber, uint16 delay, uint16 damage);
+	void				HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action, uint8 hitNumber, CItemWeapon* weapon, uint16 damage);
 	uint8				GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isBarrage);
 	uint16				CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 Tier, uint8 element);
 
@@ -229,7 +229,7 @@ namespace battleutils
 	bool				TryCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 base);
 	void				tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim);
 
-	uint16				doSoulEaterEffect(CCharEntity* m_PChar, uint16 damage);
+	uint16				doSoulEaterEffect(CCharEntity* m_PChar, uint32 damage);
 	uint16				getOverWhelmDamageBonus(CCharEntity* m_PChar, CBattleEntity* PDefender, uint16 damage);
 	uint16				jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier);
 

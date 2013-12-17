@@ -407,6 +407,7 @@ function applyResistanceAbility(player,target,element,skill,bonus)
     end
 
 	--get the base acc (just skill plus magic acc mod)
+
 	local magicacc = player:getSkillLevel(skill) + player:getMod(79 + skill) + player:getMod(MOD_MACC);
 
 	--add acc for staves
@@ -462,6 +463,96 @@ function applyResistanceAbility(player,target,element,skill,bonus)
     -- print("QUART:",quart);
     -- print("EIGHTH:",eighth);
     -- print("SIXTEENTH:",sixteenth);
+
+    local resvar = math.random();
+
+    -- Determine final resist based on which thresholds have been crossed.
+    if(resvar <= sixteenth) then
+        resist = 0.0625;
+        --printf("Spell resisted to 1/16!!!  Threshold = %u",sixteenth);
+    elseif(resvar <= eighth) then
+        resist = 0.125;
+        --printf("Spell resisted to 1/8!  Threshold = %u",eighth);
+    elseif(resvar <= quart) then
+        resist = 0.25;
+        --printf("Spell resisted to 1/4.  Threshold = %u",quart);
+    elseif(resvar <= half) then
+        resist = 0.5;
+        --printf("Spell resisted to 1/2.  Threshold = %u",half);
+    else
+        resist = 1.0;
+        --printf("1.0");
+    end
+
+    return resist;
+
+end;
+
+--Applies resistance for additional effects
+function applyResistanceAddEffect(player,target,element,bonus)
+    -- resist everything if magic shield is active
+    if(target:hasStatusEffect(EFFECT_MAGIC_SHIELD, 0)) then
+        return 0;
+    end
+
+    local resist = 1.0;
+    local magicaccbonus = 0;
+
+    if(bonus ~= nil) then
+        magicaccbonus = magicaccbonus + bonus;
+    end
+
+	--get the base acc (just skill plus magic acc mod)
+    local magicacc = 0;
+
+	--add acc for staves
+	local affinityBonus = AffinityBonus(player, element);
+	magicaccbonus = magicaccbonus + (affinityBonus-1) * 200;
+
+	--base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
+	local magiceva = target:getMod(resistMod[element]);
+    
+	--get the difference of acc and eva, scale with level (3.33 at 10 to 0.44 at 75)
+	local multiplier = 0;
+	if player:getMainLvl() < 40 then
+		multiplier = 100 / 120;
+	else
+		multiplier = 100 / (player:getMainLvl() * 3);
+	end;
+	local p = (magicacc * multiplier) - (magiceva * 0.45);
+	magicaccbonus = magicaccbonus / 2;
+	--add magicacc bonus
+	p = p + magicaccbonus;
+    --printf("acc: %f, eva: %f, bonus: %f", magicacc, magiceva, magicaccbonus);
+
+	--add a flat bonus that won't get doubled in the previous step
+	p = p + 75;
+	--add a scaling bonus or penalty based on difference of targets level from caster
+	local leveldiff = player:getMainLvl() - target:getMainLvl();
+	--[[if(leveldiff < 0) then
+		p = p - (25 * ( (player:getMainLvl()) / 75 )) + leveldiff;
+	else
+		p = p + (25 * ( (player:getMainLvl()) / 75 )) + leveldiff;
+	end]]
+    p = p + leveldiff*2;
+	--cap accuracy
+    if(p > 95) then
+        p = 95;
+    elseif(p < 5) then
+        p = 5;
+    end
+
+	p = p / 100;
+
+    -- Resistance thresholds based on p.  A higher p leads to lower resist rates, and a lower p leads to higher resist rates.
+    local half = (1 - p);
+    local quart = ((1 - p)^2);
+    local eighth = ((1 - p)^3);
+    local sixteenth = ((1 - p)^4);
+    --print("HALF: "..half);
+    --print("QUART: "..quart);
+    --print("EIGHTH: "..eighth);
+    --print("SIXTEENTH: "..sixteenth);
 
     local resvar = math.random();
 
@@ -623,6 +714,8 @@ function getSkillLvl(rank,level)
     --handling stoneskin
     dmg = utils.stoneskin(target, dmg);
 
+    dmg = utils.clamp(dmg, -99999, 99999);
+    
     target:delHP(dmg);
     target:updateEnmityFromDamage(caster,dmg);
 
@@ -634,6 +727,30 @@ function getSkillLvl(rank,level)
     return dmg;
  end;
 
+function finalMagicNonSpellAdjustments(caster,target,ele,dmg)
+
+    --TODO: ABSORB ELEMENT (just reverse damage number, script should handle message change)
+    dmg = utils.dmgTaken(target, dmg);
+    dmg = utils.magicDmgTaken(target, dmg);
+
+    dmg = dmg - target:getMod(MOD_PHALANX);
+    if(dmg < 0) then
+        dmg = 0;
+    end
+
+    --handling stoneskin
+    dmg = utils.stoneskin(target, dmg);
+
+    dmg = utils.clamp(dmg, -99999, 99999);
+    
+    target:delHP(dmg);
+    --Not updating enmity from damage, as this is primarily used for additional effects (which don't generate emnity)
+    -- in the case that updating enmity is needed, do it manually after calling this
+    --target:updateEnmityFromDamage(caster,dmg);
+
+    return dmg;
+end;
+ 
 function adjustForTarget(target,dmg)
     --e.g. family % reduction
     return dmg;
@@ -823,7 +940,7 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
     return dmg;
 end;
 
-function addBonusesAbility(caster, ele, target, dmg, bonusmab)
+function addBonusesAbility(caster, ele, target, dmg, params)
 
 	local affinityBonus = AffinityBonus(caster, ele);
 	dmg = math.floor(dmg * affinityBonus);
@@ -888,10 +1005,10 @@ function addBonusesAbility(caster, ele, target, dmg, bonusmab)
 
 	dmg = math.floor(dmg * dayWeatherBonus);
 
-	local mab = 0;
-	if (bonusmab ~= nil) then
-		mab = (100 + caster:getMod(MOD_MATT) + bonusmab) / (100 + target:getMod(MOD_MDEF));
-	else
+	local mab = 1;
+	if (params ~= nil and params.bonusmab ~= nil) then
+		mab = (100 + caster:getMod(MOD_MATT) + params.bonusmab) / (100 + target:getMod(MOD_MDEF));
+	elseif (params == nil or (params ~= nil and params.includemab == true)) then
 		mab = (100 + caster:getMod(MOD_MATT)) / (100 + target:getMod(MOD_MDEF));
 	end
 

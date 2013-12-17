@@ -168,7 +168,7 @@ INSERT INTO `merits` VALUES ('1476', 'automation_magic_skill', '5', '2', '131072
 INSERT INTO `merits` VALUES ('1478', 'activate_recast', '5', '40', '131072', '6', '22');
 INSERT INTO `merits` VALUES ('1480', 'repair_recast', '5', '6', '131072', '6', '22');
 INSERT INTO `merits` VALUES ('1536', 'step_accuracy', '5', '3', '262144', '6', '23');
-INSERT INTO `merits` VALUES ('1538', 'haste_samba_effect', '5', '1', '262144', '6', '23');
+INSERT INTO `merits` VALUES ('1538', 'haste_samba_effect', '5', '10', '262144', '6', '23');
 INSERT INTO `merits` VALUES ('1540', 'reverse_flourish_effect', '5', '3', '262144', '6', '23');
 INSERT INTO `merits` VALUES ('1542', 'building_flourish_effect', '5', '2', '262144', '6', '23');
 INSERT INTO `merits` VALUES ('1600', 'grimoire_recast', '5', '2', '524288', '6', '24');

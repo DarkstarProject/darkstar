@@ -394,7 +394,7 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 		bitOffset += 31;
 
 
-        if (Action.addEffectParam != SUBEFFECT_NONE)
+        if (Action.additionalEffect != SUBEFFECT_NONE)
         {
             bitOffset = packBitsBE(data, 1, bitOffset, 1);
             bitOffset = packBitsBE(data, Action.additionalEffect, bitOffset, 10);

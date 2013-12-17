@@ -37,6 +37,62 @@ STATUS_18				= 18;
 STATUS_SHUTDOWN			= 20;
 
 -----------------------------------
+-- These codes represent the subeffects for
+-- additional effects animations from battleentity.h
+-----------------------------------
+--ATTACKS
+	SUBEFFECT_FIRE_DAMAGE       = 1;   -- 110000        3
+    SUBEFFECT_ICE_DAMAGE        = 2;   -- 1-01000       5
+    SUBEFFECT_WIND_DAMAGE       = 3;   -- 111000        7
+    SUBEFFECT_EARTH_DAMAGE      = 4;   -- 1-00100       9
+    SUBEFFECT_LIGHTNING_DAMAGE  = 5;   -- 110100       11
+    SUBEFFECT_WATER_DAMAGE      = 6;   -- 1-01100      13
+    SUBEFFECT_LIGHT_DAMAGE      = 7;   -- 111100       15
+    SUBEFFECT_DARKNESS_DAMAGE   = 8;   -- 1-00010      17
+    SUBEFFECT_SLEEP             = 9;   -- 110010       19
+    SUBEFFECT_POISON            = 10;  -- 1-01010      21
+    SUBEFFECT_PARALYSIS         = 11;
+    SUBEFFECT_BLIND             = 12;  -- 1-00110      25
+    SUBEFFECT_SILENCE           = 13;
+    SUBEFFECT_PETRIFY           = 14;
+    SUBEFFECT_PLAGUE            = 15;
+    SUBEFFECT_STUN              = 16;
+    SUBEFFECT_CURSE             = 17;
+    SUBEFFECT_DEFENSE_DOWN      = 18;  -- 1-01001      37
+    SUBEFFECT_SHIELD            = 20;
+    SUBEFFECT_HP_DRAIN          = 21;  -- 1-10101      43
+    SUBEFFECT_TP_DRAIN          = 22;
+	SUBEFFECT_HASTE             = 23;
+--SPIKES
+    SUBEFFECT_BLAZE_SPIKES      = 1;    -- 01-1000       6
+    SUBEFFECT_ICE_SPIKES        = 2;    -- 01-0100      10
+    SUBEFFECT_DREAD_SPIKES      = 3;    -- 01-1100      14
+    SUBEFFECT_CURSE_SPIKES      = 4;    -- 01-0010      18
+    SUBEFFECT_SHOCK_SPIKES      = 5;    -- 01-1010      22
+    SUBEFFECT_REPRISAL          = 6;    -- 01-0110      26
+	SUBEFFECT_WIND_SPIKES       = 7;
+	SUBEFFECT_STONE_SPIKES      = 8;
+	SUBEFFECT_COUNTER           = 63;
+--SKILLCHAINS
+    SUBEFFECT_LIGHT             = 1;
+    SUBEFFECT_DARKNESS          = 2;
+    SUBEFFECT_GRAVITATION       = 3;
+    SUBEFFECT_FRAGMENTATION     = 4;
+    SUBEFFECT_DISTORTION        = 5;
+    SUBEFFECT_FUSION            = 6;
+    SUBEFFECT_COMPRESSION       = 7;
+    SUBEFFECT_LIQUEFACATION     = 8;
+    SUBEFFECT_INDURATION        = 9;
+    SUBEFFECT_REVERBERATION     = 10;
+    SUBEFFECT_TRANSFIXION       = 11;
+    SUBEFFECT_SCISSION          = 12;
+    SUBEFFECT_DETONATION        = 13;
+    SUBEFFECT_IMPACTION         = 14;
+
+    SUBEFFECT_NONE                              = 0;
+
+
+-----------------------------------
 -- These codes represent the actual status effects.
 -- They are simply for convenience.
 -----------------------------------

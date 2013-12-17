@@ -68,7 +68,7 @@ public:
     CStatusEffect* StealStatusEffect();             // dispels one effect and returns it
 
     CStatusEffect* GetStatusEffect(EFFECT StatusID);
-    CStatusEffect* GetStatusEffect(EFFECT StatusID, uint16 SubID);
+    CStatusEffect* GetStatusEffect(EFFECT StatusID, uint32 SubID);
 
     void UpdateStatusIcons();                                   // пересчитываем иконки эффектов
     void CheckEffects(uint32 tick);

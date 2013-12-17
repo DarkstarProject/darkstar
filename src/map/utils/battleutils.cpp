@@ -390,10 +390,12 @@ std::vector<CMobSkill*> GetMobSkillsByFamily(uint16 FamilyID)
 uint16	CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 Tier, uint8 element){
     uint16 damage = 0;
 
+    // TODO: resists (likely only based off targets resistance, perhaps with some level correction
+
 	//Tier 1 enspells have their damaged pre-calculated AT CAST TIME and is stored in MOD_ENSPELL_DMG
 	if(Tier==1)
     {
-        damage = PAttacker->getMod(MOD_ENSPELL_DMG);
+        damage = PAttacker->getMod(MOD_ENSPELL_DMG) + PAttacker->getMod(MOD_ENSPELL_DMG_BONUS);
     }
     else
     {
@@ -420,106 +422,46 @@ uint16	CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender
     		PAttacker->addModifier(MOD_ENSPELL_DMG,1);
     		damage = PAttacker->getMod(MOD_ENSPELL_DMG)-1;
     	}
-    }
-    
-    //enhancing sword adds 5 dmg to all enspells
-    if(PAttacker->objtype == TYPE_PC){
-    	CCharEntity* PCharAtk = (CCharEntity*)PAttacker;
-    	CItem* PMain = PCharAtk->getStorage(LOC_INVENTORY)->GetItem(PCharAtk->equip[SLOT_MAIN]);
-    	if(PMain){
-    		if(PMain->getID() == 16605){
-    			damage += 5;
-    		}
-    		else{
-    			CItem* PSub = PCharAtk->getStorage(LOC_INVENTORY)->GetItem(PCharAtk->equip[SLOT_SUB]);
-    			if(PSub){
-    				if(PSub->getID() == 16605){
-    					damage += 5;
-    				}
-    			}
-    		}
-    	}
+        damage += PAttacker->getMod(MOD_ENSPELL_DMG_BONUS);
     }
     
     //matching day 10% bonus, matching weather 10% or 25% for double weather
     float dBonus = 1.0;
-    uint8 WeekDay = (uint8)CVanaTime::getInstance()->getWeekday();
+    uint32 WeekDay = CVanaTime::getInstance()->getWeekday();
     WEATHER weather = GetWeather(PAttacker, false);
-    switch(element){
-    	
-    	case FIRE:
-    		if(WeekDay == FIRESDAY)
-    			dBonus += 0.1;
-    		if(weather == WEATHER_HOT_SPELL)
-    			dBonus += 0.1;
-    		else if(weather == WEATHER_HEAT_WAVE)
-    			dBonus += 0.25;
-    		break;
-    	
-    	case EARTH:
-    		if(WeekDay == EARTHSDAY)
-    			dBonus += 0.1;
-    		if(weather == WEATHER_DUST_STORM)
-    			dBonus += 0.1;
-    		else if(weather == WEATHER_SAND_STORM)
-    			dBonus += 0.25;
-    		break;
-    	
-    	case WATER:
-    		if(WeekDay == WATERSDAY)
-    			dBonus += 0.1;
-    		if(weather == WEATHER_RAIN)
-    			dBonus += 0.1;
-    		else if(weather == WEATHER_SQUALL)
-    			dBonus += 0.25;
-    		break;
-    	
-    	case WIND:
-    		if(WeekDay == WINDSDAY)
-    			dBonus += 0.1;
-    		if(weather == WEATHER_WIND)
-    			dBonus += 0.1;
-    		else if(weather == WEATHER_GALES)
-    			dBonus += 0.25;
-    		break;
-    	
-    	case ICE:
-    		if(WeekDay == ICEDAY)
-    			dBonus += 0.1;
-    		if(weather == WEATHER_SNOW)
-    			dBonus += 0.1;
-    		else if(weather == WEATHER_BLIZZARDS)
-    			dBonus += 0.25;
-    		break;
-    	
-    	case THUNDER:
-    		if(WeekDay == LIGHTNINGDAY)
-    			dBonus += 0.1;
-    		if(weather == WEATHER_THUNDER)
-    			dBonus += 0.1;
-    		else if(weather == WEATHER_THUNDERSTORMS)
-    			dBonus += 0.25;
-    		break;
-    	
-    	case LIGHT:
-    		if(WeekDay == LIGHTSDAY)
-    			dBonus += 0.1;
-    		if(weather == WEATHER_AURORAS)
-    			dBonus += 0.1;
-    		else if(weather == WEATHER_STELLAR_GLARE)
-    			dBonus += 0.25;
-    		break;
-    	
-    	case DARK:
-    		if(WeekDay == DARKSDAY)
-    			dBonus += 0.1;
-    		if(weather == WEATHER_GLOOM)
-    			dBonus += 0.1;
-    		else if(weather == WEATHER_DARKNESS)
-    			dBonus += 0.25;
-    		break;
-    	
+
+    DAYTYPE strongDay[8] = {FIRESDAY, EARTHSDAY, WATERSDAY, WINDSDAY, ICEDAY, LIGHTNINGDAY, LIGHTSDAY, DARKSDAY};
+    DAYTYPE weakDay[8] = { WATERSDAY, WINDSDAY, LIGHTNINGDAY, ICEDAY, FIRESDAY, EARTHSDAY, DARKSDAY, LIGHTSDAY };
+    WEATHER strongWeatherSingle[8] = { WEATHER_HOT_SPELL, WEATHER_DUST_STORM, WEATHER_RAIN, WEATHER_WIND, WEATHER_SNOW, WEATHER_THUNDER, WEATHER_AURORAS, WEATHER_GLOOM };
+    WEATHER strongWeatherDouble[8] = { WEATHER_HEAT_WAVE, WEATHER_SAND_STORM, WEATHER_SQUALL, WEATHER_GALES, WEATHER_BLIZZARDS, WEATHER_THUNDERSTORMS, WEATHER_STELLAR_GLARE, WEATHER_DARKNESS };
+    WEATHER weakWeatherSingle[8] = { WEATHER_RAIN, WEATHER_WIND, WEATHER_THUNDER, WEATHER_SNOW, WEATHER_HOT_SPELL, WEATHER_DUST_STORM, WEATHER_GLOOM, WEATHER_AURORAS };
+    WEATHER weakWeatherDouble[8] = { WEATHER_SQUALL, WEATHER_GALES, WEATHER_THUNDERSTORMS, WEATHER_BLIZZARDS, WEATHER_HEAT_WAVE, WEATHER_SAND_STORM, WEATHER_DARKNESS, WEATHER_STELLAR_GLARE };
+    uint32 obi[8] = { 15435, 15438, 15440, 15437, 15436, 15439, 15441, 15442 };
+    bool obiBonus = false;
+
+    if (PAttacker->objtype == TYPE_PC)
+    {
+        if (((CCharEntity*)PAttacker)->equip[SLOT_WAIST] != 0)
+        {
+            CItemArmor* waist = (CItemArmor*)((CCharEntity*)PAttacker)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)PAttacker)->equip[SLOT_WAIST]);
+            if (waist && waist->getID() == obi[element])
+            {
+                obiBonus = true;
+            }
+        }
     }
+    if (WeekDay == strongDay[element] && (obiBonus || rand() % 100 < 33))
+        dBonus += 0.1;
+    else if (WeekDay == weakDay[element] && (obiBonus || rand() % 100 < 33))
+        dBonus -= 0.1;
+    if (weather == strongWeatherSingle[element] && (obiBonus || rand() % 100 < 33))
+        dBonus += 0.1;
+    else if (weather == strongWeatherDouble[element] && (obiBonus || rand() % 100 < 33))
+        dBonus += 0.25;
+    else if (weather == weakWeatherSingle[element] && (obiBonus || rand() % 100 < 33))
+        dBonus -= 0.1;
+    else if (weather == weakWeatherDouble[element] && (obiBonus || rand() % 100 < 33))
+        dBonus -= 0.25;
     damage = (damage * (float)dBonus);
 
     return HandleStoneskin(PDefender, damage);
@@ -945,7 +887,7 @@ void HandleSpikesStatusEffect(CBattleEntity* PAttacker, apAction_t* Action)
 *                                                                       *
 ************************************************************************/
 
-void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint8 hitNumber, uint16 delay, uint16 finaldamage)
+void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint8 hitNumber, CItemWeapon* weapon, uint16 finaldamage)
 {
     CCharEntity* PChar = NULL;
 
@@ -954,256 +896,216 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
         PChar = (CCharEntity*)PAttacker;
     }
 
+    EFFECT daze = EFFECT_NONE;
+    uint16 power = 0;
+    if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_SAMBA))
+    {
+        daze = EFFECT_DRAIN_DAZE;
+        power = PAttacker->StatusEffectContainer->GetStatusEffect(EFFECT_DRAIN_SAMBA)->GetPower();
+    }
+    else if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_ASPIR_SAMBA))
+    {
+        daze = EFFECT_ASPIR_DAZE;
+        power = PAttacker->StatusEffectContainer->GetStatusEffect(EFFECT_ASPIR_SAMBA)->GetPower();
+    }
+    else if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE_SAMBA))
+    {
+        daze = EFFECT_HASTE_DAZE;
+        power = PAttacker->StatusEffectContainer->GetStatusEffect(EFFECT_HASTE_SAMBA)->GetPower();
+    }
+    if (daze != EFFECT_NONE)
+    {
+        if (PAttacker->PParty != NULL)
+        {
+            for (uint8 i = 0; i < PAttacker->PParty->members.size(); i++)
+            {
+                PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_DRAIN_DAZE, PAttacker->PParty->members[i]->id);
+                PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HASTE_DAZE, PAttacker->PParty->members[i]->id);
+                PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_ASPIR_DAZE, PAttacker->PParty->members[i]->id);
+            }
+        }
+        else
+        {
+            PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_DRAIN_DAZE, PAttacker->id);
+            PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HASTE_DAZE, PAttacker->id);
+            PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_ASPIR_DAZE, PAttacker->id);
+        }
+        if (PDefender->m_EcoSystem != SYSTEM_UNDEAD)
+        {
+            PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(daze,
+                0, power,
+                0, 10, PAttacker->id), true);
+        }
+    }
+
 	// Enspell overwrites weapon effects
-	 if (PAttacker->getMod(MOD_ENSPELL) > 0)
-	 {
-		switch(PAttacker->getMod(MOD_ENSPELL))
-		{
-			case ENSPELL_I_FIRE:
+	if (PAttacker->getMod(MOD_ENSPELL) > 0)
+	{
+        SUBEFFECT subeffects[8] = { SUBEFFECT_LIGHT_DAMAGE, SUBEFFECT_DARKNESS_DAMAGE, SUBEFFECT_FIRE_DAMAGE, SUBEFFECT_EARTH_DAMAGE,
+            SUBEFFECT_WATER_DAMAGE, SUBEFFECT_WIND_DAMAGE, SUBEFFECT_ICE_DAMAGE, SUBEFFECT_LIGHTNING_DAMAGE };
+        int16 enspell = PAttacker->getMod(MOD_ENSPELL);
 
-		        Action->additionalEffect = SUBEFFECT_FIRE_DAMAGE;
-                Action->addEffectMessage = 163;
-		        Action->addEffectMessage = 163;
-				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,1,FIRE);
+        if (enspell > 0 && enspell <= 6)
+        {
+            Action->additionalEffect = subeffects[enspell+1];
+            Action->addEffectMessage = 163;
+            Action->addEffectMessage = 163;
+            Action->addEffectParam = CalculateEnspellDamage(PAttacker, PDefender, 1, enspell-1);
 
-				PDefender->addHP(-Action->addEffectParam);
-				return;
-			case ENSPELL_I_EARTH:
+            PDefender->addHP(-Action->addEffectParam);
+        }
+        else if ((enspell > 6 && enspell <= 8) || (enspell > 8 && enspell <= 14 && hitNumber == 0))
+        {
+            Action->additionalEffect = subeffects[enspell-7];
+            Action->addEffectMessage = 163;
+            Action->addEffectParam = CalculateEnspellDamage(PAttacker, PDefender, 2, enspell > 8 ? enspell-7 : enspell);
 
-		        Action->additionalEffect = SUBEFFECT_EARTH_DAMAGE;
-		        Action->addEffectMessage = 163;
-				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,1,EARTH);
+            PDefender->addHP(-Action->addEffectParam);
+        }
+        else if (enspell == ENSPELL_BLOOD_WEAPON)
+        {
+            Action->additionalEffect = SUBEFFECT_HP_DRAIN;
+            Action->addEffectMessage = 161;
 
-				PDefender->addHP(-Action->addEffectParam);
-				return;
-			case ENSPELL_I_WATER:
+            Action->addEffectParam = PAttacker->addHP(Action->param);
 
-		        Action->additionalEffect = SUBEFFECT_WATER_DAMAGE;
-		        Action->addEffectMessage = 163;
-				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,1,WATER);
+            if (PChar != NULL){
+                charutils::UpdateHealth(PChar);
+            }
+        }
+    }
+    else if (PAttacker->objtype == TYPE_PC && weapon->getModifier(MOD_ADDITIONAL_EFFECT) > 0)
+    {
+        luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage);
+    }
+    else
+    {
+        // Generic drain for anyone able to do melee damage to a dazed target
+        // TODO: ignore dazes from dancers outside party
+        int16 delay = PAttacker->GetWeaponDelay(false) / 10;
 
-				PDefender->addHP(-Action->addEffectParam);
-				return;
-			case ENSPELL_I_WIND:
+        if (PAttacker->PMaster == NULL)
+        {
+            EFFECT daze = EFFECT_NONE;
+            uint16 power = 0;
+            if (PAttacker->PParty != NULL)
+            {
+                for (uint8 i = 0; i < PAttacker->PParty->members.size(); i++)
+                {
+                    if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_DAZE, PAttacker->PParty->members[i]->id))
+                    {
+                        daze = EFFECT_DRAIN_DAZE;
+                        power = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_DRAIN_DAZE, PAttacker->PParty->members[i]->id)->GetPower();
+                        break;
+                    }
+                    if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE_DAZE, PAttacker->PParty->members[i]->id))
+                    {
+                        daze = EFFECT_HASTE_DAZE;
+                        power = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_HASTE_DAZE, PAttacker->PParty->members[i]->id)->GetPower();
+                        break;
+                    }
+                    if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ASPIR_DAZE, PAttacker->PParty->members[i]->id))
+                    {
+                        daze = EFFECT_ASPIR_DAZE;
+                        power = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_ASPIR_DAZE, PAttacker->PParty->members[i]->id)->GetPower();
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_DAZE, PAttacker->id))
+                {
+                    daze = EFFECT_DRAIN_DAZE;
+                    power = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_DRAIN_DAZE, PAttacker->id)->GetPower();
+                }
+                if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE_DAZE, PAttacker->id))
+                {
+                    daze = EFFECT_HASTE_DAZE;
+                    power = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_HASTE_DAZE, PAttacker->id)->GetPower();
+                }
+                if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ASPIR_DAZE, PAttacker->id))
+                {
+                    daze = EFFECT_ASPIR_DAZE;
+                    power = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_ASPIR_DAZE, PAttacker->id)->GetPower();
+                }
+            }
 
-		        Action->additionalEffect = SUBEFFECT_WIND_DAMAGE;
-		        Action->addEffectMessage = 163;
-				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,1,WIND);
+            if (daze == EFFECT_DRAIN_DAZE)
+            {
+                uint16 multiplier = 3 + (5.5f * power - 1);
+                int8 Samba = rand() % ((delay * multiplier) / 100) + 1;
 
-				PDefender->addHP(-Action->addEffectParam);
-				return;
-			case ENSPELL_I_ICE:
+                // vary damage based on lvl diff
+                int8 lvlDiff = (PDefender->GetMLevel() - PAttacker->GetMLevel()) / 2;
 
-		        Action->additionalEffect = SUBEFFECT_ICE_DAMAGE;
-		        Action->addEffectMessage = 163;
-				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,1,ICE);
+                if (lvlDiff < -5){
+                    lvlDiff = -5;
+                }
 
-				PDefender->addHP(-Action->addEffectParam);
-				return;
-			case ENSPELL_I_THUNDER:
+                Samba -= lvlDiff;
 
-		        Action->additionalEffect = SUBEFFECT_LIGHTNING_DAMAGE;
-		        Action->addEffectMessage = 163;
-				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,1,THUNDER);
+                if (Samba >(finaldamage / 2)){
+                    Samba = finaldamage / 2;
+                }
 
-				PDefender->addHP(-Action->addEffectParam);
-				return;
-			case ENSPELL_I_LIGHT:
+                if (finaldamage <= 2){
+                    Samba = 0;
+                }
 
-		        Action->additionalEffect = SUBEFFECT_LIGHT_DAMAGE;
-		        Action->addEffectMessage = 163;
-				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,2,LIGHT);
-
-				PDefender->addHP(-Action->addEffectParam);
-				return;
-			case ENSPELL_I_DARK:
-
-		        Action->additionalEffect = SUBEFFECT_DARKNESS_DAMAGE;
-		        Action->addEffectMessage = 163;
-				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,2,DARK);
-
-				PDefender->addHP(-Action->addEffectParam);
-				return;
-			case ENSPELL_BLOOD_WEAPON:
+                if (Samba < 0)
+                {
+                    Samba = 0;
+                }
 
                 Action->additionalEffect = SUBEFFECT_HP_DRAIN;
-		        Action->addEffectMessage = 161;
+                Action->addEffectMessage = 161;
+                Action->addEffectParam = Samba;
 
-				Action->addEffectParam = PAttacker->addHP(Action->param);
-
-				if(PChar != NULL){
-					charutils::UpdateHealth(PChar);
-				}
-				return;
-
-			// No DA or multihit works for enspell II - Retail behaviour
-			case ENSPELL_II_FIRE:
-				if(hitNumber>0){break;}
-
-		        Action->additionalEffect = SUBEFFECT_FIRE_DAMAGE;
-		        Action->addEffectMessage = 163;
-				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,2,FIRE);
-
-				PDefender->addHP(-Action->addEffectParam);
-				return;
-			case ENSPELL_II_EARTH:
-				if(hitNumber>0){break;}
-
-		        Action->additionalEffect = SUBEFFECT_EARTH_DAMAGE;
-		        Action->addEffectMessage = 163;
-				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,2,EARTH);
-
-				PDefender->addHP(-Action->addEffectParam);
-				return;
-			case ENSPELL_II_WATER:
-				if(hitNumber>0){break;}
-
-		        Action->additionalEffect = SUBEFFECT_WATER_DAMAGE;
-		        Action->addEffectMessage = 163;
-				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,2,WATER);
-
-				PDefender->addHP(-Action->addEffectParam);
-				return;
-			case ENSPELL_II_WIND:
-				if(hitNumber>0){break;}
-
-		        Action->additionalEffect = SUBEFFECT_WIND_DAMAGE;
-		        Action->addEffectMessage = 163;
-				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,2,WIND);
-
-				PDefender->addHP(-Action->addEffectParam);
-				return;
-			case ENSPELL_II_ICE:
-				if(hitNumber>0){break;}
-
-		        Action->additionalEffect = SUBEFFECT_ICE_DAMAGE;
-		        Action->addEffectMessage = 163;
-				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,2,ICE);
-
-				PDefender->addHP(-Action->addEffectParam);
-				return;
-			case ENSPELL_II_THUNDER:
-				if(hitNumber>0){break;}
-
-		        Action->additionalEffect = SUBEFFECT_LIGHTNING_DAMAGE;
-		        Action->addEffectMessage = 163;
-				Action->addEffectParam = CalculateEnspellDamage(PAttacker,PDefender,2,THUNDER);
-
-				PDefender->addHP(-Action->addEffectParam);
-				return;
-			case ENSPELL_DRAIN_SAMBA:
-				if (hitNumber <= 2 &&
-                         PDefender->m_EcoSystem != SYSTEM_UNDEAD &&
-                         !PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_DAZE) &&
-                         PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_SAMBA))
-				{
-					PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_ASPIR_DAZE);
-					PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HASTE_DAZE);
-				PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_DRAIN_DAZE,EFFECT_DRAIN_DAZE,10,0,10));
-				}
-                break;
-			case ENSPELL_ASPIR_SAMBA:
-				if (hitNumber <= 2 &&
-                    PDefender->m_EcoSystem != SYSTEM_UNDEAD &&
-                    !PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ASPIR_DAZE) && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_ASPIR_SAMBA))
-				{
-					PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_DRAIN_DAZE);
-					PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HASTE_DAZE);
-				PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_ASPIR_DAZE,EFFECT_ASPIR_DAZE,10,0,10));
-				}
-			case ENSPELL_HASTE_SAMBA:
-				if (hitNumber <= 2 &&
-                    !PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE_DAZE) &&
-                    PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE_SAMBA))
-				{
-					if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ASPIR_DAZE))
-						PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_ASPIR_DAZE);
-					if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_DAZE))
-						PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_DRAIN_DAZE);
-				PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HASTE_DAZE,EFFECT_HASTE_DAZE,10,0,10));
-				}
-		}
-	}
-
-    // Sambas should be done last, enspells and additional effects take priority
-	// Generic drain for anyone able to do melee damage to a dazed target
-	delay = delay / 10;
-
-    if(PAttacker->PMaster == NULL)
-    {
-
-    	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_DAZE))
-    	{
-    		uint8 Samba = rand()%((delay * 3) / 100) + 1;
-
-            // vary damage based on lvl diff
-            int8 lvlDiff = (PDefender->GetMLevel() - PAttacker->GetMLevel())/2;
-
-            if(lvlDiff < -5){
-                lvlDiff = -5;
+                PAttacker->addHP(Samba);	// does not do any additional drain to targets HP, only a portion of it
+                if (PChar != NULL){
+                    charutils::UpdateHealth(PChar);
+                }
             }
+            else if (daze == EFFECT_ASPIR_DAZE)
+            {
+                uint16 multiplier = 1 + (2 * power - 1);
+                int8 Samba = rand() % ((delay * multiplier) / 100) + 1;
 
-            Samba -= lvlDiff;
+                if (Samba >= finaldamage / 4) { Samba = finaldamage / 4; }
 
-            if (Samba > (finaldamage / 2)){
-                Samba = finaldamage / 2;
+                if (finaldamage <= 2) { Samba = 0; }
+
+                if (Samba < 0) { Samba = 0; }
+
+                Action->additionalEffect = SUBEFFECT_HP_DRAIN;
+                Action->addEffectMessage = 162;
+
+                int16 mpDrained = PDefender->addMP(-Samba);
+
+                PAttacker->addMP(mpDrained);
+                Action->addEffectParam = mpDrained;
+
+                if (PChar != NULL){
+                    charutils::UpdateHealth(PChar);
+                }
             }
-
-            if(finaldamage <= 2){
-                Samba = 0;
+            else if (daze == EFFECT_HASTE_DAZE)
+            {
+                Action->additionalEffect = SUBEFFECT_HASTE;
+                // TODO: JA haste that lasts a single attack round (even if every attack misses) - custom status effect probably
+                PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HASTE_SAMBA_HASTE, 0, power, 0, 10));
             }
-
-    		Action->additionalEffect = SUBEFFECT_HP_DRAIN;
-    		Action->addEffectMessage = 161;
-    		Action->addEffectParam = Samba;
-
-    		PAttacker->addHP(Samba);	// does not do any additional drain to targets HP, only a portion of it
-            if(PChar != NULL){
-        		charutils::UpdateHealth(PChar);
-            }
-    		return;
-     	}
-
-    	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ASPIR_DAZE))
-    	{
-    		uint8 Samba = Samba = rand()%(delay * 1 / 100) + 1;
-
-    		if (Samba >= finaldamage / 4) { Samba = finaldamage / 4; }
-
-    		Action->additionalEffect = SUBEFFECT_HP_DRAIN;
-    		Action->addEffectMessage = 162;
-
-            int16 mpDrained = PDefender->addMP(-Samba);
-
-            PAttacker->addMP(mpDrained);
-            Action->addEffectParam = mpDrained;
-
-            if(PChar != NULL){
-        		charutils::UpdateHealth(PChar);
-            }
-    		return;
-    	}
-
-    	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE_DAZE))
-    	{
-        	if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_HASTE)){return;}
-        	PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HASTE, EFFECT_HASTE, 50, 0, 10));
-        	return;
-    	}
+        }
     }
 
-    // ignore i'm a mob!
-    if(PChar == NULL)
-    {
-        return;
-    }
+    // TODO: move all this to scripts for each of these weapons
 
     // elemental damage equation = (weapDmg / 2) +- (weapDmg / 4)
 
 	// no enspells active, check weapon additional effects
-	CItemWeapon* PWeapon = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]);
 
-	if (Action->animation == 1)
+	/*if (Action->animation == 1)
 		PWeapon = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
 	if(PWeapon != NULL)
 	{
@@ -1259,7 +1161,7 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
 			default:
 				return;
 		}
-	}
+	}*/
 	return;
 }
 
@@ -1269,6 +1171,7 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
 *                                                                       *
 ************************************************************************/
 
+// TODO: remove function, move additional effects into items script files (deleting from switch as they get done)
 void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action){
 	CItemWeapon* PAmmo = (CItemWeapon*)PAttacker->getStorage(LOC_INVENTORY)->GetItem(PAttacker->equip[SLOT_AMMO]);
 	//add effects dont have 100% proc, presume level dependant. 95% chance but -5% for each level diff.
@@ -1470,32 +1373,6 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			PDefender->addHP(-damage);
 		}
 		break;
-	case 18151:{ //Bloody Bolt
-
-        //check dark resistance
-        if(PDefender->m_EcoSystem == SYSTEM_UNDEAD ||
-           rand()%100 <= PDefender->getMod(MOD_DARKRES)){return;}
-	//INT/2 is a semi-confirmed damage calculation. Also affected by level of target. Resists strongly
-	//and even doesn't proc on mobs strong to dark e.g. bats/skeles.
-
-		    Action->additionalEffect = SUBEFFECT_HP_DRAIN;
-		    Action->addEffectMessage = 161;
-
-			int damage = (PAttacker->INT() - PDefender->INT())/2;
-			damage += (PAttacker->GetMLevel() - PDefender->GetMLevel());
-			damage = dsp_cap(damage,0,50);
-			damage += PAttacker->GetMLevel()/2;
-			damage += rand()%20; //At 75 -> 37~56 low or 87~106 high
-
-            damage += (float)damage * ((float)PDefender->getMod(MOD_DARKRES)/-100);
-            damage = HandleStoneskin(PDefender, damage);
-
-			Action->addEffectParam  = damage;
-			PDefender->addHP(-damage);
-			PAttacker->addHP(damage);
-			charutils::UpdateHealth(PAttacker);
-		}
-		break;
 	case 18152:{ //Venom Bolt
 			if(PDefender->hasImmunity(256) == false){
                 //check water resistance
@@ -1525,45 +1402,6 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			        Action->addEffectParam  = EFFECT_BLINDNESS;
                 }
 			}
-		}
-		break;
-	case 18149:{//Sleep Bolt
-			if(!PDefender->isDead() && PDefender->hasImmunity(1) == false){
-
-			    int duration = 25 - (PDefender->GetMLevel() - PAttacker->GetMLevel())*5 - ((float)PDefender->getMod(MOD_LIGHTRES)/5);
-
-                if(duration <= 1){
-                    duration = 1;
-                } else {
-                    //randomize sleep duration
-                    duration -= rand()%(duration/2);
-                }
-
-                duration = dsp_cap(duration,1,25);
-
-			    if(PDefender->StatusEffectContainer->AddStatusEffect(
-					    new CStatusEffect(EFFECT_SLEEP,EFFECT_SLEEP,1,0,duration))){
-
-		            Action->additionalEffect = SUBEFFECT_SLEEP;
-		            Action->addEffectMessage = 160;
-			        Action->addEffectParam  = EFFECT_SLEEP;
-                }
-			}
-		}
-		break;
-	case 18148:{ //Acid Bolt
-
-            //check wind resistance
-            if(rand()%100 <= PDefender->getMod(MOD_WINDRES)){return;}
-
-            if(PDefender->StatusEffectContainer->AddStatusEffect(
-                    new CStatusEffect(EFFECT_DEFENSE_DOWN,EFFECT_DEFENSE_DOWN,12,0,60))){
-
-		            Action->additionalEffect = SUBEFFECT_DEFENSE_DOWN;
-		            Action->addEffectMessage = 160;
-			        Action->addEffectParam  = EFFECT_DEFENSE_DOWN;
-            }
-
 		}
 		break;
 	case 17324:{ //Lightning Arrow
@@ -2013,7 +1851,7 @@ uint8 GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 *																		*
 ************************************************************************/
 
-uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int16 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim)
+uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int32 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim)
 {
     bool isRanged = (slot == SLOT_AMMO || slot == SLOT_RANGED);
 
@@ -2069,6 +1907,8 @@ uint16 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 	damage = dsp_max(damage - PDefender->getMod(MOD_PHALANX),0);
 
     damage = HandleStoneskin(PDefender, damage);
+
+    damage = dsp_cap(damage, 0, 99999);
 
     PDefender->addHP(-damage);
 
@@ -2858,7 +2698,7 @@ void AddAttackSwing(attackSwingRound_t* attackRound, PHYSICAL_ATTACK_TYPE type, 
 *  Try's to absorb MP from a physical attack.							*
 *																		*
 ************************************************************************/
-void TryAbsorbMPfromPhysicalAttack(CBattleEntity* battleEntity, uint16 damage)
+void TryAbsorbMPfromPhysicalAttack(CBattleEntity* battleEntity, uint32 damage)
 {
 	if (battleEntity->objtype != TYPE_PC)
 	{
@@ -2880,7 +2720,7 @@ void TryAbsorbMPfromPhysicalAttack(CBattleEntity* battleEntity, uint16 damage)
 *  Try's to absorb HP from a physical attack.							*
 *																		*
 ************************************************************************/
-bool TryAbsorbHPfromPhysicalAttack(CBattleEntity* battleEntity, uint16 damage)
+bool TryAbsorbHPfromPhysicalAttack(CBattleEntity* battleEntity, uint32 damage)
 {
 	if (battleEntity->objtype != TYPE_PC)
 	{
@@ -3960,7 +3800,7 @@ void TransferEnmity(CBattleEntity* CharHateReceiver, CBattleEntity* CharHateGive
 *	Effect from soul eater		                                        *
 *                                                                       *
 ************************************************************************/
-uint16 doSoulEaterEffect(CCharEntity* m_PChar, uint16 damage)
+uint16 doSoulEaterEffect(CCharEntity* m_PChar, uint32 damage)
 {
 	// Souleater has no effect <10HP.
 	if(m_PChar->GetMJob()==JOB_DRK && m_PChar->health.hp>=10 && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SOULEATER))

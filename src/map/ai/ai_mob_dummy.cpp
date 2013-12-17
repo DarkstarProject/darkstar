@@ -1542,7 +1542,7 @@ void CAIMobDummy::ActionAttack()
 
 
 								// additional effects
-			                    battleutils::HandleEnspell(m_PMob, m_PBattleTarget, &Action, i, WeaponDelay, damage);
+                                battleutils::HandleEnspell(m_PMob, m_PBattleTarget, &Action, i, m_PMob->m_Weapons[SLOT_MAIN], damage);
 
 								battleutils::HandleSpikesDamage(m_PMob, m_PBattleTarget, &Action, damage);
 							}

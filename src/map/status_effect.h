@@ -531,6 +531,7 @@ enum EFFECT
 	EFFECT_HEALING					= 512, // TODO: > 768
 	EFFECT_LEAVEGAME				= 513, // TODO: > 768
 
+    EFFECT_HASTE_SAMBA_HASTE        = 796, // Small JA Haste given by Haste Samba on hit
 	EFFECT_TELEPORT					= 797,
     EFFECT_CHAINBOUND               = 798,
     EFFECT_SKILLCHAIN               = 799,

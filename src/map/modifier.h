@@ -408,6 +408,7 @@ enum MODIFIER
 	MOD_ENSPELL                   =0x155,//stores the type of enspell active (0 if nothing)
 	MOD_SPIKES                    =0x156,//store the type of spike spell active (0 if nothing)
 	MOD_ENSPELL_DMG               =0x157,//stores the base damage of the enspell before reductions
+    MOD_ENSPELL_DMG_BONUS         =0x1AC,
 	MOD_SPIKES_DMG                =0x158,//stores the base damage of the spikes before reductions
 
 	MOD_TP_BONUS                  =0x159,
@@ -472,12 +473,14 @@ enum MODIFIER
 	// MOD_SPARE	=0x1AF,
 	// MOD_SPARE	=0x1B0,
 
+    MOD_ADDITIONAL_EFFECT         =0x1AB,
+
 	MOD_MAG_BURST_BONUS           =408,
 	MOD_EAT_RAW_FISH			  =409, // not implemented
 	MOD_EAT_RAW_MEAT			  =410, // not implemented
 };
 
-#define MAX_MODIFIER	       427
+#define MAX_MODIFIER	       429
 
 
 

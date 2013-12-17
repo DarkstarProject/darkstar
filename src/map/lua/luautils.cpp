@@ -1487,6 +1487,72 @@ int32 OnNpcPath(CBaseEntity* PNpc)
 	return 0;
 }
 
+int32 OnAdditionalEffect(CBattleEntity* PAttacker, CBattleEntity* PDefender, CItemWeapon* PItem, apAction_t* Action, uint32 damage)
+{
+    int8 File[255];
+    memset(File,0,sizeof(File));
+	int32 oldtop = lua_gettop(LuaHandle);
+
+	lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onAdditionalEffect");
+
+    snprintf(File, sizeof(File), "scripts/globals/items/%s.lua", PItem->getName());
+
+    if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+    {
+            ShowError("luautils::OnAdditionalEffect: %s\n",lua_tostring(LuaHandle,-1));
+        lua_pop(LuaHandle, 1);
+            return -1;
+    }
+
+	lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onAdditionalEffect");
+
+    if( lua_isnil(LuaHandle,-1) )
+    {
+        ShowError("luautils::OnAdditionalEffect: undefined procedure onAdditionalEffect\n");
+	    lua_pop(LuaHandle, 1);
+        return -1;
+    }
+
+    CLuaBaseEntity LuaBaseEntity(PAttacker);
+    Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
+
+    CLuaBaseEntity LuaMobEntity(PDefender);
+	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
+
+    lua_pushinteger(LuaHandle, damage);
+
+    if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
+    {
+        ShowError("luautils::OnAdditionalEffect: %s\n",lua_tostring(LuaHandle,-1));
+	    lua_pop(LuaHandle, 1);
+        return -1;
+    }
+	int32 returns = lua_gettop(LuaHandle) - oldtop;
+
+    if (returns > 3)
+    {
+        Action->additionalEffect = (SUBEFFECT)(!lua_isnil(LuaHandle, -3) && lua_isnumber(LuaHandle, -3) ? (int32)lua_tonumber(LuaHandle, -3) : 0);
+        Action->addEffectMessage = (!lua_isnil(LuaHandle, -2) && lua_isnumber(LuaHandle, -2) ? (int32)lua_tonumber(LuaHandle, -2) : 0);
+        Action->addEffectParam = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
+        ShowError("luatils::OnAdditionalEffect (%s): 3 returns expected, got %d\n", File, lua_gettop(LuaHandle));
+        lua_pop(LuaHandle, returns);
+    }
+    else if (returns == 3)
+    {
+        Action->additionalEffect = (SUBEFFECT)(!lua_isnil(LuaHandle, -3) && lua_isnumber(LuaHandle, -3) ? (int32)lua_tonumber(LuaHandle, -3) : 0);
+        Action->addEffectMessage = (!lua_isnil(LuaHandle, -2) && lua_isnumber(LuaHandle, -2) ? (int32)lua_tonumber(LuaHandle, -2) : 0);
+        Action->addEffectParam = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
+        lua_pop(LuaHandle, 3);
+    }
+    else if (returns < 2)
+    {
+        ShowError("luatils::OnAdditionalEffect (%s): 3 returns expected, got %d\n", File, lua_gettop(LuaHandle));
+        lua_pop(LuaHandle, returns);
+    }
+
+    return 0;
+}
 /************************************************************************
 *																		*
 *  Начало работы статус-эффекта. Возвращаемое значение 0 или номер		*
@@ -3302,7 +3368,7 @@ int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbilit
         action->speceffect = (SPECEFFECT)(!lua_isnil(LuaHandle,-1) && lua_isnumber(LuaHandle,-1) ? (int32)lua_tonumber(LuaHandle,-1) : 0);
         action->animation = (!lua_isnil(LuaHandle,-2) && lua_isnumber(LuaHandle,-2) ? (int32)lua_tonumber(LuaHandle,-2) : 0);
 	    uint32 retVal = (!lua_isnil(LuaHandle,-3) && lua_isnumber(LuaHandle,-3) ? (int32)lua_tonumber(LuaHandle,-3) : 0);
-        ShowError("luatils::OnBcnmRegister (%s): 3 returns expected, got %d\n", File, lua_gettop(LuaHandle));
+        ShowError("luatils::OnUseAbility (%s): 3 returns expected, got %d\n", File, lua_gettop(LuaHandle));
         lua_pop(LuaHandle, returns);
         return retVal;
     }

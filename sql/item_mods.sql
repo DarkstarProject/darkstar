@@ -15283,6 +15283,14 @@ INSERT INTO `item_mods` VALUES(18739, 26, 10);
 INSERT INTO `item_mods` VALUES(18739, 24, 20);
 INSERT INTO `item_mods` VALUES(18740, 26, 40);
 INSERT INTO `item_mods` VALUES(18740, 24, 10);
+INSERT INTO `item_mods` VALUES(16605, 428, 5);
+INSERT INTO `item_mods` VALUES(18018, 427, 1);
+INSERT INTO `item_mods` VALUES(18148, 427, 1);
+INSERT INTO `item_mods` VALUES(18149, 427, 1);
+INSERT INTO `item_mods` VALUES(18150, 427, 1);
+INSERT INTO `item_mods` VALUES(18151, 427, 1);
+INSERT INTO `item_mods` VALUES(18152, 427, 1);
+INSERT INTO `item_mods` VALUES(18153, 427, 1);
 
 -- -------------------------------------------------------
 -- Iga Garb +2

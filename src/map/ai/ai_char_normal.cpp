@@ -737,12 +737,13 @@ void CAICharNormal::ActionRangedStart()
 		battleutils::GetSnapshotReduction(m_PChar);
 
 		// do chance for rapid shot
+        // TODO: random % reduction, not instant shot
 		if (charutils::hasTrait(m_PChar, TRAIT_RAPID_SHOT))
 		{
 			uint16 chance = (m_PChar->getMod(MOD_RAPID_SHOT) + m_PChar->PMeritPoints->GetMeritValue(MERIT_RAPID_SHOT_RATE, m_PChar));
 			if (rand()%100 < chance)
 			{
-				m_PChar->m_rangedDelay = 0;
+				m_PChar->m_rangedDelay = 1;
 				m_PChar->isRapidShot = true;
 			}
 		}
@@ -1075,9 +1076,10 @@ void CAICharNormal::ActionRangedFinish()
             //add additional effects
             //this should go AFTER damage taken
             //or else sleep effect won't work
-            for(uint8 i=0; i<realHits; i++){
-                battleutils::HandleRangedAdditionalEffect(m_PChar,m_PBattleSubTarget,&Action);
-            }
+            //battleutils::HandleRangedAdditionalEffect(m_PChar,m_PBattleSubTarget,&Action);
+            //TODO: move all hard coded additional effect ammo to scripts
+            if ((PAmmo != NULL && PAmmo->getModifier(MOD_ADDITIONAL_EFFECT) > 0) || (PItem != NULL && PItem->getModifier(MOD_ADDITIONAL_EFFECT) > 0))
+                luautils::OnAdditionalEffect(m_PChar, m_PBattleSubTarget, (PAmmo != NULL ? PAmmo : PItem), &Action, totalDamage);
 		}
         else if(shadowsTaken > 0)
         {
@@ -2493,11 +2495,16 @@ void CAICharNormal::ActionWeaponSkillFinish()
         uint8 recycleChance = m_PChar->getMod(MOD_RECYCLE) + m_PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE,m_PChar);
 
         if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_UNLIMITED_SHOT))
-               {
-                    m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_UNLIMITED_SHOT);
-                    recycleChance = 100;
-                }
-
+        {
+            m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_UNLIMITED_SHOT);
+            recycleChance = 100;
+        }
+        // ranged WS will apply ammo additional effects silently
+        if (Action.reaction == REACTION_HIT && PAmmo != NULL && PAmmo->getModifier(MOD_ADDITIONAL_EFFECT) > 0)
+        {
+            luautils::OnAdditionalEffect(m_PChar, m_PBattleSubTarget, PAmmo, &Action, damage);
+            Action.additionalEffect = SUBEFFECT_NONE;
+        }
 		if(PAmmo!=NULL && rand()%100 > recycleChance)
 		{
 			if ( (PAmmo->getQuantity()-1) < 1) // ammo will run out after this shot, make sure we remove it from equip
@@ -2824,6 +2831,8 @@ void CAICharNormal::ActionAttack()
 				battleutils::CheckPlayersKickAttack(m_PChar, m_PChar->m_Weapons[SLOT_MAIN], &attackRound);
 			}
 
+            m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HASTE_SAMBA_HASTE);
+
 			// Start of the attack loop
 			for (uint8 i = 0; i < attackRound.attackSwings->size(); ++i)
 			{
@@ -2850,7 +2859,7 @@ void CAICharNormal::ActionAttack()
 					}
 				}
 
-				uint16 damage = 0;
+				uint32 damage = 0;
 				bool isCritical = false;
 
 				// Do attack animation (kick, melee)
@@ -3008,19 +3017,19 @@ void CAICharNormal::ActionAttack()
                                 baseDamage = m_PChar->getMod(MOD_KICK_DMG);
                             }
 
-							damage = (uint16)((( baseDamage + naturalH2hDmg + bonusDMG +
+							damage = (uint32)((( baseDamage + naturalH2hDmg + bonusDMG +
 									 battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
 						}
 						else
 						{
 							if( fstrslot == SLOT_MAIN )
 							{
-								damage = (uint16)(((m_PChar->GetMainWeaponDmg() + bonusDMG + 
+								damage = (uint32)(((m_PChar->GetMainWeaponDmg() + bonusDMG + 
 									battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
 							} 
 							else if( fstrslot == SLOT_SUB )
 							{
-								damage = (uint16)(((m_PChar->GetSubWeaponDmg() + bonusDMG +
+								damage = (uint32)(((m_PChar->GetSubWeaponDmg() + bonusDMG +
 									battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
 							}
 						}
@@ -3097,7 +3106,7 @@ void CAICharNormal::ActionAttack()
 
 				if (Action.reaction != REACTION_EVADE && Action.reaction != REACTION_PARRY)
 				{
-                    battleutils::HandleEnspell(m_PChar, m_PBattleTarget, &Action, i, WeaponDelay, damage);
+                    battleutils::HandleEnspell(m_PChar, m_PBattleTarget, &Action, i, PWeapon, damage);
 					battleutils::HandleSpikesDamage(m_PChar, m_PBattleTarget, &Action, damage);
                 }
 
@@ -3118,12 +3127,6 @@ void CAICharNormal::ActionAttack()
 					attackRound.attackSwings->at(0).attackType = ZANSHIN_ATTACK;
 					attackRound.zanshinOccured = false;
 					i--;
-				}
-
-				// to catch high damage bugs
-				if (damage > 8000)
-				{
-					ShowError(CL_RED"Warning: %s did 8000+ melee damage, job = %u \n" CL_RESET, m_PChar->GetName(), m_PChar->GetMJob());
 				}
 
                 if (m_PChar->m_ActionList.size() == 8) 

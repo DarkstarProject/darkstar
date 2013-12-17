@@ -930,7 +930,7 @@ CStatusEffect* CStatusEffectContainer::GetStatusEffect(EFFECT StatusID)
 *                                                                       *
 ************************************************************************/
 
-CStatusEffect* CStatusEffectContainer::GetStatusEffect(EFFECT StatusID, uint16 SubID)
+CStatusEffect* CStatusEffectContainer::GetStatusEffect(EFFECT StatusID, uint32 SubID)
 {
 	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
 	{

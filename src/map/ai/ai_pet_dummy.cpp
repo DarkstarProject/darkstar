@@ -826,7 +826,7 @@ void CAIPetDummy::ActionAttack()
 					if (Action.reaction != REACTION_EVADE && Action.reaction != REACTION_PARRY)
 					{
 
-	                    battleutils::HandleEnspell(m_PPet, m_PBattleTarget, &Action, i, WeaponDelay, damage);
+                        battleutils::HandleEnspell(m_PPet, m_PBattleTarget, &Action, i, m_PPet->m_Weapons[SLOT_MAIN], damage);
 						battleutils::HandleSpikesDamage(m_PPet, m_PBattleTarget, &Action, damage);
 					}
 
