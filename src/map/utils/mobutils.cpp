@@ -306,7 +306,7 @@ void CalculateStats(CMobEntity * PMob)
 		}
 
 		if(PMob->MPmodifier == 0){
-			PMob->health.maxmp = (int16)(18.2 * pow(PMob->GetMLevel(),1.1075) * scale);
+			PMob->health.maxmp = (int16)(18.2 * pow(PMob->GetMLevel(),1.1075) * scale) + 10;
 			if(isNM){
 			PMob->health.maxmp *= 1.5;
 				if(PMob->GetMLevel()>75){
