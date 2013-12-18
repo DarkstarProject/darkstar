@@ -29,8 +29,8 @@ function onZoneIn(player,prevZone)
 	if(player:getCurrentMission(SANDORIA) == INFILTRATE_DAVOI and player:getVar("MissionStatus") == 2) then	
 		cs = 0x0074;
 	end	
-	if(player:getQuestStatus(SANDORIA,THE_CRIMSON_TRIAL) == QUEST_ACCEPTED and GetMobAction(17387644) == 0) then	
-		SpawnMob(17387644); -- Spawned by Quest: The Crimson Trial upon entering the zone.
+	if(player:getQuestStatus(SANDORIA,THE_CRIMSON_TRIAL) == QUEST_ACCEPTED and GetMobAction(17387969) == 0) then	
+		SpawnMob(17387969); -- Spawned by Quest: The Crimson Trial upon entering the zone.
 	end	
 	return cs;	
 end;		
