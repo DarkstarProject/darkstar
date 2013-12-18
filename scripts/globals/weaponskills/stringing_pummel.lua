@@ -1,16 +1,15 @@
 -----------------------------------	
--- Kings Justice	
--- Great Axe weapon skill	
+-- Stringing Pummel	
+-- Sword weapon skill	
 -- Skill Level: N/A	
--- Delivers a threefold attack. Damage varies with TP. Conqueror: Aftermath effect varies with TP.	
--- Available only after completing the Unlocking a Myth (Warrior) quest.	
--- Aligned with the Breeze Gorget, Thunder Gorget & Soil Gorget.	
--- Aligned with the Breeze Belt, Thunder Belt & Soil Belt.	
--- Element: None	
--- Staff weapon skill Skill level: 10 Delivers a single-hit attack. Damage varies with TP. Element: Non	
--- Modifiers: STR:50%	
+-- Delivers a sixfold attack. Damage varies with TP.  Kenkonken: Aftermath effect varies with TP.	
+-- Available only after completing the Unlocking a Myth (Puppetmaster) quest.
+-- Aligned with the Shadow Gorget, Soil Gorget & Flame Gorget.
+-- Aligned with the Shadow Belt, Soil Belt & Flame Belt.
+-- Element: Darkness		
+-- Modifiers: STR:32% VIT:32%	
 -- 100%TP    200%TP    300%TP	
--- 1.00      1.25      1.50	
+-- 0.75      0.75      0.75	
 -----------------------------------	
 	
 require("scripts/globals/status");	
@@ -21,16 +20,16 @@ require("scripts/globals/weaponskills");
 function OnUseWeaponSkill(player, target, wsID)	
 	
 	local params = {};
-	params.numHits = 3;
-	params.ftp100 = 1; params.ftp200 = 1.25; params.ftp300 = 1.5;
-	params.str_wsc = 0.5; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
-	params.crit100 = 0.0; params.crit200 = 0.0; params.crit300 = 0.0;
-	params.canCrit = false;
+	params.numHits = 6;
+	params.ftp100 = 0.75; params.ftp200 = 0.75; params.ftp300 = 0.75;
+	params.str_wsc = 0.32; params.dex_wsc = 0.0; params.vit_wsc = 0.32; params.agi_wsc = 0.0; params.int_wsc = 0.0; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
+	params.crit100 = 0.15; params.crit200 = 0.45; params.crit300 = 0.65;
+	params.canCrit = true;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1;
 	
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
-	if((player:getEquipID(SLOT_MAIN) == 18991) and (player:getMainJob() == JOB_WAR)) then
+	if((player:getEquipID(SLOT_MAIN) == 19008) and (player:getMainJob() == JOB_PUP)) then
 		if(damage > 0) then
 		
 -- AFTERMATH LEVEL 1		

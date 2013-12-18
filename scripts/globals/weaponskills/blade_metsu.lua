@@ -38,6 +38,13 @@ function OnUseWeaponSkill(player, target, wsID)
 			player:addStatusEffect(EFFECT_SUBTLE_BLOW_PLUS, 10, 0, duration);
 		end
 	end
+		if((player:getEquipID(SLOT_MAIN) or (SLOT_SUB) == 18312) and (player:getMainJob() == JOB_NIN)) then
+		if(damage > 0) then	
+			if(player:getTP() == 300) then
+				player:addStatusEffect(EFFECT_AFTERMATH, 5, 0, 60, 0, 1);
+			end
+		end
+	end
 	return tpHits, extraHits, criticalHit, damage;
 	
 end	

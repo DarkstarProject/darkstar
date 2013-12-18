@@ -38,8 +38,14 @@ function OnUseWeaponSkill(player, target, wsID)
 	params.atkmulti = 2;
 
 	local damage, tpHits, extraHits = doRangedWeaponskill(player, target, params);
-   local crticalHit = false;
-
+	if((player:getEquipID(SLOT_RANGED) == 18336) and (player:getMainJob() == JOB_RNG)) then
+		if(damage > 0) then	
+			if(player:getTP() == 300) then
+				player:addStatusEffect(EFFECT_AFTERMATH, -20, 0, 60, 0, 11);
+			end
+		end
+	end
+	local crticalHit = false;
 	return tpHits, extraHits, criticalHit, damage;
 
 end;

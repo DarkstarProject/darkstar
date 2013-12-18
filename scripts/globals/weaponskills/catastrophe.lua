@@ -31,7 +31,13 @@ function OnUseWeaponSkill(player, target, wsID)
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 	local drain = (damage * 0.4);
 	player:addHP(drain);
-	
+		if((player:getEquipID(SLOT_MAIN) == 18306) and (player:getMainJob() == JOB_DRK)) then
+		if(damage > 0) then	
+			if(player:getTP() == 300) then
+				player:addStatusEffect(EFFECT_AFTERMATH, 100, 0, 60, 0, 6);
+			end
+		end
+	end
 	return tpHits, extraHits, criticalHit, damage;
 	
 end	

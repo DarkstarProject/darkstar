@@ -1,14 +1,20 @@
 -----------------------------------
 --
---
+-- EFFECT_AFTERMATH_LV3
 --
 -----------------------------------
-
+require("scripts/globals/status");
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
+	power = effect:getPower(); 
+	if(effect:getSubPower() == 1) then
+		target:addMod(MOD_DOUBLE_ATTACK,power);
+	elseif(effect:getSubPower() == 2) then
+		target:addMod(MOD_DA_DOUBLE_DAMAGE,power)
+	end
 end;
 
 -----------------------------------
@@ -23,4 +29,10 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+
+	if(effect:getSubPower() == 1) then
+		target:delMod(MOD_DOUBLE_ATTACK,power);
+	elseif(effect:getSubPower() == 2) then
+		target:delMod(MOD_DA_DOUBLE_DAMAGE,power)
+	end
 end;

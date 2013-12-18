@@ -36,7 +36,13 @@ function OnUseWeaponSkill(player, target, wsID)
 	if damage > 0 and (target:hasStatusEffect(EFFECT_WEIGHT) == false) then
 		target:addStatusEffect(EFFECT_WEIGHT, 50, 0, 60);
 	end
-	
+		if((player:getEquipID(SLOT_MAIN) == 18324) and (player:getMainJob() == JOB_WHM)) then
+		if(damage > 0) then	
+			if(player:getTP() == 300) then
+				player:addStatusEffect(EFFECT_AFTERMATH, 20, 0, 60, 0, 9);
+			end
+		end
+	end
 	return tpHits, extraHits, criticalHit, damage;
 	
 end	

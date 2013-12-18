@@ -1,16 +1,15 @@
 -----------------------------------	
--- Kings Justice	
--- Great Axe weapon skill	
+-- Expiacion	
+-- Sword weapon skill	
 -- Skill Level: N/A	
--- Delivers a threefold attack. Damage varies with TP. Conqueror: Aftermath effect varies with TP.	
--- Available only after completing the Unlocking a Myth (Warrior) quest.	
--- Aligned with the Breeze Gorget, Thunder Gorget & Soil Gorget.	
--- Aligned with the Breeze Belt, Thunder Belt & Soil Belt.	
--- Element: None	
--- Staff weapon skill Skill level: 10 Delivers a single-hit attack. Damage varies with TP. Element: Non	
--- Modifiers: STR:50%	
+-- Delivers a Twofold attack. Damage varies with TP. Tizona: Aftermath effect varies with TP.	
+-- Available only after completing the Unlocking a Myth (Blue Mage) quest.	
+-- Aligned with the Aqua Gorget, Snow Gorget & Soil Gorget.	
+-- Aligned with the Aqua Belt, Snow Belt & Soil Belt.
+-- Element: None		
+-- Modifiers: STR:30% INT:30%	
 -- 100%TP    200%TP    300%TP	
--- 1.00      1.25      1.50	
+-- 1.00      2.00      2.50	
 -----------------------------------	
 	
 require("scripts/globals/status");	
@@ -21,16 +20,16 @@ require("scripts/globals/weaponskills");
 function OnUseWeaponSkill(player, target, wsID)	
 	
 	local params = {};
-	params.numHits = 3;
-	params.ftp100 = 1; params.ftp200 = 1.25; params.ftp300 = 1.5;
-	params.str_wsc = 0.5; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
+	params.numHits = 2;
+	params.ftp100 = 1; params.ftp200 = 2; params.ftp300 = 2.5;
+	params.str_wsc = 0.3; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.3; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
 	params.crit100 = 0.0; params.crit200 = 0.0; params.crit300 = 0.0;
 	params.canCrit = false;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 1;
 	
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
-	if((player:getEquipID(SLOT_MAIN) == 18991) and (player:getMainJob() == JOB_WAR)) then
+	if((player:getEquipID(SLOT_MAIN) == 19006) and (player:getMainJob() == JOB_BLU)) then
 		if(damage > 0) then
 		
 -- AFTERMATH LEVEL 1		
