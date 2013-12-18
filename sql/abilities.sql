@@ -256,7 +256,7 @@ INSERT INTO `abilities` VALUES ('219', 'addendum_black', '20', '30', '1', '0', '
 INSERT INTO `abilities` VALUES ('220', 'collaborator', '6', '65', '2', '60', '17', '0', '0', '220', '20.0', '0', '0', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('221', 'saber_dance', '19', '75', '1', '180', '217', '0', '0', '207', '20.0', '0', '1', '80', '3200', '1');
 INSERT INTO `abilities` VALUES ('222', 'fan_dance', '19', '75', '1', '180', '216', '0', '0', '208', '20.0', '0', '1', '80', '3202', '1');
-INSERT INTO `abilities` VALUES ('223', 'no_foot_rise', '19', '75', '1', '180', '223', '0', '0', '209', '20.0', '0', '1', '80', '3204', '1');
+INSERT INTO `abilities` VALUES ('223', 'no_foot_rise', '19', '75', '1', '180', '223', '560', '560', '209', '20.0', '0', '1', '80', '3204', '1');
 INSERT INTO `abilities` VALUES ('224', 'altruism', '20', '75', '1', '0', '231', '0', '0', '210', '20.0', '0', '1', '80', '3264', '17');
 INSERT INTO `abilities` VALUES ('225', 'focalization', '20', '75', '1', '0', '231', '0', '0', '212', '20.0', '0', '1', '80', '3266', '33');
 INSERT INTO `abilities` VALUES ('226', 'tranquility', '20', '75', '1', '0', '231', '0', '0', '211', '20.0', '0', '1', '80', '3268', '17');
