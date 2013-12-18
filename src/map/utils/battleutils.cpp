@@ -497,7 +497,7 @@ uint16 CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, 
     return damage;
 }
 
-bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint16 damage)
+bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint32 damage)
 {
     uint16 spikes = PDefender->getMod(MOD_SPIKES);
     Action->spikesMessage = 44;
@@ -887,7 +887,7 @@ void HandleSpikesStatusEffect(CBattleEntity* PAttacker, apAction_t* Action)
 *                                                                       *
 ************************************************************************/
 
-void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint8 hitNumber, CItemWeapon* weapon, uint16 finaldamage)
+void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint8 hitNumber, CItemWeapon* weapon, uint32 finaldamage)
 {
     CCharEntity* PChar = NULL;
 
@@ -1608,7 +1608,7 @@ float CalculateBaseTP(int delay){
 
 bool IsParried(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 {
-    if(isFaceing(PDefender->loc.p, PAttacker->loc.p, 40) && !PDefender->isAsleep())
+    if(isFaceing(PDefender->loc.p, PAttacker->loc.p, 40))
     {
         return (rand() % 100 < battleutils::GetParryRate(PAttacker, PDefender));
     }
@@ -1618,7 +1618,7 @@ bool IsParried(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 
 bool IsGuarded(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 {
-    if(isFaceing(PDefender->loc.p, PAttacker->loc.p, 40) && !PDefender->isAsleep())
+    if(isFaceing(PDefender->loc.p, PAttacker->loc.p, 40))
     {
         return(rand() % 100 < battleutils::GetGuardRate(PAttacker, PDefender));
     }
@@ -1628,7 +1628,7 @@ bool IsGuarded(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 
 bool IsBlocked(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 {
-	if(isFaceing(PDefender->loc.p, PAttacker->loc.p, 40) && !PDefender->isAsleep())
+	if(isFaceing(PDefender->loc.p, PAttacker->loc.p, 40))
     {
         return(rand() % 100 < battleutils::GetBlockRate(PAttacker, PDefender));
     }
@@ -1782,8 +1782,8 @@ uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender)
 uint8 GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 {
     CItemWeapon* PWeapon = GetEntityWeapon(PDefender, SLOT_MAIN);
-    if(PWeapon != NULL && PWeapon->getID() != 0 && PWeapon->getID() != 65535 &&
-       PWeapon->getSkillType() != SKILL_H2H && battleutils::IsEngauged(PDefender))
+    if((PWeapon != NULL && PWeapon->getID() != 0 && PWeapon->getID() != 65535 &&
+       PWeapon->getSkillType() != SKILL_H2H) && battleutils::IsEngauged(PDefender))
     {
     	JOBTYPE job = PDefender->GetMJob();
 
@@ -1825,8 +1825,8 @@ uint8 GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
     CItemWeapon* PWeapon = GetEntityWeapon(PDefender, SLOT_MAIN);
 
     // Defender must have no weapon equipped, or a hand to hand weapon equipped to guard
-    if(PWeapon == NULL || PWeapon->getID() == 0 || PWeapon->getID() == 65535 ||
-        PWeapon->getSkillType() == SKILL_H2H  && battleutils::IsEngauged(PDefender))
+    if((PWeapon == NULL || PWeapon->getID() == 0 || PWeapon->getID() == 65535 ||
+        PWeapon->getSkillType() == SKILL_H2H) && battleutils::IsEngauged(PDefender))
     {
     	// assuming this is like parry
         float skill = PDefender->GetSkill(SKILL_GRD) + PDefender->getMod(MOD_GUARD);

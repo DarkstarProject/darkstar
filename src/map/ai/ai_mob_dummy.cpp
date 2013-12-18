@@ -1388,7 +1388,7 @@ void CAIMobDummy::ActionAttack()
 						break;
 					}
 
-					uint16 damage = 0;
+					uint32 damage = 0;
 					bool isCountered = false;
 					bool isParried = false;
 					bool isGuarded = false;
@@ -1456,7 +1456,7 @@ void CAIMobDummy::ActionAttack()
 								}
 
 								float DamageRatio = battleutils::GetDamageRatio(m_PBattleTarget, m_PMob,isCritical, 0);
-								damage = (uint16)((m_PBattleTarget->GetMainWeaponDmg() + naturalh2hDMG + battleutils::GetFSTR(m_PBattleTarget, m_PMob,SLOT_MAIN)) * DamageRatio);
+								damage = (uint32)((m_PBattleTarget->GetMainWeaponDmg() + naturalh2hDMG + battleutils::GetFSTR(m_PBattleTarget, m_PMob,SLOT_MAIN)) * DamageRatio);
 
                                 Action.spikesParam = damage;
                                 Action.spikesEffect = SUBEFFECT_COUNTER;
@@ -1491,10 +1491,13 @@ void CAIMobDummy::ActionAttack()
 									//Action.messageID = 0;
 									Action.reaction = REACTION_GUARD;
 									Action.speceffect = SPECEFFECT_NONE;
-									DamageRatio -= 1.0f; // Guard lowers pDif by 1.0
+                                    if (DamageRatio > 1.0f)
+                                        DamageRatio -= 1.0f; // Guard lowers pDif by 1.0
+                                    else
+                                        DamageRatio = 0;
 								}
 
-								damage = (uint16)((m_PMob->GetMainWeaponDmg() + battleutils::GetFSTR(m_PMob, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);
+								damage = (uint32)((m_PMob->GetMainWeaponDmg() + battleutils::GetFSTR(m_PMob, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);
 
 								//  Guard skill up
 								if(m_PBattleTarget->objtype == TYPE_PC && isGuarded || ((map_config.newstyle_skillups & NEWSTYLE_GUARD) > 0))

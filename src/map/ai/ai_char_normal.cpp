@@ -2987,6 +2987,15 @@ void CAICharNormal::ActionAttack()
 							Action.messageID  = 1;
 						}
 
+                        if (battleutils::IsGuarded(m_PChar, m_PBattleTarget))
+                        {
+                            Action.reaction = REACTION_GUARD;
+                            if (DamageRatio > 1.0f)
+                                DamageRatio -= 1.0f;
+                            else
+                                DamageRatio = 0;
+                        }
+
 						uint16 bonusDMG = 0;
 
 						if(m_PChar->GetMJob() == JOB_THF && (!ignoreSneakTrickAttack) &&
