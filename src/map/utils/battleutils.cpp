@@ -463,7 +463,11 @@ uint16	CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender
     else if (weather == weakWeatherDouble[element] && (obiBonus || rand() % 100 < 33))
         dBonus -= 0.25;
     damage = (damage * (float)dBonus);
-
+    damage = DmgTaken(PDefender, damage);
+    damage = MagicDmgTaken(PDefender, damage);
+    damage = damage - PDefender->getMod(MOD_PHALANX);
+    if(damage <= 0)
+    	return 0;
     return HandleStoneskin(PDefender, damage);
 }
 
@@ -949,7 +953,6 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
         {
             Action->additionalEffect = subeffects[enspell+1];
             Action->addEffectMessage = 163;
-            Action->addEffectMessage = 163;
             Action->addEffectParam = CalculateEnspellDamage(PAttacker, PDefender, 1, enspell-1);
 
             PDefender->addHP(-Action->addEffectParam);
@@ -958,7 +961,7 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
         {
             Action->additionalEffect = subeffects[enspell-7];
             Action->addEffectMessage = 163;
-            Action->addEffectParam = CalculateEnspellDamage(PAttacker, PDefender, 2, enspell > 8 ? enspell-7 : enspell);
+            Action->addEffectParam = CalculateEnspellDamage(PAttacker, PDefender, 2, enspell > 8 ? enspell-9 : enspell-1);
 
             PDefender->addHP(-Action->addEffectParam);
         }

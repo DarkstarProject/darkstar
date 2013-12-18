@@ -27,7 +27,7 @@ function onSpellCast(caster,target,spell)
 			final = 0;
 		end
 	elseif(enhskill>300) then
-		final = (enhskill/29) + 28;
+		final = ((enhskill-300)/29) + 28;
 	else
 		print("Warning: Unknown enhancing magic skill for phalanx.");
 	end
