@@ -1710,8 +1710,17 @@ INSERT INTO `item_mods` VALUES(12388, 10, 6);
 INSERT INTO `item_mods` VALUES(12388, 14, 6);
 INSERT INTO `item_mods` VALUES(12388, 27, 4);
 INSERT INTO `item_mods` VALUES(12388, 230, 2);
-INSERT INTO `item_mods` VALUES(12389, 1, 6);
-INSERT INTO `item_mods` VALUES(12390, 1, 4);
+
+-- -------------------------------------------------------
+-- Mercenary's Targe    
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(12389, 1, 6); -- DEF:6
+
+-- -------------------------------------------------------
+-- Wrestler's Aspis  
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(12390, 1, 4); -- DEF:4
+
 INSERT INTO `item_mods` VALUES(12391, 1, 2);
 INSERT INTO `item_mods` VALUES(12392, 1, 2);
 INSERT INTO `item_mods` VALUES(12393, 1, 4);
@@ -4571,8 +4580,16 @@ INSERT INTO `item_mods` VALUES(13657, 27, -6);
 INSERT INTO `item_mods` VALUES(13658, 1, 15);-- Defence
 INSERT INTO `item_mods` VALUES(13658, 416, 15);-- Physical null damage chance
 
-INSERT INTO `item_mods` VALUES(13659, 1, 2);
-INSERT INTO `item_mods` VALUES(13660, 1, 2);
+-- -------------------------------------------------------
+-- Mercen. Mantle  
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(13659, 1, 2); -- DEF:2 
+
+-- -------------------------------------------------------
+-- Wrestler's Mantle    
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(13660, 1, 2); -- DEF:2
+
 INSERT INTO `item_mods` VALUES(13661, 1, 2);
 INSERT INTO `item_mods` VALUES(13662, 1, 2);
 INSERT INTO `item_mods` VALUES(13663, 1, 2);
@@ -7111,14 +7128,25 @@ INSERT INTO `item_mods` VALUES(14412, 2, 28);
 INSERT INTO `item_mods` VALUES(14412, 27, 2);
 INSERT INTO `item_mods` VALUES(14413, 1, 27);
 INSERT INTO `item_mods` VALUES(14413, 14, 3);
-INSERT INTO `item_mods` VALUES(14414, 1, 42);
-INSERT INTO `item_mods` VALUES(14414, 5, 14);
-INSERT INTO `item_mods` VALUES(14414, 14, 7);
-INSERT INTO `item_mods` VALUES(14414, 384, 20);
-INSERT INTO `item_mods` VALUES(14415, 1, 43);
-INSERT INTO `item_mods` VALUES(14415, 5, 16);
-INSERT INTO `item_mods` VALUES(14415, 14, 8);
-INSERT INTO `item_mods` VALUES(14415, 384, 30);
+
+-- -------------------------------------------------------
+-- Sha'ir Manteel  
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(14414, 1, 42); -- DEF:42
+INSERT INTO `item_mods` VALUES(14414, 170, 12); -- Song spellcasting time -12%
+INSERT INTO `item_mods` VALUES(14414, 5, 14); -- MP+14
+INSERT INTO `item_mods` VALUES(14414, 14, 7); -- CHR+7
+INSERT INTO `item_mods` VALUES(14414, 384, 20); -- Haste+2%
+
+-- -------------------------------------------------------
+-- Sheikh Manteel   
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(14415, 1, 43); -- DEF:43
+INSERT INTO `item_mods` VALUES(14415, 5, 16); -- MP+16
+INSERT INTO `item_mods` VALUES(14415, 14, 8); -- CHR+8
+INSERT INTO `item_mods` VALUES(14415, 170, 13); -- Song spellcasting time -13%
+INSERT INTO `item_mods` VALUES(14415, 384, 30); -- Haste+3%
+
 INSERT INTO `item_mods` VALUES(14416, 1, 45);
 INSERT INTO `item_mods` VALUES(14416, 23, 13);
 INSERT INTO `item_mods` VALUES(14416, 27, 2);
@@ -14587,9 +14615,15 @@ INSERT INTO `item_mods` VALUES(18593, 30, 20);
 INSERT INTO `item_mods` VALUES(18594, 5, 20);
 INSERT INTO `item_mods` VALUES(18594, 28, 25);
 INSERT INTO `item_mods` VALUES(18594, 71, 10);
-INSERT INTO `item_mods` VALUES(18595, 8, 5);
-INSERT INTO `item_mods` VALUES(18595, 23, 12);
-INSERT INTO `item_mods` VALUES(18595, 25, -4);
+
+-- -------------------------------------------------------
+-- Mekki Shakki         
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(18595, 8, 5); -- STR+5
+INSERT INTO `item_mods` VALUES(18595, 23, 12); -- Attack+12
+INSERT INTO `item_mods` VALUES(18595, 25, -4); -- Accuracy-4 
+INSERT INTO `item_mods` VALUES(18595, 73, 5); -- "Store TP"+5
+
 INSERT INTO `item_mods` VALUES(18596, 29, 5);
 INSERT INTO `item_mods` VALUES(18599, 5, 10);
 INSERT INTO `item_mods` VALUES(18600, 57, 2);
@@ -14924,6 +14958,12 @@ INSERT INTO `item_mods` VALUES(19157, 2, 5);
 INSERT INTO `item_mods` VALUES(19157, 5, 5);
 INSERT INTO `item_mods` VALUES(19158, 110, 5);
 INSERT INTO `item_mods` VALUES(19158, 227, 2);
+
+-- -------------------------------------------------------
+-- Nightfall         
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(19163, 368, 10); -- Regain
+
 INSERT INTO `item_mods` VALUES(19202, 26, -4);
 INSERT INTO `item_mods` VALUES(19203, 14, 3);
 INSERT INTO `item_mods` VALUES(19206, 26, 6);
@@ -15283,14 +15323,44 @@ INSERT INTO `item_mods` VALUES(18739, 26, 10);
 INSERT INTO `item_mods` VALUES(18739, 24, 20);
 INSERT INTO `item_mods` VALUES(18740, 26, 40);
 INSERT INTO `item_mods` VALUES(18740, 24, 10);
-INSERT INTO `item_mods` VALUES(16605, 428, 5);
-INSERT INTO `item_mods` VALUES(18018, 427, 1);
-INSERT INTO `item_mods` VALUES(18148, 427, 1);
-INSERT INTO `item_mods` VALUES(18149, 427, 1);
-INSERT INTO `item_mods` VALUES(18150, 427, 1);
-INSERT INTO `item_mods` VALUES(18151, 427, 1);
-INSERT INTO `item_mods` VALUES(18152, 427, 1);
-INSERT INTO `item_mods` VALUES(18153, 427, 1);
+
+-- -------------------------------------------------------
+-- Redemption        
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(19859, 8, 13); -- STR+13
+INSERT INTO `item_mods` VALUES(19859, 13, 13); -- MND+13 
+
+-- -------------------------------------------------------
+-- Hecate's Cape     
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11543, 1, 4); -- DEF:4
+INSERT INTO `item_mods` VALUES(11543, 5, 7); -- MP+7
+INSERT INTO `item_mods` VALUES(11543, 30, 3); -- Magic Accuracy+3
+INSERT INTO `item_mods` VALUES(11543, 28, 3); -- "Magic Atk. Bonus"+3
+
+-- -------------------------------------------------------
+-- Nocturnus Helm 
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11501, 1, 24); -- def 24
+INSERT INTO `item_mods` VALUES(11501, 8, 6); -- str 6
+INSERT INTO `item_mods` VALUES(11501, 9, 6); -- dex 6
+INSERT INTO `item_mods` VALUES(11501, 11, 6); -- agi 6
+INSERT INTO `item_mods` VALUES(11501, 23, 8); -- attack 8
+INSERT INTO `item_mods` VALUES(11501, 288, 2); -- double attack 2%
+INSERT INTO `item_mods` VALUES(11501, 416, 15);-- Physical null damage chance
+
+-- -------------------------------------------------------
+-- Nocturnus Mail 
+/*
+	[NOT CODED] Absorbs Magic Damage
+*/	
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11354, 1, 49); -- def 49
+INSERT INTO `item_mods` VALUES(11354, 8, 10); -- str 10
+INSERT INTO `item_mods` VALUES(11354, 9, 10); -- dex 10
+INSERT INTO `item_mods` VALUES(11354, 10, 10); -- vit 10
+INSERT INTO `item_mods` VALUES(11354, 25, 12); -- accuracy 12
+INSERT INTO `item_mods` VALUES(11354, 302, 1); -- triple attack 1%
 
 -- -------------------------------------------------------
 -- Iga Garb +2
@@ -15852,3 +15922,827 @@ INSERT INTO `item_mods` VALUES(15543, 289, 5); -- subtle blow
 -- Sattva Ring
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES(15544, 27, 3); -- enmity
+
+-- -------------------------------------------------------
+-- Repelling Collar        
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(16307, 161, -1); -- physical damage taken -1%
+INSERT INTO `item_mods` VALUES(16307, 163, 1); -- magic damage taken 1%
+
+-- -------------------------------------------------------
+-- Halting Stole       
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(16306, 9, 3); -- dex 3
+
+-- -------------------------------------------------------
+-- Sanctus Rosary
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(16305, 1, 3); -- def 3
+INSERT INTO `item_mods` VALUES(16305, 5, 10); -- mp 10
+INSERT INTO `item_mods` VALUES(16305, 61, 20); -- element dark +20
+INSERT INTO `item_mods` VALUES(16305, 234, 2); -- enhances demon killer effect
+
+-- -------------------------------------------------------
+-- Leonine Mask        
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(16151, 1, 28); -- def 28
+INSERT INTO `item_mods` VALUES(16151, 8, 3); -- str 3
+INSERT INTO `item_mods` VALUES(16151, 11, 3); -- agi 3
+INSERT INTO `item_mods` VALUES(16151, 165, 3); -- critical hit rate 3%
+
+-- -------------------------------------------------------
+-- Pagondas Earring          
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(16056, 1, 10); -- def 10
+
+-- -------------------------------------------------------
+-- Incubus Earring +1            
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(16053, 27, 1); -- enmity +1
+INSERT INTO `item_mods` VALUES(16053, 30, 3); -- magic accuracy +3
+
+-- -------------------------------------------------------
+-- Incubus Earring           
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(16052, 27, 1); -- enmity +1
+INSERT INTO `item_mods` VALUES(16052, 30, 2); -- magic accuracy +2
+
+-- -------------------------------------------------------
+-- Fierce Belt             
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(15954, 23, 15); -- attack +15
+
+-- -------------------------------------------------------
+-- Marching Belt               
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(15953, 1, 3); -- def 3
+INSERT INTO `item_mods` VALUES(15953, 121, 3); -- wind skill +3
+INSERT INTO `item_mods` VALUES(15953, 7, 15); -- hp to mp 15
+
+-- -------------------------------------------------------
+-- Colossus's Earring *Has Latent Effect
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(16058, 2, 10); -- hp 10
+INSERT INTO `item_mods` VALUES(16058, 5, 10); -- mp 10
+INSERT INTO `item_mods` VALUES(16058, 161, -1); -- physical damage taken -1%
+
+-- -------------------------------------------------------
+-- Abatteur Subligar
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28068, 1, 50); -- def 50
+INSERT INTO `item_mods` VALUES(28068, 8, 10); -- str 10
+INSERT INTO `item_mods` VALUES(28068, 9, 10); -- dex 10
+INSERT INTO `item_mods` VALUES(28068, 23, 14); -- attack 14
+INSERT INTO `item_mods` VALUES(28068, 289, 5); -- subtle blow+5
+INSERT INTO `item_mods` VALUES(28068, 384, 50); -- haste 5%
+INSERT INTO `item_mods` VALUES(28068, 25, 7); -- Accuracy+7
+
+-- -------------------------------------------------------
+-- Dream Mittens    
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10382, 1, 1); -- def 1
+
+-- -------------------------------------------------------
+-- Decennial Crown     
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10430, 1, 1); -- def 1
+
+-- -------------------------------------------------------
+-- Decennial Tiara       
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10431, 1, 1); -- def 1
+
+-- -------------------------------------------------------
+-- Ahriman Cap       
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10446, 61, 5); -- element dark +5
+
+-- -------------------------------------------------------
+-- Toxon Belt +1      
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(15952, 1, 5); -- def 5
+INSERT INTO `item_mods` VALUES(15952, 8, 3); -- str 3
+INSERT INTO `item_mods` VALUES(15952, 11, -3); -- agi -3
+INSERT INTO `item_mods` VALUES(15952, 26, -10); -- ranged accuracy -10
+INSERT INTO `item_mods` VALUES(15952, 24, 10); -- ranged attack 10
+
+-- -------------------------------------------------------
+-- Toxon Belt     
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(15951, 1, 5); -- def 5
+INSERT INTO `item_mods` VALUES(15951, 8, 2); -- str 2
+INSERT INTO `item_mods` VALUES(15951, 11, -4); -- agi -4
+INSERT INTO `item_mods` VALUES(15951, 26, -11); -- ranged accuracy -11
+INSERT INTO `item_mods` VALUES(15951, 24, 9); -- ranged attack 9
+
+-- -------------------------------------------------------
+-- Pythia Sash +1     
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(15950, 1, 4); -- def 4
+INSERT INTO `item_mods` VALUES(15950, 13, 6); -- mnd 6
+INSERT INTO `item_mods` VALUES(15950, 296, 5); -- conserve mp +5
+INSERT INTO `item_mods` VALUES(15950, 27, -4); -- enmity -4
+
+-- -------------------------------------------------------
+-- Pythia Sash   
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(15949, 1, 4); -- def 4
+INSERT INTO `item_mods` VALUES(15949, 13, 5); -- mnd 5
+INSERT INTO `item_mods` VALUES(15949, 296, 4); -- conserve mp +4
+INSERT INTO `item_mods` VALUES(15949, 27, -4); -- enmity -4
+
+-- -------------------------------------------------------
+-- Bobcat Belt    
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(15948, 1, 6); -- def 6
+INSERT INTO `item_mods` VALUES(15948, 8, 8); -- str 8
+INSERT INTO `item_mods` VALUES(15948, 23, -6); -- attack -6
+INSERT INTO `item_mods` VALUES(15948, 73, -6); -- store tp -6
+
+-- -------------------------------------------------------
+-- Succor Ring     
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(15859, 5, 30); -- mp 30
+INSERT INTO `item_mods` VALUES(15859, 160, -3); -- damge taken -3%
+
+-- -------------------------------------------------------
+-- Agrona's Leggings     
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(14162, 1, 15); -- def 15
+INSERT INTO `item_mods` VALUES(14162, 8, 4); -- str 4
+INSERT INTO `item_mods` VALUES(14162, 25, 3); -- accuracy 3
+INSERT INTO `item_mods` VALUES(14162, 288, 2); -- double attack 2%
+INSERT INTO `item_mods` VALUES(14162, 384, -4); -- Slow +4%
+
+-- -------------------------------------------------------
+-- Alert Ring      
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11635, 25, -3); -- accuracy -3
+INSERT INTO `item_mods` VALUES(11635, 68, 6); -- evasion +6
+
+-- -------------------------------------------------------
+-- Veela Ring      
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11634, 14, 6); -- CHR+6 
+INSERT INTO `item_mods` VALUES(11634, 27, -2); -- Enmity-2
+
+-- -------------------------------------------------------
+-- Galdr Ring       
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11633, 12, 6); -- INT+6
+INSERT INTO `item_mods` VALUES(11633, 28, 1); -- Magic Atk. Bonus"+1
+
+-- -------------------------------------------------------
+-- Corneus Ring        
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11630, 10, 6); -- VIT+6
+INSERT INTO `item_mods` VALUES(11630, 27, 2); -- Enmity+2
+
+-- -------------------------------------------------------
+-- Blobnag Ring  
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11631, 11, 6); -- AGI+6
+INSERT INTO `item_mods` VALUES(11631, 26, 3); -- Ranged Accuracy+3
+
+-- -------------------------------------------------------
+-- Backlash Torque      
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11586, 23, 8); -- Attack+8 
+INSERT INTO `item_mods` VALUES(11586, 291, 1); -- "Counter"+1
+
+-- -------------------------------------------------------
+-- Acubens Helm        
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11502, 1, 28); -- def 28
+INSERT INTO `item_mods` VALUES(11502, 25, -10); -- accuracy -10
+INSERT INTO `item_mods` VALUES(11502, 58, -15); -- thunder -15
+INSERT INTO `item_mods` VALUES(11502, 59, 15); -- water +15
+INSERT INTO `item_mods` VALUES(11502, 384, 60); -- haste 6%
+
+-- -------------------------------------------------------
+-- Aesir Ear Pendant *Has Latent Effect  
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(16057, 23, 7); -- attack 7
+INSERT INTO `item_mods` VALUES(16057, 73, 3); -- store tp 3
+
+-- -------------------------------------------------------
+-- Choreia Earring         
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(16055, 60, 10); -- element light +10
+INSERT INTO `item_mods` VALUES(16055, 403, 2); -- Increases "Step" accuracy
+
+-- -------------------------------------------------------
+-- Hirudinea Earring          
+/*
+  [NOT CODED] Enhances effect of "Drain" and "Aspir"
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(16054, 2, -5); -- hp -5
+INSERT INTO `item_mods` VALUES(16054, 5, -5); -- mp -5
+
+-- -------------------------------------------------------
+-- Fatality Belt *Has Latent Effect   
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(15955, 1, 7); -- def 7
+INSERT INTO `item_mods` VALUES(15955, 9, 4); -- dex 4
+INSERT INTO `item_mods` VALUES(15955, 25, 4); -- accuracy 4
+
+-- -------------------------------------------------------
+-- Decennial Coat  
+/*
+ [NOT CODED] Can not equip handgear
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10251, 1, 1); -- def 1
+
+-- -------------------------------------------------------
+-- Decennial Dress  
+/*
+  [NOT CODED] Can not equip handgear
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10252, 1, 1); -- def 1
+
+-- -------------------------------------------------------
+-- Decennial Coat +1   
+/*
+  [NOT CODED] Can not equip handgear 
+  [NOT CODED] Dispense Moogurt
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10253, 1, 2); -- def 2
+
+-- -------------------------------------------------------
+-- Decennial Dress +1  
+/*
+  [NOT CODED] Can not equip handgear 
+  [NOT CODED] Dispense Moogurt 
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10254, 1, 2); -- def 2
+
+-- -------------------------------------------------------
+-- Dream Mittens +1
+/*
+  [NOT CODED] Enhances invisible effect 
+  [NOT CODED] Enhancement Invisible <1/1 24/[02:00:0, 30]> 
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10383, 1, 2); -- def 2
+
+-- -------------------------------------------------------
+-- Decennial Crown +1     
+/*
+  [NOT CODED] Dispense Chocobiscuit <1/1 8/[24:00:0, 30]>
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10432, 1, 2); -- def 2
+
+-- -------------------------------------------------------
+-- Decennial Tiara +1    
+/*
+  [NOT CODED] Dispense Chocobiscuit <1/1 8/[24:00:0, 30]>
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10433, 1, 2); -- def 2
+
+-- -------------------------------------------------------
+-- Decennial Tights    
+/*
+  [NOT CODED] Can not equip Footgear
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10593, 1, 1); -- def 1
+
+-- -------------------------------------------------------
+-- Decennial Hose      
+/*
+  [NOT CODED] Can not equip Footgear
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10594, 1, 1); -- def 1
+
+-- -------------------------------------------------------
+-- Decennial Tights +1    
+/*
+  [NOT CODED] Can not equip Footgear 
+  [NOT CODED] Enchantment Invisible, Sneak, Deodorize <1/1 24/[20:00:0, 30]>
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10595, 1, 2); -- def 2
+
+-- -------------------------------------------------------
+-- Decennial Hose +1      
+/*
+  [NOT CODED] Can not equip Footgear
+  [NOT CODED] Enchantment Invisible, Sneak, Deodorize <1/1 24/[20:00:0, 30]>
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10596, 1, 2); -- def 2
+
+-- -------------------------------------------------------
+-- Nyx Gorget        
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11587, 1, 2); -- DEF:2
+INSERT INTO `item_mods` VALUES(11587, 232, 2); -- Enhances "Arcana Killer" effect
+
+-- -------------------------------------------------------
+-- Colossus's Torque *Has Latent Effect     
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11590, 60, 20); -- [Element: Light]+20
+INSERT INTO `item_mods` VALUES(11590, 112, 7); -- Healing magic skill +7 
+INSERT INTO `item_mods` VALUES(11590, 113, 7); -- Enhancing magic skill +7
+
+-- -------------------------------------------------------
+-- Colossus's Mantle *Has Latent Effect  
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11547, 1, 5); -- DEF:5
+INSERT INTO `item_mods` VALUES(11547, 2, 20); -- HP+20
+INSERT INTO `item_mods` VALUES(11547, 5, 20); -- MP+20
+INSERT INTO `item_mods` VALUES(11547, 163, -2); -- Magic damage taken -2%
+
+-- -------------------------------------------------------
+-- Beguiling Collar *Has Latent Effect    
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11585, 2, 20); -- HP+20
+INSERT INTO `item_mods` VALUES(11585, 5, 20); -- MP+20
+INSERT INTO `item_mods` VALUES(11585, 27, -3); -- Enmity-3
+
+-- -------------------------------------------------------
+-- Aesir Torque *Has Latent Effect           
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11589, 61, 20); -- [Element: Dark]+20
+INSERT INTO `item_mods` VALUES(11589, 115, 7); -- Elemental magic skill +7
+INSERT INTO `item_mods` VALUES(11589, 116, 7); -- Dark magic skill +7
+
+-- -------------------------------------------------------
+-- Aesir Mantle *Has Latent Effect          
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11546, 1, 6); -- def 6
+INSERT INTO `item_mods` VALUES(11546, 23, 8); -- attack 8
+INSERT INTO `item_mods` VALUES(11546, 288, 1); -- double attack 1%
+
+-- -------------------------------------------------------
+-- Strigoi Ring        
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11628, 8, 6); -- STR+6
+INSERT INTO `item_mods` VALUES(11628, 23, 3); -- Attack+3
+
+-- -------------------------------------------------------
+-- Tandem Necklace        
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10918, 1, 5); -- DEF:5
+
+-- -------------------------------------------------------
+-- Tndm. Necklace +1       
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10919, 1, 6); -- DEF:6
+
+-- -------------------------------------------------------
+-- Tndm. Necklace +2       
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10920, 1, 7); -- DEF:7
+
+-- -------------------------------------------------------
+-- Tndm. Necklace +3     
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10921, 1, 8); -- DEF:8
+
+-- -------------------------------------------------------
+-- Tndm. Necklace +4    
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10922, 1, 9); -- DEF:9
+
+-- -------------------------------------------------------
+-- Veela Cape     
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11544, 1, 5); -- DEF:5
+INSERT INTO `item_mods` VALUES(11544, 5, 10); -- MP+10
+INSERT INTO `item_mods` VALUES(11544, 170, 2); -- Enhances "Fast Cast" effect
+
+-- -------------------------------------------------------
+-- Reign Grip      
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(19048, 13, 3); -- MND+3
+INSERT INTO `item_mods` VALUES(19048, 14, 3); -- CHR+3
+
+-- -------------------------------------------------------
+-- Alchemst. Torque     
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10954, 134, 2); -- Alchemy skill +2
+
+-- -------------------------------------------------------
+-- Boneworker's Torque      
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10953, 133, 2); -- Bonecraft skill +2
+
+-- -------------------------------------------------------
+-- Mandraguard        
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10807, 1, 1); -- DEF:1
+INSERT INTO `item_mods` VALUES(10807, 14, 1); -- CHR+1
+
+-- -------------------------------------------------------
+-- Janus Guard        
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10808, 1, 1); -- DEF:1
+
+-- -------------------------------------------------------
+-- Snowman Cap       
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10875, 1, 1); -- DEF:1
+INSERT INTO `item_mods` VALUES(10875, 54, -12); -- [Element: Fire]-12
+INSERT INTO `item_mods` VALUES(10875, 55, 12); -- [Element: Ice]+12
+
+-- -------------------------------------------------------
+-- Shaper's Shawl       
+/*
+	[NOT CODED] Increases synthesis skill gain rate
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11009, 1, 1); -- DEF:1
+
+-- -------------------------------------------------------
+-- Dinner Jacket       
+/*
+	[NOT CODED] Cannot Equip Handgear
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11355, 1, 1); -- DEF:1
+
+-- -------------------------------------------------------
+-- Ryl.Grd. Livery       
+/*
+	[NOT CODED] In areas under San. army control (SANDY PAST):
+	Enhances "Invisible" effect Enhances "Sneak" effect Movement speed +12%
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11356, 1, 1); -- DEF:1
+
+-- -------------------------------------------------------
+-- Myth.Msk. Livery       
+/*
+	[NOT CODED] In areas under Bas. army control (BASTOK PAST):
+	Enhances "Invisible" effect Enhances "Sneak" effect Movement speed +12%
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11357, 1, 1); -- DEF:1
+
+-- -------------------------------------------------------
+-- Myth.Msk. Livery       
+/*
+	[NOT CODED] In areas under Win. army control (WINDY PAST):
+	Enhances "Invisible" effect Enhances "Sneak" effect Movement speed +12%
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11358, 1, 1); -- DEF:1
+
+-- -------------------------------------------------------
+-- Destrier Beret          
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11811, 1, 7); -- DEF:7
+
+-- -------------------------------------------------------
+-- Charity Cap         
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11812, 1, 1); -- DEF:1
+
+-- -------------------------------------------------------
+-- Novennial Coat       
+/*
+	[NOT CODED] Cannot Equip Handgear
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11853, 1, 1); -- DEF:1
+INSERT INTO `item_mods` VALUES(11853, 2, 9); -- HP+9
+INSERT INTO `item_mods` VALUES(11853, 60, 9); -- [Element: Light]+9
+
+-- -------------------------------------------------------
+-- Novennial Dress       
+/*
+	[NOT CODED] Cannot Equip Handgear
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11854, 1, 1); -- DEF:1
+INSERT INTO `item_mods` VALUES(11854, 2, 9); -- HP+9
+INSERT INTO `item_mods` VALUES(11854, 60, 9); -- [Element: Light]+9
+
+-- -------------------------------------------------------
+-- Hikogami Yukata         
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11861, 1, 1); -- DEF:1
+
+-- -------------------------------------------------------
+-- Himegami Yukata        
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11862, 1, 1); -- DEF:1
+
+-- -------------------------------------------------------
+-- Novennial Hose         
+/*
+	[NOT CODED] Cannot Equip Footgear
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11956, 1, 1); -- DEF:1
+INSERT INTO `item_mods` VALUES(11956, 5, 9); -- MP+9
+INSERT INTO `item_mods` VALUES(11956, 61, 9); -- [Element: Dark]+9
+
+-- -------------------------------------------------------
+-- Novennial Boots         
+/*
+	[NOT CODED] Cannot Equip Footgear
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11957, 1, 1); -- DEF:1
+INSERT INTO `item_mods` VALUES(11957, 5, 9); -- MP+9
+INSERT INTO `item_mods` VALUES(11957, 61, 9); -- [Element: Dark]+9
+
+-- -------------------------------------------------------
+--  Dream Trousers        
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11965, 1, 2); -- DEF:2
+
+-- -------------------------------------------------------
+--  Dream Trousers +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11966, 1, 3); -- DEF:3
+
+-- -------------------------------------------------------
+--  Dream Pants          
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11967, 1, 2); -- DEF:2
+
+-- -------------------------------------------------------
+--  Dream Pants +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(11968, 1, 3); -- DEF:3
+
+-- -------------------------------------------------------
+-- Dinner Hose         
+/*
+	[NOT CODED] Cannot Equip Footgear
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(16378, 1, 1); -- DEF:1
+
+-- -------------------------------------------------------
+-- Killedar Shield +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28665, 1, 61); -- DEF:61
+INSERT INTO `item_mods` VALUES(28665, 2, 85); -- HP+85
+INSERT INTO `item_mods` VALUES(28665, 10, 11); -- VIT+11
+INSERT INTO `item_mods` VALUES(28665, 29, 6); -- "Magic Def. Bonus" +6
+INSERT INTO `item_mods` VALUES(28665, 109, 106); -- Shield skill +106
+INSERT INTO `item_mods` VALUES(28665, 161, -8); -- Physical damage taken -8%
+
+-- -------------------------------------------------------
+-- Killedar Shield
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28664, 1, 60); -- DEF:60
+INSERT INTO `item_mods` VALUES(28664, 2, 80); -- HP+80
+INSERT INTO `item_mods` VALUES(28664, 10, 10); -- VIT+10
+INSERT INTO `item_mods` VALUES(28664, 29, 5); -- "Magic Def. Bonus" +5
+INSERT INTO `item_mods` VALUES(28664, 109, 100); -- Shield skill +100
+INSERT INTO `item_mods` VALUES(28664, 161, -7); -- Physical damage taken -7%
+
+-- -------------------------------------------------------
+-- Steadfast Shield
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28663, 1, 50); -- DEF:50
+INSERT INTO `item_mods` VALUES(28663, 5, 60); -- MP+60
+INSERT INTO `item_mods` VALUES(28663, 109, 85); -- Shield skill +85
+INSERT INTO `item_mods` VALUES(28663, 160, -7); -- Damage taken -7%
+
+-- -------------------------------------------------------
+-- Ogapepo Cape +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28645, 1, 20); -- DEF:20
+INSERT INTO `item_mods` VALUES(28645, 30, 11); -- Magic accuracy+11
+
+-- -------------------------------------------------------
+-- Ogapepo Cape
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28644, 1, 19); -- DEF:19
+INSERT INTO `item_mods` VALUES(28644, 30, 10); -- Magic accuracy+10
+
+-- -------------------------------------------------------
+-- Refraction Cape
+/*
+	[NOT CODED] Automaton: INT+8 MND+8 Magic Accuracy+3
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28643, 1, 16); -- DEF:16
+INSERT INTO `item_mods` VALUES(28643, 30, 3); -- Magic accuracy+3
+INSERT INTO `item_mods` VALUES(28643, 12, 8); -- INT+8
+INSERT INTO `item_mods` VALUES(28643, 13, 8); -- MND+8
+INSERT INTO `item_mods` VALUES(28643, 14, 8); -- CHR+8
+
+-- -------------------------------------------------------
+-- Contriver's Cape
+/*
+	[NOT CODED] Automaton: Adds "Regen" and "Refresh" effects
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28642, 1, 17); -- DEF:17
+INSERT INTO `item_mods` VALUES(28642, 68, 10); -- Evasion+10
+INSERT INTO `item_mods` VALUES(28642, 29, 4); -- "Magic Def. Bonus" +4
+
+-- -------------------------------------------------------
+--  Vespid Mantle 
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28641, 1, 20); -- DEF:20
+INSERT INTO `item_mods` VALUES(28641, 23, 35); -- Attack+35
+INSERT INTO `item_mods` VALUES(28641, 48, 10); -- Weapon Skill Accuracy+10
+
+-- -------------------------------------------------------
+-- Beeline Ring
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28581, 2, 50); -- HP+50
+INSERT INTO `item_mods` VALUES(28581, 25, 6); -- Accuracy+6
+INSERT INTO `item_mods` VALUES(28581, 26, 6); -- Ranged Accuracy+6
+INSERT INTO `item_mods` VALUES(28581, 68, 6); -- Evasion+6
+INSERT INTO `item_mods` VALUES(28581, 289, 6); -- "Subtle Blow"+6
+
+-- -------------------------------------------------------
+-- Sangoma Ring 
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28580, 5, 70); -- MP+70
+INSERT INTO `item_mods` VALUES(28580, 30, 8); -- Magic Accuracy+8
+INSERT INTO `item_mods` VALUES(28580, 27, -2); -- Enmity-2
+
+-- -------------------------------------------------------
+-- K'ayres Ring 
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28579, 2, 70); -- HP+70
+INSERT INTO `item_mods` VALUES(28579, 23, 5); -- Attack+5
+INSERT INTO `item_mods` VALUES(28579, 73, 5); -- "Store TP"+5
+
+-- -------------------------------------------------------
+-- Tati Earring +1 
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28527, 25, 6); -- Accuracy+6
+INSERT INTO `item_mods` VALUES(28527, 23, 16); -- Attack+16
+INSERT INTO `item_mods` VALUES(28527, 68, -8); -- Evasion-8
+
+-- -------------------------------------------------------
+-- Tati Earring
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28526, 25, 5); -- Accuracy+5
+INSERT INTO `item_mods` VALUES(28526, 23, 15); -- Attack+15
+INSERT INTO `item_mods` VALUES(28526, 68, -7); -- Evasion-7
+
+-- -------------------------------------------------------
+-- Psystorm Earring 
+/*
+	[NOT CODED] Set: Magic Accuracy+12
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28525, 12, 4); -- INT+4
+INSERT INTO `item_mods` VALUES(28525, 27, -1); -- Enmity-1
+
+-- -------------------------------------------------------
+-- Lifestorm Earring  
+/*
+	[NOT CODED] Set: Magic Accuracy+12
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28524, 13, 4); -- MND+4
+INSERT INTO `item_mods` VALUES(28524, 27, -1); -- Enmity-1
+
+-- -------------------------------------------------------
+-- Heartseeker Earring 
+/*
+	[NOT CODED] Set: Enhances "Dual Wield" effect
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28523, 25, 8); -- Accuracy+8
+INSERT INTO `item_mods` VALUES(28523, 289, 1); -- "Subtle Blow"+1
+
+-- -------------------------------------------------------
+-- Dudgeon Earring 
+/*
+	[NOT CODED] Set: Enhances "Dual Wield" effect
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28522, 23, 8); -- Attack+8
+INSERT INTO `item_mods` VALUES(28522, 289, 1); -- "Subtle Blow"+1
+
+-- -------------------------------------------------------
+-- Bladeborn Earring 
+/*
+	[NOT CODED] Set: "Double Attack"+7%
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28521, 23, 8); -- Attack+8
+INSERT INTO `item_mods` VALUES(28521, 73, 1); -- "Store TP"+1
+
+-- -------------------------------------------------------
+-- Steelflash Earring 
+/*
+	[NOT CODED] Set: "Double Attack"+7%
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28520, 25, 8); -- Accuracy+8
+INSERT INTO `item_mods` VALUES(28520, 73, 1); -- "Store TP"+1
+
+-- -------------------------------------------------------
+-- Pya'ekue Belt +1 
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28465, 1, 15); -- DEF:15
+INSERT INTO `item_mods` VALUES(28465, 384, 100); -- Haste+10%
+
+-- -------------------------------------------------------
+-- Pya'ekue Belt
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28464, 1, 14); -- DEF:14
+INSERT INTO `item_mods` VALUES(28464, 384, 90); -- Haste+9%
+
+-- -------------------------------------------------------
+-- Zoran's Belt 
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28463, 1, 10); -- DEF:10
+INSERT INTO `item_mods` VALUES(28463, 9, 7); -- DEX+7
+INSERT INTO `item_mods` VALUES(28463, 23, 14); -- Attack+14
+INSERT INTO `item_mods` VALUES(28463, 384, 70); -- Haste+7%
+
+-- -------------------------------------------------------
+-- Hurch'lan Sash  
+/*
+	[NOT CODED] Pet: Haste+5%
+	[NOT CODED] Pet: Ranged Accuracy+10 
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28462, 1, 13); -- DEF:13
+INSERT INTO `item_mods` VALUES(28462, 25, 15); -- Accuracy+15
+INSERT INTO `item_mods` VALUES(28462, 384, 70); -- Haste+7%
+INSERT INTO `item_mods` VALUES(28462, 315, 10); -- Pet: Accuracy+10
+
+-- -------------------------------------------------------
+-- Ej Necklace +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28405, 25, 16); -- Accuracy+16
+INSERT INTO `item_mods` VALUES(28405, 26, 16); -- Ranged Accuracy+16
+INSERT INTO `item_mods` VALUES(28405, 68, 16); -- Evasion+16
+
+-- -------------------------------------------------------
+-- Ej Necklace
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28404, 25, 15); -- Accuracy+15
+INSERT INTO `item_mods` VALUES(28404, 26, 15); -- Ranged Accuracy+15
+INSERT INTO `item_mods` VALUES(28404, 68, 15); -- Evasion+15
+
+-- -------------------------------------------------------
+-- Inq. Bead Necklace 
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28403, 1, 13); -- DEF:13
+INSERT INTO `item_mods` VALUES(28403, 2, 55); -- HP+55
+INSERT INTO `item_mods` VALUES(28403, 29, 8); -- "Magic Def. Bonus"+8
+
+-- -------------------------------------------------------
+-- Asperity Necklace
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28402, 23, 8); -- Attack+8
+INSERT INTO `item_mods` VALUES(28402, 73, 3); -- "Store TP"+3
+INSERT INTO `item_mods` VALUES(28402, 288, 2); -- "Double Attack"+2%
+
+-- -------------------------------------------------------
+-- Eddy Necklace
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28401, 5, 20); -- MP+20
+INSERT INTO `item_mods` VALUES(28401, 30, 5); -- Magic Accuracy+5
+INSERT INTO `item_mods` VALUES(28401, 28, 11); -- "Magic Atk. Bonus"+11
+
+-- -------------------------------------------------------
+-- Bokwus Boots
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28340, 1, 46); -- DEF+46
+INSERT INTO `item_mods` VALUES(28340, 2, 7); -- HP+7
+INSERT INTO `item_mods` VALUES(28340, 5, 12); -- MP+12
+INSERT INTO `item_mods` VALUES(28340, 9, 1); -- DEX+1
+INSERT INTO `item_mods` VALUES(28340, 11, 12); -- AGI+12
+INSERT INTO `item_mods` VALUES(28340, 12, 2); -- INT+2
+INSERT INTO `item_mods` VALUES(28340, 13, 3); -- MND+3
+INSERT INTO `item_mods` VALUES(28340, 14, 13); -- CHR+13
+INSERT INTO `item_mods` VALUES(28340, 121, 10); -- Wind instrument skill +10
+INSERT INTO `item_mods` VALUES(28340, 30, 7); -- Magic Accuracy+7
+INSERT INTO `item_mods` VALUES(28340, 68, 28); -- Evasion+28
+INSERT INTO `item_mods` VALUES(28340, 29, 3); -- "Magic Def. Bonus"+3
+INSERT INTO `item_mods` VALUES(28340, 384, 30); -- Haste+3%
+INSERT INTO `item_mods` VALUES(28340, 31, 76); -- Magic Evasion+76
+INSERT INTO `item_mods` VALUES(28340, 170, 60); -- Song casting time -6%
+
+-- -------------------------------------------------------
+-- Manibozho Boots
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28339, 1, 51); -- DEF+51
+INSERT INTO `item_mods` VALUES(28339, 2, 7); -- HP+7
+INSERT INTO `item_mods` VALUES(28339, 5, 45); -- MP+45
+INSERT INTO `item_mods` VALUES(28339, 9, 8); -- DEX+8
+INSERT INTO `item_mods` VALUES(28339, 11, 17); -- AGI+17
+INSERT INTO `item_mods` VALUES(28339, 14, 12); -- CHR+12
+INSERT INTO `item_mods` VALUES(28339, 23, 12); -- Attack+12
+INSERT INTO `item_mods` VALUES(28339, 68, 36); -- Evasion+36
+INSERT INTO `item_mods` VALUES(28339, 29, 2); -- "Magic Def. Bonus"+2
+INSERT INTO `item_mods` VALUES(28339, 31, 49); -- Magic Evasion+49
+INSERT INTO `item_mods` VALUES(28339, 288, 2); -- "Double Attack"+2%
+INSERT INTO `item_mods` VALUES(28339, 384, 40); -- Haste+4%

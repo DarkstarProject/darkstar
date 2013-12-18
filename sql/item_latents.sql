@@ -467,142 +467,461 @@ INSERT INTO `item_latents` VALUES(17654, 2, -20, 47, 0);
 INSERT INTO `item_latents` VALUES(17654, 15, -10, 47, 0);
 INSERT INTO `item_latents` VALUES(17654, 17, -10, 47, 0);
 
-INSERT INTO `item_latents` VALUES(13435, 10, 2, 8, 1); 
-INSERT INTO `item_latents` VALUES(13659, 27, 1, 8, 1); 
-INSERT INTO `item_latents` VALUES(12389, 2, 5, 8, 1); 
-INSERT INTO `item_latents` VALUES(12389, 5, 10, 8, 1); 
-INSERT INTO `item_latents` VALUES(15271, 85, 5, 8, 1); 
-INSERT INTO `item_latents` VALUES(12390, 12, 2, 8, 2); 
-INSERT INTO `item_latents` VALUES(13436, 2, 30, 8, 2); 
-INSERT INTO `item_latents` VALUES(13660, 173, 10, 8, 2); 
-INSERT INTO `item_latents` VALUES(15272, 80, 5, 8, 2); 
+-- -------------------------------------------------------
+-- Latent Effects Based On SubJobs
+-- -------------------------------------------------------
+
+-- Mercen. Earring  
+INSERT INTO `item_latents` VALUES(13435, 10, 2, 8, 1); -- VIT+2 when WAR Subjob
+
+-- Mercen. Mantle  
+INSERT INTO `item_latents` VALUES(13659, 27, 1, 8, 1); -- Enmity+1 when WAR Subjob
+
+-- Mercenary's Targe  
+INSERT INTO `item_latents` VALUES(12389, 2, 5, 8, 1); -- HP+5 when WAR Subjob
+INSERT INTO `item_latents` VALUES(12389, 5, 10, 8, 1); -- MP+10 when WAR Subjob
+
+-- Axe Belt  
+INSERT INTO `item_latents` VALUES(15271, 85, 5, 8, 1); -- Great Axe skill +5 when WAR Subjob
+
+-- Wrestler's Aspis  
+INSERT INTO `item_latents` VALUES(12390, 12, 2, 8, 2); -- INT+2 when MNK Subjob
+
+-- Wrestler's Earring  
+INSERT INTO `item_latents` VALUES(13436, 2, 30, 8, 2); -- HP+30 when MNK Subjob
+
+-- Wrestler's Mantle  
+INSERT INTO `item_latents` VALUES(13660, 173, 10, 8, 2); -- Enhances "Martial Arts" effect when MNK Subjob
+
+-- Cestus Belt  
+INSERT INTO `item_latents` VALUES(15272, 80, 5, 8, 2); -- Hand-to-Hand skill +5 when MNK Subjob
+
+-- 
 INSERT INTO `item_latents` VALUES(15784, 5, 30, 8, 3); 
+
+-- 
 INSERT INTO `item_latents` VALUES(13437, 27, -1, 8, 3); 
+
+-- 
 INSERT INTO `item_latents` VALUES(12391, 9, 2, 8, 3); 
+
+-- 
 INSERT INTO `item_latents` VALUES(13661, 16, 1, 8, 3); 
+
+-- 
 INSERT INTO `item_latents` VALUES(15273, 90, 5, 8, 3); 
+
+-- 
 INSERT INTO `item_latents` VALUES(13438, 115, 5, 8, 4); 
+
+-- 
 INSERT INTO `item_latents` VALUES(13662, 71, 1, 8, 4); 
+
+-- 
 INSERT INTO `item_latents` VALUES(12392, 8, 2, 8, 4); 
+
+-- 
 INSERT INTO `item_latents` VALUES(15274, 91, 5, 8, 4); 
+
+-- 
 INSERT INTO `item_latents` VALUES(18390, 28, 3, 8, 4); 
+
+-- 
 INSERT INTO `item_latents` VALUES(13439, 71, 1, 8, 5); 
+
+-- 
 INSERT INTO `item_latents` VALUES(13663, 170, 2, 8, 5); 
+
+-- 
 INSERT INTO `item_latents` VALUES(12393, 2, 7, 8, 5); 
 INSERT INTO `item_latents` VALUES(12393, 5, 7, 8, 5); 
+
+-- 
 INSERT INTO `item_latents` VALUES(15275, 82, 5, 8, 5); 
+
+-- 
 INSERT INTO `item_latents` VALUES(12394, 109, 5, 8, 6); 
+
+-- 
 INSERT INTO `item_latents` VALUES(14729, 9, 2, 8, 6); 
+
+-- 
 INSERT INTO `item_latents` VALUES(13664, 68, 4, 8, 6); 
+
+-- 
 INSERT INTO `item_latents` VALUES(15276, 81, 5, 8, 6); 
+
+-- 
 INSERT INTO `item_latents` VALUES(14730, 1, 5, 8, 7); 
+
+-- 
 INSERT INTO `item_latents` VALUES(13665, 231, 4, 8, 7); 
+
+-- 
 INSERT INTO `item_latents` VALUES(12395, 11, 2, 8, 7); 
+
+-- 
 INSERT INTO `item_latents` VALUES(15277, 109, 5, 8, 7); 
+
+-- 
 INSERT INTO `item_latents` VALUES(14731, 23, 5, 8, 8); 
+
+-- 
 INSERT INTO `item_latents` VALUES(13666, 116, 5, 8, 8); 
+
+-- 
 INSERT INTO `item_latents` VALUES(12396, 14, 2, 8, 8); 
 INSERT INTO `item_latents` VALUES(12396, 5, 5, 8, 8); 
+
+-- 
 INSERT INTO `item_latents` VALUES(15278, 86, 5, 8, 8); 
+
+-- 
 INSERT INTO `item_latents` VALUES(12397, 13, 2, 8, 9); 
+
+-- 
 INSERT INTO `item_latents` VALUES(14732, 25, 5, 8, 9); 
+
+-- 
 INSERT INTO `item_latents` VALUES(13667, 250, 5, 8, 9); 
+
+-- 
 INSERT INTO `item_latents` VALUES(15279, 84, 5, 8, 9); 
+
+-- 
 INSERT INTO `item_latents` VALUES(14733, 68, 5, 8, 10); 
+
+-- 
 INSERT INTO `item_latents` VALUES(13668, 244, 5, 8, 10); 
+
+-- 
 INSERT INTO `item_latents` VALUES(12398, 110, 5, 8, 10); 
+
+-- 
 INSERT INTO `item_latents` VALUES(15280, 119, 5, 8, 10); 
+
+-- 
 INSERT INTO `item_latents` VALUES(12399, 68, 2, 8, 11); 
+
+-- 
 INSERT INTO `item_latents` VALUES(14734, 26, 3, 8, 11); 
+
+-- 
 INSERT INTO `item_latents` VALUES(13669, 359, 5, 8, 11); 
+
+-- 
 INSERT INTO `item_latents` VALUES(15281, 105, 5, 8, 11); 
+
+-- 
 INSERT INTO `item_latents` VALUES(14735, 110, 5, 8, 12); 
+
+-- 
 INSERT INTO `item_latents` VALUES(13670, 243, 5, 8, 12); 
+
+-- 
 INSERT INTO `item_latents` VALUES(12400, 106, 5, 8, 12); 
+
+-- 
 INSERT INTO `item_latents` VALUES(15282, 73, 1, 8, 12); 
+
+-- 
 INSERT INTO `item_latents` VALUES(12401, 23, 5, 8, 13); 
+
+-- 
 INSERT INTO `item_latents` VALUES(14736, 11, 4, 8, 13); 
+
+-- 
 INSERT INTO `item_latents` VALUES(13671, 247, 5, 8, 13); 
+
+-- 
 INSERT INTO `item_latents` VALUES(15283, 259, 1, 8, 13); 
+
+-- 
 INSERT INTO `item_latents` VALUES(15284, 87, 5, 8, 14); 
+
+-- 
 INSERT INTO `item_latents` VALUES(14737, 167, 5, 8, 14); 
+
+-- 
 INSERT INTO `item_latents` VALUES(13672, 23, 6, 8, 14);
+
+-- 
 INSERT INTO `item_latents` VALUES(12402, 167, 1, 8, 14);
+
+-- 
 INSERT INTO `item_latents` VALUES(14738, 5, 30, 8, 15); 
+
+-- 
 INSERT INTO `item_latents` VALUES(13673, 117, 5, 8, 15); 
+
+-- 
 INSERT INTO `item_latents` VALUES(12403, 2, 10, 8, 15); 
 INSERT INTO `item_latents` VALUES(12403, 5, 5, 8, 15); 
+
+-- 
 INSERT INTO `item_latents` VALUES(15285, 346, 2, 8, 15); 
+
+-- 
 INSERT INTO `item_latents` VALUES(16217, 240, 5, 8, 16); 
+
+-- 
 INSERT INTO `item_latents` VALUES(15975, 122, 5, 8, 16); 
+
+-- 
 INSERT INTO `item_latents` VALUES(16218, 242, 5, 8, 17); 
+
+-- 
 INSERT INTO `item_latents` VALUES(15976, 24, 5, 8, 17); 
+
+-- 
 INSERT INTO `item_latents` VALUES(16219, 107, 5, 8, 18); 
+
+-- 
 INSERT INTO `item_latents` VALUES(15977, 27, -2, 8, 18); 
 
--- Relic stages
-INSERT INTO `item_latents` VALUES(18261, 366, 15, 48, 0);
-INSERT INTO `item_latents` VALUES(18261, 59, 7, 48, 0);
-INSERT INTO `item_latents` VALUES(18262, 366, 2, 48, 0);
-INSERT INTO `item_latents` VALUES(18262, 59, 9, 48, 0);
-INSERT INTO `item_latents` VALUES(18267, 366, 22, 48, 0);
-INSERT INTO `item_latents` VALUES(18267, 61, 7, 48, 0);
-INSERT INTO `item_latents` VALUES(18268, 366, 3, 48, 0);
-INSERT INTO `item_latents` VALUES(18268, 61, 9, 48, 0);
-INSERT INTO `item_latents` VALUES(18273, 366, 39, 48, 0);
-INSERT INTO `item_latents` VALUES(18273, 58, 7, 48, 0);
-INSERT INTO `item_latents` VALUES(18274, 366, 8, 48, 0);
-INSERT INTO `item_latents` VALUES(18274, 58, 9, 48, 0);
-INSERT INTO `item_latents` VALUES(18279, 366, 79, 48, 0);
-INSERT INTO `item_latents` VALUES(18279, 56, 7, 48, 0);
-INSERT INTO `item_latents` VALUES(18280, 366, 5, 48, 0);
-INSERT INTO `item_latents` VALUES(18280, 56, 9, 48, 0);
-INSERT INTO `item_latents` VALUES(18285, 366, 45, 48, 0);
-INSERT INTO `item_latents` VALUES(18285, 60, 7, 48, 0);
-INSERT INTO `item_latents` VALUES(18286, 366, 4, 48, 0);
-INSERT INTO `item_latents` VALUES(18286, 60, 9, 48, 0);
-INSERT INTO `item_latents` VALUES(18291, 366, 86, 48, 0);
-INSERT INTO `item_latents` VALUES(18291, 60, 7, 48, 0);
-INSERT INTO `item_latents` VALUES(18292, 366, 4, 48, 0);
-INSERT INTO `item_latents` VALUES(18292, 60, 9, 48, 0);
-INSERT INTO `item_latents` VALUES(18297, 366, 81, 48, 0);
-INSERT INTO `item_latents` VALUES(18297, 57, 7, 48, 0);
-INSERT INTO `item_latents` VALUES(18298, 366, 2, 48, 0);
-INSERT INTO `item_latents` VALUES(18298, 57, 9, 48, 0);
-INSERT INTO `item_latents` VALUES(18303, 366, 81, 48, 0);
-INSERT INTO `item_latents` VALUES(18303, 55, 7, 48, 0);
-INSERT INTO `item_latents` VALUES(18304, 366, 3, 48, 0);
-INSERT INTO `item_latents` VALUES(18304, 55, 9, 48, 0);
-INSERT INTO `item_latents` VALUES(18309, 366, 32, 48, 0);
-INSERT INTO `item_latents` VALUES(18309, 61, 7, 48, 0);
-INSERT INTO `item_latents` VALUES(18310, 366, 7, 48, 0);
-INSERT INTO `item_latents` VALUES(18310, 61, 9, 48, 0);
-INSERT INTO `item_latents` VALUES(18315, 366, 75, 48, 0);
-INSERT INTO `item_latents` VALUES(18315, 56, 7, 48, 0);
-INSERT INTO `item_latents` VALUES(18316, 366, 3, 48, 0);
-INSERT INTO `item_latents` VALUES(18316, 56, 9, 48, 0);
-INSERT INTO `item_latents` VALUES(18321, 366, 28, 48, 0);
-INSERT INTO `item_latents` VALUES(18321, 58, 7, 48, 0);
-INSERT INTO `item_latents` VALUES(18322, 366, 5, 48, 0);
-INSERT INTO `item_latents` VALUES(18322, 58, 9, 48, 0);
-INSERT INTO `item_latents` VALUES(18327, 366, 54, 48, 0);
-INSERT INTO `item_latents` VALUES(18327, 54, 7, 48, 0);
-INSERT INTO `item_latents` VALUES(18328, 366, 3, 48, 0);
-INSERT INTO `item_latents` VALUES(18328, 54, 9, 48, 0);
-INSERT INTO `item_latents` VALUES(18333, 366, 38, 48, 0);
-INSERT INTO `item_latents` VALUES(18333, 54, 7, 48, 0);
-INSERT INTO `item_latents` VALUES(18334, 366, 3, 48, 0);
-INSERT INTO `item_latents` VALUES(18334, 54, 9, 48, 0);
-INSERT INTO `item_latents` VALUES(18339, 14, 1, 48, 0);
-INSERT INTO `item_latents` VALUES(18339, 55, 7, 48, 0);
-INSERT INTO `item_latents` VALUES(18340, 14, 2, 48, 0);
-INSERT INTO `item_latents` VALUES(18340, 55, 9, 48, 0);
-INSERT INTO `item_latents` VALUES(18341, 14, 3, 48, 0);
+-- -------------------------------------------------------
+-- Relic Weapons (In Dynamis)
+-- -------------------------------------------------------
+
+-- Militant Knuckles  
+INSERT INTO `item_latents` VALUES(18261, 366, 15, 48, 0); -- DMG:+16
+INSERT INTO `item_latents` VALUES(18261, 59, 7, 48, 0); -- [Element: Water]+7
+
+-- Dynamis Knuckles  
+INSERT INTO `item_latents` VALUES(18262, 366, 2, 48, 0); -- DMG:+18
+INSERT INTO `item_latents` VALUES(18262, 59, 9, 48, 0); -- [Element: Water]+9
+
+-- Malefic Dagger  
+INSERT INTO `item_latents` VALUES(18267, 366, 22, 48, 0); -- DMG:+23
+INSERT INTO `item_latents` VALUES(18267, 61, 7, 48, 0); -- [Element: Dark]+7
+
+-- Dynamis Dagger  
+INSERT INTO `item_latents` VALUES(18268, 366, 3, 48, 0); -- DMG:+26
+INSERT INTO `item_latents` VALUES(18268, 61, 9, 48, 0); -- [Element: Dark]+9
+
+-- Glyptic Sword  
+INSERT INTO `item_latents` VALUES(18273, 366, 39, 48, 0); -- DMG:+40
+INSERT INTO `item_latents` VALUES(18273, 58, 7, 48, 0); -- [Element: Thunder]+7
+
+-- Dynamis Sword  
+INSERT INTO `item_latents` VALUES(18274, 366, 8, 48, 0); -- DMG:48 
+INSERT INTO `item_latents` VALUES(18274, 58, 9, 48, 0); -- [Element: Thunder]+9
+
+-- Gilded Blade  
+INSERT INTO `item_latents` VALUES(18279, 366, 79, 48, 0); -- DMG:80 
+INSERT INTO `item_latents` VALUES(18279, 56, 7, 48, 0); -- [Element: Air]+7
+
+-- Dynamis Blade  
+INSERT INTO `item_latents` VALUES(18280, 366, 5, 48, 0); -- DMG:85 
+INSERT INTO `item_latents` VALUES(18280, 56, 9, 48, 0); -- [Element: Air]+9
+
+-- Leonine Axe  
+INSERT INTO `item_latents` VALUES(18285, 366, 45, 48, 0); -- DMG:46 
+INSERT INTO `item_latents` VALUES(18285, 60, 7, 48, 0); -- [Element: Light]+7
+
+-- Dynamis Axe  
+INSERT INTO `item_latents` VALUES(18286, 366, 4, 48, 0); -- DMG:50
+INSERT INTO `item_latents` VALUES(18286, 60, 9, 48, 0); -- [Element: Light]+9
+
+-- Agonal Bhuj  
+INSERT INTO `item_latents` VALUES(18291, 366, 86, 48, 0); -- DMG:87 
+INSERT INTO `item_latents` VALUES(18291, 60, 7, 48, 0); -- [Element: Light]+7
+
+-- Dynamis Bhuj  
+INSERT INTO `item_latents` VALUES(18292, 366, 4, 48, 0); -- DMG:93 
+INSERT INTO `item_latents` VALUES(18292, 60, 9, 48, 0); -- [Element: Light]+9
+
+-- Hotspur Lance  
+INSERT INTO `item_latents` VALUES(18297, 366, 81, 48, 0); -- DMG:82 
+INSERT INTO `item_latents` VALUES(18297, 57, 7, 48, 0); -- [Element: Earth]+7
+
+-- Dynamis Lance  
+INSERT INTO `item_latents` VALUES(18298, 366, 2, 48, 0); -- DMG:84 
+INSERT INTO `item_latents` VALUES(18298, 57, 9, 48, 0); -- [Element: Earth]+9
+
+-- Memento Scythe  
+INSERT INTO `item_latents` VALUES(18303, 366, 81, 48, 0); -- DMG:82 
+INSERT INTO `item_latents` VALUES(18303, 55, 7, 48, 0); -- [Element: Ice]+7
+
+-- Dynamis Scythe  
+INSERT INTO `item_latents` VALUES(18304, 366, 3, 48, 0); -- DMG:85 
+INSERT INTO `item_latents` VALUES(18304, 55, 9, 48, 0); -- [Element: Ice]+9
+
+-- Mimizuku  
+INSERT INTO `item_latents` VALUES(18309, 366, 32, 48, 0); -- DMG:33 
+INSERT INTO `item_latents` VALUES(18309, 61, 7, 48, 0); -- [Element: Dark]+7
+
+-- Rogetsu  
+INSERT INTO `item_latents` VALUES(18310, 366, 7, 48, 0); -- DMG:40 
+INSERT INTO `item_latents` VALUES(18310, 61, 9, 48, 0); -- [Element: Dark]+9
+
+-- Hayatemaru  
+INSERT INTO `item_latents` VALUES(18315, 366, 75, 48, 0); -- DMG:76 
+INSERT INTO `item_latents` VALUES(18315, 56, 7, 48, 0); -- [Element: Air]+7
+
+-- Oboromaru  
+INSERT INTO `item_latents` VALUES(18316, 366, 3, 48, 0); -- DMG:79 
+INSERT INTO `item_latents` VALUES(18316, 56, 9, 48, 0); -- [Element: Air]+9
+
+-- Battering Maul  
+INSERT INTO `item_latents` VALUES(18321, 366, 28, 48, 0); -- DMG:29 
+INSERT INTO `item_latents` VALUES(18321, 58, 7, 48, 0); -- [Element: Thunder]+7
+
+-- Dynamis Maul  
+INSERT INTO `item_latents` VALUES(18322, 366, 5, 48, 0); -- DMG:35 
+INSERT INTO `item_latents` VALUES(18322, 58, 9, 48, 0); -- [Element: Thunder]+9
+
+-- Sage's Staff  
+INSERT INTO `item_latents` VALUES(18327, 366, 54, 48, 0); -- DMG:55 
+INSERT INTO `item_latents` VALUES(18327, 54, 7, 48, 0); -- [Element: Fire]+7
+
+-- Dynamis Staff  
+INSERT INTO `item_latents` VALUES(18328, 366, 3, 48, 0); -- DMG:58 
+INSERT INTO `item_latents` VALUES(18328, 54, 9, 48, 0); -- [Element: Fire]+9
+
+-- Marksman Gun  
+INSERT INTO `item_latents` VALUES(18333, 366, 38, 48, 0); -- DMG:39 
+INSERT INTO `item_latents` VALUES(18333, 54, 7, 48, 0); -- [Element: Fire]+7
+
+-- Dynamis Gun  
+INSERT INTO `item_latents` VALUES(18334, 366, 3, 48, 0); -- DMG:42 
+INSERT INTO `item_latents` VALUES(18334, 54, 9, 48, 0); -- [Element: Fire]+9
+
+-- Pyrrhic Horn  
+INSERT INTO `item_latents` VALUES(18339, 14, 1, 48, 0); -- CHR+1
+INSERT INTO `item_latents` VALUES(18339, 55, 7, 48, 0); -- [Element: Ice]+7
+
+-- Dynamis Horn  
+INSERT INTO `item_latents` VALUES(18340, 14, 2, 48, 0); -- CHR+2
+INSERT INTO `item_latents` VALUES(18340, 55, 9, 48, 0); -- [Element: Ice]+9
+
+-- Millennium Horn  
+INSERT INTO `item_latents` VALUES(18341, 14, 3, 48, 0); -- CHR+3
 -- INSERT INTO `item_latents` VALUES(18341, 55, 9, 48, 0); -- Needs a way to give +2 to all songs, once BRD is straightened out.
-INSERT INTO `item_latents` VALUES(18345, 366, 67, 48, 0);
-INSERT INTO `item_latents` VALUES(18345, 59, 7, 48, 0);
-INSERT INTO `item_latents` VALUES(18346, 366, 3, 48, 0);
-INSERT INTO `item_latents` VALUES(18346, 59, 9, 48, 0);
-INSERT INTO `item_latents` VALUES(15067, 1, 21, 48, 0);
-INSERT INTO `item_latents` VALUES(15068, 1, 6, 48, 0);
-INSERT INTO `item_latents` VALUES(15069, 385, 200, 48, 0);
+
+-- Wolver Bow  
+INSERT INTO `item_latents` VALUES(18345, 366, 67, 48, 0); -- DMG:68 
+INSERT INTO `item_latents` VALUES(18345, 59, 7, 48, 0); -- [Element: Water]+7
+
+-- Dynamis Bow  
+INSERT INTO `item_latents` VALUES(18346, 366, 3, 48, 0); -- DMG:71 
+INSERT INTO `item_latents` VALUES(18346, 59, 9, 48, 0); -- [Element: Water]+9
+
+-- Bulwark Shield  
+INSERT INTO `item_latents` VALUES(15067, 1, 21, 48, 0); -- DEF:22
+
+-- Dynamis Shield  
+INSERT INTO `item_latents` VALUES(15068, 1, 6, 48, 0); -- DEF:28
+
+-- Ancile  
+INSERT INTO `item_latents` VALUES(15069, 385, 200, 48, 0); -- Augments "Shield Bash"
+
+-- -------------------------------------------------------
+-- Halting Stole       
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(16306, 25, 20, 13, 4); -- accuracy+20 while under status paralysis
+
+-- -------------------------------------------------------
+-- Colossus's Earring         
+-- -------------------------------------------------------
+-- NEED latentID# INSERT INTO `item_latents` VALUES(16058, 161, -1, ??, 0); -- physical damage -2% during light weather (has -1% normally)
+
+-- -------------------------------------------------------
+-- Aesir Ear Pendant        
+-- -------------------------------------------------------
+-- NEED modID# & latentID# INSERT INTO `item_latents` VALUES(16057, ??, 6, ??, 0); -- conserve tp+6 during dark weather
+
+-- -------------------------------------------------------
+-- Fatality Belt        
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15955, 421, 2, 13, 44); -- critical hit damage 2% under status mighty strikes (war)
+INSERT INTO `item_latents` VALUES(15955, 421, 2, 13, 48); -- critical hit damage 2% under status chainspell (rdm)
+INSERT INTO `item_latents` VALUES(15955, 421, 2, 13, 49); -- critical hit damage 2% under status perfect dodge (thf)
+INSERT INTO `item_latents` VALUES(15955, 421, 2, 13, 50); -- critical hit damage 2% under status invincible (pld)
+INSERT INTO `item_latents` VALUES(15955, 421, 2, 13, 51); -- critical hit damage 2% under status blood weapon (drk)
+-- NEED STATUS # INSERT INTO `item_latents` VALUES(15955, 421, 2, 13, ??); -- critical hit damage 2% under status familiar (bst)
+INSERT INTO `item_latents` VALUES(15955, 421, 2, 13, 52); -- critical hit damage 2% under status soul voice (brd)
+INSERT INTO `item_latents` VALUES(15955, 421, 2, 13, 53); -- critical hit damage 2% under status eagle eye shot (rng)
+INSERT INTO `item_latents` VALUES(15955, 421, 2, 13, 54); -- critical hit damage 2% under status meikyo shisui (sam)
+-- NEED STATUS # INSERT INTO `item_latents` VALUES(15955, 421, 2, 13, ??); -- critical hit damage 2% under status mijin gakure (nin)
+INSERT INTO `item_latents` VALUES(15955, 421, 2, 13, 126); -- critical hit damage 2% under status spirit surge (drg)
+INSERT INTO `item_latents` VALUES(15955, 421, 2, 13, 163); -- critical hit damage 2% under status azure lore (blu)
+-- NEED STATUS # INSERT INTO `item_latents` VALUES(15955, 421, 2, 13, ??); -- critical hit damage 2% under status wild card (cor)
+INSERT INTO `item_latents` VALUES(15955, 421, 2, 13, 376); -- critical hit damage 2% under status trance (dnc)
+
+-- -------------------------------------------------------
+-- Nyx Gorget        
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(11587, 25, 12, 13, 75); -- accuracy+12 under status arcane circle
+
+-- -------------------------------------------------------
+-- Colossus's Torque         
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(11590, 112, 3, 36, 0); -- Healing magic skill +10 On Lightsdays
+INSERT INTO `item_latents` VALUES(11590, 113, 3, 36, 0); -- Enhancing magic skill +10 On Lightsdays
+
+-- -------------------------------------------------------
+-- Colossus's Mantle         
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(11547, 163, -1, 36, 0); -- Magic damage taken -3% On Lightsdays
+
+-- -------------------------------------------------------
+-- Beguiling Collar         
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(11585, 27, -3, 0, 100); -- Boosts enmity decrease when taking damage (used additional -3)
+
+-- -------------------------------------------------------
+-- Aesir Torque          
+-- -------------------------------------------------------
+-- NEED latentID# INSERT INTO `item_latents` VALUES(11589, 115, 3, ??, 0); -- Elemental magic skill +7 On Darksdays
+-- NEED latentID# INSERT INTO `item_latents` VALUES(11589, 116, 3, ??, 0); -- Dark magic skill +7 On Darksdays
+
+-- -------------------------------------------------------
+-- Aesir Mantle         
+-- -------------------------------------------------------
+-- NEED latentID# INSERT INTO `item_latents` VALUES(11546, 288, 1, ??, 0); -- Double Attack +2% On Darksdays
+
+-- -------------------------------------------------------
+-- Vampire Earring           
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(14783, 8, 4, 26, 1); -- STR+4 during Nighttime
+INSERT INTO `item_latents` VALUES(14783, 10, 4, 26, 1); -- VIT+4 during Nighttime
+
+-- -------------------------------------------------------
+-- Ladybug Earring           
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15996, 24, 3, 26, 0); -- Ranged Attack+3 during Daytime
+
+-- -------------------------------------------------------
+-- Ladybug Earring +1        
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15997, 24, 4, 26, 0); -- Ranged Attack+4 during Daytime
+
+-- -------------------------------------------------------
+-- Ladybug Ring             
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15815, 2, 20, 26, 0); -- HP+20 during Daytime
+INSERT INTO `item_latents` VALUES(15815, 5, 20, 26, 0); -- MP+20 during Daytime
+
+-- -------------------------------------------------------
+-- Ladybug Ring +1        
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15816, 2, 20, 26, 0); -- HP+20 during Daytime
+INSERT INTO `item_latents` VALUES(15816, 5, 20, 26, 0); -- MP+20 during Daytime
+
+-- -------------------------------------------------------
+-- Mandraguard         
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(10807, 370, 1, 26, 0); -- Regen 1/tick during Daytime
+
+-- -------------------------------------------------------
+-- Dinner Jacket       
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(11355, 14, 1, 26, 1); -- CHR+1 during Nighttime
+INSERT INTO `item_latents` VALUES(11355, 27, -1, 0, 75); -- Enmity-1 when HP <75%
+
+-- -------------------------------------------------------
+-- Dinner Hose         
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(16378, 14, 1, 26, 1); -- CHR+1 during Nighttime
+INSERT INTO `item_latents` VALUES(16378, 27, -1, 0, 75); -- Enmity-1 when HP <75%
