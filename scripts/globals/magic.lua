@@ -490,10 +490,6 @@ end;
 
 --Applies resistance for additional effects
 function applyResistanceAddEffect(player,target,element,bonus)
-    -- resist everything if magic shield is active
-    if(target:hasStatusEffect(EFFECT_MAGIC_SHIELD, 0)) then
-        return 0;
-    end
 
     local resist = 1.0;
     local magicaccbonus = 0;
@@ -923,13 +919,6 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
 
 	dmg = math.floor(dmg);
 
-	-- Applies "Damage Taken" and "Magic Damage Taken" mods.
-	-- The formulas look crazy because SE.
-	-- Note that MOD_DMGMAGIC is stored in item_mods in amount/256 format
-
-    dmg = utils.dmgTaken(target, dmg);
-    dmg = utils.magicDmgTaken(target, dmg);
-
 	-- print(affinityBonus);
 	-- print(speciesReduction);
 	-- print(dayWeatherBonus);
@@ -1017,13 +1006,6 @@ function addBonusesAbility(caster, ele, target, dmg, params)
     end
 
 	dmg = math.floor(dmg * mab);
-
-	-- Applies "Damage Taken" and "Magic Damage Taken" mods.
-	-- The formulas look crazy because SE.
-	-- Note that MOD_DMGMAGIC is stored in item_mods in amount/256 format
-
-    dmg = utils.dmgTaken(target, dmg);
-    dmg = utils.magicDmgTaken(target, dmg);
 
 	-- print(affinityBonus);
 	-- print(speciesReduction);
