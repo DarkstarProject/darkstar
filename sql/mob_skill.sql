@@ -1033,21 +1033,21 @@ INSERT INTO `mob_skill` VALUES (263,98,818,'Cyclotail', 1, 10.0, 2000, 1500, 4, 
 INSERT INTO `mob_skill` VALUES (246,115,246,'Shackled_Fists', 0, 7.0, 2000, 0, 4, 1, 0, 0);
 INSERT INTO `mob_skill` VALUES (247,115,247,'Foxfire', 4, 10.0, 2000, 0, 4, 1, 0, 0);
 INSERT INTO `mob_skill` VALUES (248,115,248,'Grim_Halo', 1, 10.0, 2000, 0, 4, 1, 0, 0);
-INSERT INTO `mob_skill` VALUES (249,115,249,'Netherspikes', 4, 10.0, 2000, 0, 4, 1, 0, 0);
-INSERT INTO `mob_skill` VALUES (250,115,250,'Carnal_Nightmare', 1, 10.0, 2000, 0, 4, 1, 0, 0);
-INSERT INTO `mob_skill` VALUES (251,115,251,'Dancing_Chains', 1, 10.0, 2000, 0, 4, 1, 0, 0);
-INSERT INTO `mob_skill` VALUES (252,115,252,'Aegis_Schism', 0, 7.0, 2000, 0, 4, 1, 0, 0);
-INSERT INTO `mob_skill` VALUES (253,115,253,'Barbed_Crescent', 0, 7.0, 2000, 0, 4, 1, 0, 0);
+INSERT INTO `mob_skill` VALUES (249,115,239,'Netherspikes', 4, 10.0, 2000, 0, 4, 1, 0, 0);
+INSERT INTO `mob_skill` VALUES (250,115,241,'Carnal_Nightmare', 1, 10.0, 2000, 0, 4, 1, 0, 0);
+INSERT INTO `mob_skill` VALUES (251,115,243,'Dancing_Chains', 1, 10.0, 2000, 0, 4, 1, 0, 0);
+INSERT INTO `mob_skill` VALUES (252,115,242,'Aegis_Schism', 0, 7.0, 2000, 0, 4, 1, 0, 0);
+INSERT INTO `mob_skill` VALUES (253,115,244,'Barbed_Crescent', 0, 7.0, 2000, 0, 4, 1, 0, 0);
 
 -- Hydra Fomor
-INSERT INTO `mob_skill` VALUES (246,359,246,'Shackled_Fists', 0, 7.0, 2000, 0, 4, 1, 0, 0);
-INSERT INTO `mob_skill` VALUES (247,359,247,'Foxfire', 4, 10.0, 2000, 0, 4, 1, 0, 0);
-INSERT INTO `mob_skill` VALUES (248,359,248,'Grim_Halo', 1, 10.0, 2000, 0, 4, 1, 0, 0);
-INSERT INTO `mob_skill` VALUES (249,359,249,'Netherspikes', 4, 10.0, 2000, 0, 4, 1, 0, 0);
-INSERT INTO `mob_skill` VALUES (250,359,250,'Carnal_Nightmare', 1, 10.0, 2000, 0, 4, 1, 0, 0);
-INSERT INTO `mob_skill` VALUES (251,359,251,'Dancing_Chains', 1, 10.0, 2000, 0, 4, 1, 0, 0);
-INSERT INTO `mob_skill` VALUES (252,359,252,'Aegis_Schism', 0, 7.0, 2000, 0, 4, 1, 0, 0);
-INSERT INTO `mob_skill` VALUES (253,359,253,'Barbed_Crescent', 0, 7.0, 2000, 0, 4, 1, 0, 0);
+INSERT INTO `mob_skill` VALUES (246,359,246,'Shackled_Fists', 0, 7.0, 2000, 0, 4, 1, 0, 0); -- animation wont play?
+INSERT INTO `mob_skill` VALUES (247,359,247,'Foxfire', 4, 10.0, 2000, 0, 4, 1, 0, 0); -- animation wont play?
+INSERT INTO `mob_skill` VALUES (248,359,248,'Grim_Halo', 1, 10.0, 2000, 0, 4, 1, 0, 0); -- animation wont play?
+INSERT INTO `mob_skill` VALUES (249,359,239,'Netherspikes', 4, 10.0, 2000, 0, 4, 1, 0, 0); -- ok
+INSERT INTO `mob_skill` VALUES (250,359,241,'Carnal_Nightmare', 1, 10.0, 2000, 0, 4, 1, 0, 0); -- ok
+INSERT INTO `mob_skill` VALUES (251,359,243,'Dancing_Chains', 1, 10.0, 2000, 0, 4, 1, 0, 0); -- ok
+INSERT INTO `mob_skill` VALUES (252,359,242,'Aegis_Schism', 0, 7.0, 2000, 0, 4, 1, 0, 0); -- ok
+INSERT INTO `mob_skill` VALUES (253,359,244,'Barbed_Crescent', 0, 7.0, 2000, 0, 4, 1, 0, 0); -- ok
 
 -- taurus
 INSERT INTO `mob_skill` VALUES (242,240,851,'Triclip', 0, 7.0, 2000, 1500, 4, 0, 0, 0);

@@ -119,6 +119,7 @@ function onEventFinish(player,csid,option)
 		player:addFame(JEUNO,30);
 		player:tradeComplete();
 		player:completeQuest(JEUNO,TheGobbieBag[1]);
+		player:messageSpecial(INVENTORY_INCREASED);
 	elseif(csid == 10056) then
 		player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",12,true)
 	end

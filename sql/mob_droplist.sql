@@ -16511,10 +16511,8 @@ INSERT INTO `mob_droplist` VALUES(2733, 4, 834, 0);
 INSERT INTO `mob_droplist` VALUES(2733, 0, 2920, 12);
 INSERT INTO `mob_droplist` VALUES(2733, 4, 4368, 0);
 INSERT INTO `mob_droplist` VALUES(2733, 0, 17868, 26);
-INSERT INTO `mob_droplist` VALUES(2734, 0, 505, 42);
-INSERT INTO `mob_droplist` VALUES(2734, 0, 531, 54);
-INSERT INTO `mob_droplist` VALUES(2734, 0, 14676, 40);
-INSERT INTO `mob_droplist` VALUES(2734, 0, 14782, 27);
+INSERT INTO `mob_droplist` VALUES(2734, 0, 505, 100);
+INSERT INTO `mob_droplist` VALUES(2734, 0, 531, 100);
 INSERT INTO `mob_droplist` VALUES(2735, 0, 624, 8);
 INSERT INTO `mob_droplist` VALUES(2735, 0, 888, 34);
 INSERT INTO `mob_droplist` VALUES(2735, 0, 4360, 8);
@@ -31617,7 +31615,13 @@ INSERT INTO `mob_droplist` VALUES(4369, 0, 641, 61);
 INSERT INTO `mob_droplist` VALUES(4369, 0, 3541, 10);
 INSERT INTO `mob_droplist` VALUES(4369, 0, 3543, 10);
 INSERT INTO `mob_droplist` VALUES(4370, 0, 494, 100);
+INSERT INTO `mob_droplist` VALUES(4370, 0, 494, 100);
+INSERT INTO `mob_droplist` VALUES(4370, 0, 494, 50);
+INSERT INTO `mob_droplist` VALUES(4370, 0, 494, 25);
 INSERT INTO `mob_droplist` VALUES(4371, 0, 495, 100);
+INSERT INTO `mob_droplist` VALUES(4371, 0, 495, 100);
+INSERT INTO `mob_droplist` VALUES(4371, 0, 495, 50);
+INSERT INTO `mob_droplist` VALUES(4371, 0, 495, 25);
 INSERT INTO `mob_droplist` VALUES(4372, 0, 12562, 39);
 INSERT INTO `mob_droplist` VALUES(4372, 0, 17567, 47);
 INSERT INTO `mob_droplist` VALUES(4372, 0, 1315, 40);
@@ -32139,6 +32143,8 @@ INSERT INTO `mob_droplist` VALUES(4477, 0,2718, 2);
 INSERT INTO `mob_droplist` VALUES(4477, 0,2723, 2);
 INSERT INTO `mob_droplist` VALUES(4477, 0, 3495, 5);
 INSERT INTO `mob_droplist` VALUES(4477, 0, 5896, 83);
+INSERT INTO `mob_droplist` VALUES(4478, 0, 14676, 73); -- Wiki seems to be wrong. Both items should = to 100%.
+INSERT INTO `mob_droplist` VALUES(4478, 0, 14782, 27);
 
 
 

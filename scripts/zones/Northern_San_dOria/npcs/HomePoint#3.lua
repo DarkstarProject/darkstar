@@ -1,11 +1,13 @@
 -----------------------------------
--- Area: Windurst Woods
--- NPC: Home Point
+-- Area: Northern San dOria
+-- NPC:  HomePoint#3
+-- @pos 70 -0.2 10 231
+-----------------------------------
+package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
-require("scripts/zones/Windurst_Woods/TextIDs");
+require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -23,7 +25,7 @@ if (HOMEPOINT_HEAL == 1) then
 	player:addHP(player:getMaxHP());
 	player:addMP(player:getMaxMP());
 end
-player:startEvent(0x2711);
+player:startEvent(0x21fe);
 end; 
 
 -----------------------------------
@@ -42,11 +44,13 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-if (option == 0) then	
-	player:setHomePoint();
-	player:messageSpecial(HOMEPOINT_SET);
-end
-end;
+	if(csid == 0x21fe) then
+		if (option == 1) then	
+			player:setHomePoint();
+			player:messageSpecial(HOMEPOINT_SET);
+		end
+	end
+end;	
 
 
 
