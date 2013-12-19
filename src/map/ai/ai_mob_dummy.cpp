@@ -1636,7 +1636,9 @@ bool CAIMobDummy::TryDeaggro()
         m_PBattleTarget->animation == ANIMATION_CHOCOBO ||
 		m_PBattleTarget->loc.zone->GetID() != m_PMob->loc.zone->GetID())
 	{
-		return true;
+        m_PMob->PEnmityContainer->Clear(m_PBattleTarget->id);
+        m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
+		return TryDeaggro();
 	}
 
 	bool tryDetectDeaggro = false;
