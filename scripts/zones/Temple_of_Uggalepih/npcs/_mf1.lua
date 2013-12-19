@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
 -- NPC:  Granite Door
--- Door blocked by Temple Guardian
+-- Notes: Door blocked by Temple Guardian
 -- @pos -62 0 -99 159
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
@@ -25,7 +25,9 @@ function onTrigger(player,npc)
 	if player:getXPos() >= -59 then
 		return -1;
 	else
-		player:messageSpecial(PROTECTED_BY_UNKNOWN_FORCE);
+		if( npc:getAnimation() == 9) then
+			player:messageSpecial(PROTECTED_BY_UNKNOWN_FORCE);
+		end
 
 		local guardian = GetMobByID(17428494);
 

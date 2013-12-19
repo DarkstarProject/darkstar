@@ -15,5 +15,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	GetNPCByID(17428954):openDoor(300); -- 5min
+	GetNPCByID(17428955):openDoor(300); -- 5min
 end;

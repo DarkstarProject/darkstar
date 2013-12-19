@@ -1,11 +1,11 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
 -- NPC:  Granite Door
--- @zone 159
--- @pos 340 0 329 159
+-- @pos 340 0.1 329 159
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------
+
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 require("scripts/zones/Temple_of_Uggalepih/TextIDs");
@@ -16,9 +16,9 @@ require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(trade:hasItemQty(1143,1) and trade:getItemCount() == 1) then
+	if(trade:hasItemQty(1143,1) and trade:getItemCount() == 1 and player:getZPos() < 332) then -- Trade cursed key
 		if(player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 4) then
-			player:startEvent(0x0017);
+			player:startEvent(0x0019);
 		else
 			player:messageSpecial(NOTHING_HAPPENS);
 		end
@@ -35,9 +35,7 @@ function onTrigger(player,npc)
 	if(player:getZPos() < 332) then
 		player:messageSpecial(DOOR_LOCKED);
 	else
-		local npc = npc:getID();
-		GetNPCByID(npc):openDoor(2);
-		player:setPos(340,0,333,191);
+		player:startEvent(0x001a);
 	end
 	
 end; 
@@ -67,6 +65,8 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(BOOK_OF_THE_GODS);
 		player:messageSpecial(KEYITEM_OBTAINED,BOOK_OF_THE_GODS);
 		player:setVar("MissionStatus",5);
+	elseif(csid == 0x0019) then
+		player:startEvent(0x0017);
 	end
 	
 end;

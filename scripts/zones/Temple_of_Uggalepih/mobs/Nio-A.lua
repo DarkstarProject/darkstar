@@ -2,6 +2,7 @@
 -- Area: Temple of Uggalepih
 -- NPC:  Nio A
 -----------------------------------
+
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 

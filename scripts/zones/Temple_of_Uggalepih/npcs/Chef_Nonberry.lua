@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Temple of Uggalepih
---   NPC: Chef Nonberry
+--  NPC:  Chef Nonberry
 --  Type: Quest NPC
--- @zone: 159
---  @pos: -135.225 -1 -92.232
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -135.225 -1 -92.232 159
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------

@@ -2,11 +2,13 @@
 -- Area: Temple of Uggalepih
 -- NPC:  Tome of Magic
 -- Involved In Windurst Mission 7-2 (Optional Dialogue)
--- @zone 159
 -- @pos 346 0 343 159 <many>
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/zones/Temple_of_Uggalepih/TextIDs");
+
 -----------------------------------
 
 -----------------------------------

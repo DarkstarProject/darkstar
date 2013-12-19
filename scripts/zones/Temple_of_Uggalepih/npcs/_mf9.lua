@@ -1,7 +1,7 @@
 -----------------------------------
--- Area: Temple of Uggalepih
--- NPC:  Granite Door
--- West Granite Door in Manipulator Room (opens with Prelate Key)
+-- Area:  Temple of Uggalepih
+-- NPC:   _mf9 (Granite Door)
+-- Notes: Opens with Prelate Key
 -- @pos -60 -8 -99 159
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
 	if(trade:hasItemQty(1137,1) and trade:getItemCount() == 1) then -- Trade Prelate Key
 		player:tradeComplete();
 		player:messageSpecial(YOUR_KEY_BREAKS,0000,1137);
-		GetNPCByID(17428963):openDoor();
+		npc:openDoor(6.5);
 	end
 	
 end; 
@@ -32,7 +32,7 @@ function onTrigger(player,npc)
 	if(player:getXPos() > -62) then
 		player:messageSpecial(THE_DOOR_IS_LOCKED,1137);
 	else
-		GetNPCByID(17428963):openDoor();
+		npc:openDoor();
 	end
 	
 	return 1;

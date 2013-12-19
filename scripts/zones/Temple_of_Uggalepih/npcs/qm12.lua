@@ -9,12 +9,12 @@ package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
 end;
 
 -----------------------------------

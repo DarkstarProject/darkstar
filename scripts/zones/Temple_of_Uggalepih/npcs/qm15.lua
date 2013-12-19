@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
--- NPC:  ??? (Knight Stalker Quest)
+-- NPC:  ??? 
+-- Involved in Quest: Knight Stalker
 -- @pos 58 1 -70 159
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
