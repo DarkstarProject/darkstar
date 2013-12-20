@@ -60,3 +60,22 @@ function onMobDeath(mob, killer)
 	SetServerVariable("Old_Prof_Spawn_Location", rand);
 	
 end;
+
+-----------------------------------
+-- OnMobDespawn
+-----------------------------------
+function onMobDespawn( mob )
+
+	local OP_Mariselle = mob:getID();
+
+	for i = OP_Mariselle+1, OP_Mariselle+2 do
+		if (GetMobAction(i) ~= 0) then
+			DespawnMob(i);
+		end
+	end
+	
+  -- Set random variable for determining Old Prof. Mariselle's next spawn location
+	local rand = math.random((2),(7));
+	SetServerVariable("Old_Prof_Spawn_Location", rand);
+	
+end;

@@ -1,7 +1,7 @@
 -----------------------------------
--- Area: Western Altepa Desert
--- NPC:  _3h5 (Ruby Column)
--- Mechanism for Altepa Gate
+-- Area:  Western Altepa Desert
+-- NPC:   _3h5 (Ruby Column)
+-- Notes: Mechanism for Altepa Gate
 -- @pos 59 10 -104 125
 -----------------------------------
 package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
@@ -22,32 +22,30 @@ end;
 
 function onTrigger(player,npc)
 
-	local Ruby = GetNPCByID(17289743):getAnimation();
-	local Topaz = GetNPCByID(17289744):getAnimation();
-	local Emerald = GetNPCByID(17289745):getAnimation();
-	local Sapphire = GetNPCByID(17289746):getAnimation();
-	printf("Ruby: %u",Ruby);
-	printf("Topaz: %u",Topaz);
-	printf("Emerald: %u",Emerald);
-	printf("Sapphire: %u",Sapphire);
+	local RubyID = npc:getID();
+	local Ruby = npc:getAnimation();
+	local Topaz = GetNPCByID(RubyID+1):getAnimation();
+	local Emerald = GetNPCByID(RubyID+2):getAnimation();
+	local Sapphire = GetNPCByID(RubyID+3):getAnimation();
+
 	if(Ruby ~= 8) then
-		GetNPCByID(17289743):setAnimation(8);
-		GetNPCByID(17289739):setAnimation(8);
-			else
-				player:messageSpecial(DOES_NOT_RESPOND);
+		npc:setAnimation(8);
+		GetNPCByID(RubyID-4):setAnimation(8);
+	else
+		player:messageSpecial(DOES_NOT_RESPOND);
 	end
 
 	if(Emerald == 8 and Sapphire == 8 and Topaz == 8) then
-		rand = math.random(15,30);
-		randT = rand * 60;
+		local rand = math.random(15,30);
+		local randT = rand * 60;
 
 		-- Add timer for the door
-		GetNPCByID(17289738):openDoor(randT);
-		-- Add same timer for the 4 columns
-		GetNPCByID(17289739):openDoor(randT);
-		GetNPCByID(17289740):openDoor(randT);
-		GetNPCByID(17289741):openDoor(randT);
-		GetNPCByID(17289742):openDoor(randT);
+		GetNPCByID(RubyID-5):openDoor(randT);
+		-- Add same timer for the 4 center lights
+		GetNPCByID(RubyID-4):openDoor(randT);
+		GetNPCByID(RubyID-3):openDoor(randT);
+		GetNPCByID(RubyID-2):openDoor(randT);
+		GetNPCByID(RubyID-1):openDoor(randT);
 	end
 end;
 

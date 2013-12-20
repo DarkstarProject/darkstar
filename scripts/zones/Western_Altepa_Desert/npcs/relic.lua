@@ -5,6 +5,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
 -----------------------------------
+
 require("scripts/zones/Western_Altepa_Desert/TextIDs");
 
 -----------------------------------

@@ -5,6 +5,7 @@
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
 -----------------------------------
+
 require("scripts/zones/North_Gustaberg/TextIDs");
 
 -----------------------------------

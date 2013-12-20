@@ -24,7 +24,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS");
+	local thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS");
 	
 	if(thickAsThievesGamblingCS == 5) then
 		SpawnMob(17211848,120):updateEnmity(player);

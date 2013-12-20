@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
--- NPC:  ???
+-- NPC:  qm2 (???)
 -- Involved In Quest: 20 in Pirate Years
--- @zone 114
--- @pos 
+-- @pos 47.852 -7.808 403.391 114
 -----------------------------------
 package.loaded["scripts/zones/Eastern_Altepa_Desert/TextIDs"] = nil;
 -----------------------------------

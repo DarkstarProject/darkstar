@@ -25,7 +25,7 @@ end;
 
 function onTrigger(player,npc)
 
-Hearts = player:getQuestStatus(BASTOK,HEARTS_OF_MYTHRIL);
+	local Hearts = player:getQuestStatus(BASTOK,HEARTS_OF_MYTHRIL);
 
 	if (Hearts == QUEST_ACCEPTED) then
 		player:startEvent(0x000b);

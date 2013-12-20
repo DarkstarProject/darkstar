@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
--- NPC:  ???
+-- NPC:  qm2 (???)
 -- Involved in Mission: Bastok 6-1
 -- @pos -325 0 -111 125
 -----------------------------------

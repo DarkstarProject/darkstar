@@ -17,8 +17,8 @@ require("scripts/zones/North_Gustaberg/TextIDs");
 
 function onTrade(player,npc,trade)
 
-count = trade:getItemCount();
-BrassCanteen = trade:hasItemQty(493,1);
+	local count = trade:getItemCount();
+	local BrassCanteen = trade:hasItemQty(493,1);
 
 	if (BrassCanteen == true and count == 1) then
 		player:tradeComplete();

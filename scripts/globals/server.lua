@@ -29,10 +29,10 @@ function onServerStart()
 
 	-- Harvest Festival
 	if(isHalloweenEnabled() ~= 0) then
-		applyHalloweenNpcCostumes()
+		applyHalloweenNpcCostumes();
 	end
 
-	SetRegionalConquestOverseers()
+	SetRegionalConquestOverseers();
 
   -- Charybdis PH alternates, remove one
   DespawnMob(17498518);
@@ -68,8 +68,12 @@ function SetExplorerMoogles()
 
 	i = 1;
 	while i <= (table.getn(Moogles)) do
-		npc = GetNPCByID(Moogles[i]);
-		npc:setStatus(0);
+		local npc = GetNPCByID(Moogles[i]);
+		if(npc == nil) then
+			printf("'SetExplorerMoogles' Error trying to load undefined npc (%d)", Moogles[i]);
+		else
+			npc:setStatus(0);
+		end				
 		i = i + 1;
 	end
 
@@ -86,28 +90,32 @@ function SetFieldManual()
         17187511,17187512,17191493,17191494, -- West Ronfaure 2, East Ronfaure 2
         17195670,17195671,17199744,17199745, -- La Theine 2, Valkurm 2
         17199746,17203876,17203877,17207858, -- Valkurm 1, Jugner 2, Batallia 1
-        17207859,17212072,17212073,17212074, -- Batallia 1, North Gustaberg 3
+        17207859,17212103,17212104,17212105, -- Batallia 1, North Gustaberg 3
         17216140,17216141,17220158,17220159, -- South Gustaberg 2, Konschtat 2
         17224344,17224345,17228368,17228369, -- Pashhow 2, Rolanberry 2
         17232272,17232273,17232274,17232275, -- Beaucedine all 4
         17236337,17236338,17240507,17240508, -- Xarcabard 2, Cape Teriggan 2
-        17244644,17244645,17244646,17248814, -- Eastern Altepa 3, West Sarutabaruta 1
+        17244647,17244648,17244649,17248814, -- Eastern Altepa 3, West Sarutabaruta 1
         17248815,17248816,17253022,17253023, -- West Sarutabaruta 2, East Sarutabaruta 2
         17253024,17257067,17257068,17257069, -- East Sarutabaruta 1, Tahrongi 3
         17261192,17261193,17265284,17265285, -- Buburimu 2, Meriphataud Mountains 2
         17265286,17269253,17269254,17273410, -- Meriphataud Mountains 1, Sauromugue 2, Zi'Tah 1
         17273411,17277203,17277204,17281639, -- Zi'Tah 1, Ro'Maeve 2, Yuhtunga Jungle 1
         17281640,17281641,17281642,17285689, -- Yuhtunga Jungle 3, Yhoator Jungle 1
-        17285690,17285691,17289788,17289789, -- Yhoator Jungle 2, Western Altepa 2
-        17289790,17293768,17293769,17297484, -- Western Altepa 1, Qufim 2, Behemoth's Dominion 1
+        17285690,17285691,17289789,17289790, -- Yhoator Jungle 2, Western Altepa 2
+        17289791,17293768,17293769,17297484, -- Western Altepa 1, Qufim 2, Behemoth's Dominion 1
         17301585,17301586,17310097,17310098, -- Valley of Sorrows 2, Ru'Aun Gardens 2
         17310099,17310100,17310101,17310102, -- Ru'Aun Gardens all 4 (6 total)
 	}
 
 	i = 1;
 	while i <= (table.getn(FieldManuals)) do
-		npc = GetNPCByID(FieldManuals[i]);
-		npc:setStatus(0);
+		local npc = GetNPCByID(FieldManuals[i]);
+		if(npc == nil) then
+			printf("'SetFieldManual' Error trying to load undefined npc (%d)", FieldManuals[i]);
+		else
+			npc:setStatus(0);
+		end		
 		i = i + 1;
 	end
 
@@ -163,7 +171,7 @@ function SetTimedSpawns()
   while i <= (table.getn(NMs)) do
     local mob = GetMobByID(NMs[i]);
     if(mob == nil) then
-      printf("Error trying to load undefined mob (%d)", NMs[i]);
+      printf("'SetTimedSpawns' Error trying to load undefined mob (%d)", NMs[i]);
     else
       UpdateNMSpawnPoint(NMs[i]);
       mob:setRespawnTime(math.random((900),(10800))); -- 15-180 minute

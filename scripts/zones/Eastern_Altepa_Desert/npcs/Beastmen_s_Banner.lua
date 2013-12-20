@@ -1,33 +1,25 @@
 -----------------------------------
--- Area: Western Altepa Desert
--- NPC:  _3h0 (Altepa Gate)
--- @pos -19 12 131 125
+-- Area: Eastern Altepa Desert
+-- NPC:  Beastmen_s_Banner
+-- @pos -257 8 -249 114
 -----------------------------------
-package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Western_Altepa_Desert/TextIDs");
+package.loaded["scripts/zones/Eastern_Altepa_Desert/TextIDs"] = nil;
+-----------------------------------
+require("scripts/zones/Eastern_Altepa_Desert/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end; 
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-
-	if(npc:getAnimation() == 9) then
-		if(player:getZPos() > 137) then
-			npc:openDoor(3.2);
-		else
-			player:messageSpecial(THE_DOOR_IS_LOCKED);
-		end
-	end	
+	player:messageSpecial(BEASTMEN_BANNER);
 end;
 
 -----------------------------------
@@ -36,7 +28,7 @@ end;
 
 function onEventUpdate(player,csid,option)
 --printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+--printf("OPTION: %u",option);
 end;
 
 -----------------------------------
@@ -45,5 +37,5 @@ end;
 
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+--printf("OPTION: %u",option);
 end;

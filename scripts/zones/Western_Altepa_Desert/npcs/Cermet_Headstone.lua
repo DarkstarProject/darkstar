@@ -64,7 +64,7 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(EARTH_FRAGMENT);
 		-- Check and see if all fragments have been found (no need to check earth and dark frag)
 		if(player:hasKeyItem(FIRE_FRAGMENT) and player:hasKeyItem(WATER_FRAGMENT) and player:hasKeyItem(ICE_FRAGMENT) and 
-		   player:hasKeyItem(WIND_FRAGMENT) and player:hasKeyItem(LIGHTNING_FRAGMENT) and player:hasKeyItem(LIGHT_FRAGMENT)) then
+		    player:hasKeyItem(WIND_FRAGMENT) and player:hasKeyItem(LIGHTNING_FRAGMENT) and player:hasKeyItem(LIGHT_FRAGMENT)) then
 			player:messageSpecial(FOUND_ALL_FRAGS,EARTH_FRAGMENT);
 			player:addTitle(BEARER_OF_THE_EIGHT_PRAYERS);
 			player:completeMission(ZILART,HEADSTONE_PILGRIMAGE);

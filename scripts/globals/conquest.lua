@@ -688,27 +688,29 @@ switch (region): caseof {
   ---------------------------------
 	--print("GUSTABERG");
 
+	local Ennigreaud = 17212053;
+	
 	npc  = {
 	--
-		17212022,SANDORIA,	-- Ennigreaud, R.K.
-		17212029,SANDORIA,	-- Quellebie, R.K.
-		17212025,SANDORIA,	-- flag
-	    17212033,SANDORIA,	-- flag
+		Ennigreaud,SANDORIA,	-- Ennigreaud, R.K.
+		Ennigreaud+7,SANDORIA,	-- Quellebie, R.K.
+		Ennigreaud+3,SANDORIA,	-- flag
+	    Ennigreaud+11,SANDORIA,	-- flag
 	--
-		17212023,BASTOK,	-- Shigezane, I.M.
-		17212030,BASTOK,	-- Heavy Fog, I.M.
-		17212026,BASTOK,	-- flag
-		17212034,BASTOK,	-- flag
+		Ennigreaud+1,BASTOK,	-- Shigezane, I.M.
+		Ennigreaud+8,BASTOK,	-- Heavy Fog, I.M.
+		Ennigreaud+4,BASTOK,	-- flag
+		Ennigreaud+12,BASTOK,	-- flag
 	--
-		17212024,WINDURST,	-- Kuuwari-Aori, W.W.
-		17212031,WINDURST,	-- Butsutsu, W.W.
-		17212027,WINDURST,	-- flag
-		17212035,WINDURST,	-- flag
+		Ennigreaud+2,WINDURST,	-- Kuuwari-Aori, W.W.
+		Ennigreaud+9,WINDURST,	-- Butsutsu, W.W.
+		Ennigreaud+5,WINDURST,	-- flag
+		Ennigreaud+13,WINDURST,	-- flag
 	--
-		17212028,BEASTMEN,	-- flag
-	    17212036,BEASTMEN,	-- flag
+		Ennigreaud+6,BEASTMEN,	-- flag
+	    Ennigreaud+14,BEASTMEN,	-- flag
 	--
-		17212032,OTHER,		-- Kuleo
+		Ennigreaud+10,OTHER,	-- Kuleo
 	}
   end,
 
@@ -956,28 +958,29 @@ switch (region): caseof {
   ---------------------------------
 	--print("KUZOTZ");
 
+	local Eaulevisat = 17244621;
+	
 	npc  = {
 	--
-		17244618,SANDORIA,	-- Eaulevisat, R.K.
-		17244625,SANDORIA,	-- Laimeve, R.K.
-		17244621,SANDORIA,	-- flag
-		17244629,SANDORIA,	-- flag
+		Eaulevisat,SANDORIA,	-- Eaulevisat, R.K.
+		Eaulevisat+7,SANDORIA,	-- Laimeve, R.K.
+		Eaulevisat+3,SANDORIA,	-- flag
+		Eaulevisat+11,SANDORIA,	-- flag
 	--
-		17244619,BASTOK,	-- Lindgard, I.M.
-		17244626,BASTOK,	-- Daborn, I.M.
-		17244622,BASTOK,	-- flag
-		17244630,BASTOK,	-- flag
+		Eaulevisat+1,BASTOK,	-- Lindgard, I.M.
+		Eaulevisat+8,BASTOK,	-- Daborn, I.M.
+		Eaulevisat+4,BASTOK,	-- flag
+		Eaulevisat+12,BASTOK,	-- flag
 	--
-		17244620,WINDURST,	-- Variko-Njariko, W.W.
-		17244627,WINDURST,	-- Sahgygy, W.W.
-		17244623,WINDURST,	-- flag
-		17244631,WINDURST,	-- flag
+		Eaulevisat+2,WINDURST,	-- Variko-Njariko, W.W.
+		Eaulevisat+9,WINDURST,	-- Sahgygy, W.W.
+		Eaulevisat+5,WINDURST,	-- flag
+		Eaulevisat+13,WINDURST,	-- flag
 	--
-		17244624,BEASTMEN,	-- flag
-		17244632,BEASTMEN,	-- flag
-	    17244639,BEASTMEN,	-- flag
+		Eaulevisat+6,BEASTMEN,	-- flag
+		Eaulevisat+14,BEASTMEN,	-- flag
 	--
-		17244628,OTHER,		-- Sowande
+		Eaulevisat+10,OTHER,	-- Sowande
 	}
   end,
 
