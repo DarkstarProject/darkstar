@@ -14617,6 +14617,46 @@ INSERT INTO `item_mods` VALUES(18594, 28, 25);
 INSERT INTO `item_mods` VALUES(18594, 71, 10);
 
 -- -------------------------------------------------------
+-- Enhancing Sword         
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(16605, 428, 5); --  Sword enhancement spell damage +5
+
+-- -------------------------------------------------------
+-- Sirocco Kukri          
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(18018, 427, 1); -- Additional effect: Wind damage
+
+-- -------------------------------------------------------
+-- Acid Bolt        
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(18148, 427, 1); -- Additional effect: Weakens defense
+
+-- -------------------------------------------------------
+-- Sleep Bolt        
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(18149, 427, 1); -- Additional effect: Sleep
+
+-- -------------------------------------------------------
+-- Blind Bolt        
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(18150, 427, 1); -- Additional effect: Blindness
+
+-- -------------------------------------------------------
+-- Bloody Bolt        
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(18151, 427, 1); -- Additional effect: HP drain
+
+-- -------------------------------------------------------
+-- Venom Bolt        
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(18152, 427, 1); -- Additional effect: Poison
+
+-- -------------------------------------------------------
+-- Holy Bolt        
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(18153, 427, 1); -- Additional effect: Light damage
+
+-- -------------------------------------------------------
 -- Mekki Shakki         
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES(18595, 8, 5); -- STR+5
@@ -16729,7 +16769,7 @@ INSERT INTO `item_mods` VALUES(28340, 68, 28); -- Evasion+28
 INSERT INTO `item_mods` VALUES(28340, 29, 3); -- "Magic Def. Bonus"+3
 INSERT INTO `item_mods` VALUES(28340, 384, 30); -- Haste+3%
 INSERT INTO `item_mods` VALUES(28340, 31, 76); -- Magic Evasion+76
-INSERT INTO `item_mods` VALUES(28340, 170, 60); -- Song casting time -6%
+INSERT INTO `item_mods` VALUES(28340, 170, 6); -- Song casting time -6%
 
 -- -------------------------------------------------------
 -- Manibozho Boots
@@ -16746,3 +16786,110 @@ INSERT INTO `item_mods` VALUES(28339, 29, 2); -- "Magic Def. Bonus"+2
 INSERT INTO `item_mods` VALUES(28339, 31, 49); -- Magic Evasion+49
 INSERT INTO `item_mods` VALUES(28339, 288, 2); -- "Double Attack"+2%
 INSERT INTO `item_mods` VALUES(28339, 384, 40); -- Haste+4%
+
+-- -------------------------------------------------------
+-- Matanca Harness
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10255, 1, 77); -- DEF+77 
+INSERT INTO `item_mods` VALUES(10255, 3, 8); -- HP+8%
+INSERT INTO `item_mods` VALUES(10255, 8, 15); -- STR+15 
+INSERT INTO `item_mods` VALUES(10255, 9, 15); -- DEX+15 
+INSERT INTO `item_mods` VALUES(10255, 10, 15); -- VIT+15 
+INSERT INTO `item_mods` VALUES(10255, 23, 22); -- Attack+22
+INSERT INTO `item_mods` VALUES(10255, 384, 3); -- Haste+3%
+
+-- -------------------------------------------------------
+-- Dux Scale Mail 
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10272, 1, 68); -- DEF+68  
+INSERT INTO `item_mods` VALUES(10272, 8, 9); -- STR+9 
+INSERT INTO `item_mods` VALUES(10272, 10, 9); -- VIT+9 
+INSERT INTO `item_mods` VALUES(10272, 23, 15); -- Attack+15 
+INSERT INTO `item_mods` VALUES(10272, 161, -4); -- Physical damage taken -4% 
+INSERT INTO `item_mods` VALUES(10272, 27, 6); -- Enmity+6 
+
+-- -------------------------------------------------------
+-- Dux Scale Mail +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10273, 1, 69); -- DEF+69  
+INSERT INTO `item_mods` VALUES(10273, 8, 10); -- STR+10
+INSERT INTO `item_mods` VALUES(10273, 10, 10); -- VIT+10
+INSERT INTO `item_mods` VALUES(10273, 23, 16); -- Attack+16 
+INSERT INTO `item_mods` VALUES(10273, 161, -5); -- Physical damage taken -5% 
+INSERT INTO `item_mods` VALUES(10273, 27, 7); -- Enmity+7
+
+-- -------------------------------------------------------
+-- Enif Corazza  
+/*
+	[NOT CODED] "Quadruple Attack"+2%
+*/
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10276, 1, 75); -- DEF+75   
+INSERT INTO `item_mods` VALUES(10276, 2, 45); -- HP+45
+INSERT INTO `item_mods` VALUES(10276, 5, 45); -- MP+45
+INSERT INTO `item_mods` VALUES(10276, 25, 23); -- Accuracy+23
+INSERT INTO `item_mods` VALUES(10276, 384, 3); -- Haste+3%
+
+-- -------------------------------------------------------
+-- Adhara Manteel 
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10277, 1, 63); -- DEF+63    
+INSERT INTO `item_mods` VALUES(10277, 30, 5); -- Magic Accuracy+5
+INSERT INTO `item_mods` VALUES(10277, 112, 13); -- Healing magic skill +13
+INSERT INTO `item_mods` VALUES(10277, 116, 13); -- Dark magic skill +13
+INSERT INTO `item_mods` VALUES(10277, 122, 13); -- Blue magic skill +13
+INSERT INTO `item_mods` VALUES(10277, 384, 4); -- Haste+4%
+
+-- -------------------------------------------------------
+-- Murzim Corazza
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10278, 1, 75); -- DEF:75    
+INSERT INTO `item_mods` VALUES(10278, 2, 53); -- HP+53
+INSERT INTO `item_mods` VALUES(10278, 5, 53); -- MP+53 
+INSERT INTO `item_mods` VALUES(10278, 23, 15); -- Attack+15
+INSERT INTO `item_mods` VALUES(10278, 73, 6); --  "Store TP"+6
+INSERT INTO `item_mods` VALUES(10278, 384, 4); -- Haste+4%
+
+-- -------------------------------------------------------
+-- Laeradr Breastplate
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10280, 1, 80); -- DEF:80    
+INSERT INTO `item_mods` VALUES(10280, 2, 100); -- HP+100
+INSERT INTO `item_mods` VALUES(10280, 160, -11); -- Damage taken -11%
+INSERT INTO `item_mods` VALUES(10280, 27, 9); -- Enmity+9
+INSERT INTO `item_mods` VALUES(10280, 384, -2); --  "Slow"+2%
+
+-- -------------------------------------------------------
+-- Vara Brigandine 
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10283, 1, 57); -- DEF:57  
+INSERT INTO `item_mods` VALUES(10283, 2, 35); -- HP+35
+INSERT INTO `item_mods` VALUES(10283, 8, 6); -- STR+6  
+INSERT INTO `item_mods` VALUES(10283, 9, 12); -- DEX+12  
+INSERT INTO `item_mods` VALUES(10283, 10, 12); -- VIT+12  
+INSERT INTO `item_mods` VALUES(10283, 11, 6); -- AGI+6   
+INSERT INTO `item_mods` VALUES(10283, 12, 6); -- INT+6  
+INSERT INTO `item_mods` VALUES(10283, 13, 6); -- MND+6  
+INSERT INTO `item_mods` VALUES(10283, 14, 6); -- CHR+6  
+INSERT INTO `item_mods` VALUES(10283, 23, 14); -- Attack+14  
+INSERT INTO `item_mods` VALUES(10283, 24, 14); -- Ranged Attack+14  
+INSERT INTO `item_mods` VALUES(10283, 73, 5); -- "Store TP"+5   
+
+-- -------------------------------------------------------
+-- Grandoyne's Mail    
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10284, 1, 77); -- DEF:77  
+INSERT INTO `item_mods` VALUES(10284, 8, 12); -- STR+12  
+INSERT INTO `item_mods` VALUES(10284, 9, 12); -- DEX+12  
+INSERT INTO `item_mods` VALUES(10284, 23, 19); -- Attack+19
+INSERT INTO `item_mods` VALUES(10284, 165, 2); -- Critical hit rate +2%
+INSERT INTO `item_mods` VALUES(10284, 384, 3); -- Haste+3%
+
+-- -------------------------------------------------------
+-- Beguiler's Jerkin    
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10285, 1, 61); -- DEF:61
+INSERT INTO `item_mods` VALUES(10285, 25, 15); -- Accuracy+15
+INSERT INTO `item_mods` VALUES(10285, 289, 7); -- "Subtle Blow"+7
+INSERT INTO `item_mods` VALUES(10285, 73, 5); -- "Store TP"+5 
+INSERT INTO `item_mods` VALUES(10285, 384, 5); -- Haste+5%
