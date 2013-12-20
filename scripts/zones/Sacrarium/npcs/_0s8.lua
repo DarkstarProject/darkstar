@@ -1,7 +1,10 @@
 -----------------------------------
--- wooden gate
+-- NPC:  _0s8 (Wooden Gate)
 -- Area: Sacrarium
+-- Involved in Mission: Secrets of Worship
+-- @pos 45.500 -1.500 10.000 28
 -----------------------------------
+
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 
@@ -10,14 +13,18 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onTrigger(player,npc)
-	if(player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 2)then
-		player:startEvent(0x0006,0,582);
-	elseif(player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 4 and player:hasKeyItem(RELIQUIARIUM_KEY)==true)then 
-		player:startEvent(0x0005);
-	elseif(player:hasKeyItem(RELIQUIARIUM_KEY)==true and player:getXPos()>45)then
-		player:startEvent(0x006E);
-	end
-	--RELIQUIARIUM KEY
+
+	if (player:getXPos() > 45) then
+		if(player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 2)then
+			player:startEvent(0x0006,0,582);
+		elseif(player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 4 and player:hasKeyItem(RELIQUIARIUM_KEY)==true)then 
+			player:startEvent(0x0005);
+		elseif(player:hasKeyItem(RELIQUIARIUM_KEY)==true)then
+			player:startEvent(0x006E);
+		end
+	else
+		player:messageSpecial(CANNOT_OPEN_SIDE);
+	end	
 	return 1;
 end;
 
@@ -27,6 +34,10 @@ end;
 
 function onTrade(player,npc,trade)
 end;
+
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
 
 function onEventUpdate(player,csid,option)
 --printf("CSID: %u",csid);

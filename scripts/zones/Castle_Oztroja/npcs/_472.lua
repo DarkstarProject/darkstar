@@ -17,7 +17,6 @@ function onTrigger(player,npc)
 	
 	if(npc:getAnimation() == 9) then
 		player:messageSpecial(ITS_LOCKED);
-		return 1;
 	end	
 	
 end;

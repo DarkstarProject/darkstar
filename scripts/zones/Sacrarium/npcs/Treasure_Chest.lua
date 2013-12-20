@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Sacrarium
 -- NPC:  Treasure Chest
--- @zone 176
+-- @zone 28
 -----------------------------------
 package.loaded["scripts/zones/Sacrarium/TextIDs"] = nil;
 -----------------------------------

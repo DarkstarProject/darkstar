@@ -28,9 +28,8 @@ function onTrigger(player,npc)
 	local Z = npc:getZPos();
 	
 	if(Z < -15 and Z > -19) then
-		
-		local Brass4 = npc:getID();		
-		local DoorID = GetNPCByID(Brass4):getID() - 1;		
+				
+		local DoorID = npc:getID() - 1;		
 		local DoorA = GetNPCByID(DoorID):getAnimation();		
 		
 		if(DoorA == 9) then

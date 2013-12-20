@@ -22,7 +22,7 @@ function onTrigger(player,npc)
 	if(player:getZPos() < -32) then
 	  if(DoorA == 9 and npc:getAnimation() == 9) then
 		npc:openDoor(6.5);
-		-- Should be a 1 second delay here before the door opens
+		-- Should be a ~1 second delay here before the door opens
 		GetNPCByID(DoorID):openDoor(4.5);
 	  end 	
 	end	

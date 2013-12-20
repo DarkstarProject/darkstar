@@ -14,6 +14,10 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
         CORAL_KEY_TRADE = 7187; -- <name> is holding the lock open...
 NOTHING_OUT_OF_ORDINARY = 7190; -- There is nothing out of the ordinary here.
 
+			EVIL_PRESENCE = 7222; -- You sense an evil presence!
+			  DRAWER_OPEN = 7223; -- You open the drawer.
+			 DRAWER_EMPTY = 7224; -- There is nothing inside. 
+			  DRAWER_SHUT = 7225; -- The drawer is jammed shut.
      START_GET_GOOSEBUMPS = 7323; -- You start to get goosebumps.
 			 HEART_RACING = 7324; -- Your heart is racing.
 LEAVE_QUICKLY_AS_POSSIBLE = 7325; -- Your common sense tells you to leave as quickly as possible.

@@ -45,6 +45,10 @@ function onServerStart()
 
   -- Spawns Silk Caterpillar (temporary until someone implements a way to make it spawn properly)
   SpawnMob(17227782,300,660);
+  
+  -- Set random variable for determining Old Prof. Mariselle's spawn location
+  local rand = math.random((2),(7));
+  SetServerVariable("Old_Prof_Spawn_Location", rand);  
 end;
 
 -----------------------------------
@@ -55,11 +59,11 @@ function SetExplorerMoogles()
 
 	local Moogles  =
 	{
-		17723639,	-- Northern_San_d'Oria
-		17735848,	-- Bastok_Mines
-		17760442,	-- Port_Windurst
-		17793123,	-- Selbina
-		17797245,	-- Mhaura
+		17723643,	-- Northern_San_d'Oria
+		17735852,	-- Bastok_Mines
+		17760446,	-- Port_Windurst
+		17793127,	-- Selbina
+		17797249,	-- Mhaura
 	}
 
 	i = 1;

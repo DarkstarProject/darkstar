@@ -22,21 +22,18 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if player:getXPos() >= -59 then
-		return -1;
-	else
-		if( npc:getAnimation() == 9) then
-			player:messageSpecial(PROTECTED_BY_UNKNOWN_FORCE);
-		end
 
-		local guardian = GetMobByID(17428494);
+	local guardian = GetMobByID(17428494);
 
-		if(guardian ~= nil and guardian:getHP() > 0 and guardian:hasTarget() == false) then
-			guardian:updateEnmity(player);
-		end
-
-		return 1;
+	if( npc:getAnimation() == 9) then
+		player:messageSpecial(PROTECTED_BY_UNKNOWN_FORCE);
 	end
+	
+	if(guardian ~= nil and guardian:getHP() > 0 and guardian:hasTarget() == false) then
+		guardian:updateEnmity(player);
+	end
+	
+	return 1;
 end; 
 
 -----------------------------------
