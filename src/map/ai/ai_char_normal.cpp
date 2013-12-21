@@ -2736,7 +2736,6 @@ void CAICharNormal::ActionAttack()
 	                        m_PBattleTarget = PTarget;
 							m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
                     	}
-
 						return;
                     }
                 }
@@ -2800,11 +2799,7 @@ void CAICharNormal::ActionAttack()
 			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,MSGBASIC_IS_INTIMIDATED));
 		}
 		else
-		{
-			apAction_t Action;
-			Action.ActionTarget = m_PBattleTarget;
-            Action.knockback  = 0;            
-
+		{          
 			// Create a new attack round.
 			CAttackRound* attackRound = new CAttackRound(m_PChar);
 
@@ -2813,6 +2808,10 @@ void CAICharNormal::ActionAttack()
 			/////////////////////////////////////////////////////////////////////////
 			for (uint8 i = 0; i < attackRound->GetAttackSwingCount(); ++i)
 			{
+				apAction_t Action;
+				Action.ActionTarget = m_PBattleTarget;
+				Action.knockback  = 0;  
+
 				// Reference to the current swing.
 				CAttack* attack = (CAttack*)attackRound->GetCurrentAttack();
 
