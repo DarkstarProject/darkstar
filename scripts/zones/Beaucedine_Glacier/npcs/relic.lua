@@ -5,6 +5,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
 -----------------------------------
+
 require("scripts/zones/Beaucedine_Glacier/TextIDs");
 
 -----------------------------------

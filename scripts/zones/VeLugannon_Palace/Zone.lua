@@ -3,8 +3,9 @@
 -- Zone: VeLugannon_Palace (177)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/VeLugannon_Palace/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/VeLugannon_Palace/TextIDs");
 

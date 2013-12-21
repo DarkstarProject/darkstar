@@ -7,14 +7,14 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
 
 -- Treasure Coffer/Chest Dialog
-CHEST_UNLOCKED = 7170; -- You unlock the chest!
-    CHEST_FAIL = 7171; -- Fails to open the chest. 
-    CHEST_TRAP = 7172; -- The chest was trapped! 
-    CHEST_WEAK = 7173; -- You cannot open the chest when you are in a weakened state.
-   CHEST_MIMIC = 7174; -- The chest was a mimic! 
-  CHEST_MOOGLE = 7175; -- You cannot open the chest while participating in the moogle event.
-CHEST_ILLUSION = 7176; -- The chest was but an illusion...
-  CHEST_LOCKED = 7177; -- The chest appears to be locked.
+CHEST_UNLOCKED = 7180; -- You unlock the chest!
+    CHEST_FAIL = 7181; -- Fails to open the chest. 
+    CHEST_TRAP = 7182; -- The chest was trapped! 
+    CHEST_WEAK = 7183; -- You cannot open the chest when you are in a weakened state.
+   CHEST_MIMIC = 7184; -- The chest was a mimic! 
+  CHEST_MOOGLE = 7185; -- You cannot open the chest while participating in the moogle event.
+CHEST_ILLUSION = 7186; -- The chest was but an illusion...
+  CHEST_LOCKED = 7187; -- The chest appears to be locked.
 
 -- Other dialog
 NOTHING_OUT_OF_ORDINARY = 6392; -- There is nothing out of the ordinary here.

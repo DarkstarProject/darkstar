@@ -1,6 +1,6 @@
 -----------------------------------
 --	Area: Inner Horutoto Ruins
---	NPC:  Gate of Darkness
+--	NPC:  _5cb (Gate of Darkness)
 --  @pos -228 0 99 192
 -----------------------------------
 package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;

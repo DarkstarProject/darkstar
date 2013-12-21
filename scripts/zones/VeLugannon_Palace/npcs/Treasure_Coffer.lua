@@ -2,7 +2,6 @@
 -- Area: Ve'Lugannon Palace
 -- NPC:  Treasure Coffer
 -- @zone 177
--- @pos 
 -----------------------------------
 package.loaded["scripts/zones/VeLugannon_Palace/TextIDs"] = nil;
 -----------------------------------

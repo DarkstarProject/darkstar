@@ -1,6 +1,6 @@
 -----------------------------------
 --	Area: Inner Horutoto Ruins
---	NPC:  Gate of Earth
+--	NPC:  _5ce (Gate of Earth)
 --  @pos -228 0 140 192
 -----------------------------------
 package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;

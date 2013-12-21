@@ -1,6 +1,6 @@
 -----------------------------------
 --	Area: Inner Horutoto Ruins
---	NPC:  Gate of Wind
+--	NPC:  _5cf (Gate of Wind)
 --  @pos -332 0 99 192
 -----------------------------------
 package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;

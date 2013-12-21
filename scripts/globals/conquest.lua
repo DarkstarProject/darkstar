@@ -213,7 +213,7 @@ end;
 function supplyRunFresh(player)
 
 	local fresh = player:getVar("supplyQuest_fresh");
-   local started = player:getVar("supplyQuest_started");
+    local started = player:getVar("supplyQuest_started");
 	local region = player:getVar("supplyQuest_region");
 
 	if((fresh <= os.time() and (region > 0 or player:hasKeyItem(75))) or
@@ -658,28 +658,29 @@ switch (region): caseof {
   ---------------------------------
 	--print("NORVALLEN");
 
+	local Chaplion = 17203838;
+	
 	npc  = {
 	--
-		17203837,SANDORIA,	-- Chaplion, R.K.
-		17203844,SANDORIA,	-- Taumiale, R.K.
-		17203840,SANDORIA,	-- flag
-	    17203848,SANDORIA,	-- flag
+		Chaplion,SANDORIA,		-- Chaplion, R.K.
+		Chaplion+7,SANDORIA,	-- Taumiale, R.K.
+		Chaplion+3,SANDORIA,	-- flag
+	    Chaplion+11,SANDORIA,	-- flag
 	--
-		17203838,BASTOK,	-- Takamoto, I.M.
-		17203845,BASTOK,	-- Pure Heart, I.M.
-		17203841,BASTOK,	-- flag
-		17203849,BASTOK,	-- flag
+		Chaplion+1,BASTOK,		-- Takamoto, I.M.
+		Chaplion+8,BASTOK,		-- Pure Heart, I.M.
+		Chaplion+4,BASTOK,		-- flag
+		Chaplion+12,BASTOK,		-- flag
 	--
-		17203839,WINDURST,	-- Bubchu-Bibinchu, W.W.
-		17203846,WINDURST,	-- Geruru, W.W.
-		17203842,WINDURST,	-- flag
-		17203850,WINDURST,	-- flag
+		Chaplion+2,WINDURST,	-- Bubchu-Bibinchu, W.W.
+		Chaplion+9,WINDURST,	-- Geruru, W.W.
+		Chaplion+5,WINDURST,	-- flag
+		Chaplion+13,WINDURST,	-- flag
 	--
-		17203843,BEASTMEN,	-- flag
-	    17203851,BEASTMEN,	-- flag
-	    17203862,BEASTMEN,	-- flag
+		Chaplion+6,BEASTMEN,	-- flag
+	    Chaplion+14,BEASTMEN,	-- flag
 	--
-		17203847,OTHER,		-- Mionie
+		Chaplion+10,OTHER,		-- Mionie
 	}
   end,
 
@@ -719,28 +720,29 @@ switch (region): caseof {
   ---------------------------------
 	--print("DERFLAND");
 
+	local Mesachedeau = 17224316;
+	
 	npc  = {
 	--
-		17224315,SANDORIA,	-- Mesachedeau, R.K.
-		17224322,SANDORIA,	-- Ioupie, R.K.
-		17224318,SANDORIA,	-- flag
-		17224326,SANDORIA,	-- flag
+		Mesachedeau,SANDORIA,		-- Mesachedeau, R.K.
+		Mesachedeau+7,SANDORIA,		-- Ioupie, R.K.
+		Mesachedeau+3,SANDORIA,		-- flag
+		Mesachedeau+11,SANDORIA,	-- flag
 	--
-		17224316,BASTOK,	-- Souun, I.M.
-		17224323,BASTOK,	-- Sharp Tooth, I.M.
-		17224319,BASTOK,	-- flag
-		17224327,BASTOK,	-- flag
+		Mesachedeau+1,BASTOK,		-- Souun, I.M.
+		Mesachedeau+8,BASTOK,		-- Sharp Tooth, I.M.
+		Mesachedeau+4,BASTOK,		-- flag
+		Mesachedeau+12,BASTOK,		-- flag
 	--
-		17224317,WINDURST,	-- Mokto-Lankto, W.W.
-		17224324,WINDURST,	-- Shikoko, W.W.
-		17224320,WINDURST,	-- flag
-		17224328,WINDURST,	-- flag
+		Mesachedeau+2,WINDURST,		-- Mokto-Lankto, W.W.
+		Mesachedeau+9,WINDURST,		-- Shikoko, W.W.
+		Mesachedeau+5,WINDURST,		-- flag
+		Mesachedeau+13,WINDURST,	-- flag
 	--
-		17224321,BEASTMEN,	-- flag
-	    17224329,BEASTMEN,	-- flag
-	    17224335,BEASTMEN,	-- flag
+		Mesachedeau+6,BEASTMEN,		-- flag
+	    Mesachedeau+14,BEASTMEN,	-- flag
 	--
-		17224325,OTHER,		-- Tahmasp
+		Mesachedeau+10,OTHER,		-- Tahmasp
 	}
   end,
 
@@ -838,28 +840,29 @@ switch (region): caseof {
   ---------------------------------
 	--print("FAUREGANDI");
 
+	local Parledaire = 17232199;	
+	
 	npc  = {
 	--
-		17232198,SANDORIA,	-- Parledaire, R.K.
-		17232205,SANDORIA,	-- Leaufetie, R.K.
-		17232201,SANDORIA,	-- flag
-		17232209,SANDORIA,	-- flag
+		Parledaire,SANDORIA,		-- Parledaire, R.K.
+		Parledaire+7,SANDORIA,		-- Leaufetie, R.K.
+		Parledaire+3,SANDORIA,		-- flag
+		Parledaire+11,SANDORIA,		-- flag
 	--
-		17232199,BASTOK,	-- Akane, I.M.
-		17232206,BASTOK,	-- Rattling Rain, I.M.
-		17232202,BASTOK,	-- flag
-		17232210,BASTOK,	-- flag
+		Parledaire+1,BASTOK,		-- Akane, I.M.
+		Parledaire+8,BASTOK,		-- Rattling Rain, I.M.
+		Parledaire+4,BASTOK,		-- flag
+		Parledaire+12,BASTOK,		-- flag
 	--
-		17232200,WINDURST,	-- Ryunchi-Pauchi, W.W.
-		17232207,WINDURST,	-- Chopapa, W.W.
-		17232203,WINDURST,	-- flag
-		17232211,WINDURST,	-- flag
+		Parledaire+2,WINDURST,		-- Ryunchi-Pauchi, W.W.
+		Parledaire+9,WINDURST,		-- Chopapa, W.W.
+		Parledaire+5,WINDURST,		-- flag
+		Parledaire+13,WINDURST,		-- flag
 	--
-		17232204,BEASTMEN,	-- flag
-	    17232212,BEASTMEN,	-- flag
-	    17232217,BEASTMEN,	-- flag
+		Parledaire+6,BEASTMEN,		-- flag
+	    Parledaire+14,BEASTMEN,		-- flag
 	--
-		17232208,OTHER,		-- Gueriette
+		Parledaire+10,OTHER,		-- Gueriette
 	}
   end,
 
@@ -868,28 +871,29 @@ switch (region): caseof {
   ---------------------------------
 	--print("VALDEAUNIA");
 
+	local Jeantelas = 17236280;	
+	
 	npc  = {
 	--
-		17236279,SANDORIA,	-- Jeantelas, R.K.
-		17236286,SANDORIA,	-- Pilcha, R.K.
-		17236282,SANDORIA,	-- flag
-		17236290,SANDORIA,	-- flag
-	--
-		17236280,BASTOK,	-- Kaya, I.M.
-		17236287,BASTOK,	-- Heavy Bear, I.M.
-		17236283,BASTOK,	-- flag
-		17236291,BASTOK,	-- flag
-	--
-		17236281,WINDURST,	-- Magumo-Yagimo, W.W.
-		17236288,WINDURST,	-- Tememe, W.W.
-		17236284,WINDURST,	-- flag
-		17236292,WINDURST,	-- flag
-	--
-		17236285,BEASTMEN,	-- flag
-	    17236293,BEASTMEN,	-- flag
-	    17236310,BEASTMEN,	-- flag
-	--
-		17236289,OTHER,		-- Pelogrant
+		Jeantelas,SANDORIA,			-- Jeantelas, R.K.
+		Jeantelas+7,SANDORIA,		-- Pilcha, R.K.
+		Jeantelas+3,SANDORIA,		-- flag
+		Jeantelas+11,SANDORIA,		-- flag
+	--	
+		Jeantelas+1,BASTOK,			-- Kaya, I.M.
+		Jeantelas+8,BASTOK,			-- Heavy Bear, I.M.
+		Jeantelas+4,BASTOK,			-- flag
+		Jeantelas+12,BASTOK,		-- flag
+	--	
+		Jeantelas+2,WINDURST,		-- Magumo-Yagimo, W.W.
+		Jeantelas+9,WINDURST,		-- Tememe, W.W.
+		Jeantelas+5,WINDURST,		-- flag
+		Jeantelas+13,WINDURST,		-- flag
+	--	
+		Jeantelas+6,BEASTMEN,		-- flag
+	    Jeantelas+14,BEASTMEN,		-- flag
+	--	
+		Jeantelas+10,OTHER,			-- Pelogrant
 	}
   end,
 
@@ -928,28 +932,29 @@ switch (region): caseof {
   ---------------------------------
 	--print("LITELOR");
 
+	local Credaurion = 17273359;	
+	
 	npc  = {
 	--
-		17273358,SANDORIA,	-- Credaurion, R.K.
-		17273365,SANDORIA,	-- Limion, R.K.
-		17273361,SANDORIA,	-- flag
-		17273369,SANDORIA,	-- flag
-	--
-		17273359,BASTOK,	-- Calliope, I.M.
-		17273366,BASTOK,	-- Dedden, I.M.
-		17273362,BASTOK,	-- flag
-		17273370,BASTOK,	-- flag
-	--
-		17273360,WINDURST,	-- Ajimo-Majimo, W.W.
-		17273367,WINDURST,	-- Ochocho, W.W.
-		17273363,WINDURST,	-- flag
-		17273371,WINDURST,	-- flag
-	--
-		17273364,BEASTMEN,	-- flag
-		17273372,BEASTMEN,	-- flag
-		17273388,BEASTMEN,	-- flag
-	--
-		17273368,OTHER,		-- Kasim
+		Credaurion,SANDORIA,		-- Credaurion, R.K.
+		Credaurion+7,SANDORIA,		-- Limion, R.K.
+		Credaurion+3,SANDORIA,		-- flag
+		Credaurion+11,SANDORIA,		-- flag
+	--	
+		Credaurion+1,BASTOK,		-- Calliope, I.M.
+		Credaurion+8,BASTOK,		-- Dedden, I.M.
+		Credaurion+4,BASTOK,		-- flag
+		Credaurion+12,BASTOK,		-- flag
+	--	
+		Credaurion+2,WINDURST,		-- Ajimo-Majimo, W.W.
+		Credaurion+9,WINDURST,		-- Ochocho, W.W.
+		Credaurion+5,WINDURST,		-- flag
+		Credaurion+13,WINDURST,		-- flag
+	--	
+		Credaurion+6,BEASTMEN,		-- flag
+		Credaurion+14,BEASTMEN,		-- flag
+	--	
+		Credaurion+10,OTHER,		-- Kasim
 	}
   end,
 

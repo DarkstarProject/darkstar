@@ -2,7 +2,12 @@
 -- Area: Beaucedine Glacier
 -- NPC:  Iron Grate
 -- Type: Door
--- @pos 241.000 5.000 -20.000 111
+-- @pos 241.000 5.000 -20.000 111     : J-8
+-- @pos 60.000 5.000 -359.000 111     : H-10
+-- @pos 100.000 -15.000 159.000 111   : I-7
+-- @pos -199.000 -35.000 -220.000 111 : G-9
+-- @pos -20.000 -55.000 -41.000 111   : H-8
+-- @pos -340.000 -95.000 159.000 111  : F-7
 -----------------------------------
 package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
 -----------------------------------
@@ -22,22 +27,23 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    DoorID=npc:getID();
-  --printf("DoorID: %u",DoorID);
- 
-    if (DoorID == 17232257)then --beaucedine F-7 tower
-       player:startEvent(0x00CD);
-    elseif(DoorID == 17232256)then --beaucedine H-8 tower 
-       player:startEvent(0x00CC);      
-    elseif(DoorID == 17232255)then --beaucedine G-9 tower
-       player:startEvent(0x00CB);
-    elseif(DoorID == 17232254)then --beaucedine I-7 tower
-       player:startEvent(0x00CA);
-    elseif(DoorID == 17232253)then --beaucedine H-10 tower
-       player:startEvent(0x00C9);
-    elseif(DoorID == 17232252)then --beaucedine J-8 tower 
-       player:startEvent(0x00C8); 
-    end
+
+	local X = player:getXPos();
+	local Z = player:getZPos();
+	
+    if(X < 247 and X > 241) then 		-- J-8
+		player:startEvent(0x00C8); 
+    elseif(Z < -353 and Z > -359) then  -- H-10
+		player:startEvent(0x00C9); 		
+    elseif(Z > 153 and Z < 159) then 	-- I-7
+		player:startEvent(0x00CA); 			
+    elseif(X < -193 and X > -199) then 	-- G-9
+		player:startEvent(0x00CB); 		
+    elseif(Z > -47 and Z < -41) then 	-- H-8
+		player:startEvent(0x00CC); 		
+    elseif(Z > 153 and Z < 159) then 	-- F-7
+		player:startEvent(0x00CD); 			
+	end	
 end;
 
 -----------------------------------
@@ -54,28 +60,31 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-local LVLcap = 0;
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
- if (option == 1)then
-   if(csid == 0x00C8)then     --beaucedine J-8 tower                lvl cap 50
-      LVLcap = 50;
-   player:setPos(396,-8,-20,125,9); --tp to Pso'Xja
-   elseif(csid == 0x00C9)then --beaucedine H-10 tower               lvl cap 60
-     LVLcap = 60;
-   player:setPos(220,-8,-282,66,9); --tp to Pso'Xja
-   elseif(csid == 0x00CA)then --beaucedine I-7 tower       F-9
-   player:setPos(180,-8,241,190,9); --tp to Pso'Xja
-   elseif(csid == 0x00CB)then --beaucedine G-9 tower
-   player:setPos(-242,8,-259,126,9); --tp to Pso'Xja
-   elseif(csid == 0x00CC)then --beaucedine H-8 tower                 lvl cap 40
-     LVLcap = 40;
-   player:setPos(-180,-8,-78,194,9); --tp to Pso'Xja      G-10
-   elseif(csid == 0x00CD)then --beaucedine F-7 tower
-   player:setPos(-300,-8,203,191,9); --tp to Pso'Xja     
-   end
-   if(ENABLE_COP_ZONE_CAP == 1 )then
-     player:setVar("PSOXJA_RESTRICTION_LVL",LVLcap);
-   end
-  end 
+
+	local LVLcap = 0;
+	
+	if (option == 1)then
+		if(csid == 0x00C8)then 	   -- 50 Cap Area
+			LVLcap = 50;
+			player:setPos(396,-8,-20,125,9); 
+		elseif(csid == 0x00C9)then -- 60 Cap Area
+			LVLcap = 60;
+			player:setPos(220,-8,-282,66,9); 
+		elseif(csid == 0x00CA)then -- No Cap Area
+			player:setPos(180,-8,241,190,9); 
+		elseif(csid == 0x00CB)then -- No Cap Area
+			player:setPos(-242,8,-259,126,9); 
+		elseif(csid == 0x00CC)then -- Cap 40 Area
+			LVLcap = 40;
+			player:setPos(-180,-8,-78,194,9); 
+		elseif(csid == 0x00CD)then -- No Cap Area
+			player:setPos(-300,-8,203,191,9);
+		end
+
+		if(ENABLE_COP_ZONE_CAP == 1 )then
+			player:setVar("PSOXJA_RESTRICTION_LVL",LVLcap);
+		end
+	end 
 end;

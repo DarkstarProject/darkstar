@@ -1,6 +1,6 @@
 -----------------------------------
 --	Area: Inner Horutoto Ruins
---	NPC:  Gate of Light
+--	NPC:  _5ci (Gate of Light)
 --  Involved In Mission: 3-2
 --  @pos -331 0 139 192
 -----------------------------------

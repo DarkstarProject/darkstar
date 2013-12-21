@@ -15,8 +15,6 @@ require("scripts/zones/Xarcabard/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-
 end;
 
 -----------------------------------

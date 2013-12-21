@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ro'Maeve
--- NPC:  ???
+-- NPC:  qm2 (???)
 -- Involved in Mission: Bastok 7-1
 -- @pos 102 -4 -114 122 and <many pos>
 -----------------------------------

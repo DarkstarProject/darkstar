@@ -1,6 +1,6 @@
 -----------------------------------
 --	Area: Inner Horutoto Ruins
---	NPC:  Magical Gizmo #6 (U out of P, Q, R, S, T, U)
+--	NPC:  _5cu (Magical Gizmo) #6 
 --  Involved In Mission: The Horutoto Ruins Experiment 
 -----------------------------------
 package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;

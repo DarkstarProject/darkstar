@@ -1,6 +1,6 @@
 -----------------------------------
 --  Area: Jugner Forest
---  NPC: 	Alexius
+--  NPC:  Alexius
 --  Involved in Quest: A purchase of Arms & Sin Hunting
 --  @pos  105 1 382 104
 -----------------------------------

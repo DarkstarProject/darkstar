@@ -6,6 +6,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
 -----------------------------------
+
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/zones/Beaucedine_Glacier/TextIDs");

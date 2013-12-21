@@ -3,6 +3,8 @@
 -- Area: Ro'Maeve
 -----------------------------------
 package.loaded["scripts/zones/RoMaeve/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/zones/RoMaeve/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");

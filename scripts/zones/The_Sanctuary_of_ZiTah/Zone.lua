@@ -3,8 +3,8 @@
 -- Zone: The_Sanctuary_of_ZiTah (121)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
 require( "scripts/globals/icanheararainbow");

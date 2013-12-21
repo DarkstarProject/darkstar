@@ -25,7 +25,7 @@ function onTrigger(player,npc)
 	
 	local X = player:getXPos();
 	local Z = player:getZPos();
-	local DoorToRancor = 17428966
+	local DoorToRancor = 17428966;
 
 	if(X < -60) then
 		if(Z < -6) then -- SW frame
@@ -78,7 +78,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	local DoorToRancor = 17428966	
+	local DoorToRancor = 17428966;
 	
 	if(csid == 0x0032) then
 		-- Soon !

@@ -3,8 +3,9 @@
 -- Zone: RoMaeve (122)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/RoMaeve/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/RoMaeve/TextIDs");
 

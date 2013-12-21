@@ -89,18 +89,18 @@ function SetFieldManual()
 	{
         17187511,17187512,17191493,17191494, -- West Ronfaure 2, East Ronfaure 2
         17195670,17195671,17199744,17199745, -- La Theine 2, Valkurm 2
-        17199746,17203876,17203877,17207858, -- Valkurm 1, Jugner 2, Batallia 1
+        17199746,17203877,17203878,17207858, -- Valkurm 1, Jugner 2, Batallia 1
         17207859,17212103,17212104,17212105, -- Batallia 1, North Gustaberg 3
-        17216140,17216141,17220158,17220159, -- South Gustaberg 2, Konschtat 2
-        17224344,17224345,17228368,17228369, -- Pashhow 2, Rolanberry 2
-        17232272,17232273,17232274,17232275, -- Beaucedine all 4
-        17236337,17236338,17240507,17240508, -- Xarcabard 2, Cape Teriggan 2
+        17216171,17216172,17220158,17220159, -- South Gustaberg 2, Konschtat 2
+        17224345,17224346,17228368,17228369, -- Pashhow 2, Rolanberry 2
+        17232273,17232274,17232275,17232276, -- Beaucedine all 4
+        17236340,17236341,17240507,17240508, -- Xarcabard 2, Cape Teriggan 2
         17244647,17244648,17244649,17248814, -- Eastern Altepa 3, West Sarutabaruta 1
         17248815,17248816,17253022,17253023, -- West Sarutabaruta 2, East Sarutabaruta 2
         17253024,17257067,17257068,17257069, -- East Sarutabaruta 1, Tahrongi 3
         17261192,17261193,17265284,17265285, -- Buburimu 2, Meriphataud Mountains 2
-        17265286,17269253,17269254,17273410, -- Meriphataud Mountains 1, Sauromugue 2, Zi'Tah 1
-        17273411,17277203,17277204,17281639, -- Zi'Tah 1, Ro'Maeve 2, Yuhtunga Jungle 1
+        17265286,17269253,17269254,17273411, -- Meriphataud Mountains 1, Sauromugue 2, Zi'Tah 1
+        17273412,17277204,17277205,17281639, -- Zi'Tah 1, Ro'Maeve 2, Yuhtunga Jungle 1
         17281640,17281641,17281642,17285689, -- Yuhtunga Jungle 3, Yhoator Jungle 1
         17285690,17285691,17289789,17289790, -- Yhoator Jungle 2, Western Altepa 2
         17289791,17293768,17293769,17297484, -- Western Altepa 1, Qufim 2, Behemoth's Dominion 1
@@ -205,7 +205,7 @@ function SetTreasureSpawns()
        17498609, -- Sea Serpent Grotto
        17555947, -- King Ranperre's Tomb
        17559917, -- Dangruf Wadi
-       17563907, -- Inner Horutoto Ruins
+       17563908, -- Inner Horutoto Ruins
        17568185, -- Ordelle's Caves
        17572283, -- Outer Horutoto Ruins
        17576349, -- The Eldieme Necropolis
@@ -231,7 +231,7 @@ function SetTreasureSpawns()
        17469828, -- Toraimarai Canal
        17490294, -- Kuftal Tunnel
        17498610, -- Sea Serpent Grotto
-       17502692, -- Ve'Lugannon Palace
+       17502693, -- Ve'Lugannon Palace
        17576350, -- The Eldieme Necropolis
        17584469, -- Crawler's Nest
        17596803, -- Garlaige Citadel

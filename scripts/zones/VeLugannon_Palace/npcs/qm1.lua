@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: VeLugannon Palace
--- NPC:  ???
+-- NPC:  ??? (qm1)
 -- @pos -370.039 16.014 -274.378 177
 -----------------------------------
 package.loaded["scripts/zones/VeLugannon_Palace/TextIDs"] = nil;
@@ -26,15 +26,15 @@ function onTrigger(player,npc)
 		player:messageSpecial(ITEM_OBTAINED,16575); -- Curtana
 		
 		-- ??? dissapears for 2 hours and reappears on new position
-		hideTime = 7200;
+		local hideTime = 7200;
 	else
 		player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16575); -- Curtana
 		
 		-- ??? just change position
-		hideTime = 1;
+		local hideTime = 1;
 	end
 	
-	randpos = math.random(1,8);
+	local randpos = math.random(1,8);
 	
 	switch (randpos): caseof
 	{

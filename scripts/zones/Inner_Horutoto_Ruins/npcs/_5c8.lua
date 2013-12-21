@@ -3,7 +3,7 @@
 --	NPC:  Sealed Portal
 --  Involved in Quest: Making the Grade
 --	Working 50%
---  Notes: Door will open ifplayer has Making the Grade quest active, or ifthe have the KI portal charm. Door should open when 3 mages stand on circles, but no API for this yet.
+--  Notes: Door will open if player has Making the Grade quest active, or if the have the KI portal charm. Door should open when 3 mages stand on circles, but no API for this yet.
 --  @pos -259 -1 -20 192
 -----------------------------------
 package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
@@ -35,7 +35,7 @@ function onTrigger(player,npc)
 		player:messageSpecial(PORTAL_NOT_OPEN_THAT_SIDE);
 	else
 		if(player:hasKeyItem(PORTAL_CHARM)) then
-			GetNPCByID(17563862):openDoor(30);
+			npc:openDoor(30);
 		elseif(player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED) then
 			-- quest not scripted ?
 		else

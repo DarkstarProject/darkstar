@@ -38,9 +38,9 @@ end;
 
 function onRegionEnter(player,region)			
 	
-	red   = GetNPCByID(17563858);		
-	white = GetNPCByID(17563859);		
-	black = GetNPCByID(17563860);		
+	local red   = GetNPCByID(17563859);		
+	local white = GetNPCByID(red+1);		
+	local black = GetNPCByID(red+2);		
 	
 	switch (region:GetRegionID()): caseof		
 	{		
@@ -48,8 +48,8 @@ function onRegionEnter(player,region)
 			if(player:getMainJob() == 5 and region:AddCount(1) == 1) then		
 				red:setAnimation(8);
 				if(white:getAnimation() == 8 and black:getAnimation() == 8) then	
-					GetNPCByID(17563861):openDoor(30);
-					GetNPCByID(17563862):openDoor(30);
+					GetNPCByID(red+3):openDoor(30);
+					GetNPCByID(red+4):openDoor(30);
 				end	
 			end		
 		end,		
@@ -57,8 +57,8 @@ function onRegionEnter(player,region)
 			if(player:getMainJob() == 3 and region:AddCount(1) == 1) then		
 				white:setAnimation(8);	
 				if(red:getAnimation() == 8 and black:getAnimation() == 8) then	
-					GetNPCByID(17563861):openDoor(30);
-					GetNPCByID(17563862):openDoor(30);
+					GetNPCByID(red+3):openDoor(30);
+					GetNPCByID(red+4):openDoor(30);
 				end	
 			end		
 		end,		
@@ -66,8 +66,8 @@ function onRegionEnter(player,region)
 			if(player:getMainJob() == 4 and region:AddCount(1) == 1) then		
 				black:setAnimation(8);	
 				if(red:getAnimation() == 8 and white:getAnimation() == 8) then	
-					GetNPCByID(17563861):openDoor(30);
-					GetNPCByID(17563862):openDoor(30);
+					GetNPCByID(red+3):openDoor(30);
+					GetNPCByID(red+4):openDoor(30);
 				end	
 			end
 		end,
@@ -84,9 +84,9 @@ end;
 
 function onRegionLeave(player,region)			
 	
-	red   = GetNPCByID(17563858);
-	white = GetNPCByID(17563859);
-	black = GetNPCByID(17563860);
+	local red   = GetNPCByID(17563859);		
+	local white = GetNPCByID(red+1);		
+	local black = GetNPCByID(red+2);
 	
 	switch (region:GetRegionID()): caseof		
 	{		

@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: South Gustaberg
---   NPC: Fish Eyes
+--  NPC:  Fish Eyes
 --  Type: Goldfish Scooping
--- @zone: 107
---  @pos: -444.459 39.106 -390.885
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -444.459 39.106 -390.885 107
 -----------------------------------
 package.loaded["scripts/zones/South_Gustaberg/TextIDs"] = nil;
 -----------------------------------

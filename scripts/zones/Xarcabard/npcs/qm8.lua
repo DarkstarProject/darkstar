@@ -6,10 +6,11 @@
 -----------------------------------
 package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/Xarcabard/TextIDs");
 
+require("scripts/zones/Xarcabard/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------

@@ -11,7 +11,7 @@ require("scripts/globals/fieldsofvalor");
 	
 function onMobDeath(mob, killer)	
 	
-	local Noble_Mold = 17273278;
+	local Noble_Mold = mob:getID();
 	local Noble_Mold_PH = GetServerVariable("Noble_Mold_PH");
 		
 	GetMobByID(Noble_Mold):setExtraVar(os.time() + math.random((43200), (57600)));

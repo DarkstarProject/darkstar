@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: The Sanctuary of ZiTah
--- NPC:  ???
+-- NPC:  qm2 (???)
 -- Involved in Quest: Forge Your Destiny
--- @zone 121
--- @pos 639 -1 -151
+-- @pos 639 -1 -151 121
 -----------------------------------
 package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
 -----------------------------------
