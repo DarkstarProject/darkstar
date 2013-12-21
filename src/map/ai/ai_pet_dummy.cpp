@@ -33,7 +33,6 @@
 #include "../attackRound.h"
 #include "../mobskill.h"
 #include "../utils/petutils.h"
-#include "../utils/attackutils.h"
 
 #include "../lua/luautils.h"
 

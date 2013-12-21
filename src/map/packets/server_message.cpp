@@ -39,9 +39,11 @@ CServerMessagePacket::CServerMessagePacket(const int8* message, int16 language)
 	WBUFB(data,(0x05)-4) = 0x01;
 	WBUFB(data,(0x06)-4) = 0x01;
 
-	if(language == 205) //French
-		WBUFB(data,(0x07)-4) = 0x04;
-	else
+	// TODO: Using the french msg broke the english server message.
+
+	//if(language == 205) //French
+	//	WBUFB(data,(0x07)-4) = 0x04;
+	//else
 		WBUFB(data,(0x07)-4) = 0x02;
 	
 	WBUFB(data,(0x08)-4) = 0x6A;
