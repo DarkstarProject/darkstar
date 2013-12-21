@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Ru'Aun Gardens
--- NPC:  Seiryu
------------------------------------
+-- NPC:  Seiryu (Pet version)
 -----------------------------------
 
 require("scripts/globals/status");

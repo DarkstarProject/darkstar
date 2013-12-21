@@ -28,41 +28,40 @@ function onTrigger(player,npc)
 	
 	local nID = npc:getID();
 	
-	if(nID == 17502639 or nID == 17502637 or nID == 17502635 or nID == 17502633 or nID == 17502631) then
-		GetNPCByID(17502619):setAnimation(8);--blue door
+	if(nID == 17502640 or nID == 17502638 or nID == 17502636 or nID == 17502634 or nID == 17502632) then
+		GetNPCByID(17502620):setAnimation(8);--blue door
+		GetNPCByID(17502619):setAnimation(8);
 		GetNPCByID(17502618):setAnimation(8);
 		GetNPCByID(17502617):setAnimation(8);
 		GetNPCByID(17502616):setAnimation(8);
 		GetNPCByID(17502615):setAnimation(8);
 		GetNPCByID(17502614):setAnimation(8);
-		GetNPCByID(17502613):setAnimation(8);
-		GetNPCByID(17502605):setAnimation(9);--yellow door
-		GetNPCByID(17502606):setAnimation(9);
+		GetNPCByID(17502606):setAnimation(9);--yellow door
 		GetNPCByID(17502607):setAnimation(9);
 		GetNPCByID(17502608):setAnimation(9);
 		GetNPCByID(17502609):setAnimation(9);
 		GetNPCByID(17502610):setAnimation(9);
 		GetNPCByID(17502611):setAnimation(9);
 		GetNPCByID(17502612):setAnimation(9);
-		GetNPCByID(17502638):setAnimation(8);--blue monolith
-		GetNPCByID(17502636):setAnimation(8);
-		GetNPCByID(17502634):setAnimation(8);
-		GetNPCByID(17502632):setAnimation(8);
-		GetNPCByID(17502630):setAnimation(8);
-		GetNPCByID(17502628):setAnimation(9);--yellow monolith
-		GetNPCByID(17502626):setAnimation(9);
-		GetNPCByID(17502624):setAnimation(9);
-		GetNPCByID(17502622):setAnimation(9);
-		GetNPCByID(17502620):setAnimation(9);
+		GetNPCByID(17502613):setAnimation(9);
+		GetNPCByID(17502639):setAnimation(8);--blue monolith
+		GetNPCByID(17502637):setAnimation(8);
+		GetNPCByID(17502635):setAnimation(8);
+		GetNPCByID(17502633):setAnimation(8);
+		GetNPCByID(17502631):setAnimation(8);
+		GetNPCByID(17502629):setAnimation(9);--yellow monolith
+		GetNPCByID(17502627):setAnimation(9);
+		GetNPCByID(17502625):setAnimation(9);
+		GetNPCByID(17502623):setAnimation(9);
+		GetNPCByID(17502621):setAnimation(9);
 	else
+		GetNPCByID(17502620):setAnimation(9);
 		GetNPCByID(17502619):setAnimation(9);
 		GetNPCByID(17502618):setAnimation(9);
 		GetNPCByID(17502617):setAnimation(9);
 		GetNPCByID(17502616):setAnimation(9);
 		GetNPCByID(17502615):setAnimation(9);
 		GetNPCByID(17502614):setAnimation(9);
-		GetNPCByID(17502613):setAnimation(9);
-		GetNPCByID(17502605):setAnimation(8);
 		GetNPCByID(17502606):setAnimation(8);
 		GetNPCByID(17502607):setAnimation(8);
 		GetNPCByID(17502608):setAnimation(8);
@@ -70,16 +69,17 @@ function onTrigger(player,npc)
 		GetNPCByID(17502610):setAnimation(8);
 		GetNPCByID(17502611):setAnimation(8);
 		GetNPCByID(17502612):setAnimation(8);
-		GetNPCByID(17502638):setAnimation(9);
-		GetNPCByID(17502636):setAnimation(9);
-		GetNPCByID(17502634):setAnimation(9);
-		GetNPCByID(17502632):setAnimation(9);
-		GetNPCByID(17502630):setAnimation(9);
-		GetNPCByID(17502628):setAnimation(8);
-		GetNPCByID(17502626):setAnimation(8);
-		GetNPCByID(17502624):setAnimation(8);
-		GetNPCByID(17502622):setAnimation(8);
-		GetNPCByID(17502620):setAnimation(8);
+		GetNPCByID(17502613):setAnimation(8);
+		GetNPCByID(17502639):setAnimation(9);
+		GetNPCByID(17502637):setAnimation(9);
+		GetNPCByID(17502635):setAnimation(9);
+		GetNPCByID(17502633):setAnimation(9);
+		GetNPCByID(17502631):setAnimation(9);
+		GetNPCByID(17502629):setAnimation(8);
+		GetNPCByID(17502627):setAnimation(8);
+		GetNPCByID(17502625):setAnimation(8);
+		GetNPCByID(17502623):setAnimation(8);
+		GetNPCByID(17502621):setAnimation(8);
 	end
 end;
 

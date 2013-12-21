@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: The Shrine of Ru'Avitau
---   NPC: Yve'noile
+--  NPC:  Yve'noile
 --  Type: Quest Giver
--- @zone: 178
---  @pos: 0.000 -1 0.000
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos: 0.001 -1 0.001 178
 -----------------------------------
 package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
 -----------------------------------

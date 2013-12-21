@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: The Shrine of Ru'Avitau
 -- NPC:  ??? (Spawn Olla Pequena)
--- @pos 851 0 92 178
+-- @pos 851 0.1 92 178
 -----------------------------------
 package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
 -----------------------------------

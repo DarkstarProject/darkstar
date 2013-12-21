@@ -92,7 +92,7 @@ function SetFieldManual()
         17199746,17203877,17203878,17207858, -- Valkurm 1, Jugner 2, Batallia 1
         17207859,17212103,17212104,17212105, -- Batallia 1, North Gustaberg 3
         17216171,17216172,17220158,17220159, -- South Gustaberg 2, Konschtat 2
-        17224345,17224346,17228368,17228369, -- Pashhow 2, Rolanberry 2
+        17224345,17224346,17228369,17228370, -- Pashhow 2, Rolanberry 2
         17232273,17232274,17232275,17232276, -- Beaucedine all 4
         17236340,17236341,17240507,17240508, -- Xarcabard 2, Cape Teriggan 2
         17244647,17244648,17244649,17248814, -- Eastern Altepa 3, West Sarutabaruta 1

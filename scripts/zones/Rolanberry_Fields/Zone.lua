@@ -3,8 +3,8 @@
 -- Zone: Rolanberry_Fields (110)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Rolanberry_Fields/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/zones/Rolanberry_Fields/TextIDs");
 require( "scripts/globals/icanheararainbow");
