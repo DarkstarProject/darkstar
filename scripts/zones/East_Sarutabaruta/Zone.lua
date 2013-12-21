@@ -3,8 +3,8 @@
 -- Zone: East_Sarutabaruta (116)
 --
 -----------------------------------
-
 package.loaded[ "scripts/zones/East_Sarutabaruta/TextIDs"] = nil;
+-----------------------------------
 
 require( "scripts/globals/keyitems");
 require( "scripts/globals/missions");
