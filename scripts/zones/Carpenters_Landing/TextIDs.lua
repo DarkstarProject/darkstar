@@ -7,13 +7,13 @@ FULL_INVENTORY_AFTER_TRADE = 6377; -- You cannot obtain the <item>. Try trading 
               GIL_OBTAINED = 6379; -- Obtained <number> gil.
           KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>.
             ITEMS_OBTAINED = 6387; -- You obtain <param2 number> <param1 item>!
-    FISHING_MESSAGE_OFFSET = 7233; -- You can't fish here.
+    FISHING_MESSAGE_OFFSET = 7235; -- You can't fish here.
 
 -- Other dialog
 NOTHING_OUT_OF_ORDINARY = 6392; -- There is nothing out of the ordinary here.
 
 -- Logging
-LOGGING_IS_POSSIBLE_HERE = 7342; -- Logging is possible here if you have <item>.
+LOGGING_IS_POSSIBLE_HERE = 7344; -- Logging is possible here if you have <item>.
 
 -- Shop Texts
-BEUGUNGEL_SHOP_DIALOG =  7374; -- Hello, sir/ma'am! I'm selling goods direct from the Carpenters' Guild.
+BEUGUNGEL_SHOP_DIALOG = 7376; -- Hello, sir/ma'am! I'm selling goods direct from the Carpenters' Guild.

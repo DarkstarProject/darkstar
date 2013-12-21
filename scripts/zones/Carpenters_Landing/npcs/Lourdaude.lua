@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Carpenters' Landing
---   NPC: Lourdaude
+--  NPC:  Lourdaude
 --  Type: Standard NPC
--- @zone: 2
---  @pos: 215.597 -2.689 -526.021
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 215.597 -2.689 -526.021 2
 -----------------------------------
 package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
 -----------------------------------

@@ -33,7 +33,7 @@ function onTrade(player,npc,trade)
 				player:getEquipID(SLOT_RING2) == 0 and player:getEquipID(SLOT_BACK) == 0) then
 				player:startEvent(0x0002); -- complete grappling part of the quest			
 			else 
-				player:messageSpecial(THF_AF_3,0,17474);	
+				player:messageSpecial(THF_AF_WALL_OFFSET+2,0,17474); --  You try climbing the wall using the [Grapnel], but you are too heavy.
 			end	
 		end
 	end
@@ -57,9 +57,9 @@ function onTrigger(player,npc)
 			thickAsThievesGrapplingCS == 3 or thickAsThievesGrapplingCS == 4 or
 			thickAsThievesGrapplingCS == 5 or thickAsThievesGrapplingCS == 6 or
 			thickAsThievesGrapplingCS == 7) then
-			player:messageSpecial(THF_AF_1);		
+			player:messageSpecial(THF_AF_WALL_OFFSET);	--  It is impossible to climb this wall with your bare hands.
 		elseif(thickAsThievesGrapplingCS == 8) then
-			player:messageSpecial(THF_AF_2);	
+			player:messageSpecial(THF_AF_WALL_OFFSET+1); -- There is no longer any need to climb the tower.
 		end	
 	else 
 		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);			

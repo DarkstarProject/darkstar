@@ -1,6 +1,6 @@
 -----------------------------------
 --  Area: Carpenters' Landing
---  NPC: ??? (qm1)
+--  NPC:  ??? (qm1)
 --  Note: Used to spawn Mycophile NM
 --  @pos 145.500 -9.000 -699.000 2
 -----------------------------------
@@ -18,7 +18,6 @@ function onTrade(player,npc,trade)
 		player:tradeComplete();
 		SpawnMob(16785722,300):updateEnmity(player); -- Mycophile
 	end
-
 
 end; 
 

@@ -2,8 +2,7 @@
 -- Area: Garlaige Citadel
 -- NPC:  Oaken Box
 -- Involved In Quest: Peace for the Spirit
--- @zone 200
--- @pos -164 0 225
+-- @pos -164 0.1 225 200
 -----------------------------------
 package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
 -----------------------------------

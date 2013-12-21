@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Carpenters' Landing
---   NPC: Felourie
+--  NPC:  Felourie
 --  Type: Standard NPC
--- @zone: 2
---  @pos: -300.134 -2.999 505.016
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -300.134 -2.999 505.016 2
 -----------------------------------
 package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
 -----------------------------------

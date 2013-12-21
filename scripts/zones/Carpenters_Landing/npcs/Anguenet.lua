@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Carpenters' Landing
---   NPC: Anguenet
+--  NPC:  Anguenet
 --  Type: Adventurer's Assistant
--- @zone: 2
---  @pos: 214.672 -3.013 -527.561
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 214.672 -3.013 -527.561 2
 -----------------------------------
 package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
 -----------------------------------

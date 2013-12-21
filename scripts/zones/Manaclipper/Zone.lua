@@ -3,9 +3,10 @@
 -- Zone: Manaclipper
 -- 
 -----------------------------------
+package.loaded["scripts/zones/Manaclipper/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Manaclipper/TextIDs"] = nil;
 require("scripts/zones/Manaclipper/TextIDs");
 
 -----------------------------------

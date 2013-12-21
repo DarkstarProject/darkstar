@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: bibiki bay
+-- Area: Bibiki Bay
 -- NPC:  Shen
 -----------------------------------
 
@@ -16,11 +16,13 @@ end;
 
 function onMobFight(mob,target)
 	
+	local Shen = mob:getID();
+	
 	if(mob:getBattleTime() % 45 == 0) then
-		if(GetMobAction(16793860) == 0) then
-			SpawnMob(16793860,300):updateEnmity(target);
-		elseif(GetMobAction(16793861) == 0) then
-			SpawnMob(16793861,300):updateEnmity(target);
+		if(GetMobAction(Shen+1) == 0) then
+			SpawnMob(Shen+1,300):updateEnmity(target);
+		elseif(GetMobAction(Shen+2) == 0) then
+			SpawnMob(Shen+2,300):updateEnmity(target);
 		end
 	end
 	

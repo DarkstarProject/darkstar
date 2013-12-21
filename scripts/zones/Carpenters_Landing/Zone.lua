@@ -3,8 +3,9 @@
 -- Zone: Carpenters_Landing (2)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/Carpenters_Landing/TextIDs");
 

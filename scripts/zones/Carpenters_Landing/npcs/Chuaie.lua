@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Carpenters' Landing
---   NPC: Chuaie
+--  NPC:  Chuaie
 --  Type: Adventurer's Assistant
--- @zone: 2
---  @pos: 231.384 -3 -531.830
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 231.384 -3 -531.830 2
 -----------------------------------
 package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
 -----------------------------------

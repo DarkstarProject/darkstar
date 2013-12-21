@@ -1,10 +1,8 @@
 -----------------------------------
--- Area: Garlaige Citadel
--- NPC:  qm2 (???)
--- Grants the Pouch of Weighted Stones keyitem 
--- used to pass through the banishing gates
--- @zone 200
--- @pos -364 0 299
+-- Area:  Garlaige Citadel
+-- NPC:   qm2 (???)
+-- Notes: Used to obtain Pouch of Weighted Stones
+-- @pos -365.119 -5.500 299.986 200
 -----------------------------------
 package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
 -----------------------------------

@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Carpenters' Landing
---   NPC: Ratoulle
+--  NPC:  Ratoulle
 --  Type: Adventurer's Assistant
--- @zone: 2
---  @pos: -133.959 -3 60.839
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -133.959 -3 60.839 2
 -----------------------------------
 package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
 -----------------------------------

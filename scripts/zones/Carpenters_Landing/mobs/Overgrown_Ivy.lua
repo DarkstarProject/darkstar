@@ -1,12 +1,7 @@
 -----------------------------------
 -- Area: Carpenters_Landing
---  mob: Overgrown_Ivy
+--  Mob: Overgrown_Ivy
 -----------------------------------
-
-
-
-
-
 
 -----------------------------------
 -- onMobDeath

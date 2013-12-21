@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Carpenters' Landing
---   NPC: Cofisephe
+--  NPC:  Cofisephe
 --  Type: Adventurer's Assistant
--- @zone: 2
---  @pos: 210.327 -3.885 -532.511
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos: 210.327 -3.885 -532.511 2
 -----------------------------------
 package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
 -----------------------------------

@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Garlaige Citadel
---   NPC: Wanzo-Unzozo
+--  NPC:  Wanzo-Unzozo
 --  Type: Quest NPC
--- @zone: 200
---  @pos: -379.420 -10.749 383.312
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -379.420 -10.749 383.312 200
 -----------------------------------
 package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
 -----------------------------------

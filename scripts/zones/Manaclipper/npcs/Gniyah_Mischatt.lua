@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Manaclipper
---   NPC: Gniyah Mischatt
+--  NPC:  Gniyah Mischatt
 --  Type: Adventurer's Assistant
--- @zone: 3
---  @pos: 0.033 -4 2.725
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 0.033 -4 2.725 3
 -----------------------------------
 package.loaded["scripts/zones/Manaclipper/TextIDs"] = nil;
 -----------------------------------

@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Carpenters' Landing
---   NPC: Guilloud
+--  NPC:  Guilloud
 --  Type: Standard NPC
--- @zone: 2
---  @pos: -123.770 -6.654 -469.062
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -123.770 -6.654 -469.062 2
 -----------------------------------
 package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
 -----------------------------------
@@ -29,7 +26,6 @@ function onTrigger(player,npc)
    else
       player:startEvent(0x0001);
    end   
-	
 end;
 
 -----------------------------------
@@ -48,9 +44,8 @@ end;
 function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
- if (csid == 0x0000)then
-     player:setVar("EMERALD_WATERS_Status",6); 
- end
-
+	if (csid == 0x0000)then
+		player:setVar("EMERALD_WATERS_Status",6); 
+	end
 end;
 

@@ -1,17 +1,15 @@
 -----------------------------------
 --  Area: Bibiki Bay
---   NPC: Tswe Panipahr
+--  NPC:  Tswe Panipahr
 --  Type: Manaclipper
--- @zone: 4
---  @pos: 484.604 -4.035 729.671
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 484.604 -4.035 729.671 4
 -----------------------------------
 package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/Bibiki_Bay/TextIDs");
 require("scripts/globals/keyitems");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------

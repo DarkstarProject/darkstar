@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Phomiuna_Aqueducts
--- NPC: ornate door
+-- NPC:  Ornate Gate
 -- @pos -95 -24 60 27
 -----------------------------------
 package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;

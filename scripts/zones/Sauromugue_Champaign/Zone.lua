@@ -3,8 +3,8 @@
 -- Zone: Sauromugue_Champaign (120)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/zones/Sauromugue_Champaign/TextIDs");
 require( "scripts/globals/icanheararainbow");

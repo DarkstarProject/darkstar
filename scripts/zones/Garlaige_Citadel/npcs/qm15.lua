@@ -1,10 +1,8 @@
 -----------------------------------
 -- Area: Garlaige Citadel
 -- NPC:  qm15 (???)
--- used in quest - hitting The Marquisate thf af3
--- 7th ??? + bomb battle
--- @zone 200
--- @pos x:19 y:0 z:325
+-- Involved in Quest: Hitting the Marquisate (THF AF3)
+-- @pos 19.893 -5.500 325.767 200
 -----------------------------------
 package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
 -----------------------------------
@@ -26,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
 
-	hittingTheMarquisateHagainCS = player:getVar("hittingTheMarquisateHagainCS");
+	local hittingTheMarquisateHagainCS = player:getVar("hittingTheMarquisateHagainCS");
 
 	if (hittingTheMarquisateHagainCS == 8) then 
 		player:messageSpecial(HEAT_FROM_CEILING);

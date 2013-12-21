@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Garlaige Citadel
--- NPC: Mashira
+-- NPC:  Mashira
 -- Involved in Quests: Rubbish day, Making Amens!
--- @zone 200
--- @pos 141 -6 138
+-- @pos 141 -6 138 200
 -----------------------------------
 package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
 -----------------------------------

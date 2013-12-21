@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Phomiuna_Aqueducts
--- NPC:  Iron Gate
+-- NPC:  _ir9 (Iron Gate)
 -- @pos 70 -1.5 140 27
 -----------------------------------
 package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
@@ -17,10 +17,10 @@ function onTrade(player,npc,trade)
 	
 	if(trade:hasItemQty(1660,1) and trade:getItemCount() == 1)then -- Bronze Key
 		player:tradeComplete();
-		GetNPCByID(16888087):openDoor(7);
+		npc:openDoor(7);
 	elseif(trade:hasItemQty(1022,1) and trade:getItemCount() == 1 and player:getMainJob() == 6)then -- thief's tool
 		player:tradeComplete();
-		GetNPCByID(16888087):openDoor(7);
+		npc:openDoor(7);
 	end
 	
 end; 
@@ -34,6 +34,7 @@ function onTrigger(player,npc)
 	if(player:getXPos() >= 70) then
 		return -1;
 	else
+		player:messageSpecial(DOOR_LOCKED,1660);
 		return 1;
 	end
 	

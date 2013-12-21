@@ -1,12 +1,11 @@
 -----------------------------------
 -- Area: Phomiuna_Aqueducts
--- NPC:  Iron Gate
--- @pos -65 0 60 27
+-- NPC:  _0rw (Oil Lamp)
+-- @pos 103.703 -26.180 83.000 27
 -----------------------------------
 package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/missions");
 require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
 
 -----------------------------------
@@ -21,7 +20,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-   GetNPCByID(16888053):openDoor(7);
+   
+	if(player:getZPos() < 85) then
+	  npc:openDoor(7);
+		GetNPCByID(16888053):openDoor(7);		
+	else
+		player:messageSystem(9); -- Target out of range.		
+	end     
+   
 end; 
 
 -----------------------------------

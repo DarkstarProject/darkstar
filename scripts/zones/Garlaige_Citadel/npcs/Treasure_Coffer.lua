@@ -2,7 +2,6 @@
 -- Area: Garlaige Citadel
 -- NPC:  Treasure Coffer
 -- @zone 200
--- @pos 11 5 10
 -----------------------------------
 package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
 -----------------------------------

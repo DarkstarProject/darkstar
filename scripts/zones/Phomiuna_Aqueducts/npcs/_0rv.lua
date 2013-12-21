@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Phomiuna_Aqueducts
--- NPC:  Oil lamp
+-- NPC:  _0rv (Oil lamp)
 -- @pos -60 -23 60 27
 -----------------------------------
 package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;

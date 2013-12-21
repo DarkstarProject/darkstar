@@ -3,9 +3,10 @@
 -- Zone: Phanauet_Channel
 -- 
 -----------------------------------
+package.loaded["scripts/zones/Phanauet_Channel/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Phanauet_Channel/TextIDs"] = nil;
 require("scripts/zones/Phanauet_Channel/TextIDs");
 
 -----------------------------------

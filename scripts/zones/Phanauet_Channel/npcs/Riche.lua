@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Phanauet Channel
---   NPC: Riche
+--  NPC:  Riche
 --  Type: Standard NPC
--- @zone: 1
---  @pos: 5.945 -3.75 13.612
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 5.945 -3.75 13.612 1
 -----------------------------------
 package.loaded["scripts/zones/Phanauet_Channel/TextIDs"] = nil;
 -----------------------------------

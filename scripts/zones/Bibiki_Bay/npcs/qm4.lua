@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Bibiki Bay
 -- NPC:  ??? COP mission spawn Dalham
--- 
+-- @pos 
 -----------------------------------
 package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;
 -----------------------------------

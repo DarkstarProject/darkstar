@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Phanauet Channel
---   NPC: Ineuteniace
+--  NPC:  Ineuteniace
 --  Type: Standard NPC
--- @zone: 1
---  @pos: 11.701 -3 1.360
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 11.701 -3 1.360 1
 -----------------------------------
 package.loaded["scripts/zones/Phanauet_Channel/TextIDs"] = nil;
 -----------------------------------

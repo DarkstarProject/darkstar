@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Phanauet Channel
---   NPC: Laiteconce
+--  NPC:  Laiteconce
 --  Type: Standard NPC
--- @zone: 1
---  @pos: 4.066 -4.5 -10.450
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 4.066 -4.5 -10.450 1
 -----------------------------------
 package.loaded["scripts/zones/Phanauet_Channel/TextIDs"] = nil;
 -----------------------------------

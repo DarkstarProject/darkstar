@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Garlaige Citadel
--- NPC:  Banishing Gate #3
--- @zone 200
--- @pos -100 -3.008 359
+-- NPC:  _5ki (Banishing Gate #3)
+-- @pos -100 -3.008 359 200
 -----------------------------------
 package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
 -----------------------------------
@@ -25,10 +24,12 @@ function onTrigger(player,npc)
 		player:messageSpecial(A_GATE_OF_STURDY_STEEL);
 		return 1;
 	else
-		for thisgate=npc:getID(),npc:getID()+4,1 do
-			GetNPCByID(thisgate):openDoor(30);
+		local DoorID = npc:getID();
+		
+		for i = DoorID,DoorID+4,1 do
+			GetNPCByID(i):openDoor(30);
 		end
-		player:messageSpecial(BANISHING_GATES + 2); -- Banishing gate opening
+		player:messageSpecial(BANISHING_GATES + 2); -- Third Banishing gate opening
 		return 1;
 	end
 end;

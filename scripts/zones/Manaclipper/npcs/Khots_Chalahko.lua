@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Manaclipper
---   NPC: Khots Chalahko
+--  NPC:  Khots Chalahko
 --  Type: NPC
--- @zone: 3
---  @pos: 0.019 -4.674 -18.782
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 0.019 -4.674 -18.782 3
 -----------------------------------
 package.loaded["scripts/zones/Manaclipper/TextIDs"] = nil;
 -----------------------------------

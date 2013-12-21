@@ -1,7 +1,8 @@
 -----------------------------------
--- Area: Bibiki Bay
--- NPC:  ??? (Spawn Shen)
--- 
+-- Area:  Bibiki Bay
+-- NPC:   ??? (qm1)
+-- Notes: Used to spawn Shen
+-- @pos -115.108 0.300 -724.664 4
 -----------------------------------
 package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;
 -----------------------------------
@@ -14,12 +15,14 @@ require("scripts/zones/Bibiki_Bay/TextIDs");
 
 function onTrade(player,npc,trade)
 	
+	local Shen = 16793859;
+	
 	-- Trade Shrimp Lantern
-	if(GetMobAction(16793859) == 0 and trade:hasItemQty(1823,1) and trade:getItemCount() == 1)then
+	if(GetMobAction(Shen) == 0 and trade:hasItemQty(1823,1) and trade:getItemCount() == 1)then
 	  	player:tradeComplete();
-		SpawnMob(16793859,180):updateEnmity(player);
-		SpawnMob(16793860,180):updateEnmity(player);
-		SpawnMob(16793861,180):updateEnmity(player);
+		SpawnMob(Shen,180):updateEnmity(player);
+		SpawnMob(Shen+1,180):updateEnmity(player);
+		SpawnMob(Shen+2,180):updateEnmity(player);
     end
 	
 end;

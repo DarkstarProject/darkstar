@@ -1,6 +1,8 @@
 -----------------------------------
--- Area: Phomiuna Aqueducts
--- NPC:  ???
+-- Area:  Phomiuna Aqueducts
+-- NPC:   qm5 (???)
+-- Notes: Opens door @ F-8 from behind
+-- @pos -65.512 -25.262 62.918 27
 -----------------------------------
 
 -----------------------------------
@@ -19,7 +21,7 @@ function onTrigger(player,npc)
 	if (xPos <= -65) then
 		GetNPCByID(16888062):openDoor(7)
 	else
-		player:messageSystem(9);
+		player:messageSystem(9); -- Target out of range. 
 	end
 end; 
 
