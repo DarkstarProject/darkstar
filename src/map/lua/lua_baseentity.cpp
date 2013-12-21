@@ -4695,6 +4695,7 @@ inline int32 CLuaBaseEntity::setsLevel(lua_State *L)
 
     charutils::SaveCharStats(PChar);
     charutils::SaveCharJob(PChar, PChar->GetMJob());
+    charutils::SaveCharJob(PChar, PChar->GetSJob());
     charutils::SaveCharExp(PChar, PChar->GetMJob());
 
     PChar->pushPacket(new CCharJobsPacket(PChar));

@@ -28,6 +28,9 @@
 #include "../blue_spell.h"
 #include "../utils/battleutils.h"
 #include "../utils/charutils.h"
+#include "../utils/attackutils.h"
+#include "../attackround.h"
+#include "../attack.h"
 #include "../conquest_system.h"
 #include "../utils/jailutils.h"
 #include "../map.h"
@@ -988,11 +991,11 @@ void CAICharNormal::ActionRangedFinish()
                         {
 							if (m_PChar->isRapidShot)
 							{
-        						damage = battleutils::CheckForDamageMultiplier(m_PChar, PItem, damage, RAPID_SHOT_ATTACK);
+        						damage = attackutils::CheckForDamageMultiplier(m_PChar, PItem, damage, RAPID_SHOT_ATTACK);
 							}
 							else
 							{
-        						damage = battleutils::CheckForDamageMultiplier(m_PChar, PItem, damage, RANGED_ATTACK);
+        						damage = attackutils::CheckForDamageMultiplier(m_PChar, PItem, damage, RANGED_ATTACK);
 							}
 
                             if(PItem != NULL)
@@ -1814,7 +1817,7 @@ void CAICharNormal::ActionJobAbilityFinish()
         			hitOccured = true;
 
         			damage = (damage + m_PChar->GetRangedWeaponDmg() + battleutils::GetFSTR(m_PChar,m_PBattleSubTarget,SLOT_RANGED)) * pdif * 5;
-					damage = battleutils::CheckForDamageMultiplier(m_PChar, PItem, damage, ATTACK_NORMAL);
+					damage = attackutils::CheckForDamageMultiplier(m_PChar, PItem, damage, ATTACK_NORMAL);
                     damage = battleutils::RangedDmgTaken(m_PBattleSubTarget, damage);
                 }
     		}
@@ -2799,43 +2802,20 @@ void CAICharNormal::ActionAttack()
 		else
 		{
 			apAction_t Action;
-            m_PChar->m_ActionList.clear();
-
-			// Create an attack round
-			attackSwingRound_t attackRound;
-			std::vector<attackSwing_t> swingList;
-			attackRound.attackSwings = &swingList;
-			
 			Action.ActionTarget = m_PBattleTarget;
-            Action.knockback  = 0;
-			CBattleEntity* taChar = battleutils::getAvailableTrickAttackChar(m_PChar,m_PBattleTarget);
-			uint16 subType = m_PChar->m_Weapons[SLOT_SUB]->getDmgType();
-			CItemWeapon* PWeapon = m_PChar->m_Weapons[SLOT_MAIN];
-			uint8 fstrslot = SLOT_MAIN;
+            Action.knockback  = 0;            
 
+			// Create a new attack round.
+			CAttackRound* attackRound = new CAttackRound(m_PChar);
 
-			// Main weapon check
-			battleutils::CheckMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_MAIN], &attackRound, RIGHTATTACK);
-
-			// Off hand weapon check
-			if ((subType > 0 && subType < 4))
+			/////////////////////////////////////////////////////////////////////////
+			//	Start of the attack loop.
+			/////////////////////////////////////////////////////////////////////////
+			for (uint8 i = 0; i < attackRound->GetAttackSwingCount(); ++i)
 			{
-				battleutils::CheckMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_SUB], &attackRound, LEFTATTACK);
-			}
+				// Reference to the current swing.
+				CAttack* attack = (CAttack*)attackRound->GetCurrentAttack();
 
-			// H2H Weapon check
-            bool isHTH = m_PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH;
-			if(isHTH)
-			{
-				battleutils::CheckMultiHits(m_PChar, m_PChar->m_Weapons[SLOT_MAIN], &attackRound, LEFTATTACK);
-				battleutils::CheckPlayersKickAttack(m_PChar, m_PChar->m_Weapons[SLOT_MAIN], &attackRound);
-			}
-
-            m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HASTE_SAMBA_HASTE);
-
-			// Start of the attack loop
-			for (uint8 i = 0; i < attackRound.attackSwings->size(); ++i)
-			{
 				if (i != 0)
 				{
 					if (m_PBattleTarget->isDead())
@@ -2845,131 +2825,34 @@ void CAICharNormal::ActionAttack()
 					Action.ActionTarget = NULL;
 				}
 
-				if (!isHTH) 
-				{
-					if (attackRound.attackSwings->at(0).attackDirection == LEFTATTACK)
-					{
-						PWeapon = m_PChar->m_Weapons[SLOT_SUB];
-						fstrslot = SLOT_SUB;
-					}
-					else
-					{
-						PWeapon = m_PChar->m_Weapons[SLOT_MAIN];
-						fstrslot = SLOT_MAIN;
-					}
-				}
+				// Set the swing animation.
+				Action.animation = attack->GetAnimationID();
 
-				uint32 damage = 0;
-				bool isCritical = false;
-
-				// Do attack animation (kick, melee)
-				if (m_PChar->GetMJob() == JOB_MNK && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_FOOTWORK))
-				{
-					if (attackRound.attackSwings->at(0).attackDirection == RIGHTATTACK)
-					{
-						Action.animation = 2;//kick right leg
-					}
-					else
-					{
-						Action.animation = 3;//kick left leg
-					}
-				}
-				else
-				{
-					// Try normal kick attacks (without footwork)
-					if (attackRound.attackSwings->at(0).attackType == KICK_ATTACK)
-					{
-						if (attackRound.attackSwings->at(0).attackDirection == RIGHTATTACK)
-						{
-							Action.animation = 2;//kick right leg
-
-							// Try the second kick during this condition (left kick without footwork active)
-							if (rand()%100 < m_PChar->getMod(MOD_EXTRA_KICK_ATTACK))
-							{
-								battleutils::AddAttackSwing(&attackRound, KICK_ATTACK, LEFTATTACK, 1);
-							}
-						}
-						else
-						{
-							Action.animation = 3;//kick left leg
-						}
-					}
-					else
-					{
-						// Normal melee attacks
-						if (attackRound.attackSwings->at(0).attackDirection == RIGHTATTACK)
-						{
-							Action.animation = 0;//attack right hand
-						}
-						else
-						{
-							Action.animation = 1;//attack left hand
-						}	
-					}
-				}
-
-				uint8 hitRate = 0;
-
-				// Right hand hitrate
-				if (attackRound.attackSwings->at(0).attackDirection == RIGHTATTACK && attackRound.attackSwings->at(0).attackType != KICK_ATTACK)
-				{
-					if (attackRound.attackSwings->at(0).attackType == ZANSHIN_ATTACK)
-					{
-						hitRate = battleutils::GetHitRate(m_PChar,m_PBattleTarget,0,(uint8)35);
-					}
-					else
-					{
-						hitRate = battleutils::GetHitRate(m_PChar,m_PBattleTarget,0);
-					}
-				}
-				// Left hand hitrate
-				else if (attackRound.attackSwings->at(0).attackDirection == LEFTATTACK && attackRound.attackSwings->at(0).attackType != KICK_ATTACK)
-				{
-					if (attackRound.attackSwings->at(0).attackType == ZANSHIN_ATTACK)
-					{
-						hitRate = battleutils::GetHitRate(m_PChar,m_PBattleTarget,1,(uint8)35);
-					}
-					else
-					{
-						hitRate = battleutils::GetHitRate(m_PChar,m_PBattleTarget,1);
-					}
-					//deciding this here because SA/TA wears on attack, before the 2nd+ hits go off
-					if (hitRate = 100)
-					{
-						attackRound.sataOccured = true;
-					}
-				}
-				// Kick hit rate
-				else if (attackRound.attackSwings->at(0).attackType == KICK_ATTACK)
-				{
-					hitRate = battleutils::GetHitRate(m_PChar,m_PBattleTarget,2);
-				}
 				// сначала вычисляем вероятность попадания по монстру
 				// затем нужно вычислить вероятность нанесения критического удара
-				if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE,0))
+				if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE, 0))
 				{
 					Action.messageID = 32;
 					Action.reaction   = REACTION_EVADE;
 					Action.speceffect = SPECEFFECT_NONE;
 				}
-				else if ( rand()%100 < hitRate || attackRound.sataOccured)
+				else if (rand()%100 < attack->GetHitRate() || attackRound->GetSATAOccured())
 				{
-
                     // attack hit, try to be absorbed by shadow
                     if (battleutils::IsAbsorbByShadow(m_PBattleTarget))
                     {
                         Action.messageID = 0;
                         Action.reaction = REACTION_EVADE;
+						attack->SetEvaded(true);
                         m_PBattleTarget->loc.zone->PushPacket(m_PBattleTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleTarget,m_PBattleTarget,0,1,31));
                     }
                     else
                     {
-						bool ignoreSneakTrickAttack = (i != 0); // Sneak attack critical effect should only be given on the first swing.
-						isCritical = (rand()%100 < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget, ignoreSneakTrickAttack));
+						// Set this attack's critical flag.
+						attack->SetCritical(rand()%100 < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget, !attack->IsFirstSwing()));
 
-						float DamageRatio = battleutils::GetDamageRatio(m_PChar, m_PBattleTarget, isCritical, 0);
-
-						if (isCritical)
+						// Critical hit.
+						if (attack->IsCritical())
 						{
 							Action.reaction   = REACTION_HIT;
 							Action.speceffect = SPECEFFECT_CRITICAL_HIT;
@@ -2980,6 +2863,7 @@ void CAICharNormal::ActionAttack()
     							luautils::OnCriticalHit(m_PBattleTarget);
                             }
 						}
+						// Not critical hit.
 						else
 						{
 							Action.reaction   = REACTION_HIT;
@@ -2987,75 +2871,38 @@ void CAICharNormal::ActionAttack()
 							Action.messageID  = 1;
 						}
 
-                        if (battleutils::IsGuarded(m_PChar, m_PBattleTarget))
-                        {
+						// Guarded. TODO: Stuff guards that shouldn't.
+						if (attack->IsGuarded())
+						{
                             Action.reaction = REACTION_GUARD;
-                            if (DamageRatio > 1.0f)
-                                DamageRatio -= 1.0f;
-                            else
-                                DamageRatio = 0;
-                        }
-
-						uint16 bonusDMG = 0;
-
-						if(m_PChar->GetMJob() == JOB_THF && (!ignoreSneakTrickAttack) &&
-							m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK) &&
-							abs(m_PBattleTarget->loc.p.rotation - m_PChar->loc.p.rotation) < 23)
-							{
-								bonusDMG = m_PChar->DEX();
-								if(rand()%100 < 4) Monster->m_THLvl +=1;
-							}
-
-
-						//trick attack agi bonus for thf main job
-						if(m_PChar->GetMJob() == JOB_THF && (!ignoreSneakTrickAttack) && taChar != NULL)
-						{
-							bonusDMG += m_PChar->AGI();
 						}
 
-						if (isHTH)
-						{
-							// (ffxiclopedia h2h) remove 3 dmg from weapon, DB has an extra 3 for weapon rank
-							// get natural h2h damage (h2hSkill*0.11+3)
-							uint16 naturalH2hDmg = (float)(m_PChar->GetSkill(SKILL_H2H) * 0.11f)+3;
-                            int16 baseDamage = m_PChar->GetMainWeaponDmg()-3;
+						// Process damage.
+						attack->ProcessDamage();
 
-                            if(Action.animation == 2 || Action.animation == 3)
-							{
-                                // this is a kick attack
-                                baseDamage = m_PChar->getMod(MOD_KICK_DMG);
-                            }
-
-							damage = (uint32)((( baseDamage + naturalH2hDmg + bonusDMG +
-									 battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
-						}
-						else
+						// Try shield block
+						if (attack->IsBlocked())
 						{
-							if( fstrslot == SLOT_MAIN )
-							{
-								damage = (uint32)(((m_PChar->GetMainWeaponDmg() + bonusDMG + 
-									battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
-							} 
-							else if( fstrslot == SLOT_SUB )
-							{
-								damage = (uint32)(((m_PChar->GetSubWeaponDmg() + bonusDMG +
-									battleutils::GetFSTR(m_PChar, m_PBattleTarget,fstrslot)) * DamageRatio));
-							}
+							Action.reaction = REACTION_BLOCK;
 						}
 
-						// do soul eater effect
-						damage = battleutils::doSoulEaterEffect(m_PChar, damage);
-
-						if(damage > 0)
+						// Damage was absorbed.
+						if (attack->GetDamage() < 0)
 						{
-							charutils::TrySkillUP(m_PChar, (SKILLTYPE)PWeapon->getSkillType(), m_PBattleTarget->GetMLevel());
+							Action.messageID = 263;
 						}
 
-						// Try zanshin (hasso - non miss)
-						if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO))
+						// Try absorb HP chance (The target)
+						if (attackutils::TryAbsorbHPfromPhysicalAttack(m_PBattleTarget, attack->GetDamage()))
 						{
-							battleutils::CheckPlayersZanshin(m_PChar, &attackRound);
+							Action.messageID = 0;
+							attack->SetDamage(0);
 						}
+
+						// Try to absorb MP (The target)
+						attackutils::TryAbsorbMPfromPhysicalAttack(m_PBattleTarget, attack->GetDamage());
+
+						Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, attack->GetDamage(), attack->IsBlocked(), attack->GetWeaponSlot(), 1, attackRound->GetTAEntity(), true);
 					}
 				}
 				else
@@ -3064,50 +2911,13 @@ void CAICharNormal::ActionAttack()
 					Action.reaction   = REACTION_EVADE;
 					Action.speceffect = SPECEFFECT_NONE;
 					Action.messageID  = 15;
+					attack->SetEvaded(true);
 
-					// Try to zanshin (miss)
-					battleutils::CheckPlayersZanshin(m_PChar, &attackRound);
+					// Try to zanshin (miss).
+					attackRound->CreateZanshinAttacks();
 				}
 
-                bool isBlocked = battleutils::IsBlocked(m_PChar, m_PBattleTarget);
-				if(isBlocked && Action.reaction != REACTION_EVADE)
-				{
-					Action.reaction = REACTION_BLOCK;
-				}
-
-				if (Action.reaction == REACTION_HIT || Action.reaction == REACTION_BLOCK || Action.reaction == REACTION_GUARD)
-				{
-
-					if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_SAMBA))
-					{
-						attackRound.attackSwings->at(0).attackType = SAMBA_ATTACK;
-					}
-					damage = battleutils::CheckForDamageMultiplier(m_PChar, PWeapon, damage, attackRound.attackSwings->at(0).attackType);
-
-					if (isCritical)
-					{	
-						damage += (damage * (float)m_PChar->getMod(MOD_CRIT_DMG_INCREASE) / 100);
-					}
-
-					// Try Null damage chance (The target)
-					if (m_PBattleTarget->objtype == TYPE_PC && rand()%100 < m_PBattleTarget->getMod(MOD_NULL_PHYSICAL_DAMAGE))
-					{
-						damage = 0;
-					}
-
-					// Try absorb HP chance (The target)
-					if (battleutils::TryAbsorbHPfromPhysicalAttack(m_PBattleTarget, damage))
-					{
-						Action.messageID = 0;
-						damage = 0;
-					}
-
-					// Try to absorb MP (The target)
-					battleutils::TryAbsorbMPfromPhysicalAttack(m_PBattleTarget, damage);
-
-					Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, damage, isBlocked, fstrslot, 1, taChar, true);
-				}
-				else
+				if (Action.reaction != REACTION_HIT && Action.reaction != REACTION_BLOCK && Action.reaction != REACTION_GUARD)
 				{
 					Action.param = 0;
                     battleutils::ClaimMob(m_PBattleTarget, m_PChar);
@@ -3115,34 +2925,41 @@ void CAICharNormal::ActionAttack()
 
 				if (Action.reaction != REACTION_EVADE && Action.reaction != REACTION_PARRY)
 				{
-                    battleutils::HandleEnspell(m_PChar, m_PBattleTarget, &Action, i, PWeapon, damage);
-					battleutils::HandleSpikesDamage(m_PChar, m_PBattleTarget, &Action, damage);
+					battleutils::HandleEnspell(m_PChar, m_PBattleTarget, &Action, i, (CItemWeapon*)m_PChar->m_Weapons[attack->GetWeaponSlot()], attack->GetDamage());
+					battleutils::HandleSpikesDamage(m_PChar, m_PBattleTarget, &Action, attack->GetDamage());
                 }
 
                 if (Action.speceffect == SPECEFFECT_HIT && Action.param > 0)
 				{
                     Action.speceffect = SPECEFFECT_RECOIL;
 				}
+
                 m_PChar->m_ActionList.push_back(Action);
 
 				// Repeat the attack if Zanshin is triggered, otherwise, remove this swing
-				if (!attackRound.zanshinOccured)
+				if (!attackRound->GetZanshinOccured())
 				{
-					attackRound.attackSwings->erase(attackRound.attackSwings->begin());
-					i--;
+					attackRound->DeleteAttackSwing();
 				}
 				else
 				{
-					attackRound.attackSwings->at(0).attackType = ZANSHIN_ATTACK;
-					attackRound.zanshinOccured = false;
-					i--;
+					attack->SetAttackType(ZANSHIN_ATTACK);
+					attackRound->SetZanshinOccured(false);
 				}
+
+				i--;
 
                 if (m_PChar->m_ActionList.size() == 8) 
 				{
 					break;
 				}
-			} // End of attack loop
+			} 
+			/////////////////////////////////////////////////////////////////////////////////////////////
+			// End of attack loop
+			/////////////////////////////////////////////////////////////////////////////////////////////
+
+			// Clear this attack round.  We are done with it.
+			delete attackRound;
 
 			m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK | EFFECTFLAG_DETECTABLE);
 			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));

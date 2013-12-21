@@ -28,6 +28,7 @@
 #include "../utils/blueutils.h"
 #include "../utils/charutils.h"
 #include "../utils/itemutils.h"
+#include "../utils/attackutils.h"
 #include "../mobskill.h"
 #include "../utils/mobutils.h"
 #include "../status_effect.h"
@@ -37,6 +38,8 @@
 #include "../zone.h"
 #include "../alliance.h"
 #include "../map.h"
+#include "../attack.h"
+#include "../attackRound.h"
 
 #include "ai_mob_dummy.h"
 
@@ -1401,7 +1404,7 @@ void CAIMobDummy::ActionAttack()
 					}
 					else if ( rand()%100 < battleutils::GetHitRate(m_PMob, m_PBattleTarget))
 					{
-						if (battleutils::IsParried(m_PMob, m_PBattleTarget))
+						if (attackutils::IsParried(m_PMob, m_PBattleTarget))
 						{
 							isParried = true;
 							Action.messageID = 70;
@@ -1485,7 +1488,7 @@ void CAIMobDummy::ActionAttack()
 								}
 
 								// Guard
-								if(battleutils::IsGuarded(m_PMob, m_PBattleTarget))
+								if(attackutils::IsGuarded(m_PMob, m_PBattleTarget))
 								{
 									isGuarded = true;
 									//Action.messageID = 0;
@@ -1511,7 +1514,7 @@ void CAIMobDummy::ActionAttack()
 
 							if(!isCountered)
 							{
-								bool isBlocked = battleutils::IsBlocked(m_PMob, m_PBattleTarget);
+								bool isBlocked = attackutils::IsBlocked(m_PMob, m_PBattleTarget);
 								if(isBlocked){ Action.reaction = REACTION_BLOCK; }
 								
 
@@ -1522,14 +1525,14 @@ void CAIMobDummy::ActionAttack()
 								}
 
 								// Try absorb HP chance (The target)
-								if (battleutils::TryAbsorbHPfromPhysicalAttack(m_PBattleTarget, damage))
+								if (attackutils::TryAbsorbHPfromPhysicalAttack(m_PBattleTarget, damage))
 								{
 									Action.messageID = 0;
 									damage = 0;
 								}
 
 								// Try to absorb MP (The target)
-								battleutils::TryAbsorbMPfromPhysicalAttack(m_PBattleTarget, damage);
+								attackutils::TryAbsorbMPfromPhysicalAttack(m_PBattleTarget, damage);
 
 								Action.param = battleutils::TakePhysicalDamage(m_PMob, m_PBattleTarget, damage, isBlocked ,SLOT_MAIN, 1, NULL, true);
 								m_PMob->PEnmityContainer->UpdateEnmityFromAttack(m_PBattleTarget, Action.param);

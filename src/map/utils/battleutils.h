@@ -89,44 +89,6 @@ enum ELEMENT
     ELEMENT_DARK = 8
 };
 
-enum PHYSICAL_ATTACK_TYPE
-{
-	ATTACK_NORMAL		= 0,
-	DOUBLE_ATTACK		= 1,
-	TRIPLE_ATTACK		= 2,
-	ZANSHIN_ATTACK		= 3,
-	KICK_ATTACK			= 4,
-	RANGED_ATTACK		= 5,
-	RAPID_SHOT_ATTACK	= 6,
-	SAMBA_ATTACK		= 7,
-};
-
-enum PHYSICAL_ATTACK_DIRECTION
-{
-	LEFTATTACK = 0,
-	RIGHTATTACK = 1,
-};
-
-struct attackSwing_t
-{
-	PHYSICAL_ATTACK_TYPE		attackType;
-	PHYSICAL_ATTACK_DIRECTION	attackDirection;
-};
-
-struct attackSwingRound_t
-{
-	attackSwingRound_t()
-	{
-		zanshinOccured = false;
-		sataOccured = false;
-		doubleAttackOccured = false;
-	};
-
-	std::vector<attackSwing_t>* attackSwings;
-	bool zanshinOccured;
-	bool sataOccured;
-	bool doubleAttackOccured;
-};
 
 namespace battleutils
 {
@@ -137,16 +99,9 @@ namespace battleutils
     void			LoadSkillChainDamageModifiers();
 
 	uint8			CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon);
-    void			CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon, attackSwingRound_t* attackRound, PHYSICAL_ATTACK_DIRECTION direction);
-	void			AddAttackSwing(attackSwingRound_t* attackRound, PHYSICAL_ATTACK_TYPE type, PHYSICAL_ATTACK_DIRECTION direction, uint8 count);
+
 	uint8			getHitCount(uint8 hits);
 	uint8			CheckMobMultiHits(CBattleEntity* PEntity);
-	void			CheckPlayersZanshin(CCharEntity* PChar, attackSwingRound_t* attackRound);
-	void			CheckPlayersKickAttack(CCharEntity* PChar, CItemWeapon* PWeapon, attackSwingRound_t* attackRound);
-	uint32			CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32 damage, PHYSICAL_ATTACK_TYPE attackType);
-
-	void			TryAbsorbMPfromPhysicalAttack(CBattleEntity* battleEntity, uint32 damage);
-	bool			TryAbsorbHPfromPhysicalAttack(CBattleEntity* battleEntity, uint32 damage);
 
 	void			GetSnapshotReduction(CCharEntity* m_PChar);
 	int32			GetRangedAttackBonuses(CBattleEntity* battleEntity);
@@ -196,9 +151,6 @@ namespace battleutils
 	uint32				MagicCalculateCure(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber, CZone* PZone);
 
 	uint16				SingSong(CBattleEntity* PCaster,CBattleEntity* PTarget,CSpell* PSpell);
-	bool				IsParried(CBattleEntity* PAttacker, CBattleEntity* PDefender);
-    bool				IsGuarded(CBattleEntity* PAttacker, CBattleEntity* PDefender);
-    bool				IsBlocked(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	bool                TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	float				GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	void				HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action);

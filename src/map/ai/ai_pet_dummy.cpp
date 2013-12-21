@@ -24,12 +24,16 @@
 #include "../../common/utils.h"
 
 #include "../utils/battleutils.h"
+#include "../utils/attackutils.h"
 #include "../utils/charutils.h"
 #include "../entities/charentity.h"
 #include "../entities/petentity.h"
 #include "../zone.h"
+#include "../attack.h"
+#include "../attackRound.h"
 #include "../mobskill.h"
 #include "../utils/petutils.h"
+#include "../utils/attackutils.h"
 
 #include "../lua/luautils.h"
 
@@ -811,14 +815,14 @@ void CAIPetDummy::ActionAttack()
 					}
 
 					// Try absorb HP chance (The target)
-					if (battleutils::TryAbsorbHPfromPhysicalAttack(m_PBattleTarget, damage))
+					if (attackutils::TryAbsorbHPfromPhysicalAttack(m_PBattleTarget, damage))
 					{
 						Action.messageID = 0;
 						damage = 0;
 					}
 
 					// Try to absorb MP (The target)
-					battleutils::TryAbsorbMPfromPhysicalAttack(m_PBattleTarget, damage);
+					attackutils::TryAbsorbMPfromPhysicalAttack(m_PBattleTarget, damage);
 
 	                Action.param = battleutils::TakePhysicalDamage(m_PPet, m_PBattleTarget, damage, isBlocked, SLOT_MAIN, 1, NULL, true);
 
