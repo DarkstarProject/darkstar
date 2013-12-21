@@ -81,7 +81,7 @@ INSERT INTO `bcnm_info` VALUES ('78', '144', 'final_bout', null, null, '180', '5
 INSERT INTO `bcnm_info` VALUES ('79', '144', 'up_in_arms', null, null, '900', '60', '3', '79', '15');
 INSERT INTO `bcnm_info` VALUES ('80', '144', 'copycat', null, null, '1800', '0', '6', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('81', '144', 'operation_desert_swarm', null, null, '1800', '0', '6', '81', '15');
-INSERT INTO `bcnm_info` VALUES ('82', '144', 'prehistoric_pigeons', null, null, '1800', '0', '6', '0', '15');
+INSERT INTO `bcnm_info` VALUES ('82', '144', 'prehistoric_pigeons', null, null, '1800', '0', '6', '82', '15');
 INSERT INTO `bcnm_info` VALUES ('83', '144', 'palborough_project', null, null, '900', '0', '3', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('84', '144', 'shell_shocked', null, null, '1800', '0', '6', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('85', '144', 'beyond_infinity', null, null, '600', '0', '6', '0', '6');
