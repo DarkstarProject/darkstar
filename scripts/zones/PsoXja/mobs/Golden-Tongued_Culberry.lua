@@ -3,8 +3,6 @@
 -- NPC:  Golden-Tongued Culberry 
 -----------------------------------
 
-
-
 -----------------------------------
 -- onMobFight Action
 -----------------------------------
@@ -17,5 +15,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	GetNPCByID(16814434):hideNPC(900);
+	GetNPCByID(16814434):hideNPC(900); -- qm1
 end;

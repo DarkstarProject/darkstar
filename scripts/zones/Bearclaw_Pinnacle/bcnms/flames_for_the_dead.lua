@@ -2,13 +2,10 @@
 -- Area: Bearclaw_Pinnacle
 -- Name: flames_for_the_dead
 -- bcnmID : 640
-     --ennemy: Snoll_Tzar 16801793  16801794 16801795 group 176
-
-  		 
+-- enemy: Snoll_Tzar 16801793  16801794 16801795 group 176
 -----------------------------------
 package.loaded["scripts/zones/Bearclaw_Pinnacle/TextIDs"] = nil;
 -----------------------------------
-
 
 require("scripts/globals/missions");
 require("scripts/zones/Bearclaw_Pinnacle/TextIDs");
@@ -46,8 +43,8 @@ function OnBcnmLeave(player,instance,leavecode)
 			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);			
 		end
 	elseif(leavecode == 4) then
-	       player:startEvent(0x7d02);
-   end
+		player:startEvent(0x7d02);
+    end
 	
 end;
 
@@ -58,6 +55,6 @@ end;
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);	
     if(csid == 0x7d01)then
-     player:addExp(1000);
+		player:addExp(1000);
 	end
 end;

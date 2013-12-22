@@ -1,18 +1,28 @@
 -----------------------------------	
--- Area: 
--- MOB: Diabolos
+-- Area: The Shrouded Maw
+-- MOB:  Diabolos
 -----------------------------------	
+
+-- TODO: CoP Diabolos 
+-- 1) Make the diremites in the pit all aggro said player that falls into region
+-- 2) Diremites also shouldnt follow you back to the fight area if you make it there. 
+-- 3) ANIMATION Packet ids for instance 2 and 3 are wrong (needs guesswork). Sounds working. 
+
+-- TODO: Diabolos Prime
+-- Note: Diabolos Prime fight drops all tiles at once. 
+
+-----------------------------------	
+-- onMobEngaged
+-----------------------------------	
+
 function OnMobEngaged(mob)
---print("mobengage");
 end;	
-	
 	
 -----------------------------------	
 -- onMobDeath	
 -----------------------------------	
 function onMobDeath(mob,killer)		
 end;
-	
 	
 -----------------------------------
 -- onMobSpawn Action
@@ -26,63 +36,122 @@ end;
 -----------------------------------
 
 function onMobFight(mob,target)
-local mobid=mob:getID();
-local lifepourcent= ((mob:getHP()/mob:getMaxHP())*100); 
-	if (mobid == 16818177 or mobid == 16818204) then
-		if(lifepourcent < 10)then
-			GetNPCByID(16818241):setAnimation(8);
-		elseif (lifepourcent < 20)then
-			GetNPCByID(16818242):setAnimation(8);
-		elseif (lifepourcent < 30)then
-			GetNPCByID(16818243):setAnimation(8);
-		elseif (lifepourcent < 40)then
-			GetNPCByID(16818244):setAnimation(8);
-		elseif (lifepourcent < 50)then
-			GetNPCByID(16818245):setAnimation(9);
-		elseif (lifepourcent < 65)then
-			GetNPCByID(16818246):setAnimation(8);
-		elseif (lifepourcent < 75)then
-			GetNPCByID(16818247):setAnimation(8);
-		elseif (lifepourcent < 90)then
-			GetNPCByID(16818248):setAnimation(8);
-		end	 
-	elseif (mobid == 16818184 or mobid == 16818211) then
-		if(lifepourcent < 10)then
-			GetNPCByID(16818249):setAnimation(8);
-		elseif (lifepourcent < 20)then
-			GetNPCByID(16818250):setAnimation(8);
-		elseif (lifepourcent < 30)then
-			GetNPCByID(16818251):setAnimation(8);
-		elseif (lifepourcent < 40)then
-			GetNPCByID(16818252):setAnimation(8);
-		elseif (lifepourcent < 50)then
-			GetNPCByID(16818253):setAnimation(8);
-		elseif (lifepourcent < 65)then
-			GetNPCByID(16818254):setAnimation(8);
-		elseif (lifepourcent < 75)then
-			GetNPCByID(16818255):setAnimation(8);
-		elseif (lifepourcent < 90)then
-			GetNPCByID(16818256):setAnimation(8);
+
+	local DiabolosID = 16818177;
+	local DiabolosHPP = ((mob:getHP()/mob:getMaxHP())*100); 
+	
+	if (mob:getID() == DiabolosID) then
+	
+		local TileOffset = 16818242;
+		
+		if(DiabolosHPP < 10 and GetNPCByID(TileOffset):getAnimation() == 9)then
+			GetNPCByID(TileOffset):setAnimation(8); -- Floor opens
+			SendEntityVisualPacket(TileOffset, 0x62, 0x79, 0x63, 0x31);   -- Animation for floor dropping
+			SendEntityVisualPacket(TileOffset, 0x73, 0x31, 0x32, 0x33);   -- Tile dropping sound
+		elseif (DiabolosHPP < 20 and GetNPCByID(TileOffset+1):getAnimation() == 9)then
+			GetNPCByID(TileOffset+1):setAnimation(8);
+			SendEntityVisualPacket(TileOffset+1, 0x62, 0x79, 0x63, 0x32); -- Animation for floor dropping
+			SendEntityVisualPacket(TileOffset+1, 0x73, 0x31, 0x32, 0x33); -- Tile dropping sound
+		elseif (DiabolosHPP < 30 and GetNPCByID(TileOffset+2):getAnimation() == 9)then
+			GetNPCByID(TileOffset+2):setAnimation(8);
+			SendEntityVisualPacket(TileOffset+2, 0x62, 0x79, 0x63, 0x33); -- Animation for floor dropping
+			SendEntityVisualPacket(TileOffset+2, 0x73, 0x31, 0x32, 0x33); -- Tile dropping sound
+		elseif (DiabolosHPP < 40 and GetNPCByID(TileOffset+3):getAnimation() == 9)then
+			GetNPCByID(TileOffset+3):setAnimation(8);
+			SendEntityVisualPacket(TileOffset+3, 0x62, 0x79, 0x63, 0x34); -- Animation for floor dropping
+			SendEntityVisualPacket(TileOffset+3, 0x73, 0x31, 0x32, 0x33); -- Tile dropping sound
+		elseif (DiabolosHPP < 50 and GetNPCByID(TileOffset+4):getAnimation() == 9)then
+			GetNPCByID(TileOffset+4):setAnimation(8);
+			SendEntityVisualPacket(TileOffset+4, 0x62, 0x79, 0x63, 0x35); -- Animation for floor dropping
+			SendEntityVisualPacket(TileOffset+4, 0x73, 0x31, 0x32, 0x33); -- Tile dropping sound
+		elseif (DiabolosHPP < 65 and GetNPCByID(TileOffset+5):getAnimation() == 9)then
+			GetNPCByID(TileOffset+5):setAnimation(8);
+			SendEntityVisualPacket(TileOffset+5, 0x62, 0x79, 0x63, 0x36); -- Animation for floor dropping
+			SendEntityVisualPacket(TileOffset+5, 0x73, 0x31, 0x32, 0x33); -- Tile dropping sound
+		elseif (DiabolosHPP < 75 and GetNPCByID(TileOffset+6):getAnimation() == 9)then
+			GetNPCByID(TileOffset+6):setAnimation(8);
+			SendEntityVisualPacket(TileOffset+6, 0x62, 0x79, 0x63, 0x37); -- Animation for floor dropping
+			SendEntityVisualPacket(TileOffset+6, 0x73, 0x31, 0x32, 0x33); -- Tile dropping sound
+		elseif (DiabolosHPP < 90 and GetNPCByID(TileOffset+7):getAnimation() == 9)then
+			GetNPCByID(TileOffset+7):setAnimation(8);
+			SendEntityVisualPacket(TileOffset+7, 0x62, 0x79, 0x63, 0x38); -- Animation for floor dropping
+			SendEntityVisualPacket(TileOffset+7, 0x73, 0x31, 0x32, 0x33); -- Tile dropping sound
 		end
-	elseif (mobid == 16818191 or mobid == 16818218) then
-		if(lifepourcent < 10)then
-			GetNPCByID(16818257):setAnimation(8);
-		elseif (lifepourcent < 20)then
-			GetNPCByID(16818258):setAnimation(8);
-		elseif (lifepourcent < 30)then
-			GetNPCByID(16818259):setAnimation(8);
-		elseif (lifepourcent < 40)then
-			GetNPCByID(16818260):setAnimation(8);
-		elseif (lifepourcent < 50)then
-			GetNPCByID(16818261):setAnimation(8);
-		elseif (lifepourcent < 65)then
-			GetNPCByID(16818262):setAnimation(8);
-		elseif (lifepourcent < 75)then
-			GetNPCByID(16818263):setAnimation(8);
-		elseif (lifepourcent < 90)then
-			GetNPCByID(16818264):setAnimation(8);
+		
+	elseif (mob:getID() == DiabolosID+7) then
+	
+		local TileOffset = 16818250;
+		
+		if(DiabolosHPP < 10 and GetNPCByID(TileOffset):getAnimation() == 9)then
+			GetNPCByID(TileOffset):setAnimation(8);
+			SendEntityVisualPacket(TileOffset, 0x62, 0x79, 0x63, 0x39);   -- Animation for floor dropping
+			SendEntityVisualPacket(TileOffset, 0x73, 0x31, 0x32, 0x33);   -- Tile dropping sound	
+		elseif (DiabolosHPP < 20 and GetNPCByID(TileOffset+1):getAnimation() == 9)then
+			GetNPCByID(TileOffset+1):setAnimation(8);
+			SendEntityVisualPacket(TileOffset+1, 0x62, 0x79, 0x63, 0x40);   -- Animation for floor dropping
+			SendEntityVisualPacket(TileOffset+1, 0x73, 0x31, 0x32, 0x33);   -- Tile dropping sound
+		elseif (DiabolosHPP < 30 and GetNPCByID(TileOffset+2):getAnimation() == 9)then
+			GetNPCByID(TileOffset+2):setAnimation(8);
+			SendEntityVisualPacket(TileOffset+2, 0x62, 0x79, 0x63, 0x41);   -- Animation for floor dropping
+			SendEntityVisualPacket(TileOffset+2, 0x73, 0x31, 0x32, 0x33);   -- Tile dropping sound
+		elseif (DiabolosHPP < 40 and GetNPCByID(TileOffset+3):getAnimation() == 9)then
+			GetNPCByID(TileOffset+3):setAnimation(8);
+			SendEntityVisualPacket(TileOffset+3, 0x62, 0x79, 0x63, 0x42);   -- Animation for floor dropping
+			SendEntityVisualPacket(TileOffset+3, 0x73, 0x31, 0x32, 0x33);   -- Tile dropping sound
+		elseif (DiabolosHPP < 50 and GetNPCByID(TileOffset+4):getAnimation() == 9)then
+			GetNPCByID(TileOffset+4):setAnimation(8);
+			SendEntityVisualPacket(TileOffset+4, 0x62, 0x79, 0x63, 0x43);   -- Animation for floor dropping
+			SendEntityVisualPacket(TileOffset+4, 0x73, 0x31, 0x32, 0x33);   -- Tile dropping sound
+		elseif (DiabolosHPP < 65 and GetNPCByID(TileOffset+5):getAnimation() == 9)then
+			GetNPCByID(TileOffset+5):setAnimation(8);
+			SendEntityVisualPacket(TileOffset+5, 0x62, 0x79, 0x63, 0x44);   -- Animation for floor dropping
+			SendEntityVisualPacket(TileOffset+5, 0x73, 0x31, 0x32, 0x33);   -- Tile dropping sound
+		elseif (DiabolosHPP < 75 and GetNPCByID(TileOffset+6):getAnimation() == 9)then
+			GetNPCByID(TileOffset+6):setAnimation(8);
+			SendEntityVisualPacket(TileOffset+6, 0x62, 0x79, 0x63, 0x45);   -- Animation for floor dropping
+			SendEntityVisualPacket(TileOffset+6, 0x73, 0x31, 0x32, 0x33);   -- Tile dropping sound
+		elseif (DiabolosHPP < 90 and GetNPCByID(TileOffset+7):getAnimation() == 9)then
+			GetNPCByID(TileOffset+7):setAnimation(8);
+			SendEntityVisualPacket(TileOffset+7, 0x62, 0x79, 0x63, 0x46);   -- Animation for floor dropping
+			SendEntityVisualPacket(TileOffset+7, 0x73, 0x31, 0x32, 0x33);   -- Tile dropping sound
+		end
+		
+	elseif (mob:getID() == DiabolosID+14) then
+	
+		local TileOffset = 16818258;
+	
+		if(DiabolosHPP < 10 and GetNPCByID(TileOffset):getAnimation() == 9)then
+			GetNPCByID(TileOffset):setAnimation(8);
+			SendEntityVisualPacket(TileOffset, 0x62, 0x79, 0x63, 0x47);   -- Animation for floor dropping
+			SendEntityVisualPacket(TileOffset, 0x73, 0x31, 0x32, 0x33);   -- Tile dropping sound
+		elseif (DiabolosHPP < 20 and GetNPCByID(TileOffset+1):getAnimation() == 9)then
+			GetNPCByID(TileOffset+1):setAnimation(8);
+			SendEntityVisualPacket(TileOffset+1, 0x62, 0x79, 0x63, 0x48);   -- Animation for floor dropping
+			SendEntityVisualPacket(TileOffset+1, 0x73, 0x31, 0x32, 0x33);   -- Tile dropping sound
+		elseif (DiabolosHPP < 30 and GetNPCByID(TileOffset+2):getAnimation() == 9)then
+			GetNPCByID(TileOffset+2):setAnimation(8);
+			SendEntityVisualPacket(TileOffset+2, 0x62, 0x79, 0x63, 0x49);   -- Animation for floor dropping
+			SendEntityVisualPacket(TileOffset+2, 0x73, 0x31, 0x32, 0x33);   -- Tile dropping sound
+		elseif (DiabolosHPP < 40 and GetNPCByID(TileOffset+3):getAnimation() == 9)then
+			GetNPCByID(TileOffset+3):setAnimation(8);
+			SendEntityVisualPacket(TileOffset+3, 0x62, 0x79, 0x63, 0x50);   -- Animation for floor dropping
+			SendEntityVisualPacket(TileOffset+3, 0x73, 0x31, 0x32, 0x33);   -- Tile dropping sound
+		elseif (DiabolosHPP < 50 and GetNPCByID(TileOffset+4):getAnimation() == 9)then
+			GetNPCByID(TileOffset+4):setAnimation(8);
+			SendEntityVisualPacket(TileOffset+4, 0x62, 0x79, 0x63, 0x51);   -- Animation for floor dropping
+			SendEntityVisualPacket(TileOffset+4, 0x73, 0x31, 0x32, 0x33);   -- Tile dropping sound
+		elseif (DiabolosHPP < 65 and GetNPCByID(TileOffset+5):getAnimation() == 9)then
+			GetNPCByID(TileOffset+5):setAnimation(8);
+			SendEntityVisualPacket(TileOffset+5, 0x62, 0x79, 0x63, 0x52);   -- Animation for floor dropping
+			SendEntityVisualPacket(TileOffset+5, 0x73, 0x31, 0x32, 0x33);   -- Tile dropping sound
+		elseif (DiabolosHPP < 75 and GetNPCByID(TileOffset+6):getAnimation() == 9)then
+			GetNPCByID(TileOffset+6):setAnimation(8);
+			SendEntityVisualPacket(TileOffset+6, 0x62, 0x79, 0x63, 0x53);   -- Animation for floor dropping
+			SendEntityVisualPacket(TileOffset+6, 0x73, 0x31, 0x32, 0x33);   -- Tile dropping sound
+		elseif (DiabolosHPP < 90 and GetNPCByID(TileOffset+7):getAnimation() == 9)then
+			GetNPCByID(TileOffset+7):setAnimation(8);
+			SendEntityVisualPacket(TileOffset+7, 0x62, 0x79, 0x63, 0x54);   -- Animation for floor dropping
+			SendEntityVisualPacket(TileOffset+7, 0x73, 0x31, 0x32, 0x33);   -- Tile dropping sound
 		end
 	end
-
-
 end;

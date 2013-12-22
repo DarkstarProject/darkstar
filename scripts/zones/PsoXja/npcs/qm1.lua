@@ -1,8 +1,8 @@
 -----------------------------------
--- Area: Pso'xja
--- NPC:  ??? (spawn Golden-Tongued Culberry)
+-- Area:  Pso'xja
+-- NPC:   ??? (qm1)
+-- Notes: Used to spawn Golden-Tongued Culberry
 -- @pos -270.063 31.395 256.812 9
-
 -----------------------------------
 package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
 -----------------------------------
@@ -18,13 +18,12 @@ function onTrade(player,npc,trade)
 	-- Trade Odorous knife or Odorous knife +1
 	if(GetMobAction(16814432) == 0 and trade:hasItemQty(18014,1) and trade:getItemCount() == 1)then
 	  	player:tradeComplete();
-		  SpawnMob(16814432,900):updateEnmity(player);
-		  SetDropRate(1512, 0, 13145, 50);
+		SpawnMob(16814432,900):updateEnmity(player);
+		SetDropRate(1512, 0, 13145, 50);
 	elseif (GetMobAction(16814432) == 0 and trade:hasItemQty(18016,1) and trade:getItemCount() == 1)then
-	 	  SpawnMob(16814432,900):updateEnmity(player);	
-	    SetDropRate(1512, 0, 13145, 100);
-  end
-	
+		SpawnMob(16814432,900):updateEnmity(player);	
+		SetDropRate(1512, 0, 13145, 100);
+	end	
 end;
 
 -----------------------------------

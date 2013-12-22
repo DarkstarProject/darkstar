@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Bearclaw_Pinnacle
--- NPC:  Wind_Pillar
+-- Area: Bearclaw Pinnacle
+-- NPC:  Wind Pillar
 -----------------------------------
 package.loaded["scripts/zones/Bearclaw_Pinnacle/TextIDs"] = nil;
 -----------------------------------
@@ -31,7 +31,7 @@ function onTrigger(player,npc)
 		return 1;
 		else
 		return 1;
-   end
+    end
 	
 end;
 

@@ -3,8 +3,9 @@
 -- Zone: Bearclaw_Pinnacle (6)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Bearclaw_Pinnacle/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/Bearclaw_Pinnacle/TextIDs");
 

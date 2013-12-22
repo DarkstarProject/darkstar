@@ -188,7 +188,7 @@ end;
 function SetTreasureSpawns()
    local chests  =
    {
-       16814554, -- Pso'Xja
+       16814555, -- Pso'Xja
        16822524, -- Oldton Movalpolos
        16892176, -- Sacrarium
        17355005, -- Fort Ghelsba

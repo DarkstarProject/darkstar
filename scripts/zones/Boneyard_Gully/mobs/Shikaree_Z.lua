@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: 
---  
+-- Area: Boneyard_Gully
+-- Name: Shikaree Z
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -18,16 +18,16 @@ end;
 -----------------------------------
 
 function onMobEngaged(mob,target)
-local mobid=mob:getID();
-  if (mobid == 16809985)then
-     SpawnMob(16809988);	 
-  elseif(mobid == 16809990)then
-     SpawnMob(16809993);
-  elseif(mobid == 16809995)then
-     SpawnMob(16809998);
-  end
-  
+
+	local MobID = mob:getID();
 	
+	if (MobID == 16809985)then
+		SpawnMob(MobID+3);	 
+	elseif(MobID == 16809990)then
+		SpawnMob(MobID+3);
+	elseif(MobID == 16809995)then
+		SpawnMob(MobID+3);
+	end
 end;
 
 -----------------------------------

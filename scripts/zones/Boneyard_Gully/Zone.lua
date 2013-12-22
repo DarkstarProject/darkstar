@@ -3,8 +3,9 @@
 -- Zone: Boneyard_Gully (8)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Boneyard_Gully/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/Boneyard_Gully/TextIDs");
 

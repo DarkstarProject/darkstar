@@ -3,8 +3,9 @@
 -- Zone: Attohwa_Chasm (7)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Attohwa_Chasm/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/Attohwa_Chasm/TextIDs");
 

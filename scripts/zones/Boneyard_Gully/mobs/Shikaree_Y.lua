@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: 
---  
+-- Area: Boneyard_Gully
+-- Name: Shikaree Y
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -18,7 +18,6 @@ end;
 -----------------------------------
 
 function onMobEngaged(mob,target)
-	
 end;
 
 -----------------------------------
@@ -26,7 +25,6 @@ end;
 -----------------------------------
 
 function onMobFight(mob,target)
-
 end;
 
 -----------------------------------

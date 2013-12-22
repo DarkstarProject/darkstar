@@ -27,14 +27,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-local npcID=npc:getID();
-   if (npcID == 16818229)then
-	     if(EventTriggerBCNM(player,npc))then
-		 return;
-         end
-   else
-   player:startEvent(0x7d03);  -- leave the battlefield
-   end
+
+	if(EventTriggerBCNM(player,npc))then
+		return 1;
+		else
+		return 1;
+	end
 	
 end;
 

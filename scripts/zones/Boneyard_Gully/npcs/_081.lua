@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Boneyard_Gully
--- NPC:  Dark Miasma
+-- NPC:  _081 (Dark Miasma)
 -----------------------------------
 package.loaded["scripts/zones/Boneyard_Gully/TextIDs"] = nil;
 -----------------------------------

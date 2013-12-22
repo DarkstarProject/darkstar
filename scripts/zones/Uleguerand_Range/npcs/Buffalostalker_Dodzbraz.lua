@@ -2,10 +2,7 @@
 --  Area: Uleguerand Range
 --   NPC: Buffalostalker Dodzbraz
 --  Type: Quest NPC
--- @zone: 5
---  @pos: -380.171 -24.89 -180.797
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -380.171 -24.89 -180.797 5
 -----------------------------------
 package.loaded["scripts/zones/Uleguerand_Range/TextIDs"] = nil;
 -----------------------------------

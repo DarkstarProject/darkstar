@@ -19,7 +19,6 @@ function onTrade(player,npc,trade)
 		SpawnMob(16798078,1800):updateEnmity(player); -- Geush Urvan
 	end
 
-
 end; 
 
 -----------------------------------

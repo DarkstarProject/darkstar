@@ -1,11 +1,11 @@
 -----------------------------------
--- Area: 
---  mob Snoll Tzar
+-- Area: Bearclaw Pinnacle
+-- Name: Snoll Tzar
 -----------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/status");
---Snoll_Tzar 16801793  16801794 16801795
+
 -----------------------------------
 -- onMobInitialize Action
 -----------------------------------

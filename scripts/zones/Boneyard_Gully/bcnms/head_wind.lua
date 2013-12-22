@@ -1,28 +1,16 @@
 -----------------------------------
 -- Area: Boneyard_Gully
 -- Name: head_wind
--- bcnmID : 672
-     --ennemy:
---Shikaree X               16809987  16809992  16809997  group 240
---Shikaree X's Rabbit      16809989  16809994  16809999  group 241
---Shikaree Y               16809986  16809991  16809996  group 242
---Shikaree Z               16809985  16809990  16809995  group 243
---Shikaree Z's Wyvern      16809988  16809993  16809998  group 244
-  		 
+-- BCNM: 672 
 -----------------------------------
 package.loaded["scripts/zones/Boneyard_Gully/TextIDs"] = nil;
 -----------------------------------
-
 
 require("scripts/globals/missions");
 require("scripts/zones/Boneyard_Gully/TextIDs");
 
 -----------------------------------
  
-
-
-
-
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function OnBcnmRegister(player,instance)
 end;

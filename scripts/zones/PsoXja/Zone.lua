@@ -3,12 +3,14 @@
 -- Zone: PsoXja (9)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/zones/PsoXja/TextIDs");
 require("scripts/globals/missions");
+
 -----------------------------------
 -- onInitialize
 -----------------------------------

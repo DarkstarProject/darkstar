@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Uleguerand Range
---   NPC: Zebada
+--  NPC:  Zebada
 --  Type: ENM Quest Activator
--- @zone: 5
---  @pos: -308.112 -42.137 -570.096
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -308.112 -42.137 -570.096 5
 -----------------------------------
 package.loaded["scripts/zones/Uleguerand_Range/TextIDs"] = nil;
 -----------------------------------
