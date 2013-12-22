@@ -312,7 +312,7 @@ function onPath(npc)
 
 	if(npc:atPoint(pathfind.get(path, 45))) then
 
-		local gac = GetNPCByID(17187457);
+		local gac = GetNPCByID(17187460); -- Gachemage
 
 		gac:showText(npc, PALCOMONDAU_REPORT);
 
@@ -337,7 +337,7 @@ end;
 
 function onTrigger(player,npc)
 	player:showText(npc, PALCOMONDAU_DIALOG);
-	npc:wait();
+	--npc:wait(1500);
 end;
 
 -----------------------------------
