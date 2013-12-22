@@ -6,5 +6,7 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6379; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
 
-CONDITION_FOR_LIMBUS = 7028;
-CHIP_TRADE = 7022;
+CONDITION_FOR_LIMBUS = 7028; 	-- You have clearance to enter Limbus, but cannot enter while you or a party member is engaged in battle.
+CHIP_TRADE = 7022;				-- 
+
+-- Cannot find correct TextID for CHIP_TRADE
