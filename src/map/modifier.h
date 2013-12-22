@@ -469,9 +469,18 @@ enum MODIFIER
 	MOD_BAR_ELEMENT_NULL_CHANCE	  =0x1A2,// Bar Elemental spells will occasionally nullify damage of the same element.
 	MOD_GRIMOIRE_INSTANT_CAST	  =0x1A3,// Spells that match your current Arts will occasionally cast instantly, without recast. 
 
-	// MOD_SPARE	=0x1AE,
+	MOD_QUAD_ATTACK				  =0x1AE,// Quadruple attack chance.
+
 	// MOD_SPARE	=0x1AF,
 	// MOD_SPARE	=0x1B0,
+	// MOD_SPARE	=0x1B1,
+	// MOD_SPARE	=0x1B2,
+	// MOD_SPARE	=0x1B3,
+	// MOD_SPARE	=0x1B4,
+	// MOD_SPARE	=0x1B5,
+	// MOD_SPARE	=0x1B6,
+	// MOD_SPARE	=0x1B7,
+	// MOD_SPARE	=0x1B8,
 
     MOD_ADDITIONAL_EFFECT         =0x1AB,
 
@@ -480,7 +489,7 @@ enum MODIFIER
 	MOD_EAT_RAW_MEAT			  =410, // not implemented
 };
 
-#define MAX_MODIFIER	       429
+#define MAX_MODIFIER	       430
 
 
 

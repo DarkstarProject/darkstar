@@ -34,6 +34,7 @@ CAttackRound::CAttackRound(CBattleEntity* attacker)
 	m_attacker = attacker;
 	m_doubleAttackOccured = false;
 	m_tripleAttackOccured = false;
+	m_quadAttackOccured = false;
 	m_kickAttackOccured = false;
 	m_zanshinOccured = false;
 	m_sataOccured = false;
@@ -247,9 +248,10 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
 
 	AddAttackSwing(ATTACK_NORMAL, direction, num);
 
-	// Checking the players triple/double attack
+	// Checking the players triple, double and quadruple attack
 	int8 tripleAttack = m_attacker->getMod(MOD_TRIPLE_ATTACK);
 	int8 doubleAttack = m_attacker->getMod(MOD_DOUBLE_ATTACK);
+	int8 quadAttack = m_attacker->getMod(MOD_QUAD_ATTACK);
 
 	//check for merit upgrades
 	if (m_attacker->objtype == TYPE_PC)
@@ -259,12 +261,18 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
 		//merit chance only applies if player has the job trait
 		if (charutils::hasTrait(PChar, TRAIT_TRIPLE_ATTACK)) tripleAttack += PChar->PMeritPoints->GetMeritValue(MERIT_TRIPLE_ATTACK_RATE, PChar);
 		if (charutils::hasTrait(PChar, TRAIT_DOUBLE_ATTACK)) doubleAttack += PChar->PMeritPoints->GetMeritValue(MERIT_DOUBLE_ATTACK_RATE, PChar);
+		// TODO: Quadruple attack merits when SE release them.
 	}
 
     doubleAttack = dsp_cap(doubleAttack,0,100);
     tripleAttack = dsp_cap(tripleAttack,0,100);
 
-	if (num == 1 && rand()%100 < tripleAttack)
+	if (num == 1 && rand()%100 < quadAttack)
+	{
+		AddAttackSwing(QUAD_ATTACK, direction, 3);
+		m_quadAttackOccured = true;
+	}
+	else if (num == 1 && rand()%100 < tripleAttack)
 	{
 		AddAttackSwing(TRIPLE_ATTACK, direction, 2);
 		m_tripleAttackOccured = true;
