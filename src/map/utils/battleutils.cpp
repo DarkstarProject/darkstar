@@ -390,7 +390,7 @@ std::vector<CMobSkill*> GetMobSkillsByFamily(uint16 FamilyID)
 }
 
 uint16	CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 Tier, uint8 element){
-    uint16 damage = 0;
+    int32 damage = 0;
 
     // TODO: resists (likely only based off targets resistance, perhaps with some level correction
 
