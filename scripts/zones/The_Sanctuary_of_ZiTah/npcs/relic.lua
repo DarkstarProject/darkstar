@@ -13,7 +13,6 @@ require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-   local npcid = npc:getID();
    local count = trade:getItemCount();
    local currentRelic = player:getVar("RELIC_IN_PROGRESS");
 
@@ -21,12 +20,12 @@ function onTrade(player,npc,trade)
    -- Zi'tah has two different relics in it, both with the same NPC name, and therefore one script.
    -- Mandau
    if (currentRelic == 18269 and count == 4 and trade:hasItemQty(18269,1) and trade:hasItemQty(1572,1) and
-       trade:hasItemQty(1589,1) and trade:hasItemQty(1457,1) and npcid == 17273391) then
+       trade:hasItemQty(1589,1) and trade:hasItemQty(1457,1)) then
          player:startEvent(207,18270);
 
    -- Mjollnir
    elseif (currentRelic == 18323 and count == 4 and trade:hasItemQty(18323,1) and trade:hasItemQty(1581,1) and
-           trade:hasItemQty(1589,1) and trade:hasItemQty(1454,1) and npcid == 17273407) then
+           trade:hasItemQty(1589,1) and trade:hasItemQty(1454,1)) then
          player:startEvent(216,18324);
    end
 end;
