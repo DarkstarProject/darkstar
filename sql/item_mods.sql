@@ -14619,42 +14619,42 @@ INSERT INTO `item_mods` VALUES(18594, 71, 10);
 -- -------------------------------------------------------
 -- Enhancing Sword         
 -- -------------------------------------------------------
-INSERT INTO `item_mods` VALUES(16605, 428, 5); --  Sword enhancement spell damage +5
+INSERT INTO `item_mods` VALUES(16605, 432, 5); --  Sword enhancement spell damage +5
 
 -- -------------------------------------------------------
 -- Sirocco Kukri          
 -- -------------------------------------------------------
-INSERT INTO `item_mods` VALUES(18018, 427, 1); -- Additional effect: Wind damage
+INSERT INTO `item_mods` VALUES(18018, 431, 1); -- Additional effect: Wind damage
 
 -- -------------------------------------------------------
 -- Acid Bolt        
 -- -------------------------------------------------------
-INSERT INTO `item_mods` VALUES(18148, 427, 1); -- Additional effect: Weakens defense
+INSERT INTO `item_mods` VALUES(18148, 431, 1); -- Additional effect: Weakens defense
 
 -- -------------------------------------------------------
 -- Sleep Bolt        
 -- -------------------------------------------------------
-INSERT INTO `item_mods` VALUES(18149, 427, 1); -- Additional effect: Sleep
+INSERT INTO `item_mods` VALUES(18149, 431, 1); -- Additional effect: Sleep
 
 -- -------------------------------------------------------
 -- Blind Bolt        
 -- -------------------------------------------------------
-INSERT INTO `item_mods` VALUES(18150, 427, 1); -- Additional effect: Blindness
+INSERT INTO `item_mods` VALUES(18150, 431, 1); -- Additional effect: Blindness
 
 -- -------------------------------------------------------
 -- Bloody Bolt        
 -- -------------------------------------------------------
-INSERT INTO `item_mods` VALUES(18151, 427, 1); -- Additional effect: HP drain
+INSERT INTO `item_mods` VALUES(18151, 431, 1); -- Additional effect: HP drain
 
 -- -------------------------------------------------------
 -- Venom Bolt        
 -- -------------------------------------------------------
-INSERT INTO `item_mods` VALUES(18152, 427, 1); -- Additional effect: Poison
+INSERT INTO `item_mods` VALUES(18152, 431, 1); -- Additional effect: Poison
 
 -- -------------------------------------------------------
 -- Holy Bolt        
 -- -------------------------------------------------------
-INSERT INTO `item_mods` VALUES(18153, 427, 1); -- Additional effect: Light damage
+INSERT INTO `item_mods` VALUES(18153, 431, 1); -- Additional effect: Light damage
 
 -- -------------------------------------------------------
 -- Mekki Shakki         
