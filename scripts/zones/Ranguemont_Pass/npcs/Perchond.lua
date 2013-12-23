@@ -1,7 +1,6 @@
 -----------------------------------
 --  Area: Ranguemont Pass
---  NPC: Perchond
---  Type: NPC
+--  NPC:  Perchond
 --  @pos -182.844 4 -164.948 166
 -----------------------------------
 package.loaded["scripts/zones/Ranguemont_Pass/TextIDs"] = nil;

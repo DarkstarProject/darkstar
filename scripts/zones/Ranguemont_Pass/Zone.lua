@@ -3,8 +3,9 @@
 -- Zone: Ranguemont_Pass (166)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Ranguemont_Pass/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/Ranguemont_Pass/TextIDs");
 

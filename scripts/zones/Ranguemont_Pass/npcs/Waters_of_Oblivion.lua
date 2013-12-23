@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
--- NPC: Waters of Oblivion
+-- NPC:  Waters of Oblivion
 -- Finish Quest: Painful Memory (BARD AF1)
 -- @pos -284 -45 210 166
 -----------------------------------

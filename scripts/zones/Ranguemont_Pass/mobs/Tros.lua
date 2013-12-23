@@ -2,8 +2,7 @@
 -- Area: Ranguemont Pass
 -- NM:   Tros
 -- Used in Quests: Painful Memory
--- @zone 166
--- @pos -289 -45 212
+-- @pos -289 -45 212 166
 -----------------------------------
 
 require("scripts/globals/keyitems");
