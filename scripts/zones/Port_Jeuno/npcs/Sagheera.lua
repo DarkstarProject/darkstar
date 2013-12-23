@@ -79,12 +79,6 @@ function onTrigger(player,npc)
 	 else
 	   lastcosmotime = player:getVar("Cosmo_Cleanse_TIME");
 	   COSMOCLEANSEdayRemaining = math.floor(((lastcosmotime + (BETWEEN_2COSMOCLEANSE_WAIT_TIME * 24 * 60 * 60)) - realDay)/86400); -- There are 86400 seconds in a day :)
-	   
-	   print("the real day is " .. realDay .. "!");
-	   	   print("the lastcosmotime is " .. lastcosmotime .. "!");
-	   print("the COSMOCLEANSEdayRemaining is " .. COSMOCLEANSEdayRemaining .. "!");
-	   
-	   
 	 end		 
 	 if(player:getVar("AFupgradeDay")~= tonumber(os.date("%j")))then
             CurrentAFupgrade = player:getVar("AFupgrade");
