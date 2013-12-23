@@ -489,7 +489,7 @@ enum MODIFIER
 	MOD_EAT_RAW_MEAT			  =410, // not implemented
 };
 
-#define MAX_MODIFIER	       430
+#define MAX_MODIFIER	       431
 
 
 
