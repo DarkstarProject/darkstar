@@ -5367,12 +5367,14 @@ inline int32 CLuaBaseEntity::isMobType(lua_State *L)
 /************************************************************************
 *	Change skin of a mob												*
 *  	1st number: skinid in mob_change_skin.sql							*
-*	mob:changeSkin(1)						*
+*	mob:changeSkin(1)						                            *
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::changeSkin(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
 	CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
