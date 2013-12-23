@@ -479,6 +479,7 @@ public:
     int32 disableLevelSync(lua_State* L);
     int32 updateHealth(lua_State* L);
 
+    int32 initNpcAi(lua_State* L);
 };
 
 #endif

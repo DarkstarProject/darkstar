@@ -59,8 +59,6 @@ void CAINpcDummy::WeatherChange(WEATHER weather, uint8 element)
 
 void CAINpcDummy::ActionSpawn()
 {
-  luautils::OnNpcSpawn(m_PNpc);
-
   m_ActionType = ACTION_ROAMING;
 }
 

@@ -7,7 +7,7 @@
 package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
 require("scripts/zones/Kazham/TextIDs");
 
-path = {
+local path = {
 94.732452, -15.000000, -114.034622,
 94.210846, -15.000000, -114.989388,
 93.508865, -15.000000, -116.274101,
@@ -30,6 +30,7 @@ path = {
 };
 
 function onSpawn(npc)
+    npc:initNpcAi();
 	npc:setPos(pathfind.first(path));
 	onPath(npc);
 end;
@@ -66,10 +67,10 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player,csid,option,npc)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	GetNPCByID(17801290):wait(0);
+	npc:wait(0);
 end;
 
 

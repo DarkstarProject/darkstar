@@ -93,6 +93,7 @@
 #include "../utils/zoneutils.h"
 #include "../entities/charentity.h"
 
+#include "../ai/ai_npc_dummy.h"
 
 CLuaBaseEntity::CLuaBaseEntity(lua_State* L)
 {
@@ -7637,6 +7638,16 @@ inline int32 CLuaBaseEntity::hasCorsairEffect(lua_State* L)
     return 1;
 }
 
+inline int32 CLuaBaseEntity::initNpcAi(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
+
+    m_PBaseEntity->PBattleAI = new CAINpcDummy((CNpcEntity*)m_PBaseEntity);
+    m_PBaseEntity->PBattleAI->SetCurrentAction(ACTION_ROAMING);
+    return 0;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -7966,5 +7977,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,unlockAttachment),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,disableLevelSync),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateHealth),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,initNpcAi),
 	{NULL,NULL}
 };

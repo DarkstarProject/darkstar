@@ -11,7 +11,7 @@ require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/zones/Norg/TextIDs");
 
-path = {
+local path = {
 -5.453587, 0.151494, -16.361458,
 -5.997250, 0.229052, -15.475480,
 -6.582538, 0.317294, -14.524694,
@@ -66,6 +66,7 @@ path = {
 
 
 function onSpawn(npc)
+    npc:initNpcAi();
 	npc:setPos(pathfind.first(path));
 	-- onPath(npc);
 end;
@@ -121,7 +122,7 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player,csid,option,npc)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	if(csid == 0x0024 and option == 1) then
@@ -138,7 +139,7 @@ function onEventFinish(player,csid,option)
 		end
 	end
 
-	GetNPCByID(17809441):wait(0);
+	npc:wait(0);
 end;
 
 

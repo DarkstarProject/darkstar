@@ -14,7 +14,7 @@ require("scripts/globals/quests");
 require("scripts/zones/Norg/TextIDs");
 require("scripts/globals/pathfind");
 
-path = {
+local path = {
 59.698738, -6.282220, -0.842413,
 60.732185, -6.282220, -1.238357,
 61.612240, -6.282220, -1.784821,
@@ -57,6 +57,7 @@ path = {
 };
 
 function onSpawn(npc)
+    npc:initNpcAi();
 	npc:setPos(pathfind.first(path));
 	-- onPath(npc);
 end;
@@ -103,14 +104,14 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player,csid,option,npc)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	if(csid == 0x001f) then
 		player:addQuest(OUTLANDS,SECRET_OF_THE_DAMP_SCROLL);
 	end
 
-	GetNPCByID(17809437):wait(0);
+	npc:wait(0);
 end;
 
 

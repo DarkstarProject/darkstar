@@ -6,7 +6,7 @@
 
 require("scripts/globals/pathfind");
 
-path = {
+local path = {
 -0.016294, -1.251156, -30.703135,
 1.135162, -1.295192, -30.737705,
 2.267773, -1.620833, -30.756174,
@@ -65,6 +65,7 @@ path = {
 };
 
 function onSpawn(npc)
+    npc:initNpcAi();
 	npc:setPos(pathfind.first(path));
 	-- onPath(npc);
 end;
@@ -102,10 +103,10 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player,csid,option,npc)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	GetNPCByID(17809439):wait(0);
+	npc:wait(0);
 end;
 
 

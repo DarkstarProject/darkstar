@@ -262,34 +262,7 @@ void LoadNPCList(CZone* PZone)
 			memcpy(&PNpc->look,Sql_GetData(SqlHandle,14),20);
 
 			PZone->InsertNPC(PNpc);
-		}
-	}
-
-	// Load npc patrol list. This will enable the npcs to move around and follow patrol points.
-
-	const int8* QueryPatrol =
-		"SELECT npc_dummies.npcid FROM npc_dummies \
-		LEFT JOIN npc_list ON (npc_list.npcid + (4096 * zoneid) + 0x1000000) = npc_dummies.npcid \
-		WHERE zoneid = %u;";
-
-
-	ret = Sql_Query(SqlHandle, QueryPatrol, PZone->GetID());
-
-	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-	{
-		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		{
-			uint32 npcid = (uint32)Sql_GetUIntData(SqlHandle,0);
-			CNpcEntity* PNpc = (CNpcEntity*)PZone->GetEntity(npcid & 0x0FFF, TYPE_NPC);
-			if(PNpc == NULL)
-			{
-				ShowError("zoneutils::LoadNPCList Npc could not be found (%d)\n", npcid);
-			}
-			else
-			{
-				PNpc->PBattleAI = new CAINpcDummy(PNpc);
-				PNpc->PBattleAI->SetCurrentAction(ACTION_SPAWN);
-			}
+            luautils::OnNpcSpawn(PNpc);
 		}
 	}
 }

@@ -13,7 +13,7 @@ require("scripts/globals/keyitems");
 require("scripts/zones/Davoi/TextIDs");
 require("scripts/globals/pathfind");
 
-path = {
+local path = {
 	20.6, 0, -23,
 	46, 0, -19,
 	53.5, -1.8, -19,
@@ -23,6 +23,7 @@ path = {
 };
 
 function onSpawn(npc)
+    npc:initNpcAi();
 	npc:setPos(pathfind.first(path));
 	onPath(npc);
 end;
@@ -68,7 +69,7 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player,csid,option,npc)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
@@ -78,5 +79,5 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(KEYITEM_OBTAINED,ROYAL_KNIGHTS_DAVOI_REPORT);
 	end
 
-	GetNPCByID(17387988):wait(0);
+	npc:wait(0);
 end;

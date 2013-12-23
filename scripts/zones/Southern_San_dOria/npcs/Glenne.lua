@@ -16,7 +16,7 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 
 require("scripts/globals/pathfind");
 
-path = {
+local path = {
 -121.512833, -2.000000, 14.492509,
 -122.600044, -2.000000, 14.535807,
 -123.697128, -2.000000, 14.615446,
@@ -32,6 +32,7 @@ path = {
 };
 
 function onSpawn(npc)
+    npc:initNpcAi();
 	npc:setPos(pathfind.first(path));
 	onPath(npc);
 end;
@@ -101,7 +102,7 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player,csid,option,npc)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
@@ -134,7 +135,7 @@ function onEventFinish(player,csid,option)
 			player:completeQuest(SANDORIA,A_SENTRY_S_PERIL);
 		end
 	else
-		GetNPCByID(17719328):wait(0);
+		npc:wait(0);
 	end
 	
 end;

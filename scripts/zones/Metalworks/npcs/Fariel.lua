@@ -8,7 +8,7 @@ package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 require("scripts/zones/Metalworks/TextIDs");
 require("scripts/globals/pathfind");
 
-path = {
+local path = {
 53.551208, -14.000000, -7.162227,
 54.111534, -14.000000, -6.227105,
 54.075279, -14.000000, -5.139729,
@@ -39,6 +39,7 @@ path = {
 };
 
 function onSpawn(npc)
+    npc:initNpcAi();
 	npc:setPos(pathfind.first(path));
 	onPath(npc);
 end;
@@ -76,10 +77,10 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player,csid,option,npc)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	GetNPCByID(17748033):wait(0);
+	npc:wait(0);
 end;
 
 

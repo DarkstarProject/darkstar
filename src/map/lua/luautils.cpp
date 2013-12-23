@@ -1262,7 +1262,10 @@ int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result)
 	lua_pushinteger(LuaHandle,eventID);
 	lua_pushinteger(LuaHandle,result);
 
-	if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
+    CLuaBaseEntity LuaTargetEntity(PChar->m_event.Target);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
+
+	if( lua_pcall(LuaHandle,4,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnEventUpdate: %s\n", lua_tostring(LuaHandle, -1));
         lua_pop(LuaHandle, 1);
@@ -1318,7 +1321,10 @@ int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result)
 	lua_pushinteger(LuaHandle,eventID);
 	lua_pushinteger(LuaHandle,result);
 
-	if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
+    CLuaBaseEntity LuaTargetEntity(PChar->m_event.Target);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
+
+	if( lua_pcall(LuaHandle,4,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnEventFinish %s\n", lua_tostring(LuaHandle, -1));
         lua_pop(LuaHandle, 1);

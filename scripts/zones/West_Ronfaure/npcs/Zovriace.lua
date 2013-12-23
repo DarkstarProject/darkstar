@@ -9,7 +9,7 @@ package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 
 require("scripts/globals/pathfind");
 
-path = {
+local path = {
 -439.970062, -16.752592, -255.100327,
 -440.602631, -16.538126, -255.958786,
 -441.127228, -16.394150, -256.900909,
@@ -1006,6 +1006,7 @@ path = {
 
 
 function onSpawn(npc)	
+    npc:initNpcAi();
 	npc:setPos(pathfind.first(path));
 	onPath(npc);
 end;

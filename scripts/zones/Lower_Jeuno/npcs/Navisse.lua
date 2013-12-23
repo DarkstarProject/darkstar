@@ -8,7 +8,7 @@ package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Lower_Jeuno/TextIDs");
 require("scripts/globals/pathfind");
 
-path = {
+local path = {
 -- -59.562683, 6.000051, -90.890404,
 -58.791367, 6.000050, -91.663391,
 -58.021465, 6.000049, -92.432144,
@@ -116,6 +116,7 @@ path = {
 };
 
 function onSpawn(npc)
+    npc:initNpcAi();
 	npc:setPos(pathfind.first(path));
 	onPath(npc);
 end;
@@ -153,10 +154,10 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player,csid,option,npc)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	GetNPCByID(17780794):wait(0);
+	npc:wait(0);
 end;
 
 

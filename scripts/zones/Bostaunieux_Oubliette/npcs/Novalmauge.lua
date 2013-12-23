@@ -17,7 +17,7 @@ require("scripts/globals/quests");
 require("scripts/zones/Bostaunieux_Oubliette/TextIDs");
 require("scripts/globals/pathfind");
 
-path = {
+local path = {
 41.169430, -24.000000, 19.860674,
 42.256676, -24.000000, 19.885197,
 41.168694, -24.000000, 19.904638,
@@ -28,6 +28,7 @@ path = {
 };
 
 function onSpawn(npc)
+    npc:initNpcAi();
 	npc:setPos(pathfind.first(path));
 	onPath(npc);
 end;
@@ -107,7 +108,7 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player,csid,option,npc)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
@@ -133,8 +134,5 @@ function onEventFinish(player,csid,option)
 		end
 	end
 
-	local npc = GetNPCByID(17461503);
-	if(npc ~= nil) then
-		npc:wait(0);
-	end
+	npc:wait(0);
 end;

@@ -9,7 +9,7 @@ package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 require("scripts/zones/Norg/TextIDs");
 require("scripts/globals/pathfind");
 
-path = {
+local path = {
 -15.048376, -1.476800, 30.425398,
 -15.526757, -1.225124, 29.480957,
 -14.723476, -1.423349, 30.104301,
@@ -71,6 +71,7 @@ path = {
 };
 
 function onSpawn(npc)
+    npc:initNpcAi();
 	npc:setPos(pathfind.first(path));
 	-- onPath(npc);
 end;
@@ -108,10 +109,10 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player,csid,option,npc)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-GetNPCByID(17809438):wait(0);
+    npc:wait(0);
 end;
 
 

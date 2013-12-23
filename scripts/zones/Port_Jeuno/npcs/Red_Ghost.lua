@@ -9,7 +9,7 @@ require("scripts/zones/Port_Jeuno/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/pathfind");
 
-path = {
+local path = {
 -96.823616, 0.001000, -3.722488,
 -96.761887, 0.001000, -2.632236,
 -96.698341, 0.001000, -1.490001,
@@ -25,7 +25,9 @@ path = {
 -96.567200, 0.001000, -7.685426
 };
 
+
 function onSpawn(npc)
+    npc:initNpcAi();
 	npc:setPos(pathfind.first(path));
 	onPath(npc);
 end;
@@ -70,16 +72,13 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player,csid,option,npc)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	if (csid == 314) then
 		player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",15,true)
 	end
-
-	local npc = GetNPCByID(17784896);
 	
-	if(npc ~= nil) then
-		npc:wait(0);
-	end
+	npc:wait(0);
+        
 end;
