@@ -340,6 +340,7 @@ void CAttackRound::CreateZanshinAttacks()
 		!m_zanshinOccured && 
 		!m_doubleAttackOccured && 
 		!m_tripleAttackOccured &&
+		!m_quadAttackOccured &&
 		m_attackSwings.at(0)->GetAttackType() != ZANSHIN_ATTACK)
 	{
 		uint8 zanshinChance = m_attacker->getMod(MOD_ZANSHIN) + ((CCharEntity*)m_attacker)->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, (CCharEntity*)m_attacker);
