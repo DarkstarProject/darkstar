@@ -99,6 +99,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0051) then
 	    player:setVar("MissionStatus",1);
 	elseif(csid == 0x0015) then
+		player:setVar("Wait1DayForRanperre_date",0);
 	    player:setVar("MissionStatus",8);
 	elseif(csid == 0x003F) then
 		player:setVar("Cutscenes_8-2",1)
