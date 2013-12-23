@@ -16,6 +16,12 @@
 -----------------------------------
 
 function onTrigger(player,target,variable,value)
+
+	if (target == nil or variable == nil or value == nil) then
+		player:PrintToPlayer('Incorrect parameters. Expecting: PlayerName Variable Value');
+		return;
+	end
+
 	local pc = GetPlayerByName(target);
 	pc:setVar(variable,value);
 end;

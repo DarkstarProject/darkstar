@@ -25,11 +25,15 @@ end;
 -- onTrigger Action
 -----------------------------------
 
-function onTrigger(player,npc)
+function onTrigger(player,npc)	
 	
 	local currentMission = player:getCurrentMission(SANDORIA);
 	local MissionStatus = player:getVar("MissionStatus");
-	local infiltrateDavoi = player:hasCompletedMission(SANDORIA,INFILTRATE_DAVOI);
+	local infiltrateDavoi = player:hasCompletedMission(SANDORIA,INFILTRATE_DAVOI);	
+	
+	local Wait1DayRanperre = player:getVar("Wait1DayForRanperre_date");
+	local osdate = tonumber(os.date("%j"));
+	
 	
 	if(player:getVar("aBoysDreamCS") == 8) then 
 		player:startEvent(0x0058);
@@ -41,6 +45,8 @@ function onTrigger(player,npc)
 		player:startEvent(0x0223);
 	elseif(currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 0) then
 	    player:startEvent(0x0051);
+	elseif(CurrentMission == RANPERRE_S_FINAL_REST and MissionStatus == 4 and Wait1DayRanperre ~= osdate) then -- Ready now.
+		player:startEvent(0x0015);		
 	elseif(currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 7) then
 	    player:startEvent(0x0015);
 	elseif(player:hasCompletedMission(SANDORIA,LIGHTBRINGER) and player:getRank() == 9 and player:getVar("Cutscenes_8-2") == 0) then

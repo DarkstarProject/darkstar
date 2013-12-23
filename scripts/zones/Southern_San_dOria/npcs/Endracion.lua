@@ -74,6 +74,8 @@ local PresOfPapsqueCompleted = player:hasCompletedMission(SANDORIA,PRESTIGE_OF_T
 	        player:startEvent(0x040b);
 	    elseif(CurrentMission == RANPERRE_S_FINAL_REST and player:getVar("MissionStatus",4) and tonumber(os.date("%j")) == player:getVar("Wait1DayForRanperre_date")) then
 	        player:startEvent(0x040d);
+		elseif(CurrentMission == RANPERRE_S_FINAL_REST and player:getVar("MissionStatus") == 4 and tonumber(os.date("%j")) ~= player:getVar("Wait1DayForRanperre_date")) then -- Ready now.
+		    player:startEvent(0x040f);					
 		elseif(CurrentMission == RANPERRE_S_FINAL_REST and player:getVar("MissionStatus") == 6) then
 		    player:startEvent(0x040f);
 		elseif(CurrentMission == RANPERRE_S_FINAL_REST and player:getVar("MissionStatus") == 9) then
