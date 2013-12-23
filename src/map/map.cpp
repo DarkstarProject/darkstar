@@ -86,11 +86,14 @@ CCommandHandler CmdHandler;
 
 map_session_data_t* mapsession_getbyipp(uint64 ipp)
 {
-	map_session_list_t::iterator i = map_session_list.find(ipp);
-	if( i == map_session_list.end() )
-		return NULL;
-
-	return (*i).second;
+    map_session_list_t::iterator i = map_session_list.begin();
+    while (i != map_session_list.end())
+    {
+        if ((*i).first == ipp)
+            return (*i).second;
+        i++;
+    }
+    return NULL;
 }
 
 /************************************************************************
