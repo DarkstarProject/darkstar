@@ -2894,14 +2894,14 @@ void CAICharNormal::ActionAttack()
 						// Try absorb HP chance (The target)
 						if (attackutils::TryAbsorbHPfromPhysicalAttack(m_PBattleTarget, attack->GetDamage()))
 						{
-							Action.messageID = 0;
-							attack->SetDamage(0);
+                            Action.messageID = 373;
+                            Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, -attack->GetDamage(), attack->IsBlocked(), attack->GetWeaponSlot(), 1, attackRound->GetTAEntity(), true);
 						}
-
-						// Try to absorb MP (The target)
-						attackutils::TryAbsorbMPfromPhysicalAttack(m_PBattleTarget, attack->GetDamage());
-
-						Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, attack->GetDamage(), attack->IsBlocked(), attack->GetWeaponSlot(), 1, attackRound->GetTAEntity(), true);
+                        else
+                        {
+                            attackutils::TryAbsorbMPfromPhysicalAttack(m_PBattleTarget, attack->GetDamage());
+                            Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, attack->GetDamage(), attack->IsBlocked(), attack->GetWeaponSlot(), 1, attackRound->GetTAEntity(), true);
+                        }
 					}
 				}
 				else

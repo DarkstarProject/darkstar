@@ -224,7 +224,6 @@ void TryAbsorbMPfromPhysicalAttack(CBattleEntity* battleEntity, uint32 damage)
 	{
 		uint16 absorbedMP = (float)(damage * battleEntity->getMod(MOD_ABSORB_DMG_TO_MP) / 100);
 		battleEntity->addMP(absorbedMP);
-		battleEntity->loc.zone->PushPacket(battleEntity, CHAR_INRANGE_SELF, new CMessageBasicPacket(battleEntity, battleEntity, 0, absorbedMP, 276)); // 276 - <target> recovers .. MP.
 		return;
 	}
 }
@@ -244,8 +243,6 @@ bool TryAbsorbHPfromPhysicalAttack(CBattleEntity* battleEntity, uint32 damage)
 	// Do chance to absorb damage
 	if (rand()%100 < battleEntity->getMod(MOD_ABSORB_DMG_CHANCE))
 	{
-		battleEntity->addHP(damage);
-		battleEntity->loc.zone->PushPacket(battleEntity, CHAR_INRANGE_SELF, new CMessageBasicPacket(battleEntity, battleEntity, 0, damage, 263)); // 263 - <target> recovers .. HP.
 		return true;
 	}
 	return false;

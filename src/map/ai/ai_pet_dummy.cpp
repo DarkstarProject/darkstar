@@ -816,15 +816,16 @@ void CAIPetDummy::ActionAttack()
 					// Try absorb HP chance (The target)
 					if (attackutils::TryAbsorbHPfromPhysicalAttack(m_PBattleTarget, damage))
 					{
-						Action.messageID = 0;
-						damage = 0;
-					}
+                        Action.messageID = 373;
+                        Action.param = battleutils::TakePhysicalDamage(m_PPet, m_PBattleTarget, damage, isBlocked, SLOT_MAIN, 1, NULL, true);
+                    }
+                    else
+                    {
+                        // Try to absorb MP (The target)
+                        attackutils::TryAbsorbMPfromPhysicalAttack(m_PBattleTarget, damage);
 
-					// Try to absorb MP (The target)
-					attackutils::TryAbsorbMPfromPhysicalAttack(m_PBattleTarget, damage);
-
-	                Action.param = battleutils::TakePhysicalDamage(m_PPet, m_PBattleTarget, damage, isBlocked, SLOT_MAIN, 1, NULL, true);
-
+                        Action.param = battleutils::TakePhysicalDamage(m_PPet, m_PBattleTarget, damage, isBlocked, SLOT_MAIN, 1, NULL, true);
+                    }
 	                // spike effect
 					if (Action.reaction != REACTION_EVADE && Action.reaction != REACTION_PARRY)
 					{

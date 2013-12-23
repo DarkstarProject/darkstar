@@ -1879,13 +1879,19 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 			damage = (damage * absorb) / 100;
 		}
 	}
-	damage = dsp_max(damage - PDefender->getMod(MOD_PHALANX),0);
+    if (damage > 0)
+    {
+        damage = dsp_max(damage - PDefender->getMod(MOD_PHALANX), 0);
 
-    damage = HandleStoneskin(PDefender, damage);
+        damage = HandleStoneskin(PDefender, damage);
+    }
+    damage = dsp_cap(damage, -99999, 99999);
 
-    damage = dsp_cap(damage, 0, 99999);
+    attackutils::TryAbsorbMPfromPhysicalAttack(PDefender, damage);
 
-    PDefender->addHP(-damage);
+    int32 corrected = PDefender->addHP(-damage);
+    if (damage < 0)
+        damage = corrected;
 
     if (PAttacker->PMaster != NULL)
     {
@@ -1918,7 +1924,6 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
     {
         case TYPE_PC:
         {
-            battleutils::MakeEntityStandUp(PDefender);
             charutils::UpdateHealth((CCharEntity*)PDefender);
         }
         break;
@@ -1951,6 +1956,7 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 
     if (damage > 0)
     {
+        battleutils::MakeEntityStandUp(PDefender);
 
     	// try to interrupt spell
     	if(PDefender->PBattleAI->m_PMagicState != NULL)
@@ -2032,7 +2038,10 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
             PAttacker->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK);
         }
     }
-	return damage;
+    if (damage < 0)
+        return -damage;
+    else
+	    return damage;
 }
 
 /************************************************************************
