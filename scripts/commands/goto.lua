@@ -9,6 +9,12 @@
 -----------------------------------
 
 function onTrigger(player,target)
+
+    if (target == nil) then
+		player:PrintToPlayer('You did not enter a character name.');
+		return;
+	end
+
 	local pc = GetPlayerByName(target)
 	if(pc~=nil) then
 		zone = pc:getZone();

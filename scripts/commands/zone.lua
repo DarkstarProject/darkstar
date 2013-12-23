@@ -305,6 +305,12 @@ function onTrigger(player,zoneID)
    local i;
    local zone = zoneID;
 
+
+   if (zoneID == nil) then
+	player:PrintToPlayer('You must enter a zoneID.');
+	return;
+   end
+
    -- Byte 1 == FD means Auto-Translate likely
    -- Byte 2 == 02 means Auto-Translate string
    -- Byte 3 == Language code.  Ignore it for compatibility.

@@ -264,6 +264,7 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
 		// TODO: Quadruple attack merits when SE release them.
 	}
 
+	quadAttack = dsp_cap(quadAttack,0,100);
     doubleAttack = dsp_cap(doubleAttack,0,100);
     tripleAttack = dsp_cap(tripleAttack,0,100);
 
