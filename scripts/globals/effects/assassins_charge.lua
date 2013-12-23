@@ -27,6 +27,6 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:addMod(MOD_QUAD_ATTACK, effect:getPower());
+    target:delMod(MOD_QUAD_ATTACK, effect:getPower());
     target:delMod(MOD_TRIPLE_ATTACK, 100);
 end;
