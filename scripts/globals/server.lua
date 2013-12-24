@@ -189,29 +189,29 @@ function SetTreasureSpawns()
    local chests  =
    {
        16814555, -- Pso'Xja
-       16822524, -- Oldton Movalpolos
-       16892176, -- Sacrarium
-       17355005, -- Fort Ghelsba
-       17359045, -- Yughott Grotto
-       17363363, -- Palborough Mines
-       17371601, -- Giddeus
-       17379835, -- Beadeaux
-       17388020, -- Davoi
-       17396203, -- Castle Oztroja
-       17420669, -- Middle Delkfutt's Tower
-       17424556, -- Upper Delkfutt's Tower
-       17436990, -- Castle Zvahl Baileys
-       17441081, -- Castle Zvahl Keep
-       17498609, -- Sea Serpent Grotto
-       17555947, -- King Ranperre's Tomb
-       17559917, -- Dangruf Wadi
+       16822525, -- Oldton Movalpolos
+       16892177, -- Sacrarium
+       17355006, -- Fort Ghelsba
+       17359046, -- Yughott Grotto
+       17363364, -- Palborough Mines
+       17371602, -- Giddeus
+       17379836, -- Beadeaux
+       17388021, -- Davoi
+       17396204, -- Castle Oztroja
+       17420670, -- Middle Delkfutt's Tower
+       17424557, -- Upper Delkfutt's Tower
+       17436991, -- Castle Zvahl Baileys
+       17441082, -- Castle Zvahl Keep
+       17498610, -- Sea Serpent Grotto
+       17555948, -- King Ranperre's Tomb
+       17559918, -- Dangruf Wadi
        17563908, -- Inner Horutoto Ruins
-       17568185, -- Ordelle's Caves
-       17572283, -- Outer Horutoto Ruins
-       17576349, -- The Eldieme Necropolis
+       17568186, -- Ordelle's Caves
+       17572284, -- Outer Horutoto Ruins
+       17576350, -- The Eldieme Necropolis
        17580397, -- Gusgen Mines
-       17584468, -- Crawler's Nest
-       17588766, -- Maze of Shakhrami
+       17584469, -- Crawler's Nest
+       17588767, -- Maze of Shakhrami
        17596803, -- Garlaige Citadel
        17613220, -- Fei'Yin
        17649891  -- Labyrinth of Onzozo
@@ -219,24 +219,24 @@ function SetTreasureSpawns()
 
    local coffers  =
    {
-       16826620, -- Newton Movalpolos
+       16826621, -- Newton Movalpolos
        17310019, -- Ru'Aun Gardens
-       17379836, -- Beadeaux
-       17391842, -- Monastic Cavern
-       17396204, -- Castle Oztroja
-       17404383, -- The Boyahda Tree
-       17428979, -- Temple of Uggalepih
-       17433071, -- Den of Rancor
-       17436991, -- Castle Zvahl Baileys
-       17469828, -- Toraimarai Canal
-       17490294, -- Kuftal Tunnel
-       17498610, -- Sea Serpent Grotto
+       17379837, -- Beadeaux
+       17391843, -- Monastic Cavern
+       17396205, -- Castle Oztroja
+       17404384, -- The Boyahda Tree
+       17428980, -- Temple of Uggalepih
+       17433072, -- Den of Rancor
+       17436992, -- Castle Zvahl Baileys
+       17469829, -- Toraimarai Canal
+       17490295, -- Kuftal Tunnel
+       17498611, -- Sea Serpent Grotto
        17502693, -- Ve'Lugannon Palace
-       17576350, -- The Eldieme Necropolis
-       17584469, -- Crawler's Nest
+       17576351, -- The Eldieme Necropolis
+       17584470, -- Crawler's Nest
        17596804, -- Garlaige Citadel
-       17617214, -- Ifrit's Cauldron
-       17629729  -- Quicksand Caves
+       17617215, -- Ifrit's Cauldron
+       17629730  -- Quicksand Caves
    }
 
    i = 1;
