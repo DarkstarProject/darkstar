@@ -121,8 +121,32 @@ GearSets =  {1, {"Usukane",	16092,14554,14969,15633,15719,-1,-1,-1,-1,-1,-1,-1,-
   			 49,{"Supremacy",-1,-1,-1,-1,-1,18128,-1,-1,-1,-1,16004,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
   			 49,{"Supremacy",-1,-1,-1,-1,-1,18500,-1,-1,-1,-1,16004,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
   			 49,{"Supremacy",-1,-1,-1,-1,-1,18951,-1,-1,-1,-1,16004,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
-  			 49,{"Supremacy",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,16004,-1,-1,19218,-1,2}};				--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)		 
-			 -- Link: Next id must be 53.
+  			 49,{"Supremacy",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,16004,-1,-1,19218,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)		 
+  			 53,{"Brilliant",-1,-1,-1,-1,-1,18499,-1,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 53,{"Brilliant",-1,-1,-1,-1,-1,18499,-1,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)				 
+  			 53,{"Brilliant",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,16006,-1,-1,19217,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 53,{"Brilliant",-1,-1,-1,-1,-1,-1,-1,-1,-1,16006,-1,-1,-1,19217,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)				 			 
+  			 53,{"Brilliant",-1,-1,-1,-1,-1,18862,-1,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 53,{"Brilliant",-1,-1,-1,-1,-1,18862,-1,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 53,{"Brilliant",-1,-1,-1,-1,-1,-1,18862,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 53,{"Brilliant",-1,-1,-1,-1,-1,-1,18862,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)						
+  			 53,{"Brilliant",-1,-1,-1,-1,-1,18952,-1,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 53,{"Brilliant",-1,-1,-1,-1,-1,18952,-1,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)		
+  			 53,{"Brilliant",-1,-1,-1,-1,-1,18861,-1,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 53,{"Brilliant",-1,-1,-1,-1,-1,18861,-1,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 53,{"Brilliant",-1,-1,-1,-1,-1,-1,18861,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 53,{"Brilliant",-1,-1,-1,-1,-1,-1,18861,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 53,{"Brilliant",-1,-1,-1,-1,-1,18450,-1,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 53,{"Brilliant",-1,-1,-1,-1,-1,18450,-1,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)				  			 
+  			 53,{"Brilliant",-1,-1,-1,-1,-1,19111,-1,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 53,{"Brilliant",-1,-1,-1,-1,-1,19111,-1,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 53,{"Brilliant",-1,-1,-1,-1,-1,-1,19111,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 53,{"Brilliant",-1,-1,-1,-1,-1,-1,19111,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 53,{"Brilliant",-1,-1,-1,-1,-1,19272,-1,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 53,{"Brilliant",-1,-1,-1,-1,-1,19272,-1,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 53,{"Brilliant",-1,-1,-1,-1,-1,-1,19272,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 53,{"Brilliant",-1,-1,-1,-1,-1,-1,19272,-1,-1,16006,-1,-1,-1,-1,-1,2}};				--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)				 
+			 -- Link: Next id must be 56.
 			 
 -- 			 Head, Body, Hand, Legs, Feet, Main, Sub, Neck, Back, ear1, ear2, ring1, ring2, ranged, ammo, matches-required	
 	
@@ -238,6 +262,14 @@ function SearchMods(player, modNameId, name, matches)
 		return; 
 	end
 	
+	--	Brilliant Earring Sets. Set Bonus: Evasion +10, HP Recovered whilst healing +10, Enmity -5. Active with any 2 items(Earring+Weapon)	
+	if (name == "Brilliant" and matches > 1) then
+		ApplyMod(player, modNameId, MOD_EVA, 10);
+		ApplyMod(player, modNameId +1, MOD_HPHEAL, 10);
+		ApplyMod(player, modNameId +2, MOD_ENMITY, -5);
+		return;
+	end	 	
+	
 	--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)	
 	if (name == "Supremacy" and matches > 1) then
 		ApplyMod(player, modNameId, MOD_STR, 6);
@@ -329,21 +361,6 @@ end;
 =======
 Stronghold NM(WOTG)
 =======
-
---Brilliant Earring Sets
--------------
-16006 -- Brilliant Earring
-18499 -- Alastor
-19217 -- Basilisk
-18862 -- Clearpath
-18952 -- Faucheuse
-18861 -- Grandeur
-18450 -- Mukademaru
-19111 -- Silktone
-19272 -- Yagentoshiro
--- Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity
--- Set Bonus is active with any 2 items. (Earring+Weapon)
--- bonus values missing on wiki: acceptable filler would be +10 +10 -5 accurate for the other bonuses and level
 
 -- Molione's Sickle Set
 -------------
