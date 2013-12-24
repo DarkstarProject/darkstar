@@ -25,8 +25,9 @@
 #define _CSTOPDOWNLOADINGPACKET_H
 
 #include "../../common/cbasetypes.h"
-
+#include "../../common/mmo.h"
 #include "basic.h"
+#include <vector>
 
 /************************************************************************
 *																		*
@@ -40,7 +41,7 @@ class CStopDownloadingPacket : public CBasicPacket
 {
 public:
 
-	CStopDownloadingPacket(CCharEntity* PChar);
+	CStopDownloadingPacket(CCharEntity* PChar, std::vector< std::pair< uint32, string_t > > blacklist);
 };
 
 #endif

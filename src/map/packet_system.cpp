@@ -38,6 +38,7 @@
 #include "packet_system.h"
 #include "conquest_system.h"
 #include "utils/battleutils.h"
+#include "utils/blacklistutils.h"
 #include "utils/charutils.h"
 #include "utils/petutils.h"
 #include "utils/puppetutils.h"
@@ -65,6 +66,7 @@
 #include "packets/bazaar_item.h"
 #include "packets/bazaar_message.h"
 #include "packets/bazaar_purchase.h"
+#include "packets/blacklist.h"
 #include "packets/campaing_map.h"
 #include "packets/char.h"
 #include "packets/char_abilities.h"
@@ -468,6 +470,10 @@ void SmallPacket0x00F(map_session_data_t* session, CCharEntity* PChar, int8* dat
     PChar->pushPacket(new CMeritPointsCategoriesPacket(PChar));
 
 	charutils::SendInventory(PChar);
+
+	// Note: This sends the stop downloading packet!
+	blacklistutils::SendBlacklist(PChar);
+
 	return;
 }
 
@@ -1343,6 +1349,71 @@ void SmallPacket0x03C(map_session_data_t* session, CCharEntity* PChar, int8* dat
 {
 	ShowWarning(CL_YELLOW"SmallPacket0x03C\n" CL_RESET);
 	return;
+}
+
+/************************************************************************
+*                                                                       *
+*  Incoming Blacklist Command                                           *
+*                                                                       *
+************************************************************************/
+
+void SmallPacket0x03D(map_session_data_t* session, CCharEntity* PChar, int8* data)
+{
+	const int8* name = (const int8*)(data + 0x08);
+	uint8 cmd = RBUFB(data, 0x18);
+
+	// Attempt to locate the character by their name..
+	const int8* sql = "SELECT charid, accid FROM chars WHERE charname = '%s' LIMIT 1";
+	int32 ret = Sql_Query(SqlHandle, sql, name);
+	if (ret == SQL_ERROR || Sql_NumRows(SqlHandle) != 1 || Sql_NextRow(SqlHandle) != SQL_SUCCESS)
+	{
+		// Send failed..
+		PChar->pushPacket(new CBlacklistPacket(0, "", 0x02));
+		return;
+	}
+
+	// Retrieve the data from Sql..
+	int32 charid = Sql_GetIntData(SqlHandle, 0);
+	int32 accid = Sql_GetIntData(SqlHandle, 1);
+
+	// User is trying to add someone to their blacklist..
+	if (cmd == 0x00)
+	{
+		if (blacklistutils::IsBlacklisted(PChar->id, charid))
+		{
+			// We cannot readd this person, fail to add..
+			PChar->pushPacket(new CBlacklistPacket(0, "", 0x02));
+			return;
+		}
+
+		// Attempt to add this person..
+		if (blacklistutils::AddBlacklisted(PChar->id, charid))
+			PChar->pushPacket(new CBlacklistPacket(accid, name, cmd));
+		else
+			PChar->pushPacket(new CBlacklistPacket(0, "", 0x02));
+	}
+
+	// User is trying to remove someone from their blacklist..
+	else if (cmd == 0x01)
+	{
+		if (!blacklistutils::IsBlacklisted(PChar->id, charid))
+		{
+			// We cannot remove this person, fail to remove..
+			PChar->pushPacket(new CBlacklistPacket(0, "", 0x02));
+			return;
+		}
+
+		// Attempt to remove this person..
+		if (blacklistutils::DeleteBlacklisted(PChar->id, charid))
+			PChar->pushPacket(new CBlacklistPacket(accid, name, cmd));
+		else
+			PChar->pushPacket(new CBlacklistPacket(0, "", 0x02));
+	}
+	else
+	{
+		// Send failed..
+		PChar->pushPacket(new CBlacklistPacket(0, "", 0x02));
+	}
 }
 
 /************************************************************************
@@ -2342,7 +2413,7 @@ void SmallPacket0x05A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	PChar->pushPacket(new CCampaingPacket(PChar,1));
 
 	// пакет не на своем месте, возможно 0x0F
-	PChar->pushPacket(new CStopDownloadingPacket(PChar));
+//	PChar->pushPacket(new CStopDownloadingPacket(PChar));
 //	luautils::CheckForGearSet(PChar); // also check for gear set
 	return;
 }
@@ -4834,6 +4905,7 @@ void PacketParserInitialize()
     PacketSize[0x037] = 0x0A; PacketParser[0x037] = &SmallPacket0x037;
     PacketSize[0x03A] = 0x04; PacketParser[0x03A] = &SmallPacket0x03A;
     PacketSize[0x03C] = 0x00; PacketParser[0x03C] = &SmallPacket0x03C;
+	PacketSize[0x03D] = 0x00; PacketParser[0x03D] = &SmallPacket0x03D; // Blacklist Command
     PacketSize[0x041] = 0x00; PacketParser[0x041] = &SmallPacket0x041;
     PacketSize[0x042] = 0x00; PacketParser[0x042] = &SmallPacket0x042;
     PacketSize[0x04B] = 0x0C; PacketParser[0x04B] = &SmallPacket0x04B;
