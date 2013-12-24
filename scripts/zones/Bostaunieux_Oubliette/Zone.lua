@@ -3,8 +3,9 @@
 -- Zone: Bostaunieux_Oubliette (167)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Bostaunieux_Oubliette/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/Bostaunieux_Oubliette/TextIDs");
 

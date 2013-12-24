@@ -3,8 +3,7 @@
 -- NPC:  Novalmauge
 -- Starts and Finishes Quest: The Rumor
 -- Involved in Quest: The Holy Crest, Trouble at the Sluice
--- @zone 167
--- @pos 70 -24 21
+-- @pos 70 -24 21 167
 -----------------------------------
 package.loaded["scripts/zones/Bostaunieux_Oubliette/TextIDs"] = nil;
 -----------------------------------
@@ -50,8 +49,8 @@ function onTrade(player,npc,trade)
 		end
 	end
 	if(player:getQuestStatus(SANDORIA,THE_RUMOR) == QUEST_ACCEPTED) then
-		count = trade:getItemCount();
-		BeastBlood = trade:hasItemQty(930,1)
+		local count = trade:getItemCount();
+		local BeastBlood = trade:hasItemQty(930,1)
 		if(BeastBlood == true and count == 1) then
 			player:startEvent(0x000c);
 			npc:wait(-1);
@@ -65,10 +64,10 @@ end;
 
 function onTrigger(player,npc)
 
-	troubleAtTheSluice = player:getQuestStatus(SANDORIA,TROUBLE_AT_THE_SLUICE);
-	TheHolyCrest = player:getVar("TheHolyCrest_Event");
-	tatsVar = player:getVar("troubleAtTheSluiceVar");
-	theRumor = player:getQuestStatus(SANDORIA,THE_RUMOR);
+	local troubleAtTheSluice = player:getQuestStatus(SANDORIA,TROUBLE_AT_THE_SLUICE);
+	local TheHolyCrest = player:getVar("TheHolyCrest_Event");
+	local tatsVar = player:getVar("troubleAtTheSluiceVar");
+	local theRumor = player:getQuestStatus(SANDORIA,THE_RUMOR);
 
 	npc:wait(-1);
 

@@ -11,10 +11,10 @@ require("scripts/zones/Bostaunieux_Oubliette/MobIDs");
 
 function onMobDeath(mob,killer)	
 
-    mob = mob:getID();
+    local mob = mob:getID();
     if (Sewer_Syrup_PH[mob] ~= nil) then
 
-        ToD = GetServerVariable("[POP]Sewer_Syrup");
+        local ToD = GetServerVariable("[POP]Sewer_Syrup");
         if (ToD <= os.time(t) and GetMobAction(Sewer_Syrup) == 0) then
             if (math.random((1),(10)) == 5) then
                 UpdateNMSpawnPoint(Sewer_Syrup);

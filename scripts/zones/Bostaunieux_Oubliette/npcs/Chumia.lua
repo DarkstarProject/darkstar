@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Bostaunieux Oubliette
---   NPC: Chumia
+--  NPC:  Chumia
 --  Type: Standard NPC
--- @zone: 167
---  @pos 102.420 -25.001 70.457
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 102.420 -25.001 70.457 167
 -----------------------------------
 package.loaded["scripts/zones/Bostaunieux_Oubliette/TextIDs"] = nil;
 -----------------------------------

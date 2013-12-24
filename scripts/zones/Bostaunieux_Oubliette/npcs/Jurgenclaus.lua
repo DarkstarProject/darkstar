@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Bostaunieux Oubliette
---   NPC: Jurgenclaus
+--  NPC:  Jurgenclaus
 --  Type: Standard NPC
--- @zone: 167
---  @pos 69.735 -24.989 7.741
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 69.735 -24.989 7.741 167
 -----------------------------------
 package.loaded["scripts/zones/Bostaunieux_Oubliette/TextIDs"] = nil;
 -----------------------------------

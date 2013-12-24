@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Bostaunieux Oubliette
---   NPC: Couchatorage
+--  NPC:  Couchatorage
 --  Type: Standard NPC
--- @zone: 167
---  @pos -20.502 -19 17.765
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -20.502 -19 17.765 167
 -----------------------------------
 package.loaded["scripts/zones/Bostaunieux_Oubliette/TextIDs"] = nil;
 -----------------------------------

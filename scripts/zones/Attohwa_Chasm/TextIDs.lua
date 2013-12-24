@@ -10,3 +10,7 @@ NOTHING_OUT_OF_ORDINARY = 6392; -- There is nothing out of the ordinary here.
 
 -- Mining
 MINING_IS_POSSIBLE_HERE = 7173; -- Mining is possible here if you have <item>.
+
+-- Other
+ GASPONIA_POISON = 7193; -- The poison of the Gasponia has begun to spread through your body.
+OCCASIONAL_LUMPS = 7208; -- Occasionally lumps arise in the ground here, then settle down again. | It seems that there is something beneath the earth.

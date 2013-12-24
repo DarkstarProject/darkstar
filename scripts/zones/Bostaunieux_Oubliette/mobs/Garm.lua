@@ -11,10 +11,10 @@ require("scripts/zones/Bostaunieux_Oubliette/MobIDs");
 
 function onMobDeath(mob,killer)	
 
-    mob = mob:getID();
+    local mob = mob:getID();
     if (Shii_PH[mob] ~= nil) then
 
-        ToD = GetServerVariable("[POP]Shii");
+        local ToD = GetServerVariable("[POP]Shii");
         if (ToD <= os.time(t) and GetMobAction(Shii) == 0) then
             if (math.random((1),(20)) == 5) then
                 UpdateNMSpawnPoint(Shii);
