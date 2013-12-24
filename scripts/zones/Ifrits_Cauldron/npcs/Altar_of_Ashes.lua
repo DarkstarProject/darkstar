@@ -1,7 +1,7 @@
 ----------------------------------
 -- Area: Ifrit's Cauldron
 -- NPC: Altar of Ashes
--- @pos: I-9 (X:16, Y:0, Z:-58)
+-- @pos I-9 (X:16, Y:0, Z:-58)
 -- Involved in Quest: Greetings to the Guardian
 -----------------------------------
 

@@ -3,7 +3,7 @@
 --   NPC: Loo Kohor
 --  Type: Quest NPC
 -- @zone: 150
---  @pos: -48.744 -17.741 -104.954
+--  @pos -48.744 -17.741 -104.954
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

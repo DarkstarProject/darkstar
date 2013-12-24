@@ -3,7 +3,7 @@
 --	NPC:  Matata
 --  Type: Standard NPC
 --  @zone: 241
---  @pos: 131 -5 -109
+--  @pos 131 -5 -109
 --  Involved in quest: In a Stew
 -----------------------------------
 

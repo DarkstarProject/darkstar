@@ -3,7 +3,7 @@
 --   NPC: Suldiran
 --  Type: NPC Quest 
 --  @zone: 48
---  @pos: 41.658 -6.999 -42.528
+--  @pos 41.658 -6.999 -42.528
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -3,7 +3,7 @@
 --   NPC: Sleakachiq
 --  Type: Adventurer's Assistant
 -- @zone: 12
---  @pos: 162.504 14.999 136.901
+--  @pos 162.504 14.999 136.901
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

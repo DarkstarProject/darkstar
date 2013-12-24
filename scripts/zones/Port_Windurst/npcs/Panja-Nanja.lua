@@ -3,7 +3,7 @@
 --   NPC: Panja-Nanja
 --  Type: Head Craftsman
 -- @zone: 240
---  @pos: -194.499 -3 58.692
+--  @pos -194.499 -3 58.692
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------

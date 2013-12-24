@@ -3,7 +3,7 @@
 --   NPC: Mhabi Molkot
 --  Type: Conflict Director
 -- @zone: 242
---  @pos: -3.767 -0.501 23.920
+--  @pos -3.767 -0.501 23.920
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

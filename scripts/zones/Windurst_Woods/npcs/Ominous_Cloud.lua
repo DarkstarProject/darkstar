@@ -3,7 +3,7 @@
 --   NPC: Ominous Cloud
 --  Type: Traveling Merchant NPC
 -- @zone: 241
---  @pos: -20.632 -3.939 -40.554
+--  @pos -20.632 -3.939 -40.554
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

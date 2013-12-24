@@ -3,7 +3,7 @@
 --   NPC: Nokkhi Jinjahl
 --  Type: Traveling Merchant NPC
 -- @zone: 236
---  @pos: 112.667 7.455 -46.174
+--  @pos 112.667 7.455 -46.174
 --
 -- Author: Codiddle, the man, the myth, the addict.
 -----------------------------------

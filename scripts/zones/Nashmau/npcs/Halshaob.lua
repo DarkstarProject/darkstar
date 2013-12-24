@@ -3,7 +3,7 @@
 --   NPC: Halshaob
 --  Type: Quest NPC
 -- @zone: 53
---  @pos: 28.537 -7 -85.250
+--  @pos 28.537 -7 -85.250
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -3,7 +3,7 @@
 --   NPC: Helmyre
 --  Type: Chocobo Renter
 -- @zone: 82
---  @pos: -120.853 -1 -152.582
+--  @pos -120.853 -1 -152.582
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -3,7 +3,7 @@
 --   NPC: Velema
 --  Type: Standard NPC
 -- @zone: 248
---  @pos: 28.164 -3.947 -12.788
+--  @pos 28.164 -3.947 -12.788
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

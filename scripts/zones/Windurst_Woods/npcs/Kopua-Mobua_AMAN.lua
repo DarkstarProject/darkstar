@@ -3,7 +3,7 @@
 --   NPC: Kopua-Mobua A.M.A.N.
 --  Type: Mentor Recruiter
 -- @zone: 241
---  @pos: -23.134 1.749 -67.284
+--  @pos -23.134 1.749 -67.284
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

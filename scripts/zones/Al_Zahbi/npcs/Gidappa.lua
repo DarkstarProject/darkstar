@@ -3,7 +3,7 @@
 --   NPC: Gidappa
 --  Type: Clothcraft Guild Craftsman
 -- @zone: 48
---  @pos: 70.228 -7 -54.089
+--  @pos 70.228 -7 -54.089
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

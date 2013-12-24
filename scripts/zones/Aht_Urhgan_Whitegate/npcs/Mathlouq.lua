@@ -3,7 +3,7 @@
 --   NPC: Mathlouq
 --  Type: Standard NPC
 -- @zone: 50
---  @pos: -92.892 -7 129.277
+--  @pos -92.892 -7 129.277
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

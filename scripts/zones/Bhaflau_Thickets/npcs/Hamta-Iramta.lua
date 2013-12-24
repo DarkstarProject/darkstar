@@ -3,7 +3,7 @@
 --   NPC: Hamta-Iramta
 --  Type: Alzadaal Undersea Ruins
 -- @zone: 52
---  @pos: -459.942 -20.048 -4.999
+--  @pos -459.942 -20.048 -4.999
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -3,7 +3,7 @@
 --   NPC: Antreneau
 --  Type: Standard NPC
 -- @zone: 232
---  @pos: -71 -5 -39
+--  @pos -71 -5 -39
 -- 
 -- Involved in Quest: A Taste For Meat
 -----------------------------------

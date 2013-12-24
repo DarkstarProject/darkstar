@@ -3,7 +3,7 @@
 --   NPC: Glarociquet, T.K.
 --  Type: Conquest Overseer
 -- @zone: 237
---  @pos: 17.057 -17 -28.755
+--  @pos 17.057 -17 -28.755
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

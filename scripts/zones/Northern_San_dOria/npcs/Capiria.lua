@@ -3,7 +3,7 @@
 --  NPC: Capiria
 --  Type: Involved in Quest (Flyers for Regine)
 --  @zone: 231
---  @pos: -127.355 0.000 130.461
+--  @pos -127.355 0.000 130.461
 --
 -----------------------------------
 

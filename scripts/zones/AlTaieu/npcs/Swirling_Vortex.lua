@@ -3,7 +3,7 @@
 --   NPC: Sirling_Vortex
 --  Type: Standard NPC
 -- @zone: 33
---  @pos: 
+--  @pos 
 -----------------------------------
 package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 -----------------------------------

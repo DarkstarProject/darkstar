@@ -3,7 +3,7 @@
 --   NPC: Hantileon
 --  Type: VCS Chocobo Trainer
 -- @zone: 230
---  @pos: -2.675 -1.1 -105.287
+--  @pos -2.675 -1.1 -105.287
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

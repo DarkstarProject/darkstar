@@ -3,7 +3,7 @@
 --   NPC: Nokkhi Jinjahl
 --  Type: Traveling Merchant NPC
 -- @zone: 241
---  @pos: 3.306 0.84 -41.601
+--  @pos 3.306 0.84 -41.601
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

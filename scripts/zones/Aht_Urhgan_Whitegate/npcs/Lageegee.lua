@@ -3,7 +3,7 @@
 --   NPC: Lageegee
 --  Type: Assault Mission Giver
 -- @zone: 50
---  @pos: 120.808 0.161 -30.435
+--  @pos 120.808 0.161 -30.435
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

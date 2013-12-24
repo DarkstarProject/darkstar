@@ -3,7 +3,7 @@
 --   NPC: Ufu Koromoa
 --  Type: Standard NPC
 -- @zone: 242
---  @pos: -2.074 -48 14.000
+--  @pos -2.074 -48 14.000
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -3,7 +3,7 @@
 --   NPC: Nahshib
 --  Type: Assault
 -- @zone: 79
---  @pos: -274.334 -9.287 -64.255
+--  @pos -274.334 -9.287 -64.255
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

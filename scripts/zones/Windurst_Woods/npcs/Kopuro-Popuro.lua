@@ -3,7 +3,7 @@
 --  NPC: Kopuro-Popuro
 --  Type: Standard NPC
 --  @zone: 241
---  @pos: -0.037 -4.749 -22.589
+--  @pos -0.037 -4.749 -22.589
 --	Starts Quests: The All-New C-2000, Legendary Plan B, The All-New C-3000
 --  Involved in quests: Lost Chick
 -----------------------------------

@@ -3,7 +3,7 @@
 --   NPC: Keshab-Menjab
 --  Type: Standard NPC
 -- @zone: 249
---  @pos: -15.727 -9.032 54.049
+--  @pos -15.727 -9.032 54.049
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

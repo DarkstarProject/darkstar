@@ -3,7 +3,7 @@
 --   NPC: Quartermaster
 --  Type: Standard NPC
 -- @zone: 94
---  @pos: -60.200 -4.7 32.500
+--  @pos -60.200 -4.7 32.500
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

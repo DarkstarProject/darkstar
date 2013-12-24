@@ -3,7 +3,7 @@
 --   NPC: Balakaf
 --  Type: Standard NPC
 -- @zone: 50
---  @pos: 25.505 -6.999 126.478
+--  @pos 25.505 -6.999 126.478
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

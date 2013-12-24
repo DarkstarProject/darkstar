@@ -3,7 +3,7 @@
 --   NPC: Yudi Yolhbi
 --  Type: Woodworking Guild Craftsman
 -- @zone: 48
---  @pos: -71.584 -7 -56.018
+--  @pos -71.584 -7 -56.018
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

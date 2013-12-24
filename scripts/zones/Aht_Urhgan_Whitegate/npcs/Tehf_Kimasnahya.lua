@@ -3,7 +3,7 @@
 --  NPC: Tehf Kimasnahya
 --  Type: Standard NPC
 --  @zone: 50
---  @pos: -89.897 -1 6.199
+--  @pos -89.897 -1 6.199
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

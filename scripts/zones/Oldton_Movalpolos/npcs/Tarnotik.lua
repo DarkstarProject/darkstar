@@ -3,7 +3,7 @@
 --   NPC: Tarnotik
 --  Type: Standard NPC
 -- @zone: 11
---  @pos: 160.896 10.999 -55.659
+--  @pos 160.896 10.999 -55.659
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

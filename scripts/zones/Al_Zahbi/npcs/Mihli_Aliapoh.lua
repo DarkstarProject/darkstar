@@ -3,7 +3,7 @@
 --   NPC: Mihli Aliapoh
 --  Type: Waterserpent General
 -- @zone: 48
---  @pos: -22.615 -7 78.907
+--  @pos -22.615 -7 78.907
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

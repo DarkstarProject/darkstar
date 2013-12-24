@@ -3,7 +3,7 @@
 --  NPC: Boris
 --  Type: Item Deliverer
 --  @zone: 248
---  @pos: 61.074 -14.655 -7.1
+--  @pos 61.074 -14.655 -7.1
 --
 -----------------------------------
 require("scripts/zones/Selbina/TextIDs");

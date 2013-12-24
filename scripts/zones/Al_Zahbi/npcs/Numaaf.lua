@@ -3,7 +3,7 @@
 --   NPC: Numaaf
 --  Type: Cooking Guild Craftsman
 -- @zone: 48
---  @pos: 54.966 -7 8.328
+--  @pos 54.966 -7 8.328
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

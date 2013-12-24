@@ -3,7 +3,7 @@
 --   NPC: Aeshushu
 --  Type: Standard NPC
 -- @zone: 242
---  @pos: 4.948 -26.5 -2.303
+--  @pos 4.948 -26.5 -2.303
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

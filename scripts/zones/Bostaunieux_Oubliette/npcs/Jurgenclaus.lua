@@ -3,7 +3,7 @@
 --   NPC: Jurgenclaus
 --  Type: Standard NPC
 -- @zone: 167
---  @pos: 69.735 -24.989 7.741
+--  @pos 69.735 -24.989 7.741
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

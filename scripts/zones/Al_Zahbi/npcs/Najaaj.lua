@@ -3,7 +3,7 @@
 --   NPC: Najaaj
 --  Type: Standard NPC
 -- @zone: 48
---  @pos: 61.563 -1 36.264
+--  @pos 61.563 -1 36.264
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

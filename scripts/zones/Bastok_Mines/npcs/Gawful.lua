@@ -3,7 +3,7 @@
 --   NPC: Gawful
 --  Type: Item Deliverer
 -- @zone: 234
---  @pos: -22.416 -3.999 -56.076
+--  @pos -22.416 -3.999 -56.076
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

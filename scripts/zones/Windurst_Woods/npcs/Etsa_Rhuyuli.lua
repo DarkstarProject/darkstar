@@ -3,7 +3,7 @@
 --   NPC: Etsa Rhuyuli
 --  Type: Standard NPC
 -- @zone: 241
---  @pos: 62.482 -8.499 -139.836
+--  @pos 62.482 -8.499 -139.836
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

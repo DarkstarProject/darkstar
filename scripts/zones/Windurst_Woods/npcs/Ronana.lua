@@ -3,7 +3,7 @@
 --   NPC: Ronana
 --  Type: Craftsman
 -- @zone: 241
---  @pos: -1.540 -6.25 -144.517
+--  @pos -1.540 -6.25 -144.517
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

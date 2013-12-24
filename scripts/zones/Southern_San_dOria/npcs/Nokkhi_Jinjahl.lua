@@ -3,7 +3,7 @@
 --   NPC: Nokkhi Jinjahl
 --  Type: NPC Quiver Maker/ Sandy 1st Place
 -- @zone: 230
---  @pos: 24.829 0.978 -13.110
+--  @pos 24.829 0.978 -13.110
 --  
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

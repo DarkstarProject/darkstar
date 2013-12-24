@@ -3,7 +3,7 @@
 --   NPC: Faursel
 --  Type: Aht Urhgan Quest NPC
 -- @zone: 245
---  @pos: 37.985 3.118 -45.208
+--  @pos 37.985 3.118 -45.208
 --
 -- Starts and Ends Quest "The Road to Aht Urhgan"
 -----------------------------------

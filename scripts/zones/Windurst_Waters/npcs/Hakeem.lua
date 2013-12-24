@@ -3,7 +3,7 @@
 --   NPC: Hakeem
 --  Type: Craftsman
 -- @zone: 238
---  @pos: -123.120 -2.999 65.472
+--  @pos -123.120 -2.999 65.472
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------

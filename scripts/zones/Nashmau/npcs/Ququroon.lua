@@ -3,7 +3,7 @@
 --   NPC: Ququroon
 --  Type: Standard NPC
 -- @zone: 53
---  @pos: -2.400 -1 66.824
+--  @pos -2.400 -1 66.824
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

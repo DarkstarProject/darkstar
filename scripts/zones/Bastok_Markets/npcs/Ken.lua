@@ -3,7 +3,7 @@
 --   NPC: Ken
 --  Type: Quest NPC
 -- @zone: 235
---  @pos: -340.857 -11.003 -149.008
+--  @pos -340.857 -11.003 -149.008
 --
 -- Auto-Script: Requires Verification. Verified standard dialog is also "All By Myself" repeatable quest. - thrydwolf 12/18/2011
 -----------------------------------

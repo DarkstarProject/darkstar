@@ -3,7 +3,7 @@
 --   NPC: Kunchichi
 --  Type: Standard NPC
 -- @zone: 240
---  @pos: -115.933 -4.25 109.533
+--  @pos -115.933 -4.25 109.533
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------

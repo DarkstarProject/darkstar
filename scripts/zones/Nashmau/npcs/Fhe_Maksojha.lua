@@ -3,7 +3,7 @@
 --  NPC: Fhe Maksojha
 --  Type: Standard NPC
 --  @zone: 53
---  @pos: 19.084 -7 71.287
+--  @pos 19.084 -7 71.287
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

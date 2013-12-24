@@ -3,7 +3,7 @@
 --   NPC: Cayu Pensharhumi
 --  Type: Standard NPC
 -- @zone: 241
---  @pos: 39.437 -0.91 -40.808
+--  @pos 39.437 -0.91 -40.808
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

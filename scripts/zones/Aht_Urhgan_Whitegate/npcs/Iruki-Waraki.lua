@@ -4,7 +4,7 @@
 --  Type: Standard NPC
 -- Involved in quest: No Strings Attached
 -- @zone: 50
---  @pos: 101.329 -6.999 -29.042
+--  @pos 101.329 -6.999 -29.042
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

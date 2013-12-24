@@ -3,7 +3,7 @@
 --   NPC: Naih Arihmepp
 --  Type: Standard NPC
 -- @zone: 239
---  @pos: -64.578 -13.465 202.147
+--  @pos -64.578 -13.465 202.147
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

@@ -3,7 +3,7 @@
 --   NPC: Agapito
 --  Type: Quest Giver
 -- @zone: 236
---  @pos: -72.093 -3.097 9.309
+--  @pos -72.093 -3.097 9.309
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

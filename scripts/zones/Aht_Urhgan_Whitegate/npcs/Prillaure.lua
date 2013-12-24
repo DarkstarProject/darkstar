@@ -3,7 +3,7 @@
 --   NPC: Prillaure
 --  Type: Event Scene Replayer
 -- @zone: 50
---  @pos: -143.000 0.999 9.000
+--  @pos -143.000 0.999 9.000
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

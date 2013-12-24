@@ -3,7 +3,7 @@
 --   NPC: Brakobrik
 --  Type: Standard NPC
 -- @zone: 11
---  @pos: 164.605 10.992 -91.253
+--  @pos 164.605 10.992 -91.253
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

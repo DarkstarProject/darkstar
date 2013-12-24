@@ -3,7 +3,7 @@
 --   NPC: Sujyahn
 --  Type: Standard NPC
 -- @zone: 48
---  @pos: -48.213 -1 34.723
+--  @pos -48.213 -1 34.723
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -3,7 +3,7 @@
 --   NPC: Dahaaba
 --  Type: Chocobo Renter
 -- @zone: 48
---  @pos: -65.309 -1 -39.585
+--  @pos -65.309 -1 -39.585
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

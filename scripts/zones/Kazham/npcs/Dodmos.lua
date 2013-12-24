@@ -3,7 +3,7 @@
 --   NPC: Dodmos
 -- Starts Quest: Trial Size Trial By Fire
 -- @zone: 250
---  @pos: 102.647 -14.999 -97.664
+--  @pos 102.647 -14.999 -97.664
 --
 -----------------------------------
 package.loaded["scripts/zones/Kazham/TextIDs"] = nil;

@@ -3,7 +3,7 @@
 --   NPC: Enu
 --  Type: Quest NPC
 -- @zone: 235
---  @pos: -253.673 -13 -92.326
+--  @pos -253.673 -13 -92.326
 --
 -- Auto-Script: Requires Verification. Verified standard dialog - thrydwolf 12/18/2011
 -----------------------------------

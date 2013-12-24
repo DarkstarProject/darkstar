@@ -3,7 +3,7 @@
 --   NPC: Alivatand
 --  Type: Guildworkers Union Leather carft
 -- @zone: 230
---  @pos: -179 0 15
+--  @pos -179 0 15
 -----------------------------------
 -- Guild shops not implemented
 

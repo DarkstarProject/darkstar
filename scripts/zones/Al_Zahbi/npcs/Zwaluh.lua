@@ -3,7 +3,7 @@
 --   NPC: Zwaluh
 --  Type: Leathercraft Guild Craftsman
 -- @zone: 48
---  @pos: -71.556 -6.999 -103.015
+--  @pos -71.556 -6.999 -103.015
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

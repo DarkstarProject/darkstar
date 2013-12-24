@@ -3,7 +3,7 @@
 --   NPC: Yoriri
 --  Type: Standard NPC
 -- @zone: 239
---  @pos: 65.268 -8.5 -58.309
+--  @pos 65.268 -8.5 -58.309
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

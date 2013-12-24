@@ -3,7 +3,7 @@
 --   NPC: Squintrox Dryeyes
 --  Type: Standard NPC
 -- @zone: 246
---  @pos: -100.071 -1 11.869
+--  @pos -100.071 -1 11.869
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

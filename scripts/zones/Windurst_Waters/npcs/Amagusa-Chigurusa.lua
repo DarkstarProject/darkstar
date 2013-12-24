@@ -3,7 +3,7 @@
 --   NPC: Amagusa-Chigurusa
 --  Type: Standard NPC
 -- @zone: 238
---  @pos: -28.746 -4.5 61.954
+--  @pos -28.746 -4.5 61.954
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------

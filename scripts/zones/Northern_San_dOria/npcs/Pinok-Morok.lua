@@ -3,7 +3,7 @@
 --   NPC: Pinok-Morok
 --  Type: Standard NPC
 -- @zone: 231
---  @pos: -186.650 10.25 148.380
+--  @pos -186.650 10.25 148.380
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

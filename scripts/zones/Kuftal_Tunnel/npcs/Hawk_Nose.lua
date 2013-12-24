@@ -3,7 +3,7 @@
 --   NPC: Hawk Nose
 --  Type: Quest NPC
 -- @zone: 174
---  @pos: 0.000 -1 0.000
+--  @pos 0.000 -1 0.000
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

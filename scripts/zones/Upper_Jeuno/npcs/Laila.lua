@@ -3,7 +3,7 @@
 --   NPC: Laila
 --  Type: Job Quest Giver
 -- @zone: 244
---  @pos: -54.045 -1 100.996
+--  @pos -54.045 -1 100.996
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

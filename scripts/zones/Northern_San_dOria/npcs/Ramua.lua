@@ -3,7 +3,7 @@
 --   NPC: Ramua
 --  Type: Recipe Giver
 -- @zone: 231
---  @pos: -183.750 10.999 255.770
+--  @pos -183.750 10.999 255.770
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

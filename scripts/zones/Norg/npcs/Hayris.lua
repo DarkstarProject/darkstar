@@ -3,7 +3,7 @@
 --   NPC: Hayris
 --  Type: Standard NPC
 -- @zone: 252
---  @pos: 45.296 -7.282 12.267
+--  @pos 45.296 -7.282 12.267
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

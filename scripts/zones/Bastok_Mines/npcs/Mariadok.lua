@@ -3,7 +3,7 @@
 --   NPC: Mariadok
 --  Type: Weather Checker
 -- @zone: 234
---  @pos: 34.460 -1 -82.839
+--  @pos 34.460 -1 -82.839
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

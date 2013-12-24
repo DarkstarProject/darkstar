@@ -3,7 +3,7 @@
 --   NPC: Guttrix
 --  Type: Standard NPC
 -- @zone: 245
---  @pos: -36.010 4.499 -139.714
+--  @pos -36.010 4.499 -139.714
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

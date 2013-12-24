@@ -3,7 +3,7 @@
 --   NPC: Hemewmew
 --  Type: Guildworker's Union Representative
 -- @zone: 234
---  @pos: 117.970 1.017 -10.438
+--  @pos 117.970 1.017 -10.438
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

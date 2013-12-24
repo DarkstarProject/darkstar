@@ -3,7 +3,7 @@
 --   NPC: Kiwawa
 --  Type: Standard NPC
 -- @zone: 242
---  @pos: 13.369 -27.25 18.718
+--  @pos 13.369 -27.25 18.718
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -3,7 +3,7 @@
 --   NPC: Olgald
 --  Type: Standard NPC
 -- @zone: 244
---  @pos: -53.072 -1 103.380
+--  @pos -53.072 -1 103.380
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

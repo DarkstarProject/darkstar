@@ -3,7 +3,7 @@
 --   NPC: Prucco-Lurucco
 --  Type: Standard NPC
 -- @zone: 94
---  @pos: 140.772 -3.499 132.942
+--  @pos 140.772 -3.499 132.942
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

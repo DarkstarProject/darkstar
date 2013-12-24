@@ -3,7 +3,7 @@
 --   NPC: Matifa
 --  Type: Standard NPC
 -- @zone: 50
---  @pos: -10.583 -1 -8.820
+--  @pos -10.583 -1 -8.820
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

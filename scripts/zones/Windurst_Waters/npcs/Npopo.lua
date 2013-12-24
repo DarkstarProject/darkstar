@@ -3,7 +3,7 @@
 --   NPC: Npopo
 --  Type: Standard NPC
 -- @zone: 238
---  @pos: -35.464 -5.999 239.120
+--  @pos -35.464 -5.999 239.120
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------

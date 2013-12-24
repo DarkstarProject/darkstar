@@ -3,7 +3,7 @@
 --   NPC: Lexun-Marixun, W.W.
 --  Type: Conquest Overseer
 -- @zone: 237
---  @pos: 30.975 -17 28.739
+--  @pos 30.975 -17 28.739
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

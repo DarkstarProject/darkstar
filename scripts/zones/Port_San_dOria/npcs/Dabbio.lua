@@ -3,7 +3,7 @@
 --   NPC: Dabbio
 --  Type: Standard NPC
 -- @zone: 232
---  @pos: -7.819 -15 -106.990
+--  @pos -7.819 -15 -106.990
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

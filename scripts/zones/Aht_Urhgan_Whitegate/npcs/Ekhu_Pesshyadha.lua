@@ -3,7 +3,7 @@
 --   NPC: Ekhu Pesshyadha
 --  Type: Standard NPC
 -- @zone: 50
---  @pos: -13.043 0.999 103.423
+--  @pos -13.043 0.999 103.423
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

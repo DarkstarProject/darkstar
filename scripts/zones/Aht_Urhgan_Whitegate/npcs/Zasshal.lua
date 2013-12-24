@@ -3,7 +3,7 @@
 --   NPC: Zasshal
 --  Type: Salvage
 -- @zone: 50
---  @pos: 101.468 -1 -20.088
+--  @pos 101.468 -1 -20.088
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

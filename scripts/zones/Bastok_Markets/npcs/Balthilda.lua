@@ -3,7 +3,7 @@
 --   NPC: Balthilda
 --  Type: Merchant
 -- @zone: 235
---  @pos: -300 -10 -161
+--  @pos -300 -10 -161
 --
 -- NPC not found in 'npc_list'
 --

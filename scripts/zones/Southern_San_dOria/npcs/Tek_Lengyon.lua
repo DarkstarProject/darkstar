@@ -3,7 +3,7 @@
 --   NPC: Tek Lengyon
 --  Type: NPC Recipe Giver
 -- @zone: 230
---  @pos: -190.120 -2.999 2.770
+--  @pos -190.120 -2.999 2.770
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

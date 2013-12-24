@@ -3,7 +3,7 @@
 --   NPC: Ranna-Brunna
 --  Type: Standard NPC
 -- @zone: 94
---  @pos: 123.085 -8.874 223.734
+--  @pos 123.085 -8.874 223.734
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

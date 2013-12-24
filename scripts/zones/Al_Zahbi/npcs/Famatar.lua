@@ -3,7 +3,7 @@
 --   NPC: Famatar
 --  Type: Imperial Officer
 -- @zone: 48
---  @pos: -105.538 0.999 75.456
+--  @pos -105.538 0.999 75.456
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -3,7 +3,7 @@
 --  NPC: Mariyaam
 --  Type: Item Deliverer
 --  @zone: 50
---  @pos: -125 -6 90
+--  @pos -125 -6 90
 --
 -----------------------------------
 

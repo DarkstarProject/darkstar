@@ -3,7 +3,7 @@
 --   NPC: Hurr the Betrayer
 --  Type: Involved in the "Sahagin Key Quest"
 -- @zone: 176
---  @pos: 305.882 26.768 234.279
+--  @pos 305.882 26.768 234.279
 -- 
 -----------------------------------
 package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil;

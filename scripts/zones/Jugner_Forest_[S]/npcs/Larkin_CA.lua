@@ -3,7 +3,7 @@
 --   NPC: Larkin, C.A.
 --  Type: Campaign Arbiter
 -- @zone: 82
---  @pos: 50.217 -1.769 51.095
+--  @pos 50.217 -1.769 51.095
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

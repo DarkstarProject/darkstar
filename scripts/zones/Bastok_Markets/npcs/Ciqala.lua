@@ -3,7 +3,7 @@
 --   NPC: Ciqala
 --  Type: Merchant
 -- @zone: 235
---  @pos: -283.147 -11.319 -143.680
+--  @pos -283.147 -11.319 -143.680
 --
 -- Auto-Script: Requires Verification
 --

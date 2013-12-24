@@ -3,7 +3,7 @@
 --   NPC: Couchatorage
 --  Type: Standard NPC
 -- @zone: 167
---  @pos: -20.502 -19 17.765
+--  @pos -20.502 -19 17.765
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

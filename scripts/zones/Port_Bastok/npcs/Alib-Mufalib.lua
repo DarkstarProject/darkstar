@@ -3,7 +3,7 @@
 --   NPC: Alib-Mufalib
 --  Type: Warp NPC
 -- @zone: 236
---  @pos: 116.080 7.372 -31.820
+--  @pos 116.080 7.372 -31.820
 -- 
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

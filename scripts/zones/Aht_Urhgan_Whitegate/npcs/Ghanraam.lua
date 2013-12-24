@@ -3,7 +3,7 @@
 --   NPC: Ghanraam
 --  Type: "Nyzul Weapon/Salvage Armor Storer,"
 -- @zone: 50
---  @pos: 108.773 -6.999 -51.297
+--  @pos 108.773 -6.999 -51.297
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

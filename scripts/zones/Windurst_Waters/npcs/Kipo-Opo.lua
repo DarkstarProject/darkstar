@@ -3,7 +3,7 @@
 --   NPC: Kipo-Opo
 --  Type: Head Craftsman
 -- @zone: 238
---  @pos: -119.750 -5.239 64.500
+--  @pos -119.750 -5.239 64.500
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------

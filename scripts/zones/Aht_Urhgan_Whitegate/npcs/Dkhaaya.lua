@@ -3,7 +3,7 @@
 --   NPC: Dkhaaya
 --  Type: Standard NPC
 -- @zone: 50
---  @pos: -73.212 -1 -5.842
+--  @pos -73.212 -1 -5.842
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

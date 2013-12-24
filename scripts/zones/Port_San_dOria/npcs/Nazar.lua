@@ -3,7 +3,7 @@
 --   NPC: Nazar
 --  Type: Standard NPC
 -- @zone: 232
---  @pos: -31.922 -3 44.240
+--  @pos -31.922 -3 44.240
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

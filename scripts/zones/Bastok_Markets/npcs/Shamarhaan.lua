@@ -4,7 +4,7 @@
 --  Type: Quest Starter
 --  Involved in quest: No Strings Attached
 --  @zone: 235
---  @pos: -285.382 -13.021 -84.743
+--  @pos -285.382 -13.021 -84.743
 --
 --  Auto-Script: Requires Verification.  Verified standard dialog - thrydwolf 12/8/2011
 -----------------------------------

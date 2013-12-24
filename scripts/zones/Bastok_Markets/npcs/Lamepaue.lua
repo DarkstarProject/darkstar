@@ -3,7 +3,7 @@
 --   NPC: Lamepaue
 --  Type: Past Event Watcher
 -- @zone: 235
---  @pos: -172.136 -5 -69.632
+--  @pos -172.136 -5 -69.632
 --
 -- Auto-Script: Requires Verification
 -----------------------------------

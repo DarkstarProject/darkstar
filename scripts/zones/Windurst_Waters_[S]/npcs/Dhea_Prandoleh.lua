@@ -3,7 +3,7 @@
 --   NPC: Dhea Prandoleh
 --  Type: Standard NPC
 -- @zone: 94
---  @pos: 3.167 -2 15.545
+--  @pos 3.167 -2 15.545
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

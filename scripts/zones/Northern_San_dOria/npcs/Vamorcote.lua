@@ -3,7 +3,7 @@
 --   NPC: Vamorcote
 --	Starts and Finishes Quest: The Setting Sun
 -- @zone: 231
---  @pos: -137.070 10.999 161.855
+--  @pos -137.070 10.999 161.855
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

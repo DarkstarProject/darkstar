@@ -3,7 +3,7 @@
 --   NPC: Lorena
 --  Type: Blacksmithing Guildworker's Union Representative
 -- @zone: 237
---  @pos: -104.990 1 30.995
+--  @pos -104.990 1 30.995
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -3,7 +3,7 @@
 --   NPC: Nalta
 --  Type: Conquest Troupe
 -- @zone: 241
---  @pos: 19.140 1 -51.297
+--  @pos 19.140 1 -51.297
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

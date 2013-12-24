@@ -3,7 +3,7 @@
 --   NPC: Foo Beibo
 --  Type: Standard NPC
 -- @zone: 242
---  @pos: 10.717 -46 -28.629
+--  @pos 10.717 -46 -28.629
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

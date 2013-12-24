@@ -4,7 +4,7 @@
 -- Type: Weather Checker NPC
 -- Involved in Quest: Love and Ice
 -- @zone: 230
--- @pos: 33.162 0.000 21.070
+-- @pos 33.162 0.000 21.070
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

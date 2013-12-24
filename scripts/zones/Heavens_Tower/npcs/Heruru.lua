@@ -3,7 +3,7 @@
 --   NPC: Heruru
 --  Type: Standard NPC
 -- @zone: 242
---  @pos: 2.321 -26.5 4.641
+--  @pos 2.321 -26.5 4.641
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

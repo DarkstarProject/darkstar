@@ -3,7 +3,7 @@
 --   NPC: Sorrowful Sage
 --  Type: Assault Mission Giver
 -- @zone: 50
---  @pos: 134.096 0.161 -30.401
+--  @pos 134.096 0.161 -30.401
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

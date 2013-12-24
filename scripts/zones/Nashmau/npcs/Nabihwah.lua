@@ -3,7 +3,7 @@
 --   NPC: Nabihwah
 --  Type: Standard NPC
 -- @zone: 53
---  @pos: 9.988 -7 68.585
+--  @pos 9.988 -7 68.585
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

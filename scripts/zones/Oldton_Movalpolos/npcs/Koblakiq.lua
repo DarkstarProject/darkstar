@@ -3,7 +3,7 @@
 --   NPC: Koblakiq
 --  Type: NPC Quest 
 -- @zone: 11
---  @pos: -64.851 21.834 -117.521
+--  @pos -64.851 21.834 -117.521
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

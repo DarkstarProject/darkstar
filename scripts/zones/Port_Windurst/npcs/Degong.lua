@@ -3,7 +3,7 @@
 --   NPC: Degong
 --  Type: Craftsman
 -- @zone: 240
---  @pos: -178.400 -3.835 60.480
+--  @pos -178.400 -3.835 60.480
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

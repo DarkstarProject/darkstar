@@ -3,7 +3,7 @@
 -- NPC: Ulamaal
 -- Type: Standard NPC
 -- @zone: 50
--- @pos: 93.512 -7.5 -128.530
+-- @pos 93.512 -7.5 -128.530
 -- Author: Shadow
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;

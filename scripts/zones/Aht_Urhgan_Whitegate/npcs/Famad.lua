@@ -3,7 +3,7 @@
 --   NPC: Famad
 --  Type: Assault Mission Giver
 -- @zone: 50
---  @pos: 134.098 0.161 -43.759
+--  @pos 134.098 0.161 -43.759
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -3,7 +3,7 @@
 --   NPC: Krujaal
 --  Type: Residence Renter
 -- @zone: 48
---  @pos: 36.522 -1 -63.198
+--  @pos 36.522 -1 -63.198
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

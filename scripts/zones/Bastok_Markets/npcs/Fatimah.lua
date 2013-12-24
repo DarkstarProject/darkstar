@@ -3,7 +3,7 @@
 --   NPC: Fatimah
 --  Type: Recipe Giver
 -- @zone: 235
---  @pos: -193.849 -7.824 -56.372
+--  @pos -193.849 -7.824 -56.372
 --
 -- Auto-Script: Requires Verification. Verfied standard dialog - thrydwolf 12/8/2011
 -----------------------------------

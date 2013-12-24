@@ -3,7 +3,7 @@
 --   NPC: Ikucheechee
 --  Type: Standard NPC
 -- @zone: 242
---  @pos: -2.661 -26.5 -5.747
+--  @pos -2.661 -26.5 -5.747
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -3,7 +3,7 @@
 --   NPC: Chumia
 --  Type: Standard NPC
 -- @zone: 167
---  @pos: 102.420 -25.001 70.457
+--  @pos 102.420 -25.001 70.457
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

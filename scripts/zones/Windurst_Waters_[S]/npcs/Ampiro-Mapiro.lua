@@ -3,7 +3,7 @@
 --   NPC: Ampiro-Mapiro
 --  Type: Standard NPC
 -- @zone: 94
---  @pos: 131.380 -6.75 174.169
+--  @pos 131.380 -6.75 174.169
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

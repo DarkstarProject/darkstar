@@ -3,7 +3,7 @@
 --   NPC: Chochoroon
 --  Type: Appraiser
 -- @zone: 48
---  @pos: -42.739 -1 -45.987
+--  @pos -42.739 -1 -45.987
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

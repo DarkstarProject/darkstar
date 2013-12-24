@@ -3,7 +3,7 @@
 --   NPC: Bhoy Yhupplo
 --  Type: Assault Mission Giver
 -- @zone: 50
---  @pos: 127.474 0.161 -30.418
+--  @pos 127.474 0.161 -30.418
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

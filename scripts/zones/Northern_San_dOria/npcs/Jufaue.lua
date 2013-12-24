@@ -3,7 +3,7 @@
 --   NPC: Jufaue
 --  Type: Past Event Watcher
 -- @zone: 231
---  @pos: 13.221 -1.199 -19.231
+--  @pos 13.221 -1.199 -19.231
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

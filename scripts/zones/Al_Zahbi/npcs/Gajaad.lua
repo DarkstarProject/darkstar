@@ -3,7 +3,7 @@
 --   NPC: Gajaad
 --  Type: Donation Taker
 -- @zone: 48
---  @pos: 40.781 -1.398 116.261
+--  @pos 40.781 -1.398 116.261
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

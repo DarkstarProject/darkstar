@@ -3,7 +3,7 @@
 --   NPC: Mokop-Sankop
 --  Type: Conquest Troupe
 -- @zone: 241
---  @pos: 11.542 1.05 -53.217
+--  @pos 11.542 1.05 -53.217
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

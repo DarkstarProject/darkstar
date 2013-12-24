@@ -3,7 +3,7 @@
 --   NPC: Auroral Updraft
 --  Type: Standard NPC
 -- @zone: 33
---  @pos: 
+--  @pos 
 -----------------------------------
 package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 -----------------------------------

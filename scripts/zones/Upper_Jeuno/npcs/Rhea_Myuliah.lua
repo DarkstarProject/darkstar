@@ -3,7 +3,7 @@
 --   NPC: Rhea Myuliah
 --  Type: Standard NPC
 -- @zone: 244
---  @pos: -56.220 -1 101.805
+--  @pos -56.220 -1 101.805
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -3,7 +3,7 @@
 --   NPC: Horatius
 --  Type: Quest Giver
 -- @zone: 235
---  @pos: -158.392 -5.839 -117.061
+--  @pos -158.392 -5.839 -117.061
 --
 -- Starts and Finishes: Breaking Stones
 --

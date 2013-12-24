@@ -3,7 +3,7 @@
 --   NPC: Gate Sentry
 --  Type: Standard NPC
 -- @zone: 82
---  @pos: -265.235 -2.399 405.246
+--  @pos -265.235 -2.399 405.246
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

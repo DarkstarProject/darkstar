@@ -3,7 +3,7 @@
 --   NPC: Bjibar
 --  Type: Standard NPC
 -- @zone: 48
---  @pos: -105.178 0.999 60.115
+--  @pos -105.178 0.999 60.115
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -3,7 +3,7 @@
 --   NPC: Fochacha
 --  Type: Standard NPC
 --  @zone: 50
---  @pos: 2.897 -1 -10.781
+--  @pos 2.897 -1 -10.781
 -- quest Delivering the Goods
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

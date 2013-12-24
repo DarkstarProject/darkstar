@@ -3,7 +3,7 @@
 --   NPC: Miah Riyuh
 --  Type: Standard NPC
 -- @zone: 94
---  @pos: 5.323 -2 37.462
+--  @pos 5.323 -2 37.462
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

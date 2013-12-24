@@ -3,7 +3,7 @@
 --   NPC: Lago-Charago
 --  Type: Adventurer's Assistant
 -- @zone: 238
---  @pos: -57.271 -11.75 92.503
+--  @pos -57.271 -11.75 92.503
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------

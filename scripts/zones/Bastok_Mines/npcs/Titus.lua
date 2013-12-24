@@ -3,7 +3,7 @@
 --   NPC: Titus
 --  Type: Recipe Giver
 -- @zone: 234
---  @pos: 127.356 1.017 -8.799
+--  @pos 127.356 1.017 -8.799
 --
 -- Auto-Script: Requires Verification
 -----------------------------------

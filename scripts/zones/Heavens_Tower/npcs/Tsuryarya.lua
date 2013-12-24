@@ -3,7 +3,7 @@
 --   NPC: Tsuryarya
 --  Type: Standard NPC
 -- @zone: 242
---  @pos: -0.881 -27 15.950
+--  @pos -0.881 -27 15.950
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

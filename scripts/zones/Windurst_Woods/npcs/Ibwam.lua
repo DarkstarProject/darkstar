@@ -3,7 +3,7 @@
 --   NPC: Ibwam
 --  Type: Warp NPC
 -- @zone: 241
---  @pos: -25.655 1.749 -60.651
+--  @pos -25.655 1.749 -60.651
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

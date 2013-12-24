@@ -3,7 +3,7 @@
 --   NPC: Tilian
 --  Type: Quest NPC
 -- @zone: 236
---  @pos: -118.460 4.999 -68.090
+--  @pos -118.460 4.999 -68.090
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

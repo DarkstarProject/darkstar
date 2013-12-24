@@ -3,7 +3,7 @@
 --   NPC: Jacodaut
 --  Type: Craftsman
 -- @zone: 238
---  @pos: -125.890 -2.999 62.499
+--  @pos -125.890 -2.999 62.499
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------

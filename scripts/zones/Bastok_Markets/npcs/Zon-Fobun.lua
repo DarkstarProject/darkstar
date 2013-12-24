@@ -3,7 +3,7 @@
 --   NPC: Zon-Fobun
 --  Type: Quest Giver
 -- @zone: 235
---  @pos: -241.293 -3 63.406
+--  @pos -241.293 -3 63.406
 --
 -- Auto-Script: Requires Verification. Verified standard dialog - thrydwolf 12/18/2011
 -----------------------------------

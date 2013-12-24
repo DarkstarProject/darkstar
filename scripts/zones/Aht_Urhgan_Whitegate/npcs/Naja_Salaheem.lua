@@ -3,7 +3,7 @@
 --   NPC: Naja Salaheem
 --  Type: Standard NPC
 -- @zone: 50
---  @pos: 22.700 -8.804 -45.591
+--  @pos 22.700 -8.804 -45.591
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

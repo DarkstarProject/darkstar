@@ -3,7 +3,7 @@
 --   NPC: Kameel
 --  Type: Adventurer's Assistant
 -- @zone: 240
---  @pos: 220.994 -6.834 89.828
+--  @pos 220.994 -6.834 89.828
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------

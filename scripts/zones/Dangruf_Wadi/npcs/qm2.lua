@@ -3,7 +3,7 @@
 --   NPC: ??? (QM2)
 --  Type: Item Giver
 -- @zone: 191
---  @pos: -120.041 2.621 415.989
+--  @pos -120.041 2.621 415.989
 --
 -- Starts and Finishes: Breaking Stones, An Empty Vessel
 --

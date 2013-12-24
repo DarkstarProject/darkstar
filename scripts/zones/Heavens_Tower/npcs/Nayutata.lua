@@ -3,7 +3,7 @@
 --   NPC: Nayutata
 --  Type: Standard NPC
 -- @zone: 242
---  @pos: -2.665 -26.5 -0.268
+--  @pos -2.665 -26.5 -0.268
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

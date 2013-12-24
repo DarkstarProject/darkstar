@@ -3,7 +3,7 @@
 --   NPC: Varun
 --  Type: Standard NPC
 -- @zone: 241
---  @pos: 7.800 -3.5 -10.064
+--  @pos 7.800 -3.5 -10.064
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

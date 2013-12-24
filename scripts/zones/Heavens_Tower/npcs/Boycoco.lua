@@ -3,7 +3,7 @@
 --   NPC: Boycoco
 --  Type: Standard NPC
 -- @zone: 242
---  @pos: -6.360 -26.5 -4.167
+--  @pos -6.360 -26.5 -4.167
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

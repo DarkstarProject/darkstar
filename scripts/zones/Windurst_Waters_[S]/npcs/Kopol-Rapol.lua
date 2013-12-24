@@ -3,7 +3,7 @@
 --   NPC: Kopol-Rapol
 --  Type: Standard NPC
 -- @zone: 94
---  @pos: 131.179 -6.75 172.758
+--  @pos 131.179 -6.75 172.758
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

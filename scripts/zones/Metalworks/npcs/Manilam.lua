@@ -3,7 +3,7 @@
 --   NPC: Manilam
 --  Type: Quest NPC
 -- @zone: 237
---  @pos: -57.300 -11 22.332
+--  @pos -57.300 -11 22.332
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

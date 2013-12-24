@@ -3,7 +3,7 @@
 --   NPC: Lih Pituu
 --  Type: Head Craftsman
 -- @zone: 241
---  @pos: -5.471 -6.25 -141.211
+--  @pos -5.471 -6.25 -141.211
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

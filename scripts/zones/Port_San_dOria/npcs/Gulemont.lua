@@ -3,7 +3,7 @@
 --   NPC: Gulemont
 --  Type: Quest Giver
 -- @zone: 232
---  @pos: -69 -5 -38
+--  @pos -69 -5 -38
 --
 -- Starts and Finishes Quest: The Dismayed Customer
 -----------------------------------

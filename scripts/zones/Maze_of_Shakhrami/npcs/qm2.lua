@@ -3,7 +3,7 @@
 --   NPC: qm2
 --  Type: Quest NPC
 -- @zone: 198
---  @pos: 143 9 -219
+--  @pos 143 9 -219
 -----------------------------------
 
 require("scripts/globals/quests");

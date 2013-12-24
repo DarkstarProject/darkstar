@@ -3,7 +3,7 @@
 --   NPC: Moan-Maon
 --  Type: Standard NPC
 -- @zone: 239
---  @pos: 88.244 -6.32 148.912
+--  @pos 88.244 -6.32 148.912
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

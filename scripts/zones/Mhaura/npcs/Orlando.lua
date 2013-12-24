@@ -3,7 +3,7 @@
 --   NPC: Orlando
 --  Type: Standard NPC
 -- @zone: 249
---  @pos: -37.268 -9 58.047
+--  @pos -37.268 -9 58.047
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

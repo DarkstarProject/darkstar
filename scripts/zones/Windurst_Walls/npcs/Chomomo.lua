@@ -3,7 +3,7 @@
 --   NPC: Chomomo
 --  Type: Standard NPC
 -- @zone: 239
---  @pos: -1.262 -11 290.224
+--  @pos -1.262 -11 290.224
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

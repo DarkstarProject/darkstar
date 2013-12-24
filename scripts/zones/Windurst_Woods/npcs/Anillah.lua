@@ -3,7 +3,7 @@
 --   NPC: Anillah
 --  Type: Craftsman
 -- @zone: 241
---  @pos: -34.800 -2.25 -119.950
+--  @pos -34.800 -2.25 -119.950
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

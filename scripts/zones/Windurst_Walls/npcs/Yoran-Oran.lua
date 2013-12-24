@@ -3,7 +3,7 @@
 --   NPC: Yoran-Oran
 --  Type: Standard NPC
 -- @zone: 239
---  @pos: -109.987 -14 203.338
+--  @pos -109.987 -14 203.338
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

@@ -3,7 +3,7 @@
 --   NPC: Utsuitsui
 --  Type: Standard NPC
 -- @zone: 242
---  @pos: 6.379 -26.5 -4.043
+--  @pos 6.379 -26.5 -4.043
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

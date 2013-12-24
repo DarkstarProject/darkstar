@@ -3,7 +3,7 @@
 --   NPC: Vishwas
 --  Type: Standard NPC
 -- @zone: 252
---  @pos: 44.028 -7.282 13.663
+--  @pos 44.028 -7.282 13.663
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

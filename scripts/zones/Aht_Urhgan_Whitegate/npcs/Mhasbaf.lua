@@ -3,7 +3,7 @@
 --   NPC: Mhasbaf
 --  Type: Standard NPC
 -- @zone: 50
---  @pos: 54.701 -6.999 11.387
+--  @pos 54.701 -6.999 11.387
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

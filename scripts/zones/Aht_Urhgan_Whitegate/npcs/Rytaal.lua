@@ -3,7 +3,7 @@
 --   NPC: Rytaal
 --  Type: Standard NPC
 -- @zone: 50
---  @pos: 112.002 -1.338 -45.038
+--  @pos 112.002 -1.338 -45.038
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

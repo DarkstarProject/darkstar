@@ -3,7 +3,7 @@
 --  NPC:  Guillerme
 --  Involved in Quest: Rosel the Armorer
 --  @zone: 231
---  @pos: -4.500 0.000 99.000
+--  @pos -4.500 0.000 99.000
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------

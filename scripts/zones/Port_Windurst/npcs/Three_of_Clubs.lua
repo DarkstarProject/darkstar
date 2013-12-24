@@ -3,7 +3,7 @@
 --   NPC: Three of Clubs
 --  Type: Standard NPC
 -- @zone: 240
---  @pos: -7.238 -5 106.982
+--  @pos -7.238 -5 106.982
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

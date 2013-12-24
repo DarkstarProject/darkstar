@@ -3,7 +3,7 @@
 --   NPC: Nareema
 --  Type: Assault
 -- @zone: 79
---  @pos: 518.387 -24.707 -467.297
+--  @pos 518.387 -24.707 -467.297
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

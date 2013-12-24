@@ -3,7 +3,7 @@
 --   NPC: Hadahda
 --  Type: Standard NPC
 -- @zone: 50
---  @pos: -112.029 -6.999 -66.114
+--  @pos -112.029 -6.999 -66.114
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

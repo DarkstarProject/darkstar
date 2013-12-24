@@ -3,7 +3,7 @@
 --   NPC: Kipopo
 --  Type: NPC Recipe Giver
 -- @zone: 230
---  @pos: -191.050 -2.15 12.285
+--  @pos -191.050 -2.15 12.285
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

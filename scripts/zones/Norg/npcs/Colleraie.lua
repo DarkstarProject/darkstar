@@ -3,7 +3,7 @@
 --   NPC: Colleraie
 --  Type: Event Scene Replayer
 -- @zone: 252
---  @pos: -24.684 0.097 -39.409
+--  @pos -24.684 0.097 -39.409
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

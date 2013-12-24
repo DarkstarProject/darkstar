@@ -3,7 +3,7 @@
 --   NPC: Ulrike
 --  Type: Recipe Giver
 -- @zone: 235
---  @pos: -218.399 -7.824 -56.203
+--  @pos -218.399 -7.824 -56.203
 --
 -- Auto-Script: Requires Verification. Verified standard dialog - thrydwolf 12/18/2011
 -----------------------------------

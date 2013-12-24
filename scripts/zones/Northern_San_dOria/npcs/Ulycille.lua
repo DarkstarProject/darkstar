@@ -3,7 +3,7 @@
 --   NPC: Ulycille
 --  Type: Recipe Giver
 -- @zone: 231
---  @pos: -183.320 9.999 269.651
+--  @pos -183.320 9.999 269.651
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

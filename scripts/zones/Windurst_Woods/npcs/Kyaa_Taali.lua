@@ -3,7 +3,7 @@
 --   NPC: Kyaa Taali
 --  Type: Craftsman
 -- @zone: 241
---  @pos: -10.470 -6.25 -141.700
+--  @pos -10.470 -6.25 -141.700
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

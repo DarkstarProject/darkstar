@@ -3,7 +3,7 @@
 --  NPC: Wenzel
 --  Type: Item Deliverer
 --  @zone: 248
---  @pos: 31.961 -14.661 57.997
+--  @pos 31.961 -14.661 57.997
 --
 -----------------------------------
 require("scripts/zones/Selbina/TextIDs");

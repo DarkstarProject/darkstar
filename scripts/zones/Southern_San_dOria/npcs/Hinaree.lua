@@ -3,7 +3,7 @@
 --   NPC: Hinaree
 --  Type: Standard NPC
 -- @zone: 230
---  @pos: -301.535 -10.199 97.698
+--  @pos -301.535 -10.199 97.698
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

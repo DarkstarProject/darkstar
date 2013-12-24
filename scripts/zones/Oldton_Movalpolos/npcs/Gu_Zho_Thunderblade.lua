@@ -3,7 +3,7 @@
 --   NPC: Gu'Zho Thunderblade
 --  Type: NPC Quest 
 -- @zone: 11
---  @pos: -316.427 7.124 -260.868
+--  @pos -316.427 7.124 -260.868
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

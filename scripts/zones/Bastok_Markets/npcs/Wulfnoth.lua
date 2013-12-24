@@ -3,7 +3,7 @@
 --   NPC: Wulfnoth
 --  Type: Recipe Giver
 -- @zone: 235
---  @pos: -211.937 -7.814 -56.292
+--  @pos -211.937 -7.814 -56.292
 --
 -- Auto-Script: Requires Verification. Verified standard dialog - thrydwolf 12/18/2011
 -----------------------------------

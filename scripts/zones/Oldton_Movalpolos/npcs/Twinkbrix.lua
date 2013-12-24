@@ -3,7 +3,7 @@
 --   NPC: Twinkbrix
 --  Type: Warp NPC
 -- @zone: 11
---  @pos: -292.779 6.999 -263.153
+--  @pos -292.779 6.999 -263.153
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

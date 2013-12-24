@@ -3,7 +3,7 @@
 --   NPC: Gorvik
 --  Type: Past Event Watcher
 -- @zone: 234
---  @pos: 21.033 -1 -98.486
+--  @pos 21.033 -1 -98.486
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

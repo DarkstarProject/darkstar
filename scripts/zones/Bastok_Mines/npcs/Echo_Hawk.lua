@@ -4,7 +4,7 @@
 -- Standard Info NPC
 -- Involved in Quest: The Siren's Tear
 -- @zone: 234
--- @pos: -0.965 5.999 -15.567
+-- @pos -0.965 5.999 -15.567
 -----------------------------------
 
 require("scripts/globals/quests");

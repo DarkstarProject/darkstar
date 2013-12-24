@@ -3,7 +3,7 @@
 --   NPC: Zacc
 --  Type: Quest NPC
 -- @zone: 235
---  @pos: -255.709 -13 -91.379
+--  @pos -255.709 -13 -91.379
 --
 -- Auto-Script: Requires Verification. Verified standard dialog - thrydwolf 12/18/2011
 -----------------------------------

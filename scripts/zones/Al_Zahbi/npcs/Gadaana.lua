@@ -3,7 +3,7 @@
 --   NPC: Gadaana
 --  Type: Standard NPC
 -- @zone: 48
---  @pos: 18.596 -1 -29.891
+--  @pos 18.596 -1 -29.891
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

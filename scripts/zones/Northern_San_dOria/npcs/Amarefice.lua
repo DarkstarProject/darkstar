@@ -3,7 +3,7 @@
 --   NPC: Amarefice
 --  Type: Recipe Giver
 -- @zone: 231
---  @pos: -181.506 10.15 259.905
+--  @pos -181.506 10.15 259.905
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

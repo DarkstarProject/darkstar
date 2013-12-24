@@ -3,7 +3,7 @@
 --   NPC: Goblin Geologist
 --  Type: Mission
 -- @zone: 208
---  @pos: -737.000 -11.125 -550.000
+--  @pos -737.000 -11.125 -550.000
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

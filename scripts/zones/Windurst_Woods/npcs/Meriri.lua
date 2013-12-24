@@ -2,7 +2,7 @@
 -- Area: Windurst Woods
 -- NPC: Meriri
 -- Guild Merchant NPC: Clothcrafting Guild 
--- @pos: -76.471 -3.55 -128.341 241
+-- @pos -76.471 -3.55 -128.341 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------

@@ -3,7 +3,7 @@
 --   NPC: Iphaaf
 --  Type: Mihli's Attendant
 -- @zone: 48
---  @pos: -28.014 -7 64.371
+--  @pos -28.014 -7 64.371
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

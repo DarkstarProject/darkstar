@@ -3,7 +3,7 @@
 --   NPC: Funpo-Shipo
 --  Type: Standard NPC
 -- @zone: 238
---  @pos: -44.091 -4.499 41.728
+--  @pos -44.091 -4.499 41.728
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------

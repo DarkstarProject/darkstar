@@ -3,7 +3,7 @@
 --   NPC: Miageau
 --  Type: Quest Giver NPC
 -- @zone: 231
---  @pos: 115 0 108
+--  @pos 115 0 108
 --
 -- Starts and Finishes: Waters of Cheval
 -----------------------------------

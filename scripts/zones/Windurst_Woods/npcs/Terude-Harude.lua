@@ -3,7 +3,7 @@
 --   NPC: Terude-Harude
 --  Type: Head Craftsman
 -- @zone: 241
---  @pos: -32.350 -2.679 -116.450
+--  @pos -32.350 -2.679 -116.450
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

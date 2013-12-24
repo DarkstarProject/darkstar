@@ -3,7 +3,7 @@
 --   NPC: Yahsra
 --  Type: Assault Mission Giver
 -- @zone: 50
---  @pos: 120.967 0.161 -44.002
+--  @pos 120.967 0.161 -44.002
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

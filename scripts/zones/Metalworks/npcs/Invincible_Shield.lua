@@ -3,7 +3,7 @@
 --   NPC: Invincible Shield
 --  Type: Ballista
 -- @zone: 237
---  @pos: -51.083 -11 2.126
+--  @pos -51.083 -11 2.126
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

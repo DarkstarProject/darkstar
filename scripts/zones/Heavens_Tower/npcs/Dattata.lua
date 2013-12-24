@@ -3,7 +3,7 @@
 --   NPC: Dattata
 --  Type: Standard NPC
 -- @zone: 242
---  @pos: -6.172 -26.5 5.310
+--  @pos -6.172 -26.5 5.310
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -3,7 +3,7 @@
 --   NPC: Grimr
 --  Type: Standard NPC
 -- @zone: 249
---  @pos: 31.819 -11.001 22.311
+--  @pos 31.819 -11.001 22.311
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

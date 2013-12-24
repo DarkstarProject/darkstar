@@ -3,7 +3,7 @@
 --   NPC: Gehuha
 --  Type: Event Scene Replayer
 -- @zone: 53
---  @pos: -13.414 -1 -50.825
+--  @pos -13.414 -1 -50.825
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

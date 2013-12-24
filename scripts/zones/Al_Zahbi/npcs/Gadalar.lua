@@ -3,7 +3,7 @@
 --   NPC: Gadalar
 --  Type: Fireserpent General
 -- @zone: 48
---  @pos: -105.979 -7 39.692
+--  @pos -105.979 -7 39.692
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

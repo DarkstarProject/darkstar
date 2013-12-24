@@ -3,7 +3,7 @@
 --   NPC: Nudahaal
 --  Type: Bonecraft Guild Craftsman
 -- @zone: 48
---  @pos: -57.056 -7 -88.377
+--  @pos -57.056 -7 -88.377
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

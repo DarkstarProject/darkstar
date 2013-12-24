@@ -3,7 +3,7 @@
 --   NPC: Yafaaf
 --  Type: Standard Merchant
 -- @zone: 50
---  @pos: 76.889 -7 -140.379
+--  @pos 76.889 -7 -140.379
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

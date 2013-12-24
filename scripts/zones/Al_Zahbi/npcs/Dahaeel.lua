@@ -3,7 +3,7 @@
 --   NPC: Dahaeel
 --  Type: Standard NPC
 -- @zone: 48
---  @pos: -58.732 -6.999 68.096
+--  @pos -58.732 -6.999 68.096
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

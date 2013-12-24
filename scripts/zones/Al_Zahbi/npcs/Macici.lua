@@ -3,7 +3,7 @@
 --   NPC: Macici
 --  Type: Smithing Guild Craftsman
 -- @zone: 48
---  @pos: -35.163 -1 -31.351
+--  @pos -35.163 -1 -31.351
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -3,7 +3,7 @@
 --   NPC: Vaghron
 --  Type: Adventurer's Assistant
 -- @zone: 234
---  @pos: -39.162 -1 -92.147
+--  @pos -39.162 -1 -92.147
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

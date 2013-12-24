@@ -3,7 +3,7 @@
 --   NPC: Glowing Pebbles
 --  Type: Involved in Quest
 -- 	@zone: 82
---  @pos: 
+--  @pos 
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 --  player:startEvent(0x006a); Left over Cutscene

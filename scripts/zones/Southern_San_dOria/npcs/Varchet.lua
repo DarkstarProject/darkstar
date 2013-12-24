@@ -3,7 +3,7 @@
 --   NPC: Varchet
 --  Type: NPC
 -- @zone: 230
---  @pos: 116.484 -1 91.554
+--  @pos 116.484 -1 91.554
 -----------------------------------
 require("scripts/globals/quests");
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;

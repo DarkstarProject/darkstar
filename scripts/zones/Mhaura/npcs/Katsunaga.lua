@@ -3,7 +3,7 @@
 --   NPC: Katsunaga
 --  Type: Standard NPC
 -- @zone: 249
---  @pos: -4.726 -2.148 23.183
+--  @pos -4.726 -2.148 23.183
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

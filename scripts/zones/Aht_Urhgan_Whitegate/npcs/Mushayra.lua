@@ -3,7 +3,7 @@
 --   NPC: Mushayra
 --  Type: Standard NPC
 -- @zone: 50
---  @pos: -111.551 -6.999 -61.720
+--  @pos -111.551 -6.999 -61.720
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

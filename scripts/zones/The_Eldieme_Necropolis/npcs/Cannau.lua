@@ -3,7 +3,7 @@
 --   NPC: Cannau
 --  Type: Escort NPC
 -- @zone: 195
---  @pos: 419.838 -56.999 -114.870
+--  @pos 419.838 -56.999 -114.870
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

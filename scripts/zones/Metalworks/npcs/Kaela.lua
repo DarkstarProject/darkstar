@@ -3,7 +3,7 @@
 --   NPC: Kaela
 --  Type: Adventurer's Assistant
 -- @zone: 237
---  @pos: 40.167 -14.999 16.073
+--  @pos 40.167 -14.999 16.073
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

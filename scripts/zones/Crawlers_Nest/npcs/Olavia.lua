@@ -3,7 +3,7 @@
 --   NPC: Olavia
 --  Type: Escort NPC
 -- @zone: 197
---  @pos: 379.638 -33.051 -0.533
+--  @pos 379.638 -33.051 -0.533
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

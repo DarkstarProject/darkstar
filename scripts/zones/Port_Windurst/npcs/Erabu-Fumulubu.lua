@@ -3,7 +3,7 @@
 --   NPC: Erabu-Fumulubu
 --  Type: Craftsman
 -- @zone: 240
---  @pos: -178.900 -2.789 76.200
+--  @pos -178.900 -2.789 76.200
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------

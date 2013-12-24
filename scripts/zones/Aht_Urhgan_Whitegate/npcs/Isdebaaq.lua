@@ -3,7 +3,7 @@
 --   NPC: Isdebaaq
 --  Type: Assault Mission Giver
 -- @zone: 50
---  @pos: 127.565 0.161 -43.846
+--  @pos 127.565 0.161 -43.846
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

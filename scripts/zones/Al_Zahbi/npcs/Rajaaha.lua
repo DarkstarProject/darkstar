@@ -3,7 +3,7 @@
 --   NPC: Rajaaha
 --  Type: Goldsmithing Guild Craftsman
 -- @zone: 48
---  @pos: 47.625 -1 -41.990
+--  @pos 47.625 -1 -41.990
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

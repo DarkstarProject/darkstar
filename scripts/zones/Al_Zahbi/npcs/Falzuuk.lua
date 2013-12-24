@@ -3,7 +3,7 @@
 --   NPC: Falzuuk
 --  Type: Imperial Officer
 -- @zone: 48
---  @pos: -60.486 0.999 105.397
+--  @pos -60.486 0.999 105.397
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

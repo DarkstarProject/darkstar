@@ -3,7 +3,7 @@
 --   NPC: Churara
 --  Type: Standard NPC
 -- @zone: 242
---  @pos: 4.119 -26.5 -6.264
+--  @pos 4.119 -26.5 -6.264
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

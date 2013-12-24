@@ -3,7 +3,7 @@
 --   NPC: Beadurinc
 --  Type: Standard NPC
 -- @zone: 231
---  @pos: -182.300 10.999 146.650
+--  @pos -182.300 10.999 146.650
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

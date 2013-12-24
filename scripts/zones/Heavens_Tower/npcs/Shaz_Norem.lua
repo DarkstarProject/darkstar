@@ -3,7 +3,7 @@
 --   NPC: Shaz Norem
 --  Type: Standard NPC
 -- @zone: 242
---  @pos: 2.805 -47.999 -15.083
+--  @pos 2.805 -47.999 -15.083
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

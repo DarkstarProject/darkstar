@@ -3,7 +3,7 @@
 --   NPC: Chenon
 --  Type: Fish Ranking NPC
 -- @zone: 248
---  @pos: -13.472 -8.287 9.497
+--  @pos -13.472 -8.287 9.497
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

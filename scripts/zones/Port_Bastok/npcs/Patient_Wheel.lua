@@ -3,7 +3,7 @@
 --   NPC: Patient Wheel
 --  Type: Quest NPC
 -- @zone: 236
---  @pos: -107.988 3.898 52.557
+--  @pos -107.988 3.898 52.557
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -3,7 +3,7 @@
 --   NPC: Zabahf
 --  Type: Standard NPC
 -- @zone: 50
---  @pos: -90.070 -1 10.140
+--  @pos -90.070 -1 10.140
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

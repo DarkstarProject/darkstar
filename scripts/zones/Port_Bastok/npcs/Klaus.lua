@@ -3,7 +3,7 @@
 --   NPC: Klaus
 --  Type: Standard NPC
 -- @zone: 236
---  @pos: -89.355 -3.611 -15.256
+--  @pos -89.355 -3.611 -15.256
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

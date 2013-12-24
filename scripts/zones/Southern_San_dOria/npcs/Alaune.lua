@@ -3,7 +3,7 @@
 --   NPC: Alaune
 --  Type: Tutorial NPC
 --  @zone: 230
---  @pos: -90 1 -56
+--  @pos -90 1 -56
 -----------------------------------
 -- can not find correct event IDs
 -----------------------------------

@@ -3,7 +3,7 @@
 --   NPC: Ambleon
 --  Type: NPC World Pass Dealer
 -- @zone: 232
---  @pos: 71.622 -17 -137.134
+--  @pos 71.622 -17 -137.134
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

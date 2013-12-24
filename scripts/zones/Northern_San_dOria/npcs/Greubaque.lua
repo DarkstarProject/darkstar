@@ -3,7 +3,7 @@
 --   NPC: Greubaque
 --  Type: Standard NPC
 -- @zone: 231
---  @pos: -179.400 10.999 150.000
+--  @pos -179.400 10.999 150.000
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

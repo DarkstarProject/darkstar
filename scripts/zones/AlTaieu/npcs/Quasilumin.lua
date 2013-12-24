@@ -3,7 +3,7 @@
 --   NPC: Quasilumin
 --  Type: Standard NPC
 -- @zone: 33
---  @pos: -27.443 -1 -636.850
+--  @pos -27.443 -1 -636.850
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -3,7 +3,7 @@
 --   NPC: Llewellyn
 --  Type: Campaign Evaluator
 -- @zone: 94
---  @pos: -6.907 -2 42.871
+--  @pos -6.907 -2 42.871
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

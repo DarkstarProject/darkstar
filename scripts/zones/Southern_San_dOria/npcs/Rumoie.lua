@@ -3,7 +3,7 @@
 --	NPC: Rumoie
 --  Type: Map Marker NPC
 --  @zone: 230
---  @pos: 149.696 -2.000 151.631
+--  @pos 149.696 -2.000 151.631
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

@@ -3,7 +3,7 @@
 --   NPC: Seven of Diamonds
 --  Type: Standard NPC
 -- @zone: 239
---  @pos: 6.612 -3.5 278.553
+--  @pos 6.612 -3.5 278.553
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

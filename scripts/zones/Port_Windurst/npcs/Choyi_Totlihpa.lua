@@ -3,7 +3,7 @@
 --   NPC: Choyi Totlihpa
 --  Type: Standard NPC
 -- @zone: 240
---  @pos: -58.927 -5.732 132.819
+--  @pos -58.927 -5.732 132.819
 --
 -- Auto-Script: Requires Verification (Verfied by brawndo)
 -----------------------------------

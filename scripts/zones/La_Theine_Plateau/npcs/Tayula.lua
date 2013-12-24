@@ -3,7 +3,7 @@
 --   NPC: Tayula
 --  Type: Mission
 -- @zone: 102
---  @pos: -311.785 50.351 182.063
+--  @pos -311.785 50.351 182.063
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

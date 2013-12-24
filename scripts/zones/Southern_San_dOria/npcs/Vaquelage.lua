@@ -3,7 +3,7 @@
 -- NPC: Vaquelage
 -- Type: Item Deliverer NPC
 -- @zone: 230
--- @pos: 17.396 1.699 -29.357
+-- @pos 17.396 1.699 -29.357
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

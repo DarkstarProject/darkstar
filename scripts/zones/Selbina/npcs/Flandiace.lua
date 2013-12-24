@@ -3,7 +3,7 @@
 --   NPC: Flandiace
 --  Type: Adventurer's Assistant
 -- @zone: 248
---  @pos: 21.313 -15.558 84.298
+--  @pos 21.313 -15.558 84.298
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

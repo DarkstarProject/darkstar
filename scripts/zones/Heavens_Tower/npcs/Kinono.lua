@@ -3,7 +3,7 @@
 --   NPC: Kinono
 --  Type: Standard NPC
 -- @zone: 242
---  @pos: 9.316 -26.999 -11.200
+--  @pos 9.316 -26.999 -11.200
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

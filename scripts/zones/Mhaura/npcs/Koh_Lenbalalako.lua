@@ -3,7 +3,7 @@
 --   NPC: Koh Lenbalalako
 --  Type: Standard NPC
 -- @zone: 249
---  @pos: -64.412 -17 29.213
+--  @pos -64.412 -17 29.213
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

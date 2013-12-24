@@ -3,7 +3,7 @@
 --   NPC: Nikkoko
 --  Type: Craftsman
 -- @zone: 241
---  @pos: -32.810 -3.25 -113.680
+--  @pos -32.810 -3.25 -113.680
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

@@ -3,7 +3,7 @@
 --   NPC: Blendare
 --  Type: Standard NPC
 --  @zone: 230
---  @pos: 33.033 0.999 -30.119
+--  @pos 33.033 0.999 -30.119
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -3,7 +3,7 @@
 --   NPC: Roiloux, R.K.
 --  Type: Campaign Arbiter
 -- @zone: 82
---  @pos: 70.493 -0.602 -9.185
+--  @pos 70.493 -0.602 -9.185
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -3,7 +3,7 @@
 --   NPC: Danaaba
 --  Type: Standard NPC
 -- @zone: 48
---  @pos: -17.375 -6.999 59.161
+--  @pos -17.375 -6.999 59.161
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
