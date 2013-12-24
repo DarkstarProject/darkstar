@@ -1,12 +1,12 @@
 -- Variable TextID   Description text
 
 -- General Texts
-   ITEM_CANNOT_BE_OBTAINED =  6564; -- Come back after sorting your inventory.
-             ITEM_OBTAINED =  6567; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
-              GIL_OBTAINED =  6568; -- Obtained <<<Numeric Parameter 0>>> gil.
-          KEYITEM_OBTAINED =  6570; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
+   ITEM_CANNOT_BE_OBTAINED =  6574; -- Come back after sorting your inventory.
+             ITEM_OBTAINED =  6577; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
+              GIL_OBTAINED =  6578; -- Obtained <<<Numeric Parameter 0>>> gil.
+          KEYITEM_OBTAINED =  6580; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
              HOMEPOINT_SET =   188; -- Home point set!
-       NOT_HAVE_ENOUGH_GIL =  6582; -- You do not have enough gil.
+       NOT_HAVE_ENOUGH_GIL =  12923; -- You do not have enough gil.
     FISHING_MESSAGE_OFFSET =  7341; -- You can't fish here.
              MOGHOUSE_EXIT = 12266; -- You have learned your way through the back alleys of San d'Oria! Now you can exit to any area from your residence.
 

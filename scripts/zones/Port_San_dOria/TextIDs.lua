@@ -1,13 +1,13 @@
 -- Variable TextID   Description text
 
 -- General Texts
- ITEM_CANNOT_BE_OBTAINED_1 =  6399; -- You cannot obtain the <<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>#<<<BAD CHAR: 8280>>><<<BAD CHAR: 80>>><<<BAD CHAR: 80>>>.<<<Prompt>>>
- ITEM_CANNOT_BE_OBTAINED_2 =  6400; -- You cannot obtain the <<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>#<<<BAD CHAR: 8280>>><<<BAD CHAR: 80>>><<<BAD CHAR: 80>>>. Come back after sorting your inventory.
- ITEM_CANNOT_BE_OBTAINED_3 =  6401; -- You cannot obtain the item. Come back after sorting your inventory.
-FULL_INVENTORY_AFTER_TRADE =  6402; -- You cannot obtain the <<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>#<<<BAD CHAR: 8280>>><<<BAD CHAR: 80>>><<<BAD CHAR: 80>>>. Try trading again after sorting your inventory.
-             ITEM_OBTAINED =  6403; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>#<<<BAD CHAR: 8280>>><<<BAD CHAR: 80>>><<<BAD CHAR: 80>>>.
-              GIL_OBTAINED =  6404; -- Obtained <<<Numeric Parameter 0>>> gil.
-          KEYITEM_OBTAINED =  6406; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>3<<<BAD CHAR: 8280>>><<<BAD CHAR: 80>>><<<BAD CHAR: 80>>>.
+ ITEM_CANNOT_BE_OBTAINED_1 =  6409; -- You cannot obtain the <<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>#<<<BAD CHAR: 8280>>><<<BAD CHAR: 80>>><<<BAD CHAR: 80>>>.<<<Prompt>>>
+ ITEM_CANNOT_BE_OBTAINED_2 =  6410; -- You cannot obtain the <<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>#<<<BAD CHAR: 8280>>><<<BAD CHAR: 80>>><<<BAD CHAR: 80>>>. Come back after sorting your inventory.
+ ITEM_CANNOT_BE_OBTAINED_3 =  6411; -- You cannot obtain the item. Come back after sorting your inventory.
+FULL_INVENTORY_AFTER_TRADE =  6412; -- You cannot obtain the <<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>#<<<BAD CHAR: 8280>>><<<BAD CHAR: 80>>><<<BAD CHAR: 80>>>. Try trading again after sorting your inventory.
+             ITEM_OBTAINED =  6413; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>#<<<BAD CHAR: 8280>>><<<BAD CHAR: 80>>><<<BAD CHAR: 80>>>.
+              GIL_OBTAINED =  6414; -- Obtained <<<Numeric Parameter 0>>> gil.
+          KEYITEM_OBTAINED =  6416; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>3<<<BAD CHAR: 8280>>><<<BAD CHAR: 80>>><<<BAD CHAR: 80>>>.
              HOMEPOINT_SET =  24; 	-- Home point set!
     FISHING_MESSAGE_OFFSET =  7159; -- You can't fish here.
 
