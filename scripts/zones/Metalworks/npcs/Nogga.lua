@@ -1,11 +1,12 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC: Nogga
+-- NPC:  Nogga
 -- Standard Merchant NPC
+-----------------------------------
+package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/shop");
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 require("scripts/zones/Metalworks/TextIDs");
 
 -----------------------------------

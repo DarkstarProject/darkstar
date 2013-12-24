@@ -1,10 +1,11 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC: Salim
+-- NPC:  Salim
 -- Standard Info NPC
 -----------------------------------
-
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/zones/Metalworks/TextIDs");
 
 -----------------------------------
@@ -19,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x0190);
+	player:startEvent(0x0190);
 end; 
 
 -----------------------------------

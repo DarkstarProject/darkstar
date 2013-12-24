@@ -21,10 +21,10 @@ end;
 
 function onTrade(player,npc,trade)
 
-local x = npc:getXPos(); 
-local y = npc:getYPos(); 
-local z = npc:getZPos(); 
-local mob = GetMobByID(17486190);
+	local x = npc:getXPos(); 
+	local y = npc:getYPos(); 
+	local z = npc:getZPos(); 
+	local mob = GetMobByID(17486190);
 	
 	-- Trade Darksteel ore
 	if(GetMobAction(17486190) == 0 and trade:hasItemQty(643,1) and trade:getItemCount() == 1) then 

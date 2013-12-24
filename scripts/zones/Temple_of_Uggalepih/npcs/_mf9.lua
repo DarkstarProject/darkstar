@@ -32,7 +32,7 @@ function onTrigger(player,npc)
 	if(player:getXPos() > -62) then
 		player:messageSpecial(THE_DOOR_IS_LOCKED,1137);
 	else
-		npc:openDoor();
+		npc:openDoor(11); -- retail timed
 	end
 	
 	return 1;

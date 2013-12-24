@@ -2,8 +2,7 @@
 -- Area: Gusgen Mines
 -- NPC:  Wandering Ghost
 -- Involved In Quest: Ghosts of the Past
--- @zone 196
--- @pos -174 0 369
+-- @pos -174 0.1 369 196
 -----------------------------------
 
 -----------------------------------

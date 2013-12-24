@@ -1,14 +1,15 @@
 -----------------------------------
 -- Area: Gusgen Mines
 -- NPC:  Clay
--- involved in quest A Potter's Preference
--- pos x:117 y:-21 z:432
+-- Involved in Quest: A Potter's Preference
+-- @pos 117 -21 432 196
+-----------------------------------
+package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
 require("scripts/zones/Gusgen_Mines/TextIDs");
 
 -----------------------------------

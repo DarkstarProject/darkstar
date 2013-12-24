@@ -1,12 +1,10 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC: Alois
--- Involved in Missions
--- @zone 237
--- @pos 96 -20 14
+-- NPC:  Alois
+-- Involved in Missions: Wading Beasts
+-- @pos 96 -20 14 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");

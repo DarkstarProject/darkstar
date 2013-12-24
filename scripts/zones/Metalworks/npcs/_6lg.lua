@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Metalworks
--- Door: Cornelia's Room
+-- Door: _6lg (Cornelia's Room)
 -- @pos 114 -20 -7 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;

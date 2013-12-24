@@ -3,8 +3,7 @@
 -- NPC:  Mighty Fist
 -- Starts & Finishes Quest: The Darksmith (R)
 -- Involved in Quest: Dark Legacy
--- @zone 237
--- @pos -47 2 -30
+-- @pos -47 2 -30 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------

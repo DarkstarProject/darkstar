@@ -1,10 +1,11 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC: Dark Clouds
--- Standard Info NPC
+-- NPC:  Dark Clouds
+-- Type: Standard Info NPC
+-----------------------------------
+package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 require("scripts/zones/Metalworks/TextIDs");
 
 -----------------------------------

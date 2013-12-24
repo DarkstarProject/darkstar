@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Zeruhn Mines
---	NPC:  Lasthenes
---	Working 100%
+--	Area:  Zeruhn Mines
+--	NPC:   Lasthenes
+--	Notes: Opens Gate
 -----------------------------------
 
 require("scripts/globals/settings");

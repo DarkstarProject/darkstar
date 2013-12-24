@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC: Unlucky Rat
+-- NPC:  Unlucky Rat
 -- Starts & Finishes Quest: Mean Machine
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
@@ -16,10 +16,10 @@ require("scripts/zones/Metalworks/TextIDs");
 
 function onTrade(player,npc,trade)
 
-MeanMachine = player:getQuestStatus(BASTOK,MEAN_MACHINE);
+	local MeanMachine = player:getQuestStatus(BASTOK,MEAN_MACHINE);
 
 	if (MeanMachine == QUEST_ACCEPTED) then
-		FreeSlots = player:getFreeSlotsCount();
+		local FreeSlots = player:getFreeSlotsCount();
 		
 		if (FreeSlots >= 1) then
 			count = trade:getItemCount();
@@ -41,8 +41,8 @@ end;
 
 function onTrigger(player,npc)
 
-MeanMachine = player:getQuestStatus(BASTOK,MEAN_MACHINE);
-Fame = player:getFameLevel(BASTOK);
+	local MeanMachine = player:getQuestStatus(BASTOK,MEAN_MACHINE);
+	local Fame = player:getFameLevel(BASTOK);
 
 	if (MeanMachine == QUEST_AVAILABLE and Fame >= 2) then
 		player:startEvent(0x022c);

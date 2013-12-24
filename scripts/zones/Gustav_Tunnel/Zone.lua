@@ -3,8 +3,9 @@
 -- Zone: Gustav_Tunnel (212)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Gustav_Tunnel/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/Gustav_Tunnel/TextIDs");
 

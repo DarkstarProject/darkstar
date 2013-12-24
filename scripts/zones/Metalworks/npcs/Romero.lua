@@ -1,10 +1,11 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC: Romero
+-- NPC:  Romero
 -- Standard Info NPC
 -----------------------------------
-
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/zones/Metalworks/TextIDs");
 
 -----------------------------------
@@ -19,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x0069);
+	player:startEvent(0x0069);
 end; 
 
 -----------------------------------

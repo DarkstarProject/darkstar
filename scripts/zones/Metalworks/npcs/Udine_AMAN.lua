@@ -1,10 +1,11 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC: Udine A.M.A.N
+-- NPC:  Udine A.M.A.N
 -- Standard Info NPC
 -----------------------------------
-
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/zones/Metalworks/TextIDs");
 
 -----------------------------------
@@ -19,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x033A);
+	player:startEvent(0x033A);
 end; 
 
 -----------------------------------

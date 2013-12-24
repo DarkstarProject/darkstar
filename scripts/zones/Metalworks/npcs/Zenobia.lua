@@ -1,10 +1,12 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC: Zenobia
+-- NPC:  Zenobia
 -- Standard Info NPC
+-- @pos 
+-----------------------------------
+package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 require("scripts/zones/Metalworks/TextIDs");
 
 -----------------------------------
@@ -19,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x012C);
+	player:startEvent(0x012C);
 end; 
 
 -----------------------------------

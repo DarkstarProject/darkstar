@@ -3,9 +3,10 @@
 --	NPC:  Laillera
 --	@pos -127.297 -62.000 266.800 100
 -----------------------------------
+package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 require("scripts/zones/West_Ronfaure/TextIDs");
 
 -----------------------------------

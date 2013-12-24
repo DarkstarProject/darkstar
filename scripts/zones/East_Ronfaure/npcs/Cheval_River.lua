@@ -1,6 +1,6 @@
 -----------------------------------
 --  Area: East Ronfaure
---  NPC: Cheval_River
+--  NPC:  Cheval_River
 --  @pos 223 -58 426 101
 --  Involved in Quest: Waters of Cheval
 -----------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Gusgen Mines
--- NPC:  Lever B
--- @pos 19.999 -40.561 -54.198
+-- NPC:  _5gb (Lever B)
+-- @pos 19.999 -40.561 -54.198 196
 -----------------------------------
 package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
 -----------------------------------
@@ -20,20 +20,18 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-	--Designation: Door(db name), lever(db name)
-	--A: 17580370(_5g2), 17580376(_5gc)
-	--B: 17580369(_5g1), 17508375(_5gb)
-	--C: 17580368(_5g0), 17508374(_5ga)
-	--D: 17508373(_5g5), 17580379(_5gf)
-	--E: 17580372(_5g4), 17580378(_5ge)
-	--F: 17580371(_5g3), 17580377(_5gd)
-	
 	--local nID = npc:getID();
 	--printf("id: %u", nID);
-	GetNPCByID(17580368):setAnimation(9);--close door C
-	GetNPCByID(17580369):setAnimation(8);--open door B
-	GetNPCByID(17580370):setAnimation(9);--close door A
+	
+	local Lever = npc:getID();	
+	
+	npc:openDoor(2); -- Lever animation
+	if (GetNPCByID(Lever-6):getAnimation() == 9) then
+		GetNPCByID(Lever-7):setAnimation(9);--close door C
+		GetNPCByID(Lever-6):setAnimation(8);--open door B
+		GetNPCByID(Lever-5):setAnimation(9);--close door A
+	end	
+	
 end;
 
 -----------------------------------

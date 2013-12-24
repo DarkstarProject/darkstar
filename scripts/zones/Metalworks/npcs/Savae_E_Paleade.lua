@@ -2,8 +2,7 @@
 -- Area: Metalworks
 -- NPC:  Savae E Paleade
 -- Involved In Mission: Journey Abroad
--- @zone 237
--- @pos 23.724 -17.39 -43.360
+-- @pos 23.724 -17.39 -43.360 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------

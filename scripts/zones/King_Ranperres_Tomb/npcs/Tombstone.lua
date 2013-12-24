@@ -2,8 +2,7 @@
 -- Area: King Ranperre's Tomb
 -- NPC:  Tombstone
 -- Involved in Quest: Grave Concerns
--- @zone 190
--- @pos 1 0 -101
+-- @pos 1 0.1 -101 190
 -----------------------------------
 package.loaded["scripts/zones/King_Ranperres_Tomb/TextIDs"] = nil;
 -----------------------------------
@@ -31,7 +30,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc) 
-   local currentMission = player:getCurrentMission(SANDORIA);
+	local currentMission = player:getCurrentMission(SANDORIA);
 	local MissionStatus = player:getVar("MissionStatus");	
 	local X = npc:getXPos();
 	local Z = npc:getZPos();
@@ -70,7 +69,7 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x0004) then
 		player:setVar("MissionStatus",2);
 	elseif(csid == 0x0002) then
-		graveConcerns = player:getQuestStatus(SANDORIA,GRAVE_CONCERNS);
+		local graveConcerns = player:getQuestStatus(SANDORIA,GRAVE_CONCERNS);
 		
 		if(graveConcerns == QUEST_ACCEPTED and player:hasItem(547) == false and player:hasItem(567) == false) then 
 			if(player:getFreeSlotsCount() == 0) then 

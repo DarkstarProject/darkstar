@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: King Ranperre's Tomb
--- DOOR: Heavy Stone Door
--- @pos -39.000 4.823 20.000
+-- DOOR: _5a0 (Heavy Stone Door)
+-- @pos -39.000 4.823 20.000 190
 -----------------------------------
 package.loaded["scripts/zones/King_Ranperres_Tomb/TextIDs"] = nil;
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc) 
 	local currentMission = player:getCurrentMission(SANDORIA);
-	      MissionStatus = player:getVar("MissionStatus");
+	local MissionStatus = player:getVar("MissionStatus");
 	
 	if(currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 1) then
 		if(GetMobAction(17555898) == 0 and GetMobAction(17555899) == 0 and GetMobAction(17555900) == 0) then
@@ -42,7 +42,7 @@ function onTrigger(player,npc)
 	elseif(currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 8) then
 	     player:startEvent(0x0005);
 	else
-			 player:messageSpecial(HEAVY_DOOR);
+		player:messageSpecial(HEAVY_DOOR);
 	end
 end; 
 

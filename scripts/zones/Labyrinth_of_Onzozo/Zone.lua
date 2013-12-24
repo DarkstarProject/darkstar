@@ -3,8 +3,9 @@
 -- Zone: Labyrinth_of_Onzozo (213)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Labyrinth_of_Onzozo/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/Labyrinth_of_Onzozo/TextIDs");
 

@@ -1,6 +1,6 @@
 -----------------------------------
 --  Area: East Ronfaure
---  NPC: Croteillard
+--  NPC:  Croteillard
 --  Type: Gate Guard
 --  @pos 87.426 -62.999 266.709 101
 -----------------------------------

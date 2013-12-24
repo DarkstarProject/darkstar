@@ -1,10 +1,11 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC: Hadelind
+-- NPC:  Hadelind
 -- Standard Info NPC
 -----------------------------------
-
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/zones/Metalworks/TextIDs");
 
 -----------------------------------
@@ -19,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x012E);
+	player:startEvent(0x012E);
 end; 
 
 -----------------------------------

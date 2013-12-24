@@ -3,8 +3,9 @@
 -- Zone: East_Ronfaure (101)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/East_Ronfaure/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/East_Ronfaure/TextIDs");

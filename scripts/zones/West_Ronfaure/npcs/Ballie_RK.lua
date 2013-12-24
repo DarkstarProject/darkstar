@@ -10,10 +10,10 @@ package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 require("scripts/globals/conquest");
 require("scripts/zones/West_Ronfaure/TextIDs");
 
-guardnation = SANDORIA;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno
-guardtype 	= 4;		-- 1: city, 2: foreign, 3: outpost, 4: border
-region 		= RONFAURE;
-csid 		= 0x7ffa;
+local guardnation = SANDORIA;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno
+local guardtype 	= 4;		-- 1: city, 2: foreign, 3: outpost, 4: border
+local region 		= RONFAURE;
+local csid 		= 0x7ffa;
 
 -----------------------------------
 -- onTrade Action
@@ -39,7 +39,7 @@ function onTrigger(player,npc)
 			player:setVar("supplyQuest_region",0);
 		end
 	else
-		arg1 = getArg1(guardnation, player) - 1;
+		local arg1 = getArg1(guardnation, player) - 1;
 		if(arg1 >= 1792) then -- foreign, non-allied
 			player:startEvent(csid,1808,0,0,0,0,player:getRank(),0,0);
 		else -- citizen or allied
@@ -75,7 +75,7 @@ function onEventFinish(player,csid,option)
 		player:addCP(supplyReward[region + 1])
 		player:messageSpecial(CONQUEST); -- "You've earned conquest points!"
 		if(hasOutpost(player, region+5) == 0) then
-			supply_quests = 2^(region+5);
+			local supply_quests = 2^(region+5);
 			player:addNationTeleport(guardnation,supply_quests);
 			player:setVar("supplyQuest_region",0);
 		end

@@ -3,8 +3,7 @@
 -- NPC:  Lucius
 -- Involved in Mission: Bastok 3-3
 -- Involved in Quest: Riding on the Clouds
--- @zone 237
--- @pos 59.959 -17.39 -42.321
+-- @pos 59.959 -17.39 -42.321 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------

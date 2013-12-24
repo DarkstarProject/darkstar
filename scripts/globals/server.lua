@@ -209,12 +209,12 @@ function SetTreasureSpawns()
        17568185, -- Ordelle's Caves
        17572283, -- Outer Horutoto Ruins
        17576349, -- The Eldieme Necropolis
-       17580396, -- Gusgen Mines
+       17580397, -- Gusgen Mines
        17584468, -- Crawler's Nest
        17588766, -- Maze of Shakhrami
        17596803, -- Garlaige Citadel
        17613220, -- Fei'Yin
-       17649890  -- Labyrinth of Onzozo
+       17649891  -- Labyrinth of Onzozo
    }
 
    local coffers  =

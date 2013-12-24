@@ -1,10 +1,12 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC: Aishah
--- Standard Info NPC
+-- NPC:  Aishah
+-- Type: Standard Info NPC
+-- @pos -83.038 2.390 -26.209 237
+-----------------------------------
+package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 require("scripts/zones/Metalworks/TextIDs");
 
 -----------------------------------
@@ -19,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x008C);
+	player:startEvent(0x008C);
 end; 
 
 -----------------------------------

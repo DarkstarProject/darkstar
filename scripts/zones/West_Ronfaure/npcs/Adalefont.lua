@@ -3,9 +3,10 @@
 --	NPC:  Adalefont
 --  @pos -176.000 -61.999 377.460 100
 -----------------------------------
+package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 require("scripts/zones/West_Ronfaure/TextIDs");
 
 -----------------------------------

@@ -1,12 +1,12 @@
 -----------------------------------
---  Area: Oldton Movalpolos
+--  Area: Korroloka Tunnel
 --  NPC:  Excavation Point
 -----------------------------------
-package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
+package.loaded["scripts/zones/Korroloka_Tunnel/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/excavation");
-require("scripts/zones/Oldton_Movalpolos/TextIDs");
+require("scripts/zones/Korroloka_Tunnel/TextIDs");
 
 -----------------------------------
 -- onTrade

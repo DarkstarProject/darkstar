@@ -10,10 +10,10 @@ package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 require("scripts/globals/conquest");
 require("scripts/zones/West_Ronfaure/TextIDs");
 
-guardnation = WINDURST;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno
-guardtype 	= 4;		-- 1: city, 2: foreign, 3: outpost, 4: border
-region 		= RONFAURE;
-csid 		= 0x7ff6;
+local guardnation = WINDURST;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno
+local guardtype 	= 4;		-- 1: city, 2: foreign, 3: outpost, 4: border
+local region 		= RONFAURE;
+local csid 		= 0x7ff6;
 
 -----------------------------------
 -- onTrade Action

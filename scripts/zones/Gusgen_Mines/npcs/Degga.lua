@@ -1,18 +1,17 @@
 -----------------------------------
 -- Area: Gusgen Mines
 -- NPC:  Degga
--- Standar info NPC
--- pos x:40 y:-68 z:-259
+-- Type: Standard Info NPC
+-- @pos 40 -68 -259
+-----------------------------------
+package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
 require("scripts/zones/Gusgen_Mines/TextIDs");
 
-
---	player:startEvent(0x000c); -- i have nothing to say to you standar dialog
 -----------------------------------
 -- onTrade Action
 -----------------------------------

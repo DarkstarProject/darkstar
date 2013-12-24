@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: 
+-- Area: King Ranperres Tomb
 -- NPC:  Cherry Sapling
 -----------------------------------
 

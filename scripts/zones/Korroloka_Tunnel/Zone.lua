@@ -3,8 +3,9 @@
 -- Zone: Korroloka_Tunnel (173)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Korroloka_Tunnel/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/Korroloka_Tunnel/TextIDs");
 

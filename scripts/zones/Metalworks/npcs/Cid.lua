@@ -15,8 +15,6 @@ require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/zones/Metalworks/TextIDs");
 
-
-
 -----------------------------------
 -- onTrade Action
 -----------------------------------

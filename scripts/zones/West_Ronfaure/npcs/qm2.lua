@@ -17,7 +17,6 @@ require("scripts/zones/West_Ronfaure/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
 end; 
 
 -----------------------------------

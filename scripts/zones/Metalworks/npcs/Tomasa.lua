@@ -1,11 +1,12 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC: Tomasa
+-- NPC:  Tomasa
 -- Standard Merchant NPC
+-----------------------------------
+package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/shop");
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 require("scripts/zones/Metalworks/TextIDs");
 
 -----------------------------------

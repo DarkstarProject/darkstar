@@ -3,8 +3,9 @@
 -- Zone: Gusgen_Mines (196)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
+----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/Gusgen_Mines/TextIDs");
 

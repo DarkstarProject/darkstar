@@ -12,7 +12,6 @@ require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/zones/West_Ronfaure/TextIDs");
 
-
 -----------------------------------
 -- onTrade Action
 -----------------------------------

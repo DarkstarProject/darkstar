@@ -3,8 +3,9 @@
 -- Zone: Metalworks (237)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/quests");
 require("scripts/globals/server");
 require("scripts/globals/settings");

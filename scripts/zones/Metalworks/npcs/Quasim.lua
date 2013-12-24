@@ -1,12 +1,12 @@
 -----------------------------------
 --	Area: Metalworks
---	NPC: Quasim
+--	NPC:  Quasim
 --	Adventurer's Assistant
---	Working 100%
+-------------------------------------
+package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 require("scripts/zones/Metalworks/TextIDs");
 
 ----------------------------------- 

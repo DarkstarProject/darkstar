@@ -16,7 +16,7 @@ require("scripts/zones/West_Ronfaure/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	theTraderInTheforest = player:getQuestStatus(SANDORIA,THE_TRADER_IN_THE_FOREST);
+	local theTraderInTheforest = player:getQuestStatus(SANDORIA,THE_TRADER_IN_THE_FOREST);
 	
 	if(theTraderInTheforest == QUEST_ACCEPTED) then
 		if(trade:hasItemQty(592,1) == true and trade:getItemCount() == 1) then -- Trade Supplies Order
@@ -42,8 +42,8 @@ end;
 
 function onTrigger(player,npc)
 	
-	theTraderInTheforest = player:getQuestStatus(SANDORIA,THE_TRADER_IN_THE_FOREST);
-	hasBatagreens = player:hasItem(4367); -- Clump of Batagreens
+	local theTraderInTheforest = player:getQuestStatus(SANDORIA,THE_TRADER_IN_THE_FOREST);
+	local hasBatagreens = player:hasItem(4367); -- Clump of Batagreens
 	
 	if(theTraderInTheforest == QUEST_ACCEPTED) then
 		if(hasBatagreens == true) then

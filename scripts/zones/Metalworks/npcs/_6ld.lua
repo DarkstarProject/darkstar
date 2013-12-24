@@ -1,10 +1,9 @@
 -----------------------------------
 -- Area: Metalworks
--- Door: President's Office
--- @pos 92 -19 0 237
+-- Door: _6ld (President's Office)
+-- @pos 92 -19 0.1 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
 require("scripts/globals/missions");

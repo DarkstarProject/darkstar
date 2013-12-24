@@ -1,7 +1,7 @@
 -----------------------------------
 --	Area: Metalworks
---	NPC: Takiyah
---	Only sells when Bastok controlls Qufim Region
+--	NPC:  Takiyah
+--  Type: Regional Merchant
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------

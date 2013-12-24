@@ -3,8 +3,9 @@
 -- Zone: King_Ranperres_Tomb (190)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/King_Ranperres_Tomb/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/King_Ranperres_Tomb/TextIDs");
 
@@ -13,6 +14,7 @@ require("scripts/zones/King_Ranperres_Tomb/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+	zone:registerRegion(1,-84.302,6.5,-120.997,-77,7.5,-114);  -- Used for stairs teleport -85.1,7,-119.9
 end;
 
 -----------------------------------		
@@ -31,8 +33,18 @@ end;
 -- onRegionEnter		
 -----------------------------------		
 
-function onRegionEnter(player,region)	
+function onRegionEnter(player,region)
+	if (region:GetRegionID() == 1) then
+		player:startEvent(0x0009);
+	end	
 end;	
+
+-----------------------------------		
+-- onRegionLeave
+-----------------------------------	
+
+function onRegionLeave(player,region)
+end;
 
 -----------------------------------	
 -- onEventUpdate	

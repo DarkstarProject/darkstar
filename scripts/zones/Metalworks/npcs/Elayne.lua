@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC: Elayne
+-- NPC:  Elayne
 -- Involved in Quest: Stamp Hunt
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;

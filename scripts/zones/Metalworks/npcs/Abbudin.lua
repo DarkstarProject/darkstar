@@ -1,10 +1,12 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC: Abbudin
--- Standard Info NPC
+-- NPC:  Abbudin
+-- Type: Standard Info NPC
+-- @pos -56.338 2.777 -31.446 237
+-----------------------------------
+package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 require("scripts/zones/Metalworks/TextIDs");
 
 -----------------------------------
@@ -19,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x022E);
+	player:startEvent(0x022E);
 end; 
 
 -----------------------------------

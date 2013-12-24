@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC: Iron Eater
+-- NPC:  Iron Eater
 -- Involved in Missions
--- @zone
--- @pos 
+-- @pos 92.936 -19.532 1.814 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------

@@ -2,8 +2,7 @@
 -- Area: Gusgen Mines
 -- NPC:  qm4 (???)
 -- Involved In Quest: Ghosts of the Past
--- @zone 196
--- @pos -174 0 369
+-- @pos -174 0 369 196
 -----------------------------------
 package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
 -----------------------------------

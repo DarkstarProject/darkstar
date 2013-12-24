@@ -2,9 +2,8 @@
 -- Area: West Ronfaure
 -- NPC:  Vilatroire
 -- Involved in Quests: "Introduction To Teamwork", "Intermediate Teamwork",
--- 										 "Advanced Teamwork"
--- @pos -260.361 -70.999 423.420 100
--- 0x0036  0x0088  0x0087  0x0086  0x0085  0x0084  0x0083  0x0082  0x0081  
+-- "Advanced Teamwork"
+-- @pos -260.361 -70.999 423.420 100 
 -----------------------------------
 
 require("scripts/globals/quests");

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Gusgen Mines
--- NPC:  Door D
--- @pos -4.001 -22.4 174.498
+-- NPC:  _5g5 (Door D)
+-- @pos -4.001 -22.4 174.498 196
 -----------------------------------
 package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	return 0;
+
+	if (npc:getAnimation() == 9) then
+		player:messageSpecial(LOCK_OTHER_DEVICE)
+	else	
+		return 0;
+	end	
+	
 end;
 
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Metalworks
--- Door: Presidential Suite
+-- Door: _6le (Presidential Suite)
 -- @pos 113 -20 8 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;

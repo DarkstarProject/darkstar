@@ -3,8 +3,9 @@
 -- Zone: West_Ronfaure (100)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/West_Ronfaure/TextIDs");
@@ -27,8 +28,8 @@ function onZoneIn(player,prevZone)
 		player:setPos(-24.427,-53.107,140,127);
 	end	
 	if (player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED and player:hasItem(1125,0)) then	
-		colors = player:getVar("ICanHearARainbow");
-		o = (tonumber(colors) % 4 >= 2);
+		local colors = player:getVar("ICanHearARainbow");
+		local o = (tonumber(colors) % 4 >= 2);
 		cs = 0x0033;
 		if (o == false and wc < 4) then	
 			player:setVar("ICanHearARainbow_Weather",1);
@@ -55,7 +56,7 @@ function onEventUpdate(player,csid,option)
 	--printf("CSID: %u",csid);		
 	--printf("RESULT: %u",option);		
 	if (csid == 0x0033) then		
-		weather = player:getVar("ICanHearARainbow_Weather");	
+		local weather = player:getVar("ICanHearARainbow_Weather");	
 		if (weather == 1) then	
 			weather = 0;
 		end	

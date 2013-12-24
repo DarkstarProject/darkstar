@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
--- NPC:  ???
+-- NPC:  ??? (qm2)
 -- Involved In Quest: Ayame and Kaede
--- @zone 173
--- @pos -208 -9 176
+-- @pos -208 -9 176 173
 -----------------------------------
 package.loaded["scripts/zones/Korroloka_Tunnel/TextIDs"] = nil;
 -----------------------------------
@@ -28,10 +27,10 @@ function onTrigger(player,npc)
 	
 	if(player:getQuestStatus(BASTOK,AYAME_AND_KAEDE) == QUEST_ACCEPTED) then
 		if(player:getVar("AyameAndKaede_Event") == 2 and player:hasKeyItem(STRANGELY_SHAPED_CORAL) == false) then
-			leechesDespawned = (GetMobAction(17486187) == 0 and GetMobAction(17486188) == 0 and GetMobAction(17486189) == 0);
-			spawnTime = player:getVar("KorrolokaLeeches_Spawned");
-			canSpawn = (leechesDespawned and (os.time() - spawnTime) > 30);
-			killedLeeches = player:getVar("KorrolokaLeeches");
+			local leechesDespawned = (GetMobAction(17486187) == 0 and GetMobAction(17486188) == 0 and GetMobAction(17486189) == 0);
+			local spawnTime = player:getVar("KorrolokaLeeches_Spawned");
+			local canSpawn = (leechesDespawned and (os.time() - spawnTime) > 30);
+			local killedLeeches = player:getVar("KorrolokaLeeches");
 
 			if(killedLeeches >= 1) then
 				if((killedLeeches == 3 and (os.time() - player:getVar("KorrolokaLeeches_Timer") < 30)) or (killedLeeches < 3 and leechesDespawned and (os.time() - spawnTime) < 30)) then
