@@ -87,7 +87,7 @@ int32 zone_server_region(uint32 tick, CTaskMgr::CTask* PTask)
 {
 	CZone* PZone = (CZone*)PTask->m_data;
 
-	if ((tick - PZone->m_RegionCheckTime) < 2000)
+	if ((tick - PZone->m_RegionCheckTime) < 1000)
 	{
 		PZone->ZoneServer(tick);
 	} else {
