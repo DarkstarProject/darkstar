@@ -6595,6 +6595,8 @@ inline int32 CLuaBaseEntity::addValorPoint(lua_State *L)
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
     PChar->m_currency.valorpoints += point;
+    if (PChar->m_currency.valorpoints > 50000)
+        PChar->m_currency.valorpoints = 50000;
 	charutils::SaveCharPoints(PChar);
 
 	return 0;
@@ -6613,6 +6615,8 @@ inline int32 CLuaBaseEntity::delValorPoint(lua_State *L)
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
     PChar->m_currency.valorpoints -= point;
+    if (point > PChar->m_currency.valorpoints)
+        PChar->m_currency.valorpoints = 0;
 	charutils::SaveCharPoints(PChar);
 
 	return 0;
