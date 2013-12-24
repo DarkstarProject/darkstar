@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `skill_ranks` (
 -- Contenu de la table `skill_ranks`
 --
 
-INSERT INTO `skill_ranks` VALUES (1, 'hand2hand', 9, 1, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 7, 9, 0,0,0);
+INSERT INTO `skill_ranks` VALUES (1, 'hand2hand', 9, 1, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 3, 9, 0,0,0);
 INSERT INTO `skill_ranks` VALUES (2, 'dagger', 5, 0, 0, 9, 4, 2, 8, 7, 6, 5, 5, 10, 6, 10, 10, 0, 3, 8, 3, 10,8,0);
 INSERT INTO `skill_ranks` VALUES (3, 'sword', 4, 0, 0, 0, 4, 9, 1, 5, 10, 8, 9, 6, 7, 8, 0, 2, 5, 0, 9, 0,0,2);
 INSERT INTO `skill_ranks` VALUES (4, 'great sword', 3, 0, 0, 0, 0, 0, 4, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,1);
