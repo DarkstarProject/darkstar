@@ -36,7 +36,7 @@ function onTrigger(player,npc)
 		end;
 		
 		x,y,z,w = getImperialDefenseStats();
-		player:startEvent(0x0276,player:getPoint(IS),maps,merc_rank,0,x,y,z,w);
+		player:startEvent(0x0276,player:getImperialStanding(),maps,merc_rank,0,x,y,z,w);
 	end;
 	
 end;
@@ -67,7 +67,7 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x276) then
 		if(option == 0 or option == 16 or option == 32 or option == 48) then -- player chose sanction.
 			if(option ~= 0) then
-				player:delPoint(IS,100);
+				player:delImperialStanding(100);
 			end;
 			
 			player:delStatusEffect(EFFECT_SIGIL);
@@ -88,11 +88,11 @@ function onEventFinish(player,csid,option)
 			id = 1862 + (option - 17) / 256;
 			player:addKeyItem(id);
 			player:messageSpecial(KEYITEM_OBTAINED,id);
-			player:delPoint(IS,1000);
+			player:delImperialStanding(1000);
 		elseif(option <= 2049) then -- player bought item
 			item, price = getISPItem(option)
 			if(player:getFreeSlotCount(0) > 0) then
-				player:delPoint(IS,price);
+				player:delImperialStanding(price);
 				player:addItem(item);
 				player:messageSpecial(ITEM_OBTAINED,item);
 			else

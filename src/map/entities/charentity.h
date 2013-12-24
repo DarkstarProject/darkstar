@@ -158,6 +158,69 @@ struct GearSetMod_t
 	uint16	modValue;
 };
 
+struct currency_t
+{
+    union {
+        struct {
+            uint32 sandoriacp, bastokcp, windurstcp;
+        };
+        uint32 conquestpoints[3];
+    };
+    union {
+        struct {
+            uint16 beastmanseal, kindredseal, kindredcrest, hkindredcrest, skindredcrest;
+        };
+        uint16 seals[5];
+    };
+    uint16 ancientbeastcoins;
+    uint16 valorpoints, scylds;
+    union {
+        struct {
+            uint32 fishingpoints, woodworkingpoints, smithingpoints, goldsmithingpoints, weavingpoints, leatherpoints, bonepoints, alchemypoints, cookingpoints;
+        };
+        uint32 guildpoints[9];
+    };
+    uint32 cinders;
+    union {
+        struct {
+            uint8 firefewell, icefewell, windfewell, earthfewell, lightningfewell, waterfewell, lightfewell, darkfewell;
+        };
+        uint8 fewell[8];
+    };
+    uint32 ballistapoints, fellowpoints;
+    union {
+        struct {
+            uint16 chocobuckssandoria, chocobucksbastok, chocobuckswindurst;
+        };
+        uint16 chocobucks[3];
+    };
+    uint32 researchmarks;
+    union {
+        struct {
+            uint8 tunnelworms, morionworms, phantomworms;
+        };
+        uint8 meeblesworms[3];
+    };
+    uint32 moblinmarbles;
+    uint16 infamy, prestige;
+    uint32 legionpoints, sparksofeminence, shiningstars, imperialstanding;
+    union {
+        struct {
+            uint32 lsanctumassault, mjtgassault, lcavernassault, periqiaassault, ilrusiatollassault, nyzultokens;
+        };
+        uint32 assaultpoints[6];
+    };
+    uint32 zeni, jettons, therionichor, alliednotes, bayld;
+    uint16 kineticunits, unknown;
+    uint32 obsidianfragments, lebondpotwings, mweyaplasm, cruor, resistancecredits, dominionnotes;
+    union {
+        struct {
+            uint8 fifthechtrophies, fourthechtrophies, thirdechtrophies, secondechtrophies, firstechtrophies;
+        };
+        uint8 echelontrophies[5];
+    };
+};
+
 /************************************************************************
 *                                                                       *
 *                                                                       *
@@ -221,7 +284,7 @@ public:
 
     // TODO: половина этого массива должна храниться в char_vars, а не здесь, т.к. эта информация не отображается в интерфейсе клиента и сервер не проводит с ними никаких операций
 
-    uint32            RegionPoints[15];             // conquest points, imperial standing points etc
+    currency_t        m_currency;                   // conquest points, imperial standing points etc
 	NationTP_t		  nationtp;						// supply tp, runic portal, campaign tp,...
 
     uint8             GetGender();                  // узнаем пол персонажа

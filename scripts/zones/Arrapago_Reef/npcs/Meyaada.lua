@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    local IPpoint=player:getPoint(AHTURHGAN );
+    local IPpoint=player:getImperialStanding();
 	local assault=player:getCurrentMission(ASSAULT);
 	--print(IPpoint);
 	--print(assault);
@@ -53,7 +53,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 	
 	if(csid == 0x00DF and option == 1) then
-       player:delPoint(AHTURHGAN,50);
+       player:delImperialStanding(50);
 	   player:addKeyItem(ASSAULT_ARMBAND);
 	   player:messageSpecial(KEYITEM_OBTAINED,ASSAULT_ARMBAND);
 	end

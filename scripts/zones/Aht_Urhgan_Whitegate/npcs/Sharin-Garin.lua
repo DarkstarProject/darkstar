@@ -35,7 +35,7 @@ function onTrigger(player,npc)
 	
 	merc = 2 -- Probably could be done, but not really important atm
 	
-	player:startEvent(0x008C,0,merc,runicpass,player:getPoint(IS),getAstralCandescence(),cost,captain);
+	player:startEvent(0x008C,0,merc,runicpass,player:getImperialStanding(),getAstralCandescence(),cost,captain);
 	
 end;
 
@@ -59,7 +59,7 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x008C and option == 1) then
 		player:addKeyItem(RUNIC_PORTAL_USE_PERMIT);
 		player:messageSpecial(KEYITEM_OBTAINED,RUNIC_PORTAL_USE_PERMIT);
-		player:delPoint(IS,200);
+		player:delImperialStanding(200);
 	elseif(csid == 0x008C and option == 2) then
 		player:addKeyItem(RUNIC_PORTAL_USE_PERMIT);
 		player:messageSpecial(KEYITEM_OBTAINED,RUNIC_PORTAL_USE_PERMIT);

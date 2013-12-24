@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
 		if(trade:hasItemQty(2477,1)) then -- Trade Soul Plate
 			zeni = math.random(1,200); -- random value since soul plates aren't implemented yet.
 			player:tradeComplete();
-			player:addPoint(ZENI,zeni);
+			player:addZeni(zeni);
 			player:startEvent(0x038E,zeni);
 		else
 			znm = -1;
@@ -113,7 +113,7 @@ function onEventUpdate(player,csid,option)
 -- printf("updateRESULT: %u",option);
 	--[[
 	if(csid == 0x038D) then
-		zeni = player:getPoint(ZENI);
+		zeni = player:getZeni();
 		
 		if(option >= 300 and option <= 302) then
 			if(option == 300) then
@@ -130,7 +130,7 @@ function onEventUpdate(player,csid,option)
 			else
 				player:updateEvent(1,500,0,salt);
 				player:addKeyItem(salt);
-				player:delPoint(ZENI,500);
+				player:delZeni(500);
 			end
 		else -- player is interested in buying a pop item.
 			n = option % 10;
@@ -185,7 +185,7 @@ function onEventUpdate(player,csid,option)
 					end
 					
 					player:updateEvent(1, cost, item, keyitem1,keyitem2,keyitem3);
-					player:delPoint(ZENI,cost);
+					player:delZeni(cost);
 					player:addItem(item);
 				else
 					player:updateEvent(4, cost, item, keyitem1,keyitem2,keyitem3); -- inventory full.
@@ -211,7 +211,7 @@ function onEventFinish(player,csid,option)
 	--[[
 	if(csid == 0x038c) then
 		player:setVar("ZeniStatus",1);
-		player:addPoint(ZENI,2000);
+		player:addZeni(2000);
 	end
 	]]
 end;

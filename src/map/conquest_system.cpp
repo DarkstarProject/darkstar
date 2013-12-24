@@ -408,7 +408,7 @@ namespace conquest
             // 10% if region control is player's nation
             // 15% otherwise
 
-            PChar->RegionPoints[PChar->profile.nation] += exp * (PChar->profile.nation == GetRegionOwner(region) ? 0.1 : 0.15);
+            PChar->m_currency.conquestpoints[PChar->profile.nation] += exp * (PChar->profile.nation == GetRegionOwner(region) ? 0.1 : 0.15);
         }
         return 0; // added conquest points (пока не вижу в этом определенного смысла)
     }

@@ -412,9 +412,25 @@ public:
 	int32 getCP(lua_State*);				// Get CP
 	int32 delCP(lua_State*);				// Delete CP
 
-	int32 addPoint(lua_State*);				// Add other point
-	int32 getPoint(lua_State*);				// Get other point
-	int32 delPoint(lua_State*);				// Delete other point
+    int32 getValorPoint(lua_State*);		// Get valor point (tabs)
+    int32 addValorPoint(lua_State*);		// Add valor point (tabs)
+    int32 delValorPoint(lua_State*);		// Delete valor point (tabs)
+
+    int32 getImperialStanding(lua_State*);	// Get imperial standing
+    int32 addImperialStanding(lua_State*);	// Add imperial standing
+    int32 delImperialStanding(lua_State*);	// Delete imperial standing
+
+    int32 getAssaultPoint(lua_State*);	    // Get imperial standing
+    int32 addAssaultPoint(lua_State*);	    // Add imperial standing
+    int32 delAssaultPoint(lua_State*);	    // Delete imperial standing
+
+    int32 getZeni(lua_State*);	            // Get Zeni
+    int32 addZeni(lua_State*);	            // Add Zeni
+    int32 delZeni(lua_State*);	            // Delete Zeni
+
+    int32 getSeals(lua_State*);	            // Get Seals (beastman seals, etc)
+    int32 addSeals(lua_State*);	            // Add Seals
+    int32 delSeals(lua_State*);	            // Delete Seals
 
 	int32 addNationTeleport(lua_State*);	// Add new teleport: addNationTeleport(nation,number)
 	int32 getNationTeleport(lua_State*);	// Get teleport you can use by nation: getNationTeleport(nation)

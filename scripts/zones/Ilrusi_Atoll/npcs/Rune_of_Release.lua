@@ -78,7 +78,7 @@ function onEventFinish(player,csid,option)
 	      player:delKeyItem(ASSAULT_ARMBAND);
           point =1100;
           end	  
-        player:addPoint(ILRUSI_ASSAULT_POINT,point);
+        player:addAssaultPoint(ILRUSI_ASSAULT_POINT,point);
 		player:delMission(ASSAULT,GOLDEN_SALVAGE);
 		player:delKeyItem(ILRUSI_ASSUALT_ORDERS);
 	print(point);

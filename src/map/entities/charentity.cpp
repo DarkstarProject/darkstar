@@ -59,7 +59,7 @@ CCharEntity::CCharEntity()
 	memset(& keys,  0, sizeof(keys));
     memset(& equip, 0, sizeof(equip));
 	memset(& RealSkills,   0, sizeof(RealSkills));
-    memset(& RegionPoints, 0, sizeof(RegionPoints));
+    memset(& m_currency, 0, sizeof(m_currency));
     memset(& nationtp,  0, sizeof(nationtp));
     memset(& expChain,  0, sizeof(expChain));
     memset(& nameflags, 0, sizeof(nameflags));

@@ -28,7 +28,7 @@ end;
 function onTrigger(player,npc)
 local rank = getMercenaryRank(player);
 local haveimperialIDtag;
-local IlrusiAtollPoint = player:getPoint(ILRUSI_ASSAULT_POINT);
+local IlrusiAtollPoint = player:getAssaultPoint(ILRUSI_ASSAULT_POINT);
   if (player:hasKeyItem(IMPERIAL_ARMY_ID_TAG))then
    haveimperialIDtag = 1;
    else
@@ -111,7 +111,7 @@ function onEventFinish(player,csid,option)
 	  if(itemID > 0)then
 	     player:addItem(itemID);
 		 player:messageSpecial(ITEM_OBTAINED,itemID);
-		 player:delPoint(ILRUSI_ASSAULT_POINT,pointlost);
+		 player:delAssaultPoint(ILRUSI_ASSAULT_POINT,pointlost);
 	  end	
 	end	
 end;

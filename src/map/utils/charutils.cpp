@@ -628,9 +628,20 @@ void LoadChar(CCharEntity* PChar)
 	}
 
 	fmtQuery = "SELECT sandoria_cp, bastok_cp, windurst_cp, sandoria_supply, bastok_supply, windurst_supply, \
-					   imperial_standing, runic_portal, leujaoam_assault_point, mamool_assault_point, \
-					   lebros_assault_point, periqia_assault_point, ilrusi_assault_point, nyzul_isle_assault_point, \
-					   zeni_point, maw, past_sandoria_tp, past_bastok_tp, past_windurst_tp, allied_notes, tabs, bayld \
+                            beastman_seal, kindred_seal, kindred_crest, high_kindred_crest, sacred_kindred_crest, \
+                            ancient_beastcoin, valor_point, scyld, guild_fishing, guild_woodworking, guild_smithing, \
+                            guild_goldsmithing, guild_weaving, guild_leathercraft, guild_bonecraft, guild_alchemy, \
+                            guild_cooking, cinder, fire_fewell, ice_fewell, wind_fewell, earth_fewell, \
+                            lightning_fewell, water_fewell, light_fewell, dark_fewell, ballista_point, fellow_point, \
+                            chocobuck_sandoria, chocobuck_bastok, chocobuck_windurst, research_mark, tunnel_worm, \
+                            morion_worm, phantom_worm, moblin_marble, infamy, prestige, legion_point, \
+                            spark_of_eminence, shining_star, imperial_standing, runic_portal, leujaoam_assault_point, \
+                            mamool_assault_point, lebros_assault_point, periqia_assault_point, ilrusi_assault_point, \
+							nyzul_isle_assault_point, zeni_point, jetton, therion_ichor, maw, past_sandoria_tp, \
+							past_bastok_tp, past_windurst_tp, allied_notes, bayld, kinetic_unit, obsidian_fragment, \
+                            lebondpot_wing, mweya_plasm, cruor, resistance_credit, dominion_note, \
+                            fifth_echelon_trophy, fourth_echelon_trophy, third_echelon_trophy, second_echelon_trophy, \
+                            first_echelon_trophy \
 				FROM char_points \
 				WHERE charid = %u;";
 
@@ -640,32 +651,82 @@ void LoadChar(CCharEntity* PChar)
 		Sql_NumRows(SqlHandle) != 0 &&
 		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 	{
-		//Conquest
-		PChar->RegionPoints[0]   = (uint32)Sql_GetUIntData(SqlHandle, 0);		// San d'oria Conquest point
-		PChar->RegionPoints[1]   = (uint32)Sql_GetUIntData(SqlHandle, 1);		// Bastok Conquest point
-		PChar->RegionPoints[2]   = (uint32)Sql_GetUIntData(SqlHandle, 2);		// Windurst Conquest point
-		PChar->nationtp.sandoria = (uint32)Sql_GetUIntData(SqlHandle, 3);		// San d'oria Supply teleport
-		PChar->nationtp.bastok   = (uint32)Sql_GetUIntData(SqlHandle, 4);		// Bastok Supply teleport
-		PChar->nationtp.windurst = (uint32)Sql_GetUIntData(SqlHandle, 5);		// Windurst Supply teleport
-		//Aht Urghan
-		PChar->RegionPoints[3] = (uint32)Sql_GetIntData(SqlHandle, 6);			// Imperial standing point
-		PChar->nationtp.ahturhgan = (uint16)Sql_GetIntData(SqlHandle, 7);		// Runic portal
-		PChar->RegionPoints[4] = (uint32)Sql_GetIntData(SqlHandle, 8);			// leujaoam_assault_point
-		PChar->RegionPoints[5] = (uint32)Sql_GetIntData(SqlHandle, 9);			// mamool_assault_point
-		PChar->RegionPoints[6] = (uint32)Sql_GetIntData(SqlHandle, 10);			// lebros_assault_point
-		PChar->RegionPoints[7] = (uint32)Sql_GetIntData(SqlHandle, 11);			// periqia_assault_point
-		PChar->RegionPoints[8] = (uint32)Sql_GetIntData(SqlHandle, 12);			// ilrusi_assault_point
-		PChar->RegionPoints[9] = (uint32)Sql_GetIntData(SqlHandle, 13);			// nyzul_isle_assault_point
-		PChar->RegionPoints[10] = (uint32)Sql_GetIntData(SqlHandle, 14);		// Zeni point
-		//Wings of the Goddess
-		PChar->nationtp.maw = (uint32)Sql_GetIntData(SqlHandle, 15);			// Maw
-		PChar->nationtp.pastsandoria = (uint32)Sql_GetUIntData(SqlHandle, 16);	// San d'oria Past teleport
-		PChar->nationtp.pastbastok   = (uint32)Sql_GetUIntData(SqlHandle, 17);	// Bastok Past teleport
-		PChar->nationtp.pastwindurst = (uint32)Sql_GetUIntData(SqlHandle, 18);	// Windurst Past teleport
-		PChar->RegionPoints[11] = (uint32)Sql_GetIntData(SqlHandle, 19);		// Allied notes
-		PChar->RegionPoints[12] = (uint32)Sql_GetIntData(SqlHandle, 20);		// Tabs
-        PChar->RegionPoints[13] = (uint32)Sql_GetIntData(SqlHandle, 21);		// Bayld
-		//TODO: abyssea, bcnm, kcnm, ...
+        PChar->m_currency.sandoriacp = Sql_GetUIntData(SqlHandle, 0);
+        PChar->m_currency.bastokcp = Sql_GetUIntData(SqlHandle, 1);
+        PChar->m_currency.windurstcp = Sql_GetUIntData(SqlHandle, 2);
+        PChar->nationtp.sandoria = Sql_GetUIntData(SqlHandle, 3);
+        PChar->nationtp.bastok = Sql_GetUIntData(SqlHandle, 4);
+        PChar->nationtp.windurst = Sql_GetUIntData(SqlHandle, 5);
+        PChar->m_currency.beastmanseal = Sql_GetUIntData(SqlHandle, 6);
+        PChar->m_currency.kindredseal = Sql_GetUIntData(SqlHandle, 7);
+        PChar->m_currency.kindredcrest = Sql_GetUIntData(SqlHandle, 8);
+        PChar->m_currency.hkindredcrest = Sql_GetUIntData(SqlHandle, 9);
+        PChar->m_currency.skindredcrest = Sql_GetUIntData(SqlHandle, 10);
+        PChar->m_currency.ancientbeastcoins = Sql_GetUIntData(SqlHandle, 11);
+        PChar->m_currency.valorpoints = Sql_GetUIntData(SqlHandle, 12);
+        PChar->m_currency.scylds = Sql_GetUIntData(SqlHandle, 13);
+        PChar->m_currency.fishingpoints = Sql_GetUIntData(SqlHandle, 14);
+        PChar->m_currency.woodworkingpoints = Sql_GetUIntData(SqlHandle, 15);
+        PChar->m_currency.smithingpoints = Sql_GetUIntData(SqlHandle, 16);
+        PChar->m_currency.goldsmithingpoints = Sql_GetUIntData(SqlHandle, 17);
+        PChar->m_currency.weavingpoints = Sql_GetUIntData(SqlHandle, 18);
+        PChar->m_currency.leatherpoints = Sql_GetUIntData(SqlHandle, 19);
+        PChar->m_currency.bonepoints = Sql_GetUIntData(SqlHandle, 20);
+        PChar->m_currency.alchemypoints = Sql_GetUIntData(SqlHandle, 21);
+        PChar->m_currency.cookingpoints = Sql_GetUIntData(SqlHandle, 22);
+        PChar->m_currency.cinders = Sql_GetUIntData(SqlHandle, 23);
+        PChar->m_currency.firefewell = Sql_GetUIntData(SqlHandle, 24);
+        PChar->m_currency.icefewell = Sql_GetUIntData(SqlHandle, 25);
+        PChar->m_currency.windfewell = Sql_GetUIntData(SqlHandle, 26);
+        PChar->m_currency.earthfewell = Sql_GetUIntData(SqlHandle, 27);
+        PChar->m_currency.lightningfewell = Sql_GetUIntData(SqlHandle, 28);
+        PChar->m_currency.waterfewell = Sql_GetUIntData(SqlHandle, 29);
+        PChar->m_currency.lightfewell = Sql_GetUIntData(SqlHandle, 30);
+        PChar->m_currency.darkfewell = Sql_GetUIntData(SqlHandle, 31);
+        PChar->m_currency.ballistapoints = Sql_GetUIntData(SqlHandle, 32);
+        PChar->m_currency.fellowpoints = Sql_GetUIntData(SqlHandle, 33);
+        PChar->m_currency.chocobuckssandoria = Sql_GetUIntData(SqlHandle, 34);
+        PChar->m_currency.chocobucksbastok = Sql_GetUIntData(SqlHandle, 35);
+        PChar->m_currency.chocobuckswindurst = Sql_GetUIntData(SqlHandle, 36);
+        PChar->m_currency.researchmarks = Sql_GetUIntData(SqlHandle, 37);
+        PChar->m_currency.tunnelworms = Sql_GetUIntData(SqlHandle, 38);
+        PChar->m_currency.morionworms = Sql_GetUIntData(SqlHandle, 39);
+        PChar->m_currency.phantomworms = Sql_GetUIntData(SqlHandle, 40);
+        PChar->m_currency.moblinmarbles = Sql_GetUIntData(SqlHandle, 41);
+        PChar->m_currency.infamy = Sql_GetUIntData(SqlHandle, 42);
+        PChar->m_currency.prestige = Sql_GetUIntData(SqlHandle, 43);
+        PChar->m_currency.legionpoints = Sql_GetUIntData(SqlHandle, 44);
+        PChar->m_currency.sparksofeminence = Sql_GetUIntData(SqlHandle, 45);
+        PChar->m_currency.shiningstars = Sql_GetUIntData(SqlHandle, 46);
+        PChar->m_currency.imperialstanding = Sql_GetUIntData(SqlHandle, 47);
+        PChar->nationtp.ahturhgan = Sql_GetUIntData(SqlHandle, 48);
+        PChar->m_currency.lsanctumassault = Sql_GetUIntData(SqlHandle, 49);
+        PChar->m_currency.mjtgassault = Sql_GetUIntData(SqlHandle, 50);
+        PChar->m_currency.lcavernassault = Sql_GetUIntData(SqlHandle, 51);
+        PChar->m_currency.periqiaassault = Sql_GetUIntData(SqlHandle, 52);
+        PChar->m_currency.ilrusiatollassault = Sql_GetUIntData(SqlHandle, 53);
+        PChar->m_currency.nyzultokens = Sql_GetUIntData(SqlHandle, 54);
+        PChar->m_currency.zeni = Sql_GetUIntData(SqlHandle, 55);
+        PChar->m_currency.jettons = Sql_GetUIntData(SqlHandle, 56);
+        PChar->m_currency.therionichor = Sql_GetUIntData(SqlHandle, 57);
+        PChar->nationtp.maw = Sql_GetUIntData(SqlHandle, 58);
+        PChar->nationtp.pastsandoria = Sql_GetUIntData(SqlHandle, 59);
+        PChar->nationtp.pastbastok = Sql_GetUIntData(SqlHandle, 60);
+        PChar->nationtp.pastwindurst = Sql_GetUIntData(SqlHandle, 61);
+        PChar->m_currency.alliednotes = Sql_GetUIntData(SqlHandle, 62);
+        PChar->m_currency.bayld = Sql_GetUIntData(SqlHandle, 63);
+        PChar->m_currency.kineticunits = Sql_GetUIntData(SqlHandle, 64);
+        PChar->m_currency.obsidianfragments = Sql_GetUIntData(SqlHandle, 65);
+        PChar->m_currency.lebondpotwings = Sql_GetUIntData(SqlHandle, 66);
+        PChar->m_currency.mweyaplasm = Sql_GetUIntData(SqlHandle, 67);
+        PChar->m_currency.cruor = Sql_GetUIntData(SqlHandle, 68);
+        PChar->m_currency.resistancecredits = Sql_GetUIntData(SqlHandle, 69);
+        PChar->m_currency.dominionnotes = Sql_GetUIntData(SqlHandle, 70);
+        PChar->m_currency.fifthechtrophies = Sql_GetUIntData(SqlHandle, 71);
+        PChar->m_currency.fourthechtrophies = Sql_GetUIntData(SqlHandle, 72);
+        PChar->m_currency.thirdechtrophies = Sql_GetUIntData(SqlHandle, 73);
+        PChar->m_currency.secondechtrophies = Sql_GetUIntData(SqlHandle, 74);
+        PChar->m_currency.firstechtrophies = Sql_GetUIntData(SqlHandle, 75);
 	}
 
 	PChar->PMeritPoints = new CMeritPoints(PChar);
@@ -3260,7 +3321,7 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
 		//TODO: Killing mobs != gaining Zeni
 		if(PChar->getZone() >= 48 && PChar->getZone() <= 79)
 		{
-			PChar->RegionPoints[3] += (exp*0.1f); // 10%
+			PChar->m_currency.imperialstanding += (exp*0.1f); // 10%
 		//	PChar->RegionPoints[10] += (exp*0.1f); // 10%
 			PChar->pushPacket(new CConquestPacket(PChar));
 		}
@@ -3887,36 +3948,100 @@ void SaveCharPoints(CCharEntity* PChar)
 {
 	const int8* Query = "UPDATE char_points \
 				  		SET sandoria_cp = %u, bastok_cp = %u, windurst_cp = %u, sandoria_supply = %u, bastok_supply = %u, windurst_supply = %u, \
-							imperial_standing = %u, runic_portal = %u, leujaoam_assault_point = %u, mamool_assault_point = %u, \
-							lebros_assault_point = %u, periqia_assault_point = %u, ilrusi_assault_point = %u, \
-							nyzul_isle_assault_point = %u, zeni_point = %u, maw = %u, past_sandoria_tp = %u, \
-							past_bastok_tp = %u, past_windurst_tp = %u, allied_notes = %u, tabs = %u, bayld = %u \
+                            beastman_seal = %u, kindred_seal = %u, kindred_crest = %u, high_kindred_crest = %u, sacred_kindred_crest = %u, \
+                            ancient_beastcoin = %u, valor_point = %u, scyld = %u, guild_fishing = %u, guild_woodworking = %u, guild_smithing = %u, \
+                            guild_goldsmithing = %u, guild_weaving = %u, guild_leathercraft = %u, guild_bonecraft = %u, guild_alchemy = %u, \
+                            guild_cooking = %u, cinder = %u, fire_fewell = %u, ice_fewell = %u, wind_fewell = %u, earth_fewell = %u, \
+                            lightning_fewell = %u, water_fewell = %u, light_fewell = %u, dark_fewell = %u, ballista_point = %u, fellow_point = %u, \
+                            chocobuck_sandoria = %u, chocobuck_bastok = %u, chocobuck_windurst = %u, research_mark = %u, tunnel_worm = %u, \
+                            morion_worm = %u, phantom_worm = %u, moblin_marble = %u, infamy = %u, prestige = %u, legion_point = %u, \
+                            spark_of_eminence = %u, shining_star = %u, imperial_standing = %u, runic_portal = %u, leujaoam_assault_point = %u, \
+                            mamool_assault_point = %u, lebros_assault_point = %u, periqia_assault_point = %u, ilrusi_assault_point = %u, \
+							nyzul_isle_assault_point = %u, zeni_point = %u, jetton = %u, therion_ichor = %u, maw = %u, past_sandoria_tp = %u, \
+							past_bastok_tp = %u, past_windurst_tp = %u, allied_notes = %u, bayld = %u, kinetic_unit = %u, obsidian_fragment = %u, \
+                            lebondpot_wing = %u, mweya_plasm = %u, cruor = %u, resistance_credit = %u, dominion_note = %u, \
+                            fifth_echelon_trophy = %u, fourth_echelon_trophy = %u, third_echelon_trophy = %u, second_echelon_trophy = %u, \
+                            first_echelon_trophy = %u \
 						WHERE charid = %u;";
 
 	Sql_Query(SqlHandle,
         Query,
-        PChar->RegionPoints[0],
-		PChar->RegionPoints[1],
-		PChar->RegionPoints[2],
+        PChar->m_currency.sandoriacp,
+        PChar->m_currency.bastokcp,
+        PChar->m_currency.windurstcp,
         PChar->nationtp.sandoria,
 		PChar->nationtp.bastok,
 		PChar->nationtp.windurst,
-		PChar->RegionPoints[3],
+        PChar->m_currency.beastmanseal,
+        PChar->m_currency.kindredseal,
+        PChar->m_currency.kindredcrest,
+        PChar->m_currency.hkindredcrest,
+        PChar->m_currency.skindredcrest,
+        PChar->m_currency.ancientbeastcoins,
+        PChar->m_currency.valorpoints,
+        PChar->m_currency.scylds,
+        PChar->m_currency.fishingpoints,
+        PChar->m_currency.woodworkingpoints,
+        PChar->m_currency.smithingpoints,
+        PChar->m_currency.goldsmithingpoints,
+        PChar->m_currency.weavingpoints,
+        PChar->m_currency.leatherpoints,
+        PChar->m_currency.bonepoints,
+        PChar->m_currency.alchemypoints,
+        PChar->m_currency.cookingpoints,
+        PChar->m_currency.cinders,
+        PChar->m_currency.firefewell,
+        PChar->m_currency.icefewell,
+        PChar->m_currency.windfewell,
+        PChar->m_currency.earthfewell,
+        PChar->m_currency.lightningfewell,
+        PChar->m_currency.waterfewell,
+        PChar->m_currency.lightfewell,
+        PChar->m_currency.darkfewell,
+        PChar->m_currency.ballistapoints,
+        PChar->m_currency.fellowpoints,
+        PChar->m_currency.chocobuckssandoria,
+        PChar->m_currency.chocobucksbastok,
+        PChar->m_currency.chocobuckswindurst,
+        PChar->m_currency.researchmarks,
+        PChar->m_currency.tunnelworms,
+        PChar->m_currency.morionworms,
+        PChar->m_currency.phantomworms,
+        PChar->m_currency.moblinmarbles,
+        PChar->m_currency.infamy,
+        PChar->m_currency.prestige,
+        PChar->m_currency.legionpoints,
+        PChar->m_currency.sparksofeminence,
+        PChar->m_currency.shiningstars,
+		PChar->m_currency.imperialstanding,
 		PChar->nationtp.ahturhgan,
-		PChar->RegionPoints[4],
-		PChar->RegionPoints[5],
-		PChar->RegionPoints[6],
-		PChar->RegionPoints[7],
-		PChar->RegionPoints[8],
-		PChar->RegionPoints[9],
-		PChar->RegionPoints[10],
+        PChar->m_currency.lsanctumassault,
+        PChar->m_currency.mjtgassault,
+        PChar->m_currency.lcavernassault,
+        PChar->m_currency.periqiaassault,
+        PChar->m_currency.ilrusiatollassault,
+        PChar->m_currency.nyzultokens,
+        PChar->m_currency.zeni,
+        PChar->m_currency.jettons,
+        PChar->m_currency.therionichor,
 		PChar->nationtp.maw,
 		PChar->nationtp.pastsandoria,
 		PChar->nationtp.pastbastok,
 		PChar->nationtp.pastwindurst,
-		PChar->RegionPoints[11],
-		PChar->RegionPoints[12],
-        PChar->RegionPoints[13],
+        PChar->m_currency.alliednotes,
+        PChar->m_currency.bayld,
+        PChar->m_currency.kineticunits,
+        PChar->m_currency.obsidianfragments,
+        PChar->m_currency.lebondpotwings,
+        PChar->m_currency.mweyaplasm,
+        PChar->m_currency.cruor,
+        PChar->m_currency.resistancecredits,
+        PChar->m_currency.dominionnotes,
+        PChar->m_currency.fifthechtrophies,
+        PChar->m_currency.fourthechtrophies,
+        PChar->m_currency.thirdechtrophies,
+        PChar->m_currency.secondechtrophies,
+        PChar->m_currency.firstechtrophies,
 		PChar->id);
 }
 

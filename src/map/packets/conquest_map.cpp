@@ -97,7 +97,7 @@ CConquestPacket::CConquestPacket(CCharEntity * PChar)
 	WBUFB(data,(0x65)-4) = conquest::GetRegionOwner(REGION_TAVNAZIA) + 1;
 
 	WBUFB(data,(0x8C)-4) = conquest::GetNexTally();
-    WBUFL(data,(0x90)-4) = PChar->RegionPoints[PChar->profile.nation];
+    WBUFL(data,(0x90)-4) = PChar->m_currency.conquestpoints[PChar->profile.nation];
 	WBUFB(data,(0x9C)-4) = 0x01;
 
 	//uint8 packet[] = 
@@ -125,5 +125,5 @@ CConquestPacket::CConquestPacket(CCharEntity * PChar)
 	WBUFB(data,(0xAE)-4) = 0; // undead: miroir archaique (4=8)
 	WBUFB(data,(0xAF)-4) = 0;
 
-	WBUFL(data,(0xB0)-4) = PChar->RegionPoints[3];
+	WBUFL(data,(0xB0)-4) = PChar->m_currency.imperialstanding;
 }

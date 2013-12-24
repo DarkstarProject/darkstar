@@ -688,7 +688,7 @@
     </ClInclude>
     <ClInclude Include="..\..\src\map\utils\attackutils.h">
       <Filter>Header Files\utils</Filter>
-    </ClInclude>	
+    </ClInclude>
     <ClInclude Include="..\..\src\map\utils\blueutils.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
@@ -766,6 +766,12 @@
     </ClInclude>
     <ClInclude Include="..\..\src\map\attack.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\attackround.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\currency.h">
+      <Filter>Header Files\packets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1339,7 +1345,7 @@
     <ClCompile Include="..\..\src\map\utils\blueutils.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
-	    <ClCompile Include="..\..\src\map\utils\attackutils.cpp">
+    <ClCompile Include="..\..\src\map\utils\attackutils.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\utils\mobutils.cpp">
@@ -1398,6 +1404,12 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\attack.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\attackround.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\currency.cpp">
+      <Filter>Source Files\packets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

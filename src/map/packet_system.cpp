@@ -85,6 +85,7 @@
 #include "packets/chocobo_music.h"
 #include "packets/conquest_map.h"
 #include "packets/cs_position.h"
+#include "packets/currency.h"
 #include "packets/delivery_box.h"
 #include "packets/downloading_data.h"
 #include "packets/entity_update.h"
@@ -4790,6 +4791,18 @@ void SmallPacket0x10B(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 /************************************************************************
 *																		*
+*  Request Currency tab                                 		 		*
+*																		*
+************************************************************************/
+
+void SmallPacket0x10F(map_session_data_t* session, CCharEntity* PChar, int8* data)
+{
+    PChar->pushPacket(new CCurrencyPacket(PChar));
+    return;
+}
+
+/************************************************************************
+*																		*
 *  Инициализация массива процедур                   					*
 *																		*
 ************************************************************************/
@@ -4891,6 +4904,7 @@ void PacketParserInitialize()
     PacketSize[0x109] = 0x00; PacketParser[0x109] = &SmallPacket0x109;
     PacketSize[0x10A] = 0x06; PacketParser[0x10A] = &SmallPacket0x10A;
     PacketSize[0x10B] = 0x00; PacketParser[0x10B] = &SmallPacket0x10B;
+    PacketSize[0x10F] = 0x02; PacketParser[0x10F] = &SmallPacket0x10F;
 }
 
 /************************************************************************

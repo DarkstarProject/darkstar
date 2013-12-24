@@ -34,7 +34,7 @@ function onEventUpdate(player,csid,option)
 --printf("updateRESULT: %u",option);
 	
 	if(option == 300) then
-		player:updateEvent(player:getPoint(ZENI),0);
+		player:updateEvent(player:getZeni(),0);
 	else
 		player:updateEvent(0,0);
 	end

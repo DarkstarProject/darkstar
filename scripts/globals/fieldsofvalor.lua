@@ -289,7 +289,7 @@ FOV_EVENT_SORROWS =0x003d;
 
 function startFov(eventid,player)
 	local hasRegime = player:getVar("fov_regimeid");
-	local tabs = player:getPoint(TABS);
+	local tabs = player:getValorPoint();
 	player:startEvent(eventid,0,0,0,0,0,0,tabs,hasRegime);
 end
 
@@ -337,12 +337,12 @@ function finishFov(player,csid,option,r1,r2,r3,r4,r5,msg_offset)
 local msg_accept = msg_offset;
 local msg_jobs = msg_offset+1;
 local msg_cancel = msg_offset+2;
-local tabs = player:getPoint(TABS);
+local tabs = player:getValorPoint();
 -- ================= FIELD SUPPORT ===============================================
 if(option==FOV_MENU_REGEN) then --Chose Regen. Regen from FoV removes all forms of regen.
 	--Decrease tabs
     if (tabs >= 20) then
-        player:delPoint(TABS,20);
+        player:delValorPoint(20);
         --Removes regen if on player
         player:delStatusEffect(EFFECT_REGEN);
         --Adds regen
@@ -351,7 +351,7 @@ if(option==FOV_MENU_REGEN) then --Chose Regen. Regen from FoV removes all forms 
 elseif(option==FOV_MENU_REFRESH) then --Chose Refresh, removes all other refresh.
 	--Decrease tabs
     if (tabs >= 20) then
-        player:delPoint(TABS,20);
+        player:delValorPoint(20);
         --Removes refresh if on player
         player:delStatusEffect(EFFECT_REFRESH);
 		player:delStatusEffect(EFFECT_SUBLIMATION_COMPLETE);
@@ -362,7 +362,7 @@ elseif(option==FOV_MENU_REFRESH) then --Chose Refresh, removes all other refresh
 elseif(option==FOV_MENU_PROTECT) then --Chose Protect, removes all other protect.
 	--Decrease tabs
     if (tabs >= 15) then
-        player:delPoint(TABS,15);
+        player:delValorPoint(15);
         --Removes protect if on player
         player:delStatusEffect(EFFECT_PROTECT);
         --Work out how much def to give (highest tier dependant on level)
@@ -382,7 +382,7 @@ elseif(option==FOV_MENU_PROTECT) then --Chose Protect, removes all other protect
 elseif(option==FOV_MENU_SHELL) then --Chose Shell, removes all other shell.
 	--Decrease tabs
     if (tabs >= 15) then
-        player:delPoint(TABS,15);
+        player:delValorPoint(15);
         --Removes shell if on player
         player:delStatusEffect(EFFECT_SHELL);
         --Work out how much mdef to give (highest tier dependant on level)
@@ -403,7 +403,7 @@ elseif(option==FOV_MENU_SHELL) then --Chose Shell, removes all other shell.
 elseif (option==FOV_MENU_RERAISE) then --Reraise chosen.
 	--Decrease tabs
     if (tabs >= 10) then
-        player:delPoint(TABS,10);
+        player:delValorPoint(10);
         --Remove any other RR
         player:delStatusEffect(EFFECT_RERAISE);
         --apply RR1, 2 hour duration.
@@ -412,7 +412,7 @@ elseif (option==FOV_MENU_RERAISE) then --Reraise chosen.
 elseif (option==FOV_MENU_HOME_NATION) then --Return to home nation.
 	--Decrease tabs
     if (tabs >= 50) then
-        player:delPoint(TABS,50);
+        player:delValorPoint(50);
         toHomeNation(player);
     end
 elseif(option==149) then --chose Hard Cookie, INT +4, MP +30 for 30 minutes
@@ -472,7 +472,7 @@ function giveEliteRegime(player,keyitem,cost)
 		--print("has");
 		--player:messageBasic(98,keyitem);
 	else
-		player:delPoint(TABS,cost);
+        player:delValorPoint(cost);
 		player:addKeyItem(keyitem);
 	end
 end
@@ -547,8 +547,8 @@ function checkRegime(killer,mob,rid,index)
                         if (killer:getVar("fov_LastReward") < VanadielEpoch) then
                            killer:messageBasic(FOV_MSG_GET_GIL,reward);
                            killer:addGil(reward);
-                           killer:addPoint(TABS,tabs);
-                           killer:messageBasic(FOV_MSG_GET_TABS,tabs,killer:getPoint(TABS)); -- Careful about order.
+                           killer:addValorPoint(tabs);
+                           killer:messageBasic(FOV_MSG_GET_TABS,tabs,killer:getValorPoint()); -- Careful about order.
                            if (REGIME_WAIT == 1) then
                               killer:setVar("fov_LastReward",VanadielEpoch);
                            end

@@ -302,6 +302,7 @@
     <ClInclude Include="..\..\src\map\packets\chocobo_music.h" />
     <ClInclude Include="..\..\src\map\packets\conquest_map.h" />
     <ClInclude Include="..\..\src\map\packets\cs_position.h" />
+    <ClInclude Include="..\..\src\map\packets\currency.h" />
     <ClInclude Include="..\..\src\map\packets\delivery_box.h" />
     <ClInclude Include="..\..\src\map\packets\downloading_data.h" />
     <ClInclude Include="..\..\src\map\packets\entity_update.h" />
@@ -381,7 +382,7 @@
     <ClInclude Include="..\..\src\map\treasure_pool.h" />
     <ClInclude Include="..\..\src\map\universal_container.h" />
     <ClInclude Include="..\..\src\map\utils\battleutils.h" />
-    <ClInclude Include="..\..\src\map\utils\attackutils.h" />	
+    <ClInclude Include="..\..\src\map\utils\attackutils.h" />
     <ClInclude Include="..\..\src\map\utils\blueutils.h" />
     <ClInclude Include="..\..\src\map\utils\charutils.h" />
     <ClInclude Include="..\..\src\map\utils\fishingutils.h" />
@@ -398,7 +399,7 @@
     <ClInclude Include="..\..\src\map\weapon_skill.h" />
     <ClInclude Include="..\..\src\map\zone.h" />
     <ClInclude Include="..\..\src\map\attack.h" />
-    <ClInclude Include="..\..\src\map\attackround.h" />	
+    <ClInclude Include="..\..\src\map\attackround.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -516,6 +517,7 @@
     <ClCompile Include="..\..\src\map\packets\chocobo_music.cpp" />
     <ClCompile Include="..\..\src\map\packets\conquest_map.cpp" />
     <ClCompile Include="..\..\src\map\packets\cs_position.cpp" />
+    <ClCompile Include="..\..\src\map\packets\currency.cpp" />
     <ClCompile Include="..\..\src\map\packets\delivery_box.cpp" />
     <ClCompile Include="..\..\src\map\packets\downloading_data.cpp" />
     <ClCompile Include="..\..\src\map\packets\entity_update.cpp" />
@@ -594,7 +596,7 @@
     <ClCompile Include="..\..\src\map\transport.cpp" />
     <ClCompile Include="..\..\src\map\treasure_pool.cpp" />
     <ClCompile Include="..\..\src\map\universal_container.cpp" />
-    <ClCompile Include="..\..\src\map\utils\attackutils.cpp" />	
+    <ClCompile Include="..\..\src\map\utils\attackutils.cpp" />
     <ClCompile Include="..\..\src\map\utils\battleutils.cpp" />
     <ClCompile Include="..\..\src\map\utils\blueutils.cpp" />
     <ClCompile Include="..\..\src\map\utils\charutils.cpp" />
@@ -612,7 +614,7 @@
     <ClCompile Include="..\..\src\map\weapon_skill.cpp" />
     <ClCompile Include="..\..\src\map\zone.cpp" />
     <ClCompile Include="..\..\src\map\attack.cpp" />
-    <ClCompile Include="..\..\src\map\attackround.cpp" />	
+    <ClCompile Include="..\..\src\map\attackround.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\documentation\message.log" />
