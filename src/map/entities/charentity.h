@@ -212,7 +212,9 @@ struct currency_t
     };
     uint32 zeni, jettons, therionichor, alliednotes, bayld;
     uint16 kineticunits, unknown;
-    uint32 obsidianfragments, lebondpotwings, mweyaplasm, cruor, resistancecredits, dominionnotes;
+    uint32 obsidianfragments;
+    uint16 lebondoptwings, unknown2;
+    uint32 mweyaplasm, cruor, resistancecredits, dominionnotes;
     union {
         struct {
             uint8 fifthechtrophies, fourthechtrophies, thirdechtrophies, secondechtrophies, firstechtrophies;

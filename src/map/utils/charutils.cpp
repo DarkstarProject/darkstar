@@ -639,7 +639,7 @@ void LoadChar(CCharEntity* PChar)
                             mamool_assault_point, lebros_assault_point, periqia_assault_point, ilrusi_assault_point, \
 							nyzul_isle_assault_point, zeni_point, jetton, therion_ichor, maw, past_sandoria_tp, \
 							past_bastok_tp, past_windurst_tp, allied_notes, bayld, kinetic_unit, obsidian_fragment, \
-                            lebondpot_wing, mweya_plasm, cruor, resistance_credit, dominion_note, \
+                            lebondopt_wing, mweya_plasm, cruor, resistance_credit, dominion_note, \
                             fifth_echelon_trophy, fourth_echelon_trophy, third_echelon_trophy, second_echelon_trophy, \
                             first_echelon_trophy \
 				FROM char_points \
@@ -717,7 +717,7 @@ void LoadChar(CCharEntity* PChar)
         PChar->m_currency.bayld = Sql_GetUIntData(SqlHandle, 63);
         PChar->m_currency.kineticunits = Sql_GetUIntData(SqlHandle, 64);
         PChar->m_currency.obsidianfragments = Sql_GetUIntData(SqlHandle, 65);
-        PChar->m_currency.lebondpotwings = Sql_GetUIntData(SqlHandle, 66);
+        PChar->m_currency.lebondoptwings = Sql_GetUIntData(SqlHandle, 66);
         PChar->m_currency.mweyaplasm = Sql_GetUIntData(SqlHandle, 67);
         PChar->m_currency.cruor = Sql_GetUIntData(SqlHandle, 68);
         PChar->m_currency.resistancecredits = Sql_GetUIntData(SqlHandle, 69);
@@ -3959,7 +3959,7 @@ void SaveCharPoints(CCharEntity* PChar)
                             mamool_assault_point = %u, lebros_assault_point = %u, periqia_assault_point = %u, ilrusi_assault_point = %u, \
 							nyzul_isle_assault_point = %u, zeni_point = %u, jetton = %u, therion_ichor = %u, maw = %u, past_sandoria_tp = %u, \
 							past_bastok_tp = %u, past_windurst_tp = %u, allied_notes = %u, bayld = %u, kinetic_unit = %u, obsidian_fragment = %u, \
-                            lebondpot_wing = %u, mweya_plasm = %u, cruor = %u, resistance_credit = %u, dominion_note = %u, \
+                            lebondopt_wing = %u, mweya_plasm = %u, cruor = %u, resistance_credit = %u, dominion_note = %u, \
                             fifth_echelon_trophy = %u, fourth_echelon_trophy = %u, third_echelon_trophy = %u, second_echelon_trophy = %u, \
                             first_echelon_trophy = %u \
 						WHERE charid = %u;";
@@ -4032,7 +4032,7 @@ void SaveCharPoints(CCharEntity* PChar)
         PChar->m_currency.bayld,
         PChar->m_currency.kineticunits,
         PChar->m_currency.obsidianfragments,
-        PChar->m_currency.lebondpotwings,
+        PChar->m_currency.lebondoptwings,
         PChar->m_currency.mweyaplasm,
         PChar->m_currency.cruor,
         PChar->m_currency.resistancecredits,
