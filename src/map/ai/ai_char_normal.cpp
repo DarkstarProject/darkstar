@@ -1954,14 +1954,23 @@ void CAICharNormal::ActionJobAbilityFinish()
     			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 0, MSGBASIC_USES_JA));
     		}
 
-    		// handle enmity transfer abilities
-    		if (m_PJobAbility->getID() == ABILITY_ACCOMPLICE)
+			// Handle Accomplice / Collabrator..
+			if (m_PJobAbility->getID() == ABILITY_ACCOMPLICE || m_PJobAbility->getID() == ABILITY_COLLABORATOR)
 			{
-    			battleutils::TransferEnmity(m_PChar, m_PBattleSubTarget, (CMobEntity*)m_PBattleSubTarget->PBattleAI->GetBattleTarget(), 50);
-			}
-			else if (m_PJobAbility->getID() == ABILITY_COLLABORATOR)
-			{
-    			battleutils::TransferEnmity(m_PChar, m_PBattleSubTarget, (CMobEntity*)m_PBattleSubTarget->PBattleAI->GetBattleTarget(), 25);
+				// Find all mobs within 8.5 radius of the target..
+				for (uint32 x = 0; x < 0x400; x++)
+				{
+					CBaseEntity* PTarget = m_PBattleSubTarget->loc.zone->GetEntity(x, TYPE_MOB);
+					if (PTarget != NULL && PTarget->objtype == TYPE_MOB)
+					{
+						if (m_PTargetFind->isWithinRange(&PTarget->loc.p, 8.5f))
+						{
+							CMobEntity* PTargetMob = (CMobEntity*)PTarget;
+							if (PTargetMob->PEnmityContainer->HasTargetID(m_PBattleSubTarget->id))
+								battleutils::TransferEnmity(m_PChar, m_PBattleSubTarget, PTargetMob, (m_PJobAbility->getID() == ABILITY_ACCOMPLICE) ? 50 : 25);
+						}
+					}
+				}
 			}
 
     		m_PChar->m_ActionList.push_back(Action);

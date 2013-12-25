@@ -208,7 +208,7 @@ void CEnmityContainer::AddLinkEnmity(CBattleEntity* PEntity)
     UpdateEnmity(PEntity, 1, 1, false);
 }
 
-bool CEnmityContainer::HasTargetID(uint16 TargetID){
+bool CEnmityContainer::HasTargetID(uint32 TargetID){
 	EnmityList_t::iterator PEnmity = m_EnmityList.lower_bound(TargetID);
 
     if( PEnmity != m_EnmityList.end() &&

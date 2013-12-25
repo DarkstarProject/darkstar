@@ -56,7 +56,7 @@ public:
 	void	UpdateEnmityFromAttack(CBattleEntity* PEntity,uint16 Damage);
   void  AddLinkEnmity(CBattleEntity* PEntity);
 	void	AddPartyEnmity(CCharEntity* PChar);
-	bool    HasTargetID(uint16 TargetID); //true if ID is in the container
+	bool    HasTargetID(uint32 TargetID); //true if ID is in the container
 	void    LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percent, CBattleEntity* HateReceiver); // lower % of hate or transfer it
 	void	DecayEnmity();
   bool  IsWithinEnmityRange(CBattleEntity* PEntity);
