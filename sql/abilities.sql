@@ -109,7 +109,7 @@ INSERT INTO `abilities` VALUES ('63', 'cover', '7', '35', '2', '180', '76', '0',
 INSERT INTO `abilities` VALUES ('64', 'spirit_link', '14', '25', '1', '90', '162', '0', '0', '94', '20.0', '0', '0', '0', '1224', '4');
 INSERT INTO `abilities` VALUES ('66', 'chi_blast', '2', '41', '4', '180', '18', '110', '0', '92', '20.0', '0', '0', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('67', 'convert', '5', '40', '1', '600', '49', '0', '0', '88', '20.0', '0', '1', '80', '640', '0');
-INSERT INTO `abilities` VALUES ('68', 'accomplice', '6', '65', '2', '300', '69', '526', '0', '220', '20.0', '0', '0', '0', '0', '0');
+INSERT INTO `abilities` VALUES ('68', 'accomplice', '6', '65', '2', '300', '69', '526', '0', '185', '20.0', '0', '0', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('69', 'call_beast', '9', '23', '1', '300', '104', '0', '0', '83', '18.0', '0', '0', '0', '900', '0');
 INSERT INTO `abilities` VALUES ('70', 'unlimited_shot', '11', '51', '1', '180', '126', '0', '0', '90', '20.0', '0', '1', '300', '1030', '0');
 INSERT INTO `abilities` VALUES ('71', 'dismiss', '14', '1', '1', '300', '161', '0', '0', '94', '20.0', '0', '0', '0', '0', '4');
@@ -253,7 +253,7 @@ INSERT INTO `abilities` VALUES ('216', 'elemental_siphon', '15', '50', '1', '300
 INSERT INTO `abilities` VALUES ('217', 'sublimation', '20', '35', '1', '30', '234', '0', '0', '189', '20.0', '0', '1', '80', '0', '0');
 INSERT INTO `abilities` VALUES ('218', 'addendum_white', '20', '10', '1', '0', '231', '0', '0', '191', '20.0', '0', '1', '80', '0', '16');
 INSERT INTO `abilities` VALUES ('219', 'addendum_black', '20', '30', '1', '0', '231', '0', '0', '192', '20.0', '0', '1', '80', '0', '32');
-INSERT INTO `abilities` VALUES ('220', 'collaborator', '6', '65', '2', '60', '17', '0', '0', '220', '20.0', '0', '0', '0', '0', '0');
+INSERT INTO `abilities` VALUES ('220', 'collaborator', '6', '65', '2', '60', '69', '526', '0', '185', '20.0', '0', '0', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('221', 'saber_dance', '19', '75', '1', '180', '217', '0', '0', '207', '20.0', '0', '1', '80', '3200', '1');
 INSERT INTO `abilities` VALUES ('222', 'fan_dance', '19', '75', '1', '180', '216', '0', '0', '208', '20.0', '0', '1', '80', '3202', '1');
 INSERT INTO `abilities` VALUES ('223', 'no_foot_rise', '19', '75', '1', '180', '223', '560', '560', '209', '20.0', '0', '1', '80', '3204', '1');
