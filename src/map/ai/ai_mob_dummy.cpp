@@ -1606,8 +1606,8 @@ void CAIMobDummy::ActionAttack()
 
 void CAIMobDummy::FinishAttack()
 {
-	// launch OnMobFight every 3 sec (not everytime at 0 but 0~400). Spheroid Family added for Sky functionality
-	if(((m_PMob->m_Type & MOBTYPE_NOTORIOUS) || m_PMob->m_Family == 234) && (m_Tick - m_StartBattle) % 3000 <= 400)
+	// launch OnMobFight every 3 sec (not everytime at 0 but 0~400).
+	if((m_Tick - m_StartBattle) % 3000 <= 400)
 	{
 		luautils::OnMobFight(m_PMob,m_PBattleTarget);
 	}
