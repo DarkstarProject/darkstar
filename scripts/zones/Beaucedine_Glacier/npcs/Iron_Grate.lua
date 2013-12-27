@@ -35,13 +35,13 @@ function onTrigger(player,npc)
 		player:startEvent(0x00C8); 
     elseif(Z < -353 and Z > -359) then  -- H-10
 		player:startEvent(0x00C9); 		
-    elseif(Z > 153 and Z < 159) then 	-- I-7
+	elseif((X > 95 and X < 104) and (Z > 153 and Z < 159)) then	-- I-7
 		player:startEvent(0x00CA); 			
     elseif(X < -193 and X > -199) then 	-- G-9
 		player:startEvent(0x00CB); 		
     elseif(Z > -47 and Z < -41) then 	-- H-8
 		player:startEvent(0x00CC); 		
-    elseif(Z > 153 and Z < 159) then 	-- F-7
+    elseif((X > -344 and X < -337) and (Z > 153 and Z < 159)) then	-- F-7
 		player:startEvent(0x00CD); 			
 	end	
 end;
