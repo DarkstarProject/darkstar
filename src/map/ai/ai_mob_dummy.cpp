@@ -39,7 +39,7 @@
 #include "../alliance.h"
 #include "../map.h"
 #include "../attack.h"
-#include "../attackRound.h"
+#include "../attackround.h"
 
 #include "ai_mob_dummy.h"
 
