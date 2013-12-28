@@ -28,7 +28,7 @@ function onTrigger(player,npc)
 	MyDay = VanadielDayOfTheYear();
 	aBoysDream = player:getQuestStatus(SANDORIA, A_BOY_S_DREAM);
 	
-	if(MyDay ~= DreadbugDay and aBoysDream == QUEST_ACTIVE) then
+	if(MyDay ~= DreadbugDay and aBoysDream == QUEST_ACCEPTED) then
 		canSpawn = (os.time() - DreadbugTimer) > 30;
 		
 		if(canSpawn) then
