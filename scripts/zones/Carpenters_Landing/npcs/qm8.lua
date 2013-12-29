@@ -21,7 +21,7 @@ end;
 function onTrigger(player,npc)
 
    if(player:getCurrentMission(COP) == CALM_BEFORE_THE_STORM )then
-   
+
     local ExecutorID = 16785710;
     local Assassin1ID = ExecutorID+1;
     local Assassin2ID = ExecutorID+2;
@@ -34,22 +34,23 @@ function onTrigger(player,npc)
     local Assassin2kill= player:getVar("Cryptonberry_Assassins-2_KILL");
     local Assassin3kill= player:getVar("Cryptonberry_Assassins-3_KILL");
     local Executorkill = player:getVar("Cryptonberry_Executor_KILL");
-	
+
    	 --printf("Assassin1: %u",Assassin1kill);
 	 --printf("Assassin2: %u",Assassin2kill);
      --printf("Assassin3: %u",Assassin3kill);
 	 --printf("Executor: %u",Executorkill);
-   
+
     if(Executorkill == 1 and Assassin1kill == 1 and Assassin2kill == 1 and Assassin3kill == 1) then -- If all Mobs have been killed
 		player:startEvent(0x0025);
     elseif(ExecutorA == 0 and Assassin1A == 0 and Assassin2A == 0 and Assassin3A == 0 and Executorkill~=2)then -- If no mobs present
 		SpawnMob(ExecutorID,180):updateEnmity(player);
 		SpawnMob(Assassin1ID,420);
 		SpawnMob(Assassin2ID,420);
-		SpawnMob(Assassin3ID,420);	
+		SpawnMob(Assassin3ID,420);
     else
 		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end
+  end
 
 end;
 

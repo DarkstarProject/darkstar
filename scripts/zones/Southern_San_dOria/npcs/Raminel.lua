@@ -13,7 +13,7 @@ require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/pathfind");
 
-local local path = {
+local path = {
 -138.436340, -2.000000, 16.227097,
 -137.395432, -2.000000, 15.831898,
 -136.317108, -2.000000, 15.728185,
@@ -155,7 +155,7 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option.npc)
+function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
 	npc:wait(0);
