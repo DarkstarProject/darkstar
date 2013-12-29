@@ -630,7 +630,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("ZULKHEIM");
 
-	local Quanteilleron = ;17199699
+	local Quanteilleron = 17199699;
 	
 	npc  = {
 	--
