@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
 		-- Generate a random value to use for the next part of the mission
 		-- where you have to examine 6 Magical Gizmo's, each of them having
 		-- a number from 1 to 6 (Remember, setting 0 deletes the var)
-		random_value = math.random(1,6);
+		local random_value = math.random(1,6);
 		player:setVar("MissionStatus_rv",random_value); -- 'rv' = random value
 		player:setVar("MissionStatus_op1",1);
 		player:setVar("MissionStatus_op2",1);

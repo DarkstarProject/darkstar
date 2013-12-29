@@ -16,6 +16,12 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onInitialize(zone)
+	zone:registerRegion(1,-21.469,27.000,-24.255, -18.723,32.000,-19.877); -- 40 cap (H-8 Tower)
+	zone:registerRegion(2, 337.376,27,-19.836, 342.340,32,-16.055); -- 50 cap area (J-8 Tower)
+	zone:registerRegion(3, 95.659,42,-302.390, 99.973,48,-297.744); -- 60 cap area (H-10 Tower)
+	zone:registerRegion(4, -384.452,26,257.961, -379.945,32,262.558); -- Uncapped area 1 (F-7 Tower)
+	zone:registerRegion(5, -302.493,42,-179.995, -297.386,48,-176.078); -- Uncapped area 2 (G-9 Tower)
+	zone:registerRegion(6, 299.847,42, 257.716, 303.824,48,262.391); -- Uncapped area 3 (I-7 Tower)
 end;
 
 -----------------------------------		
@@ -23,7 +29,7 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
+	local cs = -1;	
 	local playerX = player:getXPos();
 
 	if ((playerX == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
@@ -48,11 +54,22 @@ end;
 -----------------------------------
 
 function onRegionEnter(player,region)
---print(region:GetRegionID());
 
-----------------------------------------------------------------
-
+	if(region:GetRegionID() == 1) then
+		player:startEvent(0x0014);
+	elseif(region:GetRegionID() == 2) then
+		player:startEvent(0x0015);
+	elseif(region:GetRegionID() == 3) then
+		player:startEvent(0x0016);
+	elseif(region:GetRegionID() == 4) then
+		player:startEvent(0x0017);
+	elseif(region:GetRegionID() == 5) then
+		player:startEvent(0x0018);
+	elseif(region:GetRegionID() == 6) then
+		player:startEvent(0x0019);
+	end	
 end;
+
 -----------------------------------
 -- onRegionLeave
 -----------------------------------
@@ -74,11 +91,23 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	--printf("CSID: %u",csid);
-	--printf("RESULT: %u",option);
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
 	if(csid == 0x0001)then
 	  player:setVar("PromathiaStatus",3);
 	elseif(csid == 0x0004)then
 	  player:setVar("COP_Tenzen_s_Path",9);
+	elseif(csid == 0x0014 and option == 1) then
+		player:setPos(-20,-60.250,-60,63,111);
+	elseif(csid == 0x0015 and option == 1) then
+		player:setPos(260,-0.25,-20,254,111);
+	elseif(csid == 0x0016 and option == 1) then
+		player:setPos(60,-0.250,-340.000,190,111);
+	elseif(csid == 0x0017 and option == 1) then
+		player:setPos(-340,-100.250,140,63,111);
+	elseif(csid == 0x0018 and option == 1) then
+		player:setPos(-180,-40.25 ,-220,0,111);
+	elseif(csid == 0x0019 and option == 1) then
+		player:setPos(100,-20.25,140,64,111);
 	end
 end;

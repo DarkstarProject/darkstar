@@ -6419,6 +6419,21 @@ inline int32 CLuaBaseEntity::openDoor(lua_State *L)
 	return 0;
 }
 
+inline int32 CLuaBaseEntity::closeDoor(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
+
+	if (m_PBaseEntity->animation == ANIMATION_OPEN_DOOR)
+	{
+		uint32 CloseTime = (!lua_isnil(L,1) && lua_isnumber(L,1)) ? (uint32) lua_tointeger(L,1) * 1000 : 7000;
+		m_PBaseEntity->animation = ANIMATION_CLOSE_DOOR;
+		m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_UPDATE));
+		CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("open_door", gettick()+CloseTime, m_PBaseEntity, CTaskMgr::TASK_ONCE, open_door));
+	}
+	return 0;
+}
+
 /************************************************
  * Just for debugging. Similar to @animatoin.   *
  * Injects an action packet with the specified  *
@@ -8084,6 +8099,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponDmgRank),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getOffhandDmgRank),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,openDoor),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,closeDoor),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,wakeUp),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmityFromCure),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isWeaponTwoHanded),

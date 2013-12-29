@@ -50,6 +50,15 @@ int32 close_door(uint32 tick, CTaskMgr::CTask* PTask)
 	return 0;
 }
 
+int32 open_door(uint32 tick, CTaskMgr::CTask* PTask)
+{
+	CNpcEntity* PNpc = (CNpcEntity*)PTask->m_data;
+
+	PNpc->animation = ANIMATION_OPEN_DOOR;
+	PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc,ENTITY_UPDATE));
+	return 0;
+}
+
 /************************************************************************
 *																		*
 *																		*

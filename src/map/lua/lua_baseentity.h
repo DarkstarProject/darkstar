@@ -404,10 +404,10 @@ public:
 	int32 getStealItem(lua_State*);			// gets ItemID of droplist steal item from mob
 
     int32 openDoor(lua_State*);             // открываем дверь
+	int32 closeDoor(lua_State*);		// npc.closeDoor(timeToStayClosed)
 	int32 hideNPC(lua_State*);              // hide an NPC
 	int32 resetRecasts(lua_State*);         // Reset recasts for the caller
     int32 resetRecast(lua_State*);          // Reset one recast ID
-
 	int32 addCP(lua_State*);				// Add CP
 	int32 getCP(lua_State*);				// Get CP
 	int32 delCP(lua_State*);				// Delete CP
