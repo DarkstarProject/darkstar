@@ -1,13 +1,20 @@
------------------------------------
---	[Command name]: addspell
---	[Author      ]: Wolke
---	[Description ]: @addspell <id> adds the ability to use a spell to the player
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: addspell
+-- auth: Wolke
+-- desc: Adds the spell to the player.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = "i"
+};
 
-function onTrigger(player,id)
-	player:addSpell(id);
-end;
+function onTrigger(player, spellId)
+    if (spellId == nil) then
+        player:PrintToPlayer( "You must enter a valid spell id." );
+        return;
+    end
+
+    player:addSpell( spellId );
+end

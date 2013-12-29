@@ -1,10 +1,17 @@
------------------------------------
---	[Command name]: zone
---	[Author      ]: 
---	[Description ]: 
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: zone
+-- auth: <Unknown> :: Modded by atom0s.
+-- desc: Teleports a player to the given zone.
+---------------------------------------------------------------------------------------------------
 
-local placenames = {
+cmdprops =
+{
+    permission = 1,
+    parameters = "s"
+};
+
+local placenames_1 = 
+{
    xA9 = 1,    -- Phanauet Channel
    xAA = 2,    -- Carpenter's Landing
    x84 = 3,    -- Manaclipper
@@ -192,10 +199,11 @@ local placenames = {
    x5F = 248,  -- Selbina
    x1E = 249,  -- Mhaura
    x29 = 250,  -- Kazham
-   x7B = 251  -- Hall of the Gods
-}
+   x7B = 251   -- Hall of the Gods
+};
 
-local placenames2 = {
+local placenames_2 = 
+{
    x0F = 70,   -- Chocobo Circuit
    x10 = 71,   -- The Colosseum
    x11 = 80,   -- Southern San d'Oria [S]
@@ -232,117 +240,38 @@ local placenames2 = {
    x53 = 268,  -- Sih Gates
    x54 = 269,  -- Moh Gates
    x55 = 270   -- Cirdas Caverns
-}
+};
 
---[[No recognition for:
-   15 Abyssea-Konschtat -- No phrase
-   45 Abyssea-Tahrongi -- No phrase
-   49 noname
-   89 Grauberg [S] -- Nil for some reason 0x27 (Einherjar chambers are also nil)
-   119 Meriphataud Mountains -- Nil for some reason 0x14
-   127 Behemoth's Dominion -- Nil for some reason 0x14
-   131 Mordion Gaol -- No phrase
-   132 Abyssea-La Theine -- No phrase
-   133 noname
-   137 Castle Zvahl Baileys [S] -- No phrase
-   155 Castle Zvahl Keep [S] -- No phrase
-   156 Throne Room [S] -- No phrase
-   157 Middle Delkfutt's Tower -- Nil for some reason 0x14
-   158 Upper Delkfutt's Tower -- Nil for some reason 0x14
-   182 Walk of Echoes -- No phrase
-   183 Maquette Abdhaljs Legion -- No phrase
-   184 Lower Delkfutt's Tower -- Nil for some reason 0x14
-   189 noname
-   199 noname
-   210 noname
-   214 Residential Area
-   215 Abyssea-Attohwa -- No phrase
-   216 Abyssea-Misareaux -- No phrase
-   217 Abyssea-Vunkerl -- No phrase
-   218 Abyssea-Altepa -- No phrase
-   219 noname
-   220 Ship bound for Selbina -- No phrase
-   221 Ship bound for Mhaura -- No phrase
-   222 Provenance -- No phrase
-   223 San_dOria-Jeuno Airship -- No phrase
-   224 Bastok-Jeuno Airship -- No phrase
-   225 Windurst-Jeuno Airship -- No phrase
-   226 Kazham-Jeuno Airship -- No phrase
-   227 Ship bound for Selbina -- No phrase
-   228 Ship bound for Mhaura -- No phrase
-   229 noname
-   252 Norg -- Nill for some reason 0x14
-   253 Abyssea-Uleguerand -- No phrase
-   254 Abyssea-Grauberg -- No phrase
-   255 Abyssea-Empyreal Paradox -- No phrase
-   259 Rala Waterways U -- No phrase
-   263 Yorcia Weald -- No phrase
-   264 Yorcia Weald U -- No phrase
-   266 noname
-   267 noname
-   271 Cirdas Caverns U -- No phrase
-   272 noname
-   273 noname
-   274 noname
-   275 noname
-   276 noname
-   277 noname
-   278 noname
-   279 noname
-   280 noname
-   281 noname
-   282 noname
-   283 Silver Knife -- No phrase
-   284 Celennia Wexworth Memorial Library -- No phrase
-]]
+function onTrigger(player, zoneId)
+    local word  = "";
+    local i     = 0;
+    local zone  = zoneId;
 
------------------------------------
--- zone Action
------------------------------------
-
-function onTrigger(player,zoneID)
-   local word = "";
-   local i;
-   local zone = zoneID;
-
-
-   if (zoneID == nil) then
-	player:PrintToPlayer('You must enter a zoneID.');
-	return;
-   end
-
-   -- Byte 1 == FD means Auto-Translate likely
-   -- Byte 2 == 02 means Auto-Translate string
-   -- Byte 3 == Language code.  Ignore it for compatibility.
-   -- Byte 4 == Category.  0x14 is Place Names, 0x27 is Place Names 2
-   -- Byte 5 == identifier for the phrase.  Nils are apparently a thing, so discard those.
-   -- Byte 6 should be another FD
-
-   if (string.byte(zoneID,1) == 0xFD and string.byte(zoneID,2) == 2 and
-      string.byte(zoneID,5) ~= nil and string.byte(zoneID,6) == 0xFD) then -- Autotranslate string found
-      word = string.format("%X",string.byte(zoneID,5));
-      if (string.len(word) == 1) then -- Got a nibble, want a byte.
-         word = 0 ..word;
-      end
-      word = "x"..word;
-      if (string.byte(zoneID,4) == 0x14) then -- Place Names
-         -- print("Place Names - 0"..word);
-         zone = placenames[word]
-      elseif (string.byte(zoneID,4) == 0x27) then -- Place Names 2
-         -- print("Place Names 2 - 0"..word);
-         zone = placenames2[word];
-      end
-   --[[ Testing code in case categories change.
-   else
-      local byte;
-      for i = 1, string.len(zoneID) do
-         byte = string.format("%X",string.byte(zoneID,i));
-         if (string.len(byte) == 1) then
-            byte = 0 ..byte;
-         end
-         word = word..byte;
-      end
-      print("Bad format in @zone! String: 0x"..word);]]
-   end
-   player:setPos(0,0,0,0,zone);
-end;
+    -- Ensure a zone was given..
+    if (zoneId == nil) then
+        player:PrintToPlayer( "You must enter a zone id." );
+        return;
+    end
+    
+    -- Did the user enter a auto-translate word..
+    if (string.sub( zoneId, 1, 2) == '\253\02' and string.byte( zoneId, 5 ) ~= nil and string.byte( zoneId, 6 ) == 0xFD) then
+        -- Obtain the zone id word..
+        word = string.format( "%X", string.byte( zoneId, 5 ) );
+        print( 'Word is: ' .. word );
+        if (string.len( word ) == 1) then
+            word = 0 ..word;
+        end
+        word = "x" .. word;
+    
+        -- Place Names (List 1)
+        if (string.byte( zoneId, 4 ) == 0x14) then
+            zone = placenames_1[ word ];
+    
+        -- Place Names (List 2)
+        elseif (string.byte( zoneId, 4 ) == 0x27) then
+            zone = placenames_2[ word ];
+        end
+    end
+        
+    player:setPos( 0, 0, 0, 0, zone );
+end

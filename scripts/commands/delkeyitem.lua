@@ -1,13 +1,19 @@
------------------------------------
---	[Command name]: delkeyitem
---	[Author      ]: 
---	[Description ]: 
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: delkeyitem
+-- auth: <Unknown>
+-- desc: Deletes the given key item from the player.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = "i"
+};
 
-function onTrigger(player,keyID)
-	player:delKeyItem(keyID);
-end;
+function onTrigger(player, keyId)
+    if (keyId == nil or tonumber(keyId) == 0) then
+        player:PrintToPlayer("You must enter a valid keyitem id.");
+        return;
+    end
+    player:delKeyItem( keyId );
+end

@@ -1,13 +1,19 @@
------------------------------------
---	[Command name]: mp
---	[Author      ]: 
---	[Description ]: 
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: mp
+-- auth: <Unknown>
+-- desc: Sets the players mana.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = "i"
+};
 
-function onTrigger(player,mp)
-	player:setMP(mp);
-end;
+function onTrigger(player, mp)
+    if (mp == nil) then
+        player:PrintToPlayer("You must enter a valid amount.");
+        return;
+    end
+    player:setMP( mp );
+end

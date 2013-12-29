@@ -1,21 +1,25 @@
------------------------------------
---  [Command name]: set pvp flag on target
---  [Author      ]: Lautan
---  [Description ]: will make a target attackable
---
---  (@setpvp Lautan 1) pvp on
---  (@setpvp Lautan 0) pvp off
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: setpvp
+-- auth: Lautan
+-- desc: Sets a players pvp flag.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = "si"
+};
 
-function onTrigger(player,target,value)
-
-    local pc = GetPlayerByName(target);
-
-    if (pc ~= nil) then
-        -- pc:setPVPFlag(value);
+function onTrigger(player, target, value)
+    if (target == nil or value == nil) then
+        player:PrintToPlayer("You must enter a valid target name and value.");
+        return;
     end
-end;
+    
+    local targ = GetPlayerByName( target );
+    if (targ ~= nil) then
+        targ:setPVPFlag( value );
+    else
+        player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
+    end
+end

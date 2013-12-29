@@ -1,13 +1,19 @@
------------------------------------
---	[Command name]: cp
---	[Author      ]: 
---	[Description ]: 
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: cp
+-- auth: <Unknown>
+-- desc: Adds the given amount cp to the player.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = "i"
+};
 
-function onTrigger(player,cp)
-	player:addCP(cp);
-end;
+function onTrigger(player, cp)
+    if (cp == nil or tonumber(cp) == 0) then
+        player:PrintToPlayer("You must enter an amount.");
+        return;
+    end
+    player:addCP( cp );
+end

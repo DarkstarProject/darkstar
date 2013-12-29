@@ -1,23 +1,25 @@
------------------------------------
---	[Command name]: bring
---	[Author      ]: bluekirby0
---	[Description ]: brings a player to your position
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: bring
+-- auth: <Unknown>
+-- desc: Brings the target to the player.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = "s"
+};
 
-function onTrigger(player,target)
-	local pc = GetPlayerByName(target)
-	if(pc~=nil) then
-		zone = player:getZone();
-		targetX = player:getXPos();
-		targetY = player:getYPos();
-		targetZ = player:getZPos();
-		pc:setPos(targetX,targetY,targetZ,0,zone);
-	else
-		--printf("Player named %s not found!",target);
-		player:PrintToPlayer(string.format("Player named %s not found!",target));
-	end
-end;
+function onTrigger(player, target)
+    if (target == nil) then
+        player:PrintToPlayer("You must enter a target player name.");
+        return;
+    end
+
+    local targ = GetPlayerByName( target );
+    if (targ ~= nil) then
+        targ:setPos( player:getXPos(), player:getYPos(), player:getZPos(), 0, player:getZone() );    
+    else
+        player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
+    end
+end

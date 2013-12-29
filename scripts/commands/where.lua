@@ -1,13 +1,15 @@
------------------------------------
---	[Command name]: where
---	[Author      ]: 
---	[Description ]: 
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: where
+-- auth: <Unknown>
+-- desc: Tells the player about their current position.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = ""
+};
 
 function onTrigger(player)
-	player:showPosition();
-end;
+    player:showPosition();
+end

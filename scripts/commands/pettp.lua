@@ -1,13 +1,19 @@
------------------------------------
---	[Command name]: pettp
---	[Author      ]: 
---	[Description ]: 
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: pettp
+-- auth: <Unknown>
+-- desc: Sets the players pet tp.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = "i"
+};
 
-function onTrigger(player,tp)
-	player:petTP(tp);
-end;
+function onTrigger(player, tp)
+    if (player:getPet() == nil or tp == nil) then
+        return;
+    end
+    
+    player:getPet():addTP( tp );
+end

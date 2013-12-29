@@ -1,13 +1,15 @@
------------------------------------
---	[Command name]: release
---	[Author      ]: 
---	[Description ]: 
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: release
+-- auth: <Unknown>
+-- desc: Releases the player from current events.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = ""
+};
 
 function onTrigger(player)
-	player:release();
-end;
+    player:release();
+end

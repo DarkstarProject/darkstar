@@ -1,14 +1,29 @@
------------------------------------
---	[Command name]: set a players level
---	[Author      ]: link
---	[Description ]: (@setplayerlevel Link 75) will links level to 75
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: setplayerlevel
+-- auth: Link
+-- desc: Sets the target players level.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = "si"
+};
 
-function onTrigger(player,target,level)
-	local pc = GetPlayerByName(target);
-	pc:setLevel(level);
-end;
+function onTrigger(player, target, level)
+    if (target == nil) then
+        target = player:getName();
+    end
+    
+    if (level == nil or level < 1 or level > 99) then
+        player:PrintToPlayer("You must enter a valid level between 1 and 99.");
+        return;
+    end
+    
+    local targ = GetPlayerByName( target );
+    if (targ ~= nil) then
+        targ:setLevel( level );
+    else
+        player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
+    end
+end

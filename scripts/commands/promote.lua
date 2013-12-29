@@ -1,26 +1,44 @@
-------------------------------
---
--- @promote <player> <level>
--- Promotes a player to a new GM level
--- Cannot promote higher than or to the level of the player using this command
---
-------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: promote
+-- auth: ZeDingo :: Modded by atom0s.
+-- desc: Promotes the player to a new GM level.
+---------------------------------------------------------------------------------------------------
 
-function onTrigger(player,targetname,level)
-	local target = GetPlayerByName(targetname);
+cmdprops =
+{
+    permission = 1,
+    parameters = "si"
+};
 
-	if(level < 0) then
-		level = 0;
-	end;
-	if(target:getGMLevel() < player:getGMLevel()) then -- cannot change the level of a higher GM
-		if(level < player:getGMLevel()) then -- cannot set a player to higher than yourself
-			target:setGMLevel(level);
-			--printf("Target: %s || New level: %u",target:getName(),level);
-		else
-			--printf("Target's new level is too high");
-			player:PrintToPlayer("Target's new level is too high.");
-		end;
-	else
-		printf("%s attempting to adjust higher GM: %s",player:getName(),target:getName());
-	end;
-end;
+function onTrigger(player, target, level)
+    if (level == nil) then
+        level = target;
+        target = player:getName();
+    end
+    
+    if (target == nil) then
+        target = player:getName();
+    end
+
+    -- Validate the target..
+    local targ = GetPlayerByName( target );
+    if (targ == nil) then
+        player:PrintToPlayer( string.format( "Invalid player '%s' given.", target ) );
+        return;
+    end
+    
+    -- Validate the level..
+    if (level < 0) then 
+        level = 0;
+    end
+    
+    if (targ:getGMLevel() < player:getGMLevel()) then
+        if (level < player:getGMLevel()) then
+            targ:setGMLevel(level);
+        else
+            player:PrintToPlayer( "Target's new level is too high." );
+        end
+    else
+        printf( "%s attempting to adjust higher GM: %s", player:getName(), targ:getName() );
+    end
+end

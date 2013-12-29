@@ -1,13 +1,19 @@
------------------------------------
---	[Command name]: setgil
---	[Author      ]: 
---	[Description ]: 
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: setgil
+-- auth: <Unknown>
+-- desc: Sets the players gil.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = "i"
+};
 
-function onTrigger(player,quantity)
-	player:setGil(quantity);
-end;
+function onTrigger(player, amount)
+    if (amount == nil) then
+        player:PrintToPlayer("You must enter a valid amount id.");
+        end
+    end
+    player:setGil( amount );
+end

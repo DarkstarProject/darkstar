@@ -1,13 +1,15 @@
------------------------------------
---	[Command name]: updateservermessage
---	[Author      ]: 
---	[Description ]: 
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: updateservermessage
+-- auth: <Unknown>
+-- desc: Updates the server message if it has been edited.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = ""
+};
 
-function onTrigger(player,lang,message)
-	UpdateServerMessage();
-end;
+function onTrigger(player)
+    UpdateServerMessage();
+end

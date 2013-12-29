@@ -28,69 +28,21 @@
 #include "../common/lua/lua.hpp"
 #include "../common/showmsg.h"
 
-//#include "lua/lua_baseentity.h"
-
 #include <string>
 #include <list>
-
-#define USERLEVEL_ALL		0xff
-#define USERLEVEL_PLAYER	0x01
-#define USERLEVEL_GM		0x02
-#define USERLEVEL_SGM		0x04
-
-/************************************************************************
-*																		*
-*  Структура инициализирующего файла CmdHandler, представлена			*
-*  записями следующего типа.											*
-*																		*
-************************************************************************/
-
-const uint32 MaxCmdNameSize  = 32;
-const uint32 MaxCmdPathSize  = 256;
-const uint32 MaxAmntParams   = 6;
-const uint32 MaxReturnValues = 6;
-const uint32 MaxLineSize     = MaxCmdNameSize+MaxCmdPathSize+MaxAmntParams+24;
-
-struct cmd_t
-{
-	std::string  CmdName;
-	std::string  CmdPath;
-	uint8        CmdPermissionLvl;
-	std::string  CmdParameters;
-};
-
-typedef std::list<cmd_t> ListCmds_t;
-
-/************************************************************************
-*																		*
-*																		*
-*																		*
-************************************************************************/
 
 class CCharEntity;
 
 class CCommandHandler
 {
-	lua_State*		m_LState;			// handle lvm
-	std::string		m_CmdInIPath;		// path to cmds descriptions
-	ListCmds_t		m_ListCmds;			// list exitsing commands
+    lua_State*      m_LState;
 
 public:
+    CCommandHandler()   {}
+    ~CCommandHandler()  {}
 
-	CCommandHandler()
-	{
-		//char BuffString[256];
-		//GetCurrentDirectory(256,BuffString);
-		//std::string BuffString;
-		//m_CmdInIPath = BuffString;
-		//m_CmdInIPath += InitCmdInIPath;
-	};
-
-	bool	init(const int8* InitCmdInIPath, lua_State* InitLState);	// Инициализация списка команд.
-	bool	free();														// Освобождение занятых заранее ресурсов 
-
-	int32	call(CCharEntity* PChar, const int8* commandline);			// Вызов сценария.
-
-	~CCommandHandler() {}
+    void  init(lua_State* L);
+    int32 call(CCharEntity* PChar, const int8* commandline);
 };
+
 #endif

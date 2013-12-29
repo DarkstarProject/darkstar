@@ -1,13 +1,15 @@
------------------------------------
---	[Command name]: spawnmob
---	[Author      ]: 
---	[Description ]: 
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: spawnmob
+-- auth: <Unknown>
+-- desc: Spawns a mob.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = "i"
+};
 
-function onTrigger(player,mobid)
-	SpawnMob(mobid);
-end;
+function onTrigger(player, mobId)
+    SpawnMob( mobId );
+end

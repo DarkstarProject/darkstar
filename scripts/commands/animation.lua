@@ -1,13 +1,20 @@
------------------------------------
---	[Command name]: animation
---	[Author      ]: 
---	[Description ]: 
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: animation
+-- auth: <Unknown> :: Modded by atom0s.
+-- desc: Sets the players current animation.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = "i"
+};
 
-function onTrigger(player,animation)
-	player:setAnimation(animation);
-end;
+function onTrigger(player, animationId)
+    if (animationId == nil) then
+        player:PrintToPlayer( string.format( "Current player animation: %d", player:getAnimation() ) );
+        return;
+    end
+
+    player:setAnimation( animationId );
+end

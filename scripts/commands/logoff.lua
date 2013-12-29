@@ -1,19 +1,24 @@
------------------------------------
---	[Command name]: logoff
---	[Author      ]: bluekirby0
---	[Description ]: Forcibly log another character out of the game.
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: logoff
+-- auth: bluekirby0
+-- desc: Logs the target player off by force.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = "s"
+};
 
-function onTrigger(player,target)
-	local pc = GetPlayerByName(target)
-	if(pc~=nil) then
-		pc:leavegame();
-	else
-		--printf("Player named %s not found!",target);
-		player:PrintToPlayer(string.format("Player named %s not found!",target));
-	end
-end;
+function onTrigger(player, target)
+    if (target == nil) then
+        target = player:getName();
+    end
+    
+    local targ = GetPlayerByName( target );
+    if (targ ~= nil) then
+        targ:leavegame();
+    else
+        player:PrintToPlayer( string.format( "Invalid player '%s' given.", target ) );
+    end
+end

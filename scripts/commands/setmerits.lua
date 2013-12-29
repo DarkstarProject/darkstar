@@ -1,13 +1,19 @@
------------------------------------
---	[Command name]: setmerits
---	[Author      ]: 
---	[Description ]: 
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: setmerits
+-- auth: <Unknown>
+-- desc: Sets the players current merit count.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = "i"
+};
 
-function onTrigger(player,quantity)
-	player:setMerits(quantity);
-end;
+function onTrigger(player, amount)
+    if (amount == nil) then
+        player:PrintToPlayer("You must enter a valid amount.");
+        return;
+    end
+    player:setMerits( amount );
+end

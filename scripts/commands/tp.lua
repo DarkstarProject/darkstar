@@ -1,19 +1,25 @@
------------------------------------
---	[Command name]: tp
---	[Author      ]:
---	[Description ]:
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: tp
+-- auth: <Unknown>
+-- desc: Sets a players tp.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = "i"
+};
 
-function onTrigger(player,tp)
-    player:setTP(tp);
-
-    -- set pet tp too
-    local pet = player:getPet();
-    if(pet ~= nil) then
-    	pet:setTP(tp);
+function onTrigger(player, tp)
+    if (tp == nil) then
+        player:PrintToPlayer("You must enter a valid amount.");
+        return;
     end
-end;
+    
+    player:setTP( tp );
+    
+    local pet = player:getPet();
+    if (pet ~= nil) then
+        pet:setTP( tp );
+    end
+end

@@ -1,19 +1,27 @@
------------------------------------
---      [Command name]: addquest
---      [Author      ]:
---      [Description ]:
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: addquest
+-- auth: <Unknown>
+-- desc: Adds a quest to the given targets log.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = "iis"
+};
 
-function onTrigger(player,logID,missionID,victim)
-        local target = GetPlayerByName(victim);
-        if (target == nil) then
-                target = player;
-        end
-        if(missionID ~= nil and logID ~= nil) then
-                target:addQuest(logID,missionID);
-        end
-end;
+function onTrigger(player, logId, questId, target)
+    if (questId == nil or logId == nil) then
+        player:PrintToPlayer( "You must enter a valid log id and quest id!" );
+        return;
+    end
+    
+    if (target == nil) then
+        target = player:getName();
+    end
+    
+    local targ = GetPlayerByName( target );
+    if (targ ~= nil) then
+        targ:addQuest( logId, questId );
+    end
+end

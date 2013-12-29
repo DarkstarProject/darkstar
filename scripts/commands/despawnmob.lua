@@ -1,13 +1,15 @@
------------------------------------
---	[Command name]: despawnmob
---	[Author      ]: 
---	[Description ]: 
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: despawnmob
+-- auth: <Unknown>
+-- desc: Despawns the given mob.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = "i"
+};
 
-function onTrigger(player,mobid)
-	DespawnMob(mobid);
-end;
+function onTrigger(player, mobId)
+    DespawnMob( mobId );
+end

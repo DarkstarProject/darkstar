@@ -1,22 +1,24 @@
------------------------------------
---	[Command name]: homepoint
---	[Author      ]: bluekirby0
---	[Description ]: If a player name is specified, warps the player to their homepoint. 
---                  If no name is specified, warp yourself.
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: homepoint
+-- auth: bluekirby0
+-- desc: Sends the target to their homepoint.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = "s"
+};
 
-function onTrigger(player,target)
-	local pc = GetPlayerByName(target);
-	if(pc~=nil) then
-		pc:warp();
-	elseif(target==nil) then
-		player:warp();
-	else
-		--printf("Player named %s not found!",target);
-		player:PrintToPlayer(string.format("Player named %s not found!",target));
-	end
-end;
+function onTrigger(player, target)
+    if (target == nil) then
+        target = player:getName();
+    end
+
+    local targ = GetPlayerByName( target );
+    if (targ ~= nil) then
+        targ:warp();
+    else
+        player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
+    end
+end

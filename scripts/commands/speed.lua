@@ -1,15 +1,15 @@
------------------------------------
---	[Command name]: speed
---	[Author      ]: 
---	[Description ]: 
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: speed
+-- auth: <Unknown> 
+-- desc: Sets the players movement speed.
+---------------------------------------------------------------------------------------------------
 
-require("scripts/globals/status");
+cmdprops =
+{
+    permission = 1,
+    parameters = "i"
+};
 
------------------------------------
--- Action
------------------------------------
-
-function onTrigger(player,speed)
-	player:speed(speed);
-end;
+function onTrigger(player, speed)
+    player:speed( speed );
+end

@@ -1,29 +1,25 @@
------------------------------------
---	[Command name]: goto
---	[Author      ]: bluekirby0
---	[Description ]: puts you at target's position
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: goto
+-- auth: bluekirby0
+-- desc: Goes to the target player.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = "s"
+};
 
-function onTrigger(player,target)
-
+function onTrigger(player, target)
     if (target == nil) then
-		player:PrintToPlayer('You did not enter a character name.');
-		return;
-	end
-
-	local pc = GetPlayerByName(target)
-	if(pc~=nil) then
-		zone = pc:getZone();
-		targetX = pc:getXPos();
-		targetY = pc:getYPos();
-		targetZ = pc:getZPos();
-		player:setPos(targetX,targetY,targetZ,0,zone);
-	else
-		--printf("Player named %s not found!",target);
-		player:PrintToPlayer(string.format("Player named %s not found!",target));
-	end
-end;
+        player:PrintToPlayer("You must enter a valid player name.");
+        return;
+    end
+    
+    local targ = GetPlayerByName( target );
+    if (targ ~= nil) then
+        player:setPos( targ:getXPos(), targ:getYPos(), targ:getZPos(), 0, targ:getZone() );    
+    else
+        player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
+    end
+end

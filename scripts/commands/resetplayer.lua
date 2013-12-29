@@ -1,14 +1,15 @@
------------------------------------
---	[Command name]: resetplayer Link
---	[Author      ]: link
---	[Description ]: will clear players account session + warp them to jeuno
---
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: resetplayer
+-- auth: Link
+-- desc: Resets a targets account session and warps them to Jeuno.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = "s"
+};
 
-function onTrigger(player,target)
-	player:resetPlayer(target);
-end;
+function onTrigger(player, target)
+    player:resetPlayer( target );
+end

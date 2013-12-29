@@ -1,19 +1,27 @@
------------------------------------
---	[Command name]: completequest
---	[Author      ]: 
---	[Description ]: 
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: completequest
+-- auth: <Unknown>
+-- desc: Completes the given quest for the target player.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = "iis"
+};
 
-function onTrigger(player,logID,missionID,victim)
-	local target = GetPlayerByName(victim);
-	if (target == nil) then
-		target = player;
-	end
-	if(missionID ~= nil and logID) then
-		target:completeQuest(logID,missionID);
-	end
-end;
+function onTrigger(player, logId, questId, target)
+    if (questId == nil or logId == nil) then
+        player:PrintToPlayer( "You must enter a valid log id and quest id!" );
+        return;
+    end
+    
+    if (target == nil) then
+        target = player:getName();
+    end
+    
+    local targ = GetPlayerByName( target );
+    if (targ ~= nil) then
+        targ:completeQuest( logId, questId );
+    end
+end

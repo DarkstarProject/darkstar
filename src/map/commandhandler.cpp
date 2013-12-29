@@ -22,227 +22,185 @@
 */
 
 #include <sstream>
-
 #include "commandhandler.h"
 #include "entities/charentity.h"
-
 #include "lua/lua_baseentity.h"
 
-#include "packets/message_debug.h"
-
-
-/************************************************************************
-*																		*
-*																		*
-*																		*
-************************************************************************/
-
-bool CCommandHandler::init(const int8* InitCmdInIPath, lua_State* InitLState)
+void CCommandHandler::init(lua_State* L)
 {
-	m_CmdInIPath = InitCmdInIPath;
-	m_LState = InitLState;
-	if( luaL_loadfile(m_LState,m_CmdInIPath.c_str()) || lua_pcall(m_LState,0,0,0) )
-	{
-		ShowError("cmdhandler::init: Error - %s",lua_tostring(m_LState,-1));
-		lua_pop(m_LState,1);
-		return false;
-	}
-
-	lua_pushstring(m_LState,"commands_ini");
-	lua_gettable(m_LState,LUA_GLOBALSINDEX);
-
-	if( lua_isnil(m_LState,-1) || !lua_istable(m_LState,-1) )
-	{
-		ShowError("cmdhandler::init: Error - Can't load main table commands_ini\n");
-		return false;
-	}
-
-	lua_pushnil(m_LState);
-	while( lua_next(m_LState,-2) )
-	{
-		if( !lua_istable(m_LState,-1) )
-		{
-			ShowWarning("cmdhandler::init: Error can't load command table at line %d\n",lua_tonumber(m_LState,-2));
-			lua_pop(m_LState,-1);
-			continue;
-		}
-		cmd_t SomthCmds;
-
-		/*getting cmd name*/
-		lua_pushstring(m_LState,"name");
-		lua_gettable(m_LState,-2);
-		if(lua_tostring(m_LState,-1) != NULL)
-		{
-			SomthCmds.CmdName = lua_tostring(m_LState,-1);
-			lua_pop(m_LState,1);
-		}else{
-			ShowWarning("cmdhandler::init:can't load cmd's name, line %d",m_ListCmds.size()+1);
-			lua_pop(m_LState,1);
-			continue;
-		};
-		/*getting cmd path*/
-		lua_pushstring(m_LState,"path");
-		lua_gettable(m_LState,-2);
-		
-		if(lua_tostring(m_LState,-1) != NULL)
-		{
-			SomthCmds.CmdPath = lua_tostring(m_LState,-1);
-			lua_pop(m_LState,1);
-		}else{
-			SomthCmds.CmdPath = m_CmdInIPath;
-		};
-		/*getting cmd permission level*/
-		lua_pushstring(m_LState,"permission");
-		lua_gettable(m_LState,-2);
-		if( lua_tostring(m_LState,-1) != NULL )
-		{
-			SomthCmds.CmdPermissionLvl = lua_tointeger(m_LState,-1);
-			/*pop key and value*/
-			lua_pop(m_LState,1);
-		}
-		/*getting cmd parameters*/
-		lua_pushstring(m_LState,"parameters");
-		lua_gettable(m_LState,-2);
-		if( lua_tostring(m_LState,-1) != NULL )
-		{
-			SomthCmds.CmdParameters = lua_tostring(m_LState,-1);
-			/*pop key and value*/
-			lua_pop(m_LState,1);
-		}
-		m_ListCmds.push_back(SomthCmds);
-		/*pop somthcommand table*/
-		lua_pop(m_LState,1);
-	}
-	/*pop commands_ini table*/
-	lua_pop(m_LState,1);
-	ShowStatus("cmdhandler::init: initializing...\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
-	return true;
+    DSP_DEBUG_BREAK_IF(L == NULL);
+    m_LState = L;
 }
-
-/************************************************************************
-*																		*
-*																		*
-*																		*
-************************************************************************/
-
-bool CCommandHandler::free()
-{
-	m_ListCmds.clear();
-	return true;
-}
-
-/************************************************************************
-*																		*
-*																		*
-*																		*
-************************************************************************/
 
 int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
 {
-	std::istringstream clstream(commandline);
-	std::string cmdname;
-	clstream >> cmdname;
+    std::istringstream clstream(commandline);
+    std::string cmdname;
+    clstream >> cmdname;
 
-	if( cmdname.empty()) 
-	{
-		ShowError("cmdhandler::call: function name is empty\n"); 
-		return -1;
-	}
+    if (cmdname.empty())
+    {
+        ShowError("cmdhandler::call: function name was empty\n");
+        return -1;
+    }
 
-	const cmd_t* CmdHandler = 0;
-	for( ListCmds_t::iterator cmd_iter = m_ListCmds.begin(); cmd_iter != m_ListCmds.end(); ++cmd_iter)
-	{
-		if( (*cmd_iter).CmdName == cmdname )
-		{
-			CmdHandler = &(*cmd_iter);
-			break;
-		}
-	}
-	if (CmdHandler == 0) 
-	{
-		//PChar->pushPacket(new CMessageDebugPacket(PChar,PChar,0,0,27));
-		//ShowDebug("cmdhandler::call: function <%s> not found\n", cmdname.c_str());
-		return -1;
-	}
-	if(CmdHandler->CmdPermissionLvl > PChar->m_GMlevel)
-	{
-		ShowWarning("cmdhandler::call: Character %s attempting to use higher permission command %s\n",PChar->name.c_str(),CmdHandler->CmdName.c_str());
-		return -1;
-	}
+    int8 filePath[255] = { 0 };
+    snprintf(filePath, sizeof(filePath), "scripts/commands/%s.lua", cmdname.c_str());
 
-	//Загрузка файла команды.
-	if( luaL_loadfile(m_LState,std::string(CmdHandler->CmdPath+"/"+CmdHandler->CmdName+".lua").c_str()) ||
-		lua_pcall(m_LState,0,0,0) )
-	{
-		ShowError("cmdhandler::call: %s\n",lua_tostring(m_LState,-1));
-		lua_pop(m_LState,1);
-		return -1;
-	}
+    if (luaL_loadfile(m_LState, filePath) || lua_pcall(m_LState, 0, 0, 0))
+    {
+        ShowError("cmdhandler::call: (%s): %s\n", cmdname.c_str(), lua_tostring(m_LState, -1));
+        lua_pop(m_LState, 1);
+        return -1;
+    }
 
-	//Загрузка адреса функции в стек.
-	lua_pushstring(m_LState, "onTrigger");
-	lua_gettable(m_LState,LUA_GLOBALSINDEX);
+    lua_getfield(m_LState, LUA_GLOBALSINDEX, "cmdprops");
+    if (lua_isnil(m_LState, -1) || !lua_istable(m_LState, -1))
+    {
+        lua_pop(m_LState, -1);
+        ShowError("cmdhandler::call: (%s): Undefined 'cmdprops' table\n", cmdname.c_str());
+        return -1;
+    }
 
-	if( lua_isnil(m_LState,-1) || !lua_isfunction(m_LState,-1) )
-	{
-		ShowError("cmdhandler::call: can't load the function: onTrigger\n");
-		lua_pop(m_LState,-1);
-		return -1;
-	}
+    // Attempt to obtain the command permissions..
+    lua_pushstring(m_LState, "permission");
+    lua_gettable(m_LState, -2);
 
-	//Добавление самого первого параметра
-	CLuaBaseEntity LuaCmdCaller(PChar);
-	int32 cntparam = 0;
-	if( PChar != NULL )
-	{
-		Lunar<CLuaBaseEntity>::push(m_LState,&LuaCmdCaller);
-		cntparam += 1;
-	}
+    if (lua_isnil(m_LState, -1) || !lua_isnumber(m_LState, -1))
+    {
+        lua_pop(m_LState, -1);
+        ShowError("cmdhandler::call: (%s): Invalid or no permission field set in cmdprops\n", cmdname.c_str());
 
-	/* цикл просмотра строки передаваемых значений*/
-	std::string::const_iterator param_iter = CmdHandler->CmdParameters.begin();
-	
-	std::string param;
-	while( param_iter != CmdHandler->CmdParameters.end() &&
-		   !clstream.eof() )
-	{
-		clstream >> param;
-		switch( *param_iter )
-		{
-			case 's':
-			{
-				++cntparam;
-				lua_pushstring(m_LState,param.c_str());
-			}
-				break;
-			case 'i':
-			{
-				int32 buff_val = atoi(param.c_str());
-				lua_pushnumber(m_LState,buff_val);
-				++cntparam;	
-			}
-				break;
-			case 'd':
-			{
-				double buff_val = atof(param.c_str());
-				lua_pushnumber(m_LState,buff_val);
-				++cntparam;	
-			}
-				break;
-			default:
-				ShowError("cmdhandler::call: undefined type symbol:%s\n",*param_iter);
-		};
-		++param_iter;
-	}
+        // Delete the cmdprops table..
+        lua_pushnil(m_LState);
+        lua_setglobal(m_LState, "cmdprops");
 
-	//Вызов функции.
-	int32 status = lua_pcall(m_LState,cntparam,0,0);
-	if( status )
-	{
-		ShowError("cmdhandler::call: %s\n", lua_tostring(m_LState,-1));
-		lua_pop(m_LState,1);
-		return -1;
-	}
-	return 0;
+        return -1;
+    }
+
+    int8 permission = lua_tonumber(m_LState, -1);
+    lua_pop(m_LState, 1); // pop number..
+
+    // Attempt to obtain the command parameters..
+    lua_pushstring(m_LState, "parameters");
+    lua_gettable(m_LState, -2);
+
+    if (lua_isnil(m_LState, -1) || !lua_isstring(m_LState, -1))
+    {
+        lua_pop(m_LState, -1);
+        ShowError("cmdhandler::call: (%s): Invalid or no parameter field set in cmdprops\n", cmdname.c_str());
+
+        // Delete the cmdprops table..
+        lua_pushnil(m_LState);
+        lua_setglobal(m_LState, "cmdprops");
+
+        return -1;
+    }
+
+    const int8* parameters = luaL_checkstring(m_LState, -1);
+    if (parameters == NULL)
+    {
+        lua_pop(m_LState, -1);
+        ShowError("cmdhandler::call: (%s): Invalid or no parameter field set in cmdprops\n", cmdname.c_str());
+
+        // Delete the cmdprops table..
+        lua_pushnil(m_LState);
+        lua_setglobal(m_LState, "cmdprops");
+
+        return -1;
+    }
+
+    lua_pop(m_LState, 1); // pop string..
+    lua_pop(m_LState, 1); // pop table..
+
+    // Ensure this user can use this command..
+    if (permission > PChar->m_GMlevel)
+    {
+        ShowWarning("cmdhandler::call: Character %s attempting to use higher permission command %s\n", PChar->name.c_str(), cmdname.c_str());
+
+        // Delete the cmdprops table..
+        lua_pushnil(m_LState);
+        lua_setglobal(m_LState, "cmdprops");
+
+        return -1;
+    }
+
+    // Ensure the onTrigger function exists for this command..
+    lua_pushstring(m_LState, "onTrigger");
+    lua_gettable(m_LState, LUA_GLOBALSINDEX);
+    if (lua_isnil(m_LState, -1) || !lua_isfunction(m_LState, -1))
+    {
+        lua_pop(m_LState, -1);
+        ShowError("cmdhandler::call: (%s) missing onTrigger function\n", cmdname.c_str());
+
+        // Delete the cmdprops table..
+        lua_pushnil(m_LState);
+        lua_setglobal(m_LState, "cmdprops");
+
+        return -1;
+    }
+
+    // Push the calling character (if exists)..
+    CLuaBaseEntity LuaCmdCaller(PChar);
+    int32 cntparam = 0;
+    if (PChar != NULL)
+    {
+        Lunar<CLuaBaseEntity>::push(m_LState, &LuaCmdCaller);
+        cntparam += 1;
+    }
+
+    // Prepare parameters..
+    std::string param;
+    std::string cmdparameters(parameters);
+    std::string::const_iterator paramiter = cmdparameters.cbegin();
+
+    // Parse and push parameters based on symbol string..
+    while (paramiter != cmdparameters.cend() && !clstream.eof())
+    {
+        clstream >> param;
+
+        switch (*paramiter)
+        {
+        case 's':
+            lua_pushstring(m_LState, param.c_str());
+            ++cntparam;
+            break;
+
+        case 'i':
+            lua_pushnumber(m_LState, atoi(param.c_str()));
+            ++cntparam;
+            break;
+
+        case 'd':
+            lua_pushnumber(m_LState, atof(param.c_str()));
+            ++cntparam;
+            break;
+
+        default:
+            ShowError("cmdhandler::call: (%s) undefined type for param; symbol: %s\n", cmdname.c_str(), *paramiter);
+            break;
+        }
+
+        ++paramiter;
+    }
+
+    // Call the function..
+    int32 status = lua_pcall(m_LState, cntparam, 0, 0);
+    if (status)
+    {
+        ShowError("cmdhandler::call: (%s) error: %s\n", cmdname.c_str(), lua_tostring(m_LState, -1));
+        lua_pop(m_LState, -1);
+
+        // Delete the cmdprops table..
+        lua_pushnil(m_LState);
+        lua_setglobal(m_LState, "cmdprops");
+
+        return -1;
+    }
+
+    // Delete the cmdprops table..
+    lua_pushnil(m_LState);
+    lua_setglobal(m_LState, "cmdprops");
+
+    return 0;
 }
-

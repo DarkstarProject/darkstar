@@ -1,13 +1,16 @@
------------------------------------
---	[Command name]: cap All Skills
---	[Author      ]: 
---	[Description ]: GM command
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: capallskills
+-- auth: <Unknown>
+-- desc: Caps all the players skills.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = ""
+};
 
 function onTrigger(player)
-	player:capAllSkills();
-end;
+    player:capAllSkills();
+    player:PrintToPlayer( 'All skills capped!' );
+end

@@ -1,27 +1,26 @@
------------------------------------
---	[Command name]: sets a players variable
---	[Author      ]: link
---	
--- DO NOT USE UNLESS YOU UNDERSTAND WHAT IT DOES
--- Miss use can destroy a players mission, quest satus
---
--- example:
---
--- @setplayervar Link zilartstatus 1
--- will set links zilartstatus to 1 
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: setplayervar
+-- auth: Link
+-- desc: Sets a variable on the target player.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = "ssi"
+};
 
-function onTrigger(player,target,variable,value)
+function onTrigger(player, target, variable, value)
+    if (target == nil or variable == nil) then
+        player:PrintToPlayer("You must enter a valid target name and variable name.");
+        return;
+    end
+    
+    local targ = GetPlayerByName( target );
+    if (targ ~= nil) then
+        targ:setVar(variable, value);
+    else
+        player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
+    end
 
-	if (target == nil or variable == nil or value == nil) then
-		player:PrintToPlayer('Incorrect parameters. Expecting: PlayerName Variable Value');
-		return;
-	end
-
-	local pc = GetPlayerByName(target);
-	pc:setVar(variable,value);
-end;
+end

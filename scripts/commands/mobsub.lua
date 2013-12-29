@@ -1,20 +1,18 @@
------------------------------------
---	[Command name]: mobsub
---	[Author      ]: PrBlahBlahtson
---	[Description ]: Changes the animationsub of a mob for testing purposes.
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: mobsub
+-- auth: PrBlahBlahtson
+-- desc: Changes the sub-animation of the given mob. (For testing purposes.)
+---------------------------------------------------------------------------------------------------
 
--- Usage: @mobsub mobid value
--- Values should be 0-3.
--- Command has been hard limited to prevent possible overflow issues.  No mobs seem to respond uniquely to 4+ yet.
+cmdprops =
+{
+    permission = 1,
+    parameters = "ii"
+};
 
------------------------------------
--- Action
------------------------------------
-
-function onTrigger(player, target, anim)
-	local mob = GetMobByID(target);
-	if (mob ~= nil) and (anim ~= nil and anim < 4) then
-		GetMobByID(target):AnimationSub(anim);
-	end
-end;
+function onTrigger(player, target, animationId)
+    local mob = GetMobByID( target );
+    if (mob ~= nil and animationId ~= nil and animationId < 4) then
+        mob:AnimationSub( animationId );
+    end
+end

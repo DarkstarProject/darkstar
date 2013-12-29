@@ -1,13 +1,19 @@
------------------------------------
---	[Command name]: cs
---	[Author      ]: 
---	[Description ]: 
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: cs
+-- auth: <Unknown>
+-- desc: Starts the given event for the player.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = "siiiiiiii"
+};
 
-function onTrigger(player,csid,op1,op2,op3,op4,op5,op6,op7,op8)
-	player:startEvent(csid,op1,op2,op3,op4,op5,op6,op7,op8);
-end;
+function onTrigger(player, csid, op1, op2, op3, op4, op5, op6, op7, op8)
+    if (csid == nil) then
+        player:PrintToPlayer("You must enter a cutscene id.");
+        return;
+    end
+    player:startEvent(csid, op1, op2, op3, op4, op5, op6, op7, op8);
+end

@@ -1,30 +1,37 @@
------------------------------------
---	[Command name]: give item to player
---	[Author      ]: link
---	[Description ]: will give item to player
---
---	(@giveitem Link 17440) will give link 1 kraken club
---	(@giveitem Link 1179 99) will give link 99x shihei
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: giveitem
+-- auth: Link :: Modded by atom0s.
+-- desc: Gives an item to the target player.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = "sii"
+};
 
-function onTrigger(player,target,itemID,quantity)
-
-	local pc = GetPlayerByName(target);
-    
-    if (pc ~= nil) then
-        local TextIDs = "scripts/zones/" .. pc:getZoneName() .. "/TextIDs";
-        package.loaded[TextIDs] = nil;
-        require(TextIDs);
-
-        if (pc:getFreeSlotsCount() == 0) then 
-            pc:messageSpecial(ITEM_CANNOT_BE_OBTAINED,itemID);
-        else 
-            pc:addItem(itemID,quantity);
-            pc:messageSpecial(ITEM_OBTAINED,itemID);
-        end
+function onTrigger(player, target, itemId, amount)
+    if (target == nil or itemId == nil) then
+        player:PrintToPlayer("You must enter a valid player name and item id.");
+        return;
     end
-end;
+        
+    local targ = GetPlayerByName( target );
+    if (targ == nil) then
+        player:PrintToPlayer( string.format( "Invalid player '%s' given.", target ) );
+        return;
+    end
+
+    -- Load needed text ids for players current zone..
+    local TextIDs = "scripts/zones/" .. player:getZoneName() .. "/TextIDs";
+    package.loaded[TextIDs] = nil;
+    require(TextIDs); 
+    
+    -- Attempt to give the target the item..
+    if (targ:getFreeSlotsCount() == 0) then
+        player:PrintToPlayer( string.format( "Player '%s' does not have free space for that item!", target ) );
+    else
+        targ:addItem( itemId, amount );
+        targ:messageSpecial( ITEM_OBTAINED, itemId );
+    end
+end

@@ -1,22 +1,25 @@
------------------------------------
---	[Command name]: animatenpc
---	[Author      ]: PrBlahBlahtson
---	[Description ]: Changes the animation of an NPC for testing purposes.
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: animatenpc
+-- auth: PrBlahBlahtson
+-- desc: Changes the animation of the given npc. (For testing purposes.)
+---------------------------------------------------------------------------------------------------
 
--- Usage: @animatenpc npcid value
+cmdprops =
+{
+    permission = 1,
+    parameters = "ii"
+};
 
------------------------------------
--- Action
------------------------------------
+function onTrigger(player, npcId, animationId)
+    if (npcId ~= nil and animationId ~= nil) then
+        local npc = GetNPCByID( npcId );
+        if (npc == nil) then return; end
 
-function onTrigger(player, npc, anim)
-
-	if (npc ~= nil and anim ~= nil) then
-        local oldanim = GetNPCByID(npc):getAnimation();
-        GetNPCByID(npc):setAnimation(anim);
-        --printf("NPC ID: %i | Old animation: %i | New animation: %i\n", npc, oldanim, anim);
-		player:PrintToPlayer(string.format("NPC ID: %i | Old animation: %i | New animation: %i\n", npc, oldanim, anim));
+        local oldAnimiation = npc:getAnimation();
+        npc:setAnimation( animationId );
+        
+        player:PrintToPlayer(string.format("NPC ID: %i | Old animation: %i | New animation: %i\n", npcId, oldAnimiation, animationId));
+    else
+        player:PrintToPlayer("You must enter a valid npcid and animation id.");
     end
-
-end;
+end

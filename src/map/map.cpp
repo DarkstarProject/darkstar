@@ -143,7 +143,7 @@ int32 do_init(int32 argc, int8** argv)
 	ShowMessage("\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 
 	luautils::init();
-	CmdHandler.init("conf/commands.conf", luautils::LuaHandle);
+    CmdHandler.init(luautils::LuaHandle);
     PacketParserInitialize();
 	SqlHandle = Sql_Malloc();
 

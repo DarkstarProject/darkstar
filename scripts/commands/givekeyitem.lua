@@ -1,26 +1,33 @@
------------------------------------
---	[Command name]: give key item to player
---	[Author      ]: link
---	[Description ]: will give key item to player
---
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: givekeyitem
+-- auth: Link :: Modded by atom0s.
+-- desc: Gives a key item to the target player.
+---------------------------------------------------------------------------------------------------
 
-require("scripts/globals/keyitems");
+cmdprops =
+{
+    permission = 1,
+    parameters = "si"
+};
 
------------------------------------
--- Action
------------------------------------
-
-function onTrigger(player,target,keyID)
-
-	local pc = GetPlayerByName(target);
-
-    if (pc ~= nil) then
-        local TextIDs = "scripts/zones/" .. pc:getZoneName() .. "/TextIDs";
-        package.loaded[TextIDs] = nil;
-        require(TextIDs);
-
-        pc:addKeyItem(keyID);
-        pc:messageSpecial(KEYITEM_OBTAINED,keyID);
+function onTrigger(player, target, keyId)
+    if (target == nil or keyId == nil) then
+        player:PrintToPlayer("You must enter a valid player name and keyitem id.");
+        return;
     end
-end;
+    
+    local targ = GetPlayerByName( target );
+    if (targ == nil) then
+        player:PrintToPlayer( string.format( "Invalid player '%s' given.", target ) );
+        return;
+    end
+
+    -- Load needed text ids for players current zone..
+    local TextIDs = "scripts/zones/" .. player:getZoneName() .. "/TextIDs";
+    package.loaded[TextIDs] = nil;
+    require(TextIDs); 
+    
+    -- Give the key item to the target..
+    targ:addKeyItem( keyId );
+    targ:messageSpecial( KEYITEM_OBTAINED, keyId );
+end

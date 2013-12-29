@@ -1,14 +1,28 @@
------------------------------------
---	[Command name]: give gil to player
---	[Author      ]: link
---	[Description ]: (@givegil Link 100) will give 100 gill to link
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: givegil
+-- auth: Link
+-- desc: Gives the amount of gil to the given player.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = "si"
+};
 
-function onTrigger(player,target,quantity)
-	local pc = GetPlayerByName(target);
-	pc:addGil(quantity);
-end;
+function onTrigger(player, target, amount)
+    if (target == nil) then
+        player:PrintToPlayer("You must enter a valid player name.");
+        return;
+    end
+
+    local targ = GetPlayerByName( target );
+    if (targ ~= nil) then
+        if (amount == nil) then
+            amount = 0;
+        end
+        targ:addGil( amount );
+    else
+        player:PrintToPlayer( string.format( "Invalid player '%s' given.", target ) );
+    end
+end

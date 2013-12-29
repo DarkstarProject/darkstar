@@ -1,13 +1,15 @@
------------------------------------
---	[Command name]: costume
---	[Author      ]: 
---	[Description ]:
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: costume
+-- auth: <Unknown>
+-- desc: Sets the players current costume.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = "i"
+};
 
-function onTrigger(player,costume)
-	player:costume(costume);
-end;
+function onTrigger(player, costume)
+    player:costume( costume );
+end

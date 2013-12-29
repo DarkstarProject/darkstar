@@ -1,14 +1,30 @@
------------------------------------
---	[Command name]: give merits to player
---	[Author      ]: link
---	[Description ]: (@setplayermerits Link 10) will set links merit points to 10 
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: setplayermerits
+-- auth: Link
+-- desc: Sets the target players merit count.
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
+cmdprops =
+{
+    permission = 1,
+    parameters = "si"
+};
 
-function onTrigger(player,target,quantity)
-	local pc = GetPlayerByName(target);
-	pc:setMerits(quantity);
-end;
+function onTrigger(player, target, amount)
+    if (target == nil) then
+        target = player:getName();
+    end
+    
+    if (amount == nil) then
+        player:PrintToPlayer("You must enter a valid amount.");
+        end
+    end
+    
+    local targ = GetPlayerByName( target );
+    if (targ ~= nil) then
+        targ:setMerits( amount );
+    else
+        player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
+    end
+
+end

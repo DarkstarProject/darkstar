@@ -1,28 +1,33 @@
------------------------------------
---	[Command name]: pardon
---	[Author      ]: Loraunt
---	[Description ]: Pardons a player from Mordion Gaol
------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func: pardon
+-- auth: Loraunt :: Modded by atom0s.
+-- desc: Pardons a player from jail. (Mordion Gaol)
+---------------------------------------------------------------------------------------------------
 
------------------------------------
--- Action
------------------------------------
-ZONE_MORDION_GAOL = 131
+cmdprops =
+{
+    permission = 1,
+    parameters = "s"
+};
 
-function onTrigger(gm, target)
-	--printf("@pardon by %d", player:getID());
-	--printf("Parameters: %s", target);
-	
-	local pc = GetPlayerByName(target);
-	
-	if(pc ~= nil) then
-		local pardon_message = string.format("%d pardoning %d(%s)", gm:getID(), pc:getID(), target);
-		printf(pardon_message);
-
-		pc:setVar("inJail", 0);
-		pc:warp();
-	else
-		--printf("Player named %s not found!",target);
-		player:PrintToPlayer(string.format("Player named %s not found!",target));
-	end
-end;
+function onTrigger(player, target)
+    if (target == nil) then
+        player:PrintToPlayer("You must enter a valid player name.");
+        return;
+    end
+    
+    -- Validate the target..
+    local targ = GetPlayerByName( target );
+    if (targ == nil) then
+        player:PrintToPlayer( string.format( "Invalid player '%s' given.", target ) );
+        return;
+    end
+    
+    if (targ:getVar( 'inJail' ) == 1) then
+        local message = string.format( '%s is pardoning %s from jail.', player:getName(), targ:getName() );
+        printf( message );
+        
+        targ:setVar( 'inJail', 0 );
+        targ:warp();
+    end
+end
