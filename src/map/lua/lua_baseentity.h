@@ -133,6 +133,7 @@ public:
 	int32 getRotPos(lua_State*);			// Get Entity Rot position
     int32 setPos(lua_State*);				// Set Entity position (x,y,z,rot) or (x,y,z,rot,zone)
     int32 getPos(lua_State*);				// Get Entity position (x,y,z)
+	int32 getSpawnPos(lua_State*);          // Get Mob spawn position (x,y,z)
 	int32 getZone(lua_State*);				// Get Entity zone
     int32 getZoneName(lua_State*);          // Get Entity zone name
 	int32 getCurrentRegion(lua_State*);		// Get Entity conquest region

@@ -626,6 +626,30 @@ inline int32 CLuaBaseEntity::getPos(lua_State* L)
 
 //==========================================================//
 
+    inline int32 CLuaBaseEntity::getSpawnPos(lua_State* L)
+    {
+      DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+      DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_MOB));
+     
+      CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
+     
+      lua_createtable(L, 3, 0);
+      int8 newTable = lua_gettop(L);
+     
+      lua_pushnumber(L, PMob->m_SpawnPoint.x);
+      lua_rawseti(L, newTable, 1);
+     
+      lua_pushnumber(L, PMob->m_SpawnPoint.y);
+      lua_rawseti(L, newTable, 2);
+     
+      lua_pushnumber(L, PMob->m_SpawnPoint.z);
+      lua_rawseti(L, newTable, 3);
+     
+      return 1;
+    }
+
+//==========================================================//	
+
 inline int32 CLuaBaseEntity::addItem(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -7911,6 +7935,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaxHP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaxMP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addItem),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSpawnPos),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getFreeSlotsCount),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getXPos),

@@ -87,7 +87,7 @@ function SetFieldManual()
 
 	local FieldManuals  =
 	{
-        17187511,17187512,17191493,17191494, -- West Ronfaure 2, East Ronfaure 2
+        17187511,17187512,17191524,17191525, -- West Ronfaure 2, East Ronfaure 2
         17195670,17195671,17199744,17199745, -- La Theine 2, Valkurm 2
         17199746,17203877,17203878,17207858, -- Valkurm 1, Jugner 2, Batallia 1
         17207859,17212103,17212104,17212105, -- Batallia 1, North Gustaberg 3
@@ -149,7 +149,6 @@ function SetTimedSpawns()
     17436913, -- Marquis_Allocen
     17436918, -- Marquis_Amon
     17436927, -- Grand_Duke_Batym
-    17555890, -- Vrtra
     17613130, -- Capricious_Cassie
     17617147, -- Ash Dragon
     17264828, -- Waraxe Beak
@@ -164,22 +163,40 @@ function SetTimedSpawns()
     17203447, -- Fraelissa
     16990252, -- Harvestman
     16785593, -- Tempest Tigon
+	16875578 -- Padfoot
+  }
+  
+  local NM2  =
+  {
     17461478 -- Bloodsucker
   }
+  
+  local NM3  =
+  {
+    17555890, -- Vrtra
+	16806227, -- Tiamat
+	16797969 -- Jormungand
+  }
+
+	SetRespawnTimes(NMs, 900, 10800); -- 15 minutes to 3 hours
+	SetRespawnTimes(NM2, 75600, 86400); -- 21 to 24 hours
+	SetRespawnTimes(NM3, 86400, 259200); -- 24 to 72 hours
+end;
+
+function SetRespawnTimes(ids, minTime, maxTime)
 
   i = 1;
-  while i <= (table.getn(NMs)) do
-    local mob = GetMobByID(NMs[i]);
+  while i <= (table.getn(ids)) do
+    local mob = GetMobByID(ids[i]);
     if(mob == nil) then
-      printf("'SetTimedSpawns' Error trying to load undefined mob (%d)", NMs[i]);
+      printf("'SetTimedSpawns' Error trying to load undefined mob (%d)", ids[i]);
     else
-      UpdateNMSpawnPoint(NMs[i]);
-      mob:setRespawnTime(math.random((900),(10800))); -- 15-180 minute
+      UpdateNMSpawnPoint(ids[i]);
+      mob:setRespawnTime(math.random((minTime),(maxTime)));
     end
     i = i + 1;
   end
-
-end;
+end
 
 ----------------------------------
 -- SetTreasureSpawns
