@@ -599,27 +599,29 @@ switch (region): caseof {
   ---------------------------------
 	--print("RONFAURE");
 
+	local Doladepaiton = 17187518;
+	
 	npc  = {
 	--
-		17187487,SANDORIA,	-- Doladepaiton, R.K.
-		17187494,SANDORIA,	-- Ballie, R.K.
-		17187490,SANDORIA,	-- Flag
-		17187498,SANDORIA,	-- Flag
+		Doladepaiton,SANDORIA,		-- Doladepaiton, R.K.
+		Doladepaiton+7,SANDORIA,	-- Ballie, R.K.
+		Doladepaiton+3,SANDORIA,	-- Flag
+		Doladepaiton+11,SANDORIA,	-- Flag
 	--
-		17187488,BASTOK,	-- Yoshihiro, I.M.
-		17187495,BASTOK,	-- Molting Moth, I.M.
-		17187491,BASTOK,	-- Flag
-		17187499,BASTOK,	-- Flag
+		Doladepaiton+1,BASTOK,		-- Yoshihiro, I.M.
+		Doladepaiton+8,BASTOK,		-- Molting Moth, I.M.
+		Doladepaiton+4,BASTOK,		-- Flag
+		Doladepaiton+13,BASTOK,		-- Flag
 	--
-		17187489,WINDURST,	-- Kyanta-Pakyanta, W.W.
-		17187496,WINDURST,	-- Tottoto, W.W.
-		17187492,WINDURST,	-- Flag
-		17187500,WINDURST,	-- Flag
+		Doladepaiton+2,WINDURST,	-- Kyanta-Pakyanta, W.W.
+		Doladepaiton+9,WINDURST,	-- Tottoto, W.W.
+		Doladepaiton+5,WINDURST,	-- Flag
+		Doladepaiton+13,WINDURST,	-- Flag
 	--
-		17187493,BEASTMEN,	-- Flag
-		17187501,BEASTMEN,	-- Flag
+		Doladepaiton+6,BEASTMEN,	-- Flag
+		Doladepaiton+14,BEASTMEN,	-- Flag
 	--
-		17187497,OTHER,		-- Harvetour
+		Doladepaiton+10,OTHER,		-- Harvetour
 	}
   end,
 
@@ -628,28 +630,29 @@ switch (region): caseof {
   ---------------------------------
 	--print("ZULKHEIM");
 
+	local Quanteilleron = ;17199699
+	
 	npc  = {
 	--
-		17199698,SANDORIA,	-- Quanteilleron, R.K.
-		17199705,SANDORIA,	-- Prunilla, R.K.
-		17199701,SANDORIA,	-- flag
-		17199709,SANDORIA,	-- flag
+		Quanteilleron,SANDORIA,		-- Quanteilleron, R.K.
+		Quanteilleron+7,SANDORIA,	-- Prunilla, R.K.
+		Quanteilleron+3,SANDORIA,	-- flag
+		Quanteilleron+11,SANDORIA,	-- flag
 	--
-		17199699,BASTOK,	-- Tsunashige, I.M.
-		17199706,BASTOK,	-- Fighting Ant, I.M.
-		17199702,BASTOK,	-- flag
-		17199710,BASTOK,	-- flag
+		Quanteilleron+1,BASTOK,		-- Tsunashige, I.M.
+		Quanteilleron+8,BASTOK,		-- Fighting Ant, I.M.
+		Quanteilleron+4,BASTOK,		-- flag
+		Quanteilleron+12,BASTOK,	-- flag
 	--
-		17199700,WINDURST,	-- Nyata-Mobuta, W.W.
-		17199707,WINDURST,	-- Tebubu, W.W.
-		17199703,WINDURST,	-- flag
-		17199711,WINDURST,	-- flag
+		Quanteilleron+2,WINDURST,	-- Nyata-Mobuta, W.W.
+		Quanteilleron+9,WINDURST,	-- Tebubu, W.W.
+		Quanteilleron+5,WINDURST,	-- flag
+		Quanteilleron+13,WINDURST,	-- flag
 	--
-		17199704,BEASTMEN,	-- flag
-		17199712,BEASTMEN,	-- flag
-		17199721,BEASTMEN,	-- flag
+		Quanteilleron+6,BEASTMEN,	-- flag
+		Quanteilleron+14,BEASTMEN,	-- flag
 	--
-		17199708,OTHER,		-- Medicine Axe
+		Quanteilleron+10,OTHER,		-- Medicine Axe
 	}
   end,
 
@@ -751,27 +754,29 @@ switch (region): caseof {
   ---------------------------------
 	--print("SARUTABARUTA");
 
+	local Naguipeillont = 17248818; 
+	
 	npc  = {
 	--
-		17248787,SANDORIA,	-- Naguipeillont, R.K.
-		17248794,SANDORIA,	-- Banege, R.K.
-		17248790,SANDORIA,	-- flag
-		17248798,SANDORIA,	-- flag
+		Naguipeillont,SANDORIA,		-- Naguipeillont, R.K.
+		Naguipeillont+7,SANDORIA,	-- Banege, R.K.
+		Naguipeillont+3,SANDORIA,	-- flag
+		Naguipeillont+11,SANDORIA,	-- flag
 	--
-		17248788,BASTOK,	-- Ryokei, I.M.
-		17248795,BASTOK,	-- Slow Axe, I.M.
-		17248791,BASTOK,	-- flag
-		17248799,BASTOK,	-- flag
+		Naguipeillont+1,BASTOK,		-- Ryokei, I.M.
+		Naguipeillont+8,BASTOK,		-- Slow Axe, I.M.
+		Naguipeillont+4,BASTOK,		-- flag
+		Naguipeillont+12,BASTOK,	-- flag
 	--
-		17248789,WINDURST,	-- Roshina-Kuleshuna, W.W.
-		17248796,WINDURST,	-- Darumomo, W.W.
-		17248792,WINDURST,	-- flag
-		17248800,WINDURST,	-- flag
+		Naguipeillont+2,WINDURST,	-- Roshina-Kuleshuna, W.W.
+		Naguipeillont+9,WINDURST,	-- Darumomo, W.W.
+		Naguipeillont+5,WINDURST,	-- flag
+		Naguipeillont+13,WINDURST,	-- flag
 	--
-		17248793,BEASTMEN,	-- flag
-	    17248801,BEASTMEN,	-- flag
+		Naguipeillont+6,BEASTMEN,	-- flag
+	    Naguipeillont+14,BEASTMEN,	-- flag
 	--
-		17248797,OTHER,		-- Mahien-Uhien
+		Naguipeillont+10,OTHER,		-- Mahien-Uhien
 	}
   end,
 
@@ -1024,28 +1029,29 @@ switch (region): caseof {
   ---------------------------------
 	--print("ELSHIMOLOWLANDS");
 
+	local Zorchorevi = 17281587; 
+	
 	npc  = {
 	--
-		17281586,SANDORIA,	-- Zorchorevi, R.K.
-		17281593,SANDORIA,	-- Mupia, R.K.
-		17281589,SANDORIA,	-- flag
-		17281597,SANDORIA,	-- flag
+		Zorchorevi,SANDORIA,	-- Zorchorevi, R.K.
+		Zorchorevi+7,SANDORIA,	-- Mupia, R.K.
+		Zorchorevi+3,SANDORIA,	-- flag
+		Zorchorevi+11,SANDORIA,	-- flag
 	--
-		17281587,BASTOK,	-- Mahol, I.M.
-		17281594,BASTOK,	-- Bammiro, I.M.
-		17281590,BASTOK,	-- flag
-		17281598,BASTOK,	-- flag
+		Zorchorevi+1,BASTOK,	-- Mahol, I.M.
+		Zorchorevi+8,BASTOK,	-- Bammiro, I.M.
+		Zorchorevi+4,BASTOK,	-- flag
+		Zorchorevi+12,BASTOK,	-- flag
 	--
-		17281588,WINDURST,	-- Uphra-Kophra, W.W.
-		17281595,WINDURST,	-- Richacha, W.W.
-		17281591,WINDURST,	-- flag
-		17281599,WINDURST,	-- flag
+		Zorchorevi+2,WINDURST,	-- Uphra-Kophra, W.W.
+		Zorchorevi+9,WINDURST,	-- Richacha, W.W.
+		Zorchorevi+5,WINDURST,	-- flag
+		Zorchorevi+13,WINDURST,	-- flag
 	--
-		17281592,BEASTMEN,	-- flag
-		17281600,BEASTMEN,	-- flag
-		17281621,BEASTMEN,	-- flag
+		Zorchorevi+6,BEASTMEN,	-- flag
+		Zorchorevi+14,BEASTMEN,	-- flag
 	--
-		17281596,OTHER,		-- Robino-Mobino
+		Zorchorevi+10,OTHER,		-- Robino-Mobino
 	}
   end,
 
@@ -1054,28 +1060,29 @@ switch (region): caseof {
   ---------------------------------
 	--print("ELSHIMOUPLANDS");
 
+	local Ilieumort = 17285642;
+	
 	npc  ={
 	--
-		17285641,SANDORIA,	-- Ilieumort, R.K.
-		17285648,SANDORIA,	-- Emila, R.K.
-		17285644,SANDORIA,	-- flag
-		17285652,SANDORIA,	-- flag
+		Ilieumort,SANDORIA,		-- Ilieumort, R.K.
+		Ilieumort+7,SANDORIA,	-- Emila, R.K.
+		Ilieumort+3,SANDORIA,	-- flag
+		Ilieumort+11,SANDORIA,	-- flag
 	--
-		17285642,BASTOK,	-- Mintoo, I.M.
-		17285649,BASTOK,	-- Guddal, I.M.
-		17285645,BASTOK,	-- flag
-		17285653,BASTOK,	-- flag
+		Ilieumort+1,BASTOK,		-- Mintoo, I.M.
+		Ilieumort+8,BASTOK,		-- Guddal, I.M.
+		Ilieumort+4,BASTOK,		-- flag
+		Ilieumort+12,BASTOK,	-- flag
 	--
-		17285643,WINDURST,	-- Etaj-Pohtaj, W.W.
-		17285650,WINDURST,	-- Ghantata, W.W.
-		17285646,WINDURST,	-- flag
-		17285654,WINDURST,	-- flag
+		Ilieumort+2,WINDURST,	-- Etaj-Pohtaj, W.W.
+		Ilieumort+9,WINDURST,	-- Ghantata, W.W.
+		Ilieumort+5,WINDURST,	-- flag
+		Ilieumort+13,WINDURST,	-- flag
 	--
-		17285647,BEASTMEN,	-- flag
-		17285655,BEASTMEN,	-- flag
-		17285672,BEASTMEN,	-- flag
+		Ilieumort+6,BEASTMEN,	-- flag
+		Ilieumort+14,BEASTMEN,	-- flag
 	--
-		17285651,OTHER,		-- Mugha Dovajaiho
+		Ilieumort+10,OTHER,		-- Mugha Dovajaiho
 	}
   end,
 
@@ -1083,16 +1090,18 @@ switch (region): caseof {
   [TULIA] = function (x) -- RuAun_Gardens (130)
   ---------------------------------
 	--print("TULIA");
+	
+	local RuAun_Banner = 17310074;
 
 	npc  = {
 	--
-		17310073,SANDORIA,	-- flag
+		RuAun_Banner,SANDORIA,		-- flag
 	--
-		17310074,BASTOK,	-- flag
+		RuAun_Banner+1,BASTOK,		-- flag
 	--
-		17310075,WINDURST,	-- flag
+		RuAun_Banner+2,WINDURST,	-- flag
 	--
-		17310076,BEASTMEN,	-- flag
+		RuAun_Banner+3,BEASTMEN,	-- flag
 	}
   end,
 
@@ -1118,27 +1127,29 @@ switch (region): caseof {
   ---------------------------------
 	--print("TAVNAZIA");
 
+	local Jemmoquel = 16875826;
+	
 	npc  = {
 	--
-		16875825,SANDORIA,	-- Jemmoquel, R.K.
-		16875832,SANDORIA,	-- Chilaumme, R.K.
-		16875828,SANDORIA,	-- flag
-		16875836,SANDORIA,	-- flag
+		Jemmoquel,SANDORIA,		-- Jemmoquel, R.K.
+		Jemmoquel+7,SANDORIA,	-- Chilaumme, R.K.
+		Jemmoquel+3,SANDORIA,	-- flag
+		Jemmoquel+11,SANDORIA,	-- flag
 	--
-		16875826,BASTOK,	-- Yoram, I.M.
-		16875833,BASTOK,	-- Ghost Talker, I.M.
-		16875829,BASTOK,	-- flag
-		16875837,BASTOK,	-- flag
+		Jemmoquel+1,BASTOK,		-- Yoram, I.M.
+		Jemmoquel+8,BASTOK,		-- Ghost Talker, I.M.
+		Jemmoquel+4,BASTOK,		-- flag
+		Jemmoquel+12,BASTOK,	-- flag
 	--
-		16875827,WINDURST,	-- Teldo-Moroldo, W.W.
-		16875834,WINDURST,	-- Cotete, W.W.
-		16875830,WINDURST,	-- flag
-		16875838,WINDURST,	-- flag
+		Jemmoquel+2,WINDURST,	-- Teldo-Moroldo, W.W.
+		Jemmoquel+9,WINDURST,	-- Cotete, W.W.
+		Jemmoquel+5,WINDURST,	-- flag
+		Jemmoquel+13,WINDURST,	-- flag
 	--
-		16875831,BEASTMEN,	-- flag
-        16875839,BEASTMEN,	-- flag
+		Jemmoquel+6,BEASTMEN,	-- flag
+        Jemmoquel+14,BEASTMEN,	-- flag
 	--
-		16875835,OTHER,		-- Jersey
+		Jemmoquel+10,OTHER,		-- Jersey
 	}
   end,
   }

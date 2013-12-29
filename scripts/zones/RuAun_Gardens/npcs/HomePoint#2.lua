@@ -1,10 +1,12 @@
 -----------------------------------
--- Area: Ru'Avitau Gate
--- NPC:  Goblin Footprint
+-- Area: RuAun_Gardens
+-- NPC:  HomePoint#2
+-- @pos -499 -42 167 130
 -----------------------------------
 package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/settings");
 require("scripts/zones/RuAun_Gardens/TextIDs");
 
 -----------------------------------
@@ -19,7 +21,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0);
+if (HOMEPOINT_HEAL == 1) then
+	player:addHP(player:getMaxHP());
+	player:addMP(player:getMaxMP());
+end
+player:startEvent(0x21fd);
 end; 
 
 -----------------------------------
@@ -38,4 +44,13 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-end;
+	if(csid == 0x21fd) then
+		if (option == 1) then	
+			player:setHomePoint();
+			player:messageSpecial(HOMEPOINT_SET);
+		end
+	end
+end;	
+
+
+

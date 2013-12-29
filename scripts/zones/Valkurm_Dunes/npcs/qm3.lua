@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	cstime = VanadielHour();
+	local cstime = VanadielHour();
 	
 	if(player:hasKeyItem(YOMOTSU_HIRASAKA) and (cstime > 18 or cstime < 5) and GetMobAction(17199567) == 0 and GetMobAction(17199568) == 0) then
 		if(player:getVar("OkuriNMKilled") >= 1 and player:needToZone()) then

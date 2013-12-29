@@ -1,11 +1,11 @@
 -----------------------------------
--- Area: Ru'Avitau Gate
--- NPC:  Goblin Footprint
+-- Area: Eastern Altepa Desert
+-- NPC:  Beastmen_s_Banner
+-- @pos 366.014 -0.185 -394.801 124
 -----------------------------------
-package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/RuAun_Gardens/TextIDs");
+package.loaded["scripts/zones/Yhoator_Jungle/TextIDs"] = nil;
+-----------------------------------
+require("scripts/zones/Yhoator_Jungle/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -19,8 +19,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0);
-end; 
+	player:messageSpecial(BEASTMEN_BANNER);
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -28,7 +28,7 @@ end;
 
 function onEventUpdate(player,csid,option)
 --printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+--printf("OPTION: %u",option);
 end;
 
 -----------------------------------
@@ -37,5 +37,5 @@ end;
 
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+--printf("OPTION: %u",option);
 end;

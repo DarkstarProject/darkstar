@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Upper Delkfutt's Tower
+-- Area: Lufaise Meadows
 -- NPC:  Amaltheia
 -- @pos 347.897 -10.895 264.382 24
 -----------------------------------
@@ -16,5 +16,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	GetNPCByID(16875854):hideNPC(900);
+	GetNPCByID(16875855):hideNPC(900);
 end;

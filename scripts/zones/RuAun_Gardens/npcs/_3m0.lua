@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Ru'Avitau Gate
 -- NPC:  _3m0
--- @pos 0 -45 -113 130
+-- @pos 0.1 -45 -113 130
 -----------------------------------
 package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
 -----------------------------------
@@ -20,9 +20,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	GetNPCByID(17310024):openDoor(7);
-	GetNPCByID(17310025):openDoor(7);
-	GetNPCByID(17310026):openDoor(7);
+
+	local DoorID = npc:getID();
+
+	GetNPCByID(DoorID):openDoor(7);
+	GetNPCByID(DoorID+1):openDoor(7);
+	GetNPCByID(DoorID+2):openDoor(7);
 end; 
 
 -----------------------------------

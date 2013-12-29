@@ -3,8 +3,9 @@
 -- Zone: RuAun_Gardens (130)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/zones/RuAun_Gardens/TextIDs");

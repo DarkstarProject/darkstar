@@ -2,7 +2,7 @@
 -- Area: Davoi
 -- NPC:  ??? (qm3)
 -- Involved in Quest: True will
--- @pos 203 0 82 124
+-- @pos 203 0.1 82 124
 -----------------------------------
 package.loaded["scripts/zones/Yhoator_Jungle/TextIDs"] = nil;
 -----------------------------------

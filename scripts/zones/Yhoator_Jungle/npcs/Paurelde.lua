@@ -22,11 +22,11 @@ end;
 
 function onTrigger(player,npc)
 
-price = 100;
-gil = player:getGil();
-hasLicense = player:hasKeyItem(CHOCOBO_LICENSE);
-ChocobosWounds = player:getQuestStatus(JEUNO,CHOCOBO_S_WOUNDS);
-level = player:getMainLvl();
+local price = 100;
+local gil = player:getGil();
+local hasLicense = player:hasKeyItem(CHOCOBO_LICENSE);
+local ChocobosWounds = player:getQuestStatus(JEUNO,CHOCOBO_S_WOUNDS);
+local level = player:getMainLvl();
 
 	if ((hasLicense and level >= 15) or (level >=15 and ChocobosWounds == QUEST_COMPLETED)) then
 		player:startEvent(0x000c,price,gil);
