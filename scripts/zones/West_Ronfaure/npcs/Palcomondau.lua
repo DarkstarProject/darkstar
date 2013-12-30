@@ -313,7 +313,7 @@ function onPath(npc)
 
 	if(npc:atPoint(pathfind.get(path, 45))) then
 
-		local gac = GetNPCByID(17187460); -- Gachemage
+		local gac = GetNPCByID(17187491); -- Gachemage
 
 		gac:showText(npc, PALCOMONDAU_REPORT);
 
