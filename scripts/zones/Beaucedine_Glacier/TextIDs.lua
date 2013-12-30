@@ -7,6 +7,7 @@ FULL_INVENTORY_AFTER_TRADE = 6539; -- You cannot obtain the <item>. Try trading 
               GIL_OBTAINED = 6541; -- Obtained <number> gil.
           KEYITEM_OBTAINED = 6543; -- Obtained key item: <keyitem>.
             ITEMS_OBTAINED = 6549; -- You obtain <param2 number> <param1 item>!
+		   BEASTMEN_BANNER = 81; -- There is a beastmen's banner.
     FISHING_MESSAGE_OFFSET = 7186; -- You can't fish here.
 
 -- Conquest

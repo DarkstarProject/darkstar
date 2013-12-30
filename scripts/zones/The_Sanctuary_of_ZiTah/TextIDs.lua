@@ -7,6 +7,7 @@ FULL_INVENTORY_AFTER_TRADE = 6377; -- You cannot obtain the <item>. Try trading 
               GIL_OBTAINED = 6379; -- Obtained <number> gil.
           KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>.
             ITEMS_OBTAINED = 6384; -- You obtain <param2 number> <param1 item>!
+		   BEASTMEN_BANNER = 7095; -- There is a beastmen's banner.
     FISHING_MESSAGE_OFFSET = 7515; -- You can't fish here.
 
 -- Conquest
@@ -21,4 +22,4 @@ NOTHING_OUT_OF_ORDINARY = 7819; -- There is nothing out of the ordinary here.
    CANNOT_REMOVE_FRAG = 7693; -- It is an oddly shaped stone monument. ...
 ALREADY_OBTAINED_FRAG = 7694; -- You have already obtained this monuments...
       FOUND_ALL_FRAGS = 7696; -- You have obtained <frag>! You now have all 8 fragments of light!
-      ZILART_MONUMENT = 7697; -- Its an ancient Zilart Monument.	  
+      ZILART_MONUMENT = 7697; -- It is an ancient Zilart monument.

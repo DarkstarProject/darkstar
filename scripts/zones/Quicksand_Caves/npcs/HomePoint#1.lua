@@ -1,11 +1,13 @@
 -----------------------------------
--- Area: Mhaura
--- NPC: Home Point
+-- Area: Quicksand_Caves
+-- NPC:  HomePoint#1
+-- @pos -984 17 -289 208
+-----------------------------------
+package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
-require("scripts/zones/Mhaura/TextIDs");
+require("scripts/zones/Quicksand_Caves/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -23,7 +25,7 @@ if (HOMEPOINT_HEAL == 1) then
 	player:addHP(player:getMaxHP());
 	player:addMP(player:getMaxMP());
 end
-player:startEvent(0x03e8);
+player:startEvent(0x21fc);
 end; 
 
 -----------------------------------
@@ -42,11 +44,13 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-if (option == 0) then
-	player:setHomePoint();
-	player:messageSpecial(HOMEPOINT_SET);
-end
-end;
+	if(csid == 0x21fc) then
+		if (option == 1) then	
+			player:setHomePoint();
+			player:messageSpecial(HOMEPOINT_SET);
+		end
+	end
+end;	
 
 
 

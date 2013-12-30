@@ -1,11 +1,11 @@
 -----------------------------------
--- Area: Tavnazian Safehold
--- NPC: Home Point
+-- Area: Jugner_Forest
+-- NPC:  Beastmen_s_Banner
+-- @pos 448.240 0.210 -157.228 104
 -----------------------------------
-
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
+package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
+-----------------------------------
+require("scripts/zones/Jugner_Forest/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -19,12 +19,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-if (HOMEPOINT_HEAL == 1) then
-	player:addHP(player:getMaxHP());
-	player:addMP(player:getMaxMP());
-end
-player:startEvent(0x00fa);
-end; 
+	player:messageSpecial(BEASTMEN_BANNER);
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -32,7 +28,7 @@ end;
 
 function onEventUpdate(player,csid,option)
 --printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+--printf("OPTION: %u",option);
 end;
 
 -----------------------------------
@@ -41,12 +37,5 @@ end;
 
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-if (option == 0) then	
-	player:setHomePoint();
-	player:messageSpecial(HOMEPOINT_SET);
-end
+--printf("OPTION: %u",option);
 end;
-
-
-

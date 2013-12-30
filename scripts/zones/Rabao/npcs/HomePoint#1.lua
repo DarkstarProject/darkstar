@@ -1,11 +1,13 @@
 -----------------------------------
--- Area: Kazham
--- NPC: Home Point
+-- Area: Rabao
+-- NPC:  HomePoint#1
+-- @pos -29.276 0.001 -76.585 247
+-----------------------------------
+package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
-require("scripts/zones/Kazham/TextIDs");
+require("scripts/zones/Rabao/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -23,7 +25,7 @@ if (HOMEPOINT_HEAL == 1) then
 	player:addHP(player:getMaxHP());
 	player:addMP(player:getMaxMP());
 end
-player:startEvent(0x271a);
+player:startEvent(0x21fc);
 end; 
 
 -----------------------------------
@@ -42,11 +44,13 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-if (option == 0) then
-	player:setHomePoint();
-	player:messageSpecial(HOMEPOINT_SET);
-end
-end;
+	if(csid == 0x21fc) then
+		if (option == 1) then	
+			player:setHomePoint();
+			player:messageSpecial(HOMEPOINT_SET);
+		end
+	end
+end;	
 
 
 

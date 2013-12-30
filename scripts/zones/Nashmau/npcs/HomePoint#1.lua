@@ -1,11 +1,13 @@
 -----------------------------------
--- Area: Norg
--- NPC: Home Point
+-- Area: Nashmau
+-- NPC:  HomePoint#1
+-- @pos -19.860 0.001 -25.441 53
+-----------------------------------
+package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Norg/TextIDs"] = nil;
-require("scripts/zones/Norg/TextIDs");
+require("scripts/zones/Nashmau/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -23,7 +25,7 @@ if (HOMEPOINT_HEAL == 1) then
 	player:addHP(player:getMaxHP());
 	player:addMP(player:getMaxMP());
 end
-player:startEvent(0x03e8);
+player:startEvent(0x21fc);
 end; 
 
 -----------------------------------
@@ -42,11 +44,13 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-if (option == 0) then
-	player:setHomePoint();
-	player:messageSpecial(HOMEPOINT_SET);
-end
-end;
+	if(csid == 0x21fc) then
+		if (option == 1) then	
+			player:setHomePoint();
+			player:messageSpecial(HOMEPOINT_SET);
+		end
+	end
+end;	
 
 
 

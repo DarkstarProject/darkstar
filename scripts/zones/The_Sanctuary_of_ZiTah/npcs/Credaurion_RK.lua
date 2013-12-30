@@ -11,10 +11,10 @@ require("scripts/globals/keyitems");
 require("scripts/globals/conquest");
 require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
 
-guardnation = SANDORIA;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno
-guardtype 	= 3;		-- 1: city, 2: foreign, 3: outpost, 4: border
-region 		= LITELOR;
-csid 		= 0x7ffb;
+local guardnation = SANDORIA;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno
+local guardtype 	= 3;		-- 1: city, 2: foreign, 3: outpost, 4: border
+local region 		= LITELOR;
+local csid 		= 0x7ffb;
 
 -----------------------------------
 -- onTrade Action
@@ -40,7 +40,7 @@ function onTrigger(player,npc)
 			player:setVar("supplyQuest_region",0);
 		end
 	else
-		arg1 = getArg1(guardnation, player) - 1;
+		local arg1 = getArg1(guardnation, player) - 1;
 		if(arg1 >= 1792) then -- foreign, non-allied
 			player:startEvent(csid,1808,0,0,0,0,player:getRank(),0,0);
 		else -- citizen or allied
@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option)
 --printf("OPTION: %u",option);
 
 	if(option == 1) then
-		duration = (player:getRank() + getNationRank(player:getNation()) + 3) * 3600;
+		local duration = (player:getRank() + getNationRank(player:getNation()) + 3) * 3600;
 		player:delStatusEffect(EFFECT_SIGNET);
 		player:addStatusEffect(EFFECT_SIGNET,0,0,duration); -- Grant Signet
 	elseif(option == 2) then
@@ -76,7 +76,7 @@ function onEventFinish(player,csid,option)
 		player:addCP(supplyReward[region + 1])
 		player:messageSpecial(CONQUEST); -- "You've earned conquest points!"
 		if(hasOutpost(player, region+5) == 0) then
-			supply_quests = 2^(region+5);
+			local supply_quests = 2^(region+5);
 			player:addNationTeleport(guardnation,supply_quests);
 			player:setVar("supplyQuest_region",0);
 		end

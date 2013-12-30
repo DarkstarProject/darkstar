@@ -9,8 +9,8 @@ require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/zones/Eastern_Altepa_Desert/TextIDs");
 
-region 	= KUZOTZ;
-csid	= 0x7ff4;
+local region 	= KUZOTZ;
+local csid	= 0x7ff4;
 
 -----------------------------------
 -- onTrade Action
@@ -25,8 +25,8 @@ end;
 
 function onTrigger(player,npc)
 	
-	owner = GetRegionOwner(region);
-	arg1 = getArg1(owner,player);
+	local owner = GetRegionOwner(region);
+	local arg1 = getArg1(owner,player);
 	
 	if(owner == player:getNation()) then
 		nation = 1;

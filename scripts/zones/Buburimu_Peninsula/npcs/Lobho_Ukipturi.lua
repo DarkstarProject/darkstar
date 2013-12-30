@@ -10,8 +10,8 @@ require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/zones/Buburimu_Peninsula/TextIDs");
 
-region 	= KOLSHUSHU;
-csid	= 0x7ff4;
+local region 	= KOLSHUSHU;
+local csid	= 0x7ff4;
 
 -----------------------------------
 -- onTrade Action
@@ -26,8 +26,8 @@ end;
 
 function onTrigger(player,npc)
 	
-	owner = GetRegionOwner(region);
-	arg1 = getArg1(owner,player);
+	local owner = GetRegionOwner(region);
+	local arg1 = getArg1(owner,player);
 	
 	if(owner == player:getNation()) then
 		nation = 1;

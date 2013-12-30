@@ -1,11 +1,11 @@
 -----------------------------------
--- Area: Rabao
--- NPC: Home Point
+-- Area: Xarcabard
+-- NPC:  Beastmen_s_Banner
+-- @pos 153.000 -36.444 23.500 112
 -----------------------------------
-
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
-require("scripts/zones/Rabao/TextIDs");
+package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
+-----------------------------------
+require("scripts/zones/Xarcabard/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -19,12 +19,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-if (HOMEPOINT_HEAL == 1) then
-	player:addHP(player:getMaxHP());
-	player:addMP(player:getMaxMP());
-end
-player:startEvent(0x03e8);
-end; 
+	player:messageSpecial(BEASTMEN_BANNER);
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -32,7 +28,7 @@ end;
 
 function onEventUpdate(player,csid,option)
 --printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+--printf("OPTION: %u",option);
 end;
 
 -----------------------------------
@@ -41,12 +37,5 @@ end;
 
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-if (option == 0) then	
-	player:setHomePoint();
-	player:messageSpecial(HOMEPOINT_SET);
-end
+--printf("OPTION: %u",option);
 end;
-
-
-
