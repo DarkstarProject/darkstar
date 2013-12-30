@@ -1426,10 +1426,11 @@ void SmallPacket0x041(map_session_data_t* session, CCharEntity* PChar, int8* dat
 {
 	PrintPacket(data);
 
-    uint8 SlotID  = RBUFB(data,(0x04));
-
-	PChar->PTreasurePool->LotItem(PChar, SlotID, 1+(rand()%999)); //1 ~ 998+1
-	return;
+    if (PChar->PTreasurePool != NULL)
+    {
+        uint8 SlotID = RBUFB(data, (0x04));
+        PChar->PTreasurePool->LotItem(PChar, SlotID, 1 + (rand() % 999)); //1 ~ 998+1
+    }
 }
 
 /************************************************************************
@@ -1442,10 +1443,11 @@ void SmallPacket0x042(map_session_data_t* session, CCharEntity* PChar, int8* dat
 {
 	PrintPacket(data);
 
-	uint8 SlotID  = RBUFB(data,(0x04));
-
-	PChar->PTreasurePool->LotItem(PChar, SlotID, 0);
-	return;
+    if (PChar->PTreasurePool != NULL)
+    {
+        uint8 SlotID = RBUFB(data, (0x04));
+        PChar->PTreasurePool->LotItem(PChar, SlotID, 0);
+    }
 }
 
 /************************************************************************
@@ -2589,6 +2591,12 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 						    case 4: prevzone = zone + 0xF2; break;
 						    case 5: prevzone = zone + (zone == 1 ? 0x2F : 0x30); break;
 					    }
+
+                        // Handle case for mog garden.. (Above addition does not work for this zone.)
+                        if (zone == 127) 
+                        {
+                            prevzone = 280;
+                        }
                     }
                     PChar->loc.destination = prevzone;
 				} else {
