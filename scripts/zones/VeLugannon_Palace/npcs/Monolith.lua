@@ -21,65 +21,61 @@ end;
 
 function onTrigger(player,npc)
 	
-	-- Activateur Bleu: 17502639, 17502637, 17502635, 17502633, 17502631
-	-- Blue doors: 17502619, 17502618, 17502617, 17502616, 17502615, 17502614, 17502613
-	-- Activateur Jaune: 17502629, 17502627, 17502625, 17502623, 17502621
-	-- Yellow doors: 17502605, 17502606, 17502607, 17502608, 17502609, 17502610, 17502611, 17502612
+	local npcID = npc:getID();
+	local Door_Offset = 17502606; -- _4x0
 	
-	local nID = npc:getID();
-	
-	if(nID == 17502640 or nID == 17502638 or nID == 17502636 or nID == 17502634 or nID == 17502632) then
-		GetNPCByID(17502620):setAnimation(8);--blue door
-		GetNPCByID(17502619):setAnimation(8);
-		GetNPCByID(17502618):setAnimation(8);
-		GetNPCByID(17502617):setAnimation(8);
-		GetNPCByID(17502616):setAnimation(8);
-		GetNPCByID(17502615):setAnimation(8);
-		GetNPCByID(17502614):setAnimation(8);
-		GetNPCByID(17502606):setAnimation(9);--yellow door
-		GetNPCByID(17502607):setAnimation(9);
-		GetNPCByID(17502608):setAnimation(9);
-		GetNPCByID(17502609):setAnimation(9);
-		GetNPCByID(17502610):setAnimation(9);
-		GetNPCByID(17502611):setAnimation(9);
-		GetNPCByID(17502612):setAnimation(9);
-		GetNPCByID(17502613):setAnimation(9);
-		GetNPCByID(17502639):setAnimation(8);--blue monolith
-		GetNPCByID(17502637):setAnimation(8);
-		GetNPCByID(17502635):setAnimation(8);
-		GetNPCByID(17502633):setAnimation(8);
-		GetNPCByID(17502631):setAnimation(8);
-		GetNPCByID(17502629):setAnimation(9);--yellow monolith
-		GetNPCByID(17502627):setAnimation(9);
-		GetNPCByID(17502625):setAnimation(9);
-		GetNPCByID(17502623):setAnimation(9);
-		GetNPCByID(17502621):setAnimation(9);
+	if(npcID == Door_Offset+34 or npcID == Door_Offset+32 or npcID == Door_Offset+30 or npcID == Door_Offset+28 or npcID == Door_Offset+26) then
+		GetNPCByID(Door_Offset+14):setAnimation(8);--blue door
+		GetNPCByID(Door_Offset+13):setAnimation(8);
+		GetNPCByID(Door_Offset+12):setAnimation(8);
+		GetNPCByID(Door_Offset+11):setAnimation(8);
+		GetNPCByID(Door_Offset+10):setAnimation(8);
+		GetNPCByID(Door_Offset+9):setAnimation(8);
+		GetNPCByID(Door_Offset+8):setAnimation(8);
+		GetNPCByID(Door_Offset):setAnimation(9);--yellow door
+		GetNPCByID(Door_Offset+1):setAnimation(9);
+		GetNPCByID(Door_Offset+2):setAnimation(9);
+		GetNPCByID(Door_Offset+3):setAnimation(9);
+		GetNPCByID(Door_Offset+4):setAnimation(9);
+		GetNPCByID(Door_Offset+5):setAnimation(9);
+		GetNPCByID(Door_Offset+6):setAnimation(9);
+		GetNPCByID(Door_Offset+7):setAnimation(9);
+		GetNPCByID(Door_Offset+33):setAnimation(8);--blue monolith
+		GetNPCByID(Door_Offset+31):setAnimation(8);
+		GetNPCByID(Door_Offset+29):setAnimation(8);
+		GetNPCByID(Door_Offset+27):setAnimation(8);
+		GetNPCByID(Door_Offset+25):setAnimation(8);
+		GetNPCByID(Door_Offset+23):setAnimation(9);--yellow monolith
+		GetNPCByID(Door_Offset+21):setAnimation(9);
+		GetNPCByID(Door_Offset+19):setAnimation(9);
+		GetNPCByID(Door_Offset+17):setAnimation(9);
+		GetNPCByID(Door_Offset+15):setAnimation(9);
 	else
-		GetNPCByID(17502620):setAnimation(9);
-		GetNPCByID(17502619):setAnimation(9);
-		GetNPCByID(17502618):setAnimation(9);
-		GetNPCByID(17502617):setAnimation(9);
-		GetNPCByID(17502616):setAnimation(9);
-		GetNPCByID(17502615):setAnimation(9);
-		GetNPCByID(17502614):setAnimation(9);
-		GetNPCByID(17502606):setAnimation(8);
-		GetNPCByID(17502607):setAnimation(8);
-		GetNPCByID(17502608):setAnimation(8);
-		GetNPCByID(17502609):setAnimation(8);
-		GetNPCByID(17502610):setAnimation(8);
-		GetNPCByID(17502611):setAnimation(8);
-		GetNPCByID(17502612):setAnimation(8);
-		GetNPCByID(17502613):setAnimation(8);
-		GetNPCByID(17502639):setAnimation(9);
-		GetNPCByID(17502637):setAnimation(9);
-		GetNPCByID(17502635):setAnimation(9);
-		GetNPCByID(17502633):setAnimation(9);
-		GetNPCByID(17502631):setAnimation(9);
-		GetNPCByID(17502629):setAnimation(8);
-		GetNPCByID(17502627):setAnimation(8);
-		GetNPCByID(17502625):setAnimation(8);
-		GetNPCByID(17502623):setAnimation(8);
-		GetNPCByID(17502621):setAnimation(8);
+		GetNPCByID(Door_Offset+14):setAnimation(9);--blue door
+		GetNPCByID(Door_Offset+13):setAnimation(9);
+		GetNPCByID(Door_Offset+12):setAnimation(9);
+		GetNPCByID(Door_Offset+11):setAnimation(9);
+		GetNPCByID(Door_Offset+10):setAnimation(9);
+		GetNPCByID(Door_Offset+9):setAnimation(9);
+		GetNPCByID(Door_Offset+8):setAnimation(9);
+		GetNPCByID(Door_Offset):setAnimation(8);--yellow door
+		GetNPCByID(Door_Offset+1):setAnimation(8);
+		GetNPCByID(Door_Offset+2):setAnimation(8);
+		GetNPCByID(Door_Offset+3):setAnimation(8);
+		GetNPCByID(Door_Offset+4):setAnimation(8);
+		GetNPCByID(Door_Offset+5):setAnimation(8);
+		GetNPCByID(Door_Offset+6):setAnimation(8);
+		GetNPCByID(Door_Offset+7):setAnimation(8);
+		GetNPCByID(Door_Offset+33):setAnimation(9);--blue monolith
+		GetNPCByID(Door_Offset+31):setAnimation(9);
+		GetNPCByID(Door_Offset+29):setAnimation(9);
+		GetNPCByID(Door_Offset+27):setAnimation(9);
+		GetNPCByID(Door_Offset+25):setAnimation(9);
+		GetNPCByID(Door_Offset+23):setAnimation(8);--yellow monolith
+		GetNPCByID(Door_Offset+21):setAnimation(8);
+		GetNPCByID(Door_Offset+19):setAnimation(8);
+		GetNPCByID(Door_Offset+17):setAnimation(8);
+		GetNPCByID(Door_Offset+15):setAnimation(8);
 	end
 end;
 

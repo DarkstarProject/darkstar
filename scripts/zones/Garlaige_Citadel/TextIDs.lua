@@ -27,3 +27,6 @@ CHEST_ILLUSION = 7295; -- The chest was but an illusion...
 OPEN_WITH_THE_RIGHT_KEY = 7241; -- You might be able to open it with the right key.
         BANISHING_GATES = 7250; -- The first banishing gate begins to open...
 BANISHING_GATES_CLOSING = 7253; -- The first banishing gate starts to close.
+
+-- Other
+NOTHING_OUT_OF_THE_ORDINARY = 6551; -- There is nothing out of the ordinary here.
