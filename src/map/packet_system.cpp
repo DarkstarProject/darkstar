@@ -2740,7 +2740,7 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			    return;
 		    }
 
-            if(PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC) || PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_RESTRICTION))
+            if (PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
             {
                 PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 236));
                 return;
