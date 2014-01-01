@@ -3502,7 +3502,6 @@ INSERT INTO `item_weapon` VALUES (19819,'conqueror',0,0,0,1,0,0,0);
 INSERT INTO `item_weapon` VALUES (20787,'crobaci',0,0,0,1,0,0,0);
 INSERT INTO `item_weapon` VALUES (21322,'damascus_bolt',0,0,0,1,0,0,0);
 INSERT INTO `item_weapon` VALUES (21338,'damascus_bullet',0,0,0,1,0,0,0);
-INSERT INTO `item_weapon` VALUES (18571,'daurdabla',0,0,0,1,0,0,0);
 INSERT INTO `item_weapon` VALUES (19835,'death_penalty',0,0,0,1,0,0,0);
 INSERT INTO `item_weapon` VALUES (18564,'devilish_scythe',0,0,0,1,0,0,0);
 INSERT INTO `item_weapon` VALUES (18886,'dhyana_rod',0,0,0,1,0,0,0);
