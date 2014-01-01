@@ -204,6 +204,13 @@ uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
     }
     else if (PSpell->getSpellGroup() == SPELLGROUP_SONG)
     {
+        if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_PIANISSIMO))
+        {
+            if (PSpell->getAOE() == SPELLAOE_PIANISSIMO)
+            {
+                cast = base / 2;
+            }
+        }
         if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_NIGHTINGALE))
         {
             if (m_PEntity->objtype == TYPE_PC &&
