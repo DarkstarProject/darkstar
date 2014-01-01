@@ -1665,6 +1665,39 @@ inline int32 CLuaBaseEntity::setSkillRank(lua_State *L)
 }
 
 /************************************************************************
+*																		*
+*  Returns the skill level of the equipped item in the associated slot		*
+*																		*
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getWeaponSkillLevel(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC && m_PBaseEntity->objtype != TYPE_PET && m_PBaseEntity->objtype != TYPE_MOB);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    if (m_PBaseEntity->objtype == TYPE_PC)
+    {
+        uint8 SLOT = (uint8)lua_tointeger(L, 1);
+
+        DSP_DEBUG_BREAK_IF(SLOT > 3);
+
+        CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+        CItemWeapon* PWeapon = PChar->m_Weapons[SLOT];
+
+        if ((PWeapon != NULL) && PWeapon->isType(ITEM_WEAPON))
+        {
+            lua_pushinteger(L, PChar->GetSkill(PWeapon->getSkillType()));
+            return 1;
+        }
+    }
+    lua_pushinteger(L, 0);
+    return 1;
+}
+
+/************************************************************************
 *                                                                       *
 *                                                                       *
 *                                                                       *
@@ -4290,6 +4323,51 @@ inline int32 CLuaBaseEntity::hasPartyEffect(lua_State *L)
 
 /************************************************************************
 *                                                                       *
+*  Adds bard song effect				                                *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::addBardSong(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 4) || !lua_isnumber(L, 4));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 5) || !lua_isnumber(L, 5));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 6) || !lua_isnumber(L, 6));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 7) || !lua_isnumber(L, 7));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 8) || !lua_isnumber(L, 8));
+
+    int32 n = lua_gettop(L);
+
+    CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
+
+    CStatusEffect * PEffect = new CStatusEffect(
+        (EFFECT)lua_tointeger(L, 2),
+        (uint16)lua_tointeger(L, 2),
+        (uint16)lua_tointeger(L, 3),
+        (uint16)lua_tointeger(L, 4),
+        (uint16)lua_tointeger(L, 5),
+        (uint16)lua_tointeger(L, 6),
+        (uint16)lua_tointeger(L, 7),
+        (uint16)lua_tointeger(L, 8));
+    uint8 maxSongs = 2;
+    if (PEntity && PEntity->m_PBaseEntity && PEntity->m_PBaseEntity->objtype == TYPE_PC){
+        CCharEntity* PCaster = (CCharEntity*)PEntity->m_PBaseEntity;
+        CItemWeapon* PItem = (CItemWeapon*)PCaster->getStorage(LOC_INVENTORY)->GetItem(PCaster->equip[SLOT_RANGED]);
+        if (PItem == NULL || PItem->getID() == 65535 || !(PItem->getSkillType() == SKILL_STR || PItem->getSkillType() == SKILL_WND)){
+            maxSongs = 1;
+        }
+        maxSongs += PCaster->getMod(MOD_MAXIMUM_SONGS_BONUS);
+    }
+    lua_pushboolean(L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->ApplyBardEffect(PEffect, maxSongs));
+    return 1;
+}
+
+/************************************************************************
+*                                                                       *
 *  Adds corsair roll effect				                                *
 *                                                                       *
 ************************************************************************/
@@ -4819,8 +4897,8 @@ inline int32 CLuaBaseEntity::getMerit(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
     if(m_PBaseEntity->objtype != TYPE_PC){
-    	// not PC just give em max merits
-    	lua_pushinteger(L, 5);
+    	// not PC just give em no merits
+    	lua_pushinteger(L, 0);
     } else {
 		CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
@@ -7977,6 +8055,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaxSkillLevel),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSkillRank),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setSkillRank),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponSkillLevel),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addSpell),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasSpell),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,canLearnSpell),
@@ -8066,6 +8145,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,dispelAllStatusEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,eraseAllStatusEffect),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,stealStatusEffect),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addBardSong),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addCorsairRoll),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasPartyJob),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,fold),

@@ -951,6 +951,29 @@ MOD_ENMITY_REDUCTION_PHYSICAL =0x1AB -- Reduces Enmity decrease when taking phys
 MOD_PERFECT_COUNTER_ATT		  =0x1AC -- Raises weapon damage by 20 when countering while under the Perfect Counter effect. This also affects Weapon Rank (though not if fighting barehanded). 
 MOD_FOOTWORK_ATT_BONUS		  =0x1AD -- Raises the attack bonus of Footwork. (Tantra Gaiters +2 raise 100/1024 to 152/1024) 
 
+MOD_MINNE_EFFECT              =0x1B1-- (modId = 433)
+MOD_MINUET_EFFECT	          =0x1B2-- (modId = 434)
+MOD_PAEON_EFFECT	          =0x1B3-- (modId = 435)
+MOD_REQUIEM_EFFECT	          =0x1B4-- (modId = 436)
+MOD_THRENODY_EFFECT	          =0x1B5-- (modId = 437)
+MOD_MADRIGAL_EFFECT	          =0x1B6-- (modId = 438)
+MOD_MAMBO_EFFECT	          =0x1B7-- (modId = 439)
+MOD_LULLABY_EFFECT	          =0x1B8-- (modId = 440)
+MOD_ETUDE_EFFECT	          =0x1B9-- (modId = 441)
+MOD_BALLAD_EFFECT	          =0x1BA-- (modId = 442)
+MOD_MARCH_EFFECT	          =0x1BB-- (modId = 443)
+MOD_FINALE_EFFECT	          =0x1BC-- (modId = 444)
+MOD_CAROL_EFFECT	          =0x1BD-- (modId = 445)
+MOD_MAZURKA_EFFECT	          =0x1BE -- (modId = 446)
+MOD_ELEGY_EFFECT	          =0x1BF-- (modId = 447)
+MOD_PRELUDE_EFFECT	          =0x1C0-- (modId = 448)
+MOD_HYMNUS_EFFECT	          =0x1C1-- (modId = 449)
+MOD_VIRELAI_EFFECT	          =0x1C2-- (modId = 450)
+MOD_SCHERZO_EFFECT            =0x1C3-- (modId = 451)
+MOD_ALL_SONGS_EFFECT          =0x1C4-- (modId = 452)
+MOD_MAXIMUM_SONGS_BONUS       =0x1C5
+MOD_SONG_DURATION_BONUS       =0x1C6
+
 MOD_EAT_RAW_FISH			  = 409
 MOD_EAT_RAW_MEAT			  = 410
 MOD_QUICK_DRAW_DMG = 411

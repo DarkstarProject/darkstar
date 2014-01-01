@@ -322,6 +322,29 @@ enum MODIFIER
 	MOD_CHARM_CHANCE              =0x187,// extra chance to charm (light+apollo staff ect) (modId = 391)
 
 	// Bard
+    MOD_MINNE_EFFECT              =0x1B1,// (modId = 433)
+    MOD_MINUET_EFFECT	          =0x1B2,// (modId = 434)
+    MOD_PAEON_EFFECT	          =0x1B3,// (modId = 435)
+    MOD_REQUIEM_EFFECT	          =0x1B4,// (modId = 436)
+    MOD_THRENODY_EFFECT	          =0x1B5,// (modId = 437)
+    MOD_MADRIGAL_EFFECT	          =0x1B6,// (modId = 438)
+    MOD_MAMBO_EFFECT	          =0x1B7,// (modId = 439)
+    MOD_LULLABY_EFFECT	          =0x1B8,// (modId = 440)
+    MOD_ETUDE_EFFECT	          =0x1B9,// (modId = 441)
+    MOD_BALLAD_EFFECT	          =0x1BA,// (modId = 442)
+    MOD_MARCH_EFFECT	          =0x1BB,// (modId = 443)
+    MOD_FINALE_EFFECT	          =0x1BC,// (modId = 444)
+    MOD_CAROL_EFFECT	          =0x1BD,// (modId = 445)
+    MOD_MAZURKA_EFFECT	          =0x1BE,// (modId = 446)
+    MOD_ELEGY_EFFECT	          =0x1BF,// (modId = 447)
+    MOD_PRELUDE_EFFECT	          =0x1C0,// (modId = 448)
+    MOD_HYMNUS_EFFECT	          =0x1C1,// (modId = 449)
+    MOD_VIRELAI_EFFECT	          =0x1C2,// (modId = 450)
+    MOD_SCHERZO_EFFECT            =0x1C3,// (modId = 451)
+    MOD_ALL_SONGS_EFFECT          =0x1C4,// (modId = 452)
+    MOD_MAXIMUM_SONGS_BONUS       =0x1C5,// (modId = 453)
+    MOD_SONG_DURATION_BONUS       =0x1C6,// (modId = 454)
+    MOD_SONG_SPELLCASTING_TIME    =0x1C7,// (modId = 455)
 
 	// Ranger
 	MOD_RECYCLE                   =0x131,// Percent chance to recycle (modId = 305)
@@ -382,12 +405,12 @@ enum MODIFIER
 	MOD_ROLL_DANCERS              =0x14A,// Tracks totals (modId = 330)
 	MOD_ROLL_SCHOLARS             =0x14B,// Tracks totals (modId = 331)
 	MOD_BUST                      =0x14C,// # of busts (modId = 332)
-    MOD_QUICK_DRAW_DMG            =411,// (modId = 1041)
+    MOD_QUICK_DRAW_DMG            =0x19B,// (modId = 411)
 
 	// Puppetmaster
-    MOD_AUTO_MELEE_SKILL          =412,// (modId = 1042)
-    MOD_AUTO_RANGED_SKILL         =413,// (modId = 1043)
-    MOD_AUTO_MAGIC_SKILL          =414,// (modId = 1044)
+    MOD_AUTO_MELEE_SKILL          =0x19C,// (modId = 412)
+    MOD_AUTO_RANGED_SKILL         =0x19D,// (modId = 413)
+    MOD_AUTO_MAGIC_SKILL          =0x19E,// (modId = 414)
 	
 	// Dancer
 	MOD_FINISHING_MOVES           =0x14D,// Tracks # of finishing moves (modId = 333)
@@ -476,23 +499,23 @@ enum MODIFIER
 	MOD_GRIMOIRE_INSTANT_CAST	  =0x1A3,// Spells that match your current Arts will occasionally cast instantly, without recast. (modId = 419) 
 	MOD_QUAD_ATTACK				  =0x1AE,// Quadruple attack chance. (modId = 430)
 
-	// MOD_SPARE	=0x1B1,// (modId = 433)
-	// MOD_SPARE	=0x1B2,// (modId = 434)
-	// MOD_SPARE	=0x1B3,// (modId = 435)
-	// MOD_SPARE	=0x1B4,// (modId = 436)
-	// MOD_SPARE	=0x1B5,// (modId = 437)
-	// MOD_SPARE	=0x1B6,// (modId = 438)
-	// MOD_SPARE	=0x1B7,// (modId = 439)
-	// MOD_SPARE	=0x1B8,// (modId = 440)
+	// MOD_SPARE	=0x1C8,// (modId = 456)
+	// MOD_SPARE	=0x1C9,// (modId = 457)
+	// MOD_SPARE	=0x1CA,// (modId = 458)
+	// MOD_SPARE	=0x1CB,// (modId = 459)
+    // MOD_SPARE	=0x1CC,// (modId = 460)
+    // MOD_SPARE	=0x1CD,// (modId = 461)
+    // MOD_SPARE	=0x1CE,// (modId = 462)
+    // MOD_SPARE	=0x1CF,// (modId = 463)
 
     MOD_ADDITIONAL_EFFECT         =0x1AF,// (modId = 431)
 
-	MOD_MAG_BURST_BONUS           =408,// (modId = 1032)
-	MOD_EAT_RAW_FISH			  =409, // not implemented (modId = 1033)
-	MOD_EAT_RAW_MEAT			  =410, // not implemented (modId = 1040)
+	MOD_MAG_BURST_BONUS           =0x198,// (modId = 408)
+	MOD_EAT_RAW_FISH			  =0x199, // not implemented (modId = 409)
+	MOD_EAT_RAW_MEAT			  =0x19A, // not implemented (modId = 410)
 };
 
-#define MAX_MODIFIER	       433
+#define MAX_MODIFIER	       456
 
 
 

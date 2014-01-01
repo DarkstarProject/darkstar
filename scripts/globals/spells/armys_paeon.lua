@@ -2,9 +2,6 @@
 -- Spell: Army's Paeon
 -- Gradually restores target's HP.
 -----------------------------------------
--- Cleric's Briault enhances the effect
--- Scale down duration based on level
------------------------------------------
 
 require("scripts/globals/status");
 
@@ -18,26 +15,35 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-	local hp = 1;
-	local sItem = caster:getEquipID(2);
-	-- If Job is Bard and Level is at or above 25 then get bonus HP.
-	if(caster:getMainJob() == 10 and caster:getMainLvl() >= 25) then
-	    hp = hp + 1;
-	end
-	-- Ebony Harp
-	if(sItem == 17357) then
-	    hp = hp + 1;
-	end
-	-- Ebony Harp +1 and Ebony Harp + 2
-	if(sItem == 17833 or sItem == 17848) then
-	    hp = hp + 2;
-	end
-	-- Until someone finds a way to delete Effects by tier we should not allow bard spells to stack.
-	-- Since all the tiers use the same effect buff it is hard to delete a specific one.
-	target:delStatusEffect(EFFECT_PAEON);
-	target:addStatusEffect(EFFECT_PAEON,hp,3,120);
+	local sLvl = caster:getSkillLevel(SKILL_SNG); -- Gets skill level of Singing
+    local iLvl = caster:getWeaponSkillLevel(SLOT_RANGED);
 
-	spell:setMsg(230);
+	local power = 1;
 
+    if (sLvl+iLvl > 100) then
+        power = power + 1;
+    end
+
+	local iBoost = caster:getMod(MOD_PAEON_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
+    power = power + iBoost;
+    
+    if (caster:hasStatusEffect(EFFECT_SOUL_VOICE)) then
+        power = power * 2;
+    elseif (caster:hasStatusEffect(EFFECT_MARCATO)) then
+        power = power * 1.5;
+    end
+    caster:delStatusEffect(EFFECT_MARCATO);
+    
+    local duration = 120;
+    duration = duration * ((iBoost * 0.1) + (caster:getMod(MOD_SONG_DURATION_BONUS)/100) + 1);
+    
+    if (caster:hasStatusEffect(EFFECT_TROUBADOUR)) then
+        duration = duration * 2;
+    end
+    
+	if not (target:addBardSong(caster,EFFECT_PAEON,power,0,duration,caster:getID(), 0, 1)) then
+        spell:setMsg(75);
+    end
+    
 	return EFFECT_PAEON;
 end;

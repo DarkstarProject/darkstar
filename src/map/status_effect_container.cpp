@@ -475,14 +475,14 @@ bool CStatusEffectContainer::DelStatusEffect(EFFECT StatusID, uint16 SubID)
 	return false;
 }
 
-bool CStatusEffectContainer::DelStatusEffectWithPower(EFFECT StatusID, uint16 power)
+bool CStatusEffectContainer::DelStatusEffectByTier(EFFECT StatusID, uint16 tier)
 {
 	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
 	{
 		if (m_StatusEffectList.at(i)->GetStatusID() == StatusID &&
-		   (m_StatusEffectList.at(i)->GetPower() == power))
+		   (m_StatusEffectList.at(i)->GetTier() == tier))
 		{
-			RemoveStatusEffect(i);
+			RemoveStatusEffect(i, true);
 			return true;
 		}
 	}
@@ -717,10 +717,6 @@ bool CStatusEffectContainer::HasStatusEffectByFlag(uint16 flag)
 
 bool CStatusEffectContainer::ApplyBardEffect(CStatusEffect* PStatusEffect, uint8 maxSongs)
 {
-	//break if not a BRD song.
-	DSP_DEBUG_BREAK_IF(!(PStatusEffect->GetStatusID() >= EFFECT_REQUIEM &&
-			PStatusEffect->GetStatusID() <= EFFECT_NOCTURNE));
-
 	//if all match tier/id/effect then overwrite
 
 	//if tier/effect match then overwrite //but id doesn't, NO EFFECT
@@ -734,16 +730,16 @@ bool CStatusEffectContainer::ApplyBardEffect(CStatusEffect* PStatusEffect, uint8
 		if (m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_REQUIEM &&
 			m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_NOCTURNE) //is a brd effect
 		{
-			if(m_StatusEffectList.at(i)->GetPower() == PStatusEffect->GetPower() &&
+            if (m_StatusEffectList.at(i)->GetTier() == PStatusEffect->GetTier() &&
 				m_StatusEffectList.at(i)->GetStatusID()==PStatusEffect->GetStatusID()){//same tier/type, overwrite
 					//OVERWRITE
-					DelStatusEffectWithPower(PStatusEffect->GetStatusID(),PStatusEffect->GetPower());
+                    DelStatusEffectByTier(PStatusEffect->GetStatusID(), PStatusEffect->GetTier());
 					AddStatusEffect(PStatusEffect);
 					return true;
 			}
 			if(m_StatusEffectList.at(i)->GetSubID() == PStatusEffect->GetSubID()){//YOUR BRD effect
 				numOfEffects++;
-				if(oldestSong==NULL){
+				if(!oldestSong){
 					oldestSong = m_StatusEffectList.at(i);
 				}
 				else if(m_StatusEffectList.at(i)->GetDuration() + m_StatusEffectList.at(i)->GetStartTime() <
@@ -758,9 +754,9 @@ bool CStatusEffectContainer::ApplyBardEffect(CStatusEffect* PStatusEffect, uint8
 		AddStatusEffect(PStatusEffect);
 		return true;
 	}
-	else{
+	else if (oldestSong){
 		//overwrite oldest
-		DelStatusEffectWithPower(oldestSong->GetStatusID(),oldestSong->GetPower());
+        DelStatusEffectByTier(oldestSong->GetStatusID(), oldestSong->GetTier());
 		AddStatusEffect(PStatusEffect);
 		return true;
 	}

@@ -15,32 +15,39 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-	-- If your skill level is below 65 your stuck at the minimum
-	local sItem = caster:getEquipID(2);
-	local sLvl = caster:getSkillLevel(40); -- Gets skill level of Singing
-	power=0;
-	-- If your above 64 skill then you get the bonus of 1 more defense for every 4 skill
-	if (sLvl >= 65 and sLvl <= 121) then
-		sBoost = math.floor((sLvl - 61)/4);
-		power = power + sBoost;
+	local sLvl = caster:getSkillLevel(SKILL_SNG); -- Gets skill level of Singing
+    local iLvl = caster:getWeaponSkillLevel(SLOT_RANGED);
+    
+	local power = 12 + math.floor((sLvl + iLvl)/10);
+
+	if(power >= 41) then
+		power = 41;
 	end
-	-- The bonus caps at skill 125
-	if(sLvl >= 125) then
-		power = 28;
-	end
-	-- Maple Harp +1 or Harp will add 3 more
-	if(sItem == 17373 or sItem == 17354) then
-		power = power + 3;
-	end
-	-- Harp +1 gives 5 more
-	if(sItem == 17374) then
-		power = power + 5;
-	end
-	-- Until someone finds a way to delete Effects by tier we should not allow bard spells to stack.
-	-- Since all the tiers use the same effect buff it is hard to delete a specific one.
-	target:delStatusEffect(EFFECT_MINNE);
-	target:addStatusEffect(EFFECT_MINNE,power,0,120);
-	spell:setMsg(230);
+    
+	local iBoost = caster:getMod(MOD_MINNE_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
+    if (iBoost > 0) then
+        power = power + 1 + (iBoost-1)*4;
+    end
+
+    power =  power + caster:getMerit(MERIT_MINNE_EFFECT);
+    
+    if (caster:hasStatusEffect(EFFECT_SOUL_VOICE)) then
+        power = power * 2;
+    elseif (caster:hasStatusEffect(EFFECT_MARCATO)) then
+        power = power * 1.5;
+    end
+    caster:delStatusEffect(EFFECT_MARCATO);
+    
+    local duration = 120;
+    duration = duration * ((iBoost * 0.1) + (caster:getMod(MOD_SONG_DURATION_BONUS)/100) + 1);
+    
+    if (caster:hasStatusEffect(EFFECT_TROUBADOUR)) then
+        duration = duration * 2;
+    end
+    
+	if not (target:addBardSong(caster,EFFECT_MINNE,power,0,duration,caster:getID(), 0, 2)) then
+        spell:setMsg(75);
+    end
 
 	return EFFECT_MINNE;
 end;

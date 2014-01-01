@@ -28,17 +28,9 @@ function onSpellCast(caster,target,spell)
 		spell:setMsg(75);
 	else
 
-		-- add equipment bonus
-		local sItem = caster:getEquipID(2);
+        local iBoost = caster:getMod(MOD_LULLABY_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
 
-		-- Mary's Horn
-		if(sItem == 17366) then
-			duration = duration * 1.1;
-		end
-
-		if(sItem == 17841 or sItem == 17854) then
-			duration = duration * 1.2;
-		end
+        duration = duration * ((iBoost * 0.1) + (caster:getMod(MOD_SONG_DURATION_BONUS)/100) + 1);
 
 		if(target:addStatusEffect(EFFECT_LULLABY,1,0,duration)) then
 			spell:setMsg(237);

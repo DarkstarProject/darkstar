@@ -53,7 +53,7 @@ public:
     void DelStatusEffectsByFlag(uint16 flag, bool silent = false);                   // удаляем все эффекты с указанным типом
     void DelStatusEffectsByIcon(uint16 IconID);                 // удаляем все эффекты с указанной иконкой
     void DelStatusEffectsByType(uint16 Type);
-    bool DelStatusEffectWithPower(EFFECT StatusID, uint16 power);
+    bool DelStatusEffectByTier(EFFECT StatusID, uint16 power);
     void KillAllStatusEffect();
 
     bool HasStatusEffect(EFFECT StatusID);                      // проверяем наличие эффекта

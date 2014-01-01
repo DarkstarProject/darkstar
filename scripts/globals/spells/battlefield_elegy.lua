@@ -28,27 +28,20 @@ function onSpellCast(caster,target,spell)
     if(100 * math.random() < target:getMod(MOD_SLOWRES)) then
         spell:setMsg(85); -- resisted spell
     else
-        local sItem = caster:getEquipID(SLOT_RANGED);
-
-        -- horn +1
-        if(sItem == 17371) then
-            power = power + 20;
-            duration = duration * 1.2;
+        local iBoost = caster:getMod(MOD_ELEGY_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
+        power = power + iBoost*10;
+        
+        if (caster:hasStatusEffect(EFFECT_SOUL_VOICE)) then
+            power = power * 2;
+        elseif (caster:hasStatusEffect(EFFECT_MARCATO)) then
+            power = power * 1.5;
         end
-
-        if(sItem == 17352) then
-            power = power + 11;
-            duration = duration * 1.1;
-        end
-
-        if(sItem == 18342) then
-            power = power + 20;
-            duration = duration * 1.2;
-        end
-
-        if(sItem == 17856) then
-            power = power + 30;
-            duration = duration * 1.3;
+        caster:delStatusEffect(EFFECT_MARCATO);
+        
+        duration = duration * ((iBoost * 0.1) + (caster:getMod(MOD_SONG_DURATION_BONUS)/100) + 1);
+        
+        if (caster:hasStatusEffect(EFFECT_TROUBADOUR)) then
+            duration = duration * 2;
         end
 
         -- Try to overwrite weaker elegy

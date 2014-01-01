@@ -331,13 +331,14 @@ enum SUBEFFECT
 
 enum TARGETTYPE
 {
-	TARGET_SELF				= 0x01,
-	TARGET_PLAYER_PARTY		= 0x02,
-	TARGET_ENEMY			= 0x04,
-	TARGET_PLAYER_ALLIANCE	= 0x08,
-	TARGET_PLAYER			= 0x10,
-	TARGET_PLAYER_DEAD		= 0x20,
-	TARGET_NPC				= 0x40		// скорее всего подразумевается mob, выглядящий как npc и воюющий на стороне персонажа
+	TARGET_SELF				       = 0x01,
+	TARGET_PLAYER_PARTY		       = 0x02,
+	TARGET_ENEMY			       = 0x04,
+	TARGET_PLAYER_ALLIANCE	       = 0x08,
+	TARGET_PLAYER			       = 0x10,
+	TARGET_PLAYER_DEAD		       = 0x20,
+	TARGET_NPC				       = 0x40,		// скорее всего подразумевается mob, выглядящий как npc и воюющий на стороне персонажа
+    TARGET_PLAYER_PARTY_PIANISSIMO = 0x80
 };
 enum SKILLCHAIN_ELEMENT
 {

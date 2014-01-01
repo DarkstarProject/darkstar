@@ -18,7 +18,7 @@ function onSpellCast(caster,target,spell)
     -- Pull base stats.
     local dINT = (caster:getStat(MOD_CHR) - target:getStat(MOD_CHR));
 
-    local resist = applyResistance(caster,spell,target,dINT,SINGING_SKILL);
+    local resist = applyResistance(caster,spell,target,dINT,SINGING_SKILL,caster:getMod(MOD_FINALE_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT));
     local effect = EFFECT_NONE;
 
     if(resist > 0.0625) then

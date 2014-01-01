@@ -150,7 +150,6 @@ namespace battleutils
     uint16				TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint16 lastSkillDamage);
 	uint32				MagicCalculateCure(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell, int8 targetNumber, CZone* PZone);
 
-	uint16				SingSong(CBattleEntity* PCaster,CBattleEntity* PTarget,CSpell* PSpell);
 	bool                TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	float				GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	void				HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action);

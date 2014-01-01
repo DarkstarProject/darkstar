@@ -15,35 +15,43 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-	local sItem = caster:getEquipID(2);
-	local sLvl = caster:getSkillLevel(40); -- Gets skill level of Singing
-	local power = 0;
+	local sLvl = caster:getSkillLevel(SKILL_SNG); -- Gets skill level of Singing
+    local iLvl = caster:getWeaponSkillLevel(SLOT_RANGED);
 
-	if (sLvl < 67) then -- If your skill level is below 67 your stuck at the minimum
-		power = 14;
-	end
+	local power = 10;
 
-	if (sLvl >= 67 and sLvl <= 119) then -- If your above 66 skill then you get the bonus of 1 more attack for every 3 skill
-		local sBoost = math.floor((sLvl - 66)/3);
-		power = 14 + sBoost;
-	end
-
-	if(sLvl >= 120) then -- The bonus caps at skill 120
+    if (sLvl+iLvl > 85) then
+        power = power + math.floor((sLvl+iLvl-85) / 6);
+    end
+    
+	if(power >= 32) then
 		power = 32;
 	end
+    
+	local iBoost = caster:getMod(MOD_MINUET_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
+    if (iBoost > 0) then
+        power = power + 1 + (iBoost-1)*4;
+    end
 
-	if(sItem == 17344) then -- Cornette will add 3 more
-		power = power + 3;
-	end
+    power =  power + caster:getMerit(MERIT_MINUET_EFFECT);
+    
+    if (caster:hasStatusEffect(EFFECT_SOUL_VOICE)) then
+        power = power * 2;
+    elseif (caster:hasStatusEffect(EFFECT_MARCATO)) then
+        power = power * 1.5;
+    end
+    caster:delStatusEffect(EFFECT_MARCATO);
+    
+    local duration = 120;
+    duration = duration * ((iBoost * 0.1) + (caster:getMod(MOD_SONG_DURATION_BONUS)/100) + 1);
+    
+    if (caster:hasStatusEffect(EFFECT_TROUBADOUR)) then
+        duration = duration * 2;
+    end
+    
+	if not (target:addBardSong(caster,EFFECT_MINUET,power,0,duration,caster:getID(), 0, 2)) then
+        spell:setMsg(75);
+    end
 
-	if(sItem == 17369 or sItem == 17846) then -- Cornette +1 and Cornette +2 give 5 more
-		power = power + 5;
-	end
-
-	-- Until someone finds a way to delete Effects by tier we should not allow bard spells to stack.
-	-- Since all the tiers use the same effect buff it is hard to delete a specific one.
-	target:delStatusEffect(EFFECT_MINUET);
-	target:addStatusEffect(EFFECT_MINUET,power,0,120);
-	spell:setMsg(230);
 	return EFFECT_MINUET;
 end;

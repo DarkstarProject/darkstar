@@ -15,12 +15,28 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-    local mp = 2;
+	local power = 2;
 
-    -- Until someone finds a way to delete Effects by tier we should not allow bard spells to stack.
-    -- Since all the tiers use the same effect buff it is hard to delete a specific one.
-    target:addStatusEffect(EFFECT_BALLAD,mp,3,120);
+	local iBoost = caster:getMod(MOD_BALLAD_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
+    power = power + iBoost;
+    
+    if (caster:hasStatusEffect(EFFECT_SOUL_VOICE)) then
+        power = power * 2;
+    elseif (caster:hasStatusEffect(EFFECT_MARCATO)) then
+        power = power * 1.5;
+    end
+    caster:delStatusEffect(EFFECT_MARCATO);
+    
+    local duration = 120;
+    duration = duration * ((iBoost * 0.1) + (caster:getMod(MOD_SONG_DURATION_BONUS)/100) + 1);
+    
+    if (caster:hasStatusEffect(EFFECT_TROUBADOUR)) then
+        duration = duration * 2;
+    end
+    
+	if not (target:addBardSong(caster,EFFECT_BALLAD,power,0,duration,caster:getID(), 0, 2)) then
+        spell:setMsg(75);
+    end
 
-    spell:setMsg(230);
-    return EFFECT_BALLAD;
+	return EFFECT_BALLAD;
 end;

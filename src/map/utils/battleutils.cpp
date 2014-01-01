@@ -2449,85 +2449,6 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 	return dsp_min(num, 8);
 }
 
-
-
-/*****************************************************************************
-	Handles song buff effects. Returns true if the song has been handled
-	or false if the song effect has not been implemented. This is used in
-	luautils to check if it needs to load a spell script or not.
-******************************************************************************/
-uint16 SingSong(CBattleEntity* PCaster,CBattleEntity* PTarget,CSpell* PSpell){
-	uint8 tier = 1;
-	EFFECT effect = EFFECT_NONE;
-	uint8 tick = 0;
-
-	//calculate strengths. Need to know TIER and EFFECTTYPE (Minuet, Paeon, etc) for icon
-	if(PSpell->getID() >= 394 && PSpell->getID() <= 398){
-		effect = EFFECT_MINUET;
-		tier = PSpell->getID()-393;
-	}
-	else if(PSpell->getID() >= 389 && PSpell->getID() <= 393){
-		effect = EFFECT_MINNE;
-		tier = PSpell->getID()-388;
-	}
-	else if(PSpell->getID() >= 399 && PSpell->getID() <= 400){
-		effect = EFFECT_MADRIGAL;
-		tier = PSpell->getID()-398;
-	}
-	else if(PSpell->getID() >= 403 && PSpell->getID() <= 404){
-		effect = EFFECT_MAMBO;
-		tier = PSpell->getID()-402;
-	}
-	else if(PSpell->getID() >= 386 && PSpell->getID() <= 388){
-		effect = EFFECT_BALLAD;
-		tier = PSpell->getID()-385;
-		tick = 3;
-	}
-	else if(PSpell->getID() >= 419 && PSpell->getID() <= 420){
-		effect = EFFECT_MARCH;
-		tier = PSpell->getID()-418;
-	}
-	else if(PSpell->getID() >= 378 && PSpell->getID() <= 385){
-		effect = EFFECT_PAEON;
-		tier = PSpell->getID()-377;
-		tick = 3;
-	}
-
-	if(effect==EFFECT_NONE){
-		return effect;
-	}
-	//TODO: Handle instruments!
-
-	CStatusEffect* PStatus = new CStatusEffect(effect,effect,tier,tick,120,PCaster->targid);
-	PStatus->SetFlag(EFFECTFLAG_ON_ZONE);//wears on zone
-
-	uint8 maxSongs = 2;
-	if(PCaster->objtype==TYPE_PC){
-		CCharEntity* PChar = (CCharEntity*)PCaster;
-		CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
-		if(PItem==NULL || PItem->getID()==65535 || !(PItem->getSkillType()==SKILL_STR || PItem->getSkillType()==SKILL_WND || PItem->getSkillType()==47) ){
-			//TODO: Remove check for Skilltype=47, its a DB error should be 41 (String)!!
-			maxSongs = 1;
-		}
-		else{
-			//handle skillups
-			if(PItem->getSkillType()==SKILL_STR || PItem->getSkillType()==47){
-				charutils::TrySkillUP(PChar,SKILL_STR,PChar->GetMLevel());
-			}
-			else if(PItem->getSkillType()==SKILL_WND){
-				charutils::TrySkillUP(PChar,SKILL_WND,PChar->GetMLevel());
-			}
-		}
-	}
-
-	if(PTarget->StatusEffectContainer->ApplyBardEffect(PStatus,maxSongs)){
-		//ShowDebug("Applied %s! \n",PSpell->getName());
-        PSpell->setMessage(230);
-	}
-	return effect;
-}
-
-
 /************************************************************************
 *                                                                       *
 *  Chance paralysis will cause you to be paralyzed                      *
@@ -4224,6 +4145,14 @@ uint8 GetSpellAoEType(CBattleEntity* PCaster, CSpell* PSpell)
             return SPELLAOE_RADIAL;
         else
             return SPELLAOE_NONE;
+    if (PSpell->getAOE() == SPELLAOE_PIANISSIMO)
+        if (PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_PIANISSIMO))
+        {
+            PCaster->StatusEffectContainer->DelStatusEffect(EFFECT_PIANISSIMO);
+            return SPELLAOE_NONE;
+        }
+        else
+            return SPELLAOE_RADIAL;
     return PSpell->getAOE();
 }
 

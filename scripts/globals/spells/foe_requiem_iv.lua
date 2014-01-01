@@ -26,41 +26,21 @@ function onSpellCast(caster,target,spell)
         return 1;
     end
 
-    local sItem = caster:getEquipID(2);
-
-    -- flute +1
-    if(sItem == 17372) then
-        power = power + 1;
+	local iBoost = caster:getMod(MOD_REQUIEM_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
+    power = power + iBoost;
+    
+    if (caster:hasStatusEffect(EFFECT_SOUL_VOICE)) then
+        power = power * 2;
+    elseif (caster:hasStatusEffect(EFFECT_MARCATO)) then
+        power = power * 1.5;
     end
-
-    if(sItem == 17844) then
-        power = power + 1;
+    caster:delStatusEffect(EFFECT_MARCATO);
+    
+    duration = duration * ((iBoost * 0.1) + (caster:getMod(MOD_SONG_DURATION_BONUS)/100) + 1);
+    
+    if (caster:hasStatusEffect(EFFECT_TROUBADOUR)) then
+        duration = duration * 2;
     end
-
-    if(sItem == 17346) then
-        power = power + 2;
-    end
-
-    if(sItem == 17379) then
-        power = power + 2;
-    end
-
-    if(sItem == 17362) then
-        power = power + 2;
-    end
-
-    if(sItem == 17832) then
-        power = power + 3;
-    end
-
-    if(sItem == 17852) then
-        power = power + 4;
-    end
-
-    if(sItem == 18342) then
-        power = power + 2;
-    end
-
     -- Try to overwrite weaker slow / haste
     if(canOverwrite(target, effect, power)) then
         -- overwrite them

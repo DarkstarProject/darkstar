@@ -467,6 +467,11 @@ CBattleEntity* CTargetFind::getValidTarget(uint16 actionTargetID, uint8 validTar
     {
       return PTarget;
     }
+    if ((validTargetFlags & TARGET_PLAYER_PARTY_PIANISSIMO) && (m_PBattleEntity->StatusEffectContainer->HasStatusEffect(EFFECT_PIANISSIMO)) && 
+        (m_PBattleEntity->PParty != NULL && m_PBattleEntity->PParty == PTarget->PParty))
+    {
+        return PTarget;
+    }
     if ((validTargetFlags & TARGET_PLAYER_DEAD) && PTarget->isDead())
     {
       return PTarget;

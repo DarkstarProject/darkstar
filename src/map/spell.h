@@ -61,7 +61,8 @@ enum SPELLAOE
     SPELLAOE_RADIAL         = 1,
     SPELLAOE_CONAL          = 2,
     SPELLAOE_RADIAL_MANI    = 3,  //AOE when under SCH stratagem Manifestation
-    SPELLAOE_RADIAL_ACCE    = 4   //AOE when under SCH stratagem Accession
+    SPELLAOE_RADIAL_ACCE    = 4,  //AOE when under SCH stratagem Accession
+    SPELLAOE_PIANISSIMO     = 5   //Single target when under BRD JA Pianissimo
 };
 
 class CSpell

@@ -7133,7 +7133,7 @@ INSERT INTO `item_mods` VALUES(14413, 14, 3);
 -- Sha'ir Manteel  
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES(14414, 1, 42); -- DEF:42
-INSERT INTO `item_mods` VALUES(14414, 170, 12); -- Song spellcasting time -12%
+INSERT INTO `item_mods` VALUES(14414, 455, 12); -- Song spellcasting time -12%
 INSERT INTO `item_mods` VALUES(14414, 5, 14); -- MP+14
 INSERT INTO `item_mods` VALUES(14414, 14, 7); -- CHR+7
 INSERT INTO `item_mods` VALUES(14414, 384, 20); -- Haste+2%
@@ -7144,7 +7144,7 @@ INSERT INTO `item_mods` VALUES(14414, 384, 20); -- Haste+2%
 INSERT INTO `item_mods` VALUES(14415, 1, 43); -- DEF:43
 INSERT INTO `item_mods` VALUES(14415, 5, 16); -- MP+16
 INSERT INTO `item_mods` VALUES(14415, 14, 8); -- CHR+8
-INSERT INTO `item_mods` VALUES(14415, 170, 13); -- Song spellcasting time -13%
+INSERT INTO `item_mods` VALUES(14415, 455, 13); -- Song spellcasting time -13%
 INSERT INTO `item_mods` VALUES(14415, 384, 30); -- Haste+3%
 
 INSERT INTO `item_mods` VALUES(14416, 1, 45);
@@ -7520,6 +7520,7 @@ INSERT INTO `item_mods` VALUES(14527, 1, 40);
 INSERT INTO `item_mods` VALUES(14527, 28, 5);
 INSERT INTO `item_mods` VALUES(14527, 68, 7);
 INSERT INTO `item_mods` VALUES(14527, 71, 5);
+INSERT INTO `item_mods` VALUES(14527, 455, 10);
 INSERT INTO `item_mods` VALUES(14528, 1, 44);
 INSERT INTO `item_mods` VALUES(14528, 2, 18);
 INSERT INTO `item_mods` VALUES(14528, 8, 6);
@@ -15363,6 +15364,91 @@ INSERT INTO `item_mods` VALUES(18739, 26, 10);
 INSERT INTO `item_mods` VALUES(18739, 24, 20);
 INSERT INTO `item_mods` VALUES(18740, 26, 40);
 INSERT INTO `item_mods` VALUES(18740, 24, 10);
+INSERT INTO `item_mods` VALUES(17373, 433, 1);
+INSERT INTO `item_mods` VALUES(17354, 433, 1);
+INSERT INTO `item_mods` VALUES(17374, 433, 2);
+INSERT INTO `item_mods` VALUES(17856, 433, 3);
+INSERT INTO `item_mods` VALUES(17344, 434, 1);
+INSERT INTO `item_mods` VALUES(17369, 434, 2);
+INSERT INTO `item_mods` VALUES(17846, 434, 2);
+INSERT INTO `item_mods` VALUES(18832, 434, 3);
+INSERT INTO `item_mods` VALUES(17357, 435, 1);
+INSERT INTO `item_mods` VALUES(17833, 435, 2);
+INSERT INTO `item_mods` VALUES(17848, 435, 2);
+INSERT INTO `item_mods` VALUES(17358, 435, 3);
+INSERT INTO `item_mods` VALUES(17372, 436, 1);
+INSERT INTO `item_mods` VALUES(17844, 436, 1);
+INSERT INTO `item_mods` VALUES(17346, 436, 2);
+INSERT INTO `item_mods` VALUES(17379, 436, 2);
+INSERT INTO `item_mods` VALUES(17362, 436, 2);
+INSERT INTO `item_mods` VALUES(17832, 436, 3);
+INSERT INTO `item_mods` VALUES(17852, 436, 4);
+INSERT INTO `item_mods` VALUES(17347, 437, 1);
+INSERT INTO `item_mods` VALUES(17368, 437, 2);
+INSERT INTO `item_mods` VALUES(17842, 437, 3);
+INSERT INTO `item_mods` VALUES(17348, 438, 1);
+INSERT INTO `item_mods` VALUES(17375, 438, 2);
+INSERT INTO `item_mods` VALUES(17845, 438, 2);
+INSERT INTO `item_mods` VALUES(18833, 438, 3);
+INSERT INTO `item_mods` VALUES(11073, 438, 1);
+INSERT INTO `item_mods` VALUES(17351, 439, 1);
+INSERT INTO `item_mods` VALUES(17370, 439, 2);
+INSERT INTO `item_mods` VALUES(17849, 439, 1);
+INSERT INTO `item_mods` VALUES(17850, 439, 2);
+INSERT INTO `item_mods` VALUES(18834, 439, 3);
+INSERT INTO `item_mods` VALUES(17366, 440, 1);
+INSERT INTO `item_mods` VALUES(17841, 440, 2);
+INSERT INTO `item_mods` VALUES(17854, 440, 2);
+INSERT INTO `item_mods` VALUES(18343, 440, 3);
+INSERT INTO `item_mods` VALUES(17355, 441, 1);
+INSERT INTO `item_mods` VALUES(17376, 441, 2);
+INSERT INTO `item_mods` VALUES(17359, 441, 1);
+INSERT INTO `item_mods` VALUES(17834, 441, 2);
+INSERT INTO `item_mods` VALUES(17360, 441, 3);
+INSERT INTO `item_mods` VALUES(18831, 442, 1);
+INSERT INTO `item_mods` VALUES(11133, 442, 1);
+INSERT INTO `item_mods` VALUES(17367, 443, 1);
+INSERT INTO `item_mods` VALUES(17835, 443, 1);
+INSERT INTO `item_mods` VALUES(17836, 443, 1);
+INSERT INTO `item_mods` VALUES(17349, 443, 2);
+INSERT INTO `item_mods` VALUES(17853, 443, 2);
+INSERT INTO `item_mods` VALUES(17360, 443, 3);
+INSERT INTO `item_mods` VALUES(11113, 443, 1);
+INSERT INTO `item_mods` VALUES(17839, 444, 2);
+INSERT INTO `item_mods` VALUES(17855, 444, 2);
+INSERT INTO `item_mods` VALUES(18343, 444, 3);
+INSERT INTO `item_mods` VALUES(17361, 445, 1);
+INSERT INTO `item_mods` VALUES(17377, 445, 2);
+INSERT INTO `item_mods` VALUES(17847, 445, 2);
+INSERT INTO `item_mods` VALUES(17838, 446, 2);
+INSERT INTO `item_mods` VALUES(18834, 446, 3);
+INSERT INTO `item_mods` VALUES(17352, 447, 1);
+INSERT INTO `item_mods` VALUES(17371, 447, 2);
+INSERT INTO `item_mods` VALUES(17856, 447, 3);
+INSERT INTO `item_mods` VALUES(17350, 448, 1);
+INSERT INTO `item_mods` VALUES(17378, 448, 2);
+INSERT INTO `item_mods` VALUES(18833, 448, 3);
+INSERT INTO `item_mods` VALUES(17840, 449, 2);
+INSERT INTO `item_mods` VALUES(17363, 449, 3);
+INSERT INTO `item_mods` VALUES(17364, 450, 1);
+INSERT INTO `item_mods` VALUES(17837, 450, 2);
+INSERT INTO `item_mods` VALUES(17363, 451, 1);
+INSERT INTO `item_mods` VALUES(11153, 451, 1);
+INSERT INTO `item_mods` VALUES(18342, 452, 2);
+INSERT INTO `item_mods` VALUES(18577, 452, 2);
+INSERT INTO `item_mods` VALUES(18578, 452, 2);
+INSERT INTO `item_mods` VALUES(18579, 452, 3);
+INSERT INTO `item_mods` VALUES(18580, 452, 3);
+INSERT INTO `item_mods` VALUES(18840, 452, 4);
+INSERT INTO `item_mods` VALUES(18572, 452, 4);
+INSERT INTO `item_mods` VALUES(18575, 453, 1);
+INSERT INTO `item_mods` VALUES(18576, 453, 1);
+INSERT INTO `item_mods` VALUES(18839, 453, 2);
+INSERT INTO `item_mods` VALUES(18571, 453, 2);
+INSERT INTO `item_mods` VALUES(18575, 454, 25);
+INSERT INTO `item_mods` VALUES(18576, 454, 30);
+INSERT INTO `item_mods` VALUES(18839, 454, 30);
+INSERT INTO `item_mods` VALUES(18571, 454, 30);
 
 -- -------------------------------------------------------
 -- Redemption        
@@ -16769,7 +16855,7 @@ INSERT INTO `item_mods` VALUES(28340, 68, 28); -- Evasion+28
 INSERT INTO `item_mods` VALUES(28340, 29, 3); -- "Magic Def. Bonus"+3
 INSERT INTO `item_mods` VALUES(28340, 384, 30); -- Haste+3%
 INSERT INTO `item_mods` VALUES(28340, 31, 76); -- Magic Evasion+76
-INSERT INTO `item_mods` VALUES(28340, 170, 6); -- Song casting time -6%
+INSERT INTO `item_mods` VALUES(28340, 455, 6); -- Song casting time -6%
 
 -- -------------------------------------------------------
 -- Manibozho Boots
@@ -17018,7 +17104,7 @@ INSERT INTO `item_mods` VALUES(10313, 161, -4); -- Physical damage taken -4%
 INSERT INTO `item_mods` VALUES(10314, 1, 25); -- DEF:25
 INSERT INTO `item_mods` VALUES(10314, 14, 10); -- CHR+10
 INSERT INTO `item_mods` VALUES(10314, 119, 11); -- Singing skill +11
-INSERT INTO `item_mods` VALUES(10314, 170, 5); -- Song spellcasting time -5%
+INSERT INTO `item_mods` VALUES(10314, 455, 5); -- Song spellcasting time -5%
 INSERT INTO `item_mods` VALUES(10314, 27, -5); -- Enmity-5
 
 -- -------------------------------------------------------

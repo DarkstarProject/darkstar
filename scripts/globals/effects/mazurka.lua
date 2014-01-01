@@ -1,8 +1,7 @@
 -----------------------------------
 --
 --     EFFECT_MAZURKA
--- getPower returns the TIER (e.g. 1,2,3,4)
--- DO NOT ALTER ANY OF THE EFFECT VALUES!
+--
 -----------------------------------
 
 require("scripts/globals/status");

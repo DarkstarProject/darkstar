@@ -15,29 +15,39 @@ end;
 
 function onSpellCast(caster,target,spell)
 
--- NOTE: THIS SCRIPT IS CURRENTLY IGNORED.  See battleutils:SingSong()
+	local sLvl = caster:getSkillLevel(SKILL_SNG); -- Gets skill level of Singing
+    local iLvl = caster:getWeaponSkillLevel(SLOT_RANGED);
 
-    local haste = 96;
-    local sItem = caster:getEquipID(2);
+	local power = 43;
+
+    if (sLvl+iLvl > 300) then
+        power = power + math.floor((sLvl+iLvl-300) / 7);
+    end
+    
+	if(power >= 96) then
+		power = 96;
+	end
+    
+	local iBoost = caster:getMod(MOD_MARCH_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
+    power = power + iBoost*16;
+    
+    if (caster:hasStatusEffect(EFFECT_SOUL_VOICE)) then
+        power = power * 2;
+    elseif (caster:hasStatusEffect(EFFECT_MARCATO)) then
+        power = power * 1.5;
+    end
+    caster:delStatusEffect(EFFECT_MARCATO);
+    
     local duration = 120;
-
-    local power = caster:getSkillLevel(SINGING_SKILL);
-
-    -- Royal Spearman's Horn, Kingdom Horn, San d'Orian Horn  Adds +1 haste
-    if(sItem == 17367 or sItem == 17836 or sItem == 17835) then
-        power = power + 16;
+    duration = duration * ((iBoost * 0.1) + (caster:getMod(MOD_SONG_DURATION_BONUS)/100) + 1);
+    
+    if (caster:hasStatusEffect(EFFECT_TROUBADOUR)) then
+        duration = duration * 2;
+    end
+    
+	if not (target:addBardSong(caster,EFFECT_MARCH,power,0,duration,caster:getID(), 0, 2)) then
+        spell:setMsg(75);
     end
 
-    -- Faerie Piccolo and Iron Ram Horn Adds +2 haste
-    if(sItem == 17349 or sItem == 17853) then
-        power = power + 32;
-    end
-
-    -- Until someone finds a way to delete Effects by tier we should not allow bard spells to stack.
-    -- Since all the tiers use the same effect buff it is hard to delete a specific one.
-    local haste = power / 2;
-    target:delStatusEffect(EFFECT_MARCH);
-    target:addStatusEffect(EFFECT_MARCH,haste,0,duration);
-    spell:setMsg(230);
-    return EFFECT_MARCH;
+	return EFFECT_MARCH;
 end;

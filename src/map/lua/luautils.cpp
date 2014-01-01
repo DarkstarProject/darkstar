@@ -1905,13 +1905,6 @@ int32 CheckForGearSet(CBaseEntity* PTarget)
 
 int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell)
 {
-	if(PSpell->getSpellGroup() == SPELLGROUP_SONG){
-		EFFECT effectId = (EFFECT)battleutils::SingSong(PCaster,PTarget,PCaster->PBattleAI->GetCurrentSpell());
-        if(effectId != EFFECT_NONE){
-            return effectId;
-        }
-	}
-
     int8 File[255];
     memset(File,0,sizeof(File));
     int32 oldtop = lua_gettop(LuaHandle);

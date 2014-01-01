@@ -202,6 +202,24 @@ uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
             cast = cast * (1.0f + m_PEntity->getMod(MOD_WHITE_MAGIC_CAST)/100.0f);
         }
     }
+    else if (PSpell->getSpellGroup() == SPELLGROUP_SONG)
+    {
+        if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_NIGHTINGALE))
+        {
+            if (m_PEntity->objtype == TYPE_PC &&
+                rand() % 100 < ((CCharEntity*)m_PEntity)->PMeritPoints->GetMeritValue(MERIT_TROUBADOUR, (CCharEntity*)m_PEntity) - 25)
+            {
+                return 0;
+            }
+            cast = cast * 0.5f;
+        }
+        if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_TROUBADOUR))
+        {
+            cast = cast * 1.5f;
+        }
+        uint16 songcasting = m_PEntity->getMod(MOD_SONG_SPELLCASTING_TIME);
+        cast = cast * (1.0f - ((songcasting > 50 ? 50 : songcasting) / 100.0f));
+    }
 
     int8 fastCast = dsp_cap(m_PEntity->getMod(MOD_FASTCAST),-100,50);
     int8 uncappedFastCast = dsp_cap(m_PEntity->getMod(MOD_UFASTCAST),-100,100);
@@ -345,6 +363,13 @@ uint32 CMagicState::CalculateRecastTime(CSpell* PSpell)
         if (applyArts)
         {
             recast *= (1.0f + m_PEntity->getMod(MOD_WHITE_MAGIC_RECAST)/100.0f);
+        }
+    }
+    else if (PSpell->getSpellGroup() == SPELLGROUP_SONG)
+    {
+        if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_NIGHTINGALE))
+        {
+            recast *= 0.5f;
         }
     }
 
@@ -678,6 +703,14 @@ void CMagicState::CharAfterFinish()
     // only skill up if the effect landed
     if(m_PSpell->tookEffect()){
         charutils::TrySkillUP(PChar, (SKILLTYPE)m_PSpell->getSkillType(), m_PTarget->GetMLevel());
+        if (m_PSpell->getSkillType() == SKILL_SNG)
+        {
+            CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
+            if (PItem == NULL || PItem->isType(ITEM_ARMOR))
+            {
+                charutils::TrySkillUP(PChar, (SKILLTYPE)PItem->getSkillType(), m_PTarget->GetMLevel());
+            }
+        }
     }
 
     PChar->pushPacket(new CCharUpdatePacket(PChar));

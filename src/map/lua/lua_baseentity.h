@@ -189,6 +189,7 @@ public:
     int32 getMaxSkillLevel(lua_State*);     // Get Skill Cap for skill and rank
 	int32 getSkillRank(lua_State*);			// Get your current skill craft Rank
 	int32 setSkillRank(lua_State*);			// Set new skill craft rank
+    int32 getWeaponSkillLevel(lua_State*);   // Get Skill for equipped weapon
 	int32 addSpell(lua_State*);				// Add spell to Entity spell list
 	int32 addAllSpells(lua_State*);			// Add all spells to GM char
     int32 hasSpell(lua_State*);				// Check to see if character has item in spell list
@@ -344,6 +345,7 @@ public:
 	int32 removePartyEffect(lua_State*);	// Removes Effect from all party members
 	int32 hasPartyEffect(lua_State*);		// Has Effect from all party members
 	int32 addCorsairRoll(lua_State*);		// Adds corsair roll effect
+    int32 addBardSong(lua_State*);          // Adds bard song effect
 	int32 hasPartyJob(lua_State*);
     int32 fold(lua_State*);
     int32 hasCorsairEffect(lua_State*);

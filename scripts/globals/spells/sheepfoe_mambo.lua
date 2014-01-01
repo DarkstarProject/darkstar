@@ -15,15 +15,42 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-    local sItem = caster:getEquipID(2);
-    local sLvl = caster:getSkillLevel(SINGING_SKILL); -- Gets skill level of Singing
+	local sLvl = caster:getSkillLevel(SKILL_SNG); -- Gets skill level of Singing
+    local iLvl = caster:getWeaponSkillLevel(SLOT_RANGED);
 
-    -- TODO: mambo bonus
+    -- Since nobody knows the evasion values for mambo, I'll just make shit up! (aka - same as madrigal)
+	local power = 5;
 
-    -- Until someone finds a way to delete Effects by tier we should not allow bard spells to stack.
-    -- Since all the tiers use the same effect buff it is hard to delete a specific one.
-    target:delStatusEffect(EFFECT_MAMBO);
-    target:addStatusEffect(EFFECT_MAMBO,1,0,120);
-    spell:setMsg(230);
-    return EFFECT_MAMBO;
+    if (sLvl+iLvl > 85) then
+        power = power + math.floor((sLvl+iLvl-85) / 18);
+    end
+    
+	if(power >= 15) then
+		power = 15;
+	end
+    
+	local iBoost = caster:getMod(MOD_MAMBO_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
+    if (iBoost > 0) then
+        power = power + 1 + (iBoost-1)*4;
+    end
+    
+    if (caster:hasStatusEffect(EFFECT_SOUL_VOICE)) then
+        power = power * 2;
+    elseif (caster:hasStatusEffect(EFFECT_MARCATO)) then
+        power = power * 1.5;
+    end
+    caster:delStatusEffect(EFFECT_MARCATO);
+    
+    local duration = 120;
+    duration = duration * ((iBoost * 0.1) + (caster:getMod(MOD_SONG_DURATION_BONUS)/100) + 1);
+    
+    if (caster:hasStatusEffect(EFFECT_TROUBADOUR)) then
+        duration = duration * 2;
+    end
+    
+	if not (target:addBardSong(caster,EFFECT_MAMBO,power,0,duration,caster:getID(), 0, 1)) then
+        spell:setMsg(75);
+    end
+
+	return EFFECT_MAMBO;
 end;

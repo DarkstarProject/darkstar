@@ -15,34 +15,39 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-	local sItem = caster:getEquipID(2);
-	local sLvl = caster:getSkillLevel(40); -- Gets skill level of Singing
+	local sLvl = caster:getSkillLevel(SKILL_SNG); -- Gets skill level of Singing
+    local iLvl = caster:getWeaponSkillLevel(SLOT_RANGED);
 
-	if (sLvl < 193) then -- If your skill level is below 193 your stuck at the minimum
-		power = 38;
+	local power = 30 + math.floor((sLvl + iLvl)/10);
+
+	if(power >= 97) then
+		power = 97;
 	end
+    
+	local iBoost = caster:getMod(MOD_MINNE_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
+    if (iBoost > 0) then
+        power = power + 1 + (iBoost-1)*4;
+    end
 
-	if (sLvl >= 193 and sLvl <= 221) then -- If your above 192 skill then you get the bonus of 1 more defense for every 3 skill
-		sBoost = math.floor((sLvl - 192)/3);
-		power = 38 + sBoost;
-	end
+    power =  power + caster:getMerit(MERIT_MINNE_EFFECT);
+    
+    if (caster:hasStatusEffect(EFFECT_SOUL_VOICE)) then
+        power = power * 2;
+    elseif (caster:hasStatusEffect(EFFECT_MARCATO)) then
+        power = power * 1.5;
+    end
+    caster:delStatusEffect(EFFECT_MARCATO);
+    
+    local duration = 120;
+    duration = duration * ((iBoost * 0.1) + (caster:getMod(MOD_SONG_DURATION_BONUS)/100) + 1);
+    
+    if (caster:hasStatusEffect(EFFECT_TROUBADOUR)) then
+        duration = duration * 2;
+    end
+    
+	if not (target:addBardSong(caster,EFFECT_MINNE,power,0,duration,caster:getID(), 0, 4)) then
+        spell:setMsg(75);
+    end
 
-	if(sLvl >= 222) then -- The bonus caps at skill 222
-		power = 48;
-	end
-
-	if(sItem == 17373 or sItem == 17354) then -- Maple Harp +1 or Harp will add 3 more
-		power = power + 3;
-	end
-
-	if(sItem == 17374) then -- Harp +1 gives 5 more
-		power = power + 5;
-	end
-
-	-- Until someone finds a way to delete Effects by tier we should not allow bard spells to stack.
-	-- Since all the tiers use the same effect buff it is hard to delete a specific one.
-	target:delStatusEffect(EFFECT_MINNE);
-	target:addStatusEffect(EFFECT_MINNE,power,0,120);
-	spell:setMsg(230);
 	return EFFECT_MINNE;
 end;
