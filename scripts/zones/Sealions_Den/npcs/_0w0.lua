@@ -31,12 +31,10 @@ function onTrigger(player,npc)
     if(player:getCurrentMission(COP) == SLANDEROUS_UTTERINGS and player:getVar("PromathiaStatus") == 1)then
 	player:startEvent(0x000D);
 	elseif(EventTriggerBCNM(player,npc))then
-		return 0;
+		return;
 	elseif(player:hasKeyItem(LIGHT_OF_ALTAIEU) == true or player:getCurrentMission(COP) > THE_WARRIOR_S_PATH) then
 	player:startEvent(0x000C);
-	end
-	
-	return 0;
+	end	
 end;
 
 -----------------------------------
@@ -47,10 +45,8 @@ function onEventUpdate(player,csid,option)
 --printf("onUpdate CSID: %u",csid);
 --printf("onUpdate RESULT: %u",option);
 	
-	if(EventUpdateBCNM(player,csid,option))then
-		return 1;
-	end
-	end;
+	EventUpdateBCNM(player,csid,option)
+end;
 
 -----------------------------------
 -- onEventFinish Action 
