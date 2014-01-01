@@ -3259,9 +3259,21 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
 	uint16 currentExp = PChar->jobs.exp[PChar->GetMJob()];
 	bool onLimitMode = false;
 
-	//Incase player de-levels to 74 on the field
-	if(PChar->MeritMode == true && PChar->GetMLevel() > 74 && expFromRaise == false)
-		onLimitMode = true;
+	// Incase player de-levels to 74 on the field
+    if (PChar->MeritMode == true && PChar->jobs.job[PChar->GetMJob()] > 74 && expFromRaise == false)
+        onLimitMode = true;
+
+    // Are we synced or in a level cap area?
+    if ((PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC) || PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_RESTRICTION)) && !onLimitMode && !expFromRaise)
+    {
+        // Next.. we check if the player is forcing merit mode..
+        if (PChar->MeritMode)
+            onLimitMode = true;
+
+        // Next.. we check if the player is level capped and max exp..
+        else if (PChar->jobs.job[PChar->GetMJob()] == PChar->jobs.genkai && PChar->jobs.exp[PChar->GetMJob()] == GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) - 1)
+            onLimitMode = true;
+    }
 
 	// exp added from raise shouldn't display a message
 	if(!expFromRaise)
