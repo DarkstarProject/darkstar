@@ -268,7 +268,7 @@ INSERT INTO `mob_skill` VALUES (109,81,833,'Spinning_Top', 1, 10.0, 2000, 1500, 
 -- INSERT INTO `mob_skill` VALUES (0,0,0,'Tarsal_Slam', 4, 10.0, 2000, 1500, 4, 0, 0, 0); -- Only used by certain notorious monsters
 
 -- Memory Receptacle
-INSERT INTO `mob_skill` VALUES (286,181,841,'Empty_Seed', 1, 20.0, 2000, 2000, 4, 0, 0, 7);
+INSERT INTO `mob_skill` VALUES (286,181,899,'Empty_Seed', 1, 20.0, 2000, 2000, 4, 0, 0, 7);
 -- Weeper
 INSERT INTO `mob_skill` VALUES (961,256,834,'Empty_Cutter', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (962,256,835,'Vacuous_Osculation', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
