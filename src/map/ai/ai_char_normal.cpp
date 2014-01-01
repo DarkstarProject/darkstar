@@ -354,6 +354,12 @@ void CAICharNormal::ActionDisengage()
 	m_PChar->status = STATUS_UPDATE;
 	m_PChar->animation = ANIMATION_NONE;
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
+
+    if (m_PChar->PPet != NULL && m_PChar->PPet->objtype == TYPE_PET && ((CPetEntity*)m_PChar->PPet)->getPetType() == PETTYPE_WYVERN)
+    {
+        m_PChar->PPet->PBattleAI->SetBattleTarget(NULL);
+    }
+
 }
 
 /************************************************************************
@@ -2971,6 +2977,11 @@ void CAICharNormal::ActionAttack()
 
 			m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK | EFFECTFLAG_DETECTABLE);
 			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+
+            if (m_PChar->PPet != NULL && m_PChar->PPet->objtype == TYPE_PET && ((CPetEntity*)m_PChar->PPet)->getPetType() == PETTYPE_WYVERN)
+            {
+                m_PChar->PPet->PBattleAI->SetBattleTarget(m_PBattleTarget);
+            }
 		}
 	}
 }

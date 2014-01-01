@@ -557,10 +557,6 @@ void CAIPetDummy::ActionRoaming()
 
 	//wyvern behaviour
 	if(m_PPet->getPetType()==PETTYPE_WYVERN){
-		//see if master is engaged on something, if so, help attack
-		if(m_PPet->PMaster->PBattleAI->GetBattleTarget()!=NULL){
-			m_PBattleTarget = m_PPet->PMaster->PBattleAI->GetBattleTarget();
-		}
 		if(WyvernIsHealing()){
 			m_PPathFind->LookAt(m_PPet->PMaster->loc.p);
 
