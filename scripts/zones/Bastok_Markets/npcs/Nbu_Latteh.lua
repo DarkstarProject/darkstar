@@ -38,7 +38,7 @@ function onTrigger(player,npc)
 		if (MomTheAdventurer ~= QUEST_COMPLETED and questStatus == 0) then
 			player:startEvent(0x00e6);
 		elseif (MomTheAdventurer >= QUEST_ACCEPTED and questStatus == 2) then
-			if (player:seenKeyItem(LETTER_FROM_ROH_LATTEH)) then
+			if (player:seenKeyItem(LETTER_FROM_ROH_LATTEH) or player:hasKeyItem(LETTER_FROM_ROH_LATTEH)) then
 				player:startEvent(0x00ea);
 			else
 				player:startEvent(0x00e9);
