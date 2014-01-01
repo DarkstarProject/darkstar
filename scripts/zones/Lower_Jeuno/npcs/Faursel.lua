@@ -1,13 +1,13 @@
 -----------------------------------
 --  Area: Lower Jeuno
---   NPC: Faursel
+--  NPC:  Faursel
 --  Type: Aht Urhgan Quest NPC
--- @zone: 245
---  @pos 37.985 3.118 -45.208
---
--- Starts and Ends Quest "The Road to Aht Urhgan"
+--  Involved in Quests: The Road to Aht Urhgan
+--  @pos 37.985 3.118 -45.208 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/teleports");
 require("scripts/globals/keyitems");
 
@@ -23,16 +23,22 @@ function onTrade(player,npc,trade)
 	if (questStatus == QUEST_ACCEPTED and questStatusVar == 1) then
 
 		if (trade:hasItemQty(537,1) == true and trade:hasItemQty(538,1) == true and trade:hasItemQty(539,1) == true 
-		and trade:hasItemQty(540,1) == true and trade:hasItemQty(541,1) == true and trade:hasItemQty(542,1) == true and trade:getItemCount() == 6 and trade:getGil() == 0) then -- Beginner List
+		and trade:hasItemQty(540,1) == true and trade:hasItemQty(541,1) == true and trade:hasItemQty(542,1) == true and trade:getItemCount() == 6 and trade:getGil() == 0) then -- Beginner List (Subjob Items)
 			player:startEvent(0x2756);
 		elseif (trade:hasItemQty(1532,1) and trade:hasItemQty(1533,1) and trade:hasItemQty(1535,1) and trade:getItemCount() == 3 and trade:getGil() == 0) then -- Intermediate List
 			player:startEvent(0x2756);
-		elseif (trade:hasItemQty(1692,1) and trade:hasItemQty(1693,1) and trade:hasItemQty(1694,1) and trade:getItemCount() == 3 and trade:getGil() == 0) then -- Advanced List
+		elseif (trade:hasItemQty(1692,1) and trade:hasItemQty(1693,1) and trade:hasItemQty(1694,1) and trade:getItemCount() == 3 and trade:getGil() == 0) then -- Advanced List (Chips)
 			player:startEvent(0x2756);
+		elseif (trade:hasItemQty(1042,1) or trade:hasItemQty(1043,1) or trade:hasItemQty(1044,1) or trade:hasItemQty(1049,1) or trade:hasItemQty(1050,1) or -- Advanced List (Coffer Keys)
+			trade:hasItemQty(1054,1) or trade:hasItemQty(10459,1) and trade:getItemCount() == 1 and trade:getGil() == 0) then
+				player:startEvent(0x2756);
+		elseif (trade:hasItemQty(1426,1) or trade:hasItemQty(1427,1) or trade:hasItemQty(1428,1) or trade:hasItemQty(1429,1) or trade:hasItemQty(1430,1) or -- Advanced List (Testimonys)
+			trade:hasItemQty(1431,1) or trade:hasItemQty(1432,1) or trade:hasItemQty(1433,1) or trade:hasItemQty(1434,1) or trade:hasItemQty(1435,1) or
+			trade:hasItemQty(1436,1) or trade:hasItemQty(1437,1) or trade:hasItemQty(1438,1) or trade:hasItemQty(1439,1) or trade:hasItemQty(1440,1) or
+			trade:hasItemQty(2331,1) or trade:hasItemQty(2332,1) or trade:hasItemQty(2333,1) or trade:hasItemQty(2556,1) or trade:hasItemQty(2557,1) and trade:getItemCount() == 1 and trade:getGil() == 0) then
+				player:startEvent(0x2756);
 		end
-
 	end
-
 end; 
 
 -----------------------------------
