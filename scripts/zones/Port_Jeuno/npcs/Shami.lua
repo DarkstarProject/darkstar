@@ -142,15 +142,15 @@ function onTrigger(player,npc)
         player:setVar("ShamiBeastmensSeal",0);
     end
     if (oldKindredsSeal > 0) then
-        player:addSeals(oldKindredsSeal,0);
+        player:addSeals(oldKindredsSeal,1);
         player:setVar("ShamiKindredsSeal",0);
     end
     if (oldKindredsCrest > 0) then
-        player:addSeals(oldKindredsCrest,0);
+        player:addSeals(oldKindredsCrest,2);
         player:setVar("ShamiKindredsCrest",0);
     end
     if (oldHighKindredsCrest > 0) then
-        player:addSeals(oldHighKindredsCrest,0);
+        player:addSeals(oldHighKindredsCrest,3);
         player:setVar("ShamiHighKindredsCrest",0);
     end
 	-- TODO: player:startEvent(0x0142,0,0,0,0,1,0,1) -- First time talking to him WITH  beastmen seal in inventory
