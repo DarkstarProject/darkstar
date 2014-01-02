@@ -292,9 +292,9 @@ void setFrame(CCharEntity* PChar, uint8 frame)
         uint8 head = PChar->PAutomaton->getHead();
         PChar->PAutomaton->look.race = 0x07;
         if (head == 3)
-            PChar->PAutomaton->look.face = 0xBD + ((frame - 32) * 5);
-        else if (head == 4)
             PChar->PAutomaton->look.face = 0xBC + ((frame - 32) * 5);
+        else if (head == 4)
+            PChar->PAutomaton->look.face = 0xBB + ((frame - 32) * 5);
         else if (head == 5)
             PChar->PAutomaton->look.face = 0xD3 + ((frame - 32));
         else if (head == 6)
