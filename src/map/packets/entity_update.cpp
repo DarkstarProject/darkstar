@@ -153,7 +153,9 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 					if(((CPetEntity*)PEntity)->PBattleAI->GetCurrentAction()==ACTION_FALL){
 						WBUFB(data,(0x0A)-4) = 0x07;
 						WBUFB(data,(0x21)-4) = 0x99;
-					  //WBUFB(data,(0x27)-4) = 0x28;
+                        WBUFB(data,(0x25)-4) = 0x08;
+                        WBUFB(data,(0x27)-4) = 0x08 | ((CPetEntity*)PEntity)->m_name_prefix;
+                        WBUFB(data,(0x28)-4) = (((CBattleEntity*)PEntity)->health.hp > 0 ? 0x08 : 0x00);
 						WBUFW(data,(0x1A)-4) = 0x00;
 						WBUFB(data,(0x1E)-4) = 0x00; //0% HP
 						WBUFB(data,(0x1F)-4) = ANIMATION_DEATH;
