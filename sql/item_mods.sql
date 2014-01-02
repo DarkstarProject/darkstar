@@ -10649,9 +10649,9 @@ INSERT INTO `item_mods` VALUES(15540, 1, 2);
 INSERT INTO `item_mods` VALUES(15540, 23, 7);
 INSERT INTO `item_mods` VALUES(15540, 241, 2);
 INSERT INTO `item_mods` VALUES(15545, 27, -3);
-INSERT INTO `item_mods` VALUES(15545, 5, 30);
-INSERT INTO `item_mods` VALUES(15545, 12, 5);
-INSERT INTO `item_mods` VALUES(15545, 13, 5);
+INSERT INTO `item_mods` VALUES(15545, 5, 15);
+INSERT INTO `item_mods` VALUES(15545, 12, 2);
+INSERT INTO `item_mods` VALUES(15545, 13, 2);
 INSERT INTO `item_mods` VALUES(15546, 2, -20);
 INSERT INTO `item_mods` VALUES(15546, 5, 10);
 INSERT INTO `item_mods` VALUES(15546, 8, 1);
@@ -16043,11 +16043,16 @@ INSERT INTO `item_mods` VALUES(12089, 25, 3); -- accuracy
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES(15543, 73, 5); -- Store tp
 INSERT INTO `item_mods` VALUES(15543, 289, 5); -- subtle blow
+INSERT INTO `item_mods` VALUES(15543, 8, 2); -- STR
+INSERT INTO `item_mods` VALUES(15543, 9, 2); -- DEX
 
 -- -------------------------------------------------------
 -- Sattva Ring
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES(15544, 27, 3); -- enmity
+INSERT INTO `item_mods` VALUES(15544, 2, 15); -- HP
+INSERT INTO `item_mods` VALUES(15544, 10, 2); -- VIT
+INSERT INTO `item_mods` VALUES(15544, 11, 2); -- AGI
 
 -- -------------------------------------------------------
 -- Repelling Collar        

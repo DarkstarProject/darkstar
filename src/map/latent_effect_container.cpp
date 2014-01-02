@@ -57,9 +57,9 @@ void CLatentEffectContainer::AddLatentEffect(CLatentEffect* LatentEffect)
 
 void CLatentEffectContainer::AddLatentEffects(std::vector<CLatentEffect*> *latentList, uint8 reqLvl, uint8 slot)
 {
-    if (m_POwner->GetMLevel() >= reqLvl)
+    for (uint16 i = 0; i < latentList->size(); ++i)
     {
-        for (uint16 i = 0; i < latentList->size(); ++i)
+        if (m_POwner->GetMLevel() >= reqLvl || latentList->at(i)->GetConditionsValue() == LATENT_JOB_LEVEL_ABOVE)
         {
             if (latentList->at(i)->GetModValue() == MOD_MAIN_DMG_RATING && slot == SLOT_SUB)
             {
@@ -477,7 +477,69 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
 				case LATENT_LIGHTSDAY:
 						CheckLatentsWeekDay();
 					break;
-
+                case LATENT_JOB_LEVEL_EVEN:
+                    if (m_POwner->GetMLevel() % 2 == 0)
+                    {
+                        m_LatentEffectList.at(i)->Activate();
+                    }
+                    else
+                    {
+                        m_LatentEffectList.at(i)->Deactivate();
+                    }
+                    break;
+                case LATENT_JOB_LEVEL_ODD:
+                    if (m_POwner->GetMLevel() % 2 == 1)
+                    {
+                        m_LatentEffectList.at(i)->Activate();
+                    }
+                    else
+                    {
+                        m_LatentEffectList.at(i)->Deactivate();
+                    }
+                    break;
+                case LATENT_JOB_MULTIPLE_5:
+                    if (m_POwner->GetMLevel() % 5 == 0)
+                    {
+                        m_LatentEffectList.at(i)->Activate();
+                    }
+                    else
+                    {
+                        m_LatentEffectList.at(i)->Deactivate();
+                    }
+                    break;
+                case LATENT_JOB_MULTIPLE_10:
+                    if (m_POwner->GetMLevel() % 10 == 0)
+                    {
+                        m_LatentEffectList.at(i)->Activate();
+                    }
+                    else
+                    {
+                        m_LatentEffectList.at(i)->Deactivate();
+                    }
+                    break;
+                case LATENT_JOB_MULTIPLE_13_NIGHT:
+                    //TODO: night
+                    if (m_POwner->GetMLevel() % 13 == 0)
+                    {
+                        m_LatentEffectList.at(i)->Activate();
+                    }
+                    else
+                    {
+                        m_LatentEffectList.at(i)->Deactivate();
+                    }
+                    break;
+                case LATENT_JOB_LEVEL_ABOVE:
+                    if (m_POwner->GetMLevel() >= m_LatentEffectList.at(i)->GetConditionsValue())
+                    {
+                        m_LatentEffectList.at(i)->Activate();
+                    }
+                    else
+                    {
+                        m_LatentEffectList.at(i)->Deactivate();
+                    }
+                default:
+                    ShowWarning("Latent ID %d unhandled in CheckLatentsEquip\n", m_LatentEffectList.at(i)->GetConditionsID());
+                    break;
 			}
 		}
 	}
@@ -1143,6 +1205,15 @@ void CLatentEffectContainer::CheckLatentsJobLevel()
 					m_LatentEffectList.at(i)->Deactivate();
 				}
 				break;
+            case LATENT_JOB_LEVEL_ABOVE:
+                if (m_POwner->GetMLevel() >= m_LatentEffectList.at(i)->GetConditionsValue())
+                {
+                    m_LatentEffectList.at(i)->Activate();
+                }
+                else
+                {
+                    m_LatentEffectList.at(i)->Deactivate();
+                }
 			default:
 				break;
 		}

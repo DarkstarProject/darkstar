@@ -71,10 +71,11 @@ enum LATENT
 	LATENT_JOB_LEVEL_EVEN			= 42,
 	LATENT_WEAPON_DRAWN_HP_UNDER	= 43, //PARAM: HP PERCENT
 	LATENT_WEAPON_BROKEN			= 47,
-	LATENT_IN_DYNAMIS				= 48
+	LATENT_IN_DYNAMIS				= 48,
+    LATENT_JOB_LEVEL_ABOVE          = 51 //PARAM: level
 };
 
-#define MAX_LATENTEFFECTID    51
+#define MAX_LATENTEFFECTID    52
 
 /************************************************************************
 *																		*
