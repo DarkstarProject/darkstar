@@ -37,6 +37,9 @@ local NoStringsAttachedProgress = player:getVar("NoStringsAttachedProgress");
 		player:startEvent(0x010a); -- you bring him the automaton
 	elseif (NoStringsAttached == 2) then
 		player:startEvent(0x010b); -- asking you how are you doing with your automaton
+        -- In case a player completed the quest before unlocking attachments was implemented (no harm in doing this repeatedly)
+        player:unlockAttachment(8224); --Harlequin Frame
+        player:unlockAttachment(8193); --Harlequin Head
 	else
 		player:startEvent(0x0103); -- Leave him alone
 	end;
