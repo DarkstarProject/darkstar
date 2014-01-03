@@ -537,6 +537,7 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
                     {
                         m_LatentEffectList.at(i)->Deactivate();
                     }
+                    break;
                 default:
                     ShowWarning("Latent ID %d unhandled in CheckLatentsEquip\n", m_LatentEffectList.at(i)->GetConditionsID());
                     break;
