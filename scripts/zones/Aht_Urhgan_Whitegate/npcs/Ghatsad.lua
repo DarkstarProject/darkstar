@@ -19,8 +19,7 @@ function onTrade(player,npc,trade)
 	local attachments = player:getVar("PUP_Attachments");
 	local unlockedAttachments = player:getVar("PUP_AttachmentUnlock");
 	local attachmentTime = player:getVar("PUP_AttachmentReady");
-    --local attachmentReady = (attachmentTime ~= 0 and attachmentTime < os.time());
-    local attachmentReady = true;
+    local attachmentReady = (attachmentTime ~= 0 and attachmentTime < os.time());
     local attachmentWait = player:getVar("PUP_AttachmentWait");
 
 	if (attachmentStatus == 2) then
@@ -344,8 +343,7 @@ function onTrigger(player,npc)
 	local attachmentStatus = player:getVar("PUP_AttachmentStatus");
 	local unlockedAttachments = player:getVar("PUP_AttachmentUnlock");
 	local attachmentTime = player:getVar("PUP_AttachmentReady");
-    local attachmentReady = true;
-	--local attachmentReady = (attachmentTime ~= 0 and attachmentTime < os.time());
+	local attachmentReady = (attachmentTime ~= 0 and attachmentTime < os.time());
     local attachmentWait = player:getVar("PUP_AttachmentWait");
     
 	--[[
@@ -435,7 +433,7 @@ function onTrigger(player,npc)
 		elseif (attachments == 2) then
 			player:startEvent(624, 0, 0, 0, 0, 0, 2187, 1);
 		end
-    elseif (NoStringsAttached == QUEST_COMPLETED and attachmentStatus == 11) then
+    elseif (NoStringsAttached == QUEST_COMPLETED and attachmentStatus == 11 and attachments == 3) then
         player:startEventString(900, automatonName, automatonName, automatonName, automatonName, 0, 0, 1, 0, 0, 2186, 7);
     elseif (NoStringsAttached == QUEST_COMPLETED and (attachmentStatus == 12 or attachmentStatus == 13) and attachmentReady == false) then
         player:startEvent(903, attachmentWait, 1);
@@ -520,7 +518,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 900) then
         player:setVar("PUP_AttachmentStatus", 11);
     elseif (csid == 901) then
-        player:setVar("PUP_AttachmentStatus", 11);
+        player:setVar("PUP_AttachmentStatus", 14);
     elseif (csid == 905) then
 		local attachments = player:getVar("PUP_Attachments");
 		local attachmentStatus = player:getVar("PUP_AttachmentStatus");
