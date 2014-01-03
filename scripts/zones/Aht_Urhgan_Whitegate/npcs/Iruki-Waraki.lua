@@ -59,8 +59,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+ --printf("CSID: %u",csid);
+ --printf("RESULT: %u",option);
 
 	if (csid == 0x0104) then
 		player:setVar("NoStringsAttachedProgress",2);
@@ -73,7 +73,7 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_OBTAINED,17859); -- animator
 			player:messageSpecial(5699); -- "You can now become a puppetmaster."
 			player:setVar("NoStringsAttachedProgress",0);
-			player:setVar("Automaton_Name",option+1); -- must add +1 to var or if you choose the first name, or it wont be stored
+			player:setPetName(PETTYPE_AUTOMATON, option+118);
 			player:unlockAttachment(8224); --Harlequin Frame
 			player:unlockAttachment(8193); --Harlequin Head
 		else
