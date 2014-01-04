@@ -12,7 +12,7 @@ function pathfind.get(points, index)
     local pos = {};
 
     if(index < 0) then
-    	index = (table.getn(points) + index - 2) / 3;
+    	index = (#points + index - 2) / 3;
     end
 
     pos[1] = points[index*3-2];
@@ -23,7 +23,7 @@ function pathfind.get(points, index)
 end;
 
 function pathfind.length(points)
-    return table.getn(points) / 3;
+    return #points / 3;
 end
 
 function pathfind.first(points)
@@ -36,14 +36,14 @@ end;
 
 -- returns the last point
 function pathfind.last(points)
-    local length = table.getn(points);
+    local length = #points;
 
     return pathfind.get(points, length/3);
 end;
 
 -- returns a random point from given point array
 function pathfind.random(points)
-    local length = table.getn(points);
+    local length = #points;
 
     return pathfind.get(points, math.random(1, length));
 end;
@@ -82,7 +82,7 @@ function pathfind.fromEnd(points, start)
     local t2 = {}
 
     -- do not add the last element
-    local length = table.getn(points) / 3;
+    local length = #points / 3;
 
     start = length - start;
 
@@ -112,7 +112,7 @@ function pathfind.patrol(npc, points, flags)
 		npc:pathThrough(pathfind.fromStart(points), flags);
 	else
 
-		local length = table.getn(points) / 3;
+		local length = #points / 3;
 		local currentLength = 0;
 		local i = 51;
 		-- i'm some where inbetween

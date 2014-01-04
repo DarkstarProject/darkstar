@@ -264,8 +264,7 @@ inline int32 CLuaBaseEntity::getPet(lua_State* L)
 
 		CBattleEntity* PPet = ((CBattleEntity*)m_PBaseEntity)->PPet;
 
-		lua_pushstring(L,CLuaBaseEntity::className);
-		lua_gettable(L,LUA_GLOBALSINDEX);
+        lua_getglobal(L,CLuaBaseEntity::className);
 		lua_pushstring(L,"new");
 		lua_gettable(L,-2);
 		lua_insert(L,-2);
@@ -2411,8 +2410,7 @@ inline int32 CLuaBaseEntity::getEventTarget(lua_State *L)
     {
         ShowWarning(CL_YELLOW"EventTarget is empty: %s\n" CL_RESET, m_PBaseEntity->GetName());
     }
-    lua_pushstring(L,CLuaBaseEntity::className);
-    lua_gettable(L,LUA_GLOBALSINDEX);
+    lua_getglobal(L,CLuaBaseEntity::className);
     lua_pushstring(L,"new");
     lua_gettable(L,-2);
     lua_insert(L,-2);
@@ -2692,6 +2690,10 @@ inline int32 CLuaBaseEntity::setPetName(lua_State *L)
 		else if (petType == PETTYPE_AUTOMATON)
 		{
 			Sql_Query(SqlHandle, "INSERT INTO char_pet SET charid = %u, automatonid = %u ON DUPLICATE KEY UPDATE automatonid = %u;", m_PBaseEntity->id, value, value);
+            if (((CCharEntity*)m_PBaseEntity)->PAutomaton != NULL)
+            {
+                puppetutils::LoadAutomaton((CCharEntity*)m_PBaseEntity);
+            }
 		}
 		/*
 		else if (petType == PETTYPE_ADVENTURING_FELLOW)
@@ -4032,8 +4034,7 @@ inline int32 CLuaBaseEntity::getPartyMember(lua_State* L)
 
     if (PTargetChar != NULL)
 	{
-		lua_pushstring(L,CLuaBaseEntity::className);
-		lua_gettable(L,LUA_GLOBALSINDEX);
+        lua_getglobal(L, CLuaBaseEntity::className);
 		lua_pushstring(L,"new");
 		lua_gettable(L,-2);
 		lua_insert(L,-2);
@@ -4147,8 +4148,7 @@ inline int32 CLuaBaseEntity::getStatusEffect(lua_State *L)
     else
     {
         lua_pop(L,1);
-        lua_pushstring(L, CLuaStatusEffect::className);
-        lua_gettable(L,LUA_GLOBALSINDEX);
+        lua_getglobal(L, CLuaStatusEffect::className);
         lua_pushstring(L,"new");
         lua_gettable(L,-2);
         lua_insert(L,-2);
@@ -4520,8 +4520,7 @@ inline int32 CLuaBaseEntity::stealStatusEffect(lua_State *L)
         lua_pushnil(L);
     else
     {
-        lua_pushstring(L, CLuaStatusEffect::className);
-        lua_gettable(L,LUA_GLOBALSINDEX);
+        lua_getglobal(L, CLuaStatusEffect::className);
         lua_pushstring(L,"new");
         lua_gettable(L,-2);
         lua_insert(L,-2);
@@ -7567,8 +7566,7 @@ inline int32 CLuaBaseEntity::getMaster(lua_State* L)
 
 		CBaseEntity* PMaster = ((CBattleEntity*)m_PBaseEntity)->PMaster;
 
-		lua_pushstring(L,CLuaBaseEntity::className);
-		lua_gettable(L,LUA_GLOBALSINDEX);
+        lua_getglobal(L, CLuaBaseEntity::className);
 		lua_pushstring(L,"new");
 		lua_gettable(L,-2);
 		lua_insert(L,-2);

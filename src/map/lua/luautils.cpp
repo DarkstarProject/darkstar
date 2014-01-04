@@ -75,7 +75,7 @@ lua_State*  LuaHandle = NULL;
 int32 init()
 {
 	ShowStatus("luautils::init:lua initializing...");
-	LuaHandle = lua_open();
+	LuaHandle = luaL_newstate();
 	luaL_openlibs(LuaHandle);
 
 	lua_register(LuaHandle,"print",luautils::print);
@@ -221,8 +221,7 @@ int32 GetNPCByID(lua_State* L)
 			ShowWarning("luautils::GetNPCByID NPC doesn't exist (%d)\n", npcid);
 			lua_pushnil(L);
 		} else {
-			lua_pushstring(L,CLuaBaseEntity::className);
-			lua_gettable(L,LUA_GLOBALSINDEX);
+			lua_getglobal(L,CLuaBaseEntity::className);
 			lua_pushstring(L,"new");
 			lua_gettable(L,-2);
 			lua_insert(L,-2);
@@ -254,8 +253,7 @@ int32 GetMobByID(lua_State* L)
 			ShowWarning("luautils::GetMobByID Mob doesn't exist (%d)\n", mobid);
 			lua_pushnil(L);
 		} else {
-			lua_pushstring(L,CLuaBaseEntity::className);
-			lua_gettable(L,LUA_GLOBALSINDEX);
+			lua_getglobal(L,CLuaBaseEntity::className);
 			lua_pushstring(L,"new");
 			lua_gettable(L,-2);
 			lua_insert(L,-2);
@@ -352,7 +350,7 @@ int32 SetRegionalConquestOverseers()
 		return -1;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "SetRegionalConquestOverseers");
+    lua_getglobal(LuaHandle, "SetRegionalConquestOverseers");
 	if( lua_isnil(LuaHandle,-1) )
 	{
         lua_pop(LuaHandle, 1);
@@ -634,8 +632,7 @@ int32 SpawnMob(lua_State* L)
                 }
             }
             PMob->PBattleAI->CheckCurrentAction(gettick());
-		    lua_pushstring(L,CLuaBaseEntity::className);
-		    lua_gettable(L,LUA_GLOBALSINDEX);
+            lua_getglobal(L, CLuaBaseEntity::className);
 		    lua_pushstring(L,"new");
 		    lua_gettable(L,-2);
 		    lua_insert(L,-2);
@@ -743,8 +740,7 @@ int32 GetPlayerByName(lua_State* L)
 
 		if (PTargetChar != NULL)
         {
-			lua_pushstring(L,CLuaBaseEntity::className);
-			lua_gettable(L,LUA_GLOBALSINDEX);
+            lua_getglobal(L, CLuaBaseEntity::className);
 			lua_pushstring(L,"new");
 			lua_gettable(L,-2);
 			lua_insert(L,-2);
@@ -803,8 +799,7 @@ int32 GetTextIDVariable(uint16 ZoneID, const char* variable)
 		return 0;
 	}
 
-	lua_pushstring(LuaHandle,variable);
-	lua_gettable(LuaHandle,LUA_GLOBALSINDEX);
+    lua_getglobal(LuaHandle,variable);
 
 	if( lua_isnil(LuaHandle,-1) || !lua_isnumber(LuaHandle,-1) )
 	{
@@ -841,7 +836,7 @@ int32 OnServerStart()
 		return -1;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onServerStart");
+    lua_getglobal(LuaHandle, "onServerStart");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnServerStart: undefined procedure onServerStart\n");
@@ -892,7 +887,7 @@ int32 OnZoneInitialise(uint16 ZoneID)
 		return -1;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onInitialize");
+    lua_getglobal(LuaHandle, "onInitialize");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnZoneInitialise: undefined procedure onInitialize\n");
@@ -942,7 +937,7 @@ int32 OnGameIn(CCharEntity* PChar)
 		return -1;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onGameIn");
+    lua_getglobal(LuaHandle, "onGameIn");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnGameIn: undefined procedure onGameIn\n");
@@ -998,7 +993,7 @@ int32 OnZoneIn(CCharEntity* PChar)
 		return -1;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onZoneIn");
+    lua_getglobal(LuaHandle, "onZoneIn");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnZoneIn: undefined procedure onZoneIn\n");
@@ -1060,7 +1055,7 @@ int32 OnRegionEnter(CCharEntity* PChar, CRegion* PRegion)
 		return -1;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onRegionEnter");
+    lua_getglobal(LuaHandle, "onRegionEnter");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnRegionEnter: undefined procedure onRegionEnter\n");
@@ -1115,7 +1110,7 @@ int32 OnRegionLeave(CCharEntity* PChar, CRegion* PRegion)
 		return -1;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onRegionLeave");
+    lua_getglobal(LuaHandle, "onRegionLeave");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnRegionEnter: undefined procedure onRegionLeave\n");
@@ -1174,7 +1169,7 @@ int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc)
 		return -1;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onTrigger");
+    lua_getglobal(LuaHandle, "onTrigger");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnTrigger: undefined procedure onTrigger\n");
@@ -1248,7 +1243,7 @@ int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result)
 		}
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onEventUpdate");
+    lua_getglobal(LuaHandle, "onEventUpdate");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnEventUpdate: undefined procedure onEventUpdate\n");
@@ -1307,7 +1302,7 @@ int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result)
 		}
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onEventFinish");
+    lua_getglobal(LuaHandle, "onEventFinish");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnEventFinish: undefined procedure onEventFinish\n");
@@ -1373,7 +1368,7 @@ int32 OnTrade(CCharEntity* PChar, CBaseEntity* PNpc)
 		return -1;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onTrade");
+    lua_getglobal(LuaHandle, "onTrade");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnTrade: undefined procedure onTrade\n");
@@ -1424,7 +1419,7 @@ int32 OnNpcSpawn(CBaseEntity* PNpc)
         return -1;
     }
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onSpawn");
+    lua_getglobal(LuaHandle, "onSpawn");
     if( lua_isnil(LuaHandle,-1) )
     {
         lua_pop(LuaHandle, 1);
@@ -1468,7 +1463,7 @@ int32 OnNpcPath(CBaseEntity* PNpc)
         return -1;
     }
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onPath");
+    lua_getglobal(LuaHandle, "onPath");
     if( lua_isnil(LuaHandle,-1) )
     {
         lua_pop(LuaHandle, 1);
@@ -1511,7 +1506,7 @@ int32 OnAdditionalEffect(CBattleEntity* PAttacker, CBattleEntity* PDefender, CIt
             return -1;
     }
 
-	lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onAdditionalEffect");
+    lua_getglobal(LuaHandle, "onAdditionalEffect");
 
     if( lua_isnil(LuaHandle,-1) )
     {
@@ -1584,7 +1579,7 @@ int32 OnEffectGain(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
 		return -1;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onEffectGain");
+    lua_getglobal(LuaHandle, "onEffectGain");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnEffectGain: undefined procedure onEffectGain\n");
@@ -1637,7 +1632,7 @@ int32 OnEffectTick(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
 		return -1;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onEffectTick");
+    lua_getglobal(LuaHandle, "onEffectTick");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnEffectTick: undefined procedure onEffectTick\n");
@@ -1691,7 +1686,7 @@ int32 OnEffectLose(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
 		return -1;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onEffectLose");
+    lua_getglobal(LuaHandle, "onEffectLose");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnEffectLose: undefined procedure onEffectLose\n");
@@ -1746,7 +1741,7 @@ int32 OnItemCheck(CBaseEntity* PTarget, CItem* PItem, uint32 param)
 		return 56;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onItemCheck");
+    lua_getglobal(LuaHandle, "onItemCheck");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnItemCheck: undefined procedure onItemCheck\n");
@@ -1816,7 +1811,7 @@ int32 OnItemUse(CBaseEntity* PTarget, CItem* PItem)
 		return -1;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onItemUse");
+    lua_getglobal(LuaHandle, "onItemUse");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnItemUse: undefined procedure onItemUse\n");
@@ -1868,7 +1863,7 @@ int32 CheckForGearSet(CBaseEntity* PTarget)
 		return 56;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "checkForGearSet");
+    lua_getglobal(LuaHandle, "checkForGearSet");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::CheckForGearSet: undefined procedure checkForGearSet\n");
@@ -1923,7 +1918,7 @@ int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell
         return 0;
     }
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onSpellCast");
+    lua_getglobal(LuaHandle, "onSpellCast");
     if( lua_isnil(LuaHandle,-1) )
     {
         ShowError("luautils::OnSpellCast: undefined procedure onSpellCast\n");
@@ -1981,7 +1976,7 @@ int32 OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget)
         return -1;
     }
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMonsterMagicPrepare");
+    lua_getglobal(LuaHandle, "onMonsterMagicPrepare");
     if( lua_isnil(LuaHandle,-1) )
     {
         lua_pop(LuaHandle, 1);
@@ -2042,7 +2037,7 @@ int32 OnMobInitialize(CBaseEntity* PMob)
         return -1;
     }
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobInitialize");
+    lua_getglobal(LuaHandle, "onMobInitialize");
     if( lua_isnil(LuaHandle,-1) )
     {
         lua_pop(LuaHandle, 1);
@@ -2087,7 +2082,7 @@ int32 OnMobPath(CBaseEntity* PMob)
         return -1;
     }
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnMobPath");
+    lua_getglobal(LuaHandle, "OnMobPath");
     if( lua_isnil(LuaHandle,-1) )
     {
         lua_pop(LuaHandle, 1);
@@ -2150,7 +2145,7 @@ int32 OnMobEngaged(CBaseEntity* PMob, CBaseEntity* PTarget)
 		return -1;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobEngaged");
+    lua_getglobal(LuaHandle, "onMobEngaged");
 	if( lua_isnil(LuaHandle,-1) )
 	{
         lua_pop(LuaHandle, 1);
@@ -2202,7 +2197,7 @@ int32 OnMobDisengage(CBaseEntity* PMob)
 		return -1;
 	}
 
-	lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobDisengage");
+	lua_getglobal(LuaHandle, "onMobDisengage");
 	if( lua_isnil(LuaHandle,-1) )
 	{
         lua_pop(LuaHandle, 1);
@@ -2261,7 +2256,7 @@ int32 OnMobDrawIn(CBaseEntity* PMob, CBaseEntity* PTarget)
 		return -1;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobDrawIn");
+    lua_getglobal(LuaHandle, "onMobDrawIn");
 	if( lua_isnil(LuaHandle,-1) )
 	{
         lua_pop(LuaHandle, 1);
@@ -2315,7 +2310,7 @@ int32 OnMobFight(CBaseEntity* PMob, CBaseEntity* PTarget)
 		return -1;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobFight");
+    lua_getglobal(LuaHandle, "onMobFight");
 	if( lua_isnil(LuaHandle,-1) )
 	{
         lua_pop(LuaHandle, 1);
@@ -2361,7 +2356,7 @@ int32 OnCriticalHit(CBattleEntity* PMob)
 		return -1;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnCriticalHit");
+    lua_getglobal(LuaHandle, "OnCriticalHit");
 	if( lua_isnil(LuaHandle,-1) )
 	{
         lua_pop(LuaHandle, 1);
@@ -2404,7 +2399,7 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 
     if (((CMobEntity*)PMob)->m_OwnerID.id == PKiller->id)
     {
-        lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobDeathEx");
+        lua_getglobal(LuaHandle, "onMobDeathEx");
 	    if( !lua_isnil(LuaHandle,-1) )
 	    {
             Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
@@ -2437,7 +2432,7 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 		return -1;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobDeath");
+    lua_getglobal(LuaHandle, "onMobDeath");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnMobDeath: undefined procedure onMobDeath\n");
@@ -2472,7 +2467,7 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 					PMember->m_event.Target = PMob;
 					PMember->m_event.Script.insert(0,File);
 
-					lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobDeath");
+					lua_getglobal(LuaHandle, "onMobDeath");
 					if (lua_isnil(LuaHandle,-1))
 					{
 						ShowError("luautils::OnMobDeath: undefined procedure onMobDeath\n");
@@ -2506,7 +2501,7 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 				PMember->m_event.Target = PMob;
 				PMember->m_event.Script.insert(0,File);
 
-				lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobDeath");
+				lua_getglobal(LuaHandle, "onMobDeath");
 				if (lua_isnil(LuaHandle,-1))
 				{
 					ShowError("luautils::OnMobDeath: undefined procedure onMobDeath\n");
@@ -2561,7 +2556,7 @@ int32 OnMobSpawn(CBaseEntity* PMob)
         return -1;
     }
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobSpawn");
+    lua_getglobal(LuaHandle, "onMobSpawn");
     if( lua_isnil(LuaHandle,-1) )
     {
         lua_pop(LuaHandle, 1);
@@ -2608,7 +2603,7 @@ int32 OnMobRoamAction(CBaseEntity* PMob)
 		return -1;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnMobRoamAction");
+    lua_getglobal(LuaHandle, "OnMobRoamAction");
 	if( lua_isnil(LuaHandle,-1) )
 	{
         lua_pop(LuaHandle, 1);
@@ -2658,7 +2653,7 @@ int32 OnMobRoam(CBaseEntity* PMob)
 		return -1;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnMobRoam");
+    lua_getglobal(LuaHandle, "OnMobRoam");
 	if( lua_isnil(LuaHandle,-1) )
 	{
         lua_pop(LuaHandle, 1);
@@ -2708,7 +2703,7 @@ int32 OnMobDespawn(CBaseEntity* PMob)
 		return -1;
 	}
 
-	lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onMobDespawn");
+	lua_getglobal(LuaHandle, "onMobDespawn");
 	if( lua_isnil(LuaHandle,-1) )
 	{
         lua_pop(LuaHandle, 1);
@@ -2757,7 +2752,7 @@ int32 OnGameDayAutomatisation()
 		return -1;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnGameDayAutomatisation");
+    lua_getglobal(LuaHandle, "OnGameDayAutomatisation");
 	if( lua_isnil(LuaHandle,-1) )
 	{
         lua_pop(LuaHandle, 1);
@@ -2804,7 +2799,7 @@ int32 OnGameHourAutomatisation()
 		return -1;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnGameHourAutomatisation");
+    lua_getglobal(LuaHandle, "OnGameHourAutomatisation");
 	if( lua_isnil(LuaHandle,-1) )
 	{
         lua_pop(LuaHandle, 1);
@@ -2844,7 +2839,7 @@ int32 OnZoneWeatherChange(uint16 ZoneID, uint8 weather)
 		return -1;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnZoneWeatherChange");
+    lua_getglobal(LuaHandle, "OnZoneWeatherChange");
 	if( lua_isnil(LuaHandle,-1) )
 	{
         lua_pop(LuaHandle, 1);
@@ -2884,7 +2879,7 @@ int32 OnTOTDChange(uint16 ZoneID, uint8 TOTD)
 		return -1;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnTOTDChange");
+    lua_getglobal(LuaHandle, "OnTOTDChange");
 	if( lua_isnil(LuaHandle,-1) )
 	{
         lua_pop(LuaHandle, 1);
@@ -2933,7 +2928,7 @@ int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, uint16* tpHitsLand
 		return 0;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnUseWeaponSkill");
+    lua_getglobal(LuaHandle, "OnUseWeaponSkill");
 	if( lua_isnil(LuaHandle,-1) )
 	{
         lua_pop(LuaHandle, 1);
@@ -3003,7 +2998,7 @@ int32 OnMobWeaponSkill(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobS
 		return 0;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnMobWeaponSkill");
+    lua_getglobal(LuaHandle, "OnMobWeaponSkill");
 	if( lua_isnil(LuaHandle,-1) )
 	{
         lua_pop(LuaHandle, 1);
@@ -3066,7 +3061,7 @@ int32 OnMobSkillCheck(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSk
 		return 1;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnMobSkillCheck");
+    lua_getglobal(LuaHandle, "OnMobSkillCheck");
 	if( lua_isnil(LuaHandle,-1) )
 	{
         lua_pop(LuaHandle, 1);
@@ -3129,7 +3124,7 @@ int32 OnMagicCastingCheck(CBaseEntity* PChar,CBaseEntity* PTarget,CSpell* PSpell
 		return 0;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnMagicCastingCheck");
+    lua_getglobal(LuaHandle, "OnMagicCastingCheck");
 	if( lua_isnil(LuaHandle,-1) )
 	{
         lua_pop(LuaHandle, 1);
@@ -3202,7 +3197,7 @@ int32 OnAbilityCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CAbility* PAbilit
 		return 0;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnAbilityCheck");
+    lua_getglobal(LuaHandle, "OnAbilityCheck");
 	if( lua_isnil(LuaHandle,-1))
 	{
         lua_pop(LuaHandle, 1);
@@ -3269,7 +3264,7 @@ int32 OnPetAbility(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill
 		return 0;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnPetAbility");
+    lua_getglobal(LuaHandle, "OnPetAbility");
 	if( lua_isnil(LuaHandle,-1) )
 	{
         lua_pop(LuaHandle, 1);
@@ -3336,7 +3331,7 @@ int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbilit
 		return 0;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnUseAbility");
+    lua_getglobal(LuaHandle, "OnUseAbility");
 	if( lua_isnil(LuaHandle,-1) )
 	{
         lua_pop(LuaHandle, 1);
@@ -3433,7 +3428,7 @@ int32 OnUseAbilityRoll(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAb
 		return 0;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnUseAbilityRoll");
+    lua_getglobal(LuaHandle, "OnUseAbilityRoll");
 	if( lua_isnil(LuaHandle,-1) )
 	{
         lua_pop(LuaHandle, 1);
@@ -3558,7 +3553,7 @@ int32 OnTransportEvent(CCharEntity* PChar, uint32 TransportID)
 		return -1;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "onTransportEvent");
+    lua_getglobal(LuaHandle, "onTransportEvent");
 	if( lua_isnil(LuaHandle,-1) )
 	{
         lua_pop(LuaHandle, 1);
@@ -3606,7 +3601,7 @@ int32 OnBcnmEnter(CCharEntity* PChar, CInstance* PInstance){
 		return 0;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnBcnmEnter");
+    lua_getglobal(LuaHandle, "OnBcnmEnter");
 	if( lua_isnil(LuaHandle,-1) )
 	{
         lua_pop(LuaHandle, 1);
@@ -3662,7 +3657,7 @@ int32 OnBcnmLeave(CCharEntity* PChar, CInstance* PInstance, uint8 LeaveCode){
 		return 0;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnBcnmLeave");
+    lua_getglobal(LuaHandle, "OnBcnmLeave");
 	if( lua_isnil(LuaHandle,-1) )
 	{
         lua_pop(LuaHandle, 1);
@@ -3721,7 +3716,7 @@ int32 OnBcnmRegister(CCharEntity* PChar, CInstance* PInstance){
 		return 0;
 	}
 
-    lua_getfield(LuaHandle, LUA_GLOBALSINDEX, "OnBcnmRegister");
+    lua_getglobal(LuaHandle, "OnBcnmRegister");
 	if( lua_isnil(LuaHandle,-1) )
 	{
 		ShowError("luautils::OnBcnmRegister: undefined procedure OnBcnmRegister\n");
@@ -3911,8 +3906,7 @@ int32 getSpell(lua_State* L)
 	{
 		CSpell* PSpell = spell::GetSpell(lua_tointeger(L,1));
 
-		lua_pushstring(L,CLuaSpell::className);
-		lua_gettable(L,LUA_GLOBALSINDEX);
+		lua_getglobal(L,CLuaSpell::className);
 		lua_pushstring(L,"new");
 		lua_gettable(L,-2);
 		lua_insert(L,-2);

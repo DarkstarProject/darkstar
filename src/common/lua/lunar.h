@@ -31,7 +31,7 @@ public:
     // Размещение таблицы методов в глобальной переменной
 	// для того, чтобы код lua мог добавлять методы.
     lua_pushvalue(L, methods);
-    set(L, LUA_GLOBALSINDEX, T::className);
+    lua_setglobal(L, T::className);
 
     // прячем метатаблицу от getmetattable() 
     lua_pushvalue(L, methods);

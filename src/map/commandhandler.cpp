@@ -54,7 +54,7 @@ int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
         return -1;
     }
 
-    lua_getfield(m_LState, LUA_GLOBALSINDEX, "cmdprops");
+    lua_getglobal(m_LState, "cmdprops");
     if (lua_isnil(m_LState, -1) || !lua_istable(m_LState, -1))
     {
         lua_pop(m_LState, -1);
@@ -126,8 +126,7 @@ int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
     }
 
     // Ensure the onTrigger function exists for this command..
-    lua_pushstring(m_LState, "onTrigger");
-    lua_gettable(m_LState, LUA_GLOBALSINDEX);
+    lua_getglobal(m_LState, "onTrigger");
     if (lua_isnil(m_LState, -1) || !lua_isfunction(m_LState, -1))
     {
         lua_pop(m_LState, -1);
