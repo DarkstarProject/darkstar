@@ -36,11 +36,18 @@ function onSpellCast(caster,target,spell)
 	--add in final adjustments including the actual damage dealt
 	local final = finalMagicAdjustments(caster,target,spell,dmg);
 
-	-- Calculate duration.
-	local merits = caster:getMerit(MERIT_DIA_III);
+    -- Calculate duration.
+    local merits = caster:getMerit(MERIT_DIA_III);
+    local duration = 30;
+    if (merits > 0) then
+        duration = duration * merits;
+    end
 
-	local duration = 30 * merits;
-
+    -- Max duration for monsters..
+    if (caster:isMob()) then
+        duration = 150; -- 30 * 5 merits
+    end
+        
 	-- Check for Bio.
 	local bio = target:getStatusEffect(EFFECT_BIO);
 
