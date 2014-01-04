@@ -18,7 +18,7 @@ function onTrigger(player, target, keyId)
 
     if (keyId == nil) then
         player:PrintToPlayer("You must enter a valid keyitem id.");
-        end
+        return;
     end
     
     if (target == nil) then
