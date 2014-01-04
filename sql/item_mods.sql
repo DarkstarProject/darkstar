@@ -18013,7 +18013,7 @@ INSERT INTO `item_mods` VALUES(10434, 27, 3); -- Enmity+3
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES(10435, 1, 41); -- DEF:41
 INSERT INTO `item_mods` VALUES(10435, 8, 6); -- STR+6
-INSERT INTO `item_mods` VALUES(10435, 23, 14); `-- Attack+14
+INSERT INTO `item_mods` VALUES(10435, 23, 14); -- Attack+14
 INSERT INTO `item_mods` VALUES(10435, 161, -4); -- Physical damage taken -4%
 INSERT INTO `item_mods` VALUES(10435, 27, 4); -- Enmity+4
 
