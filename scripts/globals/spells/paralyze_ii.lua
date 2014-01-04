@@ -22,7 +22,7 @@ function onSpellCast(caster,target,spell)
         spell:setMsg(75);
     elseif(math.random(0,100) >= target:getMod(MOD_PARALYZERES)) then
 		-- Calculate duration.
-		local double duration = 180;
+		local duration = 180;
 
 		-- Grabbing variables for paralyze potency
 		local mLVL = caster:getMainLvl();
