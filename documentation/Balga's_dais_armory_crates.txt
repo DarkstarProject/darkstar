@@ -6,9 +6,9 @@ armory crates
 17375282 - early bird catches the wyrm
 17375284 - early bird catches the wyrm
 17375286 - early bird catches the wyrm
-17375293
-17375300
-17375307
+17375293 - Treasure and Tribulations
+17375300 - Treasure and Tribulations
+17375307 - Treasure and Tribulations
 17375316
 17375325
 17375334
