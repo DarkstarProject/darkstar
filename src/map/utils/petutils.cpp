@@ -981,7 +981,7 @@ int16 PerpetuationCost(uint32 id, uint8 level)
 		else
 			cost = 13;
 	}
-	else if (id <= 15 )
+	else if (id <= 16)
 	{
 		if (level < 10 )
 			cost = 3;
