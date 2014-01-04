@@ -12,9 +12,9 @@ armory crates
 17367138 - up in arms
 17367155 - up in arms
 17367172 - up in arms
-17367182
-17367192
-17367202
+17367182 - birds of a feather
+17367192 - birds of a feather
+17367202 - birds of a feather
 17367204
 17367206
 17367208
