@@ -9,7 +9,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-	power = effect:getPower(); 
+	local power = effect:getPower(); 
 	if(effect:getSubPower() == 1) then
 		target:addMod(MOD_DOUBLE_ATTACK,power);
 	elseif(effect:getSubPower() == 2) then
@@ -29,7 +29,7 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-
+	local power = effect:getPower(); 
 	if(effect:getSubPower() == 1) then
 		target:delMod(MOD_DOUBLE_ATTACK,power);
 	elseif(effect:getSubPower() == 2) then

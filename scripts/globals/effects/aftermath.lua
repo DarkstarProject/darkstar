@@ -9,7 +9,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-	power = effect:getPower(); 
+	local power = effect:getPower(); 
 	if(effect:getSubPower() == 1) then
 		target:addMod(MOD_SUBTLE_BLOW,power);
 	elseif(effect:getSubPower() == 2) then
@@ -50,8 +50,8 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-
-		if(effect:getSubPower() == 1) then
+	local power = effect:getPower(); 
+	if(effect:getSubPower() == 1) then
 		target:delMod(MOD_SUBTLE_BLOW,power);
 	elseif(effect:getSubPower() == 2) then
 		target:delMod(MOD_CRITHITRATE,power)
