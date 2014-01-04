@@ -106,16 +106,16 @@ bool isRightRecipe(CCharEntity* PChar)
 	int32 ret = Sql_Query(
 		SqlHandle,
 		fmtQuery,
-		PChar->Container->getItemID(0),
-		PChar->Container->getItemID(0),
-		PChar->Container->getItemID(1),
-		PChar->Container->getItemID(2),
-		PChar->Container->getItemID(3),
-		PChar->Container->getItemID(4),
-		PChar->Container->getItemID(5),
-		PChar->Container->getItemID(6),
-		PChar->Container->getItemID(7),
-		PChar->Container->getItemID(8));
+		PChar->CraftContainer->getItemID(0),
+		PChar->CraftContainer->getItemID(0),
+		PChar->CraftContainer->getItemID(1),
+		PChar->CraftContainer->getItemID(2),
+		PChar->CraftContainer->getItemID(3),
+		PChar->CraftContainer->getItemID(4),
+		PChar->CraftContainer->getItemID(5),
+		PChar->CraftContainer->getItemID(6),
+		PChar->CraftContainer->getItemID(7),
+		PChar->CraftContainer->getItemID(8));
 
 	if (ret != SQL_ERROR &&
 		Sql_NumRows(SqlHandle) != 0 &&
@@ -126,15 +126,15 @@ bool isRightRecipe(CCharEntity* PChar)
 		if ((KeyItemID == 0) || (charutils::hasKeyItem(PChar,KeyItemID)))
 		{
 			// в девятую ячейку записываем id рецепта
-			PChar->Container->setItem(9, Sql_GetUIntData(SqlHandle,0),0xFF,0);
+			PChar->CraftContainer->setItem(9, Sql_GetUIntData(SqlHandle,0),0xFF,0);
 			#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
-			ShowDebug(CL_CYAN"Recipe matches ID %u.\n" CL_RESET, PChar->Container->getItemID(9));
+			ShowDebug(CL_CYAN"Recipe matches ID %u.\n" CL_RESET, PChar->CraftContainer->getItemID(9));
 			#endif
 
-			PChar->Container->setItem(10 + 1, (uint16)Sql_GetUIntData(SqlHandle,10), (uint8)Sql_GetUIntData(SqlHandle,14), 0);	// RESULT_SUCCESS
-			PChar->Container->setItem(10 + 2, (uint16)Sql_GetUIntData(SqlHandle,11), (uint8)Sql_GetUIntData(SqlHandle,15), 0);	// RESULT_HQ
-			PChar->Container->setItem(10 + 3, (uint16)Sql_GetUIntData(SqlHandle,12), (uint8)Sql_GetUIntData(SqlHandle,16), 0);	// RESULT_HQ2
-			PChar->Container->setItem(10 + 4, (uint16)Sql_GetUIntData(SqlHandle,13), (uint8)Sql_GetUIntData(SqlHandle,17), 0);	// RESULT_HQ3
+			PChar->CraftContainer->setItem(10 + 1, (uint16)Sql_GetUIntData(SqlHandle,10), (uint8)Sql_GetUIntData(SqlHandle,14), 0);	// RESULT_SUCCESS
+			PChar->CraftContainer->setItem(10 + 2, (uint16)Sql_GetUIntData(SqlHandle,11), (uint8)Sql_GetUIntData(SqlHandle,15), 0);	// RESULT_HQ
+			PChar->CraftContainer->setItem(10 + 3, (uint16)Sql_GetUIntData(SqlHandle,12), (uint8)Sql_GetUIntData(SqlHandle,16), 0);	// RESULT_HQ2
+			PChar->CraftContainer->setItem(10 + 4, (uint16)Sql_GetUIntData(SqlHandle,13), (uint8)Sql_GetUIntData(SqlHandle,17), 0);	// RESULT_HQ3
 
 			uint16 skillValue   = 0;
 			uint16 currentSkill = 0;
@@ -145,7 +145,7 @@ bool isRightRecipe(CCharEntity* PChar)
 				currentSkill = PChar->RealSkills.skill[skillID];
 
 				// skill записываем в поле quantity ячеек 9-16
-				PChar->Container->setQuantity(skillID-40, skillValue);
+				PChar->CraftContainer->setQuantity(skillID-40, skillValue);
 
 				#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 				ShowDebug(CL_CYAN"Current skill = %u, Recipe skill = %u\n" CL_RESET, currentSkill, skillValue*10);
@@ -166,14 +166,14 @@ bool isRightRecipe(CCharEntity* PChar)
 	PChar->pushPacket(new CSynthMessagePacket(PChar, SYNTH_BADRECIPE));
 	#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 	ShowDebug(CL_CYAN"Recipe not found. Synth aborted.\n" CL_RESET);
-	ShowDebug(CL_CYAN"Ingredient1 = %u\n" CL_RESET, PChar->Container->getItemID(1));
-	ShowDebug(CL_CYAN"Ingredient2 = %u\n" CL_RESET, PChar->Container->getItemID(2));
-	ShowDebug(CL_CYAN"Ingredient3 = %u\n" CL_RESET, PChar->Container->getItemID(3));
-	ShowDebug(CL_CYAN"Ingredient4 = %u\n" CL_RESET, PChar->Container->getItemID(4));
-	ShowDebug(CL_CYAN"Ingredient5 = %u\n" CL_RESET, PChar->Container->getItemID(5));
-	ShowDebug(CL_CYAN"Ingredient6 = %u\n" CL_RESET, PChar->Container->getItemID(6));
-	ShowDebug(CL_CYAN"Ingredient7 = %u\n" CL_RESET, PChar->Container->getItemID(7));
-	ShowDebug(CL_CYAN"Ingredient8 = %u\n" CL_RESET, PChar->Container->getItemID(8));
+	ShowDebug(CL_CYAN"Ingredient1 = %u\n" CL_RESET, PChar->CraftContainer->getItemID(1));
+	ShowDebug(CL_CYAN"Ingredient2 = %u\n" CL_RESET, PChar->CraftContainer->getItemID(2));
+	ShowDebug(CL_CYAN"Ingredient3 = %u\n" CL_RESET, PChar->CraftContainer->getItemID(3));
+	ShowDebug(CL_CYAN"Ingredient4 = %u\n" CL_RESET, PChar->CraftContainer->getItemID(4));
+	ShowDebug(CL_CYAN"Ingredient5 = %u\n" CL_RESET, PChar->CraftContainer->getItemID(5));
+	ShowDebug(CL_CYAN"Ingredient6 = %u\n" CL_RESET, PChar->CraftContainer->getItemID(6));
+	ShowDebug(CL_CYAN"Ingredient7 = %u\n" CL_RESET, PChar->CraftContainer->getItemID(7));
+	ShowDebug(CL_CYAN"Ingredient8 = %u\n" CL_RESET, PChar->CraftContainer->getItemID(8));
 	#endif
 	return false;
 }
@@ -189,7 +189,7 @@ double getSynthDifficulty(CCharEntity* PChar, uint8 skillID)
 {
 	uint8  ElementDirection = 0;
 	uint8  WeekDay = (uint8)CVanaTime::getInstance()->getWeekday();
-	uint8  crystalElement = PChar->Container->getType();
+	uint8  crystalElement = PChar->CraftContainer->getType();
 	uint8  direction = (PChar->loc.p.rotation - 16)/32;
 	uint8  strongElement[8] = {2,3,5,4,0,1,7,6};
 	uint16 ModID = 0;
@@ -219,7 +219,7 @@ double getSynthDifficulty(CCharEntity* PChar, uint8 skillID)
 	}
 
 	double charSkill = (double)(PChar->RealSkills.skill[skillID])/10;
-	double difficult = PChar->Container->getQuantity(skillID-40) - (charSkill + PChar->getMod(ModID));
+	double difficult = PChar->CraftContainer->getQuantity(skillID-40) - (charSkill + PChar->getMod(ModID));
 	double MoonPhase = (double)CVanaTime::getInstance()->getMoonPhase();
 
 	difficult -= (abs(MoonPhase - 50))/50;
@@ -290,9 +290,9 @@ uint8 getGeneralCraft(CCharEntity* PChar)
 
 	for(uint8 skillID = 49; skillID < 57; skillID ++)
 	{
-		if (PChar->Container->getQuantity(skillID-40) > skillValue)
+		if (PChar->CraftContainer->getQuantity(skillID-40) > skillValue)
 		{
-			skillValue = PChar->Container->getQuantity(skillID-40);
+			skillValue = PChar->CraftContainer->getQuantity(skillID-40);
 			generalCraft = skillID;
 		}
 	}
@@ -321,7 +321,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
 
 	for(uint8 skillID = 49; skillID < 57; ++skillID)
 	{
-		uint8 checkSkill = PChar->Container->getQuantity(skillID-40);
+		uint8 checkSkill = PChar->CraftContainer->getQuantity(skillID-40);
 		if(checkSkill != 0)
 		{
 			double synthDiff = getSynthDifficulty(PChar, skillID);
@@ -333,7 +333,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
 				success = 0.95;
 
 				if((synthDiff <= 0) && (synthDiff >= -10)){
-					success -= (double)(PChar->Container->getType() == ELEMENT_LIGHTNING) * 0.2;
+					success -= (double)(PChar->CraftContainer->getType() == ELEMENT_LIGHTNING) * 0.2;
 					hqtier = 1;
 				}else if((synthDiff <= -11) && (synthDiff >= -30)){
 					hqtier = 2;
@@ -344,7 +344,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
 				}else if (synthDiff <= -71)
 					hqtier = 5;
 			}else{
-				success = 0.95 - (synthDiff / 10) - (double)(PChar->Container->getType() == ELEMENT_LIGHTNING) * 0.2;
+				success = 0.95 - (synthDiff / 10) - (double)(PChar->CraftContainer->getType() == ELEMENT_LIGHTNING) * 0.2;
 				if(success < 0.05)
 					success = 0.05;
 			}
@@ -380,7 +380,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
 			}else{
 				// сохраняем умение, из-за которого синтез провалился.
 				// используем slotID ячейки кристалла, т.к. он был удален еще в начале синтеза
-				PChar->Container->setInvSlotID(0,skillID);
+				PChar->CraftContainer->setInvSlotID(0,skillID);
 				result = -1;
 				break;
 			}
@@ -395,7 +395,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
 	}
 
 	// результат синтеза записываем в поле quantity ячейки кристалла.
-	PChar->Container->setQuantity(0, result);
+	PChar->CraftContainer->setQuantity(0, result);
 
 	switch(result)
 	{
@@ -445,7 +445,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
 
 int32 doSynthSkillUp(CCharEntity* PChar)
 {
-	//if (PChar->Container->getType() == ELEMENT_LIGHTNING)
+	//if (PChar->CraftContainer->getType() == ELEMENT_LIGHTNING)
 	//{
 	//	return 0;
 	//} bad idea, you cannot synth any item with lightning crystal
@@ -455,7 +455,7 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 
 	for(uint8 skillID = 49; skillID < 57; ++skillID)
 	{
-		if (PChar->Container->getQuantity(skillID-40) == 0)	// получаем необходимый уровень умения рецепта
+		if (PChar->CraftContainer->getQuantity(skillID-40) == 0)	// получаем необходимый уровень умения рецепта
 		{
 			continue;
 		}
@@ -464,10 +464,10 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 		uint16 maxSkill  = (skillRank+1)*100;
 
 		int32  charSkill = PChar->RealSkills.skill[skillID];
-		int32  basDiff   = PChar->Container->getQuantity(skillID-40) - charSkill/10;
+		int32  basDiff   = PChar->CraftContainer->getQuantity(skillID-40) - charSkill/10;
 		double synthDiff = getSynthDifficulty(PChar, skillID);
 
-		if ((basDiff <= 0) || ((basDiff > 5) && (PChar->Container->getQuantity(0) == SYNTHESIS_FAIL)))		// результат синтеза хранится в quantity нулевой ячейки
+		if ((basDiff <= 0) || ((basDiff > 5) && (PChar->CraftContainer->getQuantity(0) == SYNTHESIS_FAIL)))		// результат синтеза хранится в quantity нулевой ячейки
 		{
 			return 0;
 		}
@@ -475,7 +475,7 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 		if (charSkill < maxSkill)
 		{
 			double skillUpChance = (synthDiff*(map_config.craft_multiplier - (log(1.2 + charSkill/100) + MoonCorrection)))/10;
-			skillUpChance = skillUpChance/(1 + (PChar->Container->getQuantity(0) == SYNTHESIS_FAIL));		// результат синтеза хранится в quantity нулевой ячейки
+			skillUpChance = skillUpChance/(1 + (PChar->CraftContainer->getQuantity(0) == SYNTHESIS_FAIL));		// результат синтеза хранится в quantity нулевой ячейки
 
 			double random = rand() / ((double)RAND_MAX);
 			#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
@@ -557,14 +557,14 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 
 int32 doSynthFail(CCharEntity* PChar)
 {
-	uint8  carrentCraft = PChar->Container->getInvSlotID(0);
+	uint8  carrentCraft = PChar->CraftContainer->getInvSlotID(0);
 	double synthDiff    = getSynthDifficulty(PChar, carrentCraft);
 	double moghouseAura = 0;
 
 	if (PChar->getZone() == 0) // неправильное условие, т.к. аура действует лишь в собственном доме
 	{
 		// Проверяем элемент синтеза
-		switch (PChar->Container->getType())
+		switch (PChar->CraftContainer->getType())
 		{
 			case ELEMENT_FIRE:		moghouseAura = 0.05 * charutils::hasKeyItem(PChar,MOGHANCEMENT_FIRE);	   break;
 			case ELEMENT_EARTH:		moghouseAura = 0.05 * charutils::hasKeyItem(PChar,MOGHANCEMENT_EARTH);	   break;
@@ -614,12 +614,12 @@ int32 doSynthFail(CCharEntity* PChar)
 	double random   = 0;
 	double lostItem = 0.15 - moghouseAura + (synthDiff > 0 ? synthDiff/20 : 0);
 
-	invSlotID = PChar->Container->getInvSlotID(1);
+	invSlotID = PChar->CraftContainer->getInvSlotID(1);
 
 	for(uint8 slotID = 1; slotID <= 8; ++slotID)
 	{
 		if (slotID != 8)
-			nextSlotID = PChar->Container->getInvSlotID(slotID+1);
+			nextSlotID = PChar->CraftContainer->getInvSlotID(slotID+1);
 
 		random = rand() / ((double) RAND_MAX);
 		#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
@@ -627,7 +627,7 @@ int32 doSynthFail(CCharEntity* PChar)
 		#endif
 
 		if(random < lostItem) {
-			PChar->Container->setQuantity(slotID, 0);
+			PChar->CraftContainer->setQuantity(slotID, 0);
 			lostCount++;
 		}
 
@@ -685,7 +685,7 @@ int32 startSynth(CCharEntity* PChar)
 	uint16 effect  = 0;
 	uint8  element = 0;
 
-	uint16 crystalType = PChar->Container->getItemID(0);
+	uint16 crystalType = PChar->CraftContainer->getItemID(0);
 
 	switch(crystalType)
 	{
@@ -731,7 +731,7 @@ int32 startSynth(CCharEntity* PChar)
 			break;
 	}
 
-	PChar->Container->setType(element);
+	PChar->CraftContainer->setType(element);
 
 	if (!isRightRecipe(PChar))
 	{
@@ -739,7 +739,7 @@ int32 startSynth(CCharEntity* PChar)
 	}
 
 	// удаляем кристалл
-	charutils::UpdateItem(PChar, LOC_INVENTORY, PChar->Container->getInvSlotID(0), -1);
+	charutils::UpdateItem(PChar, LOC_INVENTORY, PChar->CraftContainer->getInvSlotID(0), -1);
 
 	uint8 result = calcSynthResult(PChar);
 
@@ -750,7 +750,7 @@ int32 startSynth(CCharEntity* PChar)
 
 	for(uint8 slotID = 1; slotID <= 8; ++slotID)
 	{
-		tempSlotID = PChar->Container->getInvSlotID(slotID);
+		tempSlotID = PChar->CraftContainer->getInvSlotID(slotID);
 		if ((tempSlotID != 0xFF) && (tempSlotID != invSlotID))
 		{
 			invSlotID = tempSlotID;
@@ -788,24 +788,24 @@ int32 startSynth(CCharEntity* PChar)
 
 int32 doSynthResult(CCharEntity* PChar)
 {
-	uint8 m_synthResult = PChar->Container->getQuantity(0);
+	uint8 m_synthResult = PChar->CraftContainer->getQuantity(0);
 
 	if (m_synthResult == SYNTHESIS_FAIL)
 	{
 		doSynthFail(PChar);
 	}else{
-		uint16 itemID   = PChar->Container->getItemID(10 + m_synthResult);
-		uint8  quantity = PChar->Container->getInvSlotID(10 + m_synthResult); // к сожалению поле quantity занято
+		uint16 itemID   = PChar->CraftContainer->getItemID(10 + m_synthResult);
+		uint8  quantity = PChar->CraftContainer->getInvSlotID(10 + m_synthResult); // к сожалению поле quantity занято
 
 		uint8 invSlotID   = 0;
 		uint8 nextSlotID  = 0;
 		uint8 removeCount = 0;
 
-		invSlotID = PChar->Container->getInvSlotID(1);
+		invSlotID = PChar->CraftContainer->getInvSlotID(1);
 
 		for(uint8 slotID = 1; slotID <= 8; ++slotID)
 		{
-			nextSlotID = (slotID != 8 ? PChar->Container->getInvSlotID(slotID+1) : 0);
+			nextSlotID = (slotID != 8 ? PChar->CraftContainer->getInvSlotID(slotID+1) : 0);
 			removeCount++;
 
 			if (invSlotID != nextSlotID)
@@ -832,7 +832,7 @@ int32 doSynthResult(CCharEntity* PChar)
 
 		if (PItem != NULL)
 		{
-			if ((PItem->getFlag() & ITEM_FLAG_INSCRIBABLE) && (PChar->Container->getItemID(0) > 0x1080))
+			if ((PItem->getFlag() & ITEM_FLAG_INSCRIBABLE) && (PChar->CraftContainer->getItemID(0) > 0x1080))
 			{
                 int8 encodedSignature [12];
 				PItem->setSignature(EncodeStringSignature((int8*)PChar->name.c_str(), encodedSignature));

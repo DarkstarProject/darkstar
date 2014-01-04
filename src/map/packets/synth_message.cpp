@@ -45,10 +45,10 @@ CSynthMessagePacket::CSynthMessagePacket(CCharEntity * PChar, SYNTH_MESSAGE mess
 		uint8 count = 0;
 		for(uint8 slotID = 1; slotID <= 8; ++slotID) 
 		{
-			uint32 quantity = PChar->Container->getQuantity(slotID);
+			uint32 quantity = PChar->CraftContainer->getQuantity(slotID);
 			if (quantity == 0) 
 			{
-				uint16 itemID = PChar->Container->getItemID(slotID);
+                uint16 itemID = PChar->CraftContainer->getItemID(slotID);
 				WBUFW(data,(0x0A+(count*2))-4) = itemID;
 				count++;
 			}

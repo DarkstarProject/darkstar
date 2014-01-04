@@ -3169,21 +3169,21 @@ void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, int8* dat
         return;
     }
 
-	PChar->Container->Clean();
+    PChar->CraftContainer->Clean();
 
 	uint32 ItemID    = RBUFL(data,(0x06));
 	uint8  invSlotID = RBUFB(data,(0x08));
 
 	uint8  numItems  = RBUFB(data,(0x09));
 
-	PChar->Container->setItem(0, ItemID, invSlotID, 0);
+    PChar->CraftContainer->setItem(0, ItemID, invSlotID, 0);
 
 	for(int32 SlotID = 0; SlotID < numItems; ++SlotID)
 	{
 		ItemID    = RBUFL(data,(0x0A+SlotID*2));
 		invSlotID = RBUFB(data,(0x1A+SlotID));
 
-		PChar->Container->setItem(SlotID+1, ItemID, invSlotID, 1);
+		PChar->CraftContainer->setItem(SlotID+1, ItemID, invSlotID, 1);
 	}
 
 	synthutils::startSynth(PChar);

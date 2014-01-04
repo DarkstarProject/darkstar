@@ -43,8 +43,9 @@ CCharEntity::CCharEntity()
 
 	m_GMlevel = 0;
 
-	Container    = new CTradeContainer();
-	UContainer	 = new CUContainer();
+	Container       = new CTradeContainer();
+	UContainer      = new CUContainer();
+    CraftContainer  = new CTradeContainer();
 
 	m_Inventory	 = new CItemContainer(LOC_INVENTORY);
 	m_Mogsafe	 = new CItemContainer(LOC_MOGSAFE);
@@ -150,6 +151,7 @@ CCharEntity::~CCharEntity()
 
 	delete Container;
 	delete UContainer;
+    delete CraftContainer;
     delete PMeritPoints;
     delete PRecastContainer;
 

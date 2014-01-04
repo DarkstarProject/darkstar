@@ -311,6 +311,7 @@ public:
 
 	CTradeContainer*  Container;                    // универсальный контейнер для обмена, синтеза, магазина и т.д.
 	CUContainer*	  UContainer;					// новый универсальный контейнер для обмена, синтеза, магазина и т.д.
+    CTradeContainer*  CraftContainer;               // Container used for crafting actions.
 
 	CBaseEntity*	  PWideScanTarget;				// wide scane цель
 
