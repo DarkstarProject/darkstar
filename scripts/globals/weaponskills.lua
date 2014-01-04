@@ -97,9 +97,9 @@ function doPhysicalWeaponskill(attacker, target, params)
 	local dmg = base * ftp;
 
 	--Applying pDIF
-	local double pdif = generatePdif(cratio[1], cratio[2], true);
+	local pdif = generatePdif(cratio[1], cratio[2], true);
 
-	local double firsthit = math.random();
+	local firsthit = math.random();
 	local finaldmg = 0;
 	local hitrate = getHitRate(attacker,target,true);
 	if(params.acc100~=0) then
@@ -113,9 +113,9 @@ function doPhysicalWeaponskill(attacker, target, params)
 	local tpHits = 0;
 	if (firsthit <= hitrate or isSneakValid or isAssassinValid or math.random() < attacker:getMod(MOD_ZANSHIN)/100) then
 		if(params.canCrit or isSneakValid or isAssassinValid) then
-			local double critchance = math.random();
+			local critchance = math.random();
 			if(critchance <= critrate or hasMightyStrikes or isSneakValid or isAssassinValid) then --crit hit!
-				local double cpdif = generatePdif(ccritratio[1], ccritratio[2], true);
+				local cpdif = generatePdif(ccritratio[1], ccritratio[2], true);
 				finaldmg = dmg * cpdif;
 				if(isSneakValid and attacker:getMainJob()==6) then --have to add on DEX bonus if on THF main
 					finaldmg = finaldmg + (attacker:getStat(MOD_DEX) * ftp * cpdif);
@@ -286,8 +286,8 @@ function getHitRate(attacker,target,capHitRate,bonus)
 end;
 
 function getRangedHitRate(attacker,target,capHitRate)
-	local int acc = attacker:getRACC();
-	local int eva = target:getEVA();
+	local acc = attacker:getRACC();
+	local eva = target:getEVA();
 
 	if(attacker:getMainLvl() > target:getMainLvl()) then --acc bonus!
 		acc = acc + ((attacker:getMainLvl()-target:getMainLvl())*4);
@@ -295,8 +295,8 @@ function getRangedHitRate(attacker,target,capHitRate)
 		acc = acc - ((target:getMainLvl()-attacker:getMainLvl())*4);
 	end
 
-	local double hitdiff = 0;
-	local double hitrate = 75;
+	local hitdiff = 0;
+	local hitrate = 75;
 	if (acc>eva) then
 	hitdiff = (acc-eva)/2;
 	end
@@ -620,10 +620,10 @@ return alpha;
 	local dmg = base * ftp;
 
 	--Applying pDIF
-	local double pdif = generatePdif(cratio[1],cratio[2], false);
+	local pdif = generatePdif(cratio[1],cratio[2], false);
 
 	--First hit has 95% acc always. Second hit + affected by hit rate.
-	local double firsthit = math.random();
+	local firsthit = math.random();
 	local finaldmg = 0;
 	local hitrate = getHitRate(attacker,target,true);
 	if(params.acc100~=0) then
@@ -636,9 +636,9 @@ return alpha;
 	local tpHitsLanded = 0;
 	if (firsthit <= hitrate) then
 		if(params.canCrit) then
-			local double critchance = math.random();
+			local critchance = math.random();
 			if(critchance <= critrate or hasMightyStrikes) then --crit hit!
-				local double cpdif = generatePdif(ccritratio[1], ccritratio[2], false);
+				local cpdif = generatePdif(ccritratio[1], ccritratio[2], false);
 				finaldmg = dmg * cpdif;
 			else
 				finaldmg = dmg * pdif;

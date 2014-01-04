@@ -68,10 +68,10 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
 		hitdamage = hitdamage * avatarFTP(skill:getTP(), mtp100, mtp200, mtp300);
 	end
 	--Applying pDIF
-	local double pdif = 0;
+	local pdif = 0;
 
 	-- start the hits
-	local double hitchance = math.random();
+	local hitchance = math.random();
 	finaldmg = 0;
 	hitsdone = 1; hitslanded = 0;
 
@@ -85,8 +85,8 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
 		nativecrit = 0.05;
 	end
 
-	local double critchance = math.random();
-	local double hitchance = 0;
+	local critchance = math.random();
+	local hitchance = 0;
 	local crit = false;
 	if critchance <= nativecrit then
 		crit = true;

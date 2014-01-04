@@ -64,7 +64,7 @@ function OnUseAbility(player, target, ability)
 	if(isSneakValid and not player:isBehind(target))then
 		isSneakValid = false;
 	end
-	local double pdif = generatePdif(cratio[1], cratio[2], true);
+	local pdif = generatePdif(cratio[1], cratio[2], true);
 	local hitrate = getHitRate(player,target,true);
 	
 	if (math.random() <= hitrate or isSneakValid) then

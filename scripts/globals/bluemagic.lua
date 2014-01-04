@@ -129,7 +129,7 @@ function BluePhysicalSpell(caster, target, spell, params)
             -- TODO: Check for shadow absorbs.
 
             -- Generate a random pDIF between min and max
-            local double pdif = math.random((cratio[1]*1000),(cratio[2]*1000));
+            local pdif = math.random((cratio[1]*1000),(cratio[2]*1000));
             pdif = pdif/1000;
 
             -- Apply it to our final D
@@ -239,7 +239,7 @@ end;
 --Given the raw ratio value (atk/def) and levels, returns the cRatio (min then max)
 function BluecRatio(ratio,atk_lvl,def_lvl)
 	--Level penalty...
-	local double levelcor = 0;
+	local levelcor = 0;
 	if (atk_lvl < def_lvl) then
 		levelcor = 0.05 * (def_lvl - atk_lvl);
 	end
@@ -253,7 +253,7 @@ function BluecRatio(ratio,atk_lvl,def_lvl)
 	end
 
 	--Obtaining cRatio_MIN
-	local double cratiomin = 0;
+	local cratiomin = 0;
 	if (ratio<1.25) then
 		cratiomin = 1.2 * ratio - 0.5;
 	elseif (ratio>=1.25 and ratio<=1.5) then
@@ -263,7 +263,7 @@ function BluecRatio(ratio,atk_lvl,def_lvl)
 	end
 
 	--Obtaining cRatio_MAX
-	local double cratiomax = 0;
+	local cratiomax = 0;
 	if (ratio<0.5) then
 		cratiomax = 0.4 + 1.2 * ratio;
 	elseif (ratio<=0.833 and ratio>=0.5) then
@@ -320,8 +320,8 @@ function BluefSTR(dSTR)
 end;
 
 function BlueGetHitRate(attacker,target,capHitRate)
-	local int acc = attacker:getACC();
-	local int eva = target:getEVA();
+	local acc = attacker:getACC();
+	local eva = target:getEVA();
 
 	if(attacker:getMainLvl() > target:getMainLvl()) then --acc bonus!
 		acc = acc + ((attacker:getMainLvl()-target:getMainLvl())*4);
@@ -329,8 +329,8 @@ function BlueGetHitRate(attacker,target,capHitRate)
 		acc = acc - ((target:getMainLvl()-attacker:getMainLvl())*4);
 	end
 
-	local double hitdiff = 0;
-	local double hitrate = 75;
+	local hitdiff = 0;
+	local hitrate = 75;
 	if (acc>eva) then
 	hitdiff = (acc-eva)/2;
 	end

@@ -167,15 +167,15 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	end
 
 	--Applying pDIF
-	local double pdif = 0;
+	local pdif = 0;
 
 	-- start the hits
-	local double hitchance = math.random();
+	local hitchance = math.random();
 	finaldmg = 0;
 	hitsdone = 1;
 	hitslanded = 0;
 
-	local double chance = math.random();
+	local chance = math.random();
 
 	-- first hit has a higher chance to land
 	local firstHitChance = hitrate * 1.5;
