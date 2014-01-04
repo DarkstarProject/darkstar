@@ -1623,8 +1623,7 @@ void CAIMobDummy::FinishAttack()
 
 bool CAIMobDummy::TryDeaggro()
 {
-
-	if(m_PBattleTarget == NULL) // we have no target, so disengage
+	if(m_PBattleTarget == NULL && (m_PMob->PEnmityContainer != NULL && m_PMob->PEnmityContainer->GetHighestEnmity() == NULL))
     {
 		return true;
 	}
