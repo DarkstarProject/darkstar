@@ -47,6 +47,12 @@ void LoadAutomaton(CCharEntity* PChar)
 		Sql_GetData(SqlHandle,0,&attachments,&length);
 		memcpy(&PChar->m_unlockedAttachments, attachments, (length > sizeof(PChar->m_unlockedAttachments) ? sizeof(PChar->m_unlockedAttachments) : length));
 
+        if (PChar->PAutomaton != NULL)
+        {
+            delete PChar->PAutomaton;
+            PChar->PAutomaton = NULL;
+        }
+
         if (PChar->GetMJob() == JOB_PUP || PChar->GetSJob() == JOB_PUP)
         {
             PChar->PAutomaton = new CAutomatonEntity();
@@ -61,12 +67,6 @@ void LoadAutomaton(CCharEntity* PChar)
                 setAttachment(PChar, i, tempEquip.Attachments[i]);
             LoadAutomatonStats(PChar);
         }
-        else if (PChar->PAutomaton != NULL)
-        {
-            delete PChar->PAutomaton;
-            PChar->PAutomaton = NULL;
-        }
-
     }
 }
 
