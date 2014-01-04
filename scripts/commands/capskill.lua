@@ -47,9 +47,41 @@ function onTrigger(player, skill)
         ["string"]      = 41,
         ["wind"]        = 42,
         ["blue"]        = 43,
+        ["bluemagic"]   = 43,
         ["geomancy"]    = 44
     };
 
+    if (skill == nil) then
+        player:PrintToPlayer( "You must enter a valid skill name." );
+        return;
+    end
+    
+    if (tonumber(skill) ~= 0 and tonumber(skill) ~= nil) then
+        local skillId = tonumber(skill);
+        player:capSkill( skillId );
+        
+        for k, v in pairs(skillList) do
+            if (v == skillId) then
+                player:PrintToPlayer( string.format( "Capped skill '%s'.", k ) );
+                return;
+            end
+        end
+    end
+    
+    local skillId = skillList[ string.lower( skill ) ];
+    if (skillId == nil) then
+        player:PrintToPlayer( string.format( "Invalid skill '%s' given.", skill ) );
+    else
+        player:capSkill( skillId );
+        player:PrintToPlayer( string.format( "Capped skill '%s'.", skill ) );
+    end
+end
+    --[[
+    if (skill == nil) then
+        player:PrintToPlayer( "You must enter a valid skill name." );
+        return;
+    end
+    
     local skillId = skillList[ string.lower( skill ) ];
     if (tonumber(skill) ~= 0) then
         skillId = tonumber(skill);
@@ -69,3 +101,4 @@ function onTrigger(player, skill)
         end
     end
 end
+]]
