@@ -9,143 +9,143 @@ require("scripts/globals/status");
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- 			 Id, Name, Head, Body, Hand, Legs, Feet, Main, Sub, Neck, Back, ear1, ear2, ring1, ring2, ranged, ammo, matches required
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
-GearSets =  {1= {"Usukane",	16092,14554,14969,15633,15719,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5},			--	Usukane's set (5% Haste)
-			 2= {"Skadi",	16088,14550,14965,15629,15715,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5}, 		--  Skadi's set (5% critrate is guess) 
-			 3= {"Ares",	16084,14546,14961,15625,15711,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5}, 		--	Ares's set (5% DA)
-			 4= {"Denali",	16107,14569,14984,15648,15734,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5}, 		--	Denali Jacket Set (Increases Accuracy +20)
-			 5= {"Askar",	16106,14568,14983,15647,15733,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5}, 		--	Askar Korazin Set (Max HP Boost %10)	
-		     6= {"Pahluwan",16069,14530,14940,15609,15695,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5}, 		-- 	Pahluwan Khazagand Set (8% is guess) 
-			 7= {"Morrigan",16100,14562,14977,15641,15727,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5}, 		-- 	Morrigan's Robe Set (+5 Magic. Atk Bonus) 			
-			 8= {"Marduk",	16096,14558,14973,15637,15723,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5}, 		--	Marduk's Jubbah Set (5% fastcast) 						
-			 9= {"Goliard",	16108,14570,14985,15649,15735,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5},			--  Goliard Saio Set - Total Set Bonus +10% Magic Def. Bonus
-			 10={"Yigit",	16064,14527,14935,15606,15690,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5}, 		--  Yigit Gomlek Set (1mp per tick) Adds "Refresh" effect
-			 11={"Perle",	11503,13759,12745,14210,11413,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5}, 		--  Perle Hauberk Set 5% haste
-			 12={"Aurore",	11504,13760,12746,14257,11414,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5}, 		--  Aurore Doublet Set  store tp +8			
-			 13={"TealSaio",11505,13778,12747,14258,11415,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5}, 		--  Teal Saio Set  fastcast 10%			
-			 14={"Calma",	10890,10462,10512,11980,10610,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5}, 		--  Calma Armor Set haste%6	
-			 15={"Magavan",	10892,10464,10514,11982,10612,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5}, 		--  Magavan Armor Set  magic accuracy +5
-			 16={"Mustela",	10891,10463,10513,11981,10611,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5}, 		--  Mustela Harness Set  crit rate 5%
-			 17={"IronRamH",16146,14588,15009,16315,15755,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},			--  Iron Ram Haubert Set
-			 18={"FourthB", 16147,14589,15010,16316,15756,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2}, 		--  Fourth Division Brune Set
-			 19={"CobraH",  16148,14590,15011,16317,15757,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2}, 		--  Cobra Unit Harness Set
-			 20={"CobraR",  16149,14591,15012,16318,15758,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2}, 		--  Cobra Unit Robe Set
-			 21={"IronRamC",6141,14581,15005,16312,15749,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2}, 			--  Iron Ram Chainmail Set. Double mod here! It is why it has 2 IDs.	
-			 23={"FourthC", 16142,14582,15006,16313,15750,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2}, 		--  Fourth Division Cuirass Set
-			 24={"CobraC",  16143,14583,15007,16314,15751,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2}, 		--  Cobra Unit Coat Set		
-			 25={"Amir",    16062,14525,14933,15604,15688,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2}, 		--  Amir Korazin Set - Double mod here! It is why it has 2 IDs.
-			 27={"Hachiryu",-1,11281,15015,16337,11364,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2}, 			--  Hachiryu Haramaki Set - Store tp
-			 28={"Ravager", 11064,11084,11104,11124,11144,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5},			--  Ravager's Armor +2 Set - Double attack double damage chance			 
-			 29={"Fazheluo",11808,11850,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Fazheluo Mail Set. Set Bonus: "Double Attack"+5%. Active with any 2 pieces.
-			 29={"Fazheluo",11808,11858,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Fazheluo Mail Set. Set Bonus: "Double Attack"+5%. Active with any 2 pieces.
-			 29={"Fazheluo",11808,11857,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Fazheluo Mail Set. Set Bonus: "Double Attack"+5%. Active with any 2 pieces.
-			 29={"Fazheluo",11824,11850,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Fazheluo Mail Set. Set Bonus: "Double Attack"+5%. Active with any 2 pieces.
-			 29={"Fazheluo",11824,11858,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Fazheluo Mail Set. Set Bonus: "Double Attack"+5%. Active with any 2 pieces.
-			 29={"Fazheluo",11824,11857,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Fazheluo Mail Set. Set Bonus: "Double Attack"+5%. Active with any 2 pieces.		 
-			 30={"Cuauhtli",11809,11851,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Cuauhtli Harness Set. Set Bonus: Haste+8%. Active with any 2 pieces.
-			 30={"Cuauhtli",11809,11859,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Cuauhtli Harness Set. Set Bonus: Haste+8%. Active with any 2 pieces.
-			 30={"Cuauhtli",11825,11851,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Cuauhtli Harness Set. Set Bonus: Haste+8%. Active with any 2 pieces.
-			 30={"Cuauhtli",11825,11859,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Cuauhtli Harness Set. Set Bonus: Haste+8%. Active with any 2 pieces.			 
-			 31={"Hyskos",	11810,11852,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5},					--  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.
-			 31={"Hyskos",	11810,11860,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.
-			 31={"Hyskos",	11826,11852,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.	 
-			 31={"Hyskos",	11826,11860,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.
-			 32={"Ogier", 	10876,10450,10500,11969,10600,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},			--  Ogier's Armor Set. Set Bonus: Adds "Refresh" Effect. Provides 1 mp/tick for 2-3 pieces worn, 2 mp/tick for 4-5 pieces worn.
-			 33={"Athos", 	10877,10451,10501,11970,10601,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},			--  Athos's Armor Set. Set Bonus: Increases rate of critical hits. Gives +3% for the first 2 pieces and +1% for every additional piece. 
-			 34={"Rubeus",	10878,10452,10502,11971,10602,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},			--  Rubeus Armor Set. Set Bonus: Enhances "Fast Cast" Effect. 2 or 3 pieces equipped: Fast Cast +4, 4 or 5 pieces equipped: Fast Cast +10 	
-			 35={"Navarch",	11080,11100,11120,11140,11160,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5},			--  Navarch's Attire +2 Set. Set Bonus: Augments "Quick Draw". Quick Draw will occasionally deal triple damage.
-			 36={"Charis",	11082,11102,11122,11142,11162,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},			--  Charis Attire +2 Set. Set Bonus: Augments "Samba". Occasionally doubles damage with Samba up. Adds approximately 1-2% per piece past the first. 		
-			 37={"Iga",		11076,11096,11116,11136,11156,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5},			--	Iga Garb +2 Set. Set Bonus: Augments "Dual Wield". Attacks made while dual wielding occasionally add an extra attack
-			 38={"Sylvan",	11074,11094,11114,11134,11154,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},			--	Sylvan Attire +2 Set. Set Bonus: Augments "Rapid Shot". Rapid Shots occasionally deal double damage.	 
-			 39={"Creed",	11070,11090,11110,11130,11150,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5},			--	Creed Armor +2 Set. Set Bonus: Occasionally absorbs damage taken. Set proc believed to be somewhere around 5%, more testing needed. Verification Needed Absorb rate likely varies with # of set pieces.  
-			 40={"Unkai",	11075,11095,11115,11135,11155,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5},			--	Unkai Domaru +2 Set. Set Bonus: Augments "Zanshin". Zanshin attacks will occasionally deal double damage.
-			 41={"Tantra",	11065,11085,11105,11125,11145,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5},			--	Tantra Attire +2 Set. Set Bonus: Augments "Kick Attacks". Occasionally allows a second Kick Attack during an attack round without the use of Footwork. 	
-			 42={"Raider",	11069,11089,11109,11129,11149,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},			--	Raider's Attire +2 Set. Set Bonus: Augments "Triple Attack". Occasionally causes the second and third hits of a Triple Attack to deal triple damage.Verification Needed Requires a minimum of two pieces. 
-			 43={"Orison",	11066,11086,11106,11126,11146,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5},			--	Orison Attire +2 Set. Set Bonus: Augments elemental resistance spells. Bar Elemental spells will occasionally nullify damage of the same element.	 
-			 44={"Savant",	11083,11103,11123,11143,11163,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5},			--	Savant's Attire +2 Set. Set Bonus: Augments Grimoire. Spells that match your current Arts will occasionally cast instantly, without recast. 
-			 45={"Paramount",-1,-1,-1,-1,-1,19112,-1,-1,-1,-1,16005,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-			 45={"Paramount",-1,-1,-1,-1,-1,-1,19112,-1,-1,-1,16005,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-			 45={"Paramount",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,16005,-1,-1,19215,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-			 45={"Paramount",-1,-1,-1,-1,-1,17962,-1,-1,-1,-1,16005,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-			 45={"Paramount",-1,-1,-1,-1,-1,-1,17962,-1,-1,-1,16005,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-			 45={"Paramount",-1,-1,-1,-1,-1,18596,-1,-1,-1,-1,16005,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-			 45={"Paramount",-1,-1,-1,-1,-1,19271,-1,-1,-1,-1,16005,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-			 45={"Paramount",-1,-1,-1,-1,-1,-1,19271,-1,-1,-1,16005,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-			 45={"Paramount",-1,-1,-1,-1,-1,17756,-1,-1,-1,-1,16005,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-			 45={"Paramount",-1,-1,-1,-1,-1,-1,17756,-1,-1,-1,16005,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-			 45={"Paramount",-1,-1,-1,-1,-1,18760,-1,-1,-1,-1,16005,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-			 45={"Paramount",-1,-1,-1,-1,-1,19156,-1,-1,-1,-1,16005,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-			 45={"Paramount",-1,-1,-1,-1,-1,19112,-1,-1,-1,16005,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-			 45={"Paramount",-1,-1,-1,-1,-1,-1,19112,-1,-1,16005,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-			 45={"Paramount",-1,-1,-1,-1,-1,-1,-1,-1,-1,16005,-1,-1,-1,19215,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-			 45={"Paramount",-1,-1,-1,-1,-1,17962,-1,-1,-1,16005,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-			 45={"Paramount",-1,-1,-1,-1,-1,-1,17962,-1,-1,16005,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-			 45={"Paramount",-1,-1,-1,-1,-1,18596,-1,-1,-1,16005,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-			 45={"Paramount",-1,-1,-1,-1,-1,19271,-1,-1,-1,16005,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-			 45={"Paramount",-1,-1,-1,-1,-1,-1,19271,-1,-1,16005,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-			 45={"Paramount",-1,-1,-1,-1,-1,17756,-1,-1,-1,16005,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-			 45={"Paramount",-1,-1,-1,-1,-1,-1,17756,-1,-1,16005,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-			 45={"Paramount",-1,-1,-1,-1,-1,18760,-1,-1,-1,16005,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-			 45={"Paramount",-1,-1,-1,-1,-1,19156,-1,-1,-1,16005,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-  			 45={"Paramount",-1,-1,-1,-1,-1,19112,-1,-1,-1,-1,-1,-1,-1,19215,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)  	
-			 45={"Paramount",-1,-1,-1,-1,-1,19112,17962,-1,-1,-1,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-			 45={"Paramount",-1,-1,-1,-1,-1,17962,19112,-1,-1,-1,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-			 45={"Paramount",-1,-1,-1,-1,-1,19112,19271,-1,-1,-1,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-			 45={"Paramount",-1,-1,-1,-1,-1,19271,19112,-1,-1,-1,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
- 			 45={"Paramount",-1,-1,-1,-1,-1,19112,17756,-1,-1,-1,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-			 45={"Paramount",-1,-1,-1,-1,-1,17756,19112,-1,-1,-1,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-  			 45={"Paramount",-1,-1,-1,-1,-1,17962,-1,-1,-1,-1,-1,-1,-1,19215,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-  			 45={"Paramount",-1,-1,-1,-1,-1,-1,17962,-1,-1,-1,-1,-1,-1,19215,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-  			 45={"Paramount",-1,-1,-1,-1,-1,18596,-1,-1,-1,-1,-1,-1,-1,19215,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-  			 45={"Paramount",-1,-1,-1,-1,-1,19271,-1,-1,-1,-1,-1,-1,-1,19215,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-  			 45={"Paramount",-1,-1,-1,-1,-1,-1,19271,-1,-1,-1,-1,-1,-1,19215,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-  			 45={"Paramount",-1,-1,-1,-1,-1,17756,-1,-1,-1,-1,-1,-1,-1,19215,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-  			 45={"Paramount",-1,-1,-1,-1,-1,-1,17756,-1,-1,-1,-1,-1,-1,19215,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-  			 45={"Paramount",-1,-1,-1,-1,-1,18760,-1,-1,-1,-1,-1,-1,-1,19215,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-  			 45={"Paramount",-1,-1,-1,-1,-1,19156,-1,-1,-1,-1,-1,-1,-1,19215,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-  			 45={"Paramount",-1,-1,-1,-1,-1,17962,17756,-1,-1,-1,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
-  			 45={"Paramount",-1,-1,-1,-1,-1,17756,17962,-1,-1,-1,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon) 
-  			 49={"Supremacy",-1,-1,-1,-1,-1,18761,-1,-1,-1,16004,-1,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
-  			 49={"Supremacy",-1,-1,-1,-1,-1,18597,-1,-1,-1,16004,-1,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
-			 49={"Supremacy",-1,-1,-1,-1,-1,17757,-1,-1,-1,16004,-1,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
-  			 49={"Supremacy",-1,-1,-1,-1,-1,-1,17757,-1,-1,16004,-1,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
-  			 49={"Supremacy",-1,-1,-1,-1,-1,18449,-1,-1,-1,16004,-1,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
-  			 49={"Supremacy",-1,-1,-1,-1,-1,18128,-1,-1,-1,16004,-1,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
-  			 49={"Supremacy",-1,-1,-1,-1,-1,18500,-1,-1,-1,16004,-1,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
-  			 49={"Supremacy",-1,-1,-1,-1,-1,18951,-1,-1,-1,16004,-1,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
-  			 49={"Supremacy",-1,-1,-1,-1,-1,-1,-1,-1,-1,16004,-1,-1,-1,19218,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)	 
-  			 49={"Supremacy",-1,-1,-1,-1,-1,18761,-1,-1,-1,-1,16004,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
-  			 49={"Supremacy",-1,-1,-1,-1,-1,18597,-1,-1,-1,-1,16004,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
-			 49={"Supremacy",-1,-1,-1,-1,-1,17757,-1,-1,-1,-1,16004,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
-  			 49={"Supremacy",-1,-1,-1,-1,-1,-1,17757,-1,-1,-1,16004,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
-  			 49={"Supremacy",-1,-1,-1,-1,-1,18449,-1,-1,-1,-1,16004,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
-  			 49={"Supremacy",-1,-1,-1,-1,-1,18128,-1,-1,-1,-1,16004,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
-  			 49={"Supremacy",-1,-1,-1,-1,-1,18500,-1,-1,-1,-1,16004,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
-  			 49={"Supremacy",-1,-1,-1,-1,-1,18951,-1,-1,-1,-1,16004,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
-  			 49={"Supremacy",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,16004,-1,-1,19218,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)		 
-  			 53={"Brilliant",-1,-1,-1,-1,-1,18499,-1,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
-  			 53={"Brilliant",-1,-1,-1,-1,-1,18499,-1,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)				 
-  			 53={"Brilliant",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,16006,-1,-1,19217,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
-  			 53={"Brilliant",-1,-1,-1,-1,-1,-1,-1,-1,-1,16006,-1,-1,-1,19217,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)				 			 
-  			 53={"Brilliant",-1,-1,-1,-1,-1,18862,-1,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
-  			 53={"Brilliant",-1,-1,-1,-1,-1,18862,-1,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
-  			 53={"Brilliant",-1,-1,-1,-1,-1,-1,18862,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
-  			 53={"Brilliant",-1,-1,-1,-1,-1,-1,18862,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)						
-  			 53={"Brilliant",-1,-1,-1,-1,-1,18952,-1,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
-  			 53={"Brilliant",-1,-1,-1,-1,-1,18952,-1,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)		
-  			 53={"Brilliant",-1,-1,-1,-1,-1,18861,-1,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
-  			 53={"Brilliant",-1,-1,-1,-1,-1,18861,-1,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
-  			 53={"Brilliant",-1,-1,-1,-1,-1,-1,18861,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
-  			 53={"Brilliant",-1,-1,-1,-1,-1,-1,18861,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
-  			 53={"Brilliant",-1,-1,-1,-1,-1,18450,-1,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
-  			 53={"Brilliant",-1,-1,-1,-1,-1,18450,-1,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)				  			 
-  			 53={"Brilliant",-1,-1,-1,-1,-1,19111,-1,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
-  			 53={"Brilliant",-1,-1,-1,-1,-1,19111,-1,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
-  			 53={"Brilliant",-1,-1,-1,-1,-1,-1,19111,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
-  			 53={"Brilliant",-1,-1,-1,-1,-1,-1,19111,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
-  			 53={"Brilliant",-1,-1,-1,-1,-1,19272,-1,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
-  			 53={"Brilliant",-1,-1,-1,-1,-1,19272,-1,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
-  			 53={"Brilliant",-1,-1,-1,-1,-1,-1,19272,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
-  			 53={"Brilliant",-1,-1,-1,-1,-1,-1,19272,-1,-1,16006,-1,-1,-1,-1,-1,2}};				--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)				 
+GearSets =  {{1, "Usukane",	16092,14554,14969,15633,15719,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5},			--	Usukane's set (5% Haste)
+			 {2, "Skadi",	16088,14550,14965,15629,15715,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5}, 		--  Skadi's set (5% critrate is guess) 
+			 {3, "Ares",	16084,14546,14961,15625,15711,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5}, 		--	Ares's set (5% DA)
+			 {4, "Denali",	16107,14569,14984,15648,15734,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5}, 		--	Denali Jacket Set (Increases Accuracy +20)
+			 {5, "Askar",	16106,14568,14983,15647,15733,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5}, 		--	Askar Korazin Set (Max HP Boost %10)	
+		     {6, "Pahluwan",16069,14530,14940,15609,15695,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5}, 		-- 	Pahluwan Khazagand Set (8% is guess) 
+			 {7, "Morrigan",16100,14562,14977,15641,15727,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5}, 		-- 	Morrigan's Robe Set (+5 Magic. Atk Bonus) 			
+			 {8, "Marduk",	16096,14558,14973,15637,15723,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5}, 		--	Marduk's Jubbah Set (5% fastcast) 						
+			 {9, "Goliard",	16108,14570,14985,15649,15735,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5},			--  Goliard Saio Set - Total Set Bonus +10% Magic Def. Bonus
+			 {10, "Yigit",	16064,14527,14935,15606,15690,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5}, 		--  Yigit Gomlek Set (1mp per tick) Adds "Refresh" effect
+			 {11, "Perle",	11503,13759,12745,14210,11413,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5}, 		--  Perle Hauberk Set 5% haste
+			 {12, "Aurore",	11504,13760,12746,14257,11414,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5}, 		--  Aurore Doublet Set  store tp +8			
+			 {13, "TealSaio",11505,13778,12747,14258,11415,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5}, 		--  Teal Saio Set  fastcast 10%			
+			 {14, "Calma",	10890,10462,10512,11980,10610,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5}, 		--  Calma Armor Set haste%6	
+			 {15, "Magavan",	10892,10464,10514,11982,10612,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5}, 		--  Magavan Armor Set  magic accuracy +5
+			 {16, "Mustela",	10891,10463,10513,11981,10611,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5}, 		--  Mustela Harness Set  crit rate 5%
+			 {17, "IronRamH",16146,14588,15009,16315,15755,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},			--  Iron Ram Haubert Set
+			 {18, "FourthB", 16147,14589,15010,16316,15756,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2}, 		--  Fourth Division Brune Set
+			 {19, "CobraH",  16148,14590,15011,16317,15757,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2}, 		--  Cobra Unit Harness Set
+			 {20, "CobraR",  16149,14591,15012,16318,15758,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2}, 		--  Cobra Unit Robe Set
+			 {21, "IronRamC",6141,14581,15005,16312,15749,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2}, 			--  Iron Ram Chainmail Set. Double mod here! It is why it has 2 IDs.	
+			 {23, "FourthC", 16142,14582,15006,16313,15750,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2}, 		--  Fourth Division Cuirass Set
+			 {24, "CobraC",  16143,14583,15007,16314,15751,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2}, 		--  Cobra Unit Coat Set		
+			 {25, "Amir",    16062,14525,14933,15604,15688,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2}, 		--  Amir Korazin Set - Double mod here! It is why it has 2 IDs.
+			 {27, "Hachiryu",-1,11281,15015,16337,11364,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2}, 			--  Hachiryu Haramaki Set - Store tp
+			 {28, "Ravager", 11064,11084,11104,11124,11144,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5},			--  Ravager's Armor +2 Set - Double attack double damage chance			 
+			 {29, "Fazheluo",11808,11850,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Fazheluo Mail Set. Set Bonus: "Double Attack"+5%. Active with any 2 pieces.
+			 {29, "Fazheluo",11808,11858,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Fazheluo Mail Set. Set Bonus: "Double Attack"+5%. Active with any 2 pieces.
+			 {29, "Fazheluo",11808,11857,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Fazheluo Mail Set. Set Bonus: "Double Attack"+5%. Active with any 2 pieces.
+			 {29, "Fazheluo",11824,11850,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Fazheluo Mail Set. Set Bonus: "Double Attack"+5%. Active with any 2 pieces.
+			 {29, "Fazheluo",11824,11858,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Fazheluo Mail Set. Set Bonus: "Double Attack"+5%. Active with any 2 pieces.
+			 {29, "Fazheluo",11824,11857,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Fazheluo Mail Set. Set Bonus: "Double Attack"+5%. Active with any 2 pieces.		 
+			 {30, "Cuauhtli",11809,11851,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Cuauhtli Harness Set. Set Bonus: Haste+8%. Active with any 2 pieces.
+			 {30, "Cuauhtli",11809,11859,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Cuauhtli Harness Set. Set Bonus: Haste+8%. Active with any 2 pieces.
+			 {30, "Cuauhtli",11825,11851,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Cuauhtli Harness Set. Set Bonus: Haste+8%. Active with any 2 pieces.
+			 {30, "Cuauhtli",11825,11859,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Cuauhtli Harness Set. Set Bonus: Haste+8%. Active with any 2 pieces.			 
+			 {31, "Hyskos",	11810,11852,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5},					--  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.
+			 {31, "Hyskos",	11810,11860,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.
+			 {31, "Hyskos",	11826,11852,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.	 
+			 {31, "Hyskos",	11826,11860,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},					--  Hyskos Robe Set. Set Bonus: Magic Accuracy+5. Active with any 2 pieces.
+			 {32, "Ogier", 	10876,10450,10500,11969,10600,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},			--  Ogier's Armor Set. Set Bonus: Adds "Refresh" Effect. Provides 1 mp/tick for 2-3 pieces worn, 2 mp/tick for 4-5 pieces worn.
+			 {33, "Athos", 	10877,10451,10501,11970,10601,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},			--  Athos's Armor Set. Set Bonus: Increases rate of critical hits. Gives +3% for the first 2 pieces and +1% for every additional piece. 
+			 {34, "Rubeus",	10878,10452,10502,11971,10602,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},			--  Rubeus Armor Set. Set Bonus: Enhances "Fast Cast" Effect. 2 or 3 pieces equipped: Fast Cast +4, 4 or 5 pieces equipped: Fast Cast +10 	
+			 {35, "Navarch",	11080,11100,11120,11140,11160,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5},			--  Navarch's Attire +2 Set. Set Bonus: Augments "Quick Draw". Quick Draw will occasionally deal triple damage.
+			 {36, "Charis",	11082,11102,11122,11142,11162,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},			--  Charis Attire +2 Set. Set Bonus: Augments "Samba". Occasionally doubles damage with Samba up. Adds approximately 1-2% per piece past the first. 		
+			 {37, "Iga",		11076,11096,11116,11136,11156,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5},			--	Iga Garb +2 Set. Set Bonus: Augments "Dual Wield". Attacks made while dual wielding occasionally add an extra attack
+			 {38, "Sylvan",	11074,11094,11114,11134,11154,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},			--	Sylvan Attire +2 Set. Set Bonus: Augments "Rapid Shot". Rapid Shots occasionally deal double damage.	 
+			 {39, "Creed",	11070,11090,11110,11130,11150,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5},			--	Creed Armor +2 Set. Set Bonus: Occasionally absorbs damage taken. Set proc believed to be somewhere around 5%, more testing needed. Verification Needed Absorb rate likely varies with # of set pieces.  
+			 {40, "Unkai",	11075,11095,11115,11135,11155,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5},			--	Unkai Domaru +2 Set. Set Bonus: Augments "Zanshin". Zanshin attacks will occasionally deal double damage.
+			 {41, "Tantra",	11065,11085,11105,11125,11145,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5},			--	Tantra Attire +2 Set. Set Bonus: Augments "Kick Attacks". Occasionally allows a second Kick Attack during an attack round without the use of Footwork. 	
+			 {42, "Raider",	11069,11089,11109,11129,11149,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},			--	Raider's Attire +2 Set. Set Bonus: Augments "Triple Attack". Occasionally causes the second and third hits of a Triple Attack to deal triple damage.Verification Needed Requires a minimum of two pieces. 
+			 {43, "Orison",	11066,11086,11106,11126,11146,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5},			--	Orison Attire +2 Set. Set Bonus: Augments elemental resistance spells. Bar Elemental spells will occasionally nullify damage of the same element.	 
+			 {44, "Savant",	11083,11103,11123,11143,11163,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,5},			--	Savant's Attire +2 Set. Set Bonus: Augments Grimoire. Spells that match your current Arts will occasionally cast instantly, without recast. 
+			 {45, "Paramount",-1,-1,-1,-1,-1,19112,-1,-1,-1,-1,16005,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+			 {45, "Paramount",-1,-1,-1,-1,-1,-1,19112,-1,-1,-1,16005,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+			 {45, "Paramount",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,16005,-1,-1,19215,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+			 {45, "Paramount",-1,-1,-1,-1,-1,17962,-1,-1,-1,-1,16005,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+			 {45, "Paramount",-1,-1,-1,-1,-1,-1,17962,-1,-1,-1,16005,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+			 {45, "Paramount",-1,-1,-1,-1,-1,18596,-1,-1,-1,-1,16005,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+			 {45, "Paramount",-1,-1,-1,-1,-1,19271,-1,-1,-1,-1,16005,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+			 {45, "Paramount",-1,-1,-1,-1,-1,-1,19271,-1,-1,-1,16005,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+			 {45, "Paramount",-1,-1,-1,-1,-1,17756,-1,-1,-1,-1,16005,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+			 {45, "Paramount",-1,-1,-1,-1,-1,-1,17756,-1,-1,-1,16005,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+			 {45, "Paramount",-1,-1,-1,-1,-1,18760,-1,-1,-1,-1,16005,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+			 {45, "Paramount",-1,-1,-1,-1,-1,19156,-1,-1,-1,-1,16005,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+			 {45, "Paramount",-1,-1,-1,-1,-1,19112,-1,-1,-1,16005,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+			 {45, "Paramount",-1,-1,-1,-1,-1,-1,19112,-1,-1,16005,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+			 {45, "Paramount",-1,-1,-1,-1,-1,-1,-1,-1,-1,16005,-1,-1,-1,19215,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+			 {45, "Paramount",-1,-1,-1,-1,-1,17962,-1,-1,-1,16005,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+			 {45, "Paramount",-1,-1,-1,-1,-1,-1,17962,-1,-1,16005,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+			 {45, "Paramount",-1,-1,-1,-1,-1,18596,-1,-1,-1,16005,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+			 {45, "Paramount",-1,-1,-1,-1,-1,19271,-1,-1,-1,16005,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+			 {45, "Paramount",-1,-1,-1,-1,-1,-1,19271,-1,-1,16005,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+			 {45, "Paramount",-1,-1,-1,-1,-1,17756,-1,-1,-1,16005,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+			 {45, "Paramount",-1,-1,-1,-1,-1,-1,17756,-1,-1,16005,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+			 {45, "Paramount",-1,-1,-1,-1,-1,18760,-1,-1,-1,16005,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+			 {45, "Paramount",-1,-1,-1,-1,-1,19156,-1,-1,-1,16005,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+  			 {45, "Paramount",-1,-1,-1,-1,-1,19112,-1,-1,-1,-1,-1,-1,-1,19215,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)  	
+			 {45, "Paramount",-1,-1,-1,-1,-1,19112,17962,-1,-1,-1,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+			 {45, "Paramount",-1,-1,-1,-1,-1,17962,19112,-1,-1,-1,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+			 {45, "Paramount",-1,-1,-1,-1,-1,19112,19271,-1,-1,-1,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+			 {45, "Paramount",-1,-1,-1,-1,-1,19271,19112,-1,-1,-1,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+ 			 {45, "Paramount",-1,-1,-1,-1,-1,19112,17756,-1,-1,-1,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+			 {45, "Paramount",-1,-1,-1,-1,-1,17756,19112,-1,-1,-1,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+  			 {45, "Paramount",-1,-1,-1,-1,-1,17962,-1,-1,-1,-1,-1,-1,-1,19215,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+  			 {45, "Paramount",-1,-1,-1,-1,-1,-1,17962,-1,-1,-1,-1,-1,-1,19215,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+  			 {45, "Paramount",-1,-1,-1,-1,-1,18596,-1,-1,-1,-1,-1,-1,-1,19215,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+  			 {45, "Paramount",-1,-1,-1,-1,-1,19271,-1,-1,-1,-1,-1,-1,-1,19215,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+  			 {45, "Paramount",-1,-1,-1,-1,-1,-1,19271,-1,-1,-1,-1,-1,-1,19215,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+  			 {45, "Paramount",-1,-1,-1,-1,-1,17756,-1,-1,-1,-1,-1,-1,-1,19215,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+  			 {45, "Paramount",-1,-1,-1,-1,-1,-1,17756,-1,-1,-1,-1,-1,-1,19215,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+  			 {45, "Paramount",-1,-1,-1,-1,-1,18760,-1,-1,-1,-1,-1,-1,-1,19215,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+  			 {45, "Paramount",-1,-1,-1,-1,-1,19156,-1,-1,-1,-1,-1,-1,-1,19215,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+  			 {45, "Paramount",-1,-1,-1,-1,-1,17962,17756,-1,-1,-1,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon)
+  			 {45, "Paramount",-1,-1,-1,-1,-1,17756,17962,-1,-1,-1,-1,-1,-1,-1,-1,2},					--	Paramount Earring Sets. Set Bonus: HP+30, VIT+6, Accuracy+6, Ranged Accuracy+6. Set Bonus is active with any 2 items(Earring+Weapon or Weapon+Weapon) 
+  			 {49, "Supremacy",-1,-1,-1,-1,-1,18761,-1,-1,-1,16004,-1,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
+  			 {49, "Supremacy",-1,-1,-1,-1,-1,18597,-1,-1,-1,16004,-1,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
+			 {49, "Supremacy",-1,-1,-1,-1,-1,17757,-1,-1,-1,16004,-1,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
+  			 {49, "Supremacy",-1,-1,-1,-1,-1,-1,17757,-1,-1,16004,-1,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
+  			 {49, "Supremacy",-1,-1,-1,-1,-1,18449,-1,-1,-1,16004,-1,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
+  			 {49, "Supremacy",-1,-1,-1,-1,-1,18128,-1,-1,-1,16004,-1,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
+  			 {49, "Supremacy",-1,-1,-1,-1,-1,18500,-1,-1,-1,16004,-1,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
+  			 {49, "Supremacy",-1,-1,-1,-1,-1,18951,-1,-1,-1,16004,-1,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
+  			 {49, "Supremacy",-1,-1,-1,-1,-1,-1,-1,-1,-1,16004,-1,-1,-1,19218,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)	 
+  			 {49, "Supremacy",-1,-1,-1,-1,-1,18761,-1,-1,-1,-1,16004,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
+  			 {49, "Supremacy",-1,-1,-1,-1,-1,18597,-1,-1,-1,-1,16004,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
+			 {49, "Supremacy",-1,-1,-1,-1,-1,17757,-1,-1,-1,-1,16004,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
+  			 {49, "Supremacy",-1,-1,-1,-1,-1,-1,17757,-1,-1,-1,16004,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
+  			 {49, "Supremacy",-1,-1,-1,-1,-1,18449,-1,-1,-1,-1,16004,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
+  			 {49, "Supremacy",-1,-1,-1,-1,-1,18128,-1,-1,-1,-1,16004,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
+  			 {49, "Supremacy",-1,-1,-1,-1,-1,18500,-1,-1,-1,-1,16004,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
+  			 {49, "Supremacy",-1,-1,-1,-1,-1,18951,-1,-1,-1,-1,16004,-1,-1,-1,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)
+  			 {49, "Supremacy",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,16004,-1,-1,19218,-1,2},					--	Supremacy Earring Sets. Set Bonus: STR+6, Attack+4, Ranged Attack+4, "Magic Atk. Bonus"+2. Active with any 2 items(Earring+Weapon)		 
+  			 {53, "Brilliant",-1,-1,-1,-1,-1,18499,-1,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 {53, "Brilliant",-1,-1,-1,-1,-1,18499,-1,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)				 
+  			 {53, "Brilliant",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,16006,-1,-1,19217,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 {53, "Brilliant",-1,-1,-1,-1,-1,-1,-1,-1,-1,16006,-1,-1,-1,19217,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)				 			 
+  			 {53, "Brilliant",-1,-1,-1,-1,-1,18862,-1,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 {53, "Brilliant",-1,-1,-1,-1,-1,18862,-1,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 {53, "Brilliant",-1,-1,-1,-1,-1,-1,18862,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 {53, "Brilliant",-1,-1,-1,-1,-1,-1,18862,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)						
+  			 {53, "Brilliant",-1,-1,-1,-1,-1,18952,-1,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 {53, "Brilliant",-1,-1,-1,-1,-1,18952,-1,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)		
+  			 {53, "Brilliant",-1,-1,-1,-1,-1,18861,-1,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 {53, "Brilliant",-1,-1,-1,-1,-1,18861,-1,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 {53, "Brilliant",-1,-1,-1,-1,-1,-1,18861,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 {53, "Brilliant",-1,-1,-1,-1,-1,-1,18861,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 {53, "Brilliant",-1,-1,-1,-1,-1,18450,-1,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 {53, "Brilliant",-1,-1,-1,-1,-1,18450,-1,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)				  			 
+  			 {53, "Brilliant",-1,-1,-1,-1,-1,19111,-1,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 {53, "Brilliant",-1,-1,-1,-1,-1,19111,-1,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 {53, "Brilliant",-1,-1,-1,-1,-1,-1,19111,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 {53, "Brilliant",-1,-1,-1,-1,-1,-1,19111,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 {53, "Brilliant",-1,-1,-1,-1,-1,19272,-1,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 {53, "Brilliant",-1,-1,-1,-1,-1,19272,-1,-1,-1,16006,-1,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 {53, "Brilliant",-1,-1,-1,-1,-1,-1,19272,-1,-1,-1,16006,-1,-1,-1,-1,2},					--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)	
+  			 {53, "Brilliant",-1,-1,-1,-1,-1,-1,19272,-1,-1,16006,-1,-1,-1,-1,-1,2}};				--  Brilliant Earring Set. Set Bonus: Evasion, HP Recovered while healing, Reduces Emnity. Active with any 2 items(Earring+Weapon)				 
 			 -- Link: Next id must be 56.
 			 
 -- 			 Head, Body, Hand, Legs, Feet, Main, Sub, Neck, Back, ear1, ear2, ring1, ring2, ranged, ammo, matches-required	
@@ -178,24 +178,24 @@ function checkForGearSet(player)
 	
     for index, gearset in pairs(GearSets) do
 		local matches = 0;
-		if (player:hasGearSetMod(gearset) == false) then
-			if (head == gearset[2]) then matches = matches + 1; end;
-			if (body == gearset[3]) then matches = matches + 1; end;
-			if (hands == gearset[4]) then matches = matches + 1; end;
-			if (legs == gearset[5]) then matches = matches + 1; end;
-			if (feet == gearset[6]) then matches = matches + 1; end;
-			if (main == gearset[7]) then matches = matches + 1; end;
-			if (sub == gearset[8]) then matches = matches + 1; end;
-			if (neck == gearset[9]) then matches = matches + 1; end;
-			if (back == gearset[10]) then matches = matches + 1; end;
-			if (ear1 == gearset[11]) then matches = matches + 1; end;
-			if (ear2 == gearset[12]) then matches = matches + 1; end;
-			if (ring1 == gearset[13]) then matches = matches + 1; end;
-			if (ring2 == gearset[14]) then matches = matches + 1; end;		
-			if (ranged == gearset[15]) then matches = matches + 1; end;
-			if (ammo == gearset[16]) then matches = matches + 1; end;		
-			if (matches >= gearset[17]) then
-				SearchMods(player, gearset, gearset[1], matches);
+		if (player:hasGearSetMod(gearset[1]) == false) then
+			if (head == gearset[3]) then matches = matches + 1; end;
+			if (body == gearset[4]) then matches = matches + 1; end;
+			if (hands == gearset[5]) then matches = matches + 1; end;
+			if (legs == gearset[6]) then matches = matches + 1; end;
+			if (feet == gearset[7]) then matches = matches + 1; end;
+			if (main == gearset[8]) then matches = matches + 1; end;
+			if (sub == gearset[9]) then matches = matches + 1; end;
+			if (neck == gearset[10]) then matches = matches + 1; end;
+			if (back == gearset[11]) then matches = matches + 1; end;
+			if (ear1 == gearset[12]) then matches = matches + 1; end;
+			if (ear2 == gearset[13]) then matches = matches + 1; end;
+			if (ring1 == gearset[14]) then matches = matches + 1; end;
+			if (ring2 == gearset[15]) then matches = matches + 1; end;		
+			if (ranged == gearset[16]) then matches = matches + 1; end;
+			if (ammo == gearset[17]) then matches = matches + 1; end;		
+			if (matches >= gearset[18]) then
+				SearchMods(player, gearset[1], gearset[2], matches);
 			end		
 		end
 	end
