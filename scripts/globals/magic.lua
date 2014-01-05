@@ -853,7 +853,7 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
 		end
 	elseif(weather == doubleWeatherStrong[ele]) then
 		-- Iridescence
-		if(equippedMain == 18632 or equippedMain == 186330) then
+		if(equippedMain == 18632 or equippedMain == 18633) then
 			if(math.random() < 0.33 or equippedWaist == elementalObi[ele] or isHelixSpell(spell)) then
 				dayWeatherBonus = dayWeatherBonus + 0.10;
 			end
@@ -965,7 +965,7 @@ function addBonusesAbility(caster, ele, target, dmg, params)
 		end
 	elseif(weather == doubleWeatherStrong[ele]) then
 		-- Iridescence
-		if(equippedMain == 18632 or equippedMain == 186330) then
+		if(equippedMain == 18632 or equippedMain == 18633) then
 			if(math.random() < 0.33 or equippedWaist == elementalObi[ele] ) then
 				dayWeatherBonus = dayWeatherBonus + 0.10;
 			end
