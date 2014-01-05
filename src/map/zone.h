@@ -325,10 +325,11 @@ enum ZONEID : uint16
     ZONE_281                          = 281,
     ZONE_282                          = 282,
     ZONE_SILVER_KNIFE                 = 283,
-    ZONE_CELENNIA_WEXWORTH_MEMORIAL_L = 284
+    ZONE_CELENNIA_WEXWORTH_MEMORIAL_L = 284,
+    ZONE_FERETORY
 };
 
-#define MAX_ZONEID 285
+#define MAX_ZONEID 286
 
 enum REGIONTYPE : uint8
 {
