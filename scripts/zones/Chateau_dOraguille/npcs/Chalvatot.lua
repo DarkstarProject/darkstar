@@ -21,12 +21,12 @@ require("scripts/zones/Chateau_dOraguille/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
-		if(trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
+	if(trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
+		if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
 			player:messageSpecial(FLYER_REFUSED);
 		end
-	elseif(player:getQuestStatus(SANDORIA,HER_MAJESTY_S_GARDEN) == QUEST_ACCEPTED) then
-		if(trade:hasItemQty(533,1) and trade:getItemCount() == 1) then
+	elseif(trade:hasItemQty(533,1) and trade:getItemCount() == 1) then
+		if(player:getQuestStatus(SANDORIA,HER_MAJESTY_S_GARDEN) == QUEST_ACCEPTED) then
 			player:startEvent(0x0053);
 		end
 	end
