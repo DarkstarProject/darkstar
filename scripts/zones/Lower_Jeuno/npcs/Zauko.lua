@@ -36,7 +36,7 @@ end;
 function onTrigger(player,npc)
 local hour = VanadielHour();
 local cService = player:getVar("cService");
-
+questServerVar = GetServerVariable("[JEUNO]CommService");
 ----- Community Service Quest -----
 -- The reason for all the Default Dialogue "else"s is because of all the different checks needed and to keep default dialogue
 -- If they're not there then the player will keep triggering the Quest Complete (Repeat) Cutscene
@@ -44,60 +44,57 @@ local cService = player:getVar("cService");
 
 
 		-- Quest Start --
-if (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) == QUEST_AVAILABLE and player:getFameLevel(JEUNO) >=1) then
-	if (hour >= 18 and hour < 21) then
-		player:startEvent(0x0074); -- Quest Start Dialogue (NOTE: The Cutscene says somebody else is working on it but it still adds the quest)
-		
+	if (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) == QUEST_AVAILABLE and player:getFameLevel(JEUNO) >=1) then
+		if (hour >= 18 and hour < 21) then
+			if(questServerVar == 0) then
+				player:startEvent(0x0074,questServerVar+1); -- Quest Start Dialogue (NOTE: The Cutscene says somebody else is working on it but it still adds the quest)
+			else
+				player:startEvent(0x0074,questServerVar);
+			end
 		else
 			player:startEvent(0x0076); -- Default Dialogue
-	end
+		end
 
-		
 		-- Task Failed --
-elseif (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) == QUEST_ACCEPTED) then
+	elseif (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) == QUEST_ACCEPTED) then
 		if(cService >= 1 and cService < 12 == true) then -- If the quest is accepted but all lamps are NOT lit
 			if (hour >= 18 and hour < 23) then
 				player:startEvent(0x0077); -- Task Failed Dialogue
-			
-				else 
-					player:startEvent(0x0076);
-		
-			end
+			else 
+				player:startEvent(0x0076);
+			end	
 			
 		-- Quest Complete --
-					else
-						player:startEvent(0x0075); -- Quest Complete Dialogue
+		else
+			player:startEvent(0x0075); -- Quest Complete Dialogue
 		end
 
-	
 		-- Repeat Quest --
-elseif (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) == QUEST_COMPLETED and cService == 13) then
+	elseif (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) == QUEST_COMPLETED and cService == 18) then
 		if (hour >= 18 and hour < 21) then
-		player:startEvent(0x0074,1) -- Quest Start (Repeat)
-		
-		-- Default Dialogue --
-else
-	player:startEvent(0x0076); -- Default Dialogue
-	end
+			player:startEvent(0x0074,1) -- Quest Start (Repeat)
+		else
+			player:startEvent(0x0076); -- Default Dialogue
+		end
 
 		-- Repeat Quest Task Failed --
-elseif (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) == QUEST_COMPLETED) then
-	if (cService >= 14 and cService < 24 == true) then
-		if (hour >= 18 and hour < 23) then -- If Quest Repeat is accepted but lamps are not lit
+	elseif (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) == QUEST_COMPLETED) then
+		if (cService >= 14 and cService < 24 == true) then
+			if (hour >= 18 and hour < 23) then -- If Quest Repeat is accepted but lamps are not lit
 				player:startEvent(0x0077); -- Task Failed Dialogue
-		end
+			end
 		
 		elseif (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) == QUEST_COMPLETED and cService == 0) then
-				player:startEvent(0x0076);
-		-- Repeat Quest Complete --
-			else
+			player:startEvent(0x0076);
+			-- Repeat Quest Complete --
+				else
 					player:startEvent(0x0071); -- Quest Complete (Repeat)
-	end
+		end
 			
 
-else 
+	else 
 		player:startEvent(0x0076);
-end		
+	end		
 
 end;
 
@@ -123,9 +120,12 @@ function onEventFinish(player,csid,option)
 		player:setVar("saveTheClockTowerVar",player:getVar("saveTheClockTowerVar") + 1);
 		player:setVar("saveTheClockTowerNPCz2",player:getVar("saveTheClockTowerNPCz2") + 256);
 	
----- Community Service Quest ----
+	---- Community Service Quest ----
 	elseif(csid == 0x0074 and option == 0) then -- Quest Start
-		player:addQuest(JEUNO,COMMUNITY_SERVICE);
+		if(questServerVar == 0) then
+			player:addQuest(JEUNO,COMMUNITY_SERVICE);
+			SetServerVariable("[JEUNO]CommService",1);
+		end
 		
 	elseif(csid == 0x0075) then -- Quest Finish
 		player:completeQuest(JEUNO,COMMUNITY_SERVICE);

@@ -77,9 +77,21 @@ function OnGameDayAutomatisation()
 end;
 
 function OnGameHourAutomatisation()
+
 	local VanadielHour = VanadielHour();
 	local FlameSpout = 17617203; 
 	
+	-- Community Service Quest
+	if(VanadielHour == 1) then
+		if(GetServerVariable("[JEUNO]CommService") == 0) then
+			GetNPCByID(17780880):setStatus(0); -- Vhana Ehgaklywha
+			GetNPCByID(17780880):initNpcAi();
+		end;
+		
+	elseif(VanadielHour == 5) then
+		SetServerVariable("[JEUNO]CommService",0);
+		
+	end
 	GetNPCByID(16806282):openDoor(); -- Attohwa Chasm miasma
 	
 	if(VanadielHour % 3 == 0) then -- Opens flame spouts every 3 hours Vana'diel time
