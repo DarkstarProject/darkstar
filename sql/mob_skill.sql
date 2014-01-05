@@ -1499,6 +1499,25 @@ INSERT INTO `mob_skill` VALUES (1532,62,1226,'Ululation', 1, 20.0, 2000, 1500, 4
 INSERT INTO `mob_skill` VALUES (1533,62,1227,'Magma_Hoplon', 0, 7.0, 2000, 1500, 1, 0, 0, 0); -- Stoneskin + Blaze Spike
 INSERT INTO `mob_skill` VALUES (1534,62,1228,'Gates_of_Hades', 1, 20.0, 2000, 1500, 4, 0, 0, 0); -- ~950 dmg + 20hp/tick
 
+-- Diabolos (Darkness Named)
+-- TODO: Need scripts. 
+-- INSERT INTO `mob_skill` VALUES (1647,35,915,'Camisado',0,7,2000,0,4,0, 0, 7);
+-- INSERT INTO `mob_skill` VALUES (1649,35,916,'Noctoshield',1,7,2000,0,1,0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1650,35,917,'Ultimate_Terror',1,7,2000,0,4,0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1652,35,918,'Nightmare',1,30,2000,0,4,0, 0, 0);
+
+-- Diabolos (Waking Dreams)
+-- TODO: Need scripts. 
+-- INSERT INTO `mob_skill` VALUES (1647,378,915,'Camisado',0,7,2000,0,4,0, 0, 7);
+-- INSERT INTO `mob_skill` VALUES (1648,378,1126,'Somnolence',0,25,2000,0,4,0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1649,378,916,'Noctoshield',1,7,2000,0,1,0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1650,378,917,'Ultimate_Terror',1,7,2000,0,4,0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1651,378,1127,'Dream_Shroud',1,7,2000,0,1,0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1652,378,918,'Nightmare',1,30,2000,0,4,0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1653,378,1128,'Cacodemonia',1,7,2000,0,4,0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1654,378,1129,'Nether_Blast',0,25,2000,0,4,0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1655,378,1125,'Ruinous_Omen',1,30,2000,0,4,0, 0, 0);
+
 -- Hydra
 INSERT INTO `mob_skill` VALUES (1572,164,1308,'Pyric_Blast',4,15.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1573,164,1319,'Polar_Bulwark',0,7.0,2000,1500,1,0,0,0);
@@ -1509,7 +1528,6 @@ INSERT INTO `mob_skill` VALUES (1578,164,1310,'Trembling',1,10.0,2000,1500,4,0,0
 INSERT INTO `mob_skill` VALUES (1579,164,1311,'Serpentine_Tail',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1580,164,1312,'Nerve_Gas',1,10.0,2000,1500,4,0,0,0);
 
-
 -- Odin
 INSERT INTO `mob_skill` VALUES (2300,41,1444,'Ofnir',1,10.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (2301,41,1446,'Valfodr',1,10.0,2000,1000,4,0,0,0);
@@ -1518,8 +1536,6 @@ INSERT INTO `mob_skill` VALUES (2303,41,1442,'Gagnrath',1,10.0,2000,1000,4,0,0,0
 INSERT INTO `mob_skill` VALUES (2304,41,1445,'Sangetall',1,10.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (2305,41,1443,'Geirrothr',1,10.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1870,41,1447,'Zantetsuken',1,10.0,2000,1000,4,0,0,0);
-
-
 
 -- Khimaira
 INSERT INTO `mob_skill` VALUES (1769,168,1369,'Dreadstorm', 1, 18.0, 2000, 1500, 4, 0, 0, 0);

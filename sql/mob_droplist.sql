@@ -32145,6 +32145,10 @@ INSERT INTO `mob_droplist` VALUES(4477, 0, 3495, 5);
 INSERT INTO `mob_droplist` VALUES(4477, 0, 5896, 83);
 INSERT INTO `mob_droplist` VALUES(4478, 0, 14676, 73); -- Wiki seems to be wrong. Both items should = to 100%.
 INSERT INTO `mob_droplist` VALUES(4478, 0, 14782, 27);
+INSERT INTO `mob_droplist` VALUES(4479, 0, 953, 31);
+INSERT INTO `mob_droplist` VALUES(4479, 0, 574, 7);
+INSERT INTO `mob_droplist` VALUES(4479, 2, 573, 0);
+INSERT INTO `mob_droplist` VALUES(4479, 2, 574, 0);
 
 
 

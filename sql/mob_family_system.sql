@@ -441,7 +441,7 @@ INSERT INTO `mob_family_system` VALUES (374,'Fly',20,'Vermin',0,40,92,90,1,3,4,3
 INSERT INTO `mob_family_system` VALUES (375,'Fly',20,'Vermin',0,40,92,90,1,3,4,3,6,6,5,3,3,3,3,1,1.25,1,1,1,1.25,0.875,1,1,1,1,1,3);
 INSERT INTO `mob_family_system` VALUES (376,'Raptor',14,'Lizard',1,50,95,120,4,1,4,2,4,4,2,3,3,3,3,1,1,1,1,0.875,1,1,1,1,1.25,1,1,1);
 INSERT INTO `mob_family_system` VALUES (377,'Raptor',14,'Lizard',1,50,95,120,4,1,4,2,4,4,2,3,3,3,3,1,1,1,1,0.875,1,1,1,1,1.25,1,1,1);
-
+INSERT INTO `mob_family_system` VALUES (378,'Avatar-Diabolos',5,'Avatar',0,40,100,120,3,3,3,3,3,3,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1.125,1,0);
 
 INSERT INTO `mob_family_system` VALUES (450,'Caturae',3,'Arcana',1,40,90,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
 INSERT INTO `mob_family_system` VALUES (451,'Pteraketos',2,'Aquan',4,40,120,140,6,5,4,5,3,3,4,4,4,2,2,1,1,1,1,1,1.25,1,1,1.25,0.75,1,1,6);
