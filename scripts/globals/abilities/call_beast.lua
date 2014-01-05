@@ -14,8 +14,10 @@ function OnAbilityCheck(player,target,ability)
 		return MSGBASIC_ALREADY_HAS_A_PET,0;
 	elseif (not player:hasValidJugPetItem()) then
 		return MSGBASIC_NO_JUG_PET_ITEM,0;
-	else
-		return 0,0;
+	elseif (not player:canUsePet()) then
+		return MSGBASIC_CANT_BE_USED_IN_AREA,0;
+    else
+        return 0,0;
 	end
 end;
 

@@ -11,7 +11,11 @@ require("scripts/globals/summon");
 -----------------------------------------
 
 function OnMagicCastingCheck(caster,target,spell)
-	return 0;
+    if (not caster:canUsePet()) then
+		return MSGBASIC_CANT_BE_USED_IN_AREA;
+    else
+        return 0,0;
+    end
 end;
 
 function onSpellCast(caster,target,spell)

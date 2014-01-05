@@ -150,6 +150,7 @@ public:
     int32 costume(lua_State*);              // get or set user costume
     int32 canUseCostume(lua_State*);		// check to see if character can use costume, 0 if so
     int32 canUseChocobo(lua_State *L);      // check to see if character can use chocobo, 0 if so
+    int32 canUsePet(lua_State *L);          // check to see if character can call pet, 0 if so
 
 	int32 addItem(lua_State*);				// Add item to Entity inventory (additem(itemNumber,quantity))
 	int32 hasItem(lua_State*);				// Check to see if Entity has item in inventory (hasItem(itemNumber))

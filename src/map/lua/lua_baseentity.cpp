@@ -3821,6 +3821,20 @@ inline int32 CLuaBaseEntity::canUseChocobo(lua_State *L)
     return 1;
 }
 
+/************************************************************************
+*                                                                       *
+*  Returns true if pets can be summoned in this zone                    *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::canUsePet(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+    lua_pushboolean(L, m_PBaseEntity->loc.zone->CanUseMisc(MISC_PET));
+    return 1;
+}
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::setStatus(lua_State *L)
@@ -8123,6 +8137,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,costume),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUseCostume),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUseChocobo),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUsePet),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setStatus),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setPVPFlag),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendRaise),
