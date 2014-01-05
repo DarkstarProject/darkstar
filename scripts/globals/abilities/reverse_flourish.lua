@@ -43,19 +43,19 @@ function OnUseAbility(player, target, ability)
 	local Merits = player:getMerit(MERIT_REVERSE_FLOURISH_EFFECT);
 
 	if (player:hasStatusEffect(EFFECT_FINISHING_MOVE_1)) then
-		TPGain = 9.5 * 1 + STM * 1 ^ 2 + 3* Merits;
+		TPGain = 9.5 * 1 + STM * 1 ^ 2 + Merits;
 
 	elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_2)) then
-		TPGain = 9.5 * 2 + STM * 2 ^ 2 + 3* Merits;
+		TPGain = 9.5 * 2 + STM * 2 ^ 2 + Merits;
 
 	elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_3)) then
-		TPGain = 9.5 * 3 + STM * 3 ^ 2 + 3* Merits;
+		TPGain = 9.5 * 3 + STM * 3 ^ 2 + Merits;
 
 	elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_4)) then
-		TPGain = 9.5 * 4 + STM * 4 ^ 2 + 3* Merits;
+		TPGain = 9.5 * 4 + STM * 4 ^ 2 + Merits;
 
 	elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_5)) then
-		TPGain = 9.5 * 5 + STM * 5 ^ 2 + 3* Merits;
+		TPGain = 9.5 * 5 + STM * 5 ^ 2 + Merits;
 	end;
 	
 	player:addTP(TPGain);
