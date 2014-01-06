@@ -6569,6 +6569,7 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L) {
 	case 4: actiontype = ACTION_MAGIC_FINISH; break;
 	case 6: actiontype = ACTION_JOBABILITY_FINISH; break;
 	case 11: actiontype = ACTION_MOBABILITY_FINISH; break;
+    case 13: actiontype = ACTION_RAISE_MENU_SELECTION; break;
     case 14: actiontype = ACTION_DANCE; break;
 	}
 
@@ -6583,7 +6584,7 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L) {
 	Action.messageID  = 0;
 
 	// If you use ACTION_MOBABILITY_FINISH, the first param = anim, the second param = skill id.
-	if (actiontype == ACTION_MOBABILITY_FINISH) {
+	if (actiontype == ACTION_MOBABILITY_FINISH || actiontype == ACTION_RAISE_MENU_SELECTION) {
 		CBattleEntity* PTarget = PChar->PBattleAI->GetBattleTarget();
 		if (PTarget == NULL) {
 			ShowError("Cannot use MOBABILITY_FINISH on a null battle target! Engage a mob! \n");
@@ -6599,7 +6600,7 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L) {
 		ACTIONTYPE oldAction = PMob->PBattleAI->GetCurrentAction();
 		PMob->PBattleAI->SetCurrentAction(actiontype);
 		// we have to make a fake mob skill for this to work.
-		CMobSkill* skill = new CMobSkill(anim);
+		CMobSkill* skill = new CMobSkill(1);
 		skill->setAnimationID(anim);
 		Action.animation = anim;
 		skill->setMsg(185); // takes damage default msg
@@ -7354,7 +7355,7 @@ inline int32 CLuaBaseEntity::castSpell(lua_State* L)
 inline int32 CLuaBaseEntity::useMobAbility(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
     quAction_t action;
     action.action = ACTION_MOBABILITY_START;
@@ -7602,6 +7603,8 @@ inline int32 CLuaBaseEntity::recalculateAbilitiesTable(lua_State* L)
     charutils::BuildingCharAbilityTable(PChar);
     charutils::BuildingCharTraitsTable(PChar);
     charutils::BuildingCharWeaponSkills(PChar);
+    if (PChar->PPet != NULL && PChar->PPet->objtype == TYPE_PET)
+        charutils::BuildingCharPetAbilityTable(PChar, (CPetEntity*)PChar->PPet, ((CPetEntity*)PChar->PPet)->m_PetID);
 
     PChar->pushPacket(new CCharAbilitiesPacket(PChar));
     return 0;
@@ -7993,6 +7996,21 @@ inline int32 CLuaBaseEntity::initNpcAi(lua_State* L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::isNM(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+    if (m_PBaseEntity->objtype == TYPE_MOB && ((CMobEntity*)m_PBaseEntity)->m_Type & MOBTYPE_NOTORIOUS)
+    {
+        lua_pushboolean(L, true);
+    }
+    else
+    {
+        lua_pushboolean(L, false);
+    }
+    return 1;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -8340,5 +8358,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,disableLevelSync),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateHealth),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,initNpcAi),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,isNM),
 	{NULL,NULL}
 };

@@ -119,6 +119,10 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 
 			//higher number of bits than anything else that we know of. CAP OF 4095 (2300ish is abyssea tp moves)!
 			packBitsBE(data, id, 54, 12);
+            if (PEntity->objtype == TYPE_PET && (((CPetEntity*)PEntity)->getPetType() == PETTYPE_AVATAR ||
+                ((CPetEntity*)PEntity)->getPetType() == PETTYPE_WYVERN))
+                //TODO: rename/add new - Action 13 is always used by Avatars and Wyverns when performing an ability
+                ActionType = ACTION_RAISE_MENU_SELECTION;
 		}
 			break;
 		case ACTION_ITEM_START:

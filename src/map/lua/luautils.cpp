@@ -3132,11 +3132,11 @@ int32 OnMagicCastingCheck(CBaseEntity* PChar,CBaseEntity* PTarget,CSpell* PSpell
 		return 47;
 	}
 
+    CLuaBaseEntity LuaCharEntity(PChar);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaCharEntity);
+
 	CLuaBaseEntity LuaBaseEntity(PTarget);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-
-	CLuaBaseEntity LuaCharEntity(PChar);
-	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaCharEntity);
 
 	CLuaSpell LuaSpell(PSpell);
 	Lunar<CLuaSpell>::push(LuaHandle,&LuaSpell);

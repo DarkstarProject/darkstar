@@ -500,6 +500,7 @@ public:
     int32 updateHealth(lua_State* L);
 
     int32 initNpcAi(lua_State* L);
+    int32 isNM(lua_State* L);
 };
 
 #endif

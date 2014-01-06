@@ -611,7 +611,8 @@ void CMagicState::FinishSpell()
 
         action.messageID = msg;
 
-        CharOnTarget(&action, ce, ve);
+        if (m_PSpell->getID() != 305) //I hate to do this, but there really is no other spell like Odin
+            CharOnTarget(&action, ce, ve);
 
         m_PEntity->m_ActionList.push_back(action);
     }

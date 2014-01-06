@@ -162,17 +162,17 @@ void CTargetFind::findWithinCone(CBattleEntity* PTarget, float distance, float a
   // TODO: a point should be based on targets position
   m_APoint = &m_PBattleEntity->loc.p;
 
-  float halfAngle = angle / 2.0f;
+  float halfAngle = (angle * (256.0f/360.0f)) / 2.0f;
 
   float rightAngle = rotationToRadian(m_APoint->rotation + halfAngle);
   float leftAngle = rotationToRadian(m_APoint->rotation - halfAngle);
 
   // calculate end points for triangle
-  m_BPoint.x = cosf(rightAngle) * distance + m_APoint->x;
-  m_BPoint.z = sinf(rightAngle) * distance + m_APoint->z;
+  m_BPoint.x = cosf((2 * M_PI) - rightAngle) * distance + m_APoint->x;
+  m_BPoint.z = sinf((2 * M_PI) - rightAngle) * distance + m_APoint->z;
 
-  m_CPoint.x = cosf(leftAngle) * distance + m_APoint->x;
-  m_CPoint.z = sinf(leftAngle) * distance + m_APoint->z;
+  m_CPoint.x = cosf((2 * M_PI) - leftAngle) * distance + m_APoint->x;
+  m_CPoint.z = sinf((2 * M_PI) - leftAngle) * distance + m_APoint->z;
 
   // ShowDebug("angle %f, rotation %f, distance %f, A (%f, %f) B (%f, %f) C (%f, %f)\n", angle, rightAngle, distance, m_APoint->x, m_APoint->z, m_BPoint.x, m_BPoint.z, m_CPoint.x, m_CPoint.z);
   // ShowDebug("Target: (%f, %f)\n", PTarget->loc.p.x, PTarget->loc.p.z);

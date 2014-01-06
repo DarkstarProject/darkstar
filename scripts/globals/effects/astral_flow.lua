@@ -9,6 +9,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
+    target:recalculateAbilitiesTable();
 end;
 
 -----------------------------------
@@ -23,4 +24,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+    target:recalculateAbilitiesTable();
 end;

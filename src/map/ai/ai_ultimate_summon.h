@@ -21,11 +21,12 @@
 ===========================================================================
 */
 
-#ifndef _CAIPETDUMMY_H
-#define _CAIPETDUMMY_H
+#ifndef _CAIULTIMATESUMMON_H
+#define _CAIULTIMATESUMMON_H
 
 #include "../../common/cbasetypes.h"
 
+#include "ai_pet_dummy.h"
 #include "ai_general.h"
 
 /************************************************************************
@@ -34,27 +35,18 @@
 *																		*
 ************************************************************************/
 
-#define PET_ROAM_DISTANCE 2.1f
-
 class CPetEntity;
 
-class CAIPetDummy : public CAIGeneral
+class CAIUltimateSummon : public CAIPetDummy
 {
 public:
 
 	virtual void CheckCurrentAction(uint32 tick);
-	virtual void WeatherChange(WEATHER weather, uint8 element);
 
-	CAIPetDummy(CPetEntity* PPet);
-
-	uint16	m_MasterCommand; //used for avatars/wyverns atm
-    bool  m_queueSic;
+    CAIUltimateSummon(CPetEntity* PPet);
 
 protected:
 	virtual void TransitionBack(bool skipWait = false);
-
-	CPetEntity* m_PPet;
-    float m_skillTP;
 
 	void preparePetAbility(CBattleEntity* PTarg);
 	void ActionRoaming();
@@ -69,18 +61,14 @@ protected:
 	void ActionAbilityUsing();
 	void ActionAbilityInterrupt();
 	void ActionAbilityFinish();
-	bool WyvernIsHealing(); //true if wyvern is healing
 
 	void ActionMagicStart();
 	void ActionMagicCasting();
 	void ActionMagicFinish();
 	void ActionMagicInterrupt();
 
-    void SendTooFarInterruptMessage(CBattleEntity* PTarg);
-
-
 private:
-
+    uint32 m_Timer;
 };
 
 #endif

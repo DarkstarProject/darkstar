@@ -40,6 +40,7 @@
 
 #include "../ai/ai_pet_dummy.h"
 #include "../ai/ai_mob_dummy.h"
+#include "../ai/ai_ultimate_summon.h"
 
 #include "../packets/char_sync.h"
 #include "../packets/char_update.h"
@@ -249,7 +250,8 @@ void AttackTarget(CBattleEntity* PMaster, CBattleEntity* PTarget){
 	if(!PPet->StatusEffectContainer->HasPreventActionEffect())
 	{
 		PPet->PBattleAI->SetBattleTarget(PTarget);
-		PPet->PBattleAI->SetCurrentAction(ACTION_ATTACK);
+        if (!(PPet->objtype == TYPE_PET && ((CPetEntity*)PPet)->m_PetID == PETID_ODIN))
+		    PPet->PBattleAI->SetCurrentAction(ACTION_ATTACK);
 	}
 }
 
@@ -620,6 +622,8 @@ void LoadAvatarStats(CPetEntity* PChar)
 
 	// Расчет бонусных HP
 	bonusStat = (mainLevelOver10 + mainLevelOver50andUnder60) * 2;
+    if (PChar->m_PetID == PETID_ODIN || PChar->m_PetID == PETID_ALEXANDER)
+        bonusStat += 6800;
 	PChar->health.maxhp = (int16)(raceStat + jobStat + bonusStat + sJobStat);
 	PChar->health.hp = PChar->health.maxhp;
 
@@ -712,9 +716,17 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 
     CPetEntity* PPet = (CPetEntity*)PMaster->PPet;
 
-	PPet->PBattleAI = new CAIPetDummy(PPet);
-	PPet->PBattleAI->SetLastActionTime(gettick());
-	PPet->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+
+    if (PetID == PETID_ALEXANDER || PetID == PETID_ODIN)
+    {
+        PPet->PBattleAI = new CAIUltimateSummon(PPet);
+    }
+    else
+    {
+        PPet->PBattleAI = new CAIPetDummy(PPet);
+    }
+    PPet->PBattleAI->SetLastActionTime(gettick());
+    PPet->PBattleAI->SetCurrentAction(ACTION_SPAWN);
 
     PMaster->PPet = PPet;
 	PPet->PMaster = PMaster;

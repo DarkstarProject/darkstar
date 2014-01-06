@@ -212,6 +212,7 @@
     <ClInclude Include="..\..\src\map\ai\ai_mob_dummy.h" />
     <ClInclude Include="..\..\src\map\ai\ai_npc_dummy.h" />
     <ClInclude Include="..\..\src\map\ai\ai_pet_dummy.h" />
+    <ClInclude Include="..\..\src\map\ai\ai_ultimate_summon.h" />
     <ClInclude Include="..\..\src\map\ai\helpers\pathfind.h" />
     <ClInclude Include="..\..\src\map\ai\helpers\targetfind.h" />
     <ClInclude Include="..\..\src\map\ai\states\ability_state.h" />
@@ -433,6 +434,7 @@
     <ClCompile Include="..\..\src\map\ai\ai_mob_dummy.cpp" />
     <ClCompile Include="..\..\src\map\ai\ai_npc_dummy.cpp" />
     <ClCompile Include="..\..\src\map\ai\ai_pet_dummy.cpp" />
+    <ClCompile Include="..\..\src\map\ai\ai_ultimate_summon.cpp" />
     <ClCompile Include="..\..\src\map\ai\helpers\pathfind.cpp" />
     <ClCompile Include="..\..\src\map\ai\helpers\targetfind.cpp" />
     <ClCompile Include="..\..\src\map\ai\states\ability_state.cpp" />
