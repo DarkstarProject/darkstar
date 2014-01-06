@@ -3,10 +3,11 @@
 --	NPC:  Five of Spades
 --  Invloved in quests: A Greeting Cardian
 -----------------------------------
-
-require("scripts/globals/settings");
 package.loaded["scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/zones/Buburimu_Peninsula/TextIDs");
+require("scripts/globals/settings");
 
 -----------------------------------
 -- onTrade Action
@@ -20,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	AGreetingCardian = player:getQuestStatus(WINDURST,A_GREETING_CARDIAN);
+	local AGreetingCardian = player:getQuestStatus(WINDURST,A_GREETING_CARDIAN);
 	local AGCcs = player:getVar("AGreetingCardian_Event");
 	
 	if (AGreetingCardian == QUEST_ACCEPTED and AGCcs == 4) then

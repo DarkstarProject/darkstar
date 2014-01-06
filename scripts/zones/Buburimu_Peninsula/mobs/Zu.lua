@@ -11,10 +11,10 @@ require("scripts/zones/Buburimu_Peninsula/MobIDs");
 
 function onMobDeath(mob,killer)	
 
-    mob = mob:getID();
+    local mob = mob:getID();
     if (Helldiver_PH[mob] ~= nil) then
 
-        ToD = GetServerVariable("[POP]Helldiver");
+        local ToD = GetServerVariable("[POP]Helldiver");
         if (ToD <= os.time(t) and GetMobAction(Helldiver) == 0) then
             if (math.random((1),(20)) == 5) then
                 UpdateNMSpawnPoint(Helldiver);

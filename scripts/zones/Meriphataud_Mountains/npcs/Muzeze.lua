@@ -7,6 +7,8 @@
 package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/zones/Meriphataud_Mountains/TextIDs");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------

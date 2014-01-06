@@ -3,8 +3,8 @@
 -- Zone: Buburimu_Peninsula (118)
 --
 -----------------------------------
-
 package.loaded[ "scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
+-----------------------------------
 
 require( "scripts/zones/Buburimu_Peninsula/TextIDs");
 require( "scripts/globals/icanheararainbow");
@@ -22,7 +22,7 @@ end;
 
 function onZoneIn( player, prevZone)
 
-	cs = -1;
+	local cs = -1;
 
 	if( player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
 		player:setPos( -276.529, 16.403, -324.519, 14);

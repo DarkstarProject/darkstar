@@ -98,8 +98,8 @@ function SetFieldManual()
         17244647,17244648,17244649,17248845, -- Eastern Altepa 3, West Sarutabaruta 1
         17248846,17248847,17253053,17253054, -- West Sarutabaruta 2, East Sarutabaruta 2
         17253056,17257067,17257068,17257069, -- East Sarutabaruta 1, Tahrongi 3
-        17261192,17261193,17265284,17265285, -- Buburimu 2, Meriphataud Mountains 2
-        17265286,17269254,17269255,17273411, -- Meriphataud Mountains 1, Sauromugue 2, Zi'Tah 1
+        17261193,17261194,17265285,17265286, -- Buburimu 2, Meriphataud Mountains 2
+        17265287,17269254,17269255,17273411, -- Meriphataud Mountains 1, Sauromugue 2, Zi'Tah 1
         17273412,17277204,17277205,17281640, -- Zi'Tah 1, Ro'Maeve 2, Yuhtunga Jungle 1
         17281641,17281642,17281643,17285690, -- Yuhtunga Jungle 3, Yhoator Jungle 1
         17285691,17285692,17289789,17289790, -- Yhoator Jungle 2, Western Altepa 2

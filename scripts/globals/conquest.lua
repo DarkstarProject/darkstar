@@ -785,28 +785,29 @@ switch (region): caseof {
   ---------------------------------
 	--print("KOLSHUSHU");
 
+	local Bonbavour = 17261140; 
+	
 	npc  = {
 	--
-		17261139,SANDORIA,	-- Bonbavour, R.K.
-		17261146,SANDORIA,	-- Craigine, R.K.
-		17261142,SANDORIA,	-- flag
-		17261150,SANDORIA,	-- flag
+		Bonbavour,SANDORIA,	-- Bonbavour, R.K.
+		Bonbavour+7,SANDORIA,	-- Craigine, R.K.
+		Bonbavour+3,SANDORIA,	-- flag
+		Bonbavour+11,SANDORIA,	-- flag
 	--
-		17261140,BASTOK,	-- Ishin, I.M.
-		17261147,BASTOK,	-- Wise Turtle, I.M.
-		17261143,BASTOK,	-- flag
-		17261151,BASTOK,	-- flag
+		Bonbavour+1,BASTOK,	-- Ishin, I.M.
+		Bonbavour+8,BASTOK,	-- Wise Turtle, I.M.
+		Bonbavour+4,BASTOK,	-- flag
+		Bonbavour+12,BASTOK,	-- flag
 	--
-		17261141,WINDURST,	-- Ganemu-Punnemu, W.W.
-		17261148,WINDURST,	-- Mashasha, W.W.
-		17261144,WINDURST,	-- flag
-		17261152,WINDURST,	-- flag
+		Bonbavour+2,WINDURST,	-- Ganemu-Punnemu, W.W.
+		Bonbavour+9,WINDURST,	-- Mashasha, W.W.
+		Bonbavour+5,WINDURST,	-- flag
+		Bonbavour+13,WINDURST,	-- flag
 	--
-		17261145,BEASTMEN,	-- flag
-		17261153,BEASTMEN,	-- flag
-	    17261173,BEASTMEN,	-- flag
+		Bonbavour+6,BEASTMEN,	-- flag
+		Bonbavour+14,BEASTMEN,	-- flag
 	--
-		17261149,OTHER,		-- Lobho Ukipturi
+		Bonbavour+10,OTHER,		-- Lobho Ukipturi
 	}
   end,
 
@@ -815,28 +816,29 @@ switch (region): caseof {
   ---------------------------------
 	--print("ARAGONEU");
 
+	local Chegourt = 17265261; 
+	
 	npc  = {
 	--
-		17265260,SANDORIA,	-- Chegourt, R.K.
-		17265267,SANDORIA,	-- Buliame, R.K.
-		17265263,SANDORIA,	-- flag
-		17265271,SANDORIA,	-- flag
+		Chegourt,SANDORIA,	-- Chegourt, R.K.
+		Chegourt+7,SANDORIA,	-- Buliame, R.K.
+		Chegourt+3,SANDORIA,	-- flag
+		Chegourt+11,SANDORIA,	-- flag
 	--
-		17265261,BASTOK,	-- Akane, I.M.
-		17265268,BASTOK,	-- Three Steps, I.M.
-		17265264,BASTOK,	-- flag
-		17265272,BASTOK,	-- flag
+		Chegourt+1,BASTOK,	-- Akane, I.M.
+		Chegourt+8,BASTOK,	-- Three Steps, I.M.
+		Chegourt+4,BASTOK,	-- flag
+		Chegourt+12,BASTOK,	-- flag
 	--
-		17265262,WINDURST,	-- Donmo-Boronmo, W.W.
-		17265269,WINDURST,	-- Daruru, W.W.
-		17265265,WINDURST,	-- flag
-		17265273,WINDURST,	-- flag
+		Chegourt+2,WINDURST,	-- Donmo-Boronmo, W.W.
+		Chegourt+9,WINDURST,	-- Daruru, W.W.
+		Chegourt+5,WINDURST,	-- flag
+		Chegourt+13,WINDURST,	-- flag
 	--
-		17265266,BEASTMEN,	-- flag
-	    17265274,BEASTMEN,	-- flag
-	    17265276,BEASTMEN,	-- flag
+		Chegourt+6,BEASTMEN,	-- flag
+	    Chegourt+14,BEASTMEN,	-- flag
 	--
-		17265270,OTHER,		-- Mushosho
+		Chegourt+10,OTHER,		-- Mushosho
 	}
   end,
 
@@ -1112,6 +1114,7 @@ switch (region): caseof {
 	--print("MOVALPOLOS");
 
 	local Oldton_Banner_Offset = 16822507; 
+	
 	
 	npc  = {
 	--
