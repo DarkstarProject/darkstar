@@ -1207,7 +1207,7 @@ void SmallPacket0x036(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	{
         uint8 numItems = RBUFB(data,(0x3C));
 
-	    PChar->Container->Clean();
+	    PChar->TradeContainer->Clean();
 
 	    for(int32 slotID = 0; slotID < numItems; ++slotID)
 	    {
@@ -1218,7 +1218,7 @@ void SmallPacket0x036(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
             if (PItem != NULL && PItem->getQuantity() >= Quantity)
 		    {
-			    PChar->Container->setItem(slotID, PItem->getID(), invSlotID, Quantity, PItem);
+                PChar->TradeContainer->setItem(slotID, PItem->getID(), invSlotID, Quantity, PItem);
 		    }
 	    }
 

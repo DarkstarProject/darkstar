@@ -1382,7 +1382,7 @@ int32 OnTrade(CCharEntity* PChar, CBaseEntity* PNpc)
 	CLuaBaseEntity LuaBaseEntityTarg(PNpc);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntityTarg);
 
-	CLuaTradeContainer LuaTradeContainer(PChar->Container);
+    CLuaTradeContainer LuaTradeContainer(PChar->TradeContainer);
 	Lunar<CLuaTradeContainer>::push(LuaHandle,&LuaTradeContainer);
 
 	if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )

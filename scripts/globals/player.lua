@@ -25,14 +25,34 @@ function onGameIn(player, firstlogin)
 	checkForGearSet(player);
 
     if (player:getVar("GodMode") == 1) then
-	player:addStatusEffect(EFFECT_SENTINEL,100,0,0);
-	player:addStatusEffect(EFFECT_MIGHTY_STRIKES,1,0,0);
-	player:addStatusEffect(EFFECT_HUNDRED_FISTS,1,0,0);
-	player:addStatusEffect(EFFECT_CHAINSPELL,1,0,0);
-	player:addStatusEffect(EFFECT_PERFECT_DODGE,1,0,0);
-	player:addStatusEffect(EFFECT_INVINCIBLE,1,0,0);
-	player:addStatusEffect(EFFECT_MANAFONT,1,0,0);
-	player:addStatusEffect(EFFECT_REGAIN,100,1,0);
+        -- Add bonus effects to the player..
+        player:addStatusEffect(EFFECT_MAX_HP_BOOST,1000,0,0);
+        player:addStatusEffect(EFFECT_MAX_MP_BOOST,1000,0,0);
+        player:addStatusEffect(EFFECT_SENTINEL,100,0,0);
+        player:addStatusEffect(EFFECT_MIGHTY_STRIKES,1,0,0);
+        player:addStatusEffect(EFFECT_HUNDRED_FISTS,1,0,0);
+        player:addStatusEffect(EFFECT_CHAINSPELL,1,0,0);
+        player:addStatusEffect(EFFECT_PERFECT_DODGE,1,0,0);		
+        player:addStatusEffect(EFFECT_INVINCIBLE,1,0,0);				
+        player:addStatusEffect(EFFECT_MANAFONT,1,0,0);
+        player:addStatusEffect(EFFECT_REGAIN,100,1,0);
+        player:addStatusEffect(EFFECT_REFRESH,99,0,0);
+        player:addStatusEffect(EFFECT_REGEN,99,0,0);
+        
+        -- Add bonus mods to the player..
+        player:addMod(MOD_RACC,5000);
+        player:addMod(MOD_RATT,5000);
+        player:addMod(MOD_ACC,5000);
+        player:addMod(MOD_ATT,5000);
+        player:addMod(MOD_MATT,5000);
+        player:addMod(MOD_MACC,5000);
+        player:addMod(MOD_RDEF,5000);
+        player:addMod(MOD_DEF,5000);
+        player:addMod(MOD_MDEF,5000);
+        
+        -- Heal the player from the new buffs..
+        player:addHP( 50000 );
+        player:setMP( 50000 );
     end
 end;
 

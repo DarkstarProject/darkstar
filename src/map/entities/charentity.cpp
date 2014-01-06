@@ -43,6 +43,7 @@ CCharEntity::CCharEntity()
 
 	m_GMlevel = 0;
 
+    TradeContainer  = new CTradeContainer();
 	Container       = new CTradeContainer();
 	UContainer      = new CUContainer();
     CraftContainer  = new CTradeContainer();
@@ -149,6 +150,7 @@ CCharEntity::~CCharEntity()
         PTreasurePool->DelMember(this);
     }
 
+    delete TradeContainer;
 	delete Container;
 	delete UContainer;
     delete CraftContainer;

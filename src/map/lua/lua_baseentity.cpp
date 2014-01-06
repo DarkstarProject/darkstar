@@ -2979,15 +2979,15 @@ inline int32 CLuaBaseEntity::tradeComplete(lua_State *L)
 
 	for (uint8 slotID = 0; slotID < TRADE_CONTAINER_SIZE; ++slotID)
 	{
-		if(PChar->Container->getInvSlotID(slotID) != 0xFF)
+		if(PChar->TradeContainer->getInvSlotID(slotID) != 0xFF)
 		{
-			uint8 invSlotID = PChar->Container->getInvSlotID(slotID);
-			int32 quantity  = PChar->Container->getQuantity(slotID);
+            uint8 invSlotID = PChar->TradeContainer->getInvSlotID(slotID);
+			int32 quantity  = PChar->TradeContainer->getQuantity(slotID);
 
 			charutils::UpdateItem(PChar, LOC_INVENTORY, invSlotID, -quantity);
 		}
 	}
-	PChar->Container->Clean();
+    PChar->TradeContainer->Clean();
 	PChar->pushPacket(new CInventoryFinishPacket());
 	return 0;
 }
@@ -3008,15 +3008,15 @@ inline int32 CLuaBaseEntity::confirmTrade(lua_State *L)
 
 	for (uint8 slotID = 0; slotID < TRADE_CONTAINER_SIZE; ++slotID)
 	{
-		if(PChar->Container->getInvSlotID(slotID) != 0xFF && PChar->Container->getConfirmedStatus(slotID))
+		if(PChar->TradeContainer->getInvSlotID(slotID) != 0xFF && PChar->TradeContainer->getConfirmedStatus(slotID))
 		{
-			uint8 invSlotID = PChar->Container->getInvSlotID(slotID);
-			int32 quantity  = PChar->Container->getQuantity(slotID);
+            uint8 invSlotID = PChar->TradeContainer->getInvSlotID(slotID);
+			int32 quantity  = PChar->TradeContainer->getQuantity(slotID);
 
 			charutils::UpdateItem(PChar, LOC_INVENTORY, invSlotID, -quantity);
 		}
 	}
-	PChar->Container->Clean();
+    PChar->TradeContainer->Clean();
 	PChar->pushPacket(new CInventoryFinishPacket());
 	return 0;
 }
