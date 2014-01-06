@@ -97,7 +97,7 @@ function onEventFinish(player,csid,option)
 				player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000); -- Gil
 			elseif(option == 6) then 
 				player:addSpell(300); -- Avatar
-				player:messageSpecial(LEVIATHAN_UNLOCKED,0,0,2); 
+				player:messageSpecial(AVATAR_UNLOCKED,0,0,2); 
 			else
 				player:addItem(item);
 				player:messageSpecial(ITEM_OBTAINED,item); -- Item
