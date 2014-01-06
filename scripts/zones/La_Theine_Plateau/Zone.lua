@@ -3,10 +3,10 @@
 -- Zone: La_Theine_Plateau (102)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
-require("scripts/zones/La_Theine_Plateau/TextIDs");
+-----------------------------------
 
+require("scripts/zones/La_Theine_Plateau/TextIDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
@@ -25,7 +25,7 @@ end;
 
 function onZoneIn( player, prevZone)
 
-	cs = -1;
+	local cs = -1;
 
 	if( player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
 		player:setPos( -272.118, 21.715, 98.859, 243);

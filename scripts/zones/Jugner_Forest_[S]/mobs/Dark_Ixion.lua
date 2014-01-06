@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Crystal War Areas
+-- Area: Jugner_Forest_[S]
 -- NPC:  Dark Ixion
 -----------------------------------
 

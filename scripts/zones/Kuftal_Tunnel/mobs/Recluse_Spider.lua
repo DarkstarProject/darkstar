@@ -12,10 +12,10 @@ require("scripts/zones/Kuftal_Tunnel/MobIDs");
 	
 function onMobDeath(mob,killer)	
 
-    mob = mob:getID();
+    local mob = mob:getID();
     if (Arachne_PH[mob] ~= nil) then
 
-        ToD = GetServerVariable("[POP]Arachne");
+        local ToD = GetServerVariable("[POP]Arachne");
         if (ToD <= os.time(t) and GetMobAction(Arachne) == 0) then
             if (math.random((1),(20)) == 5) then
                 UpdateNMSpawnPoint(Arachne);

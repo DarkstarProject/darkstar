@@ -3,9 +3,14 @@
 -- Name: Mission Rank 7-2 (Bastok)
 -- @pos -345 104 -260 144
 -----------------------------------
+package.loaded["scripts/zones/Waughroon_Shrine/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
+require("scripts/zones/Waughroon_Shrine/TextIDs");
+
+-----------------------------------
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function OnBcnmRegister(player,instance)

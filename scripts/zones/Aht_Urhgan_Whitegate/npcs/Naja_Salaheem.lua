@@ -1,14 +1,13 @@
 -----------------------------------
 --  Area: Aht Urhgan Whitegate
---   NPC: Naja Salaheem
+--  NPC:  Naja Salaheem
 --  Type: Standard NPC
--- @zone: 50
---  @pos 22.700 -8.804 -45.591
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 22.700 -8.804 -45.591 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 -----------------------------------
 -- onTrade Action

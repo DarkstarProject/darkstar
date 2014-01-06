@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Throne Room
 -- Name: Mission 5-2
--- @pos -111 -6 0 165
+-- @pos -111 -6 0.1 165
 -----------------------------------
 package.loaded["scripts/zones/Throne_Room/TextIDs"] = nil;
 -------------------------------------

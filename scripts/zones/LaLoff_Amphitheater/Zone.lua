@@ -3,8 +3,9 @@
 -- Zone: LaLoff_Amphitheater (180)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 
@@ -20,7 +21,7 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
+	local cs = -1;	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(189.849,-176.455,346.531,244);
 	end	

@@ -2,8 +2,7 @@
 -- Area: Crawler Nest
 -- NPC:  Treasure Chest
 -- Involved In Quest: Enveloped in Darkness
--- @zone 197
--- @pos 41 0 -314
+-- @pos 41 0.1 -314 197
 -----------------------------------
 package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
 -----------------------------------

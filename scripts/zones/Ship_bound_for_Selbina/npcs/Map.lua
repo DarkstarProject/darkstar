@@ -2,16 +2,14 @@
 -----------------------------------
 -- Area: Ship_bound_for_Selbina
 -- NPC:  Map
--- @zone 220
--- npcid 17678361
--- @pos 0.278 -14.707 -1.411
+-- @pos 0.278 -14.707 -1.411 220
 -----------------------------------
 package.loaded["scripts/zones/Ship_bound_for_Selbina/TextIDs"] = nil;
-
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/zones/Ship_bound_for_Selbina/TextIDs");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------

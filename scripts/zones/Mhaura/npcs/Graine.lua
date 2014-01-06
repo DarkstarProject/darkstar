@@ -2,12 +2,12 @@
 --	Area: Mhaura
 --	NPC: Graine
 --	Standard Merchant NPC
---	Working 100%
+-----------------------------------
+package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/shop");
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 require("scripts/zones/Mhaura/TextIDs");
+require("scripts/globals/shop");
 
 -----------------------------------
 -- onTrade Action

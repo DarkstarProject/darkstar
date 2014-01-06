@@ -1,7 +1,6 @@
 -----------------------------------
 --  Area: Al'Taieu
 --  NPC:  rubious crystal
---  @pos 
 -----------------------------------
 package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 -----------------------------------

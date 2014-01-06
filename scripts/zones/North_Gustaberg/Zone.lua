@@ -3,8 +3,8 @@
 -- Zone: North_Gustaberg (106)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/zones/North_Gustaberg/TextIDs");
 require( "scripts/globals/icanheararainbow");
@@ -22,7 +22,7 @@ end;
 
 function onZoneIn( player, prevZone)
 
-	cs = -1;
+	local cs = -1;
 
 	if( player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
 		player:setPos( -518.867, 35.538, 588.64, 50);

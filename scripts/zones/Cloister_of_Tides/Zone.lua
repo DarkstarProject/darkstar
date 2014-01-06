@@ -3,8 +3,9 @@
 -- Zone: Cloister_of_Tides (211)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Cloister_of_Tides/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/Cloister_of_Tides/TextIDs");
 
@@ -20,7 +21,7 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
+	local cs = -1;	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(564.776,34.297,500.819,250);
 	end	

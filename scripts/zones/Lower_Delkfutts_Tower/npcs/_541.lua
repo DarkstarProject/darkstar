@@ -3,8 +3,7 @@
 -- NPC:  Cermet Door
 -- Cermet Door for Sandy Ambassador  
 -- San d'Orian Mission 3.3 "Appointment to Jeuno"
--- @zone 184
--- @pos 636 16 20
+-- @pos 636 16 20 184
 -----------------------------------
 package.loaded["scripts/zones/Lower_Delkfutts_Tower/TextIDs"] = nil;
 -----------------------------------
@@ -34,7 +33,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	currentMission = player:getCurrentMission(SANDORIA);
+	local currentMission = player:getCurrentMission(SANDORIA);
 	
 	if(currentMission == APPOINTMENT_TO_JEUNO and player:getVar("MissionStatus") == 4 and player:hasKeyItem(DELKFUTT_KEY) == false) then
 		player:messageSpecial(THE_DOOR_IS_FIRMLY_SHUT_OPEN_KEY);

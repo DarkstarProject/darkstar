@@ -1,11 +1,10 @@
 -----------------------------------
---	Author: ReaperX (Convert to DSP by Hypnotoad)
--- 	??? for Bastok Mission 8.1 "The Chains That Bind Us"
--- 	spawns the NMs
---      * Triarius IV-XIV (Black Mage)
---      * Princeps IV-XLV (Paladin)
---			* Centurio IV-VII (Warrior) 
---
+-- Area: Quicksand Caves
+-- NPC:  ??? (qm6)
+-- Bastok Mission 8.1 "The Chains That Bind Us"
+-- @pos 
+-----------------------------------
+package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -23,16 +22,16 @@ function onTrigger(player,npc)
 	if (currentMission == THE_CHAINS_THAT_BIND_US) and (missionStatus == 1) then
 		if (timesincelastclear < QM_RESET_TIME) then
 			player:startEvent(0x0B);
-		elseif (GetMobAction(CENTURIO_BASTOK) == 0) and (GetMobAction(TRIARIUS_BASTOK) == 0) and (GetMobAction(PRINCEPS_BASTOK) == 0) then
-			SpawnMob(CENTURIO_BASTOK, 0):updateEnmity(player); -- Centurio IV-VII
-			SpawnMob(TRIARIUS_BASTOK, 0):updateEnmity(player); -- Triarius IV-XIV
-			SpawnMob(PRINCEPS_BASTOK, 0):updateEnmity(player); -- Princeps IV-XLV
-			player:messageSpecial(SENSE_OF_FOREBODING); -- sense of foreboding
+		elseif (GetMobAction(17629187) == 0) and (GetMobAction(17629188) == 0) and (GetMobAction(17629189) == 0) then
+			SpawnMob(17629187):updateEnmity(player); -- Centurio IV-VII
+			SpawnMob(17629188):updateEnmity(player); -- Triarius IV-XIV
+			SpawnMob(17629189):updateEnmity(player); -- Princeps IV-XLV
+			player:messageSpecial(SENSE_OF_FOREBODING); 
 			npc:setStatus(2); -- Disappear
 			SetServerVariable("BastokFight8_1", 3);
 		end
 	else
-		player:messageSpecial(NOTHING_OUT_OF_ORDINARY); -- there is nothing out of the ordinary here.
+		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 	end
 end; 
 

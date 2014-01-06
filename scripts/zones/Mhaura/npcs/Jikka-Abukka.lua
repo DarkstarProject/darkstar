@@ -2,8 +2,7 @@
 -- Area: Mhaura
 -- NPC:  Jikka-Abukka
 -- Involved in Quest: Riding on the Clouds
--- @zone 249
--- @pos -13 -15 58
+-- @pos -13 -15 58 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------

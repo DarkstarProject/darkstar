@@ -2,8 +2,7 @@
 -- Area: Mhaura
 -- NPC:  Bihoro-Guhoro
 -- Involved in Quest: Riding on the Clouds
--- @zone 249
--- @pos -28 -8 41
+-- @pos -28 -8 41 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------

@@ -26,4 +26,4 @@ YOU_CANNOT_ENTER_DYNAMIS = 11769; -- You cannot enter Dynamis - "x" for "x" day 
 	  
 PLAYERS_HAVE_NOT_REACHED_LEVEL = 11771; -- Players who have not reached level <number> are prohibited from entering Dynamis.
 
-MYSTERIOUS_VOICE = 11894; -- You hear a mysterious, floating voice: | Bring Forth the '' ''
+MYSTERIOUS_VOICE = 11757; -- You hear a mysterious, floating voice: | Bring Forth the '' ''

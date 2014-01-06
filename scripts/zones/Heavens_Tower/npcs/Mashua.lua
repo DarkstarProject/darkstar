@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Heavens Tower
---   NPC: Mashua
+--  NPC: Mashua
 --  Type: Standard NPC
--- @zone: 242
---  @pos -7.399 -0.5 4.580
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -7.399 -0.5 4.580 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------

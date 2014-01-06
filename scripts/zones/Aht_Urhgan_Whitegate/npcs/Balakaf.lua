@@ -1,14 +1,13 @@
 -----------------------------------
 --  Area: Aht Urhgan Whitegate
---   NPC: Balakaf
+--  NPC:  Balakaf
 --  Type: Standard NPC
--- @zone: 50
---  @pos 25.505 -6.999 126.478
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 25.505 -6.999 126.478 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 -----------------------------------
 -- onTrade Action

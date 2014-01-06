@@ -3,8 +3,9 @@
 -- Zone: Upper_Delkfutts_Tower (158)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Upper_Delkfutts_Tower/TextIDs"] = nil;
+-----------------------------------
+
 require("/scripts/globals/common");
 require("/scripts/globals/settings");
 require("scripts/globals/teleports");
@@ -25,7 +26,7 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
+	local cs = -1;	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(12.098,-105.408,27.683,239);
 	end	

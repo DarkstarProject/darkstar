@@ -1,14 +1,13 @@
 -----------------------------------
 --  Area: Nashmau
---   NPC: Gehuha
+--  NPC:  Gehuha
 --  Type: Event Scene Replayer
--- @zone: 53
---  @pos -13.414 -1 -50.825
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -13.414 -1 -50.825 53
 -----------------------------------
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/Nashmau/TextIDs");
 
 -----------------------------------
 -- onTrade Action

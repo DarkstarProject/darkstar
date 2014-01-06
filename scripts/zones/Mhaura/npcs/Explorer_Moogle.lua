@@ -1,9 +1,11 @@
 -----------------------------------
 --	Area: Mhaura
 --	NPC:  Explorer Moogle
---	Working 100%
+-----------------------------------
+package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/zones/Mhaura/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/teleports");
 
@@ -20,8 +22,8 @@ end;
  
 function onTrigger(player,npc) 
 
-accept = 0;
-event  = 0x014e;
+	local accept = 0;
+	local event  = 0x014e;
 	
 	if (player:getGil() < 300)then
 		accept = 1;

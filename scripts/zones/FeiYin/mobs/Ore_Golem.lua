@@ -2,7 +2,6 @@
 -- Area: FeiYin
 -- MOB:  Ore Golem
 -----------------------------------
------------------------------------
 
 require("scripts/globals/keyitems");
 

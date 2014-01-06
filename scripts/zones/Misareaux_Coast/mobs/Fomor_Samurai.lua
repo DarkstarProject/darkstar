@@ -1,11 +1,7 @@
-
 -----------------------------------
- -- mob : Fomor Samourai
- -- zone : Misareaux_Coast
+-- mob : Fomor Samurai
+-- zone : Misareaux_Coast
 -----------------------------------
-
-
-
 
 -----------------------------------
 -- onMobSpawn Action

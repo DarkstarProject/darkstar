@@ -1,11 +1,10 @@
 -----------------------------------
 -- Area: Ship Bound for Mhaura
--- NPC: Chhaya
+-- NPC:  Chhaya
 -- Standard Merchant NPC
 -- @pos -1.139 -2.101 -9.000 221
 -----------------------------------
 package.loaded["scripts/zones/Ship_bound_for_Mhaura/TextIDs"] = nil;
-package.loaded["scripts/zones/Ship_bound_for_Mhaura_Pirate/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");

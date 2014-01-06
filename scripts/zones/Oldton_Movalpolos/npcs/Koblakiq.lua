@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Oldton Movalpolos
---   NPC: Koblakiq
+--  NPC:  Koblakiq
 --  Type: NPC Quest 
--- @zone: 11
---  @pos -64.851 21.834 -117.521
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -64.851 21.834 -117.521 11
 -----------------------------------
 package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
 -----------------------------------

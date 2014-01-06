@@ -28,16 +28,18 @@ end;
 function onTrigger(player,npc)
 	
 	if(player:getQuestStatus(JEUNO,SCATTERED_INTO_SHADOW) == QUEST_ACCEPTED) then
-		npcID = npc:getID();
-		aquaKI1 = player:hasKeyItem(AQUAFLORA1);
-		aquaKI2 = player:hasKeyItem(AQUAFLORA2);
-		aquaKI3 = player:hasKeyItem(AQUAFLORA3);
+		local npcID = npc:getID();
+		local aquaKI1 = player:hasKeyItem(AQUAFLORA1);
+		local aquaKI2 = player:hasKeyItem(AQUAFLORA2);
+		local aquaKI3 = player:hasKeyItem(AQUAFLORA3);
+		local Z = player:getZPos();
+		local X = player:getXPos();
 		
-		if(npcID == 17613226 and aquaKI1) then
+		if((Z > 20 and Z < 40) and (X > -.3 and X < 19.7) and (aquaKI1)) then
 			player:startEvent(0x0015);
-		elseif(npcID == 17613224 and aquaKI2) then
+		elseif((Z > 242 and Z < 256) and (X > -2 and X < 16) and (aquaKI2)) then
 			player:startEvent(0x0014);
-		elseif(npcID == 17613225 and aquaKI3) then
+		elseif((Z > 239 and Z < 259) and (X > -180 and X < -160) and (aquaKI3)) then
 			if(player:getVar("DabotzKilled") == 1) then
 				player:startEvent(0x0012);
 			else

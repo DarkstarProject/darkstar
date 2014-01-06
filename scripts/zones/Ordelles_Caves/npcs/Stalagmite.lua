@@ -2,8 +2,7 @@
 -- Area: Ordelles Caves
 -- NPC:  Stalagmite
 -- Involved In Quest: Sharpening the Sword
--- @zone 193
--- @pos -51 0 3
+-- @pos -51 0.1 3 193
 -----------------------------------
 package.loaded["scripts/zones/Ordelles_Caves/TextIDs"] = nil;
 -----------------------------------
@@ -27,10 +26,10 @@ end;
 function onTrigger(player,npc)
 
 	if(player:getVar("sharpeningTheSwordCS") == 3) then
-		NMDespawned = GetMobAction(17568134) == 0;
-		spawnTime = player:getVar("Polevik_Spawned");
-		canSpawn = (os.time() - spawnTime) > 30;
-		PolevikKilled = player:getVar("PolevikKilled");
+		local NMDespawned = GetMobAction(17568134) == 0;
+		local spawnTime = player:getVar("Polevik_Spawned");
+		local canSpawn = (os.time() - spawnTime) > 30;
+		local PolevikKilled = player:getVar("PolevikKilled");
 		
 		if(PolevikKilled == 1) then
 			if((os.time() - player:getVar("Polevik_Timer") < 30) or (NMDespawned and (os.time() - spawnTime) < 30)) then

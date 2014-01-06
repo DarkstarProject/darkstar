@@ -5,9 +5,11 @@
 -----------------------------------
 package.loaded["scripts/zones/Sealions_Den/TextIDs"] = nil;
 -----------------------------------
+
 require("scripts/globals/missions");
 require("scripts/zones/Sealions_Den/TextIDs");
 require("scripts/globals/keyitems");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------

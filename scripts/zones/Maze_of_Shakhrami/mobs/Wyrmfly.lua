@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Maze Of Shakhrami
--- NPC:  ??? 
+--  Area: Maze Of Shakhrami
+--  NPC:  ??? 
 --  Involved in Eco Warrior (Windurst)
 -----------------------------------
 

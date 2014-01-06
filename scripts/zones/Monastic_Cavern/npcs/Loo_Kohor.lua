@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Monastic Cavern
---   NPC: Loo Kohor
+--  NPC:  Loo Kohor
 --  Type: Quest NPC
--- @zone: 150
---  @pos -48.744 -17.741 -104.954
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -48.744 -17.741 -104.954 150
 -----------------------------------
 package.loaded["scripts/zones/Monastic_Cavern/TextIDs"] = nil;
 -----------------------------------

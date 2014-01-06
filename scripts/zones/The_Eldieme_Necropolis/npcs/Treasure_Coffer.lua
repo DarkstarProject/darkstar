@@ -2,7 +2,6 @@
 -- Area: The Eldieme Necropolis
 -- NPC:  Treasure Coffer
 -- @zone 195
--- @pos 160 -28 159
 -----------------------------------
 package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
 -----------------------------------

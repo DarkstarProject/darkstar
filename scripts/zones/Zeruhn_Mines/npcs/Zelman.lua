@@ -16,7 +16,6 @@ require("scripts/zones/Zeruhn_Mines/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
 end; 
 
 -----------------------------------
@@ -25,8 +24,8 @@ end;
 
 function onTrigger(player,npc)
 
-GroceriesVar = player:getVar("Groceries");
-GroceriesViewedNote = player:getVar("GroceriesViewedNote");
+	local GroceriesVar = player:getVar("Groceries");
+	local GroceriesViewedNote = player:getVar("GroceriesViewedNote");
 
 	if (GroceriesVar == 2) then
 		player:showText(npc,7279);

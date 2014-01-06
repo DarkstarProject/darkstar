@@ -1,10 +1,9 @@
 ----------------------------------
 -- Area: Ifrit's Cauldron
 -- NPC: Altar of Ashes
--- @pos I-9 (X:16, Y:0, Z:-58)
 -- Involved in Quest: Greetings to the Guardian
+-- @pos 16 .1 -58 205
 -----------------------------------
-
 
 require("scripts/zones/Ifrits_Cauldron/TextIDs");
 require("scripts/globals/settings");
@@ -15,7 +14,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	Guardian = player:getQuestStatus(OUTLANDS,GREETINGS_TO_THE_GUARDIAN);
+	local Guardian = player:getQuestStatus(OUTLANDS,GREETINGS_TO_THE_GUARDIAN);
 	
 	if(Guardian == QUEST_ACCEPTED and trade:hasItemQty(4596,1)) then
 		player:messageSpecial(ALTAR_OFFERING,0,4596);
@@ -33,7 +32,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	Guardian = player:getQuestStatus(OUTLANDS,GREETINGS_TO_THE_GUARDIAN);
+	local Guardian = player:getQuestStatus(OUTLANDS,GREETINGS_TO_THE_GUARDIAN);
 	
 	if(Guardian == QUEST_ACCEPTED and player:getVar("PamamaVar") == 1 or player:getVar("PamamaVar") == 2) then
 		player:messageSpecial(ALTAR_COMPLETED);

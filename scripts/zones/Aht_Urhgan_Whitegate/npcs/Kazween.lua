@@ -1,13 +1,12 @@
 -----------------------------------
 --  Area: Aht Urhgan Whitegate
---  NPC: Kazween
+--  NPC:  Kazween
 --  Type: Item Deliverer
---  @zone: 50
---  @pos -130 -6 95
---
+--  @pos -130 -6 95 50
+-----------------------------------
+package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 -----------------------------------

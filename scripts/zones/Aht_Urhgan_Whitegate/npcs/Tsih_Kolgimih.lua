@@ -1,14 +1,13 @@
 -----------------------------------
 --  Area: Aht Urhgan Whitegate
---   NPC: Tsih Kolgimih
+--  NPC:  Tsih Kolgimih
 --  Type: Event Scene Replayer
--- @zone: 50
---  @pos -143.000 0.999 11.000
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -143.000 0.999 11.000 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 -----------------------------------
 -- onTrade Action

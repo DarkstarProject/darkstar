@@ -20,10 +20,10 @@ end;
 function onMobDeath(mob, killer)
     killer:addTitle(TORTOISE_TORTURER);
 
-    Adamantoise  = mob:getID();
-    Aspidochelone = 17301538; 
-    ToD     = GetServerVariable("[POP]Aspidochelone");
-    kills   = GetServerVariable("[PH]Aspidochelone");
+    local Adamantoise  = mob:getID();
+    local Aspidochelone = 17301538; 
+    local ToD     = GetServerVariable("[POP]Aspidochelone");
+    local kills   = GetServerVariable("[PH]Aspidochelone");
     DeterMob(Adamantoise, true);
     if (ToD <= os.time(t) and GetMobAction(Aspidochelone) == 0) then
         if (math.random((1),(5)) == 3 or kills > 6) then

@@ -1,11 +1,7 @@
-
 -----------------------------------
- -- mob : Fomor Warrior
- -- zone : Misareaux_Coast 
+-- mob : Fomor Warrior
+-- zone : Misareaux_Coast 
 -----------------------------------
-
-
-
 
 -----------------------------------
 -- onMobSpawn Action

@@ -2,8 +2,7 @@
 -- Area: Davoi
 -- NPC:  Zantaviat
 -- Involved in Mission: The Davoi Report
--- @zone 149
--- @pos 215 0 -10
+-- @pos 215 0.1 -10 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
@@ -25,8 +24,8 @@ end;
 
 function onTrigger(player,npc)
 	
-	CurrentMission = player:getCurrentMission(SANDORIA);
-	infiltrateDavoi = player:hasCompletedMission(SANDORIA,INFILTRATE_DAVOI);
+	local CurrentMission = player:getCurrentMission(SANDORIA);
+	local infiltrateDavoi = player:hasCompletedMission(SANDORIA,INFILTRATE_DAVOI);
 	
 	if(CurrentMission == THE_DAVOI_REPORT and player:getVar("MissionStatus") == 0) then
 		player:startEvent(0x0064);

@@ -13,13 +13,13 @@ require("/scripts/zones/The_Boyahda_Tree/MobIDs");
 function onMobDeath(mob,killer)	
 
     -- Get Demonic Rose ID and check if it is a PH of Orctrap
-    mob = mob:getID();
+    local mob = mob:getID();
 
     -- Check if Demonic Rose is within the Voluptuous_Vivian_PH table
     if (Voluptuous_Vivian_PH[mob] ~= nil) then
         -- printf("%u is a PH",mob);
         -- Get Demonic Rose previous ToD
-        Voluptuous_Vivian_ToD = GetServerVariable("[POP]Voluptuous_Vivian");
+        local Voluptuous_Vivian_ToD = GetServerVariable("[POP]Voluptuous_Vivian");
 
         -- Check if Voluptuous Vivian window is open, and there is not an Voluptuous Vivian popped already(ACTION_NONE = 0)
         if (Voluptuous_Vivian_ToD <= os.time(t) and GetMobAction(Voluptuous_Vivian) == 0) then

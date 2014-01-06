@@ -24,7 +24,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	HealingTheLand = player:getQuestStatus(SANDORIA,HEALING_THE_LAND);
+	local HealingTheLand = player:getQuestStatus(SANDORIA,HEALING_THE_LAND);
 
 	if(HealingTheLand == QUEST_ACCEPTED and player:hasKeyItem(SEAL_OF_BANISHING) == true) then 
 		player:delKeyItem(SEAL_OF_BANISHING);

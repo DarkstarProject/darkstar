@@ -7,22 +7,22 @@ ITEM_CANNOT_BE_OBTAINEDX = 6377;
 		 ITEM_OBTAINEDX = 6387; -- Obtained: <item>
            GIL_OBTAINED = 6379; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
- FISHING_MESSAGE_OFFSET = 6994; -- You can't fish here
-          HOMEPOINT_SET = 7247; -- Home point set!
+ FISHING_MESSAGE_OFFSET = 7014; -- You can't fish here
+          HOMEPOINT_SET = 7267; -- Home point set!
 
 -- Other Texts
-NENE_DELIVERY_DIALOG = 10759; -- Yooo want to send gooods? Yooo want to send “clink clink?”
-NANA_DELIVERY_DIALOG = 10760; -- Yooo send gooods. Yooo send “clink clink.”
+NENE_DELIVERY_DIALOG = 10779; -- Yooo want to send gooods? Yooo want to send “clink clink?”
+NANA_DELIVERY_DIALOG = 10780; -- Yooo send gooods. Yooo send “clink clink.”
 
 -- Quest Dialog
-NOMAD_MOOGLE_DIALOG = 7248; -- I'm a traveling moogle, kupo. I help adventurers in the Outlands access items they have stored in a Mog House elsewhere, kupo.
+NOMAD_MOOGLE_DIALOG = 7278; -- I'm a traveling moogle, kupo. I help adventurers in the Outlands access items they have stored in a Mog House elsewhere, kupo.
 
 -- Shop Texts
-  CHICHIROON_SHOP_DIALOG = 10425; -- Howdy-hooo! I gots soooper rare dice for yooo.
-   JAJAROON_SHOP_DIALOG = 10407; -- Hellooo. Yooo have caaard? Can do gaaame? Jajaroon have diiice.
-    MAMAROON_SHOP_DIALOG = 10420; -- Welcome to maaagic shop. Lots of magics for yooo.
+    JAJAROON_SHOP_DIALOG = 10427; -- Hellooo. Yooo have caaard? Can do gaaame? Jajaroon have diiice.
+  TSUTSUROON_SHOP_DIALOG = 10437; -- What yooo want? Have katana, katana, and nin-nin...yooo want?
+	MAMAROON_SHOP_DIALOG = 10440; -- Welcome to maaagic shop. Lots of magics for yooo.
+    POPOROON_SHOP_DIALOG = 10442; -- Come, come. Buy aaarmor, looots of armor!
+WATAKHAMAZOM_SHOP_DIALOG = 10443; -- Looking for some bows and bolts to strrrike fear into the hearts of your enemies? You can find 'em here! -verify-
+  CHICHIROON_SHOP_DIALOG = 10445; -- Howdy-hooo! I gots soooper rare dice for yooo.
     PIPIROON_SHOP_DIALOG = 0; -- [UNKNOWN]
-    POPOROON_SHOP_DIALOG = 10422; -- Come, come. Buy aaarmor, looots of armor!
-WATAKHAMAZOM_SHOP_DIALOG = 10413; -- Looking for some bows and bolts to strrrike fear into the hearts of your enemies? You can find 'em here! -verify-
     YOYOROON_SHOP_DIALOG = 0; -- [UNKNOWN]
-	TSUTSUROON_SHOP_DIALOG = 10419; -- What yooo want? Have katana, katana, and nin-nin...yooo want?

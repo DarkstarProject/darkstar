@@ -2,8 +2,7 @@
 -- Area: La Theine Plateau
 -- NPC:  Deaufrain
 -- Involved in Mission: The Rescue Drill
--- @zone 102
--- @pos -304 28 339
+-- @pos -304 28 339 102
 -----------------------------------
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
 -----------------------------------
@@ -25,7 +24,7 @@ end;
 function onTrigger(player,npc)
 	
 	if(player:getCurrentMission(SANDORIA) == THE_RESCUE_DRILL) then
-		MissionStatus = player:getVar("MissionStatus");
+		local MissionStatus = player:getVar("MissionStatus");
 		
 		if(MissionStatus == 3) then
 			player:startEvent(0x0066);

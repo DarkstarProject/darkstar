@@ -2,7 +2,6 @@
 -- Area: Kuftal Tunnel
 -- NPC:  ???
 -- Involved in Mission: Bastok 8-2
--- @pos -27 -10 -185 32
 -----------------------------------
 package.loaded["scripts/zones/Kuftal_Tunnel/TextIDs"] = nil;
 -----------------------------------

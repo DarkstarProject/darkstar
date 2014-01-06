@@ -1,11 +1,7 @@
-
 -----------------------------------
- -- mob : Fomor Dragoon
- -- zone : Misareaux_Coast
+-- mob : Fomor Dragoon
+-- zone : Misareaux_Coast
 -----------------------------------
-
-
-
 
 -----------------------------------
 -- onMobSpawn Action

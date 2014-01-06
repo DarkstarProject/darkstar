@@ -1,12 +1,15 @@
 -----------------------------------
 -- Area: LaLoff Amphitheater
 -- Name: Ark Angels 4 (Elvaan)
--- 
 -----------------------------------
 package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
+
+-----------------------------------
 
 -- Death cutscenes:
 

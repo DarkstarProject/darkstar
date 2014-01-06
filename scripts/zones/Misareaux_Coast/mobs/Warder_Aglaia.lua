@@ -1,13 +1,9 @@
 -----------------------------------
 -- Area: Misareaux Coast
---  mob: Warder_Aglaia
+--  Mob: Warder_Aglaia
 -----------------------------------
 
-
 require("scripts/globals/missions");
-
-
-
 
 -----------------------------------
 -- onMobDeath

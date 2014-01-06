@@ -1,14 +1,13 @@
 -----------------------------------
 --  Area: Nashmau
---   NPC: Nabihwah
+--  NPC:  Nabihwah
 --  Type: Standard NPC
--- @zone: 53
---  @pos 9.988 -7 68.585
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 9.988 -7 68.585 53
 -----------------------------------
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/Nashmau/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -2,8 +2,7 @@
 -- Area: Monastic Cavern
 -- NPC:  Magicite
 -- Involved in Mission: Magicite
--- @zone 149
--- @pos -22 1 -66
+-- @pos -22 1 -66 150
 -----------------------------------
 package.loaded["scripts/zones/Monastic_Cavern/TextIDs"] = nil;
 -----------------------------------

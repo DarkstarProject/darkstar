@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Mhaura
---   NPC: Emila
+--  NPC:  Emila
 --  Type: Standard NPC
--- @zone: 249
---  @pos -30.578 -9 26.342
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -30.578 -9 26.342 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------

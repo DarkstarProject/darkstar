@@ -3,8 +3,9 @@
 -- Zone: Chamber_of_Oracles (168)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Chamber_of_Oracles/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/Chamber_of_Oracles/TextIDs");
 
@@ -20,7 +21,7 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
+	local cs = -1;	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(-177.804,-2.765,-37.893,179);
 	end	

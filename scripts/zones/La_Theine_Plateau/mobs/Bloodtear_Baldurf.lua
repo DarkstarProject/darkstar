@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: 
+-- Area: La Theine Plateau
 -- NPC:  Bloodtear_Baldurf
 -----------------------------------
 

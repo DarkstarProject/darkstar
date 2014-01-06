@@ -12,7 +12,7 @@ ITEM_CANNOT_BE_OBTAINEDX = 214;
           HOMEPOINT_SET = 1301; -- Home point set!
 
 -- Conquest system
-SANCTION = 9699;	-- You have received the Empire's Sanction.
+SANCTION = 9699; -- You have received the Empire's Sanction.
 
 -- Quest dialogs
  ZASSHAL_DIALOG = 10893; -- 'ang about. Looks like the permit you got was the last one I 'ad, so it might take me a bit o' time to scrounge up some more. 'ere, don't gimme that look. I'll be restocked before you know it.
@@ -20,8 +20,8 @@ MUSHAYRA_DIALOG = 4890; -- Sorry for all the trouble. Please ignore Hadahda the 
  HADAHDA_DIALOG = 4841; -- Hey, think you could help me out?
 
  -- Other Dialogs
- ITEM_DELIVERY_DIALOG = 9249; -- You have something you want delivered?
- RUNIC_PORTAL = 4510; -- You cannot use the runic portal without the Empire's authorization.
+ITEM_DELIVERY_DIALOG = 9249; -- You have something you want delivered?
+		RUNIC_PORTAL = 4510; -- You cannot use the runic portal without the Empire's authorization.
 
 -- Shop Texts
 	 GAVRIE_SHOP_DIALOG = 9163; -- Remember to take your medicine in small doses... Sometimes you can get a little too much of a good thing!
@@ -38,5 +38,6 @@ KHAFJHIFANM_SHOP_DIALOG = 9170; -- How about a souvenir for back home? There's n
    FAYEEWAH_SHOP_DIALOG = 9174; -- Why not sit back a spell and enjoy the rich aroma and taste of a cup of chai?
 	 YAFAAF_SHOP_DIALOG = 9175; -- Welcome to Shararat Teahouse! Relax and forget your troubles over a soothing cup of chai!
 
-	 WAHRAGA_SHOP_DIALOG = 9177; -- Welcome to the Alchemists' Guild.
+	WAHRAGA_SHOP_DIALOG = 9177; -- Welcome to the Alchemists' Guild.
 	 WAHNID_SHOP_DIALOG = 9176; -- All the fishing gear you'll ever need, here in one place!
+	  WAHNID_SHOP_DIALOG = 9176; -- All the fishing gear you'll ever need, here in one place!

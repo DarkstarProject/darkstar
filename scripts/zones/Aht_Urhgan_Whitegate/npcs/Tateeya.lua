@@ -3,6 +3,10 @@
 -- NPC: Tateeya
 -- Automaton Attachment Unlocks
 -----------------------------------
+package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 -----------------------------------
 -- onTrade Action

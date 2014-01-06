@@ -1,14 +1,13 @@
 -----------------------------------
 --  Area: Aht Urhgan Whitegate
---   NPC: Matifa
+--  NPC:  Matifa
 --  Type: Standard NPC
--- @zone: 50
---  @pos -10.583 -1 -8.820
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -10.583 -1 -8.820 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 -----------------------------------
 -- onTrade Action

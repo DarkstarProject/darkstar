@@ -1,9 +1,8 @@
 -----------------------------------
 --  Area: Mhaura
---   NPC: Kotan-Purutan
+--  NPC:  Kotan-Purutan
 --  Involved in Quest: Overnight Delivery
--- @zone: 249
---  @pos 40.323 -8.999 44.242
+--  @pos 40.323 -8.999 44.242 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
@@ -20,11 +19,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	OvernightDelivery = player:getQuestStatus(WINDURST,OVERNIGHT_DELIVERY);
-	KenapaOvernight = player:getVar("Kenapa_Overnight_var"); -- Variable to track progress for Overnight Delivery
-	KenapaOvernightDay = player:getVar("Kenapa_Overnight_Day_var"); -- Variable to track the day the quest is started.
-	KenapaOvernightHour = player:getVar("Kenapa_Overnight_Hour_var"); -- Variable to track the hour the quest is started.
-	HourOfTheDay = VanadielHour();
+	local OvernightDelivery = player:getQuestStatus(WINDURST,OVERNIGHT_DELIVERY);
+	local KenapaOvernight = player:getVar("Kenapa_Overnight_var"); -- Variable to track progress for Overnight Delivery
+	local KenapaOvernightDay = player:getVar("Kenapa_Overnight_Day_var"); -- Variable to track the day the quest is started.
+	local KenapaOvernightHour = player:getVar("Kenapa_Overnight_Hour_var"); -- Variable to track the hour the quest is started.
+	local HourOfTheDay = VanadielHour();
 
 	if(OvernightDelivery == QUEST_ACCEPTED and player:hasKeyItem(SMALL_BAG) == false and (KenapaOvernight >= 4 and KenapaOvernight <= 7) and (HourOfTheDay < 6 or HourOfTheDay >= 18)) then
 		player:startEvent(0x008d); -- Gives Key Item at correct times of night

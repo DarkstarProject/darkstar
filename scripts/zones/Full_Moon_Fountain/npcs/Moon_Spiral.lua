@@ -5,7 +5,6 @@
 -- @pos -302 9 -260 170
 -----------------------------------
 package.loaded["scripts/zones/Full_Moon_Fountain/TextIDs"] = nil;
-package.loaded["scripts/globals/bcnm"] = nil;
 -------------------------------------
 
 require("scripts/globals/bcnm");

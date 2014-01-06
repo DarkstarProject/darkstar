@@ -6,6 +6,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
 -----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
@@ -29,7 +30,7 @@ function onTrigger(player,npc)
 	local npc_id = npc:getID();
 	local LostForWords_Status = player:getVar("MissionStatus");
 
-	if(player:getCurrentMission(WINDURST) == LOST_FOR_WORDS and npc_id ~= 17588742 and LostForWords_Status >= 2) then
+	-- if(player:getCurrentMission(WINDURST) == LOST_FOR_WORDS and npc_id ~= 17588743 and LostForWords_Status >= 2) then
 		-- Get the value of the randomly selected fossil
 		local random_value = player:getVar("MissionStatus_randfoss");
 
@@ -47,7 +48,7 @@ function onTrigger(player,npc)
 			player:messageSpecial(NOTHING_FOSSIL);
 		end
 
-	elseif(npc_id == 17588742) then
+	elseif(npc_id == 17588743) then
 		if(player:getQuestStatus(WINDURST,BLAST_FROM_THE_PAST) == QUEST_ACCEPTED and GetMobAction(17588225) == 0 and player:hasItem(16511) == false) then
 			SpawnMob(17588225);
 		else

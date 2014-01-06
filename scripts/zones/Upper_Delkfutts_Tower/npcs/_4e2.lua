@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
 -- NPC:  Elevator
--- @zone 158
--- @pos -294 -143 27
+-- @pos -294 -143 27 158
 -----------------------------------
 package.loaded["scripts/zones/Upper_Delkfutts_Tower/TextIDs"] = nil;
 -----------------------------------

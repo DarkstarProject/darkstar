@@ -1,14 +1,13 @@
 -----------------------------------
 --  Area: Jugner Forest (S)
---   NPC: Gate Sentry
+--  NPC:  Gate Sentry
 --  Type: Standard NPC
--- @zone: 82
---  @pos -265.235 -2.399 405.246
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -265.235 -2.399 405.246 82
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/Jugner_Forest_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade Action

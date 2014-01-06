@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Qulun Dome
--- NPC:  ???
+-- NPC:  qm1 (???)
 -- Used In Quest: Whence Blows the Wind 
--- @zone 148
--- @pos 261 39 79
+-- @pos 261 39 79 148
 -----------------------------------
 package.loaded["scripts/zones/Qulun_Dome/TextIDs"] = nil;
 -----------------------------------

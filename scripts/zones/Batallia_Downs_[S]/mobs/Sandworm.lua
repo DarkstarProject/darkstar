@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Crystal War Areas
+-- Area: Batallia_Downs_[S]
 -- NPC:  Sandworm
 -- Note:  Title Given if Sandworm does not Doomvoid
 -----------------------------------

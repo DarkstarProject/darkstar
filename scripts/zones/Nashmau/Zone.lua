@@ -3,8 +3,9 @@
 -- Zone: Nashmau (53)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/Nashmau/TextIDs");
 

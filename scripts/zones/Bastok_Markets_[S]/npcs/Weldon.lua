@@ -1,13 +1,12 @@
 ----------------------------------
 --  Area: Bastok Markets [S]
---  NPC: Weldon
+--  NPC:  Weldon
 --  Type: Item Deliverer
---  @zone: 87
---  @pos -191.575	-8	36.688
---
+--  @pos -191.575	-8	36.688 87
+-----------------------------------
+package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
 require("scripts/zones/Bastok_Markets_[S]/TextIDs");
 
 -----------------------------------

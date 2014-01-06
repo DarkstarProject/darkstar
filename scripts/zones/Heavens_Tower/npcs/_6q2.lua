@@ -1,10 +1,9 @@
 -----------------------------------
 -- Area: Heaven's Tower
 -- NPC:  Vestal Chamber (chamber of the Star Sibyl)
--- @pos 0 -49 37 242
+-- @pos 0.1 -49 37 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -25,8 +24,8 @@ end;
 
 function onTrigger(player,npc)
 	
-	CurrentMission = player:getCurrentMission(WINDURST);
-	MissionStatus = player:getVar("MissionStatus");
+	local CurrentMission = player:getCurrentMission(WINDURST);
+	local MissionStatus = player:getVar("MissionStatus");
 	
 	if(CurrentMission == A_NEW_JOURNEY and MissionStatus == 0) then
 		player:startEvent(0x0099);

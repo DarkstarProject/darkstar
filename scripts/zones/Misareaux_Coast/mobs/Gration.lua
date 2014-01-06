@@ -12,9 +12,14 @@ require("scripts/globals/status");
 function onMobInitialize(mob)
 end;
 
+-----------------------------------
+-- onMobSpawn Action
+-----------------------------------
+
 function onMobSpawn(mob)
 	mob:addStatusEffect(EFFECT_KILLER_INSTINCT,40,0,0);
 end;
+
 -----------------------------------
 -- onMobFight Action
 -----------------------------------

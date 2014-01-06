@@ -1,17 +1,16 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC: Qutiba
+-- NPC:  Qutiba
 -- Type: Standard NPC
--- @zone: 50
--- @pos 92.341 -7.5 -129.980
--- Author: Shadow
+-- @pos 92.341 -7.5 -129.980 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
------------------------------------
 
 -----------------------------------
 -- onTrade Action

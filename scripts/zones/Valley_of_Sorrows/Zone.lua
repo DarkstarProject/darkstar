@@ -3,8 +3,9 @@
 -- Zone: Valley_of_Sorrows (128)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Valley_of_Sorrows/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/Valley_of_Sorrows/TextIDs");
 
@@ -20,7 +21,7 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
+	local cs = -1;	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(45.25,-2.115,-140.562,0);
 	end	

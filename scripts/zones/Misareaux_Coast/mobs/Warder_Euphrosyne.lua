@@ -1,13 +1,9 @@
 -----------------------------------
 -- Area: Misareaux Coast
---  mob: Warder_Euphrosyne
+--  Mob: Warder_Euphrosyne
 -----------------------------------
 
-
 require("scripts/globals/missions");
-
-
-
 
 -----------------------------------
 -- onMobDeath

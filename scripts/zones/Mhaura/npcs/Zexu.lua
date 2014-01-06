@@ -2,13 +2,13 @@
 -- Area: Mhaura
 -- NPC:  Zexu
 -- Involved in Quests: The Sand Charm
--- @zone 249
--- @pos 30 -8 25
+-- @pos 30 -8 25 249
+-----------------------------------
+package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 require("scripts/zones/Mhaura/TextIDs");
+require("scripts/globals/settings");
 
 -----------------------------------
 -- onTrade Action

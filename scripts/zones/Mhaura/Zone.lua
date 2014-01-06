@@ -3,11 +3,13 @@
 -- Zone: Mhaura (249)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/keyitems");
 require("scripts/zones/Mhaura/TextIDs");
 require("scripts/globals/missions");
+
 -----------------------------------
 -- onInitialize
 -----------------------------------

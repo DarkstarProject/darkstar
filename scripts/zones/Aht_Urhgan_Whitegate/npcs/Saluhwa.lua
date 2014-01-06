@@ -3,9 +3,10 @@
 -- NPC: Saluhwa
 -- Standard Merchant NPC
 -----------------------------------
+package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/shop");
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 -----------------------------------

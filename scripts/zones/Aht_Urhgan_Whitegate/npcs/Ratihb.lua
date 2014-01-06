@@ -4,6 +4,8 @@
 -- Standard Info NPC
 -- @pos 75.225 -6.000 -137.203 50
 -----------------------------------
+package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");

@@ -3,12 +3,13 @@
 -- NPC:  Matter diffusion module
 -- @pos 
 -----------------------------------
-require("scripts/globals/limbus");
-require("scripts/globals/keyitems");
 package.loaded["scripts/zones/Temenos/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/limbus");
+require("scripts/globals/keyitems");
 require("scripts/zones/Temenos/TextIDs");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------

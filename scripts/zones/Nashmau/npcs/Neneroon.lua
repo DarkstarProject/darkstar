@@ -1,13 +1,12 @@
 ----------------------------------
 --  Area: Nashmau
---  NPC: Neneroon
+--  NPC:  Neneroon
 --  Type: Item Deliverer
---  @zone: 53
---  @pos -0.866	-5.999	36.942
---
+--  @pos -0.866	-5.999	36.942 53
+-----------------------------------
+package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
 require("scripts/zones/Nashmau/TextIDs");
 
 -----------------------------------

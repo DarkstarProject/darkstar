@@ -13,13 +13,13 @@ require("/scripts/zones/Riverne-Site_B01/MobIDs");
 function onMobDeath(mob,killer)	
 
     -- Get Nimbus Hippogryph ID and check if it is a PH of Imdugud
-    mob = mob:getID();
+    local mob = mob:getID();
 
     -- Check if Nimbus Hippogryph is within the Imdugud_PH table
     if (Imdugud_PH[mob] ~= nil) then
         -- printf("%u is a PH",mob);
         -- Get Imdugud previous ToD
-        Imdugud_ToD = GetServerVariable("[POP]Imdugud");
+        local Imdugud_ToD = GetServerVariable("[POP]Imdugud");
 
         -- Check if Imdugud window is open, and there is not an Imdugud popped already(ACTION_NONE = 0)
         if (Imdugud_ToD <= os.time(t) and GetMobAction(Imdugud) == 0) then

@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Aht Urhgan Whitegate
---   NPC: Sajaaya
+--  NPC:  Sajaaya
 --  Type: Weather Checker
--- @zone: 50
---  @pos -4.727 -6.999 -25.312
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -4.727 -6.999 -25.312 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------

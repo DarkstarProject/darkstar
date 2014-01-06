@@ -2,8 +2,7 @@
 -- Area: La Theine Plateau
 -- NPC:  Equesobillot
 -- Involved in Mission: The Rescue Drill
--- @zone 102
--- @pos -287 9 284
+-- @pos -287 9 284 102
 -----------------------------------
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
 -----------------------------------
@@ -25,7 +24,7 @@ end;
 function onTrigger(player,npc)
 	
 	if(player:getCurrentMission(SANDORIA) == THE_RESCUE_DRILL) then
-		MissionStatus = player:getVar("MissionStatus");
+		local MissionStatus = player:getVar("MissionStatus");
 		
 		if(MissionStatus == 2) then
 			player:startEvent(0x0065);

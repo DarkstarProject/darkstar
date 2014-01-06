@@ -5,7 +5,6 @@
 -- @pos -539 1 -493 209
 -----------------------------------
 package.loaded["scripts/zones/Cloister_of_Tremors/TextIDs"] = nil;
-package.loaded["scripts/globals/bcnm"] = nil;
 -----------------------------------
 
 require("scripts/globals/keyitems");

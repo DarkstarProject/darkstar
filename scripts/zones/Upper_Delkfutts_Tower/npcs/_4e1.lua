@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
 -- NPC:  Door
--- @zone 158
--- @pos 315 16 20
+-- @pos 315 16 20 158
 -----------------------------------
 package.loaded["scripts/zones/Upper_Delkfutts_Tower/TextIDs"] = nil;
 -----------------------------------

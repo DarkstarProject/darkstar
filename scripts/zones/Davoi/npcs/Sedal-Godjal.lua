@@ -2,8 +2,7 @@
 -- Area: Davoi
 -- NPC:  Sedal-Godjal
 -- Mini Quest used in : Whence Blows the Wind
--- @zone 149
--- @pos 185 -2 -116
+-- @pos 185 -2 -116 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
@@ -17,8 +16,9 @@ require("scripts/zones/Davoi/TextIDs");
 -- onTrade Action
 -----------------------------------
 function onTrade(player,npc,trade)
-local CurrentMission = player:getCurrentMission(WINDURST);
-local MissionStatus = player:getVar("MissionStatus");
+
+	local CurrentMission = player:getCurrentMission(WINDURST);
+	local MissionStatus = player:getVar("MissionStatus");
 
 	if(trade:hasItemQty(17437,1)) then
 		if(CurrentMission == VAIN and MissionStatus == 3 and player:hasKeyItem(MAGICDRAINED_STAR_SEEKER) == true) then
@@ -32,8 +32,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-local CurrentMission = player:getCurrentMission(WINDURST);
-local MissionStatus = player:getVar("MissionStatus");
+
+	local CurrentMission = player:getCurrentMission(WINDURST);
+	local MissionStatus = player:getVar("MissionStatus");
 
 	if(CurrentMission == VAIN and MissionStatus >= 2) then -- wiki says it doesnt matter whether you get cs or kill first
 		if(player:hasKeyItem(STAR_SEEKER) == true) then
@@ -46,8 +47,8 @@ local MissionStatus = player:getVar("MissionStatus");
 		
 	elseif(player:hasKeyItem(CRIMSON_ORB) == false) then
 		
-		miniQuestForORB_CS = player:getVar("miniQuestForORB_CS");
-		countRedPoolForORB = player:getVar("countRedPoolForORB");
+		local miniQuestForORB_CS = player:getVar("miniQuestForORB_CS");
+		local countRedPoolForORB = player:getVar("countRedPoolForORB");
 		
 		if(miniQuestForORB_CS == 0) then 
 			player:startEvent(0x0018); -- 

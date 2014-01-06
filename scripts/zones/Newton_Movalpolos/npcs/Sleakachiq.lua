@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Newton Movalpolos
---   NPC: Sleakachiq
+--  NPC:  Sleakachiq
 --  Type: Adventurer's Assistant
--- @zone: 12
---  @pos 162.504 14.999 136.901
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 162.504 14.999 136.901 12
 -----------------------------------
 package.loaded["scripts/zones/Newton_Movalpolos/TextIDs"] = nil;
 -----------------------------------

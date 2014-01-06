@@ -2,8 +2,7 @@
 -- Area: Monastic Cavern
 -- NPC:  Altar
 -- Involved in Quests: The Circle of Time
--- @zone 112
--- @pos 109 -3 -145
+-- @pos 109 -3 -145 150
 -----------------------------------
 package.loaded["scripts/zones/Monastic_Cavern/TextIDs"] = nil;
 -----------------------------------
@@ -17,8 +16,6 @@ require("scripts/zones/Monastic_Cavern/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-
 end;
 
 -----------------------------------

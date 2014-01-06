@@ -3,10 +3,11 @@
 -- NPC: Silke
 -- Standard Merchant NPC
 -----------------------------------
-
-require("scripts/globals/shop");
 package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/zones/Bastok_Markets_[S]/TextIDs");
+require("scripts/globals/shop");
 
 -----------------------------------
 -- onTrade Action

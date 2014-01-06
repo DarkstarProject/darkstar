@@ -1,7 +1,6 @@
 -----------------------------------	
 -- Area: Kuftal Tunnel	
 -- MOB:  Dervo's Ghost
--- MOB ID: 9024
 -----------------------------------	
 
 require("scripts/globals/missions");

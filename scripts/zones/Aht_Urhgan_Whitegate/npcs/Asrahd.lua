@@ -5,7 +5,6 @@
 --  @pos 0.011 -1 10.587 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
-package.loaded["scripts/globals/besieged"] = nil;
 -----------------------------------
 
 require("scripts/globals/status");
@@ -25,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	merc_rank = getMercenaryRank(player);
+	local merc_rank = getMercenaryRank(player);
 	
 	if(merc_rank == 0) then
 		player:startEvent(0x0277,npc);

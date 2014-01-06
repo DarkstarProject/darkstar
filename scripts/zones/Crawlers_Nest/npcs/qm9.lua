@@ -2,8 +2,7 @@
 -- Area: Crawlers Nest
 -- NPC:  ???
 -- Used In Quest: A Boy's Dream
--- @zone 197
--- @pos -18 -8 124
+-- @pos -18 -8 124 197
 -----------------------------------
 package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
 -----------------------------------
@@ -23,13 +22,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	DreadbugTimer = player:getVar("DreadbugNM_Timer");
-	DreadbugDay = player:getVar("DreadbugNM_Day");
-	MyDay = VanadielDayOfTheYear();
-	aBoysDream = player:getQuestStatus(SANDORIA, A_BOY_S_DREAM);
+	local DreadbugTimer = player:getVar("DreadbugNM_Timer");
+	local DreadbugDay = player:getVar("DreadbugNM_Day");
+	local MyDay = VanadielDayOfTheYear();
+	local aBoysDream = player:getQuestStatus(SANDORIA, A_BOY_S_DREAM);
 	
 	if(MyDay ~= DreadbugDay and aBoysDream == QUEST_ACCEPTED) then
-		canSpawn = (os.time() - DreadbugTimer) > 30;
+		local canSpawn = (os.time() - DreadbugTimer) > 30;
 		
 		if(canSpawn) then
 			SpawnMob(17584425,168):updateEnmity(player); -- Despawn after 3 minutes (-12 seconds for despawn delay).
@@ -60,6 +59,5 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-
 end;
 

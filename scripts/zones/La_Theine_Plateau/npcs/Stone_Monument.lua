@@ -1,6 +1,6 @@
 -----------------------------------
 --  Area: La Theine Plateau
---  NPC: Stone Monument
+--  NPC:  Stone Monument
 --  Involved in quest "An Explorer's Footsteps"
 -----------------------------------
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;

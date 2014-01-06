@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: 
+-- Area: Grand Palace of HuXzoi
 -- NPC:  Ix_ghrah
 -----------------------------------
 
@@ -10,10 +10,10 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onMobSpawn(mob)
-		if(mob:getMod(0x31))then mob:setMod(0x31,1000); end
-		if(mob:getMod(0x32))then mob:setMod(0x32,1000); end
-		if(mob:getMod(0x33))then mob:setMod(0x33,1000); end
-		if(mob:getMod(0x34))then mob:setMod(0x34,1000); end
+	if(mob:getMod(0x31))then mob:setMod(0x31,1000); end
+	if(mob:getMod(0x32))then mob:setMod(0x32,1000); end
+	if(mob:getMod(0x33))then mob:setMod(0x33,1000); end
+	if(mob:getMod(0x34))then mob:setMod(0x34,1000); end
 end;
 
 -----------------------------------

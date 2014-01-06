@@ -19,14 +19,12 @@ end;
 
 function onMobDeath(mob,killer)
 
-	 mob = mob:getID();
+	local mob = mob:getID();
 	 
-	 if (mob == 17584129) then
-   GetNPCByID(17584452):hideNPC(900);
-   
-   elseif (mob == 17584130) then
-   GetNPCByID(17584453):hideNPC(900);
-   
-   end
+	if (mob == 17584129) then
+		GetNPCByID(17584453):hideNPC(900); -- qm1
+	elseif (mob == 17584130) then
+		GetNPCByID(17584454):hideNPC(900); -- qm2
+	end
 	
 end;

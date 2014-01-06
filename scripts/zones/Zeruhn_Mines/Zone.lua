@@ -21,7 +21,7 @@ end;
 -----------------------------------				
 
 function onZoneIn(player,prevZone)				
-	cs = -1;			
+	local cs = -1;			
 	if (prevZone == 143) then			
 		cs = 0x0096;		
 		if (player:getQuestStatus(BASTOK, BLADE_OF_DARKNESS) == QUEST_ACCEPTED) then		

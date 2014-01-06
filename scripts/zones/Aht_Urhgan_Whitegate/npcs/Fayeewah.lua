@@ -3,10 +3,11 @@
 -- NPC: Fayeewah
 -- Standard Merchant NPC
 -----------------------------------
-
-require("scripts/globals/shop");
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+require("scripts/globals/shop");
 
 -----------------------------------
 -- onTrade Action

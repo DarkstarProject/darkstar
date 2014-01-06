@@ -1,9 +1,8 @@
 -----------------------------------
--- Area: Lower Delkfutt's Tower
--- NPC:  Cermet Door
--- Door opens when you trade Delkfutt Key to it
--- @zone 184
--- @pos 345 0 20
+-- Area:  Lower Delkfutt's Tower
+-- NPC:   Cermet Door
+-- Notes: Door opens when you trade Delkfutt Key to it
+-- @pos 345 0.1 20 184
 -----------------------------------
 package.loaded["scripts/zones/Lower_Delkfutts_Tower/TextIDs"] = nil;
 -----------------------------------
@@ -30,13 +29,12 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:hasKeyItem(DELKFUTT_KEY)) then -- has Delkfutt Keyitem
+	if(player:hasKeyItem(DELKFUTT_KEY)) then
 		player:startEvent(0x0010);
 	else
 		player:startEvent(0x000a); -- door is firmly shut
 	end
 	
-	update = 0
 	return 1;
 	
 end; 
@@ -48,19 +46,13 @@ end;
 function onEventUpdate(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if (csid == 0x0010) then
-		update = update + 1;
-		if(update == 2) then
-			GetNPCByID(17531154):setAnimation(8);
-		end
-	end
 end;
  
 -----------------------------------
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player,csid,option,npc)
 --print("CSID:",csid);
 --print("RESULT:",option);
 	
@@ -70,7 +62,6 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(KEYITEM_OBTAINED,DELKFUTT_KEY);
 			player:addKeyItem(DELKFUTT_KEY);
 		end
-		GetNPCByID(17531154):setAnimation(9);
 	end
 	
 end;

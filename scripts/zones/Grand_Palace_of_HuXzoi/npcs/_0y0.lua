@@ -3,6 +3,10 @@
 --  NPC:  Particle Gate
 --  @pos -483 0 259 34
 -----------------------------------
+package.loaded["scripts/zones/Grand_Palace_of_HuXzoi/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/zones/Grand_Palace_of_HuXzoi/TextIDs");
 
 -----------------------------------
 -- onTrade Action

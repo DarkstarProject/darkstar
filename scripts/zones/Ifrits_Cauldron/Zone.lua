@@ -3,8 +3,9 @@
 -- Zone: Ifrits_Cauldron (205)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Ifrits_Cauldron/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/Ifrits_Cauldron/TextIDs");
 
@@ -20,7 +21,7 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
+	local cs = -1;	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(-60.296,48.884,105.967,69);
 	end	

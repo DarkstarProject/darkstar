@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Ordelle's Caves
--- NPC:  ???
+-- NPC:  ??? (qm2)
 -- Involved in Quest: A Squire's Test II
--- @zone 193
--- @pos -94 1 273
+-- @pos -94 1 273 193
 -------------------------------------
 package.loaded["scripts/zones/Ordelles_Caves/TextIDs"] = nil;
 -------------------------------------

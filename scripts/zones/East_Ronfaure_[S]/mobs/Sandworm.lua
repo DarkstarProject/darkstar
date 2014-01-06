@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Crystal War Areas
+-- Area: East Ronfaure [S]
 -- NPC:  Sandworm
 -- Note:  Title Given if Sandworm does not Doomvoid
 -----------------------------------

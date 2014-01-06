@@ -5,7 +5,6 @@
 -- @zone -361 1 -381 201
 -----------------------------------
 package.loaded["scripts/zones/Cloister_of_Gales/TextIDs"] = nil;
-package.loaded["scripts/globals/bcnm"] = nil;
 -----------------------------------
 
 require("scripts/globals/keyitems");

@@ -1,12 +1,12 @@
 -----------------------------------
 --	Area: Mhaura
 -- 	NPC: Nomad Moogle
---	Working 100%
+-----------------------------------
+package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 require("scripts/zones/Mhaura/TextIDs");
+require("scripts/globals/settings");
 
 -----------------------------------
 -- onTrade Action

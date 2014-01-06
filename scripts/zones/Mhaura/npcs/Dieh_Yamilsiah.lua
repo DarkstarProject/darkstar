@@ -7,6 +7,8 @@
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/zones/Mhaura/TextIDs");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------

@@ -12,10 +12,10 @@ require("/scripts/zones/Gustav_Tunnel/MobIDs");
 	
 function onMobDeath(mob,killer)	
   
-    mob = mob:getID();
+    local mob = mob:getID();
     if (Baobhan_Sith_PH[mob] ~= nil) then
 
-        ToD = GetServerVariable("[POP]Baobhan_Sith");
+        local ToD = GetServerVariable("[POP]Baobhan_Sith");
         if (ToD <= os.time(t) and GetMobAction(Baobhan_Sith) == 0) then
             if (math.random((1),(20)) == 5) then
                 UpdateNMSpawnPoint(Baobhan_Sith);

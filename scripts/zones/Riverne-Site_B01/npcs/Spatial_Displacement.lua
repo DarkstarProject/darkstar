@@ -3,8 +3,6 @@
 -- NPC:  Spacial Displacement
 -----------------------------------
 
-
-
 -----------------------------------
 -- onTrade
 -----------------------------------
@@ -17,8 +15,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-local base = 16896180;
-	id = npc:getID();
+
+	local base = 16896181; -- First Spacial Displacement in NPC_LIST
+	local id = npc:getID();
 
 	if(id == base) then --  L-9 porter
 		player:startEvent(0x2);

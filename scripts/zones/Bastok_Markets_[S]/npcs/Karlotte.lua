@@ -1,13 +1,12 @@
 ----------------------------------
 --  Area: Bastok Markets [S]
---  NPC: Karlotte
+--  NPC:  Karlotte
 --  Type: Item Deliverer
---  @zone: 87
---  @pos -191.646	-8	-36.349
---
+--  @pos -191.646 -8 -36.349 87
+-----------------------------------
+package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
 require("scripts/zones/Bastok_Markets_[S]/TextIDs");
 
 -----------------------------------

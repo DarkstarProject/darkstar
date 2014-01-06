@@ -2,8 +2,7 @@
 -- Area: Davoi
 -- NPC:  Disused Well
 -- Involved in Quest: A Knight's Test
--- @zone 149
--- @pos -221 2 -293
+-- @pos -221 2 -293 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------

@@ -2,7 +2,7 @@
 -- Area: Heaven's Tower
 -- NPC:  Chumimi
 -- Starts and Finishes Quest: The Three Magi, Recollections
--- @pos 0 30 21 242
+-- @pos 0.1 30 21 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------
@@ -41,12 +41,12 @@ end;
 
 function onTrigger(player,npc)
 
-	theThreeMagi = player:getQuestStatus(WINDURST,THE_THREE_MAGI);
-	recollections = player:getQuestStatus(WINDURST,RECOLLECTIONS);
-	rootProblem = player:getQuestStatus(WINDURST,THE_ROOT_OF_THE_PROBLEM);
+	local theThreeMagi = player:getQuestStatus(WINDURST,THE_THREE_MAGI);
+	local recollections = player:getQuestStatus(WINDURST,RECOLLECTIONS);
+	local rootProblem = player:getQuestStatus(WINDURST,THE_ROOT_OF_THE_PROBLEM);
 
-	mLvl = player:getMainLvl();
-	mJob = player:getMainJob();
+	local mLvl = player:getMainLvl();
+	local mJob = player:getMainJob();
 
 	if(theThreeMagi == QUEST_AVAILABLE and mJob == 4 and mLvl >= AF1_QUEST_LEVEL) then
 		player:startEvent(0x0104,0,613,0,0,0,1104); -- Start Quest "The Three Magi" --- NOTE: 5th parameter is "Meteorites" but he doesn't exist ---

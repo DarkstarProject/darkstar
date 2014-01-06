@@ -1,7 +1,7 @@
 -----------------------------------
 --  Area: Aht Urhgan Whitegate
---  NPC: Wahnid
---  Guild Merchant NPC: Fishing Guild
+--  NPC:  Wahnid
+--  Type: Guild Merchant: Fishing Guild
 --  @pos -31.720 -6.000 -94.919 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;

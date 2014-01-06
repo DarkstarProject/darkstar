@@ -5,7 +5,6 @@
 -- @pos 534.5 -13 492 202
 -----------------------------------
 package.loaded["scripts/zones/Cloister_of_Storms/TextIDs"] = nil;
-package.loaded["scripts/globals/bcnm"] = nil;
 -------------------------------------
 
 require("scripts/globals/keyitems");

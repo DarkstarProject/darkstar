@@ -17,7 +17,7 @@
 
 function onTrade(player,npc,trade)
 if ((player:getQuestStatus(OTHER_AREAS,A_POTTER_S_PREFERENCE) == QUEST_ACCEPTED) or (player:getVar("QuestAPotterPrefeRepeat_var")==1)) then
-	gusgenclay  = trade:hasItemQty(569,1); 
+	local gusgenclay  = trade:hasItemQty(569,1); 
     if (gusgenclay  == true) then 
 		player:startEvent(0x0071); -- quest done!
 	end;

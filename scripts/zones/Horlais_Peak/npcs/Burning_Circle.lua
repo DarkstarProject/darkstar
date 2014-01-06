@@ -5,7 +5,6 @@
 -- @pos -509 158 -211 139
 -------------------------------------
 package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
-package.loaded["scripts/globals/bcnm"] = nil;
 -------------------------------------
 
 require("scripts/globals/bcnm");

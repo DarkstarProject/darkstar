@@ -12,4 +12,4 @@ NOTHING_OUT_OF_THE_ORDINARY = 6392; -- There is nothing out of the ordinary here
 CONQUEST = 7182; -- You've earned conquest points!
 
 -- Logging
-LOGGING_IS_POSSIBLE_HERE = 7683; -- Logging is possible here if you have <item>.
+LOGGING_IS_POSSIBLE_HERE = 7685; -- Logging is possible here if you have <item>.

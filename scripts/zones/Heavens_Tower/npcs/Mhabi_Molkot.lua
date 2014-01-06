@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Heavens Tower
---   NPC: Mhabi Molkot
+--  NPC:  Mhabi Molkot
 --  Type: Conflict Director
--- @zone: 242
---  @pos -3.767 -0.501 23.920
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -3.767 -0.501 23.920 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------

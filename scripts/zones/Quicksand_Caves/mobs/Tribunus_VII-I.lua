@@ -1,9 +1,7 @@
 -----------------------------------	
 -- Area: Quicksand Caves
 -- MOB:  Tribunus_VII-I
--- Note: 
 -----------------------------------	
-
 
 -----------------------------------
 -- onMobFight Action
@@ -17,5 +15,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	GetNPCByID(17629658):hideNPC(900);
+	GetNPCByID(17629658):hideNPC(900); -- qm2 in npc_list
 end;

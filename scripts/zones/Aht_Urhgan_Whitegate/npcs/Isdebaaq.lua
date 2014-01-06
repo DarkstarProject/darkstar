@@ -1,14 +1,13 @@
 -----------------------------------
 --  Area: Aht Urhgan Whitegate
---   NPC: Isdebaaq
+--  NPC:  Isdebaaq
 --  Type: Assault Mission Giver
--- @zone: 50
---  @pos 127.565 0.161 -43.846
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 127.565 0.161 -43.846 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 -----------------------------------
 -- onTrade Action

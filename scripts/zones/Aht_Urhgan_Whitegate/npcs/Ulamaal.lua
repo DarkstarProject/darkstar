@@ -1,17 +1,16 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC: Ulamaal
+-- NPC:  Ulamaal
 -- Type: Standard NPC
--- @zone: 50
--- @pos 93.512 -7.5 -128.530
--- Author: Shadow
+-- @pos 93.512 -7.5 -128.530 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
------------------------------------
 
 -----------------------------------
 -- onTrade Action

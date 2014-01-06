@@ -1,14 +1,13 @@
 -----------------------------------
 --  Area: Nashmau
---   NPC: Halshaob
+--  NPC:  Halshaob
 --  Type: Quest NPC
--- @zone: 53
---  @pos 28.537 -7 -85.250
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 28.537 -7 -85.250 53
 -----------------------------------
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/Nashmau/TextIDs");
 
 -----------------------------------
 -- onTrade Action

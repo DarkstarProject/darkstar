@@ -3,10 +3,11 @@
 -- Zone: Silver_Sea_route_to_Al_Zahbi
 -- 
 -----------------------------------
-
-require("scripts/globals/settings");
 package.loaded["scripts/zones/Silver_Sea_route_to_Al_Zahbi/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/zones/Silver_Sea_route_to_Al_Zahbi/TextIDs");
+require("scripts/globals/settings");
 
 -----------------------------------
 --  onInitialize
@@ -20,7 +21,7 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-cs = -1;
+local cs = -1;
 
 return cs;
 end;

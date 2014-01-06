@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Oldton Movalpolos
---   NPC: Tarnotik
+--  NPC:  Tarnotik
 --  Type: Standard NPC
--- @zone: 11
---  @pos 160.896 10.999 -55.659
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 160.896 10.999 -55.659 11
 -----------------------------------
 package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
 -----------------------------------

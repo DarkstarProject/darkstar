@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
--- NPC:  ??? - Alkyoneus spawn
+-- NPC:  ???
 -- @pos -300 -175 22 158
 -----------------------------------
 package.loaded["scripts/zones/Upper_Delkfutts_Tower/TextIDs"] = nil;

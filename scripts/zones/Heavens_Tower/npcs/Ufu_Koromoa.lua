@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Heavens Tower
---   NPC: Ufu Koromoa
+--  NPC:  Ufu Koromoa
 --  Type: Standard NPC
--- @zone: 242
---  @pos -2.074 -48 14.000
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -2.074 -48 14.000 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------

@@ -7,10 +7,13 @@
 --	Involved in Missions: Windurst 5-1/7-2/8-2
 -----------------------------------
 package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/FeiYin/TextIDs");
 require("scripts/globals/keyitems");
+
 -----------------------------------
 
 -----------------------------------
@@ -35,7 +38,7 @@ function onTrigger(player,npc)
 	
 	-- standard dialog
 	else
-	player:startEvent(0x000f); 
+		player:startEvent(0x000f); 
 	end
 end;
 

@@ -1,14 +1,13 @@
 -----------------------------------
 --  Area: Aht Urhgan Whitegate
---   NPC: Sorrowful Sage
+--  NPC:  Sorrowful Sage
 --  Type: Assault Mission Giver
--- @zone: 50
---  @pos 134.096 0.161 -30.401
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 134.096 0.161 -30.401 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 -----------------------------------
 -- onTrade Action

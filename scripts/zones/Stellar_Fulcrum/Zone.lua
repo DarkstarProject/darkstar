@@ -26,7 +26,7 @@ end;
 
 function onZoneIn(player,prevZone)
 	
-	cs = -1;
+	local cs = -1;
 	
 	if(player:getCurrentMission(ZILART) == RETURN_TO_DELKFUTTS_TOWER and player:getVar("ZilartStatus") == 2) then
 		cs = 0x0000;

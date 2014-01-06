@@ -1,7 +1,6 @@
 -----------------------------------
--- Area: 
--- NPC:  Ouryu
------------------------------------
+-- Area: Riverne-Site_A01
+-- MOB:  Ouryu
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -19,5 +18,4 @@ end;
 
 function onMobDeath(mob, killer)
 	killer:addTitle(OURYU_OVERWHELMER);	
-
 end;

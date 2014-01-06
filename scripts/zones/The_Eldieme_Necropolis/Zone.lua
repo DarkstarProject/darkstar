@@ -3,8 +3,9 @@
 -- Zone: The_Eldieme_Necropolis (195)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
 
@@ -27,7 +28,7 @@ function onZoneIn(player,prevZone)
 		return 4;
 	end
 	
-	cs = -1;	
+	local cs = -1;	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(-438.878,-26.091,540.004,126);
 	end	

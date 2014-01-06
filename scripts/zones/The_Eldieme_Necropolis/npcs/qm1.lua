@@ -28,7 +28,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	ActingInGoodFaith = player:getQuestStatus(WINDURST,ACTING_IN_GOOD_FAITH);
+	local ActingInGoodFaith = player:getQuestStatus(WINDURST,ACTING_IN_GOOD_FAITH);
 	
 	if(ActingInGoodFaith == QUEST_ACCEPTED and player:hasKeyItem(SPIRIT_INCENSE) == true) then
 		player:startEvent(0x0032);

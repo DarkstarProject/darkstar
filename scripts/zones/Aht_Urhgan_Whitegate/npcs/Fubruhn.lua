@@ -21,9 +21,11 @@
 --
 -- 0x025A = Expansion increased
 -- 4th arg = new size of locker
---
 -----------------------------------
---package.loaded["scripts/globals/moglocker"] = nil;
+package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 require("scripts/globals/status")
 require("scripts/globals/moglocker")
 

@@ -7,6 +7,7 @@
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/titles");
+
 -----------------------------------
 -- onInitialize
 -----------------------------------
@@ -16,7 +17,7 @@ function onInitialize(zone)
 	local Colorful_Leshy = 16875762;
 	GetMobByID(Colorful_Leshy):setExtraVar(os.time() + math.random((43200), (86400)));
 	
-zone:registerRegion(1,179,-26,327,219,-18,347);
+	zone:registerRegion(1,179,-26,327,219,-18,347);
 
 end;
 
@@ -25,7 +26,7 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-cs = -1;	
+	local cs = -1;	
 	
 	if(player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then	
 		player:setPos(-475.825,-20.461,281.149,11);
@@ -50,12 +51,14 @@ local regionID =region:GetRegionID();
       player:startEvent(0x0074);
   end
 end;	
+
 -----------------------------------		
 -- onRegionLeave		
 -----------------------------------		
 
 function onRegionLeave(player,region)	
 end;
+
 -----------------------------------	
 -- onEventUpdate	
 -----------------------------------	

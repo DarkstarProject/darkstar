@@ -3,8 +3,7 @@
 -- NPC:  Ekokoko
 -- Gouvernor of Mhaura
 -- Involved in Quest: Riding on the Clouds
--- @zone 249
--- @pos -78 -24 28
+-- @pos -78 -24 28 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------

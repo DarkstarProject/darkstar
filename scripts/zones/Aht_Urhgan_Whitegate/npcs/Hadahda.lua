@@ -1,14 +1,13 @@
 -----------------------------------
 --  Area: Aht Urhgan Whitegate
---   NPC: Hadahda
+--  NPC:  Hadahda
 --  Type: Standard NPC
--- @zone: 50
---  @pos -112.029 -6.999 -66.114
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -112.029 -6.999 -66.114 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 -----------------------------------
 -- onTrade Action

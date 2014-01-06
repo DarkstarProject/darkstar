@@ -2,11 +2,12 @@
 -- Area: Mhaura
 -- NPC:  Radhika
 -- Type: Standard NPC
--- @zone 249
--- @pos 34.124 -8.999 39.629
+-- @pos 34.124 -8.999 39.629 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/Mhaura/TextIDs");
 
 -----------------------------------
 -- onTrade Action

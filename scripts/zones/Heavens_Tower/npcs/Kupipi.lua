@@ -3,7 +3,7 @@
 -- NPC:  Kupipi
 -- Involved in Mission 2-3
 -- Involved in Quest: Riding on the Clouds
--- @pos 2 0 30 242
+-- @pos 2 0.1 30 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------
@@ -42,9 +42,9 @@ end;
 
 function onTrigger(player,npc)
 	
-	pNation = player:getNation();
-	currentMission = player:getCurrentMission(pNation);
-	MissionStatus = player:getVar("MissionStatus");
+	local pNation = player:getNation();
+	local currentMission = player:getCurrentMission(pNation);
+	local MissionStatus = player:getVar("MissionStatus");
 	
 	if(pNation == SANDORIA) then
 		-- San d'Oria Mission 2-3 Part I - Windurst > Bastok

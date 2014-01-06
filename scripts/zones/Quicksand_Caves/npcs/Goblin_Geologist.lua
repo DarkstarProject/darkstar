@@ -1,14 +1,13 @@
 -----------------------------------
 --  Area: Quicksand Caves
---   NPC: Goblin Geologist
+--  NPC:  Goblin Geologist
 --  Type: Mission
--- @zone: 208
---  @pos -737.000 -11.125 -550.000
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -737.000 -11.125 -550.000 208
 -----------------------------------
 package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/Quicksand_Caves/TextIDs");
 
 -----------------------------------
 -- onTrade Action

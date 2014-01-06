@@ -1,18 +1,16 @@
 -----------------------------------
 -- Area: Empyreal_Paradox
 -- NPC:  Transcendental
--- @pos 
 -----------------------------------
 package.loaded["scripts/zones/Empyreal_Paradox/TextIDs"] = nil;
-package.loaded["scripts/globals/bcnm"] = nil;
 -----------------------------------
-
 
 require("scripts/globals/settings");
 require("scripts/zones/Empyreal_Paradox/TextIDs");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 require("scripts/globals/bcnm");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------

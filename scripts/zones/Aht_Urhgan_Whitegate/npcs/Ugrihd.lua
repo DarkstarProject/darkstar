@@ -4,7 +4,6 @@
 -- Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
-package.loaded["scripts/globals/besieged"] = nil;
 -----------------------------------
 
 require("scripts/globals/status");

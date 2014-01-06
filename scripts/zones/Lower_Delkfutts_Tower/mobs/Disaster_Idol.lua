@@ -1,13 +1,10 @@
 -----------------------------------
--- Area: lower_Delkfutts_tower
---  mob: Disaster_Idol
+-- Area: Lower_Delkfutts_tower
+--  Mob: Disaster_Idol
 -----------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-
-
-
 
 -----------------------------------
 -- onMobDeath

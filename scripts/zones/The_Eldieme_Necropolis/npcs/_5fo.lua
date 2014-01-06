@@ -1,9 +1,7 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
 -- NPC:  North Plate
--- @zone 195
--- @pos 174 -32 50
--- 17576326
+-- @pos 174 -32 50 195
 -----------------------------------
 
 -----------------------------------
@@ -20,49 +18,51 @@ end;
 function onTrigger(player,npc)
 	local state0 = 8;
 	local state1 = 9;
+	local DoorOffset = npc:getID() - 23; -- _5f1
+	
 	if (npc:getAnimation() == 8) then
 		state0 = 9;
 		state1 = 8;
 	end
 	-- Gates
 	-- Shiva's Gate
-	GetNPCByID(17576303):setAnimation(state0);
-	GetNPCByID(17576304):setAnimation(state0);
-	GetNPCByID(17576305):setAnimation(state0);
-	GetNPCByID(17576306):setAnimation(state0);
-	GetNPCByID(17576307):setAnimation(state0);
+	GetNPCByID(DoorOffset):setAnimation(state0);
+	GetNPCByID(DoorOffset+1):setAnimation(state0);
+	GetNPCByID(DoorOffset+2):setAnimation(state0);
+	GetNPCByID(DoorOffset+3):setAnimation(state0);
+	GetNPCByID(DoorOffset+4):setAnimation(state0);
 	-- Odin's Gate
-	GetNPCByID(17576308):setAnimation(state1);
-	GetNPCByID(17576309):setAnimation(state1);
-	GetNPCByID(17576310):setAnimation(state1);
-	GetNPCByID(17576311):setAnimation(state1);
-	GetNPCByID(17576312):setAnimation(state1);
+	GetNPCByID(DoorOffset+5):setAnimation(state1);
+	GetNPCByID(DoorOffset+6):setAnimation(state1);
+	GetNPCByID(DoorOffset+7):setAnimation(state1);
+	GetNPCByID(DoorOffset+8):setAnimation(state1);
+	GetNPCByID(DoorOffset+9):setAnimation(state1);
 	-- Leviathan's Gate
-	GetNPCByID(17576313):setAnimation(state0);
-	GetNPCByID(17576314):setAnimation(state0);
-	GetNPCByID(17576315):setAnimation(state0);
-	GetNPCByID(17576316):setAnimation(state0);
-	GetNPCByID(17576317):setAnimation(state0);
+	GetNPCByID(DoorOffset+10):setAnimation(state0);
+	GetNPCByID(DoorOffset+11):setAnimation(state0);
+	GetNPCByID(DoorOffset+12):setAnimation(state0);
+	GetNPCByID(DoorOffset+13):setAnimation(state0);
+	GetNPCByID(DoorOffset+14):setAnimation(state0);
 	-- Titan's Gate
-	GetNPCByID(17576318):setAnimation(state1);
-	GetNPCByID(17576319):setAnimation(state1);
-	GetNPCByID(17576320):setAnimation(state1);
-	GetNPCByID(17576321):setAnimation(state1);
-	GetNPCByID(17576322):setAnimation(state1);
+	GetNPCByID(DoorOffset+15):setAnimation(state1);
+	GetNPCByID(DoorOffset+16):setAnimation(state1);
+	GetNPCByID(DoorOffset+17):setAnimation(state1);
+	GetNPCByID(DoorOffset+18):setAnimation(state1);
+	GetNPCByID(DoorOffset+19):setAnimation(state1);
 	
 	-- Plates
 	-- East Plate
-	GetNPCByID(17576323):setAnimation(state0);
-	GetNPCByID(17576324):setAnimation(state0);
+	GetNPCByID(DoorOffset+20):setAnimation(state0);
+	GetNPCByID(DoorOffset+21):setAnimation(state0);
 	-- North Plate
-	GetNPCByID(17576325):setAnimation(state0);
-	GetNPCByID(17576326):setAnimation(state0);
+	GetNPCByID(DoorOffset+22):setAnimation(state0);
+	GetNPCByID(DoorOffset+23):setAnimation(state0);
 	-- West Plate
-	GetNPCByID(17576327):setAnimation(state0);
-	GetNPCByID(17576328):setAnimation(state0);
+	GetNPCByID(DoorOffset+24):setAnimation(state0);
+	GetNPCByID(DoorOffset+25):setAnimation(state0);
 	-- South Plate
-	GetNPCByID(17576329):setAnimation(state0);
-	GetNPCByID(17576330):setAnimation(state0);
+	GetNPCByID(DoorOffset+26):setAnimation(state0);
+	GetNPCByID(DoorOffset+27):setAnimation(state0);
 	return 0;
 end;
 

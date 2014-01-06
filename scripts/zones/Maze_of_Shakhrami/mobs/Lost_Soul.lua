@@ -1,11 +1,8 @@
 -----------------------------------
--- Area: 
+-- Area: Maze of Shakhrami
 -- Mob: Lost_Soul
--- location @pos 
 -----------------------------------
 
-require("scripts/globals/settings");
-require("scripts/zones/Maze_of_Shakhrami/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action

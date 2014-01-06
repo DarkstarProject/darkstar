@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Heavens Tower
---   NPC: Ikucheechee
+--  NPC:  Ikucheechee
 --  Type: Standard NPC
--- @zone: 242
---  @pos -2.661 -26.5 -5.747
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -2.661 -26.5 -5.747 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------

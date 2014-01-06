@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Heavens Tower
---   NPC: Vahn Paineesha
+--  NPC:  Vahn Paineesha
 --  Type: Standard NPC
--- @zone: 242
---  @pos -2.502 -47.999 -15.083
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -2.502 -47.999 -15.083 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------

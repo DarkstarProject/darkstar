@@ -1,11 +1,7 @@
-
 -----------------------------------
- -- mob : Fomor Thief
- -- zone : Misareaux_Coast
+-- mob : Fomor Thief
+-- zone : Misareaux_Coast
 -----------------------------------
-
-
-
 
 -----------------------------------
 -- onMobSpawn Action

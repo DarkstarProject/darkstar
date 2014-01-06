@@ -8,5 +8,5 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
  FISHING_MESSAGE_OFFSET = 7156; -- You can't fish here
 
 -- Shop Texts
- CHHAYA_SHOP_DIALOG = 7267; -- May I offer you items to help you on your journey?
-LOKHONG_SHOP_DIALOG = 7266; -- There's nothing like fishing to pass the time!
+LOKHONG_SHOP_DIALOG = 7284; -- There's nothing like fishing to pass the time!
+ CHHAYA_SHOP_DIALOG = 7285; -- May I offer you items to help you on your journey?

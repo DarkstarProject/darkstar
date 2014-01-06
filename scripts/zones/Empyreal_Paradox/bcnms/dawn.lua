@@ -51,7 +51,7 @@ end;
 function OnBcnmLeave(player,instance,leavecode)
 	
 	if(leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-			player:startEvent(0x0006); 
+		player:startEvent(0x0006); 
 	elseif(leavecode == 4) then
 		player:startEvent(0x7d02);
 	end

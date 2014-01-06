@@ -5,9 +5,12 @@
 -- @pos -72.026 0.000 -82.337 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -26,7 +29,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	printf("Prog = %u",player:getVar("ratraceCS"));
+	-- printf("Prog = %u",player:getVar("ratraceCS"));
     if(player:getVar("ratraceCS") == 2) then 
        player:startEvent(0x0355);
 	elseif(player:getVar("ratraceCS") >= 3) then 

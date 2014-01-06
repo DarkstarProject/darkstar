@@ -1,11 +1,9 @@
 -----------------------------------
 -- Area: Northern San d'Oria
---  NPC: Faurbellant
+-- NPC:  Faurbellant
 -- Type: Quest NPC
--- @zone 102
---  @pos 484 24 -89
---
 -- Involved in Quest: Gates of Paradise
+-- @pos 484 24 -89 102
 -----------------------------------
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +17,6 @@ require("scripts/zones/La_Theine_Plateau/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
 end;
 
 -----------------------------------
@@ -28,7 +25,7 @@ end;
 
 function onTrigger(player,npc)
 
-	gates = player:getQuestStatus(SANDORIA,GATES_TO_PARADISE);
+	local gates = player:getQuestStatus(SANDORIA,GATES_TO_PARADISE);
 	if (gates == QUEST_COMPLETED) then	
 		player:showText(npc, FAURBELLANT_4);
 	elseif (gates == QUEST_ACCEPTED) then

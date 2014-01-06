@@ -2,25 +2,24 @@
 --	Area: Mhaura
 --	NPC: Rycharde 
 --	Standard Info NPC
--- Starts & Finishes non Repeatable Quest: Rycharde the Chef (100%)
--- quest WAY_OF_THE_COOK (100%)
--- QUEST UNENDING_CHASE (100%)
--- his name is Valgeir (not completed correctly, ferry not implemented)
--- the clue (100%)
--- the basics (not completed correctly, ferry not implemented)
+--  Starts & Finishes non Repeatable Quest: Rycharde the Chef,
+--  WAY_OF_THE_COOK, UNENDING_CHASE
+-- 	his name is Valgeir (not completed correctly, ferry not implemented)
+-- 	the clue (100%)
+-- 	the basics (not completed correctly, ferry not implemented)
+-----------------------------------
+package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 require("scripts/zones/Mhaura/TextIDs");
 
 
 --   player:startEvent(0x4a); -- first quest completed ok
 --   player:startEvent(0x4b); -- nothing to do
 --   player:startEvent(0x4c); -- second quest start  --WAY_OF_THE_COOK 
-
 --   player:startEvent(0x4e); -- you have x hours left
 --   player:startEvent(0x4f); -- not yet done
 --   player:startEvent(0x50); -- second quest completed
@@ -49,46 +48,57 @@ require("scripts/zones/Mhaura/TextIDs");
 
 function onTrade(player,npc,trade)
 
-if (player:getQuestStatus(OTHER_AREAS,RYCHARDE_THE_CHEF)== QUEST_ACCEPTED) then
-	count = trade:getItemCount();
-	DhalmelMeat  = trade:hasItemQty(4359,trade:getItemCount()); --4359 - slice_of_dhalmel_meat
-    if (DhalmelMeat  == true and count == 2) then 
-		player:startEvent(0x4a); -- completed ok
-	elseif(DhalmelMeat  == true and count == 1) then
-		player:startEvent(0x49); -- that's not enogh!
-	end
-elseif (player:getQuestStatus(OTHER_AREAS,WAY_OF_THE_COOK) == QUEST_ACCEPTED) then
-	count = trade:getItemCount();
-	DhalmelMeat  = trade:hasItemQty(4359,1); --4359 - slice_of_dhalmel_meat
-	BeehiveChip  = trade:hasItemQty(912,1); --4359 - slice_of_dhalmel_meat
-    if (DhalmelMeat  == true and BeehiveChip  == true and count == 2) then 
-		Dayspassed=VanadielDayOfTheYear()-player:getVar("QuestRychardeTCDayStarted_var");
-		TotalHourLeft=72-(VanadielHour()+Dayspassed*24)+player:getVar("QuestWayotcHourStarted_var");
-		if(TotalHourLeft>0) then
-			player:startEvent(0x50); -- second quest completed
-		else
-			player:startEvent(0x51); -- too late second quest
+	if (player:getQuestStatus(OTHER_AREAS,RYCHARDE_THE_CHEF)== QUEST_ACCEPTED) then
+		local count = trade:getItemCount();
+		local DhalmelMeat  = trade:hasItemQty(4359,trade:getItemCount()); --4359 - slice_of_dhalmel_meat
+		
+		if (DhalmelMeat  == true and count == 2) then 
+			player:startEvent(0x4a); -- completed ok
+		elseif(DhalmelMeat  == true and count == 1) then
+			player:startEvent(0x49); -- that's not enogh!
+		end
+		
+	elseif (player:getQuestStatus(OTHER_AREAS,WAY_OF_THE_COOK) == QUEST_ACCEPTED) then
+	
+		local count = trade:getItemCount();
+		local DhalmelMeat  = trade:hasItemQty(4359,1); --4359 - slice_of_dhalmel_meat
+		local BeehiveChip  = trade:hasItemQty(912,1); --4359 - slice_of_dhalmel_meat
+		
+		if (DhalmelMeat  == true and BeehiveChip  == true and count == 2) then 
+		
+			local Dayspassed=VanadielDayOfTheYear()-player:getVar("QuestRychardeTCDayStarted_var");
+			local TotalHourLeft=72-(VanadielHour()+Dayspassed*24)+player:getVar("QuestWayotcHourStarted_var");
+			
+			if(TotalHourLeft>0) then
+				player:startEvent(0x50); -- second quest completed
+			else
+				player:startEvent(0x51); -- too late second quest
+			end
+		end
+		
+	elseif (player:getQuestStatus(OTHER_AREAS,UNENDING_CHASE) == QUEST_ACCEPTED) then
+		local puffball  = trade:hasItemQty(4448,1); --4448 - puffball
+		
+		if (puffball  == true) then 
+			player:startEvent(0x53); -- completed quest 3 UNENDING_CHASE
+		end
+		
+	elseif (player:getQuestStatus(OTHER_AREAS,THE_CLUE) == QUEST_ACCEPTED) then
+		local count = trade:getItemCount();
+		local DhalmelMeat  = trade:hasItemQty(4357,trade:getItemCount()); --4357 - crawler egg
+		
+		if (DhalmelMeat  == true and count > 3) then 
+			player:startEvent(0x5c);
+		elseif(DhalmelMeat  == true) then
+			player:startEvent(0x5d); -- that's not enogh!
+		end
+		
+	elseif (player:getQuestStatus(OTHER_AREAS,THE_BASICS) == QUEST_ACCEPTED) then
+		local BackedPototo  = trade:hasItemQty(4436,1); --4436 - baked_popoto
+		if (BackedPototo  == true) then 
+			player:startEvent(0x60);
 		end
 	end
-elseif (player:getQuestStatus(OTHER_AREAS,UNENDING_CHASE) == QUEST_ACCEPTED) then
-	puffball  = trade:hasItemQty(4448,1); --4448 - puffball
-    if (puffball  == true) then 
-		player:startEvent(0x53); -- completed quest 3 UNENDING_CHASE
-	end
-elseif (player:getQuestStatus(OTHER_AREAS,THE_CLUE) == QUEST_ACCEPTED) then
-	count = trade:getItemCount();
-	DhalmelMeat  = trade:hasItemQty(4357,trade:getItemCount()); --4357 - crawler egg
-    if (DhalmelMeat  == true and count > 3) then 
-		player:startEvent(0x5c); -- completed ok
-	elseif(DhalmelMeat  == true) then
-		player:startEvent(0x5d); -- that's not enogh!
-	end
-elseif (player:getQuestStatus(OTHER_AREAS,THE_BASICS) == QUEST_ACCEPTED) then
-	BackedPototo  = trade:hasItemQty(4436,1); --4436 - baked_popoto
-    if (BackedPototo  == true) then 
-		player:startEvent(0x60); -- completed ok
-	end
-end
 end; 
 
 -----------------------------------
@@ -222,9 +232,9 @@ function onEventFinish(player,csid,option)
 		player:completeQuest(OTHER_AREAS,RYCHARDE_THE_CHEF);				
 	elseif(csid == 0x4c) then  -- accept quest 2
 		if(option == 74 ) then -- answer yes!
-				player:setVar("QuestWayotcHourStarted_var",VanadielHour());
-				player:setVar("QuestRychardeTCDayStarted_var",VanadielDayOfTheYear());
-				player:addQuest(OTHER_AREAS,WAY_OF_THE_COOK);	
+			player:setVar("QuestWayotcHourStarted_var",VanadielHour());
+			player:setVar("QuestRychardeTCDayStarted_var",VanadielDayOfTheYear());
+			player:addQuest(OTHER_AREAS,WAY_OF_THE_COOK);	
 		end
 	elseif(csid == 0x50) then  --end quest 2 WAY_OF_THE_COOK
 		player:tradeComplete();

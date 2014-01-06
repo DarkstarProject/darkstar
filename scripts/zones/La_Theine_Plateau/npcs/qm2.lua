@@ -1,7 +1,7 @@
 -----------------------------------
 --  Area: La Theine Plateau
---  NPC: ???
---  Involved in Quest: HITTING_THE_MARQUISATE THF af3
+--  NPC: ??? (qm2)
+--  Involved in Quest: HITTING_THE_MARQUISATE (THF AF3)
 -----------------------------------
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
 -----------------------------------
@@ -17,7 +17,7 @@ require("scripts/zones/La_Theine_Plateau/TextIDs");
 
 function onTrade(player,npc,trade)
 		
-	hittingTheMarquisateNanaaCS = player:getVar("hittingTheMarquisateNanaaCS");	
+	local hittingTheMarquisateNanaaCS = player:getVar("hittingTheMarquisateNanaaCS");	
 		
 	if(trade:hasItemQty(605,1) and trade:getItemCount() == 1) then -- Trade pickaxe		
 		if (hittingTheMarquisateNanaaCS == 1) then

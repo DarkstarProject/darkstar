@@ -2,8 +2,7 @@
 -- Area: Ordelles Caves
 -- NPC:  ???
 -- Involved In Quest: Signed In Blood
---
--- 
+-- @zone 193
 -----------------------------------
 package.loaded["scripts/zones/Ordelles_Caves/TextIDs"] = nil;
 -----------------------------------

@@ -1,7 +1,12 @@
 -----------------------------------
 --	Area: Mhaura
 --	NPC:  Standing Bear
---	Working 100%
+-----------------------------------
+package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/zones/Mhaura/TextIDs");
+
 -----------------------------------
 
 require("scripts/globals/settings");

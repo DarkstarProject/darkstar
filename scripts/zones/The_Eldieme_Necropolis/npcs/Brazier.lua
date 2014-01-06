@@ -53,8 +53,8 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 	
 	if(csid == 0x002c and option == 0) then 
-		LanternOrder = player:getVar("saveMySisterFireLantern");
-		npcID = player:getVar("saveMySisterLanternID");
+		local LanternOrder = player:getVar("saveMySisterFireLantern");
+		local npcID = player:getVar("saveMySisterLanternID");
 		player:setVar("saveMySisterLanternID",0);
 		
 		if(LanternOrder == 0) then

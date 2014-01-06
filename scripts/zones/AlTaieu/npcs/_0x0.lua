@@ -1,13 +1,14 @@
 -----------------------------------
 --  Area: Al'Taieu
 --  NPC:  Crystalline Field
---  @pos 0 -10 -464 33
+--  @pos .1 -10 -464 33
 -----------------------------------
 package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/AlTaieu/TextIDs");
 require("scripts/globals/missions");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -21,10 +22,10 @@ end;
 
 function onTrigger(player,npc)
 
-   if(player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus")==1)then
-    player:startEvent(0x00A4);
-    else
-	player:startEvent(0x0064);
+	if(player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus")==1)then
+		player:startEvent(0x00A4);
+	else
+		player:startEvent(0x0064);
 	end
 	return 1;
 end;

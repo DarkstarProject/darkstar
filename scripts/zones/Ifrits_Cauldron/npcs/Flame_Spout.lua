@@ -4,7 +4,6 @@
 -- @pos 193.967 -0.400 19.492 205
 -----------------------------------
 
-
 require("scripts/zones/Ifrits_Cauldron/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");

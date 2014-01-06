@@ -5,7 +5,6 @@
 -- @pos -345 104 -260 144
 -------------------------------------
 package.loaded["scripts/zones/Waughroon_Shrine/TextIDs"] = nil;
-package.loaded["scripts/globals/bcnm"] = nil;
 -------------------------------------
 
 require("scripts/globals/bcnm");

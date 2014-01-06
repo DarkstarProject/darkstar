@@ -1,13 +1,12 @@
 -----------------------------------
 --  Area: Aht Urhgan Whitegate
---  NPC: Mariyaam
+--  NPC:  Mariyaam
 --  Type: Item Deliverer
---  @zone: 50
---  @pos -125 -6 90
---
+--  @pos -125 -6 90 50
+-----------------------------------
+package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 -----------------------------------

@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Heavens Tower
---   NPC: Heruru
+--  NPC:  Heruru
 --  Type: Standard NPC
--- @zone: 242
---  @pos 2.321 -26.5 4.641
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 2.321 -26.5 4.641 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------

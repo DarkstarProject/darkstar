@@ -1,14 +1,12 @@
 -----------------------------------
 --  Area: Aht Urhgan Whitegate
---   NPC: Dkhaaya
+--  NPC:  Dkhaaya
 --  Type: Standard NPC
--- @zone: 50
---  @pos -73.212 -1 -5.842
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -73.212 -1 -5.842 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
+
 require("scripts/globals/keyitems");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 require("scripts/globals/quests");

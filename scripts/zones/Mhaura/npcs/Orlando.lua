@@ -1,14 +1,13 @@
 -----------------------------------
 --  Area: Mhaura
---   NPC: Orlando
+--  NPC:  Orlando
 --  Type: Standard NPC
--- @zone: 249
---  @pos -37.268 -9 58.047
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -37.268 -9 58.047 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/Mhaura/TextIDs");
 
 -----------------------------------
 -- onTrade Action

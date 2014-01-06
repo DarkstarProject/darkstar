@@ -15,7 +15,7 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	self = mob:getID()
+	local self = mob:getID()
 	-- SpawnMob won't currently work here because the server doesn't actually consider the mob "dead" until this trigger is complete
 	-- SpawnMob(self):updateEnmity(killer)
 end;

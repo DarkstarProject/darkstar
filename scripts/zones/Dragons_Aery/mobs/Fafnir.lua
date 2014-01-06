@@ -22,10 +22,10 @@ function onMobDeath(mob, killer)
 
 	killer:addTitle(FAFNIR_SLAYER);
 
-	Fafnir  = mob:getID();
-	Nidhogg = 17408019;
-	ToD     = GetServerVariable("[POP]Nidhogg");
-	kills   = GetServerVariable("[PH]Nidhogg");
+	local Fafnir  = mob:getID();
+	local Nidhogg = 17408019;
+	local ToD     = GetServerVariable("[POP]Nidhogg");
+	local kills   = GetServerVariable("[PH]Nidhogg");
     DeterMob(Fafnir, true);
 	if (ToD <= os.time(t) and GetMobAction(Nidhogg) == 0) then
 		if (math.random((1),(5)) == 3 or kills > 6) then

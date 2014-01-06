@@ -1,10 +1,8 @@
 -----------------------------------
---   NPC: ??? (QM3)
+--  NPC: ??? (QM3)
 --  Type: Saltvix dice roll game part 2
--- @zone: 191
---
--- Involved in quest "As Thick As Thieves"
---
+--  @zone: 191
+--  Involved in quest "As Thick As Thieves"
 -----------------------------------
 package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil;
 -----------------------------------
@@ -18,12 +16,12 @@ require("scripts/zones/Dangruf_Wadi/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS");
+	local thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS");
 
 	if(thickAsThievesGamblingCS == 2) then
 		if(trade:hasItemQty(936,1) and trade:getItemCount() == 1) then -- Trade 1x rock slat
-			rand1 = math.random(1,999);
-			rand2 = math.random(1,999);	
+			local rand1 = math.random(1,999);
+			local rand2 = math.random(1,999);	
 
 			if(rand1 > rand2) then
 				player:startEvent(0x0088,1092,0,rand1,rand2); -- complete 1/3 gamble mini quest	

@@ -3,8 +3,9 @@
 -- Zone: Dangruf_Wadi (191)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/status");
@@ -25,7 +26,7 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
+	local cs = -1;	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(-4.025,-4.449,0.016,112);
 	end	

@@ -3,8 +3,9 @@
 -- Zone: Bastok_Markets_[S] (87)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/Bastok_Markets_[S]/TextIDs");
 
@@ -20,7 +21,7 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
+	local cs = -1;	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(-233.879,-2,94,61);
 	end	

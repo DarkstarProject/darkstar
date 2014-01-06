@@ -1,14 +1,13 @@
 -----------------------------------
 --  Area: Aht Urhgan Whitegate
---   NPC: Zasshal
+--  NPC:  Zasshal
 --  Type: Salvage
--- @zone: 50
---  @pos 101.468 -1 -20.088
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 101.468 -1 -20.088 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 -----------------------------------
 -- onTrade Action

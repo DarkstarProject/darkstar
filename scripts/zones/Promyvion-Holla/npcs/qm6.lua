@@ -1,21 +1,19 @@
 -----------------------------------	
--- ??? map acquisition
 -- Area: Promyvion holla
+-- ??? map acquisition
 -----------------------------------	
-	package.loaded["scripts/zones/Promyvion-Holla/TextIDs"] = nil;
+package.loaded["scripts/zones/Promyvion-Holla/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/zones/Promyvion-Holla/TextIDs");
-	
-
 	
 -----------------------------------	
 -- onTrigger Action	
 -----------------------------------	
 	
 function onTrigger(player,npc)	
-player:messageSpecial(6392);--There is nothing out of the ordinary here.
+	player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 end;	
 	
 -----------------------------------	
@@ -28,7 +26,7 @@ function onTrade(player,npc,trade)
  player:tradeComplete();
  player:messageSpecial(KEYITEM_OBTAINED,436);
  else
- player:messageSpecial(119);--Nothing happens
+ player:messageSpecial(NOTHING_HAPPENS);
  end
 end;	
 	

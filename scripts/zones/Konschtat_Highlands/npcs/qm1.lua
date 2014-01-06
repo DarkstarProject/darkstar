@@ -24,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
 
-PastPerfect = player:getQuestStatus(BASTOK,PAST_PERFECT);
+	local PastPerfect = player:getQuestStatus(BASTOK,PAST_PERFECT);
 
 	if (PastPerfect == QUEST_ACCEPTED) then
 		player:addKeyItem(0x6d);

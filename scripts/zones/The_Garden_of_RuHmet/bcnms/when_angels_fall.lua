@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: The_Garden_of_RuHmet
 -- Name: when_angels_fall
-
 -----------------------------------
 package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
 -----------------------------------

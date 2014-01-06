@@ -3,8 +3,9 @@
 -- Zone: Qulun_Dome (148)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Qulun_Dome/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/Qulun_Dome/TextIDs");
 
@@ -20,7 +21,7 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-	cs = -1;
+	local cs = -1;
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
 		player:setPos(337.901,38.091,20.087,129);
 	end

@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Al'Taieu
---   NPC: Quasilumin
+--  NPC:  Quasilumin
 --  Type: Standard NPC
--- @zone: 33
---  @pos -27.443 -1 -636.850
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -27.443 -1 -636.850 33
 -----------------------------------
 package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 -----------------------------------
@@ -32,8 +29,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -41,7 +38,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 

@@ -2,7 +2,6 @@
 -- Area: Newton Movalpolos
 -- NPC:  Treasure Coffer
 -- @zone 12
--- @pos 
 -----------------------------------
 package.loaded["scripts/zones/Newton_Movalpolos/TextIDs"] = nil;
 -----------------------------------

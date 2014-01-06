@@ -3,8 +3,9 @@
 -- NPC: Transporter
 -- Standard Teleport NPC
 -----------------------------------
-
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/zones/Heavens_Tower/TextIDs");
 
 -----------------------------------

@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: La Theine Plateau
---   NPC: Tayula
+--  NPC:  Tayula
 --  Type: Mission
--- @zone: 102
---  @pos -311.785 50.351 182.063
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -311.785 50.351 182.063 102
 -----------------------------------
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
 -----------------------------------

@@ -1,14 +1,13 @@
 -----------------------------------
 --  Area: Jugner Forest (S)
---   NPC: Roiloux, R.K.
+--  NPC:  Roiloux, R.K.
 --  Type: Campaign Arbiter
--- @zone: 82
---  @pos 70.493 -0.602 -9.185
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 70.493 -0.602 -9.185 82
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/Jugner_Forest_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade Action

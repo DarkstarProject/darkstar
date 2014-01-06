@@ -11,7 +11,7 @@ function OnGameDayAutomatisation()
 						 --[[G-10]]{-55.960,2.958,-300.014}, --[[I-7]]{152.311,4.000,-74.176}, --[[I-8]]{153.514,4.250,-112.616},--[[J-7]]{188.988,4.000,-80.058},  --[[K-7]]{318.694,0.001,-58.646},
 						 --[[K-8]]{299.717,0.001,-160.910},  --[[K-9]]{274.849,4.162,-213.599},--[[K-9]]{250.809,4.000,-240.509},--[[J-8]]{219.474,3.750,-128.170}, --[[I-9]]{86.749,-5.166,-166.414}};
 	
-	local storageHole = GetNPCByID(17388018);
+	local storageHole = GetNPCByID(17388019);
 	local randPos = 0;
 	
 	while(randPos == 0 or storHolePos[randPos][1] == storageHole:getXPos()) do
@@ -54,12 +54,14 @@ function OnGameDayAutomatisation()
 	GetNPCByID(SacrariumWallOffset+11):setAnimation(tbl[17]);
 	GetNPCByID(SacrariumWallOffset+5):setAnimation(tbl[18]); 
 	
-		-- Ro'Maeve Moongates
+	-- Ro'Maeve Moongates
+	local Moongate_Offset = 17277172; -- _3e0 in npc_list
 	local direction = VanadielMoonDirection();
 	local phase = VanadielMoonPhase();
+	
 	if(((direction == 2 and phase >= 90) or (direction == 1 and phase >= 95)) and GetNPCByID(17277171):getWeather() == 0) then
-		GetNPCByID(17277171):openDoor(432);
-		GetNPCByID(17277172):openDoor(432);
+		GetNPCByID(Moongate_Offset):openDoor(432);
+		GetNPCByID(Moongate_Offset+1):openDoor(432);
 	end
 
 	-- Can spawn Xolotl?
@@ -79,7 +81,7 @@ end;
 function OnGameHourAutomatisation()
 
 	local VanadielHour = VanadielHour();
-	local FlameSpout = 17617203; 
+	local FlameSpout = 17617199;
 	
 	-- Community Service Quest
 	if(VanadielHour == 1) then

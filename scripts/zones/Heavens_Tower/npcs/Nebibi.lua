@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Heavens Tower
---   NPC: Nebibi
+--  NPC:  Nebibi
 --  Type: Standard NPC
--- @zone: 242
---  @pos 23.539 -27.25 22.589
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 23.539 -27.25 22.589 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------

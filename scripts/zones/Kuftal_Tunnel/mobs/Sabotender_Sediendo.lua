@@ -12,10 +12,10 @@ require("scripts/zones/Kuftal_Tunnel/MobIDs");
 	
 function onMobDeath(mob,killer)	
 
-    mob = mob:getID();
+    local mob = mob:getID();
     if (Sabotender_Mariachi_PH[mob] ~= nil) then
 
-        ToD = GetServerVariable("[POP]Sabotender_Mariachi");
+        local ToD = GetServerVariable("[POP]Sabotender_Mariachi");
         if (ToD <= os.time(t) and GetMobAction(Sabotender_Mariachi) == 0) then
             if (math.random((1),(20)) == 5) then
                 UpdateNMSpawnPoint(Sabotender_Mariachi);

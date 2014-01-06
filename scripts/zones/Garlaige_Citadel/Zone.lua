@@ -9,7 +9,7 @@ package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/zones/Garlaige_Citadel/TextIDs");
 
-banishing_gates_base = 17596755; -- _5k0 (First banishing gate)
+banishing_gates_base = 17596756; -- _5k0 (First banishing gate)
 
 -----------------------------------
 -- onInitialize
@@ -38,7 +38,7 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-cs = -1;	
+	local cs = -1;	
 	
 	if((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(-380.035,-13.548,398.032,64);
@@ -54,8 +54,8 @@ end;
 
 function onRegionEnter(player,region)
 	
-	regionID = region:GetRegionID();
-	mylever = banishing_gates_base + regionID;
+	local regionID = region:GetRegionID();
+	local mylever = banishing_gates_base + regionID;
 	GetNPCByID(mylever):setAnimation(8);
 	
 	if(regionID >= 1 and regionID <= 4) then
@@ -88,8 +88,8 @@ end;
 
 function onRegionLeave(player,region)
 	
-	regionID = region:GetRegionID();
-	mylever = banishing_gates_base + regionID;
+	local regionID = region:GetRegionID();
+	local mylever = banishing_gates_base + regionID;
 	GetNPCByID(mylever):setAnimation(9);
 	
 end;

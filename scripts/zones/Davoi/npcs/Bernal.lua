@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Davoi
 -- NPC:  Bernal
--- @zone 149
--- @pos 177 -3 -127
+-- @pos 177 -3 -127 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
@@ -23,9 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
 	player:startEvent(0x001e);
-	
 end;
 
 -----------------------------------

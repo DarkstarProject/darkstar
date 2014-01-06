@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Mhaura
 -- NPC:  Blandine
--- Start Quest: The Sand Charm
--- @zone 249
--- @pos 23 -7 41
+-- Start Quest: The Sand Charmz
+-- @pos 23 -7 41 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
@@ -24,8 +23,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	X = player:getXPos(); Z = player:getZPos();
-	TheSandCharm = player:getQuestStatus(OTHER_AREAS,THE_SAND_CHARM);
+	local X = player:getXPos(); Z = player:getZPos();
+	local TheSandCharm = player:getQuestStatus(OTHER_AREAS,THE_SAND_CHARM);
 	
 	if(Z <= 29 or Z >= 38 or X <= 16 or X >= 32) then
 		if(player:getFameLevel(WINDURST) >= 4 and TheSandCharm == QUEST_AVAILABLE) then 

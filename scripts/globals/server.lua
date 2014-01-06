@@ -88,13 +88,13 @@ function SetFieldManual()
 	local FieldManuals  =
 	{
         17187542,17187543,17191524,17191525, -- West Ronfaure 2, East Ronfaure 2
-        17195670,17195671,17199745,17199746, -- La Theine 2, Valkurm 2
+        17195671,17195672,17199745,17199746, -- La Theine 2, Valkurm 2
         17199746,17203877,17203878,17207858, -- Valkurm 1, Jugner 2, Batallia 1
         17207859,17212103,17212104,17212105, -- Batallia 1, North Gustaberg 3
-        17216171,17216172,17220158,17220159, -- South Gustaberg 2, Konschtat 2
+        17216171,17216172,17220159,17220160, -- South Gustaberg 2, Konschtat 2
         17224345,17224346,17228369,17228370, -- Pashhow 2, Rolanberry 2
         17232273,17232274,17232275,17232276, -- Beaucedine all 4
-        17236340,17236341,17240507,17240508, -- Xarcabard 2, Cape Teriggan 2
+        17236340,17236341,17240508,17240509, -- Xarcabard 2, Cape Teriggan 2
         17244647,17244648,17244649,17248845, -- Eastern Altepa 3, West Sarutabaruta 1
         17248846,17248847,17253053,17253054, -- West Sarutabaruta 2, East Sarutabaruta 2
         17253056,17257067,17257068,17257069, -- East Sarutabaruta 1, Tahrongi 3
@@ -104,7 +104,7 @@ function SetFieldManual()
         17281641,17281642,17281643,17285690, -- Yuhtunga Jungle 3, Yhoator Jungle 1
         17285691,17285692,17289789,17289790, -- Yhoator Jungle 2, Western Altepa 2
         17289791,17293768,17293769,17297484, -- Western Altepa 1, Qufim 2, Behemoth's Dominion 1
-        17301585,17301586,17310098,17310099, -- Valley of Sorrows 2, Ru'Aun Gardens 2
+        17301586,17301587,17310098,17310099, -- Valley of Sorrows 2, Ru'Aun Gardens 2
         17310100,17310101,17310102,17310103, -- Ru'Aun Gardens all 4 (6 total)
 	}
 

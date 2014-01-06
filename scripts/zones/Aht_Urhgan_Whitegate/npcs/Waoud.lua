@@ -1,10 +1,9 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC: Waoud
+-- NPC:  Waoud
 -- Standard Info NPC
 -- Involved in quest: An Empty Vessel
--- @zone 50
--- @pos 65 -6 -78
+-- @pos 65 -6 -78 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +18,7 @@ require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 function onTrade(player,npc,trade)
 
-local StoneID = player:getVar("EmptyVesselStone");
+	local StoneID = player:getVar("EmptyVesselStone");
 
 	if (player:getVar("AnEmptyVesselProgress") == 3 and player:getQuestStatus(AHT_URHGAN,AN_EMPTY_VESSEL) == QUEST_ACCEPTED) then
 		if (trade:hasItemQty(StoneID,1) and trade:getGil() == 0 and trade:getItemCount() == 1) then
@@ -34,11 +33,11 @@ end;
 
 function onTrigger(player,npc)
 
-local AnEmptyVessel = player:getQuestStatus(AHT_URHGAN,AN_EMPTY_VESSEL);
-local AnEmptyVesselProgress = player:getVar("AnEmptyVesselProgress");
-local divinationDay = player:getVar("LastDivinationDay");
-local currentDay = VanadielDayOfTheYear();
-local divinationReady = ((divinationDay < currentDay) or (divinationDay > currentDay and player:getVar("LastDivinationYear") < VanadielYear()));
+	local AnEmptyVessel = player:getQuestStatus(AHT_URHGAN,AN_EMPTY_VESSEL);
+	local AnEmptyVesselProgress = player:getVar("AnEmptyVesselProgress");
+	local divinationDay = player:getVar("LastDivinationDay");
+	local currentDay = VanadielDayOfTheYear();
+	local divinationReady = ((divinationDay < currentDay) or (divinationDay > currentDay and player:getVar("LastDivinationYear") < VanadielYear()));
 
 	if (ENABLE_TOAU == 1 and player:getMainLvl() >= ADVANCED_JOB_LEVEL and AnEmptyVessel == QUEST_AVAILABLE and AnEmptyVesselProgress <= 1 and divinationReady == true) then
 		player:startEvent(0x003c,player:getGil()); -- initial cutscene where you get what stone you are gonne give to him if you answer all 10 questions correctly
@@ -69,7 +68,7 @@ function onEventUpdate(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
 
-local success = player:getVar("SuccessfullyAnswered"); -- number of questions answered successfully
+	local success = player:getVar("SuccessfullyAnswered"); -- number of questions answered successfully
 
 	if (csid == 0x003c) then
 		if (option == 2) then

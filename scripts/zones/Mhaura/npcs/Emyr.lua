@@ -2,11 +2,12 @@
 -- Area: Mhaura
 -- NPC:  Emyr
 -- Type: Standard NPC
--- @zone 249
--- @pos 45.021 -9 37.095 
+-- @pos 45.021 -9 37.095 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/Mhaura/TextIDs");
 
 -----------------------------------
 -- onTrade Action

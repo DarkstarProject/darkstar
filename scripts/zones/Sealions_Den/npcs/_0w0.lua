@@ -4,13 +4,13 @@
 -- @pos 612 132 774 32
 -----------------------------------
 package.loaded["scripts/zones/Sealions_Den/TextIDs"] = nil;
-package.loaded["scripts/globals/bcnm"] = nil;
 -----------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/globals/missions");
 require("scripts/zones/Sealions_Den/TextIDs");
 require("scripts/globals/titles");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -29,11 +29,11 @@ end;
 
 function onTrigger(player,npc)
     if(player:getCurrentMission(COP) == SLANDEROUS_UTTERINGS and player:getVar("PromathiaStatus") == 1)then
-	player:startEvent(0x000D);
+		player:startEvent(0x000D);
 	elseif(EventTriggerBCNM(player,npc))then
 		return;
 	elseif(player:hasKeyItem(LIGHT_OF_ALTAIEU) == true or player:getCurrentMission(COP) > THE_WARRIOR_S_PATH) then
-	player:startEvent(0x000C);
+		player:startEvent(0x000C);
 	end	
 end;
 
@@ -44,7 +44,6 @@ end;
 function onEventUpdate(player,csid,option)
 --printf("onUpdate CSID: %u",csid);
 --printf("onUpdate RESULT: %u",option);
-	
 	EventUpdateBCNM(player,csid,option)
 end;
 
@@ -60,11 +59,11 @@ function onEventFinish(player,csid,option)
 		return;
 	end
 	if(csid == 0x000c and option == 1) then 
-	player:setPos(-25,-1 ,-620 ,208 ,33);
+		player:setPos(-25,-1 ,-620 ,208 ,33);
 	elseif(csid == 0x000D)then
-	player:setVar("PromathiaStatus",0);
-	player:completeMission(COP,SLANDEROUS_UTTERINGS);
-	player:addMission(COP,THE_ENDURING_TUMULT_OF_WAR);
-	player:addTitle(THE_LOST_ONE);
+		player:setVar("PromathiaStatus",0);
+		player:completeMission(COP,SLANDEROUS_UTTERINGS);
+		player:addMission(COP,THE_ENDURING_TUMULT_OF_WAR);
+		player:addTitle(THE_LOST_ONE);
 	end
-	end;
+end;

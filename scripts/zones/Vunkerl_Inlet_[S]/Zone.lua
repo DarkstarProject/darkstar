@@ -3,8 +3,9 @@
 -- Zone: Vunkerl_Inlet_[S] (83)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Vunkerl_Inlet_[S]/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/Vunkerl_Inlet_[S]/TextIDs");
 
@@ -20,7 +21,7 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
+	local cs = -1;	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(-393.238,-50.034,741.199,2);
 	end	

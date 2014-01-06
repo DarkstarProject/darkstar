@@ -2,8 +2,7 @@
 -- Area: Ordelles Caves
 -- NPC:  Gerwitz's Soul
 -- Involved In Quest: Sharpening the Sword
--- @zone 193
--- @pos -51 0 3
+-- @pos -51 0.1 3 193
 -----------------------------------
 
 require("scripts/globals/quests");

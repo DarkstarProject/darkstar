@@ -12,10 +12,10 @@ require("/scripts/zones/Gustav_Tunnel/MobIDs");
 	
 function onMobDeath(mob,killer)	
   
-    mob = mob:getID();
+    local mob = mob:getID();
     if (Goblinsavior_Heronox_PH[mob] ~= nil) then
 
-        ToD = GetServerVariable("[POP]Goblinsavior_Heronox");
+        local ToD = GetServerVariable("[POP]Goblinsavior_Heronox");
         if (ToD <= os.time(t) and GetMobAction(Goblinsavior_Heronox) == 0) then
             if (math.random((1),(20)) == 5) then
                 UpdateNMSpawnPoint(Goblinsavior_Heronox);

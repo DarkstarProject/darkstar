@@ -2,8 +2,7 @@
 -- Area: Davoi
 -- NPC:  Howling Pond
 -- Used In Quest: Whence Blows the Wind
--- @zone 149
--- @pos 21 0 -258
+-- @pos 21 0.1 -258 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
@@ -24,9 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
 	player:startEvent(0x0033);
-	
 end;
 
 -----------------------------------
@@ -48,7 +45,7 @@ function onEventFinish(player,csid,option)
 	
 	if(csid == 0x0033 and player:getVar("miniQuestForORB_CS") == 1) then
 		
-		c = player:getVar("countRedPoolForORB");
+		local c = player:getVar("countRedPoolForORB");
 		
 		if(c == 0) then
 			player:setVar("countRedPoolForORB", c + 1);

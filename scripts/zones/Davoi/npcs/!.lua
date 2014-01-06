@@ -2,8 +2,7 @@
 -- Area: Davoi
 -- NPC:  !
 -- Involved in Mission: The Davoi Report
--- @zone 149
--- @pos 164 0 -21
+-- @pos 164 0.1 -21 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
@@ -25,15 +24,15 @@ end;
 
 function onTrigger(player,npc)
 	
-	CurrentMission = player:getCurrentMission(SANDORIA)
+	local CurrentMission = player:getCurrentMission(SANDORIA)
 	
 	if(CurrentMission == THE_DAVOI_REPORT and player:getVar("MissionStatus") == 1) then
 		player:setVar("MissionStatus",2);
 		player:addKeyItem(LOST_DOCUMENT);
 		player:messageSpecial(KEYITEM_OBTAINED,LOST_DOCUMENT);
 	elseif(CurrentMission == INFILTRATE_DAVOI and player:getVar("MissionStatus") >= 6 and player:getVar("MissionStatus") <= 9) then
-		X = npc:getXPos();
-		Z = npc:getZPos();
+		local X = npc:getXPos();
+		local Z = npc:getZPos();
 		
 		if(X >= 292 and X <= 296 and Z >= -30 and Z <= -26 and player:hasKeyItem(EAST_BLOCK_CODE) == false) then
 			player:setVar("MissionStatus",player:getVar("MissionStatus") + 1);

@@ -1,11 +1,7 @@
-
 -----------------------------------
- -- mob : Fomor Monk
- -- zone : Misareaux_Coast 
+-- mob : Fomor Monk
+-- zone : Misareaux_Coast 
 -----------------------------------
-
-
-
 
 -----------------------------------
 -- onMobSpawn Action

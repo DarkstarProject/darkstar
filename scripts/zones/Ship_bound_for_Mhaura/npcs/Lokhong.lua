@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Ship bound for Mhaura
--- NPC: Lokhong
--- Guild Merchant NPC: Fishing Guild 
+-- NPC:  Lokhong
+-- Type: Guild Merchant: Fishing Guild 
 -- @pos 1.841 -2.101 -9.000 221
 -----------------------------------
 package.loaded["scripts/zones/Ship_bound_for_Mhaura/TextIDs"] = nil;

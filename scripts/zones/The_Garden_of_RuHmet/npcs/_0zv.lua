@@ -1,9 +1,10 @@
 -----------------------------------
 --  Area: The Garden of Ru'Hmet
 --  NPC:  particle gate
---  @pos 
 -----------------------------------
+
 require("scripts/globals/keyitems");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------

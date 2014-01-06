@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
 -- NPC:  Cermet Door
--- Never opens.
 -----------------------------------
 package.loaded["scripts/zones/Lower_Delkfutts_Tower/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	return 1;
+	player:messageSpecial(DOOR_FIRMLY_SHUT);
 end; 
 
 -----------------------------------

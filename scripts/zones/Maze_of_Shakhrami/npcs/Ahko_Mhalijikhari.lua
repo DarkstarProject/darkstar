@@ -1,12 +1,14 @@
 -----------------------------------
 --  Area: Maze of Shakhrami
---   NPC: Ahko Mhalijikhari
+--  NPC:  Ahko Mhalijikhari
 --  Type: Quest NPC
--- @zone: 198
---  @pos -344.617 -12.226 -166.233
--- 0x003d  0x003e  0x003f  0x0040  0x0041
+--  @pos -344.617 -12.226 -166.233 198
+--  0x003d  0x003e  0x003f  0x0040  0x0041
+-----------------------------------
+package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/zones/Maze_of_Shakhrami/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
@@ -30,7 +32,6 @@ function onTrigger(player,npc)
 			player:startEvent(0x0041); -- After NM's dead
 		elseif(player:hasStatusEffect(EFFECT_LEVEL_RESTRICTION) == false) then
 			player:startEvent(0x003e); -- 
-
 		else
 			player:startEvent(0x0040);
 		end

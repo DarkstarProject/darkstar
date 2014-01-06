@@ -3,8 +3,9 @@
 -- Zone: Spire_of_Dem (19)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Spire_of_Dem/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/Spire_of_Dem/TextIDs");
 
@@ -20,7 +21,7 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
+	local cs = -1;	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(-0.039,-4.083,293.641,192);
 	end	

@@ -1,15 +1,15 @@
 -----------------------------------
 --  Area: Al'Taieu
---   NPC: Sirling_Vortex
+--  NPC:  Swirling_Vortex
 --  Type: Standard NPC
--- @zone: 33
---  @pos 
+--  @zone 33
 -----------------------------------
 package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/AlTaieu/TextIDs");
 require("scripts/globals/limbus");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -23,11 +23,11 @@ end;
 
 function onTrigger(player,npc)
  
-   if(npc:getID() == 16912905) then
-     player:startEvent(0x009F);
-   else
-     player:startEvent(0x00A0);   
-   end
+	if(npc:getID() == 16912906) then
+		player:startEvent(0x009F);
+	else
+		player:startEvent(0x00A0);   
+	end
 
 end;
 

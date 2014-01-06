@@ -16,8 +16,6 @@ require("scripts/zones/Mhaura/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
-	
 end; 
 
 -----------------------------------

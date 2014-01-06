@@ -1,6 +1,7 @@
--- Go'Bha Slaughterer
--- by ReaperX (DSP By Hypnotoad)
--- BCNM mob in Bastok mission 7-2.
+-----------------------------------
+-- Area: Waughroon Shrine
+-- NPC:  Go'Bha Slaughterer
+-----------------------------------
 
 -----------------------------------
 -- onMobSpawn Action

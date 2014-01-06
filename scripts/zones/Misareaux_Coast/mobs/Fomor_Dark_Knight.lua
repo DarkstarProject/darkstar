@@ -1,11 +1,7 @@
-
 -----------------------------------
- -- mob : Fomor Dark Knight
- -- zone : Misareaux_Coast 
+-- mob : Fomor Dark Knight
+-- zone : Misareaux_Coast 
 -----------------------------------
-
-
-
 
 -----------------------------------
 -- onMobSpawn Action

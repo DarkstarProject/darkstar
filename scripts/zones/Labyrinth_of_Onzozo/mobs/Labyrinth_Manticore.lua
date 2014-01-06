@@ -12,10 +12,10 @@ require("/scripts/zones/Labyrinth_of_Onzozo/MobIDs");
 	
 function onMobDeath(mob,killer)	
   
-    mob = mob:getID();
+    local mob = mob:getID();
     if (Narasimha_PH[mob] ~= nil) then
 
-        ToD = GetServerVariable("[POP]Narasimha");
+        local ToD = GetServerVariable("[POP]Narasimha");
         if (ToD <= os.time(t) and GetMobAction(Narasimha) == 0) then
             if (math.random((1),(20)) == 5) then
                 UpdateNMSpawnPoint(Narasimha);

@@ -2,8 +2,8 @@
 -- Area: Davoi
 -- NPC:  Hide Flap
 -- Involved in Quest: The Doorman, The First Meeting
--- @zone 149
--- @pos 293 3 -213 (WAR)(K-9) @pos -124 3 -43 (MNK)(F-7)
+-- @pos 293 3 -213 149 (WAR)(K-9) 
+-- @pos -124 3 -43 149 (MNK)(F-7)
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
@@ -26,11 +26,10 @@ end;
 
 function onTrigger(player,npc)
 	
-	X = npc:getXPos();
-	Z = npc:getZPos();
-	
-	swordGripMaterial = player:hasKeyItem(SWORD_GRIP_MATERIAL);
-	martialArtsScroll = player:hasKeyItem(SANDORIAN_MARTIAL_ARTS_SCROLL);
+	local X = npc:getXPos();
+	local Z = npc:getZPos();
+	local swordGripMaterial = player:hasKeyItem(SWORD_GRIP_MATERIAL);
+	local martialArtsScroll = player:hasKeyItem(SANDORIAN_MARTIAL_ARTS_SCROLL);
 	
 	if(player:getQuestStatus(BASTOK,THE_DOORMAN) == QUEST_ACCEPTED and X >= 289 and X <= 293 and Z <= -214 and Z >= -218) then
 		if(player:getVar("theDoormanKilledNM") >= 2 and swordGripMaterial == false and player:getVar("theDoormanMyMob") == 1) then

@@ -1,14 +1,12 @@
 -----------------------------------
 --  Area: Beadeaux
---   NPC: Ge'Fhu Yagudoeye
+--  NPC:  Ge'Fhu Yagudoeye
 --  Type: Quest NPC
--- @zone: 147
---  @pos -91.354 -4.251 -127.831
---
--- Auto-Script: Requires Verification
+--  @pos -91.354 -4.251 -127.831 147
+-----------------------------------
+package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
 require("scripts/zones/Beadeaux/TextIDs");
 
 -----------------------------------

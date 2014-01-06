@@ -3,12 +3,10 @@
 -- NPC:  Armoury Crate
 -------------------------------------
 package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
-package.loaded["scripts/globals/bcnm"] = nil;
 -------------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/zones/Horlais_Peak/TextIDs");
-
 
 -----------------------------------
 -- onTrade Action

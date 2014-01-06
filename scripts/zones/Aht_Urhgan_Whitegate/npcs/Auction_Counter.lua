@@ -1,8 +1,11 @@
 -----------------------------------
 --	Area: Aht Urhgan Whitegate
 --	NPC:  Auction Counter
---	Working 100%
 -----------------------------------
+package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 -----------------------------------
 -- onTrade Action

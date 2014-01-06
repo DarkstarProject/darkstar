@@ -1,10 +1,10 @@
 -----------------------------------
--- Area: 
+-- Area: Empyreal Paradox
 -- NPC:  Promathia
------------------------------------
 -----------------------------------
 
 require("scripts/globals/titles");
+
 -----------------------------------
 -- onMobInitialize Action
 -----------------------------------
@@ -18,12 +18,14 @@ end;
 
 function onMobEngaged(mob,target)
 end;
+
 -----------------------------------
 -- onMobFight Action
 -----------------------------------
 
 function onMobFight(mob,target) 
 end;
+
 -----------------------------------
 -- onMobDeath
 -----------------------------------

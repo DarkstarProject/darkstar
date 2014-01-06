@@ -2,15 +2,17 @@
 -- Area: Zeruhn Mines
 -- NPC:  Drake Fang
 -- Involved in Mission: Bastok 6-1
--- @pos -74 0 58 172
+-- @pos -74 0.1 58 172
 -----------------------------------
 package.loaded["scripts/zones/Zeruhn_Mines/TextIDs"] = nil;
 -----------------------------------
+
 require("scripts/globals/titles");
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/zones/Zeruhn_Mines/TextIDs");
 require("scripts/globals/keyitems");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -32,15 +34,14 @@ function onTrigger(player,npc)
 		end
 		
 	elseif(player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER and player:getVar("MissionStatus") == 1) then
-			player:startEvent(0x00ca);
+		player:startEvent(0x00ca);
 	elseif(player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER) then
 		if(player:getVar("MissionStatus") == 4) then
 			player:startEvent(0x00cc);
 		end
-		
 	else
 		player:startEvent(0x006c);
-		end
+	end
 end;
 
 -- 0x006c  0x00c8  0x00c9  0x00ca  0x00cb  0x00cc

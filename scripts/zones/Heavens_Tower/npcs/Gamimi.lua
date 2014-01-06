@@ -1,9 +1,8 @@
 -----------------------------------
---  Area: Heavens Tower
---  GOLD WORLD PASS ARBITER: Gamimi
---  She gives adventurers gold world passes.
---  @zone 242
---  @pos 4 0 32
+--  Area:  Heavens Tower
+--  NPC:   Gamimi
+--  Type:  GOLD WORLD PASS ARBITER
+--  @pos 4 0.1 32 242
 -----------------------------------
 
 -----------------------------------

@@ -1,18 +1,16 @@
 -----------------------------------
 -- Area: The_Garden_of_RuHmet
--- NPC:  
--- @pos 
+-- NPC:  _0z0
 -----------------------------------
 package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
-package.loaded["scripts/globals/bcnm"] = nil;
 -----------------------------------
-
 
 require("scripts/globals/settings");
 require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 require("scripts/globals/bcnm");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------

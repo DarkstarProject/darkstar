@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Kuftal Tunnel
---   NPC: Hawk Nose
+--  NPC:  Hawk Nose
 --  Type: Quest NPC
--- @zone: 174
---  @pos 0.000 -1 0.000
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos .1 -1 .1 174
 -----------------------------------
 package.loaded["scripts/zones/Kuftal_Tunnel/TextIDs"] = nil;
 -----------------------------------

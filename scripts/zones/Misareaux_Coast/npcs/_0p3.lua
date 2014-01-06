@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Misareaux Coast
---  NPC:  Dilapidated Gate
---  Entrance to Misareaux Coast
+--  Area:  Misareaux Coast
+--  NPC:   Dilapidated Gate
+--  Notes: Entrance to Misareaux Coast
 -----------------------------------
 package.loaded["scripts/zones/Misareaux_Coast/TextIDs"] = nil;
 -----------------------------------

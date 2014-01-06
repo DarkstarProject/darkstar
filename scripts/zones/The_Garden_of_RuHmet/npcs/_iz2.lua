@@ -1,11 +1,12 @@
 -----------------------------------
 --  Area: the dargen of ruhmet
 --  NPC:  Ebon_Panel
---  @pos 
 -----------------------------------
+
 require("scripts/globals/missions");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------

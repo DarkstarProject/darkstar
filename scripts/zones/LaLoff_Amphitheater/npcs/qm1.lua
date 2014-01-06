@@ -1,11 +1,8 @@
 -----------------------------------
 -- Area: LaLoff_Amphitheater
---
 -- NPC:  Shimmering Circle (BCNM Entrances)
---
 -------------------------------------
 package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
-package.loaded["scripts/globals/bcnm"] = nil;
 -------------------------------------
 
 require("scripts/globals/bcnm");

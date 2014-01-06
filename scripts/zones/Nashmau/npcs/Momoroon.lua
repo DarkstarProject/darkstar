@@ -1,8 +1,11 @@
 -----------------------------------
 --	Area: Nashmau
 --	NPC:  Momoroon
---	Working 100%
 -----------------------------------
+package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/zones/Nashmau/TextIDs");
 
 -----------------------------------
 -- onTrade Action

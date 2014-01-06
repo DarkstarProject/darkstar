@@ -1,62 +1,62 @@
 -----------------------------------
 --  Area: Newton Movalpolos
---   NPC: Furnace_Hatch
---  Type: 
--- @zone: 
---  @pos 
--- 
--- 
+--  NPC:  Furnace_Hatch
 -----------------------------------
 package.loaded["scripts/zones/Newton_Movalpolos/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/Newton_Movalpolos/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
- if(trade:getItemCount() == 1 and trade:hasItemQty(947,1)) then
-    player:tradeComplete(); 
-    local npcid = npc:getID();
-   if(npcid == 16826608 or npcid ==16826607 or npcid == 16826606)then
-      if(GetNPCByID(16826589):getAnimation() == 8)then
-        GetNPCByID(16826589):setAnimation(9);  
-        GetNPCByID(16826590):setAnimation(8);
-        GetNPCByID(16826587):setAnimation(9);
-	    GetNPCByID(16826588):setAnimation(8);
-      else
-        GetNPCByID(16826589):setAnimation(8);
-        GetNPCByID(16826590):setAnimation(9);
-	    GetNPCByID(16826587):setAnimation(8);
-        GetNPCByID(16826588):setAnimation(9);
-      end
-   elseif (npcid == 16826604)then
-     if(GetNPCByID(16826582):getAnimation() == 8)then
-	   GetNPCByID(16826582):setAnimation(9); 
-	   GetNPCByID(16826581):setAnimation(8);
-	   GetNPCByID(16826580):setAnimation(9);
-	   GetNPCByID(16826579):setAnimation(8);
-	 else
-	   GetNPCByID(16826582):setAnimation(8); 
-	   GetNPCByID(16826581):setAnimation(9);
-	   GetNPCByID(16826580):setAnimation(8);
-	   GetNPCByID(16826579):setAnimation(9);
-	 end
-   elseif (npcid == 16826605)then  
-        if(GetNPCByID(16826583):getAnimation() == 8)then
-	   GetNPCByID(16826583):setAnimation(9); 
-	   GetNPCByID(16826584):setAnimation(8);
-	   GetNPCByID(16826585):setAnimation(9);
-	   GetNPCByID(16826586):setAnimation(8);
-	 else
-	   GetNPCByID(16826583):setAnimation(8); 
-	   GetNPCByID(16826584):setAnimation(9);
-	   GetNPCByID(16826585):setAnimation(8);
-	   GetNPCByID(16826586):setAnimation(9);
-	 end
-   
-   end		 
- end
+	if(trade:getItemCount() == 1 and trade:hasItemQty(947,1)) then
+		player:tradeComplete(); 
+		-- player:messageSpecial(???); -- Needs retail info
+		
+		local npcid = npc:getID();
+		local Door_Offset = 16826580; -- _0c0 in NPC_List
+		
+		if(npcid == Door_Offset+29 or npcid == Door_Offset+28 or npcid == Door_Offset+27)then
+			if(GetNPCByID(Door_Offset+10):getAnimation() == 8)then
+				GetNPCByID(Door_Offset+10):setAnimation(9);  
+				GetNPCByID(Door_Offset+11):setAnimation(8);
+				GetNPCByID(Door_Offset+8):setAnimation(9);
+				GetNPCByID(Door_Offset+9):setAnimation(8);
+			else
+				GetNPCByID(Door_Offset+10):setAnimation(8);
+				GetNPCByID(Door_Offset+11):setAnimation(9);
+				GetNPCByID(Door_Offset+8):setAnimation(8);
+				GetNPCByID(Door_Offset+9):setAnimation(9);
+			end
+		elseif (npcid == Door_Offset+25)then
+			if(GetNPCByID(Door_Offset+3):getAnimation() == 8)then
+				GetNPCByID(Door_Offset+3):setAnimation(9); 
+				GetNPCByID(Door_Offset+2):setAnimation(8);
+				GetNPCByID(Door_Offset+1):setAnimation(9);
+				GetNPCByID(Door_Offset):setAnimation(8);
+			else
+				GetNPCByID(Door_Offset+3):setAnimation(8); 
+				GetNPCByID(Door_Offset+2):setAnimation(9);
+				GetNPCByID(Door_Offset+1):setAnimation(8);
+				GetNPCByID(Door_Offset):setAnimation(9);
+			end
+		elseif (npcid == Door_Offset+26)then  
+			if(GetNPCByID(Door_Offset+4):getAnimation() == 8)then
+				GetNPCByID(Door_Offset+4):setAnimation(9); 
+				GetNPCByID(Door_Offset+5):setAnimation(8);
+				GetNPCByID(Door_Offset+6):setAnimation(9);
+				GetNPCByID(Door_Offset+7):setAnimation(8);
+			else
+				GetNPCByID(Door_Offset+4):setAnimation(8); 
+				GetNPCByID(Door_Offset+5):setAnimation(9);
+				GetNPCByID(Door_Offset+6):setAnimation(8);
+				GetNPCByID(Door_Offset+7):setAnimation(9);
+			end
+		end		 
+	end
 end;
 
 -----------------------------------
@@ -71,8 +71,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -80,7 +80,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
-
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;

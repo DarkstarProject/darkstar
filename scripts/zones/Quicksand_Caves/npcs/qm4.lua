@@ -1,15 +1,21 @@
 -----------------------------------
---	Author: ReaperX (Convert to DSP by Hypnotoad)
--- 	H-8 ??? for Bastok Mission 8.1 "The Chains That Bind Us"
--- 	2nd CS 
+-- Area: Quicksand Caves
+-- NPC:  ??? (qm4)
+-- Involved in Mission: Bastok 8.1 "The Chains That Bind Us"
+-- @pos
 -----------------------------------
+package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/missions");
+require("scripts/zones/Quicksand_Caves/TextIDs");
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
-require("scripts/globals/settings");
 
 function onTrigger(player,npc)
+end;
 
 -----------------------------------
 -- Dialogues,cutscenes,etc. go below.
@@ -18,7 +24,7 @@ function onTrigger(player,npc)
 	if (player:getCurrentMission(player:getNation()) == THE_CHAINS_THAT_BIND_US) and (missionStatus == 2) then
 		player:startEvent(0x0A)  
 	else
-		player:messageSpecial(NOTHING_OUT_OF_ORDINARY); -- There is nothing out of the ordinary here.
+		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 	end
 end; 
 

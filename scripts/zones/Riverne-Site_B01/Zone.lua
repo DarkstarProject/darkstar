@@ -3,11 +3,12 @@
 -- Zone: Riverne-Site_B01
 -- 
 -----------------------------------
+package.loaded["scripts/zones/Riverne-Site_B01/TextIDs"] = nil;
+-----------------------------------
 
+require("scripts/zones/Riverne-Site_B01/TextIDs");
 require("scripts/globals/status");
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Riverne-Site_B01/TextIDs"] = nil;
-require("scripts/zones/Riverne-Site_B01/TextIDs");
 
 -----------------------------------
 --  onInitialize
@@ -21,7 +22,7 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-cs = -1;
+	local cs = -1;
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(729,-20,410);
 	end
@@ -56,6 +57,3 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 end;
-
-
-

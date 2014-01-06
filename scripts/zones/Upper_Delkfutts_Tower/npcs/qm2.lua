@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
--- NPC:  ??? - Pallas spawn
+-- NPC:  ???
 -- @pos -302.000 -159.000 21.000 158
 -----------------------------------
 package.loaded["scripts/zones/Upper_Delkfutts_Tower/TextIDs"] = nil;

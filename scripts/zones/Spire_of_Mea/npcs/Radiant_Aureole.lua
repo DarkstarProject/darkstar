@@ -1,19 +1,17 @@
 -----------------------------------
 -- Area: Spire_of_Mea
 -- NPC:  Radian Aureole
-
 -----------------------------------
 package.loaded["scripts/zones/Spire_of_Mea/TextIDs"] = nil;
-
 -----------------------------------
 
 require("scripts/zones/Spire_of_Mea/TextIDs");
 
+-----------------------------------
+-- onTrade Action
+-----------------------------------
 
 function onTrade(player,npc,trade)
-	
-
-	
 end;
 
 -----------------------------------
@@ -21,9 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-player:startEvent(0x000E)
-	
+	player:startEvent(0x000E)	
 end;
 
 -----------------------------------
@@ -31,11 +27,6 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("onUpdate CSID: %u",csid);
---printf("onUpdate RESULT: %u",option);
-
-
-	
 end;
 
 -----------------------------------
@@ -46,8 +37,6 @@ function onEventFinish(player,csid,option)
 --printf("onFinish CSID: %u",csid);
 --printf("onFinish RESULT: %u",option);
 	if (csid==0x000E and option==1)then
-	player:setPos(179 ,35 ,256 ,63 ,117 );
-	end
-
-	
+		player:setPos(179 ,35 ,256 ,63 ,117 );
+	end	
 end;

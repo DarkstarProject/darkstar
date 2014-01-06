@@ -30,36 +30,36 @@ end;
 
 function onTrigger(player,npc)
 	
-	local LadderID = npc:getID();
+	local npcID = npc:getID();
+	local Ladder_Offset = 16888090;
 	local Xpos = player:getXPos();
-	--printf("LadderID: %u",LadderID);
 	
-	if(LadderID == 16888090 and Xpos >= 102) then
+	if(npcID == Ladder_Offset and Xpos >= 102) then
 		player:startEvent(0x0015);
-	elseif(LadderID == 16888091 and Xpos >= 102) then
+	elseif(npcID == Ladder_Offset+1 and Xpos >= 102) then
 		player:startEvent(0x0016);
-	elseif(LadderID == 16888092 and Xpos <= -62) then
+	elseif(npcID == Ladder_Offset+2 and Xpos <= -62) then
 		player:startEvent(0x0017);
-	elseif(LadderID == 16888093 and Xpos > -218) then
+	elseif(npcID == Ladder_Offset+3 and Xpos > -218) then
 		player:startEvent(0x0018);
-	elseif(LadderID == 16888094 and Xpos <= -62) then
+	elseif(npcID == Ladder_Offset+4 and Xpos <= -62) then
 		player:startEvent(0x0019);
-	elseif(LadderID == 16888095 and Xpos >= 22) then
+	elseif(npcID == Ladder_Offset+5 and Xpos >= 22) then
 		player:startEvent(0x001a);
-	elseif(LadderID == 16888096 and Xpos >= 102) then
+	elseif(npcID == Ladder_Offset+6 and Xpos >= 102) then
 		player:startEvent(0x001b);
-	elseif(LadderID == 16888097 or LadderID == 16888101) then
+	elseif(npcID == Ladder_Offset+7 or npcID == Ladder_Offset+11) then
 	    if(player:getCurrentMission(COP) == DISTANT_BELIEFS and player:getVar("PromathiaStatus") == 1)then
 			player:setVar("PromathiaStatus",2);
 			player:startEvent(0x0023);
 		else
 			player:startEvent(0x001c);
 		end
-	elseif(LadderID == 16888098) then
+	elseif(npcID == Ladder_Offset+8) then
 		player:startEvent(0x001d);
-	elseif(LadderID == 16888099) then
+	elseif(npcID == Ladder_Offset+9) then
 		player:startEvent(0x001e);
-	elseif(LadderID == 16888100) then
+	elseif(npcID == Ladder_Offset+10) then
 		player:startEvent(0x001f);
 	end
 	

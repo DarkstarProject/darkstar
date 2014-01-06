@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Heavens Tower
---   NPC: Foo Beibo
+--  NPC:  Foo Beibo
 --  Type: Standard NPC
--- @zone: 242
---  @pos 10.717 -46 -28.629
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 10.717 -46 -28.629 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------

@@ -1,14 +1,13 @@
 -----------------------------------
 --  Area: Aht Urhgan Whitegate
---   NPC: Yahsra
+--  NPC:  Yahsra
 --  Type: Assault Mission Giver
--- @zone: 50
---  @pos 120.967 0.161 -44.002
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 120.967 0.161 -44.002 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 -----------------------------------
 -- onTrade Action

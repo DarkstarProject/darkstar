@@ -3,8 +3,9 @@
 -- Zone: Balgas_Dais (146)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/Balgas_Dais/TextIDs");
 
@@ -20,7 +21,7 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
+	local cs = -1;	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(317.842,-126.158,380.143,127);
 	end	

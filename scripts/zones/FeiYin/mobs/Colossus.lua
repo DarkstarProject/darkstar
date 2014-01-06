@@ -2,7 +2,6 @@
 -- Area: FeiYin
 -- MOB:  Colossus
 -----------------------------------
------------------------------------
 
 require("scripts/globals/keyitems");
 

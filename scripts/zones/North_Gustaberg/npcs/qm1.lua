@@ -47,18 +47,18 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-npc = player:getEventTarget();
+	local npc = player:getEventTarget();
 
 	if (csid == 0x000a and option == 0) then
 
-		mainweapon = player:getEquipID(SLOT_MAIN);
-		subweapon = player:getEquipID(SLOT_SUB);
-		currentJob = player:getMainJob();
+		local mainweapon = player:getEquipID(SLOT_MAIN);
+		local subweapon = player:getEquipID(SLOT_SUB);
+		local currentJob = player:getMainJob();
 
 		if (mainweapon == 0 and subweapon == 0 and currentJob ~= 3) then
 
-			freeslots = player:getFreeSlotsCount();
-			alreadyHasItem = player:hasItem(576);
+			local freeslots = player:getFreeSlotsCount();
+			local alreadyHasItem = player:hasItem(576);
 		
 			if (freeslots == 0) then
 				player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,576);

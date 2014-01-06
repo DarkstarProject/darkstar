@@ -1,6 +1,5 @@
 -----------------------------------
 -- Large Apparatus - Holla
--- 
 -- @pos -239 -1 290 14
 -----------------------------------
 package.loaded["scripts/zones/Hall_of_Transference/TextIDs"] = nil;

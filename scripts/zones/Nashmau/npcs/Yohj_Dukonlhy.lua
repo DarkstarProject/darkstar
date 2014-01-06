@@ -3,7 +3,10 @@
 -- NPC: Yohj Dukonlhy
 -- Standard Info NPC
 -----------------------------------
+package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
+-----------------------------------
 
+require("scripts/zones/Nashmau/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -3,8 +3,9 @@
 -- Zone: Open_sea_route_to_Mhaura (47)
 -- 
 -----------------------------------
-
 package.loaded["scripts/zones/Open_sea_route_to_Mhaura/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/zones/Open_sea_route_to_Mhaura/TextIDs");
 
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 --  Area: La Theine Plateau
---  NPC: ???
+--  NPC: ??? (qm3)
 --  Involved in Quest: I Can Hear A Rainbow
 -----------------------------------
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
@@ -30,7 +30,7 @@ end;
 
 function onTrigger(player,npc)
     if(player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Tenzen_s_Path") == 0)then
-			player:startEvent(0x00CB);	   
+		player:startEvent(0x00CB);	   
 	end
 
 end;

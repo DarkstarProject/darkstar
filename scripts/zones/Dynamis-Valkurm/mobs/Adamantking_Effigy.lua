@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Valkurm
 -- NPC:  Adamantking_Effigy
-
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
 -----------------------------------

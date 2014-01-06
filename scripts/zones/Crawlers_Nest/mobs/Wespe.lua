@@ -11,10 +11,10 @@ require("scripts/zones/Crawlers_Nest/MobIDs");
 
 function onMobDeath(mob,killer)	
 
-    mob = mob:getID();
+    local mob = mob:getID();
     if (Demonic_Tiphia_PH[mob] ~= nil) then
 
-        ToD = GetServerVariable("[POP]Demonic_Tiphia");
+        local ToD = GetServerVariable("[POP]Demonic_Tiphia");
         if (ToD <= os.time(t) and GetMobAction(Demonic_Tiphia) == 0) then
             if (math.random((1),(20)) == 5) then
                 UpdateNMSpawnPoint(Demonic_Tiphia);

@@ -22,8 +22,8 @@ end;
 
 function onTrigger(player,npc)
 
---		player:startEvent(0x00d1); -- Chocobo on the Loose cs
-		player:messageSpecial(CHOCOBO_TRACKS);
+--	player:startEvent(0x00d1); -- Chocobo on the Loose cs
+	player:messageSpecial(CHOCOBO_TRACKS);
 end;
 
 -----------------------------------

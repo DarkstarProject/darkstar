@@ -1,10 +1,8 @@
 -----------------------------------
---   NPC: ??? (QM5)
---  Type: Eggblix dice roll game part 3
--- @zone: 191
---
--- Involved in quest "As Thick As Thieves"
---
+--  NPC: ??? (QM5)
+-- 	Type: Eggblix dice roll game part 3
+-- 	@zone: 191
+-- 	Involved in quest "As Thick As Thieves"
 -----------------------------------
 package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil;
 -----------------------------------
@@ -18,12 +16,12 @@ require("scripts/zones/Dangruf_Wadi/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS");
+	local thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS");
 
 	if(thickAsThievesGamblingCS == 4) then
 		if(trade:hasItemQty(4362,1) and trade:getItemCount() == 1) then -- Trade 1x lizard egg
-			rand1 = math.random(1,999);
-			rand2 = math.random(1,999);	
+			local rand1 = math.random(1,999);
+			local rand2 = math.random(1,999);	
 			
 			if(rand1 > rand2) then
 				player:startEvent(0x008a,1092,0,rand1,rand2); -- complete 2/3 gamble mini quest	

@@ -3,11 +3,13 @@
 -- Zone: Temenos (37)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Temenos/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/Temenos/TextIDs");
 require("scripts/globals/limbus");
+
 -----------------------------------
 -- onInitialize
 -----------------------------------

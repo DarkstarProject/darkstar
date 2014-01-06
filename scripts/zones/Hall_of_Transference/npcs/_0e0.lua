@@ -1,6 +1,5 @@
 -----------------------------------
 -- Cermet Gate - Holla
--- 
 -- @pos -219 -6 280 14
 -----------------------------------
 package.loaded["scripts/zones/Hall_of_Transference/TextIDs"] = nil;
@@ -8,6 +7,7 @@ package.loaded["scripts/zones/Hall_of_Transference/TextIDs"] = nil;
 
 require("scripts/globals/missions");
 require("scripts/zones/Hall_of_Transference/TextIDs");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------

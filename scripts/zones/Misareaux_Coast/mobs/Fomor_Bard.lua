@@ -1,11 +1,7 @@
-
 -----------------------------------
- -- mob : Fomor Bard
- -- zone : Misareaux_Coast
+-- mob : Fomor Bard
+-- zone : Misareaux_Coast
 -----------------------------------
-
-
-
 
 -----------------------------------
 -- onMobSpawn Action

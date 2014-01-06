@@ -1,8 +1,6 @@
 -----------------------------------
 -- Area: LaLoff_Amphitheater
---
--- NPC:  QM0 (warp player back to entrance after they win fight)
---
+-- NPC:  qm0 (warp player back to entrance after they win fight)
 -------------------------------------
 package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
 -------------------------------------

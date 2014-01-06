@@ -5,11 +5,14 @@
 -- Involved in quest: No String Attached
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/common");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/status");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------

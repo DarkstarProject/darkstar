@@ -2,8 +2,7 @@
 -- Area: Monastic Cavern
 -- NPC:  ???
 -- Used In Quest: Whence Blows the Wind 
--- @zone 150
--- @pos 168 -1 -22
+-- @pos 168 -1 -22 150
 -----------------------------------
 package.loaded["scripts/zones/Monastic_Cavern/TextIDs"] = nil;
 -----------------------------------

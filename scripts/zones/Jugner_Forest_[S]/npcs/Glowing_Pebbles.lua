@@ -1,16 +1,16 @@
 -----------------------------------
 --  Area: Jugner Forest (S)
---   NPC: Glowing Pebbles
+--  NPC:  Glowing Pebbles
 --  Type: Involved in Quest
--- 	@zone: 82
 --  @pos 
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
 --  player:startEvent(0x006a); Left over Cutscene
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/Jugner_Forest_[S]/TextIDs");
 require("scripts/globals/keyitems");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------

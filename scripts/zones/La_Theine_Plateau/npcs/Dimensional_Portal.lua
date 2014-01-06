@@ -13,7 +13,6 @@ require("scripts/zones/La_Theine_Plateau/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
 end;
 
 -----------------------------------

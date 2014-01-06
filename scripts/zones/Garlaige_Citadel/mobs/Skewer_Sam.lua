@@ -1,4 +1,4 @@
------------------------------------
+---------------------------------
 --  Area: Garlaige Citadel (200)
 --    NM: Skewer_Sam
 -----------------------------------
@@ -14,4 +14,3 @@ function onMobDeath(mob,killer)
     mob:setRespawnTime(math.random((75600),(86400)));
     
 end;
-

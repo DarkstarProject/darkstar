@@ -2,7 +2,7 @@
 -- Area: Crawler Nest
 -- NPC:  Treasure Chest
 -- Involved In Quest: Wings of Gold
--- @pos -380 -143 23 158
+-- @zone 157
 -----------------------------------
 package.loaded["scripts/zones/Middle_Delkfutts_Tower/TextIDs"] = nil;
 -----------------------------------

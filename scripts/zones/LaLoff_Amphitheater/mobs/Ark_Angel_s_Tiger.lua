@@ -1,9 +1,11 @@
 -----------------------------------
 -- Area: LaLoff Amphitheater
 -- NPC:  Ark Angel's Tiger
---
 -----------------------------------
+
 require("scripts/zones/LaLoff_Amphitheater/TextIDs");
+
+-----------------------------------
 
 -- TODO: Implement shared spawning and victory system with Ark Angel's Mandragora.
 

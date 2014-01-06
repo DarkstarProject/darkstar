@@ -1,8 +1,7 @@
 -----------------------------------
--- Area: 
---  mob Mammet-22_Zeta
+-- Area: Sealions Den
+-- Mob:  Mammet-22_Zeta
 -----------------------------------
-
 
 require("scripts/globals/status");
 
@@ -90,9 +89,6 @@ local mammet_3_5=GetMobAction(16908307);
 		 	killer:addTitle(BRANDED_BY_LIGHTNING);
 		 end
 	end
-	
-	
-	
 
 end;
 

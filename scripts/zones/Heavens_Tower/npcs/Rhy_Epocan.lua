@@ -5,7 +5,6 @@
 -- @pos 2 -48 14 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
 require("scripts/globals/missions");
@@ -24,8 +23,8 @@ end;
 
 function onTrigger(player,npc)
 	
-	currentMission = player:getCurrentMission(WINDURST);
-	MissionStatus = player:getVar("MissionStatus");
+	local currentMission = player:getCurrentMission(WINDURST);
+	local MissionStatus = player:getVar("MissionStatus");
 	
 	if(currentMission == TO_EACH_HIS_OWN_RIGHT and MissionStatus == 1) then
 		player:startEvent(0x006B);

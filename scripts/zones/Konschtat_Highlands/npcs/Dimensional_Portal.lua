@@ -14,7 +14,6 @@ require("scripts/zones/Konschtat_Highlands/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
 end;
 
 -----------------------------------

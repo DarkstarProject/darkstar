@@ -3,6 +3,12 @@
 -- Name: Shattering stars - Maat Fight
 -- @pos -221 -24 19 206
 -----------------------------------
+package.loaded["scripts/zones/Sacrificial_Chamber/TextIDs"] = nil;
+-------------------------------------
+
+require("scripts/zones/Sacrificial_Chamber/TextIDs");
+
+-----------------------------------
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function OnBcnmRegister(player,instance)

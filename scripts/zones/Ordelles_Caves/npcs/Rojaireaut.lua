@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Ordelle's Caves
---   NPC: Rojaireaut
+--  NPC:  Rojaireaut
 --  Type: Standard NPC
--- @zone: 193
---  @pos -91.781 -0.545 587.944
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -91.781 -0.545 587.944 193
 -----------------------------------
 package.loaded["scripts/zones/Ordelles_Caves/TextIDs"] = nil;
 -----------------------------------

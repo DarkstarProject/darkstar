@@ -2,9 +2,6 @@
 -- Area: Sealion's Den
 -- Name: warriors_path
 -- bcnmID : 993
-     --ennemy:
-
-  		
 -----------------------------------
 package.loaded["scripts/zones/Sealions_Den/TextIDs"] = nil;
 -----------------------------------

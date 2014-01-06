@@ -14,7 +14,7 @@ function onMobDeath(mob,killer)
     DeterMob(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn
-    PH = GetServerVariable("[PH]Ose");
+    local PH = GetServerVariable("[PH]Ose");
     SetServerVariable("[PH]Ose", 0);
     DeterMob(PH, false);
     GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));

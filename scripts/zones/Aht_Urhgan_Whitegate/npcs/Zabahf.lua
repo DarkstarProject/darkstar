@@ -1,17 +1,15 @@
 -----------------------------------
 --  Area: Aht Urhgan Whitegate
---   NPC: Zabahf
+--  NPC:  Zabahf
 --  Type: Standard NPC
--- @zone: 50
---  @pos -90.070 -1 10.140
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -90.070 -1 10.140 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
------------------------------------
 
 -----------------------------------
 -- onTrade Action

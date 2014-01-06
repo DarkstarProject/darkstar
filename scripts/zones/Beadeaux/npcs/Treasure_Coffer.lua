@@ -13,9 +13,9 @@ require("scripts/globals/treasure");
 require("scripts/globals/quests");
 require("scripts/zones/Beadeaux/TextIDs");
 
-TreasureType = "Coffer";
-TreasureLvL = 53;
-TreasureMinLvL = 43;
+local TreasureType = "Coffer";
+local TreasureLvL = 53;
+local TreasureMinLvL = 43;
 
 -----------------------------------
 -- onTrade Action
@@ -40,7 +40,7 @@ function onTrade(player,npc,trade)
 			questItemNeeded = 1;
 		else
 			for nb = 1,table.getn(listAF),3 do
-				QHANDS = player:getQuestStatus(JEUNO,listAF[nb + 1]);
+				local QHANDS = player:getQuestStatus(JEUNO,listAF[nb + 1]);
 				if(QHANDS ~= QUEST_AVAILABLE and mJob == listAF[nb] and player:hasItem(listAF[nb + 2]) == false) then
 					questItemNeeded = 2;
 					break

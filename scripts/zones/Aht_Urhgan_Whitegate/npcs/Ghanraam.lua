@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Aht Urhgan Whitegate
---   NPC: Ghanraam
+--  NPC:  Ghanraam
 --  Type: "Nyzul Weapon/Salvage Armor Storer,"
--- @zone: 50
---  @pos 108.773 -6.999 -51.297
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 108.773 -6.999 -51.297 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------

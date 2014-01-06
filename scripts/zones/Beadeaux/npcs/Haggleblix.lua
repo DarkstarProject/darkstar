@@ -1,6 +1,6 @@
 -----------------------------------
 --  Area: Beadeaux
---   NPC: Haggleblix
+--  NPC:  Haggleblix
 --  Type: Dynamis NPC
 --  @pos -255.847 0.595 106.485 147
 -----------------------------------

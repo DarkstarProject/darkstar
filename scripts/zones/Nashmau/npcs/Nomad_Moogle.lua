@@ -3,10 +3,11 @@
 -- 	Nomad Moogle
 --
 -----------------------------------
-
-require("scripts/globals/settings");
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/zones/Nashmau/TextIDs");
+require("scripts/globals/settings");
 
 -----------------------------------
 -- onTrade Action

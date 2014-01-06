@@ -3,8 +3,9 @@
 -- Zone: QuBia_Arena (206)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/QuBia_Arena/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/QuBia_Arena/TextIDs");
 
@@ -20,7 +21,7 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
+	local cs = -1;	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(-241.046,-25.86,19.991,0);
 	end	

@@ -1,6 +1,5 @@
 -----------------------------------
 -- Cermet Gate
--- 
 -- @pos -220 -46 -279 14
 -----------------------------------
 package.loaded["scripts/zones/Hall_of_Transference/TextIDs"] = nil;

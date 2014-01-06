@@ -3,8 +3,7 @@
 -- NPC:  Cermet Door
 -- Cermet Door for Basty Ambassador  
 -- Bastok Mission 3.3 "Appointment to Jeuno"
--- @zone 184
--- @pos 596 16 -19
+-- @pos 596 16 -19 184
 -----------------------------------
 package.loaded["scripts/zones/Lower_Delkfutts_Tower/TextIDs"] = nil;
 -----------------------------------
@@ -34,7 +33,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	currentMission = player:getCurrentMission(BASTOK);
+	local currentMission = player:getCurrentMission(BASTOK);
 	
 	if(currentMission == JEUNO_MISSION and player:getVar("MissionStatus") == 2 and player:hasKeyItem(DELKFUTT_KEY) == false) then
 		player:messageSpecial(THE_DOOR_IS_FIRMLY_SHUT_OPEN_KEY);

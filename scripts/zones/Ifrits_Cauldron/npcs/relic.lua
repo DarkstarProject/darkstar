@@ -5,6 +5,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Ifrits_Cauldron/TextIDs"] = nil;
 -----------------------------------
+
 require("scripts/zones/Ifrits_Cauldron/TextIDs");
 
 -----------------------------------

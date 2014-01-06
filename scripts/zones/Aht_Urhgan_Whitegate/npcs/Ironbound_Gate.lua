@@ -1,8 +1,11 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
 -- NPC:  Ironbound Gate
--- 
 -----------------------------------
+package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -17,10 +20,13 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(npc:getID() == 16982050) then
-		player:startEvent(0x0083);
+	local X = player:getXPos();
+	local Z = player:getZPos();
+	
+	if((X > -43 and X < -37) and (Z > 53 and Z < 59)) then
+		player:startEvent(0x0083); -- To Waj. Woodlands
 	else
-		player:startEvent(0x0082);
+		player:startEvent(0x0082); -- To B. Thickets
 	end
 	
 end; 

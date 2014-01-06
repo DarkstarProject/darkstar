@@ -12,10 +12,10 @@ require("/scripts/zones/Labyrinth_of_Onzozo/MobIDs");
 	
 function onMobDeath(mob,killer)	
   
-    mob = mob:getID();
+    local mob = mob:getID();
     if (Soulstealer_Skullnix_PH[mob] ~= nil) then
 
-        ToD = GetServerVariable("[POP]Soulstealer_Skullnix");
+        local ToD = GetServerVariable("[POP]Soulstealer_Skullnix");
         if (ToD <= os.time(t) and GetMobAction(Soulstealer_Skullnix) == 0) then
             if (math.random((1),(20)) == 5) then
                 UpdateNMSpawnPoint(Soulstealer_Skullnix);

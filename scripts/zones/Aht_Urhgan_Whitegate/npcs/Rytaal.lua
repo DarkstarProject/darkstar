@@ -1,16 +1,14 @@
 -----------------------------------
 --  Area: Aht Urhgan Whitegate
---   NPC: Rytaal
+--  NPC:  Rytaal
 --  Type: Standard NPC
--- @zone: 50
---  @pos 112.002 -1.338 -45.038
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 112.002 -1.338 -45.038 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/keyitems");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
------------------------------------
 
 -----------------------------------
 -- onTrade Action

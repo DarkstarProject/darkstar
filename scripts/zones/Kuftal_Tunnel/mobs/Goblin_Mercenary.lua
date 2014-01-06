@@ -12,10 +12,10 @@ require("scripts/zones/Kuftal_Tunnel/MobIDs");
 	
 function onMobDeath(mob,killer)	
 
-    mob = mob:getID();
+    local mob = mob:getID();
     if (Bloodthirster_Madkix_PH[mob] ~= nil) then
 
-        ToD = GetServerVariable("[POP]Bloodthirster_Madkix");
+        local ToD = GetServerVariable("[POP]Bloodthirster_Madkix");
         if (ToD <= os.time(t) and GetMobAction(Bloodthirster_Madkix) == 0) then
             if (math.random((1),(20)) == 5) then
                 UpdateNMSpawnPoint(Bloodthirster_Madkix);

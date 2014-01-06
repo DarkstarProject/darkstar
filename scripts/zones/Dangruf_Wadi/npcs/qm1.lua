@@ -21,7 +21,6 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
 	player:messageSpecial(SMALL_HOLE);
 end;
 

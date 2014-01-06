@@ -18,4 +18,4 @@ CHEST_ILLUSION = 7278; -- The chest was but an illusion...
   CHEST_LOCKED = 7279; -- The chest appears to be locked.
 
 -- Other Dialogs
-NOTHING_OUT_OF_ORDINARY = 7289; -- There is nothing out of the ordinary here.
+NOTHING_OUT_OF_ORDINARY = 6392; -- There is nothing out of the ordinary here.

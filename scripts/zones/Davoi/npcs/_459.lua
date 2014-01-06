@@ -2,8 +2,7 @@
 -- Area: Davoi
 -- NPC:  Wall of Dark Arts
 -- Involved in Mission: Magicite
--- @zone 149
--- @pos -22 1 -66
+-- @pos -22 1 -66 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------

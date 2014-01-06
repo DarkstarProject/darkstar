@@ -1,11 +1,7 @@
-
 -----------------------------------
- -- mob : Fomor Paladin
- -- zone : Misareaux_Coast 
+-- mob : Fomor Paladin
+-- zone : Misareaux_Coast 
 -----------------------------------
-
-
-
 
 -----------------------------------
 -- onMobSpawn Action

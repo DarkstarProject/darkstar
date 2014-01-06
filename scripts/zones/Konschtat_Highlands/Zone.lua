@@ -3,8 +3,8 @@
 -- Zone: Konschtat_Highlands (108)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/zones/Konschtat_Highlands/TextIDs");
 require( "scripts/globals/icanheararainbow");
@@ -22,7 +22,7 @@ end;
 
 function onZoneIn( player, prevZone)
 
-	cs = -1;
+	local cs = -1;
 
 	if( player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
 		player:setPos( 521.922, 28.361, 747.85, 45);

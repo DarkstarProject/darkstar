@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Heavens Tower
---   NPC: Dattata
+--  NPC:  Dattata
 --  Type: Standard NPC
--- @zone: 242
---  @pos -6.172 -26.5 5.310
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -6.172 -26.5 5.310 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------

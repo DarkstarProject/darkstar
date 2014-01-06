@@ -999,28 +999,29 @@ switch (region): caseof {
   ---------------------------------
 	--print("VOLLBOW");
 
+	local Salimardi = 17240464;
+	
 	npc  = {
 	--
-		17240463,SANDORIA,	-- Salimardi, R.K.
-		17240470,SANDORIA,	-- Paise, R.K.
-		17240466,SANDORIA,	-- flag
-		17240474,SANDORIA,	-- flag
+		Salimardi,SANDORIA,	-- Salimardi, R.K.
+		Salimardi+7,SANDORIA,	-- Paise, R.K.
+		Salimardi+3,SANDORIA,	-- flag
+		Salimardi+11,SANDORIA,	-- flag
 	--
-		17240464,BASTOK,	-- Sarmistha, I.M.
-		17240471,BASTOK,	-- Dultwa, I.M.
-		17240467,BASTOK,	-- flag
-		17240475,BASTOK,	-- flag
+		Salimardi+1,BASTOK,	-- Sarmistha, I.M.
+		Salimardi+8,BASTOK,	-- Dultwa, I.M.
+		Salimardi+4,BASTOK,	-- flag
+		Salimardi+12,BASTOK,	-- flag
 	--
-		17240465,WINDURST,	-- Voranbo-Natanbo, W.W.
-		17240472,WINDURST,	-- Orukeke, W.W.
-		17240468,WINDURST,	-- flag
-		17240476,WINDURST,	-- flag
+		Salimardi+2,WINDURST,	-- Voranbo-Natanbo, W.W.
+		Salimardi+9,WINDURST,	-- Orukeke, W.W.
+		Salimardi+5,WINDURST,	-- flag
+		Salimardi+13,WINDURST,	-- flag
 	--
-		17240469,BEASTMEN,	-- flag
-	    17240477,BEASTMEN,	-- flag
-	    17240487,BEASTMEN,	-- flag
+		Salimardi+6,BEASTMEN,	-- flag
+	    Salimardi+14,BEASTMEN,	-- flag
 	--
-		17240473,OTHER,		-- Bright Moon
+		Salimardi+10,OTHER,		-- Bright Moon
 	}
   end,
 
@@ -1110,15 +1111,17 @@ switch (region): caseof {
   ---------------------------------
 	--print("MOVALPOLOS");
 
+	local Oldton_Banner_Offset = 16822507; 
+	
 	npc  = {
 	--
-		16822506,SANDORIA,	-- flag
+		Oldton_Banner_Offset,SANDORIA,		-- flag
 	--
-		16822507,BASTOK,	-- flag
+		Oldton_Banner_Offset+1,BASTOK,		-- flag
 	--
-		16822508,WINDURST,	-- flag
+		Oldton_Banner_Offset+2,WINDURST,	-- flag
 	--
-		16822509,BEASTMEN,	-- flag
+		Oldton_Banner_Offset+3,BEASTMEN,	-- flag
 	}
   end,
 

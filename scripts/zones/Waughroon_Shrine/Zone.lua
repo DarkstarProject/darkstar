@@ -3,8 +3,9 @@
 -- Zone: Waughroon_Shrine (144)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Waughroon_Shrine/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/Waughroon_Shrine/TextIDs");
 
@@ -20,7 +21,7 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
+	local cs = -1;	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(-361.434,101.798,-259.996,0);
 	end	

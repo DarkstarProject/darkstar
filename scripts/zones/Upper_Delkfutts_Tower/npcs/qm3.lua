@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
 -- NPC:  ???
--- ??? at the bottom of the great spiral staircase. Takes you to the 10th floor.
+-- Notes: Teleports you to the 10th floor.
 -- @pos 261 19 20 158
 -----------------------------------
 package.loaded["scripts/zones/Upper_Delkfutts_Tower/TextIDs"] = nil;

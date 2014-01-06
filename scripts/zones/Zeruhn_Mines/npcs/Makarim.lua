@@ -2,8 +2,7 @@
 -- Area: Zeruhn Mines
 -- NPC:  Makarim
 -- Involved In Mission: The Zeruhn Report
--- @zone 172
--- @pos -58 8 -333
+-- @pos -58 8 -333 172
 -----------------------------------
 package.loaded["scripts/zones/Zeruhn_Mines/TextIDs"] = nil;
 -----------------------------------

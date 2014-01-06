@@ -2,8 +2,7 @@
 -- Area: Davoi
 -- NPC:  Quemaricond
 -- Involved in Mission: Infiltrate Davoi
--- @zone 149
--- @pos 23 0 -23
+-- @pos 23 0.1 -23 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------

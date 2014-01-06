@@ -4,7 +4,7 @@
 --
 -----------------------------------
  package.loaded["scripts/zones/Promyvion-Mea/TextIDs"] = nil;
- ----------------------------------
+----------------------------------
  
 require("scripts/globals/settings");
 require("scripts/globals/status");
@@ -50,7 +50,7 @@ end;
  -----------------------------------		
  
 function onZoneIn(player,prevZone)		
-cs = -1;	
+	local cs = -1;	
 	if(player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
 		player:setPos(-96,0,174,155);
 	end
@@ -79,13 +79,13 @@ if(player:getAnimation()==0)then
 	{
 		[11] = function (x) player:startEvent(0x002e); end,
 		[12] = function (x) 
-			if(GetNPCByID(16859450):getAnimation() == 8) then 
+			if(GetNPCByID(16859451):getAnimation() == 8) then 
 				player:startEvent(30); 
 			end 
 		end, -- player:setPos(-70,0,-233,105);
 		[21] = function (x) player:startEvent(41); end, -- player:setPos(-96,0,174,155);
 		[22] = function (x)
-			if(GetNPCByID(16859453):getAnimation() == 8) then             
+			if(GetNPCByID(16859454):getAnimation() == 8) then             
 				if(player:getVar("MemoryReceptacle")==2)then
 					player:startEvent(37); -- player:setPos(-167,0,172,38);						
 				else
@@ -94,7 +94,7 @@ if(player:getAnimation()==0)then
 			end
 		end,
 		[23] = function (x)
-			if(GetNPCByID(16859457):getAnimation() == 8) then 
+			if(GetNPCByID(16859458):getAnimation() == 8) then 
 				if(player:getVar("MemoryReceptacle") == 2)then	
 					player:startEvent(37); -- player:setPos(-167,0,172,38);
 				else
@@ -103,7 +103,7 @@ if(player:getAnimation()==0)then
 			end
 		end,
 		[24] = function (x)
-			if(GetNPCByID(16859458):getAnimation() == 8) then 
+			if(GetNPCByID(16859459):getAnimation() == 8) then 
 				if(player:getVar("MemoryReceptacle") == 2)then	
 					player:startEvent(37); -- player:setPos(-167,0,172,38);		
 				else
@@ -112,7 +112,7 @@ if(player:getAnimation()==0)then
 			end
 		end,
 		[25] = function (x)
-			if(GetNPCByID(16859459):getAnimation() == 8) then 
+			if(GetNPCByID(16859460):getAnimation() == 8) then 
 				if(player:getVar("MemoryReceptacle") == 2)then	
 					player:startEvent(37); -- player:setPos(-167,0,172,38);
 				else
@@ -123,28 +123,28 @@ if(player:getAnimation()==0)then
 		[31] = function (x) player:startEvent(30); end, -- player:setPos(-70,0,-233,105);
 		[32] = function (x) player:startEvent(31); end, -- player:setPos(-106,0,384,38);	
 		[33] = function (x) 
-			if(GetNPCByID(16859452):getAnimation() == 8) then 
+			if(GetNPCByID(16859453):getAnimation() == 8) then 
 				player:startEvent(31); -- player:setPos(-106,0,384,38);
 			end
 		end, 
 		[34] = function (x) 
-			if(GetNPCByID(16859451):getAnimation() == 8) then 
+			if(GetNPCByID(16859452):getAnimation() == 8) then 
 				player:startEvent(31); -- player:setPos(-106,0,384,38);
 			end
 		end,
 		[35] = function (x) player:startEvent(30); end, -- player:setPos(-70,0,-233,105); 
 		[36] = function (x) 
-			if(GetNPCByID(16859460):getAnimation() == 8) then
+			if(GetNPCByID(16859461):getAnimation() == 8) then
 				player:startEvent(31); -- player:setPos(-106,0,384,38);
 			end
 		end,
 		[37] = function (x) 
-			if(GetNPCByID(16859455):getAnimation() == 8) then
+			if(GetNPCByID(16859456):getAnimation() == 8) then
 				player:startEvent(31); -- player:setPos(-106,0,384,38);
 			end
 		end, 
 		[38] = function (x) 
-			if(GetNPCByID(16859456):getAnimation() == 8) then
+			if(GetNPCByID(16859457):getAnimation() == 8) then
 				player:startEvent(31); -- player:setPos(-106,0,384,38);
 			end
 		end, 
@@ -187,9 +187,9 @@ function onEventFinish(player,csid,option)
 		player:setPos(280, -86, -25, 63, 14); -- -> back to Hall of Transferance
 	elseif(csid == 0x0032)then		
 		player:setVar("FirstPromyvionMea",0);
-			if(ENABLE_COP_ZONE_CAP == 1)then
-				player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0);-- ZONE LEVEL RESTRICTION
-			end
+		if(ENABLE_COP_ZONE_CAP == 1)then
+			player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0);-- ZONE LEVEL RESTRICTION
+		end
 	end
 	if (option==1)then
 		player:setVar("MemoryReceptacle",0);

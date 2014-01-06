@@ -1,11 +1,7 @@
-
 -----------------------------------
- -- mob : Fomor Ranger
- -- zone : Misareaux_Coast 
+-- mob : Fomor Ranger
+-- zone : Misareaux_Coast 
 -----------------------------------
-
-
-
 
 -----------------------------------
 -- onMobSpawn Action

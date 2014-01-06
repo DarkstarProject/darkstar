@@ -4,8 +4,9 @@
 -- Involved in Quest: Searching for the Right Words
 -- @pos 34.651 -20.183 -61.647 153
 -----------------------------------
-
 package.loaded["scripts/zones/The_Boyahda_Tree/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/zones/The_Boyahda_Tree/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");

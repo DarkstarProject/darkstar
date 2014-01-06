@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Oldton Movalpolos
---   NPC: Bartabaq
+--  NPC:  Bartabaq
 --  Type: Outpost Vendor
--- @zone: 11
---  @pos -261.930 6.999 -49.145
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -261.930 6.999 -49.145 11
 -----------------------------------
 package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
 -----------------------------------

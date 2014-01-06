@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Mhaura
---   NPC: Katsunaga
+--  NPC:  Katsunaga
 --  Type: Standard NPC
--- @zone: 249
---  @pos -4.726 -2.148 23.183
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -4.726 -2.148 23.183 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------

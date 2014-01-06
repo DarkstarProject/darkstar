@@ -17,10 +17,10 @@ require("scripts/zones/Mhaura/TextIDs");
 
 function onTrade(player,npc,trade)
 
-questStatus = player:getQuestStatus(OTHER_AREAS,THE_OLD_LADY);
+	local questStatus = player:getQuestStatus(OTHER_AREAS,THE_OLD_LADY);
 
 	if(questStatus == QUEST_ACCEPTED and trade:getItemCount() == 1) then
-		VeraOldLadyVar = player:getVar("VeraOldLadyVar");
+		local VeraOldLadyVar = player:getVar("VeraOldLadyVar");
 		if(VeraOldLadyVar == 1 and trade:hasItemQty(542,1)) then
 			player:startEvent(0x0087,541);
 		elseif(VeraOldLadyVar == 2 and trade:hasItemQty(541,1)) then
@@ -38,7 +38,7 @@ end;
 
 function onTrigger(player,npc)
 
-questStatus = player:getQuestStatus(OTHER_AREAS, THE_OLD_LADY);
+	local questStatus = player:getQuestStatus(OTHER_AREAS, THE_OLD_LADY);
 
 	if(player:getQuestStatus(OTHER_AREAS, ELDER_MEMORIES) ~= QUEST_AVAILABLE) then
 		player:startEvent(0x0082);

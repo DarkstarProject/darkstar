@@ -3,8 +3,9 @@
 -- Zone: Jugner_Forest_[S] (82)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/Jugner_Forest_[S]/TextIDs");
 
@@ -20,7 +21,7 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
+	local cs = -1;	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(621.865,-6.665,300.264,149);
 	end	

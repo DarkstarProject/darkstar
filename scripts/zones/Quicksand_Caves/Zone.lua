@@ -3,8 +3,9 @@
 -- Zone: Quicksand_Caves (208)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/Quicksand_Caves/TextIDs");
 
@@ -133,7 +134,7 @@ function onRegionLeave(player,region)
 	
 	if(RegionID < 30) then
 		local race = player:getRace();
-		 printf("exiting region %u",RegionID);
+		-- printf("exiting region %u",RegionID);
 		
 		if(race == 8) then -- Galka
 			weight = 3;

@@ -3,8 +3,9 @@
 -- Zone: Sealions_Den (32)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Sealions_Den/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/Sealions_Den/TextIDs");
 
@@ -20,7 +21,7 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
+	local cs = -1;	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(600.101,130.355,797.612,50);
 	end	

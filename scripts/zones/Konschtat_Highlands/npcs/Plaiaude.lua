@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Konschtat Highlands
 -- NPC:  Plaiaude
--- Chocobo Vendor
+-- Type: Chocobo Vendor
 -- @pos 244.705 24.034 296.973 108
 -----------------------------------
 
@@ -16,18 +16,17 @@ require("scripts/globals/quests");
 function onTrade(player,npc,trade)
 end;
 
-
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
 
-price = 100;
-gil = player:getGil();
-hasLicense = player:hasKeyItem(CHOCOBO_LICENSE);
-ChocobosWounds = player:getQuestStatus(JEUNO,CHOCOBO_S_WOUNDS);
-level = player:getMainLvl();
+local price = 100;
+local gil = player:getGil();
+local hasLicense = player:hasKeyItem(CHOCOBO_LICENSE);
+local ChocobosWounds = player:getQuestStatus(JEUNO,CHOCOBO_S_WOUNDS);
+local level = player:getMainLvl();
 
 	if ((hasLicense and level >= 15) or (level >=15 and ChocobosWounds == QUEST_COMPLETED)) then
 		player:startEvent(0x038e,price,gil);
@@ -45,8 +44,8 @@ function onEventFinish(player,csid,option)
 --print("CSID:",csid);
 --print("OPTION:",option);
 
-price = 100;
-level = player:getMainLvl();
+	local price = 100;
+	local level = player:getMainLvl();
 
 	if (csid == 0x038e and option == 0) then
         if (player:delGil(price)) then

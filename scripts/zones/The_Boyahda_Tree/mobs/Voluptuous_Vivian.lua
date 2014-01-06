@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
 -- NM:   Voluptuous Vivian (NM)
--- @pos -198.000 5.000 203.000 153
 -----------------------------------
 
 require("/scripts/zones/The_Boyahda_Tree/MobIDs");
@@ -20,7 +19,7 @@ function onMobDeath(mob,killer)
 		DeterMob(mob:getID(), true);
 
 		-- Set PH back to normal, then set to respawn spawn
-		PH = GetServerVariable("[PH]Voluptuous_Vivian");
+		local PH = GetServerVariable("[PH]Voluptuous_Vivian");
 		SetServerVariable("[PH]Voluptuous_Vivian", 0);
 		DeterMob(PH, false);
 		GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));

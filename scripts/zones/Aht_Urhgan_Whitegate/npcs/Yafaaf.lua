@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Aht Urhgan Whitegate
---   NPC: Yafaaf
+--  NPC:  Yafaaf
 --  Type: Standard Merchant
--- @zone: 50
---  @pos 76.889 -7 -140.379
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 76.889 -7 -140.379 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------

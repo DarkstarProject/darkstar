@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Heavens Tower
---   NPC: Nayutata
+--  NPC:  Nayutata
 --  Type: Standard NPC
--- @zone: 242
---  @pos -2.665 -26.5 -0.268
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -2.665 -26.5 -0.268 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------

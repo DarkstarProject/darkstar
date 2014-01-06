@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
 -- Quest: Your Crystal Ball
--- @zone 198
--- @pos -18 -13 181
+-- @pos -18 -13 181 198
 -----------------------------------
 package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
 -----------------------------------
@@ -30,8 +29,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
-	starttime = player:getVar("QuestYourCrystalBall_date");
+	local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
+	local starttime = player:getVar("QuestYourCrystalBall_date");
 	if(player:getQuestStatus(JEUNO,YOUR_CRYSTAL_BALL) == QUEST_ACCEPTED and player:getVar("QuestYourCrystalBall_prog") == 1 and starttime ~= realday) then 
 		player:startEvent(0x0034);
 	else

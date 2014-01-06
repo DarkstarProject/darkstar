@@ -3,9 +3,10 @@
 -- Zone: Dynamis-Valkurm
 -- 
 -----------------------------------
+package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
 require("scripts/zones/Dynamis-Valkurm/TextIDs");
 
 -----------------------------------
@@ -20,7 +21,7 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-	cs = -1;
+	local cs = -1;
 	
 	local realDay = os.time();
 	local dynaWaitxDay = player:getVar("dynaWaitxDay");

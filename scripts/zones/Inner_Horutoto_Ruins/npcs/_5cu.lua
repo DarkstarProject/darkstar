@@ -25,7 +25,7 @@ function onTrigger(player,npc)
 	-- The Magical Gizmo Number, this number will be compared to the random
 	-- value created by the mission The Horutoto Ruins Experiment, when you
 	-- reach the Gizmo Door and have the cutscene
-	magical_gizmo_no = 6; -- of the 6
+	local magical_gizmo_no = 6; -- of the 6
 	
 	if(player:getCurrentMission(WINDURST) == THE_HORUTOTO_RUINS_EXPERIMENT and player:getVar("MissionStatus") == 2) then
 		-- Check if we found the correct Magical Gizmo or not

@@ -2,8 +2,7 @@
 -- Area: La Theine Plateau
 -- NPC:  Vicorpasse
 -- Involved in Mission: The Rescue Drill
--- @zone 102
--- @pos -344 37 266
+-- @pos -344 37 266 102
 -----------------------------------
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
 -----------------------------------
@@ -26,7 +25,7 @@ end;
 function onTrigger(player,npc)
 	
 	if(player:getCurrentMission(SANDORIA) == THE_RESCUE_DRILL) then
-		MissionStatus = player:getVar("MissionStatus");
+		local MissionStatus = player:getVar("MissionStatus");
 		
 		if(MissionStatus == 4) then
 			player:startEvent(0x006c);

@@ -2,7 +2,6 @@
 -- Area: Kuftal Tunnel
 -- NPC:  ???
 -- Involved in Mission: Bastok 8-2
--- @pos -27 -10 -185 32
 -----------------------------------
 package.loaded["scripts/zones/Kuftal_Tunnel/TextIDs"] = nil;
 -----------------------------------
@@ -25,7 +24,7 @@ end;
 function onTrigger(player,npc)
 	
 	if(player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER and player:getVar("MissionStatus") == 3) then
-				player:startEvent(0x00D);
+		player:startEvent(0x00D);
 	else
 		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 	end

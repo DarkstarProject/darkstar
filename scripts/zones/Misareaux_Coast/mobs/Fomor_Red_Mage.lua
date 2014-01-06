@@ -1,11 +1,7 @@
-
 -----------------------------------
- -- mob : Fomor Red Mage
- -- zone : Misareaux_Coast 
+-- mob : Fomor Red Mage
+-- zone : Misareaux_Coast 
 -----------------------------------
-
-
-
 
 -----------------------------------
 -- onMobSpawn Action

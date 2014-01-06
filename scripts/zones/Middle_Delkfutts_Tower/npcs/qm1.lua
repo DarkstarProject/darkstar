@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Middle Delfutt's Tower
--- NPC:  ???
+-- NPC:  ??? (qm1)
 -- Involved In Quest: Blade of Evil
--- @zone 157
--- @pos 84 -79 77
+-- @pos 84 -79 77 157
 -----------------------------------
 package.loaded["scripts/zones/Middle_Delkfutts_Tower/TextIDs"] = nil;
 -----------------------------------

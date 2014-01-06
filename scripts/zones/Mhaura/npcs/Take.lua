@@ -1,27 +1,27 @@
 -----------------------------------
 --	Area: Mhaura
 --	NPC:  Take
---	Working 100% 
 --  Involved In Quest: RYCHARDE_THE_CHEF
--- starts and finishes quest expertice
+--  Starts and finishes quest: Expertice
+-----------------------------------
+package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 require("scripts/zones/Mhaura/TextIDs");
 
-		-- player:startEvent(0x3b); -- standar dialog
-		-- player:startEvent(0x3c); -- tell to look for ricarde
-		--player:startEvent(0x44); -- not talked to rycharde yet
-		--player:startEvent(0x3d);-- accept expertice quest
-		--player:startEvent(0x3e);-- expertice completed
-		--player:startEvent(0x3f);-- expertice not done yet
-		--player:startEvent(0x40); -- after expertice quest
-		--player:startEvent(0x41); -- good luck
-		--player:startEvent(0x42);-- Valgeir cook was delicious
-		--player:startEvent(0x43);-- after back to basics i think
+-- player:startEvent(0x3b); -- standar dialog
+-- player:startEvent(0x3c); -- tell to look for ricarde
+--player:startEvent(0x44); -- not talked to rycharde yet
+--player:startEvent(0x3d);-- accept expertice quest
+--player:startEvent(0x3e);-- expertice completed
+--player:startEvent(0x3f);-- expertice not done yet
+--player:startEvent(0x40); -- after expertice quest
+--player:startEvent(0x41); -- good luck
+--player:startEvent(0x42);-- Valgeir cook was delicious
+--player:startEvent(0x43);-- after back to basics i think
 		
 -----------------------------------
 -- onTrade Action

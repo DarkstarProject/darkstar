@@ -13,11 +13,11 @@ function onMobDeath(mob,killer)
 	
 	npc:hideNPC(900);
 	
-	randpos = math.random(1,16);
+	local randpos = math.random(1,16);
 	
 	switch (randpos): caseof
 	{
-		[1] = function (x) npc:setPos(75.943,29.969,118.854); end, 
+	[1] = function (x) npc:setPos(75.943,29.969,118.854); end, 
     [2] = function (x) npc:setPos(75.758,30.000,125.815); end,
     [3] = function (x) npc:setPos(65.222,29.364,131.645); end,
     [4] = function (x) npc:setPos(53.088,25.033,138.725); end,

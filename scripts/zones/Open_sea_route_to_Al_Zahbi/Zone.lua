@@ -3,8 +3,9 @@
 -- Zone: Open_sea_route_to_Al_Zahbi (46)
 -- 
 -----------------------------------
-
 package.loaded["scripts/zones/Open_sea_route_to_Al_Zahbi/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/zones/Open_sea_route_to_Al_Zahbi/TextIDs");
 
 -----------------------------------

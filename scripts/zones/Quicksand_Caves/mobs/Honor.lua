@@ -11,7 +11,6 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function OnMobSpawn(mob)
-
 end;
 
 -----------------------------------

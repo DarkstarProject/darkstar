@@ -23,5 +23,15 @@ function OnMobWeaponSkill(target, mob, skill)
 	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded);
 	target:delHP(dmg);
+
+	if (mob:getName() == "Faust") then
+		if (mob:getExtraVar(1) == 0) then
+			mob:useMobAbility(283);
+			mob:setExtraVar(1); 
+		else
+			mob:setExtraVar(0);
+		end	
+	end	
+
 	return dmg;
 end;

@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Oldton Movalpolos
---   NPC: Brakobrik
+--  NPC:  Brakobrik
 --  Type: Standard NPC
--- @zone: 11
---  @pos 164.605 10.992 -91.253
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 164.605 10.992 -91.253 11
 -----------------------------------
 package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
 -----------------------------------

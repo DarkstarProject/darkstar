@@ -2,8 +2,7 @@
 -- Area: Beadeaux
 -- NPC:  Jail Door
 -- Involved in Quests: The Rescue
--- @zone 147
--- @pos 56 0 -23
+-- @pos 56 0.1 -23 147
 -----------------------------------
 package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
 -----------------------------------

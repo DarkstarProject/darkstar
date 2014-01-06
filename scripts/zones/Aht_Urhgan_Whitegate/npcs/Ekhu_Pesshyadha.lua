@@ -1,18 +1,16 @@
 -----------------------------------
 --  Area: Aht Urhgan Whitegate
---   NPC: Ekhu Pesshyadha
+--  NPC:  Ekhu Pesshyadha
 --  Type: Standard NPC
--- @zone: 50
---  @pos -13.043 0.999 103.423
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -13.043 0.999 103.423 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
------------------------------------
 
 -----------------------------------
 -- onTrade Action

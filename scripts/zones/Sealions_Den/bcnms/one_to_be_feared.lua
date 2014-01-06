@@ -2,13 +2,9 @@
 -- Area: Sealion's Den
 -- Name: one_to_be_feared
 -- bcnmID : 992
-     --ennemy: Mammet-22_Zeta X5
-
-  		
 -----------------------------------
 package.loaded["scripts/zones/Sealions_Den/TextIDs"] = nil;
 -----------------------------------
-
 
 require("scripts/globals/missions");
 require("scripts/zones/Sealions_Den/TextIDs");

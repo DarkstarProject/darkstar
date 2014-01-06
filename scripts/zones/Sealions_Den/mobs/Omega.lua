@@ -1,7 +1,6 @@
 -----------------------------------
--- Area: 
+-- Area: Sealions Den
 -- NPC:  Omega
------------------------------------
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -10,7 +9,6 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onMobInitialize(mob)
-
 end;
 
 -----------------------------------

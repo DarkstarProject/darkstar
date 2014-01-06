@@ -1,14 +1,14 @@
 -----------------------------------
 --  Area: Mhaura
---   NPC: Keshab-Menjab
+--  NPC:  Keshab-Menjab
 --  Type: Standard NPC
--- @zone: 249
---  @pos -15.727 -9.032 54.049
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -15.727 -9.032 54.049 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/Mhaura/TextIDs");
+require("scripts/globals/settings");
 
 -----------------------------------
 -- onTrade Action

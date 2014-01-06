@@ -5,6 +5,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Valley_of_Sorrows/TextIDs"] = nil;
 -----------------------------------
+
 require("scripts/zones/Valley_of_Sorrows/TextIDs");
 
 -----------------------------------

@@ -5,7 +5,6 @@
 -- @pos 560 36 560 211
 -----------------------------------
 package.loaded["scripts/zones/Cloister_of_Tides/TextIDs"] = nil;
-package.loaded["scripts/globals/bcnm"] = nil;
 -------------------------------------
 
 require("scripts/globals/keyitems");

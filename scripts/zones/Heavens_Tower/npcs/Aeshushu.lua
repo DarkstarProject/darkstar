@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Heavens Tower
---   NPC: Aeshushu
+--  NPC:  Aeshushu
 --  Type: Standard NPC
--- @zone: 242
---  @pos 4.948 -26.5 -2.303
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 4.948 -26.5 -2.303 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------

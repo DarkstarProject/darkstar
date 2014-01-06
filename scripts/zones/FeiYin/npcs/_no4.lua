@@ -36,7 +36,7 @@ function onTrigger(player,npc)
 	
 	-- standard dialog
 	else
-	player:startEvent(0x000f); 
+		player:startEvent(0x000f); 
 	end
 	return 1;
 end;

@@ -2,8 +2,7 @@
 -- Area: The Eldieme Necropolis
 -- NPC: Sarcophagus
 -- Involved in Quest: The Requiem (BARD AF2)
--- @zone 195
--- @pos -420 8 500
+-- @pos -420 8 500 195
 -----------------------------------
 package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
 -----------------------------------

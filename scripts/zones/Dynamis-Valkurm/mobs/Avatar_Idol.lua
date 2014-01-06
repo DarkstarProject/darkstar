@@ -4,8 +4,10 @@
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
 -----------------------------------
+
 require("scripts/globals/dynamis");
 require("scripts/zones/Dynamis-Valkurm/TextIDs");
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------

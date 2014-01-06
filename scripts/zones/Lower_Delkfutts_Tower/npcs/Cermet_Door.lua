@@ -1,9 +1,8 @@
 -----------------------------------
--- Area: Lower Delkfutt's Tower
--- NPC:  Cermet Door
--- Cermet door that leads to Upper Delkfutt's Tower.
--- @zone 184
--- @pos 524 16 20
+-- Area:  Lower Delkfutt's Tower
+-- NPC:   Cermet Door
+-- Notes: Leads to Upper Delkfutt's Tower.
+-- @pos 524 16 20 184
 -----------------------------------
 
 require("scripts/globals/settings");

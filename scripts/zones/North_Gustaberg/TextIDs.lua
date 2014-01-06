@@ -15,6 +15,6 @@ ITEM_CANNOT_BE_OBTAINED_TWICE = 6546; -- You cannot obtain the item <item>.
 CONQUEST = 7428; -- You've earned conquest points!
 
 -- Other Dialog
+        NOTHING_HAPPENS = 291; -- Nothing happens...
 NOTHING_OUT_OF_ORDINARY = 6564; -- There is nothing out of the ordinary here.
-        NOTHING_HAPPENS = 7313; -- Nothing happens...
   REACH_WATER_FROM_HERE = 7392; -- You can reach the water from here.

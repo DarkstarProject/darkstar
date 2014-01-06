@@ -3,6 +3,10 @@
 --	NPC: Lacia
 --	Standard Info NPC
 -----------------------------------
+package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/zones/Mhaura/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -16,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x014d);
+	player:startEvent(0x014d);
 end;
 
 -----------------------------------

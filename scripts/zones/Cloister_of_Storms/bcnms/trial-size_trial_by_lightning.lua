@@ -9,6 +9,8 @@ require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/zones/Cloister_of_Storms/TextIDs");
 
+-----------------------------------
+
 -- What should go here:
 -- giving key items, playing ENDING cutscenes
 --

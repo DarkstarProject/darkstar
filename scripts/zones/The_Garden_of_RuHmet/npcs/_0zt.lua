@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: The_Garden_of_RuHmet
 -- NPC:  Luminus convergence
--- @pos 
 -----------------------------------
+
 package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
 
 -----------------------------------

@@ -1,14 +1,13 @@
 -----------------------------------
 --  Area: Oldton Movalpolos
---   NPC: Twinkbrix
+--  NPC:  Twinkbrix
 --  Type: Warp NPC
--- @zone: 11
---  @pos -292.779 6.999 -263.153
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -292.779 6.999 -263.153 11
 -----------------------------------
 package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/Oldton_Movalpolos/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -30,8 +29,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -39,7 +38,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 

@@ -2,8 +2,7 @@
 -- Area: Ordelles Caves
 -- NPC:  Ruillont
 -- Involved in Mission: The Rescue Drill
--- @zone 193
--- @pos -70 1 607
+-- @pos -70 1 607 193
 -----------------------------------
 package.loaded["scripts/zones/Ordelles_Caves/TextIDs"] = nil;
 -----------------------------------
@@ -32,7 +31,7 @@ end;
 function onTrigger(player,npc)
 	
 	if(player:getCurrentMission(SANDORIA) == THE_RESCUE_DRILL) then
-		MissionStatus = player:getVar("MissionStatus");
+		local MissionStatus = player:getVar("MissionStatus");
 		
 		if(MissionStatus == 7) then
 			player:startEvent(0x0001);
@@ -67,9 +66,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 	
 	if(csid == 0x0001) then
-		rand = math.random(1,3);
-		rand = math.random(1,3);
-		rand = math.random(1,3);
+		local rand = math.random(1,3);
 		
 		player:setVar("theRescueDrillRandomNPC",rand);
 		player:setVar("MissionStatus",8);

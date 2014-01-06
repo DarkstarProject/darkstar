@@ -3,10 +3,11 @@
 -- NPC: Yoyoroon
 -- Standard Merchant NPC
 -----------------------------------
-
-require("scripts/globals/shop");
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/zones/Nashmau/TextIDs");
+require("scripts/globals/shop");
 
 -----------------------------------
 -- onTrade Action

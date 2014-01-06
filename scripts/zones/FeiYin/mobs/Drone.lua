@@ -2,7 +2,6 @@
 -- Area: FeiYin
 -- MOB:  Drone
 -----------------------------------
------------------------------------
 
 require("scripts/globals/keyitems");
 

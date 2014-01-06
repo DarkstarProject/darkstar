@@ -3,8 +3,6 @@
 --  NPC:  Spacial Displacement
 -----------------------------------
 
-base = 16900331;
-
 -----------------------------------
 -- onTrade
 -----------------------------------
@@ -18,7 +16,8 @@ end;
 
 function onTrigger(player,npc)
 	
-	id = npc:getID();
+	local id = npc:getID();
+	local base = 16900332; -- (First Spacial Displacement in NPC_LIST)
 
 	if(id == base) then 
 		player:startEvent(0x2);

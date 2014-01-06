@@ -3,8 +3,9 @@
 -- Zone: Davoi (149)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
@@ -22,7 +23,7 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
+	local cs = -1;	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(282.292,2.498,-17.908,247);
 	end	

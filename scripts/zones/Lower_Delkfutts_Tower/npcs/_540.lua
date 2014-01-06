@@ -33,7 +33,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	currentMission = player:getCurrentMission(WINDURST);
+	local currentMission = player:getCurrentMission(WINDURST);
 	
 	if(currentMission == A_NEW_JOURNEY and player:getVar("MissionStatus") == 2 and player:hasKeyItem(DELKFUTT_KEY) == false) then
 		player:messageSpecial(THE_DOOR_IS_FIRMLY_SHUT_OPEN_KEY);

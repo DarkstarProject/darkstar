@@ -1,16 +1,15 @@
 -----------------------------------
--- Area: 
+-- Area: Sealions Den
 -- NPC:  Ultima
------------------------------------
 -----------------------------------
 
 require("scripts/globals/titles");
+
 -----------------------------------
 -- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
-
 end;
 
 -----------------------------------
@@ -26,5 +25,4 @@ end;
 
 function onMobDeath(mob, killer)
 	killer:addTitle(ULTIMA_UNDERTAKER);	
-
 end;

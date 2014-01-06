@@ -12,10 +12,10 @@ require("scripts/zones/Kuftal_Tunnel/MobIDs");
 	
 function onMobDeath(mob,killer)	
 
-    mob = mob:getID();
+    local mob = mob:getID();
     if (Yowie_PH[mob] ~= nil) then
 
-        ToD = GetServerVariable("[POP]Yowie");
+		local ToD = GetServerVariable("[POP]Yowie");
         if (ToD <= os.time(t) and GetMobAction(Yowie) == 0) then
             if (math.random((1),(20)) == 5) then
                 UpdateNMSpawnPoint(Yowie);

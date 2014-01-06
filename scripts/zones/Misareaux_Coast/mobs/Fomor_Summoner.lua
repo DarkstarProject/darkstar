@@ -1,11 +1,7 @@
-
 -----------------------------------
- -- mob : Fomor Summoner
- -- zone : Misareaux_Coast 
+-- mob : Fomor Summoner
+-- zone : Misareaux_Coast 
 -----------------------------------
-
-
-
 
 -----------------------------------
 -- onMobSpawn Action

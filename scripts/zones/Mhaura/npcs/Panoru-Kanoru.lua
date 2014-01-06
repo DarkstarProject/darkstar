@@ -2,12 +2,11 @@
 --  Area: Mhaura
 --  NPC: Panoru-Kanoru
 --  Type: Item Deliverer
---  @zone: 249
---  @pos 5.241	-4.035	93.891
---
+--  @pos 5.241	-4.035	93.891 249
+-----------------------------------
+package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 require("scripts/zones/Mhaura/TextIDs");
 
 -----------------------------------

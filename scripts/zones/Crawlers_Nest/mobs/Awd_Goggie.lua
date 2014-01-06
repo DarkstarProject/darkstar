@@ -21,5 +21,5 @@ end;
 
 function onMobDeath(mob, killer)
 	killer:addTitle(BOGEYDOWNER);
-	GetNPCByID(17584458):hideNPC(900);
+	GetNPCByID(17584459):hideNPC(900); -- qm7
 end;

@@ -1,10 +1,11 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC: Ajithaam
--- @zone 244
+-- NPC:  Ajithaam
 -- @pos -82 0 160 244
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/missions");

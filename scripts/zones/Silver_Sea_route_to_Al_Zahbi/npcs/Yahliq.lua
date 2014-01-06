@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Silver Sea route to Al Zahbi
 -- NPC:  Yahliq
--- Guild Merchant NPC: Fishing Guild 
+-- Type: Guild Merchant: Fishing Guild 
 -- @pos 4.986 -2.101 -12.026 59
 -----------------------------------
 package.loaded["scripts/zones/Silver_Sea_route_to_Al_Zahbi/TextIDs"] = nil;

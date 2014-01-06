@@ -20,7 +20,7 @@ CHEST_ILLUSION = 7295; -- The chest was but an illusion...
      SENSE_OF_FOREBODING = 6552; -- You are suddenly overcome with a sense of foreboding...
         YOU_FIND_NOTHING = 7257; -- You find nothing special.
    PRESENCE_FROM_CEILING = 7259; -- You sence a presence from in the ceiling.
-       HEAT_FROM_CEILING = 7290; -- You feel a terrible heat from ceiling.
+       HEAT_FROM_CEILING = 7260; -- You feel a terrible heat from ceiling.
 
 -- Door dialog
  A_GATE_OF_STURDY_STEEL = 7235; -- A gate of sturdy steel.

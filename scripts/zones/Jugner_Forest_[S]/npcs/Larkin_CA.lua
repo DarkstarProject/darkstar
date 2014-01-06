@@ -1,14 +1,13 @@
 -----------------------------------
 --  Area: Jugner Forest (S)
---   NPC: Larkin, C.A.
+--  NPC:  Larkin, C.A.
 --  Type: Campaign Arbiter
--- @zone: 82
---  @pos 50.217 -1.769 51.095
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 50.217 -1.769 51.095 82
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/Jugner_Forest_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade Action

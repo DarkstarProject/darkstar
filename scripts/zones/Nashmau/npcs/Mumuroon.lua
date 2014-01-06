@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Nashmau
--- NPC: Mumuroon
+-- NPC:  Mumuroon
 -- Standard Info NPC
 -----------------------------------
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC: Hadayah
+-- NPC:  Hadayah
 -- Standard Info NPC
 -----------------------------------
 

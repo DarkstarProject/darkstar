@@ -1,16 +1,16 @@
 -----------------------------------
 --  Area: Nashmau
---  NPC: Fhe Maksojha
+--  NPC:  Fhe Maksojha
 --  Type: Standard NPC
---  @zone: 53
---  @pos 19.084 -7 71.287
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 19.084 -7 71.287 53
 -----------------------------------
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Nashmau/TextIDs");
+
 -----------------------------------
 
 -----------------------------------

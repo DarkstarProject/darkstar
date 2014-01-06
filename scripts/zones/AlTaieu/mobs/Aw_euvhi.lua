@@ -5,7 +5,6 @@
 package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 -----------------------------------
 
-
 require("scripts/zones/AlTaieu/TextIDs");
 require("scripts/globals/keyitems");
 
@@ -15,13 +14,12 @@ require("scripts/globals/keyitems");
 
 function onMobSpawn(mob)
 end;
+
 -----------------------------------
 -- onMobEngaged
 -----------------------------------
 
 function onMobEngaged(mob,target)	
-   local mobID = mob:getID();	
-  print(mobID);   
 end;
                			
 -----------------------------------

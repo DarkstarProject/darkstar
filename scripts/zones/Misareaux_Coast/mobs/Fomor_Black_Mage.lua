@@ -1,11 +1,7 @@
-
 -----------------------------------
- -- mob : Fomor Black mage
- -- zone : Misareaux_Coast
+-- mob : Fomor Black mage
+-- zone : Misareaux_Coast
 -----------------------------------
-
-
-
 
 -----------------------------------
 -- onMobSpawn Action

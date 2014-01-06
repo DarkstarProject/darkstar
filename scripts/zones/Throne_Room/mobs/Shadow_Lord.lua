@@ -12,7 +12,6 @@ require("scripts/globals/status");
 -----------------------------------
 
 function OnMobSpawn(mob)
-
 end;
 
 -----------------------------------

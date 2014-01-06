@@ -11,6 +11,7 @@ require("scripts/globals/quests");
 require("scripts/zones/Waughroon_Shrine/TextIDs");
 
 -----------------------------------
+
 -- EXAMPLE SCRIPT
 -- 
 -- What should go here:

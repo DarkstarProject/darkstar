@@ -1,23 +1,18 @@
 -----------------------------------
 -- Area: The_Garden_of_RuHmet
--- NPC:  
--- @pos 
+-- NPC:  _0zs
 -----------------------------------
 package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
-
 -----------------------------------
-
 
 require("scripts/globals/settings");
 require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
-
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
   return 1;
 end;
 

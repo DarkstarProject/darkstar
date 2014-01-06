@@ -2,8 +2,7 @@
 -- Area: Crawlers Nest
 -- NPC:  ???
 -- Involved in Quest: The Crimson Trial
--- @zone 197
--- @pos 59 0 66
+-- @pos 59 0.1 66 197
 -----------------------------------
 package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
 -----------------------------------
@@ -26,9 +25,9 @@ end;
 
 function onTrigger(player,npc)
 	
-	cprog = player:getVar("theCrimsonTrial_prog");
-	cdate = player:getVar("theCrimsonTrial_date");
-	realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
+	local cprog = player:getVar("theCrimsonTrial_prog");
+	local cdate = player:getVar("theCrimsonTrial_date");
+	local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
 	
 	if(player:hasKeyItem(CRAWLER_BLOOD) == true and player:hasKeyItem(OLD_BOOTS) == true) then
 		player:startEvent(4);

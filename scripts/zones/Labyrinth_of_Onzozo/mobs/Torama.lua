@@ -1,6 +1,6 @@
 -----------------------------------	
 -- Area: Labyrinth of Onzozo
---  MOB: Torama
+-- MOB:  Torama
 -- Note: Place holder Ose
 -----------------------------------	
 
@@ -12,10 +12,10 @@ require("/scripts/zones/Labyrinth_of_Onzozo/MobIDs");
 	
 function onMobDeath(mob,killer)	
   
-    mob = mob:getID();
+    local mob = mob:getID();
     if (Ose_PH[mob] ~= nil) then
 
-        ToD = GetServerVariable("[POP]Ose");
+        local ToD = GetServerVariable("[POP]Ose");
         if (ToD <= os.time(t) and GetMobAction(Ose) == 0) then
             if (math.random((1),(20)) == 5) then
                 UpdateNMSpawnPoint(Ose);

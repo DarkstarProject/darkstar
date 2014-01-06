@@ -1,6 +1,8 @@
--- Triarius IV-XIV 
--- by ReaperX (Convert to DSP by Hypnotoad)
+-----------------------------------	
+-- Area: Quicksand Caves
+-- MOB:  Tribunus_IV-XIV
 -- Pops in Bastok mission 8-1 "The Chains that Bind Us"
+-----------------------------------	
 
 require("scripts/globals/settings");
 require("scripts/zones/Quicksand_Caves/TextIDs");
@@ -9,33 +11,43 @@ require("scripts/zones/Quicksand_Caves/TextIDs");
 -- onMobSpawn Action
 -----------------------------------
 function onMobSpawn(mob)
-	-- print(mob:getName());
 end;
 
+-----------------------------------
+-- onMobDeath Action
+-----------------------------------
 function onMobDeath(mob,killer)
 	if(killer:getCurrentMission(BASTOK) == THE_CHAINS_THAT_BIND_US) and (killer:getVar("MissionStatus") == 1) then
 		SetServerVariable("Bastok8-1LastClear", os.time());
 	end
 end;
 
+-----------------------------------
+-- onMobEngaged Action
+-----------------------------------
 function onMobEngaged(mob, target)
 end;
 
+-----------------------------------
+-- onMobDisengage Action
+-----------------------------------
 function onMobDisengage(mob)
 	-- printf("Disengaging Triarius");
 	local self = mob:getID();
 	DespawnMob(self, 120);
 end;
 
+
+-----------------------------------
+-- onMobDespawn Action
+-----------------------------------
 function onMobDespawn(mob)
 	-- printf("Despawning Triarius");
 	local mobsup = GetServerVariable("BastokFight8_1");
 	SetServerVariable("BastokFight8_1",mobsup - 1);
 	
 	if(GetServerVariable("BastokFight8_1") == 0) then
-		-- printf("No more mobs: last is Triarius");
-
-		local npc = GetNPCByID(17629728);
+		local npc = GetNPCByID(17629729); -- qm6
 		npc:setStatus(0); -- Reappear
 	end
 end;

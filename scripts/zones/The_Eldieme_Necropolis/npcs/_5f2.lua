@@ -1,10 +1,12 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
 -- NPC:  Odin's Gate
--- @zone 195
--- @pos 180 -34 55
--- 17576309
+-- @pos 180 -34 55 195
 -----------------------------------
+package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -18,6 +20,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+	if (npc:getAnimation() == 9) then
+		player:messageSpecial(SOLID_STONE);
+	end
 	return 0;
 end;
 -- 

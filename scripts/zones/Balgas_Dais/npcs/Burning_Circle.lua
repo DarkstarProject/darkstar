@@ -5,7 +5,6 @@
 -- @pos 299 -123 345 146
 -------------------------------------
 package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil;
-package.loaded["scripts/globals/bcnm"] = nil;
 -------------------------------------
 
 require("scripts/globals/keyitems");

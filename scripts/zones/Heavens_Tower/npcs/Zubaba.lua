@@ -5,7 +5,6 @@
 -- @pos 15 -27 18 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
 require("scripts/globals/keyitems");
@@ -18,8 +17,8 @@ require("scripts/zones/Heavens_Tower/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	currentMission = player:getCurrentMission(WINDURST);
-	nextMissionFinished = player:hasCompletedMission(WINDURST,A_NEW_JOURNEY);
+	local currentMission = player:getCurrentMission(WINDURST);
+	local nextMissionFinished = player:hasCompletedMission(WINDURST,A_NEW_JOURNEY);
 	
 	if(currentMission == WRITTEN_IN_THE_STARS and player:getVar("MissionStatus") == 3) then
 		if(trade:hasItemQty(16447,3) and trade:getItemCount() == 3) then -- Trade Rusty Dagger
@@ -36,9 +35,9 @@ end;
 
 function onTrigger(player,npc)
 	
-	currentMission = player:getCurrentMission(WINDURST);
-	MissionStatus = player:getVar("MissionStatus");
-	nextMissionFinished = player:hasCompletedMission(WINDURST,A_NEW_JOURNEY);
+	local currentMission = player:getCurrentMission(WINDURST);
+	local MissionStatus = player:getVar("MissionStatus");
+	local nextMissionFinished = player:hasCompletedMission(WINDURST,A_NEW_JOURNEY);
 	
 	if(currentMission == WRITTEN_IN_THE_STARS and nextMissionFinished == false) then
 		if(MissionStatus == 0) then

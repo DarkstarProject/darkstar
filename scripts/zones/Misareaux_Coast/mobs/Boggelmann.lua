@@ -1,7 +1,9 @@
 -----------------------------------
--- Area:  Misareaux Coast
---   Boggelmann
+-- Area: Misareaux Coast
+-- Mob:  Boggelmann
 -----------------------------------
+
+require("scripts/globals/missions");
 
 -----------------------------------
 -- onMobSpawn Action

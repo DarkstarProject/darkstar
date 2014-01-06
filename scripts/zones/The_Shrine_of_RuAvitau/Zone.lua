@@ -3,8 +3,9 @@
 -- Zone: The_Shrine_of_RuAvitau (178)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
@@ -49,7 +50,7 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-   cs = -1;
+   local cs = -1;
    local xPos = player:getXPos();
    local yPos = player:getYPos();
    local zPos = player:getZPos();

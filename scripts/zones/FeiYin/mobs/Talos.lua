@@ -2,7 +2,6 @@
 -- Area: FeiYin
 -- MOB:  Talos
 -----------------------------------
------------------------------------
 
 require("scripts/globals/keyitems");
 

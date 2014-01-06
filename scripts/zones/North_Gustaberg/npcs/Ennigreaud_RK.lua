@@ -13,7 +13,7 @@ require("scripts/zones/North_Gustaberg/TextIDs");
 local guardnation = SANDORIA;	-- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype 	= 3;		-- 1: city, 2: foreign, 3: outpost, 4: border
 local region 		= GUSTABERG;
-local csid 		= 0x7ffb;
+local csid 			= 0x7ffb;
 
 -----------------------------------
 -- onTrade Action

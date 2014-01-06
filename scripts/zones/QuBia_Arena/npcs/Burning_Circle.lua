@@ -4,12 +4,13 @@
 -- @pos -221 -24 19 206
 -------------------------------------
 package.loaded["scripts/zones/QuBia_Arena/TextIDs"] = nil;
-package.loaded["scripts/globals/bcnm"] = nil;
 -------------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/globals/missions");
 require("scripts/zones/QuBia_Arena/TextIDs");
+
+-------------------------------------
 	
 	-- 0: The Ruins of Fei'Yin, Darkness Rising, The Final Seal (Rank 5 Mission)
 	-- 1: Come Into My Parlor

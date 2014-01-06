@@ -1,14 +1,13 @@
 -----------------------------------
 --  Area: Aht Urhgan Whitegate
---   NPC: Mathlouq
+--  NPC:  Mathlouq
 --  Type: Standard NPC
--- @zone: 50
---  @pos -92.892 -7 129.277
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -92.892 -7 129.277 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 -----------------------------------
 -- onTrade Action

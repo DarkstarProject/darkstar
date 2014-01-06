@@ -1,17 +1,44 @@
-function onTrigger(player,npc)
+-----------------------------------
+-- Area: Davoi
+-- NPC:  _451 (Elevator Lever)
+-- Notes: Used to operate Elevator @450
+-----------------------------------
+package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
+-----------------------------------
 
-StartElevator(17);
-GetNPCByID(17388000):setAnimation(8);
+require("scripts/globals/settings");
+require("scripts/zones/Davoi/TextIDs");
 
+-----------------------------------
+-- onTrade Action
+-----------------------------------
 
-
-
---ANIMATION_OPEN_DOOR				= 8,
---	ANIMATION_CLOSE_DOOR			= 9,
---	ANIMATION_ELEVATOR_UP			= 10,
---	ANIMATION_ELEVATOR_DOWN			= 11,
+function onTrade(player,npc,trade)
 end;
 
+-----------------------------------
+-- onTrigger Action
+-----------------------------------
 
-function onEventUpdate()
+function onTrigger(player,npc)
+	npc:openDoor(3); -- lever animation
+	RunElevator(23);
+end;
+
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
+
+function onEventUpdate(player,csid,option)
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
+end;
+
+-----------------------------------
+-- onEventFinish
+-----------------------------------
+
+function onEventFinish(player,csid,option,npc)
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;

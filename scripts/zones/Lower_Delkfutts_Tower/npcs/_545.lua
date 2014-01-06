@@ -1,7 +1,7 @@
 -----------------------------------
--- Area: Lower Delkfutt's Tower
--- NPC:  Cermet Door
--- Spawns a mob in CoP.  Never opens.
+-- Area:  Lower Delkfutt's Tower
+-- NPC:   Cermet Door
+-- Notes: Involved in Missions: THREE_PATHS
 -----------------------------------
 package.loaded["scripts/zones/Lower_Delkfutts_Tower/TextIDs"] = nil;
 -----------------------------------

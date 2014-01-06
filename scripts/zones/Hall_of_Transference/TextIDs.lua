@@ -7,4 +7,4 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
 
 -- Other Texts
-DOOR_IS_CLOSED = 7200; -- The door is firmly shut.
+DOOR_IS_CLOSED = 7210; -- The door is firmly shut.

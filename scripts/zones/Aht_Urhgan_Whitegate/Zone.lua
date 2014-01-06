@@ -3,8 +3,9 @@
 -- Zone: Aht_Urhgan_Whitegate (50)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
@@ -22,7 +23,7 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
+	local cs = -1;	
 	-- MOG HOUSE EXIT	
 	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then

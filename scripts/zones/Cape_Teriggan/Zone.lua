@@ -3,8 +3,8 @@
 -- Zone: Cape_Teriggan (113)
 --
 -----------------------------------
-
 package.loaded[ "scripts/zones/Cape_Teriggan/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/zones/Cape_Teriggan/TextIDs");
 require("scripts/globals/icanheararainbow");
@@ -23,7 +23,7 @@ end;
 
 function onZoneIn( player, prevZone)
 
-	cs = -1;
+	local cs = -1;
 
 	if( player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
 		player:setPos( 315.644, -1.517, -60.633, 108);

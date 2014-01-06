@@ -12,10 +12,10 @@ require("scripts/zones/Kuftal_Tunnel/MobIDs");
 	
 function onMobDeath(mob,killer)	
 
-    mob = mob:getID();
+    local mob = mob:getID();
     if (Pelican_PH[mob] ~= nil) then
 
-        ToD = GetServerVariable("[POP]Pelican");
+        local ToD = GetServerVariable("[POP]Pelican");
         if (ToD <= os.time(t) and GetMobAction(Pelican) == 0) then
             if (math.random((1),(20)) == 5) then
                 UpdateNMSpawnPoint(Pelican);

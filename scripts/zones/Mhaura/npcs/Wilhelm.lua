@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Mhaura
---   NPC: Wilhelm
+--  NPC:  Wilhelm
 --  Type: Standard NPC
--- @zone: 249
---  @pos -22.746 -5 17.157
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -22.746 -5 17.157 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------

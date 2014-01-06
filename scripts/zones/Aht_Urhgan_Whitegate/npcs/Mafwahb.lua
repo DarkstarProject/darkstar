@@ -3,6 +3,10 @@
 -- NPC: Mafwahb
 -- Standard Info NPC
 -----------------------------------
+package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -17,7 +21,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	LuckOfTheDraw = player:getVar("LuckOfTheDraw");
+	local LuckOfTheDraw = player:getVar("LuckOfTheDraw");
 	
 	if (LuckOfTheDraw ==1) then
 		player:startEvent(0x0224);	

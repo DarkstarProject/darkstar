@@ -12,10 +12,10 @@ require("/scripts/zones/Gustav_Tunnel/MobIDs");
 	
 function onMobDeath(mob,killer)	
   
-    mob = mob:getID();
+    local mob = mob:getID();
     if (Taxim_PH[mob] ~= nil) then
 
-        ToD = GetServerVariable("[POP]Taxim");
+        local ToD = GetServerVariable("[POP]Taxim");
         if (ToD <= os.time(t) and GetMobAction(Taxim) == 0) then
             if (math.random((1),(20)) == 5) then
                 UpdateNMSpawnPoint(Taxim);

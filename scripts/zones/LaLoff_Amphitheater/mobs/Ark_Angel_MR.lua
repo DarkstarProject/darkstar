@@ -1,9 +1,11 @@
 -----------------------------------
 -- Area: LaLoff Amphitheater
 -- NPC:  Ark Angel MR
---
 -----------------------------------
+
 require("scripts/zones/LaLoff_Amphitheater/TextIDs");
+
+-----------------------------------
 
 -- TODO: Allegedly has a 12 hp/sec regen.  Determine if true, and add to onMobInitialize if so.
 

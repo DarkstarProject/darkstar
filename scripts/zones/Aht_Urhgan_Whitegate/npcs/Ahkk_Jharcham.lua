@@ -2,7 +2,7 @@
 -- Area: Aht Urhgan Whitegate
 -- NPC:  Ahkk Jharcham
 -- Quest 'Keeping Notes'
--- @pos 0 -1 -76 50
+-- @pos 0.1 -1 -76 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
@@ -16,9 +16,9 @@ require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	keepingNotes = player:getQuestStatus(AHT_URHGAN,KEEPING_NOTES);
-	sheetOfParchment = trade:hasItemQty(917,1);
-	jarOfBlackInk = trade:hasItemQty(929,1);
+	local keepingNotes = player:getQuestStatus(AHT_URHGAN,KEEPING_NOTES);
+	local sheetOfParchment = trade:hasItemQty(917,1);
+	local jarOfBlackInk = trade:hasItemQty(929,1);
 	
 	if(keepingNotes == QUEST_ACCEPTED and sheetOfParchment and jarOfBlackInk and trade:getItemCount() == 2) then
 		player:startEvent(0x000B);
@@ -34,7 +34,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	keepingNotes = player:getQuestStatus(AHT_URHGAN,KEEPING_NOTES);
+	local keepingNotes = player:getQuestStatus(AHT_URHGAN,KEEPING_NOTES);
 	
 	if(keepingNotes == QUEST_AVAILABLE) then
 		player:startEvent(0x0009);

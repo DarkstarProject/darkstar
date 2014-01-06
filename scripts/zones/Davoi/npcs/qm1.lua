@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Davoi
--- NPC:  ???
+-- NPC:  ??? (qm1)
 -- Involved in Quest: To Cure a Cough
--- @zone 149
--- @pos 
+-- @pos -115.830 -0.427 -184.289 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +18,6 @@ require("scripts/zones/Davoi/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
 end;
 
 -----------------------------------
@@ -28,7 +26,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	toCureaCough = player:getQuestStatus(SANDORIA,TO_CURE_A_COUGH);
+	local toCureaCough = player:getQuestStatus(SANDORIA,TO_CURE_A_COUGH);
 	
 	if(toCureaCough == QUEST_ACCEPTED and player:hasKeyItem(THYME_MOSS) == false) then
 		player:addKeyItem(THYME_MOSS);

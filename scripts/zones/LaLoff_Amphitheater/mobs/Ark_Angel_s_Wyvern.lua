@@ -1,9 +1,10 @@
 -----------------------------------
 -- Area: LaLoff Amphitheater
 -- NPC:  Ark Angel's Wyvern
---
 -----------------------------------
+
 require("scripts/zones/LaLoff_Amphitheater/TextIDs");
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------

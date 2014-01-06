@@ -5,6 +5,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Dragons_Aery/TextIDs"] = nil;
 -----------------------------------
+
 require("scripts/zones/Dragons_Aery/TextIDs");
 
 -----------------------------------

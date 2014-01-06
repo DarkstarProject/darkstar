@@ -3,8 +3,9 @@
 -- Zone: La_Vaule_[S] (85)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/La_Vaule_[S]/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/La_Vaule_[S]/TextIDs");
 
@@ -20,7 +21,7 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
+	local cs = -1;	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(236.547,-2.25,20,120);
 	end	

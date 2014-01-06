@@ -1,14 +1,13 @@
 -----------------------------------
 --  Area: The Eldieme Necropolis
---   NPC: Cannau
+--  NPC:  Cannau
 --  Type: Escort NPC
--- @zone: 195
---  @pos 419.838 -56.999 -114.870
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 419.838 -56.999 -114.870 195
 -----------------------------------
 package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
 
 -----------------------------------
 -- onTrade Action

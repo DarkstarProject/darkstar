@@ -67,7 +67,7 @@ function onEventFinish(player,csid,option)
 --printf("OPTION: %u",option);
 
 	if(option == 1) then
-		duration = (player:getRank() + getNationRank(player:getNation()) + 3) * 3600;
+		local duration = (player:getRank() + getNationRank(player:getNation()) + 3) * 3600;
 		player:delStatusEffect(EFFECT_SIGNET);
 		player:addStatusEffect(EFFECT_SIGNET,0,0,duration); -- Grant Signet
 	elseif(option == 2) then

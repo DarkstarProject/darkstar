@@ -5,10 +5,11 @@
 -- Partitionally Implemented
 -- Difficult Shop Script needed
 -----------------------------------
-
-require("scripts/globals/shop");
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+require("scripts/globals/shop");
 
 -----------------------------------
 -- onTrade Action
@@ -39,7 +40,7 @@ stock = {0x400f,15448,		-- Katars (Not available if beastmen have the AC.)
 	 0x4141,4550,		-- Greataxe (Not available if beastmen have the AC.)
 	 0x4180,344,		-- Bronze Zaghnal
 	 0x4182,12540,		-- Zaghnal (Not available if beastmen have the AC.)
-	 0x4280,72,		-- Ash Club
+	 0x4280,72,			-- Ash Club
 	 0x4281,1740,		-- Chestnut Club (Not available if beastmen have the AC.)
 	 0x4753,238}		-- Angon
  

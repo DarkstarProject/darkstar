@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Oldton Movalpolos
---   NPC: Gu'Zho Thunderblade
+--  NPC:  Gu'Zho Thunderblade
 --  Type: NPC Quest 
--- @zone: 11
---  @pos -316.427 7.124 -260.868
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -316.427 7.124 -260.868 11
 -----------------------------------
 package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
 -----------------------------------

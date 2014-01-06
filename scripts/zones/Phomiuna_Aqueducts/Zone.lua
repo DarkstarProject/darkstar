@@ -3,8 +3,9 @@
 -- Zone: Phomiuna_Aqueducts (27)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
@@ -21,7 +22,7 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
+	local cs = -1;	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(260.02,-2.12,-290.461,192);
 	end	

@@ -5,19 +5,18 @@
 --  The "TrialSizeLightning_date" still needs to be set at the BCNM/Mob level to reflect defeat by the Avatar
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/zones/Mhaura/TextIDs");
 
-
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
 	if(trade:hasItemQty(1548,1) == true and player:getQuestStatus(OTHER_AREAS,TRIAL_SIZE_TRIAL_BY_LIGHTNING) == QUEST_ACCEPTED and player:getMainJob() == JOB_SMN) then
 		player:startEvent(0x272a,0,1548,5,20);
 	end
@@ -34,7 +33,7 @@ function onTrigger(player,npc)
 	if(player:getMainLvl() >= 20 and player:getMainJob() == JOB_SMN and TrialSizeLightning == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 2) then --Requires player to be Summoner at least lvl 20
 		player:startEvent(0x2729,0,1548,5,20); 	--mini tuning fork of lightning, zone, level
 	elseif(TrialSizeLightning == QUEST_ACCEPTED) then
-		LightningFork = player:hasItem(1548);
+		local LightningFork = player:hasItem(1548);
 		
 		if(LightningFork == true) then 
 			player:startEvent(0x2722); --Dialogue given to remind player to be prepared

@@ -2,8 +2,7 @@
 -- Area: La Theine Plateau
 -- NPC:  Augevinne
 -- Involved in Mission: The Rescue Drill
--- @zone 102
--- @pos -361 39 266
+-- @pos -361 39 266 102
 -----------------------------------
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
 -----------------------------------
@@ -25,7 +24,7 @@ end;
 function onTrigger(player,npc)
 	
 	if(player:getCurrentMission(SANDORIA) == THE_RESCUE_DRILL) then
-		MissionStatus = player:getVar("MissionStatus");
+		local MissionStatus = player:getVar("MissionStatus");
 		
 		if(MissionStatus >= 5 and MissionStatus <= 7) then
 			player:startEvent(0x0067);

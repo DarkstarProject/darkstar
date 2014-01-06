@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Ordelles Caves
--- NPC:  ???
+-- NPC:  ??? (qm6)
 -- Involved In Quest: Dark Puppet
--- @zone 193
--- @pos -132 -27 -245
+-- @pos -132 -27 -245 193
 -----------------------------------
 package.loaded["scripts/zones/Ordelles_Caves/TextIDs"] = nil;
 -----------------------------------
