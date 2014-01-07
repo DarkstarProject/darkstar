@@ -268,3 +268,5 @@ function SetTreasureSpawns()
        i = i + 1;
    end
 end;
+
+SetServerVariable( 'server_start_time', os.time() );
