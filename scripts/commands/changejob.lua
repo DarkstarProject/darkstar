@@ -53,6 +53,12 @@ function onTrigger(player, job, level)
         end
     end
     
+    -- Ensure player entered a valid id..
+    if (jobId <= 0 or jobId > 22) then
+        player:PrintToPlayer( "Invalid job id given; must be between 1 and 22. Or use a short name e.g. WAR" );
+        return;
+    end
+    
     -- Change the players job..
     player:changeJob( jobId );
     
