@@ -1559,13 +1559,13 @@ float GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 	//get ratio (not capped for RAs)
 	float ratio = (float)rAttack / (float)PDefender->DEF();
 
-	//level correct (0.025 not 0.05 like for melee)
-	if(PDefender->GetMLevel() > PAttacker->GetMLevel()){
-		ratio -= 0.025f * (PDefender->GetMLevel() - PAttacker->GetMLevel());
-	}
-
 	if(ratio < 0) { ratio = 0; }
 	if(ratio > 3) { ratio = 3; }
+
+    //level correct (0.025 not 0.05 like for melee)
+    if (PDefender->GetMLevel() > PAttacker->GetMLevel()){
+        ratio -= 0.025f * (PDefender->GetMLevel() - PAttacker->GetMLevel());
+    }
 
 	//calculate min/max PDIF
 	float minPdif = 0;
@@ -1581,7 +1581,7 @@ float GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 		minPdif = 1;
 		maxPdif = 1;
 	}
-	else if(ratio <= 3)
+	else
 	{
 		minPdif = (-3.0f/19.0f) + ((20.0f/19.0f) * ratio);
 		maxPdif = ratio;
@@ -2142,20 +2142,14 @@ float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool is
     float ratio = (float)(PAttacker->ATT() + attPercentBonus) / (float)((PDefender->DEF()==0) ? 1 : PDefender->DEF());
 	float cRatioMax = 0;
 	float cRatioMin = 0;
+    float ratioCap = 2.0f;
 
-	float cap = 2.0f;
-	if(PAttacker->objtype==TYPE_PC){
-		if(PAttacker->m_Weapons[SLOT_MAIN]->isTwoHanded()){
-			cap = 2.2f;
-		}
-	}
-	if(PAttacker->objtype == TYPE_MOB){
-		cap = 2.2f; //simply set for the 2h calc further on
-	}
+    if (PAttacker->objtype == TYPE_PC)
+    {
+        ratioCap = 2.25f;
+    }
 
-
-	ratio = dsp_cap(ratio,0,cap);
-	//2hs have more of a 'buffer' (0.2 more) for level correction than 1hs
+	ratio = dsp_cap(ratio,0,ratioCap);
 	float cRatio = ratio;
 	if(PAttacker->objtype == TYPE_PC)
 	{
@@ -2164,57 +2158,56 @@ float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool is
 			cRatio -= 0.050f * (PDefender->GetMLevel() - PAttacker->GetMLevel());
 		}
 	}
-	//but its still capped
-	cRatio = dsp_cap(cRatio,0,2);
+    else
+    {
+        if (PAttacker->GetMLevel() > PDefender->GetMLevel())
+        {
+            cRatio += 0.050f * (PAttacker->GetMLevel() - PDefender->GetMLevel());
+        }
+    }
 
-	if(cap==2.0f){//1h weapon algorithm source: PChan @ BG (aka reliable)
-		if((0 <= cRatio) && (cRatio < 0.5)) {
-			cRatioMax = 1.0f + ((10.0f/9.0f)*(cRatio-0.5f));
-		} else if((0.5 <= cRatio) && (cRatio <= 0.75f)) {
-			cRatioMax = 1.0f;
-		} else if((0.75f < cRatio) && (cRatio <= 2)) {
-			cRatioMax = 1.0f + ((10.0f/9.0f)*(cRatio-0.75f));
-		}
+    if (isCritical){
+        cRatio += 1;
+    }
 
-		if((0 <= cRatio) && (cRatio < 0.5)) {
-			cRatioMin =  (float)(1.0f/6.0f);
-		} else if((0.5 <= cRatio) && (cRatio <= 1.25)) {
-			cRatioMin = 1.0f + ((10.0f/9.0f)*(cRatio-1.25));
-		} else if((1.25 < cRatio) && (cRatio <= 1.5)) {
-			cRatioMin = 1.0f;
-		} else if((1.5 < cRatio) && (cRatio <= 2)) {
-			cRatioMin = 1.0f + ((10.0f/9.0f)*(cRatio-1.5));
-		}
-	}
-	else{//2h weapon
-		if((0 <= cRatio) && (cRatio < 0.5)) {
-			cRatioMax = 0.4f + 1.2f * cRatio;
-		} else if((0.5 <= cRatio) && (cRatio <= (5.0f/6.0f))) {
-			cRatioMax = 1;
-		} else if(((5.0f/6.0f) < cRatio) && (cRatio <= (10.0f/6.0f))) {
-			cRatioMax = 1.25f * (cRatio);
-		} else if(((10.0f/6.0f) < cRatio) && (cRatio <= 2)) {
-			cRatioMax = 1.2f * (cRatio);
-		}
+    cRatio = dsp_cap(cRatio, 0, 4);
 
-		if((0 <= cRatio) && (cRatio < 1.25)) {
-			cRatioMin =  (float)(-0.5 + 1.2 * cRatio);
-		} else if((1.25 <= cRatio) && (cRatio <= 1.5)) {
-			cRatioMin = 1;
-		} else if((1.5 < cRatio) && (cRatio <= 2)) {
-			cRatioMin = (float)(-0.8 + 1.2 * cRatio);
-		}
-	}
+	if((0 <= cRatio) && (cRatio < 0.5)) {
+		cRatioMax = cRatio + 1;
+	} else if((0.5 <= cRatio) && (cRatio <= 0.7)) {
+		cRatioMax = 1;
+	} else if((0.7 < cRatio) && (cRatio <= 1.2)) {
+		cRatioMax = cRatio + 0.3;
+	} else if((1.2 < cRatio) && (cRatio <= 1.5)) {
+        cRatioMax = (cRatio * 0.25f) + cRatio;
+	} else if((1.5 < cRatio) && (cRatio <= 2.625)) {
+        cRatioMax = cRatio + 0.375;
+	} else if((2.625 < cRatio) && (cRatio <= 3.25)) {
+        cRatioMax = 3;
+    } else {
+        cRatioMax = cRatio;
+    }
 
-	cRatioMin = (cRatioMin < 0 ? 0 : cRatioMin);
+	if((0 <= cRatio) && (cRatio < 0.38)) {
+		cRatioMin =  0;
+	} else if((0.38 <= cRatio) && (cRatio <= 1.25)) {
+		cRatioMin = cRatio * (float)(1176 / 1024) - (float)(448 / 1024);
+	} else if((1.25 < cRatio) && (cRatio <= 1.51)) {
+		cRatioMin = 1;
+    } else if ((1.51 < cRatio) && (cRatio <= 2.44)) {
+        cRatioMin = cRatio * (float)(1176 / 1024) - (float)(775 / 1024);
+    } else {
+        cRatioMin = cRatio - 0.375;
+    }
 
-	if(isCritical){
-		cRatioMin += 1;
-		cRatioMax += 1;
-	}
-
-	cRatioMax = (cRatioMax > 3 ? 3 : cRatioMax);
 	float pDIF = ((cRatioMax-cRatioMin) * ((float)rand()/RAND_MAX)) + cRatioMin;
+
+    if (isCritical)
+    {
+        int16 criticaldamage = PAttacker->getMod(MOD_CRIT_DMG_INCREASE);
+        criticaldamage = dsp_cap(criticaldamage, 0, 100);
+        pDIF *= ((100 + criticaldamage) / 100.0f);
+    }
 
 	//x1.00 ~ x1.05 final multiplier, giving max value 3*1.05 -> 3.15
 	return pDIF * (1+((0.05f) * ((float)rand()/RAND_MAX)));

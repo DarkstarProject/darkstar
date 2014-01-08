@@ -976,6 +976,9 @@ void CAICharNormal::ActionRangedFinish()
     					if(rand()%100 < battleutils::GetCritHitRate(m_PChar,m_PBattleSubTarget, true))
     					{
     						pdif *= 1.25; //uncapped
+                            int16 criticaldamage = m_PChar->getMod(MOD_CRIT_DMG_INCREASE);
+                            criticaldamage = dsp_cap(criticaldamage, 0, 100);
+                            pdif *= ((100 + criticaldamage) / 100.0f);
     						Action.speceffect = SPECEFFECT_CRITICAL_HIT;
     						Action.messageID = 353;
 							isCrit = true;
@@ -1013,11 +1016,6 @@ void CAICharNormal::ActionRangedFinish()
                         {
     						charutils::TrySkillUP(m_PChar, (SKILLTYPE)PAmmo->getSkillType(), m_PBattleSubTarget->GetMLevel());
                         }
-
-						if (isCrit)
-						{	
-							damage += (damage * (float)m_PChar->getMod(MOD_CRIT_DMG_INCREASE) / 100);
-						}
                     }
 				}
 				else //miss

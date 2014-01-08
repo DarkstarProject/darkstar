@@ -347,7 +347,8 @@ function cMeleeRatio(attacker, defender, params, ignoredDef)
 	if flourisheffect ~= nil and flourisheffect:getPower() > 1 then
 		attacker:addMod(MOD_ATTP, 25 + flourisheffect:getSubPower()/2)
 	end
-	local cratio = (attacker:getStat(MOD_ATT)) / (defender:getStat(MOD_DEF) - ignoredDef);
+	local cratio = (attacker:getStat(MOD_ATT) * params.atkmulti) / (defender:getStat(MOD_DEF) - ignoredDef);
+    cratio = utils.clamp(cratio, 0, 2.25);
 	if flourisheffect ~= nil and flourisheffect:getPower() > 1 then
 		attacker:delMod(MOD_ATTP, 25 + flourisheffect:getSubPower()/2)
 	end
@@ -357,93 +358,84 @@ function cMeleeRatio(attacker, defender, params, ignoredDef)
 	end
 
 	cratio = cratio - levelcor;
-	cratio = cratio * params.atkmulti;
-
-	if(attacker:isWeaponTwoHanded()) then
-		if (cratio > 2.25 - levelcor) then
-			cratio = 2.25 - levelcor;
-		end
-	else
-		if (cratio > 2 - levelcor) then
-			cratio = 2 - levelcor;
-		end
-	end
 
 	if(cratio < 0) then
 		cratio = 0;
 	end
 	local pdifmin = 0;
 	local pdifmax = 0;
-	if(attacker:isWeaponTwoHanded()) then
 
-		--max
+    --max
 
-		if (cratio < 0.5) then
-			pdifmax = (cratio * 1.2) + 0.4;
-		elseif (cratio < (5/6)) then
-			pdifmax = 1;
-		elseif (cratio < (10/6)) then
-			pdifmax = cratio * 1.25;
-		else
-			pdifmax = cratio * 1.2;
-		end
+    if (cratio < 0.5) then
+        pdifmax = cratio + 0.5;
+    elseif (cratio < 0.7) then
+        pdifmax = 1;
+    elseif (cratio < 1.2) then
+        pdifmax = cratio + 0.3;
+    elseif (cratio < 1.5) then
+        pdifmax = (cratio * 0.25) + cratio;
+    elseif (cratio < 1.5) then
+        pdifmax = cratio + 0.375;
+    else
+        pdifmax = 3;
+    end
+    --min
 
-		--min
+    if (cratio < 0.38) then
+        pdifmin = 0;
+    elseif (cratio < 1.25) then
+        pdifmin = cratio * (1176/1024) - (448/1024);
+    elseif (cratio < 1.51) then
+        pdifmin = 1;
+    elseif (cratio < 2.44) then
+        pdifmin = cratio * (1176/1024) - (775/1024);
+    else
+        pdifmin = cratio - 0.375;
+    end
 
-		if (cratio < (5/12)) then
-			pdifmin = 0;
-		elseif (cratio < 1.25) then
-			pdifmin = (cratio * 1.2) - 0.5;
-		elseif (cratio < 1.5) then
-			pdifmin = 1;
-		else
-			pdifmin = (1.2 * cratio) - 0.8;
-		end
-
-	else
-
-		--max
-
-		if (cratio < 0.5) then
-			pdifmax = 1 + ((10/9)*(cratio-0.5));
-		elseif (cratio < 0.75) then
-			pdifmax = 1;
-		else
-			pdifmax = 1 + ((10/9)*(cratio-0.75));
-		end
-
-		--min
-
-		if (cratio < 0.5) then
-			pdifmin = (1/6);
-		elseif (cratio < 1.25) then
-			pdifmin = 1 + ((10/9)*(cratio - 1.25));
-		elseif (cratio < 1.5) then
-			pdifmin = 1;
-		else
-			pdifmin = 1 + ((10/9)*(cratio - 1.5));
-		end
-	end
-	pdif = {};
+	local pdif = {};
 	pdif[1] = pdifmin;
 	pdif[2] = pdifmax;
 
-	pdifcrit = {};
+	local pdifcrit = {};
+    cratio = cratio + 1;
+    cratio = utils.clamp(cratio, 0, 3);
 
 	--printf("ratio: %f min: %f max %f\n", cratio, pdifmin, pdifmax);
 
-	pdifmin = pdifmin + 1;
-	pdifmax = pdifmax + 1;
-	if (pdifmin > 3) then
-		pdifmin = 3;
-	end
-	if (pdifmax > 3) then
-		pdifmax = 3;
-	end
+    if (cratio < 0.5) then
+        pdifmax = cratio + 0.5;
+    elseif (cratio < 0.7) then
+        pdifmax = 1;
+    elseif (cratio < 1.2) then
+        pdifmax = cratio + 0.3;
+    elseif (cratio < 1.5) then
+        pdifmax = (cratio * 0.25) + cratio;
+    elseif (cratio < 1.5) then
+        pdifmax = cratio + 0.375;
+    else
+        pdifmax = 3;
+    end
+    --min
 
-	pdifcrit[1] = pdifmin;
-	pdifcrit[2] = pdifmax;
+    if (cratio < 0.38) then
+        pdifmin = 0;
+    elseif (cratio < 1.25) then
+        pdifmin = cratio * (1176/1024) - (448/1024);
+    elseif (cratio < 1.51) then
+        pdifmin = 1;
+    elseif (cratio < 2.44) then
+        pdifmin = cratio * (1176/1024) - (775/1024);
+    else
+        pdifmin = cratio - 0.375;
+    end
 
+    local critbonus = attacker:getMod(MOD_CRIT_DMG_INCREASE)
+    critbonus = utils.clamp(critbonus, 0, 100);
+    pdifcrit[1] = pdifmin * ((100 + critbonus)/100);
+    pdifcrit[2] = pdifmax * ((100 + critbonus)/100);
+    
 	return pdif, pdifcrit;
 end;
 
