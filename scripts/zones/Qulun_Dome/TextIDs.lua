@@ -7,6 +7,7 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
 
 -- Other Dialog
+					   YOU_FIND_NOTHING = 7217; -- You find nothing. 
                 NOTHING_OUT_OF_ORDINARY = 7392; -- There is nothing out of the ordinary here.
 IT_SEEMS_TO_BE_LOCKED_BY_POWERFUL_MAGIC = 7173; -- A door... It seems to be locked by powerful magic.
                THE_3_ITEMS_GLOW_FAINTLY = 7174; -- The Coruscant rosary, Black Matinee Necklace and Silver bell glow faintly.
