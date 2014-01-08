@@ -1501,14 +1501,14 @@ INSERT INTO `mob_skill` VALUES (1534,62,1228,'Gates_of_Hades', 1, 20.0, 2000, 15
 
 -- Diabolos (Darkness Named)
 -- TODO: Need scripts. 
--- INSERT INTO `mob_skill` VALUES (1647,35,915,'Camisado',0,7,2000,0,4,0, 0, 7);
+-- INSERT INTO `mob_skill` VALUES (1647,35,915,'Camisado',0,7,2000,0,4,0, 0, 3);
 -- INSERT INTO `mob_skill` VALUES (1649,35,916,'Noctoshield',1,7,2000,0,1,0, 0, 0);
 -- INSERT INTO `mob_skill` VALUES (1650,35,917,'Ultimate_Terror',1,7,2000,0,4,0, 0, 0);
 -- INSERT INTO `mob_skill` VALUES (1652,35,918,'Nightmare',1,30,2000,0,4,0, 0, 0);
 
 -- Diabolos (Waking Dreams)
 -- TODO: Need scripts. 
--- INSERT INTO `mob_skill` VALUES (1647,378,915,'Camisado',0,7,2000,0,4,0, 0, 7);
+-- INSERT INTO `mob_skill` VALUES (1647,378,915,'Camisado',0,7,2000,0,4,0, 0, 3);
 -- INSERT INTO `mob_skill` VALUES (1648,378,1126,'Somnolence',0,25,2000,0,4,0, 0, 0);
 -- INSERT INTO `mob_skill` VALUES (1649,378,916,'Noctoshield',1,7,2000,0,1,0, 0, 0);
 -- INSERT INTO `mob_skill` VALUES (1650,378,917,'Ultimate_Terror',1,7,2000,0,4,0, 0, 0);
@@ -1824,7 +1824,7 @@ INSERT INTO `mob_skill` VALUES (656,379,6,'searing_light',1,10.0,502,4000,4,0,0,
 -- INSERT INTO `mob_skill` VALUES (656,379,8,'soothing_ruby',1,10.0,504,4000,4,0,0,0);
 
 -- Pet - Diabolos
-INSERT INTO `mob_skill` VALUES (1647,380,141,'Camisado',0,7,2000,4000,4,0, 0, 7);
+INSERT INTO `mob_skill` VALUES (1647,380,141,'Camisado',0,7,2000,4000,4,0, 0, 3);
 INSERT INTO `mob_skill` VALUES (1648,380,142,'Somnolence',0,25,2000,4000,4,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (1649,380,143,'Noctoshield',1,7,2000,4000,1,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (1650,380,144,'Ultimate_Terror',1,7,2000,4000,4,0, 0, 0);
