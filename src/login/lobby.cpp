@@ -122,7 +122,7 @@ int32 lobbydata_parse(int32 fd)
 					do_close_lobbydata(sd,fd);
 					return -1;
 				}
-				char uList[300];
+				char uList[500];
 				memset(uList,0,sizeof(uList));
 
 				sd->servip = RBUFL(buff,5);
@@ -218,8 +218,8 @@ int32 lobbydata_parse(int32 fd)
 				if(session[sd->login_lobbyview_fd]!=NULL){
 					// write into lobbydata
 					uList[1] = 0x10;
-					memcpy(session[fd]->wdata,uList,0x110);
-					WFIFOSET(fd,0x110);
+					memcpy(session[fd]->wdata,uList,0x148);
+					WFIFOSET(fd,0x148);
 					RFIFOSKIP(fd,session[fd]->rdata_size);
 					RFIFOFLUSH(fd);
 					////////////////////////////////////////
