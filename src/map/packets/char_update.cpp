@@ -77,8 +77,12 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 	{
 		WBUFW(data,(0x34)-4) = PChar->PPet->targid << 3;
 	}
-
-	WBUFB(data,(0x36)-4) = 0x20;  //Ballista flag, bit 6, 0 = ballista, 1 = not ballista
+    //Status flag: bit 4: frozen anim (terror),
+    //  bit 6/7/8 related to Ballista (6 set - normal, 7 set san d'oria, 6+7 set bastok, 8 set windurst)
+    uint8 flag = 0x20;
+    if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TERROR))
+        flag |= 0x08;
+    WBUFB(data,(0x36)-4) = flag;
 	WBUFL(data,(0x3C)-4) = 0x0003A020;
 
     WBUFL(data,(0x40)-4) = CVanaTime::getInstance()->getVanaTime();
