@@ -3074,6 +3074,13 @@ void SmallPacket0x083(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	uint8  quantity   = RBUFB(data,(0x04));
 	uint8  shopSlotID = RBUFB(data,(0x0A));
 
+    // Prevent users from buying from slots higher than 15.. (Prevents appraise duping..)
+    if (shopSlotID > 15)
+    {
+        ShowWarning(CL_YELLOW"User '%s' attempting to buy vendor item from a slot higher than 15!" CL_RESET, PChar->GetName());
+        return;
+    }
+
 	uint16 itemID = PChar->Container->getItemID(shopSlotID);
 	uint32 price  = PChar->Container->getQuantity(shopSlotID); // здесь мы сохранили стоимость предмета
 
