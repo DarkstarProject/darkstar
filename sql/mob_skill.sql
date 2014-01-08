@@ -2178,17 +2178,17 @@ INSERT INTO `mob_skill` VALUES (2629,453,2021,'Beautiful_death',1,18.0,2000,1000
 
 
 -- Bahamut 
-INSERT INTO `mob_skill` VALUES (1286,263,1133,'Trample',0,15.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1287,263,1134,'Tempest_wing',0,15.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1288,263,1139,'Touchdown',0,15.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1289,263,1135,'Sweeping_ Flail',0,15.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1290,263,1140,'Prodigious_spike',0,15.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1291,263,1141,'Impulsion',0,15.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1292,263,1143,'Absolute_terror',0,15.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1293,263,1142,'Horrible_roar',0,15.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1295,263,1136,'Megaflare',0,15.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1296,263,1137,'Gigaflare',0,15.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1297,263,1138,'Teraflare',0,15.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1286,449,1133,'Trample',0,15.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1287,449,1134,'Tempest_wing',0,15.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1288,449,1139,'Touchdown',0,15.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1289,449,1135,'Sweeping_ Flail',0,15.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1290,449,1140,'Prodigious_spike',0,15.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1291,449,1141,'Impulsion',0,15.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1292,449,1143,'Absolute_terror',0,15.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1293,449,1142,'Horrible_roar',0,15.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1295,449,1136,'Megaflare',0,15.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1296,449,1137,'Gigaflare',0,15.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1297,449,1138,'Teraflare',0,15.0,2000,1500,4,0,0,0);
 
 
 -- Promathia phase 1

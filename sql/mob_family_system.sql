@@ -454,6 +454,8 @@ INSERT INTO `mob_family_system` VALUES (387,'Pet-Shiva',5,'Avatar',0,40,100,120,
 INSERT INTO `mob_family_system` VALUES (388,'Pet-Titan',5,'Avatar',1,40,100,120,3,3,3,3,3,3,3,3,3,3,3,1,1,1,1,0.875,0.875,1,0.875,0.875,0.875,0.875,0.875,0);
 INSERT INTO `mob_family_system` VALUES (389,'Pet-Alexander',5,'Avatar',4,40,100,120,3,3,3,3,3,3,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
 
+
+INSERT INTO `mob_family_system` VALUES (449,'Bahamut',10,'Dragon',4,40,120,90,1,3,1,3,6,3,1,3,3,3,3,1,1,1,1,1,1,1.125,1,1,1,1,1,3);
 INSERT INTO `mob_family_system` VALUES (450,'Caturae',3,'Arcana',1,40,90,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
 INSERT INTO `mob_family_system` VALUES (451,'Pteraketos',2,'Aquan',4,40,120,140,6,5,4,5,3,3,4,4,4,2,2,1,1,1,1,1,1.25,1,1,1.25,0.75,1,1,6);
 INSERT INTO `mob_family_system` VALUES (452,'Rockfin',2,'Aquan',4,40,120,140,6,5,4,5,3,3,4,4,4,2,2,1,1,1,1,1,1.25,1,1,1.25,0.75,1,1,6);
