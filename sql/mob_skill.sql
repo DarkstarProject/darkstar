@@ -1360,15 +1360,15 @@ INSERT INTO `mob_skill` VALUES (1211,272,1078,'decayed_filament',0,7.0,2000,1000
 INSERT INTO `mob_skill` VALUES (1212,272,1079,'reactor_overheat',0,7.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1213,272,1080,'reactor_overload',0,7.0,2000,1000,4,0,0,0);
 
--- Yovra -- Needs Scripts.
---INSERT INTO `mob_skill` VALUES (1114,271,1022,'Vitriolic_Barrage',1,10.0,2000,1500,4,0,0,0);
+-- Yovra -- Needs Scripts
+-- INSERT INTO `mob_skill` VALUES (1114,271,1022,'Vitriolic_Barrage',1,10.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1115,271,1023,'Primal_Drill',1,10.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1116,271,1024,'Concussive_Oscillation',1,15.0,2000,1500,4,0,0,7);
 INSERT INTO `mob_skill` VALUES (1117,271,1025,'Ion_Shower',1,10.0,2000,1500,4,0,0,0);
---INSERT INTO `mob_skill` VALUES (1118,271,1026,'Torrential_Torment',1,15.0,2000,1500,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (1118,271,1026,'Torrential_Torment',1,15.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1119,271,1027,'Asthenic_Fog',1,10.0,2000,1500,4,0,0,0);
---INSERT INTO `mob_skill` VALUES (1120,271,1028,'Luminous_Drape',1,10.0,2000,1500,4,0,0,0);
---INSERT INTO `mob_skill` VALUES (1121,271,1029,'Fluorescence',0,7.0,2000,1500,1,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (1120,271,1028,'Luminous_Drape',1,10.0,2000,1500,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (1121,271,1029,'Fluorescence',0,7.0,2000,1500,1,0,0,0);
 
 -- Aern
 INSERT INTO `mob_skill` VALUES (1128,3,1019,'Disseverment',0,7.0,2000,1000,4,0,0,0);
