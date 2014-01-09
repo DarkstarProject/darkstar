@@ -447,35 +447,32 @@ int32 lobbyview_parse(int32 fd)
 			break;
 		case 0x14:
 			{
+                //delete char
+                uint32 ContentID = RBUFL(session[fd]->rdata, 0x1C);
+                uint32 CharID = RBUFL(session[fd]->rdata, 0x20);
 
-				//delete char
-				uint32 ContentID = RBUFL(session[fd]->rdata,0x1C);
-				//DebugPrint("[LViewServ]Content ID: %.8X (%d)",ContentID,ContentID);
-				
-				uint32 CharID = RBUFL(session[fd]->rdata,0x20);
+                ShowInfo(CL_WHITE"lobbyview_parse" CL_RESET":attempt to delete char:<" CL_WHITE"%d" CL_RESET"> from ip:<%s>\n", CharID, ip2str(sd->client_addr, NULL));
 
-				ShowInfo(CL_WHITE"lobbyview_parse" CL_RESET":attempt to delete char:<" CL_WHITE"%d" CL_RESET"> from ip:<%s>\n",CharID,ip2str(sd->client_addr,NULL));
+                uint8 sendsize = 0x20;
 
-				uint8 sendsize = 0x20;
+                LOBBY_ACTION_DONE(ReservePacket);
+                unsigned char hash[16];
 
-				LOBBY_ACTION_DONE(ReservePacket);
-				unsigned char hash[16];
+                md5(ReservePacket, hash, sendsize);
+                memcpy(ReservePacket + 12, hash, 16);
 
-				md5(ReservePacket, hash, sendsize);
-				memcpy(ReservePacket+12,hash,16);
+                memcpy(session[fd]->wdata, ReservePacket, sendsize);
+                WFIFOSET(fd, sendsize);
+                RFIFOSKIP(fd, session[fd]->rdata_size);
+                RFIFOFLUSH(fd);
 
-				memcpy(session[fd]->wdata,ReservePacket,sendsize);
-				WFIFOSET(fd,sendsize);
-				RFIFOSKIP(fd,session[fd]->rdata_size);
-				RFIFOFLUSH(fd);
+                //Выполнение удаления персонажа из основных таблиц
+                //Достаточно удалить значение из таблицы chars, все остальное сделает mysql-сервер
 
-				//Выполнение удаления персонажа из основных таблиц
-				//Достаточно удалить значение из таблицы chars, все остальное сделает mysql-сервер
+                const char *pfmtQuery = "DELETE FROM chars WHERE charid = %i AND accid = %i";
+                Sql_Query(SqlHandle, pfmtQuery, CharID, sd->accid);
 
-				const char *pfmtQuery = "DELETE FROM chars WHERE charid = %i";
-				Sql_Query(SqlHandle,pfmtQuery,CharID);
-
-				break;
+                break;
 			}
 		case 0x1F:
 			{
