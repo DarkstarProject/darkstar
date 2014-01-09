@@ -39,4 +39,4 @@ CREATE TABLE IF NOT EXISTS `delivery_box` (
   `received` bit(1) NOT NULL DEFAULT 0,
   `sent` bit(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`charid`,`box`,`slot`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
