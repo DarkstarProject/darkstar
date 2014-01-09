@@ -101,6 +101,7 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
 				{
 					CCharEntity* PChar = (CCharEntity*)it->second;
 					PChar->PLatentEffectContainer->CheckLatentsDay();
+					PChar->PLatentEffectContainer->CheckLatentsJobLevel();
 				}
 			}
 		}

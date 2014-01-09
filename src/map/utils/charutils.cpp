@@ -3372,6 +3372,8 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
                     puppetutils::LoadAutomatonStats(PChar);
                 }
             }
+
+			PChar->PLatentEffectContainer->CheckLatentsJobLevel();
             PChar->UpdateHealth();
 
             PChar->health.hp = PChar->GetMaxHP();

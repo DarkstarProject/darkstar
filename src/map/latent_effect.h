@@ -45,7 +45,6 @@ enum LATENT
 	LATENT_WEAPON_SHEATHED			= 11, //weapon sheathed
 	LATENT_STATUS_EFFECT_ACTIVE		= 13, //status effect on player - PARAM: EFFECTID
 	LATENT_FOOD_ACTIVE				= 49, //food effect (foodId) active - PARAM: FOOD ITEMID
-	LATENT_FOOD_OVERWRITE			= 50, //delete existing mods for item, replace with new - PARAM: ITEMID
 	LATENT_NO_FOOD_ACTIVE			= 14, //no food effects active on player
 	LATENT_PARTY_MEMBERS			= 16, //party has members other than self - PARAM: # OF MEMBERS
 	LATENT_AVATAR_IN_PARTY			= 21, //party has a specific avatar - PARAM: same as globals/pets.lua (21 for any avatar)
@@ -72,7 +71,8 @@ enum LATENT
 	LATENT_WEAPON_DRAWN_HP_UNDER	= 43, //PARAM: HP PERCENT
 	LATENT_WEAPON_BROKEN			= 47,
 	LATENT_IN_DYNAMIS				= 48,
-    LATENT_JOB_LEVEL_ABOVE          = 51 //PARAM: level
+	LATENT_JOB_LEVEL_BELOW			= 50, //PARAM: level
+    LATENT_JOB_LEVEL_ABOVE          = 51  //PARAM: level
 };
 
 #define MAX_LATENTEFFECTID    52

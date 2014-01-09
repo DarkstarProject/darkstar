@@ -423,6 +423,13 @@ void CAICharNormal::ActionDeath()
             m_PChar->m_hasRaise = 1;
         }
 
+		// destrier beret, auto reraise if level is under 30
+		if (m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_HEAD])->getID() == 11811)
+		{
+			if (m_PChar->GetMLevel() <= 30)
+				m_PChar->m_hasRaise = 1;
+		}
+
         // has reraise, don't stop timer
         // this must be after deleting status effects
         if(m_PChar->m_hasRaise == 0){

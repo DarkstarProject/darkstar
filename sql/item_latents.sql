@@ -84,18 +84,36 @@ INSERT INTO `item_latents` VALUES(17073, 406, 3, 7, 2); -- Mistilteinn drains 3T
 INSERT INTO `item_latents` VALUES(17073, 369, 1, 7, 2); -- Mistilteinn adds Refresh 1MP per tick
 INSERT INTO `item_latents` VALUES(13145, 28, 8, 4, 51);
 INSERT INTO `item_latents` VALUES(13289, 28, 10, 2, 76);
-INSERT INTO `item_latents` VALUES(14008, 23, 8, 0, 75);
-INSERT INTO `item_latents` VALUES(14008, 1, 16, 0, 75);
-INSERT INTO `item_latents` VALUES(14009, 23, 9, 0, 75);
-INSERT INTO `item_latents` VALUES(14009, 1, 17, 0, 75);
+
+-- -------------------------------------------------------
+-- Carapace Gauntlets
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(14008, 23, 8, 0, 75); -- Attack+8 when HP <=75%
+INSERT INTO `item_latents` VALUES(14008, 1, 16, 0, 75); -- DEF:16 whem HP <= 75%
+
+-- -------------------------------------------------------
+-- Cpc. Gauntlets +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(14009, 23, 9, 0, 75); -- Attack+9 when HP <=75%
+INSERT INTO `item_latents` VALUES(14009, 1, 17, 0, 75); -- DEF:17 whem HP <= 75%
+
 INSERT INTO `item_latents` VALUES(14055, 23, 7, 46, 75);
 INSERT INTO `item_latents` VALUES(14448, 10, 6, 46, 71);
 INSERT INTO `item_latents` VALUES(15209, 8, 3, 46, 75);
 INSERT INTO `item_latents` VALUES(15345, 384, 3, 46, 75);
 INSERT INTO `item_latents` VALUES(15406, 31, 4, 46, 75);
-INSERT INTO `item_latents` VALUES(15530, 368, 10, 10, 50);
-INSERT INTO `item_latents` VALUES(16355, 25, 25, 0, 25);
-INSERT INTO `item_latents` VALUES(16355, 23, 25, 0, 25);
+
+-- -------------------------------------------------------
+-- Berserker's Torque
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15530, 368, 10, 10, 50); -- HP-50/Tick of TP while weapon drawn
+
+-- -------------------------------------------------------
+-- Bedivere's Hose
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(16355, 25, 25, 0, 25); -- Accuracy+25 when HP <=25%
+INSERT INTO `item_latents` VALUES(16355, 23, 25, 0, 25); -- Attack+25 when HP <=25%
+
 INSERT INTO `item_latents` VALUES(16426, 25, 2, 0, 92);
 INSERT INTO `item_latents` VALUES(16426, 25, 2, 0, 82);
 INSERT INTO `item_latents` VALUES(16426, 25, 2, 0, 73);
@@ -118,7 +136,12 @@ INSERT INTO `item_latents` VALUES(17983, 366, 1, 0, 28);
 INSERT INTO `item_latents` VALUES(17983, 366, 1, 0, 19);
 INSERT INTO `item_latents` VALUES(17983, 366, 1, 0, 10);
 INSERT INTO `item_latents` VALUES(17983, 366, 1, 0, 1);
-INSERT INTO `item_latents` VALUES(18445, 73, 10, 0, 50);
+
+-- -------------------------------------------------------
+-- Amakura
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(18445, 73, 10, 0, 50); -- "Store TP"+10 when HP <50%
+
 INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 92);
 INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 82);
 INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 73);
@@ -130,104 +153,258 @@ INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 28);
 INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 19);
 INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 10);
 INSERT INTO `item_latents` VALUES(16911, 366, 1, 0, 1);
-INSERT INTO `item_latents` VALUES(13878, 23, 10, 0, 50);
-INSERT INTO `item_latents` VALUES(13878, 1, 23, 0, 50);
-INSERT INTO `item_latents` VALUES(13879, 23, 11, 0, 50);
-INSERT INTO `item_latents` VALUES(13879, 1, 24, 0, 50);
-INSERT INTO `item_latents` VALUES(13789, 23, 12, 0, 25);
-INSERT INTO `item_latents` VALUES(13789, 1, 44, 0, 25);
-INSERT INTO `item_latents` VALUES(13790, 23, 13, 0, 25);
-INSERT INTO `item_latents` VALUES(13790, 1, 45, 0, 25);
-INSERT INTO `item_latents` VALUES(14659, 370, 3, 0, 50);
-INSERT INTO `item_latents` VALUES(14659, 369, 1, 0, 50);
-INSERT INTO `item_latents` VALUES(13185, 370, 1, 0, 50);
-INSERT INTO `item_latents` VALUES(13185, 291, 1, 0, 50);
-INSERT INTO `item_latents` VALUES(13279, 370, 2, 0, 50);
-INSERT INTO `item_latents` VALUES(13279, 291, 2, 0, 50);
-INSERT INTO `item_latents` VALUES(17471, 25, 10, 0, 25);
-INSERT INTO `item_latents` VALUES(17471, 23, 10, 0, 25);
-INSERT INTO `item_latents` VALUES(18859, 370, 3, 0, 50);
-INSERT INTO `item_latents` VALUES(13925, 291, 1, 0, 25);
-INSERT INTO `item_latents` VALUES(14376, 291, 1, 0, 25);
-INSERT INTO `item_latents` VALUES(14819, 291, 1, 0, 25);
-INSERT INTO `item_latents` VALUES(14299, 291, 1, 0, 25);
-INSERT INTO `item_latents` VALUES(14178, 291, 1, 0, 25);
-INSERT INTO `item_latents` VALUES(15209, 8, 4, 1, 75);
-INSERT INTO `item_latents` VALUES(15210, 8, 5, 1, 75);
-INSERT INTO `item_latents` VALUES(14448, 10, 6, 1, 71);
-INSERT INTO `item_latents` VALUES(14449, 10, 7, 1, 71);
-INSERT INTO `item_latents` VALUES(14055, 23, 7, 1, 75);
-INSERT INTO `item_latents` VALUES(14056, 23, 8, 1, 75);
-INSERT INTO `item_latents` VALUES(15406, 68, 3, 1, 75);
-INSERT INTO `item_latents` VALUES(15407, 68, 4, 1, 75);
-INSERT INTO `item_latents` VALUES(15345, 167, 3, 1, 75);
-INSERT INTO `item_latents` VALUES(15346, 167, 4, 1, 75);
-INSERT INTO `item_latents` VALUES(19108, 366, 5, 0, 75);
-INSERT INTO `item_latents` VALUES(18949, 302, 1, 0, 25);
-INSERT INTO `item_latents` VALUES(13286, 288, 2, 2, 75);
-INSERT INTO `item_latents` VALUES(13419, 63, 20, 2, 25);
+
+-- -------------------------------------------------------
+-- Carapace Helm
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13878, 23, 10, 0, 50); -- Attack+10 when HP <=50%
+INSERT INTO `item_latents` VALUES(13878, 1, 23, 0, 50); -- DEF:23 when HP <=50%
+
+-- -------------------------------------------------------
+-- Carapace Helm +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13879, 23, 11, 0, 50); -- Attack+11 when HP <=50%
+INSERT INTO `item_latents` VALUES(13879, 1, 24, 0, 50); -- DEF:24 when HP <=50%
+
+-- -------------------------------------------------------
+-- Carapace Breastplate
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13789, 23, 12, 0, 25); -- Attack+12 when HP <=25%
+INSERT INTO `item_latents` VALUES(13789, 1, 44, 0, 25); -- DEF:44 whem HP<=25%
+
+-- -------------------------------------------------------
+-- Carapace Breastplate +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13790, 23, 13, 0, 25); -- Attack+13 when HP <=25%
+INSERT INTO `item_latents` VALUES(13790, 1, 45, 0, 25); -- DEF:45 when HP <=25%
+
+-- -------------------------------------------------------
+-- Hercules' Ring 
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(14659, 370, 3, 0, 50); -- Regen+3 when HP <=50%
+INSERT INTO `item_latents` VALUES(14659, 369, 1, 0, 50); -- Refresh+1 when HP <=50%
+
+-- -------------------------------------------------------
+-- Muscle Belt
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13185, 370, 1, 0, 50); -- Regen+1 when HP <50%
+INSERT INTO `item_latents` VALUES(13185, 291, 1, 0, 50); -- Counter+1 when HP <50%
+
+-- -------------------------------------------------------
+-- Muscle Belt +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13279, 370, 2, 0, 50); -- Regen+2 when HP <50%
+INSERT INTO `item_latents` VALUES(13279, 291, 2, 0, 50); -- Counter+2 when HP <50%
+
+-- -------------------------------------------------------
+-- Horrent Mace
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(17471, 25, 10, 0, 25); -- Accuracy+10 when HP <=25% while weapon drawn
+INSERT INTO `item_latents` VALUES(17471, 23, 10, 0, 25); -- Attack+10 when HP <=25% while weapon drawn
+
+-- -------------------------------------------------------
+-- Kerykeion  
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(18859, 370, 3, 0, 50); -- Regen+3 when HP <51%
+
+-- -------------------------------------------------------
+-- Rasetsu Jinpachi  
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13925, 291, 1, 0, 25); -- Counter+1 when HP <25%
+
+-- -------------------------------------------------------
+-- Rasetsu Samue 
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(14376, 291, 1, 0, 25); -- Counter+1 when HP <25%
+
+-- -------------------------------------------------------
+-- Rasetsu Tekko   
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(14819, 291, 1, 0, 25); -- Counter+1 when HP <25%
+
+-- -------------------------------------------------------
+-- Rasetsu Hakama     
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(14299, 291, 1, 0, 25); -- Counter+1 when HP <25%
+
+-- -------------------------------------------------------
+-- Rasetsu Sune-Ate     
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(14178, 291, 1, 0, 25); -- Counter+1 when HP <25%
+
+-- -------------------------------------------------------
+-- Unicorn Cap    
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15209, 8, 4, 1, 75); -- STR+4 when HP >75%
+
+-- -------------------------------------------------------
+-- Unicorn Cap +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15210, 8, 5, 1, 75); -- STR+5 when HP >75%
+
+-- -------------------------------------------------------
+-- Unicorn Harness  
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(14448, 10, 6, 1, 71); -- VIT+6 when HP >71%
+
+-- -------------------------------------------------------
+-- Unicorn Harness +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(14449, 10, 7, 1, 71); -- VIT+7 when HP >71%
+
+-- -------------------------------------------------------
+-- Unicorn Mittens  
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(14055, 23, 7, 1, 75); -- Attack+7 when HP >75%
+
+-- -------------------------------------------------------
+-- Unicorn Mittens +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(14056, 23, 8, 1, 75); -- Attack+8 when HP >75%
+
+-- -------------------------------------------------------
+-- Unicorn Subligar   
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15406, 68, 3, 1, 75); -- Evasion+3 when HP >75%
+
+-- -------------------------------------------------------
+-- Unicorn Subligar +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15407, 68, 4, 1, 75); -- Evasion+4 when HP >75%
+
+-- -------------------------------------------------------
+-- Unicorn Leggings    
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15345, 167, 3, 1, 75); -- Haste+3% when HP >75%
+
+-- -------------------------------------------------------
+-- Unicorn Leggings +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15346, 167, 4, 1, 75); -- Haste+4% when HP >75%
+
+-- -------------------------------------------------------
+-- Zareehkl Jambiya
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(19108, 366, 5, 0, 75); -- DNG:36 when HP <=75%
+
+-- -------------------------------------------------------
+-- Zareehkl Scythe  
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(18949, 302, 1, 0, 25); -- Tiple Attack 1% when HP <=25%
+
+-- -------------------------------------------------------
+-- Soldier's Ring
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13286, 288, 2, 2, 75); -- Double Attack+2% when HP <=75% and TP <=100%
+
+-- -------------------------------------------------------
+-- Soldier's Earring  
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13419, 63, 20, 2, 25); -- DEF:20% when HP <=25% and TP <=100%
+
+-- -------------------------------------------------------
+-- Kampfer Ring
+-- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13287, 291, 2, 2, 75);
+
 INSERT INTO `item_latents` VALUES(13420, 291, 5, 2, 25);
+
 INSERT INTO `item_latents` VALUES(13421, 160, -30, 2, 25);
+
 INSERT INTO `item_latents` VALUES(13422, 160, -30, 2, 25);
+
 INSERT INTO `item_latents` VALUES(13423, 163, -77, 2, 25);
+
 INSERT INTO `item_latents` VALUES(13424, 68, 15, 2, 25);
+
 INSERT INTO `item_latents` VALUES(13291, 298, 3, 2, 75);
+
 INSERT INTO `item_latents` VALUES(13425, 168, 30, 2, 25);
+
 INSERT INTO `item_latents` VALUES(13426, 161, -20, 2, 25);
+
 INSERT INTO `item_latents` VALUES(13427, 304, 5, 2, 25);
+
 INSERT INTO `item_latents` VALUES(13428, 161, -30, 2, 25);
+
 INSERT INTO `item_latents` VALUES(13296, 27, 2, 2, 75);
+
 INSERT INTO `item_latents` VALUES(13429, 161, -30, 2, 25);
+
 INSERT INTO `item_latents` VALUES(13297, 25, 5, 2, 75);
+
 INSERT INTO `item_latents` VALUES(13430, 243, 20, 2, 25);
+
 INSERT INTO `item_latents` VALUES(13298, 167, 4, 2, 75);
+
 INSERT INTO `item_latents` VALUES(13431, 167, 20, 2, 25);
+
 INSERT INTO `item_latents` VALUES(13432, 288, 5, 2, 25);
+
 INSERT INTO `item_latents` VALUES(13300, 346, 1, 2, 75);
+
 INSERT INTO `item_latents` VALUES(18358, 366, 5, 6, 100);
 INSERT INTO `item_latents` VALUES(18358, 25, 5, 6, 100);
 INSERT INTO `item_latents` VALUES(18358, 23, 14, 6, 100);
+
 INSERT INTO `item_latents` VALUES(18015, 366, 7, 6, 100);
 INSERT INTO `item_latents` VALUES(18015, 25, 5, 6, 100);
 INSERT INTO `item_latents` VALUES(18015, 23, 16, 6, 100);
+
 INSERT INTO `item_latents` VALUES(17946, 366, 6, 6, 100);
 INSERT INTO `item_latents` VALUES(17946, 25, 5, 6, 100);
 INSERT INTO `item_latents` VALUES(17946, 23, 18, 6, 100);
+
 INSERT INTO `item_latents` VALUES(18099, 366, 5, 6, 100);
 INSERT INTO `item_latents` VALUES(18099, 25, 5, 6, 100);
 INSERT INTO `item_latents` VALUES(18099, 23, 24, 6, 100);
+
 INSERT INTO `item_latents` VALUES(16976, 366, 6, 6, 100);
 INSERT INTO `item_latents` VALUES(16976, 25, 5, 6, 100);
 INSERT INTO `item_latents` VALUES(16976, 23, 18, 6, 100);
+
 INSERT INTO `item_latents` VALUES(17741, 366, 6, 6, 100);
 INSERT INTO `item_latents` VALUES(17741, 25, 5, 6, 100);
 INSERT INTO `item_latents` VALUES(17741, 23, 15, 6, 100);
+
 INSERT INTO `item_latents` VALUES(18943, 366, 5, 6, 100);
 INSERT INTO `item_latents` VALUES(18943, 25, 5, 6, 100);
 INSERT INTO `item_latents` VALUES(18943, 23, 14, 6, 100);
+
 INSERT INTO `item_latents` VALUES(18850, 366, 5, 6, 100);
 INSERT INTO `item_latents` VALUES(18850, 25, 5, 6, 100);
 INSERT INTO `item_latents` VALUES(18850, 23, 15, 6, 100);
+
 INSERT INTO `item_latents` VALUES(18425, 366, 5, 6, 100);
 INSERT INTO `item_latents` VALUES(18425, 25, 5, 6, 100);
 INSERT INTO `item_latents` VALUES(18425, 23, 10, 6, 100);
+
 INSERT INTO `item_latents` VALUES(18588, 366, 6, 6, 100);
 INSERT INTO `item_latents` VALUES(18588, 25, 5, 6, 100);
 INSERT INTO `item_latents` VALUES(18588, 23, 15, 6, 100);
+
 INSERT INTO `item_latents` VALUES(16602, 366, 4, 6, 100);
 INSERT INTO `item_latents` VALUES(16602, 25, 5, 6, 100);
 INSERT INTO `item_latents` VALUES(16602, 23, 12, 6, 100);
+
 INSERT INTO `item_latents` VALUES(18491, 366, 5, 6, 100);
 INSERT INTO `item_latents` VALUES(18491, 25, 5, 6, 100);
 INSERT INTO `item_latents` VALUES(18491, 23, 10, 6, 100);
+
 INSERT INTO `item_latents` VALUES(15188, 288, 2, 7, 100);
+
 INSERT INTO `item_latents` VALUES(15187, 288, 3, 7, 100);
+
 INSERT INTO `item_latents` VALUES(14876, 23, 10, 7, 100);
+
 INSERT INTO `item_latents` VALUES(14878, 23, 12, 7, 100);
+
 INSERT INTO `item_latents` VALUES(15392, 24, 7, 7, 100);
+
 INSERT INTO `item_latents` VALUES(15394, 24, 8, 7, 100);
+
 INSERT INTO `item_latents` VALUES(11312, 8, 5, 7, 100);
+
 INSERT INTO `item_latents` VALUES(15096, 8, 8, 10, 0);
 INSERT INTO `item_latents` VALUES(15096, 9, 8, 10, 0);
 INSERT INTO `item_latents` VALUES(15096, 10, 8, 10, 0);
@@ -235,14 +412,17 @@ INSERT INTO `item_latents` VALUES(15096, 11, 8, 10, 0);
 INSERT INTO `item_latents` VALUES(15096, 12, -8, 10, 0);
 INSERT INTO `item_latents` VALUES(15096, 13, -8, 10, 0);
 INSERT INTO `item_latents` VALUES(15096, 14, -8, 10, 0);
+
 INSERT INTO `item_latents` VALUES(14509, 8, 8, 10, 0);
 INSERT INTO `item_latents` VALUES(14509, 9, 8, 10, 0);
 INSERT INTO `item_latents` VALUES(14509, 10, 8, 10, 0);
 INSERT INTO `item_latents` VALUES(14509, 11, 8, 10, 0);
+
 INSERT INTO `item_latents` VALUES(10679, 8, 10, 10, 0);
 INSERT INTO `item_latents` VALUES(10679, 9, 10, 10, 0);
 INSERT INTO `item_latents` VALUES(10679, 10, 10, 10, 0);
 INSERT INTO `item_latents` VALUES(10679, 11, 10, 10, 0);
+
 INSERT INTO `item_latents` VALUES(15126, 8, -8, 11, 0);
 INSERT INTO `item_latents` VALUES(15126, 9, -8, 11, 0);
 INSERT INTO `item_latents` VALUES(15126, 10, -8, 11, 0);
@@ -250,28 +430,41 @@ INSERT INTO `item_latents` VALUES(15126, 11, -8, 11, 0);
 INSERT INTO `item_latents` VALUES(15126, 12, 8, 11, 0);
 INSERT INTO `item_latents` VALUES(15126, 13, 8, 11, 0);
 INSERT INTO `item_latents` VALUES(15126, 14, 8, 11, 0);
+
 INSERT INTO `item_latents` VALUES(15589, 12, 8, 11, 0);
 INSERT INTO `item_latents` VALUES(15589, 13, 8, 11, 0);
 INSERT INTO `item_latents` VALUES(15589, 14, 8, 11, 0);
+
 INSERT INTO `item_latents` VALUES(10719, 12, 10, 11, 0);
 INSERT INTO `item_latents` VALUES(10719, 13, 10, 11, 0);
 INSERT INTO `item_latents` VALUES(10719, 14, 10, 11, 0);
+
 INSERT INTO `item_latents` VALUES(15530, 368, 1, 10, 50);
+
 INSERT INTO `item_latents` VALUES(15174, 25, 12, 10, 50);
 INSERT INTO `item_latents` VALUES(15174, 167, 4, 10, 49);
+
 INSERT INTO `item_latents` VALUES(17073, 369, 1, 44, 3);
+
 INSERT INTO `item_latents` VALUES(15532, 370, 1, 12, 3);
+
 INSERT INTO `item_latents` VALUES(19120, 25, 6, 13, 368);
 INSERT INTO `item_latents` VALUES(19120, 25, 6, 13, 369);
 INSERT INTO `item_latents` VALUES(19120, 25, 6, 13, 370);
+
 INSERT INTO `item_latents` VALUES(15983, 23, 7, 13, 75);
+
 INSERT INTO `item_latents` VALUES(15981, 73, 2, 13, 117);
+
 INSERT INTO `item_latents` VALUES(18768, 23, 12, 9, 4);
+
 INSERT INTO `item_latents` VALUES(15982, 1, 8, 13, 74);
+
 INSERT INTO `item_latents` VALUES(18422, 62, 1, 13, 66);
 INSERT INTO `item_latents` VALUES(18422, 62, 1, 13, 444);
 INSERT INTO `item_latents` VALUES(18422, 62, 1, 13, 445);
 INSERT INTO `item_latents` VALUES(18422, 62, 1, 13, 446);
+
 INSERT INTO `item_latents` VALUES(16605, 25, 8, 13, 94);
 INSERT INTO `item_latents` VALUES(16605, 23, 16, 13, 94);
 INSERT INTO `item_latents` VALUES(16605, 25, 8, 13, 95);
@@ -296,33 +489,53 @@ INSERT INTO `item_latents` VALUES(16605, 25, 8, 13, 281);
 INSERT INTO `item_latents` VALUES(16605, 23, 16, 13, 281);
 INSERT INTO `item_latents` VALUES(16605, 25, 8, 13, 282);
 INSERT INTO `item_latents` VALUES(16605, 23, 16, 13, 282);
+
 INSERT INTO `item_latents` VALUES(18741, 23, 10, 9, 4);
+
 INSERT INTO `item_latents` VALUES(17624, 165, 7, 13, 3);
+
 INSERT INTO `item_latents` VALUES(13693, 370, 1, 13, 2);
 INSERT INTO `item_latents` VALUES(13693, 370, 1, 13, 19);
 INSERT INTO `item_latents` VALUES(13693, 369, 1, 13, 2);
 INSERT INTO `item_latents` VALUES(13693, 369, 1, 13, 19);
+
 INSERT INTO `item_latents` VALUES(13416, 68, 15, 13, 5);
+
 INSERT INTO `item_latents` VALUES(13400, 26, 5, 13, 9);
 INSERT INTO `item_latents` VALUES(13400, 26, 5, 13, 20);
+
 INSERT INTO `item_latents` VALUES(13248, 167, 8, 13, 4);
+
 INSERT INTO `item_latents` VALUES(17831, 369, 1, 13, 2);
 INSERT INTO `item_latents` VALUES(17831, 370, 1, 13, 19);
+
 INSERT INTO `item_latents` VALUES(16071, 165, 5, 13, 5);
 INSERT INTO `item_latents` VALUES(16071, 48, 5, 13, 5);
+
 INSERT INTO `item_latents` VALUES(14946, 346, 1, 13, 2);
 INSERT INTO `item_latents` VALUES(14946, 346, 1, 13, 19);
+
 INSERT INTO `item_latents` VALUES(13143, 368, 25, 13, 2);
 INSERT INTO `item_latents` VALUES(13143, 368, 25, 13, 19);
+
 INSERT INTO `item_latents` VALUES(15328, 370, 2, 13, 11);
+
 INSERT INTO `item_latents` VALUES(13655, 161, -20, 13, 7);
+
 INSERT INTO `item_latents` VALUES(12621, 370, 2, 13, 3);
+
 INSERT INTO `item_latents` VALUES(12589, 370, 2, 13, 3);
+
 INSERT INTO `item_latents` VALUES(12751, 71, 4, 13, 6);
+
 INSERT INTO `item_latents` VALUES(12717, 71, 5, 13, 6);
+
 INSERT INTO `item_latents` VALUES(13846, 369, 1, 13, 4);
+
 INSERT INTO `item_latents` VALUES(12461, 369, 1, 13, 4);
+
 INSERT INTO `item_latents` VALUES(16238, 369, 1, 13, 3);
+
 INSERT INTO `item_latents` VALUES(14954, 5, 35, 14, 0);
 INSERT INTO `item_latents` VALUES(14954, 168, -5, 14, 0);
 INSERT INTO `item_latents` VALUES(14954, 71, 1, 14, 0);
@@ -961,3 +1174,35 @@ INSERT INTO `item_latents` VALUES(15545, 12, 1, 51, 75); -- INT+1 above level 75
 INSERT INTO `item_latents` VALUES(15545, 13, 1, 51, 45); -- MND+1 above level 45
 INSERT INTO `item_latents` VALUES(15545, 13, 1, 51, 60); -- MND+1 above level 60
 INSERT INTO `item_latents` VALUES(15545, 13, 1, 51, 75); -- MND+1 above level 75
+
+-- -------------------------------------------------------
+-- Parade Gorget
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15506, 369, 1, 1, 85); -- Refresh when HP >=85%
+
+-- -------------------------------------------------------
+-- Caitiff's Socks
+/*
+	[NOT CODED] Latent effect Flee
+*/
+-- -------------------------------------------------------
+-- INSERT INTO `item_latents` VALUES(15324, ???, 1, 2, 25); -- Flee when HP <25% and TP <100%
+
+-- -------------------------------------------------------
+-- Fenrir's Stone
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(18165, 2, 30, 26, 0); -- Daytime: HP+30
+INSERT INTO `item_latents` VALUES(18165, 68, 10, 26, 1); -- Nighttime: Evasion+10
+
+-- -------------------------------------------------------
+-- Chocobo Shirt  
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(10293, 25, 50, 50, 31); -- Acc.+50
+INSERT INTO `item_latents` VALUES(10293, 26, 50, 50, 31); -- Rng. Acc.+50
+INSERT INTO `item_latents` VALUES(10293, 30, 50, 50, 31); -- Mag. Acc.+50
+
+-- -------------------------------------------------------
+-- Destrier Beret  
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(11811, 370, 1, 50, 30); -- Adds "Regen"
+INSERT INTO `item_latents` VALUES(11811, 369, 1, 50, 30); -- Adds "Refresh"

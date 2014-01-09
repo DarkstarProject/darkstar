@@ -18412,3 +18412,20 @@ INSERT INTO `item_mods` VALUES(10490, 11, 9); -- AGI+9
 INSERT INTO `item_mods` VALUES(10490, 25, 10); -- Accuracy+20
 INSERT INTO `item_mods` VALUES(10490, 68, 10); -- Evasion+10 
 INSERT INTO `item_mods` VALUES(10490, 73, 8); -- "Store TP"+8
+
+-- -------------------------------------------------------
+-- Slime Cap
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(27756, 2, 3); -- HP+3
+INSERT INTO `item_mods` VALUES(27756, 1, 1); -- DEF:1
+
+-- -------------------------------------------------------
+-- Slime Shield  
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28655, 2, 3); -- HP+3
+INSERT INTO `item_mods` VALUES(28655, 1, 1); -- DEF:1
+
+-- -------------------------------------------------------
+-- Slime Earring  
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(28511, 2, 1); -- HP+1

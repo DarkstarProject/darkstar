@@ -438,13 +438,6 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
 				case LATENT_NO_FOOD_ACTIVE:
 						CheckLatentsFoodEffect();
 					break;
-			/*	case LATENT_FOOD_OVERWRITE:
-					{
-						//TODO: overwrite/replace item's current mods with item_latents mods (see http://wiki.ffxiclopedia.com/wiki/Latent_and_Hidden_Effects)
-					//		"These effects are in place of the original effects"
-					}
-					break; 
-			*/
 				case LATENT_STATUS_EFFECT_ACTIVE:
 						CheckLatentsStatusEffect();
 					break;
@@ -517,9 +510,10 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
                         m_LatentEffectList.at(i)->Deactivate();
                     }
                     break;
-                case LATENT_JOB_MULTIPLE_13_NIGHT:
-                    //TODO: night
-                    if (m_POwner->GetMLevel() % 13 == 0)
+				case LATENT_JOB_MULTIPLE_13_NIGHT:
+				 {
+					TIMETYPE VanadielTOTD = CVanaTime::getInstance()->SyncTime();
+					if (m_POwner->GetMLevel() % 13 == 0 && (VanadielTOTD == TIME_NIGHT))
                     {
                         m_LatentEffectList.at(i)->Activate();
                     }
@@ -527,7 +521,18 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
                     {
                         m_LatentEffectList.at(i)->Deactivate();
                     }
-                    break;
+				 }
+                 break;
+				case LATENT_JOB_LEVEL_BELOW:
+					if (m_POwner->GetMLevel() < m_LatentEffectList.at(i)->GetConditionsValue())
+					{
+						m_LatentEffectList.at(i)->Activate();
+					}
+					else
+					{
+						m_LatentEffectList.at(i)->Deactivate();
+					}
+					break;
                 case LATENT_JOB_LEVEL_ABOVE:
                     if (m_POwner->GetMLevel() >= m_LatentEffectList.at(i)->GetConditionsValue())
                     {
@@ -544,6 +549,7 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
 			}
 		}
 	}
+	m_POwner->UpdateHealth();
 }
 
 /************************************************************************
@@ -655,19 +661,8 @@ void CLatentEffectContainer::CheckLatentsFoodEffect()
 				m_LatentEffectList.at(i)->Deactivate();
 			}
 		}
-		if(m_LatentEffectList.at(i)->GetConditionsID() == LATENT_FOOD_OVERWRITE)
-		{
-			if( m_POwner->StatusEffectContainer->HasStatusEffect(EFFECT_FOOD) && 
-				m_POwner->StatusEffectContainer->GetStatusEffect(EFFECT_FOOD)->GetSubID() == m_LatentEffectList.at(i)->GetConditionsValue() )
-			{
-				m_LatentEffectList.at(i)->Activate();
-			}
-			else
-			{
-				m_LatentEffectList.at(i)->Deactivate();
-			}
-		}
 	}
+	m_POwner->UpdateHealth();
 }
 
 /************************************************************************
@@ -1196,8 +1191,20 @@ void CLatentEffectContainer::CheckLatentsJobLevel()
 				}
 				break;
 			case LATENT_JOB_MULTIPLE_13_NIGHT:
-				//TODO: night
-				if( m_POwner->GetMLevel() % 13 == 0 )
+			 {
+				TIMETYPE VanadielTOTD = CVanaTime::getInstance()->SyncTime();
+				if (m_POwner->GetMLevel() % 13 == 0 && (VanadielTOTD == TIME_NIGHT))
+				{
+					m_LatentEffectList.at(i)->Activate();
+				}
+				else
+				{
+					m_LatentEffectList.at(i)->Deactivate();
+				}
+			 }
+			 break;
+			case LATENT_JOB_LEVEL_BELOW:
+				if (m_POwner->GetMLevel() < m_LatentEffectList.at(i)->GetConditionsValue())
 				{
 					m_LatentEffectList.at(i)->Activate();
 				}
