@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `mob_skill` (
 
 -- General Abilities
 INSERT INTO `mob_skill` VALUES (16,0,16,'Ranged_Attack', 0, 25.0, 2000, 0, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (402,0,402,'Catapult', 0, 25.0, 2000, 0, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (402,0,402,'Catapult', 0, 25.0, 2000, 0, 4, 0, 0, 0); -- Gigas RNG's ranged attack.
 -- INSERT INTO `mob_skill` VALUES (402,0,402,'Ranged_Aqua_Ball', 1, 10.0, 2000, 0, 4, 0, 0, 0); -- used in Shooting Fish
 -- INSERT INTO `mob_skill` VALUES (1491,0,1236,'Zarraqa', 0, 25.0, 2000, 0, 4, 0, 0, 0); -- used by troll rangers only. 
 INSERT INTO `mob_skill` VALUES (808,0,351,'Jump', 0, 9.5, 2000, 0, 4, 0, 0, 0);
@@ -728,6 +728,15 @@ INSERT INTO `mob_skill` VALUES (358,202,358,'Shell_Guard', 0, 7.0, 2000, 3000, 1
 -- INSERT INTO `mob_skill` VALUES (1971,?,1561,'Howl', 1, 20.0, 2000, 1500, 1, 0, 0, 0);
 -- INSERT INTO `mob_skill` VALUES (1968,?,1558,'Head_Butt', 0, 7.0, 2000, 2000, 4, 0, 0, 1); -- might be level dependant. level 60 quadav were knocking me back
 
+-- Quadav (Dynamis)
+-- INSERT INTO `mob_skill` VALUES (819,?,?,'Ore_Toss', 0, 7.0, 2000, 2000, 4, 0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (820,?,?,'Head_Butt', 0, 7.0, 2000, 2000, 4, 0, 0, 1);
+-- INSERT INTO `mob_skill` VALUES (821,?,?,'Shell_Bash', 0, 7.0, 2000, 1000, 4, 0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (822,?,?,'Shell_Guard', 0, 7.0, 2000, 3000, 1, 0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (823,?,?,'Howl', 1, 20.0, 2000, 1500, 1, 0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (824,?,742,'The_Wrath_of_Gu'Dha', 1, 15.0, 2000, 2000, 4, 0, 0, 1); -- Used only by named Dynamis Quadav NM's and Wings of the Goddess NMs. Possibly exclusive.
+
+
 -- Quadav NM
 INSERT INTO `mob_skill` VALUES (377,337,354,'Howl', 1, 20.0, 2000, 1500, 1, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (355,337,355,'Ore_Toss', 0, 10.0, 2000, 2000, 4, 0, 0, 0);
@@ -775,7 +784,7 @@ INSERT INTO `mob_skill` VALUES (381,190,381,'Firebomb', 4, 9.5, 2000, 1500, 4, 0
 INSERT INTO `mob_skill` VALUES (382,190,382,'Blastbomb', 2, 13.5, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (383,190,383,'Fountain', 4, 9.5, 2000, 1500, 4, 0, 0, 0);
 
--- Dragon - 4 foot kind
+-- Dragon (4 footed variety)
 INSERT INTO `mob_skill` VALUES (386,87,386,'Flame_Breath', 4, 12.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (387,87,387,'Poison_Breath', 4, 12.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (388,87,388,'Wind_Breath', 4, 12.0, 2000, 1500, 4, 0, 0, 0);
@@ -796,9 +805,9 @@ INSERT INTO `mob_skill` VALUES (404,374,404,'Venom', 0, 10.0, 2000, 1500, 4, 0, 
 INSERT INTO `mob_skill` VALUES (62,375,401,'Somersault', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (403,375,403,'Cursed_Sphere', 2, 10.0, 2000, 1500, 4, 0, 0, 0);
 
--- Gigas
-INSERT INTO `mob_skill` VALUES (406,126,406,'Lightning_Roar', 4, 9.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (407,126,407,'Ice_Roar', 4, 9.0, 2000, 1500, 4, 0, 0, 0);
+-- Gigas (non-abyssea?)
+INSERT INTO `mob_skill` VALUES (406,126,406,'Lightning_Roar', 4, 9.0, 2000, 1500, 4, 0, 0, 0); -- Lighting-Type only. 
+INSERT INTO `mob_skill` VALUES (407,126,407,'Ice_Roar', 4, 9.0, 2000, 1500, 4, 0, 0, 0); -- Ice-Type only.
 INSERT INTO `mob_skill` VALUES (408,126,408,'Impact_Roar', 4, 9.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (409,126,409,'Grand_Slam', 1, 15.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (410,126,410,'Power_Attack', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
@@ -1186,7 +1195,7 @@ INSERT INTO `mob_skill` VALUES (1478,176,1152,'Warm-Up',0,7.0,2000,1000,1,0,0,0)
 -- INSERT INTO `mob_skill` VALUES (1847,?,?,'Granite_Skin',4,16.0,2000,1000,4,0,0,0);
 
 -- Apkallu
-INSERT INTO `mob_skill` VALUES (1457,27,1159,'Yawn', 1, 7.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1457,27,1159,'Yawn', 1, 10.0, 2000, 1500, 4, 0, 0, 0); -- retail confirmed range. 
 INSERT INTO `mob_skill` VALUES (1458,27,1160,'Wing_Slap', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (1459,27,1161,'Beak_Lunge', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (1460,27,1162,'Frigid_Shuffle', 1, 10.0, 2000, 1500, 4, 0, 0, 0);

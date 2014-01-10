@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Phomiuna_Aqueducts
--- NPC:  Oil lamp
+-- NPC:   _0rn (Oil lamp)
 -- @pos -60 -23 60 27
 -----------------------------------
 package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
@@ -22,19 +22,21 @@ end;
 
 function onTrigger(player,npc)
 
-	player:messageSpecial(WATER_LAMP); -- water lampe
-	GetNPCByID(16888064):openDoor(7);
+	local DoorOffset = npc:getID();
+
+	player:messageSpecial(LAMP_OFFSET+2); -- water lamp
+	npc:openDoor(7); -- lamp animation
 
 	local element = VanadielDayElement();
 	--printf("element: %u",element);
 
 	if(element == 2)then -- waterday
-		if(GetNPCByID(16888071):getAnimation() == 8)then -- lampe fire open ?
-			GetNPCByID(16888062):openDoor(7);
+		if(GetNPCByID(DoorOffset+7):getAnimation() == 8)then -- lamp fire open?
+			GetNPCByID(DoorOffset-2):openDoor(15); -- Open Door _0rk
 		end
 	elseif(element == 5)then -- lighningday
-		if(GetNPCByID(16888066):getAnimation() == 8)then -- lampe lightning open ?
-			GetNPCByID(16888062):openDoor(7);
+		if(GetNPCByID(DoorOffset+2):getAnimation() == 8)then -- lamp lightning open?
+			GetNPCByID(DoorOffset-2):openDoor(15); -- Open Door _0rk
 		end
 	end
 	

@@ -816,7 +816,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("ARAGONEU");
 
-	local Chegourt = 17265261; 
+	local Chegourt = 17265261;
 	
 	npc  = {
 	--
@@ -909,28 +909,29 @@ switch (region): caseof {
   ---------------------------------
 	--print("QUFIMISLAND");
 
+	local Pitoire = 17293704; 
+	
 	npc  = {
 	--
-		17293703,SANDORIA,	-- Pitoire, R.K.
-		17293710,SANDORIA,	-- Matica, R.K.
-		17293706,SANDORIA,	-- flag
-		17293714,SANDORIA,	-- flag
+		Pitoire,SANDORIA,	-- Pitoire, R.K.
+		Pitoire+7,SANDORIA,	-- Matica, R.K.
+		Pitoire+3,SANDORIA,	-- flag
+		Pitoire+11,SANDORIA,	-- flag
 	--
-		17293704,BASTOK,	-- Sasa, I.M.
-		17293711,BASTOK,	-- Singing Blade, I.M.
-		17293707,BASTOK,	-- flag
-		17293715,BASTOK,	-- flag
+		Pitoire+1,BASTOK,	-- Sasa, I.M.
+		Pitoire+8,BASTOK,	-- Singing Blade, I.M.
+		Pitoire+4,BASTOK,	-- flag
+		Pitoire+12,BASTOK,	-- flag
 	--
-		17293705,WINDURST,	-- Tsonga-Hoponga, W.W.
-		17293712,WINDURST,	-- Numumu, W.W.
-		17293708,WINDURST,	-- flag
-		17293716,WINDURST,	-- flag
+		Pitoire+2,WINDURST,	-- Tsonga-Hoponga, W.W.
+		Pitoire+9,WINDURST,	-- Numumu, W.W.
+		Pitoire+5,WINDURST,	-- flag
+		Pitoire+13,WINDURST,	-- flag
 	--
-		17293709,BEASTMEN,	-- flag
-		17293717,BEASTMEN,	-- flag
-		17293733,BEASTMEN,	-- flag
+		Pitoire+6,BEASTMEN,	-- flag
+		Pitoire+14,BEASTMEN,	-- flag
 	--
-		17293713,OTHER,		-- Jiwon
+		Pitoire+10,OTHER,		-- Jiwon
 	}
   end,
 

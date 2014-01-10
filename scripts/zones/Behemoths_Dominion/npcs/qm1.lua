@@ -2,8 +2,7 @@
 -- Area: Behemoth's Dominion
 -- NPC:  ???
 -- Involved In Quest: The Talekeeper's Gift
--- @zone 127
--- @pos 211 4 -79
+-- @pos 211 4 -79 127
 -----------------------------------
 package.loaded["scripts/zones/Behemoths_Dominion/TextIDs"] = nil;
 -----------------------------------

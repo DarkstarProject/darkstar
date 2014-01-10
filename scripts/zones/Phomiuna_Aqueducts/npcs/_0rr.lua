@@ -22,15 +22,17 @@ end;
 
 function onTrigger(player,npc)
 
-	player:messageSpecial(DARK_LAMP); -- dark lampe
-	GetNPCByID(16888068):openDoor(7);
+	local DoorOffset = npc:getID();
+
+	player:messageSpecial(LAMP_OFFSET+7); -- dark lamp
+	npc:openDoor(7); -- lamp animation
 
 	local element = VanadielDayElement();
 	--printf("element: %u",element);
 	
-	if(element == 6 or element == 7)then -- lightday or darkda
-		if(GetNPCByID(16888067):getAnimation() == 8)then -- lampe light open ?
-			GetNPCByID(16888062):openDoor(7);
+	if(element == 6 or element == 7)then -- lightday or darkday
+		if(GetNPCByID(DoorOffset-1):getAnimation() == 8)then -- lamp light open ?
+			GetNPCByID(DoorOffset-6):openDoor(15); -- Open Door _0rk
 		end
 	end
 	

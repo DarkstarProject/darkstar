@@ -22,19 +22,21 @@ end;
 
 function onTrigger(player,npc)
 
-	player:messageSpecial(EARTH_LAMP); -- earth lampe
-	GetNPCByID(16888069):openDoor(7);
+	local DoorOffset = npc:getID();
+
+	player:messageSpecial(LAMP_OFFSET+1); -- earth lamp
+	npc:openDoor(7); -- lamp animation
 
 	local element = VanadielDayElement();
 	--printf("element: %u",element);
 	
-	if(element == 3)then  --windday
-		if(GetNPCByID(16888070):getAnimation() == 8)then -- lampe wind open ?
-			GetNPCByID(16888062):openDoor(7);
+	if(element == 3)then -- wind day
+		if(GetNPCByID(DoorOffset+1):getAnimation() == 8)then -- lamp wind open?
+			GetNPCByID(DoorOffset-7):openDoor(15); -- Open Door _0rk
 		end
-	elseif(element == 1)then  --earthday
-		if(GetNPCByID(16888066):getAnimation() == 8)then -- lampe lightning open ?
-			GetNPCByID(16888062):openDoor(7);
+	elseif(element == 1)then -- earth day
+		if(GetNPCByID(DoorOffset-3):getAnimation() == 8)then -- lamp lightning open?
+			GetNPCByID(DoorOffset-7):openDoor(15); -- Open Door _0rk
 		end
 	end
 	

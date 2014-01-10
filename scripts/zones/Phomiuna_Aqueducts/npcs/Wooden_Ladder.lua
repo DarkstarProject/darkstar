@@ -14,8 +14,11 @@
 -- @pos 199.38 -22.559 60
 -- @pos -200.679 -8.57 60
 -----------------------------------
+package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/missions");
+require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -30,37 +33,39 @@ end;
 
 function onTrigger(player,npc)
 	
-	local npcID = npc:getID();
-	local Ladder_Offset = 16888090;
-	local Xpos = player:getXPos();
+	local X = player:getXPos();
+	local Y = player:getYPos();
+	local Z = player:getZPos();
 	
-	if(npcID == Ladder_Offset and Xpos >= 102) then
+	if((X <= 107.9 and X >= 95.9) and (Y >= -1 and Y <= 1) and (Z >= -108.9 and Z <= -98)) then
 		player:startEvent(0x0015);
-	elseif(npcID == Ladder_Offset+1 and Xpos >= 102) then
+	elseif((X <= 107.9 and X >= 95.9) and (Y >= -1 and Y <= 1) and (Z >= -24 and Z <= -12)) then
 		player:startEvent(0x0016);
-	elseif(npcID == Ladder_Offset+2 and Xpos <= -62) then
+	elseif((X <= -55.888 and X >= -67.888) and (Y >= -1 and Y <= 1) and (Z >= -24 and Z <= -12)) then
 		player:startEvent(0x0017);
-	elseif(npcID == Ladder_Offset+3 and Xpos > -218) then
+	elseif((X <= -212.1 and X >= -224.1) and (Y >= -1 and Y <= 1) and (Z >= 12 and Z <= 24)) then
 		player:startEvent(0x0018);
-	elseif(npcID == Ladder_Offset+4 and Xpos <= -62) then
+	elseif((X <= -55.9 and X >= -67.9) and (Y >= -1 and Y <= 1) and (Z >= 132 and Z <= 144)) then
 		player:startEvent(0x0019);
-	elseif(npcID == Ladder_Offset+5 and Xpos >= 22) then
+	elseif((X <= 27.9 and X >= 15.9) and (Y >= -1 and Y <= 1) and (Z >= 132 and Z <= 144)) then
 		player:startEvent(0x001a);
-	elseif(npcID == Ladder_Offset+6 and Xpos >= 102) then
+	elseif((X <= 107.9 and X >= 95.9) and (Y >= -1 and Y <= 1) and (Z >= 175.9 and Z <= 187.9)) then
 		player:startEvent(0x001b);
-	elseif(npcID == Ladder_Offset+7 or npcID == Ladder_Offset+11) then
+	elseif((X <= -153.3 and X >= -168.3) and (Y >= -2 and Y <= 0) and (Z >= 54 and Z <= 66)) then
 	    if(player:getCurrentMission(COP) == DISTANT_BELIEFS and player:getVar("PromathiaStatus") == 1)then
 			player:setVar("PromathiaStatus",2);
 			player:startEvent(0x0023);
 		else
 			player:startEvent(0x001c);
 		end
-	elseif(npcID == Ladder_Offset+8) then
+	elseif((X <= -153.3 and X >= -168.3) and (Y >= -24 and Y <= -22) and (Z >= 54 and Z <= 66)) then
 		player:startEvent(0x001d);
-	elseif(npcID == Ladder_Offset+9) then
+	elseif((X <= 205.3 and X >= 193.3) and (Y >= -2 and Y <= 0) and (Z >= 54 and Z <= 66)) then
 		player:startEvent(0x001e);
-	elseif(npcID == Ladder_Offset+10) then
+	elseif((X <= 205.3 and X >= 193.3) and (Y >= -24 and Y <= -22) and (Z >= 54 and Z <= 66)) then
 		player:startEvent(0x001f);
+	elseif((X <= -194.6 and X >= -206.6) and (Y >= -8 and Y <= -6) and (Z >= 54 and Z <= 66)) then
+		player:messageSpecial(DOOR_SEALED_SHUT);
 	end
 	
 end; 

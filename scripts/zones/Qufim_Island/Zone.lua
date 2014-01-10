@@ -3,8 +3,9 @@
 -- Zone: Qufim_Island (126)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
@@ -22,7 +23,7 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
+	local cs = -1;	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(-286.271,-21.619,320.084,255);
 	end	

@@ -22,6 +22,7 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
+
 	local cs = -1;	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(260.02,-2.12,-290.461,192);
@@ -31,6 +32,7 @@ function onZoneIn(player,prevZone)
 	player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,40,0,0);	
 	end
 	return cs;	
+	
 end;		
 
 -----------------------------------	

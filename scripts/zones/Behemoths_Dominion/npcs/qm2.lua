@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Behemoth's Dominion
 -- NPC:  ???
--- @zone 127
--- @pos -267 -19 74
+-- @pos -267 -19 74 127
 -----------------------------------
 package.loaded["scripts/zones/Behemoths_Dominion/TextIDs"] = nil;
 -----------------------------------
@@ -15,6 +14,7 @@ require("scripts/zones/Behemoths_Dominion/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+
 	local Behemoth = GetMobAction(17297440);
 	local KingBehemoth = GetMobAction(17297441);
 	

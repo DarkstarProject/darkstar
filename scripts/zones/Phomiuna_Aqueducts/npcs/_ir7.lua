@@ -17,10 +17,10 @@ function onTrade(player,npc,trade)
 	
 	if(trade:hasItemQty(1660,1) and trade:getItemCount() == 1)then -- Bronze Key
 		player:tradeComplete();
-		npc:openDoor(7);
+		npc:openDoor(15);
 	elseif(trade:hasItemQty(1022,1) and trade:getItemCount() == 1 and player:getMainJob() == 6)then -- thief's tool
 		player:tradeComplete();
-		npc:openDoor(7);
+		npc:openDoor(15);
 	end
 	
 end; 
@@ -32,12 +32,11 @@ end;
 function onTrigger(player,npc)
    
 	if(player:getXPos() <= -71)then
-		return -1;
+		npc:openDoor(15); -- Retail timed
 	else
 		player:messageSpecial(DOOR_LOCKED,1660);
-		return 1;
 	end
-	
+	return 1;
 end; 
 
 -----------------------------------

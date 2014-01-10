@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Phomiuna_Aqueducts
 -- NPC:  _ir5 (Oil Lamp)
+-- Notes: Opens north door at J-9 from inside.
 -- @pos 103.703 -26.180 37.000 27
 -----------------------------------
 package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
@@ -21,12 +22,14 @@ end;
 
 function onTrigger(player,npc)
    
-	if(player:getZPos() > 34) then
-	  npc:openDoor(7);
-		GetNPCByID(16888055):openDoor(7);		
-	else
-		player:messageSystem(9); -- Target out of range.
-	end   
+	local DoorOffset = npc:getID() - 1;
+   
+	if (GetNPCByID(DoorOffset):getAnimation() == 9) then
+		if(player:getZPos() > 34) then
+			npc:openDoor(7); -- lamp animation
+			GetNPCByID(DoorOffset):openDoor(7); -- _0ri
+		end
+	end
    	 
 end; 
 

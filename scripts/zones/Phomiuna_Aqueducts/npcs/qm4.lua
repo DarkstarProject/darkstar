@@ -17,7 +17,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	GetNPCByID(16888058):openDoor(7);
+
+	local DoorOffset = npc:getID() - 1;
+	
+	if (GetNPCByID(DoorOffset):getAnimation() == 9) then
+		GetNPCByID(DoorOffset):openDoor(7); -- _0rj
+	end
+	
 end; 
 
 -----------------------------------

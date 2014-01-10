@@ -103,7 +103,7 @@ function SetFieldManual()
         17273412,17277204,17277205,17281640, -- Zi'Tah 1, Ro'Maeve 2, Yuhtunga Jungle 1
         17281641,17281642,17281643,17285690, -- Yuhtunga Jungle 3, Yhoator Jungle 1
         17285691,17285692,17289789,17289790, -- Yhoator Jungle 2, Western Altepa 2
-        17289791,17293768,17293769,17297484, -- Western Altepa 1, Qufim 2, Behemoth's Dominion 1
+        17289791,17293769,17293770,17297485, -- Western Altepa 1, Qufim 2, Behemoth's Dominion 1
         17301586,17301587,17310098,17310099, -- Valley of Sorrows 2, Ru'Aun Gardens 2
         17310100,17310101,17310102,17310103, -- Ru'Aun Gardens all 4 (6 total)
 	}

@@ -17,12 +17,16 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+
 	local xPos = player:getXPos();
-	if (xPos <= -65) then
-		GetNPCByID(16888062):openDoor(7)
-	else
-		player:messageSystem(9); -- Target out of range. 
+	local DoorOffset = npc:getID() - 1;
+	
+	if (GetNPCByID(DoorOffset):getAnimation() == 9) then
+		if (xPos <= -65) then
+			GetNPCByID(DoorOffset):openDoor(15) -- _0rk
+		end
 	end
+	
 end; 
 
 -----------------------------------
