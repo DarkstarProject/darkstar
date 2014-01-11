@@ -724,13 +724,22 @@ void CAIMobDummy::ActionAbilityStart()
 	// no 2 hour picked, lets find a normal skill
 	if(valid == false)
 	{
-		float currentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
-
 		std::random_shuffle(MobSkills.begin(), MobSkills.end()); //Start the selection process by randomizing the container
 
 		for(int i=0;i<MobSkills.size();i++){
 			m_PMobSkill = MobSkills.at(i);
-			if(!m_PMobSkill->isTwoHour() && luautils::OnMobSkillCheck(m_PBattleTarget, m_PMob, m_PMobSkill) == 0){ //A script says that the move in question is valid
+            if (m_PMobSkill->getValidTargets() == TARGET_ENEMY){ //enemy
+                m_PBattleSubTarget = m_PBattleTarget;
+            }
+            else if (m_PMobSkill->getValidTargets() == TARGET_SELF){ //self
+                m_PBattleSubTarget = m_PMob;
+            }
+            else
+            {
+                continue;
+            }
+            float currentDistance = distance(m_PMob->loc.p, m_PBattleSubTarget->loc.p);
+			if(!m_PMobSkill->isTwoHour() && luautils::OnMobSkillCheck(m_PBattleSubTarget, m_PMob, m_PMobSkill) == 0){ //A script says that the move in question is valid
 				if(currentDistance <= m_PMobSkill->getDistance()) {
 					valid = true;
 					break;
@@ -746,21 +755,9 @@ void CAIMobDummy::ActionAbilityStart()
 		TransitionBack(true);
 		return;
 	}
-
-	if(m_PMobSkill->getValidTargets() == TARGET_ENEMY){ //enemy
-	    m_PBattleSubTarget = m_PBattleTarget;
-	}
-	else if(m_PMobSkill->getValidTargets() == TARGET_SELF){ //self
-	    m_PBattleSubTarget = m_PMob;
-	}
-	else
-	{
-		m_PMob->health.tp = 0;
-		TransitionBack(true);
-		return;
-	}
-
-    m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
+    
+    if (!(m_PMob->m_Behaviour & BEHAVIOUR_NO_TURN))
+        m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
     m_LastActionTime = m_Tick;
 
 	// store the TP the mob currently has as the mob skill TP modifier
@@ -823,8 +820,8 @@ void CAIMobDummy::ActionAbilityUsing()
 		return;
 	}
 
-	// always face my target
-	m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
+    if (!(m_PMob->m_Behaviour & BEHAVIOUR_NO_TURN))
+	    m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
 
 	//TODO: Any checks whilst the monster is preparing.
 	//NOTE: RANGE CHECKS ETC ONLY ARE DONE AFTER THE ABILITY HAS FINISHED PREPARING.
@@ -879,12 +876,15 @@ void CAIMobDummy::ActionAbilityFinish()
     m_PMob->m_ActionList.clear();
 
     float distance = m_PMobSkill->getDistance();
+    uint8 findFlags = 0;
+    if (m_PMobSkill->getFlag() & SKILLFLAG_HIT_ALL)
+        findFlags |= FINDFLAGS_HIT_ALL;
 
     if(m_PTargetFind->isWithinRange(&m_PBattleSubTarget->loc.p, distance))
     {
 		if(m_PMobSkill->isAoE())
 		{
-	        m_PTargetFind->findWithinArea(m_PBattleSubTarget, (AOERADIUS)m_PMobSkill->getAoe(), m_PMobSkill->getRadius());
+	        m_PTargetFind->findWithinArea(m_PBattleSubTarget, (AOERADIUS)m_PMobSkill->getAoe(), m_PMobSkill->getRadius(), findFlags);
 		}
 		else if(m_PMobSkill->isConal())
 		{
@@ -1165,8 +1165,8 @@ void CAIMobDummy::ActionAttack()
 
 	TryLink();
 
-    // always face target
-    m_PPathFind->LookAt(m_PBattleTarget->loc.p);
+    if (!(m_PMob->m_Behaviour & BEHAVIOUR_NO_TURN))
+        m_PPathFind->LookAt(m_PBattleTarget->loc.p);
 
     if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_BIND))
     {
@@ -1219,7 +1219,10 @@ void CAIMobDummy::ActionAttack()
 					            m_PMob->m_ActionList.push_back(apAction);
 					            m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
 				            }
-				            m_PMob->PBattleAI->SetBattleSubTarget(m_PMob->PBattleAI->GetBattleTarget());
+                            if (mobskill->getValidTargets() & TARGET_ENEMY)
+				                m_PMob->PBattleAI->SetBattleSubTarget(m_PMob->PBattleAI->GetBattleTarget());
+                            else
+                                m_PMob->PBattleAI->SetBattleSubTarget(m_PMob);
 				            m_PMob->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_USING);
 			            }
 			            else

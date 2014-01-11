@@ -7060,7 +7060,10 @@ inline int32 CLuaBaseEntity::isBehind(lua_State *L)
 
 	CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L,1);
 
-	lua_pushboolean( L,(abs(PLuaBaseEntity->GetBaseEntity()->loc.p.rotation - m_PBaseEntity->loc.p.rotation) < 23));
+    uint8 angle = PLuaBaseEntity->GetBaseEntity()->loc.p.rotation - getangle(PLuaBaseEntity->GetBaseEntity()->loc.p, m_PBaseEntity->loc.p);
+
+    lua_pushboolean(L, (angle >= 86 && angle <= 170));
+
 	return 1;
 }
 
@@ -7080,6 +7083,25 @@ inline int32 CLuaBaseEntity::isFacing(lua_State *L)
     DSP_DEBUG_BREAK_IF(PLuaBaseEntity == NULL);
 
     lua_pushboolean( L, isFaceing(m_PBaseEntity->loc.p, PLuaBaseEntity->GetBaseEntity()->loc.p, 45));
+    return 1;
+}
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getAngle(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+
+    CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 1);
+
+    DSP_DEBUG_BREAK_IF(PLuaBaseEntity == NULL);
+
+    lua_pushnumber(L, getangle(m_PBaseEntity->loc.p, PLuaBaseEntity->GetBaseEntity()->loc.p));
     return 1;
 }
 
@@ -8282,6 +8304,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNationTeleport),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isBehind),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isFacing),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAngle),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideNPC),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStealItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBCNMloot),

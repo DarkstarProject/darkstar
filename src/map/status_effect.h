@@ -546,6 +546,7 @@ enum EFFECT
 	EFFECT_BRAZEN_STRENGTH          = 490, //  
 	EFFECT_INNER_STRENGTH			= 491, 
 
+    EFFECT_SUPER_BUFF               = 792, // Boss buff (ie - Nidhogg "2hour")
 	EFFECT_NINJUTSU_ELE_DEBUFF      = 793,
 	EFFECT_HEALING					= 794,
 	EFFECT_LEAVEGAME				= 795,

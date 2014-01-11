@@ -13,6 +13,17 @@ require("scripts/globals/status");
 function onMobInitialize(mob)
 end;
 
+function onMobFight(mob, target)
+    local battletime = mob:getBattleTime();
+    if (mob:getExtraVar(1) == 0) then
+        mob:setExtraVar(math.random(30,90));
+    end
+    if (battletime >= mob:getExtraVar(1)) then
+        mob:useMobAbility(700); -- technically aerial hurricane wing, but I'm using 700 for his two hour (since I have no inclination to spend millions on a PI to cap one name you never see)
+        mob:setExtraVar(battletime + math.random(60,120));
+    end
+end;
+
 -----------------------------------
 -- onMobDeath
 -----------------------------------

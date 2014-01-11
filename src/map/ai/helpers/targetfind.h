@@ -52,7 +52,8 @@ enum FINDFLAGS
   FINDFLAGS_DEAD = 1, // target dead
   FINDFLAGS_ALLIANCE = 2, // force target alliance
   FINDFLAGS_PET = 4, // force target pet
-  FINDFLAGS_UNLIMITED = 8 // unlimited distance
+  FINDFLAGS_UNLIMITED = 8, // unlimited distance
+  FINDFLAGS_HIT_ALL = 16 //hit all targets, regardless of party
 };
 
 /*
@@ -95,6 +96,7 @@ public:
   void findWithinCone(CBattleEntity* PTarget, float distance, float angle, uint8 flags = FINDFLAGS_NONE);
 
   // add all targets in contexts
+  void addAllInZone(CBattleEntity* PTarget, bool withPet);
   void addAllInAlliance(CBattleEntity* PTarget, bool withPet);
   void addAllInParty(CBattleEntity* PTarget, bool withPet);
   void addAllInMobList(CBattleEntity* PTarget, bool withPet);

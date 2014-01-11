@@ -44,11 +44,11 @@ function onTrigger(player, target, id, power, duration)
             return;
         end
 
-        if (power == 0 or power == nil) then
+        if (power == nil) then
             power = 1;
         end
 
-        if (duration == 0 or duration == nil) then
+        if (duration == nil) then
             duration = 60;
         end
 

@@ -15,24 +15,26 @@ require("/scripts/globals/utils");
 
 ---------------------------------------------
 function OnMobSkillCheck(target,mob,skill)
- local mobID = mob:getID();
-   if (mobID == 16904202 or mobID == 16904203 or mobID == 16904204  )then -- dragon is not ouryu's mission
-	  return 1;
-   end
-    
+	if(target:isBehind(mob) == true) then
+		return 1;
+    elseif (mob:AnimationSub() ~= 0) then
+        return 1;
+	end
 	return 0;
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
 
-    local dmgmod = MobBreathMove(mob, target, 0.2, 1.25, ELE_FIRE, 1600);
-
-    local dis = ((mob:checkDistance(target)*2) / 20);
-    -- lower damage when closer to front feet
-    dmgmod = dmgmod * dis;
-
+    local dmgmod = MobBreathMove(mob, target, 0.2, 1.25, ELE_FIRE, 1400);
+    
+    local angle = mob:getAngle(target);
+        
+    angle = mob:getRotPos() - angle;
+            
+    dmgmod = dmgmod * ((128-math.abs(angle))/128);
+        
     utils.clamp(dmgmod, 50, 1600);
-
+    
 	local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_FIRE,MOBPARAM_IGNORE_SHADOWS);
 	target:delHP(dmg);
 	return dmg;

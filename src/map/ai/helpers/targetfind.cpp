@@ -28,13 +28,13 @@
 #include "../../alliance.h"
 #include <math.h>
 #include "../../../common/mmo.h"
+#include "../../utils/zoneutils.h"
 
 #include "../../packets/action.h"
 
 CTargetFind::CTargetFind(CBattleEntity* PBattleEntity)
 {
   m_PBattleEntity = PBattleEntity;
-  m_targets.reserve(MAX_AOE_TARGETS);
 
   reset();
 }
@@ -137,21 +137,28 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
       withPet = PETS_CAN_AOE_BUFF;
     }
 
-    if(m_PMasterTarget->PParty != NULL)
+    if (m_findFlags & FINDFLAGS_HIT_ALL)
     {
-      if(m_PMasterTarget->PParty->m_PAlliance != NULL)
-      {
-        addAllInAlliance(m_PMasterTarget, withPet);
-      } else {
-        // all party instead
-        addAllInParty(m_PMasterTarget, withPet);
-      }
-    } else {
-      addEntity(m_PMasterTarget, withPet);
+        addAllInZone(m_PMasterTarget, withPet);
     }
-
+    else
+    {
+        if (m_PMasterTarget->PParty != NULL)
+        {
+            if (m_PMasterTarget->PParty->m_PAlliance != NULL)
+            {
+                addAllInAlliance(m_PMasterTarget, withPet);
+            }
+            else {
+                // all party instead
+                addAllInParty(m_PMasterTarget, withPet);
+            }
+        }
+        else {
+            addEntity(m_PMasterTarget, withPet);
+        }
+    }
   }
-
 }
 
 void CTargetFind::findWithinCone(CBattleEntity* PTarget, float distance, float angle, uint8 flags)
@@ -202,11 +209,24 @@ void CTargetFind::addAllInMobList(CBattleEntity* PTarget, bool withPet)
 
     if(PBattleTarget && isMobOwner(PBattleTarget)){
       addEntity(PBattleTarget, withPet);
-
-      if(m_targets.size() > MAX_AOE_TARGETS) return;
     }
 
   }
+}
+
+void CTargetFind::addAllInZone(CBattleEntity* PTarget, bool withPet)
+{
+    EntityList_t m_charList = zoneutils::GetZone(PTarget->getZone())->GetCharList();
+
+    for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
+    {
+        CBattleEntity* PBattleTarget = (CBattleEntity*)it->second;
+
+        if (PBattleTarget){
+            addEntity(PBattleTarget, withPet);
+        }
+
+    }
 }
 
 void CTargetFind::addAllInAlliance(CBattleEntity* PTarget, bool withPet)
@@ -219,10 +239,7 @@ void CTargetFind::addAllInAlliance(CBattleEntity* PTarget, bool withPet)
 
     for(uint16 p = 0; p < party->members.size(); p++)
     {
-
       addEntity(party->members.at(p), withPet);
-
-      if(m_targets.size() > MAX_AOE_TARGETS) return;
     }
   }
 }
@@ -237,8 +254,6 @@ void CTargetFind::addAllInParty(CBattleEntity* PTarget, bool withPet)
   {
 
     addEntity(party->members.at(p), withPet);
-
-    if(m_targets.size() > MAX_AOE_BUFF_TARGETS) return;
   }
 
 }
@@ -315,8 +330,6 @@ validEntity will check if the given entity can be targeted in the AoE.
 */
 bool CTargetFind::validEntity(CBattleEntity* PTarget)
 {
-  if(m_targets.size() > MAX_AOE_TARGETS) return false;
-
   if(!(m_findFlags & FINDFLAGS_DEAD) && PTarget->isDead())
   {
     return false;

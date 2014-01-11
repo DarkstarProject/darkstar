@@ -365,7 +365,7 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 	}
 	else if (ActionType == ACTION_MOBABILITY_FINISH)
 	{
-		if (PEntity->PBattleAI->GetCurrentMobSkill()->getFlag() == SKILLFLAG_WS)
+		if (PEntity->PBattleAI->GetCurrentMobSkill()->getFlag() & SKILLFLAG_WS)
 		{
 			ActionTypeNumber -= 8;
 		}
@@ -422,6 +422,9 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
             bitOffset += 1;
         }
 		ActionNum++;
+        //TODO: split packet with large target sizes
+        if (TargetNum >= 8)
+            break;
 	}
     packBitsBE(data, ActionNum, 150, 4);
 
