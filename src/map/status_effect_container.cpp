@@ -1269,7 +1269,7 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
     					CItem* hands = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_HANDS]);
 
                         // carbuncle mitts only work on carbuncle
-    					if (hands && hands->getID() == 14062 && PPet->m_Family == 34){
+    					if (hands && hands->getID() == 14062 && PPet->name == "Carbuncle"){
     						perpetuation /= 2;
     					}
                     }
