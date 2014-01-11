@@ -424,17 +424,14 @@ void CAICharNormal::ActionDeath()
         }
 
 		// reraise modifiers
-		if (m_PChar->getMod(MOD_RERAISE_I) > 0 || m_PChar->getMod(MOD_RERAISE_II) > 0 || m_PChar->getMod(MOD_RERAISE_III) > 0)
-		{
-			if (m_PChar->getMod(MOD_RERAISE_I) > 0)
-				m_PChar->m_hasRaise = 1;
-
-			if (m_PChar->getMod(MOD_RERAISE_II) > 0)
-				m_PChar->m_hasRaise = 2;
-			
-			if (m_PChar->getMod(MOD_RERAISE_III) > 0)
-				m_PChar->m_hasRaise = 3;
-		}
+		if (m_PChar->getMod(MOD_RERAISE_I) > 0)
+			m_PChar->m_hasRaise = 1;
+		
+		if (m_PChar->getMod(MOD_RERAISE_II) > 0)
+			m_PChar->m_hasRaise = 2;
+		
+		if (m_PChar->getMod(MOD_RERAISE_III) > 0)
+			m_PChar->m_hasRaise = 3;
 
         // has reraise, don't stop timer
         // this must be after deleting status effects

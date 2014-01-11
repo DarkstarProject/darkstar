@@ -517,7 +517,7 @@ enum MODIFIER
 	MOD_EAT_RAW_MEAT			  =0x19A, // not implemented (modId = 410)
 };
 
-#define MAX_MODIFIER	       456
+#define MAX_MODIFIER	       459
 
 
 
