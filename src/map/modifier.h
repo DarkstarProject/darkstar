@@ -499,9 +499,11 @@ enum MODIFIER
 	MOD_GRIMOIRE_INSTANT_CAST	  =0x1A3,// Spells that match your current Arts will occasionally cast instantly, without recast. (modId = 419) 
 	MOD_QUAD_ATTACK				  =0x1AE,// Quadruple attack chance. (modId = 430)
 
-	// MOD_SPARE	=0x1C8,// (modId = 456)
-	// MOD_SPARE	=0x1C9,// (modId = 457)
-	// MOD_SPARE	=0x1CA,// (modId = 458)
+	// Reraise
+	MOD_RERAISE_I				  =0x1C8,// Reraise. (modId = 456)
+	MOD_RERAISE_II				  =0x1C9,// Reraise II. (modId = 457)
+	MOD_RERAISE_III				  =0x1CA,// Reraise III. (modId = 458)
+
 	// MOD_SPARE	=0x1CB,// (modId = 459)
     // MOD_SPARE	=0x1CC,// (modId = 460)
     // MOD_SPARE	=0x1CD,// (modId = 461)

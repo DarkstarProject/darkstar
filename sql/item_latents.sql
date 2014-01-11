@@ -1206,3 +1206,4 @@ INSERT INTO `item_latents` VALUES(10293, 30, 50, 50, 31); -- Mag. Acc.+50
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(11811, 370, 1, 50, 30); -- Adds "Regen"
 INSERT INTO `item_latents` VALUES(11811, 369, 1, 50, 30); -- Adds "Refresh"
+INSERT INTO `item_latents` VALUES(11811, 456, 1, 50, 30); -- Adds "Reraise"
