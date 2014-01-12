@@ -287,7 +287,7 @@ uint8 GetTotalBlueMagicPoints(CCharEntity* PChar)
     else
     {
         uint8 points = ((level - 1)/10)*5 + 10;
-        if (level > 75)
+        if (level >= 75)
         {
             points = points + PChar->PMeritPoints->GetMeritValue(MERIT_ASSIMILATION, PChar);
         }
