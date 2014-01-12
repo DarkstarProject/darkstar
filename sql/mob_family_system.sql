@@ -323,7 +323,7 @@ INSERT INTO `mob_family_system` VALUES (255,'Wanderer',12,'Empty',0,40,20,90,1,3
 INSERT INTO `mob_family_system` VALUES (256,'Weeper',12,'Empty',0,50,110,90,2,2,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
 INSERT INTO `mob_family_system` VALUES (257,'Wivre',14,'Lizard',3,40,140,90,2,5,1,6,6,3,3,3,3,3,3,1,1,1,1,1,1.125,1.125,1,1,1,1,1,4);
 INSERT INTO `mob_family_system` VALUES (258,'Worm',1,'Amorph',0,0,70,200,4,3,6,4,3,4,4,3,3,3,3,1,1,1,1,1,1,1.25,0.875,1,1,1.25,0.875,4);
-INSERT INTO `mob_family_system` VALUES (259,'Wyrm',10,'Dragon',4,40,120,90,1,3,1,3,6,3,1,3,3,3,3,1,1,1,1,1,1,1.125,1,1,1,1,1,3);
+INSERT INTO `mob_family_system` VALUES (259,'Wyrm',10,'Dragon',4,40,120,90,1,3,1,3,6,3,1,3,3,3,3,1,1,1,1,1,1,1.125,0,1,1,1,1,3);
 INSERT INTO `mob_family_system` VALUES (260,'Wyrm',10,'Dragon',4,40,120,90,1,3,1,3,6,3,1,3,3,3,3,1,1,1,1,0.875,0.875,1,1,1,1,1,1,1);
 INSERT INTO `mob_family_system` VALUES (261,'Wyrm',10,'Dragon',4,40,120,90,1,3,1,3,6,3,1,3,3,3,3,1,1,1,1,0.875,1,1,1,1,1,1,1,2);
 INSERT INTO `mob_family_system` VALUES (262,'Wyrm',10,'Dragon',4,40,120,90,1,3,1,3,6,3,1,3,3,3,3,1,1,1,1,1,0.875,1,1,1,1,1,1,1);
@@ -454,6 +454,8 @@ INSERT INTO `mob_family_system` VALUES (387,'Pet-Shiva',5,'Avatar',0,40,100,120,
 INSERT INTO `mob_family_system` VALUES (388,'Pet-Titan',5,'Avatar',1,40,100,120,3,3,3,3,3,3,3,3,3,3,3,1,1,1,1,0.875,0.875,1,0.875,0.875,0.875,0.875,0.875,0);
 INSERT INTO `mob_family_system` VALUES (389,'Pet-Alexander',5,'Avatar',4,40,100,120,3,3,3,3,3,3,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
 INSERT INTO `mob_family_system` VALUES (390,'Ladybug',20,'Vermin',0,40,87,120,4,1,4,2,3,6,6,3,3,3,3,1,1.25,1,1,1,1.125,0.5,1,1,1,1,1,3);
+INSERT INTO `mob_family_system` VALUES (391,'Wyrm',10,'Dragon',4,40,120,90,1,3,1,3,6,3,1,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,0,8);
+INSERT INTO `mob_family_system` VALUES (392,'Wyrm',10,'Dragon',4,40,120,90,1,3,1,3,6,3,1,3,3,3,3,1,1,1,1,1,0,1,1,1,1,1,1,2);
 
 
 INSERT INTO `mob_family_system` VALUES (449,'Bahamut',10,'Dragon',4,40,120,90,1,3,1,3,6,3,1,3,3,3,3,1,1,1,1,1,1,1.125,1,1,1,1,1,3);

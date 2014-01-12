@@ -37,6 +37,10 @@ Creates by Lautan.
 
 931 - breakga
 
+962 - 964 - Jormungand breath/blast
+965 - 967 - Ouryu breath/blast
+968 - Vrtra breath
+
 979 - flash
 
 981 - gas released from head

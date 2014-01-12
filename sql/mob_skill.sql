@@ -63,20 +63,20 @@ INSERT INTO `mob_skill` VALUES (22,0,812,'Pit_Ambush', 0, 9.0, 2000, 0, 4, 0, 0,
 
 -- Two Hours
 -- make a mob 2 hour by setting mobmod_main_2hour
-INSERT INTO `mob_skill` VALUES (432,0,709,'Mighty_Strikes', 0, 7.0, 2000, 0, 1, 2, 0, 0);
-INSERT INTO `mob_skill` VALUES (434,0,710,'Hundred_Fists', 0, 7.0, 2000, 0, 1, 2, 0, 0);
-INSERT INTO `mob_skill` VALUES (433,0,711,'Benediction', 1, 20.0, 2000, 0, 1, 2, 0, 0);
-INSERT INTO `mob_skill` VALUES (435,0,712,'Manafont', 0, 7.0, 2000, 0, 1, 2, 0, 0);
-INSERT INTO `mob_skill` VALUES (436,0,713,'Chainspell', 0, 7.0, 2000, 0, 1, 2, 0, 0);
-INSERT INTO `mob_skill` VALUES (437,0,714,'Perfect_Dodge', 0, 7.0, 2000, 0, 1, 2, 0, 0);
-INSERT INTO `mob_skill` VALUES (438,0,715,'Invincible', 0, 7.0, 2000, 0, 1, 2, 0, 0);
-INSERT INTO `mob_skill` VALUES (439,0,716,'Blood_Weapon', 0, 7.0, 2000, 0, 1, 2, 0, 0);
-INSERT INTO `mob_skill` VALUES (484,0,717,'Familiar', 0, 7.0, 2000, 0, 1, 2, 0, 0);
-INSERT INTO `mob_skill` VALUES (440,0,719,'Soul_Voice', 0, 7.0, 2000, 0, 1, 2, 0, 0);
+INSERT INTO `mob_skill` VALUES (432,0,432,'Mighty_Strikes', 0, 7.0, 2000, 0, 1, 2, 0, 0);
+INSERT INTO `mob_skill` VALUES (434,0,432,'Hundred_Fists', 0, 7.0, 2000, 0, 1, 2, 0, 0);
+INSERT INTO `mob_skill` VALUES (433,0,432,'Benediction', 1, 20.0, 2000, 0, 1, 2, 0, 0);
+INSERT INTO `mob_skill` VALUES (435,0,432,'Manafont', 0, 7.0, 2000, 0, 1, 2, 0, 0);
+INSERT INTO `mob_skill` VALUES (436,0,432,'Chainspell', 0, 7.0, 2000, 0, 1, 2, 0, 0);
+INSERT INTO `mob_skill` VALUES (437,0,432,'Perfect_Dodge', 0, 7.0, 2000, 0, 1, 2, 0, 0);
+INSERT INTO `mob_skill` VALUES (438,0,432,'Invincible', 0, 7.0, 2000, 0, 1, 2, 0, 0);
+INSERT INTO `mob_skill` VALUES (439,0,432,'Blood_Weapon', 0, 7.0, 2000, 0, 1, 2, 0, 0);
+INSERT INTO `mob_skill` VALUES (484,0,432,'Familiar', 0, 7.0, 2000, 0, 1, 2, 0, 0);
+INSERT INTO `mob_skill` VALUES (440,0,432,'Soul_Voice', 0, 7.0, 2000, 0, 1, 2, 0, 0);
 INSERT INTO `mob_skill` VALUES (479,0,20,'Eagle_Eye_Shot', 0, 25.0, 2000, 0, 4, 2, 0, 0);
-INSERT INTO `mob_skill` VALUES (474,0,721,'Meikyo_Shisui', 0, 7.0, 2000, 0, 1, 2, 0, 0);
+INSERT INTO `mob_skill` VALUES (474,0,432,'Meikyo_Shisui', 0, 7.0, 2000, 0, 1, 2, 0, 0);
 INSERT INTO `mob_skill` VALUES (475,0,18,'Mijin_Gakure', 1, 20.0, 2000, 0, 4, 2, 0, 0);
-INSERT INTO `mob_skill` VALUES (476,0,723,'Call_Wyvern', 0, 7.0, 2000, 0, 1, 2, 0, 0);
+INSERT INTO `mob_skill` VALUES (476,0,432,'Call_Wyvern', 0, 7.0, 2000, 0, 1, 2, 0, 0);
 -- INSERT INTO `mob_skill` VALUES (478,0,724,'Astral_Flow', 0, 7.0, 2000, 0, 1, 2, 0, 0);
 
 -- Rabbits
@@ -1695,11 +1695,18 @@ INSERT INTO `mob_skill` VALUES (98,274,98,'Wild_Rage', 1, 15.0, 2000, 1500, 4, 0
 INSERT INTO `mob_skill` VALUES (99,274,99,'Earth_Pounder', 1, 15.0, 2000, 1500, 4, 0, 0, 0);
 
 -- Ouryu
--- INSERT INTO `mob_skill` VALUES (384,259,656,'Touchdown',0,6.0,2000,1500,4,0, 0, 0);
--- INSERT INTO `mob_skill` VALUES (695,259,653,'Hurricane_Wing', 1, 30.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (696,259,654,'Spike_Flail', 4, 23.0, 2000, 2000, 4, 0, 0, 0);
--- INSERT INTO `mob_skill` VALUES (701,259,659,'Absolute_Terror', 0, 18.0, 2000, 1500, 4, 0, 0, 0);
--- INSERT INTO `mob_skill` VALUES (702,259,658,'Horrid_Roar', 0, 18.0, 2000, 1500, 4, 0, 0, 0);
+-- Ochre_Blast_alt is maybe aerial auto attack
+INSERT INTO `mob_skill` VALUES (1041,259,966,'Ochre_Blast_alt', 0, 23.0, 2000, 2000, 1, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1042,259,966,'Ochre_Blast_alt', 0, 23.0, 2000, 2000, 1, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1043,259,653,'Typhoon_Wing', 1, 30.0, 2000, 1500, 1, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1044,259,654,'Spike_Flail', 1, 23.0, 2000, 2000, 1, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1045,259,965,'Geotic_Breath', 4, 18.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1046,259,656,'Touchdown',1,6.0,2000,1500,1,0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1047,259,967,'Ochre_Blast', 1, 23.0, 2000, 2000, 1, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1048,259,658,'Bai_Wing', 1, 30.0, 2000, 1500, 1, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1049,259,659,'Absolute_Terror', 1, 18.0, 2000, 1500, 1, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1050,259,660,'Horrid_Roar', 0, 18.0, 2000, 1500, 0, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (438,259,432,'Invincible', 0, 18.0, 2000, 0, 1, 0, 0, 0);
 
 -- Fafnir
 INSERT INTO `mob_skill` VALUES (695,260,653,'Hurricane_Wing', 1, 30.0, 2000, 1500, 4, 0, 0, 0);
@@ -1709,15 +1716,13 @@ INSERT INTO `mob_skill` VALUES (701,260,659,'Absolute_Terror', 0, 18.0, 2000, 15
 INSERT INTO `mob_skill` VALUES (702,260,660,'Horrid_Roar', 0, 18.0, 2000, 1500, 4, 0, 0, 0);
 
 -- Cynoprosopi
--- INSERT INTO `mob_skill` VALUES (384,261,656,'Touchdown',0,6.0,2000,1500,4,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (695,261,653,'Hurricane_Wing', 1, 30.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (696,261,654,'Spike_Flail', 4, 23.0, 2000, 2000, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (696,261,654,'Spike_Flail', 1, 23.0, 2000, 2000, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (697,261,655,'Dragon_Breath', 4, 18.0, 2000, 1500, 4, 0, 0, 0);
 
 -- Wyrm
--- INSERT INTO `mob_skill` VALUES (384,262,656,'Touchdown',0,6.0,2000,1500,4,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (695,262,653,'Hurricane_Wing', 1, 30.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (696,262,654,'Spike_Flail', 4, 23.0, 2000, 2000, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (696,262,654,'Spike_Flail', 1, 23.0, 2000, 2000, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (697,262,655,'Dragon_Breath', 4, 18.0, 2000, 1500, 4, 0, 0, 0);
 
 -- Nidhogg
@@ -1726,7 +1731,26 @@ INSERT INTO `mob_skill` VALUES (696,263,654,'Spike_Flail', 1, 23.0, 2000, 1500, 
 INSERT INTO `mob_skill` VALUES (697,263,655,'Dragon_Breath', 4, 18.0, 2000, 1500, 4, 8, 0, 0);
 INSERT INTO `mob_skill` VALUES (701,263,659,'Absolute_Terror', 0, 18.0, 2000, 1500, 4, 8, 0, 0);
 INSERT INTO `mob_skill` VALUES (702,263,660,'Horrid_Roar', 0, 18.0, 2000, 1500, 4, 8, 0, 0);
-INSERT INTO `mob_skill` VALUES (700,263,432, 'Super_Buff', 0, 18.0, 2000, 0, 1, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (700,263,432,'Super_Buff', 0, 18.0, 2000, 0, 1, 0, 0, 0);
+
+-- Vrtra
+INSERT INTO `mob_skill` VALUES (1053,391,653,'Cyclone_Wing', 1, 30.0, 2000, 1500, 1, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1054,391,654,'Spike_Flail', 1, 23.0, 2000, 2000, 1, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1055,391,968,'Sable_Breath', 4, 18.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1059,391,659,'Absolute_Terror', 0, 18.0, 2000, 1500, 1, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1060,391,660,'Horrid_Roar', 0, 18.0, 2000, 1500, 0, 0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (454,391,432,'Charm', 1, 18.0, 2000, 0, 1, 0, 0, 0);
+
+-- Jormungand
+INSERT INTO `mob_skill` VALUES (1031,392,963,'Sleet_Blast_alt', 0, 23.0, 2000, 2000, 1, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1032,392,963,'Sleet_Blast_alt', 0, 23.0, 2000, 2000, 1, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1033,392,653,'Gregale_Wing', 1, 30.0, 2000, 1500, 1, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1034,392,654,'Spike_Flail', 1, 23.0, 2000, 2000, 1, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1035,392,962,'Glacial_Breath', 4, 18.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1036,392,656,'Touchdown',1,6.0,2000,1500,1,0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1037,392,964,'Sleet_Blast', 1, 23.0, 2000, 2000, 1, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1039,392,659,'Absolute_Terror', 0, 18.0, 2000, 1500, 1, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1040,392,660,'Horrid_Roar', 0, 18.0, 2000, 1500, 0, 0, 0, 0);
 
 -- INSERT INTO `mob_skill` VALUES (698,193,656,'Touchdown', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
 -- anim 657 for fire breath attack (in air)
