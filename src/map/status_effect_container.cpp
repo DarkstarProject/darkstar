@@ -638,12 +638,12 @@ uint8 CStatusEffectContainer::EraseAllStatusEffect()
 *																		*
 ************************************************************************/
 
-EFFECT CStatusEffectContainer::DispelStatusEffect()
+EFFECT CStatusEffectContainer::DispelStatusEffect(EFFECTFLAG flag)
 {
 	std::vector<uint16>	dispelableList;
 	for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
 	{
-		if (m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_DISPELABLE &&
+		if (m_StatusEffectList.at(i)->GetFlag() & flag &&
 			m_StatusEffectList.at(i)->GetDuration() > 0)
 		{
 			dispelableList.push_back(i);
@@ -663,15 +663,16 @@ EFFECT CStatusEffectContainer::DispelStatusEffect()
 Dispels all positive status effects
 returns number of dispelled effects
 */
-uint8 CStatusEffectContainer::DispelAllStatusEffect()
+uint8 CStatusEffectContainer::DispelAllStatusEffect(EFFECTFLAG flag)
 {
     uint8 count = 0;
     for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
-        if (m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_DISPELABLE &&
+        if (m_StatusEffectList.at(i)->GetFlag() & flag &&
             m_StatusEffectList.at(i)->GetDuration() > 0)
         {
             RemoveStatusEffect(i, true);
+            i--;
             count++;
         }
     }

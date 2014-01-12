@@ -63,8 +63,8 @@ public:
     EFFECT EraseStatusEffect();                                 // удаляем первый отрицательный эффект
     EFFECT HealingWaltz();				// dancers healing waltz
     uint8 EraseAllStatusEffect();               // erases all status effects
-    EFFECT DispelStatusEffect();                                // удаляем первый положительный эффект
-    uint8 DispelAllStatusEffect();                // dispels all status effects
+    EFFECT DispelStatusEffect(EFFECTFLAG flag);             // удаляем первый положительный эффект
+    uint8 DispelAllStatusEffect(EFFECTFLAG flag);                // dispels all status effects
     CStatusEffect* StealStatusEffect();             // dispels one effect and returns it
 
     CStatusEffect* GetStatusEffect(EFFECT StatusID);

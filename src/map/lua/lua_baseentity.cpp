@@ -4479,7 +4479,17 @@ inline int32 CLuaBaseEntity::dispelAllStatusEffect(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->DispelAllStatusEffect());
+    uint32 flag;
+    if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+    {
+        flag = lua_tonumber(L, 1);
+    }
+    else
+    {
+        flag = EFFECTFLAG_DISPELABLE;
+    }
+
+    lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->DispelAllStatusEffect((EFFECTFLAG)flag));
     return 1;
 }
 
@@ -4557,7 +4567,17 @@ inline int32 CLuaBaseEntity::dispelStatusEffect(lua_State *L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->DispelStatusEffect());
+    uint32 flag;
+    if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+    {
+        flag = lua_tonumber(L, 1);
+    }
+    else
+    {
+        flag = EFFECTFLAG_DISPELABLE;
+    }
+
+    lua_pushinteger( L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->DispelStatusEffect((EFFECTFLAG)flag));
     return 1;
 }
 
@@ -5370,6 +5390,30 @@ inline int32 CLuaBaseEntity::resetEnmity(lua_State *L)
         PEntity->GetBaseEntity()->objtype != TYPE_NPC)
     {
         ((CMobEntity*)m_PBaseEntity)->PEnmityContainer->LowerEnmityByPercent((CBattleEntity*)PEntity->GetBaseEntity(), 100, NULL);
+    }
+    return 0;
+}
+
+/************************************************************************
+Lowers enmity of player on mob
+Example:
+mob:lowerEnmity(target, 50)
+************************************************************************/
+
+inline int32 CLuaBaseEntity::lowerEnmity(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
+
+    if (PEntity != NULL &&
+        PEntity->GetBaseEntity()->objtype != TYPE_NPC)
+    {
+        ((CMobEntity*)m_PBaseEntity)->PEnmityContainer->LowerEnmityByPercent((CBattleEntity*)PEntity->GetBaseEntity(), lua_tonumber(L, 2), NULL);
     }
     return 0;
 }
@@ -8213,6 +8257,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,showPosition),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmity),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetEnmity),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,lowerEnmity),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmityFromDamage),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEquipID),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getShieldSize),

@@ -28,6 +28,7 @@
 #include "enmity_container.h"
 #include "utils/battleutils.h"
 #include "entities/charentity.h"
+#include "entities/mobentity.h"
 #include "alliance.h"
 #include "packets/entity_update.h"
 
@@ -287,9 +288,12 @@ void CEnmityContainer::LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percen
 	// PEntity is now the target, face the target
 	if (OldEntity != NewEntity && !m_EnmityHolder->isAsleep())
 	{
-		uint8 angle = getangle(m_EnmityHolder->loc.p, NewEntity->loc.p);
-		m_EnmityHolder->loc.p.rotation = angle;
-		m_EnmityHolder->loc.zone->PushPacket(m_EnmityHolder,CHAR_INRANGE, new CEntityUpdatePacket(m_EnmityHolder, ENTITY_UPDATE));
+        if ((m_EnmityHolder->objtype == TYPE_MOB && (!((CMobEntity*)m_EnmityHolder)->m_Behaviour & BEHAVIOUR_NO_TURN)) || m_EnmityHolder->objtype != TYPE_MOB)
+        {
+            uint8 angle = getangle(m_EnmityHolder->loc.p, NewEntity->loc.p);
+            m_EnmityHolder->loc.p.rotation = angle;
+            m_EnmityHolder->loc.zone->PushPacket(m_EnmityHolder, CHAR_INRANGE, new CEntityUpdatePacket(m_EnmityHolder, ENTITY_UPDATE));
+        }
 	}
 }
 

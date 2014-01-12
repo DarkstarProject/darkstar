@@ -1,6 +1,6 @@
 ---------------------------------------------------
--- Horrid Roar
--- Dispels a single buff at random which could be food. It does not reset hate.
+-- Horrid Roar (Tiamat, Jormungand, Vrtra, Ouryu)
+-- Dispels all buffs including food. Lowers Enmity.
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -20,14 +20,16 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 
-    local dispel =  target:dispelStatusEffect();
+    local dispel =  target:dispelAllStatusEffect(bit.bor(EFFECTFLAG_DISPELABLE, EFFECTFLAG_FOOD));
 
-    if(dispel == EFFECT_NONE) then
+    if(dispel == 0) then
         -- no effect
         skill:setMsg(MSG_NO_EFFECT); -- no effect
     else
-        skill:setMsg(MSG_DISAPPEAR);
+        skill:setMsg(MSG_DISAPPEAR_NUM);
     end
 
+    mob:lowerEnmity(target, 70);
+    
     return dispel;
 end
