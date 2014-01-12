@@ -10,7 +10,9 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnMobSkillCheck(target,mob,skill)
-    if(mob:getHPP() <= 60) then
+    if (skill:getParam() ~= 0) then
+        return 1;
+    elseif(mob:getHPP() <= 60) then
         return 0;
     end
     return 1;
@@ -18,7 +20,11 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_MIGHTY_STRIKES;
-    MobBuffMove(mob, typeEffect, 1, 0, 45);
+    local duration = 45;
+    if (skill:getParam() ~= 0) then
+        duration = skill:getParam()
+    end
+    MobBuffMove(mob, typeEffect, 1, 0, duration);
 
     skill:setMsg(MSG_USES);
 

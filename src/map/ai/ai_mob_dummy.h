@@ -62,6 +62,9 @@ public:
     // checks if the given target can be aggroed by this mob
     bool CanAggroTarget(CBattleEntity* PTarget);
 
+    void setMobSkillAttack(bool);
+    bool getMobSkillAttack();
+
     // time of day change, update mobs
     // TODO:
     //void TOTDChange();
@@ -84,6 +87,7 @@ protected:
   uint32 m_NeutralTime;
   float m_skillTP;
   bool m_drawnIn;
+  bool m_mobskillattack;
 
   bool  m_CanStandback;
   uint32 m_LastStandbackTime;

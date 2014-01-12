@@ -768,7 +768,8 @@ void CAIPetDummy::ActionAttack()
 					{
 						Action.messageID = 32;
 					}
-					else if ( rand()%100 < battleutils::GetHitRate(m_PPet, m_PBattleTarget) )
+                    else if ((rand() % 100 < battleutils::GetHitRate(m_PPet, m_PBattleTarget)) &&
+                        !m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ALL_MISS))
 					{
 	                    if (battleutils::IsAbsorbByShadow(m_PBattleTarget))
 						{

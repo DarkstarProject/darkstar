@@ -94,7 +94,7 @@ function doPhysicalWeaponskill(attacker, target, params)
 	end
 
 
-	local dmg = base * ftp;
+	local dmg = 0;
 
 	--Applying pDIF
 	local pdif = generatePdif(cratio[1], cratio[2], true);
@@ -111,7 +111,9 @@ function doPhysicalWeaponskill(attacker, target, params)
 
 	local tpHitsLanded = 0;
 	local tpHits = 0;
-	if (firsthit <= hitrate or isSneakValid or isAssassinValid or math.random() < attacker:getMod(MOD_ZANSHIN)/100) then
+	if ((firsthit <= hitrate or isSneakValid or isAssassinValid or math.random() < attacker:getMod(MOD_ZANSHIN)/100) and
+            not target:hasStatusEffect(EFFECT_PERFECT_DODGE) and not target:hasStatusEffect(EFFECT_ALL_MISS) ) then
+        dmg = base * ftp;
 		if(params.canCrit or isSneakValid or isAssassinValid) then
 			local critchance = math.random();
 			if(critchance <= critrate or hasMightyStrikes or isSneakValid or isAssassinValid) then --crit hit!
@@ -142,7 +144,8 @@ function doPhysicalWeaponskill(attacker, target, params)
 	if((attacker:getOffhandDmg() ~= 0) and (attacker:getOffhandDmg() > 0 or attacker:getWeaponSkillType(0)==1)) then
 
 		local chance = math.random();
-		if (chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100 or isSneakValid) then --it hit
+		if ((chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100 or isSneakValid)
+                and not target:hasStatusEffect(EFFECT_PERFECT_DODGE) and not target:hasStatusEffect(EFFECT_ALL_MISS) ) then --it hit
 			pdif = generatePdif(cratio[1], cratio[2], true);
 			if(params.canCrit) then
 				critchance = math.random();
@@ -170,7 +173,8 @@ function doPhysicalWeaponskill(attacker, target, params)
 		local hitsdone = 1;
 		while (hitsdone < numHits) do
 			local chance = math.random();
-			if (chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100) then --it hit
+			if (chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100) and
+                    not target:hasStatusEffect(EFFECT_PERFECT_DODGE) and not target:hasStatusEffect(EFFECT_ALL_MISS) ) then  --it hit
 				pdif = generatePdif(cratio[1], cratio[2], true);
 				if(params.canCrit) then
 					critchance = math.random();

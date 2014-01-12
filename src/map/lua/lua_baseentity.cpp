@@ -94,6 +94,7 @@
 #include "../entities/charentity.h"
 
 #include "../ai/ai_npc_dummy.h"
+#include "../ai/ai_mob_dummy.h"
 
 CLuaBaseEntity::CLuaBaseEntity(lua_State* L)
 {
@@ -7385,7 +7386,7 @@ inline int32 CLuaBaseEntity::setDelay(lua_State* L)
 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
-    ((CMobEntity*)m_PBaseEntity)->m_Weapons[SLOT_MAIN]->setBaseDelay(lua_tonumber(L, 1));
+    ((CMobEntity*)m_PBaseEntity)->m_Weapons[SLOT_MAIN]->setDelay(lua_tonumber(L, 1));
 	return 0;
 }
 inline int32 CLuaBaseEntity::setDamage(lua_State* L)
@@ -7430,6 +7431,16 @@ inline int32 CLuaBaseEntity::useMobAbility(lua_State* L)
 	return 0;
 }
 
+inline int32 CLuaBaseEntity::actionQueueEmpty(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+    lua_pushboolean(L,((CMobEntity*)m_PBaseEntity)->PBattleAI->m_actionQueue.empty());
+
+    return 1;
+}
+
 inline int32 CLuaBaseEntity::SetAutoAttackEnabled(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -7458,6 +7469,17 @@ inline int32 CLuaBaseEntity::SetMobAbilityEnabled(lua_State* L)
 	((CBattleEntity*)m_PBaseEntity)->PBattleAI->SetMobAbilityEnabled(lua_toboolean(L, 1));
 
 	return 0;
+}
+
+inline int32 CLuaBaseEntity::SetMobSkillAttack(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isboolean(L, 1));
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+    ((CAIMobDummy*)m_PBaseEntity->PBattleAI)->setMobSkillAttack(lua_toboolean(L, 1));
+
+    return 0;
 }
 
 inline int32 CLuaBaseEntity::updateTarget(lua_State* L)
@@ -7493,15 +7515,14 @@ inline int32 CLuaBaseEntity::getExtraVar(lua_State* L)
 	} else if (n == 2) {
 		uint32 var = ((CMobEntity*)m_PBaseEntity)->m_extraVar;
 		uint16 var1 = var & 0x0000FFFF;
-		uint16 var2 = var >>= 16;
+		uint16 var2 = var >> 16;
 		lua_pushinteger(L, var1);
 		lua_pushinteger(L, var2);
 	} else if (n == 3) {
 		uint32 var = ((CMobEntity*)m_PBaseEntity)->m_extraVar;
-		uint16 var1 = var >>= 16;
-		uint8 var2 = var & 0x0000FF00;
-		var2 >>= 8;
-		uint8 var3 = var & 0x000000FF;
+		uint16 var1 = var >> 16;
+		uint8 var2 = (var & 0x0000FF00) >> 8;
+		uint8 var3 = (var & 0x000000FF);
 		lua_pushinteger(L, var1);
 		lua_pushinteger(L, var2);
 		lua_pushinteger(L, var3);
@@ -8390,9 +8411,11 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setDamage),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,castSpell),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,useMobAbility),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,actionQueueEmpty),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetAutoAttackEnabled),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetMagicCastingEnabled),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetMobAbilityEnabled),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetMobSkillAttack),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateTarget),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getExtraVar),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setExtraVar),

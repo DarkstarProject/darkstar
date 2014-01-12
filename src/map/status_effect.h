@@ -547,6 +547,7 @@ enum EFFECT
 	EFFECT_BRAZEN_STRENGTH          = 490, //  
 	EFFECT_INNER_STRENGTH			= 491, 
 
+    EFFECT_ALL_MISS                 = 791, // All attacks miss (ie - Tiamat while flying)
     EFFECT_SUPER_BUFF               = 792, // Boss buff (ie - Nidhogg "2hour")
 	EFFECT_NINJUTSU_ELE_DEBUFF      = 793,
 	EFFECT_HEALING					= 794,

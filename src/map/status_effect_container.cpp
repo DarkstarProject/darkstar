@@ -666,7 +666,7 @@ returns number of dispelled effects
 uint8 CStatusEffectContainer::DispelAllStatusEffect(EFFECTFLAG flag)
 {
     uint8 count = 0;
-    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+    for (int i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if (m_StatusEffectList.at(i)->GetFlag() & flag &&
             m_StatusEffectList.at(i)->GetDuration() > 0)
@@ -689,8 +689,7 @@ bool CStatusEffectContainer::HasStatusEffect(EFFECT StatusID)
 {
     for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
-        if (m_StatusEffectList.at(i)->GetStatusID() == StatusID &&
-            m_StatusEffectList.at(i)->GetIcon() != 0)
+        if (m_StatusEffectList.at(i)->GetStatusID() == StatusID)
         {
             return true;
         }

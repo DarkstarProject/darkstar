@@ -460,10 +460,12 @@ public:
 	int32 setDamage(lua_State*);			// sets a mobs weapon damage
 	int32 castSpell(lua_State*);			// forces a mob to cast a spell (parameter = spellid, otherwise picks a spell from its list)
 	int32 useMobAbility(lua_State*);		// forces a mob to use a mobability (parameter = mobid, otherwise picks a spell from its list)
+    int32 actionQueueEmpty(lua_State*);     // returns whether the action queue is empty or not
 
 	int32 SetAutoAttackEnabled(lua_State*);	 // halts/resumes auto attack of entity
 	int32 SetMagicCastingEnabled(lua_State*);// halt/resumes casting magic
 	int32 SetMobAbilityEnabled(lua_State*);	 // halt/resumes mob skills
+    int32 SetMobSkillAttack(lua_State*);     // enable/disable using mobskills as regular attacks
 	int32 updateTarget(lua_State*);			 // Force mob to update target from enmity container (ie after updateEnmity)
 
 	int32 getExtraVar(lua_State*);

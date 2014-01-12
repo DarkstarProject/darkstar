@@ -2858,7 +2858,8 @@ void CAICharNormal::ActionAttack()
 					Action.reaction   = REACTION_EVADE;
 					Action.speceffect = SPECEFFECT_NONE;
 				}
-				else if (rand()%100 < attack->GetHitRate() || attackRound->GetSATAOccured())
+				else if ((rand()%100 < attack->GetHitRate() || attackRound->GetSATAOccured()) &&
+                    !m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ALL_MISS))
 				{
                     // attack hit, try to be absorbed by shadow
                     if (battleutils::IsAbsorbByShadow(m_PBattleTarget))

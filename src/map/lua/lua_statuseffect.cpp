@@ -268,6 +268,18 @@ inline int32 CLuaStatusEffect::addMod(lua_State* L)
 
 //======================================================//
 
+inline int32 CLuaStatusEffect::setFlag(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    m_PLuaStatusEffect->SetFlag(lua_tonumber(L,1));
+    return 1;
+}
+
+//======================================================//
+
 const int8 CLuaStatusEffect::className[] = "CLuaStatusEffect";
 
 Lunar<CLuaStatusEffect>::Register_t CLuaStatusEffect::methods[] = 
@@ -291,5 +303,6 @@ Lunar<CLuaStatusEffect>::Register_t CLuaStatusEffect::methods[] =
     LUNAR_DECLARE_METHOD(CLuaStatusEffect,getTick),
     LUNAR_DECLARE_METHOD(CLuaStatusEffect,setTick),
     LUNAR_DECLARE_METHOD(CLuaStatusEffect,setStartTime),
+    LUNAR_DECLARE_METHOD(CLuaStatusEffect,setFlag),
 	{NULL,NULL}
 }; 

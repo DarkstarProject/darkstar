@@ -77,6 +77,7 @@ CAIMobDummy::CAIMobDummy(CMobEntity* PMob)
 	m_NeutralTime = 0;
 	m_CanStandback = false;
 	m_drawnIn = false;
+    m_mobskillattack = false;
 }
 
 /************************************************************************
@@ -602,6 +603,7 @@ void CAIMobDummy::ActionSpawn()
 		m_PMob->status = STATUS_UPDATE;
 		m_PMob->animation = ANIMATION_NONE;
 		m_PMob->HideName(false);
+        m_PMob->m_extraVar = 0;
 
         m_PMob->PEnmityContainer->Clear();
         m_PPathFind->Clear();
@@ -1075,8 +1077,6 @@ void CAIMobDummy::ActionMagicStart()
 
 void CAIMobDummy::ActionMagicCasting()
 {
-	m_PPathFind->LookAt(m_PMagicState->GetTarget()->loc.p);
-
 	STATESTATUS status = m_PMagicState->Update(m_Tick);
 
 	if(status == STATESTATUS_INTERRUPT)
@@ -1101,7 +1101,6 @@ void CAIMobDummy::ActionMagicCasting()
 
 void CAIMobDummy::ActionMagicFinish()
 {
-
 	m_LastActionTime = m_Tick;
 	m_LastMagicTime = m_Tick - rand()%(uint32)((float)m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) / 2);
 	m_DeaggroTime = m_Tick;
@@ -1300,9 +1299,56 @@ void CAIMobDummy::ActionAttack()
 		}
 	}
 
+    bool move = false;
+
+    //If using mobskills instead of attacks, calculate distance to move and ability to use here
+    if (m_mobskillattack)
+    {
+        std::vector<CMobSkill*> MobSkills = battleutils::GetMobSkillsByFamily(m_PMob->getMobMod(MOBMOD_SKILLS));
+
+        //get rid of every skill that doesn't have the auto attack flag
+        for (int i = 0; i<MobSkills.size(); i++)
+        {
+            if (!(MobSkills.at(i)->getFlag() & SKILLFLAG_REPLACE_ATTACK))
+            {
+                MobSkills.erase(MobSkills.begin() + i);
+                i--;
+            }
+        }
+        std::random_shuffle(MobSkills.begin(), MobSkills.end()); //Start the selection process by randomizing the container
+
+        for (int i = 0; i<MobSkills.size(); i++){
+            m_PMobSkill = MobSkills.at(i);
+            if (m_PMobSkill->getValidTargets() == TARGET_ENEMY){ //enemy
+                m_PBattleSubTarget = m_PBattleTarget;
+            }
+            else if (m_PMobSkill->getValidTargets() == TARGET_SELF){ //self
+                m_PBattleSubTarget = m_PMob;
+            }
+            else
+            {
+                continue;
+            }
+            float currentDistance = distance(m_PMob->loc.p, m_PBattleSubTarget->loc.p);
+            if (currentDistance <= m_PMobSkill->getDistance()) {
+                int16 WeaponDelay = m_PMob->GetWeaponDelay(false);
+                if (m_AutoAttackEnabled && m_Tick > m_LastActionTime + WeaponDelay)
+                {
+                    m_LastActionTime = m_Tick;
+                    SetCurrentAction(ACTION_MOBABILITY_USING);
+                    ActionAbilityUsing();
+                }
+            }
+            else
+            {
+                move = true;
+                m_PMobSkill = NULL;
+            }
+        }
+    }
 
 	// move closer to enemy
-	if(currentDistance > m_PMob->m_ModelSize)
+	if(currentDistance > m_PMob->m_ModelSize || move)
 	{
 		if(m_PMob->getMobMod(MOBMOD_DRAW_IN) && distance(m_PMob->m_SpawnPoint, m_PBattleTarget->loc.p) > m_PMob->getMobMod(MOBMOD_DRAW_IN))
 		{
@@ -1349,18 +1395,10 @@ void CAIMobDummy::ActionAttack()
 	}
 
 	// attack enemy if close enough
-	if (currentDistance <= m_PMob->m_ModelSize)
+    if (currentDistance <= m_PMob->m_ModelSize && !m_mobskillattack)
 	{
 		m_CanStandback = true;
-		int32 WeaponDelay = m_PMob->m_Weapons[SLOT_MAIN]->getDelay();
-		if (m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS,0))
-		{
-			WeaponDelay = 600;
-		} else {
-			int16 hasteMagic = (m_PMob->getMod(MOD_HASTE_MAGIC) > 448) ? 448 : m_PMob->getMod(MOD_HASTE_MAGIC);
-			int16 hasteAbility = (m_PMob->getMod(MOD_HASTE_ABILITY) > 256) ? 256 : m_PMob->getMod(MOD_HASTE_ABILITY);
-			WeaponDelay -= (((float)(hasteMagic + hasteAbility) * WeaponDelay) / 1024);
-		}
+        int16 WeaponDelay = m_PMob->GetWeaponDelay(false);
 
 		if (m_AutoAttackEnabled && m_Tick > m_LastActionTime + WeaponDelay)
 		{
@@ -1405,7 +1443,8 @@ void CAIMobDummy::ActionAttack()
 						Action.messageID = 32;
 						isDodge = true;
 					}
-					else if ( rand()%100 < battleutils::GetHitRate(m_PMob, m_PBattleTarget))
+                    else if ((rand() % 100 < battleutils::GetHitRate(m_PMob, m_PBattleTarget)) &&
+                        !m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ALL_MISS))
 					{
 						if (attackutils::IsParried(m_PMob, m_PBattleTarget))
 						{
@@ -2173,4 +2212,14 @@ void CAIMobDummy::TransitionBack(bool skipWait)
 			ActionRoaming();
 		}
 	}
+}
+
+void CAIMobDummy::setMobSkillAttack(bool value)
+{
+    m_mobskillattack = value;
+}
+
+bool CAIMobDummy::getMobSkillAttack()
+{
+    return m_mobskillattack;
 }

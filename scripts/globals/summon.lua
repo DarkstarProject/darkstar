@@ -268,8 +268,9 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
 		return 0;
 	end
 	--handle pd
-	if(target:hasStatusEffect(EFFECT_PERFECT_DODGE) and skilltype==MOBSKILL_PHYSICAL)then
-		return 0;
+	if((target:hasStatusEffect(EFFECT_PERFECT_DODGE) or target:hasStatusEffect(EFFECT_ALL_MISS) )
+            and skilltype==MOBSKILL_PHYSICAL) then
+        return 0;
 	end
 
 	--handling stoneskin

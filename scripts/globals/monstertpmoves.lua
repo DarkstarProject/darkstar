@@ -576,7 +576,8 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 	end
 
 	--handle pd
-	if(target:hasStatusEffect(EFFECT_PERFECT_DODGE) and skilltype==MOBSKILL_PHYSICAL) then
+	if((target:hasStatusEffect(EFFECT_PERFECT_DODGE) or target:hasStatusEffect(EFFECT_ALL_MISS) )
+            and skilltype==MOBSKILL_PHYSICAL) then
 		skill:setMsg(MSG_MISS);
 		return 0;
 	end
