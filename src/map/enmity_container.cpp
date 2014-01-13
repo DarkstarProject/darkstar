@@ -288,7 +288,7 @@ void CEnmityContainer::LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percen
 	// PEntity is now the target, face the target
 	if (OldEntity != NewEntity && !m_EnmityHolder->isAsleep())
 	{
-        if ((m_EnmityHolder->objtype == TYPE_MOB && (!((CMobEntity*)m_EnmityHolder)->m_Behaviour & BEHAVIOUR_NO_TURN)) || m_EnmityHolder->objtype != TYPE_MOB)
+        if ((m_EnmityHolder->objtype == TYPE_MOB && !(((CMobEntity*)m_EnmityHolder)->m_Behaviour & BEHAVIOUR_NO_TURN)) || m_EnmityHolder->objtype != TYPE_MOB)
         {
             uint8 angle = getangle(m_EnmityHolder->loc.p, NewEntity->loc.p);
             m_EnmityHolder->loc.p.rotation = angle;
