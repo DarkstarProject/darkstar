@@ -173,7 +173,7 @@ function doPhysicalWeaponskill(attacker, target, params)
 		local hitsdone = 1;
 		while (hitsdone < numHits) do
 			local chance = math.random();
-			if (chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100) and
+			if ((chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100) and
                     not target:hasStatusEffect(EFFECT_PERFECT_DODGE) and not target:hasStatusEffect(EFFECT_ALL_MISS) ) then  --it hit
 				pdif = generatePdif(cratio[1], cratio[2], true);
 				if(params.canCrit) then
