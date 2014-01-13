@@ -1317,18 +1317,18 @@ void CZone::TOTDChange(TIMETYPE TOTD)
 
 CCharEntity* CZone::GetCharByName(int8* name)
 {
-	if(!m_charList.empty())
+    if (!m_charList.empty())
     {
-	    for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
-	    {
-		    CCharEntity* PCurrentChar = (CCharEntity*)it->second;
-		    if(strcmp(PCurrentChar->GetName(),name)==0)
+        for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
+        {
+            CCharEntity* PCurrentChar = (CCharEntity*)it->second;
+            if (stricmp(PCurrentChar->GetName(), name) == 0)
             {
-			    return PCurrentChar;
-		    }
-	    }
+                return PCurrentChar;
+            }
+        }
     }
-	return NULL;
+    return NULL;
 }
 
 /************************************************************************
