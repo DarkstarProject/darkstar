@@ -1068,7 +1068,7 @@ INSERT INTO `mob_skill` VALUES (431,216,431,'Sprout_Smack', 0, 7.0, 2000, 1500, 
 -- Cardians
 INSERT INTO `mob_skill` VALUES (427,61,427,'Bludgeon', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (428,61,428,'Deal_Out', 4, 10.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (72,61,72,'Double_Down', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (77,61,77,'Double_Down', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (74,61,74,'Shuffle', 4, 10.0, 2000, 1500, 4, 0, 0, 0);
 
 -- anim 432 = 2h cloud
