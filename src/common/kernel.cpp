@@ -260,7 +260,7 @@ const char* get_svn_revision(void)
 
 static void display_title(void)
 {
-	ShowInfo("DarkStar - onetimexi - SVN Revision: " CL_WHITE"%s" CL_RESET".\n", get_svn_revision());
+	ShowInfo("DarkStar - SVN Revision: " CL_WHITE"%s" CL_RESET".\n", get_svn_revision());
 }
 
 /************************************************************************
