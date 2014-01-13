@@ -700,7 +700,15 @@ void CAIMobDummy::ActionAbilityStart()
 		// get my job two hour
 		m_PMobSkill = battleutils::GetTwoHourMobSkill(m_PMob->GetMJob());
 
-		valid = (m_PMobSkill != NULL && luautils::OnMobSkillCheck(m_PBattleTarget, m_PMob, m_PMobSkill) == 0);
+        if (m_PMobSkill->getValidTargets() == TARGET_SELF){ //self
+            m_PBattleSubTarget = m_PMob;
+        }
+        else
+        {
+            m_PBattleSubTarget = m_PBattleTarget;
+        }
+
+        valid = (m_PMobSkill != NULL && luautils::OnMobSkillCheck(m_PBattleSubTarget, m_PMob, m_PMobSkill) == 0);
 
 		if(valid)
 		{
