@@ -28,7 +28,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(NOTHING_HAPPENS);
+	player:messageSpecial(BLUE_FLAMES);
 end;
 
 -----------------------------------
