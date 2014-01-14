@@ -1559,8 +1559,7 @@ float GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 	//get ratio (not capped for RAs)
 	float ratio = (float)rAttack / (float)PDefender->DEF();
 
-	if(ratio < 0) { ratio = 0; }
-	if(ratio > 3) { ratio = 3; }
+    dsp_cap(ratio, 0, 3);
 
     //level correct (0.025 not 0.05 like for melee)
     if (PDefender->GetMLevel() > PAttacker->GetMLevel()){
@@ -1586,6 +1585,9 @@ float GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 		minPdif = (-3.0f/19.0f) + ((20.0f/19.0f) * ratio);
 		maxPdif = ratio;
 	}
+
+    dsp_cap(minPdif, 0, 3);
+    dsp_cap(maxPdif, 0, 3);
 
 	//return random number between the two
 	return ((maxPdif-minPdif) * ((float)rand()/RAND_MAX)) + minPdif;
