@@ -913,8 +913,8 @@ void CAICharNormal::ActionRangedFinish()
 	{
 		m_LastMeleeTime += (m_Tick - m_LastActionTime);
 		m_LastActionTime = m_Tick;
-		uint16 damage = 0;
-		uint16 totalDamage = 0;
+		int32 damage = 0;
+		int32 totalDamage = 0;
 
 		apAction_t Action;
         m_PChar->m_ActionList.clear();
