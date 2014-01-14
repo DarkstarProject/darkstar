@@ -409,6 +409,9 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
 						m_LatentEffectList.at(i)->Deactivate();
 					}
 					break;
+				case LATENT_PET_ID:
+						CheckLatentsPetType((PETTYPE)m_LatentEffectList.at(i)->GetConditionsValue());
+					break;
 				case LATENT_SUBJOB:
 					if( m_POwner->GetSJob() == m_LatentEffectList.at(i)->GetConditionsValue())
 					{
@@ -472,6 +475,9 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
 					break;
 				case LATENT_AVATAR_IN_PARTY:
 						CheckLatentsPartyAvatar();
+					break;
+				case LATENT_MOON_FIRST_QUARTER:
+						CheckLatentsMoonPhase();
 					break;
 				case LATENT_TIME_OF_DAY:
 						CheckLatentsDay();
@@ -771,23 +777,57 @@ void CLatentEffectContainer::CheckLatentsDay()
 
 			//dusk - dawn: 17:00 to 7:00
 			if(m_LatentEffectList.at(i)->GetConditionsValue() == 2)
+			{
+				if((VanadielHour >= 17) || (VanadielHour < 7))
 				{
-					if((VanadielHour >= 17) || (VanadielHour < 7))
-					{
-						if(m_LatentEffectList.at(i)->IsActivated())
-							m_LatentEffectList.at(i)->Deactivate();
+					if(m_LatentEffectList.at(i)->IsActivated())
+						m_LatentEffectList.at(i)->Deactivate();
 
-						m_LatentEffectList.at(i)->Activate();
-					}
-					else
+					m_LatentEffectList.at(i)->Activate();
+				}
+				else
+				{
+					if(m_LatentEffectList.at(i)->IsActivated())
 					{
-						if(m_LatentEffectList.at(i)->IsActivated())
-						{
-							m_LatentEffectList.at(i)->Deactivate();
-						}
+						m_LatentEffectList.at(i)->Deactivate();
 					}
 				}
+			}
+		}
+	}
+	m_POwner->UpdateHealth();
+}
 
+/************************************************************************
+*																		*
+*  Checks latents affected by the moon phase and activates them			*
+*																		*
+************************************************************************/
+void CLatentEffectContainer::CheckLatentsMoonPhase()
+{
+	for (uint16 i = 0; i < m_LatentEffectList.size(); ++i)
+	{
+		if (m_LatentEffectList.at(i)->GetConditionsID() == LATENT_MOON_FIRST_QUARTER)
+		{
+			if (m_LatentEffectList.at(i)->GetConditionsID() == LATENT_MOON_FIRST_QUARTER)
+			{
+				uint32 MoonPhase = CVanaTime::getInstance()->getMoonPhase();
+
+				if (MoonPhase >= 40 && MoonPhase <= 55)
+				{
+					if (!m_LatentEffectList.at(i)->IsActivated())
+					{
+						m_LatentEffectList.at(i)->Activate();
+					}
+				}
+				else
+				{
+					if (m_LatentEffectList.at(i)->IsActivated())
+					{
+						m_LatentEffectList.at(i)->Deactivate();
+					}
+				}
+			}
 		}
 	}
 	m_POwner->UpdateHealth();
@@ -1129,15 +1169,16 @@ void CLatentEffectContainer::CheckLatentsPartyJobs()
 						if(PMember->GetMJob() == m_LatentEffectList.at(i)->GetConditionsValue())
 						{
 							ActivateLatent = true;
+							break;
 						}
 					}
 				}
 
-				if((ActivateLatent == true) && (m_LatentEffectList.at(i)->IsActivated() != true))
+				if(ActivateLatent == true)
 					m_LatentEffectList.at(i)->Activate();
 			}
 
-			if((ActivateLatent == false) && (m_LatentEffectList.at(i)->IsActivated() == true))
+			if(ActivateLatent == false)
 				m_LatentEffectList.at(i)->Deactivate();
 		}
 	}
@@ -1154,7 +1195,49 @@ void CLatentEffectContainer::CheckLatentsPartyJobs()
 
 void CLatentEffectContainer::CheckLatentsPartyAvatar()
 {
-	
+
+	for (uint16 i = 0; i < m_LatentEffectList.size(); ++i)
+	{
+		if (m_LatentEffectList.at(i)->GetConditionsID() == LATENT_AVATAR_IN_PARTY)
+		{
+			bool ActivateLatent = false;
+			if (m_POwner->PParty != NULL)
+			{
+				for (uint8 m = 0; m < m_POwner->PParty->members.size(); ++m)
+				{
+					CCharEntity* PMember = (CCharEntity*)m_POwner->PParty->members.at(m);
+					if (PMember->PPet != NULL)
+					{
+						CPetEntity* PPet = (CPetEntity*)PMember->PPet;
+
+						if (PPet->m_PetID == m_LatentEffectList.at(i)->GetConditionsValue() &&
+								PPet->PBattleAI->GetCurrentAction() != ACTION_DESPAWN)
+						{
+							ActivateLatent = true;
+							break;
+						}
+					}
+				}
+			}
+			if (m_POwner->PParty == NULL && m_POwner->PPet != NULL)
+			{
+				CPetEntity* PPet = (CPetEntity*)m_POwner->PPet;
+
+				if (PPet->m_PetID == m_LatentEffectList.at(i)->GetConditionsValue() &&
+						PPet->PBattleAI->GetCurrentAction() != ACTION_FALL)
+				{
+					ActivateLatent = true;
+				}
+			}
+
+			if (ActivateLatent == true)
+				m_LatentEffectList.at(i)->Activate();
+
+			if (ActivateLatent == false)
+				m_LatentEffectList.at(i)->Deactivate();
+		}
+	}
+	m_POwner->UpdateHealth();
 }
 
 /************************************************************************

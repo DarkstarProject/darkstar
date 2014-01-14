@@ -745,6 +745,21 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 		PPet->health.hp = ((CCharEntity*)PMaster)->petZoningInfo.petHP;
 	}
 
+	// check latents affected by pets
+	if (PMaster->PParty != NULL)
+	{
+		for (uint8 i = 0; i < PMaster->PParty->members.size(); ++i)
+		{
+			CCharEntity* PMember = (CCharEntity*)PMaster->PParty->members.at(i);
+			PMember->PLatentEffectContainer->CheckLatentsPartyAvatar();
+		}
+	}
+	else
+	{
+		CCharEntity* PChar = (CCharEntity*)PMaster;
+		PChar->PLatentEffectContainer->CheckLatentsPartyAvatar();
+	}
+
 }
 
 void SpawnMobPet(CBattleEntity* PMaster, uint32 PetID)
@@ -836,6 +851,17 @@ void DespawnPet(CBattleEntity* PMaster)
 			PPet->PBattleAI->SetCurrentAction(ACTION_FALL);
 			if( ((CPetEntity*)PPet)->getPetType() == PETTYPE_AVATAR )
 				PMaster->setModifier(MOD_AVATAR_PERPETUATION, 0);
+
+			if (PMaster->PParty != NULL)
+			{
+				for (uint8 i = 0; i < PMaster->PParty->members.size(); ++i)
+				{
+					CCharEntity* PMember = (CCharEntity*)PMaster->PParty->members.at(i);
+					PMember->PLatentEffectContainer->CheckLatentsPartyAvatar();
+				}
+			}
+				CCharEntity* PChar = (CCharEntity*)PMaster;
+				PChar->PLatentEffectContainer->CheckLatentsPartyAvatar();
 		}
 		break;
 		case TYPE_MOB:

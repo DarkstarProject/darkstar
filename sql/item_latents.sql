@@ -552,9 +552,23 @@ INSERT INTO `item_latents` VALUES(17720, 366, 1, 16, 2);
 INSERT INTO `item_latents` VALUES(17720, 366, 1, 16, 3);
 INSERT INTO `item_latents` VALUES(17720, 366, 1, 16, 4);
 INSERT INTO `item_latents` VALUES(17720, 366, 1, 16, 5);
-INSERT INTO `item_latents` VALUES(18063, 25, 13, 21, 13);
-INSERT INTO `item_latents` VALUES(17192, 165, 3, 21, 10);
-INSERT INTO `item_latents` VALUES(18021, 366, 5, 21, 11);
+
+-- -------------------------------------------------------
+-- Garuda's Sickle
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(18063, 25, 13, 21, 13); -- Accuracy +13
+
+-- -------------------------------------------------------
+-- Ifrit's Bow
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(17192, 165, 3, 21, 10); -- Increases Critical Hit Rate
+
+-- -------------------------------------------------------
+-- Titan's Baselard
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(18021, 366, 5, 21, 11); -- DMG: 33
+
+
 INSERT INTO `item_latents` VALUES(18771, 23, 1, 16, 2);
 INSERT INTO `item_latents` VALUES(18771, 23, 1, 16, 3);
 INSERT INTO `item_latents` VALUES(18771, 23, 1, 16, 4);
@@ -1207,3 +1221,33 @@ INSERT INTO `item_latents` VALUES(10293, 30, 50, 50, 31); -- Mag. Acc.+50
 INSERT INTO `item_latents` VALUES(11811, 370, 1, 50, 30); -- Adds "Regen"
 INSERT INTO `item_latents` VALUES(11811, 369, 1, 50, 30); -- Adds "Refresh"
 INSERT INTO `item_latents` VALUES(11811, 456, 1, 50, 30); -- Adds "Reraise"
+
+-- -------------------------------------------------------
+-- Carbuncle's Pole
+-- --------------------------------------------------------
+INSERT INTO `item_latents` VALUES(18581, 431, 2, 21, 8);  -- Additional effect: Light damage
+
+-- -------------------------------------------------------
+-- Leviathan's Couse
+-- -------------------------------------------------------
+-- TODO: INSERT INTO `item_latents` VALUES(18109, 431, 1, 21, 12); -- Additional effect: Water damage
+
+-- -------------------------------------------------------
+-- Ramuh's Mace
+-- -------------------------------------------------------
+-- TODO: INSERT INTO `item_latents` VALUES(18404, 431, 1, 21, 15); -- Additional effect: Lightning damage
+
+-- -------------------------------------------------------
+-- Shiva's Shotel
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(17711, 431, 1, 21, 14); -- Additional effect: Ice damage
+
+-- -------------------------------------------------------
+-- Amood
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(18482, 288, 1, 37, 0); -- Occasionally Attacks Twice
+
+-- -------------------------------------------------------
+-- Amood +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(18483, 288, 1, 37, 0); -- Occasionally Attacks Twice
