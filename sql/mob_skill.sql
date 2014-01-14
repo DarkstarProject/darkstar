@@ -830,7 +830,7 @@ INSERT INTO `mob_skill` VALUES (350,189,350,'Shoulder_Attack', 0, 7.0, 2000, 150
 -- INSERT INTO `mob_skill` VALUES (2155,?,?,'Phantasmal_Dance', 1, 15.0, 2000, 2000, 4, 0, 0, 0); -- certain NM only
 
 -- Orcs (WOTG only)
--- INSERT INTO `mob_skill` VALUES (1945,?,?,'Orcish_Counterstance', 0, 7.0, 2000, 2000, 1, 0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1945,?,1555,'Orcish_Counterstance', 0, 7.0, 2000, 2000, 1, 0, 0, 0);
 
 -- INSERT INTO `mob_skill` VALUES (2007,?,1626,'Tornado_Edge', 4, 10.0, 2000, 2000, 4, 0, 0, 0); -- certain NM only
 -- INSERT INTO `mob_skill` VALUES (1946,?,?,'Berserker_Dance', 1, 7.0, 2000, 2000, 1, 0, 0, 0); -- certain NM only
@@ -920,7 +920,7 @@ INSERT INTO `mob_skill` VALUES (364,360,364,'Sweep', 1, 10.0, 2000, 1500, 4, 0, 
 -- INSERT INTO `mob_skill` VALUES (?,?,?,'Doom', 0, 10.0, 2000, 1500, 4, 0, 0, 0);
 
 -- Yagudo (WoTG)
--- INSERT INTO `mob_skill` VALUES (1949,?,?,'Feathered_Furore', 4, 10.0, 2000, 1500, 4, 0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1949,?,1565,'Feathered_Furore', 4, 10.0, 2000, 2000, 4, 0, 0, 0);
 
 -- INSERT INTO `mob_skill` VALUES (2157,?,?,'Feather_Maelstrom', 0, 15.0, 2000, 1500, 4, 0, 0, 0); -- Seed Yagudo only
 -- INSERT INTO `mob_skill` VALUES (1950,?,?,'Dark_Invocation', 0, 15.0, 2000, 1500, 4, 0, 0, 0); -- certain Campaign bosses and Aa Xalmo the Savage
@@ -928,8 +928,6 @@ INSERT INTO `mob_skill` VALUES (364,360,364,'Sweep', 1, 10.0, 2000, 1500, 4, 0, 
 -- INSERT INTO `mob_skill` VALUES (1680,?,?,'Shibaraku', 1, 10.0, 2000, 1500, 4, 0, 0, 0); -- certain nms only
 -- INSERT INTO `mob_skill` VALUES (2013,?,?,'Kamaitachi', 1, 15.0, 2000, 1500, 4, 0, 0, 0); -- certain nms only
 -- INSERT INTO `mob_skill` VALUES (2119,?,?,'Vorticose_Sands', 1, 15.0, 2000, 1500, 4, 0, 0, 0); -- Tzee Xicu the Manifest WOTG missions only
-
-
 
 -- Birds
 INSERT INTO `mob_skill` VALUES (366,55,366,'Helldive', 0, 9.0, 2000, 1500, 4, 0, 0, 1);
@@ -1473,14 +1471,14 @@ INSERT INTO `mob_skill` VALUES (1445,72,1178,'Feather_Tickle', 0, 7.0, 2000, 150
 
 -- Imps
 INSERT INTO `mob_skill` VALUES (1455,165,1180,'Frenetic_Rip', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (1453,165,1181,'Abrasive_Tantara', 1, 10.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1453,165,1181,'Abrasive_Tantara', 1, 10.0, 2000, 2000, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (1454,165,1182,'Deafening_Tantara', 1, 10.0, 2000, 1500, 4, 0, 0, 0);
 
 -- INSERT INTO `mob_skill` VALUES (1747,?,?,'Grating_Tantara', 1, 10.0, 2000, 1500, 4, 0, 0, 0); -- Used by NM
 -- INSERT INTO `mob_skill` VALUES (1748,?,?,'Stifling_Tantara', 1, 10.0, 2000, 1500, 4, 0, 0, 0); -- Used by NM
 
 INSERT INTO `mob_skill` VALUES (1455,166,1180,'Frenetic_Rip', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (1453,166,1181,'Abrasive_Tantara', 1, 10.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1453,166,1181,'Abrasive_Tantara', 1, 10.0, 2000, 2000, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (1454,166,1182,'Deafening_Tantara', 1, 10.0, 2000, 1500, 4, 0, 0, 0);
 
 -- Puks

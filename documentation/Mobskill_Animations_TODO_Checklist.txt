@@ -122,14 +122,12 @@ No Ecosystem:
 
 Beastmen:
 -- Orcs - Phantasmal_Dance
-          Orcish_Counterstance
           Berserker_Dance
           Shoulder_Charge
           Veil_of_Chaos
 -- Quadav - Thunderous Yowl, Skull Smash, Shell Charge, Torment of Gu Dha
 -- Yagudo (dynamis) - Doom
--- Yagudo - Feathered_Furor
-            Feather_Maelstrom
+-- Yagudo - Feather_Maelstrom
             Dark_Invocation
             Shirahadori
             Shibaraku
