@@ -1,14 +1,13 @@
 -----------------------------------
 --  Area: Windurst Woods
---   NPC: Cayu Pensharhumi
+--  NPC:  Cayu Pensharhumi
 --  Type: Standard NPC
--- @zone: 241
---  @pos 39.437 -0.91 -40.808
---
--- Auto-Script: Requires Verification (Verfied by Brawndo)
+--  @pos 39.437 -0.91 -40.808 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -22,7 +21,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0103);
+
+	local WildcatWindurst = player:getVar("WildcatWindurst");
+
+	if (player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,2) == false) then
+		player:startEvent(0x02dd);
+	else
+		player:startEvent(0x0103);
+	end
+	
 end;
 
 -----------------------------------
@@ -41,5 +48,10 @@ end;
 function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
+	
+	if (csid == 0x02dd) then
+		player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",2,true)
+	end
+	
 end;
 

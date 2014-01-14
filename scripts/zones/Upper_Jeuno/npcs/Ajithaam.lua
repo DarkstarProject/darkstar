@@ -11,7 +11,6 @@ require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 require("scripts/zones/Upper_Jeuno/TextIDs");
------------------------------------
 
 --[[
 Bitmask Designations:
@@ -102,6 +101,7 @@ function onEventFinish(player,csid,option)
 		player:addQuest(JEUNO,LURE_OF_THE_WILDCAT_JEUNO);
 		player:setVar("WildcatJeuno",0);
 		player:addKeyItem(WHITE_SENTINEL_BADGE);
+		player:messageSpecial(KEYITEM_OBTAINED,WHITE_SENTINEL_BADGE);
 	elseif(csid == 10091) then
 		player:completeQuest(JEUNO,LURE_OF_THE_WILDCAT_JEUNO);
 		player:addFame(JEUNO,150);
@@ -110,6 +110,6 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(WHITE_INVITATION_CARD);
 		player:messageSpecial(KEYITEM_OBTAINED,WHITE_INVITATION_CARD);
 	elseif(csid == 10177)then
-		player:setPos(27.608, -6.000, -124.462, 192, 0x32); -- Aht Urhgan Whitegate (Pos in not correct needs verify).
+		toAhtUrhganWhitegate(player);
 	end
 end;

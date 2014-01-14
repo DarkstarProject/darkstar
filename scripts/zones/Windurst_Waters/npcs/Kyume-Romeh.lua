@@ -2,9 +2,7 @@
 --	Area: Windurst Waters
 --	NPC:  Kyume-Romeh
 --  Involved In Quest: Making Headlines, Hat in Hand
---	Working 100%
---  @zone = 238
---  @pos = -58 -4 23
+--  @pos -58 -4 23 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
@@ -29,14 +27,19 @@ function onTrigger(player,npc)
 	function testflag(set,flag)
 		return (set % (2*flag) >= flag)
 	end
-	hatstatus = player:getQuestStatus(WINDURST,HAT_IN_HAND);
-	MakingHeadlines = player:getQuestStatus(WINDURST,MAKING_HEADLINES);
+	
+	local hatstatus = player:getQuestStatus(WINDURST,HAT_IN_HAND);
+	local MakingHeadlines = player:getQuestStatus(WINDURST,MAKING_HEADLINES);
+	local WildcatWindurst = player:getVar("WildcatWindurst");
+	
 	if(player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==4)then
 		player:startEvent(0x0369);
+	elseif (player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,14) == false) then
+		player:startEvent(0x03ab);
 	elseif ((hatstatus == 1  or player:getVar("QuestHatInHand_var2") == 1) and testflag(tonumber(player:getVar("QuestHatInHand_var")),16) == false) then
 		player:startEvent(0x003c); -- Show Off Hat
 	elseif (MakingHeadlines == 1) then
-		prog = player:getVar("QuestMakingHeadlines_var");
+		local prog = player:getVar("QuestMakingHeadlines_var");
 		-- 	Variable to track if player has talked to 4 NPCs and a door
 		-- 	1 = Kyume
 		--	2 = Yujuju
@@ -49,7 +52,7 @@ function onTrigger(player,npc)
 			player:startEvent(0x029d); -- Quest not furthered
 		end
 	else
-		rand = math.random(1,2);
+		local rand = math.random(1,2);
 		if (rand == 1) then
 			player:startEvent(0x025c); -- Standard Conversation
 		else
@@ -82,9 +85,10 @@ function onEventFinish(player,csid,option)
 	elseif (csid == 0x003c) then  -- Show Off Hat
 		player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+16);
 		player:setVar("QuestHatInHand_count",player:getVar("QuestHatInHand_count")+1);
-		
 	elseif(csid == 0x0369) then
 		player:setVar("MEMORIES_OF_A_MAIDEN_Status",5);
+	elseif (csid == 0x03ab) then
+		player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",14,true)
 	end
 end;
 

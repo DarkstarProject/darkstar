@@ -1,7 +1,6 @@
 -----------------------------------
 --	Area: Windurst Woods
 --	NPC:  Etsatsa
---	Working 100%
 -----------------------------------
 
 require("scripts/globals/settings");

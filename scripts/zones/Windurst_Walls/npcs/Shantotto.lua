@@ -18,6 +18,7 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+
 	local count = trade:getItemCount();
 	-- Curses Foiled Again!
 	if(player:getQuestStatus(WINDURST,CURSES_FOILED_AGAIN_1) == QUEST_ACCEPTED) then
@@ -50,10 +51,11 @@ function onTrigger(player,npc)
 	local CFAtimer = player:getVar("Curses,FoiledAgain!?");
 	local FoiledAGolem = player:getQuestStatus(WINDURST,CURSES_FOILED_A_GOLEM);
 	local golemdelivery = player:getVar("foiledagolemdeliverycomplete");
+	local WildcatWindurst = player:getVar("WildcatWindurst");
 
-	-------------------------------------------------------
-	-- Class Reunion (note: added this to top cause not a lot of ppl will want AF for smn)
-	if (player:getQuestStatus(WINDURST,CLASS_REUNION) == QUEST_ACCEPTED and player:getVar("ClassReunionProgress") == 3) then
+	if (player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,6) == false) then
+		player:startEvent(0x01f2);
+	elseif (player:getQuestStatus(WINDURST,CLASS_REUNION) == QUEST_ACCEPTED and player:getVar("ClassReunionProgress") == 3) then
 		player:startEvent(0x0199); -- she mentions that Sunny-Pabonny left for San d'Oria
 	-------------------------------------------------------
 	-- Curses Foiled Again!
@@ -183,5 +185,7 @@ function onEventFinish(player,csid,option)
 		end
 	elseif(csid == 0x0199) then
 		player:setVar("ClassReunionProgress",4);
-	end		
+	elseif (csid == 0x01f2) then
+		player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",6,true)
+	end
 end;

@@ -4,8 +4,7 @@
 -- Starts and Finishes Quest: Mihgo's Amigo (R), The Tenshodo Showdown (start), Rock Racketeer (start, listed as ROCK_RACKETTER in quests.lua)
 -- Involved In Quest: Crying Over Onions
 -- Involved in Mission 2-1
--- @zone 241
--- @pos 62 -4 240
+-- @pos 62 -4 240 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
@@ -43,7 +42,8 @@ end;
 function onTrigger(player,npc)
 	
 	-- Check for Missions first (priority?)
-	MissionStatus = player:getVar("MissionStatus");
+	local MissionStatus = player:getVar("MissionStatus");
+	
 	if(player:getCurrentMission(WINDURST) == LOST_FOR_WORDS and MissionStatus > 0 and MissionStatus < 5) then
 		if(MissionStatus == 1) then
 			player:startEvent(0x00a5,0,LAPIS_CORAL,LAPIS_MONOCLE);
@@ -74,14 +74,18 @@ function onTrigger(player,npc)
 		local hittingTheMarquisateHagainCS = player:getVar("hittingTheMarquisateHagainCS");
 		local hittingTheMarquisateNanaaCS = player:getVar("hittingTheMarquisateNanaaCS");
 		
+		local WildcatWindurst = player:getVar("WildcatWindurst");
+		
 		local LvL = player:getMainLvl();
 		local Job = player:getMainJob();
 		
+		-- Lure of the Wildcat (Windurst)
+		if (player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,4) == false) then
+			player:startEvent(0x02dc);
 		
 		-- Optional CS of the quest "Crying Over Onions"
-		if(CryingOverOnionsVar == 1) then
+		elseif(CryingOverOnionsVar == 1) then
 			player:startEvent(0x0256);
-		
 		
 		-- Quest "The Tenshodo Showdown" THF af
 		elseif(Job == 6 and LvL >= 40 and theTenshodoShowdown == QUEST_AVAILABLE) then 
@@ -243,6 +247,8 @@ function onEventFinish(player,csid,option)
 		player:delKeyItem(LAPIS_CORAL);
 		player:addKeyItem(HIDEOUT_KEY);
 		player:messageSpecial(KEYITEM_OBTAINED,HIDEOUT_KEY);
+	elseif (csid == 0x02dc) then
+		player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",4,true)
 	end
 	
 end;
