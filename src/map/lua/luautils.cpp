@@ -3920,61 +3920,52 @@ int32 getSpell(lua_State* L)
 
 int32 UpdateServerMessage(lua_State* L)
 {
-	int8 line[1024], w1[1024], w2[1024];
-	FILE* fp;
+    int8 line[1024];
+    FILE* fp;
 
-	fp = fopen("./conf/map_darkstar.conf","r");
-	if( fp == NULL )
-	{
-		ShowError("Map configuration file not found at: %s\n", "./conf/map_darkstar.conf");
-		return 1;
-	}
+    // Clear old messages..
+    map_config.server_message.clear();
+    map_config.server_message_fr.clear();
 
-	while( fgets(line, sizeof(line), fp) )
-	{
-		int8* ptr;
+    // Load the English server message..
+    fp = fopen("./conf/server_message.conf", "rb");
+    if (fp == NULL)
+    {
+        ShowError("Could not read English server message from: ./conf/server_message.conf\n");
+        return 1;
+    }
 
-		if( line[0] == '#' )
-			continue;
-		if( sscanf(line, "%[^:]: %[^\t\r\n]", w1, w2) < 2 )
-			continue;
+    while (fgets(line, sizeof(line), fp))
+    {
+        string_t sline(line);
+        map_config.server_message += sline;
+    }
 
-		//Strip trailing spaces
-		ptr = w2 + strlen(w2);
-		while (--ptr >= w2 && *ptr == ' ');
-		ptr++;
-		*ptr = '\0';
+    fclose(fp);
 
-		if (strcmpi(w1,"server_message") == 0)
-        {
-            map_config.server_message = aStrdup(w2);
+    // Load the French server message..
+    fp = fopen("./conf/server_message_fr.conf", "rb");
+    if (fp == NULL)
+    {
+        ShowError("Could not read English server message from: ./conf/server_message_fr.conf\n");
+        return 1;
+    }
 
-            uint32 length = (uint32)strlen(map_config.server_message);
+    while (fgets(line, sizeof(line), fp))
+    {
+        string_t sline(line);
+        map_config.server_message_fr += sline;
+    }
 
-            for(uint32 count = 0; count < length; ++count)
-            {
-                if (RBUFW(map_config.server_message, count) == 0x6E5C) //  \n = 0x6E5C in hex
-                {
-                    WBUFW(map_config.server_message, count) =  0x0A0D;
-                }
-	        }
-        }
-		else if (strcmpi(w1,"fr_server_message") == 0)
-        {
-            map_config.fr_server_message = aStrdup(w2);
+    fclose(fp);
 
-            uint32 length = (uint32)strlen(map_config.fr_server_message);
+    // Ensure both messages have null terminates..
+    if (map_config.server_message.at(map_config.server_message.length() - 1) != 0x00)
+        map_config.server_message += (char)0x00;
+    if (map_config.server_message_fr.at(map_config.server_message_fr.length() - 1) != 0x00)
+        map_config.server_message_fr += (char)0x00;
 
-            for(uint32 count = 0; count < length; ++count)
-            {
-                if (RBUFW(map_config.fr_server_message, count) == 0x6E5C) //  \n = 0x6E5C in hex
-                {
-                    WBUFW(map_config.fr_server_message, count) =  0x0A0D;
-                }
-	        }
-        }
-	}
-	return 0;
+    return 0;
 }
 
 }; // namespace luautils

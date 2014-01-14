@@ -1460,16 +1460,25 @@ void SmallPacket0x042(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x04B(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	// TODO: The french message broke the english server message.
+    uint8   msg_chunk       = RBUFB(data, (0x04)); // The current chunk of the message to send.. (1 = start, 2 = rest of message)
+    uint8   msg_unknown1    = RBUFB(data, (0x05)); // Unknown.. always 0
+    uint8   msg_unknown2    = RBUFB(data, (0x06)); // Unknown.. always 1
+    uint8   msg_language    = RBUFB(data, (0x07)); // Language request id (2 = English, 4 = French)
+    uint32  msg_timestamp   = RBUFL(data, (0x08)); // The message timestamp being requested..
+    uint32  msg_size_total  = RBUFL(data, (0x0C)); // The total length of the requested server message..
+    uint32  msg_offset      = RBUFL(data, (0x10)); // The offset to start obtaining the server message..
+    uint32  msg_request_len = RBUFL(data, (0x14)); // The total requested size of send to the client..
 
-	//if(PChar->search.language == 205) // French
-	//PChar->pushPacket(new CServerMessagePacket(map_config.fr_server_message,PChar->search.language));
-	////TODO: add another language
-	//else
-	
-	PChar->pushPacket(new CServerMessagePacket(map_config.server_message,PChar->search.language));
-
-	return;
+    ShowWarning(CL_YELLOW"[SMSG] C:%d U1:%d U2:%d L:%d T:%d S:%d O:%d S:%d\n" CL_RESET,
+        msg_chunk, msg_unknown1, msg_unknown2, msg_language, msg_timestamp, msg_size_total, msg_offset, msg_request_len
+        );
+         
+    if (msg_language == 0x02)
+        PChar->pushPacket(new CServerMessagePacket(map_config.server_message, msg_language, msg_timestamp, msg_offset));
+    else
+        PChar->pushPacket(new CServerMessagePacket(map_config.server_message_fr, msg_language, msg_timestamp, msg_offset));
+    
+    return;
 }
 
 /************************************************************************

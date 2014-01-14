@@ -815,39 +815,39 @@ void map_versionscreen(int32 flag)
 
 int32 map_config_default()
 {
-	map_config.uiMapIp        = INADDR_ANY;
-	map_config.usMapPort      = 54230;
-	map_config.mysql_host     = "127.0.0.1";
-	map_config.mysql_login    = "root";
-	map_config.mysql_password = "root";
-	map_config.mysql_database = "dspdb";
-	map_config.mysql_port     = 3306;
+    map_config.uiMapIp = INADDR_ANY;
+    map_config.usMapPort = 54230;
+    map_config.mysql_host = "127.0.0.1";
+    map_config.mysql_login = "root";
+    map_config.mysql_password = "root";
+    map_config.mysql_database = "dspdb";
+    map_config.mysql_port = 3306;
     map_config.server_message = "";
-	map_config.fr_server_message = "";
-	map_config.buffer_size    = 1800;
-    map_config.exp_rate       = 1.0f;
-	map_config.exp_loss_rate  = 1.0f;
-	map_config.exp_retain     = 0.0f;
-	map_config.exp_loss_level = 4;
+    map_config.server_message_fr = "";
+    map_config.buffer_size = 1800;
+    map_config.exp_rate = 1.0f;
+    map_config.exp_loss_rate = 1.0f;
+    map_config.exp_retain = 0.0f;
+    map_config.exp_loss_level = 4;
     map_config.level_sync_enable = 0;
-	map_config.speed_mod      = 0;
-	map_config.skillup_multiplier   = 2.5f;
-	map_config.craft_multiplier     = 2.6f;
-	map_config.mob_tp_multiplier	= 1.0f;
-	map_config.player_tp_multiplier	= 1.0f;
+    map_config.speed_mod = 0;
+    map_config.skillup_multiplier = 2.5f;
+    map_config.craft_multiplier = 2.6f;
+    map_config.mob_tp_multiplier = 1.0f;
+    map_config.player_tp_multiplier = 1.0f;
     map_config.vanadiel_time_offset = 0;
-    map_config.lightluggage_block   = 4;
-	map_config.max_time_lastupdate  = 60000;
-    map_config.newstyle_skillups    = 7;
-    map_config.max_merit_points    = 30;
-	map_config.audit_chat = 0;
-	map_config.audit_say = 0;
-	map_config.audit_shout = 0;
-	map_config.audit_tell = 0;
-	map_config.audit_yell = 0;
-	map_config.audit_party = 0;
-	map_config.audit_linkshell = 0;
-	return 0;
+    map_config.lightluggage_block = 4;
+    map_config.max_time_lastupdate = 60000;
+    map_config.newstyle_skillups = 7;
+    map_config.max_merit_points = 30;
+    map_config.audit_chat = 0;
+    map_config.audit_say = 0;
+    map_config.audit_shout = 0;
+    map_config.audit_tell = 0;
+    map_config.audit_yell = 0;
+    map_config.audit_party = 0;
+    map_config.audit_linkshell = 0;
+    return 0;
 }
 
 /************************************************************************
@@ -992,34 +992,6 @@ int32 map_config_read(const int8* cfgName)
 		{
 			map_config.mysql_database = aStrdup(w2);
 		}
-        else if (strcmpi(w1,"server_message") == 0)
-        {
-            map_config.server_message = aStrdup(w2);
-
-            uint32 length = (uint32)strlen(map_config.server_message);
-
-            for(uint32 count = 0; count < length; ++count)
-            {
-                if (RBUFW(map_config.server_message, count) == 0x6E5C) //  \n = 0x6E5C in hex
-                {
-                    WBUFW(map_config.server_message, count) =  0x0A0D;
-                }
-	        }
-        }
-		else if (strcmpi(w1,"fr_server_message") == 0)
-        {
-            map_config.fr_server_message = aStrdup(w2);
-
-            uint32 length = (uint32)strlen(map_config.fr_server_message);
-
-            for(uint32 count = 0; count < length; ++count)
-            {
-                if (RBUFW(map_config.fr_server_message, count) == 0x6E5C) //  \n = 0x6E5C in hex
-                {
-                    WBUFW(map_config.fr_server_message, count) =  0x0A0D;
-                }
-	        }
-        }
 		else if (strcmpi(w1,"import") == 0)
 		{
 			map_config_read(w2);
@@ -1067,6 +1039,45 @@ int32 map_config_read(const int8* cfgName)
 	}
 
 	fclose(fp);
+
+    // Load the English server message..
+    fp = fopen("./conf/server_message.conf", "rb");
+    if (fp == NULL)
+    {
+        ShowError("Could not read English server message from: ./conf/server_message.conf\n");
+        return 1;
+    }
+
+    while (fgets(line, sizeof(line), fp))
+    {
+        string_t sline(line);
+        map_config.server_message += sline;
+    }
+
+    fclose(fp);
+
+    // Load the French server message..
+    fp = fopen("./conf/server_message_fr.conf", "rb");
+    if (fp == NULL)
+    {
+        ShowError("Could not read English server message from: ./conf/server_message_fr.conf\n");
+        return 1;
+    }
+
+    while (fgets(line, sizeof(line), fp))
+    {
+        string_t sline(line);
+        map_config.server_message_fr += sline;
+    }
+
+    fclose(fp);
+
+    // Ensure both messages have null terminates..
+    if (map_config.server_message.at(map_config.server_message.length() - 1) != 0x00)
+        map_config.server_message += (char)0x00;
+    if (map_config.server_message_fr.at(map_config.server_message_fr.length() - 1) != 0x00)
+        map_config.server_message_fr += (char)0x00;
+
 	return 0;
 }
 

@@ -25,6 +25,7 @@
 #define _CSERVERMESSAGEPACKET_H
 
 #include "../../common/cbasetypes.h"
+#include "../../common/mmo.h"
 
 #include "basic.h"
 
@@ -37,8 +38,7 @@
 class CServerMessagePacket: public CBasicPacket
 {
 public:
-
-	CServerMessagePacket(const int8* message = 0, int16 language = 0);
+    CServerMessagePacket(const string_t message, int8 language, int32 timestamp, int32 message_offset);
 };
 
 #endif

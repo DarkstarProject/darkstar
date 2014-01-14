@@ -22,44 +22,37 @@
 */
 
 #include "../../common/socket.h"
+#include "server_message.h"
 
 #include <string.h>
 
-#include "server_message.h"
-
-// максимальный размер сообщения - 230 байт
-// переход на новую строку - \r\n
-
-CServerMessagePacket::CServerMessagePacket(const int8* message, int16 language) 
+CServerMessagePacket::CServerMessagePacket(const string_t message, int8 language, int32 timestamp, int32 message_offset)
 {
-	this->type = 0x4D;
-	this->size = 0x0E;
+    this->type = 0x4D;
+    this->size = 0x0E;
 
-	WBUFB(data,(0x04)-4) = 0x01;
-	WBUFB(data,(0x05)-4) = 0x01;
-	WBUFB(data,(0x06)-4) = 0x01;
+    WBUFB(data, (0x04) - 4) = message_offset == 0 ? 1 : 2;
+    WBUFB(data, (0x05) - 4) = 1;
+    WBUFB(data, (0x06) - 4) = 1;
+    WBUFB(data, (0x07) - 4) = language;
+    WBUFL(data, (0x08) - 4) = timestamp == NULL ? time(NULL) : timestamp;
+    WBUFL(data, (0x0C) - 4) = 0; // Message Length.. (Total)
+    WBUFL(data, (0x10) - 4) = 0; // Message Offset..
+    WBUFL(data, (0x14) - 4) = 0; // Message Length..
 
-	// TODO: Using the french msg broke the english server message.
+    // Ensure we have a message and the requested offset is not outside of the bounds..
+    if (message.length() > 0 && message.length() > message_offset)
+    {
+        int32 msgLength = message.length();
+        int32 sndLength = (msgLength - message_offset) > 236 ? 236 : (msgLength - message_offset);
 
-	//if(language == 205) //French
-	//	WBUFB(data,(0x07)-4) = 0x04;
-	//else
-		WBUFB(data,(0x07)-4) = 0x02;
-	
-	WBUFB(data,(0x08)-4) = 0x6A;
-	WBUFB(data,(0x09)-4) = 0x21;
-	WBUFB(data,(0x0A)-4) = 0x24;
-	WBUFB(data,(0x0B)-4) = 0x4A;
+        WBUFL(data, (0x0C) - 4) = message.length(); // Message Length.. (Total)
+        WBUFL(data, (0x10) - 4) = message_offset;   // Message Offset..
+        WBUFL(data, (0x14) - 4) = sndLength;        // Message Length..
 
-	if (message)
-	{
-		uint8 length = (strlen(message) > 230 ? 230 : strlen(message));
+        memcpy((data + (0x18)) - 4, message.c_str() + message_offset, sndLength);
 
-		WBUFL(data,(0x0C)-4) = length;
-		WBUFL(data,(0x14)-4) = length;
-		
-		this->size += (length >> 1) & 0xFE;
-
-		memcpy(data+(0x18)-4, message, length);
-	}
+        int32 textSize = sndLength + sndLength % 2;
+        this->size = ((((0x14 + textSize) + 4) >> 1) & 0xFE);
+    }
 }
