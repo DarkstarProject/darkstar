@@ -1220,6 +1220,8 @@ INSERT INTO `mob_spell_lists` VALUES ('Diabolos_Club',108,361,1,255);
 INSERT INTO `mob_spell_lists` VALUES ('Ouryu',109,54,1,255);
 INSERT INTO `mob_spell_lists` VALUES ('Ouryu',109,190,1,255);
 INSERT INTO `mob_spell_lists` VALUES ('Ouryu',109,357,1,255);
+INSERT INTO `mob_spell_lists` VALUES ('Pasuk',110,245,1,255);
+INSERT INTO `mob_spell_lists` VALUES ('Pasuk',110,247,1,255);
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
