@@ -50,8 +50,6 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 	this->type = 0x28;
 	this->size = 0x12;
 
-    DSP_DEBUG_BREAK_IF(PEntity->m_ActionList.size() > 16);
-
 	WBUFL(data,(0x05)-4) = PEntity->id;
 
 	ACTIONTYPE ActionType = PEntity->PBattleAI->GetCurrentAction();
@@ -434,6 +432,8 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
 
 	WBUFB(data,(0x04)-4) = WorkSize; 												// Workload Size - 0x23 с дополнительным эффектом - 0x29 два удара монаха
 	WBUFB(data,(0x09)-4) = TargetNum;												// количество атакуемых целей
+    
+    PEntity->m_ActionList.clear();
 }
 
 // 0xE0 0x58 0xD8 0x1D 0x1A - White Magic Start
