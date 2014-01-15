@@ -5,7 +5,8 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item> come back a
           ITEM_OBTAINED = 6378; -- Obtained: <item>
            GIL_OBTAINED = 6380; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>
-
+ FISHING_MESSAGE_OFFSET = 7014; -- You can't fish here.
+	   
 -- Other dialog
 NOTHING_OUT_OF_ORDINARY = 6392; -- There is nothing out of the ordinary here.
            KIRIN_OFFSET = 7304; -- I am Kirin, master of the Shijin. The one who stands above all. You, who have risen above your mortal status to contend with the gods... It is time to reap your reward.

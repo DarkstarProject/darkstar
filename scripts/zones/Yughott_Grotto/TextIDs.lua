@@ -5,7 +5,7 @@ ITEM_CANNOT_BE_OBTAINED = 6534; -- You cannot obtain the item <item>. Come back 
           ITEM_OBTAINED = 6537; -- Obtained: <item>.
            GIL_OBTAINED = 6538; -- Obtained <number> gil.
        KEYITEM_OBTAINED = 6540; -- Obtained key item: <keyitem>.
- FISHING_MESSAGE_OFFSET = 7171; -- You can't fish here.
+ FISHING_MESSAGE_OFFSET = 7173; -- You can't fish here.
 
 -- Treasure Coffer/Chest Dialog
 CHEST_UNLOCKED = 7288; -- You unlock the chest!

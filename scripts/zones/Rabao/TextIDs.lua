@@ -7,7 +7,7 @@ ITEM_CANNOT_BE_OBTAINED = 10106; -- You cannot obtain the item <item> come back 
        KEYITEM_OBTAINED = 6384;  -- Obtained key item: <keyitem>
     NOT_HAVE_ENOUGH_GIL = 6386;  -- You do not have enough gil.
           HOMEPOINT_SET = 2;     -- Home point set!
- FISHING_MESSAGE_OFFSET = 6594;  -- You can't fish here
+ FISHING_MESSAGE_OFFSET = 6614;  -- You can't fish here
 
  -- Other Texts
  PAKHI_DELIVERY_DIALOG = 9924; -- When your pack is fit to burrrst, send your non-essential items to your delivery box and bam, prrroblem solved!

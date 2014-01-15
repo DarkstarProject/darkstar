@@ -6,7 +6,7 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item>. Come back 
            GIL_OBTAINED = 6379;  -- Obtained <number> gil.
        KEYITEM_OBTAINED = 6381;  -- Obtained key item: <keyitem>.
           HOMEPOINT_SET = 6442;  -- Home point set!
- FISHING_MESSAGE_OFFSET = 6602;  -- You can't fish here.
+ FISHING_MESSAGE_OFFSET = 6614;  -- You can't fish here.
 
 -- Other Texts
 ITEM_DELIVERY_DIALOG = 9894; -- We can deliver packages to Mog Houses anywhere in Vana'diel.

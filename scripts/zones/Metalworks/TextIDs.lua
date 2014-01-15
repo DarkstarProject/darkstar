@@ -7,7 +7,8 @@ FULL_INVENTORY_AFTER_TRADE =  6432; -- You cannot obtain the item <item>. Try tr
               GIL_OBTAINED =  6434; -- Obtained <<<Numeric Parameter 0>>> gil.
           KEYITEM_OBTAINED =  6436; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>.
             ITEMS_OBTAINED =  6442; -- You obtain <<<Numeric Parameter 1>>> <<<Possible Special Code: 01>>><<<Speaker Name>>>!
-
+    FISHING_MESSAGE_OFFSET =  7915; -- You can't fish here.
+	
 -- Mission Dialogs
     YOU_ACCEPT_THE_MISSION  =     9; -- You have accepted the mission.
    ORIGINAL_MISSION_OFFSET  =    14; -- You can consult the ^"oMission^"c section of the main menu to review your objectives.
