@@ -979,10 +979,10 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
             }
         }
     }
-    else if (PAttacker->objtype == TYPE_PC)
+    //TODO: check the weapons latents rather than using entity->getMod (applies to both weapons)
+    else if (PAttacker->objtype == TYPE_PC && (weapon->getModifier(MOD_ADDITIONAL_EFFECT) > 0 || PAttacker->getMod(MOD_ADDITIONAL_EFFECT) > 0))
     {
-		if(weapon->getModifier(MOD_ADDITIONAL_EFFECT) > 0 || PAttacker->getMod(MOD_ADDITIONAL_EFFECT) > 0)
-			luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage);
+		luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage);
     }
     else
     {
