@@ -92,6 +92,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level1</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <AdditionalDependencies>libmariadb.lib;lua51-d.lib;WS2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>

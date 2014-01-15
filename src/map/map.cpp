@@ -416,7 +416,19 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
 	size_t size = *buffsize;
 	int32 checksumResult = -1;
 
-	checksumResult = checksum((uint8*)(buff+FFXI_HEADER_SIZE),size-(FFXI_HEADER_SIZE+16),buff+size-16);
+#ifdef WIN32
+    try 
+    {
+        checksumResult = checksum((uint8*)(buff + FFXI_HEADER_SIZE), size - (FFXI_HEADER_SIZE + 16), buff + size - 16);
+    }
+    catch (...)
+    {
+        ShowError(CL_RED"Possible crash attempt from: %s\n" CL_RESET, ip2str(map_session_data->client_addr, NULL));
+        return -1;
+    }
+#else
+    checksumResult = checksum((uint8*)(buff + FFXI_HEADER_SIZE), size - (FFXI_HEADER_SIZE + 16), buff + size - 16);
+#endif 
 
 	if(checksumResult == 0)
 	{
