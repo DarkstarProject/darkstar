@@ -2,7 +2,7 @@
 -- Area: Northern San d'Oria
 -- NPC:  Bertenont
 -- Involved in Quest: Lure of the Wildcat (San d'Oria)
--- @pos -165 0 226 231
+-- @pos -165 0.1 226 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -30,7 +30,9 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(player:getVar("wildcatSandy_var"),10) == false) then
+	local WildcatSandy = player:getVar("WildcatSandy");
+	
+	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,9) == false) then
 		player:startEvent(0x0329);
 	else
 		player:showText(npc,BERTENONT_DIALOG);
@@ -56,7 +58,7 @@ function onEventFinish(player,csid,option)
 -- printf("RESULT: %u",option);
 	
 	if(csid == 0x0329) then
-		player:setMaskBit(player:getVar("wildcatSandy_var"),"wildcatSandy_var",10,true);
+		player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",9,true);
 	end
 	
 end;

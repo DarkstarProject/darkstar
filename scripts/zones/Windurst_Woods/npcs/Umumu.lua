@@ -86,7 +86,7 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(KEYITEM_OBTAINED,WINDURST_WOODS_SCOOP);
 		player:setVar("QuestMakingHeadlines_var",prog+8);
 	elseif (csid == 0x02db) then
-		player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",3,true)
+		player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",3,true);
 	end
 end;
 

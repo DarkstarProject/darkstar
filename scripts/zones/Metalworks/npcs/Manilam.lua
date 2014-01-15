@@ -1,14 +1,13 @@
 -----------------------------------
 --  Area: Metalworks
---   NPC: Manilam
+--  NPC:  Manilam
 --  Type: Quest NPC
--- @zone: 237
---  @pos -57.300 -11 22.332
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -57.300 -11 22.332 237
+-----------------------------------
+package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
+require("scripts/globals/quests");
 require("scripts/zones/Metalworks/TextIDs");
 
 -----------------------------------
@@ -23,7 +22,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0191);
+
+	local WildcatBastok = player:getVar("WildcatBastok");
+	
+	if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,7) == false) then
+		player:startEvent(0x03a3);
+	else
+		player:startEvent(0x0191);
+	end
 end;
 
 -----------------------------------
@@ -42,5 +48,10 @@ end;
 function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
+	
+	if (csid == 0x03a3) then
+		player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",7,true);
+	end
+	
 end;
 

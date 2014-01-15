@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Port Jeuno
 -- NPC: Sagheera
--- @zone 246
--- @pos -3 0 -9
+-- @pos -3 0.1 -9 246
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -147,7 +146,7 @@ function onEventFinish(player,csid,option)
 --print("event finish");
 --printf("RESULT: %u",option);	
 	if (csid == 313) then
-		   player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",19,true)	
+		   player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",19,true);
 	elseif(csid == 0x0136 and option == 3 )then	--add keyitem for limbus	
 	       player:setVar("Cosmo_Cleanse_TIME",os.time());
 	       player:addKeyItem(COSMOCLEANSE);

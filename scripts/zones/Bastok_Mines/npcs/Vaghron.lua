@@ -1,14 +1,13 @@
 -----------------------------------
 --  Area: Bastok Mines
---   NPC: Vaghron
+--  NPC:  Vaghron
 --  Type: Adventurer's Assistant
--- @zone: 234
---  @pos -39.162 -1 -92.147
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -39.162 -1 -92.147 234
+-----------------------------------
+package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
+require("scripts/globals/quests");
 require("scripts/zones/Bastok_Mines/TextIDs");
 
 -----------------------------------
@@ -23,7 +22,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0076);
+
+	local WildcatBastok = player:getVar("WildcatBastok");
+	
+	if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,19) == false) then
+		player:startEvent(0x01f7);
+	else
+		player:startEvent(0x0076);
+	end
 end;
 
 -----------------------------------
@@ -42,5 +48,10 @@ end;
 function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
+	
+	if (csid == 0x01f7) then
+		player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",19,true);
+	end
+	
 end;
 

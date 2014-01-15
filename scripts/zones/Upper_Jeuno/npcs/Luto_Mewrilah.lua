@@ -53,6 +53,6 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	if (csid == 10085) then
-		player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",7,true)
+		player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",7,true);
 	end
 end;

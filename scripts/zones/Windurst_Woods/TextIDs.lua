@@ -5,6 +5,7 @@
              ITEM_OBTAINED = 6537; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
               GIL_OBTAINED = 6538; -- Obtained <<<Numeric Parameter 0>>> gil.
           KEYITEM_OBTAINED = 6540; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
+			  KEYITEM_LOST = 6541; -- Lost key item: <<<Unknown Parameter (Type: 80) 1>>>
        NOT_HAVE_ENOUGH_GIL = 6542; -- You do not have enough gil.
              HOMEPOINT_SET = 6603; -- Home point set!
     FISHING_MESSAGE_OFFSET = 6929; -- You can't fish here.

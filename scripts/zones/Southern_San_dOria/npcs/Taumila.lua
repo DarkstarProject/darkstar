@@ -2,8 +2,7 @@
 -- Area: Northern San d'Oria
 -- NPC:  Taumila
 -- Starts and Finishes Quest: Tiger's Teeth (R)
--- @zone 230
--- @pos -140 -5 -8
+-- @pos -140 -5 -8 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -34,7 +33,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	tigersTeeth = player:getQuestStatus(SANDORIA,TIGER_S_TEETH);
+	local tigersTeeth = player:getQuestStatus(SANDORIA,TIGER_S_TEETH);
 	
 	if(player:getFameLevel(SANDORIA) >= 3 and tigersTeeth == QUEST_AVAILABLE) then
 		player:startEvent(0x023e);

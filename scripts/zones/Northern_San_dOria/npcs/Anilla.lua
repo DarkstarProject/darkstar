@@ -2,7 +2,7 @@
 -- Area: Northern San d'Oria
 -- NPC:  Anilla
 -- Involved in Quest: Lure of the Wildcat (San d'Oria)
--- @pos 8 0 61 231
+-- @pos 8 0.1 61 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -30,7 +30,9 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(player:getVar("wildcatSandy_var"),7) == false) then
+	local WildcatSandy = player:getVar("WildcatSandy");
+	
+	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,6) == false) then
 		player:startEvent(0x0328);
 	else
 		player:startEvent(0x024a);
@@ -56,7 +58,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 	
 	if(csid == 0x0328) then
-		player:setMaskBit(player:getVar("wildcatSandy_var"),"wildcatSandy_var",7,true);
+		player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",6,true);
 	end
 	
 end;

@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Southern San d'Oria
---   NPC: Tek Lengyon
+--  NPC:  Tek Lengyon
 --  Type: NPC Recipe Giver
--- @zone: 230
---  @pos -190.120 -2.999 2.770
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -190.120 -2.999 2.770 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

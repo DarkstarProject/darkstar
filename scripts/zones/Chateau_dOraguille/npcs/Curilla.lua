@@ -2,7 +2,7 @@
 -- Area: Chateau d'Oraguille
 -- NPC:  Curilla
 -- Starts and Finishes Quest: The General's Secret, Enveloped in Darkness, Peace for the Spirit, Lure of the Wildcat (San d'Oria)
--- @pos 27 0 0 233
+-- @pos 27 0.1 0.1 233
 -----------------------------------
 package.loaded["scripts/zones/Chateau_Doraguille/TextIDs"] = nil;
 -----------------------------------
@@ -32,13 +32,14 @@ end;
 
 function onTrigger(player,npc)
 	
-	mLvL = player:getMainLvl();
-	mJob = player:getMainJob();
-	theGeneralSecret = player:getQuestStatus(SANDORIA,THE_GENERAL_S_SECRET);
-	envelopedInDarkness = player:getQuestStatus(SANDORIA,ENVELOPED_IN_DARKNESS);
-	peaceForTheSpirit = player:getQuestStatus(SANDORIA,PEACE_FOR_THE_SPIRIT);
+	local mLvL = player:getMainLvl();
+	local mJob = player:getMainJob();
+	local theGeneralSecret = player:getQuestStatus(SANDORIA,THE_GENERAL_S_SECRET);
+	local envelopedInDarkness = player:getQuestStatus(SANDORIA,ENVELOPED_IN_DARKNESS);
+	local peaceForTheSpirit = player:getQuestStatus(SANDORIA,PEACE_FOR_THE_SPIRIT);
+	local WildcatSandy = player:getVar("WildcatSandy");
 	
-	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(player:getVar("wildcatSandy_var"),16) == false) then
+	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,15) == false) then
 		player:startEvent(0x0232);
 	elseif(theGeneralSecret == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 2) then
 		player:startEvent(0x0037); -- Start Quest "The General's Secret"
@@ -112,7 +113,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0065) then 
 		player:setVar("needs_crawler_blood",1);
 	elseif(csid == 0x0232) then
-		player:setMaskBit(player:getVar("wildcatSandy_var"),"wildcatSandy_var",16,true);
+		player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",15,true);
 	end
 
 end;

@@ -1,14 +1,14 @@
 -----------------------------------
 --  Area: Port Bastok
---   NPC: Tilian
+--  NPC:  Tilian
 --  Type: Quest NPC
--- @zone: 236
---  @pos -118.460 4.999 -68.090
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -118.460 4.999 -68.090 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/globals/quests");
+require("scripts/zones/Port_Bastok/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -22,7 +22,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0064);
+
+	local WildcatBastok = player:getVar("WildcatBastok");
+
+	if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,4) == false) then
+		player:startEvent(0x0163);
+	else
+		player:startEvent(0x0064);
+	end
 end;
 
 -----------------------------------
@@ -41,5 +48,10 @@ end;
 function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
+	
+	if (csid == 0x0163) then
+		player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",4,true);
+	end
+	
 end;
 

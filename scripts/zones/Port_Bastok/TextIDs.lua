@@ -6,6 +6,7 @@ FULL_INVENTORY_AFTER_TRADE =  6377; -- You cannot obtain the item (item>. Try tr
              ITEM_OBTAINED =  6378; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>.
               GIL_OBTAINED =  6379; -- Obtained <<<Numeric Parameter 0>>> gil.
           KEYITEM_OBTAINED =  6381; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>.
+			  KEYITEM_LOST =  6382; -- Lost key item <<<Unknown Parameter (Type: 80) 1>>>.
        NOT_HAVE_ENOUGH_GIL =  6385; -- You do not have enough gil.
              HOMEPOINT_SET =  6471; -- Home point set!
     FISHING_MESSAGE_OFFSET =  6921; -- You can't fish here.

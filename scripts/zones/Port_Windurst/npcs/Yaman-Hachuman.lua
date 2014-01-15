@@ -57,7 +57,7 @@ function onEventFinish(player,csid,option)
 	-- printf("RESULT: %u",option);
 	
 	if (csid == 0x0270) then
-		player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",16,true)
+		player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",16,true);
 	end	
 	
 end;

@@ -248,7 +248,7 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(HIDEOUT_KEY);
 		player:messageSpecial(KEYITEM_OBTAINED,HIDEOUT_KEY);
 	elseif (csid == 0x02dc) then
-		player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",4,true)
+		player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",4,true);
 	end
 	
 end;

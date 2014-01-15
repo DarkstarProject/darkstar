@@ -35,9 +35,12 @@ end;
 
 function onTrigger(player,npc)
 	
-	trueStrength = player:getQuestStatus(BASTOK,TRUE_STRENGTH);
+	local trueStrength = player:getQuestStatus(BASTOK,TRUE_STRENGTH);
+	local WildcatBastok = player:getVar("WildcatBastok");
 	
-	if(player:getCurrentMission(BASTOK) == THE_CRYSTAL_LINE and player:hasKeyItem(C_L_REPORTS)) then
+	if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,9) == false) then
+		player:startEvent(0x03a7);
+	elseif(player:getCurrentMission(BASTOK) == THE_CRYSTAL_LINE and player:hasKeyItem(C_L_REPORTS)) then
 		player:startEvent(0x02c8);
 	elseif(trueStrength == QUEST_AVAILABLE and player:getMainJob() == 2 and player:getMainLvl() >= 50) then
 		player:startEvent(0x02ec); -- Start Quest "True Strength"
@@ -79,6 +82,8 @@ function onEventFinish(player,csid,option)
 			player:addFame(BASTOK,AF3_FAME);
 			player:completeQuest(BASTOK,TRUE_STRENGTH);
 		end
+	elseif (csid == 0x03a7) then
+		player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",9,true);
 	end
 	
 end;

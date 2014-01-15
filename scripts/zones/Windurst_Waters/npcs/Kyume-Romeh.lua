@@ -88,7 +88,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0369) then
 		player:setVar("MEMORIES_OF_A_MAIDEN_Status",5);
 	elseif (csid == 0x03ab) then
-		player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",14,true)
+		player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",14,true);
 	end
 end;
 

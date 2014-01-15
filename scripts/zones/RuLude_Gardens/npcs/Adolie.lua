@@ -7,7 +7,6 @@
 package.loaded["scripts/zones/Rulude_Gardens/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/zones/Rulude_Gardens/TextIDs");
 
@@ -50,6 +49,6 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	if (csid == 10091) then
-		player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",3,true)
+		player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",3,true);
 	end
 end;

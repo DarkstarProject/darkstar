@@ -2,7 +2,7 @@
 -- Area: Chateau d'Oraguille
 -- NPC:  Rahal
 -- Involved in Quests: The Holy Crest, Lure of the Wildcat (San d'Oria)
--- @pos -28 0 -6 233
+-- @pos -28 0.1 -6 233
 -----------------------------------
 package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
 -----------------------------------
@@ -35,8 +35,9 @@ function onTrigger(player,npc)
 	local RemedyKI = player:hasKeyItem(DRAGON_CURSE_REMEDY);
 	local Stalker_Quest = player:getQuestStatus(SANDORIA,KNIGHT_STALKER);
 	local StalkerProgress = player:getVar("KnightStalker_Progress");
-
-	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(player:getVar("wildcatSandy_var"),18) == false) then
+	local WildcatSandy = player:getVar("WildcatSandy");
+	
+	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,17) == false) then
 		player:startEvent(0x022f);
 	-- Need to speak with Rahal to get Dragon Curse Remedy
 	elseif (CrestProgress == 5 and RemedyKI == false) then
@@ -69,6 +70,8 @@ function onTrigger(player,npc)
 		player:startEvent(0x006A)
 	elseif(player:getCurrentMission(SANDORIA) == LIGHTBRINGER and player:getVar("MissionStatus") == 2) then
 		player:startEvent(0x006b);
+	else
+		player:startEvent(0x0211); -- standard dialogue
 	end
 	
 end;
@@ -94,7 +97,7 @@ function onEventFinish(player,csid,option)
 		player:addKeyItem(DRAGON_CURSE_REMEDY);
 		player:messageSpecial(KEYITEM_OBTAINED, DRAGON_CURSE_REMEDY);
 	elseif(csid == 0x022f) then
-		player:setMaskBit(player:getVar("wildcatSandy_var"),"wildcatSandy_var",18,true);
+		player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",17,true);
 	elseif (csid == 121) then
 		if (option == 1) then
 			player:addQuest(SANDORIA,KNIGHT_STALKER);

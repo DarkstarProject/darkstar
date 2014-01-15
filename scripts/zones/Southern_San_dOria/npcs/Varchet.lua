@@ -1,17 +1,18 @@
 -----------------------------------
 --  Area: Southern San d'Oria
---   NPC: Varchet
+--  NPC:  Varchet
 --  Type: NPC
--- @zone: 230
---  @pos 116.484 -1 91.554
+--  @pos 116.484 -1 91.554 230
 -----------------------------------
-require("scripts/globals/quests");
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
-GAME_WON = 0;
-GAME_LOST = 2;
-GAME_TIE = 3;
+local GAME_WON = 0;
+local GAME_LOST = 2;
+local GAME_TIE = 3;
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -19,13 +20,13 @@ GAME_TIE = 3;
 function onTrade(player,npc,trade)
 
 	if (npcUtil.tradeHas(trade, nil, 5)) then
-    player:tradeComplete();
-	   vdie1 = math.random(1,6);
-  	   vdie2 = math.random(1,6);
-  	   vtotal = vdie1 + vdie2;
-  	   pdie1 = math.random(1,6);
-  	   pdie2 = math.random(1,6);
-  	   ptotal = pdie1 + pdie2;
+		player:tradeComplete();
+		local vdie1 = math.random(1,6);
+		local vdie2 = math.random(1,6);
+		local vtotal = vdie1 + vdie2;
+		local pdie1 = math.random(1,6);
+		local pdie2 = math.random(1,6);
+		local ptotal = pdie1 + pdie2;
 
            if (ptotal > vtotal) then
               player:startEvent(0x0207,vdie1,vdie2,vtotal,pdie1,pdie2,ptotal,GAME_WON);
@@ -47,7 +48,7 @@ end;
 
 function onTrigger(player,npc)
 
-        exitTheGambler = player:getQuestStatus(SANDORIA,EXIT_THE_GAMBLER);
+        local exitTheGambler = player:getQuestStatus(SANDORIA,EXIT_THE_GAMBLER);
 
         if (exitTheGambler == QUEST_ACCEPTED) then
            player:startEvent(0x027e);
@@ -73,8 +74,8 @@ function onEventFinish(player,csid,option)
 	--printf("F CSID: %u",csid);
 	--printf("F RESULT: %u",option);
 
-	exitTheGambler = player:getQuestStatus(SANDORIA,EXIT_THE_GAMBLER);
-	npc = player:getEventTarget();
+	local exitTheGambler = player:getQuestStatus(SANDORIA,EXIT_THE_GAMBLER);
+	local npc = player:getEventTarget();
 
 	if (csid == 519) then
           if (option == GAME_WON) then

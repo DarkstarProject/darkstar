@@ -2,6 +2,7 @@
 -- Area: Port Bastok
 -- NPC: Paujean
 -- Starts & Finishes Quest: Silence of the Rams
+-- @pos -93.738 4.649 34.373 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
@@ -18,12 +19,12 @@ require("scripts/zones/Port_Bastok/TextIDs");
 
 function onTrade(player,npc,trade)
 
-SilenceOfTheRams = player:getQuestStatus(BASTOK,SILENCE_OF_THE_RAMS);
+	local SilenceOfTheRams = player:getQuestStatus(BASTOK,SILENCE_OF_THE_RAMS);
 
 	if (SilenceOfTheRams == QUEST_ACCEPTED) then
-		count = trade:getItemCount();
-		LumberingHorn = trade:hasItemQty(910,1);
-		RampagingHorn = trade:hasItemQty(911,1);
+		local count = trade:getItemCount();
+		local LumberingHorn = trade:hasItemQty(910,1);
+		local RampagingHorn = trade:hasItemQty(911,1);
 		
 		if (LumberingHorn == true and RampagingHorn == true and count == 2) then
 			player:startEvent(0x00c4);
@@ -38,9 +39,12 @@ end;
 
 function onTrigger(player,npc)
 
-SilenceOfTheRams = player:getQuestStatus(BASTOK,SILENCE_OF_THE_RAMS);
+	local SilenceOfTheRams = player:getQuestStatus(BASTOK,SILENCE_OF_THE_RAMS);
+	local WildcatBastok = player:getVar("WildcatBastok");
 
-	if (SilenceOfTheRams == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 2) then
+	if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,2) == false) then
+		player:startEvent(0x0163);
+	elseif (SilenceOfTheRams == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 2) then
 		player:startEvent(0x00c3);
 	elseif (SilenceOfTheRams == QUEST_ACCEPTED) then
 		player:showText(npc,PAUJEAN_DIALOG_1);
@@ -76,6 +80,8 @@ function onEventFinish(player,csid,option)
 		player:addItem(13201);
 		player:messageSpecial(ITEM_OBTAINED,13201);
 		player:addTitle(PURPLE_BELT);
+	elseif (csid == 0x0163) then
+		player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",2,true);
 	end
 	
 end;

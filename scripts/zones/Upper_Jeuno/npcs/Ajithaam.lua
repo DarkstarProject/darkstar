@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Upper Jeuno
 -- NPC:  Ajithaam
--- @pos -82 0 160 244
+-- @pos -82 0.1 160 244
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -9,6 +9,7 @@ package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
+require("scripts/globals/teleports");
 require("scripts/globals/keyitems");
 require("scripts/zones/Upper_Jeuno/TextIDs");
 
@@ -108,8 +109,10 @@ function onEventFinish(player,csid,option)
 		player:setVar("WildcatJeuno",0);
 		player:delKeyItem(WHITE_SENTINEL_BADGE);
 		player:addKeyItem(WHITE_INVITATION_CARD);
+		player:messageSpecial(KEYITEM_LOST,WHITE_SENTINEL_BADGE);
 		player:messageSpecial(KEYITEM_OBTAINED,WHITE_INVITATION_CARD);
 	elseif(csid == 10177)then
+		player:tradeComplete();
 		toAhtUrhganWhitegate(player);
 	end
 end;

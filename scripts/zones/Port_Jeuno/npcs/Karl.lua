@@ -2,8 +2,7 @@
 -- Area: Port Jeuno
 -- NPC: Karl
 -- Starts and Finishes Quest: Child's Play
--- @zone 246
--- @pos -60 0 -8
+-- @pos -60 0.1 -8 246
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -71,6 +70,6 @@ function onEventFinish(player,csid,option)
 		player:tradeComplete(trade);
 		player:completeQuest(JEUNO,CHILD_S_PLAY);
 	elseif(csid == 316) then
-		player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",16,true)
+		player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",16,true);
 	end
 end;

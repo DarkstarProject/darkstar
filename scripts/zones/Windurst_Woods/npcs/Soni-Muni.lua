@@ -82,7 +82,7 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*1500);
 		player:tradeComplete();
 	elseif (csid == 0x02df) then
-		player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",0,true)
+		player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",0,true);
 	end
 	
 end;

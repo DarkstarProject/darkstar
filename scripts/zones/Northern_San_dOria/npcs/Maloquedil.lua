@@ -2,7 +2,7 @@
 -- Area: Northern San d'Oria
 -- NPC:  Maloquedil
 -- Involved in Quest : Warding Vampires, Riding on the Clouds, Lure of the Wildcat (San d'Oria)
--- @pos 35 0 60 231
+-- @pos 35 0.1 60 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -48,9 +48,10 @@ end;
 
 function onTrigger(player,npc)
 	
-	warding = player:getQuestStatus(SANDORIA,WARDING_VAMPIRES);
+	local warding = player:getQuestStatus(SANDORIA,WARDING_VAMPIRES);
+	local WildcatSandy = player:getVar("WildcatSandy");
 	
-	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(player:getVar("wildcatSandy_var"),8) == false) then
+	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,7) == false) then
 		player:startEvent(0x0327);
 	elseif(warding == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 3) then --Quest available for fame superior or equal to 3
 		player:startEvent(0x0018);
@@ -95,6 +96,6 @@ function onEventFinish(player,csid,option)
 			player:addFame(SANDORIA,SAN_FAME*5);
 		end
 	elseif(csid == 0x0327) then
-		player:setMaskBit(player:getVar("wildcatSandy_var"),"wildcatSandy_var",8,true);
+		player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",7,true);
 	end
 end;

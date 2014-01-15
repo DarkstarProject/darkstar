@@ -2,13 +2,11 @@
 -- Area: Lower Jeuno
 -- NPC:  Sutarara
 -- Involved in Quests: Tenshodo Menbership (before accepting)
--- @zone 245
--- @pos 30 0 -2
+-- @pos 30 0.1 -2 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/zones/Lower_Jeuno/TextIDs");
 
@@ -53,6 +51,6 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	if (csid == 10055) then
-		player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",10,true)
+		player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",10,true);
 	end
 end;

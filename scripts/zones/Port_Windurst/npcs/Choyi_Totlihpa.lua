@@ -7,6 +7,7 @@
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/quests");
 require("scripts/zones/Port_Windurst/TextIDs");
 
 -----------------------------------
@@ -49,7 +50,7 @@ function onEventFinish(player,csid,option)
 	-- printf("RESULT: %u",option);
 	
 	if (csid == 0x026e) then
-		player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",17,true)
+		player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",17,true);
 	end	
 	
 end;

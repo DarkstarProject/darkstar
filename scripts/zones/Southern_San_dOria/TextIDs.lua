@@ -6,6 +6,7 @@ FULL_INVENTORY_AFTER_TRADE = 6412; -- Try trading again after sorting your inven
              ITEM_OBTAINED = 6413; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
               GIL_OBTAINED = 6414; -- Obtained <<<Numeric Parameter 0>>> gil.
           KEYITEM_OBTAINED = 6416; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
+			  KEYITEM_LOST = 6417; -- Lots key item: <<<Unknown Parameter (Type: 80) 1>>>
              HOMEPOINT_SET =   24; -- Home point set!
        NOT_HAVE_ENOUGH_GIL = 6418; -- You do not have enough gil.
 

@@ -2,8 +2,7 @@
 -- Area: Port Jeuno
 -- NPC: Shami
 -- Orb Seller (BCNM)
--- @zone 246
--- @pos -14 8 44 
+-- @pos -14 8 44 246
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -365,6 +364,6 @@ function onEventFinish(player,csid,option)
 		end
 -- TODO : Add in orbs for Kindred Crest exhcange (and High Kindred Crest) and find cutscene that tells you where you can bring it.
 	elseif (csid == 317) then
-		player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",17,true)
+		player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",17,true);
 	end
 end;

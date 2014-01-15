@@ -1,9 +1,8 @@
 -----------------------------------
--- Area: Southern San d'Oria
--- NPC:  Femitte
--- Involved in Quest: Lure of the Wildcat (San d'Oria)
--- @pos -17 2 10 230
---  Involved in Quest: Distant Loyalties
+-- 	Area: Southern San d'Oria
+-- 	NPC:  Femitte
+-- 	Involved in Quest: Lure of the Wildcat (San d'Oria), Distant Loyalties
+-- 	@pos -17 2 10 230
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -34,8 +33,9 @@ function onTrigger(player,npc)
 
 	local DistantLoyaltiesProgress = player:getVar("DistantLoyaltiesProgress");
 	local DistantLoyalties = player:getQuestStatus(SANDORIA,DISTANT_LOYALTIES);
+	local WildcatSandy = player:getVar("WildcatSandy");
 	
-	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(player:getVar("wildcatSandy_var"),4) == false) then
+	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,3) == false) then
 		player:startEvent(0x0327);
 	elseif (player:getFameLevel(SANDORIA) >= 4 and DistantLoyalties == 0) then
 		player:startEvent(0x0297);
@@ -67,7 +67,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 	
 	if(csid == 0x0327) then
-		player:setMaskBit(player:getVar("wildcatSandy_var"),"wildcatSandy_var",4,true);
+		player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",3,true);
 	elseif (csid == 0x0297 and option == 0) then
 		player:addKeyItem(GOLDSMITHING_ORDER);
 		player:messageSpecial(KEYITEM_OBTAINED,GOLDSMITHING_ORDER);

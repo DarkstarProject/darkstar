@@ -2,8 +2,7 @@
 -- Area: Lower Jeuno
 -- NPC:  Naruru
 -- Starts and Finishes Quests: Cook's Pride
--- @zone 245
--- @pos -56 0 -138
+-- @pos -56 0.1 -138 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -94,6 +93,6 @@ function onEventFinish(player,csid,option)
 			player:completeQuest(JEUNO,COOK_S_PRIDE);
 		end
 	elseif(csid == 10053) then
-		player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",13,true)
+		player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",13,true);
 	end
 end;

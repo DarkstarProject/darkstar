@@ -18,10 +18,10 @@ require("scripts/zones/Lower_Jeuno/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	count = trade:getItemCount();
-	gil = trade:getGil();
-	inventorySize = player:getContainerSize(0);
-	TheGobbieBag = gobQuest(player,inventorySize);
+	local count = trade:getItemCount();
+	local gil = trade:getGil();
+	local inventorySize = player:getContainerSize(0);
+	local TheGobbieBag = gobQuest(player,inventorySize);
 
 	if (count == 4 and gil == 0 and player:getQuestStatus(JEUNO,TheGobbieBag[1]) == 1) then
 		if (player:getContainerSize(0) < 80) then
@@ -69,10 +69,10 @@ function onTrigger(player,npc)
 	if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,12) == false) then
 		player:startEvent(10056);
 	elseif (player:getContainerSize(0) < 80) then
-		pFame = player:getFameLevel(JEUNO);
-		inventorySize = player:getContainerSize(0);
-		TheGobbieBag = gobQuest(player,inventorySize);
-		questStatus = player:getQuestStatus(JEUNO,TheGobbieBag[1]);
+		local pFame = player:getFameLevel(JEUNO);
+		local inventorySize = player:getContainerSize(0);
+		local TheGobbieBag = gobQuest(player,inventorySize);
+		local questStatus = player:getQuestStatus(JEUNO,TheGobbieBag[1]);
 
 		offer = 0;
 		if (pFame >= TheGobbieBag[2]) then
@@ -101,7 +101,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	TheGobbieBag = gobQuest(player,player:getContainerSize(0));
+	local TheGobbieBag = gobQuest(player,player:getContainerSize(0));
 
 	if (csid == 0x002b and option == 0) then
 		if (player:getQuestStatus(JEUNO,TheGobbieBag[1]) == 0) then
@@ -121,6 +121,6 @@ function onEventFinish(player,csid,option)
 		player:completeQuest(JEUNO,TheGobbieBag[1]);
 		player:messageSpecial(INVENTORY_INCREASED);
 	elseif(csid == 10056) then
-		player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",12,true)
+		player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",12,true);
 	end
 end;

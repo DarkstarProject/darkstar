@@ -3,9 +3,8 @@
 -- NPC:  Halver
 -- Involved in Mission 2-3, 3-3, 5-1, 5-2, 8-1
 -- Involved in Quest: Lure of the Wildcat (San d'Oria)
--- @pos 2 0 0 233
+-- @pos 2 0.1 0.1 233
 -----------------------------------
-package.loaded["scripts/globals/missions"] = nil;
 package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
 -----------------------------------
 
@@ -37,9 +36,9 @@ function onTrigger(player,npc)
 
     local pNation = player:getNation();
 	local currentMission = player:getCurrentMission(pNation);
-	local MissionStatus = player:getVar("MissionStatus");
+	local WildcatSandy = player:getVar("WildcatSandy");
 	
-	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(player:getVar("wildcatSandy_var"),17) == false) then
+	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,16) == false) then
 		player:startEvent(0x022e);
 	-- Blackmail quest
 	elseif(player:getQuestStatus(SANDORIA, BLACKMAIL) == QUEST_ACCEPTED and player:hasKeyItem(SUSPICIOUS_ENVELOPE)) then
@@ -159,7 +158,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x01F6) then
 		player:setVar("MissionStatus",4);
 	elseif(csid == 0x022e) then
-		player:setMaskBit(player:getVar("wildcatSandy_var"),"wildcatSandy_var",17,true);
+		player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",16,true);
 	elseif(csid == 0x01F8) then
 		player:setVar("MissionStatus",9);
 	elseif(csid == 0x0222) then
@@ -175,7 +174,6 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0066) then
 		finishMissionTimeline(player,3,csid,option);
 		player:setVar("Wait1DayM8-1_date", os.date("%j"));
-		
 	end
 	
 end;

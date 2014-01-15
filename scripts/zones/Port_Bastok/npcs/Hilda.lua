@@ -3,8 +3,7 @@
 -- NPC:  Hilda
 -- Involved in Quest: Cid's Secret, Riding on the Clouds
 -- Starts & Finishes: The Usual 
--- @zone 236
--- @pos -163 -8 13
+-- @pos -163 -8 13 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
@@ -45,8 +44,12 @@ end;
 
 function onTrigger(player,npc)
 
+	local WildcatBastok = player:getVar("WildcatBastok");
+
 	if(player:getCurrentMission(BASTOK) == ON_MY_WAY) and (player:getVar("MissionStatus") == 1) then
 		player:startEvent(0x00ff);
+	elseif (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,3) == false) then
+		player:startEvent(0x0164);
 	elseif(player:getQuestStatus(BASTOK,THE_USUAL) ~= QUEST_COMPLETED) then
 		if(player:getQuestStatus(BASTOK,CID_S_SECRET) == QUEST_ACCEPTED) then
 			player:startEvent(0x0084);
@@ -115,6 +118,8 @@ function onEventFinish(player,csid,option)
 		end
 	elseif(csid == 0x00ff) then
 		player:setVar("MissionStatus",2);
-    end
+	elseif (csid == 0x0164) then
+		player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",3,true);
+	end
 	 
 end;

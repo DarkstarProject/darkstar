@@ -2,8 +2,7 @@
 --	Area: Southern San d'Oria
 --	NPC: Valderotaux
 --  General Info NPC
--- @zone 230
--- @pos 97 0 113 
+-- @pos 97 0.1 113 230
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

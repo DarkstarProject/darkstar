@@ -2,8 +2,7 @@
 -- Area: Bastok Mines
 -- NPC:  Deidogg
 -- Starts and Finishes Quest: The Talekeeper's Truth, The Talekeeper's Gift (start)
--- @zone 234
--- @pos -13 7 29
+-- @pos -13 7 29 234
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
@@ -41,13 +40,16 @@ end;
 
 function onTrigger(player,npc)
 	
-	theDoorman = player:getQuestStatus(BASTOK,THE_DOORMAN);
-	theTalekeeperTruth = player:getQuestStatus(BASTOK,THE_TALEKEEPER_S_TRUTH);
-	theTalekeeperTruthCS = player:getVar("theTalekeeperTruthCS");
-	Wait1DayForAF3 = player:getVar("DeidoggWait1DayForAF3");
-	theTalekeeperGiftCS = player:getVar("theTalekeeperGiftCS");
+	local theDoorman = player:getQuestStatus(BASTOK,THE_DOORMAN);
+	local theTalekeeperTruth = player:getQuestStatus(BASTOK,THE_TALEKEEPER_S_TRUTH);
+	local theTalekeeperTruthCS = player:getVar("theTalekeeperTruthCS");
+	local Wait1DayForAF3 = player:getVar("DeidoggWait1DayForAF3");
+	local theTalekeeperGiftCS = player:getVar("theTalekeeperGiftCS");
+	local WildcatBastok = player:getVar("WildcatBastok");
 	
-	if(theDoorman == QUEST_COMPLETED and theTalekeeperTruth == QUEST_AVAILABLE and player:getMainJob() == 1 and player:getMainLvl() >= 50) then
+	if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,18) == false) then
+		player:startEvent(0x01f8);
+	elseif(theDoorman == QUEST_COMPLETED and theTalekeeperTruth == QUEST_AVAILABLE and player:getMainJob() == 1 and player:getMainLvl() >= 50) then
 		if(theTalekeeperTruthCS == 1) then
 			player:startEvent(0x00a0);
 			player:setVar("theTalekeeperTruthCS",2);
@@ -116,6 +118,8 @@ function onEventFinish(player,csid,option)
 		player:tradeComplete();
 		player:addQuest(BASTOK,THE_TALEKEEPER_S_GIFT);
 		player:setVar("theTalekeeperGiftCS",3);
+	elseif (csid == 0x01f8) then
+		player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",18,true);
 	end
 	
 end;

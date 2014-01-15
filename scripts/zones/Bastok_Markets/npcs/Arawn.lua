@@ -2,6 +2,7 @@
 -- Area: Bastok Markets
 -- NPC:  Arawn
 -- Starts & Finishes Quest: Stamp Hunt
+-- @pos -121.492 -4.000 -123.923 235
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------
@@ -25,9 +26,12 @@ end;
 
 function onTrigger(player,npc)
     
-	StampHunt = player:getQuestStatus(BASTOK,STAMP_HUNT);
-	    
-	if (StampHunt == 0) then
+	local StampHunt = player:getQuestStatus(BASTOK,STAMP_HUNT);
+	local WildcatBastok = player:getVar("WildcatBastok");
+	
+	if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,11) == false) then
+		player:startEvent(0x01ad);
+	elseif (StampHunt == 0) then
 		player:startEvent(0x00e1);
 	elseif (StampHunt == 1 and player:getVar("StampHunt_Event") == 0x7F) then
 		player:startEvent(0x00e2);
@@ -70,6 +74,8 @@ function onEventFinish(player,csid,option)
         else
            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, LEATHER_GORGET);
         end
+	elseif (csid == 0x01ad) then
+		player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",11,true);
     end
 	
 end;

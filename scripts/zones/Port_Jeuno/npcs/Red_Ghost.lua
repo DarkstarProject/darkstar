@@ -3,8 +3,9 @@
 -- NPC: Red Ghost
 -- Standard Info NPC
 -----------------------------------
-
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/zones/Port_Jeuno/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/pathfind");
@@ -76,7 +77,7 @@ function onEventFinish(player,csid,option,npc)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	if (csid == 314) then
-		player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",15,true)
+		player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",15,true);
 	end
 	
 	npc:wait(0);

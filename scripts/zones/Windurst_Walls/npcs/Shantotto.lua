@@ -186,6 +186,6 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0199) then
 		player:setVar("ClassReunionProgress",4);
 	elseif (csid == 0x01f2) then
-		player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",6,true)
+		player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",6,true);
 	end
 end;
