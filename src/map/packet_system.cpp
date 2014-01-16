@@ -675,7 +675,8 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 				{
 					MOB->m_CallForHelp = 0x20;
 					PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(PChar,PChar,0,0,19));
-					break;
+					
+                    return;
 				}
 			}
 			PChar->pushPacket(new CMessageBasicPacket(PChar,PChar,0,0,22));
