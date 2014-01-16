@@ -108,13 +108,6 @@ No Ecosystem:
              Bill_Toss
 -- Gears - All. They have 4 different sets of ID's and possibly Animations..
 -- Ramparts - All.
--- Automatons - String Shredder
-				Reactive Shield
-				Heat Capacitor
-				Replicator
-                eraser
-                econimizer
-				2hrs?
                 
 -- Biotech. Weapons - Citadel_Buster, Ion Efflux, Rear Lasers, Discharger. Needs to be broken up into individual mobs..
 -- Lady Lilith - all
