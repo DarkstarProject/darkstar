@@ -14,7 +14,7 @@ function OnMagicCastingCheck(caster,target,spell)
     if (not caster:canUsePet()) then
 		return MSGBASIC_CANT_BE_USED_IN_AREA;
     else
-        return 0,0;
+        return 0;
     end
 end;
 
