@@ -65,6 +65,8 @@ public:
     void setMobSkillAttack(bool);
     bool getMobSkillAttack();
 
+    bool isActionQueueAttack();
+
     // time of day change, update mobs
     // TODO:
     //void TOTDChange();
@@ -88,6 +90,7 @@ protected:
   float m_skillTP;
   bool m_drawnIn;
   bool m_mobskillattack;
+  bool m_actionqueueability;
 
   bool  m_CanStandback;
   uint32 m_LastStandbackTime;

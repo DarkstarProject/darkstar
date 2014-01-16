@@ -10,7 +10,9 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnMobSkillCheck(target,mob,skill)
-    if(mob:getHPP() <= 60) then
+    if (skill:getParam() ~= 0) then
+        return 1;
+    elseif(mob:getHPP() <= 60) then
         return 0;
     end
     return 1;

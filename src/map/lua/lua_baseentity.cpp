@@ -5571,7 +5571,6 @@ inline int32 CLuaBaseEntity::getSkinID(lua_State *L)
 inline int32 CLuaBaseEntity::updateEnmityFromCure(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
 	DSP_DEBUG_BREAK_IF(lua_tointeger(L,2) < 0);
@@ -7434,9 +7433,18 @@ inline int32 CLuaBaseEntity::useMobAbility(lua_State* L)
 inline int32 CLuaBaseEntity::actionQueueEmpty(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+    lua_pushboolean(L,m_PBaseEntity->PBattleAI->m_actionQueue.empty());
+
+    return 1;
+}
+
+inline int32 CLuaBaseEntity::actionQueueAbility(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
-    lua_pushboolean(L,((CMobEntity*)m_PBaseEntity)->PBattleAI->m_actionQueue.empty());
+    lua_pushboolean(L, ((CAIMobDummy*)(m_PBaseEntity->PBattleAI))->isActionQueueAttack());
 
     return 1;
 }
@@ -8412,6 +8420,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,castSpell),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,useMobAbility),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,actionQueueEmpty),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,actionQueueAbility),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetAutoAttackEnabled),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetMagicCastingEnabled),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetMobAbilityEnabled),

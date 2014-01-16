@@ -2174,22 +2174,22 @@ INSERT INTO `mob_skill` VALUES (1045,259,965,'Geotic_Breath', 4, 18.0, 2000, 150
 INSERT INTO `mob_skill` VALUES (1046,259,656,'Touchdown',1,6.0,2000,0,4,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (1047,259,967,'Ochre_Blast', 1, 23.0, 2000, 2000, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (1048,259,658,'Bai_Wing', 1, 30.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (1049,259,659,'Absolute_Terror', 1, 18.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (1050,259,660,'Horrid_Roar_3', 0, 18.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1049,259,659,'Absolute_Terror', 1, 18.0, 4000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1050,259,660,'Horrid_Roar_3', 0, 18.0, 4000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (438,259,432,'Invincible', 0, 18.0, 2000, 0, 1, 0, 30, 0);
 
 -- Fafnir
 INSERT INTO `mob_skill` VALUES (695,260,653,'Hurricane_Wing', 1, 30.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (696,260,654,'Spike_Flail', 1, 23.0, 2000, 2000, 4, 0, 0, 0); -- only if a player is behind fafnir
 INSERT INTO `mob_skill` VALUES (697,260,655,'Dragon_Breath', 4, 18.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (701,260,659,'Absolute_Terror', 0, 18.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (702,260,660,'Horrid_Roar_1', 0, 18.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (701,260,659,'Absolute_Terror', 0, 18.0, 4000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (702,260,660,'Horrid_Roar_1', 0, 18.0, 4000, 1500, 4, 0, 0, 0);
 
 -- Cynoprosopi
 INSERT INTO `mob_skill` VALUES (695,261,653,'Hurricane_Wing', 1, 30.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (696,261,654,'Spike_Flail', 1, 23.0, 2000, 2000, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (697,261,655,'Dragon_Breath', 4, 18.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (702,261,660,'Horrid_Roar_1', 0, 18.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (702,261,660,'Horrid_Roar_1', 0, 18.0, 4000, 1500, 4, 0, 0, 0);
 
 -- Wyrm
 INSERT INTO `mob_skill` VALUES (695,262,653,'Hurricane_Wing', 1, 30.0, 2000, 1500, 4, 0, 0, 0);
@@ -2200,16 +2200,16 @@ INSERT INTO `mob_skill` VALUES (697,262,655,'Dragon_Breath', 4, 18.0, 2000, 1500
 INSERT INTO `mob_skill` VALUES (695,263,653,'Hurricane_Wing', 1, 30.0, 2000, 1500, 4, 8, 0, 0);
 INSERT INTO `mob_skill` VALUES (696,263,654,'Spike_Flail', 1, 23.0, 2000, 1500, 4, 8, 0, 0);
 INSERT INTO `mob_skill` VALUES (697,263,655,'Dragon_Breath', 4, 18.0, 2000, 1500, 4, 8, 0, 0);
-INSERT INTO `mob_skill` VALUES (701,263,659,'Absolute_Terror', 0, 18.0, 2000, 1500, 4, 8, 0, 0);
-INSERT INTO `mob_skill` VALUES (702,263,660,'Horrid_Roar_2', 0, 18.0, 2000, 1500, 4, 8, 0, 0);
+INSERT INTO `mob_skill` VALUES (701,263,659,'Absolute_Terror', 0, 18.0, 4000, 1500, 4, 8, 0, 0);
+INSERT INTO `mob_skill` VALUES (702,263,660,'Horrid_Roar_2', 0, 18.0, 4000, 1500, 4, 8, 0, 0);
 INSERT INTO `mob_skill` VALUES (700,263,432,'Super_Buff', 0, 18.0, 2000, 0, 1, 0, 0, 0);
 
 -- Vrtra
 INSERT INTO `mob_skill` VALUES (1053,391,653,'Cyclone_Wing', 1, 30.0, 2000, 1500, 4, 8, 0, 0);
 INSERT INTO `mob_skill` VALUES (1054,391,654,'Spike_Flail', 1, 23.0, 2000, 2000, 4, 8, 0, 0);
 INSERT INTO `mob_skill` VALUES (1055,391,968,'Sable_Breath', 4, 18.0, 2000, 1500, 4, 8, 0, 0);
-INSERT INTO `mob_skill` VALUES (1059,391,659,'Absolute_Terror', 0, 18.0, 2000, 1500, 4, 8, 0, 0);
-INSERT INTO `mob_skill` VALUES (1060,391,660,'Horrid_Roar_3', 0, 18.0, 2000, 1500, 4, 8, 0, 0);
+INSERT INTO `mob_skill` VALUES (1059,391,659,'Absolute_Terror', 0, 18.0, 4000, 1500, 4, 8, 0, 0);
+INSERT INTO `mob_skill` VALUES (1060,391,660,'Horrid_Roar_3', 0, 18.0, 4000, 1500, 4, 8, 0, 0);
 -- INSERT INTO `mob_skill` VALUES (454,391,432,'Charm', 1, 18.0, 2000, 0, 4, 0, 0, 0);
 
 -- Jormungand
@@ -2221,8 +2221,8 @@ INSERT INTO `mob_skill` VALUES (1035,392,962,'Glacial_Breath', 4, 18.0, 2000, 15
 INSERT INTO `mob_skill` VALUES (1036,392,656,'Touchdown',1,6.0,2000,0,4,8, 0, 0);
 INSERT INTO `mob_skill` VALUES (1037,392,964,'Sleet_Blast', 1, 23.0, 2000, 2000, 4, 8, 0, 0);
 INSERT INTO `mob_skill` VALUES (1038,392,653,'Gregale_Wing_Air', 1, 30.0, 2000, 1500, 1, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (1039,392,659,'Absolute_Terror', 0, 18.0, 2000, 1500, 4, 8, 0, 0);
-INSERT INTO `mob_skill` VALUES (1040,392,660,'Horrid_Roar_3', 0, 18.0, 2000, 1500, 4, 8, 0, 0);
+INSERT INTO `mob_skill` VALUES (1039,392,659,'Absolute_Terror', 0, 18.0, 4000, 1500, 4, 8, 0, 0);
+INSERT INTO `mob_skill` VALUES (1040,392,660,'Horrid_Roar_3', 0, 18.0, 4000, 1500, 4, 8, 0, 0);
 INSERT INTO `mob_skill` VALUES (439,392,432,'Blood_Weapon', 0, 18.0, 2000, 0, 1, 0, 30, 0);
 
 -- Tiamat
