@@ -60,6 +60,7 @@ INSERT INTO `mob_skill` VALUES (514,0,442,'Jumping_Thrust', 0, 9.5, 2000, 0, 4, 
 INSERT INTO `mob_skill` VALUES (761,0,505,'Call_Beast', 0, 7.0, 2000, 0, 1, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (1645,0,505,'Activate', 0, 7.0, 2000, 0, 1, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (22,0,812,'Pit_Ambush', 0, 9.0, 2000, 0, 4, 0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (2490,0,16,'Barrage_Turbine', 0, 25.0, 2000, 0, 4, 0, 0, 0); -- Pup Sharpshot frame only.
 
 -- Two Hours
 -- make a mob 2 hour by setting mobmod_main_2hour
@@ -179,6 +180,13 @@ INSERT INTO `mob_skill` VALUES (64,186,64,'Sweet_Breath', 4, 15.0, 2000, 1500, 4
 
 -- INSERT INTO `mob_skill` VALUES (?,?,?,'Extremely_Bad_Breath', 4, 7.0, 2000, 1500, 4, 0, 0, 0); -- used only by Evil Oscar, Cirrate Christelle, Lividroot Amooshah, Eccentric Eve and Melancholic Moira.
 
+-- Cirrate Christelle
+-- INSERT INTO `mob_skill` VALUES (1351,?,63,'Fragrant Breath', 4, 30.0, 2000, 1500, 4, 0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1349,?,63,'Miasmic_Breath', 4, 30.0, 2000, 1500, 4, 0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1353,?,63,'Putrid_Breath', 4, 30.0, 2000, 1500, 4, 0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1355,?,?,'Vampiric_Lash', 4, 7.0, 2000, 1500, 4, 0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1354,?,?,'Extremely_Bad_Breath', 4, 7.0, 2000, 1500, 4, 0, 0, 0);
+
 -- Sabotenders
 INSERT INTO `mob_skill` VALUES (65,212,65,'Needleshot', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (66,212,66,'1000_Needles', 1, 10.0, 2000, 1500, 4, 0, 0, 0);
@@ -200,6 +208,10 @@ INSERT INTO `mob_skill` VALUES (56,116,56,'Shakeshroom', 0, 7, 2000, 1500, 4, 0,
 
 -- INSERT INTO `mob_skill` VALUES (1952,?,?,'Microspores', 1, 15.0, 2000, 1500, 4, 0, 0, 0); -- Only used by certain Notorious Monsters
 -- INSERT INTO `mob_skill` VALUES (2351,?,?,'Agaricus', 0, 25.0, 2000, 1500, 4, 0, 0, 0); -- Only used by certain Notorious Monsters
+
+-- Fairy Ring (Dynamis - Valkurm)
+-- Note: M. Spore is his normal attack round move. However no WS use message is displayed. 
+-- INSERT INTO `mob_skill` VALUES (1364,?,59,'Mephitic_Spore', 0, 25.0, 2000, 1500, 4, 0, 0, 0);
 
 -- Treant
 INSERT INTO `mob_skill` VALUES (72,245,72,'Drill_Branch', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
@@ -785,6 +797,12 @@ INSERT INTO `mob_skill` VALUES (327,136,327,'Beatdown', 0, 7.0, 2000, 1500, 4, 0
 INSERT INTO `mob_skill` VALUES (328,136,328,'Uppercut', 0, 7.0, 2000, 1500, 4, 0, 0, 2);
 INSERT INTO `mob_skill` VALUES (330,136,330,'Blank_Gaze', 0, 7.0, 2000, 2000, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (331,136,331,'Antiphase', 1, 15.0, 2000, 1500, 4, 0, 0, 0);
+
+-- Nant'ina (Dynamis - Valkurm)
+-- Note: Uses Blow and Uppercut as normal attack round moves. WS message is displayed. 
+-- INSERT INTO `mob_skill` VALUES (1361,?,325,'Blow', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1362,?,328,'Uppercut', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1363,?,331,'Attractant', 1, 15.0, 2000, 1500, 4, 0, 0, 0);
 
 -- Goblins
 INSERT INTO `mob_skill` VALUES (334, 133, 334, 'Goblin_Rush', 0, 6.0, 2000, 1500, 4, 0, 0, 1);
@@ -1733,13 +1751,21 @@ INSERT INTO `mob_skill` VALUES (1684,31,1304,'Chimera_Ripper', 0, 7.0, 2000, 150
 INSERT INTO `mob_skill` VALUES (1685,31,1305,'String_Clipper', 0, 7.0, 2000, 1500, 4, 0, 0, 0); -- Valoredge Frame only
 INSERT INTO `mob_skill` VALUES (1686,29,1303,'Arcuballista', 0, 15.0, 2000, 1500, 4, 0, 0, 0); -- Sharpshot frame only
 INSERT INTO `mob_skill` VALUES (1687,28,1306,'Slap_Stick', 0, 7.0, 2000, 1500, 4, 0, 0, 0); --  Harlequin Frame or Stormwaker Frame only
--- INSERT INTO `mob_skill` VALUES (1688,?,1307,'Shield_Bash', 0, 7.0, 2000, 1500, 4, 0, 0, 0); -- ??? frame
--- INSERT INTO `mob_skill` VALUES (1809,?,?,'Cannibal_Blade', 0, 15.0, 2000, 1500, 4, 0, 0, 0); -- Valoredge frame only
--- INSERT INTO `mob_skill` VALUES (1810,?,?,'Daze', 0, 15.0, 2000, 1500, 4, 0, 0, 0); -- Sharpshot frame only
--- INSERT INTO `mob_skill` VALUES (1811,?,?,'Knockout', 0, 7.0, 2000, 1500, 4, 0, 0, 0); -- Harlequin and Stormwaker frames only. 
--- INSERT INTO `mob_skill` VALUES (2043,?,?,'Bone_Crusher', 0, 7.0, 2000, 1500, 4, 0, 0, 0); -- Valoredge frame only
--- INSERT INTO `mob_skill` VALUES (2044,?,?,'Arcuballista', 0, 15.0, 2000, 1500, 4, 0, 0, 0); -- Sharpshot frame only
--- INSERT INTO `mob_skill` VALUES (2045,?,?,'Magic_Mortar', 0, 7.0, 2000, 1500, 4, 0, 0, 0); --  Harlequin Frame or Stormwaker Frame only
+-- INSERT INTO `mob_skill` VALUES (1688,?,1307,'Shield_Bash', 0, 7.0, 2000, 1500, 4, 0, 0, 0); -- Valoredge frame
+-- INSERT INTO `mob_skill` VALUES (1689,?,1219,'Provoke', 0, 7.0, 2000, 1500, 4, 0, 0, 0); -- Valoredge frame
+-- INSERT INTO `mob_skill` VALUES (1691,?,438,'Flashbulb', 0, 7.0, 2000, 1500, 4, 0, 0, 0); -- Valoredge frame
+-- INSERT INTO `mob_skill` VALUES (1692,?,439,'Mana_Converter', 0, 7.0, 2000, 1500, 1, 0, 0, 0); -- Stormwalker frame
+-- INSERT INTO `mob_skill` VALUES (1809,?,1404,'Cannibal_Blade', 0, 15.0, 2000, 1500, 4, 0, 0, 0); -- Valoredge frame only
+-- INSERT INTO `mob_skill` VALUES (1810,?,1405,'Daze', 0, 15.0, 2000, 1500, 4, 0, 0, 0); -- Sharpshot frame only
+-- INSERT INTO `mob_skill` VALUES (1811,?,1406,'Knockout', 0, 7.0, 2000, 1500, 4, 0, 0, 0); -- Harlequin and Stormwaker frames only. 
+-- INSERT INTO `mob_skill` VALUES (2043,?,1486,'Bone_Crusher', 0, 7.0, 2000, 1500, 4, 0, 0, 0); -- Valoredge frame only
+-- INSERT INTO `mob_skill` VALUES (2044,?,1487,'Armor_Piercer', 0, 15.0, 2000, 1500, 4, 0, 0, 0); -- Sharpshot frame only
+-- INSERT INTO `mob_skill` VALUES (2045,?,1488,'Magic_Mortar', 0, 10.0, 2000, 1500, 4, 0, 0, 0); --  Harlequin Frame or Stormwaker Frame only
+
+-- INSERT INTO `mob_skill` VALUES (2487,?,?,'String_Shredder', 0, 7.0, 2000, 1500, 4, 0, 0, 0); -- Valoredge frame only
+-- INSERT INTO `mob_skill` VALUES (2488,?,1510,'Armor_Shatterer', 0, 7.0, 2000, 1500, 4, 0, 0, 0); -- Sharpshot frame only
+-- INSERT INTO `mob_skill` VALUES (2523,?,435,'Shock_Absorber', 0, 7.0, 2000, 1500, 1, 0, 0, 0); 
+-- INSERT INTO `mob_skill` VALUES (2684,?,2112,'Invincible', 0, 7.0, 2000, 1500, 1, 0, 0, 0); -- Valoredge frame only | 2-Hour
 
 -- Lamiae
 -- INSERT INTO `mob_skill` VALUES (1496,171,1184,'Gusting_Gouge',0,7.0,2000,1500,4,0,0,0); -- One Hand Weapon Wielding Only. *Needs Script*
@@ -2470,7 +2496,7 @@ INSERT INTO `mob_skill` VALUES (229,292,229,'Blood_Saber', 1, 15.0, 2000, 1500, 
 
 -- Lil'Apkallu (294)
 -- INSERT INTO `mob_skill` VALUES (1460,294,1162,'Frigid_Shuffle', 1, 18.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (1459,294,1161,'Beak_Lunge', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1459,294,1161,'Beak_Lunge', 0, 7.0, 2000, 1500, 4, 0, 0, 5);
 INSERT INTO `mob_skill` VALUES (1457,294,1159,'Yawn', 1, 18.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (1458,294,1160,'Wing_Slap', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
 
