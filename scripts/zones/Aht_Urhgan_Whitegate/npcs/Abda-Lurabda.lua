@@ -48,5 +48,6 @@ function onEventFinish(player,csid,option)
         local page = bit.band(option, 0xF);
         local val = bit.rshift(bit.band(option, 0xFFFFF0), 4);
         player:setPetName(PETTYPE_AUTOMATON,86 + val + page*32);
+        player:messageSpecial(5747);
     end
 end;

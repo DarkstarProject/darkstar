@@ -41,3 +41,12 @@ KHAFJHIFANM_SHOP_DIALOG = 9170; -- How about a souvenir for back home? There's n
 	WAHRAGA_SHOP_DIALOG = 9177; -- Welcome to the Alchemists' Guild.
 	 WAHNID_SHOP_DIALOG = 9176; -- All the fishing gear you'll ever need, here in one place!
 	  WAHNID_SHOP_DIALOG = 9176; -- All the fishing gear you'll ever need, here in one place!
+
+-- Automaton
+      AUTOMATON_RENAME = 5747;
+      AUTOMATON_VALOREDGE_UNLOCK = 9487;
+      AUTOMATON_SHARPSHOT_UNLOCK = 9492;
+      AUTOMATON_STORMWAKER_UNLOCK = 9497;
+      AUTOMATON_SOULSOOTHER_UNLOCK = 9529;
+      AUTOMATON_SPIRITREAVER_UNLOCK = 9530;
+      AUTOMATON_ATTACHMENT_UNLOCK = 9546;
