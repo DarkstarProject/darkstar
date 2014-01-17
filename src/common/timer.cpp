@@ -1,4 +1,4 @@
-// Copyright (c) 2010-2012 Darkstar Dev Teams
+// Copyright (c) 2010-2014 Darkstar Dev Teams
 
 #include "../common/malloc.h"
 #include "../common/showmsg.h"
