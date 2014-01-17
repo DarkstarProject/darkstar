@@ -288,7 +288,7 @@ void LoadMOBList(CZone* PZone)
 			FROM mob_groups LEFT JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
 			LEFT JOIN mob_spawn_points ON mob_groups.groupid = mob_spawn_points.groupid \
 			LEFT JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
-			WHERE (pos_x <> 0 AND pos_y <> 0 AND pos_z <> 0) \
+			WHERE NOT (pos_x = 0 AND pos_y = 0 AND pos_z = 0) \
 			AND mob_groups.zoneid = %u;";
 
     int32 ret = Sql_Query(SqlHandle, Query, PZone->GetID());

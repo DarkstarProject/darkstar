@@ -159,7 +159,7 @@ namespace battleutils
     void                HandleSpikesStatusEffect(CBattleEntity* PAttacker, apAction_t* Action);
 	void				HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action, uint8 hitNumber, CItemWeapon* weapon, uint32 damage);
 	uint8				GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isBarrage);
-	uint16				CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 Tier, uint8 element);
+	int32				CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 Tier, uint8 element);
 
     uint8				GetEnmityMod(uint8 level, uint8 modType);
 	bool				Enfeeble(CBattleEntity* PCaster, CBattleEntity* PDefender, EFFECT Effect);

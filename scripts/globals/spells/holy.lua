@@ -25,7 +25,7 @@ function onSpellCast(caster,target,spell)
 	dmg = addBonuses(caster,spell,target,dmg);
 	--TODO: no additional bonus from Afflatus Solace yet
 	--add in target adjustment
-	dmg = adjustForTarget(target,dmg);
+	dmg = adjustForTarget(target,dmg,spell:getElement());
 	--add in final adjustments
 	dmg = finalMagicAdjustments(caster,target,spell,dmg);
 	return dmg;

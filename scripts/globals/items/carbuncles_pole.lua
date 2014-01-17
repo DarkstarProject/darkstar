@@ -23,7 +23,7 @@ function onAdditionalEffect(player,target,damage)
 		params.includemab = false;
 		dmg = addBonusesAbility(player, ELE_LIGHT, target, dmg, params);
 		dmg = dmg * applyResistanceAddEffect(player,target,ELE_LIGHT,0);
-		dmg = adjustForTarget(target,dmg);
+		dmg = adjustForTarget(target,dmg,ELE_LIGHT);
 		dmg = finalMagicNonSpellAdjustments(player,target,ELE_LIGHT,dmg);
     
 		local message = 163;

@@ -1777,6 +1777,12 @@ void CAICharNormal::ActionJobAbilityFinish()
                     msg = m_PJobAbility->getAoEMsg();
                 }
 
+                if (Action.param < 0)
+                {
+                    msg = ability::GetAbsorbMessage(msg);
+                    Action.param = -Action.param;
+                }
+
                 Action.messageID = msg;
 
                 m_PChar->m_ActionList.push_back(Action);
@@ -1890,9 +1896,15 @@ void CAICharNormal::ActionJobAbilityFinish()
     		Action.animation  = m_PJobAbility->getAnimationID();
     		Action.param      = 0;
 
-            uint32 value = luautils::OnUseAbility(m_PChar, m_PBattleSubTarget, m_PJobAbility, &Action);
+            int32 value = luautils::OnUseAbility(m_PChar, m_PBattleSubTarget, m_PJobAbility, &Action);
             Action.messageID  = m_PJobAbility->getMessage();
             Action.param = value;
+
+            if (value < 0)
+            {
+                Action.messageID = ability::GetAbsorbMessage(Action.messageID);
+                Action.param = -value;
+            }
 
     		if( m_PJobAbility->getID() == ABILITY_SHADOWBIND )
     		{

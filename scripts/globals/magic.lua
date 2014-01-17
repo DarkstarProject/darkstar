@@ -52,7 +52,9 @@ require("scripts/globals/utils")
 	weakAffinity = {MOD_WATER_AFFINITY, MOD_WIND_AFFINITY, MOD_THUNDER_AFFINITY, MOD_ICE_AFFINITY, MOD_FIRE_AFFINITY, MOD_EARTH_AFFINITY, MOD_DARK_AFFINITY, MOD_LIGHT_AFFINITY};
 	resistMod = {MOD_FIRERES, MOD_EARTHRES, MOD_WATERRES, MOD_WINDRES, MOD_ICERES, MOD_THUNDERRES, MOD_LIGHTRES, MOD_DARKRES};
 	defenseMod = {MOD_FIREDEF, MOD_EARTHDEF, MOD_WATERDEF, MOD_WINDDEF, MOD_ICEDEF, MOD_THUNDERDEF, MOD_LIGHTDEF, MOD_DARKDEF};
-
+    absorbMod = {MOD_FIRE_ABSORB, MOD_EARTH_ABSORB, MOD_WATER_ABSORB, MOD_WIND_ABSORB, MOD_ICE_ABSORB, MOD_LTNG_ABSORB, MOD_LIGHT_ABSORB, MOD_DARK_ABSORB};
+    nullMod = {MOD_FIRE_NULL, MOD_EARTH_NULL, MOD_WATER_NULL, MOD_WIND_NULL, MOD_ICE_NULL, MOD_LTNG_NULL, MOD_LIGHT_NULL, MOD_DARK_NULL};
+    
 -- USED FOR DAMAGING MAGICAL SPELLS (Stages 1 and 2 in Calculating Magic Damage on wiki)
 --Calculates magic damage using the standard magic damage calc.
 --Does NOT handle resistance.
@@ -709,18 +711,20 @@ function getSkillLvl(rank,level)
     dmg = utils.magicDmgTaken(target, dmg);
 
     dmg = dmg - target:getMod(MOD_PHALANX);
-    if(dmg < 0) then
-        dmg = 0;
-    end
 
     --handling stoneskin
     dmg = utils.stoneskin(target, dmg);
 
     dmg = utils.clamp(dmg, -99999, 99999);
     
-    target:delHP(dmg);
-    target:updateEnmityFromDamage(caster,dmg);
-
+    if (dmg < 0) then
+        target:addHP(-dmg);
+        dmg = -dmg;
+        spell:setMsg(7);
+    else
+        target:delHP(dmg);
+        target:updateEnmityFromDamage(caster,dmg);
+    end
     -- Only add TP if the target is a mob
     if (target:getObjType() ~= TYPE_PC) then
         target:addTP(10);
@@ -753,8 +757,13 @@ function finalMagicNonSpellAdjustments(caster,target,ele,dmg)
     return dmg;
 end;
  
-function adjustForTarget(target,dmg)
-    --e.g. family % reduction
+function adjustForTarget(target,dmg,ele)
+    if (math.random(0,99) < target:getMod(absorbMod[ele]) or math.random(0,99) < target:getMod(MOD_MAGIC_ABSORB)) then
+        return -dmg;
+    end
+    if (math.random(0,99) < target:getMod(nullMod[ele]) or math.random(0,99) < target:getMod(MOD_MAGIC_NULL)) then
+        return 0;
+    end
     return dmg;
 end;
 
@@ -1179,7 +1188,7 @@ function doNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,s
 	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
 	dmg = addBonuses(caster,spell,target,dmg);
 	--add in target adjustment
-	dmg = adjustForTarget(target,dmg);
+	dmg = adjustForTarget(target,dmg,spell:getElement());
 	--add in final adjustments
 	dmg = finalMagicAdjustments(caster,target,spell,dmg);
 	return dmg;

@@ -5602,7 +5602,6 @@ inline int32 CLuaBaseEntity::updateEnmityFromDamage(lua_State *L)
 	// catch it further down.
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB && m_PBaseEntity->objtype != TYPE_PC && m_PBaseEntity->objtype != TYPE_PET );
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
-	DSP_DEBUG_BREAK_IF(lua_tointeger(L,2) < 0);
 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isuserdata(L,1));
 
@@ -5611,9 +5610,9 @@ inline int32 CLuaBaseEntity::updateEnmityFromDamage(lua_State *L)
 	}
 
 	CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L,1);
-	uint32 damage = lua_tointeger(L,2);
+	int32 damage = lua_tointeger(L,2);
 
-    if (PEntity != NULL &&
+    if (PEntity != NULL && damage > 0 &&
         PEntity->GetBaseEntity()->objtype != TYPE_NPC)
 	{
 		((CMobEntity*)m_PBaseEntity)->PEnmityContainer->UpdateEnmityFromDamage((CBattleEntity*)PEntity->GetBaseEntity(),damage);

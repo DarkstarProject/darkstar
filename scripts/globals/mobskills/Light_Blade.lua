@@ -18,16 +18,18 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 	local numhits = 1;
 	local accmod = 1;
-	local dmgmod = 5;
+	local dmgmod = 8;
 	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_RANGED,MOBPARAM_SLASH,info.hitslanded);
-   -- TODO: There's no MOBPARAM_RANGED, but MOBPARAM doesn't appear to do anything?
+    -- TODO: There's no MOBPARAM_RANGED, but MOBPARAM doesn't appear to do anything?
 
     -- Guessing ~40-100% damage based on range (20/50+).  TODO: Find better data?
     -- ~400-450ish at tanking/melee range for a PLD with defender up and earth staff.
     -- ~750 for a DRG/BLU w/o Cocoon up at melee range.
     -- Wiki says 1k, videos were actually less, so trusting videos.
-   dmg = dmg * ((50 - mob:checkDistance(target)) / 50);
+    local distance = mob:checkDistance(target)
+    utils.clamp(distance, 0, 40)
+    dmg = dmg * ((50 - distance) / 50);
 
 	target:delHP(dmg);
 	return dmg;

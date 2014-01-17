@@ -21,11 +21,15 @@ function onSpellCast(caster,target,spell)
 	local resist = applyResistance(caster,spell,target,caster:getStat(MOD_MND)-target:getStat(MOD_MND),BLUE_SKILL,1.0);
 	dmg = dmg*resist;
 	dmg = addBonuses(caster,spell,target,dmg);
-	dmg = adjustForTarget(target,dmg);
+	dmg = adjustForTarget(target,dmg,spell:getElement());
 	if (dmg > (caster:getSkillLevel(BLUE_SKILL) + 20)) then
 		dmg = (caster:getSkillLevel(BLUE_SKILL) + 20);
 	end
 
+    if (dmg < 0) then
+        dmg = 0
+    end
+    
 	if(target:isUndead()) then
 		spell:setMsg(75); 
 		return dmg;

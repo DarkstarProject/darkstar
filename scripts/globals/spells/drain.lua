@@ -35,6 +35,10 @@ function onSpellCast(caster,target,spell)
 	dmg = adjustForTarget(target,dmg);
 	--add in final adjustments
 
+    if (dmg < 0) then
+        dmg = 0
+    end
+    
 	if(target:isUndead()) then
 		spell:setMsg(75); -- No effect
 		return dmg;

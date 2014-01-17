@@ -2043,12 +2043,12 @@ INSERT INTO `mob_skill` VALUES (649,193,139,'hydro_breath', 0, 10.0, 2000, 1500,
 
 -- Kam'lanaut
 -- TODO: Script these when mob additional effects work.
--- INSERT INTO `mob_skill` VALUES (567,351,495,'Fire_Blade',0,7,2000,0,1,0, 0, 0);
--- INSERT INTO `mob_skill` VALUES (568,351,496,'Frost_Blade',0,7,2000,0,1,0, 0, 0);
--- INSERT INTO `mob_skill` VALUES (569,351,497,'Wind_Blade',0,7,2000,0,1,0, 0, 0);
--- INSERT INTO `mob_skill` VALUES (570,351,498,'Earth_Blade',0,7,2000,0,1,0, 0, 0);
--- INSERT INTO `mob_skill` VALUES (571,351,499,'Lightning_Blade',0,7,2000,0,1,0, 0, 0);
--- INSERT INTO `mob_skill` VALUES (572,351,500,'Water_Blade',0,7,2000,0,1,0, 0, 0);
+INSERT INTO `mob_skill` VALUES (567,351,495,'Fire_Blade',0,7,2000,0,1,0, 0, 0);
+INSERT INTO `mob_skill` VALUES (568,351,496,'Frost_Blade',0,7,2000,0,1,0, 0, 0);
+INSERT INTO `mob_skill` VALUES (569,351,497,'Wind_Blade2',0,7,2000,0,1,0, 0, 0);
+INSERT INTO `mob_skill` VALUES (570,351,498,'Earth_Blade',0,7,2000,0,1,0, 0, 0);
+INSERT INTO `mob_skill` VALUES (571,351,499,'Lightning_Blade',0,7,2000,0,1,0, 0, 0);
+INSERT INTO `mob_skill` VALUES (572,351,500,'Water_Blade',0,7,2000,0,1,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (573,351,501,'Great_Wheel', 1,7.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (574,351,502,'Light_Blade', 0, 30.0, 2000, 1500, 4, 0, 0, 0);
 

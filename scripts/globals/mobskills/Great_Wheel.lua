@@ -17,8 +17,6 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 
--- TODO: Knockback
-
 	local numhits = 1;
 	local accmod = 1;
 	local dmgmod = 2.0;
@@ -26,6 +24,6 @@ function OnMobWeaponSkill(target, mob, skill)
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_3_SHADOW);
 
 	target:delHP(dmg);
-   mob:resetEnmity(target);
+    mob:resetEnmity(target);
 	return dmg;
 end;

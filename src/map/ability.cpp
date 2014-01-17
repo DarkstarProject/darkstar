@@ -467,4 +467,13 @@ namespace ability
         }
         return charge;
     }
+
+    uint32 GetAbsorbMessage(uint32 msg)
+    {
+        if (msg == 110)
+            return 102;
+        else if (msg == 264)
+            return 263;
+        return msg;
+    }
 };

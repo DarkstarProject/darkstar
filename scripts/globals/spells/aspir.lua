@@ -25,9 +25,13 @@ function onSpellCast(caster,target,spell)
 	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
 	dmg = addBonuses(caster,spell,target,dmg);
 	--add in target adjustment
-	dmg = adjustForTarget(target,dmg);
+	dmg = adjustForTarget(target,dmg,spell:getElement());
 	--add in final adjustments
 
+    if (dmg < 0) then
+        dmg = 0
+    end
+    
 	if(target:isUndead()) then
 		spell:setMsg(75); -- No effect
 		return dmg;

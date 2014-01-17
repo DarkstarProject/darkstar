@@ -297,6 +297,7 @@ void CAIMobDummy::ActionEngage()
 
 	if (m_PBattleTarget != NULL)
 	{
+        m_PMob->m_extraVar = 0;
 		if((m_PMob->m_roamFlags & ROAMFLAG_AMBUSH) && m_PMob->IsNameHidden())
 		{
 			// jump out at you

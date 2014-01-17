@@ -27,7 +27,10 @@ function onAdditionalEffect(player,target,damage)
         params.includemab = false;
         drain = addBonusesAbility(player, ELE_DARK, target, drain, params);
         drain = drain * applyResistanceAddEffect(player,target,ELE_DARK,0);
-        drain = adjustForTarget(target,drain);
+        drain = adjustForTarget(target,drain,ELE_DARK);
+        if (drain < 0) then
+            drain = 0
+        end
         drain = finalMagicNonSpellAdjustments(player,target,ELE_DARK,drain);
         return SUBEFFECT_HP_DRAIN, 161, player:addHP(drain);
     end
