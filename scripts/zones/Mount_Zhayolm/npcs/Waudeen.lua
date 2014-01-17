@@ -1,14 +1,15 @@
 -----------------------------------
--- Area: Arrapago Reef
--- NPC:  Meyaada
--- @pos 22.446 -7.920 573.390 54
+--  Area: Mount_Zhayolm
+--  NPC:  Waudeen
+--  Type: Assault
+--  @pos 673.882 -23.995 367.604 61
 -----------------------------------
-package.loaded["scripts/zones/Arrapago_Reef/TextIDs"] = nil;
+package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Arrapago_Reef/TextIDs");
+require("scripts/globals/keyitems");
+require("scripts/zones/Mount_Zhayolm/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -22,36 +23,35 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	--print(IPpoint);
-	--print(assault);
-	
+
     local IPpoint = player:getImperialStanding();
 
 	if (player:getCurrentMission(TOAU) == IMMORTAL_SENTRIES) then
 		if(player:hasKeyItem(SUPPLIES_PACKAGE))then
-			player:startEvent(0x0005);
+			player:startEvent(0x0004);
 		elseif(player:getVar("TOAUM2") == 1)then
-			player:startEvent(0x0006);
+			player:startEvent(0x0005);
 		end
 	elseif(player:getCurrentMission(TOAU) >= PRESIDENT_SALAHEEM)then
-		if(player:hasKeyItem(ILRUSI_ASSUALT_ORDERS) and player:hasKeyItem(ASSAULT_ARMBAND) == false) then
-			player:startEvent(0x00DF,50,IPpoint);
+		if(player:hasKeyItem(LEBROS_ASSAULT_ORDERS) and player:hasKeyItem(ASSAULT_ARMBAND) == false) then
+			player:startEvent(0x00d1,50,IPpoint);
 		else
-			player:startEvent(0x0007);
+			player:startEvent(0x0006);
 			-- player:delKeyItem(ASSAULT_ARMBAND);
 		end
 	else
-		player:startEvent(0x0004);
+		player:startEvent(0x0003);
 	end
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -59,16 +59,17 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
 	
-	if(csid == 0x00DF and option == 1) then
+	if(csid == 0x00d1 and option == 1) then
        player:delImperialStanding(50);
 	   player:addKeyItem(ASSAULT_ARMBAND);
 	   player:messageSpecial(KEYITEM_OBTAINED,ASSAULT_ARMBAND);   
-	elseif(csid == 0x0005 and option == 1)then
+	elseif(csid == 0x0004 and option == 1)then
 		player:delKeyItem(SUPPLIES_PACKAGE);
 		player:setVar("TOAUM2",1);
 	end
 	
 end;
+

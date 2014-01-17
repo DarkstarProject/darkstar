@@ -3,9 +3,10 @@
 -- Zone: Nyzul_Isle
 -- 
 -----------------------------------
+package.loaded["scripts/zones/Nyzul_Isle/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Nyzul_Isle/TextIDs"] = nil;
 require("scripts/zones/Nyzul_Isle/TextIDs");
 
 -----------------------------------
@@ -20,7 +21,7 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-cs = -1;
+local cs = -1;
 
 return cs;
 end;

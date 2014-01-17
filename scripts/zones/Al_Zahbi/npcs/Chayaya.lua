@@ -3,9 +3,10 @@
 -- NPC: Chayaya
 -- Standard Merchant NPC
 -----------------------------------
+package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/shop");
-package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
 require("scripts/zones/Al_Zahbi/TextIDs");
 
 -----------------------------------
@@ -24,9 +25,9 @@ function onTrigger(player,npc)
 player:showText(npc,CHAYAYA_SHOP_DIALOG);
 
 stock = {0x439B,10,	--Dart
-	 0x439C,60,	--Hawkeye
+	 0x439C,60,		--Hawkeye
 	 0x43A1,1204,	--Grenade
-	 0x43A8,8,	--Iron Arrow
+	 0x43A8,8,		--Iron Arrow
 	 0x1565,68000,	--Warrior Die
 	 0x1566,22400,	--Monk Die
 	 0x1567,5000,	--White Mage Die
