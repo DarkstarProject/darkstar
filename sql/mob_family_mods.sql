@@ -104,6 +104,10 @@ INSERT INTO `mob_family_mods` VALUES (271,3,50,1);
 INSERT INTO `mob_family_mods` VALUES (135,4,4,1);
 INSERT INTO `mob_family_mods` VALUES (193,14,704,1);
 INSERT INTO `mob_family_mods` VALUES (373,16,1,1);
+INSERT INTO `mob_family_mods` VALUES (394,40,15000,1);
+INSERT INTO `mob_family_mods` VALUES (394,41,732,1);
+INSERT INTO `mob_family_mods` VALUES (394,42,733,1);
+
 /*!40000 ALTER TABLE `mob_family_mods` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
