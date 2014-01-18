@@ -2,8 +2,6 @@
 --   fixed any of the things listed below.
 
 
-Hachiryu Haramaki Set - need to find a way to add Store TP (Any two pieces of this set grant +5 Store TP, while three grant +10 Store TP, and finally, all four grant +20 Store TP.)
-
 Commodore Frac/+1 - Random Deal has an increases success rate with one JA waitting on recast and a small chance to restore 2 job ablities with more than one job ability waitting on recast
 
 Pantin Tobe/+1 - Automaton: Accuracy + 10 no code for automation yet.
