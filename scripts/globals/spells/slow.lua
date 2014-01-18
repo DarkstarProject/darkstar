@@ -26,6 +26,8 @@ function onSpellCast(caster,target,spell)
 		if(power > 300) then
 			power = 300;
 		end
+		
+		power = power / 1024;
 
 		--Duration, including resistance.
 		local duration = 120 * applyResistance(caster,spell,target,dMND,35,bonus);
