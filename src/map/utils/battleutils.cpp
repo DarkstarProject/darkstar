@@ -389,7 +389,7 @@ std::vector<CMobSkill*> GetMobSkillsByFamily(uint16 FamilyID)
 	return g_PMobFamilySkills[FamilyID];
 }
 
-uint16	CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 Tier, uint8 element){
+int32 CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 Tier, uint8 element){
     int32 damage = 0;
 
     // TODO: resists (likely only based off targets resistance, perhaps with some level correction
@@ -439,6 +439,8 @@ uint16	CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender
     WEATHER weakWeatherSingle[8] = { WEATHER_RAIN, WEATHER_WIND, WEATHER_THUNDER, WEATHER_SNOW, WEATHER_HOT_SPELL, WEATHER_DUST_STORM, WEATHER_GLOOM, WEATHER_AURORAS };
     WEATHER weakWeatherDouble[8] = { WEATHER_SQUALL, WEATHER_GALES, WEATHER_THUNDERSTORMS, WEATHER_BLIZZARDS, WEATHER_HEAT_WAVE, WEATHER_SAND_STORM, WEATHER_DARKNESS, WEATHER_STELLAR_GLARE };
     uint32 obi[8] = { 15435, 15438, 15440, 15437, 15436, 15439, 15441, 15442 };
+    MODIFIER absorb[8] = { MOD_FIRE_ABSORB, MOD_EARTH_ABSORB, MOD_WATER_ABSORB, MOD_WIND_ABSORB, MOD_ICE_ABSORB, MOD_LTNG_ABSORB, MOD_LIGHT_ABSORB, MOD_DARK_ABSORB };
+    MODIFIER nullarray[8] = { MOD_FIRE_NULL, MOD_EARTH_NULL, MOD_WATER_NULL, MOD_WIND_NULL, MOD_ICE_NULL, MOD_LTNG_NULL, MOD_LIGHT_NULL, MOD_DARK_NULL };
     bool obiBonus = false;
 
     if (PAttacker->objtype == TYPE_PC)
@@ -451,6 +453,11 @@ uint16	CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender
                 obiBonus = true;
             }
         }
+    }
+    else
+    {
+        // mobs random multiplier 
+        dBonus += (rand() % 101) / 1000.0f;
     }
     if (WeekDay == strongDay[element] && (obiBonus || rand() % 100 < 33))
         dBonus += 0.1;
@@ -468,9 +475,15 @@ uint16	CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender
     damage = DmgTaken(PDefender, damage);
     damage = MagicDmgTaken(PDefender, damage);
     damage = damage - PDefender->getMod(MOD_PHALANX);
-    if(damage <= 0)
-    	return 0;
-    return HandleStoneskin(PDefender, damage);
+    damage = dsp_cap(damage, 0, 99999);
+    if (rand() % 100 < PDefender->getMod(absorb[element]) || rand() % 100 < PDefender->getMod(MOD_MAGIC_ABSORB))
+        damage = -damage;
+    else if (rand() % 100 < PDefender->getMod(nullarray[element]) || rand() % 100 < PDefender->getMod(MOD_MAGIC_NULL))
+        damage = 0;
+    else
+        damage = HandleStoneskin(PDefender, damage);
+
+    return damage;
 }
 
 /************************************************************************
@@ -957,6 +970,12 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
             Action->addEffectMessage = 163;
             Action->addEffectParam = CalculateEnspellDamage(PAttacker, PDefender, 1, enspell-1);
 
+            if (Action->addEffectParam < 0)
+            {
+                Action->addEffectParam = -Action->addEffectParam;
+                Action->addEffectMessage = 384;
+            }
+
             PDefender->addHP(-Action->addEffectParam);
         }
         else if ((enspell > 6 && enspell <= 8) || (enspell > 8 && enspell <= 14 && hitNumber == 0))
@@ -964,6 +983,12 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
             Action->additionalEffect = subeffects[enspell-7];
             Action->addEffectMessage = 163;
             Action->addEffectParam = CalculateEnspellDamage(PAttacker, PDefender, 2, enspell > 8 ? enspell-9 : enspell-1);
+
+            if (Action->addEffectParam < 0)
+            {
+                Action->addEffectParam = -Action->addEffectParam;
+                Action->addEffectMessage = 384;
+            }
 
             PDefender->addHP(-Action->addEffectParam);
         }
@@ -979,8 +1004,8 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
             }
         }
     }
-    //TODO: check the weapons latents rather than using entity->getMod (applies to both weapons)
-    else if (PAttacker->objtype == TYPE_PC && (weapon->getModifier(MOD_ADDITIONAL_EFFECT) > 0 || PAttacker->getMod(MOD_ADDITIONAL_EFFECT) > 0))
+    //check weapon for additional effects
+	else if (PAttacker->objtype == TYPE_PC && weapon->getModifier(MOD_ADDITIONAL_EFFECT) > 0)
     {
 		luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage);
     }

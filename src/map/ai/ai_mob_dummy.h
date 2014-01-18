@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2012 Darkstar Dev Teams
+  Copyright (c) 2010-2014 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -65,6 +65,8 @@ public:
     void setMobSkillAttack(bool);
     bool getMobSkillAttack();
 
+    bool isActionQueueAttack();
+
     // time of day change, update mobs
     // TODO:
     //void TOTDChange();
@@ -88,6 +90,7 @@ protected:
   float m_skillTP;
   bool m_drawnIn;
   bool m_mobskillattack;
+  bool m_actionqueueability;
 
   bool  m_CanStandback;
   uint32 m_LastStandbackTime;

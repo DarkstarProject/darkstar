@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2012 Darkstar Dev Teams
+  Copyright (c) 2010-2014 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -552,6 +552,7 @@ namespace ability
     CAbility* GetTwoHourAbility(JOBTYPE JobID);
 	bool CanLearnAbility(CBattleEntity* PUser, uint16 AbilityID);
     Charge_t* GetCharge(CBattleEntity* PUser, uint16 chargeID);
+    uint32 GetAbsorbMessage(uint32 message);
 
     std::vector<CAbility*> GetAbilities(JOBTYPE JobID);
 };

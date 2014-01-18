@@ -8,6 +8,9 @@ package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+require("scripts/globals/titles");
+require("scripts/globals/keyitems");
+require("scripts/globals/missions");
 
 -----------------------------------
 -- onInitialize
@@ -16,6 +19,7 @@ require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 function onInitialize(zone)
 	zone:registerRegion(1,57,-1,-70,62,1,-65); -- Sets Mark for "Got It All" Quest cutscene.
 	zone:registerRegion(2,-96,-7,121,-64,-5,137); -- Sets Mark for "Vanishing Act" Quest cutscene.
+	zone:registerRegion(3,14,-7,-65,37,-2,-41); -- TOAU Mission 1 CS area
 end;
 
 -----------------------------------		
@@ -57,6 +61,11 @@ function onRegionEnter(player,region)
 	[2] = function (x) -- CS for Vanishing Act Quest
 	if(player:getVar("vanishingactCS") == 3) then
 	    player:startEvent(0x002c);
+	end
+	end,
+	[3] = function (x) -- TOAU Mission 1 
+	if(player:getCurrentMission(TOAU)== LAND_OF_SACRED_SERPENTS) then	
+		player:startEvent(0x0BB8,0,0,0,0,0,0,0,0,0);
 	end
 	end,
 	}
@@ -111,5 +120,10 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x020e)then
 		player:setVar("gotitallCS",6);
 		player:setPos(60,0,-71,38);
+	elseif(csid == 0x0BB8) then
+		player:completeMission(TOAU,LAND_OF_SACRED_SERPENTS);
+		player:addMission(TOAU,IMMORTAL_SENTRIES);
+		player:addKeyItem(SUPPLIES_PACKAGE);
+		player:messageSpecial(KEYITEM_OBTAINED,SUPPLIES_PACKAGE);
 	end
 end;

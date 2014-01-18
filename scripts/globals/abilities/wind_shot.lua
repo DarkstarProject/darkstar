@@ -27,7 +27,7 @@ function OnUseAbility(player, target, ability)
 	local dmg = 2 * player:getRangedDmg() + player:getAmmoDmg() + player:getMod(MOD_QUICK_DRAW_DMG);
 	dmg  = addBonusesAbility(player, ELE_WIND, target, dmg);
 	dmg = dmg * applyResistanceAbility(player,target,ELE_WIND,SKILL_MRK, (player:getStat(MOD_AGI)/2) + player:getMerit(MERIT_QUICK_DRAW_ACCURACY));
-	dmg = adjustForTarget(target,dmg);
+	dmg = adjustForTarget(target,dmg,ELE_WIND);
 	
 	dmg = utils.stoneskin(target, dmg);
 		

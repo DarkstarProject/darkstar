@@ -3,8 +3,9 @@
 -- Zone: Mount_Zhayolm (61)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/settings");
 require("scripts/zones/Mount_Zhayolm/TextIDs");
 
@@ -20,7 +21,7 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
+	local cs = -1;	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(-521.016,-6.191,60.013,126);
 	end	

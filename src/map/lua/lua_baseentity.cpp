@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2012 Darkstar Dev Teams
+  Copyright (c) 2010-2014 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -5571,7 +5571,6 @@ inline int32 CLuaBaseEntity::getSkinID(lua_State *L)
 inline int32 CLuaBaseEntity::updateEnmityFromCure(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
 	DSP_DEBUG_BREAK_IF(lua_tointeger(L,2) < 0);
@@ -5603,7 +5602,6 @@ inline int32 CLuaBaseEntity::updateEnmityFromDamage(lua_State *L)
 	// catch it further down.
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB && m_PBaseEntity->objtype != TYPE_PC && m_PBaseEntity->objtype != TYPE_PET );
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
-	DSP_DEBUG_BREAK_IF(lua_tointeger(L,2) < 0);
 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isuserdata(L,1));
 
@@ -5612,9 +5610,9 @@ inline int32 CLuaBaseEntity::updateEnmityFromDamage(lua_State *L)
 	}
 
 	CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L,1);
-	uint32 damage = lua_tointeger(L,2);
+	int32 damage = lua_tointeger(L,2);
 
-    if (PEntity != NULL &&
+    if (PEntity != NULL && damage > 0 &&
         PEntity->GetBaseEntity()->objtype != TYPE_NPC)
 	{
 		((CMobEntity*)m_PBaseEntity)->PEnmityContainer->UpdateEnmityFromDamage((CBattleEntity*)PEntity->GetBaseEntity(),damage);
@@ -7104,10 +7102,15 @@ inline int32 CLuaBaseEntity::isBehind(lua_State *L)
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isuserdata(L,1));
 
 	CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L,1);
+    uint8 angle = 42;
+    if (lua_gettop(L) > 1)
+    {
+        angle = lua_tonumber(L, 2);
+    }
 
-    uint8 angle = PLuaBaseEntity->GetBaseEntity()->loc.p.rotation - getangle(PLuaBaseEntity->GetBaseEntity()->loc.p, m_PBaseEntity->loc.p);
+    uint8 turn = PLuaBaseEntity->GetBaseEntity()->loc.p.rotation - getangle(PLuaBaseEntity->GetBaseEntity()->loc.p, m_PBaseEntity->loc.p);
 
-    lua_pushboolean(L, (angle >= 86 && angle <= 170));
+    lua_pushboolean(L, (turn > 128 - angle && turn < 128 + angle));
 
 	return 1;
 }
@@ -7434,9 +7437,18 @@ inline int32 CLuaBaseEntity::useMobAbility(lua_State* L)
 inline int32 CLuaBaseEntity::actionQueueEmpty(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+    lua_pushboolean(L,m_PBaseEntity->PBattleAI->m_actionQueue.empty());
+
+    return 1;
+}
+
+inline int32 CLuaBaseEntity::actionQueueAbility(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
-    lua_pushboolean(L,((CMobEntity*)m_PBaseEntity)->PBattleAI->m_actionQueue.empty());
+    lua_pushboolean(L, ((CAIMobDummy*)(m_PBaseEntity->PBattleAI))->isActionQueueAttack());
 
     return 1;
 }
@@ -8412,6 +8424,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,castSpell),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,useMobAbility),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,actionQueueEmpty),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,actionQueueAbility),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetAutoAttackEnabled),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetMagicCastingEnabled),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetMobAbilityEnabled),

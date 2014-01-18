@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2012 Darkstar Dev Teams
+  Copyright (c) 2010-2014 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -461,6 +461,7 @@ public:
 	int32 castSpell(lua_State*);			// forces a mob to cast a spell (parameter = spellid, otherwise picks a spell from its list)
 	int32 useMobAbility(lua_State*);		// forces a mob to use a mobability (parameter = mobid, otherwise picks a spell from its list)
     int32 actionQueueEmpty(lua_State*);     // returns whether the action queue is empty or not
+    int32 actionQueueAbility(lua_State*);   // returns whether the action is from the action queue or not
 
 	int32 SetAutoAttackEnabled(lua_State*);	 // halts/resumes auto attack of entity
 	int32 SetMagicCastingEnabled(lua_State*);// halt/resumes casting magic

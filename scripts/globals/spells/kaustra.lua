@@ -33,7 +33,7 @@ function onSpellCast(caster,target,spell)
 	duration = duration * resist;
 	local dmg = base * resist;
 	
-	dmg = adjustForTarget(target,dmg);
+	dmg = adjustForTarget(target,dmg,spell:getElement());
 	
 	dmg = finalMagicAdjustments(caster,target,spell,dmg);
 	

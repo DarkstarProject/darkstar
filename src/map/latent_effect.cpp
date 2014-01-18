@@ -24,6 +24,7 @@
 #include "entities/battleentity.h"
 
 #include "latent_effect.h"
+#include "entities\charentity.h"
 
 CLatentEffect::CLatentEffect(LATENT conditionsId, uint16 conditionsValue, uint8 slot, uint16 modValue, int16 modPower)
 {
@@ -103,7 +104,19 @@ void CLatentEffect::Activate()
 {
 	if( !IsActivated() )
 	{
-		m_POwner->addModifier(m_ModValue, m_ModPower);
+		//additional effect latents add mod to weapon, not player
+		if (GetModValue() == MOD_ADDITIONAL_EFFECT)
+		{
+			CCharEntity* PChar = (CCharEntity*)m_POwner;
+			CItemWeapon* weapon = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[GetSlot()]);
+
+			weapon->addModifier(new CModifier(MOD_ADDITIONAL_EFFECT, 1));
+		}
+		else
+		{
+			m_POwner->addModifier(m_ModValue, m_ModPower);
+		}
+
 		m_Activated = true;
 		//printf("LATENT ACTIVATED: %d, Current value: %d\n", m_ModValue, m_POwner->getMod(m_ModValue));
 	}
@@ -113,7 +126,24 @@ void CLatentEffect::Deactivate()
 {
 	if( IsActivated() )
 	{
-		m_POwner->delModifier(m_ModValue, m_ModPower);
+		//remove the modifier from weapon, not player
+		if (GetModValue() == MOD_ADDITIONAL_EFFECT)
+		{
+			CCharEntity* PChar = (CCharEntity*)m_POwner;
+			CItemWeapon* weapon = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[GetSlot()]);
+
+			//ensure the additional effect is fully removed from weapon
+			for (uint8 i = 0; i < weapon->modList.size(); ++i)
+			{
+				if (weapon->modList.at(i)->getModID() == MOD_ADDITIONAL_EFFECT)
+					weapon->modList.at(i)->setModAmount(0);
+			}
+		}
+		else
+		{
+			m_POwner->delModifier(m_ModValue, m_ModPower);
+		}
+
 		m_Activated = false;
 		//printf("LATENT DEACTIVATED: %d\n", m_ModValue);
 	}

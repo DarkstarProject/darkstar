@@ -25,7 +25,7 @@ function OnPetAbility(target, pet, skill, master)
         dmg = mobAddBonuses(pet, nil, target, dmg.dmg, ELE_DARK);
         dmg = AvatarFinalAdjustments(dmg,pet,skill,target,MOBSKILL_MAGICAL,MOBPARAM_NONE,1);
         target:delHP(dmg);
-        target:updateEnmityFromDamage(pet,damage);
+        target:updateEnmityFromDamage(pet,dmg);
         return dmg;
     else
         local chance = (100 * power) / skill:getTotalTargets();

@@ -12,15 +12,17 @@ end;
 
 function utils.stoneskin(target, dmg)
     --handling stoneskin
-    skin = target:getMod(MOD_STONESKIN);
-    if(skin > 0) then
-        if(skin > dmg) then --absorb all damage
-            target:delMod(MOD_STONESKIN,dmg);
-            return 0;
-        else --absorbs some damage then wear
-            target:delStatusEffect(EFFECT_STONESKIN);
-            target:setMod(MOD_STONESKIN, 0);
-            return dmg - skin;
+    if (dmg > 0) then
+        skin = target:getMod(MOD_STONESKIN);
+        if(skin > 0) then
+            if(skin > dmg) then --absorb all damage
+                target:delMod(MOD_STONESKIN,dmg);
+                return 0;
+            else --absorbs some damage then wear
+                target:delStatusEffect(EFFECT_STONESKIN);
+                target:setMod(MOD_STONESKIN, 0);
+                return dmg - skin;
+            end
         end
     end
 

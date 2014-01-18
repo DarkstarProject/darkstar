@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2012 Darkstar Dev Teams
+  Copyright (c) 2010-2014 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -78,6 +78,7 @@ CAIMobDummy::CAIMobDummy(CMobEntity* PMob)
 	m_CanStandback = false;
 	m_drawnIn = false;
     m_mobskillattack = false;
+    m_actionqueueability = false;
 }
 
 /************************************************************************
@@ -296,6 +297,7 @@ void CAIMobDummy::ActionEngage()
 
 	if (m_PBattleTarget != NULL)
 	{
+        m_PMob->m_extraVar = 0;
 		if((m_PMob->m_roamFlags & ROAMFLAG_AMBUSH) && m_PMob->IsNameHidden())
 		{
 			// jump out at you
@@ -1160,6 +1162,8 @@ void CAIMobDummy::ActionAttack()
 {
 	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
 
+    m_actionqueueability = false;
+
 	if(TryDeaggro())
 	{
 		Deaggro();
@@ -1190,6 +1194,7 @@ void CAIMobDummy::ActionAttack()
             case ACTION_MAGIC_START:
             {
                 m_LastActionTime = m_Tick;
+                m_actionqueueability = true;
                 CastSpell(action.param, action.target);
                 FinishAttack();
                 break;
@@ -1223,6 +1228,7 @@ void CAIMobDummy::ActionAttack()
 					            apAction.messageID  = 43; //readies message
 
                                 m_PMob->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
+                                m_actionqueueability = true;
 					            m_PMob->m_ActionList.push_back(apAction);
 					            m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
 				            }
@@ -1231,7 +1237,8 @@ void CAIMobDummy::ActionAttack()
                             else
                                 m_PMob->PBattleAI->SetBattleSubTarget(m_PMob);
 				            m_PMob->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_USING);
-			            }
+                            m_actionqueueability = true;
+                        }
 			            else
 			            {
 				            ShowWarning("lua_baseentity::useMobAbility NULL mobskill used %d", action.param);
@@ -1239,6 +1246,7 @@ void CAIMobDummy::ActionAttack()
 		            }
 	            } else {
 		            m_PMob->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_START);
+                    m_actionqueueability = true;
 	            }
             }
         }
@@ -2230,4 +2238,9 @@ void CAIMobDummy::setMobSkillAttack(bool value)
 bool CAIMobDummy::getMobSkillAttack()
 {
     return m_mobskillattack;
+}
+
+bool CAIMobDummy::isActionQueueAttack()
+{
+    return m_actionqueueability;
 }

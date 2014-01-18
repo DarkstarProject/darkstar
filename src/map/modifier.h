@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2012 Darkstar Dev Teams
+  Copyright (c) 2010-2014 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -504,11 +504,34 @@ enum MODIFIER
 	MOD_RERAISE_II				  =0x1C9,// Reraise II. (modId = 457)
 	MOD_RERAISE_III				  =0x1CA,// Reraise III. (modId = 458)
 
-	// MOD_SPARE	=0x1CB,// (modId = 459)
-    // MOD_SPARE	=0x1CC,// (modId = 460)
-    // MOD_SPARE	=0x1CD,// (modId = 461)
-    // MOD_SPARE	=0x1CE,// (modId = 462)
-    // MOD_SPARE	=0x1CF,// (modId = 463)
+    //Elemental Absorb Chance
+    MOD_FIRE_ABSORB               =0x1CB,// (modId = 459)
+    MOD_EARTH_ABSORB              =0x1CC,// (modId = 460)
+    MOD_WATER_ABSORB              =0x1CD,// (modId = 461)
+    MOD_WIND_ABSORB               =0x1CE,// (modId = 462)
+    MOD_ICE_ABSORB                =0x1CF,// (modId = 463)
+    MOD_LTNG_ABSORB               =0x1D0,// (modId = 464)
+    MOD_LIGHT_ABSORB              =0x1D1,// (modId = 465)
+    MOD_DARK_ABSORB               =0x1D2,// (modId = 466)
+
+    //Elemental Null Chance
+    MOD_FIRE_NULL                 =0x1D3,// (modId = 467)
+    MOD_EARTH_NULL                =0x1D4,// (modId = 468)
+    MOD_WATER_NULL                =0x1D5,// (modId = 469)
+    MOD_WIND_NULL                 =0x1D6,// (modId = 470)
+    MOD_ICE_NULL                  =0x1D7,// (modId = 471)
+    MOD_LTNG_NULL                 =0x1D8,// (modId = 472)
+    MOD_LIGHT_NULL                =0x1D9,// (modId = 473)
+    MOD_DARK_NULL                 =0x1DA,// (modId = 474)
+
+    MOD_MAGIC_ABSORB              =0x1DB,// (modId = 475)
+    MOD_MAGIC_NULL                =0x1DC,// (modId = 476)
+
+    // MOD_SPARE	=0x1DD,// (modId = 477)
+    // MOD_SPARE	=0x1DE,// (modId = 478)
+    // MOD_SPARE	=0x1DF,// (modId = 479)
+    // MOD_SPARE	=0x1E0,// (modId = 480)
+    // MOD_SPARE	=0x1E1,// (modId = 481)
 
     MOD_ADDITIONAL_EFFECT         =0x1AF,// (modId = 431)
 
@@ -517,7 +540,7 @@ enum MODIFIER
 	MOD_EAT_RAW_MEAT			  =0x19A, // not implemented (modId = 410)
 };
 
-#define MAX_MODIFIER	       459
+#define MAX_MODIFIER	       477
 
 
 

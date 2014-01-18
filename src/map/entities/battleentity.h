@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2012 Darkstar Dev Teams
+  Copyright (c) 2010-2014 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -389,10 +389,10 @@ struct apAction_t
 	uint16			  animation;			// 12 bits
 	SPECEFFECT		  speceffect;			// 7 bits
     uint8             knockback;            // 3 bits
-	uint32			  param;				// 17 bits
+	int32			  param;				// 17 bits
 	uint16			  messageID;			// 10 bits
     SUBEFFECT         additionalEffect;     // 10 bits
-    uint32            addEffectParam;       // 17 bits
+    int32             addEffectParam;       // 17 bits
     uint16            addEffectMessage;     // 10 bits
     SUBEFFECT         spikesEffect;         // 10 bits
     uint16            spikesParam;          // 14 bits

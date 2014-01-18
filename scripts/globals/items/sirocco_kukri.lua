@@ -19,7 +19,7 @@ function onAdditionalEffect(player,target,damage)
     params.includemab = false;
     dmg = addBonusesAbility(player, ELE_WIND, target, dmg, params);
     dmg = dmg * applyResistanceAddEffect(player,target,ELE_WIND,0);
-    dmg = adjustForTarget(target,dmg);
+    dmg = adjustForTarget(target,dmg,ELE_WIND);
 	dmg = finalMagicNonSpellAdjustments(player,target,ELE_WIND,dmg);
     
     local message = 163;

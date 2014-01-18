@@ -16,7 +16,7 @@ end;
 function OnPetAbility(target, pet, skill)
 	local spell = getSpell(170);
 	--calculate raw damage
-	local dmg = calculateMagicDamage(410,2,pet,spell,target,ELEMENTAL_MAGIC_SKILL,MOD_INT,false);
+	local dmg = calculateMagicDamage(95,2,pet,spell,target,ELEMENTAL_MAGIC_SKILL,MOD_INT,false);
 	--get resist multiplier (1x if no resist)
 	local resist = applyPlayerResistance(pet,-1,target,pet:getStat(MOD_INT)-target:getStat(MOD_INT),ELEMENTAL_MAGIC_SKILL,ELE_WATER);
 	--get the resisted damage

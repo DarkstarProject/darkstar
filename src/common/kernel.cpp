@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2012 Darkstar Dev Teams
+  Copyright (c) 2010-2014 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -45,8 +45,9 @@ char **arg_v = NULL;
 
 char *SERVER_NAME = NULL;
 char  SERVER_TYPE = DARKSTAR_SERVER_NONE;
-#ifndef SVNVERSION
-	static char dsp_svn_version[10] = "";
+
+#ifndef GITVERSION
+	static char dsp_git_version[1024] = "";
 #endif
 
 // Copyright (c) Athena Dev Teams 
@@ -142,12 +143,12 @@ void signals_init (void)
 #endif
 }
 
-#ifdef SVNVERSION
+#ifdef GITVERSION
 #define xstringify(x) stringify(x)
 #define stringify(x) #x
-const char* get_svn_revision(void)
+const char* get_git_revision(void)
 {
-	return xstringify(SVNVERSION);
+    return xstringify(GITVERSION);
 }
 #else
 
@@ -157,98 +158,27 @@ const char* get_svn_revision(void)
 *																		*
 ************************************************************************/
 
-const char* get_svn_revision(void)
+const char* get_git_revision(void)
 {
-	FILE *fp;
+    FILE *fp = NULL;
 
-    //
-    // Subversion 1.7 and above.. (Uses Sqlite)
-    //
-
-    if (dsp_svn_version[0] != '\0')
-        return dsp_svn_version;
-
-    if ( (fp = fopen( ".svn/wc.db", "rb" )) != NULL )
+    // Pull lastest fetch version from FETCH_HEAD..
+    if ((fp = fopen(".git/FETCH_HEAD", "r")) != NULL)
     {
-        fseek( fp, 0L, SEEK_END );
-        size_t nLength = ftell( fp );
-        fseek( fp, 0L, SEEK_SET );
-        
-        char* buffer = (char*)aMalloc( nLength + 1 );
-        nLength = fread( buffer, 1, nLength, fp );
-        buffer[ nLength ] = '\0';
-        fclose( fp );
+        int8 line[1024], w1[1024], w2[1024];
 
-        const char* prefix = "!svn/ver/";
-        const char* postfix = "/trunk";
-
-        for (size_t x = strlen( prefix ) + 1; x + strlen( postfix ) <= nLength; ++x)
-        {
-            if (buffer[x] != postfix[0] || memcmp( buffer + x, postfix, sizeof( postfix ) ) != 0)
-                continue;
-
-            size_t y = 0;
-            for (y = x; y > 0; --y)
-                if (!ISDIGIT(buffer[y - 1]))
-                    break;
-
-            if (memcmp( buffer + y - strlen( prefix ), prefix, sizeof( prefix ) ) != 0)
-                continue;
-
-            snprintf(dsp_svn_version, sizeof(dsp_svn_version), "%d", atoi(buffer + y));
-        }
-        
-        aFree( buffer );
-        
-        if (dsp_svn_version[0] != '\0')
-            return dsp_svn_version;
+        fgets(line, 1024, fp);
+        sscanf(line, "%[a-zA-Z0-9] %[^\t\r\n]", w1, w2);
+        snprintf(dsp_git_version, sizeof(dsp_git_version), "%s", w1);
     }
 
-    //
-    // Subversion 1.6 and below..
-    //
-
-    if(*dsp_svn_version)
-		return dsp_svn_version;
-
-	if ((fp = fopen(".svn/entries", "r")) != NULL)
-	{
-		char line[1024];
-		int rev;
-		// Check the version
-		if (fgets(line, sizeof(line), fp))
-		{
-			if(!ISDIGIT(line[0]))
-			{
-				// XML File format
-				while (fgets(line,sizeof(line),fp))
-				{
-					if (strstr(line,"revision=")) break;
-				}
-				if (sscanf(line," %*[^\"]\"%d%*[^\n]", &rev) == 1) 
-				{
-					snprintf(dsp_svn_version, sizeof(dsp_svn_version), "%d", rev);
-				}
-			}
-			else
-			{
-				// Bin File format
-				fgets(line, sizeof(line), fp);		// Get the name
-				fgets(line, sizeof(line), fp);		// Get the entries kind
-				if(fgets(line, sizeof(line), fp))	// Get the rev numver
-				{
-					snprintf(dsp_svn_version, sizeof(dsp_svn_version), "%d", atoi(line));
-				}
-			}
-		}
-		fclose(fp);
-	}
-
-	if(!(*dsp_svn_version))
-	{
-		snprintf(dsp_svn_version, sizeof(dsp_svn_version), "Unknown");
-	}
-	return dsp_svn_version;
+    // If no version was found, mark as unknown..
+    if (!(*dsp_git_version))
+    {
+        snprintf(dsp_git_version, sizeof(dsp_git_version), "Unknown");
+    }
+    
+    return dsp_git_version;
 }
 #endif
 
@@ -260,7 +190,7 @@ const char* get_svn_revision(void)
 
 static void display_title(void)
 {
-	ShowInfo("DarkStar - SVN Revision: " CL_WHITE"%s" CL_RESET".\n", get_svn_revision());
+	ShowInfo("DarkStar - Git Revision Hash: " CL_WHITE"%s" CL_RESET".\n", get_git_revision());
 }
 
 /************************************************************************

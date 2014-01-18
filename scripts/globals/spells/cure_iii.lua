@@ -100,7 +100,7 @@ function onSpellCast(caster,target,spell)
 			local resist = applyResistance(caster,spell,target,caster:getStat(MOD_MND)-target:getStat(MOD_MND),HEALING_MAGIC_SKILL,1.0);
 			dmg = dmg*resist;
 			dmg = addBonuses(caster,spell,target,dmg);
-			dmg = adjustForTarget(target,dmg);
+			dmg = adjustForTarget(target,dmg,spell:getElement());
 			dmg = finalMagicAdjustments(caster,target,spell,dmg);
 			final = dmg;
 			target:delHP(final);

@@ -1001,6 +1001,27 @@ MOD_QUAD_ATTACK				  =0x1AE -- Quadruple attack chance.
 
 MOD_ADDITIONAL_EFFECT         =0x1AF -- All additional effects
 MOD_ENSPELL_DMG_BONUS         =0x1B0
+
+MOD_FIRE_ABSORB               =0x1CB -- (modId = 459)
+MOD_EARTH_ABSORB              =0x1CC -- (modId = 460)
+MOD_WATER_ABSORB              =0x1CD -- (modId = 461)
+MOD_WIND_ABSORB               =0x1CE -- (modId = 462)
+MOD_ICE_ABSORB                =0x1CF-- (modId = 463)
+MOD_LTNG_ABSORB               =0x1D0 -- (modId = 464)
+MOD_LIGHT_ABSORB              =0x1D1 -- (modId = 465)
+MOD_DARK_ABSORB               =0x1D2 -- (modId = 466)
+
+MOD_FIRE_NULL                 =0x1D3 -- (modId = 467)
+MOD_EARTH_NULL                =0x1D4 -- (modId = 468)
+MOD_WATER_NULL                =0x1D5 -- (modId = 469)
+MOD_WIND_NULL                 =0x1D6 -- (modId = 470)
+MOD_ICE_NULL                  =0x1D7 -- (modId = 471)
+MOD_LTNG_NULL                 =0x1D8 -- (modId = 472)
+MOD_LIGHT_NULL                =0x1D9 -- (modId = 473)
+MOD_DARK_NULL                 =0x1DA -- (modId = 474)
+
+MOD_MAGIC_ABSORB              =0x1DB -- (modId = 475)
+MOD_MAGIC_NULL                =0x1DC -- (modId = 476)
 -----------------------------------
 -- Merit Definitions
 -----------------------------------
