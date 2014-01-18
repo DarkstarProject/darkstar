@@ -14,7 +14,7 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function OnMobSkillCheck(target,mob,skill)
-	if(target:isBehind(mob) == true) then
+	if(target:isBehind(mob, 48) == true) then
 		return 1;
     elseif (mob:AnimationSub() ~= 0) then
         return 1;
