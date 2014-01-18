@@ -7102,10 +7102,15 @@ inline int32 CLuaBaseEntity::isBehind(lua_State *L)
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isuserdata(L,1));
 
 	CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L,1);
+    uint8 angle = 42;
+    if (lua_gettop(L) > 1)
+    {
+        angle = lua_tonumber(L, 2);
+    }
 
-    uint8 angle = PLuaBaseEntity->GetBaseEntity()->loc.p.rotation - getangle(PLuaBaseEntity->GetBaseEntity()->loc.p, m_PBaseEntity->loc.p);
+    uint8 turn = PLuaBaseEntity->GetBaseEntity()->loc.p.rotation - getangle(PLuaBaseEntity->GetBaseEntity()->loc.p, m_PBaseEntity->loc.p);
 
-    lua_pushboolean(L, (angle >= 86 && angle <= 170));
+    lua_pushboolean(L, (turn > 128 - angle && turn < 128 + angle));
 
 	return 1;
 }

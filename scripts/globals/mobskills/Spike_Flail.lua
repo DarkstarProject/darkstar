@@ -18,7 +18,7 @@ function OnMobSkillCheck(target,mob,skill)
         return 1;
     elseif (mob:hasStatusEffect(EFFECT_BLOOD_WEAPON)) then
         return 1;
-	elseif(target:isBehind(mob) == false) then
+	elseif(target:isBehind(mob, 48) == false) then
 		return 1;
     elseif (mob:AnimationSub() == 1) then
         return 1;
@@ -29,7 +29,7 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 	local numhits = 1;
 	local accmod = 2;
-	local dmgmod = math.random(8,16);
+	local dmgmod = math.random(5,7);
 	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,2,3,4);
 	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_3_SHADOW);
 	target:delHP(dmg);

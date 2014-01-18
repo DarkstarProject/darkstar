@@ -104,10 +104,10 @@ end;
 -- if TP_DMG_VARIES -> three values are
 
 function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mtp100,mtp200,mtp300)
-	returninfo = {};
+	local returninfo = {};
 
 	--get dstr (bias to monsters, so no fSTR)
-	dstr = mob:getStat(MOD_STR) - target:getStat(MOD_VIT);
+	local dstr = mob:getStat(MOD_STR) - target:getStat(MOD_VIT);
 	if(dstr < -10) then
 		dstr = -10;
 	end
@@ -116,10 +116,10 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 		dstr = 10;
 	end
 
-	lvluser = mob:getMainLvl();
-	lvltarget = target:getMainLvl();
-	acc = mob:getACC();
-	eva = target:getEVA();
+	local lvluser = mob:getMainLvl();
+	local lvltarget = target:getMainLvl();
+	local acc = mob:getACC();
+	local eva = target:getEVA();
 	--apply WSC
 	local base = mob:getWeaponDmg() + dstr; --todo: change to include WSC
 	if(base < 1) then
@@ -127,30 +127,30 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	end
 
 	--work out and cap ratio
-	ratio = mob:getStat(MOD_ATT)/target:getStat(MOD_DEF);
-	if (ratio > 1.3) then
-		ratio = 1.3;
-	end
-	if (ratio < 0.7) then
-		ratio = 0.7;
-	end
+	local ratio = mob:getStat(MOD_ATT)/target:getStat(MOD_DEF);
+    ratio = utils.clamp(ratio, 0, 2);
 
+	local lvldiff = lvluser - lvltarget;
+    if lvldiff < 0 then
+        lvldiff = 0;
+    end;
 
-	lvldiff = lvluser - lvltarget;
-
+    ratio = ratio + lvldiff * 0.05;
+    ratio = utils.clamp(ratio, 0, 4);
+    
 	--work out hit rate for mobs (bias towards them)
-	hitrate = (acc*accmod) - eva + (lvldiff*3) + 85;
+	local hitrate = (acc*accmod) - eva + (lvldiff*3) + 85;
 
 	-- printf("acc: %f, eva: %f, hitrate: %f", acc, eva, hitrate);
 	if (hitrate > 95) then
 		hitrate = 95;
-	elseif (hitrate < 60) then
-		hitrate = 60;
+	elseif (hitrate < 20) then
+		hitrate = 20;
 	end
 
 
 	--work out the base damage for a single hit
-	hitdamage = (base + lvldiff);
+	local hitdamage = (base + lvldiff);
 	if(hitdamage < 1) then
 		hitdamage = 1;
 	end
@@ -158,8 +158,37 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 	hitdamage = hitdamage * dmgmod * MobTPMod(skill:getTP());
 
 	--work out min and max cRatio
-	maxRatio = ratio * 1.2;
-	minRatio = ratio * 0.8;
+	local maxRatio = 1;
+	local minRatio = 0;
+    
+	if(ratio < 0.5) then
+		maxRatio = ratio + 1;
+	elseif((0.5 <= ratio) and (ratio <= 0.7)) then
+		maxRatio = 1;
+	elseif((0.7 < ratio) and (ratio <= 1.2)) then
+		maxRatio = ratio + 0.3;
+	elseif((1.2 < ratio) and (ratio <= 1.5)) then
+        maxRatio = (ratio * 0.25) + ratio;
+	elseif((1.5 < ratio) and (ratio <= 2.625)) then
+        maxRatio = ratio + 0.375;
+	elseif((2.625 < ratio) and (ratio <= 3.25)) then
+        maxRatio = 3;
+    else 
+        maxRatio = ratio;
+    end
+    
+
+	if(ratio < 0.38) then
+		minRatio =  0;
+	elseif((0.38 <= ratio) and (ratio <= 1.25)) then
+		minRatio = ratio * (1176 / 1024) - (448 / 1024);
+	elseif((1.25 < ratio) and (ratio <= 1.51)) then
+		minRatio = 1;
+    elseif ((1.51 < ratio) and (ratio <= 2.44)) then
+        minRatio = ratio * (1176 / 1024) - (775 / 1024);
+    else
+        minRatio = ratio - 0.375;
+    end
 
 	--apply ftp (assumes 1~3 scalar linear mod)
 	if(tpeffect==TP_DMG_BONUS) then
@@ -171,9 +200,9 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 
 	-- start the hits
 	local hitchance = math.random();
-	finaldmg = 0;
-	hitsdone = 1;
-	hitslanded = 0;
+	local finaldmg = 0;
+	local hitsdone = 1;
+	local hitslanded = 0;
 
 	local chance = math.random();
 
