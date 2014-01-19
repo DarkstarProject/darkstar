@@ -1,5 +1,5 @@
 -----------------------------------
--- Spell: Cocoon
+-- Spell: Plasma Charge
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -15,10 +15,8 @@ function OnMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster, target, spell)
-
-	local power = 50; -- Percentage, not amount.
-    
-    local duration = 90;
+        
+    local duration = 50;
 
     if(caster:hasStatusEffect(EFFECT_DIFFUSION)) then
         local diffMerit = caster:getMerit(MERIT_DIFFUSION);
@@ -30,11 +28,8 @@ function onSpellCast(caster, target, spell)
         caster:delStatusEffect(EFFECT_DIFFUSION);
     end
     
-	if(target:addStatusEffect(EFFECT_DEFENSE_BOOST,power,0,duration)) then
+		caster:addStatusEffect(EFFECT_SHOCK_SPIKES,5,0,duration);
 		spell:setMsg(230);
-	else
-		spell:setMsg(75);
-	end
 
     return EFFECT_DEFENSE_BOOST;
 end;
