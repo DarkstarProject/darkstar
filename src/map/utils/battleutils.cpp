@@ -4158,6 +4158,11 @@ uint8 GetSpellAoEType(CBattleEntity* PCaster, CSpell* PSpell)
         }
         else
             return SPELLAOE_RADIAL;
+    if (PSpell->getAOE() == SPELLAOE_DIFFUSION)
+        if (PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_DIFFUSION))
+		    return SPELLAOE_RADIAL;
+	    else
+		    return SPELLAOE_NONE;
     return PSpell->getAOE();
 }
 

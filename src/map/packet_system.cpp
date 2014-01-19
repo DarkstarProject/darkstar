@@ -1470,9 +1470,9 @@ void SmallPacket0x04B(map_session_data_t* session, CCharEntity* PChar, int8* dat
     uint32  msg_offset      = RBUFL(data, (0x10)); // The offset to start obtaining the server message..
     uint32  msg_request_len = RBUFL(data, (0x14)); // The total requested size of send to the client..
 
-    ShowWarning(CL_YELLOW"[SMSG] C:%d U1:%d U2:%d L:%d T:%d S:%d O:%d S:%d\n" CL_RESET,
-        msg_chunk, msg_unknown1, msg_unknown2, msg_language, msg_timestamp, msg_size_total, msg_offset, msg_request_len
-        );
+    //ShowWarning(CL_YELLOW"[SMSG] C:%d U1:%d U2:%d L:%d T:%d S:%d O:%d S:%d\n" CL_RESET,
+    //    msg_chunk, msg_unknown1, msg_unknown2, msg_language, msg_timestamp, msg_size_total, msg_offset, msg_request_len
+    //    );
          
     if (msg_language == 0x02)
         PChar->pushPacket(new CServerMessagePacket(map_config.server_message, msg_language, msg_timestamp, msg_offset));
@@ -4118,7 +4118,8 @@ void SmallPacket0x0E7(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		return;
 
 	if (PChar->getZone() == 0 ||
-		PChar->nameflags.flags & FLAG_GM)
+		PChar->nameflags.flags & FLAG_GM ||
+		PChar->m_GMlevel > 0)
 	{
 		PChar->status = STATUS_SHUTDOWN;
 		PChar->pushPacket(new CServerIPPacket(PChar,1));

@@ -32,7 +32,7 @@ function onTrigger(player,npc)
 	elseif(id == base+9) then 
 		player:startEvent(0x9);
 	elseif(id == base+10) then 
-		player:startEvent(0xA);
+		player:startEvent(0x0A);
 	elseif(id == base+11) then 
 		player:startEvent(0xB);
 	elseif(id == base+12) then 
@@ -107,9 +107,9 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 	
 	if(csid == 0x23 and option == 1) then
-		player:setPos(10,0,-540,128,0x1F); -- to Monarch Linn
-	elseif(csid == 0xA and option == 1) then
-		player:setPos(-539,-30,360,0,0x19); -- back to Misareaux Coast
+		player:setPos(12.527,0.345,-539.602,127,31); -- to Monarch Linn (Retail confirmed)
+	elseif(csid == 0x0A and option == 1) then
+		player:setPos(-538.526,-29.5,359.219,255,25); -- back to Misareaux Coast (Retail confirmed)
 	end;
 	
 end;

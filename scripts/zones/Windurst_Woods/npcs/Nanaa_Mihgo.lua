@@ -153,9 +153,6 @@ function onTrigger(player,npc)
 		else
 			player:startEvent(0x004c); -- standard dialog
 		end
-
-
-		
 		
 		
 	end
@@ -211,15 +208,15 @@ function onEventFinish(player,csid,option)
 		if (player:getFreeSlotsCount() == 0) then 
 			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12514);
 		else 
-		player:addItem(12514);
-		player:messageSpecial(ITEM_OBTAINED,12514);
-		player:completeQuest(WINDURST,AS_THICK_AS_THIEVES);
-		player:setVar("thickAsThievesCS",0);
-		player:setVar("thickAsThievesGrapplingCS",0);
-		player:setVar("thickAsThievesGamblingCS",0);
-		player:delKeyItem(GANG_WHEREABOUTS_NOTE);
-		player:delKeyItem(FIRST_SIGNED_FORGED_ENVELOPE);
-		player:delKeyItem(SECOND_SIGNED_FORGED_ENVELOPE);
+			player:addItem(12514);
+			player:messageSpecial(ITEM_OBTAINED,12514);
+			player:completeQuest(WINDURST,AS_THICK_AS_THIEVES);
+			player:setVar("thickAsThievesCS",0);
+			player:setVar("thickAsThievesGrapplingCS",0);
+			player:setVar("thickAsThievesGamblingCS",0);
+			player:delKeyItem(GANG_WHEREABOUTS_NOTE);
+			player:delKeyItem(FIRST_SIGNED_FORGED_ENVELOPE);
+			player:delKeyItem(SECOND_SIGNED_FORGED_ENVELOPE);
 		end
 	elseif(csid == 0x0200) then  -- start quest "hitting The Marquisate "
 		player:addQuest(WINDURST,HITTING_THE_MARQUISATE);
@@ -235,14 +232,11 @@ function onEventFinish(player,csid,option)
 		-- Add the key item for the mission
 		player:addKeyItem(LAPIS_MONOCLE);
 		player:messageSpecial(KEYITEM_OBTAINED,LAPIS_MONOCLE);
-		-- Grab a random value to mark the correct fossil with
-		local selections = {17588734,17588736,17588737,17588738,17588739,17588740} -- Id's of the fossils that we have to examine
-		random_value = math.random(1,6);
-		player:setVar("MissionStatus_randfoss",selections[random_value]);
 		-- Mark the progress
 		player:setVar("MissionStatus",2);
 	elseif(csid == 0x00a9) then -- Windurst Mission 2-1 continuation
 		player:setVar("MissionStatus",4);
+		player:setVar("MissionStatus_randfoss",0);
 		player:delKeyItem(LAPIS_MONOCLE);
 		player:delKeyItem(LAPIS_CORAL);
 		player:addKeyItem(HIDEOUT_KEY);
