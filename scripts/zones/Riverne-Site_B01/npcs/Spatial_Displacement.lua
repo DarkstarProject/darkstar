@@ -115,9 +115,9 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 	
 	if(csid == 0x21 and option == 1) then
-		player:setPos(10,0,-540,128,0x1F); -- to Monarch Linn
+		player:setPos(12.527,0.345,-539.602,127,31); -- to Monarch Linn (Retail confirmed)
 	elseif(csid == 0xA and option == 1) then
-		player:setPos(-539,-30,360,0,0x19); -- back to Misareaux Coast
+		player:setPos(-538.526,-29.5,359.219,255,25); -- back to Misareaux Coast (Retail confirmed)
 	elseif(csid == 0x11 and option == 0) then -- Go! Go! Gobmuffin quest checks will have to be added here. Mobs are not currently spawning (db issue I think)
 --		loc = Zone(0x1D);
 --		loc:spawnMob("ChemicalCookCh",227, 88, 842,33,nil); -- pop positions are not authentic.

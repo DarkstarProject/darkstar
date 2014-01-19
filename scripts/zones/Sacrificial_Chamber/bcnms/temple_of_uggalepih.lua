@@ -50,7 +50,7 @@ function onEventFinish(player,csid,option)
 	
 	if(csid == 0x7d01) then
 		player:addTitle(BEARER_OF_THE_WISEWOMANS_HOPE);
-		if(option == 1 or player:getCurrentMission(ZILART,THE_TEMPLE_OF_UGGALEPIH)) then
+		if(option == 6 or player:getCurrentMission(ZILART,THE_TEMPLE_OF_UGGALEPIH)) then
 			player:startEvent(0x0007);
 		end
 	end

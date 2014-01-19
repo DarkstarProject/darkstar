@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Spire_of_Dem
--- NPC:  web of recollection
+-- NPC:  Web of Recollections
+-- @pos 0.000 -2.0 247.992 19
 -----------------------------------
 package.loaded["scripts/zones/Spire_of_Dem/TextIDs"] = nil;
 -----------------------------------
@@ -31,8 +32,9 @@ function onTrigger(player,npc)
 	if(EventTriggerBCNM(player,npc))then
 		return 1;
 	else
+		player:messageSpecial(FAINT_SCRAPING);
 		return 1;
-   end
+	end
 	
 end;
 
