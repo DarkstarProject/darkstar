@@ -11,6 +11,7 @@ ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item>. Come back 
 LOGGING_IS_POSSIBLE_HERE = 7298; -- Logging is possible here if you have <item>.
 
 -- Other Texts
+			   RESPONSE = 7286; -- There is no response...
 NOTHING_OUT_OF_ORDINARY = 7336; --There is nothing out of the ordinary here.
 		NOTHING_HAPPENS = 7404; -- Nothing happens...
 

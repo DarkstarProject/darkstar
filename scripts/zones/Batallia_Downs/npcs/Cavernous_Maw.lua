@@ -1,7 +1,7 @@
 -----------------------------------
 -- Cavernous Maw
 -- Teleports Players to Batallia_Downs_S
--- @pos -48 0 435 105
+-- @pos -48 0.1 435 105
 -----------------------------------
 package.loaded["scripts/zones/Batallia_Downs/TextIDs"] = nil;
 -----------------------------------
@@ -54,7 +54,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 
 	if(csid == 0x01f4) then
-		r = math.random(1,3);
+		local r = math.random(1,3);
 		player:addKeyItem(PURE_WHITE_FEATHER);
 		player:messageSpecial(KEYITEM_OBTAINED,PURE_WHITE_FEATHER);
 		player:completeMission(WOTG,CAVERNOUS_MAWS);

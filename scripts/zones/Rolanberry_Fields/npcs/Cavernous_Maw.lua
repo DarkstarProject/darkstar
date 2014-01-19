@@ -55,7 +55,7 @@ function onEventFinish(player,csid,option)
 --print("RESULT:",option);
 	
 	if(csid == 0x01f4) then
-		r = math.random(1,3);
+		local r = math.random(1,3);
 		player:addKeyItem(PURE_WHITE_FEATHER);
 		player:messageSpecial(KEYITEM_OBTAINED,PURE_WHITE_FEATHER);
 		player:completeMission(WOTG,CAVERNOUS_MAWS);

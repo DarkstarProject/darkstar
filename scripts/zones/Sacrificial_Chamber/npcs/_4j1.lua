@@ -4,7 +4,6 @@
 -- @pos -331 0 -300 163
 -------------------------------------
 package.loaded["scripts/zones/Sacrificial_Chamber/TextIDs"] = nil;
-package.loaded["scripts/globals/bcnm"] = nil;
 -------------------------------------
 
 require("scripts/globals/bcnm");
@@ -31,6 +30,8 @@ function onTrigger(player,npc)
 	
 	if(EventTriggerBCNM(player,npc))then
 		return 1;
+	else
+		player:messageSpecial(DOOR_SHUT);
 	end
 	
 end;

@@ -9,6 +9,7 @@ package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
 
 require("scripts/globals/besieged");
 require("scripts/globals/teleports");
+require("scripts/globals/missions");
 require("scripts/zones/Mount_Zhayolm/TextIDs");
 
 -----------------------------------
@@ -24,13 +25,21 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(hasRunicPortal(player,4) == 1) then
-		player:startEvent(0x006d);
+	if(player:getCurrentMission(TOAU)== IMMORTAL_SENTRIES) then
+		if (player:getVar("TOAUM2") == 1)then
+			player:startEvent(0x006F);
+		else
+			player:startEvent(0x006D);
+		end
+	elseif(player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES)then
+		if(hasRunicPortal(player,4) == 1) then
+			player:startEvent(0x006D);
+		else
+			player:startEvent(0x006F);
+		end
 	else
-		player:startEvent(0x006f);
-		
+		player:messageSpecial(RESPONSE);
 	end
-	
 end; 
 
 -----------------------------------
@@ -50,10 +59,13 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	
-	if(option == 1) then
-		if(csid == 0x006f) then
-			player:addNationTeleport(AHTURHGAN,16);
+	if(csid == 0x006F and option == 1) then
+		if (player:getVar("TOAUM2") == 1) then
+			player:setVar("TOAUM2",2);
 		end
+		player:addNationTeleport(AHTURHGAN,16);
+		toChamberOfPassage(player);
+	elseif(csid == 0x006D and option == 1) then
 		toChamberOfPassage(player);
 	end
 	

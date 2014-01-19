@@ -1849,10 +1849,18 @@ INSERT INTO `mob_skill` VALUES (1497,171,1185,'Hysteric_Barrage',0,7.0,2000,1500
 INSERT INTO `mob_skill` VALUES (1502,182,1190,'Tail_Slap',4,10.0,2000,1500,4,0,0,3);
 -- INSERT INTO `mob_skill` VALUES (1503,171,1191,'Hypnotic_Sway',0,10,2000,2000,4,0,0,0); 
 
--- INSERT INTO `mob_skill` VALUES (1557,?,?,'Calcifying_Deluge',2,15,2000,2000,4,0,0,0);  -- Medusa only
--- INSERT INTO `mob_skill` VALUES (1558,?,?,'Gorgon_Dance',1,15,2000,2000,4,0,0,0);  -- Medusa only
--- INSERT INTO `mob_skill` VALUES (1556,?,?,'Pinning_Shot',2,15,2000,2000,4,0,0,0);  -- Medusa only
--- INSERT INTO `mob_skill` VALUES (1553,?,?,'Shadow_Thrust',0,10,2000,2000,4,0,0,0);  -- Medusa only
+
+-- MEDUSA
+
+-- INSERT INTO `mob_skill` VALUES (1557,?,1334,'Calcifying_Deluge',2,15,2000,2000,4,0,0,0);  
+-- INSERT INTO `mob_skill` VALUES (1558,?,1339,'Gorgon_Dance',1,15,2000,2000,4,0,0,0);  
+-- INSERT INTO `mob_skill` VALUES (1556,?,1337,'Pinning_Shot',2,15,2000,2000,4,0,0,0);  
+-- INSERT INTO `mob_skill` VALUES (1553,?,1335,'Shadow_Thrust',0,10,2000,2000,4,0,0,0);
+-- or 1338
+-- INSERT INTO `mob_skill` VALUES (1502,?,1336,'Tail_Slap',4,10.0,2000,1500,4,0,0,3);
+-- 1340 1341 call for help reinforcement by adds or maybe drawn in. 1338 is an 
+
+
 -- INSERT INTO `mob_skill` VALUES (?,?,?,'Belly_Dance',0,10,2000,2000,4,0,0,0);  -- Lamia NM only
 
 -- Merrow
@@ -2110,12 +2118,12 @@ INSERT INTO `mob_skill` VALUES (1534,62,1228,'Gates_of_Hades', 1, 20.0, 2000, 15
 -- INSERT INTO `mob_skill` VALUES (1655,378,1125,'Ruinous_Omen',1,30,2000,0,4,0, 0, 0);
 
 -- Gurfurlur the Menacing
--- INSERT INTO `mob_skill` VALUES (1546,?,?,'Sledgehammer',4,12,2000,0,4,0, 0, 3);
--- INSERT INTO `mob_skill` VALUES (1547,?,?,'Head_Snatch',0,7,2000,0,4,0, 0, 3);
--- INSERT INTO `mob_skill` VALUES (1548,?,?,'Haymaker',4,12,2000,0,4,0, 0, 3);
--- INSERT INTO `mob_skill` VALUES (1549,?,?,'Incessant_Fists',0,7,2000,0,4,0, 0, 3);
--- INSERT INTO `mob_skill` VALUES (1550,?,?,'Arcane_Stomp',1,25,2000,0,?,0, 0, 3);
--- INSERT INTO `mob_skill` VALUES (1551,?,?,'Pleiades_Ray',1,10,2000,0,4,0, 0, 3);
+INSERT INTO `mob_skill` VALUES (1546,326,1351,'Sledgehammer',4,12,2000,0,4,0, 0, 3);
+INSERT INTO `mob_skill` VALUES (1547,326,1352,'Head_Snatch',0,7,2000,0,4,0, 0, 3);
+INSERT INTO `mob_skill` VALUES (1548,326,1353,'Haymaker',4,12,2000,0,4,0, 0, 3);
+INSERT INTO `mob_skill` VALUES (1549,326,1354,'Incessant_Fists',0,7,2000,0,4,0, 0, 3);
+INSERT INTO `mob_skill` VALUES (1550,326,1355,'Arcane_Stomp',1,25,2000,0,1,0, 0, 3); -- corected ? to 1
+INSERT INTO `mob_skill` VALUES (1551,326,1356,'Pleiades_Ray',1,10,2000,0,4,0, 0, 3);
 
 -- Gulool Ja Ja (Mamool Ja Warrior Type)
 -- NOTES: Unsure if his weapon can be broken or not.

@@ -26,7 +26,6 @@ function onTrigger(player,npc)
 	
 	local hasAssault = hasAssaultOrders(player);
 	
-	
 	if(hasAssault > 0) then
 		player:startEvent(hasAssault);
 	else
@@ -59,17 +58,23 @@ function onEventFinish(player,csid,option)
 	
 	if(csid == 0x0065) then
 		if(option == 101) then
+			player:delKeyItem(RUNIC_PORTAL_USE_PERMIT);
 			AzouphIsleStagingPoint(player)
 		elseif(option == 102) then
+			player:delKeyItem(RUNIC_PORTAL_USE_PERMIT);		
 			DvuccaIsleStagingPoint(player);
 		elseif(option == 103) then
-			MamoolJaStagingPoint(player);
+			player:delKeyItem(RUNIC_PORTAL_USE_PERMIT);		
+			MamoolJaStagingPoint(player);		
 		elseif(option == 104) then
-			HalvungStagingPoint(player);
+			player:delKeyItem(RUNIC_PORTAL_USE_PERMIT);		
+			HalvungStagingPoint(player);		
 		elseif(option == 105) then
-			IlrusiAtollStagingPoint(player);
+			player:delKeyItem(RUNIC_PORTAL_USE_PERMIT);		
+			IlrusiAtollStagingPoint(player);		
 		elseif(option == 106) then
-			NzyulIsleStagingPoint(player);
+			player:delKeyItem(RUNIC_PORTAL_USE_PERMIT);		
+			NzyulIsleStagingPoint(player);	
 		end		
 	elseif(csid == 0x0078 and option == 1 )then--LEUJAOAM_ASSUALT_ORDERS
 	   AzouphIsleStagingPoint(player)
