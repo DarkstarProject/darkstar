@@ -2122,7 +2122,7 @@ INSERT INTO `mob_skill` VALUES (1546,326,1351,'Sledgehammer',4,12,2000,0,4,0, 0,
 INSERT INTO `mob_skill` VALUES (1547,326,1352,'Head_Snatch',0,7,2000,0,4,0, 0, 3);
 INSERT INTO `mob_skill` VALUES (1548,326,1353,'Haymaker',4,12,2000,0,4,0, 0, 3);
 INSERT INTO `mob_skill` VALUES (1549,326,1354,'Incessant_Fists',0,7,2000,0,4,0, 0, 3);
-INSERT INTO `mob_skill` VALUES (1550,326,1355,'Arcane_Stomp',1,25,2000,0,?,0, 0, 3);
+INSERT INTO `mob_skill` VALUES (1550,326,1355,'Arcane_Stomp',1,25,2000,0,1,0, 0, 3); -- corected ? to 1
 INSERT INTO `mob_skill` VALUES (1551,326,1356,'Pleiades_Ray',1,10,2000,0,4,0, 0, 3);
 
 -- Gulool Ja Ja (Mamool Ja Warrior Type)
