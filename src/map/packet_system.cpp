@@ -4118,7 +4118,8 @@ void SmallPacket0x0E7(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		return;
 
 	if (PChar->getZone() == 0 ||
-		PChar->nameflags.flags & FLAG_GM)
+		PChar->nameflags.flags & FLAG_GM ||
+		PChar->m_GMlevel > 0)
 	{
 		PChar->status = STATUS_SHUTDOWN;
 		PChar->pushPacket(new CServerIPPacket(PChar,1));
