@@ -22,6 +22,7 @@ function onSpellCast(caster,target,spell)
 	local divisor = 0.6666;
 	local constant = -45;
 	local power = getCurePowerOld(caster);
+
 	if(power > 459) then
 		divisor = 1.5;
 		constant = 144.6666;
