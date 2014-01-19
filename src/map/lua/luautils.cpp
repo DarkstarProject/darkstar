@@ -113,6 +113,7 @@ int32 init()
 	lua_register(LuaHandle,"DeterMob",luautils::DeterMob);
 	lua_register(LuaHandle,"UpdateNMSpawnPoint",luautils::UpdateNMSpawnPoint);
 	lua_register(LuaHandle,"SetDropRate",luautils::SetDropRate);
+    lua_register(LuaHandle,"NearLocation",luautils::nearLocation);
 
 	lua_register(LuaHandle,"getCorsairRollEffect",luautils::getCorsairRollEffect);
     lua_register(LuaHandle,"getSpell",luautils::getSpell);
@@ -3635,8 +3636,8 @@ int32 OnBcnmEnter(CCharEntity* PChar, CInstance* PInstance){
 	onBcnmLeave - callback when you leave a BCNM via multiple means.
 	The method of leaving is given by the LeaveCode as follows:
 	1 - Leaving via burning circle e.g. "run away"
-	2 - Leaving via warp or d/c
-	3 - Leaving via win
+    2 - Leaving via win
+	3 - Leaving via warp or d/c
 	4 - Leaving via lose
 	This callback is executed for everyone in the BCNM when they leave
 	so if they leave via win, this will be called for each char.
@@ -3967,6 +3968,42 @@ int32 UpdateServerMessage(lua_State* L)
         map_config.server_message_fr += (char)0x00;
 
     return 0;
+}
+
+inline int32 nearLocation(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
+
+    position_t center;
+    lua_getfield(L, 1, "x");
+    center.x = lua_tonumber(L, -1);
+    lua_getfield(L, 1, "y");
+    center.y = lua_tonumber(L, -1);
+    lua_getfield(L, 1, "z");
+    center.z = lua_tonumber(L, -1);
+    lua_getfield(L, 1, "rot");
+    center.rotation = lua_tonumber(L, -1);
+    
+    float radius = lua_tonumber(L, 2);
+    float theta = lua_tonumber(L, 3);
+
+    position_t pos = nearPosition(center, radius, theta);
+
+    lua_createtable(L, 3, 0);
+    int8 newTable = lua_gettop(L);
+
+    lua_pushnumber(L, pos.x);
+    lua_setfield(L, newTable, "x");
+
+    lua_pushnumber(L, pos.y);
+    lua_setfield(L, newTable, "y");
+
+    lua_pushnumber(L, pos.z);
+    lua_setfield(L, newTable, "z");
+
+    return 1;
 }
 
 }; // namespace luautils

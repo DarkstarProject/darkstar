@@ -29,7 +29,7 @@ function onTrigger(player,npc)
 		player:messageSpecial(PROTECTED_BY_UNKNOWN_FORCE);
 	end
 	
-	if(guardian ~= nil and guardian:getHP() > 0 and guardian:hasTarget() == false) then
+	if(guardian ~= nil and guardian:getHP() > 0 and guardian:getTarget() == nil) then
 		guardian:updateEnmity(player);
 	end
 	

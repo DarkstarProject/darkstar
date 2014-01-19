@@ -42,6 +42,10 @@ function onTrigger(player,npc)
 		player:startEvent(0x00aa);
 	elseif(ZilartMission == ARK_ANGELS) then
 		player:startEvent(0x00ab);
+    elseif(ZilartMission == THE_CELESTIAL_NEXUS) then
+        player:startEvent(0x00ad);
+    elseif(ZilartMission == AWAKENING) then
+        player:startEvent(0x00b1);
 	end
 	
 end;

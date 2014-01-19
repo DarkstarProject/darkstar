@@ -2751,11 +2751,11 @@ INSERT INTO `mob_skill` VALUES (744,236,701,'Cronos_Sling_Lambda',4,15.0,4000,15
 INSERT INTO `mob_skill` VALUES (745,236,702,'Phase_Shift_3',1,30.0,5000,1500,4,0,0,0);
 
 -- eald narche
-INSERT INTO `mob_skill` VALUES (728,394,687,'Vortex',1,20.0,2000,1000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (729,394,686,'Stellar_burst',1,7.0,2000,1000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (750,394,707,'Omega_javelin',0,15.0,2000,1000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (732,394,689,'Eald2_Warp_In',0,30.0,1500,0,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (733,394,690,'Eald2_Warp_Out',0,30.0,1500,0,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (729,394,686,'Stellar_burst',2,7.0,5000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (730,394,687,'Vortex',2,20.0,5000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (750,394,707,'Omega_javelin',0,15.0,4000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (732,394,689,'Eald2_Warp_In',0,22.0,500,0,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (733,394,690,'Eald2_Warp_Out',0,22.0,500,0,1,0,0,0);
 
 -- Avatar Ixon
 -- INSERT INTO `mob_skill` VALUES (2078,39,1612,'Wrath_of_Zeus',1,10.0,2000,1500,12,0, 0, 0);

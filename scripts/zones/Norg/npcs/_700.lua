@@ -41,7 +41,7 @@ function onTrigger(player,npc)
 	elseif(currentMission == THE_PIRATE_S_COVE and player:getVar("MissionStatus") == 1) then
 		player:startEvent(0x0062); -- Bastok Mission 6-2
 	elseif(ZilartMission == THE_SEALED_SHRINE and ZilartStatus == 0 and DMEarrings <= NUMBER_OF_DM_EARRINGS) then
-			player:startEvent(0x00ac);
+		player:startEvent(0x00ac);
 	else
 		player:startEvent(0x0005);
 	end
@@ -68,8 +68,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+printf("CSID: %u",csid);
+printf("RESULT: %u",option);
 	
 	if(csid == 0x0002 and option == 0) then
 		player:completeMission(ZILART,WELCOME_TNORG);
@@ -83,7 +83,7 @@ function onEventFinish(player,csid,option)
 		player:addMission(ZILART,THE_MITHRA_AND_THE_CRYSTAL);
 	elseif(csid == 0x0062) then
 		player:setVar("MissionStatus",2);
-	elseif(csid == 0x00ac) then
+	elseif(csid == 0x00ac and bit.band(option, 0x40000000) == 0) then
 		player:setVar("ZilartStatus",1);
 	end
 	

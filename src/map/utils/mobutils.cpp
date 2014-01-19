@@ -796,11 +796,6 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
         case SYSTEM_UNDEAD:   PMob->addModifier(MOD_ARCANA_KILLER,   5); break;
         case SYSTEM_VERMIN:   PMob->addModifier(MOD_PLANTOID_KILLER, 5); break;
       }
-
-     // this will save the state of mods and so it can be restored on spawn
-     // this lets scripts modify the values without worrying about resetting them
-     PMob->saveModifiers();
-     PMob->saveMobModifiers();
 }
 
 /*

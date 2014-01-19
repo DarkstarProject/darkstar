@@ -58,6 +58,7 @@ public:
 	uint32	pollTimeLeft(uint16 bcnmid);							// returns the shortest time left of all 3 instances of the given BCNM ID
 	void	openTreasureChest(CCharEntity* PChar);
 	void	wipeInstance(CInstance* inst);
+    CInstance* getInstance(CCharEntity*);                           // returns the instance a player is in
 	
 	int     SpecialInstanceAddPlayer(uint16 id, CCharEntity* PChar);
 	//Dynamis Functions
