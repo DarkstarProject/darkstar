@@ -108,7 +108,7 @@ INSERT INTO `mob_family_mods` VALUES (394,41,732,1);
 INSERT INTO `mob_family_mods` VALUES (394,42,733,1);
 INSERT INTO `mob_family_mods` VALUES (394,43,2,1);
 INSERT INTO `mob_family_mods` VALUES (150,4,30,1);
-INSERT INTO `mob_family_mods` VALUES (150,4,30,1);
+INSERT INTO `mob_family_mods` VALUES (394,4,30,1);
 INSERT INTO `mob_family_mods` VALUES (236,4,30,1);
 
 /*!40000 ALTER TABLE `mob_family_mods` ENABLE KEYS */;
