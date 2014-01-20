@@ -31,7 +31,7 @@
 CCharHealthPacket::CCharHealthPacket(CCharEntity* PChar)
 {
 	this->type = 0xDF;
-	this->size = 0x0E;
+	this->size = 0x10;
 
 	WBUFL(data,(0x04)-4) = PChar->id;
 
