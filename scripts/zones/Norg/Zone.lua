@@ -28,8 +28,11 @@ function onZoneIn(player,prevZone)
 
 	if((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
 		player:setPos(-19.238,-2.163,-63.964,187);
-	elseif(player:getCurrentMission(ZILART) == THE_NEW_FRONTIER) then
+    end
+	if(player:getCurrentMission(ZILART) == THE_NEW_FRONTIER) then
 		cs = 0x0001;
+    elseif(player:getCurrentMission(ZILART) == AWAKENING and player:getVar("ZilartStatus") == 0 or player:getVar("ZilartStatus") == 2) then
+        cs = 0x00B0;
 	end
 
 	return cs;
@@ -65,6 +68,8 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_NORG);
 		player:completeMission(ZILART,THE_NEW_FRONTIER);
 		player:addMission(ZILART,WELCOME_TNORG);
-	end
+    elseif(csid == 0x00B0) then
+        player:setVar("ZilartStatus", player:getVar("ZilartStatus")+1);
+    end
 
 end;

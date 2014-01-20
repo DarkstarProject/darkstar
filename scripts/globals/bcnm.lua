@@ -30,6 +30,7 @@ itemid_bcnmid_map = { 6,{0,0},--Bearclaw_Pinnacle
 					 168,{0,0}, -- Chamber of Oracles
 					 170,{0,0}, -- Full Moon Fountain
 					 180,{1550,293}, -- LaLoff Amphitheater
+                     181,{0.0}, -- The Celestial Nexus
 					 201,{1546,418,1174,417}, -- Cloister of Gales
 					 202,{1548,450,1172,449}, -- Cloister of Storms
 					 203,{1545,482,1171,481}, -- Cloister of Frost
@@ -66,6 +67,7 @@ bcnmid_param_map = {6,{640,0},
 					170,{224,0},
 					179,{256,0},
 					180,{293,5,288,0,289,1,290,2,291,3,292,4},
+                    181,{320,0},
 					201,{416,0,417,1,418,2},
 					202,{448,0,449,1,450,2},
 					203,{480,0,481,1,482,2},
@@ -529,6 +531,11 @@ function checkNonTradeBCNM(player,npc)
 				mask = GetBattleBitmask(292,Zone,1);
 				player:setVar("trade_bcnmid",292);
 			end
+		end
+    elseif(Zone == 181) then -- The Celestial Nexus
+		if(player:getCurrentMission(ZILART) == THE_CELESTIAL_NEXUS) then -- Zilart Mission 16
+			mask = GetBattleBitmask(320,Zone,1);
+			player:setVar("trade_bcnmid",320);
 		end
 	elseif(Zone == 201) then -- Cloister of Gales
 		if(player:hasKeyItem(TUNING_FORK_OF_WIND)) then -- Trial by Wind

@@ -31,7 +31,7 @@ function onSpellCast(caster,target,spell)
 
 		local merits = caster:getMerit(MERIT_SLOW_II);
 		--Power.
-		local power = (potency  + (merits * 10)) / 1024;
+		local power = (potency  + (merits * 10));
 
 		--Duration, including resistance.
 		local duration = 180 * applyResistance(caster,spell,target,dMND,35,bonus);
