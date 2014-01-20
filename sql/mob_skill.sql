@@ -481,7 +481,7 @@ INSERT INTO `mob_skill` VALUES (666,125,143,'Blind_Vortex', 0, 7.0, 2000, 1500, 
 INSERT INTO `mob_skill` VALUES (667,125,144,'Giga_Scream', 0, 7.0, 2000, 1000, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (668,125,145,'Dread_Dive', 0, 7.0, 2000, 1500, 4, 0, 0, 2);
 INSERT INTO `mob_skill` VALUES (669,125,146,'Feather_Barrier', 0, 7.0, 2000, 1500, 1, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (670,125,147,'Stormwind', 1, 15.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (670,125,147,'Stormwind', 1, 15.0, 6000, 1500, 4, 0, 0, 0); -- Animation times may very. 
 
 -- INSERT INTO `mob_skill` VALUES (143,?,143,'Scratch', 0, 7.0, 2000, 1500, 4, 0, 0, 0); -- Used in place of Blind Vortex by certain NM.
 -- INSERT INTO `mob_skill` VALUES (144,?,144,'Triple_Attack', 0, 7.0, 2000, 1500, 4, 0, 0, 0); -- Used in place of Giga Scream by certain NM.
