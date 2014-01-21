@@ -221,6 +221,9 @@ struct currency_t
         };
         uint8 echelontrophies[5];
     };
+    uint8 cavepoints, idtags, opcredits;
+    uint32 traverserstones, voidstones, kupofriedcorundums;
+    uint8 imprimaturs, pheromonesacks;
 };
 
 /************************************************************************

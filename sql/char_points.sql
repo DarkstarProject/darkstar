@@ -96,6 +96,14 @@ CREATE TABLE `char_points` (
   `third_echelon_trophy` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `second_echelon_trophy` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `first_echelon_trophy` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `cave_points` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `id_tags` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `op_credits` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `traverser_stones` int(10) unsigned NOT NULL DEFAULT '0',
+  `voidstones` int(10) unsigned NOT NULL DEFAULT '0',
+  `kupofried_corundums` int(10) unsigned NOT NULL DEFAULT '0',
+  `imprimaturs` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `pheromone_sacks` tinyint(3) unsigned NOT NULL DEFAULT '0',
 
   PRIMARY KEY (`charid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
