@@ -585,6 +585,7 @@ CInstance* CInstanceHandler::getInstance(CCharEntity* PChar)
         if (m_Instances[i] != NULL)
             if (m_Instances[i]->isPlayerInBcnm(PChar))
                 return m_Instances[i];
+    return NULL;
 }
 
 uint32 CInstanceHandler::pollTimeLeft(uint16 id){
