@@ -35,7 +35,7 @@ CCharAbilitiesPacket::CCharAbilitiesPacket(CCharEntity* PChar)
 	this->type = 0xAC;
 	this->size = 0x42;
 
-	memcpy(data+(0x06)-4, PChar->m_Abilities,    48);
+	memcpy(data+(0x06)-4, PChar->m_Abilities,    46);
 	memcpy(data+(0x34)-4, PChar->m_TraitList,    16);
     memcpy(data+(0x44)-4, PChar->m_PetCommands,  32);
 	memcpy(data+(0x64)-4, PChar->m_WeaponSkills, 32);
