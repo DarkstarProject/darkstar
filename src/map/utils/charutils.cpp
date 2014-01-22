@@ -3329,21 +3329,28 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
 		PChar->jobs.exp[PChar->GetMJob()] += exp;
 	}
 
-	// Raise exp shouldn't count toward these things, so we have to exclude it.
-	if (!expFromRaise) {
-		conquest::GainInfluencePoints(PChar);
-		conquest::AddConquestPoints(PChar, exp);
+    if (!expFromRaise)
+    {
+        // Add influence for the players region..
+        conquest::GainInfluencePoints(PChar);
 
-		//TODO: Only add IS if player has Saction
-		//TODO: Killing mobs != gaining Zeni
-		if(PChar->getZone() >= 48 && PChar->getZone() <= 79)
-		{
-			PChar->m_currency.imperialstanding += (exp*0.1f); // 10%
-		//	PChar->RegionPoints[10] += (exp*0.1f); // 10%
-			PChar->pushPacket(new CConquestPacket(PChar));
-		}
-	}
+        REGIONTYPE region = PChar->loc.zone->GetRegionID();
 
+        // Should this user be awarded conquest points..
+        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) &&
+            (region >= 0 && region <= 22))
+        {
+            conquest::AddConquestPoints(PChar, exp);
+        }
+
+        // Should this user be awarded imperial standing..
+        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SANCTION) &&
+            (region >= 28 && region <= 32))
+        {
+            PChar->m_currency.imperialstanding += (exp * 0.1f);
+            PChar->pushPacket(new CConquestPacket(PChar));
+        }
+    }
 
 	//player levels up
     if ((currentExp + exp) >= GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) && onLimitMode == false)
