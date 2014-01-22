@@ -47,7 +47,6 @@ function onRegionEnter(player,region)
         region:AddCount( math.abs( region:GetCount() ) );
     end
 	
-    print(region:GetRegionID());
 	switch (region:GetRegionID()): caseof		
 	{		
 		[1] = function (x)  -- Red Circle		
