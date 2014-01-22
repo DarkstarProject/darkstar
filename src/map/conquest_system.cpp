@@ -27,7 +27,7 @@
 
 #include "lua/luautils.h"
 
-int32 g_Conquest[19][7];
+int32 g_Conquest[46][7];
 
 /************************************************************************
 *                                                                       *
@@ -93,12 +93,14 @@ namespace conquest
     *						                                                *
     ************************************************************************/
 
-	void GainInfluencePoints(CCharEntity* PChar)
-	{
-		REGIONTYPE region = PChar->loc.zone->GetRegionID();
+    void GainInfluencePoints(CCharEntity* PChar)
+    {
+        REGIONTYPE region = PChar->loc.zone->GetRegionID();
+        if (region == REGIONTYPE::REGION_UNKNOWN)
+            return;
 
-		g_Conquest[region][PChar->profile.nation + 2] += 1;
-	}
+        g_Conquest[region][PChar->profile.nation + 2] += 1;
+    }
 
 	/************************************************************************
     *    LoseInfluencePoints                                                *
