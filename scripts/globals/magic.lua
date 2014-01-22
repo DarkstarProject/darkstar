@@ -710,7 +710,10 @@ function getSkillLvl(rank,level)
     dmg = utils.dmgTaken(target, dmg);
     dmg = utils.magicDmgTaken(target, dmg);
 
-    dmg = dmg - target:getMod(MOD_PHALANX);
+	if (dmg > 0) then
+		dmg = dmg - target:getMod(MOD_PHALANX);
+		utils.clamp(dmg, 0, 99999);
+	end
 
     --handling stoneskin
     dmg = utils.stoneskin(target, dmg);
@@ -735,21 +738,24 @@ function getSkillLvl(rank,level)
 
 function finalMagicNonSpellAdjustments(caster,target,ele,dmg)
 
-    --TODO: ABSORB ELEMENT (just reverse damage number, script should handle message change)
     dmg = utils.dmgTaken(target, dmg);
     dmg = utils.magicDmgTaken(target, dmg);
 
-    dmg = dmg - target:getMod(MOD_PHALANX);
-    if(dmg < 0) then
-        dmg = 0;
-    end
+	if (dmg > 0) then
+		dmg = dmg - target:getMod(MOD_PHALANX);
+		utils.clamp(dmg, 0, 99999);
+	end
 
     --handling stoneskin
     dmg = utils.stoneskin(target, dmg);
 
     dmg = utils.clamp(dmg, -99999, 99999);
     
-    target:delHP(dmg);
+    if (dmg < 0) then
+        target:addHP(-dmg);
+    else
+        target:delHP(dmg);
+    end
     --Not updating enmity from damage, as this is primarily used for additional effects (which don't generate emnity)
     -- in the case that updating enmity is needed, do it manually after calling this
     --target:updateEnmityFromDamage(caster,dmg);
