@@ -102,14 +102,14 @@ function utils.thirdeye(target)
 end
 
 function utils.dmgTaken(target, dmg)
-
     local resist = 1 + (target:getMod(MOD_DMG) / 100);
 
     if(resist < 0.5) then
         resist = 0.5;
     end
 
-    return dmg * resist;
+    local new_dmg = dmg * resist;
+    return utils.clamp(new_dmg, 0, 999999);
 end;
 
 function utils.breathDmgTaken(target, breathDmg)
