@@ -484,6 +484,10 @@ void CAIPetDummy::ActionAbilityFinish(){
             ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmityFromDamage(m_PPet, Action.param);
         }
 
+        // If we dealt damage.. we should wake up our target..
+        if (m_PMobSkill->isDamageMsg() && Action.param > 0 && PTarget->StatusEffectContainer != NULL)
+            PTarget->StatusEffectContainer->WakeUp();
+
 		m_PPet->m_ActionList.push_back(Action);
 	}
 
