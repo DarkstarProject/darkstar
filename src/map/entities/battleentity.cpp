@@ -187,7 +187,7 @@ bool CBattleEntity::Rest(float rate)
 
 int16 CBattleEntity::GetWeaponDelay(bool tp)
 {
-	if (StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS))
+	if (StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS) && !tp)
 	{
 		return 1700;
 	}
