@@ -140,7 +140,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 						WBUFB(data,(0x21)-4) |= PMob->m_CallForHelp;
 						WBUFB(data,(0x27)-4) = PMob->m_name_prefix;
 						WBUFL(data,(0x2C)-4) = PMob->m_OwnerID.id;
-						//set bit0 to 1 to make HP bars invisible e.g. Yilgeban, another bit somewhere controls mob targetability
+						//set to 1 to make HP bars invisible e.g. Yilgeban, 8 to make untargetable
 						//WBUFB(data,(0x22)-4) = 0;
 
 						if (PMob->PMaster != NULL && PMob->PMaster->objtype == TYPE_PC)

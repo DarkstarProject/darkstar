@@ -26,14 +26,12 @@ end;
 function onTrigger(player,npc)
 
 	local X = player:getXPos();
-	local Y = player:getYPos();
 	local Z = player:getZPos();
-	local npcID = npc:getID();
 	local LostForWords_Status = player:getVar("MissionStatus");
 	local randfoss = player:getVar("MissionStatus_randfoss");
 
-	if(LostForWords_Status == 2 or LostForWords_Status == 3) then
-		if (randfoss == 0) then
+	if((LostForWords_Status == 2 or LostForWords_Status == 3) and (player:getCurrentMission(WINDURST) == LOST_FOR_WORDS)) then
+		if ((randfoss == 0) or (randfoss > 6)) then -- added a check to clear out old NPC IDs set on the Variable
 			local rand = math.random(1,6);
 			player:setVar("MissionStatus_randfoss",rand);
 		end

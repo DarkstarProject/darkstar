@@ -1,7 +1,6 @@
-
 -----------------------------------
 -- Area: Monarch_Linn
--- NPC:  spatial displacement
+-- NPC:  Spatial Displacement
 -- @pos -35 -1 -539 31
 -----------------------------------
 package.loaded["scripts/zones/Monarch_LinnTextIDs"] = nil;
@@ -29,20 +28,27 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-	local npcid = npc:getID();
-	--printf("npcid : %u",npcid);
+	--printf("npcID : %u",npcID);
 	
-	if(npcid == 16904288 or npcid == 16904293) then
-		if (player:getPreviousZone() == 29) then
-			player:setPos(-534,-20,501,212,29); -- Riverne B
-		else
-			player:setPos(-507,-8,-384,88,30); -- Riverne A
+	local npcID = npc:getID();
+	local X = player:getXPos();
+	local Z = player:getZPos();
+	
+	
+	if (X > 12.934 and X < 24.934) then
+		if (player:getPreviousZone() == 30) then
+			player:startEvent(0x0B); -- To Riv Site A
+		elseif (player:getPreviousZone() == 29) then
+			player:startEvent(0x0A); -- To Riv Site B
 		end
-	elseif(npcid == 16904292 or npcid == 16904291 or npcid == 16904290)then
+	elseif ((X > -524.521 and X < -512.521) or (X > 75.524 and X < 87.524) or (X > 675.271 and X < 687.271)) then
 		player:startEvent(0x7d03);  -- leave the battlefield
+	elseif (X > -25.684 and X < -13.684) then -- post-battlefield exit
+		player:startEvent(0x0007);
 	elseif(EventTriggerBCNM(player,npc))then  -- enter the battlefield
 		return 1;
+	else
+		player:messageSpecial(GLOWING_MIST); -- needs confirmation
 	end
 	
 end;
@@ -69,7 +75,13 @@ function onEventFinish(player,csid,option)
 --printf("onFinish CSID: %u",csid);
 --printf("onFinish RESULT: %u",option);
 	
-	if(EventFinishBCNM(player,csid,option))then
+	if (csid == 0x0B and option == 1) then
+		player:setPos(-508.582,-8.471,-387.670,92,30); -- To Riv Site A (Retail confirmed)
+	elseif (csid == 0x0A and option == 1) then
+		player:setPos(-533.690,-20.5,503.656,224,29); -- To Riv Site B (Retail confirmed)
+	elseif (csid == 0x0007 and option ==1) then
+		player:setPos(-538.526,-29.5,359.219,255,25); -- back to Misareaux Coast (Retail confirmed)
+	elseif(EventFinishBCNM(player,csid,option))then
 		return;
 	end
 	

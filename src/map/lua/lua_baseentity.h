@@ -132,6 +132,7 @@ public:
 	int32 getZPos(lua_State*);				// Get Entity Z position
 	int32 getRotPos(lua_State*);			// Get Entity Rot position
     int32 setPos(lua_State*);				// Set Entity position (x,y,z,rot) or (x,y,z,rot,zone)
+    int32 teleport(lua_State*);             // Set Entity position (without entity despawn/spawn packets)
     int32 getPos(lua_State*);				// Get Entity position (x,y,z)
 	int32 getSpawnPos(lua_State*);          // Get Mob spawn position (x,y,z)
 	int32 getZone(lua_State*);				// Get Entity zone
@@ -474,7 +475,7 @@ public:
 	int32 setSpellList(lua_State*);
 
 	int32 hasValidJugPetItem(lua_State*);
-	int32 hasTarget(lua_State*);
+	int32 getTarget(lua_State*);
 	int32 setBattleSubTarget(lua_State*);
 	int32 hasTPMoves(lua_State*);
 	int32 getMaster(lua_State*);
@@ -506,6 +507,8 @@ public:
 
     int32 initNpcAi(lua_State* L);
     int32 isNM(lua_State* L);
+    int32 setUnkillable(lua_State* L);
+    int32 getInstance(lua_State* L);
 };
 
 #endif

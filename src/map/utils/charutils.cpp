@@ -641,7 +641,8 @@ void LoadChar(CCharEntity* PChar)
 							past_bastok_tp, past_windurst_tp, allied_notes, bayld, kinetic_unit, obsidian_fragment, \
                             lebondopt_wing, mweya_plasm, cruor, resistance_credit, dominion_note, \
                             fifth_echelon_trophy, fourth_echelon_trophy, third_echelon_trophy, second_echelon_trophy, \
-                            first_echelon_trophy \
+                            first_echelon_trophy, cave_points, id_tags, op_credits, traverser_stones, voidstones, \
+                            kupofried_corundums, imprimaturs, pheromone_sacks \
 				FROM char_points \
 				WHERE charid = %u;";
 
@@ -727,6 +728,14 @@ void LoadChar(CCharEntity* PChar)
         PChar->m_currency.thirdechtrophies = Sql_GetUIntData(SqlHandle, 73);
         PChar->m_currency.secondechtrophies = Sql_GetUIntData(SqlHandle, 74);
         PChar->m_currency.firstechtrophies = Sql_GetUIntData(SqlHandle, 75);
+        PChar->m_currency.cavepoints = Sql_GetUIntData(SqlHandle, 76);
+        PChar->m_currency.idtags = Sql_GetUIntData(SqlHandle, 77);
+        PChar->m_currency.opcredits = Sql_GetUIntData(SqlHandle, 78);
+        PChar->m_currency.traverserstones = Sql_GetUIntData(SqlHandle, 79);
+        PChar->m_currency.voidstones = Sql_GetUIntData(SqlHandle, 80);
+        PChar->m_currency.kupofriedcorundums = Sql_GetUIntData(SqlHandle, 81);
+        PChar->m_currency.imprimaturs = Sql_GetUIntData(SqlHandle, 82);
+        PChar->m_currency.pheromonesacks = Sql_GetUIntData(SqlHandle, 83);
 	}
 
 	PChar->PMeritPoints = new CMeritPoints(PChar);
@@ -3320,21 +3329,28 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
 		PChar->jobs.exp[PChar->GetMJob()] += exp;
 	}
 
-	// Raise exp shouldn't count toward these things, so we have to exclude it.
-	if (!expFromRaise) {
-		conquest::GainInfluencePoints(PChar);
-		conquest::AddConquestPoints(PChar, exp);
+    if (!expFromRaise)
+    {
+        // Add influence for the players region..
+        conquest::GainInfluencePoints(PChar);
 
-		//TODO: Only add IS if player has Saction
-		//TODO: Killing mobs != gaining Zeni
-		if(PChar->getZone() >= 48 && PChar->getZone() <= 79)
-		{
-			PChar->m_currency.imperialstanding += (exp*0.1f); // 10%
-		//	PChar->RegionPoints[10] += (exp*0.1f); // 10%
-			PChar->pushPacket(new CConquestPacket(PChar));
-		}
-	}
+        REGIONTYPE region = PChar->loc.zone->GetRegionID();
 
+        // Should this user be awarded conquest points..
+        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) &&
+            (region >= 0 && region <= 22))
+        {
+            conquest::AddConquestPoints(PChar, exp);
+        }
+
+        // Should this user be awarded imperial standing..
+        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SANCTION) &&
+            (region >= 28 && region <= 32))
+        {
+            PChar->m_currency.imperialstanding += (exp * 0.1f);
+            PChar->pushPacket(new CConquestPacket(PChar));
+        }
+    }
 
 	//player levels up
     if ((currentExp + exp) >= GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) && onLimitMode == false)
@@ -3971,7 +3987,8 @@ void SaveCharPoints(CCharEntity* PChar)
 							past_bastok_tp = %u, past_windurst_tp = %u, allied_notes = %u, bayld = %u, kinetic_unit = %u, obsidian_fragment = %u, \
                             lebondopt_wing = %u, mweya_plasm = %u, cruor = %u, resistance_credit = %u, dominion_note = %u, \
                             fifth_echelon_trophy = %u, fourth_echelon_trophy = %u, third_echelon_trophy = %u, second_echelon_trophy = %u, \
-                            first_echelon_trophy = %u \
+                            first_echelon_trophy = %u, cave_points = %u, id_tags = %u, op_credits = %u, traverser_stones = %u, voidstones = %u, \
+                            kupofried_corundums = %u, imprimaturs = %u, pheromone_sacks = %u \
 						WHERE charid = %u;";
 
 	Sql_Query(SqlHandle,
@@ -4052,6 +4069,14 @@ void SaveCharPoints(CCharEntity* PChar)
         PChar->m_currency.thirdechtrophies,
         PChar->m_currency.secondechtrophies,
         PChar->m_currency.firstechtrophies,
+        PChar->m_currency.cavepoints,
+        PChar->m_currency.idtags,
+        PChar->m_currency.opcredits,
+        PChar->m_currency.traverserstones,
+        PChar->m_currency.voidstones,
+        PChar->m_currency.kupofriedcorundums,
+        PChar->m_currency.imprimaturs,
+        PChar->m_currency.pheromonesacks,
 		PChar->id);
 }
 

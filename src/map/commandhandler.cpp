@@ -151,16 +151,28 @@ int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
     // Prepare parameters..
     std::string param;
     std::string cmdparameters(parameters);
-    std::string::const_iterator paramiter = cmdparameters.cbegin();
+    std::string::const_iterator parameter = cmdparameters.cbegin();
 
     // Parse and push parameters based on symbol string..
-    while (paramiter != cmdparameters.cend() && !clstream.eof())
+    while (parameter != cmdparameters.cend() && !clstream.eof())
     {
         clstream >> param;
 
-        switch (*paramiter)
+        switch (*parameter)
         {
         case 's':
+            if (cmdparameters.size() == 1)
+            {
+                std::string str = param;
+                while (!clstream.eof())
+                {
+                    clstream >> param;
+                    str += " " + param;
+                }
+                lua_pushstring(m_LState, str.c_str());
+                ++cntparam;
+                break;
+            }
             lua_pushstring(m_LState, param.c_str());
             ++cntparam;
             break;
@@ -176,11 +188,11 @@ int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
             break;
 
         default:
-            ShowError("cmdhandler::call: (%s) undefined type for param; symbol: %s\n", cmdname.c_str(), *paramiter);
+            ShowError("cmdhandler::call: (%s) undefined type for param; symbol: %s\n", cmdname.c_str(), *parameter);
             break;
         }
 
-        ++paramiter;
+        ++parameter;
     }
 
     // Call the function..

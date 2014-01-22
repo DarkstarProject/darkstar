@@ -22,7 +22,8 @@ function onTrade(player,npc,trade)
 	local gil = trade:getGil();
 	local inventorySize = player:getContainerSize(0);
 	local TheGobbieBag = gobQuest(player,inventorySize);
-
+    local pFame = player:getFameLevel(JEUNO);
+    
 	if (count == 4 and gil == 0 and player:getQuestStatus(JEUNO,TheGobbieBag[1]) == 1) then
 		if (player:getContainerSize(0) < 80) then
 			if (trade:hasItemQty(TheGobbieBag[3],1) and trade:hasItemQty(TheGobbieBag[4],1) and trade:hasItemQty(TheGobbieBag[5],1) and trade:hasItemQty(TheGobbieBag[6],1)) then

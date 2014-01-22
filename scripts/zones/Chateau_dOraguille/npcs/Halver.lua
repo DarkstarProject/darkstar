@@ -37,6 +37,7 @@ function onTrigger(player,npc)
     local pNation = player:getNation();
 	local currentMission = player:getCurrentMission(pNation);
 	local WildcatSandy = player:getVar("WildcatSandy");
+	local MissionStatus = player:getVar("MissionStatus");
 	
 	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,16) == false) then
 		player:startEvent(0x022e);

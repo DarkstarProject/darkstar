@@ -66,6 +66,7 @@ CBattleEntity::CBattleEntity()
 	m_Immunity = 0;
 	charmTime = 0;
 	isCharmed = false;
+    m_unkillable = false;
 }
 
 CBattleEntity::~CBattleEntity()
@@ -186,7 +187,7 @@ bool CBattleEntity::Rest(float rate)
 
 int16 CBattleEntity::GetWeaponDelay(bool tp)
 {
-	if (StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS))
+	if (StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS) && !tp)
 	{
 		return 1700;
 	}
@@ -438,11 +439,18 @@ int32 CBattleEntity::addHP(int32 hp)
 
 	if (health.hp == 0)
 	{
-		if (animation == ANIMATION_CHOCOBO)
-		{
-			StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
-		}
-		PBattleAI->SetCurrentAction(ACTION_FALL);
+        if (!m_unkillable)
+        {
+            if (animation == ANIMATION_CHOCOBO)
+            {
+                StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
+            }
+            PBattleAI->SetCurrentAction(ACTION_FALL);
+        }
+        else
+        {
+            health.hp = 1;
+        }
 	}
 	return abs(hp);
 }

@@ -34,13 +34,13 @@
 *																		*
 ************************************************************************/
 
-class CCharEntity;
+class CBaseEntity;
 
 class CPositionPacket : public CBasicPacket
 {
 public:
 
-	CPositionPacket(CCharEntity* PChar);
+	CPositionPacket(CBaseEntity* PEntity);
 };
 
 #endif

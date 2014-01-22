@@ -67,7 +67,7 @@ function onZoneIn(player,prevZone)
    -- ZM 15 -> ZM 16
    if (ZilartMission == THE_SEALED_SHRINE and player:getVar("ZilartStatus") == 1 and
       xPos >= -45 and yPos >= -4 and zPos >= -240 and
-      xPos <= -33 and yPos <= -2 and zPos <= -226 and DMEarrings <= NUMBER_OF_DM_EARRINGS) then -- Entered through main gate
+      xPos <= -33 and yPos <= 0 and zPos <= -226 and DMEarrings <= NUMBER_OF_DM_EARRINGS) then -- Entered through main gate
          cs = 51;
    end
 
