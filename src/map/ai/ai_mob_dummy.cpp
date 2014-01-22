@@ -1606,13 +1606,13 @@ void CAIMobDummy::ActionAttack()
 								damage = (uint32)((m_PMob->GetMainWeaponDmg() + battleutils::GetFSTR(m_PMob, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);
 
 								//  Guard skill up
-								if(m_PBattleTarget->objtype == TYPE_PC && isGuarded || ((map_config.newstyle_skillups & NEWSTYLE_GUARD) > 0))
-								{
-									if(battleutils::GetGuardRate(m_PMob, m_PBattleTarget) > 0)
-									{
-										charutils::TrySkillUP((CCharEntity*)m_PBattleTarget,SKILL_GRD, m_PBattleTarget->GetMLevel());
-									}
-								} // Guard skill up
+                                if (m_PBattleTarget->objtype == TYPE_PC && (isGuarded || ((map_config.newstyle_skillups & NEWSTYLE_GUARD) > 0)))
+                                {
+                                    if (battleutils::GetGuardRate(m_PMob, m_PBattleTarget) > 0)
+                                    {
+                                        charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_GRD, m_PBattleTarget->GetMLevel());
+                                    }
+                                } // Guard skill up
 							}
 
 							if(!isCountered)
