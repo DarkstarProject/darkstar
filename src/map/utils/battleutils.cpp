@@ -1945,7 +1945,10 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
     }
 
     float TP = 0;
-    PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
+
+    // Ensure we deal damage to remove something..
+    if (damage > 0)
+        PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 
     if(PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_BIND) && rand()%10 < 4)
     {
