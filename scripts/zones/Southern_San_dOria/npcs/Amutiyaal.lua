@@ -57,7 +57,7 @@ function onTrade(player,npc,trade)
 		end
 	end
 	
-	if (trade:getGil() == 300 and trade:getItemCount() == 1 and player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST) == QUEST_COMPLETED and player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES) then 
+	if (trade:getGil() == 300 and trade:getItemCount() == 1 and player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_COMPLETED and player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES) then 
 		-- Needs a check for at least traded an invitation card to Naja Salaheem
 		player:startEvent(0x0371);
 	end
