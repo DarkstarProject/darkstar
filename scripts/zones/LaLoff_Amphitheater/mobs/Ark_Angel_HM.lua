@@ -32,7 +32,7 @@ end;
 function onMobFight(mob,target)
 
 	local battletime = mob:getBattleTime();
-	local mstime, mgtime = mob:getExtraVar(2);z
+	local mstime, mgtime = mob:getExtraVar(2);
 	if (battletime > mstime + 150) then
 		mob:useMobAbility(432);
 		mob:setExtraVar(battletime, mgtime);
