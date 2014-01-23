@@ -528,8 +528,6 @@ void CAIMobDummy::ActionDeath()
 		m_ActionType = ACTION_FADE_OUT;
 		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CFadeOutPacket(m_PMob));
 		//if (m_PMob->animationsub == 2) m_PMob->animationsub = 1;
-
-		luautils::OnMobDespawn(m_PMob);
 	}
 
 }
@@ -560,6 +558,7 @@ void CAIMobDummy::ActionFadeOut()
 
         m_ActionType  = m_PMob->m_AllowRespawn ? ACTION_SPAWN : ACTION_NONE;
 
+        luautils::OnMobDespawn(m_PMob);
 	}
 }
 
@@ -702,12 +701,16 @@ void CAIMobDummy::ActionAbilityStart()
 		// get my job two hour
 		m_PMobSkill = battleutils::GetTwoHourMobSkill(m_PMob->GetMJob());
 
-        if (m_PMobSkill->getValidTargets() == TARGET_SELF){ //self
-            m_PBattleSubTarget = m_PMob;
-        }
-        else
+        if (m_PMobSkill != NULL)
         {
-            m_PBattleSubTarget = m_PBattleTarget;
+            if (m_PMobSkill->getValidTargets() == TARGET_SELF)
+            {
+                m_PBattleSubTarget = m_PMob;
+            }
+            else
+            {
+                m_PBattleSubTarget = m_PBattleTarget;
+            }
         }
 
         valid = (m_PMobSkill != NULL && luautils::OnMobSkillCheck(m_PBattleSubTarget, m_PMob, m_PMobSkill) == 0);
@@ -945,6 +948,8 @@ void CAIMobDummy::ActionAbilityFinish()
 		if(m_PMobSkill->hasMissMsg())
 		{
 		    Action.reaction   = REACTION_MISS;
+            if (msg = m_PMobSkill->getAoEMsg())
+                msg = 282;
 		} else {
 		    Action.reaction   = REACTION_HIT;
 		}
@@ -1602,13 +1607,13 @@ void CAIMobDummy::ActionAttack()
 								damage = (uint32)((m_PMob->GetMainWeaponDmg() + battleutils::GetFSTR(m_PMob, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);
 
 								//  Guard skill up
-								if(m_PBattleTarget->objtype == TYPE_PC && isGuarded || ((map_config.newstyle_skillups & NEWSTYLE_GUARD) > 0))
-								{
-									if(battleutils::GetGuardRate(m_PMob, m_PBattleTarget) > 0)
-									{
-										charutils::TrySkillUP((CCharEntity*)m_PBattleTarget,SKILL_GRD, m_PBattleTarget->GetMLevel());
-									}
-								} // Guard skill up
+                                if (m_PBattleTarget->objtype == TYPE_PC && (isGuarded || ((map_config.newstyle_skillups & NEWSTYLE_GUARD) > 0)))
+                                {
+                                    if (battleutils::GetGuardRate(m_PMob, m_PBattleTarget) > 0)
+                                    {
+                                        charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_GRD, m_PBattleTarget->GetMLevel());
+                                    }
+                                } // Guard skill up
 							}
 
 							if(!isCountered)

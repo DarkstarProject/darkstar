@@ -164,7 +164,10 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
             else {
                 addEntity(m_PMasterTarget, withPet);
             }
-            addAllInEnmityList();
+
+            // Is the monster casting on a player..
+            if (m_findType == FIND_MONSTER_PLAYER)
+                addAllInEnmityList();
         }
     }
 }

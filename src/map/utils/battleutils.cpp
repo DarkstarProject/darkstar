@@ -1008,6 +1008,11 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
 	else if (PAttacker->objtype == TYPE_PC && weapon->getModifier(MOD_ADDITIONAL_EFFECT) > 0)
     {
 		luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage);
+
+        if (Action->addEffectMessage = 163 && Action->addEffectParam < 0)
+        {
+            Action->addEffectMessage = 384;
+        }
     }
     else
     {
@@ -1940,7 +1945,10 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
     }
 
     float TP = 0;
-    PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
+
+    // Ensure we deal damage to remove something..
+    if (damage > 0)
+        PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 
     if(PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_BIND) && rand()%10 < 4)
     {

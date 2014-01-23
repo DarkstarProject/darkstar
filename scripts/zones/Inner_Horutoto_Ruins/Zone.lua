@@ -36,11 +36,16 @@ end;
 -- onRegionEnter			
 -----------------------------------			
 
-function onRegionEnter(player,region)			
-	
-	local red   = GetNPCByID(17563859);		
-	local white = GetNPCByID(red+1);		
-	local black = GetNPCByID(red+2);		
+function onRegionEnter(player,region)
+	local circle= 17563859;
+	local red   = GetNPCByID(circle);		
+	local white = GetNPCByID(circle+1);		
+	local black = GetNPCByID(circle+2);	
+
+    -- Prevent negatives..
+    if (region:GetCount() < 0) then
+        region:AddCount( math.abs( region:GetCount() ) );
+    end
 	
 	switch (region:GetRegionID()): caseof		
 	{		
@@ -48,8 +53,8 @@ function onRegionEnter(player,region)
 			if(player:getMainJob() == 5 and region:AddCount(1) == 1) then		
 				red:setAnimation(8);
 				if(white:getAnimation() == 8 and black:getAnimation() == 8) then	
-					GetNPCByID(red+3):openDoor(30);
-					GetNPCByID(red+4):openDoor(30);
+					GetNPCByID(circle+3):openDoor(30);
+					GetNPCByID(circle+4):openDoor(30);
 				end	
 			end		
 		end,		
@@ -57,8 +62,8 @@ function onRegionEnter(player,region)
 			if(player:getMainJob() == 3 and region:AddCount(1) == 1) then		
 				white:setAnimation(8);	
 				if(red:getAnimation() == 8 and black:getAnimation() == 8) then	
-					GetNPCByID(red+3):openDoor(30);
-					GetNPCByID(red+4):openDoor(30);
+					GetNPCByID(circle+3):openDoor(30);
+					GetNPCByID(circle+4):openDoor(30);
 				end	
 			end		
 		end,		
@@ -66,8 +71,8 @@ function onRegionEnter(player,region)
 			if(player:getMainJob() == 4 and region:AddCount(1) == 1) then		
 				black:setAnimation(8);	
 				if(red:getAnimation() == 8 and white:getAnimation() == 8) then	
-					GetNPCByID(red+3):openDoor(30);
-					GetNPCByID(red+4):openDoor(30);
+					GetNPCByID(circle+3):openDoor(30);
+					GetNPCByID(circle+4):openDoor(30);
 				end	
 			end
 		end,
@@ -82,11 +87,11 @@ end;
 -- onRegionLeave			
 -----------------------------------			
 
-function onRegionLeave(player,region)			
-	
-	local red   = GetNPCByID(17563859);		
-	local white = GetNPCByID(red+1);		
-	local black = GetNPCByID(red+2);
+function onRegionLeave(player,region)
+	local circle= 17563859;
+	local red   = GetNPCByID(circle);		
+	local white = GetNPCByID(circle+1);		
+	local black = GetNPCByID(circle+2);
 	
 	switch (region:GetRegionID()): caseof		
 	{		
@@ -106,7 +111,11 @@ function onRegionLeave(player,region)
 			end		
 		end,		
 	}
-	
+
+    -- Prevent negatives..
+    if (region:GetCount() < 0) then
+        region:AddCount( math.abs( region:GetCount() ) );
+    end
 end;			
 
 -----------------------------------	
