@@ -9,7 +9,9 @@ package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/teleports");
+require("scripts/globals/quests");
 require("scripts/globals/keyitems");
+require("scripts/zones/Lower_Jeuno/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -29,13 +31,13 @@ function onTrade(player,npc,trade)
 			player:startEvent(0x2756);
 		elseif (trade:hasItemQty(1692,1) and trade:hasItemQty(1693,1) and trade:hasItemQty(1694,1) and trade:getItemCount() == 3 and trade:getGil() == 0) then -- Advanced List (Chips)
 			player:startEvent(0x2756);
-		elseif (trade:hasItemQty(1042,1) or trade:hasItemQty(1043,1) or trade:hasItemQty(1044,1) or trade:hasItemQty(1049,1) or trade:hasItemQty(1050,1) or -- Advanced List (Coffer Keys)
-			trade:hasItemQty(1054,1) or trade:hasItemQty(10459,1) and trade:getItemCount() == 1 and trade:getGil() == 0) then
+		elseif (trade:hasItemQty(1042,1) or trade:hasItemQty(1043,1) or trade:hasItemQty(1044,1) or trade:hasItemQty(1049,1) or trade:hasItemQty(1050,1) or
+			trade:hasItemQty(1054,1) or trade:hasItemQty(10459,1) and trade:getItemCount() == 1 and trade:getGil() == 0) then -- Advanced List (Coffer Keys)
 				player:startEvent(0x2756);
-		elseif (trade:hasItemQty(1426,1) or trade:hasItemQty(1427,1) or trade:hasItemQty(1428,1) or trade:hasItemQty(1429,1) or trade:hasItemQty(1430,1) or -- Advanced List (Testimonys)
+		elseif (trade:hasItemQty(1426,1) or trade:hasItemQty(1427,1) or trade:hasItemQty(1428,1) or trade:hasItemQty(1429,1) or trade:hasItemQty(1430,1) or
 			trade:hasItemQty(1431,1) or trade:hasItemQty(1432,1) or trade:hasItemQty(1433,1) or trade:hasItemQty(1434,1) or trade:hasItemQty(1435,1) or
 			trade:hasItemQty(1436,1) or trade:hasItemQty(1437,1) or trade:hasItemQty(1438,1) or trade:hasItemQty(1439,1) or trade:hasItemQty(1440,1) or
-			trade:hasItemQty(2331,1) or trade:hasItemQty(2332,1) or trade:hasItemQty(2333,1) or trade:hasItemQty(2556,1) or trade:hasItemQty(2557,1) and trade:getItemCount() == 1 and trade:getGil() == 0) then
+			trade:hasItemQty(2331,1) or trade:hasItemQty(2332,1) or trade:hasItemQty(2333,1) or trade:hasItemQty(2556,1) or trade:hasItemQty(2557,1) and trade:getItemCount() == 1 and trade:getGil() == 0) then -- Advanced List (Testimonys)
 				player:startEvent(0x2756);
 		end
 	end
