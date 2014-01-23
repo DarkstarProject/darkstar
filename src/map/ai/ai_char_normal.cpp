@@ -2606,17 +2606,12 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
         	m_PChar->health.tp = afterWsTP;
 
-        	if(msg == 0)
-        	{
-        		msg = 185;
-            } else {
-                msg = 264; // "xxx takes ### damage." only
-            }
+            msg = 264; // "xxx takes ### damage." only
 
-            if (damage == 0)
+            if (damage == 0 && !PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_STONESKIN))
             {
                 Action.reaction = REACTION_EVADE;
-                msg = 188;
+                msg = 282;
             }
 
         	Action.param = battleutils::TakePhysicalDamage(m_PChar, PTarget, damage, false, SLOT_MAIN, 0, taChar, true);

@@ -949,6 +949,8 @@ void CAIMobDummy::ActionAbilityFinish()
 		if(m_PMobSkill->hasMissMsg())
 		{
 		    Action.reaction   = REACTION_MISS;
+            if (msg = m_PMobSkill->getAoEMsg())
+                msg = 282;
 		} else {
 		    Action.reaction   = REACTION_HIT;
 		}
