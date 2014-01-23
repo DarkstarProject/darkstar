@@ -579,7 +579,7 @@ function Escape(player, zone)
 		player:setPos(803,-61,635,128,101); 								-- To East Ronfaure at K-4
 	elseif(zone == 9 or zone == 10) then									-- From Pso'Xja, The Shrouded Maw
 		player:setPos(-427,-41,-422,0,111); 								-- To Beaucedine Glacier at E-11
-	elseif(zone == 204 or zone == 206 or zone = 203) then 					-- From Fei'Yin, Qu'Bia Arena, Cloister of Frost
+	elseif(zone == 204 or zone == 206 or zone == 203) then 					-- From Fei'Yin, Qu'Bia Arena, Cloister of Frost
 		player:setPos(279,19,536,64,111); 									-- To Beaucedine Glacier at J-5
 	-- Derfland {R}
 	elseif(zone == 197) then 												-- From Crawlers' Nest
@@ -602,7 +602,7 @@ function Escape(player, zone)
 	elseif(zone == 177 or zone == 178 or zone == 180 or zone == 181) then	-- From Ve'Lugannon Palace, Shrine of Ru'Avitau, LaLoff Amphitheater, The Celestial Nexus
 		player:setPos(0,-35,-472,192,130); 									-- To Ru'Aun Gardens at H-11	
 	-- Li'Telor {R}
-	elseif(zone == 153 or zone == 154 or zone = 202) then 					-- From The Boyahda Tree, Dragon's Aery, Cloister of Storms
+	elseif(zone == 153 or zone == 154 or zone == 202) then 					-- From The Boyahda Tree, Dragon's Aery, Cloister of Storms
 		player:setPos(509.5,1,-575,128,121); 								-- To The Sanctuary of Zi'Tah at K-12
 	-- Aragonau {R}
 	elseif(zone == 200) then 												-- From Garlaige Citadel
@@ -620,7 +620,7 @@ function Escape(player, zone)
 	elseif(zone == 145 or zone == 146) then 								-- From Giddeus, Balgas Dais
 		player:setPos(-360,-20,78,192,115); 								-- To West Sarutabaruta at F-8	
 	-- Elshimo Uplands {R}
-	elseif(zone == 159 or zone == 160 or zone == 163 or zone = 211) then 	-- From Temple of Uggalepih, Den of Rancor, Sacrificial Chamber, Cloister of Tides
+	elseif(zone == 159 or zone == 160 or zone == 163 or zone == 211) then 	-- From Temple of Uggalepih, Den of Rancor, Sacrificial Chamber, Cloister of Tides
 		player:setPos(298,-2,-445,192,124); 								-- To Yhoator Jungle at J-11
 	elseif(zone == 205 or zone == 207) then 												-- From Ifrit's Cauldron, Cloister of Flames
 		player:setPos(91,-1,336,96,124); 									-- To Yhoator Jungle at I-6
