@@ -1408,16 +1408,16 @@ INSERT INTO `mob_skill` VALUES (305,234,971,'Electromagnetic_Field', 1, 10.0, 20
 -- INSERT INTO `mob_skill` VALUES (1775,?,972,'Reactive_Shield', 0, 7.0, 2000, 1500, 1, 0, 0, 0); -- CoP / Abyssea only.
 
 -- Mammets
--- INSERT INTO `mob_skill` VALUES (231,?,?,'Transmogrification', 0, 7.0, 2000, 1500, 1, 0, 0, 0); -- Hand Form Only
--- INSERT INTO `mob_skill` VALUES (91,?,?,'Velocious_Blade', 0, 7.0, 2000, 1500, 4, 0, 0, 0); -- Sword Form Only
--- INSERT INTO `mob_skill` VALUES (166,?,?,'Sonic_Blade', 1, 15.0, 2000, 1500, 4, 0, 0, 0); -- Sword Form Only
--- INSERT INTO `mob_skill` VALUES (163,?,?,'Scission_Thrust', 4, 10.0, 2000, 1500, 4, 0, 0, 0); -- Sword Form Only
--- INSERT INTO `mob_skill` VALUES (208,?,?,'Psychomancy', 1, 15.0, 2000, 1500, 4, 0, 0, 0); -- Staff Form Only
--- INSERT INTO `mob_skill` VALUES (215,?,?,'Mind_Wall', 0, 7.0, 2000, 1500, 1, 0, 0, 0); -- Hand Form Only
--- INSERT INTO `mob_skill` VALUES (191,?,?,'Percussive_Foin', 4, 10.0, 2000, 1500, 1, 0, 0, 0); -- Polearm Form Only
--- INSERT INTO `mob_skill` VALUES (185,?,?,'Microquake', 0, 7.0, 2000, 1500, 4, 0, 0, 0); -- Polearm Form Only
--- INSERT INTO `mob_skill` VALUES (201,?,?,'Gravity_Wheel', 1, 15.0, 2000, 1500, 4, 0, 0, 0); -- Polearm Form Only
--- INSERT INTO `mob_skill` VALUES (284,?,?,'Tremorous_Tread', 1, 15.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (231,149,897,'Transmogrification', 0, 7.0, 2000, 1500, 1, 0, 0, 0); -- Hand Form Only
+INSERT INTO `mob_skill` VALUES (91,149,889,'Velocious_Blade', 0, 7.0, 2000, 1500, 4, 0, 0, 0); -- Sword Form Only
+INSERT INTO `mob_skill` VALUES (166,149,891,'Sonic_Blade', 1, 15.0, 2000, 1500, 4, 0, 0, 0); -- Sword Form Only
+INSERT INTO `mob_skill` VALUES (163,149,890,'Scission_Thrust', 4, 10.0, 2000, 1500, 4, 0, 0, 0); -- Sword Form Only
+INSERT INTO `mob_skill` VALUES (208,149,895,'Psychomancy', 1, 15.0, 2000, 1500, 4, 0, 0, 0); -- Staff Form Only
+INSERT INTO `mob_skill` VALUES (215,149,896,'Mind_Wall', 0, 7.0, 2000, 1500, 1, 0, 0, 0); -- Hand Form Only
+INSERT INTO `mob_skill` VALUES (191,149,893,'Percussive_Foin', 4, 10.0, 2000, 1500, 4, 0, 0, 0); -- Polearm Form Only
+INSERT INTO `mob_skill` VALUES (185,149,892,'Microquake', 0, 7.0, 2000, 1500, 4, 0, 0, 0); -- Polearm Form Only
+INSERT INTO `mob_skill` VALUES (201,149,894,'Gravity_Wheel', 1, 15.0, 2000, 1500, 4, 0, 0, 0); -- Polearm Form Only
+INSERT INTO `mob_skill` VALUES (284,149,898,'Tremorous_Tread', 1, 15.0, 2000, 1500, 4, 0, 0, 0);
 
 -- --------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- VALUES POST 1024

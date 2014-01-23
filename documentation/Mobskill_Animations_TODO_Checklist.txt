@@ -82,7 +82,6 @@ Arcana:
                    Smite_of_Fury
                    Furious_Flurry
 -- Khimaira - Lithic_Breath
--- Mammets - all
 -- Mimics (Abyssea) - Pandora's Curse, Pandoras Gift (Unknown who uses this)
 -- Snolls - Arctic Impact, Hypothermal Combustion
 -- Spheroids (CoP/Abyssea) - Stunbolt, Reactive Shield needs Confirmation
