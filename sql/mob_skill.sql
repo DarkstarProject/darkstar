@@ -2061,24 +2061,24 @@ INSERT INTO `mob_skill` VALUES (573,351,501,'Great_Wheel', 1,7.0, 2000, 1500, 4,
 INSERT INTO `mob_skill` VALUES (574,351,502,'Light_Blade', 0, 30.0, 2000, 1500, 4, 0, 0, 0);
 
 -- Ark Angel EV
-INSERT INTO `mob_skill` VALUES (677,352,635,'Dominion_Slash',2,10,2000,0,4,0, 0, 0);
+INSERT INTO `mob_skill` VALUES (677,352,635,'Dominion_Slash',2,10,2000,500,4,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (678,352,638,'Shield_Strike',4,7,2000,0,4,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (686,352,642,'Spirits_Within',0,7,2000,0,4,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (687,352,643,'Vorpal_Blade',0,7,2000,0,4,0, 0, 0);
 
 -- Ark Angel GK
-INSERT INTO `mob_skill` VALUES (681,353,637,'Dragonfall',1,7,2000,0,4,0, 0, 0);
+INSERT INTO `mob_skill` VALUES (681,353,637,'Dragonfall',1,7,2000,500,4,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (690,353,648,'Tachi_Yukikaze',0,7,2000,0,4,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (691,353,649,'Tachi_Gekko',0,7,2000,0,4,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (692,353,650,'Tachi_Kasha',0,7,2000,0,4,0, 0, 0);
 
 -- Ark Angel HM
-INSERT INTO `mob_skill` VALUES (675,354,633,'Cross_Reaver',4,7,2000,0,4,0, 0, 0);
+INSERT INTO `mob_skill` VALUES (675,354,633,'Cross_Reaver',4,7,2000,500,4,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (682,354,640,'Circle_Blade',1,7,2000,0,4,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (683,354,641,'Swift_Blade',0,7,2000,0,4,0, 0, 0);
 
 -- Ark Angel MR
-INSERT INTO `mob_skill` VALUES (676,355,634,'Havoc_Spiral',1,7,2000,0,4,0, 0, 0);
+INSERT INTO `mob_skill` VALUES (676,355,634,'Havoc_Spiral',1,7,2000,500,4,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (684,355,644,'Rampage',0,7,2000,0,4,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (685,355,645,'Calamity',0,7,2000,0,4,0, 0, 0);
 
