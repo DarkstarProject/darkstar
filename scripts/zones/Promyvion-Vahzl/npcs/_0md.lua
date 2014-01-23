@@ -8,6 +8,7 @@ package.loaded["scripts/zones/Promyvion-Vahzl/TextIDs"] = nil;
 require("scripts/globals/missions");
 require("scripts/zones/Promyvion-Vahzl/TextIDs");
 require("scripts/globals/keyitems");
+
 -----------------------------------
 -- onTrade
 -----------------------------------
@@ -21,9 +22,11 @@ end;
 
 function onTrigger(player,npc) 
     if (player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==3)then
-	   SpawnMob(16867333,240):updateEnmity(player);
+		SpawnMob(16867333,240):updateEnmity(player);
 	elseif(player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==4)then
-       player:startEvent(0x0034);   
+		player:startEvent(0x0034);   
+	else
+		player:messageSpecial(OVERFLOWING_MEMORIES);
 	end
 end;
 -----------------------------------

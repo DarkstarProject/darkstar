@@ -3,8 +3,9 @@
 -- Zone: Promyvion-Vahzl (22)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Promyvion-Vahzl/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/globals/keyitems");
 require("scripts/globals/status");
 require("scripts/globals/settings");
@@ -44,15 +45,15 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	cs = -1;	
+	local cs = -1;	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
-		player:setPos(7,-1,-106,14);
+		player:setPos(-14.744,0.036,-119.736,1); -- To Floor 1 {R}
 	end	
 	
 	if(player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==0)then
-	cs= 0x0032;	
+		cs = 0x0032;	
     elseif(ENABLE_COP_ZONE_CAP == 1)then
-	player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,50,0,0);-- ZONE LEVEL RESTRICTION	
+		player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,50,0,0);-- ZONE LEVEL RESTRICTION	
 	end
 	return cs;	
 end;		
@@ -62,9 +63,9 @@ end;
 -----------------------------------	
 
 function onRegionEnter(player,region)
-regionID =region:GetRegionID();
-printf("regionID: %u",regionID);
-if(player:getAnimation()==0)then
+	local regionID =region:GetRegionID();
+	-- printf("regionID: %u",regionID);
+	if(player:getAnimation()==0)then
 	switch (region:GetRegionID()): caseof
 	{
 		[10] = function (x) player:startEvent(0x002D); end,--ok
@@ -86,7 +87,7 @@ if(player:getAnimation()==0)then
 		end,
 		[22] = function (x)
 			if(GetNPCByID(16867695):getAnimation() == 8) then
-					player:startEvent(31);--ok  
+				player:startEvent(31);--ok  
 			end
 		end,
 		[30] = function (x) player:startEvent(42);end,
@@ -129,7 +130,7 @@ if(player:getAnimation()==0)then
 		end,
 		[50] = function (x) player:startEvent(44);end,
 	}	
-  end
+	end
 end;
 	
 function onRegionLeave(player,region)
@@ -150,12 +151,12 @@ end;
 function onEventFinish(player,csid,option)	
 	--printf("CSID: %u",csid);
 	--printf("RESULT: %u",option);
-  if(csid ==0x0032)then
-     player:setVar("PromathiaStatus",1);
-    if(ENABLE_COP_ZONE_CAP == 1)then
-	  player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,50,0,0);-- ZONE LEVEL RESTRICTION
-    end
-   elseif(csid ==0x002D and option == 1)then
-   player:setPos(-379 ,48 ,333 ,180 ,9); -- back to pso xja
-  end
+	if(csid ==0x0032)then
+		player:setVar("PromathiaStatus",1);
+		if(ENABLE_COP_ZONE_CAP == 1)then
+			player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,50,0,0);-- ZONE LEVEL RESTRICTION
+		end
+	elseif(csid ==0x002D and option == 1)then
+		player:setPos(-379.947, 48.045, 334.059, 192, 9); -- To Pso'Xja {R}
+	end
 end;	

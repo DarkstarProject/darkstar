@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: AlTaieu
--- NPC:  Dimensional_Portal
+-- NPC:  Dimensional Portal
 -----------------------------------
 package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 -----------------------------------
@@ -12,7 +12,6 @@ require("scripts/zones/AlTaieu/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
 end;
 
 -----------------------------------
@@ -24,11 +23,11 @@ function onTrigger(player,npc)
 	local Dimensional_Offset = 16912908;
 	local npcID = npc:getID();
 	
-	if(npcID == Dimensional_Offset)then  -- => La Theine Plateau
+	if(npcID == Dimensional_Offset)then
        player:startEvent(0x0097);	
-	elseif(npcID == Dimensional_Offset+1)then  -- => Konschtat Highlands
+	elseif(npcID == Dimensional_Offset+1)then
 	   player:startEvent(0x0098);
-	elseif(npcID == Dimensional_Offset+2)then  -- => Tahrongi Canyon
+	elseif(npcID == Dimensional_Offset+2)then
 	   player:startEvent(0x0099); 
 	end
 	
@@ -51,10 +50,10 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
     if( csid == 0x0097 and option == 1)then 
-		player:setPos(419,19,-141,64,0x66);    -- => La Theine Plateau
+		player:setPos(420,19,-140,63,102);     -- To La Theine Plateau {R}
 	elseif( csid == 0x0098 and option == 1)then
-		player:setPos(219,19,138,71,0x6C); -- => Konschtat Highlands
+		player:setPos(220,19,140,64,108); 	   -- To Konschtat Highlands {R}
     elseif( csid == 0x0099 and option == 1)then 
-		player:setPos(261,35,339,253,0x75);   -- => Tahrongi Canyon
+		player:setPos(260,35,340,255,117);     -- To Tahrongi Canyon {R}
 	end
 end;

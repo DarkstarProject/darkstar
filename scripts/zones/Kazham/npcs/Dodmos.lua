@@ -1,10 +1,8 @@
 -----------------------------------
 --  Area: Kazham
---   NPC: Dodmos
--- Starts Quest: Trial Size Trial By Fire
--- @zone: 250
---  @pos 102.647 -14.999 -97.664
---
+--  NPC: Dodmos
+--  Starts Quest: Trial Size Trial By Fire
+--  @pos 102.647 -14.999 -97.664 250
 -----------------------------------
 package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
 -----------------------------------
@@ -12,9 +10,8 @@ package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/quests");
+require("scripts/globals/teleports");
 require("scripts/zones/Kazham/TextIDs");
-
------------------------------------
 
 -----------------------------------
 -- onTrade Action
@@ -38,7 +35,7 @@ function onTrigger(player,npc)
 	if(player:getMainLvl() >= 20 and player:getMainJob() == JOB_SMN and TrialSizeFire == QUEST_AVAILABLE and player:getFameLevel(KAZHAM) >= 2) then --Requires player to be Summoner at least lvl 20
 		player:startEvent(0x011e,0,1544,0,20); 	--mini tuning fork, zone, level
 	elseif(TrialSizeFire == QUEST_ACCEPTED) then
-		FireFork = player:hasItem(1544);
+		local FireFork = player:hasItem(1544);
 		
 		if(FireFork == true) then 
 			player:startEvent(0x0110); --Dialogue given to remind player to be prepared
@@ -86,7 +83,7 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_OBTAINED,1544); 
 		end
 	elseif(csid == 0x011f and option == 1) then
-		player:setPos(-698,0,-646,184,207);
+		toCloisterOfFlames(player);
 	end	
 end;
 

@@ -10,6 +10,7 @@ package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/quests");
+require("scripts/globals/teleports");
 require("scripts/zones/Norg/TextIDs");
 
 -----------------------------------
@@ -34,7 +35,7 @@ function onTrigger(player,npc)
 	if(player:getMainLvl() >= 20 and player:getMainJob() == JOB_SMN and TrialSizeWater == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 2) then --Requires player to be Summoner at least lvl 20
 		player:startEvent(0x00c7,0,1549,2,20); 	--mini tuning fork of water, zone, level
 	elseif(TrialSizeWater == QUEST_ACCEPTED) then
-		WaterFork = player:hasItem(1549);
+		local WaterFork = player:hasItem(1549);
 		
 		if(WaterFork) then 
 			player:startEvent(0x006f); --Dialogue given to remind player to be prepared
@@ -83,7 +84,7 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_OBTAINED,1549); 
 		end
 	elseif(csid == 0x00c8 and option == 1) then
-		player:setPos(564,36,500,250,211);
+		toCloisterOfTides(player);
 	end
 	
 end;

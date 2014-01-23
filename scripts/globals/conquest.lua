@@ -492,60 +492,62 @@ end;
 ---------------------------------
 
 function toOutpost(player,option)
+-- Coordinates marked {R} have been obtained by packet capture from retail. Don't change them.
+
 	-- Ronfaure
 	if(option == 5) then
-		player:setPos(-446, -20 , -220, 0, 100);
+		player:setPos(-437.688, -20.255, -219.227, 124, 100); -- {R}
 	-- Zulkheim
 	elseif(option == 6) then
-		player:setPos(149, -7 , 94, 154, 103);
+		player:setPos(148.231, -7.975 , 93.479, 154, 103); 	  -- {R}
 	-- Norvallen
 	elseif(option == 7) then
-		player:setPos(62, 0 , -1, 67, 104);
+		player:setPos(62.030, 0.463, -2.025, 67, 104); 		  -- {R}
 	-- Gustaberg
 	elseif(option == 8) then
-		player:setPos(-579, 39 , 62, 89, 106);
+		player:setPos(-580.161, 39.578, 62.68, 89, 106);	  -- {R}
 	-- Derfland
 	elseif(option == 9) then
-		player:setPos(465, 24 , 422, 29, 109);
+		player:setPos(465.820, 23.625, 423.164, 29, 109); 	  -- {R}
 	-- Sarutabaruta
 	elseif(option == 10) then
-		player:setPos(-15, -13 , 318, 128, 115);
+		player:setPos(-17.921, -13.335, 318.156, 254, 115);	  -- {R}
 	-- Kolshushu
 	elseif(option == 11) then
-		player:setPos(-480, -30 , 57, 62, 118);
+		player:setPos(-480.237, -30.943, 58.079, 62, 118);	  -- {R}
 	-- Aragoneu
 	elseif(option == 12) then
-		player:setPos(-298, 17 , 418, 98, 119);
+		player:setPos(-297.047, 16.988, 418.026, 225, 119);	  -- {R}
 	-- Fauregandi
 	elseif(option == 13) then
-		player:setPos(-18, -59, -108, 100, 111);
+		player:setPos(-18.690, -60.048, -109.243, 100, 111);  -- {R}
 	-- Valdeaunia
 	elseif(option == 14) then
-		player:setPos(210, -23, -206, 160, 112);
+		player:setPos(211.210, -24.016, -207.338, 160, 112);  -- {R}
 	-- Qufim Island
 	elseif(option == 15) then
-		player:setPos(-246, -20 , 301, 192, 126);
+		player:setPos(-243.049, -19.983, 306.712, 71, 126);   -- {R}
 	-- Li'Telor
 	elseif(option == 16) then
-		player:setPos(-38, 0, -140, 69, 121);
+		player:setPos(-37.669, 0.419, -141.216, 69, 121);	  -- {R}
 	-- Kuzotz
 	elseif(option == 17) then
-		player:setPos(-250, 8, -252, 122, 114);
+		player:setPos(-249.983, 7.965, -252.976, 122, 114);   -- {R}
 	-- Vollbow
 	elseif(option == 18) then
-		player:setPos(-184, 8, -66, 0, 113);
+		player:setPos(-176.360, 7.624, -63.580, 122, 113);	  -- {R}
 	-- Elshimo Lowlands
 	elseif(option == 19) then
-		player:setPos(-243, 0, -400, 192, 123);
+		player:setPos(-240.860, -0.031, -388.434, 64, 123);   -- {R}
 	-- Elshimo Uplands
 	elseif(option == 20) then
-		player:setPos(203, 0, -82, 36, 124);
+		player:setPos(207.821, -0.128, -86.623, 159, 124);	  -- {R}
 	-- Tu'Lia ?!
 	elseif(option == 21) then
-		player:setPos(4, -54, -600, 192, 130);
+		player:setPos(4, -54, -600, 192, 130);                -- Dummied out?
 	-- Tavnazia
 	elseif(option == 23) then
-		player:setPos(-535, -6, -53, 122, 24);
+		player:setPos(-535.861, -7.149, -53.628, 122, 24);    -- {R}
 	end;
 end;
 
