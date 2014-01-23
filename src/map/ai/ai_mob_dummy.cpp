@@ -1481,12 +1481,13 @@ void CAIMobDummy::ActionAttack()
 
 				Action.ActionTarget = m_PBattleTarget;
 
-				uint8 numAttacks = battleutils::CheckMobMultiHits(m_PMob);
+				uint8 mainAttacks = battleutils::CheckMobMultiHits(m_PMob);
+                uint8 offAttacks = m_PMob->getMobMod(MOBMOD_DUAL_WIELD) > 0 ? battleutils::CheckMobMultiHits(m_PMob) : 0;
 
-				for(uint8 i=0; i<numAttacks; i++){
+                for (uint8 i = 0; i<(mainAttacks + offAttacks); i++){
 					Action.reaction   = REACTION_EVADE;
 					Action.speceffect = SPECEFFECT_NONE;
-					Action.animation  = 0;
+                    Action.animation = i >= mainAttacks ? 1 : 0;
 					Action.param	  = 0;
 					Action.messageID  = 15;
                     Action.knockback  = 0;
