@@ -528,8 +528,6 @@ void CAIMobDummy::ActionDeath()
 		m_ActionType = ACTION_FADE_OUT;
 		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CFadeOutPacket(m_PMob));
 		//if (m_PMob->animationsub == 2) m_PMob->animationsub = 1;
-
-		luautils::OnMobDespawn(m_PMob);
 	}
 
 }
@@ -560,6 +558,7 @@ void CAIMobDummy::ActionFadeOut()
 
         m_ActionType  = m_PMob->m_AllowRespawn ? ACTION_SPAWN : ACTION_NONE;
 
+        luautils::OnMobDespawn(m_PMob);
 	}
 }
 
