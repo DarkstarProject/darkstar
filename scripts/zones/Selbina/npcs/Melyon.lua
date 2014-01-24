@@ -3,10 +3,12 @@
 -- NPC:  Melyon
 -- Starts and Finishes Quest: Only the Best (R)
 -- Involved in Quest: Riding on the Clouds
--- @zone 248
--- @pos 25 -6 6
+-- @pos 25 -6 6 248
+-----------------------------------
+package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/zones/Selbina/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 
@@ -34,7 +36,7 @@ function onTrade(player,npc,trade)
 			player:setVar("ridingOnTheClouds_3",0);
 			player:tradeComplete();
 			player:addKeyItem(SOMBER_STONE);
-			player:messageSpecial(TextID_Selbina.KEYITEM_OBTAINED,SOMBER_STONE);
+			player:messageSpecial(KEYITEM_OBTAINED,SOMBER_STONE);
 		end
 	end
 	
@@ -78,21 +80,21 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x003e) then
 		player:tradeComplete();
 		player:addGil(100);
-		player:messageSpecial(TextID_Selbina.GIL_OBTAINED,100);
+		player:messageSpecial(GIL_OBTAINED,100);
 		player:addFame(BASTOK,  BAS_FAME*10);
 		player:addFame(SANDORIA,SAN_FAME*10);
 		player:completeQuest(OTHER_AREAS,ONLY_THE_BEST);
 	elseif(csid == 0x003f) then
 		player:tradeComplete();
 		player:addGil(120);
-		player:messageSpecial(TextID_Selbina.GIL_OBTAINED,120);
+		player:messageSpecial(GIL_OBTAINED,120);
 		player:addFame(BASTOK,  BAS_FAME*20);
 		player:addFame(SANDORIA,SAN_FAME*20);
 		player:completeQuest(OTHER_AREAS,ONLY_THE_BEST);
 	elseif(csid == 0x0040) then
 		player:tradeComplete();
 		player:addGil(600);
-		player:messageSpecial(TextID_Selbina.GIL_OBTAINED,600);
+		player:messageSpecial(GIL_OBTAINED,600);
 		player:addFame(BASTOK,  BAS_FAME*30);
 		player:addFame(SANDORIA,SAN_FAME*30);
 		player:completeQuest(OTHER_AREAS,ONLY_THE_BEST);

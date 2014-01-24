@@ -1,12 +1,13 @@
 -----------------------------------
 --  Area: Selbina
---   NPC: Velema
+--  NPC: Velema
 --  Type: Standard NPC
--- @zone: 248
---  @pos 28.164 -3.947 -12.788
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 28.164 -3.947 -12.788 248
 -----------------------------------
+package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/zones/Selbina/TextIDs");
 
 -----------------------------------
 -- onTrade Action

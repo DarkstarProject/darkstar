@@ -3,6 +3,10 @@
 -- NPC: Diederik
 -- Standard Info NPC
 -----------------------------------
+package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/zones/Selbina/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -16,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x0457);
+	player:startEvent(0x0457);
 end; 
 
 -----------------------------------

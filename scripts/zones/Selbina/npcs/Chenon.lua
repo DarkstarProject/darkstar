@@ -1,12 +1,13 @@
 -----------------------------------
 --  Area: Selbina
---   NPC: Chenon
+--  NPC:  Chenon
 --  Type: Fish Ranking NPC
--- @zone: 248
---  @pos -13.472 -8.287 9.497
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -13.472 -8.287 9.497 248
 -----------------------------------
+package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/zones/Selbina/TextIDs");
 
 -----------------------------------
 -- onTrade Action
