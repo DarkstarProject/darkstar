@@ -555,9 +555,6 @@ void CAIMobDummy::ActionFadeOut()
 		m_LastActionTime = m_Tick;
 		m_PMob->status = STATUS_DISAPPEAR;
         m_PMob->PEnmityContainer->Clear();
-        // clear the ActionQueue
-        ActionQueue_t empty;
-        std::swap(m_actionQueue, empty);
 
         m_ActionType  = m_PMob->m_AllowRespawn ? ACTION_SPAWN : ACTION_NONE;
 
@@ -2152,6 +2149,9 @@ void CAIMobDummy::SetupEngage()
 	if(m_PBattleTarget != NULL)
 	{
 		luautils::OnMobEngaged(m_PMob, m_PBattleTarget);
+        // clear the ActionQueue
+        ActionQueue_t empty;
+        std::swap(m_actionQueue, empty);
 	}
 }
 
