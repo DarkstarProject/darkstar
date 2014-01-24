@@ -2307,7 +2307,7 @@ int32 OnMobFight(CBaseEntity* PMob, CBaseEntity* PTarget)
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
-        //ShowError("luautils::OnMobFight (%s): %s\n", PMob->GetName(), lua_tostring(LuaHandle, -1));
+        ShowError("luautils::OnMobFight (%s): %s\n", PMob->GetName(), lua_tostring(LuaHandle, -1));
         lua_pop(LuaHandle, 1);
 		return -1;
 	}

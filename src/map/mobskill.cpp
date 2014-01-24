@@ -37,7 +37,8 @@ CMobSkill::CMobSkill(uint16 id)
     m_AnimationTime = 0;
     m_ActivationTime = 0;
 	m_Message = 0;
-  m_Param = 0;
+    m_Param = 0;
+    m_skillchain = 0;
 }
 
 bool CMobSkill::hasMissMsg()
@@ -314,4 +315,14 @@ uint16 CMobSkill::getAnimationTime()
 uint16 CMobSkill::getActivationTime()
 {
     return m_ActivationTime;
+}
+
+uint8 CMobSkill::getSkillchain()
+{
+    return m_skillchain;
+}
+
+void CMobSkill::setSkillchain(uint8 skillchain)
+{
+    m_skillchain = skillchain;
 }

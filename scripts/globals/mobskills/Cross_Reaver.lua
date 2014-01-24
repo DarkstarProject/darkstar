@@ -21,7 +21,7 @@ function OnMobWeaponSkill(target, mob, skill)
 
    -- TODO: Can skillchain?  Unknown property.
 
-	local numhits = 1;
+	local numhits = 2;
 	local accmod = 1;
 	local dmgmod = 4;
 	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);

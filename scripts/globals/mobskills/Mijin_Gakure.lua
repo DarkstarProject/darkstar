@@ -23,16 +23,14 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
     local dmgmod = 1;
 
-    local randomPower = math.random(6,10);
+	local hpmod = mob:getHP() / mob:getMaxHP();
+	
+    local power = hpmod * 8 + 7;
 
-    if(mob:isInDynamis()) then
-        randomPower = math.random(7,15);
-    end
-
-    local baseDmg = mob:getWeaponDmg() * randomPower;
+    local baseDmg = mob:getWeaponDmg() * power;
 
     local info = MobMagicalMove(mob,target,skill,baseDmg,ELE_NONE,dmgmod,TP_MAB_BONUS,1);
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_IGNORE_SHADOWS);
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_NONE,MOBPARAM_IGNORE_SHADOWS);
 
     if(mob:isInDynamis()) then
         -- dynamis mobs will kill themselves

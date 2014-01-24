@@ -297,7 +297,6 @@ void CAIMobDummy::ActionEngage()
 
 	if (m_PBattleTarget != NULL)
 	{
-        m_PMob->m_extraVar = 0;
 		if((m_PMob->m_roamFlags & ROAMFLAG_AMBUSH) && m_PMob->IsNameHidden())
 		{
 			// jump out at you
@@ -958,6 +957,22 @@ void CAIMobDummy::ActionAbilityFinish()
         {
             Action.speceffect = SPECEFFECT_RECOIL;
             Action.knockback = m_PMobSkill->getKnockback();
+            if (it == m_PTargetFind->m_targets.begin() && (m_PMobSkill->getSkillchain() != 0))
+            {
+                CWeaponSkill* PWeaponSkill = battleutils::GetWeaponSkill(m_PMobSkill->getSkillchain());
+                if (PWeaponSkill)
+                {
+                    SUBEFFECT effect = battleutils::GetSkillChainEffect(m_PBattleSubTarget, PWeaponSkill);
+                    if (effect != SUBEFFECT_NONE)
+                    {
+                        uint16 skillChainDamage = battleutils::TakeSkillchainDamage(m_PMob, PTarget, Action.param);
+
+                        Action.addEffectParam = skillChainDamage;
+                        Action.addEffectMessage = 287 + effect;
+                        Action.additionalEffect = effect;
+                    }
+                }
+            }
         }
 
 		m_PMob->m_ActionList.push_back(Action);
@@ -2145,13 +2160,14 @@ void CAIMobDummy::SetupEngage()
 	}
 
 	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
+    m_PMob->m_extraVar = 0;
 
 	if(m_PBattleTarget != NULL)
 	{
-		luautils::OnMobEngaged(m_PMob, m_PBattleTarget);
         // clear the ActionQueue
         ActionQueue_t empty;
         std::swap(m_actionQueue, empty);
+		luautils::OnMobEngaged(m_PMob, m_PBattleTarget);
 	}
 }
 
