@@ -79,7 +79,7 @@ namespace charutils
 	void	CheckEquipLogic(CCharEntity* PChar, SCRIPTTYPE ScriptType, uint32 param);
 	void	EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID);
 	void	UnequipItem(CCharEntity* PChar, uint8 equipSlotID);
-    void    RemoveItem(CCharEntity* PChar, uint8 equipSlotID);
+    void    RemoveSub(CCharEntity* PChar);
     bool    EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID);
 	void	CheckUnarmedWeapon(CCharEntity* PChar);
 

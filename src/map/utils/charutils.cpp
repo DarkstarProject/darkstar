@@ -1449,13 +1449,6 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 					}
 				}
 
-				PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
-
-				if ((PItem != NULL) && PItem->isType(ITEM_WEAPON))
-				{
-					UnequipItem(PChar, SLOT_SUB);
-				}
-
 				if (PChar->PBattleAI->GetCurrentAction() == ACTION_ATTACK)
 				{
 					PChar->PBattleAI->SetLastActionTime(gettick());
@@ -1480,74 +1473,14 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 	}
 }
 
-/************************************************************************
-*                                                                       *
-*  Remove item, logic for swapping two-handed items                     *
-*                                                                       *
-************************************************************************/
-
-void RemoveItem(CCharEntity* PChar, uint8 equipSlotID)
+void RemoveSub(CCharEntity* PChar)
 {
-    CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[equipSlotID]);
+    CItemArmor* PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
 
-    //make sure player isn't in the middle of zoning/logging in
-    if (PItem != NULL && PChar->GetHPP() > 0)
+    if (PItem != NULL)
     {
-        //todo: issues as item 0 reference is being handled as a real equipment piece
-        //      thought to be source of nin bug
-        PChar->equip[equipSlotID] = 0;
-
-        if (((CItemArmor*)PItem)->getScriptType() & SCRIPT_EQUIP)
-        {
-            PChar->m_EquipFlag = 0;
-            luautils::OnItemCheck(PChar, PItem);
-
-            for (uint8 i = 0; i < 16; ++i)
-            {
-                CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[i]);
-
-                if ((PItem != NULL) && PItem->isType(ITEM_ARMOR))
-                {
-                    PChar->m_EquipFlag |= ((CItemArmor*)PItem)->getScriptType();
-                }
-            }
-        }
-        if (PItem->isSubType(ITEM_CHARGED))
-        {
-            PChar->PRecastContainer->Del(RECAST_ITEM, PItem->getSlotID()); // при снятии предмета с таймером удаляем запись о нем из RecastList
-        }
-        PItem->setSubType(ITEM_UNLOCKED);
-
-        PChar->delEquipModifiers(&((CItemArmor*)PItem)->modList, ((CItemArmor*)PItem)->getReqLvl(), equipSlotID);
-        PChar->PLatentEffectContainer->DelLatentEffects(((CItemArmor*)PItem)->getReqLvl(), equipSlotID);
-
-        PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NORMAL));
-        PChar->pushPacket(new CEquipPacket(0, equipSlotID));
+        UnequipItem(PChar, SLOT_SUB);
     }
-
-    if (((CItemWeapon*)PItem)->getSkillType() == SKILL_H2H)
-    {
-        PChar->look.sub = 0;
-    }
-
-    if (PChar->PBattleAI->GetCurrentAction() == ACTION_ATTACK)
-    {
-        PChar->PBattleAI->SetLastActionTime(gettick());
-    }
-
-    // If main hand is empty, figure out which UnarmedItem to give the player.
-    if (!PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN])->isType(ITEM_ARMOR))
-    {
-        CheckUnarmedWeapon(PChar);
-    }
-
-    PChar->health.tp = 0;
-    BuildingCharWeaponSkills(PChar);
-    charutils::BuildingCharSkillsTable(PChar);
-    charutils::CalculateStats(PChar);
-
-    PChar->UpdateHealth();
-    PChar->m_EquipSwap = true;
 }
 
 /************************************************************************
@@ -1571,14 +1504,18 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
         (PItem->getReqLvl() > PChar->jobs.job[PChar->GetMJob()]))
         return false;
 
-    if (equipSlotID == 0 && ((CItemWeapon*)PItem)->isTwoHanded() == true &&
-        PChar->equip[equipSlotID] != NULL)
+    if ((equipSlotID == 0) && (((CItemWeapon*)PItem)->isTwoHanded() == true) &&
+        (((CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]))->isTwoHanded()))
     {
-        RemoveItem(PChar, equipSlotID);
+        ShowDebug("Item is 2 handed! \n");
+
+        UnequipItem(PChar, equipSlotID);
     }
     else
     {
+        ShowDebug("Item is not 2 handed. \n");
         UnequipItem(PChar, equipSlotID);
+        RemoveSub(PChar);
     }
 
     if (PItem->getEquipSlotId() & (1 << equipSlotID))
@@ -1810,9 +1747,8 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 {
 	if (slotID == 0)
 	{
-        ShowDebug("Main item removed! \n");
-
 		UnequipItem(PChar,equipSlotID);
+        RemoveSub(PChar);
 
 		PChar->status = STATUS_UPDATE;
 		PChar->m_EquipSwap = true;
