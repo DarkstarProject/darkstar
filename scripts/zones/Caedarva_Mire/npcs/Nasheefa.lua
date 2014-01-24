@@ -55,7 +55,7 @@ function onEventFinish(player,csid,option)
 -- printf("RESULT: %u",option);
 	
 	if(csid == 0x00b7) then
-		player:setPos(-220,-4,475,64,72);
+		player:setPos(-219.977,-4,474.522,64,72); -- To Alzadaal Undersea Ruins {R}
 	end
 	
 end;

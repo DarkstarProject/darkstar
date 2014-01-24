@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Tahrongi_Canyon
--- NPC:  Shattered telepoint
+-- NPC:  Shattered Telepoint
 -- @pos 179 35 255 117
 -----------------------------------
 package.loaded["scripts/zones/Tahrongi_Canyon/TextIDs"] = nil;
@@ -51,9 +51,9 @@ function onEventFinish(player,csid,option)
 
 	if(csid == 0x0390) then
 		player:setVar("PromathiaStatus",2);
-		player:setPos(280.066, -80.63337, -67.096, 192, 14); -- teleport to zone 14
-	elseif(csid == 0x0020) then
-		player:setPos(280.066, -80.63337, -67.096, 192, 14); -- teleport to zone 14
+		player:setPos(280.066, -80.635, -67.096, 191, 14); -- To Hall of Transference {R}
+	elseif(csid == 0x0020 and option == 1) then
+		player:setPos(280.066, -80.635, -67.096, 191, 14); -- To Hall of Transference {R}
 	end
 
 end;

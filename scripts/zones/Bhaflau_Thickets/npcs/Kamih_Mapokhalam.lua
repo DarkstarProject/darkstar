@@ -60,7 +60,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 	
 	if(csid == 0x0079) then
-		player:setPos(325,-4,-620,0,72);
+		player:setPos(325.137,-3.999,-619.968,0,72); -- To Alzadaal Undersea Ruins G-8 {R}
 	elseif(csid == 0x0092) then
 		player:tradeComplete();
 		player:addKeyItem(MAP_OF_ALZADAAL_RUINS);

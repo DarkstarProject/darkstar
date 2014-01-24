@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Spire_of_Vahzl
--- NPC:  web of recollection
+-- Area: Spire of Vahzl
+-- NPC:  Web of Recollection
 -----------------------------------
 package.loaded["scripts/zones/Spire_of_Vahzl/TextIDs"] = nil;
 -----------------------------------
@@ -18,6 +18,9 @@ function onTrade(player,npc,trade)
 	
 	if(TradeBCNM(player,player:getZone(),trade,npc))then
 		return;
+	else
+		player:messageSpecial(FAINT_SCRAPING);
+		return 1;
 	end
 	
 end;

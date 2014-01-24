@@ -12,6 +12,7 @@
 
 -- Other Texts
 ITEM_DELIVERY_DIALOG = 6896; -- We can deliver goods to your residence or to the residences of your friends.
+   DOORS_SEALED_SHUT = 7566; -- The doors are firmly sealed shut.
 		  
 -- Dynamis dialogs
       YOU_CANNOT_ENTER_DYNAMIS = 8918; -- You cannot enter Dynamis - <<<Multiple Choice (Parameter 1)>>>

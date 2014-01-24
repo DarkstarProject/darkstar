@@ -51,11 +51,11 @@ function onEventFinish(player,csid,option)
 	
 	if(csid == 0x0008)then
 		player:setVar("PromathiaStatus",2);
-		player:setPos(732.55,-32.5,-506.544,90,30);-- Go to Riverne #A01 (Retail Confirmed)
+		player:setPos(732.55,-32.5,-506.544,90,30); -- Go to Riverne #A01 {R}
 	elseif((csid == 0x0227 or csid == 0x0226) and option == 1) then
-		player:setPos(732.55,-32.5,-506.544,90,30); -- Go to Riverne #A01
+		player:setPos(732.55,-32.5,-506.544,90,30); -- Go to Riverne #A01 {R}
 	elseif(csid == 0x0227 and option == 2) then
-		player:setPos(729.749,-20.319,407.153,90,29); -- Go to Riverne #B01 (Retail confirmed)
+		player:setPos(729.749,-20.319,407.153,90,29); -- Go to Riverne #B01 {R}
 	end;
 	
 end;
