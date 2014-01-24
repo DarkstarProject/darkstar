@@ -1624,11 +1624,12 @@ INSERT INTO `mob_skill` VALUES (1944,195,1588,'Cyclonic_Torrent',1,15.0,2000,150
 INSERT INTO `mob_skill` VALUES (1914,132,1589,'Fevered_Pitch',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1915,132,1590,'Call_of_the_Moon',1,25.0,2000,1500,4,0,0,0); -- standing up
 INSERT INTO `mob_skill` VALUES (1916,132,1591,'Call_of_the_Moon',1,25.0,2000,1500,4,0,0,0); -- on 4 legs
-INSERT INTO `mob_skill` VALUES (1917,132,1592,'Plenilune_embrace',1,15.0,2000,1500,2,0,0,0); -- standing up?
+INSERT INTO `mob_skill` VALUES (1917,132,1592,'Plenilune_embrace',1,15.0,2000,1500,2,0,0,0); -- standing up
 INSERT INTO `mob_skill` VALUES (1918,132,1593,'Plenilune_embrace',1,15.0,2000,1500,2,0,0,0); -- 4 legs
-INSERT INTO `mob_skill` VALUES (1919,132,1594,'Nox_blast',0,7.0,2000,1000,4,0,0,0); -- standing only?
-INSERT INTO `mob_skill` VALUES (1920,132,1595,'Asuran_claws',0,7.0,2000,1000,4,0,0,0); -- standing only?
--- INSERT INTO `mob_skill` VALUES (1921,132,????,'Cacophony',0,7.0,2000,1000,1,0,0,0); -- standing up? NMs only
+INSERT INTO `mob_skill` VALUES (1919,132,1594,'Nox_blast',0,7.0,2000,1000,4,0,0,0); -- standing only
+INSERT INTO `mob_skill` VALUES (1920,132,1595,'Asuran_claws',0,7.0,2000,1000,4,0,0,0); -- standing only
+
+-- INSERT INTO `mob_skill` VALUES (1921,0,1596,'Cacophony',0,7.0,2000,1000,1,0,0,0); -- standing up - NMs only
 
 -- Djinn
 INSERT INTO `mob_skill` VALUES (1960,82,1597,'Nocturnal_Combustion',1,20.0,2000,500,4,0,0,0);
@@ -1726,7 +1727,7 @@ INSERT INTO `mob_skill` VALUES (1490,246,1235,'Quake_Stomp', 0, 7.0, 2000, 1500,
 
 -- Trolls (heavy-armored model)
 -- INSERT INTO `mob_skill` VALUES (1638,?,1241,'Potent Lunge', 0, 7.0, 2000, 1500, 4, 0, 0, 3);
--- INSERT INTO `mob_skill` VALUES (1639,?,1242,'Overthrow', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1639,?,1242,'Overthrow', 0, 7.0, 2000, 1500, 4, 0, 0, 5);
 -- INSERT INTO `mob_skill` VALUES (1640,?,1243,'Rock_Smash', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
 -- INSERT INTO `mob_skill` VALUES (1641,?,1244,'Diamondhide', 1, 16.0, 2000, 1500, 1, 0, 0, 0);
 -- INSERT INTO `mob_skill` VALUES (1642,?,1245,'Enervation', 1, 18.0, 2000, 1500, 4, 0, 0, 0);
@@ -1734,16 +1735,16 @@ INSERT INTO `mob_skill` VALUES (1490,246,1235,'Quake_Stomp', 0, 7.0, 2000, 1500,
 -- INSERT INTO `mob_skill` VALUES (1644,?,1247,'Healing_Stomp', 1, 16.0, 2000, 1500, 1, 0, 0, 0); -- NM only
 
 -- Trolls (Destroyers [huge warhammer wielders w/ masks])
--- INSERT INTO `mob_skill` VALUES (1819,?,?,'Overthrow', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
--- INSERT INTO `mob_skill` VALUES (1820,?,?,'Rock_Smash', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
--- INSERT INTO `mob_skill` VALUES (1821,?,?,'Diamondhide', 1, 16.0, 2000, 1500, 1, 0, 0, 0);
--- INSERT INTO `mob_skill` VALUES (1822,?,?,'Enervation', 1, 18.0, 2000, 1500, 4, 0, 0, 0);
--- INSERT INTO `mob_skill` VALUES (1823,?,?,'Potent Lunge', 0, 7.0, 2000, 1500, 4, 0, 0, 3);
--- INSERT INTO `mob_skill` VALUES (1824,?,?,'Quake_Stomp', 0, 7.0, 2000, 1500, 1, 0, 0, 0);
--- INSERT INTO `mob_skill` VALUES (1825,?,?,'Hammer-Go-Round', 1, 15.0, 2000, 1500, 4, 0, 0, 0);
--- INSERT INTO `mob_skill` VALUES (1826,?,?,'Hammerblow', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
--- INSERT INTO `mob_skill` VALUES (1827,?,?,'Drop_Hammer', 1, 10.0, 2000, 1500, 4, 0, 0, 0);
--- INSERT INTO `mob_skill` VALUES (1828,?,?,'Seismohammer', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1819,?,1416,'Overthrow', 0, 7.0, 2000, 1500, 4, 0, 0, 5);
+-- INSERT INTO `mob_skill` VALUES (1820,?,1417,'Rock_Smash', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1821,?,1418,'Diamondhide', 1, 16.0, 2000, 1500, 1, 0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1822,?,1419,'Enervation', 1, 18.0, 2000, 1500, 4, 0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1823,?,1420,'Potent Lunge', 0, 7.0, 2000, 1500, 4, 0, 0, 3);
+-- INSERT INTO `mob_skill` VALUES (1824,?,1421,'Quake_Stomp', 0, 7.0, 2000, 1500, 1, 0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1825,?,1422,'Hammer-Go-Round', 1, 15.0, 2000, 1500, 4, 0, 0, 5);
+-- INSERT INTO `mob_skill` VALUES (1826,?,1423,'Hammerblow', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1827,?,1424,'Drop_Hammer', 1, 10.0, 2000, 1500, 4, 0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (1828,?,1425,'Seismohammer', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
 
 -- Automatons (PUP ver.)
 
