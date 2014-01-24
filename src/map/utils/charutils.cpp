@@ -1477,9 +1477,9 @@ void RemoveSub(CCharEntity* PChar)
 {
     CItemArmor* PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
 
-    if (PItem != NULL)
+    if (PItem != NULL && PItem->isType(ITEM_ARMOR))
     {
-        UnequipItem(PChar, SLOT_SUB);
+         UnequipItem(PChar, SLOT_SUB);
     }
 }
 
@@ -1504,19 +1504,22 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
         (PItem->getReqLvl() > PChar->jobs.job[PChar->GetMJob()]))
         return false;
 
-    if ((equipSlotID == 0) && (((CItemWeapon*)PItem)->isTwoHanded() == true) &&
-        (((CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]))->isTwoHanded()))
+    if (equipSlotID == SLOT_MAIN)
     {
-        ShowDebug("Item is 2 handed! \n");
+        CItemArmor* oldItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[equipSlotID]);
+
+        if (!(slotID == PItem->getSlotID() &&
+            (oldItem->isType(ITEM_WEAPON) && PItem->isType(ITEM_WEAPON)) &&
+            ((((CItemWeapon*)PItem)->isTwoHanded() == true) && (((CItemWeapon*)oldItem)->isTwoHanded() == true))))
+        {
+            CItemArmor* PSubItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
+
+            if (PSubItem != NULL && PSubItem->isType(ITEM_ARMOR) && (PSubItem->IsShield() != true))
+                 RemoveSub(PChar);
+        }
+    }
 
         UnequipItem(PChar, equipSlotID);
-    }
-    else
-    {
-        ShowDebug("Item is not 2 handed. \n");
-        UnequipItem(PChar, equipSlotID);
-        RemoveSub(PChar);
-    }
 
     if (PItem->getEquipSlotId() & (1 << equipSlotID))
     {
@@ -1747,8 +1750,12 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 {
 	if (slotID == 0)
 	{
+        CItemArmor* PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
+
 		UnequipItem(PChar,equipSlotID);
-        RemoveSub(PChar);
+
+        if (equipSlotID == 0 && (PItem->IsShield() != true))
+            RemoveSub(PChar);
 
 		PChar->status = STATUS_UPDATE;
 		PChar->m_EquipSwap = true;
@@ -1851,7 +1858,7 @@ void CheckValidEquipment(CCharEntity* PChar)
             {
                 continue;
             }
-            UnequipItem(PChar, slotID);
+                UnequipItem(PChar, slotID);
         }
     }
     // Unarmed H2H weapon check
