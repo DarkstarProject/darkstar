@@ -23,7 +23,7 @@ end;
 function onZoneIn(player,prevZone)		
 	local cs = -1;	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
-		player:setPos(-0.039,-4.083,-293.741,192);
+		player:setPos(1.460,-2.050,-293.738,191); -- {R}
 	end	
 	return cs;	
 end;		

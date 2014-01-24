@@ -5623,26 +5623,28 @@ inline int32 CLuaBaseEntity::updateEnmityFromCure(lua_State *L)
 inline int32 CLuaBaseEntity::updateEnmityFromDamage(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	// TODO: Scripters should check if the target is a monster before calling this, but for now lets do this and
-	// catch it further down.
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB && m_PBaseEntity->objtype != TYPE_PC && m_PBaseEntity->objtype != TYPE_PET );
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
-
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isuserdata(L,1));
 
-	if (m_PBaseEntity->objtype == TYPE_PC || m_PBaseEntity->objtype == TYPE_PET) {
-		return 0;
-	}
+    CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
+    int32 damage = lua_tointeger(L, 2);
 
-	CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L,1);
-	int32 damage = lua_tointeger(L,2);
-
-    if (PEntity != NULL && damage > 0 &&
-        PEntity->GetBaseEntity()->objtype != TYPE_NPC)
-	{
-		((CMobEntity*)m_PBaseEntity)->PEnmityContainer->UpdateEnmityFromDamage((CBattleEntity*)PEntity->GetBaseEntity(),damage);
-	}
-
+    if (m_PBaseEntity->objtype == TYPE_PC || (m_PBaseEntity->objtype == TYPE_MOB && ((CMobEntity*)m_PBaseEntity)->isCharmed) ||
+        m_PBaseEntity->objtype == TYPE_PET)
+    {
+        if (PEntity && PEntity->GetBaseEntity() && PEntity->GetBaseEntity()->objtype == TYPE_MOB)
+        {
+            ((CMobEntity*)PEntity->GetBaseEntity())->PEnmityContainer->UpdateEnmityFromAttack((CBattleEntity*)m_PBaseEntity, damage);
+        }
+    }
+    else if (m_PBaseEntity->objtype == TYPE_MOB)
+    {
+        if (PEntity != NULL && damage > 0 &&
+            PEntity->GetBaseEntity()->objtype != TYPE_NPC)
+        {
+            ((CMobEntity*)m_PBaseEntity)->PEnmityContainer->UpdateEnmityFromDamage((CBattleEntity*)PEntity->GetBaseEntity(), damage);
+        }
+    }
 	return 0;
 }
 

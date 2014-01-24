@@ -2149,6 +2149,9 @@ void CAIMobDummy::SetupEngage()
 	if(m_PBattleTarget != NULL)
 	{
 		luautils::OnMobEngaged(m_PMob, m_PBattleTarget);
+        // clear the ActionQueue
+        ActionQueue_t empty;
+        std::swap(m_actionQueue, empty);
 	}
 }
 

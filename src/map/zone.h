@@ -413,17 +413,17 @@ enum GLOBAL_MESSAGE_TYPE
 
 enum ZONEMISC
 {
-    MISC_NONE       = 0x0000,   // 0x0000, // возможность использовать в любой зоне
-	MISC_ESCAPE		= 0x0001,	// 0x0001, // возможность использования заклинания escape;
-	MISC_TRACTOR	= 0x0010,	// 0x0002, // возможность использования заклинания tractor;
-	MISC_MAZURKA	= 0x0008,	// 0x0004, // возможность использования заклинания mazurka;
-	MISC_FELLOW		= 0x0002,	// 0x0008, // возможность призыва напарника npc
-	MISC_PET		= 0x0080,	// 0x0010, // возможность призыва питомца
-	MISC_CHOCOBO	= 0x0004,	// 0x0020, // возможность использования chocobo
-	MISC_MOGMENU	= 0x0020,	// 0x0040, // возможность общения с Nomad Moogle (доступ к меню mog house)
-	MISC_COSTUME	= 0x0040,	// 0x0080, // возможность использовать маскарадный костюм (costume)
-	MISC_TREASURE	= 0x0100,	// 0x0100, // наличие в зоне глобального TreasurePool
-	MISC_PVP 		= 0x0200    // 0x0200 // pvp on
+    MISC_NONE       = 0x0000,   // 0x0000, // Able to be used in any area
+	MISC_ESCAPE		= 0x0001,	// 0x0001, // Ability to use Escape Spell
+	MISC_TRACTOR	= 0x0010,	// 0x0002, // Ability to use Tractor Spell
+	MISC_MAZURKA	= 0x0008,	// 0x0004, // Ability to use Mazurka Spell
+	MISC_FELLOW		= 0x0002,	// 0x0008, // Ability to summon Fellow NPC
+	MISC_PET		= 0x0080,	// 0x0010, // Ability to summon Pets
+	MISC_CHOCOBO	= 0x0004,	// 0x0020, // Ability to use Chocobos
+	MISC_MOGMENU	= 0x0020,	// 0x0040, // Ability to use Mog Menu (via "View House")
+	MISC_COSTUME	= 0x0040,	// 0x0080, // Ability to use a Costume
+	MISC_TREASURE	= 0x0100,	// 0x0100, // Ability for items to fall into Treasure Pool
+	MISC_PVP 		= 0x0200    // 0x0200 // Ability to PvP (combat players)
 };
 
 /************************************************************************

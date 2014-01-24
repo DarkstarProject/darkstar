@@ -48,7 +48,7 @@ function onEventFinish(player,csid,option)
 -- printf("RESULT: %u",option);
 	
 	if(csid == 0x0064 and option == 1) then
-		player:setPos(-20,0,-355,192,0x22);
+		player:setPos(-20,0.624,-355,191,34); -- {R}
 	elseif(csid == 0x00A4)then	
 	    player:setVar("PromathiaStatus",2);
 	end

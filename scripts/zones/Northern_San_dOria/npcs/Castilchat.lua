@@ -9,6 +9,7 @@ package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 
 require("scripts/globals/status");
 require("scripts/globals/quests");
+require("scripts/globals/teleports");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
@@ -88,7 +89,7 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_OBTAINED,1545);
 		end
 	elseif(csid == 0x02de and option == 1) then
-		player:setPos(499,0,523,194,203);
+		toCloisterOfFrost(player);
 	end
 	
 end;

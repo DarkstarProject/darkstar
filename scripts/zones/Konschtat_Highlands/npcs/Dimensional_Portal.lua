@@ -44,7 +44,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-   if( csid == 0x0066 )then
-     player:setPos(-635,-1,163,55,0x21);
-   end
+	if(csid == 0x0066 and option == 1)then
+		player:setPos(-635.599,-2.799,163.8,193,33); -- To AlTaieu {R}
+	end
 end;

@@ -9,6 +9,7 @@ package.loaded["scripts/zones/Sealions_Den/TextIDs"] = nil;
 require("scripts/globals/missions");
 require("scripts/zones/Sealions_Den/TextIDs");
 require("scripts/globals/keyitems");
+require("scripts/globals/teleports");
 
 -----------------------------------
 -- onTrade Action
@@ -51,7 +52,7 @@ function onEventFinish(player,csid,option)
 --printf("onFinish RESULT: %u",option);
 	
 	if(csid == 0x000c and option == 1) then
-		toPalaceEntrance(player)
+		toPalaceEntrance(player);
 	elseif(csid == 0x0010)then
 	  player:setVar("PromathiaStatus",2);
 	elseif(csid == 0x0011)then
