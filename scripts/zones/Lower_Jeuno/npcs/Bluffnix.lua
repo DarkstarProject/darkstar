@@ -117,7 +117,7 @@ function onEventFinish(player,csid,option)
 		
 		player:changeContainerSize(0,5);
 		player:changeContainerSize(5,5);
-		player:addFame(JEUNO,30);
+		player:addFame(JEUNO, JEUNO_FAME*30);
 		player:tradeComplete();
 		player:completeQuest(JEUNO,TheGobbieBag[1]);
 		player:messageSpecial(INVENTORY_INCREASED);
