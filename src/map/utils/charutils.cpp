@@ -1519,7 +1519,7 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
         }
     }
 
-        UnequipItem(PChar, equipSlotID);
+    UnequipItem(PChar, equipSlotID);
 
     if (PItem->getEquipSlotId() & (1 << equipSlotID))
     {
@@ -1750,11 +1750,11 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 {
 	if (slotID == 0)
 	{
-        CItemArmor* PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
+        CItemArmor* PSubItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
 
 		UnequipItem(PChar,equipSlotID);
 
-        if (equipSlotID == 0 && (PItem->IsShield() != true))
+        if (equipSlotID == 0 && (PSubItem->IsShield() != true))
             RemoveSub(PChar);
 
 		PChar->status = STATUS_UPDATE;
@@ -1858,7 +1858,8 @@ void CheckValidEquipment(CCharEntity* PChar)
             {
                 continue;
             }
-                UnequipItem(PChar, slotID);
+            
+            UnequipItem(PChar, slotID);
         }
     }
     // Unarmed H2H weapon check
