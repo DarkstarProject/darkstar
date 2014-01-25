@@ -415,7 +415,8 @@ void LoadChar(CCharEntity* PChar)
           "fame_sandoria,"  // 4
           "fame_bastok,"    // 5
           "fame_windurst,"  // 6
-          "fame_norg "      // 7
+          "fame_norg, "     // 7
+          "fame_jeuno "     // 8
         "FROM char_profile "
 		"WHERE charid = %u;";
 
@@ -435,6 +436,7 @@ void LoadChar(CCharEntity* PChar)
 		PChar->profile.fame[1] =  (uint16)Sql_GetIntData(SqlHandle,5);  //Bastok
 		PChar->profile.fame[2] =  (uint16)Sql_GetIntData(SqlHandle,6);  //Windurst
 		PChar->profile.fame[3] =  (uint16)Sql_GetIntData(SqlHandle,7);  //Norg
+        PChar->profile.fame[4] =  (uint16)Sql_GetIntData(SqlHandle,8);  //Jeuno
     }
 
     fmtQuery =
@@ -1848,7 +1850,7 @@ void CheckValidEquipment(CCharEntity* PChar)
         {
             if(slotID == SLOT_SUB && !charutils::hasTrait(PChar, TRAIT_DUAL_WIELD))
             {
-                UnequipItem(PChar, slotID);
+                RemoveSub(PChar);
                 continue;
             }
 
@@ -3596,7 +3598,8 @@ void SaveFame(CCharEntity* PChar)
           "fame_sandoria = %u,"
           "fame_bastok = %u,"
           "fame_windurst = %u,"
-          "fame_norg = %u "
+          "fame_norg = %u,"
+          "fame_jeuno = %u "
         "WHERE charid = %u;";
 
 	Sql_Query(SqlHandle, Query,
@@ -3604,6 +3607,7 @@ void SaveFame(CCharEntity* PChar)
         PChar->profile.fame[1],
         PChar->profile.fame[2],
         PChar->profile.fame[3],
+        PChar->profile.fame[4],
         PChar->id);
 }
 
