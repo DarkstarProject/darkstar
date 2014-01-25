@@ -3,7 +3,10 @@
 -- NPC: Herminia
 -- Standard Merchant NPC
 -----------------------------------
+package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
+-----------------------------------
 
+require("scripts/zones/Selbina/TextIDs");
 require("scripts/globals/shop");
 
 -----------------------------------
@@ -19,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
 	
-player:showText(npc,TextID_Selbina.HERMINIA_SHOP_DIALOG);
+player:showText(npc,HERMINIA_SHOP_DIALOG);
 
 stock = {0x30A8,552,		-- Hachimaki
 	0x3128,833,		-- Kenpogi

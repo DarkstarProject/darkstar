@@ -3,7 +3,10 @@
 -- NPC: Torapiont
 -- Standard Merchant NPC
 -----------------------------------
+package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
+-----------------------------------
 
+require("scripts/zones/Selbina/TextIDs");
 require("scripts/globals/shop");
 
 -----------------------------------
@@ -19,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
 	
-player:showText(npc,TextID_Selbina.TORAPIONT_SHOP_DIALOG);
+player:showText(npc,TORAPIONT_SHOP_DIALOG);
 
 stock = {0x401B,11491,		--Claws
 	 0x4043,7727,		--Mythril Dagger

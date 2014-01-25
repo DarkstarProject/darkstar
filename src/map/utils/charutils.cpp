@@ -1449,13 +1449,6 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 					}
 				}
 
-				PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
-
-				if ((PItem != NULL) && PItem->isType(ITEM_WEAPON))
-				{
-					UnequipItem(PChar, SLOT_SUB);
-				}
-
 				if (PChar->PBattleAI->GetCurrentAction() == ACTION_ATTACK)
 				{
 					PChar->PBattleAI->SetLastActionTime(gettick());
@@ -1480,6 +1473,16 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 	}
 }
 
+void RemoveSub(CCharEntity* PChar)
+{
+    CItemArmor* PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
+
+    if (PItem != NULL && PItem->isType(ITEM_ARMOR))
+    {
+         UnequipItem(PChar, SLOT_SUB);
+    }
+}
+
 /************************************************************************
 *																		*
 *  Пытаемся экипировать предмет с соблюдением всех условий	 			*
@@ -1501,7 +1504,22 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
         (PItem->getReqLvl() > PChar->jobs.job[PChar->GetMJob()]))
         return false;
 
-    UnequipItem(PChar,equipSlotID);
+    if (equipSlotID == SLOT_MAIN)
+    {
+        CItemArmor* oldItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[equipSlotID]);
+
+        if (!(slotID == PItem->getSlotID() &&
+            (oldItem->isType(ITEM_WEAPON) && PItem->isType(ITEM_WEAPON)) &&
+            ((((CItemWeapon*)PItem)->isTwoHanded() == true) && (((CItemWeapon*)oldItem)->isTwoHanded() == true))))
+        {
+            CItemArmor* PSubItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
+
+            if (PSubItem != NULL && PSubItem->isType(ITEM_ARMOR) && (PSubItem->IsShield() != true))
+                 RemoveSub(PChar);
+        }
+    }
+
+    UnequipItem(PChar, equipSlotID);
 
     if (PItem->getEquipSlotId() & (1 << equipSlotID))
     {
@@ -1732,7 +1750,12 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 {
 	if (slotID == 0)
 	{
+        CItemArmor* PSubItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
+
 		UnequipItem(PChar,equipSlotID);
+
+        if (equipSlotID == 0 && (PSubItem->IsShield() != true))
+            RemoveSub(PChar);
 
 		PChar->status = STATUS_UPDATE;
 		PChar->m_EquipSwap = true;
@@ -1835,6 +1858,7 @@ void CheckValidEquipment(CCharEntity* PChar)
             {
                 continue;
             }
+            
             UnequipItem(PChar, slotID);
         }
     }
