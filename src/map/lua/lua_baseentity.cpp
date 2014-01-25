@@ -3548,7 +3548,7 @@ inline int32 CLuaBaseEntity::getFame(lua_State *L)
             fame = PChar->profile.fame[fameArea];
         break;
         case 3: // Jeuno
-            fame = PChar->profile.fame[4];
+            fame = PChar->profile.fame[4] + ((PChar->profile.fame[0] + PChar->profile.fame[1] + PChar->profile.fame[2]) / 3);
         break;
         case 4: // Selbina / Rabao
             fame = (PChar->profile.fame[0] + PChar->profile.fame[1]) / 2;
@@ -3662,11 +3662,9 @@ inline int32 CLuaBaseEntity::addFame(lua_State *L)
         case 1: // Bastok
         case 2: // Windurst
             PChar->profile.fame[fameArea] += fame;
-
-            PChar->profile.fame[4] = ((PChar->profile.fame[0] + PChar->profile.fame[1] + PChar->profile.fame[2]) /3) + (fame / 3);
         break;
         case 3: // Jeuno
-            PChar->profile.fame[4] += fame + (PChar->profile.fame[0] + PChar->profile.fame[1] + PChar->profile.fame[2] /3);
+            PChar->profile.fame[4] += fame;
         break;
         case 4: // Selbina / Rabao
             PChar->profile.fame[0] += fame;
