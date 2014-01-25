@@ -2,12 +2,12 @@
 --  Area: Selbina
 --  NPC: Boris
 --  Type: Item Deliverer
---  @zone: 248
---  @pos 61.074 -14.655 -7.1
---
+--  @pos 61.074 -14.655 -7.1 248
 -----------------------------------
+package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/zones/Selbina/TextIDs");
------------------------------------
 
 -----------------------------------
 -- onTrade Action
@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc, TextID_Selbina.BORIS_DELIVERY_DIALOG);
+	player:showText(npc, BORIS_DELIVERY_DIALOG);
 	player:openSendBox();
 end;
 

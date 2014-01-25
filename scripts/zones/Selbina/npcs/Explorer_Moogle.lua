@@ -1,9 +1,11 @@
 -----------------------------------
 -- Area: Selbina
 -- NPC:  Explorer Moogle
--- 
+-----------------------------------
+package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/zones/Selbina/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/teleports");
 

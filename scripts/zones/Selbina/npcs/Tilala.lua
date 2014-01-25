@@ -24,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
 	if(player:sendGuild(516,6,21,0)) then
-		player:showText(npc,TextID_Selbina.CLOTHCRAFT_SHOP_DIALOG);
+		player:showText(npc,CLOTHCRAFT_SHOP_DIALOG);
 	end
 end; 
 

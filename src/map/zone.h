@@ -420,10 +420,10 @@ enum ZONEMISC
 	MISC_FELLOW		= 0x0002,	// 0x0008, // Ability to summon Fellow NPC
 	MISC_PET		= 0x0080,	// 0x0010, // Ability to summon Pets
 	MISC_CHOCOBO	= 0x0004,	// 0x0020, // Ability to use Chocobos
-	MISC_MOGMENU	= 0x0020,	// 0x0040, // Ability to use Mog Menu (via "View House")
-	MISC_COSTUME	= 0x0040,	// 0x0080, // Ability to use a Costume
-	MISC_TREASURE	= 0x0100,	// 0x0100, // Ability for items to fall into Treasure Pool
-	MISC_PVP 		= 0x0200    // 0x0200 // Ability to PvP (combat players)
+	MISC_MOGMENU	= 0x0020,	// 0x0040, // Ability to communicate with Nomad Moogle (menu access mog house)
+	MISC_COSTUME	= 0x0040,	// 0x0080, // Ability to use a Costumes
+	MISC_TREASURE	= 0x0100,	// 0x0100, // Presence in the global zone TreasurePool
+	MISC_PVP 		= 0x0200    // 0x0200 // Ability to PvP
 };
 
 /************************************************************************

@@ -3,7 +3,10 @@
 -- NPC: Chutarmire
 -- Standard Merchant NPC
 -----------------------------------
+package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
+-----------------------------------
 
+require("scripts/zones/Selbina/TextIDs");
 require("scripts/globals/shop");
 
 -----------------------------------
@@ -19,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
 	
-player:showText(npc,TextID_Selbina.CHUTARMIRE_SHOP_DIALOG);
+player:showText(npc,CHUTARMIRE_SHOP_DIALOG);
 
 stock = {0x12A0,5751,	-- Scroll of Stone II
 	 0x12AA,8100,	-- Scroll of Water II

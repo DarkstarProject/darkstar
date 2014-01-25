@@ -3,7 +3,10 @@
 -- NPC: Quelpia
 -- Standard Merchant NPC
 -----------------------------------
+package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
+-----------------------------------
 
+require("scripts/zones/Selbina/TextIDs");
 require("scripts/globals/shop");
 
 -----------------------------------
@@ -19,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
 
-player:showText(npc,TextID_Selbina.QUELPIA_SHOP_DIALOG);
+player:showText(npc,QUELPIA_SHOP_DIALOG);
 
 stock = {0x1202,585,		-- Scroll of Cure II
 	 0x1203,3261,		-- Scroll of Cure III
