@@ -3,7 +3,10 @@
 -- NPC: Lombaria
 -- Map Seller NPC
 -----------------------------------
+package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
+-----------------------------------
 
+require("scripts/zones/Selbina/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 
@@ -65,9 +68,9 @@ function onEventFinish(player,csid,option)
         end
         if (gil > 0 and player:delGil(gil)) then
             player:addKeyItem(option);
-            player:messageSpecial(TextID_Selbina.KEYITEM_OBTAINED,option); 
+            player:messageSpecial(KEYITEM_OBTAINED,option); 
         else
-            player:messageSpecial(TextID_Selbina.NOT_HAVE_ENOUGH_GIL);
+            player:messageSpecial(NOT_HAVE_ENOUGH_GIL);
         end
     end
 end;

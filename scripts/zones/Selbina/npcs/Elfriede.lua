@@ -2,10 +2,12 @@
 -- Area: Selbina
 -- NPC:  Elfriede
 -- Involved In Quest: The Tenshodo Showdown
--- @zone 248
--- @pos 61 -15 10
+-- @pos 61 -15 10 248
+-----------------------------------
+package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/zones/Selbina/TextIDs");
 require("scripts/globals/keyitems");
 
 -----------------------------------
@@ -28,7 +30,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	theTenshodoShowdownCS = player:getVar("theTenshodoShowdownCS");
+	local theTenshodoShowdownCS = player:getVar("theTenshodoShowdownCS");
 	
 	if(theTenshodoShowdownCS == 2) then
 		player:startEvent(0x2712,0,TENSHODO_ENVELOPE,4569); -- During Quest "The Tenshodo Showdown"
@@ -65,7 +67,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("theTenshodoShowdownCS",4);
 		player:delKeyItem(TENSHODO_ENVELOPE);
 		player:addKeyItem(SIGNED_ENVELOPE);
-		player:messageSpecial(TextID_Selbina.KEYITEM_OBTAINED,SIGNED_ENVELOPE);
+		player:messageSpecial(KEYITEM_OBTAINED,SIGNED_ENVELOPE);
 	end
 
 end;

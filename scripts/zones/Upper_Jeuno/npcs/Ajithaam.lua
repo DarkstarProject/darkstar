@@ -104,7 +104,7 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(KEYITEM_OBTAINED,WHITE_SENTINEL_BADGE);
 	elseif(csid == 10091) then
 		player:completeQuest(JEUNO,LURE_OF_THE_WILDCAT_JEUNO);
-		player:addFame(JEUNO,150);
+		player:addFame(JEUNO, JEUNO_FAME*150);
 		player:setVar("WildcatJeuno",0);
 		player:delKeyItem(WHITE_SENTINEL_BADGE);
 		player:addKeyItem(WHITE_INVITATION_CARD);

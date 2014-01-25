@@ -98,7 +98,7 @@ function onEventFinish(player,csid,option)
 		else 
 			player:addItem(14098);
 			player:messageSpecial(ITEM_OBTAINED,14098); -- Choral Slippers
-			player:addFame(JEUNO,30);
+			player:addFame(JEUNO, JEUNO_FAME*30);
 			player:completeQuest(JEUNO,THE_REQUIEM);
 		end		
 	end

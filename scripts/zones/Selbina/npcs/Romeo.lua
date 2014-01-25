@@ -5,7 +5,10 @@
 -- @zone 248
 -- @pos -11 -11 -6
 -----------------------------------
+package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
+-----------------------------------
 
+require("scripts/zones/Selbina/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
@@ -60,12 +63,12 @@ function onEventFinish(player,csid,option)
 		player:addQuest(OTHER_AREAS,DONATE_TO_RECYCLING);
 	elseif(csid == 0x0015) then
 		if (player:getFreeSlotsCount() == 0) then 
-			player:messageSpecial(TextID_Selbina.ITEM_CANNOT_BE_OBTAINED,89);
+			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,89);
 		else 
 			player:completeQuest(OTHER_AREAS,DONATE_TO_RECYCLING);
 			player:addTitle(ECOLOGIST);
 			player:addItem(89);
-			player:messageSpecial(TextID_Selbina.ITEM_OBTAINED,89); -- Wastebasket
+			player:messageSpecial(ITEM_OBTAINED,89); -- Wastebasket
 			player:addFame(OTHER_AREAS,30);
 			player:tradeComplete();
 		end

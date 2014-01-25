@@ -2,10 +2,12 @@
 -- Area: Selbina
 -- NPC: Gabwaleid
 -- Involved in Quest: Riding on the Clouds
--- @zone 248
--- @pos -17 -7 11
+-- @pos -17 -7 11 248
+-----------------------------------
+package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/zones/Selbina/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 
@@ -20,7 +22,7 @@ function onTrade(player,npc,trade)
 			player:setVar("ridingOnTheClouds_3",0);
 			player:tradeComplete();
 			player:addKeyItem(SOMBER_STONE);
-			player:messageSpecial(TextID_Selbina.KEYITEM_OBTAINED,SOMBER_STONE);
+			player:messageSpecial(KEYITEM_OBTAINED,SOMBER_STONE);
 		end
 	end
 	

@@ -4,9 +4,10 @@
 -- Finishes Quest: Elder Memories
 -- @pos -54 -1 -44 248
 -----------------------------------
-require("scripts/zones/Selbina/TextIDs");
+package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/zones/Selbina/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 
@@ -16,10 +17,10 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
 
-questStatus = player:getQuestStatus(OTHER_AREAS,ELDER_MEMORIES);
+	local questStatus = player:getQuestStatus(OTHER_AREAS,ELDER_MEMORIES);
 
 	if(questStatus == QUEST_ACCEPTED and trade:getItemCount() == 1) then
-		IsacioElderMemVar = player:getVar("IsacioElderMemVar");
+		local IsacioElderMemVar = player:getVar("IsacioElderMemVar");
 		if(IsacioElderMemVar == 1 and trade:hasItemQty(538,1)) then
 			player:startEvent(0x0073,537);
 		elseif(IsacioElderMemVar == 2 and trade:hasItemQty(537,1)) then
@@ -37,7 +38,7 @@ end;
 
 function onTrigger(player,npc)
 
-questStatus = player:getQuestStatus(OTHER_AREAS, ELDER_MEMORIES);
+	local questStatus = player:getQuestStatus(OTHER_AREAS, ELDER_MEMORIES);
 
 	if(player:getQuestStatus(OTHER_AREAS, THE_OLD_LADY) ~= QUEST_AVAILABLE) then
 		player:startEvent(0x0063);
@@ -92,7 +93,7 @@ function onEventFinish(player,csid,option)
 		player:tradeComplete();
 		player:unlockJob(0);
 		player:setVar("IsacioElderMemVar", 0);
-		player:messageSpecial(TextID_Selbina.SUBJOB_UNLOCKED);
+		player:messageSpecial(SUBJOB_UNLOCKED);
 		player:completeQuest(OTHER_AREAS, ELDER_MEMORIES);
 	end
 	
