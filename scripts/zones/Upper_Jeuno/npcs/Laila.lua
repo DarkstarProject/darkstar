@@ -70,7 +70,7 @@ function onEventFinish(player,csid,option)
 		player:addTitle(TROUPE_BRILIOTH_DANCER);
 		player:unlockJob(19);
 		player:messageSpecial(UNLOCK_DANCER);
-		player:addFame(JEUNO,30);
+		player:addFame(JEUNO, JEUNO_FAME*30);
 		player:delKeyItem(STARDUST_PEBBLE);
 		player:needToZone(true);
 	end

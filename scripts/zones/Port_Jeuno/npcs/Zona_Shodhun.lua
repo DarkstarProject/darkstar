@@ -109,7 +109,7 @@ function onEventFinish(player,csid,option)
 	if (csid == 0x2727 and option == 4002) then
 		player:moghouseFlag(8);
 		player:messageSpecial(MOGHOUSE_EXIT);
-		player:addFame(JEUNO,30);
+		player:addFame(JEUNO, JEUNO_FAME*30);
 		player:tradeComplete();
 		player:completeQuest(JEUNO,PRETTY_LITTLE_THINGS);
 	elseif (csid == 0x2727 and option == 1) then

@@ -82,7 +82,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0065) then
 		player:addGil(GIL_RATE*2100);
 		player:messageSpecial(GIL_OBTAINED, GIL_RATE*2100);
-		player:addFame(JEUNO,30);
+		player:addFame(JEUNO, JEUNO_FAME*30);
 		player:tradeComplete();
 		player:completeQuest(JEUNO,A_MINSTREL_IN_DESPAIR);
 	elseif(csid == 0x008a and option == 1 or csid == 0x0089 and option == 1) then

@@ -62,7 +62,7 @@ function onEventFinish(player,csid,option)
 		player:addTitle(BELIEVER_OF_ALTANA);
 		player:addKeyItem(HOLY_CANDLE);
 		player:messageSpecial(KEYITEM_OBTAINED,HOLY_CANDLE);
-		player:addFame(JEUNO,30);
+		player:addFame(JEUNO, JEUNO_FAME*30);
 		player:tradeComplete(trade);
 		player:completeQuest(JEUNO,CANDLE_MAKING);
 	end
