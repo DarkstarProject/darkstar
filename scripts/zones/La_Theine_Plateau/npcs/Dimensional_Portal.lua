@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: La_Theine_Plateau
--- NPC:  Dimensional_Portal
+-- Area: La Theine Plateau
+-- NPC:  Dimensional Portal
 -----------------------------------
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
 -----------------------------------
@@ -43,7 +43,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-   if( csid == 0x0075 )then
-     player:setPos(26,-1,578,18,0x21);
-   end
+	if(csid == 0x0075 and option == 1) then
+		player:setPos(25.299,-2.799,579,193,33); -- To AlTaieu {R}
+	end
 end;

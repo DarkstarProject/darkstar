@@ -10,6 +10,7 @@ package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/quests");
+require("scripts/globals/teleports");
 require("scripts/zones/Mhaura/TextIDs");
 
 -----------------------------------
@@ -80,7 +81,7 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_OBTAINED,1548); 
 		end
 	elseif(csid == 0x272a and option == 1) then
-		player:setPos(517,-16,540,0,202);
+		toCloisterOfStorms(player);
 	end	
 end;
 

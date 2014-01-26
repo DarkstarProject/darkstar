@@ -24,7 +24,7 @@
 #include "entities/battleentity.h"
 
 #include "latent_effect.h"
-#include "entities\charentity.h"
+#include "entities/charentity.h"
 
 CLatentEffect::CLatentEffect(LATENT conditionsId, uint16 conditionsValue, uint8 slot, uint16 modValue, int16 modPower)
 {

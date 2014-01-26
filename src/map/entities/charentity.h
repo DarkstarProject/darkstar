@@ -101,7 +101,7 @@ struct profile_t
 	uint8	   nation;			// принадлежность к государству
 	uint8	   mhflag;			// флаг выхода из MogHouse
 	uint16	   title;			// звание
-	uint16     fame[4];			// известность
+	uint16     fame[5];			// известность
 	uint8 	   rank[3];			// рагн в трех государствах
 	uint32	   rankpoints;	    // очки ранга в трех государствах
 	location_t home_point;		// точка возрождения персонажа
@@ -221,6 +221,9 @@ struct currency_t
         };
         uint8 echelontrophies[5];
     };
+    uint8 cavepoints, idtags, opcredits;
+    uint32 traverserstones, voidstones, kupofriedcorundums;
+    uint8 imprimaturs, pheromonesacks;
 };
 
 /************************************************************************

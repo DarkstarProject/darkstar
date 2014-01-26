@@ -103,7 +103,7 @@ end;
 -- if TP_ATK_VARIES -> three values are attack multiplier (1.5x 0.5x etc)
 -- if TP_DMG_VARIES -> three values are
 
-function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mtp100,mtp200,mtp300)
+function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mtp000,mtp150,mtp300)
 	local returninfo = {};
 
 	--get dstr (bias to monsters, so no fSTR)
@@ -192,7 +192,7 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 
 	--apply ftp (assumes 1~3 scalar linear mod)
 	if(tpeffect==TP_DMG_BONUS) then
-		hitdamage = hitdamage * fTP(skill:getTP(), mtp100, mtp200, mtp300);
+		hitdamage = hitdamage * fTP(skill:getTP(), mtp000, mtp150, mtp300);
 	end
 
 	--Applying pDIF
@@ -677,6 +677,7 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 
 	if(dmg > 0) then
 		target:wakeUp();
+		target:updateEnmityFromDamage(mob,dmg);
 	end
 
 	return dmg;
@@ -793,11 +794,11 @@ function fTP(tp,ftp1,ftp2,ftp3)
 	if(tp<100) then
 		tp=100;
 	end
-	if(tp>=100 and tp<200) then
-		return ftp1 + ( ((ftp2-ftp1)/100) * (tp-100));
-	elseif(tp>=200 and tp<=300) then
+	if(tp>=100 and tp<150) then
+		return ftp1 + ( ((ftp2-ftp1)/50) * (tp-100));
+	elseif(tp>=150 and tp<=300) then
 		--generate a straight line between ftp2 and ftp3 and find point @ tp
-		return ftp2 + ( ((ftp3-ftp2)/100) * (tp-200));
+		return ftp2 + ( ((ftp3-ftp2)/150) * (tp-150));
 	end
 	return 1; --no ftp mod
 end;

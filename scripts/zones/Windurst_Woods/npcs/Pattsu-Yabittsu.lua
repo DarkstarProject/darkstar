@@ -2,10 +2,10 @@
 --	Area: Windurst Woods
 --	NPC: Pattsu-Yabittsu
 --	Warps players to Windurst Waters
---	Working 100%
+-----------------------------------
+package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
@@ -40,7 +40,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	if (option == 1) then
-		player:setPos(0,-2,100,128,238);
+		player:setPos(-2.203,-1.5,103.226,196,238); -- Retail packet capped
 	end
 end;
 

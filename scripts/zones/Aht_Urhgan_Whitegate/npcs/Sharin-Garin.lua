@@ -24,7 +24,11 @@ end;
 
 function onTrigger(player,npc)
 	
-	local runicpass = player:hasKeyItem(RUNIC_PORTAL_USE_PERMIT)
+	local runicpass = 0;
+    if (player:hasKeyItem(RUNIC_PORTAL_USE_PERMIT)) then
+        runicpass = 1;
+    end
+    
 	local cost = 200 -- 200 IS to get a permit
 	
 	if(getMercenaryRank(player) == 11) then
@@ -35,7 +39,7 @@ function onTrigger(player,npc)
 	
 	local merc = 2 -- Probably could be done, but not really important atm
 	
-	player:startEvent(0x008C,0,merc,runicpass,player:getImperialStanding(),getAstralCandescence(),cost,captain);
+	player:startEvent(0x008C,0,merc,1,player:getImperialStanding(),getAstralCandescence(),cost,captain);
 	
 end;
 

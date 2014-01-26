@@ -579,6 +579,15 @@ uint8 CInstanceHandler::findInstanceIDFor(CCharEntity* PChar){
 	return 255;
 }
 
+CInstance* CInstanceHandler::getInstance(CCharEntity* PChar)
+{
+    for (int i = 0; i < m_MaxInstances; i++)
+        if (m_Instances[i] != NULL)
+            if (m_Instances[i]->isPlayerInBcnm(PChar))
+                return m_Instances[i];
+    return NULL;
+}
+
 uint32 CInstanceHandler::pollTimeLeft(uint16 id){
 	return 0;
 }

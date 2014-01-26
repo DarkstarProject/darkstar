@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Spire_of_Mea
--- NPC:  web of recollection
+-- Area: Spire of Mea
+-- NPC:  Web of Recollection
 -----------------------------------
 package.loaded["scripts/zones/Spire_of_Mea/TextIDs"] = nil;
 -----------------------------------
@@ -30,7 +30,8 @@ function onTrigger(player,npc)
 	
 	if(EventTriggerBCNM(player,npc))then
 		return 1;
-		else
+	else
+		player:messageSpecial(FAINT_SCRAPING);
 		return 1;
 	end
 	

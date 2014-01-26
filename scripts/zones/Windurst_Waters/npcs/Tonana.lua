@@ -2,10 +2,10 @@
 --	Area: Windurst Waters
 --	NPC: Tonana
 --	Warps players to Windurst Woods
---	Working 100%
+-----------------------------------
+package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
 
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
@@ -40,7 +40,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 	if (option == 1) then
-		player:setPos(107,-5,-135,64,241);
+		player:setPos(108.744,-4.999,-134.094,222,241); -- (Retail packet captured)
 	end
 end;
 

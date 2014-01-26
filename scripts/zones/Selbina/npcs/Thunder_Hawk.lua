@@ -2,8 +2,9 @@
 -- Area: Selbina
 -- NPC:  Thunder Hawk
 -- Starts and Finishes Quest: The Rescue
--- @zone 248
--- @pos -58 -10 6
+-- @pos -58 -10 6 248
+-----------------------------------
+package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/Selbina/TextIDs");

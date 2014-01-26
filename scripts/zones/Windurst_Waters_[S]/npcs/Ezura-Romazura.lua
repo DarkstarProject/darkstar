@@ -3,9 +3,10 @@
 -- NPC: Ezura-Romazura
 -- Standard Merchant NPC
 -----------------------------------
+package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
+-----------------------------------
 
 require("scripts/globals/shop");
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
 require("scripts/zones/Windurst_Waters_[S]/TextIDs");
 
 -----------------------------------
@@ -25,7 +26,7 @@ player:showText(npc,EZURAROMAZURA_SHOP_DIALOG);
 
 stock = {0x12a3,123750,		-- Scroll of Stone V
 	 0x12ad,133110,		-- Scroll of Water V
-	 0x129e,147250,		-- Scroll of Aero V
+	 0x129e,144875,		-- Scroll of Aero V
 	 0x1294,162500,		-- Scroll of Fire V
 	 0x1299,186375,		-- Scroll of Blizzard V
 	 0x131d,168150,		-- Scroll of Stoneja

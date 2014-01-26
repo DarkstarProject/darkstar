@@ -1,12 +1,13 @@
 -----------------------------------
 --  Area: Selbina
---   NPC: Flandiace
+--  NPC:  Flandiace
 --  Type: Adventurer's Assistant
--- @zone: 248
---  @pos 21.313 -15.558 84.298
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 21.313 -15.558 84.298 248
 -----------------------------------
+package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/zones/Selbina/TextIDs");
 
 -----------------------------------
 -- onTrade Action

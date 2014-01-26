@@ -413,7 +413,10 @@ void LoadMOBList(CZone* PZone)
 
             PZone->InsertMOB(PMob);
 
-			luautils::OnMobInitialize(PMob);
+            luautils::OnMobInitialize(PMob);
+
+            PMob->saveModifiers();
+            PMob->saveMobModifiers();
 		}
 	}
 

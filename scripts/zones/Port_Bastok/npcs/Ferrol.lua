@@ -9,6 +9,7 @@ package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 
 require("scripts/globals/status");
 require("scripts/globals/quests");
+require("scripts/globals/teleports");
 require("scripts/zones/Port_Bastok/TextIDs");
 
 -----------------------------------
@@ -34,7 +35,7 @@ function onTrigger(player,npc)
 	if(player:getMainLvl() >= 20 and player:getMainJob() == JOB_SMN and TrialSizeEarth == QUEST_AVAILABLE and player:getFameLevel(BASTOK) >= 2) then -- Requires player to be Summoner at least lvl 20
 		player:startEvent(0x0129,0,1547,1,20); 	--mini tuning fork, zone, level
 	elseif(TrialSizeEarth == QUEST_ACCEPTED) then
-		EarthFork = player:hasItem(1547);
+		local EarthFork = player:hasItem(1547);
 		
 		if(EarthFork) then 
 			player:startEvent(0x00fb); -- Dialogue given to remind player to be prepared
@@ -85,7 +86,7 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_OBTAINED,1547); 
 		end
 	elseif(csid == 0x012a and option == 1) then
-		player:setPos(-636,-14,-500,254,209);
+		toCloisterOfTremors(player);
 	end
 	
 end;

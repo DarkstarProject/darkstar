@@ -30,7 +30,7 @@
 CCurrencyPacket::CCurrencyPacket(CCharEntity* PChar)
 {
 	this->type = 0x13;
-	this->size = 0x69;
+	this->size = 0x73;
 
     memcpy(data, &PChar->m_currency, sizeof PChar->m_currency);
 }

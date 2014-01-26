@@ -67,9 +67,15 @@ enum MOBMODIFIER
   MOBMOD_STANDBACK_TIME = 35, // amount of time the mob stands back
   MOBMOD_ROAM_COOL = 36, // cool down for roaming
   MOBMOD_ALWAYS_AGGRO = 37, // aggro regardless of level. Spheroids
-  MOBMOD_REFLECT = 38 // colibri -- not impl
+  MOBMOD_REFLECT = 38, // colibri -- not impl
+  MOBMOD_SHARE_POS = 39, // share a pos with another mob (eald'narche exoplates)
+  MOBMOD_TELEPORT_CD = 40, // cooldown for teleport abilities (tarutaru AA, angra mainyu, eald'narche)
+  MOBMOD_TELEPORT_START = 41, // mobskill ID to begin teleport
+  MOBMOD_TELEPORT_END = 42, // mobskill ID to end teleport
+  MOBMOD_TELEPORT_TYPE = 43, // teleport type - 1: on cooldown, 2 - to close distance
+  MOBMOD_DUAL_WIELD = 44 // enables a mob to use their offhand in attacks
 };
 
-#define MAX_MOBMODIFIER         39
+#define MAX_MOBMODIFIER         45
 
 #endif

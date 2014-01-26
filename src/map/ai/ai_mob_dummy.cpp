@@ -528,8 +528,6 @@ void CAIMobDummy::ActionDeath()
 		m_ActionType = ACTION_FADE_OUT;
 		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CFadeOutPacket(m_PMob));
 		//if (m_PMob->animationsub == 2) m_PMob->animationsub = 1;
-
-		luautils::OnMobDespawn(m_PMob);
 	}
 
 }
@@ -560,6 +558,7 @@ void CAIMobDummy::ActionFadeOut()
 
         m_ActionType  = m_PMob->m_AllowRespawn ? ACTION_SPAWN : ACTION_NONE;
 
+        luautils::OnMobDespawn(m_PMob);
 	}
 }
 
@@ -702,12 +701,16 @@ void CAIMobDummy::ActionAbilityStart()
 		// get my job two hour
 		m_PMobSkill = battleutils::GetTwoHourMobSkill(m_PMob->GetMJob());
 
-        if (m_PMobSkill->getValidTargets() == TARGET_SELF){ //self
-            m_PBattleSubTarget = m_PMob;
-        }
-        else
+        if (m_PMobSkill != NULL)
         {
-            m_PBattleSubTarget = m_PBattleTarget;
+            if (m_PMobSkill->getValidTargets() == TARGET_SELF)
+            {
+                m_PBattleSubTarget = m_PMob;
+            }
+            else
+            {
+                m_PBattleSubTarget = m_PBattleTarget;
+            }
         }
 
         valid = (m_PMobSkill != NULL && luautils::OnMobSkillCheck(m_PBattleSubTarget, m_PMob, m_PMobSkill) == 0);
@@ -945,6 +948,8 @@ void CAIMobDummy::ActionAbilityFinish()
 		if(m_PMobSkill->hasMissMsg())
 		{
 		    Action.reaction   = REACTION_MISS;
+            if (msg = m_PMobSkill->getAoEMsg())
+                msg = 282;
 		} else {
 		    Action.reaction   = REACTION_HIT;
 		}
@@ -965,8 +970,7 @@ void CAIMobDummy::ActionAbilityFinish()
 		m_ActionType = ACTION_MOBABILITY_FINISH;
 	}
 
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
-
+    m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CActionPacket(m_PMob));
 
 	if (m_PMob->isDead()) //e.g. self-destruct. Needed here AFTER sending the action packets.
 	{
@@ -978,8 +982,14 @@ void CAIMobDummy::ActionAbilityFinish()
 		// increase magic / ranged timer so its not used right after
 		m_LastMagicTime = m_Tick + m_PMobSkill->getAnimationTime();
 		m_LastSpecialTime = m_Tick + m_PMobSkill->getAnimationTime();
+        m_LastActionTime = m_Tick + m_PMobSkill->getAnimationTime();
 
-		m_ActionType = ACTION_ATTACK;
+        m_ActionType = ACTION_ATTACK;
+
+        if (m_PMobSkill->getActivationTime() == 0 && m_PMobSkill->getAnimationTime() < 1000)
+        {
+            m_LastActionTime = m_Tick - m_PMob->m_Weapons[SLOT_MAIN]->getDelay();
+        }
 	}
 
 }
@@ -1238,6 +1248,7 @@ void CAIMobDummy::ActionAttack()
                                 m_PMob->PBattleAI->SetBattleSubTarget(m_PMob);
 				            m_PMob->PBattleAI->SetCurrentAction(ACTION_MOBABILITY_USING);
                             m_actionqueueability = true;
+                            ActionAbilityUsing();
                         }
 			            else
 			            {
@@ -1264,7 +1275,7 @@ void CAIMobDummy::ActionAttack()
 		FinishAttack();
 		return;
 	}
-	else if (rand()%100 < m_PMob->TPUseChance())
+    else if (m_Tick >= m_LastSpecialTime && rand() % 100 < m_PMob->TPUseChance())
 	{
 		m_ActionType = ACTION_MOBABILITY_START;
 		ActionAbilityStart();
@@ -1272,8 +1283,25 @@ void CAIMobDummy::ActionAttack()
 		return;
 	}
 
+    // attempt to teleport
+    if (m_PMob->getMobMod(MOBMOD_TELEPORT_TYPE) == 1)
+    {
+        if (m_Tick >= m_LastStandbackTime + m_PMob->getMobMod(MOBMOD_TELEPORT_CD))
+        {
+            CMobSkill* teleportBegin = battleutils::GetMobSkill(m_PMob->getMobMod(MOBMOD_TELEPORT_START));
+
+            if (teleportBegin)
+            {
+                m_PMobSkill = teleportBegin;
+                m_PBattleSubTarget = m_PMob;
+                m_LastStandbackTime = m_Tick;
+                m_ActionType = ACTION_MOBABILITY_FINISH;
+                ActionAbilityFinish();
+            }
+        }
+    }
     // try to standback if I can
-	if(m_PMob->getBigMobMod(MOBMOD_STANDBACK_TIME))
+    if (m_PMob->getBigMobMod(MOBMOD_STANDBACK_TIME) && m_PMob->getMobMod(MOBMOD_TELEPORT_TYPE) != 2)
 	{
 		if(currentDistance > 28)
 		{
@@ -1363,8 +1391,12 @@ void CAIMobDummy::ActionAttack()
         }
     }
 
-	// move closer to enemy
-	if(currentDistance > m_PMob->m_ModelSize || move)
+    if (m_PMob->getMobMod(MOBMOD_SHARE_POS) > 0)
+    {
+        CMobEntity* posShare = (CMobEntity*)m_PMob->loc.zone->GetEntity(m_PMob->getMobMod(MOBMOD_SHARE_POS), TYPE_MOB);
+        m_PMob->loc = posShare->loc;
+    }
+    else if(currentDistance > m_PMob->m_ModelSize || move)
 	{
 		if(m_PMob->getMobMod(MOBMOD_DRAW_IN) && distance(m_PMob->m_SpawnPoint, m_PBattleTarget->loc.p) > m_PMob->getMobMod(MOBMOD_DRAW_IN))
 		{
@@ -1389,8 +1421,22 @@ void CAIMobDummy::ActionAttack()
 				m_drawnIn = false;
 			}
 		}
-		else if(m_PMob->speed != 0)
+        else if (m_PMob->speed != 0 && m_Tick >= m_LastSpecialTime)
 		{
+            // attempt to teleport to target (if in range)
+            if (m_PMob->getMobMod(MOBMOD_TELEPORT_TYPE) == 2)
+            {
+                CMobSkill* teleportBegin = battleutils::GetMobSkill(m_PMob->getMobMod(MOBMOD_TELEPORT_START));
+
+                if (teleportBegin && currentDistance <= teleportBegin->getDistance())
+                {
+                    m_PMobSkill = teleportBegin;
+                    m_PBattleSubTarget = m_PMob;
+                    m_ActionType = ACTION_MOBABILITY_FINISH;
+                    ActionAbilityFinish();
+                    return;
+                }
+            }
 			// mobs will find a new path only when enough ticks pass
 			// this is so the server is not overloaded
 			if(!m_PPathFind->IsFollowingPath() || ++m_ChaseThrottle == 4)
@@ -1413,7 +1459,7 @@ void CAIMobDummy::ActionAttack()
 	// attack enemy if close enough
     if (currentDistance <= m_PMob->m_ModelSize && !m_mobskillattack)
 	{
-		m_CanStandback = true;
+		//m_CanStandback = true;
         int16 WeaponDelay = m_PMob->GetWeaponDelay(false);
 
 		if (m_AutoAttackEnabled && m_Tick > m_LastActionTime + WeaponDelay)
@@ -1435,12 +1481,13 @@ void CAIMobDummy::ActionAttack()
 
 				Action.ActionTarget = m_PBattleTarget;
 
-				uint8 numAttacks = battleutils::CheckMobMultiHits(m_PMob);
+				uint8 mainAttacks = battleutils::CheckMobMultiHits(m_PMob);
+                uint8 offAttacks = m_PMob->getMobMod(MOBMOD_DUAL_WIELD) > 0 ? battleutils::CheckMobMultiHits(m_PMob) : 0;
 
-				for(uint8 i=0; i<numAttacks; i++){
+                for (uint8 i = 0; i<(mainAttacks + offAttacks); i++){
 					Action.reaction   = REACTION_EVADE;
 					Action.speceffect = SPECEFFECT_NONE;
-					Action.animation  = 0;
+                    Action.animation = i >= mainAttacks ? 1 : 0;
 					Action.param	  = 0;
 					Action.messageID  = 15;
                     Action.knockback  = 0;
@@ -1561,13 +1608,13 @@ void CAIMobDummy::ActionAttack()
 								damage = (uint32)((m_PMob->GetMainWeaponDmg() + battleutils::GetFSTR(m_PMob, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);
 
 								//  Guard skill up
-								if(m_PBattleTarget->objtype == TYPE_PC && isGuarded || ((map_config.newstyle_skillups & NEWSTYLE_GUARD) > 0))
-								{
-									if(battleutils::GetGuardRate(m_PMob, m_PBattleTarget) > 0)
-									{
-										charutils::TrySkillUP((CCharEntity*)m_PBattleTarget,SKILL_GRD, m_PBattleTarget->GetMLevel());
-									}
-								} // Guard skill up
+                                if (m_PBattleTarget->objtype == TYPE_PC && (isGuarded || ((map_config.newstyle_skillups & NEWSTYLE_GUARD) > 0)))
+                                {
+                                    if (battleutils::GetGuardRate(m_PMob, m_PBattleTarget) > 0)
+                                    {
+                                        charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_GRD, m_PBattleTarget->GetMLevel());
+                                    }
+                                } // Guard skill up
 							}
 
 							if(!isCountered)
@@ -1651,7 +1698,7 @@ void CAIMobDummy::ActionAttack()
             m_DeaggroTime = m_Tick;
 		}
 	}
-	else if (rand()%100 < m_PMob->TPUseChance())
+    else if (m_Tick >= m_LastSpecialTime && rand() % 100 < m_PMob->TPUseChance())
 	{
 		// not in range to attack my target
 		// so try an other tp move
@@ -2102,6 +2149,9 @@ void CAIMobDummy::SetupEngage()
 	if(m_PBattleTarget != NULL)
 	{
 		luautils::OnMobEngaged(m_PMob, m_PBattleTarget);
+        // clear the ActionQueue
+        ActionQueue_t empty;
+        std::swap(m_actionQueue, empty);
 	}
 }
 

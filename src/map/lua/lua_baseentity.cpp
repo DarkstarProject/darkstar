@@ -30,6 +30,7 @@
 #include "lua_baseentity.h"
 #include "lua_statuseffect.h"
 #include "lua_trade_container.h"
+#include "lua_instance.h"
 #include "luautils.h"
 
 #include "../packets/action.h"
@@ -607,19 +608,43 @@ inline int32 CLuaBaseEntity::setPos(lua_State *L)
 	return 0;
 }
 
+inline int32 CLuaBaseEntity::teleport(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1));
+
+    lua_getfield(L, 1, "x");
+    m_PBaseEntity->loc.p.x = lua_tonumber(L, -1);
+    lua_getfield(L, 1, "y");
+    m_PBaseEntity->loc.p.y = lua_tonumber(L, -1);
+    lua_getfield(L, 1, "z");
+    m_PBaseEntity->loc.p.z = lua_tonumber(L, -1);
+
+    if (lua_isnumber(L, 2))
+        m_PBaseEntity->loc.p.rotation = lua_tonumber(L, 2);
+    else if (lua_isuserdata(L, 2))
+    {
+        CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 2);
+        m_PBaseEntity->loc.p.rotation = getangle(m_PBaseEntity->loc.p, PLuaBaseEntity->GetBaseEntity()->loc.p);
+    }
+
+    m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CPositionPacket(m_PBaseEntity));
+    return 0;
+}
+
 inline int32 CLuaBaseEntity::getPos(lua_State* L)
 {
-	lua_createtable(L, 3, 0);
+    lua_createtable(L, 3, 0);
     int8 newTable = lua_gettop(L);
 
     lua_pushnumber(L, m_PBaseEntity->loc.p.x);
-    lua_rawseti(L, newTable, 1);
+    lua_setfield(L, newTable, "x");
 
     lua_pushnumber(L, m_PBaseEntity->loc.p.y);
-    lua_rawseti(L, newTable, 2);
+    lua_setfield(L, newTable, "y");
 
     lua_pushnumber(L, m_PBaseEntity->loc.p.z);
-    lua_rawseti(L, newTable, 3);
+    lua_setfield(L, newTable, "z");
 
     return 1;
 }
@@ -3518,12 +3543,12 @@ inline int32 CLuaBaseEntity::getFame(lua_State *L)
     switch (fameArea)
     {
         case 0: // San d'Oria
-        case 1: // Bastock
+        case 1: // Bastok
         case 2: // Windurst
             fame = PChar->profile.fame[fameArea];
         break;
         case 3: // Jeuno
-            fame = (PChar->profile.fame[0] + PChar->profile.fame[1] + PChar->profile.fame[2]) / 3;
+            fame = PChar->profile.fame[4] + ((PChar->profile.fame[0] + PChar->profile.fame[1] + PChar->profile.fame[2]) / 3);
         break;
         case 4: // Selbina / Rabao
             fame = (PChar->profile.fame[0] + PChar->profile.fame[1]) / 2;
@@ -3593,14 +3618,12 @@ inline int32 CLuaBaseEntity::setFame(lua_State *L)
     switch(fameArea)
     {
         case 0: // San d'Oria
-        case 1: // Bastock
+        case 1: // Bastok
         case 2: // Windurst
             ((CCharEntity*)m_PBaseEntity)->profile.fame[fameArea] = fame;
         break;
         case 3: // Jeuno
-            ((CCharEntity*)m_PBaseEntity)->profile.fame[0] = fame;
-            ((CCharEntity*)m_PBaseEntity)->profile.fame[1] = fame;
-            ((CCharEntity*)m_PBaseEntity)->profile.fame[2] = fame;
+            ((CCharEntity*)m_PBaseEntity)->profile.fame[4] = fame;
         break;
         case 4: // Selbina / Rabao
             ((CCharEntity*)m_PBaseEntity)->profile.fame[0] = fame;
@@ -3631,27 +3654,27 @@ inline int32 CLuaBaseEntity::addFame(lua_State *L)
     uint8  fameArea = (uint8) lua_tointeger(L,-2);
     uint16 fame     = (uint16)lua_tointeger(L,-1);
 
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
     switch(fameArea)
     {
         case 0: // San d'Oria
-        case 1: // Bastock
+        case 1: // Bastok
         case 2: // Windurst
-            ((CCharEntity*)m_PBaseEntity)->profile.fame[fameArea] += fame;
+            PChar->profile.fame[fameArea] += fame;
         break;
         case 3: // Jeuno
-            ((CCharEntity*)m_PBaseEntity)->profile.fame[0] += fame;
-            ((CCharEntity*)m_PBaseEntity)->profile.fame[1] += fame;
-            ((CCharEntity*)m_PBaseEntity)->profile.fame[2] += fame;
+            PChar->profile.fame[4] += fame;
         break;
         case 4: // Selbina / Rabao
-            ((CCharEntity*)m_PBaseEntity)->profile.fame[0] += fame;
-            ((CCharEntity*)m_PBaseEntity)->profile.fame[1] += fame;
+            PChar->profile.fame[0] += fame;
+            PChar->profile.fame[1] += fame;
         break;
         case 5: // Norg
-            ((CCharEntity*)m_PBaseEntity)->profile.fame[3] += fame;
+            PChar->profile.fame[3] += fame;
         break;
     }
-    charutils::SaveFame((CCharEntity*)m_PBaseEntity);
+    charutils::SaveFame(PChar);
     return 0;
 }
 
@@ -5598,26 +5621,28 @@ inline int32 CLuaBaseEntity::updateEnmityFromCure(lua_State *L)
 inline int32 CLuaBaseEntity::updateEnmityFromDamage(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	// TODO: Scripters should check if the target is a monster before calling this, but for now lets do this and
-	// catch it further down.
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB && m_PBaseEntity->objtype != TYPE_PC && m_PBaseEntity->objtype != TYPE_PET );
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
-
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isuserdata(L,1));
 
-	if (m_PBaseEntity->objtype == TYPE_PC || m_PBaseEntity->objtype == TYPE_PET) {
-		return 0;
-	}
+    CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
+    int32 damage = lua_tointeger(L, 2);
 
-	CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L,1);
-	int32 damage = lua_tointeger(L,2);
-
-    if (PEntity != NULL && damage > 0 &&
-        PEntity->GetBaseEntity()->objtype != TYPE_NPC)
-	{
-		((CMobEntity*)m_PBaseEntity)->PEnmityContainer->UpdateEnmityFromDamage((CBattleEntity*)PEntity->GetBaseEntity(),damage);
-	}
-
+    if (m_PBaseEntity->objtype == TYPE_PC || (m_PBaseEntity->objtype == TYPE_MOB && ((CMobEntity*)m_PBaseEntity)->isCharmed) ||
+        m_PBaseEntity->objtype == TYPE_PET)
+    {
+        if (PEntity && PEntity->GetBaseEntity() && PEntity->GetBaseEntity()->objtype == TYPE_MOB)
+        {
+            ((CMobEntity*)PEntity->GetBaseEntity())->PEnmityContainer->UpdateEnmityFromAttack((CBattleEntity*)m_PBaseEntity, damage);
+        }
+    }
+    else if (m_PBaseEntity->objtype == TYPE_MOB)
+    {
+        if (PEntity != NULL && damage > 0 &&
+            PEntity->GetBaseEntity()->objtype != TYPE_NPC)
+        {
+            ((CMobEntity*)m_PBaseEntity)->PEnmityContainer->UpdateEnmityFromDamage((CBattleEntity*)PEntity->GetBaseEntity(), damage);
+        }
+    }
 	return 0;
 }
 
@@ -7625,13 +7650,26 @@ inline int32 CLuaBaseEntity::hasValidJugPetItem(lua_State* L)
 	}
 }
 
-inline int32 CLuaBaseEntity::hasTarget(lua_State* L)
+inline int32 CLuaBaseEntity::getTarget(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-	lua_pushboolean(L,((CBattleEntity*)m_PBaseEntity)->PBattleAI->GetBattleTarget() != NULL);
-	return 1;
+    if (((CBattleEntity*)m_PBaseEntity)->PBattleAI->GetBattleTarget())
+    {
+        lua_getglobal(L, CLuaBaseEntity::className);
+        lua_pushstring(L, "new");
+        lua_gettable(L, -2);
+        lua_insert(L, -2);
+        lua_pushlightuserdata(L, ((CBattleEntity*)m_PBaseEntity)->PBattleAI->GetBattleTarget());
+        lua_pcall(L, 2, 1, 0);
+        return 1;
+    }
+    else
+    {
+        lua_pushnil(L);
+        return 1;
+    }
 }
 
 inline int32 CLuaBaseEntity::setBattleSubTarget(lua_State* L)
@@ -7935,18 +7973,12 @@ inline int32 CLuaBaseEntity::lookAt(lua_State* L)
 	}
 	else
 	{
-		// its a table
-		lua_rawgeti(L, 1, 1);
-		posX = lua_tonumber(L, -1);
-		lua_pop(L,1);
-
-		lua_rawgeti(L, 1, 2);
-		posY = lua_tonumber(L, -1);
-		lua_pop(L,1);
-
-		lua_rawgeti(L, 1, 3);
-		posZ = lua_tonumber(L, -1);
-		lua_pop(L,1);
+        lua_getfield(L, 1, "x");
+        posX = lua_tonumber(L, -1);
+        lua_getfield(L, 1, "y");
+        posY = lua_tonumber(L, -1);
+        lua_getfield(L, 1, "z");
+        posZ = lua_tonumber(L, -1);
 	}
 
 	position_t point;
@@ -8108,6 +8140,42 @@ inline int32 CLuaBaseEntity::isNM(lua_State* L)
     return 1;
 }
 
+inline int32 CLuaBaseEntity::setUnkillable(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    ((CBattleEntity*)m_PBaseEntity)->m_unkillable = lua_toboolean(L, 1);
+
+    return 0;
+
+}
+
+inline int32 CLuaBaseEntity::getInstance(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    CInstance* instance = m_PBaseEntity->loc.zone->m_InstanceHandler->getInstance((CCharEntity*)m_PBaseEntity);
+
+    if (instance)
+    {
+        lua_getglobal(L, CLuaInstance::className);
+        lua_pushstring(L, "new");
+        lua_gettable(L, -2);
+        lua_insert(L, -2);
+        lua_pushlightuserdata(L, (void*)instance);
+        lua_pcall(L, 2, 1, 0);
+        return 1;
+    }
+    else
+    {
+        lua_pushnil(L);
+    }
+    return 1;
+
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -8154,6 +8222,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeather),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setWeather),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setPos),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,teleport),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPos),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRace),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNation),
@@ -8434,7 +8503,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setExtraVar),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setSpellList),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasValidJugPetItem),
-	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasTarget),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getTarget),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setBattleSubTarget),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasTPMoves),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaster),
@@ -8461,5 +8530,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateHealth),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,initNpcAi),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isNM),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setUnkillable),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getInstance),
 	{NULL,NULL}
 };

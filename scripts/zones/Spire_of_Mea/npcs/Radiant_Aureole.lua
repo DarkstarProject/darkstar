@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Spire_of_Mea
--- NPC:  Radian Aureole
+-- Area: Spire of Mea
+-- NPC:  Radiant Aureole
 -----------------------------------
 package.loaded["scripts/zones/Spire_of_Mea/TextIDs"] = nil;
 -----------------------------------
@@ -37,6 +37,6 @@ function onEventFinish(player,csid,option)
 --printf("onFinish CSID: %u",csid);
 --printf("onFinish RESULT: %u",option);
 	if (csid==0x000E and option==1)then
-		player:setPos(179 ,35 ,256 ,63 ,117 );
+		player:setPos(179.92, 35.15, 260.137, 64, 117);	    -- To Tahrongi Canyon {R}
 	end	
 end;

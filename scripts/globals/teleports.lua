@@ -1,7 +1,7 @@
 -----------------------------------
 --	A collection of frequently needed teleport shortcuts.
 -- 	by ReaperX
--- 	coordinates marked {R} have been obtained by packet capture from retail. Don't change them.
+--  Coordinates marked {R} have been obtained by packet capture from retail. Don't change them.
 -----------------------------------
 
 -----------------------------------
@@ -145,7 +145,7 @@ function toPurgonorgoBibiki(player)
 end;
 
 function toWindurstMissionOverseer(player)
-	which = player:getVar("firstmissionguard");
+	local which = player:getVar("firstmissionguard");
 	if(which == 1) then
 		player:setPos(0, -16, 122, 198, 0xEF); -- Zokima-Rokima in Windurst Walls
 	elseif(which == 2) then
@@ -153,29 +153,6 @@ function toWindurstMissionOverseer(player)
 	end;
 end;
 
-function toAltep(player)
-	player:setPos(-61.942,3.949,224.9,0,0x72); -- to Altep Telepoint {R}
-end;
-
-function toYhoat(player)
-	player:setPos(-280.942,0.596,-144.156,0,0x7c); -- to Yhoat Telepoint {R}
-end;
-
-function toVahzl(player)
-	player:setPos(150.258,-21.048,-37.256,94,0x70); -- to Vahzl Teleport {R}
-end;
-
-function toDem(player)
-	player:setPos(220,19.104,300,0,0x6c); -- Dem Telepoint {R}
-end;
-
-function toHolla(player)
-	player:setPos(420,19.104,20,0,0x66); -- Holla Telepoint {R}
-end;
-
-function toMea(player)
-	player:setPos(100,35.1506,340,0,0x75); -- Mea Telepoint {R}
-end;
 
 function toRomaaMigho(player)
 	player:setPos(29, -12, -174, 68, 0xFA); -- to H-11 in Kazham (Migho's Residence)
@@ -197,10 +174,6 @@ function toDrogarogasSpine(player)
 	player:setPos(644,-16,0,185,0x77);	-- to eastern portion of Drogaroga's Spine in Meriphataud Mountains.
 end;
 
-function toSkyGreenPorterLeft(player)
-	player:setPos(-134.145, -32.327, -205.947, 215, 0x82); -- {R}
-end;
-
 function toHallofTransferenceDem(player)
 	player:setPos(-267.194, -40.634, -280.019, 0, 0xE); -- {R}
 end;
@@ -219,10 +192,6 @@ end;
 
 function toHallofTransferenceMea(player)
 	player:setPos(280.066, -80.63337, -67.096, 192, 0xE); -- {R}
-end;
-
-function toPalaceEntrance(player)
-	player:setPos(-25, 0, -615, 200, 0x21);	-- to Palace Entrance in Al'Taieu.
 end;
 
 function toSelbina(player)
@@ -249,122 +218,186 @@ function toAltepaDesert(player) -- Teleport to ??? for DRG AF1
 	player:setPos(115.859,-7.916,-74.276,8076,0x72);
 end;
 
--- Swirling Vortex
 
-function toLufaiseMeadows(player) -- Teleport Valkurm Dunes > Lufaise Meadows
-	player:setPos(459,8,3,56,0x18);
+
+
+function toSkyGreenPorterLeft(player)
+	player:setPos(-134.145, -32.328, -205.947, 215, 130); -- {R}
 end;
 
-function toValkurmDunes(player) -- Teleport Lufaise Meadows > Valkurm Dunes
-	player:setPos(418,0,-202,82,0x67);
+function toPalaceEntrance(player)
+	player:setPos(-31.8, 0, -618.7, 190, 33); -- to Palace Entrance in Al'Taieu (via Sueleen) {R}
+end;
+
+function toRuLudeGardens(player)
+	player:setPos(-0.041, 2.999, -6.067, 192, 243); -- H-8  {R}
+end;
+
+function toWajaomLaypoint(player)  -- Wajaom Woodlands Laypoint
+	player:setPos(-200.116, -10, 79.879, 213, 51); -- {R}
+end;
+
+function toAhtUrhganWhitegate(player)
+	player:setPos(27.424, -6, -123.792, 192, 0x32); -- {R}
+end;
+
+-----------------------------------
+-- Telepoint Crags
+-----------------------------------
+
+function toAltep(player)
+	player:setPos(-61.942,3.949,224.9,0,0x72); 	    -- to Altep Telepoint {R}
+end;
+
+function toYhoat(player)
+	player:setPos(-280.942,0.596,-144.156,0,0x7c);  -- to Yhoat Telepoint {R}
+end;
+
+function toVahzl(player)
+	player:setPos(150.258,-21.048,-37.256,94,0x70); -- to Vahzl Teleport  {R}
+end;
+
+function toDem(player)
+	player:setPos(220,19.104,300,0,0x6c); 			-- Dem Telepoint 	  {R}
+end;
+
+function toHolla(player)
+	player:setPos(420,19.104,20,0,0x66); 			-- Holla Telepoint 	  {R}
+end;
+
+function toMea(player)
+	player:setPos(100,35.1506,340,0,0x75); 			-- Mea Telepoint 	  {R}
+end;
+
+-----------------------------------
+-- Swirling Vortex
+-----------------------------------
+
+function toLufaiseMeadows(player) -- Teleport Valkurm Dunes > Lufaise Meadows
+	player:setPos(458.847,7.999,5.519,72,24); -- {R}
+end;
+
+function toValkurmDunes(player)   -- Teleport Lufaise Meadows > Valkurm Dunes
+	player:setPos(420.062,0,-199.904,87,103); -- {R}
 end;
 
 function toMisareauxCoast(player) -- Teleport Qufim Island > Misareaux Coast
-	player:setPos(-115,-32,219,2,0x19);
+	player:setPos(-118,-32,219,3,25); -- {R}
 end;
 
-function toQufimIsland(player) -- Teleport Misareaux Coast > Qufim Island
-	player:setPos(-438,-13,340,134,0x7E);
+function toQufimIsland(player) 	  -- Teleport Misareaux Coast > Qufim Island
+	player:setPos(-436,-13.499,340.117,107,126); -- {R}
 end;
 
--- -----------------
+-----------------------------------
+-- Campaign NPC Teleport
+-----------------------------------
 
 function toCampaignDestination(player, option)
+
 	if(option == 1) then
-		player:setPos(205.973,-23.5875,-206.606, 167, 0x89); -- Xarcabard [S] {R}
+		player:setPos(205.973,-23.5875,-206.606, 167, 0x89);  -- Xarcabard [S] {R}
 	elseif(option == 2) then
-		player:setPos(-46.172,-60.1088,-38.487, 16, 0x88); -- Beaucedine Glacier [S] {R}
+		player:setPos(-46.172,-60.1088,-38.487, 16, 0x88); 	  -- Beaucedine Glacier [S] {R}
 	elseif(option == 3) then
-		player:setPos(306.939, -1, -141.567, 173, 0x54); -- Batallia Downs [S] {R}
+		player:setPos(306.939, -1, -141.567, 173, 84); 		  -- Batallia Downs [S] {R}
 	elseif(option == 4) then
-		player:setPos(-4.701, 15.981, 235.996, 160, 0x5B); -- Rolanberry Fields [S] {R}
+		player:setPos(-4.701, 15.982, 235.996, 160, 91); 	  -- Rolanberry Fields [S] {R}
 	elseif(option == 5) then
-		player:setPos(-64.212, 7.579, -51.292, 192, 0x62); -- Sauromugue Champaign [S] {R}
+		player:setPos(-64.212, 7.625, -51.292, 192, 98); 	  -- Sauromugue Champaign [S] {R}
 	elseif(option == 6) then
-		player:setPos(60.617, -3.952, 56.658, 64, 0x52); -- Jugner Forest [S] {R}
+		player:setPos(60.617, -3.949, 56.658, 64, 82); 		  -- Jugner Forest [S] {R}
 	elseif(option == 7) then
-		player:setPos(504.088, 24.442, 628.36, 69, 0x5A); -- Pashhow Marshlands [S] {R}
+		player:setPos(504.088, 24.511, 628.36, 69, 90); 	  -- Pashhow Marshlands [S] {R}
 	elseif(option == 8) then
-		player:setPos(-447.084, 23.433, 586.847, 31, 0x61); -- Meriphataud Mountains [S] {R}
+		player:setPos(-447.084, 23.433, 586.847, 31, 0x61);   -- Meriphataud Mountains [S] {R}
 	elseif(option == 9) then
 		player:setPos(-77.817, -47.234, -302.732, 135, 0x53); -- Vunkerl Inlet [S] {R}
 	elseif(option == 10) then
-		player:setPos(314.335, -36.368, -12.2, 192,0x59); -- Grauberg [S] {R}
+		player:setPos(314.335, -36.368, -12.2, 192,0x59); 	  -- Grauberg [S] {R}
 	elseif(option == 11) then
-		player:setPos(141.021, -45, 19.543, 0, 0x60); -- Fort Karugo-Narugo [S] {R}
+		player:setPos(141.021, -45, 19.543, 0, 0x60);		  -- Fort Karugo-Narugo [S] {R}
 	elseif(option == 12) then
-		player:setPos(183.297, -19.9714, -240.895, 2, 0x51); -- East Ronfaure [S] {R}
+		player:setPos(183.297, -19.9714, -240.895, 2, 0x51);  -- East Ronfaure [S] {R}
 	elseif(option == 13) then
-		player:setPos(-441.332, 40, -77.986, 164, 0x58); -- North Gustaberg [S] {R}
+		player:setPos(-441.332, 40, -77.986, 164, 0x58); 	  -- North Gustaberg [S] {R}
 	elseif(option == 14) then
-		player:setPos(-104.707, -21.838, 258.043, 237, 0x5f);	-- West Sarutabaruta [S] {R}
+		player:setPos(-104.707, -21.838, 258.043, 237, 0x5f); -- West Sarutabaruta [S] {R}
 	elseif(option == 15) then
-		player:setPos(-98, 1, -41, 224, 0x50);	-- Southern San d'Oria [S] {approximated from memory}
+		player:setPos(-98, 1, -41, 224, 0x50);				  -- Southern San d'Oria [S] {approximated from memory}
 	elseif(option == 16) then
-		player:setPos(-291, -10, -107, 212, 0x57); -- Bastok Markets [S] {appoximated from memory}
+		player:setPos(-291, -10, -107, 212, 0x57); 			  -- Bastok Markets [S] {appoximated from memory}
 	elseif(option == 17) then
-		player:setPos(-31.442, -5, 129.202, 128, 0x5E); --  Windurst Waters [S} {R}
+		player:setPos(-31.442, -5, 129.202, 128, 0x5E); 	  -- Windurst Waters [S} {R}
 	elseif(option == 18) then
-		player:setPos(-194.095, 0, 30.009, 0, 0xA4); -- Garlaige Citdadel [S] {R}
+		player:setPos(-194.095, 0, 30.009, 0, 0xA4); 		  -- Garlaige Citdadel [S] {R}
 	elseif(option == 19) then
-		player:setPos(59.213, -32.158, -38.022, 64, 0xAB); -- Crawler's Nest [S] {R}
+		player:setPos(59.213, -32.158, -38.022, 64, 0xAB); 	  -- Crawler's Nest [S] {R}
 	elseif(option == 20) then
-		player:setPos(294.35, -27.5, 19.947, 0, 0xAF); -- The Eldieme Necropolis [S] {R}
+		player:setPos(294.35, -27.5, 19.947, 0, 0xAF); 		  -- The Eldieme Necropolis [S] {R}
 	end;
 end;
+
+-----------------------------------
+-- Cavernous Maws
+-----------------------------------
 
 function toMaw(player, option)
 	if(option == 1) then 		-- Batallia Downs [S]
-		player:setPos(-48, 0, 437, 52, 0x54);
+		player:setPos(-51.486, 0.371, 436.972, 128, 84);		-- {R}
 	elseif(option == 2) then	-- Batallia Downs
-		player:setPos(-49, 0, 435, 1, 0x69);
+		player:setPos(-51.486, 0.371, 436.972, 128, 105);		-- {R}
 	elseif(option == 3) then	-- Rolanberry Fields [S]
-		player:setPos(-190, -8, 363, 11, 0x5b);
+		player:setPos(-196.5, 7.999, 361.192, 225, 91);			-- {R}
 	elseif(option == 4) then	-- Rolanberry Fields
-		player:setPos(-193, 8, 360, 0, 0x6e);
+		player:setPos(-196.5, 7.999, 361.192, 225, 110);		-- {R}
 	elseif(option == 5) then	-- Sauromugue Champaign [S]
-		player:setPos(372, 9, -228, 27, 0x62);
+		player:setPos(366.858, 8.545, -228.861, 95, 98);		-- {R}
 	elseif(option == 6) then	-- Sauromugue Champaign
-		player:setPos(370, 8, -228, 0, 0x78);
+		player:setPos(366.858, 8.545, -228.861, 95, 120);		-- {R}
 	elseif(option == 7) then	-- West Sarutabaruta [S]
-		player:setPos(0, 0, -164, 29, 0x5f);
+		player:setPos(2.628, -0.15, -166.562, 32, 95);			-- {R}
 	elseif(option == 8) then	-- West Sarutabaruta
-		player:setPos(0, 0, -164, 29, 0x73);
+		player:setPos(2.628, -0.15, -166.562, 32, 115);			-- {R}
 	elseif(option == 9) then	-- East Ronfaure [S]
-		player:setPos(320, -60, 500, 79, 0x51);
+		player:setPos(322.057, -60.059, 503.712, 64, 81);		-- {R}
 	elseif(option == 10) then	-- East Ronfaure
-		player:setPos(320, -60, 500, 79, 0x65);
+		player:setPos(322.057, -60.059, 503.712, 64, 101);		-- {R}
 	elseif(option == 11) then	-- North Gustaberg [S]
-		player:setPos(469, 0, 479, 254, 0x58);
+		player:setPos(469.697, -0.05, 478.949, 0, 88);			-- {R}
 	elseif(option == 12) then	-- North Gustaberg
-		player:setPos(469, 0, 479, 254, 0x6A);
+		player:setPos(469.697, -0.05, 478.949, 0, 106);			-- {R}
 	elseif(option == 13) then	-- Jugner Forest [S]
-		player:setPos(-117,-8,-519,254,0x52);
+		player:setPos(-116.093,-8.005,-520.041,0,82);			-- {R}
 	elseif(option == 14) then	-- Jugner Forest
-		player:setPos(-117,-8,-519,254,0x68);
+		player:setPos(-116.093,-8.005,-520.041,0,104);			-- {R}
 	elseif(option == 15) then	-- Pashhow Marshlands [S]
-		player:setPos(418,25,27,105,0x5A);
+		player:setPos(415.945,24.659,25.611,101,90);			-- {R}
 	elseif(option == 16) then	-- Pashhow Marshlands
-		player:setPos(418,25,27,105,0x6D);
+		player:setPos(415.945,24.659,25.611,101,109);			-- {R}
 	elseif(option == 17) then	-- Meriphataud Mountains [S]
-		player:setPos(597,-32,279,95,0x61);
+		player:setPos(595,-32,279.3,93,97);						-- {R}
 	elseif(option == 18) then	-- Meriphataud Mountains
-		player:setPos(597,-32,279,95,0x77);
-	-- Abyessa Maws
-		--Tahrongi Canyon (H-12)
-		--Konschtat Highlands (I-12)
-		--La Theine Plateau (E-4)
-		--Valkurm Dunes (I-9)
-		--Jugner Forest (J-8)
-		--Buburimu Peninsula (F-7)
-		--South Gustaberg (J-10)
-		--North Gustaberg (G-6)
-		--Xarcabard (H-8)
+		player:setPos(595,-32,279.3,93,119);					-- {R}
+	-- TODO: Abyessa Maws:
+			--Tahrongi Canyon (H-12)
+			--Konschtat Highlands (I-12)
+			--La Theine Plateau (E-4)
+			--Valkurm Dunes (I-9)
+			--Jugner Forest (J-8)
+			--Buburimu Peninsula (F-7)
+			--South Gustaberg (J-10)
+			--North Gustaberg (G-6)
+			--Xarcabard (H-8)
 	end;
 end;
 
+-----------------------------------
+-- Recalls
+-----------------------------------
+
 function recallJugner(player)
-	player:setPos(-122.862, 0, -163.154, 192, 0x52);  -- {R}
+	player:setPos(-122.862, 0, -163.154, 192, 0x52);    -- {R}
 end;
 
 function recallMeriph(player)
@@ -374,6 +407,10 @@ end;
 function recallPashh(player)
 	player:setPos(345.472, 24.28, -114.731, 99, 0x5A);  -- {R}
 end;
+
+-----------------------------------
+-- Staging Points
+-----------------------------------
 
 function AzouphIsleStagingPoint(player)
 	player:setPos(522.73, -28.009, -502.621, 161, 0x4f); -- to Caedarva Mire {R}
@@ -401,39 +438,94 @@ end;
 
 function toChamberOfPassage(player)
 	if(math.random(1,2) == 1) then
-		player:setPos(133.4, 1.485, 47.427, 96, 0x32); -- Aht Urhgan Whitegate Chamber of Passage Left {R}
+		player:setPos(133.4, 1.485, 47.427, 96, 0x32);  -- Aht Urhgan Whitegate Chamber of Passage Left  {R}
 	else
 		player:setPos(116.67, 1.485, 47.427, 32, 0x32); -- Aht Urhgan Whitegate Chamber of Passage Right {R}
 	end
 end;
 
-function toAhtUrhganWhitegate(player)
-	player:setPos(27.608, -6.000, -124.462, 192, 0x32);
+-----------------------------------
+-- Assaults
+-----------------------------------
+
+-- Periqia
+function Periqia1(player)
+	player:setPos(-350, -15.245, 380, 0, 56); -- Rank 1 (Seagull Grounded)			{R}
+end;
+function PeriqiaExit(player)
+	player:setPos(-252.715, -7.666, -30.64, 128, 79); -- Exit						{R}
 end;
 
+-- Lebros Cavern
 function LebrosCavern1(player)
-	player:setPos(124.999, -39.31071, 19.999,0x3F); -- Lebros Cavern Rank 1 (Excavation Duty)
+	player:setPos(124.999, -39.309, 19.999, 0, 63); -- Rank 1 (Excavation Duty)		{R}
 end;
-
 function LebrosCavernExit(player)
-	player:setPos(681.95, -24, 369.936,64, 0x3D); -- Mount Z position after exiting.
+	player:setPos(681.950, -24, 369.936, 64, 61); -- Exit							{R}
 end;
 
+-- Mamool Ja Training Grounds
 function MamoolJaTrainingGround1(player)
-	player:setPos(-20, -2.271, -405, 63, 0x42); -- Mamool Ja Training Grounds Rank 1
+	player:setPos(-20, 2.276, -405, 63, 66); -- Rank 1 (Imperial Agent Rescue) 		{R}
 end;
-
 function MamoolJaTrainingExit(player)
-	player:setPos(-172.863, -12.25, -801.021, 128, 0x34);  -- after exiting Mamool ja Training Grounds
+	player:setPos(-172.863, -12.25, -801.021, 128, 52);  -- Exit					{R}
 end;
 
+-- Leujaoam Sanctum
 function LeujaoamSanctum1(player)
-	player:setPos(280, -7.5, 35 , 195); -- Leujaoam Sanctum, Rank 1
+	player:setPos(280, -7.5, 35, 195, 69); -- Rank 1 (Leujaoam Cleansing) 			{R}
+end;
+function LeujaoamSanctumExit(player)
+	player:setPos(495.450, -28.25, -478.430, 32, 79); -- Exit						{R}
 end;
 
-function LeujaoamSanctumExit(player)
-	player:setPos(495.45001, -28.25, -478.43, 32, 0x4f); -- after exiting Leujaoam Sanctum
+-- Ilrusi Atoll
+function IlrusiAtoll1(player)
+	player:setPos(384.999, -12.071, 14.999, 192, 55); -- Rank 1 (Golden Salvage) 	{R}
 end;
+function IlrusiAtollExit(player)
+	player:setPos(9.304,-7.376,620.133,0,54); -- Exit								{R}
+end;
+
+-- Nyzul Isle
+function NyzulIsle(player)
+	player:setPos(-20, -4, -20, 192, 77); -- Nyzul Isle Investigation 				{R}
+end;
+function NyzulIsleExit(player)
+	player:setPos(180,0,20,0,72); -- Exit											{R}
+end;
+
+-----------------------------------
+-- Salvage
+-----------------------------------
+-- TODO: The rest
+
+-- Silver Sea Remnants
+function SilverSeaRemnantsI(player)
+	player:setPos(339.999, 11.999, -166.499, 63, 76); -- Silver Sea Remnants I	 	{R}
+end;
+-- function SilverSeaRemnantsII(player)
+-- 	player:setPos(0, 0, 0, 0, 76); -- Silver Sea Remnants II	 	
+-- end;
+function SilverSeaRemnantsExit(player)
+	player:setPos(580,0,500,192,72); -- Exit										{R}
+end;
+
+-- Bhaflau Remnants
+function BhaflauRemnantsI(player)
+	player:setPos(339.999, 19.999, -553.499, 191, 75); -- Bhaflau Remnants I	 	{R}
+end;
+-- function BhaflauRemnantsII(player)
+-- 	player:setPos(0, 0, 0, 0, 75); -- Bhaflau Remnants II	 	
+-- end;
+function BhaflauRemnantsExit(player)
+	player:setPos(620,0,-260,64,72); -- Exit										{R}
+end;
+
+-----------------------------------
+-- Explorer Moogle
+-----------------------------------
 
 function toExplorerMoogle(player,zone)
 	if(zone == 231) then
@@ -449,16 +541,197 @@ function toExplorerMoogle(player,zone)
 	end
 end;
 
+-----------------------------------
+-- Trial-Size Avatar Quest Teleports
+-----------------------------------
+
+function toCloisterOfGales(player)
+	player:setPos(-374.919, 0.628, -386.774, 226, 201); -- Cloister of Gales (Garuda)	 {R}
+end;
+function toCloisterOfStorms(player)
+	player:setPos(540.853, -13.329, 511.298, 82, 202);  -- Cloister of Storms (Ramuh)	 {R}
+end;
 function toCloisterOfFrost(player)
-	player:setPos(554, 0, 589, 209, 203); -- Cloister of Frost (shiva)
+	player:setPos(550.403, 0.006, 584.82, 217, 203);    -- Cloister of Frost (Shiva)	 {R}
+end;
+function toCloisterOfFlames(player)
+	player:setPos(-716.461, 0.407, -606.661, 168, 207); -- Cloister of Flames (Ifrit)    {R}
+end;
+function toCloisterOfTremors(player)
+	player:setPos(-540.269, 1.396, -509.8, 192, 209);   -- Cloister of Tremors (Titan)   {R}
+end;
+function toCloisterOfTides(player)
+	player:setPos(570.294, 36.757, 546.895, 167, 211);  -- Cloister of Tides (Leviathan) {R}
 end;
 
-function toRuLudeGardens(player)
-	player:setPos(0.000, 9.000, -38.670, -67, 243);
-end;
+-----------------------------------------
+-- Escape
+-----------------------------------------
 
-function toWajaomLaypoint(player)  -- Wajaom Woodlands Laypoint
-	player:setPos(-200,-10,80,125,0x33);
+function Escape(player, zone)
+
+	-- Ronfaure {R}
+	if(zone == 139 or zone == 140 or zone == 141 or zone == 142) then 		-- From Ghelsba Outpost, Fort Ghelsba, Yughott Grotto, Horlais Peak
+		player:setPos(-720,-61,600,64,100); 								-- To West Ronfaure at E-4
+	elseif(zone == 167) then 												-- From Bostaunieux Oubliette
+		player:setPos(-685,-30,18,0,100); 									-- To West Ronfaure at F-8
+	elseif(zone == 190) then 												-- From King Ranperre's Tomb
+		player:setPos(203,-1,-521,192,101); 								-- To East Ronfaure at H-11		
+	-- Valdeaunia {R}
+	elseif(zone == 162 or zone == 161 or zone == 165) then 					-- From Castle Zvahl Keep, Castle Zvahl Baileys, Throne Room
+		player:setPos(-414,-44,19,0,112); 									-- To Xarcabard at G-7
+	-- Norvallen {R}
+	elseif(zone == 195) then 												-- From The Eldieme Necropolis
+		player:setPos(382.398,7.314,-106.298,160,105); 						-- To Batallia Downs at F-8
+	elseif(zone == 149 or zone == 150) then 								-- From Davoi or Monastic Cavern
+		player:setPos(-232,-8,-562,0,104); 									-- To Jugner Forest at G-12
+	-- Fauregandi {R}
+	elseif(zone == 166) then 												-- From Ranguemont Pass
+		player:setPos(803,-61,635,128,101); 								-- To East Ronfaure at K-4
+	elseif(zone == 9 or zone == 10) then									-- From Pso'Xja, The Shrouded Maw
+		player:setPos(-427,-41,-422,0,111); 								-- To Beaucedine Glacier at E-11
+	elseif(zone == 204 or zone == 206 or zone == 203) then 					-- From Fei'Yin, Qu'Bia Arena, Cloister of Frost
+		player:setPos(279,19,536,64,111); 									-- To Beaucedine Glacier at J-5
+	-- Derfland {R}
+	elseif(zone == 197) then 												-- From Crawlers' Nest
+		player:setPos(-356,-24,-763,192,110); 								-- To Rolanberry Fields at F-13
+	elseif(zone == 148 or zone == 147) then 								-- From Qulun Dome, Beadeaux
+		player:setPos(557,24,-385,192,109); 								-- To Pashhow Marshlands at K-11	
+	-- Emptiness {R}
+	elseif(zone == 16 or zone == 17) then									-- From Promyvion-Holla, Spire of Holla
+		player:setPos(332,24,-148,96,102); 									-- To La Theine Plateau at J-9	
+	elseif(zone == 18 or zone == 19) then									-- From Promyvion-Dem, Spire of Dem
+		player:setPos(134,24,134,96,108); 									-- To Konschtat Highlands at I-7		
+	elseif(zone == 20 or zone == 21) then									-- From Promyvion-Mea, Spire of Mea
+		player:setPos(266,40,254,32,117); 									-- To Tahrongi Canyon at J-6		
+	elseif(zone == 22 or zone == 23) then									-- From Promyvion-Vahzl, Spire of Vahzl
+		player:setPos(-331,-100,128,32,111); 								-- To Beaucedine Glacier at F-7
+	-- Qufim Island {R}
+	elseif(zone == 157 or zone == 158 or zone == 184 or zone == 179) then 	-- From Delkfutt's Tower: Middle, Upper, Lower, Stellar Fulcrum
+		player:setPos(-267,-20,320,0,126); 									-- To Qufim Island at F-6
+	-- Tu'Lia {R}
+	elseif(zone == 177 or zone == 178 or zone == 180 or zone == 181) then	-- From Ve'Lugannon Palace, Shrine of Ru'Avitau, LaLoff Amphitheater, The Celestial Nexus
+		player:setPos(0,-35,-472,192,130); 									-- To Ru'Aun Gardens at H-11	
+	-- Li'Telor {R}
+	elseif(zone == 153 or zone == 154 or zone == 202) then 					-- From The Boyahda Tree, Dragon's Aery, Cloister of Storms
+		player:setPos(509.5,1,-575,128,121); 								-- To The Sanctuary of Zi'Tah at K-12
+	-- Aragonau {R}
+	elseif(zone == 200) then 												-- From Garlaige Citadel
+		player:setPos(-112,-24,-403,192,120); 								-- To Sauromugue Champaign at H-10	
+	elseif(zone == 152 or zone == 151) then 								-- From Altar Room, Castle Oztroja
+		player:setPos(718,-31,-63,128,119); 								-- To Meriphataud Mountains at L-8		
+	-- Kolshushu {R}
+	elseif(zone == 213) then 												-- From Labyrinth of Onzozo
+		player:setPos(447,18,191,32,118); 									-- To Buburimu Peninsula at K-6
+	elseif(zone == 198) then 												-- From Maze of Shakhrami
+		player:setPos(446,46,481,128,117); 									-- To Tahrongi Canyon at K-5	
+	-- Sarutabaruta {R}
+	elseif(zone == 169 or zone == 192 or zone == 194 or zone == 170) then 	-- From Toraimarai Canal, Inner Horutoto Ruins, Outer Horutoto Ruins, Full Moon Fountain
+		player:setPos(366,-13,92,128,116); 									-- To East Sarutabaruta at J-7
+	elseif(zone == 145 or zone == 146) then 								-- From Giddeus, Balgas Dais
+		player:setPos(-360,-20,78,192,115); 								-- To West Sarutabaruta at F-8	
+	-- Elshimo Uplands {R}
+	elseif(zone == 159 or zone == 160 or zone == 163 or zone == 211) then 	-- From Temple of Uggalepih, Den of Rancor, Sacrificial Chamber, Cloister of Tides
+		player:setPos(298,-2,-445,192,124); 								-- To Yhoator Jungle at J-11
+	elseif(zone == 205 or zone == 207) then 												-- From Ifrit's Cauldron, Cloister of Flames
+		player:setPos(91,-1,336,96,124); 									-- To Yhoator Jungle at I-6
+	-- Elshimo Lowlands {R}
+	elseif(zone == 176) then 												-- From Sea Serpent Grotto
+		player:setPos(-627,16,-427,192,123);								-- To Yuhtunga Jungle at E-11	
+	-- Gustaberg {R}
+	elseif(zone == 173) then 												-- From Korroloka Tunnel
+		player:setPos(-75,-1,20,0,172); 									-- To Zeruhn Mines at H-7		
+	elseif(zone == 191) then 												-- From Dangruf Wadi
+		player:setPos(-564,38,-541,0,107); 									-- To South Gustaberg at E-9
+	elseif(zone == 143 or zone == 144) then									-- From Palborough Mines, Waughroon Shrine
+		player:setPos(483,-31,1159,128,106); 								-- To North Gustaberg at K-3
+	-- Movalpolos {R}
+	elseif(zone == 13 or zone == 12 or zone == 11) then 					-- From Mine Shaft 2716, Newton Movalpolos, Oldton Movalpolos
+		player:setPos(448,-4,730,96,106); 									-- To North Gustaberg at K-6
+	-- Kuzotz {R}
+	elseif(zone == 208 or zone == 168 or zone == 209) then 					-- From Quicksand Caves, Chamber of Oracles, Cloister of Tremors
+		player:setPos(454,-11,-35,128,114); 								-- To Eastern Altepa Desert at J-8
+	-- Vollbow {R}
+	elseif(zone == 174) then 												-- From Kuftal Tunnel
+		player:setPos(-46,6,418,192,125); 									-- To Western Altepa Desert at I-5
+	elseif(zone == 212) then 												-- From Gustav Tunnel
+		player:setPos(-791,-6,57,192,103); 									-- To Valkurm Dunes at B-8
+	elseif(zone == 201) then												-- From Cloister of Gales
+		player:setPos(-291,-3,494,32,113); 									-- To Cape Terrigan F-5
+	-- Zulkheim {R}
+	elseif(zone == 196) then 												-- From Gusgen Mines
+		player:setPos(680,21,204,64,108); 									-- To Konschtat Highlands at L-7
+	elseif(zone == 193) then 												-- From Ordelle's Caves
+		player:setPos(-261,23,123,192,102); 								-- To La Theine Plateau at F-7	
+	-- Tavnazian Archipelago {R}
+	elseif(zone == 27) then 												-- From Phomiuna Aqueducts
+		player:setPos(540,-16,265,160,25) 									-- To Misareaux Coast at K-7	
+	elseif(zone == 28) then 												-- From Sacrarium
+		player:setPos(39,-24,743,64,25);	 								-- To Misareaux Coast at H-4
+	elseif(zone == 29 or zone == 30 or zone == 31) then						-- From Riverne - Site B01, Riverne - Site A01, Monarch Linn
+		player:setPos(-483,-31,403,116,25); 								-- To Misareaux Coast at D-6
+	-- Mamool Ja Savagelands {R}
+	elseif(zone == 65) then 												-- From Mamook
+		player:setPos(-459.961,-4.357,-513.191,192,51); 					-- To Wajaom Woodlands at E-12
+	elseif(zone == 66) then													-- From Mamool Ja Training Grounds
+		player:setPos(-172.863, -12.25, -801.021, 128, 52); 			    -- Bhaflau Thickets	
+	elseif(zone == 67) then 												-- From Jade Sepulcher
+		player:setPos(-125.762,-12.226,-499.689,124,52); 					-- To Bhaflau Thickets at I-9
+	elseif(zone == 68) then 												-- From Aydeewa Subterrane
+		player:setPos(95.251,-16.04,428.910,64,51); 						-- To Wajaom Woodlands at I-6
+	-- Halvung Territory {R}
+	elseif(zone == 62) then 												-- From Halvung
+		player:setPos(860.994,-15.675,223.567,192,61); 						-- To Mount Zhayolm at L-7
+	elseif(zone == 63) then													-- From Lebros Cavern
+		player:setPos(681.950, -24, 369.936, 64, 61);					    -- To Mount Zhayolm
+	elseif(zone == 64) then 												-- From Navukgo Execution Chamber
+		player:setPos(-630.146,-17.643,223.012,0,61); 						-- To Mount Zhayolm at C-7
+	-- Arrapago Islands {R}
+	elseif(zone == 54) then 												-- From Arrapago Reef
+		player:setPos(227.36,-17.276,-60.718,95,79); 						-- To Caedarva Mire Azouph Isle at I-6
+	elseif(zone == 55) then 												-- From Ilrusi Atoll
+		player:setPos(9.304,-7.376,620.133,0,54); 							-- To Arrapago Reef G-4
+	elseif(zone == 56) then													-- From Periqia
+		player:setPos(-252.715, -7.666, -30.64, 128, 79);				    -- To Caedarva Mire
+	elseif(zone == 57 or zone == 78) then 									-- From Talacca Cove, Hazhalm Testing Grounds
+		player:setPos(-467.077,7.89,-538.603,0,79); 						-- To Caedarva Mire Azouph Isle at E-9	
+	elseif(zone == 69) then													-- From Leujaoam Sanctum
+		player:setPos(495.450, -28.25, -478.430, 32, 79);				    -- To Caedarva Mire	
+	-- Ruins of Alzadaal {R}
+	elseif(zone == 72) then 												-- From Alzadaal Undersea Ruins
+		player:setPos(14.186,-29.789,590.427,0,52); 						-- To Bhaflau Thickets at F-6
+	elseif(zone == 75) then													-- From Bhaflau Remnants I/II
+		player:setPos(620,0,-260,64,72); 									-- To Alzadaal Undersea Ruins BR H-8
+	elseif(zone == 76) then 												-- From Silver Sea Remnants I/II
+		player:setPos(580,0,500,192,72); 									-- To Alzadaal Undersea Ruins SSR H-8
+	elseif(zone == 77) then													-- From Nyzul Isle Investigation/Uncharted Region
+		player:setPos(180,0,20,0,72); 										-- To Alzadaal Undersea Ruins
+	-- Lumoria {R}
+	elseif(zone == 34 or zone == 35 or zone == 36) then						-- From Grand Palace of HuXzoi or The Garden of RuHmet or Empyreal Paradox
+		player:setPos(-23,0,-465,64,33);									-- To Al'Taieu (H-11)	
+	-- The Aragoneu Front {R}
+	elseif(zone == 99) then 												-- From Castle Oztroja (S)
+		player:setPos(720.589,-31.999,-81.495,162,97); 						-- To Meriphataud Mountains (S) at L-8
+	elseif(zone == 164) then 												-- From Garlaige Citadel (S)
+		player:setPos(-112,-24,-403,192,98); 								-- To Sauromugue Champaign (S) at H-11
+	-- The Derfland Front {R}
+	elseif(zone == 92) then 												-- From Beadeaux (S)
+		player:setPos(548.199,24.999,-341.959,128,90); 						-- To Pashhow Marshlands (S) at K-11
+	elseif(zone == 171) then 												-- From Crawlers' Nest (S)
+		player:setPos(-356,-24,-763,192,91); 								-- To Rolanberry Field (S) G-13
+	-- The Valdeaunia Front {R}
+	elseif(zone == 155 or zone == 138) then 								-- Fromn Castle Zvahl Keep (S), Castle Zvahl Baileys (S)
+		player:setPos(-414,-44,19,0,137); 									-- To Xarcabard (S) at G-7
+	-- The Norvallen Front {R}
+	elseif(zone == 85) then 												-- From La Vaule (S)
+		player:setPos(-203.576,-7.351,-494.53,0,82); 						-- To Jugner Forest (S) at G-12
+	elseif(zone == 175) then 												-- From The Eldieme Necropolis (S)
+		player:setPos(283.593,7.999,-403.207,145,84); 						-- To Batallia Downs (S) J-10
+	end;
+	
+	-- TODO: Arrapago Remnants I/II, Zhaylohm Remnants I/II, Everbloom Hollow?, Ruhoyz Silvermines?, The Ashu Talif?
+	-- TODO: Abyssea / SOA Areas
+	-- MISC Flag in zone_settings will also need +1 or -1 depending on escape possibility. 
 end;
 
 -----------------------------------
@@ -489,62 +762,62 @@ function fourthStaff(player)
 	player:setPos(-291, -10, -107, 212, 0x57);
 end;
 
-function homingRing(player)
-	zone = player:getZone();
+function homingRing(player) -- homing ring and return ring should return same positions. 
+	local zone = player:getZone();
 	-- Ronfaure
 	if(zone == 100 or zone == 101 or zone == 139 or zone == 140 or zone == 141 or zone == 142 or zone == 190 or zone == 167 or zone == 230 or zone == 231 or zone == 232 or zone == 233) then
-		player:setPos(-446, -20 , -220, 0, 100);
+		player:setPos(-437.688, -20.255, -219.227, 124, 100); -- {R}
 	-- Zulkheim
 	elseif(zone == 248 or zone == 102 or zone == 103 or zone == 108 or zone == 193 or zone == 196) then
-		player:setPos(149, -7 , 94, 154, 103);
+		player:setPos(148.231, -7.975 , 93.479, 154, 103); 	  -- {R}
 	-- Norvallen
 	elseif(zone == 104 or zone == 105 or zone == 1 or zone == 2 or zone == 149 or zone == 150 or zone == 195) then
-		player:setPos(62, 0 , -1, 67, 104);
+		player:setPos(62.030, 0.463, -2.025, 67, 104); 		  -- {R}
 	-- Gustaberg
 	elseif(zone == 234 or zone == 235 or zone == 236 or zone == 237 or zone == 106 or zone == 107 or zone == 172 or zone == 191 or zone == 143 or zone == 173 or zone == 144) then
-		player:setPos(-579, 39 , 62, 89, 106);
+		player:setPos(-580.161, 39.578, 62.68, 89, 106);	  -- {R}
 	-- Derfland
 	elseif(zone == 110 or zone == 109 or zone == 197 or zone == 148 or zone == 147) then
-		player:setPos(465, 24 , 422, 29, 109);
+		player:setPos(465.820, 23.625, 423.164, 29, 109); 	  -- {R}
 	-- Sarutabatura
 	elseif(zone == 238 or zone == 239 or zone == 240 or zone == 241 or zone == 242 or zone == 115 or zone == 116 or zone == 169 or zone == 170 or zone == 192 or zone == 194 or zone == 145 or zone == 146) then
-		player:setPos(-15, -13 , 318, 128, 115);
+		player:setPos(-17.921, -13.335, 318.156, 254, 115);	  -- {R}
 	-- Kolshushu
 	elseif(zone == 249 or zone == 4 or zone == 117 or zone == 118 or zone == 198 or zone == 213) then
-		player:setPos(-480, -30 , 57, 62, 118);
+		player:setPos(-480.237, -30.943, 58.079, 62, 118);	  -- {R}
 	-- Aragoneu
 	elseif(zone == 7 or zone == 119 or zone == 120 or zone == 200 or zone == 151 or zone == 152 or zone == 8) then
-		player:setPos(-298, 17 , 418, 98, 119);
+		player:setPos(-297.047, 16.988, 418.026, 225, 119);	  -- {R}
 	-- Fauregandi
 	elseif(zone == 111 or zone == 166 or zone == 9 or zone == 204 or zone == 10 or zone == 206 or zone == 203) then
-		player:setPos(-18, -59, -108, 100, 111);
+		player:setPos(-18.690, -60.048, -109.243, 100, 111);  -- {R}
 	-- Valdeaunia
 	elseif(zone == 112 or zone == 5 or zone == 161 or zone == 162 or zone == 165 or zone == 6) then
-		player:setPos(210, -23, -206, 160, 112);
+		player:setPos(211.210, -24.016, -207.338, 160, 112);  -- {R}
 	-- Qufim Island
 	elseif(zone == 127 or zone == 126 or zone == 157 or zone == 158 or zone == 184 or zone == 179) then
-		player:setPos(-246, -20 , 301, 192, 126);
-	-- Lil'Telor
+		player:setPos(-243.049, -19.983, 306.712, 71, 126);   -- {R}
+	-- Li'Telor
 	elseif(zone == 122 or zone == 121 or zone == 251 or zone == 153 or zone == 154 or zone ==202) then
-		player:setPos(-38, 0, -140, 69, 121);
+		player:setPos(-37.669, 0.419, -141.216, 69, 121);	  -- {R}
 	-- Kuzotz
 	elseif(zone == 247 or zone == 114 or zone == 125 or zone == 208 or zone == 209 or zone == 168) then
-		player:setPos(-250, 8, -252, 122, 114);
+		player:setPos(-249.983, 7.965, -252.976, 122, 114);   -- {R}
 	-- Vollbow
 	elseif(zone == 113 or zone == 128 or zone == 174 or zone == 212 or zone == 201) then
-		player:setPos(-184, 8, -66, 0, 113);
+		player:setPos(-176.360, 7.624, -63.580, 122, 113);	  -- {R}
 	-- Elshimo Lowlands
 	elseif(zone == 250 or zone == 252 or zone == 176 or zone == 123) then
-		player:setPos(-243, 0, -400, 192, 123);
+		player:setPos(-240.860, -0.031, -388.434, 64, 123);   -- {R}
 	-- Elshimo Uplands
 	elseif(zone == 124 or zone == 159 or zone == 160 or zone == 205 or zone == 163 or zone == 211 or zone == 207) then
-		player:setPos(203, 0, -82, 36, 124);
+		player:setPos(207.821, -0.128, -86.623, 159, 124);	  -- {R}
 	-- Tulia ?!
 	elseif(zone == 130 or zone == 177 or zone == 178 or zone == 180 or zone == 181) then
-		player:setPos(4, -54, -600, 192, 130);
+		player:setPos(4, -54, -600, 192, 130);                -- Dummied out?
 	-- Tavnazia
 	elseif(zone == 26 or zone == 25 or zone ==24 or zone == 28 or zone == 29 or zone == 30 or zone == 31 or zone == 32 or zone == 27) then
-		player:setPos(-535, -6, -53, 122, 24);
+		player:setPos(-535.861, -7.149, -53.628, 122, 24);    -- {R}
 	end
 end;
 
@@ -577,7 +850,7 @@ function nashmauEarring(player)
 end;
 
 function nomadCap(player)
-	nation = player:getNation();
+	local nation = player:getNation();
 	if (nation == 0) then
 		player:setPos(0154,-2,152,0,230);
 	elseif (nation == 1) then
@@ -607,65 +880,6 @@ function republicStablesMedal(player)
 	player:setPos(40,0,-90,0,234);
 end;
 
-function returnRing(player)
-	zone = player:getZone();
-	-- Ronfaure
-	if(zone == 100 or zone == 101 or zone == 139 or zone == 140 or zone == 141 or zone == 142 or zone == 190 or zone == 167 or zone == 230 or zone == 231 or zone == 232 or zone == 233) then
-		player:setPos(-446, -20 , -220, 0, 100);
-	-- Zulkheim
-	elseif(zone == 248 or zone == 102 or zone == 103 or zone == 108 or zone == 193 or zone == 196) then
-		player:setPos(149, -7 , 94, 154, 103);
-	-- Norvallen
-	elseif(zone == 104 or zone == 105 or zone == 1 or zone == 2 or zone == 149 or zone == 150 or zone == 195) then
-		player:setPos(62, 0 , -1, 67, 104);
-	-- Gustaberg
-	elseif(zone == 234 or zone == 235 or zone == 236 or zone == 237 or zone == 106 or zone == 107 or zone == 172 or zone == 191 or zone == 143 or zone == 173 or zone == 144) then
-		player:setPos(-579, 39 , 62, 89, 106);
-	-- Derfland
-	elseif(zone == 110 or zone == 109 or zone == 197 or zone == 148 or zone == 147) then
-		player:setPos(465, 24 , 422, 29, 109);
-	-- Sarutabatura
-	elseif(zone == 238 or zone == 239 or zone == 240 or zone == 241 or zone == 242 or zone == 115 or zone == 116 or zone == 169 or zone == 170 or zone == 192 or zone == 194 or zone == 145 or zone == 146) then
-		player:setPos(-15, -13 , 318, 128, 115);
-	-- Kolshushu
-	elseif(zone == 249 or zone == 4 or zone == 117 or zone == 118 or zone == 198 or zone == 213) then
-		player:setPos(-480, -30 , 57, 62, 118);
-	-- Aragoneu
-	elseif(zone == 7 or zone == 119 or zone == 120 or zone == 200 or zone == 151 or zone == 152 or zone == 8) then
-		player:setPos(-298, 17 , 418, 98, 119);
-	-- Fauregandi
-	elseif(zone == 111 or zone == 166 or zone == 9 or zone == 204 or zone == 10 or zone == 206 or zone == 203) then
-		player:setPos(-18, -59, -108, 100, 111);
-	-- Valdeaunia
-	elseif(zone == 112 or zone == 5 or zone == 161 or zone == 162 or zone == 165 or zone == 6) then
-		player:setPos(210, -23, -206, 160, 112);
-	-- Qufim Island
-	elseif(zone == 127 or zone == 126 or zone == 157 or zone == 158 or zone == 184 or zone == 179) then
-		player:setPos(-246, -20 , 301, 192, 126);
-	-- Lil'Telor
-	elseif(zone == 122 or zone == 121 or zone == 251 or zone == 153 or zone == 154 or zone ==202) then
-		player:setPos(-38, 0, -140, 69, 121);
-	-- Kuzotz
-	elseif(zone == 247 or zone == 114 or zone == 125 or zone == 208 or zone == 209 or zone == 168) then
-		player:setPos(-250, 8, -252, 122, 114);
-	-- Vollbow
-	elseif(zone == 113 or zone == 128 or zone == 174 or zone == 212 or zone == 201) then
-		player:setPos(-184, 8, -66, 0, 113);
-	-- Elshimo Lowlands
-	elseif(zone == 250 or zone == 252 or zone == 176 or zone == 123) then
-		player:setPos(-243, 0, -400, 192, 123);
-	-- Elshimo Uplands
-	elseif(zone == 124 or zone == 159 or zone == 160 or zone == 205 or zone == 163 or zone == 211 or zone == 207) then
-		player:setPos(203, 0, -82, 36, 124);
-	-- Tulia ?!
-	elseif(zone == 130 or zone == 177 or zone == 178 or zone == 180 or zone == 181) then
-		player:setPos(4, -54, -600, 192, 130);
-	-- Tavnazia
-	elseif(zone == 26 or zone == 25 or zone ==24 or zone == 28 or zone == 29 or zone == 30 or zone == 31 or zone == 32 or zone == 27) then
-		player:setPos(-535, -6, -53, 122, 24);
-	end
-end;
-
 function safeholdEarring(player)
 	player:setPos(9,-9,11,0,26);
 end;
@@ -674,8 +888,8 @@ function selbinaEarring(player)
 	player:setPos(17,-14,95,0,248);
 end;
 
-function olduumRing(player)
-	player:setPos(-199, -10, 80, 94, 51);
+function olduumRing(player) -- To Wajoam Laypoint
+	player:setPos(-200.116, -10, 79.879, 213, 51); -- {R}
 end;
 
 function starsCap(player)
@@ -683,118 +897,6 @@ function starsCap(player)
 end;
 
 function tavnzanianRing(player)
-	player:setPos(9,-9,11,0,26);
+	player:setPos(0,-23.5,34,64,26); -- {R}
 end;
 
------------------------------------------
--- Escape
------------------------------------------
-
-function Escape(player, zone)
-	if(zone == 139 or zone == 140 or zone == 141 or zone == 142) then 		-- From Ghelsba Outpost, Fort Ghelsba, Yughott Grotto, Horlais Peak
-		player:setPos(-732,-64,611,45,100); 								-- To West Ronfaure at E-4
-	elseif(zone == 157 or zone == 158 or zone == 184 or zone == 179) then 	-- From Delkfutt's Tower - Middle, Upper, Lower or Stellar Fulcrum
-		player:setPos(-286,-20,320,255,126); 								-- To Qufim Island at F-6
-	elseif(zone == 169 or zone == 192 or zone == 194 or zone == 170) then 	-- From Toraimarai Canal or Inner Horutoto Ruins or Outer Horutoto Ruins or Full Moon Fountain
-		player:setPos(360,-13,99,128,116); 									-- To East Sarutabaruta at J-7
-	elseif(zone == 16 or zone == 20 or zone == 18) then 					-- From Promyvion - Holla or Promyvion - Mea or Promyvion - Dem
-		player:setPos(280,-80,-58,0,14); 									-- To Hall of Transference
-	elseif(zone == 17 or zone == 19 or zone == 21) then						-- From Spire of Holla or Spire of Mea or Spire of Dem
-		player:setPos(280,-80,-58,0,14);									-- To Hall of Transference
-	elseif(zone == 162 or zone == 161 or zone == 165) then 					-- From Castle Zvahl Keep or Castle Zvahl Baileys or Throne Room
-		player:setPos(-412,-43,19,254,112); 								-- To Xarcabard at G-7
-	elseif(zone == 149 or zone == 150) then 								-- From Davoi or Monastic Cavern
-		player:setPos(-239,-7,-591,187,104); 								-- To Jugner Forest at G-12
-	elseif(zone == 148 or zone == 147) then 								-- From Qulun Dome or Beadeaux
-		player:setPos(553,25,-380,120,109); 								-- To Pashhow Marshlands at K-11
-	elseif(zone == 177 or zone == 178 or zone == 180 or zone == 181) then	-- From Ve'Lugannon Palace or Shrine of Ru'Avitau or LaLoff Amphitheater or The Celestial Nexus
-		player:setPos(0,-34,-471,185,130); 									-- To Ru'Aun Gardens at H-11
-	elseif(zone == 152 or zone == 151) then 								-- From Altar Room or Castle Oztroja
-		player:setPos(752,-32,-40,129,119); 								-- To Meriphataud Mountains at L-8
-	elseif(zone == 159 or zone == 160 or zone == 163) then 					-- From Temple of Uggalepih or Den of Rancor or Sacrificial Chamber
-		player:setPos(300,-4,-586,193,124); 								-- To Yhoator Jungle at J-11
-	elseif(zone == 12 or zone == 11) then 									-- From Newton Movalpolos or Oldton Movalpolos
-		player:setPos(552,-12,660,124,106); 								-- To North Gustaberg at K-6
-	elseif(zone == 29 or zone == 30 or zone == 31) then						-- From Riverne - Site B01 or Riverne - Site A01 or Monarch Linn
-		player:setPos(-516,-32,359,6,25); 									-- To Misareaux Coast at D-6
-	elseif(zone == 32) then													-- From Sealion's Den
-		player:setPos(0,-7,-39,192,26);										-- To Tavnazian Safehold
-	elseif(zone == 155 or zone == 138) then 								-- Fromn Castle Zvahl Keep (S) or Castle Zvahl Baileys (S)
-		player:setPos(-418,-44,20,0,137); 									-- To Xarcabard (S) at G-7
-	elseif(zone == 167) then 												-- From Bostaunieux Oubliette
-		player:setPos(-663,-27,19,6,100); 									-- To West Ronfaure at F-8
-	elseif(zone == 190) then 												-- From King Ranperre's Tomb
-		player:setPos(200,0,-536,187,101); 									-- To East Ronfaure at H-11
-	elseif(zone == 173) then 												-- From Korroloka Tunnel
-		player:setPos(-72,0,20,255,172); 									-- To Zeruhn Mines at H-7
-	elseif(zone == 195) then 												-- From The Eldieme Necropolis
-		player:setPos(-403,-15,-128,187,105); 								-- To Batallia Downs at F-8
-	elseif(zone == 166) then 												-- From Ranguemont Pass
-		player:setPos(809,-63,649,98,101); 									-- To East Ronfaure at K-4
-	elseif(zone == 9 or zone == 10 or zone == 22 or zone == 23) then		-- From Pso'Xja or The Shrouded Maw or Promyvion-Vahzl or Spire of Vahzl
-		player:setPos(-414,-39,-420,255,111); 								-- To Beaucedine Glacier at E-11
-	elseif(zone == 204 or zone == 206) then 								-- From Fei'Yin or Qu'Bia Arena
-		player:setPos(280,20,568,61,111); 									-- To Beaucedine Glacier at J-4
-	elseif(zone == 197) then 												-- From Crawlers' Nest
-		player:setPos(-372,-28,-772,0,110); 								-- To Rolanberry Fields at F-13
-	elseif(zone == 153 or zone == 154) then 								-- From The Boyahda Tree or Dragon's Aery
-		player:setPos(508,2,-577,133,121); 									-- To The Sanctuary of Zi'Tah at K-12
-	elseif(zone == 200) then 												-- From Garlaige Citadel
-		player:setPos(-104,-24,-408,189,120); 								-- To Sauromugue Champaign at H-10
-	elseif(zone == 213) then 												-- From Labyrinth of Onzozo
-		player:setPos(446,18,192,48,118); 									-- To Buburimu Peninsula at K-6
-	elseif(zone == 198) then 												-- From Maze of Shakhrami
-		player:setPos(445,47,485,79,117); 									-- To Tahrongi Canyon at K-5
-	elseif(zone == 145 or zone == 146) then 								-- From Giddeus or Balgas Dais
-		player:setPos(-369,-21,68,220,115); 								-- To West Sarutabaruta at F-8
-	elseif(zone == 205) then 												-- From Ifrit's Cauldron
-		player:setPos(97,0,341,110,124); 									-- To Yhoator Jungle at I-6
-	elseif(zone == 176) then 												-- From Sea Serpent Grotto
-		player:setPos(-492,17,-376,10,123);									-- To Yuhtunga Jungle at E-11
-	elseif(zone == 191) then 												-- From Dangruf Wadi
-		player:setPos(-596,39,-520,4,107); 									-- To South Gustaberg at D-9
-	elseif(zone == 143 or zone == 144) then									-- From Palborough Mines or Waughroon Shrine
-		player:setPos(484,-32,1166,106,106); 								-- To North Gustaberg at K-3
-	elseif(zone == 208 or zone == 168) then 								-- From Quicksand Caves or Chamber of Oracles
-		player:setPos(408,-9,-16,131,114); 									-- To Eastern Altepa Desert at J-8
-	elseif(zone == 174) then 												-- From Kuftal Tunnel
-		player:setPos(-65,-3,454,79,125); 									-- To Western Altepa Desert at H-4
-	elseif(zone == 212) then 												-- From Gustav Tunnel
-		player:setPos(-783,-8,20,130,103); 									-- To Valkurm Dunes at B-8
-	elseif(zone == 196) then 												-- From Gusgen Mines
-		player:setPos(686,21,204,101,108); 									-- To Konschtat Highlands at L-7
-	elseif(zone == 193) then 												-- From Ordelle's Caves
-		player:setPos(-259,23,111,190,102); 								-- To La Theine Plateau at F-7
-	elseif(zone == 28) then 												-- From Sacrarium
-		player:setPos(23,-24,732,74,25);	 								-- To Misareaux Coast at G-4
-	elseif(zone == 27) then 												-- From Phomiuna Aqueducts
-		player:setPos(566,-15,279,125,25) 									-- To Misareaux Coast at K-7
-	elseif(zone == 68) then 												-- From Aydeewa Subterrane
-		player:setPos(87,-12,418,5,51); 									-- To Wajaom Woodlands at I-6
-	elseif(zone == 65) then 												-- From Mamook
-		player:setPos(-459,-1,-535,191,51); 								-- To Wajaom Woodlands at E-12
-	elseif(zone == 62) then 												-- From Halvung
-		player:setPos(868,-10,179,128,61); 									-- To Mount Zhayolm at L-7
-	elseif(zone == 54) then 												-- From Arrapago Reef
-		player:setPos(166,-12,-59,249,79); 									-- To Caedarva Mire Azouph Isle at I-6
-	elseif(zone == 55) then													-- From Ilrusi Atoll
-		player:setPos(27,-7,619,0,54);										-- To Arrapago Reef/Ilrusi Atoll Staging Point
-	elseif(zone == 72) then 												-- From Alzadaal Undersea Ruins
-		player:setPos(20,-28,590,62,52); 									-- To Bhaflau Thickets at F-6
-	elseif(zone == 85) then 												-- From La Vaule (S)
-		player:setPos(-200,-7,-502,197,82); 								-- To Jugner Forest (S) at G-12
-	elseif(zone == 92) then 												-- From Beadeaux (S)
-		player:setPos(540,25,-347,191,90); 									-- To Pashhow Marshlands (S) at K-11
-	elseif(zone == 99) then 												-- From Castle Oztroja (S)
-		player:setPos(730,-32,-39,127,97); 									-- To Meriphataud Mountains (S) at L-8
-	elseif(zone == 164) then 												-- From Garlaige Citadel (S)
-		player:setPos(-102,-23,-400,204,98); 								-- To Sauromugue Champaign (S) at H-10
-	elseif(zone == 175) then 												-- From The Eldieme Necropolis (S)
-		player:setPos(-401,-8,-197,185,84); 								-- To Batallia Downs (S) F-9
-	elseif(zone == 171) then 												-- From Crawlers' Nest (S)
-		player:setPos(-376,-28,-776,222,91); 								-- To Rolanberry Field (S) F-13
-	elseif(zone == 34 or zone == 35 or zone == 36) then						-- From Grand Palace of HuXzoi or The Garden of RuHmet or Empyreal Paradox
-		player:setPos(0,-8,-490,63,33);										-- To Al'Taieu (H-12)
-	end;
-
-end;

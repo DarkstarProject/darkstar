@@ -440,9 +440,10 @@ public:
 	health_t	    health;						// hp,mp,tp
 	stats_t		    stats;						// атрибуты STR,DEX,VIT,AGI,INT,MND,CHR
 	skills_t	    WorkingSkills;				// структура всех доступных сущности умений, ограниченных уровнем
-	uint16		m_Immunity;					// Mob immunity
-	uint16			m_magicEvasion;		// store this so it can be removed easily
-	uint8			m_enmityRange; // only get enmity from entities this close
+	uint16		    m_Immunity;					// Mob immunity
+	uint16			m_magicEvasion;		        // store this so it can be removed easily
+	uint8			m_enmityRange;              // only get enmity from entities this close
+    bool            m_unkillable;               //entity is not able to die (probably until some action removes this flag)
 
     uint16          STR();
     uint16          DEX();

@@ -491,7 +491,7 @@ bool CStatusEffectContainer::DelStatusEffectByTier(EFFECT StatusID, uint16 tier)
 
 /************************************************************************
 *																		*
-*  Deletes all non-permanent status effects without sending messages 	*
+*  Deletes all status effects without sending messages              	*
 *																		*
 ************************************************************************/
 void CStatusEffectContainer::KillAllStatusEffect()
@@ -500,17 +500,14 @@ void CStatusEffectContainer::KillAllStatusEffect()
 	{
 		CStatusEffect* PStatusEffect = m_StatusEffectList.at(i);
 
-		if( PStatusEffect->GetDuration() != 0){
+		luautils::OnEffectLose(m_POwner, PStatusEffect);
 
-			luautils::OnEffectLose(m_POwner, PStatusEffect);
+		m_POwner->delModifiers(&PStatusEffect->modList);
+		m_POwner->UpdateHealth();
 
-			m_POwner->delModifiers(&PStatusEffect->modList);
-			m_POwner->UpdateHealth();
+		m_StatusEffectList.erase(m_StatusEffectList.begin() + i);
 
-			m_StatusEffectList.erase(m_StatusEffectList.begin() + i);
-
-			delete PStatusEffect;
-		}
+		delete PStatusEffect;
 	}
 }
 

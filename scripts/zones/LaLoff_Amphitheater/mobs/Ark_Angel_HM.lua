@@ -31,7 +31,12 @@ end;
 -----------------------------------
 function onMobFight(mob,target)
 
--- TODO: Allegedly uses Mighty Strikes in 150 second timer.  Determine if true, and implement if so.
+	local battletime = mob:getBattleTime();
+	local mstime, mgtime = mob:getExtraVar(2);
+	if (battletime > mstime + 150) then
+		mob:useMobAbility(432);
+		mob:setExtraVar(battletime, mgtime);
+	end
 
    local mobid = mob:getID()
 

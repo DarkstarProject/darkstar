@@ -52,7 +52,7 @@ end;
 function onZoneIn(player,prevZone)		
 	local cs = -1;	
 	if(player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-		player:setPos(-96,0,174,155);
+		player:setPos(-93.268, 0, 170.749, 162); -- Floor 1 {R}
 	end
 
 	if(player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") == 2) then
@@ -184,7 +184,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 	
 	if(csid == 0x002e and option == 1) then
-		player:setPos(280, -86, -25, 63, 14); -- -> back to Hall of Transferance
+		player:setPos(279.988, -86.459, -25.994, 63, 14); -- To Hall of Transferance {R}
 	elseif(csid == 0x0032)then		
 		player:setVar("FirstPromyvionMea",0);
 		if(ENABLE_COP_ZONE_CAP == 1)then

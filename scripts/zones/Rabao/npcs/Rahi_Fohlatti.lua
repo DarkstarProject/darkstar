@@ -6,8 +6,10 @@
 -----------------------------------
 package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
 -----------------------------------
+
 require("scripts/globals/status");
 require("scripts/globals/quests");
+require("scripts/globals/teleports");
 require("scripts/zones/Rabao/TextIDs");
 
 -----------------------------------
@@ -80,7 +82,7 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_OBTAINED,1546); 
 		end
 	elseif(csid == 0x006d and option == 1) then
-		player:setPos(-399,0,-420,252,201);
+		toCloisterOfGales(player);
 	end
 	
 end;
