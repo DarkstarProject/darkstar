@@ -5,3 +5,6 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item> come back a
           ITEM_OBTAINED = 6379; -- Obtained: <item>
            GIL_OBTAINED = 6380; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6382; -- Obtained key item: <keyitem>
+	   
+-- Other
+OVERFLOWING_MEMORIES = 7177; -- It appears to be a barrier woven from the energy of overflowing memories...

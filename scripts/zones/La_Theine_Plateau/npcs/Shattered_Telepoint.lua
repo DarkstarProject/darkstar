@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: La_Theine_Plateau
--- NPC:  Shattered telepoint
+-- Area: La_Theine Plateau
+-- NPC:  Shattered Telepoint
 -- @pos 334 19 -60 102
 -----------------------------------
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
@@ -51,9 +51,9 @@ function onEventFinish(player,csid,option)
 
 	if(csid == 0x00C9) then
 		player:setVar("PromathiaStatus",2);
-		player:setPos(-266.76, -0.6337, 280.058, 0, 14); -- teleport to zone 14
-	elseif(csid == 0x0074) then
-		player:setPos(-266.76, -0.6337, 280.058, 0, 14); -- teleport to zone 14
+		player:setPos(-266.76, -0.635, 280.058, 0, 14); -- To Hall of Transference {R}
+	elseif(csid == 0x0074 and option == 1) then
+		player:setPos(-266.76, -0.635, 280.058, 0, 14); -- To Hall of Transference {R}
 	end
 
 end;

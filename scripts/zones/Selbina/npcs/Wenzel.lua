@@ -2,12 +2,12 @@
 --  Area: Selbina
 --  NPC: Wenzel
 --  Type: Item Deliverer
---  @zone: 248
---  @pos 31.961 -14.661 57.997
---
+--  @pos 31.961 -14.661 57.997 248
 -----------------------------------
+package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
+-----------------------------------
+
 require("scripts/zones/Selbina/TextIDs");
------------------------------------
 
 -----------------------------------
 -- onTrade Action
@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc, TextID_Selbina.WENZEL_DELIVERY_DIALOG);
+	player:showText(npc, WENZEL_DELIVERY_DIALOG);
 	player:openSendBox();
 end;
 

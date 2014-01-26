@@ -415,7 +415,8 @@ void LoadChar(CCharEntity* PChar)
           "fame_sandoria,"  // 4
           "fame_bastok,"    // 5
           "fame_windurst,"  // 6
-          "fame_norg "      // 7
+          "fame_norg, "     // 7
+          "fame_jeuno "     // 8
         "FROM char_profile "
 		"WHERE charid = %u;";
 
@@ -435,6 +436,7 @@ void LoadChar(CCharEntity* PChar)
 		PChar->profile.fame[1] =  (uint16)Sql_GetIntData(SqlHandle,5);  //Bastok
 		PChar->profile.fame[2] =  (uint16)Sql_GetIntData(SqlHandle,6);  //Windurst
 		PChar->profile.fame[3] =  (uint16)Sql_GetIntData(SqlHandle,7);  //Norg
+        PChar->profile.fame[4] =  (uint16)Sql_GetIntData(SqlHandle,8);  //Jeuno
     }
 
     fmtQuery =
@@ -1449,13 +1451,6 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 					}
 				}
 
-				PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
-
-				if ((PItem != NULL) && PItem->isType(ITEM_WEAPON))
-				{
-					UnequipItem(PChar, SLOT_SUB);
-				}
-
 				if (PChar->PBattleAI->GetCurrentAction() == ACTION_ATTACK)
 				{
 					PChar->PBattleAI->SetLastActionTime(gettick());
@@ -1480,6 +1475,16 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 	}
 }
 
+void RemoveSub(CCharEntity* PChar)
+{
+    CItemArmor* PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
+
+    if (PItem != NULL && PItem->isType(ITEM_ARMOR))
+    {
+         UnequipItem(PChar, SLOT_SUB);
+    }
+}
+
 /************************************************************************
 *																		*
 *  Пытаемся экипировать предмет с соблюдением всех условий	 			*
@@ -1501,7 +1506,22 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
         (PItem->getReqLvl() > PChar->jobs.job[PChar->GetMJob()]))
         return false;
 
-    UnequipItem(PChar,equipSlotID);
+    if (equipSlotID == SLOT_MAIN)
+    {
+        CItemArmor* oldItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[equipSlotID]);
+
+        if (!(slotID == PItem->getSlotID() &&
+            (oldItem->isType(ITEM_WEAPON) && PItem->isType(ITEM_WEAPON)) &&
+            ((((CItemWeapon*)PItem)->isTwoHanded() == true) && (((CItemWeapon*)oldItem)->isTwoHanded() == true))))
+        {
+            CItemArmor* PSubItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
+
+            if (PSubItem != NULL && PSubItem->isType(ITEM_ARMOR) && (PSubItem->IsShield() != true))
+                 RemoveSub(PChar);
+        }
+    }
+
+    UnequipItem(PChar, equipSlotID);
 
     if (PItem->getEquipSlotId() & (1 << equipSlotID))
     {
@@ -1732,7 +1752,12 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 {
 	if (slotID == 0)
 	{
+        CItemArmor* PSubItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
+
 		UnequipItem(PChar,equipSlotID);
+
+        if (equipSlotID == 0 && (PSubItem->IsShield() != true))
+            RemoveSub(PChar);
 
 		PChar->status = STATUS_UPDATE;
 		PChar->m_EquipSwap = true;
@@ -1835,6 +1860,7 @@ void CheckValidEquipment(CCharEntity* PChar)
             {
                 continue;
             }
+            
             UnequipItem(PChar, slotID);
         }
     }
@@ -3572,7 +3598,8 @@ void SaveFame(CCharEntity* PChar)
           "fame_sandoria = %u,"
           "fame_bastok = %u,"
           "fame_windurst = %u,"
-          "fame_norg = %u "
+          "fame_norg = %u,"
+          "fame_jeuno = %u "
         "WHERE charid = %u;";
 
 	Sql_Query(SqlHandle, Query,
@@ -3580,6 +3607,7 @@ void SaveFame(CCharEntity* PChar)
         PChar->profile.fame[1],
         PChar->profile.fame[2],
         PChar->profile.fame[3],
+        PChar->profile.fame[4],
         PChar->id);
 }
 

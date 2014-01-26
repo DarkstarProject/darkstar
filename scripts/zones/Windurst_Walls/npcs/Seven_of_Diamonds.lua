@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Windurst Walls
---   NPC: Seven of Diamonds
+--  NPC:  Seven of Diamonds
 --  Type: Standard NPC
--- @zone: 239
---  @pos 6.612 -3.5 278.553
---
--- Auto-Script: Requires Verification (Verfied by Brawndo)
+--  @pos 6.612 -3.5 278.553 239
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------
@@ -25,7 +22,7 @@ function onTrigger(player,npc)
 	if player:hasKeyItem(267) then
 		player:startEvent(0x0186);
 	else
-	player:startEvent(0x0108);
+		player:startEvent(0x0108);
 	end
 end;
 

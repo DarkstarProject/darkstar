@@ -53,9 +53,9 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
     if(csid == 0x0009 and option == 1)then
 	    player:setVar("PromathiaStatus",2);
-	    player:setPos(-219,-16,82,64,0x1C);
+	    player:setPos(-220.075,-15.999,79.634,62,28); -- To Sacrarium {R}
 	elseif(csid == 0x01f6 and option == 1) then
-		player:setPos(-219,-16,82,64,0x1C); -- Go to Sacrarium
+		player:setPos(-220.075,-15.999,79.634,62,28); -- To Sacrarium {R}
 	end
 	
 end;

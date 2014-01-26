@@ -14,8 +14,8 @@ require("scripts/zones/Hall_of_Transference/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-	zone:registerRegion(1,-281,-5,277,-276,0,284); -- Holla
-	zone:registerRegion(2,276,-84,-82,283,-80,-75); -- Mea
+	zone:registerRegion(1,-281,-5,277,-276,0,284); 		-- Holla
+	zone:registerRegion(2,276,-84,-82,283,-80,-75); 	-- Mea
 	zone:registerRegion(3,-283,-45,-283,-276,-40,-276); -- Dem
 	zone:registerRegion(4,0,0,0,0,0,0);
 end;
@@ -87,10 +87,10 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 
 	if(csid==103)then
-		player:setPos(337 ,19 ,-60 ,125 ,102); -- Holla to La Theine
+		player:setPos(340.082, 19.103, -59.979, 127, 102); 	-- To La Theine Plateau {R}
 	elseif(csid==104)then
-		player:setPos(179 ,35 ,256 ,63 ,117 ); -- Mea to Tahrongi
+		player:setPos(179.92, 35.15, 260.137, 64, 117);	    -- To Tahrongi Canyon {R}
 	elseif(csid==105)then
-		player:setPos(136 ,19 ,220 ,130 ,108 ); -- Dem to Konschtat
+		player:setPos(139.974, 19.103, 219.989, 128, 108); 	-- To Konschtat Highlands {R}
 	end
 end;

@@ -1,11 +1,8 @@
 -----------------------------------
 --  Area: Selbina
---   NPC: Battal
+--  NPC:  Battal
 --  Type: Event Scene Replayer
--- @zone: 248
---  @pos -17.429 -11.604 25.966
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -17.429 -11.604 25.966 248
 -----------------------------------
 
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Spire_of_Dem
--- NPC:  Radian Aureole
+-- Area: Spire of Dem
+-- NPC:  Radiant Aureole
 -----------------------------------
 
 -----------------------------------
@@ -36,7 +36,7 @@ function onEventFinish(player,csid,option)
 --printf("onFinish RESULT: %u",option);
 	
 	if(csid == 0x000E and option == 1)then
-		player:setPos(337 ,19 ,-60 ,125 ,102 );
+		player:setPos(340.082, 19.103, -59.979, 127, 102); 	-- To La Theine Plateau {R}
 	end
 	
 end;

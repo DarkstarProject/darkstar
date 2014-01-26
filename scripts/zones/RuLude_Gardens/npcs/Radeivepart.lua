@@ -71,7 +71,7 @@ function onEventFinish(player,csid,option)
 		player:addTitle(ENVOY_TO_THE_NORTH);
 		player:addKeyItem(MAP_OF_CASTLE_ZVAHL);
 		player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_CASTLE_ZVAHL);
-		player:addFame(JEUNO,30);
+		player:addFame(JEUNO, JEUNO_FAME*30);
 		player:tradeComplete();
 	end
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Spire_of_vahlz
--- NPC:  Radian Aureole
+-- Area: Spire of Vahzl
+-- NPC:  Radiant Aureole
 -----------------------------------
 package.loaded["scripts/zones/Spire_of_Vahzl/TextIDs"] = nil;
 -----------------------------------
@@ -40,9 +40,7 @@ function onEventFinish(player,csid,option)
 --printf("onFinish RESULT: %u",option);
 	
 	if(csid == 0x000F and option == 1)then
-		player:setPos(-379 ,48 ,333 ,180 ,9); -- back to pso xja
-     elseif(csid == 0x000F and option == 2)then
-	 player:setPos(1 ,-1 ,255 ,188 ,23); 
+		player:setPos(-379.947, 48.045, 334.059, 192, 9); -- To Pso'Xja {R}
 	end
 	
 end;

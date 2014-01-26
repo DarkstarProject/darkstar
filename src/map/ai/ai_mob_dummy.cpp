@@ -528,8 +528,6 @@ void CAIMobDummy::ActionDeath()
 		m_ActionType = ACTION_FADE_OUT;
 		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CFadeOutPacket(m_PMob));
 		//if (m_PMob->animationsub == 2) m_PMob->animationsub = 1;
-
-		luautils::OnMobDespawn(m_PMob);
 	}
 
 }
@@ -560,6 +558,7 @@ void CAIMobDummy::ActionFadeOut()
 
         m_ActionType  = m_PMob->m_AllowRespawn ? ACTION_SPAWN : ACTION_NONE;
 
+        luautils::OnMobDespawn(m_PMob);
 	}
 }
 
@@ -949,6 +948,8 @@ void CAIMobDummy::ActionAbilityFinish()
 		if(m_PMobSkill->hasMissMsg())
 		{
 		    Action.reaction   = REACTION_MISS;
+            if (msg = m_PMobSkill->getAoEMsg())
+                msg = 282;
 		} else {
 		    Action.reaction   = REACTION_HIT;
 		}
@@ -1480,12 +1481,13 @@ void CAIMobDummy::ActionAttack()
 
 				Action.ActionTarget = m_PBattleTarget;
 
-				uint8 numAttacks = battleutils::CheckMobMultiHits(m_PMob);
+				uint8 mainAttacks = battleutils::CheckMobMultiHits(m_PMob);
+                uint8 offAttacks = m_PMob->getMobMod(MOBMOD_DUAL_WIELD) > 0 ? battleutils::CheckMobMultiHits(m_PMob) : 0;
 
-				for(uint8 i=0; i<numAttacks; i++){
+                for (uint8 i = 0; i<(mainAttacks + offAttacks); i++){
 					Action.reaction   = REACTION_EVADE;
 					Action.speceffect = SPECEFFECT_NONE;
-					Action.animation  = 0;
+                    Action.animation = i >= mainAttacks ? 1 : 0;
 					Action.param	  = 0;
 					Action.messageID  = 15;
                     Action.knockback  = 0;
@@ -1606,13 +1608,13 @@ void CAIMobDummy::ActionAttack()
 								damage = (uint32)((m_PMob->GetMainWeaponDmg() + battleutils::GetFSTR(m_PMob, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);
 
 								//  Guard skill up
-								if(m_PBattleTarget->objtype == TYPE_PC && isGuarded || ((map_config.newstyle_skillups & NEWSTYLE_GUARD) > 0))
-								{
-									if(battleutils::GetGuardRate(m_PMob, m_PBattleTarget) > 0)
-									{
-										charutils::TrySkillUP((CCharEntity*)m_PBattleTarget,SKILL_GRD, m_PBattleTarget->GetMLevel());
-									}
-								} // Guard skill up
+                                if (m_PBattleTarget->objtype == TYPE_PC && (isGuarded || ((map_config.newstyle_skillups & NEWSTYLE_GUARD) > 0)))
+                                {
+                                    if (battleutils::GetGuardRate(m_PMob, m_PBattleTarget) > 0)
+                                    {
+                                        charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_GRD, m_PBattleTarget->GetMLevel());
+                                    }
+                                } // Guard skill up
 							}
 
 							if(!isCountered)
@@ -2147,6 +2149,9 @@ void CAIMobDummy::SetupEngage()
 	if(m_PBattleTarget != NULL)
 	{
 		luautils::OnMobEngaged(m_PMob, m_PBattleTarget);
+        // clear the ActionQueue
+        ActionQueue_t empty;
+        std::swap(m_actionQueue, empty);
 	}
 }
 

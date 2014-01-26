@@ -677,6 +677,7 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 
 	if(dmg > 0) then
 		target:wakeUp();
+		target:updateEnmityFromDamage(mob,dmg);
 	end
 
 	return dmg;

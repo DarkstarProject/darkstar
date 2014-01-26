@@ -420,8 +420,7 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
             bitOffset += 1;
         }
 		ActionNum++;
-        //TODO: split packet with large target sizes
-        if (TargetNum >= 8)
+        if (TargetNum >= 15)
             break;
 	}
     packBitsBE(data, ActionNum, 150, 4);

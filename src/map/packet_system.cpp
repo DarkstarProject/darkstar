@@ -560,21 +560,23 @@ void SmallPacket0x015(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x016(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	uint16 targid = RBUFW(data,(0x04));
+	uint16 targid = RBUFW(data, (0x04));
 
-	if (PChar->targid == targid)
-	{
-		PChar->pushPacket(new CCharPacket(PChar, ENTITY_SPAWN));
-        PChar->pushPacket(new CCharUpdatePacket(PChar));
-	}else{
-		CBaseEntity* PNpc = PChar->loc.zone->GetEntity(targid, TYPE_NPC);
+	CBaseEntity* PEntity = PChar->loc.zone->GetEntity(targid, TYPE_NPC | TYPE_PC); 	
 
-		if (PNpc == NULL)
-		{
-			PNpc = zoneutils::GetTrigger(targid, PChar->getZone());
-		}
-		PChar->pushPacket(new CEntityUpdatePacket(PNpc, ENTITY_SPAWN));
+	if (PEntity && PEntity->objtype == TYPE_PC)	
+	{ 
+		PChar->pushPacket(new CCharPacket((CCharEntity*)PEntity, ENTITY_SPAWN));		
+		PChar->pushPacket(new CCharUpdatePacket((CCharEntity*)PEntity)); 
 	}
+	else
+	{ 
+		if (!PEntity)		
+		{ 
+			PEntity = zoneutils::GetTrigger(targid, PChar->getZone()); 
+		}		
+		PChar->pushPacket(new CEntityUpdatePacket(PEntity, ENTITY_SPAWN)); 
+	}	
 	return;
 }
 

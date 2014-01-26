@@ -649,66 +649,28 @@ int CInstanceHandler::dynamisAddPlayer(uint16 dynaid, CCharEntity* PChar){
 
 int CInstanceHandler::SpecialInstanceAddPlayer(uint16 id, CCharEntity* PChar)
 {
-
-
 	short Inst =0;
- switch(id){
-	  case 1290:
-		  {Inst = 0;}
-       break;
-	  case 1291:
-        { Inst = 1;}
-       break;
-	   	  case 1292:
-	    { Inst = 2;}
-       break;
-	   	  case 1293:
-		{ Inst = 3;}
-       break;
-	   	  case 1294:
-		{ Inst = 4;}
-       break;
-	   	  case 1295:
-		{ Inst = 4;}
-       break;
-	   	  case 1296:
-		{ Inst = 5;}
-       break;
-	   	  case 1297:
-		{ Inst = 5;}
-       break;
-	   	 case 1298:
-		{ Inst = 0;}
-       break;
-	   	 case 1299:
-		{Inst = 1;}
-       break;
-	    case 1300:
-		{Inst = 2;}
-       break;
-	    case 1301:
-		{Inst = 3;}
-       break;
-	    case 1302:
-		{Inst = 3;}
-       break;
-	   case 1303:
-		{Inst = 4;}
-       break;
-	   case 1304:
-		{Inst = 5;}
-       break;
-	  case 1305:
-		{Inst = 6;}
-      break;
-	  case 1306:
-		{Inst = 7;}
-      break;
-	  case 1307:
-		{Inst = 7;}
-      break;
-
- }
+	switch(id)
+	{
+	  case 1290: Inst = 0; break;
+	  case 1291: Inst = 1; break;
+	  case 1292: Inst = 2; break;
+	  case 1293: Inst = 3; break;
+	  case 1294: Inst = 4; break;
+	  case 1295: Inst = 4; break;
+	  case 1296: Inst = 5; break;
+	  case 1297: Inst = 5; break;
+	  case 1298: Inst = 0; break;
+	  case 1299: Inst = 1; break;
+	  case 1300: Inst = 2; break;
+	  case 1301: Inst = 3; break;
+	  case 1302: Inst = 3; break;
+	  case 1303: Inst = 4; break;
+	  case 1304: Inst = 5; break;
+	  case 1305: Inst = 6; break;
+	  case 1306: Inst = 7; break;
+	  case 1307: Inst = 7; break;
+	}
 
 	if(m_Instances[Inst]->addPlayerToBcnm(PChar)){
 		ShowDebug("InstanceHandler ::Registration for Special Instance by %s succeeded \n",PChar->GetName());

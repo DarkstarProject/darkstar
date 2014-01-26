@@ -37,8 +37,10 @@ function onMobFight(mob, target)
         local orbital2 = mob:getID()+4;
         
         if (GetMobAction(orbital1) == ACTION_NONE) then
+            GetMobByID(orbital1):setPos(mob:getPos());
             SpawnMob(orbital1):updateEnmity(target);
         elseif (GetMobAction(orbital2) == ACTION_NONE) then
+            GetMobByID(orbital2):setPos(mob:getPos());
             SpawnMob(orbital2):updateEnmity(target);
         end
     end

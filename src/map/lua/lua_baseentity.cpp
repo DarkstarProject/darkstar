@@ -3543,12 +3543,12 @@ inline int32 CLuaBaseEntity::getFame(lua_State *L)
     switch (fameArea)
     {
         case 0: // San d'Oria
-        case 1: // Bastock
+        case 1: // Bastok
         case 2: // Windurst
             fame = PChar->profile.fame[fameArea];
         break;
         case 3: // Jeuno
-            fame = (PChar->profile.fame[0] + PChar->profile.fame[1] + PChar->profile.fame[2]) / 3;
+            fame = PChar->profile.fame[4] + ((PChar->profile.fame[0] + PChar->profile.fame[1] + PChar->profile.fame[2]) / 3);
         break;
         case 4: // Selbina / Rabao
             fame = (PChar->profile.fame[0] + PChar->profile.fame[1]) / 2;
@@ -3618,14 +3618,12 @@ inline int32 CLuaBaseEntity::setFame(lua_State *L)
     switch(fameArea)
     {
         case 0: // San d'Oria
-        case 1: // Bastock
+        case 1: // Bastok
         case 2: // Windurst
             ((CCharEntity*)m_PBaseEntity)->profile.fame[fameArea] = fame;
         break;
         case 3: // Jeuno
-            ((CCharEntity*)m_PBaseEntity)->profile.fame[0] = fame;
-            ((CCharEntity*)m_PBaseEntity)->profile.fame[1] = fame;
-            ((CCharEntity*)m_PBaseEntity)->profile.fame[2] = fame;
+            ((CCharEntity*)m_PBaseEntity)->profile.fame[4] = fame;
         break;
         case 4: // Selbina / Rabao
             ((CCharEntity*)m_PBaseEntity)->profile.fame[0] = fame;
@@ -3656,27 +3654,27 @@ inline int32 CLuaBaseEntity::addFame(lua_State *L)
     uint8  fameArea = (uint8) lua_tointeger(L,-2);
     uint16 fame     = (uint16)lua_tointeger(L,-1);
 
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
     switch(fameArea)
     {
         case 0: // San d'Oria
-        case 1: // Bastock
+        case 1: // Bastok
         case 2: // Windurst
-            ((CCharEntity*)m_PBaseEntity)->profile.fame[fameArea] += fame;
+            PChar->profile.fame[fameArea] += fame;
         break;
         case 3: // Jeuno
-            ((CCharEntity*)m_PBaseEntity)->profile.fame[0] += fame;
-            ((CCharEntity*)m_PBaseEntity)->profile.fame[1] += fame;
-            ((CCharEntity*)m_PBaseEntity)->profile.fame[2] += fame;
+            PChar->profile.fame[4] += fame;
         break;
         case 4: // Selbina / Rabao
-            ((CCharEntity*)m_PBaseEntity)->profile.fame[0] += fame;
-            ((CCharEntity*)m_PBaseEntity)->profile.fame[1] += fame;
+            PChar->profile.fame[0] += fame;
+            PChar->profile.fame[1] += fame;
         break;
         case 5: // Norg
-            ((CCharEntity*)m_PBaseEntity)->profile.fame[3] += fame;
+            PChar->profile.fame[3] += fame;
         break;
     }
-    charutils::SaveFame((CCharEntity*)m_PBaseEntity);
+    charutils::SaveFame(PChar);
     return 0;
 }
 
@@ -5623,26 +5621,28 @@ inline int32 CLuaBaseEntity::updateEnmityFromCure(lua_State *L)
 inline int32 CLuaBaseEntity::updateEnmityFromDamage(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	// TODO: Scripters should check if the target is a monster before calling this, but for now lets do this and
-	// catch it further down.
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB && m_PBaseEntity->objtype != TYPE_PC && m_PBaseEntity->objtype != TYPE_PET );
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
-
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isuserdata(L,1));
 
-	if (m_PBaseEntity->objtype == TYPE_PC || m_PBaseEntity->objtype == TYPE_PET) {
-		return 0;
-	}
+    CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
+    int32 damage = lua_tointeger(L, 2);
 
-	CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L,1);
-	int32 damage = lua_tointeger(L,2);
-
-    if (PEntity != NULL && damage > 0 &&
-        PEntity->GetBaseEntity()->objtype != TYPE_NPC)
-	{
-		((CMobEntity*)m_PBaseEntity)->PEnmityContainer->UpdateEnmityFromDamage((CBattleEntity*)PEntity->GetBaseEntity(),damage);
-	}
-
+    if (m_PBaseEntity->objtype == TYPE_PC || (m_PBaseEntity->objtype == TYPE_MOB && ((CMobEntity*)m_PBaseEntity)->isCharmed) ||
+        m_PBaseEntity->objtype == TYPE_PET)
+    {
+        if (PEntity && PEntity->GetBaseEntity() && PEntity->GetBaseEntity()->objtype == TYPE_MOB)
+        {
+            ((CMobEntity*)PEntity->GetBaseEntity())->PEnmityContainer->UpdateEnmityFromAttack((CBattleEntity*)m_PBaseEntity, damage);
+        }
+    }
+    else if (m_PBaseEntity->objtype == TYPE_MOB)
+    {
+        if (PEntity != NULL && damage > 0 &&
+            PEntity->GetBaseEntity()->objtype != TYPE_NPC)
+        {
+            ((CMobEntity*)m_PBaseEntity)->PEnmityContainer->UpdateEnmityFromDamage((CBattleEntity*)PEntity->GetBaseEntity(), damage);
+        }
+    }
 	return 0;
 }
 

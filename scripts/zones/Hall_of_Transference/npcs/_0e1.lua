@@ -1,5 +1,6 @@
 -----------------------------------
--- Cermet Gate
+-- Area: Hall of Transference
+-- NPC:  Cermet Gate
 -- @pos -220 -46 -279 14
 -----------------------------------
 package.loaded["scripts/zones/Hall_of_Transference/TextIDs"] = nil;
@@ -7,6 +8,7 @@ package.loaded["scripts/zones/Hall_of_Transference/TextIDs"] = nil;
 
 require("scripts/globals/missions");
 require("scripts/zones/Hall_of_Transference/TextIDs");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -48,6 +50,6 @@ function onEventFinish(player,csid,option)
 -- printf("RESULT: %u",option);
 
 	if(csid == 0x0096 and option == 1) then
-		player:setPos(152,0 ,-70 ,81 ,18); -- tp to promy dem
+		player:setPos(185.891, 0, -52.331, 128, 18); -- To Promyvion Dem {R}
 	end
 end;

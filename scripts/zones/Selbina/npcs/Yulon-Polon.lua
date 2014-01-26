@@ -1,12 +1,13 @@
 -----------------------------------
 --  Area: Selbina
---   NPC: Yulon-Polon
+--  NPC:  Yulon-Polon
 --  Type: Title Changer
--- @zone: 248
---  @pos 45.998 -16.273 15.739
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos 45.998 -16.273 15.739 248
 -----------------------------------
+package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
+-----------------------------------
+
+require("scripts/zones/Selbina/TextIDs");
 
 -----------------------------------
 -- onTrade Action

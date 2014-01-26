@@ -79,7 +79,7 @@ function onEventFinish(player,csid,option)
 		player:addTitle(TRADER_OF_ANTIQUITIES);
 		player:addKeyItem(MAP_OF_DELKFUTTS_TOWER);
 		player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_DELKFUTTS_TOWER);
-		player:addFame(JEUNO,30);
+		player:addFame(JEUNO, JEUNO_FAME*30);
 		player:tradeComplete(trade);
 		player:completeQuest(JEUNO,THE_ANTIQUE_COLLECTOR);
 	elseif(csid == 0x1D and option == 1) then
