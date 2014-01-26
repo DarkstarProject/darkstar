@@ -10,6 +10,7 @@ package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
+require("scripts/globals/titles");
 require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
 
 -----------------------------------
@@ -61,7 +62,23 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(sarcophagusNumber(npc:getXPos(),npc:getZPos()) == player:getVar("TheRequiemRandom")) then
+	local ANewDawn = player:getQuestStatus(JEUNO,A_NEW_DAWN);
+	local ANewDawnEvent = player:getVar("ANewDawn_Event");
+	
+	-- BST AF3 Quest
+	if (sarcophagusNumber(npc:getXPos(),npc:getZPos()) == 4 and ANewDawn == QUEST_ACCEPTED) then
+		if (ANewDawnEvent == 4) then
+			for i = 17576267, 17576269 do 
+				if (GetMobAction(i) == 0) then
+					SpawnMob(i,180):updateEnmity(player); -- Spawn Sturm, Taifun and Trombe. 
+				end
+			end
+		elseif (ANewDawnEvent == 5) then
+			player:startEvent(0x002d);
+		end
+	
+	-- BRD AF Quest
+	elseif(sarcophagusNumber(npc:getXPos(),npc:getZPos()) == player:getVar("TheRequiemRandom")) then
 		if(player:getVar("TheRequiemYumKilled") == 1) then
 			player:startEvent(0x002e);
 		elseif(player:getVar("TheRequiemAlreadyPoped") == 1) then
@@ -70,8 +87,10 @@ function onTrigger(player,npc)
 			SpawnMob(17576267):updateEnmity(player); -- Spawn Owl Guardian NM @pos -414 8 501
 			SpawnMob(17576266):updateEnmity(player); -- Spawn Dog Guardian NM @pos -414 8 497
 		end
+		
+	-- Standard Dialogue
 	else
-		player:messageSpecial(SARCOPHAGUS_CANNOT_BE_OPENED); -- Standard dialog
+		player:messageSpecial(SARCOPHAGUS_CANNOT_BE_OPENED);
 	end
 	
 end; 
@@ -100,6 +119,14 @@ function onEventFinish(player,csid,option)
 		player:setVar("TheRequiemAlreadyPoped",0);
 		player:addKeyItem(STAR_RING1);
 		player:messageSpecial(KEYITEM_OBTAINED,STAR_RING1); -- Star Ring (Key Item). 
+	elseif (csid == 0x002d) then
+		player:setVar("ANewDawn_Event",6);
+		player:delKeyItem(217); 
+		player:addTitle(196); 
+		player:addItem(14222,1); 
+		player:messageSpecial(ITEM_OBTAINED,14222);
+		player:completeQuest(JEUNO,A_NEW_DAWN);
+		player:addFame(JEUNO, JEUNO_FAME*30);
 	end
 	
 end;
