@@ -11,3 +11,5 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item> come back a
 -- Shops
 CEHN_TEYOHNGO_SHOP_DIALOG = 7270; -- If you're looking for fishing gear, you've come to the right place!
     
+-- Other
+ON_WAY_TO_AL_ZAHBI = 7266; -- We are on our way to Al Zahbi. | We should arrive in [Game Hours, (Earth minutes)].

@@ -1,36 +1,36 @@
 -----------------------------------
---  Area: Manaclipper
---  NPC:  Khots Chalahko
---  Type: NPC
---  @pos 0.019 -4.674 -18.782 3
+-- Area:  Ship_bound_for_Selbina
+-- NPC:   Bhagirath
+-- Notes: Tells ship ETA time
+-- @pos 0.278 -14.707 -1.411 220
 -----------------------------------
-package.loaded["scripts/zones/Manaclipper/TextIDs"] = nil;
+package.loaded["scripts/zones/Ship_bound_for_Selbina/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/zones/Manaclipper/TextIDs");
+require("scripts/zones/Ship_bound_for_Selbina/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end; 
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc,KHOTS_CHALAHKO_OFFSET);
-end;
+	player:messageSpecial(ON_WAY_TO_SELBINA,0,0); -- Earth Time, Vana Hours. Needs a get-time function for boat?
+end; 
 
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -38,7 +38,9 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
+
+
 

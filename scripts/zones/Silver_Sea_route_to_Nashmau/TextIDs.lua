@@ -9,3 +9,6 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item> come back a
  
 -- Shops
 JIDWAHN_SHOP_DIALOG = 7270; -- Would you care for some items to use on your travels? 
+
+-- Other
+ON_WAY_TO_NASHMAU = 7266; -- We are on our way to Nashmau. | We should arrive in [Game Hours, (Earth minutes)].

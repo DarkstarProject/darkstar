@@ -1,36 +1,35 @@
 -----------------------------------
---  Area: Manaclipper
---  NPC:  Khots Chalahko
---  Type: NPC
---  @pos 0.019 -4.674 -18.782 3
+-- Area: Silver_Sea_route_to_Al_Zahbi
+-- NPC:  Map
+-- @pos 0.340 -12.232 -4.120 58
 -----------------------------------
-package.loaded["scripts/zones/Manaclipper/TextIDs"] = nil;
+package.loaded["scripts/zones/Silver_Sea_route_to_Al_Zahbi/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/zones/Manaclipper/TextIDs");
+require("scripts/zones/Silver_Sea_route_to_Al_Zahbi/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end; 
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc,KHOTS_CHALAHKO_OFFSET);
-end;
+	player:startEvent(0x0400); 
+end; 
 
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -38,7 +37,9 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
+
+
 
