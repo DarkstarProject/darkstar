@@ -562,21 +562,29 @@ void SmallPacket0x016(map_session_data_t* session, CCharEntity* PChar, int8* dat
 {
 	uint16 targid = RBUFW(data, (0x04));
 
-	CBaseEntity* PEntity = PChar->loc.zone->GetEntity(targid, TYPE_NPC | TYPE_PC); 	
-
-	if (PEntity && PEntity->objtype == TYPE_PC)	
-	{ 
-		PChar->pushPacket(new CCharPacket((CCharEntity*)PEntity, ENTITY_SPAWN));		
-		PChar->pushPacket(new CCharUpdatePacket((CCharEntity*)PEntity)); 
+	if (targid == PChar->targid)
+	{
+		PChar->pushPacket(new CCharPacket(PChar, ENTITY_SPAWN));
+		PChar->pushPacket(new CCharUpdatePacket(PChar));
 	}
 	else
-	{ 
-		if (!PEntity)		
-		{ 
-			PEntity = zoneutils::GetTrigger(targid, PChar->getZone()); 
-		}		
-		PChar->pushPacket(new CEntityUpdatePacket(PEntity, ENTITY_SPAWN)); 
-	}	
+	{
+		CBaseEntity* PEntity = PChar->loc.zone->GetEntity(targid, TYPE_NPC | TYPE_PC);
+
+		if (PEntity && PEntity->objtype == TYPE_PC)
+		{
+			PChar->pushPacket(new CCharPacket((CCharEntity*)PEntity, ENTITY_SPAWN));
+			PChar->pushPacket(new CCharUpdatePacket((CCharEntity*)PEntity));
+		}
+		else
+		{
+			if (!PEntity)
+			{
+				PEntity = zoneutils::GetTrigger(targid, PChar->getZone());
+			}
+			PChar->pushPacket(new CEntityUpdatePacket(PEntity, ENTITY_SPAWN));
+		}
+	}
 	return;
 }
 
