@@ -30,7 +30,7 @@ itemid_bcnmid_map = { 6,{0,0},-- Bearclaw_Pinnacle
 					 168,{0,0}, -- Chamber of Oracles
 					 170,{0,0}, -- Full Moon Fountain
 					 180,{1550,293}, -- LaLoff Amphitheater
-                     181,{0.0}, -- The Celestial Nexus
+                     181,{0,0}, -- The Celestial Nexus
 					 201,{1546,418,1174,417}, -- Cloister of Gales
 					 202,{1548,450,1172,449}, -- Cloister of Storms
 					 203,{1545,482,1171,481}, -- Cloister of Frost
