@@ -482,8 +482,8 @@ INSERT INTO `mob_family_system` VALUES (469,'Medusa',7,'Beastmen',0,40,100,140,3
 INSERT INTO `mob_family_system` VALUES (470,'Yilbegan',10,'Dragon',4,40,120,90,1,3,1,3,6,3,1,3,3,3,3,1,1,1,1,1,1,1.125,1,1,1,1,1,3);
 INSERT INTO `mob_family_system` VALUES (471,'Harpeia',8,'Bird',3,60,130,120,1,3,4,3,4,4,5,3,3,3,2,0.75,1.25,1,0.75,1,1.25,0.5,1,1,1,1,1,7);
 INSERT INTO `mob_family_system` VALUES (472,'Naraka',19,'Undead',2,40,70,140,6,3,6,3,1,5,4,3,3,3,3,0.75,0.75,0.5,0.5,1.25,0.3,1,1,1,1,1,0.3,2);
-
-
+INSERT INTO `mob_family_system` VALUES (473,'Lady_Lilith',13,'Humanoid',0,40,90,110,3,3,2,3,2,2,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
+INSERT INTO `mob_family_system` VALUES (474,'Lilith_Ascendant',18,'Unclassified',1,40,120,140,1,1,1,1,1,1,1,3,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,8);
 
 /*!40000 ALTER TABLE `mob_family_system` ENABLE KEYS */;
 UNLOCK TABLES;
