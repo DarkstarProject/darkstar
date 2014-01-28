@@ -12,7 +12,7 @@ require("scripts/globals/titles");
 function onMonsterMagicPrepare(mob, target)
     
 	-- Instant cast on spells - Waterga IV, Poisonga II, Drown, and Enwater
-	rnd = math.random();
+	local rnd = math.random();
 	
 	if (rnd < 0.2) then
 		return 202; -- Waterga IV
