@@ -251,6 +251,7 @@ void CParty::RemoveMember(CBattleEntity* PEntity)
                             }
 		                }
                     }
+                    PChar->PLatentEffectContainer->CheckLatentsPartyMembers(members.size());
 
 				    PChar->pushPacket(new CPartyDefinePacket(NULL));
 				    PChar->pushPacket(new CPartyMemberUpdatePacket(PChar, 0, PChar->getZone()));

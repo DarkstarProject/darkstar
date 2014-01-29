@@ -500,6 +500,7 @@ public:
     bool            IsWeatherStatic();                                              // погода в зоне не требует изменения (никогда не меняется)
 	bool			CanUseMisc(uint16 misc);
     void            SetWeather(WEATHER weatherCondition);
+    int             GetWeatherElement();
 
 	void			SpawnPCs(CCharEntity* PChar);									// отображаем персонажей в зоне
 	void			SpawnMOBs(CCharEntity* PChar);									// отображаем MOBs в зоне
