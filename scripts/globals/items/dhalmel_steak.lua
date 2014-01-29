@@ -6,6 +6,7 @@
 -- Strength 4
 -- Intelligence -1
 -- Attack % 25
+-- Attack Cap 45
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -38,6 +39,7 @@ function onEffectGain(target,effect)
 	target:addMod(MOD_STR, 4);
 	target:addMod(MOD_INT, -1);
 	target:addMod(MOD_ATTP, 25);
+	target:addMod(MOD_FOOD_ATT_CAP, 45);
 end;
 
 -----------------------------------------
@@ -48,4 +50,5 @@ function onEffectLose(target,effect)
 	target:delMod(MOD_STR, 4);
 	target:delMod(MOD_INT, -1);
 	target:delMod(MOD_ATTP, 25);
+	target:delMod(MOD_FOOD_ATT_CAP, 45);
 end;
