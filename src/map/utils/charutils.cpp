@@ -3287,8 +3287,11 @@ uint8 GetHighestTreasureHunter(CCharEntity* PChar, CMobEntity* PMob)
 
 void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, uint32 baseexp, bool isexpchain)
 {
-	if (PChar->isDead()) return;
-	if (!expFromRaise) {
+	if (PChar->isDead())
+		return;
+	
+	if (!expFromRaise) 
+	{
 		exp = exp * map_config.exp_rate;
 	}
 	uint16 currentExp = PChar->jobs.exp[PChar->GetMJob()];
@@ -3340,7 +3343,6 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
 		}
 	}
 
-
 	if (onLimitMode == true)
 	{
 		//add limit points
@@ -3381,7 +3383,7 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
 	//player levels up
     if ((currentExp + exp) >= GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) && onLimitMode == false)
     {
-        if (PChar->jobs.job[PChar->GetMJob()] == PChar->jobs.genkai)
+        if (PChar->jobs.job[PChar->GetMJob()] >= PChar->jobs.genkai)
         {
             PChar->jobs.exp[PChar->GetMJob()]  = GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) - 1;
             if (PChar->PParty && PChar->PParty->GetSyncTarget() == PChar)
@@ -3414,7 +3416,6 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
                     puppetutils::LoadAutomatonStats(PChar);
                 }
             }
-
 			PChar->PLatentEffectContainer->CheckLatentsJobLevel();
             PChar->UpdateHealth();
 
@@ -3445,7 +3446,6 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
                     PChar->PParty->RefreshSync();
                 }
             }
-
 			return;
         }
     }
