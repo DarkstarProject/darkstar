@@ -3543,7 +3543,7 @@ inline int32 CLuaBaseEntity::getFame(lua_State *L)
     switch (fameArea)
     {
         case 0: // San d'Oria
-        case 1: // Bastock
+        case 1: // Bastok
         case 2: // Windurst
             fame = PChar->profile.fame[fameArea];
         break;

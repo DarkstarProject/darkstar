@@ -560,20 +560,30 @@ void SmallPacket0x015(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x016(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	uint16 targid = RBUFW(data,(0x04));
+	uint16 targid = RBUFW(data, (0x04));
 
-	if (PChar->targid == targid)
+	if (targid == PChar->targid)
 	{
 		PChar->pushPacket(new CCharPacket(PChar, ENTITY_SPAWN));
-        PChar->pushPacket(new CCharUpdatePacket(PChar));
-	}else{
-		CBaseEntity* PNpc = PChar->loc.zone->GetEntity(targid, TYPE_NPC);
+		PChar->pushPacket(new CCharUpdatePacket(PChar));
+	}
+	else
+	{
+		CBaseEntity* PEntity = PChar->loc.zone->GetEntity(targid, TYPE_NPC | TYPE_PC);
 
-		if (PNpc == NULL)
+		if (PEntity && PEntity->objtype == TYPE_PC)
 		{
-			PNpc = zoneutils::GetTrigger(targid, PChar->getZone());
+			PChar->pushPacket(new CCharPacket((CCharEntity*)PEntity, ENTITY_SPAWN));
+			PChar->pushPacket(new CCharUpdatePacket((CCharEntity*)PEntity));
 		}
-		PChar->pushPacket(new CEntityUpdatePacket(PNpc, ENTITY_SPAWN));
+		else
+		{
+			if (!PEntity)
+			{
+				PEntity = zoneutils::GetTrigger(targid, PChar->getZone());
+			}
+			PChar->pushPacket(new CEntityUpdatePacket(PEntity, ENTITY_SPAWN));
+		}
 	}
 	return;
 }
@@ -637,16 +647,19 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		break;
 		case 0x02: // attack
 		{
-			PChar->PBattleAI->SetCurrentAction(ACTION_ENGAGE, TargID);
+			if (PChar->isDead() == false)
+			{
+			   PChar->PBattleAI->SetCurrentAction(ACTION_ENGAGE, TargID);
 
-            if (PChar->PBattleAI->GetCurrentAction() == ACTION_ENGAGE)
-            {
-                if (PChar->animation == ANIMATION_CHOCOBO)
-                {
-                    PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
-                }
-                PChar->PBattleAI->CheckCurrentAction(gettick());
-            }
+	           if (PChar->PBattleAI->GetCurrentAction() == ACTION_ENGAGE)
+		       {
+					if (PChar->animation == ANIMATION_CHOCOBO)
+					{
+						PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
+					}
+					PChar->PBattleAI->CheckCurrentAction(gettick());
+				}
+			}
 		}
 		break;
 		case 0x03: // spellcast

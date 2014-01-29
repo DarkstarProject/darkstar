@@ -59,7 +59,7 @@ function OnGameDayAutomatisation()
 	local direction = VanadielMoonDirection();
 	local phase = VanadielMoonPhase();
 	
-	if(((direction == 2 and phase >= 90) or (direction == 1 and phase >= 95)) and GetNPCByID(17277171):getWeather() == 0) then
+	if(((direction == 2 and phase >= 90) or (direction == 1 and phase >= 95)) and GetNPCByID(Moongate_Offset):getWeather() == 0) then
 		GetNPCByID(Moongate_Offset):openDoor(432);
 		GetNPCByID(Moongate_Offset+1):openDoor(432);
 	end

@@ -7,6 +7,8 @@
 package.loaded["scripts/zones/Manaclipper/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/zones/Manaclipper/TextIDs");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -19,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0065);
+	player:showText(npc,KHOTS_CHALAHKO_OFFSET);
 end;
 
 -----------------------------------

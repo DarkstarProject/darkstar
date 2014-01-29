@@ -1551,3 +1551,11 @@ INSERT INTO `item_latents` VALUES(18717, 24, 18, 6, 100); -- Ranged Attack+18 wh
 INSERT INTO `item_latents` VALUES(18718, 366, 4, 6, 100); -- DMG+4 while TP <100%
 INSERT INTO `item_latents` VALUES(18718, 26, 5, 6, 100); -- Ranged Accuracy+5 while TP <100%
 INSERT INTO `item_latents` VALUES(18718, 24, 18, 6, 100); -- Ranged Attack+18 while TP <100%
+
+-- Koga Tekko
+INSERT INTO `item_latents` VALUES(15114, 8, 12, 26, 1); -- STR +12 during nighttime
+INSERT INTO `item_latents` VALUES(15114, 384, 4, 26, 1); -- Haste +%4 during nighttime
+-- Koga Kyahan
+INSERT INTO `item_latents` VALUES(15144, 9, 7, 26, 1); -- DEX +7 during nighttime
+-- Ninja Kyahan
+INSERT INTO `item_latents` VALUES(14101, 169, 25, 26, 1); -- %25 during nighttime

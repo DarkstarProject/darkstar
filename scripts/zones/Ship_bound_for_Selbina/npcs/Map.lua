@@ -1,4 +1,3 @@
-
 -----------------------------------
 -- Area: Ship_bound_for_Selbina
 -- NPC:  Map
@@ -7,7 +6,6 @@
 package.loaded["scripts/zones/Ship_bound_for_Selbina/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/settings");
 require("scripts/zones/Ship_bound_for_Selbina/TextIDs");
 
 -----------------------------------

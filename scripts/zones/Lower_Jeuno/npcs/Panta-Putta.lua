@@ -86,7 +86,7 @@ function onEventFinish(player,csid,option)
 			player:delKeyItem(WONDER_MAGIC_SET);
 			player:addItem(13328);
 			player:messageSpecial(ITEM_OBTAINED,13328);
-			player:addFame(JEUNO,30);
+			player:addFame(JEUNO, JEUNO_FAME*30);
 			player:needToZone(true);
 			player:completeQuest(JEUNO,THE_WONDER_MAGIC_SET);
 		end
@@ -101,7 +101,7 @@ function onEventFinish(player,csid,option)
 			player:setVar("theKindCardianVar",0);
 			player:addItem(13596);
 			player:messageSpecial(ITEM_OBTAINED,13596); -- Green Cape
-			player:addFame(JEUNO,30);
+			player:addFame(JEUNO, JEUNO_FAME*30);
 			player:completeQuest(JEUNO,THE_KIND_CARDIAN);
 		end
 	end

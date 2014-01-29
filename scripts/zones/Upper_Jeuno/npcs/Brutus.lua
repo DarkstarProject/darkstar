@@ -116,7 +116,7 @@ function onEventFinish(player,csid,option)
 		player:addTitle(ANIMAL_TRAINER);
 		player:unlockJob(9); -- Beastmaster
 		player:messageSpecial(YOU_CAN_NOW_BECOME_A_BEASTMASTER);
-		player:addFame(JEUNO,30);
+		player:addFame(JEUNO, JEUNO_FAME*30);
 		player:completeQuest(JEUNO,PATH_OF_THE_BEASTMASTER);
 	elseif((csid == 0x008b or csid == 0x0089) and option == 1) then
 		player:addQuest(JEUNO,WINGS_OF_GOLD);
@@ -147,7 +147,7 @@ function onEventFinish(player,csid,option)
 			player:setVar("scatIntoShadowCS",0);
 			player:addItem(14097);
 			player:messageSpecial(ITEM_OBTAINED,14097); -- Beast Gaiters
-			player:addFame(JEUNO,AF2_FAME);
+			player:addFame(JEUNO,JEUNO_FAME*AF2_FAME);
 			player:completeQuest(JEUNO,SCATTERED_INTO_SHADOW);
 		end
     end

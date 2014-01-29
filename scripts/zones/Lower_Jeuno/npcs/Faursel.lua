@@ -131,7 +131,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("THE_ROAD_TO_AHT_URHGAN",0);
 		player:setVar("THE_ROAD_TO_AHT_URHGAN_Day",0);
 		player:setVar("THE_ROAD_TO_AHT_URHGAN_Year",0);
-		player:addFame(JEUNO,30);
+		player:addFame(JEUNO, JEUNO_FAME*30);
 	elseif (csid == 0x2756) then
 		player:addKeyItem(BOARDING_PERMIT);
 		player:messageSpecial(KEYITEM_OBTAINED,BOARDING_PERMIT);
@@ -139,7 +139,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("THE_ROAD_TO_AHT_URHGAN",0);
 		player:setVar("THE_ROAD_TO_AHT_URHGAN_Day",0);
 		player:setVar("THE_ROAD_TO_AHT_URHGAN_Year",0);
-		player:addFame(JEUNO,30);
+		player:addFame(JEUNO, JEUNO_FAME*30);
 		player:tradeComplete();
 	end
 end;

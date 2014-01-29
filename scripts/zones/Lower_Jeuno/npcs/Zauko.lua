@@ -129,14 +129,14 @@ function onEventFinish(player,csid,option)
 		
 	elseif(csid == 0x0075) then -- Quest Finish
 		player:completeQuest(JEUNO,COMMUNITY_SERVICE);
-		player:addFame(JEUNO,30);
+		player:addFame(JEUNO,JEUNO_FAME*30);
 		player:setVar("cService",13)
 		player:addTitle(TORCHBEARER);
 	
 	elseif(csid == 0x0071) then -- Quest Finish (Repeat)
 		player:addKeyItem(LAMP_LIGHTERS_MEMBERSHIP_CARD); -- Lamp Lighter's Membership Card
 		player:messageSpecial(KEYITEM_OBTAINED,LAMP_LIGHTERS_MEMBERSHIP_CARD);
-		player:addFame(JEUNO,15);
+		player:addFame(JEUNO, JEUNO_FAME*15);
 		player:setVar("cService",0);
 	end
 	
