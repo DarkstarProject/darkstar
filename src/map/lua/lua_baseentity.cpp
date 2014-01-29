@@ -7255,6 +7255,11 @@ inline int32 CLuaBaseEntity::checkSoloPartyAlliance(lua_State *L){
 	return 1;
 }
 
+/************************************************************************
+*                                                                       *
+*   TODO: Is this needed?												*
+*                                                                       *
+************************************************************************/
 inline int32 CLuaBaseEntity::checkExpPoints(lua_State *L){
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isuserdata(L,1));
@@ -7286,6 +7291,11 @@ inline int32 CLuaBaseEntity::checkExpPoints(lua_State *L){
 	return 1;
 }
 
+/************************************************************************
+*                                                                       *
+*   Checks whether alliances can do FoV pages                           *
+*                                                                       *
+************************************************************************/
 inline int32 CLuaBaseEntity::checkFovAllianceAllowed(lua_State *L){
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
@@ -7296,7 +7306,20 @@ inline int32 CLuaBaseEntity::checkFovAllianceAllowed(lua_State *L){
 	return 1;
 }
 
+/************************************************************************
+*                                                                       *
+*   Checks whether FoV distance from mob penalty applies                *
+*                                                                       *
+************************************************************************/
+inline int32 CLuaBaseEntity::checkFovDistancePenalty(lua_State *L){
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
+	uint8 FovDistancePenalty = map_config.fov_party_gap_penalties;
+
+	lua_pushinteger(L, FovDistancePenalty);
+	return 1;
+}
 
 /************************************************************************
 *																		*
@@ -8469,6 +8492,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkSoloPartyAlliance),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkExpPoints),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkFovAllianceAllowed),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkFovDistancePenalty),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasImmunity),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,rageMode),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isUndead),
