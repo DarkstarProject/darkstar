@@ -5,6 +5,8 @@
 -- @zone 246
 -- @pos -175 -5 -4
 -----------------------------------
+package.loaded["scripts/globals/settings"] = nil;
+-----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");

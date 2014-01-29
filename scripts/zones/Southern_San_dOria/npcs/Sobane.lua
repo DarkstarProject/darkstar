@@ -8,6 +8,7 @@
 -- csid: 0x0034  0x02dc  0x02dd  0x02de  0x02df  0x02e0  0x02e1  0x02e2  0x02e3  0x02e4  0x02e5 
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+package.loaded["scripts/globals/settings"] = nil;
 -------------------------------------
 require("scripts/globals/player");
 require("scripts/globals/settings");

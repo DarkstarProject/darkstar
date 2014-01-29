@@ -6,6 +6,7 @@
 --  @pos 37.985 3.118 -45.208 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
 require("scripts/globals/teleports");

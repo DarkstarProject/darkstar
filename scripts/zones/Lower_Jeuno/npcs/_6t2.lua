@@ -5,6 +5,7 @@
 --  Optional Involvement in Quest: Chocobo's Wounds, Path of the Beastmaster
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");

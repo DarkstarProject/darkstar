@@ -8,6 +8,7 @@
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
+package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");

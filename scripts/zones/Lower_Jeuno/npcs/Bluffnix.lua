@@ -4,6 +4,7 @@
 -- Starts and Finishes Quests: Gobbiebags I-X
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
