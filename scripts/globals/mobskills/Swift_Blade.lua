@@ -17,7 +17,7 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 
-	mob:messageBasic(43, 0, 682+256);
+	mob:messageBasic(43, 0, 683+256);
 	skill:setSkillchain(41);
 
 	local numhits = 3;
