@@ -415,7 +415,7 @@ void CAICharNormal::ActionDeath()
     // без задержки удаление эффектов не всегда правильно обрабатывается клиентом
     if (m_Tick >= m_LastActionTime + 1000)
     {
-        m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH, true);
+        m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH | EFFECTFLAG_FOOD, true);
 
         if(m_PChar->m_PVPFlag)
         {
