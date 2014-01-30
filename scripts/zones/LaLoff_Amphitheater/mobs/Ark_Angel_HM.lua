@@ -5,6 +5,10 @@
 
 require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 
+function onMobInitialize(mob)
+    mob:addMod(MOD_REGAIN, 50);
+end;
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
@@ -17,7 +21,7 @@ end;
 -----------------------------------
 
 function onMobEngaged(mob,target)
-   local mobid = mob:getID()
+   local mobid = mob:getID();
 
     for member = mobid, mobid+7 do
         if (GetMobAction(member) == 16) then 
