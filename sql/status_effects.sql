@@ -285,7 +285,7 @@ INSERT INTO `status_effects` VALUES (247,'(imagery)',32,244,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (248,'(imagery)',32,244,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (249,'dedication',0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (250,'ef_badge',32,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (251,'food',32800,0,0,2,0,0,0);
+INSERT INTO `status_effects` VALUES (251,'food',32768,0,0,2,0,0,0);
 INSERT INTO `status_effects` VALUES (252,'chocobo',164,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (253,'signet',0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (254,'battlefield',0,0,0,0,0,0,0);

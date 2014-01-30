@@ -19,7 +19,7 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 
-    local count = target:dispelAllStatusEffect();
+    local count = target:dispelAllStatusEffect(bit.bor(EFFECTFLAG_SONG, EFFECTFLAG_ROLL));
 
     if(count == 0) then
         skill:setMsg(MSG_NO_EFFECT);
