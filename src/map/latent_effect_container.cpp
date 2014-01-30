@@ -1142,11 +1142,6 @@ void CLatentEffectContainer::CheckLatentsPartyMembers(uint8 members)
 
         if (m_LatentEffectList.at(i)->GetConditionsID() == LATENT_PARTY_MEMBERS)
         {
-            if (m_POwner->PParty == NULL)
-            {
-                if (m_LatentEffectList.at(i)->IsActivated())
-                    m_LatentEffectList.at(i)->Deactivate();
-            }
 
             if (m_LatentEffectList.at(i)->GetConditionsValue() <= members)
             {
@@ -1162,12 +1157,6 @@ void CLatentEffectContainer::CheckLatentsPartyMembers(uint8 members)
         {
             int inZone = 0;
 
-            if (m_POwner->PParty == NULL)
-            {
-                if (m_LatentEffectList.at(i)->IsActivated())
-                    m_LatentEffectList.at(i)->Deactivate();
-            }
-
             if (m_LatentEffectList.at(i)->GetConditionsValue() <= members )
             {
                 for (uint8 m = 0; m < members; ++m)
@@ -1179,7 +1168,7 @@ void CLatentEffectContainer::CheckLatentsPartyMembers(uint8 members)
                     }
                 }
 
-                if (inZone == members)
+                if (inZone == m_LatentEffectList.at(i)->GetConditionsValue())
                     m_LatentEffectList.at(i)->Activate();
                 else
                     m_LatentEffectList.at(i)->Deactivate();
