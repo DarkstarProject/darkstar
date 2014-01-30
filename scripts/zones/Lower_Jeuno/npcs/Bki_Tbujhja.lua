@@ -7,6 +7,7 @@
 -- @pos -22 0 -60
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -98,7 +99,7 @@ function onEventFinish(player,csid,option)
 		else 
 			player:addItem(14098);
 			player:messageSpecial(ITEM_OBTAINED,14098); -- Choral Slippers
-			player:addFame(JEUNO,30);
+			player:addFame(JEUNO, JEUNO_FAME*30);
 			player:completeQuest(JEUNO,THE_REQUIEM);
 		end		
 	end

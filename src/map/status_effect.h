@@ -58,7 +58,9 @@ enum EFFECTFLAG
     EFFECTFLAG_NO_REST 		= 0x1000,  // prevents resting, curse II, plague, disease
     EFFECTFLAG_PREVENT_ACTION   = 0x2000,    // sleep, lullaby, stun, petro. Not implemented
     EFFECTFLAG_WALTZABLE        = 0x4000,   //for healing waltzable spells
-    EFFECTFLAG_FOOD             = 0x8000
+    EFFECTFLAG_FOOD             = 0x8000,
+    EFFECTFLAG_SONG             = 0x10000,  //bard songs
+    EFFECTFLAG_ROLL             = 0x20000   //corsair rolls
 };
 
 enum EFFECT

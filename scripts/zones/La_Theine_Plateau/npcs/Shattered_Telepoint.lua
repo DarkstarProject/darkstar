@@ -24,8 +24,8 @@ function onTrigger(player,npc)
 
 	if(player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") == 1) then
 		player:startEvent(0x00C9);
-	elseif(player:getCurrentMission(COP) > BELOW_THE_ARKS or hasCompletedMission(COP,THE_LAST_VERSE) or (player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") > 1))then
-		player:startEvent(0x0074);
+	elseif(player:getCurrentMission(COP) > BELOW_THE_ARKS or player:hasCompletedMission(COP,THE_LAST_VERSE) or (player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") > 1))then
+		player:startEvent(0x00CA);
 	else
 		player:messageSpecial(TELEPOINT_HAS_BEEN_SHATTERED);
 	end
@@ -52,7 +52,7 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x00C9) then
 		player:setVar("PromathiaStatus",2);
 		player:setPos(-266.76, -0.635, 280.058, 0, 14); -- To Hall of Transference {R}
-	elseif(csid == 0x0074 and option == 1) then
+	elseif(csid == 0x00CA and option == 0) then
 		player:setPos(-266.76, -0.635, 280.058, 0, 14); -- To Hall of Transference {R}
 	end
 

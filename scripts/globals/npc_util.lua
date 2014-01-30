@@ -1,3 +1,6 @@
+package.loaded["scripts/globals/settings"] = nil;
+
+
 -- Provides helper methods for npcs
 npcUtil = {};
 

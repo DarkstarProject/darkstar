@@ -5,6 +5,7 @@
 -- @pos -60 0.1 -8 246
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
+package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -66,7 +67,7 @@ function onEventFinish(player,csid,option)
 		player:addTitle(TRADER_OF_MYSTERIES);
 		player:addKeyItem(WONDER_MAGIC_SET);
 		player:messageSpecial(KEYITEM_OBTAINED,WONDER_MAGIC_SET);
-		player:addFame(JEUNO,30);
+		player:addFame(JEUNO, JEUNO_FAME*30);
 		player:tradeComplete(trade);
 		player:completeQuest(JEUNO,CHILD_S_PLAY);
 	elseif(csid == 316) then

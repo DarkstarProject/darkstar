@@ -10,3 +10,6 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item> come back a
 
 -- Shops
 PASHI_MACCALEH_SHOP_DIALOG = 7270; -- Step right up for the best fishing gear in these parts!
+
+-- Other
+ON_WAY_TO_MHAURA = 7266; -- We are on our way to Mhaura. | We should arrive in [Game Hours, (Earth minutes)].

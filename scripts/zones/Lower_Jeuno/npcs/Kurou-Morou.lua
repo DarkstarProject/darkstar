@@ -4,6 +4,7 @@
 -- @pos -4 -6 -28 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -101,7 +102,7 @@ function onEventFinish(player,csid,option)
 		player:addQuest(JEUNO,YOUR_CRYSTAL_BALL);
 	elseif(csid == 0x00C4) then
 		player:addTitle(FORTUNETELLER_IN_TRAINING);
-		player:addFame(JEUNO,30);
+		player:addFame(JEUNO, JEUNO_FAME*30);
 		player:tradeComplete(trade);
 		player:completeQuest(JEUNO,YOUR_CRYSTAL_BALL);
 	elseif(csid == 0x00Cc and option == 0) then 
@@ -119,7 +120,7 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(GIL_OBTAINED,GIL_RATE*1200); 
 			player:addItem(13477);
 			player:messageSpecial(ITEM_OBTAINED,13477);
-			player:addFame(JEUNO,30);
+			player:addFame(JEUNO, JEUNO_FAME*30);
 			player:tradeComplete(trade);
 			player:completeQuest(JEUNO,NEVER_TO_RETURN);
 		end

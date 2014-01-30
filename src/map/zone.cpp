@@ -624,13 +624,49 @@ void CZone::SetWeather(WEATHER weather)
 	for (EntityList_t::const_iterator it = m_mobList.begin(); it != m_mobList.end(); ++it)
 	{
 		CMobEntity* PCurrentMob = (CMobEntity*)it->second;
-    PCurrentMob->PBattleAI->WeatherChange(weather, Element[weather]);
+
+        PCurrentMob->PBattleAI->WeatherChange(weather, Element[weather]);
 	}
+
+    for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
+    {
+        CCharEntity* PChar = (CCharEntity*)it->second;
+        
+        PChar->PLatentEffectContainer->CheckLatentsZone();
+    }
 
     m_Weather = weather;
     m_WeatherChangeTime = CVanaTime::getInstance()->getVanaTime();
 
     PushPacket(NULL, CHAR_INZONE, new CWeatherPacket(m_WeatherChangeTime, m_Weather));
+}
+
+int CZone::GetWeatherElement()
+{
+    static uint8 Element[] =
+    {
+        0,  //WEATHER_NONE
+        0,  //WEATHER_SUNSHINE
+        0,  //WEATHER_CLOUDS
+        0,  //WEATHER_FOG
+        1,  //WEATHER_HOT_SPELL
+        1,  //WEATHER_HEAT_WAVE
+        6,  //WEATHER_RAIN
+        6,  //WEATHER_SQUALL
+        4,  //WEATHER_DUST_STORM
+        4,  //WEATHER_SAND_STORM
+        3,  //WEATHER_WIND
+        3,  //WEATHER_GALES
+        2,  //WEATHER_SNOW
+        2,  //WEATHER_BLIZZARDS
+        5,  //WEATHER_THUNDER
+        5,  //WEATHER_THUNDERSTORMS
+        7,  //WEATHER_AURORAS
+        7,  //WEATHER_STELLAR_GLARE
+        8,  //WEATHER_GLOOM
+        8,  //WEATHER_DARKNESS
+    };
+    return Element[GetWeather()];
 }
 
 /************************************************************************

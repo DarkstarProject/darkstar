@@ -41,6 +41,7 @@ SAN_FAME   = 1.000; --Multiplies fame earned from San d'Oria quests.
 BAS_FAME   = 1.000; --Multiplies fame earned from Bastok quests.
 WIN_FAME   = 1.000; --Multiplies fame earned from Windurst quests.
 NORG_FAME  = 1.000; --Multiplies fame earned from Norg and Tenshodo quests.
+JEUNO_FAME = 1.000; --Multiplies fame earned from Jeuno quests.
 
 FISHING_GUILD_POINTS      = 1.000; --Multiplies guild points earned from fishermans' guild trades.
 WOODWORKING_GUILD_POINTS  = 1.000; --Multiplies guild points earned from carpenters' guild trades.

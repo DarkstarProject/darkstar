@@ -9,3 +9,6 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item> come back a
  
 -- Shops
 YAHLIQ_SHOP_DIALOG = 7270; -- You've picked the best place to shop for your items, guaranteed!
+
+-- Other
+ON_WAY_TO_AL_ZAHBI = 7266; -- We are on our way to Al Zahbi. | We should arrive in [Game Hours, (Earth minutes)].

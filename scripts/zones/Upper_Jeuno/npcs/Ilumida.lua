@@ -5,6 +5,7 @@
 -- @pos -75 -1 58 244
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
+package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -102,7 +103,7 @@ function onEventFinish(player,csid,option)
 			player:addItem(13094);
 			player:messageSpecial(ITEM_OBTAINED,13094);
 			player:needToZone(true);
-			player:addFame(JEUNO,30);
+			player:addFame(JEUNO, JEUNO_FAME*30);
 			player:completeQuest(JEUNO,A_CANDLELIGHT_VIGIL);
 		end
 		
@@ -123,7 +124,7 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(GIL_OBTAINED, GIL_RATE*3000)
 			player:addItem(4882);
 			player:messageSpecial(ITEM_OBTAINED,4882);
-			player:addFame(JEUNO,30);
+			player:addFame(JEUNO, JEUNO_FAME*30);
 			player:completeQuest(JEUNO,SEARCHING_FOR_THE_RIGHT_WORDS);
 			player:setVar("SearchingForRightWords_postcs", -2);
 		end

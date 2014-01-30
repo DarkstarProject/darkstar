@@ -6,3 +6,6 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6380; -- Obtained <number> gil.
        KEYITEM_OBTAINED = 6382; -- Obtained key item: <keyitem>.
  FISHING_MESSAGE_OFFSET = 7185; -- You can't fish here.
+ 
+-- NPC Dialogue 
+KHOTS_CHALAHKO_OFFSET = 7350; -- Ahhh... | Isn't it grrreat out here on the open sea!?

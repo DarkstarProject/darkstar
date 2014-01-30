@@ -10,5 +10,8 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item> come back a
 -- Shop texts
 RAJMONDA_SHOP_DIALOG = 7286; -- There's nothing like fishing to pass the time!
    MAERA_SHOP_DIALOG = 7287; -- May I offer you items to help you on your journey?
+   
+-- Other
+ON_WAY_TO_SELBINA = 7281; -- We're on our way to Selbina. | We should arrive in [Game Hours, (Earth minutes)].
 
 

@@ -616,6 +616,8 @@ EFFECTFLAG_NO_REST 		= 0x1000
 EFFECTFLAG_PREVENT_ACTION   = 0x2000
 EFFECTFLAG_WALTZABLE        = 0x4000
 EFFECTFLAG_FOOD                 = 0x8000
+EFFECTFLAG_SONG             = 0x10000
+EFFECTFLAG_ROLL             = 0x20000
 
 function removeSleepEffects(target)
 	target:delStatusEffect(EFFECT_SLEEP_I);

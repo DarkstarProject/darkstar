@@ -7,6 +7,7 @@
 -- @pos 8 3 118
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
+package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -50,7 +51,7 @@ function onTrigger(player,npc)
 	local whenceBlowsTheWind = player:getQuestStatus(JEUNO,WHENCE_BLOWS_THE_WIND);
 	local ridingOnTheClouds = player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS);
 	local shatteringStars = player:getQuestStatus(JEUNO,SHATTERING_STARS);
-
+	
 	if(player:getVar("BeatAroundTheBushin") == 5) then
 		player:startEvent(0x0075);
 	elseif(inDefiantChallenge == QUEST_AVAILABLE and LvL == 50 and player:levelCap() == 50 and MAX_LEVEL >= 55) then
@@ -131,8 +132,8 @@ function onEventFinish(player,csid,option)
 		player:tradeComplete();
 		player:addTitle(HORIZON_BREAKER);
 		player:levelCap(55);
-		player:addFame(JEUNO,30);
 		player:completeQuest(JEUNO,IN_DEFIANT_CHALLENGE);
+		player:addFame(JEUNO, JEUNO_FAME*30);			
 	-- Genkai 2
 	elseif(csid == 0x0052 and option == 1) then
 		player:addQuest(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS);
@@ -143,8 +144,8 @@ function onEventFinish(player,csid,option)
 		player:delKeyItem(TRIANGULAR_FRIGICITE);
 		player:levelCap(60);
 		player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_60);
-		player:addFame(JEUNO,40);
 		player:completeQuest(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS);
+		player:addFame(JEUNO, JEUNO_FAME*40);	
 	-- Genkai 3
 	elseif(csid == 0x0055 and option == 1) then
 		player:addQuest(JEUNO,WHENCE_BLOWS_THE_WIND);
@@ -155,8 +156,8 @@ function onEventFinish(player,csid,option)
 		player:delKeyItem(YAGUDO_CREST);
 		player:levelCap(65);
 		player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_65);
-		player:addFame(JEUNO,50);
 		player:completeQuest(JEUNO,WHENCE_BLOWS_THE_WIND);
+		player:addFame(JEUNO, JEUNO_FAME*50);		
 	elseif(csid == 0x0058) then
 		if(option == 1) then
 			player:addQuest(JEUNO,RIDING_ON_THE_CLOUDS);
@@ -174,8 +175,8 @@ function onEventFinish(player,csid,option)
 		player:delKeyItem(SPIRITED_STONE);
 		player:levelCap(70);
 		player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_70);
-		player:addFame(JEUNO,60);
 		player:completeQuest(JEUNO,RIDING_ON_THE_CLOUDS);
+		player:addFame(JEUNO, JEUNO_FAME*60);	
 	elseif(csid == 0x005c) then
 		player:addQuest(JEUNO,SHATTERING_STARS);
 	elseif(csid == 0x0040 and option == 1) then
@@ -191,8 +192,8 @@ function onEventFinish(player,csid,option)
 		player:setVar("maatCap",player:getVar("maatDefeated"));
 		player:setVar("maatDefeated",0);
 		player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_75);
-		player:addFame(JEUNO,80);
 		player:completeQuest(JEUNO,SHATTERING_STARS);
+		player:addFame(JEUNO, JEUNO_FAME*80);		
 	end
 
 end;

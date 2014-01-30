@@ -5,6 +5,7 @@
 -- @pos -56 0.1 -138 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -89,7 +90,7 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
 			player:addItem(13446);
 			player:messageSpecial(ITEM_OBTAINED,13446); -- Mythril Ring
-			player:addFame(JEUNO,30);
+			player:addFame(JEUNO, JEUNO_FAME*30);
 			player:completeQuest(JEUNO,COOK_S_PRIDE);
 		end
 	elseif(csid == 10053) then

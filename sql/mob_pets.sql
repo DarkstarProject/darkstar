@@ -929,8 +929,9 @@ INSERT INTO `mob_pets` VALUES (16941464, 1, 9);
 INSERT INTO `mob_pets` VALUES (16941182, 1, 9);
 INSERT INTO `mob_pets` VALUES (16941066, 1, 9);
 INSERT INTO `mob_pets` VALUES (16941116, 1, 14);
-INSERT INTO `mob_pets` VALUES (16941393, 1, 14);
-INSERT INTO `mob_pets` VALUES (16941080, 1, 14);
+-- Missing zone info in database
+-- INSERT INTO `mob_pets` VALUES (16941393, 1, 14);
+-- INSERT INTO `mob_pets` VALUES (16941080, 1, 14);
 INSERT INTO `mob_pets` VALUES (16941113, 1, 14);
 INSERT INTO `mob_pets` VALUES (16941409, 1, 14);
 INSERT INTO `mob_pets` VALUES (16941438, 1, 14);

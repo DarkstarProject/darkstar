@@ -7,6 +7,7 @@
 -- @pos -75 0 80
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
+package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -86,7 +87,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("saveMySisterVar",1);
 		player:addKeyItem(CREST_OF_DAVOI_KI);
 		player:messageSpecial(KEYITEM_OBTAINED,CREST_OF_DAVOI_KI);
-		player:addFame(JEUNO,30);
+		player:addFame(JEUNO, JEUNO_FAME*30);
 		player:completeQuest(JEUNO,CREST_OF_DAVOI);
 		
 	elseif(csid == 0x0069) then 
@@ -101,7 +102,7 @@ function onEventFinish(player,csid,option)
 			player:addItem(17041);
 			player:messageSpecial(ITEM_OBTAINED,17041);
 			player:tradeComplete();
-			player:addFame(JEUNO,30);
+			player:addFame(JEUNO, JEUNO_FAME*30);
 			player:completeQuest(JEUNO,SAVE_MY_SISTER);
 		end
 	end

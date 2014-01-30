@@ -512,6 +512,17 @@ function SilverSeaRemnantsExit(player)
 	player:setPos(580,0,500,192,72); -- Exit										{R}
 end;
 
+-- Bhaflau Remnants
+function BhaflauRemnantsI(player)
+	player:setPos(339.999, 19.999, -553.499, 191, 75); -- Bhaflau Remnants I	 	{R}
+end;
+-- function BhaflauRemnantsII(player)
+-- 	player:setPos(0, 0, 0, 0, 75); -- Bhaflau Remnants II	 	
+-- end;
+function BhaflauRemnantsExit(player)
+	player:setPos(620,0,-260,64,72); -- Exit										{R}
+end;
+
 -----------------------------------
 -- Explorer Moogle
 -----------------------------------
@@ -689,6 +700,8 @@ function Escape(player, zone)
 	-- Ruins of Alzadaal {R}
 	elseif(zone == 72) then 												-- From Alzadaal Undersea Ruins
 		player:setPos(14.186,-29.789,590.427,0,52); 						-- To Bhaflau Thickets at F-6
+	elseif(zone == 75) then													-- From Bhaflau Remnants I/II
+		player:setPos(620,0,-260,64,72); 									-- To Alzadaal Undersea Ruins BR H-8
 	elseif(zone == 76) then 												-- From Silver Sea Remnants I/II
 		player:setPos(580,0,500,192,72); 									-- To Alzadaal Undersea Ruins SSR H-8
 	elseif(zone == 77) then													-- From Nyzul Isle Investigation/Uncharted Region
@@ -716,8 +729,9 @@ function Escape(player, zone)
 		player:setPos(283.593,7.999,-403.207,145,84); 						-- To Batallia Downs (S) J-10
 	end;
 	
-	-- TODO: Arrapago Remnants I/II, Bhaflau Remnants I/II, Zhaylohm Remnants I/II, Everbloom Hollow?, Ruhoyz Silvermines?, The Ashu Talif?
+	-- TODO: Arrapago Remnants I/II, Zhaylohm Remnants I/II, Everbloom Hollow?, Ruhoyz Silvermines?, The Ashu Talif?
 	-- TODO: Abyssea / SOA Areas
+	-- MISC Flag in zone_settings will also need +1 or -1 depending on escape possibility. 
 end;
 
 -----------------------------------
