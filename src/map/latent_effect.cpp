@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2012 Darkstar Dev Teams
+  Copyright (c) 2010-2014 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -28,12 +28,12 @@
 
 CLatentEffect::CLatentEffect(LATENT conditionsId, uint16 conditionsValue, uint8 slot, uint16 modValue, int16 modPower)
 {
-	m_ConditionsID		= conditionsId;
-	m_ConditionsValue	= conditionsValue;
-    m_SlotID			= slot;
-	m_ModValue		    = modValue;
-    m_ModPower			= modPower;
-    m_Activated			= false;
+    m_ConditionsID      = conditionsId;
+    m_ConditionsValue   = conditionsValue;
+    m_SlotID            = slot;
+    m_ModValue          = modValue;
+    m_ModPower          = modPower;
+    m_Activated         = false;
 }
 
 CLatentEffect::~CLatentEffect()
@@ -42,114 +42,129 @@ CLatentEffect::~CLatentEffect()
 
 LATENT CLatentEffect::GetConditionsID()
 {
-	return m_ConditionsID;
+    return m_ConditionsID;
 }
 
 uint16 CLatentEffect::GetConditionsValue()
 {
-	return m_ConditionsValue;
+    return m_ConditionsValue;
 }
 
 uint8 CLatentEffect::GetSlot()
 {
-	return m_SlotID;
+    return m_SlotID;
 }
 
 uint16 CLatentEffect::GetModValue()
 {
-	return m_ModValue;
+    return m_ModValue;
 }
 
 int16 CLatentEffect::GetModPower()
 {
-	return m_ModPower;
+    return m_ModPower;
 }
 
 bool CLatentEffect::IsActivated()
 {
-	return m_Activated;
+    return m_Activated;
 }
 
 CBattleEntity* CLatentEffect::GetOwner()
 {
-	return m_POwner;
+    return m_POwner;
 }
 
 void CLatentEffect::SetConditionsId(LATENT id)
 {
-	m_ConditionsID = id;
+    m_ConditionsID = id;
 }
 
 void CLatentEffect::SetConditionsValue(uint16 value)
 {
-	m_ConditionsValue = value;
+    m_ConditionsValue = value;
 }
 
 void CLatentEffect::SetSlot(uint8 slot)
 {
-	m_SlotID = slot;
+    m_SlotID = slot;
 }
 
 void CLatentEffect::SetModValue(uint16 value)
 {
-	m_ModValue = value;
+    m_ModValue = value;
 }
 
 void CLatentEffect::SetModPower(int16 power)
 {
-	m_ModPower = power;
+    m_ModPower = power;
 }
 
 void CLatentEffect::Activate()
 {
-	if( !IsActivated() )
-	{
-		//additional effect latents add mod to weapon, not player
-		if (GetModValue() == MOD_ADDITIONAL_EFFECT)
-		{
-			CCharEntity* PChar = (CCharEntity*)m_POwner;
-			CItemWeapon* weapon = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[GetSlot()]);
+    if( !IsActivated() )
+    {
+        //additional effect/dmg latents add mod to weapon, not player
+        if (GetModValue() == MOD_ADDITIONAL_EFFECT || GetModValue() == MOD_DMG)
+        {
+            CCharEntity* PChar = (CCharEntity*)m_POwner;
+            CItemWeapon* weapon = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[GetSlot()]);
 
-			weapon->addModifier(new CModifier(MOD_ADDITIONAL_EFFECT, 1));
-		}
-		else
-		{
-			m_POwner->addModifier(m_ModValue, m_ModPower);
-		}
+            weapon->addModifier(new CModifier(GetModValue(), GetModPower()));
+        }
+        else
+        {
+            m_POwner->addModifier(m_ModValue, m_ModPower);
+        }
 
-		m_Activated = true;
-		//printf("LATENT ACTIVATED: %d, Current value: %d\n", m_ModValue, m_POwner->getMod(m_ModValue));
-	}
+        m_Activated = true;
+        //printf("LATENT ACTIVATED: %d, Current value: %d\n", m_ModValue, m_POwner->getMod(m_ModValue));
+    }
 }
 
 void CLatentEffect::Deactivate()
 {
-	if( IsActivated() )
-	{
-		//remove the modifier from weapon, not player
-		if (GetModValue() == MOD_ADDITIONAL_EFFECT)
-		{
-			CCharEntity* PChar = (CCharEntity*)m_POwner;
-			CItemWeapon* weapon = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[GetSlot()]);
+    if( IsActivated() )
+    {
+        //remove the modifier from weapon, not player
+        if (GetModValue() == MOD_ADDITIONAL_EFFECT || GetModValue() == MOD_DMG)
+        {
+            CCharEntity* PChar = (CCharEntity*)m_POwner;
+            CItemWeapon* weapon = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[GetSlot()]);
 
-			//ensure the additional effect is fully removed from weapon
-			for (uint8 i = 0; i < weapon->modList.size(); ++i)
-			{
-				if (weapon->modList.at(i)->getModID() == MOD_ADDITIONAL_EFFECT)
-					weapon->modList.at(i)->setModAmount(0);
-			}
-		}
-		else
-		{
-			m_POwner->delModifier(m_ModValue, m_ModPower);
-		}
+            int16 modPower = GetModPower();
 
-		m_Activated = false;
-		//printf("LATENT DEACTIVATED: %d\n", m_ModValue);
-	}
+            if (weapon != NULL && (weapon->isType(ITEM_ARMOR) || weapon->isType(ITEM_WEAPON)))
+            {
+                if (GetModValue() == MOD_ADDITIONAL_EFFECT)
+                {
+                    for (uint8 i = 0; i < weapon->modList.size(); ++i)
+                    {
+                        //ensure the additional effect is fully removed from the weapon
+                        if (weapon->modList.at(i)->getModID() == MOD_ADDITIONAL_EFFECT)
+                        {
+                            weapon->modList.at(i)->setModAmount(0);
+                        }
+                    }
+                }
+                else
+                {
+                    weapon->addModifier(new CModifier(GetModValue(), -modPower));
+                }
+            }
+
+        }
+        else
+        {
+            m_POwner->delModifier(m_ModValue, m_ModPower);
+        }
+
+        m_Activated = false;
+        //printf("LATENT DEACTIVATED: %d\n", m_ModValue);
+    }
 }
 
 void CLatentEffect::SetOwner(CBattleEntity* Owner)
 {
-	m_POwner = Owner;
+    m_POwner = Owner;
 }
