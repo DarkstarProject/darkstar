@@ -514,12 +514,14 @@ function checkRegime(killer,mob,rid,index)
 		partyType = 1;
 	end
 
+	
+	
 
 	if(killer:getVar("fov_regimeid") == rid) then --player is doing this regime
 		-- Need to add difference because a lvl1 can xp with a level 75 at ro'maeve
 		local difference = math.abs(mob:getMainLvl() - killer:getMainLvl());
 		
-		if(partyType < 2 and mob:checkBaseExp() and killer:checkDistance(mob) < 100 and difference <= 15) then
+		if ((partyType < 2 and mob:checkBaseExp() and killer:checkDistance(mob) < 100 and difference <= 15) or killer:checkFovDistancePenalty() == 0) then
             --get the number of mobs needed/killed
             local needed = killer:getVar("fov_numneeded"..index);
             local killed = killer:getVar("fov_numkilled"..index);

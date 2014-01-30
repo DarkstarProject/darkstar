@@ -6,6 +6,7 @@
 -- @pos 64 -14 -4 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
+package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");

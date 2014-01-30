@@ -7,6 +7,7 @@
 -- @pos -37.624 -16.050 75.681 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
+package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
