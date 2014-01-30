@@ -20,6 +20,7 @@ function onTrade(player,npc,trade)
 	local ANewDawnEvent = player:getVar("ANewDawn_Event");
 
 	if(trade:hasItemQty(717,1) and trade:getItemCount() == 1 and ANewDawnEvent == 3) then
+		player:tradeComplete();
 		player:startEvent(0x0094);
 	end
 	

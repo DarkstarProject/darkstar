@@ -7,6 +7,7 @@
 -- @pos 8 3 118
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
+package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -50,9 +51,6 @@ function onTrigger(player,npc)
 	local whenceBlowsTheWind = player:getQuestStatus(JEUNO,WHENCE_BLOWS_THE_WIND);
 	local ridingOnTheClouds = player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS);
 	local shatteringStars = player:getQuestStatus(JEUNO,SHATTERING_STARS);
-
-	print("SOLACE =  " .. ridingOnTheClouds .. "\n");
-	
 	
 	if(player:getVar("BeatAroundTheBushin") == 5) then
 		player:startEvent(0x0075);

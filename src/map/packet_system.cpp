@@ -647,16 +647,19 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		break;
 		case 0x02: // attack
 		{
-			PChar->PBattleAI->SetCurrentAction(ACTION_ENGAGE, TargID);
+			if (PChar->isDead() == false)
+			{
+			   PChar->PBattleAI->SetCurrentAction(ACTION_ENGAGE, TargID);
 
-            if (PChar->PBattleAI->GetCurrentAction() == ACTION_ENGAGE)
-            {
-                if (PChar->animation == ANIMATION_CHOCOBO)
-                {
-                    PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
-                }
-                PChar->PBattleAI->CheckCurrentAction(gettick());
-            }
+	           if (PChar->PBattleAI->GetCurrentAction() == ACTION_ENGAGE)
+		       {
+					if (PChar->animation == ANIMATION_CHOCOBO)
+					{
+						PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
+					}
+					PChar->PBattleAI->CheckCurrentAction(gettick());
+				}
+			}
 		}
 		break;
 		case 0x03: // spellcast

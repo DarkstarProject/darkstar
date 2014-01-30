@@ -17,7 +17,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob)
 	
 	SetServerVariable("[POP]King_Arthro",GetServerVariable("[POP]King_Arthro") + 1);
 	

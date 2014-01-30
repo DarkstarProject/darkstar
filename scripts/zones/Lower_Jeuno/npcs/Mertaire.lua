@@ -5,6 +5,7 @@
 -- @pos -17 0 -61 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -82,9 +83,9 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0065) then
 		player:addGil(GIL_RATE*2100);
 		player:messageSpecial(GIL_OBTAINED, GIL_RATE*2100);
-		player:addFame(JEUNO, JEUNO_FAME*30);
 		player:tradeComplete();
-		player:completeQuest(JEUNO,A_MINSTREL_IN_DESPAIR);
+		player:completeQuest(JEUNO,A_MINSTREL_IN_DESPAIR);		
+		player:addFame(JEUNO, JEUNO_FAME*30);
 	elseif(csid == 0x008a and option == 1 or csid == 0x0089 and option == 1) then
 		player:addQuest(JEUNO,PAINFUL_MEMORY);
 		player:setVar("PainfulMemoryCS",0);

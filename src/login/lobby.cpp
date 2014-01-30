@@ -158,21 +158,16 @@ int32 lobbydata_parse(int32 fd)
 				//server's name that shows in lobby menu
                 memcpy(ReservePacket+60, login_config.servername, dsp_cap(strlen(login_config.servername), 0, 15));
 
-				//Подготовка пространства в пакете для информации о 16 игровых персонажах
-				for(int j = 0; j<16; ++j) 
-				{
-					memcpy(CharList+32+140*j, ReservePacket+32, 140);
-					char ContentID[3];
-					memcpy(ContentID, CharList+32, sizeof(ContentID));
-					ContentID[2] += j;
-
-					memcpy(CharList+32+140*j, &ContentID, 3);
-					memcpy(uList+16*(j+1),&ContentID, 3);
-				}
+                // Prepare the character list data..
+                for (int j = 0; j < 16; ++j)
+                {
+                    memcpy(CharList + 32 + 140 * j, ReservePacket + 32, 140);
+                    memset(CharList + 32 + 140 * j, 0x00, 4);
+                    memset(uList + 16 * (j + 1), 0x00, 4);                    
+                }
 
 				uList[0] = 0x03;
-
-
+                
 				int i = 0;
 				//Считывание информации о конкректном персонаже
 				//Загрузка всей необходимой информации о персонаже из базы
@@ -189,6 +184,10 @@ int32 lobbydata_parse(int32 fd)
 
 					uint8 MainJob	 = (uint8)Sql_GetIntData(SqlHandle,4);
 					uint8 lvlMainJob = (uint8)Sql_GetIntData(SqlHandle,13+MainJob);
+
+                    // Update the character and user list content ids..
+                    WBUFL(uList, 16 * (i + 1)) = CharID;
+                    WBUFL(CharList, 32 + 140 * i) = CharID;
 
 					WBUFL(uList,20*(i+1)) = CharID;
 
