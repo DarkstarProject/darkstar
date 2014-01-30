@@ -1850,7 +1850,7 @@ void CheckValidEquipment(CCharEntity* PChar)
         {
             if(slotID == SLOT_SUB && !charutils::hasTrait(PChar, TRAIT_DUAL_WIELD))
             {
-                UnequipItem(PChar, slotID);
+                RemoveSub(PChar);
                 continue;
             }
 

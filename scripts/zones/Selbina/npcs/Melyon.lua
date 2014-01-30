@@ -13,6 +13,7 @@ require("scripts/zones/Selbina/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
+require("scripts/globals/settings");
 
 -----------------------------------
 -- onTrade Action

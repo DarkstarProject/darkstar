@@ -46,7 +46,8 @@ enum LATENT
 	LATENT_STATUS_EFFECT_ACTIVE		= 13, //status effect on player - PARAM: EFFECTID
 	LATENT_FOOD_ACTIVE				= 49, //food effect (foodId) active - PARAM: FOOD ITEMID
 	LATENT_NO_FOOD_ACTIVE			= 14, //no food effects active on player
-	LATENT_PARTY_MEMBERS			= 16, //party has members other than self - PARAM: # OF MEMBERS
+    LATENT_PARTY_MEMBERS            = 15, //party size # - PARAM: # OF MEMBERS
+	LATENT_PARTY_MEMBERS_IN_ZONE    = 16, //party size # and members in zone - PARAM: # OF MEMBERS
 	LATENT_AVATAR_IN_PARTY			= 21, //party has a specific avatar - PARAM: same as globals/pets.lua (21 for any avatar)
 	LATENT_JOB_IN_PARTY				= 22, //party has job - PARAM: JOBTYPE
 	LATENT_ZONE						= 23, //in zone - PARAM: zoneid
@@ -72,10 +73,11 @@ enum LATENT
 	LATENT_WEAPON_BROKEN			= 47,
 	LATENT_IN_DYNAMIS				= 48,
 	LATENT_JOB_LEVEL_BELOW			= 50, //PARAM: level
-    LATENT_JOB_LEVEL_ABOVE          = 51  //PARAM: level
+    LATENT_JOB_LEVEL_ABOVE          = 51, //PARAM: level
+    LATENT_WEATHER_ELEMENT          = 52  //PARAM: 0: NONE, 1: FIRE, 2: EARTH, 3: WATER, 4: WIND, 5: ICE, 6: THUNDER, 7: LIGHT, 8: DARK
 };
 
-#define MAX_LATENTEFFECTID    52
+#define MAX_LATENTEFFECTID    53
 
 /************************************************************************
 *																		*
