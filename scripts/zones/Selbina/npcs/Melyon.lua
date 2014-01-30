@@ -6,6 +6,7 @@
 -- @pos 25 -6 6 248
 -----------------------------------
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
+package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
 require("scripts/zones/Selbina/TextIDs");

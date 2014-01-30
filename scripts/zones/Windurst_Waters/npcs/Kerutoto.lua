@@ -7,6 +7,7 @@
 -- @pos 13 -5 -157
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
+package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 require("scripts/globals/missions");
 require("scripts/globals/settings");
