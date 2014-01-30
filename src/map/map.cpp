@@ -278,18 +278,16 @@ void set_server_type()
 *																		*
 ************************************************************************/
 
-int32 do_sockets(int32 next)
+int32 do_sockets(fd_set* rfd,int32 next)
 {
-	fd_set rfd;
-
 	struct timeval timeout;
 	int32 ret;
-	memcpy(&rfd, &readfds, sizeof(rfd));
+	memcpy(rfd, &readfds, sizeof(*rfd));
 
 	timeout.tv_sec  = next/1000;
 	timeout.tv_usec = next%1000*1000;
 
-	ret = sSelect(fd_max, &rfd, NULL, NULL, &timeout);
+	ret = sSelect(fd_max, rfd, NULL, NULL, &timeout);
 
 	if( ret == SOCKET_ERROR )
 	{
@@ -303,7 +301,7 @@ int32 do_sockets(int32 next)
 
 	last_tick = time(NULL);
 
-	if( sFD_ISSET(map_fd,&rfd) )
+	if( sFD_ISSET(map_fd,rfd) )
 	{
 		struct sockaddr_in from;
 		socklen_t fromlen = sizeof(from);

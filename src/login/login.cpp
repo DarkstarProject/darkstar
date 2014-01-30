@@ -131,9 +131,8 @@ void set_server_type()
 	SERVER_TYPE = DARKSTAR_SERVER_LOGIN;
 }
 
-int do_sockets(int next)
+int do_sockets(fd_set* rfd,int next)
 {
-	fd_set rfd;
 	struct timeval timeout;
 	int ret,i;
 
@@ -143,8 +142,8 @@ int do_sockets(int next)
 	timeout.tv_usec = next%1000*1000;
 
 
-	memcpy(&rfd, &readfds, sizeof(rfd));
-	ret = sSelect(fd_max, &rfd, NULL, NULL, &timeout);
+	memcpy(rfd, &readfds, sizeof(*rfd));
+	ret = sSelect(fd_max, rfd, NULL, NULL, &timeout);
 
 	if( ret == SOCKET_ERROR )
 	{
@@ -160,9 +159,9 @@ int do_sockets(int next)
 
 #if defined(WIN32)
 	// on windows, enumerating all members of the fd_set is way faster if we access the internals
-	for( i = 0; i < (int)rfd.fd_count; ++i )
+	for( i = 0; i < (int)rfd->fd_count; ++i )
 	{
-		int fd = sock2fd(rfd.fd_array[i]);
+		int fd = sock2fd(rfd->fd_array[i]);
 		if( session[fd] )
 		{
 			session[fd]->func_recv(fd);
@@ -184,7 +183,7 @@ int do_sockets(int next)
 	// otherwise assume that the fd_set is a bit-array and enumerate it in a standard way
 	for( i = 1; ret && i < fd_max; ++i )
 	{
-		if(sFD_ISSET(i,&rfd) && session[i])
+		if(sFD_ISSET(i,rfd) && session[i])
 		{
 			session[i]->func_recv(i);
 
