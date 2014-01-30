@@ -17,8 +17,9 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 
-   -- TODO: Can skillchain?  Unknown property.
-
+	mob:messageBasic(43, 0, 689+256);
+	skill:setSkillchain(102);
+    
 	local numhits = 4;
 	local accmod = 1;
 	local dmgmod = 1.2;

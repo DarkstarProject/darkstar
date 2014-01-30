@@ -18,6 +18,8 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 
+	mob:messageBasic(43, 0, 686+256);
+
    local tp = skill:getTP();
    local hp = mob:getHP();
    local dmg = 0;
