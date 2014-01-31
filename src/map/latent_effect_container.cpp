@@ -27,6 +27,7 @@
 #include "entities/charentity.h"
 #include "entities/battleentity.h"
 #include "utils/zoneutils.h"
+#include "conquest_system.h"
 
 #include "time_server.h"
 
@@ -580,6 +581,9 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
                     {
                         m_LatentEffectList.at(i)->Deactivate();
                     }
+                    break;
+                case LATENT_NATION_CONTROL:
+                        CheckLatentsZone();
                     break;
                 default:
                     ShowWarning("Latent ID %d unhandled in CheckLatentsEquip\n", m_LatentEffectList.at(i)->GetConditionsID());
@@ -1475,6 +1479,45 @@ void CLatentEffectContainer::CheckLatentsZone()
                 m_LatentEffectList.at(i)->Deactivate();
             }
             break;
+        case LATENT_NATION_CONTROL:
+        {
+            bool ActivateLatent = false;
+
+            REGIONTYPE region = m_POwner->loc.zone->GetRegionID();
+
+            bool hasSignet = m_POwner->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET);
+            bool hasSanction = m_POwner->StatusEffectContainer->HasStatusEffect(EFFECT_SANCTION);
+            bool hasSigil = m_POwner->StatusEffectContainer->HasStatusEffect(EFFECT_SIGIL);
+
+            //under own nation's control
+            if (m_LatentEffectList.at(i)->GetConditionsValue() == 0)
+            {
+                if (region < 28)
+                {
+                    if (conquest::GetRegionOwner(region) == m_POwner->profile.nation && (hasSignet || hasSigil || hasSigil))
+                        ActivateLatent = true;
+                }
+            }
+
+            //outside of own nation's control
+            if (m_LatentEffectList.at(i)->GetConditionsValue() == 1)
+            {
+                if (region < 28)
+                {
+
+                    if (m_POwner->profile.nation != conquest::GetRegionOwner(region) && (hasSignet || hasSanction || hasSigil))
+                        ActivateLatent = true;
+                }
+
+            }
+
+            if (ActivateLatent == true)
+                m_LatentEffectList.at(i)->Activate();
+            else
+                m_LatentEffectList.at(i)->Deactivate();
+
+        }
+        break;
 			default:
 				break;
 		}

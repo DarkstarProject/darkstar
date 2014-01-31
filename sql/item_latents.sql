@@ -1559,3 +1559,98 @@ INSERT INTO `item_latents` VALUES(15114, 384, 4, 26, 1); -- Haste +%4 during nig
 INSERT INTO `item_latents` VALUES(15144, 9, 7, 26, 1); -- DEX +7 during nighttime
 -- Ninja Kyahan
 INSERT INTO `item_latents` VALUES(14101, 169, 25, 26, 1); -- %25 during nighttime
+
+
+-- -------------------------------------------------------
+-- Windurstian Kukri / Federation Kukri
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(17978, 23, 5, 43, 1); -- ATT +5 in areas outside own nation's control
+INSERT INTO `item_latents` VALUES(17979, 23, 7, 43, 1); -- ATT +7 in areas outside own nation's control
+
+-- -------------------------------------------------------
+-- Royal Knight's Army Lance +1/+2
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(18072, 23, 8, 43, 1); -- ATT +8 in areas outside own nation's control
+INSERT INTO `item_latents` VALUES(18073, 23, 9, 43, 1); -- ATT +9 in areas outside own nation's control
+
+
+-- -------------------------------------------------------
+-- Grand Temple Knight's Army Collar
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13140, 1, 7, 43, 1);  -- DEF +7 in areas outside own nation's control
+INSERT INTO `item_latents` VALUES(13140, 23, 5, 43, 1); -- ATT +5 in areas outside own nation's control
+INSERT INTO `item_latents` VALUES(13140, 25, 5, 43, 1); -- ACC +5 in areas outside own nation's control
+
+
+-- -------------------------------------------------------
+-- Junior Musketeer's Tuck +1/+2
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(17666, 24, 4, 43, 1); -- RATT +4 in areas outside own nation's control
+INSERT INTO `item_latents` VALUES(17666, 26, 4, 43, 1); -- RACC +4 in areas outside own nation's control
+
+INSERT INTO `item_latents` VALUES(17667, 24, 5, 43, 1); -- RATT +5 in areas outside own nation's control
+INSERT INTO `item_latents` VALUES(17667, 26, 5, 43, 1); -- RACC +5 in areas outside own nation's control
+
+
+-- -------------------------------------------------------
+-- Musketeer Gun +1/+2
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(17269, 24, 8, 43, 1); -- RATT +8 in areas outside own nation's control
+INSERT INTO `item_latents` VALUES(17270, 24, 9, 43, 1); -- RATT +9 in areas outside own nation's control
+
+
+-- -------------------------------------------------------
+-- Windurstian Scarf
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13142, 1, 7, 43, 1); -- DEF +7 in areas outside own nation's control
+INSERT INTO `item_latents` VALUES(13142, 68, 7, 43, 1); -- EVA +7 in areas outside own nation's control
+
+
+-- -------------------------------------------------------
+-- San d'Orian Halberd / Kingdom Halberd
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(18070, 25, 3, 43, 1); -- ACC +3 in areas outside own nation's control
+INSERT INTO `item_latents` VALUES(18071, 25, 4, 43, 1); -- ACC +4 in areas outside own nation's control
+
+
+-- -------------------------------------------------------
+-- Combat Caster's Boomerang +1/+2
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(18132, 25, 4, 43, 1); -- ACC +4 in areas outside own nation's control
+INSERT INTO `item_latents` VALUES(18132, 26, 4, 43, 1); -- RACC +4 in areas outside own nation's control
+
+INSERT INTO `item_latents` VALUES(18133, 25, 5, 43, 1); -- ACC +5 in areas outside own nation's control
+INSERT INTO `item_latents` VALUES(18133, 26, 5, 43, 1); -- RACC +5 in areas outside own nation's control
+
+
+-- -------------------------------------------------------
+-- San d'Orian Dagger / Kingdom Dagger
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(17972, 11, 1, 43, 1); -- AGI +1 in areas outside own nation's control
+INSERT INTO `item_latents` VALUES(17973, 11, 2, 43, 1); -- AGI +2 in areas outside own nation's control
+
+
+-- -------------------------------------------------------
+-- Grand Temple Knight's Bangles
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(14014, 11, 2, 43, 1); -- AGI +2 in areas outside own nation's control
+
+
+-- -------------------------------------------------------
+-- Master Caster's Mitts
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(14016, 11, 2, 43, 1); -- AGI +2 in areas outside own nation's control
+
+
+-- -------------------------------------------------------
+-- Tactician Magician's Hooks +1/+2
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(17501, 14, 3, 43, 1); -- CHR +3 in areas outside own nation's control
+INSERT INTO `item_latents` VALUES(17502, 14, 4, 43, 1); -- CHR +4 in areas outside own nation's control
+
+
+
+
+
+
+
