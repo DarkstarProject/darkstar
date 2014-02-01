@@ -298,7 +298,8 @@ void CAttack::ProcessDamage()
 	if (m_attacker->GetMJob() == JOB_THF &&
 		m_isFirstSwing &&
 		m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK) &&
-		abs(m_victim->loc.p.rotation - m_attacker->loc.p.rotation) < 23)
+		((abs(m_victim->loc.p.rotation - m_attacker->loc.p.rotation) < 23) ||
+        m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE)))
 	{			
 		if (m_victim->objtype == TYPE_MOB && rand()%100 < 4) 
 		{	
