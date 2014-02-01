@@ -112,6 +112,19 @@ inline int32 CLuaInstance::setAsFastest(lua_State* L){
 	return 1;
 }
 
+inline int32 CLuaInstance::getEntrance(lua_State* L){
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+
+	lua_pushinteger(L, m_PLuaInstance->getEntrance());
+	return 1;
+}
+
+inline int32 CLuaInstance::setEntrance(lua_State* L){
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+	DSP_DEBUG_BREAK_IF(!lua_isnumber(L, 1) || lua_isnil(L, 1));
+	m_PLuaInstance->setEntrance(lua_tointeger(L, 1));
+	return 0;
+}
 
 /************************************************************************
 *																		*
@@ -128,5 +141,7 @@ Lunar<CLuaInstance>::Register_t CLuaInstance::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaInstance,getTimeInside),
 	LUNAR_DECLARE_METHOD(CLuaInstance,getFastestTime),
 	LUNAR_DECLARE_METHOD(CLuaInstance,getFastestPlayer),
+	LUNAR_DECLARE_METHOD(CLuaInstance,getEntrance),
+	LUNAR_DECLARE_METHOD(CLuaInstance,setEntrance),
 	{NULL,NULL}
 }; 
