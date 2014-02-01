@@ -24,6 +24,7 @@
 #include "../../common/showmsg.h"
 #include "../../common/timer.h"
 #include "../../common/utils.h"
+#include "../../common/kernel.h"
 
 #include <math.h>
 
@@ -8199,6 +8200,18 @@ inline int32 CLuaBaseEntity::getInstance(lua_State* L)
 
 }
 
+inline int32 CLuaBaseEntity::SendRevision(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	char version[100];
+	strcpy(version, "Revision is: ");
+	strcat(version, get_git_revision());
+	((CCharEntity*)m_PBaseEntity)->pushPacket(new CChatMessagePacket((CCharEntity*)m_PBaseEntity, MESSAGE_SYSTEM_1, version));
+
+	return 0;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -8556,5 +8569,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isNM),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setUnkillable),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getInstance),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,SendRevision),
 	{NULL,NULL}
 };
