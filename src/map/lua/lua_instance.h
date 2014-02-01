@@ -52,6 +52,8 @@ public:
 	int32 getFastestTime(lua_State*);
 	int32 getFastestPlayer(lua_State*);
 	int32 setAsFastest(lua_State*);
+	int32 setEntrance(lua_State*);
+	int32 getEntrance(lua_State*);
 };
 
 #endif

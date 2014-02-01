@@ -583,7 +583,7 @@ CInstance* CInstanceHandler::getInstance(CCharEntity* PChar)
 {
     for (int i = 0; i < m_MaxInstances; i++)
         if (m_Instances[i] != NULL)
-            if (m_Instances[i]->isPlayerInBcnm(PChar))
+			if (m_Instances[i]->isValidPlayerForBcnm(PChar))
                 return m_Instances[i];
     return NULL;
 }

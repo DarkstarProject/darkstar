@@ -72,19 +72,18 @@ function doPhysicalWeaponskill(attacker, target, params)
 	end
 
 	local critrate = 0;
-
+    local nativecrit = 0;
+    
 	if(params.canCrit) then --work out critical hit ratios, by +1ing
 		critrate = fTP(attacker:getTP(),params.crit100,params.crit200,params.crit300);
 		--add on native crit hit rate (guesstimated, it actually follows an exponential curve)
 		local flourisheffect = attacker:getStatusEffect(EFFECT_BUILDING_FLOURISH);
 		if flourisheffect ~= nil and flourisheffect:getPower() > 1 then
-			attacker:addMod(MOD_CRITHITRATE, 10 + flourisheffect:getSubPower()/2)
+			critrate = critrate + (10 + flourisheffect:getSubPower()/2)/100;
 		end
-		local nativecrit = (attacker:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; --assumes +0.5% crit rate per 1 dDEX
+		nativecrit = (attacker:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; --assumes +0.5% crit rate per 1 dDEX
 		nativecrit = nativecrit + (attacker:getMod(MOD_CRITHITRATE)/100);
-		if flourisheffect ~= nil and flourisheffect:getPower() > 1 then
-			attacker:delMod(MOD_CRITHITRATE, 10 + flourisheffect:getSubPower()/2)
-		end
+
 		if(nativecrit > 0.2) then --caps!
 			nativecrit = 0.2;
 		elseif(nativecrit < 0.05) then
@@ -149,7 +148,7 @@ function doPhysicalWeaponskill(attacker, target, params)
 			pdif = generatePdif(cratio[1], cratio[2], true);
 			if(params.canCrit) then
 				critchance = math.random();
-				if(critchance <= critrate or hasMightyStrikes) then --crit hit!
+				if(critchance <= nativecrit or hasMightyStrikes) then --crit hit!
 					criticalHit = true;
 					cpdif = generatePdif(ccritratio[1], ccritratio[2], true);
 					finaldmg = finaldmg + base * cpdif;
@@ -178,7 +177,7 @@ function doPhysicalWeaponskill(attacker, target, params)
 				pdif = generatePdif(cratio[1], cratio[2], true);
 				if(params.canCrit) then
 					critchance = math.random();
-					if(critchance <= critrate or hasMightyStrikes) then --crit hit!
+					if(critchance <= nativecrit or hasMightyStrikes) then --crit hit!
 						criticalHit = true;
 						cpdif = generatePdif(ccritratio[1], ccritratio[2], true);
 						finaldmg = finaldmg + base * cpdif;
