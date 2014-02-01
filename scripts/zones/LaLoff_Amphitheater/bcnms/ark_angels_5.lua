@@ -39,14 +39,14 @@ end;
 -- from the core when a player disconnects or the time limit is up, etc
 
 function OnBcnmLeave(player,instance,leavecode)
-print("leave code "..leavecode);
+--print("leave code "..leavecode);
 
 	if(leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
 	
 		if(player:hasCompletedMission(ZILART,ARK_ANGELS)) then
-			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,4,1);		-- winning CS (allow player to skip)
+			player:startEvent(0x7d01,instance:getEntrance(),instance:getFastestTime(),1,instance:getTimeInside(),180,4,1);		-- winning CS (allow player to skip)
 		else
-			player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,4,0);		-- winning CS
+			player:startEvent(0x7d01,instance:getEntrance(),instance:getFastestTime(),1,instance:getTimeInside(),180,4,0);		-- winning CS (allow player to skip)
 		end
 		
 	elseif(leavecode == 4) then

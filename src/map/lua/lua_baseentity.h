@@ -309,6 +309,7 @@ public:
 	int32 sendRaise(lua_State*);			// send raise request to char
 	int32 sendReraise(lua_State*);			// send raise request to char
 	int32 sendTractor(lua_State*);			// send tractor request to char
+	int32 SendRevision(lua_State*);			// send Git revision to char
 
 	int32 updateEnmity(lua_State*);			// Adds Enmity to player for specified mob
 	int32 updateEnmityFromDamage(lua_State*);// Adds Enmity to player for specified mob for the damage specified

@@ -146,9 +146,9 @@ function EventTriggerBCNM(player,npc)
 	return false;
 end;
 
-function EventUpdateBCNM(player,csid,option)
+function EventUpdateBCNM(player,csid,option,entrance)
 	-- return false;
-	id = player:getVar("trade_bcnmid"); --this is 0 if the bcnm isnt handled by new functions
+	local id = player:getVar("trade_bcnmid"); --this is 0 if the bcnm isnt handled by new functions
 	local skip = CutsceneSkip(player,npc);
 
 	print("UPDATE csid "..csid.." option "..option);
@@ -171,6 +171,9 @@ function EventUpdateBCNM(player,csid,option)
 			player:setVar("bcnm_instanceid",inst);
 			player:setVar("bcnm_instanceid_tick",0);
 			player:updateEvent(0,3,0,0,1,0);
+            if (entrance ~= nil) then
+                player:getInstance():setEntrance(entrance);
+            end
 			--player:tradeComplete();
 		else
 			--no free battlefields at the moment!
@@ -183,15 +186,15 @@ function EventUpdateBCNM(player,csid,option)
 		-- The client will send a total of THREE EventUpdate packets for each one of the free instances.
 		-- If the first instance is free, it should respond to the first packet
 		-- If the second instance is free, it should respond to the second packet, etc
-		instance = player:getVar("bcnm_instanceid_tick");
+		local instance = player:getVar("bcnm_instanceid_tick");
 		instance = instance + 1;
 		player:setVar("bcnm_instanceid_tick",instance);
 
 		if(instance == player:getVar("bcnm_instanceid"))then
 			--respond to this packet
-			mask = GetBattleBitmask(id,player:getZone(),2);
-			status = player:getStatusEffect(EFFECT_BATTLEFIELD);
-			playerbcnmid = status:getPower();
+			local mask = GetBattleBitmask(id,player:getZone(),2);
+			local status = player:getStatusEffect(EFFECT_BATTLEFIELD);
+			local playerbcnmid = status:getPower();
 			if(mask < playerbcnmid) then
 				mask = GetBattleBitmask(playerbcnmid,player:getZone(),2);
 				player:updateEvent(2,mask,0,1,1,skip); -- Add mask number for the correct entering CS
@@ -208,7 +211,10 @@ function EventUpdateBCNM(player,csid,option)
 				-- print("mask2 is "..mask)
 				-- print("playerbcnmid2 is "..playerbcnmid);
 			end
-			
+            
+            if (entrance ~= nil) then
+                player:getInstance():setEntrance(entrance);
+            end
 			
 		elseif(player:getVar("bcnm_instanceid") == 255)then --none free
 			--print("nfa");
@@ -516,19 +522,19 @@ function checkNonTradeBCNM(player,npc)
 	elseif(Zone == 180) then -- La'Loff Amphitheater
 		if(player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1) then
 			local qmid = npc:getID();
-			if (qmid == 17514548 and player:hasKeyItem(SHARD_OF_APATHY) == false) then -- Hume, Ark Angels 1
+			if (qmid == 17514789 and player:hasKeyItem(SHARD_OF_APATHY) == false) then -- Hume, Ark Angels 1
 				mask = GetBattleBitmask(288,Zone,1);
 				player:setVar("trade_bcnmid",288);
-			elseif (qmid == 17514549 and player:hasKeyItem(SHARD_OF_COWARDICE) == false) then -- Tarutaru, Ark Angels 2
+			elseif (qmid == 17514790 and player:hasKeyItem(SHARD_OF_COWARDICE) == false) then -- Tarutaru, Ark Angels 2
 				mask = GetBattleBitmask(289,Zone,1);
 				player:setVar("trade_bcnmid",289);
-			elseif (qmid == 17514550 and player:hasKeyItem(SHARD_OF_ENVY) == false) then -- Mithra, Ark Angels 3
+			elseif (qmid == 17514791 and player:hasKeyItem(SHARD_OF_ENVY) == false) then -- Mithra, Ark Angels 3
 				mask = GetBattleBitmask(290,Zone,1);
 				player:setVar("trade_bcnmid",290);
-			elseif (qmid == 17514551 and player:hasKeyItem(SHARD_OF_ARROGANCE) == false) then -- Elvaan, Ark Angels 4
+			elseif (qmid == 17514792 and player:hasKeyItem(SHARD_OF_ARROGANCE) == false) then -- Elvaan, Ark Angels 4
 				mask = GetBattleBitmask(291,Zone,1);
 				player:setVar("trade_bcnmid",291);
-			elseif (qmid == 17514552 and player:hasKeyItem(SHARD_OF_RAGE) == false) then -- Galka, Ark Angels 5
+			elseif (qmid == 17514793 and player:hasKeyItem(SHARD_OF_RAGE) == false) then -- Galka, Ark Angels 5
 				mask = GetBattleBitmask(292,Zone,1);
 				player:setVar("trade_bcnmid",292);
 			end

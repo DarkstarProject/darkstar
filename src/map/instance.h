@@ -81,6 +81,7 @@ public:
 	uint16		getLootId();
 	uint32		getStartTime();
 	uint32		getDeadTime();
+	uint8		getEntrance();
 
 	void		setTimeLimit(uint32 time);
 	void		setBcnmName(int8* name);
@@ -90,6 +91,7 @@ public:
 	void		setLevelCap(uint8 cap);
 	void		setLootId(uint16 id);
 	void		setDeadTime(uint32 time);
+	void		setEntrance(uint8 entrance);
 
 	//player related functions
 	bool		isValidPlayerForBcnm(CCharEntity* PChar);
@@ -166,6 +168,7 @@ private:
 	uint8		m_LevelCap;
 	uint8		m_MaxParticipants;										// 1,3,6,12,18,zone
 	uint16		m_DynaUniqueID;											// unique ID for dynamis instance
+	uint8		m_entrance;
 	CCharEntity* m_CurrentInstanceLeader;
 	std::vector<CMobEntity*> m_EnemyList;
 	std::vector<MobVictoryCondition_t> m_EnemyVictoryList;
