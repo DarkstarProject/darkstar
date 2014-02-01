@@ -24,6 +24,7 @@
 #include "conquest_system.h"
 #include "entities/charentity.h"
 #include "vana_time.h"
+#include "utils/zoneutils.h"
 
 #include "lua/luautils.h"
 
@@ -84,6 +85,28 @@ namespace conquest
 								 "WHERE region_id = %u";
 
 			Sql_Query(SqlHandle, Query, g_Conquest[i][1], g_Conquest[i][2], g_Conquest[i][3], g_Conquest[i][4], g_Conquest[i][5], g_Conquest[i][6], i);
+
+
+            for (uint16 zone = 0; zone < MAX_ZONEID; ++zone)
+            {
+                //only find chars for zones that have had conquest updated
+                if (zoneutils::GetZone(zone)->GetRegionID() == i)
+                {
+                    EntityList_t charList = zoneutils::GetZone(zone)->GetCharList();
+
+                    //run an iterator over the zone's char list
+                    for (EntityList_t::const_iterator it = charList.begin(); it != charList.end(); ++it)
+                    {
+                        CCharEntity* PChar = (CCharEntity*)it->second;
+
+                        //check conquest latents
+                        PChar->PLatentEffectContainer->CheckLatentsZone();
+                    }
+
+                }
+            }
+
+
 		}
 	}
 
