@@ -4749,6 +4749,7 @@ inline int32 CLuaBaseEntity::changeJob(lua_State *L)
     {
         blueutils::UnequipAllBlueSpells(PChar);
     }
+	puppetutils::LoadAutomaton(PChar);
 	luautils::CheckForGearSet(PChar); // check for gear set on gear change
     charutils::BuildingCharSkillsTable(PChar);
 	charutils::CalculateStats(PChar);
@@ -4816,6 +4817,7 @@ inline int32 CLuaBaseEntity::changesJob(lua_State *L)
     {
         blueutils::UnequipAllBlueSpells(PChar);
     }
+	puppetutils::LoadAutomaton(PChar);
 
 	return 0;
 }
@@ -5282,11 +5284,6 @@ inline int32 CLuaBaseEntity::spawnPet(lua_State *L)
             uint8 petId = lua_tointeger(L,1);
 			if (petId == PETID_HARLEQUINFRAME)
 			{
-				// Crash fix - will need further investigating, using activate as pup.
-				if (((CCharEntity*)m_PBaseEntity)->PAutomaton == NULL)
-				{
-					return 0;
-				}
                 petId = PETID_HARLEQUINFRAME + ((CCharEntity*)m_PBaseEntity)->PAutomaton->getFrame() - 0x20;
 			}
 			petutils::SpawnPet((CBattleEntity*)m_PBaseEntity, lua_tointeger(L,1), false);
