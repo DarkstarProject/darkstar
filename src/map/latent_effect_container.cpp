@@ -1481,6 +1481,12 @@ void CLatentEffectContainer::CheckLatentsZone()
             break;
         case LATENT_NATION_CONTROL:
         {
+            //player is logging in/zoning
+            if (m_POwner->loc.zone == NULL)
+            {
+                continue;
+            }
+
             bool ActivateLatent = false;
 
             REGIONTYPE region = m_POwner->loc.zone->GetRegionID();
