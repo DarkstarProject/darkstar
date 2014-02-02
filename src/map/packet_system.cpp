@@ -629,7 +629,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
             }
             CBaseEntity* PNpc = zoneutils::GetZone(PChar->getZone() != 0 ? PChar->getZone() : PChar->loc.prevzone)->GetEntity(TargID, TYPE_NPC);
 
-			if (PNpc != NULL)
+			if (PNpc != NULL && distance(PNpc->loc.p,PChar->loc.p) <= 10)
 			{
 				if (luautils::OnTrigger(PChar, PNpc) == -1 && PNpc->animation == ANIMATION_CLOSE_DOOR)
 				{
@@ -665,7 +665,8 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		case 0x03: // spellcast
 		{
 			uint16 SpellID = RBUFW(data,(0x0C));
-
+			if (!charutils::hasSpell(PChar, SpellID))
+				return;
 			PChar->PBattleAI->SetCurrentSpell(SpellID);
 			PChar->PBattleAI->SetCurrentAction(ACTION_MAGIC_START, TargID);
 			PChar->PBattleAI->CheckCurrentAction(gettick());
@@ -698,6 +699,8 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		case 0x07: // weaponskill
 		{
 			uint16 WSkillID = RBUFW(data,(0x0C));
+			if (!charutils::hasWeaponSkill(PChar, WSkillID))
+				return;
 			PChar->PBattleAI->SetCurrentWeaponSkill(WSkillID);
 			PChar->PBattleAI->SetCurrentAction(ACTION_WEAPONSKILL_START, TargID);
 			PChar->PBattleAI->CheckCurrentAction(gettick());
@@ -706,29 +709,33 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		case 0x09: // jobability
 		{
 			uint16 JobAbilityID = RBUFW(data,(0x0C));
-			PChar->PBattleAI->SetCurrentJobAbility(JobAbilityID-16);
+			if (!charutils::hasAbility(PChar, JobAbilityID - 16))
+				return;
+			PChar->PBattleAI->SetCurrentJobAbility(JobAbilityID - 16);
 			PChar->PBattleAI->SetCurrentAction(ACTION_JOBABILITY_START, TargID);
 			PChar->PBattleAI->CheckCurrentAction(gettick());
 		}
 		break;
 		case 0x0B: // homepoint
 		{
-            // remove weakness on homepoint
-            PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_WEAKNESS);
+			if (!PChar->isDead())
+				return;
+			// remove weakness on homepoint
+			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_WEAKNESS);
 
 			PChar->health.hp = PChar->GetMaxHP();
-            PChar->health.mp = PChar->GetMaxMP();
+			PChar->health.mp = PChar->GetMaxMP();
 
 			PChar->setMijinGakure(false);
 			PChar->loc.boundary = 0;
 			PChar->loc.p = PChar->profile.home_point.p;
-            PChar->loc.destination = PChar->profile.home_point.destination;
+			PChar->loc.destination = PChar->profile.home_point.destination;
 
 			PChar->status = STATUS_DISAPPEAR;
 			PChar->animation = ANIMATION_NONE;
 
 			PChar->clearPacketList();
-			PChar->pushPacket(new CServerIPPacket(PChar,2));
+			PChar->pushPacket(new CServerIPPacket(PChar, 2));
 		}
 		break;
 		case 0x0C: 	// assist
@@ -738,6 +745,8 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		break;
 		case 0x0D: 	// raise menu
 	    {
+			if (!PChar->m_hasRaise)
+				return;
 			if(RBUFB(data,(0x0C)) == 0) //ACCEPTED RAISE
             {
 				PChar->PBattleAI->SetCurrentAction(ACTION_RAISE_MENU_SELECTION);
