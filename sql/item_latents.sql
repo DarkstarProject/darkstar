@@ -1465,11 +1465,11 @@ INSERT INTO `item_latents` VALUES(18483, 288, 1, 37, 0); -- Occasionally Attacks
 -- -------------------------------------------------------
 -- Sirius Axe
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(17952, 160, 2, 25, 2); -- DMG increases by 2 per member
-INSERT INTO `item_latents` VALUES(17952, 160, 2, 25, 3); -- DMG increases by 2 per member
-INSERT INTO `item_latents` VALUES(17952, 160, 2, 25, 4); -- DMG increases by 2 per member
-INSERT INTO `item_latents` VALUES(17952, 160, 2, 25, 5); -- DMG increases by 2 per member
-INSERT INTO `item_latents` VALUES(17952, 160, 2, 25, 6); -- DMG increases by 2 per member
+INSERT INTO `item_latents` VALUES(17952, 160, 2, 15, 2); -- DMG increases by 2 per member
+INSERT INTO `item_latents` VALUES(17952, 160, 2, 15, 3); -- DMG increases by 2 per member
+INSERT INTO `item_latents` VALUES(17952, 160, 2, 15, 4); -- DMG increases by 2 per member
+INSERT INTO `item_latents` VALUES(17952, 160, 2, 15, 5); -- DMG increases by 2 per member
+INSERT INTO `item_latents` VALUES(17952, 160, 2, 15, 6); -- DMG increases by 2 per member
 
 -- -------------------------------------------------------
 -- Medicine Ring  
