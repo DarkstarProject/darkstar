@@ -55,10 +55,11 @@ function OnBcnmLeave(player,instance,leavecode)
         7d01, 0, 1400, 5, 1400, 180, 11, 0, 0  --Neo DM
         7d01, 1, 405, 1, 1599, 180, 7, 0, 0 -- Neo AA TT
         7d01, 1, 378, 3, 903, 180, 8, 0, 0 -- Neo AA MR
+        7d02, 0, 80, 1, 512, 4, 4, 180 -- Neo DM (lose)
     ]]
         
 	elseif(leavecode == 4) then
-		player:startEvent(0x7d02);	-- player lost
+		player:startEvent(0x7d02, 0, 0, 0, 0, 0, instance:getEntrance(), 180);	-- player lost
 	end
 end;
 

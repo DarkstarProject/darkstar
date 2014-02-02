@@ -50,7 +50,7 @@ function OnBcnmLeave(player,instance,leavecode)
 		end
 		
 	elseif(leavecode == 4) then
-		player:startEvent(0x7d02);	-- player lost
+		player:startEvent(0x7d02, 0, 0, 0, 0, 0, instance:getEntrance(), 180);	-- player lost
 	end
 end;
 
