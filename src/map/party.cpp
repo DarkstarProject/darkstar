@@ -726,7 +726,10 @@ void CParty::PushPacket(CCharEntity* PPartyMember, uint8 ZoneID, CBasicPacket* p
 {
 	for (uint32 i = 0; i < members.size(); ++i)
 	{
-		if(members.at(i)->objtype != TYPE_PC) continue;
+		if (members.at(i) == NULL || members.at(i)->objtype != TYPE_PC)
+		{
+			continue;
+		}
 
 		CCharEntity* member = (CCharEntity*)members.at(i);
 
