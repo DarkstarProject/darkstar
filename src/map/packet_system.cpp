@@ -2908,9 +2908,21 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
                 if (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL))
                 {
-					// TODO: can currently use command to kick sack holders
-					if(PItemLinkshell->GetLSType() == LSTYPE_LINKSHELL || PItemLinkshell->GetLSType() == LSTYPE_PEARLSACK){
-						PChar->PLinkshell->RemoveMemberByName(data+0x0C);
+					if(PItemLinkshell->GetLSType() == LSTYPE_LINKSHELL || PItemLinkshell->GetLSType() == LSTYPE_PEARLSACK)
+					{
+						CCharEntity* PVictim = zoneutils::GetCharByName(data + 0x0C);
+
+						if (PVictim != NULL)
+						{
+							CItemLinkshell* PItemLinkshellVictim = (CItemLinkshell*)PVictim->getStorage(LOC_INVENTORY)->GetItem(PVictim->equip[SLOT_LINK]);
+							if (PItemLinkshellVictim != NULL && PItemLinkshellVictim == PItemLinkshell)
+							{
+								if (PItemLinkshell->GetLSType() == LSTYPE_LINKPEARL)
+								{
+									PChar->PLinkshell->RemoveMemberByName(data+0x0C);
+								}
+							}
+						}
 					}
                 }
             }
