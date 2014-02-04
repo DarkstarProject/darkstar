@@ -435,6 +435,7 @@ public:
     int32 getZeni(lua_State*);	            // Get Zeni
     int32 addZeni(lua_State*);	            // Add Zeni
     int32 delZeni(lua_State*);	            // Delete Zeni
+	int32 isJailed(lua_State *L);			// Is the player jailed
 
     int32 getSeals(lua_State*);	            // Get Seals (beastman seals, etc)
     int32 addSeals(lua_State*);	            // Add Seals
