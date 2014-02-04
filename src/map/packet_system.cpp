@@ -2917,7 +2917,7 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* dat
 							CItemLinkshell* PItemLinkshellVictim = (CItemLinkshell*)PVictim->getStorage(LOC_INVENTORY)->GetItem(PVictim->equip[SLOT_LINK]);
 							if (PItemLinkshellVictim != NULL && PItemLinkshellVictim == PItemLinkshell)
 							{
-								if (PItemLinkshell->GetLSType() == LSTYPE_LINKPEARL)
+								if (PItemLinkshellVictim->GetLSType() == LSTYPE_LINKPEARL)
 								{
 									PChar->PLinkshell->RemoveMemberByName(data+0x0C);
 								}
