@@ -709,7 +709,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		case 0x09: // jobability
 		{
 			uint16 JobAbilityID = RBUFW(data,(0x0C));
-			if (!charutils::hasAbility(PChar, JobAbilityID - 16))
+			if ((JobAbilityID < 496 && !charutils::hasAbility(PChar, JobAbilityID - 16)) || JobAbilityID >= 496 && !charutils::hasPetAbility(PChar, JobAbilityID - 512))
 				return;
 			PChar->PBattleAI->SetCurrentJobAbility(JobAbilityID - 16);
 			PChar->PBattleAI->SetCurrentAction(ACTION_JOBABILITY_START, TargID);
