@@ -1647,7 +1647,7 @@ INSERT INTO `bcnm_loot` VALUES ('154', '1924', '394', '8'); -- Ultima's Tail
 INSERT INTO `bcnm_loot` VALUES ('154', '1922', '402', '8'); -- Ultima's Claw
 INSERT INTO `bcnm_loot` VALUES ('154', '1920', '659', '8'); -- Ultima's Cerebrum 
 INSERT INTO `bcnm_loot` VALUES ('154', '1923', '383', '8'); -- ultimas-leg
-INSERT INTO `bcnm_loot` VALUES ('154', '1921', '26.5', '9'); -- Ultima's Heart
+INSERT INTO `bcnm_loot` VALUES ('154', '1921', '265', '9'); -- Ultima's Heart
 INSERT INTO `bcnm_loot` VALUES ('154', '1875', '100', '9');
 
 INSERT INTO `bcnm_loot` VALUES ('155', '1875', '1000', '0');
