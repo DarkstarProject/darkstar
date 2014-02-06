@@ -54,7 +54,7 @@ function onTrigger(player,npc)
 	
 	if(player:getVar("BeatAroundTheBushin") == 5) then
 		player:startEvent(0x0075);
-	elseif(inDefiantChallenge == QUEST_AVAILABLE and LvL == 50 and player:levelCap() == 50 and MAX_LEVEL >= 55) then
+	elseif(inDefiantChallenge == QUEST_AVAILABLE and LvL >= 50 and player:levelCap() == 50 and MAX_LEVEL >= 55) then
 		player:startEvent(0x004f); -- Start Quest "In Defiant Challenge"
 	elseif(inDefiantChallenge == QUEST_ACCEPTED) then
 		player:startEvent(0x0050); -- During Quest "In Defiant Challenge"
