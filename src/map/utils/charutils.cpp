@@ -2572,16 +2572,31 @@ int32 delWeaponSkill(CCharEntity* PChar, uint16 WeaponSkillID)
 
 int32 hasTrait(CCharEntity* PChar, uint8 TraitID)
 {
+	if (PChar->objtype != TYPE_PC)
+	{
+		ShowError("charutils::hasTrait Attempt to reference a trait from a non-character entity: %s %i", PChar->name, PChar->id);
+		return 0;
+	}
 	return hasBit(TraitID, PChar->m_TraitList, sizeof(PChar->m_TraitList));
 }
 
 int32 addTrait(CCharEntity* PChar, uint8 TraitID)
 {
+	if (PChar->objtype != TYPE_PC)
+	{
+		ShowError("charutils::addTrait Attempt to reference a trait from a non-character entity: %s %i", PChar->name, PChar->id);
+		return 0;
+	}
 	return addBit(TraitID, PChar->m_TraitList, sizeof(PChar->m_TraitList));
 }
 
 int32 delTrait(CCharEntity* PChar, uint8 TraitID)
 {
+	if (PChar->objtype != TYPE_PC)
+	{
+		ShowError("charutils::delTrait Attempt to reference a trait from a non-character entity: %s %i", PChar->name, PChar->id);
+		return 0;
+	}
 	return delBit(TraitID, PChar->m_TraitList, sizeof(PChar->m_TraitList));
 }
 
