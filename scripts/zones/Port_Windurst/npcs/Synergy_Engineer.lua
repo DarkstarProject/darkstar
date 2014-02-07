@@ -2,7 +2,6 @@
 --	Area: Port Windurst
 --	NPC: Synergy_Engineer
 --	Standard Info NPC
--- I have no idea if this is correct? I think something is missing
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------

@@ -8229,11 +8229,128 @@ inline int32 CLuaBaseEntity::SendRevision(lua_State* L)
 }
 
 //==========================================================//
+// commands  By EDGECOM
+// getgrid , setcraft ,setskill
+//==========================================================//
+inline int32 CLuaBaseEntity::GetGrid(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	float GRIDPOSX = 0.00;
+	float GRIDPOSY = 0.00;
+	float POSX = m_PBaseEntity->loc.p.x;
+	float POSY = m_PBaseEntity->loc.p.y;
+	float POSZ = m_PBaseEntity->loc.p.z;
+
+	GRIDPOSX = (POSX + POSY) / 30;
+	GRIDPOSY = (POSZ + POSY) / 30;
+
+	PChar->pushPacket(new CMessageStandardPacket(
+		GRIDPOSX,
+		GRIDPOSY,
+		0,
+		0,
+		239));
+
+	return 0;
+}
+
+inline int32 CLuaBaseEntity::SetSkill(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+
+	uint8 skill = lua_tointeger(L, 1);
+	uint16 value = lua_tonumber(L, 2);
+
+
+	if (skill < MAX_SKILLTYPE){
+		CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+		CItemWeapon* PItem = ((CBattleEntity*)m_PBaseEntity)->m_Weapons[SLOT_MAIN];
+
+		value = 10 * value;
+		uint16 maxSkill = 10 * battleutils::GetMaxSkill((SKILLTYPE)skill, PChar->GetMJob(), PChar->GetMLevel());
+
+		if (value <= 1){ value = 1; }
+		if (value <= maxSkill){
+			PChar->RealSkills.skill[skill] = value; //set to level
+			PChar->WorkingSkills.skill[skill] = value / 10;
+			PChar->pushPacket(new CCharSkillsPacket(PChar));
+			charutils::SaveCharSkills(PChar, skill); //save to db
+			charutils::CheckWeaponSkill(PChar, skill);
+		}
+		if (value >= maxSkill){
+			PChar->RealSkills.skill[skill] = value; //set to level
+			PChar->WorkingSkills.skill[skill] = value / 10;
+			PChar->WorkingSkills.skill[skill] |= 0x8000; //set blue level cap at level
+			PChar->pushPacket(new CCharSkillsPacket(PChar));
+			charutils::SaveCharSkills(PChar, skill); //save to db
+			charutils::CheckWeaponSkill(PChar, skill);
+		}
+	}
+	return 0;
+}
+
+inline int32 CLuaBaseEntity::SetCraft(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+
+	uint8 skill = lua_tointeger(L, 1);
+	uint16 value = lua_tonumber(L, 2);
+	uint8 setrank = lua_tonumber(L, 3);
+
+	if (skill < MAX_SKILLTYPE){
+		CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+		CItemWeapon* PItem = ((CBattleEntity*)m_PBaseEntity)->m_Weapons[SLOT_MAIN];
+		uint16 rank = 0;
+
+		if (value >= 0 && value < 8){ rank = 0; } // Amature 1-8
+		if (value >= 8 && value < 18){ rank = 1; } // Recruit 8-18
+		if (value >= 18 && value < 28){ rank = 2; } // Initiate 18-28
+		if (value >= 28 && value < 38){ rank = 3; } // Novice 28-38
+		if (value >= 38 && value < 48){ rank = 4; } // Apprenttice 38-48
+		if (value >= 48 && value < 58){ rank = 5; } // Journeyman 48-58
+		if (value >= 58 && value < 68){ rank = 6; } // Craftsman 58-68
+		if (value >= 68 && value < 78){ rank = 7; } // Artisan 68-78
+		if (value >= 78 && value < 88){ rank = 8; } // Adept 78-88
+		if (value >= 88 && value < 98){ rank = 9; } // Vetren 88-98
+		if (value >= 98 && value < 101){ rank = 10; } // Expert 98-100
+
+		if (value >= 0 && value <= 100){
+			if (setrank == 1) {
+				PChar->RealSkills.rank[skill] = rank;  // server
+				PChar->WorkingSkills.rank[skill] = rank;
+				PChar->WorkingSkills.rank[skill] |= 0x20;
+				charutils::SaveCharSkills(PChar, skill); //save to db
+			}
+			PChar->RealSkills.skill[skill] = value * 10; // server
+			PChar->WorkingSkills.skill[skill] = value;
+			PChar->WorkingSkills.skill[skill] |= 0x20;
+			PChar->pushPacket(new CCharSkillsPacket(PChar));
+			charutils::CheckWeaponSkill(PChar, skill);
+			charutils::SaveCharSkills(PChar, skill); //save to db
+		}
+	}
+	return 0;
+}
+
+//==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
 
 Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 {
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,GetGrid),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetSkill),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetCraft),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,warp),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,leavegame),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getID),
