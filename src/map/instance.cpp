@@ -44,6 +44,7 @@ CInstance::CInstance(CInstanceHandler* hand, uint16 id, INSTANCETYPE type){
 	m_DynaUniqueID = 0;
 	treasureChestSpawned = false;
 	fightTick = 0;
+	m_entrance = 0;
 }
 
 uint16 CInstance::getID(){
@@ -95,6 +96,10 @@ const int8* CInstance::getBcnmName(){
 	return m_name.c_str();
 }
 
+uint8 CInstance::getEntrance(){
+	return m_entrance;
+}
+
 void CInstance::setBcnmName(int8* name){
 	m_name.clear();
 	m_name.insert(0,name);
@@ -126,6 +131,10 @@ void CInstance::setLevelCap(uint8 cap){
 
 void CInstance::setLootId(uint16 id){
 	m_LootId = id;
+}
+
+void CInstance::setEntrance(uint8 entrance){
+	m_entrance = entrance;
 }
 
 //========================PLAYER FUNCTIONS=============================================//
@@ -177,7 +186,6 @@ void CInstance::capPlayerToBCNM(){ //adjust player's level to the appropriate ca
 		for(int i=0; i<m_PlayerList.size(); i++)
 		{
 			m_PlayerList.at(i)->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE);
-			m_PlayerList.at(i)->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH);
 			m_PlayerList.at(i)->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE);
 			m_PlayerList.at(i)->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_LEVEL_RESTRICTION,0,cap,0,0),true);
 		}

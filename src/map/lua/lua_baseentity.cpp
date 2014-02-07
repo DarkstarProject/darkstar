@@ -83,6 +83,7 @@
 #include "../utils/itemutils.h"
 #include "../utils/guildutils.h"
 #include "../utils/puppetutils.h"
+#include "../utils/jailutils.h"
 #include "../map.h"
 #include "../alliance.h"
 #include "../entities/mobentity.h"
@@ -4716,6 +4717,19 @@ inline int32 CLuaBaseEntity::addExp(lua_State *L)
     return 0;
 }
 
+/************************************************************************
+*                                                                       *
+*  Exposes the isJailed property to lua                                 *
+*                                                                       *
+************************************************************************/
+inline int32 CLuaBaseEntity::isJailed(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	lua_pushboolean(L, (jailutils::InPrison((CCharEntity*)m_PBaseEntity)));
+	return 1;
+}
 
 /************************************************************************
 *                                                                       *
@@ -4749,6 +4763,7 @@ inline int32 CLuaBaseEntity::changeJob(lua_State *L)
     {
         blueutils::UnequipAllBlueSpells(PChar);
     }
+	puppetutils::LoadAutomaton(PChar);
 	luautils::CheckForGearSet(PChar); // check for gear set on gear change
     charutils::BuildingCharSkillsTable(PChar);
 	charutils::CalculateStats(PChar);
@@ -4805,7 +4820,6 @@ inline int32 CLuaBaseEntity::changesJob(lua_State *L)
 
     PChar->jobs.unlocked |= (1 << (uint8)lua_tointeger(L,1));
     PChar->SetSJob((uint8)lua_tointeger(L,1));
-
 	charutils::UpdateSubJob(PChar);
 
     if (lua_tointeger(L,1) == JOB_BLU)
@@ -4816,6 +4830,7 @@ inline int32 CLuaBaseEntity::changesJob(lua_State *L)
     {
         blueutils::UnequipAllBlueSpells(PChar);
     }
+	puppetutils::LoadAutomaton(PChar);
 
 	return 0;
 }
@@ -4838,10 +4853,9 @@ inline int32 CLuaBaseEntity::setsLevel(lua_State *L)
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-	//PChar->jobs.exp[PChar->GetSJob()] = 0;
 	PChar->jobs.job[PChar->GetSJob()] = (uint8)lua_tointeger(L,1);
 	PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
-
+	PChar->jobs.exp[PChar->GetSJob()] = charutils::GetExpNEXTLevel(PChar->jobs.job[PChar->GetSJob()]) - 1;
 
     charutils::BuildingCharSkillsTable(PChar);
 	charutils::CalculateStats(PChar);
@@ -4887,9 +4901,9 @@ inline int32 CLuaBaseEntity::setLevel(lua_State *L)
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
 	PChar->SetMLevel((uint8)lua_tointeger(L,1));
-	PChar->jobs.exp[PChar->GetMJob()] = 0;
 	PChar->jobs.job[PChar->GetMJob()] = (uint8)lua_tointeger(L,1);
 	PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
+	PChar->jobs.exp[PChar->GetMJob()] = charutils::GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) - 1;
 
     blueutils::ValidateBlueSpells(PChar);
 
@@ -5280,8 +5294,10 @@ inline int32 CLuaBaseEntity::spawnPet(lua_State *L)
 		if( !lua_isnil(L,1) && lua_isstring(L,1) )
 		{
             uint8 petId = lua_tointeger(L,1);
-            if (petId == PETID_HARLEQUINFRAME)
+			if (petId == PETID_HARLEQUINFRAME)
+			{
                 petId = PETID_HARLEQUINFRAME + ((CCharEntity*)m_PBaseEntity)->PAutomaton->getFrame() - 0x20;
+			}
 			petutils::SpawnPet((CBattleEntity*)m_PBaseEntity, lua_tointeger(L,1), false);
 		}
 		else
@@ -8425,6 +8441,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPartyEffect),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,removePartyEffect),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasPartyEffect),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isJailed),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setLevel),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setsLevel),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,changeJob),

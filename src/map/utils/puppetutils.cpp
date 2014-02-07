@@ -61,8 +61,8 @@ void LoadAutomaton(CCharEntity* PChar)
 		    attachments = NULL;
 		    Sql_GetData(SqlHandle,2,&attachments,&length);
 		    memcpy(&tempEquip, attachments, (length > sizeof(tempEquip) ? sizeof(tempEquip) : length));
-            setHead(PChar, tempEquip.Head);
-            setFrame(PChar, tempEquip.Frame);
+			setHead(PChar, tempEquip.Head < HEAD_HARLEQUIN || tempEquip.Head > HEAD_SPIRITREAVER ? HEAD_HARLEQUIN : tempEquip.Head);
+			setFrame(PChar, tempEquip.Frame <= FRAME_HARLEQUIN || tempEquip.Frame > FRAME_STORMWAKER ? FRAME_HARLEQUIN : tempEquip.Frame);
             for (int i = 0; i < 8; i++)
                 setAttachment(PChar, i, tempEquip.Attachments[i]);
             LoadAutomatonStats(PChar);
