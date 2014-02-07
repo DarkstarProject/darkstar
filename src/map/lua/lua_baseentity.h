@@ -88,6 +88,10 @@ public:
 		return m_PBaseEntity;
 	}
 
+	int32 GetGrid(lua_State*);		    	// Returns X,Y grid position
+	int32 SetSkill(lua_State*);				// Set a skill to a specified value
+	int32 SetCraft(lua_State*);				// Set a craft to a specified value
+
 	int32 warp(lua_State*);					// Returns Character to home point
 	int32 leavegame(lua_State*);			// Character leaving game
 

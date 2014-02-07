@@ -28,10 +28,10 @@
 
 enum FISHACTION
 {
-	FISHACTION_CHECK	= 2,
-	FISHACTION_FINISH	= 3,
-	FISHACTION_END		= 4,
-	FISHACTION_WARNING	= 5
+	FISHACTION_CHECK	 = 2,
+	FISHACTION_FINISH	 = 3,
+	FISHACTION_END		 = 4,
+	FISHACTION_WARNING   = 5
 };
 
 /************************************************************************
