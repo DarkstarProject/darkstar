@@ -1,8 +1,7 @@
 -----------------------------------
 --	Area: Port Windurst
---	NPC: Synergy_Engineer
+--	NPC: Pattel_Bacchel
 --	Standard Info NPC
--- I have no idea if this is correct? I think something is missing
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
@@ -21,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x2AF9);
+	player:startEvent(0x036C);
 end;
 
 -----------------------------------
