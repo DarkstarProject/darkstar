@@ -2138,7 +2138,7 @@ uint8 GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool ig
 			crithitrate = 100;
 		}
 	}
-	else if(PAttacker->GetMJob() == JOB_THF && charutils::hasTrait((CCharEntity*)PAttacker, TRAIT_ASSASSIN) && (!ignoreSneakTrickAttack) &&
+	else if(PAttacker->objtype == TYPE_PC && PAttacker->GetMJob() == JOB_THF && charutils::hasTrait((CCharEntity*)PAttacker, TRAIT_ASSASSIN) && (!ignoreSneakTrickAttack) &&
 		PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
 	{
 		CBattleEntity* taChar = battleutils::getAvailableTrickAttackChar(PAttacker,PDefender);
