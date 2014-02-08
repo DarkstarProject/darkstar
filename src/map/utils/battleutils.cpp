@@ -1014,6 +1014,10 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
             Action->addEffectMessage = 384;
         }
     }
+	else if (PAttacker->objtype == TYPE_MOB && ((CMobEntity*)PAttacker)->getMobMod(MOBMOD_ADD_EFFECT) > 0)
+	{
+		luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage);
+	}
     else
     {
         // Generic drain for anyone able to do melee damage to a dazed target

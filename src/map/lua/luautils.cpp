@@ -1498,13 +1498,16 @@ int32 OnAdditionalEffect(CBattleEntity* PAttacker, CBattleEntity* PDefender, CIt
 	lua_pushnil(LuaHandle);
     lua_setglobal(LuaHandle, "onAdditionalEffect");
 
-    snprintf(File, sizeof(File), "scripts/globals/items/%s.lua", PItem->getName());
+	if (PAttacker->objtype == TYPE_PC)
+		snprintf(File, sizeof(File), "scripts/globals/items/%s.lua", PItem->getName());
+	else
+		snprintf(File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PAttacker->loc.zone->GetName(), PAttacker->GetName());
 
     if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
     {
-            ShowError("luautils::OnAdditionalEffect: %s\n",lua_tostring(LuaHandle,-1));
-        lua_pop(LuaHandle, 1);
-            return -1;
+        ShowError("luautils::OnAdditionalEffect: %s\n",lua_tostring(LuaHandle,-1));
+		lua_pop(LuaHandle, 1);
+        return -1;
     }
 
     lua_getglobal(LuaHandle, "onAdditionalEffect");
