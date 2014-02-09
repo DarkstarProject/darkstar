@@ -314,44 +314,6 @@ if (GX == -99 && GY == -99)
 		return false;
 	}
 
-// Armor and item check function
-int GearCheck(CCharEntity* PChar, uint8 GetSlotID)
-{
-	uint8  SlotID = PChar->equip[GetSlotID];
-	CItem* Armor = PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
-
-	//DSP_DEBUG_BREAK_IF(PRod == NULL);
-
-	int Check = 0;
-	
-	// Fishing Gear check
-	switch (Armor->getID())
-	{
-	case 0x35F0:  Check = 1; break; // Fishermans Tunica
-	case 0x36F6:  Check = 1; break; // Fishermans Gloves
-	case 0x37D4:  Check = 1; break; // Fishermans Hose
-	case 0x375B:  Check = 1; break; // Fishermans Boots
-	case 0x35F1:  Check = 1; break; // Anglers Tunica
-	case 0x36F7:  Check = 1; break; // Anglers Gloves
-	case 0x37D5:  Check = 1; break; // Anglers Hose
-	case 0x375C:  Check = 1; break; // Anglers Boots
-	case 0x3773:  Check = 2; break; // Waders
-	case 0x2AAD:  Check = 2; break; // Fishers Torque
-	case 0x2C49:  Check = 3; break; // Fishermans Smock
-	case 0x2CEB:  Check = 4; break; // Trainees Spectacles
-	case 0x3CC2:  Check = 5; break; // Pelican Ring
-	case 0x3CC0:  Check = 6; break; // Albatross Ring
-	case 0x3CC1:  Check = 7; break; // Penguin Ring
-	case 0x3DE6:  Check = 8; break; // Heron Ring
-	case 0x3DE5:  Check = 9; break; // Seagull Ring
-	case 0x2D86:  Check = 10; break; // Puffin Ring
-	case 0x2D87:  Check = 11; break; // Noddy Ring
-	case 0x2DF8:  Check = 12; break; // Fishers Rope
-	}
-
-	return Check;
-}
-
 	/************************************************************************
 	*																		*
 	*  Main Fising function													*
@@ -669,12 +631,7 @@ int CanSkillUp(CCharEntity* PChar)
 {
 	int32  charSkill = PChar->RealSkills.skill[SKILL_FSH];
 
-	int gearbonus = 0;
-	gearbonus = gearbonus + GearCheck(PChar, SLOT_BODY);
-	gearbonus = gearbonus + GearCheck(PChar, SLOT_HANDS);
-	gearbonus = gearbonus + GearCheck(PChar, SLOT_LEGS);
-	gearbonus = gearbonus + GearCheck(PChar, SLOT_FEET);
-	gearbonus = gearbonus + GearCheck(PChar, SLOT_NECK);
+	int gearbonus = PChar->getMod(MOD_FISH);
 
 	int GiveSkill = 0;
 	int fish0 = catchlevel[0];
