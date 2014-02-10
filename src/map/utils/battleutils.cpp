@@ -3511,7 +3511,7 @@ uint16 getOverWhelmDamageBonus(CCharEntity* m_PChar, CBattleEntity* PDefender, u
 		if (m_PChar->GetMLevel() >= 75)
 		{
 			// must be facing mob
-			if(abs(PDefender->loc.p.rotation - m_PChar->loc.p.rotation) > 90)
+			if (isFaceing(PDefender->loc.p,m_PChar->loc.p,90))
 			{
 				uint8 meritCount = m_PChar->PMeritPoints->GetMeritValue(MERIT_OVERWHELM, m_PChar);
                 float tmpDamage = damage;
