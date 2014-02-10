@@ -4763,6 +4763,17 @@ inline int32 CLuaBaseEntity::changeJob(lua_State *L)
     {
         blueutils::UnequipAllBlueSpells(PChar);
     }
+	if (((uint8)lua_tointeger(L, 1) == JOB_SCH) && (PChar->GetMLevel() >= 75) && (PChar->PMeritPoints->GetMerit(MERIT_ENLIGHTENMENT)->value > 1))
+	{
+		PChar->addModifier(MOD_MND, (PChar->PMeritPoints->GetMerit(MERIT_ENLIGHTENMENT)->value - 1) * 5);
+		PChar->addModifier(MOD_INT, (PChar->PMeritPoints->GetMerit(MERIT_ENLIGHTENMENT)->value - 1) * 5);
+	}
+	else if (prevjob == JOB_SCH && (PChar->GetMLevel() >= 75) && (PChar->PMeritPoints->GetMerit(MERIT_ENLIGHTENMENT)->value > 1))
+	{
+		PChar->delModifier(MOD_MND, (PChar->PMeritPoints->GetMerit(MERIT_ENLIGHTENMENT)->value - 1) * 5);
+		PChar->delModifier(MOD_INT, (PChar->PMeritPoints->GetMerit(MERIT_ENLIGHTENMENT)->value - 1) * 5);
+	}
+
 	puppetutils::LoadAutomaton(PChar);
 	luautils::CheckForGearSet(PChar); // check for gear set on gear change
     charutils::BuildingCharSkillsTable(PChar);

@@ -4497,6 +4497,16 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			{
                 blueutils::UnequipAllBlueSpells(PChar);
 			}
+			if ((mjob == JOB_SCH) && (PChar->GetMLevel() >= 75) && (PChar->PMeritPoints->GetMerit(MERIT_ENLIGHTENMENT)->value > 1))
+			{
+				PChar->addModifier(MOD_MND, (PChar->PMeritPoints->GetMerit(MERIT_ENLIGHTENMENT)->value - 1) * 5);
+				PChar->addModifier(MOD_INT, (PChar->PMeritPoints->GetMerit(MERIT_ENLIGHTENMENT)->value - 1) * 5);
+			}
+			else if (prevjob == JOB_SCH && (PChar->GetMLevel() >= 75) && (PChar->PMeritPoints->GetMerit(MERIT_ENLIGHTENMENT)->value > 1))
+			{
+				PChar->delModifier(MOD_MND, (PChar->PMeritPoints->GetMerit(MERIT_ENLIGHTENMENT)->value - 1) * 5);
+				PChar->delModifier(MOD_INT, (PChar->PMeritPoints->GetMerit(MERIT_ENLIGHTENMENT)->value - 1) * 5);
+			}
 		}
 
 		if ((sjob > 0x00) && (sjob < MAX_JOBTYPE))
