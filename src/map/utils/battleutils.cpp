@@ -3514,16 +3514,18 @@ uint16 getOverWhelmDamageBonus(CCharEntity* m_PChar, CBattleEntity* PDefender, u
 			if(abs(PDefender->loc.p.rotation - m_PChar->loc.p.rotation) > 90)
 			{
 				uint8 meritCount = m_PChar->PMeritPoints->GetMeritValue(MERIT_OVERWHELM, m_PChar);
+                float tmpDamage = damage;
 
 				switch (meritCount)
 				{
-					case 1:	damage += (float)damage * 0.05f; break;
-					case 2:	damage += (float)damage * 0.10f; break;
-					case 3:	damage += (float)damage * 0.15f; break;
-					case 4:	damage += (float)damage * 0.17f; break;
-					case 5:	damage += (float)damage * 0.19f; break;
+					case 1:	tmpDamage += tmpDamage * 0.05f; break;
+					case 2:	tmpDamage += tmpDamage * 0.10f; break;
+					case 3:	tmpDamage += tmpDamage * 0.15f; break;
+					case 4:	tmpDamage += tmpDamage * 0.17f; break;
+					case 5:	tmpDamage += tmpDamage * 0.19f; break;
 					default: break;
 				}
+				damage = (uint16)floor(tmpDamage);
 			}
 		}
 	}
