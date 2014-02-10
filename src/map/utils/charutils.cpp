@@ -744,12 +744,6 @@ void LoadChar(CCharEntity* PChar)
 	PChar->PMeritPoints->SetMeritPoints(meritPoints);
 	PChar->PMeritPoints->SetLimitPoints(limitPoints);
 
-	if ((PChar->GetMJob() == JOB_SCH) && (PChar->GetMLevel() >= 75) && (PChar->PMeritPoints->GetMerit(MERIT_ENLIGHTENMENT)->value > 1))
-	{
-		PChar->addModifier(MOD_MND, (PChar->PMeritPoints->GetMerit(MERIT_ENLIGHTENMENT)->value - 1) * 5);
-		PChar->addModifier(MOD_INT, (PChar->PMeritPoints->GetMerit(MERIT_ENLIGHTENMENT)->value - 1) * 5);
-	}
-
     blueutils::LoadSetSpells(PChar);
 	BuildingCharSkillsTable(PChar);
     PChar->PRecastContainer->ResetAbilities();
