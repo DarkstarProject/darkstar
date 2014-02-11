@@ -1014,6 +1014,10 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
             Action->addEffectMessage = 384;
         }
     }
+	else if (PAttacker->objtype == TYPE_MOB && ((CMobEntity*)PAttacker)->getMobMod(MOBMOD_ADD_EFFECT) > 0)
+	{
+		luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage);
+	}
     else
     {
         // Generic drain for anyone able to do melee damage to a dazed target
@@ -2138,7 +2142,7 @@ uint8 GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool ig
 			crithitrate = 100;
 		}
 	}
-	else if(PAttacker->GetMJob() == JOB_THF && charutils::hasTrait((CCharEntity*)PAttacker, TRAIT_ASSASSIN) && (!ignoreSneakTrickAttack) &&
+	else if(PAttacker->objtype == TYPE_PC && PAttacker->GetMJob() == JOB_THF && charutils::hasTrait((CCharEntity*)PAttacker, TRAIT_ASSASSIN) && (!ignoreSneakTrickAttack) &&
 		PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
 	{
 		CBattleEntity* taChar = battleutils::getAvailableTrickAttackChar(PAttacker,PDefender);
@@ -3507,19 +3511,21 @@ uint16 getOverWhelmDamageBonus(CCharEntity* m_PChar, CBattleEntity* PDefender, u
 		if (m_PChar->GetMLevel() >= 75)
 		{
 			// must be facing mob
-			if(abs(PDefender->loc.p.rotation - m_PChar->loc.p.rotation) > 90)
+			if (isFaceing(PDefender->loc.p,m_PChar->loc.p,90))
 			{
 				uint8 meritCount = m_PChar->PMeritPoints->GetMeritValue(MERIT_OVERWHELM, m_PChar);
+                float tmpDamage = damage;
 
 				switch (meritCount)
 				{
-					case 1:	damage += (float)damage * 0.05f; break;
-					case 2:	damage += (float)damage * 0.10f; break;
-					case 3:	damage += (float)damage * 0.15f; break;
-					case 4:	damage += (float)damage * 0.17f; break;
-					case 5:	damage += (float)damage * 0.19f; break;
+					case 1:	tmpDamage += tmpDamage * 0.05f; break;
+					case 2:	tmpDamage += tmpDamage * 0.10f; break;
+					case 3:	tmpDamage += tmpDamage * 0.15f; break;
+					case 4:	tmpDamage += tmpDamage * 0.17f; break;
+					case 5:	tmpDamage += tmpDamage * 0.19f; break;
 					default: break;
 				}
+				damage = (uint16)floor(tmpDamage);
 			}
 		}
 	}

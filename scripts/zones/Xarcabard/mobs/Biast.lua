@@ -1,0 +1,49 @@
+-----------------------------------	
+-- Area: Xarcabard	
+-- NM:  Biast
+-- ID: 17235988
+-----------------------------------	
+require("scripts/globals/status");
+-----------------------------------
+
+-- onMobInitialize
+
+-----------------------------------
+
+function onMobInitialize(mob)	
+	mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
+end;
+
+	
+-----------------------------------	
+-- onMobDeath	
+-----------------------------------	
+	
+function onMobDeath(mob,killer)	
+
+    -- Set Biast's ToD
+    SetServerVariable("[POP]Biast", os.time(t) + 75600); -- 21 hour 
+	DeterMob(17235987, false);
+	GetMobByID(17235987):setRespawnTime(GetMobRespawnTime(17235987));
+  
+end;
+
+-----------------------------------
+-- onAdditionalEffect Action
+-----------------------------------
+function onAdditionalEffect(mob,target,damage)
+	local duration = 5;
+	if (math.random(1,15) ~= 5) then
+		return 0,0,0;
+	end
+	local message;
+	if(target:hasStatusEffect(EFFECT_TERROR) == true) then
+		return 0,0,0;
+	else
+		target:addStatusEffect(EFFECT_TERROR,1,0,duration);
+		 mob:resetEnmity(target)--236
+		return SUBEFFECT_NONE,0,EFFECT_TERROR;
+	end
+    
+    
+end;

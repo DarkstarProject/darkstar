@@ -22,7 +22,7 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-	local typeEffect = EFFECT_SLEEP;
+	local typeEffect = EFFECT_SLEEP_I;
 
 	MobStatusEffectMove(mob, target, typeEffect, 1, 0, 60);
 

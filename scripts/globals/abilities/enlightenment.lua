@@ -17,8 +17,7 @@ function OnAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-	local merit = player:GetMerit(MERIT_ENLIGHTENMENT) - 5;
+	local merit = (player:getMerit(MERIT_ENLIGHTENMENT) - 5);
 	player:addStatusEffect(EFFECT_ENLIGHTENMENT,merit,0,60);
-
     return EFFECT_ENLIGHTENMENT;
 end;
