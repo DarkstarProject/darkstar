@@ -34,7 +34,7 @@ function onTrigger(player,npc)
 			player:startEvent(0x0006);
 		end
 	elseif(player:getCurrentMission(TOAU) >= PRESIDENT_SALAHEEM)then
-		if(player:hasKeyItem(ILRUSI_ASSUALT_ORDERS) and player:hasKeyItem(ASSAULT_ARMBAND) == false) then
+		if(player:hasKeyItem(ILRUSI_ASSAULT_ORDERS) and player:hasKeyItem(ASSAULT_ARMBAND) == false) then
 			player:startEvent(0x00DF,50,IPpoint);
 		else
 			player:startEvent(0x0007);
