@@ -30,7 +30,7 @@
 #include "../entities/charentity.h"
 
 
-CCaughtFishPacket::CCaughtFishPacket(CCharEntity * PChar, uint16 param0, uint16 messageID) 
+CCaughtFishPacket::CCaughtFishPacket(CCharEntity * PChar, uint8 quantityNUM, uint16 entityID, uint16 messageID)
 {
 	this->type = 0x27;
 	this->size = 0x38;
@@ -41,9 +41,9 @@ CCaughtFishPacket::CCaughtFishPacket(CCharEntity * PChar, uint16 param0, uint16 
 	WBUFL(data,(0x08)-4) = PChar->targid;
 
 	WBUFW(data,(0x0A)-4) = messageID + 0x8000;
-	WBUFW(data,(0x10)-4) = param0;
+	WBUFW(data,(0x10)-4) = entityID;
 
-	WBUFL(data,(0x14)-4) = 0x01;
+	WBUFL(data,(0x14)-4) = quantityNUM;
 	WBUFL(data,(0x1C)-4) = 0xF0;
 
 	memcpy(data+(0x20)-4, PChar->GetName(), PChar->name.size());

@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `item_mods` (
 --
 -- Contenu de la table `item_mods`
 --
-
+INSERT INTO `item_mods` VALUES(10295, 127, 2);
 INSERT INTO `item_mods` VALUES(11265, 1, 1);
 INSERT INTO `item_mods` VALUES(11266, 1, 1);
 INSERT INTO `item_mods` VALUES(11267, 1, 1);
