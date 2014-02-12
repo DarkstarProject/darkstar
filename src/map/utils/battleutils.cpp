@@ -1009,7 +1009,7 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
     {
 		luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage);
 
-        if (Action->addEffectMessage = 163 && Action->addEffectParam < 0)
+        if (Action->addEffectMessage == 163 && Action->addEffectParam < 0)
         {
             Action->addEffectMessage = 384;
         }
