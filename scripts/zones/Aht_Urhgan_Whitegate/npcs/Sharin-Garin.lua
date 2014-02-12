@@ -39,7 +39,7 @@ function onTrigger(player,npc)
 	
 	local merc = 2 -- Probably could be done, but not really important atm
 	
-	player:startEvent(0x008C,0,merc,1,player:getImperialStanding(),getAstralCandescence(),cost,captain);
+	player:startEvent(0x008C,0,merc,runicpass,player:getImperialStanding(),getAstralCandescence(),cost,captain);
 	
 end;
 
