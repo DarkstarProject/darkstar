@@ -26,8 +26,11 @@ package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
-require("scripts/globals/status")
-require("scripts/globals/moglocker")
+require("scripts/globals/settings");
+require("scripts/globals/quests");
+require("scripts/globals/status");
+require("scripts/globals/missions");
+require("scripts/globals/moglocker");
 
 function getNumberOfCoinsToUpgradeSize(size)
     if (size == 30) then
@@ -53,46 +56,45 @@ function onTrade(player,npc,trade)
     local numBronze = trade:getItemQty(2184);
     local numMythril = trade:getItemQty(2186);
     local numGold = trade:getItemQty(2187);
-    
-    if (numBronze > 0 and numMythril == 0 and numGold == 0) then
-        if (addMogLockerExpiryTime(player, numBronze)) then
-            -- remove bronze
-            player:tradeComplete();
-            -- send event
-            player:startEvent(0x0259, getMogLockerExpiryTimestamp(player));
-            -- print("Expanded lease with "..numBronze.." bronze.");
+    if(player:getCurrentMission(TOAU) >= 2) then
+        if (numBronze > 0 and numMythril == 0 and numGold == 0) then
+            if (addMogLockerExpiryTime(player, numBronze)) then
+                -- remove bronze
+                player:tradeComplete();
+                -- send event
+                player:startEvent(0x0259, getMogLockerExpiryTimestamp(player));
+                -- print("Expanded lease with "..numBronze.." bronze.");
+            end 
+        elseif (numGold > 0 or numMythril > 0) then
+            -- see if we can expand the size
+            local slotSize = player:getContainerSize(LOC_MOGLOCKER);
+            if (slotSize == 30 and numMythril == 4 and numGold == 0) then
+                player:changeContainerSize(LOC_MOGLOCKER, 10);
+                player:tradeComplete();
+                player:startEvent(0x025A,0,0,0,40);
+                elseif (slotSize == 40 and numMythril == 0 and numGold == 2) then
+                player:changeContainerSize(LOC_MOGLOCKER, 10);
+                player:tradeComplete();
+                player:startEvent(0x025A,0,0,0,50);
+            elseif (slotSize == 50 and numMythril == 0 and numGold == 3) then
+                player:changeContainerSize(LOC_MOGLOCKER, 10);
+                player:tradeComplete();
+                player:startEvent(0x025A,0,0,0,60);
+            elseif (slotSize == 60 and numMythril == 0 and numGold == 5) then
+                player:changeContainerSize(LOC_MOGLOCKER, 10);
+                player:tradeComplete();
+                player:startEvent(0x025A,0,0,0,70);
+            elseif (slotSize == 70 and numMythril == 0 and numGold == 10) then
+                player:changeContainerSize(LOC_MOGLOCKER, 10);
+                player:tradeComplete();
+                player:startEvent(0x025A,0,0,0,80);
+            end
         end
-    elseif (numGold > 0 or numMythril > 0) then
-        -- see if we can expand the size
-        local slotSize = player:getContainerSize(LOC_MOGLOCKER);
-        if (slotSize == 30 and numMythril == 4 and numGold == 0) then
-            player:changeContainerSize(LOC_MOGLOCKER, 10);
-            player:tradeComplete();
-            player:startEvent(0x025A,0,0,0,40);
-        elseif (slotSize == 40 and numMythril == 0 and numGold == 2) then
-            player:changeContainerSize(LOC_MOGLOCKER, 10);
-            player:tradeComplete();
-            player:startEvent(0x025A,0,0,0,50);
-        elseif (slotSize == 50 and numMythril == 0 and numGold == 3) then
-            player:changeContainerSize(LOC_MOGLOCKER, 10);
-            player:tradeComplete();
-            player:startEvent(0x025A,0,0,0,60);
-        elseif (slotSize == 60 and numMythril == 0 and numGold == 5) then
-            player:changeContainerSize(LOC_MOGLOCKER, 10);
-            player:tradeComplete();
-            player:startEvent(0x025A,0,0,0,70);
-        elseif (slotSize == 70 and numMythril == 0 and numGold == 10) then
-            player:changeContainerSize(LOC_MOGLOCKER, 10);
-            player:tradeComplete();
-            player:startEvent(0x025A,0,0,0,80);
-        end
-    end
-    
-    
+    end    
 end; 
 
 -----------------------------------
--- onTrigger Action
+-- onTrigger Action 
 -----------------------------------
 
 function onTrigger(player,npc)
@@ -100,21 +102,24 @@ function onTrigger(player,npc)
     -- if < mission 2 then 
     --      player:startEvent(0x0258); 
     -- else
+    if(player:getCurrentMission(TOAU) >= 2) then	
+        local accessType = getMogLockerAccessType(player);
+        local mogLockerExpiryTimestamp = getMogLockerExpiryTimestamp(player); 
     
-    local accessType = getMogLockerAccessType(player);
-    local mogLockerExpiryTimestamp = getMogLockerExpiryTimestamp(player); 
-    
-    if (mogLockerExpiryTimestamp == nil) then
-        -- a nil timestamp means they haven't unlocked it yet. We're going to unlock it by merely talking to this NPC.
-        print("Unlocking mog locker for "..player:getName());
-        mogLockerExpiryTimestamp = unlockMogLocker(player);
-        accessType = setMogLockerAccessType(player, MOGLOCKER_ACCESS_TYPE_ALLAREAS);     
-    end
-    
-    player:startEvent(0x0258,mogLockerExpiryTimestamp,accessType,
-    MOGLOCKER_ALZAHBI_VALID_DAYS,player:getContainerSize(LOC_MOGLOCKER),
-    getNumberOfCoinsToUpgradeSize(player:getContainerSize(LOC_MOGLOCKER)),2,3,
-    MOGLOCKER_ALLAREAS_VALID_DAYS,0);
+        if (mogLockerExpiryTimestamp == nil) then
+            -- a nil timestamp means they haven't unlocked it yet. We're going to unlock it by merely talking to this NPC.
+            --print("Unlocking mog locker for "..player:getName());
+            mogLockerExpiryTimestamp = unlockMogLocker(player);
+            accessType = setMogLockerAccessType(player, MOGLOCKER_ACCESS_TYPE_ALLAREAS);     
+        end  
+        player:startEvent(0x0258,mogLockerExpiryTimestamp,accessType,
+        MOGLOCKER_ALZAHBI_VALID_DAYS,player:getContainerSize(LOC_MOGLOCKER),
+        getNumberOfCoinsToUpgradeSize(player:getContainerSize(LOC_MOGLOCKER)),2,3,
+        MOGLOCKER_ALLAREAS_VALID_DAYS);
+    else
+        player:startEvent(0x0258);
+	end
+	
 end; 
 
 -----------------------------------
