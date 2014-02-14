@@ -823,7 +823,7 @@ INSERT INTO `guild_shops` VALUES ('5262', '18236', '21', '21', '2970', '594', '1
 -- Teerth (Goldsmith Guild) Bastok Markets (S)
 INSERT INTO `guild_shops` VALUES ('527', '640', '9', '36', '255', '48', '100');
 INSERT INTO `guild_shops` VALUES ('527', '642', '595', '620', '165', '33', '65');
-INSERT INTO `guild_shops` VALUES ('527', '644', '1500', '9200', '165', '0', '65');
+INSERT INTO `guild_shops` VALUES ('527', '644', '1500', '9200', '165', '33', '65');
 INSERT INTO `guild_shops` VALUES ('527', '653', '19900', '36400', '55', '0', '22');
 INSERT INTO `guild_shops` VALUES ('527', '661', '1171', '1171', '255', '0', '100');
 INSERT INTO `guild_shops` VALUES ('527', '663', '20240', '45600', '80', '16', '32');
@@ -914,7 +914,7 @@ INSERT INTO `guild_shops` VALUES ('527', '796', '1396', '2794', '80', '0', '32')
 -- Visala (Goldsmith Guild) Bastok Markets (S)
 -- INSERT INTO `guild_shops` VALUES ('5272', '640', '9', '36', '255', '48', '100');
 -- INSERT INTO `guild_shops` VALUES ('5272', '642', '595', '620', '165', '33', '65');
--- INSERT INTO `guild_shops` VALUES ('5272', '644', '1500', '9200', '165', '0', '65');
+-- INSERT INTO `guild_shops` VALUES ('5272', '644', '1500', '9200', '165', '33', '65');
 -- INSERT INTO `guild_shops` VALUES ('5272', '653', '19900', '36400', '55', '0', '22');
 -- INSERT INTO `guild_shops` VALUES ('5272', '661', '1171', '1171', '255', '0', '100');
 -- INSERT INTO `guild_shops` VALUES ('5272', '663', '20240', '45600', '80', '16', '32');
@@ -1443,7 +1443,7 @@ INSERT INTO `guild_shops` VALUES ('532', '12706', '21945', '21945', '20', '0', '
 INSERT INTO `guild_shops` VALUES ('533', '640', '9', '44', '255', '48', '100');
 INSERT INTO `guild_shops` VALUES ('533', '641', '30', '66', '255', '48', '100');
 INSERT INTO `guild_shops` VALUES ('533', '643', '675', '1656', '165', '33', '65');
-INSERT INTO `guild_shops` VALUES ('533', '644', '2000', '10000', '165', '0', '65');
+INSERT INTO `guild_shops` VALUES ('533', '644', '2000', '10000', '165', '33', '65');
 INSERT INTO `guild_shops` VALUES ('533', '649', '103', '349', '165', '33', '65');
 INSERT INTO `guild_shops` VALUES ('533', '651', '2700', '4680', '165', '33', '65');
 INSERT INTO `guild_shops` VALUES ('533', '660', '69', '294', '165', '33', '65');
@@ -1485,7 +1485,7 @@ INSERT INTO `guild_shops` VALUES ('533', '16465', '229', '754', '20', '0', '20')
 -- INSERT INTO `guild_shops` VALUES ('5332', '640', '9', '44', '255', '48', '100');
 -- INSERT INTO `guild_shops` VALUES ('5332', '641', '30', '66', '255', '48', '100');
 -- INSERT INTO `guild_shops` VALUES ('5332', '643', '675', '1656', '165', '33', '65');
--- INSERT INTO `guild_shops` VALUES ('5332', '644', '2000', '10000', '165', '0', '65');
+-- INSERT INTO `guild_shops` VALUES ('5332', '644', '2000', '10000', '165', '33', '65');
 -- INSERT INTO `guild_shops` VALUES ('5332', '649', '103', '349', '165', '33', '65');
 -- INSERT INTO `guild_shops` VALUES ('5332', '651', '2700', '4680', '165', '33', '65');
 -- INSERT INTO `guild_shops` VALUES ('5332', '660', '69', '294', '165', '33', '65');
