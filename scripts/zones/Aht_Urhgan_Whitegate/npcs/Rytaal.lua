@@ -89,16 +89,16 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(KEYITEM_OBTAINED,IMPERIAL_ARMY_ID_TAG);
 		player:setVar("REMAINING_IMPERIAL_ARMY_ID_TAG",currenttagnummber - 1);
 	elseif(csid == 0x010C and option == 2 and player:hasKeyItem(IMPERIAL_ARMY_ID_TAG)==false )then
-	   if(player:hasKeyItem(LEUJAOAM_ASSUALT_ORDERS))then
-	       player:delKeyItem(LEUJAOAM_ASSUALT_ORDERS);
+	   if(player:hasKeyItem(LEUJAOAM_ASSAULT_ORDERS))then
+	       player:delKeyItem(LEUJAOAM_ASSAULT_ORDERS);
 	   elseif(player:hasKeyItem(MAMMOOL_JA_ASSAULT_ORDERS))then
 	       player:delKeyItem(MAMMOOL_JA_ASSAULT_ORDERS);
-       elseif(player:hasKeyItem(LEBROS_ASSUALT_ORDERS))then
-	       player:delKeyItem(LEBROS_ASSUALT_ORDERS);
-	   elseif(player:hasKeyItem(PERIQIA_ASSUALT_ORDERS))then
-	       player:delKeyItem(PERIQIA_ASSUALT_ORDERS);
-	   elseif(player:hasKeyItem(ILRUSI_ASSUALT_ORDERS ))then
-	       player:delKeyItem(ILRUSI_ASSUALT_ORDERS);
+       elseif(player:hasKeyItem(LEBROS_ASSAULT_ORDERS))then
+	       player:delKeyItem(LEBROS_ASSAULT_ORDERS);
+	   elseif(player:hasKeyItem(PERIQIA_ASSAULT_ORDERS))then
+	       player:delKeyItem(PERIQIA_ASSAULT_ORDERS);
+	   elseif(player:hasKeyItem(ILRUSI_ASSAULT_ORDERS ))then
+	       player:delKeyItem(ILRUSI_ASSAULT_ORDERS);
 	   elseif(player:hasKeyItem(NYZUL_ISLE_ASSAULT_ORDERS))then
 	       player:delKeyItem(NYZUL_ISLE_ASSAULT_ORDERS);
 	   end

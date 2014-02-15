@@ -80,7 +80,7 @@ function onEventFinish(player,csid,option)
           end	  
         player:addAssaultPoint(ILRUSI_ASSAULT_POINT,point);
 		player:delMission(ASSAULT,GOLDEN_SALVAGE);
-		player:delKeyItem(ILRUSI_ASSUALT_ORDERS);
+		player:delKeyItem(ILRUSI_ASSAULT_ORDERS);
 	print(point);
      end
   

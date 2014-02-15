@@ -103,8 +103,8 @@ function onEventFinish(player,csid,option)
 	  end  
 	  if (option == 657)then --  add other assault option here !
 	     player:delKeyItem(IMPERIAL_ARMY_ID_TAG);
-		 player:addKeyItem(ILRUSI_ASSUALT_ORDERS);
-		 player:messageSpecial(KEYITEM_OBTAINED,ILRUSI_ASSUALT_ORDERS);
+		 player:addKeyItem(ILRUSI_ASSAULT_ORDERS);
+		 player:messageSpecial(KEYITEM_OBTAINED,ILRUSI_ASSAULT_ORDERS);
 	  end
 	  if(itemID > 0)then
 	     player:addItem(itemID);

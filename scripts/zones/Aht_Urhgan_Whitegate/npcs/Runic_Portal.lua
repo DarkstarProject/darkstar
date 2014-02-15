@@ -76,15 +76,15 @@ function onEventFinish(player,csid,option)
 			player:delKeyItem(RUNIC_PORTAL_USE_PERMIT);		
 			NzyulIsleStagingPoint(player);	
 		end		
-	elseif(csid == 0x0078 and option == 1 )then--LEUJAOAM_ASSUALT_ORDERS
+	elseif(csid == 0x0078 and option == 1 )then--LEUJAOAM_ASSAULT_ORDERS
 	   AzouphIsleStagingPoint(player)
 	elseif(csid == 0x0079 and option == 1 ) then--MAMMOOL_JA_ASSAULT_ORDERS
 	   MamoolJaStagingPoint(player);
-	elseif(csid == 0x007A and option == 1 )then--LEBROS_ASSUALT_ORDERS
+	elseif(csid == 0x007A and option == 1 )then--LEBROS_ASSAULT_ORDERS
 	   HalvungStagingPoint(player);
-	elseif(csid == 0x007B and option == 1 )then--PERIQIA_ASSUALT_ORDERS
+	elseif(csid == 0x007B and option == 1 )then--PERIQIA_ASSAULT_ORDERS
        DvuccaIsleStagingPoint(player);
-    elseif(csid == 0x007C and option == 1 )then--ILRUSI_ASSUALT_ORDERS
+    elseif(csid == 0x007C and option == 1 )then--ILRUSI_ASSAULT_ORDERS
 	   IlrusiAtollStagingPoint(player);
     elseif(csid == 0x007D and option == 1 )then--NYZUL_ISLE_ASSAULT_ORDERS	
 	   NzyulIsleStagingPoint(player);
