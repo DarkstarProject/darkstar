@@ -30,7 +30,7 @@ local AssaultArmband;
  else
  AssaultArmband = 0;
  end
-  if (assault > 40 and assault < 51 and player:hasKeyItem(ILRUSI_ASSUALT_ORDERS))then  
+  if (assault > 40 and assault < 51 and player:hasKeyItem(ILRUSI_ASSAULT_ORDERS))then  
      player:startEvent(0x00DB,assault,16,2,70,4,AssaultArmband,1,1,3);
   end
   return 1;	
