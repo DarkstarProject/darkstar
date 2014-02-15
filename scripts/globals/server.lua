@@ -89,15 +89,15 @@ function SetFieldManual()
 	{
         17187542,17187543,17191524,17191525, -- West Ronfaure 2, East Ronfaure 2
         17195671,17195672,17199745,17199746, -- La Theine 2, Valkurm 2
-        17199746,17203877,17203878,17207858, -- Valkurm 1, Jugner 2, Batallia 1
-        17207859,17212103,17212104,17212105, -- Batallia 1, North Gustaberg 3
+        17199746,17203877,17203878,17207859, -- Valkurm 1, Jugner 2, Batallia 1
+        17207860,17212103,17212104,17212105, -- Batallia 1, North Gustaberg 3
         17216171,17216172,17220159,17220160, -- South Gustaberg 2, Konschtat 2
         17224345,17224346,17228369,17228370, -- Pashhow 2, Rolanberry 2
         17232273,17232274,17232275,17232276, -- Beaucedine all 4
         17236340,17236341,17240508,17240509, -- Xarcabard 2, Cape Teriggan 2
         17244647,17244648,17244649,17248845, -- Eastern Altepa 3, West Sarutabaruta 1
         17248846,17248847,17253053,17253054, -- West Sarutabaruta 2, East Sarutabaruta 2
-        17253056,17257067,17257068,17257069, -- East Sarutabaruta 1, Tahrongi 3
+        17253056,17257068,17257069,17257070, -- East Sarutabaruta 1, Tahrongi 3
         17261193,17261194,17265285,17265286, -- Buburimu 2, Meriphataud Mountains 2
         17265287,17269254,17269255,17273411, -- Meriphataud Mountains 1, Sauromugue 2, Zi'Tah 1
         17273412,17277204,17277205,17281640, -- Zi'Tah 1, Ro'Maeve 2, Yuhtunga Jungle 1
