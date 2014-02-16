@@ -324,6 +324,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
 	uint8  WeekDay = (uint8)CVanaTime::getInstance()->getWeekday();
 	uint8  crystalElement = PChar->CraftContainer->getType();
 	uint8  strongElement[8] = {2,3,5,4,0,1,7,6};
+	MTRand drand;
 	
 
 	for(uint8 skillID = 49; skillID < 57; ++skillID)
@@ -356,7 +357,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
 					success = 0.05;
 			}
 
-			double random = rand() / ((double) RAND_MAX);
+			double random = drand();
 			#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 			ShowDebug(CL_CYAN"Success: %g  Random: %g\n" CL_RESET, success, random);
 			#endif
@@ -365,7 +366,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
 			{
 				for(int32 i = 0; i < 3; ++i)
 				{
-					random = rand() / ((double) RAND_MAX);
+					random = drand();
 					#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 					ShowDebug(CL_CYAN"HQ Tier: %i  Random: %g\n" CL_RESET, hqtier, random);
 					#endif
@@ -476,6 +477,7 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 //	double MoonPhase = (double)CVanaTime::getInstance()->getMoonPhase();
 //	double MoonCorrection = MoonPhase / 500;
 //  removed: there's no evidence that moon phase directly modifies skill up rate
+    MTRand drand;
 
 
 	for(uint8 skillID = 49; skillID < 57; ++skillID)
@@ -515,7 +517,7 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 			double skillUpChance = (synthDiff*(map_config.craft_multiplier - (log(1.2 + charSkill/100))))/10;
 			skillUpChance = skillUpChance/(1 + (PChar->CraftContainer->getQuantity(0) == SYNTHESIS_FAIL));		// результат синтеза хранится в quantity нулевой ячейки
 
-			double random = rand() / ((double)RAND_MAX);
+			double random = drand();
 			#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 			ShowDebug(CL_CYAN"Skill up chance: %g  Random: %g\n" CL_RESET, skillUpChance, random);
 			#endif
@@ -541,7 +543,7 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 
 				for(uint8 i = 0; i < 4; i ++)
 				{
-					random = rand() / ((double)RAND_MAX);
+					random = drand();
 					#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 					ShowDebug(CL_CYAN"SkillAmount Tier: %i  Random: %g\n" CL_RESET, satier, random);
 					#endif
@@ -598,6 +600,7 @@ int32 doSynthFail(CCharEntity* PChar)
 	uint8  carrentCraft = PChar->CraftContainer->getInvSlotID(0);
 	double synthDiff    = getSynthDifficulty(PChar, carrentCraft);
 	double moghouseAura = 0;
+	MTRand drand;
 
 	if (PChar->getZone() == 0) // неправильное условие, т.к. аура действует лишь в собственном доме
 	{
@@ -659,7 +662,7 @@ int32 doSynthFail(CCharEntity* PChar)
 		if (slotID != 8)
 			nextSlotID = PChar->CraftContainer->getInvSlotID(slotID+1);
 
-		random = rand() / ((double) RAND_MAX);
+		random = drand();
 		#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 		ShowDebug(CL_CYAN"Lost Item: %g  Random: %g\n" CL_RESET, lostItem, random);
 		#endif
