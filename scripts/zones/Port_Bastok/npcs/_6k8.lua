@@ -51,7 +51,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 	
 	if(csid == 0x008d) then 
-		X = player:getXPos();
+		local X = player:getXPos();
 		
 		if(X >= -58 and X <= -55) then
 			player:delGil(200);
