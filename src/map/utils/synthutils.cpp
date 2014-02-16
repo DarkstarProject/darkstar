@@ -230,15 +230,17 @@ double getSynthDifficulty(CCharEntity* PChar, uint8 skillID)
 		difficult += 0.5;
 	}
 
-	if (crystalElement == WeekDay){
+	if (crystalElement == WeekDay)
 		difficult -= 1;
-	}else if (strongElement[crystalElement] == WeekDay){
+	else if (strongElement[crystalElement] == WeekDay)
 		difficult += 1;
-	}else if (WeekDay == LIGHTSDAY){
+	else if (strongElement[WeekDay] == crystalElement)
 		difficult -= 1;
-	}else if (WeekDay == DARKSDAY){
+	else if (WeekDay == LIGHTSDAY)
+		difficult -= 1;
+	else if (WeekDay == DARKSDAY)
 		difficult += 1;
-	}
+
 
 	#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 	ShowDebug(CL_CYAN"Direction = %i\n" CL_RESET, ElementDirection);
@@ -380,19 +382,17 @@ uint8 calcSynthResult(CCharEntity* PChar)
 					
 					if (chance > 0)
 					{
-						chance -= (MoonPhase - 50)/500;  //new moon +10% to hq chance, full moon -10%, corresponding/lightsday -10%, opposing/darksday +10%
-						if (crystalElement == WeekDay){
+						chance -= (MoonPhase - 50)/500;  //new moon +10% to hq chance, full moon -10%, corresponding/weakday/lightsday -10%, opposing/darksday +10%
+						if (crystalElement == WeekDay)
 							chance -= 0.1;
-						}
-						else if (strongElement[crystalElement] == WeekDay){
+						else if (strongElement[crystalElement] == WeekDay)
 							chance += 0.1;
-						}
-						else if (WeekDay == LIGHTSDAY){
+						else if (strongElement[WeekDay] == crystalElement)
 							chance -= 0.1;
-						}
-						else if (WeekDay == DARKSDAY){
+						else if (WeekDay == LIGHTSDAY)
+							chance -= 0.1;
+						else if (WeekDay == DARKSDAY)
 							chance += 0.1;
-						}
 					}
 					
 					if(chance < random)
