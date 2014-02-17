@@ -380,7 +380,7 @@ INSERT INTO `mob_skill` VALUES (977,78,923,'Material_Fend', 0, 10.0, 2000, 1500,
 
 -- Craver NM
 INSERT INTO `mob_skill` VALUES (978,78,924,'Carousel', 1, 10.0, 2000, 1500, 4, 0, 0, 0); -- NM only   (doesn't apply to Coveter, he uses normal Craver moves)
-INSERT INTO `mob_skill` VALUES (979,78,919,'Impalement', 1, 10.0, 2000, 1500, 4, 0, 0, 0); -- NM only (doesn't apply to Coveter, he uses normal Craver moves)
+INSERT INTO `mob_skill` VALUES (1018,78,919,'Impalement', 0, 10.0, 2000, 1500, 4, 0, 0, 0); -- NM only (doesn't apply to Coveter, he uses normal Craver moves)
 
 -- Thinker
 INSERT INTO `mob_skill` VALUES (986,241,933,'Empty_Cutter', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
