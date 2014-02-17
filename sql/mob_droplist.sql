@@ -13033,7 +13033,7 @@ INSERT INTO `mob_droplist` VALUES(2130, 0, 4357, 2);
 INSERT INTO `mob_droplist` VALUES(2131, 0, 2525, 2);
 INSERT INTO `mob_droplist` VALUES(2131, 0, 4862, 6);
 INSERT INTO `mob_droplist` VALUES(2131, 0, 4866, 5);
-INSERT INTO `mob_droplist` VALUES(2132, 0, 15219, 10);
+INSERT INTO `mob_droplist` VALUES(2132, 0, 15219, 47);
 INSERT INTO `mob_droplist` VALUES(2133, 0, 2630, 100);
 INSERT INTO `mob_droplist` VALUES(2133, 0, 15021, 47);
 INSERT INTO `mob_droplist` VALUES(2133, 0, 15021, 23);

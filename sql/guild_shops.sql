@@ -1863,7 +1863,7 @@ INSERT INTO `guild_shops` VALUES ('60430', '835', '187', '1000', '375', '75', '1
 INSERT INTO `guild_shops` VALUES ('60430', '823', '18240', '95760', '165', '33', '65');
 INSERT INTO `guild_shops` VALUES ('60430', '824', '240', '1344', '80', '16', '32');
 INSERT INTO `guild_shops` VALUES ('60430', '817', '45', '240', '255', '48', '100');
-INSERT INTO `guild_shops` VALUES ('60430', '878', '2700', '17280', '165', '33', '65');
+INSERT INTO `guild_shops` VALUES ('60430', '2287', '2700', '17280', '165', '33', '65');
 INSERT INTO `guild_shops` VALUES ('60430', '819', '750', '790', '255', '48', '100');
 INSERT INTO `guild_shops` VALUES ('60430', '833', '15', '18', '375', '75', '150');
 INSERT INTO `guild_shops` VALUES ('60430', '2148', '815', '989', '80', '0', '32');
