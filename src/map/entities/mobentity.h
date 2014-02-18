@@ -157,6 +157,7 @@ public:
 	uint8		m_CallForHelp;						// в перспективе желательно объединить эту переменную с CNpc->unknown
 
   int8        m_instanceID; // instance belonging to
+  uint16      m_bcnmID;  // belongs to which battlefield
   bool        m_giveExp; // prevent exp gain
   bool        m_neutral; // stop linking / aggroing
 	position_t	m_SpawnPoint;						// точка возрождения монстра

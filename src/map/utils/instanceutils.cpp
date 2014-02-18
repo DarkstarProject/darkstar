@@ -100,6 +100,7 @@ namespace instanceutils{
 				{
 
 					PMob->m_instanceID = instance->getInstanceNumber();
+					PMob->m_bcnmID = instance->getID();
 
 					if (condition & CONDITION_SPAWNED_AT_START)
 					{
