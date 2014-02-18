@@ -3239,6 +3239,14 @@ INSERT INTO `mob_skill` VALUES (2843,464,2174,'Nectarous_Deluge',1,18.0,2000,100
 INSERT INTO `mob_skill` VALUES (2845,464,2175,'Nepenthic_Plunge',1,18.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (2846,464,2176,'Infaunal_Flop',1,18.0,2000,1000,4,0,0,0);
 
+
+
+-- Dullahan
+-- anims 2299 2300 2301 2302 , waiting for skills name to be known
+
+-- Fluturini
+-- anims 2289 2293 ? waiting names
+
 -- -----------------------------------------------------------
 -- Naakuals
 -- -----------------------------------------------------------
