@@ -184,6 +184,7 @@
     <ClInclude Include="..\..\src\common\detour\DetourNavMeshQuery.h" />
     <ClInclude Include="..\..\src\common\detour\DetourNode.h" />
     <ClInclude Include="..\..\src\common\detour\DetourStatus.h" />
+    <ClInclude Include="..\..\src\common\dsprand.h" />
     <ClInclude Include="..\..\src\common\kernel.h" />
     <ClInclude Include="..\..\src\common\lua\lua.h" />
     <ClInclude Include="..\..\src\common\lua\lua.hpp" />
@@ -417,6 +418,7 @@
     <ClCompile Include="..\..\src\common\detour\DetourNavMeshBuilder.cpp" />
     <ClCompile Include="..\..\src\common\detour\DetourNavMeshQuery.cpp" />
     <ClCompile Include="..\..\src\common\detour\DetourNode.cpp" />
+    <ClCompile Include="..\..\src\common\dsprand.cpp" />
     <ClCompile Include="..\..\src\common\kernel.cpp" />
     <ClCompile Include="..\..\src\common\malloc.cpp" />
     <ClCompile Include="..\..\src\common\md52.cpp" />
