@@ -194,7 +194,6 @@
     <ClInclude Include="..\..\src\common\malloc.h" />
     <ClInclude Include="..\..\src\common\md52.h" />
     <ClInclude Include="..\..\src\common\mmo.h" />
-    <ClInclude Include="..\..\src\common\mtrand.h" />
     <ClInclude Include="..\..\src\common\recast\Recast.h" />
     <ClInclude Include="..\..\src\common\recast\RecastAlloc.h" />
     <ClInclude Include="..\..\src\common\recast\RecastAssert.h" />
@@ -421,7 +420,6 @@
     <ClCompile Include="..\..\src\common\kernel.cpp" />
     <ClCompile Include="..\..\src\common\malloc.cpp" />
     <ClCompile Include="..\..\src\common\md52.cpp" />
-    <ClCompile Include="..\..\src\common\mtrand.cpp" />
     <ClCompile Include="..\..\src\common\showmsg.cpp" />
     <ClCompile Include="..\..\src\common\socket.cpp" />
     <ClCompile Include="..\..\src\common\sql.cpp" />

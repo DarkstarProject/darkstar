@@ -32,7 +32,6 @@
 #include "../common/sql.h"
 #include "../common/mmo.h"
 #include "../common/taskmgr.h"
-#include "../common/mtrand.h"
 
 #include <map>
 #include <list>
