@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Port Bastok
 -- NPC:  Door: Arrivals Entrance
--- @zone 236
--- @pos -80 1 -26
+-- @pos -80 1 -26 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------

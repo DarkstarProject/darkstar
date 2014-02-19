@@ -23,7 +23,7 @@ function onTrigger(player,npc)
 	local X = player:getXPos();
 	local Z = player:getZPos();
 	
-	if((X > -43 and X < -37) and (Z > 53 and Z < 59)) then
+	if((X > -43 and X < -37) and (Z < -53 and Z > -59)) then
 		player:startEvent(0x0083); -- To Waj. Woodlands
 	else
 		player:startEvent(0x0082); -- To B. Thickets

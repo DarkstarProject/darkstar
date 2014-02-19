@@ -9,7 +9,7 @@ package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/zones/Quicksand_Caves/TextIDs");
 
-base_id = 0x010D01EF; -- 17629678
+base_id = 17629680;
 
 -----------------------------------
 -- onInitialize

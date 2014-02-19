@@ -48,7 +48,13 @@ POWHATAN_DIALOG_1 =  7103; -- I'm sick and tired of entertaining guests.
           ILITA_SHOP_DIALOG =  7467; -- Hello there. How about buying <<<Possible Special Code: 01>>>
        SUGANDHI_SHOP_DIALOG =  7468; -- Traveler! I am sure my wares will prove useful on your journey.
         DENVIHR_SHOP_DIALOG =  7469; -- Ah, interested in my wares, are you? You can only buy these in Bastok, my friend.
-
+		
+             MUSTAFA_DIALOG =  7460; -- Hello. | This concourse is for arriving passengers.
+         BARTHOLOMEO_DIALOG =  7460; -- Hello. | This concourse is for arriving passengers.
+		 
+		       KLAUS_DIALOG =  7461; -- Hello. | This concourse is for departing passengers.
+               CAREY_DIALOG =  7461; -- Hello. | This concourse is for departing passengers.		 
+			 
         VATTIAN_OPEN_DIALOG =  8194; -- Welcome to my humble establishment. I have a wide variety of specialty goods from Kuzotz.
       ZOBYQUHYO_OPEN_DIALOG =  8195; -- Hey therrre! I've got lots of wonderrrful goodies, fresh from the Elshimo Lowlands.
     ZOBYQUHYO_CLOSED_DIALOG =  8196; -- I'm trrrying to start a business selling goods from the Elshimo Lowlands, but it's not easy getting stuff from areas that aren't under Bastokan contrrrol.

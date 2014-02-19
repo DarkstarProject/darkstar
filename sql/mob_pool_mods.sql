@@ -193,6 +193,11 @@ INSERT INTO `mob_pool_mods` VALUES (877,16,1,1);
 INSERT INTO `mob_pool_mods` VALUES (60,370,20,0);
 INSERT INTO `mob_pool_mods` VALUES (410,236,20,0);
 INSERT INTO `mob_pool_mods` VALUES (237,44,1,1);
+INSERT INTO `mob_pool_mods` VALUES (4361,5,16,1);
+INSERT INTO `mob_pool_mods` VALUES (4361,288,55,0);
+INSERT INTO `mob_pool_mods` VALUES (4361,16,1,1);
+
+
 /*!40000 ALTER TABLE `mob_pool_mods` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
