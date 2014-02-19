@@ -21,6 +21,7 @@ CLOTHCRAFT_SHOP_DIALOG = 6975; -- Welcome to the Weavers' Guild salesroom.
    FISHING_SHOP_DIALOG = 6976; -- Welcome to the Fishermen's Guild salesroom.
    QUELPIA_SHOP_DIALOG = 6977; -- In need of otherworldly protection?
 CHUTARMIRE_SHOP_DIALOG = 6978; -- I have items for those who delve in the black arts!
+   FALGIMA_SHOP_DIALOG = 6979; -- In the market for spells Hexes and inantations?
 
 -- Item Delivery
 WENZEL_DELIVERY_DIALOG = 7526; -- My independent survey confirms the town entrance as the preferred location from which adventurers send parcels.
