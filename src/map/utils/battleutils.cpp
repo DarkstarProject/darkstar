@@ -2173,6 +2173,7 @@ uint8 GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool ig
 
 float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical, uint16 bonusAttPercent)
 {
+	DWELL512 drand;
 	// used to apply a % of attack bonus
 	float attPercentBonus = 0;
 	if (bonusAttPercent >= 1)
@@ -2240,7 +2241,7 @@ float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool is
         cRatioMin = cRatio - 0.375;
     }
 
-	float pDIF = ((cRatioMax-cRatioMin) * ((float)rand()/RAND_MAX)) + cRatioMin;
+	float pDIF = ((cRatioMax-cRatioMin) * ((float)drand())) + cRatioMin;
 
     if (isCritical)
     {
@@ -2250,7 +2251,7 @@ float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool is
     }
 
 	//x1.00 ~ x1.05 final multiplier, giving max value 3*1.05 -> 3.15
-	return pDIF * (1+((0.05f) * ((float)rand()/RAND_MAX)));
+	return pDIF * (1+((0.05f) * ((float)drand())));
 }
 
 /************************************************************************

@@ -2681,6 +2681,7 @@ void CAICharNormal::ActionSleep()
 
 void CAICharNormal::ActionAttack()
 {
+	WELL512 irand;
 	DSP_DEBUG_BREAK_IF(m_PBattleTarget == NULL);
 
 	//disengage if player has charmed the mob
@@ -2865,7 +2866,7 @@ void CAICharNormal::ActionAttack()
 					Action.reaction   = REACTION_EVADE;
 					Action.speceffect = SPECEFFECT_NONE;
 				}
-				else if ((rand()%100 < attack->GetHitRate() || attackRound->GetSATAOccured()) &&
+				else if ((irand()%100 < attack->GetHitRate() || attackRound->GetSATAOccured()) &&
                     !m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ALL_MISS))
 				{
                     // attack hit, try to be absorbed by shadow
@@ -2879,7 +2880,7 @@ void CAICharNormal::ActionAttack()
                     else
                     {
 						// Set this attack's critical flag.
-						attack->SetCritical(rand()%100 < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget, !attack->IsFirstSwing()));
+						attack->SetCritical(irand()%100 < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget, !attack->IsFirstSwing()));
 
 						// Critical hit.
 						if (attack->IsCritical())
