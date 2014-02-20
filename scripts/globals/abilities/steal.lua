@@ -29,7 +29,12 @@ validThfQuestMobs = {17379367,17379368,17379459,17379470,17379477,17379489,17379
 -----------------------------------
 
 function OnAbilityCheck(player,target,ability)
-	return 0,0;
+
+	if (player:getFreeSlotsCount() == 0) then
+		return MSGBASIC_FULL_INVENTORY,0;
+	else
+		return 0,0;
+	end
 end;
 
 function OnUseAbility(player, target, ability)
