@@ -41,5 +41,8 @@ function onSpellCast(caster,target,spell)
 	target:wakeUp();
 
 	caster:updateEnmityFromCure(target,final);
+	
+	spell:setMsg(367);
+	
 	return final;
 end;
