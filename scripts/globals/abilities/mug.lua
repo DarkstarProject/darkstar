@@ -25,13 +25,18 @@ function OnUseAbility(player, target, ability)
 
     local mugChance = 90 + thfLevel - target:getMainLvl();
 
-    if(target:isMob() and math.random(100) < mugChance and target:getMobMod(MOBMOD_MUG_GIL) > -1) then
-    	gil = target:getGil();
-
-        if(target:getMobMod(MOBMOD_MUG_GIL) > 0) then
-            local range = target:getMobMod(MOBMOD_MUG_GIL);
-            -- remove 1-10% of total
-            gil = range - (range * (math.random(1,10) / 100));
+    if(target:isMob() and math.random(100) < mugChance and target:getMobMod(MOBMOD_MUG_GIL) > 0) then
+        local purse = target:getMobMod(MOBMOD_MUG_GIL);
+        local fatpurse = target:getGil();
+        gil = fatpurse / (8 + math.random(0,8));
+        if(gil == 0) then
+            gil = fatpurse / 2;
+        end
+        if(gil == 0) then
+            gil = fatpurse;
+        end
+        if(gil > purse) then
+            gil = purse;
         end
 
         if(gil <= 0) then
@@ -42,7 +47,7 @@ function OnUseAbility(player, target, ability)
             end
 
             player:addGil(gil);
-
+            target:setMobMod(MOBMOD_MUG_GIL, target:getMobMod(MOBMOD_MUG_GIL) - gil);
             ability:setMsg(129);
         end
     else
