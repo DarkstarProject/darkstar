@@ -757,13 +757,6 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
 		PMob->setMobMod(MOBMOD_GIL_MAX, -1);
 		PMob->setMobMod(MOBMOD_MUG_GIL, -1);
 	}
-	else if(PMob->getMobMod(MOBMOD_MUG_GIL) == 0)
-	{
-	    uint32 purse = PMob->GetRandomGil() / (4+(rand()%3));
-	    if(purse == 0)
-	        purse = PMob->GetRandomGil();
-	    PMob->setMobMod(MOBMOD_MUG_GIL, purse);
-	}
 
 	// add two hours
 	// this mod should be added to all NMs that two hour.

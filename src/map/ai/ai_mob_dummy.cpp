@@ -622,6 +622,14 @@ void CAIMobDummy::ActionSpawn()
 
 		mobutils::CalculateStats(m_PMob);
 		mobutils::GetAvailableSpells(m_PMob);
+		
+		if(m_PMob->getMobMod(MOBMOD_MUG_GIL) == 0)
+		{
+		    uint32 purse = m_PMob->GetRandomGil() / (4+(rand()%3));
+		    if(purse == 0)
+		        purse = m_PMob->GetRandomGil();
+		    m_PMob->setMobMod(MOBMOD_MUG_GIL, purse);
+		}
 
 		// get my special skill
 		if(m_PMob->getMobMod(MOBMOD_SPECIAL_SKILL))
