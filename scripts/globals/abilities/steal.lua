@@ -62,6 +62,7 @@ function OnUseAbility(player, target, ability)
 		end
 	
 		player:addItem(stolen);
+		target:setStolen();
 		ability:setMsg(125); -- Item stolen successfully
 	else
 		ability:setMsg(153); -- Failed to steal

@@ -200,12 +200,17 @@ namespace instanceutils{
 		{
 			// survive for 5 mins
 			if(instance->getPlayerMainJob() == JOB_WHM && (tick - instance->fightTick) > 5 * 60 * 1000)
-			{
 				return true;
-			}
 
-			if((instance->m_RuleMask & RULES_MAAT) && instance->isEnemyBelowHPP(10)){
+			if(instance->isEnemyBelowHPP(10))
 				return true;
+			
+			if(instance->getPlayerMainJob() == JOB_THF && instance->m_MobList[0]->m_ItemStolen) //thf can win by stealing from maat only if maat not previously defeated
+			{
+			    const int8* fmtQuery = "SELECT value FROM char_vars WHERE charid = %u AND varname = '%s' LIMIT 1;";
+			    int32 ret = Sql_Query(SqlHandle,fmtQuery,instance->m_PlayerList.at(0)->id, "maatDefeated");
+			    if(ret <= 0)
+			        return true;
 			}
 		}
 
