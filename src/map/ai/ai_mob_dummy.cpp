@@ -599,6 +599,7 @@ void CAIMobDummy::ActionSpawn()
 		m_PMob->m_HiPCLvl = 0;
 		m_PMob->m_THLvl = 0;
 		m_PMob->m_THPCID = 0;
+		m_PMob->m_ItemStolen = 0;
         m_PMob->m_DropItemTime = 1000;
 		m_PMob->status = STATUS_UPDATE;
 		m_PMob->animation = ANIMATION_NONE;

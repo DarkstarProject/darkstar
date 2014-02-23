@@ -32235,6 +32235,7 @@ INSERT INTO `mob_droplist` VALUES(4484, 0, 17134, 3);
 INSERT INTO `mob_droplist` VALUES(4484, 0, 575, 20);
 INSERT INTO `mob_droplist` VALUES(4484, 0, 572, 11);
 INSERT INTO `mob_droplist` VALUES(4484, 0, 953, 36);
+INSERT INTO `mob_droplist` VALUES(4485, 2, 4181, 0); -- Created specifically for Maat fight, gives him his warp scroll
 
 
 
