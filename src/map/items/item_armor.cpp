@@ -177,7 +177,7 @@ void CItemArmor::addModifier(CModifier* modifier)
 			case 2: pdt += 40; break; // Round  40%
 			case 3: pdt += 50; break; // Kite   50%
 			case 4: pdt += 55; break; // Tower  55%
-			case 5: pdt += 60; break; // Aegis  60%
+			case 5: pdt += 75; break; // Aegis  75%
 		}
         m_absorption = dsp_min(pdt,100);
     }

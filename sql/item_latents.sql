@@ -1810,7 +1810,7 @@ INSERT INTO `item_latents` VALUES(14806, 4, 40, 43, 1); -- convmptohp 40 in area
 -- -------------------------------------------------------
 -- Resentment Cape
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(15468, 163, -5, 43, 1); -- magic damge taken -5 in areas outside own nation's control
+INSERT INTO `item_latents` VALUES(15468, 163, -12, 43, 1); -- magic damge taken -5% (-12 = 5%(5/100)*256) ( in areas outside own nation's control
 
 
 
