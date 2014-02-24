@@ -130,6 +130,8 @@ public:
 
   uint16 m_roamFlags; // defines its roaming behaviour
   uint8 m_specialFlags; // flags for special skill
+  
+  bool      m_StatPoppedMobs;   // true if dyna statue has popped mobs
 
   // stat ranks
   uint8        strRank;
