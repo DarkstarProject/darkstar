@@ -97,6 +97,9 @@ CMobEntity::CMobEntity()
     m_SpellListContainer = NULL;
     PEnmityContainer = new CEnmityContainer(this);
     SpellContainer = new CMobSpellContainer(this);
+	
+	// For Dyna Stats
+	m_StatPoppedMobs = false;
 }
 
 CMobEntity::~CMobEntity()

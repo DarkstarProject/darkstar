@@ -6557,6 +6557,29 @@ inline int32 CLuaBaseEntity::isInDynamis(lua_State *L)
 	return 1;
 }
 
+inline int32 CLuaBaseEntity::setStatPoppedMobs(lua_State *L)
+{
+
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+    if (!lua_isnil(L,1) && lua_isboolean(L,1))
+        ((CMobEntity*)m_PBaseEntity)->m_StatPoppedMobs = true;
+    else
+        ((CMobEntity*)m_PBaseEntity)->m_StatPoppedMobs = false;
+    return 0;
+}
+
+inline int32 CLuaBaseEntity::getStatPoppedMobs(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+    bool isPopped = ((CMobEntity*)m_PBaseEntity)->m_StatPoppedMobs;
+    lua_pushboolean(L, isPopped);
+    return 1;
+}
+
 /************************************************************************
 *                                                                       *
 *  Check if mob is in battlefield list									*
@@ -8513,6 +8536,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTimeToDynamis),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,launchDynamisSecondPart),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isInDynamis),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStatPoppedMobs),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setStatPoppedMobs),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isInBattlefieldList),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addInBattlefieldList),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPlayerToSpecialInstance),
