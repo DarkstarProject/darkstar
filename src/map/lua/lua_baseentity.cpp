@@ -3186,7 +3186,6 @@ inline int32 CLuaBaseEntity::getGil(lua_State *L)
 	}
 	if(m_PBaseEntity->objtype == TYPE_MOB)
 	{
-		// TODO: Mobs should have a gil pool, until implemented mob can be mugged unlimited times.
 		CMobEntity * PMob = (CMobEntity*)m_PBaseEntity;
 		if(PMob->m_EcoSystem == SYSTEM_BEASTMEN || PMob->m_Type & MOBTYPE_NOTORIOUS)
 		{
@@ -7208,7 +7207,7 @@ inline int32 CLuaBaseEntity::getStealItem(lua_State *L)
 
 	DropList_t* DropList = itemutils::GetDropList(((CMobEntity*)m_PBaseEntity)->m_DropID);
 
-	if (DropList != NULL && DropList->size())
+	if ( !(((CMobEntity*)m_PBaseEntity)->m_ItemStolen) && (DropList != NULL && DropList->size()))
 	{
 		for(uint8 i = 0; i < DropList->size(); ++i)
 		{
@@ -7221,6 +7220,16 @@ inline int32 CLuaBaseEntity::getStealItem(lua_State *L)
 	}
     lua_pushinteger(L, 0);
 	return 1;
+}
+
+inline int32 CLuaBaseEntity::itemStolen(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+    
+    ((CMobEntity*)m_PBaseEntity)->m_ItemStolen = true;
+    lua_pushboolean(L, 1);
+    return 1;
 }
 
 //==========================================================//
@@ -8507,6 +8516,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAngle),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideNPC),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStealItem),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,itemStolen),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBCNMloot),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getDynamisUniqueID),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPlayerToDynamis),
