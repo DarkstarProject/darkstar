@@ -410,7 +410,7 @@ public:
     int32 getAngle(lua_State* L);           // return angle (rot) between two points (vector from a to b)
 	int32 isTrickAttackAvailable(lua_State*);//true if TA target is available
 	int32 getStealItem(lua_State*);			// gets ItemID of droplist steal item from mob
-	int32 setStolen(lua_State*);			// sets mob's ItemStolen var = 1
+	int32 itemStolen(lua_State*);			// sets mob's ItemStolen var = true
 
     int32 openDoor(lua_State*);             // открываем дверь
 	int32 closeDoor(lua_State*);		// npc.closeDoor(timeToStayClosed)

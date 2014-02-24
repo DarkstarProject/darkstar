@@ -7222,12 +7222,12 @@ inline int32 CLuaBaseEntity::getStealItem(lua_State *L)
 	return 1;
 }
 
-inline int32 CLuaBaseEntity::setStolen(lua_State *L)
+inline int32 CLuaBaseEntity::itemStolen(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
     
-    ((CMobEntity*)m_PBaseEntity)->m_ItemStolen = 1;
+    ((CMobEntity*)m_PBaseEntity)->m_ItemStolen = true;
     lua_pushboolean(L, 1);
     return 1;
 }
@@ -8516,7 +8516,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAngle),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideNPC),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStealItem),
-	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setStolen),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,itemStolen),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBCNMloot),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getDynamisUniqueID),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPlayerToDynamis),
