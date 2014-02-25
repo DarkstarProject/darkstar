@@ -526,6 +526,13 @@ void CAIMobDummy::ActionDeath()
 
 		m_ActionType = ACTION_FADE_OUT;
 		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CFadeOutPacket(m_PMob));
+		
+		CZone* zone = (CZone*)m_PMob->loc.zone;
+		if (zone->GetType() == ZONETYPE_DYNAMIS)
+		{
+		    m_PMob->m_StatPoppedMobs = false;
+		}
+		
 		//if (m_PMob->animationsub == 2) m_PMob->animationsub = 1;
 	}
 
@@ -569,6 +576,12 @@ void CAIMobDummy::ActionDespawn()
 	if(m_ActionType == ACTION_SPAWN)
 	{
 		m_ActionType = ACTION_NONE;
+	}
+	
+	CZone* zone = (CZone*)m_PMob->loc.zone;
+	if (zone->GetType() == ZONETYPE_DYNAMIS)
+	{
+	    m_PMob->m_StatPoppedMobs = false;
 	}
 }
 
@@ -663,6 +676,13 @@ void CAIMobDummy::ActionSpawn()
 			}
 		}
 
+		// used for dynamis stat-spawned mobs
+		CZone* zone = (CZone*)m_PMob->loc.zone;
+		if (zone->GetType() == ZONETYPE_DYNAMIS)
+		{
+		    m_PMob->m_StatPoppedMobs = false;
+		}
+		
         luautils::OnMobSpawn( m_PMob );
 
 		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_SPAWN));
@@ -2171,6 +2191,12 @@ void CAIMobDummy::SetupEngage()
 	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
     m_PMob->m_extraVar = 0;
 
+	CZone* zone = (CZone*)m_PMob->loc.zone;
+	if((zone->GetType() == ZONETYPE_DYNAMIS) && (m_PBattleTarget == NULL))
+	{
+	    m_PMob->m_StatPoppedMobs = false;
+	}
+	
 	if(m_PBattleTarget != NULL)
 	{
         // clear the ActionQueue
