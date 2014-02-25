@@ -23,28 +23,6 @@ CREATE TABLE IF NOT EXISTS `item_latents` (
 
 -- INSERT INTO `item_latents` VALUES(itemID, modId, modValue, latentId, latentParam);
 
--- Brisingamen+1 stats need to be found on retail so they can be corrected
-INSERT INTO `item_latents` VALUES(13162, 2, 10, 26, 0); -- Brisingamen +1, HP+10 if Daytime (needs HQ stats)
-INSERT INTO `item_latents` VALUES(13162, 5, 10, 26, 1); -- Brisingamen +1, MP+10 if Nighttime (needs HQ stats)
-INSERT INTO `item_latents` VALUES(13162, 8, 5, 28, 0);  -- Brisingamen +1, STR+5 if Firesday (needs HQ stats)
-INSERT INTO `item_latents` VALUES(13162, 10, 5, 29, 0); -- Brisingamen +1, VIT+5 if Earthsday (needs HQ stats)
-INSERT INTO `item_latents` VALUES(13162, 13, 5, 30, 0); -- Brisingamen +1, MND+5 if Watersday (needs HQ stats)
-INSERT INTO `item_latents` VALUES(13162, 11, 5, 31, 0); -- Brisingamen +1, AGI+5 if Windsday (needs HQ stats)
-INSERT INTO `item_latents` VALUES(13162, 12, 5, 34, 0); -- Brisingamen +1, INT+5 if Iceday (needs HQ stats)
-INSERT INTO `item_latents` VALUES(13162, 9, 5, 35, 0);  -- Brisingamen +1, DEX+5 if Lightningsday (needs HQ stats)
-INSERT INTO `item_latents` VALUES(13162, 14, 5, 36, 0); -- Brisingamen +1, CHR+5 if Lightsday (needs HQ stats)
-
-INSERT INTO `item_latents` VALUES(13097, 2, 10, 26, 0); -- Brisingamen, HP+10 if Daytime
-INSERT INTO `item_latents` VALUES(13097, 5, 10, 26, 1); -- Brisingamen, MP+10 if Nighttime
-INSERT INTO `item_latents` VALUES(13097, 8, 5, 28, 0);  -- Brisingamen, STR+5 if Firesday
-INSERT INTO `item_latents` VALUES(13097, 10, 5, 29, 0); -- Brisingamen, VIT+5 if Earthsday
-INSERT INTO `item_latents` VALUES(13097, 13, 5, 30, 0); -- Brisingamen, MND+5 if Watersday
-INSERT INTO `item_latents` VALUES(13097, 11, 5, 31, 0); -- Brisingamen, AGI+5 if Windsday
-INSERT INTO `item_latents` VALUES(13097, 12, 5, 34, 0); -- Brisingamen, INT+5 if Iceday
-INSERT INTO `item_latents` VALUES(13097, 9, 5, 35, 0);  -- Brisingamen, DEX+5 if Lightningsday
-INSERT INTO `item_latents` VALUES(13097, 14, 5, 36, 0); -- Brisingamen, CHR+5 if Lightsday
-
-INSERT INTO `item_latents` VALUES(14288, 7, 20, 26, 0); -- Clowns Subligar, Converts 20HP to MP from 17:00 to 7:00
 
 INSERT INTO `item_latents` VALUES(16031, 314, 1, 22, 18); -- Affinity Earring, Enhances Pet Att. if PUP is in party
 INSERT INTO `item_latents` VALUES(16017, 28, 1, 22, 4); -- Ardent Earring, MATT+1 if BLM is in party
@@ -1325,24 +1303,18 @@ INSERT INTO `item_latents` VALUES(14783, 8, 4, 26, 1); -- STR+4 during Nighttime
 INSERT INTO `item_latents` VALUES(14783, 10, 4, 26, 1); -- VIT+4 during Nighttime
 
 -- -------------------------------------------------------
--- Ladybug Earring           
+-- Ladybug Earring / Ladybug Earring +1
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15996, 24, 3, 26, 0); -- Ranged Attack+3 during Daytime
 
--- -------------------------------------------------------
--- Ladybug Earring +1        
--- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15997, 24, 4, 26, 0); -- Ranged Attack+4 during Daytime
 
 -- -------------------------------------------------------
--- Ladybug Ring             
+-- Ladybug Ring / Ladybug Ring +1
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15815, 2, 20, 26, 0); -- HP+20 during Daytime
 INSERT INTO `item_latents` VALUES(15815, 5, 20, 26, 0); -- MP+20 during Daytime
 
--- -------------------------------------------------------
--- Ladybug Ring +1        
--- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15816, 2, 20, 26, 0); -- HP+20 during Daytime
 INSERT INTO `item_latents` VALUES(15816, 5, 20, 26, 0); -- MP+20 during Daytime
 
@@ -1810,7 +1782,7 @@ INSERT INTO `item_latents` VALUES(14806, 4, 40, 43, 1); -- convmptohp 40 in area
 -- -------------------------------------------------------
 -- Resentment Cape
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(15468, 163, -5, 43, 1); -- magic damge taken -5 in areas outside own nation's control
+INSERT INTO `item_latents` VALUES(15468, 163, -12, 43, 1); -- magic damge taken -5% (-12 = 5%(5/100)*256) ( in areas outside own nation's control
 
 
 
@@ -2131,11 +2103,162 @@ INSERT INTO `item_latents` VALUES(12374, 7, 15, 43, 0); -- HPconvMP +15 in areas
 INSERT INTO `item_latents` VALUES(13899, 3, 15, 43, 0); -- MATT +3 in areas inside own nation's control
 INSERT INTO `item_latents` VALUES(13900, 5, 15, 43, 0); -- MATT +5 in areas inside own nation's control
 
+-- -------------------------------------------------------
+-- Arco de Velocidad
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(17165, 370, 1, 26, 0); -- Daytime: Regen +1HP/tick
+
+-- -------------------------------------------------------
+-- Brisingamen / Brisingamen +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13097, 2, 10, 26, 0); -- Daytime: HP +10
+INSERT INTO `item_latents` VALUES(13097, 5, 10, 26, 1); -- Nighttime: MP +10
+INSERT INTO `item_latents` VALUES(13097, 8, 5, 28, 0);  -- Firesday: STR +5
+INSERT INTO `item_latents` VALUES(13097, 10, 5, 29, 0); -- Earthsday: VIT +5
+INSERT INTO `item_latents` VALUES(13097, 13, 5, 30, 0); -- Watersday: MND +5
+INSERT INTO `item_latents` VALUES(13097, 11, 5, 31, 0); -- Windsday: AGI +5
+INSERT INTO `item_latents` VALUES(13097, 12, 5, 34, 0); -- Iceday: INT +5
+INSERT INTO `item_latents` VALUES(13097, 9, 5, 35, 0);  -- Lightningsday: DEX +5
+INSERT INTO `item_latents` VALUES(13097, 14, 5, 36, 0); -- Lightsday: CHR +5
+
+-- Brisingamen+1 stats need to be found on retail so they can be corrected
+INSERT INTO `item_latents` VALUES(13162, 2, 10, 26, 0); -- Daytime: HP +10 (needs HQ stats)
+INSERT INTO `item_latents` VALUES(13162, 5, 10, 26, 1); -- Nighttime: MP +10 (needs HQ stats)
+INSERT INTO `item_latents` VALUES(13162, 8, 5, 28, 0);  -- Firesday: STR +5 (needs HQ stats)
+INSERT INTO `item_latents` VALUES(13162, 10, 5, 29, 0); -- Earthsday: VIT +5 (needs HQ stats)
+INSERT INTO `item_latents` VALUES(13162, 13, 5, 30, 0); -- Watersday: MND +5 (needs HQ stats)
+INSERT INTO `item_latents` VALUES(13162, 11, 5, 31, 0); -- Windsday: AGI +5 (needs HQ stats)
+INSERT INTO `item_latents` VALUES(13162, 12, 5, 34, 0); -- Iceday: INT +5 (needs HQ stats)
+INSERT INTO `item_latents` VALUES(13162, 9, 5, 35, 0);  -- Lightningsday: DEX +5 (needs HQ stats)
+INSERT INTO `item_latents` VALUES(13162, 14, 5, 36, 0); -- Lightsday: CHR +5 (needs HQ stats)
+
+-- -------------------------------------------------------
+-- Clowns Subligar / Clowns Subligar +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(14288, 4, 20, 26, 0); -- Daytime: Converts 20MP to HP
+INSERT INTO `item_latents` VALUES(14288, 7, 20, 26, 1); -- Nighttime: Converts 20HP to MP
+
+INSERT INTO `item_latents` VALUES(14289, 4, 25, 26, 0); -- Daytime: Converts 20MP to HP
+INSERT INTO `item_latents` VALUES(14289, 7, 25, 26, 1); -- Nighttime: Converts 20HP to MP
+
+-- -------------------------------------------------------
+-- Dandy Spectacles / Fancy Spectacles
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(16132, 25, -20, 26, 1); -- Nighttime: ACC -20
+
+INSERT INTO `item_latents` VALUES(16133, 25, -30, 26, 1); -- Nighttime: ACC -30
+
+-- -------------------------------------------------------
+-- Daylight Dagger
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(17619, 25, 12, 26, 0); -- Daytime: ACC +12
+
+-- -------------------------------------------------------
+-- Fenrir's Cape
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13572, 1, 10, 26, 0); -- Daytime: DEF +10
+INSERT INTO `item_latents` VALUES(13572, 27, 3, 26, 1); -- Nighttime: Enmity +3
+
+-- -------------------------------------------------------
+-- Fenrir's Earring
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13399, 23, 10, 26, 0); -- Daytime: ATT +10
+INSERT INTO `item_latents` VALUES(13399, 24, 10, 26, 1); -- Nighttime: RATT +10
+
+-- -------------------------------------------------------
+-- Fenrir's Torque
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13138, 5, 30, 26, 0); -- Daytime: MP +30
+INSERT INTO `item_latents` VALUES(13138, 27, -3, 26, 1); -- Nighttime: Enmity -3
+
+-- -------------------------------------------------------
+-- Garden Bangles / Feronia's Bangles
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(14065, 370, 1, 26, 0); -- Daytime: Regen +1HP/tick
+
+INSERT INTO `item_latents` VALUES(14066, 370, 1, 26, 0); -- Daytime: Regen +1HP/tick
 
 
+-- -------------------------------------------------------
+-- Louhi's Mask
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(11474, 161, -3, 26, 0); -- Daytime: Physical damage taken -3%
+INSERT INTO `item_latents` VALUES(11474, 163, -3, 26, 1); -- Nighttime: Magic damage taken -3%
 
+-- -------------------------------------------------------
+-- Lycopodium Sash
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15928, 370, 1, 26, 0); -- Daytime: Regen +1HP/tick
 
+-- -------------------------------------------------------
+-- Vampire Cloak
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(14443, 370, 1, 26, 0); -- Daytime: Regen +1HP/tick
+INSERT INTO `item_latents` VALUES(14443, 369, 1, 26, 1); -- Nighttime: Refresh +1MP/tick
 
+-- -------------------------------------------------------
+-- Eerie Cloak +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(11300, 369, 1, 40, 0); -- Level multiple of 13 and Nighttime: Refresh +1MP/tick
 
+-- -------------------------------------------------------
+-- Ninja Hakama / Ninja Hakama +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(14226, 68, 10, 26, 1); -- Nighttime: EVA +10
 
+INSERT INTO `item_latents` VALUES(15573, 68, 10, 26, 2); -- Dusk - Dawn: EVA +10
 
+-- -------------------------------------------------------
+-- Koga Hatsuburi / Koga Hatsuburi +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15084, 110, 10, 26, 1); -- Nighttime: Parry +10
+
+INSERT INTO `item_latents` VALUES(15257, 110, 12, 26, 2); -- Dusk - Dawn: Parry +12
+
+-- -------------------------------------------------------
+-- Koga Hakama / Koga Hakama +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15129, 68, 10, 26, 1); -- Nighttime: EVA +10
+
+INSERT INTO `item_latents` VALUES(15592, 68, 12, 26, 2); -- Dusk - Dawn: EVA +12
+
+-- -------------------------------------------------------
+-- Nightmare Sword
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(17649, 25, 12, 26, 1); -- Nighttime: ACC +12
+
+-- -------------------------------------------------------
+-- Schwarz Axt
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(16728, 25, 10, 26, 1); -- Nighttime: ACC +10
+
+-- -------------------------------------------------------
+-- Vampire Boots
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15338, 68, 10, 26, 1); -- Nighttime: EVA +10
+
+-- -------------------------------------------------------
+-- Vampire Mask
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15197, 25, 3, 26, 1); -- Nighttime: ACC +3
+
+-- -------------------------------------------------------
+-- Koga Kyahan +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15677, 9, 7, 26, 2); -- Dusk - Dawn: DEX +7
+
+-- -------------------------------------------------------
+-- Koga Tekko +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(14921, 8, 13, 26, 2); -- Dusk - Dawn: STR +13
+INSERT INTO `item_latents` VALUES(14921, 384, 4, 26, 2); -- Dusk - Dawn: Haste +4%
+
+-- -------------------------------------------------------
+-- Ninja Kyahan +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15364, 169, 25, 26, 2); -- Dusk - Dawn: Speed + 25%
+
+-- -------------------------------------------------------
+-- Rossignol
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(18075, 8, 2, 26, 2); -- Dusk - Dawn: STR +2

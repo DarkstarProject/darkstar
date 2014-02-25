@@ -28,24 +28,26 @@ function onMobEngaged(mob,target)
 	local Z = mob:getZPos();
 	local spawnList = beaucedineHydraList;
 	
-	for nb = 1, table.getn(spawnList), 2 do
-		if(mob:getID() == spawnList[nb]) then
-			local firstHydra = spawnList[nb] - 1;
-			local lastHydra = spawnList[nb] - spawnList[nb + 1][1];
-			
-			for nbi = firstHydra, lastHydra, -1 do
-				if((nbi % 2) == 0) then X=X+2; Z=Z+2; else X=X-2; Z=Z-2; end
+	if(mob:getStatPoppedMobs() == false) then
+		mob:setStatPoppedMobs(true);
+		for nb = 1, table.getn(spawnList), 2 do
+			if(mob:getID() == spawnList[nb]) then
+				local firstHydra = spawnList[nb] - 1;
+				local lastHydra = spawnList[nb] - spawnList[nb + 1][1];
 				
-				if(GetMobAction(nbi) == 0) then
-					-- Spawn Mob
-					SpawnMob(nbi):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
-					GetMobByID(nbi):setPos(X,Y,Z);
-					GetMobByID(nbi):setSpawn(X,Y,Z);
+				for nbi = firstHydra, lastHydra, -1 do
+					if((nbi % 2) == 0) then X=X+2; Z=Z+2; else X=X-2; Z=Z-2; end
+					
+					if(GetMobAction(nbi) == 0) then
+						-- Spawn Mob
+						SpawnMob(nbi):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+						GetMobByID(nbi):setPos(X,Y,Z);
+						GetMobByID(nbi):setSpawn(X,Y,Z);
+					end
 				end
 			end
 		end
 	end
-	
 end;
 
 -----------------------------------

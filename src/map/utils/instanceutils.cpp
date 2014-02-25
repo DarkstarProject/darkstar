@@ -117,6 +117,7 @@ namespace instanceutils{
 
 							if(strcmp(PMob->GetName(),"Maat")==0){
 								mobutils::SetupMaat(PMob, (JOBTYPE)instance->getPlayerMainJob());
+								PMob->m_DropID = 4485; //Give Maat his stealable Warp Scroll 
 
 								// disable players subjob
 								instance->disableSubJob();
@@ -200,12 +201,24 @@ namespace instanceutils{
 		{
 			// survive for 5 mins
 			if(instance->getPlayerMainJob() == JOB_WHM && (tick - instance->fightTick) > 5 * 60 * 1000)
-			{
 				return true;
-			}
 
-			if((instance->m_RuleMask & RULES_MAAT) && instance->isEnemyBelowHPP(10)){
+			if(instance->isEnemyBelowHPP(10))
 				return true;
+			
+			
+			if(instance->getPlayerMainJob() == JOB_THF && instance->m_EnemyList.at(0)->m_ItemStolen) //thf can win by stealing from maat only if maat not previously defeated
+			{
+			    const int8* fmtQuery = "SELECT value FROM char_vars WHERE charid = %u AND varname = '%s' LIMIT 1;";
+			    int32 ret = Sql_Query(SqlHandle,fmtQuery,instance->m_PlayerList.at(0)->id, "maatDefeated");
+			    if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 0)
+			        return true;
+			    else if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+			    {
+			        int16 value = (int16)Sql_GetIntData(SqlHandle,0);
+			        if(value <= 0)
+			            return true;
+			    }
 			}
 		}
 

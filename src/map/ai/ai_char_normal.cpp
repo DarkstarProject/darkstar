@@ -2305,19 +2305,18 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
 		{
 			m_PChar->addTP(-100);
-			m_PChar->PLatentEffectContainer->CheckLatentsTP(m_PChar->health.tp);
 		}
 		else if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SEKKANOKI))
 		{
 			m_PChar->addTP(-100);
 			m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SEKKANOKI);
-			m_PChar->PLatentEffectContainer->CheckLatentsTP(m_PChar->health.tp);
 		}
 		else
 		{
 			m_PChar->health.tp = 0;
 		}
 
+        m_PChar->PLatentEffectContainer->CheckLatentsTP(m_PChar->health.tp);
     	TransitionBack();
     	return;
     }
@@ -2419,19 +2418,18 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
 	{
 		m_PChar->addTP(-100 - bonusTp);
-		m_PChar->PLatentEffectContainer->CheckLatentsTP(m_PChar->health.tp);
 	}
 	else if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SEKKANOKI))
 	{
 		m_PChar->addTP(-100 - bonusTp);
 		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SEKKANOKI);
-		m_PChar->PLatentEffectContainer->CheckLatentsTP(m_PChar->health.tp);
 	}
 	else
 	{
 		m_PChar->health.tp = 0;
 	}
 
+    m_PChar->PLatentEffectContainer->CheckLatentsTP(m_PChar->health.tp);
 
 	//incase a TA party member is available
 	CBattleEntity* taChar = NULL;

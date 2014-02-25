@@ -131,6 +131,8 @@ public:
   uint16 m_roamFlags; // defines its roaming behaviour
   uint8 m_specialFlags; // flags for special skill
 
+  bool m_StatPoppedMobs; // true if dyna statue has popped mobs
+  
   // stat ranks
   uint8        strRank;
   uint8        dexRank;
@@ -165,6 +167,7 @@ public:
 	uint8       m_HiPCLvl;							// Highest Level of Player Character that hit the Monster
 	uint8       m_THLvl;							// Highest Level of Treasure Hunter that apply to drops
 	uint32		m_THPCID;							// ID of last PC that hit the NPC and apply TH onto the NPC
+	bool        m_ItemStolen;                       // if true, mob has already been robbed. reset on respawn. also used for thf maat fight
 	uint16		m_Family;
   uint32    m_Pool;               // pool the mob came from
 	CMobSpellList*      m_SpellListContainer;				// The spells list container for this mob
@@ -199,7 +202,6 @@ public:
   bool        CanRoam(); // check if mob can walk around
   bool        CanLink(position_t* pos, int16 superLink = 0);
   bool        CanDropGil(); // mob has gil to drop
-  bool        CanMug(); // not every mob with gil can be mugged // TODO implement
 
   CMobSpellContainer* SpellContainer;   // retrieves spells for the mob
   uint8		m_HasSpellScript;					// 1 if they have a spell script to use for working out what to cast.
