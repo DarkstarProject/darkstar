@@ -13,7 +13,7 @@ end;
 
 function onSpellCast(caster,target,spell)
 	spell:setMsg(93);
-	caster:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_ESCAPE,0,4);
+	target:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_ESCAPE,0,4);
 	--Escape(target, target:getZone());
 
 	return 0;

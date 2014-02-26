@@ -13,7 +13,6 @@ cmdprops =
 function onTrigger(player, amount)
     if (amount == nil) then
         player:PrintToPlayer("You must enter a valid amount id.");
-        end
     end
     player:setGil( amount );
-end
+end;

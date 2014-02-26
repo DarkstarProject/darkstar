@@ -29,7 +29,12 @@ validThfQuestMobs = {17379367,17379368,17379459,17379470,17379477,17379489,17379
 -----------------------------------
 
 function OnAbilityCheck(player,target,ability)
-	return 0,0;
+
+	if (player:getFreeSlotsCount() == 0) then
+		return MSGBASIC_FULL_INVENTORY,0;
+	else
+		return 0,0;
+	end
 end;
 
 function OnUseAbility(player, target, ability)
@@ -50,23 +55,21 @@ function OnUseAbility(player, target, ability)
 
 	local stealChance = 50 + stealMod * 2 + thfLevel - target:getMainLvl();
 
-	if(target:isMob() and math.random(100) < stealChance) then
-		stolen = target:getStealItem();
-
+	stolen = target:getStealItem();
+	if(target:isMob() and math.random(100) < stealChance and stolen ~= 0) then
 		if (checkThfAfQuest(player, target) == true) then
 			stolen = 4569;
 		end
-
+	
 		player:addItem(stolen);
-		ability:setMsg(125);
+		target:itemStolen();
+		ability:setMsg(125); -- Item stolen successfully
 	else
-		ability:setMsg(153);
+		ability:setMsg(153); -- Failed to steal
 	end
 
 	return stolen;
 end;
-
-
 
 
 function checkThfAfQuest(player, target)

@@ -26,7 +26,7 @@ function onMobDeath(mob,killer)
 
             -- printf("EnE window open");
             -- Give Magmatic Eruca 10 percent chance to pop EnE
-            if (math.random(1,10) >= 1) then
+            if (math.random(1,10) == 5) then
                 -- printf("EnE will pop");
                 UpdateNMSpawnPoint(Energetic_Eruca);
                 GetMobByID(Energetic_Eruca):setRespawnTime(GetMobRespawnTime(mob));

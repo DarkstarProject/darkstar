@@ -593,8 +593,9 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->m_maxRoamDistance = 0.5f;
 	}
 
-	if(zoneType == ZONETYPE_BATTLEFIELD)
+	if((zoneType == ZONETYPE_BATTLEFIELD) && (PMob->m_bcnmID != 864) && (PMob->m_bcnmID != 704))
 	{
+		// bcnmID 864 (desires of emptiness) and 704 (darkness named) don't superlink
 		// force all mobs in same instance to superlink
 		// plus one in case id is zero
 		PMob->setMobMod(MOBMOD_SUPERLINK, PMob->m_instanceID);

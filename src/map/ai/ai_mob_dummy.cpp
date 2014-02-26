@@ -526,6 +526,13 @@ void CAIMobDummy::ActionDeath()
 
 		m_ActionType = ACTION_FADE_OUT;
 		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CFadeOutPacket(m_PMob));
+		
+		CZone* zone = (CZone*)m_PMob->loc.zone;
+		if (zone->GetType() == ZONETYPE_DYNAMIS)
+		{
+		    m_PMob->m_StatPoppedMobs = false;
+		}
+		
 		//if (m_PMob->animationsub == 2) m_PMob->animationsub = 1;
 	}
 
@@ -570,6 +577,12 @@ void CAIMobDummy::ActionDespawn()
 	{
 		m_ActionType = ACTION_NONE;
 	}
+	
+	CZone* zone = (CZone*)m_PMob->loc.zone;
+	if (zone->GetType() == ZONETYPE_DYNAMIS)
+	{
+	    m_PMob->m_StatPoppedMobs = false;
+	}
 }
 
 /************************************************************************
@@ -599,6 +612,7 @@ void CAIMobDummy::ActionSpawn()
 		m_PMob->m_HiPCLvl = 0;
 		m_PMob->m_THLvl = 0;
 		m_PMob->m_THPCID = 0;
+		m_PMob->m_ItemStolen = false;
         m_PMob->m_DropItemTime = 1000;
 		m_PMob->status = STATUS_UPDATE;
 		m_PMob->animation = ANIMATION_NONE;
@@ -622,6 +636,14 @@ void CAIMobDummy::ActionSpawn()
 
 		mobutils::CalculateStats(m_PMob);
 		mobutils::GetAvailableSpells(m_PMob);
+		
+		if(m_PMob->getMobMod(MOBMOD_MUG_GIL) == 0)
+		{
+		    uint32 purse = m_PMob->GetRandomGil() / (4+(rand()%3));
+		    if(purse == 0)
+		        purse = m_PMob->GetRandomGil();
+		    m_PMob->setMobMod(MOBMOD_MUG_GIL, purse);
+		}
 
 		// get my special skill
 		if(m_PMob->getMobMod(MOBMOD_SPECIAL_SKILL))
@@ -654,6 +676,13 @@ void CAIMobDummy::ActionSpawn()
 			}
 		}
 
+		// used for dynamis stat-spawned mobs
+		CZone* zone = (CZone*)m_PMob->loc.zone;
+		if (zone->GetType() == ZONETYPE_DYNAMIS)
+		{
+		    m_PMob->m_StatPoppedMobs = false;
+		}
+		
         luautils::OnMobSpawn( m_PMob );
 
 		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_SPAWN));
@@ -2162,6 +2191,12 @@ void CAIMobDummy::SetupEngage()
 	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
     m_PMob->m_extraVar = 0;
 
+	CZone* zone = (CZone*)m_PMob->loc.zone;
+	if((zone->GetType() == ZONETYPE_DYNAMIS) && (m_PBattleTarget == NULL))
+	{
+	    m_PMob->m_StatPoppedMobs = false;
+	}
+	
 	if(m_PBattleTarget != NULL)
 	{
         // clear the ActionQueue

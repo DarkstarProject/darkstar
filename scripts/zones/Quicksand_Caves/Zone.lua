@@ -7,9 +7,10 @@ package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/keyitems");
 require("scripts/zones/Quicksand_Caves/TextIDs");
 
-base_id = 0x010D01EF; -- 17629678
+base_id = 17629680;
 
 -----------------------------------
 -- onInitialize
@@ -106,7 +107,7 @@ function onRegionEnter(player,region)
 		elseif(race == 5 or race == 6) then -- Taru male or female
 			weight = 1;
 		else -- Hume/Elvaan/Mithra
-			weight = 1.5;
+			weight = 2;
 		end
 		
 		local varname = "[DOOR]Weight_Sensor_"..RegionID;
@@ -114,7 +115,7 @@ function onRegionEnter(player,region)
 		w = w + weight;
 		SetServerVariable(varname,w);
 		
-		if(w >= 2.5) then
+		if(player:hasKeyItem(2051) or w >= 3) then
 			local door = GetNPCByID(base_id + RegionID - 1);
 			door:openDoor(15); -- open door with a 15 second time delay.
 			--platform = GetNPCByID(base_id + RegionID + 1);
@@ -141,7 +142,7 @@ function onRegionLeave(player,region)
 		elseif(race == 5 or race == 6) then -- Taru male or female
 			weight = 1;
 		else -- Hume/Elvaan/Mithra
-			weight = 1.5;
+			weight = 2;
 		end;
 		local varname = "[DOOR]Weight_Sensor_"..RegionID;
 		w = GetServerVariable(varname);
@@ -149,7 +150,7 @@ function onRegionLeave(player,region)
 		w = w - weight;
 		SetServerVariable(varname,w);
 		
-		if(lastWeight >= 2.5 and w < 2.5) then
+		if(lastWeight >= 3 and w < 3) then
 			--platform = GetNPCByID(base_id + RegionID + 1);
 			--platform:setAnimation(9);
 		end

@@ -56,7 +56,7 @@ INSERT INTO `elevators` VALUES ('20', 'Pso\'Xja_Dspprng_Tls_2', '16814516', '0',
 INSERT INTO `elevators` VALUES ('21', 'Fort_Ghelsba_Elvtr', '17354988', '17354990', '17354989', '0', '0');
 INSERT INTO `elevators` VALUES ('22', 'Palborough_Mines_Elvtr', '17363339', '17363333', '17363332', '0', '0');
 INSERT INTO `elevators` VALUES ('23', 'Davoi_Elvtr', '17387993', '17387996', '17387994', '0', '0');
-INSERT INTO `elevators` VALUES ('24', 'Kuftal_Tunnel_Dspprng_Rck', '17490274', '0', '0', '1', '1');
-INSERT INTO `elevators` VALUES ('25', 'Port_Bastok_Drwbrdg', '17743958', '17743959', '17743960', '1', '1');
+INSERT INTO `elevators` VALUES ('24', 'Kuftal_Tunnel_Dspprng_Rck', '17490275', '0', '0', '1', '1');
+INSERT INTO `elevators` VALUES ('25', 'Port_Bastok_Drwbrdg', '17743962', '17743963', '17743964', '1', '1');
 INSERT INTO `elevators` VALUES ('26', 'Metalworks_Elvtr_1', '17748035', '17748036', '17748037', '1', '1');
 INSERT INTO `elevators` VALUES ('27', 'Metalworks_Elvtr_2', '17748038', '17748039', '17748040', '1', '1');

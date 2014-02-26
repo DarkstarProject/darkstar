@@ -1,5 +1,5 @@
 -----------------------------------
--- Ability: Divine Waltz
+-- Ability: Healing Waltz
 -----------------------------------
  
 require("scripts/globals/settings");
@@ -21,5 +21,14 @@ function OnAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-	target:healingWaltz();	
+
+	local effect = target:healingWaltz();
+
+    if(effect == EFFECT_NONE) then
+        ability:setMsg(283); -- no effect
+    else
+        ability:setMsg(123);
+    end
+
+    return effect;
 end;

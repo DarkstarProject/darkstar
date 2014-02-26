@@ -1,14 +1,13 @@
 -----------------------------------
 --  Area: Port Bastok
---   NPC: Klaus
+--  NPC:  Klaus
 --  Type: Standard NPC
--- @zone: 236
---  @pos -89.355 -3.611 -15.256
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+--  @pos -89.355 -3.611 -15.256 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/Port_Bastok/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -22,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x013d);
+	player:messageSpecial(KLAUS_DIALOG); 
 end;
 
 -----------------------------------
