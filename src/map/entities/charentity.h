@@ -224,6 +224,7 @@ struct currency_t
     uint8 cavepoints, idtags, opcredits;
     uint32 traverserstones, voidstones, kupofriedcorundums;
     uint8 imprimaturs, pheromonesacks;
+	uint16 pulchridoptwings;
 };
 
 /************************************************************************

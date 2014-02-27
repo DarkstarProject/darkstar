@@ -721,23 +721,24 @@ void LoadChar(CCharEntity* PChar)
         PChar->m_currency.kineticunits = Sql_GetUIntData(SqlHandle, 64);
         PChar->m_currency.obsidianfragments = Sql_GetUIntData(SqlHandle, 65);
         PChar->m_currency.lebondoptwings = Sql_GetUIntData(SqlHandle, 66);
-        PChar->m_currency.mweyaplasm = Sql_GetUIntData(SqlHandle, 67);
-        PChar->m_currency.cruor = Sql_GetUIntData(SqlHandle, 68);
-        PChar->m_currency.resistancecredits = Sql_GetUIntData(SqlHandle, 69);
-        PChar->m_currency.dominionnotes = Sql_GetUIntData(SqlHandle, 70);
-        PChar->m_currency.fifthechtrophies = Sql_GetUIntData(SqlHandle, 71);
-        PChar->m_currency.fourthechtrophies = Sql_GetUIntData(SqlHandle, 72);
-        PChar->m_currency.thirdechtrophies = Sql_GetUIntData(SqlHandle, 73);
-        PChar->m_currency.secondechtrophies = Sql_GetUIntData(SqlHandle, 74);
-        PChar->m_currency.firstechtrophies = Sql_GetUIntData(SqlHandle, 75);
-        PChar->m_currency.cavepoints = Sql_GetUIntData(SqlHandle, 76);
-        PChar->m_currency.idtags = Sql_GetUIntData(SqlHandle, 77);
-        PChar->m_currency.opcredits = Sql_GetUIntData(SqlHandle, 78);
-        PChar->m_currency.traverserstones = Sql_GetUIntData(SqlHandle, 79);
-        PChar->m_currency.voidstones = Sql_GetUIntData(SqlHandle, 80);
-        PChar->m_currency.kupofriedcorundums = Sql_GetUIntData(SqlHandle, 81);
-        PChar->m_currency.imprimaturs = Sql_GetUIntData(SqlHandle, 82);
-        PChar->m_currency.pheromonesacks = Sql_GetUIntData(SqlHandle, 83);
+		PChar->m_currency.pulchridoptwings = Sql_GetUIntData(SqlHandle, 67);
+        PChar->m_currency.mweyaplasm = Sql_GetUIntData(SqlHandle, 68);
+        PChar->m_currency.cruor = Sql_GetUIntData(SqlHandle, 69);
+        PChar->m_currency.resistancecredits = Sql_GetUIntData(SqlHandle, 70);
+        PChar->m_currency.dominionnotes = Sql_GetUIntData(SqlHandle, 71);
+        PChar->m_currency.fifthechtrophies = Sql_GetUIntData(SqlHandle, 72);
+        PChar->m_currency.fourthechtrophies = Sql_GetUIntData(SqlHandle, 73);
+        PChar->m_currency.thirdechtrophies = Sql_GetUIntData(SqlHandle, 74);
+        PChar->m_currency.secondechtrophies = Sql_GetUIntData(SqlHandle, 75);
+        PChar->m_currency.firstechtrophies = Sql_GetUIntData(SqlHandle, 76);
+        PChar->m_currency.cavepoints = Sql_GetUIntData(SqlHandle, 77);
+        PChar->m_currency.idtags = Sql_GetUIntData(SqlHandle, 78);
+        PChar->m_currency.opcredits = Sql_GetUIntData(SqlHandle, 79);
+        PChar->m_currency.traverserstones = Sql_GetUIntData(SqlHandle, 80);
+        PChar->m_currency.voidstones = Sql_GetUIntData(SqlHandle, 81);
+        PChar->m_currency.kupofriedcorundums = Sql_GetUIntData(SqlHandle, 82);
+        PChar->m_currency.imprimaturs = Sql_GetUIntData(SqlHandle, 83);
+        PChar->m_currency.pheromonesacks = Sql_GetUIntData(SqlHandle, 84);
 	}
 
 	PChar->PMeritPoints = new CMeritPoints(PChar);
@@ -4028,7 +4029,7 @@ void SaveCharPoints(CCharEntity* PChar)
                             mamool_assault_point = %u, lebros_assault_point = %u, periqia_assault_point = %u, ilrusi_assault_point = %u, \
 							nyzul_isle_assault_point = %u, zeni_point = %u, jetton = %u, therion_ichor = %u, maw = %u, past_sandoria_tp = %u, \
 							past_bastok_tp = %u, past_windurst_tp = %u, allied_notes = %u, bayld = %u, kinetic_unit = %u, obsidian_fragment = %u, \
-                            lebondopt_wing = %u, mweya_plasm = %u, cruor = %u, resistance_credit = %u, dominion_note = %u, \
+                            lebondopt_wing = %u, pulchridopt_wing = %u, mweya_plasm = %u, cruor = %u, resistance_credit = %u, dominion_note = %u, \
                             fifth_echelon_trophy = %u, fourth_echelon_trophy = %u, third_echelon_trophy = %u, second_echelon_trophy = %u, \
                             first_echelon_trophy = %u, cave_points = %u, id_tags = %u, op_credits = %u, traverser_stones = %u, voidstones = %u, \
                             kupofried_corundums = %u, imprimaturs = %u, pheromone_sacks = %u \
@@ -4103,6 +4104,7 @@ void SaveCharPoints(CCharEntity* PChar)
         PChar->m_currency.kineticunits,
         PChar->m_currency.obsidianfragments,
         PChar->m_currency.lebondoptwings,
+		PChar->m_currency.pulchridoptwings,
         PChar->m_currency.mweyaplasm,
         PChar->m_currency.cruor,
         PChar->m_currency.resistancecredits,

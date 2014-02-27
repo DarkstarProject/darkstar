@@ -3,11 +3,15 @@
 -- NPC:  Golden-Tongued Culberry 
 -----------------------------------
 
+
 -----------------------------------
 -- onMobFight Action
 -----------------------------------
 
 function onMobFight(mob,target)
+    mob:SetAutoAttackEnabled(false);
+	mob:SetMobAbilityEnabled(false);
+	mob:setMobMod(MOBMOD_MAGIC_COOL, 6);
 end;
 
 -----------------------------------
