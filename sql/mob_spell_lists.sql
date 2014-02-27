@@ -1266,6 +1266,9 @@ INSERT INTO `mob_spell_lists` VALUES ('Golden_Tongued_Culberry',116,191,1,255);
 INSERT INTO `mob_spell_lists` VALUES ('Golden_Tongued_Culberry',116,196,1,255);
 INSERT INTO `mob_spell_lists` VALUES ('Golden_Tongued_Culberry',116,201,1,255);
 INSERT INTO `mob_spell_lists` VALUES ('Golden_Tongued_Culberry',116,4,1,255);
+INSERT INTO `mob_spell_lists` VALUES ('Dark_Spark',117,232,1,255);
+INSERT INTO `mob_spell_lists` VALUES ('Dark_Spark',117,245,1,255);
+INSERT INTO `mob_spell_lists` VALUES ('Dark_Spark',117,247,1,255);
 
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;
