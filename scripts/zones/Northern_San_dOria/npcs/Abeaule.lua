@@ -88,8 +88,8 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_OBTAINED,592); -- Supplies Order
 		end
 	elseif(csid == 0x0251 and option == 1) then
+        local SUPPLIES_ORDER = 592;
 		if (player:getFreeSlotsCount() > 0 and player:hasItem(592) == false) then -- Supplies Order
-			local SUPPLIES_ORDER = 592;
 			player:addItem(SUPPLIES_ORDER);
 			player:messageSpecial(ITEM_OBTAINED, SUPPLIES_ORDER);
 		else
