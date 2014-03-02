@@ -392,8 +392,6 @@ std::vector<CMobSkill*> GetMobSkillsByFamily(uint16 FamilyID)
 int32 CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 Tier, uint8 element){
     int32 damage = 0;
 
-    // TODO: resists (likely only based off targets resistance, perhaps with some level correction
-
 	//Tier 1 enspells have their damaged pre-calculated AT CAST TIME and is stored in MOD_ENSPELL_DMG
 	if(Tier==1)
     {
@@ -429,6 +427,7 @@ int32 CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender,
     
     //matching day 10% bonus, matching weather 10% or 25% for double weather
     float dBonus = 1.0;
+    float resist = 1.0;
     uint32 WeekDay = CVanaTime::getInstance()->getWeekday();
     WEATHER weather = GetWeather(PAttacker, false);
 
@@ -441,7 +440,24 @@ int32 CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender,
     uint32 obi[8] = { 15435, 15438, 15440, 15437, 15436, 15439, 15441, 15442 };
     MODIFIER absorb[8] = { MOD_FIRE_ABSORB, MOD_EARTH_ABSORB, MOD_WATER_ABSORB, MOD_WIND_ABSORB, MOD_ICE_ABSORB, MOD_LTNG_ABSORB, MOD_LIGHT_ABSORB, MOD_DARK_ABSORB };
     MODIFIER nullarray[8] = { MOD_FIRE_NULL, MOD_EARTH_NULL, MOD_WATER_NULL, MOD_WIND_NULL, MOD_ICE_NULL, MOD_LTNG_NULL, MOD_LIGHT_NULL, MOD_DARK_NULL };
+    MODIFIER resistarray[8] = { MOD_FIRERES, MOD_EARTHRES, MOD_WATERRES, MOD_WINDRES, MOD_ICERES, MOD_THUNDERRES, MOD_LIGHTRES, MOD_DARKRES };
     bool obiBonus = false;
+
+    double half = (double)(PDefender->getMod(resistarray[element])) / 100;
+    double quart = pow(half,2);
+    double eighth = pow(half,3);
+    double sixteenth = pow(half,4);
+    double resvar = rand() / ((double) RAND_MAX);
+
+    // Determine resist based on which thresholds have been crossed.
+    if(resvar <= sixteenth)
+        resist = 0.0625;
+    else if(resvar <= eighth)
+        resist = 0.125;
+    else if(resvar <= quart)
+        resist = 0.25;
+    else if(resvar <= half)
+        resist = 0.5;
 
     if (PAttacker->objtype == TYPE_PC)
     {
@@ -471,6 +487,8 @@ int32 CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender,
         dBonus -= 0.1;
     else if (weather == weakWeatherDouble[element] && (obiBonus || rand() % 100 < 33))
         dBonus -= 0.25;
+    
+    damage = (damage * (float)resist);
     damage = (damage * (float)dBonus);
     damage = DmgTaken(PDefender, damage);
     damage = MagicDmgTaken(PDefender, damage);
