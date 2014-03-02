@@ -339,18 +339,20 @@ uint8 calcSynthResult(CCharEntity* PChar)
 			{
 				success = 0.95;
 
-				if((synthDiff <= 0) && (synthDiff >= -10)){
+				if((synthDiff <= 0) && (synthDiff >= -10))
+				{
 					success -= (double)(PChar->CraftContainer->getType() == ELEMENT_LIGHTNING) * 0.2;
 					hqtier = 1;
-				}else if((synthDiff <= -11) && (synthDiff >= -30)){
+				}
+				else if((synthDiff <= -11) && (synthDiff >= -30))
 					hqtier = 2;
-				}else if((synthDiff <= -31) && (synthDiff >= -50)){
+				else if((synthDiff <= -31) && (synthDiff >= -50))
 					hqtier = 3;
-				}else if((synthDiff <= -51) && (synthDiff >= -70)){
+				else if(synthDiff <= -51)
 					hqtier = 4;
-				}else if (synthDiff <= -71)
-					hqtier = 5;
-			}else{
+			}
+			else
+			{
 				success = 0.95 - (synthDiff / 10) - (double)(PChar->CraftContainer->getType() == ELEMENT_LIGHTNING) * 0.2;
 				if(success < 0.05)
 					success = 0.05;
@@ -372,7 +374,8 @@ uint8 calcSynthResult(CCharEntity* PChar)
 
 					switch(hqtier)
 					{
-						case 5:  chance = 0.700; break;
+						//case 5:  chance = 0.700; break; 
+						//Removed - HQ rate caps at 50%
 						case 4:  chance = 0.500; break;
 						case 3:  chance = 0.300; break;
 						case 2:  chance = 0.100; break;
@@ -382,17 +385,17 @@ uint8 calcSynthResult(CCharEntity* PChar)
 					
 					if (chance > 0)
 					{
-						chance -= (MoonPhase - 50)/500;  //new moon +10% to hq chance, full moon -10%, corresponding/weakday/lightsday -10%, opposing/darksday +10%
+						chance *= 1 - (MoonPhase - 50)/150;  //new moon +33% of base rate bonus to hq chance, full moon -33%, corresponding/weakday/lightsday -33%, opposing/darksday +33%
 						if (crystalElement == WeekDay)
-							chance -= 0.1;
+							chance *= 1 - (1/3);
 						else if (strongElement[crystalElement] == WeekDay)
-							chance += 0.1;
+							chance *= 1 + (1/3);
 						else if (strongElement[WeekDay] == crystalElement)
-							chance -= 0.1;
+							chance *= 1 - (1/3);
 						else if (WeekDay == LIGHTSDAY)
-							chance -= 0.1;
+							chance *= 1 - (1/3);
 						else if (WeekDay == DARKSDAY)
-							chance += 0.1;
+							chance *= 1 + (1/3);
 					}
 					
 					if(chance < random)
