@@ -218,11 +218,11 @@ double getSynthDifficulty(CCharEntity* PChar, uint8 skillID)
 		case SKILL_COK: ModID = MOD_COOK;		break;
 	}
 
-	double charSkill = (double)(PChar->RealSkills.skill[skillID])/10;
-	double difficult = PChar->CraftContainer->getQuantity(skillID-40) - (charSkill + PChar->getMod(ModID));
+	uint8 charSkill = PChar->RealSkills.skill[skillID]/10;  //player skill level is truncated before synth difficulty is calced
+	double difficult = PChar->CraftContainer->getQuantity(skillID-40) - (double)(charSkill + PChar->getMod(ModID));
 	double MoonPhase = (double)CVanaTime::getInstance()->getMoonPhase();
 
-	difficult -= (abs(MoonPhase - 50))/50;
+	difficult -= (MoonPhase - 50)/50;	// full moon reduces difficulty by 1, new moon increases difficulty by 1, 50% moon has 0 effect
 
 	if (crystalElement == ElementDirection){
 		difficult -= 0.5;
@@ -230,15 +230,17 @@ double getSynthDifficulty(CCharEntity* PChar, uint8 skillID)
 		difficult += 0.5;
 	}
 
-	if (crystalElement == WeekDay){
+	if (crystalElement == WeekDay)
 		difficult -= 1;
-	}else if (strongElement[crystalElement] == WeekDay){
+	else if (strongElement[crystalElement] == WeekDay)
 		difficult += 1;
-	}else if (WeekDay == LIGHTSDAY){
+	else if (strongElement[WeekDay] == crystalElement)
 		difficult -= 1;
-	}else if (WeekDay == DARKSDAY){
+	else if (WeekDay == LIGHTSDAY)
+		difficult -= 1;
+	else if (WeekDay == DARKSDAY)
 		difficult += 1;
-	}
+
 
 	#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 	ShowDebug(CL_CYAN"Direction = %i\n" CL_RESET, ElementDirection);
@@ -318,6 +320,11 @@ uint8 calcSynthResult(CCharEntity* PChar)
 
 	double success = 0;
 	double chance  = 0;
+	double MoonPhase = (double)CVanaTime::getInstance()->getMoonPhase();
+	uint8  WeekDay = (uint8)CVanaTime::getInstance()->getWeekday();
+	uint8  crystalElement = PChar->CraftContainer->getType();
+	uint8  strongElement[8] = {2,3,5,4,0,1,7,6};
+	
 
 	for(uint8 skillID = 49; skillID < 57; ++skillID)
 	{
@@ -332,18 +339,20 @@ uint8 calcSynthResult(CCharEntity* PChar)
 			{
 				success = 0.95;
 
-				if((synthDiff <= 0) && (synthDiff >= -10)){
+				if((synthDiff <= 0) && (synthDiff >= -10))
+				{
 					success -= (double)(PChar->CraftContainer->getType() == ELEMENT_LIGHTNING) * 0.2;
 					hqtier = 1;
-				}else if((synthDiff <= -11) && (synthDiff >= -30)){
+				}
+				else if((synthDiff <= -11) && (synthDiff >= -30))
 					hqtier = 2;
-				}else if((synthDiff <= -31) && (synthDiff >= -50)){
+				else if((synthDiff <= -31) && (synthDiff >= -50))
 					hqtier = 3;
-				}else if((synthDiff <= -51) && (synthDiff >= -70)){
+				else if(synthDiff <= -51)
 					hqtier = 4;
-				}else if (synthDiff <= -71)
-					hqtier = 5;
-			}else{
+			}
+			else
+			{
 				success = 0.95 - (synthDiff / 10) - (double)(PChar->CraftContainer->getType() == ELEMENT_LIGHTNING) * 0.2;
 				if(success < 0.05)
 					success = 0.05;
@@ -359,19 +368,40 @@ uint8 calcSynthResult(CCharEntity* PChar)
 				for(int32 i = 0; i < 3; ++i)
 				{
 					random = rand() / ((double) RAND_MAX);
-					#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
-					ShowDebug(CL_CYAN"HQ Tier: %i  Random: %g\n" CL_RESET, hqtier, random);
-					#endif
-
+					
 					switch(hqtier)
 					{
-						case 5:  chance = 0.700; break;
+						//case 5:  chance = 0.700; break; 
+						//Removed - HQ rate caps at 50%
 						case 4:  chance = 0.500; break;
 						case 3:  chance = 0.300; break;
 						case 2:  chance = 0.100; break;
 						case 1:  chance = 0.015; break;
 						default: chance = 0.000; break;
 					}
+					
+					if(chance > 0)
+					{
+						chance *= 1 - (MoonPhase - 50)/150;  //new moon +33% of base rate bonus to hq chance, full moon -33%, corresponding/weakday/lightsday -33%, opposing/darksday +33%
+						if (crystalElement == WeekDay)
+							chance *= 1 - (1/3);
+						else if (strongElement[crystalElement] == WeekDay)
+							chance *= 1 + (1/3);
+						else if (strongElement[WeekDay] == crystalElement)
+							chance *= 1 - (1/3);
+						else if (WeekDay == LIGHTSDAY)
+							chance *= 1 - (1/3);
+						else if (WeekDay == DARKSDAY)
+							chance *= 1 + (1/3);
+					}
+					
+					if(chance > 0.500)
+					    chance = 0.500;
+					
+					#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+					ShowDebug(CL_CYAN"HQ Tier: %i  HQ Chance: %g  Random: %g\n" CL_RESET, hqtier, chance, random);
+					#endif
+					
 					if(chance < random)
 						break;
 					result += 1;
@@ -450,8 +480,10 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 	//	return 0;
 	//} bad idea, you cannot synth any item with lightning crystal
 
-	double MoonPhase = (double)CVanaTime::getInstance()->getMoonPhase();
-	double MoonCorrection = MoonPhase / 500;
+//	double MoonPhase = (double)CVanaTime::getInstance()->getMoonPhase();
+//	double MoonCorrection = MoonPhase / 500;
+//  removed: there's no evidence that moon phase directly modifies skill up rate
+
 
 	for(uint8 skillID = 49; skillID < 57; ++skillID)
 	{
@@ -459,22 +491,35 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 		{
 			continue;
 		}
+		
+		uint16 ModID = 0;
+		switch (skillID)
+		{
+			case SKILL_WDW: ModID = MOD_WOOD;		break;
+			case SKILL_SMT: ModID = MOD_SMITH;		break;
+			case SKILL_GLD: ModID = MOD_GOLDSMITH;	break;
+			case SKILL_CLT: ModID = MOD_CLOTH;		break;
+			case SKILL_LTH: ModID = MOD_LEATHER;	break;
+			case SKILL_BON: ModID = MOD_BONE;		break;
+			case SKILL_ALC: ModID = MOD_ALCHEMY;	break;
+			case SKILL_COK: ModID = MOD_COOK;		break;
+		}
 
 		uint8  skillRank = PChar->RealSkills.rank[skillID];
 		uint16 maxSkill  = (skillRank+1)*100;
 
 		int32  charSkill = PChar->RealSkills.skill[skillID];
-		int32  basDiff   = PChar->CraftContainer->getQuantity(skillID-40) - charSkill/10;
+		int32  basDiff   = PChar->CraftContainer->getQuantity(skillID-40) - (charSkill/10 + PChar->getMod(ModID)); //the 5 lvl difference rule for breaks does consider the effects of image support/gear
 		double synthDiff = getSynthDifficulty(PChar, skillID);
 
 		if ((basDiff <= 0) || ((basDiff > 5) && (PChar->CraftContainer->getQuantity(0) == SYNTHESIS_FAIL)))		// результат синтеза хранится в quantity нулевой ячейки
 		{
-			return 0;
+			continue;
 		}
 
 		if (charSkill < maxSkill)
 		{
-			double skillUpChance = (synthDiff*(map_config.craft_multiplier - (log(1.2 + charSkill/100) + MoonCorrection)))/10;
+			double skillUpChance = (synthDiff*(map_config.craft_multiplier - (log(1.2 + charSkill/100))))/10;
 			skillUpChance = skillUpChance/(1 + (PChar->CraftContainer->getQuantity(0) == SYNTHESIS_FAIL));		// результат синтеза хранится в quantity нулевой ячейки
 
 			double random = rand() / ((double)RAND_MAX);
