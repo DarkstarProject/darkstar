@@ -72,13 +72,11 @@ function onMobEngaged(mob,target)
 		end
 	end
 end;
-
 -----------------------------------
 -- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	
 	mobID = mob:getID();
 	
 	-- HP Bonus: 005 011 016 023 026 031 040 057 063 065 068 077 079 080 082 083 084 093 102 119 | 123 126 128 
@@ -91,7 +89,7 @@ function onMobDeath(mob,killer)
 	elseif(mobID == 17547538 or mobID == 17547541 or mobID == 17547546 or mobID == 17547553 or mobID == 17547554 or mobID == 17547559 or mobID == 17547568 or mobID == 17547573 or 
 		   mobID == 17547585 or mobID == 17547591 or mobID == 17547593 or mobID == 17547596 or mobID == 17547605 or mobID == 17547607 or mobID == 17547610 or mobID == 17547611 or 
 		   mobID == 17547614 or mobID == 17547623 or mobID == 17547624 or mobID == 17547630 or mobID == 17547646 or mobID == 17547650 or mobID == 17547655 or mobID == 17547657 or 
-		   mobID == 17547678) then 
+		   mobID == 17547678) then
 		killer:restoreMP(3000);
 		killer:messageBasic(025,(killer:getMaxMP()-killer:getMP()));
 	end
@@ -102,17 +100,21 @@ function onMobDeath(mob,killer)
 	-- Spawn 114-120 when statue 064 is defeated
 	if(mobID == 17547593) then
 		for nbx = 17547642, 17547648, 1 do SpawnMob(nbx); end
+        local spawn =  {17547265,17547608,17547609,17547610,17547611,17547612,17547613,17547614,17547615,17547616,17547617};
+        for nbi = 1, table.getn(spawn), 1 do
+			SpawnMob(spawn[nbi]);
+        end
+       
 	end
 	-- Spawn 098-100 when statue 073 074 075 are defeated
 	if((mobID == 17547602 or mobID == 17547603 or mobID == 17547604) and 
-	   GetMobAction(17547602) == 0 and GetMobAction(17547603) == 0 and GetMobAction(17547604) == 0) then
+	   GetMobAction(17547602) ~= 16 and GetMobAction(17547603) ~= 16 and GetMobAction(17547604) ~= 16) then
 		SpawnMob(17547627); -- 098
 		SpawnMob(17547628); -- 099
 		SpawnMob(17547629); -- 100
 	end
-	-- Spawn 101-112 when statue 098 099 100 are defeated
-	if((mobID == 17547627 or mobID == 17547628 or mobID == 17547629) and 
-	   GetMobAction(17547627) == 0 and GetMobAction(17547628) == 0 and GetMobAction(17547629) == 0) then
+	-- Spawn 101-112 when statue Center of 098 099 100 is defeated
+	if(mobID == 17547628) then
 		for nbx = 17547630, 17547641, 1 do SpawnMob(nbx); end
 	end
 	
