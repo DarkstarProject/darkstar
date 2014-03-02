@@ -760,7 +760,7 @@ void CAICharNormal::ActionRangedStart()
 		if (charutils::hasTrait(m_PChar, TRAIT_RAPID_SHOT))
 		{
 			uint16 chance = (m_PChar->getMod(MOD_RAPID_SHOT) + m_PChar->PMeritPoints->GetMeritValue(MERIT_RAPID_SHOT_RATE, m_PChar));
-			if (rand()%100 < chance)
+			if (WELL512::irand()%100 < chance)
 			{
 				m_PChar->m_rangedDelay = 1;
 				m_PChar->isRapidShot = true;
@@ -971,7 +971,7 @@ void CAICharNormal::ActionRangedFinish()
 					Action.speceffect = SPECEFFECT_NONE;
 					i = hitCount; // end barrage, shot missed
 				}
-				else if(rand()%100 < battleutils::GetRangedHitRate(m_PChar,m_PBattleSubTarget, isBarrage)) // hit!
+				else if(WELL512::irand()%100 < battleutils::GetRangedHitRate(m_PChar,m_PBattleSubTarget, isBarrage)) // hit!
 				{
                     // absorbed by shadow
                     if (battleutils::IsAbsorbByShadow(m_PBattleSubTarget))
@@ -983,7 +983,7 @@ void CAICharNormal::ActionRangedFinish()
     					float pdif = battleutils::GetRangedPDIF(m_PChar,m_PBattleSubTarget);
 						bool isCrit = false;
 
-    					if(rand()%100 < battleutils::GetCritHitRate(m_PChar,m_PBattleSubTarget, true))
+    					if(WELL512::irand()%100 < battleutils::GetCritHitRate(m_PChar,m_PBattleSubTarget, true))
     					{
     						pdif *= 1.25; //uncapped
                             int16 criticaldamage = m_PChar->getMod(MOD_CRIT_DMG_INCREASE);
@@ -1053,7 +1053,7 @@ void CAICharNormal::ActionRangedFinish()
                     recycleChance = 100;
                 }
 
-				if (PAmmo != NULL && rand()%100 > recycleChance)
+				if (PAmmo != NULL && WELL512::irand()%100 > recycleChance)
 				{
 					if ((PAmmo->getQuantity()-1) < 1) // ammo will run out after this shot, make sure we remove it from equip
 					{
@@ -1138,7 +1138,7 @@ void CAICharNormal::ActionRangedFinish()
             uint16 power = m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_SANGE)->GetPower();
 
             // remove shadows
-            while(realHits-- && rand()%100 <= power && battleutils::IsAbsorbByShadow(m_PChar));
+            while(realHits-- && WELL512::irand()%100 <= power && battleutils::IsAbsorbByShadow(m_PChar));
 
             m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SANGE);
         }
@@ -1151,7 +1151,7 @@ void CAICharNormal::ActionRangedFinish()
 		if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DOUBLE_SHOT,0) && !m_PChar->secondDoubleShotTaken &&	!isBarrage && !isSange)
 		{
 			uint8 doubleShotChance = m_PChar->getMod(MOD_DOUBLE_SHOT_RATE);
-			if (rand()%100 < doubleShotChance)
+			if (WELL512::irand()%100 < doubleShotChance)
 			{
 				m_PChar->secondDoubleShotTaken = true;
 				m_ActionType = ACTION_RANGED_FINISH;
@@ -1540,7 +1540,7 @@ void CAICharNormal::ActionJobAbilityFinish()
     	if (m_PJobAbility->getID() >= ABILITY_FIGHTERS_ROLL && m_PJobAbility->getID() <= ABILITY_SCHOLARS_ROLL)
     	{
     		m_PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_DOUBLE_UP_CHANCE);
-    		uint8 roll = (rand() % 6) + 1;
+    		uint8 roll = (WELL512::irand() % 6) + 1;
     		m_PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(
     			EFFECT_DOUBLE_UP_CHANCE,
     			EFFECT_DOUBLE_UP_CHANCE,
@@ -1610,13 +1610,13 @@ void CAICharNormal::ActionJobAbilityFinish()
             if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DOUBLE_UP_CHANCE))
         	{
             //TODO: some reason cosair double up chance is sometimes null
-    		uint8 roll = (rand() % 6) + 1;
+    		uint8 roll = (WELL512::irand() % 6) + 1;
     		CStatusEffect* doubleUpEffect = m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_DOUBLE_UP_CHANCE);
 
             if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNAKE_EYE))
             {
                 //check for instant 11 via Snake Eye merits
-                if (doubleUpEffect->GetPower() >= 5 && rand() % 100 < m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_SNAKE_EYE)->GetPower())
+                if (doubleUpEffect->GetPower() >= 5 && WELL512::irand() % 100 < m_PChar->StatusEffectContainer->GetStatusEffect(EFFECT_SNAKE_EYE)->GetPower())
                 {
                     roll = 11 - doubleUpEffect->GetPower();
                 }
@@ -1805,7 +1805,7 @@ void CAICharNormal::ActionJobAbilityFinish()
     			Action.reaction   = REACTION_EVADE;
     			Action.speceffect = SPECEFFECT_NONE;
     		}
-    		else if(rand()%100 < battleutils::GetRangedHitRate(m_PChar,m_PBattleSubTarget, false)) // hit!
+    		else if(WELL512::irand()%100 < battleutils::GetRangedHitRate(m_PChar,m_PBattleSubTarget, false)) // hit!
     		{
                 //check for shadow absorb
                 if (battleutils::IsAbsorbByShadow(m_PBattleSubTarget)) {
@@ -1819,7 +1819,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 
         			float pdif = battleutils::GetRangedPDIF(m_PChar,m_PBattleSubTarget);
 
-        			if(rand()%100 < battleutils::GetCritHitRate(m_PChar,m_PBattleSubTarget, true))
+        			if(WELL512::irand()%100 < battleutils::GetCritHitRate(m_PChar,m_PBattleSubTarget, true))
         			{
         				pdif *= 1.25; //uncapped
         				Action.speceffect = SPECEFFECT_CRITICAL_HIT;
@@ -1864,7 +1864,7 @@ void CAICharNormal::ActionJobAbilityFinish()
                 recycleChance = 100;
             }
 
-    		if(PAmmo != NULL && rand()%100 > recycleChance)
+    		if(PAmmo != NULL && WELL512::irand()%100 > recycleChance)
     		{
 
     			if ( (PAmmo->getQuantity()-1) < 1) // ammo will run out after this shot, make sure we remove it from equip
@@ -1929,7 +1929,7 @@ void CAICharNormal::ActionJobAbilityFinish()
     		if(m_PJobAbility->getID() == ABILITY_SHADOWBIND)
     		{
 				uint16 shadowBindDuration = 30 + m_PChar->getMod(MOD_SHADOW_BIND_EXT);
-				if (rand()%100 >= m_PBattleSubTarget->getMod(MOD_BINDRES))
+				if (WELL512::irand()%100 >= m_PBattleSubTarget->getMod(MOD_BINDRES))
 				{
 					// Shadow bind success!
 					m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 11, 277)); 
@@ -2541,7 +2541,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
             luautils::OnAdditionalEffect(m_PChar, m_PBattleSubTarget, PAmmo, &Action, damage);
             Action.additionalEffect = SUBEFFECT_NONE;
         }
-		if(PAmmo!=NULL && rand()%100 > recycleChance)
+		if(PAmmo!=NULL && WELL512::irand()%100 > recycleChance)
 		{
 			if ( (PAmmo->getQuantity()-1) < 1) // ammo will run out after this shot, make sure we remove it from equip
 			{
@@ -2863,7 +2863,7 @@ void CAICharNormal::ActionAttack()
 					Action.reaction   = REACTION_EVADE;
 					Action.speceffect = SPECEFFECT_NONE;
 				}
-				else if ((rand()%100 < attack->GetHitRate() || attackRound->GetSATAOccured()) &&
+				else if ((WELL512::irand()%100 < attack->GetHitRate() || attackRound->GetSATAOccured()) &&
                     !m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ALL_MISS))
 				{
                     // attack hit, try to be absorbed by shadow
@@ -2877,7 +2877,7 @@ void CAICharNormal::ActionAttack()
                     else
                     {
 						// Set this attack's critical flag.
-						attack->SetCritical(rand()%100 < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget, !attack->IsFirstSwing()));
+						attack->SetCritical(WELL512::irand()%100 < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget, !attack->IsFirstSwing()));
 
 						// Critical hit.
 						if (attack->IsCritical())
