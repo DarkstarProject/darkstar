@@ -392,8 +392,6 @@ std::vector<CMobSkill*> GetMobSkillsByFamily(uint16 FamilyID)
 int32 CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 Tier, uint8 element){
     int32 damage = 0;
 
-    // TODO: resists (likely only based off targets resistance, perhaps with some level correction
-
 	//Tier 1 enspells have their damaged pre-calculated AT CAST TIME and is stored in MOD_ENSPELL_DMG
 	if(Tier==1)
     {
@@ -429,6 +427,7 @@ int32 CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender,
     
     //matching day 10% bonus, matching weather 10% or 25% for double weather
     float dBonus = 1.0;
+    float resist = 1.0;
     uint32 WeekDay = CVanaTime::getInstance()->getWeekday();
     WEATHER weather = GetWeather(PAttacker, false);
 
@@ -441,7 +440,24 @@ int32 CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender,
     uint32 obi[8] = { 15435, 15438, 15440, 15437, 15436, 15439, 15441, 15442 };
     MODIFIER absorb[8] = { MOD_FIRE_ABSORB, MOD_EARTH_ABSORB, MOD_WATER_ABSORB, MOD_WIND_ABSORB, MOD_ICE_ABSORB, MOD_LTNG_ABSORB, MOD_LIGHT_ABSORB, MOD_DARK_ABSORB };
     MODIFIER nullarray[8] = { MOD_FIRE_NULL, MOD_EARTH_NULL, MOD_WATER_NULL, MOD_WIND_NULL, MOD_ICE_NULL, MOD_LTNG_NULL, MOD_LIGHT_NULL, MOD_DARK_NULL };
+    MODIFIER resistarray[8] = { MOD_FIRERES, MOD_EARTHRES, MOD_WATERRES, MOD_WINDRES, MOD_ICERES, MOD_THUNDERRES, MOD_LIGHTRES, MOD_DARKRES };
     bool obiBonus = false;
+
+    double half = (double)(PDefender->getMod(resistarray[element])) / 100;
+    double quart = pow(half,2);
+    double eighth = pow(half,3);
+    double sixteenth = pow(half,4);
+    double resvar = WELL512::drand();
+
+    // Determine resist based on which thresholds have been crossed.
+    if(resvar <= sixteenth)
+        resist = 0.0625;
+    else if(resvar <= eighth)
+        resist = 0.125;
+    else if(resvar <= quart)
+        resist = 0.25;
+    else if(resvar <= half)
+        resist = 0.5;
 
     if (PAttacker->objtype == TYPE_PC)
     {
@@ -457,28 +473,30 @@ int32 CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender,
     else
     {
         // mobs random multiplier 
-        dBonus += (rand() % 101) / 1000.0f;
+        dBonus += (WELL512::irand() % 101) / 1000.0f;
     }
-    if (WeekDay == strongDay[element] && (obiBonus || rand() % 100 < 33))
+    if (WeekDay == strongDay[element] && (obiBonus || WELL512::irand() % 100 < 33))
         dBonus += 0.1;
-    else if (WeekDay == weakDay[element] && (obiBonus || rand() % 100 < 33))
+    else if (WeekDay == weakDay[element] && (obiBonus || WELL512::irand() % 100 < 33))
         dBonus -= 0.1;
-    if (weather == strongWeatherSingle[element] && (obiBonus || rand() % 100 < 33))
+    if (weather == strongWeatherSingle[element] && (obiBonus || WELL512::irand() % 100 < 33))
         dBonus += 0.1;
-    else if (weather == strongWeatherDouble[element] && (obiBonus || rand() % 100 < 33))
+    else if (weather == strongWeatherDouble[element] && (obiBonus || WELL512::irand() % 100 < 33))
         dBonus += 0.25;
-    else if (weather == weakWeatherSingle[element] && (obiBonus || rand() % 100 < 33))
+    else if (weather == weakWeatherSingle[element] && (obiBonus || WELL512::irand() % 100 < 33))
         dBonus -= 0.1;
-    else if (weather == weakWeatherDouble[element] && (obiBonus || rand() % 100 < 33))
+    else if (weather == weakWeatherDouble[element] && (obiBonus || WELL512::irand() % 100 < 33))
         dBonus -= 0.25;
+    
+    damage = (damage * (float)resist);
     damage = (damage * (float)dBonus);
     damage = DmgTaken(PDefender, damage);
     damage = MagicDmgTaken(PDefender, damage);
     damage = damage - PDefender->getMod(MOD_PHALANX);
     damage = dsp_cap(damage, 0, 99999);
-    if (rand() % 100 < PDefender->getMod(absorb[element]) || rand() % 100 < PDefender->getMod(MOD_MAGIC_ABSORB))
+    if (WELL512::irand() % 100 < PDefender->getMod(absorb[element]) || WELL512::irand() % 100 < PDefender->getMod(MOD_MAGIC_ABSORB))
         damage = -damage;
-    else if (rand() % 100 < PDefender->getMod(nullarray[element]) || rand() % 100 < PDefender->getMod(MOD_MAGIC_NULL))
+    else if (WELL512::irand() % 100 < PDefender->getMod(nullarray[element]) || WELL512::irand() % 100 < PDefender->getMod(MOD_MAGIC_NULL))
         damage = 0;
     else
         damage = HandleStoneskin(PDefender, damage);
@@ -506,7 +524,7 @@ uint16 CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, 
             damage += (float)damageTaken*0.3;
             if(PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_SENTINEL)){
                 // bonus
-                damage *= rand()%2+1;
+                damage *= WELL512::irand()%2+1;
             }
         break;
         default:
@@ -850,7 +868,7 @@ bool HandleSpikesEquip(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAct
 {
     int lvlDiff = dsp_cap((PDefender->GetMLevel() - PAttacker->GetMLevel()), -5, 5)*2;
 
-    if(rand()%100 <= chance+lvlDiff){
+    if(WELL512::irand()%100 <= chance+lvlDiff){
         // spikes landed
 
         if(spikesType == SUBEFFECT_CURSE_SPIKES){
@@ -858,7 +876,7 @@ bool HandleSpikesEquip(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAct
             Action->spikesParam = EFFECT_CURSE;
         } else {
             uint8 ratio = (float)damage/4;
-            Action->spikesParam = HandleStoneskin(PAttacker, damage - rand()%ratio + rand()%ratio);
+            Action->spikesParam = HandleStoneskin(PAttacker, damage - WELL512::irand()%ratio + WELL512::irand()%ratio);
             PAttacker->addHP(-Action->spikesParam);
         }
 
@@ -883,14 +901,14 @@ void HandleSpikesStatusEffect(CBattleEntity* PAttacker, apAction_t* Action)
         break;
 		case SUBEFFECT_ICE_SPIKES:
 		{
-			if(rand()%100 <= 20+lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_PARALYSIS) == false){
+			if(WELL512::irand()%100 <= 20+lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_PARALYSIS) == false){
 				PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_PARALYSIS, EFFECT_PARALYSIS, 20, 0, 30));
 			}
 			break;
 		}
 		case SUBEFFECT_SHOCK_SPIKES:
 		{
-            if(rand()%100 <= 30+lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_STUN) == false){
+            if(WELL512::irand()%100 <= 30+lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_STUN) == false){
                 PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_STUN, EFFECT_STUN, 1, 0, 3));
             }
 			break;
@@ -1074,7 +1092,7 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
             if (daze == EFFECT_DRAIN_DAZE)
             {
                 uint16 multiplier = 3 + (5.5f * power - 1);
-                int8 Samba = rand() % ((delay * multiplier) / 100) + 1;
+                int8 Samba = WELL512::irand() % ((delay * multiplier) / 100) + 1;
 
                 // vary damage based on lvl diff
                 int8 lvlDiff = (PDefender->GetMLevel() - PAttacker->GetMLevel()) / 2;
@@ -1110,7 +1128,7 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
             else if (daze == EFFECT_ASPIR_DAZE)
             {
                 uint16 multiplier = 1 + (2 * power - 1);
-                int8 Samba = rand() % ((delay * multiplier) / 100) + 1;
+                int8 Samba = WELL512::irand() % ((delay * multiplier) / 100) + 1;
 
                 if (Samba >= finaldamage / 4) { Samba = finaldamage / 4; }
 
@@ -1221,13 +1239,13 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 		chance -= 5*(PDefender->GetMLevel() - PAttacker->GetMLevel());
 		chance = dsp_cap(chance,5,95);
 	}
-	if(rand()%100 >= chance || PAmmo==NULL){return;}
+	if(WELL512::irand()%100 >= chance || PAmmo==NULL){return;}
 
 	switch(PAmmo->getID()){
     case 17325:{ // kabura_arrow
 
         //check wind resistance
-        if(rand()%100 <= PDefender->getMod(MOD_WINDRES)){return;}
+        if(WELL512::irand()%100 <= PDefender->getMod(MOD_WINDRES)){return;}
 
         if(PDefender->StatusEffectContainer->AddStatusEffect(
                 new CStatusEffect(EFFECT_SILENCE,EFFECT_SILENCE,1,0,60))){
@@ -1241,7 +1259,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
     case 18159:{ // Demon Arrow
 
         //check water resistance
-        if(rand()%100 <= PDefender->getMod(MOD_WATERRES)){return;}
+        if(WELL512::irand()%100 <= PDefender->getMod(MOD_WATERRES)){return;}
 
         if(PDefender->StatusEffectContainer->AddStatusEffect(
                 new CStatusEffect(EFFECT_ATTACK_DOWN,EFFECT_ATTACK_DOWN,12,0,60))){
@@ -1255,7 +1273,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
     break;
     case 18160:{ // Spartan Bullet
         //check thunder resistance
-        if(rand()%100 <= PDefender->getMod(MOD_THUNDERRES) && rand()%50 < 100){return;}
+        if(WELL512::irand()%100 <= PDefender->getMod(MOD_THUNDERRES) && WELL512::irand()%50 < 100){return;}
 
         if(PDefender->StatusEffectContainer->AddStatusEffect(
             new CStatusEffect(EFFECT_STUN,EFFECT_STUN,1,0,4))){
@@ -1269,7 +1287,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
     case 17329: // patriarch_protectors_arrow
     case 18696:{ // Paralysis Arrow
             //check ice resistance
-            if(rand()%100 <= PDefender->getMod(MOD_ICERES)){return;}
+            if(WELL512::irand()%100 <= PDefender->getMod(MOD_ICERES)){return;}
 
             uint8 power = 20;
 
@@ -1299,7 +1317,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			uint8 damage = (PAttacker->AGI() - PDefender->AGI())/2;
 			damage = dsp_cap(damage,0,50);
 			damage += 10; //10~60
-			damage += rand()%8; //10~67 randomised
+			damage += WELL512::irand()%8; //10~67 randomised
             damage += (float)damage * ((float)PDefender->getMod(MOD_WINDRES)/-100);
 
             damage = HandleStoneskin(PDefender, damage);
@@ -1321,7 +1339,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			uint8 damage = (PAttacker->VIT() - PDefender->VIT())/2;
 			damage = dsp_cap(damage,0,50);
 			damage += 10; //10~60
-			damage += rand()%8; //10~67 randomised
+			damage += WELL512::irand()%8; //10~67 randomised
 			//set damage TODO: handle resist/staff/day
 
             damage += (float)damage * ((float)PDefender->getMod(MOD_EARTHRES)/-100);
@@ -1343,7 +1361,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			uint8 damage = (PAttacker->MND() - PDefender->MND())/2;
 			damage = dsp_cap(damage,0,50);
 			damage += 10; //10~60
-			damage += rand()%8; //10~67 randomised
+			damage += WELL512::irand()%8; //10~67 randomised
 			//set damage TODO: handle resist/staff/day
             damage += (float)damage * ((float)PDefender->getMod(MOD_WATERRES)/-100);
             damage = HandleStoneskin(PDefender, damage);
@@ -1360,7 +1378,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
                     duration = 1;
                 } else {
                     //randomize sleep duration
-                    duration -= rand()%(duration/2);
+                    duration -= WELL512::irand()%(duration/2);
                 }
 
 			    duration = dsp_cap(duration,1,25);
@@ -1379,7 +1397,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 
             if(PDefender->hasImmunity(256) == false){
                 //check water resistance
-                if(rand()%100 <= PDefender->getMod(MOD_WATERRES)){return;}
+                if(WELL512::irand()%100 <= PDefender->getMod(MOD_WATERRES)){return;}
 
 				//4hp/tick for 30secs
 				if(PDefender->StatusEffectContainer->AddStatusEffect(
@@ -1405,7 +1423,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			uint8 damage = (PAttacker->MND() - PDefender->MND())/2;
 			damage = dsp_cap(damage,0,50);
 			damage += 10; //10~60
-			damage += rand()%8; //10~67 randomised
+			damage += WELL512::irand()%8; //10~67 randomised
 			//set damage TODO: handle resist/staff/day
             damage += (float)damage * ((float)PDefender->getMod(MOD_LIGHTRES)/-100);
             damage = HandleStoneskin(PDefender, damage);
@@ -1416,7 +1434,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 	case 18152:{ //Venom Bolt
 			if(PDefender->hasImmunity(256) == false){
                 //check water resistance
-                if(rand()%100 <= PDefender->getMod(MOD_WATERRES)){return;}
+                if(WELL512::irand()%100 <= PDefender->getMod(MOD_WATERRES)){return;}
 
 				//4hp/tick for 30secs
 				if(PDefender->StatusEffectContainer->AddStatusEffect(
@@ -1432,7 +1450,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 	case 18150:{//Blind Bolt
 			if(PDefender->hasImmunity(64) == false){
                 //check dark resistance
-                if(rand()%100 <= PDefender->getMod(MOD_DARKRES)){return;}
+                if(WELL512::irand()%100 <= PDefender->getMod(MOD_DARKRES)){return;}
 
                 if(PDefender->StatusEffectContainer->AddStatusEffect(
                     new CStatusEffect(EFFECT_BLINDNESS,EFFECT_BLINDNESS,10,0,30))){
@@ -1457,7 +1475,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			uint8 damage = (PAttacker->DEX() - PDefender->DEX())/2;
 			damage = dsp_cap(damage,0,50);
 			damage += 10; //10~60
-			damage += rand()%8; //10~67 randomised
+			damage += WELL512::irand()%8; //10~67 randomised
 			//set damage TODO: handle resist/staff/day
             damage += (float)damage * ((float)PDefender->getMod(MOD_THUNDERRES)/-100);
             damage = HandleStoneskin(PDefender, damage);
@@ -1478,7 +1496,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			uint8 damage = (PAttacker->INT() - PDefender->INT())/2;
 			damage = dsp_cap(damage,0,50);
 			damage += 10; //10~60
-			damage += rand()%8; //10~67 randomised
+			damage += WELL512::irand()%8; //10~67 randomised
 			//set damage TODO: handle resist/staff/day
             damage += (float)damage * ((float)PDefender->getMod(MOD_ICERES)/-100);
             damage = HandleStoneskin(PDefender, damage);
@@ -1501,7 +1519,7 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			damage = dsp_cap(damage,0,50);
 
             damage += 10; //10~60
-            damage += rand()%8; //10~67 randomised
+            damage += WELL512::irand()%8; //10~67 randomised
             //set damage TODO: handle resist/staff/day
             damage += (float)damage * ((float)PDefender->getMod(MOD_FIRERES)/-100);
 
@@ -1625,7 +1643,7 @@ float GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender)
     dsp_cap(maxPdif, 0, 3);
 
 	//return random number between the two
-	return ((maxPdif-minPdif) * ((float)rand()/RAND_MAX)) + minPdif;
+	return ((maxPdif-minPdif) * WELL512::drand()) + minPdif;
 }
 
 float CalculateBaseTP(int delay){
@@ -1700,7 +1718,7 @@ bool TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender){
 
 	float aquaveil = ((float)((100.0f - (meritReduction + (float)PDefender->getMod(MOD_SPELLINTERRUPT)))/100.0f));
 	check *= aquaveil;
-	uint8 chance = rand()%100;
+	uint8 chance = WELL512::irand()%100;
 
 	// caps, always give a 1% chance of interrupt
 	if (check < 1) {
@@ -1954,7 +1972,7 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
     if (damage > 0)
         PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 
-    if(PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_BIND) && rand()%10 < 4)
+    if(PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_BIND) && WELL512::irand()%10 < 4)
     {
         // chance to remove it
         PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_BIND);
@@ -2240,7 +2258,7 @@ float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool is
         cRatioMin = cRatio - 0.375;
     }
 
-	float pDIF = ((cRatioMax-cRatioMin) * ((float)rand()/RAND_MAX)) + cRatioMin;
+	float pDIF = ((cRatioMax-cRatioMin) * WELL512::drand()) + cRatioMin;
 
     if (isCritical)
     {
@@ -2250,7 +2268,7 @@ float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool is
     }
 
 	//x1.00 ~ x1.05 final multiplier, giving max value 3*1.05 -> 3.15
-	return pDIF * (1+((0.05f) * ((float)rand()/RAND_MAX)));
+	return pDIF * (1+((0.05f) * WELL512::drand()));
 }
 
 /************************************************************************
@@ -2321,7 +2339,7 @@ int32 GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 SlotID)
 
 uint8 getHitCount(uint8 hits)
 {
-    uint8 distribution = rand()%100;
+    uint8 distribution = WELL512::irand()%100;
     uint8 num = 1;
 
 	switch (hits)
@@ -2414,11 +2432,11 @@ uint8 CheckMobMultiHits(CBattleEntity* PEntity)
 		int8 doubleAttack = PEntity->getMod(MOD_DOUBLE_ATTACK);
 		doubleAttack = dsp_cap(doubleAttack,0,100);
 		tripleAttack = dsp_cap(tripleAttack,0,100);
-		if (rand()%100 < tripleAttack)
+		if (WELL512::irand()%100 < tripleAttack)
 		{
 			num +=2;
 		}
-		else if (rand()%100 < doubleAttack)
+		else if (WELL512::irand()%100 < doubleAttack)
 		{
 			num +=1;
 		}
@@ -2457,11 +2475,11 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
     doubleAttack = dsp_cap(doubleAttack,0,100);
     tripleAttack = dsp_cap(tripleAttack,0,100);
 
-	if (rand()%100 < tripleAttack)
+	if (WELL512::irand()%100 < tripleAttack)
 	{
 		num +=2;
 	}
-	else if (rand()%100 < doubleAttack)
+	else if (WELL512::irand()%100 < doubleAttack)
 	{
 		num +=1;
 	}
@@ -2475,7 +2493,7 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 			if (PEntity->objtype == TYPE_PC)
 				zanshin += ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, (CCharEntity*)PEntity);
 
-			if(rand()%100 < (zanshin / 4) )
+			if(WELL512::irand()%100 < (zanshin / 4) )
 				num++;
 		}
 	}
@@ -2490,7 +2508,7 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 
 bool IsParalised(CBattleEntity* PAttacker)
 {
-	return (rand()%100 < dsp_cap(PAttacker->getMod(MOD_PARALYZE) - PAttacker->getMod(MOD_PARALYZERES), 0, 100));
+	return (WELL512::irand()%100 < dsp_cap(PAttacker->getMod(MOD_PARALYZE) - PAttacker->getMod(MOD_PARALYZERES), 0, 100));
 }
 
 /*****************************************************************************
@@ -2543,7 +2561,7 @@ bool IsAnticipated(CBattleEntity* PDefender, bool forceRemove, bool ignore)
 	}
 	else{ //do have seigan, decay anticipations correctly (guesstimated)
 		//5-6 anticipates is a 'lucky' streak, going to assume 15% decay per proc, with a 100% base w/ Seigan
-		if(rand()%100 < (100-(pastAnticipations*15))){
+		if(WELL512::irand()%100 < (100-(pastAnticipations*15))){
 			//increment power and don't remove
 			effect->SetPower(effect->GetPower()+1);
 			return true;
@@ -2570,7 +2588,7 @@ bool IsAbsorbByShadow(CBattleEntity* PDefender)
 		Shadow=PDefender->getMod(MOD_BLINK);
 		modShadow = MOD_BLINK;
 		//random chance, assume 80% proc
-		if(rand()%100 < 20){
+		if(WELL512::irand()%100 < 20){
 			return false;
 		}
 	}
@@ -2646,7 +2664,7 @@ bool IsIntimidated(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 		case SYSTEM_UNDEAD:		KillerEffect = PDefender->getMod(MOD_UNDEAD_KILLER);   break;
 		case SYSTEM_VERMIN:		KillerEffect = PDefender->getMod(MOD_VERMIN_KILLER);   break;
 	}
-	return (rand()%100 < KillerEffect);
+	return (WELL512::irand()%100 < KillerEffect);
 }
 
 /****************************************************************
@@ -2668,7 +2686,7 @@ bool EnfeebleHit(CBattleEntity* PCaster, CBattleEntity* PDefender, EFFECT Effect
 		chance = chance + (PDefender->getMod((MODIFIER)(Effect + 238)) / 10);
 	}
 
-	if (rand()%100 < chance)
+	if (WELL512::irand()%100 < chance)
 	{
 		return true;
 	}
@@ -3249,7 +3267,7 @@ bool HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool)
 
 		uint16 chance = (PChar->getMod(MOD_NINJA_TOOL) + meritBonus);
 
-        if(ConsumeTool && rand() % 100 > chance)
+        if(ConsumeTool && WELL512::irand() % 100 > chance)
         {
 			charutils::UpdateItem(PChar, LOC_INVENTORY, SlotID, -1);
             PChar->pushPacket(new CInventoryFinishPacket());
@@ -3653,7 +3671,7 @@ uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
 					}
 			}
 
-			if(rand()%100 < hitrate)
+			if(WELL512::irand()%100 < hitrate)
 			{
 
                 // attack hit, try to be absorbed by shadow
@@ -3812,7 +3830,7 @@ void tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
 		//randomize charm time if > EM
 		if(baseExp > 100)
 		{
-			CharmTime += (float)(CharmTime*(((rand()%50)-25) * 0.1f)/10);
+			CharmTime += (float)(CharmTime*(((WELL512::irand()%50)-25) * 0.1f)/10);
 		}
 
 
@@ -3930,7 +3948,7 @@ bool TryCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 base)
 	if(check < 5) {
 		check = 5;
 	}
-	if(check < rand()%100) {
+	if(check < WELL512::irand()%100) {
 		return true;
 	}
 	return false;
