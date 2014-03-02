@@ -32,6 +32,7 @@
 #include "../common/sql.h"
 #include "../common/mmo.h"
 #include "../common/taskmgr.h"
+#include "../common/dsprand.h"
 
 #include <map>
 #include <list>
