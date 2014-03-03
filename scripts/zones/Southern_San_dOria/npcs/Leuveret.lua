@@ -16,13 +16,13 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 function onTrade(player,npc,trade) 
 if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) ==QUEST_ACCEPTED)then
 if(trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getVar("tradeLeuveret") == 0)then 
-player:messageSpecial(8709);
-player:setVar("FFR",player:getVar("FFR") - 1);
-player:setVar("tradeLeuveret",1);
+		player:messageSpecial(8709);
+		player:setVar("FFR",player:getVar("FFR") - 1);
+		player:setVar("tradeLeuveret",1);
 		player:messageSpecial(FLYER_ACCEPTED);
-		trade:complete();
+		player:tradeComplete();
 elseif(player:getVar("tradeLeuveret") ==1)then
-player:messageSpecial(8710);
+		player:messageSpecial(8710);
 end
 end
 end;
