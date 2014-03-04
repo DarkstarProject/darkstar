@@ -2716,14 +2716,14 @@ INSERT INTO `mob_skill` VALUES (1767,315,1368,'Thunderstrike',1,18.0,2000,1500,4
 INSERT INTO `mob_skill` VALUES (1768,315,1371,'Tourbillion',1,18.0,2000,1500,4,0,0,0);
 
 -- Shinryu (316)
-INSERT INTO `mob_skill` VALUES (2415,266,1884,'Supernova',1,20.0,5000,3500,4,0,0,0); -- 33% and below
-INSERT INTO `mob_skill` VALUES (2414,266,1872,'Protostar',1,20.0,5000,3500,4,0,0,0); -- 33% and below
-INSERT INTO `mob_skill` VALUES (2413,266,1883,'Darkmatter',1,20.0,4000,1500,4,0,0,0); -- 66% and below
-INSERT INTO `mob_skill` VALUES (2412,266,1871,'Atomic_ray',1,20.0,4000,1500,4,0,0,0); -- 66% and below
-INSERT INTO `mob_skill` VALUES (2411,266,1870,'Mighty_Guard',0,7.0,3000,2000,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (2410,266,1882,'Gyre_Charge',1,15.0,4000,2000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (2409,266,1881,'Cataclysmic_Vortex',1,15.0,4000,5000,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (2408,266,1880,'Cosmic_Breath',4,15.0,4000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2415,475,1884,'Supernova',1,20.0,5000,3500,4,0,0,0); -- 33% and below
+INSERT INTO `mob_skill` VALUES (2414,475,1872,'Protostar',1,20.0,5000,3500,4,0,0,0); -- 33% and below
+INSERT INTO `mob_skill` VALUES (2413,475,1883,'Darkmatter',1,20.0,4000,1500,4,0,0,0); -- 66% and below
+INSERT INTO `mob_skill` VALUES (2412,475,1871,'Atomic_ray',1,20.0,4000,1500,4,0,0,0); -- 66% and below
+INSERT INTO `mob_skill` VALUES (2411,475,1870,'Mighty_Guard',0,7.0,3000,2000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (2410,475,1882,'Gyre_Charge',1,15.0,4000,2000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2409,475,1881,'Cataclysmic_Vortex',1,15.0,4000,5000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2408,475,1880,'Cosmic_Breath',4,15.0,4000,1500,4,0,0,0);
 
 -- Absoulute Virtue  (329)
 INSERT INTO `mob_skill` VALUES (1128,329,1019,'Disseverment', 0, 7.0, 2000, 1500, 4, 0, 0, 0); -- Should not have it.  Leaving in for variety, for now.
