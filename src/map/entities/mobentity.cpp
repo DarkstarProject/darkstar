@@ -61,6 +61,7 @@ CMobEntity::CMobEntity()
 	m_HiPCLvl = 0;
 	m_THLvl = 0;
 	m_THPCID = 0;
+	m_ItemStolen = false;
     m_RageMode = 0;
 	m_NewSkin = 0;
 	m_SkinID = 0;
@@ -77,6 +78,8 @@ CMobEntity::CMobEntity()
     defRank = 3;
     accRank = 3;
     evaRank = 3;
+
+	m_dmgMult = 100;
 
     m_giveExp = false;
     m_neutral = false;
@@ -97,6 +100,9 @@ CMobEntity::CMobEntity()
     m_SpellListContainer = NULL;
     PEnmityContainer = new CEnmityContainer(this);
     SpellContainer = new CMobSpellContainer(this);
+
+    // For Dyna Stats
+    m_StatPoppedMobs = false;
 }
 
 CMobEntity::~CMobEntity()

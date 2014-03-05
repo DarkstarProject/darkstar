@@ -153,6 +153,7 @@ public:
 	std::vector<CCharEntity*> m_PlayerList;
 	std::vector<CBaseEntity*> m_NpcList;
 	std::vector<CMobEntity*> m_MobList;
+	std::vector<CMobEntity*> m_EnemyList;
 
 private:
 	CInstanceHandler* m_Handler;
@@ -170,11 +171,7 @@ private:
 	uint16		m_DynaUniqueID;											// unique ID for dynamis instance
 	uint8		m_entrance;
 	CCharEntity* m_CurrentInstanceLeader;
-	std::vector<CMobEntity*> m_EnemyList;
 	std::vector<MobVictoryCondition_t> m_EnemyVictoryList;
-
-	// std::vector<CCharEntity*> m_PlayerList;
-
 };
 
 #endif

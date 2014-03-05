@@ -49,6 +49,7 @@ function OnUseAbility(player, target, ability)
 	cure = cure * CURE_POWER;
 
 	target:restoreHP(cure);
+	target:wakeUp();
 	player:updateEnmityFromCure(target,cure);
 	
 	return cure;

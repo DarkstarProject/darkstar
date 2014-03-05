@@ -246,14 +246,17 @@ public:
 	int32 getBCNMloot(lua_State*);			//triggers if the player opens the chest inside bcnm
 	int32 addPlayerToSpecialInstance(lua_State*); //for limbus
 
-	int32 setSpawn(lua_State*);					// Sets spawn point
-	int32 setRespawnTime(lua_State*);		// set respawn time
-	int32 getDynamisUniqueID(lua_State*);	//Get unique Dynamis ID
-	int32 addPlayerToDynamis(lua_State*);	//Add player to the Dynamis
-	int32 addTimeToDynamis(lua_State*);		//Add time to the Dynamis
-	int32 launchDynamisSecondPart(lua_State*);//Spawn Mob part 2 when mega boss is defeated
-	int32 isInDynamis(lua_State*);			//If player is in Dynamis return true else false
+	int32 setSpawn(lua_State*);                // Sets spawn point
+	int32 setRespawnTime(lua_State*);		   // set respawn time
+	int32 getDynamisUniqueID(lua_State*);	   //Get unique Dynamis ID
+	int32 addPlayerToDynamis(lua_State*);	   //Add player to the Dynamis
+	int32 addTimeToDynamis(lua_State*);		   //Add time to the Dynamis
+	int32 launchDynamisSecondPart(lua_State*); //Spawn Mob part 2 when mega boss is defeated
+	int32 isInDynamis(lua_State*);			   //If player is in Dynamis return true else false
+    int32 getStatPoppedMobs(lua_State*);       // True if dyna statue has popped mobs
+    int32 setStatPoppedMobs(lua_State*);       // Set to 1 for true, 0 for false
 
+	
 	int32 isInBattlefieldList(lua_State*);	// Return true is the mob is in battlefield list
 	int32 addInBattlefieldList(lua_State*);	// Add the mob to the battlefield list
 
@@ -410,6 +413,7 @@ public:
     int32 getAngle(lua_State* L);           // return angle (rot) between two points (vector from a to b)
 	int32 isTrickAttackAvailable(lua_State*);//true if TA target is available
 	int32 getStealItem(lua_State*);			// gets ItemID of droplist steal item from mob
+	int32 itemStolen(lua_State*);			// sets mob's ItemStolen var = true
 
     int32 openDoor(lua_State*);             // открываем дверь
 	int32 closeDoor(lua_State*);		// npc.closeDoor(timeToStayClosed)

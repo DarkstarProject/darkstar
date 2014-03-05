@@ -3186,7 +3186,6 @@ inline int32 CLuaBaseEntity::getGil(lua_State *L)
 	}
 	if(m_PBaseEntity->objtype == TYPE_MOB)
 	{
-		// TODO: Mobs should have a gil pool, until implemented mob can be mugged unlimited times.
 		CMobEntity * PMob = (CMobEntity*)m_PBaseEntity;
 		if(PMob->m_EcoSystem == SYSTEM_BEASTMEN || PMob->m_Type & MOBTYPE_NOTORIOUS)
 		{
@@ -6557,6 +6556,29 @@ inline int32 CLuaBaseEntity::isInDynamis(lua_State *L)
 	return 1;
 }
 
+inline int32 CLuaBaseEntity::setStatPoppedMobs(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+    if (!lua_isnil(L,1) && lua_isboolean(L,1))
+        ((CMobEntity*)m_PBaseEntity)->m_StatPoppedMobs = true;
+    else
+        ((CMobEntity*)m_PBaseEntity)->m_StatPoppedMobs = false;
+    return 0;
+}
+
+inline int32 CLuaBaseEntity::getStatPoppedMobs(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+    bool isPopped = ((CMobEntity*)m_PBaseEntity)->m_StatPoppedMobs;
+	
+    lua_pushboolean(L, isPopped);
+    return 1;
+}
+
 /************************************************************************
 *                                                                       *
 *  Check if mob is in battlefield list									*
@@ -7208,7 +7230,7 @@ inline int32 CLuaBaseEntity::getStealItem(lua_State *L)
 
 	DropList_t* DropList = itemutils::GetDropList(((CMobEntity*)m_PBaseEntity)->m_DropID);
 
-	if (DropList != NULL && DropList->size())
+	if ( !(((CMobEntity*)m_PBaseEntity)->m_ItemStolen) && (DropList != NULL && DropList->size()))
 	{
 		for(uint8 i = 0; i < DropList->size(); ++i)
 		{
@@ -7221,6 +7243,16 @@ inline int32 CLuaBaseEntity::getStealItem(lua_State *L)
 	}
     lua_pushinteger(L, 0);
 	return 1;
+}
+
+inline int32 CLuaBaseEntity::itemStolen(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+    
+    ((CMobEntity*)m_PBaseEntity)->m_ItemStolen = true;
+    lua_pushboolean(L, 1);
+    return 1;
 }
 
 //==========================================================//
@@ -8507,12 +8539,15 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAngle),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideNPC),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStealItem),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,itemStolen),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBCNMloot),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getDynamisUniqueID),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPlayerToDynamis),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTimeToDynamis),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,launchDynamisSecondPart),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isInDynamis),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStatPoppedMobs),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setStatPoppedMobs),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isInBattlefieldList),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addInBattlefieldList),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPlayerToSpecialInstance),

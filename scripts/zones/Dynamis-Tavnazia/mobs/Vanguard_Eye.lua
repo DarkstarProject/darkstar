@@ -30,11 +30,14 @@ function onMobEngaged(mob,target)
 	local spawnList = TavnaziaEyesList;
 	local list=2;
 	-- printf("mobID: %u",mobID);
+	
 	if( mobID > 16949486 )then 
 	    list=1;
 	end
-		
-for nb = 1, table.getn(spawnList), 2 do
+	
+	if(mob:getStatPoppedMobs() == false) then
+		mob:setStatPoppedMobs(true);
+		for nb = 1, table.getn(spawnList), 2 do
 			if(mob:getID() == spawnList[nb]) then			
 				for nbi = 1, table.getn(spawnList[nb + 1]), 1 do
 					if((nbi % 2) == 0) then X=X+2; Z=Z+2; else X=X-2; Z=Z-2; end
@@ -72,27 +75,27 @@ for nb = 1, table.getn(spawnList), 2 do
 				end
 			end
 		end
+			
+		local TaurusNBR = 0;	
+		local NBRtaurusadd = 0;	
 		
-local TaurusNBR = 0;	
-local NBRtaurusadd = 0;	
-	
-  if(list == 2)then
-      for nt = 1, table.getn(TavnaziaTautusList), 2 do		      
-	       if(mob:getID() == TavnaziaTautusList[nt] and TavnaziaTautusList[nt+1][1] ~= 0) then
-
+		if(list == 2)then
+			for nt = 1, table.getn(TavnaziaTautusList), 2 do		      
+				if(mob:getID() == TavnaziaTautusList[nt] and TavnaziaTautusList[nt+1][1] ~= 0) then
 					for nf = 1 ,TavnaziaTautusList[nt+1][1] , 1 do
-					       for TauruslistID = 16949307 , 16949316 , 1 do
-						              if(GetMobAction(TauruslistID ) == 0 )then
-	                                      SpawnMob(TauruslistID):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
-							              GetMobByID(TauruslistID):setPos(X,Y,Z);
-							              GetMobByID(TauruslistID):setSpawn(X,Y,Z);	
-                                          break;										  
-									  end
-						   end   					   					   
-				    end				
-		   end
-	   end
-   end		
+						for TauruslistID = 16949307 , 16949316 , 1 do
+							if(GetMobAction(TauruslistID ) == 0 )then
+								SpawnMob(TauruslistID):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+								GetMobByID(TauruslistID):setPos(X,Y,Z);
+								GetMobByID(TauruslistID):setSpawn(X,Y,Z);	
+								break;										  
+							end
+						end   					   					   
+					end				
+				end
+			end
+		end		
+	end
 end;
 
 -----------------------------------
@@ -100,5 +103,4 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	
 end;
