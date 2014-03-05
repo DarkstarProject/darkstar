@@ -34,7 +34,6 @@ function onAdditionalEffect(mob,target,damage)
 	local rand = math.random(1,10);
 	
 	if ((rand >= 4) or (target:hasStatusEffect(EFFECT_TERROR) == true)) then -- 30% chance to terror
-		print(rand);
 		return 0,0,0;
 	else
 		local duration = math.random(3,5);
