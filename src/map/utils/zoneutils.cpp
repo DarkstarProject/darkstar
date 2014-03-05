@@ -327,6 +327,7 @@ void LoadMOBList()
 
 			PMob->m_Weapons[SLOT_MAIN]->setMaxHit(1);
 			PMob->m_Weapons[SLOT_MAIN]->setSkillType(Sql_GetIntData(SqlHandle,17));
+			PMob->m_dmgMult = Sql_GetUIntData(SqlHandle, 18);
 			PMob->m_Weapons[SLOT_MAIN]->setDelay((Sql_GetIntData(SqlHandle,19) * 1000)/60);
 			PMob->m_Weapons[SLOT_MAIN]->setBaseDelay((Sql_GetIntData(SqlHandle,19) * 1000)/60);
 
