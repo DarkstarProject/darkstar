@@ -23,12 +23,10 @@ function onTrade(player,npc,trade)
 	if((KingBehemoth == ACTION_NONE or KingBehemoth == ACTION_SPAWN) and trade:hasItemQty(3342,1) and trade:getItemCount() == 1) then -- Check trade, and if mob is ACTION_NONE (0) or waiting to spawn (24)
 		player:tradeComplete();
 		SpawnMob(17297441,180):updateEnmity(player);
-		KingBehemoth_Engaged = os.time(t); -- onMobSpawn will not run for a scripted spawn
 	-- Trade Beastly Shank
 	elseif((Behemoth == ACTION_NONE or Behemoth == ACTION_SPAWN) and trade:hasItemQty(3341,1) and trade:getItemCount() == 1) then 
 		player:tradeComplete();
 		SpawnMob(17297440,180):updateEnmity(player);
-		Behemoth_Engaged = os.time(t); -- onMobSpawn will not run for a scripted spawn
 	end
 	
 

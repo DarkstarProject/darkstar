@@ -8,6 +8,7 @@ package.loaded["scripts/zones/Dragons_Aery/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/Valley_of_Sorrows/TextIDs");
+require("scripts/globals/status");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 
@@ -20,15 +21,13 @@ function onTrade(player,npc,trade)
 	local Aspidochelone = GetMobAction(17301538);
 	
 	-- Trade Clump of Red Pondweed
-	if((Aspidochelone == 0 or Aspidochelone == 24) and trade:hasItemQty(3344,1) and trade:getItemCount() == 1) then -- Check trade, and if mob is ACTION_NONE (0) or waiting to spawn (24)
+	if((Aspidochelone == ACTION_NONE or Aspidochelone == ACTION_SPAWN) and trade:hasItemQty(3344,1) and trade:getItemCount() == 1) then -- Check trade, and if mob is ACTION_NONE (0) or waiting to spawn (24)
 		player:tradeComplete();
 		SpawnMob(17301538,180):updateEnmity(player);
-		Aspid_Engaged = os.time(t);
 	-- Trade Clump of Red Pondweed
-	elseif((Adamantoise == 0 or Adamantoise == 24) and trade:hasItemQty(3343,1) and trade:getItemCount() == 1) then 
+	elseif((Adamantoise == ACTION_NONE or Adamantoise == ACTION_SPAWN) and trade:hasItemQty(3343,1) and trade:getItemCount() == 1) then 
 		player:tradeComplete();
 		SpawnMob(17301537,180):updateEnmity(player);
-		Adamantoise_Engaged = os.time(t);
 	end
 	
 end;
