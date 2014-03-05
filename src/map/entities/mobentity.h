@@ -146,6 +146,8 @@ public:
   uint8     accRank;
   uint8     evaRank; // not used
 
+  uint16	m_dmgMult;
+
   // aggro ranges
   bool      m_disableScent;             // stop detecting by scent
   float     m_maxRoamDistance;          // maximum distance mob can be from spawn
