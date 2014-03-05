@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Behemoths_Dominion/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/status");
 require("scripts/zones/Behemoths_Dominion/TextIDs");
 
 -----------------------------------
@@ -19,12 +20,12 @@ function onTrade(player,npc,trade)
 	local KingBehemoth = GetMobAction(17297441);
 	
 	-- Trade Savory Shank
-	if((KingBehemoth == 0 or KingBehemoth == 24) and trade:hasItemQty(3342,1) and trade:getItemCount() == 1) then -- Check trade, and if mob is ACTION_NONE (0) or waiting to spawn (24)
+	if((KingBehemoth == ACTION_NONE or KingBehemoth == ACTION_SPAWN) and trade:hasItemQty(3342,1) and trade:getItemCount() == 1) then -- Check trade, and if mob is ACTION_NONE (0) or waiting to spawn (24)
 		player:tradeComplete();
 		SpawnMob(17297441,180):updateEnmity(player);
 		KingBehemoth_Engaged = os.time(t); -- onMobSpawn will not run for a scripted spawn
 	-- Trade Beastly Shank
-	elseif((Behemoth == 0 or Behemoth == 24) and trade:hasItemQty(3341,1) and trade:getItemCount() == 1) then 
+	elseif((Behemoth == ACTION_NONE or Behemoth == ACTION_SPAWN) and trade:hasItemQty(3341,1) and trade:getItemCount() == 1) then 
 		player:tradeComplete();
 		SpawnMob(17297440,180):updateEnmity(player);
 		Behemoth_Engaged = os.time(t); -- onMobSpawn will not run for a scripted spawn
