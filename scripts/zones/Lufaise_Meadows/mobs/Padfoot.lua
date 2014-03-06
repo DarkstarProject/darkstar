@@ -50,11 +50,11 @@ function onMobSpawn(mob)
  
     -- TODO: Add Treasure Hunter
     if(math.random((1),(100)) <= 27) then -- Hardcoded "this or this item" drop rate until implemented.
-      SetDropRate(4478,14782,100); -- Astral Earring
+      SetDropRate(4478,14782,1000); -- Astral Earring
       SetDropRate(4478,14676,0);
     else
       SetDropRate(4478,14782,0);
-      SetDropRate(4478,14676,100); -- Assailants Ring
+      SetDropRate(4478,14676,1000); -- Assailants Ring
     end
   end
  

@@ -45,7 +45,7 @@ struct DropItem_t
 {
 	uint16 ItemID;
 	uint8  DropType;
-	float  DropRate;
+	uint16  DropRate;
 };
 
 struct LootItem_t
