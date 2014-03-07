@@ -3,7 +3,7 @@
 --   Mob: Orcish_Grunt
 -----------------------------------
 
--- require("scripts/zones/Yughott_Grotto/MobIDs");
+require("scripts/zones/Yughott_Grotto/MobIDs");
 
 -----------------------------------
 -- onMobDeath
