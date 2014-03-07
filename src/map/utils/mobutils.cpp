@@ -49,10 +49,7 @@ namespace mobutils
 uint16 GetWeaponDamage(CMobEntity* PMob)
 {
 	float MainLevel = PMob->GetMLevel();
-    if (PMob->m_Type & MOBTYPE_NOTORIOUS)
-        return (uint16)(MainLevel * 1.3 * (MainLevel < 40 ? 1.4 - MainLevel / 100 : 1));
-    else
-	    return (uint16)(MainLevel * (MainLevel < 40 ? 1.4 - MainLevel/100 : 1));
+    return (uint16)(MainLevel * ((float)PMob->m_dmgMult / 100.0f) * (MainLevel < 40 ? 1.4 - MainLevel / 100 : 1));
 }
 
 /************************************************************************

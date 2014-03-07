@@ -6,15 +6,15 @@
 require("scripts/globals/status");
 -----------------------------------
 
--- onMobInitialize
 
+-----------------------------------
+-- onMobInitialize
 -----------------------------------
 
 function onMobInitialize(mob)	
 	mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
 end;
 
-	
 -----------------------------------	
 -- onMobDeath	
 -----------------------------------	
@@ -32,18 +32,14 @@ end;
 -- onAdditionalEffect Action
 -----------------------------------
 function onAdditionalEffect(mob,target,damage)
-	local duration = 5;
-	if (math.random(1,15) ~= 5) then
-		return 0,0,0;
-	end
-	local message;
-	if(target:hasStatusEffect(EFFECT_TERROR) == true) then
+	
+	if ((math.random(1,15) ~= 5) or (target:hasStatusEffect(EFFECT_TERROR) == true)) then
 		return 0,0,0;
 	else
+		local duration = 5;
 		target:addStatusEffect(EFFECT_TERROR,1,0,duration);
-		 mob:resetEnmity(target)--236
+		mob:resetEnmity(target);
 		return SUBEFFECT_NONE,0,EFFECT_TERROR;
 	end
-    
     
 end;

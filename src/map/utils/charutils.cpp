@@ -641,7 +641,7 @@ void LoadChar(CCharEntity* PChar)
                             mamool_assault_point, lebros_assault_point, periqia_assault_point, ilrusi_assault_point, \
 							nyzul_isle_assault_point, zeni_point, jetton, therion_ichor, maw, past_sandoria_tp, \
 							past_bastok_tp, past_windurst_tp, allied_notes, bayld, kinetic_unit, obsidian_fragment, \
-                            lebondopt_wing, mweya_plasm, cruor, resistance_credit, dominion_note, \
+                            lebondopt_wing, pulchridopt_wing, mweya_plasm, cruor, resistance_credit, dominion_note, \
                             fifth_echelon_trophy, fourth_echelon_trophy, third_echelon_trophy, second_echelon_trophy, \
                             first_echelon_trophy, cave_points, id_tags, op_credits, traverser_stones, voidstones, \
                             kupofried_corundums, imprimaturs, pheromone_sacks \

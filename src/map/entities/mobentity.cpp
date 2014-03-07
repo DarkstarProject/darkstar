@@ -79,6 +79,8 @@ CMobEntity::CMobEntity()
     accRank = 3;
     evaRank = 3;
 
+	m_dmgMult = 100;
+
     m_giveExp = false;
     m_neutral = false;
     m_Link = 0;
