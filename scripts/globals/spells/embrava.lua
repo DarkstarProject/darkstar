@@ -13,11 +13,7 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function OnMagicCastingCheck(caster,target,spell)
-	if caster:hasStatusEffect(EFFECT_TABULA_RASA) then
-    return 0;
-	end
--- TODO: Correct message is "Incorrect job, job level too low, or required ability not activated." Unable to locate this in our basic or system message functions.
-	return MSGBASIC_UNABLE_TO_CAST;
+	return 0;
 end;
 
 function onSpellCast(caster,target,spell)

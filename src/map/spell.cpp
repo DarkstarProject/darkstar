@@ -575,75 +575,73 @@ namespace spell
 
 		    if(PCaster->GetMLevel() >= JobMLVL)
             {
-                if (requirements & SPELLREQ_TABULA_RASA && PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_TABULA_RASA))
-                {
-                    usable = true;
-                }
+				usable = true;
+				if (requirements & SPELLREQ_TABULA_RASA)
+				{
+					if (!PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_TABULA_RASA))
+					{
+						usable = false;
+					}
+				}
                 if (requirements & SPELLREQ_ADDENDUM_BLACK && PCaster->GetMJob() == JOB_SCH)
                 {
-                    if(PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_BLACK) || PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ENLIGHTENMENT))
+                    if(!PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_BLACK) && !PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ENLIGHTENMENT))
                     {
-                        usable = true;
-                    }
+						usable = false;
+					}
                 }
                 else if (requirements & SPELLREQ_ADDENDUM_WHITE && PCaster->GetMJob() == JOB_SCH)
                 {
-                    if (PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_WHITE) || PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ENLIGHTENMENT))
+                    if (!PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_WHITE) && !PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ENLIGHTENMENT))
                     {
-                        usable = true;
+                        usable = false;
                     }
                 }
                 else if (SpellID > 0x200)
                 {
                     if (PCaster->objtype == TYPE_PC)
                     {
-                        usable = blueutils::IsSpellSet((CCharEntity*)PCaster, (CBlueSpell*)spell);
+						if (!blueutils::IsSpellSet((CCharEntity*)PCaster, (CBlueSpell*)spell))
+						{
+							usable = false;
+						}
                     }
-                    else
-                    {
-                        usable = true;
-                    }
-                }
-                else
-                {
-                    usable = true;
                 }
             }
             if(PCaster->GetSLevel() >= JobSLVL)
             {
-                if (requirements & SPELLREQ_TABULA_RASA && PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_TABULA_RASA))
-                {
-                    usable = true;
-                }
-                if(requirements & SPELLREQ_ADDENDUM_BLACK && PCaster->GetSJob() == JOB_SCH)
-                {
-                    if(PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_BLACK))
-                    {
-                        usable = true;
-                    }
-                }
-                else if (requirements & SPELLREQ_ADDENDUM_WHITE && PCaster->GetSJob() == JOB_SCH)
-                {
-                    if (PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_WHITE))
-                    {
-                        usable = true;
-                    }
-                }
-                else if (SpellID > 0x200)
-                {
-                    if (PCaster->objtype == TYPE_PC)
-                    {
-                        usable = blueutils::IsSpellSet((CCharEntity*)PCaster, (CBlueSpell*)spell);
-                    }
-                    else
-                    {
-                        usable = true;
-                    }
-                }
-                else
-                {
-                    usable = true;
-                }
+				usable = true;
+				if (requirements & SPELLREQ_TABULA_RASA)
+				{
+					if (!PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_TABULA_RASA))
+					{
+						usable = false;
+					}
+				}
+				if (requirements & SPELLREQ_ADDENDUM_BLACK && PCaster->GetSJob() == JOB_SCH)
+				{
+					if (!PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_BLACK) && !PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ENLIGHTENMENT))
+					{
+						usable = false;
+					}
+				}
+				else if (requirements & SPELLREQ_ADDENDUM_WHITE && PCaster->GetSJob() == JOB_SCH)
+				{
+					if (!PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_WHITE) && !PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ENLIGHTENMENT))
+					{
+						usable = false;
+					}
+				}
+				else if (SpellID > 0x200)
+				{
+					if (PCaster->objtype == TYPE_PC)
+					{
+						if (!blueutils::IsSpellSet((CCharEntity*)PCaster, (CBlueSpell*)spell))
+						{
+							usable = false;
+						}
+					}
+				}
             }
 	    }
 	    return usable;
