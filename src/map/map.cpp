@@ -842,6 +842,7 @@ int32 map_config_default()
     map_config.exp_loss_level = 4;
     map_config.level_sync_enable = 0;
     map_config.speed_mod = 0;
+    map_config.chocobo_speed_mod = 0;
     map_config.skillup_multiplier = 2.5f;
     map_config.craft_multiplier = 2.6f;
     map_config.mob_tp_multiplier = 1.0f;
@@ -974,6 +975,10 @@ int32 map_config_read(const int8* cfgName)
 		else if (strcmp(w1,"speed_mod") == 0)
 		{
 			map_config.speed_mod = atoi(w2);
+		}
+		else if (strcmp(w1,"chocobo_speed_mod") == 0)
+		{
+			map_config.chocobo_speed_mod = atoi(w2);
 		}
 		else if (strcmp(w1,"skillup_multiplier") == 0)
         {

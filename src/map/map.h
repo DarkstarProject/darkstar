@@ -85,6 +85,7 @@ struct map_config_t
 	int8   exp_loss_level;			// Minimum main job level at which a character may lose experience points.
     bool   level_sync_enable;       // Enable/disable Level Sync
 	int8   speed_mod;				// Modifier to add to baseentity speed
+	int8   chocobo_speed_mod;		// Modifier to add to players chocobo speed
 	float  skillup_multiplier;		// Constant used in the skillup formula that has a strong effect on skill-up rates
 	float  craft_multiplier;		// Constant used in the crafting skill-up formula that has a strong effect on skill-up rates
 	float  mob_tp_multiplier;		// Multiplies the amount of TP mobs gain on any effect that would grant TP
