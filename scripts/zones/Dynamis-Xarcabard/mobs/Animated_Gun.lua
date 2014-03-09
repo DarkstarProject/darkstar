@@ -13,7 +13,7 @@ require("scripts/zones/Dynamis-Xarcabard/TextIDs");
 function onMobEngaged(mob,target)
 
 	if(mob:AnimationSub() == 3) then
-		SetDropRate(105,1585,100);
+		SetDropRate(105,1585,1000);
 	else
 		SetDropRate(105,1585,0);
 	end

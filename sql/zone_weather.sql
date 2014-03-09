@@ -126,7 +126,7 @@ INSERT INTO `zone_weather` VALUES(66, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 INSERT INTO `zone_weather` VALUES(67, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 INSERT INTO `zone_weather` VALUES(68, 0, 60, 0, 0, 0, 0, 0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 INSERT INTO `zone_weather` VALUES(69, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-INSERT INTO `zone_weather` VALUES(70, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+INSERT INTO `zone_weather` VALUES(70, 0, 60, 0, 0, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 INSERT INTO `zone_weather` VALUES(71, 0, 80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 INSERT INTO `zone_weather` VALUES(72, 0, 60, 0, 0, 0, 0, 0, 20, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 INSERT INTO `zone_weather` VALUES(73, 0, 60, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
