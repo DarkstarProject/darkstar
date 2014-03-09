@@ -121,6 +121,7 @@
 #include "packets/shop_appraise.h"
 #include "packets/shop_buy.h"
 #include "packets/stop_downloading.h"
+#include "packets/synth_suggestion.h"
 #include "packets/trade_action.h"
 #include "packets/trade_request.h"
 #include "packets/trade_item.h"
@@ -2420,6 +2421,19 @@ void SmallPacket0x050(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	luautils::CheckForGearSet(PChar); // check for gear set on gear change
 	PChar->UpdateHealth();
 	return;
+}
+
+/************************************************************************
+*																		*
+*  Request synthesis suggestion											*
+*																		*
+************************************************************************/
+
+void SmallPacket0x058(map_session_data_t* session, CCharEntity* PChar, int8* data)
+{
+	uint16 skillID = RBUFW(data, (0x04));
+	uint16 skillLevel = RBUFW(data, (0x06));
+	//PChar->pushPacket(new CSynthSuggestionPacket(recipeID));
 }
 
 /************************************************************************
@@ -4972,6 +4986,7 @@ void PacketParserInitialize()
     PacketSize[0x04D] = 0x00; PacketParser[0x04D] = &SmallPacket0x04D;
     PacketSize[0x04E] = 0x1E; PacketParser[0x04E] = &SmallPacket0x04E;
     PacketSize[0x050] = 0x04; PacketParser[0x050] = &SmallPacket0x050;
+	PacketSize[0x058] = 0x0A; PacketParser[0x058] = &SmallPacket0x058;
     PacketSize[0x059] = 0x00; PacketParser[0x059] = &SmallPacket0x059;
     PacketSize[0x05A] = 0x02; PacketParser[0x05A] = &SmallPacket0x05A;
     PacketSize[0x05B] = 0x0A; PacketParser[0x05B] = &SmallPacket0x05B;

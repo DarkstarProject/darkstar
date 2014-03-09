@@ -453,7 +453,7 @@ namespace itemutils
 
                 DropItem.ItemID  = (uint16)Sql_GetIntData(SqlHandle,1);
                 DropItem.DropType = (uint8)Sql_GetIntData(SqlHandle,2);
-                DropItem.DropRate = (float)Sql_GetIntData(SqlHandle,3) / 1000;
+                DropItem.DropRate = (uint16)Sql_GetIntData(SqlHandle,3);
 				
                 g_pDropList[DropID]->push_back(DropItem);
 		    }
