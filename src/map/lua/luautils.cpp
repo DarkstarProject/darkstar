@@ -949,7 +949,7 @@ int32 OnGameIn(CCharEntity* PChar)
 	CLuaBaseEntity LuaBaseEntity(PChar);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
 
-	lua_pushboolean(LuaHandle, PChar->loc.prevzone == 0); // first login
+	lua_pushboolean(LuaHandle, PChar->GetPlayTime(false) == 0); // first login
 
 	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
 	{

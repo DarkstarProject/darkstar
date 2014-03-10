@@ -200,8 +200,6 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 {
 	WBUFL(data,(0x5C)) = 0;
 
-    bool firstlogin = false; // временное решение, до появления PlayTime
-
 	PChar->clearPacketList();
 
 	if (PChar->status == STATUS_DISAPPEAR)
@@ -245,12 +243,6 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
             PChar->loc.zone = zoneutils::GetZone(destination);
         }
 
-        firstlogin = true;
-
-        for(uint32 i = 0; i < sizeof(PChar->m_ZonesList); ++i)
-        {
-            if (PChar->m_ZonesList[i] != 0) firstlogin = false;
-        }
 		PChar->m_ZonesList[PChar->getZone() >> 3] |= (1 << (PChar->getZone()%8));
 
 		const int8* fmtQuery = "UPDATE accounts_sessions SET targid = %u, session_key = x'%s', server_addr = %u, client_port = %u WHERE charid = %u";
@@ -268,9 +260,8 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			PChar->m_DeathTimestamp = (uint32)Sql_GetUIntData(SqlHandle,0);
 		}
 
-
 		// set new characters merits to zero on char creation
-		if (firstlogin)
+		if (PChar->GetPlayTime(false) == 0)
 		{
 			PChar->PMeritPoints->SaveMeritPoints(PChar->id, true);
 		}
@@ -284,7 +275,7 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
             ShowWarning(CL_YELLOW"Client cannot receive packet or key is invalid: %s\n" CL_RESET, PChar->GetName());
         }
 	}
-    if (PChar->loc.prevzone == 0 && !firstlogin)
+    if (PChar->loc.prevzone == 0 && PChar->GetPlayTime(false) > 0)
 	{
 		PChar->loc.prevzone = PChar->getZone();
 	}
@@ -292,6 +283,7 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 	charutils::SaveCharPosition(PChar);
 	charutils::SaveZonesVisited(PChar);
+	charutils::SavePlayTime(PChar);
 
 	PChar->pushPacket(new CDownloadingDataPacket());
 	PChar->pushPacket(new CZoneInPacket(PChar,EventID));
@@ -800,24 +792,19 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
         break;
 		case 0x13: // tractor menu
 		{
-                // по любому, это работает неправильно. проблемный код в комментарии
-
-			    //PChar->PBattleAI->SetCurrentAction(ACTION_RAISE_MENU_SELECTION);
-			    //PChar->PBattleAI->CheckCurrentAction(gettick());
-
-			/*
-			if(RBUFB(data,(0x0C)) == 0)
+			if(RBUFB(data,(0x0C)) == 0) //ACCEPTED TRACTOR
 			{
-				PChar->status = STATUS_DISAPPEAR;
+				//PChar->PBattleAI->SetCurrentAction(ACTION_RAISE_MENU_SELECTION);
+				//PChar->PBattleAI->CheckCurrentAction(gettick());
 				PChar->loc.p  = PChar->m_StartActionPos;
-
+				PChar->loc.destination = PChar->getZone();
+				PChar->status = STATUS_DISAPPEAR;
 				PChar->loc.boundary = 0;
 				PChar->clearPacketList();
 				PChar->pushPacket(new CServerIPPacket(PChar,2));
-			}else{
-				PChar->m_hasTractor = 0;
 			}
-			*/
+
+			PChar->m_hasTractor = 0;
 		}
 		break;
 		case 0x14: // окончание обновления данных персонажа

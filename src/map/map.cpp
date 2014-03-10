@@ -677,7 +677,9 @@ int32 map_close_session(uint32 tick, CTaskMgr::CTask* PTask)
 		map_session_data->server_packet_data != NULL &&		// bad pointer crashed here, might need dia to look at this one
 		map_session_data->PChar != NULL)					// crash occured when both server_packet_data & PChar were NULL
 	{
-		Sql_Query(SqlHandle,"DELETE FROM accounts_sessions WHERE charid = %u",map_session_data->PChar->id);
+		charutils::SavePlayTime(map_session_data->PChar);
+
+		Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE charid = %u", map_session_data->PChar->id);
 
 		uint64 port64 = map_session_data->client_port;
 		uint64 ipp	  = map_session_data->client_addr;
