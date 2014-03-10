@@ -6733,6 +6733,27 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L) {
 }
 
 /************************************************************************
+* Can be used by all npc to appear for a certain time then despawn		*
+* npc:showNPC() : appear for 15 secs									*
+* you can add time in second : showNPC(30) : appear for 30 secs			*
+************************************************************************/
+
+inline int32 CLuaBaseEntity::showNPC(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
+
+	uint32 OpenTime = (!lua_isnil(L,1) && lua_isnumber(L,1)) ? (uint32)lua_tointeger(L,1) * 1000 : 15000;
+
+	m_PBaseEntity->status = STATUS_NORMAL;
+	m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_UPDATE));
+
+	CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("disappear_npc", gettick()+OpenTime, m_PBaseEntity, CTaskMgr::TASK_ONCE, disappear_npc));
+
+	return 0;
+}
+
+/************************************************************************
 * can be used by all npc for disappear a certain time					*
 * npc:hideNPC() : disappear for 15sec									*
 * you can add time in second : hideNPC(30) : disappear for 30sec		*

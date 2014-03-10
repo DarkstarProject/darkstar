@@ -417,6 +417,7 @@ public:
 
     int32 openDoor(lua_State*);             // открываем дверь
 	int32 closeDoor(lua_State*);		// npc.closeDoor(timeToStayClosed)
+	int32 showNPC(lua_State*);              // Show an NPC
 	int32 hideNPC(lua_State*);              // hide an NPC
 	int32 resetRecasts(lua_State*);         // Reset recasts for the caller
     int32 resetRecast(lua_State*);          // Reset one recast ID
