@@ -1,9 +1,7 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC: Marble Bridge Eatery
--- 
--- @zone 244
--- @pos 
+-- NPC:  Marble Bridge Eatery (Door)
+-- @pos -96.6 -0.2 92.3 244
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -27,33 +25,35 @@ end;
 -- onTrigger Action
 -----------------------------------
 function onTrigger(player,npc)
-local playerhaveCOPring=false;
-local ringtakeNbr=player:getVar("COP-RingTakeNbr");
-local currentday = tonumber(os.date("%j")); 
-local lastRingday =player:getVar("COP-lastRingday");
 
-   if(player:hasItem(RajasRing) or player:hasItem(SattvaRing) or player:hasItem(TamasRing))then
-     playerhaveCOPring=true;
-   end
+    local playerhaveCOPring=false;
+    local ringtakeNbr=player:getVar("COP-RingTakeNbr");
+    local currentday = tonumber(os.date("%j")); 
+    local lastRingday =player:getVar("COP-lastRingday");
+
+    if(player:hasItem(RajasRing) or player:hasItem(SattvaRing) or player:hasItem(TamasRing))then
+        playerhaveCOPring=true;
+    end
 	
-	if(player:getCurrentMission(COP) == FOR_WHOM_THE_VERSE_IS_SUNG  and  player:getVar("PromathiaStatus") == 1) then 
-      player:startEvent(0x271B);
-	elseif(player:getCurrentMission(COP) ==FLAMES_IN_THE_DARKNESS and player:getVar("PromathiaStatus")==3)then
-	  player:startEvent(0x271C);
-	elseif(player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus")== 4)then
-	  player:startEvent(0x0081);
-	elseif((player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus")> 4) or player:hasCompletedMission(COP,DAWN))then  	  
-	     if(playerhaveCOPring == false  )then
-	           if(ringtakeNbr==0)then
-			      player:startEvent(0x0054,RajasRing,SattvaRing,TamasRing); 
-			   elseif(ringtakeNbr ==1)then -- firts time you trow away
-			      player:startEvent(0x00CC,RajasRing,SattvaRing,TamasRing);
-			   elseif(ringtakeNbr >1 and (currentday-lastRingday)>26)then -- trow away the ring more than 1 
-			      player:startEvent(0x00CC,RajasRing,SattvaRing,TamasRing);
-			   end
-	     end
-	end
- return -1;
+    if(player:getCurrentMission(COP) == FOR_WHOM_THE_VERSE_IS_SUNG  and  player:getVar("PromathiaStatus") == 1) then 
+        player:startEvent(0x271B);
+    elseif(player:getCurrentMission(COP) ==FLAMES_IN_THE_DARKNESS and player:getVar("PromathiaStatus")==3)then
+        player:startEvent(0x271C);
+    elseif(player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus")== 4)then
+        player:startEvent(0x0081);
+    elseif((player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus")> 4) or player:hasCompletedMission(COP,DAWN))then  	  
+        if(playerhaveCOPring == false  )then
+            if(ringtakeNbr==0)then
+                player:startEvent(0x0054,RajasRing,SattvaRing,TamasRing); 
+            elseif(ringtakeNbr ==1)then -- First time you throw away
+                player:startEvent(0x00CC,RajasRing,SattvaRing,TamasRing);
+            elseif(ringtakeNbr >1 and (currentday-lastRingday)>26)then -- Ring was thrown away more than once
+                player:startEvent(0x00CC,RajasRing,SattvaRing,TamasRing);
+            end
+        end
+    else
+        return -1; 
+    end
 end;
 
 -----------------------------------
