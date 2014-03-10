@@ -6724,7 +6724,10 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L) {
 
 	ACTIONTYPE oldAction = PChar->PBattleAI->GetCurrentAction();
 	PChar->PBattleAI->SetCurrentSpell(1);
+	PChar->PBattleAI->SetCurrentJobAbility(1);
+	PChar->PBattleAI->SetCurrentWeaponSkill(1);
 	PChar->PBattleAI->SetCurrentAction(actiontype);
+
     PChar->m_ActionList.push_back(Action);
 	PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CActionPacket(PChar));
 	PChar->PBattleAI->SetCurrentAction(oldAction);
