@@ -26,7 +26,7 @@ function onMobDeath(mob, killer)
     local ToD     = GetServerVariable("[POP]Aspidochelone");
     local kills   = GetServerVariable("[PH]Aspidochelone");
     DeterMob(Adamantoise, true);
-    if (LandKingSystem_HQ == 0 or LandKingSystem_NQ == 2) then
+    if (LandKingSystem_HQ == 0 or LandKingSystem_HQ == 2) then
         if (ToD <= os.time(t) and GetMobAction(Aspidochelone) == 0) then
             if (math.random((1),(5)) == 3 or kills > 6) then
                 UpdateNMSpawnPoint(Aspidochelone);

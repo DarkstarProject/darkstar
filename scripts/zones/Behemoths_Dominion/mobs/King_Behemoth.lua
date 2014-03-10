@@ -24,7 +24,7 @@ function onMobDeath(mob, killer)
     killer:addTitle(BEHEMOTH_DETHRONER);
 
     -- Set King_Behemoth's Window Open Time
-    if (LandKingSystem_HQ == 0 or LandKingSystem_NQ == 2) then
+    if (LandKingSystem_HQ == 0 or LandKingSystem_HQ == 2) then
         local wait = 72 * 3600
         SetServerVariable("[POP]King_Behemoth", os.time(t) + wait); -- 3 days
         DeterMob(mob:getID(), true);

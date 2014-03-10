@@ -28,7 +28,7 @@ function onMobDeath(mob, killer)
     local ToD     = GetServerVariable("[POP]Nidhogg");
     local kills   = GetServerVariable("[PH]Nidhogg");
     DeterMob(Fafnir, true);
-    if (LandKingSystem_HQ == 0 or LandKingSystem_NQ == 2) then
+    if (LandKingSystem_HQ == 0 or LandKingSystem_HQ == 2) then
         if (ToD <= os.time(t) and GetMobAction(Nidhogg) == 0) then
             if (math.random((1),(5)) == 3 or kills > 6) then
                 UpdateNMSpawnPoint(Nidhogg);
