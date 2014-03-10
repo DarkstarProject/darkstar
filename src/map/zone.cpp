@@ -1345,6 +1345,18 @@ void CZone::TOTDChange(TIMETYPE TOTD)
     luautils::OnTOTDChange(m_zoneID, TOTD);
 }
 
+void CZone::SavePlayTime()
+{
+	if(!m_charList.empty())
+	{
+		for(EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
+		{
+			CCharEntity* PChar = (CCharEntity*)it->second;
+			charutils::SavePlayTime(PChar);
+		}
+	}
+}
+
 /************************************************************************
 *                                                                       *
 *                                                                       *

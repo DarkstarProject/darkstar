@@ -10,12 +10,14 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function OnMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
+printf("Caster Zone: %u",caster:getZone());
+    target:sendTractor(caster:getXPos(), caster:getYPos(), caster:getZPos(), target:getRotPos());
 
-    -- target:setPos(caster:getXPos(), caster:getYPos(), caster:getZPos());
+    spell:setMsg(309);
 
-    return 0;
+    return 1;
 end;

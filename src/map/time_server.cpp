@@ -84,6 +84,7 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
             guildutils::UpdateGuildsStock();
 			luautils::OnGameDayAutomatisation();
 			conquest::UpdateConquestSystem();
+			zoneutils::SavePlayTime();
 
             // weekly update for conquest (monday at midnight)
 	        if (CVanaTime::getInstance()->getSysWeekDay() == 1)

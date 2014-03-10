@@ -124,6 +124,15 @@ void UpdateWeather()
     ShowDebug(CL_CYAN"UpdateWeather Finished\n" CL_RESET);
 }
 
+void SavePlayTime()
+{
+	for(int32 ZoneID = 0; ZoneID < MAX_ZONEID; ZoneID++)
+	{
+		g_PZoneList[ZoneID]->SavePlayTime();
+	}
+	ShowDebug(CL_CYAN"Player playtime saving finished\n" CL_RESET);
+}
+
 /************************************************************************
 *																		*
 *  Возвращаем указатель на класс зоны с указанным ID.					*

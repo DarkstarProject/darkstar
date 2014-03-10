@@ -25,7 +25,7 @@ end;
 function onZoneIn(player,prevZone)
 	cs = -1;
 	-- FIRST LOGIN (START CS)
-	if (prevZone == 0) then
+	if (player:getPlaytime(false) == 0) then
 		if (OPENING_CUTSCENE_ENABLE == 1) then
 			cs = 0x0001;
 		end	

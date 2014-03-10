@@ -181,7 +181,7 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
 		WBUFB(data,(0xAF)-4) = PChar->loc.zone->CanUseMisc(MISC_MOGMENU);	// флаг, позволяет использовать mog menu за пределами mog house
 	}
 
-	WBUFL(data,(0xA0)-4) = 0x00000000;							// время, проведенное персонажем в игре с момента создания
+	WBUFL(data,(0xA0)-4) = PChar->GetPlayTime();				// время, проведенное персонажем в игре с момента создания
 
 	// current death timestamp is less than an hour ago and the player is dead.
 	if (PChar->m_DeathTimestamp > 0 && ((time(NULL)-PChar->m_DeathTimestamp) < (60*60)) && PChar->isDead()) 
