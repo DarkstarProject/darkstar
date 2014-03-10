@@ -607,6 +607,7 @@ namespace spell
 						}
                     }
                 }
+				if (usable) { return true; }
             }
             if(PCaster->GetSLevel() >= JobSLVL)
             {
