@@ -3897,23 +3897,21 @@ inline int32 CLuaBaseEntity::sendTractor(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L,-3) || !lua_isnumber(L,-3));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L,-4) || !lua_isnumber(L,-4));
-
-	// недостаточно условий, tractor можно читать только на мертвую цель
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,3) || !lua_isnumber(L,3));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,4) || !lua_isnumber(L,4));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-	if(PChar->m_hasTractor == 0)
-    {
+	if (PChar->m_hasTractor == 0)
+	{
 		PChar->m_hasTractor = 1;
 
-		PChar->m_StartActionPos.x = (float)lua_tonumber(L, -1);
-		PChar->m_StartActionPos.y = (float)lua_tonumber(L, -2);
-		PChar->m_StartActionPos.z = (float)lua_tonumber(L, -3);
-		PChar->m_StartActionPos.rotation = (int8)lua_tonumber(L, -4);
+		PChar->m_StartActionPos.x = (float)lua_tonumber(L,1);
+		PChar->m_StartActionPos.y = (float)lua_tonumber(L,2);
+		PChar->m_StartActionPos.z = (float)lua_tonumber(L,3);
+		PChar->m_StartActionPos.rotation = (uint8)lua_tointeger(L,4);
 
 		PChar->pushPacket(new CRaiseTractorMenuPacket(PChar, TYPE_TRACTOR));
 	}
@@ -4975,6 +4973,24 @@ inline int32 CLuaBaseEntity::getMerit(lua_State *L)
 
 		lua_pushinteger(L, PChar->PMeritPoints->GetMeritValue((MERIT_TYPE)lua_tointeger(L,1), PChar));
 	}
+
+	return 1;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::getPlaytime(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	bool update = true;
+    if(!lua_isnil(L,1) && lua_isboolean(L,1))
+		update = lua_toboolean(L, 1);
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	lua_pushinteger(L, PChar->GetPlayTime(update));
 
 	return 1;
 }
@@ -8480,6 +8496,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,changesJob),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMerits),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMerit),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPlaytime),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponDmg),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getOffhandDmg),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponDmgRank),
