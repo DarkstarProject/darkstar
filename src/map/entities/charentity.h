@@ -348,6 +348,7 @@ public:
 	uint32			  m_SaveTime;
 
 	uint8			  m_GMlevel;                    // Level of the GM flag assigned to this character
+    bool              m_isGMHidden;                 // GM Hidden flag to prevent player updates from being processed.
 
 	int8			  getShieldSize();
 

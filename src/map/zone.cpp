@@ -1085,39 +1085,51 @@ void CZone::SpawnNPCs(CCharEntity* PChar)
 
 void CZone::SpawnPCs(CCharEntity* PChar)
 {
-	for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
-	{
-		CCharEntity* PCurrentChar = (CCharEntity*)it->second;
-		SpawnIDList_t::iterator PC = PChar->SpawnPCList.find(PCurrentChar->id);
+    for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
+    {
+        CCharEntity* PCurrentChar = (CCharEntity*)it->second;
+        SpawnIDList_t::iterator PC = PChar->SpawnPCList.find(PCurrentChar->id);
 
-		if (PChar != PCurrentChar)
-		{
-			if(distance(PChar->loc.p, PCurrentChar->loc.p) < 50)
-			{
-				if( PC == PChar->SpawnPCList.end() )
-				{
-					PChar->SpawnPCList[PCurrentChar->id] = PCurrentChar;
-					PChar->pushPacket(new CCharPacket(PCurrentChar,ENTITY_SPAWN));
-                    PChar->pushPacket(new CCharSyncPacket(PCurrentChar));
+        if (PChar != PCurrentChar)
+        {
+            if (distance(PChar->loc.p, PCurrentChar->loc.p) < 50)
+            {
+                if (PC == PChar->SpawnPCList.end())
+                {
+                    if (PCurrentChar->m_isGMHidden == false && PChar->m_GMlevel > PCurrentChar->m_GMlevel)
+                    {
+                        PChar->SpawnPCList[PCurrentChar->id] = PCurrentChar;
+                        PChar->pushPacket(new CCharPacket(PCurrentChar, ENTITY_SPAWN));
+                        PChar->pushPacket(new CCharSyncPacket(PCurrentChar));
+                    }
 
-					PCurrentChar->SpawnPCList[PChar->id] = PChar;
-					PCurrentChar->pushPacket(new CCharPacket(PChar,ENTITY_SPAWN));
+                    if (PChar->m_isGMHidden == true && PCurrentChar->m_GMlevel < PChar->m_GMlevel)
+                        continue;
+                    PCurrentChar->SpawnPCList[PChar->id] = PChar;
+                    PCurrentChar->pushPacket(new CCharPacket(PChar, ENTITY_SPAWN));
                     PCurrentChar->pushPacket(new CCharSyncPacket(PChar));
-				}else{
-					PCurrentChar->pushPacket(new CCharPacket(PChar,ENTITY_UPDATE));
-				}
-			} else {
-				if( PC != PChar->SpawnPCList.end() )
-				{
-					PChar->SpawnPCList.erase(PC);
-					PChar->pushPacket(new CCharPacket(PCurrentChar,ENTITY_DESPAWN));
+                }
+                else
+                {
+                    // Skip updating this player if we are GM hidden..
+                    if (PChar->m_isGMHidden == true && PCurrentChar->m_GMlevel < PChar->m_GMlevel)
+                        continue;
+                    PCurrentChar->pushPacket(new CCharPacket(PChar, ENTITY_UPDATE));
+                }
+            }
+            else
+            {
+                if (PC != PChar->SpawnPCList.end())
+                {
+                    PChar->SpawnPCList.erase(PC);
+                    PChar->pushPacket(new CCharPacket(PCurrentChar, ENTITY_DESPAWN));
 
-					PCurrentChar->SpawnPCList.erase(PChar->id);
-					PCurrentChar->pushPacket(new CCharPacket(PChar,ENTITY_DESPAWN));
-				}
-			}
-		}
-	}
+                    PCurrentChar->SpawnPCList.erase(PChar->id);
+                    PCurrentChar->pushPacket(new CCharPacket(PChar, ENTITY_DESPAWN));
+                }
+            }
+        }
+    }
 }
 
 /************************************************************************

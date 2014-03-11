@@ -43,6 +43,7 @@ CCharEntity::CCharEntity()
 	m_event.reset();
 
 	m_GMlevel = 0;
+    m_isGMHidden = false;
 
     TradeContainer  = new CTradeContainer();
 	Container       = new CTradeContainer();

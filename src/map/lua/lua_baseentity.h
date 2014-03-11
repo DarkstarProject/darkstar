@@ -495,6 +495,8 @@ public:
 	int32 checkNameFlags(lua_State* L);      // this is check and not get because it tests for a flag, it doesn't return all flags
 	int32 getGMLevel(lua_State* L);
 	int32 setGMLevel(lua_State* L);
+    int32 getGMHidden(lua_State* L);
+    int32 setGMHidden(lua_State* L);
 	int32 PrintToPlayer(lua_State* L);   // for sending debugging messages/command confirmations to the player's client
     // == Pathfind Methods ==
     int32 pathThrough(lua_State* L); // walk at normal speed through the given points

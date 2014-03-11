@@ -36,6 +36,7 @@
 
 #include "../packets/action.h"
 #include "../packets/auction_house.h"
+#include "../packets/char.h"
 #include "../packets/char_abilities.h"
 #include "../packets/char_appearance.h"
 #include "../packets/char_jobs.h"
@@ -7929,6 +7930,31 @@ inline int32 CLuaBaseEntity::setGMLevel(lua_State* L)
 	charutils::SaveCharGMLevel(PChar);
 	return 0;
 }
+
+inline int32 CLuaBaseEntity::getGMHidden(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    lua_pushboolean(L, PChar->m_isGMHidden);
+    return 1;
+}
+
+inline int32 CLuaBaseEntity::setGMHidden(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    PChar->m_isGMHidden = lua_toboolean(L, 1);
+
+    if (PChar->m_isGMHidden == true)
+        PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CCharPacket(PChar, ENTITY_DESPAWN));
+
+    return 0;
+}
+
 inline int32 CLuaBaseEntity::PrintToPlayer(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -8624,6 +8650,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkNameFlags),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getGMLevel),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setGMLevel),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getGMHidden),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setGMHidden),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,PrintToPlayer),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBaseMP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,pathThrough),
