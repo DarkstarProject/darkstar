@@ -3996,8 +3996,9 @@ void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		case TYPE_PC:
 		{
 			CCharEntity* PTarget = (CCharEntity*)PEntity;
-
-			PTarget->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 89));
+            
+            if (PChar->m_isGMHidden == false || PChar->m_isGMHidden == true && PTarget->m_GMlevel >= PChar->m_GMlevel)
+                PTarget->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 89));
 
 			PChar->pushPacket(new CBazaarMessagePacket(PTarget));
             PChar->pushPacket(new CCheckPacket(PChar, PTarget));
