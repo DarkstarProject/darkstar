@@ -242,6 +242,13 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		} else {
             PChar->loc.zone = zoneutils::GetZone(destination);
         }
+        
+        bool firstLogin = true;
+        for (uint32 i = 0; i < sizeof(PChar->m_ZonesList); ++i)
+        {
+            if (PChar->m_ZonesList[i] != 0) 
+                firstLogin = false;
+        }
 
 		PChar->m_ZonesList[PChar->getZone() >> 3] |= (1 << (PChar->getZone()%8));
 
@@ -259,6 +266,9 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		if (Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
 			PChar->m_DeathTimestamp = (uint32)Sql_GetUIntData(SqlHandle,0);
 		}
+        
+        if (firstLogin)
+            PChar->PMeritPoints->SaveMeritPoints(PChar->id, true);
 
 		PChar->status = STATUS_NORMAL;
 	}
