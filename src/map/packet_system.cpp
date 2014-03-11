@@ -260,12 +260,6 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			PChar->m_DeathTimestamp = (uint32)Sql_GetUIntData(SqlHandle,0);
 		}
 
-		// set new characters merits to zero on char creation
-		if (PChar->GetPlayTime(false) == 0)
-		{
-			PChar->PMeritPoints->SaveMeritPoints(PChar->id, true);
-		}
-
 		PChar->status = STATUS_NORMAL;
 	}
 	else
