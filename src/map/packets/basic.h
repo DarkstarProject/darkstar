@@ -58,8 +58,9 @@ public:
 
 	uint8	getSize();
 	uint8	getType();
-	void	setCode(uint16);
-
+	uint8*  getData();
+    void	setCode(uint16);
+    
 	CBasicPacket();
 };
 

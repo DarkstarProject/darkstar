@@ -1399,6 +1399,17 @@ CCharEntity* CZone::GetCharByName(int8* name)
 
 void CZone::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message_type, CBasicPacket* packet)
 {
+    // Do not send packets that are updates of a hidden GM..
+    if (packet != NULL && packet->getType() == 0x0D && PEntity != NULL && PEntity->objtype == TYPE_PC && ((CCharEntity*)PEntity)->m_isGMHidden)
+    {
+        // Ensure this packet is not despawning us..
+        if (packet->getData()[0x06] != 0x20)
+        {            
+            delete packet;
+            return;
+        }
+    }
+
 	if (!m_charList.empty())
 	{
 		switch(message_type)

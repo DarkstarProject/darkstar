@@ -58,6 +58,11 @@ uint8 CBasicPacket::getType()
 	return this->type;
 }
 
+uint8* CBasicPacket::getData()
+{
+    return this->data;
+}
+
 void CBasicPacket::setCode(uint16 code)
 {
 	this->code = code;
