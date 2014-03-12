@@ -7718,7 +7718,7 @@ inline int32 CLuaBaseEntity::setSpellList(lua_State* L)
 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
-	((CMobEntity*)m_PBaseEntity)->m_SpellListContainer = mobSpellList::GetMobSpellList(lua_tonumber(L,1));
+	mobutils::SetSpellList((CMobEntity*)m_PBaseEntity, lua_tonumber(L,1));
 
 	return 0;
 }

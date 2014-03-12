@@ -639,6 +639,21 @@ void AddTraits(CMobEntity* PMob, JOBTYPE jobID, uint8 lvl)
 	}
 }
 
+void RecalculateSpellContainer(CMobEntity* PMob)
+{
+	// clear spell list
+	PMob->SpellContainer->ClearSpells();
+
+	//insert the rest of the spells
+	for (std::vector<MobSpell_t>::iterator it = PMob->m_SpellListContainer->m_spellList.begin(); it != PMob->m_SpellListContainer->m_spellList.end(); ++it)
+	{
+		if (PMob->GetMLevel() >= (*it).min_level && PMob->GetMLevel() <= (*it).max_level)
+		{
+			PMob->SpellContainer->AddSpell((*it).spellId);
+		}
+	}
+}
+
 /* Gets the available spells for the specified monster. This looks up the types of spells the monster
  * can cast based on the bitmask in mob_pools (which has been preloaded into memory). It then resolves
  * the list of actual spell IDs based on the bits set. This mapping from bitmask > spellids is based
@@ -714,23 +729,19 @@ void GetAvailableSpells(CMobEntity* PMob) {
 	PMob->defaultMobMod(MOBMOD_HEAL_CHANCE, 40);
 	PMob->defaultMobMod(MOBMOD_HP_HEAL_CHANCE, 25);
 
-	// clear spell list
-	PMob->SpellContainer->ClearSpells();
-
-	//insert the rest of the spells
-	for (std::vector<MobSpell_t>::iterator it = PMob->m_SpellListContainer->m_spellList.begin(); it != PMob->m_SpellListContainer->m_spellList.end() ; ++it)
-	{
-		if (PMob->GetMLevel() >= (*it).min_level && PMob->GetMLevel() <= (*it).max_level)
-		{
-			PMob->SpellContainer->AddSpell((*it).spellId);
-		}
-	}
+	RecalculateSpellContainer(PMob);
 
 	// make sure mob has mp to cast spells
 	if(PMob->health.maxmp == 0 && PMob->SpellContainer != NULL && PMob->SpellContainer->HasMPSpells())
 	{
 		ShowError("mobutils::CalculateStats Mob (%u) has no mp for casting spells!\n", PMob->id);
 	}
+}
+
+void SetSpellList(CMobEntity* PMob, uint16 spellList)
+{
+	PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(spellList);
+	RecalculateSpellContainer(PMob);
 }
 
 void InitializeMob(CMobEntity* PMob, CZone* PZone)
