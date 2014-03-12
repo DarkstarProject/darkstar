@@ -7,6 +7,8 @@ package.loaded["scripts/zones/Sacrificial_Chamber/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/keyitems");
+require("scripts/globals/missions");
 require("scripts/zones/Sacrificial_Chamber/TextIDs");
 
 -----------------------------------
@@ -55,7 +57,7 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x0007) then
 		player:startEvent(0x0008);
 	elseif(csid == 0x0008) then
-		if(player:hasKeyItem(SACRIFICIAL_CHAMBER_KEY)) then
+		if(player:getCurrentMission(ZILART,THE_TEMPLE_OF_UGGALEPIH)) then
 			player:delKeyItem(SACRIFICIAL_CHAMBER_KEY);
 			player:addKeyItem(DARK_FRAGMENT);
 			player:messageSpecial(KEYITEM_OBTAINED,DARK_FRAGMENT);
