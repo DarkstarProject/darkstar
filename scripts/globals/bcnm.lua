@@ -495,7 +495,7 @@ function checkNonTradeBCNM(player,npc)
 			player:setVar("trade_bcnmid",99);
 		end
 	elseif(Zone == 163) then -- Sacrificial Chamber
-		if(player:hasKeyItem(SACRIFICIAL_CHAMBER_KEY)) then -- Zilart Mission 4
+		if(player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH) then -- Zilart Mission 4
 			mask = GetBattleBitmask(128,Zone,1);
 			player:setVar("trade_bcnmid",128);
 		end
@@ -677,10 +677,6 @@ function CutsceneSkip(player,npc)
 		((player:getCurrentMission(SANDORIA) == JOURNEY_TO_WINDURST2 or player:getCurrentMission(BASTOK) == THE_EMISSARY_WINDURST2) and player:getVar("MissionStatus") > 8)) then -- Mission 2-3
 			skip = 1;
 		elseif((player:hasCompletedMission(WINDURST,SAINTLY_INVITATION)) or (player:getCurrentMission(WINDURST) == SAINTLY_INVITATION and player:getVar("MissionStatus") > 1)) then -- Mission 6-2
-			skip = 1;
-		end
-	elseif(Zone == 163) then -- Sacrificial Chamber
-		if(player:hasCompletedMission(ZILART,THE_TEMPLE_OF_UGGALEPIH)) then -- Zilart Mission 4
 			skip = 1;
 		end
 	elseif(Zone == 165) then -- Throne Room
