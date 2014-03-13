@@ -5,9 +5,11 @@
 FULL_INVENTORY_AFTER_TRADE =  6378; -- Try trading again after sorting your inventory.
              ITEM_OBTAINED =  6379; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
               GIL_OBTAINED =  6380; -- Obtained <<<Numeric Parameter 0>>> gil.
+       NOT_HAVE_ENOUGH_GIL =  6384; -- You do not have enough gil.
           KEYITEM_OBTAINED =  6382; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
              HOMEPOINT_SET =  6445; -- Home point set!
-    FISHING_MESSAGE_OFFSET = 10647; -- You can't fish here.
+		   ALCHEMY_SUPPORT =  6904; -- Your ≺Multiple Choice (Parameter 1)≻[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
+    FISHING_MESSAGE_OFFSET = 10647; -- You can't fish here.z
 
 -- Conquest System
 CONQUEST = 10944; --You've earned conquest points!

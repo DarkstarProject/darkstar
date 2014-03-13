@@ -64,8 +64,6 @@ function onEventFinish(player,csid,option)
 -- printf("RESULT: %u",option);
 	
 	if(csid == 0x0288 and option == 1) then
-		signupGuild(player,128);
-		
 		local crystal = math.random(4096,4101);
 		
 		if(player:getFreeSlotsCount() == 0) then 
@@ -73,6 +71,7 @@ function onEventFinish(player,csid,option)
 		else
 			player:addItem(crystal);
 			player:messageSpecial(ITEM_OBTAINED,crystal);
+			signupGuild(player,128);
 		end
 	end
 	

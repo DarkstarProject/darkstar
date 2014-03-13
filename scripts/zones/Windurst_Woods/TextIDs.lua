@@ -9,6 +9,7 @@
        NOT_HAVE_ENOUGH_GIL = 6543; -- You do not have enough gil.
              HOMEPOINT_SET = 6604; -- Home point set!
     FISHING_MESSAGE_OFFSET = 6931; -- You can't fish here.
+             IMAGE_SUPPORT = 7029; -- Your ≺Multiple Choice (Parameter 1)≻[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
 
 -- Conquest System
 CONQUEST = 8747; -- You've earned conquest points!

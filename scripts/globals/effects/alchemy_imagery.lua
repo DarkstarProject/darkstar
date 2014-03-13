@@ -1,14 +1,17 @@
 -----------------------------------
 --
---
+-- ALCHEMY_IMAGERY
 --
 -----------------------------------
+
+require("scripts/globals/status");
 
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
+	target:addMod(MOD_ALCHEMY,1);
 end;
 
 -----------------------------------
@@ -23,4 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+	target:delMod(MOD_ALCHEMY,1);
 end;

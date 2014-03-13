@@ -9,6 +9,7 @@ FULL_INVENTORY_AFTER_TRADE =  6378; --Try trading again after sorting your inven
        NOT_HAVE_ENOUGH_GIL =  6384; --You do not have enough gil.
             ITEMS_OBTAINED =  6388; --You obtain <<<Numeric Parameter 1>>> <<<Possible Special Code: 01>>><<<Speaker Name>>>
              HOMEPOINT_SET =  6445; --Home point set!
+	  GOLDSMITHING_SUPPORT =  6918; -- Your ≺Multiple Choice (Parameter 1)≻[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
     FISHING_MESSAGE_OFFSET =  7045; --You can't fish here.
 
 -- Conquest System

@@ -1,14 +1,17 @@
 -----------------------------------
 --
---
+-- SMITHING_IMAGERY
 --
 -----------------------------------
+
+require("scripts/globals/status");
 
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
+	target:addMod(MOD_SMITH,1);
 end;
 
 -----------------------------------
@@ -23,4 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+	target:delMod(MOD_SMITH,1);
 end;

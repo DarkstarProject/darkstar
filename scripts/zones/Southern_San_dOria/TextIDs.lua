@@ -9,6 +9,7 @@ FULL_INVENTORY_AFTER_TRADE = 6414; -- Try trading again after sorting your inven
 			  KEYITEM_LOST = 6419; -- Lots key item: <<<Unknown Parameter (Type: 80) 1>>>
              HOMEPOINT_SET =   24; -- Home point set!
        NOT_HAVE_ENOUGH_GIL = 6420; -- You do not have enough gil.
+           LEATHER_SUPPORT = 6705; -- Your ≺Multiple Choice (Parameter 1)≻[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
 
 -- Conquest System
 CONQUEST =  8405; -- You've earned conquest points!

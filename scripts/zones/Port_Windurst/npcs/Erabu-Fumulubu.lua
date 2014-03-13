@@ -1,37 +1,50 @@
 -----------------------------------
 --  Area: Port Windurst
---   NPC: Erabu-Fumulubu
---  Type: Craftsman
--- @zone: 240
---  @pos -178.900 -2.789 76.200
---
--- Auto-Script: Requires Verification (Verfied By Brawndo)
+--  NPC:  Erabu-Fumulubu
+--  Type: Fishing Synthesis Image Support
+--  @pos -178.900 -2.789 76.200 240
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
+
+require("scripts/zones/Port_Windurst/TextIDs");
+require("scripts/globals/status");
+require("scripts/globals/crafting");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end; 
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x271c);
-end;
+	local guildMember = isGuildMember(player,5);
+    local SkillCap = getCraftSkillCap(player,32);
+    local SkillLevel = player:getSkillLevel(32);
+    
+    if (guildMember == 1) then
+        if (player:hasStatusEffect(EFFECT_FISHING_IMAGERY) == false) then
+			player:startEvent(0x271C,SkillCap,SkillLevel,1,239,player:getGil(),0,0,0); -- p1 = skill level
+	    else
+            player:startEvent(0x271C,SkillCap,SkillLevel,1,239,player:getGil(),19194,4031,0);
+	    end
+	else
+        player:startEvent(0x271C); -- Standard Dialogue
+	end
+end; 
 
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -39,7 +52,15 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
+
+    if (csid == 0x271C and option == 1) then
+        player:messageSpecial(FISHING_SUPPORT,0,0,1);
+		player:addStatusEffect(EFFECT_FISHING_IMAGERY,1,0,3600);
+    end
 end;
+
+
+
 
