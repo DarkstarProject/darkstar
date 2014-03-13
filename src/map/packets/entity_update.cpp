@@ -110,7 +110,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 					if(PMob->PMaster != NULL && PMob->PMaster->objtype == TYPE_PC)
 					{
 						//charmed mob
-						if(PMob->PMaster->objtype = TYPE_PC)
+						if(PMob->PMaster->objtype == TYPE_PC)
 						{
 							if(PMob->PBattleAI->GetCurrentAction()==ACTION_FALL)
 							{
