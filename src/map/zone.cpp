@@ -1096,7 +1096,7 @@ void CZone::SpawnPCs(CCharEntity* PChar)
             {
                 if (PC == PChar->SpawnPCList.end())
                 {
-                    if (PCurrentChar->m_isGMHidden == false && PChar->m_GMlevel > PCurrentChar->m_GMlevel)
+                    if (PCurrentChar->m_isGMHidden == false || PCurrentChar->m_isGMHidden && PChar->m_GMlevel > PCurrentChar->m_GMlevel)
                     {
                         PChar->SpawnPCList[PCurrentChar->id] = PCurrentChar;
                         PChar->pushPacket(new CCharPacket(PCurrentChar, ENTITY_SPAWN));
