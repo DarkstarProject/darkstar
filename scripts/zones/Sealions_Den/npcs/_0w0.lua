@@ -8,8 +8,9 @@ package.loaded["scripts/zones/Sealions_Den/TextIDs"] = nil;
 
 require("scripts/globals/bcnm");
 require("scripts/globals/missions");
-require("scripts/zones/Sealions_Den/TextIDs");
 require("scripts/globals/titles");
+require("scripts/globals/teleports");
+require("scripts/zones/Sealions_Den/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -59,7 +60,7 @@ function onEventFinish(player,csid,option)
 		return;
 	end
 	if(csid == 0x000c and option == 1) then 
-		player:setPos(-25,-1 ,-620 ,208 ,33);
+		toPalaceEntrance(player);
 	elseif(csid == 0x000D)then
 		player:setVar("PromathiaStatus",0);
 		player:completeMission(COP,SLANDEROUS_UTTERINGS);
