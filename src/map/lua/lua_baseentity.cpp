@@ -4228,6 +4228,26 @@ inline int32 CLuaBaseEntity::hasStatusEffect(lua_State *L)
     return 1;
 }
 
+/************************************************************************
+*                                                                       *
+*  Checks to see if a character has an effect with the specified flag   *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::hasStatusEffectByFlag(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+	bool hasEffect = false;
+
+	lua_pushboolean(L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->HasStatusEffectByFlag(
+		(EFFECT)lua_tointeger(L, 1)));
+	return 1;
+}
+
 inline int32 CLuaBaseEntity::hasBustEffect(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -8461,6 +8481,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStatusEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canGainStatusEffect),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasStatusEffect),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasStatusEffectByFlag),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasBustEffect),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStatusEffectElement),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delStatusEffect),
