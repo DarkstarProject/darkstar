@@ -752,7 +752,7 @@ void CAIMobDummy::ActionAbilityStart()
 	}
 
 	// no 2 hour picked, lets find a normal skill
-	if(valid == false)
+	if(valid == false && m_MobAbilityEnabled)
 	{
 		std::random_shuffle(MobSkills.begin(), MobSkills.end()); //Start the selection process by randomizing the container
 
