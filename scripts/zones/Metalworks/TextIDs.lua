@@ -5,8 +5,10 @@
 FULL_INVENTORY_AFTER_TRADE =  6433; -- You cannot obtain the item <item>. Try trading again after sorting your inventory.
              ITEM_OBTAINED =  6434; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>.
               GIL_OBTAINED =  6435; -- Obtained <<<Numeric Parameter 0>>> gil.
+       NOT_HAVE_ENOUGH_GIL =  6439; -- You do not have enough gil.
           KEYITEM_OBTAINED =  6437; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>.
             ITEMS_OBTAINED =  6443; -- You obtain <<<Numeric Parameter 1>>> <<<Possible Special Code: 01>>><<<Speaker Name>>>!
+          SMITHING_SUPPORT =  6828; -- Your ≺Multiple Choice (Parameter 1)≻[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
     FISHING_MESSAGE_OFFSET =  7916; -- You can't fish here.
 	
 -- Mission Dialogs

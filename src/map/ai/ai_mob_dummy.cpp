@@ -223,7 +223,7 @@ void CAIMobDummy::ActionRoaming()
 			{
 				// I spawned a pet
 			}
-			else if(CanCastSpells() && rand()%10 < 3 && m_PMob->SpellContainer->HasBuffSpells())
+			else if(CanCastSpells() && WELL512::irand()%10 < 3 && m_PMob->SpellContainer->HasBuffSpells())
 			{
 				// cast buff
 				CastSpell(m_PMob->SpellContainer->GetBuffSpell());
@@ -420,7 +420,7 @@ void CAIMobDummy::ActionDropItems()
 						uint8 tries = 0;
 						while(tries < 1+highestTH)
 						{
-							if(rand()%100 < DropList->at(i).DropRate)
+							if(WELL512::irand()%1000 < DropList->at(i).DropRate)
 							{
 								PChar->PTreasurePool->AddItem(DropList->at(i).ItemID, m_PMob);
 								break;
@@ -449,11 +449,11 @@ void CAIMobDummy::ActionDropItems()
 				if(validZone && charutils::GetRealExp(PChar->GetMLevel(),m_PMob->GetMLevel())>0 && m_PMob->m_Type == MOBTYPE_NORMAL){ //exp-yielding monster and drop is successful
 					//TODO: The drop is actually based on a 5 minute timer, and not a probability of dropping!
 
-					if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && m_PMob->m_Element > 0 && rand()%100 < 20) // Need to move to SIGNET_CHANCE constant
+					if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && m_PMob->m_Element > 0 && WELL512::irand()%100 < 20) // Need to move to SIGNET_CHANCE constant
 					{
 						PChar->PTreasurePool->AddItem(4095 + m_PMob->m_Element, m_PMob);
 					}
-					if(rand()%100 < 20)
+					if(WELL512::irand()%100 < 20)
 					{
 
 						//RULES: Only 1 kind may drop per mob
@@ -461,7 +461,7 @@ void CAIMobDummy::ActionDropItems()
 							PChar->PTreasurePool->AddItem(1126, m_PMob);
 						}
 						else if(m_PMob->GetMLevel() < 70){ //b.seal & k.seal only
-							if(rand()%2 == 0){
+							if(WELL512::irand()%2 == 0){
 								PChar->PTreasurePool->AddItem(1126, m_PMob);
 							}
 							else{
@@ -469,7 +469,7 @@ void CAIMobDummy::ActionDropItems()
 							}
 						}
 						else if(m_PMob->GetMLevel() < 75){ //b.seal & k.seal & k.crest
-							switch(rand()%3){
+							switch(WELL512::irand()%3){
 							case 0:
 								PChar->PTreasurePool->AddItem(1126, m_PMob);
 								break;
@@ -482,7 +482,7 @@ void CAIMobDummy::ActionDropItems()
 							}
 						}
 						else if(m_PMob->GetMLevel() >= 75){ //all 4
-							switch(rand()%4){
+							switch(WELL512::irand()%4){
 							case 0:
 								PChar->PTreasurePool->AddItem(1126, m_PMob);
 								break;
@@ -549,7 +549,7 @@ void CAIMobDummy::ActionFadeOut()
 		if(m_PMob->PMaster != NULL && m_PMob->PMaster->objtype == TYPE_MOB)
 		{
 			CAIMobDummy* PBattleAI = (CAIMobDummy*)m_PMob->PMaster->PBattleAI;
-			PBattleAI->m_LastSpecialTime = m_Tick - rand()%10000;
+			PBattleAI->m_LastSpecialTime = m_Tick - WELL512::irand()%10000;
 		}
 
 		m_LastActionTime = m_Tick;
@@ -586,7 +586,7 @@ void CAIMobDummy::ActionSpawn()
 	if (m_Tick >= m_LastActionTime + m_PMob->m_RespawnTime)
 	{
 		m_NeutralTime = m_Tick;
-		m_LastActionTime = m_Tick + rand() % 8000 + 2000;
+		m_LastActionTime = m_Tick + WELL512::irand() % 8000 + 2000;
 		m_SpawnTime = m_Tick;
 		m_firstSpell = true;
 		m_ActionType = ACTION_ROAMING;
@@ -615,7 +615,7 @@ void CAIMobDummy::ActionSpawn()
 		// Generate a random level between min and max level
 		if (m_PMob->m_maxLevel != m_PMob->m_minLevel)
 		{
-			level += rand()%(m_PMob->m_maxLevel - m_PMob->m_minLevel);
+			level += WELL512::irand()%(m_PMob->m_maxLevel - m_PMob->m_minLevel);
 		}
 
 		m_PMob->SetMLevel(level);
@@ -627,7 +627,7 @@ void CAIMobDummy::ActionSpawn()
 		
 		if(m_PMob->getMobMod(MOBMOD_MUG_GIL) == 0)
 		{
-		    uint32 purse = m_PMob->GetRandomGil() / (4+(rand()%3));
+		    uint32 purse = m_PMob->GetRandomGil() / (4+(WELL512::irand()%3));
 		    if(purse == 0)
 		        purse = m_PMob->GetRandomGil();
 		    m_PMob->setMobMod(MOBMOD_MUG_GIL, purse);
@@ -1153,7 +1153,7 @@ void CAIMobDummy::ActionMagicCasting()
 void CAIMobDummy::ActionMagicFinish()
 {
 	m_LastActionTime = m_Tick;
-	m_LastMagicTime = m_Tick - rand()%(uint32)((float)m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) / 2);
+	m_LastMagicTime = m_Tick - WELL512::irand()%(uint32)((float)m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) / 2);
 	m_DeaggroTime = m_Tick;
 
 	m_PMagicState->FinishSpell();
@@ -1306,7 +1306,7 @@ void CAIMobDummy::ActionAttack()
 		FinishAttack();
 		return;
 	}
-    else if (m_Tick >= m_LastSpecialTime && rand() % 100 < m_PMob->TPUseChance())
+    else if (m_Tick >= m_LastSpecialTime && WELL512::irand() % 100 < m_PMob->TPUseChance())
 	{
 		m_ActionType = ACTION_MOBABILITY_START;
 		ActionAbilityStart();
@@ -1353,7 +1353,7 @@ void CAIMobDummy::ActionAttack()
 			if(m_CanStandback && currentDistance > m_PMob->m_ModelSize)
 		    {
 		    	uint16 halfStandback = (float)m_PMob->getBigMobMod(MOBMOD_STANDBACK_TIME)/3;
-		    	m_LastStandbackTime = m_Tick + m_PMob->getBigMobMod(MOBMOD_STANDBACK_TIME) - rand()%(halfStandback);
+		    	m_LastStandbackTime = m_Tick + m_PMob->getBigMobMod(MOBMOD_STANDBACK_TIME) - WELL512::irand()%(halfStandback);
 		    	m_CanStandback = false;
 		    }
 
@@ -1537,7 +1537,7 @@ void CAIMobDummy::ActionAttack()
 						Action.messageID = 32;
 						isDodge = true;
 					}
-                    else if ((rand() % 100 < battleutils::GetHitRate(m_PMob, m_PBattleTarget)) &&
+                    else if ((WELL512::irand() % 100 < battleutils::GetHitRate(m_PMob, m_PBattleTarget)) &&
                         !m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ALL_MISS))
 					{
 						if (attackutils::IsParried(m_PMob, m_PBattleTarget))
@@ -1572,8 +1572,8 @@ void CAIMobDummy::ActionAttack()
 
 
 							//counter check (rate AND your hit rate makes it land, else its just a regular hit)
-							if (rand()%100 < (m_PBattleTarget->getMod(MOD_COUNTER) + meritCounter) &&
-								rand()%100 < battleutils::GetHitRate(m_PBattleTarget,m_PMob) &&
+							if (WELL512::irand()%100 < (m_PBattleTarget->getMod(MOD_COUNTER) + meritCounter) &&
+								WELL512::irand()%100 < battleutils::GetHitRate(m_PBattleTarget,m_PMob) &&
 								(charutils::hasTrait((CCharEntity*)m_PBattleTarget,TRAIT_COUNTER) ||
 								m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN)))
 							{
@@ -1582,7 +1582,7 @@ void CAIMobDummy::ActionAttack()
 								Action.reaction   = REACTION_HIT;
 								Action.speceffect = SPECEFFECT_NONE;
 
-								bool isCritical = (rand()%100 < battleutils::GetCritHitRate(m_PBattleTarget, m_PMob,false));
+								bool isCritical = (WELL512::irand()%100 < battleutils::GetCritHitRate(m_PBattleTarget, m_PMob,false));
 								bool isHTH = m_PBattleTarget->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH;
 								if (!isHTH && m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->GetMJob() == JOB_MNK)
 								{
@@ -1608,7 +1608,7 @@ void CAIMobDummy::ActionAttack()
 							}
 							else
 							{
-								bool isCritical = ( rand()%100 < battleutils::GetCritHitRate(m_PMob, m_PBattleTarget,false) );
+								bool isCritical = ( WELL512::irand()%100 < battleutils::GetCritHitRate(m_PMob, m_PBattleTarget,false) );
 
 								if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_MIGHTY_STRIKES,0))
 								{
@@ -1655,7 +1655,7 @@ void CAIMobDummy::ActionAttack()
 								
 
 								// Try Null damage chance (The target)
-								if (rand()%100 < m_PBattleTarget->getMod(MOD_NULL_PHYSICAL_DAMAGE) && m_PBattleTarget->objtype == TYPE_PC)
+								if (WELL512::irand()%100 < m_PBattleTarget->getMod(MOD_NULL_PHYSICAL_DAMAGE) && m_PBattleTarget->objtype == TYPE_PC)
 								{
 									damage = 0;
 								}
@@ -1729,7 +1729,7 @@ void CAIMobDummy::ActionAttack()
             m_DeaggroTime = m_Tick;
 		}
 	}
-    else if (m_Tick >= m_LastSpecialTime && rand() % 100 < m_PMob->TPUseChance())
+    else if (m_Tick >= m_LastSpecialTime && WELL512::irand() % 100 < m_PMob->TPUseChance())
 	{
 		// not in range to attack my target
 		// so try an other tp move
@@ -1894,7 +1894,7 @@ bool CAIMobDummy::TryCastSpell()
 	if(m_firstSpell && m_PBattleTarget != NULL && distance(m_PMob->loc.p, m_PBattleTarget->loc.p) <= m_PMob->m_ModelSize){
 
 		m_firstSpell = false;
-		m_LastMagicTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + rand()%5000 + 3000;
+		m_LastMagicTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + WELL512::irand()%5000 + 3000;
 		return false;
 	}
 
@@ -1952,10 +1952,10 @@ void CAIMobDummy::ActionSpecialSkill()
 
     uint32 halfSpecial = (float)m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL)/2;
 
-    m_LastSpecialTime = m_Tick - rand()%(halfSpecial);
+    m_LastSpecialTime = m_Tick - WELL512::irand()%(halfSpecial);
 
     // don't use magic right after
-    m_LastMagicTime = m_Tick + m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + rand()%5000 + 4000;
+    m_LastMagicTime = m_Tick + m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + WELL512::irand()%5000 + 4000;
 
     m_PBattleSubTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
     apAction_t Action;
@@ -2011,12 +2011,12 @@ void CAIMobDummy::CastSpell(uint16 spellId, CBattleEntity* PTarget)
 				if((m_PSpell->getValidTarget() & TARGET_PLAYER_PARTY))
 				{
 					// chance to target my master
-					if(m_PMob->PMaster != NULL && rand()%2 == 0)
+					if(m_PMob->PMaster != NULL && WELL512::irand()%2 == 0)
 					{
 						// target my master
 						m_PBattleSubTarget = m_PMob->PMaster;
 					}
-					else if(rand()%2 == 0)
+					else if(WELL512::irand()%2 == 0)
 					{
 						// chance to target party
 						m_PTargetFind->reset();
@@ -2027,7 +2027,7 @@ void CAIMobDummy::CastSpell(uint16 spellId, CBattleEntity* PTarget)
 						if(totalTargets)
 						{
 							// randomly select a target
-							m_PBattleSubTarget = m_PTargetFind->m_targets[rand()%totalTargets];
+							m_PBattleSubTarget = m_PTargetFind->m_targets[WELL512::irand()%totalTargets];
 
 							// only target if are on same action
 							if(m_PBattleSubTarget->PBattleAI->GetCurrentAction() != GetCurrentAction()){
@@ -2118,7 +2118,7 @@ void CAIMobDummy::FollowPath()
 		// if I just finished reset my last action time
 		if(!m_PPathFind->IsFollowingPath())
 		{
-			m_LastActionTime = m_Tick - rand()%m_PMob->getBigMobMod(MOBMOD_ROAM_COOL) + 10000;
+			m_LastActionTime = m_Tick - WELL512::irand()%m_PMob->getBigMobMod(MOBMOD_ROAM_COOL) + 10000;
 
 			// i'm a worm pop back up
 			if(m_PMob->m_roamFlags & ROAMFLAG_WORM)
@@ -2166,7 +2166,7 @@ void CAIMobDummy::SetupEngage()
 	// drg shouldn't use jump right away
 	if(m_PMob->GetMJob() == JOB_DRG && m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL) != 0)
 	{
-		m_LastSpecialTime = m_Tick - rand()%m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL) + 5000;
+		m_LastSpecialTime = m_Tick - WELL512::irand()%m_PMob->getBigMobMod(MOBMOD_SPECIAL_COOL) + 5000;
 	}
 
 	if(m_PMob->m_roamFlags & ROAMFLAG_WORM)

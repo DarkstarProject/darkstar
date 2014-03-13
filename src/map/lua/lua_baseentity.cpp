@@ -36,6 +36,7 @@
 
 #include "../packets/action.h"
 #include "../packets/auction_house.h"
+#include "../packets/char.h"
 #include "../packets/char_abilities.h"
 #include "../packets/char_appearance.h"
 #include "../packets/char_jobs.h"
@@ -3897,23 +3898,21 @@ inline int32 CLuaBaseEntity::sendTractor(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L,-2) || !lua_isnumber(L,-2));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L,-3) || !lua_isnumber(L,-3));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L,-4) || !lua_isnumber(L,-4));
-
-	// недостаточно условий, tractor можно читать только на мертвую цель
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,3) || !lua_isnumber(L,3));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,4) || !lua_isnumber(L,4));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-	if(PChar->m_hasTractor == 0)
-    {
+	if (PChar->m_hasTractor == 0)
+	{
 		PChar->m_hasTractor = 1;
 
-		PChar->m_StartActionPos.x = (float)lua_tonumber(L, -1);
-		PChar->m_StartActionPos.y = (float)lua_tonumber(L, -2);
-		PChar->m_StartActionPos.z = (float)lua_tonumber(L, -3);
-		PChar->m_StartActionPos.rotation = (int8)lua_tonumber(L, -4);
+		PChar->m_StartActionPos.x = (float)lua_tonumber(L,1);
+		PChar->m_StartActionPos.y = (float)lua_tonumber(L,2);
+		PChar->m_StartActionPos.z = (float)lua_tonumber(L,3);
+		PChar->m_StartActionPos.rotation = (uint8)lua_tointeger(L,4);
 
 		PChar->pushPacket(new CRaiseTractorMenuPacket(PChar, TYPE_TRACTOR));
 	}
@@ -4975,6 +4974,24 @@ inline int32 CLuaBaseEntity::getMerit(lua_State *L)
 
 		lua_pushinteger(L, PChar->PMeritPoints->GetMeritValue((MERIT_TYPE)lua_tointeger(L,1), PChar));
 	}
+
+	return 1;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::getPlaytime(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	bool update = true;
+    if(!lua_isnil(L,1) && lua_isboolean(L,1))
+		update = lua_toboolean(L, 1);
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	lua_pushinteger(L, PChar->GetPlayTime(update));
 
 	return 1;
 }
@@ -6724,7 +6741,10 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L) {
 
 	ACTIONTYPE oldAction = PChar->PBattleAI->GetCurrentAction();
 	PChar->PBattleAI->SetCurrentSpell(1);
+	PChar->PBattleAI->SetCurrentJobAbility(1);
+	PChar->PBattleAI->SetCurrentWeaponSkill(1);
 	PChar->PBattleAI->SetCurrentAction(actiontype);
+
     PChar->m_ActionList.push_back(Action);
 	PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CActionPacket(PChar));
 	PChar->PBattleAI->SetCurrentAction(oldAction);
@@ -7698,7 +7718,7 @@ inline int32 CLuaBaseEntity::setSpellList(lua_State* L)
 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
-	((CMobEntity*)m_PBaseEntity)->m_SpellListContainer = mobSpellList::GetMobSpellList(lua_tonumber(L,1));
+	mobutils::SetSpellList((CMobEntity*)m_PBaseEntity, lua_tonumber(L,1));
 
 	return 0;
 }
@@ -7910,6 +7930,31 @@ inline int32 CLuaBaseEntity::setGMLevel(lua_State* L)
 	charutils::SaveCharGMLevel(PChar);
 	return 0;
 }
+
+inline int32 CLuaBaseEntity::getGMHidden(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    lua_pushboolean(L, PChar->m_isGMHidden);
+    return 1;
+}
+
+inline int32 CLuaBaseEntity::setGMHidden(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    PChar->m_isGMHidden = lua_toboolean(L, 1);
+
+    if (PChar->m_isGMHidden == true)
+        PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CCharPacket(PChar, ENTITY_DESPAWN));
+
+    return 0;
+}
+
 inline int32 CLuaBaseEntity::PrintToPlayer(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -8480,6 +8525,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,changesJob),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMerits),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMerit),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPlaytime),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponDmg),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getOffhandDmg),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponDmgRank),
@@ -8604,6 +8650,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkNameFlags),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getGMLevel),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setGMLevel),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getGMHidden),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setGMHidden),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,PrintToPlayer),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBaseMP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,pathThrough),

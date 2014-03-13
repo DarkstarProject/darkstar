@@ -6,7 +6,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
-package.loaded["scripts/globals/crafting"] = nil;
+
 require("scripts/globals/crafting");
 require("scripts/zones/Bastok_Mines/TextIDs");
 
@@ -62,8 +62,6 @@ function onEventFinish(player,csid,option)
 -- printf("RESULT: %u",option);
 	
 	if(csid == 0x0078 and option == 1) then
-		signupGuild(player,2);
-		
 		local crystal = math.random(4096,4101);
 		
 		if(player:getFreeSlotsCount() == 0) then 
@@ -71,6 +69,7 @@ function onEventFinish(player,csid,option)
 		else
 			player:addItem(crystal);
 			player:messageSpecial(ITEM_OBTAINED,crystal);
+		    signupGuild(player,2);
 		end
 	end
 	

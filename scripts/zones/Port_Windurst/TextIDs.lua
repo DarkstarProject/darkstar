@@ -9,6 +9,7 @@ FULL_INVENTORY_AFTER_TRADE = 10961; -- Try trading again after sorting your inve
        NOT_HAVE_ENOUGH_GIL = 10967; -- You do not have enough gil.
              HOMEPOINT_SET = 11028; -- Home point set!
     FISHING_MESSAGE_OFFSET = 11407; -- You can't fish here.
+           FISHING_SUPPORT = 11505; -- Your ≺Multiple Choice (Parameter 1)≻[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
 
 -- Conquest System
 CONQUEST = 11717; -- You've earned conquest points!
@@ -45,7 +46,8 @@ SHEIAPOHRICHAMAHA_CLOSED_DIALOG = 4144; -- I'm a traveling merrrchant. There arr
            ZOREEN_CLOSED_DIALOG = 4146; -- Valdeaunia...
 
       KHEL_PAHLHAMA_SHOP_DIALOG = 11151; -- These magic shells are full of mysteries...		   
-			   RYAN_SHOP_DIALOG = 11650; -- I have no time for white-livered scum that rely on magic alone.
+			   RYAN_SHOP_DIALOG = 11652; -- I have no time for white-livered scum that rely on magic alone.
+             DROZGA_SHOP_DIALOG = 11653; -- Ho there, young ≺Multiple Choice (Player Gender)≻[man/lady]! ...
 
            LEBONDUR_OPEN_DIALOG = 12371; -- I've risked my life traveling all the way from Vollbow to bring you these fine goods!
          LEBONDUR_CLOSED_DIALOG = 12372; -- Where is my shipment from Vollbow? This is terrible for my image as a respected importer...

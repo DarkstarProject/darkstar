@@ -1,38 +1,40 @@
 -----------------------------------
---	Area: Southern San d'Oria
---	NPC: Orechiniel
---  General Info NPC
--------------------------------------
+--  Area: Southern San d'Oria
+--  NPC:  Orechiniel
+--  Type: Leathercraft Adv. Synthesis Image Support
+-----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/settings");
-require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
+require("scripts/globals/status");
+require("scripts/globals/crafting");
 
------------------------------------ 
--- onTrade Action 
------------------------------------ 
+-----------------------------------
+-- onTrade Action
+-----------------------------------
 
 function onTrade(player,npc,trade)
--- "Flyers for Regine" conditional script
-FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+end; 
 
-	if (FlyerForRegine == 1) then
-		count = trade:getItemCount();
-		MagicFlyer = trade:hasItemQty(532,1);
-		if (MagicFlyer == true and count == 1) then
-			player:messageSpecial(FLYER_REFUSED);
-		end
-	end
-end;
-
------------------------------------ 
--- onTrigger Action 
 -----------------------------------
- 
-function onTrigger(player,npc) 
-	player:startEvent(0x28A);
+-- onTrigger Action
+-----------------------------------
+
+function onTrigger(player,npc)
+	local guildMember = isGuildMember(player,7);
+    local SkillLevel = player:getSkillLevel(128);
+    local Cost = getAdvImageSupportCost(player,128);
+    
+    if (guildMember == 1) then
+        if (player:hasStatusEffect(EFFECT_LEATHERCRAFT_IMAGERY) == false) then
+			player:startEvent(0x028A,Cost,SkillLevel,0,239,player:getGil(),0,0,0);
+	    else
+            player:startEvent(0x028A,Cost,SkillLevel,0,239,player:getGil(),28727,0,0);
+	    end
+	else
+        player:startEvent(0x028A); -- Standard Dialogue
+	end
 end; 
 
 -----------------------------------
@@ -51,6 +53,13 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+    local Cost = getAdvImageSupportCost(player,128);
+    
+    if (csid == 0x028A and option == 1) then
+        player:delGil(Cost);
+        player:messageSpecial(LEATHER_SUPPORT,0,5,0);
+		player:addStatusEffect(EFFECT_LEATHERCRAFT_IMAGERY,3,0,480);
+    end
 end;
 
 

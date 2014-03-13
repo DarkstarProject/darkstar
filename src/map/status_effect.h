@@ -60,7 +60,8 @@ enum EFFECTFLAG
     EFFECTFLAG_WALTZABLE        = 0x4000,   //for healing waltzable spells
     EFFECTFLAG_FOOD             = 0x8000,
     EFFECTFLAG_SONG             = 0x10000,  //bard songs
-    EFFECTFLAG_ROLL             = 0x20000   //corsair rolls
+    EFFECTFLAG_ROLL             = 0x20000,   //corsair rolls
+    EFFECTFLAG_SYNTH_SUPPORT    = 0x40000    // Synthesis Image Support
 };
 
 enum EFFECT

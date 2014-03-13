@@ -7,6 +7,7 @@
           KEYITEM_OBTAINED = 6541; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
              HOMEPOINT_SET = 6604; -- Home point set!
     FISHING_MESSAGE_OFFSET = 6889; -- You can't fish here.
+           COOKING_SUPPORT = 6987; -- Your ≺Multiple Choice (Parameter 1)≻[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
 	
 -- Other
 DIABOLOS_UNLOCKED = 11716; -- You are now able to summon Diabolos!	

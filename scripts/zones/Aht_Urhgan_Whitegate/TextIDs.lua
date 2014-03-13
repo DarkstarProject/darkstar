@@ -10,6 +10,7 @@ ITEM_CANNOT_BE_OBTAINEDX = 215; -- You cannot obtain the ≺Possible Special Cod
     NOT_HAVE_ENOUGH_GIL = 221; -- You do not have enough gil
  FISHING_MESSAGE_OFFSET = 852; -- You can't fish here
           HOMEPOINT_SET = 1302; -- Home point set!
+          IMAGE_SUPPORT = 1337; -- Your ≺Multiple Choice (Parameter 1)≻[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
 
 -- Conquest system
 SANCTION = 9701; -- You have received the Empire's Sanction.
@@ -22,6 +23,7 @@ MUSHAYRA_DIALOG = 4892; -- Sorry for all the trouble. Please ignore Hadahda the 
  -- Other Dialogs
 ITEM_DELIVERY_DIALOG = 9251; -- You have something you want delivered?
 		RUNIC_PORTAL = 4512; -- You cannot use the runic portal without the Empire's authorization.
+IMAGE_SUPPORT_ACTIVE = 1335; -- You have to wait a bit longer before asking for synthesis image support again.
 
 -- Shop Texts
 	 GAVRIE_SHOP_DIALOG = 9165; -- Remember to take your medicine in small doses... Sometimes you can get a little too much of a good thing!

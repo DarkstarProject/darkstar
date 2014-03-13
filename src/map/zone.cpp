@@ -1085,39 +1085,51 @@ void CZone::SpawnNPCs(CCharEntity* PChar)
 
 void CZone::SpawnPCs(CCharEntity* PChar)
 {
-	for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
-	{
-		CCharEntity* PCurrentChar = (CCharEntity*)it->second;
-		SpawnIDList_t::iterator PC = PChar->SpawnPCList.find(PCurrentChar->id);
+    for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
+    {
+        CCharEntity* PCurrentChar = (CCharEntity*)it->second;
+        SpawnIDList_t::iterator PC = PChar->SpawnPCList.find(PCurrentChar->id);
 
-		if (PChar != PCurrentChar)
-		{
-			if(distance(PChar->loc.p, PCurrentChar->loc.p) < 50)
-			{
-				if( PC == PChar->SpawnPCList.end() )
-				{
-					PChar->SpawnPCList[PCurrentChar->id] = PCurrentChar;
-					PChar->pushPacket(new CCharPacket(PCurrentChar,ENTITY_SPAWN));
-                    PChar->pushPacket(new CCharSyncPacket(PCurrentChar));
+        if (PChar != PCurrentChar)
+        {
+            if (distance(PChar->loc.p, PCurrentChar->loc.p) < 50)
+            {
+                if (PC == PChar->SpawnPCList.end())
+                {
+                    if (PCurrentChar->m_isGMHidden == false || PCurrentChar->m_isGMHidden && PChar->m_GMlevel > PCurrentChar->m_GMlevel)
+                    {
+                        PChar->SpawnPCList[PCurrentChar->id] = PCurrentChar;
+                        PChar->pushPacket(new CCharPacket(PCurrentChar, ENTITY_SPAWN));
+                        PChar->pushPacket(new CCharSyncPacket(PCurrentChar));
+                    }
 
-					PCurrentChar->SpawnPCList[PChar->id] = PChar;
-					PCurrentChar->pushPacket(new CCharPacket(PChar,ENTITY_SPAWN));
+                    if (PChar->m_isGMHidden == true && PCurrentChar->m_GMlevel < PChar->m_GMlevel)
+                        continue;
+                    PCurrentChar->SpawnPCList[PChar->id] = PChar;
+                    PCurrentChar->pushPacket(new CCharPacket(PChar, ENTITY_SPAWN));
                     PCurrentChar->pushPacket(new CCharSyncPacket(PChar));
-				}else{
-					PCurrentChar->pushPacket(new CCharPacket(PChar,ENTITY_UPDATE));
-				}
-			} else {
-				if( PC != PChar->SpawnPCList.end() )
-				{
-					PChar->SpawnPCList.erase(PC);
-					PChar->pushPacket(new CCharPacket(PCurrentChar,ENTITY_DESPAWN));
+                }
+                else
+                {
+                    // Skip updating this player if we are GM hidden..
+                    if (PChar->m_isGMHidden == true && PCurrentChar->m_GMlevel < PChar->m_GMlevel)
+                        continue;
+                    PCurrentChar->pushPacket(new CCharPacket(PChar, ENTITY_UPDATE));
+                }
+            }
+            else
+            {
+                if (PC != PChar->SpawnPCList.end())
+                {
+                    PChar->SpawnPCList.erase(PC);
+                    PChar->pushPacket(new CCharPacket(PCurrentChar, ENTITY_DESPAWN));
 
-					PCurrentChar->SpawnPCList.erase(PChar->id);
-					PCurrentChar->pushPacket(new CCharPacket(PChar,ENTITY_DESPAWN));
-				}
-			}
-		}
-	}
+                    PCurrentChar->SpawnPCList.erase(PChar->id);
+                    PCurrentChar->pushPacket(new CCharPacket(PChar, ENTITY_DESPAWN));
+                }
+            }
+        }
+    }
 }
 
 /************************************************************************
@@ -1345,6 +1357,18 @@ void CZone::TOTDChange(TIMETYPE TOTD)
     luautils::OnTOTDChange(m_zoneID, TOTD);
 }
 
+void CZone::SavePlayTime()
+{
+	if(!m_charList.empty())
+	{
+		for(EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
+		{
+			CCharEntity* PChar = (CCharEntity*)it->second;
+			charutils::SavePlayTime(PChar);
+		}
+	}
+}
+
 /************************************************************************
 *                                                                       *
 *                                                                       *
@@ -1375,6 +1399,17 @@ CCharEntity* CZone::GetCharByName(int8* name)
 
 void CZone::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message_type, CBasicPacket* packet)
 {
+    // Do not send packets that are updates of a hidden GM..
+    if (packet != NULL && packet->getType() == 0x0D && PEntity != NULL && PEntity->objtype == TYPE_PC && ((CCharEntity*)PEntity)->m_isGMHidden)
+    {
+        // Ensure this packet is not despawning us..
+        if (packet->getData()[0x06] != 0x20)
+        {            
+            delete packet;
+            return;
+        }
+    }
+
 	if (!m_charList.empty())
 	{
 		switch(message_type)

@@ -6,6 +6,8 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6380; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6382; -- Obtained key item: <keyitem>
  FISHING_MESSAGE_OFFSET = 7015; -- You can't fish here
+   IMAGE_SUPPORT_ACTIVE = 7482; -- You have to wait a bit longer before asking for synthesis image support again.
+          IMAGE_SUPPORT = 7484; -- Your ≺Multiple Choice (Parameter 1)≻[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
 
  --Other Texts
    ITEM_DELIVERY_DIALOG = 7763; -- No need to wrap your goods. Just hand them over and they're as good as delivered! (I've got to be nice as long as the manager's got his eye on me...)
@@ -20,3 +22,6 @@ DEHBI_MOSHAL_SHOP_DIALOG = 7768; -- Welcome to the Carpenters' Guild!
        NDEGO_SHOP_DIALOG = 7769; -- The Blacksmiths' Guild thanks you for your business!
      BORNAHN_SHOP_DIALOG = 7771; -- Welcome! We have all your goldsmithing needs right here!
 TATEN_BILTEN_SHOP_DIALOG = 7773; -- Weave something beautiful with the materials you buy here, okay?
+
+-- NPC Texts
+CHOCOBO_HAPPY = 7778; -- The Chocobo appears to be extremely happy. 

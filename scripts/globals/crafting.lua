@@ -5,16 +5,16 @@
 --      http://wiki.ffxiclopedia.org/wiki/Crafts_%26_Hobbies
 -------------------------------------------------
 
--- 1 2 : Alchemy
--- 2 4 : Bonecraft
--- 3 8 : Clothcraft
--- 4: Cooking
--- 5: Fishing
--- 6: Goldsmithing
--- 7: Leathercraft
--- 8: Smithing
--- 9: Woodworking
--- 10: Synergy
+-- 1 2   : Alchemy
+-- 2 4   : Bonecraft
+-- 3 8   : Clothcraft
+-- 4 16  : Cooking
+-- 5 32  : Fishing
+-- 6 64  : Goldsmithing
+-- 7 128 : Leathercraft
+-- 8 256 : Smithing
+-- 9 512 : Woodworking
+-- 10    : Synergy
 
 -----------------------------------
 -- Table for Test Item
@@ -142,3 +142,23 @@ end;
 -- 3: ??
 -- 4: 0 pas dans la guilde 1 dans la guilde
 -- 7: 0 pas deja dans une guilde, 11: nombreuse guilde
+
+-----------------------------------
+-- getCraftSkillCap
+-----------------------------------
+function getCraftSkillCap(player,craftID)
+
+    local Rank = player:getSkillRank(craftID)
+    return (Rank+1)*10
+    
+end
+
+-----------------------------------
+-- getAdvImageSupportCost
+-----------------------------------
+function getAdvImageSupportCost(player,craftID)
+
+    local Rank = player:getSkillRank(craftID)
+    return (Rank+1)*30
+    
+end

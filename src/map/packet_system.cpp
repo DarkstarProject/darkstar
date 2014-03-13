@@ -121,6 +121,7 @@
 #include "packets/shop_appraise.h"
 #include "packets/shop_buy.h"
 #include "packets/stop_downloading.h"
+#include "packets/synth_suggestion.h"
 #include "packets/trade_action.h"
 #include "packets/trade_request.h"
 #include "packets/trade_item.h"
@@ -199,8 +200,6 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 {
 	WBUFL(data,(0x5C)) = 0;
 
-    bool firstlogin = false; // временное решение, до появления PlayTime
-
 	PChar->clearPacketList();
 
 	if (PChar->status == STATUS_DISAPPEAR)
@@ -243,13 +242,14 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		} else {
             PChar->loc.zone = zoneutils::GetZone(destination);
         }
-
-        firstlogin = true;
-
-        for(uint32 i = 0; i < sizeof(PChar->m_ZonesList); ++i)
+        
+        bool firstLogin = true;
+        for (uint32 i = 0; i < sizeof(PChar->m_ZonesList); ++i)
         {
-            if (PChar->m_ZonesList[i] != 0) firstlogin = false;
+            if (PChar->m_ZonesList[i] != 0) 
+                firstLogin = false;
         }
+
 		PChar->m_ZonesList[PChar->getZone() >> 3] |= (1 << (PChar->getZone()%8));
 
 		const int8* fmtQuery = "UPDATE accounts_sessions SET targid = %u, session_key = x'%s', server_addr = %u, client_port = %u WHERE charid = %u";
@@ -266,13 +266,9 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		if (Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
 			PChar->m_DeathTimestamp = (uint32)Sql_GetUIntData(SqlHandle,0);
 		}
-
-
-		// set new characters merits to zero on char creation
-		if (firstlogin)
-		{
-			PChar->PMeritPoints->SaveMeritPoints(PChar->id, true);
-		}
+        
+        if (firstLogin)
+            PChar->PMeritPoints->SaveMeritPoints(PChar->id, true);
 
 		PChar->status = STATUS_NORMAL;
 	}
@@ -283,7 +279,7 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
             ShowWarning(CL_YELLOW"Client cannot receive packet or key is invalid: %s\n" CL_RESET, PChar->GetName());
         }
 	}
-    if (PChar->loc.prevzone == 0 && !firstlogin)
+    if (PChar->loc.prevzone == 0 && PChar->GetPlayTime(false) > 0)
 	{
 		PChar->loc.prevzone = PChar->getZone();
 	}
@@ -291,6 +287,7 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 	charutils::SaveCharPosition(PChar);
 	charutils::SaveZonesVisited(PChar);
+	charutils::SavePlayTime(PChar);
 
 	PChar->pushPacket(new CDownloadingDataPacket());
 	PChar->pushPacket(new CZoneInPacket(PChar,EventID));
@@ -799,24 +796,19 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
         break;
 		case 0x13: // tractor menu
 		{
-                // по любому, это работает неправильно. проблемный код в комментарии
-
-			    //PChar->PBattleAI->SetCurrentAction(ACTION_RAISE_MENU_SELECTION);
-			    //PChar->PBattleAI->CheckCurrentAction(gettick());
-
-			/*
-			if(RBUFB(data,(0x0C)) == 0)
+			if(RBUFB(data,(0x0C)) == 0) //ACCEPTED TRACTOR
 			{
-				PChar->status = STATUS_DISAPPEAR;
+				//PChar->PBattleAI->SetCurrentAction(ACTION_RAISE_MENU_SELECTION);
+				//PChar->PBattleAI->CheckCurrentAction(gettick());
 				PChar->loc.p  = PChar->m_StartActionPos;
-
+				PChar->loc.destination = PChar->getZone();
+				PChar->status = STATUS_DISAPPEAR;
 				PChar->loc.boundary = 0;
 				PChar->clearPacketList();
 				PChar->pushPacket(new CServerIPPacket(PChar,2));
-			}else{
-				PChar->m_hasTractor = 0;
 			}
-			*/
+
+			PChar->m_hasTractor = 0;
 		}
 		break;
 		case 0x14: // окончание обновления данных персонажа
@@ -2424,6 +2416,19 @@ void SmallPacket0x050(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 /************************************************************************
 *																		*
+*  Request synthesis suggestion											*
+*																		*
+************************************************************************/
+
+void SmallPacket0x058(map_session_data_t* session, CCharEntity* PChar, int8* data)
+{
+	uint16 skillID = RBUFW(data, (0x04));
+	uint16 skillLevel = RBUFW(data, (0x06));
+	//PChar->pushPacket(new CSynthSuggestionPacket(recipeID));
+}
+
+/************************************************************************
+*																		*
 *  Завершение синтеза													*
 *																		*
 ************************************************************************/
@@ -2902,29 +2907,40 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		break;
         case 1: // linkshell
         {
-            if (PChar->PLinkshell != NULL)
+            // Ensure the player has a linkshell equipped..
+            if (PChar->PLinkshell == NULL)
+                break;
+
+            // Ensure the linkshell is valid..
+            CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);
+            if (PItemLinkshell == NULL || !PItemLinkshell->isType(ITEM_LINKSHELL))
+                break;
+
+            // Ensure the linkshell is a shell or sack (cannot kick otherwise..)
+            if (PItemLinkshell->GetLSType() != LSTYPE_LINKSHELL && PItemLinkshell->GetLSType() != LSTYPE_PEARLSACK)
+                break;
+
+            // Obtain the victim..
+            CCharEntity* PVictim = zoneutils::GetCharByName(data + 0x0C);
+            if (PVictim == NULL)
+                break;
+
+            // Obtain the victims linkshell.. (And ensure it is the same as ours to prevent exploiting..)
+            CItemLinkshell* PItemLinkshellVictim = (CItemLinkshell*)PVictim->getStorage(LOC_INVENTORY)->GetItem(PVictim->equip[SLOT_LINK]);
+            if (PItemLinkshellVictim == NULL || PItemLinkshellVictim->GetLSID() != PItemLinkshell->GetLSID())
+                break;
+
+            // Attempt to kick the player from the linkshell if we have high enough authority..
+            if (PItemLinkshell->GetLSType() == LSTYPE_LINKSHELL)
             {
-                CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);
-
-                if (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL))
-                {
-					if(PItemLinkshell->GetLSType() == LSTYPE_LINKSHELL || PItemLinkshell->GetLSType() == LSTYPE_PEARLSACK)
-					{
-						CCharEntity* PVictim = zoneutils::GetCharByName(data + 0x0C);
-
-						if (PVictim != NULL)
-						{
-							CItemLinkshell* PItemLinkshellVictim = (CItemLinkshell*)PVictim->getStorage(LOC_INVENTORY)->GetItem(PVictim->equip[SLOT_LINK]);
-							if (PItemLinkshellVictim != NULL && PItemLinkshellVictim == PItemLinkshell)
-							{
-								if (PItemLinkshellVictim->GetLSType() == LSTYPE_LINKPEARL)
-								{
-									PChar->PLinkshell->RemoveMemberByName(data+0x0C);
-								}
-							}
-						}
-					}
-                }
+                // We can kick anyone as we have the linkshell..
+                PChar->PLinkshell->RemoveMemberByName(data + 0x0C);
+            }
+            else if (PItemLinkshell->GetLSType() == LSTYPE_PEARLSACK)
+            {
+                // We can only kick someone with a linkpearl..
+                if (PItemLinkshellVictim->GetLSType() == LSTYPE_LINKPEARL)
+                    PChar->PLinkshell->RemoveMemberByName(data + 0x0C);
             }
         }
         break;
@@ -3980,8 +3996,9 @@ void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		case TYPE_PC:
 		{
 			CCharEntity* PTarget = (CCharEntity*)PEntity;
-
-			PTarget->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 89));
+            
+            if (PChar->m_isGMHidden == false || PChar->m_isGMHidden == true && PTarget->m_GMlevel >= PChar->m_GMlevel)
+                PTarget->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 89));
 
 			PChar->pushPacket(new CBazaarMessagePacket(PTarget));
             PChar->pushPacket(new CCheckPacket(PChar, PTarget));
@@ -4972,6 +4989,7 @@ void PacketParserInitialize()
     PacketSize[0x04D] = 0x00; PacketParser[0x04D] = &SmallPacket0x04D;
     PacketSize[0x04E] = 0x1E; PacketParser[0x04E] = &SmallPacket0x04E;
     PacketSize[0x050] = 0x04; PacketParser[0x050] = &SmallPacket0x050;
+	PacketSize[0x058] = 0x0A; PacketParser[0x058] = &SmallPacket0x058;
     PacketSize[0x059] = 0x00; PacketParser[0x059] = &SmallPacket0x059;
     PacketSize[0x05A] = 0x02; PacketParser[0x05A] = &SmallPacket0x05A;
     PacketSize[0x05B] = 0x0A; PacketParser[0x05B] = &SmallPacket0x05B;

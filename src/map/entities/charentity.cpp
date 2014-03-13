@@ -22,6 +22,7 @@
 */
 
 #include "../../common/showmsg.h"
+#include "../../common/timer.h"
 #include "../../common/utils.h"
 
 #include <string.h>
@@ -42,6 +43,7 @@ CCharEntity::CCharEntity()
 	m_event.reset();
 
 	m_GMlevel = 0;
+    m_isGMHidden = false;
 
     TradeContainer  = new CTradeContainer();
 	Container       = new CTradeContainer();
@@ -137,7 +139,8 @@ CCharEntity::CCharEntity()
 	petZoningInfo.petHP = 0;
 	petZoningInfo.petTP = 0;
 
-
+	m_PlayTime = 0;
+	m_SaveTime = 0;
 }
 
 CCharEntity::~CCharEntity()
@@ -343,4 +346,23 @@ bool CCharEntity::getMijinGakure()
 void CCharEntity::setMijinGakure(bool isMijinGakure)
 {
 	m_isMijinGakure = isMijinGakure;
+}
+
+void CCharEntity::SetPlayTime(uint32 playTime)
+{
+	m_PlayTime = playTime;
+	m_SaveTime = gettick() / 1000;
+}
+
+uint32 CCharEntity::GetPlayTime(bool needUpdate)
+{
+	if (needUpdate)
+	{
+		uint32 currentTime = gettick() / 1000;
+
+		m_PlayTime += currentTime - m_SaveTime;
+		m_SaveTime = currentTime;
+	}
+
+	return m_PlayTime;
 }

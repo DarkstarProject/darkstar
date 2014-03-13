@@ -45,14 +45,11 @@ function OnBcnmLeave(player,instance,leavecode)
 --printf("leavecode: %u",leavecode);
 	
 	if(leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-	    player:addExp(1000);
-		player:startEvent(0x7d01,0,0,0,instance:getTimeInside(),0,0,0);
-		if (player:getCurrentMission(COP) == ANCIENT_VOWS and player:getVar("PromathiaStatus") == 2) then
-			player:setVar("PromathiaStatus",0);
-			player:completeMission(COP,ANCIENT_VOWS);
-			player:addMission(COP,THE_CALL_OF_THE_WYRMKING);
+        if (player:getCurrentMission(COP) == ANCIENT_VOWS and player:getVar("PromathiaStatus") == 2) then
+            player:startEvent(0x7d01,0,0,0,instance:getTimeInside(),0,0,0);
+        else
+            player:startEvent(0x7d01,0,0,0,instance:getTimeInside(),0,0,1);
 		end
-		player:setVar("VowsDone",1);
 	elseif(leavecode == 4) then
 		player:startEvent(0x7d02);
 	end
@@ -66,8 +63,14 @@ end;
 function onEventFinish(player,csid,option)
 
 	if(csid == 0x7d01)then
+    	player:addExp(1000);
 		player:addTitle(TAVNAZIAN_TRAVELER); 
-		player:setPos(694,-5.5,-619,74,107); --tp to South Gustaberg 
-	end
-
+        if (player:getCurrentMission(COP) == ANCIENT_VOWS and player:getVar("PromathiaStatus") == 2) then
+            player:setVar("VowsDone",1);
+            player:setVar("PromathiaStatus",0);
+            player:completeMission(COP,ANCIENT_VOWS);
+            player:addMission(COP,THE_CALL_OF_THE_WYRMKING);
+            player:setPos(694,-5.5,-619,74,107); -- To South Gustaberg 
+        end
+    end
 end;

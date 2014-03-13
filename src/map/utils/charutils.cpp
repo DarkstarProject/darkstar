@@ -403,6 +403,7 @@ void LoadChar(CCharEntity* PChar)
 		Sql_GetData(SqlHandle,20,&missions,&length);
 		memcpy(PChar->m_missionLog, missions, (length > sizeof(PChar->m_missionLog) ? sizeof(PChar->m_missionLog) : length));
 
+		PChar->SetPlayTime(Sql_GetUIntData(SqlHandle, 21));
 	}
 
 
@@ -4308,6 +4309,11 @@ void SaveDeathTime(CCharEntity* PChar)
 {
 	const int8* fmtQuery = "UPDATE char_stats SET death = %u WHERE charid = %u LIMIT 1;";
 	Sql_Query(SqlHandle, fmtQuery, (uint32)time(NULL), PChar->id);
+}
+
+void SavePlayTime(CCharEntity* PChar)
+{
+	Sql_Query(SqlHandle, "UPDATE chars SET playtime = '%u' WHERE charid = '%u' LIMIT 1;", PChar->GetPlayTime(), PChar->id);
 }
 
 /************************************************************************

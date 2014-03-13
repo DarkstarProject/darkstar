@@ -42,19 +42,20 @@ typedef std::map<uint32,ModsList_t*> ModsMap_t;
 namespace mobutils
 {
 	void	CalculateStats(CMobEntity* PMob);
-  void  AddTraits(CMobEntity* PMob, JOBTYPE jobID, uint8 lvl);
+	void	AddTraits(CMobEntity* PMob, JOBTYPE jobID, uint8 lvl);
 	uint16	GetWeaponDamage(CMobEntity* PMob);
 	void    GetAvailableSpells(CMobEntity* PMob);
-  void  InitializeMob(CMobEntity* PMob, CZone* PZone);
-  void  LoadCustomMods();
+	void	InitializeMob(CMobEntity* PMob, CZone* PZone);
+	void	LoadCustomMods();
 
-  // get modifiers for pool / family / spawn
-  ModsList_t* GetMobFamilyMods(uint16 familyId, bool create = false);
-  ModsList_t* GetMobPoolMods(uint32 poolId, bool create = false);
-  ModsList_t* GetMobSpawnMods(uint32 mobId, bool create = false);
+	// get modifiers for pool / family / spawn
+	ModsList_t* GetMobFamilyMods(uint16 familyId, bool create = false);
+	ModsList_t* GetMobPoolMods(uint32 poolId, bool create = false);
+	ModsList_t* GetMobSpawnMods(uint32 mobId, bool create = false);
 
-  void  AddCustomMods(CMobEntity* PMob);
-  void  SetupMaat(CMobEntity* PMob, JOBTYPE job);
+	void  AddCustomMods(CMobEntity* PMob);
+	void  SetupMaat(CMobEntity* PMob, JOBTYPE job);
+	void  SetSpellList(CMobEntity*, uint16);
 };
 
 #endif
