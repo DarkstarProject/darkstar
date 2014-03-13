@@ -2058,6 +2058,7 @@ void CAIMobDummy::CastSpell(uint16 spellId, CBattleEntity* PTarget)
 bool CAIMobDummy::TrySpecialSkill()
 {
 	if(m_PSpecialSkill == NULL) return false;
+	if(!m_MobAbilityEnabled) return false;
 
 	if((m_PMob->m_specialFlags & SPECIALFLAG_HIDDEN) && !m_PMob->IsNameHidden())
 	{
