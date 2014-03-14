@@ -45,7 +45,7 @@ function onTrigger(player,npc)
         0x1237,   368,3,     --Aquaveil
         0x1271, 29700,3      --Repose
     }
-    showNationShop(player, WINDURST, stock);
+    showNationShop(player, BASTOK, stock);
 
 end; 
 
