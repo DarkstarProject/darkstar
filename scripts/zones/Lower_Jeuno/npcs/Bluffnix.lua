@@ -2,6 +2,7 @@
 -- Area: Lower Jeuno
 -- NPC:  Bluffnix
 -- Starts and Finishes Quests: Gobbiebags I-X
+-- @pos -43.099 5.900 -114.788 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
@@ -118,6 +119,7 @@ function onEventFinish(player,csid,option)
 		
 		player:changeContainerSize(0,5);
 		player:changeContainerSize(5,5);
+        player:changeContainerSize(6,5);
 		player:addFame(JEUNO, JEUNO_FAME*30);
 		player:tradeComplete();
 		player:completeQuest(JEUNO,TheGobbieBag[1]);
