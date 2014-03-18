@@ -42,6 +42,10 @@ CVanaTime* CVanaTime::_instance = NULL;
 CVanaTime::CVanaTime()
 {
 	setCustomOffset(0);
+    lastConquestUpdate = 0;
+	lastWeatherUpdate = 0;
+	lastVHourlyUpdate = 0;
+	lastVDailyUpdate = 0;
 }
 
 CVanaTime* CVanaTime::getInstance()

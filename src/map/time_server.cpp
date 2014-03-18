@@ -41,7 +41,7 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
     // weekly update for conquest (sunday at midnight)
     if (CVanaTime::getInstance()->getSysWeekDay() == 0  && CVanaTime::getInstance()->getSysHour() == 0 && CVanaTime::getInstance()->getSysMinute() == 0)
     {
-        if (CVanaTime::getInstance()->lastConquestUpdate != tick)
+        if (tick > (CVanaTime::getInstance()->lastConquestUpdate + 60000))
         {
             conquest::UpdateWeekConquest();
             CVanaTime::getInstance()->lastConquestUpdate = tick;
@@ -50,7 +50,7 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
 
     if (CVanaTime::getInstance()->getHour() % 4 == 0 && CVanaTime::getInstance()->getMinute() == 30)
     {
-        if (CVanaTime::getInstance()->lastWeatherUpdate != tick)
+        if (tick > (CVanaTime::getInstance()->lastWeatherUpdate + 4800))
         {
             zoneutils::UpdateWeather();
             CVanaTime::getInstance()->lastWeatherUpdate = tick;
@@ -59,7 +59,7 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
 
     if (CVanaTime::getInstance()->getMinute() == 0)
     {
-        if (CVanaTime::getInstance()->lastVHourlyUpdate != tick)
+        if (tick > (CVanaTime::getInstance()->lastVHourlyUpdate + 4800))
         {
             luautils::OnGameHourAutomatisation();
 
@@ -82,7 +82,7 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
 
     if (CVanaTime::getInstance()->getHour() == 0 && CVanaTime::getInstance()->getMinute() == 0)
     {
-        if (CVanaTime::getInstance()->lastVDailyUpdate != tick)
+        if (tick > (CVanaTime::getInstance()->lastVDailyUpdate + 4800))
         {
             for(uint16 zone = 0; zone < MAX_ZONEID; ++zone)
             {
