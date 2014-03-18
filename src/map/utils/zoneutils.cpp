@@ -54,7 +54,7 @@ namespace zoneutils
 *																		*
 ************************************************************************/
 
-void TOTDCharnge(TIMETYPE TOTD)
+void TOTDChange(TIMETYPE TOTD)
 {
 	for (uint16 ZoneID = 0; ZoneID < MAX_ZONEID; ZoneID++)
 	{
