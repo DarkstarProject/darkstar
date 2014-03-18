@@ -61,6 +61,7 @@ namespace luautils
 	int32 GetMobIDByJob(lua_State*);											// Return mobid by job
 	int32 WeekUpdateConquest(lua_State*);
     int32 GetRegionOwner(lua_State*);										    // узнаем страну, владеющую текущим регионом
+	int32 getNationRank(lua_State* L);
 	int32 SetRegionalConquestOverseers();										// Update NPC Conquest Guard
 	int32 setMobPos(lua_State*);												// set a mobs position (only if mob is not in combat)
 

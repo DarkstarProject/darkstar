@@ -302,7 +302,7 @@ namespace conquest
 			else if(g_Conquest[i][5] > g_Conquest[i][2] && g_Conquest[i][5] > g_Conquest[i][3] && g_Conquest[i][5] > g_Conquest[i][4])
 				g_Conquest[i][1] = 3;
 			else
-				g_Conquest[i][1] = rand() % 3; //random 0,1,2
+				g_Conquest[i][1] = WELL512::irand() % 3; //random 0,1,2
 
 			//reset all influence points
 			g_Conquest[i][2] = 0;
@@ -376,8 +376,9 @@ namespace conquest
 
     uint8 GetNexTally()
     {
-	    uint32 currData = CVanaTime::getInstance()->getDate() / 1440;
-	    return (uint8)(175 - ((currData - 85)%175));
+	    uint8 dayspassed = CVanaTime::getInstance()->getSysWeekDay() * 25;
+	    dayspassed += ((CVanaTime::getInstance()->getSysHour() * 60 + CVanaTime::getInstance()->getSysMinute()) * 25 ) / 1440;
+	    return (uint8)(175 - dayspassed);
     }
 
     /************************************************************************

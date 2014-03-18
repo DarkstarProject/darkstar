@@ -84,6 +84,7 @@ int32 init()
 	lua_register(LuaHandle,"GetMobIDByJob",luautils::GetMobIDByJob);
 	lua_register(LuaHandle,"WeekUpdateConquest", luautils::WeekUpdateConquest);
     lua_register(LuaHandle,"GetRegionOwner", luautils::GetRegionOwner);
+    lua_register(LuaHandle,"getNationRank", luautils::getNationRank);
 	lua_register(LuaHandle,"setMobPos",luautils::setMobPos);
 	lua_register(LuaHandle,"SpawnMob",luautils::SpawnMob);
 	lua_register(LuaHandle,"DespawnMob",luautils::DespawnMob);
@@ -325,6 +326,38 @@ int32 GetRegionOwner(lua_State* L)
 
     lua_pushinteger(L, conquest::GetRegionOwner((REGIONTYPE)lua_tointeger(L,1)));
     return 1;
+}
+
+/************************************************************************
+*																		*
+* Get Rank of Nations in Conquest		*
+*																		*
+************************************************************************/
+
+int32 getNationRank(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+    
+    uint8 balance = conquest::GetBalance();
+    switch(lua_tointeger(L,1))
+    {
+        case 0:
+            balance &= 0x3;
+            lua_pushinteger(L, balance);
+            return 1;
+        case 1:
+            balance &= 0xC;
+            balance >>= 2;
+            lua_pushinteger(L, balance);
+            return 1;
+        case 2:
+            balance >>= 4;
+            lua_pushinteger(L, balance);
+            return 1;
+        default:
+            lua_pushinteger(L, 0);
+            return 0;
+    }
 }
 
 /************************************************************************
