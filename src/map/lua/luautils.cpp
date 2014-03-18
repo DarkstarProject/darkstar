@@ -341,16 +341,16 @@ int32 getNationRank(lua_State* L)
     uint8 balance = conquest::GetBalance();
     switch(lua_tointeger(L,1))
     {
-        case 0:
+        case SANDORIA:
             balance &= 0x3;
             lua_pushinteger(L, balance);
             return 1;
-        case 1:
+        case BASTOK:
             balance &= 0xC;
             balance >>= 2;
             lua_pushinteger(L, balance);
             return 1;
-        case 2:
+        case WINDURST:
             balance >>= 4;
             lua_pushinteger(L, balance);
             return 1;
@@ -3827,11 +3827,11 @@ int32 UpdateNMSpawnPoint(lua_State* L)
 		CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
 
 		if (PMob != NULL) {
-		  int32 r = rand()%50;
+		  int32 r = WELL512::irand()%50;
 		  int32 ret = Sql_Query(SqlHandle, "SELECT pos_x, pos_y, pos_z FROM `nm_spawn_points` WHERE mobid=%u AND pos=%i", mobid, r);
 
 		  if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
-			PMob->m_SpawnPoint.rotation = rand() % 256;
+			PMob->m_SpawnPoint.rotation = WELL512::irand() % 256;
 			PMob->m_SpawnPoint.x = Sql_GetFloatData(SqlHandle,0);
 			PMob->m_SpawnPoint.y = Sql_GetFloatData(SqlHandle,1);
 			PMob->m_SpawnPoint.z = Sql_GetFloatData(SqlHandle,2);
