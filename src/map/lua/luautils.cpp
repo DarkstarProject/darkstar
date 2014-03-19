@@ -342,11 +342,11 @@ int32 getNationRank(lua_State* L)
     switch(lua_tointeger(L,1))
     {
         case SANDORIA:
-            balance &= 0x3;
+            balance &= 0x3U;
             lua_pushinteger(L, balance);
             return 1;
         case BASTOK:
-            balance &= 0xC;
+            balance &= 0xCU;
             balance >>= 2;
             lua_pushinteger(L, balance);
             return 1;

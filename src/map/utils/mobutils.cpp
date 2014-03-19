@@ -138,7 +138,7 @@ void CalculateStats(CMobEntity * PMob)
 	// set a random job
 	if(PMob->getMobMod(MOBMOD_RAND_JOB))
 	{
-		bool firstOption = rand()%2 == 0;
+		bool firstOption = WELL512::irand()%2 == 0;
 		SKILLTYPE meleeSkill = SKILL_NON;
 		JOBTYPE job = JOB_NON;
 		uint16 spellList = 0;

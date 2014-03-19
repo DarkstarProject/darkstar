@@ -1069,7 +1069,7 @@ void Familiar(CBattleEntity* PPet)
     {
         // increase charm duration
         // 30 mins - 1-5 mins
-        PPet->charmTime += 1800000 - rand()%300000;
+        PPet->charmTime += 1800000 - WELL512::irand()%300000;
     }
 
     float rate = 0.10f;
@@ -1305,7 +1305,7 @@ void LoadPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 		}
 
 		// 0-2 lvls lower
-		highestLvl -= rand()%3;
+		highestLvl -= WELL512::irand()%3;
 
 		PPet->SetMLevel(highestLvl);
 		LoadJugStats(PPet, PPetData); //follow monster calcs (w/o SJ)
