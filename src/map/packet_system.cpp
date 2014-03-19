@@ -3242,6 +3242,13 @@ void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	uint8  invSlotID = RBUFB(data,(0x08));
 
 	uint8  numItems  = RBUFB(data,(0x09));
+    
+    if (numItems > 8)
+    {
+        // Prevent crafting exploit to crash on container size > 8
+        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 316));
+        return;
+    }
 
     PChar->CraftContainer->setItem(0, ItemID, invSlotID, 0);
 
