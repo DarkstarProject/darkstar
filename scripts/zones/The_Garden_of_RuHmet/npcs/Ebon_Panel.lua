@@ -28,30 +28,29 @@ end;
 function onTrigger(player,npc)
     local Race = player:getRace();
     local xPos = npc:getXPos(); 
-    local zPos = npc:getZPos(); 
     
     if(player:getCurrentMission(COP) == WHEN_ANGELS_FALL  and player:getVar("PromathiaStatus") == 1)then
         player:startEvent(0x00CA);     
     elseif(player:getCurrentMission(COP) == WHEN_ANGELS_FALL  and player:getVar("PromathiaStatus") == 2)then		
-        if (xPos == 100.000 and zPos == -337.661) then -- Mithra Tower
+        if (xPos > 99 and xPos < 101) then -- Mithra Tower
             if( Race==7 )then
                 player:startEvent(0x007C);
             else
                 player:messageSpecial(NO_NEED_INVESTIGATE); 
             end	
-        elseif (xPos == 740.000 and zPos == -342.352) then -- Elvaan Tower
+        elseif (xPos > 739 and xPos < 741) then -- Elvaan Tower
             if( Race==3 or Race==4)then
                 player:startEvent(0x0079);		      
             else
                 player:messageSpecial(NO_NEED_INVESTIGATE); 
             end	
-        elseif (xPos == 257.650 and zPos == -699.999) then -- Tarutaru Tower
+        elseif (xPos > 256 and xPos < 258) then -- Tarutaru Tower
             if( Race==5 or Race==6  )then
                 player:startEvent(0x007B);
             else
                 player:messageSpecial(NO_NEED_INVESTIGATE); 
             end	
-        elseif (xPos == 577.648 and zPos == -700.000) then -- Galka Tower
+        elseif (xPos > 576 and xPos < 578) then -- Galka Tower
             if( Race==8)then
                 player:startEvent(0x007A);	      
             else
