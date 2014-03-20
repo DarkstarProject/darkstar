@@ -111,6 +111,7 @@ function onEventFinish(player,csid,option)
 
 	if (csid == 0x274E and option == 1) then -- Offer Quest, First Dialog.
 		player:addQuest(JEUNO,THE_ROAD_TO_AHT_URHGAN);
+        player:addMission(TOAU,LAND_OF_SACRED_SERPENTS); 
 	elseif (csid == 0x274F or csid == 0x2750) then
 		if (csid == 0x274F and option == 1 or csid == 0x274F and option == 2) then -- Offically offer quest, Second Dialog.
 		player:setVar("THE_ROAD_TO_AHT_URHGAN",1);

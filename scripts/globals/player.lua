@@ -303,9 +303,6 @@ function CharCreate(player)
 	-- ADD ADVENTURER COUPON
 	player:addItem(0x218);
 
-	-- START AHT URHGAN MISSION 1
-	player:addMission(4,0);
-
 	--SET TITLE
 	player:addTitle(NEW_ADVENTURER);
 
