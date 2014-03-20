@@ -35,80 +35,95 @@
 
 int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
 {
-	TIMETYPE VanadielTOTD = CVanaTime::getInstance()->SyncTime();
-	uint8 WeekDay = (uint8)CVanaTime::getInstance()->getWeekday();
+    TIMETYPE VanadielTOTD = CVanaTime::getInstance()->SyncTime();
+    uint8 WeekDay = (uint8)CVanaTime::getInstance()->getWeekday();
 
-	if (CVanaTime::getInstance()->getHour() % 4 == 0 && CVanaTime::getInstance()->getMinute() == 30)
-	{
-		zoneutils::UpdateWeather();
-	}
-
-	if (CVanaTime::getInstance()->getMinute() == 0)
-	{
-		luautils::OnGameHourAutomatisation();
-
-		for(uint16 zone = 0; zone < MAX_ZONEID; ++zone)
-		{
-			EntityList_t	m_charList = zoneutils::GetZone(zone)->GetCharList();
-
-			for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
-			{
-				CCharEntity* PChar = (CCharEntity*)it->second;
-				PChar->PLatentEffectContainer->CheckLatentsHours();
-				PChar->PLatentEffectContainer->CheckLatentsMoonPhase();
-			}
-		}
-
-	}
-	
-	if (CVanaTime::getInstance()->getHour() == 0 && CVanaTime::getInstance()->getMinute() == 0)
-	{
-		for(uint16 zone = 0; zone < MAX_ZONEID; ++zone)
-		{
-			EntityList_t	m_charList = zoneutils::GetZone(zone)->GetCharList();
-
-			for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
-			{
-				CCharEntity* PChar = (CCharEntity*)it->second;
-				PChar->PLatentEffectContainer->CheckLatentsWeekDay();
-			}
-		}
-	}
-
-    if (VanadielTOTD != TIME_NONE)
-	{
-		zoneutils::TOTDCharnge(VanadielTOTD);
-
-        if (VanadielTOTD == TIME_MIDNIGHT)
+    // weekly update for conquest (sunday at midnight)
+    if (CVanaTime::getInstance()->getSysWeekDay() == 0  && CVanaTime::getInstance()->getSysHour() == 0 && CVanaTime::getInstance()->getSysMinute() == 0)
+    {
+        if (tick > (CVanaTime::getInstance()->lastConquestUpdate + 60000))
         {
-            guildutils::UpdateGuildsStock();
-			luautils::OnGameDayAutomatisation();
-			conquest::UpdateConquestSystem();
-			zoneutils::SavePlayTime();
+            conquest::UpdateWeekConquest();
+            CVanaTime::getInstance()->lastConquestUpdate = tick;
+        }
+    }
 
-            // weekly update for conquest (monday at midnight)
-	        if (CVanaTime::getInstance()->getSysWeekDay() == 1)
-	        {
-		        conquest::UpdateWeekConquest();
-	        }
+    if (CVanaTime::getInstance()->getHour() % 4 == 0 && CVanaTime::getInstance()->getMinute() == 30)
+    {
+        if (tick > (CVanaTime::getInstance()->lastWeatherUpdate + 4800))
+        {
+            zoneutils::UpdateWeather();
+            CVanaTime::getInstance()->lastWeatherUpdate = tick;
+        }
+    }
+
+    if (CVanaTime::getInstance()->getMinute() == 0)
+    {
+        if (tick > (CVanaTime::getInstance()->lastVHourlyUpdate + 4800))
+        {
+            luautils::OnGameHourAutomatisation();
+
+            for(uint16 zone = 0; zone < MAX_ZONEID; ++zone)
+            {
+                EntityList_t	m_charList = zoneutils::GetZone(zone)->GetCharList();
+
+                for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
+                {
+                    CCharEntity* PChar = (CCharEntity*)it->second;
+                    PChar->PLatentEffectContainer->CheckLatentsHours();
+                    PChar->PLatentEffectContainer->CheckLatentsMoonPhase();
+                }
+            }
+
+            CVanaTime::getInstance()->lastVHourlyUpdate = tick;
         }
 
-		if((VanadielTOTD == TIME_DAY) || (VanadielTOTD == TIME_DUSK) || (VanadielTOTD == TIME_NIGHT))
-		{
-			for(uint16 zone = 0; zone < MAX_ZONEID; ++zone)
-			{
-				EntityList_t	m_charList = zoneutils::GetZone(zone)->GetCharList();
+    }
 
-				for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
-				{
-					CCharEntity* PChar = (CCharEntity*)it->second;
-					PChar->PLatentEffectContainer->CheckLatentsDay();
-					PChar->PLatentEffectContainer->CheckLatentsJobLevel();
-				}
-			}
-		}
-	}
+    if (CVanaTime::getInstance()->getHour() == 0 && CVanaTime::getInstance()->getMinute() == 0)
+    {
+        if (tick > (CVanaTime::getInstance()->lastVDailyUpdate + 4800))
+        {
+            for(uint16 zone = 0; zone < MAX_ZONEID; ++zone)
+            {
+                EntityList_t	m_charList = zoneutils::GetZone(zone)->GetCharList();
 
-	CTransportHandler::getInstance()->TransportTimer();
-	return 0;
+                for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
+                {
+                    CCharEntity* PChar = (CCharEntity*)it->second;
+                    PChar->PLatentEffectContainer->CheckLatentsWeekDay();
+                }
+            }
+
+            guildutils::UpdateGuildsStock();
+            luautils::OnGameDayAutomatisation();
+            conquest::UpdateConquestSystem();
+            zoneutils::SavePlayTime();
+
+            CVanaTime::getInstance()->lastVDailyUpdate = tick;
+        }
+    }
+
+    if (VanadielTOTD != TIME_NONE)
+    {
+        zoneutils::TOTDChange(VanadielTOTD);
+
+        if((VanadielTOTD == TIME_DAY) || (VanadielTOTD == TIME_DUSK) || (VanadielTOTD == TIME_NIGHT))
+        {
+            for(uint16 zone = 0; zone < MAX_ZONEID; ++zone)
+            {
+                EntityList_t	m_charList = zoneutils::GetZone(zone)->GetCharList();
+
+                for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
+                {
+                    CCharEntity* PChar = (CCharEntity*)it->second;
+                    PChar->PLatentEffectContainer->CheckLatentsDay();
+                    PChar->PLatentEffectContainer->CheckLatentsJobLevel();
+                }
+            }
+        }
+    }
+
+    CTransportHandler::getInstance()->TransportTimer();
+    return 0;
 }

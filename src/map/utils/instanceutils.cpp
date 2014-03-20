@@ -382,7 +382,7 @@ namespace instanceutils{
 	   if(maxloot!=0){
 		 for (uint8 group = 0; group <= maxloot; ++group){
 			uint16 maxRolls = getRollsPerGroup(instance,group);
-			uint16 groupRoll = (uint16)rand()%maxRolls;
+			uint16 groupRoll = (uint16)(WELL512::irand()%maxRolls);
 			uint16 itemRolls = 0;
 
 			for (uint8 item = 0; item < LootList->size(); ++item)

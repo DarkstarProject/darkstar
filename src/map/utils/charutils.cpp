@@ -2326,7 +2326,7 @@ void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
 		int16  Diff = MaxSkill - CurSkill/10;
         double SkillUpChance = Diff/5.0 + map_config.skillup_multiplier * (2.0 - log10(1.0 + CurSkill /100));
 
-		double random = rand() / ((double)RAND_MAX);
+		double random = WELL512::drand();
 
 		if(SkillUpChance > 0.5)
 		{
@@ -2341,7 +2341,7 @@ void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
 
 			for(uint8 i = 0; i < 4; ++i) // 1 + 4 возможных дополнительных (максимум 5)
 			{
-				random = rand() / ((double)RAND_MAX);
+				random = WELL512::drand();
 
 				switch(tier)
 				{
@@ -3011,7 +3011,7 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 					uint8 Pzone = PMember->getZone();
                     if (PMob->m_Type == MOBTYPE_NORMAL && ((Pzone > 0 && Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255)))
 					{
-						if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && rand()%100 < 20 &&
+						if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && WELL512::irand()%100 < 20 &&
                         PMember->loc.zone == PMob->loc.zone) // Need to move to SIGNET_CHANCE constant
 						{
 							PMember->PTreasurePool->AddItem(4095 + PMob->m_Element, PMob);
@@ -3376,15 +3376,14 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
 
     if (!expFromRaise)
     {
-        // Add influence for the players region..
-        conquest::GainInfluencePoints(PChar);
-
         REGIONTYPE region = PChar->loc.zone->GetRegionID();
 
         // Should this user be awarded conquest points..
         if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) &&
             (region >= 0 && region <= 22))
         {
+            // Add influence for the players region..
+            conquest::GainInfluencePoints(PChar);
             conquest::AddConquestPoints(PChar, exp);
         }
 

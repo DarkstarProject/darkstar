@@ -569,25 +569,6 @@ EXFORCE = {0x20006,ZULK_EF,0x67,0x000040,0x14,ZULKHEIM_EF_INSIGNIA,
            0x20013,ELLO_EF,0x7B,0x080000,0x23,ELSHIMO_LOWLANDS_EF_INSIGNIA,
            0x20014,ELUP_EF,0x7C,0x100000,0x2D,ELSHIMO_UPLANDS_EF_INSIGNIA};
 
------------------------------------
--- Nation rank in conquest
------------------------------------
-
-function getNationRank(nation)
-
-	local rank = 0;
-
-	if(nation == BASTOK) then
-		rank = 1;
-	elseif(nation == SANDORIA) then
-		rank = 1;
-	elseif(nation == WINDURST) then
-		rank = 1;
-	end
-
-	return rank;
-
-end;
 
 ---------------------------------
 --

@@ -84,6 +84,7 @@ int32 init()
 	lua_register(LuaHandle,"GetMobIDByJob",luautils::GetMobIDByJob);
 	lua_register(LuaHandle,"WeekUpdateConquest", luautils::WeekUpdateConquest);
     lua_register(LuaHandle,"GetRegionOwner", luautils::GetRegionOwner);
+    lua_register(LuaHandle,"getNationRank", luautils::getNationRank);
 	lua_register(LuaHandle,"setMobPos",luautils::setMobPos);
 	lua_register(LuaHandle,"SpawnMob",luautils::SpawnMob);
 	lua_register(LuaHandle,"DespawnMob",luautils::DespawnMob);
@@ -325,6 +326,38 @@ int32 GetRegionOwner(lua_State* L)
 
     lua_pushinteger(L, conquest::GetRegionOwner((REGIONTYPE)lua_tointeger(L,1)));
     return 1;
+}
+
+/************************************************************************
+*																		*
+* Get Rank of Nations in Conquest		*
+*																		*
+************************************************************************/
+
+int32 getNationRank(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+    
+    uint8 balance = conquest::GetBalance();
+    switch(lua_tointeger(L,1))
+    {
+        case SANDORIA:
+            balance &= 0x3U;
+            lua_pushinteger(L, balance);
+            return 1;
+        case BASTOK:
+            balance &= 0xCU;
+            balance >>= 2;
+            lua_pushinteger(L, balance);
+            return 1;
+        case WINDURST:
+            balance >>= 4;
+            lua_pushinteger(L, balance);
+            return 1;
+        default:
+            lua_pushinteger(L, 0);
+            return 0;
+    }
 }
 
 /************************************************************************
@@ -3794,11 +3827,11 @@ int32 UpdateNMSpawnPoint(lua_State* L)
 		CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
 
 		if (PMob != NULL) {
-		  int32 r = rand()%50;
+		  int32 r = WELL512::irand()%50;
 		  int32 ret = Sql_Query(SqlHandle, "SELECT pos_x, pos_y, pos_z FROM `nm_spawn_points` WHERE mobid=%u AND pos=%i", mobid, r);
 
 		  if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
-			PMob->m_SpawnPoint.rotation = rand() % 256;
+			PMob->m_SpawnPoint.rotation = WELL512::irand() % 256;
 			PMob->m_SpawnPoint.x = Sql_GetFloatData(SqlHandle,0);
 			PMob->m_SpawnPoint.y = Sql_GetFloatData(SqlHandle,1);
 			PMob->m_SpawnPoint.z = Sql_GetFloatData(SqlHandle,2);

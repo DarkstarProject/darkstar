@@ -80,6 +80,11 @@ public:
 	int32	 getCustomOffset();
 
 	void	 setCustomOffset(int32 offset);
+	
+	uint32   lastConquestUpdate;
+	uint32   lastWeatherUpdate;
+	uint32   lastVHourlyUpdate;
+	uint32   lastVDailyUpdate;
 
 private:
 

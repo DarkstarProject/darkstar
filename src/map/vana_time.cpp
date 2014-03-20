@@ -29,7 +29,7 @@
 #include "vana_time.h"
 #include "utils/zoneutils.h"
 
-#define VTIME_BASEDATE		1024844400		// Real starting date for Vana time
+#define VTIME_BASEDATE		1009810800		// Real starting date for Vana time - used to be 1024844400?
 #define VTIME_YEAR			518400			// 360 * GameDay
 #define VTIME_MONTH			43200			// 30 * GameDay
 #define VTIME_WEEK			11520			// 8 * GameDay
@@ -42,6 +42,10 @@ CVanaTime* CVanaTime::_instance = NULL;
 CVanaTime::CVanaTime()
 {
 	setCustomOffset(0);
+    lastConquestUpdate = 0;
+	lastWeatherUpdate = 0;
+	lastVHourlyUpdate = 0;
+	lastVDailyUpdate = 0;
 }
 
 CVanaTime* CVanaTime::getInstance()
@@ -136,7 +140,7 @@ uint32 CVanaTime::getSysYearDay()
 
 uint32 CVanaTime::getVanaTime()
 {
-    return getSysTime() - 1009810800;
+    return getSysTime() - VTIME_BASEDATE;
 }
 
 int32 CVanaTime::getCustomOffset()
