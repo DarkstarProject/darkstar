@@ -22,32 +22,41 @@ end;
 -----------------------------------
 
 function onMobEngaged(mob,target)
-	
 	local X = mob:getXPos();
 	local Y = mob:getYPos();
 	local Z = mob:getZPos();
 	local spawnList = beaucedineHydraList;
-	
 	if(mob:getStatPoppedMobs() == false) then
 		mob:setStatPoppedMobs(true);
-		for nb = 1, table.getn(spawnList), 2 do
-			if(mob:getID() == spawnList[nb]) then
-				local firstHydra = spawnList[nb] - 1;
-				local lastHydra = spawnList[nb] - spawnList[nb + 1][1];
-				
-				for nbi = firstHydra, lastHydra, -1 do
-					if((nbi % 2) == 0) then X=X+2; Z=Z+2; else X=X-2; Z=Z-2; end
-					
-					if(GetMobAction(nbi) == 0) then
-						-- Spawn Mob
-						SpawnMob(nbi):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
-						GetMobByID(nbi):setPos(X,Y,Z);
-						GetMobByID(nbi):setSpawn(X,Y,Z);
+        for nb = 1, table.getn(spawnList), 2 do
+				if(mob:getID() == spawnList[nb]) then
+					for nbi = 1, table.getn(spawnList[nb + 1]), 1 do
+						if((nbi % 2) == 0) then X=X+2; Z=Z+2; else X=X-2; Z=Z-2; end
+						local mobNBR = spawnList[nb + 1][nbi];
+						
+						if(mobNBR <= 20) then
+							local DynaMob = getDynaMob(target,mobNBR,5);
+							if(DynaMob ~= nil) then
+								-- Spawn Mob
+								SpawnMob(DynaMob):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+								GetMobByID(DynaMob):setPos(X,Y,Z);
+								GetMobByID(DynaMob):setSpawn(X,Y,Z);
+								-- Spawn Pet for BST, DRG, and SMN
+								if(mobNBR == 9 or mobNBR == 14 or mobNBR == 15) then
+									SpawnMob(DynaMob+1):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+									GetMobByID(DynaMob+1):setPos(X,Y,Z);
+									GetMobByID(DynaMob+1):setSpawn(X,Y,Z);
+								end
+							end
+						elseif(mobNBR > 20) then --spawn blm's as eye's are in the hydra's id range
+                            GetMobByID(mobNBR):setSpawn(X,Y,Z);
+							SpawnMob(mobNBR):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+							GetMobByID(mobNBR):setPos(X,Y,Z);
+						end
 					end
 				end
 			end
-		end
-	end
+    end      
 end;
 
 -----------------------------------
@@ -55,7 +64,6 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	
 	local mobID = mob:getID();
 	
 	-- Time Bonus: 120 147
@@ -65,8 +73,8 @@ function onMobDeath(mob,killer)
 	elseif(mobID == 17326706 and alreadyReceived(killer,10) == false) then
 		killer:addTimeToDynamis(15);
 		addDynamisList(killer,512);
-	-- 117 spawn 120 when defeated
-	elseif(mobID == 17326536) then
+	-- 117 spawn 148 when defeated
+	elseif(mobID == 17326721) then
 		SpawnMob(17326553);
 	-- 138 139 140: Spawn 147 when defeated
 	elseif(mobID == 17326661 and GetMobAction(17326668) == 0 and GetMobAction(17326673) == 0 or 
