@@ -22,12 +22,14 @@ end;
 
 function onTrigger(player,npc)
 
-	if(player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus")==1)then
-		player:startEvent(0x00A4);
-	else
-		player:startEvent(0x0064);
-	end
-	return 1;
+    if(player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus")==1)then
+        player:startEvent(0x00A4);
+    elseif(player:getCurrentMission(COP) > GARDEN_OF_ANTIQUITY or (player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus")==8)) then
+        player:startEvent(0x0064); -- Teleport inside
+    else
+        player:messageSpecial(NOTHING_OUT_OF_ORDINARY); -- Access should be restricted if below requirements. Message is probably wrong, though. 
+    end
+
 end;
 
 -----------------------------------
@@ -46,11 +48,11 @@ end;
 function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
-	
-	if(csid == 0x0064 and option == 1) then
-		player:setPos(-20,0.624,-355,191,34); -- {R}
-	elseif(csid == 0x00A4)then	
-	    player:setVar("PromathiaStatus",2);
-	end
-	
+    
+    if(csid == 0x0064 and option == 1) then
+        player:setPos(-20,0.624,-355,191,34); -- {R}
+    elseif(csid == 0x00A4)then	
+        player:setVar("PromathiaStatus",2);
+    end
+    
 end;

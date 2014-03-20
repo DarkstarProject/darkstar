@@ -50,6 +50,15 @@ function onEventFinish(player,csid,option)
 		player:setPos(-419.995,0,248.483,191,35); -- To The Garden of RuHmet {R}
 	elseif(csid == 0x0001)then	
 		player:setVar("PromathiaStatus",0);
+        player:setVar("Ru_aern_1-1KILL",0);
+		player:setVar("Ru_aern_1-2KILL",0);
+		player:setVar("Ru_aern_1-3KILL",0);
+		player:setVar("Ru_aern_2-1KILL",0);
+		player:setVar("Ru_aern_2-2KILL",0);
+		player:setVar("Ru_aern_2-3KILL",0); 
+		player:setVar("Ru_aern_3-1KILL",0);
+		player:setVar("Ru_aern_3-2KILL",0);
+		player:setVar("Ru_aern_3-3KILL",0);
 		player:completeMission(COP,GARDEN_OF_ANTIQUITY);
 		player:addMission(COP,A_FATE_DECIDED);
 		player:addItem(14672);

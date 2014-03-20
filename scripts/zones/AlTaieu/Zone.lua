@@ -24,16 +24,16 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	local cs = -1;	
-	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
-		player:setPos(-25,-1 ,-620 ,33);
-	end	
-	if(player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus")==0)then
-	   cs=0x0001;
-	elseif(player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus")==0)then  
+    local cs = -1;	
+    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
+        player:setPos(-25,-1 ,-620 ,33);
+    end	
+    if(player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus")==0)then
+       cs=0x0001;
+    elseif(player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus")==0)then  
       cs=0x00A7;
-	end
-	return cs;	
+    end
+    return cs;	
 end;		
 
 -----------------------------------		
@@ -48,8 +48,8 @@ end;
 -----------------------------------	
 
 function onEventUpdate(player,csid,option)	
-	--printf("CSID: %u",csid);
-	--printf("RESULT: %u",option);
+    --printf("CSID: %u",csid);
+    --printf("RESULT: %u",option);
 end;	
 
 -----------------------------------	
@@ -57,14 +57,14 @@ end;
 -----------------------------------	
 
 function onEventFinish(player,csid,option)	
-	--printf("CSID: %u",csid);
-	--printf("RESULT: %u",option);
-	if(csid == 0x0001)then
-	player:setVar("PromathiaStatus",1);
-		    player:addKeyItem(LIGHT_OF_ALTAIEU);
-	        player:messageSpecial(KEYITEM_OBTAINED,LIGHT_OF_ALTAIEU);
-            player:addTitle(SEEKER_OF_THE_LIGHT);	
-     elseif(csid == 0x00A7)then		
-           player:setVar("PromathiaStatus",1);
-	end
+    --printf("CSID: %u",csid);
+    --printf("RESULT: %u",option);
+    if(csid == 0x0001)then
+        player:setVar("PromathiaStatus",1);
+        player:addKeyItem(LIGHT_OF_ALTAIEU);
+        player:messageSpecial(KEYITEM_OBTAINED,LIGHT_OF_ALTAIEU);
+        player:addTitle(SEEKER_OF_THE_LIGHT);	
+    elseif(csid == 0x00A7)then		
+        player:setVar("PromathiaStatus",1);
+    end
 end;	
