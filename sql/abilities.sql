@@ -205,7 +205,7 @@ INSERT INTO `abilities` VALUES ('166', 'sambas', '19', '5', '1', '0', '216', '0'
 INSERT INTO `abilities` VALUES ('167', 'waltzes', '19', '15', '1', '0', '216', '0', '0', '0', '20.0', '0', '0', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('168', 'drain_samba', '19', '5', '1', '60', '216', '0', '0', '0', '20.0', '0', '1', '300', '0', '0');
 INSERT INTO `abilities` VALUES ('169', 'drain_samba_ii', '19', '35', '1', '60', '216', '0', '0', '1', '20.0', '0', '1', '300', '0', '0');
-INSERT INTO `abilities` VALUES ('170', 'drain_samba_iii', '19', '64', '1', '60', '216', '0', '0', '2', '20.0', '0', '1', '300', '0', '0');
+INSERT INTO `abilities` VALUES ('170', 'drain_samba_iii', '19', '65', '1', '60', '216', '0', '0', '2', '20.0', '0', '1', '300', '0', '0');
 INSERT INTO `abilities` VALUES ('171', 'aspir_samba', '19', '25', '1', '60', '216', '0', '0', '3', '20.0', '0', '1', '300', '0', '0');
 INSERT INTO `abilities` VALUES ('172', 'aspir_samba_ii', '19', '60', '1', '60', '216', '0', '0', '4', '20.0', '0', '1', '300', '0', '0');
 INSERT INTO `abilities` VALUES ('173', 'haste_samba', '19', '45', '1', '60', '216', '0', '0', '5', '20.0', '0', '1', '300', '0', '0');
