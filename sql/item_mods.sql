@@ -16400,14 +16400,14 @@ INSERT INTO `item_mods` VALUES(11585, 5, 20); -- MP+20
 INSERT INTO `item_mods` VALUES(11585, 27, -3); -- Enmity-3
 
 -- -------------------------------------------------------
--- Aesir Torque *Has Latent Effect           
+-- Aesir Torque       
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES(11589, 61, 20); -- [Element: Dark]+20
 INSERT INTO `item_mods` VALUES(11589, 115, 7); -- Elemental magic skill +7
 INSERT INTO `item_mods` VALUES(11589, 116, 7); -- Dark magic skill +7
 
 -- -------------------------------------------------------
--- Aesir Mantle *Has Latent Effect          
+-- Aesir Mantle        
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES(11546, 1, 6); -- def 6
 INSERT INTO `item_mods` VALUES(11546, 23, 8); -- attack 8
@@ -18429,3 +18429,78 @@ INSERT INTO `item_mods` VALUES(28655, 1, 1); -- DEF:1
 -- Slime Earring  
 -- -------------------------------------------------------
 INSERT INTO `item_mods` VALUES(28511, 2, 1); -- HP+1
+
+-- -------------------------------------------------------
+-- Iaso Bliaut
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10493, 1, 54); -- DEF:54
+INSERT INTO `item_mods` VALUES(10493, 111, 18); -- Divine magic skill +18
+INSERT INTO `item_mods` VALUES(10493, 112, 18); -- Healing magic skill +18
+INSERT INTO `item_mods` VALUES(10493, 114, 18); -- Enfeebling magic skill +18
+INSERT INTO `item_mods` VALUES(10493, 384, 40); -- Haste+4%
+/*
+	[NOT CODED] INSERT INTO `item_mods` VALUES(10493, 1, -5); -- Healing magic casting time -5%
+*/
+
+-- -------------------------------------------------------
+-- Nomkahpa Mittens 
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(10505, 1, 28); -- DEF:28
+INSERT INTO `item_mods` VALUES(10505, 8, 5); -- STR+5
+INSERT INTO `item_mods` VALUES(10505, 288, 3); -- "Double Attack"+3%
+INSERT INTO `item_mods` VALUES(10505, 384, 30); -- Haste+3%
+
+-- -------------------------------------------------------
+-- Jinx Ampulla
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(19245, 2, -15); -- HP-15
+/*
+	[NOT CODED] INSERT INTO `item_mods` VALUES(19245, 1, 1); -- Magic critical hit rate +1%
+*/	
+
+-- -------------------------------------------------------
+-- Uruz Blade +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(20784, 23, 9); -- Attack+9
+INSERT INTO `item_mods` VALUES(20784, 29, 5); -- "Magic Def. Bonus"+5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
