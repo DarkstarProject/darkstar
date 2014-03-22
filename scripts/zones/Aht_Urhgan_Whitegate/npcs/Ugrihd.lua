@@ -23,7 +23,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0096,getMercenaryRank(player),900,player:getImperialStanding(),0,39183,10577,4095,0,0); -- Unsure of what other params mean
+    local badges = { 0, 780, 783, 784, 794, 795, 825, 826, 827, 894, 900, 909 };
+    local rank = 1;
+	
+	while player:hasKeyItem(badges[rank + 1]) == true do
+		rank = rank + 1;
+	end;
+	
+    player:startEvent(0x0096,rank-1,badges[rank],player:getImperialStanding(),0,39183,10577,4095,0,0); -- Unsure of what other params mean
 end; 
 
 -----------------------------------
