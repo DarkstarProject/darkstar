@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Dissipation.lua
--- Dispels a single buff add terror effect
+-- Dispels all buffs add terror effect
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -24,14 +24,13 @@ function OnMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_TERROR;
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 10);
 	
-    local dispel =  target:dispelStatusEffect();
+    local count = target:dispelAllStatusEffect();
 
-    if(dispel == EFFECT_NONE) then
-        -- no effect
-        skill:setMsg(MSG_NO_EFFECT); -- no effect
+    if(count == 0) then
+        skill:setMsg(MSG_NO_EFFECT);
     else
-        skill:setMsg(MSG_DISAPPEAR);
+        skill:setMsg(MSG_DISAPPEAR_NUM);
     end
 
-    return dispel;
+    return count;
 end
