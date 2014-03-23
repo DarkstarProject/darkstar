@@ -1918,17 +1918,17 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 
 		if(isBlocked)
 		{
-			uint8 absorb = 100.0f;
+			uint8 absorb = 100;
 			if(PDefender->objtype == TYPE_PC)
 			{
 				if(PDefender->m_Weapons[SLOT_SUB]->IsShield())
 				{
-					absorb = 100.0f - PDefender->m_Weapons[SLOT_SUB]->getShieldAbsorption();
+					absorb = 100 - PDefender->m_Weapons[SLOT_SUB]->getShieldAbsorption();
 				}
 			}
 			else
 			{
-				absorb = 50.0f;
+				absorb = 50;
 			}
 
 			damage = (damage * absorb) / 100;
@@ -1966,54 +1966,37 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 		}
     }
 
-    float TP = 0;
-
-    // Ensure we deal damage to remove something..
     if (damage > 0)
+    {
         PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 
-    if(PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_BIND) && WELL512::irand()%10 < 4)
-    {
-        // chance to remove it
-        PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_BIND);
-    }
+        //40% chance to break bind when dmg received
+        if(PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_BIND) && WELL512::irand()%100 < 40)
+            PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_BIND);
 
-    switch (PDefender->objtype)
-    {
-        case TYPE_PC:
+        switch (PDefender->objtype)
         {
-            charutils::UpdateHealth((CCharEntity*)PDefender);
-        }
-        break;
-        case TYPE_MOB:
-        {
-            if (PDefender->PMaster == NULL)
-            {
-                PDefender->addTP(TP);
-            }
-            if(taChar == NULL){
-                ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PAttacker, damage);
-            }else{
-                ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(taChar, damage);
-            }
+            case TYPE_PC:
+                charutils::UpdateHealth((CCharEntity*)PDefender);
+                break;
 
-            //if the mob is charmed by player
-            if(PDefender->PMaster != NULL && PDefender->PMaster->objtype == TYPE_PC)
-            {
+            case TYPE_MOB:
+                if(taChar == NULL)
+                    ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PAttacker, damage);
+                else
+                    ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(taChar, damage);
+
+                //if the mob is charmed by player
+                if(PDefender->PMaster != NULL && PDefender->PMaster->objtype == TYPE_PC)
+                    ((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE));
+
+                break;
+                
+            case TYPE_PET:
                 ((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE));
-            }
-
+                break;
         }
-        break;
-        case TYPE_PET:
-        {
-            ((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE));
-        }
-        break;
-    }
 
-    if (damage > 0)
-    {
         battleutils::MakeEntityStandUp(PDefender);
 
     	// try to interrupt spell
@@ -2034,9 +2017,7 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 			CCharEntity* PChar = (CCharEntity*)PAttacker;
 			CItemWeapon* PAmmo = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);
 
-			int delay = 0;
-
-			delay = PAttacker->GetRangedWeaponDelay(true);
+			int16 delay = PAttacker->GetRangedWeaponDelay(true);
 
 			baseTp = CalculateBaseTP((delay * 110) / 1000);
 
@@ -2064,22 +2045,23 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 
 
 		// add to to attacker
-		PAttacker->addTP( tpMultiplier * (baseTp * (1.0f + 0.01f * (float)(PAttacker->getMod(MOD_STORETP) + getStoreTPbonusFromMerit(PAttacker)))));
+		PAttacker->addTP( tpMultiplier * (baseTp * (1.0f + 0.01f * (float)(PAttacker->getMod(MOD_STORETP) + getStoreTPbonusFromMerit(PAttacker))))); //merit bonus is not being multiplied by 0.01f - not sure if intentional?
 
 		if (giveTPtoVictim == true)
 		{
 			//account for attacker's subtle blow which reduces the baseTP gain for the defender
-			baseTp = baseTp * ((100.0f - dsp_cap((float)PAttacker->getMod(MOD_SUBTLE_BLOW), 0.0f, 50.0f)) / 100.0f);
+			float sBlowMult = ((100.0f - dsp_cap((float)PAttacker->getMod(MOD_SUBTLE_BLOW), 0.0f, 50.0f)) / 100.0f);
 
 			//mobs hit get basetp+3 whereas pcs hit get basetp/3
 			if(PDefender->objtype == TYPE_PC)
 			{
 				//yup store tp counts on hits taken too!
-				PDefender->addTP((baseTp / 3) * (1.0f + 0.01f * (float)(PDefender->getMod(MOD_STORETP) + getStoreTPbonusFromMerit(PAttacker))));
+				PDefender->addTP((baseTp / 3) * sBlowMult * (1.0f + 0.01f * (float)(PDefender->getMod(MOD_STORETP) + getStoreTPbonusFromMerit(PAttacker)))); //here again...
 			}
 			else
 			{
-				PDefender->addTP((baseTp + 3) * (1.0f + 0.01f * (float)PDefender->getMod(MOD_STORETP)));
+				//subtle blow also reduces the "+3" on mob tp gain
+				PDefender->addTP((baseTp + 3) * sBlowMult * (1.0f + 0.01f * (float)PDefender->getMod(MOD_STORETP)));
 			}
 		}
 
