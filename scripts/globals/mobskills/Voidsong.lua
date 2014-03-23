@@ -24,6 +24,7 @@ end;
 function OnMobWeaponSkill(target, mob, skill)
 
     local count = target:dispelAllStatusEffect();
+    count = count + target:eraseAllStatusEffect();
 
     if(count == 0) then
         skill:setMsg(MSG_NO_EFFECT);
