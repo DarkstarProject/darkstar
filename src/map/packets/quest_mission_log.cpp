@@ -29,10 +29,10 @@
 #include "../entities/charentity.h"
 
 
-CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID, uint8 status) 
+CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID, uint8 status)
 {
 	this->type = 0x56;
-	this->size = 0x14; 
+	this->size = 0x14;
 
 	// настоятельно советую в switch(logID) ничего не менять,
 	// если вы НЕ УВЕРЕНЫ в том, что делаете
@@ -146,9 +146,9 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID,
 		case MISSION_SANDORIA:
 			if(status == 0x01) {
 				generateCurrentMissionPacket(PChar);
-				logType = MISS_CURRENT;	
+				logType = MISS_CURRENT;
 				break;
-			}		
+			}
 			if(status == 0x02) {
 				generateCompleteMissionPacket(PChar);
 				logType = MISS_COMPLETE;
@@ -157,9 +157,9 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID,
 		case MISSION_BASTOK:
 			if(status == 0x01) {
 				generateCurrentMissionPacket(PChar);
-				logType = MISS_CURRENT;	
+				logType = MISS_CURRENT;
 				break;
-			}		
+			}
 			if(status == 0x02) {
 				generateCompleteMissionPacket(PChar);
 				logType = MISS_COMPLETE;
@@ -168,9 +168,9 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID,
 		case MISSION_WINDURST:
 			if(status == 0x01) {
 				generateCurrentMissionPacket(PChar);
-				logType = MISS_CURRENT;	
+				logType = MISS_CURRENT;
 				break;
-			}		
+			}
 			if(status == 0x02) {
 				generateCompleteMissionPacket(PChar);
 				logType = MISS_COMPLETE;
@@ -182,7 +182,7 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID,
 				generateCurrentMissionPacket(PChar);
 				logType = MISS_CURRENT;
 				break;
-			}		
+			}
 			if(status == 0x02) {
 				generateCompleteMissionPacket(PChar);
 				logType = MISS_COMPLETE;
@@ -191,9 +191,9 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID,
 		case MISSION_COP:
 			if(status == 0x01) {
 				generateCurrentMissionPacket(PChar);
-				logType = MISS_CURRENT;	
+				logType = MISS_CURRENT;
 				break;
-			}		
+			}
 			if(status == 0x02) {
 				generateCompleteCopMissionPacket(PChar);
 				logType = MISS_COMPLETE;
@@ -201,11 +201,24 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID,
 			}
 		case MISSION_ADOULIN:
 		case MISSION_CRISTALLINE_PROPHECY:
-		case MISSION_MOOGLE_KUPO_DETAT:	
-		case MISSION_SHANTOTTO_ASCENSION:		
-			if(status == 0x01) {
+			if(status == 0x01)
+			{
 				generateCurrentMissionPacket(PChar);
-				logType = MISS_CURRENT;	
+				logType = MISS_CURRENT;
+				break;
+			}
+		case MISSION_MOOGLE_KUPO_DETAT:
+			if(status == 0x01)
+			{
+				generateCurrentMissionPacket(PChar);
+				logType = MISS_CURRENT;
+				break;
+			}
+		case MISSION_SHANTOTTO_ASCENSION:
+			if(status == 0x01)
+			{
+				generateCurrentMissionPacket(PChar);
+				logType = MISS_CURRENT;
 				break;
 			}
 	}
@@ -213,7 +226,7 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID,
 	WBUFW(data,(0x24)-4) = logType;
 }
 
-void CQuestMissionLogPacket::generateQuestPacket(CCharEntity * PChar, uint8 logID, uint8 status) 
+void CQuestMissionLogPacket::generateQuestPacket(CCharEntity * PChar, uint8 logID, uint8 status)
 {
 	if(status == 0x01)
 		memcpy(data, PChar->m_questLog[logID].current, 32);
@@ -221,13 +234,14 @@ void CQuestMissionLogPacket::generateQuestPacket(CCharEntity * PChar, uint8 logI
 		memcpy(data, PChar->m_questLog[logID].complete, 32);
 }
 
-void CQuestMissionLogPacket::generateCurrentMissionPacket(CCharEntity * PChar) 
-{	
+void CQuestMissionLogPacket::generateCurrentMissionPacket(CCharEntity * PChar)
+{
 	uint16 add_on_scenarios = 0;
 
-	add_on_scenarios += PChar->m_acpCurrent;
-	add_on_scenarios +=	PChar->m_mkeCurrent << 0x04;
-	add_on_scenarios +=	PChar->m_asaCurrent << 0x08;
+	add_on_scenarios +=	PChar->m_missionLog[9].current;
+	add_on_scenarios +=	PChar->m_missionLog[10].current << 0x04;
+	add_on_scenarios +=	PChar->m_missionLog[11].current << 0x08;
+	// Not perfect, but they display and missions DO progress. Can fix properly later. There is a delay before when the menu updates. Zoning will force it.
 
 	uint32 chains = 0;
 	chains = PChar->m_missionLog[MISSION_COP-11].current+1;
@@ -235,56 +249,56 @@ void CQuestMissionLogPacket::generateCurrentMissionPacket(CCharEntity * PChar)
 
 	WBUFB(data,(0x04)-4) = PChar->profile.nation;								// Nation
 	WBUFW(data,(0x08)-4) = PChar->m_missionLog[PChar->profile.nation].current;	// National Missions
-	WBUFW(data,(0x0C)-4) = PChar->m_missionLog[MISSION_ZILART-11].current;		// Rise of the Zilart 
+	WBUFW(data,(0x0C)-4) = PChar->m_missionLog[MISSION_ZILART-11].current;		// Rise of the Zilart
 
 	WBUFL(data,(0x10)-4) = chains;												// Chains of Promathia Missions
   //WBUFB(data,(0x16)-4) = 0x30;                                                // назначение неизвестно
-	WBUFW(data,(0x18)-4) = add_on_scenarios;                                    // A Crystalline Prophecy ,A Moogle Kupo d'Etat,A Shantotto Ascension
+	WBUFW(data,(0x18)-4) = add_on_scenarios;                                    // A Crystalline Prophecy, A Moogle Kupo d'Etat, A Shantotto Ascension
 	WBUFW(data,(0x1C)-4) = PChar->m_missionLog[MISSION_ADOULIN-11].current;
 }
 
-void CQuestMissionLogPacket::generateCompleteMissionPacket(CCharEntity * PChar) 
+void CQuestMissionLogPacket::generateCompleteMissionPacket(CCharEntity * PChar)
 {
 	for(uint8 logID = 0x00; logID <= 0x03; logID++)
 		for(uint8 questMissionID = 0; questMissionID < 64; questMissionID++)
 			data[(questMissionID/8) + (logID*0x08)] ^= ((PChar->m_missionLog[logID].complete[questMissionID]) << (questMissionID % 8));
 }
 
-void CQuestMissionLogPacket::generateCurrentExpMissionPacket(CCharEntity * PChar) 
-{				
+void CQuestMissionLogPacket::generateCurrentExpMissionPacket(CCharEntity * PChar)
+{
 	WBUFW(data,(0x14)-4) = PChar->m_assaultLog.current;							// Assault Missions
 	WBUFW(data,(0x18)-4) = PChar->m_missionLog[MISSION_TOAU-11].current;		// Treasures of Aht Urhgan
 	WBUFW(data,(0x1C)-4) = PChar->m_missionLog[MISSION_WOTG-11].current;		// Wings of the Goddess
 	WBUFW(data,(0x20)-4) = PChar->m_campaignLog.current;						// Campaign Operations
 }
 
-void CQuestMissionLogPacket::generateCompleteExpMissionPacket(CCharEntity * PChar) 
+void CQuestMissionLogPacket::generateCompleteExpMissionPacket(CCharEntity * PChar)
 {
 	for(uint8 logID = 0x04; logID <= 0x05; logID++)
 		for(uint8 questMissionID = 0; questMissionID < 64; questMissionID++)
 			data[(questMissionID/8) + ((logID-0x04)*0x08)] ^= ((PChar->m_missionLog[logID].complete[questMissionID]) << (questMissionID % 8));
 }
 
-void CQuestMissionLogPacket::generateCompleteCopMissionPacket(CCharEntity * PChar) 
+void CQuestMissionLogPacket::generateCompleteCopMissionPacket(CCharEntity * PChar)
 {
 	uint8 logID = 0x06;
 	for(uint8 questMissionID = 0; questMissionID < 64; questMissionID++)
 		data[(questMissionID/8) + (logID*0x08)] ^= ((PChar->m_missionLog[logID].complete[questMissionID]) << (questMissionID % 8));
 }
 
-void CQuestMissionLogPacket::generateCompaingUnMissionPacket(CCharEntity * PChar) 
+void CQuestMissionLogPacket::generateCompaingUnMissionPacket(CCharEntity * PChar)
 {
 	for(uint16 questMissionID = 0; questMissionID < 256; questMissionID++)
 		data[(questMissionID/8)] ^= ((PChar->m_campaignLog.complete[questMissionID]) << (questMissionID % 8));
 }
 
-void CQuestMissionLogPacket::generateCompaingDeuxMissionPacket(CCharEntity * PChar) 
+void CQuestMissionLogPacket::generateCompaingDeuxMissionPacket(CCharEntity * PChar)
 {
 	for(uint16 questMissionID = 0; questMissionID < 256; questMissionID++)
 		data[(questMissionID/8)] ^= ((PChar->m_campaignLog.complete[questMissionID+256]) << (questMissionID % 8));
 }
 
-void CQuestMissionLogPacket::generateAssaultMissionPacket(CCharEntity * PChar) 
+void CQuestMissionLogPacket::generateAssaultMissionPacket(CCharEntity * PChar)
 {
 	for(uint16 questMissionID = 0; questMissionID < 128; questMissionID++)
 		data[(questMissionID/8)+0x10] ^= ((PChar->m_assaultLog.complete[questMissionID]) << (questMissionID % 8));

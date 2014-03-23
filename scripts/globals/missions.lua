@@ -12,6 +12,9 @@ COP      = 6;
 ASSAULT  = 7;
 CAMPAIGN = 8;
 ACP      = 9;
+AMK      = 10;
+ASA      = 11;
+SOA      = 12;
 
 -----------------------------------
 --  San d'Oria (0)
@@ -367,11 +370,126 @@ NYZUL_ISLE_UNCHARTED_AREA_SURVEY  = 52;
 -----------------------------------
 
 -----------------------------------
---  ACP (9)
+--  A Crystalline Prophecy (9)
 -----------------------------------
-A_CRYSTALLINE_PROPHECY  =  0;
-THE_ECHO_AWAKENS        =  1;
-GATHERER_OF_LIGHT       =  3;
+
+A_CRYSTALLINE_PROPHECY        = 0; -- ± --
+THE_ECHO_AWAKENS              = 1; -- ± --
+GATHERER_OF_LIGHT_I           = 2; -- ± --
+GATHERER_OF_LIGHT_II          = 3;
+THOSE_WHO_LURK_IN_SHADOWS_I   = 4; -- ± --
+THOSE_WHO_LURK_IN_SHADOWS_II  = 5; -- ± --
+THOSE_WHO_LURK_IN_SHADOWS_III = 6; -- ± --
+REMEMBER_ME_IN_YOUR_DREAMS    = 7; -- ± --
+BORN_OF_HER_NIGHTMARES        = 8; -- ± --
+BANISHING_THE_ECHO            = 9;
+ODE_OF_LIFE_BESTOWING         = 10;
+A_CRYSTALLINE_PROPHECY_FIN    = 11;
+
+-----------------------------------
+--  A Moogle Kupo d'Etat (10)
+-----------------------------------
+
+A_MOOGLE_KUPO_DETAT                 = 0;
+DRENCHED_IT_BEGAN_WITH_A_RAINDROP   = 1;
+HASTEN_IN_A_JAM_IN_JEUNO            = 2;
+WELCOME_TO_MY_DECREPIT_DOMICILE     = 3;
+CURSES_A_HORRIFICALLY_HARROWING_HEX = 4;
+AN_ERRAND_THE_PROFESSORS_PRICE      = 5;
+SHOCK_ARRANT_ABUSE_OF_AUTHORITY     = 6;
+LENDER_BEWARE_READ_THE_FINE_PRINT   = 7;
+RESCUE_A_MOOGLES_LABOR_OF_LOVE      = 8;
+ROAR_A_CAT_BURGLAR_BARES_HER_FANGS  = 9;
+RELIEF_A_TRIUMPHANT_RETURN          = 10;
+JOY_SUMMONED_TO_A_FABULOUS_FETE     = 11;
+A_CHALLENGE_YOU_COULD_BE_A_WINNER   = 12;
+SMASH_A_MALEVOLENT_MENACE           = 13;
+A_MOOGLE_KUPO_DETAT_FIN             = 14;
+
+-----------------------------------
+--  A Shantotto Ascension (11)
+-----------------------------------
+
+A_SHANTOTTO_ASCENSION       = 0; -- ± --
+BURGEONING_DREAD            = 1; -- ± --
+THAT_WHICH_CURDLES_BLOOD    = 2; -- ± --
+SUGAR_COATED_DIRECTIVE      = 3; -- ± --
+ENEMY_OF_THE_EMPIRE_I       = 4;
+ENEMY_OF_THE_EMPIRE_II      = 5;
+SUGAR_COATED_SUBTERFUGE     = 6;
+SHANTOTTO_IN_CHAINS         = 7;
+FOUNTAIN_OF_TROUBLE         = 8;
+BATTARU_ROYALE              = 9;
+ROMANCING_THE_CLONE         = 10;
+SISTERS_IN_ARMS             = 11;
+PROJECT_SHANTOTTOFICATION   = 12;
+AN_UNEASY_PEACE             = 13;
+A_SHANTOTTO_ASCENSION_FIN   = 14;
+
+-----------------------------------
+--  Seekers of Adoulin (12)
+-----------------------------------
+
+-- THE_SACRED_CITY_OF_ADOULIN   =  -- Category
+RUMORS_FROM_THE_WEST            = 0;
+THE_GEOMAGNETRON                = 1;
+ONWARD_TO_ADOULIN               = 2;
+HEARTWIGNS_AND_THE_KINDHEARTED  = 3;
+PIONEER_REGISTRATION            = 4;
+LIFE_ON_THE_FRONTIER            = 5;
+MEETING_OF_THE_MINDS            = 6;
+ARCIELA_APPEARS_AGAIN           = 7;
+-- THE_ANCIENT_PACT             =  -- Category
+BUILDING_PROSPECTS              = 8;
+THE_LIGHT_SHINING_IN_YOUR_EYES  = 9;
+THE_HEIRLOOM                    = 10;
+AN_AIMLESS_JOURNEY              = 11;
+ORTHARSYNE                      = 12;
+IN_THE_PRESENCE_OF_ROYALTY      = 13;
+THE_TWIN_WORLD_TREES            = 14;
+HONOR_AND_AUDACITY              = 15;
+THE_WATERGARDEN_COLISEUM        = 16;
+FRICTION_AND_FISSURES           = 17;
+THE_CELENNIA_MEMORIAL_LIBRARY   = 18;
+FOR_WHOM_DO_WE_TOIL             = 19;
+AIMING_FOR_YGNAS                = 20;
+CALAMITY_IN_THE_KITCHEN         = 21;
+ARCIELA_S_PROMISE               = 22;
+PREDATOR_AND_PREY               = 23;
+BEHIND_THE_SLUICES              = 24;
+THE_LEAFKIN_MONARCH             = 25;
+YGGDRASIL                       = 26;
+-- SHADOWS_UPON_ADOULIN         =  -- Category
+RETURN_OF_THE_EXORCIST          = 27;
+THE_MERCILESS_ONE               = 28;
+A_CURSE_FROM_THE_PAST           = 29;
+THE_PURGATION                   = 30;
+THE_KEY                         = 31;
+THE_PRINCESSS_DILEMMA           = 32;
+DARK_CLOUDS_AHEAD               = 33;
+THE_SMALLEST_OF_FAVORS          = 34;
+SUMMONED_BY_SPIRITS             = 35;
+EVIL_ENTITIES                   = 36;
+ADOULIN_CALLING                 = 37;
+THE_DISAPPEARANCE_OF_NYLINE     = 38;
+SHARED_CONSCIOUSNESS            = 39;
+CLEAR_SKIES                     = 40;
+THE_MAN_IN_BLACK                = 41;
+TO_THE_VICTOR                   = 42;
+AN_EXTRAORDINARY_GENTLEMAN      = 43;
+THE_ORDERS_TREASURES            = 44;
+AUGUSTS_HEIRLOOM                = 45;
+BEAUTY_AND_THE_BEAST            = 46;
+WILDCAT_WITH_A_GOLD_PELT        = 47;
+IN_SEARCH_OF_ARCIELA            = 48;
+LOOKING_FOR_LEADS               = 49;
+DRIFTING_NORTHWEST              = 50;
+KUMHAU_THE_FLASHFROST_NAAKUAL   = 51;
+SOUL_SIPHON                     = 52;
+STONEWALLED                     = 53;
+SALVATION                       = 54;
+GLIMMER_OF_PORTENT              = 55;
+-- FIN                          = 56;
 
 function rankPointMath(rank)
 	return 0.372*rank^2 - 1.62*rank + 6.2;
