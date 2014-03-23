@@ -30,7 +30,7 @@ function onTrigger(player,npc)
 		rank = rank + 1;
 	end;
 	
-    player:startEvent(0x0096,rank-1,badges[rank],player:getImperialStanding(),0,39183,10577,4095,0); -- Unsure of what other params mean
+    player:startEvent(0x0096,rank-1,badges[rank],player:getImperialStanding(),0,39183,10577,4095,0,0); -- Unsure of what other params mean
 end; 
 
 -----------------------------------
