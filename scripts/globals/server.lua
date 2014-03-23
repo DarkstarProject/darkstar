@@ -163,7 +163,8 @@ function SetTimedSpawns()
     17203447, -- Fraelissa
     16990252, -- Harvestman
     16785593, -- Tempest Tigon
-	16875578 -- Padfoot
+	16875578, -- Padfoot
+    17101099 -- Aynu-Kasey
   }
   
   local NM2  =
