@@ -1966,6 +1966,11 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 		}
     }
 
+    if((PDefender->objtype == TYPE_MOB && PDefender->PMaster != NULL && PDefender->PMaster->objtype == TYPE_PC) || PDefender->objtype == TYPE_PET)
+        ((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE));
+    else if(PDefender->objtype == TYPE_PC)
+        charutils::UpdateHealth((CCharEntity*)PDefender);
+
     if (damage > 0)
     {
         PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
@@ -1974,27 +1979,12 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
         if(PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_BIND) && WELL512::irand()%100 < 40)
             PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_BIND);
 
-        switch (PDefender->objtype)
+        if (PDefender->objtype == TYPE_MOB)
         {
-            case TYPE_PC:
-                charutils::UpdateHealth((CCharEntity*)PDefender);
-                break;
-
-            case TYPE_MOB:
                 if(taChar == NULL)
                     ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PAttacker, damage);
                 else
                     ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(taChar, damage);
-
-                //if the mob is charmed by player
-                if(PDefender->PMaster != NULL && PDefender->PMaster->objtype == TYPE_PC)
-                    ((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE));
-
-                break;
-                
-            case TYPE_PET:
-                ((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE));
-                break;
         }
 
         battleutils::MakeEntityStandUp(PDefender);
