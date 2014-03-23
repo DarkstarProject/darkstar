@@ -1,10 +1,4 @@
--- -------------------------------------------------------------------
---																	--
---			== Port Jeuno Text IDs ==								--
---																	--
---  	Variable TextID   Description text							--
---																	--
--- -------------------------------------------------------------------
+-- Variable TextID   Description text
 
 -- General Texts
 ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item>. Come back after sorting your inventory.
