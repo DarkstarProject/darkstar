@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Shuffle
--- Dispels a single buff at random which could be food. It does not reset hate.
+-- Dispels a single buff at random (which could be food)<-Pending verification. It does not reset hate.
 ---------------------------------------------------
 
 require("/scripts/globals/settings");
@@ -13,18 +13,12 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
+    local effect = target:dispelStatusEffect();
 
-        local dis = target:dispelStatusEffect();
-        local num = 0;
-
-        if(dis ~= EFFECT_NONE) then
-            num = num + 1;
-        end
-
+    if(effect == EFFECT_NONE) then
+        skill:setMsg(MSG_NO_EFFECT); -- no effect
+    else
         skill:setMsg(MSG_DISAPPEAR);
-        if(num == 0) then
-            skill:setMsg(MSG_NO_EFFECT);
-        end
-
-        return num;
+    end
+    return effect;
 end

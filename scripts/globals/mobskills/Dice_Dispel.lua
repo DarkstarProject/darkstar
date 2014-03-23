@@ -15,12 +15,12 @@ function OnMobSkillCheck(target,mob,skill)
 end;
 
 function OnMobWeaponSkill(target, mob, skill)
-    local typeEffect = target:dispelStatusEffect();
+    local effect = target:dispelStatusEffect();
 
-    if(target:hasStatusEffect(typeEffect) == EFFECT_NONE) then
+    if(effect == EFFECT_NONE) then
         skill:setMsg(MSG_NO_EFFECT); -- no effect
     else
         skill:setMsg(MSG_DISAPPEAR);
     end
-    return typeEffect;
+    return effect;
 end;
