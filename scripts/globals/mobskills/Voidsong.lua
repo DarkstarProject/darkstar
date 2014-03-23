@@ -23,6 +23,7 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
 
+    mob:eraseAllStatusEffect();
     local count = target:dispelAllStatusEffect();
     count = count + target:eraseAllStatusEffect();
 
