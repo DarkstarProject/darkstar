@@ -21,7 +21,7 @@ function onSpellCast(caster,target,spell)
 
     if(resist > 0.0625) then
         spell:setMsg(341);
-        local effect = target:dispelStatusEffect();
+        effect = target:dispelStatusEffect();
         if(effect == EFFECT_NONE) then
             -- no effect
             spell:setMsg(75);
