@@ -1976,10 +1976,6 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 
         switch (PDefender->objtype)
         {
-            case TYPE_PC:
-                charutils::UpdateHealth((CCharEntity*)PDefender);
-                break;
-
             case TYPE_MOB:
                 if(taChar == NULL)
                     ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PAttacker, damage);
@@ -1997,7 +1993,7 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
                 break;
         }
 
-        battleutils::MakeEntityStandUp(PDefender);
+        //battleutils::MakeEntityStandUp(PDefender); Removed: addHP() is already making victim stand if dmg > 0
 
     	// try to interrupt spell
     	if(PDefender->PBattleAI->m_PMagicState != NULL)
@@ -2069,6 +2065,9 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
         if (PAttacker->objtype == TYPE_PC)
             charutils::UpdateHealth((CCharEntity*)PAttacker);
     }
+
+    if (PDefender->objtype == TYPE_PC)
+        charutils::UpdateHealth((CCharEntity*)PDefender);
 
     if (PAttacker->objtype == TYPE_PC)
     {
