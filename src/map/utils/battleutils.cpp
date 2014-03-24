@@ -1966,9 +1966,7 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 		}
     }
 
-    if((PDefender->objtype == TYPE_MOB && PDefender->PMaster != NULL && PDefender->PMaster->objtype == TYPE_PC) || PDefender->objtype == TYPE_PET)
-        ((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE));
-    else if(PDefender->objtype == TYPE_PC)
+    if(PDefender->objtype == TYPE_PC)
         charutils::UpdateHealth((CCharEntity*)PDefender);
 
     if (damage > 0)
@@ -1986,6 +1984,9 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
                 else
                     ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(taChar, damage);
         }
+
+        if((PDefender->objtype == TYPE_MOB && PDefender->PMaster != NULL && PDefender->PMaster->objtype == TYPE_PC) || PDefender->objtype == TYPE_PET)
+            ((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE));
 
         battleutils::MakeEntityStandUp(PDefender);
 
