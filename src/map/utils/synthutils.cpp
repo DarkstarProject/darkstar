@@ -314,7 +314,6 @@ uint8 getGeneralCraft(CCharEntity* PChar)
 
 uint8 calcSynthResult(CCharEntity* PChar)
 {
-	uint8 count  = 0;
 	uint8 result = 1;
 	uint8 hqtier = 0;
 	uint8 mainID = getGeneralCraft(PChar);
@@ -334,7 +333,6 @@ uint8 calcSynthResult(CCharEntity* PChar)
 		{
 			double synthDiff = getSynthDifficulty(PChar, skillID);
 			hqtier = 0;
-			count++;
 
 			if(synthDiff <= 0)
 			{
