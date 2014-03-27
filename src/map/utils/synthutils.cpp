@@ -317,7 +317,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
 	uint8 result = 1;
 	uint8 hqtier = 0;
 	uint8 mainID = getGeneralCraft(PChar);
-	bool canHQsubsynth = true;
+	bool canHQ = true;
 
 	double success = 0;
 	double chance  = 0;
@@ -353,7 +353,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
 			else
 			{
 				success = 0.95 - (synthDiff / 10) - (double)(PChar->CraftContainer->getType() == ELEMENT_LIGHTNING) * 0.2;
-				canHQsubsynth = false;
+				canHQ = false;
 				if(success < 0.05)
 					success = 0.05;
 
@@ -361,6 +361,12 @@ uint8 calcSynthResult(CCharEntity* PChar)
 				ShowDebug(CL_CYAN"SkillID %u: difficulty > 0\n" CL_RESET, skillID);
 				#endif
 			}
+
+            if(!canSynthesizeHQ(PChar,skillID))
+            {
+                success += 0.01; //the crafting rings that block HQ synthesis all also increase their respective craft's success rate by 1%
+                canHQ = false; //assuming here that if a crafting ring is used matching a recipe's subsynth, overall HQ will still be blocked
+            }
 
 			double random = WELL512::drand();
 			#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
@@ -424,7 +430,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
 		}
 	}
 
-	if(result > SYNTHESIS_SUCCESS && (!canSynthesizeHQ(PChar,mainID) || !canHQsubsynth))
+	if(result > SYNTHESIS_SUCCESS && !canHQ)
 		result = SYNTHESIS_SUCCESS;
 
 	// результат синтеза записываем в поле quantity ячейки кристалла.
