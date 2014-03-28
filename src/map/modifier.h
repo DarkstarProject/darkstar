@@ -429,8 +429,8 @@ enum MODIFIER
 	MOD_DARK_ARTS_SKILL           =0x151,// (modId = 337)
 	MOD_REGEN_EFFECT              =0x152,// (modId = 338)
 	MOD_REGEN_DURATION            =0x153,// (modId = 339)
-	MOD_HELIX_EFFECT              =0x154,// (modId = 340)
-	MOD_HELIX_DURATION            =0x155,// (modId = 341)
+	MOD_HELIX_EFFECT              =0x1DE,// (modId = 478)
+	MOD_HELIX_DURATION            =0x1DD,// (modId = 477)
 	MOD_STORMSURGE_EFFECT         =0x190,// (modId = 400)
 	MOD_SUBLIMATION_BONUS         =0x191,// (modId = 401)
 
