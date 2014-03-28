@@ -764,6 +764,9 @@ INSERT INTO `mob_skill` VALUES (283,85,283,'Typhoon', 1, 10.0, 2000, 1500, 4, 0,
 INSERT INTO `mob_skill` VALUES (285,85,285,'Gravity_Field', 2, 10.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (287,85,287,'Meltdown', 1, 15.0, 2000, 5000, 4, 0, 0, 0);
 
+-- Calcabrina
+INSERT INTO `mob_skill` VALUES (281,395,281,'Berserk', 0, 7.0, 2000, 1500, 1, 0, 0, 0);
+
 -- Ahriman
 INSERT INTO `mob_skill` VALUES (292,4,292,'Blindeye', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (293,4,293,'Eyes_On_Me', 0, 13.0, 2000, 1500, 4, 0, 0, 0);
