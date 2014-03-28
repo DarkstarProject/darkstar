@@ -17,7 +17,7 @@ require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
+
 	--[[
 	if(trade:getItemCount() == 1) then
 		if(trade:hasItemQty(2477,1)) then -- Trade Soul Plate
@@ -28,15 +28,15 @@ function onTrade(player,npc,trade)
 		else
 			znm = -1;
 			found = false;
-			
+
 			while (znm <= 30) and not(found) do
 				znm = znm + 1;
 				found = trade:hasItemQty(trophies[znm + 1],1);
 			end;
-			
+
 			if(found) then
 				znm = znm + 1;
-				
+
 				if(player:hasKeyItem(seals[znm]) == false) then
 					player:tradeComplete();
 					player:addKeyItem(seals[znm]);
@@ -48,7 +48,7 @@ function onTrade(player,npc,trade)
 		end
 	end
 	]]
-	
+
 end;
 
 -----------------------------------
@@ -56,13 +56,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+
 	--[[
 	if(player:getVar("ZeniStatus") == 0) then
 		player:startEvent(0x038c);
 	else
 		param = 2140136440; -- Defaut bitmask, Tier 1 ZNM Menu + don't ask option
-		
+
 		-- Tinnin Path
 		if(player:hasKeyItem(MAROON_SEAL)) then
 			param = param - 0x38; -- unlocks Tinnin path tier 2 ZNMs.
@@ -70,14 +70,14 @@ function onTrigger(player,npc)
 		if(player:hasKeyItem(APPLE_GREEN_SEAL)) then
 			param = param - 0x1C0; -- unlocks Tinnin path tier 3 ZNMs.
 		end;
-		if(player:hasKeyItem(CHARCOAL_GREY_SEAL) or player:hasKeyItem(DEEP_PURPLE_SEAL) or player:hasKeyItem(CHESTNUTCOLORED_SEAL)) then
+		if(player:hasKeyItem(CHARCOAL_GREY_SEAL) or player:hasKeyItem(DEEP_PURPLE_SEAL) or player:hasKeyItem(CHESTNUT_COLORED_SEAL)) then
 			param = param - 0x200; -- unlocks Tinnin.
 		end;
 		-- Sarameya Path
 		if(player:hasKeyItem(CERISE_SEAL)) then
 			param = param - 0xE000; -- unlocks Sarameya path tier 2 ZNMs.
 		end;
-		if(player:hasKeyItem(SALMONCOLORED_SEAL)) then
+		if(player:hasKeyItem(SALMON_COLORED_SEAL)) then
 			param = param - 0x70000; -- unlocks Sarameya path tier 3 ZNMs.
 		end;
 		if(player:hasKeyItem(PURPLISH_GREY_SEAL) or player:hasKeyItem(GOLD_COLORED_SEAL) or player:hasKeyItem(COPPER_COLORED_SEAL)) then
@@ -93,15 +93,15 @@ function onTrigger(player,npc)
 		if(player:hasKeyItem(TAUPE_COLORED_SEAL) or player:hasKeyItem(FALLOW_COLORED_SEAL) or player:hasKeyItem(SIENNA_COLORED_SEAL)) then
 			param = param - 0x20000000; -- unlocks Tyger.
 		end;
-		
-		if(player:hasKeyItem(LILACCOLORED_SEAL) and player:hasKeyItem(BRIGHT_BLUE_SEAL) and player:hasKeyItem(LAVENDER_COLORED_SEAL)) then
+
+		if(player:hasKeyItem(LILAC_COLORED_SEAL) and player:hasKeyItem(BRIGHT_BLUE_SEAL) and player:hasKeyItem(LAVENDER_COLORED_SEAL)) then
 			param = param - 0x40000000; -- unlocks Pandemonium Warden.
 		end;
-		
+
 		player:startEvent(0x038D,param);
 	end
 	]]
-	
+
 end;
 
 -----------------------------------
@@ -114,7 +114,7 @@ function onEventUpdate(player,csid,option)
 	--[[
 	if(csid == 0x038D) then
 		zeni = player:getZeni();
-		
+
 		if(option >= 300 and option <= 302) then
 			if(option == 300) then
 				salt = SICKLEMOON_SALT;
@@ -134,7 +134,7 @@ function onEventUpdate(player,csid,option)
 			end
 		else -- player is interested in buying a pop item.
 			n = option % 10;
-			
+
 			if(n <= 2) then
 				if(option == 130 or option == 440) then
 					tier = 5;
@@ -148,22 +148,22 @@ function onEventUpdate(player,csid,option)
 			else
 				tier = 4;
 			end
-			
-			cost = tier * 1000; -- static pricing for now. 
-			
+
+			cost = tier * 1000; -- static pricing for now.
+
 			if(option >= 100 and option <= 130) then
 				player:updateEvent(0,0,0,0,0,0,cost);
 			elseif(option >= 400 and option <=440) then
 				if(option == 440) then
 					option = 430;
 				end
-				
+
 				item = lures[option-399]
-				
+
 				if(option == 430) then -- Pandemonium Warden
-					keyitem1 = LILACCOLORED_SEAL; keyitem2 = BRIGHT_BLUE_SEAL; keyitem3 = LAVENDER_COLORED_SEAL;
+					keyitem1 = LILAC_COLORED_SEAL; keyitem2 = BRIGHT_BLUE_SEAL; keyitem3 = LAVENDER_COLORED_SEAL;
 				elseif(option == 409) then -- Tinnin
-					keyitem1 = CHARCOAL_GREY_SEAL; keyitem2 = DEEP_PURPLE_SEAL; keyitem3 = CHESTNUTCOLORED_SEAL;
+					keyitem1 = CHARCOAL_GREY_SEAL; keyitem2 = DEEP_PURPLE_SEAL; keyitem3 = CHESTNUT_COLORED_SEAL;
 				elseif(option == 419) then -- Sarameya
 					keyitem1 = PURPLISH_GREY_SEAL; keyitem2 = GOLD_COLORED_SEAL; keyitem3 = COPPER_COLORED_SEAL;
 				elseif(option == 429) then -- Tyger
@@ -176,14 +176,14 @@ function onEventUpdate(player,csid,option)
 				elseif(player:getFreeSlotsCount() > 0) then
 					if(keyitem1 ~= nil) then
 						player:delKeyItem(keyitem1);
-					end	
+					end
 					if(keyitem2 ~= nil) then
 						player:delKeyItem(keyitem2);
-					end						
+					end
 					if(keyitem3 ~= nil) then
 						player:delKeyItem(keyitem3);
 					end
-					
+
 					player:updateEvent(1, cost, item, keyitem1,keyitem2,keyitem3);
 					player:delZeni(cost);
 					player:addItem(item);
@@ -193,8 +193,8 @@ function onEventUpdate(player,csid,option)
 			elseif(option == 500) then -- player has declined to buy a pop item
 				player:updateEvent(1,1); -- restore the "Gaining access to the islets" option.
 			else
-				--print("onEventSelection - CSID:",csid);        
-				--print("onEventSelection - option ===",option); 
+				--print("onEventSelection - CSID:",csid);
+				--print("onEventSelection - option ===",option);
 			end
 		end
 	end

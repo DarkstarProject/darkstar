@@ -22,10 +22,10 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if(player:hasKeyItem(WASHSUS_TASTY_WURST) and player:hasKeyItem(YOMOTSU_FEATHER) == false) then
+
+	if(player:hasKeyItem(WASHUS_TASTY_WURST) and player:hasKeyItem(YOMOTSU_FEATHER) == false) then
 		if(player:getVar("yomiOkuriKilledNM") >= 1) then
-			player:delKeyItem(WASHSUS_TASTY_WURST);
+			player:delKeyItem(WASHUS_TASTY_WURST);
 			player:addKeyItem(YOMOTSU_FEATHER);
 			player:messageSpecial(KEYITEM_OBTAINED,YOMOTSU_FEATHER);
 			player:setVar("yomiOkuriKilledNM",0);
@@ -35,7 +35,7 @@ function onTrigger(player,npc)
 	else
 		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 	end
-	
+
 end;
 
 -----------------------------------
@@ -43,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -52,6 +52,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
 end;
