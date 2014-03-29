@@ -17,36 +17,32 @@ function OnMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    if(100 * math.random() >= target:getMod(MOD_SLOWRES)) then
-		local dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
-		local bonus = AffinityBonus(caster, spell:getElement());
+    local dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
+    --local bonus = AffinityBonus(caster, spell:getElement()); Removed: affinity bonus is added in applyResistance
 
-		local potency = 230 + math.floor(dMND * 1.6);
+    local potency = 230 + math.floor(dMND * 1.6);
 
-		 -- ([230] + [y * 10] + [floor(dMND * 1.6)])/1024
+    -- ([230] + [y * 10] + [floor(dMND * 1.6)])/1024
 
-		 if(potency > 350) then
-			potency = 350;
-		 end
+    if(potency > 350) then
+        potency = 350;
+    end
 
-		local merits = caster:getMerit(MERIT_SLOW_II);
-		--Power.
-		local power = (potency  + (merits * 10));
+    local merits = caster:getMerit(MERIT_SLOW_II);
+    --Power.
+    local power = (potency  + (merits * 10));
 
-		--Duration, including resistance.
-		local duration = 180 * applyResistance(caster,spell,target,dMND,35,bonus);
+    --Duration, including resistance.
+    local duration = 180 * applyResistanceEffect(caster,spell,target,dMND,35,merits,EFFECT_SLOW);
 
-        if(duration >= 60) then --Do it!
+    if(duration >= 60) then --Do it!
 
-            if(target:addStatusEffect(EFFECT_SLOW,power,0,duration)) then
-                spell:setMsg(236);
-            else
-                spell:setMsg(75);
-            end
-
+        if(target:addStatusEffect(EFFECT_SLOW,power,0,duration)) then
+            spell:setMsg(236);
         else
-            spell:setMsg(85);
+            spell:setMsg(75);
         end
+
     else
         spell:setMsg(85);
     end
