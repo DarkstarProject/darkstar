@@ -33,7 +33,7 @@ function onSpellCast(caster,target,spell)
     local power = (potency  + (merits * 10));
 
     --Duration, including resistance.
-    local duration = 180 * applyResistanceEffect(caster,spell,target,dMND,35,merits,EFFECT_SLOW);
+    local duration = 180 * applyResistanceEffect(caster,spell,target,dMND,35,merits*2,EFFECT_SLOW);
 
     if(duration >= 60) then --Do it!
 
