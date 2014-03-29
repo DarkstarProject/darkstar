@@ -478,7 +478,7 @@ enum MODIFIER
 
 	MOD_SHIELD_BASH               =0x181,// (modId = 385)
 	MOD_KICK_DMG                  =0x182,// increases kick attack damage (modId = 386)
-	MOD_WEAPON_BASH               =0x188,// (modId = 387)
+	MOD_WEAPON_BASH               =0x188,// (modId = 392)
 
 	MOD_WYVERN_BREATH             =0x192,// (modId = 402)
 	MOD_STEP_ACCURACY             =0x193,// Bonus accuracy for Dancer's steps (modId = 403)
@@ -527,8 +527,6 @@ enum MODIFIER
     MOD_MAGIC_ABSORB              =0x1DB,// (modId = 475)
     MOD_MAGIC_NULL                =0x1DC,// (modId = 476)
 
-    // MOD_SPARE	=0x1DD,// (modId = 477)
-    // MOD_SPARE	=0x1DE,// (modId = 478)
     // MOD_SPARE	=0x1DF,// (modId = 479)
     // MOD_SPARE	=0x1E0,// (modId = 480)
     // MOD_SPARE	=0x1E1,// (modId = 481)
@@ -540,7 +538,7 @@ enum MODIFIER
 	MOD_EAT_RAW_MEAT			  =0x19A, // not implemented (modId = 410)
 };
 
-#define MAX_MODIFIER	       477
+#define MAX_MODIFIER	       478
 
 
 
