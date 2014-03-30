@@ -3174,6 +3174,8 @@ void SmallPacket0x083(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x084(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
+if (PChar->animation != ANIMATION_SYNTH)
+    {
 	uint32 quantity = RBUFL(data,(0x04));
 	uint16 itemID   = RBUFW(data,(0x08));
 	uint8  slotID   = RBUFB(data,(0x0A));
@@ -3188,6 +3190,7 @@ void SmallPacket0x084(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		PChar->pushPacket(new CShopAppraisePacket(slotID, PItem->getBasePrice()));
 	}
 	return;
+	}
 }
 
 /************************************************************************
@@ -3335,6 +3338,8 @@ void SmallPacket0x0AB(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x0AC(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
+if (PChar->animation != ANIMATION_SYNTH)
+    {
 	if (PChar->PGuildShop != NULL)
 	{
 	    uint16 itemID       = RBUFW(data,(0x04));
@@ -3359,6 +3364,7 @@ void SmallPacket0x0AC(map_session_data_t* session, CCharEntity* PChar, int8* dat
         //TODO: error messages!
     }
 	return;
+	}
 }
 
 /************************************************************************
