@@ -314,9 +314,10 @@ uint8 getGeneralCraft(CCharEntity* PChar)
 
 uint8 calcSynthResult(CCharEntity* PChar)
 {
-	uint8 count  = 0;
-	uint8 result = 0;
+	uint8 result = 1;
 	uint8 hqtier = 0;
+	uint8 mainID = getGeneralCraft(PChar);
+	bool canHQ = true;
 
 	double success = 0;
 	double chance  = 0;
@@ -324,7 +325,6 @@ uint8 calcSynthResult(CCharEntity* PChar)
 	uint8  WeekDay = (uint8)CVanaTime::getInstance()->getWeekday();
 	uint8  crystalElement = PChar->CraftContainer->getType();
 	uint8  strongElement[8] = {2,3,5,4,0,1,7,6};
-	
 
 	for(uint8 skillID = 49; skillID < 57; ++skillID)
 	{
@@ -333,7 +333,6 @@ uint8 calcSynthResult(CCharEntity* PChar)
 		{
 			double synthDiff = getSynthDifficulty(PChar, skillID);
 			hqtier = 0;
-			count++;
 
 			if(synthDiff <= 0)
 			{
@@ -354,9 +353,20 @@ uint8 calcSynthResult(CCharEntity* PChar)
 			else
 			{
 				success = 0.95 - (synthDiff / 10) - (double)(PChar->CraftContainer->getType() == ELEMENT_LIGHTNING) * 0.2;
+				canHQ = false;
 				if(success < 0.05)
 					success = 0.05;
+
+				#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
+				ShowDebug(CL_CYAN"SkillID %u: difficulty > 0\n" CL_RESET, skillID);
+				#endif
 			}
+
+            if(!canSynthesizeHQ(PChar,skillID))
+            {
+                success += 0.01; //the crafting rings that block HQ synthesis all also increase their respective craft's success rate by 1%
+                canHQ = false; //assuming here that if a crafting ring is used matching a recipe's subsynth, overall HQ will still be blocked
+            }
 
 			double random = WELL512::drand();
 			#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
@@ -365,8 +375,11 @@ uint8 calcSynthResult(CCharEntity* PChar)
 
 			if(random < success)
 			{
-				for(int32 i = 0; i < 3; ++i)
+				for(uint8 i = 0; i < 3; ++i)
 				{
+					if(mainID != skillID)
+					    break;
+					
 					random = WELL512::drand();
 					
 					switch(hqtier)
@@ -399,7 +412,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
 					    chance = 0.500;
 					
 					#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
-					ShowDebug(CL_CYAN"HQ Tier: %i  HQ Chance: %g  Random: %g\n" CL_RESET, hqtier, chance, random);
+					ShowDebug(CL_CYAN"HQ Tier: %i HQ Chance: %g Random: %g SkillID: %u\n" CL_RESET, hqtier, chance, random, skillID);
 					#endif
 					
 					if(chance < random)
@@ -411,18 +424,14 @@ uint8 calcSynthResult(CCharEntity* PChar)
 				// сохраняем умение, из-за которого синтез провалился.
 				// используем slotID ячейки кристалла, т.к. он был удален еще в начале синтеза
 				PChar->CraftContainer->setInvSlotID(0,skillID);
-				result = -1;
+				result = 0;
 				break;
 			}
 		}
 	}
 
-	result = (count == 0 ? SYNTHESIS_SUCCESS : (result == 0xFF ? SYNTHESIS_FAIL : (result/count+1)));
-
-	if ((result > SYNTHESIS_SUCCESS) && (!canSynthesizeHQ(PChar,getGeneralCraft(PChar))))
-	{
+	if(result > SYNTHESIS_SUCCESS && !canHQ)
 		result = SYNTHESIS_SUCCESS;
-	}
 
 	// результат синтеза записываем в поле quantity ячейки кристалла.
 	PChar->CraftContainer->setQuantity(0, result);
