@@ -322,6 +322,7 @@ function applyResistance(player,spell,target,diff,skill,bonus)
 
     local resist = 1.0;
     local magicaccbonus = 0;
+    local element = spell:getElement();
 
     if(bonus ~= nil) then
         magicaccbonus = magicaccbonus + bonus;
@@ -353,17 +354,32 @@ function applyResistance(player,spell,target,diff,skill,bonus)
         magicaccbonus = magicaccbonus + 256;
     end
 	--add acc for staves
-	local affinityBonus = AffinityBonus(player, spell:getElement());
+	local affinityBonus = AffinityBonus(player, element);
 	magicaccbonus = magicaccbonus + (affinityBonus-1) * 200;
-
-    local skillchainTier, skillchainCount = FormMagicBurst(spell:getElement(), target);
+    --add acc for RDM group 1 merits
+    if(player:getMainJob() == JOB_RDM and player:getMainLvl() >= 75) then
+        if(element == ELE_FIRE) then
+            magicaccbonus = magicaccbonus + player:getMerit(MERIT_FIRE_MAGIC_ACCURACY);
+        elseif(element == ELE_EARTH) then
+            magicaccbonus = magicaccbonus + player:getMerit(MERIT_EARTH_MAGIC_ACCURACY);
+        elseif(element == ELE_WATER) then
+            magicaccbonus = magicaccbonus + player:getMerit(MERIT_WATER_MAGIC_ACCURACY);
+        elseif(element == ELE_WIND) then
+            magicaccbonus = magicaccbonus + player:getMerit(MERIT_WIND_MAGIC_ACCURACY);
+        elseif(element == ELE_ICE) then
+            magicaccbonus = magicaccbonus + player:getMerit(MERIT_ICE_MAGIC_ACCURACY);
+        elseif(element == ELE_LIGHTNING) then
+            magicaccbonus = magicaccbonus + player:getMerit(MERIT_LIGHTNING_MAGIC_ACCURACY);
+        end
+    end
+    local skillchainTier, skillchainCount = FormMagicBurst(element, target);
     --add acc for skillchains
     if(skillchainTier > 0) then
 		magicaccbonus = magicaccbonus + 25;
     end
 
 	--base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
-	local magiceva = target:getMod(MOD_MEVA) + target:getMod(resistMod[spell:getElement()]);
+	local magiceva = target:getMod(MOD_MEVA) + target:getMod(resistMod[element]);
 
 	--get the difference of acc and eva, scale with level (3.33 at 10 to 0.44 at 75)
 	local multiplier = 0;
@@ -376,7 +392,7 @@ function applyResistance(player,spell,target,diff,skill,bonus)
 	magicaccbonus = magicaccbonus / 2;
 	--add magicacc bonus
 	p = p + magicaccbonus;
-    -- printf("acc: %f, eva: %f, bonus: %f", magicacc, magiceva, magicaccbonus);
+    -- printf("acc: %f, eva: %f, bonus: %f, element: %u", magicacc, magiceva, magicaccbonus, element);
 
 
 	--double any acc over 50 if it's over 50
@@ -449,6 +465,7 @@ function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
 
     local resist = 1.0;
     local magicaccbonus = 0;
+    local element = spell:getElement();
 
     if(bonus ~= nil) then
         magicaccbonus = magicaccbonus + bonus;
@@ -480,17 +497,32 @@ function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
         magicaccbonus = magicaccbonus + 256;
     end
 	--add acc for staves
-	local affinityBonus = AffinityBonus(player, spell:getElement());
+	local affinityBonus = AffinityBonus(player, element);
 	magicaccbonus = magicaccbonus + (affinityBonus-1) * 200;
-
-    local skillchainTier, skillchainCount = FormMagicBurst(spell:getElement(), target);
+    --add acc for RDM group 1 merits
+    if(player:getMainJob() == JOB_RDM and player:getMainLvl() >= 75) then
+        if(element == ELE_FIRE) then
+            magicaccbonus = magicaccbonus + player:getMerit(MERIT_FIRE_MAGIC_ACCURACY);
+        elseif(element == ELE_EARTH) then
+            magicaccbonus = magicaccbonus + player:getMerit(MERIT_EARTH_MAGIC_ACCURACY);
+        elseif(element == ELE_WATER) then
+            magicaccbonus = magicaccbonus + player:getMerit(MERIT_WATER_MAGIC_ACCURACY);
+        elseif(element == ELE_WIND) then
+            magicaccbonus = magicaccbonus + player:getMerit(MERIT_WIND_MAGIC_ACCURACY);
+        elseif(element == ELE_ICE) then
+            magicaccbonus = magicaccbonus + player:getMerit(MERIT_ICE_MAGIC_ACCURACY);
+        elseif(element == ELE_LIGHTNING) then
+            magicaccbonus = magicaccbonus + player:getMerit(MERIT_LIGHTNING_MAGIC_ACCURACY);
+        end
+    end
+    local skillchainTier, skillchainCount = FormMagicBurst(element, target);
     --add acc for skillchains
     if(skillchainTier > 0) then
 		magicaccbonus = magicaccbonus + 25;
     end
 
 	--base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
-	local magiceva = target:getMod(MOD_MEVA) + target:getMod(resistMod[spell:getElement()]);
+	local magiceva = target:getMod(MOD_MEVA) + target:getMod(resistMod[element]);
 
 	--get the difference of acc and eva, scale with level (3.33 at 10 to 0.44 at 75)
 	local multiplier = 0;
@@ -503,7 +535,7 @@ function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
 	magicaccbonus = magicaccbonus / 2;
 	--add magicacc bonus
 	p = p + magicaccbonus;
-    -- printf("acc: %f, eva: %f, bonus: %f", magicacc, magiceva, magicaccbonus);
+    -- printf("acc: %f, eva: %f, bonus: %f, element: %u", magicacc, magiceva, magicaccbonus, element);
 
 
 	--double any acc over 50 if it's over 50
