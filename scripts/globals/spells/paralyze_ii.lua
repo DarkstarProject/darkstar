@@ -1,8 +1,8 @@
 -----------------------------------------
--- Spell: Paralyze
+-- Spell: Paralyze II
 -- Spell accuracy is most highly affected by Enfeebling Magic Skill, Magic Accuracy, and MND.
--- Slow's potency is calculated with the formula (150 + dMND*2)/1024, and caps at 300/1024 (~29.3%).
--- And MND of 75 is neccessary to reach the hardcap of Slow.
+-- caster:getMerit() returns a value which is equal to the number of merit points TIMES the value of each point
+-- Paralyze II value per point is '1' This is a constant set in the table 'merits'
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -30,14 +30,21 @@ function onSpellCast(caster,target,spell)
 
         local merits = caster:getMerit(MERIT_PARALYZE_II);
 
+        if (merits == 0) then --if caster has the spell but no merits in it, they are either a mob or we assume they are GM or otherwise gifted with max duration and effect
+            merits = 5;
+        end
+
         local dMND = (pMND - mMND);
 
         -- Calculate potency.
-        local potency = (pMND + dMND)/5 + merits; --simplified from (merits * 10 + 2 * (pMND + dMND)) / 10
+        local potency = (pMND + dMND)/5; --simplified from (2 * (pMND + dMND)) / 10
 
-        if potency > 30 then
+        if (potency > 30) then
             potency = 30;
         end
+
+        potency = potency + merits; --similar to Slow II, merit potency bonus is added after the cap
+
         --printf("Duration : %u",duration);
         --printf("Potency : %u",potency);
         --local bonus = AffinityBonus(caster, spell:getElement()); Removed: affinity bonus is added in applyResistance

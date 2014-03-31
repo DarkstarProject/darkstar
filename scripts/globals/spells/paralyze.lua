@@ -1,8 +1,6 @@
 -----------------------------------------
 -- Spell: Paralyze
 -- Spell accuracy is most highly affected by Enfeebling Magic Skill, Magic Accuracy, and MND.
--- Slow's potency is calculated with the formula (150 + dMND*2)/1024, and caps at 300/1024 (~29.3%).
--- And MND of 75 is neccessary to reach the hardcap of Slow.
 -----------------------------------------
 
 require("scripts/globals/status");

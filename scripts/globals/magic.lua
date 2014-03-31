@@ -546,7 +546,7 @@ function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
 			effectres = MOD_BLINDRES
 		elseif(effect == EFFECT_SILENCE) then
 			effectres = MOD_SILENCERES;
-		elseif(effect == EFFECT_PLAGUE or effect == EFECT_DISEASE) then
+		elseif(effect == EFFECT_PLAGUE or effect == EFFECT_DISEASE) then
 			effectres = MOD_VIRUSRES;
 		elseif(effect == EFFECT_PETRIFICATION) then
 			effectres = MOD_PETRIFYRES;

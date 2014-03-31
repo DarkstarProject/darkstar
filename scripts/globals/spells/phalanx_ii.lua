@@ -1,5 +1,7 @@
 -----------------------------------------
 --  Spell: PHALANX
+-- caster:getMerit() returns a value which is equal to the number of merit points TIMES the value of each point
+-- Phalanx II value per point is '3' This is a constant set in the table 'merits'
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -17,14 +19,18 @@ function onSpellCast(caster,target,spell)
     local enhskill = caster:getSkillLevel(ENHANCING_MAGIC_SKILL);
     local final = 0;
     local merits = caster:getMerit(MERIT_PHALANX_II);
+    
+    if (merits == 0) then --if caster has the spell but no merits in it, they are either a mob or we assume they are GM or otherwise gifted with max duration and effect
+        merits = 15;
+    end
 
-    local duration = 90 + (30 * merits);
+    local duration = 90 + (10 * merits);
 
     if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
 
-    final = (enhskill / 25) + (3 * merits) + 1;
+    final = (enhskill / 25) + merits + 1;
 
     if(final>35) then
         final = 35;
