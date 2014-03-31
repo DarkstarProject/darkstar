@@ -227,7 +227,7 @@ function CharCreate(player)
 			if ((race == 3) or (race == 4))
 				then player:addItem(0x34B7);
 			end;
-			player:addKeyItem(MAP_OF_THE_SANDORIA_AREA);
+			player:addKeyItem(MAP_OF_THE_SAN_DORIA_AREA);
 		end,
 
  		-- BASTOK CITIZEN

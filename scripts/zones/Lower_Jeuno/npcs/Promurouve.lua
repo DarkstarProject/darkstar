@@ -24,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
     local mapVar = 0;
-	if player:hasKeyItem(MAP_OF_THE_SANDORIA_AREA) then
+	if player:hasKeyItem(MAP_OF_THE_SAN_DORIA_AREA) then
 		mapVar = mapVar + 4;
 	end
 	if player:hasKeyItem(MAP_OF_THE_BASTOK_AREA) then
@@ -69,7 +69,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
     if (csid == 0x2710 and option ~= 1073741824) then
         local gil = 0;
-        if option == MAP_OF_THE_SANDORIA_AREA then
+        if option == MAP_OF_THE_SAN_DORIA_AREA then
             gil = 200;
         elseif option == MAP_OF_THE_BASTOK_AREA then
             gil = 200;
