@@ -2252,7 +2252,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
                               quantity == 0,
                               PChar->id,
                               PChar->GetName(),
-                              CVanaTime::getInstance()->getSysTime(),
+                              (uint32)time(NULL),
                               price) == SQL_ERROR)
 			    {
 				    ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Cannot insert item to database\n" CL_RESET);
@@ -2307,7 +2307,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
                                       fmtQuery,
                                       PChar->GetName(),
                                       price,
-                                      CVanaTime::getInstance()->getSysTime(),
+                                      (uint32)time(NULL),
                                       itemid,
                                       quantity == 0,
                                       price) != SQL_ERROR &&
