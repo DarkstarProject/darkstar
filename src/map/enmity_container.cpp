@@ -132,7 +132,7 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
         PEnmity->second->CE = dsp_cap(PEnmity->second->CE, 1, 10000);
         PEnmity->second->VE = dsp_cap(PEnmity->second->VE, 1, 10000);
     }
-    else
+    else if (CE >= 0 && VE >= 0)
     {
         EnmityObject_t* PEnmityObject = new EnmityObject_t;
 

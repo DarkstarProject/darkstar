@@ -4163,8 +4163,7 @@ bool hasMogLockerAccess(CCharEntity* PChar) {
 	if(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 	{
 		int32 tstamp  = (int32)Sql_GetIntData(SqlHandle,0);
-		uint32 now = time(NULL) - 1009810800;
-		if (now < tstamp) {
+		if (CVanaTime::getInstance()->getVanaTime() < tstamp) {
 			return true;
 		}
 	}
