@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Ordelles Caves
 -- NPC:  Polevik
--- Involved In Quest: Sharpening the Sword
+-- Involved In Quest: Dark Puppet
 -- @pos -51 0.1 3 193
 -----------------------------------
 
