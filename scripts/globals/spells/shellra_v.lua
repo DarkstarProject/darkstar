@@ -14,19 +14,12 @@ function OnMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local power = 62;
+    local meritBonus = caster:getMerit(MERIT_SHELLRA_V);
     local duration = 1800;
-
-    --printf("Shellra V Base Power: %d", power);
-
-    local meritBonus = caster:getMerit(MERIT_SHELLRA_V) - 1;
-    --printf("Shellra V Merit Bonus: %d", meritBonus);
     
-    if(meritBonus > 0) then
-        power = power + meritBonus;
-    end
-    
-    --printf("Shellra V Final Power: %d", power);
+    --Base Power is actually 62, but you will always have atleast 1 merit
+    local power = 60 + meritBonus;
+    --printf("Shellra V Power: %d", power);
     
     duration = calculateDurationForLvl(duration, 75, target:getMainLvl());
 
