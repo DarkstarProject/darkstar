@@ -17,6 +17,17 @@ function onSpellCast(caster,target,spell)
     local power = 62;
     local duration = 1800;
 
+    --printf("Shellra V Base Power: %d", power);
+
+    local meritBonus = caster:getMerit(MERIT_SHELLRA_V) - 1;
+    --printf("Shellra V Merit Bonus: %d", meritBonus);
+    
+    if(meritBonus > 0) then
+        power = power + meritBonus;
+    end
+    
+    --printf("Shellra V Final Power: %d", power);
+    
     duration = calculateDurationForLvl(duration, 75, target:getMainLvl());
 
     local typeEffect = EFFECT_SHELL;

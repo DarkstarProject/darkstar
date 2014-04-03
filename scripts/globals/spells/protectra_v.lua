@@ -17,6 +17,17 @@ function onSpellCast(caster,target,spell)
     local power = 175;
     local duration = 1800;
 
+    --printf("Protectra V Base Power: %d", power);
+
+    local meritBonus = caster:getMerit(MERIT_PROTECTRA_V) - 5;
+    --printf("Protectra V Merit Bonus: %d", meritBonus);
+    
+    if(meritBonus > 0) then
+        power = power + meritBonus;
+    end
+    
+    --printf("Protectra V Final Power: %d", power);
+    
     duration = calculateDurationForLvl(duration, 75, target:getMainLvl());
 
     local typeEffect = EFFECT_PROTECT;
