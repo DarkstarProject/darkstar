@@ -31,42 +31,16 @@ function OnUseAbility(player, target, ability)
     local mpPercent = (25 + meritBonus) / 100;
     --printf("Devotion MP Percent: %f", mpPercent);
     
-    local damageHP = math.floor(player:getHP() * 0.25);
-    
+    local damageHP = math.floor(player:getHP() * 0.25);    
     --printf("Devotion HP Damage: %d", damageHP);
 
     --If stoneskin is present, it should absorb damage...
-    if(player:hasStatusEffect(EFFECT_STONESKIN)) then
-        local stoneskin = player:getMod(MOD_STONESKIN);
-        
-        if(stoneskin > damageHP) then
-            local stoneskinAbsorption = stoneskin - damageHP
-            
-            --printf("Devotion Stoneskin Absorption: %d", stoneskin - stoneskinAbsorption);
-            
-            player:setMod(MOD_STONESKIN, stoneskinAbsorption);
-            damageHP = 0;
-        else
-           damageHP = damageHP - stoneskin
-            
-            --printf("Devotion Stoneskin Absorption: %d", stoneskin);
-            
-            player:delStatusEffect(EFFECT_STONESKIN);
-        end
+    damageHP = utils.stoneskin(player, damageHP);    
+    --printf("Devotion HP Damage (after Stoneskin): %d", damageHP);
     
-        --printf("Devotion Final HP Damage: %d", damageHP);
-    end
+    local healMP = player:getHP() * mpPercent;
+    --printf("Devotion MP Healed: %d", healMP);
     
-    local healMP = (player:getHP() * mpPercent);
-    local maxHealMP = target:getMaxMP() - target:getMP();
-
-    --Don't heal MP beyond max capacity
-    if(healMP > maxHealMP) then
-        healMP = maxHealMP;
-    end
-
-    --printf("Devotion MP Heal: %d", healMP);
-
     player:delHP(damageHP);
     target:addMP(healMP);
 end;
