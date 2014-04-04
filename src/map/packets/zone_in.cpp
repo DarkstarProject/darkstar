@@ -180,15 +180,10 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
 
 	WBUFL(data,(0xA0)-4) = PChar->GetPlayTime();				// время, проведенное персонажем в игре с момента создания
 
-    uint32 pktTime = (uint32)time(NULL);
+	uint32 pktTime = CVanaTime::getInstance()->getVanaTime();
 
-    /*********************************************************************
-    Altering the relationship between these two values causes auto-hp bug
-    and may break usable items
-    *********************************************************************/
-    WBUFL(data,(0x38)-4) = pktTime;
-    WBUFL(data,(0x3C)-4) = pktTime - 1009810800;
-    /********************************************************************/
+    WBUFL(data,(0x38)-4) = pktTime + VTIME_BASEDATE;
+    WBUFL(data,(0x3C)-4) = pktTime;
 
 	// current death timestamp is less than an hour ago and the player is dead.
 	if (PChar->m_DeathTimestamp > 0 && ((pktTime - PChar->m_DeathTimestamp) < (60*60)) && PChar->isDead()) 
