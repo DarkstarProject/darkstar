@@ -130,9 +130,6 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
 	WBUFB(data,(0x1E)-4) = PChar->GetHPP();
 	WBUFB(data,(0x1F)-4) = PChar->animation;
 
-	WBUFL(data,(0x38)-4) = (uint32)time(NULL);
-    WBUFL(data,(0x3C)-4) = CVanaTime::getInstance()->getVanaTime();
-
 	WBUFB(data,(0x44)-4) = PChar->look.face;
 	WBUFB(data,(0x45)-4) = PChar->look.race;
 	WBUFW(data,(0x46)-4) = PChar->look.head   + 0x1000;
@@ -183,11 +180,21 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
 
 	WBUFL(data,(0xA0)-4) = PChar->GetPlayTime();				// время, проведенное персонажем в игре с момента создания
 
+    uint32 pktTime = (uint32)time(NULL);
+
+    /*********************************************************************
+    Altering the relationship between these two values causes auto-hp bug
+    and may break usable items
+    *********************************************************************/
+    WBUFL(data,(0x38)-4) = pktTime;
+    WBUFL(data,(0x3C)-4) = pktTime - 1009810800;
+    /********************************************************************/
+
 	// current death timestamp is less than an hour ago and the player is dead.
-	if (PChar->m_DeathTimestamp > 0 && ((time(NULL)-PChar->m_DeathTimestamp) < (60*60)) && PChar->isDead()) 
+	if (PChar->m_DeathTimestamp > 0 && ((pktTime - PChar->m_DeathTimestamp) < (60*60)) && PChar->isDead()) 
     {
 		// 60min starts at 0x03A020 (66 min) and ventures down to 0x5460 (6 min)
-		WBUFL(data,(0xA4)-4) = (0x03A020 - (60*(time(NULL) - PChar->m_DeathTimestamp)));
+		WBUFL(data,(0xA4)-4) = (0x03A020 - (60*(pktTime - PChar->m_DeathTimestamp)));
 	}
 
 	memcpy(data+(0xCC)-4, &PChar->stats, 14);
