@@ -1,14 +1,17 @@
 -----------------------------------
 --
---
+-- EFFECT_AFFLATUS_MISERY
 --
 -----------------------------------
+
+require("scripts/globals/status");
 
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
+	target:addMod(MOD_AFFLATUS_MISERY,0);
 end;
 
 -----------------------------------
@@ -23,4 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+	target:delMod(MOD_AFFLATUS_MISERY,0);
 end;

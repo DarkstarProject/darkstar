@@ -1939,6 +1939,7 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
         damage = dsp_max(damage - PDefender->getMod(MOD_PHALANX), 0);
 
         damage = HandleStoneskin(PDefender, damage);
+		HandleAfflatusMisery(PDefender, damage);
     }
     damage = dsp_cap(damage, -99999, 99999);
 
@@ -4084,6 +4085,13 @@ int32 RangedDmgTaken(CBattleEntity* PDefender, int32 damage)
     }
 
     return damage * resist;
+}
+
+void HandleAfflatusMisery(CBattleEntity* PDefender, int32 damage)
+{
+	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_AFFLATUS_MISERY)){
+		PDefender->setModifier(MOD_AFFLATUS_MISERY, damage);
+	}
 }
 
 float HandleTranquilHeart(CBattleEntity* PEntity){

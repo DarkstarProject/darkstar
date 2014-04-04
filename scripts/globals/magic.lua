@@ -716,6 +716,49 @@ function getSkillLvl(rank,level)
 
  end;
 
+ function handleAfflatusMisery(caster, spell, dmg)
+     if(skill == DIVINE_SKILL) then         
+         if(caster:hasStatusEffect(EFFECT_AFFLATUS_MISERY)) then
+             local misery = caster:getMod(MOD_AFFLATUS_MISERY);
+             
+             --Boost from Afflatus Misery If Appropriate
+             local miseryEligible = false;
+             local miserySpellIds = { 28, 29, 30, 31, 32, 38, 39, 40, 41, 42 }
+             
+             for i, spellId in ipairs(miserySpellIds) do
+                 if(spell:getID()==spellId) then
+                     miseryEligible = true;
+                 end
+             end
+             
+             if(miseryEligible==false) then
+                return dmg;
+             end
+             
+             --printf("AFFLATUS MISERY: Spell %d is Eligible!", spell:getID());
+             
+             --BGwiki puts the boost capping at 200% bonus at around 300hp
+             if(misery > 300) then
+                 misery = 300;
+             end;
+         
+             --So, if wee capped at 300, we'll make the boost it boost 2x (200% damage)                        
+             local boost = 1 + (misery / 300);
+             
+             local preboost = dmg;
+             
+             dmg = math.floor(dmg * boost);
+             
+             --printf("AFFLATUS MISERY: Boosting %d -> %f, Final %d", preboost, boost, dmg);
+             
+             --Afflatus Mod is Used Up...
+             caster:setMod(MOD_AFFLATUS_MISERY, 0)
+         end
+    end	
+    
+    return dmg;
+ end;
+ 
  function finalMagicAdjustments(caster,target,spell,dmg)
 
     -- handle multiple targets
@@ -752,9 +795,11 @@ function getSkillLvl(rank,level)
 		utils.clamp(dmg, 0, 99999);
 	end
 
+    --handling afflatus misery    
+    dmg = handleAfflatusMisery(caster, spell, dmg);
+    
     --handling stoneskin
     dmg = utils.stoneskin(target, dmg);
-
     dmg = utils.clamp(dmg, -99999, 99999);
     
     if (dmg < 0) then
@@ -1234,6 +1279,7 @@ function doNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,s
 			caster:delStatusEffect(EFFECT_FUTAE);
 		end
 	end
+	
 	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
 	dmg = addBonuses(caster,spell,target,dmg);
 	--add in target adjustment
