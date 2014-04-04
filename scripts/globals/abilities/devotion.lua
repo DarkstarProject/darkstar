@@ -9,15 +9,9 @@ require("scripts/globals/status");
 -----------------------------------
 
 function OnAbilityCheck(player,target,ability)
-        --You can't cast Devotion on Yourself
-        if(player:getName() == target:getName()) then
-            return MSGBASIC_CANNOT_ON_THAT_TARG,0;
         -- Fails if HP < 4
-        elseif(player:getHP() < 4) then
+        if(player:getHP() < 4) then
             return MSGBASIC_UNABLE_TO_USE_JA,0;
-        -- Distance must be < 10 for it to work...
-        elseif(player:checkDistance(target)>10) then
-            return MSGBASIC_TARG_OUT_OF_RANGE,0;
         else
             return 0,0;
         end
