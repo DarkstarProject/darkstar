@@ -4148,7 +4148,7 @@ void assistTarget(CCharEntity* PChar, uint16 TargID)
 				PChar->pushPacket(new CLockOnPacket(PChar, EntityToLockon));
 			}
 		}
-		else if (PlayerToAssist->PBattleAI->GetBattleTarget() != NULL)
+		else if (PlayerToAssist->PBattleAI != NULL && PlayerToAssist->PBattleAI->GetBattleTarget() != NULL)
 		{
 			// lock on to the new target!
 			PChar->pushPacket(new CLockOnPacket(PChar, PlayerToAssist->PBattleAI->GetBattleTarget()));
