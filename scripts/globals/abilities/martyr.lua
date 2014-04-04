@@ -9,11 +9,8 @@ require("scripts/globals/status");
 -----------------------------------
 
 function OnAbilityCheck(player,target,ability)
-        --You can't cast Martyr on Yourself
-        if(player:getName() == target:getName()) then
-            return MSGBASIC_CANNOT_ON_THAT_TARG,0;
         -- Fails if HP < 4
-        elseif(player:getHP() < 4) then
+        if(player:getHP() < 4) then
             return MSGBASIC_UNABLE_TO_USE_JA,0;
         else
             return 0,0;
