@@ -4134,19 +4134,24 @@ CMobSkill* GetTwoHourMobSkill(JOBTYPE job)
 ************************************************************************/
 void assistTarget(CCharEntity* PChar, uint16 TargID)
 {
-
 	// get the player we want to assist
-	CBattleEntity* PlayerToAssist = (CBattleEntity*)PChar->loc.zone->GetEntity(TargID, TYPE_PC);
-
-	if (PlayerToAssist != NULL && PlayerToAssist->m_TargID != 0 && PlayerToAssist->objtype == TYPE_PC)
+	CBattleEntity* PlayerToAssist = (CBattleEntity*)PChar->loc.zone->GetEntity(TargID, TYPE_MOB | TYPE_PC);
+	if (PlayerToAssist != NULL)
 	{
-		// get that players target (mob,player,pet only)
-		CBattleEntity* EntityToLockon = (CBattleEntity*)PChar->loc.zone->GetEntity(PlayerToAssist->m_TargID, TYPE_MOB | TYPE_PC | TYPE_PET);
-
-		if (EntityToLockon != NULL)
+		if (PlayerToAssist->objtype == TYPE_PC && PlayerToAssist->m_TargID != 0)
+		{
+			// get that players target (mob,player,pet only)
+			CBattleEntity* EntityToLockon = (CBattleEntity*)PChar->loc.zone->GetEntity(PlayerToAssist->m_TargID, TYPE_MOB | TYPE_PC | TYPE_PET);
+			if (EntityToLockon != NULL)
+			{
+				// lock on to the new target!
+				PChar->pushPacket(new CLockOnPacket(PChar, EntityToLockon));
+			}
+		}
+		else if (PlayerToAssist->PBattleAI->GetBattleTarget() != NULL)
 		{
 			// lock on to the new target!
-			PChar->pushPacket(new CLockOnPacket(PChar, EntityToLockon));
+			PChar->pushPacket(new CLockOnPacket(PChar, PlayerToAssist->PBattleAI->GetBattleTarget()));
 		}
 	}
 }
