@@ -716,48 +716,29 @@ function getSkillLvl(rank,level)
 
  end;
 
- function handleAfflatusMisery(caster, spell, dmg)
-     if(skill == DIVINE_SKILL) then         
-         if(caster:hasStatusEffect(EFFECT_AFFLATUS_MISERY)) then
-             local misery = caster:getMod(MOD_AFFLATUS_MISERY);
-             
-             --Boost from Afflatus Misery If Appropriate
-             local miseryEligible = false;
-             local miserySpellIds = { 28, 29, 30, 31, 32, 38, 39, 40, 41, 42 }
-             
-             for i, spellId in ipairs(miserySpellIds) do
-                 if(spell:getID()==spellId) then
-                     miseryEligible = true;
-                 end
-             end
-             
-             if(miseryEligible==false) then
-                return dmg;
-             end
-             
-             --printf("AFFLATUS MISERY: Spell %d is Eligible!", spell:getID());
-             
-             --BGwiki puts the boost capping at 200% bonus at around 300hp
-             if(misery > 300) then
-                 misery = 300;
-             end;
-         
-             --So, if wee capped at 300, we'll make the boost it boost 2x (200% damage)                        
-             local boost = 1 + (misery / 300);
-             
-             local preboost = dmg;
-             
-             dmg = math.floor(dmg * boost);
-             
-             --printf("AFFLATUS MISERY: Boosting %d -> %f, Final %d", preboost, boost, dmg);
-             
-             --Afflatus Mod is Used Up...
-             caster:setMod(MOD_AFFLATUS_MISERY, 0)
-         end
-    end	
-    
-    return dmg;
- end;
+function handleAfflatusMisery(caster, spell, dmg)
+	if(caster:hasStatusEffect(EFFECT_AFFLATUS_MISERY)) then
+		local misery = caster:getMod(MOD_AFFLATUS_MISERY);
+
+		--BGwiki puts the boost capping at 200% bonus at around 300hp
+		if(misery > 300) then
+			misery = 300;
+		end;
+
+		--So, if wee capped at 300, we'll make the boost it boost 2x (200% damage)                        
+		local boost = 1 + (misery / 300);
+
+		local preboost = dmg;
+
+		dmg = math.floor(dmg * boost);
+		
+		--printf("AFFLATUS MISERY: Boosting %d -> %f, Final %d", preboost, boost, dmg);
+
+		--Afflatus Mod is Used Up...
+		caster:setMod(MOD_AFFLATUS_MISERY, 0)
+	end
+	return dmg;
+end;
  
  function finalMagicAdjustments(caster,target,spell,dmg)
 
@@ -786,7 +767,6 @@ function getSkillLvl(rank,level)
         -- end
     end
 
-
     dmg = utils.dmgTaken(target, dmg);
     dmg = utils.magicDmgTaken(target, dmg);
 
@@ -794,9 +774,6 @@ function getSkillLvl(rank,level)
 		dmg = dmg - target:getMod(MOD_PHALANX);
 		utils.clamp(dmg, 0, 99999);
 	end
-
-    --handling afflatus misery    
-    dmg = handleAfflatusMisery(caster, spell, dmg);
     
     --handling stoneskin
     dmg = utils.stoneskin(target, dmg);
@@ -1284,6 +1261,28 @@ function doNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,s
 	dmg = addBonuses(caster,spell,target,dmg);
 	--add in target adjustment
 	dmg = adjustForTarget(target,dmg,spell:getElement());
+	--add in final adjustments
+	dmg = finalMagicAdjustments(caster,target,spell,dmg);
+	return dmg;
+end
+
+function doDivineBanishNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
+	local skill = DIVINE_MAGIC_SKILL;
+	local modStat = MOD_MND;
+	
+	--calculate raw damage
+	local dmg = calculateMagicDamage(V,M,caster,spell,target,skill,modStat,hasMultipleTargetReduction);
+	--get resist multiplier (1x if no resist)
+	local resist = applyResistance(caster,spell,target,caster:getStat(modStat)-target:getStat(modStat),skill,resistBonus);
+	--get the resisted damage
+	dmg = dmg*resist;
+	
+	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
+	dmg = addBonuses(caster,spell,target,dmg);
+	--add in target adjustment
+	dmg = adjustForTarget(target,dmg,spell:getElement());
+	--handling afflatus misery
+	dmg = handleAfflatusMisery(caster, spell, dmg);
 	--add in final adjustments
 	dmg = finalMagicAdjustments(caster,target,spell,dmg);
 	return dmg;
