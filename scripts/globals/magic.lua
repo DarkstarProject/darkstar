@@ -1209,11 +1209,14 @@ function calculateDurationForLvl(duration, spellLvl, targetLvl)
 end
 
 function calculateBarspellPower(caster,enhanceSkill)
+	local meritBonus = caster:getMerit(MERIT_BAR_SPELL_EFFECT);	
+	--printf("Barspell: Merit Bonus +%d", meritBonus);
+	
 	if (enhanceSkill == nil or enhanceSkill < 0) then
 		enhanceSkill = 0;
 	end
 
-	local power = 40 + 0.2 * enchanceSkill;
+	local power = 40 + 0.2 * enchanceSkill + meritBonus;
 	
 	local equippedLegs = caster:getEquipID(SLOT_LEGS);
 	if(equippedLegs == 15119) then
