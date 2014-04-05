@@ -1021,6 +1021,19 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
                 charutils::UpdateHealth(PChar);
             }
         }
+		else if (enspell == ENSPELL_AUSPICE && hitNumber == 0){
+			Action->additionalEffect = SUBEFFECT_LIGHT_DAMAGE;
+			Action->addEffectMessage = 163;
+			Action->addEffectParam = CalculateEnspellDamage(PAttacker, PDefender, 2, 7);
+
+			if (Action->addEffectParam < 0)
+			{
+				Action->addEffectParam = -Action->addEffectParam;
+				Action->addEffectMessage = 384;
+			}
+
+			PDefender->addHP(-Action->addEffectParam);
+		}
     }
     //check weapon for additional effects
 	else if (PAttacker->objtype == TYPE_PC && weapon->getModifier(MOD_ADDITIONAL_EFFECT) > 0)
@@ -1939,7 +1952,7 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
         damage = dsp_max(damage - PDefender->getMod(MOD_PHALANX), 0);
 
         damage = HandleStoneskin(PDefender, damage);
-		HandleAfflatusMisery(PDefender, damage);
+		HandleAfflatusMiseryDamage(PDefender, damage);
     }
     damage = dsp_cap(damage, -99999, 99999);
 
@@ -4087,7 +4100,36 @@ int32 RangedDmgTaken(CBattleEntity* PDefender, int32 damage)
     return damage * resist;
 }
 
-void HandleAfflatusMisery(CBattleEntity* PDefender, int32 damage)
+void HandleAfflatusMiseryAccuracyBonus(CBattleEntity* PAttacker){
+	if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_AFFLATUS_MISERY) &&
+		PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_AUSPICE)){
+	
+		// We need to keep track of exactly how much accuracy this particular bonus ends up giving
+		// because when the effect wears off we have to reduce ACC again by that amount.
+		// So, it's been stored in a variable that will be used in OnEffectLoss
+		int8 selectFmtQuery[] = "SELECT value FROM char_vars WHERE charid = %u AND varname = '%s' ";
+		int32 ret = Sql_Query(SqlHandle, selectFmtQuery, PAttacker->id, "AFFLATUS_MISERY_ACCURACY_BONUS");
+
+		// Each time this function is called, they'll get +10 acc
+		int32 accBonus = 0;
+
+		if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		{
+			accBonus = (int32)Sql_GetIntData(SqlHandle, 0);
+		}
+
+		accBonus = accBonus + 10;
+
+		// Store the Updated Accuracy Total
+		const int8* insertFmtQuery = "INSERT INTO char_vars SET charid = %u, varname = '%s', value = %i ON DUPLICATE KEY UPDATE value = %i;";
+		Sql_Query(SqlHandle, insertFmtQuery, PAttacker->id, "AFFLATUS_MISERY_ACCURACY_BONUS", accBonus, accBonus);
+
+		// Update the Accuracy Modifer
+		PAttacker->addModifier(MOD_ACC, 10);
+	}
+}
+
+void HandleAfflatusMiseryDamage(CBattleEntity* PDefender, int32 damage)
 {
 	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_AFFLATUS_MISERY)){
 		PDefender->setModifier(MOD_AFFLATUS_MISERY, damage);

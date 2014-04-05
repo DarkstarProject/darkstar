@@ -1,5 +1,5 @@
 -----------------------------------
--- Ability: Arcane Circle
+-- Ability: Afflatus Misery
 -----------------------------------
 
 require("scripts/globals/status");

@@ -17,12 +17,6 @@ end;
 
 function onSpellCast(caster,target,spell)
 	local effect = EFFECT_AUSPICE;
-	if(caster:hasStatusEffect(EFFECT_AFFLATUS_MISERY)) then     		
-	     	doEnspell(caster,target,spell,effect);
-	else
-		spell:setMsg(230);
-		target:addStatusEffect(EFFECT_AUSPICE, 0, 0, 150);
-	end
-	 
+     	doEnspell(caster,target,spell,effect);	 
 	return effect;
 end;
