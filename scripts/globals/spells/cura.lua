@@ -88,7 +88,7 @@ function onSpellCast(caster,target,spell)
 		--point would boost your Cura by about 1hp, capping at ~175hp
 		--So with lack of available formula documentation, I'll go with that.
 			
-		printf("BEFORE AFFLATUS MISERY BONUS: %d", basecure);
+		--printf("BEFORE AFFLATUS MISERY BONUS: %d", basecure);
 			
 		basecure = basecure + misery;
 			
@@ -96,7 +96,7 @@ function onSpellCast(caster,target,spell)
 			basecure = 175;
 		end
 		
-		printf("AFTER AFFLATUS MISERY BONUS: %d", basecure);
+		--printf("AFTER AFFLATUS MISERY BONUS: %d", basecure);
 		
 		--Afflatus Misery Mod Gets Used Up
 		caster:setMod(MOD_AFFLATUS_MISERY, 0);
