@@ -19,17 +19,19 @@ require("scripts/globals/missions");
 function onTrade(player,npc,trade)
 	local Adamantoise = GetMobAction(17301537);
 	local Aspidochelone = GetMobAction(17301538);
-	
 	-- Trade Clump of Red Pondweed
 	if((Aspidochelone == ACTION_NONE or Aspidochelone == ACTION_SPAWN) and trade:hasItemQty(3344,1) and trade:getItemCount() == 1) then -- Check trade, and if mob is ACTION_NONE (0) or waiting to spawn (24)
-		player:tradeComplete();
-		SpawnMob(17301538,180):updateEnmity(player);
-	-- Trade Clump of Red Pondweed
-	elseif((Adamantoise == ACTION_NONE or Adamantoise == ACTION_SPAWN) and trade:hasItemQty(3343,1) and trade:getItemCount() == 1) then 
-		player:tradeComplete();
-		SpawnMob(17301537,180):updateEnmity(player);
+		if (LandKingSystem_HQ == 1 or LandKingSystem_HQ == 2) then
+			player:tradeComplete();
+			SpawnMob(17301538,180):updateEnmity(player);
+		end
+		-- Trade Clump of Red Pondweed
+	elseif((Adamantoise == ACTION_NONE or Adamantoise == ACTION_SPAWN) and trade:hasItemQty(3343,1) and trade:getItemCount() == 1) then
+		if (LandKingSystem_NQ == 1 or LandKingSystem_NQ == 2) then
+			player:tradeComplete();
+			SpawnMob(17301537,180):updateEnmity(player);
+		end
 	end
-	
 end;
 
 -----------------------------------

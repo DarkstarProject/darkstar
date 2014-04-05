@@ -61,7 +61,22 @@ int32 open_door(uint32 tick, CTaskMgr::CTask* PTask)
 
 /************************************************************************
 *																		*
+*	Make an entity disappear											*
 *																		*
+************************************************************************/
+
+int32 disappear_npc(uint32 tick, CTaskMgr::CTask* PTask)
+{
+	CNpcEntity* PNpc = (CNpcEntity*)PTask->m_data;
+
+	PNpc->status = STATUS_DISAPPEAR;
+	PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc, ENTITY_DESPAWN));
+	return 0;
+}
+
+/************************************************************************
+*																		*
+*	Make an entity reappear												*
 *																		*
 ************************************************************************/
 
