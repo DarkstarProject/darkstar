@@ -568,8 +568,10 @@ int32 IsMoonNew(lua_State* L)
 		switch (CVanaTime::getInstance()->getMoonDirection())
 		{
 			case 0: // None
-				lua_pushboolean(L, false);
-				return 0;
+				if (phase == 0) {
+					lua_pushboolean(L, true);
+					return 1;
+				}
 	
 			case 1: // Waning (decending)
 				if (phase <= 10 && phase >= 0) {
@@ -606,8 +608,10 @@ int32 IsMoonFull(lua_State* L)
 	switch (CVanaTime::getInstance()->getMoonDirection())
 	{
 		case 0: // None
-			lua_pushboolean(L, false);
-			return 0;
+			if (phase == 100) {
+				lua_pushboolean(L, true);
+				return 1;
+			}
 
 		case 1: // Waning (decending)
 			if (phase >= 95 && phase <= 100) {
