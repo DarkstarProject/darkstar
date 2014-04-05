@@ -29,14 +29,6 @@
 #include "vana_time.h"
 #include "utils/zoneutils.h"
 
-#define VTIME_BASEDATE		1009810800		// unix epoch - 1009810800 = se epoch (in earth seconds)
-#define VTIME_YEAR			518400			// 360 * GameDay
-#define VTIME_MONTH			43200			// 30 * GameDay
-#define VTIME_WEEK			11520			// 8 * GameDay
-#define VTIME_DAY			1440			// 24 hours * GameHour
-#define VTIME_HOUR			60				// 60 minutes
-
-
 CVanaTime* CVanaTime::_instance = NULL;
 
 CVanaTime::CVanaTime()
