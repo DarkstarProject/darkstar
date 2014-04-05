@@ -166,7 +166,7 @@ uint8 CVanaTime::getMoonDirection()
 
 	if (daysmod == 42 || daysmod == 0){
 		return 0; //neither waxing nor waning
-	}else if (daysmod > 42){
+	}else if (daysmod < 42){
 		return 1;	//waning
 	}else {
 		return 2;   //waxing
