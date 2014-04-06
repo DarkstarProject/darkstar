@@ -90,6 +90,8 @@ struct map_config_t
 	float  mob_tp_multiplier;		// Multiplies the amount of TP mobs gain on any effect that would grant TP
 	float  player_tp_multiplier;	// Multiplies the amount of TP players gain on any effect that would grant TP
     uint8  newstyle_skillups;       // Allows failed parries and blocks to trigger skill up chance.
+    int8   Battle_cap_tweak;        // Default is 0. Globally adjust the level of level capped fights.
+    int8   CoP_Battle_cap;          // Default is 0. Disable/enable old lv caps on Chains of Promathia mission battles.
 	uint8  max_merit_points;		// global variable, amount of merit points players are allowed
 	bool   audit_chat;
 	bool   audit_say;

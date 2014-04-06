@@ -25,20 +25,19 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
-	local StampHunt = player:getQuestStatus(BASTOK,STAMP_HUNT);
-	local WildcatBastok = player:getVar("WildcatBastok");
-	
-	if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,11) == false) then
-		player:startEvent(0x01ad);
-	elseif (StampHunt == 0) then
-		player:startEvent(0x00e1);
-	elseif (StampHunt == 1 and player:getVar("StampHunt_Event") == 0x7F) then
-		player:startEvent(0x00e2);
+    local StampHunt = player:getQuestStatus(BASTOK,STAMP_HUNT);
+    local WildcatBastok = player:getVar("WildcatBastok");
+
+    if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,11) == false) then
+        player:startEvent(0x01ad);
+    elseif (StampHunt == QUEST_AVAILABLE) then
+        player:startEvent(0x00e1);
+    elseif (StampHunt == QUEST_ACCEPTED and player:isMaskFull(player:getVar("StampHunt_Mask"),7) == true) then
+        player:startEvent(0x00e2);
     else
         player:startEvent(0x0072);
     end
-	
+
 end;
 
 -----------------------------------
@@ -46,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -55,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x00e1 and option == 0) then
         player:addQuest(BASTOK,STAMP_HUNT);
@@ -68,14 +67,14 @@ function onEventFinish(player,csid,option)
             player:addItem(13081);
             player:messageSpecial(ITEM_OBTAINED,13081); -- Leather Gorget
             player:delKeyItem(STAMP_SHEET);
-            player:setVar("StampHunt_Event",0);
-			player:addFame(BASTOK,BAS_FAME*50);
-			player:completeQuest(BASTOK,STAMP_HUNT);
+            player:setVar("StampHunt_Mask",0);
+            player:addFame(BASTOK,BAS_FAME*50);
+            player:completeQuest(BASTOK,STAMP_HUNT);
         else
-           player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, LEATHER_GORGET);
+           player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 13081);
         end
-	elseif (csid == 0x01ad) then
-		player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",11,true);
+    elseif (csid == 0x01ad) then
+        player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",11,true);
     end
-	
+
 end;

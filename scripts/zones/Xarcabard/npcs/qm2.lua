@@ -24,16 +24,17 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if((os.time() - player:getVar("BorealTigerKilled")) < 200) then
-		player:setVar("BorealTigerKilled",0);
-		player:addKeyItem(ROUND_FRIGICITE);
-		player:messageSpecial(KEYITEM_OBTAINED, ROUND_FRIGICITE);
+	local BorealTiger = GetMobAction(17236204);
+	if((OldSchoolG2 == false) or (BorealTiger == ACTION_NONE or BorealTiger == ACTION_SPAWN)) then
+		if(player:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and player:hasKeyItem(ROUND_FRIGICITE) == false) then
+			player:addKeyItem(ROUND_FRIGICITE);
+			player:messageSpecial(KEYITEM_OBTAINED, ROUND_FRIGICITE);
+		else
+			player:messageSpecial(ONLY_SHARDS);
+		end
 	else
-		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
-		player:setVar("BorealTigerKilled",0);
+		player:messageSpecial(ONLY_SHARDS);
 	end
-	
 end;
 
 -----------------------------------

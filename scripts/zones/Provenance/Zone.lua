@@ -13,17 +13,21 @@ require("scripts/zones/Provenance/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
 end;
 
 -----------------------------------		
 -- onZoneIn		
 -----------------------------------		
 
-function onZoneIn(player,prevZone)		
-	cs = -1;
-	return cs;	
-end;		
+function onZoneIn( player, prevZone)
 
+cs = -1;
+if( player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
+player:setPos(-640,-20,-519.999,192);
+end
+return cs;		
+end;	
 -----------------------------------		
 -- onRegionEnter		
 -----------------------------------		

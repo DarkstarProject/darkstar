@@ -267,7 +267,7 @@ INSERT INTO `zone_settings` VALUES (218,2,0016777343,54230,'Abyssea-Altepa',51,5
 INSERT INTO `zone_settings` VALUES (219,0,0016777343,0,'noname',0,0,0,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (220,0,0016777343,54230,'Ship_bound_for_Selbina',106,101,103,0,0.00,152,0);
 INSERT INTO `zone_settings` VALUES (221,0,0016777343,54230,'Ship_bound_for_Mhaura',106,101,103,0,0.00,152,0);
-INSERT INTO `zone_settings` VALUES (222,4,0016777343,54230,'Provenance',0,0,0,0,0.00,0,0);
+INSERT INTO `zone_settings` VALUES (222,4,0016777343,54230,'Provenance',56,56,56,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (223,2,0016777343,54230,'San_dOria-Jeuno_Airship',128,128,128,0,0.00,8,0);
 INSERT INTO `zone_settings` VALUES (224,2,0016777343,54230,'Bastok-Jeuno_Airship',128,128,128,0,0.00,8,0);
 INSERT INTO `zone_settings` VALUES (225,2,0016777343,54230,'Windurst-Jeuno_Airship',128,128,128,0,0.00,8,0);

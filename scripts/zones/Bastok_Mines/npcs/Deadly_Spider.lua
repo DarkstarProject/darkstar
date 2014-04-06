@@ -21,20 +21,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	function testflag(set,flag)
-		return (set % (2*flag) >= flag)
-	end
+    local StampHunt = player:getQuestStatus(BASTOK,STAMP_HUNT);
 
-    StampHunt = player:getQuestStatus(BASTOK,STAMP_HUNT);
-    stampCount = player:getVar("StampHunt_Event");
-	checkStamp = testflag(tonumber(stampCount),0x2);
-
-    if (StampHunt == 1 and checkStamp == false) then
-        player:setVar("StampHunt_Event",stampCount+0x2);
+    if (StampHunt == QUEST_ACCEPTED and player:getMaskBit(player:getVar("StampHunt_Mask"),0) == false) then
         player:startEvent(0x0056);
     else
         player:startEvent(0x0011);
     end
+
 end;
 
 -----------------------------------
@@ -42,8 +36,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -51,10 +45,11 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+
+    if (csid == 0x0056) then
+        player:setMaskBit(player:getVar("StampHunt_Mask"),"StampHunt_Mask",0,true);
+    end
+
 end;
-
-
-
-

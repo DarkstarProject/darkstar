@@ -22,24 +22,17 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	function testflag(set,flag)
-		return (set % (2*flag) >= flag)
-	end
-
+    local WildcatBastok = player:getVar("WildcatBastok");
     local StampHunt = player:getQuestStatus(BASTOK,STAMP_HUNT);
-    local stampCount = player:getVar("StampHunt_Event");
-	local checkStamp = testflag(tonumber(stampCount),0x1);
-	
-	local WildcatBastok = player:getVar("WildcatBastok");
-	
-	if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,14) == false) then
-		player:startEvent(0x01af);
-    elseif (StampHunt == 1 and checkStamp == false) then
-        player:setVar("StampHunt_Event",stampCount+0x1);
+
+    if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,14) == false) then
+        player:startEvent(0x01af);
+    elseif (StampHunt == QUEST_ACCEPTED and player:getMaskBit(player:getVar("StampHunt_Mask"),2) == false) then
         player:startEvent(0x00e3);
     else
         player:startEvent(0x0080);
     end
+
 end;
 
 -----------------------------------
@@ -47,8 +40,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -56,15 +49,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
-	if (csid == 0x01af) then
-		player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",14,true);
+    if (csid == 0x01af) then
+        player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",14,true);
+    elseif (csid == 0x00e3) then
+        player:setMaskBit(player:getVar("StampHunt_Mask"),"StampHunt_Mask",2,true);
     end
 
 end;
-
-
-
-
