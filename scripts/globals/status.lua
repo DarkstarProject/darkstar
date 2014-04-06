@@ -1024,6 +1024,9 @@ MOD_DARK_NULL                 =0x1DA -- (modId = 474)
 
 MOD_MAGIC_ABSORB              =0x1DB -- (modId = 475)
 MOD_MAGIC_NULL                =0x1DC -- (modId = 476)
+
+MOD_WARCRY_DURATION           =0x1E3 -- Warcy duration bonus from gear
+
 -----------------------------------
 -- Merit Definitions
 -----------------------------------
