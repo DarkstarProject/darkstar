@@ -4319,11 +4319,11 @@ INSERT INTO `item_basic` VALUES (5082,474,'scroll_of_cura_ii','cura_ii',1,34432,
 INSERT INTO `item_basic` VALUES (5083,0,'scroll_of_cura_iii','cura_iii',1,34432,99,0,0);
 INSERT INTO `item_basic` VALUES (5085,477,'scroll_of_regen_iv','regen_iv',1,34432,28,0,2460);
 INSERT INTO `item_basic` VALUES (5086,0,'scroll_of_regen_v','regen_v',1,34432,99,0,0);
-INSERT INTO `item_basic` VALUES (5087,0,'scroll_of_gain-str','gain-str',1,34432,99,0,0);
-INSERT INTO `item_basic` VALUES (5088,0,'scroll_of_gain-dex','gain-dex',1,34432,99,0,0);
+INSERT INTO `item_basic` VALUES (5087,486,'scroll_of_gain-str','gain-str',1,34432,28,0,4814);
+INSERT INTO `item_basic` VALUES (5088,487,'scroll_of_gain-dex','gain-dex',1,34432,28,0,4439);
 INSERT INTO `item_basic` VALUES (5089,488,'scroll_of_gain-vit','gain-vit',1,34432,28,0,3687);
 INSERT INTO `item_basic` VALUES (5090,489,'scroll_of_gain-agi','gain-agi',1,34432,28,0,4080);
-INSERT INTO `item_basic` VALUES (5091,0,'scroll_of_gain-int','gain-int',1,34432,99,0,0);
+INSERT INTO `item_basic` VALUES (5091,490,'scroll_of_gain-int','gain-int',1,34432,28,0,4209);
 INSERT INTO `item_basic` VALUES (5092,491,'scroll_of_gain-mnd','gain-mnd',1,34432,28,0,3875);
 INSERT INTO `item_basic` VALUES (5093,492,'scroll_of_gain-chr','gain-chr',1,34432,28,0,3900);
 INSERT INTO `item_basic` VALUES (5094,479,'scroll_of_boost-str','boost-str',1,34432,28,0,4163);

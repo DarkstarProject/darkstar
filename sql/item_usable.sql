@@ -903,8 +903,11 @@ INSERT INTO `item_usable` VALUES (5078,'scroll_of_sentinels_scherzo',1,1,15,5,0,
 INSERT INTO `item_usable` VALUES (5079,'scroll_of_foe_lullaby_ii',1,1,15,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5082,'scroll_of_cura_ii',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5085,'scroll_of_regen_iv',1,1,11,5,0,0,0,0);
+INSERT INTO `item_usable` VALUES (5087,'scroll_of_gain-str',1,1,11,5,0,0,0,0);
+INSERT INTO `item_usable` VALUES (5088,'scroll_of_gain-dex',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5089,'scroll_of_gain-vit',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5090,'scroll_of_gain-agi',1,1,11,5,0,0,0,0);
+INSERT INTO `item_usable` VALUES (5091,'scroll_of_gain-int',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5092,'scroll_of_gain-mnd',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5093,'scroll_of_gain-chr',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5094,'scroll_of_boost-str',1,1,11,5,0,0,0,0);
