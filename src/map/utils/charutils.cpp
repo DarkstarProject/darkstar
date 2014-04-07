@@ -593,7 +593,11 @@ void LoadChar(CCharEntity* PChar)
         PChar->profile.mhflag = (uint8) Sql_GetIntData(SqlHandle,5);
 		PChar->profile.title  = (uint16)Sql_GetIntData(SqlHandle,6);
 
-        PChar->bazaar.message.insert(0,Sql_GetData(SqlHandle,7));
+        int8* bazaarMessage = Sql_GetData(SqlHandle, 7);
+        if (bazaarMessage != NULL)
+            PChar->bazaar.message.insert(0, Sql_GetData(SqlHandle, 7));
+        else
+            PChar->bazaar.message = '\0';
 
         // 2H recast time
 
