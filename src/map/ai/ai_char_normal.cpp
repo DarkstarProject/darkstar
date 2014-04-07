@@ -390,7 +390,7 @@ void CAICharNormal::ActionFall()
 	m_PChar->animation = ANIMATION_DEATH;
     m_PChar->m_DeathTimestamp = 0; //so char update packet will send the full homepoint timer 
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
-    //m_PChar->pushPacket(new CRaiseTractorMenuPacket(m_PChar,TYPE_HOMEPOINT)); sending this packet has no effect
+    m_PChar->pushPacket(new CRaiseTractorMenuPacket(m_PChar,TYPE_HOMEPOINT));
 
 	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE, new CCharPacket(m_PChar,ENTITY_UPDATE));
 
