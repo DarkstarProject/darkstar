@@ -13,9 +13,12 @@ function OnMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
+    local meritBonus = caster:getMerit(MERIT_BAR_SPELL_EFFECT);	
+    --printf("Barspell: Merit Bonus +%d", meritBonus);
+    
     local enchanceSkill = caster:getSkillLevel(34);
 
-    local power = 1 + 0.02 * enchanceSkill;
+    local power = 1 + 0.02 * enchanceSkill + meritBonus;
 
     local duration = 150;
 

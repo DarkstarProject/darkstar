@@ -84,6 +84,7 @@ struct map_config_t
 	float  exp_retain;				// percentage of normally lost experience to retain upon death
 	int8   exp_loss_level;			// Minimum main job level at which a character may lose experience points.
     bool   level_sync_enable;       // Enable/disable Level Sync
+    bool   all_jobs_widescan;       // Enable/disable jobs other than BST and RNG having widescan.
 	int8   speed_mod;				// Modifier to add to baseentity speed
 	float  skillup_multiplier;		// Constant used in the skillup formula that has a strong effect on skill-up rates
 	float  craft_multiplier;		// Constant used in the crafting skill-up formula that has a strong effect on skill-up rates

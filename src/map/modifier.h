@@ -283,6 +283,7 @@ enum MODIFIER
 
 	// Warrior
 	MOD_DOUBLE_ATTACK             =0x120,// Percent chance to proc (modId = 288)
+    MOD_WARCRY_DURATION           =0x1E3,// Warcy duration bonus from gear
 
 	// Monk
 	MOD_SUBTLE_BLOW               =0x121,// How much TP to reduce. (modId = 289)
@@ -527,7 +528,6 @@ enum MODIFIER
     MOD_MAGIC_ABSORB              =0x1DB,// (modId = 475)
     MOD_MAGIC_NULL                =0x1DC,// (modId = 476)
 
-	// MOD_SPARE	=0x1E3,// (modId = 483)
 	// MOD_SPARE	=0x1E4,// (modId = 484)
 	// MOD_SPARE	=0x1E5,// (modId = 485)
 	// MOD_SPARE	=0x1E6,// (modId = 486)
@@ -540,7 +540,7 @@ enum MODIFIER
 	MOD_EAT_RAW_MEAT			  =0x19A, // not implemented (modId = 410)
 };
 
-#define MAX_MODIFIER	       483
+#define MAX_MODIFIER	       484
 
 
 

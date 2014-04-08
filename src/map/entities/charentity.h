@@ -350,6 +350,9 @@ public:
 	uint8			  m_GMlevel;                    // Level of the GM flag assigned to this character
     bool              m_isGMHidden;                 // GM Hidden flag to prevent player updates from being processed.
 
+    bool              m_isMentor;                   // Mentor flag status.
+    bool              m_isNewPlayer;                // New player flag..
+
 	int8			  getShieldSize();
 
 	bool			  getWeaponSkillKill();
