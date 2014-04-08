@@ -182,7 +182,25 @@ void CInstance::capPlayerToBCNM(){ //adjust player's level to the appropriate ca
 	}
 	uint8 cap = getLevelCap();
 	if(cap != 0)
-	{
+	{	// Other missions lines and things like dragoon quest battle can be done similarly to CoP_Battle_cap.
+		// Might be better to add a type flag to the sql to tell bcnm/isnm/which expantions mission than doing by bcnmID like this.
+		if((map_config.CoP_Battle_cap == 0) && (m_BcnmID == 768 || m_BcnmID == 800 || m_BcnmID == 832 || m_BcnmID == 960
+		|| m_BcnmID == 704 || m_BcnmID == 961 || m_BcnmID == 864 || m_BcnmID == 672 || m_BcnmID == 736 || m_BcnmID == 992))
+		{
+		cap = 99;
+		}
+		if(cap < 99 && cap > 1)
+		{
+		cap = cap + map_config.Battle_cap_tweak;
+		}
+		if(cap > 99)
+		{
+		cap = 99;
+		}
+		if(cap < 1)
+		{
+		cap = 1;
+		}
 		for(int i=0; i<m_PlayerList.size(); i++)
 		{
 			m_PlayerList.at(i)->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE);
@@ -468,7 +486,7 @@ void CInstance::cleanupDynamis(){
 
 	//get all mob of this dyna zone
 	const int8* fmtQuery = "SELECT msp.mobid \
-						    FROM mob_spawn_points msp \
+							FROM mob_spawn_points msp \
 							LEFT JOIN mob_groups mg ON mg.groupid = msp.groupid \
 							WHERE zoneid = %u";
 

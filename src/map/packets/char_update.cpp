@@ -46,7 +46,7 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 	WBUFB(data,(0x28)-4) = (PChar->nameflags.byte2 << 1);
 	WBUFB(data,(0x2B)-4) = (PChar->nameflags.byte4 << 5) + PChar->nameflags.byte3;
 	WBUFB(data,(0x2F)-4) = (PChar->nameflags.byte4 >> 2);
-
+    
 	if (PChar->StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_INVISIBLE))
 	{
 		WBUFB(data,(0x2D)-4) = 0x80;
@@ -55,6 +55,11 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 	{
 		WBUFB(data,(0x38)-4) = 0x04;
 	}
+
+    if (PChar->m_isMentor)
+        WBUFB(data,(0x38)-4) |= 0x10; // Mentor flag.
+    if (PChar->m_isNewPlayer)
+        WBUFB(data,(0x38)-4) |= 0x0C; // New player ?
 
     WBUFB(data,(0x29)-4) = PChar->GetGender(); // +  управляем ростом: 0x02 - 0; 0x08 - 1; 0x10 - 2;
     WBUFB(data,(0x2C)-4) = PChar->GetSpeed();
@@ -83,7 +88,9 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
     if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TERROR))
         flag |= 0x08;
     WBUFB(data,(0x36)-4) = flag;
-	WBUFL(data,(0x3C)-4) = 0x0003A020;
+
+    if (!PChar->isDead() || PChar->m_DeathTimestamp == 0) //prevent this packet from resetting the homepoint timer after tractor
+        WBUFL(data,(0x3C)-4) = 0x0003A020;
 
     WBUFL(data,(0x40)-4) = CVanaTime::getInstance()->getVanaTime();
     WBUFW(data,(0x44)-4) = PChar->m_Costum;

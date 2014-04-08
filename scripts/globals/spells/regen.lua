@@ -19,16 +19,19 @@ function OnMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-
+	
 	local hp = 5;
+	local meritBonus = caster:getMerit(MERIT_REGEN_EFFECT);
 
+	--printf("Regen: Merit Bonus = Extra +%d", meritBonus);
+	
 	--TODO: put this into a mod? +1 hp PER TIER, would need a new mod
 	local body = caster:getEquipID(SLOT_BODY);
 	if (body == 15089 or body == 14502) then
 		hp = hp+1;
 	end
 
-	hp = hp + caster:getMod(MOD_REGEN_EFFECT);
+	hp = hp + caster:getMod(MOD_REGEN_EFFECT) + meritBonus;
 
 	local duration = 75;
 

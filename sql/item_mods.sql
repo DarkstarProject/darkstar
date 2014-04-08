@@ -37,6 +37,11 @@ CREATE TABLE IF NOT EXISTS `item_mods` (
 -- Contenu de la table `item_mods`
 --
 
+INSERT INTO `item_mods` VALUES(10650, 1, 36);
+INSERT INTO `item_mods` VALUES(10650, 8, 8);
+INSERT INTO `item_mods` VALUES(10650, 9, 8);
+INSERT INTO `item_mods` VALUES(10650, 110, 9);
+INSERT INTO `item_mods` VALUES(10650, 483, 20);
 INSERT INTO `item_mods` VALUES(11265, 1, 1);
 INSERT INTO `item_mods` VALUES(11266, 1, 1);
 INSERT INTO `item_mods` VALUES(11267, 1, 1);
@@ -9175,6 +9180,7 @@ INSERT INTO `item_mods` VALUES(15072, 1, 28);
 INSERT INTO `item_mods` VALUES(15072, 9, 5);
 INSERT INTO `item_mods` VALUES(15072, 27, 1);
 INSERT INTO `item_mods` VALUES(15072, 110, 5);
+INSERT INTO `item_mods` VALUES(15072, 483, 10);
 INSERT INTO `item_mods` VALUES(15073, 1, 23);
 INSERT INTO `item_mods` VALUES(15073, 3, 5);
 INSERT INTO `item_mods` VALUES(15073, 8, 5);
@@ -9898,6 +9904,7 @@ INSERT INTO `item_mods` VALUES(15245, 1, 29);
 INSERT INTO `item_mods` VALUES(15245, 9, 6);
 INSERT INTO `item_mods` VALUES(15245, 27, 1);
 INSERT INTO `item_mods` VALUES(15245, 110, 7);
+INSERT INTO `item_mods` VALUES(15245, 483, 10);
 INSERT INTO `item_mods` VALUES(15246, 1, 24);
 INSERT INTO `item_mods` VALUES(15246, 3, 5);
 INSERT INTO `item_mods` VALUES(15246, 8, 6);
