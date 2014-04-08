@@ -54,7 +54,7 @@ INSERT INTO `elevators` VALUES ('18', 'Pso\'Xja_Dspprng_Tls_4', '16814514', '0',
 INSERT INTO `elevators` VALUES ('19', 'Pso\'Xja_Dspprng_Tls_1', '16814515', '0', '0', '1', '1');
 INSERT INTO `elevators` VALUES ('20', 'Pso\'Xja_Dspprng_Tls_2', '16814516', '0', '0', '1', '1');
 INSERT INTO `elevators` VALUES ('21', 'Fort_Ghelsba_Elvtr', '17354988', '17354990', '17354989', '0', '0');
-INSERT INTO `elevators` VALUES ('22', 'Palborough_Mines_Elvtr', '17363339', '17363333', '17363332', '0', '0');
+INSERT INTO `elevators` VALUES ('22', 'Palborough_Mines_Elvtr', '17363340', '17363334', '17363333', '0', '0');
 INSERT INTO `elevators` VALUES ('23', 'Davoi_Elvtr', '17387993', '17387996', '17387994', '0', '0');
 INSERT INTO `elevators` VALUES ('24', 'Kuftal_Tunnel_Dspprng_Rck', '17490275', '0', '0', '1', '1');
 INSERT INTO `elevators` VALUES ('25', 'Port_Bastok_Drwbrdg', '17743962', '17743963', '17743964', '1', '1');
