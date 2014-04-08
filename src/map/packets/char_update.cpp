@@ -46,7 +46,7 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 	WBUFB(data,(0x28)-4) = (PChar->nameflags.byte2 << 1);
 	WBUFB(data,(0x2B)-4) = (PChar->nameflags.byte4 << 5) + PChar->nameflags.byte3;
 	WBUFB(data,(0x2F)-4) = (PChar->nameflags.byte4 >> 2);
-
+    
 	if (PChar->StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_INVISIBLE))
 	{
 		WBUFB(data,(0x2D)-4) = 0x80;
@@ -55,6 +55,11 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 	{
 		WBUFB(data,(0x38)-4) = 0x04;
 	}
+
+    if (PChar->m_isMentor)
+        WBUFB(data,(0x38)-4) |= 0x10; // Mentor flag.
+    if (PChar->m_isNewPlayer)
+        WBUFB(data,(0x38)-4) |= 0x0C; // New player ?
 
     WBUFB(data,(0x29)-4) = PChar->GetGender(); // +  управляем ростом: 0x02 - 0; 0x08 - 1; 0x10 - 2;
     WBUFB(data,(0x2C)-4) = PChar->GetSpeed();

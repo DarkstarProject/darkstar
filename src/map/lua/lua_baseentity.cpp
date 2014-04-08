@@ -8346,6 +8346,47 @@ inline int32 CLuaBaseEntity::SendRevision(lua_State* L)
 	return 0;
 }
 
+
+inline int32 CLuaBaseEntity::getNewPlayer(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    lua_pushboolean(L, ((CCharEntity*)m_PBaseEntity)->m_isNewPlayer);
+    return 1;
+}
+
+inline int32 CLuaBaseEntity::setNewPlayer(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isboolean(L,1));
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    PChar->m_isNewPlayer = lua_toboolean(L, 1);
+    charutils::SaveCharJob(PChar, PChar->GetMJob());
+    return 0;
+}
+
+inline int32 CLuaBaseEntity::getMentor(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    lua_pushboolean(L, ((CCharEntity*)m_PBaseEntity)->m_isMentor);
+    return 1;
+}
+inline int32 CLuaBaseEntity::setMentor(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isboolean(L,1));
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    PChar->m_isMentor = lua_toboolean(L, 1);
+    return 0;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -8712,5 +8753,9 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setUnkillable),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getInstance),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,SendRevision),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNewPlayer),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setNewPlayer),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMentor),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMentor),
 	{NULL,NULL}
 };

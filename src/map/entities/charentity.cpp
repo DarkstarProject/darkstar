@@ -45,6 +45,9 @@ CCharEntity::CCharEntity()
 	m_GMlevel = 0;
     m_isGMHidden = false;
 
+    m_isMentor = false;
+    m_isNewPlayer = true;
+
     TradeContainer  = new CTradeContainer();
 	Container       = new CTradeContainer();
 	UContainer      = new CUContainer();
