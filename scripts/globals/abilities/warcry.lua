@@ -13,7 +13,7 @@ function OnAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-    local merit = target:getMerit(MERIT_SAVAGERY);
+    local merit = player:getMerit(MERIT_SAVAGERY);
     local power = 0;
     local duration = 30;
 
@@ -27,5 +27,5 @@ function OnUseAbility(player, target, ability)
     duration = duration + player:getMod(MOD_WARCRY_DURATION);
 
 
-    player:addStatusEffect(EFFECT_WARCRY,power,0,duration,0,merit);
+    target:addStatusEffect(EFFECT_WARCRY,power,0,duration,0,merit);
 end;
