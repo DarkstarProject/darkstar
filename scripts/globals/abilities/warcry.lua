@@ -13,7 +13,7 @@ function OnAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-    local merit = target:getMerit(MERIT_SAVAGERY);
+    local merit = player:getMerit(MERIT_SAVAGERY);
     local power = 0;
     local duration = 30;
 
