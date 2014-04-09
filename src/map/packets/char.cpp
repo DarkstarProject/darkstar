@@ -89,6 +89,13 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type)
 			    }
             }
             WBUFB(data,(0x27)-4) = PChar->m_PVPFlag;
+            
+            // Mentor flag..
+            if (PChar->m_isMentor)
+                WBUFB(data, (0x2B)-4) = 0x01;
+            else
+                WBUFB(data, (0x2B)-4) = 0x00;
+            
             WBUFW(data,(0x30)-4) = PChar->m_Costum;
 
             WBUFL(data,(0x34)-4) = 0x010CA248; // black chocobo
