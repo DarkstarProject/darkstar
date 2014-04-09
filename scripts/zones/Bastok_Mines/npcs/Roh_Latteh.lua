@@ -34,7 +34,7 @@ end;
 function onTrigger(player,npc)
     local HasPainting = player:hasKeyItem(PAINTING_OF_A_WINDMILL);
 
-    if (player:getQuestStatus(BASTOK,THE_SIGNPOST_MARKS_THE_SPOT) == QUEST_ACCEPTED and HasPainting = true) then
+    if (player:getQuestStatus(BASTOK,THE_SIGNPOST_MARKS_THE_SPOT) == QUEST_ACCEPTED and HasPainting == true) then
         player:startEvent(0x0060);
     else
         player:startEvent(0x001d);
