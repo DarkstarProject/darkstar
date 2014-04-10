@@ -12,20 +12,20 @@ FULL_INVENTORY_AFTER_TRADE = 6378; -- You cannot obtain the <item>. Try trading 
 NOTHING_OUT_OF_ORDINARY = 6393; -- There is nothing out of the ordinary here.
 
 -- Altar of Ashes Dialog (unable to find csid)
-ALTAR_COMPLETED = 7204; -- You have already made an offering today.
-  ALTAR_INSPECT = 7205; -- This looks like the altar where offerings are to be placed.
- ALTAR_OFFERING = 7206; -- You place your offering of <item> on the altar.
- ALTAR_STANDARD = 7207; -- It is an altar for offerings.
+ALTAR_COMPLETED = 7209; -- You have already made an offering today.
+  ALTAR_INSPECT = 7210; -- This looks like the altar where offerings are to be placed.
+ ALTAR_OFFERING = 7211; -- You place your offering of <item> on the altar.
+ ALTAR_STANDARD = 7212; -- It is an altar for offerings.
 
 -- Treasure Coffer/Chest Dialog
-CHEST_UNLOCKED = 7215; -- You unlock the chest!
-    CHEST_FAIL = 7216; -- Fails to open the chest.
-    CHEST_TRAP = 7217; -- The chest was trapped!
-    CHEST_WEAK = 7218; -- You cannot open the chest when you are in a weakened state.
-   CHEST_MIMIC = 7219; -- The chest was a mimic!
-  CHEST_MOOGLE = 7220; -- You cannot open the chest while participating in the moogle event.
-CHEST_ILLUSION = 7221; -- The chest was but an illusion...
-  CHEST_LOCKED = 7222; -- The chest appears to be locked.
+CHEST_UNLOCKED = 7220; -- You unlock the chest!
+    CHEST_FAIL = 7221; -- Fails to open the chest.
+    CHEST_TRAP = 7222; -- The chest was trapped!
+    CHEST_WEAK = 7223; -- You cannot open the chest when you are in a weakened state.
+   CHEST_MIMIC = 7224; -- The chest was a mimic!
+  CHEST_MOOGLE = 7225; -- You cannot open the chest while participating in the moogle event.
+CHEST_ILLUSION = 7226; -- The chest was but an illusion...
+  CHEST_LOCKED = 7227; -- The chest appears to be locked.
 
 -- Mining
-MINING_IS_POSSIBLE_HERE = 7223; -- Mining is possible here if you have <item>.
+MINING_IS_POSSIBLE_HERE = 7228; -- Mining is possible here if you have <item>.

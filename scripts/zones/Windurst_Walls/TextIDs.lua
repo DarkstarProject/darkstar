@@ -3,7 +3,7 @@
 -- General Texts
    ITEM_CANNOT_BE_OBTAINED = 6535; -- Come back after sorting your inventory.
              ITEM_OBTAINED = 6538; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
-            ITEMS_OBTAINED = 6547; -- You obtain <<<Numeric Parameter 1>>> <<<Possible Special Code: 01>>><<<Speaker Name>>>
+            ITEMS_OBTAINED = 6547; -- You obtain ?Numeric Parameter 1? ?Possible Special Code: 01??Speaker Name?)??BAD CHAR: 80??BAD CHAR: 80??BAD CHAR: 8280??BAD CHAR: 80??BAD CHAR: 80?!?Prompt?
               GIL_OBTAINED = 6539; -- Obtained <<<Numeric Parameter 0>>> gil.
           KEYITEM_OBTAINED = 6541; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
     FISHING_MESSAGE_OFFSET = 6904; -- You can't fish here.

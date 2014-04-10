@@ -1,16 +1,16 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 4744; -- You cannot obtain the item <item> come back again after sorting your inventory
-ITEM_CANNOT_BE_OBTAINEDX = 9432; -- You cannot obtain the ?Possible Special Code: 01 ... Try trading again after sorting your inventory.?Prompt?
+ITEM_CANNOT_BE_OBTAINED = 214; -- You cannot obtain the item. Come back after sorting your inventory.?Prompt?
+ITEM_CANNOT_BE_OBTAINEDX = 215; -- You cannot obtain the ?Possible Special Code: 01??Possible Special Code: 05?#?BAD CHAR: 8280??BAD CHAR: 80??BAD CHAR: 80?. Try trading again after sorting your inventory.?Prompt?
           ITEM_OBTAINED = 216; -- Obtained: <item>
-         ITEM_OBTAINEDX = 225; -- You obtain ?Numeric Parameter 1? ?Possible Special Code: 01?
+         ITEM_OBTAINEDX = 225; -- You obtain ?Numeric Parameter 1? ?Possible Special Code: 01??Speaker Name?)??BAD CHAR: 80??BAD CHAR: 80??BAD CHAR: 8280??BAD CHAR: 80??BAD CHAR: 80?!?Prompt?
            GIL_OBTAINED = 217; -- Obtained <number> gil
        KEYITEM_OBTAINED = 219; -- Obtained key item: <keyitem>
     NOT_HAVE_ENOUGH_GIL = 221; -- You do not have enough gil
  FISHING_MESSAGE_OFFSET = 857; -- You can't fish here
           HOMEPOINT_SET = 1309; -- Home point set!
-          IMAGE_SUPPORT = 1342; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
+          IMAGE_SUPPORT = 1342; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ?Multiple Choice (Parameter 2)?[a little/ever so slightly/ever so slightly].?Prompt?
 
 -- Conquest system
 SANCTION = 9709; -- You have received the Empire's Sanction.

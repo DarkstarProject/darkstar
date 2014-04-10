@@ -17,7 +17,7 @@ CONQUEST =  7841; -- You've earned conquest points!
 
 -- Mission Dialogs
     YOU_ACCEPT_THE_MISSION =  7181; -- You have accepted the mission.
-   ORIGINAL_MISSION_OFFSET =  7186; -- You can consult the “Mission” section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed.<Prompt>
+   ORIGINAL_MISSION_OFFSET =  7186; -- You can consult the ï¿½Missionï¿½ section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed.<Prompt>
    EXTENDED_MISSION_OFFSET =  8306; -- Go to Ore Street and talk to Medicine Eagle. He says he was there when the commotion started.
 
 -- Dialog Texts
@@ -61,6 +61,6 @@ POWHATAN_DIALOG_1 =  7110; -- I'm sick and tired of entertaining guests.
   DHENTEVRYUKOH_OPEN_DIALOG =  8204; -- Welcome! Welcome! Take a wonderrr at these specialty goods from the Elshimo Uplands!
 DHENTEVRYUKOH_CLOSED_DIALOG =  8205; -- I'm trrrying to start a business selling goods from the Elshimo Uplands, but it's not easy transporting goods from areas that aren't under Bastokan contrrrol.
 
-      BLABBIVIX_SHOP_DIALOG =  8477; -- <Pshooowaaaaa> I come from the underworld. These chipshhh, you knooow, are popular among us Goblinshhh.
+      BLABBIVIX_SHOP_DIALOG =  8477; -- I come from the underworld. These chipshhh, you knooow, are popular among us Goblinshhh. Use with heart of shhhtatue.?Prompt?
     BAGNOBROK_CLOSED_DIALOG =  8960; -- Kbastok sis kweak! Smoblins yonly twant gstrong sfriends! Non sgoods mfrom Smovalpolos ytoday!
       BAGNOBROK_OPEN_DIALOG =  8961; -- Kbastok! Crepublic sis gstrong! Smoblins lsell sgoods oto gstrong sfriends!

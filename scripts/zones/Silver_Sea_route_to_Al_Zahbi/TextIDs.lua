@@ -5,10 +5,10 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item> come back a
           ITEM_OBTAINED = 6379; -- Obtained: <item>
            GIL_OBTAINED = 6380; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6382; -- Obtained key item: <keyitem>
- FISHING_MESSAGE_OFFSET = 7015; -- You can't fish here
+ FISHING_MESSAGE_OFFSET = 7020; -- You can't fish here
  
 -- Shops
-YAHLIQ_SHOP_DIALOG = 7270; -- You've picked the best place to shop for your items, guaranteed!
+YAHLIQ_SHOP_DIALOG = 7277; -- You've picked the best place to shop for your items, guaranteed!
 
 -- Other
-ON_WAY_TO_AL_ZAHBI = 7266; -- We are on our way to Al Zahbi. | We should arrive in [Game Hours, (Earth minutes)].
+ON_WAY_TO_AL_ZAHBI = 7273; -- We are on our way to Al Zahbi. | We should arrive in [Game Hours, (Earth minutes)].

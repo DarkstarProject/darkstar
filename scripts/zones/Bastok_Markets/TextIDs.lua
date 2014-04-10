@@ -7,9 +7,9 @@ FULL_INVENTORY_AFTER_TRADE =  6378; --Try trading again after sorting your inven
               GIL_OBTAINED =  6380; --Obtained <<<Numeric Parameter 0>>> gil.
           KEYITEM_OBTAINED =  6382; --Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
        NOT_HAVE_ENOUGH_GIL =  6384; --You do not have enough gil.
-            ITEMS_OBTAINED =  6388; --You obtain <<<Numeric Parameter 1>>> <<<Possible Special Code: 01>>><<<Speaker Name>>>
+            ITEMS_OBTAINED =  6388; --You obtain ?Numeric Parameter 1? ?Possible Special Code: 01??Speaker Name?)??BAD CHAR: 80??BAD CHAR: 80??BAD CHAR: 8280??BAD CHAR: 80??BAD CHAR: 80?!?Prompt?
              HOMEPOINT_SET =  6450; --Home point set!
-	  GOLDSMITHING_SUPPORT =  6921; -- Your â‰ºMultiple Choice (Parameter 1)â‰»[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
+	  GOLDSMITHING_SUPPORT =  6921; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
     FISHING_MESSAGE_OFFSET =  7050; --You can't fish here.
 
 -- Conquest System
@@ -17,7 +17,7 @@ CONQUEST =  7616; --You've earned conquest points!
 
 -- Mission Dialogs
     YOU_ACCEPT_THE_MISSION =  6471; --You have accepted the mission.
-   ORIGINAL_MISSION_OFFSET =  6476; --You can consult the “Mission” section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed.<Prompt>
+   ORIGINAL_MISSION_OFFSET =  6476; --You can consult the ?Mission? section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed.<Prompt>
    EXTENDED_MISSION_OFFSET =  7978; --Go to Ore Street and talk to Medicine Eagle. He says he was there when the commotion started.
 
 -- Other Dialogs
@@ -36,7 +36,7 @@ ITEM_DELIVERY_DIALOG =  7499; --Need something sent to a friend's house? Sending
      OGGODETT_CLOSED_DIALOG =  7412; --I'm trying to start a business selling goods from Aragoneu,
 
          TEERTH_SHOP_DIALOG =  7513; --Welcome to the Goldsmiths' Guild shop. What can I do for you?
-         VISALA_SHOP_DIALOG =  7513; --Welcome to the Goldsmiths' Guild shop. How may I help you?
+         VISALA_SHOP_DIALOG =  7514; --Welcome to the Goldsmiths' Guild shop. How may I help you?
         ZHIKKOM_SHOP_DIALOG =  7515; --Welcome to the only weaponry store in Bastok, the Dragon's Claws!
          CIQALA_SHOP_DIALOG =  7516; --A weapon is the most precious thing to an adventurer! Well, after his life, of course.
       PERITRAGE_SHOP_DIALOG =  7517; --Hey! I've got just the thing for you!

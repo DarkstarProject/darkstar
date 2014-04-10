@@ -14,7 +14,7 @@ ITEM_CANNOT_BE_OBTAINED = 6390; -- You cannot obtain the item <item>. Come back 
 PALEILLE_DELIVERY_DIALOG = 10306; -- We can deliver parcels to any residence in Vana'diel.
 
 -- Quest Dialog
-YOU_CAN_NOW_BECOME_A_SAMURAI = 10154; -- You accept the Mumeito from Gilgamesh. You can now become a samurai.
+YOU_CAN_NOW_BECOME_A_SAMURAI = 10154; -- You accept the ?Possible Special Code: 01??Possible Special Code: 05?#?BAD CHAR: 8280??BAD CHAR: 80??BAD CHAR: 80? from Gilgamesh. You can now become a samurai.?Prompt?
    CARRYING_TOO_MUCH_ALREADY = 10155; -- I wish to give you your reward, but you seem to be carrying too much already. Come back when you have more room in your pack.
    
 			  SPASIJA_DIALOG = 10305; -- Hiya! I can deliver packages to anybody, anywhere, anytime. What do you say?

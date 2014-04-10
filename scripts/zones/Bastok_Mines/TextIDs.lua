@@ -16,7 +16,7 @@ CONQUEST = 10951; --You've earned conquest points!
        
 -- Mission Dialogs
     YOU_ACCEPT_THE_MISSION =  6471; -- You have accepted the mission.
-   ORIGINAL_MISSION_OFFSET =  6476; -- You can consult the “Mission” section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed.<Prompt>
+   ORIGINAL_MISSION_OFFSET =  6476; -- You can consult the ï¿½Missionï¿½ section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed.<Prompt>
    EXTENDED_MISSION_OFFSET = 11454; -- Go to Ore Street and talk to Medicine Eagle. He says he was there when the commotion started.
  
 -- Dynamis dialogs

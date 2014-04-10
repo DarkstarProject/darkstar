@@ -6,4 +6,4 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6380; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6382; -- Obtained key item: <keyitem>
 	   
-			  DOOR_SHUT = 7646; -- The door is firmly shut.
+			  DOOR_SHUT = 7651; -- The door is firmly shut.

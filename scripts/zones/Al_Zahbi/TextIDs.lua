@@ -24,4 +24,4 @@ DEHBI_MOSHAL_SHOP_DIALOG = 7774; -- Welcome to the Carpenters' Guild!
 TATEN_BILTEN_SHOP_DIALOG = 7780; -- Weave something beautiful with the materials you buy here, okay?
 
 -- NPC Texts
-CHOCOBO_HAPPY = 7783; -- The Chocobo appears to be extremely happy. 
+CHOCOBO_HAPPY = 7783; -- ?Possible Special Code: 1F??Possible Special Code: 0F?The chocobo appears to be extremely happy.?Prompt?

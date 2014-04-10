@@ -9,7 +9,7 @@ FULL_INVENTORY_AFTER_TRADE = 6414; -- Try trading again after sorting your inven
 			  KEYITEM_LOST = 6419; -- Lots key item: <<<Unknown Parameter (Type: 80) 1>>>
              HOMEPOINT_SET =   24; -- Home point set!
        NOT_HAVE_ENOUGH_GIL = 6420; -- You do not have enough gil.
-           LEATHER_SUPPORT = 6708; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
+           LEATHER_SUPPORT = 6708; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ?Multiple Choice (Parameter 2)?[a little/ever so slightly/ever so slightly].?Prompt?
 
 -- Conquest System
 CONQUEST =  8414; -- You've earned conquest points!
@@ -87,5 +87,5 @@ FERDOULEMIONT_SHOP_DIALOG = 7890; -- Hello!
     VALERIANO_SHOP_DIALOG = 8062; -- Oh, a fellow outsider! We are Troupe Valeriano. I am Valeriano, at your service!
 
 		RAMINEL_DELIVERY  = 8027; -- Here's your delivery!
-			LUSIANE_THANK = 8028; -- Thank you!<Prompt>
+			LUSIANE_THANK = 8028; -- Thank you!?Prompt?
 	   RAMINEL_DELIVERIES = 8029; -- Sorry, I have deliveries to make!
