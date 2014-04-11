@@ -19,10 +19,6 @@ function onSpellCast(caster,target,spell)
     local enhskill = caster:getSkillLevel(ENHANCING_MAGIC_SKILL);
     local final = 0;
     local merits = caster:getMerit(MERIT_PHALANX_II);
-    
-    if (merits == 0) then --if caster has the spell but no merits in it, they are either a mob or we assume they are GM or otherwise gifted with max duration and effect
-        merits = 15;
-    end
 
     local duration = 90 + (10 * merits);
 

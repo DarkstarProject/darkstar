@@ -30,10 +30,6 @@ function onSpellCast(caster,target,spell)
 
         local merits = caster:getMerit(MERIT_PARALYZE_II);
 
-        if (merits == 0) then --if caster has the spell but no merits in it, they are either a mob or we assume they are GM or otherwise gifted with max duration and effect
-            merits = 5;
-        end
-
         local dMND = (pMND - mMND);
 
         -- Calculate potency.
