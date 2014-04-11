@@ -7,4 +7,4 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6382; -- Obtained key item: <keyitem>
 
 -- Other Texts
-NO_RESPONSE_OFFSET = 7212; -- There is no response.
+NO_RESPONSE_OFFSET = 7215; -- There is no response.
