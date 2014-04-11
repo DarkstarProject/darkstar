@@ -30,8 +30,11 @@ function onSpellCast(caster,target,spell)
 	local resist = applyResistanceEffect(caster,spell,target,dMND,35,0,EFFECT_SILENCE);
 		
     if(resist >= 0.5) then --Do it!
-        target:addStatusEffect(effectType,1,0,duration * resist);
-        spell:setMsg(236);
+        if(target:addStatusEffect(effectType,1,0,duration * resist)) then
+            spell:setMsg(236);
+        else
+            spell:setMsg(75); -- no effect
+        end
     else
         spell:setMsg(85);
     end
