@@ -7,5 +7,5 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6382; -- Obtained key item: <keyitem>
 	   
 	   --golden salvage
-                 CHEST  = 7483;--The chest contains...
-                 GOLDEN  = 7484; --..a golden figurehead!
+                 CHEST  = 7490;--The chest contains...
+                 GOLDEN  = 7491; --..a golden figurehead!
