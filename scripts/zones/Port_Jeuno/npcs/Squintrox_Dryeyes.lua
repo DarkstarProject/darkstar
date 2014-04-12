@@ -39,7 +39,7 @@ function onTrade(player,npc,trade)
 	local LastCrimson = player:getVar("LastCrimsonKey"); -- When last Crimson key was obtained
 
 	if (ENABLE_ACP == 0 and ENABLE_AMK == 0 and ENABLE_ASA ==0) then
-		player:showText(player,GET_LOST);
+		player:showText(npc,GET_LOST);
 	else	-- Crimson Key: Trade Seedspall's Lux, Luna, Astrum
 		if (ENABLE_ACP == 1 and sLux and sLuna and sAstrum and count == 3 and ACPm >= GATHERER_OF_LIGHT_I and CrimsonKey == false and now ~= LastCrimson) then -- and timer stuff here) then
 			player:tradeComplete();
@@ -62,7 +62,7 @@ end;
 
 function onTrigger(player,npc)
 	if (ENABLE_ACP == 0 and ENABLE_AMK == 0 and ENABLE_ASA ==0) then
-		player:showText(player,GET_LOST);
+		player:showText(npc,GET_LOST);
 	else
 		player:startEvent(0x0143);
 	end
