@@ -64,7 +64,12 @@ public class DarkstarNpcIdUpdate {
 		polUtilsString = polUtilsString.replaceAll("(&amp;)", "&");
 
 		final String insertString = "INSERT INTO `npc_list` VALUES (";
-		final int zoneIndex = npcIdString.indexOf("-- "+zoneName);				
+		int zoneIndex = npcIdString.indexOf("-- "+zoneName);
+		
+		if(npcIdString.indexOf("-- "+zoneName+" [S]")==zoneIndex && zoneName.indexOf("[S]")==-1){
+			zoneIndex = npcIdString.indexOf("-- "+zoneName, zoneIndex+("-- "+zoneName+" [S]").length());
+		}
+		
 		if(zoneIndex==-1) throw new RuntimeException("Cannot Find Zone");				
 		int trustedNpcIndex = npcIdString.indexOf(trustedNpcName, zoneIndex);
 		if(trustedNpcIndex==-1) {
@@ -76,7 +81,7 @@ public class DarkstarNpcIdUpdate {
 		final int trustedNpcStartIndex = npcIdString.lastIndexOf(insertString,trustedNpcIndex);
 		final int trustedNpcEndIndex = npcIdString.lastIndexOf(",",trustedNpcIndex);
 		final int trustedNpcCurrentValue = Integer.valueOf(npcIdString.substring(trustedNpcStartIndex+insertString.length(), trustedNpcEndIndex));
-		//log("Trusted NPC Current Value: "+trustedNpcCurrentValue);
+		log("Trusted NPC Current Value: "+trustedNpcCurrentValue);
 
 		int polutilsTrustedNpcIndex = polUtilsString.indexOf(trustedNpcName);
 		if(polutilsTrustedNpcIndex==-1) {
@@ -88,15 +93,15 @@ public class DarkstarNpcIdUpdate {
 		final int polutilsTrustedNpcStartIndex = polUtilsString.lastIndexOf("<field name=\"id\">", polutilsTrustedNpcIndex);
 		final int polutilsTrustedNpcEndIndex = polUtilsString.lastIndexOf("</field>", polutilsTrustedNpcIndex);
 		Integer trustedNpcNewValue = Integer.valueOf(polUtilsString.substring(polutilsTrustedNpcStartIndex+"<field name=\"id\">".length(), polutilsTrustedNpcEndIndex));
-		//log("Trusted NPC POLUtils: "+trustedNpcNewValue);
+		log("Trusted NPC POLUtils: "+trustedNpcNewValue);
 		String trustedNpcNewValueHexString = Integer.toHexString(trustedNpcNewValue);
-		//log("Trusted NPC Hex: "+trustedNpcNewValueHexString);
+		log("Trusted NPC Hex: "+trustedNpcNewValueHexString);
 		final String trustedNpcHexPrefix = trustedNpcNewValueHexString.substring(0,trustedNpcNewValueHexString.length()-3);
-		//log("Trusted NPC Hex Prefix: "+trustedNpcHexPrefix);
+		log("Trusted NPC Hex Prefix: "+trustedNpcHexPrefix);
 		trustedNpcNewValueHexString = trustedNpcNewValueHexString.substring(trustedNpcNewValueHexString.length()-3, trustedNpcNewValueHexString.length());
-		//log("Trusted NPC Hex Trim: "+trustedNpcNewValueHexString);
+		log("Trusted NPC Hex Trim: "+trustedNpcNewValueHexString);
 		trustedNpcNewValue = Integer.parseInt(trustedNpcNewValueHexString, 16);
-		//log("Trusted NPC POLUtils Value: "+trustedNpcNewValue);
+		log("Trusted NPC POLUtils Value: "+trustedNpcNewValue);
 
 		final int shift = trustedNpcNewValue - trustedNpcCurrentValue;
 
@@ -170,25 +175,25 @@ public class DarkstarNpcIdUpdate {
 
 					polUtilsNpcNewValueHex = trustedNpcHexPrefix + polUtilsNpcNewValueHex;
 
-					//log("Assert: Reconstructed Hex Value: "+polUtilsNpcNewValueHex);
+					log("Assert: Reconstructed Hex Value: "+polUtilsNpcNewValueHex);
 					final int polUtilsNpcNewValue = Integer.parseInt(polUtilsNpcNewValueHex, 16);
-					//log("Assert: Reconstructed POLUtils Integer Value: "+polUtilsNpcNewValue);				
+					log("Assert: Reconstructed POLUtils Integer Value: "+polUtilsNpcNewValue);				
 					final int polutilsNpcIntegerIndex = polUtilsString.indexOf(String.valueOf(polUtilsNpcNewValue));
-					//log("Assert: Reconstructed POLUtils Index: "+polutilsNpcIntegerIndex);
-					//log("Assert: Search: "+npcName);
+					log("Assert: Reconstructed POLUtils Index: "+polutilsNpcIntegerIndex);
+					log("Assert: Search: "+npcName);
 					String npcNameNoUnderscore = npcName.replaceAll("(_s_)","\\'s_");
 					npcNameNoUnderscore = npcNameNoUnderscore.replace('_',' ');
 
 					int polutilsNpcIndex = polUtilsString.indexOf(npcName, polutilsNpcIntegerIndex);
 
 					if(polutilsNpcIndex==-1){
-						//log("Assert: Search Alternate: "+npcNameNoUnderscore);
+						log("Assert: Search Alternate: "+npcNameNoUnderscore);
 						polutilsNpcIndex = polUtilsString.indexOf(npcNameNoUnderscore, polutilsNpcIntegerIndex);
 					}
 
-					//log("Assert: Reconstructed NPC Name Index: "+polutilsNpcIndex);
+					log("Assert: Reconstructed NPC Name Index: "+polutilsNpcIndex);
 					final String polutilsNpcName = polUtilsString.substring(polutilsNpcIndex, polutilsNpcIndex+npcName.length());
-					//log("Assert: POLUtils NPC Name: "+polutilsNpcName);
+					log("Assert: POLUtils NPC Name: "+polutilsNpcName);
 					final String polutilsNpcNameNoUnderscore = polutilsNpcName.replace('_',' '); 		
 
 					if(polutilsNpcName.equals(npcName) || polutilsNpcNameNoUnderscore.equals(npcName)){
