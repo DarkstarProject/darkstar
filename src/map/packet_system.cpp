@@ -579,7 +579,7 @@ void SmallPacket0x016(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			{
 				PEntity = zoneutils::GetTrigger(targid, PChar->getZone());
 			}
-			PChar->pushPacket(new CEntityUpdatePacket(PEntity, ENTITY_SPAWN));
+			PChar->pushPacket(new CEntityUpdatePacket(PEntity, ENTITY_SPAWN, UPDATE_ALL));
 		}
 	}
 	return;
@@ -631,7 +631,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 				if (luautils::OnTrigger(PChar, PNpc) == -1 && PNpc->animation == ANIMATION_CLOSE_DOOR)
 				{
 					PNpc->animation = ANIMATION_OPEN_DOOR;
-					PChar->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc,ENTITY_UPDATE));
+					PChar->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc,ENTITY_UPDATE,UPDATE_STATUS));
 					CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("close_door", gettick()+7000, PNpc, CTaskMgr::TASK_ONCE, close_door));
 				}
 			}

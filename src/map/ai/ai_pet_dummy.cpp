@@ -409,7 +409,7 @@ void CAIPetDummy::ActionAbilityUsing()
 		ActionAbilityFinish();
 	}
 
-    m_PPet->loc.zone->PushPacket(m_PPet,CHAR_INRANGE,new CEntityUpdatePacket(m_PPet,ENTITY_UPDATE));
+	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 }
 
 void CAIPetDummy::ActionAbilityFinish(){
@@ -494,7 +494,7 @@ void CAIPetDummy::ActionAbilityFinish(){
 	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CActionPacket(m_PPet));
 
 	if(Action.ActionTarget!=NULL && m_PPet->getPetType()==PETTYPE_AVATAR){ //todo: remove pet type avatar maybe
-		Action.ActionTarget->loc.zone->PushPacket(Action.ActionTarget,CHAR_INRANGE,new CEntityUpdatePacket(Action.ActionTarget,ENTITY_UPDATE));
+		Action.ActionTarget->loc.zone->PushPacket(Action.ActionTarget, CHAR_INRANGE, new CEntityUpdatePacket(Action.ActionTarget, ENTITY_UPDATE, UPDATE_COMBAT));
 	}
 
 	m_PBattleSubTarget = NULL;
@@ -532,14 +532,14 @@ bool CAIPetDummy::WyvernIsHealing(){
 		//animation down
 		m_PPet->animation = ANIMATION_HEALING;
 		m_PPet->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HEALING,0,0,10,0));
-		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 		return true;
 	}
 	else if(!isMasterHealing && isPetHealing){
 		//animation up
 		m_PPet->animation = ANIMATION_NONE;
 		m_PPet->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
-		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 		return false;
 	}
 	return isMasterHealing;
@@ -564,7 +564,7 @@ void CAIPetDummy::ActionRoaming()
 		if(WyvernIsHealing()){
 			m_PPathFind->LookAt(m_PPet->PMaster->loc.p);
 
-			m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+			m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 			if(m_PPet->PMaster->objtype == TYPE_PC){
 				((CCharEntity*)m_PPet->PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)m_PPet->PMaster));
 			}
@@ -606,7 +606,7 @@ void CAIPetDummy::ActionRoaming()
 			m_PPathFind->WarpTo(m_PPet->PMaster->loc.p, PET_ROAM_DISTANCE);
 		}
 
-        m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 	}
 }
 
@@ -658,7 +658,7 @@ void CAIPetDummy::ActionEngage()
 		m_PPet->animation = ANIMATION_ATTACK;
 		m_LastActionTime = m_Tick - 1000;
 		TransitionBack(true);
-		m_PPet->loc.zone->PushPacket(m_PPet,CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 	}
 	else
 	{
@@ -853,7 +853,7 @@ void CAIPetDummy::ActionAttack()
 		}
 	}
 
-    m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 
 }
 
@@ -864,7 +864,7 @@ void CAIPetDummy::ActionSleep()
     	TransitionBack();
     }
 
-	m_PPet->loc.zone->PushPacket(m_PPet,CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 
 }
 
@@ -881,7 +881,7 @@ void CAIPetDummy::ActionDisengage()
 	m_LastActionTime = m_Tick;
 	m_PBattleTarget  = NULL;
 	TransitionBack();
-	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 }
 
 /************************************************************************
@@ -898,11 +898,11 @@ void CAIPetDummy::ActionFall()
 		return;
 	}
 
-    m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 
 	if(m_PPet->PMaster->objtype == TYPE_PC && distance(m_PPet->loc.p, m_PPet->PMaster->loc.p) >= 50){
 		//master won't get this fall packet, so send it directly
-		((CCharEntity*)m_PPet->PMaster)->pushPacket(new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+		((CCharEntity*)m_PPet->PMaster)->pushPacket(new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 	}
 
 	m_LastActionTime = m_Tick;
@@ -919,7 +919,7 @@ void CAIPetDummy::ActionDeath()
 		//a charmed pet was killed
 		if(m_PPet->objtype == TYPE_MOB && m_PPet->PMaster->objtype == TYPE_PC)
 		{
-			((CCharEntity*)m_PPet->PMaster)->pushPacket(new CEntityUpdatePacket(m_PPet, ENTITY_DESPAWN));
+			((CCharEntity*)m_PPet->PMaster)->pushPacket(new CEntityUpdatePacket(m_PPet, ENTITY_DESPAWN, UPDATE_NONE));
 			petutils::DespawnPet(m_PPet->PMaster);
 			return;
 		}
@@ -927,11 +927,11 @@ void CAIPetDummy::ActionDeath()
 		if(m_PPet->PMaster!=NULL){
 			if(m_PPet->PMaster->objtype == TYPE_PC && distance(m_PPet->loc.p, m_PPet->PMaster->loc.p) >= 50){
 				//master won't get this despawn packet, so send it directly
-				((CCharEntity*)m_PPet->PMaster)->pushPacket(new CEntityUpdatePacket(m_PPet, ENTITY_DESPAWN));
+				((CCharEntity*)m_PPet->PMaster)->pushPacket(new CEntityUpdatePacket(m_PPet, ENTITY_DESPAWN, UPDATE_NONE));
 			}
 			m_PPet->PMaster->PPet = NULL;
 		}
-		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_DESPAWN));
+		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_DESPAWN, UPDATE_NONE));
 		if (m_PPet->PMaster != NULL && m_PPet->PMaster->objtype == TYPE_PC)
 		{
 			((CCharEntity*)m_PPet->PMaster)->pushPacket(new CCharUpdatePacket((CCharEntity*)m_PPet->PMaster));
@@ -963,7 +963,7 @@ void CAIPetDummy::ActionMagicStart()
 	{
 		m_ActionType = ACTION_MAGIC_CASTING;
 
-		m_PPet->loc.zone->PushPacket(m_PPet,CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 	}
 	else
 	{
@@ -994,7 +994,7 @@ void CAIPetDummy::ActionMagicCasting()
 	}
 	else
 	{
-		m_PPet->loc.zone->PushPacket(m_PPet,CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 	}
 
 }
@@ -1006,7 +1006,7 @@ void CAIPetDummy::ActionMagicFinish()
 
 	m_PMagicState->FinishSpell();
 
-	m_PPet->loc.zone->PushPacket(m_PPet,CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 
 	m_PSpell = NULL;
 	m_PBattleSubTarget = NULL;
@@ -1021,7 +1021,7 @@ void CAIPetDummy::ActionMagicInterrupt()
 
 	m_PMagicState->InterruptSpell();
 
-	m_PPet->loc.zone->PushPacket(m_PPet,CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE));
+	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 
 	m_PSpell = NULL;
 	m_PBattleSubTarget = NULL;

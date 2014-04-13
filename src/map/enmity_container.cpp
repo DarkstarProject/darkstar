@@ -292,7 +292,7 @@ void CEnmityContainer::LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percen
         {
             uint8 angle = getangle(m_EnmityHolder->loc.p, NewEntity->loc.p);
             m_EnmityHolder->loc.p.rotation = angle;
-            m_EnmityHolder->loc.zone->PushPacket(m_EnmityHolder, CHAR_INRANGE, new CEntityUpdatePacket(m_EnmityHolder, ENTITY_UPDATE));
+            m_EnmityHolder->loc.zone->PushPacket(m_EnmityHolder, CHAR_INRANGE, new CEntityUpdatePacket(m_EnmityHolder, ENTITY_UPDATE, UPDATE_POS));
         }
 	}
 }
