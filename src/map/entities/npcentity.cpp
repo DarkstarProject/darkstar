@@ -85,7 +85,7 @@ int32 reappear_npc(uint32 tick, CTaskMgr::CTask* PTask)
 	CNpcEntity* PNpc = (CNpcEntity*)PTask->m_data;
 
 	PNpc->status = STATUS_NORMAL;
-	PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc,ENTITY_UPDATE, UPDATE_STATUS));
+	PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc, ENTITY_UPDATE, UPDATE_COMBAT));
 	return 0;
 }
 

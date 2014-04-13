@@ -212,7 +212,7 @@ void CTransportHandler::TransportTimer()
             else if (ShipTimerOffset == PTransport->TimeAnimationArrive)
             {
                 PTransport->PDoorNPC->animation = ANIMATION_OPEN_DOOR;
-                PTransport->Dock.zone->PushPacket(PTransport->PDoorNPC, CHAR_INRANGE, new CEntityUpdatePacket(PTransport->PDoorNPC, ENTITY_UPDATE,UPDATE_STATUS)); 
+				PTransport->Dock.zone->PushPacket(PTransport->PDoorNPC, CHAR_INRANGE, new CEntityUpdatePacket(PTransport->PDoorNPC, ENTITY_UPDATE, UPDATE_COMBAT));
             }
             //корабль отчаливает
             else if (ShipTimerOffset == PTransport->TimeAnimationArrive + PTransport->TimeWaiting)
@@ -224,8 +224,8 @@ void CTransportHandler::TransportTimer()
                 WBUFL(&PTransport->PTransportNPC->name[0],4) = CVanaTime::getInstance()->getVanaTime();
 
                 PTransport->Dock.zone->TransportDepart(PTransport->PTransportNPC);
-                PTransport->Dock.zone->PushPacket(PTransport->PDoorNPC, CHAR_INRANGE, new CEntityUpdatePacket(PTransport->PDoorNPC, ENTITY_UPDATE,UPDATE_STATUS)); 
-                PTransport->Dock.zone->PushPacket(NULL, CHAR_INZONE, new CEntityUpdatePacket(PTransport->PTransportNPC, ENTITY_UPDATE,UPDATE_STATUS));
+				PTransport->Dock.zone->PushPacket(PTransport->PDoorNPC, CHAR_INRANGE, new CEntityUpdatePacket(PTransport->PDoorNPC, ENTITY_UPDATE, UPDATE_COMBAT));
+				PTransport->Dock.zone->PushPacket(NULL, CHAR_INZONE, new CEntityUpdatePacket(PTransport->PTransportNPC, ENTITY_UPDATE, UPDATE_COMBAT));
             }
             //корабль исчезает
             else if (ShipTimerOffset == PTransport->TimeAnimationArrive + PTransport->TimeWaiting + PTransport->TimeAnimationDepart)

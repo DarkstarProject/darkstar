@@ -96,11 +96,6 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 				WBUFB(data,(0x1D)-4) = PEntity->speedsub;
 			}
 
-			if (updatemask & UPDATE_STATUS)
-			{
-
-			}
-
 			switch(PEntity->objtype)
 			{
 				case TYPE_NPC:

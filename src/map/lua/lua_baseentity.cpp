@@ -2494,7 +2494,7 @@ inline int32 CLuaBaseEntity::showText(lua_State *L)
 			PBaseEntity->loc.zone->PushPacket(
 				PBaseEntity,
 				CHAR_INRANGE,
-				new CEntityUpdatePacket(PBaseEntity,ENTITY_UPDATE, UPDATE_STATUS));
+				new CEntityUpdatePacket(PBaseEntity,ENTITY_UPDATE, UPDATE_COMBAT));
 		}
 
         uint32 param0 = 0;
@@ -3382,7 +3382,7 @@ inline int32 CLuaBaseEntity::clearTargID(lua_State* L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 
 	m_PBaseEntity->m_TargID = 0;
-    m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity,CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity,ENTITY_UPDATE, UPDATE_STATUS));
+    m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity,CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity,ENTITY_UPDATE, UPDATE_POS));
 	return 0;
 }
 
@@ -3708,7 +3708,7 @@ inline int32 CLuaBaseEntity::setAnimation(lua_State *L)
 		{
 			((CCharEntity*)m_PBaseEntity)->pushPacket(new CCharUpdatePacket((CCharEntity*)m_PBaseEntity));
 		} else {
-            m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity,ENTITY_UPDATE, UPDATE_STATUS));
+            m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity,ENTITY_UPDATE, UPDATE_COMBAT));
 		}
 	}
 	return 0;
@@ -3767,7 +3767,7 @@ inline int32 CLuaBaseEntity::AnimationSub(lua_State *L)
 			{
 			    ((CCharEntity*)m_PBaseEntity)->pushPacket(new CCharUpdatePacket((CCharEntity*)m_PBaseEntity));
             } else {
-                m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_UPDATE, UPDATE_STATUS));
+                m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_UPDATE, UPDATE_COMBAT));
             }
         }
         return 0;
@@ -3870,7 +3870,7 @@ inline int32 CLuaBaseEntity::setStatus(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
 	m_PBaseEntity->status = (STATUSTYPE)lua_tointeger(L, 1);
-	m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_UPDATE, UPDATE_STATUS));
+	m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_UPDATE, UPDATE_COMBAT));
 	return 0;
 }
 
@@ -3887,7 +3887,7 @@ inline int32 CLuaBaseEntity::setPVPFlag(lua_State *L)
 
     ((CCharEntity*)m_PBaseEntity)->m_PVPFlag = 0x08;
 
-	m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_UPDATE, UPDATE_STATUS));
+	m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_UPDATE, UPDATE_COMBAT));
     return 0;
 }
 
@@ -5618,7 +5618,7 @@ inline int32 CLuaBaseEntity::changeSkin(lua_State *L)
 
 	PMob->SetNewSkin(lua_tointeger(L,1));
 
-	PMob->loc.zone->PushPacket(PMob, CHAR_INRANGE, new CEntityUpdatePacket(PMob,ENTITY_UPDATE, UPDATE_STATUS));
+	PMob->loc.zone->PushPacket(PMob, CHAR_INRANGE, new CEntityUpdatePacket(PMob, ENTITY_UPDATE, UPDATE_COMBAT));
 
 	return 0;
 }
@@ -6786,7 +6786,7 @@ inline int32 CLuaBaseEntity::showNPC(lua_State *L)
 	uint32 OpenTime = (!lua_isnil(L,1) && lua_isnumber(L,1)) ? (uint32)lua_tointeger(L,1) * 1000 : 15000;
 
 	m_PBaseEntity->status = STATUS_NORMAL;
-	m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_UPDATE, UPDATE_STATUS));
+	m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_UPDATE, UPDATE_COMBAT));
 
 	CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("disappear_npc", gettick()+OpenTime, m_PBaseEntity, CTaskMgr::TASK_ONCE, disappear_npc));
 
