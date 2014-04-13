@@ -4104,27 +4104,12 @@ void HandleAfflatusMiseryAccuracyBonus(CBattleEntity* PAttacker){
 	if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_AFFLATUS_MISERY) &&
 		PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_AUSPICE)){
 	
-		// We need to keep track of exactly how much accuracy this particular bonus ends up giving
-		// because when the effect wears off we have to reduce ACC again by that amount.
-		// So, it's been stored in a variable that will be used in OnEffectLoss
-		int8 selectFmtQuery[] = "SELECT value FROM char_vars WHERE charid = %u AND varname = '%s' ";
-		int32 ret = Sql_Query(SqlHandle, selectFmtQuery, PAttacker->id, "AFFLATUS_MISERY_ACCURACY_BONUS");
+		// We keep track of the running total of Accuracy Bonus in a seperate modifer.
+		// This is used to re-adjust MOD_ACC when the effect wears off
+		PAttacker->addModifier(MOD_AFFLATUS_MISERY_ACC_BONUS, 10);
 
-		// Each time this function is called, they'll get +10 acc
-		int32 accBonus = 0;
-
-		if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		{
-			accBonus = (int32)Sql_GetIntData(SqlHandle, 0);
-		}
-
-		accBonus = accBonus + 10;
-
-		// Store the Updated Accuracy Total
-		const int8* insertFmtQuery = "INSERT INTO char_vars SET charid = %u, varname = '%s', value = %i ON DUPLICATE KEY UPDATE value = %i;";
-		Sql_Query(SqlHandle, insertFmtQuery, PAttacker->id, "AFFLATUS_MISERY_ACCURACY_BONUS", accBonus, accBonus);
-
-		// Update the Accuracy Modifer
+		// Update the Accuracy Modifer as well, so that this is reflected
+		// throughout the battle system
 		PAttacker->addModifier(MOD_ACC, 10);
 	}
 }

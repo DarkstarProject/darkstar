@@ -112,9 +112,6 @@ function onSpellCast(caster,target,spell)
 
 	target:wakeUp();
 	
-	--Cura's Enmity Fixed @ 50 - See BGWiki
-	caster:updateEnmityFromCure(target, 50, 50);
-
 	--Enmity for Cura is fixed, so its CE/VE is set in the SQL and not calculated with updateEnmityFromCure
 	
 	spell:setMsg(367);

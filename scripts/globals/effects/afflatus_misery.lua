@@ -35,10 +35,10 @@ function onEffectLose(target,effect)
 	target:setMod(MOD_AFFLATUS_MISERY,0);
 	
 	--Clean Up Afflatus Misery Bonuses
-	local accuracyBonus = target:getVar("AFFLATUS_MISERY_ACCURACY_BONUS");
+	local accuracyBonus = target:getMod(MOD_AFFLATUS_MISERY_ACC_BONUS);
 	--printf("AUSPICE: Removing Accuracy Bonus +%d!", accuracyBonus);
 	target:delMod(MOD_ACC, accuracyBonus);
-	target:setVar("AFFLATUS_MISERY_ACCURACY_BONUS", 0);
+	target:setMod(MOD_AFFLATUS_MISERY_ACC_BONUS, 0);
 		
 	if(target:hasStatusEffect(EFFECT_AUSPICE)) then
 		target:setMod(MOD_ENSPELL,0);
