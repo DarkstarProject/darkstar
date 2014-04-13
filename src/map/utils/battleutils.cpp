@@ -4082,7 +4082,7 @@ float HandleTranquilHeart(CBattleEntity* PEntity){
 
 		// Checks for Tranquil Heart Trait
 		if (PExistingTrait->getID() == 114){ // Trait 114 = Tranquil Heart	
-			int16 healingSkill = PEntity->GetSkill(33); // Skill 33 = Healing Magic
+			int16 healingSkill = PEntity->GetSkill(SKILL_HEA);
 			reductionPercent = ((healingSkill / 10) * .5);
 
 			// Reduction Percent Caps at 25%
