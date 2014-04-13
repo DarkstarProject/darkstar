@@ -9,8 +9,8 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item> come back a
 NOTHING_OUT_OF_ORDINARY = 6393; -- There is nothing out of the ordinary here.
 
 -- Mining
-MINING_IS_POSSIBLE_HERE = 7174; -- Mining is possible here if you have <item>.
+MINING_IS_POSSIBLE_HERE = 7179; -- Mining is possible here if you have <item>.
 
 -- Other
- GASPONIA_POISON = 7194; -- The poison of the Gasponia has begun to spread through your body.
-OCCASIONAL_LUMPS = 7209; -- Occasionally lumps arise in the ground here, then settle down again. | It seems that there is something beneath the earth.
+ GASPONIA_POISON = 7199; -- The poison of the Gasponia has begun to spread through your body.
+OCCASIONAL_LUMPS = 7214; -- Occasionally lumps arise in the ground here, then settle down again. | It seems that there is something beneath the earth.

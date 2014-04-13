@@ -7,8 +7,8 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6382; -- Obtained key item: <keyitem>
 
 -- Other dialogs
-        SD_VERY_SMALL = 7541; -- The spatial displacement is very small.
-         SD_HAS_GROWN = 7542; -- The spatial displacement has grown.
-SPACE_SEEMS_DISTORTED = 7543; -- The space around you seems oddly distorted and disrupted.
-             MONUMENT = 7549; -- Something has been engraved on this stone, but the message is too difficult to make out.
-   GROUND_GIVING_HEAT = 7551; -- The ground here is giving off heat.
+        SD_VERY_SMALL = 7546; -- The spatial displacement is very small.
+         SD_HAS_GROWN = 7547; -- The spatial displacement has grown.
+SPACE_SEEMS_DISTORTED = 7548; -- The space around you seems oddly distorted and disrupted.
+             MONUMENT = 7554; -- Something has been engraved on this stone, but the message is too difficult to make out.
+   GROUND_GIVING_HEAT = 7556; -- The ground here is giving off heat.

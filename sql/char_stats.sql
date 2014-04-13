@@ -37,6 +37,6 @@ CREATE TABLE IF NOT EXISTS `char_stats` (
   `death` int(10) unsigned NOT NULL DEFAULT '0',
   `2h` int(10) unsigned NOT NULL DEFAULT '0',
   `title` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `bazaar_message` varchar(120) NOT NULL DEFAULT '\0',
+  `bazaar_message` BLOB,
   PRIMARY KEY (`charid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

@@ -39,6 +39,10 @@ CREATE TABLE `abilities` (
   PRIMARY KEY (`abilityId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56;
 
+
+
+
+
 -- ----------------------------
 -- Records of abilities
 -- ----------------------------
@@ -172,8 +176,8 @@ INSERT INTO `abilities` VALUES ('133', 'warriors_charge', '1', '75', '1', '300',
 INSERT INTO `abilities` VALUES ('134', 'tomahawk', '1', '75', '4', '180', '7', '0', '0', '244', '20.0', '0', '1', '600', '2050', '1');
 INSERT INTO `abilities` VALUES ('135', 'mantra', '2', '75', '1', '600', '19', '441', '0', '155', '20.0', '1', '1', '60', '2112', '1');
 INSERT INTO `abilities` VALUES ('136', 'formless_strikes', '2', '75', '1', '600', '20', '0', '0', '156', '20.0', '0', '1', '300', '2114', '1');
-INSERT INTO `abilities` VALUES ('137', 'martyr', '3', '75', '3', '600', '27', '119', '0', '157', '20.0', '0', '1', '300', '2176', '1');
-INSERT INTO `abilities` VALUES ('138', 'devotion', '3', '75', '3', '600', '28', '119', '0', '158', '20.0', '0', '1', '300', '2178', '1');
+INSERT INTO `abilities` VALUES ('137', 'martyr', '3', '75', '2', '600', '27', '119', '0', '157', '20.0', '0', '1', '300', '2176', '1');
+INSERT INTO `abilities` VALUES ('138', 'devotion', '3', '75', '2', '600', '28', '119', '0', '158', '10.0', '0', '1', '300', '2178', '1');
 INSERT INTO `abilities` VALUES ('139', 'assassins_charge', '6', '75', '1', '300', '67', '0', '0', '160', '20.0', '0', '1', '300', '2368', '1');
 INSERT INTO `abilities` VALUES ('140', 'feint', '6', '75', '1', '600', '68', '0', '0', '159', '20.0', '0', '1', '300', '2370', '1');
 INSERT INTO `abilities` VALUES ('141', 'fealty', '7', '75', '1', '600', '78', '0', '0', '148', '20.0', '0', '1', '300', '2432', '1');
@@ -270,7 +274,39 @@ INSERT INTO `abilities` VALUES ('233', 'innin', '13', '40', '1', '180', '147', '
 INSERT INTO `abilities` VALUES ('241', 'double_shot', '11', '79', '1', '180', '126', '0', '0', '225', '20.0', '0', '1', '300', '0', '0');
 INSERT INTO `abilities` VALUES ('304', 'konzen-ittai', '12', '65', '4', '180', '132', '529', '0', '36', '4.4', '0', '1', '300', '0', '0');
 INSERT INTO `abilities` VALUES ('327', 'bolster', '21', '0', '1', '7200', '0', '0', '0', '33', '20.0', '0', '1', '300', '0', '0');
-INSERT INTO `abilities` VALUES ('340', 'elemental_sforzo', '22', '0', '1', '7200', '0', '0', '0', '33', '20.0', '0', '1', '300', '0', '0');
+
+
+-- rune fencer
+INSERT INTO `abilities` VALUES ('340', 'elemental_sforzo', '22', '0', '1', '3600', '0', '0', '0', '302', '20.0', '0', '0', '0', '0', '0');
+INSERT INTO `abilities` VALUES ('341', 'Rune_enchantment', '22', '5', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `abilities` VALUES ('342', 'Ignis', '22', '5', '1', '10', '0', '0', '0', '291', '20.0', '0', '1', '300', '0', '0');
+INSERT INTO `abilities` VALUES ('343', 'Gelus', '22', '5', '1', '10', '0', '0', '0', '292', '20.0', '0', '1', '300', '0', '0');
+INSERT INTO `abilities` VALUES ('344', 'Flabra', '22', '5', '1', '10', '0', '0', '0', '293', '20.0', '0', '1', '300', '0', '0');
+INSERT INTO `abilities` VALUES ('345', 'Tellus', '22', '5', '1', '10', '0', '0', '0', '294', '20.0', '0', '1', '300', '0', '0');
+INSERT INTO `abilities` VALUES ('346', 'Sulpor', '22', '5', '1', '10', '0', '0', '0', '295', '20.0', '0', '1', '300', '0', '0');
+INSERT INTO `abilities` VALUES ('347', 'Unda', '22', '5', '1', '10', '0', '0', '0', '296', '20.0', '0', '1', '300', '0', '0');
+INSERT INTO `abilities` VALUES ('348', 'Lux', '22', '5', '1', '10', '0', '0', '0', '297', '20.0', '0', '1', '300', '0','0'); 
+INSERT INTO `abilities` VALUES ('349', 'Tenebrae', '22', '5', '1', '10', '0', '0', '0', '298', '20.0', '0', '1', '300', '0', '0');
+-- INSERT INTO `abilities` VALUES ('350', 'Vallation', '22', '20', '1', '300', '0', '0', '0', '???', '20.0', '0', '1', '300', '0', '0');
+INSERT INTO `abilities` VALUES ('351', 'Swordplay', '22', '20', '1', '300', '0', '0', '0', '299', '20.0', '0', '1', '300', '0', '0');
+-- INSERT INTO `abilities` VALUES ('352', 'Lunge', '22', '20', '1', '300', '0', '0', '0', '???', '20.0', '0', '1', '300', '0', '0');
+-- INSERT INTO `abilities` VALUES ('353', 'Pflug', '22', '20', '1', '300', '0', '0', '0', '???', '20.0', '0', '1', '300', '0', '0');
+-- INSERT INTO `abilities` VALUES ('354', 'Embolden', '22', '60', '1', '600', '0', '0', '0', '300', '20.0', '0', '1', '300', '0', '0');
+-- INSERT INTO `abilities` VALUES ('355', 'Valiance', '22', '20', '1', '300', '0', '0', '0', '???', '20.0', '0', '1', '300', '0', '0');
+-- INSERT INTO `abilities` VALUES ('356', 'Gambit', '22', '20', '1', '300', '0', '0', '0', '???', '20.0', '0', '1', '300', '0', '0');
+-- INSERT INTO `abilities` VALUES ('357', 'Liement', '22', '20', '1', '300', '0', '0', '0', '???', '20.0', '0', '1', '300', '0', '0');
+INSERT INTO `abilities` VALUES ('358', 'One_for_all', '22', '95', '1', '300', '0', '0', '0', '301', '20.0', '1', '1', '300', '0', '0');
+-- INSERT INTO `abilities` VALUES ('359', 'Rayke', '22', '20', '1', '300', '0', '0', '0', '???', '20.0', '0', '1', '300', '0', '0');
+-- INSERT INTO `abilities` VALUES ('360', 'Battuta', '22', '1', '1', '0', '300', '0', '0', '???', '20.0', '0', '1', '300', '0', '0');
+
+
+INSERT INTO `abilities` VALUES ('363', 'Ward', '22', '1', '1', '0', '0', '0', '0', '0', '20.0', '0', '1', '300', '0', '0');
+INSERT INTO `abilities` VALUES ('364', 'Effusion', '22', '1', '1', '0', '0', '0', '0', '0', '20.0', '0', '1', '300', '0', '0');
+
+INSERT INTO `abilities` VALUES ('367', 'Vivacious_pulse', '22', '1', '1', '300', '0', '0', '0', '327', '20.0', '0', '1', '300', '0', '0');
+
+-- run
+
 INSERT INTO `abilities` VALUES ('496', 'healing_ruby', '15', '1', '3', '60', '174', '0', '0', '6', '18.0', '0', '1', '60', '0', '0');
 INSERT INTO `abilities` VALUES ('497', 'poison_nails', '15', '5', '4', '60', '173', '0', '0', '11', '18.0', '0', '1', '60', '0', '0');
 INSERT INTO `abilities` VALUES ('498', 'shining_ruby', '15', '24', '1', '60', '174', '0', '0', '44', '18.0', '0', '1', '60', '0', '0');

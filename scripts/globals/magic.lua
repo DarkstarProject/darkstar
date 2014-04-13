@@ -97,6 +97,43 @@ function calculateMagicDamage(V,M,player,spell,target,skilltype,atttype,hasMulti
 
 end;
 
+function doBoostGain(caster,target,spell,effect)
+    local duration = 300;
+    if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
+        duration = duration * 3;
+    end
+    
+    --calculate potency
+    local magicskill = target:getSkillLevel(ENHANCING_MAGIC_SKILL);
+
+    local potency = math.floor((magicskill - 300) / 10) + 5; 
+    
+    if(potency > 25) then
+        potency = 25;
+    elseif(potency < 5) then
+        potency = 5;
+    end
+
+    --printf("BOOST-GAIN: POTENCY = %d", potency);
+    
+    --Only one Boost Effect can be active at once, so if the player has any we have to cancel & overwrite
+    local effectOverwrite = {80, 81, 82, 83, 84, 85, 86};
+    
+    for i, effect in ipairs(effectOverwrite) do
+            --printf("BOOST-GAIN: CHECKING FOR EFFECT %d...",effect);
+            if(caster:hasStatusEffect(effect)) then
+                --printf("BOOST-GAIN: HAS EFFECT %d, DELETING...",effect);
+                caster:delStatusEffect(effect);
+            end
+    end
+    
+    if(target:addStatusEffect(effect,potency,0,duration)) then
+        spell:setMsg(230);
+    else
+        spell:setMsg(75);
+    end
+end;
+
 function doEnspell(caster,target,spell,effect)
 
     if(effect==EFFECT_BLOOD_WEAPON) then
@@ -1209,11 +1246,14 @@ function calculateDurationForLvl(duration, spellLvl, targetLvl)
 end
 
 function calculateBarspellPower(caster,enhanceSkill)
+	local meritBonus = caster:getMerit(MERIT_BAR_SPELL_EFFECT);	
+	--printf("Barspell: Merit Bonus +%d", meritBonus);
+	
 	if (enhanceSkill == nil or enhanceSkill < 0) then
 		enhanceSkill = 0;
 	end
 
-	local power = 40 + 0.2 * enchanceSkill;
+	local power = 40 + 0.2 * enchanceSkill + meritBonus;
 	
 	local equippedLegs = caster:getEquipID(SLOT_LEGS);
 	if(equippedLegs == 15119) then

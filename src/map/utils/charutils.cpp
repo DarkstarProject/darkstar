@@ -339,7 +339,8 @@ void LoadChar(CCharEntity* PChar)
           "titles,"					// 18
           "zones,"					// 19
           "missions,"				// 20
-		  "playtime "				// 21
+		  "playtime,"				// 21
+          "isnewplayer "            // 22
         "FROM chars "
         "WHERE charid = %u";
 
@@ -404,6 +405,7 @@ void LoadChar(CCharEntity* PChar)
 		memcpy(PChar->m_missionLog, missions, (length > sizeof(PChar->m_missionLog) ? sizeof(PChar->m_missionLog) : length));
 
 		PChar->SetPlayTime(Sql_GetUIntData(SqlHandle, 21));
+        PChar->m_isNewPlayer = Sql_GetIntData(SqlHandle, 22) == 1 ? true : false;
 	}
 
 
@@ -593,7 +595,11 @@ void LoadChar(CCharEntity* PChar)
         PChar->profile.mhflag = (uint8) Sql_GetIntData(SqlHandle,5);
 		PChar->profile.title  = (uint16)Sql_GetIntData(SqlHandle,6);
 
-        PChar->bazaar.message.insert(0,Sql_GetData(SqlHandle,7));
+        int8* bazaarMessage = Sql_GetData(SqlHandle, 7);
+        if (bazaarMessage != NULL)
+            PChar->bazaar.message.insert(0, Sql_GetData(SqlHandle, 7));
+        else
+            PChar->bazaar.message = '\0';
 
         // 2H recast time
 
@@ -3930,6 +3936,13 @@ void SaveCharJob(CCharEntity* PChar, JOBTYPE job)
         case JOB_RUN: fmtQuery = "UPDATE char_jobs SET unlocked = %u, run = %u WHERE charid = %u LIMIT 1"; break;
 	}
     Sql_Query(SqlHandle, fmtQuery, PChar->jobs.unlocked, PChar->jobs.job[job], PChar->id);
+
+    // Remove the new player flag if we have reached level 10..
+    if (PChar->m_isNewPlayer && PChar->jobs.job[job] >= 10)
+    {
+        PChar->m_isNewPlayer = false;
+        Sql_Query(SqlHandle, "UPDATE chars SET isnewplayer = 0 WHERE charid = %u LIMIT 1", PChar->id);
+    }
 }
 
 /************************************************************************
@@ -4163,8 +4176,7 @@ bool hasMogLockerAccess(CCharEntity* PChar) {
 	if(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 	{
 		int32 tstamp  = (int32)Sql_GetIntData(SqlHandle,0);
-		uint32 now = time(NULL) - 1009810800;
-		if (now < tstamp) {
+		if (CVanaTime::getInstance()->getVanaTime() < tstamp) {
 			return true;
 		}
 	}

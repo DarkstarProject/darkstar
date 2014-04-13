@@ -843,6 +843,7 @@ int32 map_config_default()
     map_config.exp_retain = 0.0f;
     map_config.exp_loss_level = 4;
     map_config.level_sync_enable = 0;
+    map_config.all_jobs_widescan = 1;
     map_config.speed_mod = 0;
     map_config.skillup_multiplier = 2.5f;
     map_config.craft_multiplier = 2.6f;
@@ -852,6 +853,8 @@ int32 map_config_default()
     map_config.lightluggage_block = 4;
     map_config.max_time_lastupdate = 60000;
     map_config.newstyle_skillups = 7;
+    map_config.Battle_cap_tweak = 0;
+    map_config.CoP_Battle_cap = 1;
     map_config.max_merit_points = 30;
     map_config.audit_chat = 0;
     map_config.audit_say = 0;
@@ -973,6 +976,10 @@ int32 map_config_read(const int8* cfgName)
 		{
 			map_config.level_sync_enable = atoi(w2);
         }
+        else if (strcmp(w1,"all_jobs_widescan") == 0)
+        {
+            map_config.all_jobs_widescan = atoi(w2);
+        }
 		else if (strcmp(w1,"speed_mod") == 0)
 		{
 			map_config.speed_mod = atoi(w2);
@@ -1012,6 +1019,14 @@ int32 map_config_read(const int8* cfgName)
         else if(strcmpi(w1,"newstyle_skillups") == 0)
         {
             map_config.newstyle_skillups = atoi(w2);
+        }
+        else if (strcmp(w1,"Battle_cap_tweak") == 0)
+        {
+            map_config.Battle_cap_tweak = atoi(w2);
+        }
+        else if (strcmp(w1,"CoP_Battle_cap") == 0)
+        {
+            map_config.CoP_Battle_cap = atoi(w2);
         }
 		else if (strcmp(w1,"max_merit_points") == 0)
 		{

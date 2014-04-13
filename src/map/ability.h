@@ -484,7 +484,7 @@ public:
 	uint16		getID();
 	JOBTYPE		getJob();
 	uint8		getLevel();
-	uint8		getAnimationID();
+	uint16		getAnimationID();
 	float		getRange();
 	uint8		getAOE();
 	uint8		getValidTarget();
@@ -501,7 +501,7 @@ public:
 	void		setID(uint16 id);
 	void		setJob(JOBTYPE Job);
 	void		setLevel(uint8 level);
-	void		setAnimationID(uint8 animationID);
+	void		setAnimationID(uint16 animationID);
 	void		setRange(float range);
 	void		setAOE(uint8 aoe);
 	void		setValidTarget(uint8 validTarget);
@@ -522,7 +522,7 @@ private:
 	uint16		m_ID;
 	JOBTYPE		m_Job;
 	uint8		m_level;
-	uint8		m_animationID;
+	uint16		m_animationID;
 	uint8		m_range;
 	uint8		m_aoe;
 	uint8		m_validTarget;

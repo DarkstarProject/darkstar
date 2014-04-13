@@ -48,6 +48,7 @@ public:
 
     CBattleEntity*	GetHighestEnmity();			// Decays VE and gets target with highest enmity
 
+	float   CalculateEnmityBonus(CBattleEntity* PEntity);
 	void	Clear(uint32 EntityID = 0);			// Removes Entries from list
     void	AddBaseEnmity(CBattleEntity* PEntity);
 	void	UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, bool withMaster = true);

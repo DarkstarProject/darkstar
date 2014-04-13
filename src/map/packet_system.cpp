@@ -579,7 +579,7 @@ void SmallPacket0x016(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			{
 				PEntity = zoneutils::GetTrigger(targid, PChar->getZone());
 			}
-			PChar->pushPacket(new CEntityUpdatePacket(PEntity, ENTITY_SPAWN));
+			PChar->pushPacket(new CEntityUpdatePacket(PEntity, ENTITY_SPAWN, UPDATE_ALL));
 		}
 	}
 	return;
@@ -631,7 +631,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 				if (luautils::OnTrigger(PChar, PNpc) == -1 && PNpc->animation == ANIMATION_CLOSE_DOOR)
 				{
 					PNpc->animation = ANIMATION_OPEN_DOOR;
-					PChar->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc,ENTITY_UPDATE));
+					PChar->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc,ENTITY_UPDATE,UPDATE_COMBAT));
 					CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("close_door", gettick()+7000, PNpc, CTaskMgr::TASK_ONCE, close_door));
 				}
 			}
@@ -2252,7 +2252,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
                               quantity == 0,
                               PChar->id,
                               PChar->GetName(),
-                              CVanaTime::getInstance()->getSysTime(),
+                              (uint32)time(NULL),
                               price) == SQL_ERROR)
 			    {
 				    ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Cannot insert item to database\n" CL_RESET);
@@ -2307,7 +2307,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
                                       fmtQuery,
                                       PChar->GetName(),
                                       price,
-                                      CVanaTime::getInstance()->getSysTime(),
+                                      (uint32)time(NULL),
                                       itemid,
                                       quantity == 0,
                                       price) != SQL_ERROR &&
@@ -4323,8 +4323,167 @@ void SmallPacket0x0F2(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x0F4(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	PChar->loc.zone->WideScan(PChar,PChar->getMod(MOD_WIDESCAN));
-	return;
+    // Set Widescan range
+    // Distances need verified, based current values off what we had in traits.sql and data at http://wiki.ffxiclopedia.org/wiki/Wide_Scan 
+    // NOTE: Widescan was formerly piggy backed onto traits (resist slow) but is not a real trait, any attempt to give it a trait will place a dot on characters trait menu. 
+    if (map_config.all_jobs_widescan == 0)
+    {
+        // Limit to BST and RNG, and try to use old distance values for tiers
+        if (PChar->GetMJob() == JOB_RNG)
+        {
+            if (PChar->GetMLevel() >= 60)
+            {
+                PChar->loc.zone->WideScan(PChar,300);
+            }
+            else if (PChar->GetMLevel() >= 40)
+            {
+                PChar->loc.zone->WideScan(PChar,250);
+            }
+            else if (PChar->GetMLevel() >= 20)
+            {
+                PChar->loc.zone->WideScan(PChar,200);
+            }
+            else
+            {
+                PChar->loc.zone->WideScan(PChar,150);
+            }
+        }
+        else if (PChar->GetMJob() == JOB_BST)
+        {
+            if (PChar->GetMLevel() >= 60)
+            {
+                PChar->loc.zone->WideScan(PChar,250);
+            }
+            else if (PChar->GetMLevel() >= 40)
+            {
+                PChar->loc.zone->WideScan(PChar,200);
+            }
+            else if (PChar->GetMLevel() >= 20)
+            {
+                PChar->loc.zone->WideScan(PChar,150);
+            }
+            else
+            {
+                PChar->loc.zone->WideScan(PChar,50);
+            }
+        }
+        else if (PChar->GetSJob() == JOB_RNG)
+        {
+            if (PChar->GetSLevel() >= 40)
+            {
+                PChar->loc.zone->WideScan(PChar,250);
+            }
+            else if (PChar->GetSLevel() >= 20)
+            {
+                PChar->loc.zone->WideScan(PChar,200);
+            }
+            else
+            {
+                PChar->loc.zone->WideScan(PChar,150);
+            }
+        }
+        else if (PChar->GetSJob() == JOB_BST)
+        {
+            if (PChar->GetSLevel() >= 40)
+            {
+                PChar->loc.zone->WideScan(PChar,200);
+            }
+            else if (PChar->GetSLevel() >= 20)
+            {
+                PChar->loc.zone->WideScan(PChar,150);
+            }
+            else
+            {
+                PChar->loc.zone->WideScan(PChar,50);
+            }
+        }
+        else
+        {
+            // Not BST or RNG, get nothing!
+            PChar->loc.zone->WideScan(PChar,0);
+            // The zero needs set or client will lag on map screen saying downloading data.
+        }
+    }        
+    else if (map_config.all_jobs_widescan == 1)
+    {
+        // All jobs have 1st tier, and use current retail distance values for tiers
+        if (PChar->GetMJob() == JOB_RNG)
+        {
+            // Need verification
+            // if (PChar->GetMLevel() >= 80)
+            // {
+            //     PChar->loc.zone->WideScan(PChar,350);
+            // }
+            // else if (PChar->GetMLevel() >= 60)
+            if (PChar->GetMLevel() >= 60)
+            {
+                PChar->loc.zone->WideScan(PChar,300);
+            }
+            else if (PChar->GetMLevel() >= 40)
+            {
+                PChar->loc.zone->WideScan(PChar,250);
+            }
+            else if (PChar->GetMLevel() >= 20)
+            {
+                PChar->loc.zone->WideScan(PChar,200);
+            }
+            else
+            {
+                PChar->loc.zone->WideScan(PChar,150);
+            }
+        }
+        else if (PChar->GetMJob() == JOB_BST)
+        {
+            if (PChar->GetMLevel() >= 80)
+            {
+                PChar->loc.zone->WideScan(PChar,300);
+            }
+            else if (PChar->GetMLevel() >= 60)
+            {
+                PChar->loc.zone->WideScan(PChar,250);
+            }
+            else if (PChar->GetMLevel() >= 40)
+            {
+                PChar->loc.zone->WideScan(PChar,200);
+            }
+            else
+            {
+                PChar->loc.zone->WideScan(PChar,150);
+            }
+        }
+        else if (PChar->GetSJob() == JOB_RNG)
+        {
+            if (PChar->GetSLevel() >= 40)
+            {
+                PChar->loc.zone->WideScan(PChar,250);
+            }
+            else if (PChar->GetSLevel() >= 20)
+            {
+                PChar->loc.zone->WideScan(PChar,200);
+            }
+            else
+            {
+                PChar->loc.zone->WideScan(PChar,150);
+            }
+        }
+        else if (PChar->GetSJob() == JOB_BST)
+        {
+            if (PChar->GetSLevel() >= 40)
+            {
+                PChar->loc.zone->WideScan(PChar,200);
+            }
+            else
+            {
+                PChar->loc.zone->WideScan(PChar,150);
+            }
+        }
+        else
+        {
+            // Not BST or RNG, get base scan radius only!
+            PChar->loc.zone->WideScan(PChar,150);
+        }
+    }
+    return;
 }
 
 /************************************************************************

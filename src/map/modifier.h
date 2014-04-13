@@ -283,6 +283,7 @@ enum MODIFIER
 
 	// Warrior
 	MOD_DOUBLE_ATTACK             =0x120,// Percent chance to proc (modId = 288)
+    MOD_WARCRY_DURATION           =0x1E3,// Warcy duration bonus from gear
 
 	// Monk
 	MOD_SUBTLE_BLOW               =0x121,// How much TP to reduce. (modId = 289)
@@ -478,7 +479,7 @@ enum MODIFIER
 
 	MOD_SHIELD_BASH               =0x181,// (modId = 385)
 	MOD_KICK_DMG                  =0x182,// increases kick attack damage (modId = 386)
-	MOD_WEAPON_BASH               =0x188,// (modId = 387)
+	MOD_WEAPON_BASH               =0x188,// (modId = 392)
 
 	MOD_WYVERN_BREATH             =0x192,// (modId = 402)
 	MOD_STEP_ACCURACY             =0x193,// Bonus accuracy for Dancer's steps (modId = 403)
@@ -488,10 +489,10 @@ enum MODIFIER
 	MOD_DA_DOUBLE_DAMAGE		  =0x198,// Double attack's double damage chance %. (modId = 408)
 	MOD_TA_TRIPLE_DAMAGE		  =0x199,// Triple attack's triple damage chance %. (modId = 409)
 	MOD_ZANSHIN_DOUBLE_DAMAGE	  =0x19A,// Zanshin's double damage chance %. (modId = 410)
-	MOD_RAPID_SHOT_DOUBLE_DAMAGE  =0x19B,// Rapid shot's double damage chance %. (modId = 411)
-	MOD_ABSORB_DMG_CHANCE		  =0x19C,// Chance to absorb damage % (modId = 412)
-	MOD_EXTRA_DUAL_WIELD_ATTACK   =0x19D,// Chance to land an extra attack when dual wielding (modId = 413)
-	MOD_EXTRA_KICK_ATTACK		  =0x19E,// Occasionally allows a second Kick Attack during an attack round without the use of Footwork.  (modId = 414)
+	MOD_RAPID_SHOT_DOUBLE_DAMAGE  =0x1DF,// Rapid shot's double damage chance %. (modId = 479)
+	MOD_ABSORB_DMG_CHANCE		  =0x1E0,// Chance to absorb damage % (modId = 480)
+	MOD_EXTRA_DUAL_WIELD_ATTACK   =0x1E1,// Chance to land an extra attack when dual wielding (modId = 481)
+	MOD_EXTRA_KICK_ATTACK		  =0x1E2,// Occasionally allows a second Kick Attack during an attack round without the use of Footwork.  (modId = 482)
 	MOD_SAMBA_DOUBLE_DAMAGE		  =0x19F,// Double damage chance when samba is up. (modId = 415)
 	MOD_NULL_PHYSICAL_DAMAGE	  =0x1A0,// Chance to null physical damage. (modId = 416)
 	MOD_QUICK_DRAW_TRIPLE_DAMAGE  =0x1A1,// Chance to do triple damage with quick draw. (modId = 417)
@@ -527,11 +528,10 @@ enum MODIFIER
     MOD_MAGIC_ABSORB              =0x1DB,// (modId = 475)
     MOD_MAGIC_NULL                =0x1DC,// (modId = 476)
 
-    // MOD_SPARE	=0x1DD,// (modId = 477)
-    // MOD_SPARE	=0x1DE,// (modId = 478)
-    // MOD_SPARE	=0x1DF,// (modId = 479)
-    // MOD_SPARE	=0x1E0,// (modId = 480)
-    // MOD_SPARE	=0x1E1,// (modId = 481)
+	// MOD_SPARE	=0x1E4,// (modId = 484)
+	// MOD_SPARE	=0x1E5,// (modId = 485)
+	// MOD_SPARE	=0x1E6,// (modId = 486)
+	// MOD_SPARE	=0x1E7,// (modId = 487)
 
     MOD_ADDITIONAL_EFFECT         =0x1AF,// (modId = 431)
 
@@ -540,7 +540,7 @@ enum MODIFIER
 	MOD_EAT_RAW_MEAT			  =0x19A, // not implemented (modId = 410)
 };
 
-#define MAX_MODIFIER	       477
+#define MAX_MODIFIER	       484
 
 
 

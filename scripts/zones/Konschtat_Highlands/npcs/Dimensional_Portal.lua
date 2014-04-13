@@ -6,6 +6,7 @@
 package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/zones/Konschtat_Highlands/TextIDs");
 
@@ -21,13 +22,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if(player:hasKeyItem(LIGHT_OF_ALTAIEU)) then
+
+	if(player:hasKeyItem(LIGHT_OF_ALTAIEU) == true) or (DIMENSIONAL_PORTAL_UNLOCK == true) then
 		player:startEvent(0x0393);
 	else
 		player:messageSpecial(ALREADY_OBTAINED_TELE+1); -- Telepoint Disappeared
 	end
-	
+
 end;
 
 -----------------------------------

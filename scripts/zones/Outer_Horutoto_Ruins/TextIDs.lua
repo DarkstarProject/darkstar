@@ -7,14 +7,14 @@ ITEM_CANNOT_BE_OBTAINED = 6581; -- You cannot obtain the item <item>. Come back 
        KEYITEM_OBTAINED = 6587; -- Obtained key item: <keyitem>.
 
 -- Treasure Coffer/Chest Dialog
-CHEST_UNLOCKED = 7245; -- You unlock the chest!
-    CHEST_FAIL = 7246; -- Fails to open the chest.
-    CHEST_TRAP = 7247; -- The chest was trapped!
-    CHEST_WEAK = 7248; -- You cannot open the chest when you are in a weakened state.
-   CHEST_MIMIC = 7249; -- The chest was a mimic!
-  CHEST_MOOGLE = 7250; -- You cannot open the chest while participating in the moogle event.
-CHEST_ILLUSION = 7251; -- The chest was but an illusion...
-  CHEST_LOCKED = 7252; -- The chest appears to be locked.
+CHEST_UNLOCKED = 7250; -- You unlock the chest!
+    CHEST_FAIL = 7251; -- Fails to open the chest.
+    CHEST_TRAP = 7252; -- The chest was trapped!
+    CHEST_WEAK = 7253; -- You cannot open the chest when you are in a weakened state.
+   CHEST_MIMIC = 7254; -- The chest was a mimic!
+  CHEST_MOOGLE = 7255; -- You cannot open the chest while participating in the moogle event.
+CHEST_ILLUSION = 7256; -- The chest was but an illusion...
+  CHEST_LOCKED = 7257; -- The chest appears to be locked.
 
 -- Mission Texts
       ORB_ALREADY_PLACED = 0; -- A dark Mana Orb is already placed here.
@@ -29,5 +29,5 @@ FOURTH_DARK_ORB_IN_PLACE = 9; -- Forth Mana Orb Receptacle is ready for use.
  SIXTH_DARK_ORB_IN_PLACE = 11; -- Sixth Mana Orb Receptacle is ready for use.
  DARK_MANA_ORB_RECHARGER = 12; -- This appears to be a device that recharges Mana Orbs.
  
-        DOOR_FIRMLY_SHUT = 7220; -- The door is firmly shut.
-    ALL_G_ORBS_ENERGIZED = 7223; -- The six Mana Orbs have been successfully energized with magic!
+        DOOR_FIRMLY_SHUT = 7225; -- The door is firmly shut.
+    ALL_G_ORBS_ENERGIZED = 7228; -- The six Mana Orbs have been successfully energized with magic!

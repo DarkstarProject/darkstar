@@ -3,6 +3,7 @@
 --  HNM: Nidhogg
 -----------------------------------
 
+require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/status");
 
@@ -33,15 +34,19 @@ function onMobDeath(mob, killer)
     killer:addTitle(NIDHOGG_SLAYER);
 
     -- Set Nidhogg's Window Open Time
-    local wait = 72 * 3600
-    SetServerVariable("[POP]Nidhogg", os.time(t) + wait); -- 3 days
-    DeterMob(mob:getID(), true);
-    
+    if (LandKingSystem_HQ == 0 or LandKingSystem_HQ == 2) then
+        local wait = 72 * 3600
+        SetServerVariable("[POP]Nidhogg", os.time(t) + wait); -- 3 days
+        DeterMob(mob:getID(), true);
+    end
+
     -- Set Fafnir's spawnpoint and respawn time (21-24 hours)
-    local Fafnir = 17408018;
-    SetServerVariable("[PH]Nidhogg", 0);
-    DeterMob(Fafnir, false);
-    UpdateNMSpawnPoint(Fafnir);
-    GetMobByID(Fafnir):setRespawnTime(math.random((75600),(86400)));
+    if (LandKingSystem_NQ == 0 or LandKingSystem_NQ == 2) then
+        local Fafnir = 17408018;
+        SetServerVariable("[PH]Nidhogg", 0);
+        DeterMob(Fafnir, false);
+        UpdateNMSpawnPoint(Fafnir);
+        GetMobByID(Fafnir):setRespawnTime(math.random((75600),(86400)));
+    end
 
 end;
