@@ -129,6 +129,7 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
 	WBUFB(data,(0x1D)-4) = PChar->speedsub;
 	WBUFB(data,(0x1E)-4) = PChar->GetHPP();
 	WBUFB(data,(0x1F)-4) = PChar->animation;
+    WBUFB(data,(0x21)-4) = PChar->GetGender() * 128 + (1 << PChar->look.size);
 
 	WBUFB(data,(0x44)-4) = PChar->look.face;
 	WBUFB(data,(0x45)-4) = PChar->look.race;
