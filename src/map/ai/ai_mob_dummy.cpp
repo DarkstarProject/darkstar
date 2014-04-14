@@ -557,6 +557,8 @@ void CAIMobDummy::ActionFadeOut()
         m_ActionType  = m_PMob->m_AllowRespawn ? ACTION_SPAWN : ACTION_NONE;
 
         luautils::OnMobDespawn(m_PMob);
+
+		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
 	}
 }
 
