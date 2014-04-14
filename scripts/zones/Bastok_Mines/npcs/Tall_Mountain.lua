@@ -25,22 +25,16 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	function testflag(set,flag)
-		return (set % (2*flag) >= flag)
-	end
+    local StampHunt = player:getQuestStatus(BASTOK,STAMP_HUNT);
 
-	local checkStamp = testflag(tonumber(player:getVar("StampHunt_Event")),0x4);
-	
-	if(player:getCurrentMission(BASTOK) == RETURN_OF_THE_TALEKEEPER and player:getVar("MissionStatus") == 3) then
-		player:startEvent(0x00b6);
-    elseif(player:getQuestStatus(BASTOK,STAMP_HUNT) == QUEST_ACCEPTED and checkStamp == false) then
-        player:setVar("StampHunt_Event",stampCount+0x4);
+    if(player:getCurrentMission(BASTOK) == RETURN_OF_THE_TALEKEEPER and player:getVar("MissionStatus") == 3) then
+        player:startEvent(0x00b6);
+    elseif (StampHunt == QUEST_ACCEPTED and player:getMaskBit(player:getVar("StampHunt_Mask"),1) == false) then
         player:startEvent(0x0055);
     else
         player:startEvent(0x0037);
     end
-	
+
 end;
 
 -- 0x7fb5  0x0037  0x0055  0x00b0  0x00b4  0x00b6  0x024f  0x0251
@@ -50,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -59,11 +53,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-	
-	if(csid == 0x00b6) then
-		finishMissionTimeline(player,1,csid,option);
-	end
-	
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+
+    if (csid == 0x00b6) then
+        finishMissionTimeline(player,1,csid,option);
+    elseif (csid == 0x0055) then
+        player:setMaskBit(player:getVar("StampHunt_Mask"),"StampHunt_Mask",1,true);
+    end
+
 end;

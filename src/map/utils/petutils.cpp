@@ -919,7 +919,7 @@ void DespawnPet(CBattleEntity* PMaster)
 
 					PChar->PPet = NULL;
 					PChar->pushPacket(new CCharUpdatePacket(PChar));
-					PMob->loc.zone->PushPacket(PMob, CHAR_INRANGE, new CEntityUpdatePacket(PMob, ENTITY_UPDATE));
+					PMob->loc.zone->PushPacket(PMob, CHAR_INRANGE, new CEntityUpdatePacket(PMob, ENTITY_UPDATE, UPDATE_NONE));
 				}
 
 		}

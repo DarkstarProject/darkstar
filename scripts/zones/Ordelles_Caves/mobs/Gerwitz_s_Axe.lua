@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Ordelles Caves
--- NPC:  Gerwitz's Soul
--- Involved In Quest: Sharpening the Sword
+-- NPC:  Gerwitz's Axe
+-- Involved In Quest: Dark Puppet
 -- @pos -51 0.1 3 193
 -----------------------------------
 

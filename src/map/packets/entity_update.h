@@ -40,6 +40,17 @@ enum MODELTYPE
     MODEL_CHOCOBO   = 7     
 };
 
+enum UPDATETYPE
+{
+	UPDATE_NONE		= 0x00,
+	UPDATE_POS		= 0x01,
+	UPDATE_STATUS	= 0x02,
+	UPDATE_HP		= 0x04,
+	UPDATE_COMBAT	= 0x07,
+	UPDATE_NAME		= 0x08,
+	UPDATE_ALL		= 0x0F
+};
+
 /************************************************************************
 *																		*
 *  																		*
@@ -52,7 +63,7 @@ class CEntityUpdatePacket: public CBasicPacket
 {
 public:
 
-	CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type);
+	CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type, uint8 updatemask);
 };
 
 #endif

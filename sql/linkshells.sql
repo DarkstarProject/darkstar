@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `linkshells` (
   `name` varchar(20) NOT NULL DEFAULT '',
   `color` smallint(5) unsigned NOT NULL DEFAULT '61440',
   `poster` varchar(15) NOT NULL DEFAULT '',
-  `message` varchar(115) NOT NULL DEFAULT '',
+  `message` BLOB,
   `messagetime` int(10) unsigned NOT NULL DEFAULT '0',
   `postrights` tinyint(3) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`linkshellid`)

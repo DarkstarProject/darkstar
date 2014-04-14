@@ -7,10 +7,10 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6382; -- Obtained key item: <keyitem>
 	   
 -- Other
-OVERFLOWING_MEMORIES = 7177; -- It appears to be a barrier woven from the energy of overflowing memories...
+OVERFLOWING_MEMORIES = 7182; -- It appears to be a barrier woven from the energy of overflowing memories...
 
 -- Popped NM Spawns
-	 ON_NM_SPAWN = 7181; -- You sense a dark, empty presence...
-POPPED_NM_OFFSET = 7263; -- Remnants of a [Cerberator] lie scattered about the area.
+	 ON_NM_SPAWN = 7186; -- You sense a dark, empty presence...
+POPPED_NM_OFFSET = 7268; -- Remnants of a [Cerberator] lie scattered about the area.
 
 

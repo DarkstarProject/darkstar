@@ -3919,7 +3919,7 @@ int32 UpdateTreasureSpawnPoint(lua_State* L)
 		if(PNpc)
 		{
 			PNpc->status = STATUS_DISAPPEAR;
-			PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc, ENTITY_DESPAWN));
+			PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc, ENTITY_DESPAWN, UPDATE_NONE));
 		}
 
 		return 0;

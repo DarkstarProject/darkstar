@@ -31,6 +31,7 @@
 
 int32 close_door(uint32 tick,CTaskMgr::CTask *PTask); // закрываем дверь
 int32 open_door(uint32 tick,CTaskMgr::CTask *PTask);
+int32 disappear_npc(uint32 tick,CTaskMgr::CTask *PTask); // Used for showNPC lua function
 int32 reappear_npc(uint32 tick,CTaskMgr::CTask *PTask); // used for hideNPC lua function
 
 class CNpcEntity : public CBaseEntity {

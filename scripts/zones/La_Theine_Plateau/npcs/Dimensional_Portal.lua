@@ -5,6 +5,7 @@
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/zones/La_Theine_Plateau/TextIDs");
 
@@ -20,13 +21,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if(player:hasKeyItem(LIGHT_OF_ALTAIEU) == true) then
+
+	if(player:hasKeyItem(LIGHT_OF_ALTAIEU) == true) or (DIMENSIONAL_PORTAL_UNLOCK == true) then
         player:startEvent(0x00CC);
 	else
 		player:messageSpecial(ALREADY_OBTAINED_TELE+1); -- Telepoint Disappeared
 	end
-	
+
 end;
 
 -----------------------------------

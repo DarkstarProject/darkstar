@@ -581,8 +581,10 @@ EFFECT_AFTERGLOW                = 489 -- WS AFTEREFFECT
 EFFECT_BRAZEN_STRENGTH          = 490 -- 
 EFFECT_INNER_STRENGTH           = 491 
 EFFECT_ISSEKIGAN                = 484
+
+EFFECT_MARK_OF_SEED             = 790 -- Tracks 30 min timer in ACP mission "Those Who Lurk in Shadows (II)"
 EFFECT_ALL_MISS                 = 791
-EFFECT_SUPER_BUFF           = 792
+EFFECT_SUPER_BUFF               = 792
 EFFECT_NINJUTSU_ELE_DEBUFF      = 793
 EFFECT_HEALING                  = 794
 EFFECT_LEAVEGAME                = 795
@@ -887,6 +889,7 @@ MOD_ENSPELL             	= 0x155
 MOD_SPIKES              	= 0x156
 MOD_ENSPELL_DMG         	= 0x157
 MOD_SPIKES_DMG          	= 0x158
+MOD_TP_BONUS                = 0x159
 MOD_PERPETUATION_REDUCTION 	= 0x15A
 MOD_FIRE_AFFINITY		= 0x15B
 MOD_EARTH_AFFINITY		= 0x15C
@@ -939,8 +942,8 @@ MOD_LIGHT_ARTS_SKILL    = 0x150
 MOD_DARK_ARTS_SKILL     = 0x151
 MOD_REGEN_EFFECT        = 0x152
 MOD_REGEN_DURATION      = 0x153
-MOD_HELIX_EFFECT        = 0x154
-MOD_HELIX_DURATION		= 0x155
+MOD_HELIX_EFFECT        = 0x1DE
+MOD_HELIX_DURATION		= 0x1DD
 MOD_STORMSURGE_EFFECT   = 0x190
 MOD_SUBLIMATION_BONUS	= 0x191
 MOD_WYVERN_BREATH       = 0x192
@@ -953,10 +956,10 @@ MOD_REGAIN_DOWN			 = 0x196			-- plague, reduce tp
 MOD_DA_DOUBLE_DAMAGE		  =0x198 -- Double attack's double damage chance %.
 MOD_TA_TRIPLE_DAMAGE		  =0x199 -- Triple attack's triple damage chance %.
 MOD_ZANSHIN_DOUBLE_DAMAGE	  =0x19A -- Zanshin's double damage chance %.
-MOD_RAPID_SHOT_DOUBLE_DAMAGE  =0x19B -- Rapid shot's double damage chance %.
-MOD_ABSORB_DMG_CHANCE		  =0x19C -- Chance to absorb damage %
-MOD_EXTRA_DUAL_WIELD_ATTACK   =0x19D -- Chance to land an extra attack when dual wielding
-MOD_EXTRA_KICK_ATTACK		  =0x19E -- Occasionally allows a second Kick Attack during an attack round without the use of Footwork. 
+MOD_RAPID_SHOT_DOUBLE_DAMAGE  =0x1DF -- Rapid shot's double damage chance %.
+MOD_ABSORB_DMG_CHANCE		  =0x1E0 -- Chance to absorb damage %
+MOD_EXTRA_DUAL_WIELD_ATTACK   =0x1E1 -- Chance to land an extra attack when dual wielding
+MOD_EXTRA_KICK_ATTACK		  =0x1E2 -- Occasionally allows a second Kick Attack during an attack round without the use of Footwork. 
 MOD_SAMBA_DOUBLE_DAMAGE		  =0x19F -- Double damage chance when samba is up.
 MOD_NULL_PHYSICAL_DAMAGE	  =0x1A0 -- Chance to null physical damage.
 MOD_QUICK_DRAW_TRIPLE_DAMAGE  =0x1A1 -- Chance to do triple damage with quick draw.
@@ -1024,6 +1027,9 @@ MOD_DARK_NULL                 =0x1DA -- (modId = 474)
 
 MOD_MAGIC_ABSORB              =0x1DB -- (modId = 475)
 MOD_MAGIC_NULL                =0x1DC -- (modId = 476)
+
+MOD_WARCRY_DURATION           =0x1E3 -- Warcy duration bonus from gear
+
 -----------------------------------
 -- Merit Definitions
 -----------------------------------

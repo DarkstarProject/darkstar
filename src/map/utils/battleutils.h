@@ -200,6 +200,9 @@ namespace battleutils
     // returns damage taken
     int32               HandleStoneskin(CBattleEntity* PDefender, int32 damage);
 
+	// handles enmity loss calculations for tranquil heart
+	float               HandleTranquilHeart(CBattleEntity* PEntity);
+
 	void				assistTarget(CCharEntity* PChar, uint16 TargID);
     CMobSkill*          GetTwoHourMobSkill(JOBTYPE job);
 

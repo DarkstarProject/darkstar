@@ -22,7 +22,7 @@ local TreasureMinLvL = 43;
 
 function onTrade(player,npc,trade)
 
-	-- trade:hasItemQty(1047,1); 		-- Treasure Key
+	-- trade:hasItemQty(1047,1);			-- Treasure Key
 	-- trade:hasItemQty(1115,1);			-- Skeleton Key
 	-- trade:hasItemQty(1023,1);			-- Living Key
 	-- trade:hasItemQty(1022,1);			-- Thief's Tools
@@ -92,6 +92,7 @@ function onTrade(player,npc,trade)
 						player:messageSpecial(ITEM_OBTAINED,loot[2]);
 					end
 				end
+
 				UpdateTreasureSpawnPoint(npc:getID());
 			else
 				player:messageSpecial(CHEST_MIMIC);

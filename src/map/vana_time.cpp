@@ -29,14 +29,6 @@
 #include "vana_time.h"
 #include "utils/zoneutils.h"
 
-#define VTIME_BASEDATE		1009810800		// Real starting date for Vana time - used to be 1024844400?
-#define VTIME_YEAR			518400			// 360 * GameDay
-#define VTIME_MONTH			43200			// 30 * GameDay
-#define VTIME_WEEK			11520			// 8 * GameDay
-#define VTIME_DAY			1440			// 24 hours * GameHour
-#define VTIME_HOUR			60				// 60 minutes
-
-
 CVanaTime* CVanaTime::_instance = NULL;
 
 CVanaTime::CVanaTime()
@@ -91,11 +83,6 @@ uint32 CVanaTime::getWeekday()
 	return m_vDay;
 }
 
-uint32 CVanaTime::getSysTime()
-{
-	return (uint32)(time(NULL) + m_customOffset * 2.4f);
-}
-
 uint32 CVanaTime::getSysHour()
 {
 	time_t now = time(0);
@@ -136,11 +123,11 @@ uint32 CVanaTime::getSysYearDay()
 	return ltm->tm_yday;
 }
 
-
-
 uint32 CVanaTime::getVanaTime()
 {
-    return getSysTime() - VTIME_BASEDATE;
+    //if custom offset is re-implemented here is the place to put it
+    //all functions/variables for in game time should be derived from this
+    return (uint32)time(NULL) - VTIME_BASEDATE;
 }
 
 int32 CVanaTime::getCustomOffset()
@@ -151,15 +138,7 @@ int32 CVanaTime::getCustomOffset()
 void CVanaTime::setCustomOffset(int32 offset)
 {
 	m_customOffset = offset;
-
-	SyncTime();
-
-	if (m_vHour >= 20)      m_TimeType = TIME_NIGHT;
-	else if (m_vHour >= 18) m_TimeType = TIME_EVENING;
-	else if (m_vHour >= 17) m_TimeType = TIME_DUSK;
-	else if (m_vHour >=  7) m_TimeType = TIME_DAY;
-	else if (m_vHour >=  6) m_TimeType = TIME_DAWN;
-	else if (m_vHour >=  4) m_TimeType = TIME_NEWDAY;
+	m_TimeType = SyncTime();
 }
 
 TIMETYPE CVanaTime::GetCurrentTOTD()
@@ -170,9 +149,7 @@ TIMETYPE CVanaTime::GetCurrentTOTD()
 uint32 CVanaTime::getMoonPhase()
 {
 	int32  phase = 0;
-	uint32 rawtime = this->getSysTime();
-
-	int32  game_days = (int32)(rawtime - VTIME_BASEDATE) / 3456;
+	int32  game_days = (int32)this->getVanaTime() / 3456;
 	double daysmod   = (int32)(game_days - 22) % 84;
 
 	if (daysmod >= 42){
@@ -187,9 +164,7 @@ uint32 CVanaTime::getMoonPhase()
 uint8 CVanaTime::getMoonDirection()
 {
 	int32  phase = 0;
-	uint32 rawtime = this->getSysTime();
-
-	int32  game_days = (int32)(rawtime - VTIME_BASEDATE) / 3456;
+	int32  game_days = (int32)this->getVanaTime() / 3456;
 	double daysmod   = (int32)(game_days - 22) % 84;
 
 	if (daysmod == 42 || daysmod == 0){
@@ -203,12 +178,7 @@ uint8 CVanaTime::getMoonDirection()
 
 TIMETYPE CVanaTime::SyncTime()
 {
-	timeb SysTime;
-	ftime(&SysTime);
-
-	//Convert real time into Vana minutes
-
-	m_vanaDate  = (uint32)((SysTime.time + 92514960 ) / 60.0 * 25 );
+	m_vanaDate  = (uint32)(this->getVanaTime() / 60.0 * 25) + 886 * VTIME_YEAR; //convert vana time (from SE epoch in earth seconds) to vanadiel minutes and add 886 vana years
 
 	m_vYear = (uint32)( m_vanaDate / VTIME_YEAR);
 	m_vMon  = (uint32)((m_vanaDate / VTIME_MONTH) % 12) + 1;

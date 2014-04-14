@@ -105,12 +105,12 @@ uint8 CAbility::getAOE()
 	return m_aoe;
 }
 
-void CAbility::setAnimationID(uint8 animationID)
+void CAbility::setAnimationID(uint16 animationID)
 {
 	m_animationID = animationID;
 }
 
-uint8 CAbility::getAnimationID()
+uint16 CAbility::getAnimationID()
 {
 	return m_animationID;
 }

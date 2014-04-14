@@ -24,6 +24,13 @@
 #ifndef _CVANATIME_H
 #define _CVANATIME_H
 
+#define VTIME_BASEDATE		1009810800		// unix epoch - 1009810800 = se epoch (in earth seconds)
+#define VTIME_YEAR			518400			// 360 * GameDay
+#define VTIME_MONTH			43200			// 30 * GameDay
+#define VTIME_WEEK			11520			// 8 * GameDay
+#define VTIME_DAY			1440			// 24 hours * GameHour
+#define VTIME_HOUR			60				// 60 minutes
+
 #include "../common/cbasetypes.h"
 
 enum DAYTYPE
@@ -69,7 +76,6 @@ public:
 	uint32	 getWeekday();
 	uint32	 getMoonPhase();
 	uint8	 getMoonDirection();
-	uint32	 getSysTime();							// Timestamp of the system time
 	uint32	 getSysHour();
 	uint32	 getSysMinute();
 	uint32	 getSysSecond();

@@ -21,13 +21,16 @@ end;
 function onSpellCast(caster,target,spell)
 
 	local hp = 12;
+	local meritBonus = caster:getMerit(MERIT_REGEN_EFFECT);
+
+	--printf("Regen II: Merit Bonus = Extra +%d", meritBonus);
 
 	local body = caster:getEquipID(SLOT_BODY);
 	if (body == 15089 or body == 14502) then
 		hp = hp+2;
 	end
 
-	hp = hp + caster:getMod(MOD_REGEN_EFFECT);
+	hp = hp + caster:getMod(MOD_REGEN_EFFECT) + meritBonus;
 
 	local duration = 60;
 

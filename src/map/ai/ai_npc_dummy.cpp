@@ -83,7 +83,7 @@ void CAINpcDummy::ActionRoaming()
       luautils::OnNpcPath(m_PNpc);
     }
 
-    m_PNpc->loc.zone->PushPacket(m_PNpc,CHAR_INRANGE, new CEntityUpdatePacket(m_PNpc,ENTITY_UPDATE));
+    m_PNpc->loc.zone->PushPacket(m_PNpc,CHAR_INRANGE, new CEntityUpdatePacket(m_PNpc,ENTITY_UPDATE, UPDATE_POS));
 
   }
 }

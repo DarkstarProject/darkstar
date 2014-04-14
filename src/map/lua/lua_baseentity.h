@@ -419,6 +419,7 @@ public:
 
     int32 openDoor(lua_State*);             // открываем дверь
 	int32 closeDoor(lua_State*);		// npc.closeDoor(timeToStayClosed)
+	int32 showNPC(lua_State*);              // Show an NPC
 	int32 hideNPC(lua_State*);              // hide an NPC
 	int32 resetRecasts(lua_State*);         // Reset recasts for the caller
     int32 resetRecast(lua_State*);          // Reset one recast ID
@@ -520,6 +521,12 @@ public:
     int32 isNM(lua_State* L);
     int32 setUnkillable(lua_State* L);
     int32 getInstance(lua_State* L);
+
+    int32 getNewPlayer(lua_State* L);
+    int32 setNewPlayer(lua_State* L);
+
+    int32 getMentor(lua_State* L);
+    int32 setMentor(lua_State* L);
 };
 
 #endif

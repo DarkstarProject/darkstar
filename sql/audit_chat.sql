@@ -5,7 +5,7 @@ CREATE TABLE `audit_chat` (
 	`speaker` TINYTEXT NOT NULL,
 	`type` TINYTEXT NOT NULL,
 	`recipient` TINYTEXT NULL,
-	`message` TINYTEXT NOT NULL,
+	`message` BLOB,
 	`datetime` DATETIME NOT NULL,
 	PRIMARY KEY (`lineID`)
 )

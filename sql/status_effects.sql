@@ -518,6 +518,7 @@ INSERT INTO `status_effects` VALUES (486,'counter_boost',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (487,'endrain',32,94,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (488,'enaspir',32,94,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (489,'afterglow',32,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (790,'mark_of_seed',768,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (791,'all_miss',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (792,'super_buff',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (793,'ninjutsu_ele_debuff',544,0,0,0,0,0,0);

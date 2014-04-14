@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_OBTAINED,4181); -- Scroll of instant warp
 		end
 		player:setVar("TrialSizeLightning_date", 0);
-		player:addFame(MHAURA,WIN_FAME*30);
+		player:addFame(WINDURST,WIN_FAME*30);
 		player:completeQuest(OTHER_AREAS,TRIAL_SIZE_TRIAL_BY_LIGHTNING);
 	end		
 
