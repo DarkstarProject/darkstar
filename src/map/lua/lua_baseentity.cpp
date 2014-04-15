@@ -8387,6 +8387,33 @@ inline int32 CLuaBaseEntity::setMentor(lua_State* L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::hideName(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isboolean(L, 1));
+
+	m_PBaseEntity->HideName(lua_toboolean(L, 1));
+	return 0;
+}
+
+inline int32 CLuaBaseEntity::untargetable(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isboolean(L, 1));
+
+	m_PBaseEntity->untargetable = lua_toboolean(L, 1);
+	return 0;
+}
+
+inline int32 CLuaBaseEntity::hideHP(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isboolean(L, 1));
+
+	m_PBaseEntity->hpvis = lua_toboolean(L, 1);
+	return 0;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -8757,5 +8784,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setNewPlayer),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMentor),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMentor),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideName),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,untargetable),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideHP),
 	{NULL,NULL}
 };

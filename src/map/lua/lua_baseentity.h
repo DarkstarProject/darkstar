@@ -527,6 +527,10 @@ public:
 
     int32 getMentor(lua_State* L);
     int32 setMentor(lua_State* L);
+
+	int32 hideName(lua_State* L);
+	int32 untargetable(lua_State* L);
+	int32 hideHP(lua_State* L);
 };
 
 #endif
