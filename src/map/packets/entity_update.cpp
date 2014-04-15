@@ -70,7 +70,6 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 		{
 			switch(PEntity->objtype)
 			{
-				WBUFB(data,(0x20)-4) = 0x20;
 				case TYPE_PET:
 				{
 					WBUFB(data,(0x28)-4) = 0x04;
