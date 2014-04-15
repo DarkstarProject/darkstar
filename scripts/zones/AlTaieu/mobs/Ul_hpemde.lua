@@ -21,6 +21,10 @@ function onMobSpawn(mob)
         mob:hideName(true);
         mob:untargetable(true);
         mob:AnimationSub(5);
+    else
+        mob:hideName(false);
+        mob:untargetable(false);
+        mob:AnimationSub(6);
     end
 end;
 

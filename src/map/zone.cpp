@@ -1480,7 +1480,7 @@ void CZone::WideScan(CCharEntity* PChar, uint16 radius)
 	for (EntityList_t::const_iterator it = m_npcList.begin() ; it != m_npcList.end() ; ++it)
 	{
         CNpcEntity* PNpc = (CNpcEntity*)it->second;
-        if(PNpc->status == STATUS_NORMAL && PNpc->namevis == 0)
+        if(PNpc->status == STATUS_NORMAL && !PNpc->IsNameHidden())
         {
 		    if(distance(PChar->loc.p, PNpc->loc.p) < radius)
 		    {
@@ -1491,7 +1491,7 @@ void CZone::WideScan(CCharEntity* PChar, uint16 radius)
 	for (EntityList_t::const_iterator it = m_mobList.begin() ; it != m_mobList.end() ; ++it)
 	{
         CMobEntity* PMob = (CMobEntity*)it->second;
-        if(PMob->status != STATUS_DISAPPEAR)
+        if(PMob->status != STATUS_DISAPPEAR && !PMob->untargetable)
         {
 		    if(distance(PChar->loc.p, PMob->loc.p) < radius)
 		    {
