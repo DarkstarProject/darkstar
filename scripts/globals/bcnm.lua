@@ -71,7 +71,7 @@ bcnmid_param_map = {6,{640,0},
 					201,{416,0,417,1,418,2},
 					202,{448,0,449,1,450,2},
 					203,{480,0,481,1,482,2},
-					206,{512,0,517,5,518,6,519,7},
+					206,{512,0,517,5,518,6,519,7,532,20},
 					207,{544,0,545,1},
 					209,{576,0,577,1,578,2},
 					211,{608,0,609,1}};
@@ -563,6 +563,10 @@ function checkNonTradeBCNM(player,npc)
 		if(player:getCurrentMission(player:getNation()) == 14 and player:getVar("MissionStatus") == 11) then -- Mission 5-1
 			mask = GetBattleBitmask(512,Zone,1); 
 			player:setVar("trade_bcnmid",512);
+		-- Temp disabled pending BCNM mob fixes
+		-- elseif(player:getCurrentMission(ACP) >= THOSE_WHO_LURK_IN_SHADOWS_III and player:hasKeyItem(MARK_OF_SEED)) then -- ACP Mission 7
+			-- mask = GetBattleBitmask(532,Zone,1);
+			-- player:setVar("trade_bcnmid",532);
 		end
 	elseif(Zone == 207) then -- Cloister of Flames
 		if(player:hasKeyItem(TUNING_FORK_OF_FIRE)) then -- Trial by Fire

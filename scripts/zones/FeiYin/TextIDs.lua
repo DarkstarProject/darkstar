@@ -19,4 +19,16 @@ CHEST_ILLUSION = 7329; -- The chest was but an illusion...
 
 -- Other Dialog
     SENSE_OF_FOREBODING = 6573; -- You are suddenly overcome with a sense of foreboding...
-NOTHING_OUT_OF_ORDINARY = 7401; -- There is nothing out of the ordinary here.
+NOTHING_OUT_OF_ORDINARY = 6572; -- There is nothing out of the ordinary here.
+
+-- ACP mission
+         MARK_OF_SEED_HAS_VANISHED = 7465; -- The Mark of Seed has vanished without a trace...?Prompt?
+MARK_OF_SEED_IS_ABOUT_TO_DISSIPATE = 7465; -- The Mark of Seed is about to dissipate entirely! Only a faint outline remains...?Prompt?
+        MARK_OF_SEED_GROWS_FAINTER = 7464; -- The Mark of Seed grows fainter still. Before long, it will fade away entirely...?Prompt?
+             MARK_OF_SEED_FLICKERS = 7463; -- The glow of the Mark of Seed flickers and dims ever so slightly...?Prompt?
+      SCINTILLATING_BURST_OF_LIGHT = 7454; -- As you extend your hand, there is a scintillating burst of light!
+           YOU_REACH_FOR_THE_LIGHT = 7453; -- You reach for the light, but there is no discernable effect...?Prompt?
+            EVEN_GREATER_INTENSITY = 7452; -- The emblem on your hand glows with even greater intensity!?Prompt?
+                THE_LIGHT_DWINDLES = 7451; -- However, the light dwindles and grows dim almost at once...?Prompt?
+        YOU_REACH_OUT_TO_THE_LIGHT = 7450; -- You reach out to the light, and one facet of a curious seed-shaped emblem materializes on the back of your hand.
+           SOFTLY_SHIMMERING_LIGHT = 7449; -- You see a softly shimmering light...?Prompt?

@@ -61,7 +61,7 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
     if (PChar->m_isNewPlayer)
         WBUFB(data,(0x38)-4) |= 0x0C; // New player ?
 
-    WBUFB(data,(0x29)-4) = PChar->GetGender(); // +  управляем ростом: 0x02 - 0; 0x08 - 1; 0x10 - 2;
+    WBUFB(data,(0x29)-4) = PChar->GetGender() + (PChar->look.size > 0 ? PChar->look.size * 8 : 2); // +  управляем ростом: 0x02 - 0; 0x08 - 1; 0x10 - 2;
     WBUFB(data,(0x2C)-4) = PChar->GetSpeed();
 	WBUFB(data,(0x30)-4) = PChar->animation;
 

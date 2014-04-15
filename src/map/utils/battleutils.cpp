@@ -4071,6 +4071,34 @@ int32 RangedDmgTaken(CBattleEntity* PDefender, int32 damage)
     return damage * resist;
 }
 
+float HandleTranquilHeart(CBattleEntity* PEntity){
+	//ShowDebug(CL_CYAN"HandleTranquilHeart: Checking For Tranquil Heart...\n" CL_RESET);
+
+	float reductionPercent = 0;
+
+	for (uint8 j = 0; j < PEntity->TraitList.size(); ++j)
+	{
+		CTrait* PExistingTrait = PEntity->TraitList.at(j);
+
+		// Checks for Tranquil Heart Trait
+		if (PExistingTrait->getID() == 114){ // Trait 114 = Tranquil Heart	
+			int16 healingSkill = PEntity->GetSkill(SKILL_HEA);
+			reductionPercent = ((healingSkill / 10) * .5);
+
+			// Reduction Percent Caps at 25%
+			if (reductionPercent > 25){
+				reductionPercent = 25;
+			}
+
+			//ShowDebug(CL_CYAN"HandleTranquilHeart: Tranquil Heart is Active! Reduction Percent = %f\n" CL_RESET, reductionPercent);
+
+			reductionPercent = reductionPercent / 100;
+		}
+	}
+
+	return reductionPercent;
+}
+
 int32 HandleStoneskin(CBattleEntity* PDefender, int32 damage)
 {
     int16 skin = PDefender->getMod(MOD_STONESKIN);
@@ -4134,19 +4162,24 @@ CMobSkill* GetTwoHourMobSkill(JOBTYPE job)
 ************************************************************************/
 void assistTarget(CCharEntity* PChar, uint16 TargID)
 {
-
 	// get the player we want to assist
-	CBattleEntity* PlayerToAssist = (CBattleEntity*)PChar->loc.zone->GetEntity(TargID, TYPE_PC);
-
-	if (PlayerToAssist != NULL && PlayerToAssist->m_TargID != 0 && PlayerToAssist->objtype == TYPE_PC)
+	CBattleEntity* PlayerToAssist = (CBattleEntity*)PChar->loc.zone->GetEntity(TargID, TYPE_MOB | TYPE_PC);
+	if (PlayerToAssist != NULL)
 	{
-		// get that players target (mob,player,pet only)
-		CBattleEntity* EntityToLockon = (CBattleEntity*)PChar->loc.zone->GetEntity(PlayerToAssist->m_TargID, TYPE_MOB | TYPE_PC | TYPE_PET);
-
-		if (EntityToLockon != NULL)
+		if (PlayerToAssist->objtype == TYPE_PC && PlayerToAssist->m_TargID != 0)
+		{
+			// get that players target (mob,player,pet only)
+			CBattleEntity* EntityToLockon = (CBattleEntity*)PChar->loc.zone->GetEntity(PlayerToAssist->m_TargID, TYPE_MOB | TYPE_PC | TYPE_PET);
+			if (EntityToLockon != NULL)
+			{
+				// lock on to the new target!
+				PChar->pushPacket(new CLockOnPacket(PChar, EntityToLockon));
+			}
+		}
+		else if (PlayerToAssist->PBattleAI != NULL && PlayerToAssist->PBattleAI->GetBattleTarget() != NULL)
 		{
 			// lock on to the new target!
-			PChar->pushPacket(new CLockOnPacket(PChar, EntityToLockon));
+			PChar->pushPacket(new CLockOnPacket(PChar, PlayerToAssist->PBattleAI->GetBattleTarget()));
 		}
 	}
 }

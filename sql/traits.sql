@@ -276,6 +276,10 @@ INSERT INTO `traits` VALUES ('95','optimization','18','75','1','0','0');
 INSERT INTO `traits` VALUES ('96','closed position','19','75','1','0','0');
 INSERT INTO `traits` VALUES ('97','stormsurge','20','75','1','0','0');
 
+INSERT INTO `traits` VALUES ('114','tranquil heart','3','21','1','0','0');
+INSERT INTO `traits` VALUES ('114','tranquil heart','5','26','1','0','0');
+INSERT INTO `traits` VALUES ('114','tranquil heart','20','30','1','0','0');
+
 -- --- RUNE FENCER --- -- (Tenacity needs verifying)
 -- Tenacity Tier I
 INSERT INTO `traits` VALUES ('117','tenacity','22','5','1','240','5');
