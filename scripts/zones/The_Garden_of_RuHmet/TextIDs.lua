@@ -7,4 +7,4 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6382; -- Obtained key item: <keyitem>
        
 -- Other
-NO_NEED_INVESTIGATE = 7576; -- There is no need to investigate further.
+NO_NEED_INVESTIGATE = 7579; -- There is no need to investigate further.

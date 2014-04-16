@@ -62,11 +62,13 @@ function onTrade(player,npc,trade)
 					player:addItem(loot[2]);
 					player:messageSpecial(ITEM_OBTAINED,loot[2]);
 				end
+
+				UpdateTreasureSpawnPoint(npc:getID());
 			end
 		end
 	end
-
 end;
+
 -----------------------------------
 -- onTrigger Action
 -----------------------------------

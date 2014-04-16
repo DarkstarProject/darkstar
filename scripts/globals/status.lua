@@ -581,8 +581,10 @@ EFFECT_AFTERGLOW                = 489 -- WS AFTEREFFECT
 EFFECT_BRAZEN_STRENGTH          = 490 -- 
 EFFECT_INNER_STRENGTH           = 491 
 EFFECT_ISSEKIGAN                = 484
+
+EFFECT_MARK_OF_SEED             = 790 -- Tracks 30 min timer in ACP mission "Those Who Lurk in Shadows (II)"
 EFFECT_ALL_MISS                 = 791
-EFFECT_SUPER_BUFF           = 792
+EFFECT_SUPER_BUFF               = 792
 EFFECT_NINJUTSU_ELE_DEBUFF      = 793
 EFFECT_HEALING                  = 794
 EFFECT_LEAVEGAME                = 795
@@ -887,6 +889,7 @@ MOD_ENSPELL             	= 0x155
 MOD_SPIKES              	= 0x156
 MOD_ENSPELL_DMG         	= 0x157
 MOD_SPIKES_DMG          	= 0x158
+MOD_TP_BONUS                = 0x159
 MOD_PERPETUATION_REDUCTION 	= 0x15A
 MOD_FIRE_AFFINITY		= 0x15B
 MOD_EARTH_AFFINITY		= 0x15C
@@ -1024,6 +1027,9 @@ MOD_DARK_NULL                 =0x1DA -- (modId = 474)
 
 MOD_MAGIC_ABSORB              =0x1DB -- (modId = 475)
 MOD_MAGIC_NULL                =0x1DC -- (modId = 476)
+
+MOD_WARCRY_DURATION           =0x1E3 -- Warcy duration bonus from gear
+
 -----------------------------------
 -- Merit Definitions
 -----------------------------------

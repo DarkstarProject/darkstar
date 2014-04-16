@@ -500,7 +500,7 @@ void CZone::InsertPET(CBaseEntity* PPet)
 			if(distance(PPet->loc.p, PCurrentChar->loc.p) < 50)
 			{
 				PCurrentChar->SpawnPETList[PPet->id] = PPet;
-				PCurrentChar->pushPacket(new CEntityUpdatePacket(PPet, ENTITY_SPAWN));
+				PCurrentChar->pushPacket(new CEntityUpdatePacket(PPet, ENTITY_SPAWN, UPDATE_ALL));
 			}
 		}
 		return;
@@ -707,7 +707,7 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 				if( PET != PCurrentChar->SpawnPETList.end() )
 				{
 					PCurrentChar->SpawnPETList.erase(PET);
-					PCurrentChar->pushPacket(new CEntityUpdatePacket(PChar->PPet, ENTITY_DESPAWN));
+					PCurrentChar->pushPacket(new CEntityUpdatePacket(PChar->PPet, ENTITY_DESPAWN, UPDATE_NONE));
 				}
 			}
 			PChar->PPet = NULL;
@@ -973,7 +973,7 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
 				PChar->SpawnMOBList.key_comp()(PCurrentMob->id, MOB->first))
 			{
 				PChar->SpawnMOBList.insert(MOB, SpawnIDList_t::value_type(PCurrentMob->id, PCurrentMob));
-				PChar->pushPacket(new CEntityUpdatePacket(PCurrentMob, ENTITY_SPAWN));
+				PChar->pushPacket(new CEntityUpdatePacket(PCurrentMob, ENTITY_SPAWN, UPDATE_ALL));
 			}
 
 			if (PChar->isDead() || PChar->nameflags.flags & FLAG_GM || PCurrentMob->PMaster != NULL)
@@ -992,14 +992,14 @@ void CZone::SpawnMOBs(CCharEntity* PChar)
           PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
         }
 
-  		}
+  	  }
       else
       {
 			if( MOB != PChar->SpawnMOBList.end() &&
 			  !(PChar->SpawnMOBList.key_comp()(PCurrentMob->id, MOB->first)))
 			{
 				PChar->SpawnMOBList.erase(MOB);
-				PChar->pushPacket(new CEntityUpdatePacket(PCurrentMob,ENTITY_DESPAWN));
+				PChar->pushPacket(new CEntityUpdatePacket(PCurrentMob,ENTITY_DESPAWN, UPDATE_NONE));
 			}
 		}
 	}
@@ -1026,14 +1026,14 @@ void CZone::SpawnPETs(CCharEntity* PChar)
 				PChar->SpawnPETList.key_comp()(PCurrentPet->id, PET->first))
 			{
 				PChar->SpawnPETList.insert(PET, SpawnIDList_t::value_type(PCurrentPet->id, PCurrentPet));
-				PChar->pushPacket(new CEntityUpdatePacket(PCurrentPet,ENTITY_UPDATE));
+				PChar->pushPacket(new CEntityUpdatePacket(PCurrentPet,ENTITY_SPAWN, UPDATE_ALL));
 			}
 		}else{
 			if( PET != PChar->SpawnPETList.end() &&
 			  !(PChar->SpawnPETList.key_comp()(PCurrentPet->id, PET->first)))
 			{
 				PChar->SpawnPETList.erase(PET);
-				PChar->pushPacket(new CEntityUpdatePacket(PCurrentPet,ENTITY_DESPAWN));
+				PChar->pushPacket(new CEntityUpdatePacket(PCurrentPet,ENTITY_DESPAWN, UPDATE_NONE));
 			}
 		}
 	}
@@ -1060,14 +1060,14 @@ void CZone::SpawnNPCs(CCharEntity* PChar)
 					PChar->SpawnNPCList.key_comp()(PCurrentNpc->id, NPC->first))
 				{
 					PChar->SpawnNPCList.insert(NPC, SpawnIDList_t::value_type(PCurrentNpc->id, PCurrentNpc));
-					PChar->pushPacket(new CEntityUpdatePacket(PCurrentNpc,ENTITY_SPAWN));
+					PChar->pushPacket(new CEntityUpdatePacket(PCurrentNpc,ENTITY_SPAWN, UPDATE_ALL));
 				}
 			}else{
 				if( NPC != PChar->SpawnNPCList.end() &&
 				  !(PChar->SpawnNPCList.key_comp()(PCurrentNpc->id, NPC->first)))
 				{
 					PChar->SpawnNPCList.erase(NPC);
-					PChar->pushPacket(new CEntityUpdatePacket(PCurrentNpc,ENTITY_DESPAWN));
+					PChar->pushPacket(new CEntityUpdatePacket(PCurrentNpc,ENTITY_DESPAWN, UPDATE_NONE));
 				}
 			}
 		}
@@ -1148,7 +1148,7 @@ void CZone::SpawnMoogle(CCharEntity* PChar)
 			PCurrentNpc->look.face == 0x52)
 		{
 			PCurrentNpc->status = STATUS_NORMAL;
-			PChar->pushPacket(new CEntityUpdatePacket(PCurrentNpc,ENTITY_SPAWN));
+			PChar->pushPacket(new CEntityUpdatePacket(PCurrentNpc,ENTITY_SPAWN, UPDATE_ALL));
 			PCurrentNpc->status = STATUS_DISAPPEAR;
 			return;
 		}
@@ -1165,7 +1165,7 @@ void CZone::SpawnTransport(CCharEntity* PChar)
 {
 	if (m_Transport != NULL)
     {
-		PChar->pushPacket(new CEntityUpdatePacket(m_Transport, ENTITY_SPAWN));
+		PChar->pushPacket(new CEntityUpdatePacket(m_Transport, ENTITY_SPAWN, UPDATE_ALL));
 	    return;
     }
 }
@@ -1480,7 +1480,7 @@ void CZone::WideScan(CCharEntity* PChar, uint16 radius)
 	for (EntityList_t::const_iterator it = m_npcList.begin() ; it != m_npcList.end() ; ++it)
 	{
         CNpcEntity* PNpc = (CNpcEntity*)it->second;
-        if(PNpc->status == STATUS_NORMAL && PNpc->namevis == 0)
+        if(PNpc->status == STATUS_NORMAL && !PNpc->IsNameHidden())
         {
 		    if(distance(PChar->loc.p, PNpc->loc.p) < radius)
 		    {
@@ -1491,7 +1491,7 @@ void CZone::WideScan(CCharEntity* PChar, uint16 radius)
 	for (EntityList_t::const_iterator it = m_mobList.begin() ; it != m_mobList.end() ; ++it)
 	{
         CMobEntity* PMob = (CMobEntity*)it->second;
-        if(PMob->status != STATUS_DISAPPEAR)
+        if(PMob->status != STATUS_DISAPPEAR && !PMob->untargetable)
         {
 		    if(distance(PChar->loc.p, PMob->loc.p) < radius)
 		    {

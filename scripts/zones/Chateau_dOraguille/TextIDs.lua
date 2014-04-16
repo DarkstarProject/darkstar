@@ -8,7 +8,7 @@
               KEYITEM_LOST = 6583; -- Lost key item: << >>.
 
 -- Other Dialog
-TOMBSTONE = 7130; -- Here lies the beloved Queen Leaute. May Her Majesty's soul find Paradise.
+TOMBSTONE = 7135; -- Here lies the beloved Queen Leaute. May Her Majesty's soul find Paradise.
 
 -- Mission dialog
-HALVER_OFFSET = 6751; -- The princess is always speaking of your deeds for the Kingdom. Everyone here is counting on you, <<<Player Name>>>.
+HALVER_OFFSET = 6756; -- The princess is always speaking of your deeds for the Kingdom. Everyone here is counting on you, <<<Player Name>>>.

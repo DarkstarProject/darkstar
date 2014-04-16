@@ -8,10 +8,11 @@ package.loaded["scripts/zones/QuBia_Arena/TextIDs"] = nil;
 
 require("scripts/globals/bcnm");
 require("scripts/globals/missions");
+require("scripts/globals/keyitems");
 require("scripts/zones/QuBia_Arena/TextIDs");
 
 -------------------------------------
-	
+
 	-- 0: The Ruins of Fei'Yin, Darkness Rising, The Final Seal (Rank 5 Mission)
 	-- 1: Come Into My Parlor
 	-- 2: E-vase-ive Action
@@ -40,11 +41,11 @@ require("scripts/zones/QuBia_Arena/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
+
 	if(TradeBCNM(player,player:getZone(),trade,npc))then
 		return;
 	end
-	
+
 end;
 
 -----------------------------------
@@ -52,11 +53,16 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+
+	-- if(player:hasKeyItem(MARK_OF_SEED) and player:getCurrentMission(ACP) == THOSE_WHO_LURK_IN_SHADOWS_II) then
+		--player:startEvent(0x005);
+	--elseif(EventTriggerBCNM(player,npc)) then
+	-- Temp disabled pending fixes for the BCNM mobs.
+
 	if(EventTriggerBCNM(player,npc))then
 		return;
 	end
-	
+
 end;
 
 -----------------------------------
@@ -64,13 +70,13 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("onUpdate CSID: %u",csid);
---printf("onUpdate RESULT: %u",option);
-	
-	if(EventUpdateBCNM(player,csid,option))then
+	-- printf("onUpdate CSID: %u",csid);
+	-- printf("onUpdate RESULT: %u",option);
+
+	if (EventUpdateBCNM(player,csid,option)) then
 		return;
 	end
-	
+
 end;
 
 -----------------------------------
@@ -78,11 +84,14 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("onFinish CSID: %u",csid);
---printf("onFinish RESULT: %u",option);
-	
-	if(EventFinishBCNM(player,csid,option))then
+	-- printf("onFinish CSID: %u",csid);
+	-- printf("onFinish RESULT: %u",option);
+
+	if (csid == 0x005) then
+		player:completeMission(ACP,THOSE_WHO_LURK_IN_SHADOWS_II);
+		player:addMission(ACP,THOSE_WHO_LURK_IN_SHADOWS_III);
+	elseif (EventFinishBCNM(player,csid,option)) then
 		return;
 	end
-	
+
 end;

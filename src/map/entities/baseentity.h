@@ -125,6 +125,8 @@ public:
 	uint8			speed;				// скорость передвижения
 	uint8			speedsub;			// подолнительный параметр скорости передвижения
 	uint8			namevis; 
+	bool			untargetable;
+	bool			hpvis;
 
 	virtual const int8* GetName();      // имя сущности
 

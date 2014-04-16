@@ -370,7 +370,7 @@ void CInstance::cleanup(){
 		m_NpcList.at(i)->loc.zone->PushPacket(m_NpcList.at(i), CHAR_INRANGE, new CFadeOutPacket(m_NpcList.at(i)));
 		m_NpcList.at(i)->animation = ANIMATION_DEATH;
 		m_NpcList.at(i)->status = STATUS_UPDATE;
-		m_NpcList.at(i)->loc.zone->PushPacket(m_NpcList.at(i), CHAR_INRANGE, new CEntityUpdatePacket(m_NpcList.at(i), ENTITY_UPDATE));
+		m_NpcList.at(i)->loc.zone->PushPacket(m_NpcList.at(i), CHAR_INRANGE, new CEntityUpdatePacket(m_NpcList.at(i), ENTITY_UPDATE, UPDATE_COMBAT));
 	}
 	//wipe npc list
 	m_NpcList.clear();

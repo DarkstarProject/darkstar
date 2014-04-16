@@ -10,4 +10,4 @@ ITEM_CANNOT_BE_OBTAINED = 6934; -- You cannot obtain the item <item> come back a
 	   
 	   
 -- Other Texts
-ITEM_DELIVERY_DIALOG = 7642; -- >Hello! Any packages to sendy-wend?
+ITEM_DELIVERY_DIALOG = 7647; -- Hello! Any packages to sendy-wend??Prompt?

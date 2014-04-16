@@ -1,17 +1,17 @@
 -----------------------------------
 -- Area: Ordelles Caves
--- NPC:  ???
+-- NPC:  Treasure Chest
 -- Involved In Quest: Signed In Blood
 -- @zone 193
 -----------------------------------
 package.loaded["scripts/zones/Ordelles_Caves/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/settings");
-require("scripts/zones/Ordelles_Caves/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
 require("scripts/globals/quests");
+require("scripts/globals/settings");
+require("scripts/zones/Ordelles_Caves/TextIDs");
 
 local TreasureType = "Chest";
 local TreasureLvL = 43;
@@ -74,11 +74,14 @@ function onTrade(player,npc,trade)
 						player:messageSpecial(ITEM_OBTAINED,loot[2]);
 					end
 				end
+
+				UpdateTreasureSpawnPoint(npc:getID());
 			end
 		end
 	end
 
 end;
+
 -----------------------------------
 -- onTrigger Action
 -----------------------------------

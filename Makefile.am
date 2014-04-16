@@ -16,7 +16,7 @@ CXX                     = g++ -std=gnu++0x
 CFLAGS_ALL              += $(CFLAGS_LUA)
 CFLAGS_ALL              +=$(CFLAGS_MYSQL)
 
-LIBS_ALL                += $(LIBS_LUA) -llua
+LIBS_ALL                += $(LIBS_LUA) -llua5.1
 LIBS_ALL                += $(LIBS_MYSQL) -lmysqlclient
 
 ## Add Architecture-specific stuff

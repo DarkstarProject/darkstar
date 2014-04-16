@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Crawler Nest
+-- Area: Upper Delkfutt's Tower
 -- NPC:  Treasure Chest
 -- Involved In Quest: Wings of Gold
 -- @pos -380 -143 23 158
@@ -23,7 +23,7 @@ local TreasureMinLvL = 33;
 
 function onTrade(player,npc,trade)
 
-	-- trade:hasItemQty(1036,1); 		-- Treasure Key
+	-- trade:hasItemQty(1036,1); 			-- Treasure Key
 	-- trade:hasItemQty(1115,1);			-- Skeleton Key
 	-- trade:hasItemQty(1023,1);			-- Living Key
 	-- trade:hasItemQty(1022,1);			-- Thief's Tools
@@ -32,7 +32,7 @@ function onTrade(player,npc,trade)
 	-- Player traded a key.
 	if((trade:hasItemQty(1036,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
 		local zone = player:getZone();
-		-- IMPORTANT ITEM: AF1 BST QUEST -----------
+		-- IMPORTANT ITEM: WINGS OF GOLD QUEST -----------
 		if(player:getQuestStatus(JEUNO,WINGS_OF_GOLD) == QUEST_ACCEPTED and player:hasKeyItem(GUIDING_BELL) == false) then 
 			questItemNeeded = 1;
 		end
@@ -74,7 +74,7 @@ function onTrade(player,npc,trade)
 						player:messageSpecial(ITEM_OBTAINED,loot[2]);
 					end
 				end
-				
+
 				UpdateTreasureSpawnPoint(npc:getID());
 			end
 		end

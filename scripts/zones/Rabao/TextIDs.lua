@@ -7,19 +7,19 @@ ITEM_CANNOT_BE_OBTAINED = 6390; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6396;  -- Obtained key item: <keyitem>
     NOT_HAVE_ENOUGH_GIL = 6398;  -- You do not have enough gil.
           HOMEPOINT_SET = 2;     -- Home point set!
- FISHING_MESSAGE_OFFSET = 6616;  -- You can't fish here.
+ FISHING_MESSAGE_OFFSET = 6621;  -- You can't fish here.
 
  -- Other Texts
- PAKHI_DELIVERY_DIALOG = 9947; -- When your pack is fit to burrrst, send your non-essential items to your delivery box and bam, prrroblem solved!
-SPIRIT_DELIVERY_DIALOG = 9948; -- We can deliver goods to your residence or to the residences of your friends.
+ PAKHI_DELIVERY_DIALOG = 9954; -- When your pack is fit to burrrst, send your non-essential items to your delivery box and bam, prrroblem solved!
+SPIRIT_DELIVERY_DIALOG = 9955; -- We can deliver goods to your residence or to the residences of your friends.
 
 -- Quest Dialog
-	GARUDA_UNLOCKED	= 10032; -- You are now able to summon Garuda.
-NOMAD_MOOGLE_DIALOG = 10100; -- I'm a traveling moogle, kupo. I help adventurers in the Outlands access items they have stored in a Mog House elsewhere, kupo.
+	GARUDA_UNLOCKED	= 10039; -- You are now able to summon Garuda.
+NOMAD_MOOGLE_DIALOG = 10107; -- I'm a traveling moogle, kupo. I help adventurers in the Outlands access items they have stored in a Mog House elsewhere, kupo.
 
 -- Shop Texts
-SHINY_TEETH_SHOP_DIALOG = 9952;  -- Well met, adventurer. If you're looking for a weapon to carve through those desert beasts, you've come to the right place.
-  BRAVEWOLF_SHOP_DIALOG = 9953;  -- For rainy days and windy days, or for days when someone tries to thrust a spear in your guts, having a good set of armor can set your mind at ease.     
-    BRAVEOX_SHOP_DIALOG = 9954;  -- These days, you can get weapons and armor cheap at the auction houses. But magic is expensive no matter where you go.
-   SCAMPLIX_SHOP_DIALOG = 9955;  -- No problem, Scamplix not bad guy. Scamplix is good guy, sells stuff to adventurers. Scamplix got lots of good stuff for you.
-   GENEROIT_SHOP_DIALOG = 10218; -- Ho there! I am called Generoit. I have everything here for the chocobo enthusiast, and other rare items galore.
+SHINY_TEETH_SHOP_DIALOG = 9959;  -- Well met, adventurer. If you're looking for a weapon to carve through those desert beasts, you've come to the right place.
+  BRAVEWOLF_SHOP_DIALOG = 9960;  -- For rainy days and windy days, or for days when someone tries to thrust a spear in your guts, having a good set of armor can set your mind at ease.     
+    BRAVEOX_SHOP_DIALOG = 9961;  -- These days, you can get weapons and armor cheap at the auction houses. But magic is expensive no matter where you go.
+   SCAMPLIX_SHOP_DIALOG = 9962;  -- No problem, Scamplix not bad guy. Scamplix is good guy, sells stuff to adventurers. Scamplix got lots of good stuff for you.
+   GENEROIT_SHOP_DIALOG = 10225; -- Ho there! I am called Generoit. I have everything here for the chocobo enthusiast, and other rare items galore.

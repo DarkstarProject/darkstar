@@ -12,7 +12,7 @@ cmdprops =
 
 function onTrigger(player, target, animationId)
     local mob = GetMobByID( target );
-    if (mob ~= nil and animationId ~= nil and animationId < 4) then
+    if (mob ~= nil) then
         mob:AnimationSub( animationId );
     end
 end
