@@ -351,7 +351,8 @@ void CAICharNormal::ActionDisengage()
     m_PBattleTarget = NULL;
 	m_PBattleSubTarget = NULL;
 
-	m_PChar->status = STATUS_UPDATE;
+	if (m_PChar->status != STATUS_DISAPPEAR)
+		m_PChar->status = STATUS_UPDATE;
 	m_PChar->animation = ANIMATION_NONE;
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
 
