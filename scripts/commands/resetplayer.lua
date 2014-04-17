@@ -11,5 +11,9 @@ cmdprops =
 };
 
 function onTrigger(player, target)
+    if (target == nil) then
+        player:PrintToPlayer("You must enter a valid Character name.");
+        return;
+    end
     player:resetPlayer( target );
 end
