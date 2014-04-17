@@ -40,7 +40,7 @@ public:
 private:
 
     uint8 m_count;
-    uint8 m_PData[454];
+    uint8 m_PData[475];
 };
 
 #endif
