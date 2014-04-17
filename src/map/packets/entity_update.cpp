@@ -47,6 +47,11 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 		case ENTITY_DESPAWN:
 		{
 			WBUFB(data,(0x0A)-4) = 0x20;
+			switch (PEntity->objtype)
+			{
+				case TYPE_NPC:
+					updatemask = 0x0F;
+			}
 		}
 		break;
 		case ENTITY_SPAWN:
