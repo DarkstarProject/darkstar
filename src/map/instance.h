@@ -77,7 +77,6 @@ public:
 	uint8       getMaxParticipants();
 	uint8		getMaxPlayerInBCNM();
 	uint8		getLevelCap();
-	uint8		m_THLvl;
 	uint16		getLootId();
 	uint32		getStartTime();
 	uint32		getDeadTime();
@@ -111,7 +110,6 @@ public:
 	void		addNpc(CBaseEntity* PNpc);
 	bool		spawnTreasureChest();
 	bool		treasureChestSpawned;
-	void		getHighestTHforBcnm();
 	void		OpenChestinBcnm();
 
 	//mob related functions

@@ -1126,7 +1126,6 @@ void CAICharNormal::ActionRangedFinish()
 		{
 			Monster->m_HiPCLvl = m_PChar->GetMLevel();
 		}
-		battleutils::SetMonsterTreasureHunterLevel(m_PChar, Monster);
 
 		// to catch high damage bugs
 		if (damage > 8000)
@@ -2745,7 +2744,6 @@ void CAICharNormal::ActionAttack()
 	{
 		Monster->m_HiPCLvl = m_PChar->GetMLevel();
 	}
-	battleutils::SetMonsterTreasureHunterLevel(m_PChar, Monster);
 
 	if (m_PBattleTarget->isDead())
 	{

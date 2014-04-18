@@ -107,8 +107,6 @@ namespace battleutils
 	int32			GetRangedAttackBonuses(CBattleEntity* battleEntity);
 	int32			GetRangedAccuracyBonuses(CBattleEntity* battleEntity);
 
-	void			SetMonsterTreasureHunterLevel(CCharEntity* PChar, CMobEntity* Monster);
-
 	uint8			GetSkillRank(SKILLTYPE SkillID, JOBTYPE JobID);
 	uint16			GetMaxSkill(SKILLTYPE SkillID, JOBTYPE JobID, uint8 level);
     uint16          GetMaxSkill(uint8 rank, uint8 level);

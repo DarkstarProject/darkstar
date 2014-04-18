@@ -300,11 +300,7 @@ void CAttack::ProcessDamage()
 		m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK) &&
 		((abs(m_victim->loc.p.rotation - m_attacker->loc.p.rotation) < 23) ||
         m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE)))
-	{			
-		if (m_victim->objtype == TYPE_MOB && rand()%100 < 4) 
-		{	
-			((CMobEntity*)m_victim)->m_THLvl += 1;
-		}
+	{
 		m_trickAttackDamage = m_attacker->DEX();
 	}
 
