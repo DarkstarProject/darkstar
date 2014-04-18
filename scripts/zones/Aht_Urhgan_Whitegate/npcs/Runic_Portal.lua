@@ -6,6 +6,7 @@
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/settings");
 require("scripts/globals/besieged");
 require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
@@ -29,7 +30,9 @@ function onTrigger(player,npc)
 	if(hasAssault > 0) then
 		player:startEvent(hasAssault);
 	else
-		if(player:hasKeyItem(RUNIC_PORTAL_USE_PERMIT)) then
+		if (FREE_RUNIC_PORTAL_USE == true) then
+			player:startEvent(0x0065,0,122);		
+		elseif(player:hasKeyItem(RUNIC_PORTAL_USE_PERMIT)) then
 			player:messageSpecial(RUNIC_PORTAL + 2,RUNIC_PORTAL_USE_PERMIT);
 			player:startEvent(0x0065,0,player:getNationTeleport(AHTURHGAN));
 		else
