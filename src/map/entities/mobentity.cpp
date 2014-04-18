@@ -60,7 +60,6 @@ CMobEntity::CMobEntity()
 	m_Element = 0;
 	m_HiPCLvl = 0;
 	m_THLvl = 0;
-	m_THPCID = 0;
 	m_ItemStolen = false;
     m_RageMode = 0;
 	m_NewSkin = 0;
