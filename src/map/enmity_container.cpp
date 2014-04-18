@@ -429,6 +429,23 @@ bool CEnmityContainer::IsWithinEnmityRange(CBattleEntity* PEntity)
 	return distance(m_EnmityHolder->loc.p, PEntity->loc.p) <= m_EnmityHolder->m_enmityRange;
 }
 
+uint8 CEnmityContainer::GetHighestTH()
+{
+    CBattleEntity* PEntity = NULL;
+    uint8 THLvl = 0;
+
+    for (EnmityList_t::iterator it = m_EnmityList.begin(); it != m_EnmityList.end(); ++it)
+    {
+        EnmityObject_t* PEnmityObject = it->second;
+        PEntity = PEnmityObject->PEnmityOwner;
+
+        if (PEntity != NULL && PEntity->objtype & TYPE_PC && !PEntity->isDead() && IsWithinEnmityRange(PEntity) && PEntity->getMod(MOD_TREASURE_HUNTER) > THLvl)
+            THLvl = (uint8)PEntity->getMod(MOD_TREASURE_HUNTER);
+    }
+
+    return THLvl;
+}
+
 EnmityList_t* CEnmityContainer::GetEnmityList()
 {
     return &m_EnmityList;
