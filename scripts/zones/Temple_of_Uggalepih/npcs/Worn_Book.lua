@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 	
-	local ParchmentID = 17428949
+	local ParchmentID = 17428950
 	local Book1 = ParchmentID + 1;	
 	local Book2 = ParchmentID + 2;	
 	local Book3 = ParchmentID + 3;	

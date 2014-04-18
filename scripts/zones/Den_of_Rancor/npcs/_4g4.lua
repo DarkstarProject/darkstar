@@ -47,7 +47,7 @@ function onTrade(player,npc,trade)
 			elseif(number_of_lit_lanterns == 4) then
 				player:messageSpecial(LANTERN_OFFSET + 12); -- All the lanterns are lit
 				timeGateOpened = math.min(LANTERNS_STAY_LIT - ne,LANTERNS_STAY_LIT - sw,LANTERNS_STAY_LIT - se);
-				GetNPCByID(17433050):openDoor(timeGateOpened); -- drop gate to Sacrificial Chamber   
+				GetNPCByID(17433051):openDoor(timeGateOpened); -- drop gate to Sacrificial Chamber   
 			end;
 		end
 	end
