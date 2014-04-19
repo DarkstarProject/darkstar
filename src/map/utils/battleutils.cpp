@@ -3191,7 +3191,7 @@ bool HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool)
         CCharEntity* PChar = ((CCharEntity*)PEntity);
 
         uint8  SlotID = 0;
-        uint16 toolID = PSpell->getMPCost();
+        uint16 toolID = PSpell->getMPCost();		
 
         if (ERROR_SLOTID == (SlotID = PChar->getStorage(LOC_INVENTORY)->SearchItem(toolID)))
         {
@@ -3241,18 +3241,31 @@ bool HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool)
 
         // Should only make it to this point if a ninja tool was found.
 
-		uint16 meritBonus = 0;
+		// Check For Futae Effect
+		bool hasFutae = PChar->StatusEffectContainer->HasStatusEffect(EFFECT_FUTAE);
+		// Futae only applies to Elemental Wheel Tools
+		bool useFutae = (toolID == ITEM_UCHITAKE || toolID == ITEM_TSURARA || toolID == ITEM_KAWAHORI_OGI || toolID == ITEM_MAKIBISHI || toolID == ITEM_HIRAISHIN || toolID == ITEM_MIZU_DEPPO);
+		
+		// If you have Futae active, Ninja Tool Expertise does not apply.
+		if (ConsumeTool && hasFutae && useFutae){
+			// Futae Takes 2 of Your Tools
+			charutils::UpdateItem(PChar, LOC_INVENTORY, SlotID, -2);
+			PChar->pushPacket(new CInventoryFinishPacket());
+		}
+		else {
+			uint16 meritBonus = 0;
 
-		if (charutils::hasTrait(PChar, TRAIT_NINJA_TOOL_EXPERT))
-			meritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_NINJA_TOOL_EXPERTISE,(CCharEntity*)PChar);
+			if (charutils::hasTrait(PChar, TRAIT_NINJA_TOOL_EXPERT))
+				meritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_NINJA_TOOL_EXPERTISE, (CCharEntity*)PChar);
 
-		uint16 chance = (PChar->getMod(MOD_NINJA_TOOL) + meritBonus);
+			uint16 chance = (PChar->getMod(MOD_NINJA_TOOL) + meritBonus);
 
-        if(ConsumeTool && WELL512::irand() % 100 > chance)
-        {
-			charutils::UpdateItem(PChar, LOC_INVENTORY, SlotID, -1);
-            PChar->pushPacket(new CInventoryFinishPacket());
-        }
+			if (ConsumeTool && WELL512::irand() % 100 > chance)
+			{
+				charutils::UpdateItem(PChar, LOC_INVENTORY, SlotID, -1);
+				PChar->pushPacket(new CInventoryFinishPacket());
+			}
+		}
     }
     return true;
 }
