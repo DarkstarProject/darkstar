@@ -11,4 +11,6 @@ YOU_CANNOT_ENTER_THE_BATTLEFIELD = 7181; -- You cannot enter the battlefield at 
 				  TITAN_UNLOCKED = 7533; -- You are now able to summon Titan.  
 				 				  
 -- Other
+NOTHING_OUT_OF_THE_ORDINARY = 6393; -- There is nothing out of the ordinary here.
 PROTOCRYSTAL = 7203; -- It is a giant crystal.						 				     
+
