@@ -177,6 +177,19 @@ void CRecastContainer::Del(RECASTTYPE type, uint16 id)
 
 /************************************************************************
 *                                                                       *
+*  Deletes a recast by index				                            *
+*                                                                       *
+************************************************************************/
+
+void CRecastContainer::DeleteByIndex(RECASTTYPE type, uint8 index)
+{
+	RecastList_t* PRecastList = GetRecastList(type);
+	delete PRecastList->at(index);
+	PRecastList->erase(PRecastList->begin() + index);
+}
+
+/************************************************************************
+*                                                                       *
 *  Проверяем наличие элемента с указанным ID                            *
 *                                                                       *
 ************************************************************************/
