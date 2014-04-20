@@ -96,9 +96,9 @@ function SetFieldManual()
         17232273,17232274,17232275,17232276, -- Beaucedine all 4
         17236340,17236341,17240508,17240509, -- Xarcabard 2, Cape Teriggan 2
         17244647,17244648,17244649,17248845, -- Eastern Altepa 3, West Sarutabaruta 1
-        17248846,17248847,17253053,17253054, -- West Sarutabaruta 2, East Sarutabaruta 2
-        17253056,17257068,17257069,17257070, -- East Sarutabaruta 1, Tahrongi 3
-        17261193,17261194,17265285,17265286, -- Buburimu 2, Meriphataud Mountains 2
+        17248846,17248847,17253061,17253060, -- West Sarutabaruta 2, East Sarutabaruta 2`
+        17253059,17257071,17257069,17257070, -- East Sarutabaruta 1, Tahrongi 3
+        17261195,17261194,17265285,17265286, -- Buburimu 2, Meriphataud Mountains 2
         17265287,17269254,17269255,17273411, -- Meriphataud Mountains 1, Sauromugue 2, Zi'Tah 1
         17273412,17277204,17277205,17281640, -- Zi'Tah 1, Ro'Maeve 2, Yuhtunga Jungle 1
         17281641,17281642,17281643,17285690, -- Yuhtunga Jungle 3, Yhoator Jungle 1
