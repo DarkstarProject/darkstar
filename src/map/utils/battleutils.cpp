@@ -4373,5 +4373,104 @@ void SetMonsterTreasureHunterLevel(CCharEntity* PChar, CMobEntity* Monster)
 	}
 }
 
+/************************************************************************
+*                                                                       *
+*	Does the wild car effect to a specific character                    *
+*                                                                       *
+************************************************************************/
+void DoWildCardToEntity(CCharEntity* PCaster, CCharEntity* PTarget, uint8 roll)
+{
+	uint8 TotalRecasts = PTarget->PRecastContainer->GetRecastList(RECAST_ABILITY)->size();	
+
+	// Don't count the 2hr.
+	if (PTarget->PRecastContainer->Has(RECAST_ABILITY, 0))
+	{
+		TotalRecasts -= 1;
+	}
+
+	if (TotalRecasts == 0)
+	{
+		return;
+	}
+
+	// Restore some abilities (Randomly select some abilities?)
+	uint8 RecastsToDelete = WELL512::irand() % TotalRecasts;
+
+	// Restore at least 1 ability.
+	RecastsToDelete = RecastsToDelete == 0 ? 1 : RecastsToDelete;
+
+	switch (roll)
+	{
+		case 1: 
+			// Restores some Job Abilities (does not restore One Hour Abilities) 
+			for (uint8 i = RecastsToDelete; i > 0; --i)
+			{
+				if (PTarget->PRecastContainer->GetRecastList(RECAST_ABILITY)->at(i - 1)->ID != 0)
+				{
+					PTarget->PRecastContainer->DeleteByIndex(RECAST_ABILITY, i - 1);
+				}
+			}
+			break;
+
+		case 2: 
+			// Restores all Job Abilities (does not restore One Hour Abilities) 
+			PTarget->PRecastContainer->ResetAbilities();
+			break;
+
+		case 3: 
+			// Restores some Job Abilities (does not restore One Hour Abilities), 100% TP Restore 
+			for (uint8 i = RecastsToDelete; i > 0; --i)
+			{
+				if (PTarget->PRecastContainer->GetRecastList(RECAST_ABILITY)->at(i - 1)->ID != 0)
+				{
+					PTarget->PRecastContainer->DeleteByIndex(RECAST_ABILITY, i - 1);
+				}
+			}
+			PTarget->health.tp = 100;
+			break;
+
+		case 4: 
+			// Restores all Job Abilities (does not restore One Hour Abilities), 300% TP Restore 
+			PTarget->PRecastContainer->ResetAbilities();
+			PTarget->health.tp = 300;
+			break;
+
+		case 5: 
+			// Restores some Job Abilities and One Hour Abilities (Not Wild Card though), 50% MP Restore 
+			for (uint8 i = RecastsToDelete; i > 0; --i)
+			{
+				if (PTarget->PRecastContainer->GetRecastList(RECAST_ABILITY)->at(i - 1)->ID != 0)
+				{
+					PTarget->PRecastContainer->DeleteByIndex(RECAST_ABILITY, i - 1);
+				}
+			}
+
+			// Retore 2hr except for Wildcard.
+			if (PTarget != PCaster)
+			{
+				PTarget->PRecastContainer->Del(RECAST_ABILITY, 0);
+			}
+
+			if (PTarget->health.maxmp > 0 && (PTarget->health.mp < (PTarget->health.maxmp / 2)))
+			{
+				PTarget->health.mp = PTarget->health.maxmp / 2;
+			}
+			break;
+
+		case 6: 
+			// Restores all Job Abilities and One Hour Abilities (Not Wild Card though), 100% MP Restore 
+			if (PCaster == PTarget)
+			{
+				PTarget->PRecastContainer->ResetAbilities();
+			}
+			else
+			{
+				PTarget->PRecastContainer->Del(RECAST_ABILITY);
+			}
+			PTarget->addMP(PTarget->health.maxmp);
+			break;
+	}
+}
+
 };
  

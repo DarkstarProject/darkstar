@@ -15,6 +15,7 @@ require("scripts/globals/settings");
 -----------------------------------
 
 function onInitialize(zone)
+	SetServerVariable("Heliodromos_ToD", (os.time() + math.random((43200), (54000))));
 end;
 
 -----------------------------------

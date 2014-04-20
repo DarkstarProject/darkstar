@@ -73,6 +73,7 @@ class CRecastContainer
 
     void Del(RECASTTYPE type);
     void Del(RECASTTYPE type, uint16 id);
+	void DeleteByIndex(RECASTTYPE type, uint8 index);
     bool Has(RECASTTYPE type, uint16 id);
     bool HasRecast(RECASTTYPE type, uint16 id);
     void Add(RECASTTYPE type, uint16 id, uint32 duration, uint32 chargeTime = 0, uint8 maxCharges = 0);
