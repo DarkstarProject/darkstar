@@ -1428,30 +1428,92 @@ void CAIMobDummy::ActionAttack()
         m_PMob->loc = posShare->loc;
     }
     else if(currentDistance > m_PMob->m_ModelSize || move)
-	{
-		if(m_PMob->getMobMod(MOBMOD_DRAW_IN) && distance(m_PMob->m_SpawnPoint, m_PBattleTarget->loc.p) > m_PMob->getMobMod(MOBMOD_DRAW_IN))
-		{
-			// prevent double drawin
-			// I think it happens because the server moves the char
-			// then the char gets updated from the client in the old position
-			// this causing draw in to happen twice unless this if is here
-			if(!m_drawnIn)
-			{
-				battleutils::DrawIn(m_PBattleTarget, &m_PMob->loc.p, m_PMob->m_ModelSize - 0.2f);
+    {
+        if (m_PMob->getMobMod(MOBMOD_DRAW_IN) > 0 && currentDistance > m_PMob->m_ModelSize * 2)
+        {
+            // prevent double drawin
+            // I think it happens because the server moves the char
+            // then the char gets updated from the client in the old position
+            // this causing draw in to happen twice unless this if is here
+            if (!m_drawnIn)
+            {
+                uint8 drawInDistance = (m_PMob->getMobMod(MOBMOD_DRAW_IN) > 1 ? m_PMob->getMobMod(MOBMOD_DRAW_IN) : m_PMob->m_ModelSize * 2);
 
-				luautils::OnMobDrawIn(m_PMob, m_PBattleTarget);
+                // check if i should draw-in party/alliance
+                if (m_PMob->getMobMod(MOBMOD_DRAW_IN) > 1 && m_PBattleTarget->PParty != NULL)
+                {
+                    // party draw-in
+                    if (m_PBattleTarget->PParty->m_PAlliance == NULL)
+                    {
+                        // find all members in party
+                        for (uint8 i = 0; i < m_PBattleTarget->PParty->members.size(); ++i)
+                        {
+                            CBattleEntity* PMember = (CBattleEntity*)m_PBattleTarget->PParty->members[i];
 
-				m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PBattleTarget,m_PBattleTarget,0,0, 232));
+                            float pDistance = distance(m_PMob->loc.p, PMember->loc.p);
 
-			    currentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
+                            // ensure target is in zone before drawing them in, cannot draw-in if target is watching a cutscene
+                            if (m_PMob->loc.zone == PMember->loc.zone && pDistance > drawInDistance && PMember->status != STATUS_CUTSCENE_ONLY)
+                            {
+                                battleutils::DrawIn(PMember, &m_PMob->loc.p, m_PMob->m_ModelSize - 0.2f);
 
-			    m_drawnIn = true;
-			}
-			else
-			{
-				m_drawnIn = false;
-			}
-		}
+                                luautils::OnMobDrawIn(m_PMob, PMember);
+
+                                m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(PMember, PMember, 0, 0, 232));
+                            }
+                        }
+                    }
+                    // alliance draw-in
+                    else
+                    {
+                        // find all parties present in alliance
+                        for (uint8 i = 0; i < m_PBattleTarget->PParty->m_PAlliance->partyList.size(); ++i)
+                        {
+                            CParty* PParty = m_PBattleTarget->PParty->m_PAlliance->partyList[i];
+
+                            // find all members in that party
+                            for (uint8 m = 0; m < PParty->members.size(); ++m)
+                            {
+                                CBattleEntity* PMember = PParty->members[m];
+
+                                float pDistance = distance(m_PMob->loc.p, PMember->loc.p);
+
+                                // ensure target is in zone before drawing them in, cannot draw-in if target is watching a cutscene
+                                if (m_PMob->loc.zone == PMember->loc.zone && pDistance > drawInDistance && PMember->status != STATUS_CUTSCENE_ONLY)
+                                {
+                                    battleutils::DrawIn(PMember, &m_PMob->loc.p, m_PMob->m_ModelSize - 0.2f);
+
+                                    luautils::OnMobDrawIn(m_PMob, PMember);
+
+                                    m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(PMember, PMember, 0, 0, 232));
+                                }
+                            }
+                        }
+                    }
+                }
+                // no party present or draw-in is set to player only
+                else
+                {
+                    // cannot draw-in if target is watching a cutscene
+                    if (currentDistance > drawInDistance && m_PBattleTarget->status != STATUS_CUTSCENE_ONLY)
+                    {
+                        battleutils::DrawIn(m_PBattleTarget, &m_PMob->loc.p, m_PMob->m_ModelSize - 0.2f);
+
+                        luautils::OnMobDrawIn(m_PMob, m_PBattleTarget);
+
+                        m_PMob->loc.zone->PushPacket(m_PBattleTarget, CHAR_INRANGE, new CMessageBasicPacket(m_PBattleTarget, m_PBattleTarget, 0, 0, 232));
+                    }
+                }
+
+                currentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
+
+                m_drawnIn = true;
+            }
+            else
+            {
+                m_drawnIn = false;
+            }
+        }
         else if (m_PMob->speed != 0 && m_Tick >= m_LastSpecialTime)
 		{
             // attempt to teleport to target (if in range)
