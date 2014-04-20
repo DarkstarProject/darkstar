@@ -48,6 +48,13 @@ function onEffectLose(target,effect)
 		target:warp();
 	elseif(Teleport == TELEPORT_ESCAPE) then
 		Escape(target, target:getZone());
+	elseif(Teleport == RECALL_JUGNER) then
+	        recallJugner(target);
+	elseif(Teleport == RECALL_PASHH) then
+	        recallPashh(target);
+	elseif(Teleport == RECALL_MERIPH) then
+	        recallMeriph(target);	        
 	end
+	
    
 end;

@@ -568,8 +568,10 @@ int32 IsMoonNew(lua_State* L)
 		switch (CVanaTime::getInstance()->getMoonDirection())
 		{
 			case 0: // None
-				lua_pushboolean(L, false);
-				return 0;
+				if (phase == 0) {
+					lua_pushboolean(L, true);
+					return 1;
+				}
 	
 			case 1: // Waning (decending)
 				if (phase <= 10 && phase >= 0) {
@@ -606,8 +608,10 @@ int32 IsMoonFull(lua_State* L)
 	switch (CVanaTime::getInstance()->getMoonDirection())
 	{
 		case 0: // None
-			lua_pushboolean(L, false);
-			return 0;
+			if (phase == 100) {
+				lua_pushboolean(L, true);
+				return 1;
+			}
 
 		case 1: // Waning (decending)
 			if (phase >= 95 && phase <= 100) {
@@ -722,31 +726,36 @@ int32 DespawnMob(lua_State* L)
 
 int32 setMobPos(lua_State *L)
 {
-	if( !lua_isnil(L,1) && lua_isnumber(L,1) )
+	if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
 	{
-		uint32 mobid = (uint32)lua_tointeger(L,1);
+		uint32 mobid = (uint32)lua_tointeger(L, 1);
 
-        CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
-        if (PMob != NULL)
-        {
+		CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
+		if (PMob != NULL)
+		{
 			//if mob is in battle, do not warp it
-			if (PMob->m_OwnerID.id == 0 && PMob->PBattleAI->GetCurrentAction() != ACTION_ATTACK)
+			if (PMob->PBattleAI->GetCurrentAction() == ACTION_NONE ||
+				PMob->PBattleAI->GetCurrentAction() == ACTION_SPAWN ||
+				PMob->PBattleAI->GetCurrentAction() == ACTION_ROAMING ||
+				PMob->PBattleAI->GetCurrentAction() == ACTION_DEATH ||
+				PMob->PBattleAI->GetCurrentAction() == ACTION_FADE_OUT ||
+				PMob->PBattleAI->GetCurrentAction() == ACTION_DESPAWN)
 			{
-				if( !lua_isnil(L,2) && lua_isnumber(L,2) )
-					PMob->loc.p.x = (float) lua_tonumber(L,2);
+				if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
+					PMob->loc.p.x = (float)lua_tonumber(L, 2);
 
-				if( !lua_isnil(L,3) && lua_isnumber(L,3) )
-					PMob->loc.p.y = (float) lua_tonumber(L,3);
+				if (!lua_isnil(L, 3) && lua_isnumber(L, 3))
+					PMob->loc.p.y = (float)lua_tonumber(L, 3);
 
-				if( !lua_isnil(L,4) && lua_isnumber(L,4) )
-					PMob->loc.p.z = (float) lua_tonumber(L,4);
+				if (!lua_isnil(L, 4) && lua_isnumber(L, 4))
+					PMob->loc.p.z = (float)lua_tonumber(L, 4);
 
-				if( !lua_isnil(L,5) && lua_isnumber(L,5) )
-					PMob->loc.p.rotation = (uint8) lua_tointeger(L,5);
-            }
+				if (!lua_isnil(L, 5) && lua_isnumber(L, 5))
+					PMob->loc.p.rotation = (uint8)lua_tointeger(L, 5);
+			}
 			else
 			{
-                ShowDebug(CL_CYAN"setMobPos: <%s> is currently in battle, will not warp it!\n" CL_RESET, PMob->GetName());
+				ShowDebug(CL_CYAN"setMobPos: <%s> is currently in battle, will not warp it!\n" CL_RESET, PMob->GetName());
 				return 1;
 			}
 		}

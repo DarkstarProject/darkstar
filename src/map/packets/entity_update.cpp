@@ -58,6 +58,14 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 					WBUFB(data,(0x28)-4) = 0x04;
 				}
 				break;
+				case TYPE_NPC:
+				{
+					if (PEntity->look.size == MODEL_EQUIPED || PEntity->look.size == MODEL_CHOCOBO)
+					{
+						updatemask = 0x57;
+						WBUFB(data,(0x0A)-4) = updatemask;
+					}
+				}
 			}
 			WBUFW(data, (0x1A) - 4) = PEntity->m_TargID << 1;
 		}
@@ -180,8 +188,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 		{
 			this->size = 0x24;
 
-			WBUFB (data,(0x0A)-4) = 0x57;
-			memcpy(data+(0x30)-4, &(PEntity->look), 20);
+			memcpy(data + (0x30) - 4, &(PEntity->look), 20);
 		}
 		break;
 		case MODEL_DOOR:

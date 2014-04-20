@@ -351,7 +351,8 @@ void CAICharNormal::ActionDisengage()
     m_PBattleTarget = NULL;
 	m_PBattleSubTarget = NULL;
 
-	m_PChar->status = STATUS_UPDATE;
+	if (m_PChar->status != STATUS_DISAPPEAR)
+		m_PChar->status = STATUS_UPDATE;
 	m_PChar->animation = ANIMATION_NONE;
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
 
@@ -1605,7 +1606,48 @@ void CAICharNormal::ActionJobAbilityFinish()
     		}
     		m_PChar->PRecastContainer->Add(RECAST_ABILITY, 194, 8000); //double up
     	}
+		else if (m_PJobAbility->getID() == ABILITY_WILD_CARD)
+		{
+			uint8 roll = (WELL512::irand()%5) + 1;
+			uint16 AnimationId = 132 + (roll - 1);
 
+			CAbility* rollAbility = ability::GetAbility(ABILITY_WILD_CARD);
+			Action.animation = AnimationId;
+			Action.reaction = REACTION_NONE;
+			Action.speceffect = (SPECEFFECT)roll;
+			Action.param = roll;
+			Action.knockback = 0;
+
+			if (m_PChar->PParty != NULL)
+			{
+				for (uint8 i = 0; i < m_PChar->PParty->members.size(); i++)
+				{
+					CCharEntity* PTarget = (CCharEntity*)m_PChar->PParty->members[i];
+
+					if (!PTarget->isDead() &&
+						PTarget->getZone() == m_PChar->getZone() &&
+						distance(m_PChar->loc.p, PTarget->loc.p) <= m_PJobAbility->getRange())
+					{
+						Action.ActionTarget = PTarget;
+						battleutils::DoWildCardToEntity(m_PChar, PTarget, roll);
+						PTarget->pushPacket(new CCharSkillsPacket(PTarget));
+						PTarget->pushPacket(new CCharHealthPacket(PTarget));
+						Action.messageID = m_PJobAbility->getMessage();
+						m_PChar->m_ActionList.push_back(Action);
+					}
+				}
+			}
+			else
+			{
+				battleutils::DoWildCardToEntity(m_PChar, m_PChar, roll);
+				Action.ActionTarget = m_PBattleSubTarget;
+				m_PChar->pushPacket(new CCharSkillsPacket(m_PChar));
+				m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
+				Action.messageID = m_PJobAbility->getMessage();
+				m_PChar->m_ActionList.push_back(Action);
+			}
+			luautils::OnUseAbilityRoll(m_PChar, Action.ActionTarget, rollAbility, roll);
+		}
     	else if (m_PJobAbility->getID() == ABILITY_DOUBLE_UP)
             {
             if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DOUBLE_UP_CHANCE))

@@ -103,8 +103,9 @@ void CTreasurePool::DelMember(CCharEntity* PChar)
 	DSP_DEBUG_BREAK_IF(PChar == NULL);
 	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
 
-	if(m_TreasurePoolType != TREASUREPOOL_ZONE){
+	//if(m_TreasurePoolType != TREASUREPOOL_ZONE){
 		//Zone drops e.g. Dynamis DO NOT remove previous lot info. Everything else does.
+		// ^ TODO: verify what happens when a winner leaves zone
 		for( int i=0; i<10; i++){
 			if(m_PoolItems[i].Lotters.size()>0){
 				for(int j=0; j<m_PoolItems[i].Lotters.size(); j++){
@@ -115,7 +116,7 @@ void CTreasurePool::DelMember(CCharEntity* PChar)
 				}
 			}
 		}
-	}
+	//}
 
 	for (uint32 i = 0; i < members.size(); ++i) 
 	{

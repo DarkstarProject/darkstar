@@ -86,8 +86,10 @@ struct map_config_t
     bool   level_sync_enable;       // Enable/disable Level Sync
     bool   all_jobs_widescan;       // Enable/disable jobs other than BST and RNG having widescan.
 	int8   speed_mod;				// Modifier to add to baseentity speed
-	float  skillup_multiplier;		// Constant used in the skillup formula that has a strong effect on skill-up rates
-	float  craft_multiplier;		// Constant used in the crafting skill-up formula that has a strong effect on skill-up rates
+	float  skillup_chance_multiplier;		// Constant used in the skillup formula that has a strong effect on skill-up rates
+	float  craft_chance_multiplier;			// Constant used in the crafting skill-up formula that has a strong effect on skill-up rates
+	float  skillup_amount_multiplier;		// Used to increase the amount of skill gained during skill up
+	float  craft_amount_multiplier;			// Used to increase the amount of skill gained during skill up
 	float  mob_tp_multiplier;		// Multiplies the amount of TP mobs gain on any effect that would grant TP
 	float  player_tp_multiplier;	// Multiplies the amount of TP players gain on any effect that would grant TP
     uint8  newstyle_skillups;       // Allows failed parries and blocks to trigger skill up chance.
