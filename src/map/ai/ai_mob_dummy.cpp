@@ -1422,14 +1422,70 @@ void CAIMobDummy::ActionAttack()
         }
     }
 
+
+    // true if any member in zone is out of range and the mob has draw-in
+    bool drawIn = false;
+    float drawInDistance = (m_PMob->getMobMod(MOBMOD_DRAW_IN) > 1 ? m_PMob->getMobMod(MOBMOD_DRAW_IN) : m_PMob->m_ModelSize * 2);
+
+    // check if the mob has draw-in
+    if (m_PMob->getMobMod(MOBMOD_DRAW_IN))
+    {
+        // check if there's a party
+        if (m_PBattleTarget->PParty != NULL && m_PBattleTarget->PParty->m_PAlliance == NULL)
+        {
+            CParty* PParty = m_PBattleTarget->PParty;
+
+            // run through the list of members
+            for (uint8 i = 0; i < PParty->members.size(); ++i)
+            {
+                CBattleEntity* PMember = PParty->members[i];
+
+                // check if they're in the same zone and legible for draw-in to take effect
+                if (PMember->loc.zone == m_PMob->loc.zone && distance(m_PMob->loc.p, PMember->loc.p) >= drawInDistance)
+                {
+                    // found a match
+                    drawIn = true;
+                    break; // exit loop, only needed to find one match
+                }
+            }
+        }
+        // check if there's an alliance
+        else if (m_PBattleTarget->PParty != NULL && m_PBattleTarget->PParty->m_PAlliance != NULL)
+        {
+            CAlliance* PAlliance = m_PBattleTarget->PParty->m_PAlliance;
+
+            // run through the list of parties in the alliance
+            for (uint8 i = 0; i < PAlliance->partyList.size(); ++i)
+            {
+                CParty* PParty = PAlliance->partyList.at(i);
+
+                // found a party, run through the list of members in that party
+                for (uint8 m = 0; m < PParty->members.size(); ++m)
+                {
+                    CBattleEntity* PMember = PParty->members[m];
+
+                    // check if they're in the same zone and legible for draw-in to take effect
+                    if (PMember->loc.zone == m_PMob->loc.zone && distance(m_PMob->loc.p, PMember->loc.p) >= drawInDistance)
+                    {
+                        // found a match
+                        drawIn = true;
+                        break; // exit loop, only needed to find one match
+                    }
+                }
+            }
+        }
+    }
+
+
     if (m_PMob->getMobMod(MOBMOD_SHARE_POS) > 0)
     {
         CMobEntity* posShare = (CMobEntity*)m_PMob->loc.zone->GetEntity(m_PMob->getMobMod(MOBMOD_SHARE_POS), TYPE_MOB);
         m_PMob->loc = posShare->loc;
     }
-    else if(currentDistance > m_PMob->m_ModelSize || move)
+
+    else if(currentDistance > m_PMob->m_ModelSize || move || drawIn)
     {
-        if (m_PMob->getMobMod(MOBMOD_DRAW_IN) > 0 && currentDistance > m_PMob->m_ModelSize * 2)
+        if (m_PMob->getMobMod(MOBMOD_DRAW_IN) > 0)
         {
             // prevent double drawin
             // I think it happens because the server moves the char
@@ -1437,8 +1493,6 @@ void CAIMobDummy::ActionAttack()
             // this causing draw in to happen twice unless this if is here
             if (!m_drawnIn)
             {
-                uint8 drawInDistance = (m_PMob->getMobMod(MOBMOD_DRAW_IN) > 1 ? m_PMob->getMobMod(MOBMOD_DRAW_IN) : m_PMob->m_ModelSize * 2);
-
                 // check if i should draw-in party/alliance
                 if (m_PMob->getMobMod(MOBMOD_DRAW_IN) > 1 && m_PBattleTarget->PParty != NULL)
                 {
@@ -1460,6 +1514,8 @@ void CAIMobDummy::ActionAttack()
                                 luautils::OnMobDrawIn(m_PMob, PMember);
 
                                 m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(PMember, PMember, 0, 0, 232));
+
+                                m_drawnIn = true;
                             }
                         }
                     }
@@ -1486,6 +1542,8 @@ void CAIMobDummy::ActionAttack()
                                     luautils::OnMobDrawIn(m_PMob, PMember);
 
                                     m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(PMember, PMember, 0, 0, 232));
+
+                                    m_drawnIn = true;
                                 }
                             }
                         }
@@ -1501,7 +1559,7 @@ void CAIMobDummy::ActionAttack()
 
                         luautils::OnMobDrawIn(m_PMob, m_PBattleTarget);
 
-                        m_PMob->loc.zone->PushPacket(m_PBattleTarget, CHAR_INRANGE, new CMessageBasicPacket(m_PBattleTarget, m_PBattleTarget, 0, 0, 232));
+                        m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PBattleTarget, m_PBattleTarget, 0, 0, 232));
                     }
                 }
 
@@ -1514,7 +1572,7 @@ void CAIMobDummy::ActionAttack()
                 m_drawnIn = false;
             }
         }
-        else if (m_PMob->speed != 0 && m_Tick >= m_LastSpecialTime)
+        if (m_PMob->speed != 0 && m_Tick >= m_LastSpecialTime)
 		{
             // attempt to teleport to target (if in range)
             if (m_PMob->getMobMod(MOBMOD_TELEPORT_TYPE) == 2)
