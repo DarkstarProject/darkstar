@@ -47,7 +47,7 @@ function hasAssaultOrders(player)
 	
 	if(player:hasKeyItem(LEUJAOAM_ASSAULT_ORDERS)) then -- assault @ Azouph Isle
 		event = 0x0078;
-	elseif(player:hasKeyItem(MAMMOOL_JA_ASSAULT_ORDERS)) then -- assault @ Mamool Ja 
+	elseif(player:hasKeyItem(MAMOOL_JA_ASSAULT_ORDERS)) then -- assault @ Mamool Ja 
 		event = 0x0079;
 	elseif(player:hasKeyItem(LEBROS_ASSAULT_ORDERS)) then -- assault @ Halvung	
 		event = 0x007A;
