@@ -32,6 +32,7 @@ struct EnmityObject_t
 	CBattleEntity* PEnmityOwner;	// Enmity Target
 	int16 CE;						// Cumulative Enmity
 	int16 VE;						// Volatile Enmity
+	uint8 maxTH;                    // Maximum Treasure Hunter level of this Enmity Owner
 };
 
 typedef std::map<uint32,EnmityObject_t*> EnmityList_t;
