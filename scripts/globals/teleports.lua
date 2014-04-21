@@ -16,6 +16,10 @@ TELEPORT_ALTEP					= 6;
 TELEPORT_WARP					= 7;
 TELEPORT_ESCAPE					= 8;
 
+RECALL_JUGNER                                   = 9;
+RECALL_PASHH                                    = 10;
+RECALL_MERIPH                                   = 11;
+
 -----------------------------------
 -- Teleports
 -----------------------------------

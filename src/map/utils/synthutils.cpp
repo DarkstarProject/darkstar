@@ -528,7 +528,7 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 
 		if (charSkill < maxSkill)
 		{
-			double skillUpChance = (synthDiff*(map_config.craft_multiplier - (log(1.2 + charSkill/100))))/10;
+			double skillUpChance = (synthDiff*(map_config.craft_chance_multiplier - (log(1.2 + charSkill/100))))/10;
 			skillUpChance = skillUpChance/(1 + (PChar->CraftContainer->getQuantity(0) == SYNTHESIS_FAIL));		// результат синтеза хранится в quantity нулевой ячейки
 
 			double random = WELL512::drand();
@@ -575,6 +575,16 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 						break;
 					skillAmount += 1;
 					satier -= 1;
+				}
+
+				// Do craft amount multiplier
+				if (map_config.craft_amount_multiplier > 1)
+				{
+					skillAmount += skillAmount * map_config.craft_amount_multiplier;
+					if (skillAmount > 9)
+					{
+						skillAmount = 9;
+					}
 				}
 
 				if((skillAmount + charSkill) > maxSkill)

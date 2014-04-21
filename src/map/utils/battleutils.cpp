@@ -3191,7 +3191,7 @@ bool HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool)
         CCharEntity* PChar = ((CCharEntity*)PEntity);
 
         uint8  SlotID = 0;
-        uint16 toolID = PSpell->getMPCost();
+        uint16 toolID = PSpell->getMPCost();		
 
         if (ERROR_SLOTID == (SlotID = PChar->getStorage(LOC_INVENTORY)->SearchItem(toolID)))
         {
@@ -3241,18 +3241,31 @@ bool HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool)
 
         // Should only make it to this point if a ninja tool was found.
 
-		uint16 meritBonus = 0;
+		// Check For Futae Effect
+		bool hasFutae = PChar->StatusEffectContainer->HasStatusEffect(EFFECT_FUTAE);
+		// Futae only applies to Elemental Wheel Tools
+		bool useFutae = (toolID == ITEM_UCHITAKE || toolID == ITEM_TSURARA || toolID == ITEM_KAWAHORI_OGI || toolID == ITEM_MAKIBISHI || toolID == ITEM_HIRAISHIN || toolID == ITEM_MIZU_DEPPO);
+		
+		// If you have Futae active, Ninja Tool Expertise does not apply.
+		if (ConsumeTool && hasFutae && useFutae){
+			// Futae Takes 2 of Your Tools
+			charutils::UpdateItem(PChar, LOC_INVENTORY, SlotID, -2);
+			PChar->pushPacket(new CInventoryFinishPacket());
+		}
+		else {
+			uint16 meritBonus = 0;
 
-		if (charutils::hasTrait(PChar, TRAIT_NINJA_TOOL_EXPERT))
-			meritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_NINJA_TOOL_EXPERTISE,(CCharEntity*)PChar);
+			if (charutils::hasTrait(PChar, TRAIT_NINJA_TOOL_EXPERT))
+				meritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_NINJA_TOOL_EXPERTISE, (CCharEntity*)PChar);
 
-		uint16 chance = (PChar->getMod(MOD_NINJA_TOOL) + meritBonus);
+			uint16 chance = (PChar->getMod(MOD_NINJA_TOOL) + meritBonus);
 
-        if(ConsumeTool && WELL512::irand() % 100 > chance)
-        {
-			charutils::UpdateItem(PChar, LOC_INVENTORY, SlotID, -1);
-            PChar->pushPacket(new CInventoryFinishPacket());
-        }
+			if (ConsumeTool && WELL512::irand() % 100 > chance)
+			{
+				charutils::UpdateItem(PChar, LOC_INVENTORY, SlotID, -1);
+				PChar->pushPacket(new CInventoryFinishPacket());
+			}
+		}
     }
     return true;
 }
@@ -4370,6 +4383,105 @@ void SetMonsterTreasureHunterLevel(CCharEntity* PChar, CMobEntity* Monster)
 		{
 			Monster->m_THLvl = 12;
 		}
+	}
+}
+
+/************************************************************************
+*                                                                       *
+*	Does the wild car effect to a specific character                    *
+*                                                                       *
+************************************************************************/
+void DoWildCardToEntity(CCharEntity* PCaster, CCharEntity* PTarget, uint8 roll)
+{
+	uint8 TotalRecasts = PTarget->PRecastContainer->GetRecastList(RECAST_ABILITY)->size();	
+
+	// Don't count the 2hr.
+	if (PTarget->PRecastContainer->Has(RECAST_ABILITY, 0))
+	{
+		TotalRecasts -= 1;
+	}
+
+	if (TotalRecasts == 0)
+	{
+		return;
+	}
+
+	// Restore some abilities (Randomly select some abilities?)
+	uint8 RecastsToDelete = WELL512::irand() % TotalRecasts;
+
+	// Restore at least 1 ability.
+	RecastsToDelete = RecastsToDelete == 0 ? 1 : RecastsToDelete;
+
+	switch (roll)
+	{
+		case 1: 
+			// Restores some Job Abilities (does not restore One Hour Abilities) 
+			for (uint8 i = RecastsToDelete; i > 0; --i)
+			{
+				if (PTarget->PRecastContainer->GetRecastList(RECAST_ABILITY)->at(i - 1)->ID != 0)
+				{
+					PTarget->PRecastContainer->DeleteByIndex(RECAST_ABILITY, i - 1);
+				}
+			}
+			break;
+
+		case 2: 
+			// Restores all Job Abilities (does not restore One Hour Abilities) 
+			PTarget->PRecastContainer->ResetAbilities();
+			break;
+
+		case 3: 
+			// Restores some Job Abilities (does not restore One Hour Abilities), 100% TP Restore 
+			for (uint8 i = RecastsToDelete; i > 0; --i)
+			{
+				if (PTarget->PRecastContainer->GetRecastList(RECAST_ABILITY)->at(i - 1)->ID != 0)
+				{
+					PTarget->PRecastContainer->DeleteByIndex(RECAST_ABILITY, i - 1);
+				}
+			}
+			PTarget->health.tp = 100;
+			break;
+
+		case 4: 
+			// Restores all Job Abilities (does not restore One Hour Abilities), 300% TP Restore 
+			PTarget->PRecastContainer->ResetAbilities();
+			PTarget->health.tp = 300;
+			break;
+
+		case 5: 
+			// Restores some Job Abilities and One Hour Abilities (Not Wild Card though), 50% MP Restore 
+			for (uint8 i = RecastsToDelete; i > 0; --i)
+			{
+				if (PTarget->PRecastContainer->GetRecastList(RECAST_ABILITY)->at(i - 1)->ID != 0)
+				{
+					PTarget->PRecastContainer->DeleteByIndex(RECAST_ABILITY, i - 1);
+				}
+			}
+
+			// Retore 2hr except for Wildcard.
+			if (PTarget != PCaster)
+			{
+				PTarget->PRecastContainer->Del(RECAST_ABILITY, 0);
+			}
+
+			if (PTarget->health.maxmp > 0 && (PTarget->health.mp < (PTarget->health.maxmp / 2)))
+			{
+				PTarget->health.mp = PTarget->health.maxmp / 2;
+			}
+			break;
+
+		case 6: 
+			// Restores all Job Abilities and One Hour Abilities (Not Wild Card though), 100% MP Restore 
+			if (PCaster == PTarget)
+			{
+				PTarget->PRecastContainer->ResetAbilities();
+			}
+			else
+			{
+				PTarget->PRecastContainer->Del(RECAST_ABILITY);
+			}
+			PTarget->addMP(PTarget->health.maxmp);
+			break;
 	}
 }
 

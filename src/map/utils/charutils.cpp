@@ -2330,7 +2330,7 @@ void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
         uint16 MaxSkill = battleutils::GetMaxSkill(SkillID, PChar->GetMJob(), dsp_min(PChar->GetMLevel(),lvl));
 
 		int16  Diff = MaxSkill - CurSkill/10;
-        double SkillUpChance = Diff/5.0 + map_config.skillup_multiplier * (2.0 - log10(1.0 + CurSkill /100));
+        double SkillUpChance = Diff/5.0 + map_config.skillup_chance_multiplier * (2.0 - log10(1.0 + CurSkill /100));
 
 		double random = WELL512::drand();
 
@@ -2366,12 +2366,21 @@ void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
 			}
             MaxSkill = MaxSkill * 10;
 
+			// Do skill amount multiplier (Will only be applied if default setting is changed)
+			if (map_config.skillup_amount_multiplier > 1)
+			{
+				SkillAmount += SkillAmount * map_config.skillup_amount_multiplier;
+				if (SkillAmount > 9)
+				{
+					SkillAmount = 9;
+				}
+			}
+
 			if (SkillAmount + CurSkill >= MaxSkill)
 			{
 				SkillAmount = MaxSkill - CurSkill;
                 PChar->WorkingSkills.skill[SkillID] |= 0x8000;
 			}
-            DSP_DEBUG_BREAK_IF(SkillAmount > 5);
 
 			PChar->RealSkills.skill[SkillID] += SkillAmount;
 			PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, SkillID, SkillAmount, 38));

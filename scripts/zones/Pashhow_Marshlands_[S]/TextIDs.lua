@@ -6,3 +6,6 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6380; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6382; -- Obtained key item: <keyitem>
  FISHING_MESSAGE_OFFSET = 7116; -- You can't fish here.
+
+-- Other Texts	
+ALREADY_OBTAINED_TELE = 7655; -- You already possess the gate crystal for this telepoint.
