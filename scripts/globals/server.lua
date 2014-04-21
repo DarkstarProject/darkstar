@@ -87,24 +87,24 @@ function SetFieldManual()
 
 	local FieldManuals  =
 	{
-        17187542,17187543,17191524,17191525, -- West Ronfaure 2, East Ronfaure 2
-        17195671,17195672,17199745,17199746, -- La Theine 2, Valkurm 2
-        17199746,17203877,17203878,17207859, -- Valkurm 1, Jugner 2, Batallia 1
+        17187544,17187543,17191530,17191531, -- West Ronfaure 2, East Ronfaure 2
+        17195671,17195672,17199748,17199747, -- La Theine 2, Valkurm 2
+        17199746,17203879,17203878,17207861, -- Valkurm 1, Jugner 2, Batallia 1
         17207860,17212103,17212104,17212105, -- Batallia 1, North Gustaberg 3
         17216171,17216172,17220159,17220160, -- South Gustaberg 2, Konschtat 2
-        17224345,17224346,17228369,17228370, -- Pashhow 2, Rolanberry 2
-        17232273,17232274,17232275,17232276, -- Beaucedine all 4
-        17236340,17236341,17240508,17240509, -- Xarcabard 2, Cape Teriggan 2
-        17244647,17244648,17244649,17248845, -- Eastern Altepa 3, West Sarutabaruta 1
+        17224347,17224346,17228371,17228370, -- Pashhow 2, Rolanberry 2
+        17232277,17232274,17232275,17232276, -- Beaucedine all 4
+        17236342,17236341,17240510,17240509, -- Xarcabard 2, Cape Teriggan 2
+        17244650,17244648,17244649,17248845, -- Eastern Altepa 3, West Sarutabaruta 1
         17248846,17248847,17253061,17253060, -- West Sarutabaruta 2, East Sarutabaruta 2`
         17253059,17257071,17257069,17257070, -- East Sarutabaruta 1, Tahrongi 3
         17261195,17261194,17265285,17265286, -- Buburimu 2, Meriphataud Mountains 2
-        17265287,17269254,17269255,17273411, -- Meriphataud Mountains 1, Sauromugue 2, Zi'Tah 1
-        17273412,17277204,17277205,17281640, -- Zi'Tah 1, Ro'Maeve 2, Yuhtunga Jungle 1
-        17281641,17281642,17281643,17285690, -- Yuhtunga Jungle 3, Yhoator Jungle 1
-        17285691,17285692,17289789,17289790, -- Yhoator Jungle 2, Western Altepa 2
-        17289791,17293769,17293770,17297485, -- Western Altepa 1, Qufim 2, Behemoth's Dominion 1
-        17301586,17301587,17310098,17310099, -- Valley of Sorrows 2, Ru'Aun Gardens 2
+        17265287,17269256,17269255,17273413, -- Meriphataud Mountains 1, Sauromugue 2, Zi'Tah 1
+        17273412,17277206,17277205,17281641, -- Zi'Tah 1, Ro'Maeve 2, Yuhtunga Jungle 1
+        17281642,17281643,17281644,17285693, -- Yuhtunga Jungle 3, Yhoator Jungle 1
+        17285694,17285695,17289792,17289790, -- Yhoator Jungle 2, Western Altepa 2
+        17289791,17293771,17293770,17297486, -- Western Altepa 1, Qufim 2, Behemoth's Dominion 1
+        17301588,17301587,17310104,17310099, -- Valley of Sorrows 2, Ru'Aun Gardens 2
         17310100,17310101,17310102,17310103, -- Ru'Aun Gardens all 4 (6 total)
 	}
 
