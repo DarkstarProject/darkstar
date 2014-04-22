@@ -287,8 +287,8 @@ int32 lobbydata_parse(int32 fd)
 				  //WBUFW(ReservePacket,(0x3C)) = port;			// map-server port			
 				}
 
-				WBUFL(ReservePacket,(0x40)) = sd->servip;		// search-server ip
-			  //WBUFW(ReservePacket,(0x44)) = port;				// search-server port
+				WBUFL(ReservePacket,(0x40)) = sd->servip;									// search-server ip
+				WBUFW(ReservePacket,(0x44)) = login_config.search_server_port;				// search-server port
 
 				memcpy(MainReservePacket,ReservePacket,RBUFB(ReservePacket,0));
 

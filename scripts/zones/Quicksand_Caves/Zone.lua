@@ -10,7 +10,7 @@ require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/zones/Quicksand_Caves/TextIDs");
 
-base_id = 17629680;
+base_id = 17629681;
 
 -----------------------------------
 -- onInitialize

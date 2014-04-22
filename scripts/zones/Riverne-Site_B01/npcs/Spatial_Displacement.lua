@@ -16,7 +16,7 @@ end;
 
 function onTrigger(player,npc)
 
-	local base = 16896181; -- First Spacial Displacement in NPC_LIST
+	local base = 16896182; -- First Spacial Displacement in NPC_LIST
 	local id = npc:getID();
 
 	if(id == base) then --  L-9 porter

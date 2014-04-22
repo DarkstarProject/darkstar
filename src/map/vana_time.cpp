@@ -148,14 +148,13 @@ TIMETYPE CVanaTime::GetCurrentTOTD()
 
 uint32 CVanaTime::getMoonPhase()
 {
-	int32  phase = 0;
-	int32  game_days = (int32)this->getVanaTime() / 3456;
-	double daysmod   = (int32)(game_days - 22) % 84;
+	int32 phase = 0;
+	double daysmod = (int32)(((m_vanaDate / VTIME_DAY) + 26) % 84);
 
 	if (daysmod >= 42){
-		phase = (int32)(100*(1 - (daysmod - 42)/42) + 0.5);
+		phase = (int32)(100 * ((daysmod - 42) / 42) + 0.5);
 	}else{
-		phase = (int32)(100*daysmod/42 + 0.5);
+		phase = (int32)(100 * (1 - (daysmod / 42)) + 0.5);
 	}
 
 	return phase;
@@ -163,13 +162,11 @@ uint32 CVanaTime::getMoonPhase()
 
 uint8 CVanaTime::getMoonDirection()
 {
-	int32  phase = 0;
-	int32  game_days = (int32)this->getVanaTime() / 3456;
-	double daysmod   = (int32)(game_days - 22) % 84;
+	double daysmod = (int32)(((m_vanaDate / VTIME_DAY) + 26) % 84);
 
 	if (daysmod == 42 || daysmod == 0){
 		return 0; //neither waxing nor waning
-	}else if (daysmod > 42){
+	}else if (daysmod < 42){
 		return 1;	//waning
 	}else {
 		return 2;   //waxing
