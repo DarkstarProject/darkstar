@@ -361,6 +361,7 @@ void CAIMobDummy::ActionDisengage()
 
 void CAIMobDummy::ActionFall()
 {
+	m_PMob->m_THLvl = m_PMob->PEnmityContainer->GetHighestTH();
 	m_PMob->PEnmityContainer->Clear();
 	m_PPathFind->Clear();
 
@@ -407,16 +408,15 @@ void CAIMobDummy::ActionDropItems()
 				}
 
                 DropList_t* DropList = itemutils::GetDropList(m_PMob->m_DropID);
+                //ShowDebug(CL_CYAN"DropID: %u dropping with TH Level: %u\n" CL_RESET, m_PMob->m_DropID, m_PMob->m_THLvl);
 
 			    if (DropList != NULL && DropList->size())
 			    {
-					uint8 highestTH = charutils::GetHighestTreasureHunter(PChar, m_PMob);
-
                     for(uint8 i = 0; i < DropList->size(); ++i)
 				    {
-						//highestTH is the number of 'extra chances' at an item. If the item is obtained, then break out.
+						//THLvl is the number of 'extra chances' at an item. If the item is obtained, then break out.
 						uint8 tries = 0;
-						while(tries < 1+highestTH)
+						while(tries < 1 + m_PMob->m_THLvl)
 						{
 							if(WELL512::irand()%1000 < DropList->at(i).DropRate)
 							{
@@ -599,7 +599,6 @@ void CAIMobDummy::ActionSpawn()
 		m_PMob->m_CallForHelp = 0;
 		m_PMob->m_HiPCLvl = 0;
 		m_PMob->m_THLvl = 0;
-		m_PMob->m_THPCID = 0;
 		m_PMob->m_ItemStolen = false;
         m_PMob->m_DropItemTime = 1000;
 		m_PMob->status = STATUS_UPDATE;
