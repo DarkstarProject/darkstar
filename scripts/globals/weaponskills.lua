@@ -57,9 +57,10 @@ function doPhysicalWeaponskill(attacker, target, params)
 	local ccmax = 0;
 	local hasMightyStrikes = attacker:hasStatusEffect(EFFECT_MIGHTY_STRIKES);
 	local isSneakValid = attacker:hasStatusEffect(EFFECT_SNEAK_ATTACK);
-	if(isSneakValid and not attacker:isBehind(target))then
+	if(isSneakValid and not (attacker:isBehind(target) or attacker:hasStatusEffect(EFFECT_HIDE)))then
 		isSneakValid = false;
 	end
+	attacker:delStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
 	attacker:delStatusEffect(EFFECT_SNEAK_ATTACK);
 	local isTrickValid = attacker:hasStatusEffect(EFFECT_TRICK_ATTACK);
 	if(isTrickValid and not attacker:isTrickAttackAvailable(target)) then
