@@ -1812,6 +1812,12 @@ bool CAIMobDummy::TryDeaggro()
 		tryDetectDeaggro = true;
 	}
 
+    //Hide allows you to lose aggro on certain types of enemies.
+    //Generally works on monsters that don't track by scent, regardless of detection method.
+    //Can work on monsters that track by scent if the proper conditions are met (double rain weather, crossing over water, etc.) 
+    if(tryTimeDeaggro && m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE))
+        return true;
+
 	// I will now deaggro if I cannot detect my target
 	if(tryDetectDeaggro && !m_PMob->CanDetectTarget(m_PBattleTarget))
 	{
