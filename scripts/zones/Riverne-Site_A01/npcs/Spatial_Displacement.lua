@@ -17,7 +17,7 @@ end;
 function onTrigger(player,npc)
 	
 	local id = npc:getID();
-	local base = 16900332; -- (First Spacial Displacement in NPC_LIST)
+	local base = 16900333; -- (First Spacial Displacement in NPC_LIST)
 
 	if(id == base) then 
 		player:startEvent(0x2);

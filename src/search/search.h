@@ -33,6 +33,11 @@ struct search_config_t
     const int8* mysql_database;     // mysql database -> default dspdb
 };
 
+struct login_config_t
+{
+	char* search_server_port;		// search_server_port	-> 54002
+};
+
 struct search_req
 {
 	uint16 zoneid[10];
