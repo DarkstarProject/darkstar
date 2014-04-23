@@ -3238,6 +3238,13 @@ void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, int8* dat
         PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 316));
         return;
     }
+    
+    // Prevent crafting exploit if we are already crafting..
+    if (PChar->animation == ANIMATION_SYNTH)
+    {
+        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 94));
+        return;
+    }
 
     PChar->CraftContainer->Clean();
 
