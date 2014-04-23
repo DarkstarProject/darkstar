@@ -1444,6 +1444,10 @@ void CZone::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message_type, C
 									PCurrentChar->SpawnMOBList.insert(MOB, SpawnIDList_t::value_type(id, PMob));
 									PCurrentChar->pushPacket(new CEntityUpdatePacket(PMob, ENTITY_SPAWN, UPDATE_ALL));
 								}
+								else
+								{
+									PCurrentChar->pushPacket(new CBasicPacket(*packet));
+								}
 							}
 							else
 							{
