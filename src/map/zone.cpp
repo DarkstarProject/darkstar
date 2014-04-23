@@ -1430,7 +1430,25 @@ void CZone::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message_type, C
 					{
 						if(distance(PEntity->loc.p, PCurrentChar->loc.p) < 50)
 						{
-							PCurrentChar->pushPacket(new CBasicPacket(*packet));
+							if (packet != NULL && packet->getType() == 0x0E)
+							{
+								uint32 id = packet->getData()[(0x04) - 4];
+								uint16 targid = packet->getData()[(0x08) - 4];
+
+								SpawnIDList_t::iterator MOB = PCurrentChar->SpawnMOBList.lower_bound(id);
+
+								if (MOB == PCurrentChar->SpawnMOBList.end() ||
+									PCurrentChar->SpawnMOBList.key_comp()(id, MOB->first))
+								{
+									CMobEntity* PMob = (CMobEntity*)GetEntity(targid, TYPE_MOB);
+									PCurrentChar->SpawnMOBList.insert(MOB, SpawnIDList_t::value_type(id, PMob));
+									PCurrentChar->pushPacket(new CEntityUpdatePacket(PMob, ENTITY_SPAWN, UPDATE_ALL));
+								}
+							}
+							else
+							{
+								PCurrentChar->pushPacket(new CBasicPacket(*packet));
+							}
 						}
 					}
 				}
