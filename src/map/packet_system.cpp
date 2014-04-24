@@ -3356,12 +3356,17 @@ if (PChar->animation != ANIMATION_SYNTH)
         CItemShop* shopItem = (CItemShop*)PChar->PGuildShop->GetItem(shopSlotID);
         CItem*     charItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slot);
 
+		if (PChar->PGuildShop->GetItem(shopSlotID)->getQuantity() + quantity > PChar->PGuildShop->GetItem(shopSlotID)->getStackSize())
+		{
+			quantity = PChar->PGuildShop->GetItem(shopSlotID)->getStackSize() - PChar->PGuildShop->GetItem(shopSlotID)->getQuantity();
+		}
+
         //TODO: add all sellable items to guild table
-        if (shopItem && charItem && charItem->getQuantity() >= quantity)
+        if (quantity != 0 && shopItem && charItem && charItem->getQuantity() >= quantity)
 	    {
 			if (charutils::UpdateItem(PChar, LOC_INVENTORY, slot, -quantity) == itemID)
 			{
-				charutils::UpdateItem(PChar, LOC_INVENTORY, 0, (shopItem->getBasePrice() / 3) * quantity);
+				charutils::UpdateItem(PChar, LOC_INVENTORY, 0, shopItem->getSellPrice() * quantity);
 
 				PChar->PGuildShop->GetItem(shopSlotID)->setQuantity(PChar->PGuildShop->GetItem(shopSlotID)->getQuantity()+quantity);
                 PChar->pushPacket(new CGuildMenuSellUpdatePacket(PChar, PChar->PGuildShop->GetItem(PChar->PGuildShop->SearchItem(itemID))->getQuantity(), itemID, quantity));
