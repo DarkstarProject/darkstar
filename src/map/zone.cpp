@@ -1435,25 +1435,33 @@ void CZone::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message_type, C
 								uint32 id = RBUFL(packet->getData(), (0x04) - 4);
 								uint16 targid = RBUFW(packet->getData(), (0x08) - 4);
 
-								CBaseEntity* entity = GetEntity(targid, TYPE_MOB | TYPE_NPC | TYPE_PET);
+								CBaseEntity* entity = GetEntity(targid);
 
 								SpawnIDList_t spawnlist;
 
-								switch (entity->objtype)
+								if (entity)
 								{
-								case TYPE_MOB:
-									spawnlist = PCurrentChar->SpawnMOBList;
-									break;
-								case TYPE_NPC:
-									spawnlist = PCurrentChar->SpawnNPCList;
-									break;
-								case TYPE_PET:
-									spawnlist = PCurrentChar->SpawnPETList;
-									break;
-								default:
-									spawnlist = PCurrentChar->SpawnMOBList;
+									switch (entity->objtype)
+									{
+									case TYPE_MOB:
+										spawnlist = PCurrentChar->SpawnMOBList;
+										break;
+									case TYPE_NPC:
+										spawnlist = PCurrentChar->SpawnNPCList;
+										break;
+									case TYPE_PET:
+										spawnlist = PCurrentChar->SpawnPETList;
+										break;
+									default:
+										entity = NULL;
+									}
 								}
-
+								if (!entity)
+								{
+									// got a char or nothing as the target of this entity update (which really shouldn't happen ever)
+									// so we're just going to skip this packet
+									break;
+								}
 								SpawnIDList_t::iterator iter = spawnlist.lower_bound(id);
 
 								if (iter == spawnlist.end() ||
