@@ -1432,17 +1432,35 @@ void CZone::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message_type, C
 						{
 							if (packet != NULL && packet->getType() == 0x0E)
 							{
-								uint32 id = packet->getData()[(0x04) - 4];
-								uint16 targid = packet->getData()[(0x08) - 4];
+								uint32 id = RBUFL(packet->getData(), (0x04) - 4);
+								uint16 targid = RBUFW(packet->getData(), (0x08) - 4);
 
-								SpawnIDList_t::iterator MOB = PCurrentChar->SpawnMOBList.lower_bound(id);
+								CBaseEntity* entity = GetEntity(targid, TYPE_MOB | TYPE_NPC | TYPE_PET);
 
-								if (MOB == PCurrentChar->SpawnMOBList.end() ||
-									PCurrentChar->SpawnMOBList.key_comp()(id, MOB->first))
+								SpawnIDList_t spawnlist;
+
+								switch (entity->objtype)
 								{
-									CMobEntity* PMob = (CMobEntity*)GetEntity(targid, TYPE_MOB);
-									PCurrentChar->SpawnMOBList.insert(MOB, SpawnIDList_t::value_type(id, PMob));
-									PCurrentChar->pushPacket(new CEntityUpdatePacket(PMob, ENTITY_SPAWN, UPDATE_ALL));
+								case TYPE_MOB:
+									spawnlist = PCurrentChar->SpawnMOBList;
+									break;
+								case TYPE_NPC:
+									spawnlist = PCurrentChar->SpawnNPCList;
+									break;
+								case TYPE_PET:
+									spawnlist = PCurrentChar->SpawnPETList;
+									break;
+								default:
+									spawnlist = PCurrentChar->SpawnMOBList;
+								}
+
+								SpawnIDList_t::iterator iter = spawnlist.lower_bound(id);
+
+								if (iter == spawnlist.end() ||
+									spawnlist.key_comp()(id, iter->first))
+								{
+									spawnlist.insert(iter, SpawnIDList_t::value_type(id, PEntity));
+									PCurrentChar->pushPacket(new CEntityUpdatePacket(entity, ENTITY_SPAWN, UPDATE_ALL));
 								}
 								else
 								{
