@@ -1430,7 +1430,9 @@ void CZone::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message_type, C
 					{
 						if(distance(PEntity->loc.p, PCurrentChar->loc.p) < 50)
 						{
-							if (packet != NULL && packet->getType() == 0x0E)
+							if (packet != NULL && packet->getType() == 0x0E && 
+								RBUFB(packet->getData(), (0x0A) - 4) != 0x20 || 
+								RBUFB(packet->getData(), (0x0A) - 4) != 0x0F )
 							{
 								uint32 id = RBUFL(packet->getData(), (0x04) - 4);
 								uint16 targid = RBUFW(packet->getData(), (0x08) - 4);
@@ -1464,13 +1466,8 @@ void CZone::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message_type, C
 								}
 								SpawnIDList_t::iterator iter = spawnlist.lower_bound(id);
 
-								if (iter == spawnlist.end() ||
-									spawnlist.key_comp()(id, iter->first))
-								{
-									spawnlist.insert(iter, SpawnIDList_t::value_type(id, PEntity));
-									PCurrentChar->pushPacket(new CEntityUpdatePacket(entity, ENTITY_SPAWN, UPDATE_ALL));
-								}
-								else
+								if (!(iter == spawnlist.end() ||
+									spawnlist.key_comp()(id, iter->first)))
 								{
 									PCurrentChar->pushPacket(new CBasicPacket(*packet));
 								}
