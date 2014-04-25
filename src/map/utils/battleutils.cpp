@@ -4104,9 +4104,12 @@ void HandleAfflatusMiseryAccuracyBonus(CBattleEntity* PAttacker){
 	if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_AFFLATUS_MISERY) &&
 		PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_AUSPICE)){
 	
-		// We keep track of the running total of Accuracy Bonus in a seperate modifer.
+		// We keep track of the running total of Accuracy Bonus as part of the Sub Power of the Effect
 		// This is used to re-adjust MOD_ACC when the effect wears off
-		PAttacker->addModifier(MOD_AFFLATUS_MISERY_ACC_BONUS, 10);
+
+		uint16 accBonus = PAttacker->StatusEffectContainer->GetStatusEffect(EFFECT_AFFLATUS_MISERY)->GetSubPower();
+		accBonus = accBonus + 10;
+		PAttacker->StatusEffectContainer->GetStatusEffect(EFFECT_AFFLATUS_MISERY)->SetSubPower(accBonus);
 
 		// Update the Accuracy Modifer as well, so that this is reflected
 		// throughout the battle system

@@ -295,8 +295,6 @@ enum MODIFIER
 	// White Mage
 	MOD_AFFLATUS_SOLACE           =0x125,// Pool of HP accumulated during Afflatus Solace (modId = 293)
 	MOD_AFFLATUS_MISERY           =0x126,// Pool of HP accumulated during Afflatus Misery (modId = 294)
-	MOD_AFFLATUS_MISERY_ACC_BONUS =0x1E4, // Accuracy Bonus accumulated during Afflatus Misery + Auspice Combo (modId = 484)
-	MOD_AUSPICE                   =0x1E5, // Keeps Track of Subtle Blow Bonus From Auspice (modId = 485)
 
 	// Black Mage
 	MOD_CLEAR_MIND                =0x127,// Used in conjunction with MOD_HEALMP to increase amount between tics (modId = 295)
@@ -530,6 +528,8 @@ enum MODIFIER
     MOD_MAGIC_ABSORB              =0x1DB,// (modId = 475)
     MOD_MAGIC_NULL                =0x1DC,// (modId = 476)
 
+	// MOD_SPARE	=0x1E4,// (modId = 484)
+	// MOD_SPARE	=0x1E5,// (modId = 485)
 	// MOD_SPARE	=0x1E6,// (modId = 486)
 	// MOD_SPARE	=0x1E7,// (modId = 487)
 
