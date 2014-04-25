@@ -1431,8 +1431,8 @@ void CZone::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message_type, C
 						if(distance(PEntity->loc.p, PCurrentChar->loc.p) < 50)
 						{
 							if (packet != NULL && packet->getType() == 0x0E && 
-								RBUFB(packet->getData(), (0x0A) - 4) != 0x20 || 
-								RBUFB(packet->getData(), (0x0A) - 4) != 0x0F )
+								(RBUFB(packet->getData(), (0x0A) - 4) != 0x20 || 
+								RBUFB(packet->getData(), (0x0A) - 4) != 0x0F ))
 							{
 								uint32 id = RBUFL(packet->getData(), (0x04) - 4);
 								uint16 targid = RBUFW(packet->getData(), (0x08) - 4);
