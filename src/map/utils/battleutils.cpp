@@ -4108,12 +4108,16 @@ void HandleAfflatusMiseryAccuracyBonus(CBattleEntity* PAttacker){
 		// This is used to re-adjust MOD_ACC when the effect wears off
 
 		uint16 accBonus = PAttacker->StatusEffectContainer->GetStatusEffect(EFFECT_AFFLATUS_MISERY)->GetSubPower();
-		accBonus = accBonus + 10;
-		PAttacker->StatusEffectContainer->GetStatusEffect(EFFECT_AFFLATUS_MISERY)->SetSubPower(accBonus);
+		
+		// Per BGWiki, this bonus is thought to cap at +30
+		if (accBonus < 30) {
+			accBonus = accBonus + 10;
+			PAttacker->StatusEffectContainer->GetStatusEffect(EFFECT_AFFLATUS_MISERY)->SetSubPower(accBonus);
 
-		// Update the Accuracy Modifer as well, so that this is reflected
-		// throughout the battle system
-		PAttacker->addModifier(MOD_ACC, 10);
+			// Update the Accuracy Modifer as well, so that this is reflected
+			// throughout the battle system
+			PAttacker->addModifier(MOD_ACC, 10);
+		}
 	}
 }
 

@@ -14,23 +14,10 @@
 
 function onEffectGain(target,effect)
 	--Auspice Reduces TP via adding to your Subtle Blow Mod
-	local feet = target:getEquipID(SLOT_FEET);
-	--If you have Orison Duckbills +2, you get Subtle Blow +20
-	if(feet == 11146) then
-		--printf("AUSPICE: Adding Subtle Blow +%d!", 20);
-		effect:setSubPower(20);
-		target:addMod(MOD_SUBTLE_BLOW, 20);	
-	--If you have Orison Duckbills +1, you get Subtle Blow +15
-	elseif(feet == 11246) then
-		--printf("AUSPICE: Adding Subtle Blow +%d!", 15);
-		effect:setSubPower(15);
-		target:addMod(MOD_SUBTLE_BLOW, 15);
-	--The normal Auspice Bonus is Subtle Blow +10
-	else
-		--printf("AUSPICE: Adding Subtle Blow +%d!", 10);
-		effect:setSubPower(10);
-		target:addMod(MOD_SUBTLE_BLOW, 10);
-	end
+	local subtleBlowBonus = 10 + target:getMod(MOD_AUSPICE_EFFECT);
+	--printf("AUSPICE: Adding Subtle Blow +%d!", subtleBlowBonus);
+	effect:setSubPower(subtleBlowBonus);
+	target:addMod(MOD_SUBTLE_BLOW, subtleBlowBonus);	
 
 	--Afflatus Misery Bonuses	
 	if(target:hasStatusEffect(EFFECT_AFFLATUS_MISERY)) then
