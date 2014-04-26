@@ -1424,7 +1424,7 @@ void CAIMobDummy::ActionAttack()
             }
             float currentDistance = distance(m_PMob->loc.p, m_PBattleSubTarget->loc.p);
             if (currentDistance <= m_PMobSkill->getDistance()) {
-                int16 WeaponDelay = m_PMob->GetWeaponDelay(false);
+                int16 WeaponDelay = m_PMob->GetWeaponDelay(true);
                 if (m_AutoAttackEnabled && m_Tick > m_LastActionTime + WeaponDelay)
                 {
                     m_LastActionTime = m_Tick;
