@@ -1021,6 +1021,19 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
                 charutils::UpdateHealth(PChar);
             }
         }
+		else if (enspell == ENSPELL_AUSPICE && hitNumber == 0){
+			Action->additionalEffect = SUBEFFECT_LIGHT_DAMAGE;
+			Action->addEffectMessage = 163;
+			Action->addEffectParam = CalculateEnspellDamage(PAttacker, PDefender, 2, 7);
+
+			if (Action->addEffectParam < 0)
+			{
+				Action->addEffectParam = -Action->addEffectParam;
+				Action->addEffectMessage = 384;
+			}
+
+			PDefender->addHP(-Action->addEffectParam);
+		}
     }
     //check weapon for additional effects
 	else if (PAttacker->objtype == TYPE_PC && weapon->getModifier(MOD_ADDITIONAL_EFFECT) > 0)
@@ -1939,6 +1952,7 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
         damage = dsp_max(damage - PDefender->getMod(MOD_PHALANX), 0);
 
         damage = HandleStoneskin(PDefender, damage);
+		HandleAfflatusMiseryDamage(PDefender, damage);
     }
     damage = dsp_cap(damage, -99999, 99999);
 
@@ -4084,6 +4098,34 @@ int32 RangedDmgTaken(CBattleEntity* PDefender, int32 damage)
     }
 
     return damage * resist;
+}
+
+void HandleAfflatusMiseryAccuracyBonus(CBattleEntity* PAttacker){
+	if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_AFFLATUS_MISERY) &&
+		PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_AUSPICE)){
+	
+		// We keep track of the running total of Accuracy Bonus as part of the Sub Power of the Effect
+		// This is used to re-adjust MOD_ACC when the effect wears off
+
+		uint16 accBonus = PAttacker->StatusEffectContainer->GetStatusEffect(EFFECT_AFFLATUS_MISERY)->GetSubPower();
+		
+		// Per BGWiki, this bonus is thought to cap at +30
+		if (accBonus < 30) {
+			accBonus = accBonus + 10;
+			PAttacker->StatusEffectContainer->GetStatusEffect(EFFECT_AFFLATUS_MISERY)->SetSubPower(accBonus);
+
+			// Update the Accuracy Modifer as well, so that this is reflected
+			// throughout the battle system
+			PAttacker->addModifier(MOD_ACC, 10);
+		}
+	}
+}
+
+void HandleAfflatusMiseryDamage(CBattleEntity* PDefender, int32 damage)
+{
+	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_AFFLATUS_MISERY)){
+		PDefender->setModifier(MOD_AFFLATUS_MISERY, damage);
+	}
 }
 
 float HandleTranquilHeart(CBattleEntity* PEntity){

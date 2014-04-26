@@ -2981,6 +2981,9 @@ void CAICharNormal::ActionAttack()
 					Action.messageID  = 15;
 					attack->SetEvaded(true);
 
+					// Check & Handle Afflatus Misery Accuracy Bonus
+					battleutils::HandleAfflatusMiseryAccuracyBonus(m_PChar);
+
 					// Try to zanshin (miss).
 					attackRound->CreateZanshinAttacks();
 				}

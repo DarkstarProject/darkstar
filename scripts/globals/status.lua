@@ -1030,6 +1030,8 @@ MOD_MAGIC_NULL                =0x1DC -- (modId = 476)
 
 MOD_WARCRY_DURATION           =0x1E3 -- Warcy duration bonus from gear
 
+MOD_AUSPICE_EFFECT            =0x1E4 -- Auspice Subtle Blow Bonus (modId = 484)
+
 -----------------------------------
 -- Merit Definitions
 -----------------------------------

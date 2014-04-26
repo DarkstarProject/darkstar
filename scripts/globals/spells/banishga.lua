@@ -15,7 +15,7 @@ function OnMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	--doDivineNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
-	local dmg = doDivineNuke(50,1,caster,spell,target,false,1.0);
+	--doDivineBanishNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
+	local dmg = doDivineBanishNuke(50,1,caster,spell,target,false,1.0);
 	return dmg;
 end;

@@ -198,6 +198,11 @@ namespace battleutils
     // returns damage taken
     int32               HandleStoneskin(CBattleEntity* PDefender, int32 damage);
 
+	// stores damage for afflatus misery if active	
+	void                HandleAfflatusMiseryDamage(CBattleEntity* PDefender, int32 damage);
+	// boosts accuracy when afflatus msiery is active
+	void                HandleAfflatusMiseryAccuracyBonus(CBattleEntity* PAttacker);
+
 	// handles enmity loss calculations for tranquil heart
 	float               HandleTranquilHeart(CBattleEntity* PEntity);
 

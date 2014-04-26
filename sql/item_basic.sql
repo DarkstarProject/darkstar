@@ -4316,7 +4316,7 @@ INSERT INTO `item_basic` VALUES (5078,470,'scroll_of_sentinels_scherzo','sentine
 INSERT INTO `item_basic` VALUES (5079,471,'scroll_of_foe_lullaby_ii','foe_lullaby_ii',1,34432,32,0,3507);
 INSERT INTO `item_basic` VALUES (5080,0,'scroll_of_pining_nocturne','pining_nocturne',1,34432,99,0,0);
 INSERT INTO `item_basic` VALUES (5082,474,'scroll_of_cura_ii','cura_ii',1,34432,28,0,4575);
-INSERT INTO `item_basic` VALUES (5083,0,'scroll_of_cura_iii','cura_iii',1,34432,99,0,0);
+INSERT INTO `item_basic` VALUES (5083,475,'scroll_of_cura_iii','cura_iii',1,34432,99,0,7583);
 INSERT INTO `item_basic` VALUES (5085,477,'scroll_of_regen_iv','regen_iv',1,34432,28,0,2460);
 INSERT INTO `item_basic` VALUES (5086,0,'scroll_of_regen_v','regen_v',1,34432,99,0,0);
 INSERT INTO `item_basic` VALUES (5087,486,'scroll_of_gain-str','gain-str',1,34432,28,0,4814);
