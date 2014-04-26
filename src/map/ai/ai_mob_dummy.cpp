@@ -806,6 +806,25 @@ void CAIMobDummy::ActionAbilityStart()
 		m_PMob->health.tp = 0;
 	}
 
+    if (m_PMobSkill->getFlag() & SKILLFLAG_DRAW_IN)
+    {
+        float currentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
+
+        if (currentDistance >= m_PMob->m_ModelSize * 2)
+        {
+            if (!m_drawnIn)
+            {
+                battleutils::DrawIn(m_PBattleTarget, m_PMob, m_PMob->m_ModelSize - 0.2f);
+                m_drawnIn = true;
+            }
+            else
+            {
+                m_drawnIn = false;
+            }
+
+        }
+    }
+
 	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
 
 	if( m_PMobSkill->getActivationTime() == 0)
@@ -1427,32 +1446,24 @@ void CAIMobDummy::ActionAttack()
         CMobEntity* posShare = (CMobEntity*)m_PMob->loc.zone->GetEntity(m_PMob->getMobMod(MOBMOD_SHARE_POS), TYPE_MOB);
         m_PMob->loc = posShare->loc;
     }
+
     else if(currentDistance > m_PMob->m_ModelSize || move)
-	{
-		if(m_PMob->getMobMod(MOBMOD_DRAW_IN) && distance(m_PMob->m_SpawnPoint, m_PBattleTarget->loc.p) > m_PMob->getMobMod(MOBMOD_DRAW_IN))
-		{
-			// prevent double drawin
-			// I think it happens because the server moves the char
-			// then the char gets updated from the client in the old position
-			// this causing draw in to happen twice unless this if is here
-			if(!m_drawnIn)
-			{
-				battleutils::DrawIn(m_PBattleTarget, &m_PMob->loc.p, m_PMob->m_ModelSize - 0.2f);
+    {
+        if (m_PMob->getMobMod(MOBMOD_DRAW_IN) > 0)
+        {
+            if (!m_drawnIn)
+            {
+                if (currentDistance >= m_PMob->m_ModelSize * 2)
+                    battleutils::DrawIn(m_PBattleTarget, m_PMob, m_PMob->m_ModelSize - 0.2f);
 
-				luautils::OnMobDrawIn(m_PMob, m_PBattleTarget);
-
-				m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PBattleTarget,m_PBattleTarget,0,0, 232));
-
-			    currentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
-
-			    m_drawnIn = true;
-			}
-			else
-			{
-				m_drawnIn = false;
-			}
-		}
-        else if (m_PMob->speed != 0 && m_Tick >= m_LastSpecialTime)
+                m_drawnIn = true;
+            }
+            else
+            {
+                m_drawnIn = false;
+            }
+        }
+        if (m_PMob->speed != 0 && m_Tick >= m_LastSpecialTime)
 		{
             // attempt to teleport to target (if in range)
             if (m_PMob->getMobMod(MOBMOD_TELEPORT_TYPE) == 2)

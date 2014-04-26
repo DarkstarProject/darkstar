@@ -88,3 +88,15 @@ uint16 CItemShop::getInitialQuantity()
 {
     return m_InitialQuantity;
 }
+
+uint16 CItemShop::getSellPrice()
+{
+	if (getID() >= 0x2800 && getID() <= 0x6FFF)
+	{
+		return (getMinPrice() + (getQuantity() / getStackSize()) * (getMinPrice() * 0.10f)) / 12;
+	}
+	else
+	{
+		return getBasePrice() / 3;
+	}
+}

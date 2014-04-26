@@ -53,6 +53,7 @@ public:
     uint16  getDailyIncrease();
     void    setInitialQuantity(uint16 quantity);
     uint16  getInitialQuantity();
+	uint16  getSellPrice();
 
 private:
 

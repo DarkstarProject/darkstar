@@ -1063,6 +1063,7 @@ void CAICharNormal::ActionRangedFinish()
 						charutils::UnequipItem(m_PChar,SLOT_AMMO);
 						charutils::UpdateItem(m_PChar, LOC_INVENTORY, slot, -1);
 						i = hitCount; // end loop (if barrage), player is out of ammo
+						PAmmo = NULL;
 					}
 					else
 					{

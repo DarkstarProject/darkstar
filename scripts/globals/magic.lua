@@ -1227,6 +1227,12 @@ function doNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,s
 		if(head == 15084) then
 			dmg = math.floor(dmg * 1.05);
 		end
+		
+		-- boost with Futae
+		if(caster:hasStatusEffect(EFFECT_FUTAE)) then
+			dmg = math.floor(dmg * 1.50);
+			caster:delStatusEffect(EFFECT_FUTAE);
+		end
 	end
 	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
 	dmg = addBonuses(caster,spell,target,dmg);

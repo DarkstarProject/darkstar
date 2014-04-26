@@ -1680,17 +1680,58 @@ INSERT INTO `mob_skill` VALUES (1119,271,1027,'Asthenic_Fog',1,15.0,2000,1500,4,
 -- INSERT INTO `mob_skill` VALUES (1120,271,1028,'Luminous_Drape',1,10.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skill` VALUES (1121,271,1029,'Fluorescence',0,7.0,2000,1500,1,0,0,0);
 
--- Aern
--- INSERT INTO `mob_skill` VALUES (1130,3,1021,'Medusa_Javelin',0,7.0,2000,1000,1,0,0,0); -- polearm type only
--- INSERT INTO `mob_skill` VALUES (1131,3,1017,'Sideswipe',0,7.0,2000,2000,1,0,0,0); -- hand to hand type only
--- INSERT INTO `mob_skill` VALUES (1122,3,1010,'Wing_Thrust',0,7.0,2000,2000,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (1123,3,1011,'Auroral_Wind',4,10.0,2000,1000,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (1124,3,1012,'Impact_Stream',1,10.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (1125,3,1013,'Depuration',0,7.0,2000,1000,1,0,0,0);
--- INSERT INTO `mob_skill` VALUES (1126,3,1014,'Crystaline_Cocoon',0,7.0,2000,1000,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (1127,3,1018,'Glacier_Splitter',0,7.0,2000,2000,4,0,0,0); -- sword wielding only
-INSERT INTO `mob_skill` VALUES (1128,3,1019,'Disseverment',0,7.0,2000,2000,4,0,0,0); -- dagger wielding types only
--- INSERT INTO `mob_skill` VALUES (1129,3,1020,'Biotic_Boomerang',1,15.0,2000,2000,4,0,0,0); -- axe type only
+-- Aern H2H fam 3 nin mnk
+INSERT INTO `mob_skill` VALUES (1122,3,1010,'Wing_Thrust',0,7.0,2000,2000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1123,3,1011,'Auroral_Wind',4,10.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1124,3,1012,'Impact_Stream',1,10.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1125,3,1013,'Depuration',0,7.0,2000,1000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1126,3,1014,'Crystaline_Cocoon',0,7.0,2000,1000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1131,3,1017,'Sideswipe',0,7.0,2000,2000,1,0,0,0); 
+
+-- Aern Axe type fam 443 rng war bst
+INSERT INTO `mob_skill` VALUES (1122,443,1010,'Wing_Thrust',0,7.0,2000,2000,4,0,0,0); 
+INSERT INTO `mob_skill` VALUES (1123,443,1011,'Auroral_Wind',4,10.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1124,443,1012,'Impact_Stream',1,10.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1125,443,1013,'Depuration',0,7.0,2000,1000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1126,443,1014,'Crystaline_Cocoon',0,7.0,2000,1000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1129,443,1020,'Biotic_Boomerang',1,15.0,2000,2000,4,0,0,0);
+
+
+-- Aern dagger type blm thief bard
+INSERT INTO `mob_skill` VALUES (1122,442,1010,'Wing_Thrust',0,7.0,2000,2000,4,0,0,0); 
+INSERT INTO `mob_skill` VALUES (1123,442,1011,'Auroral_Wind',4,10.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1124,442,1012,'Impact_Stream',1,10.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1125,442,1013,'Depuration',0,7.0,2000,1000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1126,442,1014,'Crystaline_Cocoon',0,7.0,2000,1000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1128,442,1019,'Disseverment',0,7.0,2000,2000,4,0,0,0);
+
+-- Aern sword type rdm pld drk
+INSERT INTO `mob_skill` VALUES (1122,441,1010,'Wing_Thrust',0,7.0,2000,2000,4,0,0,0); 
+INSERT INTO `mob_skill` VALUES (1123,441,1011,'Auroral_Wind',4,10.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1124,441,1012,'Impact_Stream',1,10.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1125,441,1013,'Depuration',0,7.0,2000,1000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1126,441,1014,'Crystaline_Cocoon',0,7.0,2000,1000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1127,441,1018,'Glacier_Splitter',0,7.0,2000,2000,4,0,0,0); 
+
+
+-- Aern polearm type sam drg
+INSERT INTO `mob_skill` VALUES (1122,440,1010,'Wing_Thrust',0,7.0,2000,2000,4,0,0,0); 
+INSERT INTO `mob_skill` VALUES (1123,440,1011,'Auroral_Wind',4,10.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1124,440,1012,'Impact_Stream',1,10.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1125,440,1013,'Depuration',0,7.0,2000,1000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1126,440,1014,'Crystaline_Cocoon',0,7.0,2000,1000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1130,440,1021,'Medusa_Javelin',0,7.0,2000,1000,1,0,0,0);
+
+
+-- Aern staff type smn whm
+INSERT INTO `mob_skill` VALUES (1122,439,1010,'Wing_Thrust',0,7.0,2000,2000,4,0,0,0); 
+INSERT INTO `mob_skill` VALUES (1123,439,1011,'Auroral_Wind',4,10.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1124,439,1012,'Impact_Stream',1,10.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1125,439,1013,'Depuration',0,7.0,2000,1000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1126,439,1014,'Crystaline_Cocoon',0,7.0,2000,1000,1,0,0,0);
+
+
+
 
 -- Phuabo
 INSERT INTO `mob_skill` VALUES (1097,194,1004,'Aerial_collision',4,10.0,2000,1000,4,0,0,0);
@@ -3243,7 +3284,7 @@ INSERT INTO `mob_skill` VALUES (2846,464,2176,'Infaunal_Flop',1,18.0,2000,1000,4
 
 -- Dullahan
 -- anims 2299 2300 2301 2302 , waiting for skills name to be known
-
+INSERT INTO `mob_skill` VALUES (2965,447,2302,'Atramentous_Libations',1,18.0,2000,1000,4,0,0,0);
 -- Fluturini
 -- anims 2289 2293 ? waiting names
 

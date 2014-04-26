@@ -24,7 +24,6 @@
 #include "../common/showmsg.h"
 
 #include <time.h>
-#include <sys/timeb.h>
 
 #include "vana_time.h"
 #include "utils/zoneutils.h"
@@ -151,9 +150,12 @@ uint32 CVanaTime::getMoonPhase()
 	int32 phase = 0;
 	double daysmod = (int32)(((m_vanaDate / VTIME_DAY) + 26) % 84);
 
-	if (daysmod >= 42){
+	if (daysmod >= 42)
+	{
 		phase = (int32)(100 * ((daysmod - 42) / 42) + 0.5);
-	}else{
+	}
+	else
+	{
 		phase = (int32)(100 * (1 - (daysmod / 42)) + 0.5);
 	}
 
@@ -164,13 +166,28 @@ uint8 CVanaTime::getMoonDirection()
 {
 	double daysmod = (int32)(((m_vanaDate / VTIME_DAY) + 26) % 84);
 
-	if (daysmod == 42 || daysmod == 0){
+	if (daysmod == 42 || daysmod == 0)
+	{
 		return 0; //neither waxing nor waning
-	}else if (daysmod < 42){
+	}
+	else if (daysmod < 42)
+	{
 		return 1;	//waning
-	}else {
+	}
+	else
+	{
 		return 2;   //waxing
 	}
+}
+
+uint8 CVanaTime::getRSERace()
+{
+	return (uint8)(((m_vanaDate / VTIME_WEEK) - 22) % 8) + 1;
+}
+
+uint8 CVanaTime::getRSELocation()
+{
+	return (uint8)(((m_vanaDate / VTIME_WEEK) - 21) % 3);
 }
 
 TIMETYPE CVanaTime::SyncTime()

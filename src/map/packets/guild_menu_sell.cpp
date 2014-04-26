@@ -62,7 +62,7 @@ CGuildMenuSellPacket::CGuildMenuSellPacket(CCharEntity* PChar, CItemContainer* P
         WBUFW(data,(0x08*ItemCount+0x04)-4) = PItem->getID();
         WBUFB(data,(0x08*ItemCount+0x06)-4) = PItem->getQuantity();
         WBUFB(data,(0x08*ItemCount+0x07)-4) = PItem->getStackSize();
-        WBUFL(data,(0x08*ItemCount+0x08)-4) = (PItem->getBasePrice()/3);
+        WBUFL(data,(0x08*ItemCount+0x08)-4) = PItem->getSellPrice();
 
         ItemCount++;
     }
