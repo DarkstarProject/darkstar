@@ -411,11 +411,6 @@ void CInstance::OpenChestinBcnm(){
 	instanceutils::getChestItems(this);
 }
 
-/* apparently not used in bcnm
-void CInstance::getHighestTHforBcnm(){
-	instanceutils::getHighestTHforBcnm(this);
-}*/
-
 bool CInstance::loseBcnm(){
 	beforeCleanup();
 	for(int i=0; i<m_PlayerList.size(); i++){

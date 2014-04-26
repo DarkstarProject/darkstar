@@ -4570,35 +4570,5 @@ int32 GetRangedAccuracyBonuses(CBattleEntity* battleEntity)
 	return bonus;
 }
 
-/************************************************************************
-*                                                                       *
-*	Sets the monster's Treasure hunter level	                        *
-*                                                                       *
-************************************************************************/
-void SetMonsterTreasureHunterLevel(CCharEntity* PChar, CMobEntity* Monster)
-{
-	if (charutils::hasTrait(PChar, TRAIT_TREASURE_HUNTER))
-	{
-		if (Monster->m_THLvl == 0)
-		{
-			Monster->m_THLvl = PChar->getMod(MOD_TREASURE_HUNTER);
-			Monster->m_THPCID = PChar->id;
-		}
-		else if ((Monster->m_THPCID != PChar->id) && (Monster->m_THLvl < PChar->getMod(MOD_TREASURE_HUNTER))) 
-		{
-			Monster->m_THLvl = PChar->getMod(MOD_TREASURE_HUNTER)+1;
-		}
-		else if ((Monster->m_THPCID == PChar->id) && (Monster->m_THLvl < PChar->getMod(MOD_TREASURE_HUNTER))) 
-		{
-			Monster->m_THLvl = PChar->getMod(MOD_TREASURE_HUNTER);
-		}
-
-		if (Monster->m_THLvl > 12)
-		{
-			Monster->m_THLvl = 12;
-		}
-	}
-}
-
 };
  
