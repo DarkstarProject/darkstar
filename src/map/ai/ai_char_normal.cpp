@@ -2364,8 +2364,6 @@ void CAICharNormal::ActionWeaponSkillFinish()
     	return;
     }
 
-    m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
-
 	//apply TP Bonus
 	float bonusTp = m_PChar->getMod(MOD_TP_BONUS);
 
