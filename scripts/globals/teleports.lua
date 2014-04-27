@@ -223,7 +223,7 @@ function toAltepaDesert(player) -- Teleport to ??? for DRG AF1
 end;
 
 function toMineShaft2716(player) -- Teleport to Mine Shaft 2716
-	player:setPos(-118, -119, -620, 253, 13); -- Not Verified With Retail
+	player:setPos(-93.657, -120.000, -583.561, 0, 13); -- (R)
 end;
 
 function toSkyGreenPorterLeft(player)
