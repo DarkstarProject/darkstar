@@ -308,7 +308,7 @@ INSERT INTO `status_effects` VALUES (271,'aftermath_lv2',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (272,'aftermath_lv3',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (273,'aftermath',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (274,'enlight',33,94,51,0,0,0,0);
-INSERT INTO `status_effects` VALUES (275,'auspice',32,94,51,0,0,0,0);
+INSERT INTO `status_effects` VALUES (275,'auspice',32,94,51,0,0,0,7);
 INSERT INTO `status_effects` VALUES (276,'confrontation',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (277,'enfire_ii',33,94,51,0,0,0,0);
 INSERT INTO `status_effects` VALUES (278,'enblizzard_ii',33,94,51,0,0,0,0);

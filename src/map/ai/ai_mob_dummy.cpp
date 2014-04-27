@@ -361,6 +361,7 @@ void CAIMobDummy::ActionDisengage()
 
 void CAIMobDummy::ActionFall()
 {
+	m_PMob->m_THLvl = m_PMob->PEnmityContainer->GetHighestTH();
 	m_PMob->PEnmityContainer->Clear();
 	m_PPathFind->Clear();
 
@@ -407,16 +408,15 @@ void CAIMobDummy::ActionDropItems()
 				}
 
                 DropList_t* DropList = itemutils::GetDropList(m_PMob->m_DropID);
+                //ShowDebug(CL_CYAN"DropID: %u dropping with TH Level: %u\n" CL_RESET, m_PMob->m_DropID, m_PMob->m_THLvl);
 
 			    if (DropList != NULL && DropList->size())
 			    {
-					uint8 highestTH = charutils::GetHighestTreasureHunter(PChar, m_PMob);
-
                     for(uint8 i = 0; i < DropList->size(); ++i)
 				    {
-						//highestTH is the number of 'extra chances' at an item. If the item is obtained, then break out.
+						//THLvl is the number of 'extra chances' at an item. If the item is obtained, then break out.
 						uint8 tries = 0;
-						while(tries < 1+highestTH)
+						while(tries < 1 + m_PMob->m_THLvl)
 						{
 							if(WELL512::irand()%1000 < DropList->at(i).DropRate)
 							{
@@ -599,7 +599,6 @@ void CAIMobDummy::ActionSpawn()
 		m_PMob->m_CallForHelp = 0;
 		m_PMob->m_HiPCLvl = 0;
 		m_PMob->m_THLvl = 0;
-		m_PMob->m_THPCID = 0;
 		m_PMob->m_ItemStolen = false;
         m_PMob->m_DropItemTime = 1000;
 		m_PMob->status = STATUS_UPDATE;
@@ -1425,7 +1424,7 @@ void CAIMobDummy::ActionAttack()
             }
             float currentDistance = distance(m_PMob->loc.p, m_PBattleSubTarget->loc.p);
             if (currentDistance <= m_PMobSkill->getDistance()) {
-                int16 WeaponDelay = m_PMob->GetWeaponDelay(false);
+                int16 WeaponDelay = m_PMob->GetWeaponDelay(true);
                 if (m_AutoAttackEnabled && m_Tick > m_LastActionTime + WeaponDelay)
                 {
                     m_LastActionTime = m_Tick;
@@ -1811,6 +1810,12 @@ bool CAIMobDummy::TryDeaggro()
 	{
 		tryDetectDeaggro = true;
 	}
+
+    //Hide allows you to lose aggro on certain types of enemies.
+    //Generally works on monsters that don't track by scent, regardless of detection method.
+    //Can work on monsters that track by scent if the proper conditions are met (double rain weather, crossing over water, etc.) 
+    if(tryTimeDeaggro && m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE))
+        return true;
 
 	// I will now deaggro if I cannot detect my target
 	if(tryDetectDeaggro && !m_PMob->CanDetectTarget(m_PBattleTarget))

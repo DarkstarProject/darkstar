@@ -96,9 +96,10 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 			if (updatemask & UPDATE_STATUS)
 			{
 				WBUFL(data,(0x21)-4) = ((CNpcEntity*)PEntity)->unknown;
-				WBUFB(data,(0x22)-4) = (PEntity->untargetable ? 0x08 : 0x00);
+				WBUFB(data,(0x22)-4) |= (PEntity->untargetable ? 0x08 : 0x00);
 				WBUFB(data,(0x22)-4) |= (PEntity->hpvis ? 0x00 : 0x01);
 				WBUFB(data,(0x27)-4) = ((CNpcEntity*)PEntity)->name_prefix;     // gender and something else
+				WBUFB(data,(0x2B)-4) = PEntity->namevis;
 			}
 		}
 		break;

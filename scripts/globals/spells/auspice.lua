@@ -1,7 +1,9 @@
 -----------------------------------------
+-- 
 -- Spell: Auspice
 --
 -----------------------------------------
+
 require("scripts/globals/status");
 require("scripts/globals/magic");
 
@@ -14,6 +16,7 @@ function OnMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-
-    return 0;
+	local effect = EFFECT_AUSPICE;
+     	doEnspell(caster,target,spell,effect);	 
+	return effect;
 end;

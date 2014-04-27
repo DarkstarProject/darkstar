@@ -1126,7 +1126,6 @@ void CAICharNormal::ActionRangedFinish()
 		{
 			Monster->m_HiPCLvl = m_PChar->GetMLevel();
 		}
-		battleutils::SetMonsterTreasureHunterLevel(m_PChar, Monster);
 
 		// to catch high damage bugs
 		if (damage > 8000)
@@ -2365,8 +2364,6 @@ void CAICharNormal::ActionWeaponSkillFinish()
     	return;
     }
 
-    m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
-
 	//apply TP Bonus
 	float bonusTp = m_PChar->getMod(MOD_TP_BONUS);
 
@@ -2745,7 +2742,6 @@ void CAICharNormal::ActionAttack()
 	{
 		Monster->m_HiPCLvl = m_PChar->GetMLevel();
 	}
-	battleutils::SetMonsterTreasureHunterLevel(m_PChar, Monster);
 
 	if (m_PBattleTarget->isDead())
 	{
@@ -2984,6 +2980,9 @@ void CAICharNormal::ActionAttack()
 					Action.speceffect = SPECEFFECT_NONE;
 					Action.messageID  = 15;
 					attack->SetEvaded(true);
+
+					// Check & Handle Afflatus Misery Accuracy Bonus
+					battleutils::HandleAfflatusMiseryAccuracyBonus(m_PChar);
 
 					// Try to zanshin (miss).
 					attackRound->CreateZanshinAttacks();
