@@ -28,8 +28,12 @@ This file is part of DarkStar-server source code.
 
 CChatMessagePacket::CChatMessagePacket(CCharEntity* PChar, CHAT_MESSAGE_TYPE MessageType, int8* buff)
 {
+    // Determine the return message length..
+    int32 buffSize = (strlen(buff) > 108) ? 108 : strlen(buff);
+
+    // Build the packet..
     this->type = 0x17;
-    this->size = (24 + (strlen(buff) + 1) + ((4 - ((strlen(buff) + 1) % 4)) % 4)) / 2;
+    this->size = (24 + (buffSize + 1) + ((4 - ((buffSize + 1) % 4)) % 4)) / 2;
 
     WBUFB(data, (0x04) - 4) = MessageType;
     if (PChar->nameflags.flags & FLAG_GM)
@@ -37,5 +41,5 @@ CChatMessagePacket::CChatMessagePacket(CCharEntity* PChar, CHAT_MESSAGE_TYPE Mes
     WBUFW(data, (0x06) - 4) = PChar->getZone();
 
     memcpy(data + (0x08) - 4, PChar->GetName(), PChar->name.size());
-    memcpy(data + (0x18) - 4, buff, strlen(buff));
+    memcpy(data + (0x18) - 4, buff, buffSize);
 }
