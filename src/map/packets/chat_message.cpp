@@ -38,7 +38,8 @@ CChatMessagePacket::CChatMessagePacket(CCharEntity* PChar, CHAT_MESSAGE_TYPE Mes
     WBUFB(data, (0x04) - 4) = MessageType;
     if (PChar->nameflags.flags & FLAG_GM)
         WBUFB(data, (0x05) - 4) = 0x01;
-    WBUFW(data, (0x06) - 4) = PChar->getZone();
+	if (MessageType == MESSAGE_YELL)
+		WBUFW(data, (0x06) - 4) = PChar->getZone();
 
     memcpy(data + (0x08) - 4, PChar->GetName(), PChar->name.size());
     memcpy(data + (0x18) - 4, buff, buffSize);
