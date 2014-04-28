@@ -313,7 +313,12 @@ namespace linkshell
                 EncodeStringLinkshell(Sql_GetData(SqlHandle,2), EncodedName);
                 PLinkshell->setName(EncodedName);
                 PLinkshell->setPoster(Sql_GetData(SqlHandle,3));
-                PLinkshell->setMessage(Sql_GetData(SqlHandle,4));
+
+                int8* linkshellMessage = Sql_GetData(SqlHandle, 4);
+                if (linkshellMessage != NULL)
+                    PLinkshell->setMessage(linkshellMessage);
+                else
+                    PLinkshell->setMessage("");
                 PLinkshell->setMessageTime(Sql_GetUIntData(SqlHandle,5));
 
                 LinkshellList[PLinkshell->getID()] = PLinkshell;
@@ -395,6 +400,7 @@ namespace linkshell
 			
 			    PLinkshell->setColor(color);
                 PLinkshell->setName((int8*)name);
+                PLinkshell->setMessage("");
                 
                 LinkshellList[PLinkshell->getID()] = PLinkshell;
 
