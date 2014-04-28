@@ -1,6 +1,8 @@
 -----------------------------------------
 -- Spell: Dia III
 -- Lowers an enemy's defense and gradually deals light elemental damage.
+-- caster:getMerit() returns a value which is equal to the number of merit points TIMES the value of each point
+-- Dia III value per point is '30' This is a constant set in the table 'merits'
 -----------------------------------------
 
 require("scripts/globals/settings");
@@ -37,15 +39,9 @@ function onSpellCast(caster,target,spell)
 	local final = finalMagicAdjustments(caster,target,spell,dmg);
 
     -- Calculate duration.
-    local merits = caster:getMerit(MERIT_DIA_III);
-    local duration = 30;
-    if (merits > 0) then
-        duration = duration * merits;
-    end
-
-    -- Max duration for monsters..
-    if (caster:isMob()) then
-        duration = 150; -- 30 * 5 merits
+    local duration = caster:getMerit(MERIT_DIA_III);
+    if (duration == 0) then --if caster has the spell but no merits in it, they are either a mob or we assume they are GM or otherwise gifted with max duration
+        duration = 150;
     end
         
 	-- Check for Bio.
@@ -53,7 +49,7 @@ function onSpellCast(caster,target,spell)
 
 	-- Do it!
 	if(bio == nil or (DIA_OVERWRITE == 0 and bio:getPower() <= 3) or (DIA_OVERWRITE == 1 and bio:getPower() < 3)) then
-		target:addStatusEffect(EFFECT_DIA,3,3,duration, 0, 15);
+		target:addStatusEffect(EFFECT_DIA,3,3,duration,FLAG_ERASABLE, 15);
 		spell:setMsg(2);
 	else
 		spell:setMsg(75);

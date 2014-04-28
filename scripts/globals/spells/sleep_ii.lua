@@ -14,11 +14,11 @@ end;
 function onSpellCast(caster,target,spell)
 	local duration = 90;
 	local typeEffect = EFFECT_SLEEP_II;
-	local bonus = AffinityBonus(caster, spell:getElement());
+	--local bonus = AffinityBonus(caster, spell:getElement()); Removed: affinity bonus is added in applyResistance
 	local pINT = caster:getStat(MOD_INT);
 	local mINT = target:getStat(MOD_INT);
 	local dINT = (pINT - mINT);
-	local resm = applyResistance(caster,spell,target,dINT,ENFEEBLING_MAGIC_SKILL,bonus);
+	local resm = applyResistanceEffect(caster,spell,target,dINT,ENFEEBLING_MAGIC_SKILL,0,typeEffect);
 	if(resm < 0.5) then
 		spell:setMsg(85);--resist message
 		return typeEffect;
