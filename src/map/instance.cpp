@@ -185,7 +185,7 @@ void CInstance::capPlayerToBCNM(){ //adjust player's level to the appropriate ca
 	{	// Other missions lines and things like dragoon quest battle can be done similarly to CoP_Battle_cap.
 		// Might be better to add a type flag to the sql to tell bcnm/isnm/which expantions mission than doing by bcnmID like this.
 		if((map_config.CoP_Battle_cap == 0) && (m_BcnmID == 768 || m_BcnmID == 800 || m_BcnmID == 832 || m_BcnmID == 960
-		|| m_BcnmID == 704 || m_BcnmID == 961 || m_BcnmID == 864 || m_BcnmID == 672 || m_BcnmID == 736 || m_BcnmID == 992))
+		|| m_BcnmID == 704 || m_BcnmID == 961 || m_BcnmID == 864 || m_BcnmID == 672 || m_BcnmID == 736 || m_BcnmID == 992 || m_BcnmID == 640))
 		{
 		cap = 99;
 		}
@@ -410,11 +410,6 @@ bool CInstance::spawnTreasureChest(){
 void CInstance::OpenChestinBcnm(){
 	instanceutils::getChestItems(this);
 }
-
-/* apparently not used in bcnm
-void CInstance::getHighestTHforBcnm(){
-	instanceutils::getHighestTHforBcnm(this);
-}*/
 
 bool CInstance::loseBcnm(){
 	beforeCleanup();

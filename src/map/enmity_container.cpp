@@ -144,6 +144,9 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
         //Check for cap limit
         PEnmity->second->CE = dsp_cap(PEnmity->second->CE, 1, 10000);
         PEnmity->second->VE = dsp_cap(PEnmity->second->VE, 1, 10000);
+        
+        if (CE + VE > 0 && PEntity->getMod(MOD_TREASURE_HUNTER) > PEnmity->second->maxTH)
+            PEnmity->second->maxTH = (uint8)(PEntity->getMod(MOD_TREASURE_HUNTER));
     }
     else if (CE >= 0 && VE >= 0)
     {
@@ -154,6 +157,11 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
         PEnmityObject->CE = CE * bonus;
         PEnmityObject->VE = VE * bonus;
         PEnmityObject->PEnmityOwner = PEntity;
+        
+        if (CE + VE > 0)
+            PEnmityObject->maxTH = (uint8)(PEntity->getMod(MOD_TREASURE_HUNTER));
+        else
+            PEnmityObject->maxTH = 0;
 
         m_EnmityList.insert(PEnmity, EnmityList_t::value_type(PEntity->id, PEnmityObject));
 
@@ -427,6 +435,23 @@ void CEnmityContainer::DecayEnmity()
 bool CEnmityContainer::IsWithinEnmityRange(CBattleEntity* PEntity)
 {
 	return distance(m_EnmityHolder->loc.p, PEntity->loc.p) <= m_EnmityHolder->m_enmityRange;
+}
+
+uint8 CEnmityContainer::GetHighestTH()
+{
+    CBattleEntity* PEntity = NULL;
+    uint8 THLvl = 0;
+
+    for (EnmityList_t::iterator it = m_EnmityList.begin(); it != m_EnmityList.end(); ++it)
+    {
+        EnmityObject_t* PEnmityObject = it->second;
+        PEntity = PEnmityObject->PEnmityOwner;
+
+        if (PEntity != NULL && !PEntity->isDead() && IsWithinEnmityRange(PEntity) && PEnmityObject->maxTH > THLvl)
+            THLvl = PEnmityObject->maxTH;
+    }
+
+    return THLvl;
 }
 
 EnmityList_t* CEnmityContainer::GetEnmityList()

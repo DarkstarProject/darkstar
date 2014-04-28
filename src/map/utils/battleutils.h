@@ -107,8 +107,6 @@ namespace battleutils
 	int32			GetRangedAttackBonuses(CBattleEntity* battleEntity);
 	int32			GetRangedAccuracyBonuses(CBattleEntity* battleEntity);
 
-	void			SetMonsterTreasureHunterLevel(CCharEntity* PChar, CMobEntity* Monster);
-
 	uint8			GetSkillRank(SKILLTYPE SkillID, JOBTYPE JobID);
 	uint16			GetMaxSkill(SKILLTYPE SkillID, JOBTYPE JobID, uint8 level);
     uint16          GetMaxSkill(uint8 rank, uint8 level);
@@ -199,6 +197,11 @@ namespace battleutils
 
     // returns damage taken
     int32               HandleStoneskin(CBattleEntity* PDefender, int32 damage);
+
+	// stores damage for afflatus misery if active	
+	void                HandleAfflatusMiseryDamage(CBattleEntity* PDefender, int32 damage);
+	// boosts accuracy when afflatus msiery is active
+	void                HandleAfflatusMiseryAccuracyBonus(CBattleEntity* PAttacker);
 
 	// handles enmity loss calculations for tranquil heart
 	float               HandleTranquilHeart(CBattleEntity* PEntity);
