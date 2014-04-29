@@ -1558,6 +1558,9 @@ void CAIMobDummy::ActionAttack()
 							Action.messageID = 70;
 							Action.reaction   = REACTION_PARRY;
 							Action.speceffect = SPECEFFECT_NONE;
+
+							battleutils::HandleTacticalParry(m_PBattleTarget);
+							battleutils::HandleIssekiganEnmityBonus(m_PBattleTarget, m_PMob);
 						}
 						else if (battleutils::IsAbsorbByShadow(m_PBattleTarget))
 						{

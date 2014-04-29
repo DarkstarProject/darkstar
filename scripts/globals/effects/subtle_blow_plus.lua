@@ -1,6 +1,6 @@
 -----------------------------------
 --
---
+-- Subtle Blow Plus Effect
 --
 -----------------------------------
 
@@ -9,6 +9,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
+	target:addMod(MOD_SUBTLE_BLOW, effect:getPower());
 end;
 
 -----------------------------------
@@ -23,4 +24,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+	target:delMod(MOD_SUBTLE_BLOW, effect:getPower());
 end;

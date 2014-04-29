@@ -391,6 +391,9 @@ uint16 CBattleEntity::GetRangedWeaponRank()
 
 uint16 CBattleEntity::addTP(float tp)
 {
+	// When Adding TP we must check for INHIBIT_TP, which reduces TP gain
+	tp = battleutils::HandleInhibitTp(this, tp);
+
 	float TPMulti = 1.0;
 
 	if(objtype == TYPE_PC)
@@ -426,9 +429,14 @@ int32 CBattleEntity::addHP(int32 hp)
 		return 0; //if the entity is already dead, skip the rest to prevent killing it again
 	}
 
-    int32 cap = dsp_cap(health.hp + hp, 0, GetMaxHP());
-	hp = health.hp - cap;
-	health.hp = cap;
+	if (battleutils::IsMigawariTriggered(this, hp)){
+		hp = 0;
+	}
+	else {
+		int32 cap = dsp_cap(health.hp + hp, 0, GetMaxHP());
+		hp = health.hp - cap;
+		health.hp = cap;
+	}
 
 	// если количество жизней достигает нуля, то сущность умирает
 

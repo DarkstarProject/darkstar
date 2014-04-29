@@ -1856,7 +1856,17 @@ uint8 GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 
         	float dex = PAttacker->DEX();
         	float agi = PDefender->AGI();
-            return dsp_cap((skill * 0.1f + (agi - dex) * 0.125f + 10.0f) * diff, 5, 25);
+
+			uint8 parryRate = dsp_cap((skill * 0.1f + (agi - dex) * 0.125f + 10.0f) * diff, 5, 25);
+
+			// Issekigan grants parry rate bonus. From best available data, if you already capped out at 25% parry it grants another 25% bonus for ~50% parry rate
+			if (PDefender->objtype == TYPE_PC && PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ISSEKIGAN)){
+				int16 issekiganBonus = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_ISSEKIGAN)->GetPower();
+				//ShowDebug(CL_CYAN"GetParryRate: Issekigan Active, Parry Rate %d -> %d...\n" CL_RESET, parryRate, (parryRate+issekiganBonus));
+				parryRate = parryRate + issekiganBonus;
+			}
+
+			return parryRate;
         }
     }
 
@@ -4111,6 +4121,23 @@ int32 RangedDmgTaken(CBattleEntity* PDefender, int32 damage)
     return damage * resist;
 }
 
+float HandleInhibitTp(CBattleEntity* PAttacker, float tp){
+	if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_INHIBIT_TP)){
+		uint16 inhibitTpPower = PAttacker->StatusEffectContainer->GetStatusEffect(EFFECT_INHIBIT_TP)->GetPower();
+		float tpReducePercent = inhibitTpPower / 100;
+		tp = tp - (tp * tpReducePercent);
+	}
+
+	return tp;
+}
+
+void HandleIssekiganEnmityBonus(CBattleEntity* PDefender, CMobEntity* PAttacker){
+	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ISSEKIGAN)){
+		// Issekigan is Known to Grant 300 CE per parry, but unknown how it effects VE (per bgwiki). So VE is left alone for now.
+		PAttacker->PEnmityContainer->UpdateEnmity(PDefender, 300, 0, false);
+	}
+}
+
 void HandleAfflatusMiseryAccuracyBonus(CBattleEntity* PAttacker){
 	if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_AFFLATUS_MISERY) &&
 		PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_AUSPICE)){
@@ -4136,6 +4163,19 @@ void HandleAfflatusMiseryDamage(CBattleEntity* PDefender, int32 damage)
 {
 	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_AFFLATUS_MISERY)){
 		PDefender->setModifier(MOD_AFFLATUS_MISERY, damage);
+	}
+}
+
+void HandleTacticalParry(CBattleEntity* PEntity){
+	for (uint8 j = 0; j < PEntity->TraitList.size(); ++j)
+	{
+		CTrait* PExistingTrait = PEntity->TraitList.at(j);
+
+		if (PExistingTrait->getID() == TRAIT_TACTICAL_PARRY){
+			int16 tpBonus = PEntity->getMod(MOD_TACTICAL_PARRY);
+			//ShowDebug(CL_CYAN"HandleTacticalParry: Tactical Parry Tp Bonus = %d\n" CL_RESET, tpBonus);
+			PEntity->addTP(tpBonus);
+		}
 	}
 }
 
@@ -4183,6 +4223,40 @@ int32 HandleStoneskin(CBattleEntity* PDefender, int32 damage)
     }
 
     return damage;
+}
+
+bool IsMigawariTriggered(CBattleEntity* PDefender, int32 hp){
+
+	// Migawari Can't Trigger off of Healing
+	if (hp >= 0){
+		return false;
+	}
+
+	// Check if Migawari is Active
+	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_MIGAWARI)){
+		int32 damage = -hp;
+		int32 maxHp = PDefender->GetMaxHP();
+
+		// The Threshold for Damage is Stored in the Effect Power
+		float threshold = (PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_MIGAWARI)->GetPower() / 100.00);
+
+		// We calcluate the Damage Threshold off of Max HP & the Threshold Percentage
+		float damageThreshold = maxHp * threshold;
+
+		//ShowDebug(CL_CYAN"IsMigawariTriggered: Migawari is Active! Damage = %d, Threshold = %f, Damage Threshold = %f\n" CL_RESET, damage, threshold, damageThreshold);
+
+		// Migawari Triggers If the Attack's Damage Exceeds a Certain Threshold
+		// If it does, we will remove the effect and return true to signal that the attack should be absorbed
+		if (damage > damageThreshold){
+			PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_MIGAWARI);
+			//ShowDebug(CL_CYAN"IsMigawariTriggered: Triggering Migawari!\n" CL_RESET);
+			return true;
+		}
+
+	}
+
+	//ShowDebug(CL_CYAN"IsMigawariTriggered: Migawari Was Not Triggered!\n" CL_RESET);
+	return false;
 }
 
 /************************************************************************

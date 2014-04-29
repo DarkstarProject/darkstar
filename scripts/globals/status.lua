@@ -582,6 +582,8 @@ EFFECT_BRAZEN_STRENGTH          = 490 --
 EFFECT_INNER_STRENGTH           = 491 
 EFFECT_ISSEKIGAN                = 484
 
+EFFECT_MIKAGE                   = 502
+
 EFFECT_MARK_OF_SEED             = 790 -- Tracks 30 min timer in ACP mission "Those Who Lurk in Shadows (II)"
 EFFECT_ALL_MISS                 = 791
 EFFECT_SUPER_BUFF               = 792
@@ -1031,6 +1033,8 @@ MOD_MAGIC_NULL                =0x1DC -- (modId = 476)
 MOD_WARCRY_DURATION           =0x1E3 -- Warcy duration bonus from gear
 
 MOD_AUSPICE_EFFECT            =0x1E4 -- Auspice Subtle Blow Bonus (modId = 484)
+MOD_TACTICAL_PARRY            =0x1E6 -- Tactical Parry TP Bonus (modid = 486)
+MOD_MAG_BURST_BONUS           =0x1E7 -- Magic Burst Bonus (modid = 487)
 
 -----------------------------------
 -- Merit Definitions

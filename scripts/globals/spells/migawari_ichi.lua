@@ -1,0 +1,27 @@
+--------------------------------------
+-- Spell: Migawari: Ichi
+-- Nullifies a Death Blow for the Caster
+-- A Death Blow is, in general, Damage >= Max HP
+-- Threshold for negation is thought to be reduced
+-- by 1% for every 5 Ninjutsu Skill
+--------------------------------------
+ 
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/magic");
+
+-----------------------------------------
+-- OnSpellCast
+-----------------------------------------
+
+function OnMagicCastingCheck(caster,target,spell)
+	return 0;
+end;
+
+function onSpellCast(caster,target,spell)
+	local effect = EFFECT_MIGAWARI;
+	local ninjutsu = target:getSkillLevel(NINJUTSU_SKILL);
+	local negationThreshold = math.floor(100 * ((ninjutsu / 5) / 100));
+	caster:addStatusEffect(effect,negationThreshold,0,60);
+	return effect;
+end;

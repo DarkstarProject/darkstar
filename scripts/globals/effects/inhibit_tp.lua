@@ -1,6 +1,7 @@
 -----------------------------------
 --
--- 	EFFECT_NONE
+-- INHIBIT_TP
+-- Reduces TP Gain By a % Factor
 -- 	
 -----------------------------------
 
@@ -9,6 +10,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
+	-- NOTE: This effect is handled by core by reading the effect power as part of addTP();
 end;
 
 -----------------------------------
