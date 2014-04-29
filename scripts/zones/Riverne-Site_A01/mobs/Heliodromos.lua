@@ -66,6 +66,7 @@ function onMobDeath(mob, killer)
 			if (Heliodromos == Heliodromos_Table[i]) then
 				SetServerVariable("Heliodromos_ToD", (os.time() + math.random((43200), (54000))));
 				DeterMob(Heliodromos_PH_Table[i], false);
+				DeterMob(Heliodromos_Table[i], true);
 				SpawnMob(Heliodromos_PH_Table[i], "", GetMobRespawnTime(Heliodromos_PH_Table[i]));
 			end
 		end
