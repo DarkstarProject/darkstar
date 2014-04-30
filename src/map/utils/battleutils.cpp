@@ -1911,10 +1911,10 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 	{
 
         damage = DmgTaken(PDefender, damage);
-
+	
         if(isRanged)
         {
-            damage = RangedDmgTaken(PDefender, damage);
+        damage = RangedDmgTaken(PDefender, damage);
         } else {
             damage = PhysicalDmgTaken(PDefender, damage);
         }
@@ -1937,6 +1937,13 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 				if(PDefender->m_Weapons[SLOT_SUB]->IsShield())
 				{
 					absorb = 100 - PDefender->m_Weapons[SLOT_SUB]->getShieldAbsorption();
+                    if((dsp_max(damage - (PDefender->getMod(MOD_PHALANX) + PDefender->getMod(MOD_STONESKIN)), 0) >0) 
+                        && (charutils::hasTrait((CCharEntity*)PDefender, TRAIT_SHIELD_MASTERY)))
+                    {
+                        // If the player blocked with a shield and has shield mastery, add shield mastery TP bonus
+                        // unblocked damage (before block but as if affected by stoneskin/phalanx) must be greater than zero
+                        PDefender->addTP(PDefender->getMod(MOD_SHIELD_MASTERY_TP));			
+                    }
 				}
 			}
 			else
@@ -1944,9 +1951,9 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 				absorb = 50;
 			}
 
-			damage = (damage * absorb) / 100;
-		}
-	}
+            damage = (damage * absorb) / 100;
+        }
+    }
     if (damage > 0)
     {
         damage = dsp_max(damage - PDefender->getMod(MOD_PHALANX), 0);
@@ -2009,11 +2016,15 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 
         //battleutils::MakeEntityStandUp(PDefender); Removed: addHP() is already making victim stand if dmg > 0
 
-    	// try to interrupt spell
+    	// try to interrupt spell if not a ranged attack and not blocked by Shield Mastery
     	if(PDefender->PBattleAI->m_PMagicState != NULL)
     	{
-    		// use new method
-	    	PDefender->PBattleAI->m_PMagicState->TryHitInterrupt(PAttacker);
+            if ((!isRanged)
+                && !((isBlocked) && (PDefender->objtype == TYPE_PC ) && (charutils::hasTrait((CCharEntity*)PDefender, TRAIT_SHIELD_MASTERY))))
+            {
+                    // use new method
+    	            PDefender->PBattleAI->m_PMagicState->TryHitInterrupt(PAttacker);
+    	    }
     	}
         else
         {
@@ -2065,7 +2076,7 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 			//mobs hit get basetp+3 whereas pcs hit get basetp/3
 			if(PDefender->objtype == TYPE_PC)
 			{
-				//yup store tp counts on hits taken too!
+                //yup store tp counts on hits taken too!
 				PDefender->addTP((baseTp / 3) * sBlowMult * (1.0f + 0.01f * (float)(PDefender->getMod(MOD_STORETP) + getStoreTPbonusFromMerit(PAttacker)))); //here again...
 			}
 			else
