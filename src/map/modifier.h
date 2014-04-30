@@ -314,6 +314,7 @@ enum MODIFIER
 	// Paladin
 	MOD_ABSORB_DMG_TO_MP		  =0x1AA,//	Absorbs a percentage of damage taken to MP. (modId = 426)
 	MOD_ENMITY_REDUCTION_PHYSICAL =0x1AB,// TODO: Reduces Enmity decrease when taking physical damage (modId = 427)
+	MOD_SHIELD_MASTERY_TP	      =0x1E5,// TP bonus when blocking with a shield 
 
 	// Dark Knight
 
@@ -540,7 +541,7 @@ enum MODIFIER
 	MOD_EAT_RAW_MEAT			  =0x19A, // not implemented (modId = 410)
 };
 
-#define MAX_MODIFIER	       485
+#define MAX_MODIFIER	       486
 
 
 
