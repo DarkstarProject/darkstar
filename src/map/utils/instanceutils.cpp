@@ -392,7 +392,7 @@ namespace instanceutils{
 					itemRolls += LootList->at(item).Rolls;
 					if (groupRoll <= itemRolls)
 					{
-						instance->m_PlayerList.at(0)->PTreasurePool->AddItemFromChest(LootList->at(item).ItemID, instance->m_NpcList.at(0));
+						instance->m_PlayerList.at(0)->PTreasurePool->AddItem(LootList->at(item).ItemID, instance->m_NpcList.at(0));
 						break;
 					}
 				}

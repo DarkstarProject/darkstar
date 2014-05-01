@@ -71,8 +71,7 @@ public:
 
 	TREASUREPOOLTYPE GetPoolType();
 
-	uint8 AddItem(uint16 ItemID, CMobEntity*);
-	uint8 AddItemFromChest(uint16 ItemID, CBaseEntity*);
+	uint8 AddItem(uint16 ItemID, CBaseEntity*);
 
 	void LotItem(uint8 SlotID, uint16 Lot);
 	void LotItem(CCharEntity* PChar, uint8 SlotID, uint16 Lot);
@@ -95,7 +94,7 @@ private:
 
 	void CheckTreasureItem(uint32 tick, uint8 SlotID);
 
-	TreasurePoolItem m_PoolItems[TREASUREPOOL_SIZE];
+	TreasurePoolItem m_PoolItems[TREASUREPOOL_SIZE+1];
 
 	std::vector<CCharEntity*> members;
 };
