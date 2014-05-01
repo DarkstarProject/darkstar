@@ -78,7 +78,7 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	local DoorToRancor = 17428966;
+	local DoorToRancor = 17428967;
 	
 	if(csid == 0x0032) then
 		-- Soon !
