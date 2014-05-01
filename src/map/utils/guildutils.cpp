@@ -96,9 +96,9 @@ void Initialize()
                 PItem->setDailyIncrease(Sql_GetIntData(SqlHandle,4));
 				PItem->setInitialQuantity(Sql_GetIntData(SqlHandle,5));
 
-				PItem->setBasePrice(PItem->getMinPrice() + (PItem->getQuantity() / PItem->getStackSize()) * (PItem->getMaxPrice() - PItem->getMinPrice()));
+				PItem->setQuantity(PItem->IsDailyIncrease() ? PItem->getInitialQuantity() : 0);
+				PItem->setBasePrice(PItem->getMinPrice() + ((float)(PItem->getStackSize() - PItem->getQuantity()) / PItem->getStackSize()) * (PItem->getMaxPrice() - PItem->getMinPrice()));
 
-				PItem->setQuantity(PItem->getInitialQuantity());
 				PGuild->InsertItem(PItem);
 			}
 		}
@@ -120,7 +120,7 @@ void UpdateGuildsStock()
         {
             CItemShop* PItem = (CItemShop*)PGuild->GetItem(slotid);
 
-			PItem->setBasePrice(PItem->getMinPrice() + (PItem->getQuantity() / PItem->getStackSize()) * (PItem->getMaxPrice() - PItem->getMinPrice()));
+			PItem->setBasePrice(PItem->getMinPrice() + ((float)(PItem->getStackSize() - PItem->getQuantity()) / PItem->getStackSize()) * (PItem->getMaxPrice() - PItem->getMinPrice()));
 
             if (PItem->IsDailyIncrease())
             {
