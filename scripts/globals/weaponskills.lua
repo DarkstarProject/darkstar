@@ -11,7 +11,7 @@
 require("scripts/globals/status");
 require("scripts/globals/utils");
 
---params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti
+--params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti, bonusacc
 function doPhysicalWeaponskill(attacker, target, params)
 	
 	local criticalHit = false;
@@ -101,7 +101,7 @@ function doPhysicalWeaponskill(attacker, target, params)
 
 	local firsthit = math.random();
 	local finaldmg = 0;
-	local hitrate = getHitRate(attacker,target,true);
+	local hitrate = getHitRate(attacker,target,true,params.bonusacc);
 	if(params.acc100~=0) then
 		--ACCURACY VARIES WITH TP, APPLIED TO ALL HITS.
 		--print("Accuracy varies with TP.");
