@@ -35,6 +35,8 @@ function OnUseAbility(player, target, ability)
 	--Performing mj check.
 	if(mjob == 19) then
 		cure = (vit+chr)*0.75+270;
+	else
+		cure = (vit+chr)*0.375+270;
 	end
 
 	--Reducing TP.
