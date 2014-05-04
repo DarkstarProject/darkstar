@@ -675,7 +675,7 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 	dmg = utils.stoneskin(target, dmg);
 	
 	-- Handle Severe Damage Checks
-	dmg = utils.handleSevereDamage(target, EFFECT_MIGAWARI, dmg, true);
+	dmg = utils.handleSevereDamage(target, dmg);
 
 	if(dmg > 0) then
 		target:wakeUp();

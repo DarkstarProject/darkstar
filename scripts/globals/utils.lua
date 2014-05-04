@@ -10,7 +10,13 @@ function utils.clamp(input, min_val, max_val)
     return input;
 end;
 
-function utils.handleSevereDamage(target, effect, damage, removeEffect)
+function utils.handleSevereDamage(target,damage)
+	damage = utils.handleSevereDamageEffect(target, EFFECT_MIGAWARI, damage, true);
+	-- In the future, handle other Severe Damage Effects like Scherzo & Earthen Armor here
+	return damage;
+end;
+
+function utils.handleSevereDamageEffect(target, effect, damage, removeEffect)
 	if (target:hasStatusEffect(effect)) then
 		local maxHp = target:getMaxHP();
 

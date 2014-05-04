@@ -1917,8 +1917,8 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 
 		damage = damage * formlessMod / 100;
 
-		// Handle Severe Damage Reduction Effects, like Migawari
-		damage = HandleSevereDamage(PDefender, EFFECT_MIGAWARI, damage, true);
+		// Handle Severe Damage Reduction Effects
+		damage = HandleSevereDamage(PDefender, damage);
 	}
 	else
 	{
@@ -3119,8 +3119,8 @@ uint16 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, 
 
     damage = damage * (1000 - resistance) / 1000;
 
-	// Handle Severe Damage Reduction Effects, like Migawari
-	damage = HandleSevereDamage(PDefender, EFFECT_MIGAWARI, damage, true);
+	// Handle Severe Damage Reduction Effects
+	damage = HandleSevereDamage(PDefender, damage);
 
     PDefender->addHP(-damage);
 
@@ -4065,8 +4065,8 @@ int32 DmgTaken(CBattleEntity* PDefender, int32 damage)
 
 	damage = damage * resist;
 
-	// Handle Severe Damage Reduction Effects, like Migawari
-	damage = HandleSevereDamage(PDefender, EFFECT_MIGAWARI, damage, true);
+	// Handle Severe Damage Reduction Effects
+	damage = HandleSevereDamage(PDefender, damage);
 
     return damage;
 }
@@ -4099,8 +4099,8 @@ int32 MagicDmgTaken(CBattleEntity* PDefender, int32 damage)
 
 	damage = damage * resist;
 
-	// Handle Severe Damage Reduction Effects, like Migawari
-	damage = HandleSevereDamage(PDefender, EFFECT_MIGAWARI, damage, true);
+	// Handle Severe Damage Reduction Effects
+	damage = HandleSevereDamage(PDefender, damage);
 
     return damage;
 }
@@ -4231,7 +4231,13 @@ int32 HandleStoneskin(CBattleEntity* PDefender, int32 damage)
     return damage;
 }
 
-int32 HandleSevereDamage(CBattleEntity* PDefender, EFFECT effect, int32 damage, bool removeEffect){
+int32 HandleSevereDamage(CBattleEntity* PDefender, int32 damage){
+	damage = HandleSevereDamageEffect(PDefender, EFFECT_MIGAWARI, damage, true);
+	// In the future, handle other Severe Damage Effects like Scherzo & Earthen Armor here
+	return damage;
+}
+
+int32 HandleSevereDamageEffect(CBattleEntity* PDefender, EFFECT effect, int32 damage, bool removeEffect){
 
 	if (PDefender->StatusEffectContainer->HasStatusEffect(effect)){
 		int32 maxHp = PDefender->GetMaxHP();
@@ -4242,7 +4248,7 @@ int32 HandleSevereDamage(CBattleEntity* PDefender, EFFECT effect, int32 damage, 
 		// We calcluate the Damage Threshold off of Max HP & the Threshold Percentage
 		float damageThreshold = maxHp * threshold;
 
-		//ShowDebug(CL_CYAN"HandleSevereDamage: Severe Damage Occurred! Damage = %d, Threshold = %f, Damage Threshold = %f\n" CL_RESET, damage, threshold, damageThreshold);
+		//ShowDebug(CL_CYAN"HandleSevereDamageEffect: Severe Damage Occurred! Damage = %d, Threshold = %f, Damage Threshold = %f\n" CL_RESET, damage, threshold, damageThreshold);
 
 		// Severe Damage is when the Attack's Damage Exceeds a Certain Threshold
 		if (damage > damageThreshold){
@@ -4254,11 +4260,11 @@ int32 HandleSevereDamage(CBattleEntity* PDefender, EFFECT effect, int32 damage, 
 				PDefender->StatusEffectContainer->DelStatusEffect(effect);
 			}
 
-			//ShowDebug(CL_CYAN"HandleSevereDamage: Reduciing Severe Damage!\n" CL_RESET);			
+			//ShowDebug(CL_CYAN"HandleSevereDamageEffect: Reduciing Severe Damage!\n" CL_RESET);			
 		}
 	}
 
-	//ShowDebug(CL_CYAN"HandleSevereDamage: NOT Reducing Severe Damage!\n" CL_RESET);
+	//ShowDebug(CL_CYAN"HandleSevereDamageEffect: NOT Reducing Severe Damage!\n" CL_RESET);
 
 	return damage;
 }
