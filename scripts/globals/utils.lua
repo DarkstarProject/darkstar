@@ -10,6 +10,42 @@ function utils.clamp(input, min_val, max_val)
     return input;
 end;
 
+function utils.handleSevereDamage(target, effect, damage, removeEffect)
+	if (target:hasStatusEffect(effect)) then
+		local maxHp = target:getMaxHP();
+
+		-- The Threshold for Damage is Stored in the Effect Power
+		local threshold = (target:getStatusEffect(effect):getPower() / 100.00);
+
+		-- We calcluate the Damage Threshold off of Max HP & the Threshold Percentage
+		local damageThreshold = maxHp * threshold;
+
+		--printf("utils.handleSevereDamage: Severe Damage Occurred! Damage = %d, Threshold = %f, Damage Threshold = %f\n", damage, threshold, damageThreshold);
+
+		--Severe Damage is when the Attack's Damage Exceeds a Certain Threshold
+		if (damage > damageThreshold) then
+			local severeReduction = target:getStatusEffect(effect):getSubPower();
+			severeReduction = (100 - severeReduction) / 100;
+			
+			if(severeReduction < 0) then
+				severeReduction = 0;
+			end
+			
+			damage = damage * severeReduction;
+
+			if (removeEffect) then
+				target:delStatusEffect(effect);
+			end
+
+			--printf("utils.handleSevereDamage: Reduciing Severe Damage!\n");
+		end
+	end
+
+	--printf("utils.handleSevereDamage: NOT Reducing Severe Damage!\n");
+
+	return damage;
+end;
+
 function utils.stoneskin(target, dmg)
     --handling stoneskin
     if (dmg > 0) then
