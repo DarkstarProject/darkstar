@@ -407,6 +407,18 @@ CBattleEntity* CParty::GetQuaterMaster()
 	return m_PQuaterMaster;
 }
 
+/************************************************************************
+*																		*
+*	Used to access private variable m_PartyType							*
+*																		*
+************************************************************************/
+
+
+PARTYTYPE CParty::GetPartyType()
+{
+	return m_PartyType;
+}
+
 
 
 /************************************************************************
