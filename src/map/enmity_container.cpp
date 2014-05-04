@@ -301,6 +301,7 @@ void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PEntity, uint16 level
 			PEnmityObject->CE = addedCE;
 			PEnmityObject->VE = addedVE;
 			PEnmityObject->PEnmityOwner = PEntity;
+			PEnmityObject->maxTH = 0;
 
 			m_EnmityList.insert(PEnmity, EnmityList_t::value_type(PEntity->id, PEnmityObject));
 		}
