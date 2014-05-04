@@ -10,14 +10,14 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-	-- NOTE: This effect is handled by core by reading the effect power as part of addTP();
+	target:addMod(MOD_INHIBIT_TP, effect:getPower());
 end;
 
 -----------------------------------
 -- onEffectTick Action
 -----------------------------------
 
-function onEffectTick(target,effect)
+function onEffectTick(target,effect)	
 end;
 
 -----------------------------------
@@ -25,4 +25,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+	target:delMod(MOD_INHIBIT_TP, effect:getPower());
 end;

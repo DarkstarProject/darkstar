@@ -195,10 +195,9 @@ namespace battleutils
     int32               PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage);
     int32               RangedDmgTaken(CBattleEntity* PDefender, int32 damage);
 
-	float               HandleInhibitTp(CBattleEntity* PAttacker, float tp);
 	void                HandleIssekiganEnmityBonus(CBattleEntity* PDefender, CMobEntity* PAttacker);
-	void                HandleTacticalParry(CBattleEntity* PEntity);
-	bool                IsMigawariTriggered(CBattleEntity* PAttacker, int32 hp);
+	int32               HandleSevereDamage(CBattleEntity* PDefender, EFFECT effect, int32 damage, bool removeEffect);
+	void                HandleTacticalParry(CBattleEntity* PEntity);	
 
     // returns damage taken
     int32               HandleStoneskin(CBattleEntity* PDefender, int32 damage);

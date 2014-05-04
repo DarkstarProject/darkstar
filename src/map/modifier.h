@@ -133,6 +133,7 @@ enum MODIFIER
 	MOD_STORETP                   =0x49,// Increases the rate at which TP is gained (modId = 73)
 	MOD_TACTICAL_PARRY            =0x1E6, // Tactical Parry Tp Bonus (modId = 486)
 	MOD_MAG_BURST_BONUS           =0x1E7, // Magic Burst Bonus Modifier (percent) (modId = 487)	
+	MOD_INHIBIT_TP                =0x1E8, // Inhibits TP Gain (percent) (modId = 488)
 
 	// Working Skills (weapon combat skills)
 
@@ -538,7 +539,7 @@ enum MODIFIER
 
 };
 
-#define MAX_MODIFIER	       488
+#define MAX_MODIFIER	       489
 
 
 

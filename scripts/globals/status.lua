@@ -1035,6 +1035,7 @@ MOD_WARCRY_DURATION           =0x1E3 -- Warcy duration bonus from gear
 MOD_AUSPICE_EFFECT            =0x1E4 -- Auspice Subtle Blow Bonus (modId = 484)
 MOD_TACTICAL_PARRY            =0x1E6 -- Tactical Parry TP Bonus (modid = 486)
 MOD_MAG_BURST_BONUS           =0x1E7 -- Magic Burst Bonus (modid = 487)
+MOD_INHIBIT_TP                =0x1E8 -- Inhibits TP Gain (percent) (modId = 488)
 
 -----------------------------------
 -- Merit Definitions

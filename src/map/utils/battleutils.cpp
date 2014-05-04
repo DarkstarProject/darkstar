@@ -4057,7 +4057,12 @@ int32 DmgTaken(CBattleEntity* PDefender, int32 damage)
         resist = 0.5f;
     }
 
-    return damage * resist;
+	damage = damage * resist;
+
+	// Handle Severe Damage Reduction Effects, like Migawari
+	damage = HandleSevereDamage(PDefender, EFFECT_MIGAWARI, damage, true);
+
+    return damage;
 }
 
 int32 BreathDmgTaken(CBattleEntity* PDefender, int32 damage)
@@ -4086,7 +4091,12 @@ int32 MagicDmgTaken(CBattleEntity* PDefender, int32 damage)
         resist = 0.5f;
     }
 
-    return damage * resist;
+	damage = damage * resist;
+
+	// Handle Severe Damage Reduction Effects, like Migawari
+	damage = HandleSevereDamage(PDefender, EFFECT_MIGAWARI, damage, true);
+
+    return damage;
 }
 
 int32 PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage)
@@ -4119,16 +4129,6 @@ int32 RangedDmgTaken(CBattleEntity* PDefender, int32 damage)
     }
 
     return damage * resist;
-}
-
-float HandleInhibitTp(CBattleEntity* PAttacker, float tp){
-	if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_INHIBIT_TP)){
-		uint16 inhibitTpPower = PAttacker->StatusEffectContainer->GetStatusEffect(EFFECT_INHIBIT_TP)->GetPower();
-		float tpReducePercent = inhibitTpPower / 100;
-		tp = tp - (tp * tpReducePercent);
-	}
-
-	return tp;
 }
 
 void HandleIssekiganEnmityBonus(CBattleEntity* PDefender, CMobEntity* PAttacker){
@@ -4225,38 +4225,36 @@ int32 HandleStoneskin(CBattleEntity* PDefender, int32 damage)
     return damage;
 }
 
-bool IsMigawariTriggered(CBattleEntity* PDefender, int32 hp){
+int32 HandleSevereDamage(CBattleEntity* PDefender, EFFECT effect, int32 damage, bool removeEffect){
 
-	// Migawari Can't Trigger off of Healing
-	if (hp >= 0){
-		return false;
-	}
-
-	// Check if Migawari is Active
-	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_MIGAWARI)){
-		int32 damage = -hp;
+	if (PDefender->StatusEffectContainer->HasStatusEffect(effect)){
 		int32 maxHp = PDefender->GetMaxHP();
 
 		// The Threshold for Damage is Stored in the Effect Power
-		float threshold = (PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_MIGAWARI)->GetPower() / 100.00);
+		float threshold = (PDefender->StatusEffectContainer->GetStatusEffect(effect)->GetPower() / 100.00);
 
 		// We calcluate the Damage Threshold off of Max HP & the Threshold Percentage
 		float damageThreshold = maxHp * threshold;
 
-		//ShowDebug(CL_CYAN"IsMigawariTriggered: Migawari is Active! Damage = %d, Threshold = %f, Damage Threshold = %f\n" CL_RESET, damage, threshold, damageThreshold);
+		//ShowDebug(CL_CYAN"HandleSevereDamage: Severe Damage Occurred! Damage = %d, Threshold = %f, Damage Threshold = %f\n" CL_RESET, damage, threshold, damageThreshold);
 
-		// Migawari Triggers If the Attack's Damage Exceeds a Certain Threshold
-		// If it does, we will remove the effect and return true to signal that the attack should be absorbed
+		// Severe Damage is when the Attack's Damage Exceeds a Certain Threshold
 		if (damage > damageThreshold){
-			PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_MIGAWARI);
-			//ShowDebug(CL_CYAN"IsMigawariTriggered: Triggering Migawari!\n" CL_RESET);
-			return true;
-		}
+			uint16 severeReduction = PDefender->StatusEffectContainer->GetStatusEffect(effect)->GetSubPower();
+			severeReduction = dsp_cap((100 - severeReduction), 0, 100) / 100;
+			damage = damage * severeReduction;
 
+			if (removeEffect){
+				PDefender->StatusEffectContainer->DelStatusEffect(effect);
+			}
+
+			//ShowDebug(CL_CYAN"HandleSevereDamage: Reduciing Severe Damage!\n" CL_RESET);			
+		}
 	}
 
-	//ShowDebug(CL_CYAN"IsMigawariTriggered: Migawari Was Not Triggered!\n" CL_RESET);
-	return false;
+	//ShowDebug(CL_CYAN"HandleSevereDamage: NOT Reducing Severe Damage!\n" CL_RESET);
+
+	return damage;
 }
 
 /************************************************************************
