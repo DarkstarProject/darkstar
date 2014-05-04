@@ -131,6 +131,9 @@ enum MODIFIER
 	MOD_MPHEAL                    =0x47,// MP Recovered while healing (modId = 71)
 	MOD_HPHEAL                    =0x48,// HP Recovered while healing (modId = 72)
 	MOD_STORETP                   =0x49,// Increases the rate at which TP is gained (modId = 73)
+	MOD_TACTICAL_PARRY            =0x1E6, // Tactical Parry Tp Bonus (modId = 486)
+	MOD_MAG_BURST_BONUS           =0x1E7, // Magic Burst Bonus Modifier (percent) (modId = 487)	
+	MOD_INHIBIT_TP                =0x1E8, // Inhibits TP Gain (percent) (modId = 488)
 
 	// Working Skills (weapon combat skills)
 
@@ -530,18 +533,13 @@ enum MODIFIER
     MOD_MAGIC_ABSORB              =0x1DB,// (modId = 475)
     MOD_MAGIC_NULL                =0x1DC,// (modId = 476)
 
-	// MOD_SPARE	=0x1E5,// (modId = 485)
-	// MOD_SPARE	=0x1E6,// (modId = 486)
-	// MOD_SPARE	=0x1E7,// (modId = 487)
+	// MOD_SPARE	=0x1F0,// (modId = 490)
 
     MOD_ADDITIONAL_EFFECT         =0x1AF,// (modId = 431)
 
-	MOD_MAG_BURST_BONUS           =0x198,// (modId = 408)
-	MOD_EAT_RAW_FISH			  =0x199, // not implemented (modId = 409)
-	MOD_EAT_RAW_MEAT			  =0x19A, // not implemented (modId = 410)
 };
 
-#define MAX_MODIFIER	       486
+#define MAX_MODIFIER	       489
 
 
 
