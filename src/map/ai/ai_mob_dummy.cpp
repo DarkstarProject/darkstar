@@ -987,12 +987,12 @@ void CAIMobDummy::ActionAbilityFinish()
                 msg = 282;
 		} else {
 		    Action.reaction   = REACTION_HIT;
+            Action.knockback = m_PMobSkill->getKnockback(); //Moved here: knockback takes effect if attack lands, regardless of whether dmg > 0
 		}
 
-        if (Action.speceffect & SPECEFFECT_HIT && Action.param > 0)
+        if (Action.speceffect & SPECEFFECT_HIT && Action.param > 0) //Not sure why SPECEFFECT_HIT is being tested here since nothing in this function's codepath modifies it after its assignment above
         {
             Action.speceffect = SPECEFFECT_RECOIL;
-            Action.knockback = m_PMobSkill->getKnockback();
             if (it == m_PTargetFind->m_targets.begin() && (m_PMobSkill->getSkillchain() != 0))
             {
                 CWeaponSkill* PWeaponSkill = battleutils::GetWeaponSkill(m_PMobSkill->getSkillchain());
