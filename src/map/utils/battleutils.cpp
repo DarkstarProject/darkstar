@@ -1916,6 +1916,9 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 			formlessMod += ((CCharEntity*)PAttacker)->PMeritPoints->GetMeritValue(MERIT_FORMLESS_STRIKES, (CCharEntity*)PAttacker);
 
 		damage = damage * formlessMod / 100;
+
+		// Handle Severe Damage Reduction Effects, like Migawari
+		damage = HandleSevereDamage(PDefender, EFFECT_MIGAWARI, damage, true);
 	}
 	else
 	{
@@ -3115,6 +3118,9 @@ uint16 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, 
                           * (100 + PAttacker->getMod(MOD_SKILLCHAINDMG)) / 100);
 
     damage = damage * (1000 - resistance) / 1000;
+
+	// Handle Severe Damage Reduction Effects, like Migawari
+	damage = HandleSevereDamage(PDefender, EFFECT_MIGAWARI, damage, true);
 
     PDefender->addHP(-damage);
 
