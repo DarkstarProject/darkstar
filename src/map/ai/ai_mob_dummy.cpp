@@ -989,7 +989,7 @@ void CAIMobDummy::ActionAbilityFinish()
 		    Action.reaction   = REACTION_HIT;
 		}
 
-        if (Action.speceffect & SPECEFFECT_HIT && Action.param > 0)
+        if (Action.speceffect & SPECEFFECT_HIT)
         {
             Action.speceffect = SPECEFFECT_RECOIL;
             Action.knockback = m_PMobSkill->getKnockback();
