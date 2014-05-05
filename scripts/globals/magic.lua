@@ -1098,6 +1098,9 @@ function calculateMagicBurstAndBonus(caster, spell, target)
         --end -- if AM2+
     end
 
+    -- Add in Magic Burst Bonus Modifier. The Trait Boosts this. Eventually the gear should use this too to be cleaner.
+    burstBonus = burstBonus + (caster:getMod(MOD_MAG_BURST_BONUS) / 100);
+    
     return burst, burstBonus;
 end;
 

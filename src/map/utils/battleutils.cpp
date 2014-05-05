@@ -1856,7 +1856,17 @@ uint8 GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 
         	float dex = PAttacker->DEX();
         	float agi = PDefender->AGI();
-            return dsp_cap((skill * 0.1f + (agi - dex) * 0.125f + 10.0f) * diff, 5, 25);
+
+			uint8 parryRate = dsp_cap((skill * 0.1f + (agi - dex) * 0.125f + 10.0f) * diff, 5, 25);
+
+			// Issekigan grants parry rate bonus. From best available data, if you already capped out at 25% parry it grants another 25% bonus for ~50% parry rate
+			if (PDefender->objtype == TYPE_PC && PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ISSEKIGAN)){
+				int16 issekiganBonus = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_ISSEKIGAN)->GetPower();
+				//ShowDebug(CL_CYAN"GetParryRate: Issekigan Active, Parry Rate %d -> %d...\n" CL_RESET, parryRate, (parryRate+issekiganBonus));
+				parryRate = parryRate + issekiganBonus;
+			}
+
+			return parryRate;
         }
     }
 
@@ -1906,15 +1916,18 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 			formlessMod += ((CCharEntity*)PAttacker)->PMeritPoints->GetMeritValue(MERIT_FORMLESS_STRIKES, (CCharEntity*)PAttacker);
 
 		damage = damage * formlessMod / 100;
+
+		// Handle Severe Damage Reduction Effects
+		damage = HandleSevereDamage(PDefender, damage);
 	}
 	else
 	{
 
         damage = DmgTaken(PDefender, damage);
-
+	
         if(isRanged)
         {
-            damage = RangedDmgTaken(PDefender, damage);
+        damage = RangedDmgTaken(PDefender, damage);
         } else {
             damage = PhysicalDmgTaken(PDefender, damage);
         }
@@ -1937,6 +1950,13 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 				if(PDefender->m_Weapons[SLOT_SUB]->IsShield())
 				{
 					absorb = 100 - PDefender->m_Weapons[SLOT_SUB]->getShieldAbsorption();
+                    if((dsp_max(damage - (PDefender->getMod(MOD_PHALANX) + PDefender->getMod(MOD_STONESKIN)), 0) >0) 
+                        && (charutils::hasTrait((CCharEntity*)PDefender, TRAIT_SHIELD_MASTERY)))
+                    {
+                        // If the player blocked with a shield and has shield mastery, add shield mastery TP bonus
+                        // unblocked damage (before block but as if affected by stoneskin/phalanx) must be greater than zero
+                        PDefender->addTP(PDefender->getMod(MOD_SHIELD_MASTERY_TP));			
+                    }
 				}
 			}
 			else
@@ -1944,9 +1964,9 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 				absorb = 50;
 			}
 
-			damage = (damage * absorb) / 100;
-		}
-	}
+            damage = (damage * absorb) / 100;
+        }
+    }
     if (damage > 0)
     {
         damage = dsp_max(damage - PDefender->getMod(MOD_PHALANX), 0);
@@ -2009,11 +2029,15 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 
         //battleutils::MakeEntityStandUp(PDefender); Removed: addHP() is already making victim stand if dmg > 0
 
-    	// try to interrupt spell
+    	// try to interrupt spell if not a ranged attack and not blocked by Shield Mastery
     	if(PDefender->PBattleAI->m_PMagicState != NULL)
     	{
-    		// use new method
-	    	PDefender->PBattleAI->m_PMagicState->TryHitInterrupt(PAttacker);
+            if ((!isRanged)
+                && !((isBlocked) && (PDefender->objtype == TYPE_PC ) && (charutils::hasTrait((CCharEntity*)PDefender, TRAIT_SHIELD_MASTERY))))
+            {
+                    // use new method
+    	            PDefender->PBattleAI->m_PMagicState->TryHitInterrupt(PAttacker);
+    	    }
     	}
         else
         {
@@ -2065,7 +2089,7 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 			//mobs hit get basetp+3 whereas pcs hit get basetp/3
 			if(PDefender->objtype == TYPE_PC)
 			{
-				//yup store tp counts on hits taken too!
+                //yup store tp counts on hits taken too!
 				PDefender->addTP((baseTp / 3) * sBlowMult * (1.0f + 0.01f * (float)(PDefender->getMod(MOD_STORETP) + getStoreTPbonusFromMerit(PAttacker)))); //here again...
 			}
 			else
@@ -3095,6 +3119,9 @@ uint16 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, 
 
     damage = damage * (1000 - resistance) / 1000;
 
+	// Handle Severe Damage Reduction Effects
+	damage = HandleSevereDamage(PDefender, damage);
+
     PDefender->addHP(-damage);
 
     if (PAttacker->PMaster != NULL)
@@ -4036,7 +4063,12 @@ int32 DmgTaken(CBattleEntity* PDefender, int32 damage)
         resist = 0.5f;
     }
 
-    return damage * resist;
+	damage = damage * resist;
+
+	// Handle Severe Damage Reduction Effects
+	damage = HandleSevereDamage(PDefender, damage);
+
+    return damage;
 }
 
 int32 BreathDmgTaken(CBattleEntity* PDefender, int32 damage)
@@ -4065,7 +4097,12 @@ int32 MagicDmgTaken(CBattleEntity* PDefender, int32 damage)
         resist = 0.5f;
     }
 
-    return damage * resist;
+	damage = damage * resist;
+
+	// Handle Severe Damage Reduction Effects
+	damage = HandleSevereDamage(PDefender, damage);
+
+    return damage;
 }
 
 int32 PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage)
@@ -4100,6 +4137,13 @@ int32 RangedDmgTaken(CBattleEntity* PDefender, int32 damage)
     return damage * resist;
 }
 
+void HandleIssekiganEnmityBonus(CBattleEntity* PDefender, CMobEntity* PAttacker){
+	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ISSEKIGAN)){
+		// Issekigan is Known to Grant 300 CE per parry, but unknown how it effects VE (per bgwiki). So VE is left alone for now.
+		PAttacker->PEnmityContainer->UpdateEnmity(PDefender, 300, 0, false);
+	}
+}
+
 void HandleAfflatusMiseryAccuracyBonus(CBattleEntity* PAttacker){
 	if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_AFFLATUS_MISERY) &&
 		PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_AUSPICE)){
@@ -4125,6 +4169,19 @@ void HandleAfflatusMiseryDamage(CBattleEntity* PDefender, int32 damage)
 {
 	if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_AFFLATUS_MISERY)){
 		PDefender->setModifier(MOD_AFFLATUS_MISERY, damage);
+	}
+}
+
+void HandleTacticalParry(CBattleEntity* PEntity){
+	for (uint8 j = 0; j < PEntity->TraitList.size(); ++j)
+	{
+		CTrait* PExistingTrait = PEntity->TraitList.at(j);
+
+		if (PExistingTrait->getID() == TRAIT_TACTICAL_PARRY){
+			int16 tpBonus = PEntity->getMod(MOD_TACTICAL_PARRY);
+			//ShowDebug(CL_CYAN"HandleTacticalParry: Tactical Parry Tp Bonus = %d\n" CL_RESET, tpBonus);
+			PEntity->addTP(tpBonus);
+		}
 	}
 }
 
@@ -4172,6 +4229,44 @@ int32 HandleStoneskin(CBattleEntity* PDefender, int32 damage)
     }
 
     return damage;
+}
+
+int32 HandleSevereDamage(CBattleEntity* PDefender, int32 damage){
+	damage = HandleSevereDamageEffect(PDefender, EFFECT_MIGAWARI, damage, true);
+	// In the future, handle other Severe Damage Effects like Scherzo & Earthen Armor here
+	return damage;
+}
+
+int32 HandleSevereDamageEffect(CBattleEntity* PDefender, EFFECT effect, int32 damage, bool removeEffect){
+
+	if (PDefender->StatusEffectContainer->HasStatusEffect(effect)){
+		int32 maxHp = PDefender->GetMaxHP();
+
+		// The Threshold for Damage is Stored in the Effect Power
+		float threshold = (PDefender->StatusEffectContainer->GetStatusEffect(effect)->GetPower() / 100.00);
+
+		// We calcluate the Damage Threshold off of Max HP & the Threshold Percentage
+		float damageThreshold = maxHp * threshold;
+
+		//ShowDebug(CL_CYAN"HandleSevereDamageEffect: Severe Damage Occurred! Damage = %d, Threshold = %f, Damage Threshold = %f\n" CL_RESET, damage, threshold, damageThreshold);
+
+		// Severe Damage is when the Attack's Damage Exceeds a Certain Threshold
+		if (damage > damageThreshold){
+			uint16 severeReduction = PDefender->StatusEffectContainer->GetStatusEffect(effect)->GetSubPower();
+			severeReduction = dsp_cap((100 - severeReduction), 0, 100) / 100;
+			damage = damage * severeReduction;
+
+			if (removeEffect){
+				PDefender->StatusEffectContainer->DelStatusEffect(effect);
+			}
+
+			//ShowDebug(CL_CYAN"HandleSevereDamageEffect: Reduciing Severe Damage!\n" CL_RESET);			
+		}
+	}
+
+	//ShowDebug(CL_CYAN"HandleSevereDamageEffect: NOT Reducing Severe Damage!\n" CL_RESET);
+
+	return damage;
 }
 
 /************************************************************************
