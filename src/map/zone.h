@@ -400,7 +400,8 @@ enum ZONETYPE
 	ZONETYPE_OUTDOORS = 2,
 	ZONETYPE_DUNGEON = 3,
 	ZONETYPE_BATTLEFIELD = 4,
-	ZONETYPE_DYNAMIS = 5
+	ZONETYPE_DYNAMIS = 5,
+	ZONETYPE_DUNGEON_INSTANCED = 6
 };
 
 enum GLOBAL_MESSAGE_TYPE
@@ -413,17 +414,17 @@ enum GLOBAL_MESSAGE_TYPE
 
 enum ZONEMISC
 {
-    MISC_NONE       = 0x0000,   // 0x0000, // Able to be used in any area
-	MISC_ESCAPE		= 0x0001,	// 0x0001, // Ability to use Escape Spell
-	MISC_TRACTOR	= 0x0010,	// 0x0002, // Ability to use Tractor Spell
-	MISC_MAZURKA	= 0x0008,	// 0x0004, // Ability to use Mazurka Spell
-	MISC_FELLOW		= 0x0002,	// 0x0008, // Ability to summon Fellow NPC
-	MISC_PET		= 0x0080,	// 0x0010, // Ability to summon Pets
-	MISC_CHOCOBO	= 0x0004,	// 0x0020, // Ability to use Chocobos
-	MISC_MOGMENU	= 0x0020,	// 0x0040, // Ability to communicate with Nomad Moogle (menu access mog house)
-	MISC_COSTUME	= 0x0040,	// 0x0080, // Ability to use a Costumes
-	MISC_TREASURE	= 0x0100,	// 0x0100, // Presence in the global zone TreasurePool
-	MISC_PVP 		= 0x0200    // 0x0200 // Ability to PvP
+    MISC_NONE       = 0x0000,   // Able to be used in any area
+	MISC_ESCAPE		= 0x0001,	// Ability to use Escape Spell
+	MISC_TRACTOR	= 0x0010,	// Ability to use Tractor Spell
+	MISC_MAZURKA	= 0x0008,	// Ability to use Mazurka Spell
+	MISC_FELLOW		= 0x0002,	// Ability to summon Fellow NPC
+	MISC_PET		= 0x0080,	// Ability to summon Pets
+	MISC_CHOCOBO	= 0x0004,	// Ability to use Chocobos
+	MISC_MOGMENU	= 0x0020,	// Ability to communicate with Nomad Moogle (menu access mog house)
+	MISC_COSTUME	= 0x0040,	// Ability to use a Costumes
+	MISC_TREASURE	= 0x0100,	// Presence in the global zone TreasurePool
+	MISC_PVP 		= 0x0200    // Ability to PvP
 };
 
 /************************************************************************
