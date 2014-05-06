@@ -94,7 +94,7 @@ private:
 
 	void CheckTreasureItem(uint32 tick, uint8 SlotID);
 
-	TreasurePoolItem m_PoolItems[TREASUREPOOL_SIZE+1];
+	TreasurePoolItem m_PoolItems[TREASUREPOOL_SIZE];
 
 	std::vector<CCharEntity*> members;
 };
