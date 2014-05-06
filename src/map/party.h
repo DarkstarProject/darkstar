@@ -68,6 +68,8 @@ public:
     CBattleEntity* GetLeader();                         // узнаем лидера группы
     CBattleEntity* GetSyncTarget();                     // узнаем цель синхронизации
     CBattleEntity* GetQuaterMaster();                   // узнаем владельца сокровищ
+	
+	PARTYTYPE GetPartyType();							//Access private variable m_PartyType
 
 	void DisbandParty();								// распускаем группу
 	void ReloadParty();                                 // перезагружаем карту группы для всех участников группы
