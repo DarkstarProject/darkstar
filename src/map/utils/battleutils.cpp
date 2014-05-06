@@ -4388,8 +4388,110 @@ WEATHER GetWeather(CBattleEntity* PEntity, bool ignoreScholar)
 
     if (ignoreScholar || scholarSpell == WEATHER_NONE)
         return zoneWeather;
+    else if (scholarSpell == zoneWeather)
+        return zoneWeather+1; // Storm spells stack with weather
     else
         return scholarSpell;
+}
+
+bool WeatherMatchesElement(WEATHER weather, uint8 element)
+{
+    switch(element)
+    {
+    case ELEMENT_NONE:
+        return false; // Can't match with no element...
+        break;
+    case ELEMENT_FIRE:
+        switch(weather)
+        {
+        case WEATHER_HOT_SPELL:
+        case WEATHER_HEAT_WAVE:
+            return true;
+            break;
+        default:
+            return false;
+        }
+        break;
+    case ELEMENT_EARTH:
+        switch(weather)
+        {
+        case WEATHER_DUST_STORM:
+        case WEATHER_SAND_STORM:
+            return true;
+            break;
+        default:
+            return false;
+        }
+        break;
+    case ELEMENT_WATER:
+        switch(weather)
+        {
+        case WEATHER_RAIN:
+        case WEATHER_SQUALL:
+            return true;
+            break;
+        default:
+            return false;
+        }
+        break;
+    case ELEMENT_WIND:
+        switch(weather)
+        {
+        case WEATHER_WIND:
+        case WEATHER_GALES:
+            return true;
+            break;
+        default:
+            return false;
+        }
+        break;
+    case ELEMENT_ICE:
+        switch(weather)
+        {
+        case WEATHER_SNOW:
+        case WEATHER_BLIZZARDS:
+            return true;
+            break;
+        default:
+            return false;
+        }
+        break;
+    case ELEMENT_THUNDER:
+        switch(weather)
+        {
+        case WEATHER_THUNDER:
+        case WEATHER_THUNDERSTORMS:
+            return true;
+            break;
+        default:
+            return false;
+        }
+        break;
+    case ELEMENT_LIGHT:
+        switch(weather)
+        {
+        case WEATHER_AURORAS:
+        case WEATHER_STELLAR_GLARE:
+            return true;
+            break;
+        default:
+            return false;
+        }
+        break;
+    case ELEMENT_DARK:
+        switch(weather)
+        {
+        case WEATHER_GLOOM:
+        case WEATHER_DARKNESS:
+            return true;
+            break;
+        default:
+            return false;
+        }
+        break;
+    default:
+        return false;
+    }
 }
 
 void DrawIn(CBattleEntity* PEntity, CMobEntity* PMob, float offset)

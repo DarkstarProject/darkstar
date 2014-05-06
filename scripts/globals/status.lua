@@ -948,6 +948,7 @@ MOD_HELIX_EFFECT        = 0x1DE
 MOD_HELIX_DURATION		= 0x1DD
 MOD_STORMSURGE_EFFECT   = 0x190
 MOD_SUBLIMATION_BONUS	= 0x191
+MOD_GRIMOIRE_SPELLCASTING = 0x1E9 -- (modID = 489) "Grimoire: Reduces spellcasting time" bonus
 MOD_WYVERN_BREATH       = 0x192
 MOD_STEP_ACCURACY       = 0x193
 MOD_REGEN_DOWN      	 = 0x194			-- poison
@@ -974,6 +975,7 @@ MOD_VELOCITY_RATT_BONUS		  =0x1A8 -- Increases Ranged Attack whilst Velocity Sho
 MOD_SHADOW_BIND_EXT		  	  =0x1A9 -- Extends the time of shadowbind
 MOD_ABSORB_DMG_TO_MP		  =0x1AA --	Absorbs a percentage of damage taken to MP.
 MOD_ENMITY_REDUCTION_PHYSICAL =0x1AB -- Reduces Enmity decrease when taking physical damage
+MOD_SHIELD_MASTERY_TP         =0x1E5 -- Shield mastery TP bonus when blocking with a shield (modId = 485)
 MOD_PERFECT_COUNTER_ATT		  =0x1AC -- Raises weapon damage by 20 when countering while under the Perfect Counter effect. This also affects Weapon Rank (though not if fighting barehanded). 
 MOD_FOOTWORK_ATT_BONUS		  =0x1AD -- Raises the attack bonus of Footwork. (Tantra Gaiters +2 raise 100/1024 to 152/1024) 
 
