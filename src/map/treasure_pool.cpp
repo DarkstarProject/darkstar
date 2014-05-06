@@ -154,7 +154,7 @@ uint8 CTreasurePool::AddItem(uint16 ItemID, CBaseEntity* PEntity)
 			break;
 		}
 	}
-	if (FreeSlotID == (uint8)-1)
+	if (FreeSlotID > TREASUREPOOL_SIZE)
 	{
 		//find the oldest non-rare and non-ex item
 		for (SlotID = 0; SlotID < 10; ++SlotID)
@@ -166,7 +166,7 @@ uint8 CTreasurePool::AddItem(uint16 ItemID, CBaseEntity* PEntity)
 				oldest = m_PoolItems[SlotID].TimeStamp;
 			}
 		}
-		if (FreeSlotID == (uint8)-1)
+		if (FreeSlotID > TREASUREPOOL_SIZE)
 		{
 			//find the oldest non-ex item
 			for (SlotID = 0; SlotID < 10; ++SlotID)
@@ -178,7 +178,7 @@ uint8 CTreasurePool::AddItem(uint16 ItemID, CBaseEntity* PEntity)
 					oldest = m_PoolItems[SlotID].TimeStamp;
 				}
 			}
-			if (FreeSlotID == (uint8)-1)
+			if (FreeSlotID > TREASUREPOOL_SIZE)
 			{
 				//find the oldest item
 				for (SlotID = 0; SlotID < 10; ++SlotID)
