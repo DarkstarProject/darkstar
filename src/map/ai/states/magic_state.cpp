@@ -182,7 +182,7 @@ uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
         {
             uint16 bonus = 0;
             //Only apply Alacrity/celerity mod if the spell element matches the weather.
-            if(battleutils::WeatherMatchesElement(battleutils::GetWeather(m_PEntity),PSpell->getElement()))
+            if(battleutils::WeatherMatchesElement(battleutils::GetWeather(m_PEntity,false),PSpell->getElement()))
             {
                 bonus = m_PEntity->getMod(MOD_ALACRITY_CELERITY_EFFECT);
             }
@@ -208,7 +208,7 @@ uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
         {
             uint16 bonus = 0;
             //Only apply Alacrity/celerity mod if the spell element matches the weather.
-            if(battleutils::WeatherMatchesElement(battleutils::GetWeather(m_PEntity),PSpell->getElement()))
+            if(battleutils::WeatherMatchesElement(battleutils::GetWeather(m_PEntity,false),PSpell->getElement()))
             {
                 bonus = m_PEntity->getMod(MOD_ALACRITY_CELERITY_EFFECT);
             }
@@ -362,7 +362,12 @@ uint32 CMagicState::CalculateRecastTime(CSpell* PSpell)
         }
         if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ALACRITY))
         {
-            uint16 bonus = m_PEntity->getMod(MOD_ALACRITY_CELERITY_EFFECT);
+            uint16 bonus = 0;
+            //Only apply Alacrity/celerity mod if the spell element matches the weather.
+            if (battleutils::WeatherMatchesElement(battleutils::GetWeather(m_PEntity,false), PSpell->getElement()))
+            {
+                bonus = m_PEntity->getMod(MOD_ALACRITY_CELERITY_EFFECT);
+            }
             recast *=  ((50 - bonus) / 100.0f);
 
             applyArts = false;
@@ -396,8 +401,12 @@ uint32 CMagicState::CalculateRecastTime(CSpell* PSpell)
         }
         if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_CELERITY))
         {
-            if(battleutils::GetWeather(m_PEntity) = 
-            uint16 bonus = m_PEntity->getMod(MOD_ALACRITY_CELERITY_EFFECT);
+            uint16 bonus = 0;
+            //Only apply Alacrity/celerity mod if the spell element matches the weather.
+            if (battleutils::WeatherMatchesElement(battleutils::GetWeather(m_PEntity, true), PSpell->getElement()))
+            {
+                bonus = m_PEntity->getMod(MOD_ALACRITY_CELERITY_EFFECT);
+            }
             recast *=  ((50 - bonus) / 100.0f);
 
             applyArts = false;

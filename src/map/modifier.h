@@ -534,23 +534,15 @@ enum MODIFIER
     MOD_MAGIC_ABSORB              =0x1DB,// (modId = 475)
     MOD_MAGIC_NULL                =0x1DC,// (modId = 476)
 
-<<<<<<< HEAD
-	// MOD_SPARE	=0x1F0,// (modId = 490)
-=======
 	// MOD_SPARE	=0x1EA,// (modId = 490)
 	// MOD_SPARE	=0x1EB,// (modId = 491)
 	// MOD_SPARE	=0x1EC,// (modId = 492)
->>>>>>> Scholar AF and Relic
 
     MOD_ADDITIONAL_EFFECT         =0x1AF,// (modId = 431)
 
 };
 
-<<<<<<< HEAD
-#define MAX_MODIFIER	       489
-=======
 #define MAX_MODIFIER	       490
->>>>>>> Scholar AF and Relic
 
 
 

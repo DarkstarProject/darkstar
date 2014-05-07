@@ -4386,10 +4386,10 @@ WEATHER GetWeather(CBattleEntity* PEntity, bool ignoreScholar)
         scholarSpell = WEATHER_GLOOM;
     WEATHER zoneWeather = zoneutils::GetZone(PEntity->getZone())->GetWeather();
 
-    if (ignoreScholar || scholarSpell == WEATHER_NONE)
+    if (ignoreScholar || scholarSpell == WEATHER_NONE || zoneWeather == (scholarSpell+1)) // Strong weather overwrites scholar spell weak weather
         return zoneWeather;
     else if (scholarSpell == zoneWeather)
-        return zoneWeather+1; // Storm spells stack with weather
+		return (WEATHER)(zoneWeather + 1); // Storm spells stack with weather
     else
         return scholarSpell;
 }
