@@ -11,6 +11,7 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function OnMobSpawn(mob)
+    mob:setRespawnTime(0);
 end;
 
 -----------------------------------
