@@ -64,12 +64,6 @@ function OnGameDayAutomatisation()
 		GetNPCByID(Moongate_Offset+1):openDoor(432);
 	end
 
-	-- Can spawn Xolotl?
-	local ToD = GetServerVariable("[POP]Xolotl");
-	if (ToD <= os.time(t)) then
-		DeterMob(16806215, false);
-	end
-	
 	-- Removes daily the bit mask that tracks the treats traded for Harvest Festival.
 	if (isHalloweenEnabled() ~= 0) then
 		clearVarFromAll("harvestFestTreats");
@@ -93,6 +87,14 @@ function OnGameHourAutomatisation()
 	elseif(VanadielHour == 5) then
 		SetServerVariable("[JEUNO]CommService",0);
 		
+	end
+	
+	-- Can spawn Xolotl?
+	local ToD = GetServerVariable("[POP]Xolotl");
+	if (VanadielHour == 20) then
+		if (ToD <= os.time(t)) then
+			DeterMob(16806215, false);
+		end
 	end
 	GetNPCByID(16806282):openDoor(); -- Attohwa Chasm miasma
 	
