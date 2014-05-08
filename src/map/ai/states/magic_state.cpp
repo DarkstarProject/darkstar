@@ -713,7 +713,7 @@ void CMagicState::CharAfterFinish()
         charutils::TrySkillUP(PChar, (SKILLTYPE)m_PSpell->getSkillType(), m_PTarget->GetMLevel());
         if (m_PSpell->getSkillType() == SKILL_SNG)
         {
-            CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
+            CItemWeapon* PItem = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);
             if (PItem == NULL || PItem->isType(ITEM_ARMOR))
             {
                 charutils::TrySkillUP(PChar, (SKILLTYPE)PItem->getSkillType(), m_PTarget->GetMLevel());

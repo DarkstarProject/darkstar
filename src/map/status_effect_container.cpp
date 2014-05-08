@@ -1263,7 +1263,7 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
                     {
 
                         CPetEntity* PPet = (CPetEntity*)m_POwner->PPet;
-    					CItem* hands = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_HANDS]);
+    					CItem* hands = PChar->getEquip(SLOT_HANDS);
 
                         // carbuncle mitts only work on carbuncle
     					if (hands && hands->getID() == 14062 && PPet->name == "Carbuncle"){
@@ -1296,7 +1296,7 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
 
         if(PChar != NULL && IsAsleep())
         {
-            CItem* neck = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_NECK]);
+            CItem* neck = PChar->getEquip(SLOT_NECK);
 
             // opo-opo necklace
             if(neck != NULL && neck->getID() == 13143)
