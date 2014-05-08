@@ -444,18 +444,36 @@ void CAIMobDummy::ActionDropItems()
 				*/
 
 				uint8 Pzone = PChar->getZone();
+
 				bool validZone = ((Pzone > 0 && Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255));
 
 				if(validZone && charutils::GetRealExp(PChar->GetMLevel(),m_PMob->GetMLevel())>0 && m_PMob->m_Type == MOBTYPE_NORMAL){ //exp-yielding monster and drop is successful
-					//TODO: The drop is actually based on a 5 minute timer, and not a probability of dropping!
 
 					if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && m_PMob->m_Element > 0 && WELL512::irand()%100 < 20) // Need to move to SIGNET_CHANCE constant
 					{
 						PChar->PTreasurePool->AddItem(4095 + m_PMob->m_Element, m_PMob);
+						
 					}
-					if(WELL512::irand()%100 < 20)
-					{
 
+					//Check if seal cool down is up, if it is remove it from the list
+					PChar->PRecastContainer->Check(m_Tick);	
+
+					if (!PChar->PRecastContainer->Has(RECASTTYPE::RECAST_LOOT, 1) && WELL512::irand() % 100 < 20)
+					{
+									
+						if (PChar->PParty != NULL && PChar->PParty->GetPartyType() == PARTY_PCS)
+						{
+							for (uint8 i = 0; i < PChar->PParty->members.size(); ++i)
+							{
+								PChar = (CCharEntity*)PChar->PParty->members.at(i);
+
+								PChar->PRecastContainer->Add(RECASTTYPE::RECAST_LOOT, 1, 300000); //300000 = 5 min cooldown
+							}
+						}
+						else {
+							PChar->PRecastContainer->Add(RECASTTYPE::RECAST_LOOT, 1, 300000); //300000 = 5 min cooldown
+						}
+						
 						//RULES: Only 1 kind may drop per mob
 						if(m_PMob->GetMLevel() < 50){ //b.seal only
 							PChar->PTreasurePool->AddItem(1126, m_PMob);
@@ -983,6 +1001,7 @@ void CAIMobDummy::ActionAbilityFinish()
 		if(m_PMobSkill->hasMissMsg())
 		{
 		    Action.reaction   = REACTION_MISS;
+            Action.speceffect = SPECEFFECT_NONE;
             if (msg = m_PMobSkill->getAoEMsg())
                 msg = 282;
 		} else {

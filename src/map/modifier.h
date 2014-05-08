@@ -439,6 +439,7 @@ enum MODIFIER
 	MOD_HELIX_DURATION            =0x1DD,// (modId = 477)
 	MOD_STORMSURGE_EFFECT         =0x190,// (modId = 400)
 	MOD_SUBLIMATION_BONUS         =0x191,// (modId = 401)
+    MOD_GRIMOIRE_SPELLCASTING     =0x1E9,// (modID = 489) "Grimoire: Reduces spellcasting time" bonus
 
 	MOD_ENSPELL                   =0x155,//stores the type of enspell active (0 if nothing) (modId = 341)
 	MOD_SPIKES                    =0x156,//store the type of spike spell active (0 if nothing) (modId = 342)
@@ -533,13 +534,15 @@ enum MODIFIER
     MOD_MAGIC_ABSORB              =0x1DB,// (modId = 475)
     MOD_MAGIC_NULL                =0x1DC,// (modId = 476)
 
-	// MOD_SPARE	=0x1F0,// (modId = 490)
+	// MOD_SPARE	=0x1EA,// (modId = 490)
+	// MOD_SPARE	=0x1EB,// (modId = 491)
+	// MOD_SPARE	=0x1EC,// (modId = 492)
 
     MOD_ADDITIONAL_EFFECT         =0x1AF,// (modId = 431)
 
 };
 
-#define MAX_MODIFIER	       489
+#define MAX_MODIFIER	       490
 
 
 

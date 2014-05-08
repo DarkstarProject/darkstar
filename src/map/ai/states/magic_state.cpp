@@ -180,26 +180,52 @@ uint32 CMagicState::CalculateCastTime(CSpell* PSpell)
     {
         if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ALACRITY))
         {
-            uint16 bonus = m_PEntity->getMod(MOD_ALACRITY_CELERITY_EFFECT);
+            uint16 bonus = 0;
+            //Only apply Alacrity/celerity mod if the spell element matches the weather.
+            if(battleutils::WeatherMatchesElement(battleutils::GetWeather(m_PEntity,false),PSpell->getElement()))
+            {
+                bonus = m_PEntity->getMod(MOD_ALACRITY_CELERITY_EFFECT);
+            }
             cast -= base * ((100 - (50 + bonus)) / 100.0f);
             applyArts = false;
         }
         else if (applyArts)
         {
-            cast = cast * (1.0f + m_PEntity->getMod(MOD_BLACK_MAGIC_CAST)/100.0f);
+            if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_DARK_ARTS) || m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_BLACK))
+            {
+                // Add any "Grimoire: Reduces spellcasting time" bonuses
+                cast = cast * (1.0f + (m_PEntity->getMod(MOD_BLACK_MAGIC_CAST)+m_PEntity->getMod(MOD_GRIMOIRE_SPELLCASTING))/100.0f);
+            }
+            else
+            {
+                cast = cast * (1.0f + m_PEntity->getMod(MOD_BLACK_MAGIC_CAST)/100.0f);
+            }
         }
     }
     else if (PSpell->getSpellGroup() == SPELLGROUP_WHITE)
     {
         if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_CELERITY))
         {
-            uint16 bonus = m_PEntity->getMod(MOD_ALACRITY_CELERITY_EFFECT);
+            uint16 bonus = 0;
+            //Only apply Alacrity/celerity mod if the spell element matches the weather.
+            if(battleutils::WeatherMatchesElement(battleutils::GetWeather(m_PEntity,false),PSpell->getElement()))
+            {
+                bonus = m_PEntity->getMod(MOD_ALACRITY_CELERITY_EFFECT);
+            }
             cast -= base * ((100 - (50 + bonus)) / 100.0f);
             applyArts = false;
         }
         else if (applyArts)
         {
-            cast = cast * (1.0f + m_PEntity->getMod(MOD_WHITE_MAGIC_CAST)/100.0f);
+            if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_LIGHT_ARTS) || m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_WHITE))
+            {                
+                // Add any "Grimoire: Reduces spellcasting time" bonuses
+                cast = cast * (1.0f + (m_PEntity->getMod(MOD_WHITE_MAGIC_CAST)+m_PEntity->getMod(MOD_GRIMOIRE_SPELLCASTING))/100.0f);
+            }
+            else
+            {
+                cast = cast * (1.0f + m_PEntity->getMod(MOD_WHITE_MAGIC_CAST)/100.0f);
+            }
         }
     }
     else if (PSpell->getSpellGroup() == SPELLGROUP_SONG)
@@ -336,14 +362,27 @@ uint32 CMagicState::CalculateRecastTime(CSpell* PSpell)
         }
         if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ALACRITY))
         {
-            uint16 bonus = m_PEntity->getMod(MOD_ALACRITY_CELERITY_EFFECT);
+            uint16 bonus = 0;
+            //Only apply Alacrity/celerity mod if the spell element matches the weather.
+            if (battleutils::WeatherMatchesElement(battleutils::GetWeather(m_PEntity,false), PSpell->getElement()))
+            {
+                bonus = m_PEntity->getMod(MOD_ALACRITY_CELERITY_EFFECT);
+            }
             recast *=  ((50 - bonus) / 100.0f);
 
             applyArts = false;
         }
         if (applyArts)
         {
-            recast *= (1.0f + m_PEntity->getMod(MOD_BLACK_MAGIC_RECAST)/100.0f);
+            if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_DARK_ARTS) || m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_BLACK))
+            {     
+                // Add any "Grimoire: Reduces spellcasting time" bonuses
+                recast *= (1.0f + (m_PEntity->getMod(MOD_BLACK_MAGIC_RECAST)+m_PEntity->getMod(MOD_GRIMOIRE_SPELLCASTING))/100.0f); 
+            }
+            else
+            {
+                recast *= (1.0f + m_PEntity->getMod(MOD_BLACK_MAGIC_RECAST)/100.0f); 
+            }
         }
     }
     else if (PSpell->getSpellGroup() == SPELLGROUP_WHITE)
@@ -362,14 +401,27 @@ uint32 CMagicState::CalculateRecastTime(CSpell* PSpell)
         }
         if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_CELERITY))
         {
-            uint16 bonus = m_PEntity->getMod(MOD_ALACRITY_CELERITY_EFFECT);
+            uint16 bonus = 0;
+            //Only apply Alacrity/celerity mod if the spell element matches the weather.
+            if (battleutils::WeatherMatchesElement(battleutils::GetWeather(m_PEntity, true), PSpell->getElement()))
+            {
+                bonus = m_PEntity->getMod(MOD_ALACRITY_CELERITY_EFFECT);
+            }
             recast *=  ((50 - bonus) / 100.0f);
 
             applyArts = false;
         }
         if (applyArts)
         {
-            recast *= (1.0f + m_PEntity->getMod(MOD_WHITE_MAGIC_RECAST)/100.0f);
+            if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_LIGHT_ARTS) || m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_WHITE))
+            {     
+                // Add any "Grimoire: Reduces spellcasting time" bonuses
+                recast *= (1.0f + (m_PEntity->getMod(MOD_WHITE_MAGIC_RECAST)+m_PEntity->getMod(MOD_GRIMOIRE_SPELLCASTING))/100.0f); 
+            }
+            else
+            {
+                recast *= (1.0f + m_PEntity->getMod(MOD_WHITE_MAGIC_RECAST)/100.0f); 
+            }
         }
     }
     else if (PSpell->getSpellGroup() == SPELLGROUP_SONG)
@@ -713,7 +765,7 @@ void CMagicState::CharAfterFinish()
         charutils::TrySkillUP(PChar, (SKILLTYPE)m_PSpell->getSkillType(), m_PTarget->GetMLevel());
         if (m_PSpell->getSkillType() == SKILL_SNG)
         {
-            CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
+            CItemWeapon* PItem = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);
             if (PItem == NULL || PItem->isType(ITEM_ARMOR))
             {
                 charutils::TrySkillUP(PChar, (SKILLTYPE)PItem->getSkillType(), m_PTarget->GetMLevel());

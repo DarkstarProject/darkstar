@@ -2912,7 +2912,7 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 break;
 
             // Ensure the linkshell is valid..
-            CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);
+            CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK);
             if (PItemLinkshell == NULL || !PItemLinkshell->isType(ITEM_LINKSHELL))
                 break;
 
@@ -2926,7 +2926,7 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 break;
 
             // Obtain the victims linkshell.. (And ensure it is the same as ours to prevent exploiting..)
-            CItemLinkshell* PItemLinkshellVictim = (CItemLinkshell*)PVictim->getStorage(LOC_INVENTORY)->GetItem(PVictim->equip[SLOT_LINK]);
+            CItemLinkshell* PItemLinkshellVictim = (CItemLinkshell*)PVictim->getEquip(SLOT_LINK);
             if (PItemLinkshellVictim == NULL || PItemLinkshellVictim->GetLSID() != PItemLinkshell->GetLSID())
                 break;
 
@@ -3693,7 +3693,7 @@ void SmallPacket0x0BE(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x0C3(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);
+    CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK);
 
     if (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL))
     {
@@ -3787,7 +3787,7 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     }
                     if (PChar->PLinkshell != NULL) // switching linkshell group
                     {
-                        CItemLinkshell* POldItemLinkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);
+                        CItemLinkshell* POldItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK);
 
                         if (POldItemLinkshell != NULL && POldItemLinkshell->isType(ITEM_LINKSHELL))
                         {
@@ -4137,7 +4137,7 @@ void SmallPacket0x0E1(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x0E2(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);
+    CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK);
 
     if (PChar->PLinkshell != NULL && (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL)))
     {

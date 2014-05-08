@@ -4425,7 +4425,7 @@ inline int32 CLuaBaseEntity::addBardSong(lua_State *L)
     uint8 maxSongs = 2;
     if (PEntity && PEntity->m_PBaseEntity && PEntity->m_PBaseEntity->objtype == TYPE_PC){
         CCharEntity* PCaster = (CCharEntity*)PEntity->m_PBaseEntity;
-        CItemWeapon* PItem = (CItemWeapon*)PCaster->getStorage(LOC_INVENTORY)->GetItem(PCaster->equip[SLOT_RANGED]);
+        CItemWeapon* PItem = (CItemWeapon*)PCaster->getEquip(SLOT_RANGED);
         if (PItem == NULL || PItem->getID() == 65535 || !(PItem->getSkillType() == SKILL_STR || PItem->getSkillType() == SKILL_WND)){
             maxSongs = 1;
         }
@@ -5138,7 +5138,7 @@ inline int32 CLuaBaseEntity::getEquipID(lua_State *L)
 
 		CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-		CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT]);
+		CItem* PItem = PChar->getEquip((SLOTTYPE)SLOT);
 
 		if((PItem != NULL) && PItem->isType(ITEM_ARMOR))
 		{
@@ -7213,14 +7213,14 @@ inline int32 CLuaBaseEntity::addNationTeleport(lua_State *L)
 
 	switch(nation)
 	{
-		case 0: PChar->nationtp.sandoria += newTP; break;
-		case 1: PChar->nationtp.bastok += newTP; break;
-		case 2: PChar->nationtp.windurst += newTP; break;
-		case 3: PChar->nationtp.ahturhgan += newTP; break;
-		case 4: PChar->nationtp.maw += newTP; break;
-		case 5: PChar->nationtp.pastsandoria += newTP; break;
-		case 6: PChar->nationtp.pastbastok += newTP; break;
-		case 7: PChar->nationtp.pastwindurst += newTP; break;
+		case 0: PChar->nationtp.sandoria |= newTP; break;
+		case 1: PChar->nationtp.bastok |= newTP; break;
+		case 2: PChar->nationtp.windurst |= newTP; break;
+		case 3: PChar->nationtp.ahturhgan |= newTP; break;
+		case 4: PChar->nationtp.maw |= newTP; break;
+		case 5: PChar->nationtp.pastsandoria |= newTP; break;
+		case 6: PChar->nationtp.pastbastok |= newTP; break;
+		case 7: PChar->nationtp.pastwindurst |= newTP; break;
 		default :
 			ShowDebug(CL_CYAN"lua::addNationTeleport no region with this number!\n" CL_RESET);
 			return 0;
@@ -7780,7 +7780,7 @@ inline int32 CLuaBaseEntity::hasValidJugPetItem(lua_State* L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-	CItemWeapon* PItem = (CItemWeapon*)((CCharEntity*)m_PBaseEntity)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)m_PBaseEntity)->equip[SLOT_AMMO]);
+	CItemWeapon* PItem = (CItemWeapon*)((CCharEntity*)m_PBaseEntity)->getEquip(SLOT_AMMO);
 
 	if (PItem != NULL && PItem->getSubSkillType() >= SUBSKILL_SHEEP && PItem->getSubSkillType() <= SUBSKILL_TOLOI)
 	{
