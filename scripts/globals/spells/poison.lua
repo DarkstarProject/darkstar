@@ -17,6 +17,10 @@ function onSpellCast(caster,target,spell)
 	local effect = EFFECT_POISON;
 
 	local duration = 30;
+	
+	    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+        duration = duration * 2;
+    end
 
 	local pINT = caster:getStat(MOD_INT);
 	local mINT = target:getStat(MOD_INT);
@@ -26,6 +30,11 @@ function onSpellCast(caster,target,spell)
 	if power > 4 then
 		power = 4;
 	end
+	
+	    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+        power = power * 2;
+    end
+    caster:delStatusEffect(EFFECT_SABOTEUR);
 	
     --local bonus = AffinityBonus(caster, spell:getElement()); Removed: affinity bonus is added in applyResistance
     local resist = applyResistanceEffect(caster,spell,target,dINT,ENFEEBLING_MAGIC_SKILL,0,effect);

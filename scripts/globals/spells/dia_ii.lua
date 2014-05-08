@@ -38,6 +38,11 @@ function onSpellCast(caster,target,spell)
 
 	-- Calculate duration.
 	local duration = 120;
+	
+	    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+        duration = duration * 2;
+    end
+    caster:delStatusEffect(EFFECT_SABOTEUR);
 
 	-- Check for Bio.
 	local bio = target:getStatusEffect(EFFECT_BIO);
