@@ -461,13 +461,10 @@ int32 CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender,
 
     if (PAttacker->objtype == TYPE_PC)
     {
-        if (((CCharEntity*)PAttacker)->equip[SLOT_WAIST] != 0)
+        CItemArmor* waist = ((CCharEntity*)PAttacker)->getEquip(SLOT_WAIST);
+        if (waist && waist->getID() == obi[element])
         {
-            CItemArmor* waist = (CItemArmor*)((CCharEntity*)PAttacker)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)PAttacker)->equip[SLOT_WAIST]);
-            if (waist && waist->getID() == obi[element])
-            {
-                obiBonus = true;
-            }
+            obiBonus = true;
         }
     }
     else
@@ -605,7 +602,7 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
 
 
         // SHIELD
-        CItem* PItem = PCharDef->getStorage(LOC_INVENTORY)->GetItem(PCharDef->equip[SLOT_SUB]);
+        CItem* PItem = PCharDef->getEquip(SLOT_SUB);
 
         if(PItem){
             switch(PItem->getID())
@@ -634,7 +631,7 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
 
         // BODY
         // deal with spikesEffect effect gear
-        PItem = PCharDef->getStorage(LOC_INVENTORY)->GetItem(PCharDef->equip[SLOT_BODY]);
+        PItem = PCharDef->getEquip(SLOT_BODY);
 
         if(PItem){
             spikesEffect = (SUBEFFECT)0;
@@ -699,7 +696,7 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
         }
 
         // LEGS
-        PItem = PCharDef->getStorage(LOC_INVENTORY)->GetItem(PCharDef->equip[SLOT_LEGS]);
+		PItem = PCharDef->getEquip(SLOT_LEGS);
 
         if(PItem){
             spikesEffect = (SUBEFFECT)0;
@@ -753,7 +750,7 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
         }
 
         // HEAD
-        PItem = PCharDef->getStorage(LOC_INVENTORY)->GetItem(PCharDef->equip[SLOT_HEAD]);
+		PItem = PCharDef->getEquip(SLOT_HEAD);
 
         if(PItem){
             spikesEffect = (SUBEFFECT)0;
@@ -802,7 +799,7 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
         }
 
         // HANDS
-        PItem = PCharDef->getStorage(LOC_INVENTORY)->GetItem(PCharDef->equip[SLOT_HANDS]);
+		PItem = PCharDef->getEquip(SLOT_HANDS);
 
         if(PItem){
             spikesEffect = (SUBEFFECT)0;
@@ -832,7 +829,7 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
         }
 
         // FEET
-        PItem = PCharDef->getStorage(LOC_INVENTORY)->GetItem(PCharDef->equip[SLOT_FEET]);
+		PItem = PCharDef->getEquip(SLOT_FEET);
 
         if(PItem){
             spikesEffect = (SUBEFFECT)0;
@@ -1556,12 +1553,12 @@ uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool 
 	if(PAttacker->objtype == TYPE_PC)
 	{
 		CCharEntity* PChar = (CCharEntity*)PAttacker;
-		CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
+		CItemWeapon* PItem = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);
 
 		if(PItem==NULL || !PItem->isType(ITEM_WEAPON))
 		{
 			// try throwing weapon
-			PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);
+			PItem = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);
 		}
 
 		if(PItem!=NULL && PItem->isType(ITEM_WEAPON))
@@ -1597,7 +1594,7 @@ float GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 	if(PAttacker->objtype == TYPE_PC)
 	{
 		CCharEntity* PChar = (CCharEntity*)PAttacker;
-		CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
+		CItemWeapon* PItem = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);
 
 		if (PItem != NULL && PItem->isType(ITEM_WEAPON))
 		{
@@ -1605,7 +1602,7 @@ float GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 		}
 		else
 		{
-			PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);
+			PItem = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);
 
 			if (PItem == NULL || !PItem->isType(ITEM_WEAPON) || (PItem->getSkillType() != SKILL_THR)){
 				ShowDebug("battleutils::GetRangedPDIF Cannot find a valid ranged weapon to calculate PDIF for. \n");
@@ -1769,7 +1766,7 @@ uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender)
 	if(PDefender->objtype == TYPE_PC)
 	{
 		CCharEntity* PChar = (CCharEntity*)PDefender;
-		CItemArmor* PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_SUB]);
+		CItemArmor* PItem = (CItemArmor*)PChar->getEquip(SLOT_SUB);
 
 		if(PItem!=NULL && PItem->getID()!=65535 && PItem->getShieldSize()>0 && PItem->getShieldSize()<=5)
 		{
@@ -2049,7 +2046,7 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 		if((slot==SLOT_RANGED || slot==SLOT_AMMO) && PAttacker->objtype == TYPE_PC)
 		{
 			CCharEntity* PChar = (CCharEntity*)PAttacker;
-			CItemWeapon* PAmmo = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);
+			CItemWeapon* PAmmo = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);
 
 			int16 delay = PAttacker->GetRangedWeaponDelay(true);
 
@@ -3167,7 +3164,7 @@ CItemArmor* GetEntityArmor(CBattleEntity* PEntity, SLOTTYPE Slot)
 
     if(PEntity->objtype == TYPE_PC)
     {
-        return (CItemArmor*)(((CCharEntity*)PEntity)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)PEntity)->equip[Slot]));
+        return (((CCharEntity*)PEntity)->getEquip(Slot));
     }
     else if(PEntity->objtype == TYPE_NPC)
     {
@@ -3183,7 +3180,7 @@ CItemWeapon* GetEntityWeapon(CBattleEntity* PEntity, SLOTTYPE Slot)
 
     if(PEntity->objtype == TYPE_PC)
     {
-        return (CItemWeapon*)(((CCharEntity*)PEntity)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)PEntity)->equip[Slot]));
+        return (CItemWeapon*)(((CCharEntity*)PEntity)->getEquip(Slot));
     }
     else if(PEntity->objtype == TYPE_NPC)
     {
@@ -3516,9 +3513,9 @@ uint16 doSoulEaterEffect(CCharEntity* m_PChar, uint32 damage)
 	{
 		//lost 10% current hp, converted to damage (displayed as just a strong regular hit)
 		float drainPercent = 0.1;
-		CItem* PItemHead = ((CCharEntity*)m_PChar)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)m_PChar)->equip[SLOT_HEAD]);
-		CItem* PItemBody = ((CCharEntity*)m_PChar)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)m_PChar)->equip[SLOT_BODY]);
-		CItem* PItemLegs = ((CCharEntity*)m_PChar)->getStorage(LOC_INVENTORY)->GetItem(((CCharEntity*)m_PChar)->equip[SLOT_LEGS]);
+		CItem* PItemHead = ((CCharEntity*)m_PChar)->getEquip(SLOT_HEAD);
+		CItem* PItemBody = ((CCharEntity*)m_PChar)->getEquip(SLOT_BODY);
+		CItem* PItemLegs = ((CCharEntity*)m_PChar)->getEquip(SLOT_LEGS);
 		if(PItemHead->getID() == 12516 || PItemHead->getID() == 15232 || PItemBody->getID() == 14409 || PItemLegs->getID() == 15370){
 		drainPercent = 0.12;
 	}
@@ -3605,7 +3602,7 @@ uint8 getBarrageShotCount(CCharEntity* PChar)
 	*/
 
 	// only archery + marksmanship can use barrage
-	CItemWeapon* PItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);
+	CItemWeapon* PItem = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);
 
 	if(PItem && PItem->getSkillType() != 25 && PItem->getSkillType() != 26)
 	{
@@ -3619,7 +3616,7 @@ uint8 getBarrageShotCount(CCharEntity* PChar)
 		lvl = PChar->GetSLevel();
 
 	// Hunters bracers+1 will add an extra shot
-	CItemArmor* PItemHands = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_HANDS]);
+	CItemArmor* PItemHands = PChar->getEquip(SLOT_HANDS);
 
 
 	if (PItemHands && PItemHands->getID() == 14900)
@@ -3634,7 +3631,7 @@ uint8 getBarrageShotCount(CCharEntity* PChar)
 
 
 	// make sure we have enough ammo for all these shots
-	CItemWeapon* PAmmo = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);
+	CItemWeapon* PAmmo = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);
 
 	if (PAmmo && PAmmo->getQuantity() < shotCount)
 	{

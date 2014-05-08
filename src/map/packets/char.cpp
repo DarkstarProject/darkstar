@@ -77,7 +77,7 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type)
 
             if (PChar->equip[SLOT_LINK] != 0)
             {
-			    CItemLinkshell* linkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);
+			    CItemLinkshell* linkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK);
 
 			    if ((linkshell != NULL) && linkshell->isType(ITEM_LINKSHELL))
 			    {
