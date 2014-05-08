@@ -7213,14 +7213,14 @@ inline int32 CLuaBaseEntity::addNationTeleport(lua_State *L)
 
 	switch(nation)
 	{
-		case 0: PChar->nationtp.sandoria += newTP; break;
-		case 1: PChar->nationtp.bastok += newTP; break;
-		case 2: PChar->nationtp.windurst += newTP; break;
-		case 3: PChar->nationtp.ahturhgan += newTP; break;
-		case 4: PChar->nationtp.maw += newTP; break;
-		case 5: PChar->nationtp.pastsandoria += newTP; break;
-		case 6: PChar->nationtp.pastbastok += newTP; break;
-		case 7: PChar->nationtp.pastwindurst += newTP; break;
+		case 0: PChar->nationtp.sandoria |= newTP; break;
+		case 1: PChar->nationtp.bastok |= newTP; break;
+		case 2: PChar->nationtp.windurst |= newTP; break;
+		case 3: PChar->nationtp.ahturhgan |= newTP; break;
+		case 4: PChar->nationtp.maw |= newTP; break;
+		case 5: PChar->nationtp.pastsandoria |= newTP; break;
+		case 6: PChar->nationtp.pastbastok |= newTP; break;
+		case 7: PChar->nationtp.pastwindurst |= newTP; break;
 		default :
 			ShowDebug(CL_CYAN"lua::addNationTeleport no region with this number!\n" CL_RESET);
 			return 0;

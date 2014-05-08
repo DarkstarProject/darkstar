@@ -23,9 +23,8 @@ function onTrigger(player,npc)
     player:showText(npc,NEIGEPANCE_SHOP_DIALOG);
 
     stock = {
---        0x439B,     9,1,     --Dart
---        0x034D,  1150,1,     --Black Chocobo Feather
-
+        0x439B,     9,1,     --Dart
+        0x034D,  1150,1,     --Black Chocobo Feather
         0x11C1,    62,3,     --Gysahl Greens
         0x0348,     7,3,     --Chocobo Feather
         0x4278,    11,3,     --Pet Food Alpha Biscuit

@@ -156,7 +156,7 @@ INSERT INTO `traits` VALUES ('18','dual wield','19','40','2','259','15');
 INSERT INTO `traits` VALUES ('18','dual wield','19','60','3','259','25');
 INSERT INTO `traits` VALUES ('18','dual wield','19','80','4','259','30');
 INSERT INTO `traits` VALUES ('19','treasure hunter','6','15','1','303','1');
-INSERT INTO `traits` VALUES ('20','gilfinder','6','5','1','0','0');;
+INSERT INTO `traits` VALUES ('20','gilfinder','6','5','1','0','0');
 INSERT INTO `traits` VALUES ('21','alertness','11','5','1','0','0');
 INSERT INTO `traits` VALUES ('22','stealth','13','5','1','358','3');
 INSERT INTO `traits` VALUES ('23','martial arts','2','1','1','173','80');
