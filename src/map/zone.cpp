@@ -114,7 +114,7 @@ CZone::CZone(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID)
   m_Transport = 0;
   m_TreasurePool = 0;
   m_RegionCheckTime = 0;
-  m_InstanceHandler = NULL;
+  m_BattlefieldHandler = NULL;
   m_Weather = WEATHER_NONE;
   m_WeatherChangeTime = 0;
   m_IsWeatherStatic = 0;
@@ -375,7 +375,7 @@ void CZone::LoadZoneSettings()
 
         if (Sql_GetData(SqlHandle,10) != NULL) // сейчас нельзя использовать bcnmid, т.к. они начинаются с нуля
         {
-            m_InstanceHandler = new CInstanceHandler(m_zoneID);
+			m_BattlefieldHandler = new CBattlefieldHandler(m_zoneID);
       }
         if (m_miscMask & MISC_TREASURE)
     {
@@ -715,16 +715,16 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 	}
 
 	//remove bcnm status
-	if(m_InstanceHandler != NULL && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD))
+	if(m_BattlefieldHandler != NULL && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD))
     {
-		if(m_InstanceHandler->disconnectFromBcnm(PChar)){
+		if(m_BattlefieldHandler->disconnectFromBcnm(PChar)){
 			ShowDebug("Removed %s from the BCNM they were in as they have left the zone.\n",PChar->GetName());
 		}
 
 		if(PChar->loc.destination==0){ //this player is disconnecting/logged out, so move them to the entrance
 			//move depending on zone
 			int pos[4] = {0,0,0,0};
-			instanceutils::getStartPosition(m_zoneID,pos);
+			battlefieldutils::getStartPosition(m_zoneID,pos);
 			if(pos!=NULL){
 				PChar->loc.p.x = pos[0];
 				PChar->loc.p.y = pos[1];
@@ -737,16 +737,16 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 			}
 		}
 	}
-	else if(m_InstanceHandler != NULL && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DYNAMIS, 0))
+	else if(m_BattlefieldHandler != NULL && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DYNAMIS, 0))
     {
-		if(m_InstanceHandler->disconnectFromDynamis(PChar)){
+		if(m_BattlefieldHandler->disconnectFromDynamis(PChar)){
 			ShowDebug("Removed %s from the BCNM they were in as they have left the zone.\n",PChar->GetName());
 		}
 
 		if(PChar->loc.destination==0){ //this player is disconnecting/logged out, so move them to the entrance
 			//move depending on zone
 			int pos[4] = {0,0,0,0};
-			instanceutils::getStartPosition(m_zoneID,pos);
+			battlefieldutils::getStartPosition(m_zoneID, pos);
 			if(pos!=NULL){
 				PChar->loc.p.x = pos[0];
 				PChar->loc.p.y = pos[1];
@@ -1590,9 +1590,9 @@ void CZone::ZoneServer(uint32 tick)
 		}
 	}
 
-	if(m_InstanceHandler != NULL)
+	if(m_BattlefieldHandler != NULL)
     {
-		m_InstanceHandler->handleInstances(tick);
+		m_BattlefieldHandler->handleBattlefields(tick);
 	}
 
     for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)

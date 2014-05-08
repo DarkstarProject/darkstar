@@ -33,7 +33,7 @@
 
 #include "region.h"
 #include "vana_time.h"
-#include "instance_handler.h"
+#include "battlefield_handler.h"
 
 #include "packets/weather.h"
 #include "navmesh.h"
@@ -540,7 +540,7 @@ public:
 
 	CZone(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID);
 
-    CInstanceHandler* m_InstanceHandler;	// BCNM Instances in this zone
+    CBattlefieldHandler* m_BattlefieldHandler;	// BCNM Instances in this zone
 
     CNavMesh*		m_navMesh;				// zones navmesh for finding paths
 

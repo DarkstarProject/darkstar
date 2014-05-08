@@ -569,15 +569,6 @@
     <ClInclude Include="..\..\src\map\lua\lua_mobskill.h">
       <Filter>Header Files\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\instance.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\map\instance_handler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\map\lua\lua_instance.h">
-      <Filter>Header Files\lua</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\map\jailutils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -701,9 +692,6 @@
     <ClInclude Include="..\..\src\map\utils\guildutils.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\utils\instanceutils.h">
-      <Filter>Header Files\utils</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\map\utils\itemutils.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
@@ -787,6 +775,24 @@
     </ClInclude>
     <ClInclude Include="..\..\src\map\packets\synth_suggestion.h">
       <Filter>Header Files\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\zone_base.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\zone_instance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\utils\battlefieldutils.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\battlefield_handler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\battlefield.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\lua\lua_battlefield.h">
+      <Filter>Header Files\lua</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1240,15 +1246,6 @@
     <ClCompile Include="..\..\src\map\lua\lua_mobskill.cpp">
       <Filter>Source Files\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\instance.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\instance_handler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\lua\lua_instance.cpp">
-      <Filter>Source Files\lua</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\map\ai\ai_char_prisoner.cpp">
       <Filter>Source Files\ai</Filter>
     </ClCompile>
@@ -1348,9 +1345,6 @@
     <ClCompile Include="..\..\src\map\utils\itemutils.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\utils\instanceutils.cpp">
-      <Filter>Source Files\utils</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\map\utils\jailutils.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
@@ -1440,6 +1434,24 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\synth_suggestion.cpp">
       <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\zone_base.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\zone_instance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\utils\battlefieldutils.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\battlefield.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\battlefield_handler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\lua\lua_battlefield.cpp">
+      <Filter>Source Files\lua</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

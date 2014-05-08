@@ -32,7 +32,7 @@
 #include "luautils.h"
 #include "lua_ability.h"
 #include "lua_baseentity.h"
-#include "lua_instance.h"
+#include "lua_battlefield.h"
 #include "lua_region.h"
 #include "lua_spell.h"
 #include "lua_statuseffect.h"
@@ -123,7 +123,7 @@ int32 init()
 
     Lunar<CLuaAbility>::Register(LuaHandle);
 	Lunar<CLuaBaseEntity>::Register(LuaHandle);
-    Lunar<CLuaInstance>::Register(LuaHandle);
+    Lunar<CLuaBattlefield>::Register(LuaHandle);
     Lunar<CLuaMobSkill>::Register(LuaHandle);
     Lunar<CLuaRegion>::Register(LuaHandle);
 	Lunar<CLuaSpell>::Register(LuaHandle);
@@ -3657,7 +3657,7 @@ int32 OnTransportEvent(CCharEntity* PChar, uint32 TransportID)
 /********************************************************************
 	onBcnmEnter - callback when you enter a BCNM via a lua call to bcnmEnter(bcnmid)
 *********************************************************************/
-int32 OnBcnmEnter(CCharEntity* PChar, CInstance* PInstance){
+int32 OnBcnmEnter(CCharEntity* PChar, CBattlefield* PBattlefield){
 	int8 File[255];
 	memset(File,0,sizeof(File));
     int32 oldtop = lua_gettop(LuaHandle);
@@ -3665,7 +3665,7 @@ int32 OnBcnmEnter(CCharEntity* PChar, CInstance* PInstance){
     lua_pushnil(LuaHandle);
     lua_setglobal(LuaHandle, "OnBcnmEnter");
 
-	snprintf(File, sizeof(File), "scripts/zones/%s/bcnms/%s.lua", PChar->loc.zone->GetName(),PInstance->getBcnmName());
+	snprintf(File, sizeof(File), "scripts/zones/%s/bcnms/%s.lua", PChar->loc.zone->GetName(), PBattlefield->getBcnmName());
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
@@ -3685,8 +3685,8 @@ int32 OnBcnmEnter(CCharEntity* PChar, CInstance* PInstance){
 	CLuaBaseEntity LuaBaseEntity(PChar);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
 
-	CLuaInstance LuaInstanceEntity(PInstance);
-	Lunar<CLuaInstance>::push(LuaHandle,&LuaInstanceEntity);
+	CLuaBattlefield LuaBattlefieldEntity(PBattlefield);
+	Lunar<CLuaBattlefield>::push(LuaHandle, &LuaBattlefieldEntity);
 
 	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
 	{
@@ -3713,7 +3713,7 @@ int32 OnBcnmEnter(CCharEntity* PChar, CInstance* PInstance){
 	This callback is executed for everyone in the BCNM when they leave
 	so if they leave via win, this will be called for each char.
 *********************************************************************/
-int32 OnBcnmLeave(CCharEntity* PChar, CInstance* PInstance, uint8 LeaveCode){
+int32 OnBcnmLeave(CCharEntity* PChar, CBattlefield* PBattlefield, uint8 LeaveCode){
 	int8 File[255];
 	memset(File,0,sizeof(File));
     int32 oldtop = lua_gettop(LuaHandle);
@@ -3721,7 +3721,7 @@ int32 OnBcnmLeave(CCharEntity* PChar, CInstance* PInstance, uint8 LeaveCode){
     lua_pushnil(LuaHandle);
     lua_setglobal(LuaHandle, "OnBcnmLeave");
 
-	snprintf(File, sizeof(File), "scripts/zones/%s/bcnms/%s.lua", PChar->loc.zone->GetName(),PInstance->getBcnmName());
+	snprintf(File, sizeof(File), "scripts/zones/%s/bcnms/%s.lua", PChar->loc.zone->GetName(), PBattlefield->getBcnmName());
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
@@ -3741,8 +3741,8 @@ int32 OnBcnmLeave(CCharEntity* PChar, CInstance* PInstance, uint8 LeaveCode){
 	CLuaBaseEntity LuaBaseEntity(PChar);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
 
-	CLuaInstance LuaInstanceEntity(PInstance);
-	Lunar<CLuaInstance>::push(LuaHandle,&LuaInstanceEntity);
+	CLuaBattlefield LuaBattlefieldEntity(PBattlefield);
+	Lunar<CLuaBattlefield>::push(LuaHandle, &LuaBattlefieldEntity);
 
 	lua_pushinteger(LuaHandle,LeaveCode);
 
@@ -3770,9 +3770,9 @@ int32 OnBcnmLeave(CCharEntity* PChar, CInstance* PInstance, uint8 LeaveCode){
 	For example, trading an orb, selecting the battle.
 	Called AFTER assigning BCNM status to all valid characters.
 	This callback is called only for the character initiating the
-	registration, and after CInstance:init() procedure.
+	registration, and after CBattlefield:init() procedure.
 *********************************************************************/
-int32 OnBcnmRegister(CCharEntity* PChar, CInstance* PInstance){
+int32 OnBcnmRegister(CCharEntity* PChar, CBattlefield* PBattlefield){
 	int8 File[255];
 	memset(File,0,sizeof(File));
     int32 oldtop = lua_gettop(LuaHandle);
@@ -3780,7 +3780,7 @@ int32 OnBcnmRegister(CCharEntity* PChar, CInstance* PInstance){
     lua_pushnil(LuaHandle);
     lua_setglobal(LuaHandle, "OnBcnmRegister");
 
-	snprintf(File, sizeof(File), "scripts/zones/%s/bcnms/%s.lua", PChar->loc.zone->GetName(),PInstance->getBcnmName());
+	snprintf(File, sizeof(File), "scripts/zones/%s/bcnms/%s.lua", PChar->loc.zone->GetName(), PBattlefield->getBcnmName());
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
@@ -3800,8 +3800,8 @@ int32 OnBcnmRegister(CCharEntity* PChar, CInstance* PInstance){
 	CLuaBaseEntity LuaBaseEntity(PChar);
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
 
-	CLuaInstance LuaInstanceEntity(PInstance);
-	Lunar<CLuaInstance>::push(LuaHandle,&LuaInstanceEntity);
+	CLuaBattlefield LuaBattlefieldEntity(PBattlefield);
+	Lunar<CLuaBattlefield>::push(LuaHandle, &LuaBattlefieldEntity);
 	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::OnBcnmRegister: %s\n",lua_tostring(LuaHandle,-1));

@@ -51,12 +51,12 @@ function onTrigger(player,npc)
  
  
     if(CofferType == cTIME)then 
-	        player:addTimeToSpecialInstance(InstanceRegion,addtime);
+	        player:addTimeToSpecialBattlefield(InstanceRegion,addtime);
 	elseif(CofferType == cITEM)then
             player:BCNMSetLoot(lootID,InstanceRegion,CofferID);
             player:getBCNMloot();
     elseif(CofferType == cRESTORE)then 
-			player:RestoreAndHealOnInstance(InstanceRegion);
+			player:RestoreAndHealOnBattlefield(InstanceRegion);
 	elseif(CofferType == cMIMIC)then 
 	     if(CofferID==16932864+210)then 
 		    	GetNPCByID(16932864+195):setPos(npc:getXPos(),npc:getYPos(),npc:getZPos());

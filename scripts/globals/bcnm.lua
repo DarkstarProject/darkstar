@@ -162,7 +162,7 @@ function EventUpdateBCNM(player,csid,option,entrance)
 			--You're entering a bcnm but you already had the battlefield effect, so you want to go to the
 			--instance that your battlefield effect represents.
 			player:setVar("bcnm_instanceid_tick",0);
-			player:setVar("bcnm_instanceid",player:getInstanceID()); --returns 255 if non-existent.
+			player:setVar("bcnm_instanceid",player:getBattlefieldID()); --returns 255 if non-existent.
 			return true;
 		end
 

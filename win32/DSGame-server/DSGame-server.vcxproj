@@ -241,8 +241,8 @@
     <ClInclude Include="..\..\src\map\entities\petentity.h" />
     <ClInclude Include="..\..\src\map\fishingutils.h" />
     <ClInclude Include="..\..\src\map\grades.h" />
-    <ClInclude Include="..\..\src\map\instance.h" />
-    <ClInclude Include="..\..\src\map\instance_handler.h" />
+    <ClInclude Include="..\..\src\map\battlefield.h" />
+    <ClInclude Include="..\..\src\map\battlefield_handler.h" />
     <ClInclude Include="..\..\src\map\items\item.h" />
     <ClInclude Include="..\..\src\map\items\item_armor.h" />
     <ClInclude Include="..\..\src\map\items\item_currency.h" />
@@ -262,7 +262,7 @@
     <ClInclude Include="..\..\src\map\lua\luautils.h" />
     <ClInclude Include="..\..\src\map\lua\lua_ability.h" />
     <ClInclude Include="..\..\src\map\lua\lua_baseentity.h" />
-    <ClInclude Include="..\..\src\map\lua\lua_instance.h" />
+    <ClInclude Include="..\..\src\map\lua\lua_battlefield.h" />
     <ClInclude Include="..\..\src\map\lua\lua_mobskill.h" />
     <ClInclude Include="..\..\src\map\lua\lua_region.h" />
     <ClInclude Include="..\..\src\map\lua\lua_spell.h" />
@@ -396,7 +396,7 @@
     <ClInclude Include="..\..\src\map\utils\charutils.h" />
     <ClInclude Include="..\..\src\map\utils\fishingutils.h" />
     <ClInclude Include="..\..\src\map\utils\guildutils.h" />
-    <ClInclude Include="..\..\src\map\utils\instanceutils.h" />
+    <ClInclude Include="..\..\src\map\utils\battlefieldutils.h" />
     <ClInclude Include="..\..\src\map\utils\itemutils.h" />
     <ClInclude Include="..\..\src\map\utils\jailutils.h" />
     <ClInclude Include="..\..\src\map\utils\mobutils.h" />
@@ -409,6 +409,8 @@
     <ClInclude Include="..\..\src\map\zone.h" />
     <ClInclude Include="..\..\src\map\attack.h" />
     <ClInclude Include="..\..\src\map\attackround.h" />
+    <ClInclude Include="..\..\src\map\zone_base.h" />
+    <ClInclude Include="..\..\src\map\zone_instance.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -464,8 +466,8 @@
     <ClCompile Include="..\..\src\map\entities\npcentity.cpp" />
     <ClCompile Include="..\..\src\map\entities\petentity.cpp" />
     <ClCompile Include="..\..\src\map\grades.cpp" />
-    <ClCompile Include="..\..\src\map\instance.cpp" />
-    <ClCompile Include="..\..\src\map\instance_handler.cpp" />
+    <ClCompile Include="..\..\src\map\battlefield.cpp" />
+    <ClCompile Include="..\..\src\map\battlefield_handler.cpp" />
     <ClCompile Include="..\..\src\map\items\item.cpp" />
     <ClCompile Include="..\..\src\map\items\item_armor.cpp" />
     <ClCompile Include="..\..\src\map\items\item_currency.cpp" />
@@ -484,7 +486,7 @@
     <ClCompile Include="..\..\src\map\lua\luautils.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_ability.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_baseentity.cpp" />
-    <ClCompile Include="..\..\src\map\lua\lua_instance.cpp" />
+    <ClCompile Include="..\..\src\map\lua\lua_battlefield.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_mobskill.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_region.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_spell.cpp" />
@@ -616,7 +618,7 @@
     <ClCompile Include="..\..\src\map\utils\charutils.cpp" />
     <ClCompile Include="..\..\src\map\utils\fishingutils.cpp" />
     <ClCompile Include="..\..\src\map\utils\guildutils.cpp" />
-    <ClCompile Include="..\..\src\map\utils\instanceutils.cpp" />
+    <ClCompile Include="..\..\src\map\utils\battlefieldutils.cpp" />
     <ClCompile Include="..\..\src\map\utils\itemutils.cpp" />
     <ClCompile Include="..\..\src\map\utils\jailutils.cpp" />
     <ClCompile Include="..\..\src\map\utils\mobutils.cpp" />
@@ -629,6 +631,8 @@
     <ClCompile Include="..\..\src\map\zone.cpp" />
     <ClCompile Include="..\..\src\map\attack.cpp" />
     <ClCompile Include="..\..\src\map\attackround.cpp" />
+    <ClCompile Include="..\..\src\map\zone_base.cpp" />
+    <ClCompile Include="..\..\src\map\zone_instance.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\documentation\message.log" />

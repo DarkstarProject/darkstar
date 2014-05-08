@@ -727,7 +727,7 @@ end;
 
 
 function ResetKeyForEmptyLimbus(player,instanceID)
-   instancestatus=player:isSpecialIntanceEmpty(GetInstanceRegion(instanceID));
+   instancestatus=player:isSpecialBattlefieldEmpty(GetInstanceRegion(instanceID));
    
   -- print("instancestatus"..instancestatus);
    
@@ -852,11 +852,11 @@ local currentlimbus=0;
 local playerLimbusID = player:getVar("LimbusID");
 local playerLimbusKeyID = player:getVar("characterLimbusKey");    
 	     print("Player_:_instanceID_"..playerLimbusID.." Playerkey "..playerLimbusKeyID);		
-			     if( GetLimbusKeyFromInstance(playerLimbusID) == playerLimbusKeyID and player:isSpecialIntanceEmpty(GetInstanceRegion(playerLimbusID))==1 )then  -- player deco and back
+			     if( GetLimbusKeyFromInstance(playerLimbusID) == playerLimbusKeyID and player:isSpecialBattlefieldEmpty(GetInstanceRegion(playerLimbusID))==1 )then  -- player deco and back
 				   currentlimbus=playerLimbusID;
 
 				   print("trying_to_add_player_on_the_current_bcnm");
-					local registration = player:addPlayerToSpecialInstance(playerLimbusID);
+					local registration = player:addPlayerToSpecialBattlefield(playerLimbusID);
 			              if(registration ~= 1)then
                                 currentlimbus=0;
 				          end

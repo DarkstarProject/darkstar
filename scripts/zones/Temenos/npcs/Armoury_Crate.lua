@@ -55,7 +55,7 @@ function onTrigger(player,npc)
  local coffer = CofferID-16928768;
  
     if(CofferType == cTIME)then 
-	        player:addTimeToSpecialInstance(InstanceRegion,addtime);
+	        player:addTimeToSpecialBattlefield(InstanceRegion,addtime);
 	elseif(CofferType == cITEM)then
 	   if(InstanceRegion == Central_Temenos_4th_Floor and coffer~=79)then
 	       local randmimic = math.random(1,24)
@@ -80,7 +80,7 @@ function onTrigger(player,npc)
             player:getBCNMloot();
 	   end	
     elseif(CofferType == cRESTORE)then 
-			player:RestoreAndHealOnInstance(InstanceRegion);
+			player:RestoreAndHealOnBattlefield(InstanceRegion);
 	elseif(CofferType == cMIMIC)then 
 	     if(coffer == 284)then
 		    GetMobByID(16928844):setSpawn(X,Y,Z);

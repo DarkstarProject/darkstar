@@ -232,19 +232,19 @@ public:
 	int32 sendMenu(lua_State*);				// Displays a menu (AH,Raise,Tractor,MH etc)
 	int32 sendGuild(lua_State*);			// Sends guild shop menu
 
-	int32 bcnmRegister(lua_State*);			//Attempts to register a bcnm instance (used by Dynamis and BCNM)
-	int32 bcnmEnter(lua_State*);			//Enter a bcnm instance (used by Dynamis and BCNM)
-	int32 bcnmLeave(lua_State*);			//Leave a bcnm instance
+	int32 bcnmRegister(lua_State*);			//Attempts to register a bcnm battlefield (used by Dynamis and BCNM)
+	int32 bcnmEnter(lua_State*);			//Enter a bcnm battlefield (used by Dynamis and BCNM)
+	int32 bcnmLeave(lua_State*);			//Leave a bcnm battlefield
 	int32 isInBcnm(lua_State*);				//true if you're INSIDE the bc (not just the status)
-	int32 isBcnmsFull(lua_State*);			//true if all 3 instances are full
-    int32 isSpecialIntanceEmpty(lua_State*); // 1 if this instance is full
-	int32 getSpecialInstanceLeftTime(lua_State*);// return left time of the specific instance
-	int32 addTimeToSpecialInstance(lua_State*); // add time of the specific instance
+	int32 isBcnmsFull(lua_State*);			//true if all 3 battlefield are full
+	int32 isSpecialBattlefieldEmpty(lua_State*); // 1 if this battlefield is full
+	int32 getSpecialBattlefieldLeftTime(lua_State*);// return left time of the specific instance
+	int32 addTimeToSpecialBattlefield(lua_State*); // add time of the specific instance
 	int32 BCNMSetLoot(lua_State*);           // set a lootlist for a special inctance
-	int32 RestoreAndHealOnInstance(lua_State*); // restore ability , PM and PV on the specific instance
-	int32 getInstanceID(lua_State*);		//returns 1 2 or 3 if the player can enter a bcnm with the instance assigned
+	int32 RestoreAndHealOnBattlefield(lua_State*); // restore ability , PM and PV on the specific instance
+	int32 getBattlefieldID(lua_State*);		//returns 1 2 or 3 if the player can enter a bcnm with the instance assigned
 	int32 getBCNMloot(lua_State*);			//triggers if the player opens the chest inside bcnm
-	int32 addPlayerToSpecialInstance(lua_State*); //for limbus
+	int32 addPlayerToSpecialBattlefield(lua_State*); //for limbus
 
 	int32 setSpawn(lua_State*);                // Sets spawn point
 	int32 setRespawnTime(lua_State*);		   // set respawn time
@@ -521,7 +521,7 @@ public:
     int32 initNpcAi(lua_State* L);
     int32 isNM(lua_State* L);
     int32 setUnkillable(lua_State* L);
-    int32 getInstance(lua_State* L);
+    int32 getBattlefield(lua_State* L);
 
     int32 getNewPlayer(lua_State* L);
     int32 setNewPlayer(lua_State* L);
