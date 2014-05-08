@@ -43,6 +43,11 @@ function onSpellCast(caster,target,spell)
     if (duration == 0) then --if caster has the spell but no merits in it, they are either a mob or we assume they are GM or otherwise gifted with max duration
         duration = 150;
     end
+	
+	    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+        duration = duration * 2;
+    end
+    caster:delStatusEffect(EFFECT_SABOTEUR);
         
 	-- Check for Bio.
 	local bio = target:getStatusEffect(EFFECT_BIO);
