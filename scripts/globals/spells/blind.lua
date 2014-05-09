@@ -26,10 +26,6 @@ function onSpellCast(caster,target,spell)
         power = 5;
     end
 
-    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
-        power = power * 2;
-    end
- 
     if(power > 20) then
         power = 20;
 	end
