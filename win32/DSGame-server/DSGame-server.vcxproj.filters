@@ -788,6 +788,9 @@
     <ClInclude Include="..\..\src\map\packets\synth_suggestion.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\synth_result.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
@@ -1439,6 +1442,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\synth_suggestion.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\synth_result.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
   </ItemGroup>
