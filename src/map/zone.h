@@ -493,7 +493,7 @@ public:
 	uint8			GetBackgroundMusic();
 	zoneLine_t*		GetZoneLine(uint32 zoneLineID);
 
-	void			HealAllMobs();
+	virtual void	HealAllMobs();
 
     CCharEntity*    GetCharByName(int8* name);                                      // finds the player if exists in zone
 	CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1); 					// получаем указатель на любую сущность в зоне
@@ -503,38 +503,38 @@ public:
     void            SetWeather(WEATHER weatherCondition);
     int             GetWeatherElement();
 
-	void			SpawnPCs(CCharEntity* PChar);									// отображаем персонажей в зоне
-	void			SpawnMOBs(CCharEntity* PChar);									// отображаем MOBs в зоне
-	void			SpawnPETs(CCharEntity* PChar);									// отображаем PETs в зоне
-	void			SpawnNPCs(CCharEntity* PChar);									// отображаем NPCs в зоне
-	void			SpawnMoogle(CCharEntity* PChar);								// отображаем Moogle в MogHouse
-    void            SpawnTransport(CCharEntity* PChar);                             // отображаем транспорт
+	virtual void	SpawnPCs(CCharEntity* PChar);									// отображаем персонажей в зоне
+	virtual void	SpawnMOBs(CCharEntity* PChar);									// отображаем MOBs в зоне
+	virtual void	SpawnPETs(CCharEntity* PChar);									// отображаем PETs в зоне
+	virtual void	SpawnNPCs(CCharEntity* PChar);									// отображаем NPCs в зоне
+	virtual void	SpawnMoogle(CCharEntity* PChar);								// отображаем Moogle в MogHouse
+    virtual void    SpawnTransport(CCharEntity* PChar);                             // отображаем транспорт
 	void			SavePlayTime();
 
-	void			WideScan(CCharEntity* PChar, uint16 radius);					// сканирование местности с заданным радиусом
+	virtual void	WideScan(CCharEntity* PChar, uint16 radius);					// сканирование местности с заданным радиусом
 
-	void			DecreaseZoneCounter(CCharEntity* PChar);						// добавляем персонажа в зону
-	void			IncreaseZoneCounter(CCharEntity* PChar);						// удаляем персонажа из зоны
+	virtual void	DecreaseZoneCounter(CCharEntity* PChar);						// добавляем персонажа в зону
+	virtual void	IncreaseZoneCounter(CCharEntity* PChar);						// удаляем персонажа из зоны
 
-	void			InsertNPC(CBaseEntity* PNpc);									// добавляем в зону npc
-	void			InsertMOB(CBaseEntity* PMob);									// добавляем в зону mob
-	void			InsertPET(CBaseEntity* PPet);									// добавляем в зону pet
-	void			DeletePET(CBaseEntity* PPet);       	                        // derefs the pet's ID from this zone
-	void			InsertPatrol(CBaseEntity* PNpc);
+	virtual void	InsertNPC(CBaseEntity* PNpc);									// добавляем в зону npc
+	virtual void	InsertMOB(CBaseEntity* PMob);									// добавляем в зону mob
+	virtual void	InsertPET(CBaseEntity* PPet);									// добавляем в зону pet
+	virtual void	DeletePET(CBaseEntity* PPet);       	                        // derefs the pet's ID from this zone
+	virtual void	InsertPatrol(CBaseEntity* PNpc);
 
-    void            FindPartyForMob(CBaseEntity* PEntity);                          // ищем группу для монстра
-    void            TransportDepart(CBaseEntity* PTransportNPC);                    // транспотр отправляется, необходимо собрать пассажиров
+    virtual void    FindPartyForMob(CBaseEntity* PEntity);                          // ищем группу для монстра
+    virtual void    TransportDepart(CBaseEntity* PTransportNPC);                    // транспотр отправляется, необходимо собрать пассажиров
 
 	void			InsertRegion(CRegion* Region);									// добавляем в зону активную область
 
 	void			TOTDChange(TIMETYPE TOTD);										// обработка реакции мира на смену времени суток
-	void			PushPacket(CBaseEntity*, GLOBAL_MESSAGE_TYPE, CBasicPacket*);	// отправляем глобальный пакет в пределах зоны
+	virtual void	PushPacket(CBaseEntity*, GLOBAL_MESSAGE_TYPE, CBasicPacket*);	// отправляем глобальный пакет в пределах зоны
 
 	uint32			m_RegionCheckTime;												// время последней проверки регионов
     uint8           m_WeatherFrequency[MAX_WEATHER_ID];                             // вероятность появления каждого типа погоды
 
-	void			ZoneServer(uint32 tick);
-	void			ZoneServerRegion(uint32 tick);
+	virtual void	ZoneServer(uint32 tick);
+	virtual void	ZoneServerRegion(uint32 tick);
 
 	EntityList_t	GetCharList();
 
