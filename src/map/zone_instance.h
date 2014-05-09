@@ -26,12 +26,11 @@ This file is part of DarkStar-server source code.
 
 #include "zone.h"
 
-class CZoneInstance : CZone
+class CZoneInstance : public CZone
 {
 public:
 
 	virtual void	HealAllMobs();
-
 	virtual void	SpawnPCs(CCharEntity* PChar);									// отображаем персонажей в зоне
 	virtual void	SpawnMOBs(CCharEntity* PChar);									// отображаем MOBs в зоне
 	virtual void	SpawnPETs(CCharEntity* PChar);									// отображаем PETs в зоне
@@ -48,11 +47,11 @@ public:
 	virtual void	InsertMOB(CBaseEntity* PMob);									// добавляем в зону mob
 	virtual void	InsertPET(CBaseEntity* PPet);									// добавляем в зону pet
 	virtual void	DeletePET(CBaseEntity* PPet);       	                        // derefs the pet's ID from this zone
-	virtual void	InsertPatrol(CBaseEntity* PNpc);
 
 	virtual void    FindPartyForMob(CBaseEntity* PEntity);                          // ищем группу для монстра
 	virtual void    TransportDepart(CBaseEntity* PTransportNPC);                    // транспотр отправляется, необходимо собрать пассажиров
 
+	virtual void	TOTDChange(TIMETYPE TOTD);										// обработка реакции мира на смену времени суток
 	virtual void	PushPacket(CBaseEntity*, GLOBAL_MESSAGE_TYPE, CBasicPacket*);	// отправляем глобальный пакет в пределах зоны
 
 	virtual void	ZoneServer(uint32 tick);

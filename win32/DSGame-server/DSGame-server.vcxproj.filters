@@ -776,9 +776,6 @@
     <ClInclude Include="..\..\src\map\packets\synth_suggestion.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\zone_base.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\map\zone_instance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1434,9 +1431,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\synth_suggestion.cpp">
       <Filter>Source Files\packets</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\zone_base.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\zone_instance.cpp">
       <Filter>Source Files</Filter>

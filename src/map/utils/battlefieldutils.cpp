@@ -99,7 +99,7 @@ namespace battlefieldutils{
 				if (PMob != NULL)
 				{
 
-					PMob->m_instanceID = battlefield->getBattlefieldNumber();
+					PMob->m_battlefieldID = battlefield->getBattlefieldNumber();
 					PMob->m_bcnmID = battlefield->getID();
 
 					if (condition & CONDITION_SPAWNED_AT_START)
@@ -437,7 +437,7 @@ namespace battlefieldutils{
 				        PMob->PBattleAI->SetLastActionTime(0);
 				        PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
 
-						PMob->m_instanceID = battlefield->getBattlefieldNumber();
+						PMob->m_battlefieldID = battlefield->getBattlefieldNumber();
 
 						ShowDebug("Spawned %s (%u) id %i inst %i \n",PMob->GetName(),PMob->id,battlefield->getID(),battlefield->getBattlefieldNumber());
 						battlefield->addEnemy(PMob, CONDITION_SPAWNED_AT_START & CONDITION_WIN_REQUIREMENT);

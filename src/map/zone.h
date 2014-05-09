@@ -520,14 +520,13 @@ public:
 	virtual void	InsertMOB(CBaseEntity* PMob);									// добавляем в зону mob
 	virtual void	InsertPET(CBaseEntity* PPet);									// добавляем в зону pet
 	virtual void	DeletePET(CBaseEntity* PPet);       	                        // derefs the pet's ID from this zone
-	virtual void	InsertPatrol(CBaseEntity* PNpc);
 
     virtual void    FindPartyForMob(CBaseEntity* PEntity);                          // ищем группу для монстра
     virtual void    TransportDepart(CBaseEntity* PTransportNPC);                    // транспотр отправляется, необходимо собрать пассажиров
 
 	void			InsertRegion(CRegion* Region);									// добавляем в зону активную область
 
-	void			TOTDChange(TIMETYPE TOTD);										// обработка реакции мира на смену времени суток
+	virtual void	TOTDChange(TIMETYPE TOTD);										// обработка реакции мира на смену времени суток
 	virtual void	PushPacket(CBaseEntity*, GLOBAL_MESSAGE_TYPE, CBasicPacket*);	// отправляем глобальный пакет в пределах зоны
 
 	uint32			m_RegionCheckTime;												// время последней проверки регионов
@@ -565,6 +564,7 @@ private:
 
 	zoneMusic_t		m_zoneMusic;			// информация о мелодиях, используемых в зоне
 
+protected:
 	EntityList_t	m_mobList;				// список всех MOBs в зоне
 	EntityList_t	m_petList;				// список всех PETs в зоне
 	EntityList_t	m_npcList;				// список всех NPCs в зоне

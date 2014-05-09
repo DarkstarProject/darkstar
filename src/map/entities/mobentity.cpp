@@ -84,7 +84,7 @@ CMobEntity::CMobEntity()
     m_neutral = false;
     m_Link = 0;
 
-    m_instanceID = 0;
+	m_battlefieldID = 0;
     m_bcnmID = 0;
 
     m_maxRoamDistance = 10.0f;

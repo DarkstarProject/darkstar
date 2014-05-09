@@ -160,7 +160,7 @@ public:
 
   uint8     m_CallForHelp;              // call for help flag on mob
 
-  int8      m_instanceID;               // instance belonging to
+  int8      m_battlefieldID;            // battlefield belonging to
   uint16    m_bcnmID;                   // belongs to which battlefield
   bool      m_giveExp;                  // prevent exp gain
   bool      m_neutral;                  // stop linking / aggroing

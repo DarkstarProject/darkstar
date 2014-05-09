@@ -595,7 +595,7 @@ void CalculateStats(CMobEntity * PMob)
 		// bcnmID 864 (desires of emptiness) and 704 (darkness named) don't superlink
 		// force all mobs in same instance to superlink
 		// plus one in case id is zero
-		PMob->setMobMod(MOBMOD_SUPERLINK, PMob->m_instanceID);
+		PMob->setMobMod(MOBMOD_SUPERLINK, PMob->m_battlefieldID);
 	}
 
 	uint8 evaRank = battleutils::GetSkillRank(SKILL_EVA, PMob->GetMJob());
