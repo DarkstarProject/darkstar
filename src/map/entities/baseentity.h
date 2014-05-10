@@ -28,6 +28,7 @@
 #include "../../common/mmo.h"
 
 #include "../ai/ai_general.h"
+#include "../instance.h"
 
 enum ENTITYTYPE
 {
@@ -139,6 +140,7 @@ public:
 	bool			IsNameHidden();		// checks if name is hidden
 
     CAIGeneral*     PBattleAI;          // интеллект любой сущности
+	CInstance*		PInstance;
 
     CBaseEntity();						// конструктор
     virtual ~CBaseEntity();						// деструктор

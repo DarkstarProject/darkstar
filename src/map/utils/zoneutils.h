@@ -52,6 +52,8 @@ namespace zoneutils
     REGIONTYPE    GetCurrentRegion(uint16 ZoneID);
     CONTINENTTYPE GetCurrentContinent(uint16 ZoneID);
 
+	int GetWeatherElement(WEATHER weather);
+
 	CZone*		 GetZone(uint16 ZoneID);							                    // получаем указатель на зону
 	CNpcEntity*	 GetTrigger(uint16 TargID, uint16 ZoneID);		                    // триггер для старта событий (как побочный эффект - вероятность появления прозрачного орка)
     CBaseEntity* GetEntity(uint32 ID, uint8 filter = -1);                           // получаем указатель на любую сущность

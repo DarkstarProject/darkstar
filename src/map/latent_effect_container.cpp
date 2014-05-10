@@ -573,7 +573,7 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
                     }
                     break;
                 case LATENT_WEATHER_ELEMENT:
-                    if (zoneutils::GetZone(m_POwner->getZone())->GetWeatherElement() == m_LatentEffectList.at(i)->GetConditionsValue())
+                    if (zoneutils::GetWeatherElement(zoneutils::GetZone(m_POwner->getZone())->GetWeather()) == m_LatentEffectList.at(i)->GetConditionsValue())
                     {
                         m_LatentEffectList.at(i)->Activate();
                     }
@@ -1470,7 +1470,7 @@ void CLatentEffectContainer::CheckLatentsZone()
             }
             break;
         case LATENT_WEATHER_ELEMENT:
-            if (zoneutils::GetZone(m_POwner->getZone())->GetWeatherElement() == m_LatentEffectList.at(i)->GetConditionsValue())
+			if (zoneutils::GetWeatherElement(zoneutils::GetZone(m_POwner->getZone())->GetWeather()) == m_LatentEffectList.at(i)->GetConditionsValue())
             {
                 m_LatentEffectList.at(i)->Activate();
             }

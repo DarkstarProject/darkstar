@@ -467,6 +467,7 @@ class CBaseEntity;
 class CCharEntity;
 class CBattleEntity;
 class CTreasurePool;
+class CZoneEntities;
 
 typedef std::list<CRegion*> regionList_t;
 typedef std::list<zoneLine_t*> zoneLineList_t;
@@ -493,15 +494,12 @@ public:
 	uint8			GetBackgroundMusic();
 	zoneLine_t*		GetZoneLine(uint32 zoneLineID);
 
-	virtual void	HealAllMobs();
-
     CCharEntity*    GetCharByName(int8* name);                                      // finds the player if exists in zone
 	CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1); 					// получаем указатель на любую сущность в зоне
 
     bool            IsWeatherStatic();                                              // погода в зоне не требует изменения (никогда не меняется)
 	bool			CanUseMisc(uint16 misc);
     void            SetWeather(WEATHER weatherCondition);
-    int             GetWeatherElement();
 
 	virtual void	SpawnPCs(CCharEntity* PChar);									// отображаем персонажей в зоне
 	virtual void	SpawnMOBs(CCharEntity* PChar);									// отображаем MOBs в зоне
@@ -534,10 +532,12 @@ public:
 
 	virtual void	ZoneServer(uint32 tick);
 	virtual void	ZoneServerRegion(uint32 tick);
+	void			CheckRegions(CCharEntity* PChar);
 
 	EntityList_t	GetCharList();
 
 	CZone(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID);
+	virtual ~CZone();
 
     CBattlefieldHandler* m_BattlefieldHandler;	// BCNM Instances in this zone
 
@@ -557,32 +557,30 @@ private:
 	WEATHER			m_Weather;              // текущая погода
     uint32          m_WeatherChangeTime;    // время начала текущей погоды
     bool            m_IsWeatherStatic;      // погода в зоне никогда не меняется
-
+	CZoneEntities*  m_zoneEntities;
 
 	uint16			m_tax;					// налог в bazaar
 	uint16			m_miscMask;				// битовое поле, описывающее возможности использования в зоне определенных умений
 
 	zoneMusic_t		m_zoneMusic;			// информация о мелодиях, используемых в зоне
 
-protected:
-	EntityList_t	m_mobList;				// список всех MOBs в зоне
-	EntityList_t	m_petList;				// список всех PETs в зоне
-	EntityList_t	m_npcList;				// список всех NPCs в зоне
-	EntityList_t	m_charList;				// список всех PCs  в зоне
-	EntityList_t    m_patrolList;			// list of patroling npcs
-
 	regionList_t	m_regionList;			// список активных областей зоны
 	zoneLineList_t	m_zoneLineList;			// список всех доступных zonelines для зоны
 
-    CBaseEntity*    m_Transport;            // указатель на транспорт в зоне
-	CTreasurePool*	m_TreasurePool;			// глобальный TreasuerPool
+	void	LoadZoneLines();				// список zonelines (можно было бы заменить этот метод методом InsertZoneLine)
+	void    LoadZoneWeather();              // погода
+	void	LoadZoneSettings();				// настройки зоны
+	void	LoadNavMesh();					// Load the zones navmesh. Must exist in scripts/zones/:zone/NavMesh.nav
 
 	CTaskMgr::CTask* ZoneTimer;				// указатель на созданный таймер - ZoneServer. необходим для возможности его остановки
 
-	void	LoadZoneLines();				// список zonelines (можно было бы заменить этот метод методом InsertZoneLine)
-    void    LoadZoneWeather();              // погода
-	void	LoadZoneSettings();				// настройки зоны
-	void	LoadNavMesh();					// Load the zones navmesh. Must exist in scripts/zones/:zone/NavMesh.nav
+	CTreasurePool*	m_TreasurePool;			// глобальный TreasuerPool
+
+protected:
+
+	void createZoneTimer();
+	void CharZoneIn(CCharEntity* PChar);
+	void CharZoneOut(CCharEntity* PChar);
 };
 
 #endif

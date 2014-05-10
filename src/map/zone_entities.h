@@ -21,17 +21,19 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#ifndef _CZONEINSTANCE_H
-#define _CZONEINSTANCE_H
+#ifndef _CZONEENTITIES_H
+#define _CZONEENTITIES_H
 
 #include "zone.h"
-#include "instance.h"
 
-typedef std::list<CInstance*> instanceList_t;
-
-class CZoneInstance : public CZone
+class CZoneEntities
 {
 public:
+
+	virtual void	HealAllMobs();
+
+	CCharEntity*    GetCharByName(int8* name);                                      // finds the player if exists in zone
+	CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1); 					// получаем указатель на любую сущность в зоне
 
 	virtual void	SpawnPCs(CCharEntity* PChar);									// отображаем персонажей в зоне
 	virtual void	SpawnMOBs(CCharEntity* PChar);									// отображаем MOBs в зоне
@@ -39,12 +41,14 @@ public:
 	virtual void	SpawnNPCs(CCharEntity* PChar);									// отображаем NPCs в зоне
 	virtual void	SpawnMoogle(CCharEntity* PChar);								// отображаем Moogle в MogHouse
 	virtual void    SpawnTransport(CCharEntity* PChar);                             // отображаем транспорт
+	void			DespawnPC(CCharEntity* PChar);
+	void			SavePlayTime();
 
 	virtual void	WideScan(CCharEntity* PChar, uint16 radius);					// сканирование местности с заданным радиусом
 
 	virtual void	DecreaseZoneCounter(CCharEntity* PChar);						// добавляем персонажа в зону
-	virtual void	IncreaseZoneCounter(CCharEntity* PChar);						// удаляем персонажа из зоны
 
+	virtual void	InsertPC(CCharEntity* PChar);
 	virtual void	InsertNPC(CBaseEntity* PNpc);									// добавляем в зону npc
 	virtual void	InsertMOB(CBaseEntity* PMob);									// добавляем в зону mob
 	virtual void	InsertPET(CBaseEntity* PPet);									// добавляем в зону pet
@@ -54,17 +58,28 @@ public:
 	virtual void    TransportDepart(CBaseEntity* PTransportNPC);                    // транспотр отправляется, необходимо собрать пассажиров
 
 	virtual void	TOTDChange(TIMETYPE TOTD);										// обработка реакции мира на смену времени суток
+	virtual void	WeatherChange(WEATHER weather);
 	virtual void	PushPacket(CBaseEntity*, GLOBAL_MESSAGE_TYPE, CBasicPacket*);	// отправляем глобальный пакет в пределах зоны
 
 	virtual void	ZoneServer(uint32 tick);
 	virtual void	ZoneServerRegion(uint32 tick);
 
-	CZoneInstance(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID);
-	~CZoneInstance();
+	EntityList_t	GetCharList();
+	bool			CharListEmpty();
+	uint16			GetNewTargID();
 
+	EntityList_t	m_mobList;				// список всех MOBs в зоне
+	EntityList_t	m_petList;				// список всех PETs в зоне
+	EntityList_t	m_npcList;				// список всех NPCs в зоне
+	EntityList_t	m_charList;				// список всех PCs  в зоне
+
+	CZoneEntities(CZone*);
+	~CZoneEntities();
 private:
 
-	instanceList_t instanceList;
+	CZone* m_zone;
+	CBaseEntity*    m_Transport;            // указатель на транспорт в зоне
+
 };
 
 #endif

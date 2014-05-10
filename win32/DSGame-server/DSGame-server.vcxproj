@@ -243,6 +243,7 @@
     <ClInclude Include="..\..\src\map\grades.h" />
     <ClInclude Include="..\..\src\map\battlefield.h" />
     <ClInclude Include="..\..\src\map\battlefield_handler.h" />
+    <ClInclude Include="..\..\src\map\instance.h" />
     <ClInclude Include="..\..\src\map\items\item.h" />
     <ClInclude Include="..\..\src\map\items\item_armor.h" />
     <ClInclude Include="..\..\src\map\items\item_currency.h" />
@@ -409,6 +410,7 @@
     <ClInclude Include="..\..\src\map\zone.h" />
     <ClInclude Include="..\..\src\map\attack.h" />
     <ClInclude Include="..\..\src\map\attackround.h" />
+    <ClInclude Include="..\..\src\map\zone_entities.h" />
     <ClInclude Include="..\..\src\map\zone_instance.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
@@ -467,6 +469,7 @@
     <ClCompile Include="..\..\src\map\grades.cpp" />
     <ClCompile Include="..\..\src\map\battlefield.cpp" />
     <ClCompile Include="..\..\src\map\battlefield_handler.cpp" />
+    <ClCompile Include="..\..\src\map\instance.cpp" />
     <ClCompile Include="..\..\src\map\items\item.cpp" />
     <ClCompile Include="..\..\src\map\items\item_armor.cpp" />
     <ClCompile Include="..\..\src\map\items\item_currency.cpp" />
@@ -630,6 +633,7 @@
     <ClCompile Include="..\..\src\map\zone.cpp" />
     <ClCompile Include="..\..\src\map\attack.cpp" />
     <ClCompile Include="..\..\src\map\attackround.cpp" />
+    <ClCompile Include="..\..\src\map\zone_entities.cpp" />
     <ClCompile Include="..\..\src\map\zone_instance.cpp" />
   </ItemGroup>
   <ItemGroup>

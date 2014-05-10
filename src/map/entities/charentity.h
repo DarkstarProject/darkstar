@@ -42,6 +42,7 @@
 #include "../trade_container.h"
 #include "../treasure_pool.h"
 #include "../merit.h"
+#include "../instance.h"
 #include "../universal_container.h"
 #include "../utils/itemutils.h"
 
