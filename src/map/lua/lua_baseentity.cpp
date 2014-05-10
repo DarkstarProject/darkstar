@@ -8428,6 +8428,52 @@ inline int32 CLuaBaseEntity::hideHP(lua_State* L)
 	return 0;
 }
 
+//======================================================//
+
+inline int32 CLuaBaseEntity::breathDmgTaken(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+
+	lua_pushinteger( L, battleutils::BreathDmgTaken((CBattleEntity*)m_PBaseEntity, lua_tointeger(L,-1)) );
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::magicDmgTaken(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+
+	lua_pushinteger( L, battleutils::MagicDmgTaken((CBattleEntity*)m_PBaseEntity, lua_tointeger(L,-1)) );
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::physicalDmgTaken(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+
+	lua_pushinteger( L, battleutils::PhysicalDmgTaken((CBattleEntity*)m_PBaseEntity, lua_tointeger(L,-1)) );
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::rangedDmgTaken(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+
+	lua_pushinteger( L, battleutils::RangedDmgTaken((CBattleEntity*)m_PBaseEntity, lua_tointeger(L,-1)) );
+	return 1;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -8802,5 +8848,9 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideName),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,untargetable),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideHP),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,breathDmgTaken),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,magicDmgTaken),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,physicalDmgTaken),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,rangedDmgTaken),
 	{NULL,NULL}
 };

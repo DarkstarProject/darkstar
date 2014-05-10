@@ -487,7 +487,6 @@ int32 CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender,
     
     damage = (damage * (float)resist);
     damage = (damage * (float)dBonus);
-    damage = DmgTaken(PDefender, damage);
     damage = MagicDmgTaken(PDefender, damage);
     damage = damage - PDefender->getMod(MOD_PHALANX);
     damage = dsp_cap(damage, 0, 99999);
@@ -1914,20 +1913,15 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 
 		damage = damage * formlessMod / 100;
 
-		// Handle Severe Damage Reduction Effects
-		damage = HandleSevereDamage(PDefender, damage);
+		// TODO: chance to 'resist'
+		damage = MagicDmgTaken(PDefender, damage);
 	}
 	else
 	{
-
-        damage = DmgTaken(PDefender, damage);
-	
         if(isRanged)
-        {
-        damage = RangedDmgTaken(PDefender, damage);
-        } else {
+            damage = RangedDmgTaken(PDefender, damage);
+        else
             damage = PhysicalDmgTaken(PDefender, damage);
-        }
 
 		switch(PAttacker->m_Weapons[slot]->getDmgType())
 		{
@@ -4050,15 +4044,15 @@ void ClaimMob(CBattleEntity* PDefender, CBattleEntity* PAttacker)
 }
 
 
-int32 DmgTaken(CBattleEntity* PDefender, int32 damage)
+int32 BreathDmgTaken(CBattleEntity* PDefender, int32 damage)
 {
+    float resist = 1.0f + (PDefender->getMod(MOD_UDMGBREATH) / 100.0f);
+    damage *= resist;
 
-    float resist = 1.0f + (PDefender->getMod(MOD_DMG) / 100.0f);
+    resist = 1.0f + (PDefender->getMod(MOD_DMGBREATH) / 100.0f) + (PDefender->getMod(MOD_DMG) / 100.0f);
 
     if(resist < 0.5f)
-    {
         resist = 0.5f;
-    }
 
 	damage = damage * resist;
 
@@ -4068,26 +4062,13 @@ int32 DmgTaken(CBattleEntity* PDefender, int32 damage)
     return damage;
 }
 
-int32 BreathDmgTaken(CBattleEntity* PDefender, int32 damage)
-{
-    float resist = 1.0f + (PDefender->getMod(MOD_UDMGBREATH) / 100.0f);
-    damage *= resist;
-
-    resist = 1.0f + (PDefender->getMod(MOD_DMGBREATH) / 100.0f);
-
-    if(resist < 0.5f)
-        resist = 0.5f;
-
-    return damage * resist;
-}
-
 int32 MagicDmgTaken(CBattleEntity* PDefender, int32 damage)
 {
     float resist = (256 + PDefender->getMod(MOD_UDMGMAGIC)) / 256.0f;
 
     damage *= resist;
 
-    resist = (256 + PDefender->getMod(MOD_DMGMAGIC)) / 256.0f;
+    resist = ((256 + PDefender->getMod(MOD_DMGMAGIC)) / 256.0f) + (PDefender->getMod(MOD_DMG) / 100.0f);
 
     if(resist < 0.5f)
     {
@@ -4108,14 +4089,19 @@ int32 PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage)
 
     damage *= resist;
 
-    resist = 1.0f + (PDefender->getMod(MOD_DMGPHYS) / 100.0f);
+    resist = 1.0f + (PDefender->getMod(MOD_DMGPHYS) / 100.0f) + (PDefender->getMod(MOD_DMG) / 100.0f);
 
     if(resist < 0.5f)
     {
         resist = 0.5f;
     }
 
-    return damage * resist;
+	damage = damage * resist;
+
+	// Handle Severe Damage Reduction Effects
+	damage = HandleSevereDamage(PDefender, damage);
+
+    return damage;
 }
 
 int32 RangedDmgTaken(CBattleEntity* PDefender, int32 damage)
@@ -4124,14 +4110,19 @@ int32 RangedDmgTaken(CBattleEntity* PDefender, int32 damage)
 
     damage *= resist;
 
-    resist = 1.0f + (PDefender->getMod(MOD_DMGRANGE) / 100.0f);
+    resist = 1.0f + (PDefender->getMod(MOD_DMGRANGE) / 100.0f) + (PDefender->getMod(MOD_DMG) / 100.0f);
 
     if(resist < 0.5f)
     {
         resist = 0.5f;
     }
 
-    return damage * resist;
+	damage = damage * resist;
+
+	// Handle Severe Damage Reduction Effects
+	damage = HandleSevereDamage(PDefender, damage);
+
+    return damage;
 }
 
 void HandleIssekiganEnmityBonus(CBattleEntity* PDefender, CMobEntity* PAttacker){

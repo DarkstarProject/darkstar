@@ -32,8 +32,8 @@ function OnUseWeaponSkill(player, target, wsID)
 		WSC = HP * ((TP - 100) / (100 / (0.1875 - 0.125)));
 	end
 	
-	local damage = utils.breathDmgTaken(target,math.floor(D + WSC));
-	
+	local damage = target:breathDmgTaken(math.floor(D + WSC));
+
 	return 1, 0, false, damage;
 	
 end
