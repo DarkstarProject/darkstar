@@ -34,8 +34,22 @@ function OnMobWeaponSkill(target, mob, skill)
 
    dmg = dmg * 2.5;
 
-   -- Believe it or not, it's been proven to be breath damage.
-   dmg = utils.breathDmgTaken(target, dmg);
+    -- Believe it or not, it's been proven to be breath damage.
+    dmg = target:breathDmgTaken(dmg);
+
+    --handling phalanx
+    dmg = dmg - target:getMod(MOD_PHALANX);
+
+    if(dmg < 0) then
+        return 0;
+    end
+
+	dmg = utils.stoneskin(target, dmg);
+
+    if(dmg > 0) then
+        target:wakeUp();
+        target:updateEnmityFromDamage(mob,dmg);
+    end
 
    target:delHP(dmg);
 	return dmg;
