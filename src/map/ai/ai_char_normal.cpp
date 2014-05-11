@@ -931,8 +931,8 @@ void CAICharNormal::ActionRangedFinish()
         CItemWeapon* PItem = (CItemWeapon*)m_PChar->getEquip(SLOT_RANGED);
         CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getEquip(SLOT_AMMO);
 
-        bool ammoThrowing = PAmmo->isThrowing();
-        bool rangedThrowing = PItem->isThrowing();
+		bool ammoThrowing = PAmmo ? PAmmo->isThrowing() : false;
+		bool rangedThrowing = PItem ? PItem->isThrowing() : false;
         uint8 slot = SLOT_RANGED;
 
         if (ammoThrowing)
