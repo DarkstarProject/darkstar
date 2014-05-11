@@ -13,6 +13,11 @@ end;
 
 function onSpellCast(caster,target,spell)
 	local duration = 90;
+	    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+        duration = duration * 2;
+    end
+    caster:delStatusEffect(EFFECT_SABOTEUR);
+	
 	local typeEffect = EFFECT_SLEEP_II;
 	--local bonus = AffinityBonus(caster, spell:getElement()); Removed: affinity bonus is added in applyResistance
 	local pINT = caster:getStat(MOD_INT);

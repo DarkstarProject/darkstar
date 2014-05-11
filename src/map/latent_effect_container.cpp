@@ -263,7 +263,7 @@ void CLatentEffectContainer::CheckLatentsMP(int32 mp)
 		switch(m_LatentEffectList.at(i)->GetConditionsID())
 		{
 			case LATENT_MP_UNDER_PERCENT:
-				if ((float)(mp / m_POwner->health.maxmp )*100 <= m_LatentEffectList.at(i)->GetConditionsValue())
+				if (m_POwner->health.maxmp && (float)(mp / m_POwner->health.maxmp )*100 <= m_LatentEffectList.at(i)->GetConditionsValue())
 				{
 					m_LatentEffectList.at(i)->Activate();
 				}
