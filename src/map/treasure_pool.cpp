@@ -148,12 +148,13 @@ uint8 CTreasurePool::AddItem(uint16 ItemID, CBaseEntity* PEntity)
 
     switch (ItemID)
     {
-        case 1126:
-        case 1127:
-        case 2955:
-        case 2956:
+        case 1126:  //beastmen seal
+        case 1127:  //kindred seal
+        case 2955:  //kindred crest
+        case 2956:  //high kindred crest
             for (uint32 i = 0; i < members.size(); ++i)
                 members[i]->PRecastContainer->Add(RECAST_LOOT, 1, 300000); //300000 = 5 min cooldown
+            break;
     }
 
 	for (SlotID = 0; SlotID < 10; ++SlotID)
