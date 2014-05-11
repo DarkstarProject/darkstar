@@ -2784,8 +2784,15 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
             }
 
 			//check to see if user is adding a party leader for alliance
-			if (PInvitee->PParty != NULL)// && PChar->Party != NULL
+			if (PInvitee->PParty != NULL)
 		    {
+                //you can't form alliance if you are not a party leader
+                if (PChar->PParty == NULL)
+                {
+                    PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 12));
+                    return;
+                }
+
 				if (PInvitee->PParty->GetLeader() == PInvitee)
 				{
 					//make sure invitee does not already have alliance
@@ -2829,33 +2836,27 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 void SmallPacket0x06F(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
 
-	//alliance - party leader dispands dropping the party from the alliance
 	if (PChar->PParty != NULL)
 	{
-		if (PChar->PParty->m_PAlliance != NULL)
+		//alliance - party leader dispands dropping the party from the alliance
+        if (PChar->PParty->m_PAlliance != NULL)
 		{
-			if (PChar->PParty->m_PAlliance->getMainParty() != PChar->PParty)
+			if (PChar->PParty->GetLeader() == PChar)
 			{
-				if (PChar->PParty->GetLeader() == PChar)
-				{
-						//if there are only 2 parties then dissolve alliance
-						if (PChar->PParty->m_PAlliance->partyCount() == 2)
-						{
-							PChar->PParty->m_PAlliance->dissolveAlliance();
-							return;
-						}
-					//remove 1 party from alliance
-					PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
-					return;
-				}
-
+					//if there are only 2 parties then dissolve alliance
+					if (PChar->PParty->m_PAlliance->partyCount() == 2)
+					{
+						PChar->PParty->m_PAlliance->dissolveAlliance();
+						return;
+					}
+				//remove 1 party from alliance
+				PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
+				return;
 			}
 		}
-	}
 
-	//normal party member disband
-	if (PChar->PParty != NULL){
-	PChar->PParty->RemoveMember(PChar);
+        //normal party member disband
+        PChar->PParty->RemoveMember(PChar);
 	}
 
 	return;
