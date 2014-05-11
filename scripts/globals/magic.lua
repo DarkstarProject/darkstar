@@ -972,8 +972,7 @@ end;
         -- end
     end
 
-    dmg = utils.dmgTaken(target, dmg);
-    dmg = utils.magicDmgTaken(target, dmg);
+    dmg = target:magicDmgTaken(dmg);
 
 	if (dmg > 0) then
 		dmg = dmg - target:getMod(MOD_PHALANX);
@@ -993,7 +992,7 @@ end;
         target:updateEnmityFromDamage(caster,dmg);
     end
     -- Only add TP if the target is a mob
-    if (target:getObjType() ~= TYPE_PC) then
+    if (target:getObjType() ~= TYPE_PC and dmg > 0) then
         target:addTP(10);
     end
 
@@ -1002,8 +1001,7 @@ end;
 
 function finalMagicNonSpellAdjustments(caster,target,ele,dmg)
 
-    dmg = utils.dmgTaken(target, dmg);
-    dmg = utils.magicDmgTaken(target, dmg);
+    dmg = target:magicDmgTaken(dmg);
 
 	if (dmg > 0) then
 		dmg = dmg - target:getMod(MOD_PHALANX);
