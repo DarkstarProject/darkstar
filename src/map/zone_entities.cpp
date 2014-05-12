@@ -43,6 +43,7 @@ This file is part of DarkStar-server source code.
 CZoneEntities::CZoneEntities(CZone* zone)
 {
 	m_zone = zone;
+	m_Transport = NULL;
 }
 
 CZoneEntities::~CZoneEntities()

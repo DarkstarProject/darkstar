@@ -710,6 +710,21 @@ EntityList_t CZone::GetCharList()
 	return m_zoneEntities->GetCharList();
 }
 
+EntityList_t CZone::GetInstanceCharList(CBaseEntity* PEntity)
+{
+	return GetCharList();
+}
+
+void CZone::ForEachChar(std::function<void(CCharEntity*)> func)
+{
+	EntityList_t chars = GetCharList();
+	for (auto PChar : chars)
+	{
+		func((CCharEntity*)PChar.second);
+	}
+
+}
+
 void CZone::createZoneTimer()
 {
 	ZoneTimer = CTaskMgr::getInstance()->AddTask(

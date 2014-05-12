@@ -30,39 +30,39 @@ class CZoneEntities
 {
 public:
 
-	virtual void	HealAllMobs();
+	void			HealAllMobs();
 
 	CCharEntity*    GetCharByName(int8* name);                                      // finds the player if exists in zone
 	CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1); 					// получаем указатель на любую сущность в зоне
 
-	virtual void	SpawnPCs(CCharEntity* PChar);									// отображаем персонажей в зоне
-	virtual void	SpawnMOBs(CCharEntity* PChar);									// отображаем MOBs в зоне
-	virtual void	SpawnPETs(CCharEntity* PChar);									// отображаем PETs в зоне
-	virtual void	SpawnNPCs(CCharEntity* PChar);									// отображаем NPCs в зоне
-	virtual void	SpawnMoogle(CCharEntity* PChar);								// отображаем Moogle в MogHouse
-	virtual void    SpawnTransport(CCharEntity* PChar);                             // отображаем транспорт
+	void			SpawnPCs(CCharEntity* PChar);									// отображаем персонажей в зоне
+	void			SpawnMOBs(CCharEntity* PChar);									// отображаем MOBs в зоне
+	void			SpawnPETs(CCharEntity* PChar);									// отображаем PETs в зоне
+	void			SpawnNPCs(CCharEntity* PChar);									// отображаем NPCs в зоне
+	void			SpawnMoogle(CCharEntity* PChar);								// отображаем Moogle в MogHouse
+	void			SpawnTransport(CCharEntity* PChar);                             // отображаем транспорт
 	void			DespawnPC(CCharEntity* PChar);
 	void			SavePlayTime();
 
-	virtual void	WideScan(CCharEntity* PChar, uint16 radius);					// сканирование местности с заданным радиусом
+	void			WideScan(CCharEntity* PChar, uint16 radius);					// сканирование местности с заданным радиусом
 
-	virtual void	DecreaseZoneCounter(CCharEntity* PChar);						// добавляем персонажа в зону
+	void			DecreaseZoneCounter(CCharEntity* PChar);						// добавляем персонажа в зону
 
-	virtual void	InsertPC(CCharEntity* PChar);
-	virtual void	InsertNPC(CBaseEntity* PNpc);									// добавляем в зону npc
-	virtual void	InsertMOB(CBaseEntity* PMob);									// добавляем в зону mob
-	virtual void	InsertPET(CBaseEntity* PPet);									// добавляем в зону pet
-	virtual void	DeletePET(CBaseEntity* PPet);       	                        // derefs the pet's ID from this zone
+	void			InsertPC(CCharEntity* PChar);
+	void			InsertNPC(CBaseEntity* PNpc);									// добавляем в зону npc
+	void			InsertMOB(CBaseEntity* PMob);									// добавляем в зону mob
+	void			InsertPET(CBaseEntity* PPet);									// добавляем в зону pet
+	void			DeletePET(CBaseEntity* PPet);       	                        // derefs the pet's ID from this zone
 
-	virtual void    FindPartyForMob(CBaseEntity* PEntity);                          // ищем группу для монстра
-	virtual void    TransportDepart(CBaseEntity* PTransportNPC);                    // транспотр отправляется, необходимо собрать пассажиров
+	void			FindPartyForMob(CBaseEntity* PEntity);                          // ищем группу для монстра
+	void			TransportDepart(CBaseEntity* PTransportNPC);                    // транспотр отправляется, необходимо собрать пассажиров
 
-	virtual void	TOTDChange(TIMETYPE TOTD);										// обработка реакции мира на смену времени суток
-	virtual void	WeatherChange(WEATHER weather);
-	virtual void	PushPacket(CBaseEntity*, GLOBAL_MESSAGE_TYPE, CBasicPacket*);	// отправляем глобальный пакет в пределах зоны
+	void			TOTDChange(TIMETYPE TOTD);										// обработка реакции мира на смену времени суток
+	void			WeatherChange(WEATHER weather);
+	void			PushPacket(CBaseEntity*, GLOBAL_MESSAGE_TYPE, CBasicPacket*);	// отправляем глобальный пакет в пределах зоны
 
-	virtual void	ZoneServer(uint32 tick);
-	virtual void	ZoneServerRegion(uint32 tick);
+	void			ZoneServer(uint32 tick);
+	void			ZoneServerRegion(uint32 tick);
 
 	EntityList_t	GetCharList();
 	bool			CharListEmpty();

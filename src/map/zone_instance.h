@@ -59,6 +59,9 @@ public:
 	virtual void	ZoneServer(uint32 tick);
 	virtual void	ZoneServerRegion(uint32 tick);
 
+	virtual EntityList_t GetCharList();
+	virtual EntityList_t GetInstanceCharList(CBaseEntity* PEntity);
+
 	CZoneInstance(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID);
 	~CZoneInstance();
 

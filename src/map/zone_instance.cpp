@@ -96,15 +96,27 @@ void CZoneInstance::DecreaseZoneCounter(CCharEntity* PChar)
 {
 	if (PChar->PInstance)
 	{
-		PChar->PInstance->DecreaseInstanceCounter(PChar);
+		PChar->PInstance->DecreaseZoneCounter(PChar);
+		CharZoneOut(PChar);
+		PChar->PInstance = NULL;
 	}
 }
 
 void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
 {
+	DSP_DEBUG_BREAK_IF(PChar == NULL);
+	DSP_DEBUG_BREAK_IF(PChar->loc.zone != NULL);
+	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != NULL);
+
+	//TEMP
+	CInstance* newInstance = new CInstance(this);
+	instanceList.push_back(newInstance);
+	PChar->PInstance = newInstance;
+
 	if (PChar->PInstance)
 	{
-		PChar->PInstance->IncreaseInstanceCounter(PChar);
+		CharZoneIn(PChar);
+		//instance zonein script etc
 	}
 }
 
@@ -194,4 +206,25 @@ void CZoneInstance::ZoneServerRegion(uint32 tick)
 	{
 		instance->ZoneServerRegion(tick);
 	}
+}
+
+EntityList_t CZoneInstance::GetCharList()
+{
+	EntityList_t allChars;
+	uint16 counter = 0;
+	for (auto instance : instanceList)
+	{
+		EntityList_t instanceChars = instance->GetCharList();
+		for (auto PChar : instanceChars)
+		{
+			allChars.emplace(counter, PChar.second);
+			counter++;
+		}
+	}
+	return allChars;
+}
+
+EntityList_t CZoneInstance::GetInstanceCharList(CBaseEntity* PEntity)
+{
+	return PEntity->PInstance->GetCharList();
 }

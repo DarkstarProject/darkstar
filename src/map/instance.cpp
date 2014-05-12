@@ -23,109 +23,13 @@ This file is part of DarkStar-server source code.
 
 #include "instance.h"
 #include "zone.h"
-#include "entities\charentity.h"
 
-CInstance::CInstance(CZone* zone)
+CInstance::CInstance(CZone* zone) : CZoneEntities(zone)
 {
 	m_zone = zone;
 }
 
 CInstance::~CInstance()
-{
-
-}
-
-void CInstance::InsertMOB(CBaseEntity* PMob)
-{
-
-}
-
-void CInstance::InsertNPC(CBaseEntity* PNpc)
-{
-
-}
-
-void CInstance::DeletePET(CBaseEntity* PPet)
-{
-
-}
-
-void CInstance::InsertPET(CBaseEntity* PPet)
-{
-
-}
-
-void CInstance::FindPartyForMob(CBaseEntity* PEntity)
-{
-
-}
-
-void CInstance::TransportDepart(CBaseEntity* PTransportNPC)
-{
-	
-}
-
-void CInstance::DecreaseInstanceCounter(CCharEntity* PChar)
-{
-
-}
-
-void CInstance::IncreaseInstanceCounter(CCharEntity* PChar)
-{
-
-}
-
-void CInstance::SpawnMOBs(CCharEntity* PChar)
-{
-
-}
-
-void CInstance::SpawnPETs(CCharEntity* PChar)
-{
-
-}
-
-void CInstance::SpawnNPCs(CCharEntity* PChar)
-{
-
-}
-
-void CInstance::SpawnPCs(CCharEntity* PChar)
-{
-
-}
-
-void CInstance::SpawnMoogle(CCharEntity* PChar)
-{
-
-}
-
-void CInstance::SpawnTransport(CCharEntity* PChar)
-{
-
-}
-
-void CInstance::TOTDChange(TIMETYPE TOTD)
-{
-
-}
-
-void CInstance::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message_type, CBasicPacket* packet)
-{
-
-}
-
-void CInstance::WideScan(CCharEntity* PChar, uint16 radius)
-{
-
-}
-
-void CInstance::ZoneServer(uint32 tick)
-{
-
-}
-
-void CInstance::ZoneServerRegion(uint32 tick)
 {
 
 }

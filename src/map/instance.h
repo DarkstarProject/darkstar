@@ -24,41 +24,11 @@ This file is part of DarkStar-server source code.
 #ifndef _CINSTANCE_H
 #define _CINSTANCE_H
 
-#include "zone.h"
+#include "zone_entities.h"
 
-class CBaseEntity;
-class CCharEntity;
-class CZone;
-
-class CInstance
+class CInstance : public CZoneEntities
 {
 public:
-
-	void	WideScan(CCharEntity* PChar, uint16 radius);
-	void	PushPacket(CBaseEntity*, GLOBAL_MESSAGE_TYPE, CBasicPacket*);
-
-	void	SpawnPCs(CCharEntity* PChar);
-	void	SpawnMOBs(CCharEntity* PChar);
-	void	SpawnPETs(CCharEntity* PChar);
-	void	SpawnNPCs(CCharEntity* PChar);
-	void	SpawnMoogle(CCharEntity* PChar);
-	void    SpawnTransport(CCharEntity* PChar);
-
-	void	DecreaseInstanceCounter(CCharEntity* PChar);
-	void	IncreaseInstanceCounter(CCharEntity* PChar);
-
-	void	InsertNPC(CBaseEntity* PNpc);
-	void	InsertMOB(CBaseEntity* PMob);
-	void	InsertPET(CBaseEntity* PPet);
-	void	DeletePET(CBaseEntity* PPet);
-
-	void	TOTDChange(TIMETYPE TOTD);
-
-	void    FindPartyForMob(CBaseEntity* PEntity);
-	void    TransportDepart(CBaseEntity* PTransportNPC);
-
-	void	ZoneServer(uint32 tick);
-	void	ZoneServerRegion(uint32 tick);
 
 	CInstance(CZone*);
 	~CInstance();

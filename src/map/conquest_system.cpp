@@ -92,7 +92,7 @@ namespace conquest
                 //only find chars for zones that have had conquest updated
                 if (zoneutils::GetZone(zone)->GetRegionID() == i)
                 {
-                    EntityList_t charList = zoneutils::GetZone(zone)->GetCharList();
+                    /*EntityList_t charList = zoneutils::GetZone(zone)->GetCharList();
 
                     //run an iterator over the zone's char list
                     for (EntityList_t::const_iterator it = charList.begin(); it != charList.end(); ++it)
@@ -101,12 +101,10 @@ namespace conquest
 
                         //check conquest latents
                         PChar->PLatentEffectContainer->CheckLatentsZone();
-                    }
-
+                    }*/
+					zoneutils::GetZone(zone)->ForEachChar([](CCharEntity* PChar) {PChar->PLatentEffectContainer->CheckLatentsZone(); });
                 }
             }
-
-
 		}
 	}
 
