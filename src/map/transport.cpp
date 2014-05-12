@@ -251,19 +251,13 @@ void CTransportHandler::TransportTimer()
 				if (TimerOffset == 0 || TimerOffset == 76)
 				{
 					CZone* PZone = zoneutils::GetZone(elevator->zone);
-					EntityList_t charList = PZone->GetCharList();
 
-					if (!charList.empty())
-					{
-						for (EntityList_t::const_iterator it = charList.begin() ; it != charList.end() ; ++it)
+					PZone->ForEachChar([](CCharEntity* PChar){
+						if ((PChar->GetXPos() > 54 && PChar->GetXPos() < 66) && (PChar->GetZPos() > -160 && PChar->GetZPos() < -80))
 						{
-							CCharEntity* PChar = (CCharEntity*)it->second;
-							if ((PChar->GetXPos() > 54 && PChar->GetXPos() < 66) && (PChar->GetZPos() > -160 && PChar->GetZPos() < -80))
-							{
-								PChar->pushPacket(new CEventPacket(PChar, 70, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1));
-							}
+							PChar->pushPacket(new CEventPacket(PChar, 70, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1));
 						}
-					}
+					});
 				}
 				else if (TimerOffset == 4 || TimerOffset == 80)
 				{

@@ -22,7 +22,7 @@ This file is part of DarkStar-server source code.
 */
 
 #include "zone_instance.h"
-#include "entities\charentity.h"
+#include "entities/charentity.h"
 
 /************************************************************************
 *																		*
@@ -33,7 +33,7 @@ This file is part of DarkStar-server source code.
 CZoneInstance::CZoneInstance(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID) 
 : CZone(ZoneID, RegionID, ContinentID)
 {
-
+	createZoneTimer();
 }
 
 CZoneInstance::~CZoneInstance()
@@ -97,6 +97,7 @@ void CZoneInstance::DecreaseZoneCounter(CCharEntity* PChar)
 	if (PChar->PInstance)
 	{
 		PChar->PInstance->DecreaseZoneCounter(PChar);
+		PChar->PInstance->DespawnPC(PChar);
 		CharZoneOut(PChar);
 		PChar->PInstance = NULL;
 	}
@@ -115,6 +116,15 @@ void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
 
 	if (PChar->PInstance)
 	{
+		PChar->targid = PChar->PInstance->GetNewTargID();
+
+		if (PChar->targid >= 0x700)
+		{
+			ShowError(CL_RED"CZone::InsertChar : targid is high (03hX)\n" CL_RESET, PChar->targid);
+			return;
+		}
+
+		PChar->PInstance->InsertPC(PChar);
 		CharZoneIn(PChar);
 		//instance zonein script etc
 	}
@@ -208,23 +218,21 @@ void CZoneInstance::ZoneServerRegion(uint32 tick)
 	}
 }
 
-EntityList_t CZoneInstance::GetCharList()
+void CZoneInstance::ForEachChar(std::function<void(CCharEntity*)> func)
 {
-	EntityList_t allChars;
-	uint16 counter = 0;
 	for (auto instance : instanceList)
 	{
-		EntityList_t instanceChars = instance->GetCharList();
-		for (auto PChar : instanceChars)
+		for (auto PChar : instance->GetCharList())
 		{
-			allChars.emplace(counter, PChar.second);
-			counter++;
+			func((CCharEntity*)PChar.second);
 		}
 	}
-	return allChars;
 }
 
-EntityList_t CZoneInstance::GetInstanceCharList(CBaseEntity* PEntity)
+void CZoneInstance::ForEachCharInstance(CBaseEntity* PEntity, std::function<void(CCharEntity*)> func)
 {
-	return PEntity->PInstance->GetCharList();
+	for (auto PChar : PEntity->PInstance->GetCharList())
+	{
+		func((CCharEntity*)PChar.second);
+	}
 }

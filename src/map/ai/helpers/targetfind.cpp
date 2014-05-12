@@ -227,17 +227,11 @@ void CTargetFind::addAllInMobList(CBattleEntity* PTarget, bool withPet)
 
 void CTargetFind::addAllInZone(CBattleEntity* PTarget, bool withPet)
 {
-    EntityList_t m_charList = zoneutils::GetZone(PTarget->getZone())->GetCharList();
-
-    for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
-    {
-        CBattleEntity* PBattleTarget = (CBattleEntity*)it->second;
-
-        if (PBattleTarget){
-            addEntity(PBattleTarget, withPet);
-        }
-
-    }
+	zoneutils::GetZone(PTarget->getZone())->ForEachCharInstance(PTarget, [&](CCharEntity* PChar){
+		if (PChar){
+			addEntity(PChar, withPet);
+		}
+	});
 }
 
 void CTargetFind::addAllInAlliance(CBattleEntity* PTarget, bool withPet)

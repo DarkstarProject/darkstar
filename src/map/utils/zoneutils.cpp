@@ -245,36 +245,40 @@ void LoadNPCList()
 	{
 		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		{
-        	uint16 ZoneID = (uint16)Sql_GetUIntData(SqlHandle, 0);
-			CNpcEntity* PNpc = new CNpcEntity;
-            PNpc->targid = (uint16)Sql_GetUIntData(SqlHandle,1);
-            PNpc->id = (uint32)PNpc->targid  + (ZoneID << 12) + 0x1000000;
+			uint16 ZoneID = (uint16)Sql_GetUIntData(SqlHandle, 0);
 
-			PNpc->name.insert(0,Sql_GetData(SqlHandle,2));
+			if (GetZone(ZoneID)->GetType() != ZONETYPE_DUNGEON_INSTANCED)
+			{
+				CNpcEntity* PNpc = new CNpcEntity;
+				PNpc->targid = (uint16)Sql_GetUIntData(SqlHandle, 1);
+				PNpc->id = (uint32)PNpc->targid + (ZoneID << 12) + 0x1000000;
 
-			PNpc->loc.p.rotation = (uint8)Sql_GetIntData(SqlHandle,3);
-			PNpc->loc.p.x = Sql_GetFloatData(SqlHandle,4);
-			PNpc->loc.p.y = Sql_GetFloatData(SqlHandle,5);
-			PNpc->loc.p.z = Sql_GetFloatData(SqlHandle,6);
-			PNpc->loc.p.moving  = (uint16)Sql_GetUIntData(SqlHandle,7);
+				PNpc->name.insert(0, Sql_GetData(SqlHandle, 2));
 
-			PNpc->m_TargID = (uint32)Sql_GetUIntData(SqlHandle,7) >> 16; // вполне вероятно
+				PNpc->loc.p.rotation = (uint8)Sql_GetIntData(SqlHandle, 3);
+				PNpc->loc.p.x = Sql_GetFloatData(SqlHandle, 4);
+				PNpc->loc.p.y = Sql_GetFloatData(SqlHandle, 5);
+				PNpc->loc.p.z = Sql_GetFloatData(SqlHandle, 6);
+				PNpc->loc.p.moving = (uint16)Sql_GetUIntData(SqlHandle, 7);
 
-			PNpc->speed = (uint8)Sql_GetIntData(SqlHandle,8);
-			PNpc->speedsub = (uint8)Sql_GetIntData(SqlHandle,9);
-			PNpc->animation = (uint8)Sql_GetIntData(SqlHandle,10);
-			PNpc->animationsub = (uint8)Sql_GetIntData(SqlHandle,11);
+				PNpc->m_TargID = (uint32)Sql_GetUIntData(SqlHandle, 7) >> 16; // вполне вероятно
 
-			PNpc->namevis = (uint8)Sql_GetIntData(SqlHandle,12);
-			PNpc->status  = (STATUSTYPE)Sql_GetIntData(SqlHandle,13);
-			PNpc->unknown = (uint32)Sql_GetUIntData(SqlHandle,14);
+				PNpc->speed = (uint8)Sql_GetIntData(SqlHandle, 8);
+				PNpc->speedsub = (uint8)Sql_GetIntData(SqlHandle, 9);
+				PNpc->animation = (uint8)Sql_GetIntData(SqlHandle, 10);
+				PNpc->animationsub = (uint8)Sql_GetIntData(SqlHandle, 11);
 
-			PNpc->name_prefix = (uint8)Sql_GetIntData(SqlHandle,16);
+				PNpc->namevis = (uint8)Sql_GetIntData(SqlHandle, 12);
+				PNpc->status = (STATUSTYPE)Sql_GetIntData(SqlHandle, 13);
+				PNpc->unknown = (uint32)Sql_GetUIntData(SqlHandle, 14);
 
-			memcpy(&PNpc->look,Sql_GetData(SqlHandle,15),20);
+				PNpc->name_prefix = (uint8)Sql_GetIntData(SqlHandle, 16);
 
-			GetZone(ZoneID)->InsertNPC(PNpc);
-            luautils::OnNpcSpawn(PNpc);
+				memcpy(&PNpc->look, Sql_GetData(SqlHandle, 15), 20);
+
+				GetZone(ZoneID)->InsertNPC(PNpc);
+				luautils::OnNpcSpawn(PNpc);
+			}
 		}
 	}
 }
@@ -486,6 +490,38 @@ void LoadMOBList()
 
 /************************************************************************
 *																		*
+*  Creates a new zone.													*
+*																		*
+************************************************************************/
+
+CZone* CreateZone(uint16 ZoneID)
+{
+	static const int8* Query =
+		"SELECT zonetype FROM zone_settings "
+		"WHERE zoneid = %u LIMIT 1";
+
+	if (Sql_Query(SqlHandle, Query, ZoneID) != SQL_ERROR &&
+		Sql_NumRows(SqlHandle) != 0 &&
+		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+	{
+		if ((ZONETYPE)Sql_GetUIntData(SqlHandle, 0) == ZONETYPE_DUNGEON_INSTANCED)
+		{
+			return new CZoneInstance((ZONEID)ZoneID, GetCurrentRegion(ZoneID), GetCurrentContinent(ZoneID));
+		}
+		else
+		{
+			return new CZone((ZONEID)ZoneID, GetCurrentRegion(ZoneID), GetCurrentContinent(ZoneID));
+		}
+	}
+	else
+	{
+		ShowFatalError(CL_RED"zoneutils::CreateZone: Cannot load zone settings (%u)\n" CL_RESET, ZoneID);
+		return NULL;
+	}
+}
+
+/************************************************************************
+*																		*
 *  Инициализация зон. Возрождаем всех монстров при старте сервера.		*
 *																		*
 ************************************************************************/
@@ -496,16 +532,7 @@ void LoadZoneList()
 
 	for (uint16 ZoneID = 0; ZoneID < MAX_ZONEID; ZoneID++)
 	{
-		CZone* PZone = NULL;
-		if (ZoneID == 63)
-		{
-			PZone = new CZoneInstance((ZONEID)ZoneID, GetCurrentRegion(ZoneID), GetCurrentContinent(ZoneID));
-		}
-		else
-		{
-			PZone = new CZone((ZONEID)ZoneID, GetCurrentRegion(ZoneID), GetCurrentContinent(ZoneID));
-		}
-        g_PZoneList[ZoneID] = PZone;
+		g_PZoneList[ZoneID] = CreateZone(ZoneID);
     }
 
 	LoadNPCList();

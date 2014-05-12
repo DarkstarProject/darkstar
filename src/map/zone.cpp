@@ -357,25 +357,25 @@ void CZone::LoadZoneSettings()
     {
         m_zoneName.insert(0, Sql_GetData(SqlHandle,0));
 
-    m_zoneIP   = (uint32)Sql_GetUIntData(SqlHandle,1);
-    m_zonePort = (uint16)Sql_GetUIntData(SqlHandle,2);
-    m_zoneMusic.m_song   = (uint8)Sql_GetUIntData(SqlHandle,3);   // background music
-    m_zoneMusic.m_bSongS = (uint8)Sql_GetUIntData(SqlHandle,4);   // solo battle music
-    m_zoneMusic.m_bSongM = (uint8)Sql_GetUIntData(SqlHandle,5);   // party battle music
-    m_tax = (uint16)(Sql_GetFloatData(SqlHandle,6) * 100);      // tax for bazaar
-    m_miscMask = (uint16)Sql_GetUIntData(SqlHandle,7);
-    m_useNavMesh = (bool)Sql_GetIntData(SqlHandle,8);
+		m_zoneIP   = (uint32)Sql_GetUIntData(SqlHandle,1);
+		m_zonePort = (uint16)Sql_GetUIntData(SqlHandle,2);
+		m_zoneMusic.m_song   = (uint8)Sql_GetUIntData(SqlHandle,3);   // background music
+		m_zoneMusic.m_bSongS = (uint8)Sql_GetUIntData(SqlHandle,4);   // solo battle music
+		m_zoneMusic.m_bSongM = (uint8)Sql_GetUIntData(SqlHandle,5);   // party battle music
+		m_tax = (uint16)(Sql_GetFloatData(SqlHandle,6) * 100);      // tax for bazaar
+		m_miscMask = (uint16)Sql_GetUIntData(SqlHandle,7);
+		m_useNavMesh = (bool)Sql_GetIntData(SqlHandle,8);
 
-    m_zoneType = (ZONETYPE)Sql_GetUIntData(SqlHandle, 9);
+		m_zoneType = (ZONETYPE)Sql_GetUIntData(SqlHandle, 9);
 
         if (Sql_GetData(SqlHandle,10) != NULL) // сейчас нельзя использовать bcnmid, т.к. они начинаются с нуля
         {
 			m_BattlefieldHandler = new CBattlefieldHandler(m_zoneID);
-      }
+		}
         if (m_miscMask & MISC_TREASURE)
-    {
+		{
             m_TreasurePool = new CTreasurePool(TREASUREPOOL_ZONE);
-    }
+		}
     }
     else
     {
@@ -519,6 +519,18 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 {
 	m_zoneEntities->DecreaseZoneCounter(PChar);
 
+	if (ZoneTimer && m_zoneEntities->CharListEmpty())
+	{
+		ZoneTimer->m_type = CTaskMgr::TASK_REMOVE;
+		ZoneTimer = NULL;
+
+		m_zoneEntities->HealAllMobs();
+	}
+	else
+	{
+		m_zoneEntities->DespawnPC(PChar);
+	}
+
 	CharZoneOut(PChar);
 }
 
@@ -535,6 +547,21 @@ void CZone::IncreaseZoneCounter(CCharEntity* PChar)
 	DSP_DEBUG_BREAK_IF(PChar == NULL);
     DSP_DEBUG_BREAK_IF(PChar->loc.zone != NULL);
 	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != NULL);
+
+	PChar->targid = m_zoneEntities->GetNewTargID();
+
+	if (PChar->targid >= 0x700)
+	{
+		ShowError(CL_RED"CZone::InsertChar : targid is high (03hX)\n" CL_RESET, PChar->targid);
+		return;
+	}
+
+	m_zoneEntities->InsertPC(PChar);
+
+	if (!ZoneTimer && !m_zoneEntities->CharListEmpty())
+	{
+		createZoneTimer();
+	}
 
 	CharZoneIn(PChar);
 }
@@ -705,24 +732,20 @@ void CZone::ZoneServerRegion(uint32 tick)
 	m_zoneEntities->ZoneServerRegion(tick);
 }
 
-EntityList_t CZone::GetCharList()
-{
-	return m_zoneEntities->GetCharList();
-}
-
-EntityList_t CZone::GetInstanceCharList(CBaseEntity* PEntity)
-{
-	return GetCharList();
-}
-
 void CZone::ForEachChar(std::function<void(CCharEntity*)> func)
 {
-	EntityList_t chars = GetCharList();
-	for (auto PChar : chars)
+	for (auto PChar : m_zoneEntities->GetCharList())
 	{
 		func((CCharEntity*)PChar.second);
 	}
+}
 
+void CZone::ForEachCharInstance(CBaseEntity* PEntity, std::function<void(CCharEntity*)> func)
+{
+	for (auto PChar : m_zoneEntities->GetCharList())
+	{
+		func((CCharEntity*)PChar.second);
+	}
 }
 
 void CZone::createZoneTimer()
@@ -740,26 +763,12 @@ void CZone::CharZoneIn(CCharEntity* PChar)
 {
 	// ищем свободный targid для входящего в зону персонажа
 
-	PChar->targid = m_zoneEntities->GetNewTargID();
-
-	if (PChar->targid >= 0x700)
-	{
-		ShowError(CL_RED"CZone::InsertChar : targid is high (03hX)\n" CL_RESET, PChar->targid);
-		return;
-	}
 	PChar->loc.zone = this;
 	PChar->loc.zoning = false;
 	PChar->loc.destination = 0;
 	PChar->m_InsideRegionID = 0;
 
 	PChar->m_PVPFlag = CanUseMisc(MISC_PVP);
-
-	m_zoneEntities->InsertPC(PChar);
-
-	if (!ZoneTimer && !m_zoneEntities->CharListEmpty())
-	{
-		createZoneTimer();
-	}
 
 	//remove status effects that wear on zone
 	PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE);
@@ -814,18 +823,6 @@ void CZone::CharZoneIn(CCharEntity* PChar)
 
 void CZone::CharZoneOut(CCharEntity* PChar)
 {
-	if (ZoneTimer && m_zoneEntities->CharListEmpty())
-	{
-		ZoneTimer->m_type = CTaskMgr::TASK_REMOVE;
-		ZoneTimer = NULL;
-
-		m_zoneEntities->HealAllMobs();
-	}
-	else
-	{
-		m_zoneEntities->DespawnPC(PChar);
-	}
-
 	for (regionList_t::const_iterator region = m_regionList.begin(); region != m_regionList.end(); ++region)
 	{
 		if ((*region)->GetRegionID() == PChar->m_InsideRegionID)
