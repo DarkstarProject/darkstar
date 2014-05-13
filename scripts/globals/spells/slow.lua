@@ -25,10 +25,19 @@ function onSpellCast(caster,target,spell)
     if(power > 300) then
         power = 300;
     end
+	
+	    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+        power = power * 2;
+    end
 
     --Duration, including resistance.
     local duration = 120 * applyResistanceEffect(caster,spell,target,dMND,35,0,EFFECT_SLOW);
     if(duration >= 60) then --Do it!
+	
+	    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+        duration = duration * 2;
+    end
+    caster:delStatusEffect(EFFECT_SABOTEUR);
 
         if(target:addStatusEffect(EFFECT_SLOW,power,0,duration, 0, 1)) then
             spell:setMsg(236);

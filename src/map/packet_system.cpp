@@ -2877,7 +2877,7 @@ void SmallPacket0x070(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			//dissolve the entire alliance
 			PChar->PParty->m_PAlliance->dissolveAlliance();
 		}
-		else
+		else if (PChar->PParty->m_PAlliance == NULL)
 		{
 			//just dissolve party
 			PChar->PParty->DisbandParty();
