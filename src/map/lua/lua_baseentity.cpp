@@ -29,6 +29,7 @@
 #include <math.h>
 
 #include "lua_baseentity.h"
+#include "lua_instance.h"
 #include "lua_statuseffect.h"
 #include "lua_trade_container.h"
 #include "lua_battlefield.h"
@@ -57,6 +58,7 @@
 #include "../packets/event_update.h"
 #include "../packets/guild_menu.h"
 #include "../packets/guild_menu_buy.h"
+#include "../packets/instance_entry.h"
 #include "../packets/inventory_finish.h"
 #include "../packets/inventory_modify.h"
 #include "../packets/inventory_size.h"
@@ -8487,6 +8489,63 @@ inline int32 CLuaBaseEntity::getParty(lua_State* L)
 	return 1;
 }
 
+inline int32 CLuaBaseEntity::messageText(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+	CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 1);
+	CBaseEntity* PTarget = PLuaBaseEntity->m_PBaseEntity;
+
+	uint16 messageID = (uint16)lua_tointeger(L, 2);
+
+	if (m_PBaseEntity->objtype == TYPE_PC){
+		((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageTextPacket(PTarget, messageID));
+	}
+	else{//broadcast in range
+		m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CMessageTextPacket(PTarget, messageID));
+	}
+	return 0;
+}
+
+inline int32 CLuaBaseEntity::instanceEntry(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 1);
+	CBaseEntity* PTarget = PLuaBaseEntity->m_PBaseEntity;
+
+	uint8 response = lua_tointeger(L, 2);
+
+	((CCharEntity*)m_PBaseEntity)->pushPacket(new CInstanceEntryPacket(PTarget, response));
+
+	return 0;
+}
+
+inline int32 CLuaBaseEntity::getInstance(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+	if (m_PBaseEntity->PInstance)
+	{
+		lua_getglobal(L, CLuaInstance::className);
+		lua_pushstring(L, "new");
+		lua_gettable(L, -2);
+		lua_insert(L, -2);
+		lua_pushlightuserdata(L, (void*)m_PBaseEntity->PInstance);
+		lua_pcall(L, 2, 1, 0);
+	}
+	else
+	{
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -8863,5 +8922,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideHP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,entityVisualPacket),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getParty),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageText),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,instanceEntry),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getInstance),
 	{NULL,NULL}
 };

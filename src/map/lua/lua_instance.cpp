@@ -95,5 +95,7 @@ inline int32 CLuaInstance::setLevelCap(lua_State* L)
 const int8 CLuaInstance::className[] = "CInstance";
 Lunar<CLuaInstance>::Register_t CLuaInstance::methods[] =
 {
+	LUNAR_DECLARE_METHOD(CLuaInstance, registerChar),
+	LUNAR_DECLARE_METHOD(CLuaInstance, setLevelCap),
 	{ NULL, NULL }
 };

@@ -818,6 +818,12 @@ void CZone::CharZoneIn(CCharEntity* PChar)
 		PChar->PTreasurePool = new CTreasurePool(TREASUREPOOL_SOLO);
 		PChar->PTreasurePool->AddMember(PChar);
 	}
+
+	if (m_zoneType != ZONETYPE_DUNGEON_INSTANCED)
+	{
+		PChar->PInstance = NULL;
+	}
+
 	PChar->PLatentEffectContainer->CheckLatentsZone();
 }
 

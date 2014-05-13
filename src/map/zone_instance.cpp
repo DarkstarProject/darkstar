@@ -122,6 +122,7 @@ void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
 		PChar->PInstance->InsertPC(PChar);
 		CharZoneIn(PChar);
 		//instance zonein script etc
+		PChar->loc.p = PChar->PInstance->GetEntryLoc();
 	}
 }
 

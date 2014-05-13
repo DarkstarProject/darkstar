@@ -119,7 +119,7 @@ int32 init()
 	lua_register(LuaHandle,"UpdateNMSpawnPoint",luautils::UpdateNMSpawnPoint);
 	lua_register(LuaHandle,"SetDropRate",luautils::SetDropRate);
     lua_register(LuaHandle,"NearLocation",luautils::nearLocation);
-	lua_register(LuaHandle, "createInstance", luautils::createInstance);
+	lua_register(LuaHandle,"createInstance",luautils::createInstance);
 
 	lua_register(LuaHandle,"getCorsairRollEffect",luautils::getCorsairRollEffect);
     lua_register(LuaHandle,"getSpell",luautils::getSpell);
@@ -127,6 +127,7 @@ int32 init()
     Lunar<CLuaAbility>::Register(LuaHandle);
 	Lunar<CLuaBaseEntity>::Register(LuaHandle);
     Lunar<CLuaBattlefield>::Register(LuaHandle);
+	Lunar<CLuaInstance>::Register(LuaHandle);
     Lunar<CLuaMobSkill>::Register(LuaHandle);
     Lunar<CLuaRegion>::Register(LuaHandle);
 	Lunar<CLuaSpell>::Register(LuaHandle);

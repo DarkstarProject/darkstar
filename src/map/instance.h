@@ -33,7 +33,9 @@ public:
 	bool RegisterChar(CCharEntity*);
 
 	uint8 GetLevelCap();
+	position_t GetEntryLoc();
 	void SetLevelCap(uint8 cap);
+	void SetEntryLoc(float x, float y, float z, float rot);
 
 	CInstance(CZone*, uint8 instanceid);
 	~CInstance();
@@ -43,6 +45,7 @@ private:
 	uint8 m_instanceid;
 	uint32 m_commander;
 	uint8 m_levelcap;
+	position_t m_entryloc;
 	std::vector<uint32> m_registeredChars;
 };
 

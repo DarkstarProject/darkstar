@@ -10,6 +10,10 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item> come back a
 -- Mining
 MINING_IS_POSSIBLE_HERE = 7383; -- Mining is possible here if you have <item>
 
+-- Assault
+MEMBER_NO_REQS = 7446; -- Not all of your party members meet the requirements for this objective.  Unable to enter area.
+MEMBER_TOO_FAR = 7450; -- One or more party members are too far away from the entrance.  Unable to enter area.
+
 -- Other Texts
 NOTHING_HAPPENS = 7427; -- Nothing happens...
 	   RESPONSE = 7294; -- There is no response...

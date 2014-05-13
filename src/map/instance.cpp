@@ -32,6 +32,7 @@ CInstance::CInstance(CZone* zone, uint8 instanceid) : CZoneEntities(zone)
 	m_instanceid = instanceid;
 	m_commander = 0;
 	m_levelcap = 0;
+	memset(&m_entryloc, 0, sizeof m_entryloc);
 }
 
 CInstance::~CInstance()
@@ -59,7 +60,20 @@ uint8 CInstance::GetLevelCap()
 	return m_levelcap;
 }
 
+position_t CInstance::GetEntryLoc()
+{
+	return m_entryloc;
+}
+
 void CInstance::SetLevelCap(uint8 cap)
 {
 	m_levelcap = cap;
+}
+
+void CInstance::SetEntryLoc(float x, float y, float z, float rot)
+{
+	m_entryloc.x = x;
+	m_entryloc.y = y;
+	m_entryloc.z = z;
+	m_entryloc.rotation = rot;
 }
