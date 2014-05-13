@@ -35,6 +35,8 @@ function onEventUpdate(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
 
+    local assaultid = player:getVar("AssaultID");
+
     local cap = bit.band(option, 0x03);
     if (cap == 0) then
         cap = 99;
@@ -45,9 +47,39 @@ function onEventUpdate(player,csid,option)
     else
         cap = 50;
     end
+        
+    local party = player:getParty();
+    local valid = true;
     
-    --create instance
-    --add leader and party
+    if (party ~= nil) then
+        for i,v in ipairs(party) do
+            if (not (v:hasKeyItem(LEBROS_ASSAULT_ORDERS) and v:getVar("AssaultID") == assaultid and
+                player:checkDistance(v) < 50)) then
+                valid = false;
+                --push bad packet
+            end
+        end
+    end
+    
+    if (valid) then
+        local instance = createInstance(player:getVar("AssaultID"), player:getZone());
+        
+        if (instance) then
+            --push good packet
+            instance:registerChar(player);
+            if (party ~= nil) then
+                for i,v in ipairs(party) do
+                    if v:getID() ~= player:getID() then
+                        if (instance:registerChar(v)) then
+                            -- start event to enter
+                        end
+                    end
+                end
+            end
+        else
+            --push bad packet
+        end
+    end
     
 end;
 

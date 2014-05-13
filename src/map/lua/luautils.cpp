@@ -34,6 +34,7 @@
 #include "lua_baseentity.h"
 #include "lua_battlefield.h"
 #include "lua_region.h"
+#include "lua_instance.h"
 #include "lua_spell.h"
 #include "lua_statuseffect.h"
 #include "lua_mobskill.h"
@@ -53,6 +54,7 @@
 #include "../vana_time.h"
 #include "../utils/zoneutils.h"
 #include "../transport.h"
+#include "../zone_instance.h"
 #include "../packets/auction_house.h"
 #include "../packets/char_sync.h"
 #include "../packets/char_update.h"
@@ -117,6 +119,7 @@ int32 init()
 	lua_register(LuaHandle,"UpdateNMSpawnPoint",luautils::UpdateNMSpawnPoint);
 	lua_register(LuaHandle,"SetDropRate",luautils::SetDropRate);
     lua_register(LuaHandle,"NearLocation",luautils::nearLocation);
+	lua_register(LuaHandle, "createInstance", luautils::createInstance);
 
 	lua_register(LuaHandle,"getCorsairRollEffect",luautils::getCorsairRollEffect);
     lua_register(LuaHandle,"getSpell",luautils::getSpell);
@@ -4122,6 +4125,32 @@ inline int32 nearLocation(lua_State* L)
     lua_setfield(L, newTable, "z");
 
     return 1;
+}
+
+inline int32 createInstance(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+	uint8 instanceid = lua_tonumber(L, 1);
+	uint16 zoneid = lua_tonumber(L, 2);
+
+	CZoneInstance* PZone = (CZoneInstance*)zoneutils::GetZone(zoneid);
+
+	if (PZone)
+	{
+		lua_getglobal(L, CLuaInstance::className);
+		lua_pushstring(L, "new");
+		lua_gettable(L, -2);
+		lua_insert(L, -2);
+		lua_pushlightuserdata(L, (void*)PZone->CreateInstance(instanceid));
+		lua_pcall(L, 2, 1, 0);
+	}
+	else
+	{
+		lua_pushnil(L);
+	}
+	return 1;
 }
 
 }; // namespace luautils

@@ -73,6 +73,17 @@ inline int32 CLuaInstance::registerChar(lua_State* L)
 	{
 		lua_pushnil(L);
 	}
+	return 1;
+}
+
+inline int32 CLuaInstance::setLevelCap(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+	m_PLuaInstance->SetLevelCap(lua_tonumber(L, 1));
+
+	return 0;
 }
 
 /************************************************************************

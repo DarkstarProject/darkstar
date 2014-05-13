@@ -20,30 +20,18 @@ This file is part of DarkStar-server source code.
 
 ===========================================================================
 */
+#include "../../common/socket.h"
 
-#ifndef _CINSTANCE_H
-#define _CINSTANCE_H
+#include "instance_entry.h"
 
-#include "zone_entities.h"
+#include "../entities/baseentity.h"
 
-class CInstance : public CZoneEntities
+
+CInstanceEntryPacket::CInstanceEntryPacket(CBaseEntity* PEntrance, uint32 response)
 {
-public:
+	this->type = 0xBF;
+	this->size = 0x0E;
 
-	bool RegisterChar(CCharEntity*);
-
-	uint8 GetLevelCap();
-	void SetLevelCap(uint8 cap);
-
-	CInstance(CZone*, uint8 instanceid);
-	~CInstance();
-
-private:
-	CZone* m_zone;
-	uint8 m_instanceid;
-	uint32 m_commander;
-	uint8 m_levelcap;
-	std::vector<uint32> m_registeredChars;
-};
-
-#endif
+	WBUFL(data, (0x04) - 4) = response;
+	WBUFW(data, (0x0A) - 4) = PEntrance->targid;
+}

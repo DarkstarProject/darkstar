@@ -46,6 +46,7 @@ public:
 		return m_PLuaInstance;
 	}
 	int32 registerChar(lua_State*);
+	int32 setLevelCap(lua_State*);
 };
 
 #endif

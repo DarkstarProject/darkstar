@@ -800,6 +800,9 @@
     <ClInclude Include="..\..\src\map\lua\lua_instance.h">
       <Filter>Header Files\lua</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\instance_entry.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
@@ -1464,6 +1467,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\lua\lua_instance.cpp">
       <Filter>Source Files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\instance_entry.cpp">
+      <Filter>Source Files\packets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

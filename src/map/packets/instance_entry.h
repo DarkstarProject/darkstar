@@ -21,29 +21,26 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#ifndef _CINSTANCE_H
-#define _CINSTANCE_H
+#ifndef _CINSTANCEENTRYPACKET_H
+#define _CINSTANCEENTRYPACKET_H
 
-#include "zone_entities.h"
+#include "../../common/cbasetypes.h"
 
-class CInstance : public CZoneEntities
+#include "basic.h"
+
+/************************************************************************
+*																		*
+*  																		*
+*																		*
+************************************************************************/
+
+class CBaseEntity;
+
+class CInstanceEntryPacket : public CBasicPacket
 {
 public:
 
-	bool RegisterChar(CCharEntity*);
-
-	uint8 GetLevelCap();
-	void SetLevelCap(uint8 cap);
-
-	CInstance(CZone*, uint8 instanceid);
-	~CInstance();
-
-private:
-	CZone* m_zone;
-	uint8 m_instanceid;
-	uint32 m_commander;
-	uint8 m_levelcap;
-	std::vector<uint32> m_registeredChars;
+	CInstanceEntryPacket(CBaseEntity* PEntrance, uint32 response);
 };
 
 #endif

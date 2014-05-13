@@ -523,6 +523,7 @@ public:
 	int32 hideHP(lua_State* L);
 
 	int32 entityVisualPacket(lua_State* L);
+	int32 getParty(lua_State* L);
 };
 
 #endif

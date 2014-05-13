@@ -62,7 +62,7 @@ public:
 	virtual void ForEachChar(std::function<void(CCharEntity*)> func);
 	virtual void ForEachCharInstance(CBaseEntity* PEntity, std::function<void(CCharEntity*)> func);
 
-	void CreateInstance();
+	CInstance* CreateInstance(uint8 instanceid);
 
 	CZoneInstance(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID);
 	~CZoneInstance();

@@ -231,3 +231,10 @@ void CZoneInstance::ForEachCharInstance(CBaseEntity* PEntity, std::function<void
 		func((CCharEntity*)PChar.second);
 	}
 }
+
+CInstance* CZoneInstance::CreateInstance(uint8 instanceid)
+{
+	CInstance* instance = new CInstance(this, instanceid);
+	instanceList.push_back(instance);
+	return instance;
+}

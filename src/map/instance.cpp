@@ -31,6 +31,7 @@ CInstance::CInstance(CZone* zone, uint8 instanceid) : CZoneEntities(zone)
 	m_zone = zone;
 	m_instanceid = instanceid;
 	m_commander = 0;
+	m_levelcap = 0;
 }
 
 CInstance::~CInstance()
@@ -51,4 +52,14 @@ bool CInstance::RegisterChar(CCharEntity* PChar)
 		return true;
 	}
 	return false;
+}
+
+uint8 CInstance::GetLevelCap()
+{
+	return m_levelcap;
+}
+
+void CInstance::SetLevelCap(uint8 cap)
+{
+	m_levelcap = cap;
 }

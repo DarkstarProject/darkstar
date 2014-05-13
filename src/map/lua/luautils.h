@@ -166,6 +166,8 @@ namespace luautils
 
     int32 nearLocation(lua_State*);
 
+	int32 createInstance(lua_State*);
+
 };
 
 #endif //- _LUAUTILS_H -

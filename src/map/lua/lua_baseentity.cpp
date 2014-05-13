@@ -8448,6 +8448,42 @@ inline int32 CLuaBaseEntity::entityVisualPacket(lua_State* L)
 	return 0;
 }
 
+/************************************************************************
+*																		*
+*  Returns a characters party as a lua array of CLuaBaseEntities		*
+*																		*
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getParty(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+	CParty* party = ((CBattleEntity*)m_PBaseEntity)->PParty;
+
+	if (party)
+	{
+		lua_createtable(L, party->MemberCount(m_PBaseEntity->getZone()), 0);
+		int8 newTable = lua_gettop(L);
+		int i = 1;
+		for (auto member : party->members)
+		{
+			lua_getglobal(L, CLuaBaseEntity::className);
+			lua_pushstring(L, "new");
+			lua_gettable(L, -2);
+			lua_insert(L, -2);
+			lua_pushlightuserdata(L, (void*)member);
+			lua_pcall(L, 2, 1, 0);
+
+			lua_rawseti(L, -2, i++);
+		}
+	}
+	else
+	{
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -8823,5 +8859,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,untargetable),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideHP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,entityVisualPacket),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getParty),
 	{NULL,NULL}
 };
