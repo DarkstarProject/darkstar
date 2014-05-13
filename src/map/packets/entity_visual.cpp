@@ -33,14 +33,17 @@ CEntityVisualPacket::CEntityVisualPacket(CBaseEntity* PEntity, uint8 param1, uin
 	this->type = 0x39;
 	this->size = 0x0A;
 
-	WBUFL(data,(0x04)-4) = PEntity->id;
-	WBUFL(data,(0x08)-4) = PEntity->id;
+	if (PEntity)
+	{
+		WBUFL(data, (0x04) - 4) = PEntity->id;
+		WBUFL(data, (0x08) - 4) = PEntity->id;
 
-    WBUFL(data,(0x0C)-4) = param1;
-    WBUFL(data,(0x0D)-4) = param2;
-    WBUFL(data,(0x0E)-4) = param3;
-    WBUFL(data,(0x0F)-4) = param4;
+		WBUFW(data, (0x10) - 4) = PEntity->targid;
+		WBUFW(data, (0x12) - 4) = PEntity->targid;
+	}
+    WBUFB(data,(0x0C)-4) = param1;
+    WBUFB(data,(0x0D)-4) = param2;
+    WBUFB(data,(0x0E)-4) = param3;
+    WBUFB(data,(0x0F)-4) = param4;
 
-    WBUFW(data,(0x10)-4) = PEntity->targid;
-	WBUFW(data,(0x12)-4) = PEntity->targid;
 }

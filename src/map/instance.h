@@ -30,11 +30,16 @@ class CInstance : public CZoneEntities
 {
 public:
 
-	CInstance(CZone*);
+	bool RegisterChar(CCharEntity*);
+
+	CInstance(CZone*, uint8 instanceid);
 	~CInstance();
 
 private:
 	CZone* m_zone;
+	uint8 m_instanceid;
+	uint32 m_commander;
+	std::vector<uint32> m_registeredChars;
 };
 
 #endif

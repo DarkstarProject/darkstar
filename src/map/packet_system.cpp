@@ -292,7 +292,7 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	PChar->pushPacket(new CDownloadingDataPacket());
 	PChar->pushPacket(new CZoneInPacket(PChar,EventID));
 	PChar->pushPacket(new CZoneVisitedPacket(PChar));
-
+	CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("afterZoneIn", gettick() + 2000, PChar, CTaskMgr::TASK_ONCE, luautils::AfterZoneIn));
     charutils::RecoverFailedSendBox(PChar);
 
 	return;

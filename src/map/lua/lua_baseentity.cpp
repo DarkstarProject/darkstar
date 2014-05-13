@@ -51,6 +51,7 @@
 #include "../packets/chat_message.h"
 #include "../packets/send_box.h"
 #include "../packets/entity_update.h"
+#include "../packets/entity_visual.h"
 #include "../packets/event.h"
 #include "../packets/event_string.h"
 #include "../packets/event_update.h"
@@ -8425,6 +8426,28 @@ inline int32 CLuaBaseEntity::hideHP(lua_State* L)
 	return 0;
 }
 
+inline int32 CLuaBaseEntity::entityVisualPacket(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	int32 n = lua_gettop(L);
+	DSP_DEBUG_BREAK_IF(n < 4 || n > 5);
+
+	uint8 param1 = lua_tointeger(L, -4);
+	uint8 param2 = lua_tointeger(L, -3);
+	uint8 param3 = lua_tointeger(L, -2);
+	uint8 param4 = lua_tointeger(L, -1);
+
+	CBaseEntity* PNpc = NULL;
+	if (n == 5 && lua_isuserdata(L, 2))
+	{
+		CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 1);
+		PNpc = PLuaBaseEntity->m_PBaseEntity;
+	}
+	((CCharEntity*)m_PBaseEntity)->pushPacket(new CEntityVisualPacket(PNpc, param1, param2, param3, param4));
+	return 0;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -8799,5 +8822,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideName),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,untargetable),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideHP),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,entityVisualPacket),
 	{NULL,NULL}
 };

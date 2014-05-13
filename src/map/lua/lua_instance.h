@@ -21,34 +21,31 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#include "instance.h"
+#ifndef _LUAINSTANCE_H
+#define _LUAINSTANCE_H
 
-#include "zone.h"
-#include "entities/charentity.h"
+#include "../../common/cbasetypes.h"
+#include "../../common/lua/lunar.h"
 
-CInstance::CInstance(CZone* zone, uint8 instanceid) : CZoneEntities(zone)
+#include "../instance.h"
+
+
+class CLuaInstance
 {
-	m_zone = zone;
-	m_instanceid = instanceid;
-	m_commander = 0;
-}
+	CInstance* m_PLuaInstance;
+public:
 
-CInstance::~CInstance()
-{
+	static const int8 className[];
+	static Lunar<CLuaInstance>::Register_t methods[];
 
-}
+	CLuaInstance(lua_State*);
+	CLuaInstance(CInstance*);
 
-bool CInstance::RegisterChar(CCharEntity* PChar)
-{
-	if (PChar->PInstance == NULL)
+	CInstance* GetInstance() const
 	{
-		if (m_registeredChars.empty())
-		{
-			m_commander = PChar->id;
-		}
-		m_registeredChars.push_back(PChar->id);
-		PChar->PInstance = this;
-		return true;
+		return m_PLuaInstance;
 	}
-	return false;
-}
+	int32 registerChar(lua_State*);
+};
+
+#endif

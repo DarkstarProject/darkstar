@@ -109,11 +109,6 @@ void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
 	DSP_DEBUG_BREAK_IF(PChar->loc.zone != NULL);
 	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != NULL);
 
-	//TEMP
-	CInstance* newInstance = new CInstance(this);
-	instanceList.push_back(newInstance);
-	PChar->PInstance = newInstance;
-
 	if (PChar->PInstance)
 	{
 		PChar->targid = PChar->PInstance->GetNewTargID();

@@ -28,11 +28,6 @@
 #include "../../common/lua/lunar.h"
 #include "../entities/charentity.h"
 
-
-
-
-
-
 /************************************************************************
 *  Used in GM command @addallspells		                                *
 *  A giant list of all VALID spell id's (Ignoring "." Spells from DB)   *
@@ -63,12 +58,6 @@ static uint16 ValidSpells[] =
 	585,587,588,589,591,592,593,594,595,596,597,598,599,603,604,605,606,608,610,611,612,613,614,615,616,617,618,620,621,622,623,626,
 	628,629,631,632,633,634,636,637,638,640,641,642,643,644,645,646,647,648,650,651,652,653
 };
-
-
-
-
-
-
 
 class CBaseEntity;
 
@@ -532,6 +521,8 @@ public:
 	int32 hideName(lua_State* L);
 	int32 untargetable(lua_State* L);
 	int32 hideHP(lua_State* L);
+
+	int32 entityVisualPacket(lua_State* L);
 };
 
 #endif

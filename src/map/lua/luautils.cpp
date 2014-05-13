@@ -1097,6 +1097,53 @@ int32 OnZoneIn(CCharEntity* PChar)
     return retVal;
 }
 
+int32 AfterZoneIn(uint32 tick, CTaskMgr::CTask *PTask)
+{
+	CCharEntity* PChar = (CCharEntity*)PTask->m_data;
+
+	int8 File[255];
+	memset(File, 0, sizeof(File));
+	int32 oldtop = lua_gettop(LuaHandle);
+
+	lua_pushnil(LuaHandle);
+	lua_setglobal(LuaHandle, "afterZoneIn");
+
+	snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
+
+	PChar->m_event.reset();
+	PChar->m_event.Script.insert(0, File);
+
+	if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
+	{
+		lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+	lua_getglobal(LuaHandle, "afterZoneIn");
+	if (lua_isnil(LuaHandle, -1))
+	{
+		lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+	CLuaBaseEntity LuaBaseEntity(PChar);
+	Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+	if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
+	{
+		ShowError("luautils::AfterZoneIn: %s\n", lua_tostring(LuaHandle, -1));
+		lua_pop(LuaHandle, 1);
+		return -1;
+	}
+	int32 returns = lua_gettop(LuaHandle) - oldtop;
+	if (returns > 0)
+	{
+		ShowError("luatils::AfterZoneIn (%s): 0 returns expected, got %d\n", File, returns);
+		lua_pop(LuaHandle, returns);
+	}
+	return 0;
+}
+
 /************************************************************************
 *																		*
 *  Персонаж входит в активный регион									*

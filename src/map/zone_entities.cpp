@@ -31,6 +31,7 @@ This file is part of DarkStar-server source code.
 #include "packets/char.h"
 #include "packets/char_sync.h"
 #include "packets/entity_update.h"
+#include "packets/entity_visual.h"
 #include "packets/wide_scan.h"
 
 #include "lua/luautils.h"
