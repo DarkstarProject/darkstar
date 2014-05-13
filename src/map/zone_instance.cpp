@@ -23,6 +23,7 @@ This file is part of DarkStar-server source code.
 
 #include "zone_instance.h"
 #include "entities/charentity.h"
+#include "utils/zoneutils.h"
 
 /************************************************************************
 *																		*
@@ -123,6 +124,13 @@ void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
 		CharZoneIn(PChar);
 		//instance zonein script etc
 		PChar->loc.p = PChar->PInstance->GetEntryLoc();
+	}
+	else
+	{
+		//recover instance
+
+		//fallback: put them outside (at exit)
+		zoneutils::GetZone(PChar->loc.prevzone)->IncreaseZoneCounter(PChar);
 	}
 }
 
