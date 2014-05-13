@@ -2814,7 +2814,7 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	    }
     }
     else //in party but not leader, cannot invite
-        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 21));
+        PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 21));
 
 	return;
 }
