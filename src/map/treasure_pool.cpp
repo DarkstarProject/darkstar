@@ -145,7 +145,18 @@ uint8 CTreasurePool::AddItem(uint16 ItemID, CBaseEntity* PEntity)
 	uint8  SlotID;
 	uint8  FreeSlotID = -1;
 	uint32 oldest = -1;
-    
+
+    switch (ItemID)
+    {
+        case 1126:  //beastmen seal
+        case 1127:  //kindred seal
+        case 2955:  //kindred crest
+        case 2956:  //high kindred crest
+            for (uint32 i = 0; i < members.size(); ++i)
+                members[i]->PRecastContainer->Add(RECAST_LOOT, 1, 300000); //300000 = 5 min cooldown
+            break;
+    }
+
 	for (SlotID = 0; SlotID < 10; ++SlotID)
 	{
 		if (m_PoolItems[SlotID].ID == 0)
@@ -482,4 +493,19 @@ void CTreasurePool::TreasureLost(uint8 SlotID)
 
     m_PoolItems[SlotID].ID = 0;
     m_PoolItems[SlotID].Lotters.clear();
+}
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+bool CTreasurePool::CanAddSeal()
+{
+    for (uint32 i = 0; i < members.size(); ++i)
+        if (members[i]->PRecastContainer->Has(RECAST_LOOT, 1))
+            return false;
+
+    return true;
 }

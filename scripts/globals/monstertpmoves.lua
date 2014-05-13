@@ -645,23 +645,21 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 	    return 0;
 	end
 
-	dmg = utils.dmgTaken(target, dmg);
-
 	if(skilltype == MOBSKILL_PHYSICAL) then
 
-		dmg = utils.physicalDmgTaken(target, dmg);
+		dmg = target:physicalDmgTaken(dmg);
 
 	elseif(skilltype == MOBSKILL_MAGICAL) then
 
-		dmg = utils.magicDmgTaken(target, dmg);
+		dmg = target:magicDmgTaken(dmg);
 
 	elseif(skilltype == MOBSKILL_BREATH) then
 
-		dmg = utils.breathDmgTaken(target, dmg);
+		dmg = target:breathDmgTaken(dmg);
 
 	elseif(skilltype == MOBSKILL_RANGED) then
 
-		dmg = utils.rangedDmgTaken(target, dmg);
+		dmg = target:rangedDmgTaken(dmg);
 
 	end
 
@@ -673,9 +671,6 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 	end
 
 	dmg = utils.stoneskin(target, dmg);
-	
-	-- Handle Severe Damage Checks
-	dmg = utils.handleSevereDamage(target, dmg);
 
 	if(dmg > 0) then
 		target:wakeUp();

@@ -85,6 +85,8 @@ public:
     void TreasureError(CCharEntity* winner, uint8 SlotID);
 	void TreasureLost(uint8 SlotID);
 
+    bool CanAddSeal();
+
 private:
 
 	uint32 m_Tick;

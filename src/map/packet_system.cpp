@@ -2770,8 +2770,8 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 	    if (PInvitee != NULL && !jailutils::InPrison(PInvitee))
 	    {
-			//make sure intvitee isn't dead and that they dont already have an invite pending
-			if (PInvitee->isDead() || PInvitee->InvitePending.id != 0)
+			//make sure intvitee isn't dead, they dont already have an invite pending, and your party is not full
+			if (PInvitee->isDead() || PInvitee->InvitePending.id != 0 || (PChar->PParty && PChar->PParty->members.size() == 6 && PInvitee->PParty == NULL))
 		    {
 			    PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 23));
 			    return;
@@ -2783,28 +2783,24 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 return;
             }
 
-			//check to see if user is adding a party leader for alliance
-			if (PInvitee->PParty != NULL)// && PChar->Party != NULL
+            //check to see if user is alliance leader adding an unallied party leader for alliance and alliance is not full
+            if (PInvitee->PParty != NULL)
 		    {
-				if (PInvitee->PParty->GetLeader() == PInvitee)
-				{
-					//make sure invitee does not already have alliance
-					if (PInvitee->PParty->m_PAlliance == NULL)
-					{
-						//party is not already in alliance so add them
-						PInvitee->InvitePending.id = PChar->id;
-						PInvitee->InvitePending.targid = PChar->targid;
-						PInvitee->pushPacket(new CPartyInvitePacket(PInvitee, PChar, INVITE_ALLIANCE));
-						return;
-					}
+                if (PChar->PParty && PInvitee->PParty->GetLeader() == PInvitee && PInvitee->PParty->m_PAlliance == NULL &&
+                    (PChar->PParty->m_PAlliance == NULL ||
+                    (PChar->PParty->m_PAlliance->getMainParty()->GetLeader() == PChar && PChar->PParty->m_PAlliance->partyCount() < 3)))
+                {
+                    PInvitee->InvitePending.id = PChar->id;
+                    PInvitee->InvitePending.targid = PChar->targid;
+                    PInvitee->pushPacket(new CPartyInvitePacket(PInvitee, PChar, INVITE_ALLIANCE));
+                    return;
 				}
-			}
-
-		    if (PInvitee->PParty != NULL)
-		    {
-			    PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 12));
-			    return;
-		    }
+                else //alliance invite qualifications not met
+                {
+                    PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 12));
+                    return;
+                }
+            }
 
             PInvitee->InvitePending.id = PChar->id;
             PInvitee->InvitePending.targid = PChar->targid;
@@ -2817,6 +2813,9 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		    }
 	    }
     }
+    else //in party but not leader, cannot invite
+        PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 21));
+
 	return;
 }
 
@@ -2829,36 +2828,30 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 void SmallPacket0x06F(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
 
-	//alliance - party leader dispands dropping the party from the alliance
-	if (PChar->PParty != NULL)
-	{
-		if (PChar->PParty->m_PAlliance != NULL)
-		{
-			if (PChar->PParty->m_PAlliance->getMainParty() != PChar->PParty)
-			{
-				if (PChar->PParty->GetLeader() == PChar)
-				{
-						//if there are only 2 parties then dissolve alliance
-						if (PChar->PParty->m_PAlliance->partyCount() == 2)
-						{
-							PChar->PParty->m_PAlliance->dissolveAlliance();
-							return;
-						}
-					//remove 1 party from alliance
-					PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
-					return;
-				}
+    if (PChar->PParty != NULL)
+    {
+        //alliance - party leader disbands dropping the party from the alliance
+        if (PChar->PParty->m_PAlliance != NULL)
+        {
+            if (PChar->PParty->GetLeader() == PChar)
+            {
+                    //if there are only 2 parties then dissolve alliance
+                    if (PChar->PParty->m_PAlliance->partyCount() == 2)
+                    {
+                        PChar->PParty->m_PAlliance->dissolveAlliance();
+                        return;
+                    }
+                //remove 1 party from alliance
+                PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
+                return;
+            }
+        }
 
-			}
-		}
-	}
+        //normal party member disband
+        PChar->PParty->RemoveMember(PChar);
+    }
 
-	//normal party member disband
-	if (PChar->PParty != NULL){
-	PChar->PParty->RemoveMember(PChar);
-	}
-
-	return;
+    return;
 }
 
 /************************************************************************
@@ -2983,29 +2976,31 @@ void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			//both invitee and and inviter are party leaders
 			if(PInviter->PParty->GetLeader() == PInviter && PChar->PParty->GetLeader() == PChar)
 			{
-
-				//the inviter already has an alliance and wants to add another party - only add if they have room for another party
-				if(PInviter->PParty->GetLeader() == PInviter && PInviter->PParty->m_PAlliance != NULL)
-				{
-					if(PInviter->PParty->m_PAlliance->getMainParty()->GetLeader() == PInviter)
-					{
-						//break if alliance is full
-						if(PInviter->PParty->m_PAlliance->partyCount() == 3)  return;
-
-
-						//alliance is not full, add the new party
-						PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
-						PChar->InvitePending.clean();
-						return;
-					}
-				}
+                //the inviter already has an alliance and wants to add another party - only add if they have room for another party
+                if(PInviter->PParty->m_PAlliance && PInviter->PParty->m_PAlliance->getMainParty()->GetLeader() == PInviter)
+                {
+                        //break if alliance is full
+                        if(PInviter->PParty->m_PAlliance->partyCount() == 3)
+                        {
+                            PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 14));
+                            PChar->InvitePending.clean();
+                            return;
+                        }
 
 
-				//party leaders have no alliance - create a new one!
-				CAlliance* PAlliance = new CAlliance(PInviter);
-				PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
-				PChar->InvitePending.clean();
-				return;
+                        //alliance is not full, add the new party
+                        PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
+                        PChar->InvitePending.clean();
+                        return;
+                }
+                else
+                {
+                    //party leaders have no alliance - create a new one!
+                    CAlliance* PAlliance = new CAlliance(PInviter);
+                    PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
+                    PChar->InvitePending.clean();
+                    return;
+                }
 			}
 		}
 
@@ -3022,7 +3017,7 @@ void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 if (PInviter->PParty->GetLeader() == PInviter)
                 {
 				    if(PInviter->PParty->members.size()==6){//someone else accepted invitation
-					    PInviter->pushPacket(new CMessageStandardPacket(PInviter, 0, 0, 14));
+					    //PInviter->pushPacket(new CMessageStandardPacket(PInviter, 0, 0, 14)); Don't think retail sends error packet to inviter on full pt
 					    PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 14));
 				    }
 				    else{
