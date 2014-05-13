@@ -68,6 +68,7 @@ public:
     CBattleEntity* GetLeader();                         // узнаем лидера группы
     CBattleEntity* GetSyncTarget();                     // узнаем цель синхронизации
     CBattleEntity* GetQuaterMaster();                   // узнаем владельца сокровищ
+    CBattleEntity* GetMemberByName(int8* MemberName);   // Returns entity pointer for member name string
 
 	void DisbandParty();								// распускаем группу
 	void ReloadParty();                                 // перезагружаем карту группы для всех участников группы
@@ -76,7 +77,6 @@ public:
 
     void AddMember(CBattleEntity* PEntity);             // добавляем персонажа в группу
     void RemoveMember(CBattleEntity* PEntity);          // удаление персонажа из группы
-    void RemoveMemberByName(int8* MemberName);			// удаление персонажа из группы по имени
     void AssignPartyRole(int8* MemberName, uint8 role);	// назначаем роли участникам группы
     void DisableSync();
 	void SetSyncTarget(CBattleEntity* PEntity, uint16 message);         // устанавливаем цель синхронизации уровней3

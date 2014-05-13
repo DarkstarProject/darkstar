@@ -2832,19 +2832,23 @@ void SmallPacket0x06F(map_session_data_t* session, CCharEntity* PChar, int8* dat
         {
             case 0: // party - anyone may remove themself from party regardless of leadership or alliance
                 if (PChar->PParty->m_PAlliance && PChar->PParty->members.size() == 1) // single member alliance parties must be removed from alliance before disband
+                {
                     if (PChar->PParty->m_PAlliance->partyCount() == 2) // if there are only 2 parties then dissolve alliance
                         PChar->PParty->m_PAlliance->dissolveAlliance();
                     else
                         PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
+                }
                 PChar->PParty->RemoveMember(PChar);
                 break;
 
             case 2: // alliance - any party leader in alliance may remove their party
                 if (PChar->PParty->m_PAlliance && PChar->PParty->GetLeader() == PChar)
+                {
                     if (PChar->PParty->m_PAlliance->partyCount() == 2) // if there are only 2 parties then dissolve alliance
                         PChar->PParty->m_PAlliance->dissolveAlliance();
                     else
                         PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
+                }
                 break;
 
             default:
@@ -2883,24 +2887,39 @@ void SmallPacket0x070(map_session_data_t* session, CCharEntity* PChar, int8* dat
 }
 
 /************************************************************************
-*																		*
-*  Удаляем члена группы или linckshell									*
-*																		*
+*                                                                       *
+*  Party / Linkshell / Alliance Command 'Kick'                          *
+*                                                                       *
 ************************************************************************/
 
 void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	switch(RBUFB(data,(0x0A)))
-	{
-		case 0: // party
-		{
-			if (PChar->PParty != NULL &&
-				PChar->PParty->GetLeader() == PChar)
-			{
-				PChar->PParty->RemoveMemberByName(data+0x0C);
-			}
-		}
-		break;
+    switch(RBUFB(data,(0x0A)))
+    {
+        case 0: // party - party leader may remove member of his own party
+            if (PChar->PParty)
+            {
+                CCharEntity* PVictim = (CCharEntity*)(PChar->PParty->GetMemberByName(data+0x0C));
+                if (PVictim)
+                {
+                    if (PVictim == PChar) // using kick on yourself, let's borrow the logic from /pcmd leave to prevent alliance crash
+                    {
+                        if (PChar->PParty->m_PAlliance && PChar->PParty->members.size() == 1) // single member alliance parties must be removed from alliance before disband
+                        {
+                            if (PChar->PParty->m_PAlliance->partyCount() == 2) // if there are only 2 parties then dissolve alliance
+                                PChar->PParty->m_PAlliance->dissolveAlliance();
+                            else
+                                PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
+                        }
+                    }
+                    else if (PChar->PParty->GetLeader() != PChar) // not leader, cannot kick others
+                        break;
+ 
+                    PChar->PParty->RemoveMember(PVictim);
+                }
+            }
+            break;
+
         case 1: // linkshell
         {
             // Ensure the player has a linkshell equipped..
@@ -2940,12 +2959,35 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* dat
             }
         }
         break;
-		default:
-		{
-			ShowError(CL_RED"SmallPacket0x071 : unknown byte <%.2X>\n" CL_RESET, RBUFB(data,(0x0A)));
-		}
-	}
-	return;
+
+        case 2: // alliance - alliance leader may kick a party by using that party's leader as kick parameter
+            if (PChar->PParty && PChar->PParty->GetLeader() == PChar && PChar->PParty->m_PAlliance)
+            {
+                CCharEntity* PVictim = NULL;
+                for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyCount(); ++i)
+                {
+                    PVictim = (CCharEntity*)(PChar->PParty->m_PAlliance->partyList[i]->GetMemberByName(data+0x0C));
+                    if (PVictim && PVictim->PParty && PVictim->PParty->m_PAlliance) // victim is in this party
+                    {
+                        //if using kick on yourself, or alliance leader using kick on another party leader - remove the party
+                        if (PVictim == PChar || (PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty && PVictim->PParty->GetLeader() == PVictim))
+                        {
+                            if (PVictim->PParty->m_PAlliance->partyCount() == 2) // if there are only 2 parties then dissolve alliance
+                                PVictim->PParty->m_PAlliance->dissolveAlliance();
+                            else
+                                PVictim->PParty->m_PAlliance->removeParty(PVictim->PParty);
+                        }
+                        break; // we're done, break the for
+                    }
+                }
+            }
+            break;
+
+        default:
+            ShowError(CL_RED"SmallPacket0x071 : unknown byte <%.2X>\n" CL_RESET, RBUFB(data,(0x0A)));
+            break;
+    }
+    return;
 }
 
 /************************************************************************
