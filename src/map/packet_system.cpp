@@ -2820,63 +2820,66 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 }
 
 /************************************************************************
-*																		*
-*  Персонаж покидает группу												*
-*																		*
+*                                                                       *
+*  Party / Alliance Command 'Leave'                                     *
+*                                                                       *
 ************************************************************************/
 
 void SmallPacket0x06F(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-
-    if (PChar->PParty != NULL)
-    {
-        //alliance - party leader disbands dropping the party from the alliance
-        if (PChar->PParty->m_PAlliance != NULL)
+    if (PChar->PParty)
+        switch(RBUFB(data,(0x04)))
         {
-            if (PChar->PParty->GetLeader() == PChar)
-            {
-                    //if there are only 2 parties then dissolve alliance
-                    if (PChar->PParty->m_PAlliance->partyCount() == 2)
-                    {
+            case 0: // party - anyone may remove themself from party regardless of leadership or alliance
+                if (PChar->PParty->m_PAlliance && PChar->PParty->members.size() == 1) // single member alliance parties must be removed from alliance before disband
+                    if (PChar->PParty->m_PAlliance->partyCount() == 2) // if there are only 2 parties then dissolve alliance
                         PChar->PParty->m_PAlliance->dissolveAlliance();
-                        return;
-                    }
-                //remove 1 party from alliance
-                PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
-                return;
-            }
+                    else
+                        PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
+                PChar->PParty->RemoveMember(PChar);
+                break;
+
+            case 2: // alliance - any party leader in alliance may remove their party
+                if (PChar->PParty->m_PAlliance && PChar->PParty->GetLeader() == PChar)
+                    if (PChar->PParty->m_PAlliance->partyCount() == 2) // if there are only 2 parties then dissolve alliance
+                        PChar->PParty->m_PAlliance->dissolveAlliance();
+                    else
+                        PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
+                break;
+
+            default:
+                ShowError(CL_RED"SmallPacket0x06F : unknown byte <%.2X>\n" CL_RESET, RBUFB(data,(0x04)));
+                break;
         }
-
-        //normal party member disband
-        PChar->PParty->RemoveMember(PChar);
-    }
-
     return;
 }
 
 /************************************************************************
-*																		*
-*  Лидер распускает группу												*
-*																		*
+*                                                                       *
+*  Party / Alliance Command 'Breakup'                                   *
+*                                                                       *
 ************************************************************************/
 
 void SmallPacket0x070(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	//this is where alliance leader can dissolve alliance completely
-	if (PChar->PParty != NULL && PChar->PParty->GetLeader() == PChar)
-	{
-		if (PChar->PParty->m_PAlliance != NULL && PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
-		{
-			//dissolve the entire alliance
-			PChar->PParty->m_PAlliance->dissolveAlliance();
-		}
-		else if (PChar->PParty->m_PAlliance == NULL)
-		{
-			//just dissolve party
-			PChar->PParty->DisbandParty();
-		}
-	}
-	return;
+    if (PChar->PParty && PChar->PParty->GetLeader() == PChar)
+        switch(RBUFB(data,(0x04)))
+        {
+            case 0: // party - party leader may disband party if not an alliance member
+                if (PChar->PParty->m_PAlliance == NULL)
+                    PChar->PParty->DisbandParty();
+                break;
+
+            case 2: // alliance - only alliance leader may dissolve the entire alliance
+                if (PChar->PParty->m_PAlliance && PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
+                    PChar->PParty->m_PAlliance->dissolveAlliance();
+                break;
+
+            default:
+                ShowError(CL_RED"SmallPacket0x070 : unknown byte <%.2X>\n" CL_RESET, RBUFB(data,(0x04)));
+                break;
+        }
+    return;
 }
 
 /************************************************************************
