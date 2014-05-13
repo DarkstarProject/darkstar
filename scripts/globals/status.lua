@@ -890,7 +890,7 @@ MOD_WALTZ_POTENTCY	        = 0x1EB -- Waltz Potentcy Bonus(modId = 491)
 MOD_CHOCO_JIG_DURATION      = 0x1EC -- Chocobo Jig duration bonus (modId = 492)
 MOD_VFLOURISH_MACC          = 0x1ED -- Violent Flourish accuracy bonus (modId = 493)
 MOD_STEP_FINISH             = 0x1EE -- Bonus finishing moves from steps (modId = 494)
-MOD_STEP_ACCURACY           = 0x193
+MOD_STEP_ACCURACY           = 0x193 -- Accuracy bonus for steps (modID = 403)
 MOD_SPECTRAL_JIG            = 0x1EF --Spectral Jig duration modifier (percent increase) (modId = 495)
 MOD_WIDESCAN            	= 0x154
 MOD_BARRAGE_ACC			    =0x1A4

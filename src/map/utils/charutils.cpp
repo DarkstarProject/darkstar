@@ -2120,17 +2120,19 @@ void BuildingCharSkillsTable(CCharEntity* PChar)
             PChar->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_WHITE)))
         {
             uint16 artsSkill = battleutils::GetMaxSkill(SKILL_ENH,JOB_RDM,PChar->GetMLevel()); //B+ skill
+            uint16 artsBonus = std::max(artsSkill - MaxMSkill, 0); // Give a bonus based on the skill level difference
             MaxMSkill = artsSkill > MaxMSkill ? artsSkill : MaxMSkill;
             MaxMSkill += PChar->getMod(MOD_LIGHT_ARTS_SKILL);
-            skillBonus += PChar->getMod(MOD_LIGHT_ARTS_SKILL);
+            skillBonus += PChar->getMod(MOD_LIGHT_ARTS_SKILL) + artsBonus;
         }
         else if (i >= 35 && i <= 37 && (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DARK_ARTS) ||
             PChar->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_BLACK)))
         {
             uint16 artsSkill = battleutils::GetMaxSkill(SKILL_ENH,JOB_RDM,PChar->GetMLevel()); //B+ skill
+            uint16 artsBonus = std::max(artsSkill - MaxMSkill, 0); // Give a bonus based on the skill level difference
             MaxMSkill = artsSkill > MaxMSkill ? artsSkill : MaxMSkill;
             MaxMSkill += PChar->getMod(MOD_DARK_ARTS_SKILL);
-            skillBonus += PChar->getMod(MOD_DARK_ARTS_SKILL);
+            skillBonus += PChar->getMod(MOD_DARK_ARTS_SKILL) + artsBonus;
         }
 
 		//ignore these indexes when calculating merits
