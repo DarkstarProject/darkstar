@@ -2112,8 +2112,8 @@ void BuildingCharSkillsTable(CCharEntity* PChar)
 
 	for (int32 i = 0; i < 48; ++i)
 	{
-		uint16 MaxMSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PChar->GetMJob(),PChar->GetMLevel());
-		uint16 MaxSSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PChar->GetSJob(),PChar->GetSLevel());
+        uint16 MaxMSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PChar->GetMJob(),PChar->GetMLevel());
+        uint16 MaxSSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PChar->GetSJob(),PChar->GetSLevel());
         uint16 skillBonus = 0;
 
         // apply arts bonuses
@@ -2124,20 +2124,48 @@ void BuildingCharSkillsTable(CCharEntity* PChar)
             PChar->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_BLACK))))
         {
             uint16 artsSkill = battleutils::GetMaxSkill(SKILL_ENH,JOB_RDM,PChar->GetMLevel()); //B+ skill
-            uint16 scholarBaseSkill = battleutils::GetMaxSkill((SKILLTYPE)i, JOB_SCH, PChar->GetMLevel()); // D skill
-            uint16 currentSkill = dsp_cap((PChar->RealSkills.skill[i] / 10), 0, std::max(MaxMSkill, MaxSSkill)); // working skill before bonuses
-            if (currentSkill < (scholarBaseSkill - 10))
+            uint16 artsBaseline = 0; // Level based baseline to which to raise skills
+            if(PChar->GetMJob() < 51)
             {
-                // If the skill is 10 or more points below the nscholar base skill cap (D), or the main class's cap is below D
-                // give enough bonus points to raise it to B+ cap minus 10
-                skillBonus += std::max((artsSkill - 10) - currentSkill, 0);
+                artsBaseline = 5 + 2.7 * (PChar->GetMJob() - 1);
             }
-            else if (currentSkill < (scholarBaseSkill))
+            else if ((PChar->GetMJob() > 50) && (PChar->GetMJob() < 61))
             {
-                //if the skill is is within 10 points of the scholar base skill cap (D)
+                artsBaseline = 137 + 4.7 * (PChar->GetMJob() - 50);
+            }
+            else if ((PChar->GetMJob() > 60) && (PChar->GetMJob() < 71))
+            {
+                artsBaseline = 184 + 3.7 * (PChar->GetMJob() - 60);
+            }
+            else if ((PChar->GetMJob() > 70) && (PChar->GetMJob() < 75))
+            {
+                artsBaseline = 221 + 5.0 * (PChar->GetMJob() - 70);
+            }
+            else if (PChar->GetMJob() >= 75)
+            {
+                artsBaseline = artsSkill-10; // Extrapolating to levels above 75
+            }
+            uint16 skillCapD = battleutils::GetMaxSkill((SKILLTYPE)i, JOB_SCH, PChar->GetMLevel()); // D skill cap
+            uint16 skillCapE = battleutils::GetMaxSkill(SKILL_DRK, JOB_RDM, PChar->GetMLevel()); // E skill cap
+            uint16 currentSkill = dsp_cap((PChar->RealSkills.skill[i] / 10), 0, std::max(MaxMSkill, MaxSSkill)); // working skill before bonuses
+            if (currentSkill < skillCapE)
+            {
+                // If the player's skill is below the E cap
+                // give enough bonus points to raise it to the arts baseline
+                skillBonus += std::max(artsBaseline - currentSkill, 0);
+            }
+            else if (currentSkill < skillCapD)
+            {
+                //if the skill is is above the E cap but below the D cap
                 // raise it up to the B+ skill cap minus the difference between the current skill rank and the scholar base skill cap (D)
                 // i.e. give a bonus of the difference between the B+ skill cap and the D skill cap
-                skillBonus += std::max((artsSkill - scholarBaseSkill), 0);
+                skillBonus += std::max((artsSkill - skillCapD), 0);
+            }
+            else if (currentSkill < artsSkill)
+            {
+                // If the player's skill is at or above the D cap but below the B+ cap
+                // give enough bonus points to raise it to the B+ cap
+                skillBonus += std::max(artsSkill - currentSkill, 0);
             }
 
             if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LIGHT_ARTS) ||
