@@ -2139,7 +2139,7 @@ void BuildingCharSkillsTable(CCharEntity* PChar)
                 // i.e. give a bonus of the difference between the B+ skill cap and the D skill cap
                 skillBonus += std::max((artsSkill - scholarBaseSkill), 0);
             }
-            MaxMSkill = artsSkill > MaxMSkill ? artsSkill : MaxMSkill;
+
             if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LIGHT_ARTS) ||
                 PChar->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_WHITE))
             {
