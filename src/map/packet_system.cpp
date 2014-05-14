@@ -2736,12 +2736,12 @@ void SmallPacket0x066(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	uint32 charid = RBUFL(data,0x04);
-	uint16 targid = RBUFW(data,0x08);
+    uint32 charid = RBUFL(data,0x04);
+    uint16 targid = RBUFW(data,0x08);
 
-	// Персонаж не должен приглашать сам себя.
-	if (PChar->id == charid)
-		return;
+    // cannot invite yourself
+    if (PChar->id == charid)
+        return;
 
     if(jailutils::InPrison(PChar))
     {
@@ -2758,70 +2758,83 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
         return;
     }
 
-    if (PChar->PParty == NULL || PChar->PParty->GetLeader() == PChar)
+    switch(RBUFB(data,(0x0A)))
     {
-        // если targid персонажа клиенту не известен, то получаем его из таблицы активных сессий
-        if (targid == 0)
-        {
-	        int32 ret = Sql_Query(SqlHandle, "SELECT targid FROM accounts_sessions WHERE charid = %u LIMIT 1", charid);
-
-	        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-	        {
-		        targid = (uint16)Sql_GetIntData(SqlHandle,0);
-	        }
-        }
-
-        CCharEntity* PInvitee = zoneutils::GetCharFromWorld(charid, targid);
-
-	    if (PInvitee != NULL && !jailutils::InPrison(PInvitee))
-	    {
-			//make sure intvitee isn't dead, they dont already have an invite pending, and your party is not full
-			if (PInvitee->isDead() || PInvitee->InvitePending.id != 0 || (PChar->PParty && PChar->PParty->members.size() == 6 && PInvitee->PParty == NULL))
-		    {
-			    PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 23));
-			    return;
-		    }
-
-            if (PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
+        case 0: // party - must by party leader or solo
+            if (PChar->PParty == NULL || PChar->PParty->GetLeader() == PChar)
             {
-                PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 236));
-                return;
-            }
-
-            //check to see if user is alliance leader adding an unallied party leader for alliance and alliance is not full
-            if (PInvitee->PParty != NULL)
-		    {
-                if (PChar->PParty && PInvitee->PParty->GetLeader() == PInvitee && PInvitee->PParty->m_PAlliance == NULL &&
-                    (PChar->PParty->m_PAlliance == NULL ||
-                    (PChar->PParty->m_PAlliance->getMainParty()->GetLeader() == PChar && PChar->PParty->m_PAlliance->partyCount() < 3)))
+                if (targid == 0) // if the targid of the character is not known, then get it from the table of active sessions
                 {
+                    int32 ret = Sql_Query(SqlHandle, "SELECT targid FROM accounts_sessions WHERE charid = %u LIMIT 1", charid);
+                    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+                        targid = (uint16)Sql_GetIntData(SqlHandle,0);
+                }
+                CCharEntity* PInvitee = zoneutils::GetCharFromWorld(charid, targid);
+                if (PInvitee)
+                {
+                    //make sure intvitee isn't dead or in jail, they aren't a party member and don't already have an invite pending, and your party is not full
+			        if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 || (PChar->PParty && PChar->PParty->members.size() == 6) || PInvitee->PParty != NULL)
+                    {
+			            PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 23));
+			            break;
+			        }
+			        if (PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
+			        {
+			            PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 236));
+			            break;
+			        }
+
+			        PInvitee->InvitePending.id = PChar->id;
+                    PInvitee->InvitePending.targid = PChar->targid;
+		            PInvitee->pushPacket(new CPartyInvitePacket(PInvitee, PChar, INVITE_PARTY));
+
+		            if (PChar->PParty && PChar->PParty->GetSyncTarget())
+		                PInvitee->pushPacket(new CMessageStandardPacket(PInvitee, 0, 0, 235));
+		        }
+            }
+            else //in party but not leader, cannot invite
+                PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 21));
+            break;
+
+       case 2: // alliance - must be unallied party leader or alliance leader of a non-full alliance
+            if (PChar->PParty && PChar->PParty->GetLeader() == PChar &&
+                (PChar->PParty->m_PAlliance == NULL ||
+                (PChar->PParty->m_PAlliance->getMainParty()->GetLeader() == PChar && PChar->PParty->m_PAlliance->partyCount() < 3)))
+            {
+                if (targid == 0) // if the targid of the character is not known, then get it from the table of active sessions
+                {
+                    int32 ret = Sql_Query(SqlHandle, "SELECT targid FROM accounts_sessions WHERE charid = %u LIMIT 1", charid);
+                    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+                        targid = (uint16)Sql_GetIntData(SqlHandle,0);
+                }
+                CCharEntity* PInvitee = zoneutils::GetCharFromWorld(charid, targid);
+                if (PInvitee)
+                {
+                    //make sure intvitee isn't dead or in jail, they are an unallied party leader and don't already have an invite pending
+                    if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 ||
+                        PInvitee->PParty == NULL || PInvitee->PParty->GetLeader() != PInvitee || PInvitee->PParty->m_PAlliance)
+                    {
+                        PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 23));
+                        break;
+                    }
+			        if (PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
+			        {
+			            PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 236));
+			            break;
+			        }
+
                     PInvitee->InvitePending.id = PChar->id;
                     PInvitee->InvitePending.targid = PChar->targid;
                     PInvitee->pushPacket(new CPartyInvitePacket(PInvitee, PChar, INVITE_ALLIANCE));
-                    return;
-				}
-                else //alliance invite qualifications not met
-                {
-                    PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 12));
-                    return;
                 }
             }
+            break;
 
-            PInvitee->InvitePending.id = PChar->id;
-            PInvitee->InvitePending.targid = PChar->targid;
-		    PInvitee->pushPacket(new CPartyInvitePacket(PInvitee, PChar, INVITE_PARTY));
-
-		    if (PChar->PParty != NULL &&
-			    PChar->PParty->GetSyncTarget() != NULL)
-		    {
-			    PInvitee->pushPacket(new CMessageStandardPacket(PInvitee, 0, 0, 235));
-		    }
-	    }
+        default:
+            ShowError(CL_RED"SmallPacket0x06E : unknown byte <%.2X>\n" CL_RESET, RBUFB(data,(0x0A)));
+            break;
     }
-    else //in party but not leader, cannot invite
-        PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 21));
-
-	return;
+    return;
 }
 
 /************************************************************************
