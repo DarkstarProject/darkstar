@@ -539,6 +539,24 @@ public class DarkstarUtils {
 			throw new RuntimeException("Error Reading Mapping File!",e);
 		}				
 	}
+
+	/**
+	 * Method to Save the Npc Id Shift Properties
+	 * @param configProperties Handle to Batch Configuration Properties
+	 * @param npcIdShiftProperties Shift Properties
+	 */
+	public static void saveNpcIdShiftProperties(final Properties configProperties, final Properties npcIdShiftProperties){
+		try {			
+			final File shiftFile = new File(configProperties.getProperty("shift_file","npcid-shift.properties"));
+			final FileOutputStream mappingStream = new FileOutputStream(shiftFile);
+			npcIdShiftProperties.store(mappingStream, "Darkstar Shifted Npc Ids");
+			IOUtils.closeQuietly(mappingStream);
+		}
+		catch(final Exception e){
+			throw new RuntimeException("Error Reading Mapping File!",e);
+		}				
+
+	}
 	
 	/**
 	 * Method to Save the NPC List SQL File
@@ -558,5 +576,28 @@ public class DarkstarUtils {
 		catch (IOException e) {
 			throw new RuntimeException("Failed to Write Npc List SQL File!",e);
 		}
+	}
+	
+	/**
+	 * Method to Write a Copy of the Filtered Dialog Table (Post RegEx Stripping)
+	 * @param configProperties Handle to Batch Configuration File
+	 * @param filteredDialogTable Filtered Dialog Table String
+	 * @param zoneId Zone ID
+	 */
+	public static void writeFilteredDialogTable(final Properties configProperties, final String filteredDialogTable, final int zoneId){
+		final StringBuilder filteredDialogTablePathBuilder = new StringBuilder();
+		filteredDialogTablePathBuilder.append(configProperties.getProperty("filtered_dialog_tables","./filtered_dialog_tables/"));
+		filteredDialogTablePathBuilder.append("filtered-dialog-table-");
+		filteredDialogTablePathBuilder.append(String.format("%03d", zoneId));
+		filteredDialogTablePathBuilder.append(".xml");
+		
+		final File filteredDialogTableFile = new File(filteredDialogTablePathBuilder.toString());
+		
+		try {
+			FileUtils.writeStringToFile(filteredDialogTableFile, filteredDialogTable);
+		} 
+		catch (IOException e) {
+			throw new RuntimeException("Failed to Write Filtered Dialog Table File!",e);
+		}		
 	}
 }

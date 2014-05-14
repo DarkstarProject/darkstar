@@ -65,6 +65,7 @@ public class TextIdUpdate {
 	private int errors = 0;
 	private int guesses = 0;	
 	private boolean markGuesses;
+	private boolean writeFilteredDialogTables;
 	
 	/**
 	 * Batch Entry Point for Text ID Updates
@@ -82,6 +83,7 @@ public class TextIdUpdate {
 	private void updateTextIds(){
 		configProperties = DarkstarUtils.loadBatchConfiguration();
 		markGuesses = Boolean.valueOf(configProperties.getProperty("textIdMarkGuesses","true"));
+		writeFilteredDialogTables = Boolean.valueOf(configProperties.getProperty("writeFilteredDialogTables","true"));
 		fixmeCountMap = new HashMap<>();
 
 		final int minZone = Integer.valueOf(configProperties.getProperty("minZoneId", "0"));
@@ -147,6 +149,11 @@ public class TextIdUpdate {
 				
 		final String filteredPolUtilsString = DarkstarUtils.filterBadCharacters(polUtilsString);
 		
+		// Optional: Write Filtered Dialog Tables. Helps you figure out how you can make a TextID auto-update in the future.
+		if(writeFilteredDialogTables){
+			DarkstarUtils.writeFilteredDialogTable(configProperties, filteredPolUtilsString, zoneId);
+		}
+		
 		// Read the Text ID File
 		List<String> textIdLines;
 		
@@ -201,9 +208,11 @@ public class TextIdUpdate {
 			// Helps keep the right ID when there a multiple similar lines
 			final String lastSearchIndexString = DarkstarUtils.FIELD_INDEX_OPENING_TAG+id+DarkstarUtils.FIELD_CLOSING_TAG;
 			int lastIndex = polUtilsString.indexOf(lastSearchIndexString);
+			int lastFilteredIndex = filteredPolUtilsString.indexOf(lastSearchIndexString);
 			
 			// Run initial search. If this matches, its considered a match & not a guess.
 			boolean guess = false;
+			boolean filtered = false;
 			LOG.debug("Searching: "+searchComment);			
 
 			int polUtilsIndex = polUtilsString.indexOf(searchComment, lastIndex);
@@ -212,16 +221,40 @@ public class TextIdUpdate {
 			if(polUtilsIndex == -1){				
 				searchComment = DarkstarUtils.filterBadCharacters(searchComment).trim();
 				LOG.debug("Searching (Filtered): "+searchComment);
-				polUtilsIndex = filteredPolUtilsString.indexOf(searchComment, lastIndex);
+				polUtilsIndex = filteredPolUtilsString.indexOf(searchComment, lastFilteredIndex);
 				guess = true;
+				filtered = true;
+			}
+			
+			// If we couldn't find it again, see if there's a manually specified version in the properties file
+			if(polUtilsIndex == -1){
+				searchComment = configProperties.getProperty(variable);
+				
+				if(searchComment!=null){
+					LOG.debug("Searching (Manual): "+searchComment);
+					polUtilsIndex = filteredPolUtilsString.indexOf(searchComment, lastFilteredIndex);
+					guess = false; // Doesn't count as a guess since someone manually set the criteria
+					filtered = true;
+				}				
 			}
 			
 			// If we've found something...
 			if(polUtilsIndex >= 0){
 				// Capture the New ID Value
-				int fieldIndex = polUtilsString.lastIndexOf(DarkstarUtils.FIELD_INDEX_OPENING_TAG, polUtilsIndex);
-				int fieldEndIndex = polUtilsString.indexOf(DarkstarUtils.FIELD_CLOSING_TAG, fieldIndex);
-				int fieldValue = Integer.valueOf(polUtilsString.substring(fieldIndex+DarkstarUtils.FIELD_INDEX_OPENING_TAG.length(), fieldEndIndex));
+				int fieldIndex;
+				int fieldEndIndex;
+				int fieldValue;
+
+				if(filtered){
+					fieldIndex = filteredPolUtilsString.lastIndexOf(DarkstarUtils.FIELD_INDEX_OPENING_TAG, polUtilsIndex);
+					fieldEndIndex = filteredPolUtilsString.indexOf(DarkstarUtils.FIELD_CLOSING_TAG, fieldIndex);
+					fieldValue = Integer.valueOf(filteredPolUtilsString.substring(fieldIndex+DarkstarUtils.FIELD_INDEX_OPENING_TAG.length(), fieldEndIndex));
+				}
+				else {
+					fieldIndex = polUtilsString.lastIndexOf(DarkstarUtils.FIELD_INDEX_OPENING_TAG, polUtilsIndex);
+					fieldEndIndex = polUtilsString.indexOf(DarkstarUtils.FIELD_CLOSING_TAG, fieldIndex);
+					fieldValue = Integer.valueOf(polUtilsString.substring(fieldIndex+DarkstarUtils.FIELD_INDEX_OPENING_TAG.length(), fieldEndIndex));
+				}
 
 				// If the new Id & Old Id are the same, leave it alone
 				if(id == fieldValue){

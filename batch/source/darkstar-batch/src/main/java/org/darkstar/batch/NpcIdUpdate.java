@@ -45,9 +45,10 @@ import org.darkstar.batch.utils.DarkstarUtils;
 public class NpcIdUpdate {
 
 	private static final Logger LOG = Logger.getLogger(NpcIdUpdate.class);
-
+	
 	private Properties configProperties;
 	private Properties mappingProperties;
+	private Properties npcIdShiftProperties;
 	private int errors = 0;
 	private int guesses = 0;	
 	private boolean markGuesses;
@@ -67,6 +68,7 @@ public class NpcIdUpdate {
 		configProperties = DarkstarUtils.loadBatchConfiguration();
 		mappingProperties = DarkstarUtils.loadMappingProperties(configProperties);
 		markGuesses = Boolean.valueOf(configProperties.getProperty("npcIdMarkGuesses","false"));
+		npcIdShiftProperties = new Properties();
 
 		final int minZone = Integer.valueOf(configProperties.getProperty("minZoneId", "0"));
 		final int maxZone = Integer.valueOf(configProperties.getProperty("maxZoneId", "255"));
@@ -95,6 +97,7 @@ public class NpcIdUpdate {
 		LOG.info(String.format("A Total of <%d> Unhandled Errors Occurred.", errors));
 		
 		DarkstarUtils.saveNpcListSqlFile(configProperties, npcListSqlLines);
+		DarkstarUtils.saveNpcIdShiftProperties(configProperties, npcIdShiftProperties);
 	}
 
 	/**
@@ -157,7 +160,8 @@ public class NpcIdUpdate {
 				// If we still can't find it, we have to guess best off the current trend.
 				if(!DarkstarUtils.isCurrentNpcNameInPolUtilsMobList(polUtilsMobListString, npcName)){											
 					final int shiftedId = DarkstarUtils.convertPolUtilsNpcIdToDarkstar(shiftedPolUtilsId);
-					LOG.info(String.format("Pre-Scan: Unable To Locate Npc Name <%s>, Using Trend Shift <%d>: %d -> %d", npcName, shiftTrend, npcId, shiftedId));					
+					LOG.info(String.format("Pre-Scan: Unable To Locate Npc Name <%s>, Using Trend Shift <%d>: %d -> %d", npcName, shiftTrend, npcId, shiftedId));
+					npcIdShiftProperties.setProperty(String.valueOf(polUtilsNpcId),String.valueOf(shiftedPolUtilsId));
 					DarkstarUtils.replaceNpcId(npcListSqlLines, lineIndex, shiftedId);
 					guesses++;
 					continue;
@@ -214,7 +218,8 @@ public class NpcIdUpdate {
 				}
 				// If we haven't found it we'll have to guess...				
 				else if(polUtilsNpcName==null){				
-					LOG.info(String.format("Post-Scan: Unable To Locate Npc Name <%s>, Using Trend Shift <%d>: %d -> %d", npcName, shiftTrend, npcId, shiftedId));					
+					LOG.info(String.format("Post-Scan: Unable To Locate Npc Name <%s>, Using Trend Shift <%d>: %d -> %d", npcName, shiftTrend, npcId, shiftedId));
+					npcIdShiftProperties.setProperty(String.valueOf(polUtilsNpcId),String.valueOf(shiftedPolUtilsId));
 					DarkstarUtils.replaceNpcId(npcListSqlLines, lineIndex, shiftedId);
 					guesses++;
 					continue;
@@ -222,6 +227,7 @@ public class NpcIdUpdate {
 				// Otherwise we use the value we found
 				else {
 					LOG.info(String.format("Matched: Npc Name <%s>, %d -> %d", npcName, npcId, shiftedId));
+					npcIdShiftProperties.setProperty(String.valueOf(polUtilsNpcId),String.valueOf(shiftedPolUtilsId));
 					DarkstarUtils.replaceNpcId(npcListSqlLines, lineIndex, shiftedId);					
 				}
 			}
