@@ -40,6 +40,9 @@ function OnUseAbility(player, target, ability)
 		cure = (vit+chr)*0.125+60;
 	end
 
+    -- apply waltz modifiers
+    cure = math.floor(cure * (1.0 + (player:getMod(MOD_WALTZ_POTENTCY)/100)));
+
 	--Cap the final amount to max HP.
 	if((target:getMaxHP() - target:getHP()) < cure) then
 		cure = (target:getMaxHP() - target:getHP());

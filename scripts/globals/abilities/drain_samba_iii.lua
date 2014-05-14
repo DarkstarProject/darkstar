@@ -14,7 +14,8 @@ function OnAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
+    local duration = 120 + player:getMod(MOD_SAMBA_DURATION);
 	player:delStatusEffect(EFFECT_HASTE_SAMBA);
 	player:delStatusEffect(EFFECT_ASPIR_SAMBA);
-	player:addStatusEffect(EFFECT_DRAIN_SAMBA,3,0,120);
+	player:addStatusEffect(EFFECT_DRAIN_SAMBA,3,0,duration);
 end;

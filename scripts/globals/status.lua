@@ -885,6 +885,13 @@ MOD_ROLL_DANCERS		= 0x14A
 MOD_ROLL_SCHOLARS		= 0x14B
 MOD_BUST			= 0x14C
 MOD_FINISHING_MOVES		= 0x14D
+MOD_SAMBA_DURATION          = 0x1EA -- Samba duration bonus(modId = 490)    
+MOD_WALTZ_POTENTCY	        = 0x1EB -- Waltz Potentcy Bonus(modId = 491)
+MOD_CHOCO_JIG_DURATION      = 0x1EC -- Chocobo Jig duration bonus (modId = 492)
+MOD_VFLOURISH_MACC          = 0x1ED -- Violent Flourish accuracy bonus (modId = 493)
+MOD_STEP_FINISH             = 0x1EE -- Bonus finishing moves from steps (modId = 494)
+MOD_STEP_ACCURACY           = 0x193 -- Accuracy bonus for steps (modID = 403)
+MOD_SPECTRAL_JIG            = 0x1EF --Spectral Jig duration modifier (percent increase) (modId = 495)
 MOD_WIDESCAN            	= 0x154
 MOD_BARRAGE_ACC			    =0x1A4
 MOD_ENSPELL             	= 0x155
@@ -950,7 +957,6 @@ MOD_STORMSURGE_EFFECT   = 0x190
 MOD_SUBLIMATION_BONUS	= 0x191
 MOD_GRIMOIRE_SPELLCASTING = 0x1E9 -- (modID = 489) "Grimoire: Reduces spellcasting time" bonus
 MOD_WYVERN_BREATH       = 0x192
-MOD_STEP_ACCURACY       = 0x193
 MOD_REGEN_DOWN      	 = 0x194			-- poison
 MOD_REFRESH_DOWN		 = 0x195			-- plague, reduce mp
 MOD_REGAIN_DOWN			 = 0x196			-- plague, reduce tp
