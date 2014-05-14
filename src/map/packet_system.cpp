@@ -2750,6 +2750,14 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
         return;
     }
 
+    if(PChar->getZone() == 0)
+    {
+        // Initiator is in Mog House.  Send error message.
+        // Don't know if this is retail, but because of the way DSP currently handles MH it's necessary to block sending invite
+        PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 32));
+        return;
+    }
+
     if (PChar->PParty == NULL || PChar->PParty->GetLeader() == PChar)
     {
         // если targid персонажа клиенту не известен, то получаем его из таблицы активных сессий
@@ -2763,10 +2771,7 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	        }
         }
 
-        CCharEntity* PInvitee = zoneutils::GetCharFromRegion(
-			charid,
-			targid,
-            PChar->loc.zone->GetRegionID());
+        CCharEntity* PInvitee = zoneutils::GetCharFromWorld(charid, targid);
 
 	    if (PInvitee != NULL && !jailutils::InPrison(PInvitee))
 	    {
@@ -2998,10 +3003,7 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    CCharEntity* PInviter = zoneutils::GetCharFromRegion(
-        PChar->InvitePending.id,
-        PChar->InvitePending.targid,
-        PChar->loc.zone->GetRegionID());
+    CCharEntity* PInviter = zoneutils::GetCharFromWorld(PChar->InvitePending.id, PChar->InvitePending.targid);
 
 	if (PInviter != NULL)
 	{
