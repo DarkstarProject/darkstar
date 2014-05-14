@@ -94,7 +94,7 @@ function onEventUpdate(player,csid,option,target)
             end
         else
             player:messageText(target,MEMBER_NO_REQS);
-            player:instanceEntry(target,1);
+            player:instanceEntry(target,3);
         end
     end
     
