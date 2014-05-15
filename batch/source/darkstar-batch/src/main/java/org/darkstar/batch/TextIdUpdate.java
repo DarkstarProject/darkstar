@@ -190,6 +190,11 @@ public class TextIdUpdate {
 			// Capture the Comment			
 			final String comment = textIdLine.substring(commentIndex+2).trim();
 			
+			// Ignore Unknowns & Current ID 0's
+			if("??? message".equals(comment) || "[UNKNOWN]".equals(comment) || id==0){
+				continue;
+			}
+			
 			// Apply some basic filtering. These are showing up as a single ? in POLUtils right now,
 			// while they are filled out in most of our Text ID Luas. So we need to sync up before
 			// comparing. Since this is very common, we will not treat this as triggering a guess.
@@ -217,12 +222,12 @@ public class TextIdUpdate {
 
 			int polUtilsIndex = polUtilsString.indexOf(searchComment, lastIndex);
 			
-			// If we couldn't find it, we'll have to apply bad char filtering and guess after filtering
+			// If we couldn't find it, we'll have to apply bad char filtering
 			if(polUtilsIndex == -1){				
 				searchComment = DarkstarUtils.filterBadCharacters(searchComment).trim();
 				LOG.debug("Searching (Filtered): "+searchComment);
 				polUtilsIndex = filteredPolUtilsString.indexOf(searchComment, lastFilteredIndex);
-				guess = true;
+				guess = false;
 				filtered = true;
 			}
 			
@@ -271,10 +276,7 @@ public class TextIdUpdate {
 				}
 				// Update it
 				else {
-					if(guess && markGuesses){
-						textIdLine = DarkstarUtils.FIX_ME + textIdLine;
-					}
-					textIdLine.replaceAll("("+id+")", String.valueOf(fieldValue));
+					textIdLine = textIdLine.replaceAll("("+id+")", String.valueOf(fieldValue));
 					textIdLines.set(lineIndex, textIdLine);
 					LOG.info(String.format("%s: %d -> %d", variable, id, fieldValue));
 				}
