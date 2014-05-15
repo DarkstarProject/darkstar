@@ -23,5 +23,5 @@ THE_MAGICITE_GLOWS_OMINOUSLY = 7238; -- The magicite glows ominously.
 
 ORCISH_OVERLORD_ENGAGE = 7268; -- Intruders? Get outs here! We gots us some adventurers!
  ORCISH_OVERLORD_DEATH = 7269; -- Gahahahaha... You fell for our trick. I'm not the big boss. He don't need to be troubled by runty little rarabs like you.
-       ORC_KING_ENGAGE = 7270; -- Ungh? Who are you? So, you've come to kill big boss Bakgodek? I'll crush your scrawny bones myself!
+       ORC_KING_ENGAGE = 7270; -- Ungh? Who are you?So, you've come to kill big boss Bakgodek? I'll crush your scrawny bones myself!
         ORC_KING_DEATH = 7271; -- Unghh... Foolish children of Altana. Defeating me won't change anything. There will be others from the north...

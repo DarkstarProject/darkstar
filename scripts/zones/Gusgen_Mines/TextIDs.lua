@@ -8,23 +8,23 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item>. Come back 
  FISHING_MESSAGE_OFFSET = 7179; -- You can't fish here.
 
 -- Mining
-MINING_IS_POSSIBLE_HERE = 7324; -- Mining is possible here if you have <item>.
+MINING_IS_POSSIBLE_HERE = 7325; -- Mining is possible here if you have
 
 -- Treasure Coffer/Chest Dialog
-CHEST_UNLOCKED = 7338; -- You unlock the chest!
-    CHEST_FAIL = 7339; -- Fails to open the chest.
-    CHEST_TRAP = 7340; -- The chest was trapped!
-    CHEST_WEAK = 7341; -- You cannot open the chest when you are in a weakened state.
-   CHEST_MIMIC = 7342; -- The chest was a mimic!
-  CHEST_MOOGLE = 7343; -- You cannot open the chest while participating in the moogle event.
-CHEST_ILLUSION = 7344; -- The chest was but an illusion...
-  CHEST_LOCKED = 7345; -- The chest appears to be locked.
+CHEST_UNLOCKED = 7339; -- You unlock the chest!
+    CHEST_FAIL = 7340; -- Fails to open the chest.
+    CHEST_TRAP = 7341; -- The chest was trapped!
+    CHEST_WEAK = 7342; -- You cannot open the chest when you are in a weakened state.
+   CHEST_MIMIC = 7343; -- The chest was a mimic!
+  CHEST_MOOGLE = 7344; -- You cannot open the chest while participating in the moogle event.
+CHEST_ILLUSION = 7345; -- The chest was but an illusion...
+  CHEST_LOCKED = 7346; -- The chest appears to be locked.
 
 -- Dialog Texts
-LETTERS_IS_WRITTEN_HERE = 7346; -- Something resembling letters is written here.
-    FOUND_LOCATION_SEAL = 7347; -- You have found the location of the seal....
-        IS_ON_THIS_SEAL = 7348; -- is on this seal.?Prompt?
-NOTHING_OUT_OF_ORDINARY = 7365; -- There is nothing out of the ordinary here.
+LETTERS_IS_WRITTEN_HERE = 7347; -- Something resembling letters is written here.
+    FOUND_LOCATION_SEAL = 7348; -- You have found the location of the seal. You placeon it.
+        IS_ON_THIS_SEAL = 7349; -- is on this seal.
+NOTHING_OUT_OF_ORDINARY = 7366; -- There is nothing out of the ordinary here.
 
 -- Other
-LOCK_OTHER_DEVICE = 7304; -- This entrance's lock is connected to some other device.
+LOCK_OTHER_DEVICE = 7305; -- This entrance's lock is connected to some other device.

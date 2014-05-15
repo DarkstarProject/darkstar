@@ -5,7 +5,7 @@ ITEM_CANNOT_BE_OBTAINED = 6535; -- You cannot obtain the item <item>. Come back 
           ITEM_OBTAINED = 6538; -- Obtained: <item>.
            GIL_OBTAINED = 6539; -- Obtained <number> gil.
        KEYITEM_OBTAINED = 6541; -- Obtained key item: <keyitem>.
-		   KEYITEM_LOST = 6542; -- Lost key item: <keyitem>.
+	   KEYITEM_LOST = 6542; -- Lost key item:
     NOT_HAVE_ENOUGH_GIL = 6543; -- You do not have enough gil.
           HOMEPOINT_SET = 6639; -- Home point set!
 
@@ -21,7 +21,7 @@ YOU_CAN_NOW_BECOME_A_BEASTMASTER = 7115; -- You can now become a beastmaster.
 
 				   UNLOCK_DANCER = 11758; -- You can now become a dancer!
 
-GUIDE_STONE = 6910; -- Up: Ru'Lude Gardens / Down: Lower Jeuno (facing Bastok)
+GUIDE_STONE = 6910; -- Up: Ru'Lude Gardens Down: Lower Jeuno
 
 -- Shop Texts
        GLYKE_SHOP_DIALOG = 6905; -- Can I help you?
@@ -33,4 +33,3 @@ DEADLYMINNOW_SHOP_DIALOG = 6908; -- Welcome to Durable Shields.
      AREEBAH_SHOP_DIALOG = 6909; -- Welcome to M & P's Market.
  CHAMPALPIEU_SHOP_DIALOG = 6909; -- Welcome to M & P's Market.
    LEILLAINE_SHOP_DIALOG = 6935; -- Hello. Are you feeling all right?
-

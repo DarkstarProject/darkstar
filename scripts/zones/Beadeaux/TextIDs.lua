@@ -4,7 +4,7 @@
 ITEM_CANNOT_BE_OBTAINED = 6377; -- You cannot obtain the item <item>. Come back after sorting your inventory.
           ITEM_OBTAINED = 6379; -- Obtained: <item>.
            GIL_OBTAINED = 6380; -- Obtained <number> gil.
-       KEYITEM_OBTAINED = 6381; -- Obtained key item: <keyitem>.
+       KEYITEM_OBTAINED = 6382; -- Obtained key item: <keyitem>.
          ITEMS_OBTAINED = 6385; -- You obtain <param2 number> <param1 item>!
 
 -- Treasure Coffer/Chest Dialog

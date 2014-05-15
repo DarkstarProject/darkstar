@@ -11,8 +11,8 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item>. Come back 
 NOTHING_HAPPENS = 119; -- Nothing happens...
 
 -- Harvesting
-HARVESTING_IS_POSSIBLE_HERE = 7371; -- Harvesting is possible here if you have <item>.
+HARVESTING_IS_POSSIBLE_HERE = 7372; -- Harvesting is possible here if you have
 
 -- Quest: NAVIGATING_THE_UNFRIENDLY_SEAS
-PLACE_HYDROGAUGE = 7307; -- You set the <item> in the glowing trench.
- ENIGMATIC_LIGHT = 7308; -- is giving off an enigmatic light.
+PLACE_HYDROGAUGE = 7308; -- You set the # in the glowing trench.
+ ENIGMATIC_LIGHT = 7309; -- is giving off an enigmatic light.

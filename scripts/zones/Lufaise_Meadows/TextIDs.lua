@@ -12,10 +12,10 @@ NOTHING_OUT_OF_THE_ORDINARY = 6393; -- There is nothing out of the ordinary here
 CONQUEST = 7188; -- You've earned conquest points!
 
 -- Logging
-LOGGING_IS_POSSIBLE_HERE = 7693; -- Logging is possible here if you have <item>.
+LOGGING_IS_POSSIBLE_HERE = 7694; -- Logging is possible here if you have
 
 -- Other Texts
- SURVEY_THE_SURROUNDINGS = 7700; -- You survey the surroundings but see nothing out of the ordinary.≺Prompt≻
-      MURDEROUS_PRESENCE = 7701; -- Wait, you sense a murderous presence...!≺Prompt≻
-   YOU_CAN_SEE_FOR_MALMS = 7702; -- You can see for malms in every direction.≺Prompt≻
- SPINE_CHILLING_PRESENCE = 7704; -- You sense a spine-chilling presence!≺Prompt≻
+ SURVEY_THE_SURROUNDINGS = 7701; -- You survey the surroundings but see nothing out of the ordinary.
+      MURDEROUS_PRESENCE = 7702; -- Wait, you sense a murderous presence...!
+   YOU_CAN_SEE_FOR_MALMS = 7703; -- You can see for malms in every direction.
+ SPINE_CHILLING_PRESENCE = 7705; -- You sense a spine-chilling presence!

@@ -20,4 +20,4 @@ CHEST_ILLUSION = 7328; -- The chest was but an illusion...
   CHEST_LOCKED = 7329; -- The chest appears to be locked.
 
 -- Mining
-MINING_IS_POSSIBLE_HERE = 7330; -- Mining is possible here if you have <item>.
+MINING_IS_POSSIBLE_HERE = 7330; -- Mining is possible here if you have
