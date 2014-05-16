@@ -411,6 +411,8 @@ public:
 	int32 getMeleeHitDamage(lua_State*);    // gets the damage of a single hit vs the specified mob
 	int32 getWeaponSkillType(lua_State*);   // gets the type of weapon equipped
 	int32 getWeaponSubSkillType(lua_State*);// gets the subskill of weapon equipped
+    int32 getWSSkillchainProp(lua_State* L);// returns weapon skill's skillchain properties (up to 3)
+
 	int32 isBehind(lua_State*);				// true if you're behind the input target
 	int32 isFacing(lua_State*);				// true if you are facing the target
     int32 getAngle(lua_State* L);           // return angle (rot) between two points (vector from a to b)

@@ -93,6 +93,7 @@
 #include "../entities/petentity.h"
 #include "../utils/petutils.h"
 #include "../spell.h"
+#include "../weapon_skill.h"
 #include "../trade_container.h"
 #include "../utils/zoneutils.h"
 #include "../entities/charentity.h"
@@ -5953,6 +5954,31 @@ inline int32 CLuaBaseEntity::getWeaponSubSkillType(lua_State *L)
 	return 0;
 }
 
+/************************************************************************
+*                                                                       *
+*  Returns weapon skill's skillchain properties (up to 3)               *
+*                                                                       *
+************************************************************************/
+inline int32 CLuaBaseEntity::getWSSkillchainProp(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    CWeaponSkill* WSkill = ((CCharEntity*)m_PBaseEntity)->PBattleAI->GetCurrentWeaponSkill();
+    
+    if (WSkill)
+    {
+        lua_pushinteger(L, WSkill->getPrimarySkillchain());
+        lua_pushinteger(L, WSkill->getSecondarySkillchain());
+        lua_pushinteger(L, WSkill->getTertiarySkillchain());
+
+        return 3;
+    }
+
+    lua_pushnil(L);
+    return 1;
+}
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::getRangedDmg(lua_State *L)
@@ -8708,6 +8734,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isWeaponTwoHanded),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponSkillType),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponSubSkillType),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWSSkillchainProp),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRangedDmg),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRangedDmgForRank),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAmmoDmg),

@@ -11,11 +11,34 @@
 require("scripts/globals/status");
 require("scripts/globals/utils");
 
+local elementalGorget = { 15495, 15498, 15500, 15497, 15496, 15499, 15501, 15502 };
+local elementalBelt =   { 11755, 11758, 11760, 11757, 11756, 11759, 11761, 11762 };
+
 --params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti
 function doPhysicalWeaponskill(attacker, target, params)
-	
-	local criticalHit = false;
-	
+
+    local criticalHit = false;
+    local bonusacc = 0;
+    local bonusfTP = 0;
+
+    if (attacker:getObjType() == TYPE_PC) then
+        local neck = attacker:getEquipID(SLOT_NECK);
+        local belt = attacker:getEquipID(SLOT_WAIST);
+        local SCProp1, SCProp2, SCProp3 = attacker:getWSSkillchainProp();
+
+        for i = 1, 8, 1 do
+            if (neck == elementalGorget[i] and (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3))) then
+                bonusacc = bonusacc + 10;
+                bonusfTP = bonusfTP + 0.1;
+            end
+            if (waist == elementalBelt[i] and (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3))) then
+                bonusacc = bonusacc + 10;
+                bonusfTP = bonusfTP + 0.1;
+            end
+         end
+         --printf("bonusacc = %u bonusfTP = %f", bonusacc, bonusfTP);
+    end
+
 	--get fstr
 	local fstr = fSTR(attacker:getStat(MOD_STR),target:getStat(MOD_VIT),attacker:getWeaponDmgRank());
 
@@ -44,7 +67,7 @@ function doPhysicalWeaponskill(attacker, target, params)
 	if attacker:hasStatusEffect(EFFECT_SEKKANOKI) then
 		tp = 100;
 	end
-	local ftp = fTP(tp,params.ftp100,params.ftp200,params.ftp300);
+	local ftp = fTP(tp,params.ftp100,params.ftp200,params.ftp300) + bonusfTP;
 
 	local ignoredDef = 0;
 	if (params.ignoresDef == not nil and params.ignoresDef == true) then
@@ -101,11 +124,11 @@ function doPhysicalWeaponskill(attacker, target, params)
 
 	local firsthit = math.random();
 	local finaldmg = 0;
-	local hitrate = getHitRate(attacker,target,true);
+	local hitrate = getHitRate(attacker,target,true,bonusacc);
 	if(params.acc100~=0) then
 		--ACCURACY VARIES WITH TP, APPLIED TO ALL HITS.
 		--print("Accuracy varies with TP.");
-		hr = accVariesWithTP(getHitRate(attacker,target,false),attacker:getACC(),attacker:getTP(),params.acc100,params.acc200,params.acc300);
+		hr = accVariesWithTP(getHitRate(attacker,target,false,bonusacc),attacker:getACC(),attacker:getTP(),params.acc100,params.acc200,params.acc300);
 		hitrate = hr;
 	end
 
@@ -287,9 +310,13 @@ function getHitRate(attacker,target,capHitRate,bonus)
 	return hitrate;
 end;
 
-function getRangedHitRate(attacker,target,capHitRate)
+function getRangedHitRate(attacker,target,capHitRate,bonus)
 	local acc = attacker:getRACC();
 	local eva = target:getEVA();
+
+	if (bonus) then
+		acc = acc + bonus;
+	end
 
 	if(attacker:getMainLvl() > target:getMainLvl()) then --acc bonus!
 		acc = acc + ((attacker:getMainLvl()-target:getMainLvl())*4);
@@ -574,6 +601,28 @@ return alpha;
 
  --params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti
  function doRangedWeaponskill(attacker, target, params)
+
+    local bonusacc = 0;
+    local bonusfTP = 0;
+
+    if (attacker:getObjType() == TYPE_PC) then
+        local neck = attacker:getEquipID(SLOT_NECK);
+        local belt = attacker:getEquipID(SLOT_WAIST);
+        local SCProp1, SCProp2, SCProp3 = attacker:getWSSkillchainProp();
+
+        for i = 1, 8, 1 do
+            if (neck == elementalGorget[i] and (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3))) then
+                bonusacc = bonusacc + 10;
+                bonusfTP = bonusfTP + 0.1;
+            end
+            if (waist == elementalBelt[i] and (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3))) then
+                bonusacc = bonusacc + 10;
+                bonusfTP = bonusfTP + 0.1;
+            end
+         end
+         --printf("bonusacc = %u bonusfTP = %f", bonusacc, bonusfTP);
+    end
+
 	--get fstr
 	local fstr = fSTR(attacker:getStat(MOD_STR),target:getStat(MOD_VIT),attacker:getRangedDmgForRank());
 
@@ -585,7 +634,7 @@ return alpha;
 		 attacker:getStat(MOD_CHR) * params.chr_wsc) * getAlpha(attacker:getMainLvl());
 
 	--Applying fTP multiplier
-	local ftp = fTP(attacker:getTP(),params.ftp100,params.ftp200,params.ftp300);
+	local ftp = fTP(attacker:getTP(),params.ftp100,params.ftp200,params.ftp300) + bonusfTP;
 
 	local ignoredDef = 0;
 	if (params.ignoresDef == not nil and params.ignoresDef == true) then
@@ -619,11 +668,11 @@ return alpha;
 	--First hit has 95% acc always. Second hit + affected by hit rate.
 	local firsthit = math.random();
 	local finaldmg = 0;
-	local hitrate = getHitRate(attacker,target,true);
+	local hitrate = getHitRate(attacker,target,true,bonusacc);
 	if(params.acc100~=0) then
 		--ACCURACY VARIES WITH TP, APPLIED TO ALL HITS.
 		--print("Accuracy varies with TP.");
-		hr = accVariesWithTP(getRangedHitRate(attacker,target,false),attacker:getRACC(),attacker:getTP(),params.acc100,params.acc200,params.acc300);
+		hr = accVariesWithTP(getRangedHitRate(attacker,target,false,bonusacc),attacker:getRACC(),attacker:getTP(),params.acc100,params.acc200,params.acc300);
 		hitrate = hr;
 	end
 
@@ -649,7 +698,7 @@ return alpha;
 	if(numHits>1) then
 		if(params.acc100==0) then
 			--work out acc since we actually need it now
-			hitrate = getRangedHitRate(attacker,target,true);
+			hitrate = getRangedHitRate(attacker,target,true,bonusacc);
 		end
 
 		hitsdone = 1;

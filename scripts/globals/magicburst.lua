@@ -72,3 +72,9 @@ function doesMobSpellElementMatchResonance(element, resonance)
 	isMatch = matches[element + 1][resonance:getPower() + 1];
 	return (isMatch ~= nil and isMatch > 0);
 end
+
+-- Returns a boolean if the element matches the skillchain property given
+function doesElementMatchWeaponskill(ele, SCProp)
+    isMatch = matches[ele + 1][SCProp + 1];
+    return (isMatch ~= nil and isMatch > 0);
+end
