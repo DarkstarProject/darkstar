@@ -87,11 +87,11 @@ function SetFieldManual()
 
 	local FieldManuals  =
 	{
-        17187544,17187543,17191530,17191531, -- West Ronfaure 2, East Ronfaure 2
+        17187532,17187531,17191530,17191531, -- West Ronfaure 2, East Ronfaure 2
         17195671,17195672,17199748,17199747, -- La Theine 2, Valkurm 2
         17199746,17203879,17203878,17207861, -- Valkurm 1, Jugner 2, Batallia 1
-        17207860,17212103,17212104,17212105, -- Batallia 1, North Gustaberg 3
-        17216171,17216172,17220159,17220160, -- South Gustaberg 2, Konschtat 2
+        17207860,17212074,17212075,17212076, -- Batallia 1, North Gustaberg 3
+        17216160,17216161,17220159,17220160, -- South Gustaberg 2, Konschtat 2
         17224347,17224346,17228371,17228370, -- Pashhow 2, Rolanberry 2
         17232277,17232274,17232275,17232276, -- Beaucedine all 4
         17236342,17236341,17240510,17240509, -- Xarcabard 2, Cape Teriggan 2
