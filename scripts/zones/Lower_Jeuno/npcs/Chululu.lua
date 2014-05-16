@@ -94,17 +94,17 @@ function onEventFinish(player,csid,option)
 			player:addQuest(JEUNO,COLLECT_TARUT_CARDS);
 			rand = math.random(1,4);
 			if(rand == 1) then
-				player:addItem(558,5);
-				player:messageSpecial(ITEM_OBTAINED,558); -- Tarut: Death
-			elseif(rand == 2) then
 				player:addItem(559,5);
-				player:messageSpecial(ITEM_OBTAINED,559); -- Tarut: Hermit
+				player:messageSpecial(ITEM_OBTAINED,559); -- Tarut: Death
+			elseif(rand == 2) then
+				player:addItem(562,5);
+				player:messageSpecial(ITEM_OBTAINED,562); -- Tarut: Hermit
 			elseif(rand == 3) then
 				player:addItem(561,5);
 				player:messageSpecial(ITEM_OBTAINED,561); -- Tarut: King
 			else
-				player:addItem(562,5);
-				player:messageSpecial(ITEM_OBTAINED,562); -- Tarut: Fool
+				player:addItem(558,5);
+				player:messageSpecial(ITEM_OBTAINED,558); -- Tarut: Fool
 			end
 		end
 	elseif(csid == 0x00c8) then
