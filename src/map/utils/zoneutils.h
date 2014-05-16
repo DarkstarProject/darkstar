@@ -56,7 +56,7 @@ namespace zoneutils
 	CNpcEntity*	 GetTrigger(uint16 TargID, uint16 ZoneID);		                    // триггер для старта событий (как побочный эффект - вероятность появления прозрачного орка)
     CBaseEntity* GetEntity(uint32 ID, uint8 filter = -1);                           // получаем указатель на любую сущность
     CCharEntity* GetCharByName(int8* name);                                         // получаем указатель на персонажа по имени
-    CCharEntity* GetCharFromRegion(uint32 charid, uint16 targid, uint8 RegionID);   // получаем указатель на персонажа в указанном регионе
+    CCharEntity* GetCharFromWorld(uint32 charid, uint16 targid);                    // returns pointer to character by id and target id
 
 };
 
