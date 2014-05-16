@@ -1,4 +1,4 @@
-/*
+﻿/*
 ===========================================================================
 
 Copyright (c) 2010-2014 Darkstar Dev Teams
@@ -26,6 +26,8 @@ This file is part of DarkStar-server source code.
 #include "zone.h"
 #include "entities/charentity.h"
 
+#include "../common/timer.h"
+
 CInstance::CInstance(CZone* zone, uint8 instanceid) : CZoneEntities(zone)
 {
 	m_zone = zone;
@@ -33,11 +35,49 @@ CInstance::CInstance(CZone* zone, uint8 instanceid) : CZoneEntities(zone)
 	m_commander = 0;
 	m_levelcap = 0;
 	memset(&m_entryloc, 0, sizeof m_entryloc);
+
+	LoadInstance();
+
+	m_startTime = gettick();
 }
 
 CInstance::~CInstance()
 {
 
+}
+
+void CInstance::LoadInstance()
+{
+	static const int8* Query =
+		"SELECT "
+		"instance_name, "
+		"time_limit, "
+		"entrance_zone, "
+		"start_x, "
+		"start_y, "
+		"start_z, "
+		"start_rot "
+		"FROM instance_list "
+		"WHERE instanceid = %u "
+		"LIMIT 1";
+
+	if (Sql_Query(SqlHandle, Query, m_instanceid) != SQL_ERROR &&
+		Sql_NumRows(SqlHandle) != 0 &&
+		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+	{
+		m_instanceName.insert(0, Sql_GetData(SqlHandle, 0));
+
+		m_timeLimit = Sql_GetUIntData(SqlHandle, 1);
+		m_entrance = Sql_GetUIntData(SqlHandle, 2);
+		m_entryloc.x = Sql_GetFloatData(SqlHandle, 3);
+		m_entryloc.y = Sql_GetFloatData(SqlHandle, 4);
+		m_entryloc.z = Sql_GetFloatData(SqlHandle, 5);
+		m_entryloc.rotation = Sql_GetUIntData(SqlHandle, 6);
+	}
+	else
+	{
+		ShowFatalError(CL_RED"CZone::LoadInstance: Cannot load instance %u\n" CL_RESET, m_instanceid);
+	}
 }
 
 bool CInstance::RegisterChar(CCharEntity* PChar)
@@ -76,4 +116,15 @@ void CInstance::SetEntryLoc(float x, float y, float z, float rot)
 	m_entryloc.y = y;
 	m_entryloc.z = z;
 	m_entryloc.rotation = rot;
+}
+
+void CInstance::CheckTime(uint32 tick)
+{
+	if (tick > m_startTime + m_timeLimit * 60000)
+	{
+		for (auto PChar : m_charList)
+		{
+			//luautils instance exit
+		}
+	}
 }

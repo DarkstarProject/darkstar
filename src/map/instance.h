@@ -36,15 +36,22 @@ public:
 	position_t GetEntryLoc();
 	void SetLevelCap(uint8 cap);
 	void SetEntryLoc(float x, float y, float z, float rot);
+	void CheckTime(uint32 tick);
 
 	CInstance(CZone*, uint8 instanceid);
 	~CInstance();
 
 private:
+	void LoadInstance();
+
 	CZone* m_zone;
 	uint8 m_instanceid;
+	uint16 m_entrance;
+	string_t m_instanceName;
 	uint32 m_commander;
 	uint8 m_levelcap;
+	uint8 m_timeLimit;
+	uint32 m_startTime;
 	position_t m_entryloc;
 	std::vector<uint32> m_registeredChars;
 };
