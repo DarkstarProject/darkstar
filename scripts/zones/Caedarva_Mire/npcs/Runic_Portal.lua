@@ -37,7 +37,7 @@ function onTrigger(player,npc)
 				player:startEvent(0x0086);
 			end
 		elseif(player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES)then
-			if(hasRunicPortal(player,1) == 1) then
+			if(hasRunicPortal(player,2) == 1) then
 				player:startEvent(0x0086);
 			else
 				player:startEvent(0x007d);
@@ -53,7 +53,7 @@ function onTrigger(player,npc)
 				player:startEvent(0x0083);
 			end
 		elseif(player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES)then
-			if(hasRunicPortal(player,2) == 1) then
+			if(hasRunicPortal(player,1) == 1) then
 				player:startEvent(0x0083);
 			else
 				player:startEvent(0x007c);

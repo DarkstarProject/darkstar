@@ -23,6 +23,12 @@ function onSpellCast(caster,target,spell)
     local duration = 30 * resist;
 
     if(resist > 0.5) then
+	
+	    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+        duration = duration * 2;
+    end
+    caster:delStatusEffect(EFFECT_SABOTEUR);
+	
         if(target:addStatusEffect(EFFECT_PETRIFICATION,1,0,duration)) then
             spell:setMsg(236);
         else

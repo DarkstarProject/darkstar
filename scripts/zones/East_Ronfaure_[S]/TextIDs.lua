@@ -8,4 +8,4 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item>. Come back 
  FISHING_MESSAGE_OFFSET = 7700; -- You can't fish here.
 
 -- Logging
-LOGGING_IS_POSSIBLE_HERE = 7116; -- Logging is possible here if you have <item>.
+LOGGING_IS_POSSIBLE_HERE = 7116; -- Logging is possible here if you have

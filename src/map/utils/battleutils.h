@@ -189,11 +189,15 @@ namespace battleutils
 	EFFECT				getCorsairRollEffect(uint16 id);
     void                ClaimMob(CBattleEntity* PDefender, CBattleEntity* PAttacker);
 
-    int32               DmgTaken(CBattleEntity* PDefender, int32 damage);
     int32               BreathDmgTaken(CBattleEntity* PDefender, int32 damage);
     int32               MagicDmgTaken(CBattleEntity* PDefender, int32 damage);
     int32               PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage);
     int32               RangedDmgTaken(CBattleEntity* PDefender, int32 damage);
+
+	void                HandleIssekiganEnmityBonus(CBattleEntity* PDefender, CMobEntity* PAttacker);	
+	int32               HandleSevereDamage(CBattleEntity* PDefender, int32 damage);
+	int32               HandleSevereDamageEffect(CBattleEntity* PDefender, EFFECT effect, int32 damage, bool removeEffect);
+	void                HandleTacticalParry(CBattleEntity* PEntity);	
 
     // returns damage taken
     int32               HandleStoneskin(CBattleEntity* PDefender, int32 damage);

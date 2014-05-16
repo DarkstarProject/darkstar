@@ -12,8 +12,8 @@ ITEM_CANNOT_BE_OBTAINED = 6390; -- You cannot obtain the item <item>. Come back 
  OLD_SABERTOOTH_DIALOG_I = 7199; -- You hear the distant roar of a tiger. It sounds as if the beast is approaching slowly...
 OLD_SABERTOOTH_DIALOG_II = 7200; -- The sound of the tiger's footsteps is growing louder.
 
-	   		  THF_AF_MOB = 7371; -- Something has come down from the tower!
-	  THF_AF_WALL_OFFSET = 7390; -- It is impossible to climb this wall with your bare hands.
+	   		  THF_AF_MOB = 7372; -- Something has come down from the tower!
+	  THF_AF_WALL_OFFSET = 7391; -- It is impossible to climb this wall with your bare hands.
 
 -- Other Dialog
 		NOTHING_HAPPENS = 133;  -- Nothing happens...

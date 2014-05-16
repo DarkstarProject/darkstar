@@ -196,10 +196,8 @@ function doPhysicalWeaponskill(attacker, target, params)
 	finaldmg = finaldmg + souleaterBonus(attacker, (tpHitsLanded+extraHitsLanded));
 	-- print("Landed " .. hitslanded .. "/" .. numHits .. " hits with hitrate " .. hitrate .. "!");
 
-	if(target:hasStatusEffect(EFFECT_FORMLESS_STRIKES) == false) then
-		utils.dmgTaken(target, finaldmg);
-		utils.physicalDmgTaken(target, finaldmg);
-	end
+	finaldmg = target:physicalDmgTaken(finaldmg);
+
 	attacker:delStatusEffectSilent(EFFECT_BUILDING_FLOURISH);
 	return finaldmg, criticalHit, tpHitsLanded, extraHitsLanded;
 end;
@@ -677,8 +675,7 @@ return alpha;
 	end
 	--print("Landed " .. hitslanded .. "/" .. numHits .. " hits with hitrate " .. hitrate .. "!");
 
-	utils.dmgTaken(target, finaldmg);
-	utils.rangedDmgTaken(target, finaldmg);
+	finaldmg = target:rangedDmgTaken(finaldmg);
 
 	return finaldmg, tpHitsLanded, extraHitsLanded;
 end;

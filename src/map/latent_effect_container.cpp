@@ -263,7 +263,7 @@ void CLatentEffectContainer::CheckLatentsMP(int32 mp)
 		switch(m_LatentEffectList.at(i)->GetConditionsID())
 		{
 			case LATENT_MP_UNDER_PERCENT:
-				if ((float)(mp / m_POwner->health.maxmp )*100 <= m_LatentEffectList.at(i)->GetConditionsValue())
+				if (m_POwner->health.maxmp && (float)(mp / m_POwner->health.maxmp )*100 <= m_LatentEffectList.at(i)->GetConditionsValue())
 				{
 					m_LatentEffectList.at(i)->Activate();
 				}
@@ -372,7 +372,7 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
 					}
 					break;
 				case LATENT_MP_UNDER_PERCENT:
-					if ((float)(m_POwner->health.mp / m_POwner->health.maxmp)*100 <= m_LatentEffectList.at(i)->GetConditionsValue())
+					if (m_POwner->health.maxmp && (float)(m_POwner->health.mp / m_POwner->health.maxmp)*100 <= m_LatentEffectList.at(i)->GetConditionsValue())
 					{
 						m_LatentEffectList.at(i)->Activate();
 					}
@@ -422,9 +422,9 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
 					break;
 				case LATENT_WEAPON_BROKEN:
 				{
-					CItemWeapon* PWeaponMain = (m_POwner->equip[SLOT_MAIN] != 0) ? (CItemWeapon*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_MAIN])) : NULL;
-					CItemWeapon* PWeaponSub = (m_POwner->equip[SLOT_SUB] != 0) ? (CItemWeapon*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_SUB])) : NULL;
-					CItemWeapon* PWeaponRanged = (m_POwner->equip[SLOT_RANGED] != 0) ? (CItemWeapon*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_RANGED])) : NULL;
+					CItemWeapon* PWeaponMain = (CItemWeapon*)m_POwner->getEquip(SLOT_MAIN);
+					CItemWeapon* PWeaponSub = (CItemWeapon*)m_POwner->getEquip(SLOT_SUB);
+					CItemWeapon* PWeaponRanged = (CItemWeapon*)m_POwner->getEquip(SLOT_RANGED);
 					if( PWeaponMain && m_POwner->unlockedWeapons[PWeaponMain->getUnlockId()-1].unlocked && m_LatentEffectList.at(i)->GetSlot() == SLOT_MAIN )
 					{
 						m_LatentEffectList.at(i)->Activate();
@@ -1428,7 +1428,7 @@ void CLatentEffectContainer::CheckLatentsWeaponBreak(uint8 slot)
 	{
 		if( m_LatentEffectList.at(i)->GetConditionsID() == LATENT_WEAPON_BROKEN && m_LatentEffectList.at(i)->GetConditionsValue() == slot)
 		{
-			CItemWeapon* PWeaponMain = (m_POwner->equip[slot] != 0) ? (CItemWeapon*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[slot])) : NULL;
+			CItemWeapon* PWeaponMain = (CItemWeapon*)m_POwner->getEquip((SLOTTYPE)slot);
 			if( PWeaponMain && m_POwner->unlockedWeapons[PWeaponMain->getUnlockId()-1].unlocked && m_LatentEffectList.at(i)->GetSlot() == slot )
 			{
 				m_LatentEffectList.at(i)->Activate();

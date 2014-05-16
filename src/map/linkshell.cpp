@@ -162,7 +162,7 @@ void CLinkshell::ChangeMemberRank(int8* MemberName, uint8 toSack)
 		    {
                 CCharEntity* PMember = (CCharEntity*)members.at(i);
 
-                CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PMember->getStorage(LOC_INVENTORY)->GetItem(PMember->equip[SLOT_LINK]);
+                CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PMember->getEquip(SLOT_LINK);
 
                 if (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL))
                 {
@@ -214,7 +214,7 @@ void CLinkshell::RemoveMemberByName(int8* MemberName)
 		{
             CCharEntity* PMember = (CCharEntity*)members.at(i);
 
-            CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PMember->getStorage(LOC_INVENTORY)->GetItem(PMember->equip[SLOT_LINK]);
+            CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PMember->getEquip(SLOT_LINK);
 
             if (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL))
             {

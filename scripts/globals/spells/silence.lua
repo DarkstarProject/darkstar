@@ -25,6 +25,11 @@ function onSpellCast(caster,target,spell)
 
 	--Duration, including resistance.  May need more research.
 	local duration = 180;
+	
+	    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+        duration = duration * 2;
+    end
+    caster:delStatusEffect(EFFECT_SABOTEUR);
 
 	--Resist
 	local resist = applyResistanceEffect(caster,spell,target,dMND,35,0,EFFECT_SILENCE);

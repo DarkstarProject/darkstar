@@ -737,8 +737,8 @@ void CAICharNormal::ActionRangedStart()
 	m_PChar->isRapidShot = false;
 	m_PChar->secondDoubleShotTaken = false;
 
-	CItemWeapon* PRanged = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
-    CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+	CItemWeapon* PRanged = (CItemWeapon*)m_PChar->getEquip(SLOT_RANGED);
+	CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getEquip(SLOT_AMMO);
 
 	if (PRanged != NULL && PRanged->isType(ITEM_WEAPON) ||
         PAmmo != NULL && PAmmo->isThrowing())
@@ -786,7 +786,7 @@ void CAICharNormal::ActionRangedStart()
 			case SKILL_MRK:
 			{
 
-                PRanged = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+                PRanged = (CItemWeapon*)m_PChar->getEquip(SLOT_AMMO);
 				if (PRanged != NULL && PRanged->isType(ITEM_WEAPON))
 				{
 					break;
@@ -928,11 +928,11 @@ void CAICharNormal::ActionRangedFinish()
 		Action.messageID  = 352;
         Action.knockback  = 0;
 
-        CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
-        CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+        CItemWeapon* PItem = (CItemWeapon*)m_PChar->getEquip(SLOT_RANGED);
+        CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getEquip(SLOT_AMMO);
 
-        bool ammoThrowing = PAmmo->isThrowing();
-        bool rangedThrowing = PItem->isThrowing();
+		bool ammoThrowing = PAmmo ? PAmmo->isThrowing() : false;
+		bool rangedThrowing = PItem ? PItem->isThrowing() : false;
         uint8 slot = SLOT_RANGED;
 
         if (ammoThrowing)
@@ -1372,7 +1372,7 @@ void CAICharNormal::ActionJobAbilityStart()
 		//TODO: Remove all these ability-specific checks and put them into their appropriate scripts
 
 		if (m_PJobAbility->getID() == ABILITY_EAGLE_EYE_SHOT || m_PJobAbility->getID() == ABILITY_SHADOWBIND){
-			CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
+			CItemWeapon* PItem = (CItemWeapon*)m_PChar->getEquip(SLOT_RANGED);
 
 			if (PItem != NULL && PItem->isType(ITEM_WEAPON))
 			{
@@ -1382,7 +1382,7 @@ void CAICharNormal::ActionJobAbilityStart()
 					case SKILL_ARC:
 					case SKILL_MRK:
 					{
-						PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+						PItem = (CItemWeapon*)m_PChar->getEquip(SLOT_AMMO);
 
 						if (PItem != NULL && PItem->isType(ITEM_WEAPON))
 						{
@@ -1398,7 +1398,7 @@ void CAICharNormal::ActionJobAbilityStart()
 					}
 				}
 			}else{
-				PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+				PItem = (CItemWeapon*)m_PChar->getEquip(SLOT_AMMO);
 
 				if (PItem == NULL ||
 				  !(PItem->isType(ITEM_WEAPON)) ||
@@ -1528,7 +1528,7 @@ void CAICharNormal::ActionJobAbilityFinish()
         }
 
     	if(m_PJobAbility->getID() == ABILITY_REWARD){
-    		CItem* PItem = m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_HEAD]);
+    		CItem* PItem = m_PChar->getEquip(SLOT_HEAD);
     		if(PItem->getID() == 15157 || PItem->getID() == 16104){
     			//TODO: Transform this into an item MOD_REWARD_RECAST perhaps ?
     			//The Bison Warbonnet & Khimaira Bonnet reduces recast time by 10 seconds.
@@ -1872,8 +1872,8 @@ void CAICharNormal::ActionJobAbilityFinish()
                         }
         			}
 
-        			CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]);
-        			CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+        			CItemWeapon* PItem = (CItemWeapon*)m_PChar->getEquip(SLOT_RANGED);
+        			CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getEquip(SLOT_AMMO);
 
 
         			// at least 1 hit occured
@@ -1895,7 +1895,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 
 
     		// check for recycle chance
-    		CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+    		CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getEquip(SLOT_AMMO);
     		uint8 recycleChance = m_PChar->getMod(MOD_RECYCLE);
 
     		if (charutils::hasTrait(m_PChar,TRAIT_RECYCLE))
@@ -2257,7 +2257,7 @@ void CAICharNormal::ActionWeaponSkillStart()
 	    }
         if( 218 >= m_PWeaponSkill->getID() && m_PWeaponSkill->getID() >= 192 ) // ranged WS IDs
         {
-			CItemWeapon* PItem = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+			CItemWeapon* PItem = (CItemWeapon*)m_PChar->getEquip(SLOT_AMMO);
 
 			// before allowing ranged weapon skill...
 			if (PItem == NULL ||								// check item is not null
@@ -2371,7 +2371,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	if (m_PChar->equip[SLOT_SUB] != 0)
 	{
 		std::vector<CModifier*>::iterator modIterator;
-		std::vector<CModifier*> modList = ((CItemArmor*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_SUB]))->modList;
+		std::vector<CModifier*> modList = ((CItemArmor*)m_PChar->getEquip(SLOT_SUB))->modList;
 
 		for(modIterator = modList.begin(); modIterator != modList.end(); modIterator++)
 		{
@@ -2387,7 +2387,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		if(m_PChar->equip[SLOT_MAIN] != 0)
 		{
 			std::vector<CModifier*>::iterator modIterator;
-			std::vector<CModifier*> modList = ((CItemArmor*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_MAIN]))->modList;
+			std::vector<CModifier*> modList = ((CItemArmor*)m_PChar->getEquip(SLOT_MAIN))->modList;
 
 			for(modIterator = modList.begin(); modIterator != modList.end(); modIterator++)
 			{
@@ -2404,7 +2404,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		if(m_PChar->equip[SLOT_RANGED] != 0)
 		{
 			std::vector<CModifier*>::iterator modIterator;
-			std::vector<CModifier*> modList = ((CItemArmor*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_RANGED]))->modList;
+			std::vector<CModifier*> modList = ((CItemArmor*)m_PChar->getEquip(SLOT_RANGED))->modList;
 
 			for(modIterator = modList.begin(); modIterator != modList.end(); modIterator++)
 			{
@@ -2567,7 +2567,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	if (m_PWeaponSkill->getID() >= 192 && m_PWeaponSkill->getID() <= 218)
 	{
 		//ranged WS IDs
-		CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getStorage(LOC_INVENTORY)->GetItem(m_PChar->equip[SLOT_AMMO]);
+		CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getEquip(SLOT_AMMO);
 
         uint8 recycleChance = m_PChar->getMod(MOD_RECYCLE) + m_PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE,m_PChar);
 

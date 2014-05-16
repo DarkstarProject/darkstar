@@ -108,7 +108,7 @@ void CLatentEffect::Activate()
         if (GetModValue() == MOD_ADDITIONAL_EFFECT || GetModValue() == MOD_DMG)
         {
             CCharEntity* PChar = (CCharEntity*)m_POwner;
-            CItemWeapon* weapon = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[GetSlot()]);
+            CItemWeapon* weapon = (CItemWeapon*)PChar->getEquip((SLOTTYPE)GetSlot());
 
             weapon->addModifier(new CModifier(GetModValue(), GetModPower()));
         }
@@ -130,7 +130,7 @@ void CLatentEffect::Deactivate()
         if (GetModValue() == MOD_ADDITIONAL_EFFECT || GetModValue() == MOD_DMG)
         {
             CCharEntity* PChar = (CCharEntity*)m_POwner;
-            CItemWeapon* weapon = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[GetSlot()]);
+			CItemWeapon* weapon = (CItemWeapon*)PChar->getEquip((SLOTTYPE)GetSlot());
 
             int16 modPower = GetModPower();
 

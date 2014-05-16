@@ -15,11 +15,11 @@ CONQUEST = 7188; -- You've earned conquest points!
 
 -- Quest Dialogs
     SENSE_OF_FOREBODING = 6394; -- You are suddenly overcome with a sense of foreboding...
-          STURDY_BRANCH = 7728; -- It is a beautiful, sturdy branch.
+          STURDY_BRANCH = 7729; -- It is a beautiful, sturdy branch.
 NOTHING_OUT_OF_ORDINARY = 6393; -- There is nothing out of the ordinary here.
 
 -- ZM4 Dialog
-   CANNOT_REMOVE_FRAG = 7701; -- It is an oddly shaped stone monument. ...
-ALREADY_OBTAINED_FRAG = 7702; -- You have already obtained this monuments...
-      FOUND_ALL_FRAGS = 7703; -- You have obtained <frag>! You now have all 8 fragments of light!
-      ZILART_MONUMENT = 7705; -- It is an ancient Zilart monument.
+   CANNOT_REMOVE_FRAG = 7702; -- It is an oddly shaped stone monument. A shining stone is embedded in it, but cannot be removed...
+ALREADY_OBTAINED_FRAG = 7703; -- You have already obtained this monument's
+      FOUND_ALL_FRAGS = 7705; -- You now have all 8 fragments of light!
+      ZILART_MONUMENT = 7706; -- It is an ancient Zilart monument.
