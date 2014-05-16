@@ -6,7 +6,7 @@ FULL_INVENTORY_AFTER_TRADE = 6414; -- Try trading again after sorting your inven
              ITEM_OBTAINED = 6415; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
               GIL_OBTAINED = 6416; -- Obtained <<<Numeric Parameter 0>>> gil.
           KEYITEM_OBTAINED = 6418; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
-			  KEYITEM_LOST = 6419; -- Lots key item: <<<Unknown Parameter (Type: 80) 1>>>
+              KEYITEM_LOST = 6419; -- Lost key item:
              HOMEPOINT_SET =   24; -- Home point set!
        NOT_HAVE_ENOUGH_GIL = 6420; -- You do not have enough gil.
            LEATHER_SUPPORT = 6708; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ?Multiple Choice (Parameter 2)?[a little/ever so slightly/ever so slightly].?Prompt?
@@ -19,7 +19,7 @@ CONQUEST =  8414; -- You've earned conquest points!
 ORIGINAL_MISSION_OFFSET = 7138; -- Bring me one of those axes, and your mission will be a success. No running away now; we've a proud country to defend!
  
 -- Dynamis dialogs
-      YOU_CANNOT_ENTER_DYNAMIS = 7344; -- You cannot enter Dynamis - <<<Multiple Choice (Parameter 1)>>>
+      YOU_CANNOT_ENTER_DYNAMIS = 7344; -- You cannot enter Dynamis
 PLAYERS_HAVE_NOT_REACHED_LEVEL = 7346; -- Players who have not reached level <<<Numeric Parameter 0>>> are prohibited from entering Dynamis.
   UNUSUAL_ARRANGEMENT_BRANCHES = 7356; -- There is an unusual arrangement of branches here.
 

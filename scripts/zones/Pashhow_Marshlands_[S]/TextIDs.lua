@@ -8,4 +8,4 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item> come back a
  FISHING_MESSAGE_OFFSET = 7116; -- You can't fish here.
 
 -- Other Texts	
-ALREADY_OBTAINED_TELE = 7655; -- You already possess the gate crystal for this telepoint.
+ALREADY_OBTAINED_TELE = 7656; -- You already possess the gate crystal for this telepoint.

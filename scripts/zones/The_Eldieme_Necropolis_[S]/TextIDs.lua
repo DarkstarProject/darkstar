@@ -14,4 +14,4 @@ LAYTON_SHOP_DIALOG = 7074; -- Might you be a student of the same field as I? If 
 
 -- Quest Dialog
  YOU_CAN_NOW_BECOME_A_SCHOLAR = 7683; -- You can now become a scholar!
-YOU_LEARN_EMBRAVA_AND_KAUSTRA = 7867; -- ?Player Name? learns Embrava and Kaustra!?Prompt?
+YOU_LEARN_EMBRAVA_AND_KAUSTRA = 7867; -- Player Name learns Embrava and Kaustra!

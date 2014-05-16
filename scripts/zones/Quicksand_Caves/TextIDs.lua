@@ -8,19 +8,19 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item> come back a
  FISHING_MESSAGE_OFFSET = 7179; -- You can't fish here.
 
 -- Treasure Coffer/Chest Dialog
-CHEST_UNLOCKED = 7280; -- You unlock the chest!
-    CHEST_FAIL = 7281; -- Fails to open the chest. 
-    CHEST_TRAP = 7282; -- The chest was trapped! 
-    CHEST_WEAK = 7283; -- You cannot open the chest when you are in a weakened state.
-   CHEST_MIMIC = 7284; -- The chest was a mimic! 
-  CHEST_MOOGLE = 7285; -- You cannot open the chest while participating in the moogle event.
-CHEST_ILLUSION = 7286; -- The chest was but an illusion...
-  CHEST_LOCKED = 7287; -- The chest appears to be locked.
+CHEST_UNLOCKED = 7281; -- You unlock the chest!
+    CHEST_FAIL = 7282; -- Fails to open the chest. 
+    CHEST_TRAP = 7283; -- The chest was trapped! 
+    CHEST_WEAK = 7284; -- You cannot open the chest when you are in a weakened state.
+   CHEST_MIMIC = 7285; -- The chest was a mimic! 
+  CHEST_MOOGLE = 7286; -- You cannot open the chest while participating in the moogle event.
+CHEST_ILLUSION = 7287; -- The chest was but an illusion...
+  CHEST_LOCKED = 7288; -- The chest appears to be locked.
 
 -- Other dialog
 NOTHING_OUT_OF_ORDINARY = 6393;	-- There is nothing out of the ordinary here.
 	SENSE_OF_FOREBODING = 6394; -- You are suddenly overcome with a sense of foreboding...
-	   DOOR_FIRMLY_SHUT = 7288; -- The door is firmly shut.
-		  POOL_OF_WATER = 7320; -- It is a pool of water.
-	   YOU_FIND_NOTHING = 7323; -- You find nothing.
-	SOMETHING_IS_BURIED = 7328; -- Something is buried in this fallen pillar.
+	   DOOR_FIRMLY_SHUT = 7289; -- The door is firmly shut.
+		  POOL_OF_WATER = 7321; -- It is a pool of water.
+	   YOU_FIND_NOTHING = 7324; -- You find nothing.
+	SOMETHING_IS_BURIED = 7329; -- Something is buried in this fallen pillar.

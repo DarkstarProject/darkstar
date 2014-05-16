@@ -8,5 +8,5 @@ ITEM_CANNOT_BE_OBTAINED = 6536; -- You cannot obtain the item <item>. Come back 
  FISHING_MESSAGE_OFFSET = 7179; -- You can't fish here.
 
 -- General Dialog
-CHUMIA_DIALOG = 7273; -- Welcome to Bostaunieux Oubliette...
- SEEMS_LOCKED = 7275; -- It seems to be locked.
+CHUMIA_DIALOG = 7274; -- Welcome to Bostaunieux Oubliette...
+ SEEMS_LOCKED = 7276; -- It seems to be locked.

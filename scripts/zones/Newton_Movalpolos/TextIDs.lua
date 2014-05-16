@@ -1,13 +1,13 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6375; -- You cannot obtain the item <item>. Come back after sorting your inventory.
-          ITEM_OBTAINED = 6376; -- Obtained: <item>.
+ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item>. Come back after sorting your inventory.
+          ITEM_OBTAINED = 6379; -- Obtained: <item>.
            GIL_OBTAINED = 6380; -- Obtained <number> gil.
        KEYITEM_OBTAINED = 6382; -- Obtained key item: <keyitem>.
 
 -- Mining
-MINING_IS_POSSIBLE_HERE = 7209; -- Mining is possible here if you have <item>.
+MINING_IS_POSSIBLE_HERE = 7209; -- Mining is possible here if you have
 
 -- Treasure Coffer/Chest Dialog
 CHEST_UNLOCKED = 7223; -- You unlock the chest!
@@ -22,4 +22,4 @@ CHEST_ILLUSION = 7229; -- The chest was but an illusion...
 -- Moblin Showman
 SHOWMAN_DECLINE = 7234; -- ... Me no want that. Thing me want not here! It not being here!!!?Prompt?
 SHOWMAN_TRIGGER = 7235; -- Hey, you there! Muscles nice. You want fight strong one? It cost you. Give me nice item.
- SHOWMAN_ACCEPT = 7236; -- Fhungaaa!!! The freshyness, the flavoryness! This very nice item! Good luck, then. Try not die.One...two...four...FIIIIIIGHT!!!
+ SHOWMAN_ACCEPT = 7236; -- Fhungaaa!!! The freshyness, the flavoryness! This very nice item! Good luck, then. Try not die. One...two...four...FIIIIIIGHT!!!

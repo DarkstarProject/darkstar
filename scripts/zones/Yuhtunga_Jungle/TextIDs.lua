@@ -12,15 +12,15 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item>. Come back 
 CONQUEST = 7188; -- You've earned conquest points!
 
 -- Logging
-   LOGGING_IS_POSSIBLE_HERE = 7662; -- Logging is possible here if you have <item>.
-HARVESTING_IS_POSSIBLE_HERE = 7669; -- Harvesting is possible here if you have <item>.
+   LOGGING_IS_POSSIBLE_HERE = 7663; -- Logging is possible here if you have
+HARVESTING_IS_POSSIBLE_HERE = 7670; -- Harvesting is possible here if you have
 
 -- ZM4 Dialog
-    CANNOT_REMOVE_FRAG = 7641; -- It is an oddly shaped monument. A shiny stone... cannot be removed.
- ALREADY_OBTAINED_FRAG = 7642; -- You have already obtained this monuments...
-ALREADY_HAVE_ALL_FRAGS = 7643; -- You have obtained all of the fragments. You must hurry to the ruins of the ancient shrine!
-       FOUND_ALL_FRAGS = 7643; -- You have obtained <frag>! You now have all 8 fragments of light!
-       ZILART_MONUMENT = 7645; -- It is an ancient Zilart monument.?Prompt?
+    CANNOT_REMOVE_FRAG = 7642; -- It is an oddly shaped stone monument. A shining stone is embedded in it, but cannot be removed...
+ ALREADY_OBTAINED_FRAG = 7643; -- You have already obtained this monument's
+ALREADY_HAVE_ALL_FRAGS = 7644; -- You have obtained all of the fragments. You must hurry to the ruins of the ancient shrine!
+       FOUND_ALL_FRAGS = 7645; -- You now have all 8 fragments of light!
+       ZILART_MONUMENT = 7646; -- It is an ancient Zilart monument.
        
 -- Other
 NOTHING_HAPPENS = 119; -- Nothing happens...

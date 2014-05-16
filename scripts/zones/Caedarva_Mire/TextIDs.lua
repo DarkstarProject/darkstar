@@ -8,12 +8,12 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item>. Come back 
  FISHING_MESSAGE_OFFSET = 7020; -- You can't fish here.
 
 -- Logging
-LOGGING_IS_POSSIBLE_HERE = 7308; -- Logging is possible here if you have <item>.
+LOGGING_IS_POSSIBLE_HERE = 7309; -- Logging is possible here if you have
 
 -- Other Texts
-			   RESPONSE = 7294; -- There is no response...
-NOTHING_OUT_OF_ORDINARY = 7346; --There is nothing out of the ordinary here.
-		NOTHING_HAPPENS = 7414; -- Nothing happens...
+			   RESPONSE = 7295; -- There is no response...
+NOTHING_OUT_OF_ORDINARY = 7347; --There is nothing out of the ordinary here.
+		NOTHING_HAPPENS = 7415; -- Nothing happens...
 
- JAZARAATS_HEADSTONE = 7487; -- The name “Sir Jazaraat” is engraved on the headstone...?Prompt?
-SEAPRINCES_TOMBSTONE = 8011; -- It appears to be the grave of a great soul to an age long past.
+ JAZARAATS_HEADSTONE = 7488; -- The name ir Jazaraatis engraved on the headstone...
+SEAPRINCES_TOMBSTONE = 8012; -- It appears to be the grave of a great soul to an age long past.

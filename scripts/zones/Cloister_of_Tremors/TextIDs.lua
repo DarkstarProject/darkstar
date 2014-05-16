@@ -8,7 +8,7 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item> come back a
 
 -- Quest dialog
 YOU_CANNOT_ENTER_THE_BATTLEFIELD = 7181; -- You cannot enter the battlefield at present. 
-				  TITAN_UNLOCKED = 7533; -- You are now able to summon Titan.  
+		  TITAN_UNLOCKED = 7533; -- You are now able to summon
 				 				  
 -- Other
 NOTHING_OUT_OF_THE_ORDINARY = 6393; -- There is nothing out of the ordinary here.

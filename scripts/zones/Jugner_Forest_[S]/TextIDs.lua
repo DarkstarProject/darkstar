@@ -8,8 +8,8 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item>. Come back 
  FISHING_MESSAGE_OFFSET = 7332; -- You can't fish here.
 
 -- Logging
-LOGGING_IS_POSSIBLE_HERE = 7039; -- Logging is possible here if you have <item>.
+LOGGING_IS_POSSIBLE_HERE = 7039; -- Logging is possible here if you have
 
 -- Other Texts
 	  NOTHING_HAPPENS = 119; -- Nothing happens.
-ALREADY_OBTAINED_TELE = 7662; -- You already possess the gate crystal for this telepoint.
+ALREADY_OBTAINED_TELE = 7663; -- You already possess the gate crystal for this telepoint.

@@ -8,9 +8,9 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item> come back a
 
           LARGE_KEYHOLE = 7186; -- The gate is securely closed with two locks. This keyhole is engraved with a sealion insignia 
           SMALL_KEYHOLE = 7187; -- The gate is securely closed with two locks. This keyhole is engraved with a coral insignia.
-		KEYHOLE_DAMAGED = 7188; -- The keyhole is damaged. The gate cannot be opened from this side.
-       CANNOT_OPEN_SIDE = 7188; -- The gate cannot be opened from this side.		
-		    STURDY_GATE = 7191; -- A sturdy iron gate. It is secured with two locks-a main lock and a sublock.
+	KEYHOLE_DAMAGED = 7188; -- The keyhole is damaged.The gate cannot be opened from this side.
+       CANNOT_OPEN_SIDE = 7189; -- The gate cannot be opened from this side.		
+	    STURDY_GATE = 7191; -- A sturdy iron gate. It is secured with two locks--a main lock and a sublock.
         CORAL_KEY_TRADE = 7193; -- is holding the lock open...
 NOTHING_OUT_OF_ORDINARY = 7197; -- There is nothing out of the ordinary here.
 

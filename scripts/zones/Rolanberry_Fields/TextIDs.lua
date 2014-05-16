@@ -11,4 +11,4 @@ ITEM_CANNOT_BE_OBTAINED = 6390; -- You cannot obtain the item <item>. Come back 
 NOTHING_HAPPENS = 133; -- Nothing happens...
 
 -- Signs
-SIGN = 7356; -- North: Grand Duchy of Jeuno, Sauromugue Champaign | South: Pashhow Marshlands
+SIGN = 7357; -- North: Grand Duchy of Jeuno, Sauromugue Champaign South: Pashhow Marshlands

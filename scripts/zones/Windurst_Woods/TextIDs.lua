@@ -9,10 +9,10 @@
        NOT_HAVE_ENOUGH_GIL = 6543; -- You do not have enough gil.
              HOMEPOINT_SET = 6609; -- Home point set!
     FISHING_MESSAGE_OFFSET = 6936; -- You can't fish here.
-             IMAGE_SUPPORT = 7034; -- Your ≺Multiple Choice (Parameter 1)≻[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
+             IMAGE_SUPPORT = 7035; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
 
 -- Conquest System
-CONQUEST = 8754; -- You've earned conquest points!
+CONQUEST = 8755; -- You've earned conquest points!
 
 -- Other Texts
 ITEM_DELIVERY_DIALOG = 6782; -- We can deliver goods to your residence or to the residences of your friends.
@@ -24,46 +24,46 @@ YOU_ACCEPT_THE_MISSION = 6694; -- You have accepted the mission.
               JU_KAMJA_DIALOG = 6782; -- We can deliver goods to your residence or to the residences of your friends.
          PEW_SAHBARAEF_DIALOG = 6782; -- We can deliver goods to your residence or to the residences of your friends.
 		 
-		VALERIANO_SHOP_DIALOG = 7377; -- Halfling philosophers and heroine beauties, welcome to the Troupe Valeriano show! And how gorgeous and green this fair town is!
+		VALERIANO_SHOP_DIALOG = 7378; -- Halfling philosophers and heroine beauties, welcome to the Troupe Valeriano show! And how gorgeous and green this fair town is!
 		 
-         RETTO_MARUTTO_DIALOG = 7790; -- Allo-allo! If you're after boneworking materials, then make sure you buy them herey in Windurst! We're the cheapest in the whole wide worldy!
-           SHIH_TAYUUN_DIALOG = 7792; -- Oh, that Retto-Marutto... If he keeps carrying on while speaking to the customers, he'll get in trouble with the guildmaster again!
-       KUZAH_HPIROHPON_DIALOG = 7801; -- want to get your paws on the top-quality materials as used in the Weaverrrs' Guild?
-                MERIRI_DIALOG = 7803; -- If you're interested in buying some works of art from our Weavers' Guild, then you've come to the right placey-wacey.
+         RETTO_MARUTTO_DIALOG = 7791; -- Allo-allo! If you're after boneworking materials, then make sure you buy them herey in Windurst! We're the cheapest in the whole wide worldy!
+           SHIH_TAYUUN_DIALOG = 7793; -- Oh, that Retto-Marutto... If he keeps carrying on while speaking to the customers, he'll get in trouble with the guildmaster again!
+       KUZAH_HPIROHPON_DIALOG = 7802; -- want to get your paws on the top-quality materials as used in the Weaverrrs' Guild?
+                MERIRI_DIALOG = 7804; -- If you're interested in buying some works of art from our Weavers' Guild, then you've come to the right placey-wacey.
 
-           QUESSE_SHOP_DIALOG = 8343; -- Welcome to the Windurst Chocobo Stables.
-        MONONCHAA_SHOP_DIALOG = 8344; -- , then hurry up and decide, then get the heck out of herrre!		   
-           MANYNY_SHOP_DIALOG = 8345; -- Are you in urgent needy-weedy of anything? I have a variety of thingy-wingies you may be interested in.		
-        WIJETIREN_SHOP_DIALOG = 8350; -- From humble Mithran cold medicines to the legendary Windurstian ambrrrosia of immortality, we have it all...				
+           QUESSE_SHOP_DIALOG = 8344; -- Welcome to the Windurst Chocobo Stables.
+        MONONCHAA_SHOP_DIALOG = 8345; -- , then hurry up and decide, then get the heck out of herrre!		   
+           MANYNY_SHOP_DIALOG = 8346; -- Are you in urgent needy-weedy of anything? I have a variety of thingy-wingies you may be interested in.		
+        WIJETIREN_SHOP_DIALOG = 8351; -- From humble Mithran cold medicines to the legendary Windurstian ambrrrosia of immortality, we have it all...				
 				
-     NHOBI_ZALKIA_OPEN_DIALOG = 8353; -- Psst... Interested in some rrreal hot property? From lucky chocobo digs to bargain goods that fell off the back of an airship...all my stuff is a rrreal steal!
-   NHOBI_ZALKIA_CLOSED_DIALOG = 8354; -- You're interested in some cheap shopping, rrright? I'm real sorry. I'm not doing business rrright now.
+     NHOBI_ZALKIA_OPEN_DIALOG = 8354; -- Psst... Interested in some rrreal hot property? From lucky chocobo digs to bargain goods that fell off the back of an airship...all my stuff is a rrreal steal!
+   NHOBI_ZALKIA_CLOSED_DIALOG = 8355; -- You're interested in some cheap shopping, rrright? I'm real sorry. I'm not doing business rrright now.
 
-      NYALABICCIO_OPEN_DIALOG = 8355; -- Ladies and gentlemen, kittens and cubs! Do we have the sale that you've been waiting forrr!
-    NYALABICCIO_CLOSED_DIALOG = 8356; -- Sorry, but our shop is closed rrright now. Why don't you go to Gustaberg and help the situation out therrre?
+      NYALABICCIO_OPEN_DIALOG = 8356; -- Ladies and gentlemen, kittens and cubs! Do we have the sale that you've been waiting forrr!
+    NYALABICCIO_CLOSED_DIALOG = 8357; -- Sorry, but our shop is closed rrright now. Why don't you go to Gustaberg and help the situation out therrre?
 
-     BIN_STEJIHNA_OPEN_DIALOG = 8357; -- Why don't you buy something from me? You won't regrrret it! I've got all sorts of goods from the Zulkheim region!
-   BIN_STEJIHNA_CLOSED_DIALOG = 8358; -- I'm taking a brrreak from  the saleswoman gig to give dirrrections.  So...through this arrrch is the residential  area.
+     BIN_STEJIHNA_OPEN_DIALOG = 8358; -- Why don't you buy something from me? You won't regrrret it! I've got all sorts of goods from the Zulkheim region!
+   BIN_STEJIHNA_CLOSED_DIALOG = 8359; -- I'm taking a brrreak from  the saleswoman gig to give dirrrections.  So...through this arrrch is the residential  area.
 
-   TARAIHIPERUNHI_OPEN_DIALOG = 8359; -- Ooh...do I have some great merchandise for you! Man...these are once-in-a-lifetime offers, so get them while you can.
- TARAIHIPERUNHI_CLOSED_DIALOG = 8360; -- I am but a poor  merchant. Mate, but you just wait! Strife...one day I'll live the high life. Hey, that's my dream, anyway...
+   TARAIHIPERUNHI_OPEN_DIALOG = 8360; -- Ooh...do I have some great merchandise for you! Man...these are once-in-a-lifetime offers, so get them while you can.
+ TARAIHIPERUNHI_CLOSED_DIALOG = 8361; -- I am but a poor  merchant. Mate, but you just wait! Strife...one day I'll live the high life. Hey, that's my dream, anyway...
 
-   MILLEROVIEUNET_OPEN_DIALOG = 9804; -- Please have a look at these wonderful products from Qufim Island! You won't regret it!
- MILLEROVIEUNET_CLOSED_DIALOG = 9805; -- Now that I've finally learned the language here, I'd like to start my own business. If I could only find a supplier...
+   MILLEROVIEUNET_OPEN_DIALOG = 9805; -- Please have a look at these wonderful products from Qufim Island! You won't regret it!
+ MILLEROVIEUNET_CLOSED_DIALOG = 9806; -- Now that I've finally learned the language here, I'd like to start my own business. If I could only find a supplier...
 
 
 --Test
-RAKOHBUUMA_OPEN_DIALOG = 7474; -- To expel those who would subvert the law and order of Windurst Woods...
+RAKOHBUUMA_OPEN_DIALOG = 7475; -- To expel those who would subvert the law and order of Windurst Woods...
 
 -- Quest Dialog
-PERIH_VASHAI_DIALOG = 8089; -- You can now become a ranger!
-     CATALIA_DIALOG = 8391; -- While we cannot break our promise to the Windurstians, to ensure justice is served, we would secretly like you to take two shields off of the Yagudo who you meet en route.
-      FORINE_DIALOG = 8392; -- Act according to our convictions while fulfilling our promise with the Tarutaru. This is indeed a fitting course for us, the people of glorious San d'Oria.
-     APURURU_DIALOG = 9317; -- There's no way Semih Lafihna will just hand it over for no good reason. Maybe if you try talking with Kupipi...
+PERIH_VASHAI_DIALOG = 8090; -- You can now become a ranger!
+     CATALIA_DIALOG = 8392; -- While we cannot break our promise to the Windurstians, to ensure justice is served, we would secretly like you to take two shields off of the Yagudo who you meet en route.
+      FORINE_DIALOG = 8393; -- Act according to our convictions while fulfilling our promise with the Tarutaru. This is indeed a fitting course for us, the people of glorious San d'Oria.
+     APURURU_DIALOG = 9318; -- There's no way Semih Lafihna will just hand it over for no good reason. Maybe if you try talking with Kupipi...
 
 -- Harvest Festival
-      TRICK_OR_TREAT = 9562; -- Trick or treat...
-     THANK_YOU_TREAT = 9563; -- And now for your treat...
-      HERE_TAKE_THIS = 9564; -- Here, take this...
-    IF_YOU_WEAR_THIS = 9565; -- If you put this on and walk around, something...unexpected might happen...
-           THANK_YOU = 9563; -- Thank you...<<<Prompt>>>
+      TRICK_OR_TREAT = 9563; -- Trick or treat...
+     THANK_YOU_TREAT = 9564; -- And now for your treat...
+      HERE_TAKE_THIS = 9565; -- Here, take this...
+    IF_YOU_WEAR_THIS = 9566; -- If you put this on and walk around, something...unexpected might happen...
+           THANK_YOU = 9567; -- Thank you...
