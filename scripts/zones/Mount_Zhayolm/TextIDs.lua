@@ -8,7 +8,7 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item> come back a
  FISHING_MESSAGE_OFFSET = 7020; -- You can't fish here
 
 -- Mining
-MINING_IS_POSSIBLE_HERE = 7383; -- Mining is possible here if you have <item>
+MINING_IS_POSSIBLE_HERE = 7384; -- Mining is possible here if you have
 
 -- Assault
 CANNOT_ENTER = 7442; -- You cannot enter at this time.  Please wait a while before trying again.

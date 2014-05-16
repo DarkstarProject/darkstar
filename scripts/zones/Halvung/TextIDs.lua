@@ -7,7 +7,7 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6382; -- Obtained key item: <keyitem>
 
 -- Mining
-MINING_IS_POSSIBLE_HERE = 7885; -- Mining is possible here if you have <item>
+MINING_IS_POSSIBLE_HERE = 7885; -- Mining is possible here if you have
 
 -- Other Texts
 NOTHING_HAPPENS = 7354; -- Nothing happens...

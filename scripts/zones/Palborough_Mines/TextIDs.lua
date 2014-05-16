@@ -12,19 +12,19 @@ NOTHING_OUT_OF_ORDINARY = 6393; -- There is nothing out of the ordinary here.
     SENSE_OF_FOREBODING = 6394; -- You are suddenly overcome with a sense of foreboding...
 
 -- Refiner Dialog
-SOMETHING_FALLS_OUT_OF_THE_MACHINE = 7336; -- Something falls out of the machine!
-   THE_MACHINE_SEEMS_TO_BE_WORKING = 7333; -- The machine seems to be working, but you cannot discern its purpose.
-     YOU_CANT_CARRY_ANY_MORE_ITEMS = 7339; -- There seems to be more left in the machine, but you can't carry any more items.
+SOMETHING_FALLS_OUT_OF_THE_MACHINE = 7337; -- Something falls out of the machine!
+   THE_MACHINE_SEEMS_TO_BE_WORKING = 7334; -- The machine seems to be working, but you cannot discern its purpose.
+     YOU_CANT_CARRY_ANY_MORE_ITEMS = 7340; -- There seems to be more left in the machine, but you can't carry any more items.
 
 -- Mining
-MINING_IS_POSSIBLE_HERE = 7360; -- Mining is possible here if you have <item>.
+MINING_IS_POSSIBLE_HERE = 7361; -- Mining is possible here if you have
 
 -- Treasure Coffer/Chest Dialog
-CHEST_UNLOCKED = 7374; -- You unlock the chest!
-    CHEST_FAIL = 7375; -- Fails to open the chest.
-    CHEST_TRAP = 7376; -- The chest was trapped!
-    CHEST_WEAK = 7377; -- You cannot open the chest when you are in a weakened state.
-   CHEST_MIMIC = 7378; -- The chest was a mimic!
-  CHEST_MOOGLE = 7379; -- You cannot open the chest while participating in the moogle event.
-CHEST_ILLUSION = 7380; -- The chest was but an illusion...
-  CHEST_LOCKED = 7381; -- The chest appears to be locked.
+CHEST_UNLOCKED = 7375; -- You unlock the chest!
+    CHEST_FAIL = 7376; -- Fails to open the chest.
+    CHEST_TRAP = 7377; -- The chest was trapped!
+    CHEST_WEAK = 7378; -- You cannot open the chest when you are in a weakened state.
+   CHEST_MIMIC = 7379; -- The chest was a mimic!
+  CHEST_MOOGLE = 7380; -- You cannot open the chest while participating in the moogle event.
+CHEST_ILLUSION = 7381; -- The chest was but an illusion...
+  CHEST_LOCKED = 7382; -- The chest appears to be locked.

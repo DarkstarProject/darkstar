@@ -22,14 +22,14 @@ CHEST_ILLUSION = 7370; -- The chest was but an illusion...
 		  	 SENSE_OF_FOREBODING = 6553; -- You are suddenly overcome with a sense of foreboding...
 		  		NOTHING_HAPPENED = 7305; -- Nothing happened...
 				
-			RETURN_RIBBON_TO_HER = 7318; -- You can hear a voice from somewhere....return...ribbon to...her...				
+			RETURN_RIBBON_TO_HER = 7318; -- You can hear a voice from somewhere. (...return...ribbon to...her...)
 				
 		  	  THE_BRAZIER_IS_LIT = 7332; -- The brazier is lit.
-		  		 REFUSE_TO_LIGHT = 7333; -- Unexpectedly, the Ducal Guard's lantern refuses to light.
-		  		LANTERN_GOES_OUT = 7334; -- For some strange reason, the light of the Ducal Guard's lantern goes out...
-		  		 THE_LIGHT_DIMLY = 7335; -- lights dimly. It doesn't look like this will be effective yet.?Prompt?
-	   THE_LIGHT_HAS_INTENSIFIED = 7336; -- The light of Ducal Guard's lantern has intensified.
-		  THE_LIGHT_IS_FULLY_LIT = 7337; --  is fully lit!?Prompt?
+                             REFUSE_TO_LIGHT = 7333; -- Unexpectedly, therefuses to light.
+                            LANTERN_GOES_OUT = 7334; -- For some strange reason, the light of thegoes out...
+    	  		     THE_LIGHT_DIMLY = 7335; -- lights dimly. It doesn't look like this will be effective yet.?Prompt?
+                   THE_LIGHT_HAS_INTENSIFIED = 7336; -- The light of thehas intensified.
+                      THE_LIGHT_IS_FULLY_LIT = 7337; --  is fully lit!
 
 SPIRIT_INCENSE_EMITS_PUTRID_ODOR = 7374; -- emits a putrid odor and burns up. Your attempt this time has failed...?Prompt?
    

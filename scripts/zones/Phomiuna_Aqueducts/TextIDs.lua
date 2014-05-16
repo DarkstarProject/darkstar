@@ -13,4 +13,4 @@ LAMP_OFFSET = 7190; -- A symbol for fire is engraved on the base of the lamp...
 -- Other
 NOTHING_OUT_HERE = 6393; -- There is nothing out of the ordinary here.
 DOOR_SEALED_SHUT = 7182; -- The door above you is sealed shut.
-     DOOR_LOCKED = 7184; -- The door is locked. You might be able to open it with <a bronze key>.
+     DOOR_LOCKED = 7184; -- The door is locked.You might be able to open it with

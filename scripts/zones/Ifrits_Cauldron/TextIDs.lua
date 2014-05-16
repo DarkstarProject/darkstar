@@ -2,11 +2,11 @@
 
 -- General Texts
    ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item>. Come back after sorting your inventory.
-FULL_INVENTORY_AFTER_TRADE = 6378; -- You cannot obtain the <item>. Try trading again after sorting your inventory.
+FULL_INVENTORY_AFTER_TRADE = 6378; -- You cannot obtain the #. Try trading again after sorting your inventory.
              ITEM_OBTAINED = 6379; -- Obtained: <item>.
               GIL_OBTAINED = 6380; -- Obtained <number> gil.
           KEYITEM_OBTAINED = 6382; -- Obtained key item: <keyitem>.
-            ITEMS_OBTAINED = 6388; -- You obtain <param2 number> <param1 item>!
+            ITEMS_OBTAINED = 6388; -- You obtain
 
 -- Other dialog
 NOTHING_OUT_OF_ORDINARY = 6393; -- There is nothing out of the ordinary here.
@@ -14,7 +14,7 @@ NOTHING_OUT_OF_ORDINARY = 6393; -- There is nothing out of the ordinary here.
 -- Altar of Ashes Dialog (unable to find csid)
 ALTAR_COMPLETED = 7209; -- You have already made an offering today.
   ALTAR_INSPECT = 7210; -- This looks like the altar where offerings are to be placed.
- ALTAR_OFFERING = 7211; -- You place your offering of <item> on the altar.
+ ALTAR_OFFERING = 7211; -- You place your offering of
  ALTAR_STANDARD = 7212; -- It is an altar for offerings.
 
 -- Treasure Coffer/Chest Dialog
@@ -28,4 +28,4 @@ CHEST_ILLUSION = 7226; -- The chest was but an illusion...
   CHEST_LOCKED = 7227; -- The chest appears to be locked.
 
 -- Mining
-MINING_IS_POSSIBLE_HERE = 7228; -- Mining is possible here if you have <item>.
+MINING_IS_POSSIBLE_HERE = 7228; -- Mining is possible here if you have
