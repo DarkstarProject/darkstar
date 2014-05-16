@@ -2736,12 +2736,12 @@ void SmallPacket0x066(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    uint32 charid = RBUFL(data,0x04);
-    uint16 targid = RBUFW(data,0x08);
+	uint32 charid = RBUFL(data,0x04);
+	uint16 targid = RBUFW(data,0x08);
 
-    // cannot invite yourself
-    if (PChar->id == charid)
-        return;
+	// Персонаж не должен приглашать сам себя.
+	if (PChar->id == charid)
+		return;
 
     if(jailutils::InPrison(PChar))
     {
@@ -2750,194 +2750,161 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
         return;
     }
 
-    if(PChar->getZone() == 0)
+    if (PChar->PParty == NULL || PChar->PParty->GetLeader() == PChar)
     {
-        // Initiator is in Mog House.  Send error message.
-        // Don't know if this is retail, but because of the way DSP currently handles MH it's necessary to block sending invite
-        PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 32));
-        return;
-    }
+        // если targid персонажа клиенту не известен, то получаем его из таблицы активных сессий
+        if (targid == 0)
+        {
+	        int32 ret = Sql_Query(SqlHandle, "SELECT targid FROM accounts_sessions WHERE charid = %u LIMIT 1", charid);
 
-    switch(RBUFB(data,(0x0A)))
-    {
-        case 0: // party - must by party leader or solo
-            if (PChar->PParty == NULL || PChar->PParty->GetLeader() == PChar)
+	        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+	        {
+		        targid = (uint16)Sql_GetIntData(SqlHandle,0);
+	        }
+        }
+
+        CCharEntity* PInvitee = zoneutils::GetCharFromRegion(
+			charid,
+			targid,
+            PChar->loc.zone->GetRegionID());
+
+	    if (PInvitee != NULL && !jailutils::InPrison(PInvitee))
+	    {
+			//make sure intvitee isn't dead and that they dont already have an invite pending
+			if (PInvitee->isDead() || PInvitee->InvitePending.id != 0)
+		    {
+			    PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 23));
+			    return;
+		    }
+
+            if (PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
             {
-                if (targid == 0) // if the targid of the character is not known, then get it from the table of active sessions
-                {
-                    int32 ret = Sql_Query(SqlHandle, "SELECT targid FROM accounts_sessions WHERE charid = %u LIMIT 1", charid);
-                    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-                        targid = (uint16)Sql_GetIntData(SqlHandle,0);
-                }
-                CCharEntity* PInvitee = zoneutils::GetCharFromWorld(charid, targid);
-                if (PInvitee)
-                {
-                    //make sure intvitee isn't dead or in jail, they aren't a party member and don't already have an invite pending, and your party is not full
-			        if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 || (PChar->PParty && PChar->PParty->members.size() == 6) || PInvitee->PParty != NULL)
-                    {
-			            PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 23));
-			            break;
-			        }
-			        if (PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
-			        {
-			            PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 236));
-			            break;
-			        }
-
-			        PInvitee->InvitePending.id = PChar->id;
-                    PInvitee->InvitePending.targid = PChar->targid;
-		            PInvitee->pushPacket(new CPartyInvitePacket(PInvitee, PChar, INVITE_PARTY));
-
-		            if (PChar->PParty && PChar->PParty->GetSyncTarget())
-		                PInvitee->pushPacket(new CMessageStandardPacket(PInvitee, 0, 0, 235));
-		        }
+                PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 236));
+                return;
             }
-            else //in party but not leader, cannot invite
-                PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 21));
-            break;
 
-       case 2: // alliance - must be unallied party leader or alliance leader of a non-full alliance
-            if (PChar->PParty && PChar->PParty->GetLeader() == PChar &&
-                (PChar->PParty->m_PAlliance == NULL ||
-                (PChar->PParty->m_PAlliance->getMainParty()->GetLeader() == PChar && PChar->PParty->m_PAlliance->partyCount() < 3)))
-            {
-                if (targid == 0) // if the targid of the character is not known, then get it from the table of active sessions
-                {
-                    int32 ret = Sql_Query(SqlHandle, "SELECT targid FROM accounts_sessions WHERE charid = %u LIMIT 1", charid);
-                    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-                        targid = (uint16)Sql_GetIntData(SqlHandle,0);
-                }
-                CCharEntity* PInvitee = zoneutils::GetCharFromWorld(charid, targid);
-                if (PInvitee)
-                {
-                    //make sure intvitee isn't dead or in jail, they are an unallied party leader and don't already have an invite pending
-                    if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 ||
-                        PInvitee->PParty == NULL || PInvitee->PParty->GetLeader() != PInvitee || PInvitee->PParty->m_PAlliance)
-                    {
-                        PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 23));
-                        break;
-                    }
-			        if (PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
-			        {
-			            PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 236));
-			            break;
-			        }
+			//check to see if user is adding a party leader for alliance
+			if (PInvitee->PParty != NULL)// && PChar->Party != NULL
+		    {
+				if (PInvitee->PParty->GetLeader() == PInvitee)
+				{
+					//make sure invitee does not already have alliance
+					if (PInvitee->PParty->m_PAlliance == NULL)
+					{
+						//party is not already in alliance so add them
+						PInvitee->InvitePending.id = PChar->id;
+						PInvitee->InvitePending.targid = PChar->targid;
+						PInvitee->pushPacket(new CPartyInvitePacket(PInvitee, PChar, INVITE_ALLIANCE));
+						return;
+					}
+				}
+			}
 
-                    PInvitee->InvitePending.id = PChar->id;
-                    PInvitee->InvitePending.targid = PChar->targid;
-                    PInvitee->pushPacket(new CPartyInvitePacket(PInvitee, PChar, INVITE_ALLIANCE));
-                }
-            }
-            break;
+		    if (PInvitee->PParty != NULL)
+		    {
+			    PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 12));
+			    return;
+		    }
 
-        default:
-            ShowError(CL_RED"SmallPacket0x06E : unknown byte <%.2X>\n" CL_RESET, RBUFB(data,(0x0A)));
-            break;
+            PInvitee->InvitePending.id = PChar->id;
+            PInvitee->InvitePending.targid = PChar->targid;
+		    PInvitee->pushPacket(new CPartyInvitePacket(PInvitee, PChar, INVITE_PARTY));
+
+		    if (PChar->PParty != NULL &&
+			    PChar->PParty->GetSyncTarget() != NULL)
+		    {
+			    PInvitee->pushPacket(new CMessageStandardPacket(PInvitee, 0, 0, 235));
+		    }
+	    }
     }
-    return;
+	return;
 }
 
 /************************************************************************
-*                                                                       *
-*  Party / Alliance Command 'Leave'                                     *
-*                                                                       *
+*																		*
+*  Персонаж покидает группу												*
+*																		*
 ************************************************************************/
 
 void SmallPacket0x06F(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    if (PChar->PParty)
-        switch(RBUFB(data,(0x04)))
-        {
-            case 0: // party - anyone may remove themself from party regardless of leadership or alliance
-                if (PChar->PParty->m_PAlliance && PChar->PParty->members.size() == 1) // single member alliance parties must be removed from alliance before disband
-                {
-                    if (PChar->PParty->m_PAlliance->partyCount() == 2) // if there are only 2 parties then dissolve alliance
-                        PChar->PParty->m_PAlliance->dissolveAlliance();
-                    else
-                        PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
-                }
-                PChar->PParty->RemoveMember(PChar);
-                break;
 
-            case 2: // alliance - any party leader in alliance may remove their party
-                if (PChar->PParty->m_PAlliance && PChar->PParty->GetLeader() == PChar)
-                {
-                    if (PChar->PParty->m_PAlliance->partyCount() == 2) // if there are only 2 parties then dissolve alliance
-                        PChar->PParty->m_PAlliance->dissolveAlliance();
-                    else
-                        PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
-                }
-                break;
+	//alliance - party leader dispands dropping the party from the alliance
+	if (PChar->PParty != NULL)
+	{
+		if (PChar->PParty->m_PAlliance != NULL)
+		{
+			if (PChar->PParty->m_PAlliance->getMainParty() != PChar->PParty)
+			{
+				if (PChar->PParty->GetLeader() == PChar)
+				{
+						//if there are only 2 parties then dissolve alliance
+						if (PChar->PParty->m_PAlliance->partyCount() == 2)
+						{
+							PChar->PParty->m_PAlliance->dissolveAlliance();
+							return;
+						}
+					//remove 1 party from alliance
+					PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
+					return;
+				}
 
-            default:
-                ShowError(CL_RED"SmallPacket0x06F : unknown byte <%.2X>\n" CL_RESET, RBUFB(data,(0x04)));
-                break;
-        }
-    return;
+			}
+		}
+	}
+
+	//normal party member disband
+	if (PChar->PParty != NULL){
+	PChar->PParty->RemoveMember(PChar);
+	}
+
+	return;
 }
 
 /************************************************************************
-*                                                                       *
-*  Party / Alliance Command 'Breakup'                                   *
-*                                                                       *
+*																		*
+*  Лидер распускает группу												*
+*																		*
 ************************************************************************/
 
 void SmallPacket0x070(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    if (PChar->PParty && PChar->PParty->GetLeader() == PChar)
-        switch(RBUFB(data,(0x04)))
-        {
-            case 0: // party - party leader may disband party if not an alliance member
-                if (PChar->PParty->m_PAlliance == NULL)
-                    PChar->PParty->DisbandParty();
-                break;
-
-            case 2: // alliance - only alliance leader may dissolve the entire alliance
-                if (PChar->PParty->m_PAlliance && PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
-                    PChar->PParty->m_PAlliance->dissolveAlliance();
-                break;
-
-            default:
-                ShowError(CL_RED"SmallPacket0x070 : unknown byte <%.2X>\n" CL_RESET, RBUFB(data,(0x04)));
-                break;
-        }
-    return;
+	//this is where alliance leader can dissolve alliance completely
+	if (PChar->PParty != NULL && PChar->PParty->GetLeader() == PChar)
+	{
+		if (PChar->PParty->m_PAlliance != NULL && PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
+		{
+			//dissolve the entire alliance
+			PChar->PParty->m_PAlliance->dissolveAlliance();
+		}
+		else
+		{
+			//just dissolve party
+			PChar->PParty->DisbandParty();
+		}
+	}
+	return;
 }
 
 /************************************************************************
-*                                                                       *
-*  Party / Linkshell / Alliance Command 'Kick'                          *
-*                                                                       *
+*																		*
+*  Удаляем члена группы или linckshell									*
+*																		*
 ************************************************************************/
 
 void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    switch(RBUFB(data,(0x0A)))
-    {
-        case 0: // party - party leader may remove member of his own party
-            if (PChar->PParty)
-            {
-                CCharEntity* PVictim = (CCharEntity*)(PChar->PParty->GetMemberByName(data+0x0C));
-                if (PVictim)
-                {
-                    if (PVictim == PChar) // using kick on yourself, let's borrow the logic from /pcmd leave to prevent alliance crash
-                    {
-                        if (PChar->PParty->m_PAlliance && PChar->PParty->members.size() == 1) // single member alliance parties must be removed from alliance before disband
-                        {
-                            if (PChar->PParty->m_PAlliance->partyCount() == 2) // if there are only 2 parties then dissolve alliance
-                                PChar->PParty->m_PAlliance->dissolveAlliance();
-                            else
-                                PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
-                        }
-                    }
-                    else if (PChar->PParty->GetLeader() != PChar) // not leader, cannot kick others
-                        break;
- 
-                    PChar->PParty->RemoveMember(PVictim);
-                }
-            }
-            break;
-
+	switch(RBUFB(data,(0x0A)))
+	{
+		case 0: // party
+		{
+			if (PChar->PParty != NULL &&
+				PChar->PParty->GetLeader() == PChar)
+			{
+				PChar->PParty->RemoveMemberByName(data+0x0C);
+			}
+		}
+		break;
         case 1: // linkshell
         {
             // Ensure the player has a linkshell equipped..
@@ -2945,7 +2912,7 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 break;
 
             // Ensure the linkshell is valid..
-            CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK);
+            CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);
             if (PItemLinkshell == NULL || !PItemLinkshell->isType(ITEM_LINKSHELL))
                 break;
 
@@ -2959,7 +2926,7 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 break;
 
             // Obtain the victims linkshell.. (And ensure it is the same as ours to prevent exploiting..)
-            CItemLinkshell* PItemLinkshellVictim = (CItemLinkshell*)PVictim->getEquip(SLOT_LINK);
+            CItemLinkshell* PItemLinkshellVictim = (CItemLinkshell*)PVictim->getStorage(LOC_INVENTORY)->GetItem(PVictim->equip[SLOT_LINK]);
             if (PItemLinkshellVictim == NULL || PItemLinkshellVictim->GetLSID() != PItemLinkshell->GetLSID())
                 break;
 
@@ -2977,35 +2944,12 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* dat
             }
         }
         break;
-
-        case 2: // alliance - alliance leader may kick a party by using that party's leader as kick parameter
-            if (PChar->PParty && PChar->PParty->GetLeader() == PChar && PChar->PParty->m_PAlliance)
-            {
-                CCharEntity* PVictim = NULL;
-                for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyCount(); ++i)
-                {
-                    PVictim = (CCharEntity*)(PChar->PParty->m_PAlliance->partyList[i]->GetMemberByName(data+0x0C));
-                    if (PVictim && PVictim->PParty && PVictim->PParty->m_PAlliance) // victim is in this party
-                    {
-                        //if using kick on yourself, or alliance leader using kick on another party leader - remove the party
-                        if (PVictim == PChar || (PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty && PVictim->PParty->GetLeader() == PVictim))
-                        {
-                            if (PVictim->PParty->m_PAlliance->partyCount() == 2) // if there are only 2 parties then dissolve alliance
-                                PVictim->PParty->m_PAlliance->dissolveAlliance();
-                            else
-                                PVictim->PParty->m_PAlliance->removeParty(PVictim->PParty);
-                        }
-                        break; // we're done, break the for
-                    }
-                }
-            }
-            break;
-
-        default:
-            ShowError(CL_RED"SmallPacket0x071 : unknown byte <%.2X>\n" CL_RESET, RBUFB(data,(0x0A)));
-            break;
-    }
-    return;
+		default:
+		{
+			ShowError(CL_RED"SmallPacket0x071 : unknown byte <%.2X>\n" CL_RESET, RBUFB(data,(0x0A)));
+		}
+	}
+	return;
 }
 
 /************************************************************************
@@ -3016,7 +2960,10 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    CCharEntity* PInviter = zoneutils::GetCharFromWorld(PChar->InvitePending.id, PChar->InvitePending.targid);
+    CCharEntity* PInviter = zoneutils::GetCharFromRegion(
+        PChar->InvitePending.id,
+        PChar->InvitePending.targid,
+        PChar->loc.zone->GetRegionID());
 
 	if (PInviter != NULL)
 	{
@@ -3036,31 +2983,29 @@ void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			//both invitee and and inviter are party leaders
 			if(PInviter->PParty->GetLeader() == PInviter && PChar->PParty->GetLeader() == PChar)
 			{
-                //the inviter already has an alliance and wants to add another party - only add if they have room for another party
-                if(PInviter->PParty->m_PAlliance && PInviter->PParty->m_PAlliance->getMainParty()->GetLeader() == PInviter)
-                {
-                        //break if alliance is full
-                        if(PInviter->PParty->m_PAlliance->partyCount() == 3)
-                        {
-                            PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 14));
-                            PChar->InvitePending.clean();
-                            return;
-                        }
+
+				//the inviter already has an alliance and wants to add another party - only add if they have room for another party
+				if(PInviter->PParty->GetLeader() == PInviter && PInviter->PParty->m_PAlliance != NULL)
+				{
+					if(PInviter->PParty->m_PAlliance->getMainParty()->GetLeader() == PInviter)
+					{
+						//break if alliance is full
+						if(PInviter->PParty->m_PAlliance->partyCount() == 3)  return;
 
 
-                        //alliance is not full, add the new party
-                        PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
-                        PChar->InvitePending.clean();
-                        return;
-                }
-                else
-                {
-                    //party leaders have no alliance - create a new one!
-                    CAlliance* PAlliance = new CAlliance(PInviter);
-                    PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
-                    PChar->InvitePending.clean();
-                    return;
-                }
+						//alliance is not full, add the new party
+						PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
+						PChar->InvitePending.clean();
+						return;
+					}
+				}
+
+
+				//party leaders have no alliance - create a new one!
+				CAlliance* PAlliance = new CAlliance(PInviter);
+				PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
+				PChar->InvitePending.clean();
+				return;
 			}
 		}
 
@@ -3077,7 +3022,7 @@ void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 if (PInviter->PParty->GetLeader() == PInviter)
                 {
 				    if(PInviter->PParty->members.size()==6){//someone else accepted invitation
-					    //PInviter->pushPacket(new CMessageStandardPacket(PInviter, 0, 0, 14)); Don't think retail sends error packet to inviter on full pt
+					    PInviter->pushPacket(new CMessageStandardPacket(PInviter, 0, 0, 14));
 					    PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 14));
 				    }
 				    else{
@@ -3748,7 +3693,7 @@ void SmallPacket0x0BE(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x0C3(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK);
+    CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);
 
     if (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL))
     {
@@ -3842,7 +3787,7 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     }
                     if (PChar->PLinkshell != NULL) // switching linkshell group
                     {
-                        CItemLinkshell* POldItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK);
+                        CItemLinkshell* POldItemLinkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);
 
                         if (POldItemLinkshell != NULL && POldItemLinkshell->isType(ITEM_LINKSHELL))
                         {
@@ -4192,7 +4137,7 @@ void SmallPacket0x0E1(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x0E2(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK);
+    CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);
 
     if (PChar->PLinkshell != NULL && (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL)))
     {

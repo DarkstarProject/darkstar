@@ -191,14 +191,19 @@ CCharEntity* GetCharByName(int8* name)
 *                                                                       *
 ************************************************************************/
 
-CCharEntity* GetCharFromWorld(uint32 charid, uint16 targid)
+CCharEntity* GetCharFromRegion(uint32 charid, uint16 targid, uint8 RegionID)
 {
-    // will not return pointers to players in Mog House
-    for (uint16 ZoneID = 1; ZoneID < MAX_ZONEID; ZoneID++)
-    {
-        CBaseEntity* PEntity = g_PZoneList[ZoneID]->GetEntity(targid, TYPE_PC);
-        if (PEntity != NULL && PEntity->id == charid)
-            return (CCharEntity*)PEntity;
+    for (uint16 ZoneID = 0; ZoneID < MAX_ZONEID; ZoneID++)
+	{
+        if (g_PZoneList[ZoneID]->GetRegionID() == RegionID)
+        {
+            CBaseEntity* PEntity = g_PZoneList[ZoneID]->GetEntity(targid, TYPE_PC);
+
+            if (PEntity != NULL && PEntity->id == charid)
+            {
+                return (CCharEntity*)PEntity;
+            }
+        }
     }
     return NULL;
 }

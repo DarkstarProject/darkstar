@@ -65,16 +65,19 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
     WBUFB(data,(0x2C)-4) = PChar->GetSpeed();
 	WBUFB(data,(0x30)-4) = PChar->animation;
 
-	CItemLinkshell* linkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK);
+    if (PChar->equip[SLOT_LINK] != 0)
+    {
+	    CItemLinkshell* linkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);
 
-	if ((linkshell != NULL) && linkshell->isType(ITEM_LINKSHELL))
-	{
-		lscolor_t LSColor = linkshell->GetLSColor();
+	    if ((linkshell != NULL) && linkshell->isType(ITEM_LINKSHELL))
+	    {
+		    lscolor_t LSColor = linkshell->GetLSColor();
 
-		WBUFB(data,(0x31)-4) = (LSColor.R << 4) + 15;
-		WBUFB(data,(0x32)-4) = (LSColor.G << 4) + 15;
-		WBUFB(data,(0x33)-4) = (LSColor.B << 4) + 15;
-	}
+		    WBUFB(data,(0x31)-4) = (LSColor.R << 4) + 15;
+		    WBUFB(data,(0x32)-4) = (LSColor.G << 4) + 15;
+		    WBUFB(data,(0x33)-4) = (LSColor.B << 4) + 15;
+	    }
+    }
 	if (PChar->PPet != NULL)
 	{
 		WBUFW(data,(0x34)-4) = PChar->PPet->targid << 3;

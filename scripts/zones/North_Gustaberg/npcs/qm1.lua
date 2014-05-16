@@ -53,8 +53,9 @@ function onEventFinish(player,csid,option)
 
 		local mainweapon = player:getEquipID(SLOT_MAIN);
 		local subweapon = player:getEquipID(SLOT_SUB);
+		local currentJob = player:getMainJob();
 
-		if (mainweapon == 0 and subweapon == 0) then
+		if (mainweapon == 0 and subweapon == 0 and currentJob ~= 3) then
 
 			local freeslots = player:getFreeSlotsCount();
 			local alreadyHasItem = player:hasItem(576);

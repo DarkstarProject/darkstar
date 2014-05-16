@@ -532,11 +532,6 @@ public:
 	int32 hideName(lua_State* L);
 	int32 untargetable(lua_State* L);
 	int32 hideHP(lua_State* L);
-
-	int32 breathDmgTaken(lua_State* L);
-	int32 magicDmgTaken(lua_State* L);
-	int32 physicalDmgTaken(lua_State* L);
-	int32 rangedDmgTaken(lua_State* L);
 };
 
 #endif

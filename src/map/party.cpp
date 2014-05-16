@@ -175,19 +175,23 @@ uint8 CParty::MemberCount(uint8 ZoneID)
 
 /************************************************************************
 *                                                                       *
-*  Returns Entity Pointer to Party Member by Name (used for kick)       *
+*  Удаление персонажа из группы по имени (только для персонажей)        *
 *                                                                       *
 ************************************************************************/
 
-CBattleEntity* CParty::GetMemberByName(int8* MemberName)
+void CParty::RemoveMemberByName(int8* MemberName)
 {
     DSP_DEBUG_BREAK_IF(m_PartyType != PARTY_PCS);
 
-    for (uint32 i = 0; i < members.size(); ++i)
-        if (strcmp(MemberName, members.at(i)->GetName()) == 0)
-            return members.at(i);
-
-    return NULL;
+	for (uint32 i = 0; i < members.size(); ++i)
+	{
+		if (strcmp(MemberName, members.at(i)->GetName()) == 0)
+		{
+			RemoveMember(members.at(i));
+			return;
+		}
+	}
+	ShowError(CL_RED"The character with name <%s> isn't found in party\n" CL_RESET, MemberName);
 }
 
 /************************************************************************

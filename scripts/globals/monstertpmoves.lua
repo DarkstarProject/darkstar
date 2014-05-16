@@ -645,21 +645,23 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 	    return 0;
 	end
 
+	dmg = utils.dmgTaken(target, dmg);
+
 	if(skilltype == MOBSKILL_PHYSICAL) then
 
-		dmg = target:physicalDmgTaken(dmg);
+		dmg = utils.physicalDmgTaken(target, dmg);
 
 	elseif(skilltype == MOBSKILL_MAGICAL) then
 
-		dmg = target:magicDmgTaken(dmg);
+		dmg = utils.magicDmgTaken(target, dmg);
 
 	elseif(skilltype == MOBSKILL_BREATH) then
 
-		dmg = target:breathDmgTaken(dmg);
+		dmg = utils.breathDmgTaken(target, dmg);
 
 	elseif(skilltype == MOBSKILL_RANGED) then
 
-		dmg = target:rangedDmgTaken(dmg);
+		dmg = utils.rangedDmgTaken(target, dmg);
 
 	end
 

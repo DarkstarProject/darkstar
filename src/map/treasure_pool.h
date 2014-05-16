@@ -85,8 +85,6 @@ public:
     void TreasureError(CCharEntity* winner, uint8 SlotID);
 	void TreasureLost(uint8 SlotID);
 
-    bool CanAddSeal();
-
 private:
 
 	uint32 m_Tick;
@@ -96,7 +94,7 @@ private:
 
 	void CheckTreasureItem(uint32 tick, uint8 SlotID);
 
-	TreasurePoolItem m_PoolItems[TREASUREPOOL_SIZE];
+	TreasurePoolItem m_PoolItems[TREASUREPOOL_SIZE+1];
 
 	std::vector<CCharEntity*> members;
 };

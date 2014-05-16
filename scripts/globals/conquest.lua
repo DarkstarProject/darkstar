@@ -1047,7 +1047,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("ELSHIMOUPLANDS");
 
-	local Ilieumort = 17285645;
+	local Ilieumort = 17285643;
 	
 	npc  ={
 	--

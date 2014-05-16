@@ -444,20 +444,18 @@ void CAIMobDummy::ActionDropItems()
 				*/
 
 				uint8 Pzone = PChar->getZone();
-
 				bool validZone = ((Pzone > 0 && Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255));
 
-                if(validZone && charutils::GetRealExp(PChar->GetMLevel(),m_PMob->GetMLevel()) > 0)
-                {
+				if(validZone && charutils::GetRealExp(PChar->GetMLevel(),m_PMob->GetMLevel())>0 && m_PMob->m_Type == MOBTYPE_NORMAL){ //exp-yielding monster and drop is successful
+					//TODO: The drop is actually based on a 5 minute timer, and not a probability of dropping!
 
 					if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && m_PMob->m_Element > 0 && WELL512::irand()%100 < 20) // Need to move to SIGNET_CHANCE constant
 					{
 						PChar->PTreasurePool->AddItem(4095 + m_PMob->m_Element, m_PMob);
-						
 					}
-
-					if (WELL512::irand() % 100 < 20 && PChar->PTreasurePool->CanAddSeal())
+					if(WELL512::irand()%100 < 20)
 					{
+
 						//RULES: Only 1 kind may drop per mob
 						if(m_PMob->GetMLevel() < 50){ //b.seal only
 							PChar->PTreasurePool->AddItem(1126, m_PMob);
@@ -985,14 +983,13 @@ void CAIMobDummy::ActionAbilityFinish()
 		if(m_PMobSkill->hasMissMsg())
 		{
 		    Action.reaction   = REACTION_MISS;
-            Action.speceffect = SPECEFFECT_NONE;
             if (msg = m_PMobSkill->getAoEMsg())
                 msg = 282;
 		} else {
 		    Action.reaction   = REACTION_HIT;
 		}
 
-        if (Action.speceffect & SPECEFFECT_HIT)
+        if (Action.speceffect & SPECEFFECT_HIT && Action.param > 0)
         {
             Action.speceffect = SPECEFFECT_RECOIL;
             Action.knockback = m_PMobSkill->getKnockback();
@@ -1561,9 +1558,6 @@ void CAIMobDummy::ActionAttack()
 							Action.messageID = 70;
 							Action.reaction   = REACTION_PARRY;
 							Action.speceffect = SPECEFFECT_NONE;
-
-							battleutils::HandleTacticalParry(m_PBattleTarget);
-							battleutils::HandleIssekiganEnmityBonus(m_PBattleTarget, m_PMob);
 						}
 						else if (battleutils::IsAbsorbByShadow(m_PBattleTarget))
 						{

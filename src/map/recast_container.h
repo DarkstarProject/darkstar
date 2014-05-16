@@ -33,10 +33,9 @@ enum RECASTTYPE
 {
     RECAST_ITEM     = 0,
     RECAST_MAGIC    = 1,
-    RECAST_ABILITY  = 2,
-	RECAST_LOOT     = 3
+    RECAST_ABILITY  = 2
 };
-#define MAX_RECASTTPE_SIZE   4
+#define MAX_RECASTTPE_SIZE   3
 
 struct Recast_t 
 {
@@ -93,7 +92,6 @@ class CRecastContainer
     RecastList_t RecastItemList;
     RecastList_t RecastMagicList;
     RecastList_t RecastAbilityList;
-	RecastList_t RecastLootList;
 };
 
 #endif

@@ -1,7 +1,6 @@
 -----------------------------------
 --
--- INHIBIT_TP
--- Reduces TP Gain By a % Factor
+-- 	EFFECT_NONE
 -- 	
 -----------------------------------
 
@@ -10,14 +9,13 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-	target:addMod(MOD_INHIBIT_TP, effect:getPower());
 end;
 
 -----------------------------------
 -- onEffectTick Action
 -----------------------------------
 
-function onEffectTick(target,effect)	
+function onEffectTick(target,effect)
 end;
 
 -----------------------------------
@@ -25,5 +23,4 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	target:delMod(MOD_INHIBIT_TP, effect:getPower());
 end;

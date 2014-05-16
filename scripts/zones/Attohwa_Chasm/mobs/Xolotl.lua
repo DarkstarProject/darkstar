@@ -10,8 +10,7 @@ require("scripts/globals/titles");
 -- onMobSpawn Action
 -----------------------------------
 
-function onMobSpawn(mob)
-    mob:setRespawnTime(0, true);
+function OnMobSpawn(mob)
 end;
 
 -----------------------------------
@@ -20,6 +19,9 @@ end;
 
 function onMobDeath(mob, killer)
 	killer:addTitle(XOLOTL_XTRAPOLATOR);	
-	-- Do not respawn Xolotl for 21-24 hours
-	mob:setRespawnTime(math.random((75600),(86400)), true);
+	-- Do not respawn Xolotl for 24 hours
+	-- DeterMob is disabled in globals/automatisation.lua at midnight, if timer is up.
+	DeterMob(mob:getID(), true);
+	SetServerVariable("[POP]Xolotl", os.time(t) + 86400);
+
 end;

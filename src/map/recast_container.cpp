@@ -68,7 +68,6 @@ std::vector<Recast_t*>* CRecastContainer::GetRecastList(RECASTTYPE type)
         case RECAST_MAGIC:   return &RecastMagicList;
         case RECAST_ABILITY: return &RecastAbilityList;
         case RECAST_ITEM:    return &RecastItemList;
-		case RECAST_LOOT:    return &RecastLootList;
     }
     //Unhandled Scenario
 	DSP_DEBUG_BREAK_IF(true);
@@ -269,7 +268,7 @@ void CRecastContainer::Check(uint32 tick)
                     m_PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_INVENTORY, recast->ID));
 	                m_PChar->pushPacket(new CInventoryFinishPacket());
                 }
-                if (type == RECAST_ITEM || type == RECAST_MAGIC || type == RECAST_LOOT)
+                if (type == RECAST_ITEM || type == RECAST_MAGIC)
                 {
                     PRecastList->erase(PRecastList->begin() + i--);
                     delete recast;

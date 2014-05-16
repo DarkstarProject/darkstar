@@ -377,8 +377,6 @@ public:
 	void SetPlayTime(uint32 playTime);				// Set playtime
 	uint32 GetPlayTime(bool needUpdate = true);		// Get playtime
 
-	CItemArmor* getEquip(SLOTTYPE slot);
-
 	 CCharEntity();									// конструктор
 	~CCharEntity();									// деструктор
 

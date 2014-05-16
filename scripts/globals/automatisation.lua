@@ -63,6 +63,12 @@ function OnGameDayAutomatisation()
 		GetNPCByID(Moongate_Offset):openDoor(432);
 		GetNPCByID(Moongate_Offset+1):openDoor(432);
 	end
+
+	-- Can spawn Xolotl?
+	local ToD = GetServerVariable("[POP]Xolotl");
+	if (ToD <= os.time(t)) then
+		DeterMob(16806215, false);
+	end
 	
 	-- Removes daily the bit mask that tracks the treats traded for Harvest Festival.
 	if (isHalloweenEnabled() ~= 0) then
