@@ -2262,3 +2262,9 @@ INSERT INTO `item_latents` VALUES(15364, 169, 25, 26, 2); -- Dusk - Dawn: Speed 
 -- Rossignol
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(18075, 8, 2, 26, 2); -- Dusk - Dawn: STR +2
+
+-- -------------------------------------------------------
+-- Cheviot/Umbra Cape (physical damage reduction doubled at night)
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13651, 161, -5, 26, 1);
+INSERT INTO `item_latents` VALUES(13652, 161, -6, 26, 1);
