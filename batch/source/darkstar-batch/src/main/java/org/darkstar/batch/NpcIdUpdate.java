@@ -155,15 +155,22 @@ public class NpcIdUpdate {
 				
 				// If we can't find the npc at all, we'll reference the mapping file.
 				if(!DarkstarUtils.isCurrentNpcNameInPolUtilsMobList(polUtilsMobListString, npcName)){
-					npcName = mappingProperties.getProperty(DarkstarUtils.getMappingKey(zoneId, npcName), npcName);				}
+					npcName = mappingProperties.getProperty(DarkstarUtils.getMappingKey(zoneId, npcName), npcName);				
+				}
 				
 				// If we still can't find it, we have to guess best off the current trend.
 				if(!DarkstarUtils.isCurrentNpcNameInPolUtilsMobList(polUtilsMobListString, npcName)){											
-					final int shiftedId = DarkstarUtils.convertPolUtilsNpcIdToDarkstar(shiftedPolUtilsId);
-					LOG.info(String.format("Pre-Scan: Unable To Locate Npc Name <%s>, Using Trend Shift <%d>: %d -> %d", npcName, shiftTrend, npcId, shiftedId));
-					npcIdShiftProperties.setProperty(String.valueOf(polUtilsNpcId),String.valueOf(shiftedPolUtilsId));
-					DarkstarUtils.replaceNpcId(npcListSqlLines, lineIndex, shiftedId);
-					guesses++;
+					final int shiftedId = DarkstarUtils.convertPolUtilsNpcIdToDarkstar(shiftedPolUtilsId);					
+
+					if(npcId==shiftedId){
+						LOG.info(String.format("Pre-Scan: Unable To Locate Npc Name <%s>, Shift Trend is <0> so we're leaving it alone!", npcName));
+					}
+					else {
+						LOG.info(String.format("Pre-Scan: Unable To Locate Npc Name <%s>, Using Trend Shift <%d>: %d -> %d", npcName, shiftTrend, npcId, shiftedId));
+						npcIdShiftProperties.setProperty(String.valueOf(polUtilsNpcId),String.valueOf(shiftedPolUtilsId));
+						DarkstarUtils.replaceNpcId(npcListSqlLines, lineIndex, shiftedId);
+						guesses++;
+					}
 					continue;
 				}
 				
