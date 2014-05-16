@@ -534,8 +534,8 @@ public:
 	virtual void	ZoneServerRegion(uint32 tick);
 	void			CheckRegions(CCharEntity* PChar);
 
-	virtual void ForEachChar(std::function<void(CCharEntity*)> func);
-	virtual void ForEachCharInstance(CBaseEntity* PEntity, std::function<void(CCharEntity*)> func);
+	virtual void	ForEachChar(std::function<void(CCharEntity*)> func);
+	virtual void	ForEachCharInstance(CBaseEntity* PEntity, std::function<void(CCharEntity*)> func);
 
 	CZone(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID);
 	virtual ~CZone();
