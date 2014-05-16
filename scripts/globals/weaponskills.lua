@@ -26,17 +26,22 @@ function doPhysicalWeaponskill(attacker, target, params)
         local belt = attacker:getEquipID(SLOT_WAIST);
         local SCProp1, SCProp2, SCProp3 = attacker:getWSSkillchainProp();
 
-        for i = 1, 8, 1 do
-            if (neck == elementalGorget[i] and (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3))) then
+        for i,v in ipairs(elementalGorget) do
+            if (neck == v and (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3))) then
                 bonusacc = bonusacc + 10;
                 bonusfTP = bonusfTP + 0.1;
+                break;
             end
-            if (waist == elementalBelt[i] and (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3))) then
+        end
+
+        for i,v in ipairs(elementalBelt) do
+            if (belt == v and (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3))) then
                 bonusacc = bonusacc + 10;
                 bonusfTP = bonusfTP + 0.1;
+                break;
             end
-         end
-         --printf("bonusacc = %u bonusfTP = %f", bonusacc, bonusfTP);
+        end
+        --printf("bonusacc = %u bonusfTP = %f", bonusacc, bonusfTP);
     end
 
 	--get fstr
@@ -610,17 +615,22 @@ return alpha;
         local belt = attacker:getEquipID(SLOT_WAIST);
         local SCProp1, SCProp2, SCProp3 = attacker:getWSSkillchainProp();
 
-        for i = 1, 8, 1 do
-            if (neck == elementalGorget[i] and (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3))) then
+        for i,v in ipairs(elementalGorget) do
+            if (neck == v and (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3))) then
                 bonusacc = bonusacc + 10;
                 bonusfTP = bonusfTP + 0.1;
+                break;
             end
-            if (waist == elementalBelt[i] and (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3))) then
+        end
+
+        for i,v in ipairs(elementalBelt) do
+            if (belt == v and (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3))) then
                 bonusacc = bonusacc + 10;
                 bonusfTP = bonusfTP + 0.1;
+                break;
             end
-         end
-         --printf("bonusacc = %u bonusfTP = %f", bonusacc, bonusfTP);
+        end
+        --printf("bonusacc = %u bonusfTP = %f", bonusacc, bonusfTP);
     end
 
 	--get fstr
