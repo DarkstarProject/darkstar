@@ -8,4 +8,4 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item>. Come back 
  FISHING_MESSAGE_OFFSET = 7046; -- You can't fish here.
  
 -- Harvesting
-HARVESTING_IS_POSSIBLE_HERE = 7039; -- Harvesting is possible here if you have <item>.
+HARVESTING_IS_POSSIBLE_HERE = 7039; -- Harvesting is possible here if you have

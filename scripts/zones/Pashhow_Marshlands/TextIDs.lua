@@ -8,7 +8,7 @@ ITEM_CANNOT_BE_OBTAINED = 6390; -- You cannot obtain the item <item>. Come back 
  FISHING_MESSAGE_OFFSET = 7193; -- You can't fish here.
 
 -- Conquest
-CONQUEST = 7875; -- You've earned conquest points!
+CONQUEST = 7876; -- You've earned conquest points!
 
 -- Other Dialog
 BEASTMEN_BANNER = 7115; -- There is a beastmen's banner.

@@ -8,4 +8,4 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item> come back a
  FISHING_MESSAGE_OFFSET = 7190; -- You can't fish here.
  
 -- NPC Dialogue 
-KHOTS_CHALAHKO_OFFSET = 7357; -- Ahhh... Isn't it grrreat out here on the open sea!??Prompt?
+KHOTS_CHALAHKO_OFFSET = 7358; -- Ahhh... Isn't it grrreat out here on the open sea!

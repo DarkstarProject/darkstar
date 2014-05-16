@@ -9,7 +9,7 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item>. Come back 
 
 -- Other dialog
 NOTHING_OUT_OF_ORDINARY = 6393; -- There is nothing out of the ordinary here.
-            DOOR_CLOSED = 7312; -- The door is locked tight.
+            DOOR_CLOSED = 7313; -- The door is locked tight.
 
 -- Logging
-LOGGING_IS_POSSIBLE_HERE = 7566; -- Logging is possible here if you have <item>.
+LOGGING_IS_POSSIBLE_HERE = 7567; -- Logging is possible here if you have

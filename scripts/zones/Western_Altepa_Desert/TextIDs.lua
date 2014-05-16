@@ -11,12 +11,12 @@ FULL_INVENTORY_AFTER_TRADE = 6378; -- You cannot obtain the <item>. Try trading 
     FISHING_MESSAGE_OFFSET = 7179; -- You can't fish here.
 
 -- ZM4 dialog
-    CANNOT_REMOVE_FRAG = 7309; -- It is an oddly shaped monument. A shiny stone... cannot be removed.
- ALREADY_OBTAINED_FRAG = 7310; -- You have already obtained this monuments...
-ALREADY_HAVE_ALL_FRAGS = 7311; -- You have obtained all of the fragments. You must hurry to the ruins of the ancient shrine!
-       FOUND_ALL_FRAGS = 7311; -- You have obtained <frag>! You now have all 8 fragments of light!
-       ZILART_MONUMENT = 7313; -- It is an ancient Zilart monument.?Prompt?
+    CANNOT_REMOVE_FRAG = 7310; -- It is an oddly shaped stone monument. A shining stone is embedded in it, but cannot be removed...
+ ALREADY_OBTAINED_FRAG = 7311; -- You have already obtained this monument's
+ALREADY_HAVE_ALL_FRAGS = 7312; -- You have obtained all of the fragments. You must hurry to the ruins of the ancient shrine!
+       FOUND_ALL_FRAGS = 7313; -- You now have all 8 fragments of light!
+       ZILART_MONUMENT = 7314; -- It is an ancient Zilart monument.
 
 -- Other dialog
-	 THE_DOOR_IS_LOCKED = 7292; -- The door is locked.
-	   DOES_NOT_RESPOND = 7293; -- It does not respond.
+	 THE_DOOR_IS_LOCKED = 7293; -- The door is locked.
+	   DOES_NOT_RESPOND = 7294; -- It does not respond.

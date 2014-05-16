@@ -12,8 +12,8 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item> come back a
 NOTHING_OUT_OF_ORDINARY = 6393; -- There is nothing out of the ordinary here.
 
 -- Manaclipper
-  NO_BILLET = 7446; -- You were refused passage for failing to present <item>!
-HAVE_BILLET = 7451; -- You cannot buy morrre than one <item>.  Use the one you have now to ride the next ship.
-LEFT_BILLET = 7456; -- You use your <item> (<quantity> trip(s) remaining).
- END_BILLET = 7457; -- You use up your <item>.
-NEWS_BILLET = 7458; -- ?Numeric Parameter 1? ticket?Singular/Plural Choice (Parameter 1)?[/s] ?Singular/Plural Choice (Parameter 1)?[was/were] added to your ?Possible Special Code: 01??Possible Special Code: 05?3?BAD CHAR: 8280??BAD CHAR: 80??BAD CHAR: 80?.?Prompt?
+  NO_BILLET = 7447; -- You were refused passage for failing to present
+HAVE_BILLET = 7452; -- You cannot buy morrre than one . Use the one you have now to ride the next ship.
+LEFT_BILLET = 7457; -- You use your
+ END_BILLET = 7458; -- You use up your
+NEWS_BILLET = 7459; -- added to your
