@@ -33,10 +33,12 @@ public:
 	bool RegisterChar(CCharEntity*);
 
 	uint8 GetLevelCap();
+	const int8* GetName();
 	position_t GetEntryLoc();
 	void SetLevelCap(uint8 cap);
 	void SetEntryLoc(float x, float y, float z, float rot);
-	void CheckTime(uint32 tick);
+	bool TimeExpired(uint32 tick);
+	bool CharRegistered(CCharEntity* PChar);
 
 	CInstance(CZone*, uint8 instanceid);
 	~CInstance();

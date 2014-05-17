@@ -22,7 +22,9 @@ This file is part of DarkStar-server source code.
 */
 
 #include "zone_instance.h"
+#include "../common/timer.h"
 #include "entities/charentity.h"
+#include "lua/luautils.h"
 #include "utils/zoneutils.h"
 
 /************************************************************************
@@ -95,12 +97,20 @@ void CZoneInstance::TransportDepart(CBaseEntity* PTransportNPC)
 
 void CZoneInstance::DecreaseZoneCounter(CCharEntity* PChar)
 {
-	if (PChar->PInstance)
+	CInstance* instance = PChar->PInstance;
+
+	if (instance)
 	{
-		PChar->PInstance->DecreaseZoneCounter(PChar);
-		PChar->PInstance->DespawnPC(PChar);
+		instance->DecreaseZoneCounter(PChar);
+		instance->DespawnPC(PChar);
 		CharZoneOut(PChar);
 		PChar->PInstance = NULL;
+
+		if (instance->TimeExpired(gettick()) && instance->CharListEmpty())
+		{
+			instanceList.erase(std::find(instanceList.begin(), instanceList.end(), instance));
+			delete instance;
+		}
 	}
 }
 
@@ -109,6 +119,18 @@ void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
 	DSP_DEBUG_BREAK_IF(PChar == NULL);
 	DSP_DEBUG_BREAK_IF(PChar->loc.zone != NULL);
 	DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != NULL);
+
+	//return char to instance (d/c or logout)
+	if (!PChar->PInstance)
+	{
+		for (auto instance : instanceList)
+		{
+			if (instance->CharRegistered(PChar))
+			{
+				PChar->PInstance = instance;
+			}
+		}
+	}
 
 	if (PChar->PInstance)
 	{
@@ -127,10 +149,9 @@ void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
 	}
 	else
 	{
-		//recover instance
-
-		//fallback: put them outside (at exit)
-		zoneutils::GetZone(PChar->loc.prevzone)->IncreaseZoneCounter(PChar);
+		//instance no longer exists: put them outside (at exit)
+		PChar->loc.prevzone = GetID();
+		zoneutils::GetZone(luautils::OnInstanceFailure(this))->IncreaseZoneCounter(PChar);
 	}
 }
 
@@ -208,9 +229,27 @@ void CZoneInstance::WideScan(CCharEntity* PChar, uint16 radius)
 
 void CZoneInstance::ZoneServer(uint32 tick)
 {
-	for (auto instance : instanceList)
+	auto it = instanceList.begin();
+	while (it != instanceList.end())
 	{
+		CInstance* instance = *it;
+
 		instance->ZoneServer(tick);
+
+		if (instance->TimeExpired(tick))
+		{
+			if (instance->CharListEmpty())
+			{
+				instanceList.erase(it);
+				delete instance;
+				continue;
+			}
+			else
+			{
+				luautils::OnInstanceFailure(this, instance);
+			}
+		}
+		it++;
 	}
 }
 

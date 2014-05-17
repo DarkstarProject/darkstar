@@ -155,6 +155,9 @@ namespace luautils
 	int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility, apAction_t* action);		// triggers when job ability is used
 	int32 OnUseAbilityRoll(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility, uint8 total);			// triggers on corsair roll
 
+	int32 OnInstanceLoadFailed(CZone* PZone);
+	int32 OnInstanceFailure(CZone* PZone, CInstance* PInstance);
+
     int32 GetMobRespawnTime(lua_State* L);                                      // get the respawn time of a mob
 	int32 DeterMob(lua_State* L);                                               // Allow or prevent a mob from spawning
 	int32 UpdateNMSpawnPoint(lua_State* L);                                     // Update the spawn point of an NM

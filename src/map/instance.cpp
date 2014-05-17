@@ -43,7 +43,14 @@ CInstance::CInstance(CZone* zone, uint8 instanceid) : CZoneEntities(zone)
 
 CInstance::~CInstance()
 {
-
+	for (auto entity : m_mobList)
+	{
+		delete entity.second;
+	}
+	for (auto entity : m_npcList)
+	{
+		delete entity.second;
+	}
 }
 
 void CInstance::LoadInstance()
@@ -100,6 +107,11 @@ uint8 CInstance::GetLevelCap()
 	return m_levelcap;
 }
 
+const int8* CInstance::GetName()
+{
+	return m_instanceName.c_str();
+}
+
 position_t CInstance::GetEntryLoc()
 {
 	return m_entryloc;
@@ -118,13 +130,24 @@ void CInstance::SetEntryLoc(float x, float y, float z, float rot)
 	m_entryloc.rotation = rot;
 }
 
-void CInstance::CheckTime(uint32 tick)
+bool CInstance::TimeExpired(uint32 tick)
 {
-	if (tick > m_startTime + m_timeLimit * 60000)
+	//if (tick > m_startTime + m_timeLimit * 60000)
+	if (tick > m_startTime + 1 * 60000)
 	{
-		for (auto PChar : m_charList)
+		return true;
+	}
+	return false;
+}
+
+bool CInstance::CharRegistered(CCharEntity* PChar)
+{
+	for (auto id : m_registeredChars)
+	{
+		if (PChar->id == id)
 		{
-			//luautils instance exit
+			return true;
 		}
 	}
+	return false;
 }

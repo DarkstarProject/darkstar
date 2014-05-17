@@ -50,5 +50,10 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 end;
 
+-----------------------------------
+-- onInstanceFailure
+-----------------------------------
 
-
+function onInstanceLoadFailed()
+    return 61;
+end;
