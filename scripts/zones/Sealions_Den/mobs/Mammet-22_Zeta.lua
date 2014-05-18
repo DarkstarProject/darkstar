@@ -93,15 +93,14 @@ function onEventFinish(player,csid,option)
 		if(instance == 1) then
 			player:setPos(-779, -103, -80);		 
 			SpawnMob(16908294); --omega1
-		 	player:addTitle(BRANDED_BY_LIGHTNING);
 		elseif(instance == 2) then
 			player:setPos(-140, -23, -440);		
-			SpawnMob(16908301); --omega2
-		 	player:addTitle(BRANDED_BY_LIGHTNING);
+			SpawnMob(16908301); --omega2		 	
 		else
 			player:setPos(499, 56, -802);		
-			SpawnMob(16908308); --omega 3
-		 	player:addTitle(BRANDED_BY_LIGHTNING);
+			SpawnMob(16908308); --omega 3		 	
 		end
+		
+		player:addTitle(BRANDED_BY_LIGHTNING);
 	end
 end;	

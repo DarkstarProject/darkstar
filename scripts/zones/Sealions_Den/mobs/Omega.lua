@@ -25,18 +25,7 @@ end;
 
 function onMobDeath(mob, killer)
 	killer:addTitle(OMEGA_OSTRACIZER);	
-	local OmegaID=mob:getID();
-	switch (OmegaID) : caseof {
-		[16908294] = function (x)          
-			killer:startEvent(0x000b);
-		end,
-		[16908301] = function (x)          
-			killer:startEvent(0x000b);
-		end,
-		[16908308] = function (x) 
-			killer:startEvent(0x000b);		 
-		end,
-	}
+	killer:startEvent(0x000b);
 end;
 
 function onEventFinish(player,csid,option)	
