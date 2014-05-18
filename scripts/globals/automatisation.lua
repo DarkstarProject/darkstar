@@ -55,7 +55,7 @@ function OnGameDayAutomatisation()
 	GetNPCByID(SacrariumWallOffset+5):setAnimation(tbl[18]); 
 	
 	-- Ro'Maeve Moongates
-	local Moongate_Offset = 17277172; -- _3e0 in npc_list
+	local Moongate_Offset = 17277173; -- _3e0 in npc_list
 	local direction = VanadielMoonDirection();
 	local phase = VanadielMoonPhase();
 	
