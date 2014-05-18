@@ -358,7 +358,7 @@ int32 getNationRank(lua_State* L)
             return 1;
         default:
             lua_pushinteger(L, 0);
-            return 0;
+            return 1;
     }
 }
 
@@ -536,7 +536,7 @@ int32 SetVanadielTimeOffset(lua_State* L)
         return 1;
     }
     lua_pushnil(L);
-    return 0;
+    return 1;
 }
 
 /************************************************************************
@@ -613,7 +613,7 @@ int32 IsMoonNew(lua_State* L)
 			}
 	}
 	lua_pushboolean(L, false);
-	return 0;
+	return 1;
 }
 
 /************************************************************************
@@ -653,7 +653,7 @@ int32 IsMoonFull(lua_State* L)
 			}
 	}
 	lua_pushboolean(L, false);
-	return 0;
+	return 1;
 }
 
 /************************************************************************
@@ -786,7 +786,7 @@ int32 setMobPos(lua_State *L)
 			}
 		}
 		lua_pushnil(L);
-		return 0;
+		return 1;
 	}
 	ShowError(CL_RED"setMobPos :: Mob ID is not valid." CL_RESET);
 	return 1;
