@@ -155,6 +155,7 @@ namespace luautils
 	int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility, apAction_t* action);		// triggers when job ability is used
 	int32 OnUseAbilityRoll(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility, uint8 total);			// triggers on corsair roll
 
+	int32 AfterInstanceRegister(uint32 tick, CTaskMgr::CTask *PTask);
 	int32 OnInstanceLoadFailed(CZone* PZone);
 	int32 OnInstanceFailure(CZone* PZone, CInstance* PInstance);
 

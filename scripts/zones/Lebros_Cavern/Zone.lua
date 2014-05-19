@@ -20,8 +20,12 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-cs = -1;
-
+    cs = -1;
+    
+    local pos = player:getPos();
+    if (pos.x == 0 and pos.y == 0 and pos.z == 0) then
+        player:setPos(player:getInstance():getEntryPos());
+    end
 return cs;
 end;
 

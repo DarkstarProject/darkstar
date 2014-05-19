@@ -531,6 +531,7 @@ public:
 	int32 messageText(lua_State* L);
 	int32 instanceEntry(lua_State* L);
 	int32 getInstance(lua_State* L);
+	int32 setInstance(lua_State* L);
 };
 
 #endif

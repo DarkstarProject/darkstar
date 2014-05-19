@@ -1113,7 +1113,7 @@ int32 AfterZoneIn(uint32 tick, CTaskMgr::CTask *PTask)
 	lua_setglobal(LuaHandle, "afterZoneIn");
 
 	snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
-
+	
 	PChar->m_event.reset();
 	PChar->m_event.Script.insert(0, File);
 
@@ -3586,6 +3586,55 @@ int32 OnUseAbilityRoll(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAb
 	return 0;
 }
 
+int32 AfterInstanceRegister(uint32 tick, CTaskMgr::CTask *PTask)
+{
+	CCharEntity* PChar = (CCharEntity*)PTask->m_data;
+
+	DSP_DEBUG_BREAK_IF(!PChar->PInstance);
+
+	int8 File[255];
+	memset(File, 0, sizeof(File));
+	int32 oldtop = lua_gettop(LuaHandle);
+
+	lua_pushnil(LuaHandle);
+	lua_setglobal(LuaHandle, "afterInstanceRegister");
+
+	snprintf(File, sizeof(File), "scripts/zones/%s/instances/%s.lua", PChar->loc.zone->GetName(), PChar->PInstance->GetName());
+
+	PChar->m_event.reset();
+	PChar->m_event.Script.insert(0, File);
+
+	if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
+	{
+		lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+	lua_getglobal(LuaHandle, "afterInstanceRegister");
+	if (lua_isnil(LuaHandle, -1))
+	{
+		lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+	CLuaBaseEntity LuaBaseEntity(PChar);
+	Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+	if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
+	{
+		ShowError("luautils::AfterInstanceRegister: %s\n", lua_tostring(LuaHandle, -1));
+		lua_pop(LuaHandle, 1);
+		return -1;
+	}
+	int32 returns = lua_gettop(LuaHandle) - oldtop;
+	if (returns > 0)
+	{
+		ShowError("luatils::AfterInstanceRegister (%s): 0 returns expected, got %d\n", File, returns);
+		lua_pop(LuaHandle, returns);
+	}
+	return 0;
+}
+
 int32 OnInstanceLoadFailed(CZone* PZone)
 {
 	int8 File[255];
@@ -4232,12 +4281,20 @@ inline int32 createInstance(lua_State* L)
 
 	if (PZone)
 	{
-		lua_getglobal(L, CLuaInstance::className);
-		lua_pushstring(L, "new");
-		lua_gettable(L, -2);
-		lua_insert(L, -2);
-		lua_pushlightuserdata(L, (void*)PZone->CreateInstance(instanceid));
-		lua_pcall(L, 2, 1, 0);
+		CInstance* PInstance = PZone->CreateInstance(instanceid);
+		if (PInstance)
+		{
+			lua_getglobal(L, CLuaInstance::className);
+			lua_pushstring(L, "new");
+			lua_gettable(L, -2);
+			lua_insert(L, -2);
+			lua_pushlightuserdata(L, (void*)PInstance);
+			lua_pcall(L, 2, 1, 0);
+		}
+		else
+		{
+			lua_pushnil(L);
+		}
 	}
 	else
 	{

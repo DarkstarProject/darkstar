@@ -30,11 +30,13 @@ class CInstance : public CZoneEntities
 {
 public:
 
-	bool RegisterChar(CCharEntity*);
+	void RegisterChar(CCharEntity*);
 
 	uint8 GetLevelCap();
 	const int8* GetName();
 	position_t GetEntryLoc();
+	uint32 GetTimeLimit();
+
 	void SetLevelCap(uint8 cap);
 	void SetEntryLoc(float x, float y, float z, float rot);
 	bool TimeExpired(uint32 tick);

@@ -57,25 +57,6 @@ CLuaInstance::CLuaInstance(CInstance* PBattlefield)
 	m_PLuaInstance = PBattlefield;
 }
 
-inline int32 CLuaInstance::registerChar(lua_State* L)
-{
-	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
-	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
-
-	CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 1);
-	CBaseEntity* PChar = PLuaBaseEntity->GetBaseEntity();
-
-	if (PChar->objtype == TYPE_PC)
-	{
-		lua_pushboolean(L, m_PLuaInstance->RegisterChar((CCharEntity*)PChar));
-	}
-	else
-	{
-		lua_pushnil(L);
-	}
-	return 1;
-}
-
 inline int32 CLuaInstance::setLevelCap(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
@@ -84,6 +65,59 @@ inline int32 CLuaInstance::setLevelCap(lua_State* L)
 	m_PLuaInstance->SetLevelCap(lua_tonumber(L, 1));
 
 	return 0;
+}
+
+inline int32 CLuaInstance::getChars(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+
+	lua_createtable(L, m_PLuaInstance->m_charList.size(), 0);
+	int8 newTable = lua_gettop(L);
+	int i = 1;
+	for (auto member : m_PLuaInstance->m_charList)
+	{
+		lua_getglobal(L, CLuaBaseEntity::className);
+		lua_pushstring(L, "new");
+		lua_gettable(L, -2);
+		lua_insert(L, -2);
+		lua_pushlightuserdata(L, (void*)member.second);
+		lua_pcall(L, 2, 1, 0);
+
+		lua_rawseti(L, -2, i++);
+	}
+
+	return 1;
+}
+
+inline int32 CLuaInstance::getTimeLimit(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+
+	lua_pushinteger(L, m_PLuaInstance->GetTimeLimit());
+
+	return 1;
+}
+
+inline int32 CLuaInstance::getEntryPos(lua_State* L)
+{
+	lua_createtable(L, 4, 0);
+	int8 newTable = lua_gettop(L);
+
+	position_t entry = m_PLuaInstance->GetEntryLoc();
+
+	lua_pushnumber(L, entry.x);
+	lua_setfield(L, newTable, "x");
+
+	lua_pushnumber(L, entry.y);
+	lua_setfield(L, newTable, "y");
+
+	lua_pushnumber(L, entry.z);
+	lua_setfield(L, newTable, "z");
+
+	lua_pushnumber(L, entry.rotation);
+	lua_setfield(L, newTable, "rot");
+
+	return 1;
 }
 
 /************************************************************************
@@ -95,7 +129,9 @@ inline int32 CLuaInstance::setLevelCap(lua_State* L)
 const int8 CLuaInstance::className[] = "CInstance";
 Lunar<CLuaInstance>::Register_t CLuaInstance::methods[] =
 {
-	LUNAR_DECLARE_METHOD(CLuaInstance, registerChar),
 	LUNAR_DECLARE_METHOD(CLuaInstance, setLevelCap),
+	LUNAR_DECLARE_METHOD(CLuaInstance, getChars),
+	LUNAR_DECLARE_METHOD(CLuaInstance, getTimeLimit),
+	LUNAR_DECLARE_METHOD(CLuaInstance, getEntryPos),
 	{ NULL, NULL }
 };

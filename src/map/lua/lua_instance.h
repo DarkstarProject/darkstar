@@ -45,8 +45,10 @@ public:
 	{
 		return m_PLuaInstance;
 	}
-	int32 registerChar(lua_State*);
 	int32 setLevelCap(lua_State*);
+	int32 getChars(lua_State*);
+	int32 getTimeLimit(lua_State*);
+	int32 getEntryPos(lua_State*);
 };
 
 #endif

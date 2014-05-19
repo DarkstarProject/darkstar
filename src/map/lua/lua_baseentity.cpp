@@ -8589,6 +8589,19 @@ inline int32 CLuaBaseEntity::rangedDmgTaken(lua_State *L)
 	lua_pushinteger( L, battleutils::RangedDmgTaken((CBattleEntity*)m_PBaseEntity, lua_tointeger(L,-1)) );
 	return 1;
 }
+
+inline int32 CLuaBaseEntity::setInstance(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isuserdata(L, -1));
+
+	CLuaInstance* PLuaInstance = Lunar<CLuaInstance>::check(L, 1);
+	m_PBaseEntity->PInstance = PLuaInstance->GetInstance();
+
+	return 0;
+}
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -8972,5 +8985,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageText),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,instanceEntry),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getInstance),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setInstance),
 	{NULL,NULL}
 };

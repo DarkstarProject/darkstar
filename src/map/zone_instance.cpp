@@ -144,14 +144,19 @@ void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
 
 		PChar->PInstance->InsertPC(PChar);
 		CharZoneIn(PChar);
-		//instance zonein script etc
-		PChar->loc.p = PChar->PInstance->GetEntryLoc();
+
+		if (!PChar->PInstance->CharRegistered(PChar))
+		{
+			PChar->PInstance->RegisterChar(PChar);
+			PChar->loc.p = PChar->PInstance->GetEntryLoc();
+			CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("afterInstanceRegister", gettick() + 500, PChar, CTaskMgr::TASK_ONCE, luautils::AfterInstanceRegister));
+		}
 	}
 	else
 	{
 		//instance no longer exists: put them outside (at exit)
 		PChar->loc.prevzone = GetID();
-		zoneutils::GetZone(luautils::OnInstanceFailure(this))->IncreaseZoneCounter(PChar);
+		zoneutils::GetZone(luautils::OnInstanceLoadFailed(this))->IncreaseZoneCounter(PChar);
 	}
 }
 

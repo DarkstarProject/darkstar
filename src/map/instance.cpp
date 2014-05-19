@@ -87,19 +87,13 @@ void CInstance::LoadInstance()
 	}
 }
 
-bool CInstance::RegisterChar(CCharEntity* PChar)
+void CInstance::RegisterChar(CCharEntity* PChar)
 {
-	if (PChar->PInstance == NULL)
+	if (m_registeredChars.empty())
 	{
-		if (m_registeredChars.empty())
-		{
-			m_commander = PChar->id;
-		}
-		m_registeredChars.push_back(PChar->id);
-		PChar->PInstance = this;
-		return true;
+		m_commander = PChar->id;
 	}
-	return false;
+	m_registeredChars.push_back(PChar->id);
 }
 
 uint8 CInstance::GetLevelCap()
@@ -117,6 +111,11 @@ position_t CInstance::GetEntryLoc()
 	return m_entryloc;
 }
 
+uint32 CInstance::GetTimeLimit()
+{
+	return m_timeLimit;
+}
+
 void CInstance::SetLevelCap(uint8 cap)
 {
 	m_levelcap = cap;
@@ -132,8 +131,7 @@ void CInstance::SetEntryLoc(float x, float y, float z, float rot)
 
 bool CInstance::TimeExpired(uint32 tick)
 {
-	//if (tick > m_startTime + m_timeLimit * 60000)
-	if (tick > m_startTime + 1 * 60000)
+	if (tick > m_startTime + m_timeLimit * 60000)
 	{
 		return true;
 	}
