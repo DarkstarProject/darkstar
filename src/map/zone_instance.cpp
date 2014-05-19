@@ -245,7 +245,7 @@ void CZoneInstance::ZoneServer(uint32 tick)
 		{
 			if (instance->CharListEmpty())
 			{
-				instanceList.erase(it);
+				it = instanceList.erase(it);
 				delete instance;
 				continue;
 			}
