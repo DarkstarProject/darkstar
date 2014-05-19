@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Dim 07 Octobre 2012 à 09:39
+-- Gï¿½nï¿½rï¿½ le : Dim 07 Octobre 2012 ï¿½ 09:39
 -- Version du serveur: 6.0.0
 -- Version de PHP: 5.2.9-2
 
@@ -16,7 +16,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `dspdb`
+-- Base de donnï¿½es: `dspdb`
 --
 
 -- --------------------------------------------------------
@@ -500,7 +500,6 @@ INSERT INTO `item_mods` VALUES(11397, 1, 17);
 INSERT INTO `item_mods` VALUES(11397, 2, 20);
 INSERT INTO `item_mods` VALUES(11397, 9, 4);
 INSERT INTO `item_mods` VALUES(11397, 25, 5);
-INSERT INTO `item_mods` VALUES(11396, 403, 10);
 INSERT INTO `item_mods` VALUES(11398, 1, 13);
 INSERT INTO `item_mods` VALUES(11398, 5, 20);
 INSERT INTO `item_mods` VALUES(11398, 112, 7);
