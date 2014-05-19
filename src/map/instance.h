@@ -39,7 +39,7 @@ public:
 
 	void SetLevelCap(uint8 cap);
 	void SetEntryLoc(float x, float y, float z, float rot);
-	bool TimeExpired(uint32 tick);
+	bool CheckTime(uint32 tick);
 	bool CharRegistered(CCharEntity* PChar);
 
 	CInstance(CZone*, uint8 instanceid);
@@ -56,6 +56,7 @@ private:
 	uint8 m_levelcap;
 	uint8 m_timeLimit;
 	uint32 m_startTime;
+	uint32 m_lastTimeUpdate;
 	position_t m_entryloc;
 	std::vector<uint32> m_registeredChars;
 };

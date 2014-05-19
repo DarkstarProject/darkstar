@@ -25,6 +25,7 @@ This file is part of DarkStar-server source code.
 
 #include "zone.h"
 #include "entities/charentity.h"
+#include "lua/luautils.h"
 
 #include "../common/timer.h"
 
@@ -129,11 +130,37 @@ void CInstance::SetEntryLoc(float x, float y, float z, float rot)
 	m_entryloc.rotation = rot;
 }
 
-bool CInstance::TimeExpired(uint32 tick)
+bool CInstance::CheckTime(uint32 tick)
 {
+	m_timeLimit = 11;
 	if (tick > m_startTime + m_timeLimit * 60000)
 	{
 		return true;
+	}
+	if (m_lastTimeUpdate == 0 && m_timeLimit > 10 && tick > m_startTime + (m_timeLimit - 10) * 60000)
+	{
+		m_lastTimeUpdate = 600;
+		luautils::OnInstanceTimeUpdate(m_zone, this, m_lastTimeUpdate);
+	}
+	else if (m_lastTimeUpdate == 10 && m_timeLimit > 5 && tick > m_startTime + (m_timeLimit - 5) * 60000)
+	{
+		m_lastTimeUpdate = 300;
+		luautils::OnInstanceTimeUpdate(m_zone, this, m_lastTimeUpdate);
+	}
+	else if (m_lastTimeUpdate == 5 && tick > m_startTime + (m_timeLimit - 1) * 60000)
+	{
+		m_lastTimeUpdate = 60;
+		luautils::OnInstanceTimeUpdate(m_zone, this, m_lastTimeUpdate);
+	}
+	else if (m_lastTimeUpdate == 5 && tick > m_startTime + (m_timeLimit - 1) * 60000 - 30000)
+	{
+		m_lastTimeUpdate = 30;
+		luautils::OnInstanceTimeUpdate(m_zone, this, m_lastTimeUpdate);
+	}
+	else if (m_lastTimeUpdate == 5 && tick > m_startTime + (m_timeLimit - 1) * 60000 - 10000)
+	{
+		m_lastTimeUpdate = 10;
+		luautils::OnInstanceTimeUpdate(m_zone, this, m_lastTimeUpdate);
 	}
 	return false;
 }

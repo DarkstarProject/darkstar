@@ -106,7 +106,7 @@ void CZoneInstance::DecreaseZoneCounter(CCharEntity* PChar)
 		CharZoneOut(PChar);
 		PChar->PInstance = NULL;
 
-		if (instance->TimeExpired(gettick()) && instance->CharListEmpty())
+		if (instance->CheckTime(gettick()) && instance->CharListEmpty())
 		{
 			instanceList.erase(std::find(instanceList.begin(), instanceList.end(), instance));
 			delete instance;
@@ -241,7 +241,7 @@ void CZoneInstance::ZoneServer(uint32 tick)
 
 		instance->ZoneServer(tick);
 
-		if (instance->TimeExpired(tick))
+		if (instance->CheckTime(tick))
 		{
 			if (instance->CharListEmpty())
 			{
@@ -251,7 +251,10 @@ void CZoneInstance::ZoneServer(uint32 tick)
 			}
 			else
 			{
-				luautils::OnInstanceFailure(this, instance);
+				for (auto PChar : instance->m_charList)
+				{
+					luautils::OnInstanceFailure((CCharEntity*)PChar.second);
+				}
 			}
 		}
 		it++;

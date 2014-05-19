@@ -157,7 +157,8 @@ namespace luautils
 
 	int32 AfterInstanceRegister(uint32 tick, CTaskMgr::CTask *PTask);
 	int32 OnInstanceLoadFailed(CZone* PZone);
-	int32 OnInstanceFailure(CZone* PZone, CInstance* PInstance);
+	int32 OnInstanceTimeUpdate(CZone* PZone, CInstance* PInstance, uint32 time);
+	int32 OnInstanceFailure(CCharEntity* PChar);
 
     int32 GetMobRespawnTime(lua_State* L);                                      // get the respawn time of a mob
 	int32 DeterMob(lua_State* L);                                               // Allow or prevent a mob from spawning
