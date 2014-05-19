@@ -963,7 +963,7 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
             PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HASTE_DAZE, PAttacker->id);
             PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_ASPIR_DAZE, PAttacker->id);
         }
-        if (PDefender->m_EcoSystem != SYSTEM_UNDEAD)
+        if ((PDefender->m_EcoSystem != SYSTEM_UNDEAD) || (daze == EFFECT_HASTE_DAZE))
         {
             PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(daze,
                 0, power,
@@ -1160,8 +1160,9 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_
             else if (daze == EFFECT_HASTE_DAZE)
             {
                 Action->additionalEffect = SUBEFFECT_HASTE;
-                // TODO: JA haste that lasts a single attack round (even if every attack misses) - custom status effect probably
+                // Ability haste added in scripts\globals\effects\haste_samba_haste_effect.lua
                 PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HASTE_SAMBA_HASTE, 0, power, 0, 10));
+                // Status effect removed in CAttackRound constructor (i.e. after next attack round is calculated)
             }
         }
     }
