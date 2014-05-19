@@ -1760,63 +1760,52 @@ low level monsters as they miss too much. Presuming a min cap of -10%.
 ************************************************************************/
 uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender)
 {
-	int8 shieldSize = 0;
-	float skill = 0.0f;
+    int8 shieldSize = 3;
+    int8 base = 0;
+    uint16 attackskill = PAttacker->GetSkill((SKILLTYPE)(PAttacker->m_Weapons[SLOT_MAIN]->getSkillType()));
+    uint16 blockskill = PDefender->GetSkill(SKILL_SHL);
 
-	if(PDefender->objtype == TYPE_PC)
-	{
-		CCharEntity* PChar = (CCharEntity*)PDefender;
-		CItemArmor* PItem = (CItemArmor*)PChar->getEquip(SLOT_SUB);
+    if(PDefender->objtype == TYPE_PC)
+    {
+        CCharEntity* PChar = (CCharEntity*)PDefender;
+        CItemArmor* PItem = (CItemArmor*)PChar->getEquip(SLOT_SUB);
 
-		if(PItem!=NULL && PItem->getID()!=65535 && PItem->getShieldSize()>0 && PItem->getShieldSize()<=5)
-		{
-			shieldSize = PItem->getShieldSize();
-
-			if(shieldSize == 5)
-			{
-				// aegis
-				shieldSize = 0;
-			}
-
-    		skill = PDefender->GetSkill(SKILL_SHL) + PDefender->getMod(MOD_SHIELD);
-    	}
-    	else
-    	{
-    		// no shield no chance
-    		return 0;
-    	}
-	}
+        if(PItem && PItem->getID()!=65535)
+            shieldSize = PItem->getShieldSize();
+        else
+            return 0;
+    }
 	else if(PDefender->objtype == TYPE_MOB && PDefender->GetMJob() == JOB_PLD)
-	{
-		CMobEntity* PMob = (CMobEntity*)PDefender;
+    {
+        CMobEntity* PMob = (CMobEntity*)PDefender;
+        if(PMob->m_EcoSystem != SYSTEM_UNDEAD && PMob->m_EcoSystem != SYSTEM_BEASTMEN)
+            return 0;
+    }
+    else
+        return 0;
 
-		if(PMob->m_EcoSystem == SYSTEM_UNDEAD || PMob->m_EcoSystem == SYSTEM_BEASTMEN)
-		{
-			// fake it
-			skill = GetMaxSkill(SKILL_SHL,JOB_PLD,PDefender->GetMLevel());
-			shieldSize = 3;
-		}
-		else
-		{
-			return 0;
-		}
-	}
-	else
-	{
-		return 0;
-	}
+    switch (shieldSize)
+    {
+        case 1: // buckler
+            base = 55;
+            break;
+        case 2: // round
+        case 5: // aegis
+            base = 50;
+            break;
+        case 3: // kite
+            base = 45;
+            break;
+        case 4: // tower
+            base = 30;
+            break;
+        default:
+            return 0;
+    }
 
-	float diff = 1.0f + (((float)PDefender->GetMLevel() - PAttacker->GetMLevel()) / 15.0f);
+    float skillmodifier = (blockskill - attackskill) * 0.215f;
 
-	if(diff < 0.4f) diff = 0.4f;
-	if(diff > 1.4f) diff = 1.4f;
-
-	float dex = PAttacker->DEX();
-	float agi = PDefender->AGI();
-
-	float base = (5.0 - shieldSize) * 5.0f;
-
-    return dsp_cap((skill * 0.1f + (agi - dex) * 0.125f + base) * diff, 5, 65);
+    return dsp_cap(base + (int8)skillmodifier, 5, 65);
 }
 
 uint8 GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
