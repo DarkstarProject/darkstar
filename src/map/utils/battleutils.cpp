@@ -1746,17 +1746,18 @@ bool TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender){
 
 /***********************************************************************
 		Calculates the block rate of the defender
-Generally assumed to be a linear relationship involving shield skill and
-'projected' skill (like with spell interruption). According to
-www.bluegartr.com/threads/103597-Random-Facts-Thread/page22 it appears
-to be BASE+(PLD_Skill - MOB_Skill)/4.6 where base is the base activation
-for the given shield type (unknown). These are subject to caps (65% max
-for non-Ochain shields) and presumably 5% min cap *untested*
-Presuming base values 10%/20%/30%/40% (big->low)
-They don't mention anything about caps on PLD_Skill-MOB_Skill but there
-has to be, else a Lv75 PLD with 0 skill would never be able to skillup
-as they need to be HIT to skillup, meaning they can't really lvl up on
-low level monsters as they miss too much. Presuming a min cap of -10%.
+Incorporates testing and data from:
+http://www.ffxiah.com/forum/topic/21671/paladin-faq-info-and-trade-studies/34/#2581818
+https://docs.google.com/spreadsheet/ccc?key=0AkX3maplDraRdFdCZHI2OU93aVgtWlZhN3ozZEtnakE#gid=0
+http://www.ffxionline.com/forums/paladin/55139-shield-data-size-2-vs-size-3-a.html
+
+Formula is:
+ShieldBaseRate + (DefenderShieldSkill - AttackerCombatSkill) * SkillModifier
+
+Skill Modifier appears to be 0.215 based on the data available.
+
+Base block rates are (small to large shield type) 55% -> 50% -> 45% -> 30%
+Aegis is a special case, having the base block rate of a size 2 type.
 ************************************************************************/
 uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender)
 {
