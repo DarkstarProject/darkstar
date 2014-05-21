@@ -27,17 +27,21 @@ function doPhysicalWeaponskill(attacker, target, params)
         local SCProp1, SCProp2, SCProp3 = attacker:getWSSkillchainProp();
 
         for i,v in ipairs(elementalGorget) do
-            if (neck == v and (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3))) then
-                bonusacc = bonusacc + 10;
-                bonusfTP = bonusfTP + 0.1;
+            if (neck == v) then
+                if (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3)) then
+                    bonusacc = bonusacc + 10;
+                    bonusfTP = bonusfTP + 0.1;
+                end
                 break;
             end
         end
 
         for i,v in ipairs(elementalBelt) do
-            if (belt == v and (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3))) then
-                bonusacc = bonusacc + 10;
-                bonusfTP = bonusfTP + 0.1;
+            if (belt == v) then
+                if (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3)) then
+                    bonusacc = bonusacc + 10;
+                    bonusfTP = bonusfTP + 0.1;
+                end
                 break;
             end
         end
@@ -616,17 +620,21 @@ return alpha;
         local SCProp1, SCProp2, SCProp3 = attacker:getWSSkillchainProp();
 
         for i,v in ipairs(elementalGorget) do
-            if (neck == v and (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3))) then
-                bonusacc = bonusacc + 10;
-                bonusfTP = bonusfTP + 0.1;
+            if (neck == v) then
+                if (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3)) then
+                    bonusacc = bonusacc + 10;
+                    bonusfTP = bonusfTP + 0.1;
+                end
                 break;
             end
         end
 
         for i,v in ipairs(elementalBelt) do
-            if (belt == v and (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3))) then
-                bonusacc = bonusacc + 10;
-                bonusfTP = bonusfTP + 0.1;
+            if (belt == v) then
+                if (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3)) then
+                    bonusacc = bonusacc + 10;
+                    bonusfTP = bonusfTP + 0.1;
+                end
                 break;
             end
         end
