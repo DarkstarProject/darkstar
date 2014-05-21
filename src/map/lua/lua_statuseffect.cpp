@@ -80,7 +80,7 @@ inline int32 CLuaStatusEffect::getPower(lua_State* L)
 inline int32 CLuaStatusEffect::getSubPower(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
-
+    
     lua_pushinteger( L, m_PLuaStatusEffect->GetSubPower() );
     return 1;
 }
@@ -133,6 +133,26 @@ inline int32 CLuaStatusEffect::getLastTick(lua_State* L)
     }
 	lua_pushinteger( L, count );
 	return 1;
+}
+
+
+/************************************************************************
+*                                                                       *
+*  Return how long is left until the effect expires (miliseconds)       *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaStatusEffect::getTimeRemaining(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+    uint32 remaining = 0;
+    if (m_PLuaStatusEffect->GetStartTime() > 0)
+    {
+        remaining = dsp_max(m_PLuaStatusEffect->GetDuration() - (gettick() - m_PLuaStatusEffect->GetStartTime()), 0);
+    }
+
+    lua_pushinteger(L, remaining);
+    return 1;
 }
 
 /************************************************************************
@@ -292,7 +312,8 @@ Lunar<CLuaStatusEffect>::Register_t CLuaStatusEffect::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaStatusEffect,getDuration),
 	LUNAR_DECLARE_METHOD(CLuaStatusEffect,setDuration),
 	LUNAR_DECLARE_METHOD(CLuaStatusEffect,getStartTime),
-	LUNAR_DECLARE_METHOD(CLuaStatusEffect,getLastTick),
+    LUNAR_DECLARE_METHOD(CLuaStatusEffect,getLastTick),
+    LUNAR_DECLARE_METHOD(CLuaStatusEffect,getTimeRemaining),
 	LUNAR_DECLARE_METHOD(CLuaStatusEffect,getTickCount),
     LUNAR_DECLARE_METHOD(CLuaStatusEffect,resetStartTime),
 	LUNAR_DECLARE_METHOD(CLuaStatusEffect,addMod),
