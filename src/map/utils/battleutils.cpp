@@ -1771,7 +1771,7 @@ uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender)
         CCharEntity* PChar = (CCharEntity*)PDefender;
         CItemArmor* PItem = (CItemArmor*)PChar->getEquip(SLOT_SUB);
 
-        if(PItem && PItem->getID()!=65535)
+        if(PItem)
             shieldSize = PItem->getShieldSize();
         else
             return 0;
@@ -1800,13 +1800,16 @@ uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender)
         case 4: // tower
             base = 30;
             break;
+        case 6: // ochain
+            base = 110;
+            break;
         default:
             return 0;
     }
 
     float skillmodifier = (blockskill - attackskill) * 0.215f;
 
-    return dsp_cap(base + (int8)skillmodifier, 5, 65);
+    return dsp_cap(base + (int8)skillmodifier, 5, shieldSize == 6 ? 100 : 65);
 }
 
 uint8 GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
