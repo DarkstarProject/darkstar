@@ -24,6 +24,7 @@
 #include "../common/showmsg.h"
 
 #include "utils/guildutils.h"
+#include "utils/instanceutils.h"
 #include "time_server.h"
 #include "transport.h"
 #include "vana_time.h"
@@ -113,5 +114,6 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
     }
 
     CTransportHandler::getInstance()->TransportTimer();
+	instanceutils::CheckInstance();
     return 0;
 }

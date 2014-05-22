@@ -55,9 +55,10 @@ function onEventUpdate(player,csid,option,target)
     else
         cap = 50;
     end
+    
+    player:setVar("AssaultCap", cap);
                 
     local party = player:getParty();
-    local valid = true;
     
     if (party ~= nil) then
         for i,v in ipairs(party) do
@@ -73,28 +74,7 @@ function onEventUpdate(player,csid,option,target)
         end
     end
     
-    if (valid) then
-        local instance = createInstance(player:getVar("AssaultID"), 63);
-        if (instance) then
-            instance:setLevelCap(cap);
-            player:setInstance(instance);
-            player:instanceEntry(target,4);
-            player:delKeyItem(LEBROS_ASSAULT_ORDERS);
-            player:delKeyItem(ASSAULT_ARMBAND);
-            if (party ~= nil) then
-                for i,v in ipairs(party) do
-                    if v:getID() ~= player:getID() and v:getZone() == player:getZone() then
-                        v:setInstance(instance);
-                        v:startEvent(0xD0, 2);
-                        v:delKeyItem(LEBROS_ASSAULT_ORDERS);
-                    end
-                end
-            end
-        else
-            player:messageText(target,MEMBER_NO_REQS);
-            player:instanceEntry(target,3);
-        end
-    end
+    player:createInstance(player:getVar("AssaultID"), 63);
     
 end;
 
@@ -108,5 +88,31 @@ function onEventFinish(player,csid,option,target)
  
     if (csid == 0xD0 or (csid == 0xCB and option == 4)) then
         player:setPos(0,0,0,0,63);
+    end
+end;
+
+-----------------------------------
+-- onInstanceLoaded
+-----------------------------------
+
+function onInstanceCreated(player,instance,target)
+    if (instance) then
+        instance:setLevelCap(player:getVar("AssaultCap"));
+        player:setInstance(instance);
+        player:instanceEntry(target,4);
+        player:delKeyItem(LEBROS_ASSAULT_ORDERS);
+        player:delKeyItem(ASSAULT_ARMBAND);
+        if (party ~= nil) then
+            for i,v in ipairs(party) do
+                if v:getID() ~= player:getID() and v:getZone() == player:getZone() then
+                    v:setInstance(instance);
+                    v:startEvent(0xD0, 2);
+                    v:delKeyItem(LEBROS_ASSAULT_ORDERS);
+                end
+            end
+        end
+    else
+        player:messageText(target,MEMBER_NO_REQS);
+        player:instanceEntry(target,3);
     end
 end;

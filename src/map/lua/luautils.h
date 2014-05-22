@@ -159,6 +159,8 @@ namespace luautils
 	int32 OnInstanceLoadFailed(CZone* PZone);
 	int32 OnInstanceTimeUpdate(CZone* PZone, CInstance* PInstance, uint32 time);
 	int32 OnInstanceFailure(CCharEntity* PChar);
+	int32 OnInstanceCreated(CCharEntity* PChar, CInstance* PInstance);
+	int32 OnInstanceCreated(CInstance* PInstance);
 
     int32 GetMobRespawnTime(lua_State* L);                                      // get the respawn time of a mob
 	int32 DeterMob(lua_State* L);                                               // Allow or prevent a mob from spawning
@@ -170,9 +172,6 @@ namespace luautils
     int32 OnAdditionalEffect(CBattleEntity* PAttacker, CBattleEntity* PDefender, CItemWeapon* PItem, apAction_t* Action, uint32 damage); // for items with additional effects
 
     int32 nearLocation(lua_State*);
-
-	int32 createInstance(lua_State*);
-
 };
 
 #endif //- _LUAUTILS_H -

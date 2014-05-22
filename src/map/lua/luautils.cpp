@@ -119,7 +119,6 @@ int32 init()
 	lua_register(LuaHandle,"UpdateNMSpawnPoint",luautils::UpdateNMSpawnPoint);
 	lua_register(LuaHandle,"SetDropRate",luautils::SetDropRate);
     lua_register(LuaHandle,"NearLocation",luautils::nearLocation);
-	lua_register(LuaHandle,"createInstance",luautils::createInstance);
 
 	lua_register(LuaHandle,"getCorsairRollEffect",luautils::getCorsairRollEffect);
     lua_register(LuaHandle,"getSpell",luautils::getSpell);
@@ -671,7 +670,17 @@ int32 SpawnMob(lua_State* L)
 	{
 		uint32 mobid = (uint32)lua_tointeger(L,1);
 
-        CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
+		CMobEntity* PMob = NULL;
+
+		if (!lua_isnil(L, 2) && lua_isuserdata(L, 2))
+		{
+			CLuaInstance* PLuaInstance = Lunar<CLuaInstance>::check(L, 2);
+			PMob = (CMobEntity*)PLuaInstance->GetInstance()->GetEntity(mobid & 0xFFF, TYPE_MOB);
+		}
+		else
+		{
+			PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
+		}
         if (PMob != NULL)
         {
 
@@ -3775,6 +3784,122 @@ int32 OnInstanceFailure(CCharEntity* PChar)
 }
 
 /************************************************************************
+*																		*
+*  When instance is created, let player know it's finished				*
+*																		*
+************************************************************************/
+
+int32 OnInstanceCreated(CCharEntity* PChar, CInstance* PInstance)
+{
+	int32 oldtop = lua_gettop(LuaHandle);
+
+	lua_pushnil(LuaHandle);
+	lua_setglobal(LuaHandle, "onInstanceCreated");
+
+	int8 File[255];
+	if (luaL_loadfile(LuaHandle, PChar->m_event.Script.c_str()) || lua_pcall(LuaHandle, 0, 0, 0))
+	{
+		memset(File, 0, sizeof(File));
+		snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
+
+		if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
+		{
+			ShowError("luautils::OnInstanceCreated %s\n", lua_tostring(LuaHandle, -1));
+			lua_pop(LuaHandle, 1);
+			return -1;
+		}
+	}
+
+	lua_getglobal(LuaHandle, "onInstanceCreated");
+	if (lua_isnil(LuaHandle, -1))
+	{
+		ShowError("luautils::OnInstanceCreated: undefined procedure onEventFinish\n");
+		lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+	CLuaBaseEntity LuaBaseEntity(PChar);
+	Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+	if (PInstance)
+	{
+		CLuaInstance LuaInstance(PInstance);
+		Lunar<CLuaInstance>::push(LuaHandle, &LuaInstance);
+	}
+	else
+	{
+		lua_pushnil(LuaHandle);
+	}
+
+	CLuaBaseEntity LuaTargetEntity(PChar->m_event.Target);
+	Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
+
+	if (lua_pcall(LuaHandle, 3, LUA_MULTRET, 0))
+	{
+		ShowError("luautils::OnInstanceCreated %s\n", lua_tostring(LuaHandle, -1));
+		lua_pop(LuaHandle, 1);
+		return -1;
+	}
+	int32 returns = lua_gettop(LuaHandle) - oldtop;
+	if (returns > 0)
+	{
+		ShowError("luatils::OnInstanceCreated (%s): 0 returns expected, got %d\n", File, returns);
+		lua_pop(LuaHandle, returns);
+	}
+	return 0;
+}
+
+/************************************************************************
+*																		*
+*  When instance is created, run setup script for instance				*
+*																		*
+************************************************************************/
+
+int32 OnInstanceCreated(CInstance* PInstance)
+{
+	int8 File[255];
+	memset(File, 0, sizeof(File));
+	int32 oldtop = lua_gettop(LuaHandle);
+
+	lua_pushnil(LuaHandle);
+	lua_setglobal(LuaHandle, "onInstanceCreated");
+
+	snprintf(File, sizeof(File), "scripts/zones/%s/instances/%s.lua", PInstance->GetZone()->GetName(), PInstance->GetName());
+
+	if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
+	{
+		ShowError("luautils::OnInstanceCreated: %s\n", lua_tostring(LuaHandle, -1));
+		lua_pop(LuaHandle, 1);
+		return 0;
+	}
+
+	lua_getglobal(LuaHandle, "onInstanceCreated");
+	if (lua_isnil(LuaHandle, -1))
+	{
+		ShowError("luautils::OnInstanceCreated: undefined procedure onEventFinish\n");
+		lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+	CLuaInstance LuaInstance(PInstance);
+	Lunar<CLuaInstance>::push(LuaHandle, &LuaInstance);
+
+	if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
+	{
+		ShowError("luautils::OnInstanceCreated %s\n", lua_tostring(LuaHandle, -1));
+		lua_pop(LuaHandle, 1);
+		return -1;
+	}
+	int32 returns = lua_gettop(LuaHandle) - oldtop;
+	if (returns > 0)
+	{
+		ShowError("luatils::OnInstanceCreated (%s): 0 returns expected, got %d\n", File, returns);
+		lua_pop(LuaHandle, returns);
+	}
+	return 0;
+}
+
+/************************************************************************
 *                                                                       *
 *                                                                       *
 *                                                                       *
@@ -4314,40 +4439,6 @@ inline int32 nearLocation(lua_State* L)
     lua_setfield(L, newTable, "z");
 
     return 1;
-}
-
-inline int32 createInstance(lua_State* L)
-{
-	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
-	DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
-
-	uint8 instanceid = lua_tonumber(L, 1);
-	uint16 zoneid = lua_tonumber(L, 2);
-
-	CZoneInstance* PZone = (CZoneInstance*)zoneutils::GetZone(zoneid);
-
-	if (PZone)
-	{
-		CInstance* PInstance = PZone->CreateInstance(instanceid);
-		if (PInstance)
-		{
-			lua_getglobal(L, CLuaInstance::className);
-			lua_pushstring(L, "new");
-			lua_gettable(L, -2);
-			lua_insert(L, -2);
-			lua_pushlightuserdata(L, (void*)PInstance);
-			lua_pcall(L, 2, 1, 0);
-		}
-		else
-		{
-			lua_pushnil(L);
-		}
-	}
-	else
-	{
-		lua_pushnil(L);
-	}
-	return 1;
 }
 
 }; // namespace luautils

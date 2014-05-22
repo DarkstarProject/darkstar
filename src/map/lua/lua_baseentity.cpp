@@ -84,6 +84,7 @@
 #include "../utils/battleutils.h"
 #include "../utils/blueutils.h"
 #include "../utils/charutils.h"
+#include "../utils/instanceutils.h"
 #include "../utils/itemutils.h"
 #include "../utils/guildutils.h"
 #include "../utils/puppetutils.h"
@@ -8593,7 +8594,7 @@ inline int32 CLuaBaseEntity::rangedDmgTaken(lua_State *L)
 inline int32 CLuaBaseEntity::setInstance(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
 	DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isuserdata(L, -1));
 
@@ -8602,6 +8603,22 @@ inline int32 CLuaBaseEntity::setInstance(lua_State *L)
 
 	return 0;
 }
+
+inline int32 CLuaBaseEntity::createInstance(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+	uint8 instanceid = lua_tonumber(L, 1);
+	uint16 zoneid = lua_tonumber(L, 2);
+
+	instanceutils::LoadInstance(instanceid, zoneid, (CCharEntity*)m_PBaseEntity);
+
+	return 0;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -8986,5 +9003,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,instanceEntry),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getInstance),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setInstance),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,createInstance),
 	{NULL,NULL}
 };

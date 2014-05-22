@@ -5,8 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Lebros_Cavern/TextIDs"] = nil;
-require("scripts/zones/Lebros_Cavern/TextIDs");
+require("scripts/zones/Lebros_Cavern/IDs");
 
 -----------------------------------
 --  onInitialize

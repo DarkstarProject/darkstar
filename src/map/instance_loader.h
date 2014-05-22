@@ -21,46 +21,37 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#ifndef _CINSTANCE_H
-#define _CINSTANCE_H
+#ifndef _CINSTANCELOADER_H
+#define _CINSTANCELOADER_H
 
-#include "zone_entities.h"
+#include <future>
 
-class CInstance : public CZoneEntities
+#include "../common/cbasetypes.h"
+#include "../common/socket.h"
+#include "../common/sql.h"
+
+class CCharEntity;
+class CInstance;
+class CZone;
+
+class CInstanceLoader
 {
 public:
+	CInstanceLoader(const int8* login, const int8* pass, const int8* host, uint16 port, const int8* db);
+	~CInstanceLoader();
 
-	void RegisterChar(CCharEntity*);
-
-	uint8 GetID();
-	uint8 GetLevelCap();
-	const int8* GetName();
-	position_t GetEntryLoc();
-	uint32 GetTimeLimit();
-	CZone* GetZone();
-
-	void SetLevelCap(uint8 cap);
-	void SetEntryLoc(float x, float y, float z, float rot);
-	bool CheckTime(uint32 tick);
-	bool CharRegistered(CCharEntity* PChar);
-
-	CInstance(CZone*, uint8 instanceid);
-	~CInstance();
-
+	bool RequestInstance(uint8 instanceid, uint16 zoneid, CCharEntity* PRequester);
+	CInstance* GetInstance();
+	bool Check();
 private:
-	void LoadInstance();
+	CZone* zone;
+	CInstance* instance;
+	CCharEntity* requester;
+	Sql_t* SqlInstanceHandle;
+	std::future<CInstance*> task;
 
-	CZone* m_zone;
-	uint8 m_instanceid;
-	uint16 m_entrance;
-	string_t m_instanceName;
-	uint32 m_commander;
-	uint8 m_levelcap;
-	uint8 m_timeLimit;
-	uint32 m_startTime;
-	uint32 m_lastTimeUpdate;
-	position_t m_entryloc;
-	std::vector<uint32> m_registeredChars;
+	CInstance* LoadInstance();
+
 };
 
 #endif

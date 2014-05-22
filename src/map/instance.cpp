@@ -21,6 +21,8 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
+#include <thread>
+
 #include "instance.h"
 
 #include "zone.h"
@@ -29,12 +31,14 @@ This file is part of DarkStar-server source code.
 
 #include "../common/timer.h"
 
+
 CInstance::CInstance(CZone* zone, uint8 instanceid) : CZoneEntities(zone)
 {
 	m_zone = zone;
 	m_instanceid = instanceid;
 	m_commander = 0;
 	m_levelcap = 0;
+	m_lastTimeUpdate = 0;
 	memset(&m_entryloc, 0, sizeof m_entryloc);
 
 	LoadInstance();
@@ -52,6 +56,16 @@ CInstance::~CInstance()
 	{
 		delete entity.second;
 	}
+}
+
+uint8 CInstance::GetID()
+{
+	return m_instanceid;
+}
+
+CZone* CInstance::GetZone()
+{
+	return m_zone;
 }
 
 void CInstance::LoadInstance()
@@ -132,7 +146,6 @@ void CInstance::SetEntryLoc(float x, float y, float z, float rot)
 
 bool CInstance::CheckTime(uint32 tick)
 {
-	m_timeLimit = 11;
 	if (tick > m_startTime + m_timeLimit * 60000)
 	{
 		return true;

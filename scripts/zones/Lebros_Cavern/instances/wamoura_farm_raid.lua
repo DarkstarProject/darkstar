@@ -4,8 +4,7 @@
 -- 
 -----------------------------------
 
-package.loaded["scripts/zones/Lebros_Cavern/TextIDs"] = nil;
-require("scripts/zones/Lebros_Cavern/TextIDs");
+require("scripts/zones/Lebros_Cavern/IDs");
 
 -----------------------------------
 -- afterInstanceRegister
@@ -13,9 +12,21 @@ require("scripts/zones/Lebros_Cavern/TextIDs");
 
 function afterInstanceRegister(player)
     local instance = player:getInstance();
-    player:messageSpecial(ASSAULT_27_START, 27);
-    player:messageSpecial(TIME_TO_COMPLETE, instance:getTimeLimit());
+    player:messageSpecial(Lebros.text.ASSAULT_27_START, 27);
+    player:messageSpecial(Lebros.text.TIME_TO_COMPLETE, instance:getTimeLimit());
 end;	
+
+-----------------------------------
+-- onInstanceCreated
+-----------------------------------
+
+function onInstanceCreated(instance)
+
+    for i,v in pairs(Lebros.mobs[27]) do
+        SpawnMob(v, instance);
+    end
+
+end;
 
 -----------------------------------
 -- onInstanceTimeUpdate
@@ -25,9 +36,9 @@ function onInstanceTimeUpdate(instance, timeRemaining)
     local players = instance:getChars();
     for i,v in pairs(players) do
         if (timeRemaining >= 60) then
-            v:messageSpecial(TIME_REMAINING_MINUTES, timeRemaining / 60);
+            v:messageSpecial(Lebros.text.TIME_REMAINING_MINUTES, timeRemaining / 60);
         else
-            v:messageSpecial(TIME_REMAINING_SECONDS, timeRemaining);
+            v:messageSpecial(Lebros.text.TIME_REMAINING_SECONDS, timeRemaining);
         end
     end
 end;
@@ -37,7 +48,7 @@ end;
 -----------------------------------
 
 function onInstanceFailure(player)
-    player:messageSpecial(MISSION_FAILED,10,10);
+    player:messageSpecial(Lebros.text.MISSION_FAILED,10,10);
     player:startEvent(0x66);
 end;
 

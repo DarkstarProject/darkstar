@@ -21,46 +21,20 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#ifndef _CINSTANCE_H
-#define _CINSTANCE_H
+#ifndef _INSTANCEUTILS_H
+#define _INSTANCEUTILS_H
 
-#include "zone_entities.h"
+#include "../../common/cbasetypes.h"
+#include "../../common/taskmgr.h"
 
-class CInstance : public CZoneEntities
+class CInstanceLoader;
+class CCharEntity;
+
+namespace instanceutils
 {
-public:
-
-	void RegisterChar(CCharEntity*);
-
-	uint8 GetID();
-	uint8 GetLevelCap();
-	const int8* GetName();
-	position_t GetEntryLoc();
-	uint32 GetTimeLimit();
-	CZone* GetZone();
-
-	void SetLevelCap(uint8 cap);
-	void SetEntryLoc(float x, float y, float z, float rot);
-	bool CheckTime(uint32 tick);
-	bool CharRegistered(CCharEntity* PChar);
-
-	CInstance(CZone*, uint8 instanceid);
-	~CInstance();
-
-private:
-	void LoadInstance();
-
-	CZone* m_zone;
-	uint8 m_instanceid;
-	uint16 m_entrance;
-	string_t m_instanceName;
-	uint32 m_commander;
-	uint8 m_levelcap;
-	uint8 m_timeLimit;
-	uint32 m_startTime;
-	uint32 m_lastTimeUpdate;
-	position_t m_entryloc;
-	std::vector<uint32> m_registeredChars;
+	void CheckInstance();
+	void LoadInstance(uint8 instanceid, uint16 zoneid, CCharEntity* PRequester);
+	void CreateLoader(const int8* login, const int8* pass, const int8* host, uint16 port, const int8* db);
 };
 
 #endif

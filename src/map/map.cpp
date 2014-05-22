@@ -42,6 +42,7 @@
 #include "utils/charutils.h"
 #include "utils/fishingutils.h"
 #include "utils/guildutils.h"
+#include "utils/instanceutils.h"
 #include "utils/itemutils.h"
 #include "linkshell.h"
 #include "map.h"
@@ -203,6 +204,8 @@ int32 do_init(int32 argc, int8** argv)
 
 	luautils::OnServerStart();
     fishingutils::LoadFishingMessages();
+	instanceutils::CreateLoader(map_config.mysql_login, map_config.mysql_password,
+		map_config.mysql_host, map_config.mysql_port, map_config.mysql_database);
 
 	ShowStatus("do_init: server is binding with port %u",map_config.usMapPort);
 	map_fd = makeBind_udp(map_config.uiMapIp,map_config.usMapPort);
