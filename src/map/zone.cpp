@@ -823,6 +823,10 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 		PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_SYNC);
 		PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
 	}
+
+    //remove status effects that wear on zone
+    PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE, true);
+
 	if (PChar->PTreasurePool != NULL) // TODO: условие для устранения проблем с MobHouse, надо блин решить ее раз и навсегда
 	{
 		PChar->PTreasurePool->DelMember(PChar);
@@ -896,9 +900,6 @@ void CZone::IncreaseZoneCounter(CCharEntity* PChar)
 			m_regionList.empty() ? zone_server : zone_server_region,
 			500);
 	}
-
-	//remove status effects that wear on zone
-	PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE);
 
   if (PChar->animation == ANIMATION_CHOCOBO && !CanUseMisc(MISC_CHOCOBO))
   {
