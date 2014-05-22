@@ -20,8 +20,8 @@ if (player:hasStatusEffect(EFFECT_TRANCE)) then
 end;
 
 function OnUseAbility(player, target, ability)
-
+    local duration = 120 + player:getMod(MOD_SAMBA_DURATION);
 	player:delStatusEffect(EFFECT_DRAIN_SAMBA);
 	player:delStatusEffect(EFFECT_ASPIR_SAMBA);
-	player:addStatusEffect(EFFECT_HASTE_SAMBA,player:getMerit(MERIT_HASTE_SAMBA_EFFECT)+52,0,120);
+	player:addStatusEffect(EFFECT_HASTE_SAMBA,player:getMerit(MERIT_HASTE_SAMBA_EFFECT)+52,0,duration);
 end;

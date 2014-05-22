@@ -97,6 +97,7 @@
 #include "../entities/petentity.h"
 #include "../utils/petutils.h"
 #include "../spell.h"
+#include "../weapon_skill.h"
 #include "../trade_container.h"
 #include "../utils/zoneutils.h"
 #include "../entities/charentity.h"
@@ -5715,6 +5716,45 @@ inline int32 CLuaBaseEntity::updateEnmityFromDamage(lua_State *L)
 }
 
 /************************************************************************
+*                                                                       *
+*  Adds a specified amount of enmity towards the target if the base     *
+*  entity is a mob, or towards the base entity if the base entity is a  *
+*  player.                                                              *
+*  paremters: (CLuaBaseEntity target,int CE,int VE)                     *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::addEnmity(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+
+    CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
+    int32 CE = lua_tointeger(L, 2);
+    int32 VE = lua_tointeger(L, 3);
+    
+    if (m_PBaseEntity->objtype == TYPE_PC || (m_PBaseEntity->objtype == TYPE_MOB && ((CMobEntity*)m_PBaseEntity)->isCharmed) ||
+        m_PBaseEntity->objtype == TYPE_PET)
+    {
+        if (PEntity && PEntity->GetBaseEntity() && PEntity->GetBaseEntity()->objtype == TYPE_MOB)
+        {
+            ((CMobEntity*)PEntity->GetBaseEntity())->PEnmityContainer->UpdateEnmity((CBattleEntity*)m_PBaseEntity, CE, VE);
+        }
+    }
+    else if (m_PBaseEntity->objtype == TYPE_MOB)
+    {
+        if (PEntity != NULL && (CE > 0 || VE >0) &&
+            PEntity->GetBaseEntity()->objtype != TYPE_NPC)
+        {
+            ((CMobEntity*)m_PBaseEntity)->PEnmityContainer->UpdateEnmity((CBattleEntity*)PEntity->GetBaseEntity(), CE, VE);
+        }
+    }
+    return 0;
+}
+
+/************************************************************************
 *																		*
 *  Проверяем, покидал ли персонаж зону после поднятия флага				*
 *  необходимости ее покинуть. С параметром устанавливаем флаг, без		*
@@ -5955,6 +5995,31 @@ inline int32 CLuaBaseEntity::getWeaponSubSkillType(lua_State *L)
 	}
 	ShowError(CL_RED"lua::getWeaponSubskillType :: Invalid slot specified!" CL_RESET);
 	return 0;
+}
+
+/************************************************************************
+*                                                                       *
+*  Returns weapon skill's skillchain properties (up to 3)               *
+*                                                                       *
+************************************************************************/
+inline int32 CLuaBaseEntity::getWSSkillchainProp(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    CWeaponSkill* WSkill = ((CCharEntity*)m_PBaseEntity)->PBattleAI->GetCurrentWeaponSkill();
+    
+    if (WSkill)
+    {
+        lua_pushinteger(L, WSkill->getPrimarySkillchain());
+        lua_pushinteger(L, WSkill->getSecondarySkillchain());
+        lua_pushinteger(L, WSkill->getTertiarySkillchain());
+
+        return 3;
+    }
+
+    lua_pushnil(L);
+    return 1;
 }
 
 //==========================================================//
@@ -8804,8 +8869,9 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,showPosition),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmity),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetEnmity),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,lowerEnmity),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,lowerEnmity), 
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmityFromDamage),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addEnmity),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEquipID),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getShieldSize),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,lockEquipSlot),
@@ -8853,6 +8919,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isWeaponTwoHanded),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponSkillType),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponSubSkillType),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWSSkillchainProp),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRangedDmg),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRangedDmgForRank),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAmmoDmg),
