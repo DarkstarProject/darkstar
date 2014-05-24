@@ -37,10 +37,13 @@ public:
 	const int8* GetName();
 	position_t GetEntryLoc();
 	uint32 GetTimeLimit();
+	uint32 GetLastTimeUpdate();
 	CZone* GetZone();
 
 	void SetLevelCap(uint8 cap);
 	void SetEntryLoc(float x, float y, float z, float rot);
+	void SetLastTimeUpdate(uint32 time);
+
 	bool CheckTime(uint32 tick);
 	bool CharRegistered(CCharEntity* PChar);
 
@@ -59,6 +62,7 @@ private:
 	uint8 m_timeLimit;
 	uint32 m_startTime;
 	uint32 m_lastTimeUpdate;
+	uint32 m_lastTimeCheck;
 	position_t m_entryloc;
 	std::vector<uint32> m_registeredChars;
 };

@@ -32,14 +32,33 @@ end;
 -- onInstanceTimeUpdate
 -----------------------------------
 
-function onInstanceTimeUpdate(instance, timeRemaining)
-    local players = instance:getChars();
-    for i,v in pairs(players) do
-        if (timeRemaining >= 60) then
-            v:messageSpecial(Lebros.text.TIME_REMAINING_MINUTES, timeRemaining / 60);
-        else
-            v:messageSpecial(Lebros.text.TIME_REMAINING_SECONDS, timeRemaining);
+function onInstanceTimeUpdate(instance, elapsed)
+    local lastTimeUpdate = instance:getLastTimeUpdate();
+    local remaining = (instance:getTimeLimit()) * 60 - (elapsed / 1000);
+    local message = 0;
+    
+    if (lastTimeUpdate == 0 and elapsed > 20 * 60000) then
+        message = 600;
+    elseif (lastTimeUpdate == 600 and remaining < 300) then
+        message = 300;
+    elseif (lastTimeUpdate == 300 and remaining < 60) then
+        message = 60;
+    elseif (lastTimeUpdate == 60 and remaining < 30) then
+        message = 30;
+    elseif (lastTimeUpdate == 30 and remaining < 10) then
+        message = 10;
+    end
+    
+    if (message ~= 0) then
+        local players = instance:getChars();
+        for i,v in pairs(players) do
+            if (timeRemaining >= 60) then
+                v:messageSpecial(Lebros.text.TIME_REMAINING_MINUTES, timeRemaining / 60);
+            else
+                v:messageSpecial(Lebros.text.TIME_REMAINING_SECONDS, timeRemaining);
+            end
         end
+        instance:setLastTimeUpdate(message);
     end
 end;
 

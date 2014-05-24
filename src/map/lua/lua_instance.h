@@ -45,10 +45,14 @@ public:
 	{
 		return m_PLuaInstance;
 	}
-	int32 setLevelCap(lua_State*);
+	
 	int32 getChars(lua_State*);
 	int32 getTimeLimit(lua_State*);
 	int32 getEntryPos(lua_State*);
+	int32 getLastTimeUpdate(lua_State*);
+
+	int32 setLevelCap(lua_State*);
+	int32 setLastTimeUpdate(lua_State*);
 };
 
 #endif

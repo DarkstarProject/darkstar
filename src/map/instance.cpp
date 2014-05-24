@@ -39,6 +39,7 @@ CInstance::CInstance(CZone* zone, uint8 instanceid) : CZoneEntities(zone)
 	m_commander = 0;
 	m_levelcap = 0;
 	m_lastTimeUpdate = 0;
+	m_lastTimeCheck = 0;
 	memset(&m_entryloc, 0, sizeof m_entryloc);
 
 	LoadInstance();
@@ -131,6 +132,11 @@ uint32 CInstance::GetTimeLimit()
 	return m_timeLimit;
 }
 
+uint32 CInstance::GetLastTimeUpdate()
+{
+	return m_lastTimeUpdate;
+}
+
 void CInstance::SetLevelCap(uint8 cap)
 {
 	m_levelcap = cap;
@@ -144,37 +150,22 @@ void CInstance::SetEntryLoc(float x, float y, float z, float rot)
 	m_entryloc.rotation = rot;
 }
 
+void CInstance::SetLastTimeUpdate(uint32 lastTime)
+{
+	m_lastTimeUpdate = lastTime;
+}
+
 bool CInstance::CheckTime(uint32 tick)
 {
 	if (tick > m_startTime + m_timeLimit * 60000)
 	{
 		return true;
 	}
-	if (m_lastTimeUpdate == 0 && m_timeLimit > 10 && tick > m_startTime + (m_timeLimit - 10) * 60000)
+	if (m_lastTimeCheck + 1000 <= tick)
 	{
-		m_lastTimeUpdate = 600;
-		luautils::OnInstanceTimeUpdate(m_zone, this, m_lastTimeUpdate);
+		luautils::OnInstanceTimeUpdate(m_zone, this, tick - m_startTime);
 	}
-	else if (m_lastTimeUpdate == 10 && m_timeLimit > 5 && tick > m_startTime + (m_timeLimit - 5) * 60000)
-	{
-		m_lastTimeUpdate = 300;
-		luautils::OnInstanceTimeUpdate(m_zone, this, m_lastTimeUpdate);
-	}
-	else if (m_lastTimeUpdate == 5 && tick > m_startTime + (m_timeLimit - 1) * 60000)
-	{
-		m_lastTimeUpdate = 60;
-		luautils::OnInstanceTimeUpdate(m_zone, this, m_lastTimeUpdate);
-	}
-	else if (m_lastTimeUpdate == 5 && tick > m_startTime + (m_timeLimit - 1) * 60000 - 30000)
-	{
-		m_lastTimeUpdate = 30;
-		luautils::OnInstanceTimeUpdate(m_zone, this, m_lastTimeUpdate);
-	}
-	else if (m_lastTimeUpdate == 5 && tick > m_startTime + (m_timeLimit - 1) * 60000 - 10000)
-	{
-		m_lastTimeUpdate = 10;
-		luautils::OnInstanceTimeUpdate(m_zone, this, m_lastTimeUpdate);
-	}
+	m_lastTimeCheck = tick;
 	return false;
 }
 

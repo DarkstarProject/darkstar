@@ -1,16 +1,13 @@
 Lebros = {
 
     text = {
-        -- Variable TextID   Description text
-
         -- General Texts
         ITEM_CANNOT_BE_OBTAINED = 6376, -- You cannot obtain the item <item> come back again after sorting your inventory
-                  ITEM_OBTAINED = 6379, -- Obtained: <item>
-                   GIL_OBTAINED = 6380, -- Obtained <number> gil
-               KEYITEM_OBTAINED = 6382, -- Obtained key item: <keyitem>
+        ITEM_OBTAINED = 6379, -- Obtained: <item>
+        GIL_OBTAINED = 6380, -- Obtained <number> gil
+        KEYITEM_OBTAINED = 6382, -- Obtained key item: <keyitem>
 
         -- Assault Texts
-
         ASSAULT_21_START = 7338,
         ASSAULT_22_START = 7339,
         ASSAULT_23_START = 7340,
@@ -31,6 +28,7 @@ Lebros = {
     },
     
     mobs = {
+        -- Wamoura Farm Raid Assault
         [27] = {
             RANCH_WAMOURA1 = 17035359,
             RANCH_WAMOURA2 = 17035360,
@@ -51,6 +49,7 @@ Lebros = {
     },
     
     npcs = {
-    
+        ANCIENT_LOCKBOX = 17035478,
+        RUNE_OF_RELEASE = 17035479
     }
 }

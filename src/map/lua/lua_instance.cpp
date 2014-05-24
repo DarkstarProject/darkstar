@@ -57,16 +57,6 @@ CLuaInstance::CLuaInstance(CInstance* PBattlefield)
 	m_PLuaInstance = PBattlefield;
 }
 
-inline int32 CLuaInstance::setLevelCap(lua_State* L)
-{
-	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
-	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
-
-	m_PLuaInstance->SetLevelCap(lua_tonumber(L, 1));
-
-	return 0;
-}
-
 inline int32 CLuaInstance::getChars(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
@@ -120,6 +110,33 @@ inline int32 CLuaInstance::getEntryPos(lua_State* L)
 	return 1;
 }
 
+inline int32 CLuaInstance::getLastTimeUpdate(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+
+	lua_pushinteger(L, m_PLuaInstance->GetLastTimeUpdate());
+
+	return 1;
+}
+
+inline int32 CLuaInstance::setLevelCap(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+	m_PLuaInstance->SetLevelCap(lua_tonumber(L, 1));
+
+	return 0;
+}
+
+inline int32 CLuaInstance::setLastTimeUpdate(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+	m_PLuaInstance->SetLastTimeUpdate(lua_tointeger(L, 1));
+}
+
 /************************************************************************
 *																		*
 *  declare lua function													*
@@ -133,5 +150,7 @@ Lunar<CLuaInstance>::Register_t CLuaInstance::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaInstance, getChars),
 	LUNAR_DECLARE_METHOD(CLuaInstance, getTimeLimit),
 	LUNAR_DECLARE_METHOD(CLuaInstance, getEntryPos),
+	LUNAR_DECLARE_METHOD(CLuaInstance, getLastTimeUpdate),
+	LUNAR_DECLARE_METHOD(CLuaInstance, setLastTimeUpdate),
 	{ NULL, NULL }
 };
