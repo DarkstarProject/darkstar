@@ -339,7 +339,7 @@ function onEventUpdate(player, csid, option)
 			--player:PrintToPlayer( string.format( " Price:'%u'(Castle Zvahl) ", price ) );
 		end
 	  
-	  player:PrintToPlayer( string.format( " Player has '%u' gil.", player:getGil() ) );
+	  --player:PrintToPlayer( string.format( " Player has '%u' gil.", player:getGil() ) );
 	  
 	  if (price > player:getGil()) then
 		 player:messageSpecial(NOT_HAVE_ENOUGH_GIL);
@@ -352,7 +352,7 @@ function onEventUpdate(player, csid, option)
 		 player:messageSpecial(KEYITEM_OBTAINED, KI);
 		 
 	  end
-	  printf("RESULT: %u",option);
+	  --printf("RESULT: %u",option);
 	end
 end;
 
@@ -360,8 +360,8 @@ end;
 -- onEventFinish
 -----------------------------------
 function onEventFinish(player,csid,option)
-    printf("CSID: %u",csid);
-    printf("RESULT: %u",option);
+    --printf("CSID: %u",csid);
+    --printf("RESULT: %u",option);
 end;
 
 
