@@ -142,6 +142,8 @@ public:
     CAIGeneral*     PBattleAI;          // интеллект любой сущности
 	CInstance*		PInstance;
 
+	CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1);
+
     CBaseEntity();						// конструктор
     virtual ~CBaseEntity();						// деструктор
 private:

@@ -566,7 +566,7 @@ void SmallPacket0x016(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	}
 	else
 	{
-		CBaseEntity* PEntity = PChar->loc.zone->GetEntity(targid, TYPE_NPC | TYPE_PC);
+		CBaseEntity* PEntity = PChar->GetEntity(targid, TYPE_NPC | TYPE_PC);
 
 		if (PEntity && PEntity->objtype == TYPE_PC)
 		{
@@ -624,7 +624,15 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 PChar->pushPacket(new CReleasePacket(PChar, RELEASE_STANDARD));
                 return;
             }
-            CBaseEntity* PNpc = zoneutils::GetZone(PChar->getZone() != 0 ? PChar->getZone() : PChar->loc.prevzone)->GetEntity(TargID, TYPE_NPC);
+			CBaseEntity* PNpc = NULL;
+			if (PChar->getZone() == 0)
+			{
+				PNpc = zoneutils::GetZone(PChar->loc.prevzone)->GetEntity(TargID, TYPE_NPC);
+			}
+			else
+			{
+				PNpc = PChar->GetEntity(TargID, TYPE_NPC);
+			}
 
 			if (PNpc != NULL && distance(PNpc->loc.p,PChar->loc.p) <= 10)
 			{
@@ -1023,7 +1031,7 @@ void SmallPacket0x032(map_session_data_t* session, CCharEntity* PChar, int8* dat
     uint32 charid = RBUFL(data,(0x04));
     uint16 targid = RBUFW(data,(0x08));
 
-    CCharEntity* PTarget = (CCharEntity*)PChar->loc.zone->GetEntity(targid, TYPE_PC);
+    CCharEntity* PTarget = (CCharEntity*)PChar->GetEntity(targid, TYPE_PC);
 
     if ((PTarget != NULL) && (PTarget->id == charid))
     {
@@ -1062,7 +1070,7 @@ void SmallPacket0x032(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x033(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    CCharEntity* PTarget = (CCharEntity*)PChar->loc.zone->GetEntity(PChar->TradePending.targid, TYPE_PC);
+    CCharEntity* PTarget = (CCharEntity*)PChar->GetEntity(PChar->TradePending.targid, TYPE_PC);
 
     if (PTarget != NULL && PChar->TradePending.id == PTarget->id)
     {
@@ -1173,7 +1181,7 @@ void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, int8* dat
     uint8  invSlotID   = RBUFB(data,(0x0A));
     uint8  tradeSlotID = RBUFB(data,(0x0B));
 
-    CCharEntity* PTarget = (CCharEntity*)PChar->loc.zone->GetEntity(PChar->TradePending.targid, TYPE_PC);
+    CCharEntity* PTarget = (CCharEntity*)PChar->GetEntity(PChar->TradePending.targid, TYPE_PC);
 
     if (PTarget != NULL && PTarget->id == PChar->TradePending.id)
     {
@@ -1204,7 +1212,7 @@ void SmallPacket0x036(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	uint32 npcid  = RBUFL(data,(0x04));
 	uint16 targid = RBUFW(data,(0x3A));
 
-	CBaseEntity* PNpc = PChar->loc.zone->GetEntity(targid, TYPE_NPC);
+	CBaseEntity* PNpc = PChar->GetEntity(targid, TYPE_NPC);
 
 	// Moogles are zone dependent, and zoneid = 0 is for all residential areas, so if a char trades to a moogle
 	// then you won't find the right NPC if you used zoneid=0. Thankfully, the prevzone is the real zone we want
@@ -4015,7 +4023,7 @@ void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, int8* dat
         return;
     }
 
-	CBaseEntity* PEntity = PChar->loc.zone->GetEntity(targid, TYPE_MOB | TYPE_PC);
+	CBaseEntity* PEntity = PChar->GetEntity(targid, TYPE_MOB | TYPE_PC);
 
 	if (PEntity == NULL || PEntity->id != id)
 		return;
@@ -4563,7 +4571,7 @@ void SmallPacket0x0F5(map_session_data_t* session, CCharEntity* PChar, int8* dat
 {
 	uint16 TargID = RBUFW(data,(0x04));
 
-	PChar->PWideScanTarget = PChar->loc.zone->GetEntity(TargID, TYPE_MOB | TYPE_NPC);
+	PChar->PWideScanTarget = PChar->GetEntity(TargID, TYPE_MOB | TYPE_NPC);
 	return;
 }
 
@@ -4945,7 +4953,7 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x104(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    CCharEntity* PTarget = (CCharEntity*)PChar->loc.zone->GetEntity(PChar->BazaarID.targid, TYPE_PC);
+    CCharEntity* PTarget = (CCharEntity*)PChar->GetEntity(PChar->BazaarID.targid, TYPE_PC);
 
     if (PTarget != NULL && PTarget->id == PChar->BazaarID.id)
 	{
@@ -4976,7 +4984,7 @@ void SmallPacket0x105(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 	uint32 charid = RBUFL(data,(0x04));
 
-    CCharEntity* PTarget = (CCharEntity*)PChar->loc.zone->GetEntity(PChar->m_TargID, TYPE_PC);
+    CCharEntity* PTarget = (CCharEntity*)PChar->GetEntity(PChar->m_TargID, TYPE_PC);
 
     if (PTarget != NULL && PTarget->id == charid && (PTarget->nameflags.flags & FLAG_BAZAAR))
 	{
@@ -5014,7 +5022,7 @@ void SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	uint8 Quantity = RBUFB(data,0x08);
 	uint8 SlotID   = RBUFB(data,0x04);
 
-    CCharEntity* PTarget = (CCharEntity*)PChar->loc.zone->GetEntity(PChar->BazaarID.targid, TYPE_PC);
+    CCharEntity* PTarget = (CCharEntity*)PChar->GetEntity(PChar->BazaarID.targid, TYPE_PC);
 
     if (PTarget == NULL || PTarget->id != PChar->BazaarID.id)
 		return;
@@ -5072,7 +5080,7 @@ void SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	    }
         for (uint32 i = 0; i < PTarget->BazaarCustomers.size(); ++i)
         {
-            CCharEntity* PCustomer = (CCharEntity*)PTarget->loc.zone->GetEntity(PTarget->BazaarCustomers[i].targid, TYPE_PC);
+            CCharEntity* PCustomer = (CCharEntity*)PTarget->GetEntity(PTarget->BazaarCustomers[i].targid, TYPE_PC);
 
             if (PCustomer != NULL && PCustomer->id == PTarget->BazaarCustomers[i].id)
             {
@@ -5161,7 +5169,7 @@ void SmallPacket0x10B(map_session_data_t* session, CCharEntity* PChar, int8* dat
 {
     for (uint32 i = 0; i < PChar->BazaarCustomers.size(); ++i)
     {
-        CCharEntity* PCustomer = (CCharEntity*)PChar->loc.zone->GetEntity(PChar->BazaarCustomers[i].targid, TYPE_PC);
+        CCharEntity* PCustomer = (CCharEntity*)PChar->GetEntity(PChar->BazaarCustomers[i].targid, TYPE_PC);
 
         if (PCustomer != NULL && PCustomer->id == PChar->BazaarCustomers[i].id)
         {

@@ -47,6 +47,20 @@ CZoneInstance::~CZoneInstance()
 	}
 }
 
+CBaseEntity* CZoneInstance::GetEntity(uint16 targid, uint8 filter)
+{
+	CBaseEntity* PEntity = NULL;
+	if (filter & TYPE_PC)
+	{
+		for (auto instance : instanceList)
+		{
+			PEntity = instance->GetEntity(targid, filter);
+			if (PEntity) break;
+		}
+	}
+	return PEntity;
+}
+
 void CZoneInstance::InsertMOB(CBaseEntity* PMob)
 {
 	if (PMob->PInstance)

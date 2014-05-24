@@ -268,5 +268,7 @@ CInstance* CInstanceLoader::LoadInstance()
 		}
 	}
 
+	//TODO: pets
+
 	return instance;
 }

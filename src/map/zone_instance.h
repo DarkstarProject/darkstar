@@ -33,6 +33,8 @@ class CZoneInstance : public CZone
 {
 public:
 
+	virtual CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1); 			// получаем указатель на любую сущность в зоне
+
 	virtual void	SpawnPCs(CCharEntity* PChar);									// отображаем персонажей в зоне
 	virtual void	SpawnMOBs(CCharEntity* PChar);									// отображаем MOBs в зоне
 	virtual void	SpawnPETs(CCharEntity* PChar);									// отображаем PETs в зоне

@@ -103,3 +103,11 @@ bool CBaseEntity::IsNameHidden()
 {
 	return namevis == 0x08;
 }
+
+CBaseEntity* CBaseEntity::GetEntity(uint16 targid, uint8 filter)
+{
+	if (PInstance)
+		return PInstance->GetEntity(targid, filter);
+	else
+		return loc.zone->GetEntity(targid, filter);
+}

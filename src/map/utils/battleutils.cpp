@@ -3489,7 +3489,7 @@ void TransferEnmity(CBattleEntity* CharHateReceiver, CBattleEntity* CharHateGive
 	if (PMob == NULL || ((CMobEntity*)PMob)->PEnmityContainer == NULL)
 		return;
 
-	//CBaseEntity* PMob = CharHateGiver->loc.zone->GetEntity(mobID, TYPE_MOB);
+	//CBaseEntity* PMob = CharHateGiver->GetEntity(mobID, TYPE_MOB);
 
 	((CMobEntity*)PMob)->PEnmityContainer->LowerEnmityByPercent(CharHateGiver , percentToTransfer, CharHateReceiver);
 }
@@ -4304,13 +4304,13 @@ CMobSkill* GetTwoHourMobSkill(JOBTYPE job)
 void assistTarget(CCharEntity* PChar, uint16 TargID)
 {
 	// get the player we want to assist
-	CBattleEntity* PlayerToAssist = (CBattleEntity*)PChar->loc.zone->GetEntity(TargID, TYPE_MOB | TYPE_PC);
+	CBattleEntity* PlayerToAssist = (CBattleEntity*)PChar->GetEntity(TargID, TYPE_MOB | TYPE_PC);
 	if (PlayerToAssist != NULL)
 	{
 		if (PlayerToAssist->objtype == TYPE_PC && PlayerToAssist->m_TargID != 0)
 		{
 			// get that players target (mob,player,pet only)
-			CBattleEntity* EntityToLockon = (CBattleEntity*)PChar->loc.zone->GetEntity(PlayerToAssist->m_TargID, TYPE_MOB | TYPE_PC | TYPE_PET);
+			CBattleEntity* EntityToLockon = (CBattleEntity*)PChar->GetEntity(PlayerToAssist->m_TargID, TYPE_MOB | TYPE_PC | TYPE_PET);
 			if (EntityToLockon != NULL)
 			{
 				// lock on to the new target!

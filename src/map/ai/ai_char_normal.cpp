@@ -148,7 +148,7 @@ bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTar
 {
 	DSP_DEBUG_BREAK_IF(m_ActionTargetID == 0);
 
-    CBattleEntity* PTarget = (CBattleEntity*)m_PChar->loc.zone->GetEntity(m_ActionTargetID, TYPE_MOB | TYPE_PC | TYPE_PET);
+    CBattleEntity* PTarget = (CBattleEntity*)m_PChar->GetEntity(m_ActionTargetID, TYPE_MOB | TYPE_PC | TYPE_PET);
 	*PBattleTarget = PTarget;
 
     m_ActionTargetID = 0;
@@ -2029,7 +2029,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 				// Find all mobs within 8.5 radius of the target..
 				for (uint32 x = 0; x < 0x400; x++)
 				{
-					CBaseEntity* PTarget = m_PBattleSubTarget->loc.zone->GetEntity(x, TYPE_MOB);
+					CBaseEntity* PTarget = m_PBattleSubTarget->GetEntity(x, TYPE_MOB);
 					if (PTarget != NULL && PTarget->objtype == TYPE_MOB)
 					{
 						if (m_PTargetFind->isWithinRange(&PTarget->loc.p, 8.5f))

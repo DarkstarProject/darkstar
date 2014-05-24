@@ -138,7 +138,7 @@ void CAIMobDummy::ActionRoaming()
 	else if (m_PMob->m_OwnerID.id != 0 && !(m_PMob->m_roamFlags & ROAMFLAG_IGNORE))
 	{
 		// i'm claimed by someone and need hate towards this person
-        m_PBattleTarget = (CBattleEntity*)m_PMob->loc.zone->GetEntity(m_PMob->m_OwnerID.targid, TYPE_PC | TYPE_MOB | TYPE_PET);
+        m_PBattleTarget = (CBattleEntity*)m_PMob->GetEntity(m_PMob->m_OwnerID.targid, TYPE_PC | TYPE_MOB | TYPE_PET);
 
 		battleutils::ClaimMob(m_PMob, m_PBattleTarget);
 
@@ -390,7 +390,7 @@ void CAIMobDummy::ActionDropItems()
 {
     if (m_Tick >= m_LastActionTime + m_PMob->m_DropItemTime)
 	{
-        CCharEntity* PChar = (CCharEntity*)m_PMob->loc.zone->GetEntity(m_PMob->m_OwnerID.targid, TYPE_PC);
+        CCharEntity* PChar = (CCharEntity*)m_PMob->GetEntity(m_PMob->m_OwnerID.targid, TYPE_PC);
 
         if (PChar != NULL && PChar->id == m_PMob->m_OwnerID.id)
 		{
@@ -658,7 +658,7 @@ void CAIMobDummy::ActionSpawn()
 		{
 			for(int8 i=1; i<m_PMob->getMobMod(MOBMOD_ASSIST)+1; i++)
 			{
-				CMobEntity* PMob = (CMobEntity*)m_PMob->loc.zone->GetEntity(m_PMob->targid + i, TYPE_MOB);
+				CMobEntity* PMob = (CMobEntity*)m_PMob->GetEntity(m_PMob->targid + i, TYPE_MOB);
 
 				if(PMob != NULL)
 				{
@@ -1447,7 +1447,7 @@ void CAIMobDummy::ActionAttack()
 
     if (m_PMob->getMobMod(MOBMOD_SHARE_POS) > 0)
     {
-        CMobEntity* posShare = (CMobEntity*)m_PMob->loc.zone->GetEntity(m_PMob->getMobMod(MOBMOD_SHARE_POS), TYPE_MOB);
+        CMobEntity* posShare = (CMobEntity*)m_PMob->GetEntity(m_PMob->getMobMod(MOBMOD_SHARE_POS), TYPE_MOB);
         m_PMob->loc = posShare->loc;
     }
 

@@ -472,7 +472,7 @@ CBattleEntity* CTargetFind::getValidTarget(uint16 actionTargetID, uint8 validTar
 
     DSP_DEBUG_BREAK_IF(actionTargetID == 0);
 
-    CBattleEntity* PTarget = (CBattleEntity*)m_PBattleEntity->loc.zone->GetEntity(actionTargetID, TYPE_MOB | TYPE_PC | TYPE_PET);
+    CBattleEntity* PTarget = (CBattleEntity*)m_PBattleEntity->GetEntity(actionTargetID, TYPE_MOB | TYPE_PC | TYPE_PET);
 
     if (PTarget == NULL)
     {
