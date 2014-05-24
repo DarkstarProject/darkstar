@@ -204,8 +204,6 @@ int32 do_init(int32 argc, int8** argv)
 
 	luautils::OnServerStart();
     fishingutils::LoadFishingMessages();
-	instanceutils::CreateLoader(map_config.mysql_login, map_config.mysql_password,
-		map_config.mysql_host, map_config.mysql_port, map_config.mysql_database);
 
 	ShowStatus("do_init: server is binding with port %u",map_config.usMapPort);
 	map_fd = makeBind_udp(map_config.uiMapIp,map_config.usMapPort);
@@ -219,8 +217,6 @@ int32 do_init(int32 argc, int8** argv)
 
 	CREATE(g_PBuff,   int8, map_config.buffer_size + 20);
     CREATE(PTempBuff, int8, map_config.buffer_size + 20);
-	aFree((void*)map_config.mysql_login);
-	aFree((void*)map_config.mysql_password);
 	ShowStatus("The map-server is " CL_GREEN"ready" CL_RESET" to work...\n");
     ShowMessage("=======================================================================\n");
 	return 0;

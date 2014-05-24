@@ -37,10 +37,9 @@ class CZone;
 class CInstanceLoader
 {
 public:
-	CInstanceLoader(const int8* login, const int8* pass, const int8* host, uint16 port, const int8* db);
+	CInstanceLoader(uint8 instanceid, uint16 zoneid, CCharEntity* PRequester);
 	~CInstanceLoader();
 
-	bool RequestInstance(uint8 instanceid, uint16 zoneid, CCharEntity* PRequester);
 	CInstance* GetInstance();
 	bool Check();
 private:

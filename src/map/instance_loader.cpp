@@ -34,8 +34,15 @@ This file is part of DarkStar-server source code.
 #include "lua/luautils.h"
 #include "utils/zoneutils.h"
 
-CInstanceLoader::CInstanceLoader(const int8* login, const int8* pass, const int8* host, uint16 port, const int8* db)
+CInstanceLoader::CInstanceLoader(uint8 instanceid, uint16 zoneid, CCharEntity* PRequester)
 {
+	zone = zoneutils::GetZone(zoneid);
+
+	DSP_DEBUG_BREAK_IF(zone->GetType() != ZONETYPE_DUNGEON_INSTANCED);
+
+	requester = PRequester;
+	instance = ((CZoneInstance*)zone)->CreateInstance(instanceid);
+
 	SqlInstanceHandle = Sql_Malloc();
 
 	if (Sql_Connect(SqlInstanceHandle, map_config.mysql_login,
@@ -44,31 +51,16 @@ CInstanceLoader::CInstanceLoader(const int8* login, const int8* pass, const int8
 		map_config.mysql_port,
 		map_config.mysql_database) == SQL_ERROR)
 	{
-		ShowFatalError(CL_RED"Instance DB Connect failed!\n" CL_RESET);
+		exit(EXIT_FAILURE);
 	}
 	Sql_Keepalive(SqlInstanceHandle);
+
+	task = std::async(std::launch::async, &CInstanceLoader::LoadInstance, this);
 }
 
 CInstanceLoader::~CInstanceLoader()
 {
 	Sql_Free(SqlInstanceHandle);
-}
-
-bool CInstanceLoader::RequestInstance(uint8 instanceid, uint16 zoneid, CCharEntity* PRequester)
-{
-	if (!task.valid())
-	{
-		zone = zoneutils::GetZone(zoneid);
-
-		DSP_DEBUG_BREAK_IF(zone->GetType() != ZONETYPE_DUNGEON_INSTANCED);
-
-		requester = PRequester;
-		instance = ((CZoneInstance*)zone)->CreateInstance(instanceid);
-
-		task = std::async(std::launch::async, &CInstanceLoader::LoadInstance, this);
-		return true;
-	}
-	return false;
 }
 
 bool CInstanceLoader::Check()

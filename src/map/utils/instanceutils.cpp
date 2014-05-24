@@ -35,20 +35,23 @@ namespace instanceutils
 	{
 		if (Loader)
 		{
-			Loader->Check();
+			if (Loader->Check())
+			{
+				delete Loader;
+				Loader = NULL;
+			}
 		}
 	}
 
 	void LoadInstance(uint8 instanceid, uint16 zoneid, CCharEntity* PRequester)
 	{
-		if (!Loader->RequestInstance(instanceid, zoneid, PRequester))
+		if (!Loader)
+		{
+			Loader = new CInstanceLoader(instanceid, zoneid, PRequester);
+		}
+		else
 		{
 			luautils::OnInstanceCreated(PRequester, NULL);
 		}
-	}
-
-	void CreateLoader(const int8* login, const int8* pass, const int8* host, uint16 port, const int8* db)
-	{
-		Loader = new CInstanceLoader(login, pass, host, port, db);
 	}
 };

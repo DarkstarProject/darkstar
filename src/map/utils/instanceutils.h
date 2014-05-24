@@ -25,7 +25,6 @@ This file is part of DarkStar-server source code.
 #define _INSTANCEUTILS_H
 
 #include "../../common/cbasetypes.h"
-#include "../../common/taskmgr.h"
 
 class CInstanceLoader;
 class CCharEntity;
@@ -34,7 +33,6 @@ namespace instanceutils
 {
 	void CheckInstance();
 	void LoadInstance(uint8 instanceid, uint16 zoneid, CCharEntity* PRequester);
-	void CreateLoader(const int8* login, const int8* pass, const int8* host, uint16 port, const int8* db);
 };
 
 #endif
