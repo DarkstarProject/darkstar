@@ -1809,7 +1809,7 @@ uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender)
 
     float skillmodifier = (blockskill - attackskill) * 0.215f;
 
-    return dsp_cap(base + (int8)skillmodifier, 5, shieldSize == 6 ? 100 : 65);
+    return dsp_cap(base + (int8)skillmodifier, 5, (shieldSize == 6 ? 100 : 65));
 }
 
 uint8 GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
