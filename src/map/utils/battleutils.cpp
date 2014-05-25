@@ -3504,9 +3504,9 @@ uint16 doSoulEaterEffect(CCharEntity* m_PChar, uint32 damage)
 		CItem* PItemHead = ((CCharEntity*)m_PChar)->getEquip(SLOT_HEAD);
 		CItem* PItemBody = ((CCharEntity*)m_PChar)->getEquip(SLOT_BODY);
 		CItem* PItemLegs = ((CCharEntity*)m_PChar)->getEquip(SLOT_LEGS);
-		if(PItemHead->getID() == 12516 || PItemHead->getID() == 15232 || PItemBody->getID() == 14409 || PItemLegs->getID() == 15370){
-		drainPercent = 0.12;
-	}
+        if((PItemHead && (PItemHead->getID() == 12516 || PItemHead->getID() == 15232)) || (PItemBody && PItemBody->getID() == 14409) || (PItemLegs && PItemLegs->getID() == 15370))
+            drainPercent = 0.12;
+
 		damage = damage + m_PChar->health.hp*drainPercent;
 		m_PChar->addHP(-drainPercent*m_PChar->health.hp);
 	}
