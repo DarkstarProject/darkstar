@@ -168,17 +168,27 @@ void CItemArmor::addModifier(CModifier* modifier)
     if (IsShield() && modifier->getModID() == MOD_DEF)
     {
         // reduction calc source: www.bluegartr.com/threads/84830-Shield-Asstery
+        // http://www.ffxiah.com/forum/topic/21671/paladin-faq-info-and-trade-studies/33/ <~Aegis and Ochain
 
 		int16 pdt = modifier->getModAmount() / 2;
 
-		switch(m_shieldSize)
+        switch(m_shieldSize)
         {
-			case 1: pdt += 22; break; // Bucker 22%
-			case 2: pdt += 40; break; // Round  40%
-			case 3: pdt += 50; break; // Kite   50%
-			case 4: pdt += 55; break; // Tower  55%
-			case 5: pdt += 60; break; // Aegis  60%
-		}
+            case 1: // Buckler
+                pdt += 22;
+                break;
+            case 2: // Round
+            case 6: // Ochain
+                pdt += 40;
+                break;
+            case 3: // Kite
+                pdt += 50;
+                break;
+            case 4: // Tower
+            case 5: // Aegis
+                pdt += 55;
+                break;
+        }
         m_absorption = dsp_min(pdt,100);
     }
     modList.push_back(modifier);
