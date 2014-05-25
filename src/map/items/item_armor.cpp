@@ -172,23 +172,23 @@ void CItemArmor::addModifier(CModifier* modifier)
 
 		int16 pdt = modifier->getModAmount() / 2;
 
-		switch(m_shieldSize)
+        switch(m_shieldSize)
         {
-			case 1: // Buckler
+            case 1: // Buckler
                 pdt += 22;
                 break;
-			case 2: // Round
+            case 2: // Round
             case 6: // Ochain
                 pdt += 40;
                 break;
-			case 3: // Kite
+            case 3: // Kite
                 pdt += 50;
                 break;
-			case 4: // Tower
+            case 4: // Tower
             case 5: // Aegis
                 pdt += 55;
                 break;
-		}
+        }
         m_absorption = dsp_min(pdt,100);
     }
     modList.push_back(modifier);
