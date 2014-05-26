@@ -51,9 +51,8 @@ function onEventFinish(player,csid,option)
 	if (csid == 0x000a and option == 0) then
 		local mainweapon = player:getEquipID(SLOT_MAIN);
 		local subweapon = player:getEquipID(SLOT_SUB);
-		local currentJob = player:getMainJob();
 
-		if (mainweapon == 0 and subweapon == 0 and currentJob ~= JOB_MNK) then
+		if (mainweapon == 0 and subweapon == 0) then
 			local freeslots = player:getFreeSlotsCount();
 			local alreadyHasItem = player:hasItem(576);
 			local SirensTear = player:getQuestStatus(BASTOK,THE_SIREN_S_TEAR);
