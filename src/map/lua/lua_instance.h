@@ -53,11 +53,13 @@ public:
 	int32 getProgress(lua_State*);
 	int32 getWipeTime(lua_State*);
 	int32 getEntity(lua_State*);
+	int32 getStage(lua_State*);
 
 	int32 setLevelCap(lua_State*);
 	int32 setLastTimeUpdate(lua_State*);
 	int32 setProgress(lua_State*);
 	int32 setWipeTime(lua_State*);
+	int32 setStage(lua_State*);
 
 	int32 fail(lua_State*);
 	int32 complete(lua_State*);

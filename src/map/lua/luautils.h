@@ -155,14 +155,15 @@ namespace luautils
 	int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility, apAction_t* action);		// triggers when job ability is used
 	int32 OnUseAbilityRoll(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility, uint8 total);			// triggers on corsair roll
 
-	int32 AfterInstanceRegister(uint32 tick, CTaskMgr::CTask *PTask);
-	int32 OnInstanceLoadFailed(CZone* PZone);
-	int32 OnInstanceTimeUpdate(CZone* PZone, CInstance* PInstance, uint32 time);
-	int32 OnInstanceFailure(CInstance* PInstance);
-	int32 OnInstanceCreated(CCharEntity* PChar, CInstance* PInstance);
-	int32 OnInstanceCreated(CInstance* PInstance);
-	int32 OnInstanceProgressUpdate(CInstance* PInstance);
-	int32 OnInstanceComplete(CInstance* PInstance);
+	int32 AfterInstanceRegister(uint32 tick, CTaskMgr::CTask *PTask);			// triggers after a character is registered and zoned into an instance (the first time)
+	int32 OnInstanceLoadFailed(CZone* PZone);									// triggers when an instance load is failed (ie. instance no longer exists)
+	int32 OnInstanceTimeUpdate(CZone* PZone, CInstance* PInstance, uint32 time);// triggers every second for an instance
+	int32 OnInstanceFailure(CInstance* PInstance);								// triggers when an instance is failed
+	int32 OnInstanceCreated(CCharEntity* PChar, CInstance* PInstance);			// triggers when an instance is created (per character - waiting outside for entry)
+	int32 OnInstanceCreated(CInstance* PInstance);								// triggers when an instance is created (instance setup)
+	int32 OnInstanceProgressUpdate(CInstance* PInstance);						// triggers when progress is updated in an instance
+	int32 OnInstanceStageChange(CInstance* PInstance);							// triggers when stage is changed in an instance
+	int32 OnInstanceComplete(CInstance* PInstance);								// triggers when an instance is completed
 
     int32 GetMobRespawnTime(lua_State* L);                                      // get the respawn time of a mob
 	int32 DeterMob(lua_State* L);                                               // Allow or prevent a mob from spawning

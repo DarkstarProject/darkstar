@@ -43,6 +43,7 @@ CInstance::CInstance(CZone* zone, uint8 instanceid) : CZoneEntities(zone)
 	m_wipeTimer = 0;
 	m_status = INSTANCE_NORMAL;
 	m_progress = 0;
+	m_stage = 0;
 	memset(&m_entryloc, 0, sizeof m_entryloc);
 
 	LoadInstance();
@@ -75,6 +76,11 @@ CZone* CInstance::GetZone()
 uint32 CInstance::GetProgress()
 {
 	return m_progress;
+}
+
+uint32 CInstance::GetStage()
+{
+	return m_stage;
 }
 
 /************************************************************************
@@ -189,6 +195,11 @@ void CInstance::SetProgress(uint32 progress)
 {
 	m_progress = progress;
 	luautils::OnInstanceProgressUpdate(this);
+}
+
+void CInstance::SetStage(uint32 stage)
+{
+	m_stage = stage;
 }
 
 void CInstance::SetWipeTime(uint32 time)

@@ -42,26 +42,28 @@ public:
 	uint8 GetID();
 	uint8 GetLevelCap();
 	const int8* GetName();
-	position_t GetEntryLoc();
-	uint32 GetTimeLimit();
-	uint32 GetLastTimeUpdate();
-	CZone* GetZone();
-	uint32 GetProgress();
-	uint32 GetWipeTime();
-	uint32 GetElapsedTime(uint32 tick);
+	position_t GetEntryLoc();								// Get entry location
+	uint32 GetTimeLimit();									// Get instance time limit
+	uint32 GetLastTimeUpdate();								// Get last time a "Time Remaining:" message was displayed
+	CZone* GetZone();										// Return parent CZone
+	uint32 GetProgress();									// Tracks the progress through the current stage
+	uint32 GetStage();										// Tracks the progress through the instance (eg. floor #)
+	uint32 GetWipeTime();									// Stores elapsed time when a wipe is detected
+	uint32 GetElapsedTime(uint32 tick);						// Get elapsed time so far
 
 	void SetLevelCap(uint8 cap);
-	void SetEntryLoc(float x, float y, float z, float rot);
-	void SetLastTimeUpdate(uint32 time);
-	void SetProgress(uint32 progress);
-	void SetWipeTime(uint32 time);
+	void SetEntryLoc(float x, float y, float z, float rot); // Set entry location
+	void SetLastTimeUpdate(uint32 time);					// Set last time a "Time Remaining:" message was displayed
+	void SetProgress(uint32 progress);						// Set progress through current stage
+	void SetStage(uint32 stage);							// Set current stage (eg. floor #)
+	void SetWipeTime(uint32 time);							// Set elapsed time when a wipe is detected
 
-	void CheckTime(uint32 tick);
-	bool CharRegistered(CCharEntity* PChar);
-	void Fail();
-	bool Failed();
-	void Complete();
-	bool Completed();
+	void CheckTime(uint32 tick);							// Check time limit (run instance time script)
+	bool CharRegistered(CCharEntity* PChar);				// Check if PChar is registered to this instance
+	void Fail();											// Fails the instance (onInstanceFailure)
+	bool Failed();											// Checks if instance is failed
+	void Complete();										// Completes the instance (onInstanceComplete)
+	bool Completed();										// Checks if instance is completed
 
 	CInstance(CZone*, uint8 instanceid);
 	~CInstance();
@@ -81,6 +83,7 @@ private:
 	uint32 m_lastTimeCheck;
 	uint32 m_wipeTimer;
 	uint32 m_progress;
+	uint32 m_stage;
 	position_t m_entryloc;
 	INSTANCE_STATUS m_status;
 	std::vector<uint32> m_registeredChars;
