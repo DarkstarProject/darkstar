@@ -61,22 +61,24 @@
 #include "../packets/conquest_map.h"
 
 #include "../ability.h"
+#include "../grades.h"
+#include "../conquest_system.h"
+#include "../map.h"
+#include "../trait.h"
+#include "../vana_time.h"
+#include "../weapon_skill.h"
+
+#include "../entities/charentity.h"
+#include "../entities/petentity.h"
+#include "../entities/mobentity.h"
+
 #include "battleutils.h"
+#include "charutils.h"
+#include "itemutils.h"
 #include "blueutils.h"
 #include "puppetutils.h"
-#include "../entities/charentity.h"
-#include "charutils.h"
-#include "../grades.h"
-#include "itemutils.h"
-#include "../entities/petentity.h"
 #include "petutils.h"
-#include "../map.h"
-#include "../entities/mobentity.h"
-#include "../trait.h"
-#include "../weapon_skill.h"
 #include "zoneutils.h"
-#include "../conquest_system.h"
-#include "../vana_time.h"
 
 /************************************************************************
 *																		*
@@ -661,91 +663,91 @@ void LoadChar(CCharEntity* PChar)
 		Sql_NumRows(SqlHandle) != 0 &&
 		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 	{
-        PChar->m_currency.sandoriacp = Sql_GetUIntData(SqlHandle, 0);
-        PChar->m_currency.bastokcp = Sql_GetUIntData(SqlHandle, 1);
-        PChar->m_currency.windurstcp = Sql_GetUIntData(SqlHandle, 2);
-        PChar->nationtp.sandoria = Sql_GetUIntData(SqlHandle, 3);
-        PChar->nationtp.bastok = Sql_GetUIntData(SqlHandle, 4);
-        PChar->nationtp.windurst = Sql_GetUIntData(SqlHandle, 5);
-        PChar->m_currency.beastmanseal = Sql_GetUIntData(SqlHandle, 6);
-        PChar->m_currency.kindredseal = Sql_GetUIntData(SqlHandle, 7);
-        PChar->m_currency.kindredcrest = Sql_GetUIntData(SqlHandle, 8);
-        PChar->m_currency.hkindredcrest = Sql_GetUIntData(SqlHandle, 9);
-        PChar->m_currency.skindredcrest = Sql_GetUIntData(SqlHandle, 10);
-        PChar->m_currency.ancientbeastcoins = Sql_GetUIntData(SqlHandle, 11);
-        PChar->m_currency.valorpoints = Sql_GetUIntData(SqlHandle, 12);
-        PChar->m_currency.scylds = Sql_GetUIntData(SqlHandle, 13);
-        PChar->m_currency.fishingpoints = Sql_GetUIntData(SqlHandle, 14);
-        PChar->m_currency.woodworkingpoints = Sql_GetUIntData(SqlHandle, 15);
-        PChar->m_currency.smithingpoints = Sql_GetUIntData(SqlHandle, 16);
-        PChar->m_currency.goldsmithingpoints = Sql_GetUIntData(SqlHandle, 17);
-        PChar->m_currency.weavingpoints = Sql_GetUIntData(SqlHandle, 18);
-        PChar->m_currency.leatherpoints = Sql_GetUIntData(SqlHandle, 19);
-        PChar->m_currency.bonepoints = Sql_GetUIntData(SqlHandle, 20);
-        PChar->m_currency.alchemypoints = Sql_GetUIntData(SqlHandle, 21);
-        PChar->m_currency.cookingpoints = Sql_GetUIntData(SqlHandle, 22);
-        PChar->m_currency.cinders = Sql_GetUIntData(SqlHandle, 23);
-        PChar->m_currency.firefewell = Sql_GetUIntData(SqlHandle, 24);
-        PChar->m_currency.icefewell = Sql_GetUIntData(SqlHandle, 25);
-        PChar->m_currency.windfewell = Sql_GetUIntData(SqlHandle, 26);
-        PChar->m_currency.earthfewell = Sql_GetUIntData(SqlHandle, 27);
-        PChar->m_currency.lightningfewell = Sql_GetUIntData(SqlHandle, 28);
-        PChar->m_currency.waterfewell = Sql_GetUIntData(SqlHandle, 29);
-        PChar->m_currency.lightfewell = Sql_GetUIntData(SqlHandle, 30);
-        PChar->m_currency.darkfewell = Sql_GetUIntData(SqlHandle, 31);
-        PChar->m_currency.ballistapoints = Sql_GetUIntData(SqlHandle, 32);
-        PChar->m_currency.fellowpoints = Sql_GetUIntData(SqlHandle, 33);
-        PChar->m_currency.chocobuckssandoria = Sql_GetUIntData(SqlHandle, 34);
-        PChar->m_currency.chocobucksbastok = Sql_GetUIntData(SqlHandle, 35);
-        PChar->m_currency.chocobuckswindurst = Sql_GetUIntData(SqlHandle, 36);
-        PChar->m_currency.researchmarks = Sql_GetUIntData(SqlHandle, 37);
-        PChar->m_currency.tunnelworms = Sql_GetUIntData(SqlHandle, 38);
-        PChar->m_currency.morionworms = Sql_GetUIntData(SqlHandle, 39);
-        PChar->m_currency.phantomworms = Sql_GetUIntData(SqlHandle, 40);
-        PChar->m_currency.moblinmarbles = Sql_GetUIntData(SqlHandle, 41);
-        PChar->m_currency.infamy = Sql_GetUIntData(SqlHandle, 42);
-        PChar->m_currency.prestige = Sql_GetUIntData(SqlHandle, 43);
-        PChar->m_currency.legionpoints = Sql_GetUIntData(SqlHandle, 44);
-        PChar->m_currency.sparksofeminence = Sql_GetUIntData(SqlHandle, 45);
-        PChar->m_currency.shiningstars = Sql_GetUIntData(SqlHandle, 46);
-        PChar->m_currency.imperialstanding = Sql_GetUIntData(SqlHandle, 47);
-        PChar->nationtp.ahturhgan = Sql_GetUIntData(SqlHandle, 48);
-        PChar->m_currency.lsanctumassault = Sql_GetUIntData(SqlHandle, 49);
-        PChar->m_currency.mjtgassault = Sql_GetUIntData(SqlHandle, 50);
-        PChar->m_currency.lcavernassault = Sql_GetUIntData(SqlHandle, 51);
-        PChar->m_currency.periqiaassault = Sql_GetUIntData(SqlHandle, 52);
-        PChar->m_currency.ilrusiatollassault = Sql_GetUIntData(SqlHandle, 53);
-        PChar->m_currency.nyzultokens = Sql_GetUIntData(SqlHandle, 54);
-        PChar->m_currency.zeni = Sql_GetUIntData(SqlHandle, 55);
-        PChar->m_currency.jettons = Sql_GetUIntData(SqlHandle, 56);
-        PChar->m_currency.therionichor = Sql_GetUIntData(SqlHandle, 57);
-        PChar->nationtp.maw = Sql_GetUIntData(SqlHandle, 58);
-        PChar->nationtp.pastsandoria = Sql_GetUIntData(SqlHandle, 59);
-        PChar->nationtp.pastbastok = Sql_GetUIntData(SqlHandle, 60);
-        PChar->nationtp.pastwindurst = Sql_GetUIntData(SqlHandle, 61);
-        PChar->m_currency.alliednotes = Sql_GetUIntData(SqlHandle, 62);
-        PChar->m_currency.bayld = Sql_GetUIntData(SqlHandle, 63);
-        PChar->m_currency.kineticunits = Sql_GetUIntData(SqlHandle, 64);
-        PChar->m_currency.obsidianfragments = Sql_GetUIntData(SqlHandle, 65);
-        PChar->m_currency.lebondoptwings = Sql_GetUIntData(SqlHandle, 66);
-		PChar->m_currency.pulchridoptwings = Sql_GetUIntData(SqlHandle, 67);
-        PChar->m_currency.mweyaplasm = Sql_GetUIntData(SqlHandle, 68);
-        PChar->m_currency.cruor = Sql_GetUIntData(SqlHandle, 69);
-        PChar->m_currency.resistancecredits = Sql_GetUIntData(SqlHandle, 70);
-        PChar->m_currency.dominionnotes = Sql_GetUIntData(SqlHandle, 71);
-        PChar->m_currency.fifthechtrophies = Sql_GetUIntData(SqlHandle, 72);
-        PChar->m_currency.fourthechtrophies = Sql_GetUIntData(SqlHandle, 73);
-        PChar->m_currency.thirdechtrophies = Sql_GetUIntData(SqlHandle, 74);
-        PChar->m_currency.secondechtrophies = Sql_GetUIntData(SqlHandle, 75);
-        PChar->m_currency.firstechtrophies = Sql_GetUIntData(SqlHandle, 76);
-        PChar->m_currency.cavepoints = Sql_GetUIntData(SqlHandle, 77);
-        PChar->m_currency.idtags = Sql_GetUIntData(SqlHandle, 78);
-        PChar->m_currency.opcredits = Sql_GetUIntData(SqlHandle, 79);
-        PChar->m_currency.traverserstones = Sql_GetUIntData(SqlHandle, 80);
-        PChar->m_currency.voidstones = Sql_GetUIntData(SqlHandle, 81);
-        PChar->m_currency.kupofriedcorundums = Sql_GetUIntData(SqlHandle, 82);
-        PChar->m_currency.imprimaturs = Sql_GetUIntData(SqlHandle, 83);
-        PChar->m_currency.pheromonesacks = Sql_GetUIntData(SqlHandle, 84);
+        PChar->m_currency.sandoriacp          = Sql_GetUIntData(SqlHandle, 0);
+        PChar->m_currency.bastokcp            = Sql_GetUIntData(SqlHandle, 1);
+        PChar->m_currency.windurstcp          = Sql_GetUIntData(SqlHandle, 2);
+        PChar->nationtp.sandoria              = Sql_GetUIntData(SqlHandle, 3);
+        PChar->nationtp.bastok                = Sql_GetUIntData(SqlHandle, 4);
+        PChar->nationtp.windurst              = Sql_GetUIntData(SqlHandle, 5);
+        PChar->m_currency.beastmanseal        = Sql_GetUIntData(SqlHandle, 6);
+        PChar->m_currency.kindredseal         = Sql_GetUIntData(SqlHandle, 7);
+        PChar->m_currency.kindredcrest        = Sql_GetUIntData(SqlHandle, 8);
+        PChar->m_currency.hkindredcrest       = Sql_GetUIntData(SqlHandle, 9);
+        PChar->m_currency.skindredcrest       = Sql_GetUIntData(SqlHandle, 10);
+        PChar->m_currency.ancientbeastcoins   = Sql_GetUIntData(SqlHandle, 11);
+        PChar->m_currency.valorpoints         = Sql_GetUIntData(SqlHandle, 12);
+        PChar->m_currency.scylds              = Sql_GetUIntData(SqlHandle, 13);
+        PChar->m_currency.fishingpoints       = Sql_GetUIntData(SqlHandle, 14);
+        PChar->m_currency.woodworkingpoints   = Sql_GetUIntData(SqlHandle, 15);
+        PChar->m_currency.smithingpoints      = Sql_GetUIntData(SqlHandle, 16);
+        PChar->m_currency.goldsmithingpoints  = Sql_GetUIntData(SqlHandle, 17);
+        PChar->m_currency.weavingpoints       = Sql_GetUIntData(SqlHandle, 18);
+        PChar->m_currency.leatherpoints       = Sql_GetUIntData(SqlHandle, 19);
+        PChar->m_currency.bonepoints          = Sql_GetUIntData(SqlHandle, 20);
+        PChar->m_currency.alchemypoints       = Sql_GetUIntData(SqlHandle, 21);
+        PChar->m_currency.cookingpoints       = Sql_GetUIntData(SqlHandle, 22);
+        PChar->m_currency.cinders             = Sql_GetUIntData(SqlHandle, 23);
+        PChar->m_currency.firefewell          = Sql_GetUIntData(SqlHandle, 24);
+        PChar->m_currency.icefewell           = Sql_GetUIntData(SqlHandle, 25);
+        PChar->m_currency.windfewell          = Sql_GetUIntData(SqlHandle, 26);
+        PChar->m_currency.earthfewell         = Sql_GetUIntData(SqlHandle, 27);
+        PChar->m_currency.lightningfewell     = Sql_GetUIntData(SqlHandle, 28);
+        PChar->m_currency.waterfewell         = Sql_GetUIntData(SqlHandle, 29);
+        PChar->m_currency.lightfewell         = Sql_GetUIntData(SqlHandle, 30);
+        PChar->m_currency.darkfewell          = Sql_GetUIntData(SqlHandle, 31);
+        PChar->m_currency.ballistapoints      = Sql_GetUIntData(SqlHandle, 32);
+        PChar->m_currency.fellowpoints        = Sql_GetUIntData(SqlHandle, 33);
+        PChar->m_currency.chocobuckssandoria  = Sql_GetUIntData(SqlHandle, 34);
+        PChar->m_currency.chocobucksbastok    = Sql_GetUIntData(SqlHandle, 35);
+        PChar->m_currency.chocobuckswindurst  = Sql_GetUIntData(SqlHandle, 36);
+        PChar->m_currency.researchmarks       = Sql_GetUIntData(SqlHandle, 37);
+        PChar->m_currency.tunnelworms         = Sql_GetUIntData(SqlHandle, 38);
+        PChar->m_currency.morionworms         = Sql_GetUIntData(SqlHandle, 39);
+        PChar->m_currency.phantomworms        = Sql_GetUIntData(SqlHandle, 40);
+        PChar->m_currency.moblinmarbles       = Sql_GetUIntData(SqlHandle, 41);
+        PChar->m_currency.infamy              = Sql_GetUIntData(SqlHandle, 42);
+        PChar->m_currency.prestige            = Sql_GetUIntData(SqlHandle, 43);
+        PChar->m_currency.legionpoints        = Sql_GetUIntData(SqlHandle, 44);
+        PChar->m_currency.sparksofeminence    = Sql_GetUIntData(SqlHandle, 45);
+        PChar->m_currency.shiningstars        = Sql_GetUIntData(SqlHandle, 46);
+        PChar->m_currency.imperialstanding    = Sql_GetUIntData(SqlHandle, 47);
+        PChar->nationtp.ahturhgan             = Sql_GetUIntData(SqlHandle, 48);
+        PChar->m_currency.lsanctumassault     = Sql_GetUIntData(SqlHandle, 49);
+        PChar->m_currency.mjtgassault         = Sql_GetUIntData(SqlHandle, 50);
+        PChar->m_currency.lcavernassault      = Sql_GetUIntData(SqlHandle, 51);
+        PChar->m_currency.periqiaassault      = Sql_GetUIntData(SqlHandle, 52);
+        PChar->m_currency.ilrusiatollassault  = Sql_GetUIntData(SqlHandle, 53);
+        PChar->m_currency.nyzultokens         = Sql_GetUIntData(SqlHandle, 54);
+        PChar->m_currency.zeni                = Sql_GetUIntData(SqlHandle, 55);
+        PChar->m_currency.jettons             = Sql_GetUIntData(SqlHandle, 56);
+        PChar->m_currency.therionichor        = Sql_GetUIntData(SqlHandle, 57);
+        PChar->nationtp.maw                   = Sql_GetUIntData(SqlHandle, 58);
+        PChar->nationtp.pastsandoria          = Sql_GetUIntData(SqlHandle, 59);
+        PChar->nationtp.pastbastok            = Sql_GetUIntData(SqlHandle, 60);
+        PChar->nationtp.pastwindurst          = Sql_GetUIntData(SqlHandle, 61);
+        PChar->m_currency.alliednotes         = Sql_GetUIntData(SqlHandle, 62);
+        PChar->m_currency.bayld               = Sql_GetUIntData(SqlHandle, 63);
+        PChar->m_currency.kineticunits        = Sql_GetUIntData(SqlHandle, 64);
+        PChar->m_currency.obsidianfragments   = Sql_GetUIntData(SqlHandle, 65);
+        PChar->m_currency.lebondoptwings      = Sql_GetUIntData(SqlHandle, 66);
+		PChar->m_currency.pulchridoptwings    = Sql_GetUIntData(SqlHandle, 67);
+        PChar->m_currency.mweyaplasm          = Sql_GetUIntData(SqlHandle, 68);
+        PChar->m_currency.cruor               = Sql_GetUIntData(SqlHandle, 69);
+        PChar->m_currency.resistancecredits   = Sql_GetUIntData(SqlHandle, 70);
+        PChar->m_currency.dominionnotes       = Sql_GetUIntData(SqlHandle, 71);
+        PChar->m_currency.fifthechtrophies    = Sql_GetUIntData(SqlHandle, 72);
+        PChar->m_currency.fourthechtrophies   = Sql_GetUIntData(SqlHandle, 73);
+        PChar->m_currency.thirdechtrophies    = Sql_GetUIntData(SqlHandle, 74);
+        PChar->m_currency.secondechtrophies   = Sql_GetUIntData(SqlHandle, 75);
+        PChar->m_currency.firstechtrophies    = Sql_GetUIntData(SqlHandle, 76);
+        PChar->m_currency.cavepoints          = Sql_GetUIntData(SqlHandle, 77);
+        PChar->m_currency.idtags              = Sql_GetUIntData(SqlHandle, 78);
+        PChar->m_currency.opcredits           = Sql_GetUIntData(SqlHandle, 79);
+        PChar->m_currency.traverserstones     = Sql_GetUIntData(SqlHandle, 80);
+        PChar->m_currency.voidstones          = Sql_GetUIntData(SqlHandle, 81);
+        PChar->m_currency.kupofriedcorundums  = Sql_GetUIntData(SqlHandle, 82);
+        PChar->m_currency.imprimaturs         = Sql_GetUIntData(SqlHandle, 83);
+        PChar->m_currency.pheromonesacks      = Sql_GetUIntData(SqlHandle, 84);
 	}
 
 	PChar->PMeritPoints = new CMeritPoints(PChar);
@@ -841,10 +843,10 @@ void LoadInventory(CCharEntity* PChar)
 
                 if (PItem->isType(ITEM_ARMOR))
                 {
-				    ((CItemArmor*)PItem)->LoadAugment(0, Sql_GetUIntData(SqlHandle,16));
-				    ((CItemArmor*)PItem)->LoadAugment(1, Sql_GetUIntData(SqlHandle,17));
-				    ((CItemArmor*)PItem)->LoadAugment(2, Sql_GetUIntData(SqlHandle,18));
-				    ((CItemArmor*)PItem)->LoadAugment(3, Sql_GetUIntData(SqlHandle,19));
+				    ((CItemArmor*)PItem)->LoadAugment(0, (uint16)Sql_GetUIntData(SqlHandle,16));
+				    ((CItemArmor*)PItem)->LoadAugment(1, (uint16)Sql_GetUIntData(SqlHandle,17));
+				    ((CItemArmor*)PItem)->LoadAugment(2, (uint16)Sql_GetUIntData(SqlHandle,18));
+				    ((CItemArmor*)PItem)->LoadAugment(3, (uint16)Sql_GetUIntData(SqlHandle,19));
 
                     ((CItemArmor*)PItem)->setTrialNumber(Sql_GetUIntData(SqlHandle,20));
                 }
@@ -880,6 +882,21 @@ void LoadInventory(CCharEntity* PChar)
 			}
 		}
 	}
+    
+    // apply augments
+    for (uint8 i = 0; i < MAX_CONTAINER_SIZE; ++i)
+    {
+        CItem* PItem = (CItem*)PChar->getStorage(LOC_INVENTORY)->GetItem(i);
+
+        if (PItem != NULL && PItem->isType(ITEM_ARMOR))
+        {
+            for (uint8 j = 0; j < AUGMENT_COUNT; ++j)
+            {
+                if (((CItemArmor*)PItem)->getAugment(j) != 0)
+                    ((CItemArmor*)PItem)->ApplyAugment(j);
+            }
+        }
+    }
 
 	Query =
         "SELECT "

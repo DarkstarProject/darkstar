@@ -24,7 +24,7 @@
 #include "item_armor.h"
 
 #include <string.h>
-
+#include "../map.h"
 
 CItemArmor::CItemArmor(uint16 id) : CItemUsable(id)
 {
@@ -232,23 +232,21 @@ uint16 CItemArmor::getTrialNumber()
 *  Augments: 5 bits for value, 11 bits for augment ID                   *
 *                                                                       *
 ************************************************************************/
-
 void CItemArmor::LoadAugment(uint8 slot, uint16 augment)
 {
-    DSP_DEBUG_BREAK_IF(getAugment(slot) != 0);
-
     m_augments[slot] = augment;
+}
 
+void CItemArmor::ApplyAugment(uint8 slot)
+{
     SetAugmentMod(
-        unpackBitsBE((uint8*)(m_augments+slot), 0, 11), 
-        unpackBitsBE((uint8*)(m_augments+slot), 11, 5)
-    );
+        unpackBitsBE((uint8*)(m_augments + slot), 0, 11),
+        unpackBitsBE((uint8*)(m_augments + slot), 11, 5)
+        );
 }
 
 void CItemArmor::setAugment(uint8 slot, uint16 type, uint8 value)
 {
-    DSP_DEBUG_BREAK_IF(getAugment(slot) != 0);
-
     packBitsBE((uint8*)(m_augments+slot), type, 0, 11);
     packBitsBE((uint8*)(m_augments+slot), value, 11, 5);
 
@@ -257,14 +255,29 @@ void CItemArmor::setAugment(uint8 slot, uint16 type, uint8 value)
 
 void CItemArmor::SetAugmentMod(uint16 type, uint8 value)
 {
-    // TODO: если augmenttype совпадает с modtype, то мы може установить значение сразу,
-    //       либо придется использовать дополнительную логику
-
-    if (type != 0) 
+    if (type != 0)
     {
-        setSubType(ITEM_AUGMENTED);       
+        setSubType(ITEM_AUGMENTED);
     }
-    //addModifier(new CModifier(type,value));
+
+
+    // obtain augment info by querying the db
+    const int8* fmtQuery = "SELECT * FROM augments WHERE augmentId = %u";
+
+    int32 ret = Sql_Query(SqlHandle, fmtQuery, type);
+
+    if (ret != SQL_ERROR &&
+        Sql_NumRows(SqlHandle) != 0 &&
+        Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    {
+        uint32 multiplier = (uint32)Sql_GetUIntData(SqlHandle, 1);
+        uint32 modId = (uint32)Sql_GetUIntData(SqlHandle, 2);
+        int32 modValue = (int32)Sql_GetIntData(SqlHandle, 3);
+
+        // apply modifier to item. increase modifier power by 'value' (default magnitude 1 for most augments) if multiplier isn't specified
+        // otherwise increase modifier power using the multiplier
+        addModifier(new CModifier(modId, (multiplier > 0 ? modValue + (value * multiplier) : modValue + value)));
+    }
 }
 
 uint16 CItemArmor::getAugment(uint8 slot)
