@@ -296,9 +296,9 @@ void LoadMOBList()
 			Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
 			mob_pools.familyid, name_prefix, unknown, animationsub, \
 			(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid \
-			FROM mob_groups LEFT JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
-			LEFT JOIN mob_spawn_points ON mob_groups.groupid = mob_spawn_points.groupid \
-			LEFT JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
+			FROM mob_groups INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
+			INNER JOIN mob_spawn_points ON mob_groups.groupid = mob_spawn_points.groupid \
+			INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
 			WHERE NOT (pos_x = 0 AND pos_y = 0 AND pos_z = 0);";
 
     int32 ret = Sql_Query(SqlHandle, Query);

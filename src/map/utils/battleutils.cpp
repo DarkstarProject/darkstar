@@ -1746,77 +1746,70 @@ bool TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender){
 
 /***********************************************************************
 		Calculates the block rate of the defender
-Generally assumed to be a linear relationship involving shield skill and
-'projected' skill (like with spell interruption). According to
-www.bluegartr.com/threads/103597-Random-Facts-Thread/page22 it appears
-to be BASE+(PLD_Skill - MOB_Skill)/4.6 where base is the base activation
-for the given shield type (unknown). These are subject to caps (65% max
-for non-Ochain shields) and presumably 5% min cap *untested*
-Presuming base values 10%/20%/30%/40% (big->low)
-They don't mention anything about caps on PLD_Skill-MOB_Skill but there
-has to be, else a Lv75 PLD with 0 skill would never be able to skillup
-as they need to be HIT to skillup, meaning they can't really lvl up on
-low level monsters as they miss too much. Presuming a min cap of -10%.
+Incorporates testing and data from:
+http://www.ffxiah.com/forum/topic/21671/paladin-faq-info-and-trade-studies/34/#2581818
+https://docs.google.com/spreadsheet/ccc?key=0AkX3maplDraRdFdCZHI2OU93aVgtWlZhN3ozZEtnakE#gid=0
+http://www.ffxionline.com/forums/paladin/55139-shield-data-size-2-vs-size-3-a.html
+
+Formula is:
+ShieldBaseRate + (DefenderShieldSkill - AttackerCombatSkill) * SkillModifier
+
+Skill Modifier appears to be 0.215 based on the data available.
+
+Base block rates are (small to large shield type) 55% -> 50% -> 45% -> 30%
+Aegis is a special case, having the base block rate of a size 2 type.
 ************************************************************************/
 uint8 GetBlockRate(CBattleEntity* PAttacker,CBattleEntity* PDefender)
 {
-	int8 shieldSize = 0;
-	float skill = 0.0f;
+    int8 shieldSize = 3;
+    int8 base = 0;
+    uint16 attackskill = PAttacker->GetSkill((SKILLTYPE)(PAttacker->m_Weapons[SLOT_MAIN]->getSkillType()));
+    uint16 blockskill = PDefender->GetSkill(SKILL_SHL);
 
-	if(PDefender->objtype == TYPE_PC)
-	{
-		CCharEntity* PChar = (CCharEntity*)PDefender;
-		CItemArmor* PItem = (CItemArmor*)PChar->getEquip(SLOT_SUB);
+    if(PDefender->objtype == TYPE_PC)
+    {
+        CCharEntity* PChar = (CCharEntity*)PDefender;
+        CItemArmor* PItem = (CItemArmor*)PChar->getEquip(SLOT_SUB);
 
-		if(PItem!=NULL && PItem->getID()!=65535 && PItem->getShieldSize()>0 && PItem->getShieldSize()<=5)
-		{
-			shieldSize = PItem->getShieldSize();
-
-			if(shieldSize == 5)
-			{
-				// aegis
-				shieldSize = 0;
-			}
-
-    		skill = PDefender->GetSkill(SKILL_SHL) + PDefender->getMod(MOD_SHIELD);
-    	}
-    	else
-    	{
-    		// no shield no chance
-    		return 0;
-    	}
-	}
+        if(PItem)
+            shieldSize = PItem->getShieldSize();
+        else
+            return 0;
+    }
 	else if(PDefender->objtype == TYPE_MOB && PDefender->GetMJob() == JOB_PLD)
-	{
-		CMobEntity* PMob = (CMobEntity*)PDefender;
+    {
+        CMobEntity* PMob = (CMobEntity*)PDefender;
+        if(PMob->m_EcoSystem != SYSTEM_UNDEAD && PMob->m_EcoSystem != SYSTEM_BEASTMEN)
+            return 0;
+    }
+    else
+        return 0;
 
-		if(PMob->m_EcoSystem == SYSTEM_UNDEAD || PMob->m_EcoSystem == SYSTEM_BEASTMEN)
-		{
-			// fake it
-			skill = GetMaxSkill(SKILL_SHL,JOB_PLD,PDefender->GetMLevel());
-			shieldSize = 3;
-		}
-		else
-		{
-			return 0;
-		}
-	}
-	else
-	{
-		return 0;
-	}
+    switch (shieldSize)
+    {
+        case 1: // buckler
+            base = 55;
+            break;
+        case 2: // round
+        case 5: // aegis
+            base = 50;
+            break;
+        case 3: // kite
+            base = 45;
+            break;
+        case 4: // tower
+            base = 30;
+            break;
+        case 6: // ochain
+            base = 110;
+            break;
+        default:
+            return 0;
+    }
 
-	float diff = 1.0f + (((float)PDefender->GetMLevel() - PAttacker->GetMLevel()) / 15.0f);
+    float skillmodifier = (blockskill - attackskill) * 0.215f;
 
-	if(diff < 0.4f) diff = 0.4f;
-	if(diff > 1.4f) diff = 1.4f;
-
-	float dex = PAttacker->DEX();
-	float agi = PDefender->AGI();
-
-	float base = (5.0 - shieldSize) * 5.0f;
-
-    return dsp_cap((skill * 0.1f + (agi - dex) * 0.125f + base) * diff, 5, 65);
+    return dsp_cap(base + (int8)skillmodifier, 5, (shieldSize == 6 ? 100 : 65));
 }
 
 uint8 GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
@@ -3511,9 +3504,9 @@ uint16 doSoulEaterEffect(CCharEntity* m_PChar, uint32 damage)
 		CItem* PItemHead = ((CCharEntity*)m_PChar)->getEquip(SLOT_HEAD);
 		CItem* PItemBody = ((CCharEntity*)m_PChar)->getEquip(SLOT_BODY);
 		CItem* PItemLegs = ((CCharEntity*)m_PChar)->getEquip(SLOT_LEGS);
-		if(PItemHead->getID() == 12516 || PItemHead->getID() == 15232 || PItemBody->getID() == 14409 || PItemLegs->getID() == 15370){
-		drainPercent = 0.12;
-	}
+        if((PItemHead && (PItemHead->getID() == 12516 || PItemHead->getID() == 15232)) || (PItemBody && PItemBody->getID() == 14409) || (PItemLegs && PItemLegs->getID() == 15370))
+            drainPercent = 0.12;
+
 		damage = damage + m_PChar->health.hp*drainPercent;
 		m_PChar->addHP(-drainPercent*m_PChar->health.hp);
 	}

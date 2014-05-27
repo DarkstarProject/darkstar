@@ -530,6 +530,49 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 	{
 		m_zoneEntities->DespawnPC(PChar);
 	}
+	if (PChar->m_LevelRestriction != 0)
+	{
+        if (PChar->PParty)
+        {
+            if (PChar->PParty->GetSyncTarget() == PChar || PChar->PParty->GetLeader() == PChar)
+            {
+                PChar->PParty->SetSyncTarget(NULL, 551);
+            }
+            if (PChar->PParty->GetSyncTarget() != NULL)
+            {
+                uint8 count = 0;
+                for (uint32 i = 0; i < PChar->PParty->members.size(); ++i)
+                {
+                    if (PChar->PParty->members.at(i) != PChar && PChar->PParty->members.at(i)->getZone() == PChar->PParty->GetSyncTarget()->getZone())
+                    {
+                        count++;
+                    }
+                }
+                if (count < 2) //3, because one is zoning out - thus at least 2 will be left
+                {
+                    PChar->PParty->SetSyncTarget(NULL, 552);
+                }
+            }
+        }
+		PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_SYNC);
+		PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
+	}
+
+    //remove status effects that wear on zone
+    PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE, true);
+
+	if (PChar->PTreasurePool != NULL) // TODO: условие для устранения проблем с MobHouse, надо блин решить ее раз и навсегда
+	{
+		PChar->PTreasurePool->DelMember(PChar);
+	}
+    for (regionList_t::const_iterator region = m_regionList.begin(); region != m_regionList.end(); ++region)
+    {
+        if ((*region)->GetRegionID() == PChar->m_InsideRegionID)
+        {
+            luautils::OnRegionLeave(PChar, *region);
+            break;
+        }
+    }
 
 	CharZoneOut(PChar);
 }
@@ -563,6 +606,52 @@ void CZone::IncreaseZoneCounter(CCharEntity* PChar)
 		createZoneTimer();
 	}
 
+  if (PChar->animation == ANIMATION_CHOCOBO && !CanUseMisc(MISC_CHOCOBO))
+  {
+      PChar->animation = ANIMATION_NONE;
+      PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
+  }
+  if (PChar->m_Costum != 0)
+  {
+      PChar->m_Costum = 0;
+      PChar->StatusEffectContainer->DelStatusEffect(EFFECT_COSTUME);
+  }
+    if (PChar->PParty != NULL)
+    {
+	    if (m_TreasurePool != NULL)
+	    {
+		    PChar->PTreasurePool = m_TreasurePool;
+		    PChar->PTreasurePool->AddMember(PChar);
+	    }
+	    else
+	    {
+		    PChar->PParty->ReloadTreasurePool(PChar);
+	    }
+        if (PChar->PParty->GetSyncTarget() != NULL)
+        {
+            if (PChar->getZone() == PChar->PParty->GetSyncTarget()->getZone() )
+		    {
+                if (PChar->PParty->GetSyncTarget()->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC) &&
+                    PChar->PParty->GetSyncTarget()->StatusEffectContainer->GetStatusEffect(EFFECT_LEVEL_SYNC)->GetDuration() == 0)
+                {
+			        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, PChar->PParty->GetSyncTarget()->GetMLevel(), 540));
+                    PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(
+                        EFFECT_LEVEL_SYNC,
+                        EFFECT_LEVEL_SYNC,
+                        PChar->PParty->GetSyncTarget()->GetMLevel(),
+                        0,
+                        0), true);
+                    PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH);
+                }
+            }
+        }
+    }
+	else
+	{
+		PChar->PTreasurePool = new CTreasurePool(TREASUREPOOL_SOLO);
+		PChar->PTreasurePool->AddMember(PChar);
+	}
+	PChar->PLatentEffectContainer->CheckLatentsZone();
 	CharZoneIn(PChar);
 }
 
