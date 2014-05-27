@@ -40,6 +40,9 @@ CInstance::CInstance(CZone* zone, uint8 instanceid) : CZoneEntities(zone)
 	m_levelcap = 0;
 	m_lastTimeUpdate = 0;
 	m_lastTimeCheck = 0;
+	m_wipeTimer = 0;
+	m_status = INSTANCE_NORMAL;
+	m_progress = 0;
 	memset(&m_entryloc, 0, sizeof m_entryloc);
 
 	LoadInstance();
@@ -68,6 +71,17 @@ CZone* CInstance::GetZone()
 {
 	return m_zone;
 }
+
+uint32 CInstance::GetProgress()
+{
+	return m_progress;
+}
+
+/************************************************************************
+*                                                                       *
+*  Loads instances settings from instance_list                          *
+*                                                                       *
+************************************************************************/
 
 void CInstance::LoadInstance()
 {
@@ -103,6 +117,12 @@ void CInstance::LoadInstance()
 	}
 }
 
+/************************************************************************
+*                                                                       *
+*  Registers a char to the char list (and sets first one as leader)     *
+*                                                                       *
+************************************************************************/
+
 void CInstance::RegisterChar(CCharEntity* PChar)
 {
 	if (m_registeredChars.empty())
@@ -137,6 +157,16 @@ uint32 CInstance::GetLastTimeUpdate()
 	return m_lastTimeUpdate;
 }
 
+uint32 CInstance::GetWipeTime()
+{
+	return m_wipeTimer;
+}
+
+uint32 CInstance::GetElapsedTime(uint32 tick)
+{
+	return tick - m_startTime;
+}
+
 void CInstance::SetLevelCap(uint8 cap)
 {
 	m_levelcap = cap;
@@ -155,18 +185,30 @@ void CInstance::SetLastTimeUpdate(uint32 lastTime)
 	m_lastTimeUpdate = lastTime;
 }
 
-bool CInstance::CheckTime(uint32 tick)
+void CInstance::SetProgress(uint32 progress)
 {
-	if (tick > m_startTime + m_timeLimit * 60000)
+	m_progress = progress;
+	luautils::OnInstanceProgressUpdate(this);
+}
+
+void CInstance::SetWipeTime(uint32 time)
+{
+	m_wipeTimer = time;
+}
+
+/************************************************************************
+*                                                                       *
+*  Checks if the instance has expired.  If not, runs instance timer     *
+*                                                                       *
+************************************************************************/
+
+void CInstance::CheckTime(uint32 tick)
+{
+	if (m_lastTimeCheck + 1000 <= tick && !Failed())
 	{
-		return true;
+		luautils::OnInstanceTimeUpdate(m_zone, this, GetElapsedTime(tick));
+		m_lastTimeCheck = tick;
 	}
-	if (m_lastTimeCheck + 1000 <= tick)
-	{
-		luautils::OnInstanceTimeUpdate(m_zone, this, tick - m_startTime);
-	}
-	m_lastTimeCheck = tick;
-	return false;
 }
 
 bool CInstance::CharRegistered(CCharEntity* PChar)
@@ -179,4 +221,28 @@ bool CInstance::CharRegistered(CCharEntity* PChar)
 		}
 	}
 	return false;
+}
+
+void CInstance::Fail()
+{
+	m_status = INSTANCE_FAILED;
+
+	luautils::OnInstanceFailure(this);
+}
+
+bool CInstance::Failed()
+{
+	return m_status == INSTANCE_FAILED;
+}
+
+void CInstance::Complete()
+{
+	m_status = INSTANCE_COMPLETE;
+
+	luautils::OnInstanceComplete(this);
+}
+
+bool CInstance::Completed()
+{
+	return m_status == INSTANCE_COMPLETE;
 }

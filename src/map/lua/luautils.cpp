@@ -3708,7 +3708,7 @@ int32 OnInstanceTimeUpdate(CZone* PZone, CInstance* PInstance, uint32 time)
 	if (lua_isnil(LuaHandle, -1))
 	{
 		lua_pop(LuaHandle, 1);
-		ShowError("luautils::OnInstanceTimeUpdate: undefined procedure onInstanceFailure\n");
+		ShowError("luautils::OnInstanceTimeUpdate: undefined procedure onInstanceTimeUpdate\n");
 		return 0;
 	}
 
@@ -3732,12 +3732,8 @@ int32 OnInstanceTimeUpdate(CZone* PZone, CInstance* PInstance, uint32 time)
 	return 0;
 }
 
-int32 OnInstanceFailure(CCharEntity* PChar)
+int32 OnInstanceFailure(CInstance* PInstance)
 {
-	DSP_DEBUG_BREAK_IF(!PChar->PInstance);
-
-	CInstance* PInstance = PChar->PInstance;
-
 	int8 File[255];
 	memset(File, 0, sizeof(File));
 	int32 oldtop = lua_gettop(LuaHandle);
@@ -3745,10 +3741,7 @@ int32 OnInstanceFailure(CCharEntity* PChar)
 	lua_pushnil(LuaHandle);
 	lua_setglobal(LuaHandle, "onInstanceFailure");
 
-	snprintf(File, sizeof(File), "scripts/zones/%s/instances/%s.lua", PChar->loc.zone->GetName(), PInstance->GetName());
-
-	PChar->m_event.reset();
-	PChar->m_event.Script.insert(0, File);
+	snprintf(File, sizeof(File), "scripts/zones/%s/instances/%s.lua", PInstance->GetZone()->GetName(), PInstance->GetName());
 
 	if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
 	{
@@ -3765,8 +3758,8 @@ int32 OnInstanceFailure(CCharEntity* PChar)
 		return 0;
 	}
 
-	CLuaBaseEntity LuaChar(PChar);
-	Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaChar);
+	CLuaInstance LuaInstance(PInstance);
+	Lunar<CLuaInstance>::push(LuaHandle, &LuaInstance);
 
 	if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
 	{
@@ -3813,7 +3806,7 @@ int32 OnInstanceCreated(CCharEntity* PChar, CInstance* PInstance)
 	lua_getglobal(LuaHandle, "onInstanceCreated");
 	if (lua_isnil(LuaHandle, -1))
 	{
-		ShowError("luautils::OnInstanceCreated: undefined procedure onEventFinish\n");
+		ShowError("luautils::OnInstanceCreated: undefined procedure onInstanceCreated\n");
 		lua_pop(LuaHandle, 1);
 		return -1;
 	}
@@ -3876,7 +3869,7 @@ int32 OnInstanceCreated(CInstance* PInstance)
 	lua_getglobal(LuaHandle, "onInstanceCreated");
 	if (lua_isnil(LuaHandle, -1))
 	{
-		ShowError("luautils::OnInstanceCreated: undefined procedure onEventFinish\n");
+		ShowError("luautils::OnInstanceCreated: undefined procedure onInstanceCreated\n");
 		lua_pop(LuaHandle, 1);
 		return -1;
 	}
@@ -3894,6 +3887,95 @@ int32 OnInstanceCreated(CInstance* PInstance)
 	if (returns > 0)
 	{
 		ShowError("luatils::OnInstanceCreated (%s): 0 returns expected, got %d\n", File, returns);
+		lua_pop(LuaHandle, returns);
+	}
+	return 0;
+}
+
+int32 OnInstanceProgressUpdate(CInstance* PInstance)
+{
+	int8 File[255];
+	memset(File, 0, sizeof(File));
+	int32 oldtop = lua_gettop(LuaHandle);
+
+	lua_pushnil(LuaHandle);
+	lua_setglobal(LuaHandle, "onInstanceProgressUpdate");
+
+	snprintf(File, sizeof(File), "scripts/zones/%s/instances/%s.lua", PInstance->GetZone()->GetName(), PInstance->GetName());
+
+	if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
+	{
+		ShowError("luautils::OnInstanceProgressUpdate: %s\n", lua_tostring(LuaHandle, -1));
+		lua_pop(LuaHandle, 1);
+		return 0;
+	}
+
+	lua_getglobal(LuaHandle, "onInstanceProgressUpdate");
+	if (lua_isnil(LuaHandle, -1))
+	{
+		ShowError("luautils::OnInstanceProgressUpdate: undefined procedure onInstanceProgressUpdate\n");
+		lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+	CLuaInstance LuaInstance(PInstance);
+	Lunar<CLuaInstance>::push(LuaHandle, &LuaInstance);
+
+	lua_pushinteger(LuaHandle, PInstance->GetProgress());
+
+	if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
+	{
+		ShowError("luautils::OnInstanceProgressUpdate %s\n", lua_tostring(LuaHandle, -1));
+		lua_pop(LuaHandle, 1);
+		return -1;
+	}
+	int32 returns = lua_gettop(LuaHandle) - oldtop;
+	if (returns > 0)
+	{
+		ShowError("luatils::OnInstanceProgressUpdate (%s): 0 returns expected, got %d\n", File, returns);
+		lua_pop(LuaHandle, returns);
+	}
+	return 0;
+}
+int32 OnInstanceComplete(CInstance* PInstance)
+{
+	int8 File[255];
+	memset(File, 0, sizeof(File));
+	int32 oldtop = lua_gettop(LuaHandle);
+
+	lua_pushnil(LuaHandle);
+	lua_setglobal(LuaHandle, "onInstanceComplete");
+
+	snprintf(File, sizeof(File), "scripts/zones/%s/instances/%s.lua", PInstance->GetZone()->GetName(), PInstance->GetName());
+
+	if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
+	{
+		ShowError("luautils::OnInstanceComplete: %s\n", lua_tostring(LuaHandle, -1));
+		lua_pop(LuaHandle, 1);
+		return 0;
+	}
+
+	lua_getglobal(LuaHandle, "onInstanceComplete");
+	if (lua_isnil(LuaHandle, -1))
+	{
+		ShowError("luautils::OnInstanceComplete: undefined procedure onInstanceComplete\n");
+		lua_pop(LuaHandle, 1);
+		return -1;
+	}
+
+	CLuaInstance LuaInstance(PInstance);
+	Lunar<CLuaInstance>::push(LuaHandle, &LuaInstance);
+
+	if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
+	{
+		ShowError("luautils::OnInstanceComplete %s\n", lua_tostring(LuaHandle, -1));
+		lua_pop(LuaHandle, 1);
+		return -1;
+	}
+	int32 returns = lua_gettop(LuaHandle) - oldtop;
+	if (returns > 0)
+	{
+		ShowError("luatils::OnInstanceComplete (%s): 0 returns expected, got %d\n", File, returns);
 		lua_pop(LuaHandle, returns);
 	}
 	return 0;

@@ -26,6 +26,13 @@ This file is part of DarkStar-server source code.
 
 #include "zone_entities.h"
 
+enum INSTANCE_STATUS
+{
+	INSTANCE_NORMAL,
+	INSTANCE_FAILED,
+	INSTANCE_COMPLETE
+};
+
 class CInstance : public CZoneEntities
 {
 public:
@@ -39,13 +46,22 @@ public:
 	uint32 GetTimeLimit();
 	uint32 GetLastTimeUpdate();
 	CZone* GetZone();
+	uint32 GetProgress();
+	uint32 GetWipeTime();
+	uint32 GetElapsedTime(uint32 tick);
 
 	void SetLevelCap(uint8 cap);
 	void SetEntryLoc(float x, float y, float z, float rot);
 	void SetLastTimeUpdate(uint32 time);
+	void SetProgress(uint32 progress);
+	void SetWipeTime(uint32 time);
 
-	bool CheckTime(uint32 tick);
+	void CheckTime(uint32 tick);
 	bool CharRegistered(CCharEntity* PChar);
+	void Fail();
+	bool Failed();
+	void Complete();
+	bool Completed();
 
 	CInstance(CZone*, uint8 instanceid);
 	~CInstance();
@@ -63,7 +79,10 @@ private:
 	uint32 m_startTime;
 	uint32 m_lastTimeUpdate;
 	uint32 m_lastTimeCheck;
+	uint32 m_wipeTimer;
+	uint32 m_progress;
 	position_t m_entryloc;
+	INSTANCE_STATUS m_status;
 	std::vector<uint32> m_registeredChars;
 };
 

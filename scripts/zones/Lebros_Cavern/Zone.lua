@@ -51,6 +51,9 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
+    if (csid == 0x66) then
+        player:setPos(0,0,0,0,61);
+    end
 end;
 
 -----------------------------------

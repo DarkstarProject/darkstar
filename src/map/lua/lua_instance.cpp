@@ -26,6 +26,7 @@ This file is part of DarkStar-server source code.
 #include "lua_instance.h"
 
 #include "lua_baseentity.h"
+#include "luautils.h"
 
 
 /************************************************************************
@@ -119,6 +120,55 @@ inline int32 CLuaInstance::getLastTimeUpdate(lua_State* L)
 	return 1;
 }
 
+inline int32 CLuaInstance::getProgress(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+
+	lua_pushinteger(L, m_PLuaInstance->GetProgress());
+
+	return 1;
+}
+
+inline int32 CLuaInstance::getWipeTime(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+
+	lua_pushinteger(L, m_PLuaInstance->GetWipeTime());
+
+	return 1;
+}
+
+inline int32 CLuaInstance::getEntity(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+	uint16 targid = lua_tointeger(L, 1);
+
+	uint8 filter = -1;
+	if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+	{
+		filter = lua_tointeger(L, 2);
+	}
+
+	CBaseEntity* PEntity = m_PLuaInstance->GetEntity(targid, filter);
+
+	if (PEntity)
+	{
+		lua_getglobal(L, CLuaBaseEntity::className);
+		lua_pushstring(L, "new");
+		lua_gettable(L, -2);
+		lua_insert(L, -2);
+		lua_pushlightuserdata(L, (void*)(PEntity));
+		lua_pcall(L, 2, 1, 0);
+	}
+	else
+	{
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
 inline int32 CLuaInstance::setLevelCap(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
@@ -135,6 +185,46 @@ inline int32 CLuaInstance::setLastTimeUpdate(lua_State* L)
 	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
 	m_PLuaInstance->SetLastTimeUpdate(lua_tointeger(L, 1));
+
+	return 0;
+}
+
+inline int32 CLuaInstance::setProgress(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+	m_PLuaInstance->SetProgress(lua_tointeger(L, 1));
+
+	return 0;
+}
+
+inline int32 CLuaInstance::setWipeTime(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+	m_PLuaInstance->SetWipeTime(lua_tointeger(L, 1));
+
+	return 0;
+}
+
+inline int32 CLuaInstance::fail(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+
+	m_PLuaInstance->Fail();
+
+	return 0;
+}
+
+inline int32 CLuaInstance::complete(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+
+	m_PLuaInstance->Complete();
+
+	return 0;
 }
 
 /************************************************************************
@@ -152,5 +242,12 @@ Lunar<CLuaInstance>::Register_t CLuaInstance::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaInstance, getEntryPos),
 	LUNAR_DECLARE_METHOD(CLuaInstance, getLastTimeUpdate),
 	LUNAR_DECLARE_METHOD(CLuaInstance, setLastTimeUpdate),
+	LUNAR_DECLARE_METHOD(CLuaInstance, getProgress),
+	LUNAR_DECLARE_METHOD(CLuaInstance, getEntity),
+	LUNAR_DECLARE_METHOD(CLuaInstance, setProgress),
+	LUNAR_DECLARE_METHOD(CLuaInstance, getWipeTime),
+	LUNAR_DECLARE_METHOD(CLuaInstance, setWipeTime),
+	LUNAR_DECLARE_METHOD(CLuaInstance, fail),
+	LUNAR_DECLARE_METHOD(CLuaInstance, complete),
 	{ NULL, NULL }
 };

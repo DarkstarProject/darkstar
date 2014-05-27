@@ -33,24 +33,58 @@ end;
 -----------------------------------
 
 function onInstanceTimeUpdate(instance, elapsed)
+    local players = instance:getChars();
     local lastTimeUpdate = instance:getLastTimeUpdate();
-    local remaining = (instance:getTimeLimit()) * 60 - (elapsed / 1000);
+    local remainingTimeLimit = (instance:getTimeLimit()) * 60 - (elapsed / 1000);
+    local wipeTime = instance:getWipeTime();
     local message = 0;
+    
+    if (remainingTimeLimit < 0) then
+        instance:fail();
+        return;
+    end
+    
+    if (wipeTime == 0) then
+        local wipe = true;
+        for i,v in pairs(players) do
+            if v:getHP() ~= 0 then
+                wipe = false;
+                break;
+            end
+        end
+        if (wipe) then
+            for i,v in pairs(players) do
+                v:messageSpecial(Lebros.text.PARTY_FALLEN, 3);
+            end
+            instance:setWipeTime(elapsed);
+        end
+    else
+        if (elapsed - wipeTime) / 1000 > 180 then
+            instance:fail();
+            return;
+        else
+            for i,v in pairs(players) do
+                if v:getHP() ~= 0 then
+                    instance:setWipeTime(0);
+                    break;
+                end
+            end
+        end
+    end
     
     if (lastTimeUpdate == 0 and elapsed > 20 * 60000) then
         message = 600;
-    elseif (lastTimeUpdate == 600 and remaining < 300) then
+    elseif (lastTimeUpdate == 600 and remainingTimeLimit < 300) then
         message = 300;
-    elseif (lastTimeUpdate == 300 and remaining < 60) then
+    elseif (lastTimeUpdate == 300 and remainingTimeLimit < 60) then
         message = 60;
-    elseif (lastTimeUpdate == 60 and remaining < 30) then
+    elseif (lastTimeUpdate == 60 and remainingTimeLimit < 30) then
         message = 30;
-    elseif (lastTimeUpdate == 30 and remaining < 10) then
+    elseif (lastTimeUpdate == 30 and remainingTimeLimit < 10) then
         message = 10;
     end
     
     if (message ~= 0) then
-        local players = instance:getChars();
         for i,v in pairs(players) do
             if (timeRemaining >= 60) then
                 v:messageSpecial(Lebros.text.TIME_REMAINING_MINUTES, timeRemaining / 60);
@@ -66,28 +100,45 @@ end;
 -- onInstanceFailure
 -----------------------------------
 
-function onInstanceFailure(player)
-    player:messageSpecial(Lebros.text.MISSION_FAILED,10,10);
-    player:startEvent(0x66);
-end;
+function onInstanceFailure(instance)
 
------------------------------------
--- onEventUpdate
------------------------------------
+    local chars = instance:getChars();
 
-function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-    if (csid == 0x66) then
-        player:setPos(0,0,0,0,61);
+    for i,v in pairs(chars) do
+        v:messageSpecial(Lebros.text.MISSION_FAILED,10,10);
+        v:startEvent(0x66);
     end
+end;
+
+-----------------------------------
+-- onInstanceProgressUpdate
+-----------------------------------
+
+function onInstanceProgressUpdate(instance, progress)
+
+    if (progress >= 15) then
+        instance:complete();
+    end
+    
+end;
+
+-----------------------------------
+-- onInstanceComplete
+-----------------------------------
+
+function onInstanceComplete(instance)
+
+    local chars = instance:getChars();
+
+    for i,v in pairs(chars) do
+        v:messageSpecial(Lebros.text.RUNE_UNLOCKED, 7, 8);
+    end
+    
+    local rune = instance:getEntity(bit.band(Lebros.npcs.RUNE_OF_RELEASE, 0xFFF), TYPE_NPC);
+    local box = instance:getEntity(bit.band(Lebros.npcs.ANCIENT_LOCKBOX, 0xFFF), TYPE_NPC);
+    rune:setPos(414.29, -40.64, 301.523, 247);
+    rune:setStatus(STATUS_NORMAL);
+    box:setPos(410.41, -41.12, 300.743, 243);
+    box:setStatus(STATUS_NORMAL);
+    
 end;
