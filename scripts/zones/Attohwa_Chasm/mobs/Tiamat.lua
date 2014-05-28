@@ -7,7 +7,7 @@ require("scripts/globals/titles");
 require("scripts/globals/status");
 
 -----------------------------------
--- OnMobInitialise Action
+-- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)

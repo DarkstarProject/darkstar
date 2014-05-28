@@ -2510,7 +2510,7 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 *                                                                       *
 ************************************************************************/
 
-bool IsParalised(CBattleEntity* PAttacker)
+bool IsParalyzed(CBattleEntity* PAttacker)
 {
 	return (WELL512::irand()%100 < dsp_cap(PAttacker->getMod(MOD_PARALYZE) - PAttacker->getMod(MOD_PARALYZERES), 0, 100));
 }

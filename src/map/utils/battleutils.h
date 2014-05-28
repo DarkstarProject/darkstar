@@ -128,7 +128,7 @@ namespace battleutils
     uint8				GetSkillchainSubeffect(SKILLCHAIN_ELEMENT skillchain);
     uint16				GetSkillchainMinimumResistance(SKILLCHAIN_ELEMENT element, CBattleEntity* PDefender);
 
-	bool			IsParalised(CBattleEntity* PAttacker);
+	bool			IsParalyzed(CBattleEntity* PAttacker);
     bool			IsAbsorbByShadow(CBattleEntity* PDefender);
 	bool			IsIntimidated(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	bool			IsAnticipated(CBattleEntity* PDefender, bool forceRemove, bool ignore);

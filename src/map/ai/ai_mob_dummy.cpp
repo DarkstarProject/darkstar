@@ -1510,7 +1510,7 @@ void CAIMobDummy::ActionAttack()
 
 		if (m_AutoAttackEnabled && m_Tick > m_LastActionTime + WeaponDelay)
 		{
-			if (battleutils::IsParalised(m_PMob))
+			if (battleutils::IsParalyzed(m_PMob))
 			{
 				m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CMessageBasicPacket(m_PMob,m_PBattleTarget,0,0, MSGBASIC_IS_PARALYZED));
 			}

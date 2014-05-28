@@ -467,7 +467,7 @@ bool CMagicState::CheckInterrupt()
 		return true;
 	}
 
-	if(battleutils::IsParalised(m_PEntity))
+	if(battleutils::IsParalyzed(m_PEntity))
 	{
 		PushMessage(MSGBASIC_IS_PARALYZED);
 		return true;
