@@ -743,7 +743,7 @@ void CAIPetDummy::ActionAttack()
 		int32 WeaponDelay = m_PPet->m_Weapons[SLOT_MAIN]->getDelay();
 		//try to attack
 		if(m_Tick > m_LastActionTime + WeaponDelay){
-			if (battleutils::IsParalised(m_PPet))
+			if (battleutils::IsParalyzed(m_PPet))
 			{
 				m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CMessageBasicPacket(m_PPet,m_PBattleTarget,0,0,29));
 			}

@@ -2085,7 +2085,7 @@ int32 OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget)
 }
 
 /************************************************************************
-*  OnMobInitialise                                                      *
+*  onMobInitialize                                                      *
 *  Used for passive trait                                               *
 *                                                                       *
 ************************************************************************/
