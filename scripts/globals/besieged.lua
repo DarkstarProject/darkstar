@@ -114,6 +114,113 @@ function getMercenaryRank(player)
 	
 end;
 
+function geteRecommendedAssaultLevel(assaultid)
+    if assaultid == 1 then
+        return 50;
+    elseif assaultid == 2 then
+        return 50;
+    elseif assaultid == 3 then
+        return 60;
+    elseif assaultid == 4 then
+        return 50;
+    elseif assaultid == 5 then
+        return 60;
+    elseif assaultid == 6 then
+        return 70;
+    elseif assaultid == 7 then
+        return 70;
+    elseif assaultid == 8 then
+        return 70;
+    elseif assaultid == 9 then
+        return 70;
+    elseif assaultid == 10 then
+        return 70;
+    elseif assaultid == 11 then
+        return 60;
+    elseif assaultid == 12 then
+        return 60;
+    elseif assaultid == 13 then
+        return 70;
+    elseif assaultid == 14 then
+        return 60;
+    elseif assaultid == 15 then
+        return 70;
+    elseif assaultid == 16 then
+        return 50;
+    elseif assaultid == 17 then
+        return 70;
+    elseif assaultid == 18 then
+        return 70;
+    elseif assaultid == 19 then
+        return 70;
+    elseif assaultid == 20 then
+        return 70;
+    elseif assaultid == 21 then
+        return 50;
+    elseif assaultid == 22 then
+        return 60;
+    elseif assaultid == 23 then
+        return 70;
+    elseif assaultid == 24 then
+        return 70;
+    elseif assaultid == 25 then
+        return 70;
+    elseif assaultid == 26 then
+        return 60;
+    elseif assaultid == 27 then
+        return 70;
+    elseif assaultid == 28 then
+        return 70;
+    elseif assaultid == 29 then
+        return 70;
+    elseif assaultid == 30 then
+        return 70;
+    elseif assaultid == 31 then
+        return 70;
+    elseif assaultid == 32 then
+        return 70;
+    elseif assaultid == 33 then
+        return 70;
+    elseif assaultid == 34 then
+        return 60;
+    elseif assaultid == 35 then
+        return 70;
+    elseif assaultid == 36 then
+        return 50;
+    elseif assaultid == 37 then
+        return 60;
+    elseif assaultid == 38 then
+        return 70;
+    elseif assaultid == 39 then
+        return 70;
+    elseif assaultid == 40 then
+        return 70;
+    elseif assaultid == 41 then
+        return 60;
+    elseif assaultid == 42 then
+        return 70;
+    elseif assaultid == 43 then
+        return 70;
+    elseif assaultid == 44 then
+        return 50;
+    elseif assaultid == 45 then
+        return 60;
+    elseif assaultid == 46 then
+        return 70;
+    elseif assaultid == 47 then
+        return 60;
+    elseif assaultid == 48 then
+        return 70;
+    elseif assaultid == 49 then
+        return 70;
+    elseif assaultid == 50 then
+        return 70;
+    elseif assaultid == 51 then
+        return 75;
+    elseif assaultid == 52 then
+        return 99;
+end;
+
 -----------------------------------------------------------------------------------
 -- function getSanctionDuration(player) returns the duration of the sanction effect
 -- in seconds. Duration is known to go up with mercenary rank but data published on 

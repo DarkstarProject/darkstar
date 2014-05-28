@@ -9,6 +9,7 @@ package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
+require("scripts/globals/besieged");
 require("scripts/zones/Mount_Zhayolm/TextIDs");
 
 -----------------------------------
@@ -25,7 +26,7 @@ end;
 function onTrigger(player,npc)
 	if (player:hasKeyItem(LEBROS_ASSAULT_ORDERS)) then
         local assaultid = player:getCurrentMission(ASSAULT);
-        local recommendedLevel = player:getVar("AssaultRecLvl");
+        local recommendedLevel = geteRecommendedAssaultLevel(assaultid);
         local armband = 0;
         if (player:hasKeyItem(ASSAULT_ARMBAND)) then
             armband = 1;
