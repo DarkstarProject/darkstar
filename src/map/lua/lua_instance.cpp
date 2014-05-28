@@ -237,6 +237,15 @@ inline int32 CLuaInstance::fail(lua_State* L)
 	return 0;
 }
 
+inline int32 CLuaInstance::failed(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+
+	lua_pushboolean(L,m_PLuaInstance->Failed());
+
+	return 1;
+}
+
 inline int32 CLuaInstance::complete(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
@@ -244,6 +253,15 @@ inline int32 CLuaInstance::complete(lua_State* L)
 	m_PLuaInstance->Complete();
 
 	return 0;
+}
+
+inline int32 CLuaInstance::completed(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+
+	lua_pushboolean(L, m_PLuaInstance->Completed());
+
+	return 1;
 }
 
 /************************************************************************
@@ -269,6 +287,8 @@ Lunar<CLuaInstance>::Register_t CLuaInstance::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaInstance, getStage),
 	LUNAR_DECLARE_METHOD(CLuaInstance, setStage),
 	LUNAR_DECLARE_METHOD(CLuaInstance, fail),
+	LUNAR_DECLARE_METHOD(CLuaInstance, failed),
 	LUNAR_DECLARE_METHOD(CLuaInstance, complete),
+	LUNAR_DECLARE_METHOD(CLuaInstance, completed),
 	{ NULL, NULL }
 };

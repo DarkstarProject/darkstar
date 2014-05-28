@@ -62,7 +62,9 @@ public:
 	int32 setStage(lua_State*);
 
 	int32 fail(lua_State*);
+	int32 failed(lua_State*);
 	int32 complete(lua_State*);
+	int32 completed(lua_State*);
 };
 
 #endif
