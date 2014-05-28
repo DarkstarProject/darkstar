@@ -449,6 +449,9 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
 						m_LatentEffectList.at(i)->Deactivate();
 					}
 					break;
+                case LATENT_ZONE_HOME_NATION:
+                        CheckLatentsZone();
+                    break;
 				case LATENT_IN_DYNAMIS:
 					if (m_POwner->isInDynamis())
 					{
@@ -1522,6 +1525,41 @@ void CLatentEffectContainer::CheckLatentsZone()
             else
                 m_LatentEffectList.at(i)->Deactivate();
 
+        }
+        break;
+        case LATENT_ZONE_HOME_NATION:
+        {
+            //player is logging in/zoning
+            if (m_POwner->loc.zone == NULL)
+            {
+                continue;
+            }
+
+            uint16 zone = m_LatentEffectList.at(i)->GetConditionsValue();
+            CZone* PZone = zoneutils::GetZone(zone);
+
+            bool ActivateLatent = false;
+
+            //sandoria
+            if (m_POwner->profile.nation == 0 && PZone->GetRegionID() == REGION_SANDORIA)
+            {
+                ActivateLatent = true;
+            }
+            //bastok
+            else if (m_POwner->profile.nation == 1 && PZone->GetRegionID() == REGION_BASTOK)
+            {
+                ActivateLatent = true;
+            }
+            //windurst
+            else if (m_POwner->profile.nation == 2 && PZone->GetRegionID() == REGION_WINDURST)
+            {
+                ActivateLatent = true;
+            }
+
+            if (ActivateLatent)
+                m_LatentEffectList.at(i)->Activate();
+            else
+                m_LatentEffectList.at(i)->Deactivate();
         }
         break;
 			default:
