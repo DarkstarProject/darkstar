@@ -73,7 +73,7 @@ function getMapBitmask(player)
 	if(player:hasKeyItem(1862)) then mamook = 1 else mamook = 0; end -- Map of Mammok
 	if(player:hasKeyItem(1863)) then halvung = 1 else halvung = 0; end -- Map of Halvung
 	if(player:hasKeyItem(1864)) then arrapago = 1 else arrapago = 0; end -- Map of Arrapago Reef
-	maps = mamook + 2 * halvung + 4 * arrapago;
+	local maps = mamook + 2 * halvung + 4 * arrapago;
 	
 	return maps;
 	
@@ -93,7 +93,7 @@ end;
 -- rank of the player. rank 0 means not signed, rank 11 Captain.
 ------------------------------------------------------------------
 
-badges = { 0x030C, 0x030F, 0x0310, 0x031A, 0x031B, 0x0339, 0x033A, 0x033B, 0x037E, 0x0384, 0x38D }
+local badges = { 0x030C, 0x030F, 0x0310, 0x031A, 0x031B, 0x0339, 0x033A, 0x033B, 0x037E, 0x0384, 0x38D }
 
 function getMercenaryRank(player)
 	
@@ -121,7 +121,7 @@ end;
 
 function getSanctionDuration(player) 
 	
-	duration = 10800 + 1200*1;--(getMercenaryRank(player)-1);
+	local duration = 10800 + 1200*1;--(getMercenaryRank(player)-1);
 	
 	if(getAstralCandescence() == 0) then
 		duration = duration / 2;
@@ -144,7 +144,7 @@ function getImperialDefenseStats()
 	return 5,8,100,90;
 end;
 
-IS_item = {}
+local IS_item = {}
 
 IS_item[1] = 4182; -- scroll of Instant Reraise
 IS_item[257] = 4181; -- scroll of Instant Warp
@@ -244,7 +244,7 @@ end;
 -- ZNM System
 -----------------------------------
 
-lures = { 
+local lures = { 
 2580, 2581, 2582, -- hellcage butterfly, jug of floral nectar, wedge of rodent cheese
 2577, 2578, 2579, -- bunch of senorita pamamas, jar of oily blood, strand of Samariri corpsehair
 2574, 2575, 2576, -- bar of ferrite, bagged sheep botfly, Olzhiryan cactus paddle
@@ -259,7 +259,7 @@ lures = {
 2593, 			  -- chunk of singed buffalo
 2572} 			  -- Pandemonium key
 
-trophies = {
+local trophies = {
 2616, 2617, 2618, -- Vulpangue's wing, Chamrosh's beak, Gigiroon's Cape
 2613, 2614, 2615, -- Iriz Ima's hide, Amooshah's tendril, Iriri Samariri's hat
 2610, 2611, 2612, -- Armed Gears' fragment, Gotoh Zha's necklace, Dea's horn
@@ -273,7 +273,7 @@ trophies = {
 2630, 2631, 2632, -- Mahjlaef's staff, Experimental Lamia's armband, Nuhn's esca
 2629 } 			  -- Tyger's tail
 
-seals = {
+local seals = {
 	MAROON_SEAL, MAROON_SEAL, MAROON_SEAL,
 	APPLE_GREEN_SEAL,APPLE_GREEN_SEAL,APPLE_GREEN_SEAL,
 	CHARCOAL_GREY_SEAL, DEEP_PURPLE_SEAL, CHESTNUT_COLORED_SEAL,
