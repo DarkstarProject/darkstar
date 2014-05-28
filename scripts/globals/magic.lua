@@ -77,6 +77,9 @@ function calculateMagicDamage(V,M,player,spell,target,skilltype,atttype,hasMulti
 
     if(dint<=0) then --ifdINT penalises, it's always M=1
         dmg = dmg + dint;
+        if(dmg <= 0) then --dINT penalty cannot result in negative damage (target absorption)
+            return 0;
+        end
     elseif(dint > 0 and dint <= SOFT_CAP) then --The standard calc, most spells hit this
         dmg = dmg + (dint*M);
     elseif(dint > 0 and dint > SOFT_CAP and dint < HARD_CAP) then --After SOFT_CAP, INT is only half effective
