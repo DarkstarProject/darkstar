@@ -2,8 +2,6 @@
 -- Area: Port Bastok
 -- NPC: Rex
 -- Map Seller NPC
--- @zone 236
--- @pos 52 -2 -4
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 package.loaded["scripts/globals/magic_maps"] = nil;
@@ -33,7 +31,7 @@ end;
 function onEventUpdate(player,csid,option)
 	if (csid == 0x0073) then
 		CheckMapsUpdate(player, option, NOT_HAVE_ENOUGH_GIL, KEYITEM_OBTAINED);
-	end 
+	end
 end;
 
 -----------------------------------
