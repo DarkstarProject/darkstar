@@ -934,82 +934,92 @@ insert into `augments` values ('765', '0', '0', '0'); -- Delay:-33    (ranged, n
 insert into `augments` values ('766', '0', '0', '0'); -- Delay:-65    (ranged, not melee)
 insert into `augments` values ('767', '0', '0', '0'); -- Delay:-97    (ranged, not melee)
 
--- Mods for elemental resist are named funny and 
--- comment in modifer.h implies the ones that say "resist"
--- would actually be damage reduction rather than res.rate
--- Are "elemental defense" mods the right ones?
-INSERT INTO `augments` VALUES ('768', '0', '15', '1'); -- Fire resist+1
-INSERT INTO `augments` VALUES ('769', '0', '16', '1'); -- Ice resist+1
-INSERT INTO `augments` VALUES ('770', '0', '17', '1'); -- Wind resist+1
-INSERT INTO `augments` VALUES ('771', '0', '18', '1'); -- Earth resist+1
-INSERT INTO `augments` VALUES ('772', '0', '19', '1'); -- Lightning resist+1
-INSERT INTO `augments` VALUES ('773', '0', '20', '1'); -- Water resist+1
-INSERT INTO `augments` VALUES ('774', '0', '21', '1'); -- Light resist+1
-INSERT INTO `augments` VALUES ('775', '0', '22', '1'); -- Dark resist+1
-INSERT INTO `augments` VALUES ('776', '0', '15', '-1'); -- Fire resist-1
-INSERT INTO `augments` VALUES ('777', '0', '16', '-1'); -- Ice resist-1
-INSERT INTO `augments` VALUES ('778', '0', '17', '-1'); -- Wind resist-1
-INSERT INTO `augments` VALUES ('779', '0', '18', '-1'); -- Earth resist-1
-INSERT INTO `augments` VALUES ('780', '0', '19', '-1'); -- Lightning resist-1
-INSERT INTO `augments` VALUES ('781', '0', '20', '-1'); -- Water resist-1
-INSERT INTO `augments` VALUES ('782', '0', '21', '-1'); -- Light resist-1
-INSERT INTO `augments` VALUES ('783', '0', '22', '-1'); -- Dark resist-1
+INSERT INTO `augments` VALUES ('768', '0', '54', '1'); -- Fire resist+1
+INSERT INTO `augments` VALUES ('769', '0', '55', '1'); -- Ice resist+1
+INSERT INTO `augments` VALUES ('770', '0', '56', '1'); -- Wind resist+1
+INSERT INTO `augments` VALUES ('771', '0', '57', '1'); -- Earth resist+1
+INSERT INTO `augments` VALUES ('772', '0', '58', '1'); -- Lightning resist+1
+INSERT INTO `augments` VALUES ('773', '0', '59', '1'); -- Water resist+1
+INSERT INTO `augments` VALUES ('774', '0', '60', '1'); -- Light resist+1
+INSERT INTO `augments` VALUES ('775', '0', '61', '1'); -- Dark resist+1
+INSERT INTO `augments` VALUES ('776', '0', '54', '-1'); -- Fire resist-1
+INSERT INTO `augments` VALUES ('777', '0', '55', '-1'); -- Ice resist-1
+INSERT INTO `augments` VALUES ('778', '0', '56', '-1'); -- Wind resist-1
+INSERT INTO `augments` VALUES ('779', '0', '57', '-1'); -- Earth resist-1
+INSERT INTO `augments` VALUES ('780', '0', '58', '-1'); -- Lightning resist-1
+INSERT INTO `augments` VALUES ('781', '0', '59', '-1'); -- Water resist-1
+INSERT INTO `augments` VALUES ('782', '0', '60', '-1'); -- Light resist-1
+INSERT INTO `augments` VALUES ('783', '0', '61', '-1'); -- Dark resist-1
 
--- Zeroed out till the above ones are definitely correct.
-INSERT INTO `augments` VALUES ('784', '0', '0', '0'); -- Fire resist+1 Water resist-1
-INSERT INTO `augments` VALUES ('784', '0', '0', '0'); 
+INSERT INTO `augments` VALUES ('784', '0', '54', '1'); -- Fire resist+1 Water resist-1
+INSERT INTO `augments` VALUES ('784', '0', '59', '-1'); 
 
-INSERT INTO `augments` VALUES ('785', '0', '0', '0'); -- Fire resist-1 Water resist+1
-INSERT INTO `augments` VALUES ('785', '0', '0', '0'); 
+INSERT INTO `augments` VALUES ('785', '0', '54', '1'); -- Fire resist-1 Water resist+1
+INSERT INTO `augments` VALUES ('785', '0', '59', '-1'); 
 
-INSERT INTO `augments` VALUES ('786', '0', '0', '0'); -- Ice resist-1 Wind resist+1
-INSERT INTO `augments` VALUES ('786', '0', '0', '0'); 
+INSERT INTO `augments` VALUES ('786', '0', '55', '-1'); -- Ice resist-1 Wind resist+1
+INSERT INTO `augments` VALUES ('786', '0', '56', '1'); 
 
-INSERT INTO `augments` VALUES ('787', '0', '0', '0'); -- Wind resist-1 Earth resist+1
-INSERT INTO `augments` VALUES ('787', '0', '0', '0'); 
+INSERT INTO `augments` VALUES ('787', '0', '56', '-1'); -- Wind resist-1 Earth resist+1
+INSERT INTO `augments` VALUES ('787', '0', '57', '1'); 
 
-INSERT INTO `augments` VALUES ('788', '0', '0', '0'); -- Earth resist-1 Lightning resist+1
-INSERT INTO `augments` VALUES ('788', '0', '0', '0'); 
+INSERT INTO `augments` VALUES ('788', '0', '57', '-1'); -- Earth resist-1 Lightning resist+1
+INSERT INTO `augments` VALUES ('788', '0', '58', '1'); 
 
-INSERT INTO `augments` VALUES ('789', '0', '0', '0'); -- Lightning resist-1 Water resist+1
-INSERT INTO `augments` VALUES ('789', '0', '0', '0'); 
+INSERT INTO `augments` VALUES ('789', '0', '58', '1'); -- Lightning resist-1 Water resist+1
+INSERT INTO `augments` VALUES ('789', '0', '59', '1'); 
 
-INSERT INTO `augments` VALUES ('790', '0', '0', '0'); -- Light resist+1 Dark resist-1
-INSERT INTO `augments` VALUES ('790', '0', '0', '0'); 
+INSERT INTO `augments` VALUES ('790', '0', '60', '1'); -- Light resist+1 Dark resist-1
+INSERT INTO `augments` VALUES ('790', '0', '61', '-1'); 
 
-INSERT INTO `augments` VALUES ('791', '0', '0', '0'); -- Light resist-1 Dark resist+1
-INSERT INTO `augments` VALUES ('791', '0', '0', '0'); 
+INSERT INTO `augments` VALUES ('791', '0', '60', '-1'); -- Light resist-1 Dark resist+1
+INSERT INTO `augments` VALUES ('791', '0', '61', '1'); 
 
-INSERT INTO `augments` VALUES ('792', '0', '0', '0'); -- Fire, Wind, Lightning, Light resists+1
-INSERT INTO `augments` VALUES ('792', '0', '0', '0');
-INSERT INTO `augments` VALUES ('792', '0', '0', '0');
-INSERT INTO `augments` VALUES ('792', '0', '0', '0');
+INSERT INTO `augments` VALUES ('792', '0', '54', '1'); -- Fire, Wind, Lightning, Light resists+1
+INSERT INTO `augments` VALUES ('792', '0', '56', '1');
+INSERT INTO `augments` VALUES ('792', '0', '58', '1');
+INSERT INTO `augments` VALUES ('792', '0', '60', '1');
 
-INSERT INTO `augments` VALUES ('793', '0', '0', '0'); -- Ice, Earth, Water, Dark resists+1
-INSERT INTO `augments` VALUES ('793', '0', '0', '0');
-INSERT INTO `augments` VALUES ('793', '0', '0', '0');
-INSERT INTO `augments` VALUES ('793', '0', '0', '0');
+INSERT INTO `augments` VALUES ('793', '0', '55', '1'); -- Ice, Earth, Water, Dark resists+1
+INSERT INTO `augments` VALUES ('793', '0', '57', '1');
+INSERT INTO `augments` VALUES ('793', '0', '59', '1');
+INSERT INTO `augments` VALUES ('793', '0', '61', '1');
 
-INSERT INTO `augments` VALUES ('794', '0', '0', '0'); -- Fire, Wind, Lightning, Light resists+1, Ice, Earth, Water, Dark resists-1
-INSERT INTO `augments` VALUES ('794', '0', '0', '0');
-INSERT INTO `augments` VALUES ('794', '0', '0', '0');
-INSERT INTO `augments` VALUES ('794', '0', '0', '0');
-INSERT INTO `augments` VALUES ('794', '0', '0', '0');
-INSERT INTO `augments` VALUES ('794', '0', '0', '0');
-INSERT INTO `augments` VALUES ('794', '0', '0', '0');
-INSERT INTO `augments` VALUES ('794', '0', '0', '0');
+INSERT INTO `augments` VALUES ('794', '0', '54', '1'); -- Fire, Wind, Lightning, Light resists+1, Ice, Earth, Water, Dark resists-1
+INSERT INTO `augments` VALUES ('794', '0', '56', '1');
+INSERT INTO `augments` VALUES ('794', '0', '58', '1');
+INSERT INTO `augments` VALUES ('794', '0', '60', '1');
+INSERT INTO `augments` VALUES ('794', '0', '55', '-1');
+INSERT INTO `augments` VALUES ('794', '0', '57', '-1');
+INSERT INTO `augments` VALUES ('794', '0', '59', '-1');
+INSERT INTO `augments` VALUES ('794', '0', '61', '-1');
 
-INSERT INTO `augments` VALUES ('795', '0', '0', '0'); -- Fire, Wind, Lightning, Light resists-1, Ice, Earth, Water, Dark resists+1
-INSERT INTO `augments` VALUES ('795', '0', '0', '0');
-INSERT INTO `augments` VALUES ('795', '0', '0', '0');
-INSERT INTO `augments` VALUES ('795', '0', '0', '0');
-INSERT INTO `augments` VALUES ('795', '0', '0', '0');
-INSERT INTO `augments` VALUES ('795', '0', '0', '0');
-INSERT INTO `augments` VALUES ('795', '0', '0', '0');
-INSERT INTO `augments` VALUES ('795', '0', '0', '0');
+INSERT INTO `augments` VALUES ('795', '0', '54', '-1'); -- Fire, Wind, Lightning, Light resists-1, Ice, Earth, Water, Dark resists+1
+INSERT INTO `augments` VALUES ('795', '0', '56', '-1');
+INSERT INTO `augments` VALUES ('795', '0', '58', '-1');
+INSERT INTO `augments` VALUES ('795', '0', '60', '-1');
+INSERT INTO `augments` VALUES ('795', '0', '55', '1');
+INSERT INTO `augments` VALUES ('795', '0', '57', '1');
+INSERT INTO `augments` VALUES ('795', '0', '59', '1');
+INSERT INTO `augments` VALUES ('795', '0', '61', '1');
 
-INSERT INTO `augments` VALUES ('796', '0', '0', '0'); -- All elemental resists +1
-INSERT INTO `augments` VALUES ('797', '0', '0', '0'); -- All elemental resists -1
+INSERT INTO `augments` VALUES ('796', '0', '54', '1'); -- All elemental resists +1
+INSERT INTO `augments` VALUES ('796', '0', '55', '1');
+INSERT INTO `augments` VALUES ('796', '0', '56', '1');
+INSERT INTO `augments` VALUES ('796', '0', '57', '1');
+INSERT INTO `augments` VALUES ('796', '0', '58', '1');
+INSERT INTO `augments` VALUES ('796', '0', '59', '1');
+INSERT INTO `augments` VALUES ('796', '0', '60', '1');
+INSERT INTO `augments` VALUES ('796', '0', '61', '1');
+
+INSERT INTO `augments` VALUES ('797', '0', '54', '-1'); -- All elemental resists -1
+INSERT INTO `augments` VALUES ('796', '0', '55', '-1');
+INSERT INTO `augments` VALUES ('796', '0', '56', '-1');
+INSERT INTO `augments` VALUES ('796', '0', '57', '-1');
+INSERT INTO `augments` VALUES ('796', '0', '58', '-1');
+INSERT INTO `augments` VALUES ('796', '0', '59', '-1');
+INSERT INTO `augments` VALUES ('796', '0', '60', '-1');
+INSERT INTO `augments` VALUES ('796', '0', '61', '-1');
 
 -- 798 to 951 currently unused. Leave at zero.
 INSERT INTO `augments` VALUES ('798', '0', '0', '0');

@@ -884,16 +884,26 @@ void LoadInventory(CCharEntity* PChar)
 	}
     
     // apply augments
-    for (uint8 i = 0; i < MAX_CONTAINER_SIZE; ++i)
+    // loop over each container
+    for (uint8 i = 0; i < MAX_CONTAINER_ID; ++i)
     {
-        CItem* PItem = (CItem*)PChar->getStorage(LOC_INVENTORY)->GetItem(i);
+        CItemContainer* PItemContainer = PChar->getStorage(i);
 
-        if (PItem != NULL && PItem->isType(ITEM_ARMOR))
+        // now find each item in the container
+        for (uint8 y = 0; y < MAX_CONTAINER_SIZE; ++y)
         {
-            for (uint8 j = 0; j < AUGMENT_COUNT; ++j)
+            CItem* PItem = (CItem*)PItemContainer->GetItem(y);
+
+            // check if the item is valid and can have an augment applied to it
+            if (PItem != NULL && (PItem->isType(ITEM_ARMOR) || PItem->isType(ITEM_WEAPON)))
             {
-                if (((CItemArmor*)PItem)->getAugment(j) != 0)
-                    ((CItemArmor*)PItem)->ApplyAugment(j);
+                // check if there are any valid augments to be applied to the item
+                for (uint8 j = 0; j < AUGMENT_COUNT; ++j)
+                {
+                    // found a match, apply the augment
+                    if (((CItemArmor*)PItem)->getAugment(j) != 0)
+                        ((CItemArmor*)PItem)->ApplyAugment(j);
+                }
             }
         }
     }
