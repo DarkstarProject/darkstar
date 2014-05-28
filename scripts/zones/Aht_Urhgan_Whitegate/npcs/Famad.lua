@@ -61,7 +61,10 @@ function onEventFinish(player,csid,option)
         local selectiontype = bit.band(option, 0xF);
         if (selectiontype == 1) then
             -- taken assault mission
-            player:setCurrentMission(ASSAULT, bit.rshift(option,4));
+            player:addMission(ASSAULT, bit.rshift(option,4));
+            player:delKeyItem(IMPERIAL_ARMY_ID_TAG);
+            player:addKeyItem(LEBROS_ASSAULT_ORDERS);
+            player:messageSpecial(KEYITEM_OBTAINED,LEBROS_ASSAULT_ORDERS);
         elseif (selectiontype == 2) then
             -- purchased an item
             local item = bit.rshift(option,14);

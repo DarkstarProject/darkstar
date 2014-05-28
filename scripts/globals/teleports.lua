@@ -20,6 +20,18 @@ RECALL_JUGNER                                   = 9;
 RECALL_PASHH                                    = 10;
 RECALL_MERIPH                                   = 11;
 
+FIREFLIES_AZOUPH        = 12;
+FIREFLIES_BHAFLAU       = 13;
+FIREFLIES_ZHAYOLM      = 14;
+FIREFLIES_DVUCCA       = 15;
+FIREFLIES_REEF             = 16;
+FIREFLIES_ALZADAAL     = 17;
+FIREFLIES_CUTTER         = 18; 
+FIREFLIES_Z_REM          = 19;
+FIREFLIES_A_REM          = 20;
+FIREFLIES_B_REM          = 21;
+FIREFLIES_S_REM          = 22;
+
 -----------------------------------
 -- Teleports
 -----------------------------------
@@ -453,50 +465,26 @@ end;
 -- Assaults
 -----------------------------------
 
--- Periqia
-function Periqia1(player)
-	player:setPos(-350, -15.245, 380, 0, 56); -- Rank 1 (Seagull Grounded)			{R}
-end;
 function PeriqiaExit(player)
 	player:setPos(-252.715, -7.666, -30.64, 128, 79); -- Exit						{R}
 end;
 
--- Lebros Cavern
-function LebrosCavern1(player)
-	player:setPos(124.999, -39.309, 19.999, 0, 63); -- Rank 1 (Excavation Duty)		{R}
-end;
 function LebrosCavernExit(player)
 	player:setPos(681.950, -24, 369.936, 64, 61); -- Exit							{R}
 end;
 
--- Mamool Ja Training Grounds
-function MamoolJaTrainingGround1(player)
-	player:setPos(-20, 2.276, -405, 63, 66); -- Rank 1 (Imperial Agent Rescue) 		{R}
-end;
 function MamoolJaTrainingExit(player)
 	player:setPos(-172.863, -12.25, -801.021, 128, 52);  -- Exit					{R}
 end;
 
--- Leujaoam Sanctum
-function LeujaoamSanctum1(player)
-	player:setPos(280, -7.5, 35, 195, 69); -- Rank 1 (Leujaoam Cleansing) 			{R}
-end;
 function LeujaoamSanctumExit(player)
 	player:setPos(495.450, -28.25, -478.430, 32, 79); -- Exit						{R}
 end;
 
--- Ilrusi Atoll
-function IlrusiAtoll1(player)
-	player:setPos(384.999, -12.071, 14.999, 192, 55); -- Rank 1 (Golden Salvage) 	{R}
-end;
 function IlrusiAtollExit(player)
 	player:setPos(9.304,-7.376,620.133,0,54); -- Exit								{R}
 end;
 
--- Nyzul Isle
-function NyzulIsle(player)
-	player:setPos(-20, -4, -20, 192, 77); -- Nyzul Isle Investigation 				{R}
-end;
 function NyzulIsleExit(player)
 	player:setPos(180,0,20,0,72); -- Exit											{R}
 end;
@@ -506,24 +494,10 @@ end;
 -----------------------------------
 -- TODO: The rest
 
--- Silver Sea Remnants
-function SilverSeaRemnantsI(player)
-	player:setPos(339.999, 11.999, -166.499, 63, 76); -- Silver Sea Remnants I	 	{R}
-end;
--- function SilverSeaRemnantsII(player)
--- 	player:setPos(0, 0, 0, 0, 76); -- Silver Sea Remnants II	 	
--- end;
 function SilverSeaRemnantsExit(player)
 	player:setPos(580,0,500,192,72); -- Exit										{R}
 end;
 
--- Bhaflau Remnants
-function BhaflauRemnantsI(player)
-	player:setPos(339.999, 19.999, -553.499, 191, 75); -- Bhaflau Remnants I	 	{R}
-end;
--- function BhaflauRemnantsII(player)
--- 	player:setPos(0, 0, 0, 0, 75); -- Bhaflau Remnants II	 	
--- end;
 function BhaflauRemnantsExit(player)
 	player:setPos(620,0,-260,64,72); -- Exit										{R}
 end;

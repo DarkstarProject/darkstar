@@ -4564,4 +4564,16 @@ void ApplyAllEquipMods(CCharEntity* PChar)
     }
 }
 
+void ClearTempItems(CCharEntity* PChar)
+{
+	CItemContainer* Temp = PChar->getStorage(LOC_TEMPITEMS);
+
+	const int8* Query = "DELETE FROM char_inventory WHERE charid = %u AND location = 3;";
+
+	if (Sql_Query(SqlHandle, Query, PChar->id) != SQL_ERROR)
+	{
+		Temp->Clear();
+	}
+}
+
 }; // namespace charutils

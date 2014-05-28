@@ -25,7 +25,8 @@ function onZoneIn(player,prevZone)
     if (pos.x == 0 and pos.y == 0 and pos.z == 0) then
         player:setPos(player:getInstance():getEntryPos());
     end
-return cs;
+    player:addTempItem(5345);
+    return cs;
 end;
 
 -----------------------------------

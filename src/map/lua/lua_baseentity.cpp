@@ -748,6 +748,42 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
 }
 //==========================================================//
 
+inline int32 CLuaBaseEntity::addTempItem(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+	uint16 itemID = (uint16)lua_tointeger(L, 1);
+	uint32 quantity = 1;
+
+	if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
+		quantity = (uint32)lua_tointeger(L, 2);
+
+	uint8 SlotID = ERROR_SLOTID;
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	if (PChar->getStorage(LOC_TEMPITEMS)->GetFreeSlotsCount() != 0 && quantity != 0)
+	{
+		CItem* PItem = itemutils::GetItem(itemID);
+
+		if (PItem != NULL)
+		{
+			PItem->setQuantity(quantity);
+
+			SlotID = charutils::AddItem(PChar, LOC_TEMPITEMS, PItem);
+		}
+		else
+		{
+			ShowWarning(CL_YELLOW"charplugin::AddItem: Item <%i> is not found in a database\n" CL_RESET, itemID);
+		}
+	}
+	lua_pushboolean(L, (SlotID != ERROR_SLOTID));
+	return 1;
+}
+
 inline int32 CLuaBaseEntity::resetPlayer(lua_State *L)
 {
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,1));
@@ -8714,6 +8750,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaxHP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaxMP),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addItem),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTempItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSpawnPos),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getFreeSlotsCount),

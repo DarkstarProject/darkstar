@@ -161,6 +161,8 @@ namespace charutils
 
     void    RemoveAllEquipMods(CCharEntity* PChar);
     void    ApplyAllEquipMods(CCharEntity* PChar);
+
+	void	ClearTempItems(CCharEntity* PChar);
 };
 
 #endif

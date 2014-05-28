@@ -12,10 +12,6 @@ require("scripts/globals/teleports");
 -----------------------------------
 
 function onEffectGain(target,effect)
-
-local Teleport = target:getStatusEffect(EFFECT_TELEPORT):getPower();
---target:setVar("TELEPORT_POINT",Teleport);
-
 end;
 
 -----------------------------------
@@ -49,11 +45,33 @@ function onEffectLose(target,effect)
 	elseif(Teleport == TELEPORT_ESCAPE) then
 		Escape(target, target:getZone());
 	elseif(Teleport == RECALL_JUGNER) then
-	        recallJugner(target);
+        recallJugner(target);
 	elseif(Teleport == RECALL_PASHH) then
-	        recallPashh(target);
+        recallPashh(target);
 	elseif(Teleport == RECALL_MERIPH) then
-	        recallMeriph(target);	        
+        recallMeriph(target);
+    elseif(Teleport == FIREFLIES_AZOUPH) then
+        LeujaoamSanctumExit(target);
+    elseif(Teleport == FIREFLIES_BHAFLAU) then
+        MamoolJaTrainingExit(target);
+    elseif(Teleport == FIREFLIES_ZHAYOLM) then
+        LebrosCavernExit(target);
+    elseif(Teleport == FIREFLIES_DVUCCA) then
+        PeriqiaExit(target);
+    elseif(Teleport == FIREFLIES_REEF) then
+        IlrusiAtollExit(target);
+    elseif(Teleport == FIREFLIES_ALZADAAL) then
+        NyzulIsleExit(target);
+    elseif(Teleport == FIREFLIES_CUTTER) then
+        -- TODO
+    elseif(Teleport == FIREFLIES_Z_REM) then
+        -- TODO
+    elseif(Teleport == FIREFLIES_A_REM) then
+        -- TODO
+    elseif(Teleport == FIREFLIES_B_REM) then
+        BhaflauRemnantsExit(target);
+    elseif(Teleport == FIREFLIES_S_REM) then
+        SilverSeaRemnantsExit(target);
 	end
 	
    

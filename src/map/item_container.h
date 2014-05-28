@@ -74,6 +74,7 @@ public:
     uint32  LastSortingTime;                        // время последней сортировки контейнера
 
 	CItem*	GetItem(uint8 slotID);					// получаем указатель на предмет, находящийся в указанной ячейка. 
+	void	Clear();								// Remove all items from container
 
 private:
 

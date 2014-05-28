@@ -859,6 +859,9 @@ void CZone::CharZoneIn(CCharEntity* PChar)
 
 	PChar->m_PVPFlag = CanUseMisc(MISC_PVP);
 
+	//remove temp items
+	charutils::ClearTempItems(PChar);
+
 	//remove status effects that wear on zone
 	PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE);
 
@@ -926,6 +929,7 @@ void CZone::CharZoneOut(CCharEntity* PChar)
 			break;
 		}
 	}
+
 	if (PChar->m_LevelRestriction != 0)
 	{
 		if (PChar->PParty)

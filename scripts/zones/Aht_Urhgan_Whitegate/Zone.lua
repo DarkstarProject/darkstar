@@ -46,6 +46,14 @@ return cs;
 
 end;		
 
+-----------------------------------		
+-- afterZoneIn		
+-----------------------------------		
+
+function afterZoneIn(player)
+    player:entityVisualPacket(0x31,0x70,0x62,0x31);
+end;	
+
 -----------------------------------	
 -- onRegionEnter	
 -----------------------------------	

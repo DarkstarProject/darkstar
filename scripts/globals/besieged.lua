@@ -44,22 +44,29 @@ end;
 function hasAssaultOrders(player)
 	
 	local event = 0;
+    local keyitem = 0;
 	
 	if(player:hasKeyItem(LEUJAOAM_ASSAULT_ORDERS)) then -- assault @ Azouph Isle
 		event = 0x0078;
+        keyitem = LEUJAOAM_ASSAULT_ORDERS;
 	elseif(player:hasKeyItem(MAMOOL_JA_ASSAULT_ORDERS)) then -- assault @ Mamool Ja 
 		event = 0x0079;
+        keyitem = MAMOOL_JA_ASSAULT_ORDERS;
 	elseif(player:hasKeyItem(LEBROS_ASSAULT_ORDERS)) then -- assault @ Halvung	
 		event = 0x007A;
+        keyitem = LEBROS_ASSAULT_ORDERS;
 	elseif(player:hasKeyItem(PERIQIA_ASSAULT_ORDERS)) then -- assault @ Dvucca Isle 
 		event = 0x007B;
+        keyitem = PERIQIA_ASSAULT_ORDERS;
 	elseif(player:hasKeyItem(ILRUSI_ASSAULT_ORDERS)) then -- assault @ 	 Ilrusi Atoll 
 		event = 0x007C;
+        keyitem = ILRUSI_ASSAULT_ORDERS;
 	elseif(player:hasKeyItem(NYZUL_ISLE_ASSAULT_ORDERS)) then -- assault @  Nyzul Isle
 		event = 0x007D;
-	end 
+        keyitem = NYZUL_ISLE_ASSAULT_ORDERS;
+	end
 	
-	return event;
+	return event, keyitem;
 	
 end;
 

@@ -53,3 +53,7 @@ UGRIHD_PURCHASE_DIALOGUE = 4581; -- Salaheem's Sentinels values your contributio
       AUTOMATON_SOULSOOTHER_UNLOCK = 9540; -- You obtain the Soulsoother C-1000 head!
       AUTOMATON_SPIRITREAVER_UNLOCK = 9541; -- You obtain the Spiritreaver M-400 head!
       AUTOMATON_ATTACHMENT_UNLOCK = 9557; -- You can now equip your automaton with
+      
+-- Assault
+    RYTAAL_MISSION_COMPLETE = 5561; -- Congratulations. You have been awarded Assault Points for the successful completion of your mission.
+    RYTAAL_MISSION_FAILED = 5562; -- Your mission was not successful; however, the Empire recognizes your contribution and has awarded you Assault Points.

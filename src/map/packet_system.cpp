@@ -886,16 +886,17 @@ void SmallPacket0x01C(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x028(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	int32 quantity = RBUFB(data,(0x04));
-	uint8  slotID  = RBUFB(data,(0x09));
+	int32  quantity = RBUFB(data,(0x04));
+	uint8 container = RBUFB(data,(0x08));
+	uint8	slotID  = RBUFB(data,(0x09));
 
-    CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
+	CItem* PItem = PChar->getStorage(container)->GetItem(slotID);
 
     if (PItem != NULL && !PItem->isSubType(ITEM_LOCKED))
     {
         uint16 ItemID = PItem->getID();
 
-	    if (charutils::UpdateItem(PChar, LOC_INVENTORY, slotID, -quantity) != 0)
+		if (charutils::UpdateItem(PChar, container, slotID, -quantity) != 0)
 	    {
             // TODO: сломать linkshell, если раковина была выброшена
 
@@ -1262,8 +1263,9 @@ void SmallPacket0x037(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	uint32 EntityID = RBUFL(data,(0x04));
 	uint16 TargetID = RBUFW(data,(0x0C));
 	uint8  SlotID   = RBUFB(data,(0x0E));
+	uint8  StorageID = RBUFB(data,(0x10));
 
-	CItemUsable* PItem = (CItemUsable*)PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
+	CItemUsable* PItem = (CItemUsable*)PChar->getStorage(StorageID)->GetItem(SlotID);
 
 	if ((PItem != NULL) && PItem->isType(ITEM_USABLE))
 	{
