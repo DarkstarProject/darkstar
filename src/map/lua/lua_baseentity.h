@@ -417,6 +417,7 @@ public:
 	int32 hideNPC(lua_State*);              // hide an NPC
 	int32 resetRecasts(lua_State*);         // Reset recasts for the caller
     int32 resetRecast(lua_State*);          // Reset one recast ID
+
 	int32 addCP(lua_State*);				// Add CP
 	int32 getCP(lua_State*);				// Get CP
 	int32 delCP(lua_State*);				// Delete CP
@@ -431,18 +432,39 @@ public:
 
     int32 getAssaultPoint(lua_State*);	    // Get imperial standing
     int32 addAssaultPoint(lua_State*);	    // Add imperial standing
-    int32 delAssaultPoint(lua_State*);	    // Delete imperial standing
+    int32 delAssaultPoint(lua_State*);      // Delete imperial standing
 
-    int32 getZeni(lua_State*);	            // Get Zeni
-    int32 addZeni(lua_State*);	            // Add Zeni
-    int32 delZeni(lua_State*);	            // Delete Zeni
-	int32 isJailed(lua_State *L);			// Is the player jailed
+    int32 getAlliedNotes(lua_State*);       // Get Allied Notes
+    int32 addAlliedNotes(lua_State*);       // Add Allied Notes
+    int32 delAlliedNotes(lua_State*);       // Delete Allied Notes
+    
+    int32 getZeni(lua_State*);              // Get Zeni
+    int32 addZeni(lua_State*);              // Add Zeni
+    int32 delZeni(lua_State*);              // Delete Zeni
 
-    int32 getSeals(lua_State*);	            // Get Seals (beastman seals, etc)
-    int32 addSeals(lua_State*);	            // Add Seals
-    int32 delSeals(lua_State*);	            // Delete Seals
+    int32 isJailed(lua_State *L);           // Is the player jailed
 
-	int32 addNationTeleport(lua_State*);	// Add new teleport: addNationTeleport(nation,number)
+    int32 getCruor(lua_State*);             // Get Cruor
+    int32 addCruor(lua_State*);             // Add Cruor
+    int32 delCruor(lua_State*);             // Delete Cruor
+
+    int32 getSeals(lua_State*);             // Get Seals (beastman seals, etc)
+    int32 addSeals(lua_State*);             // Add Seals
+    int32 delSeals(lua_State*);             // Delete Seals
+
+    int32 getTags(lua_State*);              // Get Imperial ID tags (Assault)
+    int32 addTags(lua_State*);              // Add Imperial ID tags (Assault)
+    int32 delTags(lua_State*);              // Delete Imperial ID tags (Assault)
+
+    int32 getTstone(lua_State*);            // Get Traverser Stone Stock
+    int32 addTstone(lua_State*);            // Add Traverser Stone Stock
+    int32 delTstone(lua_State*);            // Delete Traverser Stone Stock
+
+    int32 getVstone(lua_State*);            // Get Voidstone Stock
+    int32 addVstone(lua_State*);            // Add Voidstone Stock
+    int32 delVstone(lua_State*);            // Delete Voidstone Stock
+
+    int32 addNationTeleport(lua_State*);	// Add new teleport: addNationTeleport(nation,number)
 	int32 getNationTeleport(lua_State*);	// Get teleport you can use by nation: getNationTeleport(nation)
 
 	int32 checkDistance(lua_State*);		// Check Distacnce and returns distance number
