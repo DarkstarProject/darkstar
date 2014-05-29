@@ -3,11 +3,10 @@
 -- NPC: Rex
 -- Map Seller NPC
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
-package.loaded["scripts/globals/magic_maps"] = nil;
------------------------------------
+
 require("scripts/zones/Port_Bastok/TextIDs");
 require("scripts/globals/magic_maps");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------

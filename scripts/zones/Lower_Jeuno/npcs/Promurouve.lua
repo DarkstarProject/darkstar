@@ -3,11 +3,10 @@
 -- NPC:  Promurouve
 -- Map Seller NPC
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
-package.loaded["scripts/globals/magic_maps"] = nil;
------------------------------------
+
 require("scripts/globals/magic_maps");
 require("scripts/zones/Lower_Jeuno/TextIDs")
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -22,7 +21,6 @@ end;
 
 function onTrigger(player,npc)
 	CheckMaps(player, npc, 0x2710);
-    --player:startEvent(0x2710, mapVar);
 end;
 
 -----------------------------------

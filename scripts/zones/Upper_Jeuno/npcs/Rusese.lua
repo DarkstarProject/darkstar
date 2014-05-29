@@ -3,11 +3,10 @@
 -- NPC: Rusese
 -- Map Seller NPC
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
-package.loaded["scripts/globals/magic_maps"] = nil;
------------------------------------
+
 require("scripts/globals/magic_maps");
 require("scripts/zones/Upper_Jeuno/TextIDs");
+
 -----------------------------------
 -- onTrade
 -----------------------------------
@@ -20,9 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
 	CheckMaps(player, npc, 0x2710);
-	--player:startEvent(0x2710, Filter);
 end;
 
 -----------------------------------

@@ -3,11 +3,10 @@
 -- NPC: Karine
 -- Map Seller NPC
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
-package.loaded["scripts/globals/magic_maps"] = nil;
------------------------------------
+
 require("scripts/zones/Bastok_Markets/TextIDs");
 require("scripts/globals/magic_maps");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
