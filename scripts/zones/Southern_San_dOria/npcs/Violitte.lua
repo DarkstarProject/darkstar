@@ -4,11 +4,9 @@
 -- Map Seller NPC
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
 
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
 require("scripts/zones/Southern_San_dOria/TextIDs");
+require("scripts/globals/magic_maps");
 
 -----------------------------------
 -- onTrade Action
@@ -23,32 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    local mapVar = 0;
-	if player:hasKeyItem(MAP_OF_THE_SAN_DORIA_AREA) then
-		mapVar = mapVar + 4;
-	end
-	if player:hasKeyItem(MAP_OF_THE_BASTOK_AREA) then
-		mapVar = mapVar + 8;
-	end
-	if player:hasKeyItem(MAP_OF_THE_WINDURST_AREA) then
-		mapVar = mapVar + 16;
-	end
-	if player:hasKeyItem(MAP_OF_THE_JEUNO_AREA) then
-		mapVar = mapVar + 32;
-	end
-	if player:hasKeyItem(MAP_OF_ORDELLES_CAVES) then
-		mapVar = mapVar + 64;
-	end
-	if player:hasKeyItem(MAP_OF_GHELSBA) then
-		mapVar = mapVar + 128;
-	end
-	if player:hasKeyItem(MAP_OF_DAVOI) then
-		mapVar = mapVar + 256;
-	end
-	if player:hasKeyItem(MAP_OF_CARPENTERS_LANDING) then
-		mapVar = mapVar + 512;
-	end
-    player:startEvent(0x0253, mapVar);
+	CheckMaps(player, npc, 0x0253);
 end;
 
 -----------------------------------
@@ -56,8 +29,9 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+	if (csid == 0x0253) then
+		CheckMapsUpdate(player, option, NOT_HAVE_ENOUGH_GIL, KEYITEM_OBTAINED);
+	end
 end;
 
 -----------------------------------
@@ -65,36 +39,5 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-    if (csid == 0x0253 and option ~= 1073741824) then
-        local gil = 0;
-        if option == MAP_OF_THE_SAN_DORIA_AREA then
-            gil = 200;
-        elseif option == MAP_OF_THE_BASTOK_AREA then
-            gil = 200;
-        elseif option == MAP_OF_THE_WINDURST_AREA then
-            gil = 200;
-        elseif option == MAP_OF_THE_JEUNO_AREA then
-            gil = 600;
-        elseif option == MAP_OF_ORDELLES_CAVES then
-     		gil = 600;
-        elseif option == MAP_OF_GHELSBA then
-	    	gil = 600;
-        elseif option == MAP_OF_DAVOI then
-            gil = 3000;
-        elseif option == MAP_OF_CARPENTERS_LANDING then
-            gil = 3000;
-        end
-        if (gil > 0 and player:delGil(gil)) then
-            player:addKeyItem(option);
-            player:messageSpecial(KEYITEM_OBTAINED,option); 
-        else
-            player:messageSpecial(NOT_HAVE_ENOUGH_GIL);
-        end
-    end
+	
 end;
-
-
-
-
