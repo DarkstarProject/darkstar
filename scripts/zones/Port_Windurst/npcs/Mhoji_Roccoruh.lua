@@ -3,6 +3,7 @@
 -- NPC: Mhoji Roccoruh
 -- Map Seller NPC
 -----------------------------------
+package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 
 require("scripts/zones/Port_Windurst/TextIDs");
 require("scripts/globals/magic_maps");
@@ -40,7 +41,3 @@ end;
 function onEventFinish(player,csid,option)
 
 end;
-
-
-
-

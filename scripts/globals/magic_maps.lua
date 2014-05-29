@@ -65,7 +65,7 @@ local p6 = { --Maps that are price at 600 gil
 	Uoption[24],	--Horutoto Ruins
 	Uoption[27]		--Gusgen Mines
 	};
-local p3 = {
+local p3 = {	--Maps that are price at 3000 gil
 	Uoption[7],		--Davoi
 	Uoption[8],		--Carpenters Landing
 	Uoption[13],	--Castle Oztroja

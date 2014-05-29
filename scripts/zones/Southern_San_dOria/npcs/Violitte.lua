@@ -3,6 +3,7 @@
 -- NPC: Violitte
 -- Map Seller NPC
 -----------------------------------
+package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 
 require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/magic_maps");
@@ -40,7 +41,3 @@ end;
 function onEventFinish(player,csid,option)
 	
 end;
-
-
-
-
