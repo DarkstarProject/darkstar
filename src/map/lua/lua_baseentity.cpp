@@ -7206,6 +7206,106 @@ inline int32 CLuaBaseEntity::delZeni(lua_State *L)
 
 //==========================================================//
 
+inline int32 CLuaBaseEntity::getAlliedNotes(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	lua_pushinteger(L, PChar->m_currency.alliednotes);
+
+	return 1;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::addAlliedNotes(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+	int32 point = (int32)lua_tointeger(L, 1);
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	PChar->m_currency.alliednotes += point;
+	charutils::SaveCharPoints(PChar);
+
+	return 0;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::delAlliedNotes(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+	int32 point = (int32)lua_tointeger(L, 1);
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	PChar->m_currency.alliednotes -= point;
+	charutils::SaveCharPoints(PChar);
+
+	return 0;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::getCruor(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	lua_pushinteger(L, PChar->m_currency.cruor);
+
+	return 1;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::addCruor(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+	int32 point = (int32)lua_tointeger(L, 1);
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	PChar->m_currency.cruor += point;
+	charutils::SaveCharPoints(PChar);
+
+	return 0;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::delCruor(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+	int32 point = (int32)lua_tointeger(L, 1);
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	PChar->m_currency.cruor -= point;
+	charutils::SaveCharPoints(PChar);
+
+	return 0;
+}
+
+//==========================================================//
+
 inline int32 CLuaBaseEntity::getSeals(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -7266,6 +7366,156 @@ inline int32 CLuaBaseEntity::delSeals(lua_State *L)
         charutils::SaveCharPoints(PChar);
     }
     return 0;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::getTags(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	lua_pushinteger(L, PChar->m_currency.traverserstones);
+
+	return 1;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::addTags(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+	int32 point = (int32)lua_tointeger(L, 1);
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	PChar->m_currency.idtags += point;
+	charutils::SaveCharPoints(PChar);
+
+	return 0;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::delTags(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+	int32 point = (int32)lua_tointeger(L, 1);
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	PChar->m_currency.idtags -= point;
+	charutils::SaveCharPoints(PChar);
+
+	return 0;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::getTstone(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	lua_pushinteger(L, PChar->m_currency.traverserstones);
+
+	return 1;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::addTstone(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+	int32 point = (int32)lua_tointeger(L, 1);
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	PChar->m_currency.traverserstones += point;
+	charutils::SaveCharPoints(PChar);
+
+	return 0;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::delTstone(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+	int32 point = (int32)lua_tointeger(L, 1);
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	PChar->m_currency.traverserstones -= point;
+	charutils::SaveCharPoints(PChar);
+
+	return 0;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::getVstone(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	lua_pushinteger(L, PChar->m_currency.voidstones);
+
+	return 1;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::addVstone(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+	int32 point = (int32)lua_tointeger(L, 1);
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	PChar->m_currency.voidstones += point;
+	charutils::SaveCharPoints(PChar);
+
+	return 0;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::delVstone(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+	int32 point = (int32)lua_tointeger(L, 1);
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	PChar->m_currency.voidstones -= point;
+	charutils::SaveCharPoints(PChar);
+
+	return 0;
 }
 
 /************************************************************************
@@ -8991,18 +9241,34 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delImperialStanding),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAssaultPoint),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addAssaultPoint),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,delAssaultPoint),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZeni),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addZeni),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,delZeni),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSeals),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addSeals),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,delSeals),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delAssaultPoint),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZeni),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addZeni),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delZeni),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAlliedNotes),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addAlliedNotes),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delAlliedNotes),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCruor),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addCruor),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delCruor),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSeals),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addSeals),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delSeals),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getTags),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTags),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delTags),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getTstone),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTstone),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delTstone),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getVstone),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addVstone),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,delVstone),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,addNationTeleport),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNationTeleport),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isBehind),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,isFacing),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAngle),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAngle),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,showNPC),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideNPC),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStealItem),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,itemStolen),

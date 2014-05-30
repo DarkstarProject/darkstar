@@ -18,8 +18,7 @@ require("scripts/zones/Bastok_Mines/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-SirensTear = player:getQuestStatus(BASTOK,THE_SIREN_S_TEAR);
+	local SirensTear = player:getQuestStatus(BASTOK,THE_SIREN_S_TEAR);
 
 	if (SirensTear ~= QUEST_AVAILABLE) then
 		if (trade:hasItemQty(576,1) and trade:getItemCount() == 1) then
@@ -33,9 +32,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+	local SirensTear = player:getQuestStatus(BASTOK,THE_SIREN_S_TEAR);
 
-SirensTear = player:getQuestStatus(BASTOK,THE_SIREN_S_TEAR);
-	
 	if (SirensTear == QUEST_AVAILABLE) then
 		player:startEvent(0x0051);
 	else 
