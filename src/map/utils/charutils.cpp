@@ -463,7 +463,7 @@ void LoadChar(CCharEntity* PChar)
 	{
 		PChar->getStorage(LOC_INVENTORY)->AddBuff((uint8)Sql_GetIntData(SqlHandle,0));
 		PChar->getStorage(LOC_MOGSAFE)->AddBuff((uint8)Sql_GetIntData(SqlHandle,1));
-		PChar->getStorage(LOC_TEMPITEMS)->AddBuff(18);
+		PChar->getStorage(LOC_TEMPITEMS)->AddBuff(50);
 		PChar->getStorage(LOC_MOGLOCKER)->AddBuff((uint8)Sql_GetIntData(SqlHandle,2));
 		PChar->getStorage(LOC_MOGSATCHEL)->AddBuff((uint8)Sql_GetIntData(SqlHandle,3));
 		PChar->getStorage(LOC_MOGSACK)->AddBuff((uint8)Sql_GetIntData(SqlHandle,4));
