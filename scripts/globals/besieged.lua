@@ -219,6 +219,7 @@ function geteRecommendedAssaultLevel(assaultid)
         return 75;
     elseif assaultid == 52 then
         return 99;
+    end;
 end;
 
 -----------------------------------------------------------------------------------
