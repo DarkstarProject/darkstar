@@ -67,6 +67,16 @@ CCheckPacket::CCheckPacket(CCharEntity* PChar, CCharEntity* PTarget)
 				WBUFL(data,(size*2+0x0C)-4) = ((CItemUsable*)PItem)->getUseDelay() + currentTime;		
 			}
 
+            if (PItem->isSubType(ITEM_AUGMENTED))
+            {
+                WBUFB(data,(size*2+0x04)-4) = 0x02;
+
+                WBUFW(data,(size*2+0x06)-4) = ((CItemArmor*)PItem)->getAugment(0);
+                WBUFW(data,(size*2+0x08)-4) = ((CItemArmor*)PItem)->getAugment(1);
+                WBUFW(data,(size*2+0x0A)-4) = ((CItemArmor*)PItem)->getAugment(2);
+                WBUFW(data,(size*2+0x0C)-4) = ((CItemArmor*)PItem)->getAugment(3);
+            }
+
 			memcpy(data+(size*2+0x10)-4, PItem->getSignature(), dsp_cap(strlen(PItem->getSignature()), 0, 12));
 
 			this->size += 0x0E;
