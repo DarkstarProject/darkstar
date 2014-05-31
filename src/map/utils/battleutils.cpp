@@ -2130,6 +2130,11 @@ uint8 GetHitRateEx(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 att
 	}
     else
     {
+    		//Check For Ambush Merit
+    		if (PAttacker->objtype == TYPE_PC && (charutils::hasTrait((CCharEntity*)PAttacker, TRAIT_AMBUSH))) {
+    			offsetAccuracy += ((CCharEntity*)PAttacker)->PMeritPoints->GetMeritValue(MERIT_AMBUSH,(CCharEntity*)PAttacker);
+    		}
+    		
 		hitrate = hitrate + (PAttacker->ACC(attackNumber,offsetAccuracy) - PDefender->EVA()) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
 
 		hitrate = dsp_cap(hitrate, 20, 95);
