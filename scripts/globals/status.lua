@@ -582,6 +582,7 @@ EFFECT_BRAZEN_STRENGTH          = 490 --
 EFFECT_INNER_STRENGTH           = 491 
 EFFECT_ISSEKIGAN                = 484
 
+EFFECT_STYMIE                   = 494
 EFFECT_MIKAGE                   = 502
 
 EFFECT_MARK_OF_SEED             = 790 -- Tracks 30 min timer in ACP mission "Those Who Lurk in Shadows (II)"

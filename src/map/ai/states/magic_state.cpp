@@ -558,6 +558,11 @@ void CMagicState::FinishSpell()
 
     m_PEntity->StatusEffectContainer->DelStatusEffectsByFlag(effectFlags);
 
+	// Remove Spontaneity if Active
+	if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SPONTANEITY)){
+		m_PEntity->StatusEffectContainer->DelStatusEffect(EFFECT_SPONTANEITY);
+	}
+
     m_PTargetFind->reset();
     m_PEntity->m_ActionList.clear();
 
@@ -883,7 +888,8 @@ void CMagicState::SetRecast(CSpell* PSpell)
 
     uint32 RecastTime = 3000;
 
-    if (!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
+    if (!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL) &&
+		!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SPONTANEITY))
     {
         RecastTime = CalculateRecastTime(PSpell);
     }
