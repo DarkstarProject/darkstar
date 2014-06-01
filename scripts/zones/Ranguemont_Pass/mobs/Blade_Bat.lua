@@ -3,7 +3,7 @@
 -- MOB:  Blade Bat	
 -----------------------------------	
 
-require("scripts/globals/fieldsofvalor");	
+require("scripts/globals/groundsofvalor");	
 
 -----------------------------------	
 -- onMobDeath	
