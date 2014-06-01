@@ -11,4 +11,5 @@ require("scripts/globals/groundsofvalor");
 
 function onMobDeath(mob,killer)	
 	checkRegime(killer,mob,615,1);
+	checkRegime(killer,mob,617,2);
 end;	
