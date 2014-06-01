@@ -14,7 +14,7 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `bcnm_battlefield`;
 CREATE TABLE `bcnm_battlefield` (
   `bcnmId` smallint(5) unsigned NOT NULL,
-  `instanceNumber` tinyint(3) DEFAULT NULL,
+  `battlefieldNumber` tinyint(3) DEFAULT NULL,
   `monsterId` int(10) NOT NULL,
   `conditions` tinyint(2) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56;
