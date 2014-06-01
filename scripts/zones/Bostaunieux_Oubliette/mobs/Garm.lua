@@ -11,6 +11,8 @@ require("scripts/zones/Bostaunieux_Oubliette/MobIDs");
 
 function onMobDeath(mob,killer)	
 
+    checkRegime(killer,mob,612,1);
+
     local mob = mob:getID();
     if (Shii_PH[mob] ~= nil) then
 
