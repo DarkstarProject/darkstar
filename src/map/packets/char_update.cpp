@@ -86,7 +86,7 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
         flag |= 0x08;
     WBUFB(data,(0x36)-4) = flag;
 
-    if (!PChar->isDead() || PChar->m_DeathTimestamp == 0) //prevent this packet from resetting the homepoint timer after tractor
+    if (!PChar->isDead() || PChar->m_DeathCounter == 0) //prevent this packet from resetting the homepoint timer after tractor
         WBUFL(data,(0x3C)-4) = 0x0003A020;
 
     WBUFL(data,(0x40)-4) = CVanaTime::getInstance()->getVanaTime();

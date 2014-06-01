@@ -389,7 +389,8 @@ void CAICharNormal::ActionFall()
     m_PChar->UContainer->Clean();
 
 	m_PChar->animation = ANIMATION_DEATH;
-    m_PChar->m_DeathTimestamp = 0; //so char update packet will send the full homepoint timer 
+    m_PChar->m_DeathCounter = 0; //so char update packet will send the full homepoint timer
+    m_PChar->m_DeathTimestamp = (uint32)time(NULL);
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
     m_PChar->pushPacket(new CRaiseTractorMenuPacket(m_PChar,TYPE_HOMEPOINT));
 
@@ -400,7 +401,6 @@ void CAICharNormal::ActionFall()
 
 	if (!m_PChar->getMijinGakure() && !m_PChar->m_PVPFlag)
 		charutils::DelExperiencePoints(m_PChar,map_config.exp_retain);
-
 
 	charutils::SaveDeathTime(m_PChar);
 
