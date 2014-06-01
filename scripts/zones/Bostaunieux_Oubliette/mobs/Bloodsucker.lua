@@ -4,6 +4,7 @@
 -- @pos -21.776 16.983 -231.477 167
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
 
 -----------------------------------
 -- onMobDeath
@@ -11,6 +12,8 @@
 
 function onMobDeath(mob,killer)	
 
+	checkRegime(killer,mob,613,1);
+	
 	local mobID = mob:getID();	
  
 	if(mobID == 17461478) then 
