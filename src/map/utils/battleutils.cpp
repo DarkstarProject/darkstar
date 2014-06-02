@@ -1577,10 +1577,10 @@ uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool 
 		}
 	}
 	
-	   //Check For Ambush Merit - Ranged
-    	if (PAttacker->objtype == TYPE_PC && (charutils::hasTrait((CCharEntity*)PAttacker, TRAIT_AMBUSH)) && ((abs(m_victim->loc.p.rotation - m_attacker->loc.p.rotation) < 23))) {
-    		acc += ((CCharEntity*)PAttacker)->PMeritPoints->GetMeritValue(MERIT_AMBUSH,(CCharEntity*)PAttacker);
-    	}
+	//Check For Ambush Merit - Ranged
+	if (PAttacker->objtype == TYPE_PC && (charutils::hasTrait((CCharEntity*)PAttacker, TRAIT_AMBUSH)) && ((abs(PDefender->loc.p.rotation - PAttacker->loc.p.rotation) < 23))) {
+		acc += ((CCharEntity*)PAttacker)->PMeritPoints->GetMeritValue(MERIT_AMBUSH, (CCharEntity*)PAttacker);
+	}
 
 	int eva = PDefender->EVA();
 	hitrate = hitrate + (acc - eva) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
@@ -2128,17 +2128,16 @@ uint8 GetHitRateEx(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 att
 		hitrate = 100; //attack with SA active or TA/Assassin cannot miss
 	}
     else
-    {
-    	
-    	    	//Check For Ambush Merit - Melee
-    		if (PAttacker->objtype == TYPE_PC && (charutils::hasTrait((CCharEntity*)PAttacker, TRAIT_AMBUSH)) && ((abs(m_victim->loc.p.rotation - m_attacker->loc.p.rotation) < 23))) {
-    			offsetAccuracy += ((CCharEntity*)PAttacker)->PMeritPoints->GetMeritValue(MERIT_AMBUSH,(CCharEntity*)PAttacker);
-    		}
-    	
-		hitrate = hitrate + (PAttacker->ACC(attackNumber,offsetAccuracy) - PDefender->EVA()) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel())*2;
+	{
+		//Check For Ambush Merit - Melee
+		if (PAttacker->objtype == TYPE_PC && (charutils::hasTrait((CCharEntity*)PAttacker, TRAIT_AMBUSH)) && ((abs(PDefender->loc.p.rotation - PAttacker->loc.p.rotation) < 23))) {
+			offsetAccuracy += ((CCharEntity*)PAttacker)->PMeritPoints->GetMeritValue(MERIT_AMBUSH, (CCharEntity*)PAttacker);
+		}
+
+		hitrate = hitrate + (PAttacker->ACC(attackNumber, offsetAccuracy) - PDefender->EVA()) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel()) * 2;
 
 		hitrate = dsp_cap(hitrate, 20, 95);
-    }
+	}
 	return (uint8)hitrate;
 }
 uint8 GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
