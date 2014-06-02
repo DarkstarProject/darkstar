@@ -662,7 +662,6 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 					{
 						PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
 					}
-					PChar->PBattleAI->CheckCurrentAction(gettick());
 				}
 			}
 		}
@@ -674,13 +673,11 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 				return;
 			PChar->PBattleAI->SetCurrentSpell(SpellID);
 			PChar->PBattleAI->SetCurrentAction(ACTION_MAGIC_START, TargID);
-			PChar->PBattleAI->CheckCurrentAction(gettick());
 		}
 		break;
 		case 0x04: // disengage
 		{
 			PChar->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
-			PChar->PBattleAI->CheckCurrentAction(gettick());
 		}
 		break;
 		case 0x05: // call for help
@@ -708,7 +705,6 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 				return;
 			PChar->PBattleAI->SetCurrentWeaponSkill(WSkillID);
 			PChar->PBattleAI->SetCurrentAction(ACTION_WEAPONSKILL_START, TargID);
-			PChar->PBattleAI->CheckCurrentAction(gettick());
 		}
 		break;
 		case 0x09: // jobability
@@ -718,7 +714,6 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 				return;
 			PChar->PBattleAI->SetCurrentJobAbility(JobAbilityID - 16);
 			PChar->PBattleAI->SetCurrentAction(ACTION_JOBABILITY_START, TargID);
-			PChar->PBattleAI->CheckCurrentAction(gettick());
 		}
 		break;
 		case 0x0B: // homepoint
@@ -755,7 +750,6 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			if(RBUFB(data,(0x0C)) == 0) //ACCEPTED RAISE
             {
 				PChar->PBattleAI->SetCurrentAction(ACTION_RAISE_MENU_SELECTION);
-				PChar->PBattleAI->CheckCurrentAction(gettick());
 			}
             PChar->m_hasRaise = 0;
 	    }
@@ -768,13 +762,11 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		case 0x0F: // смена цели во время боя
 		{
 			PChar->PBattleAI->SetCurrentAction(ACTION_CHANGE_TARGET, TargID);
-			PChar->PBattleAI->CheckCurrentAction(gettick());
 		}
 		break;
 		case 0x10: // rangedattack
 		{
 			PChar->PBattleAI->SetCurrentAction(ACTION_RANGED_START, TargID);
-			PChar->PBattleAI->CheckCurrentAction(gettick());
 		}
 		break;
 		case 0x11: // chocobo digging
@@ -807,7 +799,6 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			if(RBUFB(data,(0x0C)) == 0) //ACCEPTED TRACTOR
 			{
 				//PChar->PBattleAI->SetCurrentAction(ACTION_RAISE_MENU_SELECTION);
-				//PChar->PBattleAI->CheckCurrentAction(gettick());
 				PChar->loc.p  = PChar->m_StartActionPos;
 				PChar->loc.destination = PChar->getZone();
 				PChar->status = STATUS_DISAPPEAR;

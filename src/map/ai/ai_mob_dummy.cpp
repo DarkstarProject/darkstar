@@ -71,7 +71,6 @@ CAIMobDummy::CAIMobDummy(CMobEntity* PMob)
 	m_firstSpell = true;
 	m_LastSpecialTime = 0;
 	m_skillTP = 0;
-	m_ChaseThrottle = 0;
 	m_LastStandbackTime = 0;
 	m_DeaggroTime = 0;
 	m_NeutralTime = 0;
@@ -157,7 +156,7 @@ void CAIMobDummy::ActionRoaming()
 
 	// wait my time
 	if(m_Tick < m_LastWaitTime + m_WaitTime){
-		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_NAME));
+		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_NONE));
 		return;
 	}
 
@@ -1483,22 +1482,13 @@ void CAIMobDummy::ActionAttack()
                     return;
                 }
             }
-			// mobs will find a new path only when enough ticks pass
-			// this is so the server is not overloaded
-			if(!m_PPathFind->IsFollowingPath() || ++m_ChaseThrottle == 4)
-			{
-				m_ChaseThrottle = 0;
-				m_PPathFind->PathAround(m_PBattleTarget->loc.p, 2.0f, PATHFLAG_WALLHACK | PATHFLAG_RUN);
-			}
 
-			if(m_PPathFind->IsFollowingPath())
-			{
-				// m_PPathFind->CurvePath(0.5f);
-				m_PPathFind->FollowPath();
+			m_PPathFind->PathAround(m_PBattleTarget->loc.p, 2.0f, PATHFLAG_WALLHACK | PATHFLAG_RUN);
+			// m_PPathFind->CurvePath(0.5f);
+			m_PPathFind->FollowPath();
 
-				// recalculate
-			    currentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
-			}
+			// recalculate
+			currentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
 		}
 	}
 

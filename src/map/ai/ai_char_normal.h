@@ -42,6 +42,7 @@ class CAICharNormal : public CAIGeneral
 public:
 
 	virtual void CheckCurrentAction(uint32 tick);
+	void CheckActionAfterReceive(uint32 tick);
 	virtual void WeatherChange(WEATHER weather, uint8 element);
 
 	CAICharNormal(CCharEntity* PChar);

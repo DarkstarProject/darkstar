@@ -82,7 +82,6 @@ protected:
   bool m_checkDespawn; // check and despawn if i'm too far from spawn
   uint32 m_SpawnTime;
   uint32 m_LastSpecialTime;
-  uint8 m_ChaseThrottle;
   uint32 m_LastStunTime;
   uint32 m_StunTime;
   uint32 m_DeaggroTime;

@@ -88,15 +88,6 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 {
 	m_Tick = tick;
 
-    if(m_PChar->m_EquipSwap == true)
-    {
-        m_PChar->pushPacket(new CCharAppearancePacket(m_PChar));
-        m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
-
-        m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
-        m_PChar->m_EquipSwap = false;
-    }
-
     if((m_ActionType != ACTION_NONE) && jailutils::InPrison(m_PChar))
     {
         Reset();
@@ -131,6 +122,40 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 		case ACTION_SLEEP:					ActionSleep();				break;
 
 		default : DSP_DEBUG_BREAK_IF(true);
+	}
+}
+
+void CAICharNormal::CheckActionAfterReceive(uint32 tick)
+{
+	if (m_PChar->m_EquipSwap == true)
+	{
+		m_PChar->pushPacket(new CCharAppearancePacket(m_PChar));
+		m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
+
+		m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
+		m_PChar->m_EquipSwap = false;
+	}
+
+	if ((m_ActionType != ACTION_NONE) && jailutils::InPrison(m_PChar))
+	{
+		Reset();
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_CANT_BE_USED_IN_AREA));
+	}
+
+	switch (m_ActionType)
+	{
+	case ACTION_NONE:			  									break;
+	case ACTION_MAGIC_START:			ActionMagicStart();			break;
+	case ACTION_ENGAGE:					ActionEngage();				break;
+	case ACTION_DISENGAGE:				ActionDisengage();	 		break;
+	case ACTION_RANGED_START:			ActionRangedStart();		break;
+	case ACTION_ITEM_START:				ActionItemStart();			break;
+	case ACTION_CHANGE_TARGET:	        ActionChangeBattleTarget(); break;
+	case ACTION_WEAPONSKILL_START:		ActionWeaponSkillStart();	break;
+	case ACTION_JOBABILITY_START:		ActionJobAbilityStart();	break;
+	case ACTION_RAISE_MENU_SELECTION:	ActionRaiseMenuSelection(); break;
+
+	default: break;
 	}
 }
 
