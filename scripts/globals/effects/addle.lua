@@ -9,8 +9,8 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-	target:delMod(MOD_FASTCAST, effect:getPower());
-	target:delMod(MOD_MACC, effect:getSubPower());
+	target:addMod(MOD_FASTCAST, effect:getPower());
+	target:addMod(MOD_MACC, effect:getSubPower());
 end;
 
 -----------------------------------
@@ -25,6 +25,6 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	target:addMod(MOD_FASTCAST, effect:getPower());
-	target:addMod(MOD_MACC, effect:getSubPower());
+	target:delMod(MOD_FASTCAST, effect:getPower());
+	target:delMod(MOD_MACC, effect:getSubPower());
 end;

@@ -22,10 +22,10 @@ function onSpellCast(caster,target,spell)
     local dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
 
     -- Power: Cast Time Modifier
-    local power = 30;
+    local power = -30;
 	
     if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
-        power = 50;
+        power = -50;
     end
     
     -- Sub Power: Magic Accuracy Modifier

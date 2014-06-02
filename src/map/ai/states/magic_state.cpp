@@ -558,11 +558,6 @@ void CMagicState::FinishSpell()
 
     m_PEntity->StatusEffectContainer->DelStatusEffectsByFlag(effectFlags);
 
-	// Remove Spontaneity if Active
-	if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SPONTANEITY)){
-		m_PEntity->StatusEffectContainer->DelStatusEffect(EFFECT_SPONTANEITY);
-	}
-
     m_PTargetFind->reset();
     m_PEntity->m_ActionList.clear();
 

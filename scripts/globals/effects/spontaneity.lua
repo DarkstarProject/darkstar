@@ -12,6 +12,7 @@ require("scripts/globals/status");
 
 function onEffectGain(target,effect)
 	target:addMod(MOD_UFASTCAST,150);
+	effect:setFlag(EFFECTFLAG_MAGIC_BEGIN);
 end;
 
 -----------------------------------
