@@ -4,6 +4,7 @@
 -----------------------------------
 
 require("scripts/zones/Bostaunieux_Oubliette/MobIDs");
+require("scripts/globals/groundsofvalor");
 
 -----------------------------------
 -- onMobDeath
