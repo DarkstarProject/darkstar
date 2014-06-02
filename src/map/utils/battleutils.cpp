@@ -2130,7 +2130,7 @@ uint8 GetHitRateEx(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 att
     else
     {
     	
-    	    	//Check For Ambush Merit - Mlee
+    	    	//Check For Ambush Merit - Melee
     		if (PAttacker->objtype == TYPE_PC && (charutils::hasTrait((CCharEntity*)PAttacker, TRAIT_AMBUSH)) && ((abs(m_victim->loc.p.rotation - m_attacker->loc.p.rotation) < 23))) {
     			offsetAccuracy += ((CCharEntity*)PAttacker)->PMeritPoints->GetMeritValue(MERIT_AMBUSH,(CCharEntity*)PAttacker);
     		}
