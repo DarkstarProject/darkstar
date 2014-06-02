@@ -11,6 +11,8 @@ require("scripts/zones/Crawlers_Nest/MobIDs");
 
 function onMobDeath(mob,killer)	
 
+	checkRegime(killer,mob,691,2);
+
     local mob = mob:getID();
     if (Demonic_Tiphia_PH[mob] ~= nil) then
 
