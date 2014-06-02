@@ -653,12 +653,6 @@ void CMagicState::FinishSpell()
                 msg = m_PSpell->getAoEMessage();
             }
 
-            if(!m_PSpell->tookEffect())
-            {
-                ve = 0;
-                ce = 0;
-            }
-
         }
 
         action.messageID = msg;
