@@ -12,6 +12,8 @@ require("/scripts/zones/Gustav_Tunnel/MobIDs");
 	
 function onMobDeath(mob,killer)	
   
+	checkRegime(killer,mob,767,2);
+  
     local mob = mob:getID();
     if (Baobhan_Sith_PH[mob] ~= nil) then
 
