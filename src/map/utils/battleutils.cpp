@@ -1577,8 +1577,8 @@ uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool 
 		}
 	}
 	
-	   //Check For Ambush Merit -Ranged
-    	if (PAttacker->objtype == TYPE_PC && (charutils::hasTrait((CCharEntity*)PAttacker, TRAIT_AMBUSH)) && ((abs(m_victim->loc.p.rotation - m_attacker->loc.p.rotation) < 23) {
+	   //Check For Ambush Merit - Ranged
+    	if (PAttacker->objtype == TYPE_PC && (charutils::hasTrait((CCharEntity*)PAttacker, TRAIT_AMBUSH)) && ((abs(m_victim->loc.p.rotation - m_attacker->loc.p.rotation) < 23))) {
     		acc += ((CCharEntity*)PAttacker)->PMeritPoints->GetMeritValue(MERIT_AMBUSH,(CCharEntity*)PAttacker);
     	}
 
