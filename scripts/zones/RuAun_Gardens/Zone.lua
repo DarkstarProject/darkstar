@@ -58,16 +58,16 @@ zone:registerRegion(22,432,-39,71,436,-35,75);
 ------------------------------
 -- Blue teleports
 ------------------------------
-zone:registerRegion(23,162.5,-31,-353.5,168.5,-30,-347.5);
-zone:registerRegion(24,374.5,-25,61.5,380.5,-24,67.5);
-zone:registerRegion(25,52.5,-25,376.5,58.5,-24,382.5);
-zone:registerRegion(26,-346.5,-25,166.5,-340.5,-24,172.5);
-zone:registerRegion(27,-270.5,-25,-277.5,-264.5,-24,-271.5);
-zone:registerRegion(28,-170,-31,-354.4,-162,-30,-347.2);
-zone:registerRegion(29,-381,-25,61.5,-374.5,-24,67.5);
-zone:registerRegion(30,-58,-25,376.5,-52,-24,382.5);
-zone:registerRegion(31,340.5,-25,166.5,346.5,-24,172.5);
-zone:registerRegion(32,264.5,-25,-277.5,270.5,-24,-271.5);
+zone:registerRegion(23,162.5,-31,-353.5,168.5,-30,-347.5); -- Main To Seriyu
+zone:registerRegion(24,374.5,-25,61.5,380.5,-24,67.5); -- Seriyu to Genbu
+zone:registerRegion(25,52.5,-25,376.5,58.5,-24,382.5); -- Genbu to Byakko
+zone:registerRegion(26,-346.5,-25,166.5,-340.5,-24,172.5); -- Byakko to Suzaku
+zone:registerRegion(27,-270.5,-25,-277.5,-264.5,-24,-271.5); -- Suzaku to Main
+zone:registerRegion(28,-170,-31,-354.4,-162,-30,-347.2); -- Main to Suzaku
+zone:registerRegion(29,-381,-25,61.5,-374.5,-24,67.5); -- Suzaku to Byakko
+zone:registerRegion(30,-58,-25,376.5,-52,-24,382.5); -- Byakko to Genbu
+zone:registerRegion(31,340.5,-25,166.5,346.5,-24,172.5); --Genbu to Seriyu
+zone:registerRegion(32,264.5,-25,-277.5,270.5,-24,-271.5); -- Seriyu to Main
 ------------------------------
 -- Yellow teleports
 ------------------------------
@@ -81,7 +81,7 @@ zone:registerRegion(36,-456,-5,-149,-454,-3,-147);
 ------------------------------
 zone:registerRegion(37,-145,-41,-156,-142,-39,-153);
 zone:registerRegion(38,142,-41,-156,145,-39,-153 );
-	
+
 end;
 
 -----------------------------------		
@@ -89,9 +89,9 @@ end;
 -----------------------------------		
 
 function onZoneIn(player,prevZone)		
-	
+
 	cs = -1;
-	
+
 	if((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(333.017,-44.896,-458.35,164);
 	end	
@@ -243,72 +243,72 @@ function onRegionEnter(player,region)
 		end,
 		----------- BLUE portals --------------
 		---------------------------------
-		[23] = function (x)  -- Portal --
+		[23] = function (x)  -- Portal -- Main To Seriyu
 		---------------------------------
-			if(GetNPCByID(17310052):getAnimation() == 8) then
-				player:startEvent(0x0003);
+			if(GetNPCByID(17310053):getAnimation() == 8) then 
+				player:startEvent(0x0003); 
 			end
 		end,
 		---------------------------------
-		[24] = function (x)  -- Portal --
+		[24] = function (x)  -- Portal -- Seriyu to Genbu
 		---------------------------------
-			if(GetNPCByID(17310055):getAnimation() == 8) then
+			if(GetNPCByID(17310056):getAnimation() == 8) then
 				player:startEvent(0x000A);
 			end
 		end,
 		---------------------------------
-		[25] = function (x)  -- Portal --
+		[25] = function (x)  -- Portal -- Genbu to Byakko
 		---------------------------------
-			if(GetNPCByID(17310058):getAnimation() == 8) then
+			if(GetNPCByID(17310059):getAnimation() == 8) then
 				player:startEvent(0x0011);
 			end
 		end,
 		---------------------------------
-		[26] = function (x)  -- Portal --
+		[26] = function (x)  -- Portal -- Byakko to Suzaku
 		---------------------------------
-			if(GetNPCByID(17310061):getAnimation() == 8) then
+			if(GetNPCByID(17310062):getAnimation() == 8) then
 				player:startEvent(0x0018);
 			end
 		end,
 		---------------------------------
-		[27] = function (x)  -- Portal --
+		[27] = function (x)  -- Portal -- Suzaku to Main
 		---------------------------------
-			if(GetNPCByID(17310064):getAnimation() == 8) then
+			if(GetNPCByID(17310065):getAnimation() == 8) then
 				player:startEvent(0x001F);
 			end
 		end,
 		---------------------------------
-		[28] = function (x)  -- Portal --
+		[28] = function (x)  -- Portal -- Main to Suzaku
 		---------------------------------
-			if(GetNPCByID(17310065):getAnimation() == 8) then
+			if(GetNPCByID(17310066):getAnimation() == 8) then
 				player:startEvent(0x0023);
 			end
 		end,
 		---------------------------------
-		[29] = function (x)  -- Portal --
+		[29] = function (x)  -- Portal -- Suzaku to Byakko
 		---------------------------------
-			if(GetNPCByID(17310062):getAnimation() == 8) then
+			if(GetNPCByID(17310063):getAnimation() == 8) then
 				player:startEvent(0x001C);
 			end
 		end,
+		--------------------------------- 
+		[30] = function (x)  -- Portal -- Byakko to Genbu
 		---------------------------------
-		[30] = function (x)  -- Portal --
-		---------------------------------
-			if(GetNPCByID(17310059):getAnimation() == 8) then
+			if(GetNPCByID(17310060):getAnimation() == 8) then
 				player:startEvent(0x0015);
 			end
 		end,
 		---------------------------------
-		[31] = function (x)  -- Portal --
+		[31] = function (x)  -- Portal -- Genbu to Seriyu
 		---------------------------------
-			if(GetNPCByID(17310056):getAnimation() == 8) then
+			if(GetNPCByID(17310057):getAnimation() == 8) then
 				player:startEvent(0x000E);
 			end
 		end,
 		---------------------------------
-		[32] = function (x)  -- Portal --
+		[32] = function (x)  -- Portal -- Seriyu to Main
 		---------------------------------
-			if(GetNPCByID(17310053):getAnimation() == 8) then
+			if(GetNPCByID(17310054):getAnimation() == 8) then
 				player:startEvent(0x0007);
 			end
 		end,
@@ -404,4 +404,4 @@ function onEventFinish(player,csid,option)
 		player:addMission(ZILART,ARK_ANGELS);
 	end
 	
-end;	
+end;		
