@@ -690,6 +690,10 @@ int32 map_close_session(uint32 tick, CTaskMgr::CTask* PTask)
 		map_session_data->PChar != NULL)					// crash occured when both server_packet_data & PChar were NULL
 	{
 		charutils::SavePlayTime(map_session_data->PChar);
+        if (map_session_data->PChar->isDead())
+        {
+            charutils::SaveDeathTime(map_session_data->PChar);
+        }
 
 		Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE charid = %u", map_session_data->PChar->id);
 

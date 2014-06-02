@@ -4354,8 +4354,12 @@ void saveCharWsPoints(CCharEntity* PChar, uint16 indexid, int32 points)
 
 void SaveDeathTime(CCharEntity* PChar)
 {
-	const int8* fmtQuery = "UPDATE char_stats SET death = %u WHERE charid = %u LIMIT 1;";
-	Sql_Query(SqlHandle, fmtQuery, (uint32)time(NULL), PChar->id);
+    uint32 currentTime = (uint32)time(NULL);
+    PChar->m_DeathCounter += (currentTime - PChar->m_DeathTimestamp);
+    PChar->m_DeathTimestamp = currentTime;
+
+    const int8* fmtQuery = "UPDATE char_stats SET death = %u WHERE charid = %u LIMIT 1;";
+    Sql_Query(SqlHandle, fmtQuery, PChar->m_DeathCounter, PChar->id);
 }
 
 void SavePlayTime(CCharEntity* PChar)

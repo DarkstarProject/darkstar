@@ -263,9 +263,11 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 		const int8* deathTsQuery = "SELECT death FROM char_stats where charid = %u;";
 		int32 ret = Sql_Query(SqlHandle,deathTsQuery, PChar->id);
-		if (Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
-			PChar->m_DeathTimestamp = (uint32)Sql_GetUIntData(SqlHandle,0);
-		}
+        if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            PChar->m_DeathCounter = (uint32)Sql_GetUIntData(SqlHandle, 0);
+            PChar->m_DeathTimestamp = (uint32)time(NULL);
+        }
         
         if (firstLogin)
             PChar->PMeritPoints->SaveMeritPoints(PChar->id, true);

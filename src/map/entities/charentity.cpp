@@ -111,7 +111,8 @@ CCharEntity::CCharEntity()
 	m_insideBCNM = false;
 	m_lastBcnmTimePrompt = 0;
 	m_AHHistoryTimestamp = 0;
-	m_DeathTimestamp = 0;
+    m_DeathCounter = 0;
+    m_DeathTimestamp = 0;
 
 	m_EquipFlag  = 0;
     m_EquipBlock = 0;
