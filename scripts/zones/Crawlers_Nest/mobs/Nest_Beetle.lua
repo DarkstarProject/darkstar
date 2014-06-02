@@ -1,0 +1,14 @@
+-----------------------------------	
+-- Area: Crawlers' Nest
+-- MOB:  Nest Beetle	
+-----------------------------------	
+
+require("scripts/globals/groundsofvalor");	
+
+-----------------------------------	
+-- onMobDeath	
+-----------------------------------	
+
+function onMobDeath(mob,killer)	
+	checkRegime(killer,mob,688,2);
+end;	

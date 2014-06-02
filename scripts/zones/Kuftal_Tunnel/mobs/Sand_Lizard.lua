@@ -12,6 +12,8 @@ require("scripts/zones/Kuftal_Tunnel/MobIDs");
 	
 function onMobDeath(mob,killer)	
 
+	checkRegime(killer,mob,735,2);
+
     local mob = mob:getID();
     if (Amemet_PH[mob] ~= nil) then
 

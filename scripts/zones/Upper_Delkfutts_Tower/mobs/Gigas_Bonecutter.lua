@@ -1,0 +1,14 @@
+-----------------------------------	
+-- Area:  Upper Delkfutt's Tower
+-- MOB:   Gigas Bonecutter	
+-----------------------------------	
+
+require("scripts/globals/groundsofvalor");	
+
+-----------------------------------	
+-- onMobDeath	
+-----------------------------------	
+
+function onMobDeath(mob,killer)	
+	checkRegime(killer,mob,785,1);
+end;	
