@@ -540,15 +540,19 @@ enum MODIFIER
     MOD_MAGIC_ABSORB              =0x1DB,// (modId = 475)
     MOD_MAGIC_NULL                =0x1DC,// (modId = 476)
 
-    //MOD_SPARE =0x1F0,// (modId = 496)
+
+
     //MOD_SPARE =0x1F1,// (modId = 497)
     //MOD_SPARE =0x1F2,// (modId = 498)
+    //MOD_SPARE =0x1F3,// (modId = 499)
 
     MOD_ADDITIONAL_EFFECT = 0x1AF,// (modId = 431)
 
+    MOD_GOV_CLEARS        = 0x1F0, // 4% bonus per Grounds of Valor Page clear (modId = 496)
+
 };
 
-#define MAX_MODIFIER 496
+#define MAX_MODIFIER 497
 
 
 
