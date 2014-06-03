@@ -4030,7 +4030,7 @@ INSERT INTO `item_basic` VALUES (4701,93,'scroll_of_cura','cura',1,34432,28,0,79
 INSERT INTO `item_basic` VALUES (4702,94,'scroll_of_sacrifice','sacrifice',1,34432,28,0,1060);
 INSERT INTO `item_basic` VALUES (4703,95,'scroll_of_esuna','esuna',1,34432,28,0,1001);
 INSERT INTO `item_basic` VALUES (4704,96,'scroll_of_auspice','auspice',1,34432,28,0,1009);
-INSERT INTO `item_basic` VALUES (4705,0,'scroll_of_temper','temper',1,34432,99,0,0);
+INSERT INTO `item_basic` VALUES (4705,493,'scroll_of_temper','temper',1,34432,28,0,6172);
 INSERT INTO `item_basic` VALUES (4706,310,'scroll_of_enlight','enlight',1,34432,28,0,5040);
 INSERT INTO `item_basic` VALUES (4707,311,'scroll_of_endark','endark',1,34432,28,0,5040);
 INSERT INTO `item_basic` VALUES (4708,100,'scroll_of_enfire','enfire',1,1664,28,0,1037);
