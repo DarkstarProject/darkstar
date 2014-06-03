@@ -391,6 +391,11 @@ bool CTargetFind::validEntity(CBattleEntity* PTarget)
         }
     }
 
+	if (PTarget->allegiance != (m_PBattleEntity->allegiance % 2 == 1 ? m_PBattleEntity->allegiance + 1 : m_PBattleEntity->allegiance - 1))
+	{
+		return false;
+	}
+
     // check placement
     // force first target to be added
     // this will be removed when conal targetting is polished
@@ -483,9 +488,8 @@ CBattleEntity* CTargetFind::getValidTarget(uint16 actionTargetID, uint8 validTar
     {
         if (!PTarget->isDead())
         {
-            if (PTarget->objtype == TYPE_MOB ||
-                (PTarget->objtype == TYPE_PC && ((CCharEntity*)PTarget)->m_PVPFlag))
-            {
+			if (PTarget->allegiance == (m_PBattleEntity->allegiance % 2 == 1 ? m_PBattleEntity->allegiance + 1 : m_PBattleEntity->allegiance - 1))
+			{
                 return PTarget;
             }
         }

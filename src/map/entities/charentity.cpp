@@ -48,6 +48,8 @@ CCharEntity::CCharEntity()
     m_isMentor = false;
     m_isNewPlayer = true;
 
+	allegiance = ALLEGIANCE_PLAYER;
+
     TradeContainer  = new CTradeContainer();
 	Container       = new CTradeContainer();
 	UContainer      = new CUContainer();

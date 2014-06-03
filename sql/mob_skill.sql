@@ -2878,6 +2878,14 @@ INSERT INTO `mob_skill` VALUES (1295,449,1136,'Megaflare',0,15.0,2000,1500,4,0,0
 INSERT INTO `mob_skill` VALUES (1296,449,1137,'Gigaflare',0,15.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1297,449,1138,'Teraflare',0,15.0,2000,1500,4,0,0,0);
 
+-- Prishe
+INSERT INTO `mob_skill` VALUES (1229,476,1091,'Hundred_Fists',0,7.0,2000,1500,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1230,476,1092,'Benediction',0,7.0,2000,1500,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1231,476,1093,'Prishe_Item_1',0,7.0,2000,1500,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1232,476,1094,'Prishe_Item_2',0,7.0,2000,1500,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1233,476,1095,'Nullifying_Dropkick',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1234,476,1096,'Auroral_Uppercut', 0,7.0,2000,1500,4,0,0,0);
+
 -- Promathia phase 1
 INSERT INTO `mob_skill` VALUES (1235,134,1100,'Chains_of_Apathy',1,30.0,2000,1500,4,0,0,0); -- Humes only. 
 INSERT INTO `mob_skill` VALUES (1236,134,1101,'Chains_of_Arrogance',1,30.0,2000,1500,4,0,0,0);
@@ -2888,14 +2896,17 @@ INSERT INTO `mob_skill` VALUES (1240,134,1105,'Malevolent_blessing',4,10.0,2000,
 INSERT INTO `mob_skill` VALUES (1241,134,1106,'Pestilent_penance',4,10.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1242,134,1107,'Empty_salvation',1,25.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1243,134,1108,'Infernal_deliverance',2,15.0,2000,1500,4,0,0,0);
--- Comet?
 
 -- Promathia phase 2
 INSERT INTO `mob_skill` VALUES (1248,134,1113,'Wheel_of_Impregnability',0,7.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (1249,134,1114,'Bastion_of_Twilight',0,7.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (1250,134,1115,'Winds_of_oblivion',1,15.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1251,134,1116,'Seal_of_quiescence', 1,15.0,2000,1500,4,0,0,0);
--- meteor?
+
+-- Selh'teus
+INSERT INTO `mob_skill` VALUES (1252,477,1099,'Luminous_Lance',0,15.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1253,477,1097,'Rejuvenation',1,7.0,2000,1500,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1254,477,1098,'Revelation',0,15.0,2000,1500,4,0,0,0);
 
 -- Tenzen
 -- ranged @ 1033 1034

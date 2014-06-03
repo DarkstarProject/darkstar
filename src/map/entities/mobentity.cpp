@@ -40,6 +40,8 @@ CMobEntity::CMobEntity()
     MPscale = 1.0;
     m_unknown = 0;
 
+	allegiance = ALLEGIANCE_MOB;
+
     // default to normal roaming
     m_roamFlags = ROAMFLAG_NONE;
     m_specialFlags = SPECIALFLAG_NONE;
