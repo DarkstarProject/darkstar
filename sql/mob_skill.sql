@@ -2879,8 +2879,8 @@ INSERT INTO `mob_skill` VALUES (1296,449,1137,'Gigaflare',0,15.0,2000,1500,4,0,0
 INSERT INTO `mob_skill` VALUES (1297,449,1138,'Teraflare',0,15.0,2000,1500,4,0,0,0);
 
 -- Prishe
-INSERT INTO `mob_skill` VALUES (1229,476,1091,'Hundred_Fists',0,7.0,2000,0,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (1230,476,1092,'Benediction',0,7.0,2000,0,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (1229,476,1091,'Hundred_Fists',0,7.0,2000,0,1,0,1,0);
+INSERT INTO `mob_skill` VALUES (1230,476,1092,'Benediction',0,7.0,2000,0,1,0,1,0);
 INSERT INTO `mob_skill` VALUES (1231,476,1093,'Prishe_Item_1',0,7.0,2000,0,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (1232,476,1094,'Prishe_Item_2',0,7.0,2000,0,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (1233,476,1095,'Nullifying_Dropkick',0,7.0,2000,1500,4,0,0,0);
@@ -2895,13 +2895,13 @@ INSERT INTO `mob_skill` VALUES (1239,134,1104,'Chains_of_Envy',1,30.0,2000,1500,
 INSERT INTO `mob_skill` VALUES (1240,134,1105,'Malevolent_blessing',4,10.0,2000,1500,4,8,0,0);
 INSERT INTO `mob_skill` VALUES (1241,134,1106,'Pestilent_penance',4,10.0,2000,1500,4,8,0,0);
 INSERT INTO `mob_skill` VALUES (1242,134,1107,'Empty_salvation',1,25.0,2000,1500,4,8,0,0);
-INSERT INTO `mob_skill` VALUES (1243,134,1108,'Infernal_deliverance',2,15.0,2000,1500,4,8,0,0);
+INSERT INTO `mob_skill` VALUES (1243,134,1108,'Infernal_deliverance',1,15.0,2000,1500,4,8,0,0);
 
 -- Promathia phase 2
 INSERT INTO `mob_skill` VALUES (1244,478,1109,'Malevolent_blessing',4,10.0,2000,1500,4,8,0,0);
 INSERT INTO `mob_skill` VALUES (1245,478,1110,'Pestilent_penance',4,10.0,2000,1500,4,8,0,0);
 INSERT INTO `mob_skill` VALUES (1246,478,1111,'Empty_salvation',1,25.0,2000,1500,4,8,0,0);
-INSERT INTO `mob_skill` VALUES (1247,478,1112,'Infernal_deliverance',2,15.0,2000,1500,4,8,0,0);
+INSERT INTO `mob_skill` VALUES (1247,478,1112,'Infernal_deliverance',1,15.0,2000,1500,4,8,0,0);
 INSERT INTO `mob_skill` VALUES (1248,478,1113,'Wheel_of_Impregnability',0,7.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (1249,478,1114,'Bastion_of_Twilight',0,7.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (1250,478,1115,'Winds_of_oblivion',1,15.0,2000,1500,4,8,0,0);
