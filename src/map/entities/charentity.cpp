@@ -48,6 +48,8 @@ CCharEntity::CCharEntity()
     m_isMentor = false;
     m_isNewPlayer = true;
 
+	allegiance = ALLEGIANCE_PLAYER;
+
     TradeContainer  = new CTradeContainer();
 	Container       = new CTradeContainer();
 	UContainer      = new CUContainer();
@@ -108,7 +110,7 @@ CCharEntity::CCharEntity()
     m_hasAutoTarget    = 1;
 	m_InsideRegionID   = 0;
 	m_LevelRestriction = 0;
-	m_insideBCNM = false;
+	m_BCNM = NULL;
 	m_lastBcnmTimePrompt = 0;
 	m_AHHistoryTimestamp = 0;
     m_DeathCounter = 0;

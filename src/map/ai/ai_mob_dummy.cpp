@@ -604,7 +604,7 @@ void CAIMobDummy::ActionSpawn()
 		m_PMob->m_THLvl = 0;
 		m_PMob->m_ItemStolen = false;
         m_PMob->m_DropItemTime = 1000;
-		m_PMob->status = STATUS_UPDATE;
+		m_PMob->status = m_PMob->allegiance == ALLEGIANCE_MOB ? STATUS_UPDATE : STATUS_NORMAL;
 		m_PMob->animation = ANIMATION_NONE;
 		m_PMob->HideName(false);
         m_PMob->m_extraVar = 0;
@@ -1582,8 +1582,8 @@ void CAIMobDummy::ActionAttack()
 							//counter check (rate AND your hit rate makes it land, else its just a regular hit)
 							if (WELL512::irand()%100 < (m_PBattleTarget->getMod(MOD_COUNTER) + meritCounter) &&
 								WELL512::irand()%100 < battleutils::GetHitRate(m_PBattleTarget,m_PMob) &&
-								(charutils::hasTrait((CCharEntity*)m_PBattleTarget,TRAIT_COUNTER) ||
-								m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN)))
+								(m_PBattleTarget->objtype != TYPE_PC || (charutils::hasTrait((CCharEntity*)m_PBattleTarget,TRAIT_COUNTER) ||
+								m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN))))
 							{
 								isCountered = true;
 								Action.messageID = 33; //counter msg  32
@@ -1771,13 +1771,6 @@ bool CAIMobDummy::TryDeaggro()
     {
 		return true;
 	}
-
-	// mob should not attack another mob with no master
-	if(m_PBattleTarget != NULL && (m_PBattleTarget->objtype == TYPE_MOB || m_PBattleTarget->objtype == TYPE_PET) && m_PBattleTarget->PMaster == NULL)
-	{
-		return true;
-	}
-
 
 	// target is dead, on a choco or zoned, so wipe them from our enmity list
     if (m_PBattleTarget->isDead() ||

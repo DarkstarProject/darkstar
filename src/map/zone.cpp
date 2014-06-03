@@ -748,6 +748,14 @@ void CZone::ForEachCharInstance(CBaseEntity* PEntity, std::function<void(CCharEn
 	}
 }
 
+void CZone::ForEachMobInstance(CBaseEntity* PEntity, std::function<void(CMobEntity*)> func)
+{
+	for (auto PMob : m_zoneEntities->m_mobList)
+	{
+		func((CMobEntity*)PMob.second);
+	}
+}
+
 void CZone::createZoneTimer()
 {
 	ZoneTimer = CTaskMgr::getInstance()->AddTask(

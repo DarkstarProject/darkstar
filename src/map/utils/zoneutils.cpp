@@ -315,6 +315,10 @@ void LoadMOBList()
 
 				PMob->name.insert(0, Sql_GetData(SqlHandle, 1));
 				PMob->id = (uint32)Sql_GetUIntData(SqlHandle, 2);
+				if (PMob->id == 16924722)
+				{
+					PMob->allegiance = ALLEGIANCE_PLAYER;
+				}
 				PMob->targid = (uint16)PMob->id & 0x0FFF;
 
 				PMob->m_SpawnPoint.rotation = (uint8)Sql_GetIntData(SqlHandle, 3);

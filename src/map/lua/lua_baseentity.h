@@ -559,6 +559,7 @@ public:
 	int32 getInstance(lua_State* L);
 	int32 setInstance(lua_State* L);
 	int32 createInstance(lua_State* L);
+	int32 getEnmityList(lua_State* L);
 };
 
 #endif

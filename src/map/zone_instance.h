@@ -61,8 +61,9 @@ public:
 	virtual void	ZoneServer(uint32 tick);
 	virtual void	ZoneServerRegion(uint32 tick);
 
-	virtual void ForEachChar(std::function<void(CCharEntity*)> func);
-	virtual void ForEachCharInstance(CBaseEntity* PEntity, std::function<void(CCharEntity*)> func);
+	virtual void	ForEachChar(std::function<void(CCharEntity*)> func);
+	virtual void	ForEachCharInstance(CBaseEntity* PEntity, std::function<void(CCharEntity*)> func);
+	virtual void	ForEachMobInstance(CBaseEntity* PEntity, std::function<void(CMobEntity*)> func);
 
 	CInstance* CreateInstance(uint8 instanceid);
 

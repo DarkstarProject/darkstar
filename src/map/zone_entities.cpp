@@ -163,9 +163,10 @@ void CZoneEntities::FindPartyForMob(CBaseEntity* PEntity)
 
 			int16 sublink = PMob->getMobMod(MOBMOD_SUBLINK);
 
-			if (forceLink ||
+			if (PCurrentMob->allegiance == PMob->allegiance &&
+				(forceLink ||
 				PCurrentMob->m_Family == PMob->m_Family ||
-				sublink && sublink == PCurrentMob->getMobMod(MOBMOD_SUBLINK))
+				sublink && sublink == PCurrentMob->getMobMod(MOBMOD_SUBLINK)))
 			{
 
 				if (PCurrentMob->PMaster == NULL || PCurrentMob->PMaster->objtype == TYPE_MOB)
