@@ -1,5 +1,8 @@
-require("/scripts/globals/settings");
+
+require("scripts/globals/settings");
 require("scripts/globals/conquest");
+-- require("scripts/globals/teleports");
+require("scripts/globals/status");
 require("scripts/globals/common");
 
 --require("/scripts/globals/spell_definitions");
@@ -160,7 +163,11 @@ Regime ID   ª	Area   «	Listing   «
 144 	Ru'Aun Gardens 	Dolls
 145 	Ru'Aun Gardens 	Fire/Air/Thunder Elementals
 146 	Ru'Aun Gardens 	Ice/Earth/Water Elementals
-147+ 	Values higher than 147 are Hunt Registries.]]--
+--------------------------
+147+ 	Values 147 through 559 are Hunt Registries.
+560+ 	Values 560 through 601 are Dominion Regimes.
+602++ 	Values 602 through 819 are GoV Regimes.
+]]--
 
 TABS = 12;
 
@@ -195,11 +202,11 @@ FOV_MENU_NOODLES = 165;
 FOV_MENU_RERAISE = 37;
 FOV_MENU_HOME_NATION = 21;
 FOV_MENU_CANCEL_REGIME = 3;
-FOV_MENU_REPEAT_REGIME1 = -2147483630;
-FOV_MENU_REPEAT_REGIME2 = -2147483614;
-FOV_MENU_REPEAT_REGIME3 = -2147483598;
-FOV_MENU_REPEAT_REGIME4 = -2147483582;
-FOV_MENU_REPEAT_REGIME5 = -2147483566;
+FOV_MENU_REPEAT_REGIME1 = -2147483630; -- 2147483666;
+FOV_MENU_REPEAT_REGIME2 = -2147483614; -- 2147483682;
+FOV_MENU_REPEAT_REGIME3 = -2147483598; -- 2147483698;
+FOV_MENU_REPEAT_REGIME4 = -2147483582; -- 2147483714;
+FOV_MENU_REPEAT_REGIME5 = -2147483566; -- 2147483730;
 FOV_MENU_ELITE_INTRO = 36;
 FOV_MENU_ELITE_CHAP1 = 52;
 FOV_MENU_ELITE_CHAP2 = 68;
@@ -338,6 +345,8 @@ local msg_accept = msg_offset;
 local msg_jobs = msg_offset+1;
 local msg_cancel = msg_offset+2;
 local tabs = player:getValorPoint();
+local HAS_FOOD = player:hasStatusEffect(EFFECT_FOOD);
+local HAS_SUPPORT_FOOD = player:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD);
 -- ================= FIELD SUPPORT ===============================================
 if(option==FOV_MENU_REGEN) then --Chose Regen. Regen from FoV removes all forms of regen.
 	--Decrease tabs
@@ -413,11 +422,44 @@ elseif (option==FOV_MENU_HOME_NATION) then --Return to home nation.
 	--Decrease tabs
     if (tabs >= 50) then
         player:delValorPoint(50);
-        toHomeNation(player);
+        toHomeNation(player); -- Needs an entry in /scripts/globals/teleports.lua?
     end
-elseif(option==149) then --chose Hard Cookie, INT +4, MP +30 for 30 minutes
---effect = player:getStatusEffect(EFFECT_FOOD);
---end
+elseif (option == FOV_MENU_DRIED_MEAT) then -- Dried Meat: STR+4, Attack +22% (caps at 63)
+	if (tabs >= 50) then
+		if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
+			player:messageBasic(246);
+		else
+			player:delValorPoint(50);
+			player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 1, 0, 1800);
+		end
+	end
+elseif (option == FOV_MENU_SALTED_FISH) then -- Salted Fish: VIT+2 DEF+30% (Caps at 86)
+	if (tabs >= 50) then
+		if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
+			player:messageBasic(246);
+		else
+			player:delValorPoint(50);
+			player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 2, 0, 1800);
+		end
+	end
+elseif (option == FOV_MENU_HARD_COOKIE) then --- Hard Cookie: INT+4, MaxMP+30
+	if (tabs >= 50) then
+		if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
+			player:messageBasic(246);
+		else
+			player:delValorPoint(50);
+			player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 3, 0, 1800);
+		end
+	end
+elseif (option == FOV_MENU_INSTANT_NOODLES) then -- Instant Noodles: VIT+1, Max HP+27% (caps at 75), StoreTP+5
+	if (tabs >= 50) then
+		if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
+			player:messageBasic(246);
+		else
+			player:delValorPoint(50);
+			player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 4, 0, 1800);
+		end
+	end
 elseif(option==FOV_MENU_CANCEL_REGIME) then --Cancelled Regime.
 	player:setVar("fov_regimeid",0);
 	player:setVar("fov_numkilled1",0);

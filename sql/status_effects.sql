@@ -519,6 +519,21 @@ INSERT INTO `status_effects` VALUES (487,'endrain',32,94,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (488,'enaspir',32,94,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (489,'afterglow',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (502,'mikage',32,0,0,0,0,0,0);
+
+
+INSERT INTO `status_effects` VALUES (777,'prowess_casket_rate',32,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (778,'prowess_skill_rate',32,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (779,'prowess_crystal_yeiLD',32,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (780,'prowess_th',32,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (781,'prowess_attack_speeD',32,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (782,'prowess_hp_mp',32,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (783,'prowess_acc_racc',32,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (784,'prowess_att_ratt',32,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (785,'prowess_macc_matk',32,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (786,'prowess_cure_potencY',32,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (787,'prowess_ws_dmg',32,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (788,'prowess_killer',32,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (789,'field_support_food',32800,0,0,2,0,0,0);
 INSERT INTO `status_effects` VALUES (790,'mark_of_seed',768,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (791,'all_miss',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (792,'super_buff',32,0,0,0,0,0,0);

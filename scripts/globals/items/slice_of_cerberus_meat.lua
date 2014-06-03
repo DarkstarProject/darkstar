@@ -22,7 +22,7 @@ local result = 0;
 	if(target:getMod(MOD_EAT_RAW_MEAT) == 1) then
 		result = 0;
 	end
-	if (target:hasStatusEffect(EFFECT_FOOD) == true) then
+	if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
 		result = 246;
 	end
 	return result;
