@@ -186,7 +186,6 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
     WBUFL(data,(0x38)-4) = pktTime + VTIME_BASEDATE;
     WBUFL(data,(0x3C)-4) = pktTime;
 
-	// current death timestamp is less than an hour ago and the player is dead.
     // 60min starts at 0x03A020 (66 min) and ventures down to 0x5460 (6 min)
     if (PChar->m_DeathCounter < 3600 && PChar->isDead())
         WBUFL(data,(0xA4)-4) = 0x03A020 - (60 * PChar->m_DeathCounter);
