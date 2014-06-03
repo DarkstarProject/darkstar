@@ -3,6 +3,7 @@
 -- NPC:  Brigandish Blade
 -----------------------------------
 
+require("scripts/globals/status");
 
 -----------------------------------
 -- onMobInitialize
