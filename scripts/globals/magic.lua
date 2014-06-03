@@ -465,6 +465,12 @@ function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
     if(target:hasStatusEffect(EFFECT_MAGIC_SHIELD, 0)) then
         return 0;
     end
+    
+    -- If Stymie is active, as long as the mob is not immune then the effect is not resisted
+    if(player:hasStatusEffect(EFFECT_STYMIE) and target:canGainStatusEffect(effect)) then
+    	player:delStatusEffect(EFFECT_STYMIE);
+    	return 1;
+    end
 
     local resist = 1.0;
     local magicaccbonus = 0;

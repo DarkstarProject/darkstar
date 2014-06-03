@@ -883,7 +883,8 @@ void CMagicState::SetRecast(CSpell* PSpell)
 
     uint32 RecastTime = 3000;
 
-    if (!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
+    if (!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL) &&
+		!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SPONTANEITY))
     {
         RecastTime = CalculateRecastTime(PSpell);
     }
