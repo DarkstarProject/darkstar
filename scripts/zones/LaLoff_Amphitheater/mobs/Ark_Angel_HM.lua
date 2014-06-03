@@ -3,6 +3,7 @@
 -- NPC:  Ark Angel HM
 -----------------------------------
 
+require("scripts/globals/status");
 require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 
 function onMobInitialize(mob)
