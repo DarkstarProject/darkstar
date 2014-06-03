@@ -76,8 +76,6 @@ end;
 
 function onMobDeath(mob, killer)
 
-	checkRegime(killer,mob,743,1);
-
 	local Detector = mob:getID();
 	local Caretaker = mob:getID() + 1;	
 	
