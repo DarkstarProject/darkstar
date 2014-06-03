@@ -187,10 +187,10 @@ bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTar
 	{
         if (!PTarget->isDead())
         {
-		    //if (PTarget->allegiance == (m_PChar->allegiance % 2 == 1 ? m_PChar->allegiance + 1 : m_PChar->allegiance - 1))
-		    //{
+		    if (PTarget->allegiance == (m_PChar->allegiance % 2 == 1 ? m_PChar->allegiance + 1 : m_PChar->allegiance - 1))
+		    {
 			    return true;
-		    //}
+		    }
         }
 	}
 	if (PTarget->objtype == TYPE_PC)

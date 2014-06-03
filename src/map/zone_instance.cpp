@@ -302,6 +302,14 @@ void CZoneInstance::ForEachCharInstance(CBaseEntity* PEntity, std::function<void
 	}
 }
 
+void CZoneInstance::ForEachMobInstance(CBaseEntity* PEntity, std::function<void(CMobEntity*)> func)
+{
+	for (auto PMob : PEntity->PInstance->m_mobList)
+	{
+		func((CMobEntity*)PMob.second);
+	}
+}
+
 CInstance* CZoneInstance::CreateInstance(uint8 instanceid)
 {
 	CInstance* instance = new CInstance(this, instanceid);

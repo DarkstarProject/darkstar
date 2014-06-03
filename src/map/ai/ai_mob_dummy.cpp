@@ -1582,8 +1582,8 @@ void CAIMobDummy::ActionAttack()
 							//counter check (rate AND your hit rate makes it land, else its just a regular hit)
 							if (WELL512::irand()%100 < (m_PBattleTarget->getMod(MOD_COUNTER) + meritCounter) &&
 								WELL512::irand()%100 < battleutils::GetHitRate(m_PBattleTarget,m_PMob) &&
-								(charutils::hasTrait((CCharEntity*)m_PBattleTarget,TRAIT_COUNTER) ||
-								m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN)))
+								(m_PBattleTarget->objtype != TYPE_PC || (charutils::hasTrait((CCharEntity*)m_PBattleTarget,TRAIT_COUNTER) ||
+								m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN))))
 							{
 								isCountered = true;
 								Action.messageID = 33; //counter msg  32

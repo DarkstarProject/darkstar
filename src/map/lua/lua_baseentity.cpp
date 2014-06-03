@@ -2554,8 +2554,8 @@ inline int32 CLuaBaseEntity::showText(lua_State *L)
 
         if(m_PBaseEntity->objtype == TYPE_PC)
         {
-        ((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageSpecialPacket(PBaseEntity, messageID, param0, param1, param2, param3));
-	}
+			((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageSpecialPacket(PBaseEntity, messageID, param0, param1, param2, param3));
+		}
         else
         {
 			m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity,CHAR_INRANGE,new CMessageSpecialPacket(PBaseEntity, messageID, param0, param1, param3));
@@ -6426,7 +6426,7 @@ inline int32 CLuaBaseEntity::isInBcnm(lua_State *L){
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-	if(PChar->m_insideBCNM){
+	if (PChar->m_BCNM){
 		lua_pushinteger( L,1);
 		return 1;
 	}
@@ -8970,21 +8970,35 @@ inline int32 CLuaBaseEntity::createInstance(lua_State* L)
 	return 0;
 }
 
-inline int32 CLuaBaseEntity::attack(lua_State* L)
+inline int32 CLuaBaseEntity::getEnmityList(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
-	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+	EnmityList_t* enmityList = ((CMobEntity*)m_PBaseEntity)->PEnmityContainer->GetEnmityList();
 
-	CBaseEntity* PTarget = Lunar<CLuaBaseEntity>::check(L, 1)->GetBaseEntity();
-	if (PTarget->objtype != TYPE_NPC)
+	if (enmityList)
 	{
-		m_PBaseEntity->PBattleAI->SetBattleTarget((CBattleEntity*)PTarget);
-		m_PBaseEntity->PBattleAI->SetCurrentAction(ACTION_ATTACK);
-	}
+		lua_createtable(L, enmityList->size(), 0);
+		int8 newTable = lua_gettop(L);
+		int i = 1;
+		for (auto member : *enmityList)
+		{
+			lua_getglobal(L, CLuaBaseEntity::className);
+			lua_pushstring(L, "new");
+			lua_gettable(L, -2);
+			lua_insert(L, -2);
+			lua_pushlightuserdata(L, (void*)member.second->PEnmityOwner);
+			lua_pcall(L, 2, 1, 0);
 
-	return 0;
+			lua_rawseti(L, -2, i++);
+		}
+	}
+	else
+	{
+		lua_pushnil(L);
+	}
+	return 1;
 }
 
 //==========================================================//
@@ -9391,6 +9405,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getInstance),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setInstance),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,createInstance),
-	LUNAR_DECLARE_METHOD(CLuaBaseEntity,attack),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEnmityList),
 	{NULL,NULL}
 };
