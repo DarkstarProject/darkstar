@@ -882,6 +882,9 @@ void CZone::CharZoneOut(CCharEntity* PChar)
 		PChar->PTreasurePool->DelMember(PChar);
 	}
 
+    if (PChar->isDead())
+        charutils::SaveDeathTime(PChar);
+
 	PChar->loc.zone = NULL;
 	PChar->loc.prevzone = m_zoneID;
 
