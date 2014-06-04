@@ -8,7 +8,9 @@
 -----------------------------------	
 	
 function onMobDeath(mob,killer)	
-  
+ 
+	checkRegime(killer,mob,774,1);
+ 
     -- Set Peg Powler's Window Open Time
     local wait = math.random((7200),(57600));
     SetServerVariable("[POP]Peg_Powler", os.time(t) + wait); -- 2-16 hours

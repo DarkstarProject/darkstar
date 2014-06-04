@@ -12,6 +12,9 @@ require("scripts/zones/Kuftal_Tunnel/MobIDs");
 	
 function onMobDeath(mob,killer)	
 
+	checkRegime(killer,mob,737,2);
+	checkRegime(killer,mob,739,2);
+
     local mob = mob:getID();
     if (Arachne_PH[mob] ~= nil) then
 
