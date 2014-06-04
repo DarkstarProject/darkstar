@@ -1,15 +1,15 @@
------------------------------------	
--- Area:  Middle Delkfutt's Tower
--- MOB:   Goblin Pathfinder	
------------------------------------	
+-----------------------------------
+-- Area: Middle Delkfutt's Tower
+-- MOB:  Goblin Pathfinder
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,782,1);
-	checkRegime(killer,mob,784,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,782,1);
+   checkGoVregime(killer,mob,784,1);
+end;

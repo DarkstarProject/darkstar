@@ -1,14 +1,14 @@
------------------------------------	
--- Area:  Temple Of Uggalepih
--- MOB:   Temple Opo-opo	
------------------------------------	
+-----------------------------------
+-- Area: Temple Of Uggalepih
+-- MOB:  Temple Opo-opo
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,792,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,792,2);
+end;

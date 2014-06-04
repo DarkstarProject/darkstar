@@ -1,14 +1,14 @@
------------------------------------	
+-----------------------------------
 -- Area: Kuftal Tunnel
--- MOB:  Ovinnik	
------------------------------------	
+-- MOB:  Ovinnik
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,741,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,741,1);
+end;

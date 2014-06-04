@@ -1,14 +1,14 @@
------------------------------------	
--- Area: Outer Horutoto	
--- MOB:  Eight of Swords	
------------------------------------	
+-----------------------------------
+-- Area: Outer Horutoto
+-- MOB:  Eight of Swords
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,667,3);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,667,3);
+end;

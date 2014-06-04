@@ -1,14 +1,14 @@
------------------------------------	
--- Area:  Seas Serpent Grotto
--- MOB:   Ironshell	
------------------------------------	
+-----------------------------------
+-- Area: Seas Serpent Grotto
+-- MOB:  Ironshell
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,805,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,805,1);
+end;

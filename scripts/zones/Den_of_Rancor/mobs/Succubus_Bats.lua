@@ -1,14 +1,14 @@
------------------------------------	
--- Area:  Den of Rancor
--- MOB:   Succusbus Bats	
------------------------------------	
+-----------------------------------
+-- Area: Den of Rancor
+-- MOB:  Succusbus Bats
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,799,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,799,1);
+end;

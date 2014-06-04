@@ -1,14 +1,14 @@
------------------------------------	
--- Area: Ordelle's Caves	
--- MOB:  Buds Bunny	
------------------------------------	
+-----------------------------------
+-- Area: Ordelle's Caves
+-- MOB:  Buds Bunny
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,661,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,661,1);
+end;

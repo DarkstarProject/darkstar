@@ -1,14 +1,14 @@
------------------------------------	
+-----------------------------------
 -- Area: Maze of Shakhrami
--- MOB:  Labyrinth Scorpion	
------------------------------------	
+-- MOB:  Labyrinth Scorpion
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,700,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,700,2);
+end;

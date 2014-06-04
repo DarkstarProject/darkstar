@@ -1,14 +1,14 @@
------------------------------------	
--- Area: Outer Horutoto	
--- MOB:  Fetor Bats	
------------------------------------	
+-----------------------------------
+-- Area: Outer Horutoto
+-- MOB:  Fetor Bats
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,669,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,669,1);
+end;

@@ -1,14 +1,14 @@
------------------------------------	
+-----------------------------------
 -- Area: Fei'Yin
--- MOB:  Killing Weapon	
------------------------------------	
+-- MOB:  Killing Weapon
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,716,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,716,1);
+end;

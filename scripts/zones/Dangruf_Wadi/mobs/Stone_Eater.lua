@@ -1,14 +1,14 @@
------------------------------------	
--- Area: Dangruf Wadi	
--- MOB:  Stone Eater	
------------------------------------	
+-----------------------------------
+-- Area: Dangruf Wadi
+-- MOB:  Stone Eater
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,639,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,639,1);
+end;

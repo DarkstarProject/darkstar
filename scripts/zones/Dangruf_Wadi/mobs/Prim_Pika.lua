@@ -1,14 +1,14 @@
------------------------------------	
--- Area: Dangruf Wadi	
--- MOB:  Prim Pika	
------------------------------------	
+-----------------------------------
+-- Area: Dangruf Wadi
+-- MOB:  Prim Pika
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,644,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,644,1);
+end;

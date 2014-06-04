@@ -1,14 +1,14 @@
------------------------------------	
+-----------------------------------
 -- Area: Garlaige Citadel
--- MOB:  Chamber Beetle	
------------------------------------	
+-- MOB:  Chamber Beetle
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,707,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,707,2);
+end;

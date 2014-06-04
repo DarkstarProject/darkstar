@@ -1,14 +1,14 @@
------------------------------------	
--- Area: Ranguemont Pass	
--- MOB:  Goblin Chaser	
------------------------------------	
+-----------------------------------
+-- Area: Ranguemont Pass
+-- MOB:  Goblin Chaser
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,608,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,608,2);
+end;

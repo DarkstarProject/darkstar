@@ -1,14 +1,14 @@
------------------------------------	
+-----------------------------------
 -- Area: Kuftal Tunnel
--- MOB:  Kuftal Delver	
------------------------------------	
+-- MOB:  Kuftal Delver
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,742,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,742,1);
+end;

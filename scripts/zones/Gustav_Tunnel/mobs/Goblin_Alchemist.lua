@@ -1,15 +1,15 @@
------------------------------------	
+-----------------------------------
 -- Area: Gustav Tunnel
--- MOB:  Goblin Alchemist	
------------------------------------	
+-- MOB:  Goblin Alchemist
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,764,3);
-	checkRegime(killer,mob,765,3);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,764,3);
+   checkGoVregime(killer,mob,765,3);
+end;

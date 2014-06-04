@@ -1,14 +1,14 @@
------------------------------------	
--- Area: Ranguemont Pass	
--- MOB:  Hecteyes	
------------------------------------	
+-----------------------------------
+-- Area: Ranguemont Pass
+-- MOB:  Hecteyes
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,606,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,606,2);
+end;

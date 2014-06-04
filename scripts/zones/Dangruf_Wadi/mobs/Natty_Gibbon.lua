@@ -1,14 +1,14 @@
------------------------------------	
--- Area: Dangruf Wadi	
+-----------------------------------
+-- Area: Dangruf Wadi
 -- MOB:  Natty Gibbon
------------------------------------	
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,646,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,646,2);
+end;

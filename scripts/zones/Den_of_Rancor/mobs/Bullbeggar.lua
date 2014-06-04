@@ -1,14 +1,14 @@
------------------------------------	
--- Area:  Den of Rancor
--- MOB:   Bullbeggar	
------------------------------------	
+-----------------------------------
+-- Area: Den of Rancor
+-- MOB:  Bullbeggar
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,803,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,803,2);
+end;

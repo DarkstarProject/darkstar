@@ -1,14 +1,14 @@
------------------------------------	
--- Area:  Temple Of Uggalepih
--- MOB:   Iron Maiden	
------------------------------------	
+-----------------------------------   
+-- Area: Temple Of Uggalepih
+-- MOB:  Iron Maiden   
+-----------------------------------   
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");   
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------   
+-- onMobDeath   
+-----------------------------------   
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,795,2);
-end;	
+function onMobDeath(mob,killer)   
+   checkGoVregime(killer,mob,795,2);
+end;   

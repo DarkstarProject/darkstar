@@ -1,14 +1,14 @@
------------------------------------	
+-----------------------------------
 -- Area: Maze of Shakhrami
--- MOB:  Maze Maker	
------------------------------------	
+-- MOB:  Maze Maker
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,696,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,696,1);
+end;

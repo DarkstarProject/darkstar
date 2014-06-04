@@ -1,14 +1,14 @@
------------------------------------	
--- Area:  Lower Delkfutt's Tower
--- MOB:   Magic Urn	
------------------------------------	
+-----------------------------------
+-- Area: Lower Delkfutt's Tower
+-- MOB:  Magic Urn
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,781,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,781,2);
+end;

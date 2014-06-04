@@ -1,14 +1,14 @@
------------------------------------	
--- Area: Ordelle's Caves	
--- MOB:  Goliath Beetle	
------------------------------------	
+-----------------------------------
+-- Area: Ordelle's Caves
+-- MOB:  Goliath Beetle
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,660,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,660,1);
+end;

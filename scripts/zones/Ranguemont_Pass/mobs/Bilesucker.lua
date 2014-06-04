@@ -1,14 +1,14 @@
------------------------------------	
--- Area: Ranguemont Pass	
+-----------------------------------
+-- Area: Ranguemont Pass
 -- MOB:  Bilesucker
------------------------------------	
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,607,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,607,1);
+end;

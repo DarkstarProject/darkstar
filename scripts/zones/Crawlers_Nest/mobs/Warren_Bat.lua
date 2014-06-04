@@ -1,14 +1,14 @@
------------------------------------	
+-----------------------------------
 -- Area: Maze of Shakhrami
--- MOB:  Warren Bat	
------------------------------------	
+-- MOB:  Warren Bat
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,702,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,702,1);
+end;

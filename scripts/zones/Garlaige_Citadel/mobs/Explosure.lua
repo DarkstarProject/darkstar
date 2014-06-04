@@ -1,14 +1,14 @@
------------------------------------	
+-----------------------------------
 -- Area: Garlaige Citadel
--- MOB:  Explosure	
------------------------------------	
+-- MOB:  Explosure
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,706,2);
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,706,2);
 end;

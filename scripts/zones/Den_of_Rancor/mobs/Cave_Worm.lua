@@ -1,14 +1,14 @@
------------------------------------	
--- Area:  Den of Rancor
--- MOB:   Cave Worm	
------------------------------------	
+-----------------------------------
+-- Area: Den of Rancor
+-- MOB:  Cave Worm
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,796,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,796,2);
+end;

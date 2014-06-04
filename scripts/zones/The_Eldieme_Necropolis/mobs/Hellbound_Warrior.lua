@@ -1,14 +1,14 @@
------------------------------------	
--- Area: The Eldieme Necropolis	
+-----------------------------------
+-- Area: The Eldieme Necropolis
 -- MOB:  Hellbound Warrior
------------------------------------	
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,677,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,677,1);
+end;

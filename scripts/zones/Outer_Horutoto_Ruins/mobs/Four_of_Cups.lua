@@ -1,14 +1,14 @@
------------------------------------	
--- Area: Outer Horutoto	
--- MOB:  Four Of Cups	
------------------------------------	
+-----------------------------------
+-- Area: Outer Horutoto
+-- MOB:  Four Of Cups
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,663,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,663,1);
+end;

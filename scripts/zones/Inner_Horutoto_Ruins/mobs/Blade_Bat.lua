@@ -1,14 +1,14 @@
------------------------------------	
--- Area: Inner Horutoto Ruins	
--- MOB:  Blade Bat	
------------------------------------	
+-----------------------------------
+-- Area: Inner Horutoto Ruins
+-- MOB:  Blade Bat
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,648,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,648,1);
+end;

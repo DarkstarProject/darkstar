@@ -1,14 +1,14 @@
------------------------------------	
--- Area:  Den of Rancor
--- MOB:   Puck	
------------------------------------	
+-----------------------------------
+-- Area: Den of Rancor
+-- MOB:  Puck
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,802,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,802,2);
+end;

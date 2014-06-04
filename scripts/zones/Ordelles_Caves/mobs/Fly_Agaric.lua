@@ -1,14 +1,14 @@
------------------------------------	
--- Area: Ordelle's Caves	
--- MOB:  Fly Agaric	
------------------------------------	
+-----------------------------------
+-- Area: Ordelle's Caves
+-- MOB:  Fly Agaric
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,656,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,656,1);
+end;

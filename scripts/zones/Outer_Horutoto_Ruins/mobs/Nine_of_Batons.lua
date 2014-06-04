@@ -1,14 +1,14 @@
------------------------------------	
--- Area: Outer Horutoto	
--- MOB:  Nine of Batons	
------------------------------------	
+-----------------------------------
+-- Area: Outer Horutoto
+-- MOB:  Nine of Batons
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,668,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,668,2);
+end;

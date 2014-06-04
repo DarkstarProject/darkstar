@@ -1,15 +1,15 @@
------------------------------------	
--- Area: Outer Horutoto	
--- MOB:  Fuligo	
------------------------------------	
+-----------------------------------
+-- Area: Outer Horutoto
+-- MOB:  Fuligo
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,669,2);
-	checkRegime(killer,mob,670,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,669,2);
+   checkGoVregime(killer,mob,670,2);
+end;

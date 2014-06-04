@@ -1,14 +1,14 @@
------------------------------------	
+-----------------------------------
 -- Area: Korroloka Tunnel
--- MOB:  Land Worm	
------------------------------------	
+-- MOB:  Land Worm
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,727,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,727,1);
+end;

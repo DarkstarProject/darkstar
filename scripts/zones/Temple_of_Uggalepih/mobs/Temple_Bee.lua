@@ -1,15 +1,15 @@
------------------------------------	
--- Area:  Temple Of Uggalepih
--- MOB:   Temple Bee	
------------------------------------	
+-----------------------------------
+-- Area: Temple Of Uggalepih
+-- MOB:  Temple Bee
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,790,2);
-	checkRegime(killer,mob,793,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,790,2);
+   checkGoVregime(killer,mob,793,2);
+end;

@@ -1,14 +1,14 @@
------------------------------------	
--- Area: Bostaunieux Oubliette	
--- MOB:  Haunt	
------------------------------------	
+-----------------------------------
+-- Area: Bostaunieux Oubliette
+-- MOB:  Haunt
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,612,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,612,2);
+end;

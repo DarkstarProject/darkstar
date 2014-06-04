@@ -1,14 +1,14 @@
------------------------------------	
--- Area: Ranguemont Pass	
--- MOB:  Blade Bat	
------------------------------------	
+-----------------------------------
+-- Area: Ranguemont Pass
+-- MOB:  Blade Bat
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,602,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,602,2);
+end;

@@ -1,15 +1,15 @@
------------------------------------	
--- Area: The Eldieme Necropolis	
--- MOB:  Shade	
------------------------------------	
+-----------------------------------
+-- Area: The Eldieme Necropolis
+-- MOB:  Shade
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,672,1);
-	checkRegime(killer,mob,673,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,672,1);
+   checkGoVregime(killer,mob,673,1);
+end;

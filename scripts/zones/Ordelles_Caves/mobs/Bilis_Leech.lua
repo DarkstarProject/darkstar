@@ -1,14 +1,14 @@
------------------------------------	
--- Area: Ordelle's Caves	
--- MOB:  Bilis Leech	
------------------------------------	
+-----------------------------------
+-- Area: Ordelle's Caves
+-- MOB:  Bilis Leech
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,662,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,662,1);
+end;

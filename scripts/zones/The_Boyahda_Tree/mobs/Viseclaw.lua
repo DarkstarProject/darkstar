@@ -1,14 +1,14 @@
------------------------------------	
+-----------------------------------
 -- Area: The Boyahda Tree
--- MOB:  Viseclaw	
------------------------------------	
+-- MOB:  Viseclaw
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,726,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,726,1);
+end;

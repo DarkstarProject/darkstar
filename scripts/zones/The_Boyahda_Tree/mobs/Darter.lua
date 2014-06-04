@@ -1,14 +1,14 @@
------------------------------------	
+-----------------------------------
 -- Area: The Boyahda Tree
--- MOB:  Darter	
------------------------------------	
+-- MOB:  Darter
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,724,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,724,2);
+end;

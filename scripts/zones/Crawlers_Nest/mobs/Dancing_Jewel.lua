@@ -1,14 +1,14 @@
------------------------------------	
+-----------------------------------
 -- Area: Crawlers' Nest
--- MOB:  Dancing Jewel	
------------------------------------	
+-- MOB:  Dancing Jewel
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,694,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,694,1);
+end;

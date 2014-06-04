@@ -1,14 +1,14 @@
------------------------------------	
--- Area:  Lower Delkfutt's Tower
--- MOB:   Chaos Idol	
------------------------------------	
+-----------------------------------
+-- Area: Lower Delkfutt's Tower
+-- MOB:  Chaos Idol
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,779,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,779,2);
+end;

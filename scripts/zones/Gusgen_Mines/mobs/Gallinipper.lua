@@ -1,14 +1,14 @@
------------------------------------	
+-----------------------------------
 -- Area: Gusgen Mines
 -- MOB:  Gallinipper
------------------------------------	
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,684,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,684,2);
+end;

@@ -1,14 +1,14 @@
------------------------------------	
+-----------------------------------
 -- Area: Crawlers' Nest
--- MOB:  Rumble Crawler	
------------------------------------	
+-- MOB:  Rumble Crawler
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,691,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,691,1);
+end;

@@ -1,14 +1,14 @@
------------------------------------	
+-----------------------------------
 -- Area: Ifrit's Cauldron
--- MOB:  Sulfur Scorpion	
------------------------------------	
+-- MOB:  Sulfur Scorpion
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,759,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,759,2);
+end;

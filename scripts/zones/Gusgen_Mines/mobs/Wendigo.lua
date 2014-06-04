@@ -1,15 +1,15 @@
------------------------------------	
+-----------------------------------
 -- Area: Gusgen Mines
--- MOB:  Wendigo	
------------------------------------	
+-- MOB:  Wendigo
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,679,1);
-	checkRegime(killer,mob,680,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,679,1);
+   checkGoVregime(killer,mob,680,2);
+end;

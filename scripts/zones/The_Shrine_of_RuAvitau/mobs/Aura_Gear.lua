@@ -1,15 +1,15 @@
------------------------------------	
+-----------------------------------
 -- Area: Shrine of Ru'Avitau
--- MOB:  Aura Gear	
------------------------------------	
+-- MOB:  Aura Gear
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,749,1);
-	checkRegime(killer,mob,752,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,749,1);
+   checkGoVregime(killer,mob,752,1);
+end;

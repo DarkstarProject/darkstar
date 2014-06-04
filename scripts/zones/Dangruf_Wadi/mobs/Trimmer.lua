@@ -1,14 +1,14 @@
------------------------------------	
--- Area: Dangruf Wadi	
--- MOB:  Trimmer	
------------------------------------	
+-----------------------------------
+-- Area: Dangruf Wadi
+-- MOB:  Trimmer
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,646,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,646,1);
+end;

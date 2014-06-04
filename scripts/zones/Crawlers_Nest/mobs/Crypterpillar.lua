@@ -1,14 +1,14 @@
------------------------------------	
+-----------------------------------
 -- Area: Maze of Shakhrami
--- MOB:  Crypterpillar	
------------------------------------	
+-- MOB:  Crypterpillar
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,702,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,702,2);
+end;

@@ -1,14 +1,14 @@
------------------------------------	
--- Area: Ranguemont Pass	
+-----------------------------------
+-- Area: Ranguemont Pass
 -- MOB:  Stirge
------------------------------------	
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,606,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,606,1);
+end;

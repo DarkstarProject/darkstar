@@ -1,14 +1,14 @@
------------------------------------	
--- Area:  Quicksand Caves
--- MOB:   Sabotender Bailaor	
------------------------------------	
+-----------------------------------
+-- Area: Quicksand Caves
+-- MOB:  Sabotender Bailaor
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,816,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,816,1);
+end;

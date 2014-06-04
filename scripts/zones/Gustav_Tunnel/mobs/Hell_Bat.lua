@@ -1,14 +1,14 @@
------------------------------------	
+-----------------------------------
 -- Area: Gustav Tunnel
--- MOB:  Hell Bat	
------------------------------------	
+-- MOB:  Hell Bat
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,763,3);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,763,3);
+end;

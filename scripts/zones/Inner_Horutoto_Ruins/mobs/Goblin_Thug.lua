@@ -1,14 +1,14 @@
------------------------------------	
--- Area: Inner Horutoto Ruins	
--- MOB:  Goblin Thug	
------------------------------------	
+-----------------------------------
+-- Area: Inner Horutoto Ruins
+-- MOB:  Goblin Thug
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,647,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,647,2);
+end;

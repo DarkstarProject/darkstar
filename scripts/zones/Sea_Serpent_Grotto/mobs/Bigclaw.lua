@@ -1,14 +1,14 @@
------------------------------------	
--- Area:  Seas Serpent Grotto
--- MOB:   Bigclaw	
------------------------------------	
+-----------------------------------
+-- Area: Seas Serpent Grotto
+-- MOB:  Bigclaw
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,807,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,807,2);
+end;

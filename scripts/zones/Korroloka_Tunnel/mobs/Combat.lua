@@ -1,14 +1,14 @@
------------------------------------	
+-----------------------------------
 -- Area: Korroloka Tunnel
--- MOB:  Combat	
------------------------------------	
+-- MOB:  Combat
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,728,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,728,2);
+end;

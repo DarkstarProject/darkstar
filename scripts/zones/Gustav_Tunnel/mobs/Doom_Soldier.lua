@@ -1,14 +1,14 @@
------------------------------------	
+-----------------------------------
 -- Area: Gustav Tunnel
--- MOB:  Doom Soldier	
------------------------------------	
+-- MOB:  Doom Soldier
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,765,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,765,2);
+end;

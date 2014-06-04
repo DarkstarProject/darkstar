@@ -1,14 +1,14 @@
------------------------------------	
+-----------------------------------
 -- Area: Shrine of Ru'Avitau
--- MOB:  Thunder Elemental	
------------------------------------	
+-- MOB:  Thunder Elemental
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,750,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,750,1);
+end;

@@ -1,15 +1,15 @@
------------------------------------	
--- Area:  Den of Rancor
--- MOB:   Tormentor	
------------------------------------	
+-----------------------------------
+-- Area: Den of Rancor
+-- MOB:  Tormentor
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,802,1);
-	checkRegime(killer,mob,803,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,802,1);
+   checkGoVregime(killer,mob,803,1);
+end;

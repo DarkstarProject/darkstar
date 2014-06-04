@@ -1,14 +1,14 @@
------------------------------------	
--- Area: Ordelle's Caves	
--- MOB:  Shrieker	
------------------------------------	
+-----------------------------------
+-- Area: Ordelle's Caves
+-- MOB:  Shrieker
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,656,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,656,2);
+end;

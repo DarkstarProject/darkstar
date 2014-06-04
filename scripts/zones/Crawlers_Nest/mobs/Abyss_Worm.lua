@@ -1,15 +1,15 @@
------------------------------------	
+-----------------------------------
 -- Area: Maze of Shakhrami
--- MOB:  Abyss Worm	
------------------------------------	
+-- MOB:  Abyss Worm
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,699,1);
-	checkRegime(killer,mob,700,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,699,1);
+   checkGoVregime(killer,mob,700,1);
+end;

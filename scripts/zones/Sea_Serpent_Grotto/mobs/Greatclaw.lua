@@ -1,14 +1,14 @@
------------------------------------	
--- Area:  Seas Serpent Grotto
--- MOB:   Greatclaw	
------------------------------------	
+-----------------------------------
+-- Area: Seas Serpent Grotto
+-- MOB:  Greatclaw
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,811,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,811,2);
+end;

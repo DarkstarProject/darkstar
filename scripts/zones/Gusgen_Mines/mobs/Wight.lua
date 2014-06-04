@@ -1,16 +1,16 @@
------------------------------------	
+-----------------------------------
 -- Area: Gusgen Mines
--- MOB:  Wight	
------------------------------------	
+-- MOB:  Wight
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,679,1);
-	checkRegime(killer,mob,680,2);
-	checkRegime(killer,mob,683,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,679,1);
+   checkGoVregime(killer,mob,680,2);
+   checkGoVregime(killer,mob,683,1);
+end;

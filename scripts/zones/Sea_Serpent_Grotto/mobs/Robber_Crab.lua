@@ -1,15 +1,15 @@
------------------------------------	
--- Area:  Seas Serpent Grotto
--- MOB:   Robber Crab	
------------------------------------	
+-----------------------------------
+-- Area: Seas Serpent Grotto
+-- MOB:  Robber Crab
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,809,1);
-	checkRegime(killer,mob,810,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,809,1);
+   checkGoVregime(killer,mob,810,1);
+end;

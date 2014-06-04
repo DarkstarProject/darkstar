@@ -1,15 +1,15 @@
------------------------------------	
--- Area:  Upper Delkfutt's Tower
--- MOB:   Demonic Doll
------------------------------------	
+-----------------------------------
+-- Area: Upper Delkfutt's Tower
+-- MOB:  Demonic Doll
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,788,3);
-	checkRegime(killer,mob,789,3);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,788,3);
+   checkGoVregime(killer,mob,789,3);
+end;

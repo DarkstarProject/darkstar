@@ -1,14 +1,14 @@
------------------------------------	
--- Area:  Quicksand Caves
--- MOB:   Sand Lizard	
------------------------------------	
+-----------------------------------
+-- Area: Quicksand Caves
+-- MOB:  Sand Lizard
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,817,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,817,1);
+end;

@@ -1,14 +1,14 @@
------------------------------------	
--- Area:  Quicksand Caves
--- MOB:   Helm Beetle	
------------------------------------	
+-----------------------------------
+-- Area: Quicksand Caves
+-- MOB:  Helm Beetle
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,813,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,813,1);
+end;

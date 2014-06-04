@@ -1,14 +1,14 @@
------------------------------------	
+-----------------------------------
 -- Area: Kuftal Tunnel
--- MOB:  Cave Worm	
------------------------------------	
+-- MOB:  Cave Worm
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,737,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,737,1);
+end;

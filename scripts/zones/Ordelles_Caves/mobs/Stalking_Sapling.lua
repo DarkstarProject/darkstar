@@ -1,14 +1,14 @@
------------------------------------	
--- Area: Ordelle's Caves	
--- MOB:  Stalking Sapling	
------------------------------------	
+-----------------------------------
+-- Area: Ordelle's Caves
+-- MOB:  Stalking Sapling
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,655,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,655,1);
+end;

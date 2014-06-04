@@ -1,15 +1,15 @@
------------------------------------	
+-----------------------------------
 -- Area: The Boyahda Tree
--- MOB:  Mourioche	
------------------------------------	
+-- MOB:  Mourioche
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,720,1);
-	checkRegime(killer,mob,721,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,720,1);
+   checkGoVregime(killer,mob,721,1);
+end;

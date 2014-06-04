@@ -1,14 +1,14 @@
------------------------------------	
--- Area: Ordelle's Caves	
--- MOB:  Swagger Spruce	
------------------------------------	
+-----------------------------------
+-- Area: Ordelle's Caves
+-- MOB:  Swagger Spruce
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,662,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,662,2);
+end;

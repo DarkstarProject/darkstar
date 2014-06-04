@@ -1,14 +1,14 @@
------------------------------------	
+-----------------------------------
 -- Area: Gustav Tunnel
--- MOB:  Demonic Pugil	
------------------------------------	
+-- MOB:  Demonic Pugil
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,766,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,766,2);
+end;

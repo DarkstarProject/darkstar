@@ -1,14 +1,14 @@
------------------------------------	
--- Area: Outer Horutoto	
--- MOB:  Nine of Coins	
------------------------------------	
+-----------------------------------
+-- Area: Outer Horutoto
+-- MOB:  Nine of Coins
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,668,4);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,668,4);
+end;

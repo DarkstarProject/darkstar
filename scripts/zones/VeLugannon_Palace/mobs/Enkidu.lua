@@ -1,15 +1,15 @@
------------------------------------	
+-----------------------------------
 -- Area: Ve'Lugannon Palace
--- MOB:  Enkidu	
------------------------------------	
+-- MOB:  Enkidu
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,743,1);
-	checkRegime(killer,mob,747,1);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,743,1);
+   checkGoVregime(killer,mob,747,1);
+end;

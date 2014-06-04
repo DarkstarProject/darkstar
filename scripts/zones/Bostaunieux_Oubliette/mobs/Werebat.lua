@@ -1,14 +1,14 @@
------------------------------------	
--- Area: Bostaunieux Oubliette	
+-----------------------------------
+-- Area: Bostaunieux Oubliette
 -- MOB:  Werebat
------------------------------------	
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,611,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,611,2);
+end;

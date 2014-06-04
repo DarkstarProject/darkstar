@@ -468,7 +468,7 @@ end
 -- killer, mob, regime ID, index in the list of mobs to kill that this mob corresponds to (1-4)
 -----------------------------------
 
-function checkRegime(killer,mob,rid,index)
+function checkGoVregime(killer,mob,rid,index)
     -- Dead people get no points
     if (killer:getHP() == 0) then
         return;

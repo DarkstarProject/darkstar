@@ -1,14 +1,14 @@
------------------------------------	
--- Area: Dangruf Wadi	
--- MOB:  Goblin Healer	
------------------------------------	
+-----------------------------------
+-- Area: Dangruf Wadi
+-- MOB:  Goblin Healer
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");	
+require("scripts/globals/groundsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,644,2);
-end;	
+function onMobDeath(mob,killer)
+   checkGoVregime(killer,mob,644,2);
+end;
