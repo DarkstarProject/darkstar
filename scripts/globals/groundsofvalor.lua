@@ -150,7 +150,8 @@ GOV_EVENT_QUICKSAND_CAVES        = 15;
 -- GoV onTrigger
 ----------------------------------
 
-function startGov(eventid,player)    local hasRegime = player:getVar("fov_regimeid");
+function startGov(eventid,player)
+    local hasRegime = player:getVar("fov_regimeid");
     local tabs = player:getValorPoint();
     player:startEvent(eventid,0,0,0,0,0,0,tabs,hasRegime);
 end
@@ -231,7 +232,8 @@ end
 -- GoV onEventFinish
 ------------------------------------------
 
-function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)    local msg_accept = msg_offset;
+function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
+    local msg_accept = msg_offset;
     local msg_jobs = msg_offset+1;
     local msg_cancel = msg_offset+2;
     local tabs = player:getValorPoint();
@@ -448,7 +450,8 @@ end
 -- Writes the chosen Regime to the SQL database
 -----------------------------------
 
-function writeRegime(player,rid,msg_accept,msg_jobs,regrepeat)    player:setVar("fov_regimeid",rid);
+function writeRegime(player,rid,msg_accept,msg_jobs,regrepeat)
+    player:setVar("fov_regimeid",rid);
     player:setVar("fov_repeat",regrepeat);
     player:setVar("fov_numkilled1",0);
     player:setVar("fov_numkilled2",0);
