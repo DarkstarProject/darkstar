@@ -2407,7 +2407,13 @@ void SmallPacket0x050(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 	uint8 slotID      = RBUFB(data,(0x04));		// inventory slot
 	uint8 equipSlotID = RBUFB(data,(0x05));		// charequip slot
+    uint8 containerID = RBUFB(data,(0x06));     // container id
 
+    // For now disable wardrobe equipment attempts..
+    if (containerID != 0)
+    {
+        return;
+    }
 
 	charutils::EquipItem(PChar, slotID, equipSlotID);
     charutils::SaveCharEquip(PChar);
