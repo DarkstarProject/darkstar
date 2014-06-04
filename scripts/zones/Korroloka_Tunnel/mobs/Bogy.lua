@@ -11,6 +11,8 @@
 
 function onMobDeath(mob,killer)	
 
+	checkRegime(killer,mob,732,1);
+
     mob = mob:getID();
     if (Dame_Blanche_PH[mob] ~= nil) then
 

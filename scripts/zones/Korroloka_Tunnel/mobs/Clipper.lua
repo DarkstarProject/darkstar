@@ -11,6 +11,8 @@
 
 function onMobDeath(mob,killer)	
 
+	checkRegime(killer,mob,731,1);
+
     mob = mob:getID();
     if (Cargo_Crab_Colin_PH[mob] ~= nil) then
 
