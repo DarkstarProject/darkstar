@@ -63,6 +63,7 @@ CCharEntity::CCharEntity()
 	m_Mogsatchel = new CItemContainer(LOC_MOGSATCHEL);
 	m_Mogsack	 = new CItemContainer(LOC_MOGSACK);
 	m_Mogcase	 = new CItemContainer(LOC_MOGCASE);
+    m_Wardrobe   = new CItemContainer(LOC_WARDROBE);
 
 	memset(& jobs,  0, sizeof(jobs));
 	memset(& keys,  0, sizeof(keys));
@@ -281,6 +282,7 @@ CItemContainer* CCharEntity::getStorage(uint8 LocationID)
 		case LOC_MOGSATCHEL: return m_Mogsatchel;
 		case LOC_MOGSACK:	 return m_Mogsack;
 		case LOC_MOGCASE:	 return m_Mogcase;
+        case LOC_WARDROBE:   return m_Wardrobe;
 	}
 
 	DSP_DEBUG_BREAK_IF(LocationID >= MAX_CONTAINER_ID);	// неразрешенный ID хранилища

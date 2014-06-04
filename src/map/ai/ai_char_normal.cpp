@@ -3164,6 +3164,7 @@ void CAICharNormal::ActionRaiseMenuSelection()
 	m_PChar->setMijinGakure(false);
 
 	m_ActionType = ACTION_NONE;
+    m_PChar->m_hasRaise = 0;
 }
 
 void CAICharNormal::TransitionBack(bool skipWait)

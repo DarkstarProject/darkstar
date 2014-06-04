@@ -753,7 +753,6 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
             {
 				PChar->PBattleAI->SetCurrentAction(ACTION_RAISE_MENU_SELECTION);
 			}
-            PChar->m_hasRaise = 0;
 	    }
         break;
 		case 0x0E: // рыбалка
@@ -2408,7 +2407,13 @@ void SmallPacket0x050(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 	uint8 slotID      = RBUFB(data,(0x04));		// inventory slot
 	uint8 equipSlotID = RBUFB(data,(0x05));		// charequip slot
+    uint8 containerID = RBUFB(data,(0x06));     // container id
 
+    // For now disable wardrobe equipment attempts..
+    if (containerID != 0)
+    {
+        return;
+    }
 
 	charutils::EquipItem(PChar, slotID, equipSlotID);
     charutils::SaveCharEquip(PChar);
@@ -5033,6 +5038,24 @@ void SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 	CItem* PBazaarItem = PBazaar->GetItem(SlotID);
 
+    // Obtain the players gil..
+    CItem* PCharGil = PBuyerInventory->GetItem(0);
+    if (PCharGil == NULL || !PCharGil->isType(ITEM_CURRENCY))
+    {
+        // Player has no gil..
+        PChar->pushPacket(new CBazaarPurchasePacket(PTarget, false));
+        return;
+    }
+
+    // Validate this player can afford said item..
+    if (PCharGil->getQuantity() < PBazaarItem->getCharPrice())
+    {
+        // Exploit attempt..
+        ShowError(CL_RED"Bazaar purchase exploit attempt by: %s\n" CL_RESET, PChar->GetName());
+        PChar->pushPacket(new CBazaarPurchasePacket(PTarget, false));
+        return;
+    }
+
     if ((PBazaarItem != NULL) && (PBazaarItem->getCharPrice() != 0) && (PBazaarItem->getQuantity() >= Quantity))
     {
         CItem* PItem = itemutils::GetItem(PBazaarItem);
@@ -5193,6 +5216,17 @@ void SmallPacket0x10F(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 /************************************************************************
 *																		*
+*  Lock Style Request                                                   *
+*																		*
+************************************************************************/
+
+void SmallPacket0x111(map_session_data_t* session, CCharEntity* PChar, int8* data)
+{
+    return;
+}
+
+/************************************************************************
+*																		*
 *  Инициализация массива процедур                   					*
 *																		*
 ************************************************************************/
@@ -5297,6 +5331,7 @@ void PacketParserInitialize()
     PacketSize[0x10A] = 0x06; PacketParser[0x10A] = &SmallPacket0x10A;
     PacketSize[0x10B] = 0x00; PacketParser[0x10B] = &SmallPacket0x10B;
     PacketSize[0x10F] = 0x02; PacketParser[0x10F] = &SmallPacket0x10F;
+    PacketSize[0x111] = 0x00; PacketParser[0x111] = &SmallPacket0x111; // Lock Style Request
 }
 
 /************************************************************************
