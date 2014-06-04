@@ -5210,6 +5210,17 @@ void SmallPacket0x10F(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 /************************************************************************
 *																		*
+*  Lock Style Request                                                   *
+*																		*
+************************************************************************/
+
+void SmallPacket0x111(map_session_data_t* session, CCharEntity* PChar, int8* data)
+{
+    return;
+}
+
+/************************************************************************
+*																		*
 *  Инициализация массива процедур                   					*
 *																		*
 ************************************************************************/
@@ -5314,6 +5325,7 @@ void PacketParserInitialize()
     PacketSize[0x10A] = 0x06; PacketParser[0x10A] = &SmallPacket0x10A;
     PacketSize[0x10B] = 0x00; PacketParser[0x10B] = &SmallPacket0x10B;
     PacketSize[0x10F] = 0x02; PacketParser[0x10F] = &SmallPacket0x10F;
+    PacketSize[0x111] = 0x00; PacketParser[0x111] = &SmallPacket0x111; // Lock Style Request
 }
 
 /************************************************************************
