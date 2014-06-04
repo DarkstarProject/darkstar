@@ -5033,6 +5033,24 @@ void SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 	CItem* PBazaarItem = PBazaar->GetItem(SlotID);
 
+    // Obtain the players gil..
+    CItem* PCharGil = PBuyerInventory->GetItem(0);
+    if (PCharGil == NULL || !PCharGil->isType(ITEM_CURRENCY))
+    {
+        // Player has no gil..
+        PChar->pushPacket(new CBazaarPurchasePacket(PTarget, false));
+        return;
+    }
+
+    // Validate this player can afford said item..
+    if (PCharGil->getQuantity() < PBazaarItem->getCharPrice())
+    {
+        // Exploit attempt..
+        ShowError(CL_RED"Bazaar purchase exploit attempt by: %s\n" CL_RESET, PChar->GetName());
+        PChar->pushPacket(new CBazaarPurchasePacket(PTarget, false));
+        return;
+    }
+
     if ((PBazaarItem != NULL) && (PBazaarItem->getCharPrice() != 0) && (PBazaarItem->getQuantity() >= Quantity))
     {
         CItem* PItem = itemutils::GetItem(PBazaarItem);
