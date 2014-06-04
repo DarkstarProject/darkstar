@@ -753,7 +753,6 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
             {
 				PChar->PBattleAI->SetCurrentAction(ACTION_RAISE_MENU_SELECTION);
 			}
-            PChar->m_hasRaise = 0;
 	    }
         break;
 		case 0x0E: // рыбалка
