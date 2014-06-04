@@ -375,6 +375,15 @@ void CBattlefield::cleanup(){
 	//wipe npc list
 	m_NpcList.clear();
 
+	for (auto PAlly : m_AllyList)
+	{
+		zoneutils::GetZone(getZoneId())->DeletePET(PAlly);
+		delete PAlly;
+	}
+	m_AllyList.clear();
+
+	luautils::OnBcnmDestroy(this);
+
 	locked = false;
 	//delete battlefield
 	if(m_Handler==NULL){

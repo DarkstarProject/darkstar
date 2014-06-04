@@ -401,7 +401,7 @@ bool CTargetFind::validEntity(CBattleEntity* PTarget, uint8 allegiance)
         }
     }
 
-	if (PTarget->allegiance != (m_PBattleEntity->allegiance % 2 == 1 ? m_PBattleEntity->allegiance + 1 : m_PBattleEntity->allegiance - 1))
+	if (PTarget->allegiance != (m_PBattleEntity->allegiance % 2 == 0 ? m_PBattleEntity->allegiance + 1 : m_PBattleEntity->allegiance - 1))
 	{
 		return false;
 	}
@@ -498,12 +498,20 @@ CBattleEntity* CTargetFind::getValidTarget(uint16 actionTargetID, uint8 validTar
     {
         if (!PTarget->isDead())
         {
-			if (PTarget->allegiance == (m_PBattleEntity->allegiance % 2 == 1 ? m_PBattleEntity->allegiance + 1 : m_PBattleEntity->allegiance - 1))
+			if (PTarget->allegiance == (m_PBattleEntity->allegiance % 2 == 0 ? m_PBattleEntity->allegiance + 1 : m_PBattleEntity->allegiance - 1))
 			{
                 return PTarget;
             }
         }
     }
+
+	if (validTargetFlags & TARGET_NPC)
+	{
+		if (PTarget->allegiance == m_PBattleEntity->allegiance)
+		{
+			return PTarget;
+		}
+	}
 
     if (PTarget->objtype == TYPE_PC)
     {

@@ -1785,7 +1785,7 @@ bool CAIMobDummy::TryDeaggro()
 	bool tryDetectDeaggro = false;
 	bool tryTimeDeaggro = true;
 
-	if(m_PMob->m_Behaviour & BEHAVIOUR_SCENT)
+	if(m_PMob->m_Aggro & AGGRO_SCENT)
 	{
 		// if mob is in water it will instant aggro if target cannot be detected
 		if(m_PPathFind->InWater() || m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DEODORIZE))
@@ -2200,7 +2200,7 @@ void CAIMobDummy::WeatherChange(WEATHER weather, uint8 element)
 {
 
 	// can't detect by scent in this weather
-	if(m_PMob->m_Behaviour & BEHAVIOUR_SCENT)
+	if (m_PMob->m_Aggro & AGGRO_SCENT)
 	{
 		m_PMob->m_disableScent = (weather == WEATHER_RAIN || weather == WEATHER_SQUALL || weather == WEATHER_BLIZZARDS);
 	}

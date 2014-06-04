@@ -99,7 +99,7 @@ CNpcEntity::CNpcEntity()
 {
 	objtype = TYPE_NPC;
 	look.face = 0x32;
-	allegiance = ALLEGIANCE_NONE;
+	allegiance = ALLEGIANCE_MOB;
 }
 
 CNpcEntity::~CNpcEntity()

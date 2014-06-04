@@ -6582,6 +6582,8 @@ inline int32 CLuaBaseEntity::setSpawn(lua_State *L)
 		PMob->m_SpawnPoint.y = (float) lua_tonumber(L,2);
 	if( !lua_isnil(L,3) && lua_isnumber(L,3) )
 		PMob->m_SpawnPoint.z = (float) lua_tonumber(L,3);
+	if (!lua_isnil(L, 4) && lua_isnumber(L, 4))
+		PMob->m_SpawnPoint.rotation = lua_tointeger(L,4);
 
 	return 0;
 }
@@ -6848,9 +6850,9 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L) {
 
 	// If you use ACTION_MOBABILITY_FINISH, the first param = anim, the second param = skill id.
 	if (actiontype == ACTION_MOBABILITY_FINISH || actiontype == ACTION_RAISE_MENU_SELECTION) {
-		CBattleEntity* PTarget = PChar->PBattleAI->GetBattleTarget();
+		CBattleEntity* PTarget = (CBattleEntity*)PChar->loc.zone->GetEntity(PChar->m_TargID);
 		if (PTarget == NULL) {
-			ShowError("Cannot use MOBABILITY_FINISH on a null battle target! Engage a mob! \n");
+			ShowError("Cannot use MOBABILITY_FINISH on a null battle target! Target a mob! \n");
 			return 0;
 		}
 		else if(PTarget->objtype != TYPE_MOB) {
@@ -9001,6 +9003,42 @@ inline int32 CLuaBaseEntity::getEnmityList(lua_State* L)
 	return 1;
 }
 
+inline int32 CLuaBaseEntity::spawn(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+	CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
+
+	if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+	{
+		PMob->SetDespawnTimer((uint32)lua_tointeger(L, 2));
+	}
+
+	if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
+	{
+		PMob->m_RespawnTime = (uint32)lua_tointeger(L, 3) * 1000;
+		PMob->m_AllowRespawn = true;
+		PMob->PBattleAI->SetLastActionTime(gettick());
+		if (PMob->PBattleAI->GetCurrentAction() == ACTION_NONE)
+		{
+			PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+		}
+	}
+	else {
+		if (PMob->PBattleAI->GetCurrentAction() == ACTION_NONE ||
+			PMob->PBattleAI->GetCurrentAction() == ACTION_SPAWN)
+		{
+			PMob->PBattleAI->SetLastActionTime(0);
+			PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+		}
+		else {
+			ShowDebug(CL_CYAN"SpawnMob: <%s> is alredy spawned\n" CL_RESET, PMob->GetName());
+		}
+	}
+	return 0;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -9406,5 +9444,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,setInstance),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,createInstance),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEnmityList),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,spawn),
 	{NULL,NULL}
 };

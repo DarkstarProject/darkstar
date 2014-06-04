@@ -78,9 +78,11 @@ enum ANIMATIONTYPE
 
 enum ALLEGIANCETYPE
 {
-	ALLEGIANCE_NONE		= 0,
-	ALLEGIANCE_PLAYER	= 1,
-	ALLEGIANCE_MOB		= 2
+	ALLEGIANCE_MOB			= 0,
+	ALLEGIANCE_PLAYER		= 1,
+	ALLEGIANCE_SAN_DORIA	= 2,
+	ALLEGIANCE_BASTOK		= 3,
+	ALLEGIANCE_WINDURST		= 4
 };
 
 // TODO: возможо стоит сделать эту структуру частью класса, взамен нынешних id и targid, но уже без метода clean
