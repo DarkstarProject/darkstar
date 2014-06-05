@@ -96,17 +96,17 @@ public:
     void findWithinCone(CBattleEntity* PTarget, float distance, float angle, uint8 flags = FINDFLAGS_NONE);
 
     // add all targets in contexts
-	void addAllInZone(CBattleEntity* PTarget, bool withPet, uint8 allegiance);
-	void addAllInAlliance(CBattleEntity* PTarget, bool withPet, uint8 allegiance);
-	void addAllInParty(CBattleEntity* PTarget, bool withPet, uint8 allegiance);
-	void addAllInMobList(CBattleEntity* PTarget, bool withPet, uint8 allegiance);
+	void addAllInZone(CBattleEntity* PTarget, bool withPet);
+	void addAllInAlliance(CBattleEntity* PTarget, bool withPet);
+	void addAllInParty(CBattleEntity* PTarget, bool withPet);
+	void addAllInMobList(CBattleEntity* PTarget, bool withPet);
     void addAllInEnmityList();
-	void addEntity(CBattleEntity* PTarget, bool withPet, uint8 allegiance);
+	void addEntity(CBattleEntity* PTarget, bool withPet);
 
     // helpers
     bool isMobOwner(CBattleEntity* PTarget);
     CBattleEntity* findMaster(CBattleEntity* PTarget);
-    bool validEntity(CBattleEntity* PTarget, uint8 allegiance);
+    bool validEntity(CBattleEntity* PTarget);
     bool checkIsPlayer(CBattleEntity* PTarget);
 
     bool isWithinArea(position_t* pos);

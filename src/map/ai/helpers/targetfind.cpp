@@ -63,7 +63,7 @@ void CTargetFind::findSingleTarget(CBattleEntity* PTarget, uint8 flags)
     m_PTarget = NULL;
     m_PRadiusAround = &PTarget->loc.p;
 
-    addEntity(PTarget, false, PTarget->allegiance);
+    addEntity(PTarget, false);
 }
 
 void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, float radius, uint8 flags)
@@ -71,7 +71,6 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
     m_findFlags = flags;
     m_radius = radius;
     m_zone = m_PBattleEntity->getZone();
-	uint8 allegiance = PTarget->allegiance;
 
     if (radiusType == AOERADIUS_ATTACKER){
         m_PRadiusAround = &m_PBattleEntity->loc.p;
@@ -89,7 +88,7 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
     bool withPet = PETS_CAN_AOE_BUFF || (m_findFlags & FINDFLAGS_PET) || (m_PMasterTarget->objtype != m_PBattleEntity->objtype);
 
     // always add original target first
-    addEntity(PTarget, false, allegiance); // pet will be added later
+    addEntity(PTarget, false); // pet will be added later
 
     m_PTarget = PTarget;
     isPlayer = checkIsPlayer(m_PBattleEntity);
@@ -108,24 +107,24 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
                 // player -ra spells should never hit whole alliance
                 if ((m_findFlags & FINDFLAGS_ALLIANCE) && m_PMasterTarget->PParty->m_PAlliance != NULL)
                 {
-                    addAllInAlliance(m_PMasterTarget, withPet, allegiance);
+                    addAllInAlliance(m_PMasterTarget, withPet);
                 }
                 else
                 {
                     // add party members
-                    addAllInParty(m_PMasterTarget, withPet, allegiance);
+                    addAllInParty(m_PMasterTarget, withPet);
                 }
             }
             else {
                 // just add myself
-                addEntity(m_PMasterTarget, withPet, allegiance);
+                addEntity(m_PMasterTarget, withPet);
             }
 
         }
         else {
             m_findType = FIND_PLAYER_MONSTER;
             // special case to add all mobs in range
-            addAllInMobList(m_PMasterTarget, false, allegiance);
+            addAllInMobList(m_PMasterTarget, false);
         }
 
     }
@@ -147,7 +146,7 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
 
         if (m_findFlags & FINDFLAGS_HIT_ALL)
         {
-            addAllInZone(m_PMasterTarget, withPet, allegiance);
+            addAllInZone(m_PMasterTarget, withPet);
         }
         else
         {
@@ -155,15 +154,15 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
             {
                 if (m_PMasterTarget->PParty->m_PAlliance != NULL)
                 {
-                    addAllInAlliance(m_PMasterTarget, withPet, allegiance);
+                    addAllInAlliance(m_PMasterTarget, withPet);
                 }
                 else {
                     // all party instead
-                    addAllInParty(m_PMasterTarget, withPet, allegiance);
+                    addAllInParty(m_PMasterTarget, withPet);
                 }
             }
             else {
-                addEntity(m_PMasterTarget, withPet, allegiance);
+                addEntity(m_PMasterTarget, withPet);
             }
 
             // Is the monster casting on a player..
@@ -209,7 +208,7 @@ void CTargetFind::findWithinCone(CBattleEntity* PTarget, float distance, float a
     findWithinArea(PTarget, AOERADIUS_ATTACKER, distance);
 }
 
-void CTargetFind::addAllInMobList(CBattleEntity* PTarget, bool withPet, uint8 allegiance)
+void CTargetFind::addAllInMobList(CBattleEntity* PTarget, bool withPet)
 {
     CCharEntity* PChar = (CCharEntity*)findMaster(m_PBattleEntity);
     CBattleEntity* PBattleTarget = NULL;
@@ -220,27 +219,27 @@ void CTargetFind::addAllInMobList(CBattleEntity* PTarget, bool withPet, uint8 al
         PBattleTarget = (CBattleEntity*)it->second;
 
         if (PBattleTarget && isMobOwner(PBattleTarget)){
-            addEntity(PBattleTarget, withPet, allegiance);
+            addEntity(PBattleTarget, withPet);
         }
 
     }
 }
 
-void CTargetFind::addAllInZone(CBattleEntity* PTarget, bool withPet, uint8 allegiance)
+void CTargetFind::addAllInZone(CBattleEntity* PTarget, bool withPet)
 {
 	zoneutils::GetZone(PTarget->getZone())->ForEachCharInstance(PTarget, [&](CCharEntity* PChar){
 		if (PChar){
-			addEntity(PChar, withPet, allegiance);
+			addEntity(PChar, withPet);
 		}
 	});
 	zoneutils::GetZone(PTarget->getZone())->ForEachMobInstance(PTarget, [&](CMobEntity* PMob){
 		if (PMob){
-			addEntity(PMob, withPet, allegiance);
+			addEntity(PMob, withPet);
 		}
 	});
 }
 
-void CTargetFind::addAllInAlliance(CBattleEntity* PTarget, bool withPet, uint8 allegiance)
+void CTargetFind::addAllInAlliance(CBattleEntity* PTarget, bool withPet)
 {
     CParty* party = NULL;
 
@@ -250,12 +249,12 @@ void CTargetFind::addAllInAlliance(CBattleEntity* PTarget, bool withPet, uint8 a
 
         for (uint16 p = 0; p < party->members.size(); p++)
         {
-            addEntity(party->members.at(p), withPet, allegiance);
+            addEntity(party->members.at(p), withPet);
         }
     }
 }
 
-void CTargetFind::addAllInParty(CBattleEntity* PTarget, bool withPet, uint8 allegiance)
+void CTargetFind::addAllInParty(CBattleEntity* PTarget, bool withPet)
 {
 
     CParty* party = PTarget->PParty;
@@ -264,7 +263,7 @@ void CTargetFind::addAllInParty(CBattleEntity* PTarget, bool withPet, uint8 alle
     for (uint16 p = 0; p < party->members.size(); p++)
     {
 
-        addEntity(party->members.at(p), withPet, allegiance);
+        addEntity(party->members.at(p), withPet);
     }
 
 }
@@ -279,19 +278,19 @@ void CTargetFind::addAllInEnmityList()
         for (EnmityList_t::iterator it = enmityList->begin(); it != enmityList->end(); ++it)
         {
             EnmityObject_t* PEnmityObject = it->second;
-			addEntity(PEnmityObject->PEnmityOwner, false, PEnmityObject->PEnmityOwner->allegiance);
+			addEntity(PEnmityObject->PEnmityOwner, false);
         }
     }
 }
 
-void CTargetFind::addEntity(CBattleEntity* PTarget, bool withPet, uint8 allegiance)
+void CTargetFind::addEntity(CBattleEntity* PTarget, bool withPet)
 {
-    if (validEntity(PTarget, allegiance)){
+    if (validEntity(PTarget)){
         m_targets.push_back(PTarget);
     }
 
     // add my pet too, if its allowed
-    if (withPet && PTarget->PPet != NULL && validEntity(PTarget->PPet, allegiance))
+    if (withPet && PTarget->PPet != NULL && validEntity(PTarget->PPet))
     {
         m_targets.push_back(PTarget->PPet);
     }
@@ -354,12 +353,8 @@ bool CTargetFind::isMobOwner(CBattleEntity* PTarget)
 validEntity will check if the given entity can be targeted in the AoE.
 
 */
-bool CTargetFind::validEntity(CBattleEntity* PTarget, uint8 allegiance)
+bool CTargetFind::validEntity(CBattleEntity* PTarget)
 {
-	if (PTarget->allegiance != allegiance)
-	{
-		return false;
-	}
     if (std::find(m_targets.begin(), m_targets.end(), PTarget) != m_targets.end()) {
         return false;
     }
@@ -378,6 +373,11 @@ bool CTargetFind::validEntity(CBattleEntity* PTarget, uint8 allegiance)
     {
         return true;
     }
+
+	if (m_PTarget->allegiance != PTarget->allegiance)
+	{
+		return false;
+	}
 
     // shouldn't add if target is charmed by the enemy
     if (PTarget->PMaster != NULL)
@@ -400,11 +400,6 @@ bool CTargetFind::validEntity(CBattleEntity* PTarget, uint8 allegiance)
             return false;
         }
     }
-
-	if (PTarget->allegiance != (m_PBattleEntity->allegiance % 2 == 0 ? m_PBattleEntity->allegiance + 1 : m_PBattleEntity->allegiance - 1))
-	{
-		return false;
-	}
 
     // check placement
     // force first target to be added
