@@ -571,36 +571,19 @@ EFFECT_SCARLET_DELIRIUM			= 479 -- DRK 95
 EFFECT_SCARLET_DELIRIUM_1		= 480 -- DRK 95
 NONE							= 481 -- NONE
 EFFECT_DECOY_SHOT				= 482 -- RNG 95
-EFFECT_HAGAKURE					= 483 -- SAM 95
+EFFECT_HAGAKURE					= 483 -- SAM 95	
 EFFECT_ISSEKIGAN                = 484 -- NIN 95
 EFFECT_UNBRIDLED_LEARNING       = 485 -- BLU 95
-EFFECT_COUNTER_BOOST            = 486 --
+EFFECT_COUNTER_BOOST            = 486 -- 
 EFFECT_ENDRAIN	                = 487 -- FENRIR 96
 EFFECT_ENASPIR	                = 488 -- FENRIR 96
 EFFECT_AFTERGLOW                = 489 -- WS AFTEREFFECT
-EFFECT_BRAZEN_STRENGTH          = 490 --
-EFFECT_INNER_STRENGTH           = 491
+EFFECT_BRAZEN_STRENGTH          = 490 -- 
+EFFECT_INNER_STRENGTH           = 491 
 EFFECT_ISSEKIGAN                = 484
 
-EFFECT_STYMIE                   = 494
 EFFECT_MIKAGE                   = 502
 
--- *Prowess increases not currently retail accurate.
--- GoV Prowess bonus effects, real effect at ID 474
-EFFECT_PROWESS_CASKET_RATE      = 777 -- (Unimplemented)
-EFFECT_PROWESS_SKILL_RATE       = 778 -- (Unimplemented)
-EFFECT_PROWESS_CRYSTAL_YEILD    = 779 -- (Unimplemented)
-EFFECT_PROWESS_TH               = 780 -- +1 per tier
-EFFECT_PROWESS_ATTACK_SPEED     = 781 -- *flat 4% for now
-EFFECT_PROWESS_HP_MP            = 782 -- Base 3% and another 1% per tier.
-EFFECT_PROWESS_ACC_RACC         = 783 -- *flat 4% for now
-EFFECT_PROWESS_ATT_RATT         = 784 -- *flat 4% for now
-EFFECT_PROWESS_MACC_MATK        = 785 -- *flat 4% for now
-EFFECT_PROWESS_CURE_POTENCY     = 786 -- *flat 4% for now
-EFFECT_PROWESS_WS_DMG           = 787 -- (Unimplemented) 2% per tier.
-EFFECT_PROWESS_KILLER           = 788 -- *flat +4 for now
--- End GoV Prowess fakery
-EFFECT_FIELD_SUPPORT_FOOD       = 789 -- Used by Fov/GoV food buff.
 EFFECT_MARK_OF_SEED             = 790 -- Tracks 30 min timer in ACP mission "Those Who Lurk in Shadows (II)"
 EFFECT_ALL_MISS                 = 791
 EFFECT_SUPER_BUFF               = 792
@@ -902,7 +885,7 @@ MOD_ROLL_DANCERS		= 0x14A
 MOD_ROLL_SCHOLARS		= 0x14B
 MOD_BUST			= 0x14C
 MOD_FINISHING_MOVES		= 0x14D
-MOD_SAMBA_DURATION          = 0x1EA -- Samba duration bonus(modId = 490)
+MOD_SAMBA_DURATION          = 0x1EA -- Samba duration bonus(modId = 490)    
 MOD_WALTZ_POTENTCY	        = 0x1EB -- Waltz Potentcy Bonus(modId = 491)
 MOD_CHOCO_JIG_DURATION      = 0x1EC -- Chocobo Jig duration bonus (modId = 492)
 MOD_VFLOURISH_MACC          = 0x1ED -- Violent Flourish accuracy bonus (modId = 493)
@@ -985,12 +968,12 @@ MOD_ZANSHIN_DOUBLE_DAMAGE	  =0x19A -- Zanshin's double damage chance %.
 MOD_RAPID_SHOT_DOUBLE_DAMAGE  =0x1DF -- Rapid shot's double damage chance %.
 MOD_ABSORB_DMG_CHANCE		  =0x1E0 -- Chance to absorb damage %
 MOD_EXTRA_DUAL_WIELD_ATTACK   =0x1E1 -- Chance to land an extra attack when dual wielding
-MOD_EXTRA_KICK_ATTACK		  =0x1E2 -- Occasionally allows a second Kick Attack during an attack round without the use of Footwork.
+MOD_EXTRA_KICK_ATTACK		  =0x1E2 -- Occasionally allows a second Kick Attack during an attack round without the use of Footwork. 
 MOD_SAMBA_DOUBLE_DAMAGE		  =0x19F -- Double damage chance when samba is up.
 MOD_NULL_PHYSICAL_DAMAGE	  =0x1A0 -- Chance to null physical damage.
 MOD_QUICK_DRAW_TRIPLE_DAMAGE  =0x1A1 -- Chance to do triple damage with quick draw.
 MOD_BAR_ELEMENT_NULL_CHANCE	  =0x1A2 -- Bar Elemental spells will occasionally nullify damage of the same element.
-MOD_GRIMOIRE_INSTANT_CAST	  =0x1A3 -- Spells that match your current Arts will occasionally cast instantly, without recast.
+MOD_GRIMOIRE_INSTANT_CAST	  =0x1A3 -- Spells that match your current Arts will occasionally cast instantly, without recast. 
 
 MOD_DOUBLE_SHOT_RATE		  =0x1A6 -- The rate that double shot can proc
 MOD_VELOCITY_SNAPSHOT_BONUS	  =0x1A7 -- Increases Snapshot whilst Velocity Shot is up.
@@ -999,8 +982,8 @@ MOD_SHADOW_BIND_EXT		  	  =0x1A9 -- Extends the time of shadowbind
 MOD_ABSORB_DMG_TO_MP		  =0x1AA --	Absorbs a percentage of damage taken to MP.
 MOD_ENMITY_REDUCTION_PHYSICAL =0x1AB -- Reduces Enmity decrease when taking physical damage
 MOD_SHIELD_MASTERY_TP         =0x1E5 -- Shield mastery TP bonus when blocking with a shield (modId = 485)
-MOD_PERFECT_COUNTER_ATT		  =0x1AC -- Raises weapon damage by 20 when countering while under the Perfect Counter effect. This also affects Weapon Rank (though not if fighting barehanded).
-MOD_FOOTWORK_ATT_BONUS		  =0x1AD -- Raises the attack bonus of Footwork. (Tantra Gaiters +2 raise 100/1024 to 152/1024)
+MOD_PERFECT_COUNTER_ATT		  =0x1AC -- Raises weapon damage by 20 when countering while under the Perfect Counter effect. This also affects Weapon Rank (though not if fighting barehanded). 
+MOD_FOOTWORK_ATT_BONUS		  =0x1AD -- Raises the attack bonus of Footwork. (Tantra Gaiters +2 raise 100/1024 to 152/1024) 
 
 MOD_MINNE_EFFECT              =0x1B1-- (modId = 433)
 MOD_MINUET_EFFECT	          =0x1B2-- (modId = 434)
@@ -1061,9 +1044,6 @@ MOD_AUSPICE_EFFECT            =0x1E4 -- Auspice Subtle Blow Bonus (modId = 484)
 MOD_TACTICAL_PARRY            =0x1E6 -- Tactical Parry TP Bonus (modid = 486)
 MOD_MAG_BURST_BONUS           =0x1E7 -- Magic Burst Bonus (modid = 487)
 MOD_INHIBIT_TP                =0x1E8 -- Inhibits TP Gain (percent) (modId = 488)
-
-MOD_GOV_CLEARS                =0x1F0 -- Tracks GoV page completion (for 4% bonus on rewards).
-
 
 -----------------------------------
 -- Merit Definitions
@@ -1657,7 +1637,7 @@ MOBMOD_SHARE_POS = 39
 MOBMOD_TELEPORT_CD = 40
 MOBMOD_TELEPORT_START = 41
 MOBMOD_TELEPORT_END = 42
-MOBMOD_TELEPORT_TYPE = 43
+MOBMOD_TELEPORT_TYPE = 43 
 MOBMOD_DUAL_WIELD = 44
 MOBMOD_ADD_EFFECT = 45
 

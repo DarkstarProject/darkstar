@@ -75,8 +75,6 @@ end;
 
 function onMobDeath(mob, killer)
 
-	checkRegime(killer,mob,749,1);
-
 	local Defender = mob:getID();
 	local AuraGear = mob:getID() + 1;	
 	

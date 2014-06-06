@@ -21,8 +21,6 @@
 ===========================================================================
 */
 
-#include <thread>
-
 #include "../common/cbasetypes.h"
 #include "../common/blowfish.h"
 #include "../common/malloc.h"
@@ -42,6 +40,7 @@
 	#include <netdb.h>
 	#include <netinet/in.h>
 	#include <errno.h>
+        #include <pthread.h>
 	typedef u_int SOCKET;
 	#define INVALID_SOCKET  (SOCKET)(~0)
 	#define SOCKET_ERROR            (-1)
@@ -78,7 +77,11 @@ struct SearchCommInfo
 const int8* SEARCH_CONF_FILENAME = "./conf/search_server.conf";
 const int8* LOGIN_CONF_FILENAME = "./conf/login_darkstar.conf";
 
-void TCPComm(SOCKET socket);
+#ifdef WIN32
+ppuint32 __stdcall TCPComm(void* lpParam);
+#else
+void * TCPComm(void* lpParam);
+#endif
 
 extern void HandleSearchRequest(CTCPRequestPacket* PTCPRequest);
 extern void HandleSearchComment(CTCPRequestPacket* PTCPRequest);
@@ -154,6 +157,17 @@ int32 main (int32 argc, int8 **argv)
     search_config_default();
     search_config_read(SEARCH_CONF_FILENAME);
 	login_config_read(LOGIN_CONF_FILENAME);
+#ifndef WIN32
+    pthread_t thread1;
+    pthread_attr_t threadAttr;
+    int ptherr;
+
+    ptherr = 0;
+    ptherr = pthread_attr_init(&threadAttr);
+    if (ptherr != 0)
+        errno = ptherr;
+        perror("pthread_attr_init");
+#endif
 
 #ifdef WIN32
     // Initialize Winsock
@@ -250,8 +264,22 @@ int32 main (int32 argc, int8 **argv)
 #endif
 			continue;
 		}
+		SearchCommInfo CommInfo;
 
-		std::thread(TCPComm, ClientSocket).detach();
+		CommInfo.socket = ClientSocket;
+		CommInfo.ip = 0;
+		CommInfo.port = 0;
+
+#ifdef WIN32
+		CreateThread(0,0,TCPComm,&CommInfo,0,0);
+#else
+		ptherr = 0;
+		ptherr = pthread_create(&thread1,&threadAttr,&TCPComm,&CommInfo);
+		if (ptherr != 0)
+			errno = ptherr;
+			perror("pthread_attr_init");
+#endif
+
 	}
     // TODO: сейчас мы никогда сюда не попадем
 
@@ -280,6 +308,11 @@ int32 main (int32 argc, int8 **argv)
     WSACleanup();
 #else
     close(ClientSocket);
+    ptherr = 0;
+    ptherr = pthread_attr_destroy(&threadAttr);
+    if (ptherr != 0)
+        errno = ptherr;
+        perror("pthread_attr_init");
 #endif
     return 0;
 }
@@ -418,16 +451,22 @@ void login_config_read(const int8* file)
 *																		*
 *																		*
 ************************************************************************/
-
-void TCPComm(SOCKET socket)
+#ifdef WIN32
+ppuint32 __stdcall TCPComm(void* lpParam)
+#else 
+void * TCPComm(void* lpParam)
+#endif
 {
+	SearchCommInfo CommInfo = *((SearchCommInfo*)lpParam);
+
 	//ShowMessage("TCP connection from client with port: %u\n", htons(CommInfo.port));
 	
-	CTCPRequestPacket* PTCPRequest = new CTCPRequestPacket(&socket);
+	CTCPRequestPacket* PTCPRequest = new CTCPRequestPacket(&CommInfo.socket);
 
 	if (PTCPRequest->ReceiveFromSocket() == 0)
 	{
 		delete PTCPRequest;
+		return 0;
 	}
 	//PrintPacket((int8*)PTCPRequest->GetData(), PTCPRequest->GetSize());
 	ShowMessage("= = = = = = = \nType: %u Size: %u \n",PTCPRequest->GetPacketType(),PTCPRequest->GetSize());
@@ -467,6 +506,11 @@ void TCPComm(SOCKET socket)
 		break;
 	}
 	delete PTCPRequest;
+#ifdef WIN32
+	return 1;
+#else
+	return NULL;
+#endif
 }
 
 /************************************************************************

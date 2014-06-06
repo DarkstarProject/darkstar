@@ -91,17 +91,17 @@ void CBaseEntity::HideName(bool hide)
 	if(hide)
 	{
 		// I totally guessed this number
-		namevis |= 0x08;
+		namevis = 0x08;
 	}
 	else
 	{
-		namevis &= ~0x08;
+		namevis = 1;
 	}
 }
 
 bool CBaseEntity::IsNameHidden()
 {
-	return namevis & 0x08;
+	return namevis == 0x08;
 }
 
 CBaseEntity* CBaseEntity::GetEntity(uint16 targid, uint8 filter)

@@ -11,8 +11,6 @@ require("scripts/zones/Korroloka_Tunnel/MobIDs");
 
 function onMobDeath(mob,killer)	
 
-	checkRegime(killer,mob,279,1);
-
     mob = mob:getID();
     if (Falcatus_Aranei_PH[mob] ~= nil) then
 

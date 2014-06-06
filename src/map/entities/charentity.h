@@ -271,7 +271,7 @@ public:
 	assaultlog_t			m_assaultLog;					// список assault миссий
 	campaignlog_t			m_campaignLog;					// список campaing миссий
     uint32					m_rangedDelay;					// ranged attack delay (with timestamp for repeat attacks, hence 32bit)for items, abilities and magic
-	CBattlefield*			m_BCNM;							// pointer to bcnm (if in one)
+	bool					m_insideBCNM;					// true if user is inside a bcnm
 	uint32					m_lastBcnmTimePrompt;			// the last message prompt in seconds
 	PetInfo_t				petZoningInfo;					// used to repawn dragoons pets ect on zone
 	void					resetPetZoningInfo();			// reset pet zoning info (when changing job ect)
@@ -337,8 +337,7 @@ public:
 	uint8			  m_LevelRestriction;			// ограничение уровня персонажа
     uint16            m_Costum;                     // карнавальный костюм персонажа (модель)
 	uint32			  m_AHHistoryTimestamp;			// Timestamp when last asked to view history
-    uint32            m_DeathCounter;               // Counter when you last died. This is set when you first login
-    uint32            m_DeathTimestamp;             // Timestamp when death counter has been saved to database
+	uint32			  m_DeathTimestamp;				// Timestamp when you last died. This is set when you first login.
 
     uint8             m_PVPFlag;                    // pvp
 	uint8			  m_hasTractor;					// checks if player has tractor already
@@ -394,7 +393,6 @@ private:
 	CItemContainer*	  m_Mogsatchel;
 	CItemContainer*	  m_Mogsack;
 	CItemContainer*   m_Mogcase;
-    CItemContainer*   m_Wardrobe;
 
 	bool			m_isWeaponSkillKill;
 	bool			m_isMijinGakure;

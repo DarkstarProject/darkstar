@@ -125,8 +125,7 @@ uint32 CAIGeneral::GetBattleTime()
 
 void CAIGeneral::SetCurrentAction(ACTIONTYPE Action, uint16 TargetID)
 {
-	if (m_ActionTargetID != 0)
-		return;
+	DSP_DEBUG_BREAK_IF(m_ActionTargetID != 0);
 
 	switch (Action)
 	{
