@@ -87,20 +87,25 @@ enum MOBTYPE
   MOBTYPE_EVENT       = 0x20
 };
 
+enum AGGRO : uint16
+{
+	AGGRO_NONE					= 0x00,
+	AGGRO_DETECT_SIGHT			= 0x01,
+	AGGRO_DETECT_HEARING		= 0x02,
+	AGGRO_DETECT_LOWHP			= 0x04,
+	AGGRO_DETECT_TRUEHEARING	= 0x08,
+	AGGRO_DETECT_TRUESIGHT		= 0x10,
+	AGGRO_DETECT_MAGIC			= 0x20,
+	AGGRO_DETECT_WEAPONSKILL	= 0x40,
+	AGGRO_DETECT_JOBABILITY		= 0x80,
+	AGGRO_SCENT					= 0x100
+};
+
 enum BEHAVIOUR : uint16
 {
-  BEHAVIOUR_NONE              = 0x00,
-  BEHAVIOUR_AGGRO_SIGHT       = 0x01,
-  BEHAVIOUR_AGGRO_HEARING     = 0x02,
-  BEHAVIOUR_AGGRO_LOWHP       = 0x04,
-  BEHAVIOUR_AGGRO_TRUEHEARING = 0x08,
-  BEHAVIOUR_AGGRO_TRUESIGHT   = 0x10,
-  BEHAVIOUR_AGGRO_MAGIC       = 0x20,
-  BEHAVIOUR_AGGRO_WEAPONSKILL = 0x40,
-  BEHAVIOUR_AGGRO_JOBABILITY  = 0x80,
-  BEHAVIOUR_SCENT             = 0x100,
-  BEHAVIOUR_AGGRO_AMBUSH      = 0x200,
-  BEHAVIOUR_NO_TURN           = 0x400
+	BEHAVIOUR_NONE				= 0x000,
+	BEHAVIOUR_AGGRO_AMBUSH		= 0x200,
+	BEHAVIOUR_NO_TURN           = 0x400
 };
 
 
@@ -153,8 +158,9 @@ public:
   float     m_maxRoamDistance;          // maximum distance mob can be from spawn
 
   uint8     m_Type;                     // mob type
+  uint16	m_Aggro;					// mob aggro type
   uint8     m_Link;                     // link with mobs of it's family
-  uint16    m_Behaviour;                // mob behaviour e.g. BEHAVIOUR_SCENT, BEHAVIOUR_AGGRO_SIGHT
+  uint16    m_Behaviour;                // mob behaviour
   SPAWNTYPE m_SpawnType;                // condition for mob to spawn
   uint32    m_extraVar;                 // extra variable to store combat related variables from scripts
 

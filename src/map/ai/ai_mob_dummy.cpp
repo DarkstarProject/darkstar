@@ -71,7 +71,6 @@ CAIMobDummy::CAIMobDummy(CMobEntity* PMob)
 	m_firstSpell = true;
 	m_LastSpecialTime = 0;
 	m_skillTP = 0;
-	m_ChaseThrottle = 0;
 	m_LastStandbackTime = 0;
 	m_DeaggroTime = 0;
 	m_NeutralTime = 0;
@@ -157,7 +156,7 @@ void CAIMobDummy::ActionRoaming()
 
 	// wait my time
 	if(m_Tick < m_LastWaitTime + m_WaitTime){
-		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_NAME));
+		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_NONE));
 		return;
 	}
 
@@ -605,7 +604,7 @@ void CAIMobDummy::ActionSpawn()
 		m_PMob->m_THLvl = 0;
 		m_PMob->m_ItemStolen = false;
         m_PMob->m_DropItemTime = 1000;
-		m_PMob->status = STATUS_UPDATE;
+		m_PMob->status = m_PMob->allegiance == ALLEGIANCE_MOB ? STATUS_UPDATE : STATUS_NORMAL;
 		m_PMob->animation = ANIMATION_NONE;
 		m_PMob->HideName(false);
         m_PMob->m_extraVar = 0;
@@ -1483,22 +1482,13 @@ void CAIMobDummy::ActionAttack()
                     return;
                 }
             }
-			// mobs will find a new path only when enough ticks pass
-			// this is so the server is not overloaded
-			if(!m_PPathFind->IsFollowingPath() || ++m_ChaseThrottle == 4)
-			{
-				m_ChaseThrottle = 0;
-				m_PPathFind->PathAround(m_PBattleTarget->loc.p, 2.0f, PATHFLAG_WALLHACK | PATHFLAG_RUN);
-			}
 
-			if(m_PPathFind->IsFollowingPath())
-			{
-				// m_PPathFind->CurvePath(0.5f);
-				m_PPathFind->FollowPath();
+			m_PPathFind->PathAround(m_PBattleTarget->loc.p, 2.0f, PATHFLAG_WALLHACK | PATHFLAG_RUN);
+			// m_PPathFind->CurvePath(0.5f);
+			m_PPathFind->FollowPath();
 
-				// recalculate
-			    currentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
-			}
+			// recalculate
+			currentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
 		}
 	}
 
@@ -1592,8 +1582,8 @@ void CAIMobDummy::ActionAttack()
 							//counter check (rate AND your hit rate makes it land, else its just a regular hit)
 							if (WELL512::irand()%100 < (m_PBattleTarget->getMod(MOD_COUNTER) + meritCounter) &&
 								WELL512::irand()%100 < battleutils::GetHitRate(m_PBattleTarget,m_PMob) &&
-								(charutils::hasTrait((CCharEntity*)m_PBattleTarget,TRAIT_COUNTER) ||
-								m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN)))
+								(m_PBattleTarget->objtype != TYPE_PC || (charutils::hasTrait((CCharEntity*)m_PBattleTarget,TRAIT_COUNTER) ||
+								m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN))))
 							{
 								isCountered = true;
 								Action.messageID = 33; //counter msg  32
@@ -1782,13 +1772,6 @@ bool CAIMobDummy::TryDeaggro()
 		return true;
 	}
 
-	// mob should not attack another mob with no master
-	if(m_PBattleTarget != NULL && (m_PBattleTarget->objtype == TYPE_MOB || m_PBattleTarget->objtype == TYPE_PET) && m_PBattleTarget->PMaster == NULL)
-	{
-		return true;
-	}
-
-
 	// target is dead, on a choco or zoned, so wipe them from our enmity list
     if (m_PBattleTarget->isDead() ||
         m_PBattleTarget->animation == ANIMATION_CHOCOBO ||
@@ -1802,7 +1785,7 @@ bool CAIMobDummy::TryDeaggro()
 	bool tryDetectDeaggro = false;
 	bool tryTimeDeaggro = true;
 
-	if(m_PMob->m_Behaviour & BEHAVIOUR_SCENT)
+	if(m_PMob->m_Aggro & AGGRO_SCENT)
 	{
 		// if mob is in water it will instant aggro if target cannot be detected
 		if(m_PPathFind->InWater() || m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DEODORIZE))
@@ -2217,7 +2200,7 @@ void CAIMobDummy::WeatherChange(WEATHER weather, uint8 element)
 {
 
 	// can't detect by scent in this weather
-	if(m_PMob->m_Behaviour & BEHAVIOUR_SCENT)
+	if (m_PMob->m_Aggro & AGGRO_SCENT)
 	{
 		m_PMob->m_disableScent = (weather == WEATHER_RAIN || weather == WEATHER_SQUALL || weather == WEATHER_BLIZZARDS);
 	}

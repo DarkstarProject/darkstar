@@ -536,6 +536,7 @@ public:
 
 	virtual void	ForEachChar(std::function<void(CCharEntity*)> func);
 	virtual void	ForEachCharInstance(CBaseEntity* PEntity, std::function<void(CCharEntity*)> func);
+	virtual void	ForEachMobInstance(CBaseEntity* PEntity, std::function<void(CMobEntity*)> func);
 
 	CZone(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID);
 	virtual ~CZone();

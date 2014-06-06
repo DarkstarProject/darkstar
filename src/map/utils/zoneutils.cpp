@@ -295,7 +295,8 @@ void LoadMOBList()
 			Slash, Pierce, H2H, Impact, \
 			Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
 			mob_pools.familyid, name_prefix, unknown, animationsub, \
-			(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid \
+			(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
+			allegiance, namevis, aggro \
 			FROM mob_groups INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
 			INNER JOIN mob_spawn_points ON mob_groups.groupid = mob_spawn_points.groupid \
 			INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
@@ -315,6 +316,7 @@ void LoadMOBList()
 
 				PMob->name.insert(0, Sql_GetData(SqlHandle, 1));
 				PMob->id = (uint32)Sql_GetUIntData(SqlHandle, 2);
+
 				PMob->targid = (uint16)PMob->id & 0x0FFF;
 
 				PMob->m_SpawnPoint.rotation = (uint8)Sql_GetIntData(SqlHandle, 3);
@@ -422,6 +424,10 @@ void LoadMOBList()
 				PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(Sql_GetIntData(SqlHandle, 56));
 
 				PMob->m_Pool = Sql_GetUIntData(SqlHandle, 59);
+
+				PMob->allegiance = Sql_GetUIntData(SqlHandle, 60);
+				PMob->namevis = Sql_GetUIntData(SqlHandle, 61);
+				PMob->m_Aggro = Sql_GetUIntData(SqlHandle, 62);
 
 				// must be here first to define mobmods
 				mobutils::InitializeMob(PMob, GetZone(ZoneID));

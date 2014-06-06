@@ -89,7 +89,8 @@ CInstance* CInstanceLoader::LoadInstance()
 		Slash, Pierce, H2H, Impact, \
 		Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
 		mob_pools.familyid, name_prefix, unknown, animationsub, \
-		(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid \
+		(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
+		allegiance, namevis, aggro \
 		FROM instance_entities INNER JOIN mob_spawn_points ON instance_entities.id = mob_spawn_points.mobid \
 		LEFT JOIN mob_groups ON mob_groups.groupid = mob_spawn_points.groupid \
 		LEFT JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
@@ -206,6 +207,10 @@ CInstance* CInstanceLoader::LoadInstance()
 			PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(Sql_GetIntData(SqlInstanceHandle, 55));
 
 			PMob->m_Pool = Sql_GetUIntData(SqlInstanceHandle, 58);
+
+			PMob->allegiance = Sql_GetUIntData(SqlHandle, 59);
+			PMob->namevis = Sql_GetUIntData(SqlHandle, 60);
+			PMob->m_Aggro = Sql_GetUIntData(SqlHandle, 61);
 
 			// must be here first to define mobmods
 			mobutils::InitializeMob(PMob, zone);

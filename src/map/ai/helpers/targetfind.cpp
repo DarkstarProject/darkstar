@@ -232,6 +232,11 @@ void CTargetFind::addAllInZone(CBattleEntity* PTarget, bool withPet)
 			addEntity(PChar, withPet);
 		}
 	});
+	zoneutils::GetZone(PTarget->getZone())->ForEachMobInstance(PTarget, [&](CMobEntity* PMob){
+		if (PMob){
+			addEntity(PMob, withPet);
+		}
+	});
 }
 
 void CTargetFind::addAllInAlliance(CBattleEntity* PTarget, bool withPet)
@@ -273,7 +278,7 @@ void CTargetFind::addAllInEnmityList()
         for (EnmityList_t::iterator it = enmityList->begin(); it != enmityList->end(); ++it)
         {
             EnmityObject_t* PEnmityObject = it->second;
-            addEntity(PEnmityObject->PEnmityOwner, false);
+			addEntity(PEnmityObject->PEnmityOwner, false);
         }
     }
 }
@@ -368,6 +373,11 @@ bool CTargetFind::validEntity(CBattleEntity* PTarget)
     {
         return true;
     }
+
+	if (m_PTarget->allegiance != PTarget->allegiance)
+	{
+		return false;
+	}
 
     // shouldn't add if target is charmed by the enemy
     if (PTarget->PMaster != NULL)
@@ -483,13 +493,20 @@ CBattleEntity* CTargetFind::getValidTarget(uint16 actionTargetID, uint8 validTar
     {
         if (!PTarget->isDead())
         {
-            if (PTarget->objtype == TYPE_MOB ||
-                (PTarget->objtype == TYPE_PC && ((CCharEntity*)PTarget)->m_PVPFlag))
-            {
+			if (PTarget->allegiance == (m_PBattleEntity->allegiance % 2 == 0 ? m_PBattleEntity->allegiance + 1 : m_PBattleEntity->allegiance - 1))
+			{
                 return PTarget;
             }
         }
     }
+
+	if (validTargetFlags & TARGET_NPC)
+	{
+		if (PTarget->allegiance == m_PBattleEntity->allegiance)
+		{
+			return PTarget;
+		}
+	}
 
     if (PTarget->objtype == TYPE_PC)
     {

@@ -543,15 +543,33 @@ enum EFFECT
 	EFFECT_HAGAKURE					= 483, // SAM 95
 	EFFECT_ISSEKIGAN                = 484, // NIN 95
 	EFFECT_UNBRIDLED_LEARNING       = 485, // BLU 95
-	EFFECT_COUNTER_BOOST            = 486, //  
+	EFFECT_COUNTER_BOOST            = 486, //
 	EFFECT_ENDRAIN	                = 487, // FENRIR 96
 	EFFECT_ENASPIR	                = 488, // FENRIR 96
 	EFFECT_AFTERGLOW                = 489, // WS AFTEREFFECT
-	EFFECT_BRAZEN_STRENGTH          = 490, //  
-	EFFECT_INNER_STRENGTH			= 491, 
+	EFFECT_BRAZEN_STRENGTH          = 490, //
+	EFFECT_INNER_STRENGTH			= 491,
 
 	EFFECT_MIKAGE                   = 502,
 
+    // EFFECT_PLACEHOLDER              = 640, // Polutils list ends at 639 so 640+ shouldn't collide with anything
+
+    // *Prowess increases not currently retail accurate.
+    // GoV Prowess bonus effects, real effect at ID 474
+    EFFECT_PROWESS_CASKET_RATE      = 777, // (Unimplemented)
+    EFFECT_PROWESS_SKILL_RATE       = 778, // (Unimplemented)
+    EFFECT_PROWESS_CRYSTAL_YEILD    = 779, // (Unimplemented)
+    EFFECT_PROWESS_TH               = 780, // +1 per tier
+    EFFECT_PROWESS_ATTACK_SPEED     = 781, // *flat 4% for now
+    EFFECT_PROWESS_HP_MP            = 782, // Base 3% and another 1% per tier.
+    EFFECT_PROWESS_ACC_RACC         = 783, // *flat 4% for now
+    EFFECT_PROWESS_ATT_RATT         = 784, // *flat 4% for now
+    EFFECT_PROWESS_MACC_MATK        = 785, // *flat 4% for now
+    EFFECT_PROWESS_CURE_POTENCY     = 786, // *flat 4% for now
+    EFFECT_PROWESS_WS_DMG           = 787, // (Unimplemented) 2% per tier.
+    EFFECT_PROWESS_KILLER           = 788, // *flat +4 for now
+    // End GoV Prowess fakery
+    EFFECT_FIELD_SUPPORT_FOOD       = 789, // Used by Fov/GoV food buff.
     EFFECT_MARK_OF_SEED             = 790, // Tracks 30 min timer in ACP mission "Those Who Lurk in Shadows (II)"
     EFFECT_ALL_MISS                 = 791, // All attacks miss (ie - Tiamat while flying)
     EFFECT_SUPER_BUFF               = 792, // Boss buff (ie - Nidhogg "2hour")

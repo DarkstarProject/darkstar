@@ -3,12 +3,16 @@
 -- NPC:  Jormungand
 -----------------------------------
 
+require("scripts/globals/status");
 require("scripts/globals/titles");
+
+-----------------------------------
+-- onMobInitialize Action
+-----------------------------------
 
 function onMobInitialize(mob)
     mob:addMod(MOD_REGEN, 30);
 end;
-
 
 -----------------------------------
 -- onMobSpawn Action
@@ -17,6 +21,9 @@ end;
 function onMobSpawn(mob)
 end;
 
+-----------------------------------
+-- onMobFight Action
+-----------------------------------
 
 function onMobFight(mob,target)
 	

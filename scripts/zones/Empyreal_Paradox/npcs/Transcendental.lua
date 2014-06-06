@@ -34,7 +34,6 @@ function onTrigger(player,npc)
       player:startEvent(0x0002);	  	  
     elseif(EventTriggerBCNM(player,npc))then
 	end
-  return 1;
 end;
 
 -----------------------------------
@@ -45,10 +44,8 @@ function onEventUpdate(player,csid,option)
 --printf("onUpdate CSID: %u",csid);
 --printf("onUpdate RESULT: %u",option);
 	
-	if(EventUpdateBCNM(player,csid,option))then
-		return 1;
-	end
-	end;
+	EventUpdateBCNM(player,csid,option)
+end;
 
 -----------------------------------
 -- onEventFinish Action 

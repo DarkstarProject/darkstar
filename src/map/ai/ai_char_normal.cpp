@@ -88,15 +88,6 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 {
 	m_Tick = tick;
 
-    if(m_PChar->m_EquipSwap == true)
-    {
-        m_PChar->pushPacket(new CCharAppearancePacket(m_PChar));
-        m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
-
-        m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
-        m_PChar->m_EquipSwap = false;
-    }
-
     if((m_ActionType != ACTION_NONE) && jailutils::InPrison(m_PChar))
     {
         Reset();
@@ -134,6 +125,40 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 	}
 }
 
+void CAICharNormal::CheckActionAfterReceive(uint32 tick)
+{
+	if (m_PChar->m_EquipSwap == true)
+	{
+		m_PChar->pushPacket(new CCharAppearancePacket(m_PChar));
+		m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
+
+		m_PChar->pushPacket(new CCharHealthPacket(m_PChar));
+		m_PChar->m_EquipSwap = false;
+	}
+
+	if ((m_ActionType != ACTION_NONE) && jailutils::InPrison(m_PChar))
+	{
+		Reset();
+		m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_CANT_BE_USED_IN_AREA));
+	}
+
+	switch (m_ActionType)
+	{
+	case ACTION_NONE:			  									break;
+	case ACTION_MAGIC_START:			ActionMagicStart();			break;
+	case ACTION_ENGAGE:					ActionEngage();				break;
+	case ACTION_DISENGAGE:				ActionDisengage();	 		break;
+	case ACTION_RANGED_START:			ActionRangedStart();		break;
+	case ACTION_ITEM_START:				ActionItemStart();			break;
+	case ACTION_CHANGE_TARGET:	        ActionChangeBattleTarget(); break;
+	case ACTION_WEAPONSKILL_START:		ActionWeaponSkillStart();	break;
+	case ACTION_JOBABILITY_START:		ActionJobAbilityStart();	break;
+	case ACTION_RAISE_MENU_SELECTION:	ActionRaiseMenuSelection(); break;
+
+	default: break;
+	}
+}
+
 void CAICharNormal::WeatherChange(WEATHER weather, uint8 element)
 {
 
@@ -162,8 +187,7 @@ bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTar
 	{
         if (!PTarget->isDead())
         {
-		    if (PTarget->objtype == TYPE_MOB ||
-               (PTarget->objtype == TYPE_PC && ((CCharEntity*)PTarget)->m_PVPFlag))
+		    if (PTarget->allegiance == (m_PChar->allegiance % 2 == 0 ? m_PChar->allegiance + 1 : m_PChar->allegiance - 1))
 		    {
 			    return true;
 		    }
@@ -389,7 +413,8 @@ void CAICharNormal::ActionFall()
     m_PChar->UContainer->Clean();
 
 	m_PChar->animation = ANIMATION_DEATH;
-    m_PChar->m_DeathTimestamp = 0; //so char update packet will send the full homepoint timer 
+    m_PChar->m_DeathCounter = 0;
+    m_PChar->m_DeathTimestamp = (uint32)time(NULL);
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
     m_PChar->pushPacket(new CRaiseTractorMenuPacket(m_PChar,TYPE_HOMEPOINT));
 
@@ -400,10 +425,6 @@ void CAICharNormal::ActionFall()
 
 	if (!m_PChar->getMijinGakure() && !m_PChar->m_PVPFlag)
 		charutils::DelExperiencePoints(m_PChar,map_config.exp_retain);
-
-
-	charutils::SaveDeathTime(m_PChar);
-
 }
 
 /************************************************************************
@@ -1529,7 +1550,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 
     	if(m_PJobAbility->getID() == ABILITY_REWARD){
     		CItem* PItem = m_PChar->getEquip(SLOT_HEAD);
-    		if(PItem->getID() == 15157 || PItem->getID() == 16104){
+    		if(PItem && (PItem->getID() == 15157 || PItem->getID() == 16104)){
     			//TODO: Transform this into an item MOD_REWARD_RECAST perhaps ?
     			//The Bison Warbonnet & Khimaira Bonnet reduces recast time by 10 seconds.
     			RecastTime -= (10 *1000);   // remove 10 seconds
@@ -3140,6 +3161,7 @@ void CAICharNormal::ActionRaiseMenuSelection()
 	m_PChar->setMijinGakure(false);
 
 	m_ActionType = ACTION_NONE;
+    m_PChar->m_hasRaise = 0;
 }
 
 void CAICharNormal::TransitionBack(bool skipWait)

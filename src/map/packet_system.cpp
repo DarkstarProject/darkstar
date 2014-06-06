@@ -263,9 +263,11 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 		const int8* deathTsQuery = "SELECT death FROM char_stats where charid = %u;";
 		int32 ret = Sql_Query(SqlHandle,deathTsQuery, PChar->id);
-		if (Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
-			PChar->m_DeathTimestamp = (uint32)Sql_GetUIntData(SqlHandle,0);
-		}
+        if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            PChar->m_DeathCounter = (uint32)Sql_GetUIntData(SqlHandle, 0);
+            PChar->m_DeathTimestamp = (uint32)time(NULL);
+        }
         
         if (firstLogin)
             PChar->PMeritPoints->SaveMeritPoints(PChar->id, true);
@@ -662,7 +664,6 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 					{
 						PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
 					}
-					PChar->PBattleAI->CheckCurrentAction(gettick());
 				}
 			}
 		}
@@ -674,13 +675,11 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 				return;
 			PChar->PBattleAI->SetCurrentSpell(SpellID);
 			PChar->PBattleAI->SetCurrentAction(ACTION_MAGIC_START, TargID);
-			PChar->PBattleAI->CheckCurrentAction(gettick());
 		}
 		break;
 		case 0x04: // disengage
 		{
 			PChar->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
-			PChar->PBattleAI->CheckCurrentAction(gettick());
 		}
 		break;
 		case 0x05: // call for help
@@ -708,7 +707,6 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 				return;
 			PChar->PBattleAI->SetCurrentWeaponSkill(WSkillID);
 			PChar->PBattleAI->SetCurrentAction(ACTION_WEAPONSKILL_START, TargID);
-			PChar->PBattleAI->CheckCurrentAction(gettick());
 		}
 		break;
 		case 0x09: // jobability
@@ -718,7 +716,6 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 				return;
 			PChar->PBattleAI->SetCurrentJobAbility(JobAbilityID - 16);
 			PChar->PBattleAI->SetCurrentAction(ACTION_JOBABILITY_START, TargID);
-			PChar->PBattleAI->CheckCurrentAction(gettick());
 		}
 		break;
 		case 0x0B: // homepoint
@@ -755,9 +752,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			if(RBUFB(data,(0x0C)) == 0) //ACCEPTED RAISE
             {
 				PChar->PBattleAI->SetCurrentAction(ACTION_RAISE_MENU_SELECTION);
-				PChar->PBattleAI->CheckCurrentAction(gettick());
 			}
-            PChar->m_hasRaise = 0;
 	    }
         break;
 		case 0x0E: // рыбалка
@@ -768,13 +763,11 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		case 0x0F: // смена цели во время боя
 		{
 			PChar->PBattleAI->SetCurrentAction(ACTION_CHANGE_TARGET, TargID);
-			PChar->PBattleAI->CheckCurrentAction(gettick());
 		}
 		break;
 		case 0x10: // rangedattack
 		{
 			PChar->PBattleAI->SetCurrentAction(ACTION_RANGED_START, TargID);
-			PChar->PBattleAI->CheckCurrentAction(gettick());
 		}
 		break;
 		case 0x11: // chocobo digging
@@ -807,7 +800,6 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			if(RBUFB(data,(0x0C)) == 0) //ACCEPTED TRACTOR
 			{
 				//PChar->PBattleAI->SetCurrentAction(ACTION_RAISE_MENU_SELECTION);
-				//PChar->PBattleAI->CheckCurrentAction(gettick());
 				PChar->loc.p  = PChar->m_StartActionPos;
 				PChar->loc.destination = PChar->getZone();
 				PChar->status = STATUS_DISAPPEAR;
@@ -2415,7 +2407,13 @@ void SmallPacket0x050(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 	uint8 slotID      = RBUFB(data,(0x04));		// inventory slot
 	uint8 equipSlotID = RBUFB(data,(0x05));		// charequip slot
+    uint8 containerID = RBUFB(data,(0x06));     // container id
 
+    // For now disable wardrobe equipment attempts..
+    if (containerID != 0)
+    {
+        return;
+    }
 
 	charutils::EquipItem(PChar, slotID, equipSlotID);
     charutils::SaveCharEquip(PChar);
@@ -5040,6 +5038,24 @@ void SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 	CItem* PBazaarItem = PBazaar->GetItem(SlotID);
 
+    // Obtain the players gil..
+    CItem* PCharGil = PBuyerInventory->GetItem(0);
+    if (PCharGil == NULL || !PCharGil->isType(ITEM_CURRENCY))
+    {
+        // Player has no gil..
+        PChar->pushPacket(new CBazaarPurchasePacket(PTarget, false));
+        return;
+    }
+
+    // Validate this player can afford said item..
+    if (PCharGil->getQuantity() < PBazaarItem->getCharPrice())
+    {
+        // Exploit attempt..
+        ShowError(CL_RED"Bazaar purchase exploit attempt by: %s\n" CL_RESET, PChar->GetName());
+        PChar->pushPacket(new CBazaarPurchasePacket(PTarget, false));
+        return;
+    }
+
     if ((PBazaarItem != NULL) && (PBazaarItem->getCharPrice() != 0) && (PBazaarItem->getQuantity() >= Quantity))
     {
         CItem* PItem = itemutils::GetItem(PBazaarItem);
@@ -5200,6 +5216,17 @@ void SmallPacket0x10F(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 /************************************************************************
 *																		*
+*  Lock Style Request                                                   *
+*																		*
+************************************************************************/
+
+void SmallPacket0x111(map_session_data_t* session, CCharEntity* PChar, int8* data)
+{
+    return;
+}
+
+/************************************************************************
+*																		*
 *  Инициализация массива процедур                   					*
 *																		*
 ************************************************************************/
@@ -5304,6 +5331,7 @@ void PacketParserInitialize()
     PacketSize[0x10A] = 0x06; PacketParser[0x10A] = &SmallPacket0x10A;
     PacketSize[0x10B] = 0x00; PacketParser[0x10B] = &SmallPacket0x10B;
     PacketSize[0x10F] = 0x02; PacketParser[0x10F] = &SmallPacket0x10F;
+    PacketSize[0x111] = 0x00; PacketParser[0x111] = &SmallPacket0x111; // Lock Style Request
 }
 
 /************************************************************************

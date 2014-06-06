@@ -144,7 +144,8 @@ namespace luautils
 	int32 OnBcnmEnter(CCharEntity* PChar, CBattlefield* PInstance);					//triggers when enter a bcnm
 	int32 OnBcnmLeave(CCharEntity* PChar, CBattlefield* PInstance, uint8 LeaveCode);	//triggers when leaving a bcnm
 																					//Code 1=via Circle 2=warp/dc 3=win 4=lose
-	int32 OnBcnmRegister(CCharEntity* PChar, CBattlefield* PInstance);					//triggers when successfully registered a bcnm
+	int32 OnBcnmRegister(CCharEntity* PChar, CBattlefield* PBattlefield);					//triggers when successfully registered a bcnm
+	int32 OnBcnmDestroy(CBattlefield* PBattlefield);							// triggers when BCNM is destroyed
 
 	int32 OnMobWeaponSkill(CBaseEntity* PChar, CBaseEntity* PMob, CMobSkill* PMobSkill);							// triggers when mob weapon skill is used
 	int32 OnMobSkillCheck(CBaseEntity* PChar, CBaseEntity* PMob, CMobSkill* PMobSkill);								// triggers before mob weapon skill is used, returns 0 if the move is valid

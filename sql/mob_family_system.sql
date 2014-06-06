@@ -499,6 +499,10 @@ INSERT INTO `mob_family_system` VALUES (473,'Lady_Lilith',13,'Humanoid',0,40,90,
 INSERT INTO `mob_family_system` VALUES (474,'Lilith_Ascendant',18,'Unclassified',1,40,120,140,1,1,1,1,1,1,1,3,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,8);
 INSERT INTO `mob_family_system` VALUES (475,'Shinryu',10,'Dragon',4,50,115,90,1,2,1,3,6,3,3,3,3,3,3,1,1,1,1,0.5,1,0.875,1,1,1,1.25,0.375,7);
 
+INSERT INTO `mob_family_system` VALUES (476,'Prishe',13,'Humanoid',0,40,100,90,2,5,3,6,6,2,4,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
+INSERT INTO `mob_family_system` VALUES (477,'Selh\'teus',13,'Humanoid',0,40,90,110,3,3,2,3,2,2,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
+INSERT INTO `mob_family_system` VALUES (478,'God',18,'Unclassified',3,40,120,140,1,1,1,1,1,1,1,3,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,0);
+
 
 /*!40000 ALTER TABLE `mob_family_system` ENABLE KEYS */;
 UNLOCK TABLES;

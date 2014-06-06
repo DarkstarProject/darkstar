@@ -96,12 +96,12 @@ public:
     void findWithinCone(CBattleEntity* PTarget, float distance, float angle, uint8 flags = FINDFLAGS_NONE);
 
     // add all targets in contexts
-    void addAllInZone(CBattleEntity* PTarget, bool withPet);
-    void addAllInAlliance(CBattleEntity* PTarget, bool withPet);
-    void addAllInParty(CBattleEntity* PTarget, bool withPet);
-    void addAllInMobList(CBattleEntity* PTarget, bool withPet);
+	void addAllInZone(CBattleEntity* PTarget, bool withPet);
+	void addAllInAlliance(CBattleEntity* PTarget, bool withPet);
+	void addAllInParty(CBattleEntity* PTarget, bool withPet);
+	void addAllInMobList(CBattleEntity* PTarget, bool withPet);
     void addAllInEnmityList();
-    void addEntity(CBattleEntity* PTarget, bool withPet);
+	void addEntity(CBattleEntity* PTarget, bool withPet);
 
     // helpers
     bool isMobOwner(CBattleEntity* PTarget);

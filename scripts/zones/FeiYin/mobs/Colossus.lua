@@ -18,6 +18,8 @@ end;
 
 function onMobDeath(mob, killer)
 	
+	checkRegime(killer,mob,715,2);
+	
 	-- Curses, Foiled A-Golem!?
 	if(killer:hasKeyItem(SHANTOTTOS_NEW_SPELL)) then
 		killer:delKeyItem(SHANTOTTOS_NEW_SPELL);

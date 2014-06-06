@@ -12,6 +12,8 @@ require("scripts/zones/Kuftal_Tunnel/MobIDs");
 	
 function onMobDeath(mob,killer)	
 
+	checkRegime(killer,mob,740,1);
+
     local mob = mob:getID();
     if (Yowie_PH[mob] ~= nil) then
 

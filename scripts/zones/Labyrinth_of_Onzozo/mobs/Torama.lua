@@ -11,7 +11,9 @@ require("/scripts/zones/Labyrinth_of_Onzozo/MobIDs");
 -----------------------------------	
 	
 function onMobDeath(mob,killer)	
-  
+ 
+	checkRegime(killer,mob,775,1);
+ 
     local mob = mob:getID();
     if (Ose_PH[mob] ~= nil) then
 

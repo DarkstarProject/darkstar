@@ -632,6 +632,7 @@ INSERT INTO `item_usable` VALUES (4701,'scroll_of_cura',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4702,'scroll_of_sacrifice',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4703,'scroll_of_esuna',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4704,'scroll_of_auspice',1,1,11,5,0,0,0,0);
+INSERT INTO `item_usable` VALUES (4705,'scroll_of_temper',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4706,'scroll_of_enlight',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4707,'scroll_of_endark',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4708,'scroll_of_enfire',1,1,11,5,0,0,0,0);

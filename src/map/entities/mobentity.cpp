@@ -40,6 +40,8 @@ CMobEntity::CMobEntity()
     MPscale = 1.0;
     m_unknown = 0;
 
+	allegiance = ALLEGIANCE_MOB;
+
     // default to normal roaming
     m_roamFlags = ROAMFLAG_NONE;
     m_specialFlags = SPECIALFLAG_NONE;
@@ -82,6 +84,7 @@ CMobEntity::CMobEntity()
 
     m_giveExp = false;
     m_neutral = false;
+	m_Aggro = AGGRO_NONE;
     m_Link = 0;
 
 	m_battlefieldID = 0;
@@ -226,7 +229,7 @@ bool CMobEntity::CanLink(position_t* pos, int16 superLink)
     }
 
     // link only if I see him
-    if((m_Behaviour & BEHAVIOUR_AGGRO_SIGHT) || (m_Behaviour & BEHAVIOUR_AGGRO_TRUESIGHT)){
+	if ((m_Aggro & AGGRO_DETECT_SIGHT) || (m_Aggro & AGGRO_DETECT_TRUESIGHT)){
 
        if(!isFaceing(loc.p, *pos, 40)) return false;
     }
@@ -299,7 +302,7 @@ bool CMobEntity::CanBeNeutral()
 
 bool CMobEntity::CanDetectTarget(CBattleEntity* PTarget, bool forceSight)
 {
-    if(PTarget->isDead() || m_Behaviour == BEHAVIOUR_NONE || PTarget->animation == ANIMATION_CHOCOBO) return false;
+	if (PTarget->isDead() || m_Aggro == AGGRO_NONE || PTarget->animation == ANIMATION_CHOCOBO) return false;
 
     float verticalDistance = abs(loc.p.y - PTarget->loc.p.y);
 
@@ -310,29 +313,29 @@ bool CMobEntity::CanDetectTarget(CBattleEntity* PTarget, bool forceSight)
 
     float currentDistance = distance(PTarget->loc.p, loc.p) + PTarget->getMod(MOD_STEALTH);
 
-    bool detectSight = (m_Behaviour & BEHAVIOUR_AGGRO_SIGHT) || forceSight;
+    bool detectSight = (m_Aggro & AGGRO_DETECT_SIGHT) || forceSight;
 
     if (detectSight && !PTarget->StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_INVISIBLE) && currentDistance < getMobMod(MOBMOD_SIGHT_RANGE) && isFaceing(loc.p, PTarget->loc.p, 40))
     {
         return true;
     }
 
-    if ((m_Behaviour & BEHAVIOUR_AGGRO_TRUESIGHT) && currentDistance < getMobMod(MOBMOD_SIGHT_RANGE) && isFaceing(loc.p, PTarget->loc.p, 40))
+	if ((m_Aggro & AGGRO_DETECT_TRUESIGHT) && currentDistance < getMobMod(MOBMOD_SIGHT_RANGE) && isFaceing(loc.p, PTarget->loc.p, 40))
     {
         return true;
     }
 
-    if ((m_Behaviour & BEHAVIOUR_AGGRO_TRUEHEARING) && currentDistance < getMobMod(MOBMOD_SOUND_RANGE))
+	if ((m_Aggro & AGGRO_DETECT_TRUEHEARING) && currentDistance < getMobMod(MOBMOD_SOUND_RANGE))
     {
         return true;
     }
 
-    if ((m_Behaviour & BEHAVIOUR_AGGRO_AMBUSH) && currentDistance < 3 && !PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
+	if ((m_Behaviour & BEHAVIOUR_AGGRO_AMBUSH) && currentDistance < 3 && !PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
     {
         return true;
     }
 
-    if ((m_Behaviour & BEHAVIOUR_AGGRO_HEARING) && currentDistance < getMobMod(MOBMOD_SOUND_RANGE) && !PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
+	if ((m_Aggro & AGGRO_DETECT_HEARING) && currentDistance < getMobMod(MOBMOD_SOUND_RANGE) && !PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
     {
         return true;
     }
@@ -343,22 +346,22 @@ bool CMobEntity::CanDetectTarget(CBattleEntity* PTarget, bool forceSight)
         return false;
     }
 
-    if ((m_Behaviour & BEHAVIOUR_AGGRO_LOWHP) && PTarget->GetHPP() < 75)
+	if ((m_Aggro & AGGRO_DETECT_LOWHP) && PTarget->GetHPP() < 75)
     {
         return true;
     }
 
-    if ((m_Behaviour & BEHAVIOUR_AGGRO_MAGIC) && PTarget->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING && PTarget->PBattleAI->GetCurrentSpell()->hasMPCost())
+	if ((m_Aggro & AGGRO_DETECT_MAGIC) && PTarget->PBattleAI->GetCurrentAction() == ACTION_MAGIC_CASTING && PTarget->PBattleAI->GetCurrentSpell()->hasMPCost())
     {
         return true;
     }
 
-    if ((m_Behaviour & BEHAVIOUR_AGGRO_WEAPONSKILL) && PTarget->PBattleAI->GetCurrentAction() == ACTION_WEAPONSKILL_FINISH)
+	if ((m_Aggro & AGGRO_DETECT_WEAPONSKILL) && PTarget->PBattleAI->GetCurrentAction() == ACTION_WEAPONSKILL_FINISH)
     {
         return true;
     }
 
-    if ((m_Behaviour & BEHAVIOUR_AGGRO_JOBABILITY) && PTarget->PBattleAI->GetCurrentAction() == ACTION_JOBABILITY_FINISH)
+	if ((m_Aggro & AGGRO_DETECT_JOBABILITY) && PTarget->PBattleAI->GetCurrentAction() == ACTION_JOBABILITY_FINISH)
     {
         return true;
     }
