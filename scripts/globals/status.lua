@@ -1517,6 +1517,16 @@ TYPE_MOB	= 0x04
 TYPE_PET	= 0x08
 TYPE_SHIP   = 0x10
 
+----------------------------------
+-- Allegiance Definitions
+----------------------------------
+
+ALLEGIANCE_MOB			= 0
+ALLEGIANCE_PLAYER		= 1
+ALLEGIANCE_SAN_DORIA	= 2
+ALLEGIANCE_BASTOK		= 3
+ALLEGIANCE_WINDURST		= 4
+
 -----------------------------------
 -- Inventory enum
 -----------------------------------

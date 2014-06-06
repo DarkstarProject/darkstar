@@ -52,7 +52,7 @@ function onSpellCast(caster,target,spell)
 		basepower = 0;
 	end
 
-	if(target:getObjType() == TYPE_PC) then
+	if(target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == TYPE_PC or target:getObjType() == TYPE_MOB)) then
 		basecure = getBaseCure(power,divisor,constant,basepower);
 		final = getCureFinal(caster,spell,basecure,minCure,false);
 		if(caster:hasStatusEffect(EFFECT_AFFLATUS_SOLACE) and target:hasStatusEffect(EFFECT_STONESKIN) == false) then

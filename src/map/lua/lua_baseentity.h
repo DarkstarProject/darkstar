@@ -563,6 +563,7 @@ public:
 	int32 getEnmityList(lua_State* L);
 	int32 spawn(lua_State* L);
 	int32 getCurrentAction(lua_State* L);
+	int32 getAllegiance(lua_State* L);
 };
 
 #endif

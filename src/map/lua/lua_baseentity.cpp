@@ -9060,6 +9060,15 @@ inline int32 CLuaBaseEntity::getCurrentAction(lua_State* L)
 	return 1;
 }
 
+inline int32 CLuaBaseEntity::getAllegiance(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+	lua_pushinteger(L, m_PBaseEntity->allegiance);
+
+	return 1;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -9468,5 +9477,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEnmityList),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,spawn),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCurrentAction),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAllegiance),
 	{NULL,NULL}
 };

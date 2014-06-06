@@ -682,7 +682,7 @@ void CMagicState::CharOnTarget(apAction_t* action, int16 ce, int16 ve)
 
     CBattleEntity* PTarget = action->ActionTarget;
 
-    if (PTarget->objtype == TYPE_MOB)
+    if (PTarget->objtype == TYPE_MOB && PTarget->allegiance != m_PEntity->allegiance)
     {
         if (PTarget->isDead())
         {
