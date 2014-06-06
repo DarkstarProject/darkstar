@@ -51,6 +51,7 @@
 #include "../packets/char_update.h"
 #include "../packets/chat_message.h"
 #include "../packets/send_box.h"
+#include "../packets/entity_animation.h"
 #include "../packets/entity_update.h"
 #include "../packets/entity_visual.h"
 #include "../packets/event.h"
@@ -8786,22 +8787,36 @@ inline int32 CLuaBaseEntity::entityVisualPacket(lua_State* L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 	int32 n = lua_gettop(L);
-	DSP_DEBUG_BREAK_IF(n < 4 || n > 5);
+	DSP_DEBUG_BREAK_IF(n < 1 || n > 2);
 
-	uint8 param1 = lua_tointeger(L, -4);
-	uint8 param2 = lua_tointeger(L, -3);
-	uint8 param3 = lua_tointeger(L, -2);
-	uint8 param4 = lua_tointeger(L, -1);
+	const char* command = lua_tostring(L, -1);
 
 	CBaseEntity* PNpc = NULL;
-	if (n == 5 && lua_isuserdata(L, 2))
+	if (n == 2 && lua_isuserdata(L, 1))
 	{
 		CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 1);
 		PNpc = PLuaBaseEntity->m_PBaseEntity;
 	}
-	((CCharEntity*)m_PBaseEntity)->pushPacket(new CEntityVisualPacket(PNpc, param1, param2, param3, param4));
+	((CCharEntity*)m_PBaseEntity)->pushPacket(new CEntityVisualPacket(PNpc, command));
 	return 0;
 }
+
+inline int32 CLuaBaseEntity::entityAnimationPacket(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isstring(L, 2));
+
+	CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 1);
+	CBaseEntity* PEntity = PLuaBaseEntity->m_PBaseEntity;
+
+	const char* command = lua_tostring(L, 2);
+
+	((CCharEntity*)m_PBaseEntity)->pushPacket(new CEntityAnimationPacket(PEntity, command));
+	return 0;
+}
+
 
 /************************************************************************
 *																		*
@@ -9443,6 +9458,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,physicalDmgTaken),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,rangedDmgTaken),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,entityVisualPacket),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,entityAnimationPacket),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getParty),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageText),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,instanceEntry),

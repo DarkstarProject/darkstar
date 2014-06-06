@@ -36,8 +36,8 @@ end;
 -----------------------------------		
 
 function afterZoneIn(player)
-    player:entityVisualPacket(0x31,0x70,0x62,0x31);
-    player:entityVisualPacket(0x32,0x70,0x62,0x31);
+    player:entityVisualPacket("1pb1");
+    player:entityVisualPacket("2pb1");
 end;	
 
 -----------------------------------		
