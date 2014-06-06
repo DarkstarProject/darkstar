@@ -34,6 +34,7 @@ CBaseEntity::CBaseEntity()
 	untargetable = false;
 
     PBattleAI = NULL;
+	PBCNM = NULL;
 	PInstance = NULL;
 
 	speed    = 40 + map_config.speed_mod;

@@ -21,41 +21,27 @@
 ===========================================================================
 */
 
-#ifndef _LUABATTLEFIELD_H
-#define _LUABATTLEFIELD_H
+#ifndef _CENTITYANIMATIONPACKET_H
+#define _CENTITYANIMATIONPACKET_H
 
 #include "../../common/cbasetypes.h"
-#include "../../common/lua/lunar.h"
 
-#include "../battlefield.h"
+#include "basic.h"
 
+/************************************************************************
+*																		*
+*  	Animates an entity in some fashion.  The parameter is a 4 byte      *
+*   ASCII word that the client will parse (and change to a proper anim) *
+*																		*
+************************************************************************/
 
-class CLuaBattlefield
+class CBaseEntity;
+
+class CEntityAnimationPacket : public CBasicPacket
 {
-	CBattlefield *m_PLuaBattlefield;
 public:
-
-	static const int8 className[];
-	static Lunar<CLuaBattlefield>::Register_t methods[];
-
-	CLuaBattlefield(lua_State*);
-	CLuaBattlefield(CBattlefield*);
-
-	CBattlefield* GetBattlefield() const
-	{
-		return m_PLuaBattlefield;
-	}
-	int32 getBattlefieldNumber(lua_State*);
-	int32 getBcnmID(lua_State*);
-    int32 getTimeLimit(lua_State*);
-	int32 getTimeInside(lua_State*);
-	int32 getFastestTime(lua_State*);
-	int32 getFastestPlayer(lua_State*);
-	int32 setAsFastest(lua_State*);
-	int32 setEntrance(lua_State*);
-	int32 getEntrance(lua_State*);
-	int32 insertAlly(lua_State*);
-	int32 getAllies(lua_State*);
+	static const char* FADE_OUT;
+	CEntityAnimationPacket(CBaseEntity* PEntity, const char type[4]);
 };
 
 #endif

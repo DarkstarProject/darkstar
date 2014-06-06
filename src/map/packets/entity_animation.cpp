@@ -21,41 +21,24 @@
 ===========================================================================
 */
 
-#ifndef _LUABATTLEFIELD_H
-#define _LUABATTLEFIELD_H
+#include "../../common/socket.h"
 
-#include "../../common/cbasetypes.h"
-#include "../../common/lua/lunar.h"
+#include "entity_animation.h"
 
-#include "../battlefield.h"
+#include "../entities/baseentity.h"
 
+const char* CEntityAnimationPacket::FADE_OUT = "kesu";
 
-class CLuaBattlefield
+CEntityAnimationPacket::CEntityAnimationPacket(CBaseEntity * PEntity, const char type[4])
 {
-	CBattlefield *m_PLuaBattlefield;
-public:
+	this->type = 0x38;
+	this->size = 0x0A;
 
-	static const int8 className[];
-	static Lunar<CLuaBattlefield>::Register_t methods[];
+	WBUFL(data,(0x04)-4) = PEntity->id;
+	WBUFL(data,(0x08)-4) = PEntity->id;
+	
+	memcpy(data + ((0x0C)-4), type, 4);
 
-	CLuaBattlefield(lua_State*);
-	CLuaBattlefield(CBattlefield*);
-
-	CBattlefield* GetBattlefield() const
-	{
-		return m_PLuaBattlefield;
-	}
-	int32 getBattlefieldNumber(lua_State*);
-	int32 getBcnmID(lua_State*);
-    int32 getTimeLimit(lua_State*);
-	int32 getTimeInside(lua_State*);
-	int32 getFastestTime(lua_State*);
-	int32 getFastestPlayer(lua_State*);
-	int32 setAsFastest(lua_State*);
-	int32 setEntrance(lua_State*);
-	int32 getEntrance(lua_State*);
-	int32 insertAlly(lua_State*);
-	int32 getAllies(lua_State*);
-};
-
-#endif
+	WBUFW(data,(0x10)-4) = PEntity->targid;
+	WBUFW(data,(0x12)-4) = PEntity->targid;
+}

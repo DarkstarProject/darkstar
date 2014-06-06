@@ -6426,7 +6426,7 @@ inline int32 CLuaBaseEntity::isInBcnm(lua_State *L){
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-	if (PChar->m_BCNM){
+	if (PChar->PBCNM){
 		lua_pushinteger( L,1);
 		return 1;
 	}
@@ -8683,17 +8683,14 @@ inline int32 CLuaBaseEntity::setUnkillable(lua_State* L)
 inline int32 CLuaBaseEntity::getBattlefield(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-	CBattlefield* bcnm = m_PBaseEntity->loc.zone->m_BattlefieldHandler->getBattlefield((CCharEntity*)m_PBaseEntity);
-
-	if (bcnm)
+	if (m_PBaseEntity->PBCNM)
     {
         lua_getglobal(L, CLuaBattlefield::className);
         lua_pushstring(L, "new");
         lua_gettable(L, -2);
         lua_insert(L, -2);
-		lua_pushlightuserdata(L, (void*)bcnm);
+		lua_pushlightuserdata(L, (void*)m_PBaseEntity->PBCNM);
         lua_pcall(L, 2, 1, 0);
         return 1;
     }
@@ -8702,7 +8699,6 @@ inline int32 CLuaBaseEntity::getBattlefield(lua_State* L)
         lua_pushnil(L);
     }
     return 1;
-
 }
 
 inline int32 CLuaBaseEntity::SendRevision(lua_State* L)
@@ -9037,6 +9033,16 @@ inline int32 CLuaBaseEntity::spawn(lua_State* L)
 		}
 	}
 	return 0;
+}
+
+inline int32 CLuaBaseEntity::getCurrentAction(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+	lua_pushinteger(L, ((CBattleEntity*)m_PBaseEntity)->PBattleAI->GetCurrentAction());
+
+	return 1;
 }
 
 //==========================================================//
@@ -9445,5 +9451,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,createInstance),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEnmityList),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,spawn),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCurrentAction),
 	{NULL,NULL}
 };

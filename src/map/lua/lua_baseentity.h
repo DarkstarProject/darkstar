@@ -561,6 +561,7 @@ public:
 	int32 createInstance(lua_State* L);
 	int32 getEnmityList(lua_State* L);
 	int32 spawn(lua_State* L);
+	int32 getCurrentAction(lua_State* L);
 };
 
 #endif

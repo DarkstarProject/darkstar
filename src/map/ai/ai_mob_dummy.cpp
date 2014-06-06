@@ -47,7 +47,7 @@
 
 #include "../packets/action.h"
 #include "../packets/entity_update.h"
-#include "../packets/fade_out.h"
+#include "../packets/entity_animation.h"
 #include "../packets/message_basic.h"
 
 
@@ -504,6 +504,7 @@ void CAIMobDummy::ActionDropItems()
 			}
 
 			PChar->setWeaponSkillKill(false);
+			m_PMob->StatusEffectContainer->KillAllStatusEffect();
 
 			// NOTE: this is called for all alliance / party members!
 			luautils::OnMobDeath(m_PMob, PChar);
@@ -521,16 +522,11 @@ void CAIMobDummy::ActionDropItems()
 
 void CAIMobDummy::ActionDeath()
 {
-	if (m_Tick > m_LastActionTime + 12000)
+	if (m_Tick > m_LastActionTime + 12000 && !(m_PMob->m_Behaviour & BEHAVIOUR_NO_DESPAWN))
 	{
-        m_PMob->StatusEffectContainer->KillAllStatusEffect();
-
 		m_ActionType = ACTION_FADE_OUT;
-		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CFadeOutPacket(m_PMob));
-				
-		//if (m_PMob->animationsub == 2) m_PMob->animationsub = 1;
+		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityAnimationPacket(m_PMob, CEntityAnimationPacket::FADE_OUT));
 	}
-
 }
 
 /************************************************************************

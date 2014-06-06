@@ -319,7 +319,7 @@
     <ClInclude Include="..\..\src\map\packets\event.h" />
     <ClInclude Include="..\..\src\map\packets\event_string.h" />
     <ClInclude Include="..\..\src\map\packets\event_update.h" />
-    <ClInclude Include="..\..\src\map\packets\fade_out.h" />
+    <ClInclude Include="..\..\src\map\packets\entity_animation.h" />
     <ClInclude Include="..\..\src\map\packets\fishing.h" />
     <ClInclude Include="..\..\src\map\packets\guild_menu.h" />
     <ClInclude Include="..\..\src\map\packets\guild_menu_buy.h" />
@@ -547,7 +547,7 @@
     <ClCompile Include="..\..\src\map\packets\event.cpp" />
     <ClCompile Include="..\..\src\map\packets\event_string.cpp" />
     <ClCompile Include="..\..\src\map\packets\event_update.cpp" />
-    <ClCompile Include="..\..\src\map\packets\fade_out.cpp" />
+    <ClCompile Include="..\..\src\map\packets\entity_animation.cpp" />
     <ClCompile Include="..\..\src\map\packets\fishing.cpp" />
     <ClCompile Include="..\..\src\map\packets\guild_menu.cpp" />
     <ClCompile Include="..\..\src\map\packets\guild_menu_buy.cpp" />

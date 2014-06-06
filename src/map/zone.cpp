@@ -54,7 +54,6 @@
 #include "packets/char_sync.h"
 #include "packets/char_update.h"
 #include "packets/entity_update.h"
-#include "packets/fade_out.h"
 #include "packets/inventory_assign.h"
 #include "packets/inventory_finish.h"
 #include "packets/inventory_item.h"

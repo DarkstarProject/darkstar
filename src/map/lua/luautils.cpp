@@ -848,7 +848,7 @@ int32 GetMobAction(lua_State* L)
 
     uint32 mobid = (uint32)lua_tointeger(L,-1);
 
-    CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
+    CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB | TYPE_PET);
     if (PMob != NULL)
     {
         int32 CurrentAction = (int32)PMob->PBattleAI->GetCurrentAction();
