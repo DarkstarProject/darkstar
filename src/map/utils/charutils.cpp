@@ -468,8 +468,6 @@ void LoadChar(CCharEntity* PChar)
 		PChar->getStorage(LOC_MOGSATCHEL)->AddBuff((uint8)Sql_GetIntData(SqlHandle,3));
 		PChar->getStorage(LOC_MOGSACK)->AddBuff((uint8)Sql_GetIntData(SqlHandle,4));
 		PChar->getStorage(LOC_MOGCASE)->AddBuff((uint8)Sql_GetIntData(SqlHandle,5));
-        
-        PChar->getStorage(LOC_WARDROBE)->AddBuff(80); // Always 80..
 	}
 
 	fmtQuery = "SELECT face, race, size, head, body, hands, legs, feet, main, sub, ranged \
@@ -891,23 +889,20 @@ void LoadInventory(CCharEntity* PChar)
     {
         CItemContainer* PItemContainer = PChar->getStorage(i);
 
-        if (PItemContainer != NULL)
+        // now find each item in the container
+        for (uint8 y = 0; y < MAX_CONTAINER_SIZE; ++y)
         {
-            // now find each item in the container
-            for (uint8 y = 0; y < MAX_CONTAINER_SIZE; ++y)
-            {
-                CItem* PItem = (CItem*)PItemContainer->GetItem(y);
+            CItem* PItem = (CItem*)PItemContainer->GetItem(y);
 
-                // check if the item is valid and can have an augment applied to it
-                if (PItem != NULL && (PItem->isType(ITEM_ARMOR) || PItem->isType(ITEM_WEAPON)))
+            // check if the item is valid and can have an augment applied to it
+            if (PItem != NULL && (PItem->isType(ITEM_ARMOR) || PItem->isType(ITEM_WEAPON)))
+            {
+                // check if there are any valid augments to be applied to the item
+                for (uint8 j = 0; j < AUGMENT_COUNT; ++j)
                 {
-                    // check if there are any valid augments to be applied to the item
-                    for (uint8 j = 0; j < AUGMENT_COUNT; ++j)
-                    {
-                        // found a match, apply the augment
-                        if (((CItemArmor*)PItem)->getAugment(j) != 0)
-                            ((CItemArmor*)PItem)->ApplyAugment(j);
-                    }
+                    // found a match, apply the augment
+                    if (((CItemArmor*)PItem)->getAugment(j) != 0)
+                        ((CItemArmor*)PItem)->ApplyAugment(j);
                 }
             }
         }
@@ -1040,11 +1035,7 @@ void SendInventory(CCharEntity* PChar)
 {
 	for(uint8 LocationID = 0; LocationID < MAX_CONTAINER_ID; ++LocationID)
 	{
-        CItemContainer* container = PChar->getStorage(LocationID);
-        if (container == NULL)
-            continue;
-
-		uint8 size = container->GetSize();
+		uint8 size = PChar->getStorage(LocationID)->GetSize();
 		for(uint8 slotID = 0; slotID <= size; ++slotID)
 		{
 			CItem* PItem = PChar->getStorage(LocationID)->GetItem(slotID);
@@ -4363,12 +4354,8 @@ void saveCharWsPoints(CCharEntity* PChar, uint16 indexid, int32 points)
 
 void SaveDeathTime(CCharEntity* PChar)
 {
-    uint32 currentTime = (uint32)time(NULL);
-    PChar->m_DeathCounter += (currentTime - PChar->m_DeathTimestamp);
-    PChar->m_DeathTimestamp = currentTime;
-
-    const int8* fmtQuery = "UPDATE char_stats SET death = %u WHERE charid = %u LIMIT 1;";
-    Sql_Query(SqlHandle, fmtQuery, PChar->m_DeathCounter, PChar->id);
+	const int8* fmtQuery = "UPDATE char_stats SET death = %u WHERE charid = %u LIMIT 1;";
+	Sql_Query(SqlHandle, fmtQuery, (uint32)time(NULL), PChar->id);
 }
 
 void SavePlayTime(CCharEntity* PChar)

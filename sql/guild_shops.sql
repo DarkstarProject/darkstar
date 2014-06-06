@@ -39,7 +39,8 @@ CREATE TABLE `guild_shops` (
 -- When the cap is lifted, all you will have to do is remove the comments and make the (S) vendors the same ID and it will display 100% of the item lists
 
 
--- Cauzeriste (Northern San d'Oria) Woodworking Guild (S)
+-- Cauzeriste (San d'Oria) Woodworking Guild (S)
+-- INSERT INTO `guild_shops` VALUES ('5152', '12851', '135936', '228096', '20', '0' 
 -- INSERT INTO `guild_shops` VALUES ('513', '3', '295500', '295500', '20', '0', '3');
 -- INSERT INTO `guild_shops` VALUES ('513', '22', '282', '691', '20', '0', '20');
 -- INSERT INTO `guild_shops` VALUES ('513', '23', '829', '2035', '20', '0', '15');

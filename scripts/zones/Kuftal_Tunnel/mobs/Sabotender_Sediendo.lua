@@ -12,8 +12,6 @@ require("scripts/zones/Kuftal_Tunnel/MobIDs");
 	
 function onMobDeath(mob,killer)	
 
-	checkRegime(killer,mob,738,2);
-
     local mob = mob:getID();
     if (Sabotender_Mariachi_PH[mob] ~= nil) then
 

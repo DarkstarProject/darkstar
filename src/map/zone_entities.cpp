@@ -105,7 +105,7 @@ void CZoneEntities::DeletePET(CBaseEntity* PPet)
 
 void CZoneEntities::InsertPET(CBaseEntity* PPet)
 {
-	if (PPet != NULL)
+	if ((PPet != NULL) && (PPet->objtype == TYPE_PET))
 	{
 		uint16 targid = 0x700;
 
@@ -139,7 +139,7 @@ void CZoneEntities::InsertPET(CBaseEntity* PPet)
 		}
 		return;
 	}
-	ShowError(CL_RED"CZone::InsertPET : entity is null\n" CL_RESET);
+	ShowError(CL_RED"CZone::InsertPET : entity is not pet\n" CL_RESET);
 }
 
 void CZoneEntities::FindPartyForMob(CBaseEntity* PEntity)
@@ -163,10 +163,9 @@ void CZoneEntities::FindPartyForMob(CBaseEntity* PEntity)
 
 			int16 sublink = PMob->getMobMod(MOBMOD_SUBLINK);
 
-			if (PCurrentMob->allegiance == PMob->allegiance &&
-				(forceLink ||
+			if (forceLink ||
 				PCurrentMob->m_Family == PMob->m_Family ||
-				sublink && sublink == PCurrentMob->getMobMod(MOBMOD_SUBLINK)))
+				sublink && sublink == PCurrentMob->getMobMod(MOBMOD_SUBLINK))
 			{
 
 				if (PCurrentMob->PMaster == NULL || PCurrentMob->PMaster->objtype == TYPE_MOB)
@@ -772,23 +771,18 @@ void CZoneEntities::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message
 
 								if (entity)
 								{
-									if (entity->targid < 0x400)
+									switch (entity->objtype)
 									{
-										if (entity->objtype == TYPE_MOB)
-										{
-											spawnlist = PCurrentChar->SpawnMOBList;
-										}
-										else if (entity->objtype == TYPE_NPC)
-										{
-											spawnlist = PCurrentChar->SpawnNPCList;
-										}
-									}
-									else if (entity->targid >= 0x700)
-									{
+									case TYPE_MOB:
+										spawnlist = PCurrentChar->SpawnMOBList;
+										break;
+									case TYPE_NPC:
+										spawnlist = PCurrentChar->SpawnNPCList;
+										break;
+									case TYPE_PET:
 										spawnlist = PCurrentChar->SpawnPETList;
-									}
-									else
-									{
+										break;
+									default:
 										entity = NULL;
 									}
 								}

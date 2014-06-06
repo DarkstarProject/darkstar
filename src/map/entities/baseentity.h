@@ -76,15 +76,6 @@ enum ANIMATIONTYPE
 	ANIMATION_FISHING_START			= 50
 };
 
-enum ALLEGIANCETYPE
-{
-	ALLEGIANCE_MOB			= 0,
-	ALLEGIANCE_PLAYER		= 1,
-	ALLEGIANCE_SAN_DORIA	= 2,
-	ALLEGIANCE_BASTOK		= 3,
-	ALLEGIANCE_WINDURST		= 4
-};
-
 // TODO: возможо стоит сделать эту структуру частью класса, взамен нынешних id и targid, но уже без метода clean
 
 struct EntityID_t
@@ -137,7 +128,6 @@ public:
 	uint8			namevis; 
 	bool			untargetable;
 	bool			hpvis;
-	uint8			allegiance;			// what types of targets the entity can fight
 
 	virtual const int8* GetName();      // имя сущности
 

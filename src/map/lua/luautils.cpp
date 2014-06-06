@@ -254,7 +254,7 @@ int32 GetMobByID(lua_State* L)
 	{
 		uint32 mobid = (uint32)lua_tointeger(L, -1);
 
-		CBaseEntity* PMob = zoneutils::GetEntity(mobid, TYPE_MOB | TYPE_PET);
+		CBaseEntity* PMob = zoneutils::GetEntity(mobid, TYPE_MOB);
 
 		if(PMob == NULL){
 			ShowWarning("luautils::GetMobByID Mob doesn't exist (%d)\n", mobid);
@@ -4308,52 +4308,6 @@ int32 OnBcnmRegister(CCharEntity* PChar, CBattlefield* PBattlefield){
         ShowError("luatils::OnBcnmRegister (%s): 0 returns expected, got %d\n", File, returns);
         lua_pop(LuaHandle, returns);
     }
-	return 0;
-}
-
-/********************************************************************
-onBcnmDestroy - called when BCNM is destroyed (cleanup)
-*********************************************************************/
-int32 OnBcnmDestroy(CBattlefield* PBattlefield){
-	int8 File[255];
-	memset(File, 0, sizeof(File));
-	int32 oldtop = lua_gettop(LuaHandle);
-
-	lua_pushnil(LuaHandle);
-	lua_setglobal(LuaHandle, "OnBcnmDestroy");
-
-	snprintf(File, sizeof(File), "scripts/zones/%s/bcnms/%s.lua", zoneutils::GetZone(PBattlefield->getZoneId())->GetName(), PBattlefield->getBcnmName());
-
-	if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
-	{
-		ShowError("luautils::OnBcnmDestroy: %s\n", lua_tostring(LuaHandle, -1));
-		lua_pop(LuaHandle, 1);
-		return 0;
-	}
-
-	lua_getglobal(LuaHandle, "OnBcnmDestroy");
-	if (lua_isnil(LuaHandle, -1))
-	{
-		lua_pop(LuaHandle, 1);
-		return 0;
-	}
-
-	CLuaBattlefield LuaBattlefieldEntity(PBattlefield);
-	Lunar<CLuaBattlefield>::push(LuaHandle, &LuaBattlefieldEntity);
-
-	if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
-	{
-		ShowError("luautils::OnBcnmDestroy: %s\n", lua_tostring(LuaHandle, -1));
-		lua_pop(LuaHandle, 1);
-		return 0;
-	}
-	int32 returns = lua_gettop(LuaHandle) - oldtop;
-
-	if (returns > 0)
-	{
-		ShowError("luatils::OnBcnmDestroy (%s): 0 returns expected, got %d\n", File, returns);
-		lua_pop(LuaHandle, returns);
-	}
 	return 0;
 }
 /************************************************************************

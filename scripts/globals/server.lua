@@ -20,22 +20,19 @@ require("scripts/globals/titles");
 
 function onServerStart()
 
-    if (EXPLORER_MOOGLE == 1) then
-        SetExplorerMoogles();
-    end
+	if (EXPLORER_MOOGLE == 1) then
+		SetExplorerMoogles();
+	end
     if (FIELD_MANUALS == 1) then
         SetFieldManual();
     end
-    if (GROUNDS_TOMES == 1) then
-        SetGroundsTome();
-    end
 
-    -- Harvest Festival
-    if(isHalloweenEnabled() ~= 0) then
-        applyHalloweenNpcCostumes();
-    end
+	-- Harvest Festival
+	if(isHalloweenEnabled() ~= 0) then
+		applyHalloweenNpcCostumes();
+	end
 
-    SetRegionalConquestOverseers();
+	SetRegionalConquestOverseers();
 
   -- Charybdis PH alternates, remove one
   DespawnMob(17498518);
@@ -48,10 +45,10 @@ function onServerStart()
 
   -- Spawns Silk Caterpillar (temporary until someone implements a way to make it spawn properly)
   SpawnMob(17227782,300,660);
-
+  
   -- Set random variable for determining Old Prof. Mariselle's spawn location
   local rand = math.random((2),(7));
-  SetServerVariable("Old_Prof_Spawn_Location", rand);
+  SetServerVariable("Old_Prof_Spawn_Location", rand);  
 end;
 
 -----------------------------------
@@ -60,25 +57,25 @@ end;
 
 function SetExplorerMoogles()
 
-    local Moogles  =
-    {
-        17723643,   -- Northern_San_d'Oria
-        17735852,   -- Bastok_Mines
-        17760446,   -- Port_Windurst
-        17793127,   -- Selbina
-        17797249,   -- Mhaura
-    }
+	local Moogles  =
+	{
+		17723643,	-- Northern_San_d'Oria
+		17735852,	-- Bastok_Mines
+		17760446,	-- Port_Windurst
+		17793127,	-- Selbina
+		17797249,	-- Mhaura
+	}
 
-    i = 1;
-    while i <= (table.getn(Moogles)) do
-        local npc = GetNPCByID(Moogles[i]);
-        if(npc == nil) then
-            printf("'SetExplorerMoogles' Error trying to load undefined npc (%d)", Moogles[i]);
-        else
-            npc:setStatus(0);
-        end
-        i = i + 1;
-    end
+	i = 1;
+	while i <= (table.getn(Moogles)) do
+		local npc = GetNPCByID(Moogles[i]);
+		if(npc == nil) then
+			printf("'SetExplorerMoogles' Error trying to load undefined npc (%d)", Moogles[i]);
+		else
+			npc:setStatus(0);
+		end				
+		i = i + 1;
+	end
 
 end;
 
@@ -88,8 +85,8 @@ end;
 
 function SetFieldManual()
 
-    local FieldManuals  =
-    {
+	local FieldManuals  =
+	{
         17187532,17187531,17191530,17191531, -- West Ronfaure 2, East Ronfaure 2
         17195671,17195672,17199748,17199747, -- La Theine 2, Valkurm 2
         17199746,17203879,17203878,17207861, -- Valkurm 1, Jugner 2, Batallia 1
@@ -109,71 +106,18 @@ function SetFieldManual()
         17289791,17293771,17293770,17297486, -- Western Altepa 1, Qufim 2, Behemoth's Dominion 1
         17301588,17301587,17310104,17310099, -- Valley of Sorrows 2, Ru'Aun Gardens 2
         17310100,17310101,17310102,17310103, -- Ru'Aun Gardens all 4 (6 total)
-    }
+	}
 
-    i = 1;
-    while i <= (table.getn(FieldManuals)) do
-        local npc = GetNPCByID(FieldManuals[i]);
-        if(npc == nil) then
-            printf("'SetFieldManual' Error trying to load undefined npc (%d)", FieldManuals[i]);
-        else
-            npc:setStatus(0);
-        end
-        i = i + 1;
-    end
-
-end;
-
------------------------------------
--- SetGroundsTome
-----------------------------------
-
-function SetGroundsTome()
-
-    local GroundsTomes  =
-    {
-        17457373,17457374,17457375,17461576, -- Ranguemont Pass (4)
-        17461577,17461578,17469845,17469846, -- Bostaunieux Oubliette (2), Toraimarai Canal (2)
-        17469847,17469848,17481843,17555961, -- Toraimarai Canal (2), Zeruhn Mines (1), King Ranperre's Tomb (1)
-        17555962,17555963,17555964,17559930, -- King Ranperre's Tomb (3)
-        17559931,17563918,17563919,17563920, -- Dangruf Wadi (1), Inner Horutoto Ruins (3)
-        17568199,17568200,17572304,17572305, -- Ordelle's Caves (2), Outer Horutoto Ruins (2)
-        17572306,17572307,17576424,17576425, -- Outer Horutoto Ruins (2), The Eldieme Necropolis (2)
-        17576426,17576427,17580411,17580412, -- The Eldieme Necropolis (2), Gusgen Mines (2)
-        17580413,17584491,17584492,17588783, -- Gusgen Mines (1), Crawlers' Nest (2), Maze of Shakhrami (1)
-        17588784,17588785,17588786,17596848, -- Maze of Shakhrami (3), Garlaige Citadel (1)
-        17596849,17596850,17613246,17613247, -- Garlaige Citadel (2), Fei'Yin (2)
-        17404401,17404401,17404401,17404401, -- The Boyahda Tree (4)
-        17486258,17486259,17486260,17486261, -- Korroloka Tunnel (4)
-        17490317,17490318,17490319,17490320, -- Kuftal Tunnel (4)
-        17502701,17502702,17502703,17502704, -- Ve'Lugannon Palace (4)
-        17502705,17502706,17502707,17502708, -- Ve'Lugannon Palace (4)
-        17502709,17502710,17506821,17506822, -- Ve'Lugannon Palace (2), The Shrine of Ru'Avitau (2)
-        17506823,17506824,17506825,17506826, -- The Shrine of Ru'Avitau (4)
-        17506827,17617259,17617260,17617261, -- The Shrine of Ru'Avitau (1), Ifrit's Cauldron (3)
-        17617262,17617263,17617264,17617265, -- Ifrit's Cauldron (4)
-        17617266,17645875,17645876,17645877, -- Ifrit's Cauldron (1), Gustav Tunnel (3)
-        17645878,17649894,17649895,17649896, -- Gustav Tunnel (1), Labyrinth of Onzozo (3)
-        17531227,17531228,17531229,17420674, -- Lower Delkfutt's Tower (3), Middle Delkfutt's Tower (1)
-        17420675,17420676,17420677,17424559, -- Middle Delkfutt's Tower (3), Upper Delkfutt's Tower (1)
-        17424560,17424561,17429002,17429003, -- Upper Delkfutt's Tower (2), Temple of Uggalepih (2)
-        17429004,17429005,17429006,17433086, -- Temple of Uggalepih (3)
-        17433087,17433088,17433089,17433090, -- Den of Rancor (4)
-        17433091,17498648,17498649,17498650, -- Den of Rancor (1), Sea Serpent Grotto (3)
-        17498651,17498651,17629762,17629763, -- Sea Serpent Grotto (2), Quicksand Caves (2)
-        17629764,17629765,17629766,17629767, -- Quicksand Caves (4)
-    }
-
-    i = 1;
-    while i <= (table.getn(GroundsTomes)) do
-        local npc = GetNPCByID(GroundsTomes[i]);
-        if(npc == nil) then
-            printf("'SetGroundsTome' Error trying to load undefined npc (%d)", GroundsTomes[i]);
-        else
-            npc:setStatus(0);
-        end
-        i = i + 1;
-    end
+	i = 1;
+	while i <= (table.getn(FieldManuals)) do
+		local npc = GetNPCByID(FieldManuals[i]);
+		if(npc == nil) then
+			printf("'SetFieldManual' Error trying to load undefined npc (%d)", FieldManuals[i]);
+		else
+			npc:setStatus(0);
+		end		
+		i = i + 1;
+	end
 
 end;
 
@@ -219,25 +163,25 @@ function SetTimedSpawns()
     17203447, -- Fraelissa
     16990252, -- Harvestman
     16785593, -- Tempest Tigon
-    16875578, -- Padfoot
+	16875578, -- Padfoot
     17101099 -- Aynu-Kasey
   }
-
+  
   local NM2  =
   {
     17461478 -- Bloodsucker
   }
-
+  
   local NM3  =
   {
     17555890, -- Vrtra
-    16806227, -- Tiamat
-    16797969 -- Jormungand
+	16806227, -- Tiamat
+	16797969 -- Jormungand
   }
 
-    SetRespawnTimes(NMs, 900, 10800); -- 15 minutes to 3 hours
-    SetRespawnTimes(NM2, 75600, 86400); -- 21 to 24 hours
-    SetRespawnTimes(NM3, 86400, 259200); -- 24 to 72 hours
+	SetRespawnTimes(NMs, 900, 10800); -- 15 minutes to 3 hours
+	SetRespawnTimes(NM2, 75600, 86400); -- 21 to 24 hours
+	SetRespawnTimes(NM3, 86400, 259200); -- 24 to 72 hours
 end;
 
 function SetRespawnTimes(ids, minTime, maxTime)

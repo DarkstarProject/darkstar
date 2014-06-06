@@ -56,7 +56,6 @@ namespace mobutils
 	void  AddCustomMods(CMobEntity* PMob);
 	void  SetupMaat(CMobEntity* PMob, JOBTYPE job);
 	void  SetSpellList(CMobEntity*, uint16);
-	CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID);
 };
 
 #endif

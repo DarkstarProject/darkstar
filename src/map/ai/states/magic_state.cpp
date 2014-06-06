@@ -653,6 +653,12 @@ void CMagicState::FinishSpell()
                 msg = m_PSpell->getAoEMessage();
             }
 
+            if(!m_PSpell->tookEffect())
+            {
+                ve = 0;
+                ce = 0;
+            }
+
         }
 
         action.messageID = msg;
@@ -883,8 +889,7 @@ void CMagicState::SetRecast(CSpell* PSpell)
 
     uint32 RecastTime = 3000;
 
-    if (!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL) &&
-		!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SPONTANEITY))
+    if (!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
     {
         RecastTime = CalculateRecastTime(PSpell);
     }

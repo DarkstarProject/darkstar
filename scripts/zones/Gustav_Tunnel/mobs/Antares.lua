@@ -12,8 +12,6 @@ require("/scripts/zones/Gustav_Tunnel/MobIDs");
 	
 function onMobDeath(mob,killer)	
   
-	checkRegime(killer,mob,768,2);
-  
     local mob = mob:getID();
     if (Amikiri_PH[mob] ~= nil) then
 

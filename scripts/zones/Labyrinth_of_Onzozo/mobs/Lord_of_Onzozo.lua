@@ -10,8 +10,6 @@
 
 function onMobDeath(mob,killer)
 
-	checkRegime(killer,mob,774,1);
-
     -- Set LoO's Window Open Time
     local wait = math.random((75600),(86400));
     SetServerVariable("[POP]Lord_of_Onzozo", os.time(t) + wait); -- 18-24 hours

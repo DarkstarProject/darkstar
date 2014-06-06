@@ -239,19 +239,9 @@ void CZoneInstance::TOTDChange(TIMETYPE TOTD)
 
 void CZoneInstance::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message_type, CBasicPacket* packet)
 {
-	if (PEntity)
+	if (PEntity->PInstance)
 	{
-		if (PEntity->PInstance)
-		{
-			PEntity->PInstance->PushPacket(PEntity, message_type, packet);
-		}
-	}
-	else
-	{
-		for (auto instance : instanceList)
-		{
-			instance->PushPacket(PEntity, message_type, packet);
-		}
+		PEntity->PInstance->PushPacket(PEntity, message_type, packet);
 	}
 }
 
@@ -309,14 +299,6 @@ void CZoneInstance::ForEachCharInstance(CBaseEntity* PEntity, std::function<void
 	for (auto PChar : PEntity->PInstance->GetCharList())
 	{
 		func((CCharEntity*)PChar.second);
-	}
-}
-
-void CZoneInstance::ForEachMobInstance(CBaseEntity* PEntity, std::function<void(CMobEntity*)> func)
-{
-	for (auto PMob : PEntity->PInstance->m_mobList)
-	{
-		func((CMobEntity*)PMob.second);
 	}
 }
 

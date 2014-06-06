@@ -152,7 +152,6 @@ public:
 	std::vector<CBaseEntity*> m_NpcList;
 	std::vector<CMobEntity*> m_MobList;
 	std::vector<CMobEntity*> m_EnemyList;
-	std::vector<CMobEntity*> m_AllyList;
 
 private:
 	CBattlefieldHandler* m_Handler;

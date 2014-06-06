@@ -214,7 +214,7 @@ void CBattlefield::capPlayerToBCNM(){ //adjust player's level to the appropriate
 bool CBattlefield::isPlayerInBcnm(CCharEntity* PChar){
 	for(int i=0; i<m_PlayerList.size(); i++){
 		if(PChar->id == m_PlayerList.at(i)->id){
-			return PChar->m_BCNM != NULL;
+			return PChar->m_insideBCNM;
 		}
 	}
 	return false;
@@ -250,7 +250,7 @@ bool CBattlefield::addPlayerToBcnm(CCharEntity* PChar){
 bool CBattlefield::delPlayerFromBcnm(CCharEntity* PChar){
 	for(int i=0; i<m_PlayerList.size(); i++){
 		if(m_PlayerList.at(i)->id == PChar->id){
-			PChar->m_BCNM = NULL;
+			PChar->m_insideBCNM = false;
 			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_SJ_RESTRICTION);
 			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_BATTLEFIELD);
 			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
@@ -266,8 +266,8 @@ bool CBattlefield::delPlayerFromBcnm(CCharEntity* PChar){
 bool CBattlefield::enterBcnm(CCharEntity* PChar){
 	for(int i=0; i<m_PlayerList.size(); i++){
 		if(m_PlayerList.at(i)->id == PChar->id){
-			if (PChar->m_BCNM){ ShowWarning("%s is already inside a BCNM!\n", PChar->GetName()); }
-			PChar->m_BCNM = this;
+			if(PChar->m_insideBCNM){ShowWarning("%s is already inside a BCNM!\n",PChar->GetName());}
+			PChar->m_insideBCNM = true;
 			ShowDebug("Entered ID %i Battlefield %i \n",this->m_BcnmID,this->m_BattlefieldNumber);
 			//callback to lua
 			luautils::OnBcnmEnter(PChar,this);
@@ -301,7 +301,7 @@ bool CBattlefield::allPlayersDead(){
 
 void CBattlefield::lockBcnm(){
 	for(int i=0; i<m_PlayerList.size(); i++){
-		if (!m_PlayerList.at(i)->m_BCNM){
+		if(!m_PlayerList.at(i)->m_insideBCNM){
 			ShowDebug("Removing %s from the valid players list for BCNMID %i Battlefield %i \n",m_PlayerList.at(i)->GetName(),
 				this->m_BcnmID,this->m_BattlefieldNumber);
 			if(this->delPlayerFromBcnm(m_PlayerList.at(i))){i--;}
@@ -374,15 +374,6 @@ void CBattlefield::cleanup(){
 	}
 	//wipe npc list
 	m_NpcList.clear();
-
-	for (auto PAlly : m_AllyList)
-	{
-		zoneutils::GetZone(getZoneId())->DeletePET(PAlly);
-		delete PAlly;
-	}
-	m_AllyList.clear();
-
-	luautils::OnBcnmDestroy(this);
 
 	locked = false;
 	//delete battlefield
@@ -524,7 +515,7 @@ void CBattlefield::cleanupDynamis(){
 bool CBattlefield::delPlayerFromDynamis(CCharEntity* PChar){
 	for(int i=0; i<m_PlayerList.size(); i++){
 		if(m_PlayerList.at(i)->id == PChar->id){
-			PChar->m_BCNM = NULL;
+			PChar->m_insideBCNM = false;
 			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_DYNAMIS);
 			PChar->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
 			m_PlayerList.erase(m_PlayerList.begin()+i);
