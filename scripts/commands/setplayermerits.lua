@@ -17,7 +17,6 @@ function onTrigger(player, target, amount)
     
     if (amount == nil) then
         player:PrintToPlayer("You must enter a valid amount.");
-        end
     end
     
     local targ = GetPlayerByName( target );
