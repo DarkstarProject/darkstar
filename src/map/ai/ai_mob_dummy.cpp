@@ -47,7 +47,7 @@
 
 #include "../packets/action.h"
 #include "../packets/entity_update.h"
-#include "../packets/entity_animation.h"
+#include "../packets/fade_out.h"
 #include "../packets/message_basic.h"
 
 
@@ -71,6 +71,7 @@ CAIMobDummy::CAIMobDummy(CMobEntity* PMob)
 	m_firstSpell = true;
 	m_LastSpecialTime = 0;
 	m_skillTP = 0;
+	m_ChaseThrottle = 0;
 	m_LastStandbackTime = 0;
 	m_DeaggroTime = 0;
 	m_NeutralTime = 0;
@@ -156,7 +157,7 @@ void CAIMobDummy::ActionRoaming()
 
 	// wait my time
 	if(m_Tick < m_LastWaitTime + m_WaitTime){
-		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_NONE));
+		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_NAME));
 		return;
 	}
 
@@ -280,20 +281,32 @@ void CAIMobDummy::ActionRoaming()
 }
 
 /************************************************************************
-*                                                                       *
+*                      	if(PMob->m_Family == 213)
+{
+PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 514);
+}                                                 *
 *  Монстр переходит в боевую стойку, включается режим атаки             *
 *                                                                       *
 ************************************************************************/
 
 void CAIMobDummy::ActionEngage()
 {
+	
 	SetupEngage();
-
+	
+	if(m_PMob->m_Family != 144) //if mob is not a Hpemde 
+	{
 	m_ActionType = ACTION_ATTACK;
+	}
+	if(m_PMob->m_Family == 144 &&  m_PMob->GetHPP() <= 99) //if mob is a Hpemde and its HPP is less than 100
+	{
+	m_ActionType = ACTION_ATTACK;
+	}
 	//if (m_PMob->animationsub == 1 || m_PMob->animationsub == 3) m_PMob->animationsub = 2;  //need a better way to do this: it only applies to some mobs!
 
-	if (m_PBattleTarget != NULL)
+	if(m_PBattleTarget != NULL)
 	{
+		
 		if((m_PMob->m_roamFlags & ROAMFLAG_AMBUSH) && m_PMob->IsNameHidden())
 		{
 			// jump out at you
@@ -303,6 +316,7 @@ void CAIMobDummy::ActionEngage()
 			m_PMob->HideName(false);
 			m_PMob->HideModel(false);
 		}
+		
 		else
 		{
 			ActionAttack();
@@ -504,7 +518,6 @@ void CAIMobDummy::ActionDropItems()
 			}
 
 			PChar->setWeaponSkillKill(false);
-			m_PMob->StatusEffectContainer->KillAllStatusEffect();
 
 			// NOTE: this is called for all alliance / party members!
 			luautils::OnMobDeath(m_PMob, PChar);
@@ -522,11 +535,16 @@ void CAIMobDummy::ActionDropItems()
 
 void CAIMobDummy::ActionDeath()
 {
-	if (m_Tick > m_LastActionTime + 12000 && !(m_PMob->m_Behaviour & BEHAVIOUR_NO_DESPAWN))
+	if (m_Tick > m_LastActionTime + 12000)
 	{
+        m_PMob->StatusEffectContainer->KillAllStatusEffect();
+
 		m_ActionType = ACTION_FADE_OUT;
-		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityAnimationPacket(m_PMob, CEntityAnimationPacket::FADE_OUT));
+		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CFadeOutPacket(m_PMob));
+				
+		//if (m_PMob->animationsub == 2) m_PMob->animationsub = 1;
 	}
+
 }
 
 /************************************************************************
@@ -600,7 +618,7 @@ void CAIMobDummy::ActionSpawn()
 		m_PMob->m_THLvl = 0;
 		m_PMob->m_ItemStolen = false;
         m_PMob->m_DropItemTime = 1000;
-		m_PMob->status = m_PMob->allegiance == ALLEGIANCE_MOB ? STATUS_UPDATE : STATUS_NORMAL;
+		m_PMob->status = STATUS_UPDATE;
 		m_PMob->animation = ANIMATION_NONE;
 		m_PMob->HideName(false);
         m_PMob->m_extraVar = 0;
@@ -1478,13 +1496,22 @@ void CAIMobDummy::ActionAttack()
                     return;
                 }
             }
+			// mobs will find a new path only when enough ticks pass
+			// this is so the server is not overloaded
+			if(!m_PPathFind->IsFollowingPath() || ++m_ChaseThrottle == 4)
+			{
+				m_ChaseThrottle = 0;
+				m_PPathFind->PathAround(m_PBattleTarget->loc.p, 2.0f, PATHFLAG_WALLHACK | PATHFLAG_RUN);
+			}
 
-			m_PPathFind->PathAround(m_PBattleTarget->loc.p, 2.0f, PATHFLAG_WALLHACK | PATHFLAG_RUN);
-			// m_PPathFind->CurvePath(0.5f);
-			m_PPathFind->FollowPath();
+			if(m_PPathFind->IsFollowingPath())
+			{
+				// m_PPathFind->CurvePath(0.5f);
+				m_PPathFind->FollowPath();
 
-			// recalculate
-			currentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
+				// recalculate
+			    currentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
+			}
 		}
 	}
 
@@ -1575,11 +1602,12 @@ void CAIMobDummy::ActionAttack()
 							}
 
 
-							//counter check (rate AND your hit rate makes it land, else its just a regular hit)
+							//counter check (rate AND your hit rate makes it land, else its just a regular hit) --KIT
 							if (WELL512::irand()%100 < (m_PBattleTarget->getMod(MOD_COUNTER) + meritCounter) &&
 								WELL512::irand()%100 < battleutils::GetHitRate(m_PBattleTarget,m_PMob) &&
-								(m_PBattleTarget->objtype != TYPE_PC || (charutils::hasTrait((CCharEntity*)m_PBattleTarget,TRAIT_COUNTER) ||
-								m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN))))
+								(charutils::hasTrait((CCharEntity*)m_PBattleTarget,TRAIT_COUNTER) ||
+								m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN) ||
+								m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_RETALIATION)))
 							{
 								isCountered = true;
 								Action.messageID = 33; //counter msg  32
@@ -1587,10 +1615,10 @@ void CAIMobDummy::ActionAttack()
 								Action.speceffect = SPECEFFECT_NONE;
 
 								bool isCritical = (WELL512::irand()%100 < battleutils::GetCritHitRate(m_PBattleTarget, m_PMob,false));
-								bool isHTH = m_PBattleTarget->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH;
+								bool isHTH = m_PBattleTarget->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_HTH; 
 								if (!isHTH && m_PBattleTarget->objtype == TYPE_MOB && m_PBattleTarget->GetMJob() == JOB_MNK)
 								{
-									isHTH = true;
+									isHTH = true; 
 								}
 								int16 naturalh2hDMG = 0;
 								if (isHTH)
@@ -1605,6 +1633,7 @@ void CAIMobDummy::ActionAttack()
                                 Action.spikesEffect = SUBEFFECT_COUNTER;
 
 							}
+						
 							else if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_COUNTER))
 							{ //Perfect Counter only counters hits that normal counter misses
 								isCountered = true;
@@ -1768,6 +1797,13 @@ bool CAIMobDummy::TryDeaggro()
 		return true;
 	}
 
+	// mob should not attack another mob with no master
+	if(m_PBattleTarget != NULL && (m_PBattleTarget->objtype == TYPE_MOB || m_PBattleTarget->objtype == TYPE_PET) && m_PBattleTarget->PMaster == NULL)
+	{
+		return true;
+	}
+
+
 	// target is dead, on a choco or zoned, so wipe them from our enmity list
     if (m_PBattleTarget->isDead() ||
         m_PBattleTarget->animation == ANIMATION_CHOCOBO ||
@@ -1781,7 +1817,7 @@ bool CAIMobDummy::TryDeaggro()
 	bool tryDetectDeaggro = false;
 	bool tryTimeDeaggro = true;
 
-	if(m_PMob->m_Aggro & AGGRO_SCENT)
+	if(m_PMob->m_Behaviour & BEHAVIOUR_SCENT)
 	{
 		// if mob is in water it will instant aggro if target cannot be detected
 		if(m_PPathFind->InWater() || m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DEODORIZE))
@@ -2196,7 +2232,7 @@ void CAIMobDummy::WeatherChange(WEATHER weather, uint8 element)
 {
 
 	// can't detect by scent in this weather
-	if (m_PMob->m_Aggro & AGGRO_SCENT)
+	if(m_PMob->m_Behaviour & BEHAVIOUR_SCENT)
 	{
 		m_PMob->m_disableScent = (weather == WEATHER_RAIN || weather == WEATHER_SQUALL || weather == WEATHER_BLIZZARDS);
 	}
