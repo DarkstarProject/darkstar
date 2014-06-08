@@ -19,8 +19,8 @@ function OnUseAbility(player, target, ability)
 	if (helix ~= nil) then
         local mvPower = helix:getSubPower();  
         local resist = applyResistanceAbility(player,target,ELE_NONE,SKILL_ELE,0); -- seems reasonable...
-        
-        if(mvPower > 0) or (resist < 0.25) then -- Don't let Modus Veritas stack to prevent abuse
+        -- Doesn't work against NMs apparently
+        if(mvPower > 0) or (resist < 0.25) or (target:isNM()) then -- Don't let Modus Veritas stack to prevent abuse
             ability:setMsg(158); --Miss
             return 0;
         else
