@@ -813,6 +813,94 @@ void SpawnMobPet(CBattleEntity* PMaster, uint32 PetID)
     PPet->setModifier(MOD_DARKRES,    petData->darkres);
 }
 
+void DetachPet(CBattleEntity* PMaster)
+{
+	DSP_DEBUG_BREAK_IF(PMaster->PPet == NULL);
+    DSP_DEBUG_BREAK_IF(PMaster->objtype != TYPE_PC);
+
+    CBattleEntity* PPet = PMaster->PPet;
+    CCharEntity* PChar = (CCharEntity*)PMaster;
+
+    PPet->PBattleAI->SetCurrentAction(ACTION_FALL);
+
+    if(PPet->objtype == TYPE_MOB){
+        CMobEntity* PMob = (CMobEntity*)PPet;
+
+        if(!PMob->isDead()){
+            // mobs charm wears off whist fighting another mob. Both mobs now attack player since mobs are no longer enemies
+            if(PMob->PBattleAI != NULL && PMob->PBattleAI->GetBattleTarget() != NULL && PMob->PBattleAI->GetBattleTarget()->objtype == TYPE_MOB){
+                ((CMobEntity*)PMob->PBattleAI->GetBattleTarget())->PEnmityContainer->Clear();
+                ((CMobEntity*)PMob->PBattleAI->GetBattleTarget())->PEnmityContainer->UpdateEnmity(PChar, 0, 0);
+            }
+
+            //clear the ex-charmed mobs enmity
+            PMob->PEnmityContainer->Clear();
+
+            // charm time is up, mob attacks player now
+            if (PMob->PEnmityContainer->IsWithinEnmityRange(PMob->PMaster))
+            {
+                PMob->PEnmityContainer->UpdateEnmity(PChar, 0, 0);
+            }
+            else
+            {
+                PMob->m_OwnerID.clean();
+            }
+
+            // dirty exp if not full
+            PMob->m_giveExp = PMob->GetHPP() == 100;
+
+    		CAIPetDummy* PPetAI = (CAIPetDummy*)PPet->PBattleAI;
+            //master using leave command
+            if(PMaster->PBattleAI->GetCurrentAction() == ACTION_JOBABILITY_FINISH && PMaster->PBattleAI->GetCurrentJobAbility()->getID() == 55 || PChar->loc.zoning || PChar->isDead()){
+                PMob->PEnmityContainer->Clear();
+                PMob->m_OwnerID.clean();
+            }
+
+        } else {
+            PMob->m_OwnerID.clean();
+        }
+
+        PMob->isCharmed = false;
+        PMob->charmTime = 0;
+        PMob->PMaster = NULL;
+
+        delete PMob->PBattleAI;
+        PMob->PBattleAI = new CAIMobDummy(PMob);
+        PMob->PBattleAI->SetLastActionTime(gettick());
+
+        if (PMob->isDead())
+            PMob->PBattleAI->SetCurrentAction(ACTION_FALL);
+        else
+            PMob->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
+
+    } else if(PPet->objtype == TYPE_PET){
+        CPetEntity* PPetEnt = (CPetEntity*)PPet;
+
+        if( PPetEnt->getPetType() == PETTYPE_AVATAR )
+            PMaster->setModifier(MOD_AVATAR_PERPETUATION, 0);
+
+        if (PMaster->PParty != NULL)
+        {
+            for (uint8 i = 0; i < PMaster->PParty->members.size(); ++i)
+            {
+                CCharEntity* PMember = (CCharEntity*)PMaster->PParty->members.at(i);
+                PMember->PLatentEffectContainer->CheckLatentsPartyAvatar();
+            }
+        }
+
+        PChar->PLatentEffectContainer->CheckLatentsPartyAvatar();
+
+        if (PPetEnt->getPetType() != PETTYPE_AUTOMATON){
+            PPetEnt->PMaster = NULL;
+        }
+
+        charutils::BuildingCharPetAbilityTable(PChar, PPetEnt, 0);// blank the pet commands
+    }
+
+    PChar->PPet = NULL;
+    PChar->pushPacket(new CCharUpdatePacket(PChar));
+}
+
 /************************************************************************
 *																		*
 *																		*
@@ -842,97 +930,8 @@ void DespawnPet(CBattleEntity* PMaster)
 		return;
 	}
 
-
-
-	switch (PPet->objtype)
-	{
-		case TYPE_PET:
-		{
-			PPet->PBattleAI->SetCurrentAction(ACTION_FALL);
-			if( ((CPetEntity*)PPet)->getPetType() == PETTYPE_AVATAR )
-				PMaster->setModifier(MOD_AVATAR_PERPETUATION, 0);
-
-			if (PMaster->PParty != NULL)
-			{
-				for (uint8 i = 0; i < PMaster->PParty->members.size(); ++i)
-				{
-					CCharEntity* PMember = (CCharEntity*)PMaster->PParty->members.at(i);
-					PMember->PLatentEffectContainer->CheckLatentsPartyAvatar();
-				}
-			}
-				CCharEntity* PChar = (CCharEntity*)PMaster;
-				PChar->PLatentEffectContainer->CheckLatentsPartyAvatar();
-		}
-		break;
-		case TYPE_MOB:
-		{
-				if(PMaster->objtype == TYPE_PC)
-				{
-
-					CMobEntity* PMob = (CMobEntity*)PMaster->PPet;
-					CCharEntity* PChar = (CCharEntity*)PMaster;
-
-
-					// mobs charm wears off whist fighting another mob. Both mobs now attack player since mobs are no longer enemies
-					if(PMob->PBattleAI != NULL && PMob->PBattleAI->GetBattleTarget() != NULL && PMob->PBattleAI->GetBattleTarget()->objtype == TYPE_MOB){
-						((CMobEntity*)PMob->PBattleAI->GetBattleTarget())->PEnmityContainer->Clear();
-						((CMobEntity*)PMob->PBattleAI->GetBattleTarget())->PEnmityContainer->UpdateEnmity(PChar, 0, 0);
-					}
-
-					//clear the ex-charmed mobs enmity
-					PMob->PEnmityContainer->Clear();
-
-					// charm time is up, mob attacks player now
-					if (PMob->GetHPP() != 0 && PMob->PMaster->GetHPP() != 0 && distance(PMob->loc.p, PMob->PMaster->loc.p) < 30)
-					{
-						PMob->PEnmityContainer->UpdateEnmity(PChar, 0, 0);
-					}
-					else
-					{
-						PMob->m_OwnerID.clean();
-					}
-
-					// dirty exp if not full
-					PMob->m_giveExp = PMob->GetHPP() == 100;
-
-					//master using leave command
-					if (PMaster->PBattleAI->GetCurrentAction() == ACTION_JOBABILITY_FINISH && PMaster->PBattleAI->GetCurrentJobAbility()->getID() == 55 || PChar->loc.zoning)
-					{
-						PMob->PEnmityContainer->Clear();
-						PMob->m_OwnerID.clean();
-					}
-
-					PMob->isCharmed = false;
-					PMob->charmTime = 0;
-					PMob->PMaster = NULL;
-
-					delete PMob->PBattleAI;
-					PMob->PBattleAI = new CAIMobDummy(PMob);
-
-					PMob->PBattleAI->SetLastActionTime(gettick());
-
-					if (PMob->GetHPP() == 0)
-						PMob->PBattleAI->SetCurrentAction(ACTION_FALL);
-					else
-						PMob->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
-
-
-					PChar->PPet = NULL;
-					PChar->pushPacket(new CCharUpdatePacket(PChar));
-					PMob->loc.zone->PushPacket(PMob, CHAR_INRANGE, new CEntityUpdatePacket(PMob, ENTITY_UPDATE, UPDATE_NONE));
-				}
-
-		}
-		break;
-		case TYPE_PC:
-		{
-			// освобождаем персонажа из под контроля
-		}
-		break;
-	}
+    petutils::DetachPet(PMaster);
 }
-
-
 
 void MakePetStay(CBattleEntity* PMaster)
 {
