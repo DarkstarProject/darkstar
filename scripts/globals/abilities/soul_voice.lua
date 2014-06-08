@@ -1,6 +1,6 @@
 -----------------------------------
 -- Ability: Soul Voice
--- Duration: 60 seconds
+-- Duration: 180 seconds
 -----------------------------------
  
 require("scripts/globals/settings");
@@ -15,5 +15,5 @@ function OnAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-	player:addStatusEffect(EFFECT_SOUL_VOICE,1,0,60);
+	player:addStatusEffect(EFFECT_SOUL_VOICE,1,0,180);
 end;
