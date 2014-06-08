@@ -20,7 +20,7 @@ function OnUseAbility(player, target, ability)
         local mvPower = helix:getSubPower();  
         local resist = applyResistanceAbility(player,target,ELE_NONE,SKILL_ELE,0); -- seems reasonable...
         
-        if(mvPower > 1) or (resist < 0.25) then -- Don't let more than 2 Modus Veritas stack to prevent abuse
+        if(mvPower > 0) or (resist < 0.25) then -- Don't let Modus Veritas stack to prevent abuse
             ability:setMsg(158); --Miss
             return 0;
         else
@@ -30,7 +30,7 @@ function OnUseAbility(player, target, ability)
             mvPower = mvPower +1;
             local helixPower = helix:getPower() * 2;
             local duration = helix:getDuration();
-            local remaining = helix:getRemainingTime();
+            local remaining = helix:getTimeRemaining();
             duration = (duration-remaining) + math.floor(remaining * durationMultiplier);
             helix:setSubPower(mvPower);
             helix:setPower(helixPower);
