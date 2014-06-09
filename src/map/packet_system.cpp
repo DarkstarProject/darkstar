@@ -5037,6 +5037,8 @@ void SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, int8* dat
     }
 
 	CItem* PBazaarItem = PBazaar->GetItem(SlotID);
+	if (PBazaarItem == NULL)
+	    return;
 
     // Obtain the players gil..
     CItem* PCharGil = PBuyerInventory->GetItem(0);

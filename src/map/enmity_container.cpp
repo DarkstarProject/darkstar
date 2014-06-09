@@ -117,7 +117,6 @@ float CEnmityContainer::CalculateEnmityBonus(CBattleEntity* PEntity){
 
 void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, bool withMaster)
 {
-	DSP_DEBUG_BREAK_IF(PEntity == m_EnmityHolder);
 	// you're too far away so i'm ignoring you
 	if(!IsWithinEnmityRange(PEntity))
 	{
