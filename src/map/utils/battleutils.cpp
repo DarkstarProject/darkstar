@@ -1457,6 +1457,21 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			}
 		}
 		break;
+	case 18150:{//Blind Bolt
+			if(PDefender->hasImmunity(64) == false){
+                //check dark resistance
+                if(WELL512::irand()%100 <= PDefender->getMod(MOD_DARKRES)){return;}
+
+                if(PDefender->StatusEffectContainer->AddStatusEffect(
+                    new CStatusEffect(EFFECT_BLINDNESS,EFFECT_BLINDNESS,10,0,30))){
+
+		            Action->additionalEffect = SUBEFFECT_BLIND;
+		            Action->addEffectMessage = 160;
+			        Action->addEffectParam  = EFFECT_BLINDNESS;
+                }
+			}
+		}
+		break;
 	case 17324:{ //Lightning Arrow
 	//damage doesn't exceed ~67
 	//there isn't a formula. It seems to be level
