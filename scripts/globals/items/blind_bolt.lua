@@ -1,7 +1,13 @@
 -----------------------------------------
+<<<<<<< HEAD
 -- ID: 18150
 -- Item: Blind Bolt
 -- Additional Effect: Blindness
+=======
+-- ID: 18148
+-- Item: Acid Bolt
+-- Additional Effect: Weakens Defense
+>>>>>>> 31fb2f69b784ad1c7bbd59f39f0b5ec146d87b53
 -----------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");
