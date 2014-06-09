@@ -54,8 +54,8 @@ function onMobDeath(mob,killer)
     DespawnMob(mob:getID()+1);
     DespawnMob(mob:getID()+3);
     DespawnMob(mob:getID()+4);
-    local instance = killer:getInstance();
-    killer:startEvent(0x7d04, instance:getInstanceNumber());
+    local battlefield = killer:getBattlefield();
+    killer:startEvent(0x7d04, battlefield:getBattlefieldNumber());
 end;
 
 

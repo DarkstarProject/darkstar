@@ -66,6 +66,12 @@ enum SPELLAOE
     SPELLAOE_DIFFUSION		= 6   //AOE when under Diffusion
 };
 
+enum SPELLFLAG
+{
+	SPELLFLAG_NONE		= 0,
+	SPELLFLAG_HIT_ALL	= 1		// hit all targets in range regardless of party
+};
+
 class CSpell
 {
 public:
@@ -75,7 +81,6 @@ public:
     bool        canTargetEnemy();
     bool        isBuff();
     bool        dealsDamage(); // checks if the spell deals hp damage to target, this is relative to message
-    void        resetMessage(); // resets spell to normal state
 
     float       getMaxRange();
     uint16      getTotalTargets();
@@ -100,17 +105,18 @@ public:
 	uint16		getCE();
 	uint16		getVE();
 	uint32		getModifiedRecast();
-    uint8       getRadius();
+    float       getRadius();
     uint16      getAoEMessage(); // returns the single target message for AoE moves
     uint8       getRequirements();
     uint16      getMeritId();
+	uint8		getFlag();
     bool        tookEffect(); // returns true if the spell landed, not resisted or missed
     bool        hasMPCost(); // checks if spell costs mp to use
     bool        isHeal(); // is a heal spell
     bool        isNa(); // is a -na spell
     bool        canHitShadow(); // check if spell ignores shadows
 
-    void        setRadius(uint8 radius);
+    void        setRadius(float radius);
     void        setTotalTargets(uint16 total);
 	void		setID(uint16 id);
 	void		setJob(int8* jobs);
@@ -128,13 +134,13 @@ public:
 	void		setElement(uint16 element);
 	void		setMultiplier(float multiplier);
     void        setMessage(uint16 message);
-    void        setDefaultMessage(uint16 message);
     void        setMagicBurstMessage(uint16 message);
 	void		setCE(uint16 ce);
 	void		setVE(uint16 ve);
     void        setRequirements(uint8 requirements);
     void        setMeritId(uint16 meritId);
 	void		setModifiedRecast(uint32 mrec);
+	void		setFlag(uint8 flag);
 
 	const int8* getName();
 	void		setName(int8* name);
@@ -147,19 +153,18 @@ private:
 	uint16		m_animation;							// animation for spell
     uint16      m_animationTime;
     uint8       m_skillType;
-    uint8       m_radius;
+    float       m_radius;
     uint8	    m_totalTargets;
 	uint16		m_mpCost;								// mpCost/itemId for ninjitsu tool
 	uint8		m_job[MAX_JOBTYPE];						// job
 	uint8		m_ValidTarget;							// target pc/npc/both
 	SPELLGROUP  m_spellGroup;							// spellgroup
     uint16      m_zoneMisc;                             // условия чтения заклинаний в зонах
-	uint8		m_AOE;								// aoe or single target spell
+	uint8		m_AOE;									// aoe or single target spell
 	uint16		m_base;									// spell base damage
 	float		m_multiplier;							// multiplier for upper tier spells
 	uint16		m_element;								// element of spell
     uint16      m_message;                              // message id
-    uint16      m_DefaultMessage;                       // default message id
     uint16      m_MagicBurstMessage;                    // Message used for magic bursts.
 	uint16		m_CE;									// cumulative enmity of spell
 	uint16		m_VE;									// volatile enmity of spell
@@ -167,6 +172,7 @@ private:
 	uint32		m_modifiedRecastTime;					// recast time after modifications
     uint8       m_requirements;                         // requirements before being able to cast spell
     uint16      m_meritId;                              // associated merit (if applicable)
+	uint8		m_flag;
 };
 
 /************************************************************************

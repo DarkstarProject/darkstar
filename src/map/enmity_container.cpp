@@ -397,6 +397,10 @@ void CEnmityContainer::UpdateEnmityFromDamage(CBattleEntity* PEntity, uint16 Dam
 
 void CEnmityContainer::UpdateEnmityFromAttack(CBattleEntity* PEntity, uint16 Damage)
 {
+	if (m_EnmityList.lower_bound(PEntity->id) == m_EnmityList.end())
+	{
+		return;
+	}
     UpdateEnmity(PEntity, -(1800 * Damage / PEntity->GetMaxHP()), 0);
 }
 

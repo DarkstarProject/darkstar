@@ -2083,6 +2083,62 @@ int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell
     return retVal;
 }
 
+/************************************************************************
+*																		*
+*  Чтение заклинаний				 									*
+*																		*
+************************************************************************/
+
+int32 OnSpellPrecast(CBattleEntity* PCaster, CSpell* PSpell)
+{
+	if (PCaster->objtype == TYPE_MOB)
+	{
+		int8 File[255];
+		memset(File, 0, sizeof(File));
+		int32 oldtop = lua_gettop(LuaHandle);
+
+		lua_pushnil(LuaHandle);
+		lua_setglobal(LuaHandle, "onSpellPrecast");
+
+		DSP_DEBUG_BREAK_IF(PSpell == NULL);
+
+		snprintf(File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PCaster->loc.zone->GetName(), PCaster->GetName());
+
+		if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
+		{
+			lua_pop(LuaHandle, 1);
+			return 0;
+		}
+
+		lua_getglobal(LuaHandle, "onSpellPrecast");
+		if (lua_isnil(LuaHandle, -1))
+		{
+			lua_pop(LuaHandle, 1);
+			return 0;
+		}
+
+		CLuaBaseEntity LuaCasterEntity(PCaster);
+		Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaCasterEntity);
+
+		CLuaSpell LuaSpell(PSpell);
+		Lunar<CLuaSpell>::push(LuaHandle, &LuaSpell);
+
+		if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
+		{
+			ShowError("luautils::OnSpellPrecast: %s\n", lua_tostring(LuaHandle, -1));
+			lua_pop(LuaHandle, 1);
+			return 0;
+		}
+		int32 returns = lua_gettop(LuaHandle) - oldtop;
+		if (returns > 0)
+		{
+			ShowError("luatils::onMobInitialize (%s): 0 returns expected, got %d\n", File, returns);
+			lua_pop(LuaHandle, returns);
+		}
+	}
+	return 0;
+}
+
 int32 OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget)
 {
 	DSP_DEBUG_BREAK_IF(PCaster == NULL || PTarget == NULL);

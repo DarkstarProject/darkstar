@@ -46,7 +46,7 @@ function onMobFight(mob, target)
 
    -- Summons a single orb every 30 seconds.  Needs to be last, so other code runs.
    -- TODO: Should have a SMN casting effect for ~3-5 seconds while calling.
-	if (mob:getBattleTime() % 30 < 3 and mob:getBattleTime() > 3) then
+	if (mob:getBattleTime() % 30 == 0 and mob:getBattleTime() > 3) then
 		for i = MotherGlobe+1, MotherGlobe+6 do
 			if (GetMobAction(i) == 0) then -- My Orb is deeaaaaaad!
 				SpawnMob(i):updateEnmity(target);

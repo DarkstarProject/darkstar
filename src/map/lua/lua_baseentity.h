@@ -527,6 +527,7 @@ public:
     int32 isFollowingPath(lua_State* L); // checks if the entity is following a path
     int32 clearPath(lua_State* L); // removes current pathfind and stops moving
     int32 wait(lua_State* L); // make the npc wait a number of ms and then back into roam
+	int32 pathTo(lua_State* L); // set new path to point without changing action
 
 	int32 unlockAttachment(lua_State* L);
     int32 hasAttachment(lua_State* L);

@@ -643,7 +643,7 @@ inline int32 CLuaBaseEntity::teleport(lua_State *L)
 
 inline int32 CLuaBaseEntity::getPos(lua_State* L)
 {
-    lua_createtable(L, 3, 0);
+    lua_createtable(L, 4, 0);
     int8 newTable = lua_gettop(L);
 
     lua_pushnumber(L, m_PBaseEntity->loc.p.x);
@@ -655,32 +655,38 @@ inline int32 CLuaBaseEntity::getPos(lua_State* L)
     lua_pushnumber(L, m_PBaseEntity->loc.p.z);
     lua_setfield(L, newTable, "z");
 
+	lua_pushnumber(L, m_PBaseEntity->loc.p.rotation);
+	lua_setfield(L, newTable, "rot");
+
     return 1;
 }
 
 //==========================================================//
 
-    inline int32 CLuaBaseEntity::getSpawnPos(lua_State* L)
-    {
-      DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-      DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_MOB));
+inline int32 CLuaBaseEntity::getSpawnPos(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_MOB));
      
-      CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
+    CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
      
-      lua_createtable(L, 3, 0);
-      int8 newTable = lua_gettop(L);
+    lua_createtable(L, 4, 0);
+    int8 newTable = lua_gettop(L);
      
-      lua_pushnumber(L, PMob->m_SpawnPoint.x);
-      lua_rawseti(L, newTable, 1);
-     
-      lua_pushnumber(L, PMob->m_SpawnPoint.y);
-      lua_rawseti(L, newTable, 2);
-     
-      lua_pushnumber(L, PMob->m_SpawnPoint.z);
-      lua_rawseti(L, newTable, 3);
-     
-      return 1;
-    }
+    lua_pushnumber(L, PMob->m_SpawnPoint.x);
+	lua_setfield(L, newTable, "x");
+
+    lua_pushnumber(L, PMob->m_SpawnPoint.y);
+	lua_setfield(L, newTable, "y");
+
+    lua_pushnumber(L, PMob->m_SpawnPoint.z);
+	lua_setfield(L, newTable, "z");
+
+	lua_pushnumber(L, PMob->m_SpawnPoint.rotation);
+	lua_setfield(L, newTable, "rot");
+
+    return 1;
+}
 
 //==========================================================//	
 
@@ -8582,6 +8588,27 @@ inline int32 CLuaBaseEntity::wait(lua_State* L)
 	return 1;
 }
 
+inline int32 CLuaBaseEntity::pathTo(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_PC);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
+
+	position_t point;
+
+	point.x = (float)lua_tonumber(L, 1);
+	point.y = (float)lua_tonumber(L, 2);
+	point.z = (float)lua_tonumber(L, 3);
+
+	if (m_PBaseEntity->PBattleAI && m_PBaseEntity->PBattleAI->m_PPathFind)
+	{
+		m_PBaseEntity->PBattleAI->m_PPathFind->PathTo(point, PATHFLAG_RUN | PATHFLAG_WALLHACK | PATHFLAG_NO_OVERWRITE);
+	}
+
+	return 0;
+}
+
 inline int32 CLuaBaseEntity::unlockAttachment(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
@@ -8804,16 +8831,18 @@ inline int32 CLuaBaseEntity::entityVisualPacket(lua_State* L)
 inline int32 CLuaBaseEntity::entityAnimationPacket(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
-	DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isstring(L, 2));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
 
-	CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 1);
-	CBaseEntity* PEntity = PLuaBaseEntity->m_PBaseEntity;
+	const char* command = lua_tostring(L, 1);
 
-	const char* command = lua_tostring(L, 2);
-
-	((CCharEntity*)m_PBaseEntity)->pushPacket(new CEntityAnimationPacket(PEntity, command));
+	if (m_PBaseEntity->objtype == TYPE_PC)
+	{
+		((CCharEntity*)m_PBaseEntity)->pushPacket(new CEntityAnimationPacket(m_PBaseEntity, command));
+	}
+	else
+	{
+		m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityAnimationPacket(m_PBaseEntity, command));
+	}
 	return 0;
 }
 
@@ -9445,6 +9474,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,clearPath),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isFollowingPath),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,wait),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,pathTo),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setSpawn),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setRespawnTime),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,unlockAttachment),
