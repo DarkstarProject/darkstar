@@ -6995,7 +6995,7 @@ inline int32 CLuaBaseEntity::delCP(lua_State *L)
     return 0;
 }
 
-/==========================================================//
+//==========================================================//
 
 inline int32 CLuaBaseEntity::getSeals(lua_State *L)
 {
@@ -7110,6 +7110,168 @@ inline int32 CLuaBaseEntity::delValorPoint(lua_State *L)
         PChar->m_currency.valorpoints = 0;
     charutils::SaveCharPoints(PChar);
 
+    return 0;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::getScylds(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    lua_pushinteger(L, PChar->m_currency.scylds);
+
+    return 1;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::addScylds(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    int32 point = (int32)lua_tointeger(L, 1);
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    PChar->m_currency.scylds += point;
+    charutils::SaveCharPoints(PChar);
+
+    return 0;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::delScylds(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    int32 point = (int32)lua_tointeger(L, 1);
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    PChar->m_currency.scylds -= point;
+    charutils::SaveCharPoints(PChar);
+
+    return 0;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::getCinders(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    lua_pushinteger(L, PChar->m_currency.cinders);
+
+    return 1;
+}
+
+inline int32 CLuaBaseEntity::addCinders(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    int32 point = (int32)lua_tointeger(L, 1);
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    PChar->m_currency.cinders += point;
+    charutils::SaveCharPoints(PChar);
+
+    return 0;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::delCinders(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    int32 point = (int32)lua_tointeger(L, 1);
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    PChar->m_currency.cinders -= point;
+    charutils::SaveCharPoints(PChar);
+
+    return 0;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::getFewell(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    uint32 type = lua_tointeger(L, 1);
+
+    if (type >= 0 && type <= 4)
+        lua_pushinteger(L, PChar->m_currency.fewell[type]);
+    else
+        lua_pushinteger(L, 0);
+    return 1;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::addFewell(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    int32 points = lua_tointeger(L, 1);
+    uint32 type = lua_tointeger(L, 2);
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    if (type >= 0 && type <= 4)
+    {
+        PChar->m_currency.fewell[type] += points;
+        charutils::SaveCharPoints(PChar);
+    }
+
+    return 0;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::delFewell(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    int32 points = lua_tointeger(L, 1);
+    uint32 type = lua_tointeger(L, 2);
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    if (type >= 0 && type <= 4)
+    {
+        PChar->m_currency.fewell[type] -= points;
+        charutils::SaveCharPoints(PChar);
+    }
     return 0;
 }
 
@@ -7528,9 +7690,9 @@ inline int32 CLuaBaseEntity::delVstone(lua_State *L)
 }
 
 /************************************************************************
-* player:getNationTeleport(tpID) : return the player's teleport         *
-* tpID: supply(0~2) runic(3) maw(4) past(5~7)...                        *
-*  full list in charutils.cpp                                           *
+*   player:getNationTeleport(tpID) : return the player's teleport       *
+*   tpID: supply(0~2) runic(3) maw(4) past(5~7)...                      *
+*   full list in charutils.cpp                                          *
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getNationTeleport(lua_State *L)
@@ -7560,10 +7722,10 @@ inline int32 CLuaBaseEntity::getNationTeleport(lua_State *L)
 }
 
 /************************************************************************
-* player:addNationTeleport(tpID,number) : add tp to a player variable   *
-* tpID: supply(0~2) runic(3) maw(4) past(5~7)...                        *
-* number: 1,2,4,8,16,32,64,...                                          *
-*  full list in charutils.cpp                                           *
+*   player:addNationTeleport(tpID,number) : add tp to a player variable *
+*   tpID: supply(0~2) runic(3) maw(4) past(5~7)...                      *
+*   number: 1,2,4,8,16,32,64,...                                        *
+*   full list in charutils.cpp                                          *
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::addNationTeleport(lua_State *L)
@@ -7811,7 +7973,7 @@ inline int32 CLuaBaseEntity::checkFovDistancePenalty(lua_State *L){
 
 /************************************************************************
 *                                                                       *
-*  Charm a monster                                                      *
+*   Charm a monster                                                     *
 *                                                                       *
 ************************************************************************/
 
@@ -7833,7 +7995,7 @@ inline int32 CLuaBaseEntity::charmPet(lua_State *L)
 
 /************************************************************************
 *                                                                       *
-*  Makes your pet stay put                                              *
+*   Makes your pet stay put                                             *
 *                                                                       *
 ************************************************************************/
 
@@ -7881,7 +8043,8 @@ inline int32 CLuaBaseEntity::isMob(lua_State *L)
     return 1;
 }
 
-inline int32 CLuaBaseEntity::isPet(lua_State *L){
+inline int32 CLuaBaseEntity::isPet(lua_State *L)
+{
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 
     lua_pushboolean( L, m_PBaseEntity->objtype == TYPE_PET);
@@ -8042,14 +8205,15 @@ inline int32 CLuaBaseEntity::updateTarget(lua_State* L)
 
 /************************************************************************
 *                                                                       *
-*  Gets the extra var stored in the mob entity.  Number parameter       *
-*  determines the number of results returned and their size:            *
-*  1 - returns one uint32                                               *
-*  2 - returns two uint16s                                              *
-*  3 - returns a uint16, then two uint8s                                *
-*  4 - returns 4 uint8s                                                 *
+*   Gets the extra var stored in the mob entity.  Number parameter      *
+*   determines the number of results returned and their size:           *
+*   1 - returns one uint32                                              *
+*   2 - returns two uint16s                                             *
+*   3 - returns a uint16, then two uint8s                               *
+*   4 - returns 4 uint8s                                                *
 *                                                                       *
 ************************************************************************/
+
 inline int32 CLuaBaseEntity::getExtraVar(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -8060,13 +8224,17 @@ inline int32 CLuaBaseEntity::getExtraVar(lua_State* L)
     if (n == 1)
     {
         lua_pushinteger(L, ((CMobEntity*)m_PBaseEntity)->m_extraVar);
-    } else if (n == 2) {
+    }
+    else if (n == 2)
+    {
         uint32 var = ((CMobEntity*)m_PBaseEntity)->m_extraVar;
         uint16 var1 = var & 0x0000FFFF;
         uint16 var2 = var >> 16;
         lua_pushinteger(L, var1);
         lua_pushinteger(L, var2);
-    } else if (n == 3) {
+    }
+    else if (n == 3)
+    {
         uint32 var = ((CMobEntity*)m_PBaseEntity)->m_extraVar;
         uint16 var1 = var >> 16;
         uint8 var2 = (var & 0x0000FF00) >> 8;
@@ -8074,7 +8242,9 @@ inline int32 CLuaBaseEntity::getExtraVar(lua_State* L)
         lua_pushinteger(L, var1);
         lua_pushinteger(L, var2);
         lua_pushinteger(L, var3);
-    } else {
+    }
+    else
+    {
         uint32 var = ((CMobEntity*)m_PBaseEntity)->m_extraVar;
         uint8 var1 = (var & 0x000000FF);
         uint8 var2 = (var & 0x0000FF00) >> 8;
@@ -8099,6 +8269,7 @@ inline int32 CLuaBaseEntity::getExtraVar(lua_State* L)
 *  4 - stores 4 uint8s                                                  *
 *                                                                       *
 ************************************************************************/
+
 inline int32 CLuaBaseEntity::setExtraVar(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -8111,16 +8282,22 @@ inline int32 CLuaBaseEntity::setExtraVar(lua_State* L)
     if (n == 1)
     {
         ((CMobEntity*)m_PBaseEntity)->m_extraVar = lua_tointeger(L, 1);
-    } else if (n == 2) {
+    }
+    else if (n == 2)
+    {
         uint32 var1 = lua_tointeger(L, 1) & 0x0000FFFF;
         uint32 var2 = lua_tointeger(L, 2) << 16;
         ((CMobEntity*)m_PBaseEntity)->m_extraVar = var1 + var2;
-    } else if (n == 3) {
+    }
+    else if (n == 3)
+    {
         uint32 var1 = lua_tointeger(L, 1) << 16;
         uint32 var2 = (lua_tointeger(L, 2) & 0x000000FF) << 8;
         uint32 var3 = (lua_tointeger(L, 3) & 0x000000FF);
         ((CMobEntity*)m_PBaseEntity)->m_extraVar = var1 + var2 + var3;
-    } else {
+    }
+    else
+    {
         uint32 var1 = lua_tointeger(L, 1) << 24;
         uint32 var2 = (lua_tointeger(L, 2) & 0x000000FF) << 16;
         uint32 var3 = (lua_tointeger(L, 3) & 0x000000FF) << 8;
@@ -8406,7 +8583,7 @@ inline int32 CLuaBaseEntity::pathThrough(lua_State* L)
 
     DSP_DEBUG_BREAK_IF(length > 50*3);
 
-    // grab points from array and store in points array
+    // Grab points from array and store in points array
     for(uint8 i=1; i<length; i+=3)
     {
         lua_rawgeti(L, 1, i);
@@ -8468,7 +8645,7 @@ inline int32 CLuaBaseEntity::atPoint(lua_State* L)
     }
     else
     {
-        // its a table
+        // It's a table
         lua_rawgeti(L, 1, 1);
         posX = lua_tonumber(L, -1);
         lua_pop(L,1);
@@ -9367,6 +9544,15 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getValorPoint),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addValorPoint),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delValorPoint),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getScylds),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addScylds),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,delScylds),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCinders),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addCinders),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,delCinders),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getFewell),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addFewell),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,delFewell),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getImperialStanding),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addImperialStanding),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delImperialStanding),
