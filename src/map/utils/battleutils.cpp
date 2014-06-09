@@ -1873,8 +1873,14 @@ uint8 GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
     CItemWeapon* PWeapon = GetEntityWeapon(PDefender, SLOT_MAIN);
 
     // Defender must have no weapon equipped, or a hand to hand weapon equipped to guard
-    if((PWeapon == NULL || PWeapon->getID() == 0 || PWeapon->getID() == 65535 ||
-        PWeapon->getSkillType() == SKILL_H2H) && battleutils::IsEngauged(PDefender))
+    bool validWeapon = (PWeapon == NULL || PWeapon->getID() == 0 || PWeapon->getID() == 65535 ||
+        PWeapon->getSkillType() == SKILL_H2H);
+
+    if(PDefender->objtype == TYPE_MOB || PDefender->objtype == TYPE_PET){
+        validWeapon = PDefender->GetMJob() == JOB_MNK || PDefender->GetMJob() == JOB_PUP;
+    }
+
+    if(validWeapon && battleutils::IsEngauged(PDefender))
     {
     	// assuming this is like parry
         float skill = PDefender->GetSkill(SKILL_GRD) + PDefender->getMod(MOD_GUARD);
@@ -2025,8 +2031,7 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
             if ((!isRanged)
                 && !((isBlocked) && (PDefender->objtype == TYPE_PC ) && (charutils::hasTrait((CCharEntity*)PDefender, TRAIT_SHIELD_MASTERY))))
             {
-                    // use new method
-    	            PDefender->PBattleAI->m_PMagicState->TryHitInterrupt(PAttacker);
+                PDefender->PBattleAI->m_PMagicState->TryHitInterrupt(PAttacker);
     	    }
     	}
         else
@@ -2092,6 +2097,10 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 
         if (PAttacker->objtype == TYPE_PC)
             charutils::UpdateHealth((CCharEntity*)PAttacker);
+    } else {
+        if(PDefender->objtype == TYPE_MOB){
+            ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PAttacker, 0);
+        }
     }
 
     if (PDefender->objtype == TYPE_PC)

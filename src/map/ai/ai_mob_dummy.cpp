@@ -182,11 +182,15 @@ void CAIMobDummy::ActionRoaming()
 
 		// recover health
 		// can't rest when taking hp damage
-		if(!m_PMob->getMod(MOD_REGEN_DOWN) && !m_PMob->StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_NO_REST) && !m_PMob->Rest(0.1f))
+		if(m_PMob->CanRest() && !m_PMob->Rest(0.1f))
 		{
 			// undirty exp
 			m_PMob->m_giveExp = true;
 		}
+
+        if(m_PMob->GetHPP() < 100){
+            m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_HP));
+        }
 
 		// if I just disengaged check if I should despawn
 		if(m_checkDespawn && m_PMob->IsFarFromHome())
