@@ -36,9 +36,7 @@ function onSpellCast(caster,target,spell)
 	else
         dmg = ((100+caster:getMod(MOD_MATT))/(100+target:getMod(MOD_MDEF))) * (caster:getStat(MOD_INT) + (caster:getMaxSkillLevel(caster:getMainLvl(), JOB_BLM, ELEMENTAL_MAGIC_SKILL))/6) * 3.5;
     end
-    print(target:getMod(MOD_MDEF));
-    print(caster:getStat(MOD_INT));
-    print(dmg);
+
 	--add in target adjustment
 	dmg = adjustForTarget(target,dmg,spell:getElement());
 	--add in final adjustments
