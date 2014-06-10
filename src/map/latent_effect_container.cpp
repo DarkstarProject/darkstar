@@ -363,7 +363,6 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
 				case LATENT_HP_OVER_TP_UNDER_100:
 					if (((float)m_POwner->health.hp / m_POwner->health.maxhp )*100 >= m_LatentEffectList.at(i)->GetConditionsValue() && m_POwner->health.tp < 100)
 					{
-						m_POwner->addHP(4);
 						m_LatentEffectList.at(i)->Activate();
 					}
 					else
