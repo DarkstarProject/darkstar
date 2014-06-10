@@ -188,9 +188,7 @@ void CAIMobDummy::ActionRoaming()
 			m_PMob->m_giveExp = true;
 		}
 
-        if(m_PMob->GetHPP() < 100){
-            m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_HP));
-        }
+        m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_HP));
 
 		// if I just disengaged check if I should despawn
 		if(m_checkDespawn && m_PMob->IsFarFromHome())
