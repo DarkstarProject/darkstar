@@ -9302,6 +9302,7 @@ inline int32 CLuaBaseEntity::stun(lua_State* L)
 	return 0;
 }
 
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";

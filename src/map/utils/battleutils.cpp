@@ -3971,7 +3971,8 @@ int32 PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage)
 
 	// Handle Severe Damage Reduction Effects
 	damage = HandleSevereDamage(PDefender, damage);
-
+    // Handle Fan Dance reduction effects
+    damage = HandleFanDance(PDefender, damage);
     return damage;
 }
 
@@ -3991,8 +3992,9 @@ int32 RangedDmgTaken(CBattleEntity* PDefender, int32 damage)
 	damage = damage * resist;
 
 	// Handle Severe Damage Reduction Effects
-	damage = HandleSevereDamage(PDefender, damage);
-
+    damage = HandleSevereDamage(PDefender, damage);
+    // Handle Fan Dance reduction effects
+    damage = HandleFanDance(PDefender, damage);
     return damage;
 }
 
@@ -4094,6 +4096,24 @@ int32 HandleSevereDamage(CBattleEntity* PDefender, int32 damage){
 	damage = HandleSevereDamageEffect(PDefender, EFFECT_MIGAWARI, damage, true);
 	// In the future, handle other Severe Damage Effects like Scherzo & Earthen Armor here
 	return damage;
+}
+
+int32 HandleFanDance(CBattleEntity* PDefender, int32 damage)
+{
+    // Handle Fan Dance
+    if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_FAN_DANCE))
+    {
+        
+        int power = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_FAN_DANCE)->GetPower();
+        float resist = 1.0f - (power / 100.0f);
+        damage *= resist;
+        if (power > 20)
+        {
+            // reduce fan dance effectiveness by 10% each hit, to a min of 20%
+            PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_FAN_DANCE)->SetPower(power - 10);
+        }
+    }
+    return damage;
 }
 
 int32 HandleSevereDamageEffect(CBattleEntity* PDefender, EFFECT effect, int32 damage, bool removeEffect){

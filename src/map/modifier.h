@@ -420,13 +420,15 @@ enum MODIFIER
 	
 	// Dancer
 	MOD_FINISHING_MOVES           =0x14D,// Tracks # of finishing moves (modId = 333)    
-    MOD_SAMBA_DURATION =0x1EA,// Samba duration bonus(modId = 490)
-    MOD_WALTZ_POTENTCY = 0x1EB,// Waltz Potentcy Bonus(modId = 491)
-    MOD_CHOCO_JIG_DURATION = 0x1EC,// Jig duration bonus (modId = 492)
-    MOD_VFLOURISH_MACC = 0x1ED,// Violent Flourish accuracy bonus (modId = 493)
-    MOD_STEP_FINISH = 0x1EE,// Bonus finishing moves from steps (modId = 494)
-    MOD_STEP_ACCURACY = 0x193,// Bonus accuracy for Dancer's steps (modId = 403)
-    MOD_SPECTRAL_JIG = 0x1EF,// Spectral Jig duration modifier (percent increase) (modId = 495)
+    MOD_SAMBA_DURATION            =0x1EA,// Samba duration bonus(modId = 490)
+    MOD_WALTZ_POTENTCY            = 0x1EB,// Waltz Potentcy Bonus(modId = 491)
+    MOD_CHOCO_JIG_DURATION        = 0x1EC,// Jig duration bonus (modId = 492)
+    MOD_VFLOURISH_MACC            = 0x1ED,// Violent Flourish accuracy bonus (modId = 493)
+    MOD_STEP_FINISH               = 0x1EE,// Bonus finishing moves from steps (modId = 494)
+    MOD_STEP_ACCURACY             = 0x193,// Bonus accuracy for Dancer's steps (modId = 403)
+    MOD_SPECTRAL_JIG              = 0x1EF,// Spectral Jig duration modifier (percent increase) (modId = 495)
+    MOD_WALTZ_RECAST              = 0x1F1,// (modID = 497) Waltz recast modifier (percent)
+    MOD_SAMBA_PDURATION           = 0x1F2,// (modID = 498) Samba percent duration bonus
 
     //Scholar
     MOD_BLACK_MAGIC_COST          =0x189,// MP cost for black magic (light/dark arts) (modId = 393)
@@ -542,9 +544,9 @@ enum MODIFIER
 
 
 
-    //MOD_SPARE =0x1F1,// (modId = 497)
-    //MOD_SPARE =0x1F2,// (modId = 498)
     //MOD_SPARE =0x1F3,// (modId = 499)
+    //MOD_SPARE =0x1F4,// (modId = 500)
+    //MOD_SPARE =0x1F5,// (modId = 501)
 
     MOD_ADDITIONAL_EFFECT = 0x1AF,// (modId = 431)
 
@@ -552,7 +554,7 @@ enum MODIFIER
 
 };
 
-#define MAX_MODIFIER 497
+#define MAX_MODIFIER 499
 
 
 
