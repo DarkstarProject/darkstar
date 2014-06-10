@@ -1873,8 +1873,7 @@ uint8 GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
     CItemWeapon* PWeapon = GetEntityWeapon(PDefender, SLOT_MAIN);
 
     // Defender must have no weapon equipped, or a hand to hand weapon equipped to guard
-    bool validWeapon = (PWeapon == NULL || PWeapon->getID() == 0 || PWeapon->getID() == 65535 ||
-        PWeapon->getSkillType() == SKILL_H2H);
+    bool validWeapon = (PWeapon == NULL || PWeapon->getSkillType() == SKILL_H2H);
 
     if(PDefender->objtype == TYPE_MOB || PDefender->objtype == TYPE_PET){
         validWeapon = PDefender->GetMJob() == JOB_MNK || PDefender->GetMJob() == JOB_PUP;
