@@ -550,7 +550,7 @@ void CMagicState::FinishSpell()
 	luautils::OnSpellPrecast(m_PEntity, PSpellCopy);
 
 	SpendCost(PSpellCopy);
-	SetRecast(PSpellCopy);
+	SetRecast(m_PSpell);
 
 	// remove effects based on spell cast first
     int16 effectFlags = EFFECTFLAG_INVISIBLE | EFFECTFLAG_MAGIC_BEGIN;
