@@ -1252,68 +1252,6 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 	if(WELL512::irand()%100 >= chance || PAmmo==NULL){return;}
 
 	switch(PAmmo->getID()){
-    case 17325:{ // kabura_arrow
-
-        //check wind resistance
-        if(WELL512::irand()%100 <= PDefender->getMod(MOD_WINDRES)){return;}
-
-        if(PDefender->StatusEffectContainer->AddStatusEffect(
-                new CStatusEffect(EFFECT_SILENCE,EFFECT_SILENCE,1,0,60))){
-
-		    Action->additionalEffect = SUBEFFECT_SILENCE;
-		    Action->addEffectMessage = 160;
-			Action->addEffectParam  = EFFECT_SILENCE;
-        }
-    }
-    break;
-    case 18159:{ // Demon Arrow
-
-        //check water resistance
-        if(WELL512::irand()%100 <= PDefender->getMod(MOD_WATERRES)){return;}
-
-        if(PDefender->StatusEffectContainer->AddStatusEffect(
-                new CStatusEffect(EFFECT_ATTACK_DOWN,EFFECT_ATTACK_DOWN,12,0,60))){
-
-		    Action->additionalEffect = SUBEFFECT_DEFENSE_DOWN;
-		    Action->addEffectMessage = 160;
-			Action->addEffectParam  = EFFECT_ATTACK_DOWN;
-        }
-
-    }
-    break;
-    case 18160:{ // Spartan Bullet
-        //check thunder resistance
-        if(WELL512::irand()%100 <= PDefender->getMod(MOD_THUNDERRES) && WELL512::irand()%50 < 100){return;}
-
-        if(PDefender->StatusEffectContainer->AddStatusEffect(
-            new CStatusEffect(EFFECT_STUN,EFFECT_STUN,1,0,4))){
-
-		    Action->additionalEffect = SUBEFFECT_STUN;
-		    Action->addEffectMessage = 160;
-			Action->addEffectParam  = EFFECT_STUN;
-        }
-    }
-    break;
-    case 17329: // patriarch_protectors_arrow
-    case 18696:{ // Paralysis Arrow
-            //check ice resistance
-            if(WELL512::irand()%100 <= PDefender->getMod(MOD_ICERES)){return;}
-
-            uint8 power = 20;
-
-            if(PAmmo->getID() == 17329){
-                power = 30;
-            }
-
-            if(PDefender->StatusEffectContainer->AddStatusEffect(
-                new CStatusEffect(EFFECT_PARALYSIS,EFFECT_PARALYSIS,power,0,30))){
-
-		        Action->additionalEffect = SUBEFFECT_PARALYSIS;
-		        Action->addEffectMessage = 160;
-			    Action->addEffectParam  = EFFECT_PARALYSIS;
-            }
-    }
-    break;
 	case 18700:{ //Wind Arrow
 	//damage doesn't exceed ~67 unless wearing wind staff/iceday/weather
 	//there isn't a formula, but INT affects damage, so this is guesstimated. It seems to be level
@@ -1379,47 +1317,6 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
 			PDefender->addHP(-damage);
 		}
 		break;
-	case 18158:{//Sleep Arrow
-		    if(!PDefender->isDead() && PDefender->hasImmunity(1) == false){
-
-                int duration = 25 - (PDefender->GetMLevel() - PAttacker->GetMLevel())*5 - ((float)PDefender->getMod(MOD_LIGHTRES)/5);
-
-                if(duration <= 1){
-                    duration = 1;
-                } else {
-                    //randomize sleep duration
-                    duration -= WELL512::irand()%(duration/2);
-                }
-
-			    duration = dsp_cap(duration,1,25);
-			    if(PDefender->StatusEffectContainer->AddStatusEffect(
-				    new CStatusEffect(EFFECT_SLEEP,EFFECT_SLEEP,1,0,duration))){
-
-		            Action->additionalEffect = SUBEFFECT_SLEEP;
-		            Action->addEffectMessage = 160;
-			        Action->addEffectParam  = EFFECT_SLEEP;
-
-                }
-			}
-		}
-		break;
-	case 18157:{ //Poison Arrow
-
-            if(PDefender->hasImmunity(256) == false){
-                //check water resistance
-                if(WELL512::irand()%100 <= PDefender->getMod(MOD_WATERRES)){return;}
-
-				//4hp/tick for 30secs
-				if(PDefender->StatusEffectContainer->AddStatusEffect(
-					new CStatusEffect(EFFECT_POISON,EFFECT_POISON,4,3,30))){
-
-		            Action->additionalEffect = SUBEFFECT_POISON;
-		            Action->addEffectMessage = 160;
-			        Action->addEffectParam  = EFFECT_POISON;
-                }
-			}
-		}
-		break;
 	case 18153:{ //Holy Bolt
 	//damage doesn't exceed ~67 unless wearing light staff/lightsday/weather
 	//there isn't a formula, but MND affects damage, so this is guesstimated. It seems to be level
@@ -1439,22 +1336,6 @@ void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefend
             damage = HandleStoneskin(PDefender, damage);
 			Action->addEffectParam  = damage;
 			PDefender->addHP(-damage);
-		}
-		break;
-	case 18152:{ //Venom Bolt
-			if(PDefender->hasImmunity(256) == false){
-                //check water resistance
-                if(WELL512::irand()%100 <= PDefender->getMod(MOD_WATERRES)){return;}
-
-				//4hp/tick for 30secs
-				if(PDefender->StatusEffectContainer->AddStatusEffect(
-					new CStatusEffect(EFFECT_POISON,EFFECT_POISON,4,3,30))){
-
-		            Action->additionalEffect = SUBEFFECT_POISON;
-		            Action->addEffectMessage = 160;
-			        Action->addEffectParam  = EFFECT_POISON;
-                }
-			}
 		}
 		break;
 	case 17324:{ //Lightning Arrow
