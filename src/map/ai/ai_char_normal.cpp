@@ -193,6 +193,15 @@ bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTar
 		    }
         }
 	}
+
+	if (ValidTarget & TARGET_NPC)
+	{
+		if (PTarget->allegiance == m_PChar->allegiance)
+		{
+			return PTarget;
+		}
+	}
+
 	if (PTarget->objtype == TYPE_PC)
 	{
 		if ((ValidTarget & TARGET_SELF) &&
@@ -214,6 +223,15 @@ bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTar
 			return true;
 		}
 		return false;
+	}
+
+	if (PTarget->objtype == TYPE_MOB)
+	{
+		if (ValidTarget & TARGET_PLAYER_DEAD && ((CMobEntity*)PTarget)->m_Behaviour & BEHAVIOUR_RAISABLE
+			&& PTarget->isDead())
+		{
+			return true;
+		}
 	}
 	return false;
 }
@@ -400,8 +418,15 @@ void CAICharNormal::ActionFall()
 
 	m_LastActionTime = m_Tick;
 
-	//falls to the ground
-	m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 20));
+	if (m_PBattleSubTarget == NULL)
+	{
+		//falls to the ground
+		m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 20));
+	}
+	else
+	{
+		m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, 0, 0, 97));
+	}
 
 	m_PSpell           = NULL;
     m_PJobAbility      = NULL;

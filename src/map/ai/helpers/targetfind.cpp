@@ -131,7 +131,7 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
     else {
         // handle this as a mob
 
-        if (m_PMasterTarget->objtype == TYPE_PC){
+        if (m_PMasterTarget->objtype == TYPE_PC || m_PBattleEntity->allegiance == ALLEGIANCE_PLAYER){
             m_findType = FIND_MONSTER_PLAYER;
         }
         else {
@@ -166,8 +166,13 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
             }
 
             // Is the monster casting on a player..
-            if (m_findType == FIND_MONSTER_PLAYER)
-                addAllInEnmityList();
+			if (m_findType == FIND_MONSTER_PLAYER)
+			{
+				if (m_PMasterTarget->allegiance == ALLEGIANCE_PLAYER)
+					addAllInZone(m_PMasterTarget, withPet);
+				else
+					addAllInEnmityList();
+			}
         }
     }
 }
@@ -533,5 +538,14 @@ CBattleEntity* CTargetFind::getValidTarget(uint16 actionTargetID, uint8 validTar
         }
         return NULL;
     }
+
+	if (PTarget->objtype == TYPE_MOB)
+	{
+		if (validTargetFlags & TARGET_PLAYER_DEAD && ((CMobEntity*)PTarget)->m_Behaviour & BEHAVIOUR_RAISABLE
+			&& PTarget->isDead())
+		{
+			return PTarget;
+		}
+	}
     return NULL;
 }

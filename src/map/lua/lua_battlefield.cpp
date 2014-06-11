@@ -178,6 +178,24 @@ inline int32 CLuaBattlefield::getAllies(lua_State* L)
 	return 1;
 }
 
+inline int32 CLuaBattlefield::lose(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == NULL);
+
+	m_PLuaBattlefield->lose();
+
+	return 0;
+}
+
+inline int32 CLuaBattlefield::win(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == NULL);
+
+	m_PLuaBattlefield->win();
+
+	return 0;
+}
+
 /************************************************************************
 *																		*
 *  declare lua function													*
@@ -197,5 +215,7 @@ Lunar<CLuaBattlefield>::Register_t CLuaBattlefield::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBattlefield,setEntrance),
 	LUNAR_DECLARE_METHOD(CLuaBattlefield,insertAlly),
 	LUNAR_DECLARE_METHOD(CLuaBattlefield,getAllies),
+	LUNAR_DECLARE_METHOD(CLuaBattlefield,lose),
+	LUNAR_DECLARE_METHOD(CLuaBattlefield,win),
 	{NULL,NULL}
 }; 

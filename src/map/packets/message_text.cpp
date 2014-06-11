@@ -27,7 +27,7 @@
 #include "../entities/baseentity.h"
 
 
-CMessageTextPacket::CMessageTextPacket(CBaseEntity* PEntity, uint16 messageID)
+CMessageTextPacket::CMessageTextPacket(CBaseEntity* PEntity, uint16 messageID, bool showName)
 {
 	this->type = 0x36;
 	this->size = 0x08;
@@ -35,7 +35,7 @@ CMessageTextPacket::CMessageTextPacket(CBaseEntity* PEntity, uint16 messageID)
 	// если в качестве объекта передается персонаж,
 	// то не будем отображать имя
 
-	if (PEntity->objtype == TYPE_PC)
+	if (PEntity->objtype == TYPE_PC || showName == false)
 	{
 		messageID += 0x8000;
 	}

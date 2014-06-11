@@ -3192,9 +3192,10 @@ bool IsEngauged(CBattleEntity* PEntity)
 {
     DSP_DEBUG_BREAK_IF(PEntity == NULL);
 
-    return (PEntity->animation != ANIMATION_HEALING &&
+    return (PEntity->animation == ANIMATION_ATTACK &&
             PEntity->PBattleAI != NULL &&
-            PEntity->PBattleAI->GetBattleTarget() != NULL);
+            PEntity->PBattleAI->GetBattleTarget() != NULL && 
+			PEntity->status != STATUS_DISAPPEAR);
 }
 
 /************************************************************************

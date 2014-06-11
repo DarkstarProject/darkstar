@@ -10,7 +10,7 @@ function OnMobSkillCheck(target,mob,skill)
     if (mob:hasStatusEffect(EFFECT_PHYSICAL_SHIELD) or mob:hasStatusEffect(EFFECT_MAGIC_SHIELD)) then
         return 1;
     end
-    mob:showText(mob, PROMATHIA_TEXT + 6);
+    mob:showText(mob, PROMATHIA_TEXT + 5);
     return 0;
 end;
 

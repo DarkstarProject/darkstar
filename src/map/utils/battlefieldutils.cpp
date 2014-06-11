@@ -194,6 +194,9 @@ namespace battlefieldutils{
 	(e.g. mob below X% HP, successful Steal, etc)
 	***************************************************************/
 	bool meetsWinningConditions(CBattlefield* battlefield, uint32 tick){
+
+		if (battlefield->won()) return true;
+
 		//handle odd cases e.g. stop fight @ x% HP
 
 		//handle Maat fights
@@ -240,6 +243,7 @@ namespace battlefieldutils{
 	or when everyone has left, etc.
 	****************************************************************/
 	bool meetsLosingConditions(CBattlefield* battlefield, uint32 tick){
+		if (battlefield->lost()) return true;
 		//check for expired duration e.g. >30min. Need the tick>start check as the start can be assigned
 		//after the tick initially due to threading
 		if(tick>battlefield->getStartTime() && (tick - battlefield->getStartTime()) > battlefield->getTimeLimit()*1000){

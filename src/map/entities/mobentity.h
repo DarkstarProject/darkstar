@@ -104,9 +104,11 @@ enum AGGRO : uint16
 enum BEHAVIOUR : uint16
 {
 	BEHAVIOUR_NONE				= 0x000,
-	BEHAVIOUR_NO_DESPAWN		= 0x001,
-	BEHAVIOUR_AGGRO_AMBUSH		= 0x200,
-	BEHAVIOUR_NO_TURN           = 0x400
+	BEHAVIOUR_NO_DESPAWN		= 0x001, // mob does not despawn on death
+	BEHAVIOUR_STANDBACK			= 0x002, // mob will standback forever
+	BEHAVIOUR_RAISABLE			= 0x004, // mob can be raised via Raise spells
+	BEHAVIOUR_AGGRO_AMBUSH		= 0x200, // mob aggroes by ambush
+	BEHAVIOUR_NO_TURN           = 0x400  // mob does not turn to face target
 };
 
 

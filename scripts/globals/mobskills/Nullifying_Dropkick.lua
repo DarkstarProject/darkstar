@@ -25,8 +25,6 @@ function OnMobWeaponSkill(target, mob, skill)
     
     target:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
     target:delStatusEffect(EFFECT_MAGIC_SHIELD);
-    
-    target:AnimationSub(0);
 
     target:delHP(dmg);
     return dmg;

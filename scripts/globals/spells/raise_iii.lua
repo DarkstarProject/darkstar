@@ -13,7 +13,15 @@ function OnMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-	target:sendRaise(3);
+    if (target:isPC()) then
+        target:sendRaise(3);
+    else
+        if (target:getName() == "Prishe") then
+            -- CoP 8-4 Prishe
+            local raise, hf, bene = target:getExtraVar(3);
+            target:setExtraVar(1,hf,bene);
+        end
+    end
     spell:setMsg(309);
 
     return 3;

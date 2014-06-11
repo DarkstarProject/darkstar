@@ -94,8 +94,8 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
 
 bool CPathFind::PathTo(position_t point, uint8 pathFlags)
 {
-	// don't follow a new path if the current path has no overwrite flag and new path doesn't
-	if (IsFollowingPath() && m_pathFlags & PATHFLAG_NO_OVERWRITE && !(pathFlags & PATHFLAG_NO_OVERWRITE))
+	// don't follow a new path if the current path has script flag and new path doesn't
+	if (IsFollowingPath() && m_pathFlags & PATHFLAG_SCRIPT && !(pathFlags & PATHFLAG_SCRIPT))
 		return false;
 	Clear();
 
@@ -403,6 +403,11 @@ float CPathFind::GetRealSpeed()
 bool CPathFind::IsFollowingPath()
 {
 	return m_pathLength > 0;
+}
+
+bool CPathFind::IsFollowingScriptedPath()
+{
+	return m_pathLength > 0 && m_pathFlags & PATHFLAG_SCRIPT;
 }
 
 bool CPathFind::AtPoint(position_t* pos)
