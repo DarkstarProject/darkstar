@@ -28,7 +28,7 @@
 #include "entity_visual.h"
 
 
-CEntityVisualPacket::CEntityVisualPacket(CBaseEntity* PEntity, uint8 param1, uint8 param2, uint8 param3, uint8 param4)
+CEntityVisualPacket::CEntityVisualPacket(CBaseEntity * PEntity, const char type[4])
 {
 	this->type = 0x39;
 	this->size = 0x0A;
@@ -41,9 +41,5 @@ CEntityVisualPacket::CEntityVisualPacket(CBaseEntity* PEntity, uint8 param1, uin
 		WBUFW(data, (0x10) - 4) = PEntity->targid;
 		WBUFW(data, (0x12) - 4) = PEntity->targid;
 	}
-    WBUFB(data,(0x0C)-4) = param1;
-    WBUFB(data,(0x0D)-4) = param2;
-    WBUFB(data,(0x0E)-4) = param3;
-    WBUFB(data,(0x0F)-4) = param4;
-
+	memcpy(data + ((0x0C) - 4), type, 4);
 }

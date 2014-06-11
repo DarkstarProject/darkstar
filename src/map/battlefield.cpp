@@ -27,7 +27,7 @@
 #include "entities/charentity.h"
 #include "entities/mobentity.h"
 #include "entities/baseentity.h"
-#include "packets/fade_out.h"
+#include "packets/entity_animation.h"
 #include "packets/entity_update.h"
 #include "packets/position.h"
 #include "packets/message_basic.h"
@@ -214,7 +214,7 @@ void CBattlefield::capPlayerToBCNM(){ //adjust player's level to the appropriate
 bool CBattlefield::isPlayerInBcnm(CCharEntity* PChar){
 	for(int i=0; i<m_PlayerList.size(); i++){
 		if(PChar->id == m_PlayerList.at(i)->id){
-			return PChar->m_BCNM != NULL;
+			return PChar->PBCNM != NULL;
 		}
 	}
 	return false;
@@ -250,7 +250,7 @@ bool CBattlefield::addPlayerToBcnm(CCharEntity* PChar){
 bool CBattlefield::delPlayerFromBcnm(CCharEntity* PChar){
 	for(int i=0; i<m_PlayerList.size(); i++){
 		if(m_PlayerList.at(i)->id == PChar->id){
-			PChar->m_BCNM = NULL;
+			PChar->PBCNM = NULL;
 			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_SJ_RESTRICTION);
 			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_BATTLEFIELD);
 			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
@@ -266,8 +266,8 @@ bool CBattlefield::delPlayerFromBcnm(CCharEntity* PChar){
 bool CBattlefield::enterBcnm(CCharEntity* PChar){
 	for(int i=0; i<m_PlayerList.size(); i++){
 		if(m_PlayerList.at(i)->id == PChar->id){
-			if (PChar->m_BCNM){ ShowWarning("%s is already inside a BCNM!\n", PChar->GetName()); }
-			PChar->m_BCNM = this;
+			if (PChar->PBCNM){ ShowWarning("%s is already inside a BCNM!\n", PChar->GetName()); }
+			PChar->PBCNM = this;
 			ShowDebug("Entered ID %i Battlefield %i \n",this->m_BcnmID,this->m_BattlefieldNumber);
 			//callback to lua
 			luautils::OnBcnmEnter(PChar,this);
@@ -301,7 +301,7 @@ bool CBattlefield::allPlayersDead(){
 
 void CBattlefield::lockBcnm(){
 	for(int i=0; i<m_PlayerList.size(); i++){
-		if (!m_PlayerList.at(i)->m_BCNM){
+		if (!m_PlayerList.at(i)->PBCNM){
 			ShowDebug("Removing %s from the valid players list for BCNMID %i Battlefield %i \n",m_PlayerList.at(i)->GetName(),
 				this->m_BcnmID,this->m_BattlefieldNumber);
 			if(this->delPlayerFromBcnm(m_PlayerList.at(i))){i--;}
@@ -318,6 +318,7 @@ void CBattlefield::init(){
 
 void CBattlefield::addEnemy(CMobEntity* PMob, uint8 condition){
 	m_EnemyList.push_back(PMob);
+	PMob->PBCNM = this;
 	if (condition & CONDITION_WIN_REQUIREMENT)
 	{
 		MobVictoryCondition_t mobCondition = {PMob, false};
@@ -327,6 +328,7 @@ void CBattlefield::addEnemy(CMobEntity* PMob, uint8 condition){
 
 void CBattlefield::addNpc(CBaseEntity* PNpc){
 	m_NpcList.push_back(PNpc);
+	PNpc->PBCNM = this;
 }
 
 bool CBattlefield::allEnemiesDefeated(){
@@ -367,7 +369,7 @@ void CBattlefield::cleanup(){
 
 	//make chest vanish (if any)
 	for(int i=0; i<m_NpcList.size(); i++){
-		m_NpcList.at(i)->loc.zone->PushPacket(m_NpcList.at(i), CHAR_INRANGE, new CFadeOutPacket(m_NpcList.at(i)));
+		m_NpcList.at(i)->loc.zone->PushPacket(m_NpcList.at(i), CHAR_INRANGE, new CEntityAnimationPacket(m_NpcList.at(i), CEntityAnimationPacket::FADE_OUT));
 		m_NpcList.at(i)->animation = ANIMATION_DEATH;
 		m_NpcList.at(i)->status = STATUS_UPDATE;
 		m_NpcList.at(i)->loc.zone->PushPacket(m_NpcList.at(i), CHAR_INRANGE, new CEntityUpdatePacket(m_NpcList.at(i), ENTITY_UPDATE, UPDATE_COMBAT));
@@ -524,7 +526,7 @@ void CBattlefield::cleanupDynamis(){
 bool CBattlefield::delPlayerFromDynamis(CCharEntity* PChar){
 	for(int i=0; i<m_PlayerList.size(); i++){
 		if(m_PlayerList.at(i)->id == PChar->id){
-			PChar->m_BCNM = NULL;
+			PChar->PBCNM = NULL;
 			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_DYNAMIS);
 			PChar->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
 			m_PlayerList.erase(m_PlayerList.begin()+i);

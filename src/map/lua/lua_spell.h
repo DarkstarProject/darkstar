@@ -47,14 +47,19 @@ public:
 	}
 
     int32 setMsg(lua_State*);
+	int32 setAoE(lua_State*);
+	int32 setFlag(lua_State*);
+	int32 setRadius(lua_State*);
+	int32 setAnimation(lua_State*);
+	int32 setMPCost(lua_State*);
     int32 canTargetEnemy(lua_State*);
-    int32 getDefaultMessage(lua_State*);
     int32 isAoE(lua_State*);
     int32 getTotalTargets(lua_State*);
     int32 getMagicBurstMessage(lua_State*);
 	int32 getElement(lua_State*);
 	int32 getID(lua_State*);
     int32 getSpellGroup(lua_State*);
+	int32 getFlag(lua_State*);
 };
 
 #endif

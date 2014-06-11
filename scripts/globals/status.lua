@@ -1517,6 +1517,16 @@ TYPE_MOB	= 0x04
 TYPE_PET	= 0x08
 TYPE_SHIP   = 0x10
 
+----------------------------------
+-- Allegiance Definitions
+----------------------------------
+
+ALLEGIANCE_MOB			= 0
+ALLEGIANCE_PLAYER		= 1
+ALLEGIANCE_SAN_DORIA	= 2
+ALLEGIANCE_BASTOK		= 3
+ALLEGIANCE_WINDURST		= 4
+
 -----------------------------------
 -- Inventory enum
 -----------------------------------
@@ -1788,3 +1798,26 @@ SYSTEM_UNCLASSIFIED		= 18;
 SYSTEM_UNDEAD			= 19;
 SYSTEM_VERMIN			= 20;
 SYSTEM_VORAGEAN			= 21;
+
+-----------------------------------
+--
+--	Spell AOE IDs
+--
+-----------------------------------
+
+SPELLAOE_NONE           = 0;
+SPELLAOE_RADIAL         = 1;
+SPELLAOE_CONAL          = 2;
+SPELLAOE_RADIAL_MANI    = 3;  -- AOE when under SCH stratagem Manifestation
+SPELLAOE_RADIAL_ACCE    = 4;  -- AOE when under SCH stratagem Accession
+SPELLAOE_PIANISSIMO     = 5;  -- Single target when under BRD JA Pianissimo
+SPELLAOE_DIFFUSION		= 6;   -- AOE when under Diffusion
+
+-----------------------------------
+--
+--	Spell flag bits
+--
+-----------------------------------
+
+SPELLFLAG_NONE		= 0;
+SPELLFLAG_HIT_ALL	= 1;		-- hit all targets in range regardless of party

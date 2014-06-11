@@ -150,6 +150,7 @@ public:
 	bool			IsNameHidden();		// checks if name is hidden
 
     CAIGeneral*     PBattleAI;          // интеллект любой сущности
+	CBattlefield*	PBCNM;				// pointer to bcnm (if in one)
 	CInstance*		PInstance;
 
 	CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1);

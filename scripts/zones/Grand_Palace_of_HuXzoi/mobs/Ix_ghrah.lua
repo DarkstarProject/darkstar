@@ -29,15 +29,6 @@ end;
 -----------------------------------
 function onMobFight(mob,target)
 
-	
-	
- if (math.random(0,10)<3)then
- 
- 	local form = math.random(0,3);
-
- 
-	mob:AnimationSub(form);	
- end
 end;
 
 -----------------------------------

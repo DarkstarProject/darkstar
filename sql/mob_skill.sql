@@ -967,7 +967,15 @@ INSERT INTO `mob_skill` VALUES (374,51,374,'Kick_Out', 4, 10.0, 2000, 1500, 4, 0
 INSERT INTO `mob_skill` VALUES (375,51,375,'Shock_Wave', 4, 7.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (376,51,376,'Flame_Armor', 0, 7.0, 2000, 1500, 1, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (377,51,377,'Howl', 0, 7.0, 2000, 1500, 1, 0, 0, 0);
--- INSERT INTO `mob_skill` VALUES (378,51,378,'Meteor', 2, 30.0, 2000, 1500, 4, 0, 0, 0);
+-- INSERT INTO `mob_skill` VALUES (378,51,378,'Meteor', 2, 30.0, 2000, 1500, 4, 0, 0, 0); -- Chlevnik
+
+-- King Behemoth
+INSERT INTO `mob_skill` VALUES (372,479,372,'Wild_Horn', 4, 10.0, 2000, 1500, 4, 8, 0, 0);
+INSERT INTO `mob_skill` VALUES (373,479,373,'Thunderbolt', 1, 40.0, 2000, 1500, 4, 8, 0, 0);
+INSERT INTO `mob_skill` VALUES (374,479,374,'Kick_Out', 4, 10.0, 2000, 1500, 4, 8, 0, 0);
+INSERT INTO `mob_skill` VALUES (375,479,375,'Shock_Wave', 4, 7.0, 2000, 1500, 4, 8, 0, 0);
+INSERT INTO `mob_skill` VALUES (376,479,376,'Flame_Armor', 0, 7.0, 2000, 1500, 1, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (377,479,377,'Howl', 0, 7.0, 2000, 1500, 1, 0, 0, 0);
 
 -- Behemoth (Elasmoth subspecies)
 -- INSERT INTO `mob_skill` VALUES (2134,?,?,'Accursed_Armor', 0, 30.0, 2000, 1500, 1, 0, 0, 0);

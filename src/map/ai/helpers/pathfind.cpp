@@ -94,7 +94,9 @@ bool CPathFind::RoamAround(position_t point, uint8 roamFlags)
 
 bool CPathFind::PathTo(position_t point, uint8 pathFlags)
 {
-
+	// don't follow a new path if the current path has no overwrite flag and new path doesn't
+	if (IsFollowingPath() && m_pathFlags & PATHFLAG_NO_OVERWRITE && !(pathFlags & PATHFLAG_NO_OVERWRITE))
+		return false;
 	Clear();
 
 	m_pathFlags = pathFlags;

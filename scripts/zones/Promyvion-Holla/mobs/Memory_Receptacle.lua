@@ -12,7 +12,8 @@ require( "scripts/zones/Promyvion-Holla/TextIDs" );
 -----------------------------------
 
 function onMobInitialize(mob)
-	-- mob:addMod(MOD_REGAIN, 100); -- 10% Regain for now
+	mob:addMod(MOD_REGAIN, 100); -- 10% Regain for now
+    mob:SetAutoAttackEnabled(false); -- Recepticles only use TP moves.	 
 end;
 
 -----------------------------------
@@ -21,8 +22,6 @@ end;
 function onMobFight(mob, target)
 
 	local Mem_Recep = mob:getID(); 
-
-	mob:SetAutoAttackEnabled(false); -- Recepticles only use TP moves.	 
 
 	if(Mem_Recep == 16842781) then -- Floor 1
 	for i = Mem_Recep+1, Mem_Recep+3 do -- Keep pets linked

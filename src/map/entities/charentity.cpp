@@ -111,7 +111,6 @@ CCharEntity::CCharEntity()
     m_hasAutoTarget    = 1;
 	m_InsideRegionID   = 0;
 	m_LevelRestriction = 0;
-	m_BCNM = NULL;
 	m_lastBcnmTimePrompt = 0;
 	m_AHHistoryTimestamp = 0;
     m_DeathCounter = 0;

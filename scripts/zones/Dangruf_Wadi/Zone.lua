@@ -42,15 +42,15 @@ function onRegionEnter(player,region)
 	{
 	[1] = function (x)
 	player:startEvent(0x000A);
-	SendEntityVisualPacket(17559897, 0x6B, 0x6B, 0x6A, 0x32);
+	SendEntityVisualPacket(17559897, "kkj2");
 	end,
 	[2] = function (x)
 	player:startEvent(0x000B);
-	SendEntityVisualPacket(17559898, 0x6B, 0x6B, 0x6A, 0x31);
+	SendEntityVisualPacket(17559898, "kkj1");
 	end,
 	[3] = function (x)	
 	player:startEvent(0x000C);	
-	SendEntityVisualPacket(17559899, 0x6B, 0x6B, 0x6A, 0x33);	
+	SendEntityVisualPacket(17559899, "kkj3");	
 	end,	
 	}	
 	if (player:hasKeyItem(BLUE_ACIDITY_TESTER)) then	

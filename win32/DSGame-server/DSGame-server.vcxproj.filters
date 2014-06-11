@@ -356,9 +356,6 @@
     <ClInclude Include="..\..\src\map\packets\event_update.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\packets\fade_out.h">
-      <Filter>Header Files\packets</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\map\packets\fishing.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
@@ -812,6 +809,9 @@
     <ClInclude Include="..\..\src\map\utils\instanceutils.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\entity_animation.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
@@ -1052,9 +1052,6 @@
       <Filter>Source Files\packets</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\event_update.cpp">
-      <Filter>Source Files\packets</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\packets\fade_out.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\fishing.cpp">
@@ -1488,6 +1485,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\utils\instanceutils.cpp">
       <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\entity_animation.cpp">
+      <Filter>Source Files\packets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

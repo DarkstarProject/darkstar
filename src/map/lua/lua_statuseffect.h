@@ -54,7 +54,8 @@ public:
     int32 getTier(lua_State*);
 	int32 getDuration(lua_State*);
 	int32 getStartTime(lua_State*);
-	int32 getLastTick(lua_State*);
+    int32 getLastTick(lua_State*);
+    int32 getTimeRemaining(lua_State*);
 	int32 getTickCount(lua_State*);
     int32 getTick(lua_State*);
 	

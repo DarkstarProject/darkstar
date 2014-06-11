@@ -140,6 +140,7 @@ inline int32 CLuaBattlefield::insertAlly(lua_State* L)
 	if (PAlly)
 	{
 		m_PLuaBattlefield->m_AllyList.push_back(PAlly);
+		PAlly->PBCNM = m_PLuaBattlefield;
 		lua_getglobal(L, CLuaBaseEntity::className);
 		lua_pushstring(L, "new");
 		lua_gettable(L, -2);
@@ -152,6 +153,28 @@ inline int32 CLuaBattlefield::insertAlly(lua_State* L)
 		lua_pushnil(L);
 		ShowError(CL_RED "CLuaBattlefield::insertAlly - group ID %u not found!" CL_RESET, groupid);
 	}
+	return 1;
+}
+
+inline int32 CLuaBattlefield::getAllies(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == NULL);
+
+	lua_createtable(L, m_PLuaBattlefield->m_AllyList.size(), 0);
+	int8 newTable = lua_gettop(L);
+	int i = 1;
+	for (auto ally : m_PLuaBattlefield->m_AllyList)
+	{
+		lua_getglobal(L, CLuaBaseEntity::className);
+		lua_pushstring(L, "new");
+		lua_gettable(L, -2);
+		lua_insert(L, -2);
+		lua_pushlightuserdata(L, (void*)ally);
+		lua_pcall(L, 2, 1, 0);
+
+		lua_rawseti(L, -2, i++);
+	}
+
 	return 1;
 }
 
@@ -173,5 +196,6 @@ Lunar<CLuaBattlefield>::Register_t CLuaBattlefield::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBattlefield,getEntrance),
 	LUNAR_DECLARE_METHOD(CLuaBattlefield,setEntrance),
 	LUNAR_DECLARE_METHOD(CLuaBattlefield,insertAlly),
+	LUNAR_DECLARE_METHOD(CLuaBattlefield,getAllies),
 	{NULL,NULL}
 }; 

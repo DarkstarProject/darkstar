@@ -36,10 +36,11 @@ class CBaseEntity;
 #define MAX_PATH_POINTS 50
 
 enum PATHFLAG {
-  PATHFLAG_NONE = 0,
-  PATHFLAG_RUN = 1, // run twice the speed
-  PATHFLAG_WALLHACK = 2, // run through walls if path is too long
-  PATHFLAG_REVERSE = 4 // reverse the path
+  PATHFLAG_NONE			= 0x00,
+  PATHFLAG_RUN			= 0x01, // run twice the speed
+  PATHFLAG_WALLHACK		= 0x02, // run through walls if path is too long
+  PATHFLAG_REVERSE		= 0x04, // reverse the path
+  PATHFLAG_NO_OVERWRITE = 0x08	// don't overwrite this path before completion (except via script)
 };
 
 class CPathFind

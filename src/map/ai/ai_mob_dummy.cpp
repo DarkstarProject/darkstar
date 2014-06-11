@@ -47,7 +47,7 @@
 
 #include "../packets/action.h"
 #include "../packets/entity_update.h"
-#include "../packets/fade_out.h"
+#include "../packets/entity_animation.h"
 #include "../packets/message_basic.h"
 
 
@@ -504,6 +504,7 @@ void CAIMobDummy::ActionDropItems()
 			}
 
 			PChar->setWeaponSkillKill(false);
+			m_PMob->StatusEffectContainer->KillAllStatusEffect();
 
 			// NOTE: this is called for all alliance / party members!
 			luautils::OnMobDeath(m_PMob, PChar);
@@ -521,16 +522,11 @@ void CAIMobDummy::ActionDropItems()
 
 void CAIMobDummy::ActionDeath()
 {
-	if (m_Tick > m_LastActionTime + 12000)
+	if (m_Tick > m_LastActionTime + 12000 && !(m_PMob->m_Behaviour & BEHAVIOUR_NO_DESPAWN))
 	{
-        m_PMob->StatusEffectContainer->KillAllStatusEffect();
-
 		m_ActionType = ACTION_FADE_OUT;
-		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CFadeOutPacket(m_PMob));
-				
-		//if (m_PMob->animationsub == 2) m_PMob->animationsub = 1;
+		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityAnimationPacket(m_PMob, CEntityAnimationPacket::FADE_OUT));
 	}
-
 }
 
 /************************************************************************
@@ -1033,9 +1029,7 @@ void CAIMobDummy::ActionAbilityFinish()
 	else
 	{
 		// increase magic / ranged timer so its not used right after
-		m_LastMagicTime = m_Tick + m_PMobSkill->getAnimationTime();
-		m_LastSpecialTime = m_Tick + m_PMobSkill->getAnimationTime();
-        m_LastActionTime = m_Tick + m_PMobSkill->getAnimationTime();
+		Stun(m_PMobSkill->getAnimationTime());
 
         m_ActionType = ACTION_ATTACK;
 
@@ -1118,8 +1112,11 @@ void CAIMobDummy::ActionStun()
 
 	if(m_PBattleSubTarget != NULL)
 	{
-	    // always face target
-	    m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
+	    // face the target
+		if (!(m_PMob->m_Behaviour & BEHAVIOUR_NO_TURN))
+		{
+			m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
+		}
 	}
 
 	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
@@ -1193,12 +1190,12 @@ void CAIMobDummy::ActionMagicFinish()
 
 	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
 
+	// display animation, then continue fighting
+	Stun(m_PSpell->getAnimationTime());
+
 	// this shouldn't have to exist all the way through
 	m_PSpell = NULL;
 	m_PBattleSubTarget = NULL;
-
-	// display animation, then continue fighting
-	Stun(1000);
 }
 
 void CAIMobDummy::ActionMagicInterrupt()
@@ -1396,7 +1393,7 @@ void CAIMobDummy::ActionAttack()
 		}
 	}
 
-    bool move = false;
+    bool move = m_PPathFind->IsFollowingPath();
 
     //If using mobskills instead of attacks, calculate distance to move and ability to use here
     if (m_mobskillattack)
@@ -1750,8 +1747,8 @@ void CAIMobDummy::ActionAttack()
 
 void CAIMobDummy::FinishAttack()
 {
-	// launch OnMobFight every 3 sec (not everytime at 0 but 0~400).
-	if((m_Tick - m_StartBattle) % 3000 <= 400)
+	// launch OnMobFight every sec
+	if((m_Tick - m_StartBattle) % 1000 < 500)
 	{
 		luautils::OnMobFight(m_PMob,m_PBattleTarget);
 	}

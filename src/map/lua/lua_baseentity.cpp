@@ -51,6 +51,7 @@
 #include "../packets/char_update.h"
 #include "../packets/chat_message.h"
 #include "../packets/send_box.h"
+#include "../packets/entity_animation.h"
 #include "../packets/entity_update.h"
 #include "../packets/entity_visual.h"
 #include "../packets/event.h"
@@ -642,7 +643,7 @@ inline int32 CLuaBaseEntity::teleport(lua_State *L)
 
 inline int32 CLuaBaseEntity::getPos(lua_State* L)
 {
-    lua_createtable(L, 3, 0);
+    lua_createtable(L, 4, 0);
     int8 newTable = lua_gettop(L);
 
     lua_pushnumber(L, m_PBaseEntity->loc.p.x);
@@ -654,32 +655,38 @@ inline int32 CLuaBaseEntity::getPos(lua_State* L)
     lua_pushnumber(L, m_PBaseEntity->loc.p.z);
     lua_setfield(L, newTable, "z");
 
+	lua_pushnumber(L, m_PBaseEntity->loc.p.rotation);
+	lua_setfield(L, newTable, "rot");
+
     return 1;
 }
 
 //==========================================================//
 
-    inline int32 CLuaBaseEntity::getSpawnPos(lua_State* L)
-    {
-      DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-      DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_MOB));
+inline int32 CLuaBaseEntity::getSpawnPos(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(!(m_PBaseEntity->objtype & TYPE_MOB));
      
-      CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
+    CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
      
-      lua_createtable(L, 3, 0);
-      int8 newTable = lua_gettop(L);
+    lua_createtable(L, 4, 0);
+    int8 newTable = lua_gettop(L);
      
-      lua_pushnumber(L, PMob->m_SpawnPoint.x);
-      lua_rawseti(L, newTable, 1);
-     
-      lua_pushnumber(L, PMob->m_SpawnPoint.y);
-      lua_rawseti(L, newTable, 2);
-     
-      lua_pushnumber(L, PMob->m_SpawnPoint.z);
-      lua_rawseti(L, newTable, 3);
-     
-      return 1;
-    }
+    lua_pushnumber(L, PMob->m_SpawnPoint.x);
+	lua_setfield(L, newTable, "x");
+
+    lua_pushnumber(L, PMob->m_SpawnPoint.y);
+	lua_setfield(L, newTable, "y");
+
+    lua_pushnumber(L, PMob->m_SpawnPoint.z);
+	lua_setfield(L, newTable, "z");
+
+	lua_pushnumber(L, PMob->m_SpawnPoint.rotation);
+	lua_setfield(L, newTable, "rot");
+
+    return 1;
+}
 
 //==========================================================//	
 
@@ -6426,7 +6433,7 @@ inline int32 CLuaBaseEntity::isInBcnm(lua_State *L){
 
 	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-	if (PChar->m_BCNM){
+	if (PChar->PBCNM){
 		lua_pushinteger( L,1);
 		return 1;
 	}
@@ -8581,6 +8588,27 @@ inline int32 CLuaBaseEntity::wait(lua_State* L)
 	return 1;
 }
 
+inline int32 CLuaBaseEntity::pathTo(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_PC);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
+
+	position_t point;
+
+	point.x = (float)lua_tonumber(L, 1);
+	point.y = (float)lua_tonumber(L, 2);
+	point.z = (float)lua_tonumber(L, 3);
+
+	if (m_PBaseEntity->PBattleAI && m_PBaseEntity->PBattleAI->m_PPathFind)
+	{
+		m_PBaseEntity->PBattleAI->m_PPathFind->PathTo(point, PATHFLAG_RUN | PATHFLAG_WALLHACK | PATHFLAG_NO_OVERWRITE);
+	}
+
+	return 0;
+}
+
 inline int32 CLuaBaseEntity::unlockAttachment(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
@@ -8683,17 +8711,14 @@ inline int32 CLuaBaseEntity::setUnkillable(lua_State* L)
 inline int32 CLuaBaseEntity::getBattlefield(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-	CBattlefield* bcnm = m_PBaseEntity->loc.zone->m_BattlefieldHandler->getBattlefield((CCharEntity*)m_PBaseEntity);
-
-	if (bcnm)
+	if (m_PBaseEntity->PBCNM)
     {
         lua_getglobal(L, CLuaBattlefield::className);
         lua_pushstring(L, "new");
         lua_gettable(L, -2);
         lua_insert(L, -2);
-		lua_pushlightuserdata(L, (void*)bcnm);
+		lua_pushlightuserdata(L, (void*)m_PBaseEntity->PBCNM);
         lua_pcall(L, 2, 1, 0);
         return 1;
     }
@@ -8702,7 +8727,6 @@ inline int32 CLuaBaseEntity::getBattlefield(lua_State* L)
         lua_pushnil(L);
     }
     return 1;
-
 }
 
 inline int32 CLuaBaseEntity::SendRevision(lua_State* L)
@@ -8790,22 +8814,38 @@ inline int32 CLuaBaseEntity::entityVisualPacket(lua_State* L)
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 	int32 n = lua_gettop(L);
-	DSP_DEBUG_BREAK_IF(n < 4 || n > 5);
+	DSP_DEBUG_BREAK_IF(n < 1 || n > 2);
 
-	uint8 param1 = lua_tointeger(L, -4);
-	uint8 param2 = lua_tointeger(L, -3);
-	uint8 param3 = lua_tointeger(L, -2);
-	uint8 param4 = lua_tointeger(L, -1);
+	const char* command = lua_tostring(L, -1);
 
 	CBaseEntity* PNpc = NULL;
-	if (n == 5 && lua_isuserdata(L, 2))
+	if (n == 2 && lua_isuserdata(L, 1))
 	{
 		CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 1);
 		PNpc = PLuaBaseEntity->m_PBaseEntity;
 	}
-	((CCharEntity*)m_PBaseEntity)->pushPacket(new CEntityVisualPacket(PNpc, param1, param2, param3, param4));
+	((CCharEntity*)m_PBaseEntity)->pushPacket(new CEntityVisualPacket(PNpc, command));
 	return 0;
 }
+
+inline int32 CLuaBaseEntity::entityAnimationPacket(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
+
+	const char* command = lua_tostring(L, 1);
+
+	if (m_PBaseEntity->objtype == TYPE_PC)
+	{
+		((CCharEntity*)m_PBaseEntity)->pushPacket(new CEntityAnimationPacket(m_PBaseEntity, command));
+	}
+	else
+	{
+		m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityAnimationPacket(m_PBaseEntity, command));
+	}
+	return 0;
+}
+
 
 /************************************************************************
 *																		*
@@ -9037,6 +9077,25 @@ inline int32 CLuaBaseEntity::spawn(lua_State* L)
 		}
 	}
 	return 0;
+}
+
+inline int32 CLuaBaseEntity::getCurrentAction(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+	lua_pushinteger(L, ((CBattleEntity*)m_PBaseEntity)->PBattleAI->GetCurrentAction());
+
+	return 1;
+}
+
+inline int32 CLuaBaseEntity::getAllegiance(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+	lua_pushinteger(L, m_PBaseEntity->allegiance);
+
+	return 1;
 }
 
 //==========================================================//
@@ -9415,6 +9474,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,clearPath),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isFollowingPath),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,wait),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,pathTo),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setSpawn),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setRespawnTime),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,unlockAttachment),
@@ -9437,6 +9497,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,physicalDmgTaken),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,rangedDmgTaken),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,entityVisualPacket),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,entityAnimationPacket),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getParty),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageText),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,instanceEntry),
@@ -9445,5 +9506,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,createInstance),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEnmityList),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,spawn),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCurrentAction),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAllegiance),
 	{NULL,NULL}
 };

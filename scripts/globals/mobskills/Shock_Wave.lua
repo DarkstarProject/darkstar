@@ -11,7 +11,10 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnMobSkillCheck(target,mob,skill)
-    return 0;
+	if(target:isBehind(mob, 48) == true) then
+		return 1;
+    end
+	return 0;
 end;
 
 function OnMobWeaponSkill(target, mob, skill)

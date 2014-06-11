@@ -33,17 +33,16 @@ CSpell::CSpell(uint16 id)
 {
 	m_ID = id;
 
-    m_radius          = 0;
+    m_radius			= 0;
 	m_mpCost            = 0;
 	m_castTime          = 0;
 	m_recastTime        = 0;
 	m_animation         = 0;
-    m_AOE             = 0;
+    m_AOE				= 0;
     m_animationTime     = 0;
     m_skillType         = 0;
     m_zoneMisc          = 0;
     m_message           = 0;
-    m_DefaultMessage    = 0;
     m_MagicBurstMessage = 0;
     m_element           = 0;
 	m_spellGroup        = SPELLGROUP_NONE;
@@ -51,11 +50,6 @@ CSpell::CSpell(uint16 id)
     m_requirements      = 0;
 
 	memset(m_job, 0, sizeof(m_job));
-}
-
-void CSpell::resetMessage()
-{
-    setMessage(getDefaultMessage());
 }
 
 void CSpell::setTotalTargets(uint16 total)
@@ -178,7 +172,7 @@ bool CSpell::dealsDamage()
     return m_message==2 || m_message==227;
 }
 
-uint8 CSpell::getRadius()
+float CSpell::getRadius()
 {
     return m_radius;
 }
@@ -300,16 +294,6 @@ void CSpell::setMessage(uint16 message)
     m_message = message;
 }
 
-uint16 CSpell::getDefaultMessage()
-{
-    return m_DefaultMessage;
-}
-
-void CSpell::setDefaultMessage(uint16 message)
-{
-    m_DefaultMessage = message;
-}
-
 uint16 CSpell::getMagicBurstMessage()
 {
     return m_MagicBurstMessage;
@@ -340,7 +324,7 @@ uint16 CSpell::getCE()
 	return m_CE;
 }
 
-void CSpell::setRadius(uint8 radius)
+void CSpell::setRadius(float radius)
 {
     m_radius = radius;
 }
@@ -383,6 +367,16 @@ uint16 CSpell::getMeritId()
 void CSpell::setMeritId(uint16 meritId)
 {
 	m_meritId = meritId;
+}
+
+uint8 CSpell::getFlag()
+{
+	return m_flag;
+}
+
+void CSpell::setFlag(uint8 flag)
+{
+	m_flag = flag;
 }
 
 /************************************************************************
@@ -446,7 +440,6 @@ namespace spell
                 PSpell->setZoneMisc(Sql_GetIntData(SqlHandle,14));
 			    PSpell->setMultiplier(Sql_GetIntData(SqlHandle,15));
                 PSpell->setMessage(Sql_GetIntData(SqlHandle,16));
-                PSpell->setDefaultMessage(Sql_GetIntData(SqlHandle,16));
                 PSpell->setMagicBurstMessage(Sql_GetIntData(SqlHandle,17));
 			    PSpell->setCE(Sql_GetIntData(SqlHandle,18));
 			    PSpell->setVE(Sql_GetIntData(SqlHandle,19));
@@ -667,14 +660,15 @@ namespace spell
 
         // brd gets bonus radius from string skill
         if(spell->getSpellGroup() == SPELLGROUP_SONG && (spell->getValidTarget() & TARGET_SELF)){
-            // TODO: make sure you have string intru equiped for player
-            if(entity->objtype == TYPE_MOB || entity->GetMJob() == JOB_BRD){
+            if(entity->objtype == TYPE_MOB || (entity->GetMJob() == JOB_BRD &&
+				entity->objtype == TYPE_PC && ((CCharEntity*)entity)->getEquip(SLOT_RANGED) && 
+				((CItemWeapon*)((CCharEntity*)entity)->getEquip(SLOT_RANGED))->getSkillType() == SKILL_STR)){
                 total += ((float)entity->GetSkill(SKILL_STR) / 276) * 10;
             }
-        }
 
-        if(total > 20){
-            total = 20;
+			if (total > 20){
+				total = 20;
+			}
         }
 
         return total;

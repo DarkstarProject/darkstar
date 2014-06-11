@@ -8,11 +8,13 @@ package.loaded["scripts/zones/Promyvion-Vahzl/TextIDs"] = nil;
 require( "scripts/zones/Promyvion-Vahzl/TextIDs" );
 	
 -----------------------------------
--- onMobEngaged Action
+-- onMobInitialize Action
 -----------------------------------	
-function onMobEngaged(mob,target)	
-	 mob:setTP(99);
-end;	
+function onMobInitialize(mob)
+	mob:addMod(MOD_REGAIN, 100); -- 10% Regain for now
+    mob:SetAutoAttackEnabled(false); -- Recepticles only use TP moves.
+end;
+
 	
 -----------------------------------
 -- onMobFight Action
@@ -21,8 +23,6 @@ function onMobFight(mob, target)
 
 	 local Mem_Recep = mob:getID(); 
 	 
-	 mob:SetAutoAttackEnabled(false); -- Recepticles only use TP moves.
-
 	-- This will serve as a ghetto Regain (not damage dependent) based on kjlotus's testing. Caps at 100
 	 
 	 if (mob:getTP() < 90) then

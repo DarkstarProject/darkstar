@@ -40,7 +40,7 @@ class CEntityVisualPacket : public CBasicPacket
 {
 public:
 
-	CEntityVisualPacket(CBaseEntity* PEntity, uint8 param1, uint8 param2, uint8 param3, uint8 param4);
+	CEntityVisualPacket(CBaseEntity * PEntity, const char type[4]);
 };
 
 #endif
