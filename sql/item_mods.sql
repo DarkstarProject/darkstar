@@ -15583,12 +15583,6 @@ INSERT INTO `item_mods` VALUES(18143, 24, 16);
 INSERT INTO `item_mods` VALUES(18145, 243, 2);
 INSERT INTO `item_mods` VALUES(18147, 24, 20);
 INSERT INTO `item_mods` VALUES(18147, 26, -12);
-
--- -------------------------------------------------------
--- Venom Bolt      
--- -------------------------------------------------------
-INSERT INTO `item_mods` VALUES(18152, 431, 1); -- Additional effect: Poison
-
 INSERT INTO `item_mods` VALUES(18154, 26, 5);
 INSERT INTO `item_mods` VALUES(18155, 26, 5);
 INSERT INTO `item_mods` VALUES(18156, 26, 5);
