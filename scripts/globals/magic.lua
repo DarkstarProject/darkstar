@@ -668,13 +668,18 @@ function applyResistanceAbility(player,target,element,skill,bonus)
 	--get the base acc (just skill plus magic acc mod)
 
 	local magicacc = player:getSkillLevel(skill) + player:getMod(79 + skill) + player:getMod(MOD_MACC);
-
-	--add acc for staves
-	local affinityBonus = AffinityBonus(player, element);
-	magicaccbonus = magicaccbonus + (affinityBonus-1) * 200;
+    
+    if(element > ELE_NONE) then
+        --add acc for staves
+        local affinityBonus = AffinityBonus(player, element);
+        magicaccbonus = magicaccbonus + (affinityBonus-1) * 200;
+    end
 
 	--base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
-	local magiceva = target:getMod(MOD_MEVA) + target:getMod(resistMod[element]);
+	local magiceva = target:getMod(MOD_MEVA);
+    if(element > ELE_NONE) then
+        magiceva = magiceva + target:getMod(resistMod[element]);
+    end
 
 	--get the difference of acc and eva, scale with level (3.33 at 10 to 0.44 at 75)
 	local multiplier = 0;
