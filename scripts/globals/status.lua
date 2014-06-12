@@ -909,6 +909,8 @@ MOD_VFLOURISH_MACC          = 0x1ED -- Violent Flourish accuracy bonus (modId = 
 MOD_STEP_FINISH             = 0x1EE -- Bonus finishing moves from steps (modId = 494)
 MOD_STEP_ACCURACY           = 0x193 -- Accuracy bonus for steps (modID = 403)
 MOD_SPECTRAL_JIG            = 0x1EF --Spectral Jig duration modifier (percent increase) (modId = 495)
+MOD_WALTZ_RECAST            = 0x1F1 -- (modID = 497) Waltz recast modifier (percent)
+MOD_SAMBA_PDURATION         = 0x1F2 -- (modID = 498) Samba percent duration bonus
 MOD_WIDESCAN            	= 0x154
 MOD_BARRAGE_ACC			    =0x1A4
 MOD_ENSPELL             	= 0x155

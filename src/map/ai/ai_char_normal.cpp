@@ -1481,7 +1481,7 @@ void CAICharNormal::ActionJobAbilityStart()
             {
                 m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_ALREADY_CLAIMED));
 
-				TransitionBack();
+                TransitionBack();
                 m_PJobAbility = NULL;
 				return;
 			}

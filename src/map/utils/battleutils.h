@@ -201,6 +201,7 @@ namespace battleutils
 
     // returns damage taken
     int32               HandleStoneskin(CBattleEntity* PDefender, int32 damage);
+    int32               HandleFanDance(CBattleEntity* PDefender, int32 damage);
 
 	// stores damage for afflatus misery if active	
 	void                HandleAfflatusMiseryDamage(CBattleEntity* PDefender, int32 damage);
