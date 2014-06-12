@@ -11,7 +11,7 @@
 -- Intelligence -3
 -- Attack % 18
 -- Attack Cap 70
--- Store TP 5
+-- Store TP 6
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -49,7 +49,7 @@ function onEffectGain(target,effect)
 	target:addMod(MOD_INT, -3);
 	target:addMod(MOD_FOOD_ATTP, 18);
 	target:addMod(MOD_FOOD_ATT_CAP, 70);
-	target:addMod(MOD_STORETP, 5);
+	target:addMod(MOD_STORETP, 6);
 end;
 
 -----------------------------------------
@@ -65,5 +65,5 @@ function onEffectLose(target,effect)
 	target:delMod(MOD_INT, -3);
 	target:delMod(MOD_FOOD_ATTP, 18);
 	target:delMod(MOD_FOOD_ATT_CAP, 70);
-	target:delMod(MOD_STORETP, 5);
+	target:delMod(MOD_STORETP, 6);
 end;

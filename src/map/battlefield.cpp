@@ -45,6 +45,8 @@ CBattlefield::CBattlefield(CBattlefieldHandler* hand, uint16 id, BATTLEFIELDTYPE
 	treasureChestSpawned = false;
 	fightTick = 0;
 	m_entrance = 0;
+	m_lost = false;
+	m_won = false;
 }
 
 uint16 CBattlefield::getID(){
@@ -363,6 +365,7 @@ void CBattlefield::cleanup(){
 	//wipe enmity from all mobs in list if needed
 	for(int i=0; i<m_EnemyList.size(); i++){
 		m_EnemyList.at(i)->PBattleAI->SetCurrentAction(ACTION_DESPAWN);
+		m_EnemyList.at(i)->PBCNM = NULL;
 	}
 	//wipe mob list
 	m_EnemyList.clear();
@@ -561,4 +564,24 @@ void CBattlefield::clearPlayerEnmity(CCharEntity* PChar)
 
 		PMob->PEnmityContainer->Clear(PChar->id);
 	}
+}
+
+bool CBattlefield::lost()
+{
+	return m_lost;
+}
+
+bool CBattlefield::won()
+{
+	return m_won;
+}
+
+void CBattlefield::lose()
+{
+	m_lost = true;
+}
+
+void CBattlefield::win()
+{
+	m_won = true;
 }

@@ -34,10 +34,22 @@ require("scripts/zones/Empyreal_Paradox/TextIDs");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function OnBcnmRegister(player,instance)
+    local baseID = 16924673 + (instance:getBattlefieldNumber() - 1) * 2
+    local pos = GetMobByID(baseID):getSpawnPos();
+    local prishe = instance:insertAlly(14166);
+    prishe:setSpawn(pos.x - 6, pos.y, pos.z - 21.5, 192);
+    prishe:spawn();
+    
+    local selhteus = instance:insertAlly(14167);
+    selhteus:setSpawn(pos.x + 10, pos.y, pos.z - 17.5, 172);
+    selhteus:spawn();
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function OnBcnmEnter(player,instance)
+end;
+
+function OnBcnmDestroy(instance)
 end;
 
 -- Leaving the BCNM by every mean possible, given by the LeaveCode

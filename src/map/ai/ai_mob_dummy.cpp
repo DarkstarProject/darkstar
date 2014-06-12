@@ -92,6 +92,8 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
 
 	m_PMob->PEnmityContainer->DecayEnmity();
 
+	OnTick();
+
 	switch(m_ActionType)
 	{
 		case ACTION_NONE:                                           break;
@@ -509,6 +511,10 @@ void CAIMobDummy::ActionDropItems()
 			// NOTE: this is called for all alliance / party members!
 			luautils::OnMobDeath(m_PMob, PChar);
 
+		}
+		else
+		{
+			luautils::OnMobDeath(m_PMob, NULL);
 		}
         m_ActionType = ACTION_DEATH;
 	}
@@ -1031,8 +1037,6 @@ void CAIMobDummy::ActionAbilityFinish()
 		// increase magic / ranged timer so its not used right after
 		Stun(m_PMobSkill->getAnimationTime());
 
-        m_ActionType = ACTION_ATTACK;
-
         if (m_PMobSkill->getActivationTime() == 0 && m_PMobSkill->getAnimationTime() < 1000)
         {
             m_LastActionTime = m_Tick - m_PMob->m_Weapons[SLOT_MAIN]->getDelay();
@@ -1116,7 +1120,7 @@ void CAIMobDummy::ActionStun()
 		if (!(m_PMob->m_Behaviour & BEHAVIOUR_NO_TURN))
 		{
 			m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
-		}
+		}	
 	}
 
 	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
@@ -1333,6 +1337,13 @@ void CAIMobDummy::ActionAttack()
 		return;
 	}
 
+	if (m_PPathFind->IsFollowingScriptedPath())
+	{
+		m_PPathFind->FollowPath();
+		FinishAttack();
+		return;
+	}
+
     // attempt to teleport
     if (m_PMob->getMobMod(MOBMOD_TELEPORT_TYPE) == 1)
     {
@@ -1351,7 +1362,12 @@ void CAIMobDummy::ActionAttack()
         }
     }
     // try to standback if I can
-    if (m_PMob->getBigMobMod(MOBMOD_STANDBACK_TIME) && m_PMob->getMobMod(MOBMOD_TELEPORT_TYPE) != 2)
+	if (m_PMob->m_Behaviour & BEHAVIOUR_STANDBACK)
+	{
+		FinishAttack();
+		return;
+	}
+    else if (m_PMob->getBigMobMod(MOBMOD_STANDBACK_TIME) && m_PMob->getMobMod(MOBMOD_TELEPORT_TYPE) != 2)
 	{
 		if(currentDistance > 28)
 		{
@@ -1747,12 +1763,6 @@ void CAIMobDummy::ActionAttack()
 
 void CAIMobDummy::FinishAttack()
 {
-	// launch OnMobFight every sec
-	if((m_Tick - m_StartBattle) % 1000 < 500)
-	{
-		luautils::OnMobFight(m_PMob,m_PBattleTarget);
-	}
-
 	if(m_PMob->getMobMod(MOBMOD_RAGE) && !m_PMob->hasRageMode() && m_Tick >= m_StartBattle + m_PMob->getBigMobMod(MOBMOD_RAGE))
 	{
 		// come at me bro
@@ -2331,4 +2341,13 @@ bool CAIMobDummy::getMobSkillAttack()
 bool CAIMobDummy::isActionQueueAttack()
 {
     return m_actionqueueability;
+}
+
+void CAIMobDummy::OnTick()
+{
+	// launch OnMobFight every sec
+	if (battleutils::IsEngauged(m_PMob) && (m_Tick - m_StartBattle) % 1000 < 500)
+	{
+		luautils::OnMobFight(m_PMob, m_PBattleTarget);
+	}
 }

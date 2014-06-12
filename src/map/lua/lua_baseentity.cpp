@@ -3922,6 +3922,16 @@ inline int32 CLuaBaseEntity::setStatus(lua_State *L)
     return 0;
 }
 
+//==========================================================//
+
+inline int32 CLuaBaseEntity::getStatus(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+	lua_pushinteger(L,m_PBaseEntity->status);
+	return 1;
+}
+
 /************************************************************************
 *                                                                       *
 *  Разрещение атаковать этого персонажа другим персонажам               *
@@ -8780,7 +8790,7 @@ inline int32 CLuaBaseEntity::pathTo(lua_State* L)
 
     if (m_PBaseEntity->PBattleAI && m_PBaseEntity->PBattleAI->m_PPathFind)
     {
-        m_PBaseEntity->PBattleAI->m_PPathFind->PathTo(point, PATHFLAG_RUN | PATHFLAG_WALLHACK | PATHFLAG_NO_OVERWRITE);
+		m_PBaseEntity->PBattleAI->m_PPathFind->PathTo(point, PATHFLAG_RUN | PATHFLAG_WALLHACK | PATHFLAG_SCRIPT);
     }
 
     return 0;
@@ -9075,8 +9085,14 @@ inline int32 CLuaBaseEntity::messageText(lua_State* L)
         ((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageTextPacket(PTarget, messageID));
     }
     else{//broadcast in range
-        m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CMessageTextPacket(PTarget, messageID));
-    }
+		bool showName = true;
+
+		if (!lua_isnil(L, 3) && lua_isboolean(L, 3))
+		{
+			showName = lua_toboolean(L, 3);
+		}
+		m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CMessageTextPacket(PTarget, messageID, showName));
+	}
     return 0;
 }
 
@@ -9275,6 +9291,17 @@ inline int32 CLuaBaseEntity::getAllegiance(lua_State* L)
     return 1;
 }
 
+inline int32 CLuaBaseEntity::stun(lua_State* L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+	((CAIMobDummy*)m_PBaseEntity->PBattleAI)->Stun(lua_tointeger(L, 1));
+
+	return 0;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -9423,6 +9450,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUseChocobo),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUsePet),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setStatus),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStatus),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setPVPFlag),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendRaise),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendReraise),
@@ -9694,5 +9722,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,spawn),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCurrentAction),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAllegiance),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,stun),
     {NULL,NULL}
 };

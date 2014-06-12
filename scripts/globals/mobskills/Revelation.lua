@@ -7,7 +7,12 @@ require("/scripts/globals/monstertpmoves");
 require("/scripts/zones/Empyreal_Paradox/TextIDs");
 ---------------------------------------------
 function OnMobSkillCheck(target,mob,skill)
-    return 0;
+    local lanceTime, lanceOut, rejuv = mob:getExtraVar(3);
+    if (target:getFamily() == 478 and lanceOut == 0) then
+        return 0;
+    else
+        return 1;
+    end
 end;
 
 function OnMobWeaponSkill(target, mob, skill)

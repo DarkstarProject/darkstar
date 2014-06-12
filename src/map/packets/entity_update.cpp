@@ -129,6 +129,8 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 				}
 				if (updatemask & UPDATE_STATUS)
 				{
+					if (PEntity->allegiance == ALLEGIANCE_PLAYER && PEntity->status == STATUS_UPDATE)
+						WBUFB(data,(0x20)-4) = STATUS_NORMAL;
 					WBUFB(data,(0x22)-4) = (PEntity->untargetable ? 0x08 : 0x00);
 					WBUFB(data,(0x22)-4) |= (PEntity->hpvis ? 0x00 : 0x01);
 					WBUFB(data,(0x27)-4) = PMob->m_name_prefix;
