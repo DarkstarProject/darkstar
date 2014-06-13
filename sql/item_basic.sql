@@ -5088,10 +5088,10 @@ INSERT INTO `item_basic` VALUES (5908,0,'butterpear','butterpear',12,1536,99,0,0
 INSERT INTO `item_basic` VALUES (5909,0,'pickled_rarab_tail','pickled_r_tail',12,1536,99,0,0);
 INSERT INTO `item_basic` VALUES (5910,0,'heavy_metal_pouch','hvy_metal_pouch',1,13888,0,1,0);
 INSERT INTO `item_basic` VALUES (5911,0,'olde_rarab_tail','olde_rarab_tail',12,30272,0,1,0);
-INSERT INTO `item_basic` VALUES (5912,0,'gargouille_quiver','gargou_quiver',12,1536,99,0,0);
-INSERT INTO `item_basic` VALUES (5913,0,'adaman_bolt_quiver','a_bolt_quiver',12,1536,99,0,0);
-INSERT INTO `item_basic` VALUES (5914,0,'orichalcum_bullet_pouch','o_bull_pouch',12,1536,99,0,0);
-INSERT INTO `item_basic` VALUES (5915,0,'adaman_bullet_pouch','a_bull_pouch',12,1536,99,0,0);
+INSERT INTO `item_basic` VALUES (5912,0,'gargouille_quiver','gargou_quiver',12,1536,15,0,0);
+INSERT INTO `item_basic` VALUES (5913,0,'adaman_bolt_quiver','a_bolt_quiver',12,1536,15,0,0);
+INSERT INTO `item_basic` VALUES (5914,0,'orichalcum_bullet_pouch','o_bull_pouch',12,1536,15,0,0);
+INSERT INTO `item_basic` VALUES (5915,0,'adaman_bullet_pouch','a_bull_pouch',12,1536,15,0,0);
 INSERT INTO `item_basic` VALUES (5916,0,'temple_truffle','temple_truffle',12,1600,0,0,0);
 INSERT INTO `item_basic` VALUES (5917,0,'choco-scroll','choco-scroll',12,1600,0,0,0);
 INSERT INTO `item_basic` VALUES (5918,0,'choco-katana','choco-katana',12,1600,0,0,0);
