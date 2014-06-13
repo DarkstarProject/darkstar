@@ -388,7 +388,7 @@ end
 
 function checkRegime(killer,mob,rid,index)
     -- dead people get no point
-    if(killer:getHP() == 0) then
+    if(killer == nil or killer:getHP() == 0) then
         return;
     end
 
