@@ -1575,9 +1575,9 @@ void CAICharNormal::ActionJobAbilityFinish()
 
     	if(m_PJobAbility->getID() == ABILITY_REWARD){
     		CItem* PItem = m_PChar->getEquip(SLOT_HEAD);
-    		if(PItem && (PItem->getID() == 15157 || PItem->getID() == 16104)){
+    		if(PItem && (PItem->getID() == 15157 || PItem->getID() == 15158 || PItem->getID() == 16104 || PItem->getID() == 16105)){
     			//TODO: Transform this into an item MOD_REWARD_RECAST perhaps ?
-    			//The Bison Warbonnet & Khimaira Bonnet reduces recast time by 10 seconds.
+    			//The Bison/Brave's Warbonnet & Khimaira/Stout Bonnet reduces recast time by 10 seconds.
     			RecastTime -= (10 *1000);   // remove 10 seconds
     		}
     	}
