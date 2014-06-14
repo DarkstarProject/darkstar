@@ -3,7 +3,7 @@ require("scripts/globals/status");
 require("scripts/globals/magic");
  
 function OnAbilityCheck(player,target,ability)
-	if(player:hasStatusEffect(EFFECT_FAN_DANCE) then
+	if(player:hasStatusEffect(EFFECT_FAN_DANCE)) then
         return MSGBASIC_UNABLE_TO_USE_JA2, 0;
     elseif (player:hasStatusEffect(EFFECT_TRANCE)) then
 		return 0,0;
