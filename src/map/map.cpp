@@ -857,6 +857,7 @@ int32 map_config_default()
     map_config.level_sync_enable = 0;
     map_config.all_jobs_widescan = 1;
     map_config.speed_mod = 0;
+    map_config.MOB_speed_mod = 0;
     map_config.skillup_chance_multiplier = 2.5f;
     map_config.craft_chance_multiplier = 2.6f;
 	map_config.skillup_amount_multiplier = 1;
@@ -990,11 +991,15 @@ int32 map_config_read(const int8* cfgName)
         {
             map_config.all_jobs_widescan = atoi(w2);
         }
-		else if (strcmp(w1,"speed_mod") == 0)
-		{
-			map_config.speed_mod = atoi(w2);
-		}
-		else if (strcmp(w1,"skillup_chance_multiplier") == 0)
+        else if (strcmp(w1,"speed_mod") == 0)
+        {
+            map_config.speed_mod = atoi(w2);
+        }
+        else if (strcmp(w1,"MOB_speed_mod") == 0)
+        {
+            map_config.MOB_speed_mod = atoi(w2);
+        }
+        else if (strcmp(w1,"skillup_chance_multiplier") == 0)
         {
             map_config.skillup_chance_multiplier = atof(w2);
         }

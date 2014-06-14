@@ -389,7 +389,7 @@ float CPathFind::GetRealSpeed()
 
 	if (m_PTarget->animation == ANIMATION_ATTACK)
 	{
-		baseSpeed = baseSpeed + map_config.speed_mod;
+		baseSpeed = baseSpeed + map_config.MOB_speed_mod;
 	}
 
 	return baseSpeed;
