@@ -603,13 +603,13 @@ void CAIPetDummy::ActionRoaming()
 		{
 			m_PPathFind->FollowPath();
 		}
-		else
+		else if(m_PPet->GetSpeed() > 0)
 		{
 			m_PPathFind->WarpTo(m_PPet->PMaster->loc.p, PET_ROAM_DISTANCE);
 		}
-
-		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 	}
+
+    m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 }
 
 void CAIPetDummy::ActionEngage()
@@ -801,7 +801,13 @@ void CAIPetDummy::ActionAttack()
 
 							damage = (uint16)((m_PPet->GetMainWeaponDmg() + battleutils::GetFSTR(m_PPet, m_PBattleTarget,SLOT_MAIN)) * DamageRatio);
 						}
-					}
+					} else {
+                        // create enmity even on misses
+                        if(m_PBattleTarget->objtype == TYPE_MOB){
+                            CMobEntity* PMob = (CMobEntity*)m_PBattleTarget;
+                            PMob->PEnmityContainer->UpdateEnmity(m_PPet, 0, 0);
+                        }
+                    }
 					if (m_PBattleTarget->objtype == TYPE_PC)
 					{
 						charutils::TrySkillUP((CCharEntity*)m_PBattleTarget, SKILL_EVA, m_PPet->GetMLevel());

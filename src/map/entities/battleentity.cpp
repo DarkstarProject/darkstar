@@ -168,6 +168,11 @@ uint8 CBattleEntity::GetSpeed()
     return (animation == ANIMATION_CHOCOBO ? 40 + map_config.speed_mod : dsp_cap(speed * (100 + getMod(MOD_MOVE)) / 100, UINT8_MIN, UINT8_MAX));
 }
 
+bool CBattleEntity::CanRest()
+{
+    return !getMod(MOD_REGEN_DOWN) && !StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_NO_REST);
+}
+
 bool CBattleEntity::Rest(float rate)
 {
 	if(health.hp != health.maxhp || health.mp != health.maxmp){
