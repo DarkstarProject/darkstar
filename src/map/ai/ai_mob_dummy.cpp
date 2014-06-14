@@ -285,9 +285,7 @@ void CAIMobDummy::ActionRoaming()
 		luautils::OnMobRoam(m_PMob);
 	}
 
-        if(updates != 0){
-            m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, updates));
-        }
+        m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, updates));
 }
 
 /************************************************************************
