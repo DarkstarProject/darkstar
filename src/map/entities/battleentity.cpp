@@ -183,7 +183,7 @@ bool CBattleEntity::Rest(float rate)
         addMP(recoverMP);
 
         // lower TP
-        addTP(rate*-50);
+        addTP(rate*-500);
         return true;
     }
 
@@ -394,7 +394,7 @@ uint16 CBattleEntity::GetRangedWeaponRank()
 *                                                                       *
 ************************************************************************/
 
-uint16 CBattleEntity::addTP(float tp)
+int16 CBattleEntity::addTP(int16 tp)
 {
 	// When adding TP, we must adjust for Inhibit TP effect, which reduces TP gain.
 	float tpReducePercent = this->getMod(MOD_INHIBIT_TP) / 100;
@@ -415,7 +415,7 @@ uint16 CBattleEntity::addTP(float tp)
 		TPMulti = map_config.mob_tp_multiplier * 3;
 	}
 
-	float cap = dsp_cap(health.tp + (tp * TPMulti), 0, 300);
+	int16 cap = dsp_cap(health.tp + (tp * TPMulti), 0, 3000);
 	tp = health.tp - cap;
 	health.tp = cap;
 	return abs(tp);

@@ -162,7 +162,7 @@ namespace battleutils
     uint8				GetEnmityMod(uint8 level, uint8 modType);
 	bool				Enfeeble(CBattleEntity* PCaster, CBattleEntity* PDefender, EFFECT Effect);
 	bool				isValidSelfTargetWeaponskill(int wsid);
-	float				CalculateBaseTP(int delay, int stp);
+	int16				CalculateBaseTP(int delay, int stp);
     void				GenerateCureEnmity(CBattleEntity* PSource, CBattleEntity* PTarget, uint16 amount);
 
     CItemWeapon*		GetEntityWeapon(CBattleEntity* PEntity, SLOTTYPE Slot);

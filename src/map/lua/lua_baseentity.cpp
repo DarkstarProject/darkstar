@@ -414,7 +414,7 @@ inline int32 CLuaBaseEntity::getTP(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    lua_pushnumber( L, ((CBattleEntity*)m_PBaseEntity)->health.tp );
+    lua_pushnumber( L, (float)((CBattleEntity*)m_PBaseEntity)->health.tp / 10.0f );
     return 1;
 }
 
@@ -427,7 +427,7 @@ inline int32 CLuaBaseEntity::addTP(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
-    uint16 result = ((CBattleEntity*)m_PBaseEntity)->addTP(lua_tointeger(L,-1));
+    uint16 result = ((CBattleEntity*)m_PBaseEntity)->addTP(lua_tointeger(L,-1) * 10);
 
     if( result != 0 &&  m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
     {
@@ -445,7 +445,7 @@ inline int32 CLuaBaseEntity::delTP(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
-    uint16 result = ((CBattleEntity*)m_PBaseEntity)->addTP(-lua_tointeger(L,-1));
+    uint16 result = ((CBattleEntity*)m_PBaseEntity)->addTP(-lua_tointeger(L,-1) * 10);
 
     if( result != 0 &&  m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
     {
@@ -463,7 +463,7 @@ inline int32 CLuaBaseEntity::setTP(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
 
-    float value = lua_tointeger(L,-1) - ((CBattleEntity*)m_PBaseEntity)->health.tp;
+    int16 value = (lua_tointeger(L,-1) * 10) - ((CBattleEntity*)m_PBaseEntity)->health.tp;
     uint16 result = ((CBattleEntity*)m_PBaseEntity)->addTP(value);
 
     if( result != 0 &&  m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)

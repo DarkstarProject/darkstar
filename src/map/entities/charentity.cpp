@@ -308,9 +308,9 @@ void CCharEntity::SetName(int8* name)
 	this->name.insert(0, name, dsp_cap(strlen((const int8*)name), 0, 15));
 }
 
-uint16 CCharEntity::addTP(float tp)
+int16 CCharEntity::addTP(int16 tp)
 {
-	float oldtp = health.tp;
+	int16 oldtp = health.tp;
 	tp = CBattleEntity::addTP(tp);
 //	if ((oldtp < 100 && health.tp >= 100 ) || (oldtp >= 100 && health.tp < 100))
 //	{

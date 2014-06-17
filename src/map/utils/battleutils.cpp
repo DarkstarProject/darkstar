@@ -1527,22 +1527,22 @@ float GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender)
 	return ((maxPdif-minPdif) * WELL512::drand()) + minPdif;
 }
 
-float CalculateBaseTP(int delay){
-	float x = 1;
+int16 CalculateBaseTP(int delay){
+	int16 x = 1;
 	if(delay<=180){
-		x = 5.0f + (((float)delay-180.0f)*1.5f)/180.0f;
+		x = 50 + (((float)delay-180)*1.5f)/18;
 	}
 	else if(delay<=450){
-		x = 5.0f + (((float)delay-180.0f)*6.5f)/270.0f;
+		x = 50 + (((float)delay-180)*6.5f)/27;
 	}
 	else if(delay<=480){
-		x = 11.5f + (((float)delay-450.0f)*1.5f)/30.0f;
+		x = 115 + (((float)delay-450)*1.5f)/3;
 	}
 	else if(delay<=530){
-		x = 13.0f + (((float)delay-480.0f)*1.5f)/50.0f;
+		x = 130 + (((float)delay-480)*1.5f)/5;
 	}
 	else{
-		x = 14.5f + (((float)delay-530.0f)*3.5f)/470.0f;
+		x = 145 + (((float)delay-530)*3.5f)/47;
 	}
 	return x;
 }
@@ -1904,7 +1904,7 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
             ShowError("battleutils::TakePhysicalDamage Entity (%d) has no magic state\n", PDefender->id);
         }
 
-		float baseTp = 0;
+		int16 baseTp = 0;
 
 		if((slot==SLOT_RANGED || slot==SLOT_AMMO) && PAttacker->objtype == TYPE_PC)
 		{
@@ -1939,23 +1939,23 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 
 
 		// add to to attacker
-		PAttacker->addTP( tpMultiplier * (baseTp * (1.0f + 0.01f * (float)(PAttacker->getMod(MOD_STORETP) + getStoreTPbonusFromMerit(PAttacker))))); //merit bonus is not being multiplied by 0.01f - not sure if intentional?
+		PAttacker->addTP( tpMultiplier * (baseTp * (1.0f + 0.01f * (float)((PAttacker->getMod(MOD_STORETP) + getStoreTPbonusFromMerit(PAttacker))))));
 
 		if (giveTPtoVictim == true)
 		{
 			//account for attacker's subtle blow which reduces the baseTP gain for the defender
 			float sBlowMult = ((100.0f - dsp_cap((float)PAttacker->getMod(MOD_SUBTLE_BLOW), 0.0f, 50.0f)) / 100.0f);
 
-			//mobs hit get basetp+3 whereas pcs hit get basetp/3
+			//mobs hit get basetp+30 whereas pcs hit get basetp/3
 			if(PDefender->objtype == TYPE_PC)
 			{
                 //yup store tp counts on hits taken too!
-				PDefender->addTP((baseTp / 3) * sBlowMult * (1.0f + 0.01f * (float)(PDefender->getMod(MOD_STORETP) + getStoreTPbonusFromMerit(PAttacker)))); //here again...
+				PDefender->addTP((baseTp / 3) * sBlowMult * (1.0f + 0.01f * (float)((PDefender->getMod(MOD_STORETP) + getStoreTPbonusFromMerit(PAttacker)))));
 			}
 			else
 			{
-				//subtle blow also reduces the "+3" on mob tp gain
-				PDefender->addTP((baseTp + 3) * sBlowMult * (1.0f + 0.01f * (float)PDefender->getMod(MOD_STORETP)));
+				//subtle blow also reduces the "+30" on mob tp gain
+				PDefender->addTP((baseTp + 30) * sBlowMult * (1.0f + 0.01f * (float)PDefender->getMod(MOD_STORETP)));
 			}
 		}
 
@@ -3621,7 +3621,7 @@ uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
 	if (PAttacker->objtype == TYPE_PC && hitTarget)
 	{
 		int mod = PAttacker->getMod(MOD_JUMP_TP_BONUS);
-		PAttacker->addTP( ((float)(mod)/(float)10));
+		PAttacker->addTP(mod);
 	}
 
 	// if damage is 0 then jump missed
@@ -3642,9 +3642,9 @@ uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
 		((CMobEntity*)PVictim)->PEnmityContainer->LowerEnmityByPercent(PAttacker , enmityReduction, NULL);
 	}
 
-	// Under Spirit Surge, High Jump lowers the target's TP proportionately to the amount of damage dealt (TP is reduced by damage * 2)
+	// Under Spirit Surge, High Jump lowers the target's TP proportionately to the amount of damage dealt (TP is reduced by damage * 20)
 	if (tier == 2 && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_SPIRIT_SURGE))
-		PVictim->addTP(-(totalDamage * 2));
+		PVictim->addTP(-(totalDamage * 20));
  
  	// try skill up (CharEntity only)
 	if (PAttacker->objtype == TYPE_PC)

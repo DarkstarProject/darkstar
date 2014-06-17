@@ -196,7 +196,7 @@ void CLatentEffectContainer::CheckLatentsHP(int32 hp)
 *																		*
 ************************************************************************/
 
-void CLatentEffectContainer::CheckLatentsTP(float tp)
+void CLatentEffectContainer::CheckLatentsTP(int16 tp)
 {
 	for (uint16 i = 0; i < m_LatentEffectList.size(); ++i) 
 	{

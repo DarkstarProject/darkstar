@@ -2393,11 +2393,11 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	    // this whole thing has to be refactored
 		if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
 		{
-			m_PChar->addTP(-100);
+			m_PChar->addTP(-1000);
 		}
 		else if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SEKKANOKI))
 		{
-			m_PChar->addTP(-100);
+			m_PChar->addTP(-1000);
 			m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SEKKANOKI);
 		}
 		else
@@ -2462,10 +2462,10 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		}
 	}
 
-	if(bonusTp + m_PChar->health.tp > 300)
+	if(bonusTp + m_PChar->health.tp > 3000)
 	{
-		bonusTp = 300 - m_PChar->health.tp;
-		m_PChar->health.tp = 300;
+		bonusTp = 3000 - m_PChar->health.tp;
+		m_PChar->health.tp = 3000;
 	}
 	else
 	{
@@ -2504,11 +2504,11 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
 	if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
 	{
-		m_PChar->addTP(-100 - bonusTp);
+		m_PChar->addTP(-1000 - bonusTp);
 	}
 	else if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SEKKANOKI))
 	{
-		m_PChar->addTP(-100 - bonusTp);
+		m_PChar->addTP(-1000 - bonusTp);
 		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SEKKANOKI);
 	}
 	else
@@ -2563,7 +2563,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		m_PBattleSubTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 	}
 
-	m_PChar->addTP(extraHitsLanded);
+	m_PChar->addTP(extraHitsLanded * 10);
 	float afterWsTP = m_PChar->health.tp;
 
 	if (m_PChar->PPet != NULL && ((CPetEntity*)m_PChar->PPet)->getPetType() == PETTYPE_WYVERN)
