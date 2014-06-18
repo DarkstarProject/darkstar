@@ -36,7 +36,7 @@ function onEffectTick(target,effect)
    if (power > 20) then
         decayby = 3;
         effect:setPower(power-decayby);
-        target:delMod(MOD_DOUBLE_ATTACK,-decayby);
+        target:delMod(MOD_DOUBLE_ATTACK,decayby);
     end
 end;
 
