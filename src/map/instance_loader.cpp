@@ -81,7 +81,7 @@ bool CInstanceLoader::Check()
 CInstance* CInstanceLoader::LoadInstance()
 {
 	int8* Query =
-		"SELECT name, mobid, pos_rot, pos_x, pos_y, pos_z, \
+		"SELECT mobname, mobid, pos_rot, pos_x, pos_y, pos_z, \
 		respawntime, spawntype, dropid, mob_groups.HP, mob_groups.MP, minLevel, maxLevel, \
 		modelid, mJob, sJob, cmbSkill, cmbDmgMult, cmbDelay, behavior, links, mobType, immunity, \
 		systemid, mobsize, speed, \

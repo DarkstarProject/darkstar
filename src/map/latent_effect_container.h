@@ -43,7 +43,7 @@ class CLatentEffectContainer
 public:
 
 	void CheckLatentsHP(int32 hp);
-	void CheckLatentsTP(float tp);
+	void CheckLatentsTP(int16 tp);
 	void CheckLatentsMP(int32 mp);
 	void CheckLatentsEquip(uint8 slot);
 	void CheckLatentsWeaponDraw(bool drawn);

@@ -14645,12 +14645,23 @@ INSERT INTO `item_mods` VALUES(17294, 26, 10);
 INSERT INTO `item_mods` VALUES(17295, 26, 10);
 INSERT INTO `item_mods` VALUES(17300, 26, 10);
 INSERT INTO `item_mods` VALUES(17317, 26, 15);
-INSERT INTO `item_mods` VALUES(17325, 26, 3);
+
+-- -------------------------------------------------------
+-- Kabura Arrow      
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(17325, 431, 1); -- Additional effect: Silence
+
 INSERT INTO `item_mods` VALUES(17327, 24, 20);
 INSERT INTO `item_mods` VALUES(17327, 26, 10);
 INSERT INTO `item_mods` VALUES(17328, 24, 20);
 INSERT INTO `item_mods` VALUES(17328, 26, 10);
-INSERT INTO `item_mods` VALUES(17329, 24, 10);
+
+-- -------------------------------------------------------
+-- Patriarch Protectors Arrow      
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(17329, 431, 1); -- Additional effect: Paralysis
+
+
 INSERT INTO `item_mods` VALUES(17329, 26, 40);
 INSERT INTO `item_mods` VALUES(17331, 26, -3);
 INSERT INTO `item_mods` VALUES(17332, 26, 5);
@@ -15575,9 +15586,26 @@ INSERT INTO `item_mods` VALUES(18147, 26, -12);
 INSERT INTO `item_mods` VALUES(18154, 26, 5);
 INSERT INTO `item_mods` VALUES(18155, 26, 5);
 INSERT INTO `item_mods` VALUES(18156, 26, 5);
-INSERT INTO `item_mods` VALUES(18158, 26, 5);
-INSERT INTO `item_mods` VALUES(18159, 26, 5);
-INSERT INTO `item_mods` VALUES(18160, 26, 5);
+
+-- -------------------------------------------------------
+-- Poison Arrow       
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(18157, 431, 1); -- Additional effect: Poison
+
+-- -------------------------------------------------------
+-- Sleep Arrow       
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(18158, 431, 1); -- Additional effect: Sleep
+-- -------------------------------------------------------
+-- Demon Arrow       
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(18159, 431, 1); -- Additonal effect: Attack Down
+
+-- -------------------------------------------------------
+-- Spartan Bullet      
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(18160, 431, 1); -- Additional effect: Stun
+
 INSERT INTO `item_mods` VALUES(18166, 3, 1);
 INSERT INTO `item_mods` VALUES(18166, 10, 1);
 INSERT INTO `item_mods` VALUES(18167, 6, 1);
@@ -15985,6 +16013,13 @@ INSERT INTO `item_mods` VALUES(18688, 26, -8);
 INSERT INTO `item_mods` VALUES(18695, 11, 2);
 INSERT INTO `item_mods` VALUES(18695, 54, 13);
 INSERT INTO `item_mods` VALUES(18695, 61, 13);
+
+-- -------------------------------------------------------
+-- Paralysis Arrow      
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(18696, 431, 1); -- Additional effect: Paralysis
+
+
 INSERT INTO `item_mods` VALUES(18701, 11, 4);
 INSERT INTO `item_mods` VALUES(18701, 54, 14);
 INSERT INTO `item_mods` VALUES(18701, 61, 14);

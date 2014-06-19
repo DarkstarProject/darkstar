@@ -193,6 +193,15 @@ bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTar
 		    }
         }
 	}
+
+	if (ValidTarget & TARGET_NPC)
+	{
+		if (PTarget->allegiance == m_PChar->allegiance)
+		{
+			return PTarget;
+		}
+	}
+
 	if (PTarget->objtype == TYPE_PC)
 	{
 		if ((ValidTarget & TARGET_SELF) &&
@@ -214,6 +223,15 @@ bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTar
 			return true;
 		}
 		return false;
+	}
+
+	if (PTarget->objtype == TYPE_MOB)
+	{
+		if (ValidTarget & TARGET_PLAYER_DEAD && ((CMobEntity*)PTarget)->m_Behaviour & BEHAVIOUR_RAISABLE
+			&& PTarget->isDead())
+		{
+			return true;
+		}
 	}
 	return false;
 }
@@ -400,8 +418,15 @@ void CAICharNormal::ActionFall()
 
 	m_LastActionTime = m_Tick;
 
-	//falls to the ground
-	m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 20));
+	if (m_PBattleSubTarget == NULL)
+	{
+		//falls to the ground
+		m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, 20));
+	}
+	else
+	{
+		m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, 0, 0, 97));
+	}
 
 	m_PSpell           = NULL;
     m_PJobAbility      = NULL;
@@ -1456,7 +1481,7 @@ void CAICharNormal::ActionJobAbilityStart()
             {
                 m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_ALREADY_CLAIMED));
 
-				TransitionBack();
+                TransitionBack();
                 m_PJobAbility = NULL;
 				return;
 			}
@@ -1550,9 +1575,9 @@ void CAICharNormal::ActionJobAbilityFinish()
 
     	if(m_PJobAbility->getID() == ABILITY_REWARD){
     		CItem* PItem = m_PChar->getEquip(SLOT_HEAD);
-    		if(PItem && (PItem->getID() == 15157 || PItem->getID() == 16104)){
+    		if(PItem && (PItem->getID() == 15157 || PItem->getID() == 15158 || PItem->getID() == 16104 || PItem->getID() == 16105)){
     			//TODO: Transform this into an item MOD_REWARD_RECAST perhaps ?
-    			//The Bison Warbonnet & Khimaira Bonnet reduces recast time by 10 seconds.
+    			//The Bison/Brave's Warbonnet & Khimaira/Stout Bonnet reduces recast time by 10 seconds.
     			RecastTime -= (10 *1000);   // remove 10 seconds
     		}
     	}
@@ -2368,11 +2393,11 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	    // this whole thing has to be refactored
 		if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
 		{
-			m_PChar->addTP(-100);
+			m_PChar->addTP(-1000);
 		}
 		else if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SEKKANOKI))
 		{
-			m_PChar->addTP(-100);
+			m_PChar->addTP(-1000);
 			m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SEKKANOKI);
 		}
 		else
@@ -2437,10 +2462,10 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		}
 	}
 
-	if(bonusTp + m_PChar->health.tp > 300)
+	if(bonusTp + m_PChar->health.tp > 3000)
 	{
-		bonusTp = 300 - m_PChar->health.tp;
-		m_PChar->health.tp = 300;
+		bonusTp = 3000 - m_PChar->health.tp;
+		m_PChar->health.tp = 3000;
 	}
 	else
 	{
@@ -2479,11 +2504,11 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
 	if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
 	{
-		m_PChar->addTP(-100 - bonusTp);
+		m_PChar->addTP(-1000 - bonusTp);
 	}
 	else if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SEKKANOKI))
 	{
-		m_PChar->addTP(-100 - bonusTp);
+		m_PChar->addTP(-1000 - bonusTp);
 		m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_SEKKANOKI);
 	}
 	else
@@ -2538,7 +2563,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		m_PBattleSubTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 	}
 
-	m_PChar->addTP(extraHitsLanded);
+	m_PChar->addTP(extraHitsLanded * 10);
 	float afterWsTP = m_PChar->health.tp;
 
 	if (m_PChar->PPet != NULL && ((CPetEntity*)m_PChar->PPet)->getPetType() == PETTYPE_WYVERN)

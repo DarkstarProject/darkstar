@@ -398,7 +398,7 @@ void CalculateStats(CMobEntity * PMob)
 	// aggro mobs move around a bit more often
 	if(PMob->m_Aggro != AGGRO_NONE && PMob->speed != 0)
 	{
-		PMob->setMobMod(MOBMOD_ROAM_COOL, 30);
+		PMob->setMobMod(MOBMOD_ROAM_COOL, 20);
 	}
 
 	// setup special ability
@@ -789,7 +789,7 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
 	PMob->defaultMobMod(MOBMOD_SKILLS, PMob->m_Family);
 	PMob->defaultMobMod(MOBMOD_LINK_RADIUS, MOB_LINK_RADIUS);
 	PMob->defaultMobMod(MOBMOD_TP_USE_CHANCE, MOB_TP_USE_CHANCE);
-	PMob->defaultMobMod(MOBMOD_ROAM_COOL, 45);
+	PMob->defaultMobMod(MOBMOD_ROAM_COOL, 30);
 
     // Killer Effect
     switch (PMob->m_EcoSystem)

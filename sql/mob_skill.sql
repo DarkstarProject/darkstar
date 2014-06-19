@@ -2888,7 +2888,7 @@ INSERT INTO `mob_skill` VALUES (1297,449,1138,'Teraflare',0,15.0,2000,1500,4,0,0
 
 -- Prishe
 INSERT INTO `mob_skill` VALUES (1229,476,1091,'Hundred_Fists',0,7.0,2000,0,1,0,1,0);
-INSERT INTO `mob_skill` VALUES (1230,476,1092,'Benediction',0,7.0,2000,0,1,0,1,0);
+INSERT INTO `mob_skill` VALUES (1230,476,1092,'Benediction',1,7.0,2000,0,1,0,1,0);
 INSERT INTO `mob_skill` VALUES (1231,476,1093,'Prishe_Item_1',0,7.0,2000,0,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (1232,476,1094,'Prishe_Item_2',0,7.0,2000,0,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (1233,476,1095,'Nullifying_Dropkick',0,7.0,2000,1500,4,0,0,0);
@@ -2916,9 +2916,9 @@ INSERT INTO `mob_skill` VALUES (1250,478,1115,'Winds_of_oblivion',1,15.0,2000,15
 INSERT INTO `mob_skill` VALUES (1251,478,1116,'Seal_of_quiescence', 1,15.0,2000,1500,4,8,0,0);
 
 -- Selh'teus
-INSERT INTO `mob_skill` VALUES (1252,477,1099,'Luminous_Lance',0,15.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (1253,477,1097,'Rejuvenation',1,7.0,2000,1500,1,8,0,0);
-INSERT INTO `mob_skill` VALUES (1254,477,1098,'Revelation',0,15.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1252,477,1099,'Luminous_Lance',0,20.0,2000,0,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (1253,477,1097,'Rejuvenation',1,10.0,2000,0,1,8,0,0);
+INSERT INTO `mob_skill` VALUES (1254,477,1098,'Revelation',0,20.0,2000,0,4,0,0,0);
 
 -- Tenzen
 -- ranged @ 1033 1034

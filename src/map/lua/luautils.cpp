@@ -2571,20 +2571,20 @@ int32 OnCriticalHit(CBattleEntity* PMob)
 
 int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 {
-	DSP_DEBUG_BREAK_IF(PKiller == NULL || PMob == NULL);
+	DSP_DEBUG_BREAK_IF(PMob == NULL);
 
     CCharEntity* PChar = (CCharEntity*)PKiller;
 
 	CLuaBaseEntity LuaMobEntity(PMob);
-	CLuaBaseEntity LuaKillerEntity(PKiller);
 
-	bool isWeaponSkillKill = PChar->getWeaponSkillKill();
-
-    if (((CMobEntity*)PMob)->m_OwnerID.id == PKiller->id)
+    if (PKiller && ((CMobEntity*)PMob)->m_OwnerID.id == PKiller->id)
     {
+		CLuaBaseEntity LuaKillerEntity(PKiller);
         lua_getglobal(LuaHandle, "onMobDeathEx");
 	    if( !lua_isnil(LuaHandle,-1) )
 	    {
+			bool isWeaponSkillKill = PChar->getWeaponSkillKill();
+
             Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
             Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaKillerEntity);
 			lua_pushboolean(LuaHandle, isWeaponSkillKill);
@@ -2605,9 +2605,12 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 
 	snprintf( File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
-    PChar->m_event.reset();
-    PChar->m_event.Target = PMob;
-	PChar->m_event.Script.insert(0,File);
+	if (PChar)
+	{
+		PChar->m_event.reset();
+		PChar->m_event.Target = PMob;
+		PChar->m_event.Script.insert(0, File);
+	}
 
 	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
 	{
@@ -2624,7 +2627,15 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 	}
 
 	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
-	Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaKillerEntity);
+	if (PKiller)
+	{
+		CLuaBaseEntity LuaKillerEntity(PKiller);
+		Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaKillerEntity);
+	}
+	else
+	{
+		lua_pushnil(LuaHandle);
+	}
 
 	if( lua_pcall(LuaHandle,2,LUA_MULTRET,0) )
 	{
@@ -2633,7 +2644,7 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 		return -1;
 	}
 
-	if (PChar->PParty != NULL)
+	if (PChar && PChar->PParty != NULL)
 	{
         if (PChar->PParty->m_PAlliance != NULL)
 		{

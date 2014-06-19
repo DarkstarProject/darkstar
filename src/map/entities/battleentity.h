@@ -425,7 +425,7 @@ struct apAction_t
 
 struct health_t
 {
-    float   tp;                 // текущее значение
+    int16   tp;                 // текущее значение
     int32   hp, mp;             // текущие значения
     int32   maxhp, maxmp;       // максимальные значения
     int32   modhp, modmp;       // модифицированные максимальные значения
@@ -497,7 +497,7 @@ public:
 
 	uint16		    GetSkill(uint16 SkillID);	// текущая величина умения (не максимальная, а ограниченная уровнем)
 
-	virtual uint16	addTP(float tp);			// увеличиваем/уменьшаем количество tp
+	virtual int16	addTP(int16 tp);			// увеличиваем/уменьшаем количество tp
 	virtual int32	addHP(int32 hp);			// увеличиваем/уменьшаем количество hp
 	virtual int32 	addMP(int32 mp);			// увеличиваем/уменьшаем количество mp
 

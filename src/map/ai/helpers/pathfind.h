@@ -40,7 +40,7 @@ enum PATHFLAG {
   PATHFLAG_RUN			= 0x01, // run twice the speed
   PATHFLAG_WALLHACK		= 0x02, // run through walls if path is too long
   PATHFLAG_REVERSE		= 0x04, // reverse the path
-  PATHFLAG_NO_OVERWRITE = 0x08	// don't overwrite this path before completion (except via script)
+  PATHFLAG_SCRIPT		= 0x08	// don't overwrite this path before completion (except via another script)
 };
 
 class CPathFind
@@ -85,6 +85,7 @@ class CPathFind
 
     // checks if mob is currently following a path
     bool IsFollowingPath();
+	bool IsFollowingScriptedPath();
 
     // calculate speed of mob with mode, mod_speed, etc
     float GetRealSpeed();

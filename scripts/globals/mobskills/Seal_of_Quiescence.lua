@@ -6,6 +6,7 @@ require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");
 ---------------------------------------------
 function OnMobSkillCheck(target,mob,skill)
+    mob:showText(mob, PROMATHIA_TEXT + 6);
     return 0;
 end;
 

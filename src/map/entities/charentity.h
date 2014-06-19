@@ -368,9 +368,9 @@ public:
 	bool			  addWsPoints(uint8 points, uint16 WeaponIndex);	// return if weapon is broken
 	UnlockedWeapons_t unlockedWeapons[MAX_UNLOCKABLE_WEAPONS];			// chars unlocked weapon status
 
-	uint16 addTP(float tp);
-	int32 addHP(int32 hp);
-	int32 addMP(int32 mp);
+	int16 addTP(int16 tp) override;
+	int32 addHP(int32 hp) override;
+	int32 addMP(int32 mp) override;
 
 	std::vector<GearSetMod_t> m_GearSetMods;		// The list of gear set mods currently applied to the character.
     std::vector<AuctionHistory_t> m_ah_history;		// AH history list (в будущем нужно использовать UContainer)

@@ -148,6 +148,11 @@ public:
 	uint32		lastTick;
 	uint32      fightTick;
 
+	bool		lost();
+	bool		won();
+	void		win();
+	void		lose();
+
 	std::vector<CCharEntity*> m_PlayerList;
 	std::vector<CBaseEntity*> m_NpcList;
 	std::vector<CMobEntity*> m_MobList;
@@ -170,6 +175,8 @@ private:
 	uint16			m_DynaUniqueID;											// unique ID for dynamis battlefield
 	uint8			m_entrance;
 	CCharEntity*	m_CurrentBattlefieldLeader;
+	bool			m_lost;
+	bool			m_won;
 	std::vector<MobVictoryCondition_t> m_EnemyVictoryList;
 };
 
