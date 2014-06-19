@@ -1,21 +1,21 @@
------------------------------------	
+-----------------------------------
 -- Area: Labyrinth of Onzozo
 --  MOB: Goblin Shepherd
 -- Note: Place holder Soulstealer Skullnix
------------------------------------	
+-----------------------------------
 
 require("/scripts/zones/Labyrinth_of_Onzozo/MobIDs");
-	
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
- 
-	checkRegime(killer,mob,771,2);
-	checkRegime(killer,mob,772,2);
-	checkRegime(killer,mob,774,2);
- 
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer)
+
+    checkGoVregime(killer,mob,771,2);
+    checkGoVregime(killer,mob,772,2);
+    checkGoVregime(killer,mob,774,2);
+
     local mob = mob:getID();
     if (Soulstealer_Skullnix_PH[mob] ~= nil) then
 
@@ -29,4 +29,4 @@ function onMobDeath(mob,killer)
             end
         end
     end
-end;	
+end;
