@@ -1,20 +1,20 @@
-----------------------------------	
--- Area: Gustav Tunnel	
+----------------------------------
+-- Area: Gustav Tunnel
 --  MOB: Goblin Mercenary
 -- Note: Place holder Wyvernpoacher Drachlox
------------------------------------	
+-----------------------------------
 
 require("/scripts/zones/Gustav_Tunnel/MobIDs");
-	
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
- 
-	checkRegime(killer,mob,764,3);
-	checkRegime(killer,mob,765,3);
- 
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer)
+
+    checkGoVregime(killer,mob,764,3);
+    checkGoVregime(killer,mob,765,3);
+
     local mob = mob:getID();
     if (Wyvernpoacher_Drachlox_PH[mob] ~= nil) then
 
@@ -28,5 +28,5 @@ function onMobDeath(mob,killer)
             end
         end
     end
-  
-end;	
+
+end;

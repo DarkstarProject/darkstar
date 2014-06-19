@@ -1,14 +1,14 @@
------------------------------------	
--- Area: Ranguemont Pass	
--- MOB:  Wind Bats	
------------------------------------	
+-----------------------------------
+-- Area: Ranguemont Pass
+-- MOB:  Wind Bats
+-----------------------------------
 
-require("scripts/globals/fieldsofvalor");	
+require("scripts/globals/fieldsofvalor");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,602,1);
-end;	
+function onMobDeath(mob,killer)
+    checkGoVregime(killer,mob,602,1);
+end;
