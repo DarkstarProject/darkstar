@@ -29,11 +29,11 @@ function OnUseWeaponSkill(player, target, wsID)
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 	if((player:getEquipID(SLOT_MAIN) == 18270) and (player:getMainJob() == JOB_RDM or JOB_THF or JOB_BRD)) then
 		if(damage > 0) then	
-			if(player:getTP() >= 100 and player:getTP() < 200) then
+			if(player:getTP() >= 1000 and player:getTP() < 2000) then
 				player:addStatusEffect(EFFECT_AFTERMATH, 5, 0, 20, 0, 2);
-			elseif(player:getTP() >= 200 and player:getTP() < 300) then
+			elseif(player:getTP() >= 2000 and player:getTP() < 3000) then
 				player:addStatusEffect(EFFECT_AFTERMATH, 5, 0, 40, 0, 2);
-			elseif(player:getTP() == 300) then
+			elseif(player:getTP() == 3000) then
 				player:addStatusEffect(EFFECT_AFTERMATH, 5, 0, 60, 0, 2);
 			end
 		end

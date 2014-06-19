@@ -17,7 +17,8 @@
 require("scripts/globals/status");   
 require("scripts/globals/settings");   
 require("scripts/globals/weaponskills");   
------------------------------------   
+-----------------------------------
+
 function OnUseWeaponSkill(player, target, wsID)   
 	local params = {};
 	params.numHits = 1;
@@ -32,11 +33,11 @@ function OnUseWeaponSkill(player, target, wsID)
 	local damage, tpHits, extraHits = doRangedWeaponskill(player, target, params);
 	if((player:getEquipID(SLOT_RANGED) == 18336) and (player:getMainJob() == JOB_RNG)) then
 		if(damage > 0) then	
-			if(player:getTP() >= 100 and player:getTP() < 200) then
+			if(player:getTP() >= 1000 and player:getTP() < 2000) then
 				player:addStatusEffect(EFFECT_AFTERMATH, -20, 0, 20, 0, 11);
-			elseif(player:getTP() >= 200 and player:getTP() < 300) then
+			elseif(player:getTP() >= 2000 and player:getTP() < 3000) then
 				player:addStatusEffect(EFFECT_AFTERMATH, -20, 0, 40, 0, 11);
-			elseif(player:getTP() == 300) then
+			elseif(player:getTP() == 3000) then
 				player:addStatusEffect(EFFECT_AFTERMATH, -20, 0, 60, 0, 11);
 			end
 		end

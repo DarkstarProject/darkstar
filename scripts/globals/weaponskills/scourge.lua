@@ -17,7 +17,9 @@ require("scripts/globals/status");
 require("scripts/globals/settings");	
 require("scripts/globals/weaponskills");	
 -----------------------------------	
-function OnUseWeaponSkill(player, target, wsID)	
+
+function OnUseWeaponSkill(player, target, wsID)
+	
 	local params = {};
 	params.numHits = 1;
 	params.ftp100 = 3; params.ftp200 = 3; params.ftp300 = 3;
@@ -29,14 +31,15 @@ function OnUseWeaponSkill(player, target, wsID)
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 	if((player:getEquipID(SLOT_MAIN) == 18282) and (player:getMainJob() == JOB_WAR or JOB_PLD or JOB_DRK)) then
 		if(damage > 0) then	
-			if(player:getTP() >= 100 and player:getTP() < 200) then
+			if(player:getTP() >= 1000 and player:getTP() < 2000) then
 				player:addStatusEffect(EFFECT_AFTERMATH, 11, 0, 20, 0, 2);
-			elseif(player:getTP() >= 200 and player:getTP() < 300) then
+			elseif(player:getTP() >= 2000 and player:getTP() < 3000) then
 				player:addStatusEffect(EFFECT_AFTERMATH, 11, 0, 40, 0, 2);
-			elseif(player:getTP() == 300) then
+			elseif(player:getTP() == 3000) then
 				player:addStatusEffect(EFFECT_AFTERMATH, 11, 0, 60, 0, 2);
 			end
 		end
 	end
+	
 	return tpHits, extraHits, criticalHit, damage;
 end	
