@@ -4571,13 +4571,13 @@ void DoWildCardToEntity(CCharEntity* PCaster, CCharEntity* PTarget, uint8 roll)
 					PTarget->PRecastContainer->DeleteByIndex(RECAST_ABILITY, i - 1);
 				}
 			}
-			PTarget->health.tp = 100;
+			PTarget->health.tp = 1000;
 			break;
 
 		case 4: 
 			// Restores all Job Abilities (does not restore One Hour Abilities), 300% TP Restore 
 			PTarget->PRecastContainer->ResetAbilities();
-			PTarget->health.tp = 300;
+			PTarget->health.tp = 3000;
 			break;
 
 		case 5: 

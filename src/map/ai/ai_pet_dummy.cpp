@@ -119,7 +119,7 @@ void CAIPetDummy::ActionAbilityStart()
 
 	if(m_PPet->objtype == TYPE_MOB && m_PPet->PMaster->objtype == TYPE_PC)
 	{
-		if(m_MasterCommand == MASTERCOMMAND_SIC && m_PPet->health.tp >= 100 && m_PBattleTarget != NULL)
+		if(m_MasterCommand == MASTERCOMMAND_SIC && m_PPet->health.tp >= 1000 && m_PBattleTarget != NULL)
 		{
 			m_MasterCommand = MASTERCOMMAND_NONE;
 			CMobEntity* PMob = (CMobEntity*)m_PPet->PMaster->PPet;
@@ -149,7 +149,7 @@ void CAIPetDummy::ActionAbilityStart()
 
 
 	if(m_PPet->getPetType()==PETTYPE_JUG_PET){
-		if(m_MasterCommand==MASTERCOMMAND_SIC && m_PPet->health.tp>=100 && m_PBattleTarget!=NULL){ //choose random tp move
+		if(m_MasterCommand==MASTERCOMMAND_SIC && m_PPet->health.tp>=1000 && m_PBattleTarget!=NULL){ //choose random tp move
 			m_MasterCommand = MASTERCOMMAND_NONE;
 			if(m_PPet->PetSkills.size()>0){
 				m_PMobSkill = m_PPet->PetSkills.at(rand() % m_PPet->PetSkills.size());
@@ -709,7 +709,7 @@ void CAIPetDummy::ActionAttack()
 		return;
 	}
 
-	if(m_queueSic && m_PPet->health.tp >= 100)
+	if(m_queueSic && m_PPet->health.tp >= 1000)
 	{
 		// now use my tp move
 		m_queueSic = false;

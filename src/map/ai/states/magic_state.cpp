@@ -738,7 +738,7 @@ void CMagicState::CharOnTarget(apAction_t* action, int16 ce, int16 ve)
         }
         if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SEKKANOKI) || m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
         {
-            m_PEntity->health.tp = (m_PEntity->health.tp > 100 ? m_PEntity->health.tp - 100 : 0);
+            m_PEntity->health.tp = (m_PEntity->health.tp > 1000 ? m_PEntity->health.tp - 1000 : 0);
         }
         else
         {

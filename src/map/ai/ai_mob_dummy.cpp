@@ -809,11 +809,11 @@ void CAIMobDummy::ActionAbilityStart()
 	// remove tp
 	if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
 	{
-		if(m_PMob->health.tp <= 100)
+		if(m_PMob->health.tp <= 1000)
 		{
 			m_PMob->health.tp = 0;
 		} else {
-			m_PMob->health.tp -= 100;
+			m_PMob->health.tp -= 1000;
 		}
 	} else {
 		m_PMob->health.tp = 0;
