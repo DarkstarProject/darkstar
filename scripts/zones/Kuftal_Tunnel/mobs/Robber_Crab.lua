@@ -16,9 +16,9 @@ end;
 
 function onMobDeath(mob,killer)
 
-	checkRegime(killer,mob,735,1);
-	checkRegime(killer,mob,736,1);
-	checkRegime(killer,mob,738,1);
+	checkGoVregime(killer,mob,735,1);
+	checkGoVregime(killer,mob,736,1);
+	checkGoVregime(killer,mob,738,1);
 
 	local mobID = mob:getID();
 
