@@ -38,11 +38,11 @@ function OnUseWeaponSkill(player, target, wsID)
 	end
 	if((player:getEquipID(SLOT_MAIN) == 18294) and (player:getMainJob() == JOB_WAR)) then
 		if(damage > 0) then	
-			if(player:getTP() >= 1000 and player:getTP() < 2000) then
+			if(player:getTP() >= 100 and player:getTP() < 200) then
 				player:addStatusEffect(EFFECT_AFTERMATH, 21, 0, 20, 0, 5);
-			elseif(player:getTP() >= 2000 and player:getTP() < 3000) then
+			elseif(player:getTP() >= 200 and player:getTP() < 300) then
 				player:addStatusEffect(EFFECT_AFTERMATH, 21, 0, 40, 0, 5);
-			elseif(player:getTP() == 3000) then
+			elseif(player:getTP() == 300) then
 				player:addStatusEffect(EFFECT_AFTERMATH, 21, 0, 60, 0, 5);
 			end
 		end
