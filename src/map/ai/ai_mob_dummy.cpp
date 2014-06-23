@@ -162,7 +162,7 @@ void CAIMobDummy::ActionRoaming()
 		return;
 	}
 
-        uint8 updates = 0;
+    uint8 updates = 0;
 
 	if(m_PMob->m_roamFlags & ROAMFLAG_IGNORE)
 	{
@@ -177,7 +177,7 @@ void CAIMobDummy::ActionRoaming()
 	{
 		FollowPath();
 
-                updates |= UPDATE_POS;
+        updates |= UPDATE_POS;
 	}
     else if (m_Tick >= m_LastActionTime + m_PMob->getBigMobMod(MOBMOD_ROAM_COOL))
 	{
@@ -211,7 +211,7 @@ void CAIMobDummy::ActionRoaming()
 
 				FollowPath();
 
-                                updates |= UPDATE_POS;
+                updates |= UPDATE_POS;
 
 				// move back every 5 seconds
 				m_LastActionTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_ROAM_COOL) + MOB_NEUTRAL_TIME;
@@ -244,7 +244,7 @@ void CAIMobDummy::ActionRoaming()
 				m_PMob->HideModel(true);
 				m_PMob->animationsub = 0;
 
-                                updates |= UPDATE_POS;
+				updates |= UPDATE_POS;
 			}
 			else if(m_PMob->m_roamFlags & ROAMFLAG_EVENT)
 			{
@@ -252,7 +252,7 @@ void CAIMobDummy::ActionRoaming()
 				luautils::OnMobRoamAction(m_PMob);
 				m_LastActionTime = m_Tick;
 
-                                updates |= UPDATE_POS;
+                updates |= UPDATE_POS;
 			}
 			else if(m_PMob->CanRoam() && m_PPathFind->RoamAround(m_PMob->m_SpawnPoint, m_PMob->m_roamFlags))
 			{
@@ -271,7 +271,7 @@ void CAIMobDummy::ActionRoaming()
 					FollowPath();
 				}
 
-                                updates |= UPDATE_POS;
+				updates |= UPDATE_POS;
 			}
 			else
 			{
@@ -287,7 +287,10 @@ void CAIMobDummy::ActionRoaming()
 		luautils::OnMobRoam(m_PMob);
 	}
 
-        m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, updates));
+	if (updates != 0)
+	{
+		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, updates));
+	}
 }
 
 /************************************************************************
