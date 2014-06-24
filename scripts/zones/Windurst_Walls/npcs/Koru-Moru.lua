@@ -200,7 +200,7 @@ printf("CSID: %u",csid);
 		player:completeQuest(WINDURST,BLAST_FROM_THE_PAST);
 		player:addItem(17030);
 		player:messageSpecial(ITEM_OBTAINED,17030);
-		player:addTitle(Fossilized_Sea_Farer);
+		player:addTitle(FOSSILIZED_SEA_FARER);
 		player:addFame(WINDURST,WIN_FAME*30);
 		player:needToZone(true);
 	elseif(csid == 0x0194) then
