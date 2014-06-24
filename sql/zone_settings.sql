@@ -206,7 +206,7 @@ INSERT INTO `zone_settings` VALUES (157,3,0016777343,54230,'Middle_Delkfutts_Tow
 INSERT INTO `zone_settings` VALUES (158,3,0016777343,54230,'Upper_Delkfutts_Tower',0,115,102,0,0.00,145,0);
 INSERT INTO `zone_settings` VALUES (159,3,0016777343,54230,'Temple_of_Uggalepih',0,115,192,0,0.00,145,0);
 INSERT INTO `zone_settings` VALUES (160,3,0016777343,54230,'Den_of_Rancor',0,115,192,0,0.00,145,0);
-INSERT INTO `zone_settings` VALUES (161,3,0016777343,54230,'Castle_Zvahl_Baileys',0,115,102,0,0.00,145,0);
+INSERT INTO `zone_settings` VALUES (161,3,0016777343,54230,'Castle_Zvahl_Baileys',155,115,102,0,0.00,145,0);
 INSERT INTO `zone_settings` VALUES (162,3,0016777343,54230,'Castle_Zvahl_Keep',155,115,102,0,0.00,145,0);
 INSERT INTO `zone_settings` VALUES (163,4,0016777343,54230,'Sacrificial_Chamber',0,193,193,0,0.00,145,0);
 INSERT INTO `zone_settings` VALUES (164,3,0016777343,54230,'Garlaige_Citadel_[S]',0,115,216,0,0.00,145,0);
