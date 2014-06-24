@@ -277,6 +277,7 @@ void CZoneInstance::ZoneServer(uint32 tick)
 
 		if ((instance->Failed() || instance->Completed()) && instance->CharListEmpty())
 		{
+			ShowDebug("Removed instance %d, char list empty and failed or succeeded", instance->GetID());
 			it = instanceList.erase(it);
 			delete instance;
 			continue;

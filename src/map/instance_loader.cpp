@@ -70,8 +70,16 @@ bool CInstanceLoader::Check()
 		if (task.wait_for(std::chrono::milliseconds(0)) == std::future_status::ready)
 		{
 			instance = task.get();
-			luautils::OnInstanceCreated(requester, instance);
-			luautils::OnInstanceCreated(instance);
+			if (!instance)
+			{
+				//Instance failed to load
+				luautils::OnInstanceCreated(requester, NULL);
+			}
+			else
+			{
+				luautils::OnInstanceCreated(requester, instance);
+				luautils::OnInstanceCreated(instance);
+			}
 			return true;
 		}
 	}
@@ -223,54 +231,59 @@ CInstance* CInstanceLoader::LoadInstance()
 			PMob->saveModifiers();
 			PMob->saveMobModifiers();
 		}
-	}
 
-    Query =
-        "SELECT npcid, name, pos_rot, pos_x, pos_y, pos_z,\
-        flag, speed, speedsub, animation, animationsub, namevis,\
-        status, unknown, look, name_prefix \
-        FROM instance_entities INNER JOIN npc_list ON \
-		(instance_entities.id & 0xFFF = npc_list.npcid AND npc_list.zoneid = %u) \
-        WHERE instanceid = %u AND npcid < 1024;";
+		Query =
+			"SELECT npcid, name, pos_rot, pos_x, pos_y, pos_z,\
+			flag, speed, speedsub, animation, animationsub, namevis,\
+			status, unknown, look, name_prefix \
+			FROM instance_entities INNER JOIN npc_list ON \
+			(instance_entities.id & 0xFFF = npc_list.npcid AND npc_list.zoneid = %u) \
+			WHERE instanceid = %u AND npcid < 1024;";
 
-    ret = Sql_Query(SqlHandle, Query, zone->GetID(), instance->GetID());
+		ret = Sql_Query(SqlHandle, Query, zone->GetID(), instance->GetID());
 
-	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-	{
-		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 		{
-			CNpcEntity* PNpc = new CNpcEntity;
-			PNpc->targid = (uint16)Sql_GetUIntData(SqlHandle, 0);
-			PNpc->id = (uint32)PNpc->targid + (zone->GetID() << 12) + 0x1000000;
+			while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+			{
+				CNpcEntity* PNpc = new CNpcEntity;
+				PNpc->targid = (uint16)Sql_GetUIntData(SqlHandle, 0);
+				PNpc->id = (uint32)PNpc->targid + (zone->GetID() << 12) + 0x1000000;
 
-			PNpc->name.insert(0, Sql_GetData(SqlHandle, 1));
+				PNpc->name.insert(0, Sql_GetData(SqlHandle, 1));
 
-			PNpc->loc.p.rotation = (uint8)Sql_GetIntData(SqlHandle, 2);
-			PNpc->loc.p.x = Sql_GetFloatData(SqlHandle, 3);
-			PNpc->loc.p.y = Sql_GetFloatData(SqlHandle, 4);
-			PNpc->loc.p.z = Sql_GetFloatData(SqlHandle, 5);
-			PNpc->loc.p.moving = (uint16)Sql_GetUIntData(SqlHandle, 6);
+				PNpc->loc.p.rotation = (uint8)Sql_GetIntData(SqlHandle, 2);
+				PNpc->loc.p.x = Sql_GetFloatData(SqlHandle, 3);
+				PNpc->loc.p.y = Sql_GetFloatData(SqlHandle, 4);
+				PNpc->loc.p.z = Sql_GetFloatData(SqlHandle, 5);
+				PNpc->loc.p.moving = (uint16)Sql_GetUIntData(SqlHandle, 6);
 
-			PNpc->m_TargID = (uint32)Sql_GetUIntData(SqlHandle, 6) >> 16; // вполне вероятно
+				PNpc->m_TargID = (uint32)Sql_GetUIntData(SqlHandle, 6) >> 16; // вполне вероятно
 
-			PNpc->speed = (uint8)Sql_GetIntData(SqlHandle, 7);
-			PNpc->speedsub = (uint8)Sql_GetIntData(SqlHandle, 8);
-			PNpc->animation = (uint8)Sql_GetIntData(SqlHandle, 9);
-			PNpc->animationsub = (uint8)Sql_GetIntData(SqlHandle, 10);
+				PNpc->speed = (uint8)Sql_GetIntData(SqlHandle, 7);
+				PNpc->speedsub = (uint8)Sql_GetIntData(SqlHandle, 8);
+				PNpc->animation = (uint8)Sql_GetIntData(SqlHandle, 9);
+				PNpc->animationsub = (uint8)Sql_GetIntData(SqlHandle, 10);
 
-			PNpc->namevis = (uint8)Sql_GetIntData(SqlHandle, 11);
-			PNpc->status = (STATUSTYPE)Sql_GetIntData(SqlHandle, 12);
-			PNpc->unknown = (uint32)Sql_GetUIntData(SqlHandle, 13);
+				PNpc->namevis = (uint8)Sql_GetIntData(SqlHandle, 11);
+				PNpc->status = (STATUSTYPE)Sql_GetIntData(SqlHandle, 12);
+				PNpc->unknown = (uint32)Sql_GetUIntData(SqlHandle, 13);
 
-			PNpc->name_prefix = (uint8)Sql_GetIntData(SqlHandle, 15);
+				PNpc->name_prefix = (uint8)Sql_GetIntData(SqlHandle, 15);
 
-			memcpy(&PNpc->look, Sql_GetData(SqlHandle, 14), 20);
+				memcpy(&PNpc->look, Sql_GetData(SqlHandle, 14), 20);
 
-			PNpc->PInstance = instance;
+				PNpc->PInstance = instance;
 
-			instance->InsertNPC(PNpc);
-			//luautils::OnNpcSpawn(PNpc);
+				instance->InsertNPC(PNpc);
+				//luautils::OnNpcSpawn(PNpc);
+			}
 		}
+	}
+	else
+	{
+		instance->Cancel();
+		instance = NULL;
 	}
 
 	//TODO: pets
