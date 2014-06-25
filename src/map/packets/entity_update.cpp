@@ -134,7 +134,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 					WBUFB(data,(0x22)-4) |= (PEntity->hpvis ? 0x00 : 0x01);
 					WBUFB(data,(0x27)-4) = PMob->m_name_prefix;
 					if (PMob->PMaster != NULL && PMob->PMaster->objtype == TYPE_PC)
-						WBUFB(data,(0x27)-4) = 0x08;
+						WBUFB(data,(0x27)-4) |= 0x08;
 					WBUFB(data,(0x29)-4) = PEntity->allegiance;
 					WBUFB(data,(0x2B)-4) = PEntity->namevis;
 				}
