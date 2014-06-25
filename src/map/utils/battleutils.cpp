@@ -3802,6 +3802,7 @@ void tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
 		((CCharEntity*)PCharmer)->pushPacket(new CPetSyncPacket((CCharEntity*)PCharmer));
 		PVictim->loc.zone->PushPacket(PVictim, CHAR_INRANGE, new CEntityUpdatePacket(PVictim, ENTITY_UPDATE, UPDATE_COMBAT));
 		PVictim->allegiance = ALLEGIANCE_PLAYER;
+		((CMobEntity*)PVictim)->m_OwnerID.clean();
 	}
 
 	else if (PVictim->objtype == TYPE_PC)
