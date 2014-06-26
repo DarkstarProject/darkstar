@@ -10,26 +10,26 @@ ITEM_CANNOT_BE_OBTAINED = 6535; -- You cannot obtain the item <item>. Come back 
           HOMEPOINT_SET = 6639; -- Home point set!
 
 -- Other Texts
-ITEM_DELIVERY_DIALOG = 8004; -- Delivering goods to residences everywhere!
+ITEM_DELIVERY_DIALOG = 8006; -- Delivering goods to residences everywhere!
 
 -- Conquest system
-CONQUEST = 7671; -- You've earned conquest points!
+CONQUEST = 7673; -- You've earned conquest points!
 
 -- NPC Texts
-            KIRISOMANRISO_DIALOG = 8004; -- Delivering goods to residences everywhere!
-YOU_CAN_NOW_BECOME_A_BEASTMASTER = 7115; -- You can now become a beastmaster.
+            KIRISOMANRISO_DIALOG = 8006; -- Delivering goods to residences everywhere!
+YOU_CAN_NOW_BECOME_A_BEASTMASTER = 7117; -- You can now become a beastmaster.
 
-				   UNLOCK_DANCER = 11758; -- You can now become a dancer!
+				   UNLOCK_DANCER = 11760; -- You can now become a dancer!
 
-GUIDE_STONE = 6910; -- Up: Ru'Lude Gardens Down: Lower Jeuno
+GUIDE_STONE = 6912; -- Up: Ru'Lude Gardens Down: Lower Jeuno
 
 -- Shop Texts
-       GLYKE_SHOP_DIALOG = 6905; -- Can I help you?
-     MEJUONE_SHOP_DIALOG = 6906; -- Welcome to the Chocobo Shop.
-     COUMUNA_SHOP_DIALOG = 6907; -- Welcome to Viette's Finest Weapons.
-     ANTONIA_SHOP_DIALOG = 6907; -- Welcome to Viette's Finest Weapons.
-DEADLYMINNOW_SHOP_DIALOG = 6908; -- Welcome to Durable Shields.
- KHECHALAHKO_SHOP_DIALOG = 6908; -- Welcome to Durable Shields.
-     AREEBAH_SHOP_DIALOG = 6909; -- Welcome to M & P's Market.
- CHAMPALPIEU_SHOP_DIALOG = 6909; -- Welcome to M & P's Market.
-   LEILLAINE_SHOP_DIALOG = 6935; -- Hello. Are you feeling all right?
+       GLYKE_SHOP_DIALOG = 6907; -- Can I help you?
+     MEJUONE_SHOP_DIALOG = 6908; -- Welcome to the Chocobo Shop.
+     COUMUNA_SHOP_DIALOG = 6909; -- Welcome to Viette's Finest Weapons.
+     ANTONIA_SHOP_DIALOG = 6909; -- Welcome to Viette's Finest Weapons.
+DEADLYMINNOW_SHOP_DIALOG = 6910; -- Welcome to Durable Shields.
+ KHECHALAHKO_SHOP_DIALOG = 6910; -- Welcome to Durable Shields.
+     AREEBAH_SHOP_DIALOG = 6911; -- Welcome to M & P's Market.
+ CHAMPALPIEU_SHOP_DIALOG = 6911; -- Welcome to M & P's Market.
+   LEILLAINE_SHOP_DIALOG = 6937; -- Hello. Are you feeling all right?

@@ -413,9 +413,9 @@ void CMobEntity::ChangeMJob(uint16 job)
 
 uint8 CMobEntity::TPUseChance()
 {
-    if(health.tp < 100) return 0;
+    if(health.tp < 1000) return 0;
 
-    if(health.tp == 300 || (GetHPP() <= 25 && health.tp >= 100))
+    if(health.tp == 3000 || (GetHPP() <= 25 && health.tp >= 1000))
     {
         return 100;
     }

@@ -861,6 +861,7 @@ void DetachPet(CBattleEntity* PMaster)
         }
 
         PMob->isCharmed = false;
+		PMob->allegiance = ALLEGIANCE_MOB;
         PMob->charmTime = 0;
         PMob->PMaster = NULL;
 

@@ -64,6 +64,7 @@ public:
 	bool Failed();											// Checks if instance is failed
 	void Complete();										// Completes the instance (onInstanceComplete)
 	bool Completed();										// Checks if instance is completed
+	void Cancel();											// Sets instance to fail without calling onInstanceFailure
 
 	CInstance(CZone*, uint8 instanceid);
 	~CInstance();

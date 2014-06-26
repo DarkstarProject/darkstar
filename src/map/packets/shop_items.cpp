@@ -40,10 +40,10 @@ CShopItemsPacket::CShopItemsPacket(CCharEntity * PChar)
 
 	for (uint8 slotID = 0; slotID < ItemsCount; ++slotID)
 	{
-		this->size += 0x04;
+		this->size += 0x06;
 
-		WBUFL(data,((slotID*8)+0x08)-4) = PChar->Container->getQuantity(slotID);
-		WBUFW(data,((slotID*8)+0x0C)-4) = PChar->Container->getItemID(slotID);
-		WBUFB(data,((slotID*8)+0x0E)-4) = slotID;	
+		WBUFL(data,((slotID*12)+0x08)-4) = PChar->Container->getQuantity(slotID);
+		WBUFW(data,((slotID*12)+0x0C)-4) = PChar->Container->getItemID(slotID);
+		WBUFB(data,((slotID*12)+0x0E)-4) = slotID;	
 	}
 }

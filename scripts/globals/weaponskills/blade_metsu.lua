@@ -14,14 +14,11 @@
 -- 100%TP    200%TP    300%TP	
 -- 3.00      3.00      3.00	
 -----------------------------------	
-	
 require("scripts/globals/status");	
 require("scripts/globals/settings");	
 require("scripts/globals/weaponskills");	
 -----------------------------------	
-	
 function OnUseWeaponSkill(player, target, wsID)	
-	
 	local params = {};
 	params.numHits = 1;
 	params.ftp100 = 3; params.ftp200 = 3; params.ftp300 = 3;
@@ -40,11 +37,14 @@ function OnUseWeaponSkill(player, target, wsID)
 	end
 		if((player:getEquipID(SLOT_MAIN) or (SLOT_SUB) == 18312) and (player:getMainJob() == JOB_NIN)) then
 		if(damage > 0) then	
-			if(player:getTP() == 300) then
+			if(player:getTP() >= 100 and player:getTP() <200) then
+				player:addStatusEffect(EFFECT_AFTERMATH, 5, 0, 20, 0, 1);
+			elseif(player:getTP() >= 200 and player:getTP() <300) then
+				player:addStatusEffect(EFFECT_AFTERMATH, 5, 0, 40, 0, 1);
+			elseif(player:getTP() == 300) then
 				player:addStatusEffect(EFFECT_AFTERMATH, 5, 0, 60, 0, 1);
 			end
 		end
 	end
 	return tpHits, extraHits, criticalHit, damage;
-	
 end	

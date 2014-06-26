@@ -12,7 +12,7 @@ require("/scripts/zones/Gustav_Tunnel/MobIDs");
 	
 function onMobDeath(mob,killer)	
   
-	checkRegime(killer,mob,769,2);
+	checkGoVregime(killer,mob,769,2);
   
     local mob = mob:getID();
     if (Ungur_PH[mob] ~= nil) then

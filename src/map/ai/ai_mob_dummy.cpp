@@ -162,6 +162,8 @@ void CAIMobDummy::ActionRoaming()
 		return;
 	}
 
+    uint8 updates = 0;
+
 	if(m_PMob->m_roamFlags & ROAMFLAG_IGNORE)
 	{
 		// don't claim me if I ignore
@@ -175,20 +177,26 @@ void CAIMobDummy::ActionRoaming()
 	{
 		FollowPath();
 
-		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_POS));
-
+        updates |= UPDATE_POS;
 	}
     else if (m_Tick >= m_LastActionTime + m_PMob->getBigMobMod(MOBMOD_ROAM_COOL))
 	{
 		// lets buff up or move around
 
-		// recover health
-		// can't rest when taking hp damage
-		if(!m_PMob->getMod(MOD_REGEN_DOWN) && !m_PMob->StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_NO_REST) && !m_PMob->Rest(0.1f))
-		{
-			// undirty exp
-			m_PMob->m_giveExp = true;
-		}
+                // can't rest with poison or disease
+            if(m_PMob->CanRest()){
+                // recover 10% health
+                if(m_PMob->Rest(0.1f))
+                {
+                    // health updated
+                    updates |= UPDATE_HP;
+                }
+                else
+                {
+                    // at max health undirty exp
+                    m_PMob->m_giveExp = true;
+                }
+            }
 
 		// if I just disengaged check if I should despawn
 		if(m_checkDespawn && m_PMob->IsFarFromHome())
@@ -203,7 +211,7 @@ void CAIMobDummy::ActionRoaming()
 
 				FollowPath();
 
-				m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_POS));
+                updates |= UPDATE_POS;
 
 				// move back every 5 seconds
 				m_LastActionTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_ROAM_COOL) + MOB_NEUTRAL_TIME;
@@ -236,7 +244,7 @@ void CAIMobDummy::ActionRoaming()
 				m_PMob->HideModel(true);
 				m_PMob->animationsub = 0;
 
-				m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_POS));
+				updates |= UPDATE_POS;
 			}
 			else if(m_PMob->m_roamFlags & ROAMFLAG_EVENT)
 			{
@@ -244,7 +252,7 @@ void CAIMobDummy::ActionRoaming()
 				luautils::OnMobRoamAction(m_PMob);
 				m_LastActionTime = m_Tick;
 
-				m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_POS));
+                updates |= UPDATE_POS;
 			}
 			else if(m_PMob->CanRoam() && m_PPathFind->RoamAround(m_PMob->m_SpawnPoint, m_PMob->m_roamFlags))
 			{
@@ -263,8 +271,7 @@ void CAIMobDummy::ActionRoaming()
 					FollowPath();
 				}
 
-				m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_POS));
-
+				updates |= UPDATE_POS;
 			}
 			else
 			{
@@ -278,6 +285,11 @@ void CAIMobDummy::ActionRoaming()
 	if ((m_Tick - m_SpawnTime) % 3000 <= 400)
 	{
 		luautils::OnMobRoam(m_PMob);
+	}
+
+	if (updates != 0)
+	{
+		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, updates));
 	}
 }
 
@@ -800,11 +812,11 @@ void CAIMobDummy::ActionAbilityStart()
 	// remove tp
 	if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
 	{
-		if(m_PMob->health.tp <= 100)
+		if(m_PMob->health.tp <= 1000)
 		{
 			m_PMob->health.tp = 0;
 		} else {
-			m_PMob->health.tp -= 100;
+			m_PMob->health.tp -= 1000;
 		}
 	} else {
 		m_PMob->health.tp = 0;

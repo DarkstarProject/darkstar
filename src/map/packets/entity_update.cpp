@@ -67,7 +67,6 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 					}
 				}
 			}
-			WBUFW(data, (0x1A) - 4) = PEntity->m_TargID << 1;
 		}
 		break;
 	}
@@ -78,10 +77,14 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 		WBUFF(data,(0x10)-4) = PEntity->loc.p.y;
 		WBUFF(data,(0x14)-4) = PEntity->loc.p.z;
 		WBUFW(data,(0x18)-4) = PEntity->loc.p.moving;
+		WBUFW(data,(0x1A)-4) = PEntity->m_TargID << 1;
 		WBUFB(data,(0x1C)-4) = PEntity->speed;
 		WBUFB(data,(0x1D)-4) = PEntity->speedsub;
 		WBUFB(data,(0x1F)-4) = PEntity->animation;
-		WBUFB(data,(0x20)-4) = PEntity->status;
+		if (PEntity->allegiance == ALLEGIANCE_PLAYER && PEntity->status == STATUS_UPDATE)
+			WBUFB(data,(0x20)-4) = STATUS_NORMAL;
+		else
+			WBUFB(data,(0x20)-4) = PEntity->status;
 		WBUFB(data,(0x2A)-4) = PEntity->animationsub;
 	}
 
@@ -92,9 +95,6 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 			if (updatemask & UPDATE_HP)
 			{
 				WBUFB(data,(0x1E)-4) = 0x64;
-			}
-			if (updatemask & UPDATE_STATUS)
-			{
 				WBUFL(data,(0x21)-4) = ((CNpcEntity*)PEntity)->unknown;
 				WBUFB(data,(0x22)-4) |= (PEntity->untargetable ? 0x08 : 0x00);
 				WBUFB(data,(0x22)-4) |= (PEntity->hpvis ? 0x00 : 0x01);
@@ -124,23 +124,23 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 				if (updatemask & UPDATE_HP)
 				{
 					WBUFB(data,(0x1E)-4) = PMob->GetHPP();
+					if (PEntity->allegiance == ALLEGIANCE_PLAYER && PEntity->status == STATUS_UPDATE)
+						WBUFB(data,(0x20)-4) = STATUS_NORMAL;
+					else
+						WBUFB(data,(0x20)-4) = PMob->status;
 					WBUFL(data,(0x21)-4) = PMob->m_unknown;
 					WBUFB(data,(0x21)-4) |= PMob->m_CallForHelp;
+					WBUFB(data,(0x22)-4) |= (PEntity->untargetable ? 0x08 : 0x00);
+					WBUFB(data,(0x22)-4) |= (PEntity->hpvis ? 0x00 : 0x01);
+					WBUFB(data,(0x27)-4) = PMob->m_name_prefix;
+					if (PMob->PMaster != NULL && PMob->PMaster->objtype == TYPE_PC)
+						WBUFB(data,(0x27)-4) |= 0x08;
+					WBUFB(data,(0x29)-4) = PEntity->allegiance;
+					WBUFB(data,(0x2B)-4) = PEntity->namevis;
 				}
 				if (updatemask & UPDATE_STATUS)
 				{
-					if (PEntity->allegiance == ALLEGIANCE_PLAYER && PEntity->status == STATUS_UPDATE)
-						WBUFB(data,(0x20)-4) = STATUS_NORMAL;
-					WBUFB(data,(0x22)-4) = (PEntity->untargetable ? 0x08 : 0x00);
-					WBUFB(data,(0x22)-4) |= (PEntity->hpvis ? 0x00 : 0x01);
-					WBUFB(data,(0x27)-4) = PMob->m_name_prefix;
-					WBUFB(data,(0x29)-4) = PEntity->allegiance;
-					WBUFB(data,(0x2B)-4) = PEntity->namevis;
-
-					if (PMob->PMaster != NULL && PMob->PMaster->objtype == TYPE_PC)
-						WBUFB(data,(0x27)-4) = 0x08; //todo: may need |=
-					else
-						WBUFL(data, (0x2C) - 4) = PMob->m_OwnerID.id;
+					WBUFL(data,(0x2C)-4) = PMob->m_OwnerID.id;
 				}
 			}
 			if (updatemask & UPDATE_NAME)

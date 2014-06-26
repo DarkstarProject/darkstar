@@ -87,7 +87,7 @@ protected:
 	uint32 m_StunTime;
 	uint32 m_DeaggroTime;
 	uint32 m_NeutralTime;
-	float m_skillTP;
+	int16 m_skillTP;
 	bool m_drawnIn;
 	bool m_mobskillattack;
 	bool m_actionqueueability;

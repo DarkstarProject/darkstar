@@ -236,7 +236,7 @@ bool CInstance::CharRegistered(CCharEntity* PChar)
 
 void CInstance::Fail()
 {
-	m_status = INSTANCE_FAILED;
+	Cancel();
 
 	luautils::OnInstanceFailure(this);
 }
@@ -256,4 +256,9 @@ void CInstance::Complete()
 bool CInstance::Completed()
 {
 	return m_status == INSTANCE_COMPLETE;
+}
+
+void CInstance::Cancel()
+{
+	m_status = INSTANCE_FAILED;
 }

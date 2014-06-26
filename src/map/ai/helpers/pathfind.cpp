@@ -263,11 +263,6 @@ void CPathFind::StepTo(position_t* pos, bool run)
 
 	float speed = GetRealSpeed();
 
-	if (speed == 0)
-	{
-		ShowWarning("CPathFind::StepTo Mob (%d) speed is zero and its trying to move\n", m_PTarget->id);
-	}
-
 	int8 mode = 2;
 
 	if (!run)
@@ -394,7 +389,7 @@ float CPathFind::GetRealSpeed()
 
 	if (m_PTarget->animation == ANIMATION_ATTACK)
 	{
-		baseSpeed = baseSpeed + map_config.speed_mod;
+		baseSpeed = baseSpeed + map_config.MOB_speed_mod;
 	}
 
 	return baseSpeed;
