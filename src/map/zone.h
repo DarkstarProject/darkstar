@@ -90,7 +90,7 @@ enum ZONEID : uint16
 	ZONE_OPEN_SEA_ROUTE_TO_AL_ZAHBI   = 46,
 	ZONE_OPEN_SEA_ROUTE_TO_MHAURA     = 47,
 	ZONE_AL_ZAHBI                     = 48,
-	ZONE_49                           = 49,
+	ZONE_49                           = 49, // GM Grid test zone
 	ZONE_AHT_URHGAN_WHITEGATE         = 50,
 	ZONE_WAJAOM_WOODLANDS             = 51,
 	ZONE_BHAFLAU_THICKETS             = 52,
@@ -174,7 +174,7 @@ enum ZONEID : uint16
 	ZONE_RUAUN_GARDENS                = 130,
 	ZONE_MORDION_GAOL                 = 131,
 	ZONE_ABYSSEA_LA_THEINE            = 132,
-	ZONE_133                          = 133,
+	ZONE_133                          = 133, // Seems to be the zone background of char select.
 	ZONE_DYNAMIS_BEAUCEDINE           = 134,
 	ZONE_DYNAMIS_XARCABARD            = 135,
 	ZONE_BEAUCEDINE_GLACIER_S         = 136,
@@ -255,7 +255,7 @@ enum ZONEID : uint16
 	ZONE_CLOISTER_OF_TIDES            = 211,
 	ZONE_GUSTAV_TUNNEL                = 212,
 	ZONE_LABYRINTH_OF_ONZOZO          = 213,
-	ZONE_214                          = 214,
+	ZONE_214                          = 214, // Alt. ID of Residential Zone?
 	ZONE_ABYSSEA_ATTOHWA              = 215,
 	ZONE_ABYSSEA_MISAREAUX            = 216,
 	ZONE_ABYSSEA_VUNKERL              = 217,
@@ -308,25 +308,25 @@ enum ZONEID : uint16
     ZONE_YORCIA_WEALD_U               = 264,
     ZONE_MORIMAR_BASALT_FIELDS        = 265,
     ZONE_MARJAMI_RAVINE               = 266,
-    ZONE_267                          = 267,
+    ZONE_KAMIHR_DRIFTS                = 267,
     ZONE_SIH_GATES                    = 268,
     ZONE_MOH_GATES                    = 269,
     ZONE_CIRDAS_CAVERNS               = 270,
     ZONE_CIRDAS_CAVERNS_U             = 271,
     ZONE_DHO_GATES                    = 272,
-    ZONE_273                          = 273,
-    ZONE_274                          = 274,
-    ZONE_275                          = 275,
+    ZONE_WOH_GATES                    = 273,
+    ZONE_OUTER_RAKAZNAR               = 274,
+    ZONE_OUTER_RAKAZNAR_U             = 275,
     ZONE_276                          = 276,
     ZONE_277                          = 277,
     ZONE_278                          = 278,
     ZONE_279                          = 279,
     ZONE_MOG_GARDEN                   = 280,
-    ZONE_281                          = 281,
-    ZONE_282                          = 282,
+    ZONE_LEAFALLIA                    = 281,
+    ZONE_MOUNT_KAMIHR                 = 282,
     ZONE_SILVER_KNIFE                 = 283,
-    ZONE_CELENNIA_WEXWORTH_MEMORIAL_L = 284,
-    ZONE_FERETORY
+    ZONE_CELENNIA_MEMORIAL_LIBRARY    = 284,
+    ZONE_FERETORY                     = 285
 };
 
 #define MAX_ZONEID 286
