@@ -2769,13 +2769,13 @@ INSERT INTO `mob_skill` VALUES (1768,315,1371,'Tourbillion',1,18.0,2000,1500,4,0
 
 -- Shinryu (316)
 -- Wings out
-INSERT INTO `mob_skill` VALUES (0,475,1861,'Shinryu_Attack_Right',0,7.0,3000,2000,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (0,475,1862,'Shinryu_Attack_Left',0,7.0,3000,2000,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (0,475,1863,'Shinryu_Attack_Right_2',0,7.0,3000,2000,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (0,475,1864,'Shinryu_Attack_Left_2',0,7.0,3000,2000,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (0,475,1865,'Shinryu_Attack_Tail_1',0,7.0,3000,2000,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (0,475,1866,'Shinryu_Attack_Tail_2',0,7.0,3000,2000,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (0,475,1867,'Shinryu_Attack_Tail_Stun',0,7.0,3000,2000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (2394,475,1861,'Shinryu_Attack_Right',0,7.0,3000,2000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (2395,475,1862,'Shinryu_Attack_Left',0,7.0,3000,2000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (2396,475,1863,'Shinryu_Attack_Right_2',0,7.0,3000,2000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (2397,475,1864,'Shinryu_Attack_Left_2',0,7.0,3000,2000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (2398,475,1865,'Shinryu_Attack_Tail_1',0,7.0,3000,2000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (2399,475,1866,'Shinryu_Attack_Tail_2',0,7.0,3000,2000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (2400,475,1867,'Shinryu_Attack_Tail_Stun',0,7.0,3000,2000,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (2408,475,1868,'Cosmic_Breath',4,15.0,4000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (2409,475,1869,'Cataclysmic_Vortex',1,15.0,4000,5000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (2411,475,1870,'Mighty_Guard',0,7.0,3000,2000,1,0,0,0);
@@ -2783,15 +2783,15 @@ INSERT INTO `mob_skill` VALUES (2412,475,1871,'Atomic_ray',1,20.0,4000,1500,4,0,
 INSERT INTO `mob_skill` VALUES (2414,475,1872,'Protostar',1,20.0,5000,3500,4,0,0,0); -- 33% and below
 
 -- Wings in
-INSERT INTO `mob_skill` VALUES (0,475,1873,'Shinryu_Attack_Right',0,7.0,3000,2000,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (0,475,1874,'Shinryu_Attack_Left',0,7.0,3000,2000,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (0,475,1875,'Shinryu_Attack_Right_2',0,7.0,3000,2000,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (0,475,1876,'Shinryu_Attack_Left_2',0,7.0,3000,2000,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (0,475,1877,'Shinryu_Attack_Tail_1',0,7.0,3000,2000,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (0,475,1878,'Shinryu_Attack_Tail_2',0,7.0,3000,2000,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (0,475,1879,'Shinryu_Attack_Tail_Stun',0,7.0,3000,2000,1,0,0,0);
-INSERT INTO `mob_skill` VALUES (2408,475,1880,'Cosmic_Breath',4,15.0,4000,1500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (2409,475,1881,'Cataclysmic_Vortex',1,15.0,4000,5000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2401,475,1873,'Shinryu_Attack_Right',0,7.0,3000,2000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (2402,475,1874,'Shinryu_Attack_Left',0,7.0,3000,2000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (2403,475,1875,'Shinryu_Attack_Right_2',0,7.0,3000,2000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (2404,475,1876,'Shinryu_Attack_Left_2',0,7.0,3000,2000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (2405,475,1877,'Shinryu_Attack_Tail_1',0,7.0,3000,2000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (2406,475,1878,'Shinryu_Attack_Tail_2',0,7.0,3000,2000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (2407,475,1879,'Shinryu_Attack_Tail_Stun',0,7.0,3000,2000,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (2452,475,1880,'Cosmic_Breath',4,15.0,4000,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2453,475,1881,'Cataclysmic_Vortex',1,15.0,4000,5000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (2410,475,1882,'Gyre_Charge',1,15.0,4000,2000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (2413,475,1883,'Darkmatter',1,20.0,4000,1500,4,0,0,0); -- 66% and below
 INSERT INTO `mob_skill` VALUES (2415,475,1884,'Supernova',1,20.0,5000,3500,4,0,0,0); -- 33% and below
