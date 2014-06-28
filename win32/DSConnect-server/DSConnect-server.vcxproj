@@ -35,6 +35,7 @@
     <ClInclude Include="..\..\src\common\version.h" />
     <ClInclude Include="..\..\src\common\zlib.h" />
     <ClInclude Include="..\..\src\login\account.h" />
+    <ClInclude Include="..\..\src\login\chat_server.h" />
     <ClInclude Include="..\..\src\login\lobby.h" />
     <ClInclude Include="..\..\src\login\login.h" />
     <ClInclude Include="..\..\src\login\login_auth.h" />
@@ -55,6 +56,7 @@
     <ClCompile Include="..\..\src\common\utils.cpp" />
     <ClCompile Include="..\..\src\common\zlib.cpp" />
     <ClCompile Include="..\..\src\login\account.cpp" />
+    <ClCompile Include="..\..\src\login\chat_server.cpp" />
     <ClCompile Include="..\..\src\login\lobby.cpp" />
     <ClCompile Include="..\..\src\login\login.cpp" />
     <ClCompile Include="..\..\src\login\login_auth.cpp" />

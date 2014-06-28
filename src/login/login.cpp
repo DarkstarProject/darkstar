@@ -21,6 +21,7 @@
 ===========================================================================
 */
 
+#include <thread>
 #include "../common/mmo.h"
 #include "../common/malloc.h"
 #include "../common/showmsg.h"
@@ -36,6 +37,7 @@
 #include "login.h"
 #include "login_auth.h"
 #include "lobby.h"
+#include "chat_server.h"
 
 
 const char *LOGIN_CONF_FILENAME = NULL;
@@ -107,6 +109,8 @@ int32 do_init(int32 argc,char** argv)
 		ShowError("do_init: Impossible to optimise tables\n");
 	}
 	
+	std::thread (chat_init).detach();
+
 	ShowStatus("The login-server is " CL_GREEN"ready" CL_RESET" to work...\n");
 	return 0;
 }
@@ -325,6 +329,14 @@ int32 login_config_read(const char *cfgName)
         {
 			login_config_read(w2);
         }
+		else if (strcmp(w1, "chat_port") == 0)
+		{
+			login_config.chatPort = atoi(w2);
+		}
+		else if (strcmp(w1, "chat_ip") == 0)
+		{
+			login_config.chatIp = aStrdup(w2);
+		}
 		else
         {
 			ShowWarning("Unknown setting '%s' in file %s\n", w1, cfgName);
@@ -353,6 +365,8 @@ int32 login_config_default()
 	login_config.mysql_port     =  3306;
 
 	login_config.search_server_port = 54002;
+	login_config.chatPort = 54003;
+	login_config.chatIp = "127.0.0.1";
 	return 0;
 }
 
