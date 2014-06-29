@@ -3194,8 +3194,8 @@ void SmallPacket0x078(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x083(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	uint8  quantity   = RBUFB(data,(0x04));
-	uint8  shopSlotID = RBUFB(data,(0x0A));
+    uint8  quantity   = RBUFB(data,(0x04));
+    uint8  shopSlotID = RBUFB(data,(0x0A));
 
     // Prevent users from buying from slots higher than 15.. (Prevents appraise duping..)
     if (shopSlotID > 15)
@@ -3204,27 +3204,35 @@ void SmallPacket0x083(map_session_data_t* session, CCharEntity* PChar, int8* dat
         return;
     }
 
-	uint16 itemID = PChar->Container->getItemID(shopSlotID);
-	uint32 price  = PChar->Container->getQuantity(shopSlotID); // здесь мы сохранили стоимость предмета
+    uint16 itemID = PChar->Container->getItemID(shopSlotID);
+    uint32 price  = PChar->Container->getQuantity(shopSlotID); // здесь мы сохранили стоимость предмета
 
-	CItem* gil  = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
+    CItem* PItem = itemutils::GetItemPointer(itemID);
 
-	if ((gil != NULL) && gil->isType(ITEM_CURRENCY))
-	{
-		if (gil->getQuantity() > (price * quantity))
-		{
-			uint8 SlotID = charutils::AddItem(PChar, LOC_INVENTORY, itemID, quantity);
+    // Prevent purchasing larger stacks than the actual stack size in database.
+    if (quantity > PItem->getStackSize())
+    {
+        quantity = PItem->getStackSize();
+    }
 
-			if (SlotID != ERROR_SLOTID)
-			{
-				charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(int32)(price * quantity));
+    CItem* gil  = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
 
-				PChar->pushPacket(new CShopBuyPacket(shopSlotID, quantity));
-				PChar->pushPacket(new CInventoryFinishPacket());
-			}
-		}
-	}
-	return;
+    if ((gil != NULL) && gil->isType(ITEM_CURRENCY))
+    {
+        if (gil->getQuantity() > (price * quantity))
+        {
+            uint8 SlotID = charutils::AddItem(PChar, LOC_INVENTORY, itemID, quantity);
+
+            if (SlotID != ERROR_SLOTID)
+            {
+                charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(int32)(price * quantity));
+
+                PChar->pushPacket(new CShopBuyPacket(shopSlotID, quantity));
+                PChar->pushPacket(new CInventoryFinishPacket());
+            }
+        }
+    }
+    return;
 }
 
 /************************************************************************
@@ -3345,30 +3353,38 @@ void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x0AA(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	uint16 itemID     = RBUFW(data,(0x04));
-	uint8  quantity   = RBUFB(data,(0x07));
-	uint8  shopSlotID = PChar->PGuildShop->SearchItem(itemID);
+    uint16 itemID     = RBUFW(data,(0x04));
+    uint8  quantity   = RBUFB(data,(0x07));
+    uint8  shopSlotID = PChar->PGuildShop->SearchItem(itemID);
     CItemShop* item   = (CItemShop*)PChar->PGuildShop->GetItem(shopSlotID);
-	CItem* gil        = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
+    CItem* gil        = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
 
-	if (((gil != NULL) && gil->isType(ITEM_CURRENCY)) && item != NULL && item->getQuantity() >= quantity)
-	{
-		if (gil->getQuantity() > (item->getBasePrice() * quantity))
-		{
-			uint8 SlotID = charutils::AddItem(PChar, LOC_INVENTORY, itemID, quantity);
+    CItem* PItem = itemutils::GetItemPointer(itemID);
 
-			if (SlotID != ERROR_SLOTID)
-			{
-				charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(int32)(item->getBasePrice() * quantity));
+    // Prevent purchasing larger stacks than the actual stack size in database.
+    if (quantity > PItem->getStackSize())
+    {
+        quantity = PItem->getStackSize();
+    }
 
-				PChar->PGuildShop->GetItem(shopSlotID)->setQuantity(PChar->PGuildShop->GetItem(shopSlotID)->getQuantity()-quantity);
+    if (((gil != NULL) && gil->isType(ITEM_CURRENCY)) && item != NULL && item->getQuantity() >= quantity)
+    {
+        if (gil->getQuantity() > (item->getBasePrice() * quantity))
+        {
+            uint8 SlotID = charutils::AddItem(PChar, LOC_INVENTORY, itemID, quantity);
+
+            if (SlotID != ERROR_SLOTID)
+            {
+                charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(int32)(item->getBasePrice() * quantity));
+
+                PChar->PGuildShop->GetItem(shopSlotID)->setQuantity(PChar->PGuildShop->GetItem(shopSlotID)->getQuantity()-quantity);
                 PChar->pushPacket(new CGuildMenuBuyUpdatePacket(PChar, PChar->PGuildShop->GetItem(PChar->PGuildShop->SearchItem(itemID))->getQuantity(), itemID, quantity));
                 PChar->pushPacket(new CInventoryFinishPacket());
-			}
-		}
-	}
+            }
+        }
+    }
     //TODO: error messages!
-	return;
+    return;
 }
 
 /************************************************************************
