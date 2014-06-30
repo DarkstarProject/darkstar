@@ -54,6 +54,7 @@
 #include "trade_container.h"
 #include "zone.h"
 #include "utils/zoneutils.h"
+#include "chat.h"
 
 #include "items/item_shop.h"
 
@@ -2609,7 +2610,8 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* dat
             PChar->status = STATUS_UPDATE;
             return;
 		}else{
-			if (zoneutils::GetZone(PZoneLine->m_toZone)->GetIP() == 0) 	// разворачиваем персонажа на 180° и отправляем туда, откуда пришел
+			CZone* PDestination = zoneutils::GetZone(PZoneLine->m_toZone);
+			if (PDestination && PDestination->GetIP() == 0) 	// разворачиваем персонажа на 180° и отправляем туда, откуда пришел
 			{
 				ShowDebug(CL_CYAN"SmallPacket0x5E: Zone %u closed to chars\n" CL_RESET, PZoneLine->m_toZone);
 
@@ -3471,13 +3473,14 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	}
     else if (RBUFB(data,(0x06)) == '#' && PChar->nameflags.flags & FLAG_GM)
     {
-        for (uint16 zone = 0; zone < MAX_ZONEID; ++zone)
+        /*for (uint16 zone = 0; zone < MAX_ZONEID; ++zone)
         {
             zoneutils::GetZone(zone)->PushPacket(
                 NULL,
                 CHAR_INZONE,
                 new CChatMessagePacket(PChar, MESSAGE_SYSTEM_1, data+7));
-        }
+        }*/
+		chat::send(chat::CHAT_SERVMES, new CChatMessagePacket(PChar, MESSAGE_SYSTEM_1, data + 7));
     }
     else
     {

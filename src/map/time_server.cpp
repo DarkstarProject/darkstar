@@ -64,13 +64,14 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
         {
             luautils::OnGameHourAutomatisation();
 
-            for(uint16 zone = 0; zone < MAX_ZONEID; ++zone)
+			zoneutils::ForEachZone([](CZone* PZone)
             {
-				zoneutils::GetZone(zone)->ForEachChar([](CCharEntity* PChar) {
+				PZone->ForEachChar([](CCharEntity* PChar)
+				{
 					PChar->PLatentEffectContainer->CheckLatentsHours();
 					PChar->PLatentEffectContainer->CheckLatentsMoonPhase();
 				});
-            }
+			});
 
             CVanaTime::getInstance()->lastVHourlyUpdate = tick;
         }
@@ -81,12 +82,13 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
     {
         if (tick > (CVanaTime::getInstance()->lastVDailyUpdate + 4800))
         {
-            for(uint16 zone = 0; zone < MAX_ZONEID; ++zone)
-            {
-				zoneutils::GetZone(zone)->ForEachChar([](CCharEntity* PChar) {
+			zoneutils::ForEachZone([](CZone* PZone)
+			{
+				PZone->ForEachChar([](CCharEntity* PChar)
+				{
 					PChar->PLatentEffectContainer->CheckLatentsWeekDay();
 				});
-            }
+			});
 
             guildutils::UpdateGuildsStock();
             luautils::OnGameDayAutomatisation();
@@ -103,13 +105,14 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
 
         if((VanadielTOTD == TIME_DAY) || (VanadielTOTD == TIME_DUSK) || (VanadielTOTD == TIME_NIGHT))
         {
-            for(uint16 zone = 0; zone < MAX_ZONEID; ++zone)
-            {
-				zoneutils::GetZone(zone)->ForEachChar([](CCharEntity* PChar) {
+			zoneutils::ForEachZone([](CZone* PZone)
+			{
+				PZone->ForEachChar([](CCharEntity* PChar)
+				{
 					PChar->PLatentEffectContainer->CheckLatentsDay();
 					PChar->PLatentEffectContainer->CheckLatentsJobLevel();
 				});
-            }
+			});
         }
     }
 

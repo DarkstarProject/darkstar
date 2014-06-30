@@ -95,7 +95,7 @@
       <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libmariadb.lib;lua51-d.lib;WS2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libmariadb.lib;lua51-d.lib;libzmq_d.lib;WS2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -229,6 +229,7 @@
     <ClInclude Include="..\..\src\map\alliance.h" />
     <ClInclude Include="..\..\src\map\blue_spell.h" />
     <ClInclude Include="..\..\src\map\blue_trait.h" />
+    <ClInclude Include="..\..\src\map\chat.h" />
     <ClInclude Include="..\..\src\map\commandhandler.h" />
     <ClInclude Include="..\..\src\map\conquest_system.h" />
     <ClInclude Include="..\..\src\map\enmity_container.h" />
@@ -461,6 +462,7 @@
     <ClCompile Include="..\..\src\map\alliance.cpp" />
     <ClCompile Include="..\..\src\map\blue_spell.cpp" />
     <ClCompile Include="..\..\src\map\blue_trait.cpp" />
+    <ClCompile Include="..\..\src\map\chat.cpp" />
     <ClCompile Include="..\..\src\map\commandhandler.cpp" />
     <ClCompile Include="..\..\src\map\conquest_system.cpp" />
     <ClCompile Include="..\..\src\map\enmity_container.cpp" />

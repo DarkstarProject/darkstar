@@ -35,6 +35,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <thread>
 
 #include "alliance.h"
 #include "ability.h"
@@ -65,6 +66,8 @@
 
 #include "packets/basic.h"
 #include "packets/char_update.h"
+#include "chat.h"
+
 
 const int8* MAP_CONF_FILENAME = NULL;
 
@@ -74,6 +77,9 @@ Sql_t* SqlHandle = NULL;				// SQL descriptor
 
 int32  map_fd = 0;						// main socket
 uint32 map_amntplayers = 0;				// map amnt unique players
+
+uint32 map_ip = 0;
+uint16 map_port = 0;
 
 map_config_t map_config;				// map server settings
 map_session_list_t map_session_list;
@@ -133,6 +139,14 @@ int32 do_init(int32 argc, int8** argv)
 {
 	ShowStatus("do_init: begin server initialization...\n");
 
+	for (int i = 1; i < argc; i++)
+	{
+		if (strcmp(argv[i], "--ip") == 0)
+			map_ip = std::stoi(argv[i+1]);
+		else if (strcmp(argv[i], "--port") == 0)
+			map_port = std::stoi(argv[i + 1]);
+	}
+
 	MAP_CONF_FILENAME = "./conf/map_darkstar.conf";
 
 	srand((uint32)time(NULL));
@@ -167,6 +181,8 @@ int32 do_init(int32 argc, int8** argv)
 	ShowStatus("do_init: zlib is reading");
 	zlib_init();
 	ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
+
+	std::thread(chat::init, map_config.chatIp, map_config.chatPort).detach();
 
 	ShowStatus("do_init: loading items");
     itemutils::Initialize();
@@ -205,8 +221,8 @@ int32 do_init(int32 argc, int8** argv)
 	luautils::OnServerStart();
     fishingutils::LoadFishingMessages();
 
-	ShowStatus("do_init: server is binding with port %u",map_config.usMapPort);
-	map_fd = makeBind_udp(map_config.uiMapIp,map_config.usMapPort);
+	ShowStatus("do_init: server is binding with port %u",map_port == 0 ? map_config.usMapPort : map_port);
+	map_fd = makeBind_udp(map_config.uiMapIp, map_port == 0 ? map_config.usMapPort : map_port);
 	ShowMessage("\t - " CL_GREEN"[OK]" CL_RESET"\n");
 
     CVanaTime::getInstance()->setCustomOffset(map_config.vanadiel_time_offset);
@@ -217,6 +233,7 @@ int32 do_init(int32 argc, int8** argv)
 
 	CREATE(g_PBuff,   int8, map_config.buffer_size + 20);
     CREATE(PTempBuff, int8, map_config.buffer_size + 20);
+
 	ShowStatus("The map-server is " CL_GREEN"ready" CL_RESET" to work...\n");
     ShowMessage("=======================================================================\n");
 	return 0;
@@ -878,6 +895,8 @@ int32 map_config_default()
     map_config.audit_yell = 0;
     map_config.audit_party = 0;
     map_config.audit_linkshell = 0;
+	map_config.chatPort = 54003;
+	map_config.chatIp = "127.0.0.1";
     return 0;
 }
 
@@ -1082,6 +1101,14 @@ int32 map_config_read(const int8* cfgName)
 		else if (strcmp(w1,"audit_party") == 0)
 		{
 			map_config.audit_party = atoi(w2);
+		}
+		else if (strcmp(w1, "chat_port") == 0)
+		{
+			map_config.chatPort = atoi(w2);
+		}
+		else if (strcmp(w1, "chat_ip") == 0)
+		{
+			map_config.chatIp = aStrdup(w2);
 		}
 		else
 		{

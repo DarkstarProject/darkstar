@@ -20,8 +20,6 @@
 
 ===========================================================================
 */
-
-#include <thread>
 #include "../common/mmo.h"
 #include "../common/malloc.h"
 #include "../common/showmsg.h"
@@ -33,12 +31,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <thread>
 
 #include "login.h"
 #include "login_auth.h"
 #include "lobby.h"
 #include "chat_server.h"
-
 
 const char *LOGIN_CONF_FILENAME = NULL;
 

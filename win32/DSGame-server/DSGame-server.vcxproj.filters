@@ -812,6 +812,9 @@
     <ClInclude Include="..\..\src\map\packets\entity_animation.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\chat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
@@ -1488,6 +1491,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\entity_animation.cpp">
       <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\chat.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

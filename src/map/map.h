@@ -103,6 +103,8 @@ struct map_config_t
 	bool   audit_yell;
 	bool   audit_linkshell;
 	bool   audit_party;
+	uint16 chatPort;				// chat server port
+	const char* chatIp;				// chat server IP
 };
 
 /************************************************************************
@@ -138,6 +140,9 @@ extern CCommandHandler CmdHandler;
 
 typedef std::map<uint64,map_session_data_t*> map_session_list_t;
 extern map_session_list_t map_session_list;
+
+extern uint32 map_ip;
+extern uint16 map_port;
 
 extern inline map_session_data_t* mapsession_getbyipp(uint64 ipp);
 extern inline map_session_data_t* mapsession_createsession(uint32 ip,uint16 port);
