@@ -25,6 +25,8 @@ This file is part of DarkStar-server source code.
 #include "utils/zoneutils.h"
 #include "utils/jailutils.h"
 #include "entities/charentity.h"
+#include "party.h"
+#include "alliance.h"
 
 #include "packets/message_standard.h"
 
@@ -111,15 +113,58 @@ namespace chat
 			}
 			case CHAT_PARTY:
 			{
-							   break;
+				uint32 charID = RBUFL(extra->data(), 0);
+				CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
+				if (PChar)
+				{
+					if (PChar->PParty)
+					{
+						if (PChar->PParty->m_PAlliance != NULL)
+						{
+							for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
+							{
+								CBasicPacket* newPacket = new CBasicPacket();
+								memcpy(newPacket, packet->data(), packet->size());
+								((CParty*)PChar->PParty->m_PAlliance->partyList.at(i))->PushPacket(RBUFL(extra->data(), 4), 0, newPacket);
+							}
+						}
+						else
+						{
+							CBasicPacket* newPacket = new CBasicPacket();
+							memcpy(newPacket, packet->data(), packet->size());
+							PChar->PParty->PushPacket(RBUFL(extra->data(), 4), 0, newPacket);
+						}
+					}
+				}
+				break;
 			}
 			case CHAT_LINKSHELL:
 			{
-								   break;
+				uint32 linkshellID = RBUFL(extra->data(), 0);
+				CLinkshell* PLinkshell = linkshell::GetLinkshell(linkshellID);
+				if (PLinkshell)
+				{
+					CBasicPacket* newPacket = new CBasicPacket();
+					memcpy(newPacket, packet->data(), packet->size());
+					PLinkshell->PushPacket(RBUFL(extra->data(), 4), newPacket);
+				}
+				break;
 			}
 			case CHAT_YELL:
 			{
-							  break;
+				zoneutils::ForEachZone([&packet](CZone* PZone)
+				{
+					if (PZone->CanUseMisc(MISC_YELL))
+					{
+						PZone->ForEachChar([&packet](CCharEntity* PChar)
+						{
+							CBasicPacket* newPacket = new CBasicPacket();
+							memcpy(newPacket, packet->data(), packet->size());
+							PChar->pushPacket(newPacket);
+						});
+					}
+				});
+				break;
 			}
 			case CHAT_SERVMES:
 			{
@@ -136,7 +181,29 @@ namespace chat
 			}
 			case CHAT_PT_INVITE:
 			{
-								   break;
+				uint32 id = RBUFL(extra->data(), 0);
+				uint16 targid = RBUFW(extra->data(), 4);
+				CCharEntity* PInvitee = zoneutils::GetCharFromWorld(id, targid);
+
+				//make sure intvitee isn't dead or in jail, they aren't a party member and don't already have an invite pending, and your party is not full
+				if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 || PInvitee->PParty != NULL)
+				{
+					send(CHAT_MSG_DIRECT, extra->data(), sizeof uint32, new CMessageStandardPacket(PInvitee, 0, 0, 23));
+					return;
+				}
+				if (PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
+				{
+					send(CHAT_MSG_DIRECT, extra->data(), sizeof uint32, new CMessageStandardPacket(PInvitee, 0, 0, 236));
+					return;
+				}
+
+				PInvitee->InvitePending.id = id;
+				PInvitee->InvitePending.targid = targid;
+				CBasicPacket* newPacket = new CBasicPacket();
+				memcpy(newPacket, packet->data(), packet->size());
+				PInvitee->pushPacket(newPacket);
+
+				break;
 			}
 			case CHAT_MSG_DIRECT:
 			{

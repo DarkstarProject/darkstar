@@ -2773,6 +2773,11 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
         case 0: // party - must by party leader or solo
             if (PChar->PParty == NULL || PChar->PParty->GetLeader() == PChar)
             {
+				if (PChar->PParty && PChar->PParty->members.size() == 6)
+				{
+					PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 23));
+					break;
+				}
                 if (targid == 0) // if the targid of the character is not known, then get it from the table of active sessions
                 {
                     int32 ret = Sql_Query(SqlHandle, "SELECT targid FROM accounts_sessions WHERE charid = %u LIMIT 1", charid);
@@ -2783,7 +2788,7 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 if (PInvitee)
                 {
                     //make sure intvitee isn't dead or in jail, they aren't a party member and don't already have an invite pending, and your party is not full
-			        if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 || (PChar->PParty && PChar->PParty->members.size() == 6) || PInvitee->PParty != NULL)
+			        if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 || PInvitee->PParty != NULL)
                     {
 			            PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 23));
 			            break;
@@ -2801,6 +2806,14 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		            if (PChar->PParty && PChar->PParty->GetSyncTarget())
 		                PInvitee->pushPacket(new CMessageStandardPacket(PInvitee, 0, 0, 235));
 		        }
+				else
+				{
+					//on another server (hopefully)
+					uint8 packetData[6];
+					WBUFL(packetData, 0) = PChar->id;
+					WBUFB(packetData, 4) = PChar->targid;
+					chat::send(chat::CHAT_PT_INVITE, packetData, sizeof packetData, new CPartyInvitePacket(PInvitee, PChar, INVITE_PARTY));
+				}
             }
             else //in party but not leader, cannot invite
                 PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 21));
@@ -2837,6 +2850,14 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     PInvitee->InvitePending.targid = PChar->targid;
                     PInvitee->pushPacket(new CPartyInvitePacket(PInvitee, PChar, INVITE_ALLIANCE));
                 }
+				else
+				{
+					//on another server (hopefully)
+					uint8 packetData[6];
+					WBUFL(packetData, 0) = PChar->id;
+					WBUFB(packetData, 4) = PChar->targid;
+					chat::send(chat::CHAT_PT_INVITE, packetData, sizeof packetData, new CPartyInvitePacket(PInvitee, PChar, INVITE_ALLIANCE));
+				}
             }
             break;
 
@@ -3493,41 +3514,45 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
             switch(RBUFB(data,(0x04)))
             {
                 case MESSAGE_SAY:
+				{
+					if (map_config.audit_chat == 1 && map_config.audit_say == 1)
 					{
-						if (map_config.audit_chat == 1 && map_config.audit_say == 1)
-						{
-							std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
-							qStr +=PChar->GetName();
-							qStr +="','SAY','";
-							qStr += escape(data+6);
-							qStr +="',current_timestamp());";
-							const char * cC = qStr.c_str();
-							Sql_QueryStr(SqlHandle, cC);
-						}
-						PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_SAY,     data+6));
+						std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
+						qStr +=PChar->GetName();
+						qStr +="','SAY','";
+						qStr += escape(data+6);
+						qStr +="',current_timestamp());";
+						const char * cC = qStr.c_str();
+						Sql_QueryStr(SqlHandle, cC);
 					}
-					break;
+					PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_SAY,     data+6));
+				}
+				break;
                 case MESSAGE_EMOTION:	PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_EMOTION, data+6)); break;
                 case MESSAGE_SHOUT:
+				{
+					if (map_config.audit_chat == 1 && map_config.audit_shout == 1)
 					{
-						if (map_config.audit_chat == 1 && map_config.audit_shout == 1)
-						{
-							std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
-							qStr +=PChar->GetName();
-							qStr +="','SHOUT','";
-							qStr += escape(data+6);
-							qStr +="',current_timestamp());";
-							const char * cC = qStr.c_str();
-							Sql_QueryStr(SqlHandle, cC);
-						}
-						PChar->loc.zone->PushPacket(PChar, CHAR_INSHOUT, new CChatMessagePacket(PChar, MESSAGE_SHOUT,   data+6));
-
+						std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
+						qStr +=PChar->GetName();
+						qStr +="','SHOUT','";
+						qStr += escape(data+6);
+						qStr +="',current_timestamp());";
+						const char * cC = qStr.c_str();
+						Sql_QueryStr(SqlHandle, cC);
 					}
-					break;
+					PChar->loc.zone->PushPacket(PChar, CHAR_INSHOUT, new CChatMessagePacket(PChar, MESSAGE_SHOUT, data+6));
+				}
+				break;
                 case MESSAGE_LINKSHELL:
                 {
                     if (PChar->PLinkshell != NULL)
                     {
+						int8 packetData[8];
+						WBUFL(packetData, 0) = PChar->PLinkshell->getID();
+						WBUFL(packetData, 4) = PChar->id;
+						chat::send(chat::CHAT_LINKSHELL, packetData, sizeof packetData, new CChatMessagePacket(PChar, MESSAGE_LINKSHELL, data + 6));
+
 						if (map_config.audit_chat == 1 && map_config.audit_linkshell == 1)
 						{
 							std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
@@ -3538,7 +3563,6 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
 							const char * cC = qStr.c_str();
 							Sql_QueryStr(SqlHandle, cC);
 						}
-                        PChar->PLinkshell->PushPacket(PChar, new CChatMessagePacket(PChar, MESSAGE_LINKSHELL, data+6));
                     }
                 }
                 break;
@@ -3546,53 +3570,46 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 {
                     if (PChar->PParty != NULL)
                     {
-						if (PChar->PParty->m_PAlliance == NULL)
-						{
-							if (map_config.audit_chat == 1 && map_config.audit_party == 1)
-							{
-								std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
-								qStr +=PChar->GetName();
-								qStr +="','PARTY','";
-								qStr += escape(data+6);
-								qStr +="',current_timestamp());";
-								const char * cC = qStr.c_str();
-								Sql_QueryStr(SqlHandle, cC);
-							}
-							PChar->PParty->PushPacket(PChar, 0, new CChatMessagePacket(PChar, MESSAGE_PARTY, data+6));
+						int8 packetData[8];
+						WBUFL(packetData, 0) = PChar->PParty->GetPartyID();
+						WBUFL(packetData, 4) = PChar->id;
+						chat::send(chat::CHAT_PARTY, packetData, sizeof packetData, new CChatMessagePacket(PChar, MESSAGE_PARTY, data + 6));
 
-						}else{ //alliance party chat
-								for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
-								{
-									PChar->PParty->m_PAlliance->partyList.at(i)->PushPacket(PChar, 0, new CChatMessagePacket(PChar, MESSAGE_PARTY, data+6));
-								}
-								if (map_config.audit_chat == 1 && map_config.audit_party == 1)
-								{
-									std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
-									qStr +=PChar->GetName();
-									qStr +="','ALLIANCE','";
-									qStr += escape(data+6);
-									qStr +="',current_timestamp());";
-									const char * cC = qStr.c_str();
-									Sql_QueryStr(SqlHandle, cC);
-								}
-							}
+						if (map_config.audit_chat == 1 && map_config.audit_party == 1)
+						{
+							std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
+							qStr += PChar->GetName();
+							qStr += "','ALLIANCE','";
+							qStr += escape(data + 6);
+							qStr += "',current_timestamp());";
+							const char * cC = qStr.c_str();
+							Sql_QueryStr(SqlHandle, cC);
+						}
 					}
                 }
                 break;
                 case MESSAGE_YELL:
+				{
+					if (PChar->loc.zone->CanUseMisc(MISC_YELL))
 					{
+						chat::send(chat::CHAT_YELL, NULL, 0, new CChatMessagePacket(PChar, MESSAGE_YELL, data + 6));
 						if (map_config.audit_chat == 1 && map_config.audit_yell == 1)
 						{
 							std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
-							qStr +=PChar->GetName();
-							qStr +="','YELL','";
-							qStr += escape(data+6);
-							qStr +="',current_timestamp());";
+							qStr += PChar->GetName();
+							qStr += "','YELL','";
+							qStr += escape(data + 6);
+							qStr += "',current_timestamp());";
 							const char * cC = qStr.c_str();
 							Sql_QueryStr(SqlHandle, cC);
 						}
+					}
+					else
+					{
 						PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 256));
-					}break;
+					}
+				}
+				break;
             }
         }
 	}
@@ -3619,62 +3636,19 @@ void SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	strncpy(packetData + 4, RecipientName.c_str(), RecipientName.length()+1);
 	WBUFL(packetData, 0) = PChar->id;
 	chat::send(chat::CHAT_TELL, packetData, RecipientName.length() + sizeof uint32 + 1, new CChatMessagePacket(PChar, MESSAGE_TELL, data + 20));
-	/*const int8* Query = "SELECT charid, targid, pos_zone FROM chars INNER JOIN accounts_sessions USING(charid) WHERE charname = '%s' LIMIT 1";
 
-	int32 ret = Sql_Query(SqlHandle, Query, RecipientName.c_str());
-
-	if (ret != SQL_ERROR &&
-		Sql_NumRows(SqlHandle) != 0 &&
-		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+	if (map_config.audit_chat == 1 && map_config.audit_tell == 1)
 	{
-		uint32 CharID = (uint32)Sql_GetUIntData(SqlHandle,0);
-		uint16 TargID = (uint16)Sql_GetUIntData(SqlHandle,1);
-		uint16 ZoneID = (uint16) Sql_GetUIntData(SqlHandle,2);
-
-		CCharEntity* PTellRecipient = (CCharEntity*)zoneutils::GetZone(ZoneID)->GetEntity(TargID, TYPE_PC);
-
-		if(PTellRecipient==NULL && ZoneID==0){//in a moghouse, do a full sweep
-			map_session_list_t::iterator it = map_session_list.begin();
-			while(it != map_session_list.end())
-			{
-				map_session_data_t* map_session_data = it->second;
-				CCharEntity* PChar = map_session_data->PChar;
-				if(PChar!=NULL && PChar->id == CharID){
-					PTellRecipient = PChar;
-					break;
-				}
-				++it;
-			}
-		}
-
-		if (PTellRecipient != NULL &&
-			PTellRecipient->id == CharID &&
-			PTellRecipient->status != STATUS_DISAPPEAR &&
-            !jailutils::InPrison(PTellRecipient))
-		{
-			if (PTellRecipient->nameflags.flags & FLAG_AWAY)
-			{
-				PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 181));
-				return;
-			}
-			if (map_config.audit_chat == 1 && map_config.audit_tell == 1)
-			{
-				std::string qStr = ("INSERT into audit_chat (speaker,type,recipient,message,datetime) VALUES('");
-				qStr +=PChar->GetName();
-				qStr +="','TELL','";
-				qStr +=PTellRecipient->GetName();
-				qStr +="','";
-				qStr += escape(data+20);
-				qStr +="',current_timestamp());";
-				const char * cC = qStr.c_str();
-				Sql_QueryStr(SqlHandle, cC);
-			}
-			PTellRecipient->pushPacket(new CChatMessagePacket(PChar, MESSAGE_TELL, data+20));
-			return;
-		}
+		std::string qStr = ("INSERT into audit_chat (speaker,type,recipient,message,datetime) VALUES('");
+		qStr += PChar->GetName();
+		qStr += "','TELL','";
+		qStr += RecipientName;
+		qStr += "','";
+		qStr += escape(data + 20);
+		qStr += "',current_timestamp());";
+		const char * cC = qStr.c_str();
+		Sql_QueryStr(SqlHandle, cC);
 	}
-	PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 125));
-	return;*/
 }
 
 /************************************************************************
@@ -4229,7 +4203,7 @@ void SmallPacket0x0E2(map_session_data_t* session, CCharEntity* PChar, int8* dat
                         PChar->PLinkshell->setMessage((int8*)Message.c_str());
                         PChar->PLinkshell->setMessageTime(MessageTime);
 
-                        PChar->PLinkshell->PushPacket(NULL, new CLinkshellMessagePacket(PChar->PLinkshell));
+                        PChar->PLinkshell->PushPacket(0, new CLinkshellMessagePacket(PChar->PLinkshell));
                         return;
                     }
                 }

@@ -718,7 +718,7 @@ void CParty::SetQuaterMaster(CBattleEntity* PEntity)
 *																		*
 ************************************************************************/
 
-void CParty::PushPacket(CCharEntity* PPartyMember, uint8 ZoneID, CBasicPacket* packet)
+void CParty::PushPacket(uint32 senderID, uint8 ZoneID, CBasicPacket* packet)
 {
 	for (uint32 i = 0; i < members.size(); ++i)
 	{
@@ -729,7 +729,7 @@ void CParty::PushPacket(CCharEntity* PPartyMember, uint8 ZoneID, CBasicPacket* p
 
 		CCharEntity* member = (CCharEntity*)members.at(i);
 
-        if (member != PPartyMember &&
+        if (member->id != senderID &&
             member->status != STATUS_DISAPPEAR &&
              !jailutils::InPrison(member) )
 		{

@@ -2737,15 +2737,15 @@ void UpdateHealth(CCharEntity* PChar)
 	{
 		if (PChar->PParty->m_PAlliance == NULL)
 		{
-			PChar->PParty->PushPacket(PChar, PChar->getZone(), new CCharHealthPacket(PChar));
-
-		}else if (PChar->PParty->m_PAlliance != NULL)
-				{
-					for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
-					{
-						((CParty*)PChar->PParty->m_PAlliance->partyList.at(i))->PushPacket(PChar, PChar->getZone(), new CCharHealthPacket(PChar));
-					}
-				}
+			PChar->PParty->PushPacket(PChar->id, PChar->getZone(), new CCharHealthPacket(PChar));
+		}
+		else if (PChar->PParty->m_PAlliance != NULL)
+		{
+			for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
+			{
+				((CParty*)PChar->PParty->m_PAlliance->partyList.at(i))->PushPacket(PChar->id, PChar->getZone(), new CCharHealthPacket(PChar));
+			}
+		}
 	}
 
     PChar->pushPacket(new CCharHealthPacket(PChar));

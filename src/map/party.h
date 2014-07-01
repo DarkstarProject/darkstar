@@ -82,7 +82,7 @@ public:
 	void SetSyncTarget(CBattleEntity* PEntity, uint16 message);         // устанавливаем цель синхронизации уровней3
     void RefreshSync();
 
-    void PushPacket(CCharEntity* PPartyMember, uint8 ZoneID, CBasicPacket* packet);		// отправляем пакет всем членам группы, за исключением PPartyMember
+    void PushPacket(uint32 senderID, uint8 ZoneID, CBasicPacket* packet);		// отправляем пакет всем членам группы, за исключением PPartyMember
 	
 	CAlliance* m_PAlliance;
 

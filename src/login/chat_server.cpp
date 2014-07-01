@@ -90,26 +90,34 @@ void chat_parse(CHATTYPE type, zmq::message_t* extra, zmq::message_t* packet)
 		case CHAT_TELL:
 		{
 			int8* query = "SELECT server_addr, server_port FROM accounts_sessions LEFT JOIN chars ON \
-				accounts_sessions.charid = chars.charid WHERE charname = '%s'; ";
+				accounts_sessions.charid = chars.charid WHERE charname = '%s' LIMIT 1; ";
 			ret = Sql_Query(ChatSqlHandle, query, (int8*)extra->data()+4);
 			if (Sql_NumRows(ChatSqlHandle) == 0)
 			{
-				int8* query = "SELECT server_addr, server_port FROM accounts_sessions WHERE charid = %d; ";
+				int8* query = "SELECT server_addr, server_port FROM accounts_sessions WHERE charid = %d LIMIT 1;";
 				ret = Sql_Query(ChatSqlHandle, query, RBUFL(extra->data(), 0));
 			}
 			break;
 		}
 		case CHAT_PARTY:
 		{
-						   break;
+			int8* query = "SELECT server_addr, server_port, charid FROM accounts_sessions \
+							WHERE partyid = %d GROUP BY server_addr, server_port; ";
+			ret = Sql_Query(ChatSqlHandle, query, RBUFL(extra->data(), 0));
+			break;
 		}
 		case CHAT_LINKSHELL:
 		{
-							   break;
+			int8* query = "SELECT server_addr, server_port FROM accounts_sessions \
+						WHERE linkshellid = %d GROUP BY server_addr, server_port; ";
+			ret = Sql_Query(ChatSqlHandle, query, RBUFL(extra->data(), 0));
+			break;
 		}
 		case CHAT_YELL:
 		{
-						  break;
+			int8* query = "SELECT zoneip, zoneport FROM zone_settings WHERE misc & 1024 GROUP BY zoneip, zoneport;";
+			ret = Sql_Query(ChatSqlHandle, query);
+			break;
 		}
 		case CHAT_SERVMES:
 		{
@@ -118,9 +126,6 @@ void chat_parse(CHATTYPE type, zmq::message_t* extra, zmq::message_t* packet)
 			break;
 		}
 		case CHAT_PT_INVITE:
-		{
-							   break;
-		}
 		case CHAT_MSG_DIRECT:
 		{
 			int8* query = "SELECT server_addr, server_port FROM accounts_sessions WHERE charid = %d; ";
@@ -136,6 +141,10 @@ void chat_parse(CHATTYPE type, zmq::message_t* extra, zmq::message_t* packet)
 			uint64 ip = Sql_GetUIntData(ChatSqlHandle, 0);
 			uint64 port = Sql_GetUIntData(ChatSqlHandle, 1);
 			ip |= (port << 32);
+			if (type == CHAT_PARTY)
+			{
+				WBUFL(extra->data(), 0) = Sql_GetUIntData(ChatSqlHandle, 2);
+			}
 			chat_send(ip, type, extra, packet);
 		}
 	}
