@@ -428,6 +428,7 @@ void TCPComm(SOCKET socket)
 	if (PTCPRequest->ReceiveFromSocket() == 0)
 	{
 		delete PTCPRequest;
+		return;
 	}
 	//PrintPacket((int8*)PTCPRequest->GetData(), PTCPRequest->GetSize());
 	ShowMessage("= = = = = = = \nType: %u Size: %u \n",PTCPRequest->GetPacketType(),PTCPRequest->GetSize());
