@@ -2801,7 +2801,7 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 			        PInvitee->InvitePending.id = PChar->id;
                     PInvitee->InvitePending.targid = PChar->targid;
-		            PInvitee->pushPacket(new CPartyInvitePacket(PInvitee, PChar, INVITE_PARTY));
+		            PInvitee->pushPacket(new CPartyInvitePacket(charid, targid, PChar, INVITE_PARTY));
 
 		            if (PChar->PParty && PChar->PParty->GetSyncTarget())
 		                PInvitee->pushPacket(new CMessageStandardPacket(PInvitee, 0, 0, 235));
@@ -2809,10 +2809,12 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 				else
 				{
 					//on another server (hopefully)
-					uint8 packetData[6];
-					WBUFL(packetData, 0) = PChar->id;
-					WBUFB(packetData, 4) = PChar->targid;
-					chat::send(chat::CHAT_PT_INVITE, packetData, sizeof packetData, new CPartyInvitePacket(PInvitee, PChar, INVITE_PARTY));
+					uint8 packetData[12];
+					WBUFL(packetData, 0) = charid;
+					WBUFW(packetData, 4) = targid;
+					WBUFL(packetData, 6) = PChar->id;
+					WBUFW(packetData, 10) = PChar->targid;
+					chat::send(chat::CHAT_PT_INVITE, packetData, sizeof packetData, new CPartyInvitePacket(charid, targid, PChar, INVITE_PARTY));
 				}
             }
             else //in party but not leader, cannot invite
@@ -2848,15 +2850,17 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
                     PInvitee->InvitePending.id = PChar->id;
                     PInvitee->InvitePending.targid = PChar->targid;
-                    PInvitee->pushPacket(new CPartyInvitePacket(PInvitee, PChar, INVITE_ALLIANCE));
+                    PInvitee->pushPacket(new CPartyInvitePacket(charid, targid, PChar, INVITE_ALLIANCE));
                 }
 				else
 				{
 					//on another server (hopefully)
-					uint8 packetData[6];
-					WBUFL(packetData, 0) = PChar->id;
-					WBUFB(packetData, 4) = PChar->targid;
-					chat::send(chat::CHAT_PT_INVITE, packetData, sizeof packetData, new CPartyInvitePacket(PInvitee, PChar, INVITE_ALLIANCE));
+					uint8 packetData[12];
+					WBUFL(packetData, 0) = charid;
+					WBUFW(packetData, 4) = targid;
+					WBUFL(packetData, 6) = PChar->id;
+					WBUFW(packetData, 10) = PChar->targid;
+					chat::send(chat::CHAT_PT_INVITE, packetData, sizeof packetData, new CPartyInvitePacket(charid, targid, PChar, INVITE_ALLIANCE));
 				}
             }
             break;

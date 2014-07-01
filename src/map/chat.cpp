@@ -185,24 +185,26 @@ namespace chat
 				uint16 targid = RBUFW(extra->data(), 4);
 				CCharEntity* PInvitee = zoneutils::GetCharFromWorld(id, targid);
 
-				//make sure intvitee isn't dead or in jail, they aren't a party member and don't already have an invite pending, and your party is not full
-				if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 || PInvitee->PParty != NULL)
+				if (PInvitee)
 				{
-					send(CHAT_MSG_DIRECT, extra->data(), sizeof uint32, new CMessageStandardPacket(PInvitee, 0, 0, 23));
-					return;
-				}
-				if (PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
-				{
-					send(CHAT_MSG_DIRECT, extra->data(), sizeof uint32, new CMessageStandardPacket(PInvitee, 0, 0, 236));
-					return;
-				}
+					//make sure intvitee isn't dead or in jail, they aren't a party member and don't already have an invite pending, and your party is not full
+					if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 || PInvitee->PParty != NULL)
+					{
+						send(CHAT_MSG_DIRECT, extra->data(), sizeof uint32, new CMessageStandardPacket(PInvitee, 0, 0, 23));
+						return;
+					}
+					if (PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
+					{
+						send(CHAT_MSG_DIRECT, extra->data(), sizeof uint32, new CMessageStandardPacket(PInvitee, 0, 0, 236));
+						return;
+					}
 
-				PInvitee->InvitePending.id = id;
-				PInvitee->InvitePending.targid = targid;
-				CBasicPacket* newPacket = new CBasicPacket();
-				memcpy(newPacket, packet->data(), packet->size());
-				PInvitee->pushPacket(newPacket);
-
+					PInvitee->InvitePending.id = RBUFL(extra->data(), 6);
+					PInvitee->InvitePending.targid = RBUFW(extra->data(), 10);
+					CBasicPacket* newPacket = new CBasicPacket();
+					memcpy(newPacket, packet->data(), packet->size());
+					PInvitee->pushPacket(newPacket);
+				}
 				break;
 			}
 			case CHAT_MSG_DIRECT:
