@@ -115,6 +115,9 @@ INSERT INTO `mob_skill` VALUES (6,167,6,'Sheep_Charge', 0, 7.0, 2000, 1500, 4, 0
 INSERT INTO `mob_skill` VALUES (8,167,8,'Sheep_Song', 1, 15.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (1581,167,1275,'Feeble_Bleat', 1, 18.0, 2000, 1500, 4, 0, 0, 0); -- ToAU and Abyssea only
 
+-- Slumbering Samwell
+INSERT INTO `mob_skill` VALUES (8,398,8,'Sheep_Song', 1, 15.0, 2000, 1500, 4, 0, 0, 0);
+
 -- Ram
 INSERT INTO `mob_skill` VALUES (9,208,9,'Rage', 0, 7.0, 2000, 1500, 1, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (10,208,10,'Ram_Charge', 0, 7.0, 2000, 1500, 4, 0, 0, 2);
@@ -793,6 +796,9 @@ INSERT INTO `mob_skill` VALUES (307,358,307,'Demonic_Howl', 1, 10.0, 2000, 1500,
 INSERT INTO `mob_skill` VALUES (892,358,311,'Condemnation', 4, 10.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (893,358,313,'Quadrastrike', 0, 7.0, 2000, 1500, 4, 0, 0, 0); 
 
+-- Duke Focalor
+INSERT INTO `mob_skill` VALUES (303,399,303,'Soul_Drain', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
+
 -- Goobbue
 INSERT INTO `mob_skill` VALUES (325,136,325,'Blow', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (327,136,327,'Beatdown', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
@@ -905,6 +911,9 @@ INSERT INTO `mob_skill` VALUES (358,202,358,'Shell_Guard', 0, 7.0, 2000, 3000, 1
 -- INSERT INTO `mob_skill` VALUES (822,?,?,'Shell_Guard', 0, 7.0, 2000, 3000, 1, 0, 0, 0);
 -- INSERT INTO `mob_skill` VALUES (823,?,?,'Howl', 1, 20.0, 2000, 1500, 1, 0, 0, 0);
 -- INSERT INTO `mob_skill` VALUES (824,?,742,'The_Wrath_of_Gu'Dha', 1, 15.0, 2000, 2000, 4, 0, 0, 1); -- Used only by named Dynamis Quadav NM's and Wings of the Goddess NMs. Possibly exclusive.
+
+-- Qu'Vho Deathhurler
+INSERT INTO `mob_skill` VALUES (355,397,355,'Ore_Toss', 0, 10.0, 2000, 2000, 4, 0, 0, 0);
 
 -- Quadav NM
 INSERT INTO `mob_skill` VALUES (377,337,354,'Howl', 1, 20.0, 2000, 1500, 1, 0, 0, 0);

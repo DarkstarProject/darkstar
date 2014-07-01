@@ -37,6 +37,9 @@ CREATE TABLE `mob_spawn_mods` (
 
 LOCK TABLES `mob_spawn_mods` WRITE;
 /*!40000 ALTER TABLE `mob_spawn_mods` DISABLE KEYS */;
+INSERT INTO `mob_spawn_mods` VALUES (17186927,368,33,0);
+INSERT INTO `mob_spawn_mods` VALUES (17195221,368,33,0);
+INSERT INTO `mob_spawn_mods` VALUES (17363080,368,33,0);
 INSERT INTO `mob_spawn_mods` VALUES (17371142,16,-1,1);
 INSERT INTO `mob_spawn_mods` VALUES (17371142,1,20,1);
 INSERT INTO `mob_spawn_mods` VALUES (17371142,2,33,1);
