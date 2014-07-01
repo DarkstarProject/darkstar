@@ -678,6 +678,11 @@ CCharEntity* CZone::GetCharByName(int8* name)
 	return m_zoneEntities->GetCharByName(name);
 }
 
+CCharEntity* CZone::GetCharByID(uint32 id)
+{
+	return m_zoneEntities->GetCharByID(id);
+}
+
 /************************************************************************
 *																		*
 *  Отправляем глобальные пакеты											*

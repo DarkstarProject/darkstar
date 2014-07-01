@@ -33,6 +33,8 @@ class CZoneInstance : public CZone
 {
 public:
 
+	virtual CCharEntity*    GetCharByName(int8* name);                              // finds the player if exists in zone
+	virtual CCharEntity*	GetCharByID(uint32 id);
 	virtual CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1); 			// получаем указатель на любую сущность в зоне
 
 	virtual void	SpawnPCs(CCharEntity* PChar);									// отображаем персонажей в зоне

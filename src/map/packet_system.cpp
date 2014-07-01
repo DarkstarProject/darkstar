@@ -3473,14 +3473,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	}
     else if (RBUFB(data,(0x06)) == '#' && PChar->nameflags.flags & FLAG_GM)
     {
-        /*for (uint16 zone = 0; zone < MAX_ZONEID; ++zone)
-        {
-            zoneutils::GetZone(zone)->PushPacket(
-                NULL,
-                CHAR_INZONE,
-                new CChatMessagePacket(PChar, MESSAGE_SYSTEM_1, data+7));
-        }*/
-		chat::send(chat::CHAT_SERVMES, new CChatMessagePacket(PChar, MESSAGE_SYSTEM_1, data + 7));
+		chat::send(chat::CHAT_SERVMES, 0, 0, new CChatMessagePacket(PChar, MESSAGE_SYSTEM_1, data + 7));
     }
     else
     {
@@ -3622,8 +3615,11 @@ void SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, int8* dat
     }
 
     string_t RecipientName = data+5;
-
-	const int8* Query = "SELECT charid, targid, pos_zone FROM chars INNER JOIN accounts_sessions USING(charid) WHERE charname = '%s' LIMIT 1";
+	int8 packetData[64];
+	strncpy(packetData + 4, RecipientName.c_str(), RecipientName.length()+1);
+	WBUFL(packetData, 0) = PChar->id;
+	chat::send(chat::CHAT_TELL, packetData, RecipientName.length() + sizeof uint32 + 1, new CChatMessagePacket(PChar, MESSAGE_TELL, data + 20));
+	/*const int8* Query = "SELECT charid, targid, pos_zone FROM chars INNER JOIN accounts_sessions USING(charid) WHERE charname = '%s' LIMIT 1";
 
 	int32 ret = Sql_Query(SqlHandle, Query, RecipientName.c_str());
 
@@ -3678,7 +3674,7 @@ void SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		}
 	}
 	PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 125));
-	return;
+	return;*/
 }
 
 /************************************************************************

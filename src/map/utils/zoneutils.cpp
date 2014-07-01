@@ -221,6 +221,17 @@ CCharEntity* GetCharFromWorld(uint32 charid, uint16 targid)
     return NULL;
 }
 
+CCharEntity* GetChar(uint32 charid)
+{
+	for (auto PZone : g_PZoneList)
+	{
+		CBaseEntity* PEntity = PZone.second->GetCharByID(charid);
+		if (PEntity)
+			return (CCharEntity*)PEntity;
+	}
+	return NULL;
+}
+
 /************************************************************************
 *                                                                       *
 *  Загружаем список NPC в указанную зону                                *

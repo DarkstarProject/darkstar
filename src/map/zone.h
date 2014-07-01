@@ -494,7 +494,8 @@ public:
 	uint8			GetBackgroundMusic();
 	zoneLine_t*		GetZoneLine(uint32 zoneLineID);
 
-    CCharEntity*    GetCharByName(int8* name);                                      // finds the player if exists in zone
+    virtual CCharEntity*    GetCharByName(int8* name);                                      // finds the player if exists in zone
+	virtual CCharEntity*	GetCharByID(uint32 id);
 	virtual CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1); 					// получаем указатель на любую сущность в зоне
 
     bool            IsWeatherStatic();                                              // погода в зоне не требует изменения (никогда не меняется)
