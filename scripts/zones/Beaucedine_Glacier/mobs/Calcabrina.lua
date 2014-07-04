@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beaucedine Glacier
--- NM:   Calcabrina
+--  NM:  Calcabrina
 -----------------------------------
 require("scripts/globals/status");
 -----------------------------------
@@ -58,4 +58,6 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
+    UpdateNMSpawnPoint(mob:getID());
+    mob:setRespawnTime(math.random((5400),(6000)));
 end;
