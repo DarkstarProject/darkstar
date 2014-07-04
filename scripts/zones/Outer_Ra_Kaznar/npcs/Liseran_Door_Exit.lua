@@ -23,8 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	--Temporary! Need cs ID.
-	player:setPos(-280,20,60,0,267);
+player:startEvent(0x001c);
 end; 
 
 -----------------------------------
@@ -43,4 +42,7 @@ end;
 function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
+if (csid == 0x001c and option == 1)then
+player:setPos(-279.709,19.976,60.353,0,267);
+end
 end;
