@@ -21,6 +21,7 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
+#include "../common/socket.h"
 #include <zmq.hpp>
 #include "../common/cbasetypes.h"
 
@@ -30,13 +31,14 @@ namespace chat
 {
 	enum CHATTYPE
 	{
-		CHAT_TELL = 1,
-		CHAT_PARTY = 2,
-		CHAT_LINKSHELL = 3,
-		CHAT_YELL = 4,
-		CHAT_SERVMES = 5,
-		CHAT_PT_INVITE = 6,
-		CHAT_MSG_DIRECT = 7
+		CHAT_TELL		= 1,
+		CHAT_PARTY		= 2,
+		CHAT_LINKSHELL	= 3,
+		CHAT_YELL		= 4,
+		CHAT_SERVMES	= 5,
+		CHAT_PT_INVITE	= 6,
+		CHAT_PT_RELOAD  = 7,
+		CHAT_MSG_DIRECT = 8
 	};
 
 	extern zmq::context_t zContext;

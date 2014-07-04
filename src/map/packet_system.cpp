@@ -2778,16 +2778,14 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 					PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 23));
 					break;
 				}
-                if (targid == 0) // if the targid of the character is not known, then get it from the table of active sessions
+				CCharEntity* PInvitee = NULL;
+                if (targid != 0)
                 {
-                    int32 ret = Sql_Query(SqlHandle, "SELECT targid FROM accounts_sessions WHERE charid = %u LIMIT 1", charid);
-                    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-                        targid = (uint16)Sql_GetIntData(SqlHandle,0);
+					PInvitee = zoneutils::GetCharFromWorld(charid, targid);
                 }
-                CCharEntity* PInvitee = zoneutils::GetCharFromWorld(charid, targid);
                 if (PInvitee)
                 {
-                    //make sure intvitee isn't dead or in jail, they aren't a party member and don't already have an invite pending, and your party is not full
+                    //make sure invitee isn't dead or in jail, they aren't a party member and don't already have an invite pending, and your party is not full
 			        if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 || PInvitee->PParty != NULL)
                     {
 			            PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 23));
@@ -2826,13 +2824,11 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 (PChar->PParty->m_PAlliance == NULL ||
                 (PChar->PParty->m_PAlliance->getMainParty()->GetLeader() == PChar && PChar->PParty->m_PAlliance->partyCount() < 3)))
             {
-                if (targid == 0) // if the targid of the character is not known, then get it from the table of active sessions
+				CCharEntity* PInvitee = NULL;
+                if (targid != 0)
                 {
-                    int32 ret = Sql_Query(SqlHandle, "SELECT targid FROM accounts_sessions WHERE charid = %u LIMIT 1", charid);
-                    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-                        targid = (uint16)Sql_GetIntData(SqlHandle,0);
+					PInvitee = zoneutils::GetCharFromWorld(charid, targid);
                 }
-                CCharEntity* PInvitee = zoneutils::GetCharFromWorld(charid, targid);
                 if (PInvitee)
                 {
                     //make sure intvitee isn't dead or in jail, they are an unallied party leader and don't already have an invite pending

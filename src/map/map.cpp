@@ -176,6 +176,7 @@ int32 do_init(int32 argc, int8** argv)
 
     // отчищаем таблицу сессий при старте сервера (временное решение, т.к. в кластере это не будет работать)
     Sql_Query(SqlHandle, "TRUNCATE TABLE accounts_sessions");
+	Sql_Query(SqlHandle, "TRUNCATE TABLE accounts_parties");
 
 	ShowMessage("\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 	ShowStatus("do_init: zlib is reading");

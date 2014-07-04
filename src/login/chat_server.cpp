@@ -100,8 +100,9 @@ void chat_parse(CHATTYPE type, zmq::message_t* extra, zmq::message_t* packet)
 			break;
 		}
 		case CHAT_PARTY:
+		case CHAT_PT_RELOAD:
 		{
-			int8* query = "SELECT server_addr, server_port, charid FROM accounts_sessions \
+			int8* query = "SELECT server_addr, server_port, MIN(charid) FROM accounts_sessions \
 							WHERE partyid = %d GROUP BY server_addr, server_port; ";
 			ret = Sql_Query(ChatSqlHandle, query, RBUFL(extra->data(), 0));
 			break;
@@ -141,7 +142,7 @@ void chat_parse(CHATTYPE type, zmq::message_t* extra, zmq::message_t* packet)
 			uint64 ip = Sql_GetUIntData(ChatSqlHandle, 0);
 			uint64 port = Sql_GetUIntData(ChatSqlHandle, 1);
 			ip |= (port << 32);
-			if (type == CHAT_PARTY)
+			if (type == CHAT_PARTY || type == CHAT_PT_RELOAD)
 			{
 				WBUFL(extra->data(), 0) = Sql_GetUIntData(ChatSqlHandle, 2);
 			}

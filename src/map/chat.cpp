@@ -29,6 +29,7 @@ This file is part of DarkStar-server source code.
 #include "alliance.h"
 
 #include "packets/message_standard.h"
+#include "packets/party_invite.h"
 
 namespace chat
 {
@@ -113,7 +114,6 @@ namespace chat
 			}
 			case CHAT_PARTY:
 			{
-				uint32 charID = RBUFL(extra->data(), 0);
 				CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
 				if (PChar)
 				{
@@ -183,12 +183,14 @@ namespace chat
 			{
 				uint32 id = RBUFL(extra->data(), 0);
 				uint16 targid = RBUFW(extra->data(), 4);
-				CCharEntity* PInvitee = zoneutils::GetCharFromWorld(id, targid);
+				uint8 inviteType = RBUFB(packet->data(), 0x0B);
+				CCharEntity* PInvitee = zoneutils::GetChar(id);
 
 				if (PInvitee)
 				{
 					//make sure intvitee isn't dead or in jail, they aren't a party member and don't already have an invite pending, and your party is not full
-					if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 || PInvitee->PParty != NULL)
+					if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 || PInvitee->PParty != NULL ||
+						(inviteType == INVITE_ALLIANCE && (PInvitee->PParty->GetLeader() != PInvitee || PInvitee->PParty->m_PAlliance)))
 					{
 						send(CHAT_MSG_DIRECT, extra->data(), sizeof uint32, new CMessageStandardPacket(PInvitee, 0, 0, 23));
 						return;
@@ -204,6 +206,28 @@ namespace chat
 					CBasicPacket* newPacket = new CBasicPacket();
 					memcpy(newPacket, packet->data(), packet->size());
 					PInvitee->pushPacket(newPacket);
+				}
+				break;
+			}
+			case CHAT_PT_RELOAD:
+			{
+				CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
+				if (PChar)
+				{
+					if (PChar->PParty)
+					{
+						if (PChar->PParty->m_PAlliance != NULL)
+						{
+							for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
+							{
+								PChar->PParty->m_PAlliance->partyList.at(i)->ReloadParty();
+							}
+						}
+						else
+						{
+							PChar->PParty->ReloadParty();
+						}
+					}
 				}
 				break;
 			}
@@ -232,7 +256,15 @@ namespace chat
 			memcpy(newExtra.data(), data, datalen);
 		zSocket->send(newExtra, ZMQ_SNDMORE);
 
-		zmq::message_t newPacket(packet, packet->getSize() * 2, [](void *data, void *hint){delete data; });
-		zSocket->send(newPacket);
+		if (packet)
+		{
+			zmq::message_t newPacket(packet, packet->getSize() * 2, [](void *data, void *hint){delete data; });
+			zSocket->send(newPacket);
+		}
+		else
+		{
+			zmq::message_t newPacket(0);
+			zSocket->send(newPacket);
+		}
 	}
 };

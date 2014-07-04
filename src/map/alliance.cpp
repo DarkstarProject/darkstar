@@ -33,6 +33,7 @@
 #include "map.h"
 #include "party.h"
 #include "treasure_pool.h"
+#include "chat.h"
 
 #include "packets/char_sync.h"
 #include "packets/char_update.h"
@@ -72,7 +73,9 @@ void CAlliance::dissolveAlliance(void)
 
 		party->m_PAlliance = NULL;
 			 
-	party->ReloadParty();
+		uint8 data[4];
+		WBUFL(data, 0) = party->GetPartyID();
+		chat::send(chat::CHAT_PT_RELOAD, data, sizeof data, NULL);
 
 	delete this;
 }
@@ -113,7 +116,9 @@ void CAlliance::removeParty(CParty * party)
 
 			for (uint8 i = 0; i < alliance->partyList.size(); ++i) 
 			{
-				alliance->partyList.at(i)->ReloadParty();
+				uint8 data[4];
+				WBUFL(data, 0) = alliance->partyList.at(i)->GetPartyID();
+				chat::send(chat::CHAT_PT_RELOAD, data, sizeof data, NULL);
 			}
 		}
 
@@ -147,7 +152,9 @@ void CAlliance::removeParty(CParty * party)
 				}
 
 		}
-	party->ReloadParty();
+		uint8 data[4];
+		WBUFL(data, 0) = party->GetPartyID();
+		chat::send(chat::CHAT_PT_RELOAD, data, sizeof data, NULL);
 }
 
 void CAlliance::addParty(CParty * party) 
@@ -157,7 +164,9 @@ void CAlliance::addParty(CParty * party)
 
 	for (uint8 a = 0; a < this->partyList.size(); ++a) 
 	{
-		this->partyList.at(a)->ReloadParty();
+		uint8 data[4];
+		WBUFL(data, 0) = this->partyList.at(a)->GetPartyID();
+		chat::send(chat::CHAT_PT_RELOAD, data, sizeof data, NULL);
 	}
 		
 	for (uint8 i = 0; i < party->members.size(); ++i)
@@ -165,6 +174,7 @@ void CAlliance::addParty(CParty * party)
 		party->ReloadTreasurePool((CCharEntity*)party->members.at(i));
 		charutils::SaveCharStats((CCharEntity*)party->members.at(i));
 	}
+	Sql_Query(SqlHandle, "UPDATE accounts_sessions SET allianceid = %u WHERE partyid = %u", m_AllianceID, party->GetPartyID());
 }
 
 

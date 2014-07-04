@@ -20,8 +20,10 @@ This file is part of DarkStar-server source code.
 
 ===========================================================================
 */
-#include <zmq.hpp>
 #include "../common/sql.h"
+#include "../common/socket.h"
+
+#include <zmq.hpp>
 
 enum CHATTYPE
 {
@@ -31,7 +33,8 @@ enum CHATTYPE
 	CHAT_YELL		= 4,
 	CHAT_SERVMES	= 5,
 	CHAT_PT_INVITE	= 6,
-	CHAT_MSG_DIRECT = 7
+	CHAT_PT_RELOAD  = 7,
+	CHAT_MSG_DIRECT = 8
 };
 
 extern zmq::context_t zContext;
