@@ -3857,6 +3857,37 @@ inline int32 CLuaBaseEntity::costume(lua_State *L)
 
 /************************************************************************
 *                                                                       *
+*  Set monstrosity costume				                                *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::costume2(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	if (!lua_isnil(L, -1) && lua_isnumber(L, -1))
+	{
+		uint16 model = (uint16)lua_tointeger(L, -1);
+
+		if (PChar->m_Monstrosity != model &&
+			PChar->status != STATUS_SHUTDOWN &&
+			PChar->status != STATUS_DISAPPEAR)
+		{
+			PChar->m_Monstrosity = model;
+			PChar->status = STATUS_UPDATE;
+			PChar->pushPacket(new CCharAppearancePacket(PChar));
+		}
+		return 0;
+	}
+	lua_pushinteger(L, PChar->m_Monstrosity);
+	return 1;
+}
+
+/************************************************************************
+*                                                                       *
 *  Проверяем, может ли персонаж использовать костюм                     *
 *                                                                       *
 ************************************************************************/
@@ -9448,6 +9479,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,speed),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetPlayer),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,costume),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,costume2),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUseCostume),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUseChocobo),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUsePet),
