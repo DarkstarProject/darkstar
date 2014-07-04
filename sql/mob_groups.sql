@@ -11853,8 +11853,9 @@ INSERT INTO `mob_groups` VALUES (14162,5405,195,1056,0,4440,0,5000,52,54,0); -- 
 INSERT INTO `mob_groups` VALUES (14163,5406,195,1056,0,4440,0,0,52,54,0); -- 2002
 INSERT INTO `mob_groups` VALUES (14164,5407,195,1056,0,4440,0,0,52,54,0); -- 1c02
 
-
-
+-- mamool executioner assault preemptive strike model 2 and 3
+INSERT INTO `mob_groups` VALUES (11222,5346,66,0,0,0,0,0,0,0,0);
+INSERT INTO `mob_groups` VALUES (11223,5347,66,0,0,0,0,0,0,0,0);
 
 -- Calcabrina
 INSERT INTO `mob_groups` VALUES (14165,5313,111,5400,0,4506,0,0,52,55,0);
