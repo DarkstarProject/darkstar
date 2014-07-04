@@ -65,11 +65,11 @@ function onEventUpdate(player,csid,option,target)
     if (party ~= nil) then
         for i,v in ipairs(party) do
             if (not (v:hasKeyItem(LEBROS_ASSAULT_ORDERS) and v:getCurrentMission(ASSAULT) == assaultid)) then
-                player:messageText(target,MEMBER_NO_REQS);
+                player:messageText(target,MEMBER_NO_REQS, false);
                 player:instanceEntry(target,1);
                 return;
             elseif (v:getZone() == player:getZone() and v:checkDistance(player) > 50) then
-                player:messageText(target,MEMBER_TOO_FAR);
+                player:messageText(target,MEMBER_TOO_FAR, false);
                 player:instanceEntry(target,1);
                 return;
             end
@@ -115,7 +115,7 @@ function onInstanceCreated(player,instance,target)
             end
         end
     else
-        player:messageText(target,MEMBER_NO_REQS);
+        player:messageText(target,CANNOT_ENTER, false);
         player:instanceEntry(target,3);
     end
 end;

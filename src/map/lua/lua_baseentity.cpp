@@ -9081,16 +9081,17 @@ inline int32 CLuaBaseEntity::messageText(lua_State* L)
 
     uint16 messageID = (uint16)lua_tointeger(L, 2);
 
+	bool showName = true;
+
+	if (!lua_isnil(L, 3) && lua_isboolean(L, 3))
+	{
+		showName = lua_toboolean(L, 3);
+	}
+
     if (m_PBaseEntity->objtype == TYPE_PC){
-        ((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageTextPacket(PTarget, messageID));
+        ((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageTextPacket(PTarget, messageID, showName));
     }
     else{//broadcast in range
-		bool showName = true;
-
-		if (!lua_isnil(L, 3) && lua_isboolean(L, 3))
-		{
-			showName = lua_toboolean(L, 3);
-		}
 		m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CMessageTextPacket(PTarget, messageID, showName));
 	}
     return 0;
