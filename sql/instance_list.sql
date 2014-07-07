@@ -41,6 +41,7 @@ CREATE TABLE `instance_list` (
 
 LOCK TABLES `instance_list` WRITE;
 /*!40000 ALTER TABLE `instance_list` DISABLE KEYS */;
+INSERT INTO `instance_list` VALUES (0,'TEST',0,0,0.000,0.000,0.000,0);
 -- INSERT INTO `instance_list` VALUES (1,'leujaoam_cleansing',79,30,0.000,0.000,0.000,0);
 -- INSERT INTO `instance_list` VALUES (2,'orichalcum_survey',79,30,0.000,0.000,0.000,0);
 -- INSERT INTO `instance_list` VALUES (3,'escort_professor_chanoix',79,30,0.000,0.000,0.000,0);
