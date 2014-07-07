@@ -72,6 +72,16 @@ CParty::CParty(CBattleEntity* PEntity)
 	SetLeader(PEntity);
 }
 
+CParty::CParty(uint32 id)
+{
+	m_PartyID = id;
+	m_PartyType = PARTY_PCS;
+
+	m_PLeader = NULL;
+	m_PAlliance = NULL;
+	m_PSyncTarget = NULL;
+	m_PQuaterMaster = NULL;
+}
 
 /************************************************************************
 *																		*
@@ -368,6 +378,31 @@ void CParty::AddMember(CBattleEntity* PEntity)
             }
         }
     }
+}
+
+void CParty::AddMember(uint32 id)
+{
+	if (m_PartyType == PARTY_PCS)
+	{
+		Sql_Query(SqlHandle, "UPDATE accounts_sessions SET partyid = %u WHERE charid = %u;", m_PartyID, id);
+		Sql_Query(SqlHandle, "INSERT INTO accounts_parties (charid, partyid, partyflag) VALUES (%u, %u, %u);", id, m_PartyID, 0);
+		uint8 data[4];
+		WBUFL(data, 0) = m_PartyID;
+		chat::send(chat::CHAT_PT_RELOAD, data, sizeof data, NULL);
+
+		/*if (PChar->nameflags.flags & FLAG_INVITE)
+		{
+			PChar->nameflags.flags ^= FLAG_INVITE;
+
+			charutils::SaveCharStats(PChar);
+
+			PChar->status = STATUS_UPDATE;
+			PChar->pushPacket(new CMenuConfigPacket(PChar));
+			PChar->pushPacket(new CCharUpdatePacket(PChar));
+			PChar->pushPacket(new CCharSyncPacket(PChar));
+		}
+		PChar->PTreasurePool->UpdatePool(PChar);*/
+	}
 }
 
 /************************************************************************

@@ -103,8 +103,9 @@ void chat_parse(CHATTYPE type, zmq::message_t* extra, zmq::message_t* packet)
 		case CHAT_PT_RELOAD:
 		{
 			int8* query = "SELECT server_addr, server_port, MIN(charid) FROM accounts_sessions \
-							WHERE partyid = %d GROUP BY server_addr, server_port; ";
-			ret = Sql_Query(ChatSqlHandle, query, RBUFL(extra->data(), 0));
+							WHERE IF (allianceid <> 0, allianceid = %d, partyid = %d) GROUP BY server_addr, server_port; ";
+			uint32 partyid = RBUFL(extra->data(), 0);
+			ret = Sql_Query(ChatSqlHandle, query, partyid, partyid);
 			break;
 		}
 		case CHAT_LINKSHELL:
@@ -127,6 +128,7 @@ void chat_parse(CHATTYPE type, zmq::message_t* extra, zmq::message_t* packet)
 			break;
 		}
 		case CHAT_PT_INVITE:
+		case CHAT_PT_INV_RES:
 		case CHAT_MSG_DIRECT:
 		{
 			int8* query = "SELECT server_addr, server_port FROM accounts_sessions WHERE charid = %d; ";

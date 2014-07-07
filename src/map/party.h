@@ -60,6 +60,7 @@ class CParty
 public:
 
     CParty(CBattleEntity* PEntity);
+	CParty(uint32 id);
 	
     uint32 GetPartyID();                                // узнаем уникальный ID группы
     uint16 GetMemberFlags(CBattleEntity* PEntity);      // получаем список флагов персонажа
@@ -76,6 +77,7 @@ public:
 	void ReloadTreasurePool(CCharEntity* PChar);
 
     void AddMember(CBattleEntity* PEntity);             // добавляем персонажа в группу
+	void AddMember(uint32 id);							// Add party member from outside this server's scope
     void RemoveMember(CBattleEntity* PEntity);          // удаление персонажа из группы
     void AssignPartyRole(int8* MemberName, uint8 role);	// назначаем роли участникам группы
     void DisableSync();

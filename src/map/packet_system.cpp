@@ -3047,12 +3047,12 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    CCharEntity* PInviter = zoneutils::GetCharFromWorld(PChar->InvitePending.id, PChar->InvitePending.targid);
+	CCharEntity* PInviter = zoneutils::GetCharFromWorld(PChar->InvitePending.id, PChar->InvitePending.targid);
+
+	uint8 InviteAnswer = RBUFB(data, (0x04));
 
 	if (PInviter != NULL)
 	{
-		uint8 InviteAnswer = RBUFB(data,(0x04));
-
 		if (InviteAnswer == 0)
 		{
 			//invitee declined invite
@@ -3065,62 +3065,71 @@ void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		if (PChar->PParty != NULL && PInviter->PParty != NULL)
 		{
 			//both invitee and and inviter are party leaders
-			if(PInviter->PParty->GetLeader() == PInviter && PChar->PParty->GetLeader() == PChar)
+			if (PInviter->PParty->GetLeader() == PInviter && PChar->PParty->GetLeader() == PChar)
 			{
-                //the inviter already has an alliance and wants to add another party - only add if they have room for another party
-                if(PInviter->PParty->m_PAlliance && PInviter->PParty->m_PAlliance->getMainParty()->GetLeader() == PInviter)
-                {
-                        //break if alliance is full
-                        if(PInviter->PParty->m_PAlliance->partyCount() == 3)
-                        {
-                            PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 14));
-                            PChar->InvitePending.clean();
-                            return;
-                        }
+				//the inviter already has an alliance and wants to add another party - only add if they have room for another party
+				if (PInviter->PParty->m_PAlliance && PInviter->PParty->m_PAlliance->getMainParty()->GetLeader() == PInviter)
+				{
+					//break if alliance is full
+					if (PInviter->PParty->m_PAlliance->partyCount() == 3)
+					{
+						PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 14));
+						PChar->InvitePending.clean();
+						return;
+					}
 
-
-                        //alliance is not full, add the new party
-                        PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
-                        PChar->InvitePending.clean();
-                        return;
-                }
-                else
-                {
-                    //party leaders have no alliance - create a new one!
-                    CAlliance* PAlliance = new CAlliance(PInviter);
-                    PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
-                    PChar->InvitePending.clean();
-                    return;
-                }
+					//alliance is not full, add the new party
+					PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
+					PChar->InvitePending.clean();
+					return;
+				}
+				else
+				{
+					//party leaders have no alliance - create a new one!
+					CAlliance* PAlliance = new CAlliance(PInviter);
+					PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
+					PChar->InvitePending.clean();
+					return;
+				}
 			}
 		}
 
-
 		//the rest is for a standard party invitation
-        if (PChar->PParty == NULL)
+		if (PChar->PParty == NULL)
 		{
-            if (!(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC) && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_RESTRICTION)))
-            {
-			    if (PInviter->PParty == NULL)
-			    {
-				    CParty* PParty = new CParty(PInviter);
-			    }
-                if (PInviter->PParty->GetLeader() == PInviter)
-                {
-				    if(PInviter->PParty->members.size()==6){//someone else accepted invitation
-					    //PInviter->pushPacket(new CMessageStandardPacket(PInviter, 0, 0, 14)); Don't think retail sends error packet to inviter on full pt
-					    PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 14));
-				    }
-				    else{
-					    PInviter->PParty->AddMember(PChar);
-				    }
-                }
-            }
-            else
-            {
-                PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 237));
-            }
+			if (!(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC) && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_RESTRICTION)))
+			{
+				if (PInviter->PParty == NULL)
+				{
+					CParty* PParty = new CParty(PInviter);
+				}
+				if (PInviter->PParty->GetLeader() == PInviter)
+				{
+					if (PInviter->PParty->members.size() == 6){//someone else accepted invitation
+						//PInviter->pushPacket(new CMessageStandardPacket(PInviter, 0, 0, 14)); Don't think retail sends error packet to inviter on full pt
+						PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 14));
+					}
+					else{
+						PInviter->PParty->AddMember(PChar);
+					}
+				}
+			}
+			else
+			{
+				PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 237));
+			}
 		}
+	}
+	else
+	{
+		uint8 packetData[13];
+		WBUFL(packetData, 0) = PChar->InvitePending.id;
+		WBUFW(packetData, 4) = PChar->InvitePending.targid;
+		WBUFL(packetData, 6) = PChar->id;
+		WBUFW(packetData, 10) = PChar->targid;
+		WBUFB(packetData, 12) = InviteAnswer;
+		PChar->InvitePending.clean();
+		chat::send(chat::CHAT_PT_INV_RES, packetData, sizeof packetData, NULL);
 	}
     PChar->InvitePending.clean();
 	return;

@@ -65,17 +65,17 @@ void CAlliance::dissolveAlliance(void)
 	if (this->partyCount() == 3)
 		this->removeParty(this->partyList.at(2));
 
-		//kick out the second party
-		this->removeParty(this->partyList.at(1));
+	//kick out the second party
+	this->removeParty(this->partyList.at(1));
 
-		CParty* party = this->partyList.at(0);
-		this->partyList.clear();
+	CParty* party = this->partyList.at(0);
+	this->partyList.clear();
 
-		party->m_PAlliance = NULL;
+	party->m_PAlliance = NULL;
 			 
-		uint8 data[4];
-		WBUFL(data, 0) = party->GetPartyID();
-		chat::send(chat::CHAT_PT_RELOAD, data, sizeof data, NULL);
+	uint8 data[4];
+	WBUFL(data, 0) = m_AllianceID;
+	chat::send(chat::CHAT_PT_RELOAD, data, sizeof data, NULL);
 
 	delete this;
 }
@@ -89,85 +89,71 @@ uint32 CAlliance::partyCount(void)
 
 void CAlliance::removeParty(CParty * party) 
 {
-		CAlliance* alliance = party->m_PAlliance;
-		bool mainPartyDisbanding = false;
+	CAlliance* alliance = party->m_PAlliance;
+	bool mainPartyDisbanding = false;
 
-		//if main party then pass alliance lead to the next (d/c fix)
-		if(alliance->getMainParty() == party){
-			mainPartyDisbanding = true;}
+	//if main party then pass alliance lead to the next (d/c fix)
+	if(alliance->getMainParty() == party){
+		mainPartyDisbanding = true;}
 
-		//delete the party from the alliance list
-		for (uint8 i = 0; i < party->m_PAlliance->partyList.size(); ++i) 
+	//delete the party from the alliance list
+	for (uint8 i = 0; i < party->m_PAlliance->partyList.size(); ++i) 
+	{
+		if (party == party->m_PAlliance->partyList.at(i)) 
+			party->m_PAlliance->partyList.erase(partyList.begin()+i);
+	}
+
+	party->m_PAlliance = NULL;
+
+	//update the remaining members of the alliance to show the party left
+	if (alliance != NULL)
+	{
+		//if main party was removed then pass alliance leader
+		if(mainPartyDisbanding == true){
+			alliance->aLeader = alliance->partyList.at(0);
+			alliance->partyList.at(0)->GetMemberFlags(alliance->partyList.at(0)->GetLeader());
+		}
+	}
+
+	//remove party members from the alliance treasure pool
+	for (uint8 i = 0; i < party->members.size(); ++i) 
+	{
+		CCharEntity* PChar = (CCharEntity*)party->members.at(i);
+
+		if (PChar->PTreasurePool != NULL && 
+            PChar->PTreasurePool->GetPoolType() != TREASUREPOOL_ZONE)
 		{
-			if (party == party->m_PAlliance->partyList.at(i)) 
-				party->m_PAlliance->partyList.erase(partyList.begin()+i);
+			PChar->PTreasurePool->DelMember(PChar); 
 		}
+	}
 
-		party->m_PAlliance = NULL;
+	CCharEntity* PChar = (CCharEntity*)party->GetLeader();
+	PChar->PTreasurePool = new CTreasurePool(TREASUREPOOL_PARTY);
+	PChar->PTreasurePool->AddMember(PChar);
+    PChar->PTreasurePool->UpdatePool(PChar);
 
-		//update the remaining members of the alliance to show the party left
-		if (alliance != NULL)
+	for (uint8 i = 0; i < party->members.size(); ++i) 
+	{
+		CCharEntity* PChar = (CCharEntity*)party->members.at(i);
+		party->ReloadPartyMembers((CCharEntity*)party->members.at(i));
+
+		if (PChar->PParty->GetLeader() != PChar)
 		{
-			//if main party was removed then pass alliance leader
-			if(mainPartyDisbanding == true){
-				alliance->aLeader = alliance->partyList.at(0);
-				alliance->partyList.at(0)->GetMemberFlags(alliance->partyList.at(0)->GetLeader());
-			}
-
-			for (uint8 i = 0; i < alliance->partyList.size(); ++i) 
-			{
-				uint8 data[4];
-				WBUFL(data, 0) = alliance->partyList.at(i)->GetPartyID();
-				chat::send(chat::CHAT_PT_RELOAD, data, sizeof data, NULL);
-			}
+			PChar->PTreasurePool = ((CCharEntity*)PChar->PParty->GetLeader())->PTreasurePool;
+			((CCharEntity*)PChar->PParty->GetLeader())->PTreasurePool->AddMember(PChar);
+			((CCharEntity*)PChar->PParty->GetLeader())->PTreasurePool->UpdatePool(PChar);
 		}
 
-		//remove party members from the alliance treasure pool
-	    for (uint8 i = 0; i < party->members.size(); ++i) 
-	    {
-			CCharEntity* PChar = (CCharEntity*)party->members.at(i);
-
-			if (PChar->PTreasurePool != NULL && 
-                PChar->PTreasurePool->GetPoolType() != TREASUREPOOL_ZONE)
-		    {
-				PChar->PTreasurePool->DelMember(PChar); 
-			}
-		}
-
-		CCharEntity* PChar = (CCharEntity*)party->GetLeader();
-		PChar->PTreasurePool = new CTreasurePool(TREASUREPOOL_PARTY);
-		PChar->PTreasurePool->AddMember(PChar);
-        PChar->PTreasurePool->UpdatePool(PChar);
-
-	    for (uint8 i = 0; i < party->members.size(); ++i) 
-	    {
-		    CCharEntity* PChar = (CCharEntity*)party->members.at(i);
-			party->ReloadPartyMembers((CCharEntity*)party->members.at(i));
-
-				if (PChar->PParty->GetLeader() != PChar)
-				{
-					PChar->PTreasurePool = ((CCharEntity*)PChar->PParty->GetLeader())->PTreasurePool;
-					((CCharEntity*)PChar->PParty->GetLeader())->PTreasurePool->AddMember(PChar);
-					((CCharEntity*)PChar->PParty->GetLeader())->PTreasurePool->UpdatePool(PChar);
-				}
-
-		}
-		uint8 data[4];
-		WBUFL(data, 0) = party->GetPartyID();
-		chat::send(chat::CHAT_PT_RELOAD, data, sizeof data, NULL);
+	}
+	uint8 data[4];
+	WBUFL(data, 0) = m_AllianceID;
+	chat::send(chat::CHAT_PT_RELOAD, data, sizeof data, NULL);
 }
 
 void CAlliance::addParty(CParty * party) 
 {
 	party->m_PAlliance = this;
 	partyList.push_back(party);
-
-	for (uint8 a = 0; a < this->partyList.size(); ++a) 
-	{
-		uint8 data[4];
-		WBUFL(data, 0) = this->partyList.at(a)->GetPartyID();
-		chat::send(chat::CHAT_PT_RELOAD, data, sizeof data, NULL);
-	}
 		
 	for (uint8 i = 0; i < party->members.size(); ++i)
 	{
@@ -175,24 +161,31 @@ void CAlliance::addParty(CParty * party)
 		charutils::SaveCharStats((CCharEntity*)party->members.at(i));
 	}
 	Sql_Query(SqlHandle, "UPDATE accounts_sessions SET allianceid = %u WHERE partyid = %u", m_AllianceID, party->GetPartyID());
+
+	uint8 data[4];
+	WBUFL(data, 0) = m_AllianceID;
+	chat::send(chat::CHAT_PT_RELOAD, data, sizeof data, NULL);
+
 }
 
-
-
-
+void CAlliance::addParty(uint32 partyid)
+{
+	Sql_Query(SqlHandle, "UPDATE accounts_sessions SET allianceid = %u WHERE partyid = %u", m_AllianceID, partyid);
+	uint8 data[4];
+	WBUFL(data, 0) = m_AllianceID;
+	chat::send(chat::CHAT_PT_RELOAD, data, sizeof data, NULL);
+}
 
 CParty* CAlliance::getMainParty() 
 {	
-		return aLeader;
+	return aLeader;
 }
 
 //Assigns a party leader for the party
 void CAlliance::setMainParty(CParty * aLeader) 
 {
-	
 	//Having no leader is bad so lets check if the pointer is not null.
 	if (aLeader != NULL) {
 		this->aLeader = aLeader;
 	}
-	
 }

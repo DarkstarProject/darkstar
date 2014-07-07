@@ -35,21 +35,39 @@ namespace chat
 {
 	zmq::context_t zContext;
 	zmq::socket_t* zSocket = NULL;
+	Sql_t* ChatSqlHandle = NULL;
 
 	void init(const char* chatIp, uint16 chatPort)
 	{
+		ChatSqlHandle = Sql_Malloc();
+
+		if (Sql_Connect(ChatSqlHandle, map_config.mysql_login,
+			map_config.mysql_password,
+			map_config.mysql_host,
+			map_config.mysql_port,
+			map_config.mysql_database) == SQL_ERROR)
+		{
+			exit(EXIT_FAILURE);
+		}
+		Sql_Keepalive(ChatSqlHandle);
+
 		zContext = zmq::context_t(1);
 		zSocket = new zmq::socket_t(zContext, ZMQ_DEALER);
 
 		uint64 ipp = map_ip;
 		uint64 port = map_port;
-		ipp |= (port << 32);
 
 		//if no ip/port were supplied, set to 1 (0 is not valid for an identity)
-		if (ipp == 0)
+		if (map_ip == 0 && map_port == 0)
 		{
-			ipp = 1;
+			int ret = Sql_Query(ChatSqlHandle, "SELECT zoneip, zoneport FROM zone_settings GROUP BY zoneip, zoneport ORDER BY COUNT(*) DESC;");
+			if (ret != SQL_ERROR && Sql_NumRows(ChatSqlHandle) > 0 && Sql_NextRow(ChatSqlHandle) == SQL_SUCCESS)
+			{
+				ipp = Sql_GetUIntData(ChatSqlHandle, 0);
+				port = Sql_GetUIntData(ChatSqlHandle, 1);
+			}
 		}
+		ipp |= (port << 32);
 
 		zSocket->setsockopt(ZMQ_IDENTITY, &ipp, sizeof ipp);
 
@@ -188,7 +206,7 @@ namespace chat
 
 				if (PInvitee)
 				{
-					//make sure intvitee isn't dead or in jail, they aren't a party member and don't already have an invite pending, and your party is not full
+					//make sure invitee isn't dead or in jail, they aren't a party member and don't already have an invite pending, and your party is not full
 					if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 || PInvitee->PParty != NULL ||
 						(inviteType == INVITE_ALLIANCE && (PInvitee->PParty->GetLeader() != PInvitee || PInvitee->PParty->m_PAlliance)))
 					{
@@ -209,6 +227,76 @@ namespace chat
 				}
 				break;
 			}
+			case CHAT_PT_INV_RES:
+			{
+				uint32 inviterId = RBUFL(extra->data(), 0);
+				uint16 inviterTargid = RBUFW(extra->data(), 4);
+				uint32 inviteeId = RBUFL(extra->data(), 6);
+				uint16 inviteeTargid = RBUFW(extra->data(), 10);
+				uint8 inviteAnswer = RBUFB(extra->data(), 12);
+				CCharEntity* PInviter = zoneutils::GetChar(inviterId);
+
+				if (PInviter)
+				{
+					if (inviteAnswer == 0)
+					{
+						PInviter->pushPacket(new CMessageStandardPacket(PInviter, 0, 0, 11));
+					}
+					else
+					{
+						if (PInviter->PParty)
+						{
+							//both party leaders?
+							int ret = Sql_Query(ChatSqlHandle, "SELECT * FROM accounts_parties WHERE partyid <> 0 AND \
+													   		(charid = %u OR charid = %u) AND partyflag & %u;)", inviterId,
+															inviteeId, PARTY_LEADER);
+							if (ret != SQL_ERROR && Sql_NumRows(ChatSqlHandle) == 2)
+							{
+								if (PInviter->PParty->m_PAlliance)
+								{
+									ret = Sql_Query(ChatSqlHandle, "SELECT * FROM accounts_parties WHERE allianceid <> 0 AND \
+														   		allianceid = (SELECT allianceid FROM accounts_parties where \
+																charid = %u) GROUP BY partyid;", inviterId);
+									if (ret != SQL_ERROR && Sql_NumRows(ChatSqlHandle) > 0 && Sql_NumRows(ChatSqlHandle) < 3)
+									{
+										PInviter->PParty->m_PAlliance->addParty(inviteeId);
+									}
+									else
+									{
+										send(CHAT_MSG_DIRECT, (uint8*)extra->data()+6, sizeof uint32, new CMessageStandardPacket(PInviter, 0, 0, 14));
+									}
+								}
+								else
+								{
+									//make new alliance
+									CAlliance* PAlliance = new CAlliance(PInviter);
+									PInviter->PParty->m_PAlliance->addParty(inviteeId);
+								}
+							}
+							else
+							{
+								if (PInviter->PParty == NULL)
+								{
+									CParty* PParty = new CParty(PInviter);
+								}
+								if (PInviter->PParty->GetLeader() == PInviter)
+								{
+									ret = Sql_Query(ChatSqlHandle, "SELECT * FROM accounts_parties WHERE partyid <> 0 AND \
+																charid = %u;", inviteeId);
+									if (ret != SQL_ERROR && Sql_NumRows(ChatSqlHandle) > 0)
+									{
+										PInviter->PParty->AddMember(inviteeId);
+									}
+								}
+							}
+						}
+						else
+						{
+
+						}
+					}
+				}
+			}
 			case CHAT_PT_RELOAD:
 			{
 				CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
@@ -220,12 +308,22 @@ namespace chat
 						{
 							for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
 							{
-								PChar->PParty->m_PAlliance->partyList.at(i)->ReloadParty();
+								//PChar->PParty->m_PAlliance->partyList.at(i)->ReloadParty();
 							}
 						}
 						else
 						{
-							PChar->PParty->ReloadParty();
+							//PChar->PParty->ReloadParty();
+						}
+					}
+					else
+					{
+						int ret = Sql_Query(ChatSqlHandle, "SELECT partyid FROM accounts_sessions WHERE partyid <> 0 AND \
+													   	charid = %u;", RBUFL(extra->data(), 0));
+						if (ret != 0 && Sql_NumRows(ChatSqlHandle) != 0 && Sql_NextRow(ChatSqlHandle) == SQL_SUCCESS)
+						{
+							//CParty* PParty = new CParty(Sql_GetUIntData(ChatSqlHandle, 0));
+							//PParty->AddMember(PChar);
 						}
 					}
 				}
@@ -258,7 +356,7 @@ namespace chat
 
 		if (packet)
 		{
-			zmq::message_t newPacket(packet, packet->getSize() * 2, [](void *data, void *hint){delete data; });
+			zmq::message_t newPacket(packet, packet->getSize() * 2, [](void *data, void *hint){delete (CBasicPacket*)data; });
 			zSocket->send(newPacket);
 		}
 		else

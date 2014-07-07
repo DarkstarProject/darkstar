@@ -22,6 +22,7 @@ This file is part of DarkStar-server source code.
 */
 
 #include "../common/socket.h"
+#include "../common/sql.h"
 #include <zmq.hpp>
 #include "../common/cbasetypes.h"
 
@@ -37,12 +38,14 @@ namespace chat
 		CHAT_YELL		= 4,
 		CHAT_SERVMES	= 5,
 		CHAT_PT_INVITE	= 6,
-		CHAT_PT_RELOAD  = 7,
-		CHAT_MSG_DIRECT = 8
+		CHAT_PT_INV_RES = 7,
+		CHAT_PT_RELOAD  = 8,
+		CHAT_MSG_DIRECT = 9
 	};
 
 	extern zmq::context_t zContext;
 	extern zmq::socket_t* zSocket;
+	extern Sql_t* ChatSqlHandle;
 
 	void init(const char* chatIp, uint16 chatPort);
 

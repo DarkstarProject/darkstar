@@ -45,6 +45,7 @@ public:
 	CParty* getMainParty();
 	void setMainParty(CParty * aLeader);
 	void addParty(CParty * party);
+	void addParty(uint32 partyid);
 	void removeParty(CParty * party);
 	void dissolveAlliance(void);
 	uint32 partyCount(void);
