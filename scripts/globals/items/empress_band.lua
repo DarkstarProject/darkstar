@@ -27,6 +27,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_DEDICATION,50,0,10800);
-	target:addMod(MOD_DEDICATION_CAP, 1000);
+	target:addStatusEffect(EFFECT_DEDICATION,50,0,10800,0,1000);
 end;
