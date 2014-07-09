@@ -1318,7 +1318,7 @@ INSERT INTO `item_basic` VALUES (1470,0,'sparkling_stone','sparkling_stone',12,0
 INSERT INTO `item_basic` VALUES (1471,0,'box_of_sticky_rice','sticky_rice',12,0,59,0,190);
 INSERT INTO `item_basic` VALUES (1472,0,'gardenia_seed','gardenia_seed',12,0,59,0,123);
 INSERT INTO `item_basic` VALUES (1473,0,'high-quality_scorpion_shell','hq_scp_shell',12,0,42,0,3420);
-INSERT INTO `item_basic` VALUES (1474,0,'infinity_core','infinity_core',1,0,46,0,1325);
+INSERT INTO `item_basic` VALUES (1474,0,'infinity_core','infinity_core',12,0,46,0,1325);
 INSERT INTO `item_basic` VALUES (1475,0,'onz_of_curry_powder','curry_powder',12,0,59,0,244);
 INSERT INTO `item_basic` VALUES (1476,0,'bag_of_xhifhut_strings','xhifhut_strings',1,61504,0,1,0);
 INSERT INTO `item_basic` VALUES (1477,0,'xhifhut_body','xhifhut_body',1,61504,0,1,0);
