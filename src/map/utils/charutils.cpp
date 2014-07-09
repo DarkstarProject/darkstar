@@ -4189,13 +4189,13 @@ uint32  AddExpBonus(CCharEntity* PChar, uint32 exp)
     if (PChar->getMod(MOD_DEDICATION))
     {
         int16 percentage = PChar->getMod(MOD_DEDICATION);
-        int16 cap = PChar->getMod(MOD_DEDICATION_CAP);
+        int16 cap = PChar->getSubPower(MOD_DEDICATION);
 
-        int16 dedication = dsp_cap(exp * PChar->getMod(MOD_DEDICATION) / 100, 0, PChar->getMod(MOD_DEDICATION_CAP));
+        int16 dedication = dsp_cap(exp * PChar->getMod(MOD_DEDICATION) / 100, 0, PChar->getSubPower(MOD_DEDICATION));
 
-        PChar->setModifier(MOD_DEDICATION_CAP, PChar->getMod(MOD_DEDICATION_CAP) - dedication);
+        PChar->setSubPower(MOD_DEDICATION, PChar->getSubPower(MOD_DEDICATION) - dedication);
 
-        if (PChar->getMod(MOD_DEDICATION_CAP) == 0)
+        if (PChar->getSubPower(MOD_DEDICATION) == 0)
         {
             PChar->StatusEffectContainer->DelStatusEffect(EFFECT_DEDICATION);
         }
