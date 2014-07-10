@@ -386,8 +386,6 @@ enum MODIFIER
 	MOD_BLUE_POINTS               =0x135,// Tracks extra blue points (modId = 309)
 
 	// Corsair
-	MOD_DEDICATION                =0x136,// % exp gain (modId = 310)
-	MOD_DEDICATION_CAP            =0x137,// Cap of dedicaiton effect (modId = 311)
 	MOD_EXP_BONUS                 =0x17E,// (modId = 382)
 
 	MOD_PET_MABB                  =0x138,// Tracks totals (modId = 312)

@@ -4189,10 +4189,10 @@ uint32  AddExpBonus(CCharEntity* PChar, uint32 exp)
     if (PChar->StatusEffectContainer->GetStatusEffect(EFFECT_DEDICATION))
     {
     	CStatusEffect* dedication = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_DEDICATION);
-        int16 percentage = dedication->GetPower();
-        int16 cap = dedication->GetSubPower();        
-        bonus = exp * percentage / 100;
-        dedication->SetSubPower(cap -= bonus);
+    	int16 percentage = dedication->GetPower();
+    	int16 cap = dedication->GetSubPower();
+    	bonus += dsp_cap((exp * percentage)/100, 0, cap);
+    	dedication->SetSubPower(cap -= bonus);
 
         if (cap <= 0)
         {
