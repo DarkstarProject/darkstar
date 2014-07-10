@@ -43,6 +43,9 @@ INSERT INTO `mob_spawn_mods` VALUES (17240232,288,40,0); -- Tegmine DA guestimat
 INSERT INTO `mob_spawn_mods` VALUES (17186927,368,33,0);
 INSERT INTO `mob_spawn_mods` VALUES (17195221,368,33,0);
 INSERT INTO `mob_spawn_mods` VALUES (17363080,368,33,0);
+INSERT INTO `mob_spawn_mods` VALUES (17424488,302,25,0); -- Autarch TA guestimate
+INSERT INTO `mob_spawn_mods` VALUES (17424488,288,25,0); -- Autarch DA guestimate
+INSERT INTO `mob_spawn_mods` VALUES (17424488,23,60,0); -- Autarch attack bonus guestimate
 INSERT INTO `mob_spawn_mods` VALUES (17371142,16,-1,1);
 INSERT INTO `mob_spawn_mods` VALUES (17371142,1,20,1);
 INSERT INTO `mob_spawn_mods` VALUES (17371142,2,33,1);

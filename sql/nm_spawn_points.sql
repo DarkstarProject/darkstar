@@ -6303,6 +6303,9 @@ INSERT INTO `nm_spawn_points` VALUES (17363080,49,115.000,-15.000,246.000);
 -- 17277011 Martinet - Pos data needs correction, had nothing to go on except wiki saying C-9.
 -- INSERT INTO `nm_spawn_points` VALUES (17277011,0,-196.000,-8.000,-48.000);
 
+-- 17424488 Autarch - Need retail pos info
+-- INSERT INTO `nm_spawn_points` VALUES ('17424488,0,-287.000,-175.600,85.000);
+
 -- 17584416 Aqrabuamelu - Pos data not 100% retail accurate.
 INSERT INTO `nm_spawn_points` VALUES (17584416,0,-140.000,-1.500,209.000);
 INSERT INTO `nm_spawn_points` VALUES (17584416,1,-221.000,-0.500,205.000);
