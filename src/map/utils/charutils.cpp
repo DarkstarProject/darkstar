@@ -4186,19 +4186,21 @@ void SaveCharPoints(CCharEntity* PChar)
 uint32  AddExpBonus(CCharEntity* PChar, uint32 exp)
 {
     int32 bonus = 0;
-    if (PChar->StatusEffectContainer->GetStatusEffect(EFFECT_DEDICATION))
+    if (PChar->getMod(MOD_DEDICATION))
     {
-    	CStatusEffect* dedication = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_DEDICATION);
-        int16 percentage = dedication->GetPower();
-        int16 cap = dedication->GetSubPower();        
-        bonus = exp * percentage / 100;
-        dedication->SetSubPower(cap -= bonus);
+        int16 percentage = PChar->getMod(MOD_DEDICATION);
+        int16 cap = PChar->getSubPower(MOD_DEDICATION);
 
-        if (cap <= 0)
+        int16 dedication = dsp_cap(exp * PChar->getMod(MOD_DEDICATION) / 100, 0, PChar->getSubPower(MOD_DEDICATION));
+
+        PChar->setSubPower(MOD_DEDICATION, PChar->getSubPower(MOD_DEDICATION) - dedication);
+
+        if (PChar->getSubPower(MOD_DEDICATION) == 0)
         {
             PChar->StatusEffectContainer->DelStatusEffect(EFFECT_DEDICATION);
         }
 
+        bonus = dedication;
     }
 
     bonus += exp * (PChar->getMod(MOD_EXP_BONUS) / 100.0f);
