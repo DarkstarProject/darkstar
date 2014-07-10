@@ -455,6 +455,7 @@ enum MODIFIER
 	MOD_ENSPELL_DMG               =0x157,//stores the base damage of the enspell before reductions (modId = 343)
     MOD_ENSPELL_DMG_BONUS         =0x1B0,// (modId = 432)
 	MOD_SPIKES_DMG                =0x158,//stores the base damage of the spikes before reductions (modId = 344)
+    MOD_SPIKES_CHANCE             =0x1F3,//chance of spike proc (modId = 499)
 
 	MOD_TP_BONUS                  =0x159,// (modId = 345)
 
@@ -544,7 +545,6 @@ enum MODIFIER
 
 
 
-    //MOD_SPARE =0x1F3,// (modId = 499)
     //MOD_SPARE =0x1F4,// (modId = 500)
     //MOD_SPARE =0x1F5,// (modId = 501)
 
@@ -554,7 +554,7 @@ enum MODIFIER
 
 };
 
-#define MAX_MODIFIER 499
+#define MAX_MODIFIER 500
 
 
 
