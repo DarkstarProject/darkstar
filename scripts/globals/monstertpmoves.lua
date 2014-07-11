@@ -92,7 +92,7 @@ end;
 -- PHYSICAL MOVE FUNCTION
 -- Call this on every physical move!
 -- accmod is a linear multiplier for accuracy (1 default)
--- dmgmod is a linear mulitplier for damage (1 default)
+-- dmgmod is a linear multiplier for damage (1 default)
 -- tpeffect is an enum which can be one of:
 -- 0 TP_ACC_VARIES
 -- 1 TP_ATK_VARIES
@@ -556,7 +556,7 @@ end;
 -- percent is the percentage to take from HP
 -- base is calculated from main level to create a minimum
 -- Equation: (HP * percent) + (LVL / base)
--- cap is optional, defines a maxiumum damage
+-- cap is optional, defines a maximum damage
 function MobBreathMove(mob, target, percent, base, element, cap)
 	local damage = (mob:getHP() * percent) + (mob:getMainLvl() / base);
 

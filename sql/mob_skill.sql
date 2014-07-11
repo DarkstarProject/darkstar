@@ -276,6 +276,9 @@ INSERT INTO `mob_skill` VALUES (464,273,95,'Venom_Sting', 0, 10.0, 2000, 1500, 4
 INSERT INTO `mob_skill` VALUES (461,273,92,'Venom_Breath', 4, 20.0, 2000, 1500, 4, 0, 0, 0); -- hnm only
 INSERT INTO `mob_skill` VALUES (468,273,100,'Evasion', 0, 9.0, 2000, 1500, 1, 0, 0, 0); -- hnm only
 
+-- Aqrabuamelu
+INSERT INTO `mob_skill` VALUES (93,402,93,'Cold_Breath', 4, 15.0, 2000, 1500, 4, 0, 0, 0);
+
 -- DynamisStatue-Orc
 INSERT INTO `mob_skill` VALUES (854,93,761,'Seismostomp', 1, 15.0, 3000, 1500, 4, 0, 0, 0);
 INSERT INTO `mob_skill` VALUES (855,93,762,'Numbing_Glare', 4, 15.0, 2000, 1500, 4, 0, 0, 0);
@@ -604,6 +607,10 @@ INSERT INTO `mob_skill` VALUES (186,372,186,'Bubble_Shower', 1, 12.0, 2000, 1500
 INSERT INTO `mob_skill` VALUES (192,372,192,'Metallic_Body', 0, 7.0, 2000, 1500, 1, 0, 0, 0); -- 25HP Stoneskin
 INSERT INTO `mob_skill` VALUES (189,372,189,'Scissor_Guard', 0, 7.0, 2000, 1500, 1, 0, 0, 0); -- +100% defense boost
 
+-- Tegmine
+INSERT INTO `mob_skill` VALUES (187,400,187,'Bubble_Curtain', 0, 7.0, 2000, 1500, 1, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (186,400,186,'Bubble_Shower', 1, 12.0, 2000, 1500, 4, 0, 0, 0);
+
 -- Shadows
 INSERT INTO `mob_skill` VALUES (190,221,190,'Dimensional_Death', 0, 7.0, 2000, 0, 4, 1, 0, 0);
 INSERT INTO `mob_skill` VALUES (190,222,190,'Dimensional_Death', 0, 7.0, 2000, 0, 4, 1, 0, 0);
@@ -769,6 +776,9 @@ INSERT INTO `mob_skill` VALUES (287,85,287,'Meltdown', 1, 15.0, 2000, 5000, 4, 0
 
 -- Calcabrina
 INSERT INTO `mob_skill` VALUES (281,395,281,'Berserk', 0, 7.0, 2000, 1500, 1, 0, 0, 0);
+
+-- Martinet
+INSERT INTO `mob_skill` VALUES (279,401,279,'Blitzstrahl', 0, 15.0, 2000, 1500, 4, 0, 0, 0);
 
 -- Ahriman
 INSERT INTO `mob_skill` VALUES (292,4,292,'Blindeye', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
