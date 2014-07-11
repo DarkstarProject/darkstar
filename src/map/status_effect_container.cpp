@@ -1,4 +1,4 @@
-﻿/*
+/*
 ===========================================================================
 
   Copyright (c) 2010-2014 Darkstar Dev Teams
@@ -1117,6 +1117,8 @@ void CStatusEffectContainer::LoadStatusEffects()
             // load shadows left
             if(PStatusEffect->GetStatusID() == EFFECT_COPY_IMAGE){
                 m_POwner->setModifier(MOD_UTSUSEMI, PStatusEffect->GetPower());
+            } else if(PStatusEffect->GetStatusID() == EFFECT_DEDICATION){
+                m_POwner->setModifier(MOD_DEDICATION_CAP, PStatusEffect->GetSubPower());
             } else if(PStatusEffect->GetStatusID() == EFFECT_BLINK){
                 m_POwner->setModifier(MOD_BLINK, PStatusEffect->GetPower());
             }
@@ -1149,6 +1151,8 @@ void CStatusEffectContainer::SaveStatusEffects()
                 PStatusEffect->SetPower(m_POwner->getMod(MOD_UTSUSEMI));
             } else if(PStatusEffect->GetStatusID() == EFFECT_BLINK){
                 PStatusEffect->SetPower(m_POwner->getMod(MOD_BLINK));
+            } else if(PStatusEffect->GetStatusID() == EFFECT_DEDICATION){
+                PStatusEffect->SetSubPower(m_POwner->getMod(MOD_DEDICATION_CAP));                
             } else if(PStatusEffect->GetStatusID() == EFFECT_STONESKIN){
                 PStatusEffect->SetPower(m_POwner->getMod(MOD_STONESKIN));
             }
