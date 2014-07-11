@@ -603,25 +603,15 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
         // SHIELD
         CItem* PItem = PCharDef->getEquip(SLOT_SUB);
 
-        if(PItem){
-            switch(PItem->getID())
+        if(PItem)
+        {
+            if (((CItemArmor*)PItem)->getModifier(MOD_SPIKES) > 0 && ((CItemArmor*)PItem)->getModifier(MOD_SPIKES) < 7)
             {
-                case 16169: //collaber shield
-                spikesEffect = SUBEFFECT_BLAZE_SPIKES;
-                damage = 28;
-                chance = 25;
-                break;
-                case 12305: // ice shield
-                spikesEffect = SUBEFFECT_ICE_SPIKES;
-                damage = 20;
-                chance = 25;
-                break;
-                case 12357: // ice shield +1
-                spikesEffect = SUBEFFECT_ICE_SPIKES;
-                damage = 25;
-                chance = 30;
-                break;
+                spikesEffect = (SUBEFFECT)((CItemArmor*)PItem)->getModifier(MOD_SPIKES);
             }
+
+            damage = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_DMG);
+            chance = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_CHANCE);
 
             if(spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance)){
                 return true;
@@ -632,61 +622,16 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
         // deal with spikesEffect effect gear
         PItem = PCharDef->getEquip(SLOT_BODY);
 
-        if(PItem){
+        if(PItem)
+        {
             spikesEffect = (SUBEFFECT)0;
-            switch(PItem->getID())
+            if (((CItemArmor*)PItem)->getModifier(MOD_SPIKES) > 0 && ((CItemArmor*)PItem)->getModifier(MOD_SPIKES) < 7)
             {
-                case 13782: // ninja chainmail
-                spikesEffect = SUBEFFECT_BLAZE_SPIKES;
-                damage = 25;
-                chance = 25;
-                break;
-                case 14485: // ninja chainmail +1
-                spikesEffect = SUBEFFECT_SHOCK_SPIKES;
-                damage = 25;
-                chance = 25;
-                break;
-                case 14376: // rasetsu samue
-                spikesEffect = SUBEFFECT_SHOCK_SPIKES;
-                damage = 15;
-                chance = 25;
-                break;
-                case 14377: // rasetsu samue +1
-                spikesEffect = SUBEFFECT_SHOCK_SPIKES;
-                damage = 20;
-                chance = 30;
-                break;
-                case 13705: //ogre jerkin
-                spikesEffect = SUBEFFECT_ICE_SPIKES;
-                damage = 20;
-                chance = 25;
-                break;
-                case 14366: //ogre jerkin +1
-                spikesEffect = SUBEFFECT_ICE_SPIKES;
-                damage = 25;
-                chance = 30;
-                break;
-                case 12597: // war aketon
-                spikesEffect = SUBEFFECT_BLAZE_SPIKES;
-                damage = 25;
-                chance = 25;
-                break;
-                case 13771: // war aketon +1
-                spikesEffect = SUBEFFECT_BLAZE_SPIKES;
-                damage = 30;
-                chance = 30;
-                break;
-                case 14420: // igqira_weskit
-                spikesEffect = SUBEFFECT_CURSE_SPIKES;
-				damage = 0;
-                chance = 30;
-                break;
-                case 14421: // genie_weskit
-                spikesEffect = SUBEFFECT_CURSE_SPIKES;
-				damage = 0;
-                chance = 35;
-                break;
+                spikesEffect = (SUBEFFECT)((CItemArmor*)PItem)->getModifier(MOD_SPIKES);
             }
+
+            damage = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_DMG);
+            chance = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_CHANCE);
 
             if(spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance)){
                 //body activated return
@@ -697,51 +642,17 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
         // LEGS
 		PItem = PCharDef->getEquip(SLOT_LEGS);
 
-        if(PItem){
+        if(PItem)
+        {
             spikesEffect = (SUBEFFECT)0;
-            switch(PItem->getID())
+
+            if (((CItemArmor*)PItem)->getModifier(MOD_SPIKES) > 0 && ((CItemArmor*)PItem)->getModifier(MOD_SPIKES) < 7)
             {
-                case 12880: // ogre trousers
-                spikesEffect = SUBEFFECT_ICE_SPIKES;
-                damage = 15;
-                chance = 20;
-                break;
-                case 14279: // ogre trousers +1
-                spikesEffect = SUBEFFECT_ICE_SPIKES;
-                damage = 20;
-                chance = 25;
-                break;
-                case 14299: // rasetsu hakama
-                spikesEffect = SUBEFFECT_ICE_SPIKES;
-                damage = 15;
-                chance = 20;
-                break;
-                case 14300: // rasetsu hakama +1
-                spikesEffect = SUBEFFECT_ICE_SPIKES;
-                damage = 20;
-                chance = 25;
-                break;
-                case 12853: // war brais
-                spikesEffect = SUBEFFECT_BLAZE_SPIKES;
-                damage = 20;
-                chance = 20;
-                break;
-                case 14238: // war brais +1
-                spikesEffect = SUBEFFECT_BLAZE_SPIKES;
-                damage = 25;
-                chance = 25;
-                break;
-                case 14321: // igqira_lappas
-                spikesEffect = SUBEFFECT_CURSE_SPIKES;
-				damage = 0;
-                chance = 25;
-                break;
-                case 14322: // genie_lappas
-                spikesEffect = SUBEFFECT_CURSE_SPIKES;
-				damage = 0;
-                chance = 30;
-                break;
+                spikesEffect = (SUBEFFECT)((CItemArmor*)PItem)->getModifier(MOD_SPIKES);
             }
+
+            damage = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_DMG);
+            chance = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_CHANCE);
 
             if(spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance)){
                 return true;
@@ -751,46 +662,18 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
         // HEAD
 		PItem = PCharDef->getEquip(SLOT_HEAD);
 
-        if(PItem){
+        if(PItem)
+        {
             spikesEffect = (SUBEFFECT)0;
-            switch(PItem->getID())
+
+
+            if (((CItemArmor*)PItem)->getModifier(MOD_SPIKES) > 0 && ((CItemArmor*)PItem)->getModifier(MOD_SPIKES) < 7)
             {
-                case 16125: // breeder mask
-                spikesEffect = SUBEFFECT_BLAZE_SPIKES;
-                damage = 20;
-                chance = 15;
-                break;
-                case 13925: // rasetsu_jinpachi
-                spikesEffect = SUBEFFECT_BLAZE_SPIKES;
-                damage = 20;
-                chance = 15;
-                break;
-                case 13926: // rasetsu_jinpachi +1
-                spikesEffect = SUBEFFECT_BLAZE_SPIKES;
-                damage = 25;
-                chance = 20;
-                break;
-                case 13920: // wyvern helm
-                spikesEffect = SUBEFFECT_BLAZE_SPIKES;
-                damage = 20;
-                chance = 15;
-                break;
-                case 13921: //wyvern helm +1
-                spikesEffect = SUBEFFECT_BLAZE_SPIKES;
-                damage = 25;
-                chance = 20;
-                break;
-                case 15159: //igqira_tiara
-                spikesEffect = SUBEFFECT_CURSE_SPIKES;
-				damage = 0;
-                chance = 20;
-                break;
-                case 15160: //genie_tiara
-                spikesEffect = SUBEFFECT_CURSE_SPIKES;
-				damage = 0;
-                chance = 25;
-                break;
+                spikesEffect = (SUBEFFECT)((CItemArmor*)PItem)->getModifier(MOD_SPIKES);
             }
+
+            damage = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_DMG);
+            chance = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_CHANCE);
 
             if(spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance)){
                 return true;
@@ -800,27 +683,17 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
         // HANDS
 		PItem = PCharDef->getEquip(SLOT_HANDS);
 
-        if(PItem){
+        if(PItem)
+        {
             spikesEffect = (SUBEFFECT)0;
-            switch(PItem->getID())
+
+            if (((CItemArmor*)PItem)->getModifier(MOD_SPIKES) > 0 && ((CItemArmor*)PItem)->getModifier(MOD_SPIKES) < 7)
             {
-                case 15042: // gothic gauntlets
-                case 14952: // ice gauntlets
-                spikesEffect = SUBEFFECT_ICE_SPIKES;
-                damage = 15;
-                chance = 15;
-                break;
-                case 14852: // igqira_manillas
-                spikesEffect = SUBEFFECT_CURSE_SPIKES;
-				damage = 0;
-                chance = 20;
-                break;
-                case 14853: // genie_manillas
-                spikesEffect = SUBEFFECT_CURSE_SPIKES;
-				damage = 0;
-                chance = 25;
-                break;
+                spikesEffect = (SUBEFFECT)((CItemArmor*)PItem)->getModifier(MOD_SPIKES);
             }
+
+            damage = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_DMG);
+            chance = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_CHANCE);
 
             if(spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance)){
                 return true;
@@ -830,27 +703,18 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
         // FEET
 		PItem = PCharDef->getEquip(SLOT_FEET);
 
-        if(PItem){
+        if(PItem)
+        {
             spikesEffect = (SUBEFFECT)0;
-            switch(PItem->getID())
+
+            if (((CItemArmor*)PItem)->getModifier(MOD_SPIKES) > 0 && ((CItemArmor*)PItem)->getModifier(MOD_SPIKES) < 7)
             {
-                case 11402: // gothic sabatons
-                spikesEffect = SUBEFFECT_ICE_SPIKES;
-                damage = 15;
-                chance = 15;
-                break;
-                case 12946: // suzakus sun-ate
-                spikesEffect = SUBEFFECT_BLAZE_SPIKES;
-                damage = 20;
-                chance = 20;
-                break;
-                case 11392: // koschei crackows
-                spikesEffect = SUBEFFECT_CURSE_SPIKES;
-				damage = 0;
-                chance = 20;
-                break;
+                spikesEffect = (SUBEFFECT)((CItemArmor*)PItem)->getModifier(MOD_SPIKES);
             }
 
+            damage = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_DMG);
+            chance = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_CHANCE);
+            
             if(spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance)){
                 return true;
             }
