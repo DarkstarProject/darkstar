@@ -18,5 +18,5 @@ ALREADY_HAVE_ALL_FRAGS = 7312; -- You have obtained all of the fragments. You mu
        ZILART_MONUMENT = 7314; -- It is an ancient Zilart monument.
 
 -- Other dialog
-	 THE_DOOR_IS_LOCKED = 7293; -- The door is locked.
-	   DOES_NOT_RESPOND = 7294; -- It does not respond.
+     THE_DOOR_IS_LOCKED = 7293; -- The door is locked.
+       DOES_NOT_RESPOND = 7294; -- It does not respond.

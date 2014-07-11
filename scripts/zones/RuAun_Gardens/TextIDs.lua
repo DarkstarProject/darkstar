@@ -9,7 +9,7 @@ FULL_INVENTORY_AFTER_TRADE = 6378; -- You cannot obtain the <item>. Try trading 
             ITEMS_OBTAINED = 6388; -- You obtain
    NOTHING_OUT_OF_ORDINARY = 6393; -- There is nothing out of the ordinary here.
     FISHING_MESSAGE_OFFSET = 7020; -- You can't fish here.
-	
+
 -- Treasure Coffer/Chest Dialog
 CHEST_UNLOCKED = 7308; -- You unlock the chest!
     CHEST_FAIL = 7309; -- Fails to open the chest.
@@ -23,6 +23,6 @@ CHEST_ILLUSION = 7314; -- The chest was but an illusion...
 -- Other dialog
 IT_IS_ALREADY_FUNCTIONING = 7275; -- It is already functioning.
            SKY_GOD_OFFSET = 7325; -- A strange insignia pointing north is carved into the wall.
-	     SKY_GOD_OFFSET_2 = 7326; -- A strange insignia pointing east is carved into the wall.
-		 SKY_GOD_OFFSET_3 = 7327; -- A strange insignia pointing west is carved into the wall.
-	     SKY_GOD_OFFSET_4 = 7328; -- A strange insignia pointing south is carved into the wall.
+         SKY_GOD_OFFSET_2 = 7326; -- A strange insignia pointing east is carved into the wall.
+         SKY_GOD_OFFSET_3 = 7327; -- A strange insignia pointing west is carved into the wall.
+         SKY_GOD_OFFSET_4 = 7328; -- A strange insignia pointing south is carved into the wall.

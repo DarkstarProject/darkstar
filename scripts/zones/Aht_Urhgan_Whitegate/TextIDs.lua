@@ -41,10 +41,10 @@ UGRIHD_PURCHASE_DIALOGUE = 4583; -- Salaheem's Sentinels values your contributio
      MAZWEEN_SHOP_DIALOG = 9186; -- Magic scrolls! Get your magic scrolls here!
     FAYEEWAH_SHOP_DIALOG = 9187; -- Why not sit back a spell and enjoy the rich aroma and taste of a cup of chai?
       YAFAAF_SHOP_DIALOG = 9188; -- There's nothing like the mature taste and luxurious aroma of coffee... Would you like a cup
-      
+
       WAHNID_SHOP_DIALOG = 9189; -- All the fishing gear you'll ever need, here in one place!
      WAHRAGA_SHOP_DIALOG = 9190; -- Welcome to the Alchemists' Guild.
-      
+
 -- Automaton
       AUTOMATON_RENAME = 5741; -- Your automaton has a new name.
       AUTOMATON_VALOREDGE_UNLOCK = 9500; -- You obtain the Valoredge X-900 head and frame!
@@ -53,7 +53,7 @@ UGRIHD_PURCHASE_DIALOGUE = 4583; -- Salaheem's Sentinels values your contributio
       AUTOMATON_SOULSOOTHER_UNLOCK = 9542; -- You obtain the Soulsoother C-1000 head!
       AUTOMATON_SPIRITREAVER_UNLOCK = 9543; -- You obtain the Spiritreaver M-400 head!
       AUTOMATON_ATTACHMENT_UNLOCK = 9559; -- You can now equip your automaton with
-      
+
 -- Assault
     RYTAAL_MISSION_COMPLETE = 5563; -- Congratulations. You have been awarded Assault Points for the successful completion of your mission.
     RYTAAL_MISSION_FAILED = 5564; -- Your mission was not successful; however, the Empire recognizes your contribution and has awarded you Assault Points.

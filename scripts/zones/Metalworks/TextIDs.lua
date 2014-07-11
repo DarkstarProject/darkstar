@@ -3,14 +3,14 @@
 -- General Texts
    ITEM_CANNOT_BE_OBTAINED =  6431; -- You cannot obtain the item <item>. Come back after sorting your inventory.
 FULL_INVENTORY_AFTER_TRADE =  6433; -- You cannot obtain the item <item>. Try trading again after sorting your inventory.
-             ITEM_OBTAINED =  6434; -- Obtained: 
+             ITEM_OBTAINED =  6434; -- Obtained:
               GIL_OBTAINED =  6435; -- Obtained <<<Numeric Parameter 0>>> gil.
        NOT_HAVE_ENOUGH_GIL =  6439; -- You do not have enough gil.
           KEYITEM_OBTAINED =  6437; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>.
             ITEMS_OBTAINED =  6443; -- You obtain
           SMITHING_SUPPORT =  6831; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
     FISHING_MESSAGE_OFFSET =  7934; -- You can't fish here
-	
+
 -- Mission Dialogs
     YOU_ACCEPT_THE_MISSION  =     9; -- You have accepted the mission.
    ORIGINAL_MISSION_OFFSET  =    14; -- You can consult the ?Mission? section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed.<Prompt>

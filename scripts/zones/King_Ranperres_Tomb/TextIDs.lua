@@ -15,6 +15,6 @@ CHEST_UNLOCKED = 7248; -- You unlock the chest!
   CHEST_MOOGLE = 7253; -- You cannot open the chest while participating in the moogle event.
 CHEST_ILLUSION = 7254; -- The chest was but an illusion...
   CHEST_LOCKED = 7255; -- The chest appears to be locked.
-  
+
 -- Other
 HEAVY_DOOR = 7276; -- It is a solid stone door.

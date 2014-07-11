@@ -5,7 +5,7 @@ ITEM_CANNOT_BE_OBTAINED = 6535; -- You cannot obtain the item <item>. Come back 
           ITEM_OBTAINED = 6538; -- Obtained: <item>.
            GIL_OBTAINED = 6539; -- Obtained <number> gil.
        KEYITEM_OBTAINED = 6541; -- Obtained key item: <keyitem>.
-	   KEYITEM_LOST = 6542; -- Lost key item:
+       KEYITEM_LOST = 6542; -- Lost key item:
     NOT_HAVE_ENOUGH_GIL = 6543; -- You do not have enough gil.
           HOMEPOINT_SET = 6642; -- Home point set!
 
@@ -19,7 +19,7 @@ CONQUEST = 7676; -- You've earned conquest points!
             KIRISOMANRISO_DIALOG = 8009; -- Delivering goods to residences everywhere!
 YOU_CAN_NOW_BECOME_A_BEASTMASTER = 7120; -- You can now become a beastmaster.
 
-				   UNLOCK_DANCER = 11763; -- You can now become a dancer!
+                   UNLOCK_DANCER = 11763; -- You can now become a dancer!
 
 GUIDE_STONE = 6915; -- Up: Ru'Lude Gardens Down: Lower Jeuno
 
