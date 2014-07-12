@@ -1703,7 +1703,6 @@ int32 OnSpikesDamage(CBattleEntity* PDefender, CBattleEntity* PAttacker, apActio
 
     if (lua_isnil(LuaHandle, -1))
     {
-        ShowError("luautils::OnSpikesDamage: undefined procedure onSpikesDamage\n");
         lua_pop(LuaHandle, 1);
         return -1;
     }
