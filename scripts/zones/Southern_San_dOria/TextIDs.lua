@@ -17,7 +17,7 @@ CONQUEST =  8419; -- You've earned conquest points!
 -- Mission Dialogs
  YOU_ACCEPT_THE_MISSION = 7132; -- You accept the mission.
 ORIGINAL_MISSION_OFFSET = 7143; -- Bring me one of those axes, and your mission will be a success. No running away now; we've a proud country to defend!
- 
+
 -- Dynamis dialogs
       YOU_CANNOT_ENTER_DYNAMIS = 7349; -- You cannot enter Dynamis
 PLAYERS_HAVE_NOT_REACHED_LEVEL = 7351; -- Players who have not reached level <<<Numeric Parameter 0>>> are prohibited from entering Dynamis.
@@ -35,7 +35,7 @@ PLAYERS_HAVE_NOT_REACHED_LEVEL = 7351; -- Players who have not reached level <<<
       HERE_TAKE_THIS = 7293; -- Here, take this...
     IF_YOU_WEAR_THIS = 7294; -- If you put this on and walk around, something...unexpected might happen...
            THANK_YOU = 7292; -- Thank you...<<<Prompt>>>
-		   
+
 -- Other dialog
 ITEM_DELIVERY_DIALOG = 8344; -- Parcels delivered to rooms anywhere in Vana'diel!
         ROSEL_DIALOG = 7721; -- Hrmm... Now, this is interesting! It pays to keep an eye on the competition. Thanks for letting me know!
@@ -74,7 +74,7 @@ FERDOULEMIONT_SHOP_DIALOG = 7895; -- Hello!
    APAIREMANT_OPEN_DIALOG = 8353; -- Might you be interested in produce from Gustaberg
 
      PAUNELIE_SHOP_DIALOG = 8249; -- These magic shells are full of mysteries...
-	 
+
   MACHIELLE_CLOSED_DIALOG = 8357; -- We want to sell produce from Norvallen, but the entire region is under foreign control!
       CORUA_CLOSED_DIALOG = 8358; -- We specialize in Ronfaure produce, but we cannot import from that region without a strong San d'Orian presence there.
   PHAMELISE_CLOSED_DIALOG = 8359; -- I'd be making a killing selling produce from Zulkheim, but the region's under foreign control!
@@ -82,10 +82,10 @@ FERDOULEMIONT_SHOP_DIALOG = 7895; -- Hello!
      POURETTE_OPEN_DIALOG = 8361; -- Derfland produce for sale!
    POURETTE_CLOSED_DIALOG = 8362; -- Listen, adventurer... I can't import from Derfland until the region knows San d'Orian power!
 
-     MIOGIQUE_SHOP_DIALOG = 8355; -- Looking for something in particular?   
+     MIOGIQUE_SHOP_DIALOG = 8355; -- Looking for something in particular?
      CARAUTIA_SHOP_DIALOG = 8356; -- Well, what sort of armor would you like?
     VALERIANO_SHOP_DIALOG = 8067; -- Oh, a fellow outsider! We are Troupe Valeriano. I am Valeriano, at your service!
 
-		RAMINEL_DELIVERY  = 8032; -- Here's your delivery!
-			LUSIANE_THANK = 8033; -- Thank you!?Prompt?
-	   RAMINEL_DELIVERIES = 8034; -- Sorry, I have deliveries to make!
+        RAMINEL_DELIVERY  = 8032; -- Here's your delivery!
+            LUSIANE_THANK = 8033; -- Thank you!?Prompt?
+       RAMINEL_DELIVERIES = 8034; -- Sorry, I have deliveries to make!

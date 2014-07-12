@@ -21,9 +21,9 @@ CAIPHIMONRIDE_SHOP_DIALOG = 10866; -- Welcome! Thanks to the supplies from Jeuno
        MIGRAN_SHOP_DIALOG = 10872; -- Even with the aid from Jeuno, I still have trouble feeding my six children...
    NILEROUCHE_SHOP_DIALOG = 10861; -- Hello, traveler! Please have a look at these fine Tavnazian-built products!
    MISSEULIEU_SHOP_DIALOG = 10870; -- Greetings, adventurer! I've been given authorization to begin the sale of the old Tavnazian armor we had in storage!
-   
+
 YOU_CANNOT_ENTER_DYNAMIS = 11779; -- You cannot enter Dynamis
-	  
+
 PLAYERS_HAVE_NOT_REACHED_LEVEL = 11781; -- Players who have not reached levelare prohibited from entering Dynamis.
 
 MYSTERIOUS_VOICE = 11767; -- You hear a mysterious, floating voice:

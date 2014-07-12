@@ -22,14 +22,14 @@ CONQUEST =  7622; --You've earned conquest points!
 
 -- Other Dialogs
 ITEM_DELIVERY_DIALOG =  7505; --Need something sent to a friend's house? Sending items to your own room? You've come to the right place
-   
+
 -- Harvest Festival
       TRICK_OR_TREAT =  8107; --Trick or treat...
      THANK_YOU_TREAT =  8108; --And now for your treat...
       HERE_TAKE_THIS =  8109; --Here, take this...
     IF_YOU_WEAR_THIS =  8110; --If you put this on and walk around, something...unexpected might happen...
            THANK_YOU =  8108; --Thank you...
- 
+
 -- Shop Texts
     SOMNPAEMN_CLOSED_DIALOG =  7416; --I'm trying to start a business selling goods from Sarutabaruta,
        YAFAFA_CLOSED_DIALOG =  7417; --I'm trying to start a business selling goods from Kolshushu,

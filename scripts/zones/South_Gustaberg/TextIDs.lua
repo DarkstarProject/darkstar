@@ -15,7 +15,7 @@ ITEM_CANNOT_BE_OBTAINED = 6390; -- You cannot obtain the item <item>. Come back 
 MEAT_ALREADY_PUT = 7365; -- is already in the fire
 
 -- Other dialog
-		NOTHING_HAPPENS = 133;  -- Nothing happens...
+        NOTHING_HAPPENS = 133;  -- Nothing happens...
 NOTHING_OUT_OF_ORDINARY = 6407; -- There is nothing out of the ordinary here.
 
       MONSTER_TRACKS = 7357; -- You see monster tracks on the ground.

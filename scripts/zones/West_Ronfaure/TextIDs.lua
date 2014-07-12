@@ -11,7 +11,7 @@ ITEM_CANNOT_BE_OBTAINED = 6390; -- You cannot obtain the item <item> come back a
 CONQUEST = 7488; -- You've earned conquest points!
 
 -- Other
-	COLMAIE_DIALOG = 7289; -- Orcish scouts lurk in the shadows. Consider yourself warned!
+    COLMAIE_DIALOG = 7289; -- Orcish scouts lurk in the shadows. Consider yourself warned!
   GACHEMAGE_DIALOG = 7289; -- Orcish scouts lurk in the shadows. Consider yourself warned!
   ADALEFONT_DIALOG = 7290; -- If you sense danger, just flee into the city. I'll not endanger myself on your account!
    LAILLERA_DIALOG = 7291; -- I mustn't chat while on duty. Sorry.

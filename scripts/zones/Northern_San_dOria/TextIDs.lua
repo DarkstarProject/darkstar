@@ -13,13 +13,13 @@
 
 -- Conquest System
 CONQUEST = 11635; -- You've earned conquest points!
-      
+
 -- Mission Dialogs
 ORIGINAL_MISSION_OFFSET = 16; -- Bring me one of those axes, and your mission will be a success. No running away now; we've a proud country to defend!
  YOU_ACCEPT_THE_MISSION = 5;  -- You accept the mission.
 
 -- Quest Dialog
-   OLBERGIEUT_DIALOG = 11200; -- Friar Faurbellant is on retreat at the Crag of Holla. Please give 
+   OLBERGIEUT_DIALOG = 11200; -- Friar Faurbellant is on retreat at the Crag of Holla. Please give
        FLYER_REFUSED = 11448; -- Your flyer is refused.
       FLYER_ACCEPTED = 11987; -- Your flyer is accepted!
        FLYER_ALREADY = 11988; -- This person already has a flyer.
@@ -41,12 +41,12 @@ ORIGINAL_MISSION_OFFSET = 16; -- Bring me one of those axes, and your mission wi
      SOCHIENE_DIALOG = 11277; -- You stand before Victory Arch. Southern San d'Oria is on the other side.
      PEPIGORT_DIALOG = 11278; -- This gate leads to Port San d'Oria.
    RODAILLECE_DIALOG = 11279; -- This is Ranperre Gate. Fiends lurk in the lands beyond, so take caution!
-   
+
       GALAHAD_DIALOG = 11292; -- Welcome to the Consulate of Jeuno. I am Galahad, Consul to San d'Oria.
        ISHWAR_DIALOG = 11293; -- May I assist you?
        ARIENH_DIALOG = 11294; -- If you have business with Consul Galahad, you'll find him inside.
        EMILIA_DIALOG = 11292; -- Welcome to the Consulate of Jeuno.
-	   
+
        HELAKU_DIALOG = 11324; -- Leave this building, and you'll see a great fortress to the right. That's Chateau d'Oraguille. And be polite; San d'Orians can be quite touchy.
 
      KASARORO_DIALOG = 11363; -- Step right outside, and you'll see a big castle on the left. That's Chateau d'Oraguille. They're a little touchy in there, so mind your manners!
@@ -75,7 +75,7 @@ GUILBERDRIER_MESSAGE = 13294; -- Guilberdrier looks over curiously for a moment.
     LUCRETIA_SHOP_DIALOG = 11471; -- Blacksmiths' Guild shop, at your service!
 
   CAUZERISTE_SHOP_DIALOG = 11538; -- Welcome! San d'Oria Carpenters' Guild shop, at your service.
-  
+
     ANTONIAN_OPEN_DIALOG = 11553; -- Interested in goods from Aragoneu?
      BONCORT_SHOP_DIALOG = 11554; -- Welcome to the Phoenix Perch!
  PIRVIDIAUCE_SHOP_DIALOG = 11555; -- Care to see what I have?
@@ -83,7 +83,7 @@ GUILBERDRIER_MESSAGE = 13294; -- Guilberdrier looks over curiously for a moment.
      VICHUEL_OPEN_DIALOG = 11557; -- Fauregandi produce for sale!
      ARLENNE_SHOP_DIALOG = 11558; -- Welcome to the Royal Armory!
    TAVOURINE_SHOP_DIALOG = 11559; -- Looking for a weapon? We've got many in stock!
-   
+
   ANTONIAN_CLOSED_DIALOG = 11563; -- The Kingdom's influence is waning in Aragoneu. I cannot import goods from that region, though I long to.
 PALGUEVION_CLOSED_DIALOG = 11564; -- Would that Valdeaunia came again under San d'Orian dominion, I could then import its goods!
    VICHUEL_CLOSED_DIALOG = 11565; -- I'd make a killing selling Fauregandi produce here, but that region's not under San d'Orian control!
@@ -97,11 +97,11 @@ MILLECHUCA_CLOSED_DIALOG = 12542; -- I've been trying to import goods from Vollb
 
     ATTARENA_OPEN_DIALOG = 12627; -- Good day! Take a look at my selection from Li'Telor!
   MILLECHUCA_OPEN_DIALOG = 12628; -- Specialty goods from Vollbow! Specialty goods from Vollbow!
-  
+
   ARACHAGNON_SHOP_DIALOG = 12830; -- Would you be interested in purchasing some adventurer-issue armor? Be careful when selecting, as we accept no refunds.
 
        JUSTI_SHOP_DIALOG = 13483; -- Hello!
-	   
+
 -- Harvest Festival
       TRICK_OR_TREAT = 12973; -- Trick or treat...
      THANK_YOU_TREAT = 12974; -- And now for your treat...

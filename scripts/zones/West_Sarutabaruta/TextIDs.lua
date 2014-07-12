@@ -25,7 +25,7 @@ KOLAPO_OILAPO_DIALOG = 7354; -- Hi-diddly-diddly! This is the gateway to Windurs
         IPUPU_DIALOG = 7358; -- I decided to take a little strolly-wolly, but before I realized it, I found myself way out here! Now I am sorta stuck... Woe is me!
 
 -- Other Dialog
-		NOTHING_HAPPENS = 7274; -- Nothing happens...
+        NOTHING_HAPPENS = 7274; -- Nothing happens...
 NOTHING_OUT_OF_ORDINARY = 7368; -- There is nothing out of the ordinary here.
 
 -- Signs

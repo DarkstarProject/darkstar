@@ -19,6 +19,6 @@ CHEST_UNLOCKED = 7712; -- You unlock the chest!
   CHEST_MOOGLE = 7717; -- You cannot open the chest while participating in the moogle event.
 CHEST_ILLUSION = 7718; -- The chest was but an illusion...
   CHEST_LOCKED = 7719; -- The chest appears to be locked.
-  
+
 -- NPCs
 RAKOROK_DIALOGUE = 7689; -- Nsy pipul. Gattohre! I bisynw!

@@ -38,7 +38,7 @@ PARIKE_PORANKE_DIALOG = 8884; -- All these people running back and forth... Ther
       PARIKE_PORANKE_15 = 8913; -- You know, I've learned a lot from my mist--er, I mean, less-than-successful attempts at weight-loss consulting.
       PARIKE_PORANKE_16 = 8914; -- To show you my gratitude, let me try out this new spell I thought up yesterday while I was taking a nap!
         MERTAIRE_DIALOG = 7355; -- Who are you? Leave me alone!
-        
+
 -- Conquest system
 CONQUEST = 7986; -- You've earned conquest points!
 
@@ -47,14 +47,14 @@ CONQUEST = 7986; -- You've earned conquest points!
   STINKNIX_SHOP_DIALOG = 7061; -- Hey, how ya doin'? We got the best junk in town.
      HASIM_SHOP_DIALOG = 7062; -- Welcome to Waag-Deeg's Magic Shop.
       TAZA_SHOP_DIALOG = 7062; -- Welcome to Waag-Deeg's Magic Shop.
-      SUSU_SHOP_DIALOG = 7062; -- Welcome to Waag-Deeg's Magic Shop.  
+      SUSU_SHOP_DIALOG = 7062; -- Welcome to Waag-Deeg's Magic Shop.
     CHETAK_SHOP_DIALOG = 7063; -- Welcome to Othon's Garments.
   CHENOKIH_SHOP_DIALOG = 7063; -- Welcome to Othon's Garments.
-   YOSKOLO_SHOP_DIALOG = 7064; -- Welcome to the Merry Minstrel's Meadhouse. What'll it be?  
+   YOSKOLO_SHOP_DIALOG = 7064; -- Welcome to the Merry Minstrel's Meadhouse. What'll it be?
  ADELFLETE_SHOP_DIALOG = 7065; -- Here at Gems by Kshama, we aim to please.
    MOREFIE_SHOP_DIALOG = 7065; -- Here at Gems by Kshama, we aim to please.
    MATOAKA_SHOP_DIALOG = 7065; -- Here at Gems by Kshama, we aim to please.
-  RHIMONNE_SHOP_DIALOG = 7068; -- Howdy! Thanks for visiting the Chocobo Shop!  
-   PAWKRIX_SHOP_DIALOG = 7565; -- Hey, we're fixin' up some stew. Gobbie food's good food!  
-AMALASANDA_SHOP_DIALOG = 7613; -- Welcome to the Tenshodo. You want something, we got it. We got all kinds of special merchandise you won't find anywhere else!   
+  RHIMONNE_SHOP_DIALOG = 7068; -- Howdy! Thanks for visiting the Chocobo Shop!
+   PAWKRIX_SHOP_DIALOG = 7565; -- Hey, we're fixin' up some stew. Gobbie food's good food!
+AMALASANDA_SHOP_DIALOG = 7613; -- Welcome to the Tenshodo. You want something, we got it. We got all kinds of special merchandise you won't find anywhere else!
  AKAMAFULA_SHOP_DIALOG = 7614; -- We ain't cheap, but you get what you pay for! Take your time, have a look around, see if there's somethin' you like.

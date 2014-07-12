@@ -5,7 +5,7 @@
              ITEM_OBTAINED = 6538; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
               GIL_OBTAINED = 6539; -- Obtained <<<Numeric Parameter 0>>> gil.
           KEYITEM_OBTAINED = 6541; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
-			  KEYITEM_LOST = 6542; -- Lost key item: <<<Unknown Parameter (Type: 80) 1>>>
+              KEYITEM_LOST = 6542; -- Lost key item: <<<Unknown Parameter (Type: 80) 1>>>
        NOT_HAVE_ENOUGH_GIL = 6543; -- You do not have enough gil.
              HOMEPOINT_SET = 6609; -- Home point set!
     FISHING_MESSAGE_OFFSET = 6941; -- You can't fish here.
@@ -23,19 +23,19 @@ YOU_ACCEPT_THE_MISSION = 6694; -- You have accepted the mission.
 -- Shop Texts
               JU_KAMJA_DIALOG = 6785; -- We can deliver goods to your residence or to the residences of your friends.
          PEW_SAHBARAEF_DIALOG = 6785; -- We can deliver goods to your residence or to the residences of your friends.
-		 
-		VALERIANO_SHOP_DIALOG = 7383; -- Halfling philosophers and heroine beauties, welcome to the Troupe Valeriano show! And how gorgeous and green this fair town is!
-		 
+
+        VALERIANO_SHOP_DIALOG = 7383; -- Halfling philosophers and heroine beauties, welcome to the Troupe Valeriano show! And how gorgeous and green this fair town is!
+
          RETTO_MARUTTO_DIALOG = 7796; -- Allo-allo! If you're after boneworking materials, then make sure you buy them herey in Windurst! We're the cheapest in the whole wide worldy!
            SHIH_TAYUUN_DIALOG = 7798; -- Oh, that Retto-Marutto... If he keeps carrying on while speaking to the customers, he'll get in trouble with the guildmaster again!
        KUZAH_HPIROHPON_DIALOG = 7807; -- want to get your paws on the top-quality materials as used in the Weaverrrs' Guild?
                 MERIRI_DIALOG = 7809; -- If you're interested in buying some works of art from our Weavers' Guild, then you've come to the right placey-wacey.
 
            QUESSE_SHOP_DIALOG = 8349; -- Welcome to the Windurst Chocobo Stables.
-        MONONCHAA_SHOP_DIALOG = 8350; -- , then hurry up and decide, then get the heck out of herrre!		   
-           MANYNY_SHOP_DIALOG = 8351; -- Are you in urgent needy-weedy of anything? I have a variety of thingy-wingies you may be interested in.		
-        WIJETIREN_SHOP_DIALOG = 8356; -- From humble Mithran cold medicines to the legendary Windurstian ambrrrosia of immortality, we have it all...				
-				
+        MONONCHAA_SHOP_DIALOG = 8350; -- , then hurry up and decide, then get the heck out of herrre!
+           MANYNY_SHOP_DIALOG = 8351; -- Are you in urgent needy-weedy of anything? I have a variety of thingy-wingies you may be interested in.
+        WIJETIREN_SHOP_DIALOG = 8356; -- From humble Mithran cold medicines to the legendary Windurstian ambrrrosia of immortality, we have it all...
+
      NHOBI_ZALKIA_OPEN_DIALOG = 8359; -- Psst... Interested in some rrreal hot property? From lucky chocobo digs to bargain goods that fell off the back of an airship...all my stuff is a rrreal steal!
    NHOBI_ZALKIA_CLOSED_DIALOG = 8360; -- You're interested in some cheap shopping, rrright? I'm real sorry. I'm not doing business rrright now.
 

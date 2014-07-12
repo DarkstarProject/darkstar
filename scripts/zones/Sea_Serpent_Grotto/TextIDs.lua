@@ -14,14 +14,14 @@ NOTHING_OUT_OF_ORDINARY = 6393; -- There is nothing out of the ordinary here.
 
 -- Treasure Coffer/Chest Dialog
 CHEST_UNLOCKED = 7281; -- You unlock the chest!
-    CHEST_FAIL = 7282; -- Fails to open the chest. 
-    CHEST_TRAP = 7283; -- The chest was trapped! 
+    CHEST_FAIL = 7282; -- Fails to open the chest.
+    CHEST_TRAP = 7283; -- The chest was trapped!
     CHEST_WEAK = 7284; -- You cannot open the chest when you are in a weakened state.
-   CHEST_MIMIC = 7285; -- The chest was a mimic! 
+   CHEST_MIMIC = 7285; -- The chest was a mimic!
   CHEST_MOOGLE = 7286; -- You cannot open the chest while participating in the moogle event.
 CHEST_ILLUSION = 7287; -- The chest was but an illusion...
   CHEST_LOCKED = 7288; -- The chest appears to be locked.
-    
+
 -- Sahagin Key Door Texts
  SAHAGIN_DOOR_INSIDE = 7299; -- The door is tightly shut.
 SAHAGIN_DOOR_OUTSIDE = 7300; -- This door has an oddly shaped keyhole. It looks as if once you enter, you may not be able to get out the way you came in.

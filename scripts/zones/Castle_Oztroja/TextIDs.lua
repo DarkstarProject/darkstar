@@ -14,7 +14,7 @@ FULL_INVENTORY_AFTER_TRADE = 6563; -- You cannot obtain the #. Try trading again
            NOTHING_OUT_OF_ORDINARY = 7732; -- There is nothing out of the ordinary here.
                         ITS_LOCKED = 1; -- It's locked.
 PROBABLY_WORKS_WITH_SOMETHING_ELSE = 3; -- It probably works with something else.
-						 TORCH_LIT = 5; -- The torch is lit.
+                         TORCH_LIT = 5; -- The torch is lit.
 
 -- Treasure Coffer/Chest Dialog
 CHEST_UNLOCKED = 7389; -- You unlock the chest!

@@ -5,7 +5,7 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item>. Come back 
           ITEM_OBTAINED = 6379; -- Obtained: <item>.
            GIL_OBTAINED = 6380; -- Obtained <number> gil.
        KEYITEM_OBTAINED = 6382; -- Obtained key item: <keyitem>.
-	    BEASTMEN_BANNER = 7101; -- There is a beastmen's banner.
+        BEASTMEN_BANNER = 7101; -- There is a beastmen's banner.
  FISHING_MESSAGE_OFFSET = 7521; -- You can't fish here.
 
 -- Conquest
@@ -21,6 +21,6 @@ HARVESTING_IS_POSSIBLE_HERE = 7670; -- Harvesting is possible here if you have
 ALREADY_HAVE_ALL_FRAGS = 7644; -- You have obtained all of the fragments. You must hurry to the ruins of the ancient shrine!
        FOUND_ALL_FRAGS = 7645; -- You now have all 8 fragments of light!
        ZILART_MONUMENT = 7646; -- It is an ancient Zilart monument.
-       
+
 -- Other
 NOTHING_HAPPENS = 119; -- Nothing happens...
