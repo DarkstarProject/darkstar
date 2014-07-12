@@ -505,20 +505,22 @@ int32 CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender,
 *  Calculates Spike Damage									            *
 *                                                                       *
 ************************************************************************/
-uint16 CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 spikesType, uint16 damageTaken)
+uint16 CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint16 damageTaken)
 {
-    uint16 damage = PDefender->getMod(MOD_SPIKES_DMG);
+    uint16 damage = Action->spikesParam;
     int16 intStat = PDefender->INT();
     int16 mattStat = PDefender->getMod(MOD_MATT);
 
-    switch(spikesType){
+    switch(Action->spikesEffect)
+    {
         case SPIKE_DREAD:
             // drain same as damage taken
             damage = damageTaken;
         break;
         case SPIKE_REPRISAL:
             damage += (float)damageTaken*0.3;
-            if(PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_SENTINEL)){
+            if(PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_SENTINEL))
+            {
                 // bonus
                 damage *= WELL512::irand()%2+1;
             }
@@ -532,26 +534,25 @@ uint16 CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, 
 
 bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint32 damage)
 {
-    uint16 spikes = PDefender->getMod(MOD_SPIKES);
-    Action->spikesMessage = 44;
     Action->spikesEffect = (SUBEFFECT)PDefender->getMod(MOD_SPIKES);
+    Action->spikesMessage = 44;
+    Action->spikesParam = PDefender->getMod(MOD_SPIKES_DMG);
 
-    if (spikes)
+    if (Action->spikesEffect > 0)
     {
         if (PDefender->objtype == TYPE_MOB)
         {
+            // check if spikes are handled in mobs script
+            luautils::OnSpikesDamage(PDefender, PAttacker, Action, Action->spikesParam);
+
             // calculate damage
-            Action->spikesParam = HandleStoneskin(PAttacker, CalculateSpikeDamage(PAttacker, PDefender, spikes, damage));
+            Action->spikesParam = HandleStoneskin(PAttacker, CalculateSpikeDamage(PAttacker, PDefender, Action, damage));
 
-            // handle level diff
-            int lvlDiff = dsp_cap((PDefender->GetMLevel() - PAttacker->GetMLevel()), -5, 5) * 2;
-
-            switch (spikes)
+            switch (Action->spikesEffect)
             {
                 case SPIKE_BLAZE:
                 case SPIKE_ICE:
                 case SPIKE_SHOCK:
-                    luautils::OnSpikesDamage(PDefender, PAttacker, Action, Action->spikesParam);
                     PAttacker->addHP(-Action->spikesParam);
                     break;
 
@@ -565,8 +566,6 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
                     {
                         Action->addEffectMessage = 132;
 
-                        luautils::OnSpikesDamage(PDefender, PAttacker, Action, Action->spikesParam);
-
                         PDefender->addHP(Action->spikesParam);
                         PAttacker->addHP(-Action->spikesParam);
                     }
@@ -575,7 +574,6 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
                 case SPIKE_REPRISAL:
                     if (Action->reaction == REACTION_BLOCK)
                     {
-                        luautils::OnSpikesDamage(PDefender, PAttacker, Action, Action->spikesParam);
                         PAttacker->addHP(-Action->spikesParam);
                     }
                     else
@@ -612,9 +610,8 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
                 damage = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_DMG);
                 chance = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_CHANCE);
 
-                if (spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance)){
+                if (spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance))
                     return true;
-                }
             }
 
             // BODY
@@ -632,10 +629,8 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
                 damage = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_DMG);
                 chance = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_CHANCE);
 
-                if (spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance)){
-                    //body activated return
+                if (spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance))
                     return true;
-                }
             }
 
             // LEGS
@@ -653,9 +648,8 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
                 damage = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_DMG);
                 chance = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_CHANCE);
 
-                if (spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance)){
+                if (spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance))
                     return true;
-                }
             }
 
             // HEAD
@@ -674,9 +668,8 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
                 damage = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_DMG);
                 chance = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_CHANCE);
 
-                if (spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance)){
+                if (spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance))
                     return true;
-                }
             }
 
             // HANDS
@@ -694,10 +687,10 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
                 damage = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_DMG);
                 chance = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_CHANCE);
 
-                if (spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance)){
+                if (spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance))
                     return true;
-                }
             }
+
 
             // FEET
             PItem = PCharDef->getEquip(SLOT_FEET);
@@ -714,9 +707,8 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
                 damage = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_DMG);
                 chance = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_CHANCE);
 
-                if (spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance)){
+                if (spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance))
                     return true;
-                }
             }
         }
     }
