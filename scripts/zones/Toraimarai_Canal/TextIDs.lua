@@ -18,5 +18,5 @@ CHEST_ILLUSION = 7333; -- The chest was but an illusion...
   CHEST_LOCKED = 7334; -- The chest appears to be locked.
 
 -- Quest dialog
-	SEALED_SHUT = 3; -- It's sealed shut with incredibly strong magic.
+     SEALED_SHUT = 3; -- It's sealed shut with incredibly strong magic.
  CHEST_IS_LOCKED = 7320; -- This chest is locked. It can be opened with

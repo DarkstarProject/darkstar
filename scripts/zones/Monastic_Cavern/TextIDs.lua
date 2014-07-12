@@ -18,7 +18,7 @@ CHEST_ILLUSION = 7262; -- The chest was but an illusion...
 
 -- Other dialog
      NOTHING_OUT_OF_ORDINARY = 6393; -- There is nothing out of the ordinary here.
-					   ALTAR = 7235; -- This appears to be an altar.
+                       ALTAR = 7235; -- This appears to be an altar.
 THE_MAGICITE_GLOWS_OMINOUSLY = 7238; -- The magicite glows ominously.
 
 ORCISH_OVERLORD_ENGAGE = 7268; -- Intruders? Get outs here! We gots us some adventurers!

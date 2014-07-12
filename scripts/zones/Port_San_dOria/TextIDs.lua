@@ -8,7 +8,7 @@ FULL_INVENTORY_AFTER_TRADE =  6414; -- You cannot obtain the <<<Possible Special
              ITEM_OBTAINED =  6415; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>#<<<BAD CHAR: 8280>>><<<BAD CHAR: 80>>><<<BAD CHAR: 80>>>.
               GIL_OBTAINED =  6416; -- Obtained <<<Numeric Parameter 0>>> gil.
           KEYITEM_OBTAINED =  6418; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>3<<<BAD CHAR: 8280>>><<<BAD CHAR: 80>>><<<BAD CHAR: 80>>>.
-             HOMEPOINT_SET =  24; 	-- Home point set!
+             HOMEPOINT_SET =  24;   -- Home point set!
     FISHING_MESSAGE_OFFSET =  7168; -- You can't fish here.
 
       ITEM_DELIVERY_DIALOG =  7883; -- Now delivering parcels to rooms everywhere!

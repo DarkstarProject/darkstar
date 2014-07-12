@@ -8,9 +8,9 @@
              HOMEPOINT_SET = 6609; -- Home point set!
     FISHING_MESSAGE_OFFSET = 6896; -- You can't fish here.
            COOKING_SUPPORT = 6995; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
-	
+
 -- Other
-DIABOLOS_UNLOCKED = 11730; -- You are now able to summon Diabolos!	
+DIABOLOS_UNLOCKED = 11730; -- You are now able to summon Diabolos!
 
 -- Conquest System
 CONQUEST = 9054; -- You've earned conquest points!
@@ -21,7 +21,7 @@ YOU_ACCEPT_THE_MISSION = 6694; -- You have accepted the mission.
 -- Shop Texts
          KOPOPO_SHOP_DIALOG = 7683; -- Cooking is as much an art as music and painting are. Can your taste buds appreciate the full value of our works of art?
    CHOMOJINJAHL_SHOP_DIALOG = 7688; -- The qualities needed to be a good cook are strong arms, a sense of taste, and devotion.
-   
+
          ENSASA_SHOP_DIALOG = 8755; -- Welcome to my little catalyst shop, where you'll find a range of general and unusual goods!
     UPIHKHACHLA_SHOP_DIALOG = 8756; -- For adventurerrrs on the go, Ensasa's Catalyst Shop is the place for all you need in generrral goods!
   SHOHRUNTUHRUN_SHOP_DIALOG = 8758; -- Oh, hidey-widey! This is the Federal Magic Reservey-wervey. What can I do for you today-oway?
@@ -49,7 +49,7 @@ NESSRUGETOMALL_SHOP_DIALOG = 11301; -- Welcome to the Rarab Tail Hostelry.
 
   PRESTAPIQ_CLOSED_DIALOG = 10496; -- Goodebyongo! Wingdorsht tooo fhar awayz fhrum mai hormtowne! Dropt arll goodhys whylle ahn trripp!
     PRESTAPIQ_OPEN_DIALOG = 10497; -- Helgohelgo! Me's bhrink goodhys arll ja wayz fhrum hormtowne ovf Morvalporlis!
-	
+
 -- Harvest Festival
       TRICK_OR_TREAT = 10003; -- Trick or treat...
      THANK_YOU_TREAT = 10004; -- And now for your treat...

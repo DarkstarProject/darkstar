@@ -19,7 +19,7 @@ NOMAD_MOOGLE_DIALOG = 10131; -- I'm a traveling moogle, kupo. I help adventurers
 
 -- Shop Texts
 SHINY_TEETH_SHOP_DIALOG = 9983;  -- Well met, adventurer. If you're looking for a weapon to carve through those desert beasts, you've come to the right place.
-  BRAVEWOLF_SHOP_DIALOG = 9984;  -- For rainy days and windy days, or for days when someone tries to thrust a spear in your guts, having a good set of armor can set your mind at ease.     
+  BRAVEWOLF_SHOP_DIALOG = 9984;  -- For rainy days and windy days, or for days when someone tries to thrust a spear in your guts, having a good set of armor can set your mind at ease.
     BRAVEOX_SHOP_DIALOG = 9985;  -- These days, you can get weapons and armor cheap at the auction houses. But magic is expensive no matter where you go.
    SCAMPLIX_SHOP_DIALOG = 9986;  -- No problem, Scamplix not bad guy. Scamplix is good guy, sells stuff to adventurers. Scamplix got lots of good stuff for you.
    GENEROIT_SHOP_DIALOG = 10249; -- Ho there! I am called Generoit. I have everything here for the chocobo enthusiast, and other rare items galore.

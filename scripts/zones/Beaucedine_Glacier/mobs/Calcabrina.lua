@@ -3,6 +3,7 @@
 --  NM:  Calcabrina
 -----------------------------------
 require("scripts/globals/status");
+require("scripts/globals/magic");
 -----------------------------------
 
 
@@ -11,7 +12,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-    -- mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
+    mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
 end;
 
 -----------------------------------
@@ -39,15 +40,15 @@ function onAdditionalEffect(mob,target,damage)
         local params = {};
         params.bonusmab = 0;
         params.includemab = false;
-        drain = addBonusesAbility(player, ELE_DARK, target, drain, params);
-        drain = drain * applyResistanceAddEffect(player,target,ELE_DARK,0);
+        drain = addBonusesAbility(mob, ELE_DARK, target, drain, params);
+        drain = drain * applyResistanceAddEffect(mob,target,ELE_DARK,0);
         drain = adjustForTarget(target,drain,ELE_DARK);
 
         if (drain < 0) then
-            drain = 0
+            drain = 10
         end
 
-        drain = finalMagicNonSpellAdjustments(player,target,ELE_DARK,drain);
+        drain = finalMagicNonSpellAdjustments(target,mob,ELE_DARK,drain);
         return SUBEFFECT_HP_DRAIN, 161, mob:addHP(drain);
     end
 

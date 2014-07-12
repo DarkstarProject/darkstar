@@ -45,7 +45,7 @@ SHEIAPOHRICHAMAHA_CLOSED_DIALOG = 4144; -- I'm a traveling merrrchant. There arr
              ZOREEN_OPEN_DIALOG = 4145; -- Buy somethin' from Valdeaunia...?
            ZOREEN_CLOSED_DIALOG = 4146; -- Valdeaunia...
 
-      KHEL_PAHLHAMA_SHOP_DIALOG = 11159; -- These magic shells are full of mysteries...		   
+      KHEL_PAHLHAMA_SHOP_DIALOG = 11159; -- These magic shells are full of mysteries...
                RYAN_SHOP_DIALOG = 11663; -- I have no time for white-livered scum that rely on magic alone.
              DROZGA_SHOP_DIALOG = 11664; -- Not only is Ryan a boorish lout, but his craftsmanship leaves much to be desired, as well. You're better off buyin' from me.
 
@@ -54,8 +54,8 @@ SHEIAPOHRICHAMAHA_CLOSED_DIALOG = 4144; -- I'm a traveling merrrchant. There arr
 
    SATTSUHAHKANPARI_OPEN_DIALOG = 12386; -- You can look, but don't touch! And rememberrr, you break it, you bought it!
  SATTSUHAHKANPARI_CLOSED_DIALOG = 12387; -- You've heard of the Elshimo Uplands, haven't you? Well, if you'll hold on a minute, I'll have a shipment of goods coming in any time now.
- 
-	  KUCHAMALKOBHI_SHOP_DIALOG = 12532; -- How about a nice suit of adventurer-issue armorrr? Be careful though. We offer no rrrefunds!
+
+      KUCHAMALKOBHI_SHOP_DIALOG = 12532; -- How about a nice suit of adventurer-issue armorrr? Be careful though. We offer no rrrefunds!
 
             ALIZABE_OPEN_DIALOG = 12712; -- Don't tell anybody, but I've managed to get my hands on some items from Tavnazia! Take a look!
           ALIZABE_CLOSED_DIALOG = 12713; -- Pssst! Have you heard of Tavnazia? Boy, do they have some sweet items on those islands...

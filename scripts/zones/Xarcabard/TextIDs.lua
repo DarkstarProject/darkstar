@@ -5,7 +5,7 @@ ITEM_CANNOT_BE_OBTAINED = 6389; -- You cannot obtain the item <item>. Come back 
           ITEM_OBTAINED = 6392; -- Obtained: <item>.
            GIL_OBTAINED = 6393; -- Obtained <number> gil.
        KEYITEM_OBTAINED = 6395; -- Obtained key item: <keyitem>.
-		BEASTMEN_BANNER = 7112; -- There was a curse on the beastmen's banner!
+        BEASTMEN_BANNER = 7112; -- There was a curse on the beastmen's banner!
   ALREADY_OBTAINED_TELE = 7241; -- You already possess the gate crystal for this telepoint.
 
 -- Conquest
