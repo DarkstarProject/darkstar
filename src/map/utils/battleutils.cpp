@@ -534,193 +534,192 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
 {
     uint16 spikes = PDefender->getMod(MOD_SPIKES);
     Action->spikesMessage = 44;
-    if(spikes)
+    Action->spikesEffect = (SUBEFFECT)PDefender->getMod(MOD_SPIKES);
+
+    if (spikes)
     {
-        Action->spikesParam = HandleStoneskin(PAttacker, CalculateSpikeDamage(PAttacker, PDefender, spikes, damage));
+        if (PDefender->objtype == TYPE_MOB)
+        {
+            // calculate damage
+            Action->spikesParam = HandleStoneskin(PAttacker, CalculateSpikeDamage(PAttacker, PDefender, spikes, damage));
 
-        // handle level diff
-        int lvlDiff = dsp_cap((PDefender->GetMLevel() - PAttacker->GetMLevel()), -5, 5)*2;
+            // handle level diff
+            int lvlDiff = dsp_cap((PDefender->GetMLevel() - PAttacker->GetMLevel()), -5, 5) * 2;
 
-        switch(spikes){
-
-            case SPIKE_BLAZE:
-            Action->spikesEffect = SUBEFFECT_BLAZE_SPIKES;
-            PAttacker->addHP(-Action->spikesParam);
-            break;
-
-            case SPIKE_ICE:
-            Action->spikesEffect = SUBEFFECT_ICE_SPIKES;
-            PAttacker->addHP(-Action->spikesParam);
-            break;
-
-            case SPIKE_SHOCK:
-            Action->spikesEffect = SUBEFFECT_SHOCK_SPIKES;
-            PAttacker->addHP(-Action->spikesParam);
-            break;
-
-            case SPIKE_DREAD:
-                if(PAttacker->m_EcoSystem == SYSTEM_UNDEAD){
-                    // is undead no effect
-                    return false;
-                } else {
-                    Action->addEffectMessage = 132;
-
+            switch (spikes)
+            {
+                case SPIKE_BLAZE:
+                case SPIKE_ICE:
+                case SPIKE_SHOCK:
+                    luautils::OnSpikesDamage(PDefender, PAttacker, Action, Action->spikesParam);
                     PAttacker->addHP(-Action->spikesParam);
-                    PDefender->addHP(Action->spikesParam);
+                    break;
 
-                    if(PDefender->objtype == TYPE_PC){
-                        charutils::UpdateHealth((CCharEntity*)PDefender);
+                case SPIKE_DREAD:
+                    if (PAttacker->m_EcoSystem == SYSTEM_UNDEAD)
+                    {
+                        // is undead no effect
+                        return false;
                     }
+                    else
+                    {
+                        Action->addEffectMessage = 132;
 
-                    Action->spikesEffect = SUBEFFECT_DREAD_SPIKES;
+                        luautils::OnSpikesDamage(PDefender, PAttacker, Action, Action->spikesParam);
+
+                        PDefender->addHP(Action->spikesParam);
+                        PAttacker->addHP(-Action->spikesParam);
+                    }
+                    break;
+
+                case SPIKE_REPRISAL:
+                    if (Action->reaction == REACTION_BLOCK)
+                    {
+                        luautils::OnSpikesDamage(PDefender, PAttacker, Action, Action->spikesParam);
+                        PAttacker->addHP(-Action->spikesParam);
+                    }
+                    else
+                    {
+                        // only works on shield blocks
+                        return false;
+                    }
+                    break;
+            }
+
+            if (PAttacker->objtype == TYPE_PC)
+                charutils::UpdateHealth((CCharEntity*)PAttacker);
+
+            return true;
+        }
+        else if (PDefender->objtype == TYPE_PC)
+        {
+            CCharEntity* PCharDef = (CCharEntity*)PDefender;
+            bool activate = false;
+            uint8 chance;
+            SUBEFFECT spikesEffect = SUBEFFECT_NONE;
+            uint8 damage;
+
+            // SHIELD
+            CItem* PItem = PCharDef->getEquip(SLOT_SUB);
+
+            if (PItem)
+            {
+                if (((CItemArmor*)PItem)->getModifier(MOD_SPIKES) > 0 && ((CItemArmor*)PItem)->getModifier(MOD_SPIKES) < 7)
+                {
+                    spikesEffect = (SUBEFFECT)((CItemArmor*)PItem)->getModifier(MOD_SPIKES);
                 }
-            break;
 
-            case SPIKE_REPRISAL:
-                if(Action->reaction == REACTION_BLOCK){
-                    Action->spikesEffect = SUBEFFECT_REPRISAL;
-                    PAttacker->addHP(-Action->spikesParam);
-                } else {
-                    // only works on shield blocks
-                    return false;
+                damage = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_DMG);
+                chance = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_CHANCE);
+
+                if (spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance)){
+                    return true;
                 }
-            break;
-        }
+            }
 
-        if(PAttacker->objtype == TYPE_PC){
-            charutils::UpdateHealth((CCharEntity*)PAttacker);
-        }
+            // BODY
+            // deal with spikesEffect effect gear
+            PItem = PCharDef->getEquip(SLOT_BODY);
 
-        return true;
-    } else if(PDefender->objtype == TYPE_PC){
-        CCharEntity* PCharDef = (CCharEntity*)PDefender;
-        bool activate = false;
-        uint8 chance;
-        SUBEFFECT spikesEffect = SUBEFFECT_NONE;
-        uint8 damage;
-
-
-        // SHIELD
-        CItem* PItem = PCharDef->getEquip(SLOT_SUB);
-
-        if(PItem)
-        {
-            if (((CItemArmor*)PItem)->getModifier(MOD_SPIKES) > 0 && ((CItemArmor*)PItem)->getModifier(MOD_SPIKES) < 7)
+            if (PItem)
             {
-                spikesEffect = (SUBEFFECT)((CItemArmor*)PItem)->getModifier(MOD_SPIKES);
+                spikesEffect = (SUBEFFECT)0;
+                if (((CItemArmor*)PItem)->getModifier(MOD_SPIKES) > 0 && ((CItemArmor*)PItem)->getModifier(MOD_SPIKES) < 7)
+                {
+                    spikesEffect = (SUBEFFECT)((CItemArmor*)PItem)->getModifier(MOD_SPIKES);
+                }
+
+                damage = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_DMG);
+                chance = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_CHANCE);
+
+                if (spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance)){
+                    //body activated return
+                    return true;
+                }
             }
 
-            damage = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_DMG);
-            chance = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_CHANCE);
+            // LEGS
+            PItem = PCharDef->getEquip(SLOT_LEGS);
 
-            if(spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance)){
-                return true;
-            }
-        }
-
-        // BODY
-        // deal with spikesEffect effect gear
-        PItem = PCharDef->getEquip(SLOT_BODY);
-
-        if(PItem)
-        {
-            spikesEffect = (SUBEFFECT)0;
-            if (((CItemArmor*)PItem)->getModifier(MOD_SPIKES) > 0 && ((CItemArmor*)PItem)->getModifier(MOD_SPIKES) < 7)
+            if (PItem)
             {
-                spikesEffect = (SUBEFFECT)((CItemArmor*)PItem)->getModifier(MOD_SPIKES);
+                spikesEffect = (SUBEFFECT)0;
+
+                if (((CItemArmor*)PItem)->getModifier(MOD_SPIKES) > 0 && ((CItemArmor*)PItem)->getModifier(MOD_SPIKES) < 7)
+                {
+                    spikesEffect = (SUBEFFECT)((CItemArmor*)PItem)->getModifier(MOD_SPIKES);
+                }
+
+                damage = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_DMG);
+                chance = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_CHANCE);
+
+                if (spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance)){
+                    return true;
+                }
             }
 
-            damage = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_DMG);
-            chance = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_CHANCE);
+            // HEAD
+            PItem = PCharDef->getEquip(SLOT_HEAD);
 
-            if(spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance)){
-                //body activated return
-                return true;
-            }
-        }
-
-        // LEGS
-		PItem = PCharDef->getEquip(SLOT_LEGS);
-
-        if(PItem)
-        {
-            spikesEffect = (SUBEFFECT)0;
-
-            if (((CItemArmor*)PItem)->getModifier(MOD_SPIKES) > 0 && ((CItemArmor*)PItem)->getModifier(MOD_SPIKES) < 7)
+            if (PItem)
             {
-                spikesEffect = (SUBEFFECT)((CItemArmor*)PItem)->getModifier(MOD_SPIKES);
+                spikesEffect = (SUBEFFECT)0;
+
+
+                if (((CItemArmor*)PItem)->getModifier(MOD_SPIKES) > 0 && ((CItemArmor*)PItem)->getModifier(MOD_SPIKES) < 7)
+                {
+                    spikesEffect = (SUBEFFECT)((CItemArmor*)PItem)->getModifier(MOD_SPIKES);
+                }
+
+                damage = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_DMG);
+                chance = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_CHANCE);
+
+                if (spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance)){
+                    return true;
+                }
             }
 
-            damage = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_DMG);
-            chance = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_CHANCE);
+            // HANDS
+            PItem = PCharDef->getEquip(SLOT_HANDS);
 
-            if(spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance)){
-                return true;
-            }
-        }
-
-        // HEAD
-		PItem = PCharDef->getEquip(SLOT_HEAD);
-
-        if(PItem)
-        {
-            spikesEffect = (SUBEFFECT)0;
-
-
-            if (((CItemArmor*)PItem)->getModifier(MOD_SPIKES) > 0 && ((CItemArmor*)PItem)->getModifier(MOD_SPIKES) < 7)
+            if (PItem)
             {
-                spikesEffect = (SUBEFFECT)((CItemArmor*)PItem)->getModifier(MOD_SPIKES);
+                spikesEffect = (SUBEFFECT)0;
+
+                if (((CItemArmor*)PItem)->getModifier(MOD_SPIKES) > 0 && ((CItemArmor*)PItem)->getModifier(MOD_SPIKES) < 7)
+                {
+                    spikesEffect = (SUBEFFECT)((CItemArmor*)PItem)->getModifier(MOD_SPIKES);
+                }
+
+                damage = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_DMG);
+                chance = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_CHANCE);
+
+                if (spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance)){
+                    return true;
+                }
             }
 
-            damage = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_DMG);
-            chance = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_CHANCE);
+            // FEET
+            PItem = PCharDef->getEquip(SLOT_FEET);
 
-            if(spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance)){
-                return true;
-            }
-        }
-
-        // HANDS
-		PItem = PCharDef->getEquip(SLOT_HANDS);
-
-        if(PItem)
-        {
-            spikesEffect = (SUBEFFECT)0;
-
-            if (((CItemArmor*)PItem)->getModifier(MOD_SPIKES) > 0 && ((CItemArmor*)PItem)->getModifier(MOD_SPIKES) < 7)
+            if (PItem)
             {
-                spikesEffect = (SUBEFFECT)((CItemArmor*)PItem)->getModifier(MOD_SPIKES);
-            }
+                spikesEffect = (SUBEFFECT)0;
 
-            damage = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_DMG);
-            chance = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_CHANCE);
+                if (((CItemArmor*)PItem)->getModifier(MOD_SPIKES) > 0 && ((CItemArmor*)PItem)->getModifier(MOD_SPIKES) < 7)
+                {
+                    spikesEffect = (SUBEFFECT)((CItemArmor*)PItem)->getModifier(MOD_SPIKES);
+                }
 
-            if(spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance)){
-                return true;
-            }
-        }
+                damage = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_DMG);
+                chance = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_CHANCE);
 
-        // FEET
-		PItem = PCharDef->getEquip(SLOT_FEET);
-
-        if(PItem)
-        {
-            spikesEffect = (SUBEFFECT)0;
-
-            if (((CItemArmor*)PItem)->getModifier(MOD_SPIKES) > 0 && ((CItemArmor*)PItem)->getModifier(MOD_SPIKES) < 7)
-            {
-                spikesEffect = (SUBEFFECT)((CItemArmor*)PItem)->getModifier(MOD_SPIKES);
-            }
-
-            damage = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_DMG);
-            chance = ((CItemArmor*)PItem)->getModifier(MOD_SPIKES_CHANCE);
-            
-            if(spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance)){
-                return true;
+                if (spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, damage, spikesEffect, chance)){
+                    return true;
+                }
             }
         }
     }
-
     return false;
 }
 
