@@ -195,18 +195,6 @@ double getSynthDifficulty(CCharEntity* PChar, uint8 skillID)
 	uint8  strongElement[8] = {2,3,5,4,0,1,7,6};
 	uint16 ModID = 0;
 
-	switch (direction)
-	{
-		case 0: ElementDirection = ELEMENT_WIND;	  break;
-		case 1: ElementDirection = ELEMENT_EARTH;	  break;
-		case 2: ElementDirection = ELEMENT_LIGHTNING; break;
-		case 3: ElementDirection = ELEMENT_WATER;	  break;
-		case 4: ElementDirection = ELEMENT_FIRE;	  break;
-		case 5: ElementDirection = ELEMENT_DARK;	  break;
-		case 6: ElementDirection = ELEMENT_LIGHT;	  break;
-		case 7: ElementDirection = ELEMENT_ICE;		  break;
-	}
-
 	switch (skillID)
 	{
 		case SKILL_WDW: ModID = MOD_WOOD;		break;
@@ -223,25 +211,48 @@ double getSynthDifficulty(CCharEntity* PChar, uint8 skillID)
 	double difficult = PChar->CraftContainer->getQuantity(skillID-40) - (double)(charSkill + PChar->getMod(ModID));
 	double MoonPhase = (double)CVanaTime::getInstance()->getMoonPhase();
 
-	difficult -= (MoonPhase - 50)/50;	// full moon reduces difficulty by 1, new moon increases difficulty by 1, 50% moon has 0 effect
-
-	if (crystalElement == ElementDirection){
-		difficult -= 0.5;
-	}else if (strongElement[crystalElement] == ElementDirection){
-		difficult += 0.5;
+	if (map_config.craft_day_matters == 1)
+	{
+		if (crystalElement == WeekDay)
+			difficult -= 1;
+		else if (strongElement[crystalElement] == WeekDay)
+			difficult += 1;
+		else if (strongElement[WeekDay] == crystalElement)
+			difficult -= 1;
+		else if (WeekDay == LIGHTSDAY)
+			difficult -= 1;
+		else if (WeekDay == DARKSDAY)
+			difficult += 1;
 	}
 
-	if (crystalElement == WeekDay)
-		difficult -= 1;
-	else if (strongElement[crystalElement] == WeekDay)
-		difficult += 1;
-	else if (strongElement[WeekDay] == crystalElement)
-		difficult -= 1;
-	else if (WeekDay == LIGHTSDAY)
-		difficult -= 1;
-	else if (WeekDay == DARKSDAY)
-		difficult += 1;
+	if (map_config.craft_moonphase_matters == 1)
+	{
+		difficult -= (MoonPhase - 50)/50;	// full moon reduces difficulty by 1, new moon increases difficulty by 1, 50% moon has 0 effect
+	}
 
+	if (map_config.craft_direction_matters == 1)
+	{
+		switch (direction)
+		{
+			case 0: ElementDirection = ELEMENT_WIND;	  break;
+			case 1: ElementDirection = ELEMENT_EARTH;	  break;
+			case 2: ElementDirection = ELEMENT_LIGHTNING; break;
+			case 3: ElementDirection = ELEMENT_WATER;	  break;
+			case 4: ElementDirection = ELEMENT_FIRE;	  break;
+			case 5: ElementDirection = ELEMENT_DARK;	  break;
+			case 6: ElementDirection = ELEMENT_LIGHT;	  break;
+			case 7: ElementDirection = ELEMENT_ICE;		  break;
+		}
+
+		if (crystalElement == ElementDirection)
+		{
+			difficult -= 0.5;
+		}
+		else if (strongElement[crystalElement] == ElementDirection)
+		{
+			difficult += 0.5;
+		}
+	}
 
 	#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 	ShowDebug(CL_CYAN"Direction = %i\n" CL_RESET, ElementDirection);
