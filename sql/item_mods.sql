@@ -20035,44 +20035,14 @@ INSERT INTO `item_mods` VALUES(19245, 2, -15); -- HP-15
 INSERT INTO `item_mods` VALUES(20784, 23, 9); -- Attack+9
 INSERT INTO `item_mods` VALUES(20784, 29, 5); -- "Magic Def. Bonus"+5
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+-- ------------------------------------------
+-- Dornen Schuhs
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES(11433, 1, 28);
+INSERT INTO `item_mods` VALUES(11433, 2, 45);
+INSERT INTO `item_mods` VALUES(11433, 5, 45);
+INSERT INTO `item_mods` VALUES(11433, 27, 6);
+INSERT INTO `item_mods` VALUES(11433, 342, 5); -- shock spikes
+INSERT INTO `item_mods` VALUES(11433, 344, 20); -- spikes dmg
+INSERT INTO `item_mods` VALUES(11433, 499, 25); -- spikes proc rate
 
