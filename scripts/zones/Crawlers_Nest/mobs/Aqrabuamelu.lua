@@ -16,6 +16,35 @@ function onMobInitialize(mob)
 end;
 
 -----------------------------------
+-- onSpikesDamage
+-----------------------------------
+
+function onSpikesDamage(mob,target,damage)
+    local INT_diff = mob:getStat(MOD_INT) - target:getStat(MOD_INT);
+
+    if (INT_diff > 20) then
+        INT_diff = 20 + (INT_diff - 20) / 2;
+    end
+
+    local dmg = INT_diff+damage/2;
+    local params = {};
+    params.bonusmab = 0;
+    params.includemab = false;
+    dmg = addBonusesAbility(mob, ELE_ICE, target, dmg, params);
+    dmg = dmg * applyResistanceAddEffect(mob,target,ELE_ICE,0);
+    dmg = adjustForTarget(target,dmg,ELE_ICE);
+
+    if (dmg < 0) then
+        dmg = 10
+    end
+    
+    dmg = finalMagicNonSpellAdjustments(mob,target,ELE_ICE,dmg);
+
+    return SUBEFFECT_ICE_SPIKES,44,dmg;
+
+end;
+
+-----------------------------------
 -- onMobDeath
 -----------------------------------
 
