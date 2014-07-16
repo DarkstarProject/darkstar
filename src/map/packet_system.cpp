@@ -3319,10 +3319,12 @@ void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
     PChar->CraftContainer->Clean();
 
-	uint32 ItemID    = RBUFL(data,(0x06));
+	uint16 ItemID    = RBUFL(data,(0x06));
 	uint8  invSlotID = RBUFB(data,(0x08));
 
 	uint8  numItems  = RBUFB(data,(0x09));
+
+	std::vector<uint8> slotQty(MAX_CONTAINER_SIZE);
     
     if (numItems > 8)
     {
@@ -3335,10 +3337,14 @@ void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 	for(int32 SlotID = 0; SlotID < numItems; ++SlotID)
 	{
-		ItemID    = RBUFL(data,(0x0A+SlotID*2));
+		ItemID    = RBUFW(data,(0x0A+SlotID*2));
 		invSlotID = RBUFB(data,(0x1A+SlotID));
 
-		PChar->CraftContainer->setItem(SlotID+1, ItemID, invSlotID, 1);
+		slotQty[invSlotID]++;
+		
+		if ((PChar->getStorage(0)->GetItem(invSlotID)->getID() == ItemID) && 
+			(slotQty[invSlotID] <= PChar->getStorage(0)->GetItem(invSlotID)->getQuantity()))
+			PChar->CraftContainer->setItem(SlotID+1, ItemID, invSlotID, 1);
 	}
 
 	synthutils::startSynth(PChar);
