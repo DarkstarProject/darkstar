@@ -56,6 +56,7 @@
 #include "../packets/message_basic.h"
 #include "../packets/message_debug.h"
 #include "../packets/message_standard.h"
+#include "../packets/message_special.h"
 #include "../packets/send_box.h"
 #include "../packets/quest_mission_log.h"
 #include "../packets/conquest_map.h"
