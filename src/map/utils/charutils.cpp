@@ -55,6 +55,7 @@
 #include "../packets/menu_merit.h"
 #include "../packets/message_basic.h"
 #include "../packets/message_debug.h"
+#include "../packets/message_special.h"
 #include "../packets/message_standard.h"
 #include "../packets/send_box.h"
 #include "../packets/quest_mission_log.h"
@@ -3447,24 +3448,23 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
         }
     }
 
-        // Cruor Drops in Abyssea zones.
-        uint16 Pzone = PChar->getZone();
-        if (zoneutils::GetCurrentRegion(Pzone) == REGION_ABYSSEA)
+    // Cruor Drops in Abyssea zones.
+    uint16 Pzone = PChar->getZone();
+    if (zoneutils::GetCurrentRegion(Pzone) == REGION_ABYSSEA)
+    {
+        int32 TextID = luautils::GetTextIDVariable(Pzone, "CRUOR_OBTAINED");
+        uint16 Total = PChar->m_currency.cruor;
+        uint32 Cruor = 0; // Need to work out how to do cruor chains, until then no cruor will drop unless this line is customized for non retail play.
+
+        if (TextID == 0)
         {
-            int32 TextID = luautils::GetTextIDVariable(Pzone, "CRUOR_OBTAINED");
-            uint16 Total = PChar->m_currency.cruor;
-            uint32 Cruor = 0; // Need to work out how to do cruor chains, until then no cruor will drop unless this line is customized for non retail play.
+            ShowWarning(CL_YELLOW"Failed to fetch Cruor Message ID for zone: %i\n" CL_RESET, Pzone);
+        }
 
-            if (TextID == 0)
-            {
-                ShowWarning(CL_YELLOW"Failed to fetch Cruor Message ID for zone: %i\n" CL_RESET, Pzone);
-            }
-
-            if (Cruor >= 1)
-            {
-                PChar->pushPacket(new CMessageSpecialPacket(PChar, TextID, Cruor, Total, 0, 0));
-                PChar->m_currency.cruor += Cruor;
-            }
+        if (Cruor >= 1)
+        {
+            PChar->pushPacket(new CMessageSpecialPacket(PChar, TextID, Cruor, Total, 0, 0));
+            PChar->m_currency.cruor += Cruor;
         }
     }
 
