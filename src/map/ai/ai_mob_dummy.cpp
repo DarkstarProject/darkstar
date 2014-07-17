@@ -246,6 +246,14 @@ void CAIMobDummy::ActionRoaming()
 
 				updates |= UPDATE_POS;
 			}
+            else if((m_PMob->m_roamFlags & ROAMFLAG_STEALTH))
+            {
+                // hidden name
+                m_PMob->HideName(true);
+                m_PMob->untargetable = true;
+
+                updates |= UPDATE_POS;
+            }
 			else if(m_PMob->m_roamFlags & ROAMFLAG_EVENT)
 			{
 				// allow custom event action
@@ -301,34 +309,39 @@ void CAIMobDummy::ActionRoaming()
 
 void CAIMobDummy::ActionEngage()
 {
-	SetupEngage();
+    SetupEngage();
 
-	m_ActionType = ACTION_ATTACK;
-	//if (m_PMob->animationsub == 1 || m_PMob->animationsub == 3) m_PMob->animationsub = 2;  //need a better way to do this: it only applies to some mobs!
+    m_ActionType = ACTION_ATTACK;
+    //if (m_PMob->animationsub == 1 || m_PMob->animationsub == 3) m_PMob->animationsub = 2;  //need a better way to do this: it only applies to some mobs!
 
-	if (m_PBattleTarget != NULL)
-	{
-		if((m_PMob->m_roamFlags & ROAMFLAG_AMBUSH) && m_PMob->IsNameHidden())
-		{
-			// jump out at you
-			TrySpecialSkill();
+    if (m_PBattleTarget != NULL)
+    {
+        if((m_PMob->m_roamFlags & ROAMFLAG_AMBUSH) && m_PMob->IsNameHidden())
+        {
+            // jump out at you
+            TrySpecialSkill();
 
-			m_PMob->animationsub = 1;
-			m_PMob->HideName(false);
-			m_PMob->HideModel(false);
-		}
-		else
-		{
-			ActionAttack();
-		}
+            m_PMob->animationsub = 1;
+            m_PMob->HideName(false);
+            m_PMob->HideModel(false);
+        }
+        else if ((m_PMob->m_roamFlags & ROAMFLAG_STEALTH) && m_PMob->IsNameHidden())
+        {
+            m_PMob->HideName(false);
+            m_PMob->untargetable = false;
+        }
+        else
+        {
+            ActionAttack();
+        }
 
-	}
-	else
-	{
-		m_ActionType = ACTION_DISENGAGE;
-	}
+    }
+    else
+    {
+        m_ActionType = ACTION_DISENGAGE;
+    }
 
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
+    m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
 }
 
 /************************************************************************
@@ -665,6 +678,12 @@ void CAIMobDummy::ActionSpawn()
 			// this will hide the mob
 			m_PMob->HideModel(true);
 		}
+
+        if (m_PMob->m_roamFlags & ROAMFLAG_STEALTH)
+        {
+            m_PMob->HideName(true);
+            m_PMob->untargetable = true;
+        }
 
 		// add people to my posse
 		if(m_PMob->getMobMod(MOBMOD_ASSIST))
