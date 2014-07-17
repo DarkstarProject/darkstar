@@ -3452,8 +3452,8 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
     uint16 Pzone = PChar->getZone();
     if (zoneutils::GetCurrentRegion(Pzone) == REGION_ABYSSEA)
     {
-        int32 TextID = luautils::GetTextIDVariable(Pzone, "CRUOR_OBTAINED");
-        uint16 Total = PChar->m_currency.cruor;
+        uint16 TextID = luautils::GetTextIDVariable(Pzone, "CRUOR_OBTAINED");
+        uint32 Total = PChar->m_currency.cruor;
         uint32 Cruor = 0; // Need to work out how to do cruor chains, until then no cruor will drop unless this line is customized for non retail play.
 
         if (TextID == 0)
