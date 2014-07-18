@@ -3342,7 +3342,7 @@ void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 		slotQty[invSlotID]++;
 		
-		if ((PChar->getStorage(0)->GetItem(invSlotID)->getID() == ItemID) && 
+		if ((PChar->getStorage(0)->GetItem(invSlotID)) && (PChar->getStorage(0)->GetItem(invSlotID)->getID() == ItemID) &&
 			(slotQty[invSlotID] <= PChar->getStorage(0)->GetItem(invSlotID)->getQuantity()))
 			PChar->CraftContainer->setItem(SlotID+1, ItemID, invSlotID, 1);
 	}
