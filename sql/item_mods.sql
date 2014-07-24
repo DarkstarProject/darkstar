@@ -8551,7 +8551,7 @@ INSERT INTO `item_mods` VALUES(14421, 1, 36);
 INSERT INTO `item_mods` VALUES(14421, 28, 7);
 INSERT INTO `item_mods` VALUES(14421, 115, 6);
 INSERT INTO `item_mods` VALUES(14421, 296, 2);
-INSERT INTO `item_mods` VALUES(14421, 342, 6); -- curse spikes
+INSERT INTO `item_mods` VALUES(14421, 342, 4); -- curse spikes
 INSERT INTO `item_mods` VALUES(14421, 344, 0); -- spikes dmg
 INSERT INTO `item_mods` VALUES(14421, 499, 35); -- spikes proc rate
 
