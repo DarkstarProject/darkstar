@@ -2119,7 +2119,6 @@ INSERT INTO `mob_skill` VALUES (724,480,683,'Freeze_Bite',2,10,2000,500,4,0, 0, 
 INSERT INTO `mob_skill` VALUES (725,480,684,'GroundStrike',2,10,2000,500,4,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (726,480,671,'Abyssal_Drain',2,10,2000,500,4,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (727,480,672,'Abyssal_strike',2,10,2000,500,4,0, 0, 0);
-INSERT INTO `mob_skill` VALUES (728,480,708,'Summonshadows',2,10,2000,500,4,0, 0, 0);
 
 -- Zeid 2
 
@@ -2128,13 +2127,20 @@ INSERT INTO `mob_skill` VALUES (724,481,683,'Freeze_Bite',2,10,2000,500,4,0, 0, 
 INSERT INTO `mob_skill` VALUES (725,481,684,'GroundStrike',2,10,2000,500,4,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (726,481,671,'Abyssal_Drain',2,10,2000,500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (727,481,672,'Abyssal_strike',2,10,2000,500,4,0,0,0);
-INSERT INTO `mob_skill` VALUES (728,481,708,'Summonshadows',2,10,2000,500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (728,481,708,'Summonshadows',2,10,3000,500,4,0,0,0);
 
 -- Volker
 INSERT INTO `mob_skill` VALUES (717,482,679,'red_lotus_blade',0,7,2500,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (718,482,680,'Spirits_Within',0,7,2500,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (719,482,681,'Vorpal_Blade',0,7,2500,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (720,482,673,'Berserk-Ruf',1,15,2000,200,1,0,0,0);
+
+-- Trion
+INSERT INTO `mob_skill` VALUES (715,483,669,'Royal_Bash',2,10,2000,500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (716,483,670,'Royal_savior-protect',1,15,2000,200,1,0,0,0);
+INSERT INTO `mob_skill` VALUES (712,483,676,'red_lotus_blade',0,7,2500,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (713,483,677,'Flat_blade',0,7,2500,1500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (714,483,678,'Savage_blade',0,7,2500,1500,4,0,0,0);
 
 
 -- Kam'lanaut
