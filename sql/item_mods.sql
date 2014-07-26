@@ -579,13 +579,14 @@ INSERT INTO `item_mods` VALUES(11390, 6, 4);
 INSERT INTO `item_mods` VALUES(11391, 1, 18);
 INSERT INTO `item_mods` VALUES(11391, 108, 5);
 INSERT INTO `item_mods` VALUES(11391, 110, 5);
+
 -- ------------------------------------------
 -- Koschei Crackows
 -- ------------------------------------------
 INSERT INTO `item_mods` VALUES(11392, 1, 14);
-INSERT INTO `item_mods` VALUES(11392, 342, 4); -- curse spikes
-INSERT INTO `item_mods` VALUES(11392, 344, 0); -- spikes dmg
-INSERT INTO `item_mods` VALUES(11392, 499, 20); -- spikes proc rate
+INSERT INTO `item_mods` VALUES(11392, 499, 4); -- curse spikes
+INSERT INTO `item_mods` VALUES(11392, 500, 0); -- spikes dmg
+INSERT INTO `item_mods` VALUES(11392, 501, 20); -- spikes proc rate
 
 INSERT INTO `item_mods` VALUES(11393, 1, 15);
 INSERT INTO `item_mods` VALUES(11393, 2, 12);
@@ -639,10 +640,9 @@ INSERT INTO `item_mods` VALUES(11401, 68, 5);
 INSERT INTO `item_mods` VALUES(11402, 1, 7);
 INSERT INTO `item_mods` VALUES(11402, 9, 3);
 INSERT INTO `item_mods` VALUES(11402, 27, 2);
-INSERT INTO `item_mods` VALUES(11402, 342, 2); -- ice spikes
-INSERT INTO `item_mods` VALUES(11402, 344, 15); -- spikes dmg
-INSERT INTO `item_mods` VALUES(11402, 499, 15); -- spikes proc rate
-
+INSERT INTO `item_mods` VALUES(11402, 499, 2); -- ice spikes
+INSERT INTO `item_mods` VALUES(11402, 500, 15); -- spikes dmg
+INSERT INTO `item_mods` VALUES(11402, 501, 15); -- spikes proc rate
 
 INSERT INTO `item_mods` VALUES(11403, 1, 1);
 INSERT INTO `item_mods` VALUES(11404, 1, 9);
@@ -2579,10 +2579,9 @@ INSERT INTO `item_mods` VALUES(12305, 1, 23);
 INSERT INTO `item_mods` VALUES(12305, 10, 2);
 INSERT INTO `item_mods` VALUES(12305, 55, 20);
 INSERT INTO `item_mods` VALUES(12305, 58, 10);
-INSERT INTO `item_mods` VALUES(12305, 342, 2); -- ice spikes
-INSERT INTO `item_mods` VALUES(12305, 344, 20); -- spikes dmg
-INSERT INTO `item_mods` VALUES(12305, 499, 25); -- spikes proc rate
-
+INSERT INTO `item_mods` VALUES(12305, 499, 2); -- ice spikes
+INSERT INTO `item_mods` VALUES(12305, 500, 20); -- spikes dmg
+INSERT INTO `item_mods` VALUES(12305, 501, 25); -- spikes proc rate
 
 INSERT INTO `item_mods` VALUES(12306, 1, 8);
 INSERT INTO `item_mods` VALUES(12307, 1, 12);
@@ -2697,10 +2696,9 @@ INSERT INTO `item_mods` VALUES(12357, 1, 24);
 INSERT INTO `item_mods` VALUES(12357, 10, 2);
 INSERT INTO `item_mods` VALUES(12357, 55, 25);
 INSERT INTO `item_mods` VALUES(12357, 58, 10);
-INSERT INTO `item_mods` VALUES(12357, 342, 2); -- ice spikes
-INSERT INTO `item_mods` VALUES(12357, 344, 25); -- spikes dmg
-INSERT INTO `item_mods` VALUES(12357, 499, 30); -- spikes proc rate
-
+INSERT INTO `item_mods` VALUES(12357, 499, 2); -- ice spikes
+INSERT INTO `item_mods` VALUES(12357, 500, 25); -- spikes dmg
+INSERT INTO `item_mods` VALUES(12357, 501, 30); -- spikes proc rate
 
 INSERT INTO `item_mods` VALUES(12358, 1, 22);
 INSERT INTO `item_mods` VALUES(12358, 2, 11);
@@ -3373,10 +3371,9 @@ INSERT INTO `item_mods` VALUES(12596, 9, 1);
 INSERT INTO `item_mods` VALUES(12597, 1, 38);
 INSERT INTO `item_mods` VALUES(12597, 2, 25);
 INSERT INTO `item_mods` VALUES(12597, 9, 4);
-INSERT INTO `item_mods` VALUES(12597, 342, 1); -- blaze spikes
-INSERT INTO `item_mods` VALUES(12597, 344, 25); -- spikes dmg
-INSERT INTO `item_mods` VALUES(12597, 499, 25); -- spikes proc rate
-
+INSERT INTO `item_mods` VALUES(12597, 499, 1); -- blaze spikes
+INSERT INTO `item_mods` VALUES(12597, 500, 25); -- spikes dmg
+INSERT INTO `item_mods` VALUES(12597, 501, 25); -- spikes proc rate
 
 INSERT INTO `item_mods` VALUES(12598, 1, 20);
 INSERT INTO `item_mods` VALUES(12598, 9, 1);
@@ -3980,10 +3977,9 @@ INSERT INTO `item_mods` VALUES(12852, 11, 1);
 INSERT INTO `item_mods` VALUES(12853, 1, 27);
 INSERT INTO `item_mods` VALUES(12853, 2, 25);
 INSERT INTO `item_mods` VALUES(12853, 11, 4);
-INSERT INTO `item_mods` VALUES(12853, 342, 1); -- blaze spikes
-INSERT INTO `item_mods` VALUES(12853, 344, 15); -- spikes dmg
-INSERT INTO `item_mods` VALUES(12853, 499, 20); -- spikes proc rate
-
+INSERT INTO `item_mods` VALUES(12853, 499, 1); -- blaze spikes
+INSERT INTO `item_mods` VALUES(12853, 500, 15); -- spikes dmg
+INSERT INTO `item_mods` VALUES(12853, 501, 20); -- spikes proc rate
 
 INSERT INTO `item_mods` VALUES(12854, 1, 14);
 INSERT INTO `item_mods` VALUES(12854, 68, 2);
@@ -4063,9 +4059,9 @@ INSERT INTO `item_mods` VALUES(12880, 1, 31);
 INSERT INTO `item_mods` VALUES(12880, 2, 30);
 INSERT INTO `item_mods` VALUES(12880, 12, 3);
 INSERT INTO `item_mods` VALUES(12880, 25, -3);
-INSERT INTO `item_mods` VALUES(12880, 342, 2); -- ice spikes
-INSERT INTO `item_mods` VALUES(12880, 344, 15); -- spikes dmg
-INSERT INTO `item_mods` VALUES(12880, 499, 20); -- spikes proc rate
+INSERT INTO `item_mods` VALUES(12880, 499, 2); -- ice spikes
+INSERT INTO `item_mods` VALUES(12880, 500, 15); -- spikes dmg
+INSERT INTO `item_mods` VALUES(12880, 501, 20); -- spikes proc rate
 
 INSERT INTO `item_mods` VALUES(12881, 1, 11);
 INSERT INTO `item_mods` VALUES(12881, 10, 1);
@@ -4188,10 +4184,9 @@ INSERT INTO `item_mods` VALUES(12945, 1, 6);
 INSERT INTO `item_mods` VALUES(12946, 1, 30);
 INSERT INTO `item_mods` VALUES(12946, 13, 15);
 INSERT INTO `item_mods` VALUES(12946, 54, 50);
-INSERT INTO `item_mods` VALUES(12946, 342, 1); -- blaze spikes
-INSERT INTO `item_mods` VALUES(12946, 344, 20); -- spikes dmg
-INSERT INTO `item_mods` VALUES(12946, 499, 20); -- spikes proc rate
-
+INSERT INTO `item_mods` VALUES(12946, 499, 1); -- blaze spikes
+INSERT INTO `item_mods` VALUES(12946, 500, 20); -- spikes dmg
+INSERT INTO `item_mods` VALUES(12946, 501, 20); -- spikes proc rate
 
 INSERT INTO `item_mods` VALUES(12947, 1, 12);
 INSERT INTO `item_mods` VALUES(12947, 58, -3);
@@ -5869,10 +5864,9 @@ INSERT INTO `item_mods` VALUES(13705, 1, 43);
 INSERT INTO `item_mods` VALUES(13705, 2, 40);
 INSERT INTO `item_mods` VALUES(13705, 10, 6);
 INSERT INTO `item_mods` VALUES(13705, 25, -3);
-INSERT INTO `item_mods` VALUES(13705, 342, 2); -- ice spikes
-INSERT INTO `item_mods` VALUES(13705, 344, 20); -- spikes dmg
-INSERT INTO `item_mods` VALUES(13705, 499, 25); -- spikes proc rate
-
+INSERT INTO `item_mods` VALUES(13705, 499, 2); -- ice spikes
+INSERT INTO `item_mods` VALUES(13705, 500, 20); -- spikes dmg
+INSERT INTO `item_mods` VALUES(13705, 501, 25); -- spikes proc rate
 
 INSERT INTO `item_mods` VALUES(13706, 1, 16);
 INSERT INTO `item_mods` VALUES(13706, 5, 12);
@@ -6184,10 +6178,9 @@ INSERT INTO `item_mods` VALUES(13770, 106, 12);
 INSERT INTO `item_mods` VALUES(13771, 1, 39);
 INSERT INTO `item_mods` VALUES(13771, 2, 27);
 INSERT INTO `item_mods` VALUES(13771, 9, 5);
-INSERT INTO `item_mods` VALUES(13771, 342, 1); -- blaze spikes
-INSERT INTO `item_mods` VALUES(13771, 344, 30); -- spikes dmg
-INSERT INTO `item_mods` VALUES(13771, 499, 30); -- spikes proc rate
-
+INSERT INTO `item_mods` VALUES(13771, 499, 1); -- blaze spikes
+INSERT INTO `item_mods` VALUES(13771, 500, 30); -- spikes dmg
+INSERT INTO `item_mods` VALUES(13771, 501, 30); -- spikes proc rate
 
 INSERT INTO `item_mods` VALUES(13772, 1, 40);
 INSERT INTO `item_mods` VALUES(13772, 2, 20);
@@ -6275,10 +6268,9 @@ INSERT INTO `item_mods` VALUES(13782, 1, 41);
 INSERT INTO `item_mods` VALUES(13782, 2, 15);
 INSERT INTO `item_mods` VALUES(13782, 10, 3);
 INSERT INTO `item_mods` VALUES(13782, 259, 5);
-INSERT INTO `item_mods` VALUES(13782, 342, 1); -- blaze spikes
-INSERT INTO `item_mods` VALUES(13782, 344, 25); -- spikes dmg
-INSERT INTO `item_mods` VALUES(13782, 499, 25); -- spikes proc rate
-
+INSERT INTO `item_mods` VALUES(13782, 499, 1); -- blaze spikes
+INSERT INTO `item_mods` VALUES(13782, 500, 25); -- spikes dmg
+INSERT INTO `item_mods` VALUES(13782, 501, 25); -- spikes proc rate
 
 INSERT INTO `item_mods` VALUES(13783, 1, 28);
 INSERT INTO `item_mods` VALUES(13784, 1, 29);
@@ -6700,9 +6692,9 @@ INSERT INTO `item_mods` VALUES(13920, 1, 30);
 INSERT INTO `item_mods` VALUES(13920, 2, 30);
 INSERT INTO `item_mods` VALUES(13920, 8, 5);
 INSERT INTO `item_mods` VALUES(13920, 54, 10);
-INSERT INTO `item_mods` VALUES(13920, 342, 1); -- blaze spikes
-INSERT INTO `item_mods` VALUES(13920, 344, 20); -- spikes dmg
-INSERT INTO `item_mods` VALUES(13920, 499, 15); -- spikes proc rate
+INSERT INTO `item_mods` VALUES(13920, 499, 1); -- blaze spikes
+INSERT INTO `item_mods` VALUES(13920, 500, 20); -- spikes dmg
+INSERT INTO `item_mods` VALUES(13920, 501, 15); -- spikes proc rate
 
 -- ------------------------------------------
 -- Wyvern Helm +1
@@ -6711,10 +6703,9 @@ INSERT INTO `item_mods` VALUES(13921, 1, 31);
 INSERT INTO `item_mods` VALUES(13921, 2, 31);
 INSERT INTO `item_mods` VALUES(13921, 8, 6);
 INSERT INTO `item_mods` VALUES(13921, 54, 11);
-INSERT INTO `item_mods` VALUES(13921, 342, 1); -- blaze spikes
-INSERT INTO `item_mods` VALUES(13921, 344, 25); -- spikes dmg
-INSERT INTO `item_mods` VALUES(13921, 499, 20); -- spikes proc rate
-
+INSERT INTO `item_mods` VALUES(13921, 499, 1); -- blaze spikes
+INSERT INTO `item_mods` VALUES(13921, 500, 25); -- spikes dmg
+INSERT INTO `item_mods` VALUES(13921, 501, 20); -- spikes proc rate
 
 INSERT INTO `item_mods` VALUES(13922, 1, 25);
 INSERT INTO `item_mods` VALUES(13922, 12, 5);
@@ -6737,9 +6728,9 @@ INSERT INTO `item_mods` VALUES(13924, 68, -9);
 -- ------------------------------------------
 INSERT INTO `item_mods` VALUES(13925, 1, 31);
 INSERT INTO `item_mods` VALUES(13925, 23, 2);
-INSERT INTO `item_mods` VALUES(13925, 342, 1); -- blaze spikes
-INSERT INTO `item_mods` VALUES(13925, 344, 20); -- spikes dmg
-INSERT INTO `item_mods` VALUES(13925, 499, 15); -- spikes proc rate
+INSERT INTO `item_mods` VALUES(13925, 499, 1); -- blaze spikes
+INSERT INTO `item_mods` VALUES(13925, 500, 20); -- spikes dmg
+INSERT INTO `item_mods` VALUES(13925, 501, 15); -- spikes proc rate
 
 -- ------------------------------------------
 -- Rasetsu Jinpachi +1
@@ -6747,9 +6738,9 @@ INSERT INTO `item_mods` VALUES(13925, 499, 15); -- spikes proc rate
 INSERT INTO `item_mods` VALUES(13926, 1, 32);
 INSERT INTO `item_mods` VALUES(13926, 23, 3);
 INSERT INTO `item_mods` VALUES(13926, 291, 1);
-INSERT INTO `item_mods` VALUES(13926, 342, 1); -- blaze spikes
-INSERT INTO `item_mods` VALUES(13926, 344, 25); -- spikes dmg
-INSERT INTO `item_mods` VALUES(13926, 499, 20); -- spikes proc rate
+INSERT INTO `item_mods` VALUES(13926, 499, 1); -- blaze spikes
+INSERT INTO `item_mods` VALUES(13926, 500, 25); -- spikes dmg
+INSERT INTO `item_mods` VALUES(13926, 501, 20); -- spikes proc rate
 
 INSERT INTO `item_mods` VALUES(13927, 1, 33);
 INSERT INTO `item_mods` VALUES(13927, 2, 12);
@@ -7848,10 +7839,9 @@ INSERT INTO `item_mods` VALUES(14237, 11, 2);
 INSERT INTO `item_mods` VALUES(14238, 1, 28);
 INSERT INTO `item_mods` VALUES(14238, 2, 27);
 INSERT INTO `item_mods` VALUES(14238, 11, 5);
-INSERT INTO `item_mods` VALUES(14238, 342, 1); -- blaze spikes
-INSERT INTO `item_mods` VALUES(14238, 344, 25); -- spikes dmg
-INSERT INTO `item_mods` VALUES(14238, 499, 25); -- spikes proc rate
-
+INSERT INTO `item_mods` VALUES(14238, 499, 1); -- blaze spikes
+INSERT INTO `item_mods` VALUES(14238, 500, 25); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14238, 501, 25); -- spikes proc rate
 
 INSERT INTO `item_mods` VALUES(14239, 1, 31);
 INSERT INTO `item_mods` VALUES(14239, 5, 18);
@@ -7966,10 +7956,9 @@ INSERT INTO `item_mods` VALUES(14279, 1, 32);
 INSERT INTO `item_mods` VALUES(14279, 2, 32);
 INSERT INTO `item_mods` VALUES(14279, 12, 4);
 INSERT INTO `item_mods` VALUES(14279, 25, -5);
-INSERT INTO `item_mods` VALUES(14279, 342, 2); -- ice spikes
-INSERT INTO `item_mods` VALUES(14279, 344, 20); -- spikes dmg
-INSERT INTO `item_mods` VALUES(14279, 499, 25); -- spikes proc rate
-
+INSERT INTO `item_mods` VALUES(14279, 499, 2); -- ice spikes
+INSERT INTO `item_mods` VALUES(14279, 500, 20); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14279, 501, 25); -- spikes proc rate
 
 INSERT INTO `item_mods` VALUES(14280, 1, 43);
 INSERT INTO `item_mods` VALUES(14280, 2, 25);
@@ -8038,9 +8027,9 @@ INSERT INTO `item_mods` VALUES(14298, 1, 8);
 -- ------------------------------------------
 INSERT INTO `item_mods` VALUES(14299, 1, 40);
 INSERT INTO `item_mods` VALUES(14299, 23, 2);
-INSERT INTO `item_mods` VALUES(14299, 342, 2); -- ice spikes
-INSERT INTO `item_mods` VALUES(14299, 344, 15); -- spikes dmg
-INSERT INTO `item_mods` VALUES(14299, 499, 20); -- spikes proc rate
+INSERT INTO `item_mods` VALUES(14299, 499, 2); -- ice spikes
+INSERT INTO `item_mods` VALUES(14299, 500, 15); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14299, 501, 20); -- spikes proc rate
 
 -- ------------------------------------------
 -- Rasetsu Hakama +1
@@ -8048,10 +8037,9 @@ INSERT INTO `item_mods` VALUES(14299, 499, 20); -- spikes proc rate
 INSERT INTO `item_mods` VALUES(14300, 1, 41);
 INSERT INTO `item_mods` VALUES(14300, 23, 3);
 INSERT INTO `item_mods` VALUES(14300, 291, 1);
-INSERT INTO `item_mods` VALUES(14300, 342, 2); -- ice spikes
-INSERT INTO `item_mods` VALUES(14300, 344, 20); -- spikes dmg
-INSERT INTO `item_mods` VALUES(14300, 499, 25); -- spikes proc rate
-
+INSERT INTO `item_mods` VALUES(14300, 499, 2); -- ice spikes
+INSERT INTO `item_mods` VALUES(14300, 500, 20); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14300, 501, 25); -- spikes proc rate
 
 INSERT INTO `item_mods` VALUES(14301, 1, 38);
 INSERT INTO `item_mods` VALUES(14301, 8, -5);
@@ -8159,9 +8147,9 @@ INSERT INTO `item_mods` VALUES(14320, 27, -3);
 INSERT INTO `item_mods` VALUES(14321, 1, 30);
 INSERT INTO `item_mods` VALUES(14321, 68, 10);
 INSERT INTO `item_mods` VALUES(14321, 114, 10);
-INSERT INTO `item_mods` VALUES(14321, 342, 4); -- curse spikes
-INSERT INTO `item_mods` VALUES(14321, 344, 0); -- spikes dmg
-INSERT INTO `item_mods` VALUES(14321, 499, 25); -- spikes proc rate
+INSERT INTO `item_mods` VALUES(14321, 499, 4); -- curse spikes
+INSERT INTO `item_mods` VALUES(14321, 500, 0); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14321, 501, 25); -- spikes proc rate
 
 -- ------------------------------------------
 -- Genie Lappas
@@ -8169,10 +8157,9 @@ INSERT INTO `item_mods` VALUES(14321, 499, 25); -- spikes proc rate
 INSERT INTO `item_mods` VALUES(14322, 1, 31);
 INSERT INTO `item_mods` VALUES(14322, 68, 11);
 INSERT INTO `item_mods` VALUES(14322, 114, 11);
-INSERT INTO `item_mods` VALUES(14322, 342, 4); -- curse spikes
-INSERT INTO `item_mods` VALUES(14322, 344, 0); -- spikes dmg
-INSERT INTO `item_mods` VALUES(14322, 499, 30); -- spikes proc rate
-
+INSERT INTO `item_mods` VALUES(14322, 499, 4); -- curse spikes
+INSERT INTO `item_mods` VALUES(14322, 500, 0); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14322, 501, 30); -- spikes proc rate
 
 INSERT INTO `item_mods` VALUES(14323, 1, 12);
 INSERT INTO `item_mods` VALUES(14323, 9, 1);
@@ -8305,10 +8292,9 @@ INSERT INTO `item_mods` VALUES(14366, 1, 44);
 INSERT INTO `item_mods` VALUES(14366, 2, 42);
 INSERT INTO `item_mods` VALUES(14366, 10, 7);
 INSERT INTO `item_mods` VALUES(14366, 25, -5);
-INSERT INTO `item_mods` VALUES(14366, 342, 2); -- ice spikes
-INSERT INTO `item_mods` VALUES(14366, 344, 25); -- spikes dmg
-INSERT INTO `item_mods` VALUES(14366, 499, 30); -- spikes proc rate
-
+INSERT INTO `item_mods` VALUES(14366, 499, 2); -- ice spikes
+INSERT INTO `item_mods` VALUES(14366, 500, 25); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14366, 501, 30); -- spikes proc rate
 
 INSERT INTO `item_mods` VALUES(14367, 1, 52);
 INSERT INTO `item_mods` VALUES(14367, 2, 40);
@@ -8344,14 +8330,15 @@ INSERT INTO `item_mods` VALUES(14373, 25, 5);
 INSERT INTO `item_mods` VALUES(14373, 68, 5);
 INSERT INTO `item_mods` VALUES(14374, 1, 2);
 INSERT INTO `item_mods` VALUES(14375, 1, 12);
+
 -- ------------------------------------------
 -- Rasetsu Samue
 -- ------------------------------------------
 INSERT INTO `item_mods` VALUES(14376, 1, 50);
 INSERT INTO `item_mods` VALUES(14376, 23, 2);
-INSERT INTO `item_mods` VALUES(14376, 342, 5); -- shock spikes
-INSERT INTO `item_mods` VALUES(14376, 344, 15); -- spikes dmg
-INSERT INTO `item_mods` VALUES(14376, 499, 25); -- spikes proc rate
+INSERT INTO `item_mods` VALUES(14376, 499, 5); -- shock spikes
+INSERT INTO `item_mods` VALUES(14376, 500, 15); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14376, 501, 25); -- spikes proc rate
 
 -- ------------------------------------------
 -- Rasetsu Samue +1
@@ -8359,10 +8346,9 @@ INSERT INTO `item_mods` VALUES(14376, 499, 25); -- spikes proc rate
 INSERT INTO `item_mods` VALUES(14377, 1, 51);
 INSERT INTO `item_mods` VALUES(14377, 23, 3);
 INSERT INTO `item_mods` VALUES(14377, 291, 1);
-INSERT INTO `item_mods` VALUES(14377, 342, 5); -- shock spikes
-INSERT INTO `item_mods` VALUES(14377, 344, 20); -- spikes dmg
-INSERT INTO `item_mods` VALUES(14377, 499, 30); -- spikes proc rate
-
+INSERT INTO `item_mods` VALUES(14377, 499, 5); -- shock spikes
+INSERT INTO `item_mods` VALUES(14377, 500, 20); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14377, 501, 30); -- spikes proc rate
 
 INSERT INTO `item_mods` VALUES(14378, 1, 50);
 INSERT INTO `item_mods` VALUES(14378, 2, 16);
@@ -8539,10 +8525,9 @@ INSERT INTO `item_mods` VALUES(14420, 1, 35);
 INSERT INTO `item_mods` VALUES(14420, 28, 6);
 INSERT INTO `item_mods` VALUES(14420, 115, 5);
 INSERT INTO `item_mods` VALUES(14420, 296, 2);
-INSERT INTO `item_mods` VALUES(14420, 342, 4); -- curse spikes
-INSERT INTO `item_mods` VALUES(14420, 344, 0); -- spikes dmg
-INSERT INTO `item_mods` VALUES(14420, 499, 30); -- spikes proc rate
-
+INSERT INTO `item_mods` VALUES(14420, 499, 4); -- curse spikes
+INSERT INTO `item_mods` VALUES(14420, 500, 0); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14420, 501, 30); -- spikes proc rate
 
 -- ------------------------------------------
 -- Genie Weskit
@@ -8551,10 +8536,9 @@ INSERT INTO `item_mods` VALUES(14421, 1, 36);
 INSERT INTO `item_mods` VALUES(14421, 28, 7);
 INSERT INTO `item_mods` VALUES(14421, 115, 6);
 INSERT INTO `item_mods` VALUES(14421, 296, 2);
-INSERT INTO `item_mods` VALUES(14421, 342, 4); -- curse spikes
-INSERT INTO `item_mods` VALUES(14421, 344, 0); -- spikes dmg
-INSERT INTO `item_mods` VALUES(14421, 499, 35); -- spikes proc rate
-
+INSERT INTO `item_mods` VALUES(14421, 499, 4); -- curse spikes
+INSERT INTO `item_mods` VALUES(14421, 500, 0); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14421, 501, 35); -- spikes proc rate
 
 INSERT INTO `item_mods` VALUES(14422, 1, 18);
 INSERT INTO `item_mods` VALUES(14422, 61, 1);
@@ -8746,10 +8730,9 @@ INSERT INTO `item_mods` VALUES(14485, 2, 15);
 INSERT INTO `item_mods` VALUES(14485, 9, 5);
 INSERT INTO `item_mods` VALUES(14485, 10, 5);
 INSERT INTO `item_mods` VALUES(14485, 259, 5);
-INSERT INTO `item_mods` VALUES(14485, 342, 5); -- shock spikes
-INSERT INTO `item_mods` VALUES(14485, 344, 25); -- spikes dmg
-INSERT INTO `item_mods` VALUES(14485, 499, 25); -- spikes proc rate
-
+INSERT INTO `item_mods` VALUES(14485, 499, 5); -- shock spikes
+INSERT INTO `item_mods` VALUES(14485, 500, 25); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14485, 501, 25); -- spikes proc rate
 
 INSERT INTO `item_mods` VALUES(14486, 1, 49);
 INSERT INTO `item_mods` VALUES(14486, 2, 15);
@@ -9794,9 +9777,9 @@ INSERT INTO `item_mods` VALUES(14851, 27, -2);
 INSERT INTO `item_mods` VALUES(14852, 1, 11);
 INSERT INTO `item_mods` VALUES(14852, 28, 2);
 INSERT INTO `item_mods` VALUES(14852, 115, 5);
-INSERT INTO `item_mods` VALUES(14852, 342, 4); -- curse spikes
-INSERT INTO `item_mods` VALUES(14852, 344, 0); -- spikes dmg
-INSERT INTO `item_mods` VALUES(14852, 499, 20); -- spikes proc rate
+INSERT INTO `item_mods` VALUES(14852, 499, 4); -- curse spikes
+INSERT INTO `item_mods` VALUES(14852, 500, 0); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14852, 501, 20); -- spikes proc rate
 
 -- ------------------------------------------
 -- Genie Manillas
@@ -9804,9 +9787,9 @@ INSERT INTO `item_mods` VALUES(14852, 499, 20); -- spikes proc rate
 INSERT INTO `item_mods` VALUES(14853, 1, 12);
 INSERT INTO `item_mods` VALUES(14853, 28, 3);
 INSERT INTO `item_mods` VALUES(14853, 115, 6);
-INSERT INTO `item_mods` VALUES(14853, 342, 4); -- curse spikes
-INSERT INTO `item_mods` VALUES(14853, 344, 0); -- spikes dmg
-INSERT INTO `item_mods` VALUES(14853, 499, 25); -- spikes proc rate
+INSERT INTO `item_mods` VALUES(14853, 499, 4); -- curse spikes
+INSERT INTO `item_mods` VALUES(14853, 500, 0); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14853, 501, 25); -- spikes proc rate
 
 INSERT INTO `item_mods` VALUES(14854, 1, 5);
 INSERT INTO `item_mods` VALUES(14854, 61, 1);
@@ -10188,10 +10171,9 @@ INSERT INTO `item_mods` VALUES(14952, 8, 4);
 INSERT INTO `item_mods` VALUES(14952, 10, 4);
 INSERT INTO `item_mods` VALUES(14952, 25, 4);
 INSERT INTO `item_mods` VALUES(14952, 71, 1);
-INSERT INTO `item_mods` VALUES(14952, 342, 2); -- ice spikes
-INSERT INTO `item_mods` VALUES(14952, 344, 15); -- spikes dmg
-INSERT INTO `item_mods` VALUES(14952, 499, 15); -- spikes proc rate
-
+INSERT INTO `item_mods` VALUES(14952, 499, 2); -- ice spikes
+INSERT INTO `item_mods` VALUES(14952, 500, 15); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14952, 501, 15); -- spikes proc rate
 
 INSERT INTO `item_mods` VALUES(14953, 1, 16);
 INSERT INTO `item_mods` VALUES(14954, 1, 14);
@@ -10541,10 +10523,9 @@ INSERT INTO `item_mods` VALUES(15041, 114, 7);
 INSERT INTO `item_mods` VALUES(15042, 1, 12);
 INSERT INTO `item_mods` VALUES(15042, 8, 3);
 INSERT INTO `item_mods` VALUES(15042, 27, 2);
-INSERT INTO `item_mods` VALUES(15042, 342, 2); -- ice spikes
-INSERT INTO `item_mods` VALUES(15042, 344, 15); -- spikes dmg
-INSERT INTO `item_mods` VALUES(15042, 499, 15); -- spikes proc rate
-
+INSERT INTO `item_mods` VALUES(15042, 499, 2); -- ice spikes
+INSERT INTO `item_mods` VALUES(15042, 500, 15); -- spikes dmg
+INSERT INTO `item_mods` VALUES(15042, 501, 15); -- spikes proc rate
 
 INSERT INTO `item_mods` VALUES(15043, 1, 1);
 INSERT INTO `item_mods` VALUES(15043, 56, 2);
@@ -11007,9 +10988,9 @@ INSERT INTO `item_mods` VALUES(15158, 27, -2);
 INSERT INTO `item_mods` VALUES(15159, 1, 20);
 INSERT INTO `item_mods` VALUES(15159, 68, 10);
 INSERT INTO `item_mods` VALUES(15159, 114, 10);
-INSERT INTO `item_mods` VALUES(15159, 342, 4); -- curse spikes
-INSERT INTO `item_mods` VALUES(15159, 344, 0); -- spikes dmg
-INSERT INTO `item_mods` VALUES(15159, 499, 20); -- spikes proc rate
+INSERT INTO `item_mods` VALUES(15159, 499, 4); -- curse spikes
+INSERT INTO `item_mods` VALUES(15159, 500, 0); -- spikes dmg
+INSERT INTO `item_mods` VALUES(15159, 501, 20); -- spikes proc rate
 
 -- ------------------------------------------
 -- Genie Tiara
@@ -11017,10 +10998,9 @@ INSERT INTO `item_mods` VALUES(15159, 499, 20); -- spikes proc rate
 INSERT INTO `item_mods` VALUES(15160, 1, 21);
 INSERT INTO `item_mods` VALUES(15160, 68, 11);
 INSERT INTO `item_mods` VALUES(15160, 114, 11);
-INSERT INTO `item_mods` VALUES(15160, 342, 4); -- curse spikes
-INSERT INTO `item_mods` VALUES(15160, 344, 0); -- spikes dmg
-INSERT INTO `item_mods` VALUES(15160, 499, 25); -- spikes proc rate
-
+INSERT INTO `item_mods` VALUES(15160, 499, 4); -- curse spikes
+INSERT INTO `item_mods` VALUES(15160, 500, 0); -- spikes dmg
+INSERT INTO `item_mods` VALUES(15160, 501, 25); -- spikes proc rate
 
 INSERT INTO `item_mods` VALUES(15161, 1, 9);
 INSERT INTO `item_mods` VALUES(15161, 11, 1);
@@ -13692,10 +13672,9 @@ INSERT INTO `item_mods` VALUES(16125, 1, 22);
 INSERT INTO `item_mods` VALUES(16125, 25, 4);
 INSERT INTO `item_mods` VALUES(16125, 27, -3);
 INSERT INTO `item_mods` VALUES(16125, 384, 11);
-INSERT INTO `item_mods` VALUES(16125, 342, 1); -- blaze spikes
-INSERT INTO `item_mods` VALUES(16125, 344, 20); -- spikes dmg
-INSERT INTO `item_mods` VALUES(16125, 499, 15); -- spikes proc rate
-
+INSERT INTO `item_mods` VALUES(16125, 499, 1); -- blaze spikes
+INSERT INTO `item_mods` VALUES(16125, 500, 20); -- spikes dmg
+INSERT INTO `item_mods` VALUES(16125, 501, 15); -- spikes proc rate
 
 INSERT INTO `item_mods` VALUES(16126, 1, 25);
 INSERT INTO `item_mods` VALUES(16126, 9, 4);
@@ -13830,16 +13809,16 @@ INSERT INTO `item_mods` VALUES(16167, 1, 1);
 INSERT INTO `item_mods` VALUES(16168, 1, 10);
 INSERT INTO `item_mods` VALUES(16168, 8, 3);
 INSERT INTO `item_mods` VALUES(16168, 384, 11);
+
 -- ------------------------------------------
 -- Caballero Shield
 -- ------------------------------------------
 INSERT INTO `item_mods` VALUES(16169, 1, 21);
 INSERT INTO `item_mods` VALUES(16169, 27, 2);
 INSERT INTO `item_mods` VALUES(16169, 29, 2);
-INSERT INTO `item_mods` VALUES(16169, 342, 1); -- spikes
-INSERT INTO `item_mods` VALUES(16169, 344, 28); -- spikes dmg
-INSERT INTO `item_mods` VALUES(16169, 499, 25); -- spikes proc rate
-
+INSERT INTO `item_mods` VALUES(16169, 499, 1); -- spikes
+INSERT INTO `item_mods` VALUES(16169, 500, 28); -- spikes dmg
+INSERT INTO `item_mods` VALUES(16169, 501, 25); -- spikes proc rate
 
 INSERT INTO `item_mods` VALUES(16170, 1, 12);
 INSERT INTO `item_mods` VALUES(16170, 27, 5);
@@ -20042,7 +20021,7 @@ INSERT INTO `item_mods` VALUES(11433, 1, 28);
 INSERT INTO `item_mods` VALUES(11433, 2, 45);
 INSERT INTO `item_mods` VALUES(11433, 5, 45);
 INSERT INTO `item_mods` VALUES(11433, 27, 6);
-INSERT INTO `item_mods` VALUES(11433, 342, 5); -- shock spikes
-INSERT INTO `item_mods` VALUES(11433, 344, 20); -- spikes dmg
-INSERT INTO `item_mods` VALUES(11433, 499, 25); -- spikes proc rate
+INSERT INTO `item_mods` VALUES(11433, 499, 5); -- shock spikes
+INSERT INTO `item_mods` VALUES(11433, 500, 20); -- spikes dmg
+INSERT INTO `item_mods` VALUES(11433, 501, 25); -- spikes proc rate
 
