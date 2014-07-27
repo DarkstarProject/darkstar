@@ -2607,6 +2607,16 @@ INSERT INTO `item_mods` VALUES(12316, 1, 3);
 INSERT INTO `item_mods` VALUES(12316, 54, 2);
 INSERT INTO `item_mods` VALUES(12316, 55, 2);
 INSERT INTO `item_mods` VALUES(12316, 58, -4);
+
+-- ------------------------------------------
+-- Flame Shield
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES(12317, 1, 12);
+INSERT INTO `item_mods` VALUES(12317, 54, 20);
+INSERT INTO `item_mods` VALUES(12317, 499, 1); -- Blaze Spikes
+INSERT INTO `item_mods` VALUES(12317, 500, 20); -- Spikes DMG
+INSERT INTO `item_mods` VALUES(12317, 501, 20); -- Spikes Proc Rate
+
 INSERT INTO `item_mods` VALUES(12318, 1, 25);
 INSERT INTO `item_mods` VALUES(12318, 54, 25);
 INSERT INTO `item_mods` VALUES(12318, 55, 25);
