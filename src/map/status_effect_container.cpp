@@ -994,7 +994,7 @@ void CStatusEffectContainer::UpdateStatusIcons()
 
         if (icon != 0)
         {
-            if (icon >= 256)
+            if (icon >= 256 && icon < 512)
             {
                 m_Flags |= 1LL << (count * 2);
             }
@@ -1002,6 +1002,8 @@ void CStatusEffectContainer::UpdateStatusIcons()
             {
                 m_Flags |= 1LL << (count * 2 + 1);
             }
+			//Note: it may be possible that having both bits set is for effects over 768, but there aren't
+			// that many effects as of this writing
             m_StatusIcons[count] = icon;
 
             if (++count == 32) break;
