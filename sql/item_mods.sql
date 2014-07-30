@@ -13882,6 +13882,17 @@ INSERT INTO `item_mods` VALUES(16189, 1, 31);
 INSERT INTO `item_mods` VALUES(16190, 1, 22);
 INSERT INTO `item_mods` VALUES(16190, 2, 15);
 INSERT INTO `item_mods` VALUES(16190, 370, 1);
+
+-- ------------------------------------------
+-- Genesis Shield
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (16201, 1, 21);
+INSERT INTO `item_mods` VALUES (16201, 302, 1);
+INSERT INTO `item_mods` VALUES (16201, 21, 30);
+INSERT INTO `item_mods` VALUES (16201, 499, 4); -- Curse Spikes
+INSERT INTO `item_mods` VALUES (16201, 500, 0); -- Spikes DMG
+INSERT INTO `item_mods` VALUES (16201, 501, 20); -- Spikes Proc Rate
+
 INSERT INTO `item_mods` VALUES(16202, 1, 29);
 INSERT INTO `item_mods` VALUES(16202, 27, 6);
 INSERT INTO `item_mods` VALUES(16202, 374, 5);
