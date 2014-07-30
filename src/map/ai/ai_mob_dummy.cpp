@@ -246,6 +246,14 @@ void CAIMobDummy::ActionRoaming()
 
 				updates |= UPDATE_POS;
 			}
+            else if((m_PMob->m_roamFlags & ROAMFLAG_STEALTH))
+            {
+                // hidden name
+                m_PMob->HideName(true);
+                m_PMob->untargetable = true;
+
+                updates |= UPDATE_POS;
+            }
 			else if(m_PMob->m_roamFlags & ROAMFLAG_EVENT)
 			{
 				// allow custom event action
@@ -317,6 +325,11 @@ void CAIMobDummy::ActionEngage()
 			m_PMob->HideName(false);
 			m_PMob->HideModel(false);
 		}
+        else if ((m_PMob->m_roamFlags & ROAMFLAG_STEALTH) && m_PMob->IsNameHidden())
+        {
+            m_PMob->HideName(false);
+            m_PMob->untargetable = false;
+        }
 		else
 		{
 			ActionAttack();
@@ -665,6 +678,12 @@ void CAIMobDummy::ActionSpawn()
 			// this will hide the mob
 			m_PMob->HideModel(true);
 		}
+
+        if (m_PMob->m_roamFlags & ROAMFLAG_STEALTH)
+        {
+            m_PMob->HideName(true);
+            m_PMob->untargetable = true;
+        }
 
 		// add people to my posse
 		if(m_PMob->getMobMod(MOBMOD_ASSIST))
