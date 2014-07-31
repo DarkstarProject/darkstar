@@ -562,6 +562,7 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
                 if (PAttacker->m_EcoSystem == SYSTEM_UNDEAD)
                 {
                     // is undead no effect
+                    Action->spikesEffect = (SUBEFFECT)0;
                     return false;
                 }
                 else
@@ -581,6 +582,7 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
                 else
                 {
                     // only works on shield blocks
+                    Action->spikesEffect = (SUBEFFECT)0;
                     return false;
                 }
                 break;
