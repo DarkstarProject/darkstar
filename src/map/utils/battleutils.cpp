@@ -729,7 +729,7 @@ bool HandleSpikesEquip(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAct
         }
         else
         {
-            uint8 ratio = (float)damage/4;
+            uint8 ratio = dsp_cap((float)damage/4, 1, 255);
             Action->spikesParam = HandleStoneskin(PAttacker, damage - WELL512::irand()%ratio + WELL512::irand()%ratio);
             PAttacker->addHP(-Action->spikesParam);
         }
