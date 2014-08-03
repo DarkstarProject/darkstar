@@ -11,6 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
+    mob:setMobMod(MOBMOD_AUTO_SPIKES,mob:getShortID());
     mob:addStatusEffect(EFFECT_SHOCK_SPIKES,40,0,0);
     mob:getStatusEffect(EFFECT_SHOCK_SPIKES):setFlag(32);
 end;
