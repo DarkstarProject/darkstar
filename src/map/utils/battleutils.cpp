@@ -542,7 +542,7 @@ bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAc
     if (Action->spikesEffect > 0)
     {
         // check if spikes are handled in mobs script
-        if (PDefender->objtype == TYPE_MOB)
+        if (PDefender->objtype == TYPE_MOB && ((CMobEntity*)PDefender)->getMobMod(MOBMOD_AUTO_SPIKES) > 0)
         {
             luautils::OnSpikesDamage(PDefender, PAttacker, Action, Action->spikesParam);
         }
