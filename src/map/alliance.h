@@ -24,6 +24,7 @@
 #ifndef _CALLIANCE_H
 #define _CALLIANCE_H
 
+#include "map.h"
 #include "../common/cbasetypes.h"
 
 #include <vector>
@@ -40,12 +41,13 @@ class CAlliance
 public:
 
 	CAlliance(CBattleEntity* PEntity);
+	CAlliance(uint32 id, Sql_t* Sql = SqlHandle);
 
 	uint32  m_AllianceID;
 	CParty* getMainParty();
 	void setMainParty(CParty * aLeader);
 	void addParty(CParty * party);
-	void addParty(uint32 partyid);
+	void addParty(uint32 partyid, Sql_t* Sql = SqlHandle);
 	void removeParty(CParty * party);
 	void dissolveAlliance(void);
 	uint32 partyCount(void);

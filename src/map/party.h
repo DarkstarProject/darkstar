@@ -24,6 +24,7 @@
 #ifndef _CPARTY_H
 #define _CPARTY_H
 
+#include "map.h"
 #include "../common/cbasetypes.h"
 
 #include <vector>
@@ -77,8 +78,10 @@ public:
 	void ReloadTreasurePool(CCharEntity* PChar);
 
     void AddMember(CBattleEntity* PEntity);             // добавляем персонажа в группу
-	void AddMember(uint32 id);							// Add party member from outside this server's scope
+	void AddMember(uint32 id, Sql_t* Sql = SqlHandle);	// Add party member from outside this server's scope
     void RemoveMember(CBattleEntity* PEntity);          // удаление персонажа из группы
+	void DelMember(CBattleEntity* PEntity);				// remove a member without invoking chat/db
+    void PushMember(CBattleEntity* PEntity);            // add a member without invoking chat/db
     void AssignPartyRole(int8* MemberName, uint8 role);	// назначаем роли участникам группы
     void DisableSync();
 	void SetSyncTarget(CBattleEntity* PEntity, uint16 message);         // устанавливаем цель синхронизации уровней3

@@ -57,7 +57,12 @@ CAlliance::CAlliance(CBattleEntity* PEntity)
 
 }
 
+CAlliance::CAlliance(uint32 id, Sql_t* Sql)
+{
+	m_AllianceID = id;
 
+	addParty(id, Sql);
+}
 
 void CAlliance::dissolveAlliance(void) 
 {
@@ -168,9 +173,9 @@ void CAlliance::addParty(CParty * party)
 
 }
 
-void CAlliance::addParty(uint32 partyid)
+void CAlliance::addParty(uint32 partyid, Sql_t* Sql)
 {
-	Sql_Query(SqlHandle, "UPDATE accounts_sessions SET allianceid = %u WHERE partyid = %u", m_AllianceID, partyid);
+	Sql_Query(Sql, "UPDATE accounts_sessions SET allianceid = %u WHERE partyid = %u", m_AllianceID, partyid);
 	uint8 data[4];
 	WBUFL(data, 0) = m_AllianceID;
 	chat::send(chat::CHAT_PT_RELOAD, data, sizeof data, NULL);

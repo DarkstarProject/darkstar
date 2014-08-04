@@ -378,7 +378,12 @@ public:
 	void SetPlayTime(uint32 playTime);				// Set playtime
 	uint32 GetPlayTime(bool needUpdate = true);		// Get playtime
 
-	CItemArmor* getEquip(SLOTTYPE slot);
+	CItemArmor*	getEquip(SLOTTYPE slot);
+	
+	void		ReloadPartyInc();
+    void        ReloadPartyDec();
+    bool        ReloadParty();
+
 
 	 CCharEntity();									// конструктор
 	~CCharEntity();									// деструктор
@@ -397,6 +402,7 @@ private:
 
 	bool			m_isWeaponSkillKill;
 	bool			m_isMijinGakure;
+	int				m_reloadParty;
 
 	PacketList_t      PacketList;					// в этом списке хранятся все пакеты, предназначенные для отправки персонажу
 };

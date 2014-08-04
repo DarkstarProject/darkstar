@@ -259,7 +259,7 @@ void LoadNPCList()
           unknown,\
           look,\
           name_prefix \
-        FROM npc_list RIGHT JOIN zone_settings \
+        FROM npc_list INNER JOIN zone_settings \
 		ON npc_list.zoneid = zone_settings.zoneid \
         WHERE npcid < 1024 AND IF(%d <> 0, %d = zoneip AND %d = zoneport, TRUE);";
 
@@ -329,7 +329,7 @@ void LoadMOBList()
 			FROM mob_groups INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
 			INNER JOIN mob_spawn_points ON mob_groups.groupid = mob_spawn_points.groupid \
 			INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
-			RIGHT JOIN zone_settings ON mob_groups.zoneid = zone_settings.zoneid \
+			INNER JOIN zone_settings ON mob_groups.zoneid = zone_settings.zoneid \
 			WHERE NOT (pos_x = 0 AND pos_y = 0 AND pos_z = 0) AND IF(%d <> 0, %d = zoneip AND %d = zoneport, TRUE);";
 
     int32 ret = Sql_Query(SqlHandle, Query, map_ip, map_ip, map_port);
@@ -478,10 +478,10 @@ void LoadMOBList()
 		FROM mob_pets \
 		LEFT JOIN mob_spawn_points ON mob_pets.mob_mobid = mob_spawn_points.mobid \
 		LEFT JOIN mob_groups ON mob_spawn_points.groupid = mob_groups.groupid \
-		RIGHT JOIN zone_settings ON mob_groups.zoneid = zone_settings.zoneid \
+		INNER JOIN zone_settings ON mob_groups.zoneid = zone_settings.zoneid \
 		WHERE IF(%d <> 0, %d = zoneip AND %d = zoneport, TRUE);";
 
-	ret = Sql_Query(SqlHandle, PetQuery);
+	ret = Sql_Query(SqlHandle, PetQuery, map_ip, map_ip, map_port);
 
 	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{

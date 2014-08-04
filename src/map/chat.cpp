@@ -244,55 +244,48 @@ namespace chat
 					}
 					else
 					{
-						if (PInviter->PParty)
+						//both party leaders?
+						int ret = Sql_Query(ChatSqlHandle, "SELECT * FROM accounts_parties WHERE partyid <> 0 AND \
+													   	(charid = %u OR charid = %u) AND partyflag & %u;)", inviterId,
+														inviteeId, PARTY_LEADER);
+						if (ret != SQL_ERROR && Sql_NumRows(ChatSqlHandle) == 2)
 						{
-							//both party leaders?
-							int ret = Sql_Query(ChatSqlHandle, "SELECT * FROM accounts_parties WHERE partyid <> 0 AND \
-													   		(charid = %u OR charid = %u) AND partyflag & %u;)", inviterId,
-															inviteeId, PARTY_LEADER);
-							if (ret != SQL_ERROR && Sql_NumRows(ChatSqlHandle) == 2)
+							if (PInviter->PParty->m_PAlliance)
 							{
-								if (PInviter->PParty->m_PAlliance)
+								ret = Sql_Query(ChatSqlHandle, "SELECT * FROM accounts_parties WHERE allianceid <> 0 AND \
+														   	allianceid = (SELECT allianceid FROM accounts_parties where \
+															charid = %u) GROUP BY partyid;", inviterId);
+								if (ret != SQL_ERROR && Sql_NumRows(ChatSqlHandle) > 0 && Sql_NumRows(ChatSqlHandle) < 3)
 								{
-									ret = Sql_Query(ChatSqlHandle, "SELECT * FROM accounts_parties WHERE allianceid <> 0 AND \
-														   		allianceid = (SELECT allianceid FROM accounts_parties where \
-																charid = %u) GROUP BY partyid;", inviterId);
-									if (ret != SQL_ERROR && Sql_NumRows(ChatSqlHandle) > 0 && Sql_NumRows(ChatSqlHandle) < 3)
-									{
-										PInviter->PParty->m_PAlliance->addParty(inviteeId);
-									}
-									else
-									{
-										send(CHAT_MSG_DIRECT, (uint8*)extra->data()+6, sizeof uint32, new CMessageStandardPacket(PInviter, 0, 0, 14));
-									}
+									PInviter->PParty->m_PAlliance->addParty(inviteeId, ChatSqlHandle);
 								}
 								else
 								{
-									//make new alliance
-									CAlliance* PAlliance = new CAlliance(PInviter);
-									PInviter->PParty->m_PAlliance->addParty(inviteeId);
+									send(CHAT_MSG_DIRECT, (uint8*)extra->data()+6, sizeof uint32, new CMessageStandardPacket(PInviter, 0, 0, 14));
 								}
 							}
 							else
 							{
-								if (PInviter->PParty == NULL)
-								{
-									CParty* PParty = new CParty(PInviter);
-								}
-								if (PInviter->PParty->GetLeader() == PInviter)
-								{
-									ret = Sql_Query(ChatSqlHandle, "SELECT * FROM accounts_parties WHERE partyid <> 0 AND \
-																charid = %u;", inviteeId);
-									if (ret != SQL_ERROR && Sql_NumRows(ChatSqlHandle) > 0)
-									{
-										PInviter->PParty->AddMember(inviteeId);
-									}
-								}
+								//make new alliance
+								CAlliance* PAlliance = new CAlliance(inviterId, ChatSqlHandle);
+								PInviter->PParty->m_PAlliance->addParty(inviteeId, ChatSqlHandle);
 							}
 						}
 						else
 						{
-
+							if (PInviter->PParty == NULL)
+							{
+								CParty* PParty = new CParty(PInviter);
+							}
+							if (PInviter->PParty->GetLeader() == PInviter)
+							{
+								ret = Sql_Query(ChatSqlHandle, "SELECT * FROM accounts_parties WHERE partyid <> 0 AND \
+															charid = %u;", inviteeId);
+								if (ret != SQL_ERROR && Sql_NumRows(ChatSqlHandle) > 0)
+								{
+									PInviter->PParty->AddMember(inviteeId, ChatSqlHandle);
+								}
+							}
 						}
 					}
 				}
@@ -308,23 +301,30 @@ namespace chat
 						{
 							for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
 							{
-								//PChar->PParty->m_PAlliance->partyList.at(i)->ReloadParty();
+								for (uint8 j = 0; j < PChar->PParty->m_PAlliance->partyList.at(i)->members.size(); ++i)
+								{
+									((CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(i)->members.at(j))->ReloadPartyInc();
+								}
 							}
 						}
 						else
 						{
-							//PChar->PParty->ReloadParty();
+							for (uint8 i = 0; i < PChar->PParty->members.size(); ++i)
+							{
+                                ((CCharEntity*)PChar->PParty->members.at(i))->ReloadPartyInc();
+							}
 						}
 					}
 					else
 					{
-						int ret = Sql_Query(ChatSqlHandle, "SELECT partyid FROM accounts_sessions WHERE partyid <> 0 AND \
+						/*int ret = Sql_Query(ChatSqlHandle, "SELECT partyid FROM accounts_sessions WHERE partyid <> 0 AND \
 													   	charid = %u;", RBUFL(extra->data(), 0));
 						if (ret != 0 && Sql_NumRows(ChatSqlHandle) != 0 && Sql_NextRow(ChatSqlHandle) == SQL_SUCCESS)
 						{
-							//CParty* PParty = new CParty(Sql_GetUIntData(ChatSqlHandle, 0));
-							//PParty->AddMember(PChar);
-						}
+							CParty* PParty = new CParty(Sql_GetUIntData(ChatSqlHandle, 0));
+							PParty->AddMember(PChar);
+						}*/
+                        PChar->ReloadPartyInc();
 					}
 				}
 				break;

@@ -4606,4 +4606,35 @@ void ClearTempItems(CCharEntity* PChar)
 	}
 }
 
+void ReloadParty(CCharEntity* PChar)
+{
+	int ret = Sql_Query(SqlHandle, "SELECT partyid FROM accounts_sessions WHERE partyid <> 0 AND \
+									charid = %u;", PChar->id);
+	if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+	{
+		if (PChar->PParty)
+		{
+            PChar->PParty->ReloadParty();
+            for (auto member : PChar->PParty->members)
+            {
+                ((CCharEntity*)member)->ReloadPartyDec();
+            }
+		}
+        else
+        {
+            CParty* PParty = new CParty(Sql_GetUIntData(SqlHandle, 0));
+            PParty->PushMember(PChar);
+            PChar->ReloadPartyDec();
+        }
+	}
+	else
+	{
+		if (PChar->PParty)
+		{
+			PChar->PParty->DelMember(PChar);
+		}
+        PChar->ReloadPartyDec();
+	}
+}
+
 }; // namespace charutils

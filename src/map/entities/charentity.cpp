@@ -147,6 +147,7 @@ CCharEntity::CCharEntity()
 
 	m_PlayTime = 0;
 	m_SaveTime = 0;
+	m_reloadParty = 0;
 }
 
 CCharEntity::~CCharEntity()
@@ -385,4 +386,19 @@ CItemArmor* CCharEntity::getEquip(SLOTTYPE slot)
 		item = (CItemArmor*)getStorage(LOC_INVENTORY)->GetItem(loc);
 	}
 	return item;
+}
+
+void CCharEntity::ReloadPartyInc()
+{
+	m_reloadParty++;
+}
+
+void CCharEntity::ReloadPartyDec()
+{
+    if (m_reloadParty > 0) m_reloadParty--;
+}
+
+bool CCharEntity::ReloadParty()
+{
+    return m_reloadParty > 0;
 }

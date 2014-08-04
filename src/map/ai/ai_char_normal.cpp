@@ -94,6 +94,9 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
         m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, m_PChar, 0, 0, MSGBASIC_CANT_BE_USED_IN_AREA));
     }
 
+    if (m_PChar->ReloadParty())
+        charutils::ReloadParty(m_PChar);
+
 	switch (m_ActionType)
 	{
 		case ACTION_NONE:			  									break;
