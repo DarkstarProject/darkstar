@@ -246,7 +246,7 @@ namespace chat
 					{
 						//both party leaders?
 						int ret = Sql_Query(ChatSqlHandle, "SELECT * FROM accounts_parties WHERE partyid <> 0 AND \
-													   	(charid = %u OR charid = %u) AND partyflag & %u;)", inviterId,
+													   	((charid = %u OR charid = %u) AND partyflag & %u);", inviterId,
 														inviteeId, PARTY_LEADER);
 						if (ret != SQL_ERROR && Sql_NumRows(ChatSqlHandle) == 2)
 						{
@@ -275,13 +275,13 @@ namespace chat
 						{
 							if (PInviter->PParty == NULL)
 							{
-								CParty* PParty = new CParty(PInviter);
+								CParty* PParty = new CParty(PInviter, ChatSqlHandle);
 							}
 							if (PInviter->PParty->GetLeader() == PInviter)
 							{
 								ret = Sql_Query(ChatSqlHandle, "SELECT * FROM accounts_parties WHERE partyid <> 0 AND \
 															charid = %u;", inviteeId);
-								if (ret != SQL_ERROR && Sql_NumRows(ChatSqlHandle) > 0)
+								if (ret != SQL_ERROR && Sql_NumRows(ChatSqlHandle) == 0)
 								{
 									PInviter->PParty->AddMember(inviteeId, ChatSqlHandle);
 								}
@@ -317,18 +317,22 @@ namespace chat
 					}
 					else
 					{
-						/*int ret = Sql_Query(ChatSqlHandle, "SELECT partyid FROM accounts_sessions WHERE partyid <> 0 AND \
-													   	charid = %u;", RBUFL(extra->data(), 0));
-						if (ret != 0 && Sql_NumRows(ChatSqlHandle) != 0 && Sql_NextRow(ChatSqlHandle) == SQL_SUCCESS)
-						{
-							CParty* PParty = new CParty(Sql_GetUIntData(ChatSqlHandle, 0));
-							PParty->AddMember(PChar);
-						}*/
                         PChar->ReloadPartyInc();
 					}
 				}
 				break;
 			}
+            case CHAT_PT_DISBAND:
+            {
+                CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
+                if (PChar)
+                {
+                    if (PChar->PParty)
+                    {
+                        PChar->PParty->DisbandParty(false, ChatSqlHandle);
+                    }
+                }
+            }
 			case CHAT_MSG_DIRECT:
 			{
 				CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(),0));

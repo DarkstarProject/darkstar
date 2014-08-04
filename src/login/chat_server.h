@@ -35,7 +35,8 @@ enum CHATTYPE
 	CHAT_PT_INVITE	= 6,
 	CHAT_PT_INV_RES = 7,
 	CHAT_PT_RELOAD  = 8,
-	CHAT_MSG_DIRECT = 9
+    CHAT_PT_DISBAND = 9,
+	CHAT_MSG_DIRECT = 10
 };
 
 extern zmq::context_t zContext;

@@ -54,7 +54,7 @@
 *																		*
 ************************************************************************/
 
-CParty::CParty(CBattleEntity* PEntity)
+CParty::CParty(CBattleEntity* PEntity, Sql_t* sql)
 {
 	DSP_DEBUG_BREAK_IF(PEntity == NULL);
 	DSP_DEBUG_BREAK_IF(PEntity->PParty != NULL);
@@ -68,7 +68,7 @@ CParty::CParty(CBattleEntity* PEntity)
 	m_PQuaterMaster = NULL;
 
 
-	AddMember(PEntity);
+	AddMember(PEntity, sql);
 	SetLeader(PEntity);
 }
 
@@ -89,7 +89,7 @@ CParty::CParty(uint32 id)
 *																		*
 ************************************************************************/
 
-void CParty::DisbandParty()
+void CParty::DisbandParty(bool playerInitiated, Sql_t* sql)
 {
 	DisableSync();
 	SetQuaterMaster(NULL);
@@ -128,9 +128,17 @@ void CParty::DisbandParty()
                 sync->SetStartTime(gettick());
                 sync->SetDuration(30000);
             }
+            Sql_Query(sql, "DELETE FROM accounts_parties WHERE charid = %u;", PChar->id);
+            Sql_Query(sql, "UPDATE accounts_sessions SET partyid = %u WHERE charid = %u", 0, PChar->id);
 	    }
-		Sql_Query(SqlHandle,"DELETE FROM accounts_parties WHERE partyid = %u;", m_PartyID);
-        Sql_Query(SqlHandle,"UPDATE accounts_sessions SET partyid = %u WHERE partyid = %u", 0, m_PartyID);
+
+        // make sure chat server isn't notified of a disband if this came from the chat server already
+        if (playerInitiated)
+        {
+            uint8 data[4];
+            WBUFL(data, 0) = m_PartyID;
+            chat::send(chat::CHAT_PT_DISBAND, data, sizeof data, NULL);
+        }
     }
 	delete this;
 }
@@ -400,7 +408,7 @@ void CParty::RemovePartyLeader(CBattleEntity* PEntity)
 *																		*
 ************************************************************************/
 
-void CParty::AddMember(CBattleEntity* PEntity)
+void CParty::AddMember(CBattleEntity* PEntity, Sql_t* sql)
 {
 	DSP_DEBUG_BREAK_IF(PEntity == NULL);
 	DSP_DEBUG_BREAK_IF(PEntity->PParty != NULL);
@@ -414,8 +422,8 @@ void CParty::AddMember(CBattleEntity* PEntity)
 
         CCharEntity* PChar = (CCharEntity*)PEntity;
 
-		Sql_Query(SqlHandle, "UPDATE accounts_sessions SET partyid = %u WHERE charid = %u;", m_PartyID, PChar->id);
-		Sql_Query(SqlHandle, "INSERT INTO accounts_parties (charid, partyid, partyflag) VALUES (%u, %u, %u);", PChar->id, m_PartyID, GetMemberFlags(PChar));
+        Sql_Query(sql, "UPDATE accounts_sessions SET partyid = %u WHERE charid = %u;", m_PartyID, PChar->id);
+        Sql_Query(sql, "INSERT INTO accounts_parties (charid, partyid, partyflag) VALUES (%u, %u, %u);", PChar->id, m_PartyID, GetMemberFlags(PChar));
 		uint8 data[4];
 		WBUFL(data, 0) = m_PartyID;
 		chat::send(chat::CHAT_PT_RELOAD, data, sizeof data, NULL);

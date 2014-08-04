@@ -4624,6 +4624,7 @@ void ReloadParty(CCharEntity* PChar)
         {
             CParty* PParty = new CParty(Sql_GetUIntData(SqlHandle, 0));
             PParty->PushMember(PChar);
+            PParty->ReloadParty();
             PChar->ReloadPartyDec();
         }
 	}
