@@ -878,7 +878,7 @@ void CAIMobDummy::ActionAbilityStart()
 		Action.speceffect = SPECEFFECT_HIT;
 		Action.animation  = 0;
 		Action.param	  = m_PMobSkill->getMsgForAction();
-		Action.messageID  = 43; //readies message
+        Action.messageID = m_PMobSkill->getMsg() == 0 ? 0 : 43; //readies message
         Action.knockback  = 0;
 
 		m_PMob->m_ActionList.push_back(Action);
