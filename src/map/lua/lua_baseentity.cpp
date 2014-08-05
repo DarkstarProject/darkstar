@@ -3542,10 +3542,12 @@ inline int32 CLuaBaseEntity::createShop(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
     ((CCharEntity*)m_PBaseEntity)->Container->Clean();
+    ((CCharEntity*)m_PBaseEntity)->Container->setSize(lua_tointeger(L,1));
 
-    if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
+
+    if( !lua_isnil(L,2) && lua_isnumber(L,2) )
     {
-        ((CCharEntity*)m_PBaseEntity)->Container->setType((uint8)lua_tointeger(L, -1));
+        ((CCharEntity*)m_PBaseEntity)->Container->setType((uint8)lua_tointeger(L, 2));
     }
     return 0;
 }
@@ -3565,10 +3567,8 @@ inline int32 CLuaBaseEntity::addShopItem(lua_State *L)
 
     uint8 slotID = ((CCharEntity*)m_PBaseEntity)->Container->getItemsCount();
 
-    if (slotID < 16)
-    {
-        ((CCharEntity*)m_PBaseEntity)->Container->setItem(slotID, itemID, 0, price);
-    }
+    ((CCharEntity*)m_PBaseEntity)->Container->setItem(slotID, itemID, 0, price);
+
     return 0;
 }
 
