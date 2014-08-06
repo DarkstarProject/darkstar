@@ -107,6 +107,7 @@ void CSearchListPacket::AddPlayer(SearchEntity* PPlayer)
     m_offset = packBitsLE(m_data, SEARCH_UNK0x0E,  m_offset, 5);
     m_offset = packBitsLE(m_data, 0, m_offset, 32);
 	
+    // TODO: search comments
     if (PPlayer->comment != 0)
     {
         m_offset = packBitsLE(m_data, SEARCH_COMMENT,   m_offset, 5);
