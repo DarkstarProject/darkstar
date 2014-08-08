@@ -54,6 +54,7 @@ public:
 	uint32	getQuantity(uint8 slotID);						// количество предметов в ячейке
 	bool	getConfirmedStatus(uint8 slotID);
 	uint32	getItemQuantity(uint16 itemID);					// количество предметов одного типа
+    uint8   getSize();
 
 	void	setType(uint8 type);
 	void	setItemsCount(uint8 count);

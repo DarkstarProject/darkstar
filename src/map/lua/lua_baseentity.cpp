@@ -3542,7 +3542,7 @@ inline int32 CLuaBaseEntity::createShop(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
     ((CCharEntity*)m_PBaseEntity)->Container->Clean();
-    ((CCharEntity*)m_PBaseEntity)->Container->setSize(lua_tointeger(L,1));
+    ((CCharEntity*)m_PBaseEntity)->Container->setSize(lua_tointeger(L,1) + 1);
 
 
     if( !lua_isnil(L,2) && lua_isnumber(L,2) )

@@ -3198,9 +3198,9 @@ void SmallPacket0x083(map_session_data_t* session, CCharEntity* PChar, int8* dat
     uint8  shopSlotID = RBUFB(data,(0x0A));
 
     // Prevent users from buying from slots higher than 15.. (Prevents appraise duping..)
-    if (shopSlotID > 15)
+    if (shopSlotID > PChar->Container->getSize() - 1)
     {
-        ShowWarning(CL_YELLOW"User '%s' attempting to buy vendor item from a slot higher than 15!" CL_RESET, PChar->GetName());
+        ShowWarning(CL_YELLOW"User '%s' attempting to buy vendor item from an invalid slot!" CL_RESET, PChar->GetName());
         return;
     }
 
@@ -3257,7 +3257,7 @@ if (PChar->animation != ANIMATION_SYNTH)
 	   !(PItem->getFlag() & ITEM_FLAG_NOSALE) )
 	{
 		// подготавливаем предмет для продажи
-		PChar->Container->setItem(16, itemID, slotID, quantity);
+		PChar->Container->setItem(PChar->Container->getSize() - 1, itemID, slotID, quantity);
 		PChar->pushPacket(new CShopAppraisePacket(slotID, PItem->getBasePrice()));
 	}
 	return;
@@ -3274,9 +3274,9 @@ if (PChar->animation != ANIMATION_SYNTH)
 
 void SmallPacket0x085(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	uint32 quantity = PChar->Container->getQuantity(16);
-	uint16 itemID   = PChar->Container->getItemID(16);
-	uint8  slotID   = PChar->Container->getInvSlotID(16);
+    uint32 quantity = PChar->Container->getQuantity(PChar->Container->getSize() - 1);
+    uint16 itemID = PChar->Container->getItemID(PChar->Container->getSize() - 1);
+    uint8  slotID = PChar->Container->getInvSlotID(PChar->Container->getSize() - 1);
 
 	CItem* gil   = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
 	CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
@@ -3290,7 +3290,7 @@ void SmallPacket0x085(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		PChar->pushPacket(new CInventoryFinishPacket());
 	}
 	// очищаем ячейку для безопасности (защита от группы 0x085-ых пакетов)
-	PChar->Container->setItem(16,0,-1,0);
+    PChar->Container->setItem(PChar->Container->getSize() - 1, 0, -1, 0);
 	return;
 }
 
