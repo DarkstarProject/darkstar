@@ -83,7 +83,7 @@ void TCPComm(SOCKET socket);
 extern void HandleSearchRequest(CTCPRequestPacket* PTCPRequest);
 extern void HandleSearchComment(CTCPRequestPacket* PTCPRequest);
 extern void HandleGroupListRequest(CTCPRequestPacket* PTCPRequest);
-extern void HandleAuctionHouseHistoru(CTCPRequestPacket* PTCPRequest);
+extern void HandleAuctionHouseHistory(CTCPRequestPacket* PTCPRequest);
 extern void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest);
 extern search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket);
 extern std::string toStr(int number);
@@ -463,7 +463,7 @@ void TCPComm(SOCKET socket)
 		case TCP_AH_HISTORY_SINGL:
         case TCP_AH_HISTORY_STACK:
 		{
-            HandleAuctionHouseHistoru(PTCPRequest);
+            HandleAuctionHouseHistory(PTCPRequest);
 		}
 		break;
 	}
@@ -650,7 +650,7 @@ void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest)
 *                                                                       *
 ************************************************************************/
 
-void HandleAuctionHouseHistoru(CTCPRequestPacket* PTCPRequest)
+void HandleAuctionHouseHistory(CTCPRequestPacket* PTCPRequest)
 {
     uint8* data   = (uint8*)PTCPRequest->GetData();                            
 	uint16 ItemID = RBUFW(data,(0x12));
@@ -691,10 +691,21 @@ search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 
 	uint8 name[16];
 	uint8 nameLen = 0;
-	uint8 minLvl = 0;
+	
+    uint8 minLvl = 0;
 	uint8 maxLvl = 0;
-	uint8 jobid = 0;
+	
+    uint8 jobid = 0;
+    uint8 raceid = 255;   // 255 cause race 0 is an actual filter (hume)
+    uint8 nationid = 255; // 255 cause nation 0 is an actual filter (sandoria)
+    
+    uint8 minRank = 0;
+    uint8 maxRank = 0;
+    
     uint16 areas[10];
+    
+    uint32 flags = 0;
+
 
 	uint8* data = (uint8*)PTCPRequest->GetData();
 	uint8  size = RBUFB(data,(0x10));
@@ -780,6 +791,7 @@ search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 				{
 					unsigned char country = (unsigned char)unpackBitsLE(&data[0x11],bitOffset,2);
 					bitOffset+=2;
+                    nationid = country;
 
 					printf("SEARCH::Nationality Entry found. (%2X) Sorting: (%s).\n",country,(sortDescending==0x00)?"ascending":"descending");
 				}
@@ -820,6 +832,8 @@ search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 				{
 					unsigned char race = (unsigned char)unpackBitsLE(&data[0x11],bitOffset,4);
 					bitOffset+=4;
+                    raceid = race;
+
 					printf("SEARCH::Race Entry found. (%2X) Sorting: (%s).\n",race,(sortDescending==0x00)?"ascending":"descending");
 				}
 				printf("SEARCH::SortByRace: %s.\n",(sortDescending==0x00)?"ascending":"descending");
@@ -832,8 +846,10 @@ search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 				{
 					unsigned char fromRank = (unsigned char)unpackBitsLE(&data[0x11],bitOffset,8);
 					bitOffset+=8;
+                    minRank = fromRank;
 					unsigned char toRank = (unsigned char)unpackBitsLE(&data[0x11],bitOffset,8);
 					bitOffset+=8;
+                    maxRank = toRank;
 
 					printf("SEARCH::Rank Entry found. (%d - %d) Sorting: (%s).\n",fromRank,toRank,(sortDescending==0x00)?"ascending":"descending");
 				}
@@ -872,6 +888,8 @@ search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 					bitOffset+=16;
 
 					printf("SEARCH::Flag Entry #1 (%.4X) found. Sorting: (%s).\n",flags1,(sortDescending==0x00)?"ascending":"descending");
+
+                    flags = flags1;
 				}
 				printf("SEARCH::SortByFlags: %s\n",(sortDescending == 0? "ascending" : "descending"));
 				//packetData.sortDescendingByFlags=sortDescending;
@@ -879,9 +897,10 @@ search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 			}
 			case SEARCH_FLAGS2: // Flag Entry #2 - 4 byte
 			{
-				unsigned int flags=(unsigned int)unpackBitsLE(&data[0x11],bitOffset,32);
+				unsigned int flags2=(unsigned int)unpackBitsLE(&data[0x11],bitOffset,32);
 
 				bitOffset+=32;
+                flags = flags2;
 				/*
 				if ((flags & 0xFFFF)!=(packetData.flags1))
 				{
@@ -908,6 +927,13 @@ search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 	sr.jobid = jobid;
 	sr.maxlvl = maxLvl;
 	sr.minlvl = minLvl;
+
+    sr.race = raceid;
+    sr.nation = nationid;
+    sr.minRank = minRank;
+    sr.maxRank = maxRank;
+    sr.flags = flags;
+
 	sr.nameLen = nameLen;
 	memcpy(sr.zoneid, areas, sizeof(sr.zoneid));
 	if(nameLen>0){
