@@ -900,19 +900,17 @@ void CAIPetDummy::ActionDisengage()
 
 void CAIPetDummy::ActionFall()
 {
-        bool isMob = m_PPet->objtype == TYPE_MOB;
-        // remove master from pet
-        if(m_PPet->PMaster != NULL){
-            petutils::DetachPet(m_PPet->PMaster);
-        }
+    bool isMob = m_PPet->objtype == TYPE_MOB;
+    // remove master from pet
+    if(m_PPet->PMaster != NULL && m_PPet->PMaster->PPet == m_PPet){
+        petutils::DetachPet(m_PPet->PMaster);
+    }
 
-        // detach pet just deleted this
-        // so break out of here
-        if(isMob){
-            return;
-        }
-
-        m_PPet->health.hp = 0;
+    // detach pet just deleted this
+    // so break out of here
+    if(isMob){
+        return;
+    }
 
 	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 

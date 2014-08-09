@@ -5432,7 +5432,15 @@ inline int32 CLuaBaseEntity::spawnPet(lua_State *L)
             uint8 petId = lua_tointeger(L,1);
             if (petId == PETID_HARLEQUINFRAME)
             {
-                petId = PETID_HARLEQUINFRAME + ((CCharEntity*)m_PBaseEntity)->PAutomaton->getFrame() - 0x20;
+                if (((CCharEntity*)m_PBaseEntity)->PAutomaton)
+                {
+                    petId = PETID_HARLEQUINFRAME + ((CCharEntity*)m_PBaseEntity)->PAutomaton->getFrame() - 0x20;
+                }
+                else
+                {
+                    ShowError(CL_RED"CLuaBaseEntity::spawnPet : PetID is NULL\n" CL_RESET);
+                    return 0;
+                }
             }
             petutils::SpawnPet((CBattleEntity*)m_PBaseEntity, lua_tointeger(L,1), false);
         }
