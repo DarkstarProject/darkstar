@@ -1,7 +1,7 @@
 -----------------------------------
 --	Area: Windurst Waters
 --	NPC:  Furakku-Norakku
--- Involved in Quest: Early bird catches the bookworm, Chasing tales, Class Reunion
+--  Involved in Quests: Early Bird Catches the Bookworm, Chasing Tales, Class Reunion
 --	@pos -19 -5 101 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
@@ -11,7 +11,7 @@ require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Windurst_Walls/TextIDs");
+require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -44,7 +44,7 @@ function onTrigger(player,npc)
 	elseif(bookwormStatus == QUEST_COMPLETED and player:needToZone()) then
 		player:startEvent(0x0191); -- Standard dialog before player zone
 	elseif(chasingStatus == QUEST_ACCEPTED and player:hasKeyItem(OVERDUE_BOOK_NOTIFICATION) == false) then
-	    player:startEvent(0x0194,0,126);
+	    player:startEvent(0x0194,0,126); -- During Quest "Chasing Tales", tells you the book "A Song of Love" is overdue
 	elseif(player:hasKeyItem(OVERDUE_BOOK_NOTIFICATION) and player:hasKeyItem(A_SONG_OF_LOVE) == false) then
 		player:startEvent(0x0195,0,126);
 	elseif(player:getVar("CHASING_TALES_TRACK_BOOK") == 1 and player:hasKeyItem(A_SONG_OF_LOVE) == false) then
