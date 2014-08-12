@@ -340,6 +340,7 @@ enum TARGETTYPE
 	TARGET_NPC				       = 0x40,		// скорее всего подразумевается mob, выглядящий как npc и воюющий на стороне персонажа
     TARGET_PLAYER_PARTY_PIANISSIMO = 0x80
 };
+
 enum SKILLCHAIN_ELEMENT
 {
     SC_NONE          =  0, // Lv0 None
@@ -364,6 +365,9 @@ enum SKILLCHAIN_ELEMENT
     SC_DARKNESS_II   = 16, // Lv4 Darkness
 };
 
+#define MAX_SKILLCHAIN_LEVEL (4)
+#define MAX_SKILLCHAIN_COUNT (5)
+
 enum IMMUNITY : uint16
 {
 	IMMUNITY_NONE		= 0x00,
@@ -371,16 +375,14 @@ enum IMMUNITY : uint16
 	IMMUNITY_GRAVITY	= 0x02,
 	IMMUNITY_BIND		= 0x04,
 	IMMUNITY_STUN		= 0x08,
-	IMMUNITY_SILENCE	= 0x10, // 16
-	IMMUNITY_PARALYZE	= 0x20, // 32
-	IMMUNITY_BLIND		= 0x40, // 64
-	IMMUNITY_SLOW		= 0x80, // 128
+	IMMUNITY_SILENCE	= 0x10,  // 16
+	IMMUNITY_PARALYZE	= 0x20,  // 32
+	IMMUNITY_BLIND		= 0x40,  // 64
+	IMMUNITY_SLOW		= 0x80,  // 128
 	IMMUNITY_POISON		= 0x100, // 256
 	IMMUNITY_ELEGY		= 0x200, // 512
+	IMMUNITY_REQUIEM	= 0x400, // 1024
 };
-
-#define MAX_SKILLCHAIN_LEVEL (4)
-#define MAX_SKILLCHAIN_COUNT (5)
 
 struct apAction_t
 {

@@ -151,6 +151,10 @@ void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
 				PChar->PInstance = instance;
 			}
 		}
+		if (PChar->m_GMlevel > 0)
+		{
+			PChar->PInstance = new CInstance(this, 0);
+		}
 	}
 
 	if (PChar->PInstance)

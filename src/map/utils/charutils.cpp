@@ -55,6 +55,7 @@
 #include "../packets/menu_merit.h"
 #include "../packets/message_basic.h"
 #include "../packets/message_debug.h"
+#include "../packets/message_special.h"
 #include "../packets/message_standard.h"
 #include "../packets/send_box.h"
 #include "../packets/quest_mission_log.h"
@@ -3447,7 +3448,27 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
         }
     }
 
-	//player levels up
+    // Cruor Drops in Abyssea zones.
+    uint16 Pzone = PChar->getZone();
+    if (zoneutils::GetCurrentRegion(Pzone) == REGION_ABYSSEA)
+    {
+        uint16 TextID = luautils::GetTextIDVariable(Pzone, "CRUOR_OBTAINED");
+        uint32 Total = PChar->m_currency.cruor;
+        uint32 Cruor = 0; // Need to work out how to do cruor chains, until then no cruor will drop unless this line is customized for non retail play.
+
+        if (TextID == 0)
+        {
+            ShowWarning(CL_YELLOW"Failed to fetch Cruor Message ID for zone: %i\n" CL_RESET, Pzone);
+        }
+
+        if (Cruor >= 1)
+        {
+            PChar->pushPacket(new CMessageSpecialPacket(PChar, TextID, Cruor, Total, 0, 0));
+            PChar->m_currency.cruor += Cruor;
+        }
+    }
+
+    // Player levels up
     if ((currentExp + exp) >= GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) && onLimitMode == false)
     {
         if (PChar->jobs.job[PChar->GetMJob()] >= PChar->jobs.genkai)
@@ -4186,21 +4207,19 @@ void SaveCharPoints(CCharEntity* PChar)
 uint32  AddExpBonus(CCharEntity* PChar, uint32 exp)
 {
     int32 bonus = 0;
-    if (PChar->getMod(MOD_DEDICATION))
+    if (PChar->StatusEffectContainer->GetStatusEffect(EFFECT_DEDICATION))
     {
-        int16 percentage = PChar->getMod(MOD_DEDICATION);
-        int16 cap = PChar->getMod(MOD_DEDICATION_CAP);
+    	CStatusEffect* dedication = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_DEDICATION);
+    	int16 percentage = dedication->GetPower();
+    	int16 cap = dedication->GetSubPower();
+    	bonus += dsp_cap((exp * percentage)/100, 0, cap);
+    	dedication->SetSubPower(cap -= bonus);
 
-        int16 dedication = dsp_cap(exp * PChar->getMod(MOD_DEDICATION) / 100, 0, PChar->getMod(MOD_DEDICATION_CAP));
-
-        PChar->setModifier(MOD_DEDICATION_CAP, PChar->getMod(MOD_DEDICATION_CAP) - dedication);
-
-        if (PChar->getMod(MOD_DEDICATION_CAP) == 0)
+        if (cap <= 0)
         {
             PChar->StatusEffectContainer->DelStatusEffect(EFFECT_DEDICATION);
         }
 
-        bonus = dedication;
     }
 
     bonus += exp * (PChar->getMod(MOD_EXP_BONUS) / 100.0f);

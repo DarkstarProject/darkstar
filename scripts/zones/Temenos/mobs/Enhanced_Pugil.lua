@@ -32,7 +32,7 @@ local cofferID=Randomcoffer(6,GetInstanceRegion(1298));
     local mobX = mob:getXPos();
 	local mobY = mob:getYPos();
 	local mobZ = mob:getZPos();
-	GetNPCByID(16928768+469):setStatus(STATUS_NORMAL);
+	GetNPCByID(16928770+469):setStatus(STATUS_NORMAL);
   if(cofferID~=0)then
    	GetNPCByID(16928768+cofferID):setPos(mobX,mobY,mobZ);
 	GetNPCByID(16928768+cofferID):setStatus(STATUS_NORMAL);

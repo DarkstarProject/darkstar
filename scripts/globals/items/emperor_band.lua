@@ -4,8 +4,8 @@
 -- Experience point bonus
 -----------------------------------------
 -- Bonus: +50%
--- Duration: 210 min
--- Max bonus: 2000 exp
+-- Duration: 720 min
+-- Max bonus: 3000 exp
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -27,6 +27,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_DEDICATION,50,0,18900);
-	target:addMod(MOD_DEDICATION_CAP, 2000);
+	target:addStatusEffect(EFFECT_DEDICATION,50,0,43200,0,3000);
 end;

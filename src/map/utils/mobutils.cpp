@@ -477,6 +477,30 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->m_roamFlags |= ROAMFLAG_AMBUSH;
 	}
 
+    // Phuabo
+    if(PMob->m_Family == 194)
+    {
+        PMob->m_roamFlags |= ROAMFLAG_STEALTH;
+    }
+
+    // Yovra
+    if(PMob->m_Family == 271)
+    {
+        PMob->m_roamFlags |= ROAMFLAG_STEALTH;
+    }
+
+    // Chigoe
+    if(PMob->m_Family == 64)
+    {
+        PMob->m_roamFlags |= ROAMFLAG_STEALTH;
+    }
+
+    // Amphiptere
+    if(PMob->m_Family == 6)
+    {
+       PMob->m_roamFlags |= ROAMFLAG_STEALTH;
+    }
+
 	if(PMob->m_Family == 362)
 	{
 		// rapido doesn't stop

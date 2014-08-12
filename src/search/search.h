@@ -44,6 +44,11 @@ struct search_req
 	uint8 jobid;
 	uint8 minlvl;
 	uint8 maxlvl;
+    uint8 race;
+    uint8 nation;
+    uint8 minRank;
+    uint8 maxRank;
+    uint32 flags;
 	string_t name;
 	uint8 nameLen;
 };

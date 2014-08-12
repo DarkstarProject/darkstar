@@ -32,18 +32,34 @@
 CMenuMeritPacket::CMenuMeritPacket(CCharEntity* PChar) 
 {
 	this->type = 0x63;
-	this->size = 0x06;
+	this->size = 0x08;
 	
 	WBUFB(data,(0x04)-4) = 0x02;
-	WBUFB(data,(0x06)-4) = 0x08;
+	WBUFB(data,(0x06)-4) = 0x0C;
 
     WBUFW(data,(0x08)-4) = PChar->PMeritPoints->GetLimitPoints();
     WBUFB(data,(0x0A)-4) = PChar->PMeritPoints->GetMeritPoints();
 
+	uint8 flag = 0x00;
+
 	if (PChar->jobs.job[PChar->GetMJob()] >= 75 && charutils::hasKeyItem(PChar, 606))			// keyitem Limit Breaker
 	{
-        WBUFB(data,(0x0B)-4) = PChar->MeritMode ? 0xE0 : 0x20; 					// режим (0xE0 limit pints, 0x20 exp points)
+		flag |= 0x20;
+		if (PChar->MeritMode)
+		{
+			flag |= 0x80;
+		}
 	}
+
+	//capped EXP
+	if (PChar->jobs.job[PChar->GetMJob()] >= PChar->jobs.genkai && PChar->jobs.exp[PChar->GetMJob()] == charutils::GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) - 1 
+		|| PChar->MeritMode)
+	{
+		flag |= 0x40;
+	}
+
+	WBUFB(data,(0x0B)-4) = flag;
+	WBUFB(data,(0x0C)-4) = map_config.max_merit_points;
 
     PChar->pushPacket(new CBasicPacket(*this));
 

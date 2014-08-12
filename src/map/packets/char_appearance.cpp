@@ -41,4 +41,10 @@ CCharAppearancePacket::CCharAppearancePacket(CCharEntity* PChar)
 	WBUFW(data,(0x10)-4) = PChar->look.main   + 0x6000;
 	WBUFW(data,(0x12)-4) = PChar->look.sub    + 0x7000;
 	WBUFW(data,(0x14)-4) = PChar->look.ranged + 0x8000;
+
+	if (PChar->m_Monstrosity != 0)
+	{
+		WBUFW(data,(0x04)-4) = PChar->m_Monstrosity;
+		WBUFW(data, (0x14)-4) = 0xFFFF;
+	}
 }

@@ -25,7 +25,7 @@
 #define _CUNIVERSALCONTAINER_H
 
 #include "../common/cbasetypes.h"
-
+#include <vector>
 
 enum UCONTAINERTYPE
 {
@@ -64,6 +64,7 @@ public:
     void    SetTarget(uint16 Target);
 	void	SetType(UCONTAINERTYPE Type);
 	bool	SetItem(uint8 slotID, CItem* PItem);
+    void    SetSize(uint8 size);
 
 	void	Clean();
     bool    IsLocked();
@@ -81,7 +82,7 @@ private:
     bool    m_lock;
     uint8   m_count;
     uint16  m_target;
-	CItem*  m_PItem[UCONTAINER_SIZE];
+	std::vector<CItem*>  m_PItem;
 };
 
 #endif

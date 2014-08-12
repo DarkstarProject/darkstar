@@ -105,6 +105,7 @@ CCharEntity::CCharEntity()
 	m_asaCurrent = 0;
 
     m_Costum     = 0;
+	m_Monstrosity = 0;
     m_PVPFlag    = 0;
 	m_hasTractor = 0;
 	m_hasRaise	 = 0;
@@ -312,7 +313,7 @@ int16 CCharEntity::addTP(int16 tp)
 {
 	int16 oldtp = health.tp;
 	tp = CBattleEntity::addTP(tp);
-//	if ((oldtp < 100 && health.tp >= 100 ) || (oldtp >= 100 && health.tp < 100))
+//	if ((oldtp < 1000 && health.tp >= 1000 ) || (oldtp >= 1000 && health.tp < 1000))
 //	{
 		PLatentEffectContainer->CheckLatentsTP(health.tp);
 //	}

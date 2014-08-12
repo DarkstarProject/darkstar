@@ -1184,7 +1184,7 @@ INSERT INTO `bcnm_loot` VALUES ('128', '1929', '402', '6'); -- Omega's Tail
 INSERT INTO `bcnm_loot` VALUES ('128', '1925', '659', '6'); -- Omega's Eye
 INSERT INTO `bcnm_loot` VALUES ('128', '1927', '383', '6'); -- Omega's Foreleg
 
-INSERT INTO `bcnm_loot` VALUES ('128', '1926', '26.5', '7'); -- Omega's Heart
+INSERT INTO `bcnm_loot` VALUES ('128', '1926', '265', '7'); -- Omega's Heart
 INSERT INTO `bcnm_loot` VALUES ('128', '1875', '100', '7');
 -- -----------------------------------------------------------------
 

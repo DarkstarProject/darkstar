@@ -2198,7 +2198,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 
     		CAIPetDummy* PPetAI = (CAIPetDummy*)m_PChar->PPet->PBattleAI;
 
-    		if(m_PChar->PPet->health.tp >= 100)
+    		if(m_PChar->PPet->health.tp >= 1000)
     		{
 	    		PPetAI->m_MasterCommand = MASTERCOMMAND_SIC;
 	    		PPetAI->SetCurrentAction(ACTION_MOBABILITY_START);
@@ -2275,7 +2275,7 @@ void CAICharNormal::ActionWeaponSkillStart()
         return;
     }
 
-    if (m_PChar->health.tp < 100)
+    if (m_PChar->health.tp < 1000)
     {
         WeaponSkillStartError(MSGBASIC_NOT_ENOUGH_TP);
         return;

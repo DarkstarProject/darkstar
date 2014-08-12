@@ -35,7 +35,7 @@ function onMobDeath(mob, killer)
                 GetMobByID(Nidhogg):setRespawnTime(math.random((75600),(86400)));
             elseif (LandKingSystem_NQ == 0 or LandKingSystem_NQ == 2) then
                 UpdateNMSpawnPoint(Fafnir);
-                mob:setRespawnTime((math.random((75600),(86400))) /HNM_TIMER_MOD);
+                mob:setRespawnTime(math.random((75600),(86400)));
                 SetServerVariable("[PH]Nidhogg", kills + 1);
                 GetMobByID(Nidhogg):setRespawnTime(math.random((75600),(86400)));
             end

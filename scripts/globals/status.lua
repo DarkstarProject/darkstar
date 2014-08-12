@@ -878,8 +878,6 @@ MOD_ZANSHIN			= 0x132
 MOD_UTSUSEMI			= 0x133
 MOD_NINJA_TOOL			= 0x134
 MOD_BLUE_POINTS			= 0x135
-MOD_DEDICATION			= 0x136
-MOD_DEDICATION_CAP		= 0x137
 MOD_PET_MABB			= 0x138
 MOD_PET_MACC			= 0x139
 MOD_PET_ATTP			= 0x13A
@@ -1066,6 +1064,21 @@ MOD_INHIBIT_TP                =0x1E8 -- Inhibits TP Gain (percent) (modId = 488)
 
 MOD_GOV_CLEARS                =0x1F0 -- Tracks GoV page completion (for 4% bonus on rewards).
 
+MOD_ITEM_SPIKES_TYPE          =0x1F3 -- Type spikes an item has (modId = 499)
+MOD_ITEM_SPIKES_DMG           =0x1F4 -- Damage of an items spikes (modId = 500)
+MOD_ITEM_SPIKES_CHANCE        =0x1F5 -- Chance of an items spike proc (modId = 501)
+
+-- MOD_SPARE =0x1F6 -- (modId = 502)
+-- MOD_SPARE =0x1F7 -- (modId = 503)
+-- MOD_SPARE =0x1F8 -- (modId = 504)
+-- MOD_SPARE =0x1F9 -- (modId = 505)
+-- MOD_SPARE =0x1FA -- (modId = 506)
+-- MOD_SPARE =0x1FB -- (modId = 507)
+-- MOD_SPARE =0x1FC -- (modId = 508)
+-- MOD_SPARE =0x1FD -- (modId = 509)
+-- MOD_SPARE =0x1FE -- (modId = 510)
+-- MOD_SPARE =0x1FF -- (modId = 511)
+-- MOD_SPARE =0x200 -- (modId = 512)
 
 -----------------------------------
 -- Merit Definitions
@@ -1672,6 +1685,7 @@ MOBMOD_TELEPORT_END = 42
 MOBMOD_TELEPORT_TYPE = 43
 MOBMOD_DUAL_WIELD = 44
 MOBMOD_ADD_EFFECT = 45
+MOBMOD_AUTO_SPIKES = 46
 
 --skills
 

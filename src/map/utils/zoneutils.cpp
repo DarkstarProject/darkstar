@@ -300,7 +300,8 @@ void LoadMOBList()
 			FROM mob_groups INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
 			INNER JOIN mob_spawn_points ON mob_groups.groupid = mob_spawn_points.groupid \
 			INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
-			WHERE NOT (pos_x = 0 AND pos_y = 0 AND pos_z = 0);";
+			WHERE NOT (pos_x = 0 AND pos_y = 0 AND pos_z = 0) AND zoneid = ((mobid >> 12) & 0xFFF);";
+            //AND zoneid = ((mobid >> 12) & 0xFFF) AND zoneid = 7;";
 
     int32 ret = Sql_Query(SqlHandle, Query);
 

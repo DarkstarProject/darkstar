@@ -142,6 +142,12 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
 	WBUFW(data,(0x52)-4) = PChar->look.sub    + 0x7000;
 	WBUFW(data,(0x54)-4) = PChar->look.ranged + 0x8000;
 
+	if (PChar->m_Monstrosity != 0)
+	{
+		WBUFW(data, (0x44) - 4) = PChar->m_Monstrosity;
+		WBUFW(data, (0x54) - 4) = 0xFFFF;
+	}
+
 	WBUFB(data,(0x56)-4) = PChar->loc.zone->GetBackgroundMusic();
 	WBUFB(data,(0x58)-4) = PChar->loc.zone->GetBackgroundMusic();
 	WBUFB(data,(0x5A)-4) = PChar->loc.zone->GetSoloBattleMusic();

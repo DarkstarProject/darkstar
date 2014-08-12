@@ -120,6 +120,12 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type)
 			WBUFW(data,(0x52)-4) = PChar->look.sub    + 0x7000;
 			WBUFW(data,(0x54)-4) = PChar->look.ranged + 0x8000;
 
+			if (PChar->m_Monstrosity != 0)
+			{
+				WBUFW(data, (0x44) - 4) = PChar->m_Monstrosity;
+				WBUFW(data, (0x54) - 4) = 0xFFFF;
+			}
+
 			memcpy(data+(0x56)-4, PChar->GetName(), PChar->name.size());
 		}
 		break;

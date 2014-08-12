@@ -9,6 +9,6 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item> come back a
 -- Quest dialog
 YOU_CANNOT_ENTER_THE_BATTLEFIELD = 7181; -- You cannot enter the battlefield at present. Please wait a little longer.
               LEVIATHAN_UNLOCKED = 7533; -- You are now able to summon
-			  
+
 -- Other
 PROTOCRYSTAL = 7203; -- It is a giant crystal.

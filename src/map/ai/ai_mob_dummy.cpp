@@ -162,7 +162,7 @@ void CAIMobDummy::ActionRoaming()
 		return;
 	}
 
-        uint8 updates = 0;
+    uint8 updates = 0;
 
 	if(m_PMob->m_roamFlags & ROAMFLAG_IGNORE)
 	{
@@ -177,7 +177,7 @@ void CAIMobDummy::ActionRoaming()
 	{
 		FollowPath();
 
-                updates |= UPDATE_POS;
+        updates |= UPDATE_POS;
 	}
     else if (m_Tick >= m_LastActionTime + m_PMob->getBigMobMod(MOBMOD_ROAM_COOL))
 	{
@@ -211,7 +211,7 @@ void CAIMobDummy::ActionRoaming()
 
 				FollowPath();
 
-                                updates |= UPDATE_POS;
+                updates |= UPDATE_POS;
 
 				// move back every 5 seconds
 				m_LastActionTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_ROAM_COOL) + MOB_NEUTRAL_TIME;
@@ -244,15 +244,23 @@ void CAIMobDummy::ActionRoaming()
 				m_PMob->HideModel(true);
 				m_PMob->animationsub = 0;
 
-                                updates |= UPDATE_POS;
+				updates |= UPDATE_POS;
 			}
+            else if((m_PMob->m_roamFlags & ROAMFLAG_STEALTH))
+            {
+                // hidden name
+                m_PMob->HideName(true);
+                m_PMob->untargetable = true;
+
+                updates |= UPDATE_POS;
+            }
 			else if(m_PMob->m_roamFlags & ROAMFLAG_EVENT)
 			{
 				// allow custom event action
 				luautils::OnMobRoamAction(m_PMob);
 				m_LastActionTime = m_Tick;
 
-                                updates |= UPDATE_POS;
+                updates |= UPDATE_POS;
 			}
 			else if(m_PMob->CanRoam() && m_PPathFind->RoamAround(m_PMob->m_SpawnPoint, m_PMob->m_roamFlags))
 			{
@@ -271,7 +279,7 @@ void CAIMobDummy::ActionRoaming()
 					FollowPath();
 				}
 
-                                updates |= UPDATE_POS;
+				updates |= UPDATE_POS;
 			}
 			else
 			{
@@ -287,7 +295,10 @@ void CAIMobDummy::ActionRoaming()
 		luautils::OnMobRoam(m_PMob);
 	}
 
-        m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, updates));
+	if (updates != 0)
+	{
+		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, updates));
+	}
 }
 
 /************************************************************************
@@ -314,6 +325,11 @@ void CAIMobDummy::ActionEngage()
 			m_PMob->HideName(false);
 			m_PMob->HideModel(false);
 		}
+        else if ((m_PMob->m_roamFlags & ROAMFLAG_STEALTH) && m_PMob->IsNameHidden())
+        {
+            m_PMob->HideName(false);
+            m_PMob->untargetable = false;
+        }
 		else
 		{
 			ActionAttack();
@@ -663,6 +679,12 @@ void CAIMobDummy::ActionSpawn()
 			m_PMob->HideModel(true);
 		}
 
+        if (m_PMob->m_roamFlags & ROAMFLAG_STEALTH)
+        {
+            m_PMob->HideName(true);
+            m_PMob->untargetable = true;
+        }
+
 		// add people to my posse
 		if(m_PMob->getMobMod(MOBMOD_ASSIST))
 		{
@@ -809,11 +831,11 @@ void CAIMobDummy::ActionAbilityStart()
 	// remove tp
 	if(m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
 	{
-		if(m_PMob->health.tp <= 100)
+		if(m_PMob->health.tp <= 1000)
 		{
 			m_PMob->health.tp = 0;
 		} else {
-			m_PMob->health.tp -= 100;
+			m_PMob->health.tp -= 1000;
 		}
 	} else {
 		m_PMob->health.tp = 0;
@@ -856,7 +878,7 @@ void CAIMobDummy::ActionAbilityStart()
 		Action.speceffect = SPECEFFECT_HIT;
 		Action.animation  = 0;
 		Action.param	  = m_PMobSkill->getMsgForAction();
-		Action.messageID  = 43; //readies message
+        Action.messageID = m_PMobSkill->getMsg() == 0 ? 0 : 43; //readies message
         Action.knockback  = 0;
 
 		m_PMob->m_ActionList.push_back(Action);

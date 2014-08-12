@@ -1,19 +1,19 @@
------------------------------------	
+-----------------------------------
 -- Area: Labyrinth of Onzozo
 -- MOB:  Torama
 -- Note: Place holder Ose
------------------------------------	
+-----------------------------------
 
 require("/scripts/zones/Labyrinth_of_Onzozo/MobIDs");
-	
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
- 
-	checkRegime(killer,mob,775,1);
- 
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer)
+
+    checkGoVregime(killer,mob,775,1);
+
     local mob = mob:getID();
     if (Ose_PH[mob] ~= nil) then
 
@@ -27,4 +27,4 @@ function onMobDeath(mob,killer)
             end
         end
     end
-end;	
+end;

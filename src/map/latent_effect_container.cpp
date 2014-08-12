@@ -136,7 +136,7 @@ void CLatentEffectContainer::CheckLatentsHP(int32 hp)
 				}
 				break;
 			case LATENT_HP_UNDER_TP_UNDER_100:
-				if (((float)hp / m_POwner->health.maxhp )*100 <= m_LatentEffectList.at(i)->GetConditionsValue() && m_POwner->health.tp < 100)
+				if (((float)hp / m_POwner->health.maxhp )*100 <= m_LatentEffectList.at(i)->GetConditionsValue() && m_POwner->health.tp < 1000)
 				{
 					m_LatentEffectList.at(i)->Activate();
 				}
@@ -146,7 +146,7 @@ void CLatentEffectContainer::CheckLatentsHP(int32 hp)
 				}
 				break;
 			case LATENT_HP_OVER_TP_UNDER_100:
-				if (((float)hp / m_POwner->health.maxhp )*100 >= m_LatentEffectList.at(i)->GetConditionsValue() && m_POwner->health.tp < 100)
+				if (((float)hp / m_POwner->health.maxhp )*100 >= m_LatentEffectList.at(i)->GetConditionsValue() && m_POwner->health.tp < 1000)
 				{
 					m_LatentEffectList.at(i)->Activate();
 				}
@@ -223,7 +223,7 @@ void CLatentEffectContainer::CheckLatentsTP(int16 tp)
 				}
 				break;
 			case LATENT_HP_UNDER_TP_UNDER_100:
-				if (((float)m_POwner->health.hp / (float)m_POwner->health.maxhp )*100 <= m_LatentEffectList.at(i)->GetConditionsValue() && m_POwner->health.tp < 100)
+				if (((float)m_POwner->health.hp / (float)m_POwner->health.maxhp )*100 <= m_LatentEffectList.at(i)->GetConditionsValue() && m_POwner->health.tp < 1000)
 				{
 					m_LatentEffectList.at(i)->Activate();
 				}
@@ -233,7 +233,7 @@ void CLatentEffectContainer::CheckLatentsTP(int16 tp)
 				}
 				break;
 			case LATENT_HP_OVER_TP_UNDER_100:
-				if (((float)m_POwner->health.hp / (float)m_POwner->health.maxhp )*100 >= m_LatentEffectList.at(i)->GetConditionsValue() && m_POwner->health.tp < 100)
+				if (((float)m_POwner->health.hp / (float)m_POwner->health.maxhp )*100 >= m_LatentEffectList.at(i)->GetConditionsValue() && m_POwner->health.tp < 1000)
 				{
 					m_LatentEffectList.at(i)->Activate();
 				}
@@ -351,7 +351,7 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
 					}
 					break;
 				case LATENT_HP_UNDER_TP_UNDER_100:
-					if (((float)m_POwner->health.hp / m_POwner->health.maxhp )*100 <= m_LatentEffectList.at(i)->GetConditionsValue() && m_POwner->health.tp < 100)
+					if (((float)m_POwner->health.hp / m_POwner->health.maxhp )*100 <= m_LatentEffectList.at(i)->GetConditionsValue() && m_POwner->health.tp < 1000)
 					{
 						m_LatentEffectList.at(i)->Activate();
 					}
@@ -361,7 +361,7 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
 					}
 					break;
 				case LATENT_HP_OVER_TP_UNDER_100:
-					if (((float)m_POwner->health.hp / m_POwner->health.maxhp )*100 >= m_LatentEffectList.at(i)->GetConditionsValue() && m_POwner->health.tp < 100)
+					if (((float)m_POwner->health.hp / m_POwner->health.maxhp )*100 >= m_LatentEffectList.at(i)->GetConditionsValue() && m_POwner->health.tp < 1000)
 					{
 						m_LatentEffectList.at(i)->Activate();
 					}
