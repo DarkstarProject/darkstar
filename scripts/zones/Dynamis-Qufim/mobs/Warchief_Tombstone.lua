@@ -2,7 +2,7 @@
 -- Area: Dynamis qufim
 -- NPC:  Warchief_Tombstone
 -----------------------------------
-
+require("scripts/globals/status");
 require("scripts/globals/titles");
 require("scripts/globals/dynamis");
 

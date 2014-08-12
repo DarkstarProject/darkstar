@@ -2,6 +2,7 @@
 -- Area: Dynamis tavnazia
 -- NPC:  Prototype_Eye
 -----------------------------------
+require("scripts/globals/status");
 require("scripts/globals/dynamis");
 -----------------------------------
 -- onMobSpawn Action

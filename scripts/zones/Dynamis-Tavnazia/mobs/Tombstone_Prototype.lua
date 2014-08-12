@@ -3,7 +3,7 @@
 -- NPC:  Tombstone_Prototype
 -----------------------------------
 
-
+require("scripts/globals/status");
 require("scripts/globals/dynamis");
 
 -----------------------------------

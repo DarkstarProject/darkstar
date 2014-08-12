@@ -2,7 +2,7 @@
 -- Area: Dynamis tavnazia
 -- NPC:  Statue_Prototype
 -----------------------------------
-
+require("scripts/globals/status");
 require("scripts/globals/dynamis");
 
 -----------------------------------

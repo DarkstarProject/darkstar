@@ -3,7 +3,7 @@
 -- NPC:  Gu'Dha Effigy
 -- Mega Boss
 -----------------------------------
-
+require("scripts/globals/status");
 require("scripts/globals/titles");
 require("scripts/globals/dynamis");
 

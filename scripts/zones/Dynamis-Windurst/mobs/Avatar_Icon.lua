@@ -6,7 +6,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Windurst/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/globals/status");
 require("scripts/globals/dynamis");
 require("scripts/zones/Dynamis-Windurst/TextIDs");
 

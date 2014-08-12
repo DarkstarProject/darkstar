@@ -5,7 +5,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Beaucedine/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/globals/status");
 require("scripts/globals/dynamis");
 require("scripts/zones/Dynamis-Beaucedine/TextIDs");
 

@@ -7,7 +7,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Jeuno/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/globals/status");
 require("scripts/globals/dynamis");
 require("scripts/zones/Dynamis-Jeuno/TextIDs");
 

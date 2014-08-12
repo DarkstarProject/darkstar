@@ -2,7 +2,7 @@
 -- Area: Dynamis tavnazia
 -- NPC:  Effigy_Prototype
 -----------------------------------
-
+require("scripts/globals/status");
 require("scripts/globals/dynamis");
 
 -----------------------------------

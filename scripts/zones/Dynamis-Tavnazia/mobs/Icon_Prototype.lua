@@ -2,6 +2,7 @@
 -- Area: Dynamis tavnazia
 -- NPC:  Icon_Prototype
 -----------------------------------
+require("scripts/globals/status");
 require("scripts/globals/dynamis");
 -----------------------------------
 -- onMobSpawn Action

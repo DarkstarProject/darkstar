@@ -2,7 +2,7 @@
 -- Area: Dynamis Buburimu
 -- NPC:  Adamantking_Image
 -----------------------------------
-
+require("scripts/globals/status");
 require("scripts/globals/titles");
 require("scripts/globals/dynamis");
 
