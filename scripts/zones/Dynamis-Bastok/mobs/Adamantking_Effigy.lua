@@ -85,7 +85,7 @@ function onMobDeath(mob,killer)
 	-- Time Bonus: 001 019 041
 	if(mobID == 17539350 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(20);
-		mob:addInBattlefieldList();
+		mob:addInBattlefieldList(); 
 	elseif(mobID == 17539368 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(20);
 		mob:addInBattlefieldList();
