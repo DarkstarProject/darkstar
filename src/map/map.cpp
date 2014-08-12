@@ -175,8 +175,11 @@ int32 do_init(int32 argc, int8** argv)
     Sql_Keepalive(SqlHandle);
 
     // отчищаем таблицу сессий при старте сервера (временное решение, т.к. в кластере это не будет работать)
-    Sql_Query(SqlHandle, "TRUNCATE TABLE accounts_sessions");
-	Sql_Query(SqlHandle, "TRUNCATE TABLE accounts_parties");
+    Sql_Query(SqlHandle, "DELETE FROM accounts_parties WHERE charid = \
+                            (SELECT charid FROM accounts_sessions WHERE IF(%u = 0 AND %u = 0, true, server_addr = %u AND server_port = %u));", 
+                            map_ip, map_port, map_ip, map_port);
+    Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE IF(%u = 0 AND %u = 0, true, server_addr = %u AND server_port = %u);", 
+                            map_ip, map_port, map_ip, map_port);
 
 	ShowMessage("\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 	ShowStatus("do_init: zlib is reading");
@@ -799,6 +802,7 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
                     else
                     {
                         map_session_data->PChar->StatusEffectContainer->SaveStatusEffects();
+                        Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE charid = %u;", map_session_data->PChar->id);
 
                         aFree(map_session_data->server_packet_data);
                         delete map_session_data->PChar;
