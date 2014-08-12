@@ -19,13 +19,13 @@ end;
 
 function onMobDeath(mob,killer)
 local mobID = mob:getID();
-	if(mobID == 16945509 and alreadyReceived(killer,3) == false)then
+	if(mobID == 16945509 and mob:isInBattlefieldList() == false)then
 		killer:addTimeToDynamis(10);
-		addDynamisList(killer,4);
+		mob:addInBattlefieldList();
 		--print("addtime 10min");
-	elseif(mobID == 16945530 and alreadyReceived(killer,5) == false)then
+	elseif(mobID == 16945530 and mob:isInBattlefieldList() == false)then
 	    killer:addTimeToDynamis(20);
-		addDynamisList(killer,16);
+		mob:addInBattlefieldList();
 		--print("addtime 20min");
 	end
 end;

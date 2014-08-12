@@ -19,9 +19,9 @@ end;
 
 function onMobDeath(mob,killer)
 local mobID = mob:getID();
-	if(mobID == 16945193 and alreadyReceived(killer,1) == false)then
+	if(mobID == 16945193 and mob:isInBattlefieldList() == false)then
 		killer:addTimeToDynamis(10);
-		addDynamisList(killer,1);
+		mob:addInBattlefieldList();
 		--print("addtime 10min");
 	end
 end;
