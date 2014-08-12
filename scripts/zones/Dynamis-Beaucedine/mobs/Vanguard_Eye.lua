@@ -67,12 +67,12 @@ function onMobDeath(mob,killer)
 	local mobID = mob:getID();
 	
 	-- Time Bonus: 120 147
-	if(mobID == 17326553 and alreadyReceived(killer,9) == false) then
+	if(mobID == 17326553 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(15);
-		addDynamisList(killer,256);
-	elseif(mobID == 17326706 and alreadyReceived(killer,10) == false) then
+		mob:addInBattlefieldList();
+	elseif(mobID == 17326706 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(15);
-		addDynamisList(killer,512);
+		mob:addInBattlefieldList();
 	-- 117 spawn 148 when defeated
 	elseif(mobID == 17326721) then
 		SpawnMob(17326553);
