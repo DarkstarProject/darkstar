@@ -72,6 +72,8 @@ function onEffectLose(target,effect)
         BhaflauRemnantsExit(target);
     elseif(Teleport == FIREFLIES_S_REM) then
         SilverSeaRemnantsExit(target);
+    elseif(Teleport == TELEPORT_MAAT) then
+        toMaat(target);
 	end
 	
    

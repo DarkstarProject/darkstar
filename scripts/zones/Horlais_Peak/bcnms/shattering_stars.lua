@@ -64,8 +64,9 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_OBTAINED,4181);
 		end
 		player:setVar("maatDefeated",player:getMainJob());
-		if (bit.band(player:getVar("maatsCap"), bit.lshift(1, (player:getMainJob() -1))) ~= 1)then
-			player:setVar("maatsCap",bit.bor(player:getVar("maatsCap"), bit.lshift(1, (player:getMainJob() -1))))
+		local maatsdone = player:getVar("maatsCap")
+		if (bit.band(maatsCap, bit.lshift(1, (player:getMainJob() -1))) ~= 1)then
+			player:setVar("maatsCap",bit.bor(maatsCap, bit.lshift(1, (player:getMainJob() -1))))
 		end
 		player:addTitle(MAAT_MASHER);
 	end

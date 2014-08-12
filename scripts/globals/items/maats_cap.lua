@@ -9,5 +9,5 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-	target:setPos(11, 3, 117, 0, 243);
+	target:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_MAAT,0,1);
 end;
