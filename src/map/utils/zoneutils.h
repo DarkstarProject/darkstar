@@ -61,6 +61,7 @@ namespace zoneutils
     CCharEntity* GetCharFromWorld(uint32 charid, uint16 targid);                    // returns pointer to character by id and target id
 	CCharEntity* GetChar(uint32 id);												// returns pointer to character by id
 	void		 ForEachZone(std::function<void(CZone*)> func);
+    uint64       GetZoneIPP(uint16 zoneid);                                         // returns IPP for zone ID
 
 };
 

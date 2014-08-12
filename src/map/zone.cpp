@@ -889,8 +889,16 @@ void CZone::CharZoneOut(CCharEntity* PChar)
     if (PChar->isDead())
         charutils::SaveDeathTime(PChar);
 
-	PChar->loc.zone = NULL;
-	PChar->loc.prevzone = m_zoneID;
+    PChar->loc.zone = NULL;
+
+    if (PChar->status == STATUS_SHUTDOWN)
+    {
+        PChar->loc.destination = m_zoneID;
+    }
+    else
+    {
+        PChar->loc.prevzone = m_zoneID;
+    }
 
 	PChar->SpawnPCList.clear();
 	PChar->SpawnNPCList.clear();

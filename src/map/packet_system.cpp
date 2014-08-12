@@ -381,14 +381,8 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
     PChar->PRecastContainer->Del(RECAST_MAGIC);
 
-    charutils::SaveCharStats(PChar);
-	charutils::SaveCharPosition(PChar);
-	charutils::SaveCharExp(PChar, PChar->GetMJob());
-	charutils::SaveCharPoints(PChar);
-
 	if (PChar->status == STATUS_SHUTDOWN)
 	{
-
 		if (PChar->PParty != NULL)
 		{
 			if(PChar->PParty->m_PAlliance != NULL)
@@ -427,25 +421,25 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* dat
             // удаляем персонажа из linkshell
             PChar->PLinkshell->DelMember(PChar);
         }
-
-        if (!session->shuttingDown)
-        {
-            // prevent double shutdown
-            session->shuttingDown = true;
-    		CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("close_session", gettick()+2500, session, CTaskMgr::TASK_ONCE, map_close_session));
-        }
-
 	}
 	else  // проверка именно при покидании зоны, чтобы не делать двойную проверку при входе в игру
 	{
         charutils::CheckEquipLogic(PChar, SCRIPT_CHANGEZONE, PChar->getZone());
 	}
+
+    session->shuttingDown = true;
+
     // персонаж может отвалиться во время перехода между зонами,
     // map_cleanup вызовет этот метод и zone персонажа будет NULL
     if (PChar->loc.zone != NULL)
     {
         PChar->loc.zone->DecreaseZoneCounter(PChar);
     }
+
+    charutils::SaveCharStats(PChar);
+    charutils::SaveCharPosition(PChar);
+    charutils::SaveCharExp(PChar, PChar->GetMJob());
+    charutils::SaveCharPoints(PChar);
 
 	PChar->status = STATUS_DISAPPEAR;
     PChar->PBattleAI->Reset();

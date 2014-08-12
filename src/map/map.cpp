@@ -368,6 +368,10 @@ int32 do_sockets(fd_set* rfd,int32 next)
 				map_session_data->server_packet_data = data;
 				map_session_data->server_packet_size = size;
 			}
+            if (map_session_data->shuttingDown)
+            {
+                map_close_session(gettick(), map_session_data);
+            }
 		}
 	}
 	return 0;
@@ -699,36 +703,38 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
 *																		*
 ************************************************************************/
 
+int32 map_close_session(uint32 tick, map_session_data_t* map_session_data)
+{
+    if (map_session_data != NULL &&
+        map_session_data->server_packet_data != NULL &&		// bad pointer crashed here, might need dia to look at this one
+        map_session_data->PChar != NULL)					// crash occured when both server_packet_data & PChar were NULL
+    {
+        charutils::SavePlayTime(map_session_data->PChar);
+
+        uint64 port64 = map_session_data->client_port;
+        uint64 ipp = map_session_data->client_addr;
+        ipp |= port64 << 32;
+
+        map_session_data->PChar->StatusEffectContainer->SaveStatusEffects();
+
+        aFree(map_session_data->server_packet_data);
+        delete map_session_data->PChar;
+        delete map_session_data;
+        map_session_data = NULL;
+
+        map_session_list.erase(ipp);
+        return 0;
+    }
+
+    ShowError(CL_RED"map_close_session: cannot close session, session not found\n" CL_RESET);
+    return 1;
+}
+
 int32 map_close_session(uint32 tick, CTaskMgr::CTask* PTask)
 {
 	map_session_data_t* map_session_data = (map_session_data_t*)PTask->m_data;
 
-	if (map_session_data != NULL &&
-		map_session_data->server_packet_data != NULL &&		// bad pointer crashed here, might need dia to look at this one
-		map_session_data->PChar != NULL)					// crash occured when both server_packet_data & PChar were NULL
-	{
-		charutils::SavePlayTime(map_session_data->PChar);
-
-		Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE charid = %u", map_session_data->PChar->id);
-
-		uint64 port64 = map_session_data->client_port;
-		uint64 ipp	  = map_session_data->client_addr;
-		ipp |= port64<<32;
-
-		map_session_data->PChar->StatusEffectContainer->SaveStatusEffects();
-
-		aFree(map_session_data->server_packet_data);
-		delete map_session_data->PChar;
-		delete map_session_data;
-		map_session_data = NULL;
-
-		map_session_list.erase(ipp);
-		ShowDebug(CL_CYAN"map_close_session: session closed\n" CL_RESET);
-		return 0;
-	}
-
-	ShowError(CL_RED"map_close_session: cannot close session, session not found\n" CL_RESET);
-	return 1;
+    return map_close_session(tick, map_session_data);
 }
 
 /************************************************************************
@@ -763,30 +769,45 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
 		    {
 			    if (PChar != NULL)
 			    {
-
-					//[Alliance] fix to stop server crashing:
-					//if a party within an alliance only has 1 char (that char will be party leader)
-					//if char then disconnects we need to tell the server about the alliance change
-					if(PChar->PParty != NULL && PChar->PParty->m_PAlliance != NULL && PChar->PParty->GetLeader() == PChar){
-						if(PChar->PParty->members.size() == 1){
-							if(PChar->PParty->m_PAlliance->partyList.size() == 2){
-								PChar->PParty->m_PAlliance->dissolveAlliance();
-							}else if(PChar->PParty->m_PAlliance->partyList.size() == 3){
-								PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
-								}
-						}
-					}
-
-
-					// uncharm pet if player d/c
-					if (PChar->PPet != NULL && PChar->PPet->objtype == TYPE_MOB)
-						petutils::DespawnPet(PChar);
+                    if (!map_session_data->shuttingDown)
+                    {
+                        //[Alliance] fix to stop server crashing:
+                        //if a party within an alliance only has 1 char (that char will be party leader)
+                        //if char then disconnects we need to tell the server about the alliance change
+                        if (PChar->PParty != NULL && PChar->PParty->m_PAlliance != NULL && PChar->PParty->GetLeader() == PChar){
+                            if (PChar->PParty->members.size() == 1){
+                                if (PChar->PParty->m_PAlliance->partyList.size() == 2){
+                                    PChar->PParty->m_PAlliance->dissolveAlliance();
+                                }
+                                else if (PChar->PParty->m_PAlliance->partyList.size() == 3){
+                                    PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
+                                }
+                            }
+                        }
 
 
-				    ShowDebug(CL_CYAN"map_cleanup: %s timed out, closing session\n" CL_RESET, PChar->GetName());
+                        // uncharm pet if player d/c
+                        if (PChar->PPet != NULL && PChar->PPet->objtype == TYPE_MOB)
+                            petutils::DespawnPet(PChar);
 
-				    PChar->status = STATUS_SHUTDOWN;
-                    PacketParser[0x00D](map_session_data, PChar, 0);
+
+                        ShowDebug(CL_CYAN"map_cleanup: %s timed out, closing session\n" CL_RESET, PChar->GetName());
+
+                        PChar->status = STATUS_SHUTDOWN;
+                        PacketParser[0x00D](map_session_data, PChar, 0);
+                    }
+                    else
+                    {
+                        map_session_data->PChar->StatusEffectContainer->SaveStatusEffects();
+
+                        aFree(map_session_data->server_packet_data);
+                        delete map_session_data->PChar;
+                        delete map_session_data;
+                        map_session_data = NULL;
+
+                        map_session_list.erase(it++);
+                        continue;
+                    }
 			    } else if(!map_session_data->shuttingDown){
 
 				    ShowWarning(CL_YELLOW"map_cleanup: WHITHOUT CHAR timed out, session closed\n" CL_RESET);

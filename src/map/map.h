@@ -160,6 +160,7 @@ int32 map_config_read(const int8 *cfgName);												// Map-Server Config [ven
 int32 map_config_default();
 
 int32 map_cleanup(uint32 tick,CTaskMgr::CTask *PTask);									// Clean up timed out players
+int32 map_close_session(uint32 tick, map_session_data_t* map_session_data);
 int32 map_close_session(uint32 tick,CTaskMgr::CTask *PTask);							// завершение сессии
 
 int32 map_garbage_collect(uint32 tick, CTaskMgr::CTask* PTask);
