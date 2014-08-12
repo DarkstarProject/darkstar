@@ -269,8 +269,9 @@ function CheckMaatFights(player,zone,trade,npc)
 	lvl = player:getMainLvl();
 
 	if(itemid >= 1426 and itemid <= 1440) then --The traded item IS A TESTIMONY
-		if(lvl < 66 or player:getVar("maatDefeated") > 0)then --not high enough level for maat fight :( or maat already defeated
-			return true;
+		--if(lvl < 66 or player:getVar("maatDefeated") > 0)then --not high enough level for maat fight :( or maat already defeated
+		if(lvl < 66)then
+		return true;
 		end
 
 		if(player:isBcnmsFull() == 1)then --temp measure, this will precheck the instances
