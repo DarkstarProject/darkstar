@@ -5,7 +5,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Beaucedine/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/globals/status");
 require("scripts/globals/dynamis");
 require("scripts/zones/Dynamis-Beaucedine/TextIDs");
 
@@ -77,12 +77,12 @@ function onMobDeath(mob,killer)
 	
 	local mobID = mob:getID();
 	-- Time Bonus: 083 087
-	if(mobID == 17326912 and alreadyReceived(killer,7) == false) then
+	if(mobID == 17326912 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(15);
-		addDynamisList(killer,64);
-	elseif(mobID == 17326916 and alreadyReceived(killer,8) == false) then
+		mob:addInBattlefieldList();
+	elseif(mobID == 17326916 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(15);
-		addDynamisList(killer,128);
+		mob:addInBattlefieldList();
 	-- HP Bonus: 078 084 086 091 095 105
 	elseif(mobID == 17326907 or mobID == 17326913 or mobID == 17326915 or mobID == 17326920 or mobID == 17326924 or mobID == 17326934) then 
 		killer:restoreHP(2000);

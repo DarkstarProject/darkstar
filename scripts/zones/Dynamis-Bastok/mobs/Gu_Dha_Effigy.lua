@@ -3,7 +3,7 @@
 -- NPC:  Gu'Dha Effigy
 -- Mega Boss
 -----------------------------------
-
+require("scripts/globals/status");
 require("scripts/globals/titles");
 require("scripts/globals/dynamis");
 
@@ -27,8 +27,8 @@ end;
 
 function onMobDeath(mob,killer)
 	
-	if(alreadyReceived(killer,8) == false) then
-		addDynamisList(killer,128);
+	if(mob:isInBattlefieldList() == false) then
+		mob:addInBattlefieldList();
 		
 		killer:addTimeToDynamis(30); -- Add + 30min
 		
