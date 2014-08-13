@@ -7,6 +7,7 @@
 package.loaded["scripts/zones/Dynamis-Bastok/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/status");
 require("scripts/globals/dynamis");
 require("scripts/zones/Dynamis-Bastok/TextIDs");
 
@@ -82,15 +83,15 @@ function onMobDeath(mob,killer)
 
 	local mobID = mob:getID();
 	-- Time Bonus: 001 019 041
-	if(mobID == 17539350 and alreadyReceived(killer,1) == false) then
+	if(mobID == 17539350 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(20);
-		addDynamisList(killer,1);
-	elseif(mobID == 17539368 and alreadyReceived(killer,2) == false) then
+		mob:addInBattlefieldList(); 
+	elseif(mobID == 17539368 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(20);
-		addDynamisList(killer,2);
-	elseif(mobID == 17539386 and alreadyReceived(killer,3) == false) then
+		mob:addInBattlefieldList();
+	elseif(mobID == 17539386 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(20);
-		addDynamisList(killer,4);
+		mob:addInBattlefieldList();
 	-- HP Bonus: 007 008 025 042 082 085 092
 	elseif(mobID == 17539356 or mobID == 17539357 or mobID == 17539374 or mobID == 17539387 or
 		   mobID == 17539426 or mobID == 17539429 or mobID == 17539171) then

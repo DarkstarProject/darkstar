@@ -4,7 +4,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/globals/status");
 require("scripts/globals/dynamis");
 require("scripts/zones/Dynamis-Valkurm/TextIDs");
 
@@ -30,14 +30,14 @@ function onMobDeath(mob,killer)
 	
 		local mobID = mob:getID();
 	
-    if(mobID == 16937264 and alreadyReceived(killer,2) == false)then
+    if(mobID == 16937264 and mob:isInBattlefieldList() == false)then
 		killer:addTimeToDynamis(10);
 		--print("addtime 10min");
-		addDynamisList(killer,2);
-	elseif(mobID == 16937262 and alreadyReceived(killer,5) == false)then
+		mob:addInBattlefieldList();
+	elseif(mobID == 16937262 and mob:isInBattlefieldList() == false)then
 	    killer:addTimeToDynamis(20);
 		--print("addtime 20min");
-		addDynamisList(killer,16);
+		mob:addInBattlefieldList();
 	end
 	
 	

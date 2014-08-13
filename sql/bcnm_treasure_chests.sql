@@ -21,7 +21,7 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `bcnm_treasure_chests`;
 CREATE TABLE `bcnm_treasure_chests` (
   `bcnmId` smallint(5) unsigned NOT NULL,
-  `instanceNumber` tinyint(3),
+  `battlefieldNumber` tinyint(3),
   `npcId` int(10) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56;
 

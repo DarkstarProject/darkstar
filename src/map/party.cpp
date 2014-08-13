@@ -159,7 +159,7 @@ void CParty::AssignPartyRole(int8* MemberName, uint8 role)
 *																		*
 ************************************************************************/
 
-uint8 CParty::MemberCount(uint8 ZoneID)
+uint8 CParty::MemberCount(uint16 ZoneID)
 {
 	uint8 count = 0;
 
@@ -718,7 +718,7 @@ void CParty::SetQuaterMaster(CBattleEntity* PEntity)
 *																		*
 ************************************************************************/
 
-void CParty::PushPacket(CCharEntity* PPartyMember, uint8 ZoneID, CBasicPacket* packet)
+void CParty::PushPacket(CCharEntity* PPartyMember, uint16 ZoneID, CBasicPacket* packet)
 {
 	for (uint32 i = 0; i < members.size(); ++i)
 	{

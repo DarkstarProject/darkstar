@@ -686,7 +686,7 @@ return alpha;
 	--First hit has 95% acc always. Second hit + affected by hit rate.
 	local firsthit = math.random();
 	local finaldmg = 0;
-	local hitrate = getHitRate(attacker,target,true,bonusacc);
+	local hitrate = getRangedHitRate(attacker,target,true,bonusacc);
 	if(params.acc100~=0) then
 		--ACCURACY VARIES WITH TP, APPLIED TO ALL HITS.
 		--print("Accuracy varies with TP.");
