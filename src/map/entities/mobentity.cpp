@@ -140,10 +140,10 @@ uint32 CMobEntity::GetRandomGil()
         // make sure divide won't crash server
         if(max <= min)
         {
-            max = min+1;
+            max = min+2;
         }
 
-        if(max-min <= 2)
+        if(max-min < 2)
         {
             max = min+2;
             ShowWarning("CMobEntity::GetRandomGil Max value is set too low, defauting\n");
