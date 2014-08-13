@@ -9,58 +9,58 @@ FULL_INVENTORY_AFTER_TRADE = 6378; -- You cannot obtain the item (item>. Try tra
               KEYITEM_LOST = 6383; -- Lost key item <<<Unknown Parameter (Type: 80) 1>>>.
        NOT_HAVE_ENOUGH_GIL = 6384; -- You do not have enough gil.
              HOMEPOINT_SET = 6477; -- Home point set!
-    FISHING_MESSAGE_OFFSET = 6933; -- You can't fish here.
-             MOGHOUSE_EXIT = 7791; -- You have learned your way through the back alleys of Bastok! Now you can exit to any area from your residence.
+    FISHING_MESSAGE_OFFSET = 6998; -- You can't fish here.
+             MOGHOUSE_EXIT = 7856; -- You have learned your way through the back alleys of Bastok! Now you can exit to any area from your residence.
 
 -- Conquest System
-CONQUEST = 7847; -- You've earned conquest points!
+CONQUEST = 7912; -- You've earned conquest points!
 
 -- Mission Dialogs
-    YOU_ACCEPT_THE_MISSION = 7187; -- You have accepted the mission.
-   ORIGINAL_MISSION_OFFSET = 7192; -- You can consult the ?Mission? section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed.<Prompt>
-   EXTENDED_MISSION_OFFSET = 8312; -- Go to Ore Street and talk to Medicine Eagle. He says he was there when the commotion started.
+    YOU_ACCEPT_THE_MISSION = 7252; -- You have accepted the mission.
+   ORIGINAL_MISSION_OFFSET = 7257; -- You can consult the ?Mission? section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed.<Prompt>
+   EXTENDED_MISSION_OFFSET = 8377; -- Go to Ore Street and talk to Medicine Eagle. He says he was there when the commotion started.
 
 -- Dialog Texts
-POWHATAN_DIALOG_1 = 7116; -- I'm sick and tired of entertaining guests.
-   RONAN_DIALOG_1 = 7302; -- Do something! Isn't there anything you can do to make him come out of his shell?
- PAUJEAN_DIALOG_1 = 7493; -- Where can you find them? If you're the kind of adventurer I think you are, you should have a pretty good idea.
-     UNLOCK_NINJA = 8274; -- You can now become a ninja.
-   TITAN_UNLOCKED = 8379; -- You are now able to summon
+POWHATAN_DIALOG_1 = 7181; -- I'm sick and tired of entertaining guests.
+   RONAN_DIALOG_1 = 7367; -- Do something! Isn't there anything you can do to make him come out of his shell?
+ PAUJEAN_DIALOG_1 = 7558; -- Where can you find them? If you're the kind of adventurer I think you are, you should have a pretty good idea.
+     UNLOCK_NINJA = 8339; -- You can now become a ninja.
+   TITAN_UNLOCKED = 8444; -- You are now able to summon
 
 -- Shop Texts
   TENSHODO_SHOP_OPEN_DIALOG = 6685; -- Ah, one of our members. Welcome to the Tenshodo shop.
 
-       EVELYN_CLOSED_DIALOG = 7421; -- I'm trying to start a business selling goods from Gustaberg,
-     ROSSWALD_CLOSED_DIALOG = 7422; -- I'm trying to start a business selling goods from Zulkheim,
-        BELKA_CLOSED_DIALOG = 7423; -- I'm trying to start a business selling goods from Derfland,
-      VATTIAN_CLOSED_DIALOG = 7424; -- I'm trying to start a business selling goods from Kuzotz,
+       EVELYN_CLOSED_DIALOG = 7486; -- I'm trying to start a business selling goods from Gustaberg,
+     ROSSWALD_CLOSED_DIALOG = 7487; -- I'm trying to start a business selling goods from Zulkheim,
+        BELKA_CLOSED_DIALOG = 7488; -- I'm trying to start a business selling goods from Derfland,
+      VATTIAN_CLOSED_DIALOG = 7489; -- I'm trying to start a business selling goods from Kuzotz,
 
-      VALERIANO_SHOP_DIALOG = 7426; -- Welcome to the Troupe Valeriano. Valeriano, at your service! Have a laugh, then spend some cash!
+      VALERIANO_SHOP_DIALOG = 7491; -- Welcome to the Troupe Valeriano. Valeriano, at your service! Have a laugh, then spend some cash!
 
-         SAWYER_SHOP_DIALOG = 7471; -- Hi, there. For here or to go?
-         MELLOA_SHOP_DIALOG = 7472; -- Welcome to the Steaming Sheep. Would you like something to drink?
+         SAWYER_SHOP_DIALOG = 7536; -- Hi, there. For here or to go?
+         MELLOA_SHOP_DIALOG = 7537; -- Welcome to the Steaming Sheep. Would you like something to drink?
 
-         EVELYN_OPEN_DIALOG = 7475; -- Hello! Might I interest you in some specialty goods from Gustaberg?
-         GALVIN_SHOP_DIALOG = 7476; -- Welcome to Galvin's Travel Gear!
-           NUMA_SHOP_DIALOG = 7477; -- Hello, hello! Won't you buy something? I'll give you a rebate!
-          BELKA_OPEN_DIALOG = 7478; -- Welcome. I've got goods from Derfland. Interested?
-       ROSSWALD_OPEN_DIALOG = 7479; -- Hello, hello! Everything I have is imported directly from Zulkheim!
-          ILITA_SHOP_DIALOG = 7480; -- Hello there. How about buying
-       SUGANDHI_SHOP_DIALOG = 7481; -- Traveler! I am sure my wares will prove useful on your journey.
-        DENVIHR_SHOP_DIALOG = 7482; -- Ah, interested in my wares, are you? You can only buy these in Bastok, my friend.
+         EVELYN_OPEN_DIALOG = 7540; -- Hello! Might I interest you in some specialty goods from Gustaberg?
+         GALVIN_SHOP_DIALOG = 7541; -- Welcome to Galvin's Travel Gear!
+           NUMA_SHOP_DIALOG = 7542; -- Hello, hello! Won't you buy something? I'll give you a rebate!
+          BELKA_OPEN_DIALOG = 7543; -- Welcome. I've got goods from Derfland. Interested?
+       ROSSWALD_OPEN_DIALOG = 7544; -- Hello, hello! Everything I have is imported directly from Zulkheim!
+          ILITA_SHOP_DIALOG = 7545; -- Hello there. How about buying
+       SUGANDHI_SHOP_DIALOG = 7546; -- Traveler! I am sure my wares will prove useful on your journey.
+        DENVIHR_SHOP_DIALOG = 7547; -- Ah, interested in my wares, are you? You can only buy these in Bastok, my friend.
 
-             MUSTAFA_DIALOG = 7473; -- Hello. This concourse is for arriving passengers.
-         BARTHOLOMEO_DIALOG = 7473; -- Hello. This concourse is for arriving passengers.
+             MUSTAFA_DIALOG = 7538; -- Hello. This concourse is for arriving passengers.
+         BARTHOLOMEO_DIALOG = 7538; -- Hello. This concourse is for arriving passengers.
 
-               KLAUS_DIALOG = 7474; -- Hello. This concourse is for departing passengers.
-               CAREY_DIALOG = 7474; -- Hello. This concourse is for departing passengers.
+               KLAUS_DIALOG = 7539; -- Hello. This concourse is for departing passengers.
+               CAREY_DIALOG = 7539; -- Hello. This concourse is for departing passengers.
 
-        VATTIAN_OPEN_DIALOG = 8207; -- Welcome to my humble establishment. I have a wide variety of specialty goods from Kuzotz.
-      ZOBYQUHYO_OPEN_DIALOG = 8208; -- Hey therrre! I've got lots of wonderrrful goodies, fresh from the Elshimo Lowlands.
-    ZOBYQUHYO_CLOSED_DIALOG = 8209; -- I'm trrrying to start a business selling goods from the Elshimo Lowlands, but it's not easy getting stuff from areas that aren't under Bastokan contrrrol.
-  DHENTEVRYUKOH_OPEN_DIALOG = 8210; -- Welcome! Welcome! Take a wonderrr at these specialty goods from the Elshimo Uplands!
-DHENTEVRYUKOH_CLOSED_DIALOG = 8211; -- I'm trrrying to start a business selling goods from the Elshimo Uplands, but it's not easy transporting goods from areas that aren't under Bastokan contrrrol.
+        VATTIAN_OPEN_DIALOG = 8272; -- Welcome to my humble establishment. I have a wide variety of specialty goods from Kuzotz.
+      ZOBYQUHYO_OPEN_DIALOG = 8273; -- Hey therrre! I've got lots of wonderrrful goodies, fresh from the Elshimo Lowlands.
+    ZOBYQUHYO_CLOSED_DIALOG = 8274; -- I'm trrrying to start a business selling goods from the Elshimo Lowlands, but it's not easy getting stuff from areas that aren't under Bastokan contrrrol.
+  DHENTEVRYUKOH_OPEN_DIALOG = 8275; -- Welcome! Welcome! Take a wonderrr at these specialty goods from the Elshimo Uplands!
+DHENTEVRYUKOH_CLOSED_DIALOG = 8276; -- I'm trrrying to start a business selling goods from the Elshimo Uplands, but it's not easy transporting goods from areas that aren't under Bastokan contrrrol.
 
-      BLABBIVIX_SHOP_DIALOG = 8483; -- I come from the underworld. These chipshhh, you knooow, are popular among us Goblinshhh. Use with heart of shhhtatue.
-    BAGNOBROK_CLOSED_DIALOG = 8966; -- Kbastok sis kweak! Smoblins yonly twant gstrong sfriends! Non sgoods mfrom Smovalpolos ytoday!
-      BAGNOBROK_OPEN_DIALOG = 8967; -- Kbastok! Crepublic sis gstrong! Smoblins lsell sgoods oto gstrong sfriends!
+      BLABBIVIX_SHOP_DIALOG = 8548; -- I come from the underworld. These chipshhh, you knooow, are popular among us Goblinshhh. Use with heart of shhhtatue.
+    BAGNOBROK_CLOSED_DIALOG = 9031; -- Kbastok sis kweak! Smoblins yonly twant gstrong sfriends! Non sgoods mfrom Smovalpolos ytoday!
+      BAGNOBROK_OPEN_DIALOG = 9032; -- Kbastok! Crepublic sis gstrong! Smoblins lsell sgoods oto gstrong sfriends!
