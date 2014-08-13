@@ -2886,7 +2886,8 @@ void DistributeGil(CCharEntity* PChar, CMobEntity* PMob)
 
 void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 {
-    uint8 pcinzone = 0, minlevel = 0, maxlevel = PChar->GetMLevel();
+    uint16 pcinzone = 0;
+    uint8 minlevel = 0, maxlevel = PChar->GetMLevel();
     uint32 baseexp = 0, exp = 0, dedication = 0;
     float permonstercap, monsterbonus = 1.0f;
     bool chainactive = false;
@@ -3108,7 +3109,7 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
                         PMember->pushPacket(new CMessageBasicPacket(PMember,PMember,0,0,37));
                         continue;
                     }
-					uint8 Pzone = PMember->getZone();
+					uint16 Pzone = PMember->getZone();
                     if (PMob->m_Type == MOBTYPE_NORMAL && ((Pzone > 0 && Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255)))
 					{
 						if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && WELL512::irand()%100 < 20 &&
