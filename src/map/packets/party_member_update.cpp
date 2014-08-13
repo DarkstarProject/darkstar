@@ -31,7 +31,7 @@
 #include "../alliance.h"
 #include "../party.h"
 
-CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 MemberNumber, uint8 ZoneID) 
+CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 MemberNumber, uint16 ZoneID) 
 {	
 
 		this->type = 0xDD;

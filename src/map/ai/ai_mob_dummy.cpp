@@ -469,7 +469,7 @@ void CAIMobDummy::ActionDropItems()
 						  >= 90 = High Kindred Crests ID=2956
 				*/
 
-				uint8 Pzone = PChar->getZone();
+				uint16 Pzone = PChar->getZone();
 
 				bool validZone = ((Pzone > 0 && Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255));
 

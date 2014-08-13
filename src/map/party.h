@@ -63,7 +63,7 @@ public:
 	
     uint32 GetPartyID();                                // узнаем уникальный ID группы
     uint16 GetMemberFlags(CBattleEntity* PEntity);      // получаем список флагов персонажа
-    uint8  MemberCount(uint8 ZoneID);                   // узнаем количество участников группы в указанной зоне
+    uint8  MemberCount(uint16 ZoneID);                   // узнаем количество участников группы в указанной зоне
 
     CBattleEntity* GetLeader();                         // узнаем лидера группы
     CBattleEntity* GetSyncTarget();                     // узнаем цель синхронизации
@@ -82,7 +82,7 @@ public:
 	void SetSyncTarget(CBattleEntity* PEntity, uint16 message);         // устанавливаем цель синхронизации уровней3
     void RefreshSync();
 
-    void PushPacket(CCharEntity* PPartyMember, uint8 ZoneID, CBasicPacket* packet);		// отправляем пакет всем членам группы, за исключением PPartyMember
+    void PushPacket(CCharEntity* PPartyMember, uint16 ZoneID, CBasicPacket* packet);		// отправляем пакет всем членам группы, за исключением PPartyMember
 	
 	CAlliance* m_PAlliance;
 
