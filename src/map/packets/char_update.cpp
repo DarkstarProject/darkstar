@@ -63,6 +63,7 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 
     WBUFB(data,(0x29)-4) = PChar->GetGender() + (PChar->look.size > 0 ? PChar->look.size * 8 : 2); // +  управляем ростом: 0x02 - 0; 0x08 - 1; 0x10 - 2;
     WBUFB(data,(0x2C)-4) = PChar->GetSpeed();
+    WBUFB(data,(0x2E)-4) = PChar->speedsub << 1;
 	WBUFB(data,(0x30)-4) = PChar->animation;
 
 	CItemLinkshell* linkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK);
