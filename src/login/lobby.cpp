@@ -426,22 +426,35 @@ int32 lobbyview_parse(int32 fd)
 		{
 		case 0x26:
 			{
-				uint8 SendBuffSize = 0x28;
+                int32 sendsize = 0x24;
+                unsigned char MainReservePacket[0x28];
 
-				LOBBY_026_RESERVEPACKET(ReservPacket);
-				WBUFW(ReservPacket,32) = login_config.expansions;	// BitMask for expansions;
-			
+                string_t ver((char*)(buff + 0x74), 10);
+                if (ver < "30140806_2")
+                {
+                    LOBBBY_ERROR_MESSAGE(ReservePacket);
+
+                    WBUFW(ReservePacket, 32) = 331;
+                    memcpy(MainReservePacket, ReservePacket, sendsize);
+                }
+                else
+                {
+                    sendsize = 0x28;
+
+                    LOBBY_026_RESERVEPACKET(ReservePacket);
+                    WBUFW(ReservePacket, 32) = login_config.expansions;	// BitMask for expansions;
+                    memcpy(MainReservePacket, ReservePacket, sendsize);
+                }
 				//Хеширование пакета, и запись значения Хеш функции в пакет
 				unsigned char Hash[16];
-				md5(ReservPacket, Hash, SendBuffSize);
-				memcpy(ReservPacket+12,Hash,16);
+                md5(MainReservePacket, Hash, sendsize);
+                memcpy(MainReservePacket + 12, Hash, 16);
 				//Запись итогового пакета
-				memcpy(session[fd]->wdata,ReservPacket,SendBuffSize);
+                memcpy(session[fd]->wdata, MainReservePacket, sendsize);
 
 				RFIFOSKIP(fd,session[fd]->rdata_size);
 				RFIFOFLUSH(fd);
-				WFIFOSET(fd,SendBuffSize);
-				
+                WFIFOSET(fd, sendsize);
 			}
 			break;
 		case 0x14:
