@@ -426,12 +426,13 @@ int32 lobbyview_parse(int32 fd)
 		{
 		case 0x26:
 			{
-                int32 sendsize = 0x24;
+                int32 sendsize = 0x28;
                 unsigned char MainReservePacket[0x28];
 
                 string_t ver((char*)(buff + 0x74), 10);
-                if (ver < "30140806_2")
+                if (ver < "30140814_0")
                 {
+                    sendsize = 0x24;
                     LOBBBY_ERROR_MESSAGE(ReservePacket);
 
                     WBUFW(ReservePacket, 32) = 331;
@@ -439,8 +440,6 @@ int32 lobbyview_parse(int32 fd)
                 }
                 else
                 {
-                    sendsize = 0x28;
-
                     LOBBY_026_RESERVEPACKET(ReservePacket);
                     WBUFW(ReservePacket, 32) = login_config.expansions;	// BitMask for expansions;
                     memcpy(MainReservePacket, ReservePacket, sendsize);
