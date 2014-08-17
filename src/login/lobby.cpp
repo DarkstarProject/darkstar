@@ -432,7 +432,7 @@ int32 lobbyview_parse(int32 fd)
                 string_t ver((char*)(buff + 0x74), 10);
                 if (ver < "30140814_0")
                 {
-                    sendsize = 0x28;
+                    sendsize = 0x24;
                     LOBBBY_ERROR_MESSAGE(ReservePacket);
 
                     WBUFW(ReservePacket, 32) = 331;
