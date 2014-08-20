@@ -2421,7 +2421,35 @@ void SmallPacket0x050(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	PChar->UpdateHealth();
 	return;
 }
+/************************************************************************
+*																		*
+*  Equip Macro Set Packet													*
+*																		*
+************************************************************************/
 
+void SmallPacket0x051(map_session_data_t* session, CCharEntity* PChar, int8* data)
+{
+	if (PChar->status != STATUS_NORMAL &&
+		PChar->status != STATUS_UPDATE)
+		return;
+
+	for (uint8 i = 0; i <RBUFB(data, (0x04)); i++)
+	{
+		uint8 slotID = RBUFB(data, (0x08  + (0x04 * i)));		// inventory slot
+		uint8 equipSlotID = RBUFB(data, (0x09 + (0x04 * i)));		// charequip slot
+		uint8 containerID = RBUFB(data, (0x0A + (0x04 * i)));     // container id
+		// For now disable wardrobe equipment attempts..
+		if (containerID != 0)
+		{
+			return;
+		}
+		charutils::EquipItem(PChar, slotID, equipSlotID);
+	}
+	charutils::SaveCharEquip(PChar);
+	luautils::CheckForGearSet(PChar); // check for gear set on gear change
+	PChar->UpdateHealth();
+	return;
+}
 /************************************************************************
 *																		*
 *  Request synthesis suggestion											*
@@ -5289,6 +5317,7 @@ void PacketParserInitialize()
     PacketSize[0x04D] = 0x00; PacketParser[0x04D] = &SmallPacket0x04D;
     PacketSize[0x04E] = 0x1E; PacketParser[0x04E] = &SmallPacket0x04E;
     PacketSize[0x050] = 0x04; PacketParser[0x050] = &SmallPacket0x050;
+	PacketSize[0x051] = 0x24; PacketParser[0x051] = &SmallPacket0x051;
 	PacketSize[0x058] = 0x0A; PacketParser[0x058] = &SmallPacket0x058;
     PacketSize[0x059] = 0x00; PacketParser[0x059] = &SmallPacket0x059;
     PacketSize[0x05A] = 0x02; PacketParser[0x05A] = &SmallPacket0x05A;
