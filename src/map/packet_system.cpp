@@ -2440,11 +2440,11 @@ void SmallPacket0x051(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		uint8 equipSlotID = RBUFB(data, (0x09 + (0x04 * i)));		// charequip slot
 		uint8 containerID = RBUFB(data, (0x0A + (0x04 * i)));     // container id
 		// For now disable wardrobe equipment attempts..
-		if (containerID != 0)
+		if (containerID == 0)
 		{
-			return;
+			charutils::EquipItem(PChar, slotID, equipSlotID);
 		}
-		charutils::EquipItem(PChar, slotID, equipSlotID);
+
 	}
 	charutils::SaveCharEquip(PChar);
 	luautils::CheckForGearSet(PChar); // check for gear set on gear change
