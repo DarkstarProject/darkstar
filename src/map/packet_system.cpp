@@ -103,6 +103,7 @@
 #include "packets/lock_on.h"
 #include "packets/linkshell_equip.h"
 #include "packets/linkshell_message.h"
+#include "packets/macroequipset.h"
 #include "packets/menu_config.h"
 #include "packets/menu_merit.h"
 #include "packets/merit_points_categories.h"
@@ -2421,7 +2422,54 @@ void SmallPacket0x050(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	PChar->UpdateHealth();
 	return;
 }
+/************************************************************************
+*																		*
+*  Equip Macro Set Packet												*
+*																		*
+************************************************************************/
 
+void SmallPacket0x051(map_session_data_t* session, CCharEntity* PChar, int8* data)
+{
+	if (PChar->status != STATUS_NORMAL &&
+		PChar->status != STATUS_UPDATE)
+		return;
+
+	for (uint8 i = 0; i <RBUFB(data, (0x04)); i++)
+	{
+		uint8 slotID = RBUFB(data, (0x08  + (0x04 * i)));		// inventory slot
+		uint8 equipSlotID = RBUFB(data, (0x09 + (0x04 * i)));		// charequip slot
+		uint8 containerID = RBUFB(data, (0x0A + (0x04 * i)));     // container id
+		// For now disable wardrobe equipment attempts..
+		if (containerID == 0)
+		{
+			charutils::EquipItem(PChar, slotID, equipSlotID);
+		}
+
+	}
+	charutils::SaveCharEquip(PChar);
+	luautils::CheckForGearSet(PChar); // check for gear set on gear change
+	PChar->UpdateHealth();
+	return;
+}
+/************************************************************************
+*																		*
+*  Add Equipment to set 												*
+*																		*
+************************************************************************/
+
+void SmallPacket0x052(map_session_data_t* session, CCharEntity* PChar, int8* data)
+{
+	//Im guessing this is here to check if you can use A Item, as it seems useless to have this sent to server
+	//as It will check requirements when it goes to equip the items anyway
+	//0x05 is slot of updated item
+	//0x08 is info for updated item
+	//0x0C is first slot every 4 bytes is another set, in (01-equip 0-2 remve),(container),(ID),(ID)
+	//in this list the slot of whats being updated is old value, replace with new in 116
+	//Should Push 0x116 (size 68) in responce
+	//0x04 is start, contains 16 4 byte parts repersently each slot in order
+	PChar->pushPacket(new CAddtoEquipSet(data));
+	return;
+}
 /************************************************************************
 *																		*
 *  Request synthesis suggestion											*
@@ -5289,6 +5337,8 @@ void PacketParserInitialize()
     PacketSize[0x04D] = 0x00; PacketParser[0x04D] = &SmallPacket0x04D;
     PacketSize[0x04E] = 0x1E; PacketParser[0x04E] = &SmallPacket0x04E;
     PacketSize[0x050] = 0x04; PacketParser[0x050] = &SmallPacket0x050;
+	PacketSize[0x051] = 0x24; PacketParser[0x051] = &SmallPacket0x051;
+	PacketSize[0x052] = 0x26; PacketParser[0x052] = &SmallPacket0x052;
 	PacketSize[0x058] = 0x0A; PacketParser[0x058] = &SmallPacket0x058;
     PacketSize[0x059] = 0x00; PacketParser[0x059] = &SmallPacket0x059;
     PacketSize[0x05A] = 0x02; PacketParser[0x05A] = &SmallPacket0x05A;
