@@ -170,6 +170,7 @@ const char* get_git_revision(void)
         fgets(line, 1024, fp);
         sscanf(line, "%[a-zA-Z0-9] %[^\t\r\n]", w1, w2);
         snprintf(dsp_git_version, sizeof(dsp_git_version), "%s", w1);
+        fclose(fp);
     }
 
     // If no version was found, mark as unknown..
