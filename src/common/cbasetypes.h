@@ -37,6 +37,10 @@
 #define CYGWIN
 #endif
 
+#if !defined(__64BIT__) && defined(__x86_64__)
+#define __64BIT__
+#endif
+
 // debug mode
 #if defined(_DEBUG) && !defined(DEBUG)
 #define DEBUG
@@ -57,7 +61,7 @@
 #if !defined(__GNUC__) && !defined(MINGW)
 #  define  __attribute__(x)
 #endif
- 
+
 // define a break macro for debugging.
 #if defined(DEBUG)
 #if defined(_MSC_VER)
