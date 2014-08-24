@@ -1,5 +1,5 @@
 -----------------------------------
---  Area: West_Ronfaure
+--  Area: West Ronfaure
 --  NPC:  Stone Monument
 --  Involved in quest "An Explorer's Footsteps"
 --  @pos -183.734 -12.678 -395.722 100
@@ -25,7 +25,7 @@ function onTrade(player,npc,trade)
 	if (trade:getItemCount() == 1 and trade:hasItemQty(571,1)) then
 		player:tradeComplete();
 		player:addItem(570);
-		player:specialMessage(ITEM_OBTAINED,570);
+		player:messageSpecial(ITEM_OBTAINED,570);
 		player:setVar("anExplorer-CurrentTablet",0x00001);
 	end
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 --  Area: Pashhow Marshlands
---  NPC: Stone Monument
+--  NPC:  Stone Monument
 --  Involved in quest "An Explorer's Footsteps"
 --  @pos -300.672 21.620 304.179 109
 -----------------------------------
@@ -25,7 +25,7 @@ function onTrade(player,npc,trade)
 	if (trade:getItemCount() == 1 and trade:hasItemQty(571,1)) then
 		player:tradeComplete();
 		player:addItem(570);
-		player:specialMessage(ITEM_OBTAINED,570);
+		player:messageSpecial(ITEM_OBTAINED,570);
 		player:setVar("anExplorer-CurrentTablet",0x00100);
 	end
 end;
