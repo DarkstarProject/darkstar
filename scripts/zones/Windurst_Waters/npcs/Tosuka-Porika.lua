@@ -36,16 +36,16 @@ function onTrigger(player,npc)
 	-- 0x17c (380) = About the book of gods and "some adventurer"
 	-- 0xa0 (160) = 1st cutscene of Windurst Mission 2-1
 	-- 0xa1 (161) = More info on 2-1, if you talk to him right after the previous cutscene again
-	
+
 	local bookwormStatus = player:getQuestStatus(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
 	local glyphStatus = player:getQuestStatus(WINDURST,GLYPH_HANGER);
 	local chasingStatus = player:getQuestStatus(WINDURST,CHASING_TALES);
-	
+
 	local Fame = player:getFameLevel(WINDURST);
-	
+
 	if (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==10)then
 		player:startEvent(0x036B); -- COP event
-	
+
 	-- Start Past Reflections in First -----------
 	elseif(player:getCurrentMission(WINDURST) == LOST_FOR_WORDS) then
 		MissionStatus = player:getVar("MissionStatus");
@@ -86,7 +86,6 @@ function onTrigger(player,npc)
 	else
 		player:startEvent(0x0172); -- Standard Conversation
 	end
-	
 end;
 
 -----------------------------------
@@ -105,7 +104,7 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	
+
 	if(csid == 0x0037) then  -- Show Off Hat
 		player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+32);
 		player:setVar("QuestHatInHand_count",player:getVar("QuestHatInHand_count")+1);
@@ -118,7 +117,7 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0193 and option == 0) then
 	    player:addQuest(WINDURST,CHASING_TALES);
 	elseif(csid ==0x036B)then
-		player:setVar("MEMORIES_OF_A_MAIDEN_Status",11);	
+		player:setVar("MEMORIES_OF_A_MAIDEN_Status",11);
 	elseif(csid == 0x02cb) then
 		player:addKeyItem(OPTISTERY_RING);
 		player:messageSpecial(KEYITEM_OBTAINED,OPTISTERY_RING);
@@ -127,5 +126,4 @@ function onEventFinish(player,csid,option)
 		finishMissionTimeline(player,3,csid,option);
 		player:setVar("Windurst_7-1Kills",0);
 	end
-	
 end;

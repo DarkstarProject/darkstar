@@ -110,6 +110,7 @@ function onEventFinish(player,csid,option)
 		player:messageSpecial(KEYITEM_OBTAINED,OLD_POCKET_WATCH);
 	elseif(csid == 0x006D and option == 1) then
 		player:addQuest(SANDORIA,PEACE_FOR_THE_SPIRIT);
+		player:setVar("needs_crawler_blood",0);
 	elseif(csid == 0x0065) then 
 		player:setVar("needs_crawler_blood",1);
 	elseif(csid == 0x0232) then

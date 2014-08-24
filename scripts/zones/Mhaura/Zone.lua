@@ -22,8 +22,8 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-local cs = -1;	
-local currentday = tonumber(os.date("%j")); 
+local cs = -1;
+local currentday = tonumber(os.date("%j"));
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
 		if (prevZone == 221 or prevZone == 47) then
 			cs = 0x00ca;
@@ -43,7 +43,7 @@ end;
 -----------------------------------
 
 function onTransportEvent(player,transport)
-	if ((transport == 47) or (transport == 46)) then 
+	if ((transport == 47) or (transport == 46)) then
 		if (not(player:hasKeyItem(BOARDING_PERMIT)) or ENABLE_TOAU == 0) then
 			player:setPos(8.200,-1.363,3.445,192);
 			player:messageSpecial(DO_NOT_POSSESS, BOARDING_PERMIT);
@@ -64,9 +64,9 @@ function onEventUpdate(player,csid,option)
 --printf("RESULT: %u",option);
 end;
 
------------------------------------	
--- onEventFinish	
------------------------------------	
+-----------------------------------
+-- onEventFinish
+-----------------------------------
 
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
@@ -76,7 +76,7 @@ function onEventFinish(player,csid,option)
       if (DepartureTime % 8 == 0) then
          player:setPos(0,0,0,0,220); -- Boat to Selbina
       elseif (DepartureTime % 8 == 4) then
-         player:setPos(0,0,0,0,46); -- Boat to Aht Urghan
+         player:setPos(0,0,0,0,46); -- Boat to Aht Urhgan
       else
          player:setPos(8,-1,5,62,249); -- Something went wrong, dump them on the dock for safety.
       end

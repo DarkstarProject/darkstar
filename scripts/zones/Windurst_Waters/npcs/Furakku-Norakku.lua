@@ -61,7 +61,6 @@ function onTrigger(player,npc)
 	else
 		player:startEvent(0x0173);
 	end
-	
 end;
 
 -----------------------------------
@@ -80,8 +79,8 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-    
-	if(csid == 0x0185) then 
+
+	if(csid == 0x0185) then
 		player:addKeyItem(OVERDUE_BOOK_NOTIFICATIONS);
 		player:messageSpecial(KEYITEM_OBTAINED,OVERDUE_BOOK_NOTIFICATIONS);
 	elseif(csid == 0x0190) then
@@ -92,7 +91,7 @@ function onEventFinish(player,csid,option)
 		player:setVar("EARLY_BIRD_TRACK_BOOK",0);
 		player:addFame(WINDURST,WIN_FAME*120);
 		player:completeQuest(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
-	elseif(csid == 0x0194) then 
+	elseif(csid == 0x0194) then
 		player:addKeyItem(OVERDUE_BOOK_NOTIFICATION);
 		player:messageSpecial(KEYITEM_OBTAINED,OVERDUE_BOOK_NOTIFICATION);
 	elseif(csid == 0x019a) then
@@ -108,5 +107,4 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0330) then
 		player:setVar("ClassReunion_TalkedToFurakku",1);
 	end
-	
 end;
