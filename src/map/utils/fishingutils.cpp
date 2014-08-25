@@ -281,7 +281,7 @@ bool LureLoss(CCharEntity* PChar, bool RemoveFly)
 	}
 	if (PLure->getQuantity() == 1)
 	{
-        charutils::EquipItem(PChar, 0, PChar->equip[SLOT_AMMO]);
+		charutils::EquipItem(PChar, 0, PChar->equip[SLOT_AMMO], LOC_INVENTORY);
 	}
 
 	charutils::UpdateItem(PChar, PLure->getLocationID(), PLure->getSlotID(), -1);
@@ -324,7 +324,7 @@ void RodBreaks(CCharEntity* PChar)
 
 	DSP_DEBUG_BREAK_IF(BrokenRodID == 0);
 
-	charutils::EquipItem(PChar, 0, SLOT_RANGED);
+	charutils::EquipItem(PChar, 0, SLOT_RANGED, LOC_INVENTORY);
 	charutils::UpdateItem(PChar, LOC_INVENTORY, SlotID, -1); 
 	charutils::AddItem(PChar, LOC_INVENTORY, BrokenRodID, 1);
 }
