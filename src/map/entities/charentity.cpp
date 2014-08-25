@@ -68,6 +68,7 @@ CCharEntity::CCharEntity()
 	memset(& jobs,  0, sizeof(jobs));
 	memset(& keys,  0, sizeof(keys));
     memset(& equip, 0, sizeof(equip));
+	memset(& equipLoc, 0, sizeof(equipLoc));
 	memset(& RealSkills,   0, sizeof(RealSkills));
     memset(& m_currency, 0, sizeof(m_currency));
     memset(& nationtp,  0, sizeof(nationtp));
@@ -378,12 +379,12 @@ uint32 CCharEntity::GetPlayTime(bool needUpdate)
 CItemArmor* CCharEntity::getEquip(SLOTTYPE slot)
 {
 	uint8 loc = equip[slot];
-
+	uint8 est = equipLoc[slot];
 	CItemArmor* item = NULL;
 
 	if (loc != 0)
 	{
-		item = (CItemArmor*)getStorage(LOC_INVENTORY)->GetItem(loc);
+		item = (CItemArmor*)getStorage(est)->GetItem(loc);
 	}
 	return item;
 }

@@ -916,46 +916,36 @@ void LoadInventory(CCharEntity* PChar)
 
 	Query =
         "SELECT "
-          "main,"
-          "sub,"
-          "ranged,"
-          "ammo,"
-          "head,"
-          "body,"
-          "hands,"
-          "legs,"
-          "feet,"
-          "neck,"
-          "waist,"
-          "ear1,"
-          "ear2,"
-          "ring1,"
-          "ring2,"
-          "back,"
-          "link "
+		  "slotid,"
+          "equipslotid,"     
+          "containerid "
         "FROM char_equip "
         "WHERE charid = %u;";
 
 	ret = Sql_Query(SqlHandle, Query, PChar->id);
 
 	if (ret != SQL_ERROR &&
-		Sql_NumRows(SqlHandle) != 0 &&
-		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		Sql_NumRows(SqlHandle) != 0)
 	{
-		for (int32 i = 0; i < 16; ++i)
+		while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		{
-            EquipItem(PChar, (uint8)Sql_GetIntData(SqlHandle, i), i);
+			if (Sql_GetUIntData(SqlHandle, 1) < 16)
+				EquipItem(PChar, Sql_GetUIntData(SqlHandle, 0), Sql_GetUIntData(SqlHandle, 1), Sql_GetUIntData(SqlHandle, 2));
+			else
+			{
+				uint8 SlotID = Sql_GetUIntData(SqlHandle, 0);
+				CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
+
+				if ((PItem != NULL) && PItem->isType(ITEM_LINKSHELL))
+				{
+					PItem->setSubType(ITEM_LOCKED);
+					PChar->equip[SLOT_LINK] = SlotID;
+					PChar->equipLoc[SLOT_LINK] = LOC_INVENTORY;
+					linkshell::AddOnlineMember(PChar, (CItemLinkshell*)PItem);
+				}
+			}
 		}
-        uint8 SlotID = (uint8)Sql_GetIntData(SqlHandle, SLOT_LINK);
 
-		CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
-
-		if ((PItem != NULL) && PItem->isType(ITEM_LINKSHELL))
-        {
-		    PItem->setSubType(ITEM_LOCKED);
-            PChar->equip[SLOT_LINK] = SlotID;
-            linkshell::AddOnlineMember(PChar, (CItemLinkshell*)PItem);
-        }
 	}
     else
     {
@@ -1411,6 +1401,7 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 		//todo: issues as item 0 reference is being handled as a real equipment piece
 		//      thought to be source of nin bug
 		PChar->equip[equipSlotID] = 0;
+		PChar->equipLoc[equipSlotID] = 0;
 
 		if (((CItemArmor*)PItem)->getScriptType() & SCRIPT_EQUIP)
 		{
@@ -1443,8 +1434,8 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 		PChar->delEquipModifiers(&((CItemArmor*)PItem)->modList, ((CItemArmor*)PItem)->getReqLvl(), equipSlotID);
         PChar->PLatentEffectContainer->DelLatentEffects(((CItemArmor*)PItem)->getReqLvl(), equipSlotID);
 
-		PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NORMAL));
-		PChar->pushPacket(new CEquipPacket(0, equipSlotID));
+		PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NORMAL)); //???
+		PChar->pushPacket(new CEquipPacket(0, equipSlotID, LOC_INVENTORY));
 
 		switch(equipSlotID)
 		{
@@ -1531,9 +1522,9 @@ void RemoveSub(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
+bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 containerID)
 {
-	CItemArmor* PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
+	CItemArmor* PItem = (CItemArmor*)PChar->getStorage(containerID)->GetItem(slotID);
 
 	if (PItem == NULL)
 	{
@@ -1561,7 +1552,7 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
         }
     }
 
-    UnequipItem(PChar, equipSlotID);
+	UnequipItem(PChar, equipSlotID);
 
     if (PItem->getEquipSlotId() & (1 << equipSlotID))
     {
@@ -1773,6 +1764,7 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 			break;
 		}
 		PChar->equip[equipSlotID] = slotID;
+		PChar->equipLoc[equipSlotID] = containerID;
 	}
     else
     {
@@ -1788,7 +1780,7 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 *																		*
 ************************************************************************/
 
-void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
+void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 containerID)
 {
 	if (slotID == 0)
 	{
@@ -1801,16 +1793,16 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 
 		PChar->status = STATUS_UPDATE;
 		PChar->m_EquipSwap = true;
-		PChar->pushPacket(new CEquipPacket(slotID, equipSlotID));
+		PChar->pushPacket(new CEquipPacket(slotID, equipSlotID, containerID));
 	}
 	else
     {
-        CItemArmor* PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
+		CItemArmor* PItem = (CItemArmor*)PChar->getStorage(containerID)->GetItem(slotID); 
 
         if ((PItem != NULL) && PItem->isType(ITEM_ARMOR))
         {
 
-			if (!PItem->isSubType(ITEM_LOCKED) && EquipArmor(PChar, slotID, equipSlotID))
+			if (!PItem->isSubType(ITEM_LOCKED) && EquipArmor(PChar, slotID, equipSlotID, containerID))
 			{
 				if (PItem->getScriptType() & SCRIPT_EQUIP)
 				{
@@ -1824,7 +1816,7 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 
                     // не забываем обновить таймер при экипировке предмета
 
-			        PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_INVENTORY, slotID));
+					PChar->pushPacket(new CInventoryItemPacket(PItem, containerID, slotID));
 	                PChar->pushPacket(new CInventoryFinishPacket());
 		        }
 				PItem->setSubType(ITEM_LOCKED);
@@ -1842,7 +1834,7 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 				PChar->PLatentEffectContainer->CheckLatentsEquip(equipSlotID);
 
 				PChar->status = STATUS_UPDATE;
-				PChar->pushPacket(new CEquipPacket(slotID, equipSlotID));
+				PChar->pushPacket(new CEquipPacket(slotID, equipSlotID, containerID));
 				PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NODROP));
 			}
         }
@@ -3869,34 +3861,22 @@ void SaveZonesVisited(CCharEntity* PChar)
 
 void SaveCharEquip(CCharEntity* PChar)
 {
-	const int8* Query = "UPDATE char_equip \
-						 SET main  = %u, sub   = %u, ranged = %u, ammo = %u, head  = %u, body = %u, \
-							 hands = %u, legs  = %u, feet   = %u, neck = %u, waist = %u, ear1 = %u, \
-							 ear2  = %u, ring1 = %u, ring2  = %u, back = %u, link  = %u \
-						 WHERE charid = %u;";
+	for (uint8 i = 0; i < 17; ++i)
+	{
+		if (PChar->equip[i] == 0)
+		{
+			Sql_Query(SqlHandle, "DELETE FROM char_equip WHERE charid = %u AND  equipslotid = %u LIMIT 1;", PChar->id, i);
+		}
+		else
+		{
 
-	Sql_Query(SqlHandle,
-        Query,
-		PChar->equip[0],
-        PChar->equip[1],
-        PChar->equip[2],
-        PChar->equip[3],
-        PChar->equip[4],
-        PChar->equip[5],
-        PChar->equip[6],
-		PChar->equip[7],
-        PChar->equip[8],
-        PChar->equip[9],
-        PChar->equip[10],
-        PChar->equip[11],
-        PChar->equip[12],
-        PChar->equip[13],
-		PChar->equip[14],
-        PChar->equip[15],
-        PChar->equip[16],
-        PChar->id);
+			const int8* fmtQuery = "INSERT INTO char_equip SET charid = %u, equipslotid = %u , slotid  = %u, containerid = %u ON DUPLICATE KEY UPDATE slotid  = %u, containerid = %u;";
+			Sql_Query(SqlHandle, fmtQuery, PChar->id, i, PChar->equip[i], PChar->equipLoc[i], PChar->equip[i], PChar->equipLoc[i]);
 
-	Query = "UPDATE char_look \
+		}
+	}
+
+	const int8* Query = "UPDATE char_look \
 			 SET head = %u, body = %u, hands = %u, legs = %u, feet = %u, main = %u, sub = %u, ranged = %u \
 			 WHERE charid = %u;";
 

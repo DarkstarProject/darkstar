@@ -256,7 +256,8 @@ public:
 	uint16					m_EquipFlag;					// текущие события, обрабатываемые экипировкой (потом упакую в структуру, вместе с equip[])
     uint16					m_EquipBlock;					// заблокированные ячейки экипировки
 	bool					m_EquipSwap;					// true if equipment was recently changed
-	uint8					equip[17];						// экипировка персонажа
+	uint8					equip[17];						//      SlotID where equipment is
+	uint8					equipLoc[17];					// ContainerID where equipment is
 
 	uint8					m_ZonesList[36];				// список посещенных персонажем зон
 	uint8					m_SpellList[128];				// список изученных заклинаний

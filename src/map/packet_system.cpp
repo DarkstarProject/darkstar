@@ -495,7 +495,7 @@ void SmallPacket0x011(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	{
 		if (PChar->equip[i] != 0)
 		{
-			PChar->pushPacket(new CEquipPacket(PChar->equip[i], i));
+			PChar->pushPacket(new CEquipPacket(PChar->equip[i], i, PChar->equipLoc[i]));
 		}
 	}
 	return;
@@ -2410,13 +2410,12 @@ void SmallPacket0x050(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	uint8 equipSlotID = RBUFB(data,(0x05));		// charequip slot
     uint8 containerID = RBUFB(data,(0x06));     // container id
 
-    // For now disable wardrobe equipment attempts..
-    if (containerID != 0)
+	if (containerID != 0 && containerID != 8)
     {
         return;
     }
 
-	charutils::EquipItem(PChar, slotID, equipSlotID);
+	charutils::EquipItem(PChar, slotID, equipSlotID, containerID); //current
     charutils::SaveCharEquip(PChar);
 	luautils::CheckForGearSet(PChar); // check for gear set on gear change
 	PChar->UpdateHealth();
@@ -2439,10 +2438,9 @@ void SmallPacket0x051(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		uint8 slotID = RBUFB(data, (0x08  + (0x04 * i)));		// inventory slot
 		uint8 equipSlotID = RBUFB(data, (0x09 + (0x04 * i)));		// charequip slot
 		uint8 containerID = RBUFB(data, (0x0A + (0x04 * i)));     // container id
-		// For now disable wardrobe equipment attempts..
-		if (containerID == 0)
+		if (containerID == 0 || containerID == 8 )
 		{
-			charutils::EquipItem(PChar, slotID, equipSlotID);
+			charutils::EquipItem(PChar, slotID, equipSlotID, containerID);
 		}
 
 	}
@@ -3906,6 +3904,7 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     PItemLinkshell->setSubType(ITEM_UNLOCKED);
 
                     PChar->equip[SLOT_LINK] = 0;
+					PChar->equipLoc[SLOT_LINK] = 0;
                     PChar->nameflags.flags &= ~FLAG_LINKSHELL;
 
                     PChar->pushPacket(new CInventoryAssignPacket(PItemLinkshell, INV_NORMAL));
@@ -3935,6 +3934,7 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     PItemLinkshell->setSubType(ITEM_LOCKED);
 
                     PChar->equip[SLOT_LINK] = SlotID;
+					PChar->equipLoc[SLOT_LINK] = LOC_INVENTORY;
                     PChar->nameflags.flags |= FLAG_LINKSHELL;
 
                     PChar->pushPacket(new CInventoryAssignPacket(PItemLinkshell, INV_LINKSHELL));
