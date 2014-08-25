@@ -140,10 +140,11 @@ namespace effects
 ************************************************************************/
 
 CStatusEffectContainer::CStatusEffectContainer(CBattleEntity* PEntity)
-	: m_POwner(PEntity)
 {
+    m_POwner = PEntity;
     DSP_DEBUG_BREAK_IF(m_POwner == NULL);
 
+       m_RegenCheckTime = 0;
 	m_Flags = 0;
 	m_EffectCheckTime = gettick();
 	m_StatusEffectList.reserve(32);

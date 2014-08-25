@@ -36,6 +36,7 @@
 
 CUContainer::CUContainer()
 {
+       m_ContainerType = UCONTAINER_EMPTY;
 	Clean();
 }
 
