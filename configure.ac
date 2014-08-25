@@ -125,51 +125,6 @@ AC_ARG_ENABLE(
   [ enable_rdtsc=0 ]
 )
 
-### Compile for a 64-bit target
-AC_ARG_ENABLE(
-        [64bit],
-        AC_HELP_STRING(
-                [--enable-64bit],
-                [
-                        Don't force 32bit. (disable by default)
-                        64bit support is still being tested, not recommended for production servers.
-                ]
-        ),
-        [
-                enable_64bit="$enableval"
-                case $enableval in
-                        "no");;
-                        "yes");;
-                        *) AC_MSG_ERROR([[ invalid argumen --enable-64bit = $enableval ... stopping]]);;
-                esac
-        ],
-        [ enable_64bit="no" ]
-)
-
-### Make sure pointers will fit in int when using 64-bit target
-if test "$enable_64bit" = "no" ; then
-        AC_MSG_CHECKING([whether pointers can be stored in ints (old code)])
-        pointers_fit_in_ints="no"
-        AC_COMPILE_IFELSE(
-                [AC_LANG_PROGRAM([[static int test_array[((long int)sizeof(int)) == ((long int)sizeof(void*))? 1 : -1];]])],
-                [pointers_fit_in_ints="yes"],
-                []
-        )
-        if test "$pointers_fit_in_ints" = "no" ; then
-                DARKSTAR_CXXFLAGS="$DARKSTAR_CXXFLAGS -m32"
-                DARKSTAR_LDFLAGS="$DARKSTAR_LDFLAGS -m32"
-                AC_COMPILE_IFELSE(
-                        [AC_LANG_PROGRAM([[static int test_array[((long int)sizeof(int)) == ((long int)sizeof(void*))? 1: -1];]])],
-                        [pointers_fit_in_ints="yes (with -m32)"],
-                        []
-                )
-        fi
-        AC_MSG_RESULT($pointers_fit_in_ints)
-        if test "$pointers_fit_in_ints" = "no" ; then
-                AC_MSG_ERROR([pointers cannot be stored in ints, required for old code... stopping])
-        fi
-fi
-
 AC_MSG_CHECKING([whether $CXX supports -Wno-unused-parameter])
 OLD_DARKSTAR_CXXFLAGS="$DARKSTAR_CXXFLAGS"
 DARKSTAR_CXXFLAGS="$DARKSTAR_CXXFLAGS -Wno-unused-parameter"
