@@ -523,7 +523,7 @@ INSERT INTO `status_effects` VALUES (502,'mikage',32,0,0,0,0,0,0);
 
 INSERT INTO `status_effects` VALUES (777,'prowess_casket_rate',768,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (778,'prowess_skill_rate',768,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (779,'prowess_crystal_yeiLD',768,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (779,'prowess_crystal_yeild',768,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (780,'prowess_th',768,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (781,'prowess_attack_speed',768,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (782,'prowess_hp_mp',768,0,0,0,0,0,0);

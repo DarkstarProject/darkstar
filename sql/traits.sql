@@ -322,7 +322,7 @@ INSERT INTO `traits` VALUES ('70','zanshin','12','75','4','306','45');
 INSERT INTO `traits` VALUES ('70','zanshin','12','95','5','306','50');
 INSERT INTO `traits` VALUES ('71','savagery','1','75','1','0','0');
 INSERT INTO `traits` VALUES ('72','aggressive aim','1','75','1','0','0');
-INSERT INTO `traits` VALUES ('73','invigorate','2','75','1','0','0');
+INSERT INTO `traits` VALUES ('73','invigorate','2','75','1','0','24');
 INSERT INTO `traits` VALUES ('74','penance','2','75','1','0','0');
 INSERT INTO `traits` VALUES ('75','aura steal','6','75','1','0','0');
 INSERT INTO `traits` VALUES ('76','ambush','6','75','1','0','0');
