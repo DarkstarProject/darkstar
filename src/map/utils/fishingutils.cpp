@@ -100,7 +100,7 @@ void StartFishing(CCharEntity* PChar)
 	
 	CItemWeapon* WeaponItem = NULL;
 
-	WeaponItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);	
+	WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);	
 			
 	if ((WeaponItem == NULL) ||
 	   !(WeaponItem->isType(ITEM_WEAPON)) ||
@@ -113,7 +113,7 @@ void StartFishing(CCharEntity* PChar)
 		return;
 	}
 
-	WeaponItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);	
+	WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);	
 							
 	if ((WeaponItem == NULL) ||
 	   !(WeaponItem->isType(ITEM_WEAPON)) ||
@@ -150,7 +150,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
 	CItemFish* PFish = NULL;
 	CItemWeapon* WeaponItem = NULL;
 
-	WeaponItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_RANGED]);	
+	WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);	
 
 	DSP_DEBUG_BREAK_IF(WeaponItem == NULL);
 	DSP_DEBUG_BREAK_IF(WeaponItem->isType(ITEM_WEAPON) == false);
@@ -158,7 +158,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
 
 	uint16 RodID = WeaponItem->getID();
 
-	WeaponItem = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);	
+	WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);	
 							
 	DSP_DEBUG_BREAK_IF(WeaponItem == NULL);
 	DSP_DEBUG_BREAK_IF(WeaponItem->isType(ITEM_WEAPON) == false);
@@ -268,7 +268,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
 
 bool LureLoss(CCharEntity* PChar, bool RemoveFly)
 {	
-	CItemWeapon* PLure = (CItemWeapon*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_AMMO]);
+	CItemWeapon* PLure = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);
 
 	DSP_DEBUG_BREAK_IF(PLure == NULL);
 	DSP_DEBUG_BREAK_IF(PLure->isType(ITEM_WEAPON) == false);
@@ -281,7 +281,7 @@ bool LureLoss(CCharEntity* PChar, bool RemoveFly)
 	}
 	if (PLure->getQuantity() == 1)
 	{
-        charutils::EquipItem(PChar, 0, PChar->equip[SLOT_AMMO]);
+		charutils::EquipItem(PChar, 0, PChar->equip[SLOT_AMMO], LOC_INVENTORY);
 	}
 
 	charutils::UpdateItem(PChar, PLure->getLocationID(), PLure->getSlotID(), -1);
@@ -324,7 +324,7 @@ void RodBreaks(CCharEntity* PChar)
 
 	DSP_DEBUG_BREAK_IF(BrokenRodID == 0);
 
-	charutils::EquipItem(PChar, 0, SLOT_RANGED);
+	charutils::EquipItem(PChar, 0, SLOT_RANGED, LOC_INVENTORY);
 	charutils::UpdateItem(PChar, LOC_INVENTORY, SlotID, -1); 
 	charutils::AddItem(PChar, LOC_INVENTORY, BrokenRodID, 1);
 }

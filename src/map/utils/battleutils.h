@@ -107,8 +107,6 @@ namespace battleutils
 	int32			GetRangedAttackBonuses(CBattleEntity* battleEntity);
 	int32			GetRangedAccuracyBonuses(CBattleEntity* battleEntity);
 
-	void			SetMonsterTreasureHunterLevel(CCharEntity* PChar, CMobEntity* Monster);
-
 	uint8			GetSkillRank(SKILLTYPE SkillID, JOBTYPE JobID);
 	uint16			GetMaxSkill(SKILLTYPE SkillID, JOBTYPE JobID, uint8 level);
     uint16          GetMaxSkill(uint8 rank, uint8 level);
@@ -130,7 +128,7 @@ namespace battleutils
     uint8				GetSkillchainSubeffect(SKILLCHAIN_ELEMENT skillchain);
     uint16				GetSkillchainMinimumResistance(SKILLCHAIN_ELEMENT element, CBattleEntity* PDefender);
 
-	bool			IsParalised(CBattleEntity* PAttacker);
+	bool			IsParalyzed(CBattleEntity* PAttacker);
     bool			IsAbsorbByShadow(CBattleEntity* PDefender);
 	bool			IsIntimidated(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	bool			IsAnticipated(CBattleEntity* PDefender, bool forceRemove, bool ignore);
@@ -153,7 +151,7 @@ namespace battleutils
 	bool                TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	float				GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 	void				HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action);
-    uint16              CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 spikesType);
+    uint16              CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint16 damageTaken);
     bool                HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender,apAction_t* Action, uint32 damage);
     bool                HandleSpikesEquip(CBattleEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action, uint8 damage, SUBEFFECT spikesType, uint8 chance);
     void                HandleSpikesStatusEffect(CBattleEntity* PAttacker, apAction_t* Action);
@@ -164,7 +162,7 @@ namespace battleutils
     uint8				GetEnmityMod(uint8 level, uint8 modType);
 	bool				Enfeeble(CBattleEntity* PCaster, CBattleEntity* PDefender, EFFECT Effect);
 	bool				isValidSelfTargetWeaponskill(int wsid);
-	float				CalculateBaseTP(int delay, int stp);
+	int16				CalculateBaseTP(int delay, int stp);
     void				GenerateCureEnmity(CBattleEntity* PSource, CBattleEntity* PTarget, uint16 amount);
 
     CItemWeapon*		GetEntityWeapon(CBattleEntity* PEntity, SLOTTYPE Slot);
@@ -191,22 +189,36 @@ namespace battleutils
 	EFFECT				getCorsairRollEffect(uint16 id);
     void                ClaimMob(CBattleEntity* PDefender, CBattleEntity* PAttacker);
 
-    int32               DmgTaken(CBattleEntity* PDefender, int32 damage);
     int32               BreathDmgTaken(CBattleEntity* PDefender, int32 damage);
     int32               MagicDmgTaken(CBattleEntity* PDefender, int32 damage);
     int32               PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage);
     int32               RangedDmgTaken(CBattleEntity* PDefender, int32 damage);
 
+	void                HandleIssekiganEnmityBonus(CBattleEntity* PDefender, CMobEntity* PAttacker);	
+	int32               HandleSevereDamage(CBattleEntity* PDefender, int32 damage);
+	int32               HandleSevereDamageEffect(CBattleEntity* PDefender, EFFECT effect, int32 damage, bool removeEffect);
+	void                HandleTacticalParry(CBattleEntity* PEntity);	
+
     // returns damage taken
     int32               HandleStoneskin(CBattleEntity* PDefender, int32 damage);
+    int32               HandleFanDance(CBattleEntity* PDefender, int32 damage);
+
+	// stores damage for afflatus misery if active	
+	void                HandleAfflatusMiseryDamage(CBattleEntity* PDefender, int32 damage);
+	// boosts accuracy when afflatus msiery is active
+	void                HandleAfflatusMiseryAccuracyBonus(CBattleEntity* PAttacker);
+
+	// handles enmity loss calculations for tranquil heart
+	float               HandleTranquilHeart(CBattleEntity* PEntity);
 
 	void				assistTarget(CCharEntity* PChar, uint16 TargID);
     CMobSkill*          GetTwoHourMobSkill(JOBTYPE job);
 
     uint8               GetSpellAoEType(CBattleEntity* PCaster, CSpell* PSpell);
     WEATHER             GetWeather(CBattleEntity* PEntity, bool ignoreScholar);
-    void				DrawIn(CBattleEntity* PEntity, position_t* pos, float offset);
-
+    bool                WeatherMatchesElement(WEATHER weather, uint8 element);
+    void				DrawIn(CBattleEntity* PEntity, CMobEntity* PMob, float offset);
+	void				DoWildCardToEntity(CCharEntity* PCaster, CCharEntity* PTarget, uint8 roll);
 };
 
 #endif

@@ -73,7 +73,8 @@ enum ROAMFLAG : uint16
   ROAMFLAG_WORM     = 0x40,  // pop up and down when moving
   ROAMFLAG_AMBUSH   = 0x80,  // stays hidden until someone comes close (antlion)
   ROAMFLAG_EVENT    = 0x100, // calls lua method for roaming logic
-  ROAMFLAG_IGNORE   = 0x200  // ignore all hate, except linking hate
+  ROAMFLAG_IGNORE   = 0x200, // ignore all hate, except linking hate
+  ROAMFLAG_STEALTH  = 0x400  // stays name hidden and untargetable until someone comes close (chigoe)
 };
 
 enum MOBTYPE
@@ -87,20 +88,28 @@ enum MOBTYPE
   MOBTYPE_EVENT       = 0x20
 };
 
+enum AGGRO : uint16
+{
+	AGGRO_NONE					= 0x00,
+	AGGRO_DETECT_SIGHT			= 0x01,
+	AGGRO_DETECT_HEARING		= 0x02,
+	AGGRO_DETECT_LOWHP			= 0x04,
+	AGGRO_DETECT_TRUEHEARING	= 0x08,
+	AGGRO_DETECT_TRUESIGHT		= 0x10,
+	AGGRO_DETECT_MAGIC			= 0x20,
+	AGGRO_DETECT_WEAPONSKILL	= 0x40,
+	AGGRO_DETECT_JOBABILITY		= 0x80,
+	AGGRO_SCENT					= 0x100
+};
+
 enum BEHAVIOUR : uint16
 {
-  BEHAVIOUR_NONE              = 0x00,
-  BEHAVIOUR_AGGRO_SIGHT       = 0x01,
-  BEHAVIOUR_AGGRO_HEARING     = 0x02,
-  BEHAVIOUR_AGGRO_LOWHP       = 0x04,
-  BEHAVIOUR_AGGRO_TRUEHEARING = 0x08,
-  BEHAVIOUR_AGGRO_TRUESIGHT   = 0x10,
-  BEHAVIOUR_AGGRO_MAGIC       = 0x20,
-  BEHAVIOUR_AGGRO_WEAPONSKILL = 0x40,
-  BEHAVIOUR_AGGRO_JOBABILITY  = 0x80,
-  BEHAVIOUR_SCENT             = 0x100,
-  BEHAVIOUR_AGGRO_AMBUSH      = 0x200,
-  BEHAVIOUR_NO_TURN           = 0x400
+	BEHAVIOUR_NONE				= 0x000,
+	BEHAVIOUR_NO_DESPAWN		= 0x001, // mob does not despawn on death
+	BEHAVIOUR_STANDBACK			= 0x002, // mob will standback forever
+	BEHAVIOUR_RAISABLE			= 0x004, // mob can be raised via Raise spells
+	BEHAVIOUR_AGGRO_AMBUSH		= 0x200, // mob aggroes by ambush
+	BEHAVIOUR_NO_TURN           = 0x400  // mob does not turn to face target
 };
 
 
@@ -153,14 +162,15 @@ public:
   float     m_maxRoamDistance;          // maximum distance mob can be from spawn
 
   uint8     m_Type;                     // mob type
+  uint16	m_Aggro;					// mob aggro type
   uint8     m_Link;                     // link with mobs of it's family
-  uint16    m_Behaviour;                // mob behaviour e.g. BEHAVIOUR_SCENT, BEHAVIOUR_AGGRO_SIGHT
+  uint16    m_Behaviour;                // mob behaviour
   SPAWNTYPE m_SpawnType;                // condition for mob to spawn
   uint32    m_extraVar;                 // extra variable to store combat related variables from scripts
 
   uint8     m_CallForHelp;              // call for help flag on mob
 
-  int8      m_instanceID;               // instance belonging to
+  int8      m_battlefieldID;            // battlefield belonging to
   uint16    m_bcnmID;                   // belongs to which battlefield
   bool      m_giveExp;                  // prevent exp gain
   bool      m_neutral;                  // stop linking / aggroing
@@ -170,7 +180,6 @@ public:
   uint8     m_Element;
   uint8     m_HiPCLvl;                  // Highest Level of Player Character that hit the Monster
   uint8     m_THLvl;                    // Highest Level of Treasure Hunter that apply to drops
-  uint32    m_THPCID;                   // ID of last PC that hit the NPC and apply TH onto the NPC
   bool      m_ItemStolen;               // if true, mob has already been robbed. reset on respawn. also used for thf maat fight
   uint16    m_Family;
   uint32    m_Pool;                     // pool the mob came from

@@ -15,11 +15,6 @@ require("scripts/zones/Quicksand_Caves/TextIDs");
 -----------------------------------
 
 function onTrigger(player,npc)
-end;
-
------------------------------------
--- Dialogues,cutscenes,etc. go below.
------------------------------------
 	local missionStatus = player:getVar("MissionStatus");
 	if (player:getCurrentMission(player:getNation()) == THE_CHAINS_THAT_BIND_US) and (missionStatus == 2) then
 		player:startEvent(0x0A)  

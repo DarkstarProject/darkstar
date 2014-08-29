@@ -17,32 +17,27 @@ function onSpellCast(caster,target,spell)
 
     -- Pull base stats.
     local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
-    local bonus = AffinityBonus(caster, spell:getElement());
+    --local bonus = AffinityBonus(caster, spell:getElement());  Removed: affinity bonus is added in applyResistance
     local power = 50; -- 50% reduction
 
     -- Duration, including resistance.  Unconfirmed.
-    local duration = 120 * applyResistance(caster,spell,target,dINT,35,bonus);
+    local duration = 120 * applyResistanceEffect(caster,spell,target,dINT,35,0,EFFECT_WEIGHT);
 
-    if(100 * math.random() >= target:getMod(MOD_GRAVITYRES)) then
-        if(duration >= 30) then --Do it!
-            if(target:addStatusEffect(EFFECT_WEIGHT,power,0,duration)) then
-                spell:setMsg(236);
-            else
-                spell:setMsg(284);
-            end
+    if(duration >= 30) then --Do it!
+	
+	    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+        duration = duration * 2;
+    end
+    caster:delStatusEffect(EFFECT_SABOTEUR);
+	
+        if(target:addStatusEffect(EFFECT_WEIGHT,power,0,duration)) then
+            spell:setMsg(236);
         else
---          if(spell:isAOE() == false) then
---              spell:setMsg(85);
---          else
-                spell:setMsg(284);
---          end
+            spell:setMsg(75);
         end
     else
---      if(spell:isAOE() == false) then
---          spell:setMsg(85);
---      else
-            spell:setMsg(284);
---      end
+        spell:setMsg(284);
     end
+
     return EFFECT_WEIGHT;
 end;

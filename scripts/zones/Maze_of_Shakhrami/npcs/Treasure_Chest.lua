@@ -1,11 +1,14 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
 -- NPC:  Treasure Chest
+-- Involved In Quest: The Goblin Tailor
 -- @zone 198
 -----------------------------------
 package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/keyitems");
+require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/treasure");
 require("scripts/zones/Maze_of_Shakhrami/TextIDs");
@@ -24,10 +27,17 @@ function onTrade(player,npc,trade)
 	--trade:hasItemQty(1023,1);			-- Living Key
 	--trade:hasItemQty(1022,1);			-- Thief's Tools
 	local questItemNeeded = 0;
-	
+
 	-- Player traded a key.
 	if((trade:hasItemQty(1032,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
 		local zone = player:getZone();
+
+		-- IMPORTANT ITEM: The Goblin Tailor Quest -----------
+		if(player:getQuestStatus(JEUNO,THE_GOBLIN_TAILOR) >= QUEST_ACCEPTED and VanadielRSELocation() == 2 and VanadielRSERace() == player:getRace() and player:hasKeyItem(MAGICAL_PATTERN) == false) then
+			questItemNeeded = 1;
+		end
+		--------------------------------------
+
 		local pack = openChance(player,npc,trade,TreasureType,TreasureLvL,TreasureMinLvL,questItemNeeded);
 		local success = 0;
 		if(pack[2] ~= nil) then
@@ -41,25 +51,34 @@ function onTrade(player,npc,trade)
 			player:tradeComplete();
 
 			if(math.random() <= success) then
+				local respawn = false;
+
 				-- Succeded to open the coffer
 				player:messageSpecial(CHEST_UNLOCKED);
-				player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME)); 
-					
-				local loot = chestLoot(zone,npc);
+
+				if(questItemNeeded == 1) then
+					respawn = true;
+					player:addKeyItem(MAGICAL_PATTERN);
+					player:messageSpecial(KEYITEM_OBTAINED,MAGICAL_PATTERN);
+				else
+					player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME)); 
+
+					local loot = chestLoot(zone,npc);
 					-- print("loot array: "); -- debug
 					-- print("[1]", loot[1]); -- debug
 					-- print("[2]", loot[2]); -- debug
 
-				if(loot[1]=="gil") then
-					player:addGil(loot[2]*GIL_RATE);
-					player:messageSpecial(GIL_OBTAINED,loot[2]*GIL_RATE);
-				else
-					-- Item
-					player:addItem(loot[2]);
-					player:messageSpecial(ITEM_OBTAINED,loot[2]);
+					if(loot[1]=="gil") then
+						player:addGil(loot[2]*GIL_RATE);
+						player:messageSpecial(GIL_OBTAINED,loot[2]*GIL_RATE);
+					else
+						-- Item
+						player:addItem(loot[2]);
+						player:messageSpecial(ITEM_OBTAINED,loot[2]);
+					end
 				end
 
-				UpdateTreasureSpawnPoint(npc:getID());
+				UpdateTreasureSpawnPoint(npc:getID(),respawn);
 			end
 		end
 	end

@@ -82,8 +82,9 @@ public:
 	void	setRemoveSlotId(uint8 removSlot);
     void    setAugment(uint8 slot, uint16 type, uint8 value);
 	void    setTrialNumber(uint16);
-     
+
     void    LoadAugment(uint8 slot, uint16 augment);
+    void    ApplyAugment(uint8 slot);
 
     void    addModifier(CModifier* modifier);
 	void	addLatent(CLatentEffect* latent);

@@ -36,6 +36,7 @@
 #include "../packets/message_basic.h"
 #include "../packets/synth_animation.h"
 #include "../packets/synth_message.h"
+#include "../packets/synth_result.h"
 
 #include "charutils.h"
 #include "itemutils.h"
@@ -194,18 +195,6 @@ double getSynthDifficulty(CCharEntity* PChar, uint8 skillID)
 	uint8  strongElement[8] = {2,3,5,4,0,1,7,6};
 	uint16 ModID = 0;
 
-	switch (direction)
-	{
-		case 0: ElementDirection = ELEMENT_WIND;	  break;
-		case 1: ElementDirection = ELEMENT_EARTH;	  break;
-		case 2: ElementDirection = ELEMENT_LIGHTNING; break;
-		case 3: ElementDirection = ELEMENT_WATER;	  break;
-		case 4: ElementDirection = ELEMENT_FIRE;	  break;
-		case 5: ElementDirection = ELEMENT_DARK;	  break;
-		case 6: ElementDirection = ELEMENT_LIGHT;	  break;
-		case 7: ElementDirection = ELEMENT_ICE;		  break;
-	}
-
 	switch (skillID)
 	{
 		case SKILL_WDW: ModID = MOD_WOOD;		break;
@@ -222,25 +211,48 @@ double getSynthDifficulty(CCharEntity* PChar, uint8 skillID)
 	double difficult = PChar->CraftContainer->getQuantity(skillID-40) - (double)(charSkill + PChar->getMod(ModID));
 	double MoonPhase = (double)CVanaTime::getInstance()->getMoonPhase();
 
-	difficult -= (MoonPhase - 50)/50;	// full moon reduces difficulty by 1, new moon increases difficulty by 1, 50% moon has 0 effect
-
-	if (crystalElement == ElementDirection){
-		difficult -= 0.5;
-	}else if (strongElement[crystalElement] == ElementDirection){
-		difficult += 0.5;
+	if (map_config.craft_day_matters == 1)
+	{
+		if (crystalElement == WeekDay)
+			difficult -= 1;
+		else if (strongElement[crystalElement] == WeekDay)
+			difficult += 1;
+		else if (strongElement[WeekDay] == crystalElement)
+			difficult -= 1;
+		else if (WeekDay == LIGHTSDAY)
+			difficult -= 1;
+		else if (WeekDay == DARKSDAY)
+			difficult += 1;
 	}
 
-	if (crystalElement == WeekDay)
-		difficult -= 1;
-	else if (strongElement[crystalElement] == WeekDay)
-		difficult += 1;
-	else if (strongElement[WeekDay] == crystalElement)
-		difficult -= 1;
-	else if (WeekDay == LIGHTSDAY)
-		difficult -= 1;
-	else if (WeekDay == DARKSDAY)
-		difficult += 1;
+	if (map_config.craft_moonphase_matters == 1)
+	{
+		difficult -= (MoonPhase - 50)/50;	// full moon reduces difficulty by 1, new moon increases difficulty by 1, 50% moon has 0 effect
+	}
 
+	if (map_config.craft_direction_matters == 1)
+	{
+		switch (direction)
+		{
+			case 0: ElementDirection = ELEMENT_WIND;	  break;
+			case 1: ElementDirection = ELEMENT_EARTH;	  break;
+			case 2: ElementDirection = ELEMENT_LIGHTNING; break;
+			case 3: ElementDirection = ELEMENT_WATER;	  break;
+			case 4: ElementDirection = ELEMENT_FIRE;	  break;
+			case 5: ElementDirection = ELEMENT_DARK;	  break;
+			case 6: ElementDirection = ELEMENT_LIGHT;	  break;
+			case 7: ElementDirection = ELEMENT_ICE;		  break;
+		}
+
+		if (crystalElement == ElementDirection)
+		{
+			difficult -= 0.5;
+		}
+		else if (strongElement[crystalElement] == ElementDirection)
+		{
+			difficult += 0.5;
+		}
+	}
 
 	#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 	ShowDebug(CL_CYAN"Direction = %i\n" CL_RESET, ElementDirection);
@@ -528,7 +540,7 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 
 		if (charSkill < maxSkill)
 		{
-			double skillUpChance = (synthDiff*(map_config.craft_multiplier - (log(1.2 + charSkill/100))))/10;
+			double skillUpChance = (synthDiff*(map_config.craft_chance_multiplier - (log(1.2 + charSkill/100))))/10;
 			skillUpChance = skillUpChance/(1 + (PChar->CraftContainer->getQuantity(0) == SYNTHESIS_FAIL));		// результат синтеза хранится в quantity нулевой ячейки
 
 			double random = WELL512::drand();
@@ -575,6 +587,16 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 						break;
 					skillAmount += 1;
 					satier -= 1;
+				}
+
+				// Do craft amount multiplier
+				if (map_config.craft_amount_multiplier > 1)
+				{
+					skillAmount += skillAmount * map_config.craft_amount_multiplier;
+					if (skillAmount > 9)
+					{
+						skillAmount = 9;
+					}
 				}
 
 				if((skillAmount + charSkill) > maxSkill)
@@ -714,10 +736,8 @@ int32 doSynthFail(CCharEntity* PChar)
 
     if(PChar->loc.zone->GetID() != 255 && PChar->loc.zone->GetID() != 0)
     {
-        // Don't send this packet to the zone it does funky stuff.
-        //PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CSynthMessagePacket(PChar, SYNTH_FAIL));
-
-        PChar->pushPacket(new CSynthMessagePacket(PChar, SYNTH_FAIL));
+		PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CSynthResultMessagePacket(PChar, SYNTH_FAIL));
+		PChar->pushPacket(new CSynthMessagePacket(PChar, SYNTH_FAIL));
     }
     else
     {
@@ -904,10 +924,8 @@ int32 doSynthResult(CCharEntity* PChar)
 		PChar->pushPacket(new CInventoryFinishPacket());
         if(PChar->loc.zone->GetID() != 255 && PChar->loc.zone->GetID() != 0)
         {
-            // Don't send this packet to the zone it does funky stuff.
-            //PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CSynthMessagePacket(PChar, SYNTH_SUCCESS, itemID, quantity));
-
-            PChar->pushPacket(new CSynthMessagePacket(PChar, SYNTH_SUCCESS, itemID, quantity));
+			PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CSynthResultMessagePacket(PChar, SYNTH_SUCCESS, itemID, quantity));
+			PChar->pushPacket(new CSynthMessagePacket(PChar, SYNTH_SUCCESS, itemID, quantity));
         }
         else
         {

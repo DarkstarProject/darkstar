@@ -52,8 +52,6 @@ namespace charutils
 	uint32	GetExpNEXTLevel(uint8 charlvl);
 	uint32	GetRealExp(uint8 charlvl, uint8 moblvl);
 
-	uint8   GetHighestTreasureHunter(CCharEntity* PChar, CMobEntity* PMob);
-
 	void	DelExperiencePoints(CCharEntity* PChar, float retainpct);
 	void	DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob);
 	void	DistributeGil(CCharEntity* PChar, CMobEntity* PMob);
@@ -77,7 +75,7 @@ namespace charutils
 	uint32	UpdateItem(CCharEntity* PChar, uint8 LocationID, uint8 slotID, int32 quantity);
 	void	CheckValidEquipment(CCharEntity* PChar);
 	void	CheckEquipLogic(CCharEntity* PChar, SCRIPTTYPE ScriptType, uint32 param);
-	void	EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID);
+	void	EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 containerID);
 	void	UnequipItem(CCharEntity* PChar, uint8 equipSlotID);
     void    RemoveSub(CCharEntity* PChar);
     bool    EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID);
@@ -163,6 +161,8 @@ namespace charutils
 
     void    RemoveAllEquipMods(CCharEntity* PChar);
     void    ApplyAllEquipMods(CCharEntity* PChar);
+
+	void	ClearTempItems(CCharEntity* PChar);
 };
 
 #endif

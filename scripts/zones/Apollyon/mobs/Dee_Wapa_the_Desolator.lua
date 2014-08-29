@@ -40,7 +40,7 @@ function onMobFight(mob,target)
 	local Y = mob:getYPos();
 	local Z = mob:getZPos();
 local lifepourcent= ((mob:getHP()/mob:getMaxHP())*100); 
-local instancetime = target:getSpecialInstanceLeftTime(5);
+local instancetime = target:getSpecialBattlefieldLeftTime(5);
 
     if(lifepourcent < 50 and GetNPCByID(16933247):getAnimation() == 8)then
 								SpawnMob(16933151):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
@@ -66,7 +66,7 @@ end;
 
 function onMobDeath(mob,killer)
     if((IsMobDead(16933129)==false or IsMobDead(16933137)==false) and alreadyReceived(killer,3,GetInstanceRegion(1294)) == false)then		  
-		     killer:addTimeToSpecialInstance(5,5);
+		     killer:addTimeToSpecialBattlefield(5,5);
 	         addLimbusList(killer,4,GetInstanceRegion(1294));
 	end
 end;

@@ -63,11 +63,12 @@ public:
 	
     uint32 GetPartyID();                                // узнаем уникальный ID группы
     uint16 GetMemberFlags(CBattleEntity* PEntity);      // получаем список флагов персонажа
-    uint8  MemberCount(uint8 ZoneID);                   // узнаем количество участников группы в указанной зоне
+    uint8  MemberCount(uint16 ZoneID);                   // узнаем количество участников группы в указанной зоне
 
     CBattleEntity* GetLeader();                         // узнаем лидера группы
     CBattleEntity* GetSyncTarget();                     // узнаем цель синхронизации
     CBattleEntity* GetQuaterMaster();                   // узнаем владельца сокровищ
+    CBattleEntity* GetMemberByName(int8* MemberName);   // Returns entity pointer for member name string
 
 	void DisbandParty();								// распускаем группу
 	void ReloadParty();                                 // перезагружаем карту группы для всех участников группы
@@ -76,13 +77,12 @@ public:
 
     void AddMember(CBattleEntity* PEntity);             // добавляем персонажа в группу
     void RemoveMember(CBattleEntity* PEntity);          // удаление персонажа из группы
-    void RemoveMemberByName(int8* MemberName);			// удаление персонажа из группы по имени
     void AssignPartyRole(int8* MemberName, uint8 role);	// назначаем роли участникам группы
     void DisableSync();
 	void SetSyncTarget(CBattleEntity* PEntity, uint16 message);         // устанавливаем цель синхронизации уровней3
     void RefreshSync();
 
-    void PushPacket(CCharEntity* PPartyMember, uint8 ZoneID, CBasicPacket* packet);		// отправляем пакет всем членам группы, за исключением PPartyMember
+    void PushPacket(CCharEntity* PPartyMember, uint16 ZoneID, CBasicPacket* packet);		// отправляем пакет всем членам группы, за исключением PPartyMember
 	
 	CAlliance* m_PAlliance;
 

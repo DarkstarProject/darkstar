@@ -131,7 +131,7 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
     else {
         // handle this as a mob
 
-        if (m_PMasterTarget->objtype == TYPE_PC){
+        if (m_PMasterTarget->objtype == TYPE_PC || m_PBattleEntity->allegiance == ALLEGIANCE_PLAYER){
             m_findType = FIND_MONSTER_PLAYER;
         }
         else {
@@ -166,8 +166,13 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
             }
 
             // Is the monster casting on a player..
-            if (m_findType == FIND_MONSTER_PLAYER)
-                addAllInEnmityList();
+			if (m_findType == FIND_MONSTER_PLAYER)
+			{
+				if (m_PMasterTarget->allegiance == ALLEGIANCE_PLAYER)
+					addAllInZone(m_PMasterTarget, withPet);
+				else
+					addAllInEnmityList();
+			}
         }
     }
 }
@@ -227,17 +232,16 @@ void CTargetFind::addAllInMobList(CBattleEntity* PTarget, bool withPet)
 
 void CTargetFind::addAllInZone(CBattleEntity* PTarget, bool withPet)
 {
-    EntityList_t m_charList = zoneutils::GetZone(PTarget->getZone())->GetCharList();
-
-    for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
-    {
-        CBattleEntity* PBattleTarget = (CBattleEntity*)it->second;
-
-        if (PBattleTarget){
-            addEntity(PBattleTarget, withPet);
-        }
-
-    }
+	zoneutils::GetZone(PTarget->getZone())->ForEachCharInstance(PTarget, [&](CCharEntity* PChar){
+		if (PChar){
+			addEntity(PChar, withPet);
+		}
+	});
+	zoneutils::GetZone(PTarget->getZone())->ForEachMobInstance(PTarget, [&](CMobEntity* PMob){
+		if (PMob){
+			addEntity(PMob, withPet);
+		}
+	});
 }
 
 void CTargetFind::addAllInAlliance(CBattleEntity* PTarget, bool withPet)
@@ -279,7 +283,7 @@ void CTargetFind::addAllInEnmityList()
         for (EnmityList_t::iterator it = enmityList->begin(); it != enmityList->end(); ++it)
         {
             EnmityObject_t* PEnmityObject = it->second;
-            addEntity(PEnmityObject->PEnmityOwner, false);
+			addEntity(PEnmityObject->PEnmityOwner, false);
         }
     }
 }
@@ -374,6 +378,11 @@ bool CTargetFind::validEntity(CBattleEntity* PTarget)
     {
         return true;
     }
+
+	if (m_PTarget->allegiance != PTarget->allegiance)
+	{
+		return false;
+	}
 
     // shouldn't add if target is charmed by the enemy
     if (PTarget->PMaster != NULL)
@@ -478,7 +487,7 @@ CBattleEntity* CTargetFind::getValidTarget(uint16 actionTargetID, uint8 validTar
 
     DSP_DEBUG_BREAK_IF(actionTargetID == 0);
 
-    CBattleEntity* PTarget = (CBattleEntity*)m_PBattleEntity->loc.zone->GetEntity(actionTargetID, TYPE_MOB | TYPE_PC | TYPE_PET);
+    CBattleEntity* PTarget = (CBattleEntity*)m_PBattleEntity->GetEntity(actionTargetID, TYPE_MOB | TYPE_PC | TYPE_PET);
 
     if (PTarget == NULL)
     {
@@ -489,13 +498,20 @@ CBattleEntity* CTargetFind::getValidTarget(uint16 actionTargetID, uint8 validTar
     {
         if (!PTarget->isDead())
         {
-            if (PTarget->objtype == TYPE_MOB ||
-                (PTarget->objtype == TYPE_PC && ((CCharEntity*)PTarget)->m_PVPFlag))
-            {
+			if (PTarget->allegiance == (m_PBattleEntity->allegiance % 2 == 0 ? m_PBattleEntity->allegiance + 1 : m_PBattleEntity->allegiance - 1))
+			{
                 return PTarget;
             }
         }
     }
+
+	if (validTargetFlags & TARGET_NPC)
+	{
+		if (PTarget->allegiance == m_PBattleEntity->allegiance)
+		{
+			return PTarget;
+		}
+	}
 
     if (PTarget->objtype == TYPE_PC)
     {
@@ -522,5 +538,14 @@ CBattleEntity* CTargetFind::getValidTarget(uint16 actionTargetID, uint8 validTar
         }
         return NULL;
     }
+
+	if (PTarget->objtype == TYPE_MOB)
+	{
+		if (validTargetFlags & TARGET_PLAYER_DEAD && ((CMobEntity*)PTarget)->m_Behaviour & BEHAVIOUR_RAISABLE
+			&& PTarget->isDead())
+		{
+			return PTarget;
+		}
+	}
     return NULL;
 }

@@ -42,6 +42,7 @@
 #include "utils/charutils.h"
 #include "utils/fishingutils.h"
 #include "utils/guildutils.h"
+#include "utils/instanceutils.h"
 #include "utils/itemutils.h"
 #include "linkshell.h"
 #include "map.h"
@@ -216,8 +217,6 @@ int32 do_init(int32 argc, int8** argv)
 
 	CREATE(g_PBuff,   int8, map_config.buffer_size + 20);
     CREATE(PTempBuff, int8, map_config.buffer_size + 20);
-	aFree((void*)map_config.mysql_login);
-	aFree((void*)map_config.mysql_password);
 	ShowStatus("The map-server is " CL_GREEN"ready" CL_RESET" to work...\n");
     ShowMessage("=======================================================================\n");
 	return 0;
@@ -435,9 +434,21 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
 		{
 			uint32 CharID = RBUFL(buff,FFXI_HEADER_SIZE+0x0C);
 
-			const int8* fmtQuery = "SELECT session_key FROM accounts_sessions WHERE charid = %u LIMIT 1;";
+			const int8* fmtQuery = "SELECT charid FROM chars WHERE charid = %u LIMIT 1;";
 
-			int32 ret = Sql_Query(SqlHandle,fmtQuery,CharID);
+			int32 ret = Sql_Query(SqlHandle, fmtQuery, CharID);
+
+			if (ret == SQL_ERROR ||
+				Sql_NumRows(SqlHandle) == 0 ||
+				Sql_NextRow(SqlHandle) != SQL_SUCCESS)
+			{
+				ShowError(CL_RED"recv_parse: Cannot load charid %u" CL_RESET, CharID);
+				return -1;
+			}
+
+			fmtQuery = "SELECT session_key FROM accounts_sessions WHERE charid = %u LIMIT 1;";
+
+			ret = Sql_Query(SqlHandle,fmtQuery,CharID);
 
 			if (ret == SQL_ERROR ||
 				Sql_NumRows(SqlHandle) == 0 ||
@@ -554,6 +565,7 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
             ShowWarning("Bad packet size %03hX | %04hX %04hX %02hX from user: %s\n", SmallPD_Type, RBUFW(SmallPD_ptr,2), RBUFW(buff,2), SmallPD_Size, PChar->GetName());
         }
 	}
+	((CAICharNormal*)PChar->PBattleAI)->CheckActionAfterReceive(gettick());
     map_session_data->client_packet_id = SmallPD_Code;
 
 	// здесь мы проверяем, получил ли клиент предыдущий пакет
@@ -845,8 +857,14 @@ int32 map_config_default()
     map_config.level_sync_enable = 0;
     map_config.all_jobs_widescan = 1;
     map_config.speed_mod = 0;
-    map_config.skillup_multiplier = 2.5f;
-    map_config.craft_multiplier = 2.6f;
+    map_config.MOB_speed_mod = 0;
+    map_config.skillup_chance_multiplier = 2.5f;
+    map_config.craft_chance_multiplier = 2.6f;
+	map_config.skillup_amount_multiplier = 1;
+	map_config.craft_amount_multiplier = 1;
+	map_config.craft_day_matters = 1;
+	map_config.craft_moonphase_matters = 0;
+	map_config.craft_direction_matters = 0;
     map_config.mob_tp_multiplier = 1.0f;
     map_config.player_tp_multiplier = 1.0f;
     map_config.vanadiel_time_offset = 0;
@@ -940,10 +958,6 @@ int32 map_config_read(const int8* cfgName)
         {
             map_config.exp_loss_rate = atof(w2);
         }
-		else if (strcmp(w1,"thf_in_party_for_drops") == 0)
-        {
-            map_config.thf_in_party_for_drops = atof(w2);
-        }
 		else if (strcmp(w1,"exp_party_gap_penalties") == 0)
         {
             map_config.exp_party_gap_penalties = atof(w2);
@@ -980,18 +994,42 @@ int32 map_config_read(const int8* cfgName)
         {
             map_config.all_jobs_widescan = atoi(w2);
         }
-		else if (strcmp(w1,"speed_mod") == 0)
+        else if (strcmp(w1,"speed_mod") == 0)
+        {
+            map_config.speed_mod = atoi(w2);
+        }
+        else if (strcmp(w1,"MOB_speed_mod") == 0)
+        {
+            map_config.MOB_speed_mod = atoi(w2);
+        }
+        else if (strcmp(w1,"skillup_chance_multiplier") == 0)
+        {
+            map_config.skillup_chance_multiplier = atof(w2);
+        }
+		else if (strcmp(w1,"craft_chance_multiplier") == 0)
+        {
+            map_config.craft_chance_multiplier = atof(w2);
+        }
+		else if (strcmp(w1, "skillup_amount_multiplier") == 0)
 		{
-			map_config.speed_mod = atoi(w2);
+			map_config.skillup_amount_multiplier = atof(w2);
 		}
-		else if (strcmp(w1,"skillup_multiplier") == 0)
-        {
-            map_config.skillup_multiplier = atof(w2);
-        }
-		else if (strcmp(w1,"craft_multiplier") == 0)
-        {
-            map_config.craft_multiplier = atof(w2);
-        }
+		else if (strcmp(w1, "craft_amount_multiplier") == 0)
+		{
+			map_config.craft_amount_multiplier = atof(w2);
+		}
+		else if (strcmp(w1, "craft_day_matters") == 0)
+		{
+			map_config.craft_day_matters = atof(w2);
+		}
+		else if (strcmp(w1, "craft_moonphase_matters") == 0)
+		{
+			map_config.craft_moonphase_matters = atof(w2);
+		}
+		else if (strcmp(w1, "craft_direction_matters") == 0)
+		{
+			map_config.craft_direction_matters = atof(w2);
+		}
 		else if (strcmp(w1,"mysql_host") == 0)
 		{
 			map_config.mysql_host = aStrdup(w2);

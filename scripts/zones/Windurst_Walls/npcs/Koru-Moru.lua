@@ -34,7 +34,7 @@ function onTrade(player,npc,trade)
 				player:startEvent(0x011f); -- MAKING THE GRADE: Have test answers but not talked/given to Fuepepe
 			end
 		end
-	elseif(qStarStruck ~= QUEST_AVAILABLE) then
+	elseif(qStarStruck == QUEST_AVAILABLE) then
 		if(count == 1 and trade:hasItemQty(584,1)) then
 			player:startEvent(0x00c7);
 		end
@@ -200,7 +200,7 @@ printf("CSID: %u",csid);
 		player:completeQuest(WINDURST,BLAST_FROM_THE_PAST);
 		player:addItem(17030);
 		player:messageSpecial(ITEM_OBTAINED,17030);
-		player:addTitle(Fossilized_Sea_Farer)
+		player:addTitle(FOSSILIZED_SEA_FARER);
 		player:addFame(WINDURST,WIN_FAME*30);
 		player:needToZone(true);
 	elseif(csid == 0x0194) then

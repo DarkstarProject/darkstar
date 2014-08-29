@@ -21,6 +21,8 @@
 ===========================================================================
 */
 
+#include <thread>
+
 #include "../common/cbasetypes.h"
 #include "../common/blowfish.h"
 #include "../common/malloc.h"
@@ -40,7 +42,6 @@
 	#include <netdb.h>
 	#include <netinet/in.h>
 	#include <errno.h>
-        #include <pthread.h>
 	typedef u_int SOCKET;
 	#define INVALID_SOCKET  (SOCKET)(~0)
 	#define SOCKET_ERROR            (-1)
@@ -75,25 +76,26 @@ struct SearchCommInfo
 };
 
 const int8* SEARCH_CONF_FILENAME = "./conf/search_server.conf";
+const int8* LOGIN_CONF_FILENAME = "./conf/login_darkstar.conf";
 
-#ifdef WIN32
-ppuint32 __stdcall TCPComm(void* lpParam);
-#else
-void * TCPComm(void* lpParam);
-#endif
+void TCPComm(SOCKET socket);
 
 extern void HandleSearchRequest(CTCPRequestPacket* PTCPRequest);
 extern void HandleSearchComment(CTCPRequestPacket* PTCPRequest);
 extern void HandleGroupListRequest(CTCPRequestPacket* PTCPRequest);
-extern void HandleAuctionHouseHistoru(CTCPRequestPacket* PTCPRequest);
+extern void HandleAuctionHouseHistory(CTCPRequestPacket* PTCPRequest);
 extern void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest);
 extern search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket);
 extern std::string toStr(int number);
 
 search_config_t search_config;
+login_config_t login_config;
 
 void search_config_default();
 void search_config_read(const int8* file);
+
+void login_config_default();
+void login_config_read(const int8* file);		// We only need the search server port defined here
 
 /************************************************************************
 *																		*
@@ -151,17 +153,7 @@ int32 main (int32 argc, int8 **argv)
 
     search_config_default();
     search_config_read(SEARCH_CONF_FILENAME);
-#ifndef WIN32
-    pthread_t thread1;
-    pthread_attr_t threadAttr;
-    int ptherr;
-
-    ptherr = 0;
-    ptherr = pthread_attr_init(&threadAttr);
-    if (ptherr != 0)
-        errno = ptherr;
-        perror("pthread_attr_init");
-#endif
+	login_config_read(LOGIN_CONF_FILENAME);
 
 #ifdef WIN32
     // Initialize Winsock
@@ -183,7 +175,7 @@ int32 main (int32 argc, int8 **argv)
     hints.ai_flags = AI_PASSIVE;
 
     // Resolve the server address and port
-    iResult = getaddrinfo(NULL, "54002", &hints, &result);
+    iResult = getaddrinfo(NULL, login_config.search_server_port, &hints, &result);
     if (iResult != 0)
 	{
         ShowError("getaddrinfo failed with error: %d\n", iResult);
@@ -258,22 +250,8 @@ int32 main (int32 argc, int8 **argv)
 #endif
 			continue;
 		}
-		SearchCommInfo CommInfo;
 
-		CommInfo.socket = ClientSocket;
-		CommInfo.ip = 0;
-		CommInfo.port = 0;
-
-#ifdef WIN32
-		CreateThread(0,0,TCPComm,&CommInfo,0,0);
-#else
-		ptherr = 0;
-		ptherr = pthread_create(&thread1,&threadAttr,&TCPComm,&CommInfo);
-		if (ptherr != 0)
-			errno = ptherr;
-			perror("pthread_attr_init");
-#endif
-
+		std::thread(TCPComm, ClientSocket).detach();
 	}
     // TODO: сейчас мы никогда сюда не попадем
 
@@ -302,11 +280,6 @@ int32 main (int32 argc, int8 **argv)
     WSACleanup();
 #else
     close(ClientSocket);
-    ptherr = 0;
-    ptherr = pthread_attr_destroy(&threadAttr);
-    if (ptherr != 0)
-        errno = ptherr;
-        perror("pthread_attr_init");
 #endif
     return 0;
 }
@@ -388,26 +361,74 @@ void search_config_read(const int8* file)
 }
 
 /************************************************************************
+*                                                                       *
+*  login_darkstar			                                            *
+*                                                                       *
+************************************************************************/
+
+void login_config_default()
+{
+	login_config.search_server_port = "54002";
+}
+
+
+/************************************************************************
+*                                                                       *
+*  login_darkstar			                                            *
+*                                                                       *
+************************************************************************/
+
+void login_config_read(const int8* file)
+{
+	int8 line[1024], w1[1024], w2[1024];
+	FILE* fp;
+
+	fp = fopen(file, "r");
+	if (fp == NULL)
+	{
+		ShowError("configuration file not found at: %s\n", file);
+		return;
+	}
+
+	while (fgets(line, sizeof(line), fp))
+	{
+		int8* ptr;
+
+		if (line[0] == '#')
+			continue;
+		if (sscanf(line, "%[^:]: %[^\t\r\n]", w1, w2) < 2)
+			continue;
+
+		//Strip trailing spaces
+		ptr = w2 + strlen(w2);
+		while (--ptr >= w2 && *ptr == ' ');
+		ptr++;
+		*ptr = '\0';
+
+		if (strcmp(w1, "search_server_port") == 0)
+		{
+			login_config.search_server_port = aStrdup(w2);
+		}
+	}
+	fclose(fp);
+}
+
+/************************************************************************
 *																		*
 *																		*
 *																		*
 ************************************************************************/
-#ifdef WIN32
-ppuint32 __stdcall TCPComm(void* lpParam)
-#else 
-void * TCPComm(void* lpParam)
-#endif
-{
-	SearchCommInfo CommInfo = *((SearchCommInfo*)lpParam);
 
+void TCPComm(SOCKET socket)
+{
 	//ShowMessage("TCP connection from client with port: %u\n", htons(CommInfo.port));
 	
-	CTCPRequestPacket* PTCPRequest = new CTCPRequestPacket(&CommInfo.socket);
+	CTCPRequestPacket* PTCPRequest = new CTCPRequestPacket(&socket);
 
 	if (PTCPRequest->ReceiveFromSocket() == 0)
 	{
 		delete PTCPRequest;
-		return 0;
+		return;
 	}
 	//PrintPacket((int8*)PTCPRequest->GetData(), PTCPRequest->GetSize());
 	ShowMessage("= = = = = = = \nType: %u Size: %u \n",PTCPRequest->GetPacketType(),PTCPRequest->GetSize());
@@ -442,16 +463,11 @@ void * TCPComm(void* lpParam)
 		case TCP_AH_HISTORY_SINGL:
         case TCP_AH_HISTORY_STACK:
 		{
-            HandleAuctionHouseHistoru(PTCPRequest);
+            HandleAuctionHouseHistory(PTCPRequest);
 		}
 		break;
 	}
 	delete PTCPRequest;
-#ifdef WIN32
-	return 1;
-#else
-	return NULL;
-#endif
 }
 
 /************************************************************************
@@ -634,7 +650,7 @@ void HandleAuctionHouseRequest(CTCPRequestPacket* PTCPRequest)
 *                                                                       *
 ************************************************************************/
 
-void HandleAuctionHouseHistoru(CTCPRequestPacket* PTCPRequest)
+void HandleAuctionHouseHistory(CTCPRequestPacket* PTCPRequest)
 {
     uint8* data   = (uint8*)PTCPRequest->GetData();                            
 	uint16 ItemID = RBUFW(data,(0x12));
@@ -675,10 +691,21 @@ search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 
 	uint8 name[16];
 	uint8 nameLen = 0;
-	uint8 minLvl = 0;
+	
+    uint8 minLvl = 0;
 	uint8 maxLvl = 0;
-	uint8 jobid = 0;
+	
+    uint8 jobid = 0;
+    uint8 raceid = 255;   // 255 cause race 0 is an actual filter (hume)
+    uint8 nationid = 255; // 255 cause nation 0 is an actual filter (sandoria)
+    
+    uint8 minRank = 0;
+    uint8 maxRank = 0;
+    
     uint16 areas[10];
+    
+    uint32 flags = 0;
+
 
 	uint8* data = (uint8*)PTCPRequest->GetData();
 	uint8  size = RBUFB(data,(0x10));
@@ -764,6 +791,7 @@ search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 				{
 					unsigned char country = (unsigned char)unpackBitsLE(&data[0x11],bitOffset,2);
 					bitOffset+=2;
+                    nationid = country;
 
 					printf("SEARCH::Nationality Entry found. (%2X) Sorting: (%s).\n",country,(sortDescending==0x00)?"ascending":"descending");
 				}
@@ -804,6 +832,8 @@ search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 				{
 					unsigned char race = (unsigned char)unpackBitsLE(&data[0x11],bitOffset,4);
 					bitOffset+=4;
+                    raceid = race;
+
 					printf("SEARCH::Race Entry found. (%2X) Sorting: (%s).\n",race,(sortDescending==0x00)?"ascending":"descending");
 				}
 				printf("SEARCH::SortByRace: %s.\n",(sortDescending==0x00)?"ascending":"descending");
@@ -816,8 +846,10 @@ search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 				{
 					unsigned char fromRank = (unsigned char)unpackBitsLE(&data[0x11],bitOffset,8);
 					bitOffset+=8;
+                    minRank = fromRank;
 					unsigned char toRank = (unsigned char)unpackBitsLE(&data[0x11],bitOffset,8);
 					bitOffset+=8;
+                    maxRank = toRank;
 
 					printf("SEARCH::Rank Entry found. (%d - %d) Sorting: (%s).\n",fromRank,toRank,(sortDescending==0x00)?"ascending":"descending");
 				}
@@ -856,6 +888,8 @@ search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 					bitOffset+=16;
 
 					printf("SEARCH::Flag Entry #1 (%.4X) found. Sorting: (%s).\n",flags1,(sortDescending==0x00)?"ascending":"descending");
+
+                    flags = flags1;
 				}
 				printf("SEARCH::SortByFlags: %s\n",(sortDescending == 0? "ascending" : "descending"));
 				//packetData.sortDescendingByFlags=sortDescending;
@@ -863,9 +897,10 @@ search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 			}
 			case SEARCH_FLAGS2: // Flag Entry #2 - 4 byte
 			{
-				unsigned int flags=(unsigned int)unpackBitsLE(&data[0x11],bitOffset,32);
+				unsigned int flags2=(unsigned int)unpackBitsLE(&data[0x11],bitOffset,32);
 
 				bitOffset+=32;
+                flags = flags2;
 				/*
 				if ((flags & 0xFFFF)!=(packetData.flags1))
 				{
@@ -892,6 +927,13 @@ search_req _HandleSearchRequest(CTCPRequestPacket* PTCPRequest, SOCKET socket)
 	sr.jobid = jobid;
 	sr.maxlvl = maxLvl;
 	sr.minlvl = minLvl;
+
+    sr.race = raceid;
+    sr.nation = nationid;
+    sr.minRank = minRank;
+    sr.maxRank = maxRank;
+    sr.flags = flags;
+
 	sr.nameLen = nameLen;
 	memcpy(sr.zoneid, areas, sizeof(sr.zoneid));
 	if(nameLen>0){

@@ -28,6 +28,7 @@
 #include "../../common/mmo.h"
 
 #include "../ai/ai_general.h"
+#include "../instance.h"
 
 enum ENTITYTYPE
 {
@@ -73,6 +74,15 @@ enum ANIMATIONTYPE
 	ANIMATION_SIT					= 47,
 	ANIMATION_RANGED				= 48,
 	ANIMATION_FISHING_START			= 50
+};
+
+enum ALLEGIANCETYPE
+{
+	ALLEGIANCE_MOB			= 0,
+	ALLEGIANCE_PLAYER		= 1,
+	ALLEGIANCE_SAN_DORIA	= 2,
+	ALLEGIANCE_BASTOK		= 3,
+	ALLEGIANCE_WINDURST		= 4
 };
 
 // TODO: возможо стоит сделать эту структуру частью класса, взамен нынешних id и targid, но уже без метода clean
@@ -125,6 +135,9 @@ public:
 	uint8			speed;				// скорость передвижения
 	uint8			speedsub;			// подолнительный параметр скорости передвижения
 	uint8			namevis; 
+	bool			untargetable;
+	bool			hpvis;
+	uint8			allegiance;			// what types of targets the entity can fight
 
 	virtual const int8* GetName();      // имя сущности
 
@@ -137,6 +150,10 @@ public:
 	bool			IsNameHidden();		// checks if name is hidden
 
     CAIGeneral*     PBattleAI;          // интеллект любой сущности
+	CBattlefield*	PBCNM;				// pointer to bcnm (if in one)
+	CInstance*		PInstance;
+
+	CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1);
 
     CBaseEntity();						// конструктор
     virtual ~CBaseEntity();						// деструктор

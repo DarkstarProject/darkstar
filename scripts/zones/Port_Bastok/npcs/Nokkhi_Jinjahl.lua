@@ -1,7 +1,7 @@
 -----------------------------------
 --  Area: Port Bastok
 --   NPC: Nokkhi Jinjahl
---  Type: Traveling Merchant NPC
+--  Type: Travelling Merchant NPC / NPC Quiver Maker / Bastok 1st Place
 -- @zone: 236
 --  @pos 112.667 7.455 -46.174
 --
@@ -18,60 +18,62 @@ function onTrade(player,npc,trade)
 	local count = trade:getItemCount();
 	local carnation	= trade:getItemQty(948)
 	----------------ARROWS----------------------------
-	--antlion		=	(trade:getItemQty(19195) / 99)
-	local beetle		=	(trade:getItemQty(18154) / 99)
+	local antlion	=	(trade:getItemQty(19195) / 99)
+	local beetle	=	(trade:getItemQty(18154) / 99)
 	local demon		=	(trade:getItemQty(18159) / 99)
-	--gargouille	=	(trade:getItemQty(19800) / 99)
+	local gargou	=	(trade:getItemQty(19800) / 99)
 	local horn		=	(trade:getItemQty(18156) / 99)
 	local irona		=	(trade:getItemQty(17320) / 99)
-	local kabura		=	(trade:getItemQty(17325) / 99)
-	--ruszor		=	(trade:getItemQty(19182) / 99)
+	local kabura	=	(trade:getItemQty(17325) / 99)
+	local ruszor	=	(trade:getItemQty(19182) / 99)
 	local scorpion	=	(trade:getItemQty(18155) / 99)
-	local silvera		=	(trade:getItemQty(17321) / 99)
-	local sleepa		=	(trade:getItemQty(18158) / 99)
+	local silvera	=	(trade:getItemQty(17321) / 99)
+	local sleepa	=	(trade:getItemQty(18158) / 99)
 	----------------BOLTS-----------------------------
 	local acid		=	(trade:getItemQty(18148) / 99)
-	--adamana		=	(trade:getItemQty(19801) / 99)
+	local adamana	=	(trade:getItemQty(19801) / 99)
 	local blind		=	(trade:getItemQty(18150) / 99)
-	local bloody		=	(trade:getItemQty(18151) / 99)
-	--darka		=	(trade:getItemQty(19183) / 99)
-	--darkling	=	(trade:getItemQty(19196) / 99)
+	local bloody	=	(trade:getItemQty(18151) / 99)
+	local darka		=	(trade:getItemQty(19183) / 99)
+	local darkling	=	(trade:getItemQty(19196) / 99)
 	local darksteel	=	(trade:getItemQty(17338) / 99)
+	local fusion	=	(trade:getItemQty(19197) / 99)
 	local holy		=	(trade:getItemQty(18153) / 99)
-	local mythril		=	(trade:getItemQty(17337) / 99)
-	local sleepb		=	(trade:getItemQty(18149) / 99)
+	local mythril	=	(trade:getItemQty(17337) / 99)
+	local sleepb	=	(trade:getItemQty(18149) / 99)
 	local venom		=	(trade:getItemQty(18152) / 99)
 	----------------BULLETS---------------------------
-	--adamanb	=	(trade:getItemQty(19803) / 99)
-	local bullet		=	(trade:getItemQty(17340) / 99)
-	local bronze		=	(trade:getItemQty(17343) / 99)
-	--darkb		=	(trade:getItemQty(19184) / 99)
-	--dweomer	=	(trade:getItemQty(19198) / 99)
+	local adamanb	=	(trade:getItemQty(19803) / 99)
+	local bullet	=	(trade:getItemQty(17340) / 99)
+	local bronze	=	(trade:getItemQty(17343) / 99)
+	local darkb		=	(trade:getItemQty(19184) / 99)
+	local dweomer	=	(trade:getItemQty(19198) / 99)
 	local ironb		=	(trade:getItemQty(17312) / 99)
-	--oberons	=	(trade:getItemQty(19199) / 99)
-	--orichalcum=	(trade:getItemQty(19802) / 99)
-	local silverb		=	(trade:getItemQty(17341) / 99)
+	local oberons	=	(trade:getItemQty(19199) / 99)
+	local orichalcum=	(trade:getItemQty(19802) / 99)
+	local silverb	=	(trade:getItemQty(17341) / 99)
 	local steel		=	(trade:getItemQty(18723) / 99)
-	local spartan		=	(trade:getItemQty(18160) / 99)
+	local spartan	=	(trade:getItemQty(18160) / 99)
 	----------------CARDS-----------------------------
-	--fire		=	(trade:getItemQty(2176) / 99)
-	--ice		=	(trade:getItemQty(2177) / 99)
-	--wind		=	(trade:getItemQty(2178) / 99)
-	--earth		=	(trade:getItemQty(2179) / 99)
-	--thunder	=	(trade:getItemQty(2180) / 99)
-	--water		=	(trade:getItemQty(2181) / 99)
-	--light		=	(trade:getItemQty(2182) / 99)
-	--dark		=	(trade:getItemQty(2183) / 99)
+	local fire		=	(trade:getItemQty(2176) / 99)
+	local ice		=	(trade:getItemQty(2177) / 99)
+	local wind		=	(trade:getItemQty(2178) / 99)
+	local earth		=	(trade:getItemQty(2179) / 99)
+	local thunder	=	(trade:getItemQty(2180) / 99)
+	local water		=	(trade:getItemQty(2181) / 99)
+	local light		=	(trade:getItemQty(2182) / 99)
+	local dark		=	(trade:getItemQty(2183) / 99)
 -----------------------------------------------------
 	
-	local quiver = (beetle + demon + horn + irona + kabura + scorpion + silvera + sleepa + acid + blind + bloody + darksteel + holy + mythril + sleepb + venom + bullet + bronze + ironb + silverb + steel + spartan)
+	local quiver = (antlion + beetle + demon + gargou + horn + irona + kabura + ruszor + scorpion + silvera + sleepa + acid + adamana + blind + bloody + darka + darkling + darksteel + fusion + holy + mythril + sleepb + venom + adamanb + bullet + bronze + darkb + dweomer + ironb + oberons + orichalcum + silverb + steel + spartan + fire + ice + wind + earth + thunder + water + light + dark)
 	if(((quiver * 99) + carnation) == count) then
 		if((quiver == math.floor(quiver)) and (quiver == carnation) and (player:getFreeSlotsCount() >= carnation)) then
 			player:tradeComplete();
-			--if(antlion > 0) then
-			--	player:addItem(5819,antlion);
-			--	player:messageSpecial(ITEM_OBTAINED,5819);
-			--end
+			----------------ARROWS----------------------------
+			if(antlion > 0) then
+				player:addItem(5819,antlion);
+				player:messageSpecial(ITEM_OBTAINED,5819);
+			end
 			if(beetle > 0) then
 				player:addItem(4221,beetle);
 				player:messageSpecial(ITEM_OBTAINED,4221);
@@ -80,10 +82,10 @@ function onTrade(player,npc,trade)
 				player:addItem(4224,demon);
 				player:messageSpecial(ITEM_OBTAINED,4224);
 			end
-			--if(gargouille > 0) then
-			--	player:addItem(5912,gargouille);
-			--	player:messageSpecial(ITEM_OBTAINED,5912);
-			--end
+			if(gargou > 0) then
+				player:addItem(5912,gargouille);
+				player:messageSpecial(ITEM_OBTAINED,5912);
+			end
 			if(horn > 0) then
 				player:addItem(4222,horn);
 				player:messageSpecial(ITEM_OBTAINED,4222);
@@ -96,10 +98,10 @@ function onTrade(player,npc,trade)
 				player:addItem(5332,kabura);
 				player:messageSpecial(ITEM_OBTAINED,5332);
 			end
-			--if(ruszor > 0) then
-			--	player:addItem(5871,ruszor);
-			--	player:messageSpecial(ITEM_OBTAINED,5871);
-			--end
+			if(ruszor > 0) then
+				player:addItem(5871,ruszor);
+				player:messageSpecial(ITEM_OBTAINED,5871);
+			end
 			if(scorpion > 0) then
 				player:addItem(4223,scorpion);
 				player:messageSpecial(ITEM_OBTAINED,4223);
@@ -112,14 +114,15 @@ function onTrade(player,npc,trade)
 				player:addItem(5333,sleepa);
 				player:messageSpecial(ITEM_OBTAINED,5333);
 			end
+			----------------BOLTS-----------------------------
 			if(acid > 0) then
 				player:addItem(5335,acid);
 				player:messageSpecial(ITEM_OBTAINED,5335);
 			end
-			--if(adamana > 0) then
-			--	player:addItem(5913,adamana);
-			--	player:messageSpecial(ITEM_OBTAINED,5913);
-			--end
+			if(adamana > 0) then
+				player:addItem(5913,adamana);
+				player:messageSpecial(ITEM_OBTAINED,5913);
+			end
 			if(blind > 0) then
 				player:addItem(5334,blind);
 				player:messageSpecial(ITEM_OBTAINED,5334);
@@ -128,17 +131,21 @@ function onTrade(player,npc,trade)
 				player:addItem(5339,bloody);
 				player:messageSpecial(ITEM_OBTAINED,5339);
 			end
-			--if(darka > 0) then
-			--	player:addItem(5872,darka);
-			--	player:messageSpecial(ITEM_OBTAINED,5872);
-			--end
-			--if(darkling > 0) then
-			--	player:addItem(5820,darkling);
-			--	player:messageSpecial(ITEM_OBTAINED,5820);
-			--end
+			if(darka > 0) then
+				player:addItem(5872,darka);
+				player:messageSpecial(ITEM_OBTAINED,5872);
+			end
+			if(darkling > 0) then
+				player:addItem(5820,darkling);
+				player:messageSpecial(ITEM_OBTAINED,5820);
+			end
 			if(darksteel > 0) then
 				player:addItem(4229,darksteel);
 				player:messageSpecial(ITEM_OBTAINED,4229);
+			end
+			if(fusion > 0) then
+				player:addItem(5821,fusion);
+				player:messageSpecial(ITEM_OBTAINED,5821);
 			end
 			if(holy > 0) then
 				player:addItem(5336,holy);
@@ -156,10 +163,11 @@ function onTrade(player,npc,trade)
 				player:addItem(5338,venom);
 				player:messageSpecial(ITEM_OBTAINED,5338);
 			end
-			--if(adamanb > 0) then
-			--	player:addItem(5915,adamanb);
-			--	player:messageSpecial(ITEM_OBTAINED,5915);
-			--end
+			----------------BULLETS---------------------------
+			if(adamanb > 0) then
+				player:addItem(5915,adamanb);
+				player:messageSpecial(ITEM_OBTAINED,5915);
+			end
 			if(bullet > 0) then
 				player:addItem(5363,bullet);
 				player:messageSpecial(ITEM_OBTAINED,5363);
@@ -168,26 +176,26 @@ function onTrade(player,npc,trade)
 				player:addItem(5359,bronze);
 				player:messageSpecial(ITEM_OBTAINED,5359);
 			end
-			--if(darkb > 0) then
-			--	player:addItem(5873,darkb);
-			--	player:messageSpecial(ITEM_OBTAINED,5873);
-			--end
-			--if(dweomer > 0) then
-			--	player:addItem(5822,dweomer);
-			--	player:messageSpecial(ITEM_OBTAINED,5822);
-			--end
+			if(darkb > 0) then
+				player:addItem(5873,darkb);
+				player:messageSpecial(ITEM_OBTAINED,5873);
+			end
+			if(dweomer > 0) then
+				player:addItem(5822,dweomer);
+				player:messageSpecial(ITEM_OBTAINED,5822);
+			end
 			if(ironb > 0) then
 				player:addItem(5353,ironb);
 				player:messageSpecial(ITEM_OBTAINED,5353);
 			end
-			--if(oberons > 0) then
-			--	player:addItem(5823,oberons);
-			--	player:messageSpecial(ITEM_OBTAINED,5823);
-			--end
-			--if(orichalcum > 0) then
-			--	player:addItem(5914,orichalcum);
-			--	player:messageSpecial(ITEM_OBTAINED,5914);
-			--end
+			if(oberons > 0) then
+				player:addItem(5823,oberons);
+				player:messageSpecial(ITEM_OBTAINED,5823);
+			end
+			if(orichalcum > 0) then
+				player:addItem(5914,orichalcum);
+				player:messageSpecial(ITEM_OBTAINED,5914);
+			end
 			if(silverb > 0) then
 				player:addItem(5340,silverb);
 				player:messageSpecial(ITEM_OBTAINED,5340);
@@ -200,38 +208,39 @@ function onTrade(player,npc,trade)
 				player:addItem(5341,spartan);
 				player:messageSpecial(ITEM_OBTAINED,5341);
 			end
-			--if(fire > 0) then
-			--	player:addItem(5402,fire);
-			--	player:messageSpecial(ITEM_OBTAINED,5402);
-			--end
-			--if(ice > 0) then
-			--	player:addItem(5403,ice);
-			--	player:messageSpecial(ITEM_OBTAINED,5403);
-			--end
-			--if(wind > 0) then
-			--	player:addItem(5404,wind);
-			--	player:messageSpecial(ITEM_OBTAINED,5404);
-			--end
-			--if(earth > 0) then
-			--	player:addItem(5405,earth);
-			--	player:messageSpecial(ITEM_OBTAINED,5405);
-			--end
-			--if(thunder > 0) then
-			--	player:addItem(5406,thunder);
-			--	player:messageSpecial(ITEM_OBTAINED,5406);
-			--end
-			--if(water > 0) then
-			--	player:addItem(5407,water);
-			--	player:messageSpecial(ITEM_OBTAINED,5407);
-			--end
-			--if(light > 0) then
-			--	player:addItem(5408,light);
-			--	player:messageSpecial(ITEM_OBTAINED,5408);
-			--end
-			--if(dark > 0) then
-			--	player:addItem(5409,dark);
-			--	player:messageSpecial(ITEM_OBTAINED,5409);
-			--end
+			----------------CARDS-----------------------------
+			if(fire > 0) then
+				player:addItem(5402,fire);
+				player:messageSpecial(ITEM_OBTAINED,5402);
+			end
+			if(ice > 0) then
+				player:addItem(5403,ice);
+				player:messageSpecial(ITEM_OBTAINED,5403);
+			end
+			if(wind > 0) then
+				player:addItem(5404,wind);
+				player:messageSpecial(ITEM_OBTAINED,5404);
+			end
+			if(earth > 0) then
+				player:addItem(5405,earth);
+				player:messageSpecial(ITEM_OBTAINED,5405);
+			end
+			if(thunder > 0) then
+				player:addItem(5406,thunder);
+				player:messageSpecial(ITEM_OBTAINED,5406);
+			end
+			if(water > 0) then
+				player:addItem(5407,water);
+				player:messageSpecial(ITEM_OBTAINED,5407);
+			end
+			if(light > 0) then
+				player:addItem(5408,light);
+				player:messageSpecial(ITEM_OBTAINED,5408);
+			end
+			if(dark > 0) then
+				player:addItem(5409,dark);
+				player:messageSpecial(ITEM_OBTAINED,5409);
+			end
 		end
 	end
 --948	- carnation
@@ -255,6 +264,7 @@ function onTrade(player,npc,trade)
 --19183	- dark adaman bolt	-	5872
 --19196	- darkling bolt		-	5820
 --17338	- darksteel bolt	-	4229
+--19197 - fusion bolt		-	5821
 --18153	- holy bolt			-	5336
 --17337	- mythril bolt		-	4228
 --18149 - sleep bolt 		-	5337
@@ -288,7 +298,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x011d);
+	player:startEvent(0x011d,npc:getID());
 end;
 
 -----------------------------------

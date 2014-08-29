@@ -96,10 +96,9 @@ void Initialize()
                 PItem->setDailyIncrease(Sql_GetIntData(SqlHandle,4));
 				PItem->setInitialQuantity(Sql_GetIntData(SqlHandle,5));
 
-                //TODO: set price based on previous day stock
-                PItem->setBasePrice(PItem->getMinPrice());
+				PItem->setQuantity(PItem->IsDailyIncrease() ? PItem->getInitialQuantity() : 0);
+				PItem->setBasePrice(PItem->getMinPrice() + ((float)(PItem->getStackSize() - PItem->getQuantity()) / PItem->getStackSize()) * (PItem->getMaxPrice() - PItem->getMinPrice()));
 
-				PItem->setQuantity(PItem->getInitialQuantity());
 				PGuild->InsertItem(PItem);
 			}
 		}
@@ -121,15 +120,12 @@ void UpdateGuildsStock()
         {
             CItemShop* PItem = (CItemShop*)PGuild->GetItem(slotid);
 
-            // TODO: сначала, анализируя текущее количество предметов, обновляем их стоимость
+			PItem->setBasePrice(PItem->getMinPrice() + ((float)(PItem->getStackSize() - PItem->getQuantity()) / PItem->getStackSize()) * (PItem->getMaxPrice() - PItem->getMinPrice()));
 
             if (PItem->IsDailyIncrease())
             {
                 PItem->setQuantity(PItem->getQuantity() + PItem->getDailyIncrease());
             }
-
-            //TODO: set price based on previous day stock
-            PItem->setBasePrice(PItem->getMinPrice());
         }
 	}
     ShowDebug(CL_CYAN"UpdateGuildsStock is finished\n" CL_RESET);

@@ -46,29 +46,31 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-
 	local npc = player:getEventTarget();
 
 	if (csid == 0x000a and option == 0) then
-
 		local mainweapon = player:getEquipID(SLOT_MAIN);
 		local subweapon = player:getEquipID(SLOT_SUB);
-		local currentJob = player:getMainJob();
 
-		if (mainweapon == 0 and subweapon == 0 and currentJob ~= 3) then
-
+		if (mainweapon == 0 and subweapon == 0) then
 			local freeslots = player:getFreeSlotsCount();
 			local alreadyHasItem = player:hasItem(576);
-		
-			if (freeslots == 0) then
+			local SirensTear = player:getQuestStatus(BASTOK,THE_SIREN_S_TEAR);
+			local SirensTearProgress = player:getVar("SirensTear");
+
+			if (SirensTear == QUEST_COMPLETED and SirensTearProgress < 2) then 
 				player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,576);
-			elseif (alreadyHasItem) then
-				player:messageSpecial(ITEM_CANNOT_BE_OBTAINED_TWICE,576);
-				player:addItem(576);
 			else
-				player:addItem(576);
-				player:messageSpecial(ITEM_OBTAINED,576);
-				resetSirenTear(npc);
+				if (freeslots == 0) then
+					player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,576);
+				elseif (alreadyHasItem) then
+					player:messageSpecial(ITEM_CANNOT_BE_OBTAINED_TWICE,576);
+					player:addItem(576);
+				else
+					player:addItem(576);
+					player:messageSpecial(ITEM_OBTAINED,576);
+					resetSirenTear(npc);
+				end
 			end
 		else
 			player:messageSpecial(SHINING_OBJECT_SLIPS_AWAY);

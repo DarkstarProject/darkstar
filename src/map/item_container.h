@@ -35,10 +35,11 @@ enum CONTAINER_ID
 	LOC_MOGLOCKER		= 4,
 	LOC_MOGSATCHEL		= 5,
 	LOC_MOGSACK			= 6,
-	LOC_MOGCASE			= 7
+	LOC_MOGCASE			= 7,
+    LOC_WARDROBE        = 8
 };
 
-#define MAX_CONTAINER_ID	  8
+#define MAX_CONTAINER_ID	  9
 #define MAX_CONTAINER_SIZE	120
 #define ERROR_SLOTID		255
 
@@ -74,6 +75,7 @@ public:
     uint32  LastSortingTime;                        // время последней сортировки контейнера
 
 	CItem*	GetItem(uint8 slotID);					// получаем указатель на предмет, находящийся в указанной ячейка. 
+	void	Clear();								// Remove all items from container
 
 private:
 

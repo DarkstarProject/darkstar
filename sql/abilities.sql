@@ -96,9 +96,9 @@ INSERT INTO `abilities` VALUES ('46', 'third_eye', '12', '15', '1', '60', '133',
 INSERT INTO `abilities` VALUES ('47', 'meditate', '12', '30', '1', '180', '134', '0', '0', '25', '20.0', '0', '320', '0', '1094', '0');
 INSERT INTO `abilities` VALUES ('48', 'warding_circle', '12', '5', '1', '300', '135', '0', '0', '31', '20.0', '1', '1', '20', '1090', '0');
 INSERT INTO `abilities` VALUES ('49', 'ancient_circle', '14', '5', '1', '300', '157', '0', '0', '32', '20.0', '1', '1', '20', '1216', '0');
-INSERT INTO `abilities` VALUES ('50', 'jump', '14', '10', '4', '60', '158', '110', '0', '204', '20.0', '0', '1000', '1000', '1218', '0');
+INSERT INTO `abilities` VALUES ('50', 'jump', '14', '10', '4', '60', '158', '110', '0', '204', '20.0', '0', '0', '0', '1218', '0');
 INSERT INTO `abilities` VALUES ('51', 'high_jump', '14', '35', '4', '120', '159', '110', '0', '209', '20.0', '0', '0', '0', '1220', '0');
-INSERT INTO `abilities` VALUES ('52', 'super_jump', '14', '50', '4', '180', '160', '110', '0', '214', '20.0', '0', '1000', '1000', '1221', '0');
+INSERT INTO `abilities` VALUES ('52', 'super_jump', '14', '50', '4', '180', '160', '110', '0', '214', '20.0', '0', '0', '0', '1221', '0');
 INSERT INTO `abilities` VALUES ('53', 'fight', '9', '1', '4', '10', '100', '0', '0', '83', '18.0', '0', '0', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('54', 'heel', '9', '10', '1', '5', '101', '0', '0', '83', '18.0', '0', '0', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('55', 'leave', '9', '35', '1', '10', '101', '0', '0', '83', '18.0', '0', '0', '0', '0', '0');
@@ -206,7 +206,7 @@ INSERT INTO `abilities` VALUES ('163', 'role_reversal', '18', '75', '1', '240', 
 INSERT INTO `abilities` VALUES ('164', 'ventriloquy', '18', '75', '4', '60', '212', '0', '0', '170', '20.0', '0', '0', '0', '3138', '1');
 INSERT INTO `abilities` VALUES ('165', 'trance', '19', '0', '1', '7200', '0', '0', '0', '184', '20.0', '0', '1', '300', '0', '0');
 INSERT INTO `abilities` VALUES ('166', 'sambas', '19', '5', '1', '0', '216', '0', '0', '0', '20.0', '0', '0', '0', '0', '0');
-INSERT INTO `abilities` VALUES ('167', 'waltzes', '19', '15', '1', '0', '216', '0', '0', '0', '20.0', '0', '0', '0', '0', '0');
+INSERT INTO `abilities` VALUES ('167', 'waltzes', '19', '15', '1', '0', '217', '0', '0', '0', '20.0', '0', '0', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('168', 'drain_samba', '19', '5', '1', '60', '216', '0', '0', '0', '20.0', '0', '1', '300', '0', '0');
 INSERT INTO `abilities` VALUES ('169', 'drain_samba_ii', '19', '35', '1', '60', '216', '0', '0', '1', '20.0', '0', '1', '300', '0', '0');
 INSERT INTO `abilities` VALUES ('170', 'drain_samba_iii', '19', '65', '1', '60', '216', '0', '0', '2', '20.0', '0', '1', '300', '0', '0');
@@ -258,8 +258,8 @@ INSERT INTO `abilities` VALUES ('217', 'sublimation', '20', '35', '1', '30', '23
 INSERT INTO `abilities` VALUES ('218', 'addendum_white', '20', '10', '1', '0', '231', '0', '0', '191', '20.0', '0', '1', '80', '0', '16');
 INSERT INTO `abilities` VALUES ('219', 'addendum_black', '20', '30', '1', '0', '231', '0', '0', '192', '20.0', '0', '1', '80', '0', '32');
 INSERT INTO `abilities` VALUES ('220', 'collaborator', '6', '65', '2', '60', '69', '526', '0', '185', '20.0', '0', '0', '0', '0', '0');
-INSERT INTO `abilities` VALUES ('221', 'saber_dance', '19', '75', '1', '180', '217', '0', '0', '207', '20.0', '0', '1', '80', '3200', '1');
-INSERT INTO `abilities` VALUES ('222', 'fan_dance', '19', '75', '1', '180', '216', '0', '0', '208', '20.0', '0', '1', '80', '3202', '1');
+INSERT INTO `abilities` VALUES ('221', 'saber_dance', '19', '75', '1', '180', '219', '0', '0', '207', '20.0', '0', '1', '80', '3200', '1');
+INSERT INTO `abilities` VALUES ('222', 'fan_dance', '19', '75', '1', '180', '224', '0', '0', '208', '20.0', '0', '1', '80', '3202', '1');
 INSERT INTO `abilities` VALUES ('223', 'no_foot_rise', '19', '75', '1', '180', '223', '560', '560', '209', '20.0', '0', '1', '80', '3204', '1');
 INSERT INTO `abilities` VALUES ('224', 'altruism', '20', '75', '1', '0', '231', '0', '0', '210', '20.0', '0', '1', '80', '3264', '17');
 INSERT INTO `abilities` VALUES ('225', 'focalization', '20', '75', '1', '0', '231', '0', '0', '212', '20.0', '0', '1', '80', '3266', '33');
@@ -272,9 +272,16 @@ INSERT INTO `abilities` VALUES ('231', 'composure', '5', '50', '1', '300', '50',
 INSERT INTO `abilities` VALUES ('232', 'yonin', '13', '40', '1', '180', '146', '0', '0', '218', '20.0', '0', '1', '600', '0', '4');
 INSERT INTO `abilities` VALUES ('233', 'innin', '13', '40', '1', '180', '147', '0', '0', '219', '20.0', '0', '1', '60', '0', '4');
 INSERT INTO `abilities` VALUES ('241', 'double_shot', '11', '79', '1', '180', '126', '0', '0', '225', '20.0', '0', '1', '300', '0', '0');
+INSERT INTO `abilities` VALUES ('243', 'futae', '13', '77', '1', '180', '148', '0', '0', '227', '20.0', '0', '1', '0', '0', '0');
+INSERT INTO `abilities` VALUES ('258', 'saboteur', '5', '83', '1', '300', '36', '0', '0', '258', '20.0', '0', '1', '80', '0', '0');
+INSERT INTO `abilities` VALUES ('259', 'spontaneity', '5', '95', '3', '600', '37', '0', '0', '259', '20.0', '0', '1', '80', '0', '0');
+INSERT INTO `abilities` VALUES ('267', 'tenuto', '10', '83', '1', '5', '47', '0', '0', '257', '20.0', '0', '0', '0', '0', '0');
+INSERT INTO `abilities` VALUES ('268', 'marcato', '10', '95', '1', '600', '48', '0', '0', '251', '20.0', '0', '0', '0', '0', '0');
+INSERT INTO `abilities` VALUES ('275', 'issekigan', '13', '95', '1', '300', '57', '0', '0', '246', '20.0', '0', '1', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('304', 'konzen-ittai', '12', '65', '4', '180', '132', '529', '0', '36', '4.4', '0', '1', '300', '0', '0');
+INSERT INTO `abilities` VALUES ('311', 'stymie', '5', '96', '1', '3600', '254', '0', '0', '275', '20.0', '0', '1', '0', '0', '0');
+INSERT INTO `abilities` VALUES ('319', 'mikage', '13', '96', '1', '3600', '254', '0', '0', '283', '20.0', '0', '1', '0', '0', '0');
 INSERT INTO `abilities` VALUES ('327', 'bolster', '21', '0', '1', '7200', '0', '0', '0', '33', '20.0', '0', '1', '300', '0', '0');
-
 
 -- rune fencer
 INSERT INTO `abilities` VALUES ('340', 'elemental_sforzo', '22', '0', '1', '3600', '0', '0', '0', '302', '20.0', '0', '0', '0', '0', '0');

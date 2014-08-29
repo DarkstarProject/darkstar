@@ -1,17 +1,19 @@
------------------------------------	
+-----------------------------------
 -- Area: Sea Serpent Grotto
 --  MOB: Devil Manta
--- Note: Place holder Charybdis 
------------------------------------	
+-- Note: Place holder Charybdis
+-----------------------------------
 
 require("/scripts/zones/Sea_Serpent_Grotto/MobIDs");
-	
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-  
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer)
+
+    checkGoVregime(killer,mob,810,2);
+
     mob = mob:getID();
     if (Charybdis_PH[mob] ~= nil) then
 
@@ -31,4 +33,4 @@ function onMobDeath(mob,killer)
         end
     end
 
-end;	
+end;

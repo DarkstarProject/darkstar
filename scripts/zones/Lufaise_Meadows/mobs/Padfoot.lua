@@ -35,13 +35,13 @@ function onMobSpawn(mob)
 	  
 		if padfoot == myPadfoot then
 			local position = GetMobByID(padfoot):getSpawnPos();
-			mob:setPos(position[1], position[2], position[3]);
+			mob:setPos(position.x, position.y, position.z);
 
 			local otherMob = GetMobByID(myPadfoot);
 			SpawnMob(myPadfoot);
 
 			position = mob:getSpawnPos()
-			otherMob:setPos(position[1], position[2], position[3]);
+			otherMob:setPos(position.x, position.y, position.z);
 		else
 			SpawnMob(padfoot);
 		end

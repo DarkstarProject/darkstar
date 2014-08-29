@@ -356,9 +356,6 @@
     <ClInclude Include="..\..\src\map\packets\event_update.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\packets\fade_out.h">
-      <Filter>Header Files\packets</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\map\packets\fishing.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
@@ -569,15 +566,6 @@
     <ClInclude Include="..\..\src\map\lua\lua_mobskill.h">
       <Filter>Header Files\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\instance.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\map\instance_handler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\map\lua\lua_instance.h">
-      <Filter>Header Files\lua</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\map\jailutils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -701,9 +689,6 @@
     <ClInclude Include="..\..\src\map\utils\guildutils.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\utils\instanceutils.h">
-      <Filter>Header Files\utils</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\map\utils\itemutils.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
@@ -786,6 +771,48 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\packets\synth_suggestion.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\synth_result.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\zone_instance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\utils\battlefieldutils.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\battlefield_handler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\battlefield.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\lua\lua_battlefield.h">
+      <Filter>Header Files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\instance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\zone_entities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\lua\lua_instance.h">
+      <Filter>Header Files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\instance_entry.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\instance_loader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\utils\instanceutils.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\entity_animation.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\macroequipset.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1030,9 +1057,6 @@
     <ClCompile Include="..\..\src\map\packets\event_update.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\packets\fade_out.cpp">
-      <Filter>Source Files\packets</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\map\packets\fishing.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
@@ -1240,15 +1264,6 @@
     <ClCompile Include="..\..\src\map\lua\lua_mobskill.cpp">
       <Filter>Source Files\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\instance.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\instance_handler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\lua\lua_instance.cpp">
-      <Filter>Source Files\lua</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\map\ai\ai_char_prisoner.cpp">
       <Filter>Source Files\ai</Filter>
     </ClCompile>
@@ -1348,9 +1363,6 @@
     <ClCompile Include="..\..\src\map\utils\itemutils.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\utils\instanceutils.cpp">
-      <Filter>Source Files\utils</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\map\utils\jailutils.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
@@ -1439,6 +1451,48 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\synth_suggestion.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\synth_result.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\zone_instance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\utils\battlefieldutils.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\battlefield.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\battlefield_handler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\lua\lua_battlefield.cpp">
+      <Filter>Source Files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\instance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\zone_entities.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\lua\lua_instance.cpp">
+      <Filter>Source Files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\instance_entry.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\instance_loader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\utils\instanceutils.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\entity_animation.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\macroequipset.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
   </ItemGroup>

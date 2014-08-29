@@ -140,10 +140,11 @@ namespace effects
 ************************************************************************/
 
 CStatusEffectContainer::CStatusEffectContainer(CBattleEntity* PEntity)
-	: m_POwner(PEntity)
 {
+    m_POwner = PEntity;
     DSP_DEBUG_BREAK_IF(m_POwner == NULL);
 
+       m_RegenCheckTime = 0;
 	m_Flags = 0;
 	m_EffectCheckTime = gettick();
 	m_StatusEffectList.reserve(32);
@@ -214,6 +215,9 @@ bool CStatusEffectContainer::CanGainStatusEffect(EFFECT statusEffect, uint16 pow
         break;
         case EFFECT_ELEGY:
             if(m_POwner->hasImmunity(IMMUNITY_ELEGY)) return false;
+        break;
+        case EFFECT_REQUIEM:
+            if(m_POwner->hasImmunity(IMMUNITY_REQUIEM)) return false;
         break;
     }
 
@@ -991,7 +995,7 @@ void CStatusEffectContainer::UpdateStatusIcons()
 
         if (icon != 0)
         {
-            if (icon >= 256)
+            if (icon >= 256 && icon < 512)
             {
                 m_Flags |= 1LL << (count * 2);
             }
@@ -999,6 +1003,8 @@ void CStatusEffectContainer::UpdateStatusIcons()
             {
                 m_Flags |= 1LL << (count * 2 + 1);
             }
+			//Note: it may be possible that having both bits set is for effects over 768, but there aren't
+			// that many effects as of this writing
             m_StatusIcons[count] = icon;
 
             if (++count == 32) break;
@@ -1232,7 +1238,7 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
         int8 regen = m_POwner->getMod(MOD_REGEN);
         int8 poison = m_POwner->getMod(MOD_REGEN_DOWN);
         int8 refresh = m_POwner->getMod(MOD_REFRESH) - m_POwner->getMod(MOD_REFRESH_DOWN);
-        float regain = (float)m_POwner->getMod(MOD_REGAIN)/10.0f - m_POwner->getMod(MOD_REGAIN_DOWN);
+        int16 regain = m_POwner->getMod(MOD_REGAIN) - m_POwner->getMod(MOD_REGAIN_DOWN);
 
 		m_POwner->addHP(regen);
 
@@ -1263,7 +1269,7 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
                     {
 
                         CPetEntity* PPet = (CPetEntity*)m_POwner->PPet;
-    					CItem* hands = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_HANDS]);
+    					CItem* hands = PChar->getEquip(SLOT_HANDS);
 
                         // carbuncle mitts only work on carbuncle
     					if (hands && hands->getID() == 14062 && PPet->name == "Carbuncle"){
@@ -1296,7 +1302,7 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
 
         if(PChar != NULL && IsAsleep())
         {
-            CItem* neck = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_NECK]);
+            CItem* neck = PChar->getEquip(SLOT_NECK);
 
             // opo-opo necklace
             if(neck != NULL && neck->getID() == 13143)

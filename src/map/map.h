@@ -77,7 +77,6 @@ struct map_config_t
     int32  lightluggage_block;      // если значение отлично от нуля, то персонажи с lightluggage будут удаляться с сервера автоматически
     float  exp_rate;                // множитель получаемого опыта
 	float  exp_loss_rate;			// same as exp rate but applies when player dies
-	uint8  thf_in_party_for_drops;	// if 1 thf has to be in party for drops and within exp distance from mob
 	uint8  exp_party_gap_penalties;	// if 1 Party Gap Penalties will apply
 	uint8  fov_party_gap_penalties;	// 1 if FOV Pages level and distance gap penalties apply
 	uint8  fov_allow_alliance;		// if 1 allow alliance to farm fov pages
@@ -85,9 +84,15 @@ struct map_config_t
 	int8   exp_loss_level;			// Minimum main job level at which a character may lose experience points.
     bool   level_sync_enable;       // Enable/disable Level Sync
     bool   all_jobs_widescan;       // Enable/disable jobs other than BST and RNG having widescan.
-	int8   speed_mod;				// Modifier to add to baseentity speed
-	float  skillup_multiplier;		// Constant used in the skillup formula that has a strong effect on skill-up rates
-	float  craft_multiplier;		// Constant used in the crafting skill-up formula that has a strong effect on skill-up rates
+	int8   speed_mod;				// Modifier to add to player speed
+	int8   MOB_speed_mod;			// Modifier to add to monster speed
+	float  skillup_chance_multiplier;		// Constant used in the skillup formula that has a strong effect on skill-up rates
+	float  craft_chance_multiplier;			// Constant used in the crafting skill-up formula that has a strong effect on skill-up rates
+	float  skillup_amount_multiplier;		// Used to increase the amount of skill gained during skill up
+	float  craft_amount_multiplier;			// Used to increase the amount of skill gained during skill up
+    bool   craft_day_matters;       // Enable/disable Element day factor in synthesis
+    bool   craft_moonphase_matters; // Enable/disable Moon phase factor in synthesis
+    bool   craft_direction_matters; // Enable/disable Compass direction factor in synthesis
 	float  mob_tp_multiplier;		// Multiplies the amount of TP mobs gain on any effect that would grant TP
 	float  player_tp_multiplier;	// Multiplies the amount of TP players gain on any effect that would grant TP
     uint8  newstyle_skillups;       // Allows failed parries and blocks to trigger skill up chance.
@@ -158,6 +163,3 @@ int32 map_close_session(uint32 tick,CTaskMgr::CTask *PTask);							// завер
 int32 map_garbage_collect(uint32 tick, CTaskMgr::CTask* PTask);
 
 #endif //_MAP_H
-
-
-

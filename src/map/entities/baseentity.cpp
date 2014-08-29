@@ -30,8 +30,12 @@ CBaseEntity::CBaseEntity()
 {
 	m_TargID = 0;
 	namevis = 1;
+	hpvis = true;
+	untargetable = false;
 
     PBattleAI = NULL;
+	PBCNM = NULL;
+	PInstance = NULL;
 
 	speed    = 40 + map_config.speed_mod;
 	speedsub = 40 + map_config.speed_mod;
@@ -88,15 +92,23 @@ void CBaseEntity::HideName(bool hide)
 	if(hide)
 	{
 		// I totally guessed this number
-		namevis = 0x08;
+		namevis |= 0x08;
 	}
 	else
 	{
-		namevis = 1;
+		namevis &= ~0x08;
 	}
 }
 
 bool CBaseEntity::IsNameHidden()
 {
-	return namevis == 0x08;
+	return namevis & 0x08;
+}
+
+CBaseEntity* CBaseEntity::GetEntity(uint16 targid, uint8 filter)
+{
+	if (PInstance)
+		return PInstance->GetEntity(targid, filter);
+	else
+		return loc.zone->GetEntity(targid, filter);
 }

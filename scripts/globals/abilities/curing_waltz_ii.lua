@@ -12,12 +12,21 @@ require("scripts/globals/status");
 function OnAbilityCheck(player,target,ability)
     if (target:getHP() == 0) then
 		return MSGBASIC_CANNOT_ON_THAT_TARG,0;
+    elseif(player:hasStatusEffect(EFFECT_SABER_DANCE)) then
+        return MSGBASIC_UNABLE_TO_USE_JA2, 0;
     elseif (player:hasStatusEffect(EFFECT_TRANCE)) then
 		return 0,0;
 	elseif (player:getTP() < 35) then
 		return MSGBASIC_NOT_ENOUGH_TP,0;
 	else
 		player:delTP(35);
+        -- apply waltz recast modifiers
+        if(player:getMod(MOD_WALTZ_RECAST)~=0) then
+            local recastMod = -80 * (player:getMod(MOD_WALTZ_RECAST)); -- 400 ms per 5% (per merit)
+            if(recastMod <0) then
+                --TODO
+            end
+        end
 		return 0,0;
 	end
 end;
@@ -41,6 +50,9 @@ function OnUseAbility(player, target, ability)
 	if(sjob == 19) then
 		cure = (vit+chr)*0.25+130;
 	end
+
+    -- apply waltz modifiers
+    cure = math.floor(cure * (1.0 + (player:getMod(MOD_WALTZ_POTENTCY)/100)));
 
 	--Reducing TP.
 

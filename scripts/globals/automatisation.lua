@@ -55,19 +55,13 @@ function OnGameDayAutomatisation()
 	GetNPCByID(SacrariumWallOffset+5):setAnimation(tbl[18]); 
 	
 	-- Ro'Maeve Moongates
-	local Moongate_Offset = 17277172; -- _3e0 in npc_list
+	local Moongate_Offset = 17277173; -- _3e0 in npc_list
 	local direction = VanadielMoonDirection();
 	local phase = VanadielMoonPhase();
 	
 	if(((direction == 2 and phase >= 90) or (direction == 1 and phase >= 95)) and GetNPCByID(Moongate_Offset):getWeather() == 0) then
 		GetNPCByID(Moongate_Offset):openDoor(432);
 		GetNPCByID(Moongate_Offset+1):openDoor(432);
-	end
-
-	-- Can spawn Xolotl?
-	local ToD = GetServerVariable("[POP]Xolotl");
-	if (ToD <= os.time(t)) then
-		DeterMob(16806215, false);
 	end
 	
 	-- Removes daily the bit mask that tracks the treats traded for Harvest Festival.

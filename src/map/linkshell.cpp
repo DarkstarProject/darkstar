@@ -162,7 +162,7 @@ void CLinkshell::ChangeMemberRank(int8* MemberName, uint8 toSack)
 		    {
                 CCharEntity* PMember = (CCharEntity*)members.at(i);
 
-                CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PMember->getStorage(LOC_INVENTORY)->GetItem(PMember->equip[SLOT_LINK]);
+                CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PMember->getEquip(SLOT_LINK);
 
                 if (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL))
                 {
@@ -214,7 +214,7 @@ void CLinkshell::RemoveMemberByName(int8* MemberName)
 		{
             CCharEntity* PMember = (CCharEntity*)members.at(i);
 
-            CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PMember->getStorage(LOC_INVENTORY)->GetItem(PMember->equip[SLOT_LINK]);
+            CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PMember->getEquip(SLOT_LINK);
 
             if (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL))
             {
@@ -313,7 +313,12 @@ namespace linkshell
                 EncodeStringLinkshell(Sql_GetData(SqlHandle,2), EncodedName);
                 PLinkshell->setName(EncodedName);
                 PLinkshell->setPoster(Sql_GetData(SqlHandle,3));
-                PLinkshell->setMessage(Sql_GetData(SqlHandle,4));
+
+                int8* linkshellMessage = Sql_GetData(SqlHandle, 4);
+                if (linkshellMessage != NULL)
+                    PLinkshell->setMessage(linkshellMessage);
+                else
+                    PLinkshell->setMessage("");
                 PLinkshell->setMessageTime(Sql_GetUIntData(SqlHandle,5));
 
                 LinkshellList[PLinkshell->getID()] = PLinkshell;
@@ -395,6 +400,7 @@ namespace linkshell
 			
 			    PLinkshell->setColor(color);
                 PLinkshell->setName((int8*)name);
+                PLinkshell->setMessage("");
                 
                 LinkshellList[PLinkshell->getID()] = PLinkshell;
 

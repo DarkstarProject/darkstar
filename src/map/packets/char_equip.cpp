@@ -26,11 +26,12 @@
 #include "char_equip.h"
 
 
-CEquipPacket::CEquipPacket(uint8 EquipSlot, uint8 SlotID) 
+CEquipPacket::CEquipPacket(uint8 EquipSlot, uint8 SlotID, uint8 containerID)
 {
 	this->type = 0x50;
 	this->size = 0x04;
 
 	WBUFB(data,(0x04)-4) = EquipSlot;
 	WBUFB(data,(0x05)-4) = SlotID;
+	WBUFB(data,(0x06)-4) = containerID;
 }

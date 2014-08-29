@@ -61,23 +61,21 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
     if (PChar->m_isNewPlayer)
         WBUFB(data,(0x38)-4) |= 0x0C; // New player ?
 
-    WBUFB(data,(0x29)-4) = PChar->GetGender(); // +  управляем ростом: 0x02 - 0; 0x08 - 1; 0x10 - 2;
+    WBUFB(data,(0x29)-4) = PChar->GetGender() + (PChar->look.size > 0 ? PChar->look.size * 8 : 2); // +  управляем ростом: 0x02 - 0; 0x08 - 1; 0x10 - 2;
     WBUFB(data,(0x2C)-4) = PChar->GetSpeed();
+    WBUFB(data,(0x2E)-4) = PChar->speedsub << 1;
 	WBUFB(data,(0x30)-4) = PChar->animation;
 
-    if (PChar->equip[SLOT_LINK] != 0)
-    {
-	    CItemLinkshell* linkshell = (CItemLinkshell*)PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_LINK]);
+	CItemLinkshell* linkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK);
 
-	    if ((linkshell != NULL) && linkshell->isType(ITEM_LINKSHELL))
-	    {
-		    lscolor_t LSColor = linkshell->GetLSColor();
+	if ((linkshell != NULL) && linkshell->isType(ITEM_LINKSHELL))
+	{
+		lscolor_t LSColor = linkshell->GetLSColor();
 
-		    WBUFB(data,(0x31)-4) = (LSColor.R << 4) + 15;
-		    WBUFB(data,(0x32)-4) = (LSColor.G << 4) + 15;
-		    WBUFB(data,(0x33)-4) = (LSColor.B << 4) + 15;
-	    }
-    }
+		WBUFB(data,(0x31)-4) = (LSColor.R << 4) + 15;
+		WBUFB(data,(0x32)-4) = (LSColor.G << 4) + 15;
+		WBUFB(data,(0x33)-4) = (LSColor.B << 4) + 15;
+	}
 	if (PChar->PPet != NULL)
 	{
 		WBUFW(data,(0x34)-4) = PChar->PPet->targid << 3;
@@ -89,7 +87,7 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
         flag |= 0x08;
     WBUFB(data,(0x36)-4) = flag;
 
-    if (!PChar->isDead() || PChar->m_DeathTimestamp == 0) //prevent this packet from resetting the homepoint timer after tractor
+    if (!PChar->isDead() || PChar->m_DeathCounter == 0) //prevent this packet from resetting the homepoint timer after tractor
         WBUFL(data,(0x3C)-4) = 0x0003A020;
 
     WBUFL(data,(0x40)-4) = CVanaTime::getInstance()->getVanaTime();

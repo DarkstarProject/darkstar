@@ -47,42 +47,49 @@ CCheckPacket::CCheckPacket(CCharEntity* PChar, CCharEntity* PTarget)
 
 	for (int32 i = 0; i < 16; ++i) 
 	{
-		if (PTarget->equip[i] != 0) 
+		CItem* PItem = PTarget->getEquip((SLOTTYPE)i);
+
+		if (PItem != NULL) 
 		{
-			CItem* PItem = PTarget->getStorage(LOC_INVENTORY)->GetItem(PTarget->equip[i]);
+			WBUFW(data,(size*2+0x00)-4) = PItem->getID();
+			WBUFB(data,(size*2+0x02)-4) = i;
 
-			if (PItem != NULL) 
+			if (PItem->isSubType(ITEM_CHARGED))
 			{
-				WBUFW(data,(size*2+0x00)-4) = PItem->getID();
-				WBUFB(data,(size*2+0x02)-4) = i;
+                uint32 currentTime = CVanaTime::getInstance()->getVanaTime();
+				uint32 nextUseTime = ((CItemUsable*)PItem)->getLastUseTime() + ((CItemUsable*)PItem)->getReuseDelay();
 
-				if (PItem->isSubType(ITEM_CHARGED))
-				{
-                    uint32 currentTime = CVanaTime::getInstance()->getVanaTime();
-					uint32 nextUseTime = ((CItemUsable*)PItem)->getLastUseTime() + ((CItemUsable*)PItem)->getReuseDelay();
+				WBUFB(data,(size*2+0x04)-4) = 0x01;													
+				WBUFB(data,(size*2+0x05)-4) = ((CItemUsable*)PItem)->getCurrentCharges(); 
+				WBUFB(data,(size*2+0x07)-4) = (nextUseTime > currentTime ? 0x90 : 0xD0); 
 
-					WBUFB(data,(size*2+0x04)-4) = 0x01;													
-					WBUFB(data,(size*2+0x05)-4) = ((CItemUsable*)PItem)->getCurrentCharges(); 
-					WBUFB(data,(size*2+0x07)-4) = (nextUseTime > currentTime ? 0x90 : 0xD0); 
+				WBUFL(data,(size*2+0x08)-4) = nextUseTime;												
+				WBUFL(data,(size*2+0x0C)-4) = ((CItemUsable*)PItem)->getUseDelay() + currentTime;		
+			}
 
-					WBUFL(data,(size*2+0x08)-4) = nextUseTime;												
-					WBUFL(data,(size*2+0x0C)-4) = ((CItemUsable*)PItem)->getUseDelay() + currentTime;		
-				}
+            if (PItem->isSubType(ITEM_AUGMENTED))
+            {
+                WBUFB(data,(size*2+0x04)-4) = 0x02;
 
-				memcpy(data+(size*2+0x10)-4, PItem->getSignature(), dsp_cap(strlen(PItem->getSignature()), 0, 12));
+                WBUFW(data,(size*2+0x06)-4) = ((CItemArmor*)PItem)->getAugment(0);
+                WBUFW(data,(size*2+0x08)-4) = ((CItemArmor*)PItem)->getAugment(1);
+                WBUFW(data,(size*2+0x0A)-4) = ((CItemArmor*)PItem)->getAugment(2);
+                WBUFW(data,(size*2+0x0C)-4) = ((CItemArmor*)PItem)->getAugment(3);
+            }
 
-				this->size += 0x0E;
-				count++;
+			memcpy(data+(size*2+0x10)-4, PItem->getSignature(), dsp_cap(strlen(PItem->getSignature()), 0, 12));
 
-				if (count == 8)
-				{
-					WBUFB(data,(0x0B)-4) = count;
+			this->size += 0x0E;
+			count++;
 
-					PChar->pushPacket(new CBasicPacket(*this));
+			if (count == 8)
+			{
+				WBUFB(data,(0x0B)-4) = count;
 
-					this->size = 0x06;
-					memset(data+(0x0B)-4, 0, sizeof(data)-7);
-				}
+				PChar->pushPacket(new CBasicPacket(*this));
+
+				this->size = 0x06;
+				memset(data+(0x0B)-4, 0, sizeof(data)-7);
 			}
 		}
 	}
@@ -103,18 +110,15 @@ CCheckPacket::CCheckPacket(CCharEntity* PChar, CCharEntity* PTarget)
 
 	WBUFB(data,(0x0A)-4) = 0x01;
 
-    if (PTarget->equip[SLOT_LINK] != 0)
-    {
-        CItemLinkshell* PLinkshell = (CItemLinkshell*)PTarget->getStorage(LOC_INVENTORY)->GetItem(PTarget->equip[SLOT_LINK]);
+    CItemLinkshell* PLinkshell = (CItemLinkshell*)PTarget->getEquip(SLOT_LINK);
 
-        if ((PLinkshell != NULL) && PLinkshell->isType(ITEM_LINKSHELL))
-	    {
-          //WBUFW(data,(0x0C)-4) = PLinkshell->GetLSID(); 
-            WBUFW(data,(0x0E)-4) = PLinkshell->getID();
-            WBUFW(data,(0x10)-4) = PLinkshell->GetLSRawColor();
+    if ((PLinkshell != NULL) && PLinkshell->isType(ITEM_LINKSHELL))
+	{
+        //WBUFW(data,(0x0C)-4) = PLinkshell->GetLSID(); 
+        WBUFW(data,(0x0E)-4) = PLinkshell->getID();
+        WBUFW(data,(0x10)-4) = PLinkshell->GetLSRawColor();
 
-	        memcpy(data+(0x14)-4, PLinkshell->getSignature(), dsp_cap(strlen(PLinkshell->getSignature()), 0, 15));
-        }
+	    memcpy(data+(0x14)-4, PLinkshell->getSignature(), dsp_cap(strlen(PLinkshell->getSignature()), 0, 15));
     }
 	if ((PChar->nameflags.flags & FLAG_GM) || !(PTarget->nameflags.flags & FLAG_ANON)) 
 	{

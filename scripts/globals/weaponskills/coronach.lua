@@ -13,19 +13,12 @@
 -- Damage Multipliers by TP:
 -- 100%TP	200%TP	300%TP
 --  3.00	3.00	3.00
-
-
-
-
 -----------------------------------   
-
 require("scripts/globals/status");   
 require("scripts/globals/settings");   
 require("scripts/globals/weaponskills");   
 -----------------------------------   
-
 function OnUseWeaponSkill(player, target, wsID)   
-
 	local params = {};
 	params.numHits = 1;
 	params.ftp100 = 3; params.ftp200 = 3; params.ftp300 = 3;
@@ -36,11 +29,14 @@ function OnUseWeaponSkill(player, target, wsID)
 	params.canCrit = false;
 	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
 	params.atkmulti = 2;
-
 	local damage, tpHits, extraHits = doRangedWeaponskill(player, target, params);
 	if((player:getEquipID(SLOT_RANGED) == 18336) and (player:getMainJob() == JOB_RNG)) then
 		if(damage > 0) then	
-			if(player:getTP() == 300) then
+			if(player:getTP() >= 100 and player:getTP() < 200) then
+				player:addStatusEffect(EFFECT_AFTERMATH, -20, 0, 20, 0, 11);
+			elseif(player:getTP() >= 200 and player:getTP() < 300) then
+				player:addStatusEffect(EFFECT_AFTERMATH, -20, 0, 40, 0, 11);
+			elseif(player:getTP() == 300) then
 				player:addStatusEffect(EFFECT_AFTERMATH, -20, 0, 60, 0, 11);
 			end
 		end

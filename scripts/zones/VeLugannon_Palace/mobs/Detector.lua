@@ -7,8 +7,8 @@
 -- onMobInitialize Action
 -----------------------------------
 
-function onMobInitialize(mob)	
-end;	
+function onMobInitialize(mob)
+end;
 
 -----------------------------------
 -- onMobSpawn
@@ -16,8 +16,8 @@ end;
 
 function OnMobSpawn(mob)
 
-	local Detector = mob:getID();
-	GetMobByID(Detector):setExtraVar(1);
+    local Detector = mob:getID();
+    GetMobByID(Detector):setExtraVar(1);
 
 end;
 
@@ -27,30 +27,30 @@ end;
 
 function onMobFight(mob,target)
 
-	local Detector = mob:getID();
-	local Caretaker = Detector + 1;	
-	local ExtraVar = GetMobByID(Detector):getExtraVar(1);
-	
-   -- Summons a Detector every 15 seconds.
-   -- TODO: Casting animation for before summons. When he spawns them isn't exactly retail accurate. 
-   -- 		Should be ~10s to start cast, and another ~5 to finish. 
-   -- Detectors can also still spawn the Caretakers while sleeping, moving, etc.
-	
-	if (GetMobAction(Caretaker) == 16) then
-		GetMobByID(Caretaker):updateEnmity(target);
-	end
+    local Detector = mob:getID();
+    local Caretaker = Detector + 1;
+    local ExtraVar = GetMobByID(Detector):getExtraVar(1);
 
-	if (ExtraVar <= 6) then  -- Maximum number of pets Detector can spawn is 5
-		if (mob:getBattleTime() % 15 < 3 and mob:getBattleTime() > 3) then
-			if (GetMobAction(Caretaker) == 0) then
-				SpawnMob(Caretaker):updateEnmity(target);
-				GetMobByID(Caretaker):setPos(GetMobByID(Detector):getXPos()+1, GetMobByID(Detector):getYPos(), GetMobByID(Detector):getZPos()+1); -- Set Caretaker x and z position +1 from Detector
-				GetMobByID(Detector):setExtraVar(ExtraVar+1);			
-				return;
-			end
-		end	
-	end
-	
+   -- Summons a Detector every 15 seconds.
+   -- TODO: Casting animation for before summons. When he spawns them isn't exactly retail accurate.
+   --       Should be ~10s to start cast, and another ~5 to finish.
+   -- Detectors can also still spawn the Caretakers while sleeping, moving, etc.
+
+    if (GetMobAction(Caretaker) == 16) then
+        GetMobByID(Caretaker):updateEnmity(target);
+    end
+
+    if (ExtraVar <= 6) then  -- Maximum number of pets Detector can spawn is 5
+        if (mob:getBattleTime() % 15 < 3 and mob:getBattleTime() > 3) then
+            if (GetMobAction(Caretaker) == 0) then
+                SpawnMob(Caretaker):updateEnmity(target);
+                GetMobByID(Caretaker):setPos(GetMobByID(Detector):getXPos()+1, GetMobByID(Detector):getYPos(), GetMobByID(Detector):getZPos()+1); -- Set Caretaker x and z position +1 from Detector
+                GetMobByID(Detector):setExtraVar(ExtraVar+1);
+                return;
+            end
+        end
+    end
+
 end;
 
 -----------------------------------
@@ -59,15 +59,15 @@ end;
 
 function onMobDisengage(mob)
 
-	local Detector = mob:getID();
-	local Caretaker = mob:getID() + 1;	
-	
-	GetMobByID(Detector):setExtraVar(0);	
+    local Detector = mob:getID();
+    local Caretaker = mob:getID() + 1;
 
-	if (GetMobAction(Caretaker) ~= 0) then
-		DespawnMob(Caretaker);
-	end
-	
+    GetMobByID(Detector):setExtraVar(0);
+
+    if (GetMobAction(Caretaker) ~= 0) then
+        DespawnMob(Caretaker);
+    end
+
 end;
 
 -----------------------------------
@@ -76,15 +76,17 @@ end;
 
 function onMobDeath(mob, killer)
 
-	local Detector = mob:getID();
-	local Caretaker = mob:getID() + 1;	
-	
-	GetMobByID(Detector):setExtraVar(0);	
+    checkGoVregime(killer,mob,743,1);
 
-	if (GetMobAction(Caretaker) ~= 0) then
-		DespawnMob(Caretaker);
-	end
-	
+    local Detector = mob:getID();
+    local Caretaker = mob:getID() + 1;
+
+    GetMobByID(Detector):setExtraVar(0);
+
+    if (GetMobAction(Caretaker) ~= 0) then
+        DespawnMob(Caretaker);
+    end
+
 end;
 
 -----------------------------------
@@ -92,13 +94,13 @@ end;
 -----------------------------------
 function onMobDespawn( mob )
 
-	local Detector = mob:getID();
-	local Caretaker = mob:getID() + 1;	
-	
-	GetMobByID(Detector):setExtraVar(0);		
+    local Detector = mob:getID();
+    local Caretaker = mob:getID() + 1;
 
-	if (GetMobAction(Caretaker) ~= 0) then
-		DespawnMob(Caretaker);
-	end
-	
+    GetMobByID(Detector):setExtraVar(0);
+
+    if (GetMobAction(Caretaker) ~= 0) then
+        DespawnMob(Caretaker);
+    end
+
 end;

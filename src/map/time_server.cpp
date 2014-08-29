@@ -24,6 +24,7 @@
 #include "../common/showmsg.h"
 
 #include "utils/guildutils.h"
+#include "utils/instanceutils.h"
 #include "time_server.h"
 #include "transport.h"
 #include "vana_time.h"
@@ -65,14 +66,10 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
 
             for(uint16 zone = 0; zone < MAX_ZONEID; ++zone)
             {
-                EntityList_t	m_charList = zoneutils::GetZone(zone)->GetCharList();
-
-                for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
-                {
-                    CCharEntity* PChar = (CCharEntity*)it->second;
-                    PChar->PLatentEffectContainer->CheckLatentsHours();
-                    PChar->PLatentEffectContainer->CheckLatentsMoonPhase();
-                }
+				zoneutils::GetZone(zone)->ForEachChar([](CCharEntity* PChar) {
+					PChar->PLatentEffectContainer->CheckLatentsHours();
+					PChar->PLatentEffectContainer->CheckLatentsMoonPhase();
+				});
             }
 
             CVanaTime::getInstance()->lastVHourlyUpdate = tick;
@@ -86,13 +83,9 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
         {
             for(uint16 zone = 0; zone < MAX_ZONEID; ++zone)
             {
-                EntityList_t	m_charList = zoneutils::GetZone(zone)->GetCharList();
-
-                for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
-                {
-                    CCharEntity* PChar = (CCharEntity*)it->second;
-                    PChar->PLatentEffectContainer->CheckLatentsWeekDay();
-                }
+				zoneutils::GetZone(zone)->ForEachChar([](CCharEntity* PChar) {
+					PChar->PLatentEffectContainer->CheckLatentsWeekDay();
+				});
             }
 
             guildutils::UpdateGuildsStock();
@@ -112,18 +105,15 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
         {
             for(uint16 zone = 0; zone < MAX_ZONEID; ++zone)
             {
-                EntityList_t	m_charList = zoneutils::GetZone(zone)->GetCharList();
-
-                for (EntityList_t::const_iterator it = m_charList.begin() ; it != m_charList.end() ; ++it)
-                {
-                    CCharEntity* PChar = (CCharEntity*)it->second;
-                    PChar->PLatentEffectContainer->CheckLatentsDay();
-                    PChar->PLatentEffectContainer->CheckLatentsJobLevel();
-                }
+				zoneutils::GetZone(zone)->ForEachChar([](CCharEntity* PChar) {
+					PChar->PLatentEffectContainer->CheckLatentsDay();
+					PChar->PLatentEffectContainer->CheckLatentsJobLevel();
+				});
             }
         }
     }
 
     CTransportHandler::getInstance()->TransportTimer();
+	instanceutils::CheckInstance();
     return 0;
 }

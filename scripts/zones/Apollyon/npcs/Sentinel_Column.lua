@@ -29,7 +29,7 @@ end;
 function onEventUpdate(player,csid,option)
   -- printf("CSID: %u",csid);
    --printf("RESULT: %u",option);  
- player:updateEvent(0,player:getSpecialInstanceLeftTime(2),player:getSpecialInstanceLeftTime(1),player:getSpecialInstanceLeftTime(4),player:getSpecialInstanceLeftTime(3),player:getSpecialInstanceLeftTime(6),player:getSpecialInstanceLeftTime(5));
+ player:updateEvent(0,player:getSpecialBattlefieldLeftTime(2),player:getSpecialBattlefieldLeftTime(1),player:getSpecialBattlefieldLeftTime(4),player:getSpecialBattlefieldLeftTime(3),player:getSpecialBattlefieldLeftTime(6),player:getSpecialBattlefieldLeftTime(5));
 end;
 
 -----------------------------------

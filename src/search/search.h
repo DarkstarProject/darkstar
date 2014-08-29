@@ -33,12 +33,22 @@ struct search_config_t
     const int8* mysql_database;     // mysql database -> default dspdb
 };
 
+struct login_config_t
+{
+	char* search_server_port;		// search_server_port	-> 54002
+};
+
 struct search_req
 {
 	uint16 zoneid[10];
 	uint8 jobid;
 	uint8 minlvl;
 	uint8 maxlvl;
+    uint8 race;
+    uint8 nation;
+    uint8 minRank;
+    uint8 maxRank;
+    uint32 flags;
 	string_t name;
 	uint8 nameLen;
 };

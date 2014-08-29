@@ -77,6 +77,9 @@ function calculateMagicDamage(V,M,player,spell,target,skilltype,atttype,hasMulti
 
     if(dint<=0) then --ifdINT penalises, it's always M=1
         dmg = dmg + dint;
+        if(dmg <= 0) then --dINT penalty cannot result in negative damage (target absorption)
+            return 0;
+        end
     elseif(dint > 0 and dint <= SOFT_CAP) then --The standard calc, most spells hit this
         dmg = dmg + (dint*M);
     elseif(dint > 0 and dint > SOFT_CAP and dint < HARD_CAP) then --After SOFT_CAP, INT is only half effective
@@ -322,6 +325,7 @@ function applyResistance(player,spell,target,diff,skill,bonus)
 
     local resist = 1.0;
     local magicaccbonus = 0;
+    local element = spell:getElement();
 
     if(bonus ~= nil) then
         magicaccbonus = magicaccbonus + bonus;
@@ -353,17 +357,32 @@ function applyResistance(player,spell,target,diff,skill,bonus)
         magicaccbonus = magicaccbonus + 256;
     end
 	--add acc for staves
-	local affinityBonus = AffinityBonus(player, spell:getElement());
+	local affinityBonus = AffinityBonus(player, element);
 	magicaccbonus = magicaccbonus + (affinityBonus-1) * 200;
-
-    local skillchainTier, skillchainCount = FormMagicBurst(spell:getElement(), target);
+    --add acc for RDM group 1 merits
+    if(player:getMainJob() == JOB_RDM and player:getMainLvl() >= 75) then
+        if(element == ELE_FIRE) then
+            magicaccbonus = magicaccbonus + player:getMerit(MERIT_FIRE_MAGIC_ACCURACY);
+        elseif(element == ELE_EARTH) then
+            magicaccbonus = magicaccbonus + player:getMerit(MERIT_EARTH_MAGIC_ACCURACY);
+        elseif(element == ELE_WATER) then
+            magicaccbonus = magicaccbonus + player:getMerit(MERIT_WATER_MAGIC_ACCURACY);
+        elseif(element == ELE_WIND) then
+            magicaccbonus = magicaccbonus + player:getMerit(MERIT_WIND_MAGIC_ACCURACY);
+        elseif(element == ELE_ICE) then
+            magicaccbonus = magicaccbonus + player:getMerit(MERIT_ICE_MAGIC_ACCURACY);
+        elseif(element == ELE_LIGHTNING) then
+            magicaccbonus = magicaccbonus + player:getMerit(MERIT_LIGHTNING_MAGIC_ACCURACY);
+        end
+    end
+    local skillchainTier, skillchainCount = FormMagicBurst(element, target);
     --add acc for skillchains
     if(skillchainTier > 0) then
 		magicaccbonus = magicaccbonus + 25;
     end
 
 	--base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
-	local magiceva = target:getMod(MOD_MEVA) + target:getMod(resistMod[spell:getElement()]);
+	local magiceva = target:getMod(MOD_MEVA) + target:getMod(resistMod[element]);
 
 	--get the difference of acc and eva, scale with level (3.33 at 10 to 0.44 at 75)
 	local multiplier = 0;
@@ -376,7 +395,7 @@ function applyResistance(player,spell,target,diff,skill,bonus)
 	magicaccbonus = magicaccbonus / 2;
 	--add magicacc bonus
 	p = p + magicaccbonus;
-    -- printf("acc: %f, eva: %f, bonus: %f", magicacc, magiceva, magicaccbonus);
+    -- printf("acc: %f, eva: %f, bonus: %f, element: %u", magicacc, magiceva, magicaccbonus, element);
 
 
 	--double any acc over 50 if it's over 50
@@ -437,6 +456,201 @@ function applyResistance(player,spell,target,diff,skill,bonus)
 
 end;
 
+-- USED FOR Status Effect Enfeebs (blind, slow, para, etc.)
+-- Output:
+-- The factor to multiply down duration (1/2 1/4 1/8 1/16)
+
+function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
+    -- resist everything if magic shield is active
+    if(target:hasStatusEffect(EFFECT_MAGIC_SHIELD, 0)) then
+        return 0;
+    end
+    
+    -- If Stymie is active, as long as the mob is not immune then the effect is not resisted
+    if(player:hasStatusEffect(EFFECT_STYMIE) and target:canGainStatusEffect(effect)) then
+    	player:delStatusEffect(EFFECT_STYMIE);
+    	return 1;
+    end
+
+    local resist = 1.0;
+    local magicaccbonus = 0;
+    local element = spell:getElement();
+
+    if(bonus ~= nil) then
+        magicaccbonus = magicaccbonus + bonus;
+    end
+
+    if (skill == SINGING_SKILL and player:hasStatusEffect(EFFECT_TROUBADOUR)) then
+        if (math.random(0,99) < player:getMerit(MERIT_TROUBADOUR)-25) then
+            return 1.0;
+        end
+    end
+    
+	--get the base acc (just skill plus magic acc mod)
+	local magicacc = player:getSkillLevel(skill) + player:getMod(79 + skill) + player:getMod(MOD_MACC);
+
+	if player:hasStatusEffect(EFFECT_ALTRUISM) and spell:getSpellGroup() == SPELLGROUP_WHITE then
+		magicacc = magicacc + player:getStatusEffect(EFFECT_ALTRUISM):getPower();
+	end
+	if player:hasStatusEffect(EFFECT_FOCALIZATION) and spell:getSpellGroup() == SPELLGROUP_BLACK then
+		magicacc = magicacc + player:getStatusEffect(EFFECT_FOCALIZATION):getPower();
+	end
+	--difference in int/mnd
+	if(diff > 10) then
+		magicacc = magicacc + 10 + (diff - 10)/2;
+	else
+		magicacc = magicacc + diff;
+	end
+	--add acc for ele/dark seal
+    if(player:getStatusEffect(EFFECT_DARK_SEAL) ~= nil and skill == DARK_MAGIC_SKILL) then
+        magicaccbonus = magicaccbonus + 256;
+    end
+	--add acc for staves
+	local affinityBonus = AffinityBonus(player, element);
+	magicaccbonus = magicaccbonus + (affinityBonus-1) * 200;
+    --add acc for RDM group 1 merits
+    if(player:getMainJob() == JOB_RDM and player:getMainLvl() >= 75) then
+        if(element == ELE_FIRE) then
+            magicaccbonus = magicaccbonus + player:getMerit(MERIT_FIRE_MAGIC_ACCURACY);
+        elseif(element == ELE_EARTH) then
+            magicaccbonus = magicaccbonus + player:getMerit(MERIT_EARTH_MAGIC_ACCURACY);
+        elseif(element == ELE_WATER) then
+            magicaccbonus = magicaccbonus + player:getMerit(MERIT_WATER_MAGIC_ACCURACY);
+        elseif(element == ELE_WIND) then
+            magicaccbonus = magicaccbonus + player:getMerit(MERIT_WIND_MAGIC_ACCURACY);
+        elseif(element == ELE_ICE) then
+            magicaccbonus = magicaccbonus + player:getMerit(MERIT_ICE_MAGIC_ACCURACY);
+        elseif(element == ELE_LIGHTNING) then
+            magicaccbonus = magicaccbonus + player:getMerit(MERIT_LIGHTNING_MAGIC_ACCURACY);
+        end
+    end
+    local skillchainTier, skillchainCount = FormMagicBurst(element, target);
+    --add acc for skillchains
+    if(skillchainTier > 0) then
+		magicaccbonus = magicaccbonus + 25;
+    end
+
+	--base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
+	local magiceva = target:getMod(MOD_MEVA) + target:getMod(resistMod[element]);
+
+	--get the difference of acc and eva, scale with level (3.33 at 10 to 0.44 at 75)
+	local multiplier = 0;
+	if player:getMainLvl() < 40 then
+		multiplier = 100 / 120;
+	else
+		multiplier = 100 / (player:getMainLvl() * 3);
+	end;
+	local p = (magicacc * multiplier) - (magiceva * 0.45);
+	magicaccbonus = magicaccbonus / 2;
+	--add magicacc bonus
+	p = p + magicaccbonus;
+    -- printf("acc: %f, eva: %f, bonus: %f, element: %u", magicacc, magiceva, magicaccbonus, element);
+
+
+	--double any acc over 50 if it's over 50
+	if(p > 5) then
+		p = 5 + (p - 5) * 2;
+	end
+
+	--add a flat bonus that won't get doubled in the previous step
+	p = p + 45;
+
+	--add a scaling bonus or penalty based on difference of targets level from caster
+	local leveldiff = player:getMainLvl() - target:getMainLvl();
+	if(leveldiff < 0) then
+		p = p - (25 * ( (player:getMainLvl()) / 75 )) + leveldiff;
+	else
+		p = p + (25 * ( (player:getMainLvl()) / 75 )) + leveldiff;
+	end
+	--cap accuracy
+    if(p > 95) then
+        p = 95;
+    elseif(p < 5) then
+        p = 5;
+    end
+
+	p = p / 100;
+
+    -- Resistance thresholds based on p.  A higher p leads to lower resist rates, and a lower p leads to higher resist rates.
+    half = (1 - p);
+
+	-- add effect resistence
+	if(effect ~= nil and effect > 0) then
+		local effectres = 0;
+		if(effect == EFFECT_SLEEP_I or effect == EFFECT_SLEEP_II or effect == EFFECT_LULLABY) then
+			effectres = MOD_SLEEPRES;
+		elseif(effect == EFFECT_POISON) then
+			effectres = MOD_POISONRES;
+		elseif(effect == EFFECT_PARALYZE) then
+			effectres = MOD_PARALYZERES;
+		elseif(effect == EFFECT_BLIND) then
+			effectres = MOD_BLINDRES
+		elseif(effect == EFFECT_SILENCE) then
+			effectres = MOD_SILENCERES;
+		elseif(effect == EFFECT_PLAGUE or effect == EFFECT_DISEASE) then
+			effectres = MOD_VIRUSRES;
+		elseif(effect == EFFECT_PETRIFICATION) then
+			effectres = MOD_PETRIFYRES;
+		elseif(effect == EFFECT_BIND) then
+			effectres = MOD_BINDRES;
+		elseif(effect == EFFECT_CURSE_I or effect == EFFECT_CURSE_II or effect == EFFECT_BANE) then
+			effectres = MOD_CURSERES;
+		elseif(effect == EFFECT_WEIGHT) then
+			effectres = MOD_GRAVITYRES;
+		elseif(effect == EFFECT_SLOW) then
+			effectres = MOD_SLOWRES;
+		elseif(effect == EFFECT_STUN) then
+			effectres = MOD_STUNRES;
+		elseif(effect == EFFECT_CHARM) then
+			effectres = MOD_CHARMRES;
+		end
+
+		if(effectres > 0) then
+			local resrate = 1+(target:getMod(effectres)/20);
+			if(resrate > 1.5) then
+				resrate = 1.5;
+			end
+
+			-- printf("Resist percentage: %f", resrate);
+			-- increase resistance based on effect
+			half = half * resrate;
+		end
+	end
+
+    -- Resistance thresholds based on p.  A higher p leads to lower resist rates, and a lower p leads to higher resist rates.
+    --half = (1 - p); defined and possibly modified above
+    quart = half^2;
+    eighth = half^3;
+    sixteenth = half^4;
+    -- printf("HALF: %f", half);
+    -- printf("QUART: %f", quart);
+    -- printf("EIGHTH: %f", eighth);
+    -- printf("SIXTEENTH: %f", sixteenth);
+
+    local resvar = math.random();
+
+    -- Determine final resist based on which thresholds have been crossed.
+    if(resvar <= sixteenth) then
+        resist = 0.0625;
+        --printf("Spell resisted to 1/16!!!  Threshold = %u",sixteenth);
+    elseif(resvar <= eighth) then
+        resist = 0.125;
+        --printf("Spell resisted to 1/8!  Threshold = %u",eighth);
+    elseif(resvar <= quart) then
+        resist = 0.25;
+        --printf("Spell resisted to 1/4.  Threshold = %u",quart);
+    elseif(resvar <= half) then
+        resist = 0.5;
+        --printf("Spell resisted to 1/2.  Threshold = %u",half);
+    else
+        resist = 1.0;
+        --printf("1.0");
+    end
+
+    return resist;
+
+end;
+
 --Applies resistance for things that may not be spells - ie. Quick Draw
 function applyResistanceAbility(player,target,element,skill,bonus)
     -- resist everything if magic shield is active
@@ -454,13 +668,18 @@ function applyResistanceAbility(player,target,element,skill,bonus)
 	--get the base acc (just skill plus magic acc mod)
 
 	local magicacc = player:getSkillLevel(skill) + player:getMod(79 + skill) + player:getMod(MOD_MACC);
-
-	--add acc for staves
-	local affinityBonus = AffinityBonus(player, element);
-	magicaccbonus = magicaccbonus + (affinityBonus-1) * 200;
+    
+    if(element > ELE_NONE) then
+        --add acc for staves
+        local affinityBonus = AffinityBonus(player, element);
+        magicaccbonus = magicaccbonus + (affinityBonus-1) * 200;
+    end
 
 	--base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
-	local magiceva = target:getMod(MOD_MEVA) + target:getMod(resistMod[element]);
+	local magiceva = target:getMod(MOD_MEVA);
+    if(element > ELE_NONE) then
+        magiceva = magiceva + target:getMod(resistMod[element]);
+    end
 
 	--get the difference of acc and eva, scale with level (3.33 at 10 to 0.44 at 75)
 	local multiplier = 0;
@@ -716,6 +935,30 @@ function getSkillLvl(rank,level)
 
  end;
 
+function handleAfflatusMisery(caster, spell, dmg)
+	if(caster:hasStatusEffect(EFFECT_AFFLATUS_MISERY)) then
+		local misery = caster:getMod(MOD_AFFLATUS_MISERY);
+
+		--BGwiki puts the boost capping at 200% bonus at around 300hp
+		if(misery > 300) then
+			misery = 300;
+		end;
+
+		--So, if wee capped at 300, we'll make the boost it boost 2x (200% damage)                        
+		local boost = 1 + (misery / 300);
+
+		local preboost = dmg;
+
+		dmg = math.floor(dmg * boost);
+		
+		--printf("AFFLATUS MISERY: Boosting %d -> %f, Final %d", preboost, boost, dmg);
+
+		--Afflatus Mod is Used Up...
+		caster:setMod(MOD_AFFLATUS_MISERY, 0)
+	end
+	return dmg;
+end;
+ 
  function finalMagicAdjustments(caster,target,spell,dmg)
 
     -- handle multiple targets
@@ -743,18 +986,15 @@ function getSkillLvl(rank,level)
         -- end
     end
 
-
-    dmg = utils.dmgTaken(target, dmg);
-    dmg = utils.magicDmgTaken(target, dmg);
+    dmg = target:magicDmgTaken(dmg);
 
 	if (dmg > 0) then
 		dmg = dmg - target:getMod(MOD_PHALANX);
 		utils.clamp(dmg, 0, 99999);
 	end
-
+    
     --handling stoneskin
     dmg = utils.stoneskin(target, dmg);
-
     dmg = utils.clamp(dmg, -99999, 99999);
     
     if (dmg < 0) then
@@ -766,7 +1006,7 @@ function getSkillLvl(rank,level)
         target:updateEnmityFromDamage(caster,dmg);
     end
     -- Only add TP if the target is a mob
-    if (target:getObjType() ~= TYPE_PC) then
+    if (target:getObjType() ~= TYPE_PC and dmg > 0) then
         target:addTP(10);
     end
 
@@ -775,8 +1015,7 @@ function getSkillLvl(rank,level)
 
 function finalMagicNonSpellAdjustments(caster,target,ele,dmg)
 
-    dmg = utils.dmgTaken(target, dmg);
-    dmg = utils.magicDmgTaken(target, dmg);
+    dmg = target:magicDmgTaken(dmg);
 
 	if (dmg > 0) then
 		dmg = dmg - target:getMod(MOD_PHALANX);
@@ -871,6 +1110,9 @@ function calculateMagicBurstAndBonus(caster, spell, target)
         --end -- if AM2+
     end
 
+    -- Add in Magic Burst Bonus Modifier. The Trait Boosts this. Eventually the gear should use this too to be cleaner.
+    burstBonus = burstBonus + (caster:getMod(MOD_MAG_BURST_BONUS) / 100);
+    
     return burst, burstBonus;
 end;
 
@@ -1227,11 +1469,40 @@ function doNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,s
 		if(head == 15084) then
 			dmg = math.floor(dmg * 1.05);
 		end
+		
+		-- boost with Futae
+		if(caster:hasStatusEffect(EFFECT_FUTAE)) then
+			dmg = math.floor(dmg * 1.50);
+			caster:delStatusEffect(EFFECT_FUTAE);
+		end
 	end
+	
 	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
 	dmg = addBonuses(caster,spell,target,dmg);
 	--add in target adjustment
 	dmg = adjustForTarget(target,dmg,spell:getElement());
+	--add in final adjustments
+	dmg = finalMagicAdjustments(caster,target,spell,dmg);
+	return dmg;
+end
+
+function doDivineBanishNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
+	local skill = DIVINE_MAGIC_SKILL;
+	local modStat = MOD_MND;
+	
+	--calculate raw damage
+	local dmg = calculateMagicDamage(V,M,caster,spell,target,skill,modStat,hasMultipleTargetReduction);
+	--get resist multiplier (1x if no resist)
+	local resist = applyResistance(caster,spell,target,caster:getStat(modStat)-target:getStat(modStat),skill,resistBonus);
+	--get the resisted damage
+	dmg = dmg*resist;
+	
+	--add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
+	dmg = addBonuses(caster,spell,target,dmg);
+	--add in target adjustment
+	dmg = adjustForTarget(target,dmg,spell:getElement());
+	--handling afflatus misery
+	dmg = handleAfflatusMisery(caster, spell, dmg);
 	--add in final adjustments
 	dmg = finalMagicAdjustments(caster,target,spell,dmg);
 	return dmg;

@@ -1,17 +1,14 @@
 -----------------------------------   
--- Skill Level: 357
--- Description: Attacks once or twice, depending on remaining ammunition. Damage dealt varies with TP.
--- If the first shot of the weapon skill does enough damage to defeat the target, the second shot will not be used.
--- To obtain Last Stand, the quest Martial Mastery must be completed.
--- This Weapon Skill's first hit fTP is duplicated for all additional hits.
--- Aligned with the Flame Gorget, Light Gorget & Aqua Gorget.
+-- Skill Level: N/A
+-- Description: Additional Effect: Temporarily improves Ranged Accuracy
+-- Aligned with the Light Gorget, Snow Gorget & Aqua Gorget.
 -- Properties
 -- Element: N/A
--- Skillchain Properties: Fusion/Reverberation
--- Modifiers: AGI:100%
+-- Skillchain Properties: Light/Distortion
+-- Modifiers: STR: 40% AGI: 40%
 -- Damage Multipliers by TP:
 -- 100%TP	200%TP	300%TP
---   2.0	2.125	2.25
+--   2.75	2.75	2.75
 
 
 -----------------------------------   
@@ -25,9 +22,9 @@ function OnUseWeaponSkill(player, target, wsID)
 
 	local params = {};
 	params.numHits = 1;
-	params.ftp100 = 2; params.ftp200 = 2.125; params.ftp300 = 2.25;
-	params.str_wsc = 0.0; params.dex_wsc = 0.0; params.vit_wsc = 0.0;
-	params.agi_wsc = 1.0; params.int_wsc = 0.0; params.mnd_wsc = 0.0;
+	params.ftp100 = 2.75; params.ftp200 = 2.75; params.ftp300 = 2.75;
+	params.str_wsc = 0.4; params.dex_wsc = 0.0; params.vit_wsc = 0.0;
+	params.agi_wsc = 0.4; params.int_wsc = 0.0; params.mnd_wsc = 0.0;
 	params.chr_wsc = 0.0;
 	params.crit100 = 0.0; params.crit200 = 0.0; params.crit300 = 0.0;
 	params.canCrit = false;
@@ -37,7 +34,11 @@ function OnUseWeaponSkill(player, target, wsID)
 	local damage, tpHits, extraHits = doRangedWeaponskill(player, target, params);
 		if((player:getEquipID(SLOT_RANGED) == 18348) and (player:getMainJob() == JOB_RNG or JOB_SAM)) then
 		if(damage > 0) then	
-			if(player:getTP() == 300) then
+			if(player:getTP() >= 100 and player:getTP() < 200) then
+				player:addStatusEffect(EFFECT_AFTERMATH, 20, 0, 20, 0, 12);
+			elseif(player:getTP() >= 200 and player:getTP() < 300) then
+				player:addStatusEffect(EFFECT_AFTERMATH, 20, 0, 40, 0, 12);
+			elseif(player:getTP() == 300) then
 				player:addStatusEffect(EFFECT_AFTERMATH, 20, 0, 60, 0, 12);
 			end
 		end

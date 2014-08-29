@@ -54,7 +54,7 @@ protected:
 	virtual void TransitionBack(bool skipWait = false);
 
 	CPetEntity* m_PPet;
-    float m_skillTP;
+    int16 m_skillTP;
 
 	void preparePetAbility(CBattleEntity* PTarg);
 	void ActionRoaming();

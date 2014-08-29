@@ -1,17 +1,19 @@
------------------------------------	
+-----------------------------------
 -- Area: Labyrinth of Onzozo
 --  MOB: Flying Manta
 -- Note: Place holder Lord of Onzozo
------------------------------------	
+-----------------------------------
 
 require("/scripts/zones/Labyrinth_of_Onzozo/MobIDs");
-	
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-  
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer)
+
+    checkGoVregime(killer,mob,774,1);
+
     local mob = mob:getID();
     if (Lord_of_Onzozo_PH[mob] ~= nil) then
 
@@ -36,4 +38,4 @@ function onMobDeath(mob,killer)
             end
         end
     end;
-end;	
+end;

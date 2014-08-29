@@ -19,27 +19,30 @@ function onSpellCast(caster,target,spell)
         return effectType;
     end
 
-    if(100 * math.random() >= target:getMod(MOD_SILENCERES)) then
-		--Pull base stats.
-		local dINT = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
-		local bonus = AffinityBonus(caster, spell:getElement());
+	--Pull base stats.
+	local dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
+	--local bonus = AffinityBonus(caster, spell:getElement()); Removed: affinity bonus is added in applyResistance
 
-		--Duration, including resistance.  May need more research.
-		local duration = 180;
+	--Duration, including resistance.  May need more research.
+	local duration = 180;
+	
+	    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+        duration = duration * 2;
+    end
+    caster:delStatusEffect(EFFECT_SABOTEUR);
 
-		--Resist
-		local resist = applyResistance(caster,spell,target,dINT,35,bonus);
+	--Resist
+	local resist = applyResistanceEffect(caster,spell,target,dMND,35,0,EFFECT_SILENCE);
 		
-        if(resist >= 0.5) then --Do it!
-            target:addStatusEffect(effectType,1,0,duration * resist);
+    if(resist >= 0.5) then --Do it!
+        if(target:addStatusEffect(effectType,1,0,duration * resist)) then
             spell:setMsg(236);
         else
-            spell:setMsg(85);
+            spell:setMsg(75); -- no effect
         end
     else
-        spell:setMsg(85); -- resist
+        spell:setMsg(85);
     end
-
 
     return effectType;
 

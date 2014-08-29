@@ -1,17 +1,20 @@
-----------------------------------	
--- Area: Gustav Tunnel	
+----------------------------------
+-- Area: Gustav Tunnel
 --  MOB: Goblin Reaper
 -- Note: Place holder Goblinsavior Heronox
------------------------------------	
+-----------------------------------
 
 require("/scripts/zones/Gustav_Tunnel/MobIDs");
-	
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-  
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer)
+
+    checkGoVregime(killer,mob,764,3);
+    checkGoVregime(killer,mob,765,3);
+
     local mob = mob:getID();
     if (Goblinsavior_Heronox_PH[mob] ~= nil) then
 
@@ -25,5 +28,5 @@ function onMobDeath(mob,killer)
             end
         end
     end
-  
-end;	
+
+end;

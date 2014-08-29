@@ -124,7 +124,7 @@ void CMobSkill::setFlag(uint8 flag)
 	m_Flag = flag;
 }
 
-void CMobSkill::setTP(float tp)
+void CMobSkill::setTP(int16 tp)
 {
 	m_TP = tp;
 }
@@ -160,7 +160,7 @@ uint16 CMobSkill::getAnimationID()
 	return m_AnimID;
 }
 
-float CMobSkill::getTP()
+int16 CMobSkill::getTP()
 {
 	return m_TP;
 }

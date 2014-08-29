@@ -3,6 +3,7 @@
 -- NPC:  Vrtra
 -----------------------------------
 
+require("scripts/globals/status");
 require("scripts/globals/titles");
 
 -----------------------------------

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Dim 07 Octobre 2012 à 09:39
+-- G?n?r? le : Dim 07 Octobre 2012 ? 09:39
 -- Version du serveur: 6.0.0
 -- Version de PHP: 5.2.9-2
 
@@ -16,7 +16,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `dspdb`
+-- Base de donn?es: `dspdb`
 --
 
 -- --------------------------------------------------------
@@ -42,6 +42,129 @@ INSERT INTO `item_mods` VALUES(10650, 8, 8);
 INSERT INTO `item_mods` VALUES(10650, 9, 8);
 INSERT INTO `item_mods` VALUES(10650, 110, 9);
 INSERT INTO `item_mods` VALUES(10650, 483, 20);
+INSERT INTO `item_mods` VALUES(10914, 1, 6);
+INSERT INTO `item_mods` VALUES(10914, 27, 2);
+-- INSERT INTO `item_mods` VALUES(10914, ???, -2); TODO: Pet Emnity
+INSERT INTO `item_mods` VALUES(10915, 1, 7);
+INSERT INTO `item_mods` VALUES(10915, 27, 3);
+-- INSERT INTO `item_mods` VALUES(10915, ???, -3); TODO: Pet Emnity
+INSERT INTO `item_mods` VALUES(10916, 12, 1);
+INSERT INTO `item_mods` VALUES(10916, 13, 1);
+INSERT INTO `item_mods` VALUES(10916, 27, -3);
+INSERT INTO `item_mods` VALUES(10917, 12, 2);
+INSERT INTO `item_mods` VALUES(10917, 13, 2);
+INSERT INTO `item_mods` VALUES(10917, 27, -4);
+INSERT INTO `item_mods` VALUES(10929, 1, 10);
+INSERT INTO `item_mods` VALUES(10929, 10, 9);
+INSERT INTO `item_mods` VALUES(10929, 246, 2); -- TODO: Confirm Amount
+INSERT INTO `item_mods` VALUES(10930, 161, -4);
+INSERT INTO `item_mods` VALUES(10931, 25, 6);
+-- INSERT INTO `item_mods` VALUES(10931, ???, ?); TODO: Tonberry's Grudge
+INSERT INTO `item_mods` VALUES(10932, 68, 5);
+INSERT INTO `item_mods` VALUES(10932, 161, -2);
+INSERT INTO `item_mods` VALUES(10964, 1, 9);
+INSERT INTO `item_mods` VALUES(10964, 2, -15);
+INSERT INTO `item_mods` VALUES(10964, 5, 20);
+INSERT INTO `item_mods` VALUES(10964, 12, 4);
+INSERT INTO `item_mods` VALUES(10964, 13, 4);
+INSERT INTO `item_mods` VALUES(10965, 1, 10);
+INSERT INTO `item_mods` VALUES(10965, 2, -10);
+INSERT INTO `item_mods` VALUES(10965, 5, 25);
+INSERT INTO `item_mods` VALUES(10965, 12, 5);
+INSERT INTO `item_mods` VALUES(10965, 13, 5);
+INSERT INTO `item_mods` VALUES(10966, 1, 12);
+INSERT INTO `item_mods` VALUES(10966, 9, 4);
+INSERT INTO `item_mods` VALUES(10966, 11, 4);
+INSERT INTO `item_mods` VALUES(10966, 14, 4);
+INSERT INTO `item_mods` VALUES(10967, 1, 13);
+INSERT INTO `item_mods` VALUES(10967, 9, 5);
+INSERT INTO `item_mods` VALUES(10967, 11, 5);
+INSERT INTO `item_mods` VALUES(10967, 14, 5);
+INSERT INTO `item_mods` VALUES(10968, 1, 13);
+INSERT INTO `item_mods` VALUES(10968, 2, 20);
+INSERT INTO `item_mods` VALUES(10968, 5, -15);
+INSERT INTO `item_mods` VALUES(10968, 8, 4);
+INSERT INTO `item_mods` VALUES(10968, 9, 4);
+INSERT INTO `item_mods` VALUES(10969, 1, 14);
+INSERT INTO `item_mods` VALUES(10969, 2, 25);
+INSERT INTO `item_mods` VALUES(10969, 5, -10);
+INSERT INTO `item_mods` VALUES(10969, 8, 5);
+INSERT INTO `item_mods` VALUES(10969, 9, 5);
+INSERT INTO `item_mods` VALUES(10972, 1, 14);
+INSERT INTO `item_mods` VALUES(10972, 10, 5);
+-- INSERT INTO `item_mods` VALUES(10972, ???, -3); TODO: Pet Physical Damage Taken
+INSERT INTO `item_mods` VALUES(10973, 1, 8);
+INSERT INTO `item_mods` VALUES(10973, 30, 5);
+INSERT INTO `item_mods` VALUES(10973, 233, 1); -- TODO: Confirm Amount
+INSERT INTO `item_mods` VALUES(10974, 1, 9);
+INSERT INTO `item_mods` VALUES(10974, 31, 5);
+-- INSERT INTO `item_mods` VALUES(10974, ???, -1); TODO: Ninjutsu Recast
+INSERT INTO `item_mods` VALUES(11014, 8, 3);
+INSERT INTO `item_mods` VALUES(11014, 13, -1);
+INSERT INTO `item_mods` VALUES(11014, 54, 15);
+INSERT INTO `item_mods` VALUES(11015, 8, -1);
+INSERT INTO `item_mods` VALUES(11015, 12, 3);
+INSERT INTO `item_mods` VALUES(11015, 55, 15);
+INSERT INTO `item_mods` VALUES(11016, 11, 3);
+INSERT INTO `item_mods` VALUES(11016, 12, -1);
+INSERT INTO `item_mods` VALUES(11016, 56, 15);
+INSERT INTO `item_mods` VALUES(11017, 10, 3);
+INSERT INTO `item_mods` VALUES(11017, 11, -1);
+INSERT INTO `item_mods` VALUES(11017, 57, 15);
+INSERT INTO `item_mods` VALUES(11018, 9, 3);
+INSERT INTO `item_mods` VALUES(11018, 10, -1);
+INSERT INTO `item_mods` VALUES(11018, 58, 15);
+INSERT INTO `item_mods` VALUES(11019, 9, -1);
+INSERT INTO `item_mods` VALUES(11019, 13, 3);
+INSERT INTO `item_mods` VALUES(11019, 59, 15);
+INSERT INTO `item_mods` VALUES(11020, 2, 20);
+INSERT INTO `item_mods` VALUES(11020, 5, -7);
+INSERT INTO `item_mods` VALUES(11020, 60, 15);
+INSERT INTO `item_mods` VALUES(11021, 2, -7);
+INSERT INTO `item_mods` VALUES(11021, 5, 20);
+INSERT INTO `item_mods` VALUES(11021, 61, 15);
+INSERT INTO `item_mods` VALUES(11022, 8, 4);
+INSERT INTO `item_mods` VALUES(11022, 54, 17);
+INSERT INTO `item_mods` VALUES(11022, 55, 17);
+INSERT INTO `item_mods` VALUES(11023, 12, 4);
+INSERT INTO `item_mods` VALUES(11023, 55, 17);
+INSERT INTO `item_mods` VALUES(11023, 56, 17);
+INSERT INTO `item_mods` VALUES(11024, 11, 4);
+INSERT INTO `item_mods` VALUES(11024, 56, 17);
+INSERT INTO `item_mods` VALUES(11024, 57, 17);
+INSERT INTO `item_mods` VALUES(11025, 10, 4);
+INSERT INTO `item_mods` VALUES(11025, 57, 17);
+INSERT INTO `item_mods` VALUES(11025, 58, 17);
+INSERT INTO `item_mods` VALUES(11026, 9, 4);
+INSERT INTO `item_mods` VALUES(11026, 58, 17);
+INSERT INTO `item_mods` VALUES(11026, 59, 17);
+INSERT INTO `item_mods` VALUES(11027, 13, 4);
+INSERT INTO `item_mods` VALUES(11027, 54, 17);
+INSERT INTO `item_mods` VALUES(11027, 59, 17);
+INSERT INTO `item_mods` VALUES(11028, 2, 24);
+INSERT INTO `item_mods` VALUES(11028, 60, 17);
+INSERT INTO `item_mods` VALUES(11028, 27, -4);
+INSERT INTO `item_mods` VALUES(11029, 5, 24);
+INSERT INTO `item_mods` VALUES(11029, 61, 17);
+INSERT INTO `item_mods` VALUES(11029, 27, 4);
+INSERT INTO `item_mods` VALUES(11030, 2, 15);
+-- INSERT INTO `item_mods` VALUES(11030, ???, 5); -- TODO: Cure Received +5%
+INSERT INTO `item_mods` VALUES(11031, 24, 3);
+INSERT INTO `item_mods` VALUES(11031, 27, -2);
+INSERT INTO `item_mods` VALUES(11032, 29, 2);
+INSERT INTO `item_mods` VALUES(11032, 289, 4);
+INSERT INTO `item_mods` VALUES(11146, 1, 18);
+INSERT INTO `item_mods` VALUES(11146, 2, 30);
+INSERT INTO `item_mods` VALUES(11146, 5, 30);
+INSERT INTO `item_mods` VALUES(11146, 13, 8);
+INSERT INTO `item_mods` VALUES(11146, 113, 20);
+INSERT INTO `item_mods` VALUES(11146, 484, 10);
+INSERT INTO `item_mods` VALUES(11246, 1, 16);
+INSERT INTO `item_mods` VALUES(11246, 2, 20);
+INSERT INTO `item_mods` VALUES(11246, 5, 20);
+INSERT INTO `item_mods` VALUES(11246, 13, 6);
+INSERT INTO `item_mods` VALUES(11246, 113, 15);
+INSERT INTO `item_mods` VALUES(11246, 484, 5);
 INSERT INTO `item_mods` VALUES(11265, 1, 1);
 INSERT INTO `item_mods` VALUES(11266, 1, 1);
 INSERT INTO `item_mods` VALUES(11267, 1, 1);
@@ -161,34 +284,41 @@ INSERT INTO `item_mods` VALUES(11302, 2, 25);
 INSERT INTO `item_mods` VALUES(11302, 8, 5);
 INSERT INTO `item_mods` VALUES(11302, 9, 5);
 INSERT INTO `item_mods` VALUES(11302, 27, -2);
+INSERT INTO `item_mods` VALUES(11302, 491, 10);
 INSERT INTO `item_mods` VALUES(11303, 1, 39);
 INSERT INTO `item_mods` VALUES(11303, 2, 25);
 INSERT INTO `item_mods` VALUES(11303, 8, 5);
 INSERT INTO `item_mods` VALUES(11303, 9, 5);
 INSERT INTO `item_mods` VALUES(11303, 27, -2);
+INSERT INTO `item_mods` VALUES(11303, 491, 10);
 INSERT INTO `item_mods` VALUES(11304, 1, 39);
 INSERT INTO `item_mods` VALUES(11304, 5, 18);
 INSERT INTO `item_mods` VALUES(11304, 12, 3);
 INSERT INTO `item_mods` VALUES(11304, 13, 3);
 INSERT INTO `item_mods` VALUES(11304, 71, 5);
+INSERT INTO `item_mods` VALUES(11304, 337, 15);
 INSERT INTO `item_mods` VALUES(11305, 1, 39);
 INSERT INTO `item_mods` VALUES(11305, 9, 4);
 INSERT INTO `item_mods` VALUES(11305, 23, 12);
 INSERT INTO `item_mods` VALUES(11305, 25, 10);
+INSERT INTO `item_mods` VALUES(11305, 494, 20);
 INSERT INTO `item_mods` VALUES(11306, 1, 40);
 INSERT INTO `item_mods` VALUES(11306, 9, 4);
 INSERT INTO `item_mods` VALUES(11306, 23, 14);
 INSERT INTO `item_mods` VALUES(11306, 25, 12);
+INSERT INTO `item_mods` VALUES(11306, 494, 20);
 INSERT INTO `item_mods` VALUES(11307, 1, 38);
 INSERT INTO `item_mods` VALUES(11307, 2, 15);
 INSERT INTO `item_mods` VALUES(11307, 5, 15);
 INSERT INTO `item_mods` VALUES(11307, 29, 5);
 INSERT INTO `item_mods` VALUES(11307, 113, 7);
+INSERT INTO `item_mods` VALUES(11307, 401, 1);
 INSERT INTO `item_mods` VALUES(11308, 1, 39);
 INSERT INTO `item_mods` VALUES(11308, 2, 17);
 INSERT INTO `item_mods` VALUES(11308, 5, 17);
 INSERT INTO `item_mods` VALUES(11308, 29, 6);
 INSERT INTO `item_mods` VALUES(11308, 113, 7);
+INSERT INTO `item_mods` VALUES(11308, 401, 1);
 INSERT INTO `item_mods` VALUES(11309, 1, 4);
 INSERT INTO `item_mods` VALUES(11309, 60, 15);
 INSERT INTO `item_mods` VALUES(11310, 1, 5);
@@ -449,46 +579,71 @@ INSERT INTO `item_mods` VALUES(11390, 6, 4);
 INSERT INTO `item_mods` VALUES(11391, 1, 18);
 INSERT INTO `item_mods` VALUES(11391, 108, 5);
 INSERT INTO `item_mods` VALUES(11391, 110, 5);
+
+-- ------------------------------------------
+-- Koschei Crackows
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(11392, 1, 14);
+INSERT INTO `item_mods` VALUES(11392, 499, 4); -- curse spikes
+INSERT INTO `item_mods` VALUES(11392, 500, 0); -- spikes dmg
+INSERT INTO `item_mods` VALUES(11392, 501, 20); -- spikes proc rate
+
 INSERT INTO `item_mods` VALUES(11393, 1, 15);
 INSERT INTO `item_mods` VALUES(11393, 2, 12);
 INSERT INTO `item_mods` VALUES(11393, 8, 3);
 INSERT INTO `item_mods` VALUES(11393, 11, 3);
 INSERT INTO `item_mods` VALUES(11393, 23, 5);
 INSERT INTO `item_mods` VALUES(11393, 68, 5);
+INSERT INTO `item_mods` VALUES(11393, 492, 30);
+INSERT INTO `item_mods` VALUES(11393, 495, 100);
 INSERT INTO `item_mods` VALUES(11394, 1, 15);
 INSERT INTO `item_mods` VALUES(11394, 2, 12);
 INSERT INTO `item_mods` VALUES(11394, 8, 3);
 INSERT INTO `item_mods` VALUES(11394, 11, 3);
 INSERT INTO `item_mods` VALUES(11394, 23, 5);
 INSERT INTO `item_mods` VALUES(11394, 68, 5);
+INSERT INTO `item_mods` VALUES(11394, 492, 30);
+INSERT INTO `item_mods` VALUES(11394, 495, 100);
 INSERT INTO `item_mods` VALUES(11395, 1, 11);
 INSERT INTO `item_mods` VALUES(11395, 5, 20);
 INSERT INTO `item_mods` VALUES(11395, 11, 3);
 INSERT INTO `item_mods` VALUES(11395, 12, 3);
 INSERT INTO `item_mods` VALUES(11395, 27, -2);
+INSERT INTO `item_mods` VALUES(11395, 489, -5);
 INSERT INTO `item_mods` VALUES(11396, 1, 16);
 INSERT INTO `item_mods` VALUES(11396, 2, 15);
 INSERT INTO `item_mods` VALUES(11396, 9, 4);
 INSERT INTO `item_mods` VALUES(11396, 25, 3);
+INSERT INTO `item_mods` VALUES(11396, 403, 10);
 INSERT INTO `item_mods` VALUES(11397, 1, 17);
 INSERT INTO `item_mods` VALUES(11397, 2, 20);
 INSERT INTO `item_mods` VALUES(11397, 9, 4);
 INSERT INTO `item_mods` VALUES(11397, 25, 5);
+INSERT INTO `item_mods` VALUES(11397, 403, 10);
 INSERT INTO `item_mods` VALUES(11398, 1, 13);
 INSERT INTO `item_mods` VALUES(11398, 5, 20);
 INSERT INTO `item_mods` VALUES(11398, 112, 7);
+INSERT INTO `item_mods` VALUES(11398, 399, 10);
 INSERT INTO `item_mods` VALUES(11399, 1, 14);
 INSERT INTO `item_mods` VALUES(11399, 5, 25);
 INSERT INTO `item_mods` VALUES(11399, 112, 9);
+INSERT INTO `item_mods` VALUES(11399, 399, 10);
 INSERT INTO `item_mods` VALUES(11400, 1, 1);
 INSERT INTO `item_mods` VALUES(11400, 68, 1);
 INSERT INTO `item_mods` VALUES(11401, 1, 5);
 INSERT INTO `item_mods` VALUES(11401, 12, 2);
 INSERT INTO `item_mods` VALUES(11401, 68, 5);
+
+-- ------------------------------------------
+-- Gothic Sabatons
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(11402, 1, 7);
 INSERT INTO `item_mods` VALUES(11402, 9, 3);
 INSERT INTO `item_mods` VALUES(11402, 27, 2);
+INSERT INTO `item_mods` VALUES(11402, 499, 2); -- ice spikes
+INSERT INTO `item_mods` VALUES(11402, 500, 15); -- spikes dmg
+INSERT INTO `item_mods` VALUES(11402, 501, 15); -- spikes proc rate
+
 INSERT INTO `item_mods` VALUES(11403, 1, 1);
 INSERT INTO `item_mods` VALUES(11404, 1, 9);
 INSERT INTO `item_mods` VALUES(11404, 25, 2);
@@ -518,6 +673,132 @@ INSERT INTO `item_mods` VALUES(11411, 296, 2);
 INSERT INTO `item_mods` VALUES(11412, 1, 6);
 INSERT INTO `item_mods` VALUES(11412, 8, 1);
 INSERT INTO `item_mods` VALUES(11412, 23, 2);
+INSERT INTO `item_mods` VALUES(11413, 1, 21);
+INSERT INTO `item_mods` VALUES(11413, 8, 5);
+INSERT INTO `item_mods` VALUES(11413, 9, 3);
+INSERT INTO `item_mods` VALUES(11413, 27, 2);
+INSERT INTO `item_mods` VALUES(11413, 384, 20);
+INSERT INTO `item_mods` VALUES(11414, 1, 19);
+INSERT INTO `item_mods` VALUES(11414, 9, 5);
+INSERT INTO `item_mods` VALUES(11414, 68, 5);
+INSERT INTO `item_mods` VALUES(11414, 384, 20);
+INSERT INTO `item_mods` VALUES(11415, 1, 16);
+INSERT INTO `item_mods` VALUES(11415, 2, 8);
+INSERT INTO `item_mods` VALUES(11415, 13, 6);
+INSERT INTO `item_mods` VALUES(11415, 14, 6);
+INSERT INTO `item_mods` VALUES(11415, 27, -4);
+INSERT INTO `item_mods` VALUES(11418, 1, 15);
+-- INSERT INTO `item_mods` VALUES(11418, 386, ???); TODO: Kick Attack DMG, Confirm Boost
+INSERT INTO `item_mods` VALUES(11419, 1, 20);
+INSERT INTO `item_mods` VALUES(11419, 9, 6);
+INSERT INTO `item_mods` VALUES(11419, 11, 6);
+INSERT INTO `item_mods` VALUES(11420, 1, 24);
+INSERT INTO `item_mods` VALUES(11420, 12, -4);
+INSERT INTO `item_mods` VALUES(11420, 13, -4);
+INSERT INTO `item_mods` VALUES(11420, 161, -3);
+INSERT INTO `item_mods` VALUES(11420, 27, 3);
+INSERT INTO `item_mods` VALUES(11421, 1, 21);
+INSERT INTO `item_mods` VALUES(11421, 9, -3);
+INSERT INTO `item_mods` VALUES(11421, 11, 3);
+INSERT INTO `item_mods` VALUES(11421, 26, 8);
+INSERT INTO `item_mods` VALUES(11422, 1, 18);
+INSERT INTO `item_mods` VALUES(11422, 13, 2);
+INSERT INTO `item_mods` VALUES(11422, 68, -7);
+INSERT INTO `item_mods` VALUES(11422, 7, 70);
+INSERT INTO `item_mods` VALUES(11423, 1, 22);
+INSERT INTO `item_mods` VALUES(11423, 11, -6);
+INSERT INTO `item_mods` VALUES(11423, 25, 10);
+INSERT INTO `item_mods` VALUES(11423, 23, 12);
+INSERT INTO `item_mods` VALUES(11424, 1, 13);
+INSERT INTO `item_mods` VALUES(11424, 26, -6);
+INSERT INTO `item_mods` VALUES(11424, 24, 8);
+INSERT INTO `item_mods` VALUES(11424, 68, 5);
+INSERT INTO `item_mods` VALUES(11424, 73, 3);
+INSERT INTO `item_mods` VALUES(11425, 1, 14);
+INSERT INTO `item_mods` VALUES(11425, 26, -5);
+INSERT INTO `item_mods` VALUES(11425, 24, 9);
+INSERT INTO `item_mods` VALUES(11425, 68, 6);
+INSERT INTO `item_mods` VALUES(11425, 73, 4);
+INSERT INTO `item_mods` VALUES(11426, 1, 24);
+INSERT INTO `item_mods` VALUES(11426, 12, -4);
+INSERT INTO `item_mods` VALUES(11426, 23, 8);
+INSERT INTO `item_mods` VALUES(11426, 161, -1);
+INSERT INTO `item_mods` VALUES(11426, 27, 3);
+INSERT INTO `item_mods` VALUES(11427, 1, 25);
+INSERT INTO `item_mods` VALUES(11427, 12, -3);
+INSERT INTO `item_mods` VALUES(11427, 23, 9);
+INSERT INTO `item_mods` VALUES(11427, 161, -2);
+INSERT INTO `item_mods` VALUES(11427, 27, 4);
+INSERT INTO `item_mods` VALUES(11428, 1, 11);
+INSERT INTO `item_mods` VALUES(11428, 5, 11);
+INSERT INTO `item_mods` VALUES(11428, 68, -3);
+INSERT INTO `item_mods` VALUES(11428, 163, -1);
+INSERT INTO `item_mods` VALUES(11428, 27, -5);
+INSERT INTO `item_mods` VALUES(11429, 1, 12);
+INSERT INTO `item_mods` VALUES(11429, 5, 12);
+INSERT INTO `item_mods` VALUES(11429, 68, -2);
+INSERT INTO `item_mods` VALUES(11429, 163, -2);
+INSERT INTO `item_mods` VALUES(11429, 27, -6);
+INSERT INTO `item_mods` VALUES(11444, 1, 20);
+INSERT INTO `item_mods` VALUES(11444, 11, 5);
+INSERT INTO `item_mods` VALUES(11444, 68, 5);
+INSERT INTO `item_mods` VALUES(11445, 1, 24);
+INSERT INTO `item_mods` VALUES(11445, 2, 25);
+INSERT INTO `item_mods` VALUES(11445, 10, 5);
+INSERT INTO `item_mods` VALUES(11445, 11, 5);
+INSERT INTO `item_mods` VALUES(11445, 87, 3);
+INSERT INTO `item_mods` VALUES(11446, 1, 19);
+INSERT INTO `item_mods` VALUES(11446, 8, 5);
+INSERT INTO `item_mods` VALUES(11446, 11, 3);
+INSERT INTO `item_mods` VALUES(11446, 289, 5);
+INSERT INTO `item_mods` VALUES(11447, 1, 22);
+INSERT INTO `item_mods` VALUES(11447, 2, -11);
+INSERT INTO `item_mods` VALUES(11447, 25, 7);
+INSERT INTO `item_mods` VALUES(11447, 23, 7);
+INSERT INTO `item_mods` VALUES(11447, 289, 6);
+INSERT INTO `item_mods` VALUES(11448, 1, 23);
+INSERT INTO `item_mods` VALUES(11448, 9, 3);
+INSERT INTO `item_mods` VALUES(11448, 25, 7);
+INSERT INTO `item_mods` VALUES(11448, 23, 7);
+INSERT INTO `item_mods` VALUES(11448, 289, 6);
+INSERT INTO `item_mods` VALUES(11449, 1, 24);
+INSERT INTO `item_mods` VALUES(11449, 8, -3);
+INSERT INTO `item_mods` VALUES(11449, 11, 5);
+INSERT INTO `item_mods` VALUES(11449, 26, 2);
+INSERT INTO `item_mods` VALUES(11449, 27, -3);
+INSERT INTO `item_mods` VALUES(11450, 1, 25);
+INSERT INTO `item_mods` VALUES(11450, 11, 5);
+INSERT INTO `item_mods` VALUES(11450, 26, 2);
+INSERT INTO `item_mods` VALUES(11450, 24, 3);
+INSERT INTO `item_mods` VALUES(11450, 27, -3);
+INSERT INTO `item_mods` VALUES(11451, 1, 12);
+INSERT INTO `item_mods` VALUES(11451, 5, -14);
+INSERT INTO `item_mods` VALUES(11451, 12, 6);
+INSERT INTO `item_mods` VALUES(11451, 30, 4);
+INSERT INTO `item_mods` VALUES(11451, 27, 2);
+INSERT INTO `item_mods` VALUES(11452, 1, 13);
+INSERT INTO `item_mods` VALUES(11452, 12, 6);
+INSERT INTO `item_mods` VALUES(11452, 30, 4);
+-- INSERT INTO `item_mods` VALUES(11452, ???, 2); TODO: Magic Crit Hit Rate
+INSERT INTO `item_mods` VALUES(11453, 1, 19);
+INSERT INTO `item_mods` VALUES(11453, 11, 8);
+INSERT INTO `item_mods` VALUES(11453, 23, -6);
+INSERT INTO `item_mods` VALUES(11453, 68, 8);
+INSERT INTO `item_mods` VALUES(11453, 289, 6);
+INSERT INTO `item_mods` VALUES(11454, 1, 22);
+INSERT INTO `item_mods` VALUES(11454, 8, 5);
+INSERT INTO `item_mods` VALUES(11454, 10, 5);
+INSERT INTO `item_mods` VALUES(11454, 288, 2);
+INSERT INTO `item_mods` VALUES(11454, 161, -3);
+INSERT INTO `item_mods` VALUES(11455, 1, 14);
+INSERT INTO `item_mods` VALUES(11455, 5, 18);
+INSERT INTO `item_mods` VALUES(11455, 28, 4);
+INSERT INTO `item_mods` VALUES(11455, 487, 4); 
+INSERT INTO `item_mods` VALUES(11455, 71, 4);
+INSERT INTO `item_mods` VALUES(11456, 1, 20);
+INSERT INTO `item_mods` VALUES(11456, 10, 7);
+INSERT INTO `item_mods` VALUES(11456, 25, 10);
+INSERT INTO `item_mods` VALUES(11456, 384, 30);
 INSERT INTO `item_mods` VALUES(11464, 1, 24);
 INSERT INTO `item_mods` VALUES(11464, 5, 25);
 INSERT INTO `item_mods` VALUES(11464, 12, 5);
@@ -563,33 +844,40 @@ INSERT INTO `item_mods` VALUES(11475, 2, 15);
 INSERT INTO `item_mods` VALUES(11475, 9, 4);
 INSERT INTO `item_mods` VALUES(11475, 14, 4);
 INSERT INTO `item_mods` VALUES(11475, 27, -2);
+INSERT INTO `item_mods` VALUES(11475, 490, 30);
 INSERT INTO `item_mods` VALUES(11476, 1, 19);
 INSERT INTO `item_mods` VALUES(11476, 2, 15);
 INSERT INTO `item_mods` VALUES(11476, 9, 4);
 INSERT INTO `item_mods` VALUES(11476, 14, 4);
 INSERT INTO `item_mods` VALUES(11476, 27, -2);
+INSERT INTO `item_mods` VALUES(11476, 490, 30);
 INSERT INTO `item_mods` VALUES(11477, 1, 16);
 INSERT INTO `item_mods` VALUES(11477, 5, 20);
 INSERT INTO `item_mods` VALUES(11477, 12, 5);
 INSERT INTO `item_mods` VALUES(11477, 27, -1);
+INSERT INTO `item_mods` VALUES(11477, 401, 1);
 INSERT INTO `item_mods` VALUES(11478, 1, 18);
 INSERT INTO `item_mods` VALUES(11478, 2, 20);
 INSERT INTO `item_mods` VALUES(11478, 8, 4);
 INSERT INTO `item_mods` VALUES(11478, 23, 5);
+INSERT INTO `item_mods` VALUES(11478, 491, 5);
 INSERT INTO `item_mods` VALUES(11479, 1, 19);
 INSERT INTO `item_mods` VALUES(11479, 2, 20);
 INSERT INTO `item_mods` VALUES(11479, 8, 5);
 INSERT INTO `item_mods` VALUES(11479, 23, 7);
+INSERT INTO `item_mods` VALUES(11479, 491, 5);
 INSERT INTO `item_mods` VALUES(11480, 1, 16);
 INSERT INTO `item_mods` VALUES(11480, 2, 10);
 INSERT INTO `item_mods` VALUES(11480, 5, 10);
 INSERT INTO `item_mods` VALUES(11480, 13, 5);
 INSERT INTO `item_mods` VALUES(11480, 115, 7);
+INSERT INTO `item_mods` VALUES(11480, 489, -5);
 INSERT INTO `item_mods` VALUES(11481, 1, 17);
 INSERT INTO `item_mods` VALUES(11481, 2, 12);
 INSERT INTO `item_mods` VALUES(11481, 5, 12);
 INSERT INTO `item_mods` VALUES(11481, 13, 6);
 INSERT INTO `item_mods` VALUES(11481, 115, 7);
+INSERT INTO `item_mods` VALUES(11481, 489, -5);
 INSERT INTO `item_mods` VALUES(11482, 1, 1);
 INSERT INTO `item_mods` VALUES(11482, 14, 1);
 INSERT INTO `item_mods` VALUES(11483, 1, 17);
@@ -635,6 +923,27 @@ INSERT INTO `item_mods` VALUES(11498, 1, 20);
 INSERT INTO `item_mods` VALUES(11498, 23, 3);
 INSERT INTO `item_mods` VALUES(11498, 25, 3);
 INSERT INTO `item_mods` VALUES(11498, 384, 20);
+INSERT INTO `item_mods` VALUES(11503, 1, 37);
+INSERT INTO `item_mods` VALUES(11503, 8, 5);
+INSERT INTO `item_mods` VALUES(11503, 10, 5);
+INSERT INTO `item_mods` VALUES(11503, 23, 7);
+INSERT INTO `item_mods` VALUES(11503, 384, 30);
+-- INSERT INTO `item_mods` VALUES(11503, ???, 30); TODO: Enhances Snapshot Effect
+INSERT INTO `item_mods` VALUES(11504, 1, 29);
+INSERT INTO `item_mods` VALUES(11504, 9, 4);
+INSERT INTO `item_mods` VALUES(11504, 11, 4);
+INSERT INTO `item_mods` VALUES(11504, 384, 40);
+INSERT INTO `item_mods` VALUES(11505, 1, 22);
+INSERT INTO `item_mods` VALUES(11505, 2, 17);
+INSERT INTO `item_mods` VALUES(11505, 12, 6);
+INSERT INTO `item_mods` VALUES(11505, 13, 6);
+INSERT INTO `item_mods` VALUES(11505, 27, -2);
+INSERT INTO `item_mods` VALUES(11525, 1, 28);
+INSERT INTO `item_mods` VALUES(11525, 9, 3);
+INSERT INTO `item_mods` VALUES(11525, 25, 11);
+INSERT INTO `item_mods` VALUES(11526, 1, 13);
+INSERT INTO `item_mods` VALUES(11526, 11, 8);
+INSERT INTO `item_mods` VALUES(11526, 26, 8);
 INSERT INTO `item_mods` VALUES(11527, 1, 24);
 INSERT INTO `item_mods` VALUES(11527, 5, 23);
 INSERT INTO `item_mods` VALUES(11527, 28, 4);
@@ -670,13 +979,353 @@ INSERT INTO `item_mods` VALUES(11541, 24, 15);
 INSERT INTO `item_mods` VALUES(11542, 1, 7);
 INSERT INTO `item_mods` VALUES(11542, 27, 2);
 INSERT INTO `item_mods` VALUES(11542, 68, 6);
-INSERT INTO `item_mods` VALUES(11743, 1, 3);
-INSERT INTO `item_mods` VALUES(11743, 27, 2);
-INSERT INTO `item_mods` VALUES(11743, 28, 3);
+INSERT INTO `item_mods` VALUES(11556, 1, 7);
+INSERT INTO `item_mods` VALUES(11556, 2, 14);
+INSERT INTO `item_mods` VALUES(11556, 5, -14);
+INSERT INTO `item_mods` VALUES(11556, 13, 6);
+INSERT INTO `item_mods` VALUES(11557, 1, 13);
+INSERT INTO `item_mods` VALUES(11557, 8, 6);
+INSERT INTO `item_mods` VALUES(11557, 25, -4);
+INSERT INTO `item_mods` VALUES(11558, 1, 12);
+INSERT INTO `item_mods` VALUES(11558, 9, 5);
+INSERT INTO `item_mods` VALUES(11558, 23, 9);
+INSERT INTO `item_mods` VALUES(11559, 1, 8);
+INSERT INTO `item_mods` VALUES(11559, 291, 2);
+-- INSERT INTO `item_mods` VALUES(11559, ???, 10); TODO: Counter Damage
+INSERT INTO `item_mods` VALUES(11560, 1, 7);
+INSERT INTO `item_mods` VALUES(11560, 12, 6);
+INSERT INTO `item_mods` VALUES(11560, 68, -6);
+INSERT INTO `item_mods` VALUES(11561, 1, 14);
+INSERT INTO `item_mods` VALUES(11561, 31, -5);
+INSERT INTO `item_mods` VALUES(11561, 29, 5);
+INSERT INTO `item_mods` VALUES(11562, 1, 11);
+INSERT INTO `item_mods` VALUES(11562, 25, 12);
+INSERT INTO `item_mods` VALUES(11562, 289, -6);
+INSERT INTO `item_mods` VALUES(11563, 1, 8);
+INSERT INTO `item_mods` VALUES(11563, 14, 8);
+INSERT INTO `item_mods` VALUES(11563, 30, 4);
+INSERT INTO `item_mods` VALUES(11564, 1, 6);
+INSERT INTO `item_mods` VALUES(11564, 357, -3);
+-- INSERT INTO `item_mods` VALUES(11564, ???, 1); TODO: Avatar Magic Attack Bonus
+INSERT INTO `item_mods` VALUES(11565, 1, 8);
+INSERT INTO `item_mods` VALUES(11565, 23, 20);
+INSERT INTO `item_mods` VALUES(11565, 289, 5);
+INSERT INTO `item_mods` VALUES(11566, 1, 5);
+INSERT INTO `item_mods` VALUES(11566, 7, 22);
+INSERT INTO `item_mods` VALUES(11566, 27, -7);
+INSERT INTO `item_mods` VALUES(11567, 1, 4);
+INSERT INTO `item_mods` VALUES(11567, 2, 95);
+INSERT INTO `item_mods` VALUES(11567, 5, -30);
+INSERT INTO `item_mods` VALUES(11568, 1, 6);
+INSERT INTO `item_mods` VALUES(11568, 31, 3);
+INSERT INTO `item_mods` VALUES(11568, 71, 3);
+INSERT INTO `item_mods` VALUES(11569, 1, 10);
+INSERT INTO `item_mods` VALUES(11569, 11, 3);
+INSERT INTO `item_mods` VALUES(11569, 68, 11);
+INSERT INTO `item_mods` VALUES(11570, 1, 9);
+INSERT INTO `item_mods` VALUES(11570, 11, 4);
+INSERT INTO `item_mods` VALUES(11570, 28, 3);
+INSERT INTO `item_mods` VALUES(11571, 1, 8);
+INSERT INTO `item_mods` VALUES(11571, 25, 6);
+-- INSERT INTO `item_mods` VALUES(11571, ???, 12); TODO: Automaton Accuracy
+INSERT INTO `item_mods` VALUES(11572, 1, 8);
+INSERT INTO `item_mods` VALUES(11572, 5, 25);
+INSERT INTO `item_mods` VALUES(11572, 296, 3);
+INSERT INTO `item_mods` VALUES(11572, 71, 3);
+INSERT INTO `item_mods` VALUES(11573, 1, 10);
+INSERT INTO `item_mods` VALUES(11573, 11, 4);
+INSERT INTO `item_mods` VALUES(11573, 56, 10);
+INSERT INTO `item_mods` VALUES(11573, 68, 8);
+INSERT INTO `item_mods` VALUES(11573, 166, -2);
+INSERT INTO `item_mods` VALUES(11574, 1, 10);
+INSERT INTO `item_mods` VALUES(11574, 8, 6);
+INSERT INTO `item_mods` VALUES(11574, 12, 6);
+INSERT INTO `item_mods` VALUES(11575, 1, 7);
+INSERT INTO `item_mods` VALUES(11575, 12, 3);
+INSERT INTO `item_mods` VALUES(11575, 13, 3);
+-- INSERT INTO `item_mods` VALUES(11575, ???, 3); TODO: Refresh Duration Received
+INSERT INTO `item_mods` VALUES(11576, 1, 8);
+INSERT INTO `item_mods` VALUES(11576, 5, 15);
+INSERT INTO `item_mods` VALUES(11576, 13, 4);
 INSERT INTO `item_mods` VALUES(11583, 12, 4);
 INSERT INTO `item_mods` VALUES(11583, 115, 4);
 INSERT INTO `item_mods` VALUES(11584, 12, 5);
 INSERT INTO `item_mods` VALUES(11584, 115, 5);
+INSERT INTO `item_mods` VALUES(11606, 11, 6);
+INSERT INTO `item_mods` VALUES(11606, 26, 6);
+-- INSERT INTO `item_mods` VALUES(11607, ???, ?); TODO: MACC & MATK Varies w/ Moonphase
+INSERT INTO `item_mods` VALUES(11608, 14, 2);
+INSERT INTO `item_mods` VALUES(11608, 119, 5);
+INSERT INTO `item_mods` VALUES(11609, 9, 5);
+INSERT INTO `item_mods` VALUES(11609, 11, -3);
+INSERT INTO `item_mods` VALUES(11610, 8, 5);
+INSERT INTO `item_mods` VALUES(11610, 10, -3);
+INSERT INTO `item_mods` VALUES(11611, 5, 16);
+INSERT INTO `item_mods` VALUES(11611, 8, -4);
+INSERT INTO `item_mods` VALUES(11611, 10, -4);
+-- INSERT INTO `item_mods` VALUES(11611, ???, -10); TODO: Cure Cast Time
+INSERT INTO `item_mods` VALUES(11612, 71, 4);
+-- INSERT INTO `item_mods` VALUES(11612, ???, 2); TODO: Avatar Magic Attack Bonus
+INSERT INTO `item_mods` VALUES(11613, 29, 1);
+INSERT INTO `item_mods` VALUES(11613, 27, 4);
+INSERT INTO `item_mods` VALUES(11614, 1, 5);
+INSERT INTO `item_mods` VALUES(11614, 2, 25);
+INSERT INTO `item_mods` VALUES(11614, 5, -40);
+INSERT INTO `item_mods` VALUES(11614, 162, 5);
+INSERT INTO `item_mods` VALUES(11623, 13, 4);
+INSERT INTO `item_mods` VALUES(11623, 30, 4);
+INSERT INTO `item_mods` VALUES(11639, 26, -7);
+INSERT INTO `item_mods` VALUES(11639, 24, 7);
+INSERT INTO `item_mods` VALUES(11640, 7, 70);
+INSERT INTO `item_mods` VALUES(11641, 5, 15);
+INSERT INTO `item_mods` VALUES(11641, 12, -4);
+INSERT INTO `item_mods` VALUES(11641, 13, -4);
+INSERT INTO `item_mods` VALUES(11641, 27, -5);
+INSERT INTO `item_mods` VALUES(11642, 8, -4);
+INSERT INTO `item_mods` VALUES(11642, 9, -4);
+INSERT INTO `item_mods` VALUES(11642, 73, 4);
+INSERT INTO `item_mods` VALUES(11643, 1, 10);
+INSERT INTO `item_mods` VALUES(11643, 27, 4);
+INSERT INTO `item_mods` VALUES(11644, 1, 1);
+INSERT INTO `item_mods` VALUES(11644, 26, -14);
+INSERT INTO `item_mods` VALUES(11644, 24, 14);
+INSERT INTO `item_mods` VALUES(11645, 1, 2);
+INSERT INTO `item_mods` VALUES(11645, 26, -13);
+INSERT INTO `item_mods` VALUES(11645, 24, 15);
+INSERT INTO `item_mods` VALUES(11646, 10, 3);
+INSERT INTO `item_mods` VALUES(11646, 13, 3);
+INSERT INTO `item_mods` VALUES(11646, 112, 10);
+INSERT INTO `item_mods` VALUES(11647, 1, 4);
+INSERT INTO `item_mods` VALUES(11647, 9, 5);
+INSERT INTO `item_mods` VALUES(11647, 14, 5);
+INSERT INTO `item_mods` VALUES(11648, 1, 4);
+INSERT INTO `item_mods` VALUES(11648, 8, 5);
+INSERT INTO `item_mods` VALUES(11648, 10, 5);
+INSERT INTO `item_mods` VALUES(11648, 12, 5);
+INSERT INTO `item_mods` VALUES(11649, 1, 4);
+INSERT INTO `item_mods` VALUES(11649, 11, 5);
+INSERT INTO `item_mods` VALUES(11649, 13, 5);
+INSERT INTO `item_mods` VALUES(11650, 25, 3);
+INSERT INTO `item_mods` VALUES(11650, 68, 3);
+INSERT INTO `item_mods` VALUES(11650, 289, 7);
+INSERT INTO `item_mods` VALUES(11653, 25, 3);
+INSERT INTO `item_mods` VALUES(11653, 23, 7);
+INSERT INTO `item_mods` VALUES(11656, 8, 7);
+INSERT INTO `item_mods` VALUES(11656, 13, -3);
+INSERT INTO `item_mods` VALUES(11657, 8, -3);
+INSERT INTO `item_mods` VALUES(11657, 13, 7);
+INSERT INTO `item_mods` VALUES(11658, 11, 7);
+INSERT INTO `item_mods` VALUES(11658, 12, -3);
+INSERT INTO `item_mods` VALUES(11659, 10, 7);
+INSERT INTO `item_mods` VALUES(11659, 11, -3);
+INSERT INTO `item_mods` VALUES(11660, 9, 7);
+INSERT INTO `item_mods` VALUES(11660, 10, -3);
+INSERT INTO `item_mods` VALUES(11661, 9, -3);
+INSERT INTO `item_mods` VALUES(11661, 13, 7);
+INSERT INTO `item_mods` VALUES(11662, 5, -15);
+INSERT INTO `item_mods` VALUES(11662, 14, 7);
+INSERT INTO `item_mods` VALUES(11662, 248, 1); -- TODO: Curse Resist Confirm Amount
+INSERT INTO `item_mods` VALUES(11663, 2, -15);
+INSERT INTO `item_mods` VALUES(11663, 5, 35);
+INSERT INTO `item_mods` VALUES(11663, 252, 1); -- TODO: Charm Resist Confirm Amount
+INSERT INTO `item_mods` VALUES(11664, 2, 12);
+INSERT INTO `item_mods` VALUES(11664, 5, -12);
+INSERT INTO `item_mods` VALUES(11665, 2, 13);
+INSERT INTO `item_mods` VALUES(11665, 5, -13);
+INSERT INTO `item_mods` VALUES(11667, 2, 11);
+INSERT INTO `item_mods` VALUES(11668, 12, 3);
+INSERT INTO `item_mods` VALUES(11668, 114, 4);
+INSERT INTO `item_mods` VALUES(11668, 115, 4);
+INSERT INTO `item_mods` VALUES(11671, 25, 3);
+INSERT INTO `item_mods` VALUES(11672, 174, 5);
+INSERT INTO `item_mods` VALUES(11672, 487, 5);
+INSERT INTO `item_mods` VALUES(11673, 23, 7);
+-- INSERT INTO `item_mods` VALUES(11673,  ???, 3); TODO: Increase Triple Attack Damage
+INSERT INTO `item_mods` VALUES(11675, 117, 4);
+-- INSERT INTO `item_mods` VALUES(11675, ???, 2); TODO: Ifrit Magic Attack Bonus
+INSERT INTO `item_mods` VALUES(11676, 11, 4);
+INSERT INTO `item_mods` VALUES(11678, 8, 2);
+INSERT INTO `item_mods` VALUES(11678, 54, 15);
+INSERT INTO `item_mods` VALUES(11678, 55, 15);
+INSERT INTO `item_mods` VALUES(11679, 9, 2);
+INSERT INTO `item_mods` VALUES(11679, 58, 15);
+INSERT INTO `item_mods` VALUES(11679, 59, 15);
+INSERT INTO `item_mods` VALUES(11680, 10, 2);
+INSERT INTO `item_mods` VALUES(11680, 57, 15);
+INSERT INTO `item_mods` VALUES(11680, 58, 15);
+INSERT INTO `item_mods` VALUES(11681, 11, 2);
+INSERT INTO `item_mods` VALUES(11681, 56, 15);
+INSERT INTO `item_mods` VALUES(11681, 57, 15);
+INSERT INTO `item_mods` VALUES(11682, 12, 2);
+INSERT INTO `item_mods` VALUES(11682, 55, 15);
+INSERT INTO `item_mods` VALUES(11682, 56, 15);
+INSERT INTO `item_mods` VALUES(11683, 13, 2);
+INSERT INTO `item_mods` VALUES(11683, 54, 15);
+INSERT INTO `item_mods` VALUES(11683, 59, 15);
+INSERT INTO `item_mods` VALUES(11684, 2, 15);
+INSERT INTO `item_mods` VALUES(11684, 60, 15);
+INSERT INTO `item_mods` VALUES(11684, 27, -1);
+INSERT INTO `item_mods` VALUES(11685, 5, 15);
+INSERT INTO `item_mods` VALUES(11685, 61, 15);
+INSERT INTO `item_mods` VALUES(11685, 27, 1);
+INSERT INTO `item_mods` VALUES(11686, 8, 3);
+INSERT INTO `item_mods` VALUES(11686, 54, 16);
+INSERT INTO `item_mods` VALUES(11686, 55, 16);
+INSERT INTO `item_mods` VALUES(11687, 9, 3);
+INSERT INTO `item_mods` VALUES(11687, 58, 16);
+INSERT INTO `item_mods` VALUES(11687, 59, 16);
+INSERT INTO `item_mods` VALUES(11688, 10, 3);
+INSERT INTO `item_mods` VALUES(11688, 57, 16);
+INSERT INTO `item_mods` VALUES(11688, 58, 16);
+INSERT INTO `item_mods` VALUES(11689, 11, 3);
+INSERT INTO `item_mods` VALUES(11689, 56, 16);
+INSERT INTO `item_mods` VALUES(11689, 57, 16);
+INSERT INTO `item_mods` VALUES(11690, 12, 3);
+INSERT INTO `item_mods` VALUES(11690, 55, 16);
+INSERT INTO `item_mods` VALUES(11690, 56, 16);
+INSERT INTO `item_mods` VALUES(11691, 13, 3);
+INSERT INTO `item_mods` VALUES(11691, 54, 16);
+INSERT INTO `item_mods` VALUES(11691, 59, 16);
+INSERT INTO `item_mods` VALUES(11692, 2, 20);
+INSERT INTO `item_mods` VALUES(11692, 60, 16);
+INSERT INTO `item_mods` VALUES(11692, 27, -3);
+INSERT INTO `item_mods` VALUES(11693, 5, 20);
+INSERT INTO `item_mods` VALUES(11693, 61, 16);
+INSERT INTO `item_mods` VALUES(11693, 27, 3);
+INSERT INTO `item_mods` VALUES(11694, 1, 3);
+INSERT INTO `item_mods` VALUES(11694, 2, 35);
+INSERT INTO `item_mods` VALUES(11694, 5, 15);
+INSERT INTO `item_mods` VALUES(11695, 26, 4);
+INSERT INTO `item_mods` VALUES(11695, 73, 2);
+INSERT INTO `item_mods` VALUES(11696, 8, 2);
+INSERT INTO `item_mods` VALUES(11696, 10, 2);
+INSERT INTO `item_mods` VALUES(11696, 25, 4);
+INSERT INTO `item_mods` VALUES(11701, 5, 10);
+INSERT INTO `item_mods` VALUES(11701, 14, 3);
+INSERT INTO `item_mods` VALUES(11702, 23, 10);
+INSERT INTO `item_mods` VALUES(11702, 68, -5);
+INSERT INTO `item_mods` VALUES(11723, 5, 5);
+INSERT INTO `item_mods` VALUES(11723, 14, 2);
+INSERT INTO `item_mods` VALUES(11724, 5, 10);
+INSERT INTO `item_mods` VALUES(11724, 14, 3);
+INSERT INTO `item_mods` VALUES(11725, 23, -6);
+INSERT INTO `item_mods` VALUES(11725, 25, 6);
+INSERT INTO `item_mods` VALUES(11726, 23, -7);
+INSERT INTO `item_mods` VALUES(11726, 25, 7);
+INSERT INTO `item_mods` VALUES(11727, 9, 3);
+INSERT INTO `item_mods` VALUES(11740, 1, 8);
+INSERT INTO `item_mods` VALUES(11740, 8, -4);
+INSERT INTO `item_mods` VALUES(11740, 9, 7);
+INSERT INTO `item_mods` VALUES(11741, 1, 6);
+INSERT INTO `item_mods` VALUES(11741, 2, -20);
+INSERT INTO `item_mods` VALUES(11741, 8, 5);
+INSERT INTO `item_mods` VALUES(11741, 25, 10);
+INSERT INTO `item_mods` VALUES(11742, 1, 2);
+INSERT INTO `item_mods` VALUES(11742, 5, -30);
+INSERT INTO `item_mods` VALUES(11742, 12, 7);
+INSERT INTO `item_mods` VALUES(11743, 1, 3);
+INSERT INTO `item_mods` VALUES(11743, 27, 2);
+INSERT INTO `item_mods` VALUES(11743, 28, 3);
+INSERT INTO `item_mods` VALUES(11744, 1, 4);
+INSERT INTO `item_mods` VALUES(11744, 13, 7);
+INSERT INTO `item_mods` VALUES(11744, 7, 20);
+INSERT INTO `item_mods` VALUES(11745, 1, 5);
+INSERT INTO `item_mods` VALUES(11745, 14, 8);
+INSERT INTO `item_mods` VALUES(11745, 27, -1);
+INSERT INTO `item_mods` VALUES(11746, 1, 3);
+INSERT INTO `item_mods` VALUES(11746, 5, 55);
+INSERT INTO `item_mods` VALUES(11746, 27, -2);
+INSERT INTO `item_mods` VALUES(11747, 1, 4);
+INSERT INTO `item_mods` VALUES(11747, 296, 8);
+INSERT INTO `item_mods` VALUES(11747, 71, 4);
+INSERT INTO `item_mods` VALUES(11748, 1, 6);
+INSERT INTO `item_mods` VALUES(11748, 8, -7);
+INSERT INTO `item_mods` VALUES(11748, 9, -7);
+INSERT INTO `item_mods` VALUES(11748, 10, -7);
+INSERT INTO `item_mods` VALUES(11748, 11, -7);
+INSERT INTO `item_mods` VALUES(11748, 12, -7);
+INSERT INTO `item_mods` VALUES(11748, 13, -7);
+INSERT INTO `item_mods` VALUES(11748, 14, -7);
+INSERT INTO `item_mods` VALUES(11748, 27, -7);
+INSERT INTO `item_mods` VALUES(11749, 1, 7);
+INSERT INTO `item_mods` VALUES(11749, 11, 7);
+INSERT INTO `item_mods` VALUES(11749, 23, -8);
+INSERT INTO `item_mods` VALUES(11749, 68, 8);
+INSERT INTO `item_mods` VALUES(11753, 1, 5);
+INSERT INTO `item_mods` VALUES(11753, 5, 20);
+INSERT INTO `item_mods` VALUES(11753, 168, 12);
+-- INSERT INTO `item_mods` VALUES(11753, ???, ???); TODO: Enhances Aquaveil Effect
+INSERT INTO `item_mods` VALUES(11754, 1, 8);
+INSERT INTO `item_mods` VALUES(11754, 8, 5);
+INSERT INTO `item_mods` VALUES(11754, 11, 5);
+INSERT INTO `item_mods` VALUES(11754, 13, 5);
+INSERT INTO `item_mods` VALUES(11754, 27, -3);
+INSERT INTO `item_mods` VALUES(11763, 1, 9);
+INSERT INTO `item_mods` VALUES(11763, 8, 8);
+INSERT INTO `item_mods` VALUES(11763, 9, -8);
+INSERT INTO `item_mods` VALUES(11764, 1, 10);
+INSERT INTO `item_mods` VALUES(11764, 8, 9);
+INSERT INTO `item_mods` VALUES(11764, 9, -7);
+INSERT INTO `item_mods` VALUES(11765, 1, 5);
+INSERT INTO `item_mods` VALUES(11765, 12, 5);
+INSERT INTO `item_mods` VALUES(11765, 168,-8);
+INSERT INTO `item_mods` VALUES(11765, 27, -3);
+INSERT INTO `item_mods` VALUES(11766, 1, 6);
+INSERT INTO `item_mods` VALUES(11766, 12, 6);
+INSERT INTO `item_mods` VALUES(11766, 168, 10);
+INSERT INTO `item_mods` VALUES(11766, 27, -4);
+INSERT INTO `item_mods` VALUES(11770, 2, -10);
+INSERT INTO `item_mods` VALUES(11770, 5, -10);
+INSERT INTO `item_mods` VALUES(11770, 384, 70);
+INSERT INTO `item_mods` VALUES(11771, 1, 9);
+INSERT INTO `item_mods` VALUES(11771, 8, 6);
+INSERT INTO `item_mods` VALUES(11771, 9, 6);
+INSERT INTO `item_mods` VALUES(11771, 229, 5);
+INSERT INTO `item_mods` VALUES(11772, 1, 5);
+INSERT INTO `item_mods` VALUES(11772, 2, 20);
+INSERT INTO `item_mods` VALUES(11772, 5, 20);
+INSERT INTO `item_mods` VALUES(11772, 28, 4);
+INSERT INTO `item_mods` VALUES(11773, 1, 8);
+INSERT INTO `item_mods` VALUES(11773, 2, 55);
+INSERT INTO `item_mods` VALUES(11773, 8, 3);
+INSERT INTO `item_mods` VALUES(11775, 1, 4);
+INSERT INTO `item_mods` VALUES(11775, 73, 2);
+-- INSERT INTO `item_mods` VALUES(11775, ???, ???); TODO: Enhance Occult Acumen Effect
+INSERT INTO `item_mods` VALUES(11776, 1, 4);
+INSERT INTO `item_mods` VALUES(11776, 5, 60);
+-- INSERT INTO `item_mods` VALUES(11776, ???, 10); TODO: Avatar Attack
+INSERT INTO `item_mods` VALUES(11777, 1, 6);
+INSERT INTO `item_mods` VALUES(11777, 13, 4);
+INSERT INTO `item_mods` VALUES(11777, 14, 4);
+INSERT INTO `item_mods` VALUES(11777, 30, 4);
+INSERT INTO `item_mods` VALUES(11778, 1, 24);
+INSERT INTO `item_mods` VALUES(11778, 26, -3);
+INSERT INTO `item_mods` VALUES(11778, 24, 5);
+INSERT INTO `item_mods` VALUES(11778, 68, 8);
+INSERT INTO `item_mods` VALUES(11778, 73, 1);
+INSERT INTO `item_mods` VALUES(11779, 1, 25);
+INSERT INTO `item_mods` VALUES(11779, 26, -2);
+INSERT INTO `item_mods` VALUES(11779, 24, 6);
+INSERT INTO `item_mods` VALUES(11779, 68, 9);
+INSERT INTO `item_mods` VALUES(11779, 73, 2);
+INSERT INTO `item_mods` VALUES(11780, 1, 39);
+INSERT INTO `item_mods` VALUES(11780, 12, -4);
+INSERT INTO `item_mods` VALUES(11780, 23, 8);
+INSERT INTO `item_mods` VALUES(11780, 27, 5);
+INSERT INTO `item_mods` VALUES(11781, 1, 49);
+INSERT INTO `item_mods` VALUES(11781, 12, -5);
+INSERT INTO `item_mods` VALUES(11781, 23, 9);
+INSERT INTO `item_mods` VALUES(11781, 27, 6);
+INSERT INTO `item_mods` VALUES(11782, 1, 13);
+INSERT INTO `item_mods` VALUES(11782, 5, 12);
+INSERT INTO `item_mods` VALUES(11782, 68, -3);
+INSERT INTO `item_mods` VALUES(11782, 163, -1);
+INSERT INTO `item_mods` VALUES(11782, 27, -8);
+INSERT INTO `item_mods` VALUES(11783, 1, 14);
+INSERT INTO `item_mods` VALUES(11783, 5, 13);
+INSERT INTO `item_mods` VALUES(11783, 68, -2);
+INSERT INTO `item_mods` VALUES(11783, 163, -2);
+INSERT INTO `item_mods` VALUES(11783, 27, -9);
 INSERT INTO `item_mods` VALUES(11798, 1, 41);
 INSERT INTO `item_mods` VALUES(11798, 8, 10);
 INSERT INTO `item_mods` VALUES(11798, 9, 10);
@@ -686,6 +1335,439 @@ INSERT INTO `item_mods` VALUES(11798, 12, 10);
 INSERT INTO `item_mods` VALUES(11798, 13, 10);
 INSERT INTO `item_mods` VALUES(11798, 14, 10);
 INSERT INTO `item_mods` VALUES(11798, 23, 25);
+INSERT INTO `item_mods` VALUES(11800, 1, 25);
+INSERT INTO `item_mods` VALUES(11800, 5, 20);
+INSERT INTO `item_mods` VALUES(11800, 13, 7);
+INSERT INTO `item_mods` VALUES(11800, 30, 2);
+INSERT INTO `item_mods` VALUES(11800, 27, -3);
+INSERT INTO `item_mods` VALUES(11801, 1, 29);
+INSERT INTO `item_mods` VALUES(11801, 9, 6);
+INSERT INTO `item_mods` VALUES(11801, 11, 6);
+INSERT INTO `item_mods` VALUES(11801, 25, 5);
+INSERT INTO `item_mods` VALUES(11801, 27, 3);
+INSERT INTO `item_mods` VALUES(11802, 1, 30);
+INSERT INTO `item_mods` VALUES(11802, 10, -5);
+INSERT INTO `item_mods` VALUES(11802, 25, 8);
+INSERT INTO `item_mods` VALUES(11802, 23, 8);
+INSERT INTO `item_mods` VALUES(11802, 289, 4);
+INSERT INTO `item_mods` VALUES(11803, 1, 31);
+INSERT INTO `item_mods` VALUES(11803, 8, 4);
+INSERT INTO `item_mods` VALUES(11803, 25, 8);
+INSERT INTO `item_mods` VALUES(11803, 23, 8);
+INSERT INTO `item_mods` VALUES(11803, 289, 4);
+INSERT INTO `item_mods` VALUES(11804, 1, 34);
+INSERT INTO `item_mods` VALUES(11804, 11, 7);
+INSERT INTO `item_mods` VALUES(11804, 26, 6);
+INSERT INTO `item_mods` VALUES(11804, 24, -6);
+INSERT INTO `item_mods` VALUES(11804, 27, -4);
+INSERT INTO `item_mods` VALUES(11805, 1, 35);
+INSERT INTO `item_mods` VALUES(11805, 8, 4);
+INSERT INTO `item_mods` VALUES(11805, 11, 7);
+INSERT INTO `item_mods` VALUES(11805, 26, 6);
+INSERT INTO `item_mods` VALUES(11805, 27, -4);
+INSERT INTO `item_mods` VALUES(11806, 1, 22);
+INSERT INTO `item_mods` VALUES(11806, 5, -15);
+INSERT INTO `item_mods` VALUES(11806, 13, 5);
+INSERT INTO `item_mods` VALUES(11806, 30, 5);
+INSERT INTO `item_mods` VALUES(11806, 27, 3);
+INSERT INTO `item_mods` VALUES(11807, 1, 22);
+INSERT INTO `item_mods` VALUES(11807, 13, 5);
+INSERT INTO `item_mods` VALUES(11807, 30, 5);
+-- INSERT INTO `item_mods` VALUES(11807, ???, 3); TODO: Magic Critical Hit Rate
+INSERT INTO `item_mods` VALUES(11808, 1, 38);
+INSERT INTO `item_mods` VALUES(11808, 23, 14);
+INSERT INTO `item_mods` VALUES(11808, 85, 5);
+INSERT INTO `item_mods` VALUES(11808, 86, 5);
+INSERT INTO `item_mods` VALUES(11808, 89, 5);
+INSERT INTO `item_mods` VALUES(11808, 384, 50);
+INSERT INTO `item_mods` VALUES(11809, 1, 28);
+INSERT INTO `item_mods` VALUES(11809, 8, 6);
+INSERT INTO `item_mods` VALUES(11809, 9, 6);
+INSERT INTO `item_mods` VALUES(11809, 11, 6);
+INSERT INTO `item_mods` VALUES(11809, 81, 5);
+INSERT INTO `item_mods` VALUES(11809, 84, 5);
+INSERT INTO `item_mods` VALUES(11809, 104, 5);
+INSERT INTO `item_mods` VALUES(11809, 289, 5);
+INSERT INTO `item_mods` VALUES(11810, 1, 28);
+INSERT INTO `item_mods` VALUES(11810, 13, 7);
+INSERT INTO `item_mods` VALUES(11810, 14, 7);
+INSERT INTO `item_mods` VALUES(11810, 111, 10);
+INSERT INTO `item_mods` VALUES(11810, 112, 10);
+INSERT INTO `item_mods` VALUES(11810, 114, 10);
+INSERT INTO `item_mods` VALUES(11810, 27, -4);
+INSERT INTO `item_mods` VALUES(11813, 12, 3);
+INSERT INTO `item_mods` VALUES(11813, 13, 3);
+INSERT INTO `item_mods` VALUES(11813, 56, 20);
+INSERT INTO `item_mods` VALUES(11813, 34, 6);
+INSERT INTO `item_mods` VALUES(11820, 1, 24);
+INSERT INTO `item_mods` VALUES(11820, 23, 14);
+INSERT INTO `item_mods` VALUES(11820, 73, 4);
+INSERT INTO `item_mods` VALUES(11820, 384, 40);
+INSERT INTO `item_mods` VALUES(11820, 5, -30);
+INSERT INTO `item_mods` VALUES(11820, 2, 30);
+INSERT INTO `item_mods` VALUES(11821, 1, 29);
+INSERT INTO `item_mods` VALUES(11821, 2, 14);
+INSERT INTO `item_mods` VALUES(11821, 8, 7);
+INSERT INTO `item_mods` VALUES(11821, 12, 7);
+INSERT INTO `item_mods` VALUES(11821, 116, 9);
+INSERT INTO `item_mods` VALUES(11822, 2, -33);
+INSERT INTO `item_mods` VALUES(11822, 5, 99);
+INSERT INTO `item_mods` VALUES(11822, 47, 7);
+INSERT INTO `item_mods` VALUES(11823, 1, 40);
+INSERT INTO `item_mods` VALUES(11823, 56, -10);
+-- INSERT INTO `item_mods` VALUES(11823, ???, 35); TODO: Slow - Def Bonus
+INSERT INTO `item_mods` VALUES(11824, 1, 39);
+INSERT INTO `item_mods` VALUES(11824, 23, 15);
+INSERT INTO `item_mods` VALUES(11824, 85, 6);
+INSERT INTO `item_mods` VALUES(11824, 86, 6);
+INSERT INTO `item_mods` VALUES(11824, 89, 6);
+INSERT INTO `item_mods` VALUES(11824, 384, 60);
+INSERT INTO `item_mods` VALUES(11825, 1, 29);
+INSERT INTO `item_mods` VALUES(11825, 8, 7);
+INSERT INTO `item_mods` VALUES(11825, 9, 7);
+INSERT INTO `item_mods` VALUES(11825, 11, 7);
+INSERT INTO `item_mods` VALUES(11825, 81, 6);
+INSERT INTO `item_mods` VALUES(11825, 84, 6);
+INSERT INTO `item_mods` VALUES(11825, 104, 6);
+INSERT INTO `item_mods` VALUES(11825, 289, 6);
+INSERT INTO `item_mods` VALUES(11826, 1, 29);
+INSERT INTO `item_mods` VALUES(11826, 13, 8);
+INSERT INTO `item_mods` VALUES(11826, 14, 8);
+INSERT INTO `item_mods` VALUES(11826, 111, 11);
+INSERT INTO `item_mods` VALUES(11826, 112, 11);
+INSERT INTO `item_mods` VALUES(11826, 114, 11);
+INSERT INTO `item_mods` VALUES(11826, 27, -5);
+INSERT INTO `item_mods` VALUES(11828, 1, 47);
+INSERT INTO `item_mods` VALUES(11828, 26, -6);
+INSERT INTO `item_mods` VALUES(11828, 24, 8);
+INSERT INTO `item_mods` VALUES(11828, 68, 10);
+INSERT INTO `item_mods` VALUES(11828, 73, 6);
+INSERT INTO `item_mods` VALUES(11829, 1, 48);
+INSERT INTO `item_mods` VALUES(11829, 26, -5);
+INSERT INTO `item_mods` VALUES(11829, 24, 9);
+INSERT INTO `item_mods` VALUES(11829, 68, 11);
+INSERT INTO `item_mods` VALUES(11829, 73, 7);
+INSERT INTO `item_mods` VALUES(11830, 1, 62);
+INSERT INTO `item_mods` VALUES(11830, 12, -4);
+INSERT INTO `item_mods` VALUES(11830, 13, -4);
+INSERT INTO `item_mods` VALUES(11830, 23, 14);
+INSERT INTO `item_mods` VALUES(11830, 161, -3);
+INSERT INTO `item_mods` VALUES(11830, 27, 5);
+INSERT INTO `item_mods` VALUES(11831, 1, 63);
+INSERT INTO `item_mods` VALUES(11831, 12, -3);
+INSERT INTO `item_mods` VALUES(11831, 13, -3);
+INSERT INTO `item_mods` VALUES(11831, 23, 15);
+INSERT INTO `item_mods` VALUES(11831, 161, -4);
+INSERT INTO `item_mods` VALUES(11831, 27, 6);
+INSERT INTO `item_mods` VALUES(11832, 1, 40);
+INSERT INTO `item_mods` VALUES(11832, 5, 16);
+INSERT INTO `item_mods` VALUES(11832, 163, -2);
+INSERT INTO `item_mods` VALUES(11832, 27, -9);
+INSERT INTO `item_mods` VALUES(11832, 71, 6);
+INSERT INTO `item_mods` VALUES(11833, 1, 41);
+INSERT INTO `item_mods` VALUES(11833, 5, 17);
+INSERT INTO `item_mods` VALUES(11833, 163, -3);
+INSERT INTO `item_mods` VALUES(11833, 27, -10);
+INSERT INTO `item_mods` VALUES(11833, 71, 7);
+INSERT INTO `item_mods` VALUES(11844, 1, 50);
+INSERT INTO `item_mods` VALUES(11844, 10, -8);
+INSERT INTO `item_mods` VALUES(11844, 25, 11);
+INSERT INTO `item_mods` VALUES(11844, 68, 11);
+INSERT INTO `item_mods` VALUES(11844, 289, 3);
+INSERT INTO `item_mods` VALUES(11844, 421, 2);
+INSERT INTO `item_mods` VALUES(11845, 1, 51);
+INSERT INTO `item_mods` VALUES(11845, 8, 6);
+INSERT INTO `item_mods` VALUES(11845, 25, 11);
+INSERT INTO `item_mods` VALUES(11845, 68, 11);
+INSERT INTO `item_mods` VALUES(11845, 289, 3);
+INSERT INTO `item_mods` VALUES(11845, 421, 2);
+INSERT INTO `item_mods` VALUES(11846, 1, 53);
+INSERT INTO `item_mods` VALUES(11846, 8, -6);
+INSERT INTO `item_mods` VALUES(11846, 11, 9);
+INSERT INTO `item_mods` VALUES(11846, 26, 4);
+INSERT INTO `item_mods` VALUES(11846, 165, 2);
+INSERT INTO `item_mods` VALUES(11847, 1, 54);
+INSERT INTO `item_mods` VALUES(11847, 11, 9);
+INSERT INTO `item_mods` VALUES(11847, 26, 4);
+INSERT INTO `item_mods` VALUES(11847, 24, 6);
+INSERT INTO `item_mods` VALUES(11847, 165, 2);
+INSERT INTO `item_mods` VALUES(11848, 1, 47);
+INSERT INTO `item_mods` VALUES(11848, 2, -18);
+INSERT INTO `item_mods` VALUES(11848, 5, -18);
+INSERT INTO `item_mods` VALUES(11848, 13, 7);
+INSERT INTO `item_mods` VALUES(11848, 30, 7);
+-- INSERT INTO `item_mods` VALUES(11848, 487, ?); TODO: Bonus Damage To Magic Burst
+INSERT INTO `item_mods` VALUES(11849, 1, 48);
+INSERT INTO `item_mods` VALUES(11849, 13, 7);
+INSERT INTO `item_mods` VALUES(11849, 30, 7);
+-- INSERT INTO `item_mods` VALUES(11849, 487, ?); TODO: Bonus Damage To Magic Burst
+INSERT INTO `item_mods` VALUES(11849, 170, 5);
+INSERT INTO `item_mods` VALUES(11850, 1, 65);
+INSERT INTO `item_mods` VALUES(11850, 8, 12);
+INSERT INTO `item_mods` VALUES(11850, 23, 12);
+INSERT INTO `item_mods` VALUES(11850, 83, 5);
+INSERT INTO `item_mods` VALUES(11850, 87, 5);
+INSERT INTO `item_mods` VALUES(11850, 109, 5);
+INSERT INTO `item_mods` VALUES(11851, 1, 55);
+INSERT INTO `item_mods` VALUES(11851, 25, 15);
+INSERT INTO `item_mods` VALUES(11851, 26, 15);
+INSERT INTO `item_mods` VALUES(11851, 82, 5);
+INSERT INTO `item_mods` VALUES(11851, 88, 5);
+INSERT INTO `item_mods` VALUES(11851, 105, 5);
+INSERT INTO `item_mods` VALUES(11852, 1, 46);
+INSERT INTO `item_mods` VALUES(11852, 12, 12);
+INSERT INTO `item_mods` VALUES(11852, 14, 12);
+INSERT INTO `item_mods` VALUES(11852, 113, 10);
+INSERT INTO `item_mods` VALUES(11852, 115, 10);
+INSERT INTO `item_mods` VALUES(11852, 117, 10);
+INSERT INTO `item_mods` VALUES(11858, 1, 66);
+INSERT INTO `item_mods` VALUES(11858, 8, 13);
+INSERT INTO `item_mods` VALUES(11858, 23, 13);
+INSERT INTO `item_mods` VALUES(11858, 83, 6);
+INSERT INTO `item_mods` VALUES(11858, 87, 6);
+INSERT INTO `item_mods` VALUES(11858, 109, 6);
+INSERT INTO `item_mods` VALUES(11859, 1, 56);
+INSERT INTO `item_mods` VALUES(11859, 25, 16);
+INSERT INTO `item_mods` VALUES(11859, 26, 16);
+INSERT INTO `item_mods` VALUES(11859, 82, 6);
+INSERT INTO `item_mods` VALUES(11859, 88, 6);
+INSERT INTO `item_mods` VALUES(11859, 105, 6);
+INSERT INTO `item_mods` VALUES(11860, 1, 47);
+INSERT INTO `item_mods` VALUES(11860, 12, 13);
+INSERT INTO `item_mods` VALUES(11860, 14, 13);
+INSERT INTO `item_mods` VALUES(11860, 113, 11);
+INSERT INTO `item_mods` VALUES(11860, 115, 11);
+INSERT INTO `item_mods` VALUES(11860, 117, 11);
+INSERT INTO `item_mods` VALUES(11878, 1, 16);
+INSERT INTO `item_mods` VALUES(11878, 26, -2);
+INSERT INTO `item_mods` VALUES(11878, 24, 5);
+INSERT INTO `item_mods` VALUES(11878, 68, 5);
+INSERT INTO `item_mods` VALUES(11878, 73, 2);
+INSERT INTO `item_mods` VALUES(11879, 1, 17);
+INSERT INTO `item_mods` VALUES(11879, 26, -1);
+INSERT INTO `item_mods` VALUES(11879, 24, 6);
+INSERT INTO `item_mods` VALUES(11879, 68, 6);
+INSERT INTO `item_mods` VALUES(11879, 73, 3);
+INSERT INTO `item_mods` VALUES(11880, 1, 25);
+INSERT INTO `item_mods` VALUES(11880, 13, -5);
+INSERT INTO `item_mods` VALUES(11880, 23, 6);
+INSERT INTO `item_mods` VALUES(11880, 161, -1);
+INSERT INTO `item_mods` VALUES(11880, 27, 4);
+INSERT INTO `item_mods` VALUES(11881, 1, 26);
+INSERT INTO `item_mods` VALUES(11881, 13, -4);
+INSERT INTO `item_mods` VALUES(11881, 23, 7);
+INSERT INTO `item_mods` VALUES(11881, 161, -2);
+INSERT INTO `item_mods` VALUES(11881, 27, 5);
+INSERT INTO `item_mods` VALUES(11882, 1, 13);
+INSERT INTO `item_mods` VALUES(11882, 5, 13);
+INSERT INTO `item_mods` VALUES(11882, 68, -2);
+INSERT INTO `item_mods` VALUES(11882, 163, -1);
+INSERT INTO `item_mods` VALUES(11882, 27, -5);
+INSERT INTO `item_mods` VALUES(11883, 1, 14);
+INSERT INTO `item_mods` VALUES(11883, 5, 14);
+INSERT INTO `item_mods` VALUES(11883, 68, -1);
+INSERT INTO `item_mods` VALUES(11883, 163, -2);
+INSERT INTO `item_mods` VALUES(11883, 27, -6);
+INSERT INTO `item_mods` VALUES(11898, 1, 16);
+INSERT INTO `item_mods` VALUES(11898, 2, 50);
+INSERT INTO `item_mods` VALUES(11898, 5, -40);
+INSERT INTO `item_mods` VALUES(11898, 8, 5);
+INSERT INTO `item_mods` VALUES(11898, 9, -5);
+INSERT INTO `item_mods` VALUES(11898, 11, 5);
+INSERT INTO `item_mods` VALUES(11899, 1, 16);
+INSERT INTO `item_mods` VALUES(11899, 2, -50);
+INSERT INTO `item_mods` VALUES(11899, 5, 80);
+INSERT INTO `item_mods` VALUES(11899, 12, 7);
+INSERT INTO `item_mods` VALUES(11899, 13, -4);
+INSERT INTO `item_mods` VALUES(11900, 1, 16);
+INSERT INTO `item_mods` VALUES(11900, 2, 100);
+INSERT INTO `item_mods` VALUES(11900, 5, -80);
+INSERT INTO `item_mods` VALUES(11900, 8, 7);
+INSERT INTO `item_mods` VALUES(11900, 9, -4);
+INSERT INTO `item_mods` VALUES(11901, 1, 16);
+INSERT INTO `item_mods` VALUES(11901, 2, -40);
+INSERT INTO `item_mods` VALUES(11901, 5, 50);
+INSERT INTO `item_mods` VALUES(11901, 12, -4);
+INSERT INTO `item_mods` VALUES(11901, 13, 7);
+INSERT INTO `item_mods` VALUES(11902, 1, 16);
+INSERT INTO `item_mods` VALUES(11902, 2, -80);
+INSERT INTO `item_mods` VALUES(11902, 5, 100);
+INSERT INTO `item_mods` VALUES(11902, 12, -4);
+INSERT INTO `item_mods` VALUES(11902, 13, 7);
+INSERT INTO `item_mods` VALUES(11903, 1, 16);
+INSERT INTO `item_mods` VALUES(11903, 2, -40);
+INSERT INTO `item_mods` VALUES(11903, 5, 50);
+INSERT INTO `item_mods` VALUES(11903, 10, -5);
+INSERT INTO `item_mods` VALUES(11903, 12, 5);
+INSERT INTO `item_mods` VALUES(11903, 13, 5);
+INSERT INTO `item_mods` VALUES(11904, 1, 16);
+INSERT INTO `item_mods` VALUES(11904, 2, 80);
+INSERT INTO `item_mods` VALUES(11904, 5, -50);
+INSERT INTO `item_mods` VALUES(11904, 8, 7);
+INSERT INTO `item_mods` VALUES(11904, 9, -4);
+INSERT INTO `item_mods` VALUES(11905, 1, 16);
+INSERT INTO `item_mods` VALUES(11905, 2, -80);
+INSERT INTO `item_mods` VALUES(11905, 5, 100);
+INSERT INTO `item_mods` VALUES(11905, 12, 7);
+INSERT INTO `item_mods` VALUES(11905, 13, -4);
+INSERT INTO `item_mods` VALUES(11906, 1, 16);
+INSERT INTO `item_mods` VALUES(11906, 2, 50);
+INSERT INTO `item_mods` VALUES(11906, 5, -40);
+INSERT INTO `item_mods` VALUES(11906, 8, -4);
+INSERT INTO `item_mods` VALUES(11906, 9, 7);
+INSERT INTO `item_mods` VALUES(11907, 1, 16);
+INSERT INTO `item_mods` VALUES(11907, 2, 100);
+INSERT INTO `item_mods` VALUES(11907, 5, 80);
+INSERT INTO `item_mods` VALUES(11907, 10, 7);
+INSERT INTO `item_mods` VALUES(11907, 11, -4);
+INSERT INTO `item_mods` VALUES(11908, 1, 23);
+INSERT INTO `item_mods` VALUES(11908, 8, 8);
+INSERT INTO `item_mods` VALUES(11908, 11, 3);
+INSERT INTO `item_mods` VALUES(11908, 25, -15);
+INSERT INTO `item_mods` VALUES(11908, 23, 5);
+INSERT INTO `item_mods` VALUES(11909, 1, 28);
+INSERT INTO `item_mods` VALUES(11909, 11, 3);
+INSERT INTO `item_mods` VALUES(11909, 26, 6);
+INSERT INTO `item_mods` VALUES(11909, 24, 8);
+INSERT INTO `item_mods` VALUES(11910, 1, 20);
+INSERT INTO `item_mods` VALUES(11910, 11, 3);
+INSERT INTO `item_mods` VALUES(11910, 23, 5);
+INSERT INTO `item_mods` VALUES(11910, 68, 7);
+INSERT INTO `item_mods` VALUES(11911, 1, 23);
+INSERT INTO `item_mods` VALUES(11911, 2, -14);
+INSERT INTO `item_mods` VALUES(11911, 25, 6);
+INSERT INTO `item_mods` VALUES(11911, 23, 9);
+INSERT INTO `item_mods` VALUES(11911, 289, 3);
+INSERT INTO `item_mods` VALUES(11912, 1, 24);
+INSERT INTO `item_mods` VALUES(11912, 9, 3);
+INSERT INTO `item_mods` VALUES(11912, 25, 6);
+INSERT INTO `item_mods` VALUES(11912, 23, 9);
+INSERT INTO `item_mods` VALUES(11912, 289, 3);
+INSERT INTO `item_mods` VALUES(11913, 1, 24);
+INSERT INTO `item_mods` VALUES(11913, 8, -4);
+INSERT INTO `item_mods` VALUES(11913, 11, 6);
+INSERT INTO `item_mods` VALUES(11913, 26, 3);
+INSERT INTO `item_mods` VALUES(11913, 27, -3);
+INSERT INTO `item_mods` VALUES(11914, 1, 24);
+INSERT INTO `item_mods` VALUES(11914, 11, 6);
+INSERT INTO `item_mods` VALUES(11914, 26, 3);
+INSERT INTO `item_mods` VALUES(11914, 24, 4);
+INSERT INTO `item_mods` VALUES(11914, 27, -3);
+INSERT INTO `item_mods` VALUES(11915, 1, 15);
+INSERT INTO `item_mods` VALUES(11915, 2, -13);
+INSERT INTO `item_mods` VALUES(11915, 5, -13);
+INSERT INTO `item_mods` VALUES(11915, 13, 4);
+INSERT INTO `item_mods` VALUES(11915, 30, 4);
+INSERT INTO `item_mods` VALUES(11916, 1, 16);
+INSERT INTO `item_mods` VALUES(11916, 13, 4);
+INSERT INTO `item_mods` VALUES(11916, 30, 4);
+INSERT INTO `item_mods` VALUES(11916, 170, 1);
+INSERT INTO `item_mods` VALUES(11917, 1, 14);
+INSERT INTO `item_mods` VALUES(11917, 13, 5);
+-- INSERT INTO `item_mods` VALUES(11917, ???, -15); TODO: Stoneskin Casting Time
+INSERT INTO `item_mods` VALUES(11918, 1, 23);
+INSERT INTO `item_mods` VALUES(11918, 11, 12);
+INSERT INTO `item_mods` VALUES(11918, 24, 5);
+INSERT INTO `item_mods` VALUES(11918, 27, -3);
+INSERT INTO `item_mods` VALUES(11920, 1, 19);
+INSERT INTO `item_mods` VALUES(11920, 13, 3);
+INSERT INTO `item_mods` VALUES(11920, 161, -3);
+INSERT INTO `item_mods` VALUES(11920, 225, 5);
+INSERT INTO `item_mods` VALUES(11928, 1, 29);
+INSERT INTO `item_mods` VALUES(11928, 26, -3);
+INSERT INTO `item_mods` VALUES(11928, 24, 6);
+INSERT INTO `item_mods` VALUES(11928, 68, 4);
+INSERT INTO `item_mods` VALUES(11928, 73, 2);
+INSERT INTO `item_mods` VALUES(11929, 1, 30);
+INSERT INTO `item_mods` VALUES(11929, 26, -2);
+INSERT INTO `item_mods` VALUES(11929, 24, 7);
+INSERT INTO `item_mods` VALUES(11929, 68, 5);
+INSERT INTO `item_mods` VALUES(11929, 73, 3);
+INSERT INTO `item_mods` VALUES(11930, 1, 38);
+INSERT INTO `item_mods` VALUES(11930, 13, -5);
+INSERT INTO `item_mods` VALUES(11930, 23, 10);
+INSERT INTO `item_mods` VALUES(11930, 161, -1);
+INSERT INTO `item_mods` VALUES(11930, 27, 3);
+INSERT INTO `item_mods` VALUES(11931, 1, 39);
+INSERT INTO `item_mods` VALUES(11931, 13, -4);
+INSERT INTO `item_mods` VALUES(11931, 23, 11);
+INSERT INTO `item_mods` VALUES(11931, 161, -2);
+INSERT INTO `item_mods` VALUES(11931, 27, 4);
+INSERT INTO `item_mods` VALUES(11932, 1, 25);
+INSERT INTO `item_mods` VALUES(11932, 5, 8);
+INSERT INTO `item_mods` VALUES(11932, 68, -2);
+INSERT INTO `item_mods` VALUES(11932, 163, -1);
+INSERT INTO `item_mods` VALUES(11932, 27, -7);
+INSERT INTO `item_mods` VALUES(11933, 1, 26);
+INSERT INTO `item_mods` VALUES(11933, 5, 9);
+INSERT INTO `item_mods` VALUES(11933, 68, -1);
+INSERT INTO `item_mods` VALUES(11933, 163, -2);
+INSERT INTO `item_mods` VALUES(11933, 27, -8);
+INSERT INTO `item_mods` VALUES(11937, 1, 29);
+INSERT INTO `item_mods` VALUES(11937, 5, 20);
+INSERT INTO `item_mods` VALUES(11937, 13, 6);
+INSERT INTO `item_mods` VALUES(11937, 30, 6);
+INSERT INTO `item_mods` VALUES(11937, 71, 3);
+INSERT INTO `item_mods` VALUES(11947, 1, 30);
+INSERT INTO `item_mods` VALUES(11947, 2, -20);
+INSERT INTO `item_mods` VALUES(11947, 12, 8);
+INSERT INTO `item_mods` VALUES(11947, 27, -5);
+INSERT INTO `item_mods` VALUES(11947, 71, 4);
+INSERT INTO `item_mods` VALUES(11949, 1, 40);
+INSERT INTO `item_mods` VALUES(11949, 5, 10);
+INSERT INTO `item_mods` VALUES(11949, 13, 5);
+INSERT INTO `item_mods` VALUES(11949, 300, 20);
+INSERT INTO `item_mods` VALUES(11950, 1, 43);
+INSERT INTO `item_mods` VALUES(11950, 10, -6);
+INSERT INTO `item_mods` VALUES(11950, 23, 8);
+INSERT INTO `item_mods` VALUES(11950, 68, 8);
+INSERT INTO `item_mods` VALUES(11950, 289, 4);
+INSERT INTO `item_mods` VALUES(11950, 27, -3);
+INSERT INTO `item_mods` VALUES(11951, 1, 44);
+INSERT INTO `item_mods` VALUES(11951, 8, 4);
+INSERT INTO `item_mods` VALUES(11951, 23, 8);
+INSERT INTO `item_mods` VALUES(11951, 68, 8);
+INSERT INTO `item_mods` VALUES(11951, 289, 4);
+INSERT INTO `item_mods` VALUES(11951, 27, -3);
+INSERT INTO `item_mods` VALUES(11952, 1, 44);
+INSERT INTO `item_mods` VALUES(11952, 11, 6);
+INSERT INTO `item_mods` VALUES(11952, 26, 4);
+INSERT INTO `item_mods` VALUES(11952, 24, -5);
+INSERT INTO `item_mods` VALUES(11952, 27, -3);
+INSERT INTO `item_mods` VALUES(11953, 1, 45);
+INSERT INTO `item_mods` VALUES(11953, 8, 4);
+INSERT INTO `item_mods` VALUES(11953, 11, 6);
+INSERT INTO `item_mods` VALUES(11953, 26, 4);
+INSERT INTO `item_mods` VALUES(11953, 27, -3);
+INSERT INTO `item_mods` VALUES(11954, 1, 31);
+INSERT INTO `item_mods` VALUES(11954, 2, -12);
+INSERT INTO `item_mods` VALUES(11954, 5, -12);
+INSERT INTO `item_mods` VALUES(11954, 13, 5);
+INSERT INTO `item_mods` VALUES(11954, 30, 5);
+INSERT INTO `item_mods` VALUES(11955, 1, 32);
+INSERT INTO `item_mods` VALUES(11955, 13, 5);
+INSERT INTO `item_mods` VALUES(11955, 30, 5);
+INSERT INTO `item_mods` VALUES(11955, 170, 2);
+INSERT INTO `item_mods` VALUES(11958, 1, 46);
+INSERT INTO `item_mods` VALUES(11958, 25, -8);
+INSERT INTO `item_mods` VALUES(11958, 288, 2);
+INSERT INTO `item_mods` VALUES(11958, 302, 2);
+INSERT INTO `item_mods` VALUES(11958, 384, 40);
+INSERT INTO `item_mods` VALUES(11959, 1, 50);
+INSERT INTO `item_mods` VALUES(11959, 8, 7);
+INSERT INTO `item_mods` VALUES(11959, 25, 16);
+INSERT INTO `item_mods` VALUES(11959, 289, -8);
+INSERT INTO `item_mods` VALUES(11959, 165, 2);
+INSERT INTO `item_mods` VALUES(11960, 1, 48);
+INSERT INTO `item_mods` VALUES(11960, 8, 7);
+INSERT INTO `item_mods` VALUES(11960, 10, 7);
+INSERT INTO `item_mods` VALUES(11960, 384, 30);
+INSERT INTO `item_mods` VALUES(11960, 306, 2);
+INSERT INTO `item_mods` VALUES(11961, 1, 36);
+INSERT INTO `item_mods` VALUES(11961, 30, 7);
+INSERT INTO `item_mods` VALUES(11961, 114, 5);
+INSERT INTO `item_mods` VALUES(11961, 27, -6);
+INSERT INTO `item_mods` VALUES(11961, 71, 5);
 INSERT INTO `item_mods` VALUES(12108, 1, 30);
 INSERT INTO `item_mods` VALUES(12108, 8, 2);
 INSERT INTO `item_mods` VALUES(12108, 9, 2);
@@ -1489,10 +2571,18 @@ INSERT INTO `item_mods` VALUES(12303, 1, 15);
 INSERT INTO `item_mods` VALUES(12303, 61, 3);
 INSERT INTO `item_mods` VALUES(12304, 1, 12);
 INSERT INTO `item_mods` VALUES(12304, 11, 3);
+
+-- ------------------------------------------
+-- Ice Shield
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(12305, 1, 23);
 INSERT INTO `item_mods` VALUES(12305, 10, 2);
 INSERT INTO `item_mods` VALUES(12305, 55, 20);
 INSERT INTO `item_mods` VALUES(12305, 58, 10);
+INSERT INTO `item_mods` VALUES(12305, 499, 2); -- ice spikes
+INSERT INTO `item_mods` VALUES(12305, 500, 20); -- spikes dmg
+INSERT INTO `item_mods` VALUES(12305, 501, 25); -- spikes proc rate
+
 INSERT INTO `item_mods` VALUES(12306, 1, 8);
 INSERT INTO `item_mods` VALUES(12307, 1, 12);
 INSERT INTO `item_mods` VALUES(12308, 1, 16);
@@ -1517,6 +2607,25 @@ INSERT INTO `item_mods` VALUES(12316, 1, 3);
 INSERT INTO `item_mods` VALUES(12316, 54, 2);
 INSERT INTO `item_mods` VALUES(12316, 55, 2);
 INSERT INTO `item_mods` VALUES(12316, 58, -4);
+
+-- ------------------------------------------
+-- Flame Shield
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES(12317, 1, 12);
+INSERT INTO `item_mods` VALUES(12317, 54, 20);
+INSERT INTO `item_mods` VALUES(12317, 499, 1); -- Blaze Spikes
+INSERT INTO `item_mods` VALUES(12317, 500, 20); -- Spikes DMG
+INSERT INTO `item_mods` VALUES(12317, 501, 20); -- Spikes Proc Rate
+
+INSERT INTO `item_mods` VALUES(12318, 1, 25);
+INSERT INTO `item_mods` VALUES(12318, 54, 25);
+INSERT INTO `item_mods` VALUES(12318, 55, 25);
+INSERT INTO `item_mods` VALUES(12318, 56, 25);
+INSERT INTO `item_mods` VALUES(12318, 57, 25);
+INSERT INTO `item_mods` VALUES(12318, 58, 25);
+INSERT INTO `item_mods` VALUES(12318, 59, 25);
+INSERT INTO `item_mods` VALUES(12318, 60, 25);
+INSERT INTO `item_mods` VALUES(12318, 61, 25);
 INSERT INTO `item_mods` VALUES(12319, 1, 4);
 INSERT INTO `item_mods` VALUES(12321, 1, 15);
 INSERT INTO `item_mods` VALUES(12321, 13, 3);
@@ -1589,10 +2698,18 @@ INSERT INTO `item_mods` VALUES(12355, 10, 3);
 INSERT INTO `item_mods` VALUES(12355, 58, 12);
 INSERT INTO `item_mods` VALUES(12356, 1, 8);
 INSERT INTO `item_mods` VALUES(12356, 23, 12);
+
+-- ------------------------------------------
+-- Ice Shield +1
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(12357, 1, 24);
 INSERT INTO `item_mods` VALUES(12357, 10, 2);
 INSERT INTO `item_mods` VALUES(12357, 55, 25);
 INSERT INTO `item_mods` VALUES(12357, 58, 10);
+INSERT INTO `item_mods` VALUES(12357, 499, 2); -- ice spikes
+INSERT INTO `item_mods` VALUES(12357, 500, 25); -- spikes dmg
+INSERT INTO `item_mods` VALUES(12357, 501, 30); -- spikes proc rate
+
 INSERT INTO `item_mods` VALUES(12358, 1, 22);
 INSERT INTO `item_mods` VALUES(12358, 2, 11);
 INSERT INTO `item_mods` VALUES(12358, 5, 11);
@@ -1968,10 +3085,18 @@ INSERT INTO `item_mods` VALUES(12486, 9, 3);
 INSERT INTO `item_mods` VALUES(12486, 11, 3);
 INSERT INTO `item_mods` VALUES(12486, 68, 10);
 INSERT INTO `item_mods` VALUES(12487, 1, 6);
+INSERT INTO `item_mods` VALUES(12489, 2, -30);
+INSERT INTO `item_mods` VALUES(12489, 5, 75);
 INSERT INTO `item_mods` VALUES(12490, 1, 22);
 INSERT INTO `item_mods` VALUES(12490, 12, 7);
 INSERT INTO `item_mods` VALUES(12490, 27, 2);
 INSERT INTO `item_mods` VALUES(12490, 168, 5);
+INSERT INTO `item_mods` VALUES(12492, 1, 27);
+INSERT INTO `item_mods` VALUES(12492, 68, 12);
+INSERT INTO `item_mods` VALUES(12492, 161, -1);
+INSERT INTO `item_mods` VALUES(12493, 1, 18);
+INSERT INTO `item_mods` VALUES(12493, 357, 4);
+-- INSERT INTO `item_mods` VALUES(12493, ???, -1); TODO: Fenrir Perpetuation Cost
 INSERT INTO `item_mods` VALUES(12494, 2, -12);
 INSERT INTO `item_mods` VALUES(12494, 5, 30);
 INSERT INTO `item_mods` VALUES(12495, 2, -6);
@@ -2249,9 +3374,17 @@ INSERT INTO `item_mods` VALUES(12594, 1, 23);
 INSERT INTO `item_mods` VALUES(12595, 1, 31);
 INSERT INTO `item_mods` VALUES(12596, 1, 36);
 INSERT INTO `item_mods` VALUES(12596, 9, 1);
+
+-- ------------------------------------------
+-- War Aketon
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(12597, 1, 38);
 INSERT INTO `item_mods` VALUES(12597, 2, 25);
 INSERT INTO `item_mods` VALUES(12597, 9, 4);
+INSERT INTO `item_mods` VALUES(12597, 499, 1); -- blaze spikes
+INSERT INTO `item_mods` VALUES(12597, 500, 25); -- spikes dmg
+INSERT INTO `item_mods` VALUES(12597, 501, 25); -- spikes proc rate
+
 INSERT INTO `item_mods` VALUES(12598, 1, 20);
 INSERT INTO `item_mods` VALUES(12598, 9, 1);
 INSERT INTO `item_mods` VALUES(12598, 11, 1);
@@ -2297,9 +3430,18 @@ INSERT INTO `item_mods` VALUES(12618, 12, 3);
 INSERT INTO `item_mods` VALUES(12618, 27, 4);
 INSERT INTO `item_mods` VALUES(12618, 110, 3);
 INSERT INTO `item_mods` VALUES(12618, 168, 10);
+INSERT INTO `item_mods` VALUES(12620, 1, 65);
+INSERT INTO `item_mods` VALUES(12620, 8, 16);
+INSERT INTO `item_mods` VALUES(12620, 23, 32);
+INSERT INTO `item_mods` VALUES(12620, 161, -6);
+INSERT INTO `item_mods` VALUES(12620, 163, 6);
 INSERT INTO `item_mods` VALUES(12621, 1, 45);
 INSERT INTO `item_mods` VALUES(12621, 54, 9);
 INSERT INTO `item_mods` VALUES(12621, 241, 2);
+INSERT INTO `item_mods` VALUES(12622, 1, 53);
+INSERT INTO `item_mods` VALUES(12622, 25, 16);
+INSERT INTO `item_mods` VALUES(12622, 165, 4);
+INSERT INTO `item_mods` VALUES(12622, 288, 5);
 INSERT INTO `item_mods` VALUES(12624, 1, 15);
 INSERT INTO `item_mods` VALUES(12623, 1, 39);
 INSERT INTO `item_mods` VALUES(12623, 27, 4);
@@ -2589,6 +3731,21 @@ INSERT INTO `item_mods` VALUES(12740, 61, -3);
 INSERT INTO `item_mods` VALUES(12743, 1, 8);
 INSERT INTO `item_mods` VALUES(12743, 23, 5);
 INSERT INTO `item_mods` VALUES(12744, 1, 2);
+INSERT INTO `item_mods` VALUES(12745, 1, 23);
+INSERT INTO `item_mods` VALUES(12745, 8, 4);
+INSERT INTO `item_mods` VALUES(12745, 9, 2);
+INSERT INTO `item_mods` VALUES(12745, 23, 10);
+INSERT INTO `item_mods` VALUES(12745, 384, 20);
+INSERT INTO `item_mods` VALUES(12746, 1, 21);
+INSERT INTO `item_mods` VALUES(12746, 8, 4);
+INSERT INTO `item_mods` VALUES(12746, 11, 4);
+INSERT INTO `item_mods` VALUES(12746, 384, 20);
+INSERT INTO `item_mods` VALUES(12747, 1, 19);
+INSERT INTO `item_mods` VALUES(12747, 2, 12);
+INSERT INTO `item_mods` VALUES(12747, 13, 3);
+INSERT INTO `item_mods` VALUES(12747, 14, 3);
+INSERT INTO `item_mods` VALUES(12747, 30, 5);
+INSERT INTO `item_mods` VALUES(12747, 27, -2);
 INSERT INTO `item_mods` VALUES(12748, 1, 16);
 INSERT INTO `item_mods` VALUES(12748, 298, 3);
 INSERT INTO `item_mods` VALUES(12749, 1, 4);
@@ -2808,6 +3965,10 @@ INSERT INTO `item_mods` VALUES(12842, 57, 1);
 INSERT INTO `item_mods` VALUES(12842, 58, 1);
 INSERT INTO `item_mods` VALUES(12843, 1, 21);
 INSERT INTO `item_mods` VALUES(12844, 1, 23);
+INSERT INTO `item_mods` VALUES(12846, 1, 33);
+INSERT INTO `item_mods` VALUES(12846, 8, 3);
+INSERT INTO `item_mods` VALUES(12846, 25, 12);
+INSERT INTO `item_mods` VALUES(12846, 27, 3);
 INSERT INTO `item_mods` VALUES(12847, 1, 31);
 INSERT INTO `item_mods` VALUES(12847, 2, 25);
 INSERT INTO `item_mods` VALUES(12847, 12, 2);
@@ -2819,9 +3980,17 @@ INSERT INTO `item_mods` VALUES(12850, 1, 17);
 INSERT INTO `item_mods` VALUES(12851, 1, 22);
 INSERT INTO `item_mods` VALUES(12852, 1, 25);
 INSERT INTO `item_mods` VALUES(12852, 11, 1);
+
+-- ------------------------------------------
+-- War Brais
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(12853, 1, 27);
 INSERT INTO `item_mods` VALUES(12853, 2, 25);
 INSERT INTO `item_mods` VALUES(12853, 11, 4);
+INSERT INTO `item_mods` VALUES(12853, 499, 1); -- blaze spikes
+INSERT INTO `item_mods` VALUES(12853, 500, 15); -- spikes dmg
+INSERT INTO `item_mods` VALUES(12853, 501, 20); -- spikes proc rate
+
 INSERT INTO `item_mods` VALUES(12854, 1, 14);
 INSERT INTO `item_mods` VALUES(12854, 68, 2);
 INSERT INTO `item_mods` VALUES(12855, 1, 11);
@@ -2892,10 +4061,18 @@ INSERT INTO `item_mods` VALUES(12879, 2, 35);
 INSERT INTO `item_mods` VALUES(12879, 23, 14);
 INSERT INTO `item_mods` VALUES(12879, 26, 10);
 INSERT INTO `item_mods` VALUES(12879, 169, -3);
+
+-- ------------------------------------------
+-- Ogre Trousers
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(12880, 1, 31);
 INSERT INTO `item_mods` VALUES(12880, 2, 30);
 INSERT INTO `item_mods` VALUES(12880, 12, 3);
 INSERT INTO `item_mods` VALUES(12880, 25, -3);
+INSERT INTO `item_mods` VALUES(12880, 499, 2); -- ice spikes
+INSERT INTO `item_mods` VALUES(12880, 500, 15); -- spikes dmg
+INSERT INTO `item_mods` VALUES(12880, 501, 20); -- spikes proc rate
+
 INSERT INTO `item_mods` VALUES(12881, 1, 11);
 INSERT INTO `item_mods` VALUES(12881, 10, 1);
 INSERT INTO `item_mods` VALUES(12882, 1, 12);
@@ -3010,9 +4187,17 @@ INSERT INTO `item_mods` VALUES(12943, 1, 7);
 INSERT INTO `item_mods` VALUES(12943, 11, 1);
 INSERT INTO `item_mods` VALUES(12944, 1, 3);
 INSERT INTO `item_mods` VALUES(12945, 1, 6);
+
+-- -------------------------------------------
+-- Suzaku's Sune-Ate
+-- -------------------------------------------
 INSERT INTO `item_mods` VALUES(12946, 1, 30);
 INSERT INTO `item_mods` VALUES(12946, 13, 15);
 INSERT INTO `item_mods` VALUES(12946, 54, 50);
+INSERT INTO `item_mods` VALUES(12946, 499, 1); -- blaze spikes
+INSERT INTO `item_mods` VALUES(12946, 500, 20); -- spikes dmg
+INSERT INTO `item_mods` VALUES(12946, 501, 20); -- spikes proc rate
+
 INSERT INTO `item_mods` VALUES(12947, 1, 12);
 INSERT INTO `item_mods` VALUES(12947, 58, -3);
 INSERT INTO `item_mods` VALUES(12947, 59, 3);
@@ -3428,6 +4613,8 @@ INSERT INTO `item_mods` VALUES(13143, 9, 1);
 INSERT INTO `item_mods` VALUES(13143, 58, 3);
 INSERT INTO `item_mods` VALUES(13144, 1, 5);
 INSERT INTO `item_mods` VALUES(13145, 5, 20);
+INSERT INTO `item_mods` VALUES(13146, 8, 2);
+INSERT INTO `item_mods` VALUES(13146, 23, 3);
 INSERT INTO `item_mods` VALUES(13148, 2, 7);
 INSERT INTO `item_mods` VALUES(13148, 108, 7);
 INSERT INTO `item_mods` VALUES(13149, 2, 7);
@@ -4451,6 +5638,8 @@ INSERT INTO `item_mods` VALUES(13617, 1, 7);
 INSERT INTO `item_mods` VALUES(13617, 58, 6);
 INSERT INTO `item_mods` VALUES(13618, 1, 4);
 INSERT INTO `item_mods` VALUES(13618, 13, 3);
+INSERT INTO `item_mods` VALUES(13619, 1, 3);
+INSERT INTO `item_mods` VALUES(13619, 10, 2);
 INSERT INTO `item_mods` VALUES(13620, 1, 6);
 INSERT INTO `item_mods` VALUES(13620, 14, 10);
 INSERT INTO `item_mods` VALUES(13621, 1, 9);
@@ -4677,10 +5866,18 @@ INSERT INTO `item_mods` VALUES(13704, 5, 15);
 INSERT INTO `item_mods` VALUES(13704, 12, -5);
 INSERT INTO `item_mods` VALUES(13704, 14, 3);
 INSERT INTO `item_mods` VALUES(13704, 23, 10);
+
+-- ------------------------------------------
+-- Ogre Jerkin
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(13705, 1, 43);
 INSERT INTO `item_mods` VALUES(13705, 2, 40);
 INSERT INTO `item_mods` VALUES(13705, 10, 6);
 INSERT INTO `item_mods` VALUES(13705, 25, -3);
+INSERT INTO `item_mods` VALUES(13705, 499, 2); -- ice spikes
+INSERT INTO `item_mods` VALUES(13705, 500, 20); -- spikes dmg
+INSERT INTO `item_mods` VALUES(13705, 501, 25); -- spikes proc rate
+
 INSERT INTO `item_mods` VALUES(13706, 1, 16);
 INSERT INTO `item_mods` VALUES(13706, 5, 12);
 INSERT INTO `item_mods` VALUES(13706, 8, 6);
@@ -4923,6 +6120,20 @@ INSERT INTO `item_mods` VALUES(13758, 10, 6);
 INSERT INTO `item_mods` VALUES(13758, 14, 1);
 INSERT INTO `item_mods` VALUES(13758, 60, 3);
 INSERT INTO `item_mods` VALUES(13758, 61, 3);
+INSERT INTO `item_mods` VALUES(13759, 1, 61);
+INSERT INTO `item_mods` VALUES(13759, 8, 8);
+INSERT INTO `item_mods` VALUES(13759, 9, 4);
+INSERT INTO `item_mods` VALUES(13759, 25, 8);
+INSERT INTO `item_mods` VALUES(13759, 23, 8);
+INSERT INTO `item_mods` VALUES(13759, 165, 2);
+INSERT INTO `item_mods` VALUES(13760, 1, 56);
+INSERT INTO `item_mods` VALUES(13760, 8, 4);
+INSERT INTO `item_mods` VALUES(13760, 9, 4);
+INSERT INTO `item_mods` VALUES(13760, 11, 4);
+INSERT INTO `item_mods` VALUES(13760, 25, 8);
+INSERT INTO `item_mods` VALUES(13760, 26, 8);
+INSERT INTO `item_mods` VALUES(13760, 68, 8);
+INSERT INTO `item_mods` VALUES(13760, 288, 2);
 INSERT INTO `item_mods` VALUES(13761, 1, 43);
 INSERT INTO `item_mods` VALUES(13761, 58, -4);
 INSERT INTO `item_mods` VALUES(13761, 59, 6);
@@ -4970,9 +6181,17 @@ INSERT INTO `item_mods` VALUES(13770, 1, 44);
 INSERT INTO `item_mods` VALUES(13770, 8, -1);
 INSERT INTO `item_mods` VALUES(13770, 11, 3);
 INSERT INTO `item_mods` VALUES(13770, 106, 12);
+
+-- ------------------------------------------
+-- War Aketon +1
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(13771, 1, 39);
 INSERT INTO `item_mods` VALUES(13771, 2, 27);
 INSERT INTO `item_mods` VALUES(13771, 9, 5);
+INSERT INTO `item_mods` VALUES(13771, 499, 1); -- blaze spikes
+INSERT INTO `item_mods` VALUES(13771, 500, 30); -- spikes dmg
+INSERT INTO `item_mods` VALUES(13771, 501, 30); -- spikes proc rate
+
 INSERT INTO `item_mods` VALUES(13772, 1, 40);
 INSERT INTO `item_mods` VALUES(13772, 2, 20);
 INSERT INTO `item_mods` VALUES(13772, 4, 50);
@@ -5033,6 +6252,14 @@ INSERT INTO `item_mods` VALUES(13777, 1, 45);
 INSERT INTO `item_mods` VALUES(13777, 2, 14);
 INSERT INTO `item_mods` VALUES(13777, 60, 10);
 INSERT INTO `item_mods` VALUES(13777, 61, -8);
+INSERT INTO `item_mods` VALUES(13778, 1, 48);
+INSERT INTO `item_mods` VALUES(13778, 2, 24);
+INSERT INTO `item_mods` VALUES(13778, 5, 24);
+INSERT INTO `item_mods` VALUES(13778, 12, 6);
+INSERT INTO `item_mods` VALUES(13778, 13, 6);
+INSERT INTO `item_mods` VALUES(13778, 14, 6);
+INSERT INTO `item_mods` VALUES(13778, 30, 4);
+INSERT INTO `item_mods` VALUES(13778, 28, 4);
 INSERT INTO `item_mods` VALUES(13779, 1, 60);
 INSERT INTO `item_mods` VALUES(13779, 12, 4);
 INSERT INTO `item_mods` VALUES(13779, 115, 8);
@@ -5043,10 +6270,18 @@ INSERT INTO `item_mods` VALUES(13781, 1, 41);
 INSERT INTO `item_mods` VALUES(13781, 2, 10);
 INSERT INTO `item_mods` VALUES(13781, 10, 3);
 INSERT INTO `item_mods` VALUES(13781, 61, 15);
+
+-- ------------------------------------------
+-- Ninja Chainmail
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(13782, 1, 41);
 INSERT INTO `item_mods` VALUES(13782, 2, 15);
 INSERT INTO `item_mods` VALUES(13782, 10, 3);
 INSERT INTO `item_mods` VALUES(13782, 259, 5);
+INSERT INTO `item_mods` VALUES(13782, 499, 1); -- blaze spikes
+INSERT INTO `item_mods` VALUES(13782, 500, 25); -- spikes dmg
+INSERT INTO `item_mods` VALUES(13782, 501, 25); -- spikes proc rate
+
 INSERT INTO `item_mods` VALUES(13783, 1, 28);
 INSERT INTO `item_mods` VALUES(13784, 1, 29);
 INSERT INTO `item_mods` VALUES(13785, 1, 36);
@@ -5063,6 +6298,11 @@ INSERT INTO `item_mods` VALUES(13789, 1, 44);
 INSERT INTO `item_mods` VALUES(13789, 59, 9);
 INSERT INTO `item_mods` VALUES(13790, 1, 45);
 INSERT INTO `item_mods` VALUES(13790, 59, 10);
+INSERT INTO `item_mods` VALUES(13792, 1, 64);
+INSERT INTO `item_mods` VALUES(13792, 8, 15);
+INSERT INTO `item_mods` VALUES(13792, 23, 30);
+INSERT INTO `item_mods` VALUES(13792, 161, -5);
+INSERT INTO `item_mods` VALUES(13792, 163, 5);
 INSERT INTO `item_mods` VALUES(13793, 1, 48);
 INSERT INTO `item_mods` VALUES(13793, 8, 6);
 INSERT INTO `item_mods` VALUES(13793, 9, 6);
@@ -5454,14 +6694,29 @@ INSERT INTO `item_mods` VALUES(13919, 2, 21);
 INSERT INTO `item_mods` VALUES(13919, 10, 6);
 INSERT INTO `item_mods` VALUES(13919, 68, -6);
 INSERT INTO `item_mods` VALUES(13919, 107, 6);
+
+-- ------------------------------------------
+-- Wyvern Helm
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(13920, 1, 30);
 INSERT INTO `item_mods` VALUES(13920, 2, 30);
 INSERT INTO `item_mods` VALUES(13920, 8, 5);
 INSERT INTO `item_mods` VALUES(13920, 54, 10);
+INSERT INTO `item_mods` VALUES(13920, 499, 1); -- blaze spikes
+INSERT INTO `item_mods` VALUES(13920, 500, 20); -- spikes dmg
+INSERT INTO `item_mods` VALUES(13920, 501, 15); -- spikes proc rate
+
+-- ------------------------------------------
+-- Wyvern Helm +1
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(13921, 1, 31);
 INSERT INTO `item_mods` VALUES(13921, 2, 31);
 INSERT INTO `item_mods` VALUES(13921, 8, 6);
 INSERT INTO `item_mods` VALUES(13921, 54, 11);
+INSERT INTO `item_mods` VALUES(13921, 499, 1); -- blaze spikes
+INSERT INTO `item_mods` VALUES(13921, 500, 25); -- spikes dmg
+INSERT INTO `item_mods` VALUES(13921, 501, 20); -- spikes proc rate
+
 INSERT INTO `item_mods` VALUES(13922, 1, 25);
 INSERT INTO `item_mods` VALUES(13922, 12, 5);
 INSERT INTO `item_mods` VALUES(13922, 13, -5);
@@ -5477,11 +6732,26 @@ INSERT INTO `item_mods` VALUES(13924, 2, -21);
 INSERT INTO `item_mods` VALUES(13924, 23, 9);
 INSERT INTO `item_mods` VALUES(13924, 25, 6);
 INSERT INTO `item_mods` VALUES(13924, 68, -9);
+
+-- ------------------------------------------
+-- Rasetsu Jinpachi
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(13925, 1, 31);
 INSERT INTO `item_mods` VALUES(13925, 23, 2);
+INSERT INTO `item_mods` VALUES(13925, 499, 1); -- blaze spikes
+INSERT INTO `item_mods` VALUES(13925, 500, 20); -- spikes dmg
+INSERT INTO `item_mods` VALUES(13925, 501, 15); -- spikes proc rate
+
+-- ------------------------------------------
+-- Rasetsu Jinpachi +1
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(13926, 1, 32);
 INSERT INTO `item_mods` VALUES(13926, 23, 3);
 INSERT INTO `item_mods` VALUES(13926, 291, 1);
+INSERT INTO `item_mods` VALUES(13926, 499, 1); -- blaze spikes
+INSERT INTO `item_mods` VALUES(13926, 500, 25); -- spikes dmg
+INSERT INTO `item_mods` VALUES(13926, 501, 20); -- spikes proc rate
+
 INSERT INTO `item_mods` VALUES(13927, 1, 33);
 INSERT INTO `item_mods` VALUES(13927, 2, 12);
 INSERT INTO `item_mods` VALUES(13927, 8, 11);
@@ -6443,6 +7713,12 @@ INSERT INTO `item_mods` VALUES(14208, 59, 7);
 INSERT INTO `item_mods` VALUES(14208, 61, 7);
 INSERT INTO `item_mods` VALUES(14209, 1, 34);
 INSERT INTO `item_mods` VALUES(14209, 60, 3);
+INSERT INTO `item_mods` VALUES(14210, 1, 37);
+INSERT INTO `item_mods` VALUES(14210, 9, 5);
+INSERT INTO `item_mods` VALUES(14210, 10, 5);
+INSERT INTO `item_mods` VALUES(14210, 25, 10);
+INSERT INTO `item_mods` VALUES(14210, 27, 2);
+INSERT INTO `item_mods` VALUES(14210, 384, 20);
 INSERT INTO `item_mods` VALUES(14211, 1, 29);
 INSERT INTO `item_mods` VALUES(14211, 12, 1);
 INSERT INTO `item_mods` VALUES(14211, 54, 1);
@@ -6566,9 +7842,17 @@ INSERT INTO `item_mods` VALUES(14235, 163, -7);
 INSERT INTO `item_mods` VALUES(14236, 1, 22);
 INSERT INTO `item_mods` VALUES(14237, 1, 26);
 INSERT INTO `item_mods` VALUES(14237, 11, 2);
+
+-- ------------------------------------------
+-- War Brais +1
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(14238, 1, 28);
 INSERT INTO `item_mods` VALUES(14238, 2, 27);
 INSERT INTO `item_mods` VALUES(14238, 11, 5);
+INSERT INTO `item_mods` VALUES(14238, 499, 1); -- blaze spikes
+INSERT INTO `item_mods` VALUES(14238, 500, 25); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14238, 501, 25); -- spikes proc rate
+
 INSERT INTO `item_mods` VALUES(14239, 1, 31);
 INSERT INTO `item_mods` VALUES(14239, 5, 18);
 INSERT INTO `item_mods` VALUES(14239, 10, 3);
@@ -6614,6 +7898,16 @@ INSERT INTO `item_mods` VALUES(14255, 11, 2);
 INSERT INTO `item_mods` VALUES(14256, 1, 28);
 INSERT INTO `item_mods` VALUES(14256, 11, 4);
 INSERT INTO `item_mods` VALUES(14256, 27, 3);
+INSERT INTO `item_mods` VALUES(14257, 1, 35);
+INSERT INTO `item_mods` VALUES(14257, 25, 9);
+INSERT INTO `item_mods` VALUES(14257, 26, 9);
+INSERT INTO `item_mods` VALUES(14257, 384, 30);
+INSERT INTO `item_mods` VALUES(14258, 1, 32);
+INSERT INTO `item_mods` VALUES(14258, 2, 14);
+INSERT INTO `item_mods` VALUES(14258, 12, 5);
+INSERT INTO `item_mods` VALUES(14258, 14, 5);
+INSERT INTO `item_mods` VALUES(14258, 30, 3);
+INSERT INTO `item_mods` VALUES(14258, 28, 3);
 INSERT INTO `item_mods` VALUES(14259, 1, 12);
 INSERT INTO `item_mods` VALUES(14259, 10, 1);
 INSERT INTO `item_mods` VALUES(14259, 23, 3);
@@ -6664,10 +7958,18 @@ INSERT INTO `item_mods` VALUES(14277, 1, 23);
 INSERT INTO `item_mods` VALUES(14277, 61, 6);
 INSERT INTO `item_mods` VALUES(14278, 1, 24);
 INSERT INTO `item_mods` VALUES(14278, 61, 6);
+
+-- ------------------------------------------
+-- Ogre Trousers +1
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(14279, 1, 32);
 INSERT INTO `item_mods` VALUES(14279, 2, 32);
 INSERT INTO `item_mods` VALUES(14279, 12, 4);
 INSERT INTO `item_mods` VALUES(14279, 25, -5);
+INSERT INTO `item_mods` VALUES(14279, 499, 2); -- ice spikes
+INSERT INTO `item_mods` VALUES(14279, 500, 20); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14279, 501, 25); -- spikes proc rate
+
 INSERT INTO `item_mods` VALUES(14280, 1, 43);
 INSERT INTO `item_mods` VALUES(14280, 2, 25);
 INSERT INTO `item_mods` VALUES(14280, 5, 25);
@@ -6729,11 +8031,26 @@ INSERT INTO `item_mods` VALUES(14296, 25, 7);
 INSERT INTO `item_mods` VALUES(14296, 68, -7);
 INSERT INTO `item_mods` VALUES(14297, 1, 1);
 INSERT INTO `item_mods` VALUES(14298, 1, 8);
+
+-- ------------------------------------------
+-- Rasetsu Hakama
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(14299, 1, 40);
 INSERT INTO `item_mods` VALUES(14299, 23, 2);
+INSERT INTO `item_mods` VALUES(14299, 499, 2); -- ice spikes
+INSERT INTO `item_mods` VALUES(14299, 500, 15); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14299, 501, 20); -- spikes proc rate
+
+-- ------------------------------------------
+-- Rasetsu Hakama +1
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(14300, 1, 41);
 INSERT INTO `item_mods` VALUES(14300, 23, 3);
 INSERT INTO `item_mods` VALUES(14300, 291, 1);
+INSERT INTO `item_mods` VALUES(14300, 499, 2); -- ice spikes
+INSERT INTO `item_mods` VALUES(14300, 500, 20); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14300, 501, 25); -- spikes proc rate
+
 INSERT INTO `item_mods` VALUES(14301, 1, 38);
 INSERT INTO `item_mods` VALUES(14301, 8, -5);
 INSERT INTO `item_mods` VALUES(14301, 9, -5);
@@ -6833,12 +8150,27 @@ INSERT INTO `item_mods` VALUES(14319, 27, -2);
 INSERT INTO `item_mods` VALUES(14320, 1, 30);
 INSERT INTO `item_mods` VALUES(14320, 5, 16);
 INSERT INTO `item_mods` VALUES(14320, 27, -3);
+
+-- ------------------------------------------
+-- Igqira Lappas
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(14321, 1, 30);
 INSERT INTO `item_mods` VALUES(14321, 68, 10);
 INSERT INTO `item_mods` VALUES(14321, 114, 10);
+INSERT INTO `item_mods` VALUES(14321, 499, 4); -- curse spikes
+INSERT INTO `item_mods` VALUES(14321, 500, 0); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14321, 501, 25); -- spikes proc rate
+
+-- ------------------------------------------
+-- Genie Lappas
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(14322, 1, 31);
 INSERT INTO `item_mods` VALUES(14322, 68, 11);
 INSERT INTO `item_mods` VALUES(14322, 114, 11);
+INSERT INTO `item_mods` VALUES(14322, 499, 4); -- curse spikes
+INSERT INTO `item_mods` VALUES(14322, 500, 0); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14322, 501, 30); -- spikes proc rate
+
 INSERT INTO `item_mods` VALUES(14323, 1, 12);
 INSERT INTO `item_mods` VALUES(14323, 9, 1);
 INSERT INTO `item_mods` VALUES(14323, 61, 1);
@@ -6872,6 +8204,10 @@ INSERT INTO `item_mods` VALUES(14334, 73, 6);
 INSERT INTO `item_mods` VALUES(14335, 1, 26);
 INSERT INTO `item_mods` VALUES(14335, 11, 3);
 INSERT INTO `item_mods` VALUES(14335, 27, 1);
+INSERT INTO `item_mods` VALUES(14336, 1, 52);
+INSERT INTO `item_mods` VALUES(14336, 25, 15);
+INSERT INTO `item_mods` VALUES(14336, 165, 3);
+INSERT INTO `item_mods` VALUES(14336, 288, 4);
 INSERT INTO `item_mods` VALUES(14338, 1, 11);
 INSERT INTO `item_mods` VALUES(14338, 2, 2);
 INSERT INTO `item_mods` VALUES(14338, 5, 2);
@@ -6958,10 +8294,18 @@ INSERT INTO `item_mods` VALUES(14364, 1, 38);
 INSERT INTO `item_mods` VALUES(14364, 27, 3);
 INSERT INTO `item_mods` VALUES(14364, 28, 9);
 -- INSERT INTO `item_mods` VALUES(14364, 0, 4); -- MCRIT 4%
+
+-- ------------------------------------------
+-- Ogre Jerkin +1
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(14366, 1, 44);
 INSERT INTO `item_mods` VALUES(14366, 2, 42);
 INSERT INTO `item_mods` VALUES(14366, 10, 7);
 INSERT INTO `item_mods` VALUES(14366, 25, -5);
+INSERT INTO `item_mods` VALUES(14366, 499, 2); -- ice spikes
+INSERT INTO `item_mods` VALUES(14366, 500, 25); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14366, 501, 30); -- spikes proc rate
+
 INSERT INTO `item_mods` VALUES(14367, 1, 52);
 INSERT INTO `item_mods` VALUES(14367, 2, 40);
 INSERT INTO `item_mods` VALUES(14367, 5, 40);
@@ -6996,11 +8340,26 @@ INSERT INTO `item_mods` VALUES(14373, 25, 5);
 INSERT INTO `item_mods` VALUES(14373, 68, 5);
 INSERT INTO `item_mods` VALUES(14374, 1, 2);
 INSERT INTO `item_mods` VALUES(14375, 1, 12);
+
+-- ------------------------------------------
+-- Rasetsu Samue
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(14376, 1, 50);
 INSERT INTO `item_mods` VALUES(14376, 23, 2);
+INSERT INTO `item_mods` VALUES(14376, 499, 5); -- shock spikes
+INSERT INTO `item_mods` VALUES(14376, 500, 15); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14376, 501, 25); -- spikes proc rate
+
+-- ------------------------------------------
+-- Rasetsu Samue +1
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(14377, 1, 51);
 INSERT INTO `item_mods` VALUES(14377, 23, 3);
 INSERT INTO `item_mods` VALUES(14377, 291, 1);
+INSERT INTO `item_mods` VALUES(14377, 499, 5); -- shock spikes
+INSERT INTO `item_mods` VALUES(14377, 500, 20); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14377, 501, 30); -- spikes proc rate
+
 INSERT INTO `item_mods` VALUES(14378, 1, 50);
 INSERT INTO `item_mods` VALUES(14378, 2, 16);
 INSERT INTO `item_mods` VALUES(14378, 8, 12);
@@ -7168,14 +8527,29 @@ INSERT INTO `item_mods` VALUES(14419, 1, 45);
 INSERT INTO `item_mods` VALUES(14419, 5, 22);
 INSERT INTO `item_mods` VALUES(14419, 14, 5);
 INSERT INTO `item_mods` VALUES(14419, 27, -3);
+
+-- ------------------------------------------
+-- Igqira Weskit
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(14420, 1, 35);
 INSERT INTO `item_mods` VALUES(14420, 28, 6);
 INSERT INTO `item_mods` VALUES(14420, 115, 5);
 INSERT INTO `item_mods` VALUES(14420, 296, 2);
+INSERT INTO `item_mods` VALUES(14420, 499, 4); -- curse spikes
+INSERT INTO `item_mods` VALUES(14420, 500, 0); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14420, 501, 30); -- spikes proc rate
+
+-- ------------------------------------------
+-- Genie Weskit
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(14421, 1, 36);
 INSERT INTO `item_mods` VALUES(14421, 28, 7);
 INSERT INTO `item_mods` VALUES(14421, 115, 6);
 INSERT INTO `item_mods` VALUES(14421, 296, 2);
+INSERT INTO `item_mods` VALUES(14421, 499, 4); -- curse spikes
+INSERT INTO `item_mods` VALUES(14421, 500, 0); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14421, 501, 35); -- spikes proc rate
+
 INSERT INTO `item_mods` VALUES(14422, 1, 18);
 INSERT INTO `item_mods` VALUES(14422, 61, 1);
 INSERT INTO `item_mods` VALUES(14422, 26, 2);
@@ -7357,11 +8731,19 @@ INSERT INTO `item_mods` VALUES(14484, 2, 10);
 INSERT INTO `item_mods` VALUES(14484, 8, 6);
 INSERT INTO `item_mods` VALUES(14484, 10, 6);
 INSERT INTO `item_mods` VALUES(14484, 25, 12);
+
+-- ------------------------------------------
+-- Ninja Chainmail +1
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(14485, 1, 46);
 INSERT INTO `item_mods` VALUES(14485, 2, 15);
 INSERT INTO `item_mods` VALUES(14485, 9, 5);
 INSERT INTO `item_mods` VALUES(14485, 10, 5);
 INSERT INTO `item_mods` VALUES(14485, 259, 5);
+INSERT INTO `item_mods` VALUES(14485, 499, 5); -- shock spikes
+INSERT INTO `item_mods` VALUES(14485, 500, 25); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14485, 501, 25); -- spikes proc rate
+
 INSERT INTO `item_mods` VALUES(14486, 1, 49);
 INSERT INTO `item_mods` VALUES(14486, 2, 15);
 INSERT INTO `item_mods` VALUES(14486, 8, 6);
@@ -7754,15 +9136,18 @@ INSERT INTO `item_mods` VALUES(14578, 2, 20);
 INSERT INTO `item_mods` VALUES(14578, 8, 2);
 INSERT INTO `item_mods` VALUES(14578, 9, 2);
 INSERT INTO `item_mods` VALUES(14578, 27, -2);
+INSERT INTO `item_mods` VALUES(14578, 491, 10);
 INSERT INTO `item_mods` VALUES(14579, 1, 38);
 INSERT INTO `item_mods` VALUES(14579, 2, 20);
 INSERT INTO `item_mods` VALUES(14579, 8, 2);
 INSERT INTO `item_mods` VALUES(14579, 9, 2);
 INSERT INTO `item_mods` VALUES(14579, 27, -2);
+INSERT INTO `item_mods` VALUES(14579, 491, 10);
 INSERT INTO `item_mods` VALUES(14580, 1, 38);
 INSERT INTO `item_mods` VALUES(14580, 5, 13);
 INSERT INTO `item_mods` VALUES(14580, 12, 1);
 INSERT INTO `item_mods` VALUES(14580, 13, 1);
+INSERT INTO `item_mods` VALUES(14580, 337, 15);
 INSERT INTO `item_mods` VALUES(14581, 1, 32);
 INSERT INTO `item_mods` VALUES(14581, 9, 2);
 INSERT INTO `item_mods` VALUES(14582, 1, 41);
@@ -8395,12 +9780,27 @@ INSERT INTO `item_mods` VALUES(14851, 1, 14);
 INSERT INTO `item_mods` VALUES(14851, 5, 14);
 INSERT INTO `item_mods` VALUES(14851, 25, 5);
 INSERT INTO `item_mods` VALUES(14851, 27, -2);
+
+-- ------------------------------------------
+-- Igqira Manillas
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(14852, 1, 11);
 INSERT INTO `item_mods` VALUES(14852, 28, 2);
 INSERT INTO `item_mods` VALUES(14852, 115, 5);
+INSERT INTO `item_mods` VALUES(14852, 499, 4); -- curse spikes
+INSERT INTO `item_mods` VALUES(14852, 500, 0); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14852, 501, 20); -- spikes proc rate
+
+-- ------------------------------------------
+-- Genie Manillas
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(14853, 1, 12);
 INSERT INTO `item_mods` VALUES(14853, 28, 3);
 INSERT INTO `item_mods` VALUES(14853, 115, 6);
+INSERT INTO `item_mods` VALUES(14853, 499, 4); -- curse spikes
+INSERT INTO `item_mods` VALUES(14853, 500, 0); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14853, 501, 25); -- spikes proc rate
+
 INSERT INTO `item_mods` VALUES(14854, 1, 5);
 INSERT INTO `item_mods` VALUES(14854, 61, 1);
 INSERT INTO `item_mods` VALUES(14854, 26, 1);
@@ -8772,11 +10172,19 @@ INSERT INTO `item_mods` VALUES(14951, 2, 28);
 INSERT INTO `item_mods` VALUES(14951, 5, 28);
 INSERT INTO `item_mods` VALUES(14951, 8, 2);
 INSERT INTO `item_mods` VALUES(14951, 13, 2);
+
+-- ------------------------------------------
+-- Ice Gauntlets
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(14952, 1, 16);
 INSERT INTO `item_mods` VALUES(14952, 8, 4);
 INSERT INTO `item_mods` VALUES(14952, 10, 4);
 INSERT INTO `item_mods` VALUES(14952, 25, 4);
 INSERT INTO `item_mods` VALUES(14952, 71, 1);
+INSERT INTO `item_mods` VALUES(14952, 499, 2); -- ice spikes
+INSERT INTO `item_mods` VALUES(14952, 500, 15); -- spikes dmg
+INSERT INTO `item_mods` VALUES(14952, 501, 15); -- spikes proc rate
+
 INSERT INTO `item_mods` VALUES(14953, 1, 16);
 INSERT INTO `item_mods` VALUES(14954, 1, 14);
 INSERT INTO `item_mods` VALUES(14955, 1, 11);
@@ -8951,10 +10359,12 @@ INSERT INTO `item_mods` VALUES(15002, 1, 15);
 INSERT INTO `item_mods` VALUES(15002, 2, 12);
 INSERT INTO `item_mods` VALUES(15002, 9, 2);
 INSERT INTO `item_mods` VALUES(15002, 11, 2);
+INSERT INTO `item_mods` VALUES(15002, 403, 10);
 INSERT INTO `item_mods` VALUES(15003, 1, 15);
 INSERT INTO `item_mods` VALUES(15003, 2, 12);
 INSERT INTO `item_mods` VALUES(15003, 9, 2);
 INSERT INTO `item_mods` VALUES(15003, 11, 2);
+INSERT INTO `item_mods` VALUES(15003, 403, 10);
 INSERT INTO `item_mods` VALUES(15004, 1, 13);
 INSERT INTO `item_mods` VALUES(15004, 5, 15);
 INSERT INTO `item_mods` VALUES(15004, 13, 3);
@@ -9078,11 +10488,13 @@ INSERT INTO `item_mods` VALUES(15035, 2, 17);
 INSERT INTO `item_mods` VALUES(15035, 9, 4);
 INSERT INTO `item_mods` VALUES(15035, 11, 4);
 INSERT INTO `item_mods` VALUES(15035, 23, 5);
+INSERT INTO `item_mods` VALUES(15035, 403, 10);
 INSERT INTO `item_mods` VALUES(15036, 1, 16);
 INSERT INTO `item_mods` VALUES(15036, 2, 17);
 INSERT INTO `item_mods` VALUES(15036, 9, 4);
 INSERT INTO `item_mods` VALUES(15036, 11, 4);
 INSERT INTO `item_mods` VALUES(15036, 23, 5);
+INSERT INTO `item_mods` VALUES(15036, 403, 10);
 INSERT INTO `item_mods` VALUES(15037, 1, 14);
 INSERT INTO `item_mods` VALUES(15037, 5, 20);
 INSERT INTO `item_mods` VALUES(15037, 13, 5);
@@ -9114,9 +10526,17 @@ INSERT INTO `item_mods` VALUES(15041, 12, 4);
 INSERT INTO `item_mods` VALUES(15041, 13, 4);
 INSERT INTO `item_mods` VALUES(15041, 27, -3);
 INSERT INTO `item_mods` VALUES(15041, 114, 7);
+
+-- ------------------------------------------
+-- Gothic Gauntlets
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(15042, 1, 12);
 INSERT INTO `item_mods` VALUES(15042, 8, 3);
 INSERT INTO `item_mods` VALUES(15042, 27, 2);
+INSERT INTO `item_mods` VALUES(15042, 499, 2); -- ice spikes
+INSERT INTO `item_mods` VALUES(15042, 500, 15); -- spikes dmg
+INSERT INTO `item_mods` VALUES(15042, 501, 15); -- spikes proc rate
+
 INSERT INTO `item_mods` VALUES(15043, 1, 1);
 INSERT INTO `item_mods` VALUES(15043, 56, 2);
 INSERT INTO `item_mods` VALUES(15043, 57, 2);
@@ -9169,6 +10589,25 @@ INSERT INTO `item_mods` VALUES(15058, 25, 4);
 INSERT INTO `item_mods` VALUES(15059, 1, 12);
 INSERT INTO `item_mods` VALUES(15059, 25, 6);
 INSERT INTO `item_mods` VALUES(15059, 68, 3);
+INSERT INTO `item_mods` VALUES(15061, 1, 25);
+INSERT INTO `item_mods` VALUES(15061, 2, 18);
+INSERT INTO `item_mods` VALUES(15061, 25, 13);
+INSERT INTO `item_mods` VALUES(15062, 1, 19);
+INSERT INTO `item_mods` VALUES(15062, 60, 50);
+INSERT INTO `item_mods` VALUES(15062, 61, -50);
+INSERT INTO `item_mods` VALUES(15062, 27, -8);
+INSERT INTO `item_mods` VALUES(15063, 1, 22);
+INSERT INTO `item_mods` VALUES(15063, 2, -25);
+INSERT INTO `item_mods` VALUES(15063, 5, 75);
+INSERT INTO `item_mods` VALUES(15063, 296, 2);
+INSERT INTO `item_mods` VALUES(15064, 1, 20);
+INSERT INTO `item_mods` VALUES(15064, 23, 9);
+INSERT INTO `item_mods` VALUES(15064, 68, 9);
+INSERT INTO `item_mods` VALUES(15064, 289, 5);
+INSERT INTO `item_mods` VALUES(15065, 1, 24);
+INSERT INTO `item_mods` VALUES(15065, 5, 14);
+INSERT INTO `item_mods` VALUES(15065, 13, 5);
+INSERT INTO `item_mods` VALUES(15065, 29, 3);
 INSERT INTO `item_mods` VALUES(15066, 1, 1);
 INSERT INTO `item_mods` VALUES(15067, 1, 1);
 INSERT INTO `item_mods` VALUES(15068, 1, 22);
@@ -9552,12 +10991,27 @@ INSERT INTO `item_mods` VALUES(15157, 27, -1);
 INSERT INTO `item_mods` VALUES(15158, 1, 26);
 INSERT INTO `item_mods` VALUES(15158, 5, 9);
 INSERT INTO `item_mods` VALUES(15158, 27, -2);
+
+-- ------------------------------------------
+-- Igqira Tiara
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(15159, 1, 20);
 INSERT INTO `item_mods` VALUES(15159, 68, 10);
 INSERT INTO `item_mods` VALUES(15159, 114, 10);
+INSERT INTO `item_mods` VALUES(15159, 499, 4); -- curse spikes
+INSERT INTO `item_mods` VALUES(15159, 500, 0); -- spikes dmg
+INSERT INTO `item_mods` VALUES(15159, 501, 20); -- spikes proc rate
+
+-- ------------------------------------------
+-- Genie Tiara
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(15160, 1, 21);
 INSERT INTO `item_mods` VALUES(15160, 68, 11);
 INSERT INTO `item_mods` VALUES(15160, 114, 11);
+INSERT INTO `item_mods` VALUES(15160, 499, 4); -- curse spikes
+INSERT INTO `item_mods` VALUES(15160, 500, 0); -- spikes dmg
+INSERT INTO `item_mods` VALUES(15160, 501, 25); -- spikes proc rate
+
 INSERT INTO `item_mods` VALUES(15161, 1, 9);
 INSERT INTO `item_mods` VALUES(15161, 11, 1);
 INSERT INTO `item_mods` VALUES(15161, 61, 1);
@@ -10437,6 +11891,10 @@ INSERT INTO `item_mods` VALUES(15425, 13, -2);
 INSERT INTO `item_mods` VALUES(15425, 14, -2);
 INSERT INTO `item_mods` VALUES(15425, 25, 5);
 INSERT INTO `item_mods` VALUES(15425, 26, 5);
+INSERT INTO `item_mods` VALUES(15429, 1, 26);
+INSERT INTO `item_mods` VALUES(15429, 8, -4);
+INSERT INTO `item_mods` VALUES(15429, 9, -4);
+INSERT INTO `item_mods` VALUES(15429, 28, 4);
 INSERT INTO `item_mods` VALUES(15431, 1, 5);
 INSERT INTO `item_mods` VALUES(15431, 7, 15);
 INSERT INTO `item_mods` VALUES(15431, 27, 2);
@@ -11471,13 +12929,18 @@ INSERT INTO `item_mods` VALUES(15746, 1, 14);
 INSERT INTO `item_mods` VALUES(15746, 2, 7);
 INSERT INTO `item_mods` VALUES(15746, 23, 5);
 INSERT INTO `item_mods` VALUES(15746, 68, 5);
+INSERT INTO `item_mods` VALUES(15746, 492, 30);
+INSERT INTO `item_mods` VALUES(15746, 495, 100);
 INSERT INTO `item_mods` VALUES(15747, 1, 14);
 INSERT INTO `item_mods` VALUES(15747, 2, 7);
 INSERT INTO `item_mods` VALUES(15747, 23, 5);
 INSERT INTO `item_mods` VALUES(15747, 68, 5);
+INSERT INTO `item_mods` VALUES(15747, 492, 30);
+INSERT INTO `item_mods` VALUES(15747, 495, 100);
 INSERT INTO `item_mods` VALUES(15748, 1, 10);
 INSERT INTO `item_mods` VALUES(15748, 5, 15);
 INSERT INTO `item_mods` VALUES(15748, 27, -2);
+INSERT INTO `item_mods` VALUES(15748, 489, -5);
 INSERT INTO `item_mods` VALUES(15749, 1, 8);
 INSERT INTO `item_mods` VALUES(15749, 11, 2);
 INSERT INTO `item_mods` VALUES(15750, 1, 11);
@@ -11824,6 +13287,9 @@ INSERT INTO `item_mods` VALUES(15907, 71, 2);
 INSERT INTO `item_mods` VALUES(15908, 1, 5);
 INSERT INTO `item_mods` VALUES(15908, 5, 14);
 INSERT INTO `item_mods` VALUES(15908, 71, 3);
+INSERT INTO `item_mods` VALUES(15910, 14, 5);
+-- INSERT INTO `item_mods` VALUES(15910, ???, 5); TODO: Pet Def
+-- INSERT INTO `item_mods` VALUES(15910, ???, 3); TODO: Pet Enmity
 INSERT INTO `item_mods` VALUES(15911, 1, 4);
 INSERT INTO `item_mods` VALUES(15911, 8, 4);
 INSERT INTO `item_mods` VALUES(15911, 26, 7);
@@ -11857,6 +13323,8 @@ INSERT INTO `item_mods` VALUES(15920, 1, 4);
 INSERT INTO `item_mods` VALUES(15920, 8, 4);
 INSERT INTO `item_mods` VALUES(15920, 24, 5);
 INSERT INTO `item_mods` VALUES(15920, 26, 8);
+INSERT INTO `item_mods` VALUES(15922, 9, 2);
+INSERT INTO `item_mods` VALUES(15922, 25, 3);
 INSERT INTO `item_mods` VALUES(15923, 1, 4);
 INSERT INTO `item_mods` VALUES(15923, 8, 3);
 INSERT INTO `item_mods` VALUES(15923, 9, 3);
@@ -11987,6 +13455,7 @@ INSERT INTO `item_mods` VALUES(16035, 26, 1);
 INSERT INTO `item_mods` VALUES(16036, 24, 1);
 INSERT INTO `item_mods` VALUES(16037, 2, 5);
 INSERT INTO `item_mods` VALUES(16038, 5, 5);
+INSERT INTO `item_mods` VALUES(16059, 7, 45);
 INSERT INTO `item_mods` VALUES(16061, 1, 19);
 INSERT INTO `item_mods` VALUES(16061, 2, 8);
 INSERT INTO `item_mods` VALUES(16061, 8, 3);
@@ -12205,10 +13674,18 @@ INSERT INTO `item_mods` VALUES(16121, 1, 21);
 INSERT INTO `item_mods` VALUES(16122, 1, 23);
 INSERT INTO `item_mods` VALUES(16123, 1, 21);
 INSERT INTO `item_mods` VALUES(16124, 1, 21);
+
+-- ------------------------------------------
+-- Breeder Mask
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(16125, 1, 22);
 INSERT INTO `item_mods` VALUES(16125, 25, 4);
 INSERT INTO `item_mods` VALUES(16125, 27, -3);
 INSERT INTO `item_mods` VALUES(16125, 384, 11);
+INSERT INTO `item_mods` VALUES(16125, 499, 1); -- blaze spikes
+INSERT INTO `item_mods` VALUES(16125, 500, 20); -- spikes dmg
+INSERT INTO `item_mods` VALUES(16125, 501, 15); -- spikes proc rate
+
 INSERT INTO `item_mods` VALUES(16126, 1, 25);
 INSERT INTO `item_mods` VALUES(16126, 9, 4);
 INSERT INTO `item_mods` VALUES(16126, 26, 10);
@@ -12242,13 +13719,16 @@ INSERT INTO `item_mods` VALUES(16138, 1, 18);
 INSERT INTO `item_mods` VALUES(16138, 2, 10);
 INSERT INTO `item_mods` VALUES(16138, 14, 4);
 INSERT INTO `item_mods` VALUES(16138, 27, -2);
+INSERT INTO `item_mods` VALUES(16138, 490, 30);
 INSERT INTO `item_mods` VALUES(16139, 1, 18);
 INSERT INTO `item_mods` VALUES(16139, 2, 10);
 INSERT INTO `item_mods` VALUES(16139, 14, 4);
 INSERT INTO `item_mods` VALUES(16139, 27, -2);
+INSERT INTO `item_mods` VALUES(16139, 490, 30);
 INSERT INTO `item_mods` VALUES(16140, 1, 15);
 INSERT INTO `item_mods` VALUES(16140, 5, 15);
 INSERT INTO `item_mods` VALUES(16140, 12, 4);
+INSERT INTO `item_mods` VALUES(16140, 401, 1);
 INSERT INTO `item_mods` VALUES(16141, 1, 13);
 INSERT INTO `item_mods` VALUES(16141, 11, 2);
 INSERT INTO `item_mods` VALUES(16142, 1, 18);
@@ -12339,9 +13819,17 @@ INSERT INTO `item_mods` VALUES(16167, 1, 1);
 INSERT INTO `item_mods` VALUES(16168, 1, 10);
 INSERT INTO `item_mods` VALUES(16168, 8, 3);
 INSERT INTO `item_mods` VALUES(16168, 384, 11);
+
+-- ------------------------------------------
+-- Caballero Shield
+-- ------------------------------------------
 INSERT INTO `item_mods` VALUES(16169, 1, 21);
 INSERT INTO `item_mods` VALUES(16169, 27, 2);
 INSERT INTO `item_mods` VALUES(16169, 29, 2);
+INSERT INTO `item_mods` VALUES(16169, 499, 1); -- spikes
+INSERT INTO `item_mods` VALUES(16169, 500, 28); -- spikes dmg
+INSERT INTO `item_mods` VALUES(16169, 501, 25); -- spikes proc rate
+
 INSERT INTO `item_mods` VALUES(16170, 1, 12);
 INSERT INTO `item_mods` VALUES(16170, 27, 5);
 INSERT INTO `item_mods` VALUES(16171, 1, 13);
@@ -12390,6 +13878,29 @@ INSERT INTO `item_mods` VALUES(16186, 1, 2);
 INSERT INTO `item_mods` VALUES(16186, 7, 15);
 INSERT INTO `item_mods` VALUES(16186, 13, 2);
 INSERT INTO `item_mods` VALUES(16187, 1, 15);
+INSERT INTO `item_mods` VALUES(16189, 1, 31);
+INSERT INTO `item_mods` VALUES(16190, 1, 22);
+INSERT INTO `item_mods` VALUES(16190, 2, 15);
+INSERT INTO `item_mods` VALUES(16190, 370, 1);
+
+-- ------------------------------------------
+-- Genesis Shield
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES (16201, 1, 21);
+INSERT INTO `item_mods` VALUES (16201, 302, 1);
+INSERT INTO `item_mods` VALUES (16201, 21, 30);
+INSERT INTO `item_mods` VALUES (16201, 499, 4); -- Curse Spikes
+INSERT INTO `item_mods` VALUES (16201, 500, 0); -- Spikes DMG
+INSERT INTO `item_mods` VALUES (16201, 501, 20); -- Spikes Proc Rate
+
+INSERT INTO `item_mods` VALUES(16202, 1, 29);
+INSERT INTO `item_mods` VALUES(16202, 27, 6);
+INSERT INTO `item_mods` VALUES(16202, 374, 5);
+INSERT INTO `item_mods` VALUES(16210, 1, 6);
+INSERT INTO `item_mods` VALUES(16210, 2, 45);
+INSERT INTO `item_mods` VALUES(16210, 5, 45);
+INSERT INTO `item_mods` VALUES(16210, 60, 20);
+INSERT INTO `item_mods` VALUES(16210, 61, 20);
 INSERT INTO `item_mods` VALUES(16211, 1, 10);
 INSERT INTO `item_mods` VALUES(16211, 3, 2);
 INSERT INTO `item_mods` VALUES(16211, 24, 10);
@@ -12591,9 +14102,16 @@ INSERT INTO `item_mods` VALUES(16302, 2, 60);
 INSERT INTO `item_mods` VALUES(16303, 23, 6);
 INSERT INTO `item_mods` VALUES(16303, 25, 4);
 INSERT INTO `item_mods` VALUES(16304, 25, 3);
+INSERT INTO `item_mods` VALUES(16308, 5, 20);
+INSERT INTO `item_mods` VALUES(16308, 12, 7);
+INSERT INTO `item_mods` VALUES(16308, 27, 5);
+INSERT INTO `item_mods` VALUES(16309, 60, 20);
+INSERT INTO `item_mods` VALUES(16309, 61, 20);
+INSERT INTO `item_mods` VALUES(16309, 27, 5);
 INSERT INTO `item_mods` VALUES(16311, 1, 27);
 INSERT INTO `item_mods` VALUES(16311, 5, 20);
 INSERT INTO `item_mods` VALUES(16311, 27, -1);
+INSERT INTO `item_mods` VALUES(16311, 336, 15);
 INSERT INTO `item_mods` VALUES(16312, 1, 23);
 INSERT INTO `item_mods` VALUES(16312, 9, 2);
 INSERT INTO `item_mods` VALUES(16312, 11, 2);
@@ -12752,14 +14270,19 @@ INSERT INTO `item_mods` VALUES(16359, 5, 25);
 INSERT INTO `item_mods` VALUES(16359, 10, 3);
 INSERT INTO `item_mods` VALUES(16359, 13, 3);
 INSERT INTO `item_mods` VALUES(16359, 27, -2);
+INSERT INTO `item_mods` VALUES(16359, 336, 15);
 INSERT INTO `item_mods` VALUES(16360, 1, 28);
 INSERT INTO `item_mods` VALUES(16360, 8, 3);
 INSERT INTO `item_mods` VALUES(16360, 14, 3);
 INSERT INTO `item_mods` VALUES(16360, 384, 30);
+INSERT INTO `item_mods` VALUES(16360, 492, 30);
+INSERT INTO `item_mods` VALUES(16360, 495, 100);
 INSERT INTO `item_mods` VALUES(16361, 1, 29);
 INSERT INTO `item_mods` VALUES(16361, 8, 4);
 INSERT INTO `item_mods` VALUES(16361, 14, 4);
 INSERT INTO `item_mods` VALUES(16361, 384, 30);
+INSERT INTO `item_mods` VALUES(16361, 492, 30);
+INSERT INTO `item_mods` VALUES(16361, 495, 100);
 INSERT INTO `item_mods` VALUES(16362, 1, 27);
 INSERT INTO `item_mods` VALUES(16362, 2, 15);
 INSERT INTO `item_mods` VALUES(16362, 5, 15);
@@ -12809,6 +14332,14 @@ INSERT INTO `item_mods` VALUES(16376, 384, -102);
 INSERT INTO `item_mods` VALUES(16377, 1, 21);
 INSERT INTO `item_mods` VALUES(16377, 8, 1);
 INSERT INTO `item_mods` VALUES(16377, 292, 2);
+INSERT INTO `item_mods` VALUES(16381, 1, 31);
+INSERT INTO `item_mods` VALUES(16381, 9, 5);
+INSERT INTO `item_mods` VALUES(16381, 14, 5);
+INSERT INTO `item_mods` VALUES(16381, 23, 18);
+INSERT INTO `item_mods` VALUES(16382, 1, 25);
+INSERT INTO `item_mods` VALUES(16382, 2, -30);
+INSERT INTO `item_mods` VALUES(16382, 5, 75);
+INSERT INTO `item_mods` VALUES(16382, 168, 5);
 INSERT INTO `item_mods` VALUES(16385, 25, 3);
 INSERT INTO `item_mods` VALUES(16386, 25, 3);
 INSERT INTO `item_mods` VALUES(16387, 25, 3);
@@ -13407,12 +14938,23 @@ INSERT INTO `item_mods` VALUES(17294, 26, 10);
 INSERT INTO `item_mods` VALUES(17295, 26, 10);
 INSERT INTO `item_mods` VALUES(17300, 26, 10);
 INSERT INTO `item_mods` VALUES(17317, 26, 15);
-INSERT INTO `item_mods` VALUES(17325, 26, 3);
+
+-- -------------------------------------------------------
+-- Kabura Arrow      
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(17325, 431, 1); -- Additional effect: Silence
+
 INSERT INTO `item_mods` VALUES(17327, 24, 20);
 INSERT INTO `item_mods` VALUES(17327, 26, 10);
 INSERT INTO `item_mods` VALUES(17328, 24, 20);
 INSERT INTO `item_mods` VALUES(17328, 26, 10);
-INSERT INTO `item_mods` VALUES(17329, 24, 10);
+
+-- -------------------------------------------------------
+-- Patriarch Protectors Arrow      
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(17329, 431, 1); -- Additional effect: Paralysis
+
+
 INSERT INTO `item_mods` VALUES(17329, 26, 40);
 INSERT INTO `item_mods` VALUES(17331, 26, -3);
 INSERT INTO `item_mods` VALUES(17332, 26, 5);
@@ -14337,9 +15879,26 @@ INSERT INTO `item_mods` VALUES(18147, 26, -12);
 INSERT INTO `item_mods` VALUES(18154, 26, 5);
 INSERT INTO `item_mods` VALUES(18155, 26, 5);
 INSERT INTO `item_mods` VALUES(18156, 26, 5);
-INSERT INTO `item_mods` VALUES(18158, 26, 5);
-INSERT INTO `item_mods` VALUES(18159, 26, 5);
-INSERT INTO `item_mods` VALUES(18160, 26, 5);
+
+-- -------------------------------------------------------
+-- Poison Arrow       
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(18157, 431, 1); -- Additional effect: Poison
+
+-- -------------------------------------------------------
+-- Sleep Arrow       
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(18158, 431, 1); -- Additional effect: Sleep
+-- -------------------------------------------------------
+-- Demon Arrow       
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(18159, 431, 1); -- Additonal effect: Attack Down
+
+-- -------------------------------------------------------
+-- Spartan Bullet      
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(18160, 431, 1); -- Additional effect: Stun
+
 INSERT INTO `item_mods` VALUES(18166, 3, 1);
 INSERT INTO `item_mods` VALUES(18166, 10, 1);
 INSERT INTO `item_mods` VALUES(18167, 6, 1);
@@ -14747,6 +16306,13 @@ INSERT INTO `item_mods` VALUES(18688, 26, -8);
 INSERT INTO `item_mods` VALUES(18695, 11, 2);
 INSERT INTO `item_mods` VALUES(18695, 54, 13);
 INSERT INTO `item_mods` VALUES(18695, 61, 13);
+
+-- -------------------------------------------------------
+-- Paralysis Arrow      
+-- -------------------------------------------------------
+INSERT INTO `item_mods` VALUES(18696, 431, 1); -- Additional effect: Paralysis
+
+
 INSERT INTO `item_mods` VALUES(18701, 11, 4);
 INSERT INTO `item_mods` VALUES(18701, 54, 14);
 INSERT INTO `item_mods` VALUES(18701, 61, 14);
@@ -15255,7 +16821,6 @@ INSERT INTO `item_mods` VALUES(10564, 369, 1);
 INSERT INTO `item_mods` VALUES(11876, 369, 1);
 INSERT INTO `item_mods` VALUES(11153, 370, 2);
 INSERT INTO `item_mods` VALUES(11253, 370, 1);
-INSERT INTO `item_mods` VALUES(16190, 370, 1);
 INSERT INTO `item_mods` VALUES(11361, 370, 1);
 INSERT INTO `item_mods` VALUES(10970, 370, 2);
 INSERT INTO `item_mods` VALUES(17358, 370, 1);
@@ -15297,7 +16862,6 @@ INSERT INTO `item_mods` VALUES(11166, 374, 7);
 INSERT INTO `item_mods` VALUES(17057, 374, 15);
 INSERT INTO `item_mods` VALUES(11030, 374, 5);
 INSERT INTO `item_mods` VALUES(11705, 374, 2);
-INSERT INTO `item_mods` VALUES(16202, 374, 5);
 INSERT INTO `item_mods` VALUES(10986, 374, 4);
 INSERT INTO `item_mods` VALUES(18906, 374, 10);
 INSERT INTO `item_mods` VALUES(11864, 374, 10);
@@ -18471,43 +20035,14 @@ INSERT INTO `item_mods` VALUES(19245, 2, -15); -- HP-15
 INSERT INTO `item_mods` VALUES(20784, 23, 9); -- Attack+9
 INSERT INTO `item_mods` VALUES(20784, 29, 5); -- "Magic Def. Bonus"+5
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+-- ------------------------------------------
+-- Dornen Schuhs
+-- ------------------------------------------
+INSERT INTO `item_mods` VALUES(11433, 1, 28);
+INSERT INTO `item_mods` VALUES(11433, 2, 45);
+INSERT INTO `item_mods` VALUES(11433, 5, 45);
+INSERT INTO `item_mods` VALUES(11433, 27, 6);
+INSERT INTO `item_mods` VALUES(11433, 499, 5); -- shock spikes
+INSERT INTO `item_mods` VALUES(11433, 500, 20); -- spikes dmg
+INSERT INTO `item_mods` VALUES(11433, 501, 25); -- spikes proc rate
 

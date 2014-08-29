@@ -15,35 +15,41 @@ end;
 
 function onSpellCast(caster,target,spell)
 	local effect = EFFECT_POISON;
+
+	local duration = 30;
 	
-    if(math.random(0,100) >= target:getMod(MOD_POISONRES)) then
-		local duration = 30;
-
-		local pINT = caster:getStat(MOD_INT);
-		local mINT = target:getStat(MOD_INT);
-
-		local dINT = (pINT - mINT);
-		local power = caster:getSkillLevel(ENFEEBLING_MAGIC_SKILL) / 25 + 1;
-		if power > 4 then
-			power = 4;
-		end
-		
-        local bonus = AffinityBonus(caster, spell:getElement());
-        local resist = applyResistance(caster,spell,target,dINT,ENFEEBLING_MAGIC_SKILL,bonus);
-        if(resist == 1 or resist == 0.5) then -- effect taken
-            duration = duration * resist;
-
-            if(target:addStatusEffect(effect,power,3,duration)) then
-                spell:setMsg(236);
-            else
-                spell:setMsg(75);
-            end
-
-        else -- resist entirely.
-                spell:setMsg(85);
-        end
-    else
-        spell:setMsg(284);
+	    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+        duration = duration * 2;
     end
+
+	local pINT = caster:getStat(MOD_INT);
+	local mINT = target:getStat(MOD_INT);
+
+	local dINT = (pINT - mINT);
+	local power = caster:getSkillLevel(ENFEEBLING_MAGIC_SKILL) / 25 + 1;
+	if power > 4 then
+		power = 4;
+	end
+	
+	    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+        power = power * 2;
+    end
+    caster:delStatusEffect(EFFECT_SABOTEUR);
+	
+    --local bonus = AffinityBonus(caster, spell:getElement()); Removed: affinity bonus is added in applyResistance
+    local resist = applyResistanceEffect(caster,spell,target,dINT,ENFEEBLING_MAGIC_SKILL,0,effect);
+    if(resist == 1 or resist == 0.5) then -- effect taken
+        duration = duration * resist;
+
+        if(target:addStatusEffect(effect,power,3,duration)) then
+            spell:setMsg(236);
+        else
+            spell:setMsg(75);
+        end
+
+    else -- resist entirely.
+        spell:setMsg(85);
+    end
+
     return effect;
 end;

@@ -16,6 +16,10 @@ end;
 
 function onMobDeath(mob,killer)
 
+	checkGoVregime(killer,mob,735,1);
+	checkGoVregime(killer,mob,736,1);
+	checkGoVregime(killer,mob,738,1);
+
 	local mobID = mob:getID();
 
 	if(mobID == 17490232) then -- Crab for Cancer spawn

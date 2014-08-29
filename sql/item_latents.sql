@@ -2262,3 +2262,33 @@ INSERT INTO `item_latents` VALUES(15364, 169, 25, 26, 2); -- Dusk - Dawn: Speed 
 -- Rossignol
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(18075, 8, 2, 26, 2); -- Dusk - Dawn: STR +2
+
+-- -------------------------------------------------------
+-- Cheviot/Umbra Cape (physical damage reduction doubled at night)
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13651, 161, -5, 26, 1);
+INSERT INTO `item_latents` VALUES(13652, 161, -6, 26, 1);
+
+-- -------------------------------------------------------
+-- Kingdom Aketon
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(14428, 169, 12, 54, 230);
+INSERT INTO `item_latents` VALUES(14428, 169, 12, 54, 231);
+INSERT INTO `item_latents` VALUES(14428, 169, 12, 54, 232);
+INSERT INTO `item_latents` VALUES(14428, 169, 12, 54, 233);
+
+-- -------------------------------------------------------
+-- Republic Aketon
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(14429, 169, 12, 54, 234);
+INSERT INTO `item_latents` VALUES(14429, 169, 12, 54, 235);
+INSERT INTO `item_latents` VALUES(14429, 169, 12, 54, 236);
+INSERT INTO `item_latents` VALUES(14429, 169, 12, 54, 237);
+
+-- -------------------------------------------------------
+-- Federation Aketon
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(14430, 169, 12, 54, 238);
+INSERT INTO `item_latents` VALUES(14431, 169, 12, 54, 239);
+INSERT INTO `item_latents` VALUES(14432, 169, 12, 54, 240);
+INSERT INTO `item_latents` VALUES(14433, 169, 12, 54, 241);

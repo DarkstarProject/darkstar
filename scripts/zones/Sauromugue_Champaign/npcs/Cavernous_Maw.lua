@@ -71,7 +71,7 @@ function onEventFinish(player,csid,option)
 			toMaw(player,5); -- go to Sauromugue_Champaign_[S]
 		end;
 	elseif(csid == 0x0388 and option == 1) then
-		toMaw(player,1); -- go to Batallia_Downs[S]
+		toMaw(player,5); -- go to Sauromugue_Champaign_[S]
 	end;
 	
 end;

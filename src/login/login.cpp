@@ -309,6 +309,10 @@ int32 login_config_read(const char *cfgName)
         {
 			login_config.mysql_database = aStrdup(w2);
 		}
+		else if (strcmp(w1, "search_server_port") == 0)
+		{
+			login_config.search_server_port = atoi(w2);
+		}
         else if (strcmp(w1,"expansions") == 0)
         {
             login_config.expansions = atoi(w2);
@@ -347,6 +351,8 @@ int32 login_config_default()
 	login_config.mysql_password = "";
 	login_config.mysql_database = "";
 	login_config.mysql_port     =  3306;
+
+	login_config.search_server_port = 54002;
 	return 0;
 }
 

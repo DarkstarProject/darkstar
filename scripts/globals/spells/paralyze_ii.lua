@@ -1,8 +1,8 @@
 -----------------------------------------
--- Spell: Paralyze
+-- Spell: Paralyze II
 -- Spell accuracy is most highly affected by Enfeebling Magic Skill, Magic Accuracy, and MND.
--- Slow's potency is calculated with the formula (150 + dMND*2)/1024, and caps at 300/1024 (~29.3%).
--- And MND of 75 is neccessary to reach the hardcap of Slow.
+-- caster:getMerit() returns a value which is equal to the number of merit points TIMES the value of each point
+-- Paralyze II value per point is '1' This is a constant set in the table 'merits'
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -20,32 +20,41 @@ function onSpellCast(caster,target,spell)
 
     if(target:hasStatusEffect(EFFECT_PARALYSIS)) then --effect already on, do nothing
         spell:setMsg(75);
-    elseif(math.random(0,100) >= target:getMod(MOD_PARALYZERES)) then
-		-- Calculate duration.
-		local duration = 180;
+    else
+        -- Calculate duration.
+        local duration = 180;
+		
+		    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+        duration = duration * 2;
+    end
 
-		-- Grabbing variables for paralyze potency
-		local mLVL = caster:getMainLvl();
-		local pMND = caster:getStat(MOD_MND);
-		local mMND = target:getStat(MOD_MND);
+        -- Grabbing variables for paralyze potency
+        local pMND = caster:getStat(MOD_MND);
+        local mMND = target:getStat(MOD_MND);
 
-		local merits = caster:getMerit(MERIT_PARALYZE_II);
+        local merits = caster:getMerit(MERIT_PARALYZE_II);
 
-		local dMND = (pMND - mMND);
-		local multiplier = (150 + (merits * 10)) / mLVL;
+        local dMND = (pMND - mMND);
 
-		-- Calculate potency.
-		local potency = (multiplier * dMND) / 10;
+        -- Calculate potency.
+        local potency = (pMND + dMND)/5; --simplified from (2 * (pMND + dMND)) / 10
 
-		if potency > 30 then
-			potency = 30;
-		end
-		--printf("Duration : %u",duration);
-		--printf("Potency : %u",potency);
-        local bonus = AffinityBonus(caster, spell:getElement());
-        local resist = applyResistance(caster,spell,target,dMND,35,bonus);
+        if (potency > 30) then
+            potency = 30;
+        end
+		    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+        potency = potency * 2;
+    end
+    caster:delStatusEffect(EFFECT_SABOTEUR);
 
-        if(resist >= 0.25) then
+        potency = potency + merits; --similar to Slow II, merit potency bonus is added after the cap
+
+        --printf("Duration : %u",duration);
+        --printf("Potency : %u",potency);
+        --local bonus = AffinityBonus(caster, spell:getElement()); Removed: affinity bonus is added in applyResistance
+        local resist = applyResistanceEffect(caster,spell,target,dMND,35,merits*2,EFFECT_PARALYSIS);
+
+        if(resist >= 0.5) then --there are no quarter or less hits, if target resists more than .5 spell is resisted completely
             if(target:addStatusEffect(EFFECT_PARALYSIS,potency,0,duration*resist)) then
                 spell:setMsg(236);
             else
@@ -56,11 +65,6 @@ function onSpellCast(caster,target,spell)
             -- resist
             spell:setMsg(85);
         end
-
-
-    else -- resist entirely.
-
-            spell:setMsg(85);
     end
 
     return EFFECT_PARALYSIS;

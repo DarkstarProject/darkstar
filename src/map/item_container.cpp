@@ -240,3 +240,18 @@ uint8 CItemContainer::SearchItemWithSpace(uint16 ItemID, uint32 quantity)
 	}
 	return ERROR_SLOTID;
 }
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+void CItemContainer::Clear()
+{
+	for (uint8 SlotID = 0; SlotID <= m_size; ++SlotID)
+	{
+		delete m_ItemList[SlotID];
+		m_ItemList[SlotID] = NULL;
+	}
+}

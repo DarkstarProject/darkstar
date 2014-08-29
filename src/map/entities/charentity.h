@@ -42,6 +42,7 @@
 #include "../trade_container.h"
 #include "../treasure_pool.h"
 #include "../merit.h"
+#include "../instance.h"
 #include "../universal_container.h"
 #include "../utils/itemutils.h"
 
@@ -255,7 +256,8 @@ public:
 	uint16					m_EquipFlag;					// текущие события, обрабатываемые экипировкой (потом упакую в структуру, вместе с equip[])
     uint16					m_EquipBlock;					// заблокированные ячейки экипировки
 	bool					m_EquipSwap;					// true if equipment was recently changed
-	uint8					equip[17];						// экипировка персонажа
+	uint8					equip[17];						//      SlotID where equipment is
+	uint8					equipLoc[17];					// ContainerID where equipment is
 
 	uint8					m_ZonesList[36];				// список посещенных персонажем зон
 	uint8					m_SpellList[128];				// список изученных заклинаний
@@ -270,7 +272,6 @@ public:
 	assaultlog_t			m_assaultLog;					// список assault миссий
 	campaignlog_t			m_campaignLog;					// список campaing миссий
     uint32					m_rangedDelay;					// ranged attack delay (with timestamp for repeat attacks, hence 32bit)for items, abilities and magic
-	bool					m_insideBCNM;					// true if user is inside a bcnm
 	uint32					m_lastBcnmTimePrompt;			// the last message prompt in seconds
 	PetInfo_t				petZoningInfo;					// used to repawn dragoons pets ect on zone
 	void					resetPetZoningInfo();			// reset pet zoning info (when changing job ect)
@@ -335,8 +336,10 @@ public:
 	uint32			  m_InsideRegionID;				// номер региона, в котором сейчас находится персонаж (??? может засунуть в m_event ???)
 	uint8			  m_LevelRestriction;			// ограничение уровня персонажа
     uint16            m_Costum;                     // карнавальный костюм персонажа (модель)
+	uint16			  m_Monstrosity;				// Monstrosity model ID
 	uint32			  m_AHHistoryTimestamp;			// Timestamp when last asked to view history
-	uint32			  m_DeathTimestamp;				// Timestamp when you last died. This is set when you first login.
+    uint32            m_DeathCounter;               // Counter when you last died. This is set when you first login
+    uint32            m_DeathTimestamp;             // Timestamp when death counter has been saved to database
 
     uint8             m_PVPFlag;                    // pvp
 	uint8			  m_hasTractor;					// checks if player has tractor already
@@ -367,15 +370,17 @@ public:
 	bool			  addWsPoints(uint8 points, uint16 WeaponIndex);	// return if weapon is broken
 	UnlockedWeapons_t unlockedWeapons[MAX_UNLOCKABLE_WEAPONS];			// chars unlocked weapon status
 
-	uint16 addTP(float tp);
-	int32 addHP(int32 hp);
-	int32 addMP(int32 mp);
+	int16 addTP(int16 tp) override;
+	int32 addHP(int32 hp) override;
+	int32 addMP(int32 mp) override;
 
 	std::vector<GearSetMod_t> m_GearSetMods;		// The list of gear set mods currently applied to the character.
     std::vector<AuctionHistory_t> m_ah_history;		// AH history list (в будущем нужно использовать UContainer)
 
 	void SetPlayTime(uint32 playTime);				// Set playtime
 	uint32 GetPlayTime(bool needUpdate = true);		// Get playtime
+
+	CItemArmor* getEquip(SLOTTYPE slot);
 
 	 CCharEntity();									// конструктор
 	~CCharEntity();									// деструктор
@@ -390,6 +395,7 @@ private:
 	CItemContainer*	  m_Mogsatchel;
 	CItemContainer*	  m_Mogsack;
 	CItemContainer*   m_Mogcase;
+    CItemContainer*   m_Wardrobe;
 
 	bool			m_isWeaponSkillKill;
 	bool			m_isMijinGakure;

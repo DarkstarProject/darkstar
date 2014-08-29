@@ -8,11 +8,13 @@ package.loaded["scripts/zones/Promyvion-Vahzl/TextIDs"] = nil;
 require( "scripts/zones/Promyvion-Vahzl/TextIDs" );
 	
 -----------------------------------
--- onMobEngaged Action
+-- onMobInitialize Action
 -----------------------------------	
-function onMobEngaged(mob,target)	
-	 mob:setTP(99);
-end;	
+function onMobInitialize(mob)
+	mob:addMod(MOD_REGAIN, 100); -- 10% Regain for now
+    mob:SetAutoAttackEnabled(false); -- Recepticles only use TP moves.
+end;
+
 	
 -----------------------------------
 -- onMobFight Action
@@ -21,8 +23,6 @@ function onMobFight(mob, target)
 
 	 local Mem_Recep = mob:getID(); 
 	 
-	 mob:SetAutoAttackEnabled(false); -- Recepticles only use TP moves.
-
 	-- This will serve as a ghetto Regain (not damage dependent) based on kjlotus's testing. Caps at 100
 	 
 	 if (mob:getTP() < 90) then
@@ -103,67 +103,67 @@ function onMobDeath(mob,killer)
 
 	switch (mob:getID()) : caseof {
 		[16867387] = function (x) 
-		GetNPCByID(16867697):openDoor(180);
+		GetNPCByID(16867699):openDoor(180);
 			if(Distance <4 and killeranimation == 0)then 
 			    killer:startEvent(32); 
 			end
 		end,
 		[16867382] = function (x) 
-		GetNPCByID(16867696):openDoor(180);
+		GetNPCByID(16867698):openDoor(180);
 			if(Distance <4 and killeranimation == 0)then 
 					killer:startEvent(33); 	
 			end
 		end,
 		[16867429] = function (x) 
-		GetNPCByID(16867694):openDoor(180);
+		GetNPCByID(16867696):openDoor(180);
 			if(Distance <4 and killeranimation == 0)then 
 					killer:startEvent(30); 
 			end
 		end,
 		[16867436] = function (x) 
-		GetNPCByID(16867695):openDoor(180);
+		GetNPCByID(16867697):openDoor(180);
 			if(Distance <4 and killeranimation == 0)then 
 					killer:startEvent(31); 	
 			end
 		end,
 		[16867501] = function (x) 
-		GetNPCByID(16867700):openDoor(180);
+		GetNPCByID(16867702):openDoor(180);
 			if(Distance <4 and killeranimation == 0)then 
 					killer:startEvent(35); 
 			end
 		end,
 		[16867515] = function (x) 
-		GetNPCByID(16867702):openDoor(180);
+		GetNPCByID(16867704):openDoor(180);
 			if(Distance <4 and killeranimation == 0)then 
 			        killer:startEvent(36); 
 			end
 		end,
 		[16867494] = function (x) 
-		GetNPCByID(16867699):openDoor(180);
+		GetNPCByID(16867701):openDoor(180);
 			if(Distance <4 and killeranimation == 0)then 
 			        killer:startEvent(37); 
 			end
 		end,
 		[16867508] = function (x) 
-		GetNPCByID(16867701):openDoor(180);
+		GetNPCByID(16867703):openDoor(180);
 			if(Distance <4 and killeranimation == 0)then 
 			        killer:startEvent(38); 
 			end
 		end,
 		[16867604] = function (x) 
-		GetNPCByID(16867704):openDoor(180);
+		GetNPCByID(16867706):openDoor(180);
 			if(Distance <4 and killeranimation == 0)then 
 			        killer:startEvent(34); 
 			end
 		end,
 		[16867586] = function (x) 
-		GetNPCByID(16867698):openDoor(180);
+		GetNPCByID(16867700):openDoor(180);
 			if(Distance <4 and killeranimation == 0)then 
 			        killer:startEvent(39); 
 			end
 		end,
 		[16867595] = function (x) 
-		GetNPCByID(16867703):openDoor(180);
+		GetNPCByID(16867705):openDoor(180);
 		    if(Distance <4 and killeranimation == 0)then 
 			        killer:startEvent(40);
 			end

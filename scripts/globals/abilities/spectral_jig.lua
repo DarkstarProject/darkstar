@@ -20,13 +20,8 @@ function OnUseAbility(player, target, ability)
    local legs = target:getEquipID(SLOT_LEGS);
    local feet = target:getEquipID(SLOT_FEET);
 
-   -- Reports have been changed from +30 sec to "extends duration by 100%"
-   if(legs == 16360 or legs == 16361 or legs == 10728) then
-      finalDuration = finalDuration + baseDuration;
-   end
-   if(feet == 15746 or feet == 15747 or feet == 11393 or feet == 11394) then
-      finalDuration = finalDuration + baseDuration;
-   end
+   local durationMultiplier = 1.0 + (player:getMod(MOD_SPECTRAL_JIG)/100);
+   finalDuration = math.floor(baseDuration * durationMultiplier); 
 
    if(player:hasStatusEffect(EFFECT_SNEAK) == false) then
       player:addStatusEffect(EFFECT_SNEAK,0,10,finalDuration * SNEAK_INVIS_DURATION_MULTIPLIER);

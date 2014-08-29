@@ -71,8 +71,7 @@ public:
 
 	TREASUREPOOLTYPE GetPoolType();
 
-	uint8 AddItem(uint16 ItemID, CMobEntity*);
-	uint8 AddItemFromChest(uint16 ItemID, CBaseEntity*);
+	uint8 AddItem(uint16 ItemID, CBaseEntity*);
 
 	void LotItem(uint8 SlotID, uint16 Lot);
 	void LotItem(CCharEntity* PChar, uint8 SlotID, uint16 Lot);
@@ -85,6 +84,8 @@ public:
 	void TreasureWon(CCharEntity* winner, uint8 SlotID);
     void TreasureError(CCharEntity* winner, uint8 SlotID);
 	void TreasureLost(uint8 SlotID);
+
+    bool CanAddSeal();
 
 private:
 

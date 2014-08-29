@@ -1,17 +1,19 @@
-----------------------------------	
--- Area: Gustav Tunnel	
+----------------------------------
+-- Area: Gustav Tunnel
 --  MOB: Erlik
 -- Note: Place holder Baobhan Sith
------------------------------------	
+-----------------------------------
 
 require("/scripts/zones/Gustav_Tunnel/MobIDs");
-	
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-  
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer)
+
+    checkGoVregime(killer,mob,767,2);
+
     local mob = mob:getID();
     if (Baobhan_Sith_PH[mob] ~= nil) then
 
@@ -25,5 +27,5 @@ function onMobDeath(mob,killer)
             end
         end
     end
-  
-end;	
+
+end;

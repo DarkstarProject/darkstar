@@ -223,8 +223,8 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr,int* count)
             memcpy(PPlayer->name, Sql_GetData(SqlHandle, 2), 15);
 
             PPlayer->id			= (uint32)Sql_GetUIntData(SqlHandle, 0);
-            PPlayer->zone		= (uint16) Sql_GetIntData(SqlHandle,  3);
-			PPlayer->prevzone   = (uint16) Sql_GetIntData(SqlHandle,  4);
+            PPlayer->zone		= (uint16) Sql_GetIntData(SqlHandle, 3);
+			PPlayer->prevzone   = (uint16) Sql_GetIntData(SqlHandle, 4);
             PPlayer->nation		= (uint8) Sql_GetIntData(SqlHandle,  5);
             PPlayer->mjob		= (uint8) Sql_GetIntData(SqlHandle, 11);
             PPlayer->sjob		= (uint8) Sql_GetIntData(SqlHandle, 12);
@@ -248,15 +248,60 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr,int* count)
 
             PPlayer->flags2 = PPlayer->flags1;
 
-			if(sr.minlvl >0 && sr.maxlvl >= sr.minlvl){ //filter by level
-				if(PPlayer->mlvl < sr.minlvl || PPlayer->mlvl > sr.maxlvl){
+            // TODO: search comments
+
+            // filter by job
+            if (sr.jobid > 0 && sr.jobid != PPlayer->mjob)
+                continue;
+
+            // filter by nation
+            if (sr.nation != 255 && !sr.nation == PPlayer->nation)
+                continue;
+
+            // filter by race
+            if (sr.race != 255)
+            {
+                // hume (male/female)
+                if (sr.race == 0 && (PPlayer->race != 1 && PPlayer->race != 2))
+                    continue;
+                // elvaan (male/female)
+                else if (sr.race == 1 && (PPlayer->race != 3 && PPlayer->race != 4))
+                    continue;
+                // tarutaru (male/female)
+                else if (sr.race == 2 && (PPlayer->race != 5 && PPlayer->race != 6))
+                    continue;
+                // mithra (female only)
+                else if (sr.race == 3 && PPlayer->race != 7)
+                    continue;
+                // galka (male only)
+                else if (sr.race == 4 && PPlayer->race != 8)
+                    continue;
+            }
+
+            // filter by rank
+            if (sr.minRank > 0 && sr.maxRank >= sr.minRank)
+            {
+                if (PPlayer->rank < sr.minRank || PPlayer->rank > sr.maxRank)
+                    continue;
+            }
+
+            // filter by flag (away, seek party etc.)
+            if (sr.flags != 0 && !(PPlayer->flags2 & sr.flags))
+                continue;
+
+            // filter by level
+			if(sr.minlvl >0 && sr.maxlvl >= sr.minlvl){
+				if(PPlayer->mlvl < sr.minlvl || PPlayer->mlvl > sr.maxlvl)
 					continue;
-				}
 			}
-			if(sr.nameLen>0){ //filter by name
+
+            // filter by name
+			if(sr.nameLen>0){
 				string_t dbname;
 				dbname.insert(0,(int8*)PPlayer->name);
-				if(sr.nameLen > dbname.length()){//can't be this name, too long
+
+                //can't be this name, too long
+				if(sr.nameLen > dbname.length()){
 					continue;
 				}
 				bool validName = true;
@@ -271,6 +316,7 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr,int* count)
 					continue;
 				}
 			}
+            // dont show hidden gm
             if (nameflag & FLAG_ANON && nameflag & FLAG_GM)
             {
                 continue;   

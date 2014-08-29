@@ -168,6 +168,11 @@ uint8 CBattleEntity::GetSpeed()
     return (animation == ANIMATION_CHOCOBO ? 40 + map_config.speed_mod : dsp_cap(speed * (100 + getMod(MOD_MOVE)) / 100, UINT8_MIN, UINT8_MAX));
 }
 
+bool CBattleEntity::CanRest()
+{
+    return !getMod(MOD_REGEN_DOWN) && !StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_NO_REST);
+}
+
 bool CBattleEntity::Rest(float rate)
 {
 	if(health.hp != health.maxhp || health.mp != health.maxmp){
@@ -178,7 +183,7 @@ bool CBattleEntity::Rest(float rate)
         addMP(recoverMP);
 
         // lower TP
-        addTP(rate*-50);
+        addTP(rate*-500);
         return true;
     }
 
@@ -389,8 +394,12 @@ uint16 CBattleEntity::GetRangedWeaponRank()
 *                                                                       *
 ************************************************************************/
 
-uint16 CBattleEntity::addTP(float tp)
+int16 CBattleEntity::addTP(int16 tp)
 {
+	// When adding TP, we must adjust for Inhibit TP effect, which reduces TP gain.
+	float tpReducePercent = this->getMod(MOD_INHIBIT_TP) / 100;
+	tp = tp - (tp * tpReducePercent);
+
 	float TPMulti = 1.0;
 
 	if(objtype == TYPE_PC)
@@ -406,7 +415,7 @@ uint16 CBattleEntity::addTP(float tp)
 		TPMulti = map_config.mob_tp_multiplier * 3;
 	}
 
-	float cap = dsp_cap(health.tp + (tp * TPMulti), 0, 300);
+	int16 cap = dsp_cap(health.tp + (tp * TPMulti), 0, 3000);
 	tp = health.tp - cap;
 	health.tp = cap;
 	return abs(tp);
@@ -426,7 +435,7 @@ int32 CBattleEntity::addHP(int32 hp)
 		return 0; //if the entity is already dead, skip the rest to prevent killing it again
 	}
 
-    int32 cap = dsp_cap(health.hp + hp, 0, GetMaxHP());
+	int32 cap = dsp_cap(health.hp + hp, 0, GetMaxHP());
 	hp = health.hp - cap;
 	health.hp = cap;
 

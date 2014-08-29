@@ -1,17 +1,19 @@
------------------------------------	
+-----------------------------------
 -- Area: Labyrinth of Onzozo
 --  MOB: Labyrinth Manticore
 -- Note: Place holder Narasimha
------------------------------------	
+-----------------------------------
 
 require("/scripts/zones/Labyrinth_of_Onzozo/MobIDs");
-	
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-  
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer)
+
+    checkGoVregime(killer,mob,775,2);
+
     local mob = mob:getID();
     if (Narasimha_PH[mob] ~= nil) then
 
@@ -25,4 +27,4 @@ function onMobDeath(mob,killer)
             end
         end
     end
-end;	
+end;

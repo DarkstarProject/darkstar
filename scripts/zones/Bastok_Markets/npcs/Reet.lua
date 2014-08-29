@@ -49,5 +49,5 @@ function onEventFinish(player,csid,option)
 		player:tradeComplete();
 		player:addGil(GIL_RATE*50);
 		player:messageSpecial(GIL_OBTAINED,GIL_RATE*50);
-		
+    end
 end;

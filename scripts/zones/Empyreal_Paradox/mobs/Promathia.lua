@@ -4,12 +4,16 @@
 -----------------------------------
 
 require("scripts/globals/titles");
+require("scripts/globals/status");
+require("/scripts/zones/Empyreal_Paradox/TextIDs");
 
 -----------------------------------
 -- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
+    mob:addMod(MOD_REGAIN, 50);
+    mob:addMod(MOD_UFASTCAST,50);
 end;
 
 -----------------------------------
@@ -17,6 +21,18 @@ end;
 -----------------------------------
 
 function onMobEngaged(mob,target)
+    local bcnmAllies = mob:getBattlefield():getAllies();
+    for i,v in pairs(bcnmAllies) do
+        if (v:getName() == "Prishe") then
+            if not v:getTarget() then
+                v:entityAnimationPacket("prov");
+                v:showText(v, PRISHE_TEXT);
+                v:setExtraVar(0, bit.band(mob:getID(), 0xFFF));
+            end
+        else
+            v:addEnmity(mob,0,1);
+        end
+    end
 end;
 
 -----------------------------------
@@ -24,6 +40,18 @@ end;
 -----------------------------------
 
 function onMobFight(mob,target) 
+    if (mob:AnimationSub() == 3 and not mob:hasStatusEffect(EFFECT_STUN)) then
+        mob:AnimationSub(0);
+        mob:stun(1500);
+    end
+    
+    local bcnmAllies = mob:getBattlefield():getAllies();
+    for i,v in pairs(bcnmAllies) do
+        if not v:getTarget() then
+            v:addEnmity(mob,0,1);
+        end
+    end
+    
 end;
 
 -----------------------------------
@@ -32,26 +60,45 @@ end;
 
 function onMobDeath(mob, killer)
 	
-
-		switch (mob:getID()) : caseof {
-		[16924673] = function (x) --Promathia V1 -1
-         killer:setPos(-508, -120, 544, 83);
-		 killer:startEvent(0x07D04);
-	     SpawnMob(16924674); --spawn Promathia V2 -1
-		end,
-		[16924675] = function (x) --Promathia V1 -2
-         killer:setPos(533,-1,542,91);
-		  killer:startEvent(0x07D04);
-		 SpawnMob(16924676); --spawn Promathia V2 2
-		end,
-		[16924677] = function (x) --Promathia V1 -2
-         killer:setPos(-506,120,-495,87);
-		  killer:startEvent(0x07D04);
-		 SpawnMob(16924678); --spawn Promathia V2 3
-		end,
-	}
+    local battlefield = killer:getBattlefield();
+    killer:startEvent(0x7d04, battlefield:getBattlefieldNumber());
+   
 
 end;
 
+function onSpellPrecast(mob, spell)
+    if (spell:getID() == 219) then
+        spell:setMPCost(1);
+    end
+end;
 
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
+
+function onEventUpdate(player,csid,option)
+--printf("updateCSID: %u",csid);
+--printf("RESULT: %u",option);
+end;
+
+-----------------------------------
+-- onEventFinish
+-----------------------------------
+
+function onEventFinish(player,csid,option,target)
+--printf("finishCSID: %u",csid);
+--printf("RESULT: %u",option);
+
+	if(csid == 0x7d04) then
+        DespawnMob(target:getID());
+		mob = SpawnMob(target:getID()+1);
+        local bcnmAllies = mob:getBattlefield():getAllies();
+        for i,v in pairs(bcnmAllies) do
+            v:setExtraVar(0);
+            local spawn = v:getSpawnPos();
+            v:setPos(spawn.x, spawn.y, spawn.z, spawn.rot);
+        end
+	end
+
+end;
 

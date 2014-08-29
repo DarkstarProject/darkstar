@@ -268,7 +268,13 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
     doubleAttack = dsp_cap(doubleAttack,0,100);
     tripleAttack = dsp_cap(tripleAttack,0,100);
 
-	if (num == 1 && rand()%100 < quadAttack)
+	// Checking Mikage Effect - Hits Vary With Num of Utsusemi Shadows for Main Weapon
+	if (m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_MIKAGE) && m_attacker->m_Weapons[SLOT_MAIN]->getID() == PWeapon->getID()){
+		int16 shadows = m_attacker->getMod(MOD_UTSUSEMI);
+		//ShowDebug(CL_CYAN"Create Attacks: Mikage Active, Rolling Attack Chance for %d Shadowss...\n" CL_RESET, shadows);
+		AddAttackSwing(ATTACK_NORMAL, direction, shadows);
+	}
+	else if (num == 1 && rand()%100 < quadAttack)
 	{
 		AddAttackSwing(QUAD_ATTACK, direction, 3);
 		m_quadAttackOccured = true;

@@ -92,7 +92,7 @@ end;
 -- PHYSICAL MOVE FUNCTION
 -- Call this on every physical move!
 -- accmod is a linear multiplier for accuracy (1 default)
--- dmgmod is a linear mulitplier for damage (1 default)
+-- dmgmod is a linear multiplier for damage (1 default)
 -- tpeffect is an enum which can be one of:
 -- 0 TP_ACC_VARIES
 -- 1 TP_ATK_VARIES
@@ -378,19 +378,8 @@ function applyPlayerResistance(mob,effect,target,diff,bonus,element)
 
     -- Resistance thresholds based on p.  A higher p leads to lower resist rates, and a lower p leads to higher resist rates.
     half = (1 - p);
-    quart = ((1 - p)^2);
-    eighth = ((1 - p)^3);
-    sixteenth = ((1 - p)^4);
-    -- printf("HALF: %f", half);
-    -- printf("QUART: %f", quart);
-    -- printf("EIGHTH: %f", eighth);
-    -- printf("SIXTEENTH: %f", sixteenth);
-
 
 	-- add effect resistence
-	-- this only increases chances for half / quarter resist
-	-- this eventually needs to be fixed
-	-- traits should be able to fully resist
 	if(effect ~= nil and effect > 0) then
 		local effectres = 0;
 		if(effect == EFFECT_SLEEP_I or effect == EFFECT_SLEEP_II or effect == EFFECT_LULLABY) then
@@ -403,7 +392,7 @@ function applyPlayerResistance(mob,effect,target,diff,bonus,element)
 			effectres = MOD_BLINDRES
 		elseif(effect == EFFECT_SILENCE) then
 			effectres = MOD_SILENCERES;
-		elseif(effect == EFFECT_PLAGUE or effect == EFECT_DISEASE) then
+		elseif(effect == EFFECT_PLAGUE or effect == EFFECT_DISEASE) then
 			effectres = MOD_VIRUSRES;
 		elseif(effect == EFFECT_PETRIFICATION) then
 			effectres = MOD_PETRIFYRES;
@@ -429,10 +418,20 @@ function applyPlayerResistance(mob,effect,target,diff,bonus,element)
 
 			-- printf("Resist percentage: %f", resrate);
 			-- increase resistance based on effect
-			quart = quart * resrate;
 			half = half * resrate;
 		end
 	end
+
+    -- Resistance thresholds based on p.  A higher p leads to lower resist rates, and a lower p leads to higher resist rates.
+    --half = (1 - p); defined and possibly modified above
+    quart = half^2;
+    eighth = half^3;
+    sixteenth = half^4;
+    -- printf("HALF: %f", half);
+    -- printf("QUART: %f", quart);
+    -- printf("EIGHTH: %f", eighth);
+    -- printf("SIXTEENTH: %f", sixteenth);
+
 
     resvar = math.random();
 
@@ -557,7 +556,7 @@ end;
 -- percent is the percentage to take from HP
 -- base is calculated from main level to create a minimum
 -- Equation: (HP * percent) + (LVL / base)
--- cap is optional, defines a maxiumum damage
+-- cap is optional, defines a maximum damage
 function MobBreathMove(mob, target, percent, base, element, cap)
 	local damage = (mob:getHP() * percent) + (mob:getMainLvl() / base);
 
@@ -646,23 +645,21 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 	    return 0;
 	end
 
-	dmg = utils.dmgTaken(target, dmg);
-
 	if(skilltype == MOBSKILL_PHYSICAL) then
 
-		dmg = utils.physicalDmgTaken(target, dmg);
+		dmg = target:physicalDmgTaken(dmg);
 
 	elseif(skilltype == MOBSKILL_MAGICAL) then
 
-		dmg = utils.magicDmgTaken(target, dmg);
+		dmg = target:magicDmgTaken(dmg);
 
 	elseif(skilltype == MOBSKILL_BREATH) then
 
-		dmg = utils.breathDmgTaken(target, dmg);
+		dmg = target:breathDmgTaken(dmg);
 
 	elseif(skilltype == MOBSKILL_RANGED) then
 
-		dmg = utils.rangedDmgTaken(target, dmg);
+		dmg = target:rangedDmgTaken(dmg);
 
 	end
 
@@ -711,7 +708,7 @@ function MobStatusEffectMove(mob, target, typeEffect, power, tick, duration)
 
 		local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,element);
 
-		if(resist >= 0.25) then
+		if(resist >= 0.5) then
 			target:addStatusEffect(typeEffect,power,tick,duration*resist);
 			return MSG_ENFEEB_IS;
 		end

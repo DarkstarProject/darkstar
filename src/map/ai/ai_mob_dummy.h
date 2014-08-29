@@ -66,6 +66,7 @@ public:
     bool getMobSkillAttack();
 
     bool isActionQueueAttack();
+	void Stun(uint32 stunTime);
 
     // time of day change, update mobs
     // TODO:
@@ -74,26 +75,25 @@ public:
 
 protected:
 
-  virtual void TransitionBack(bool skipWait = false);
+	virtual void TransitionBack(bool skipWait = false);
 
 	CMobEntity* m_PMob;
-  CMobSkill* m_PSpecialSkill;
-  bool m_firstSpell;
-  bool m_checkDespawn; // check and despawn if i'm too far from spawn
-  uint32 m_SpawnTime;
-  uint32 m_LastSpecialTime;
-  uint8 m_ChaseThrottle;
-  uint32 m_LastStunTime;
-  uint32 m_StunTime;
-  uint32 m_DeaggroTime;
-  uint32 m_NeutralTime;
-  float m_skillTP;
-  bool m_drawnIn;
-  bool m_mobskillattack;
-  bool m_actionqueueability;
+	CMobSkill* m_PSpecialSkill;
+	bool m_firstSpell;
+	bool m_checkDespawn; // check and despawn if i'm too far from spawn
+	uint32 m_SpawnTime;
+	uint32 m_LastSpecialTime;
+	uint32 m_LastStunTime;
+	uint32 m_StunTime;
+	uint32 m_DeaggroTime;
+	uint32 m_NeutralTime;
+	int16 m_skillTP;
+	bool m_drawnIn;
+	bool m_mobskillattack;
+	bool m_actionqueueability;
 
-  bool  m_CanStandback;
-  uint32 m_LastStandbackTime;
+	bool  m_CanStandback;
+	uint32 m_LastStandbackTime;
 
 	void ActionRoaming();
 	void ActionEngage();
@@ -103,43 +103,43 @@ protected:
 	void ActionDropItems();
 	void ActionDeath();
 	void ActionFadeOut();
-  void ActionSpawn();
+	void ActionSpawn();
 
-  // despawn and go to action none
+	// despawn and go to action none
 	void ActionDespawn();
 
 	void ActionAbilityStart();
 	void ActionAbilityUsing();
 	void ActionAbilityFinish();
-  void ActionAbilityInterrupt();
+	void ActionAbilityInterrupt();
 
-  void ActionAttack();
-  void FinishAttack();
+	void ActionAttack();
+	void FinishAttack();
 
-  void ActionSleep();
-  void ActionStun();
+	void ActionSleep();
+	void ActionStun();
 
 	void ActionMagicStart();
 	void ActionMagicCasting();
 	void ActionMagicInterrupt();
-  void ActionMagicFinish();
+	void ActionMagicFinish();
 
-  // use its special skill, ranged attack, catapult, jump etc
-  void ActionSpecialSkill();
+	// use its special skill, ranged attack, catapult, jump etc
+	void ActionSpecialSkill();
 
-  // helper functions
-  bool TryDeaggro();
-  void TryLink();
-  bool CanCastSpells();
-  bool TryCastSpell(); // logic for spell casting, returns true if found one to cast
-  bool TrySpecialSkill();
-  void CastSpell(uint16 spellId, CBattleEntity* PTarget = NULL); // makes the mob cast a spell
-  void Stun(uint32 stunTime);
-  void SetupEngage(); // setup timers and trigger callbacks
+	// helper functions
+	bool TryDeaggro();
+	void TryLink();
+	bool CanCastSpells();
+	bool TryCastSpell(); // logic for spell casting, returns true if found one to cast
+	bool TrySpecialSkill();
+	void CastSpell(uint16 spellId, CBattleEntity* PTarget = NULL); // makes the mob cast a spell
+	void SetupEngage(); // setup timers and trigger callbacks
 
-  void FollowPath(); // continues moving
+	void FollowPath(); // continues moving
 
-  void Deaggro(); // deaggro targe
+	void Deaggro(); // deaggro targe
+	void OnTick();
 
 private:
 

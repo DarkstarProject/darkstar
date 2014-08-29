@@ -1,8 +1,6 @@
 -----------------------------------------
 -- Spell: Paralyze
 -- Spell accuracy is most highly affected by Enfeebling Magic Skill, Magic Accuracy, and MND.
--- Slow's potency is calculated with the formula (150 + dMND*2)/1024, and caps at 300/1024 (~29.3%).
--- And MND of 75 is neccessary to reach the hardcap of Slow.
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -18,48 +16,41 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-	if(target:hasStatusEffect(EFFECT_PARALYSIS)) then --effect already on, do nothing
-		spell:setMsg(75);
-	elseif(math.random(0,100) >= target:getMod(MOD_PARALYZERES)) then
-		-- Calculate duration.
-		local duration = 120;
+    if(target:hasStatusEffect(EFFECT_PARALYSIS)) then --effect already on, do nothing
+        spell:setMsg(75);
+    else
+        -- Calculate duration.
+        local duration = math.random(20,120);
 
-		-- Grabbing variables for paralyze potency
-		local mLVL = caster:getMainLvl();
-		local pMND = caster:getStat(MOD_MND);
-		local mMND = target:getStat(MOD_MND);
+        -- Grabbing variables for paralyze potency
+        local pMND = caster:getStat(MOD_MND);
+        local mMND = target:getStat(MOD_MND);
 
-		local dMND = (pMND - mMND);
-		local multiplier = 150 / mLVL;
+        local dMND = (pMND - mMND);
 
-		-- Calculate potency.
-		local potency = (multiplier * dMND) / 10;
+        -- Calculate potency.
+        local potency = (pMND + dMND)/5; --simplified from (2 * (pMND + dMND)) / 10
 
-		if potency > 30 then
-			potency = 30;
-		end
-		--printf("Duration : %u",duration);
-		--printf("Potency : %u",potency);
-		local bonus = AffinityBonus(caster, spell:getElement());
-		local resist = applyResistance(caster,spell,target,dMND,35,bonus);
+        if potency > 30 then
+            potency = 30;
+        end
+        --printf("Duration : %u",duration);
+        --printf("Potency : %u",potency);
+        --local bonus = AffinityBonus(caster, spell:getElement()); Removed: affinity bonus is added in applyResistance
+        local resist = applyResistanceEffect(caster,spell,target,dMND,35,0,EFFECT_PARALYSIS);
 
-		if(resist >= 0.25) then
-			if(target:addStatusEffect(EFFECT_PARALYSIS,potency,0,duration*resist)) then
-				spell:setMsg(236);
-			else
-				-- no effect
-				spell:setMsg(75);
-			end
-		else
-			-- resist
-			spell:setMsg(85);
-		end
+        if(resist >= 0.5) then --there are no quarter or less hits, if target resists more than .5 spell is resisted completely
+            if(target:addStatusEffect(EFFECT_PARALYSIS,potency,0,duration*resist)) then
+                spell:setMsg(236);
+            else
+                -- no effect
+                spell:setMsg(75);
+            end
+        else
+            -- resist
+            spell:setMsg(85);
+        end
+    end
 
-
-	else -- resist entirely.
-
-			spell:setMsg(85);
-	end
-
-	return EFFECT_PARALYSIS;
+    return EFFECT_PARALYSIS;
 end;

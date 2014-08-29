@@ -13,22 +13,22 @@ require("scripts/globals/status");
 -------------------------------------------------
 
 -- Zone, {npcid,npcid,npcid,..}
-npcid = {2,{16785763,16785764,16785765,16785766},					  -- Carpenter's Landing
-		 24,{16875843,16875844,16875845,16875846,16875847,16875848},  -- Lufaise Meadows
-		 25,{16879959,16879960,16879961,16879962,16879963,16879964},  -- Misareaux Coast
-		 65,{17044007,17044008,17044009,17044010,17044011,17044012},  -- Mamook
-		 79,{17101308,17101309,17101310,17101311,17101312,17101313},  -- Caedarva Mire
-		 81,{},														  -- East Ronfaure [S]
-		 82,{17113896,17113897,17113898,17113899,17113900,17113901},  -- Jugner Forest [S]
-		 96,{17171236,17171237,17171238,17171239,17171240,17171241},  -- Fort Karugo-Narugo [S]
-		 101,{17191484,17191485,17191486,17191487,17191488,17191489}, -- East Ronfaure
-		 104,{17203853,17203854,17203855,17203856,17203857,17203858}, -- Jugner Forest
-		 118,{17261164,17261165,17261166,17261167,17261168,17261169}, -- Buburimu Peninsula
-		 123,{17281612,17281613,17281614,17281615,17281616,17281617}, -- Yuhtunga Jungle
-		 124,{17285662,17285663,17285664,17285665,17285666,17285667}, -- Yhoator Jungle
-		 140,{17350967,17350968,17350969,17350970}};				  -- Ghelsba Outpost
+local npcid = {2,{16785765,16785766,16785767,16785768},					  -- Carpenter's Landing
+		 24,{16875845,16875846,16875847,16875848,16875849,16875850},  -- Lufaise Meadows
+		 25,{16879961,16879962,16879963,16879964,16879965,16879966},  -- Misareaux Coast
+		 65,{17044009,17044010,17044011,17044012,17044013,17044014},  -- Mamook
+		 79,{17101310,17101311,17101312,17101313,17101314,17101315},  -- Caedarva Mire
+		 81,{17109781,17109782,17109783,17109784,17109785,17109786},  -- East Ronfaure [S]
+		 82,{17113900,17113901,17113902,17113903,17113904,17113905},  -- Jugner Forest [S]
+		 96,{17171238,17171239,17171240,17171241,17171242,17171243},  -- Fort Karugo-Narugo [S]
+		 101,{17191521,17191522,17191523,17191524,17191525,17191526}, -- East Ronfaure
+		 104,{17203855,17203856,17203857,17203858,17203859,17203860}, -- Jugner Forest
+		 118,{17261166,17261167,17261168,17261169,17261170,17261171}, -- Buburimu Peninsula
+		 123,{17281614,17281615,17281616,17281617,17281618,17281619}, -- Yuhtunga Jungle
+		 124,{17285666,17285667,17285668,17285669,17285670,17285671}, -- Yhoator Jungle
+		 140,{17350969,17350970,17350971,17350972}};				  -- Ghelsba Outpost
 -- Zone, {itemid,drop rate,itemid,drop rate,..}
-drop = {2,{0x1198,0.0900,0x02B0,0.1800,0x02BA,0.2700,0x039B,0.3600,0x02B7,0.4500,0x02B5,0.7050,0x02B8,0.9600,0x02BB,1.0000},
+local drop = {2,{0x1198,0.0900,0x02B0,0.1800,0x02BA,0.2700,0x039B,0.3600,0x02B7,0.4500,0x02B5,0.7050,0x02B8,0.9600,0x02BB,1.0000},
 		24,{0x02B5,0.0950,0x110B,0.1900,0x02B0,0.4400,0x02B3,0.6900,0x02BA,0.9400,0x02B2,0.9600,0x02BB,0.9800,0x1198,1.0000},
 		25,{0x02B0,0.4000,0x02B5,0.4700,0x02B3,0.5400,0x110B,0.7400,0x02BA,0.9400,0x02B2,0.9600,0x02BB,0.9800,0x1198,1.0000},
 		65,{0x15BE,0.2300,0x08A5,0.4600,0x02B6,0.5100,0x02BE,0.5600,0x02B1,0.6100,0x02BD,0.6590,0x09C7,0.7660,0x02D7,0.8730,0x02B0,0.9800,0x02D9,1.0000},
@@ -48,7 +48,7 @@ function startLogging(player,zone,npc,trade,csid)
 	if(trade:hasItemQty(1021,1) and trade:getItemCount() == 1) then
 		
 		broke = hatchetBreak(player,trade);
-		item = getItem(player,zone);
+		item = getLoggingItem(player,zone);
 		
 		if(player:getFreeSlotsCount() == 0) then
 			full = 1;
@@ -64,7 +64,7 @@ function startLogging(player,zone,npc,trade,csid)
 		end
 		
 		if(GetServerVariable("[LOGGING]Zone "..zone) >= 3) then
-			getNewPositionNPC(player,npc,zone);
+			getNewLoggingPositionNPC(player,npc,zone);
 		end
 	else
 		player:messageSpecial(LOGGING_IS_POSSIBLE_HERE,1021);
@@ -112,7 +112,7 @@ function hatchetBreak(player,trade)
 	
 end
 
-function getItem(player,zone)	
+function getLoggingItem(player,zone)	
 	
 	Rate = math.random();
 	
@@ -143,7 +143,7 @@ function getItem(player,zone)
 	
 end
 
-function getNewPositionNPC(player,npc,zone)
+function getNewLoggingPositionNPC(player,npc,zone)
 	
 	local newnpcid = npc:getID();
 	
