@@ -978,6 +978,22 @@ int32 map_config_read(const int8* cfgName)
         {
             map_config.player_tp_multiplier = atof(w2);
         }
+		else if (strcmp(w1,"mob_hp_multiplier") == 0)
+        {
+            map_config.mob_hp_multiplier = atof(w2);
+	}
+		else if (strcmp(w1,"player_hp_multiplier") == 0)
+        {
+            map_config.player_hp_multiplier = atof(w2);
+        }
+		else if (strcmp(w1,"mob_mp_multiplier") == 0)
+        {
+            map_config.mob_mp_multiplier = atof(w2);
+	}
+		else if (strcmp(w1,"player_mp_multiplier") == 0)
+        {
+            map_config.player_mp_multiplier = atof(w2);
+        }
 		else if (strcmp(w1,"exp_retain") == 0)
         {
             map_config.exp_retain = dsp_cap(atof(w2), 0.0f, 1.0f);

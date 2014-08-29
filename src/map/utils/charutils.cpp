@@ -198,7 +198,7 @@ void CalculateStats(CCharEntity* PChar)
 
 
 	uint16 MeritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_MAX_HP, PChar);
-	PChar->health.maxhp = (int16)(raceStat + jobStat + bonusStat + sJobStat + MeritBonus);
+	PChar->health.maxhp = (int16)(map_config.player_hp_multiplier * (raceStat + jobStat + bonusStat + sJobStat) + MeritBonus);
 
 	//Начало расчера MP
 
@@ -240,7 +240,7 @@ void CalculateStats(CCharEntity* PChar)
 	}
 
 	MeritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_MAX_MP, PChar);
-	PChar->health.maxmp = (int16)(raceStat + jobStat + sJobStat + MeritBonus); // результат расчета MP
+	PChar->health.maxmp = (int16)(map_config.player_mp_multiplier * (raceStat + jobStat + sJobStat) + MeritBonus); // результат расчета MP
 
 
 	//add in evasion from skill
