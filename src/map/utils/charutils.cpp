@@ -927,6 +927,8 @@ void LoadInventory(CCharEntity* PChar)
 	if (ret != SQL_ERROR &&
 		Sql_NumRows(SqlHandle) != 0)
 	{
+		CItemLinkshell* PLinkshell = NULL;
+
 		while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		{
 			if (Sql_GetUIntData(SqlHandle, 1) < 16)
@@ -941,16 +943,20 @@ void LoadInventory(CCharEntity* PChar)
 					PItem->setSubType(ITEM_LOCKED);
 					PChar->equip[SLOT_LINK] = SlotID;
 					PChar->equipLoc[SLOT_LINK] = LOC_INVENTORY;
-					linkshell::AddOnlineMember(PChar, (CItemLinkshell*)PItem);
+					PLinkshell = (CItemLinkshell*)PItem;
 				}
 			}
 		}
-
+		if (PLinkshell)
+		{
+			linkshell::AddOnlineMember(PChar, PLinkshell);
+		}
 	}
     else
     {
 		ShowError(CL_RED"Loading error from char_equip\n" CL_RESET);
 	}
+
 	PChar->StatusEffectContainer->LoadStatusEffects();
 }
 
