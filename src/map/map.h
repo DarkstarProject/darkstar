@@ -99,6 +99,7 @@ struct map_config_t
 	float  player_hp_multiplier;	// Multiplier for max HP pool of player
 	float  mob_mp_multiplier;		// Multiplier for max MP pool of mob
 	float  player_mp_multiplier;	// Multiplier for max MP pool of player
+	float  drop_rate_multiplier;	// Multiplier for drops
     uint8  newstyle_skillups;       // Allows failed parries and blocks to trigger skill up chance.
     int8   Battle_cap_tweak;        // Default is 0. Globally adjust the level of level capped fights.
     int8   CoP_Battle_cap;          // Default is 0. Disable/enable old lv caps on Chains of Promathia mission battles.

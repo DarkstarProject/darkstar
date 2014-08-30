@@ -446,7 +446,7 @@ void CAIMobDummy::ActionDropItems()
 						uint8 bonus = (m_PMob->m_THLvl > 2 ? (m_PMob->m_THLvl - 2)*10 : 0);
 						while(tries < maxTries)
 						{
-							if(WELL512::irand()%1000 < DropList->at(i).DropRate + bonus)
+							if(WELL512::irand()%1000 < DropList->at(i).DropRate * map_config.drop_rate_multiplier + bonus)
 							{
 								PChar->PTreasurePool->AddItem(DropList->at(i).ItemID, m_PMob);
 								break;
