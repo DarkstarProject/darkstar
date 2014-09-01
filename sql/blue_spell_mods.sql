@@ -428,7 +428,7 @@ INSERT INTO `blue_spell_mods` VALUES ('614', '11', '2'); -- DEX+2
 -- Plasma Charge
 -- ----------------------------
 INSERT INTO `blue_spell_mods` VALUES ('615', '8', '3'); -- STR+3
-NSERT INTO `blue_spell_mods` VALUES ('615', '9', '3'); -- DEX+3
+INSERT INTO `blue_spell_mods` VALUES ('615', '9', '3'); -- DEX+3
 
 -- ----------------------------
 -- Temporal Shift
