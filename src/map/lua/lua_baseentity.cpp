@@ -5269,12 +5269,17 @@ inline int32 CLuaBaseEntity::equipItem(lua_State *L)
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
     uint16 itemID = (uint16)lua_tointeger(L,1);
-    uint8 SLOT = PChar->getStorage(LOC_INVENTORY)->SearchItem(itemID);
+	uint8 containerID;
+	if (lua_isnil(L, 2) || !lua_isnumber(L, 2))
+		containerID = LOC_INVENTORY;
+	else
+		containerID = (uint8)lua_tointeger(L, 2);
+	uint8 SLOT = PChar->getStorage(containerID)->SearchItem(itemID);
     CItemArmor* PItem;
 
     if(SLOT != ERROR_SLOTID){
-        PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(SLOT);
-        charutils::EquipItem(PChar, SLOT, PItem->getSlotType());
+		PItem = (CItemArmor*)PChar->getStorage(containerID)->GetItem(SLOT);
+		charutils::EquipItem(PChar, SLOT, PItem->getSlotType(), containerID);
         charutils::SaveCharEquip(PChar);
     }
     return 0;
@@ -5299,11 +5304,11 @@ inline int32 CLuaBaseEntity::lockEquipSlot(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    charutils::EquipItem(PChar, 0, SLOT);
+	charutils::EquipItem(PChar, 0, SLOT, LOC_INVENTORY);
 
     PChar->m_EquipBlock |= 1 << SLOT;
     PChar->pushPacket(new CCharAppearancePacket(PChar));
-    PChar->pushPacket(new CEquipPacket(0, SLOT));
+	PChar->pushPacket(new CEquipPacket(0, SLOT, LOC_INVENTORY));
     PChar->pushPacket(new CCharJobsPacket(PChar));
 
     if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;

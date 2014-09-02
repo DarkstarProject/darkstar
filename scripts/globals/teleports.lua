@@ -33,10 +33,11 @@ FIREFLIES_B_REM          = 21;
 FIREFLIES_S_REM          = 22;
 
 TELEPORT_MAAT					= 23;
+
+TELEPORT_HOMING = 24;
 -----------------------------------
 -- Teleports
 -----------------------------------
-
 function toFeiYin(player)
 	player:setPos(280, 20, 543, 192, 0x6F);
 end;

@@ -74,7 +74,8 @@ function onEffectLose(target,effect)
         SilverSeaRemnantsExit(target);
     elseif(Teleport == TELEPORT_MAAT) then
         toMaat(target);
-	end
-	
+    elseif(Teleport == TELEPORT_HOMING) then
+        homingRing(target);
+	end	
    
 end;

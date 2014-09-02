@@ -266,6 +266,8 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->health.maxhp = PMob->HPmodifier;
 	}
 
+	PMob->health.maxhp *= map_config.mob_hp_multiplier;
+
 	bool hasMp = false;
 
 	switch(mJob){
@@ -319,6 +321,8 @@ void CalculateStats(CMobEntity * PMob)
 		} else {
 			PMob->health.maxmp = PMob->MPmodifier;
 		}
+
+		PMob->health.maxmp *= map_config.mob_mp_multiplier;
 	}
 
     PMob->UpdateHealth();
