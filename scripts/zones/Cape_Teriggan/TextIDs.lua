@@ -7,7 +7,7 @@ FULL_INVENTORY_AFTER_TRADE = 6378; -- You cannot obtain the #. Try trading again
               GIL_OBTAINED = 6380; -- Obtained <number> gil.
           KEYITEM_OBTAINED = 6382; -- Obtained key item: <keyitem>.
             ITEMS_OBTAINED = 6388; -- You obtain
-		   BEASTMEN_BANNER = 7101; -- There is a beastmen's banner.
+           BEASTMEN_BANNER = 7101; -- There is a beastmen's banner.
     FISHING_MESSAGE_OFFSET = 7521; -- You can't fish here.
 
 -- Other dialog

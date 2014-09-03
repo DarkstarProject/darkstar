@@ -9,9 +9,9 @@ ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item>. Come back 
         NOTHING_HAPPENS = 119; -- Nothing happens...
 
 -- Other Texts
-	   ALREADY_OBTAINED_TELE = 7179; -- You already possess the gate crystal for this telepoint.
+       ALREADY_OBTAINED_TELE = 7179; -- You already possess the gate crystal for this telepoint.
 TELEPOINT_HAS_BEEN_SHATTERED = 7712; -- The telepoint has been shattered into a thousand pieces...
-			  CHOCOBO_TRACKS = 7844; -- There are chocobo tracks on the ground here.
+              CHOCOBO_TRACKS = 7844; -- There are chocobo tracks on the ground here.
 
 -- Quest Dialogs
  UNLOCK_SUMMONER = 7532; -- You can now become a summoner.

@@ -26,6 +26,6 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_ATT, effect:getPower());
-    target:delMod(MOD_RATT, effect:getPower());
+    target:delMod(MOD_ATTP, effect:getPower());
+    target:delMod(MOD_RATTP, effect:getPower());
 end;

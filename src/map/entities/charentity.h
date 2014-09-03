@@ -256,7 +256,8 @@ public:
 	uint16					m_EquipFlag;					// текущие события, обрабатываемые экипировкой (потом упакую в структуру, вместе с equip[])
     uint16					m_EquipBlock;					// заблокированные ячейки экипировки
 	bool					m_EquipSwap;					// true if equipment was recently changed
-	uint8					equip[17];						// экипировка персонажа
+	uint8					equip[17];						//      SlotID where equipment is
+	uint8					equipLoc[17];					// ContainerID where equipment is
 
 	uint8					m_ZonesList[36];				// список посещенных персонажем зон
 	uint8					m_SpellList[128];				// список изученных заклинаний
@@ -335,6 +336,7 @@ public:
 	uint32			  m_InsideRegionID;				// номер региона, в котором сейчас находится персонаж (??? может засунуть в m_event ???)
 	uint8			  m_LevelRestriction;			// ограничение уровня персонажа
     uint16            m_Costum;                     // карнавальный костюм персонажа (модель)
+	uint16			  m_Monstrosity;				// Monstrosity model ID
 	uint32			  m_AHHistoryTimestamp;			// Timestamp when last asked to view history
     uint32            m_DeathCounter;               // Counter when you last died. This is set when you first login
     uint32            m_DeathTimestamp;             // Timestamp when death counter has been saved to database

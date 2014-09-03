@@ -160,8 +160,8 @@ function SetGroundsTome()
         17429004,17429005,17429006,17433086, -- Temple of Uggalepih (3)
         17433087,17433088,17433089,17433090, -- Den of Rancor (4)
         17433091,17498648,17498649,17498650, -- Den of Rancor (1), Sea Serpent Grotto (3)
-        17498651,17498651,17629762,17629763, -- Sea Serpent Grotto (2), Quicksand Caves (2)
-        17629764,17629765,17629766,17629767, -- Quicksand Caves (4)
+        17498651,17629762,17629763,17629764, -- Sea Serpent Grotto (2), Quicksand Caves (3)
+        17629765,17629766,17629767,          -- Quicksand Caves (3)
     }
 
     i = 1;

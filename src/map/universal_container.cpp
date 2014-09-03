@@ -36,6 +36,7 @@
 
 CUContainer::CUContainer()
 {
+       m_ContainerType = UCONTAINER_EMPTY;
 	Clean();
 }
 
@@ -60,7 +61,8 @@ void CUContainer::Clean()
     m_count  = 0;
     m_target = 0;
 
-	memset(m_PItem, 0, sizeof(m_PItem));
+    m_PItem.clear();
+    m_PItem.resize(UCONTAINER_SIZE, NULL);
 }
 
 /************************************************************************
@@ -150,7 +152,7 @@ bool CUContainer::IsContainerEmpty()
 
 bool CUContainer::IsSlotEmpty(uint8 slotID)
 {
-    if (slotID < UCONTAINER_SIZE)
+    if (slotID < m_PItem.size())
 	{
         return m_PItem[slotID] == NULL;
     }
@@ -165,7 +167,7 @@ bool CUContainer::IsSlotEmpty(uint8 slotID)
 
 bool CUContainer::SetItem(uint8 slotID, CItem* PItem)
 {
-	if (slotID < UCONTAINER_SIZE && !m_lock)
+	if (slotID < m_PItem.size() && !m_lock)
 	{
         if (PItem != NULL && m_PItem[slotID] == NULL) m_count++;
         if (PItem == NULL && m_PItem[slotID] != NULL) m_count--;
@@ -174,6 +176,11 @@ bool CUContainer::SetItem(uint8 slotID, CItem* PItem)
         return true;
 	}
     return false;
+}
+
+void CUContainer::SetSize(uint8 size)
+{
+    m_PItem.resize(size, NULL);
 }
 
 /************************************************************************
@@ -195,7 +202,7 @@ uint8 CUContainer::GetItemsCount()
 
 CItem* CUContainer::GetItem(uint8 slotID)
 {
-	if (slotID < UCONTAINER_SIZE)
+	if (slotID < m_PItem.size())
 	{
 		return m_PItem[slotID];
 	}

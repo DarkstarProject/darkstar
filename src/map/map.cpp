@@ -905,6 +905,9 @@ int32 map_config_default()
     map_config.craft_chance_multiplier = 2.6f;
 	map_config.skillup_amount_multiplier = 1;
 	map_config.craft_amount_multiplier = 1;
+	map_config.craft_day_matters = 1;
+	map_config.craft_moonphase_matters = 0;
+	map_config.craft_direction_matters = 0;
     map_config.mob_tp_multiplier = 1.0f;
     map_config.player_tp_multiplier = 1.0f;
     map_config.vanadiel_time_offset = 0;
@@ -1020,6 +1023,26 @@ int32 map_config_read(const int8* cfgName)
         {
             map_config.player_tp_multiplier = atof(w2);
         }
+		else if (strcmp(w1,"mob_hp_multiplier") == 0)
+        {
+            map_config.mob_hp_multiplier = atof(w2);
+	}
+		else if (strcmp(w1,"player_hp_multiplier") == 0)
+        {
+            map_config.player_hp_multiplier = atof(w2);
+        }
+		else if (strcmp(w1,"mob_mp_multiplier") == 0)
+        {
+            map_config.mob_mp_multiplier = atof(w2);
+	}
+		else if (strcmp(w1,"player_mp_multiplier") == 0)
+        {
+            map_config.player_mp_multiplier = atof(w2);
+        }
+		else if (strcmp(w1,"drop_rate_multiplier") == 0)
+        {
+            map_config.drop_rate_multiplier = atof(w2);
+        }
 		else if (strcmp(w1,"exp_retain") == 0)
         {
             map_config.exp_retain = dsp_cap(atof(w2), 0.0f, 1.0f);
@@ -1059,6 +1082,18 @@ int32 map_config_read(const int8* cfgName)
 		else if (strcmp(w1, "craft_amount_multiplier") == 0)
 		{
 			map_config.craft_amount_multiplier = atof(w2);
+		}
+		else if (strcmp(w1, "craft_day_matters") == 0)
+		{
+			map_config.craft_day_matters = atof(w2);
+		}
+		else if (strcmp(w1, "craft_moonphase_matters") == 0)
+		{
+			map_config.craft_moonphase_matters = atof(w2);
+		}
+		else if (strcmp(w1, "craft_direction_matters") == 0)
+		{
+			map_config.craft_direction_matters = atof(w2);
 		}
 		else if (strcmp(w1,"mysql_host") == 0)
 		{

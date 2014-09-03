@@ -251,7 +251,7 @@ enum ZONEID : uint16
 	ZONE_CLOISTER_OF_FLAMES           = 207,
 	ZONE_QUICKSAND_CAVES              = 208,
 	ZONE_CLOISTER_OF_TREMORS          = 209,
-	ZONE_NONAME_210                   = 210,
+	ZONE_210                          = 210,
 	ZONE_CLOISTER_OF_TIDES            = 211,
 	ZONE_GUSTAV_TUNNEL                = 212,
 	ZONE_LABYRINTH_OF_ONZOZO          = 213,

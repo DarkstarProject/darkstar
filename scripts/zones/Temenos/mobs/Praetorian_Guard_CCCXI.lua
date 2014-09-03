@@ -35,6 +35,6 @@ function onMobDeath(mob,killer)
 	GetNPCByID(16928768+162):setStatus(STATUS_NORMAL);
 	GetNPCByID(16928768+213):setPos(-311,80,421);
 	GetNPCByID(16928768+213):setStatus(STATUS_NORMAL);
-	GetNPCByID(16928768+454):setStatus(STATUS_NORMAL);
+	GetNPCByID(16928770+454):setStatus(STATUS_NORMAL);
  end
 end;

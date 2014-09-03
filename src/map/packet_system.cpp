@@ -104,6 +104,7 @@
 #include "packets/lock_on.h"
 #include "packets/linkshell_equip.h"
 #include "packets/linkshell_message.h"
+#include "packets/macroequipset.h"
 #include "packets/menu_config.h"
 #include "packets/menu_merit.h"
 #include "packets/merit_points_categories.h"
@@ -489,7 +490,7 @@ void SmallPacket0x011(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	{
 		if (PChar->equip[i] != 0)
 		{
-			PChar->pushPacket(new CEquipPacket(PChar->equip[i], i));
+			PChar->pushPacket(new CEquipPacket(PChar->equip[i], i, PChar->equipLoc[i]));
 		}
 	}
 	return;
@@ -2404,19 +2405,64 @@ void SmallPacket0x050(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	uint8 equipSlotID = RBUFB(data,(0x05));		// charequip slot
     uint8 containerID = RBUFB(data,(0x06));     // container id
 
-    // For now disable wardrobe equipment attempts..
-    if (containerID != 0)
+	if (containerID != 0 && containerID != 8)
     {
         return;
     }
 
-	charutils::EquipItem(PChar, slotID, equipSlotID);
+	charutils::EquipItem(PChar, slotID, equipSlotID, containerID); //current
     charutils::SaveCharEquip(PChar);
 	luautils::CheckForGearSet(PChar); // check for gear set on gear change
 	PChar->UpdateHealth();
 	return;
 }
+/************************************************************************
+*																		*
+*  Equip Macro Set Packet												*
+*																		*
+************************************************************************/
 
+void SmallPacket0x051(map_session_data_t* session, CCharEntity* PChar, int8* data)
+{
+	if (PChar->status != STATUS_NORMAL &&
+		PChar->status != STATUS_UPDATE)
+		return;
+
+	for (uint8 i = 0; i <RBUFB(data, (0x04)); i++)
+	{
+		uint8 slotID = RBUFB(data, (0x08  + (0x04 * i)));		// inventory slot
+		uint8 equipSlotID = RBUFB(data, (0x09 + (0x04 * i)));		// charequip slot
+		uint8 containerID = RBUFB(data, (0x0A + (0x04 * i)));     // container id
+		if (containerID == 0 || containerID == 8 )
+		{
+			charutils::EquipItem(PChar, slotID, equipSlotID, containerID);
+		}
+
+	}
+	charutils::SaveCharEquip(PChar);
+	luautils::CheckForGearSet(PChar); // check for gear set on gear change
+	PChar->UpdateHealth();
+	return;
+}
+/************************************************************************
+*																		*
+*  Add Equipment to set 												*
+*																		*
+************************************************************************/
+
+void SmallPacket0x052(map_session_data_t* session, CCharEntity* PChar, int8* data)
+{
+	//Im guessing this is here to check if you can use A Item, as it seems useless to have this sent to server
+	//as It will check requirements when it goes to equip the items anyway
+	//0x05 is slot of updated item
+	//0x08 is info for updated item
+	//0x0C is first slot every 4 bytes is another set, in (01-equip 0-2 remve),(container),(ID),(ID)
+	//in this list the slot of whats being updated is old value, replace with new in 116
+	//Should Push 0x116 (size 68) in responce
+	//0x04 is start, contains 16 4 byte parts repersently each slot in order
+	PChar->pushPacket(new CAddtoEquipSet(data));
+	return;
+}
 /************************************************************************
 *																		*
 *  Request synthesis suggestion											*
@@ -3220,37 +3266,45 @@ void SmallPacket0x078(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x083(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	uint8  quantity   = RBUFB(data,(0x04));
-	uint8  shopSlotID = RBUFB(data,(0x0A));
+    uint8  quantity   = RBUFB(data,(0x04));
+    uint8  shopSlotID = RBUFB(data,(0x0A));
 
     // Prevent users from buying from slots higher than 15.. (Prevents appraise duping..)
-    if (shopSlotID > 15)
+    if (shopSlotID > PChar->Container->getSize() - 1)
     {
-        ShowWarning(CL_YELLOW"User '%s' attempting to buy vendor item from a slot higher than 15!" CL_RESET, PChar->GetName());
+        ShowWarning(CL_YELLOW"User '%s' attempting to buy vendor item from an invalid slot!" CL_RESET, PChar->GetName());
         return;
     }
 
-	uint16 itemID = PChar->Container->getItemID(shopSlotID);
-	uint32 price  = PChar->Container->getQuantity(shopSlotID); // здесь мы сохранили стоимость предмета
+    uint16 itemID = PChar->Container->getItemID(shopSlotID);
+    uint32 price  = PChar->Container->getQuantity(shopSlotID); // здесь мы сохранили стоимость предмета
 
-	CItem* gil  = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
+    CItem* PItem = itemutils::GetItemPointer(itemID);
 
-	if ((gil != NULL) && gil->isType(ITEM_CURRENCY))
-	{
-		if (gil->getQuantity() > (price * quantity))
-		{
-			uint8 SlotID = charutils::AddItem(PChar, LOC_INVENTORY, itemID, quantity);
+    // Prevent purchasing larger stacks than the actual stack size in database.
+    if (quantity > PItem->getStackSize())
+    {
+        quantity = PItem->getStackSize();
+    }
 
-			if (SlotID != ERROR_SLOTID)
-			{
-				charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(int32)(price * quantity));
+    CItem* gil  = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
 
-				PChar->pushPacket(new CShopBuyPacket(shopSlotID, quantity));
-				PChar->pushPacket(new CInventoryFinishPacket());
-			}
-		}
-	}
-	return;
+    if ((gil != NULL) && gil->isType(ITEM_CURRENCY))
+    {
+        if (gil->getQuantity() > (price * quantity))
+        {
+            uint8 SlotID = charutils::AddItem(PChar, LOC_INVENTORY, itemID, quantity);
+
+            if (SlotID != ERROR_SLOTID)
+            {
+                charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(int32)(price * quantity));
+
+                PChar->pushPacket(new CShopBuyPacket(shopSlotID, quantity));
+                PChar->pushPacket(new CInventoryFinishPacket());
+            }
+        }
+    }
+    return;
 }
 
 /************************************************************************
@@ -3275,7 +3329,7 @@ if (PChar->animation != ANIMATION_SYNTH)
 	   !(PItem->getFlag() & ITEM_FLAG_NOSALE) )
 	{
 		// подготавливаем предмет для продажи
-		PChar->Container->setItem(16, itemID, slotID, quantity);
+		PChar->Container->setItem(PChar->Container->getSize() - 1, itemID, slotID, quantity);
 		PChar->pushPacket(new CShopAppraisePacket(slotID, PItem->getBasePrice()));
 	}
 	return;
@@ -3292,9 +3346,9 @@ if (PChar->animation != ANIMATION_SYNTH)
 
 void SmallPacket0x085(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	uint32 quantity = PChar->Container->getQuantity(16);
-	uint16 itemID   = PChar->Container->getItemID(16);
-	uint8  slotID   = PChar->Container->getInvSlotID(16);
+    uint32 quantity = PChar->Container->getQuantity(PChar->Container->getSize() - 1);
+    uint16 itemID = PChar->Container->getItemID(PChar->Container->getSize() - 1);
+    uint8  slotID = PChar->Container->getInvSlotID(PChar->Container->getSize() - 1);
 
 	CItem* gil   = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
 	CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
@@ -3308,7 +3362,7 @@ void SmallPacket0x085(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		PChar->pushPacket(new CInventoryFinishPacket());
 	}
 	// очищаем ячейку для безопасности (защита от группы 0x085-ых пакетов)
-	PChar->Container->setItem(16,0,-1,0);
+    PChar->Container->setItem(PChar->Container->getSize() - 1, 0, -1, 0);
 	return;
 }
 
@@ -3337,10 +3391,12 @@ void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
     PChar->CraftContainer->Clean();
 
-	uint32 ItemID    = RBUFL(data,(0x06));
+	uint16 ItemID    = RBUFL(data,(0x06));
 	uint8  invSlotID = RBUFB(data,(0x08));
 
 	uint8  numItems  = RBUFB(data,(0x09));
+
+	std::vector<uint8> slotQty(MAX_CONTAINER_SIZE);
     
     if (numItems > 8)
     {
@@ -3353,10 +3409,14 @@ void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 	for(int32 SlotID = 0; SlotID < numItems; ++SlotID)
 	{
-		ItemID    = RBUFL(data,(0x0A+SlotID*2));
+		ItemID    = RBUFW(data,(0x0A+SlotID*2));
 		invSlotID = RBUFB(data,(0x1A+SlotID));
 
-		PChar->CraftContainer->setItem(SlotID+1, ItemID, invSlotID, 1);
+		slotQty[invSlotID]++;
+		
+		if ((PChar->getStorage(0)->GetItem(invSlotID)) && (PChar->getStorage(0)->GetItem(invSlotID)->getID() == ItemID) &&
+			(slotQty[invSlotID] <= PChar->getStorage(0)->GetItem(invSlotID)->getQuantity()))
+			PChar->CraftContainer->setItem(SlotID+1, ItemID, invSlotID, 1);
 	}
 
 	synthutils::startSynth(PChar);
@@ -3371,30 +3431,38 @@ void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x0AA(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	uint16 itemID     = RBUFW(data,(0x04));
-	uint8  quantity   = RBUFB(data,(0x07));
-	uint8  shopSlotID = PChar->PGuildShop->SearchItem(itemID);
+    uint16 itemID     = RBUFW(data,(0x04));
+    uint8  quantity   = RBUFB(data,(0x07));
+    uint8  shopSlotID = PChar->PGuildShop->SearchItem(itemID);
     CItemShop* item   = (CItemShop*)PChar->PGuildShop->GetItem(shopSlotID);
-	CItem* gil        = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
+    CItem* gil        = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
 
-	if (((gil != NULL) && gil->isType(ITEM_CURRENCY)) && item != NULL && item->getQuantity() >= quantity)
-	{
-		if (gil->getQuantity() > (item->getBasePrice() * quantity))
-		{
-			uint8 SlotID = charutils::AddItem(PChar, LOC_INVENTORY, itemID, quantity);
+    CItem* PItem = itemutils::GetItemPointer(itemID);
 
-			if (SlotID != ERROR_SLOTID)
-			{
-				charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(int32)(item->getBasePrice() * quantity));
+    // Prevent purchasing larger stacks than the actual stack size in database.
+    if (quantity > PItem->getStackSize())
+    {
+        quantity = PItem->getStackSize();
+    }
 
-				PChar->PGuildShop->GetItem(shopSlotID)->setQuantity(PChar->PGuildShop->GetItem(shopSlotID)->getQuantity()-quantity);
+    if (((gil != NULL) && gil->isType(ITEM_CURRENCY)) && item != NULL && item->getQuantity() >= quantity)
+    {
+        if (gil->getQuantity() > (item->getBasePrice() * quantity))
+        {
+            uint8 SlotID = charutils::AddItem(PChar, LOC_INVENTORY, itemID, quantity);
+
+            if (SlotID != ERROR_SLOTID)
+            {
+                charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(int32)(item->getBasePrice() * quantity));
+
+                PChar->PGuildShop->GetItem(shopSlotID)->setQuantity(PChar->PGuildShop->GetItem(shopSlotID)->getQuantity()-quantity);
                 PChar->pushPacket(new CGuildMenuBuyUpdatePacket(PChar, PChar->PGuildShop->GetItem(PChar->PGuildShop->SearchItem(itemID))->getQuantity(), itemID, quantity));
                 PChar->pushPacket(new CInventoryFinishPacket());
-			}
-		}
-	}
+            }
+        }
+    }
     //TODO: error messages!
-	return;
+    return;
 }
 
 /************************************************************************
@@ -3812,6 +3880,7 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     PItemLinkshell->setSubType(ITEM_UNLOCKED);
 
                     PChar->equip[SLOT_LINK] = 0;
+					PChar->equipLoc[SLOT_LINK] = 0;
                     PChar->nameflags.flags &= ~FLAG_LINKSHELL;
 
                     PChar->pushPacket(new CInventoryAssignPacket(PItemLinkshell, INV_NORMAL));
@@ -3841,6 +3910,7 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     PItemLinkshell->setSubType(ITEM_LOCKED);
 
                     PChar->equip[SLOT_LINK] = SlotID;
+					PChar->equipLoc[SLOT_LINK] = LOC_INVENTORY;
                     PChar->nameflags.flags |= FLAG_LINKSHELL;
 
                     PChar->pushPacket(new CInventoryAssignPacket(PItemLinkshell, INV_LINKSHELL));
@@ -5243,6 +5313,8 @@ void PacketParserInitialize()
     PacketSize[0x04D] = 0x00; PacketParser[0x04D] = &SmallPacket0x04D;
     PacketSize[0x04E] = 0x1E; PacketParser[0x04E] = &SmallPacket0x04E;
     PacketSize[0x050] = 0x04; PacketParser[0x050] = &SmallPacket0x050;
+	PacketSize[0x051] = 0x24; PacketParser[0x051] = &SmallPacket0x051;
+	PacketSize[0x052] = 0x26; PacketParser[0x052] = &SmallPacket0x052;
 	PacketSize[0x058] = 0x0A; PacketParser[0x058] = &SmallPacket0x058;
     PacketSize[0x059] = 0x00; PacketParser[0x059] = &SmallPacket0x059;
     PacketSize[0x05A] = 0x02; PacketParser[0x05A] = &SmallPacket0x05A;

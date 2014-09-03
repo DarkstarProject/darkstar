@@ -3542,10 +3542,12 @@ inline int32 CLuaBaseEntity::createShop(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
     ((CCharEntity*)m_PBaseEntity)->Container->Clean();
+    ((CCharEntity*)m_PBaseEntity)->Container->setSize(lua_tointeger(L,1) + 1);
 
-    if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
+
+    if( !lua_isnil(L,2) && lua_isnumber(L,2) )
     {
-        ((CCharEntity*)m_PBaseEntity)->Container->setType((uint8)lua_tointeger(L, -1));
+        ((CCharEntity*)m_PBaseEntity)->Container->setType((uint8)lua_tointeger(L, 2));
     }
     return 0;
 }
@@ -3565,10 +3567,8 @@ inline int32 CLuaBaseEntity::addShopItem(lua_State *L)
 
     uint8 slotID = ((CCharEntity*)m_PBaseEntity)->Container->getItemsCount();
 
-    if (slotID < 16)
-    {
-        ((CCharEntity*)m_PBaseEntity)->Container->setItem(slotID, itemID, 0, price);
-    }
+    ((CCharEntity*)m_PBaseEntity)->Container->setItem(slotID, itemID, 0, price);
+
     return 0;
 }
 
@@ -3853,6 +3853,37 @@ inline int32 CLuaBaseEntity::costume(lua_State *L)
     }
     lua_pushinteger(L, PChar->m_Costum);
     return 1;
+}
+
+/************************************************************************
+*                                                                       *
+*  Set monstrosity costume				                                *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::costume2(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+	if (!lua_isnil(L, -1) && lua_isnumber(L, -1))
+	{
+		uint16 model = (uint16)lua_tointeger(L, -1);
+
+		if (PChar->m_Monstrosity != model &&
+			PChar->status != STATUS_SHUTDOWN &&
+			PChar->status != STATUS_DISAPPEAR)
+		{
+			PChar->m_Monstrosity = model;
+			PChar->status = STATUS_UPDATE;
+			PChar->pushPacket(new CCharAppearancePacket(PChar));
+		}
+		return 0;
+	}
+	lua_pushinteger(L, PChar->m_Monstrosity);
+	return 1;
 }
 
 /************************************************************************
@@ -5238,12 +5269,17 @@ inline int32 CLuaBaseEntity::equipItem(lua_State *L)
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
     uint16 itemID = (uint16)lua_tointeger(L,1);
-    uint8 SLOT = PChar->getStorage(LOC_INVENTORY)->SearchItem(itemID);
+	uint8 containerID;
+	if (lua_isnil(L, 2) || !lua_isnumber(L, 2))
+		containerID = LOC_INVENTORY;
+	else
+		containerID = (uint8)lua_tointeger(L, 2);
+	uint8 SLOT = PChar->getStorage(containerID)->SearchItem(itemID);
     CItemArmor* PItem;
 
     if(SLOT != ERROR_SLOTID){
-        PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(SLOT);
-        charutils::EquipItem(PChar, SLOT, PItem->getSlotType());
+		PItem = (CItemArmor*)PChar->getStorage(containerID)->GetItem(SLOT);
+		charutils::EquipItem(PChar, SLOT, PItem->getSlotType(), containerID);
         charutils::SaveCharEquip(PChar);
     }
     return 0;
@@ -5268,11 +5304,11 @@ inline int32 CLuaBaseEntity::lockEquipSlot(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    charutils::EquipItem(PChar, 0, SLOT);
+	charutils::EquipItem(PChar, 0, SLOT, LOC_INVENTORY);
 
     PChar->m_EquipBlock |= 1 << SLOT;
     PChar->pushPacket(new CCharAppearancePacket(PChar));
-    PChar->pushPacket(new CEquipPacket(0, SLOT));
+	PChar->pushPacket(new CEquipPacket(0, SLOT, LOC_INVENTORY));
     PChar->pushPacket(new CCharJobsPacket(PChar));
 
     if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
@@ -5401,7 +5437,15 @@ inline int32 CLuaBaseEntity::spawnPet(lua_State *L)
             uint8 petId = lua_tointeger(L,1);
             if (petId == PETID_HARLEQUINFRAME)
             {
-                petId = PETID_HARLEQUINFRAME + ((CCharEntity*)m_PBaseEntity)->PAutomaton->getFrame() - 0x20;
+                if (((CCharEntity*)m_PBaseEntity)->PAutomaton)
+                {
+                    petId = PETID_HARLEQUINFRAME + ((CCharEntity*)m_PBaseEntity)->PAutomaton->getFrame() - 0x20;
+                }
+                else
+                {
+                    ShowError(CL_RED"CLuaBaseEntity::spawnPet : PetID is NULL\n" CL_RESET);
+                    return 0;
+                }
             }
             petutils::SpawnPet((CBattleEntity*)m_PBaseEntity, lua_tointeger(L,1), false);
         }
@@ -6846,13 +6890,15 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L) {
     uint16 anim = (uint16)lua_tointeger(L,2);
 
     ACTIONTYPE actiontype = ACTION_MAGIC_FINISH;
-    switch (action) {
-    case 3: actiontype = ACTION_WEAPONSKILL_FINISH; break;
-    case 4: actiontype = ACTION_MAGIC_FINISH; break;
-    case 6: actiontype = ACTION_JOBABILITY_FINISH; break;
-    case 11: actiontype = ACTION_MOBABILITY_FINISH; break;
-    case 13: actiontype = ACTION_RAISE_MENU_SELECTION; break;
-    case 14: actiontype = ACTION_DANCE; break;
+    switch (action)
+    {
+        case 3: actiontype = ACTION_WEAPONSKILL_FINISH; break;
+        case 4: actiontype = ACTION_MAGIC_FINISH; break;
+        case 5: actiontype = ACTION_ITEM_FINISH; break;
+        case 6: actiontype = ACTION_JOBABILITY_FINISH; break;
+        case 11: actiontype = ACTION_MOBABILITY_FINISH; break;
+        case 13: actiontype = ACTION_RAISE_MENU_SELECTION; break;
+        case 14: actiontype = ACTION_DANCE; break;
     }
 
     apAction_t Action;
@@ -9448,6 +9494,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,speed),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetPlayer),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,costume),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,costume2),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUseCostume),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUseChocobo),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUsePet),

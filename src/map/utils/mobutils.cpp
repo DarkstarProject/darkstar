@@ -266,6 +266,8 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->health.maxhp = PMob->HPmodifier;
 	}
 
+	PMob->health.maxhp *= map_config.mob_hp_multiplier;
+
 	bool hasMp = false;
 
 	switch(mJob){
@@ -319,6 +321,8 @@ void CalculateStats(CMobEntity * PMob)
 		} else {
 			PMob->health.maxmp = PMob->MPmodifier;
 		}
+
+		PMob->health.maxmp *= map_config.mob_mp_multiplier;
 	}
 
     PMob->UpdateHealth();
@@ -476,6 +480,30 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->m_specialFlags |= SPECIALFLAG_HIDDEN;
 		PMob->m_roamFlags |= ROAMFLAG_AMBUSH;
 	}
+
+    // Phuabo
+    if(PMob->m_Family == 194)
+    {
+        PMob->m_roamFlags |= ROAMFLAG_STEALTH;
+    }
+
+    // Yovra
+    if(PMob->m_Family == 271)
+    {
+        PMob->m_roamFlags |= ROAMFLAG_STEALTH;
+    }
+
+    // Chigoe
+    if(PMob->m_Family == 64)
+    {
+        PMob->m_roamFlags |= ROAMFLAG_STEALTH;
+    }
+
+    // Amphiptere
+    if(PMob->m_Family == 6)
+    {
+       PMob->m_roamFlags |= ROAMFLAG_STEALTH;
+    }
 
 	if(PMob->m_Family == 362)
 	{

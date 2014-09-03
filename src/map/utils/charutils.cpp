@@ -55,6 +55,7 @@
 #include "../packets/menu_merit.h"
 #include "../packets/message_basic.h"
 #include "../packets/message_debug.h"
+#include "../packets/message_special.h"
 #include "../packets/message_standard.h"
 #include "../packets/send_box.h"
 #include "../packets/quest_mission_log.h"
@@ -197,7 +198,7 @@ void CalculateStats(CCharEntity* PChar)
 
 
 	uint16 MeritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_MAX_HP, PChar);
-	PChar->health.maxhp = (int16)(raceStat + jobStat + bonusStat + sJobStat + MeritBonus);
+	PChar->health.maxhp = (int16)(map_config.player_hp_multiplier * (raceStat + jobStat + bonusStat + sJobStat) + MeritBonus);
 
 	//Начало расчера MP
 
@@ -239,7 +240,7 @@ void CalculateStats(CCharEntity* PChar)
 	}
 
 	MeritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_MAX_MP, PChar);
-	PChar->health.maxmp = (int16)(raceStat + jobStat + sJobStat + MeritBonus); // результат расчета MP
+	PChar->health.maxmp = (int16)(map_config.player_mp_multiplier * (raceStat + jobStat + sJobStat) + MeritBonus); // результат расчета MP
 
 
 	//add in evasion from skill
@@ -915,51 +916,47 @@ void LoadInventory(CCharEntity* PChar)
 
 	Query =
         "SELECT "
-          "main,"
-          "sub,"
-          "ranged,"
-          "ammo,"
-          "head,"
-          "body,"
-          "hands,"
-          "legs,"
-          "feet,"
-          "neck,"
-          "waist,"
-          "ear1,"
-          "ear2,"
-          "ring1,"
-          "ring2,"
-          "back,"
-          "link "
+		  "slotid,"
+          "equipslotid,"     
+          "containerid "
         "FROM char_equip "
         "WHERE charid = %u;";
 
 	ret = Sql_Query(SqlHandle, Query, PChar->id);
 
 	if (ret != SQL_ERROR &&
-		Sql_NumRows(SqlHandle) != 0 &&
-		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		Sql_NumRows(SqlHandle) != 0)
 	{
-		for (int32 i = 0; i < 16; ++i)
+		CItemLinkshell* PLinkshell = NULL;
+
+		while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		{
-            EquipItem(PChar, (uint8)Sql_GetIntData(SqlHandle, i), i);
+			if (Sql_GetUIntData(SqlHandle, 1) < 16)
+				EquipItem(PChar, Sql_GetUIntData(SqlHandle, 0), Sql_GetUIntData(SqlHandle, 1), Sql_GetUIntData(SqlHandle, 2));
+			else
+			{
+				uint8 SlotID = Sql_GetUIntData(SqlHandle, 0);
+				CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
+
+				if ((PItem != NULL) && PItem->isType(ITEM_LINKSHELL))
+				{
+					PItem->setSubType(ITEM_LOCKED);
+					PChar->equip[SLOT_LINK] = SlotID;
+					PChar->equipLoc[SLOT_LINK] = LOC_INVENTORY;
+					PLinkshell = (CItemLinkshell*)PItem;
+				}
+			}
 		}
-        uint8 SlotID = (uint8)Sql_GetIntData(SqlHandle, SLOT_LINK);
-
-		CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
-
-		if ((PItem != NULL) && PItem->isType(ITEM_LINKSHELL))
-        {
-		    PItem->setSubType(ITEM_LOCKED);
-            PChar->equip[SLOT_LINK] = SlotID;
-            linkshell::AddOnlineMember(PChar, (CItemLinkshell*)PItem);
-        }
+		if (PLinkshell)
+		{
+			linkshell::AddOnlineMember(PChar, PLinkshell);
+		}
 	}
     else
     {
 		ShowError(CL_RED"Loading error from char_equip\n" CL_RESET);
 	}
+
 	PChar->StatusEffectContainer->LoadStatusEffects();
 }
 
@@ -1410,6 +1407,7 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 		//todo: issues as item 0 reference is being handled as a real equipment piece
 		//      thought to be source of nin bug
 		PChar->equip[equipSlotID] = 0;
+		PChar->equipLoc[equipSlotID] = 0;
 
 		if (((CItemArmor*)PItem)->getScriptType() & SCRIPT_EQUIP)
 		{
@@ -1442,8 +1440,8 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 		PChar->delEquipModifiers(&((CItemArmor*)PItem)->modList, ((CItemArmor*)PItem)->getReqLvl(), equipSlotID);
         PChar->PLatentEffectContainer->DelLatentEffects(((CItemArmor*)PItem)->getReqLvl(), equipSlotID);
 
-		PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NORMAL));
-		PChar->pushPacket(new CEquipPacket(0, equipSlotID));
+		PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NORMAL)); //???
+		PChar->pushPacket(new CEquipPacket(0, equipSlotID, LOC_INVENTORY));
 
 		switch(equipSlotID)
 		{
@@ -1530,9 +1528,9 @@ void RemoveSub(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
+bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 containerID)
 {
-	CItemArmor* PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
+	CItemArmor* PItem = (CItemArmor*)PChar->getStorage(containerID)->GetItem(slotID);
 
 	if (PItem == NULL)
 	{
@@ -1560,7 +1558,7 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
         }
     }
 
-    UnequipItem(PChar, equipSlotID);
+	UnequipItem(PChar, equipSlotID);
 
     if (PItem->getEquipSlotId() & (1 << equipSlotID))
     {
@@ -1772,6 +1770,7 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 			break;
 		}
 		PChar->equip[equipSlotID] = slotID;
+		PChar->equipLoc[equipSlotID] = containerID;
 	}
     else
     {
@@ -1787,7 +1786,7 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 *																		*
 ************************************************************************/
 
-void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
+void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 containerID)
 {
 	if (slotID == 0)
 	{
@@ -1800,16 +1799,16 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 
 		PChar->status = STATUS_UPDATE;
 		PChar->m_EquipSwap = true;
-		PChar->pushPacket(new CEquipPacket(slotID, equipSlotID));
+		PChar->pushPacket(new CEquipPacket(slotID, equipSlotID, containerID));
 	}
 	else
     {
-        CItemArmor* PItem = (CItemArmor*)PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
+		CItemArmor* PItem = (CItemArmor*)PChar->getStorage(containerID)->GetItem(slotID); 
 
         if ((PItem != NULL) && PItem->isType(ITEM_ARMOR))
         {
 
-			if (!PItem->isSubType(ITEM_LOCKED) && EquipArmor(PChar, slotID, equipSlotID))
+			if (!PItem->isSubType(ITEM_LOCKED) && EquipArmor(PChar, slotID, equipSlotID, containerID))
 			{
 				if (PItem->getScriptType() & SCRIPT_EQUIP)
 				{
@@ -1823,7 +1822,7 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 
                     // не забываем обновить таймер при экипировке предмета
 
-			        PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_INVENTORY, slotID));
+					PChar->pushPacket(new CInventoryItemPacket(PItem, containerID, slotID));
 	                PChar->pushPacket(new CInventoryFinishPacket());
 		        }
 				PItem->setSubType(ITEM_LOCKED);
@@ -1841,7 +1840,7 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID)
 				PChar->PLatentEffectContainer->CheckLatentsEquip(equipSlotID);
 
 				PChar->status = STATUS_UPDATE;
-				PChar->pushPacket(new CEquipPacket(slotID, equipSlotID));
+				PChar->pushPacket(new CEquipPacket(slotID, equipSlotID, containerID));
 				PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NODROP));
 			}
         }
@@ -2169,7 +2168,7 @@ void BuildingCharSkillsTable(CCharEntity* PChar)
             uint16 artsSkill = battleutils::GetMaxSkill(SKILL_ENH,JOB_RDM,PChar->GetMLevel()); //B+ skill
             uint16 skillCapD = battleutils::GetMaxSkill((SKILLTYPE)i, JOB_SCH, PChar->GetMLevel()); // D skill cap
             uint16 skillCapE = battleutils::GetMaxSkill(SKILL_DRK, JOB_RDM, PChar->GetMLevel()); // E skill cap
-            uint16 currentSkill = dsp_cap((PChar->RealSkills.skill[i] / 10), 0, std::max(MaxMSkill, MaxSSkill)); // working skill before bonuses
+            uint16 currentSkill = dsp_cap((PChar->RealSkills.skill[i] / 10), 0, dsp_max(MaxMSkill, MaxSSkill)); // working skill before bonuses
             uint16 artsBaseline = 0; // Level based baseline to which to raise skills
             if(PChar->GetMJob() < 51)
             {
@@ -2195,20 +2194,20 @@ void BuildingCharSkillsTable(CCharEntity* PChar)
             {
                 // If the player's skill is below the E cap
                 // give enough bonus points to raise it to the arts baseline
-                skillBonus += std::max(artsBaseline - currentSkill, 0);
+                skillBonus += dsp_max(artsBaseline - currentSkill, 0);
             }
             else if (currentSkill < skillCapD)
             {
                 //if the skill is at or above the E cap but below the D cap
                 // raise it up to the B+ skill cap minus the difference between the current skill rank and the scholar base skill cap (D)
                 // i.e. give a bonus of the difference between the B+ skill cap and the D skill cap
-                skillBonus += std::max((artsSkill - skillCapD), 0);
+                skillBonus += dsp_max((artsSkill - skillCapD), 0);
             }
             else if (currentSkill < artsSkill)
             {
                 // If the player's skill is at or above the D cap but below the B+ cap
                 // give enough bonus points to raise it to the B+ cap
-                skillBonus += std::max(artsSkill - currentSkill, 0);
+                skillBonus += dsp_max(artsSkill - currentSkill, 0);
             }
 
             if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LIGHT_ARTS) ||
@@ -2885,7 +2884,8 @@ void DistributeGil(CCharEntity* PChar, CMobEntity* PMob)
 
 void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
 {
-    uint8 pcinzone = 0, minlevel = 0, maxlevel = PChar->GetMLevel();
+    uint16 pcinzone = 0;
+    uint8 minlevel = 0, maxlevel = PChar->GetMLevel();
     uint32 baseexp = 0, exp = 0, dedication = 0;
     float permonstercap, monsterbonus = 1.0f;
     bool chainactive = false;
@@ -3107,7 +3107,7 @@ void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
                         PMember->pushPacket(new CMessageBasicPacket(PMember,PMember,0,0,37));
                         continue;
                     }
-					uint8 Pzone = PMember->getZone();
+					uint16 Pzone = PMember->getZone();
                     if (PMob->m_Type == MOBTYPE_NORMAL && ((Pzone > 0 && Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255)))
 					{
 						if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && PMob->m_Element > 0 && WELL512::irand()%100 < 20 &&
@@ -3447,7 +3447,27 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
         }
     }
 
-	//player levels up
+    // Cruor Drops in Abyssea zones.
+    uint16 Pzone = PChar->getZone();
+    if (zoneutils::GetCurrentRegion(Pzone) == REGION_ABYSSEA)
+    {
+        uint16 TextID = luautils::GetTextIDVariable(Pzone, "CRUOR_OBTAINED");
+        uint32 Total = PChar->m_currency.cruor;
+        uint32 Cruor = 0; // Need to work out how to do cruor chains, until then no cruor will drop unless this line is customized for non retail play.
+
+        if (TextID == 0)
+        {
+            ShowWarning(CL_YELLOW"Failed to fetch Cruor Message ID for zone: %i\n" CL_RESET, Pzone);
+        }
+
+        if (Cruor >= 1)
+        {
+            PChar->pushPacket(new CMessageSpecialPacket(PChar, TextID, Cruor, Total, 0, 0));
+            PChar->m_currency.cruor += Cruor;
+        }
+    }
+
+    // Player levels up
     if ((currentExp + exp) >= GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) && onLimitMode == false)
     {
         if (PChar->jobs.job[PChar->GetMJob()] >= PChar->jobs.genkai)
@@ -3847,34 +3867,22 @@ void SaveZonesVisited(CCharEntity* PChar)
 
 void SaveCharEquip(CCharEntity* PChar)
 {
-	const int8* Query = "UPDATE char_equip \
-						 SET main  = %u, sub   = %u, ranged = %u, ammo = %u, head  = %u, body = %u, \
-							 hands = %u, legs  = %u, feet   = %u, neck = %u, waist = %u, ear1 = %u, \
-							 ear2  = %u, ring1 = %u, ring2  = %u, back = %u, link  = %u \
-						 WHERE charid = %u;";
+	for (uint8 i = 0; i < 17; ++i)
+	{
+		if (PChar->equip[i] == 0)
+		{
+			Sql_Query(SqlHandle, "DELETE FROM char_equip WHERE charid = %u AND  equipslotid = %u LIMIT 1;", PChar->id, i);
+		}
+		else
+		{
 
-	Sql_Query(SqlHandle,
-        Query,
-		PChar->equip[0],
-        PChar->equip[1],
-        PChar->equip[2],
-        PChar->equip[3],
-        PChar->equip[4],
-        PChar->equip[5],
-        PChar->equip[6],
-		PChar->equip[7],
-        PChar->equip[8],
-        PChar->equip[9],
-        PChar->equip[10],
-        PChar->equip[11],
-        PChar->equip[12],
-        PChar->equip[13],
-		PChar->equip[14],
-        PChar->equip[15],
-        PChar->equip[16],
-        PChar->id);
+			const int8* fmtQuery = "INSERT INTO char_equip SET charid = %u, equipslotid = %u , slotid  = %u, containerid = %u ON DUPLICATE KEY UPDATE slotid  = %u, containerid = %u;";
+			Sql_Query(SqlHandle, fmtQuery, PChar->id, i, PChar->equip[i], PChar->equipLoc[i], PChar->equip[i], PChar->equipLoc[i]);
 
-	Query = "UPDATE char_look \
+		}
+	}
+
+	const int8* Query = "UPDATE char_look \
 			 SET head = %u, body = %u, hands = %u, legs = %u, feet = %u, main = %u, sub = %u, ranged = %u \
 			 WHERE charid = %u;";
 
@@ -4186,21 +4194,19 @@ void SaveCharPoints(CCharEntity* PChar)
 uint32  AddExpBonus(CCharEntity* PChar, uint32 exp)
 {
     int32 bonus = 0;
-    if (PChar->getMod(MOD_DEDICATION))
+    if (PChar->StatusEffectContainer->GetStatusEffect(EFFECT_DEDICATION))
     {
-        int16 percentage = PChar->getMod(MOD_DEDICATION);
-        int16 cap = PChar->getMod(MOD_DEDICATION_CAP);
+    	CStatusEffect* dedication = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_DEDICATION);
+    	int16 percentage = dedication->GetPower();
+    	int16 cap = dedication->GetSubPower();
+    	bonus += dsp_cap((exp * percentage)/100, 0, cap);
+    	dedication->SetSubPower(cap -= bonus);
 
-        int16 dedication = dsp_cap(exp * PChar->getMod(MOD_DEDICATION) / 100, 0, PChar->getMod(MOD_DEDICATION_CAP));
-
-        PChar->setModifier(MOD_DEDICATION_CAP, PChar->getMod(MOD_DEDICATION_CAP) - dedication);
-
-        if (PChar->getMod(MOD_DEDICATION_CAP) == 0)
+        if (cap <= 0)
         {
             PChar->StatusEffectContainer->DelStatusEffect(EFFECT_DEDICATION);
         }
 
-        bonus = dedication;
     }
 
     bonus += exp * (PChar->getMod(MOD_EXP_BONUS) / 100.0f);

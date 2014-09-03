@@ -90,8 +90,16 @@ struct map_config_t
 	float  craft_chance_multiplier;			// Constant used in the crafting skill-up formula that has a strong effect on skill-up rates
 	float  skillup_amount_multiplier;		// Used to increase the amount of skill gained during skill up
 	float  craft_amount_multiplier;			// Used to increase the amount of skill gained during skill up
+    bool   craft_day_matters;       // Enable/disable Element day factor in synthesis
+    bool   craft_moonphase_matters; // Enable/disable Moon phase factor in synthesis
+    bool   craft_direction_matters; // Enable/disable Compass direction factor in synthesis
 	float  mob_tp_multiplier;		// Multiplies the amount of TP mobs gain on any effect that would grant TP
 	float  player_tp_multiplier;	// Multiplies the amount of TP players gain on any effect that would grant TP
+	float  mob_hp_multiplier;		// Multiplier for max HP pool of mob
+	float  player_hp_multiplier;	// Multiplier for max HP pool of player
+	float  mob_mp_multiplier;		// Multiplier for max MP pool of mob
+	float  player_mp_multiplier;	// Multiplier for max MP pool of player
+	float  drop_rate_multiplier;	// Multiplier for drops
     uint8  newstyle_skillups;       // Allows failed parries and blocks to trigger skill up chance.
     int8   Battle_cap_tweak;        // Default is 0. Globally adjust the level of level capped fights.
     int8   CoP_Battle_cap;          // Default is 0. Disable/enable old lv caps on Chains of Promathia mission battles.
@@ -166,6 +174,3 @@ int32 map_close_session(uint32 tick,CTaskMgr::CTask *PTask);							// завер
 int32 map_garbage_collect(uint32 tick, CTaskMgr::CTask* PTask);
 
 #endif //_MAP_H
-
-
-

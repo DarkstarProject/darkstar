@@ -68,6 +68,7 @@ CCharEntity::CCharEntity()
 	memset(& jobs,  0, sizeof(jobs));
 	memset(& keys,  0, sizeof(keys));
     memset(& equip, 0, sizeof(equip));
+	memset(& equipLoc, 0, sizeof(equipLoc));
 	memset(& RealSkills,   0, sizeof(RealSkills));
     memset(& m_currency, 0, sizeof(m_currency));
     memset(& nationtp,  0, sizeof(nationtp));
@@ -105,6 +106,7 @@ CCharEntity::CCharEntity()
 	m_asaCurrent = 0;
 
     m_Costum     = 0;
+	m_Monstrosity = 0;
     m_PVPFlag    = 0;
 	m_hasTractor = 0;
 	m_hasRaise	 = 0;
@@ -378,12 +380,12 @@ uint32 CCharEntity::GetPlayTime(bool needUpdate)
 CItemArmor* CCharEntity::getEquip(SLOTTYPE slot)
 {
 	uint8 loc = equip[slot];
-
+	uint8 est = equipLoc[slot];
 	CItemArmor* item = NULL;
 
 	if (loc != 0)
 	{
-		item = (CItemArmor*)getStorage(LOC_INVENTORY)->GetItem(loc);
+		item = (CItemArmor*)getStorage(est)->GetItem(loc);
 	}
 	return item;
 }

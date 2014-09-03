@@ -330,7 +330,8 @@ void LoadMOBList()
 			INNER JOIN mob_spawn_points ON mob_groups.groupid = mob_spawn_points.groupid \
 			INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
 			INNER JOIN zone_settings ON mob_groups.zoneid = zone_settings.zoneid \
-			WHERE NOT (pos_x = 0 AND pos_y = 0 AND pos_z = 0) AND IF(%d <> 0, %d = zoneip AND %d = zoneport, TRUE);";
+			WHERE NOT (pos_x = 0 AND pos_y = 0 AND pos_z = 0) AND IF(%d <> 0, %d = zoneip AND %d = zoneport, TRUE) \
+			AND zoneid = ((mobid >> 12) & 0xFFF);";
 
     int32 ret = Sql_Query(SqlHandle, Query, map_ip, map_ip, map_port);
 

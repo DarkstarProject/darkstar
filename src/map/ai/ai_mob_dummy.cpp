@@ -246,6 +246,14 @@ void CAIMobDummy::ActionRoaming()
 
 				updates |= UPDATE_POS;
 			}
+            else if((m_PMob->m_roamFlags & ROAMFLAG_STEALTH))
+            {
+                // hidden name
+                m_PMob->HideName(true);
+                m_PMob->untargetable = true;
+
+                updates |= UPDATE_POS;
+            }
 			else if(m_PMob->m_roamFlags & ROAMFLAG_EVENT)
 			{
 				// allow custom event action
@@ -317,6 +325,11 @@ void CAIMobDummy::ActionEngage()
 			m_PMob->HideName(false);
 			m_PMob->HideModel(false);
 		}
+        else if ((m_PMob->m_roamFlags & ROAMFLAG_STEALTH) && m_PMob->IsNameHidden())
+        {
+            m_PMob->HideName(false);
+            m_PMob->untargetable = false;
+        }
 		else
 		{
 			ActionAttack();
@@ -433,7 +446,7 @@ void CAIMobDummy::ActionDropItems()
 						uint8 bonus = (m_PMob->m_THLvl > 2 ? (m_PMob->m_THLvl - 2)*10 : 0);
 						while(tries < maxTries)
 						{
-							if(WELL512::irand()%1000 < DropList->at(i).DropRate + bonus)
+							if(WELL512::irand()%1000 < DropList->at(i).DropRate * map_config.drop_rate_multiplier + bonus)
 							{
 								PChar->PTreasurePool->AddItem(DropList->at(i).ItemID, m_PMob);
 								break;
@@ -456,7 +469,7 @@ void CAIMobDummy::ActionDropItems()
 						  >= 90 = High Kindred Crests ID=2956
 				*/
 
-				uint8 Pzone = PChar->getZone();
+				uint16 Pzone = PChar->getZone();
 
 				bool validZone = ((Pzone > 0 && Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255));
 
@@ -666,6 +679,12 @@ void CAIMobDummy::ActionSpawn()
 			m_PMob->HideModel(true);
 		}
 
+        if (m_PMob->m_roamFlags & ROAMFLAG_STEALTH)
+        {
+            m_PMob->HideName(true);
+            m_PMob->untargetable = true;
+        }
+
 		// add people to my posse
 		if(m_PMob->getMobMod(MOBMOD_ASSIST))
 		{
@@ -859,7 +878,7 @@ void CAIMobDummy::ActionAbilityStart()
 		Action.speceffect = SPECEFFECT_HIT;
 		Action.animation  = 0;
 		Action.param	  = m_PMobSkill->getMsgForAction();
-		Action.messageID  = 43; //readies message
+        Action.messageID = m_PMobSkill->getMsg() == 0 ? 0 : 43; //readies message
         Action.knockback  = 0;
 
 		m_PMob->m_ActionList.push_back(Action);

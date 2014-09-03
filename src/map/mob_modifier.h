@@ -74,9 +74,10 @@ enum MOBMODIFIER
   MOBMOD_TELEPORT_END   = 42, // mobskill ID to end teleport
   MOBMOD_TELEPORT_TYPE  = 43, // teleport type - 1: on cooldown, 2 - to close distance
   MOBMOD_DUAL_WIELD     = 44, // enables a mob to use their offhand in attacks
-  MOBMOD_ADD_EFFECT     = 45  // enables additional effect script to process on mobs attacks
+  MOBMOD_ADD_EFFECT     = 45, // enables additional effect script to process on mobs attacks
+  MOBMOD_AUTO_SPIKES    = 46, // enables additional effect script to process when mob is attacked
 };
 
-#define MAX_MOBMODIFIER         46
+#define MAX_MOBMODIFIER         47
 
 #endif

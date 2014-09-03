@@ -225,6 +225,7 @@ bool CAICharNormal::GetValidTarget(CBattleEntity** PBattleTarget, uint8 ValidTar
 		{
 			return true;
 		}
+
 		return false;
 	}
 
@@ -1110,13 +1111,13 @@ void CAICharNormal::ActionRangedFinish()
 					{
 						uint8 slot = m_PChar->equip[SLOT_AMMO];
 						charutils::UnequipItem(m_PChar,SLOT_AMMO);
-						charutils::UpdateItem(m_PChar, LOC_INVENTORY, slot, -1);
+						charutils::UpdateItem(m_PChar, m_PChar->equipLoc[SLOT_AMMO], slot, -1);
 						i = hitCount; // end loop (if barrage), player is out of ammo
 						PAmmo = NULL;
 					}
 					else
 					{
-						charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
+						charutils::UpdateItem(m_PChar, m_PChar->equipLoc[SLOT_AMMO], m_PChar->equip[SLOT_AMMO], -1);
 					}
 					m_PChar->pushPacket(new CInventoryFinishPacket());
 				}
@@ -1963,11 +1964,11 @@ void CAICharNormal::ActionJobAbilityFinish()
     			{
     				uint8 slot = m_PChar->equip[SLOT_AMMO];
     				charutils::UnequipItem(m_PChar,SLOT_AMMO);
-    				charutils::UpdateItem(m_PChar, LOC_INVENTORY, slot, -1);
+					charutils::UpdateItem(m_PChar, m_PChar->equipLoc[SLOT_AMMO], slot, -1);
     			}
     			else
     			{
-    				charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
+					charutils::UpdateItem(m_PChar, m_PChar->equipLoc[SLOT_AMMO], m_PChar->equip[SLOT_AMMO], -1);
     			}
 
     			m_PChar->pushPacket(new CInventoryFinishPacket());
@@ -2177,7 +2178,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 
     	if(m_PJobAbility->getID() == ABILITY_CALL_BEAST || m_PJobAbility->getID() == ABILITY_REWARD ||
             (m_PJobAbility->getID() >= ABILITY_FIRE_SHOT && m_PJobAbility->getID() <= ABILITY_DARK_SHOT )){
-    		charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
+			charutils::UpdateItem(m_PChar, m_PChar->equipLoc[SLOT_AMMO], m_PChar->equip[SLOT_AMMO], -1);
             if (m_PJobAbility->getID() >= ABILITY_FIRE_SHOT && m_PJobAbility->getID() <= ABILITY_DARK_SHOT )
             {
                 CItemContainer* inventory = m_PChar->getStorage(LOC_INVENTORY);
@@ -2637,11 +2638,11 @@ void CAICharNormal::ActionWeaponSkillFinish()
 			{
 				uint8 slot = m_PChar->equip[SLOT_AMMO];
 				charutils::UnequipItem(m_PChar,SLOT_AMMO);
-				charutils::UpdateItem(m_PChar, LOC_INVENTORY, slot, -1);
+				charutils::UpdateItem(m_PChar, m_PChar->equipLoc[SLOT_AMMO], slot, -1);
 			}
 			else
 			{
-				charutils::UpdateItem(m_PChar, LOC_INVENTORY, m_PChar->equip[SLOT_AMMO], -1);
+				charutils::UpdateItem(m_PChar, m_PChar->equipLoc[SLOT_AMMO], m_PChar->equip[SLOT_AMMO], -1);
 			}
 			m_PChar->pushPacket(new CInventoryFinishPacket());
 		}

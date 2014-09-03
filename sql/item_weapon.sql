@@ -3554,7 +3554,7 @@ INSERT INTO `item_weapon` VALUES (21256,'illapa',0,0,0,1,0,0,0);
 INSERT INTO `item_weapon` VALUES (19782,'iron_gobbet',0,0,0,1,0,0,0);
 INSERT INTO `item_weapon` VALUES (20636,'izhiikoh',0,0,0,1,0,0,0);
 INSERT INTO `item_weapon` VALUES (20742,'iztaasu',0,0,0,1,0,0,0);
-INSERT INTO `item_weapon` VALUES (17906,'jug_of_auroral_broth',0,0,0,1,0,0,0);
+INSERT INTO `item_weapon` VALUES (17906,'jug_of_auroral_broth',0,68,0,1,0,0,0);
 INSERT INTO `item_weapon` VALUES (19813,'kannagi',0,0,0,1,0,0,0);
 INSERT INTO `item_weapon` VALUES (21013,'kannakiri',0,0,0,1,0,0,0);
 INSERT INTO `item_weapon` VALUES (21055,'kashiwadachi',0,0,0,1,0,0,0);

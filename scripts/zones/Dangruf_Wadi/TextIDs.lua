@@ -19,4 +19,4 @@ CHEST_ILLUSION = 7405; -- The chest was but an illusion...
 
 -- Other Text
 GEOMAGNETIC_FOUNT = 7160; -- A faint energy wafts up from the ground.
-	   SMALL_HOLE = 7453; -- There is a small hole here.
+       SMALL_HOLE = 7453; -- There is a small hole here.

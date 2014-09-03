@@ -72,6 +72,7 @@ function onEventFinish(player,csid,option)
 			player:messageSpecial(ITEM_OBTAINED, 14093); -- Warlock's Boots
 			player:setVar("theCrimsonTrial_date",0);
 			player:setVar("theCrimsonTrial_prog",0);
+			player:setVar("needs_crawler_blood",2); -- Fixed being unable start next quest
 			player:addFame(SANDORIA,AF2_FAME);
 			player:completeQuest(SANDORIA,ENVELOPED_IN_DARKNESS);
 		end
