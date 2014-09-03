@@ -2168,7 +2168,7 @@ void BuildingCharSkillsTable(CCharEntity* PChar)
             uint16 artsSkill = battleutils::GetMaxSkill(SKILL_ENH,JOB_RDM,PChar->GetMLevel()); //B+ skill
             uint16 skillCapD = battleutils::GetMaxSkill((SKILLTYPE)i, JOB_SCH, PChar->GetMLevel()); // D skill cap
             uint16 skillCapE = battleutils::GetMaxSkill(SKILL_DRK, JOB_RDM, PChar->GetMLevel()); // E skill cap
-            uint16 currentSkill = dsp_cap((PChar->RealSkills.skill[i] / 10), 0, std::max(MaxMSkill, MaxSSkill)); // working skill before bonuses
+            uint16 currentSkill = dsp_cap((PChar->RealSkills.skill[i] / 10), 0, dsp_max(MaxMSkill, MaxSSkill)); // working skill before bonuses
             uint16 artsBaseline = 0; // Level based baseline to which to raise skills
             if(PChar->GetMJob() < 51)
             {
@@ -2194,20 +2194,20 @@ void BuildingCharSkillsTable(CCharEntity* PChar)
             {
                 // If the player's skill is below the E cap
                 // give enough bonus points to raise it to the arts baseline
-                skillBonus += std::max(artsBaseline - currentSkill, 0);
+                skillBonus += dsp_max(artsBaseline - currentSkill, 0);
             }
             else if (currentSkill < skillCapD)
             {
                 //if the skill is at or above the E cap but below the D cap
                 // raise it up to the B+ skill cap minus the difference between the current skill rank and the scholar base skill cap (D)
                 // i.e. give a bonus of the difference between the B+ skill cap and the D skill cap
-                skillBonus += std::max((artsSkill - skillCapD), 0);
+                skillBonus += dsp_max((artsSkill - skillCapD), 0);
             }
             else if (currentSkill < artsSkill)
             {
                 // If the player's skill is at or above the D cap but below the B+ cap
                 // give enough bonus points to raise it to the B+ cap
-                skillBonus += std::max(artsSkill - currentSkill, 0);
+                skillBonus += dsp_max(artsSkill - currentSkill, 0);
             }
 
             if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LIGHT_ARTS) ||
