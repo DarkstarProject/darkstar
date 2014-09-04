@@ -3,6 +3,7 @@
 -- Dispels a single buff at random which could be food.  Lowers Enmity.
 ---------------------------------------------------
 
+local bit = require("bit")
 require("/scripts/globals/settings");
 require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");

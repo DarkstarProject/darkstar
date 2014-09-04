@@ -3,6 +3,7 @@
 -- Dispels all buffs including food. Lowers Enmity.
 ---------------------------------------------------
 
+local bit = require("bit")
 require("/scripts/globals/settings");
 require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");

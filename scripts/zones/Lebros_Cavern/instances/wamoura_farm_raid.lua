@@ -4,6 +4,7 @@
 -- 
 -----------------------------------
 
+local bit = require("bit")
 require("scripts/zones/Lebros_Cavern/IDs");
 
 -----------------------------------

@@ -6,6 +6,7 @@
 package.loaded["scripts/zones/Sacrificial_Chamber/TextIDs"] = nil;
 -------------------------------------
 
+local bit = require("bit")
 require("scripts/zones/Sacrificial_Chamber/TextIDs");
 
 -----------------------------------

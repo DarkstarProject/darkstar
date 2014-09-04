@@ -4,6 +4,7 @@
 -- Standard Info NPC
 -----------------------------------
 
+local bit = require("bit")
 require("scripts/globals/status");
 require("scripts/globals/pets");
 
