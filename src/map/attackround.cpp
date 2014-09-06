@@ -284,7 +284,7 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
 		AddAttackSwing(TRIPLE_ATTACK, direction, 2);
 		m_tripleAttackOccured = true;
 	}
-	else if (num == 1 && rand()%100 < doubleAttack && num == 1)
+	else if (num == 1 && rand()%100 < doubleAttack)
 	{
 		AddAttackSwing(DOUBLE_ATTACK, direction, 1);
 		m_doubleAttackOccured = true;
