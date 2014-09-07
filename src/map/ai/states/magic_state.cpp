@@ -770,7 +770,11 @@ void CMagicState::CharAfterFinish()
             CItemWeapon* PItem = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);
             if (PItem && PItem->isType(ITEM_ARMOR))
             {
-                charutils::TrySkillUP(PChar, (SKILLTYPE)PItem->getSkillType(), m_PTarget->GetMLevel());
+				SKILLTYPE Skilltype = (SKILLTYPE)PItem->getSkillType();
+				if (Skilltype == SKILL_STR || Skilltype == SKILL_WND || Skilltype == SKILL_SNG)
+				{
+					charutils::TrySkillUP(PChar, Skilltype, m_PTarget->GetMLevel());
+				}
             }
         }
     }
