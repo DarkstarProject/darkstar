@@ -1,11 +1,11 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item>. Come back after sorting your inventory.
-          ITEM_OBTAINED = 6379; -- Obtained: <item>.
-           GIL_OBTAINED = 6380; -- Obtained <number> gil.
-       KEYITEM_OBTAINED = 6382; -- Obtained key item: <keyitem>.
- FISHING_MESSAGE_OFFSET = 7325; -- You can't fish here.
+ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item>. Come back after sorting your inventory.
+          ITEM_OBTAINED = 6381; -- Obtained: <item>.
+           GIL_OBTAINED = 6382; -- Obtained <number> gil.
+       KEYITEM_OBTAINED = 6384; -- Obtained key item: <keyitem>.
+ FISHING_MESSAGE_OFFSET = 7329; -- You can't fish here.
 
 -- Mining
-MINING_IS_POSSIBLE_HERE = 7509; -- Mining is possible here if you have
+MINING_IS_POSSIBLE_HERE = 7513; -- Mining is possible here if you have
