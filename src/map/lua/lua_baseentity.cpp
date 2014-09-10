@@ -1,4 +1,4 @@
-﻿/*
+/*
 ===========================================================================
 
   Copyright (c) 2010-2014 Darkstar Dev Teams
@@ -78,6 +78,7 @@
 #include "../packets/server_ip.h"
 #include "../packets/shop_items.h"
 #include "../packets/shop_menu.h"
+#include "../packets/change_music.h"
 #include "../packets/conquest_map.h"
 #include "../packets/weather.h"
 
@@ -134,6 +135,25 @@ inline int32 CLuaBaseEntity::leavegame(lua_State *L)
     ((CCharEntity*)m_PBaseEntity)->status = STATUS_SHUTDOWN;
     ((CCharEntity*)m_PBaseEntity)->pushPacket(new CServerIPPacket((CCharEntity*)m_PBaseEntity,1));
 
+    return 0;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::ChangeMusic(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    uint8  BlockID = (uint32)lua_tointeger(L,1);
+    uint32 MusicTrackID = (uint32)lua_tointeger(L,2);
+
+    PChar->pushPacket(new CChangeMusicPacket(BlockID, MusicTrackID));
     return 0;
 }
 
@@ -9356,6 +9376,7 @@ const int8 CLuaBaseEntity::className[] = "CBaseEntity";
 
 Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 {
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,ChangeMusic),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,warp),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,leavegame),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getID),
