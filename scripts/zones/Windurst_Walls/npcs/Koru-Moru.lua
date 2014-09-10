@@ -26,7 +26,6 @@ function onTrade(player,npc,trade)
 	local count = trade:getItemCount();
 
 	if(player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED) then
-
 		if(trade:hasItemQty(544,1) and count == 1) then
 			if(player:getVar("QuestMakingTheGrade_prog") == 1) then
 				player:startEvent(0x011d); -- MAKING THE GRADE: Turn in Test Answer & Told to go back to Fuepepe & Chomoro
@@ -34,7 +33,8 @@ function onTrade(player,npc,trade)
 				player:startEvent(0x011f); -- MAKING THE GRADE: Have test answers but not talked/given to Fuepepe
 			end
 		end
-	elseif(qStarStruck == QUEST_AVAILABLE) then
+	end;
+	if(qStarStruck == QUEST_AVAILABLE) then
 		if(count == 1 and trade:hasItemQty(584,1)) then
 			player:startEvent(0x00c7);
 		end
@@ -44,31 +44,31 @@ function onTrade(player,npc,trade)
 				player:startEvent(0x00d3);
 			end
 		end
-
-	elseif(player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_4") == 4) then
+	end;
+	if(player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_4") == 4) then
 		if(trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
 			player:setVar("ridingOnTheClouds_4",0);
 			player:tradeComplete();
 			player:addKeyItem(SPIRITED_STONE);
 			player:messageSpecial(KEYITEM_OBTAINED,SPIRITED_STONE);
 		end
-
-	elseif(player:getQuestStatus(WINDURST,BLAST_FROM_THE_PAST) == QUEST_ACCEPTED) then
+	end;
+	if(player:getQuestStatus(WINDURST,BLAST_FROM_THE_PAST) == QUEST_ACCEPTED) then
 		if(count == 1 and trade:hasItemQty(16511,1)) then
 			player:startEvent(0x00e0); -- Complete quest!
 		else
 			player:startEvent(0x00e1); -- not the shell
 		end
-
-	elseif(player:getQuestStatus(WINDURST,THE_ROOT_OF_THE_PROBLEM) == QUEST_ACCEPTED) then
+	end;
+	if(player:getQuestStatus(WINDURST,THE_ROOT_OF_THE_PROBLEM) == QUEST_ACCEPTED) then
 		if (count == 1 and trade:hasItemQty(829,1)) then
 			player:startEvent(0x15D);
 			player:tradeComplete();
 			player:setVar("rootProblem",2);
 		end
-
-	elseif(player:getQuestStatus(WINDURST,CLASS_REUNION) == 1 and player:getVar("ClassReunionProgress") == 2) then
-		if(count == 4 and trade:hasItemQty(17299,4) and trade:getGil() == 0) then
+	end;
+	if(player:getQuestStatus(WINDURST,CLASS_REUNION) == 1 and player:getVar("ClassReunionProgress") == 2) then
+		if(trade:hasItemQty(17299,4)) then
 			player:startEvent(0x0197); -- now Koru remembers something that you need to inquire his former students.
 		end;
 	end;
