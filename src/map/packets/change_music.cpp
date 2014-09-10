@@ -21,24 +21,22 @@
 ===========================================================================
 */
 
-#ifndef _CCHOCOBOMUSICPACKET_H
-#define _CCHOCOBOMUSICPACKET_H
+#include "../../common/socket.h"
 
-#include "../../common/cbasetypes.h"
+#include "change_music.h"
 
-#include "basic.h"
-
-/************************************************************************
-*																		*
-*  																		*
-*																		*
-************************************************************************/
-
-class CChocoboMusicPacket : public CBasicPacket
+CChangeMusicPacket::CChangeMusicPacket(uint8 BlockID, uint32 MusicTrackID)
 {
-public:
+    // Block IDs:
+    // 0 Background Music
+    // 1 Alternate Background Music (SummerFest etc?)
+    // 2 SoloBattle Music
+    // 3 Party Battle Music
+    // 4 Chocobo Music
 
-	CChocoboMusicPacket();
-};
+    this->type = 0x5F;
+    this->size = 0x04;
 
-#endif
+    WBUFB(data,(0x04)-4) = BlockID;        // block
+    WBUFB(data,(0x06)-4) = MusicTrackID;   // music
+}

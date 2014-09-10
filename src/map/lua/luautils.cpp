@@ -702,7 +702,7 @@ int32 SpawnMob(lua_State* L)
 	                PMob->PBattleAI->SetLastActionTime(0);
                     PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
                 } else {
-                    ShowDebug(CL_CYAN"SpawnMob: <%s> is alredy spawned\n" CL_RESET, PMob->GetName());
+                    ShowDebug(CL_CYAN"SpawnMob: <%s> is already spawned\n" CL_RESET, PMob->GetName());
                 }
             }
             PMob->PBattleAI->CheckCurrentAction(gettick());
