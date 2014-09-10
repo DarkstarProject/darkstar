@@ -571,7 +571,7 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
 	// здесь мы проверяем, получил ли клиент предыдущий пакет
 	// если не получил, то мы не создаем новый, а отправляем предыдущий
 
-	if (RBUFW(buff,2) != map_session_data->server_packet_id)
+	/*if (RBUFW(buff,2) != map_session_data->server_packet_id)
 	{
 		WBUFW(map_session_data->server_packet_data,2) = SmallPD_Code;
 		WBUFW(map_session_data->server_packet_data,8) = (uint32)time(NULL);
@@ -581,7 +581,7 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
 
 		map_session_data->server_packet_data = buff;
 		return -1;
-	}
+	}*/
 
 	// увеличиваем номер отправленного пакета только в случае отправки новых данных
 

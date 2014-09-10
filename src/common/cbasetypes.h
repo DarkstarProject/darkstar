@@ -37,7 +37,7 @@
 #define CYGWIN
 #endif
 
-#if !defined(__64BIT__) && defined(__x86_64__)
+#if !defined(__64BIT__) && (defined(__x86_64__) || defined(_WIN64))
 #define __64BIT__
 #endif
 

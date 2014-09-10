@@ -5,7 +5,7 @@
 #include <string.h>
 
 uint32 zlib_compress_table[512];
-uint32 zlib_decompress_table[2556];
+uintptr zlib_decompress_table[2556];
 
 int32   zlib_init()
 {
@@ -21,18 +21,23 @@ int32   zlib_init()
 	fread(zlib_compress_table, sizeof(uint32), 512, fp);
 	fclose(fp);
 
+	uint32 temp_decompress_table[2556];
 	fp = fopen("decompress.dat","rb");
 	if( fp == NULL )
 		ShowFatalError("zlib_init: can't open file <decompress.dat> \n");
 	fseek(fp,0,SEEK_END);
 	size = ftell(fp);
 	rewind(fp);
-	fread(zlib_decompress_table, sizeof(char), size, fp);
+	fread(temp_decompress_table, sizeof(char), size, fp);
 	fclose(fp);
 
-	for(i = 0; i < size/4; i++)
-		if(zlib_decompress_table[i] > 0xff)
-			zlib_decompress_table[i] = zlib_decompress_table[i] - 0x15b3aaa0 + (uintptr)zlib_decompress_table;
+	for (i = 0; i < size / 4; i++)
+	{
+		if (temp_decompress_table[i] > 0xff)
+			zlib_decompress_table[i] = (uintptr)((uintptr*)zlib_decompress_table + ((temp_decompress_table[i] - 0x15b3aaa0) / 4));
+		else
+			zlib_decompress_table[i] = temp_decompress_table[i];
+	}
 
 
 	return 0;
@@ -77,9 +82,9 @@ int32   zlib_compress(char * input,uint32 var1, char * output, uint32 var2, uint
 	return (cume+8);
 };
 
-uint32 zlib_decompress(char *in,uint32 inSize, char *out, uint32 outSize, uint32 *table)
+uint32 zlib_decompress(char *in,uint32 inSize, char *out, uint32 outSize, uintptr *table)
 {
-	uint32 * follow = (uint32*)(uintptr)table[0];
+	uintptr* follow = (uintptr*)table[0];
 	uint32 i, j=0;
 
 	if(in[0] != 1)
@@ -88,16 +93,16 @@ uint32 zlib_decompress(char *in,uint32 inSize, char *out, uint32 outSize, uint32
 
 	for(i = 0; i < inSize ;i++){
 		if((in[i/8]>>(i&7))&1)
-			follow = (uint32*)(uintptr)follow[1];
+			follow = (uintptr*)follow[1];
 		else
-			follow = (uint32*)(uintptr)follow[0];
+			follow = (uintptr*)follow[0];
 		if(follow[0] == 0){
 			if(follow[1]==0){
-				void *ptr = (void*)(uintptr)follow[3];
+				void *ptr = (void*)follow[3];
 				out[j] = (uintptr)(ptr) & 255;
 				if(++j >= outSize)
 					return -1;
-				follow = (uint32*)(uintptr)table[0];
+				follow = (uintptr*)table[0];
 			}
 		}
 	}
