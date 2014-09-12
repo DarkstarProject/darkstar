@@ -321,7 +321,7 @@ INSERT INTO `zone_settings` VALUES (272,3,0016777343,54230,'Dho_Gates',0,57,57,0
 INSERT INTO `zone_settings` VALUES (273,3,0016777343,54230,'Woh_Gates',0,57,57,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (274,3,0016777343,54230,'Outer_Ra_Kaznar',73,57,57,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (275,0,0016777343,54230,'Outer_Ra_Kaznar_U',0,0,0,0,0.00,0,0);
-INSERT INTO `zone_settings` VALUES (276,0,0016777343,54230,'noname',0,0,0,0,0.00,0,0);
+INSERT INTO `zone_settings` VALUES (276,0,0016777343,54230,'Rakaznar_Inner_Court',0,0,0,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (277,0,0016777343,54230,'noname',0,0,0,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (278,0,0016777343,54230,'noname',0,0,0,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (279,0,0016777343,54230,'noname',0,0,0,0,0.00,0,0);
