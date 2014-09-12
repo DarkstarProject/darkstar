@@ -15,7 +15,8 @@
 CONQUEST = 8835; -- You've earned conquest points!
 
 -- Other Texts
-ITEM_DELIVERY_DIALOG = 6789; -- We can deliver goods to your residence or to the residences of your friends.
+ITEM_DELIVERY_DIALOG =  6789; -- We can deliver goods to your residence or to the residences of your friends.
+      CHOCOBO_DIALOG = 10310; -- Kweh!
 
 -- Mission Dialogs
 YOU_ACCEPT_THE_MISSION = 6698; -- You have accepted the mission.

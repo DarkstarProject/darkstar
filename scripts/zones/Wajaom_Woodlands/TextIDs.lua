@@ -8,7 +8,8 @@ ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item>. Come back 
  FISHING_MESSAGE_OFFSET = 7024; -- You can't fish here.
 
 -- Other Texts
-NOTHING_HAPPENS = 119; -- Nothing happens...
+NOTHING_HAPPENS =  119; -- Nothing happens...
+       LEYPOINT = 7368; -- An eerie red glow emanates from this stone platform
 
 -- Harvesting
 HARVESTING_IS_POSSIBLE_HERE = 7376; -- Harvesting is possible here if you have

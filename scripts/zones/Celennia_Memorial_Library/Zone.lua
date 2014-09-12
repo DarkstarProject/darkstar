@@ -1,13 +1,13 @@
 -----------------------------------
 --
--- Zone: Outer Ra’Kanzar (274)
+-- Zone: Celennia Memorial Library (284)
 --
 -----------------------------------
-package.loaded["scripts/zones/Outer_Ra_Kaznar/TextIDs"] = nil;
+package.loaded["scripts/zones/Celennia_Memorial_Library/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Outer_Ra_Kaznar/TextIDs");
+require("scripts/zones/Celennia_Memorial_Library/TextIDs");
 
 -----------------------------------
 --  onInitialize
@@ -21,11 +21,13 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-	local cs = -1;
-	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
-		player:setPos(-40,-180,-20,128);
-	end
-	return cs;
+    local cs = -1;
+
+    if( player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
+        player:setPos( -96,-2,-87,94);
+    end
+
+    return cs;
 end;
 
 -----------------------------------
@@ -40,8 +42,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -49,6 +51,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

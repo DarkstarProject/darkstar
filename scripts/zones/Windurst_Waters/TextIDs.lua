@@ -10,7 +10,8 @@
            COOKING_SUPPORT = 7070; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
 
 -- Other
-DIABOLOS_UNLOCKED = 11805; -- You are now able to summon Diabolos!
+NOTHING_OUT_OF_ORDINARY =  6554; -- There is nothing out of the ordinary here.
+      DIABOLOS_UNLOCKED = 11805; -- You are now able to summon Diabolos!
 
 -- Conquest System
 CONQUEST = 9129; -- You've earned conquest points!

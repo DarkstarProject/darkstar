@@ -32,6 +32,12 @@ YOUR_LEVEL_LIMIT_IS_NOW_60 = 10334; -- Your level limit is now 60.
 YOUR_LEVEL_LIMIT_IS_NOW_65 = 10343; -- Your level limit is now 65.
 YOUR_LEVEL_LIMIT_IS_NOW_70 = 10385; -- Your level limit is now 70.
 YOUR_LEVEL_LIMIT_IS_NOW_75 = 10444; -- Your level limit is now 75.
+YOUR_LEVEL_LIMIT_IS_NOW_80 = 12135; -- Your level limit is now 80!
+YOUR_LEVEL_LIMIT_IS_NOW_85 = 12183; -- Your level limit is now 85!
+YOUR_LEVEL_LIMIT_IS_NOW_90 = 12282; -- Your level limit is now 90!
+YOUR_LEVEL_LIMIT_IS_NOW_95 = 12383; -- Your level limit is now 95!
+YOUR_LEVEL_LIMIT_IS_NOW_99 = 12463; -- Your level limit is now 99!
+        YOUR_MAXIMUM_LEVEL = 6576;  -- Your maximum level has been raised to
 
 -- Shop Texts
    DABIHJAJALIOH_SHOP_DIALOG = 10842; -- Hello therrre. I worrrk for the M&P Market. I'm still new, so I don't know much about selling stuff...

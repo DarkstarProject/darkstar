@@ -11,3 +11,5 @@ ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item> come back a
          SD_HAS_GROWN = 7553; -- The spatial displacement has grown.
 SPACE_SEEMS_DISTORTED = 7554; -- The space around you seems oddly distorted and disrupted.
              MONUMENT = 7561; -- Something has been engraved on this stone, but the message is too difficult to make out.
+
+NOTHING_OUT_OF_ORDINARY = 7595 -- There is nothing out of the ordinary here.

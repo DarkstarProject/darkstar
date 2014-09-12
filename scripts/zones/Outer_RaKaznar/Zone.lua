@@ -1,13 +1,13 @@
 -----------------------------------
 --
--- Zone: Outer Ra’Kanzar [U] (275)
+-- Zone: Outer Ra’Kanzar (274)
 --
 -----------------------------------
-package.loaded["scripts/zones/Outer_Ra_Kaznar_U/TextIDs"] = nil;
+package.loaded["scripts/zones/Outer_RaKaznar/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Outer_Ra_Kaznar_U/TextIDs");
+require("scripts/zones/Outer_RaKaznar/TextIDs");
 
 -----------------------------------
 --  onInitialize
@@ -29,7 +29,7 @@ function onZoneIn(player,prevZone)
 end;
 
 -----------------------------------
--- onRegionEnter          
+-- onRegionEnter
 -----------------------------------
 
 function onRegionEnter(player,region)
