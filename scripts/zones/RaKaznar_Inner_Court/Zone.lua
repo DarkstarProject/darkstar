@@ -3,11 +3,11 @@
 -- Zone: Ra’Kanzar Inner Court (276)
 --
 -----------------------------------
-package.loaded["scripts/zones/RaKazar_Inner_Court/TextIDs"] = nil;
+package.loaded["scripts/zones/RaKaznar_Inner_Court/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/RaKazar_Inner_Court/TextIDs");
+require("scripts/zones/RaKaznar_Inner_Court/TextIDs");
 
 -----------------------------------
 --  onInitialize
