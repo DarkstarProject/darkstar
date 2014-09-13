@@ -3,12 +3,12 @@
 -- NPC:  Morlepiche
 -- @pos -95 0 160 243
 -------------------------------------
-package.loaded["scripts/zones/Rulude_Gardens/TextIDs"] = nil;
+package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/conquest");
-require("scripts/zones/Rulude_Gardens/TextIDs");
+require("scripts/zones/RuLude_Gardens/TextIDs");
 
 guardnation = OTHER;	-- SANDORIA, BASTOK, WINDURST, OTHER(Jeuno).
 guardtype	= 1;		-- 1: city, 2: foreign, 3: outpost, 4: border
