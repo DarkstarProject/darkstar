@@ -1,9 +1,10 @@
 -----------------------------------
 -- Area: Tavnazian Safehold
 -- NPC: Aligi-Kufongi
--- Standard Info NPC
+-- Title Change NPC
+-- @pos -23 -21 15 26
 -----------------------------------
-
+require("scripts/globals/titles");
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -16,7 +17,18 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x0157);
+local title2 = { TAVNAZIAN_SQUIRE ,PUTRID_PURVEYOR_OF_PUNGENT_PETALS , MONARCH_LINN_PATROL_GUARD , SIN_HUNTER_HUNTER , DISCIPLE_OF_JUSTICE , DYNAMISTAVNAZIA_INTERLOPER ,
+				CONFRONTER_OF_NIGHTMARES , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title3 = { DEAD_BODY , FROZEN_DEAD_BODY , DREAMBREAKER , MIST_MELTER , DELTA_ENFORCER , OMEGA_OSTRACIZER , ULTIMA_UNDERTAKER , 
+				ULMIAS_SOULMATE , TENZENS_ALLY , COMPANION_OF_LOUVERANCE , TRUE_COMPANION_OF_LOUVERANCE  , PRISHES_BUDDY  , NAGMOLADAS_UNDERLING ,
+				ESHANTARLS_COMRADE_IN_ARMS , THE_CHEBUKKIS_WORST_NIGHTMARE , UNQUENCHABLE_LIGHT , WARRIOR_OF_THE_CRYSTAL  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title4 = { ANCIENT_FLAME_FOLLOWER , TAVNAZIAN_TRAVELER , TRANSIENT_DREAMER , THE_LOST_ONE , TREADER_OF_AN_ICY_PAST , BRANDED_BY_LIGHTNING ,
+				SEEKER_OF_THE_LIGHT , AVERTER_OF_THE_APOCALYPSE , BANISHER_OF_EMPTINESS , BREAKER_OF_THE_CHAINS , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title5 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title6 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title7 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+												
+player:startEvent(0x0156,gentitle(player,title2),gentitle(player,title3),gentitle(player,title4),gentitle(player,title5),gentitle(player,title6),gentitle(player,title7),1   ,player:getGil());
 end; 
 
 -----------------------------------
@@ -33,9 +45,39 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+--printf("CSID: %u",csid)
+--printf("RESULT: %u",option)
+	if(csid == 0x0156)then
+		if(option > 0 and option <29)then
+			if (player:delGil(200))then	
+				local title = { TAVNAZIAN_SQUIRE ,PUTRID_PURVEYOR_OF_PUNGENT_PETALS , MONARCH_LINN_PATROL_GUARD , SIN_HUNTER_HUNTER , DISCIPLE_OF_JUSTICE , DYNAMISTAVNAZIA_INTERLOPER ,
+				CONFRONTER_OF_NIGHTMARES , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+				player:setTitle(title[option])
+			end
+		elseif(option > 256 and option <285)then
+			if (player:delGil(300))then
+				local title = { DEAD_BODY , FROZEN_DEAD_BODY , DREAMBREAKER , MIST_MELTER , DELTA_ENFORCER , OMEGA_OSTRACIZER , ULTIMA_UNDERTAKER , 
+				ULMIAS_SOULMATE , TENZENS_ALLY , COMPANION_OF_LOUVERANCE , TRUE_COMPANION_OF_LOUVERANCE  , PRISHES_BUDDY  , NAGMOLADAS_UNDERLING ,
+				ESHANTARLS_COMRADE_IN_ARMS , THE_CHEBUKKIS_WORST_NIGHTMARE , UNQUENCHABLE_LIGHT , WARRIOR_OF_THE_CRYSTAL  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+				player:setTitle(title[option - 256])
+			end
+		elseif(option > 512 and option < 541)then
+			if (player:delGil(400))then
+				local title = { ANCIENT_FLAME_FOLLOWER , TAVNAZIAN_TRAVELER , TRANSIENT_DREAMER , THE_LOST_ONE , TREADER_OF_AN_ICY_PAST , BRANDED_BY_LIGHTNING ,
+				SEEKER_OF_THE_LIGHT , AVERTER_OF_THE_APOCALYPSE , BANISHER_OF_EMPTINESS , BREAKER_OF_THE_CHAINS , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+				player:setTitle(title[option - 512] )
+			end
+		end
+	end
 end;
 
-
+function gentitle(player,title)
+	local val1 = 0
+	for i = 1, #title do
+		if(title[i] == 0 or player:hasTitle(title[i]) ~= true)then
+			val1 = val1 + math.pow(2,i)
+		end			
+	end
+	return val1
+end;
 
