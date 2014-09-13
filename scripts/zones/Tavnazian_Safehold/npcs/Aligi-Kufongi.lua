@@ -28,7 +28,7 @@ local title5 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 
 local title6 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 local title7 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 												
-player:startEvent(0x0156,gentitle(player,title2),gentitle(player,title3),gentitle(player,title4),gentitle(player,title5),gentitle(player,title6),gentitle(player,title7),1   ,player:getGil());
+player:startEvent(0x0156,npcUtil.genTmask(player,title2),npcUtil.genTmask(player,title3),npcUtil.genTmask(player,title4),npcUtil.genTmask(player,title5),npcUtil.genTmask(player,title6),npcUtil.genTmask(player,title7),1   ,player:getGil());
 end; 
 
 -----------------------------------
@@ -70,14 +70,3 @@ function onEventFinish(player,csid,option)
 		end
 	end
 end;
-
-function gentitle(player,title)
-	local val1 = 0
-	for i = 1, #title do
-		if(title[i] == 0 or player:hasTitle(title[i]) ~= true)then
-			val1 = val1 + math.pow(2,i)
-		end			
-	end
-	return val1
-end;
-

@@ -53,7 +53,7 @@ local title7 = { ROYAL_ARCHER , ROYAL_SPEARMAN , ROYAL_SQUIRE , ROYAL_SWORDSMAN 
 				GRAND_TEMPLE_KNIGHT , RESERVE_KNIGHT_CAPTAIN , ELITE_ROYAL_GUARD , WOOD_WORSHIPER , LUMBER_LATHER , ACCOMPLISHED_CARPENTER ,
 				ANVIL_ADVOCATE , FORGE_FANATIC , ACCOMPLISHED_BLACKSMITH , ARMORY_OWNER , HIDE_HANDLER , LEATHER_LAUDER , ACCOMPLISHED_TANNER ,
 				SHOESHOP_OWNER , MOG_HOUSE_HANDYPERSON , 0 , 0 , 0 , 0 , 0 , 0 }																												 
-	player:startEvent(0x2A3,gentitle(player,title2),gentitle(player,title3),gentitle(player,title4),gentitle(player,title5),0,gentitle(player,title7),1   ,player:getGil());
+	player:startEvent(0x2A3,npcUtil.genTmask(player,title2),npcUtil.genTmask(player,title3),npcUtil.genTmask(player,title4),npcUtil.genTmask(player,title5),0,npcUtil.genTmask(player,title7),1   ,player:getGil());
 end; 
 
 -----------------------------------
@@ -120,15 +120,3 @@ function onEventFinish(player,csid,option)
 		end
 	end
 end;
-
-function gentitle(player,title)
-	local val1 = 0
-	for i = 1, #title do
-		if(title[i] == 0 or player:hasTitle(title[i]) ~= true)then
-			val1 = val1 + math.pow(2,i)
-		end			
-	end
-	return val1
-end;
-
-

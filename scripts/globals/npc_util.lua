@@ -189,3 +189,12 @@ function npcUtil.tradeHas(trade, items, gil)
 
 	return true;
 end
+function npcUtil.genTmask(player,title)
+	local val1 = 0
+	for i = 1, #title do
+		if(title[i] == 0 or player:hasTitle(title[i]) ~= true)then
+			val1 = val1 + math.pow(2,i)
+		end			
+	end
+	return val1
+end

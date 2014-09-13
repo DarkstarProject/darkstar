@@ -48,7 +48,7 @@ local title6 = { FREESWORD , MERCENARY , MERCENARY_CAPTAIN , COMBAT_CASTER , TAC
 local title7 = { MOG_HOUSE_HANDYPERSON , ARRESTER_OF_THE_ASCENSION , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 
 			0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 														    			
-	player:startEvent(0x2714,gentitle(player,title2),gentitle(player,title3),gentitle(player,title4),gentitle(player,title5),gentitle(player,title6),gentitle(player,title7),1   ,player:getGil());
+	player:startEvent(0x2714,npcUtil.genTmask(player,title2),npcUtil.genTmask(player,title3),npcUtil.genTmask(player,title4),npcUtil.genTmask(player,title5),npcUtil.genTmask(player,title6),npcUtil.genTmask(player,title7),1   ,player:getGil());
 end;					   
 
 -----------------------------------
@@ -64,8 +64,8 @@ end;
 -- onEventFinish
 -----------------------------------
 function onEventFinish(player,csid,option)
-	 printf("CSID: %u",csid)
-	 printf("RESULT: %u",option)
+	 --printf("CSID: %u",csid)
+	 --printf("RESULT: %u",option)
 	 if(csid==0x2714)then
 		if(option > 0 and option <29)then
 			if (player:delGil(200))then
@@ -115,18 +115,6 @@ function onEventFinish(player,csid,option)
 			0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 			player:setTitle(  title[option - 1280]) 
 			end
-		
-		
 		end
 	end
 end;
-function gentitle(player,title)
-	local val1 = 0
-	for i = 1, #title do
-		if(title[i] == 0 or player:hasTitle(title[i]) ~= true)then
-			val1 = val1 + math.pow(2,i)
-		end			
-	end
-	return val1
-end;
-
