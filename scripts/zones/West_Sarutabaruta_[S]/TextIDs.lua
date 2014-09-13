@@ -9,3 +9,10 @@ ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item>. Come back 
 
 -- Harvesting
 HARVESTING_IS_POSSIBLE_HERE = 7043; -- Harvesting is possible here if you have
+
+-- "Snake on the Plains"
+DOOR_OFFSET = 7403; -- The door is sealed shut...
+--  +1        7404; -- You apply ≺Possible Special Code: 01≻≺Possible Special Code: 05≻3≺BAD CHAR: 8280≻≺BAD CHAR: 80≻≺BAD CHAR: 80≻ to the cracks on the entrance.≺Possible Special Code: 00≻
+--  +2        7405; -- This door has already been repaired with ≺Possible Special Code: 01≻≺Possible Special Code: 05≻3≺BAD CHAR: 8280≻≺BAD CHAR: 80≻≺BAD CHAR: 80≻.≺Possible Special Code: 00≻
+--  +3        7406; -- The door is badly cracked...≺Possible Special Code: 00≻
+--  +4        7407; -- You apply the remaining ≺Possible Special Code: 01≻≺Possible Special Code: 05≻3≺BAD CHAR: 8280≻≺BAD CHAR: 80≻≺BAD CHAR: 80≻ to the cracks on the entrance.≺Possible Special Code: 00≻

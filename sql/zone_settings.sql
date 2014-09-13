@@ -319,9 +319,9 @@ INSERT INTO `zone_settings` VALUES (270,3,0016777343,54230,'Cirdas_Caverns',0,57
 INSERT INTO `zone_settings` VALUES (271,6,0016777343,54230,'Cirdas_Caverns_U',62,62,62,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (272,3,0016777343,54230,'Dho_Gates',0,57,57,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (273,3,0016777343,54230,'Woh_Gates',0,57,57,0,0.00,0,0);
-INSERT INTO `zone_settings` VALUES (274,3,0016777343,54230,'Outer_Ra_Kaznar',73,57,57,0,0.00,0,0);
-INSERT INTO `zone_settings` VALUES (275,0,0016777343,54230,'Outer_Ra_Kaznar_U',0,0,0,0,0.00,0,0);
-INSERT INTO `zone_settings` VALUES (276,0,0016777343,54230,'noname',0,0,0,0,0.00,0,0);
+INSERT INTO `zone_settings` VALUES (274,3,0016777343,54230,'Outer_RaKaznar',73,57,57,0,0.00,0,0);
+INSERT INTO `zone_settings` VALUES (275,0,0016777343,54230,'Outer_RaKaznar_U',0,0,0,0,0.00,0,0);
+INSERT INTO `zone_settings` VALUES (276,0,0016777343,54230,'RaKaznar_Inner_Court',0,0,0,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (277,0,0016777343,54230,'noname',0,0,0,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (278,0,0016777343,54230,'noname',0,0,0,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (279,0,0016777343,54230,'noname',0,0,0,0,0.00,0,0);

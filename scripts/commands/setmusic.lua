@@ -15,7 +15,7 @@ function onTrigger(player,typeID,songID)
     if (typeID == nil or songID == nil) then
         player:PrintToPlayer("Both a music type and a music track must be specified.");
         player:PrintToPlayer("@setmusic <typeID> <songID>");
-        player:PrintToPlayer("Types: 1 = Background, 2 = SoloBattle, 3 = Party Battle, 4 = Chocobo");
+        player:PrintToPlayer("Types: 0 = BGM_A, 1 = BGM_B, 2 = SoloBattle, 3 = Party Battle, 4 = Chocobo");
         return
     end
 

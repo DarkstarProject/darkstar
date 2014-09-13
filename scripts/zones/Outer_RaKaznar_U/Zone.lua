@@ -1,30 +1,39 @@
 -----------------------------------
--- Area: Outer Ra'Kaznar
--- NPC: Liseran Door Exit
--- Zones out to Kamihr Drifts (zone 267)
--- @zone 274
--- @pos -34.549 -181.334 -20.031
+--
+-- Zone: Outer Ra’Kanzar [U] (275)
+--
 -----------------------------------
-package.loaded["scripts/zones/Outer_Ra_Kaznar/TextIDs"] = nil;
+package.loaded["scripts/zones/Outer_RaKaznar_U/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Outer_Ra_Kaznar/TextIDs");
+require("scripts/zones/Outer_RaKaznar_U/TextIDs");
 
 -----------------------------------
--- onTrade Action
+--  onInitialize
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end; 
+function onInitialize(zone)
+end;
 
 -----------------------------------
--- onTrigger Action
+-- onZoneIn
 -----------------------------------
 
-function onTrigger(player,npc)
-player:startEvent(0x001c);
-end; 
+function onZoneIn(player,prevZone)
+	local cs = -1;
+	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+		player:setPos(-40,-180,-20,128);
+	end
+	return cs;
+end;
+
+-----------------------------------
+-- onRegionEnter
+-----------------------------------
+
+function onRegionEnter(player,region)
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -42,7 +51,4 @@ end;
 function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
-if (csid == 0x001c and option == 1)then
-player:setPos(-279.709,19.976,60.353,0,267);
-end
 end;

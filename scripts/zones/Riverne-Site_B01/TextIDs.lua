@@ -12,3 +12,5 @@ ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item> come back a
 SPACE_SEEMS_DISTORTED = 7552; -- The space around you seems oddly distorted and disrupted.
              MONUMENT = 7558; -- Something has been engraved on this stone, but the message is too difficult to make out.
    GROUND_GIVING_HEAT = 7560; -- The ground here is giving off heat.
+
+NOTHING_OUT_OF_ORDINARY = 7555 -- There is nothing out of the ordinary here.

@@ -15,5 +15,7 @@ ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item>. Come back 
 SOMETHING_BURIED_HERE = 7355; -- Something has been buried here.
          FIND_NOTHING = 7356; -- You thought you saw something, but find nothing.
 
+      NOTHING_HAPPENS = 119;  -- Nothing happens...
+
      NOTHING_OUT_OF_ORDINARY = 6395; -- There is nothing out of the ordinary here.
 TELEPOINT_HAS_BEEN_SHATTERED = 7444; -- The telepoint has been shattered into a thousand pieces...

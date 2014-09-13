@@ -6,8 +6,10 @@ ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6382; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6384; -- Obtained key item: <keyitem>
  FISHING_MESSAGE_OFFSET = 7024; -- You can't fish here
+          HOMEPOINT_SET = 7479; -- Home point set!
    IMAGE_SUPPORT_ACTIVE = 7494; -- You have to wait a bit longer before asking for synthesis image support again.
           IMAGE_SUPPORT = 7496; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
+               SANCTION = 7915; -- You have received the Empire's Sanction.
 
  --Other Texts
    ITEM_DELIVERY_DIALOG = 7777; -- No need to wrap your goods. Just hand them over and they're as good as delivered! (I've got to be nice as long as the manager's got his eye on me...)

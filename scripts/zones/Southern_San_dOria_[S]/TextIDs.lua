@@ -6,6 +6,8 @@ ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6382; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6384; -- Obtained key item: <keyitem>
 
+           ALLIED_SIGIL = 12854; -- You have received the Allied Sigil!
+
 -- Other Texts
 ITEM_DELIVERY_DIALOG = 11157; -- If'n ye have goods tae deliver, then Nembet be yer man!
 

@@ -5,9 +5,10 @@ ITEM_CANNOT_BE_OBTAINED = 6537; -- You cannot obtain the item <item>. Come back 
           ITEM_OBTAINED = 6540; -- Obtained: <item>.
            GIL_OBTAINED = 6541; -- Obtained <number> gil.
        KEYITEM_OBTAINED = 6543; -- Obtained key item: <keyitem>.
-       KEYITEM_LOST = 6544; -- Lost key item:
+           KEYITEM_LOST = 6544; -- Lost key item:
     NOT_HAVE_ENOUGH_GIL = 6545; -- You do not have enough gil.
           HOMEPOINT_SET = 6646; -- Home point set!
+NOTHING_OUT_OF_ORDINARY = 6554; -- There is nothing out of the ordinary here.
 
 -- Other Texts
 ITEM_DELIVERY_DIALOG = 8013; -- Delivering goods to residences everywhere!
