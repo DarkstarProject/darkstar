@@ -228,7 +228,7 @@ INSERT INTO `zone_settings` VALUES (179,4,0016777343,54230,'Stellar_Fulcrum',0,1
 INSERT INTO `zone_settings` VALUES (180,4,0016777343,54230,'LaLoff_Amphitheater',0,196,196,0,0.00,145,0);
 INSERT INTO `zone_settings` VALUES (181,4,0016777343,54230,'The_Celestial_Nexus',0,198,198,0,0.00,145,0);
 INSERT INTO `zone_settings` VALUES (182,4,0016777343,54230,'Walk_of_Echoes',0,215,215,0,0.00,0,0);
-INSERT INTO `zone_settings` VALUES (183,6,0016777343,54230,'Maquette_Abdhaljs_Legion',0,143,143,0,0.00,0,0);
+INSERT INTO `zone_settings` VALUES (183,6,0016777343,54230,'Maquette_Abdhaljs-Legion',0,143,143,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (184,3,0016777343,54230,'Lower_Delkfutts_Tower',0,115,102,0,0.00,145,0);
 INSERT INTO `zone_settings` VALUES (185,5,0016777343,54230,'Dynamis-San_dOria',121,121,121,0,0.00,400,0);
 INSERT INTO `zone_settings` VALUES (186,5,0016777343,54230,'Dynamis-Bastok',121,121,121,0,0.00,400,0);
