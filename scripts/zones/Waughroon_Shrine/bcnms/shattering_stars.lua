@@ -6,6 +6,7 @@
 package.loaded["scripts/zones/Waughroon_Shrine/TextIDs"] = nil;
 -----------------------------------
 
+local bit = require("bit")
 require("scripts/zones/Waughroon_Shrine/TextIDs");
 
 -----------------------------------
