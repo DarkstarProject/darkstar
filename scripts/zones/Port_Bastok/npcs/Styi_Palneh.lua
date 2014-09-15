@@ -5,9 +5,8 @@
 -- @pos 28 4 -15 236
 -----------------------------------
 
+require("scripts/globals/titles");
 
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
-require("scripts/zones/Port_Bastok/TextIDs");
 local title2 = { NEW_ADVENTURER , BASTOK_WELCOMING_COMMITTEE , BUCKET_FISHER , PURSUER_OF_THE_PAST , MOMMYS_HELPER , HOT_DOG ,
 				STAMPEDER , RINGBEARER , ZERUHN_SWEEPER , TEARJERKER , CRAB_CRUSHER , BRYGIDAPPROVED , GUSTABERG_TOURIST , MOGS_MASTER , CERULEAN_SOLDIER ,
 				DISCERNING_INDIVIDUAL , VERY_DISCERNING_INDIVIDUAL , EXTREMELY_DISCERNING_INDIVIDUAL , APOSTATE_FOR_HIRE , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
@@ -30,23 +29,23 @@ local title7 = { MOG_HOUSE_HANDYPERSON , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 ,
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
-function onTrigger(player,npc)																								
+function onTrigger(player,npc)
 	player:startEvent(0x00C8,npcUtil.genTmask(player,title2),npcUtil.genTmask(player,title3),npcUtil.genTmask(player,title4),npcUtil.genTmask(player,title5),npcUtil.genTmask(player,title6),npcUtil.genTmask(player,title7),1   ,player:getGil());
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -54,33 +53,33 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-	 if(csid==0x00C8)then
-		if(option > 0 and option <29)then
-			if (player:delGil(200))then
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
+	if (csid==0x00C8) then
+		if(option > 0 and option <29) then
+			if (player:delGil(200)) then
 				player:setTitle( title2[option] )
-			end				
-		elseif(option > 256 and option <285)then
-			if (player:delGil(300))then
+			end
+		elseif(option > 256 and option <285) then
+			if (player:delGil(300)) then
 				player:setTitle( title3[option - 256] )
 			end
-		elseif(option > 512 and option < 541)then
-			if (player:delGil(400))then
+		elseif(option > 512 and option < 541) then
+			if (player:delGil(400)) then
 				player:setTitle( title5[option - 512] )
 			end
-		elseif(option > 768 and option <797)then
-			if (player:delGil(500))then
+		elseif(option > 768 and option <797) then
+			if (player:delGil(500)) then
 				player:setTitle( title5[option - 768] )
 			end
-		elseif(option > 1024 and option < 1053)then
-			if (player:delGil(600))then
+		elseif(option > 1024 and option < 1053) then
+			if (player:delGil(600)) then
 				player:setTitle( title6[option - 1024] )
 			end
-		elseif(option > 1280 and option < 1309)then
-			if (player:delGil(700))then
-				player:setTitle(  title7[option - 1280]7) 
+		elseif(option > 1280 and option < 1309) then
+			if (player:delGil(700)) then
+				player:setTitle(  title7[option - 1280]7)
 			end
 		end
-	end			
+	end
 end;
