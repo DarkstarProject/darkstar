@@ -5,8 +5,8 @@
 -- @pos -14 0 -61 245
 -----------------------------------
 
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
-require("scripts/zones/Lower_Jeuno/TextIDs");
+require("scripts/globals/titles");
+
 local title2 = { BROWN_MAGE_GUINEA_PIG , BROWN_MAGIC_BYPRODUCT , RESEARCHER_OF_CLASSICS , TORCHBEARER , FORTUNETELLER_IN_TRAINING ,
 				CHOCOBO_TRAINER , CLOCK_TOWER_PRESERVATIONIST , LIFE_SAVER , CARD_COLLECTOR , TWOS_COMPANY , TRADER_OF_ANTIQUITIES , GOBLINS_EXCLUSIVE_FASHION_MANNEQUIN ,
 				TENSHODO_MEMBER , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
@@ -23,14 +23,14 @@ local title5 = { PARAGON_OF_BEASTMASTER_EXCELLENCE , PARAGON_OF_BARD_EXCELLENCE 
 				DYNAMISQUFIM_INTERLOPER , CONQUEROR_OF_FATE , SUPERHERO , SUPERHEROINE , ELEGANT_DANCER , DAZZLING_DANCE_DIVA , GRIMOIRE_BEARER ,
 				FELLOW_FORTIFIER , BUSHIN_ASPIRANT , BUSHIN_RYU_INHERITOR , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 local title6 = { GRAND_GREEDALOX , SILENCER_OF_THE_ECHO , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title7 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }																				
+local title7 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -38,15 +38,15 @@ end;
 
 function onTrigger(player,npc)
 	player:startEvent(0x271E,npcUtil.genTmask(player,title2),npcUtil.genTmask(player,title3),npcUtil.genTmask(player,title4),npcUtil.genTmask(player,title5),npcUtil.genTmask(player,title6),npcUtil.genTmask(player,title7),1   ,player:getGil());
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -54,29 +54,29 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-	 if(csid==0x271E)then
-		if(option > 0 and option <29)then
-			if (player:delGil(400))then
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
+	if (csid==0x271E) then
+		if(option > 0 and option <29) then
+			if (player:delGil(400)) then
 				player:setTitle( title2[option] )
-			end				
-		elseif(option > 256 and option <285)then
-			if (player:delGil(500))then
+			end
+		elseif(option > 256 and option <285) then
+			if (player:delGil(500)) then
 				player:setTitle(  title3[option - 256] )
 			end
-		elseif(option > 512 and option < 541)then
-			if (player:delGil(600))then
+		elseif(option > 512 and option < 541) then
+			if (player:delGil(600)) then
 				player:setTitle( title4[option - 512] )
 			end
-		elseif(option > 768 and option <797)then
-			if (player:delGil(700))then
+		elseif(option > 768 and option <797) then
+			if (player:delGil(700)) then
 				player:setTitle( title5[option - 768] )
 			end
-		elseif(option > 1024 and option < 1053)then
-			if (player:delGil(800))then
+		elseif(option > 1024 and option < 1053) then
+			if (player:delGil(800)) then
 				player:setTitle( title6[option - 1024] )
 			end
 		end
-	end			
+	end
 end;

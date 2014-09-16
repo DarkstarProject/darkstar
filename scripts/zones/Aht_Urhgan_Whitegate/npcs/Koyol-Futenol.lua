@@ -4,10 +4,9 @@
 -- Title Change NPC
 -- @pos -129 2 -20 50
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");	
+require("scripts/globals/titles");
+
 local title2 = { DARK_RESISTANT , BEARER_OF_THE_MARK_OF_ZAHAK  , SEAGULL_PHRATRIE_CREW_MEMBER , PROUD_AUTOMATON_OWNER , WILDCAT_PUBLICIST ,
 				SCENIC_SNAPSHOTTER , BRANDED_BY_THE_FIVE_SERPENTS , IMMORTAL_LION , PARAGON_OF_BLUE_MAGE_EXCELLENCE , PARAGON_OF_CORSAIR_EXCELLENCE , PARAGON_OF_PUPPETMASTER_EXCELLENCE ,
 				MASTER_OF_AMBITION , MASTER_OF_CHANCE , SKYSERPENT_AGGRANDIZER , GALESERPENT_GUARDIAN , STONESERPENT_SHOCKTROOPER , PHOTOPTICATOR_OPERATOR ,
@@ -22,14 +21,14 @@ local title4 = { SUBDUER_OF_THE_MAMOOL_JA , SUBDUER_OF_THE_TROLLS , SUBDUER_OF_T
 				0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 local title5 = { 0 , SUPERNAL_SAVANT , SOLAR_SAGE , BOLIDE_BARON , MOON_MAVEN  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 local title6 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title7 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }	
+local title7 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -37,15 +36,15 @@ end;
 
 function onTrigger(player,npc)
 	player:startEvent(0x0284,npcUtil.genTmask(player,title2),npcUtil.genTmask(player,title3),npcUtil.genTmask(player,title4),npcUtil.genTmask(player,title5),npcUtil.genTmask(player,title6),npcUtil.genTmask(player,title7),1   ,player:getGil());
-end;-- 																					 							 													Last Title
+end;
 
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -53,25 +52,25 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-	 if(csid==0x0284)then
-		if(option > 0 and option <29)then
-			if (player:delGil(200))then
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
+	if (csid==0x0284) then
+		if(option > 0 and option <29) then
+			if (player:delGil(200)) then
 				player:setTitle( title2[option] )
-			end				
-		elseif(option > 256 and option <285)then
-			if (player:delGil(300))then
+			end
+		elseif(option > 256 and option <285) then
+			if (player:delGil(300)) then
 				player:setTitle( title3[option - 256] )
 			end
-		elseif(option > 512 and option < 541)then
-			if (player:delGil(400))then
+		elseif(option > 512 and option < 541) then
+			if (player:delGil(400)) then
 				player:setTitle( title4[option - 512] )
 			end
-		elseif(option > 768 and option <797)then
-			if (player:delGil(500))then
+		elseif(option > 768 and option <797) then
+			if (player:delGil(500)) then
 				player:setTitle( title5[option - 768] )
 			end
 		end
-	end		
+	end
 end;

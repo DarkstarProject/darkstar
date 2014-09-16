@@ -4,10 +4,9 @@
 --	Title Change NPC
 --  @pos 23 -8 63 249
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Mhaura/TextIDs");
+require("scripts/globals/titles");
+
 local title2 = { PURVEYOR_IN_TRAINING , ONESTAR_PURVEYOR , TWOSTAR_PURVEYOR , THREESTAR_PURVEYOR , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 local title3 = { FOURSTAR_PURVEYOR , FIVESTAR_PURVEYOR , HEIR_OF_THE_GREAT_LIGHTNING , ORCISH_SERJEANT , BRONZE_QUADAV , YAGUDO_INITIATE ,
 				MOBLIN_KINSMAN , DYNAMISBUBURIMU_INTERLOPER , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
@@ -20,14 +19,14 @@ local title6 = { ADAMANTKING_USURPER , OVERLORD_OVERTHROWER , DEITY_DEBUNKER , F
 				MAAT_MASHER , KIRIN_CAPTIVATOR , CACTROT_DESACELERADOR , LIFTER_OF_SHADOWS , TIAMAT_TROUNCER , VRTRA_VANQUISHER , WORLD_SERPENT_SLAYER ,
 				XOLOTL_XTRAPOLATOR , BOROKA_BELEAGUERER , OURYU_OVERWHELMER , VINEGAR_EVAPORATOR , VIRTUOUS_SAINT , BYEBYE_TAISAI , TEMENOS_LIBERATOR ,
 				APOLLYON_RAVAGER , WYRM_ASTONISHER , NIGHTMARE_AWAKENER , 0 , 0 , 0 , 0 , 0 }
-local title7 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }																				
+local title7 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -42,8 +41,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -51,29 +50,29 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-	 if(csid==0x2711)then
-		if(option > 0 and option <29)then
-			if (player:delGil(200))then
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
+	if (csid==0x2711) then
+		if(option > 0 and option <29) then
+			if (player:delGil(200)) then
 				player:setTitle( title2[option] )
-			end				
-		elseif(option > 256 and option <285)then
-			if (player:delGil(300))then
+			end
+		elseif(option > 256 and option <285) then
+			if (player:delGil(300)) then
 				player:setTitle( title3[option - 256] )
 			end
-		elseif(option > 512 and option < 541)then
-			if (player:delGil(400))then
+		elseif(option > 512 and option < 541) then
+			if (player:delGil(400)) then
 				player:setTitle( title4[option - 512] )
 			end
-		elseif(option > 768 and option <797)then
-			if (player:delGil(500))then
+		elseif(option > 768 and option <797) then
+			if (player:delGil(500)) then
 				player:setTitle( title5[option - 768] )
 			end
-		elseif(option > 1024 and option < 1053)then
-			if (player:delGil(600))then
+		elseif(option > 1024 and option < 1053) then
+			if (player:delGil(600)) then
 				player:setTitle( title6[option - 1024] )
 			end
 		end
-	end			
+	end
 end;

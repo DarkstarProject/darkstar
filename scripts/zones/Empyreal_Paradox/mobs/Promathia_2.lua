@@ -3,6 +3,7 @@
 -- NPC:  Promathia (phase 2)
 -----------------------------------
 
+local bit = require("bit")
 require("scripts/globals/titles");
 require("scripts/globals/status");
 require("/scripts/zones/Empyreal_Paradox/TextIDs");
