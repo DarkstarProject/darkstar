@@ -37,6 +37,8 @@ typedef struct
   std::vector<CModifier*> mobMods;
 } ModsList_t;
 
+enum class WeaknessType {YELLOW, BLUE, RED, WHITE};
+
 typedef std::map<uint32,ModsList_t*> ModsMap_t;
 
 namespace mobutils
@@ -57,6 +59,7 @@ namespace mobutils
 	void  SetupMaat(CMobEntity* PMob, JOBTYPE job);
 	void  SetSpellList(CMobEntity*, uint16);
 	CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID);
+    void WeaknessTrigger(CBaseEntity* PTarget, WeaknessType level);
 };
 
 #endif
