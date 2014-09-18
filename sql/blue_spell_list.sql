@@ -191,8 +191,8 @@ INSERT INTO `blue_spell_list` VALUES ('709','0','7','24','3','0','0'); -- Thrash
 INSERT INTO `blue_spell_list` VALUES ('710','1696','4','17','2','0','0'); -- Erratic Flutter
 INSERT INTO `blue_spell_list` VALUES ('711','0','0','0','0','0','0'); -- Restoral
 INSERT INTO `blue_spell_list` VALUES ('712','0','0','0','0','0','0'); -- Rail Cannon
-INSERT INTO `blue_spell_list` VALUES ('713','0','0','0','0','0','0'); -- Diffusion Ray
-INSERT INTO `blue_spell_list` VALUES ('714','0','0','0','0','0','0'); -- Sinker Drill
+INSERT INTO `blue_spell_list` VALUES ('713','1798','0','0','0','0','0'); -- Diffusion Ray
+INSERT INTO `blue_spell_list` VALUES ('714','1817','0','0','0','0','0'); -- Sinker Drill
 INSERT INTO `blue_spell_list` VALUES ('736','373','0','0','0','0','0'); -- Thunderbolt
 INSERT INTO `blue_spell_list` VALUES ('737','551','0','0','0','0','0'); -- Harden Shell
 INSERT INTO `blue_spell_list` VALUES ('738','1049','0','0','0','0','0'); -- Absolute Terror
