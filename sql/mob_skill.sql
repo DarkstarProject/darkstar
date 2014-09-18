@@ -3283,7 +3283,7 @@ INSERT INTO `mob_skill` VALUES (2201,60,1695,'Level-6-Holy',1,18.0,2000,1000,4,0
 -- SOA
 
 -- Twitherym
-INSERT INTO `mob_skill` VALUES (2694,338,2203,'Tempetuous_Upheaval',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2694,338,2203,'Tempestuous_Upheaval',1,18.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (2695,338,2204,'Slicendice',0,25.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (2696,338,2205,'Blackout',1,18.0,2000,1000,4,0,0,0);
 
