@@ -11,7 +11,6 @@ require("scripts/globals/pets");
 -----------------------------------
 
 function OnAbilityCheck(player,target,ability)
-    printf("JugPet: %s", tostring(player:isJugPet()))
 	if (player:getPet() == nil) then
 		return MSGBASIC_REQUIRES_A_PET,0;
 	else
