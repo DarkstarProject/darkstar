@@ -150,7 +150,7 @@ INSERT INTO `blue_spell_mods` VALUES ('544', '13', '1'); -- MND+1
 -- ----------------------------
 -- Sickle Slash
 -- ----------------------------
-INSERT INTO `blue_spell_mods` VALUES ('545', '2', '-5'); -- HP+5
+INSERT INTO `blue_spell_mods` VALUES ('545', '2', '-5'); -- HP-5
 INSERT INTO `blue_spell_mods` VALUES ('545', '5', '15'); -- MP+15
 
 -- ----------------------------
@@ -938,6 +938,26 @@ INSERT INTO `blue_spell_mods` VALUES ('709', '0', '0'); --
 -- Erratic Flutter
 -- ----------------------------
 INSERT INTO `blue_spell_mods` VALUES ('710', '0', '0'); -- 
+
+-- ----------------------------
+ -- Restoral
+-- ----------------------------
+INSERT INTO `blue_spell_mods` VALUES ('711', '0', '0'); -- 
+
+-- ----------------------------
+ -- Rail Cannon
+-- ----------------------------
+INSERT INTO `blue_spell_mods` VALUES ('712', '0', '0'); -- 
+
+-- ----------------------------
+ -- Diffusion Ray
+-- ----------------------------
+INSERT INTO `blue_spell_mods` VALUES ('713', '0', '0'); -- 
+
+-- ----------------------------
+ -- Sinker Drill
+-- ----------------------------
+INSERT INTO `blue_spell_mods` VALUES ('714', '0', '0'); -- 
 
 -- ----------------------------
 -- Thunderbolt
