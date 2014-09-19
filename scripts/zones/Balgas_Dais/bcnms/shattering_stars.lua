@@ -6,7 +6,6 @@
 package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil;
 -------------------------------------
 
-local bit = require("bit")
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/zones/Balgas_Dais/TextIDs");

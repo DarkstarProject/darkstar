@@ -6,7 +6,6 @@
 package.loaded["scripts/zones/QuBia_Arena/TextIDs"] = nil;
 -----------------------------------
 
-local bit = require("bit")
 require("scripts/zones/QuBia_Arena/TextIDs");
 
 -----------------------------------

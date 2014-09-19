@@ -7,7 +7,6 @@
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
 
-local bit = require("bit")
 require("scripts/globals/status");
 require("scripts/globals/besieged");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");

@@ -7,8 +7,6 @@
 --  Range: 20' radial
 --  Notes:
 ---------------------------------------------
-
-local bit = require("bit")
 require("/scripts/globals/settings");
 require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");

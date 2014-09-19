@@ -4,7 +4,6 @@
 --	SE updated the map NPCs to sell maps from the normal areas, RoZ, and CoP areas (Update was in Nov 5, 2013)
 ---------------------------------------------
 
-local bit = require("bit")
 require("scripts/globals/keyitems");
 
 local Maps = {MAP_OF_THE_SAN_DORIA_AREA, MAP_OF_THE_BASTOK_AREA, MAP_OF_THE_WINDURST_AREA, MAP_OF_THE_JEUNO_AREA, MAP_OF_ORDELLES_CAVES, MAP_OF_GHELSBA, MAP_OF_DAVOI, MAP_OF_CARPENTERS_LANDING, MAP_OF_THE_ZERUHN_MINES,

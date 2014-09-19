@@ -4,7 +4,6 @@
 --	@pos 97 -7 -12 252
 -----------------------------------
 
-local bit = require("bit")
 require("scripts/globals/missions");
 require("scripts/globals/settings")
 

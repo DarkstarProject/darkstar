@@ -134,6 +134,8 @@ int32 init()
 	Lunar<CLuaTradeContainer>::Register(LuaHandle);
 	Lunar<CLuaZone>::Register(LuaHandle);
 
+    luaL_dostring(LuaHandle, "require('bit')");
+
 	ShowMessage("\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 	return 0;
 }
