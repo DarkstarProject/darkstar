@@ -1235,9 +1235,9 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
 
 		m_RegenCheckTime = tick;
 
-        int8 regen = m_POwner->getMod(MOD_REGEN);
-        int8 poison = m_POwner->getMod(MOD_REGEN_DOWN);
-        int8 refresh = m_POwner->getMod(MOD_REFRESH) - m_POwner->getMod(MOD_REFRESH_DOWN);
+        int16 regen = m_POwner->getMod(MOD_REGEN);
+        int16 poison = m_POwner->getMod(MOD_REGEN_DOWN);
+        int16 refresh = m_POwner->getMod(MOD_REFRESH) - m_POwner->getMod(MOD_REFRESH_DOWN);
         int16 regain = m_POwner->getMod(MOD_REGAIN) - m_POwner->getMod(MOD_REGAIN_DOWN);
 
 		m_POwner->addHP(regen);
@@ -1256,7 +1256,7 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
 
 		if (m_POwner->getMod(MOD_AVATAR_PERPETUATION) > 0 && (m_POwner->objtype == TYPE_PC))
 		{
-			int8 perpetuation = m_POwner->getMod(MOD_AVATAR_PERPETUATION);
+			int16 perpetuation = m_POwner->getMod(MOD_AVATAR_PERPETUATION);
 
 			if (m_POwner->StatusEffectContainer->HasStatusEffect(EFFECT_ASTRAL_FLOW))
 				perpetuation = 0;

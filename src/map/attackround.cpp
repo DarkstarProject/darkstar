@@ -249,9 +249,9 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
 	AddAttackSwing(ATTACK_NORMAL, direction, num);
 
 	// Checking the players triple, double and quadruple attack
-	int8 tripleAttack = m_attacker->getMod(MOD_TRIPLE_ATTACK);
-	int8 doubleAttack = m_attacker->getMod(MOD_DOUBLE_ATTACK);
-	int8 quadAttack = m_attacker->getMod(MOD_QUAD_ATTACK);
+	int16 tripleAttack = m_attacker->getMod(MOD_TRIPLE_ATTACK);
+	int16 doubleAttack = m_attacker->getMod(MOD_DOUBLE_ATTACK);
+	int16 quadAttack = m_attacker->getMod(MOD_QUAD_ATTACK);
 
 	//check for merit upgrades
 	if (m_attacker->objtype == TYPE_PC)
@@ -309,7 +309,7 @@ void CAttackRound::CreateKickAttacks()
 	if (m_attacker->objtype == TYPE_PC)
 	{
 		// kick attack mod (All jobs)
-		uint8 kickAttack = m_attacker->getMod(MOD_KICK_ATTACK); 
+		uint16 kickAttack = m_attacker->getMod(MOD_KICK_ATTACK); 
 
 		if (m_attacker->GetMJob() == JOB_MNK) // MNK (Main job)
 		{
@@ -349,7 +349,7 @@ void CAttackRound::CreateZanshinAttacks()
 		!m_quadAttackOccured &&
 		m_attackSwings.at(0)->GetAttackType() != ZANSHIN_ATTACK)
 	{
-		uint8 zanshinChance = m_attacker->getMod(MOD_ZANSHIN) + ((CCharEntity*)m_attacker)->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, (CCharEntity*)m_attacker);
+		uint16 zanshinChance = m_attacker->getMod(MOD_ZANSHIN) + ((CCharEntity*)m_attacker)->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, (CCharEntity*)m_attacker);
 		zanshinChance = dsp_cap(zanshinChance, 0, 100);
 
 		if (rand()%100 < zanshinChance)

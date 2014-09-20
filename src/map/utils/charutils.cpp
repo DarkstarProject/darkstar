@@ -4260,9 +4260,9 @@ bool hasMogLockerAccess(CCharEntity* PChar) {
 *                                                                       *
 ************************************************************************/
 
-uint8 AvatarPerpetuationReduction(CCharEntity* PChar)
+uint16 AvatarPerpetuationReduction(CCharEntity* PChar)
 {
-	uint8 reduction = PChar->getMod(MOD_PERPETUATION_REDUCTION);
+	uint16 reduction = PChar->getMod(MOD_PERPETUATION_REDUCTION);
 
 	static const MODIFIER strong[8] = {
         MOD_FIRE_AFFINITY,
@@ -4298,7 +4298,7 @@ uint8 AvatarPerpetuationReduction(CCharEntity* PChar)
 
     DSP_DEBUG_BREAK_IF(element > 7);
 
-	int8 affinity = PChar->getMod(strong[element]);
+	int16 affinity = PChar->getMod(strong[element]);
 
     // TODO: don't use ItemIDs in CORE. it must be MOD
 
