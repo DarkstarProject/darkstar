@@ -62,9 +62,9 @@ function SetExplorerMoogles()
 
     local Moogles  =
     {
-        17723643,   -- Northern_San_d'Oria
-        17735852,   -- Bastok_Mines
-        17760446,   -- Port_Windurst
+        17723643,   -- Northern San d'Oria
+        17735852,   -- Bastok Mines
+        17760446,   -- Port Windurst
         17793127,   -- Selbina
         17797249,   -- Mhaura
     }
@@ -90,25 +90,25 @@ function SetFieldManual()
 
     local FieldManuals  =
     {
-        17187532,17187531,17191530,17191531, -- West Ronfaure 2, East Ronfaure 2
-        17195671,17195672,17199748,17199747, -- La Theine 2, Valkurm 2
-        17199746,17203879,17203878,17207861, -- Valkurm 1, Jugner 2, Batallia 1
-        17207860,17212074,17212075,17212076, -- Batallia 1, North Gustaberg 3
-        17216160,17216161,17220159,17220160, -- South Gustaberg 2, Konschtat 2
-        17224347,17224346,17228371,17228370, -- Pashhow 2, Rolanberry 2
-        17232277,17232274,17232275,17232276, -- Beaucedine all 4
-        17236342,17236341,17240510,17240509, -- Xarcabard 2, Cape Teriggan 2
-        17244650,17244648,17244649,17248845, -- Eastern Altepa 3, West Sarutabaruta 1
-        17248846,17248847,17253061,17253060, -- West Sarutabaruta 2, East Sarutabaruta 2`
-        17253059,17257071,17257069,17257070, -- East Sarutabaruta 1, Tahrongi 3
-        17261195,17261194,17265285,17265286, -- Buburimu 2, Meriphataud Mountains 2
-        17265287,17269256,17269255,17273413, -- Meriphataud Mountains 1, Sauromugue 2, Zi'Tah 1
-        17273412,17277206,17277205,17281641, -- Zi'Tah 1, Ro'Maeve 2, Yuhtunga Jungle 1
+        17187561,17187562,17191530,17191531, -- West Ronfaure 2, East Ronfaure 2
+        17195672,17195673,17199746,17199747, -- La Theine 2, Valkurm 2
+        17199748,17203878,17203879,17207860, -- Valkurm 1, Jugner 2, Batallia 1
+        17207861,17212104,17212105,17212106, -- Batallia 1, North Gustaberg 3
+        17216195,17216196,17220160,17220161, -- South Gustaberg 2, Konschtat 2
+        17224346,17224347,17228370,17228371, -- Pashhow 2, Rolanberry 2
+        17232274,17232275,17232276,17232277, -- Beaucedine all 4
+        17236341,17236342,17240509,17240510, -- Xarcabard 2, Cape Teriggan 2
+        17244648,17244649,17244650,17248864, -- Eastern Altepa 3, West Sarutabaruta 1
+        17248865,17248866,17253059,17253060, -- West Sarutabaruta 2, East Sarutabaruta 2
+        17253061,17257069,17257070,17257071, -- East Sarutabaruta 1, Tahrongi 3
+        17261194,17261195,17265286,17265287, -- Buburimu 2, Meriphataud Mountains 2
+        17265288,17269255,17269256,17273412, -- Meriphataud Mountains 1, Sauromugue 2, Zi'Tah 1
+        17273413,17277205,17277206,17281641, -- Zi'Tah 1, Ro'Maeve 2, Yuhtunga Jungle 1
         17281642,17281643,17281644,17285693, -- Yuhtunga Jungle 3, Yhoator Jungle 1
-        17285694,17285695,17289792,17289790, -- Yhoator Jungle 2, Western Altepa 2
-        17289791,17293771,17293770,17297486, -- Western Altepa 1, Qufim 2, Behemoth's Dominion 1
-        17301588,17301587,17310104,17310099, -- Valley of Sorrows 2, Ru'Aun Gardens 2
-        17310100,17310101,17310102,17310103, -- Ru'Aun Gardens all 4 (6 total)
+        17285694,17285695,17289790,17289791, -- Yhoator Jungle 2, Western Altepa 2
+        17289792,17293770,17293771,17297486, -- Western Altepa 1, Qufim 2, Behemoth's Dominion 1
+        17301587,17301588,17310099,17310100, -- Valley of Sorrows 2, Ru'Aun Gardens 2
+        17310101,17310102,17310103,17310104, -- Ru'Aun Gardens all 4 (6 total)
     }
 
     i = 1;
@@ -143,7 +143,7 @@ function SetGroundsTome()
         17580413,17584491,17584492,17588783, -- Gusgen Mines (1), Crawlers' Nest (2), Maze of Shakhrami (1)
         17588784,17588785,17588786,17596848, -- Maze of Shakhrami (3), Garlaige Citadel (1)
         17596849,17596850,17613246,17613247, -- Garlaige Citadel (2), Fei'Yin (2)
-        17404401,17404401,17404401,17404401, -- The Boyahda Tree (4)
+        17404401,17404402,17404403,17404404, --! The Boyahda Tree (4)
         17486258,17486259,17486260,17486261, -- Korroloka Tunnel (4)
         17490317,17490318,17490319,17490320, -- Kuftal Tunnel (4)
         17502701,17502702,17502703,17502704, -- Ve'Lugannon Palace (4)
