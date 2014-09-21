@@ -136,13 +136,13 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
     if( PEnmity != m_EnmityList.end() &&
        !m_EnmityList.key_comp()(PEntity->id, PEnmity->first))
     {
-		float bonus = CalculateEnmityBonus(PEntity);
+        float bonus = CalculateEnmityBonus(PEntity);
 
         if (PEnmity->second->CE == 0 && CE + VE <= 0)
             return;
 
-        PEnmity->second->CE += CE * bonus;
-        PEnmity->second->VE += VE * bonus;
+        PEnmity->second->CE += CE > 0 ? CE * bonus : CE;
+        PEnmity->second->VE += VE > 0 ? VE * bonus : VE;
 
         //Check for cap limit
         PEnmity->second->CE = dsp_cap(PEnmity->second->CE, 1, 10000);
