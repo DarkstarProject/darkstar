@@ -68,6 +68,7 @@ enum MODIFIER
 	MOD_RACC                      = 0x1A, // Ranged Accuracy (modId = 26)
 
 	MOD_ENMITY                    = 0x1B, // Enmity (modId = 27)
+    MOD_ENMITY_LOSS_REDUCTION     = 0x1F6,// Reduces Enmity lost when taking damage
 
 	MOD_MATT                      = 0x1C, // Magic Attack (modId = 28)
 	MOD_MDEF                      = 0x1D, // Magic Defense (modId = 29)
@@ -547,7 +548,6 @@ enum MODIFIER
 
     MOD_GOV_CLEARS                = 0x1F0, // 4% bonus per Grounds of Valor Page clear (modId = 496)
 
-    //MOD_SPARE =0x1F6, // (modId = 502)
     //MOD_SPARE =0x1F7, // (modId = 503)
     //MOD_SPARE =0x1F8, // (modId = 504)
     //MOD_SPARE =0x1F9, // (modId = 505)
@@ -561,7 +561,7 @@ enum MODIFIER
 
 };
 
-#define MAX_MODIFIER 502
+#define MAX_MODIFIER 503
 
 
 

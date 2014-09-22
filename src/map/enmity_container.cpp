@@ -400,7 +400,8 @@ void CEnmityContainer::UpdateEnmityFromAttack(CBattleEntity* PEntity, uint16 Dam
 	{
 		return;
 	}
-    UpdateEnmity(PEntity, -(1800 * Damage / PEntity->GetMaxHP()), 0);
+    float reduction = (100.f - dsp_min(PEntity->getMod(MOD_ENMITY_LOSS_REDUCTION), 100)) / 100.0f;
+    UpdateEnmity(PEntity, -(1800 * Damage / PEntity->GetMaxHP()) * reduction, 0);
 }
 
 /************************************************************************
@@ -437,6 +438,7 @@ void CEnmityContainer::DecayEnmity()
 
 		//Should lose 60/sec, and this is called twice a sec, hence 30.
 		PEnmityObject->VE -= PEnmityObject->VE > 30 ? 30 : PEnmityObject->VE;
+        ShowMessage("CE: %d VE: %d\n", PEnmityObject->CE, PEnmityObject->VE);
 	}
 }
 
