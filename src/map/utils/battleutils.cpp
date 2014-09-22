@@ -3208,6 +3208,25 @@ void GenerateCureEnmity(CBattleEntity* PSource, CBattleEntity* PTarget, uint16 a
 	}
 }
 
+//Generate enmity for all targets in range
+
+void GenerateInRangeEnmity(CBattleEntity* PSource, int16 CE, int16 VE)
+{
+    DSP_DEBUG_BREAK_IF(PSource == NULL);
+    DSP_DEBUG_BREAK_IF(PSource->objtype != TYPE_PC);
+
+    CCharEntity* PChar = (CCharEntity*)PSource;
+
+    for (SpawnIDList_t::const_iterator it = PChar->SpawnMOBList.begin(); it != PChar->SpawnMOBList.end(); ++it)
+    {
+        CMobEntity* PCurrentMob = (CMobEntity*)it->second;
+
+        if (PCurrentMob->PEnmityContainer->HasTargetID(PSource->id))
+        {
+            PCurrentMob->PEnmityContainer->UpdateEnmity(PChar, CE, VE);
+        }
+    }
+}
 
 /************************************************************************
 *                                                                       *
