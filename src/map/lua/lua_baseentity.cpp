@@ -1,4 +1,4 @@
-/*
+﻿/*
 ===========================================================================
 
   Copyright (c) 2010-2014 Darkstar Dev Teams
@@ -7638,7 +7638,7 @@ inline int32 CLuaBaseEntity::getTags(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    lua_pushinteger(L, PChar->m_currency.traverserstones);
+    lua_pushinteger(L, PChar->m_currency.idtags);
 
     return 1;
 }
