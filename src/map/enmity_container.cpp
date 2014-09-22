@@ -254,7 +254,7 @@ void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PEntity, uint16 level
 	else{
 		CureAmount = (CureAmount < 1 ? 1 : CureAmount);
 
-		uint16 mod = battleutils::GetEnmityMod(level, 0);
+		uint16 mod = battleutils::GetEnmityModCure(level);
 
 		uint16 CE =  40 / mod * CureAmount;
 		uint16 VE = 240 / mod * CureAmount;
@@ -376,10 +376,10 @@ void CEnmityContainer::UpdateEnmityFromDamage(CBattleEntity* PEntity, uint16 Dam
 
 	Damage = (Damage < 1 ? 1 : Damage);
 
-	uint16 mod = battleutils::GetEnmityMod(PEntity->GetMLevel(), 1); //default fallback
+	uint16 mod = battleutils::GetEnmityModDamage(PEntity->GetMLevel()); //default fallback
 
 	if(m_EnmityHolder != NULL) {//use the correct mod value
-		mod = battleutils::GetEnmityMod(m_EnmityHolder->GetMLevel(), 1);
+        mod = battleutils::GetEnmityModDamage(m_EnmityHolder->GetMLevel());
 	}
 
 	uint16 CE =  (80.0f / mod) * Damage;
