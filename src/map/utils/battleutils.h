@@ -95,7 +95,6 @@ namespace battleutils
 	void			LoadSkillTable();
 	void			LoadWeaponSkillsList();
 	void			LoadMobSkillsList();
-	void			LoadEnmityTable();
     void			LoadSkillChainDamageModifiers();
 
 	uint8			CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon);
@@ -159,11 +158,13 @@ namespace battleutils
 	uint8				GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isBarrage);
 	int32				CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 Tier, uint8 element);
 
-    uint8				GetEnmityMod(uint8 level, uint8 modType);
+    uint8				GetEnmityModDamage(uint8 level);
+    uint8				GetEnmityModCure(uint8 level);
 	bool				Enfeeble(CBattleEntity* PCaster, CBattleEntity* PDefender, EFFECT Effect);
 	bool				isValidSelfTargetWeaponskill(int wsid);
 	int16				CalculateBaseTP(int delay, int stp);
     void				GenerateCureEnmity(CBattleEntity* PSource, CBattleEntity* PTarget, uint16 amount);
+    void                GenerateInRangeEnmity(CBattleEntity* PSource, int16 CE, int16 VE);
 
     CItemWeapon*		GetEntityWeapon(CBattleEntity* PEntity, SLOTTYPE Slot);
     CItemArmor*			GetEntityArmor(CBattleEntity* PEntity, SLOTTYPE Slot);

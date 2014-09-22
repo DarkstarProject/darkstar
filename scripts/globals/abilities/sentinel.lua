@@ -21,7 +21,9 @@ function OnUseAbility(player, target, ability)
 		power = power + 13; -- -103%.  This is oddly correct.
 	end
 
+    local guardian = player:getMerit(MERIT_GUARDIAN);
+        
    -- Sent as positive power because UINTs, man.
-   player:addStatusEffect(EFFECT_SENTINEL,power,3,30);
+   player:addStatusEffect(EFFECT_SENTINEL,power,3,30,0,guardian);
 
 end;

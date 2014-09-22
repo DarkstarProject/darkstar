@@ -689,6 +689,16 @@ void CMagicState::CharOnTarget(apAction_t* action, int16 ce, int16 ve)
     }
 
     CBattleEntity* PTarget = action->ActionTarget;
+    bool enmityApplied = false;
+
+    if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_TRANQUILITY) && m_PSpell->getSpellGroup() == SPELLGROUP_WHITE)
+    {
+        m_PEntity->addModifier(MOD_ENMITY, -m_PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_TRANQUILITY)->GetPower());
+    }
+    if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_EQUANIMITY) && m_PSpell->getSpellGroup() == SPELLGROUP_BLACK)
+    {
+        m_PEntity->addModifier(MOD_ENMITY, -m_PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_EQUANIMITY)->GetPower());
+    }
 
     if (PTarget->objtype == TYPE_MOB && PTarget->allegiance != m_PEntity->allegiance)
     {
@@ -699,26 +709,26 @@ void CMagicState::CharOnTarget(apAction_t* action, int16 ce, int16 ve)
 
         ((CMobEntity*)PTarget)->m_OwnerID.id = m_PEntity->id;
         ((CMobEntity*)PTarget)->m_OwnerID.targid = m_PEntity->targid;
-
-        if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_TRANQUILITY) && m_PSpell->getSpellGroup() == SPELLGROUP_WHITE)
-        {
-            m_PEntity->addModifier(MOD_ENMITY, -m_PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_TRANQUILITY)->GetPower());
-        }
-        if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_EQUANIMITY) && m_PSpell->getSpellGroup() == SPELLGROUP_BLACK)
-        {
-            m_PEntity->addModifier(MOD_ENMITY, -m_PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_EQUANIMITY)->GetPower());
-        }
         ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmity(m_PEntity, ce, ve);
-        if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_TRANQUILITY) && m_PSpell->getSpellGroup() == SPELLGROUP_WHITE)
-        {
-            m_PEntity->delModifier(MOD_ENMITY, -m_PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_TRANQUILITY)->GetPower());
+        enmityApplied = true;
+    }
+    else if (PTarget->allegiance == m_PEntity->allegiance)
+    {
+        battleutils::GenerateInRangeEnmity(m_PEntity, ce, ve);
+        enmityApplied = true;
+    }
+
+    if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_TRANQUILITY) && m_PSpell->getSpellGroup() == SPELLGROUP_WHITE)
+    {
+        m_PEntity->delModifier(MOD_ENMITY, -m_PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_TRANQUILITY)->GetPower());
+        if (enmityApplied)
             m_PEntity->StatusEffectContainer->DelStatusEffect(EFFECT_TRANQUILITY);
-        }
-        if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_EQUANIMITY) && m_PSpell->getSpellGroup() == SPELLGROUP_BLACK)
-        {
-            m_PEntity->delModifier(MOD_ENMITY, -m_PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_EQUANIMITY)->GetPower());
+    }
+    if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_EQUANIMITY) && m_PSpell->getSpellGroup() == SPELLGROUP_BLACK)
+    {
+        m_PEntity->delModifier(MOD_ENMITY, -m_PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_EQUANIMITY)->GetPower());
+        if (enmityApplied)
             m_PEntity->StatusEffectContainer->DelStatusEffect(EFFECT_EQUANIMITY);
-        }
     }
 
     if(action->param > 0 && m_PSpell->dealsDamage() && m_PSpell->getSpellGroup() == SPELLGROUP_BLUE &&
