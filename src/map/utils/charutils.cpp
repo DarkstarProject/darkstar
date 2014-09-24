@@ -767,19 +767,22 @@ void LoadChar(CCharEntity* PChar)
 
 	PChar->animation = (PChar->health.hp == 0 ? ANIMATION_DEATH : ANIMATION_NONE);
 
-	fmtQuery = "SELECT gmlevel \
-			FROM chars \
-			WHERE charid = %u;";
+    fmtQuery =
+        "SELECT "
+          "gmlevel,"    // 0
+          "mentor "     // 1
+        "FROM chars "
+        "WHERE charid = %u;";
 
-	ret = Sql_Query(SqlHandle,fmtQuery,PChar->id);
+    ret = Sql_Query(SqlHandle,fmtQuery,PChar->id);
 
-	if (ret != SQL_ERROR &&
-		Sql_NumRows(SqlHandle) != 0 &&
-		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-	{
-		PChar->m_GMlevel = (uint8)Sql_GetUIntData(SqlHandle,0);
-	}
-
+    if (ret != SQL_ERROR &&
+        Sql_NumRows(SqlHandle) != 0 &&
+        Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    {
+        PChar->m_GMlevel = (uint8)Sql_GetUIntData(SqlHandle,0);
+        PChar->m_mentor = (uint8)Sql_GetUIntData(SqlHandle,1);
+    }
 }
 
 /************************************************************************
@@ -3934,6 +3937,19 @@ void SaveCharGMLevel(CCharEntity* PChar)
 
 	Sql_Query(SqlHandle,Query,"chars","gmlevel =",PChar->m_GMlevel,PChar->id);
 	Sql_Query(SqlHandle,Query,"char_stats","nameflags =",PChar->nameflags.flags,PChar->id);
+}
+
+/************************************************************************
+*                                                                       *
+*  Save the char's mentor flag state                                    *
+*                                                                       *
+************************************************************************/
+
+void mentorMode(CCharEntity* PChar)
+{
+    const int8* Query = "UPDATE %s SET %s %u WHERE charid = %u;";
+
+    Sql_Query(SqlHandle,Query,"chars","mentor =",PChar->m_mentor,PChar->id);
 }
 
 /************************************************************************
