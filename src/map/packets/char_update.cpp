@@ -56,7 +56,7 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 		WBUFB(data,(0x38)-4) = 0x04;
 	}
 
-    if (PChar->m_isMentor)
+    if (PChar->m_mentor >= 2)
         WBUFB(data,(0x38)-4) |= 0x10; // Mentor flag.
     if (PChar->m_isNewPlayer)
         WBUFB(data,(0x38)-4) |= 0x0C; // New player ?

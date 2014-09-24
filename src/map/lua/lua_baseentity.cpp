@@ -9035,17 +9035,21 @@ inline int32 CLuaBaseEntity::getMentor(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    lua_pushboolean(L, ((CCharEntity*)m_PBaseEntity)->m_isMentor);
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    lua_pushnumber(L,PChar->m_mentor);
     return 1;
 }
+
 inline int32 CLuaBaseEntity::setMentor(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isboolean(L,1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    PChar->m_isMentor = lua_toboolean(L, 1);
+    PChar->m_mentor = (uint8)lua_tonumber(L,1);
+    charutils::mentorMode(PChar);
+    PChar->pushPacket(new CCharUpdatePacket(PChar));
     return 0;
 }
 
@@ -9347,7 +9351,7 @@ inline int32 CLuaBaseEntity::spawn(lua_State* L)
             PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
         }
         else {
-            ShowDebug(CL_CYAN"SpawnMob: <%s> is alredy spawned\n" CL_RESET, PMob->GetName());
+            ShowDebug(CL_CYAN"SpawnMob: <%s> is already spawned\n" CL_RESET, PMob->GetName());
         }
     }
     return 0;
