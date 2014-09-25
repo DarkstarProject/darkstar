@@ -18,6 +18,7 @@ CFLAGS_ALL              +=$(CFLAGS_MYSQL)
 
 LIBS_ALL                += $(LIBS_LUA) -lluajit-5.1
 LIBS_ALL                += $(LIBS_MYSQL) -lmysqlclient
+LIBS_ALL                += -lzmq
 
 ## Add Architecture-specific stuff
 if DARKSTAR_ARCH_LINUX

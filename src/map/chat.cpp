@@ -115,7 +115,7 @@ namespace chat
 				{
 					if (PChar->nameflags.flags & FLAG_AWAY)
 					{
-						send(CHAT_MSG_DIRECT, extra->data(), sizeof uint32, new CMessageStandardPacket(PChar, 0, 0, 181));
+						send(CHAT_MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PChar, 0, 0, 181));
 					}
 					else
 					{
@@ -126,7 +126,7 @@ namespace chat
 				}
 				else
 				{
-					send(CHAT_MSG_DIRECT, extra->data(), sizeof uint32, new CMessageStandardPacket(PChar, 0, 0, 125));
+					send(CHAT_MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PChar, 0, 0, 125));
 				}
 				break;
 			}
@@ -210,12 +210,12 @@ namespace chat
 					if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 || PInvitee->PParty != NULL ||
 						(inviteType == INVITE_ALLIANCE && (PInvitee->PParty->GetLeader() != PInvitee || PInvitee->PParty->m_PAlliance)))
 					{
-						send(CHAT_MSG_DIRECT, extra->data(), sizeof uint32, new CMessageStandardPacket(PInvitee, 0, 0, 23));
+						send(CHAT_MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PInvitee, 0, 0, 23));
 						return;
 					}
 					if (PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
 					{
-						send(CHAT_MSG_DIRECT, extra->data(), sizeof uint32, new CMessageStandardPacket(PInvitee, 0, 0, 236));
+						send(CHAT_MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PInvitee, 0, 0, 236));
 						return;
 					}
 
@@ -261,7 +261,7 @@ namespace chat
 								}
 								else
 								{
-									send(CHAT_MSG_DIRECT, (uint8*)extra->data()+6, sizeof uint32, new CMessageStandardPacket(PInviter, 0, 0, 14));
+									send(CHAT_MSG_DIRECT, (uint8*)extra->data()+6, sizeof(uint32), new CMessageStandardPacket(PInviter, 0, 0, 14));
 								}
 							}
 							else
@@ -349,7 +349,7 @@ namespace chat
 
 	void send(CHATTYPE type, void* data, size_t datalen, CBasicPacket* packet)
 	{
-		zmq::message_t newType(sizeof CHATTYPE);
+		zmq::message_t newType(sizeof(CHATTYPE));
 		WBUFB(newType.data(),0) = type;
 		zSocket->send(newType, ZMQ_SNDMORE);
 

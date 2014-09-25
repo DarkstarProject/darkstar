@@ -3706,7 +3706,7 @@ void SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	int8 packetData[64];
 	strncpy(packetData + 4, RecipientName.c_str(), RecipientName.length()+1);
 	WBUFL(packetData, 0) = PChar->id;
-	chat::send(chat::CHAT_TELL, packetData, RecipientName.length() + sizeof uint32 + 1, new CChatMessagePacket(PChar, MESSAGE_TELL, data + 20));
+	chat::send(chat::CHAT_TELL, packetData, RecipientName.length() + 5, new CChatMessagePacket(PChar, MESSAGE_TELL, data + 20));
 
 	if (map_config.audit_chat == 1 && map_config.audit_tell == 1)
 	{

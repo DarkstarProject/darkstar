@@ -155,11 +155,11 @@ void chat_parse(CHATTYPE type, zmq::message_t* extra, zmq::message_t* packet)
 }
 void chat_send(uint64 ipp, CHATTYPE type, zmq::message_t* extra, zmq::message_t* packet)
 {
-	zmq::message_t to(sizeof uint64);
-	memcpy(to.data(), &ipp, sizeof uint64);
+	zmq::message_t to(sizeof(uint64));
+	memcpy(to.data(), &ipp, sizeof(uint64));
 	zSocket->send(to, ZMQ_SNDMORE);
 
-	zmq::message_t newType(sizeof CHATTYPE);
+	zmq::message_t newType(sizeof(CHATTYPE));
 	WBUFB(newType.data(), 0) = type;
 	zSocket->send(newType, ZMQ_SNDMORE);
 
