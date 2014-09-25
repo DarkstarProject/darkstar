@@ -77,6 +77,8 @@ public:
         return m_PBaseEntity;
     }
 
+    int32 ChangeMusic(lua_State* L);        // Sets the specified music Track for specified music block.
+
     int32 warp(lua_State*);                 // Returns Character to home point
     int32 leavegame(lua_State*);            // Character leaving game
 
@@ -376,6 +378,7 @@ public:
     int32 hasPet(lua_State*);                // returns true if the player has a pet
     int32 getPet(lua_State*);                // Creates an LUA reference to a pet entity
     int32 getPetID(lua_State*);              // If the entity has a pet, returns the PetID to identify pet type.
+    int32 isJugPet(lua_State*);              // If the entity has a pet, test if it is a jug pet.
     int32 familiar(lua_State*);              // familiar on pet
 
     int32 wakeUp(lua_State*);                //wakes target if necessary

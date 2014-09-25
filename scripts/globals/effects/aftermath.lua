@@ -26,7 +26,7 @@ function onEffectGain(target,effect)
 		target:addMod(MOD_SPIKES,5)
 		target:addMod(MOD_SPIKES_DMG,power)
 	elseif(effect:getSubPower() == 8) then
-		targetaddMod(MOD_STORETP,power)
+		target:addMod(MOD_STORETP,power)
 	elseif(effect:getSubPower() == 9) then
 		target:addMod(MOD_ACC,power)
 	elseif(effect:getSubPower() == 10) then
@@ -67,7 +67,7 @@ function onEffectLose(target,effect)
 		target:delMod(MOD_SPIKES,5);
 		target:delMod(MOD_SPIKES_DMG,power)
 	elseif(effect:getSubPower() == 8) then
-		targetdelMod(MOD_STORETP,power)
+		target:delMod(MOD_STORETP,power)
 	elseif(effect:getSubPower() == 9) then
 		target:delMod(MOD_ACC,power)
 	elseif(effect:getSubPower() == 10) then

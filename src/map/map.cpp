@@ -212,7 +212,6 @@ int32 do_init(int32 argc, int8** argv)
 	ability::LoadAbilitiesList();
 	battleutils::LoadWeaponSkillsList();
 	battleutils::LoadMobSkillsList();
-	battleutils::LoadEnmityTable();
     battleutils::LoadSkillChainDamageModifiers();
 	petutils::LoadPetList();
 	conquest::LoadConquestSystem();

@@ -85,7 +85,7 @@
 #include "packets/char_update.h"
 #include "packets/chat_message.h"
 #include "packets/chocobo_digging.h"
-#include "packets/chocobo_music.h"
+#include "packets/change_music.h"
 #include "packets/conquest_map.h"
 #include "packets/cs_position.h"
 #include "packets/currency.h"
@@ -314,7 +314,7 @@ void SmallPacket0x00C(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	PChar->pushPacket(new CInventorySizePacket(PChar));
 	PChar->pushPacket(new CMenuConfigPacket(PChar));
 	PChar->pushPacket(new CCharJobsPacket(PChar));
-	PChar->pushPacket(new CChocoboMusicPacket());
+	PChar->pushPacket(new CChangeMusicPacket(4,212)); // The default Chocobo music is Block 4 Track 212 (0xD4)
 
 	if (PChar->PParty != NULL)
 	{

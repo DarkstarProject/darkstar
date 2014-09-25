@@ -4,6 +4,7 @@
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/pets");
 
 -----------------------------------
 -- OnUseAbility
@@ -13,7 +14,7 @@ function OnAbilityCheck(player,target,ability)
 	if (player:getPet() == nil) then
 		return MSGBASIC_REQUIRES_A_PET,0;
 	else
-		if (player:getPet():getTarget() ~= nil) then
+		if ((player:getPet():getTarget() ~= nil) and (player:isJugPet())) then
 			player:setBattleSubTarget(player:getPet());
 			return 0,0;
 		else

@@ -58,6 +58,14 @@ CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 Mem
         WBUFB(data, (0x1A) - 4) = MemberNumber;
         WBUFB(data, (0x1D) - 4) = PChar->GetHPP();
         WBUFB(data, (0x1E) - 4) = PChar->GetMPP();
+
+        if (!(PChar->nameflags.flags & FLAG_ANON))
+        {
+            WBUFB(data, (0x22) - 4) = PChar->GetMJob();
+            WBUFB(data, (0x23) - 4) = PChar->GetMLevel();
+            WBUFB(data, (0x24) - 4) = PChar->GetSJob();
+            WBUFB(data, (0x25) - 4) = PChar->GetSLevel();
+        }
     }
 
     memcpy(data + (0x26) - 4, PChar->GetName(), PChar->name.size());

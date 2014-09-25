@@ -228,7 +228,7 @@ INSERT INTO `zone_settings` VALUES (179,4,0016777343,54230,'Stellar_Fulcrum',0,1
 INSERT INTO `zone_settings` VALUES (180,4,0016777343,54230,'LaLoff_Amphitheater',0,196,196,0,0.00,145,0);
 INSERT INTO `zone_settings` VALUES (181,4,0016777343,54230,'The_Celestial_Nexus',0,198,198,0,0.00,145,0);
 INSERT INTO `zone_settings` VALUES (182,4,0016777343,54230,'Walk_of_Echoes',0,215,215,0,0.00,0,0);
-INSERT INTO `zone_settings` VALUES (183,6,0016777343,54230,'Maquette_Abdhaljs_Legion',0,143,143,0,0.00,0,0);
+INSERT INTO `zone_settings` VALUES (183,6,0016777343,54230,'Maquette_Abdhaljs-Legion',0,143,143,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (184,3,0016777343,54230,'Lower_Delkfutts_Tower',0,115,102,0,0.00,145,0);
 INSERT INTO `zone_settings` VALUES (185,5,0016777343,54230,'Dynamis-San_dOria',121,121,121,0,0.00,400,0);
 INSERT INTO `zone_settings` VALUES (186,5,0016777343,54230,'Dynamis-Bastok',121,121,121,0,0.00,400,0);
@@ -319,9 +319,9 @@ INSERT INTO `zone_settings` VALUES (270,3,0016777343,54230,'Cirdas_Caverns',0,57
 INSERT INTO `zone_settings` VALUES (271,6,0016777343,54230,'Cirdas_Caverns_U',62,62,62,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (272,3,0016777343,54230,'Dho_Gates',0,57,57,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (273,3,0016777343,54230,'Woh_Gates',0,57,57,0,0.00,0,0);
-INSERT INTO `zone_settings` VALUES (274,3,0016777343,54230,'Outer_Ra_Kaznar',73,57,57,0,0.00,0,0);
-INSERT INTO `zone_settings` VALUES (275,0,0016777343,54230,'Outer_Ra_Kaznar_U',0,0,0,0,0.00,0,0);
-INSERT INTO `zone_settings` VALUES (276,0,0016777343,54230,'noname',0,0,0,0,0.00,0,0);
+INSERT INTO `zone_settings` VALUES (274,3,0016777343,54230,'Outer_RaKaznar',73,57,57,0,0.00,0,0);
+INSERT INTO `zone_settings` VALUES (275,0,0016777343,54230,'Outer_RaKaznar_U',0,0,0,0,0.00,0,0);
+INSERT INTO `zone_settings` VALUES (276,0,0016777343,54230,'RaKaznar_Inner_Court',0,0,0,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (277,0,0016777343,54230,'noname',0,0,0,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (278,0,0016777343,54230,'noname',0,0,0,0,0.00,0,0);
 INSERT INTO `zone_settings` VALUES (279,0,0016777343,54230,'noname',0,0,0,0,0.00,0,0);

@@ -1,27 +1,27 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6376; -- You cannot obtain the item <item>. Come back after sorting your inventory.
-          ITEM_OBTAINED = 6379; -- Obtained: <item>.
-           GIL_OBTAINED = 6380; -- Obtained <number> gil.
-       KEYITEM_OBTAINED = 6382; -- Obtained key item: <keyitem>.
-         ITEMS_OBTAINED = 6385; -- You obtain
- FISHING_MESSAGE_OFFSET = 7179; -- You can't fish here.
+ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item>. Come back after sorting your inventory.
+          ITEM_OBTAINED = 6381; -- Obtained: <item>.
+           GIL_OBTAINED = 6382; -- Obtained <number> gil.
+       KEYITEM_OBTAINED = 6384; -- Obtained key item: <keyitem>.
+         ITEMS_OBTAINED = 6387; -- You obtain
+ FISHING_MESSAGE_OFFSET = 7183; -- You can't fish here.
 
-   CAVE_HAS_BEEN_SEALED_OFF = 7317; -- The cave has been sealed off by some sort of barrier.
-   MAY_BE_SOME_WAY_TO_BREAK = 7318; -- There may be some way to break through.
-POWER_OF_THE_ORB_ALLOW_PASS = 7320; -- The disruptive power of the orb allows passage through the barrier.
-         QUEMARICOND_DIALOG = 7339; -- I can't believe I've lost my way!
-            YOU_SEE_NOTHING = 7373; -- There is nothing here.
-     AN_ORCISH_STORAGE_HOLE = 7415; -- An Orcish storage hole. There is something inside, but you cannot open it without a key.
-                     A_WELL = 7417; -- A well, presumably dug by Orcs.
+   CAVE_HAS_BEEN_SEALED_OFF = 7321; -- The cave has been sealed off by some sort of barrier.
+   MAY_BE_SOME_WAY_TO_BREAK = 7322; -- There may be some way to break through.
+POWER_OF_THE_ORB_ALLOW_PASS = 7324; -- The disruptive power of the orb allows passage through the barrier.
+         QUEMARICOND_DIALOG = 7343; -- I can't believe I've lost my way!
+            YOU_SEE_NOTHING = 7377; -- There is nothing here.
+     AN_ORCISH_STORAGE_HOLE = 7419; -- An Orcish storage hole. There is something inside, but you cannot open it without a key.
+                     A_WELL = 7421; -- A well, presumably dug by Orcs.
 
 -- Treasure Coffer/Chest Dialog
-CHEST_UNLOCKED = 7435; -- You unlock the chest!
-    CHEST_FAIL = 7436; -- Fails to open the chest.
-    CHEST_TRAP = 7437; -- The chest was trapped!
-    CHEST_WEAK = 7438; -- You cannot open the chest when you are in a weakened state.
-   CHEST_MIMIC = 7439; -- The chest was a mimic!
-  CHEST_MOOGLE = 7440; -- You cannot open the chest while participating in the moogle event.
-CHEST_ILLUSION = 7441; -- The chest was but an illusion...
-  CHEST_LOCKED = 7442; -- The chest appears to be locked.
+CHEST_UNLOCKED = 7439; -- You unlock the chest!
+    CHEST_FAIL = 7440; -- Fails to open the chest.
+    CHEST_TRAP = 7441; -- The chest was trapped!
+    CHEST_WEAK = 7442; -- You cannot open the chest when you are in a weakened state.
+   CHEST_MIMIC = 7443; -- The chest was a mimic!
+  CHEST_MOOGLE = 7444; -- You cannot open the chest while participating in the moogle event.
+CHEST_ILLUSION = 7445; -- The chest was but an illusion...
+  CHEST_LOCKED = 7446; -- The chest appears to be locked.

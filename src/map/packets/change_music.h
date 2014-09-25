@@ -21,15 +21,24 @@
 ===========================================================================
 */
 
-#include "../../common/socket.h"
+#ifndef _CCHANGEMUSICPACKET_H
+#define _CCHANGEMUSICPACKET_H
 
-#include "chocobo_music.h"
+#include "../../common/cbasetypes.h"
 
-CChocoboMusicPacket::CChocoboMusicPacket()
+#include "basic.h"
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+class CChangeMusicPacket : public CBasicPacket
 {
-	this->type = 0x5F;
-	this->size = 0x04;
+public:
 
-	WBUFB(data,(0x04)-4) = 0x04;    // block
-	WBUFB(data,(0x06)-4) = 0xD4;    // music
-}
+    CChangeMusicPacket(uint8 BlockID, uint8 MusicTrackID);
+};
+
+#endif
