@@ -2815,6 +2815,7 @@ int32 OnMobSpawn(CBaseEntity* PMob)
 
     if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
     {
+        ShowError("luautils::OnMobSpawn: %s\n", lua_tostring(LuaHandle, -1));
         lua_pop(LuaHandle, 1);
         return -1;
     }

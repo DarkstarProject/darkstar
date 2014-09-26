@@ -9383,6 +9383,16 @@ inline int32 CLuaBaseEntity::stun(lua_State* L)
 	return 0;
 }
 
+inline int32 CLuaBaseEntity::weaknessTrigger(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    mobutils::WeaknessTrigger(m_PBaseEntity, (WeaknessType)lua_tointeger(L, 1));
+
+    return 0;
+}
 
 //==========================================================//
 
@@ -9808,5 +9818,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCurrentAction),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAllegiance),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,stun),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,weaknessTrigger),
     {NULL,NULL}
 };
