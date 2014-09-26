@@ -1,5 +1,5 @@
 ---------------------------------------------------
--- Refueling
+-- Animating Wail
 -- Increases attack speed.
 ---------------------------------------------------
 
@@ -15,6 +15,6 @@ end;
 
 function OnMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_HASTE;
-    skill:setMsg(MobBuffMove(mob, typeEffect, 102, 0, 300));
+    skill:setMsg(MobBuffMove(mob, typeEffect, 153, 0, 300));
     return typeEffect;
 end
