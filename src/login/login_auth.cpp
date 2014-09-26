@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2012 Darkstar Dev Teams
+  Copyright (c) 2010-2014 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -270,18 +270,18 @@ int32 do_close_login(login_session_data_t* loginsd,int32 fd)
 	return 0;
 }
 
-int8 login_datacheck(const char *buf,size_t MinSize, size_t MaxSize)
+int8 login_datacheck(const char *buf, size_t MinSize, size_t MaxSize)
 {
-	size_t str_size = strnlen(buf,MaxSize);
-	if( str_size < MinSize )
-	{
-		return -1;
-	}
+    size_t str_size = strnlen(buf, MaxSize);
+    if (str_size < MinSize)
+    {
+        return -1;
+    }
 
-	for( size_t i = 0; i < str_size; ++i )
-	{
-		if( !isalpha(buf[i]) && !isdigit(buf[i]) )
-			return -1;
-	}
-	return 0;
+    for (size_t i = 0; i < str_size; ++i)
+    {
+        if ((buf[i] >= -1 && buf[i] <= 255) && !isalpha(buf[i]) && !isdigit(buf[i]))
+            return -1;
+    }
+    return 0;
 }
