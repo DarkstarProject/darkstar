@@ -435,6 +435,76 @@ CActionPacket::CActionPacket(CBattleEntity * PEntity)
     PEntity->m_ActionList.clear();
 }
 
+CActionPacket::CActionPacket(uint32 id, uint32 targetid, uint8 ActionType, 
+                             uint16 param, uint8 reaction, uint16 animation, uint8 speceffect, 
+                             uint8 knockback, uint32 messageparam, uint16 messageID)
+{
+    this->type = 0x28;
+    this->size = 0x12;
+
+    WBUFL(data, (0x05) - 4) = id;
+
+    switch (ActionType)
+    {
+    case ACTION_WEAPONSKILL_START:
+    {
+        packBitsBE(data, param, 54, 10);
+    }
+        break;
+    case ACTION_WEAPONSKILL_FINISH:
+    {
+        packBitsBE(data, param, 54, 10);
+    }
+        break;
+
+    case ACTION_JOBABILITY_FINISH:
+    {
+        packBitsBE(data, param + 16, 54, 10);
+        packBitsBE(data, 0, 86, 10);
+    }
+        break;
+
+    case ACTION_MOBABILITY_FINISH:
+    case ACTION_RAISE_MENU_SELECTION:
+    {
+        packBitsBE(data, param, 54, 12);
+    }
+        break;
+    case ACTION_MAGIC_FINISH:
+    {
+        packBitsBE(data, param, 54, 10);
+        packBitsBE(data, 0, 86, 10);
+    }
+        break;
+    }
+
+    uint32 bitOffset = 50;
+
+    bitOffset = packBitsBE(data, ActionType, bitOffset, 4);
+    bitOffset += 64;
+
+    bitOffset = packBitsBE(data, targetid, bitOffset, 32);
+    bitOffset = packBitsBE(data, 1, bitOffset, 4);
+
+
+    bitOffset = packBitsBE(data, reaction, bitOffset, 5);
+    bitOffset = packBitsBE(data, animation, bitOffset, 12);
+    bitOffset = packBitsBE(data, speceffect, bitOffset, 7);
+    bitOffset = packBitsBE(data, knockback, bitOffset, 3);
+    bitOffset = packBitsBE(data, messageparam, bitOffset, 17);
+    bitOffset = packBitsBE(data, messageID, bitOffset, 10);
+    bitOffset += 33;
+
+    packBitsBE(data, 1, 150, 4);
+
+    uint8 WorkSize = ((bitOffset >> 3) + (bitOffset % 8 != 0));
+
+    this->size = ((((WorkSize + 7) >> 1) + 1) & -2);
+
+    WBUFB(data, (0x04) - 4) = WorkSize;
+    WBUFB(data, (0x09) - 4) = 1;
+}
+
 // 0xE0 0x58 0xD8 0x1D 0x1A - White Magic Start
 // 0xE0 0x58 0x98 0xD8 0x1A - Dark Magic Start
 // 0xE0 0x58 0x98 0x9B 0x1A - Ninjutsu Start

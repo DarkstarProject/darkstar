@@ -76,9 +76,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>..\..\</OutDir>
+    <TargetName>$(ProjectName)_64</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>..\..\</OutDir>
+    <TargetName>$(ProjectName)_64</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -95,7 +97,7 @@
       <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libmariadb.lib;lua51-d.lib;WS2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libmariadb.lib;lua51.lib;WS2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -118,7 +120,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libmariadb64.lib;lua51-d_64.lib;WS2_32.Lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libmariadb64.lib;lua51_64.lib;WS2_32.Lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName)_64$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>..\..\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -309,7 +311,7 @@
     <ClInclude Include="..\..\src\map\packets\char_update.h" />
     <ClInclude Include="..\..\src\map\packets\chat_message.h" />
     <ClInclude Include="..\..\src\map\packets\chocobo_digging.h" />
-    <ClInclude Include="..\..\src\map\packets\chocobo_music.h" />
+    <ClInclude Include="..\..\src\map\packets\change_music.h" />
     <ClInclude Include="..\..\src\map\packets\conquest_map.h" />
     <ClInclude Include="..\..\src\map\packets\cs_position.h" />
     <ClInclude Include="..\..\src\map\packets\currency.h" />
@@ -538,7 +540,7 @@
     <ClCompile Include="..\..\src\map\packets\char_update.cpp" />
     <ClCompile Include="..\..\src\map\packets\chat_message.cpp" />
     <ClCompile Include="..\..\src\map\packets\chocobo_digging.cpp" />
-    <ClCompile Include="..\..\src\map\packets\chocobo_music.cpp" />
+    <ClCompile Include="..\..\src\map\packets\change_music.cpp" />
     <ClCompile Include="..\..\src\map\packets\conquest_map.cpp" />
     <ClCompile Include="..\..\src\map\packets\cs_position.cpp" />
     <ClCompile Include="..\..\src\map\packets\currency.cpp" />

@@ -66,7 +66,6 @@
 ************************************************************************/
 
 uint16 g_SkillTable[100][13];									// All Skills by level/skilltype
-uint8  g_EnmityTable[100][2];		                            // Holds Enmity Modifier Values
 uint8  g_SkillRanks[MAX_SKILLTYPE][MAX_JOBTYPE];				// Holds skill ranks by skilltype and job
 uint16 g_SkillChainDamageModifiers[MAX_SKILLCHAIN_LEVEL + 1][MAX_SKILLCHAIN_COUNT + 1]; // Holds damage modifiers for skill chains [chain level][chain count]
 
@@ -82,21 +81,6 @@ std::vector<CMobSkill*>  g_PMobFamilySkills[MAX_MOB_FAMILY];	// Mob Skills By Fa
 
 namespace battleutils
 {
-
-/************************************************************************
-*                                                                       *
-*  Generate Enmity Table                                                *
-*                                                                       *
-************************************************************************/
-
-void LoadEnmityTable()
-{
-    for (uint32 x = 0; x < 100; ++x)
-    {
-        g_EnmityTable[x][0] = (uint8)abs(0.5441*x + 13.191);     // cmod
-        g_EnmityTable[x][1] = (uint8)abs(0.6216*x + 5.4363);     // dmod
-    }
-}
 
 /************************************************************************
 *                                                                       *
@@ -328,13 +312,21 @@ bool isValidSelfTargetWeaponskill(int wsid){
 *                                                                       *
 ************************************************************************/
 
-uint8 GetEnmityMod(uint8 level, uint8 modType)
+uint8 GetEnmityModDamage(uint8 level)
 {
-    DSP_DEBUG_BREAK_IF(modType >= 2);
-
 	if(level>=100) { level = 99; }
 
-	return g_EnmityTable[level][modType];
+	return ((31 * level) / 50) + 6;
+}
+
+uint8 GetEnmityModCure(uint8 level)
+{
+    if (level <= 10)
+        return level + 10;
+    else if (level <= 50)
+        return (20 + (level - 10) / 2);
+    else
+        return (40 + (level - 50) * 0.6);
 }
 
 /************************************************************************
@@ -3216,6 +3208,25 @@ void GenerateCureEnmity(CBattleEntity* PSource, CBattleEntity* PTarget, uint16 a
 	}
 }
 
+//Generate enmity for all targets in range
+
+void GenerateInRangeEnmity(CBattleEntity* PSource, int16 CE, int16 VE)
+{
+    DSP_DEBUG_BREAK_IF(PSource == NULL);
+    DSP_DEBUG_BREAK_IF(PSource->objtype != TYPE_PC);
+
+    CCharEntity* PChar = (CCharEntity*)PSource;
+
+    for (SpawnIDList_t::const_iterator it = PChar->SpawnMOBList.begin(); it != PChar->SpawnMOBList.end(); ++it)
+    {
+        CMobEntity* PCurrentMob = (CMobEntity*)it->second;
+
+        if (PCurrentMob->PEnmityContainer->HasTargetID(PSource->id))
+        {
+            PCurrentMob->PEnmityContainer->UpdateEnmity(PChar, CE, VE);
+        }
+    }
+}
 
 /************************************************************************
 *                                                                       *
@@ -3919,28 +3930,22 @@ void HandleTacticalParry(CBattleEntity* PEntity){
 }
 
 float HandleTranquilHeart(CBattleEntity* PEntity){
-	//ShowDebug(CL_CYAN"HandleTranquilHeart: Checking For Tranquil Heart...\n" CL_RESET);
 
-	float reductionPercent = 0;
+	float reductionPercent = 0.f;
 
-	for (uint8 j = 0; j < PEntity->TraitList.size(); ++j)
-	{
-		CTrait* PExistingTrait = PEntity->TraitList.at(j);
+    if (PEntity->objtype == TYPE_PC && charutils::hasTrait((CCharEntity*)PEntity, TRAIT_TRANQUIL_HEART))
+    {
+		int16 healingSkill = PEntity->GetSkill(SKILL_HEA);
+		reductionPercent = ((healingSkill / 10) * .5);
 
-		// Checks for Tranquil Heart Trait
-		if (PExistingTrait->getID() == 114){ // Trait 114 = Tranquil Heart	
-			int16 healingSkill = PEntity->GetSkill(SKILL_HEA);
-			reductionPercent = ((healingSkill / 10) * .5);
-
-			// Reduction Percent Caps at 25%
-			if (reductionPercent > 25){
-				reductionPercent = 25;
-			}
-
-			//ShowDebug(CL_CYAN"HandleTranquilHeart: Tranquil Heart is Active! Reduction Percent = %f\n" CL_RESET, reductionPercent);
-
-			reductionPercent = reductionPercent / 100;
+		// Reduction Percent Caps at 25%
+		if (reductionPercent > 25){
+			reductionPercent = 25;
 		}
+
+		//ShowDebug(CL_CYAN"HandleTranquilHeart: Tranquil Heart is Active! Reduction Percent = %f\n" CL_RESET, reductionPercent);
+
+		reductionPercent = reductionPercent / 100.f;
 	}
 
 	return reductionPercent;

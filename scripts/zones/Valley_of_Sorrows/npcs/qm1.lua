@@ -1,10 +1,10 @@
 -----------------------------------
 -- Area: Valley of Sorrows
 -- NPC:  qm1 (???)
--- Note: Used to spawn Aspidochelone
+-- Note: Used to spawn Adamantoise and Aspidochelone
 -- @pos 91 -3 -16 128
 -----------------------------------
-package.loaded["scripts/zones/Dragons_Aery/TextIDs"] = nil;
+package.loaded["scripts/zones/Valley_of_Sorrows/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/Valley_of_Sorrows/TextIDs");
@@ -25,7 +25,7 @@ function onTrade(player,npc,trade)
 			player:tradeComplete();
 			SpawnMob(17301538,180):updateEnmity(player);
 		end
-		-- Trade Clump of Red Pondweed
+		-- Trade Clump of Blue Pondweed
 	elseif((Adamantoise == ACTION_NONE or Adamantoise == ACTION_SPAWN) and trade:hasItemQty(3343,1) and trade:getItemCount() == 1) then
 		if (LandKingSystem_NQ == 1 or LandKingSystem_NQ == 2) then
 			player:tradeComplete();

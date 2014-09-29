@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2012 Darkstar Dev Teams
+  Copyright (c) 2010-2014 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -430,7 +430,7 @@ int32 lobbyview_parse(int32 fd)
                 unsigned char MainReservePacket[0x28];
 
                 string_t ver((char*)(buff + 0x74), 10);
-                if (ver < "30140814_0")
+                if (ver < "30140903_4")
                 {
                     sendsize = 0x24;
                     LOBBBY_ERROR_MESSAGE(ReservePacket);

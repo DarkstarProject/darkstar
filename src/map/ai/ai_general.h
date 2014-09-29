@@ -40,7 +40,7 @@ enum MASTERCOMMAND //master as in pet's master
 	MASTERCOMMAND_SIC = 3
 };
 
-enum ACTIONTYPE
+enum ACTIONTYPE : uint8
 {
 	ACTION_NONE					= 0,
 	ACTION_ATTACK				= 1,

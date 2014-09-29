@@ -192,7 +192,6 @@ int32 do_init(int32 argc, int8** argv)
 	ability::LoadAbilitiesList();
 	battleutils::LoadWeaponSkillsList();
 	battleutils::LoadMobSkillsList();
-	battleutils::LoadEnmityTable();
     battleutils::LoadSkillChainDamageModifiers();
 	petutils::LoadPetList();
 	conquest::LoadConquestSystem();
@@ -977,6 +976,26 @@ int32 map_config_read(const int8* cfgName)
 		else if (strcmp(w1,"player_tp_multiplier") == 0)
         {
             map_config.player_tp_multiplier = atof(w2);
+        }
+		else if (strcmp(w1,"mob_hp_multiplier") == 0)
+        {
+            map_config.mob_hp_multiplier = atof(w2);
+	}
+		else if (strcmp(w1,"player_hp_multiplier") == 0)
+        {
+            map_config.player_hp_multiplier = atof(w2);
+        }
+		else if (strcmp(w1,"mob_mp_multiplier") == 0)
+        {
+            map_config.mob_mp_multiplier = atof(w2);
+	}
+		else if (strcmp(w1,"player_mp_multiplier") == 0)
+        {
+            map_config.player_mp_multiplier = atof(w2);
+        }
+		else if (strcmp(w1,"drop_rate_multiplier") == 0)
+        {
+            map_config.drop_rate_multiplier = atof(w2);
         }
 		else if (strcmp(w1,"exp_retain") == 0)
         {

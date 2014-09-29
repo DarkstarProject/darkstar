@@ -136,13 +136,13 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
     if( PEnmity != m_EnmityList.end() &&
        !m_EnmityList.key_comp()(PEntity->id, PEnmity->first))
     {
-		float bonus = CalculateEnmityBonus(PEntity);
+        float bonus = CalculateEnmityBonus(PEntity);
 
         if (PEnmity->second->CE == 0 && CE + VE <= 0)
             return;
 
-        PEnmity->second->CE += CE * bonus;
-        PEnmity->second->VE += VE * bonus;
+        PEnmity->second->CE += CE > 0 ? CE * bonus : CE;
+        PEnmity->second->VE += VE > 0 ? VE * bonus : VE;
 
         //Check for cap limit
         PEnmity->second->CE = dsp_cap(PEnmity->second->CE, 1, 10000);
@@ -254,7 +254,7 @@ void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PEntity, uint16 level
 	else{
 		CureAmount = (CureAmount < 1 ? 1 : CureAmount);
 
-		uint16 mod = battleutils::GetEnmityMod(level, 0);
+		uint16 mod = battleutils::GetEnmityModCure(level);
 
 		uint16 CE =  40 / mod * CureAmount;
 		uint16 VE = 240 / mod * CureAmount;
@@ -279,13 +279,10 @@ void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PEntity, uint16 level
 			!m_EnmityList.key_comp()(PEntity->id, PEnmity->first))
 		{
 			float bonus = CalculateEnmityBonus(PEntity);
-			float tranquilHeartReduction = battleutils::HandleTranquilHeart(PEntity);
+			float tranquilHeartReduction = 1.f - battleutils::HandleTranquilHeart(PEntity);
 
-			int16 addedCE = (CE * bonus) - ((CE * bonus) * tranquilHeartReduction);
-			int16 addedVE = (VE * bonus) - ((VE * bonus) * tranquilHeartReduction);
-
-			PEnmity->second->CE += addedCE;
-			PEnmity->second->VE += addedVE;
+            PEnmity->second->CE += CE * bonus * tranquilHeartReduction;
+            PEnmity->second->VE += VE * bonus * tranquilHeartReduction;
 
 			//Check for cap limit
 			PEnmity->second->CE = dsp_cap(PEnmity->second->CE, 1, 10000);
@@ -295,14 +292,11 @@ void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PEntity, uint16 level
 		{
 			EnmityObject_t* PEnmityObject = new EnmityObject_t;
 
-			float bonus = CalculateEnmityBonus(PEntity);
-			float tranquilHeartReduction = battleutils::HandleTranquilHeart(PEntity);
+            float bonus = CalculateEnmityBonus(PEntity);
+            float tranquilHeartReduction = 1.f - battleutils::HandleTranquilHeart(PEntity);
 
-			int16 addedCE = (CE * bonus) - ((CE * bonus) * tranquilHeartReduction);
-			int16 addedVE = (VE * bonus) - ((VE * bonus) * tranquilHeartReduction);
-
-			PEnmityObject->CE = addedCE;
-			PEnmityObject->VE = addedVE;
+            PEnmityObject->CE = CE * bonus * tranquilHeartReduction;
+            PEnmityObject->VE = VE * bonus * tranquilHeartReduction;
 			PEnmityObject->PEnmityOwner = PEntity;
 			PEnmityObject->maxTH = 0;
 
@@ -376,10 +370,10 @@ void CEnmityContainer::UpdateEnmityFromDamage(CBattleEntity* PEntity, uint16 Dam
 
 	Damage = (Damage < 1 ? 1 : Damage);
 
-	uint16 mod = battleutils::GetEnmityMod(PEntity->GetMLevel(), 1); //default fallback
+	uint16 mod = battleutils::GetEnmityModDamage(PEntity->GetMLevel()); //default fallback
 
 	if(m_EnmityHolder != NULL) {//use the correct mod value
-		mod = battleutils::GetEnmityMod(m_EnmityHolder->GetMLevel(), 1);
+        mod = battleutils::GetEnmityModDamage(m_EnmityHolder->GetMLevel());
 	}
 
 	uint16 CE =  (80.0f / mod) * Damage;
@@ -400,7 +394,8 @@ void CEnmityContainer::UpdateEnmityFromAttack(CBattleEntity* PEntity, uint16 Dam
 	{
 		return;
 	}
-    UpdateEnmity(PEntity, -(1800 * Damage / PEntity->GetMaxHP()), 0);
+    float reduction = (100.f - dsp_min(PEntity->getMod(MOD_ENMITY_LOSS_REDUCTION), 100)) / 100.0f;
+    UpdateEnmity(PEntity, -(1800 * Damage / PEntity->GetMaxHP()) * reduction, 0);
 }
 
 /************************************************************************

@@ -2154,7 +2154,8 @@ void CAICharNormal::ActionJobAbilityFinish()
     		}
 
 
-            if (m_PJobAbility->getValidTarget() & TARGET_ENEMY)
+            if (m_PJobAbility->getValidTarget() & TARGET_ENEMY && 
+                m_PBattleSubTarget->allegiance != m_PChar->allegiance)
             {
                 // во время pvp целью могут быт персонажи, монстры и их питомцы
     			if (m_PBattleSubTarget->objtype == TYPE_MOB &&
@@ -2168,6 +2169,10 @@ void CAICharNormal::ActionJobAbilityFinish()
                     mob->m_OwnerID.targid = m_PChar->targid;
                     mob->PEnmityContainer->UpdateEnmity(m_PChar, m_PJobAbility->getCE(), m_PJobAbility->getVE());
                 }
+            }
+            else if (m_PBattleSubTarget->allegiance == m_PChar->allegiance)
+            {
+                battleutils::GenerateInRangeEnmity(m_PChar, m_PJobAbility->getCE(), m_PJobAbility->getVE());
             }
     	}
 

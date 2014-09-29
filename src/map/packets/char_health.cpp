@@ -31,7 +31,7 @@
 CCharHealthPacket::CCharHealthPacket(CCharEntity* PChar)
 {
 	this->type = 0xDF;
-	this->size = 0x10;
+	this->size = 0x12;
 
 	WBUFL(data,(0x04)-4) = PChar->id;
 
@@ -43,4 +43,12 @@ CCharHealthPacket::CCharHealthPacket(CCharEntity* PChar)
 
 	WBUFB(data,(0x16)-4) = PChar->GetHPP();
 	WBUFB(data,(0x17)-4) = PChar->GetMPP();
+
+    if (!(PChar->nameflags.flags & FLAG_ANON))
+    {
+        WBUFB(data, (0x20) - 4) = PChar->GetMJob();
+        WBUFB(data, (0x21) - 4) = PChar->GetMLevel();
+        WBUFB(data, (0x22) - 4) = PChar->GetSJob();
+        WBUFB(data, (0x23) - 4) = PChar->GetSLevel();
+    }
 }

@@ -62,9 +62,9 @@ function SetExplorerMoogles()
 
     local Moogles  =
     {
-        17723643,   -- Northern_San_d'Oria
-        17735852,   -- Bastok_Mines
-        17760446,   -- Port_Windurst
+        17723643,   -- Northern San d'Oria
+        17735852,   -- Bastok Mines
+        17760446,   -- Port Windurst
         17793127,   -- Selbina
         17797249,   -- Mhaura
     }
@@ -90,25 +90,25 @@ function SetFieldManual()
 
     local FieldManuals  =
     {
-        17187532,17187531,17191530,17191531, -- West Ronfaure 2, East Ronfaure 2
-        17195671,17195672,17199748,17199747, -- La Theine 2, Valkurm 2
-        17199746,17203879,17203878,17207861, -- Valkurm 1, Jugner 2, Batallia 1
-        17207860,17212074,17212075,17212076, -- Batallia 1, North Gustaberg 3
-        17216160,17216161,17220159,17220160, -- South Gustaberg 2, Konschtat 2
-        17224347,17224346,17228371,17228370, -- Pashhow 2, Rolanberry 2
-        17232277,17232274,17232275,17232276, -- Beaucedine all 4
-        17236342,17236341,17240510,17240509, -- Xarcabard 2, Cape Teriggan 2
-        17244650,17244648,17244649,17248845, -- Eastern Altepa 3, West Sarutabaruta 1
-        17248846,17248847,17253061,17253060, -- West Sarutabaruta 2, East Sarutabaruta 2`
-        17253059,17257071,17257069,17257070, -- East Sarutabaruta 1, Tahrongi 3
-        17261195,17261194,17265285,17265286, -- Buburimu 2, Meriphataud Mountains 2
-        17265287,17269256,17269255,17273413, -- Meriphataud Mountains 1, Sauromugue 2, Zi'Tah 1
-        17273412,17277206,17277205,17281641, -- Zi'Tah 1, Ro'Maeve 2, Yuhtunga Jungle 1
-        17281642,17281643,17281644,17285693, -- Yuhtunga Jungle 3, Yhoator Jungle 1
-        17285694,17285695,17289792,17289790, -- Yhoator Jungle 2, Western Altepa 2
-        17289791,17293771,17293770,17297486, -- Western Altepa 1, Qufim 2, Behemoth's Dominion 1
-        17301588,17301587,17310104,17310099, -- Valley of Sorrows 2, Ru'Aun Gardens 2
-        17310100,17310101,17310102,17310103, -- Ru'Aun Gardens all 4 (6 total)
+        17187561,17187562,17191530,17191531, -- West Ronfaure (2), East Ronfaure (2)
+        17195672,17195673,17199746,17199747, -- La Theine (2), Valkurm (2)
+        17199748,17203878,17203879,17207860, -- Valkurm (1), Jugner (2), Batallia (1)
+        17207861,17212104,17212105,17212106, -- Batallia (1), North Gustaberg (3)
+        17216195,17216196,17220160,17220161, -- South Gustaberg (2), Konschtat (2)
+        17224346,17224347,17228370,17228371, -- Pashhow (2), Rolanberry (2)
+        17232274,17232275,17232276,17232277, -- Beaucedine (4)
+        17236341,17236342,17240509,17240510, -- Xarcabard (2), Cape Teriggan (2)
+        17244648,17244649,17244650,17248864, -- Eastern Altepa (3), West Sarutabaruta (1)
+        17248865,17248866,17253059,17253060, -- West Sarutabaruta (2), East Sarutabaruta (2)
+        17253061,17257069,17257070,17257071, -- East Sarutabaruta (1), Tahrongi (3)
+        17261194,17261195,17265286,17265287, -- Buburimu (2), Meriphataud Mountains (2)
+        17265288,17269255,17269256,17273412, -- Meriphataud Mountains (1), Sauromugue (2), Zi'Tah (1)
+        17273413,17277205,17277206,17281641, -- Zi'Tah (1), Ro'Maeve (2), Yuhtunga Jungle (1)
+        17281642,17281643,17281644,17285693, -- Yuhtunga Jungle (3), Yhoator Jungle (1)
+        17285694,17285695,17289790,17289791, -- Yhoator Jungle (2), Western Altepa (2)
+        17289792,17293770,17293771,17297486, -- Western Altepa (1), Qufim (2), Behemoth's Dominion (1)
+        17301587,17301588,17310099,17310100, -- Valley of Sorrows (2), Ru'Aun Gardens (2)
+        17310101,17310102,17310103,17310104, -- Ru'Aun Gardens (4)
     }
 
     i = 1;
@@ -132,10 +132,10 @@ function SetGroundsTome()
 
     local GroundsTomes  =
     {
-        17457373,17457374,17457375,17461576, -- Ranguemont Pass (4)
+        17457373,17457374,17457375,17461576, -- Ranguemont Pass (3), Bostaunieux Oubliette (1)
         17461577,17461578,17469845,17469846, -- Bostaunieux Oubliette (2), Toraimarai Canal (2)
         17469847,17469848,17481843,17555961, -- Toraimarai Canal (2), Zeruhn Mines (1), King Ranperre's Tomb (1)
-        17555962,17555963,17555964,17559930, -- King Ranperre's Tomb (3)
+        17555962,17555963,17555964,17559930, -- King Ranperre's Tomb (3), Dangruf Wadi (1)
         17559931,17563918,17563919,17563920, -- Dangruf Wadi (1), Inner Horutoto Ruins (3)
         17568199,17568200,17572304,17572305, -- Ordelle's Caves (2), Outer Horutoto Ruins (2)
         17572306,17572307,17576424,17576425, -- Outer Horutoto Ruins (2), The Eldieme Necropolis (2)
@@ -143,7 +143,7 @@ function SetGroundsTome()
         17580413,17584491,17584492,17588783, -- Gusgen Mines (1), Crawlers' Nest (2), Maze of Shakhrami (1)
         17588784,17588785,17588786,17596848, -- Maze of Shakhrami (3), Garlaige Citadel (1)
         17596849,17596850,17613246,17613247, -- Garlaige Citadel (2), Fei'Yin (2)
-        17404401,17404401,17404401,17404401, -- The Boyahda Tree (4)
+        17404401,17404402,17404403,17404404, -- The Boyahda Tree (4)
         17486258,17486259,17486260,17486261, -- Korroloka Tunnel (4)
         17490317,17490318,17490319,17490320, -- Kuftal Tunnel (4)
         17502701,17502702,17502703,17502704, -- Ve'Lugannon Palace (4)
@@ -157,11 +157,11 @@ function SetGroundsTome()
         17531227,17531228,17531229,17420674, -- Lower Delkfutt's Tower (3), Middle Delkfutt's Tower (1)
         17420675,17420676,17420677,17424559, -- Middle Delkfutt's Tower (3), Upper Delkfutt's Tower (1)
         17424560,17424561,17429002,17429003, -- Upper Delkfutt's Tower (2), Temple of Uggalepih (2)
-        17429004,17429005,17429006,17433086, -- Temple of Uggalepih (3)
+        17429004,17429005,17429006,17433086, -- Temple of Uggalepih (3), Den of Rancor (1)
         17433087,17433088,17433089,17433090, -- Den of Rancor (4)
         17433091,17498648,17498649,17498650, -- Den of Rancor (1), Sea Serpent Grotto (3)
-        17498651,17629762,17629763,17629764, -- Sea Serpent Grotto (2), Quicksand Caves (3)
-        17629765,17629766,17629767,          -- Quicksand Caves (3)
+        17498651,17498652,17629762,17629763, -- Sea Serpent Grotto (2), Quicksand Caves (2)
+        17629764,17629765,17629766,17629767, -- Quicksand Caves (4)
     }
 
     i = 1;

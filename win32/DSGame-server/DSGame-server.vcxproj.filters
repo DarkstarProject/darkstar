@@ -332,7 +332,7 @@
     <ClInclude Include="..\..\src\map\packets\chocobo_digging.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\packets\chocobo_music.h">
+    <ClInclude Include="..\..\src\map\packets\change_music.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\packets\conquest_map.h">
@@ -1033,7 +1033,7 @@
     <ClCompile Include="..\..\src\map\packets\chocobo_digging.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\packets\chocobo_music.cpp">
+    <ClCompile Include="..\..\src\map\packets\change_music.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\conquest_map.cpp">

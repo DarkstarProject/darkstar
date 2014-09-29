@@ -266,6 +266,8 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->health.maxhp = PMob->HPmodifier;
 	}
 
+	PMob->health.maxhp *= map_config.mob_hp_multiplier;
+
 	bool hasMp = false;
 
 	switch(mJob){
@@ -319,6 +321,8 @@ void CalculateStats(CMobEntity * PMob)
 		} else {
 			PMob->health.maxmp = PMob->MPmodifier;
 		}
+
+		PMob->health.maxmp *= map_config.mob_mp_multiplier;
 	}
 
     PMob->UpdateHealth();
@@ -1208,6 +1212,27 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID)
 		}
 	}
 	return PMob;
+}
+
+void WeaknessTrigger(CBaseEntity* PTarget, WeaknessType level)
+{
+    uint16 animationID = 0;
+    switch (level)
+    {
+    case WeaknessType::RED:
+        animationID = 1806;
+        break;
+    case WeaknessType::YELLOW:
+        animationID = 1807;
+        break;
+    case WeaknessType::BLUE:
+        animationID = 1808;
+        break;
+    case WeaknessType::WHITE:
+        animationID = 1946;
+        break;
+    }
+    PTarget->loc.zone->PushPacket(PTarget, CHAR_INRANGE, new CActionPacket(PTarget->id, PTarget->id, ACTION_MOBABILITY_FINISH, 2582, 0, animationID));
 }
 
 }; // namespace mobutils

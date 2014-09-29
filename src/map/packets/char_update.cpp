@@ -45,7 +45,7 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 
 	WBUFB(data,(0x28)-4) = (PChar->nameflags.byte2 << 1);
 	WBUFB(data,(0x2B)-4) = (PChar->nameflags.byte4 << 5) + PChar->nameflags.byte3;
-	WBUFB(data,(0x2F)-4) = (PChar->nameflags.byte4 >> 2);
+	WBUFB(data,(0x2F)-4) = ((PChar->nameflags.byte4 >> 2) & 0xFE);
     
 	if (PChar->StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_INVISIBLE))
 	{
@@ -56,14 +56,14 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 		WBUFB(data,(0x38)-4) = 0x04;
 	}
 
-    if (PChar->m_isMentor)
+    if (PChar->m_mentor >= 2)
         WBUFB(data,(0x38)-4) |= 0x10; // Mentor flag.
     if (PChar->m_isNewPlayer)
         WBUFB(data,(0x38)-4) |= 0x0C; // New player ?
 
     WBUFB(data,(0x29)-4) = PChar->GetGender() + (PChar->look.size > 0 ? PChar->look.size * 8 : 2); // +  управляем ростом: 0x02 - 0; 0x08 - 1; 0x10 - 2;
     WBUFB(data,(0x2C)-4) = PChar->GetSpeed();
-    WBUFB(data,(0x2E)-4) = PChar->speedsub << 1;
+    WBUFW(data,(0x2E)-4) |= PChar->speedsub << 1;
 	WBUFB(data,(0x30)-4) = PChar->animation;
 
 	CItemLinkshell* linkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK);

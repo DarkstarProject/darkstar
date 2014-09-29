@@ -198,7 +198,7 @@ void CalculateStats(CCharEntity* PChar)
 
 
 	uint16 MeritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_MAX_HP, PChar);
-	PChar->health.maxhp = (int16)(raceStat + jobStat + bonusStat + sJobStat + MeritBonus);
+	PChar->health.maxhp = (int16)(map_config.player_hp_multiplier * (raceStat + jobStat + bonusStat + sJobStat) + MeritBonus);
 
 	//Начало расчера MP
 
@@ -240,7 +240,7 @@ void CalculateStats(CCharEntity* PChar)
 	}
 
 	MeritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_MAX_MP, PChar);
-	PChar->health.maxmp = (int16)(raceStat + jobStat + sJobStat + MeritBonus); // результат расчета MP
+	PChar->health.maxmp = (int16)(map_config.player_mp_multiplier * (raceStat + jobStat + sJobStat) + MeritBonus); // результат расчета MP
 
 
 	//add in evasion from skill
@@ -767,19 +767,22 @@ void LoadChar(CCharEntity* PChar)
 
 	PChar->animation = (PChar->health.hp == 0 ? ANIMATION_DEATH : ANIMATION_NONE);
 
-	fmtQuery = "SELECT gmlevel \
-			FROM chars \
-			WHERE charid = %u;";
+    fmtQuery =
+        "SELECT "
+          "gmlevel,"    // 0
+          "mentor "     // 1
+        "FROM chars "
+        "WHERE charid = %u;";
 
-	ret = Sql_Query(SqlHandle,fmtQuery,PChar->id);
+    ret = Sql_Query(SqlHandle,fmtQuery,PChar->id);
 
-	if (ret != SQL_ERROR &&
-		Sql_NumRows(SqlHandle) != 0 &&
-		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-	{
-		PChar->m_GMlevel = (uint8)Sql_GetUIntData(SqlHandle,0);
-	}
-
+    if (ret != SQL_ERROR &&
+        Sql_NumRows(SqlHandle) != 0 &&
+        Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    {
+        PChar->m_GMlevel = (uint8)Sql_GetUIntData(SqlHandle,0);
+        PChar->m_mentor = (uint8)Sql_GetUIntData(SqlHandle,1);
+    }
 }
 
 /************************************************************************
@@ -927,6 +930,8 @@ void LoadInventory(CCharEntity* PChar)
 	if (ret != SQL_ERROR &&
 		Sql_NumRows(SqlHandle) != 0)
 	{
+		CItemLinkshell* PLinkshell = NULL;
+
 		while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		{
 			if (Sql_GetUIntData(SqlHandle, 1) < 16)
@@ -941,16 +946,20 @@ void LoadInventory(CCharEntity* PChar)
 					PItem->setSubType(ITEM_LOCKED);
 					PChar->equip[SLOT_LINK] = SlotID;
 					PChar->equipLoc[SLOT_LINK] = LOC_INVENTORY;
-					linkshell::AddOnlineMember(PChar, (CItemLinkshell*)PItem);
+					PLinkshell = (CItemLinkshell*)PItem;
 				}
 			}
 		}
-
+		if (PLinkshell)
+		{
+			linkshell::AddOnlineMember(PChar, PLinkshell);
+		}
 	}
     else
     {
 		ShowError(CL_RED"Loading error from char_equip\n" CL_RESET);
 	}
+
 	PChar->StatusEffectContainer->LoadStatusEffects();
 }
 
@@ -2162,7 +2171,7 @@ void BuildingCharSkillsTable(CCharEntity* PChar)
             uint16 artsSkill = battleutils::GetMaxSkill(SKILL_ENH,JOB_RDM,PChar->GetMLevel()); //B+ skill
             uint16 skillCapD = battleutils::GetMaxSkill((SKILLTYPE)i, JOB_SCH, PChar->GetMLevel()); // D skill cap
             uint16 skillCapE = battleutils::GetMaxSkill(SKILL_DRK, JOB_RDM, PChar->GetMLevel()); // E skill cap
-            uint16 currentSkill = dsp_cap((PChar->RealSkills.skill[i] / 10), 0, std::max(MaxMSkill, MaxSSkill)); // working skill before bonuses
+            uint16 currentSkill = dsp_cap((PChar->RealSkills.skill[i] / 10), 0, dsp_max(MaxMSkill, MaxSSkill)); // working skill before bonuses
             uint16 artsBaseline = 0; // Level based baseline to which to raise skills
             if(PChar->GetMJob() < 51)
             {
@@ -2188,20 +2197,20 @@ void BuildingCharSkillsTable(CCharEntity* PChar)
             {
                 // If the player's skill is below the E cap
                 // give enough bonus points to raise it to the arts baseline
-                skillBonus += std::max(artsBaseline - currentSkill, 0);
+                skillBonus += dsp_max(artsBaseline - currentSkill, 0);
             }
             else if (currentSkill < skillCapD)
             {
                 //if the skill is at or above the E cap but below the D cap
                 // raise it up to the B+ skill cap minus the difference between the current skill rank and the scholar base skill cap (D)
                 // i.e. give a bonus of the difference between the B+ skill cap and the D skill cap
-                skillBonus += std::max((artsSkill - skillCapD), 0);
+                skillBonus += dsp_max((artsSkill - skillCapD), 0);
             }
             else if (currentSkill < artsSkill)
             {
                 // If the player's skill is at or above the D cap but below the B+ cap
                 // give enough bonus points to raise it to the B+ cap
-                skillBonus += std::max(artsSkill - currentSkill, 0);
+                skillBonus += dsp_max(artsSkill - currentSkill, 0);
             }
 
             if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LIGHT_ARTS) ||
@@ -3928,6 +3937,19 @@ void SaveCharGMLevel(CCharEntity* PChar)
 
 	Sql_Query(SqlHandle,Query,"chars","gmlevel =",PChar->m_GMlevel,PChar->id);
 	Sql_Query(SqlHandle,Query,"char_stats","nameflags =",PChar->nameflags.flags,PChar->id);
+}
+
+/************************************************************************
+*                                                                       *
+*  Save the char's mentor flag state                                    *
+*                                                                       *
+************************************************************************/
+
+void mentorMode(CCharEntity* PChar)
+{
+    const int8* Query = "UPDATE %s SET %s %u WHERE charid = %u;";
+
+    Sql_Query(SqlHandle,Query,"chars","mentor =",PChar->m_mentor,PChar->id);
 }
 
 /************************************************************************
