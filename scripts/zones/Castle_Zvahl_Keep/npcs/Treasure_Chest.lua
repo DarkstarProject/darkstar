@@ -30,7 +30,7 @@ function onTrade(player,npc,trade)
 	
 	-- Player traded a key.
 	if((trade:hasItemQty(1048,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
-		local zone = player:getZone();
+		local zone = player:getZone():getID();
 		-- IMPORTANT ITEM: keyitem -----------
 		if(player:getQuestStatus(BASTOK,A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and player:hasKeyItem(UN_MOMENT) == false) then 
 			questItemNeeded = 1;

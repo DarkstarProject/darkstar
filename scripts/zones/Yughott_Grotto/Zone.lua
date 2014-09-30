@@ -13,6 +13,7 @@ require("scripts/zones/Yughott_Grotto/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+    UpdateTreasureSpawnPoint(17355007);
 end;
 
 -----------------------------------		

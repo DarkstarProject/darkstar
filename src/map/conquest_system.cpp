@@ -264,10 +264,14 @@ namespace conquest
     *   just used by GM command			                                    *
     ************************************************************************/
 
-	void UpdateConquestGM()
-	{
-		LoadConquestSystem();
-		luautils::SetRegionalConquestOverseers();
+    void UpdateConquestGM()
+    {
+        LoadConquestSystem();
+
+        for (uint8 i = 0; i <= 18; i++)
+        {
+            luautils::SetRegionalConquestOverseers(i);
+        }
 	}
 
 	/************************************************************************
@@ -301,9 +305,9 @@ namespace conquest
 			g_Conquest[i][4] = 0;
 			g_Conquest[i][5] = 0;
 			g_Conquest[i][6] = 0;
-		}
 
-		luautils::SetRegionalConquestOverseers();
+            luautils::SetRegionalConquestOverseers(i);
+		}
 
 		//launch end message ?
 		//Update packet ?

@@ -221,7 +221,6 @@ int32 do_init(int32 argc, int8** argv)
 	zoneutils::LoadZoneList();
 	ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 
-	luautils::OnServerStart();
     fishingutils::LoadFishingMessages();
 
 	ShowStatus("do_init: server is binding with port %u",map_port == 0 ? map_config.usMapPort : map_port);

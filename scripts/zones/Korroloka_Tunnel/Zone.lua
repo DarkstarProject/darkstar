@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Korroloka_Tunnel/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/zones/Korroloka_Tunnel/TextIDs");
 
 -----------------------------------
@@ -14,6 +15,11 @@ require("scripts/zones/Korroloka_Tunnel/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    local tomes = {17486258,17486259,17486260,17486261};
+    
+    SetGroundsTome(tomes);
+
 end;
 
 -----------------------------------		

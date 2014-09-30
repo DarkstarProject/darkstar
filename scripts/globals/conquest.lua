@@ -1150,28 +1150,26 @@ end;
 --
 -----------------------------------
 
-function SetRegionalConquestOverseers()
+function SetRegionalConquestOverseers(region)
 
-	for region = 0, 18 do
-		local npclist = getRegionalConquestOverseers(region);
-		local nation  = GetRegionOwner(region);
+    local npclist = getRegionalConquestOverseers(region);
+    local nation  = GetRegionOwner(region);
 
-		for i = 1, table.getn(npclist), 2 do
-			if(npclist[i+1] == nation) then
-				GetNPCByID(npclist[i]):setStatus(0);
-			else
-				GetNPCByID(npclist[i]):setStatus(2);
-			end
+    for i = 1, table.getn(npclist), 2 do
+        if(npclist[i+1] == nation) then
+            GetNPCByID(npclist[i]):setStatus(0);
+        else
+            GetNPCByID(npclist[i]):setStatus(2);
+        end
 
-			if(npclist[i+1] == OTHER) then
-				if(nation ~= BEASTMEN) then
-					GetNPCByID(npclist[i]):setStatus(0);
-				else
-					GetNPCByID(npclist[i]):setStatus(2);
-				end
-			end
-		end;
-	end;
+        if(npclist[i+1] == OTHER) then
+            if(nation ~= BEASTMEN) then
+                GetNPCByID(npclist[i]):setStatus(0);
+            else
+                GetNPCByID(npclist[i]):setStatus(2);
+            end
+        end
+	end
 
 end;
 

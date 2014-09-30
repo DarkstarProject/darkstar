@@ -13,6 +13,7 @@ require("scripts/zones/Fort_Ghelsba/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+    UpdateTreasureSpawnPoint(17355007);
 end;
 
 -----------------------------------		

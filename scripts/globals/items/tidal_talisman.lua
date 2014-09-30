@@ -6,7 +6,7 @@
 
 function onItemCheck(target)
 local result = 56;
-local zone = target:getZone();
+local zone = target:getZone():getID();
     if (zone == 238 or zone == 239 or zone == 240 or zone == 241 or zone == 242 or -- Windurst
         zone == 234 or zone == 235 or zone == 236 or zone == 237 or -- Bastok
         zone == 230 or zone == 231 or zone == 232 or zone == 233 or -- San d'Oria
@@ -22,7 +22,7 @@ return result;
 end;
 
 function onItemUse(target)
-	local zone = target:getZone();
+	local zone = target:getZone():getID();
     
     if(zone == 241 or zone == 242 or zone == 240 or zone == 239 or zone == 238) then -- Item is used in Windurst
 		target:setPos(0, 3, 2, 64, 243); -- Player/s will end up at Ru'Lude Gardens

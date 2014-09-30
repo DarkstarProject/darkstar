@@ -13,7 +13,7 @@ require("scripts/zones/Yhoator_Jungle/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	startHarvesting(player,player:getZone(),npc,trade,0x000B);
+	startHarvesting(player,player:getZone():getID(),npc,trade,0x000B);
 end;
 
 -----------------------------------

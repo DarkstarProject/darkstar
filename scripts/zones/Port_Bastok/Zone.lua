@@ -5,7 +5,7 @@
 -----------------------------------
 
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
-require("scripts/globals/server");
+require("scripts/globals/zone");
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/zones/Port_Bastok/TextIDs");

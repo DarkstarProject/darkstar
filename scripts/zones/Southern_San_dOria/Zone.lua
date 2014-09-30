@@ -5,7 +5,8 @@
 -----------------------------------
 
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
-require("scripts/globals/server");
+require("scripts/globals/events/harvest_festivals");
+require("scripts/globals/zone");
 require("scripts/globals/settings");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
@@ -14,7 +15,8 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-zone:registerRegion(1, -292,-10,90 ,-258,10,105);
+    zone:registerRegion(1, -292,-10,90 ,-258,10,105);
+    applyHalloweenNpcCostumes(zone:getID())
 end;			
 
 -----------------------------------			

@@ -144,7 +144,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libmariadb.lib;libzmq_d.lib;WS2_32.Lib</AdditionalDependencies>
+      <AdditionalDependencies>libmariadb.lib;libzmq.lib;WS2_32.Lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\lib</AdditionalLibraryDirectories>
       <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
     </Link>

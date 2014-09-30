@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Ifrits_Cauldron/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/zones/Ifrits_Cauldron/TextIDs");
 
 -----------------------------------
@@ -14,6 +15,16 @@ require("scripts/zones/Ifrits_Cauldron/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    local tomes = {17617259,17617260,17617261,17617262,17617263,17617264,17617265,17617266};
+    
+    SetGroundsTome(tomes);
+    
+    -- Mysticmaker Profblix
+    SetRespawnTime(17617147, 900, 10800);
+    
+    UpdateTreasureSpawnPoint(17617216);
+
 end;
 
 -----------------------------------		

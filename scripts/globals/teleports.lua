@@ -747,7 +747,7 @@ function fourthStaff(player)
 end;
 
 function homingRing(player) -- homing ring and return ring should return same positions. 
-	local zone = player:getZone();
+	local zone = player:getZone():getID();
 	-- Ronfaure
 	if(zone == 100 or zone == 101 or zone == 139 or zone == 140 or zone == 141 or zone == 142 or zone == 190 or zone == 167 or zone == 230 or zone == 231 or zone == 232 or zone == 233) then
 		player:setPos(-437.688, -20.255, -219.227, 124, 100); -- {R}

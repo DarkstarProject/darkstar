@@ -8,12 +8,26 @@ package.loaded["scripts/zones/Bostaunieux_Oubliette/TextIDs"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/zones/Bostaunieux_Oubliette/TextIDs");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
+    local tomes = {17461577,17461578};
+    
+    SetGroundsTome(tomes);
+    
+    -- Drexerion the Condemned
+    SetRespawnTime(17461338, 900, 10800);
+    
+    -- Phanduron the Condemned
+    SetRespawnTime(17461343, 900, 10800);
+    
+    -- Bloodseeker
+    SetRespawnTime(17461478, 75600, 86400);
+    
 end;
 
 -----------------------------------		

@@ -14,6 +14,13 @@ require("scripts/zones/Sacrarium/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    -- Set random variable for determining Old Prof. Mariselle's spawn location
+    local rand = math.random((2),(7));
+    SetServerVariable("Old_Prof_Spawn_Location", rand);
+
+    UpdateTreasureSpawnPoint(16892178);
+
 end;		
 
 -----------------------------------		

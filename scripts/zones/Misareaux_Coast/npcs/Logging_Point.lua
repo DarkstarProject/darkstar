@@ -13,7 +13,7 @@ require("scripts/zones/Misareaux_Coast/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	startLogging(player,player:getZone(),npc,trade,0x022B);
+	startLogging(player,player:getZone():getID(),npc,trade,0x022B);
 end;
 
 -----------------------------------

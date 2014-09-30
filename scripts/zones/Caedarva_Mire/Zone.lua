@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/zones/Caedarva_Mire/TextIDs");
 
 -----------------------------------
@@ -14,6 +15,10 @@ require("scripts/zones/Caedarva_Mire/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    -- Aynu-kasey
+    SetRespawnTime(17101099, 900, 10800);
+    
 end;
 
 -----------------------------------		

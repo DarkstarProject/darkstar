@@ -63,7 +63,7 @@ function onEventFinish(player,csid,option)
 		if(player:getQuestStatus(WINDURST,ECO_WARRIOR_WIN) == QUEST_AVAILABLE) then
 			player:addQuest(WINDURST,ECO_WARRIOR_WIN);
 		end
-		player:setVar("ECO_WARRIOR_ACTIVE",player:getZone());
+		player:setVar("ECO_WARRIOR_ACTIVE",player:getZone():getID());
 		player:setVar("ECO-WAR_ConquestWeek",0);
 	elseif(csid == 0x0336) then
 		if(player:getFreeSlotsCount() >= 1) then

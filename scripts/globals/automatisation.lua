@@ -2,7 +2,7 @@
 -- Author: Ezekyel
 -- this function is used for npcs that change position every vanadiel game day
 -----------------------------------
-require("scripts/globals/harvest_festivals");
+require("scripts/globals/events/harvest_festivals");
 -----------------------------------
 function OnGameDayAutomatisation()
 	

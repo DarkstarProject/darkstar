@@ -30,7 +30,7 @@ function onTrade(player,npc,trade)
 
 	-- Player traded a key.
 	if((trade:hasItemQty(1032,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
-		local zone = player:getZone();
+		local zone = player:getZone():getID();
 
 		-- IMPORTANT ITEM: The Goblin Tailor Quest -----------
 		if(player:getQuestStatus(JEUNO,THE_GOBLIN_TAILOR) >= QUEST_ACCEPTED and VanadielRSELocation() == 2 and VanadielRSERace() == player:getRace() and player:hasKeyItem(MAGICAL_PATTERN) == false) then

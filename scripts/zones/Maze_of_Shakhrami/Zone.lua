@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/zones/Maze_of_Shakhrami/TextIDs");
 
 -----------------------------------
@@ -14,6 +15,13 @@ require("scripts/zones/Maze_of_Shakhrami/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    local tomes = {17588783,17588784,17588785,17588786};
+    
+    SetGroundsTome(tomes);
+
+    UpdateTreasureSpawnPoint(17588768);
+    
 end;
 
 -----------------------------------		

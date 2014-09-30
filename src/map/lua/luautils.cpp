@@ -370,7 +370,7 @@ int32 getNationRank(lua_State* L)
 *																		*
 ************************************************************************/
 
-int32 SetRegionalConquestOverseers()
+int32 SetRegionalConquestOverseers(uint8 regionID)
 {
 	int8 File[255];
 	memset(File,0,sizeof(File));
@@ -392,21 +392,30 @@ int32 SetRegionalConquestOverseers()
 	if( lua_isnil(LuaHandle,-1) )
 	{
         lua_pop(LuaHandle, 1);
-		ShowError("luautils::SetRegionalConquestOverseers: undefined procedure onServerStart\n");
+		ShowError("luautils::SetRegionalConquestOverseers: undefined procedure SetRegionalConquestOverseers\n");
 		return -1;
 	}
 
-	if( lua_pcall(LuaHandle,0,LUA_MULTRET,0) )
+    lua_pushinteger(LuaHandle, regionID);
+
+	if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::SetRegionalConquestOverseers: %s\n",lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
 		return -1;
 	}
     int32 returns = lua_gettop(LuaHandle) - oldtop;
-    if (returns > 0)
+    if (returns < 1)
     {
-        ShowError("luatils::SetRegionalConquestOverseers (%s): 0 returns expected, got %d\n", File, returns);
-        lua_pop(LuaHandle, returns);
+        ShowError("luatils::SetRegionalConquestOverseers (%s): 1 return expected, got %d\n", File, returns);
+        return 0;
+    }
+    uint32 retVal = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
+    lua_pop(LuaHandle, 1);
+    if (returns > 1)
+    {
+        ShowError("luatils::SetRegionalConquestOverseers (%s): 1 return expected, got %d\n", File, returns);
+        lua_pop(LuaHandle, returns - 1);
     }
 	return 0;
 }
@@ -891,53 +900,6 @@ int32 GetTextIDVariable(uint16 ZoneID, const char* variable)
     int32 value = lua_tonumber(LuaHandle, -1);
     lua_pop(LuaHandle, -1);
     return value;
-}
-
-/************************************************************************
-*																		*
-*  Выполняем скрипт при старте сервера (все монстры, npc уже загружены) *
-*																		*
-************************************************************************/
-
-int32 OnServerStart()
-{
-	int8 File[255];
-	memset(File,0,sizeof(File));
-    int32 oldtop = lua_gettop(LuaHandle);
-
-    lua_pushnil(LuaHandle);
-    lua_setglobal(LuaHandle, "onServerStart");
-
-	snprintf(File, sizeof(File), "scripts/globals/server.lua");
-
-	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
-	{
-		ShowError("luautils::OnServerStart: %s\n",lua_tostring(LuaHandle,-1));
-        lua_pop(LuaHandle, 1);
-		return -1;
-	}
-
-    lua_getglobal(LuaHandle, "onServerStart");
-	if( lua_isnil(LuaHandle,-1) )
-	{
-		ShowError("luautils::OnServerStart: undefined procedure onServerStart\n");
-        lua_pop(LuaHandle, 1);
-		return -1;
-	}
-
-	if( lua_pcall(LuaHandle,0,LUA_MULTRET,0) )
-	{
-		ShowError("luautils::OnServerStart: %s\n",lua_tostring(LuaHandle,-1));
-        lua_pop(LuaHandle, 1);
-		return -1;
-	}
-    int32 returns = lua_gettop(LuaHandle) - oldtop;
-    if (returns > 0)
-    {
-        ShowError("luatils::OnServerStart (%s): 0 returns expected, got %d\n", File, returns);
-        lua_pop(LuaHandle, returns);
-    }
-	return 0;
 }
 
 /************************************************************************

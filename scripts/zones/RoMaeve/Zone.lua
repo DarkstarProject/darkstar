@@ -8,12 +8,16 @@ package.loaded["scripts/zones/RoMaeve/TextIDs"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/zones/RoMaeve/TextIDs");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
+    local manuals = {17277205,17277206};
+    
+    SetFieldManual(manuals);
 end;
 
 -----------------------------------		

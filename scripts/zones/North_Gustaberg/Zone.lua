@@ -7,14 +7,22 @@ package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/North_Gustaberg/TextIDs");
-require( "scripts/globals/icanheararainbow");
+require("scripts/globals/zone");
+require("scripts/globals/icanheararainbow");
+require("scripts/globals/conquest");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
-function onInitialize( zone)		
-end;		
+function onInitialize(zone)		
+    local manuals = {17212104,17212105,17212106};
+    
+    SetFieldManual(manuals);
+    
+    SetRegionalConquestOverseers(zone:getRegionID())
+    
+end;
 
 -----------------------------------		
 -- onZoneIn		

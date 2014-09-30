@@ -31,7 +31,7 @@ function onTrade(player,npc,trade)
 	
 	-- Player traded a key.
 	if((trade:hasItemQty(1030,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
-		local zone = player:getZone();
+		local zone = player:getZone():getID();
 
 		-- IMPORTANT ITEM: Signed In Blood Quest -----------
 		if(player:getQuestStatus(SANDORIA,SIGNED_IN_BLOOD) == QUEST_ACCEPTED and player:getVar("SIGNED_IN_BLOOD_Prog") >= 1 and player:hasKeyItem(TORN_OUT_PAGES) == false) then

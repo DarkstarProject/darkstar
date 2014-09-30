@@ -20,7 +20,7 @@ function OnUseAbility(user, target, ability)
 	-- RNG AF2 quest check
 	local FireAndBrimstoneCS = user:getVar("fireAndBrimstone");		
 	
-	if (user:getZone() == 151 and FireAndBrimstoneCS == 5 and -- zone + quest match
+	if (user:getZone():getID() == 151 and FireAndBrimstoneCS == 5 and -- zone + quest match
 		user:getYPos() > -43 and user:getYPos() < -38 and -- Y match
 	    user:getXPos() > -85 and user:getXPos() < -73 and -- X match
 		user:getZPos() > -85 and user:getZPos() < -75 and -- Z match		

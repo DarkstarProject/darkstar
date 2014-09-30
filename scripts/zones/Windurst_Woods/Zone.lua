@@ -5,7 +5,8 @@
 -----------------------------------
 
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
-require("scripts/globals/server");
+require("scripts/globals/events/harvest_festivals");
+require("scripts/globals/zone");
 require("scripts/globals/settings");
 require("scripts/zones/Windurst_Woods/TextIDs");
 
@@ -14,6 +15,7 @@ require("scripts/zones/Windurst_Woods/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+    applyHalloweenNpcCostumes(zone:getID())
 end;			
 
 -----------------------------------			

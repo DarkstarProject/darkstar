@@ -14,6 +14,9 @@ require("scripts/zones/Monastic_Cavern/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    UpdateTreasureSpawnPoint(17391844);
+
 end;
 
 -----------------------------------		

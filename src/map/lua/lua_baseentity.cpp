@@ -33,6 +33,7 @@
 #include "lua_statuseffect.h"
 #include "lua_trade_container.h"
 #include "lua_battlefield.h"
+#include "lua_zone.h"
 #include "luautils.h"
 
 #include "../packets/action.h"
@@ -1017,7 +1018,13 @@ inline int32 CLuaBaseEntity::getZone(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 
-    lua_pushinteger( L, m_PBaseEntity->getZone() );
+    lua_getglobal(L, CLuaZone::className);
+    lua_pushstring(L, "new");
+    lua_gettable(L, -2);
+    lua_insert(L, -2);
+    lua_pushlightuserdata(L, (void*)m_PBaseEntity->loc.zone);
+    lua_pcall(L, 2, 1, 0);
+
     return 1;
 }
 

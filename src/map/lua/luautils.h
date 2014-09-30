@@ -62,7 +62,7 @@ namespace luautils
 	int32 WeekUpdateConquest(lua_State*);
     int32 GetRegionOwner(lua_State*);										    // узнаем страну, владеющую текущим регионом
 	int32 getNationRank(lua_State* L);
-	int32 SetRegionalConquestOverseers();										// Update NPC Conquest Guard
+	int32 SetRegionalConquestOverseers(uint8 regionID);							// Update NPC Conquest Guard
 	int32 setMobPos(lua_State*);												// set a mobs position (only if mob is not in combat)
 
 	int32 getCorsairRollEffect(lua_State*);
@@ -93,8 +93,6 @@ namespace luautils
 	int32 clearVarFromAll(lua_State *);											// Deletes a specific player variable from all players
 
     int32 GetTextIDVariable(uint16 ZoneID, const char* variable);               // загружаем значение переменной TextID указанной зоны
-
-	int32 OnServerStart();													// triggers when game server starts up
 
 	int32 OnGameDayAutomatisation();											// Automatic action of NPC every game day
 	int32 OnGameHourAutomatisation();											// Automatic action of NPC every game hour

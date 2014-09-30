@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/zones/Carpenters_Landing/TextIDs");
 
 -----------------------------------
@@ -14,6 +15,10 @@ require("scripts/zones/Carpenters_Landing/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    -- Tempest Tigon
+    SetRespawnTime(16785593, 900, 10800);
+
 end;
 
 -----------------------------------		

@@ -5,7 +5,8 @@
 -----------------------------------
 
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
-require("scripts/globals/server");
+require("scripts/globals/events/harvest_festivals");
+require("scripts/globals/zone");
 require("scripts/globals/settings");
 require("scripts/zones/Bastok_Mines/TextIDs");
 require("scripts/globals/missions");
@@ -15,7 +16,11 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onInitialize(zone)
-end;			
+
+    SetExplorerMoogles(17735852);
+    
+    applyHalloweenNpcCostumes(zone:getID())
+end;
 
 -----------------------------------			
 -- onZoneIn			

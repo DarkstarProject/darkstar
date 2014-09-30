@@ -7,6 +7,7 @@ package.loaded["scripts/zones/The_Boyahda_Tree/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/zones/The_Boyahda_Tree/TextIDs");
 
 -----------------------------------
@@ -14,6 +15,13 @@ require("scripts/zones/The_Boyahda_Tree/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    local tomes = {17404401,17404402,17404403,17404404};
+    
+    SetGroundsTome(tomes);
+    
+    UpdateTreasureSpawnPoint(17404385);
+
 end;
 
 -----------------------------------		

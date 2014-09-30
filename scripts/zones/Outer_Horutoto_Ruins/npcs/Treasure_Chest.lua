@@ -27,7 +27,7 @@ function onTrade(player,npc,trade)
 	
 	-- Player traded a key.
 	if((trade:hasItemQty(1029,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
-		local zone = player:getZone();
+		local zone = player:getZone():getID();
 		local pack = openChance(player,npc,trade,TreasureType,TreasureLvL,TreasureMinLvL,questItemNeeded);
 		local success = 0;
 		if(pack[2] ~= nil) then

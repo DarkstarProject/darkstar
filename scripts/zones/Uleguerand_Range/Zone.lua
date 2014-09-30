@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Uleguerand_Range/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/zones/Uleguerand_Range/TextIDs");
 require("scripts/globals/missions");
 -----------------------------------
@@ -14,6 +15,10 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onInitialize(zone)
+
+    -- Jormungand
+    SetRespawnTime(16797969, 86400, 259200);
+
 end;
 
 -----------------------------------		

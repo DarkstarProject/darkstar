@@ -13,7 +13,7 @@ require("scripts/zones/Palborough_Mines/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	startMining(player,player:getZone(),npc,trade,0x0078);
+	startMining(player,player:getZone():getID(),npc,trade,0x0078);
 end;
 
 -----------------------------------
