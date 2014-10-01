@@ -4811,7 +4811,7 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		uint8 mjob = RBUFB(data,(0x04));
 		uint8 sjob = RBUFB(data,(0x05));
 
-		if ((mjob > 0x00) && (mjob < MAX_JOBTYPE) && (PChar->jobs.job[mjob] != 0))
+		if ((mjob > 0x00) && (mjob < MAX_JOBTYPE) && (PChar->jobs.unlocked & (1 << mjob )))
 		{
             JOBTYPE prevjob = PChar->GetMJob();
 			PChar->resetPetZoningInfo();
@@ -4833,7 +4833,7 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			}
 		}
 
-		if ((sjob > 0x00) && (sjob < MAX_JOBTYPE) && (PChar->jobs.job[sjob] != 0))
+		if ((sjob > 0x00) && (sjob < MAX_JOBTYPE) && (PChar->jobs.unlocked & (1 << mjob)))
 		{
 			JOBTYPE prevsjob = PChar->GetSJob();
 
