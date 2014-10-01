@@ -7145,12 +7145,7 @@ inline int32 CLuaBaseEntity::delSeals(lua_State *L)
     return 0;
 }
 
-/************************************************************************
-*                                                                       *
-*  Valor Point Functions: Get, Add and Delete a player's valor points   *
-*  (aka Tabs)  Cap set in Map Config, default 50000                     *
-*                                                                       *
-************************************************************************/
+//==========================================================//
 
 inline int32 CLuaBaseEntity::getValorPoint(lua_State *L)
 {
