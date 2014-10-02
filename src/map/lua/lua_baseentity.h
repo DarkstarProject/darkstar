@@ -583,6 +583,7 @@ public:
     int32 getCurrentAction(lua_State* L);
     int32 getAllegiance(lua_State* L);
 	int32 stun(lua_State* L);
+    int32 weaknessTrigger(lua_State* L);
 };
 
 #endif

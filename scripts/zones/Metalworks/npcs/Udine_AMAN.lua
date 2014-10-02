@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Metalworks
 -- NPC:  Udine A.M.A.N
--- Standard Info NPC
+-- Type: Mentor Recruiter
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
@@ -13,23 +13,31 @@ require("scripts/zones/Metalworks/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x033A);
-end; 
+    local var = 0;
+    if (player:getMentor() == 0) then
+        if (player:getMainLvl() >= 30 and player:getPlaytime() >= 648000) then
+            var = 1;
+        end
+    elseif (player:getMentor() >= 1) then
+        var = 2;
+    end
+    player:startEvent(0x033A, var);
+end;
 
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -37,9 +45,9 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+    if (csid == 0X033A and option == 0) then
+        player:setMentor(1);
+    end
 end;
-
-
-

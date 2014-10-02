@@ -129,7 +129,7 @@ namespace battlefieldutils{
 							//ShowDebug("Spawned %s (%u) id %i inst %i \n",PMob->GetName(),PMob->id,battlefield->getID(),battlefield->getBattlefieldNumber());
 							battlefield->addEnemy(PMob, condition);
 						} else {
-							ShowDebug(CL_CYAN"SpawnMobForBcnm: <%s> (%u) is alredy spawned\n" CL_RESET, PMob->GetName(), PMob->id);
+							ShowDebug(CL_CYAN"SpawnMobForBcnm: <%s> (%u) is already spawned\n" CL_RESET, PMob->GetName(), PMob->id);
 						}
 					} else {
 						battlefield->addEnemy(PMob, condition);
@@ -446,7 +446,7 @@ namespace battlefieldutils{
 						ShowDebug("Spawned %s (%u) id %i inst %i \n",PMob->GetName(),PMob->id,battlefield->getID(),battlefield->getBattlefieldNumber());
 						battlefield->addEnemy(PMob, CONDITION_SPAWNED_AT_START & CONDITION_WIN_REQUIREMENT);
 				    } else {
-				        ShowDebug(CL_CYAN"spawnSecondPartDynamis: <%s> (%u) is alredy spawned\n" CL_RESET, PMob->GetName(), PMob->id);
+				        ShowDebug(CL_CYAN"spawnSecondPartDynamis: <%s> (%u) is already spawned\n" CL_RESET, PMob->GetName(), PMob->id);
 				    }
 				} else {
 				    ShowDebug("spawnSecondPartDynamis: mob %u not found\n", mobid);

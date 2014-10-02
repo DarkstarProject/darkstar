@@ -45,7 +45,7 @@ CCharEntity::CCharEntity()
 	m_GMlevel = 0;
     m_isGMHidden = false;
 
-    m_isMentor = false;
+    m_mentor = 0;
     m_isNewPlayer = true;
 
 	allegiance = ALLEGIANCE_PLAYER;

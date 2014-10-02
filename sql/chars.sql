@@ -42,6 +42,7 @@ CREATE TABLE `chars` (
   `unlocked_weapons` blob,
   `gmlevel` smallint(3) unsigned NOT NULL DEFAULT '0',
   `isnewplayer` smallint(3) NOT NULL DEFAULT '1',
+  `mentor` smallint(3) NOT NULL DEFAULT '0',
   PRIMARY KEY (`charid`),
   FULLTEXT KEY `charname` (`charname`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
