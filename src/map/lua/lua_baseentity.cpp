@@ -3658,7 +3658,7 @@ inline int32 CLuaBaseEntity::getFameLevel(lua_State *L)
 
     this->getFame(L);
 
-    uint16 fame = (uint16)lua_tointeger(L, 1);
+    uint16 fame = (uint16)lua_tointeger(L, -1);
     uint8  fameLevel = 1;
 
     if (fame >= 2450)
