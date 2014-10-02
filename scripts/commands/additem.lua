@@ -7,10 +7,10 @@
 cmdprops =
 {
     permission = 1,
-    parameters = "iiiiiiiiii"
+    parameters = "iiiiiiiiiii"
 };
 
-function onTrigger(player, itemId, quantity, aug0, aug0val, aug1, aug1val, aug2, aug2val, aug3, aug3val)
+function onTrigger(player, itemId, quantity, aug0, aug0val, aug1, aug1val, aug2, aug2val, aug3, aug3val, trialId)
     -- Load needed text ids for players current zone..
     local TextIDs = "scripts/zones/" .. player:getZoneName() .. "/TextIDs";
     package.loaded[TextIDs] = nil;
@@ -29,6 +29,6 @@ function onTrigger(player, itemId, quantity, aug0, aug0val, aug1, aug1val, aug2,
     end
     
     -- Give the player the item..
-    player:addItem( itemId,  quantity, aug0, aug0val, aug1, aug1val, aug2, aug2val, aug3, aug3val );
+    player:addItem( itemId,  quantity, aug0, aug0val, aug1, aug1val, aug2, aug2val, aug3, aug3val, trialId );
     player:messageSpecial( ITEM_OBTAINED, itemId );
 end

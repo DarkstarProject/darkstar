@@ -33,7 +33,7 @@
 #include "../vana_time.h"
 
 
-CCheckPacket::CCheckPacket(CCharEntity* PChar, CCharEntity* PTarget) 
+CCheckPacket::CCheckPacket(CCharEntity* PChar, CCharEntity* PTarget)
 {
 	this->type = 0xC9;
 	this->size = 0x06;
@@ -45,11 +45,11 @@ CCheckPacket::CCheckPacket(CCharEntity* PChar, CCharEntity* PTarget)
 
 	uint8 count = 0;
 
-	for (int32 i = 0; i < 16; ++i) 
+	for (int32 i = 0; i < 16; ++i)
 	{
 		CItem* PItem = PTarget->getEquip((SLOTTYPE)i);
 
-		if (PItem != NULL) 
+		if (PItem != NULL)
 		{
 			WBUFW(data,(size*2+0x00)-4) = PItem->getID();
 			WBUFB(data,(size*2+0x02)-4) = i;
@@ -59,12 +59,12 @@ CCheckPacket::CCheckPacket(CCharEntity* PChar, CCharEntity* PTarget)
                 uint32 currentTime = CVanaTime::getInstance()->getVanaTime();
 				uint32 nextUseTime = ((CItemUsable*)PItem)->getLastUseTime() + ((CItemUsable*)PItem)->getReuseDelay();
 
-				WBUFB(data,(size*2+0x04)-4) = 0x01;													
-				WBUFB(data,(size*2+0x05)-4) = ((CItemUsable*)PItem)->getCurrentCharges(); 
-				WBUFB(data,(size*2+0x07)-4) = (nextUseTime > currentTime ? 0x90 : 0xD0); 
+				WBUFB(data,(size*2+0x04)-4) = 0x01;
+				WBUFB(data,(size*2+0x05)-4) = ((CItemUsable*)PItem)->getCurrentCharges();
+				WBUFB(data,(size*2+0x07)-4) = (nextUseTime > currentTime ? 0x90 : 0xD0);
 
-				WBUFL(data,(size*2+0x08)-4) = nextUseTime;												
-				WBUFL(data,(size*2+0x0C)-4) = ((CItemUsable*)PItem)->getUseDelay() + currentTime;		
+				WBUFL(data,(size*2+0x08)-4) = nextUseTime;
+				WBUFL(data,(size*2+0x0C)-4) = ((CItemUsable*)PItem)->getUseDelay() + currentTime;
 			}
 
             if (PItem->isSubType(ITEM_AUGMENTED))
@@ -99,7 +99,7 @@ CCheckPacket::CCheckPacket(CCharEntity* PChar, CCharEntity* PTarget)
 		this->size = 0x14;
 		PChar->pushPacket(new CBasicPacket(*this));
 	}
-	else if (count != 8) 
+	else if (count != 8)
 	{
 		WBUFB(data,(0x0B)-4) = (count > 8 ? count - 8 : count);
 		PChar->pushPacket(new CBasicPacket(*this));
@@ -114,13 +114,13 @@ CCheckPacket::CCheckPacket(CCharEntity* PChar, CCharEntity* PTarget)
 
     if ((PLinkshell != NULL) && PLinkshell->isType(ITEM_LINKSHELL))
 	{
-        //WBUFW(data,(0x0C)-4) = PLinkshell->GetLSID(); 
+        //WBUFW(data,(0x0C)-4) = PLinkshell->GetLSID();
         WBUFW(data,(0x0E)-4) = PLinkshell->getID();
         WBUFW(data,(0x10)-4) = PLinkshell->GetLSRawColor();
 
-	    memcpy(data+(0x14)-4, PLinkshell->getSignature(), dsp_cap(strlen(PLinkshell->getSignature()), 0, 15));
+        memcpy(data+(0x14)-4, PLinkshell->getSignature(), dsp_cap(strlen(PLinkshell->getSignature()), 0, 15));
     }
-	if ((PChar->nameflags.flags & FLAG_GM) || !(PTarget->nameflags.flags & FLAG_ANON)) 
+	if ((PChar->nameflags.flags & FLAG_GM) || !(PTarget->nameflags.flags & FLAG_ANON))
 	{
 		WBUFB(data,(0x12)-4) = PTarget->GetMJob();
 		WBUFB(data,(0x13)-4) = PTarget->GetSJob();

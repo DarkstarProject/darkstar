@@ -737,6 +737,7 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
     uint16 augment1 = 0; uint8 augment1val = 0;
     uint16 augment2 = 0; uint8 augment2val = 0;
     uint16 augment3 = 0; uint8 augment3val = 0;
+    uint16 trialNumber = 0;
 
     if( !lua_isnil(L,2) && lua_isnumber(L,2) )
         quantity = (uint32)lua_tointeger(L,2);
@@ -758,6 +759,9 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
     if( !lua_isnil(L,10) && lua_isnumber(L,10) )
         augment3val = (uint8)lua_tointeger(L,10);
 
+    if( !lua_isnil(L,11) && lua_isnumber(L,11) )
+        trialNumber = (uint16)lua_tointeger(L,11);
+
     uint8 SlotID = ERROR_SLOTID;
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
@@ -776,6 +780,7 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
                 if (augment1 != 0) ((CItemArmor*)PItem)->setAugment(1, augment1, augment1val);
                 if (augment2 != 0) ((CItemArmor*)PItem)->setAugment(2, augment2, augment2val);
                 if (augment3 != 0) ((CItemArmor*)PItem)->setAugment(3, augment3, augment3val);
+                if (trialNumber != 0) ((CItemArmor*)PItem)->setTrialNumber(trialNumber);
             }
             SlotID = charutils::AddItem(PChar, LOC_INVENTORY, PItem);
         }
