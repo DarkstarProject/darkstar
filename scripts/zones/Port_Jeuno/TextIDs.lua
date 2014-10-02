@@ -40,3 +40,7 @@ SECURITY_DIALOG = 7029; -- Port Jeuno must remain secure. After all, if anything
       DRYEYES_1 = 8101; -- Then why you waste my time? Get lost
       DRYEYES_2 = 8102; -- Done deal. Deal is done.
       DRYEYES_3 = 8103; -- Hey, you already got . What you tryin' to pull here? Save some for my other customers, eh
+
+
+-- conquest Base
+CONQUEST_BASE = 6452;

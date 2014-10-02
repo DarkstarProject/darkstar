@@ -13,3 +13,6 @@ LOGGING_IS_POSSIBLE_HERE = 7700; -- Logging is possible here if you have
 -- Quest Dialogs
 YOU_CANNOT_ENTER_THE_BATTLEFIELD = 162; -- You cannot enter the battlefield at present. Please wait a little longer.
     YOU_CAN_NOW_BECOME_A_DRAGOON = 7740; -- You can now become a dragoon!
+
+-- conquest Base
+CONQUEST_BASE = 0;

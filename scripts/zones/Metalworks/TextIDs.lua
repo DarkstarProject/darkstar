@@ -34,3 +34,6 @@ VICIOUS_EYE_SHOP_DIALOG =  7933; -- Hi. This is where blacksmiths buy what they 
 
   TAKIYAH_CLOSED_DIALOG =  9894; -- Maybe someday I'll be able to sell goods from Qufim Island... Someday...
     TAKIYAH_OPEN_DIALOG =  9895; -- Hey, it's your lucky day! I've got a fresh batch of goods straight from the island of Qufim!
+
+-- conquest Base
+CONQUEST_BASE = 6507;

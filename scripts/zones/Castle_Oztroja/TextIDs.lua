@@ -30,3 +30,6 @@ YAGUDO_AVATAR_ENGAGE = 7414; -- Kahk-ka-ka... You filthy, dim-witted heretics! Y
  YAGUDO_AVATAR_DEATH = 7415; -- Our lord, Tzee Xicu the Manifest!Even should our bodies be crushed and broken, may our souls endure into eternity...
   YAGUDO_KING_ENGAGE = 7416; -- You are not here as sacrifices, are you? Could you possibly be committing this affront in the face of a deity?Very well, I will personally mete out your divine punishment, kyah!
    YAGUDO_KING_DEATH = 7417; -- You have...bested me... However, I...am...a god... I will never die...never rot...never fade...never...
+
+-- conquest Base
+CONQUEST_BASE = 26;

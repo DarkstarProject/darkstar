@@ -13,3 +13,6 @@ CONQUEST = 7880; -- You've earned conquest points!
 -- Other Dialog
 BEASTMEN_BANNER = 7119; -- There is a beastmen's banner.
 NOTHING_HAPPENS = 133;  -- Nothing happens...
+
+-- conquest Base
+CONQUEST_BASE = 7038;

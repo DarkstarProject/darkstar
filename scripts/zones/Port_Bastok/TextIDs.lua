@@ -64,3 +64,6 @@ DHENTEVRYUKOH_CLOSED_DIALOG = 8280; -- I'm trrrying to start a business selling 
       BLABBIVIX_SHOP_DIALOG = 8552; -- I come from the underworld. These chipshhh, you knooow, are popular among us Goblinshhh. Use with heart of shhhtatue.
     BAGNOBROK_CLOSED_DIALOG = 9035; -- Kbastok sis kweak! Smoblins yonly twant gstrong sfriends! Non sgoods mfrom Smovalpolos ytoday!
       BAGNOBROK_OPEN_DIALOG = 9036; -- Kbastok! Crepublic sis gstrong! Smoblins lsell sgoods oto gstrong sfriends!
+
+-- conquest Base
+CONQUEST_BASE = 6493;

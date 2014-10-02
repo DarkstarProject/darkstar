@@ -14,3 +14,6 @@ MINING_IS_POSSIBLE_HERE = 7183; -- Mining is possible here if you have
 -- Other
  GASPONIA_POISON = 7203; -- The poison of the Gasponia has begun to spread through your body.
 OCCASIONAL_LUMPS = 7218; -- Occasionally lumps arise in the ground here, then settle down again. It seems that there is something beneath the earth.
+
+-- conquest Base
+CONQUEST_BASE = 7024;

@@ -26,3 +26,6 @@ CHEST_ILLUSION = 7443; -- The chest was but an illusion...
 
 -- Other
 BROKEN_KNIFE = 7445; -- A broken knife blade can be seen among the rubble...
+
+-- conquest Base
+CONQUEST_BASE = 7046;

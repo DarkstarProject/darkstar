@@ -26,3 +26,7 @@ CHUTARMIRE_SHOP_DIALOG = 6993; -- I have items for those who delve in the black 
 -- Item Delivery
 WENZEL_DELIVERY_DIALOG = 7541; -- My independent survey confirms the town entrance as the preferred location from which adventurers send parcels.
  BORIS_DELIVERY_DIALOG = 7542; -- My independent survey confirms the inn as the preferred location from which adventurers send parcels.
+
+
+-- conquest Base
+CONQUEST_BASE = 7058;

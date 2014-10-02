@@ -32,3 +32,7 @@ MARK_OF_SEED_IS_ABOUT_TO_DISSIPATE = 7470; -- The Mark of Seed is about to dissi
                 THE_LIGHT_DWINDLES = 7456; -- However, the light dwindles and grows dim almost at once...
         YOU_REACH_OUT_TO_THE_LIGHT = 7455; -- You reach out to the light, and one facet of a curious seed-shaped emblem materializes on the back of your hand.
            SOFTLY_SHIMMERING_LIGHT = 7454; -- You see a softly shimmering light...
+
+-- conquest Base
+CONQUEST_BASE = 3;
+

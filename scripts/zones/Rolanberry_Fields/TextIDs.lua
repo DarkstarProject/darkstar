@@ -12,3 +12,6 @@ NOTHING_HAPPENS = 133; -- Nothing happens...
 
 -- Signs
 SIGN = 7361; -- North: Grand Duchy of Jeuno, Sauromugue Champaign South: Pashhow Marshlands
+
+-- conquest Base
+CONQUEST_BASE = 7038;

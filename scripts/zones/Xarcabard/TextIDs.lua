@@ -20,3 +20,7 @@ NOTHING_OUT_OF_ORDINARY = 6408; -- There is nothing out of the ordinary here.
        YOU_CANNOT_ENTER_DYNAMIS = 7717; -- You cannot enter Dynamis
  PLAYERS_HAVE_NOT_REACHED_LEVEL = 7719; -- Players who have not reached levelare prohibited from entering Dynamis
  UNUSUAL_ARRANGEMENT_OF_PEBBLES = 7730; -- There is an unusual arrangement of pebbles here.
+
+-- conquest Base
+CONQUEST_BASE = 7037;
+

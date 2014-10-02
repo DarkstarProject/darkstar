@@ -19,3 +19,5 @@ NOTHING_OUT_OF_ORDINARY = 6409; -- There is nothing out of the ordinary here.
 
 -- Other Dialog
 NOTHING_HAPPENS = 7292; -- Nothing happens...
+-- conquest Base
+CONQUEST_BASE = 7038;

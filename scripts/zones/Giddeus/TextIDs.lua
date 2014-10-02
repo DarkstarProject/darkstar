@@ -25,3 +25,7 @@ CHEST_UNLOCKED = 7357; -- You unlock the chest!
   CHEST_MOOGLE = 7362; -- You cannot open the chest while participating in the moogle event.
 CHEST_ILLUSION = 7363; -- The chest was but an illusion...
   CHEST_LOCKED = 7364; -- The chest appears to be locked.
+
+-- conquest Base
+CONQUEST_BASE = 7024;
+

@@ -34,3 +34,6 @@ DEADLYMINNOW_SHOP_DIALOG = 6917; -- Welcome to Durable Shields.
      AREEBAH_SHOP_DIALOG = 6918; -- Welcome to M & P's Market.
  CHAMPALPIEU_SHOP_DIALOG = 6918; -- Welcome to M & P's Market.
    LEILLAINE_SHOP_DIALOG = 6944; -- Hello. Are you feeling all right?
+
+-- conquest Base
+CONQUEST_BASE = 0;
