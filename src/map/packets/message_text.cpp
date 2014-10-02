@@ -27,7 +27,7 @@
 #include "../entities/baseentity.h"
 
 
-CMessageTextPacket::CMessageTextPacket(CBaseEntity* PEntity, uint16 messageID, bool showName)
+CMessageTextPacket::CMessageTextPacket(CBaseEntity* PEntity, uint16 messageID, bool showName, uint8 mode)
 {
 	this->type = 0x36;
 	this->size = 0x08;
@@ -43,4 +43,5 @@ CMessageTextPacket::CMessageTextPacket(CBaseEntity* PEntity, uint16 messageID, b
 	WBUFL(data,(0x04)-4) = PEntity->id;
 	WBUFW(data,(0x08)-4) = PEntity->targid;
 	WBUFW(data,(0x0A)-4) = messageID;
+    WBUFB(data,(0x0C)-4) = mode;
 }

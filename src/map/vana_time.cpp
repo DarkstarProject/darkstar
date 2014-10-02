@@ -37,6 +37,7 @@ CVanaTime::CVanaTime()
 	lastWeatherUpdate = 0;
 	lastVHourlyUpdate = 0;
 	lastVDailyUpdate = 0;
+    lastConquestTally = 0;
 }
 
 CVanaTime* CVanaTime::getInstance()

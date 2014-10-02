@@ -36,65 +36,68 @@ CConquestPacket::CConquestPacket(CCharEntity * PChar)
 	this->type = 0x5E; 
 	this->size = 0x5A;
 
-	WBUFB(data,(0x04)-4) = conquest::GetBalance();
+    const int8* Query = "SELECT region_id, region_control, region_control_prev, \
+                         sandoria_influence, bastok_influence, windurst_influence, \
+                         beastmen_influence FROM conquest_system;";
 
-    WBUFW(data,(0x1A)-4) = 0x1515;
-	WBUFB(data,(0x1C)-4) = conquest::GetInfluenceGraphics(REGION_RONFAURE);
-	WBUFB(data,(0x1D)-4) = conquest::GetRegionOwner(REGION_RONFAURE) + 1;
-	WBUFW(data,(0x1E)-4) = 0x1515;
-	WBUFB(data,(0x20)-4) = conquest::GetInfluenceGraphics(REGION_ZULKHEIM);
-	WBUFB(data,(0x21)-4) = conquest::GetRegionOwner(REGION_ZULKHEIM) + 1;
-	WBUFW(data,(0x22)-4) = 0x1515;
-	WBUFB(data,(0x24)-4) = conquest::GetInfluenceGraphics(REGION_NORVALLEN);
-	WBUFB(data,(0x25)-4) = conquest::GetRegionOwner(REGION_NORVALLEN) + 1;
-	WBUFW(data,(0x26)-4) = 0x1515;
-	WBUFB(data,(0x28)-4) = conquest::GetInfluenceGraphics(REGION_GUSTABERG);
-	WBUFB(data,(0x29)-4) = conquest::GetRegionOwner(REGION_GUSTABERG) + 1;
-	WBUFW(data,(0x2A)-4) = 0x1515;
-	WBUFB(data,(0x2C)-4) = conquest::GetInfluenceGraphics(REGION_DERFLAND);
-	WBUFB(data,(0x2D)-4) = conquest::GetRegionOwner(REGION_DERFLAND) + 1;
-	WBUFW(data,(0x2E)-4) = 0x1515;
-	WBUFB(data,(0x30)-4) = conquest::GetInfluenceGraphics(REGION_SARUTABARUTA);
-	WBUFB(data,(0x31)-4) = conquest::GetRegionOwner(REGION_SARUTABARUTA) + 1;
-	WBUFW(data,(0x32)-4) = 0x1515;
-	WBUFB(data,(0x34)-4) = conquest::GetInfluenceGraphics(REGION_KOLSHUSHU);
-	WBUFB(data,(0x35)-4) = conquest::GetRegionOwner(REGION_KOLSHUSHU) + 1;
-	WBUFW(data,(0x36)-4) = 0x1515;
-	WBUFB(data,(0x38)-4) = conquest::GetInfluenceGraphics(REGION_ARAGONEU);
-	WBUFB(data,(0x39)-4) = conquest::GetRegionOwner(REGION_ARAGONEU) + 1;
-	WBUFW(data,(0x3A)-4) = 0x1515;
-	WBUFB(data,(0x3C)-4) = conquest::GetInfluenceGraphics(REGION_FAUREGANDI);
-	WBUFB(data,(0x3D)-4) = conquest::GetRegionOwner(REGION_FAUREGANDI) + 1;
-	WBUFW(data,(0x3E)-4) = 0x1515;
-	WBUFB(data,(0x40)-4) = conquest::GetInfluenceGraphics(REGION_VALDEAUNIA);
-	WBUFB(data,(0x41)-4) = conquest::GetRegionOwner(REGION_VALDEAUNIA) + 1;
-	WBUFW(data,(0x42)-4) = 0x1515;
-	WBUFB(data,(0x44)-4) = conquest::GetInfluenceGraphics(REGION_QUFIMISLAND);
-	WBUFB(data,(0x45)-4) = conquest::GetRegionOwner(REGION_QUFIMISLAND) + 1;
-	WBUFW(data,(0x46)-4) = 0x1515;
-	WBUFB(data,(0x48)-4) = conquest::GetInfluenceGraphics(REGION_LITELOR);
-	WBUFB(data,(0x49)-4) = conquest::GetRegionOwner(REGION_LITELOR) + 1;
-	WBUFW(data,(0x4A)-4) = 0x1515;
-	WBUFB(data,(0x4C)-4) = conquest::GetInfluenceGraphics(REGION_KUZOTZ);
-	WBUFB(data,(0x4D)-4) = conquest::GetRegionOwner(REGION_KUZOTZ) + 1;
-	WBUFW(data,(0x4E)-4) = 0x1515;
-	WBUFB(data,(0x50)-4) = conquest::GetInfluenceGraphics(REGION_VOLLBOW);
-	WBUFB(data,(0x51)-4) = conquest::GetRegionOwner(REGION_VOLLBOW) + 1;
-	WBUFW(data,(0x52)-4) = 0x1515;
-	WBUFB(data,(0x54)-4) = conquest::GetInfluenceGraphics(REGION_ELSHIMOLOWLANDS);
-	WBUFB(data,(0x55)-4) = conquest::GetRegionOwner(REGION_ELSHIMOLOWLANDS) + 1;
-	WBUFW(data,(0x56)-4) = 0x1515;
-	WBUFB(data,(0x58)-4) = conquest::GetInfluenceGraphics(REGION_ELSHIMOUPLANDS);
-	WBUFB(data,(0x59)-4) = conquest::GetRegionOwner(REGION_ELSHIMOUPLANDS) + 1;
-	WBUFW(data,(0x5A)-4) = 0x1515;
-	WBUFB(data,(0x5C)-4) = conquest::GetInfluenceGraphics(REGION_TULIA);
-	WBUFB(data,(0x5D)-4) = conquest::GetRegionOwner(REGION_TULIA) + 1;
-	WBUFW(data,(0x5E)-4) = 0x1515;
-	WBUFB(data,(0x60)-4) = conquest::GetInfluenceGraphics(REGION_MOVALPOLOS);
-	WBUFB(data,(0x61)-4) = conquest::GetRegionOwner(REGION_MOVALPOLOS) + 1;
-	WBUFW(data,(0x62)-4) = 0x1515;
-	WBUFB(data,(0x64)-4) = conquest::GetInfluenceGraphics(REGION_TAVNAZIA);
-	WBUFB(data,(0x65)-4) = conquest::GetRegionOwner(REGION_TAVNAZIA) + 1;
+    int32 ret = Sql_Query(SqlHandle, Query);
+
+    uint8 sandoria_regions = 0;
+    uint8 bastok_regions = 0;
+    uint8 windurst_regions = 0;
+    uint8 sandoria_prev = 0;
+    uint8 bastok_prev = 0;
+    uint8 windurst_prev = 0;
+
+    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+    {
+        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            int regionid = Sql_GetIntData(SqlHandle, 0);
+            int region_control = Sql_GetIntData(SqlHandle, 1);
+            int region_control_prev = Sql_GetIntData(SqlHandle, 2);
+
+            if (region_control == 0)
+                sandoria_regions++;
+            else if (region_control == 1)
+                bastok_regions++;
+            else if (region_control == 2)
+                windurst_regions++;
+
+            if (region_control_prev == 0)
+                sandoria_prev++;
+            else if (region_control_prev == 1)
+                bastok_prev++;
+            else if (region_control_prev == 2)
+                windurst_prev++;
+
+            int32 san_inf = Sql_GetIntData(SqlHandle, 3);
+            int32 bas_inf = Sql_GetIntData(SqlHandle, 4);
+            int32 win_inf = Sql_GetIntData(SqlHandle, 5);
+            int32 bst_inf = Sql_GetIntData(SqlHandle, 6);
+            WBUFB(data,0x1A+(regionid*4)-4) = conquest::GetInfluenceRanking(san_inf, bas_inf, win_inf, bst_inf);
+            WBUFB(data,0x1B+(regionid*4)-4) = conquest::GetInfluenceRanking(san_inf, bas_inf, win_inf);
+            WBUFB(data,0x1C+(regionid*4)-4) = conquest::GetInfluenceGraphics(san_inf, bas_inf, win_inf, bst_inf);
+            WBUFB(data,0x1D+(regionid*4)-4) = region_control+1;
+
+            int64 total = san_inf + bas_inf + win_inf;
+            int64 totalBeastmen = total + bst_inf;
+
+            if (PChar->loc.zone->GetRegionID() == regionid)
+            {
+                WBUFB(data, (0x86)-4) = (san_inf*100) / (totalBeastmen == 0 ? 1 : totalBeastmen);
+                WBUFB(data, (0x87)-4) = (bas_inf*100) / (totalBeastmen == 0 ? 1 : totalBeastmen);
+                WBUFB(data, (0x88)-4) = (win_inf*100) / (totalBeastmen == 0 ? 1 : totalBeastmen);
+                WBUFB(data, (0x89)-4) = (san_inf*100) / (total == 0 ? 1 : total);
+                WBUFB(data, (0x8A)-4) = (bas_inf*100) / (total == 0 ? 1 : total);
+                WBUFB(data, (0x8B)-4) = (win_inf*100) / (total == 0 ? 1 : total);
+                WBUFB(data, (0x94)-4) = (bst_inf*100) / (totalBeastmen == 0 ? 1 : totalBeastmen);
+            }
+        }
+    }
+
+	WBUFB(data,(0x04)-4) = conquest::GetBalance(sandoria_regions, bastok_regions, windurst_regions, sandoria_prev, bastok_prev, windurst_prev);
+    WBUFB(data,(0x05)-4) = conquest::GetAlliance(sandoria_regions, bastok_regions, windurst_regions, sandoria_prev, bastok_prev, windurst_prev);
 
 	WBUFB(data,(0x8C)-4) = conquest::GetNexTally();
     WBUFL(data,(0x90)-4) = PChar->m_currency.conquestpoints[PChar->profile.nation];

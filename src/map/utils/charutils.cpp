@@ -3434,7 +3434,6 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
             (region >= 0 && region <= 22))
         {
             // Add influence for the players region..
-            conquest::GainInfluencePoints(PChar);
             conquest::AddConquestPoints(PChar, exp);
         }
 

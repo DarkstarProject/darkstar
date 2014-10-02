@@ -214,7 +214,6 @@ int32 do_init(int32 argc, int8** argv)
 	battleutils::LoadMobSkillsList();
     battleutils::LoadSkillChainDamageModifiers();
 	petutils::LoadPetList();
-	conquest::LoadConquestSystem();
 	mobutils::LoadCustomMods();
 
 	ShowStatus("do_init: loading zones");

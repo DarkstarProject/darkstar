@@ -86,7 +86,10 @@ int32 init()
 	lua_register(LuaHandle,"GetMobIDByJob",luautils::GetMobIDByJob);
 	lua_register(LuaHandle,"WeekUpdateConquest", luautils::WeekUpdateConquest);
     lua_register(LuaHandle,"GetRegionOwner", luautils::GetRegionOwner);
+    lua_register(LuaHandle,"GetRegionInfluence", luautils::GetRegionInfluence);
     lua_register(LuaHandle,"getNationRank", luautils::getNationRank);
+    lua_register(LuaHandle,"getConquestBalance", luautils::getConquestBalance);
+    lua_register(LuaHandle,"isConquestAlliance", luautils::isConquestAlliance);
 	lua_register(LuaHandle,"setMobPos",luautils::setMobPos);
 	lua_register(LuaHandle,"SpawnMob",luautils::SpawnMob);
 	lua_register(LuaHandle,"DespawnMob",luautils::DespawnMob);
@@ -313,7 +316,12 @@ int32 GetMobIDByJob(lua_State *L)
 
 int32 WeekUpdateConquest(lua_State* L)
 {
-    conquest::UpdateConquestGM();
+    ConquestUpdate type = Conquest_Tally_Start;
+    if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+    {
+        type = (ConquestUpdate)lua_tointeger(L, 1);
+    }
+    conquest::UpdateConquestGM(type);
 
     return 0;
 }
@@ -329,6 +337,14 @@ int32 GetRegionOwner(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
     lua_pushinteger(L, conquest::GetRegionOwner((REGIONTYPE)lua_tointeger(L,1)));
+    return 1;
+}
+
+int32 GetRegionInfluence(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    lua_pushinteger(L, conquest::GetInfluenceGraphics((REGIONTYPE)lua_tointeger(L, 1)));
     return 1;
 }
 
@@ -362,6 +378,18 @@ int32 getNationRank(lua_State* L)
             lua_pushinteger(L, 0);
             return 1;
     }
+}
+
+int32 getConquestBalance(lua_State* L)
+{
+    lua_pushinteger(L, conquest::GetBalance());
+    return 1;
+}
+
+int32 isConquestAlliance(lua_State* L)
+{
+    lua_pushboolean(L, conquest::IsAlliance());
+    return 1;
 }
 
 /************************************************************************
@@ -405,17 +433,10 @@ int32 SetRegionalConquestOverseers(uint8 regionID)
 		return -1;
 	}
     int32 returns = lua_gettop(LuaHandle) - oldtop;
-    if (returns < 1)
+    if (returns > 0)
     {
-        ShowError("luatils::SetRegionalConquestOverseers (%s): 1 return expected, got %d\n", File, returns);
-        return 0;
-    }
-    uint32 retVal = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
-    lua_pop(LuaHandle, 1);
-    if (returns > 1)
-    {
-        ShowError("luatils::SetRegionalConquestOverseers (%s): 1 return expected, got %d\n", File, returns);
-        lua_pop(LuaHandle, returns - 1);
+        ShowError("luatils::OnZoneInitialize (%s): 0 returns expected, got %d\n", File, returns);
+        lua_pop(LuaHandle, returns);
     }
 	return 0;
 }
@@ -4240,6 +4261,52 @@ int32 OnTransportEvent(CCharEntity* PChar, uint32 TransportID)
         lua_pop(LuaHandle, returns);
     }
 	return 0;
+}
+
+int32 OnConquestUpdate(CZone* PZone, ConquestUpdate type)
+{
+    int8 File[255];
+    memset(File, 0, sizeof(File));
+    int32 oldtop = lua_gettop(LuaHandle);
+
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onConquestUpdate");
+
+    snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PZone->GetName());
+
+    if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
+    {
+        ShowError("luautils::onConquestUpdate: %s\n", lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+
+    lua_getglobal(LuaHandle, "onConquestUpdate");
+    if (lua_isnil(LuaHandle, -1))
+    {
+        lua_pop(LuaHandle, 1);
+        ShowError("luautils::onConquestUpdate: undefined procedure\n");
+        return -1;
+    }
+
+    CLuaZone LuaZone(PZone);
+    Lunar<CLuaZone>::push(LuaHandle, &LuaZone);
+
+    lua_pushinteger(LuaHandle, type);
+
+    if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
+    {
+        ShowError("luautils::onConquestUpdate: %s\n", lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+    int32 returns = lua_gettop(LuaHandle) - oldtop;
+    if (returns > 0)
+    {
+        ShowError("luatils::onConquestUpdate (%s): 0 returns expected, got %d\n", File, returns);
+        lua_pop(LuaHandle, returns);
+    }
+    return 0;
 }
 
 /********************************************************************

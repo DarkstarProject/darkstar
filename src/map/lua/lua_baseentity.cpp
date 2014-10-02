@@ -9169,17 +9169,26 @@ inline int32 CLuaBaseEntity::messageText(lua_State* L)
     uint16 messageID = (uint16)lua_tointeger(L, 2);
 
 	bool showName = true;
+    uint8 mode = 0;
 
-	if (!lua_isnil(L, 3) && lua_isboolean(L, 3))
+	if (!lua_isnil(L, 3))
 	{
-		showName = lua_toboolean(L, 3);
+        if (lua_isboolean(L, 3))
+            showName = lua_toboolean(L, 3);
+        else if (lua_isnumber(L, 3))
+            mode = lua_tointeger(L, 3);
 	}
 
+    if (!lua_isnil(L, 4) && lua_isnumber(L, 4))
+    {
+        mode = lua_tointeger(L, 4);
+    }
+
     if (m_PBaseEntity->objtype == TYPE_PC){
-        ((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageTextPacket(PTarget, messageID, showName));
+        ((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageTextPacket(PTarget, messageID, showName, mode));
     }
     else{//broadcast in range
-		m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CMessageTextPacket(PTarget, messageID, showName));
+		m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CMessageTextPacket(PTarget, messageID, showName, mode));
 	}
     return 0;
 }

@@ -49,6 +49,18 @@ end;
 function onRegionEnter(player,region)	
 end;	
 
+-----------------------------------		
+-- onConquestUpdate		
+-----------------------------------		
+
+function onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+    
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
+end;
+
 -----------------------------------	
 -- onEventUpdate	
 -----------------------------------	
