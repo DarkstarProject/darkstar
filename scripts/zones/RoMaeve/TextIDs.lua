@@ -9,3 +9,6 @@ ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item> come back a
 
 -- Other dialog
 NOTHING_OUT_OF_ORDINARY = 6395; -- There is nothing out of the ordinary here.
+
+-- conquest Base
+CONQUEST_BASE = 7024;

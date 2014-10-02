@@ -7,3 +7,6 @@ ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6384; -- Obtained key item: <keyitem>
 
               DOOR_SHUT = 7655; -- The door is firmly shut.
+
+-- conquest Base
+CONQUEST_BASE = 7024;

@@ -23,3 +23,6 @@ SHINY_TEETH_SHOP_DIALOG = 9988;  -- Well met, adventurer. If you're looking for 
     BRAVEOX_SHOP_DIALOG = 9990;  -- These days, you can get weapons and armor cheap at the auction houses. But magic is expensive no matter where you go.
    SCAMPLIX_SHOP_DIALOG = 9991;  -- No problem, Scamplix not bad guy. Scamplix is good guy, sells stuff to adventurers. Scamplix got lots of good stuff for you.
    GENEROIT_SHOP_DIALOG = 10254; -- Ho there! I am called Generoit. I have everything here for the chocobo enthusiast, and other rare items galore.
+
+-- conquest Base
+CONQUEST_BASE = 6466;

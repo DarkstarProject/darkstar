@@ -15,3 +15,6 @@ FULL_INVENTORY_AFTER_TRADE = 6380; -- You cannot obtain the <item>. Try trading 
 
 -- Mission
 		 SOMETHING_BURRIED = 7183; -- It looks like something was buried here.
+
+-- conquest Base
+CONQUEST_BASE = 7024;

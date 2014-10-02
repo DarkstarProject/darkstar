@@ -24,3 +24,6 @@ NOTHING_OUT_OF_ORDINARY = 6395; -- There is nothing out of the ordinary here.
           POOL_OF_WATER = 7325; -- It is a pool of water.
        YOU_FIND_NOTHING = 7328; -- You find nothing.
     SOMETHING_IS_BURIED = 7333; -- Something is buried in this fallen pillar.
+
+-- conquest Base
+CONQUEST_BASE = 7024;
