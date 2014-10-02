@@ -674,6 +674,17 @@ EFFECT_HASTE_II                 = 580
 EFFECT_FLURRY_II                = 581
 
 
+-- Purchased from Cruor Prospector
+EFFECT_ABYSSEA_STR              = 768 --
+EFFECT_ABYSSEA_DEX              = 769 --
+EFFECT_ABYSSEA_VIT              = 770 --
+EFFECT_ABYSSEA_AGI              = 771 --
+EFFECT_ABYSSEA_INT              = 772 --
+EFFECT_ABYSSEA_MND              = 773 --
+EFFECT_ABYSSEA_CHR              = 774 --
+EFFECT_ABYSSEA_HP               = 775 --
+EFFECT_ABYSSEA_MP               = 776 --
+
 -- *Prowess increases not currently retail accurate.
 -- GoV Prowess bonus effects, real effect at ID 474
 EFFECT_PROWESS_CASKET_RATE      = 777 -- (Unimplemented)

@@ -1,14 +1,17 @@
 -----------------------------------
 --
---
+--  EFFECT_ABYSSEA_HP
 --
 -----------------------------------
+
+require("scripts/globals/status");
 
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
+	target:addMod(MOD_HPP, effect:getPower());
 end;
 
 -----------------------------------
@@ -16,11 +19,6 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
-    if (player:getVar("Abyssea_Time") >= 3) then
-        player:setVar("Abyssea_Time",duration);
-    end
--- TODO: messages about remaining time.
--- Some will need to handled outside of this effect (zone ejection warnings after visitant is gone).
 end;
 
 -----------------------------------
@@ -28,4 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+	target:delMod(MOD_HPP, effect:getPower());
 end;
