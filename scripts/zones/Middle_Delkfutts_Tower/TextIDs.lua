@@ -20,3 +20,6 @@ CHEST_ILLUSION = 7295; -- The chest was but an illusion...
 -- Quest dialog
 NOTHING_OUT_OF_ORDINARY = 6558; -- There is nothing out of the ordinary here.
     SENSE_OF_FOREBODING = 6559; -- You are suddenly overcome with a sense of foreboding...
+
+-- conquest Base
+CONQUEST_BASE = 4;

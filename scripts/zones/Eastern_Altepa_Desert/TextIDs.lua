@@ -15,3 +15,6 @@ CONQUEST = 7192; -- You've earned conquest points!
 -- Quest Dialog
     SENSE_OF_FOREBODING = 6396; -- You are suddenly overcome with a sense of foreboding...
 NOTHING_OUT_OF_ORDINARY = 7635; -- There is nothing out of the ordinary here.
+
+-- conquest Base
+CONQUEST_BASE = 7024;

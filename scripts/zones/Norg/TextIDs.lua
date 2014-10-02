@@ -31,3 +31,7 @@ YOU_CAN_NOW_BECOME_A_SAMURAI = 10160; -- You can now become a samurai.
        CHIYO_SHOP_DIALOG = 10310; -- Magic scrolls! Magic scrolls! We've got parchment hot off the sheep!
 
 SOLBYMAHOLBY_SHOP_DIALOG = 10537; -- Hiya! My name's Solby-Maholby! I'm new here, so they put me on tooty-fruity shop duty. I'll give you a super-duper deal on unwanted items!
+
+-- conquest Base
+CONQUEST_BASE = 6466;
+

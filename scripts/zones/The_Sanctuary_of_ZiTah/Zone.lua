@@ -25,7 +25,19 @@ function onInitialize( zone)
 	GetMobByID(Noble_Mold):setExtraVar(os.time() + math.random((43200), (57600)));
     
     SetRegionalConquestOverseers(zone:getRegionID())
-end;		
+end;	
+
+-----------------------------------		
+-- onConquestUpdate		
+-----------------------------------		
+
+function onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+    
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
+end;	
 
 -----------------------------------		
 -- onZoneIn		

@@ -19,3 +19,7 @@ DIAMOND_QUADAV_ENGAGE = 7228; -- Gwa-ha-ha, puny peoples! Ou-ur king never forge
  DIAMOND_QUADAV_DEATH = 7229; -- Glo-ory to the Adamantking!
    QUADAV_KING_ENGAGE = 7230; -- Childre-en of Altana? I will ba-athe in your blood as I did at the Ba-attle of Jeuno!
     QUADAV_KING_DEATH = 7231; -- I a-am fini-ished. Hear me, wa-arriors of the Quadav! The throne of the Adamantking and the line of Za'Dha pa-asses to my bro-other...
+
+-- conquest Base
+CONQUEST_BASE = 7024;
+

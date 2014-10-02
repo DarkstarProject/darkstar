@@ -17,3 +17,7 @@ FULL_INVENTORY_AFTER_TRADE = 6380; -- You cannot obtain the #. Try trading again
  TEACH_YOU_TO_RESPECT_ELDERS = 7705; -- I'll teach you to respect your elders!
 TAKE_THAT_YOU_WHIPPERSNAPPER = 7706; -- Take that, you whippersnapper!
  THAT_LL_HURT_IN_THE_MORNING = 7708; -- Ungh... That'll hurt in the morning...
+
+-- conquest Base
+CONQUEST_BASE = 7024;
+

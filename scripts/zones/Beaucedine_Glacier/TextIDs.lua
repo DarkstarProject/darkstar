@@ -20,3 +20,6 @@ NOTHING_OUT_OF_ORDINARY = 6568; -- There is nothing out of the ordinary here.
        YOU_CANNOT_ENTER_DYNAMIS = 7824; -- You cannot enter Dynamis
  PLAYERS_HAVE_NOT_REACHED_LEVEL = 7826; -- Players who have not reached levelare prohibited from entering Dynamis.
 UNUSUAL_ARRANGEMENT_OF_BRANCHES = 7836; -- There is an unusual arrangement of branches here.
+
+-- conquest Base
+CONQUEST_BASE = 0;

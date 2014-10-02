@@ -37,3 +37,6 @@ PROTECTED_BY_UNKNOWN_FORCE = 7322; -- The door is protected by some unknown forc
 HATE_RESET = 7395; -- The built-up hate has been cleansed...!
  DOOR_SHUT = 7397; -- The door is firmly shut.
    NO_HATE = 7398; -- You have no built-up hate to cleanse.
+
+-- conquest Base
+CONQUEST_BASE = 7024;

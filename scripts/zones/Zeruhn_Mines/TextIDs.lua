@@ -12,3 +12,7 @@ MAKARIM_DIALOG_I = 7285; -- Be careful on your way out. Remember, you should giv
 
 -- Mining
 MINING_IS_POSSIBLE_HERE = 7317; -- Mining is possible here if you have
+
+
+-- conquest Base
+CONQUEST_BASE = 0;

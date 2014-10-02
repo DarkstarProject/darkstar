@@ -9,3 +9,6 @@ ITEM_CANNOT_BE_OBTAINED = 6392; -- You cannot obtain the item <item>. Come back 
 
 -- Other Dialog
 NOTHING_HAPPENS = 7292; -- Nothing happens...
+
+-- conquest Base
+CONQUEST_BASE = 7038;

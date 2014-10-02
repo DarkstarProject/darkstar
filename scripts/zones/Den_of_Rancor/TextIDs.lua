@@ -19,3 +19,6 @@ CHEST_ILLUSION = 7319; -- The chest was but an illusion...
 
 -- Other dialog
 LANTERN_OFFSET = 7183; -- The grating will not budge.
+
+-- conquest Base
+CONQUEST_BASE = 7024;

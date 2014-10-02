@@ -18,3 +18,6 @@ OLD_SABERTOOTH_DIALOG_II = 7204; -- The sound of the tiger's footsteps is growin
 -- Other Dialog
         NOTHING_HAPPENS = 133;  -- Nothing happens...
 NOTHING_OUT_OF_ORDINARY = 6409; -- There is nothing out of the ordinary here.
+
+-- conquest Base
+CONQUEST_BASE = 7038;

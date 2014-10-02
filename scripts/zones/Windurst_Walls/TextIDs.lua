@@ -21,3 +21,6 @@ PLAYERS_HAVE_NOT_REACHED_LEVEL = 9005; -- Players who have not reached levelare 
 
 -- Shop Texts
 SCAVNIX_SHOP_DIALOG = 8592; -- I'm goood Goblin from underwooorld.I find lotshhh of gooodieshhh.You want try shhhome chipshhh? Cheap for yooou.
+
+-- conquest Base
+CONQUEST_BASE = 0;

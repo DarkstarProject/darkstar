@@ -28,3 +28,6 @@ NOTHING_OUT_OF_ORDINARY = 7370; -- There is nothing out of the ordinary here.
 
 -- Other
 LOCK_OTHER_DEVICE = 7309; -- This entrance's lock is connected to some other device.
+
+-- conquest Base
+CONQUEST_BASE = 7024;

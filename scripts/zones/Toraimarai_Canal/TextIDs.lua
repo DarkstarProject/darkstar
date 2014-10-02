@@ -20,3 +20,6 @@ CHEST_ILLUSION = 7337; -- The chest was but an illusion...
 -- Quest dialog
      SEALED_SHUT = 3; -- It's sealed shut with incredibly strong magic.
  CHEST_IS_LOCKED = 7324; -- This chest is locked. It can be opened with
+
+-- conquest Base
+CONQUEST_BASE = 7070;

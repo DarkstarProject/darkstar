@@ -12,3 +12,7 @@ TOMBSTONE = 7139; -- Here lies the beloved Queen Leaute. May Her Majesty's soul 
 
 -- Mission dialog
 HALVER_OFFSET = 6760; -- The princess is always speaking of your deeds for the Kingdom. Everyone here is counting on you,
+
+-- Conquest Base
+
+CONQUEST_BASE = 6846;

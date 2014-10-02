@@ -35,3 +35,7 @@ SPIRIT_INCENSE_EMITS_PUTRID_ODOR = 7378; -- emits a putrid odor and burns up. Yo
 
     SARCOPHAGUS_CANNOT_BE_OPENED = 7395; -- It is a stone sarcophagus with the lid sealed tight. It cannot be opened.
 
+-- conquest Base
+CONQUEST_BASE = 0;
+
+

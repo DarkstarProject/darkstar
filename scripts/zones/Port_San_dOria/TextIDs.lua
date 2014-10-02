@@ -59,3 +59,7 @@ DEGUERENDARS_COP_NOT_COMPLETED = 7886; -- Why must I wait for the Kingdom to iss
              NIMIA_OPEN_DIALOG = 8222; -- Hello, friend! Can I interest you in specialty goods from the Elshimo Lowlands?
            PATOLLE_OPEN_DIALOG = 8223; -- How about some specialty goods from Kuzotz?
        BONMAURIEUT_OPEN_DIALOG = 8224; -- My shipment is in! Would you like to see what has just arrived from the Elshimo Uplands?
+
+
+-- conquest Base
+CONQUEST_BASE = 7013;

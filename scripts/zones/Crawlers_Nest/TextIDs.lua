@@ -24,3 +24,7 @@ CHEST_ILLUSION = 7232; -- The chest was but an illusion...
 SOMEONE_HAS_BEEN_DIGGING_HERE = 7234; -- Someone has been digging here.
 EQUIPMENT_COMPLETELY_PURIFIED = 7235; -- Your equipment has not been completely purified.
                  YOU_BURY_THE = 7237; -- You bury the
+
+
+-- conquest Base
+CONQUEST_BASE = 0;
