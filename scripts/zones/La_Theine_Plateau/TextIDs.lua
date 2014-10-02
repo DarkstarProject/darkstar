@@ -32,3 +32,6 @@ FAURBELLANT_4 = 7395; -- My thanks again for your services. May the Gates of Par
 ALREADY_HAVE_ALL_FRAGS = 7553; -- You have obtained all of the fragments. You must hurry to the ruins of the ancient shrine!
        FOUND_ALL_FRAGS = 7554; -- You have obtained ! You now have all 8 fragments of light!
        ZILART_MONUMENT = 7555; -- It is an ancient Zilart monument.
+
+-- conquest Base
+CONQUEST_BASE = 7024;

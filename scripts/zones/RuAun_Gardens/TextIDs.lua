@@ -26,3 +26,7 @@ IT_IS_ALREADY_FUNCTIONING = 7279; -- It is already functioning.
          SKY_GOD_OFFSET_2 = 7330; -- A strange insignia pointing east is carved into the wall.
          SKY_GOD_OFFSET_3 = 7331; -- A strange insignia pointing west is carved into the wall.
          SKY_GOD_OFFSET_4 = 7332; -- A strange insignia pointing south is carved into the wall.
+
+
+-- conquest Base
+CONQUEST_BASE = 7119;

@@ -24,3 +24,6 @@ ALREADY_OBTAINED_FRAG = 7636; -- You have already obtained this monument's . Try
 
 -- Other
 NOTHING_HAPPENS = 119; -- Nothing happens...?Possible Special Code: 00?
+
+-- conquest Base
+CONQUEST_BASE = 7024;

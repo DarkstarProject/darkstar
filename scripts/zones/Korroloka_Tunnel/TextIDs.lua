@@ -16,3 +16,7 @@ NOTHING_OUT_OF_ORDINARY = 6395; -- There is nothing out of the ordinary here.
 
 -- Other
 MORION_WORM_1 = 7299; -- It appears to be a hole made by some kind of animal. Fragments of iron ore are scattered around the area...
+
+-- conquest Base
+CONQUEST_BASE = 7119;
+

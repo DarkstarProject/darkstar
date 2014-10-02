@@ -22,3 +22,7 @@ CHEST_ILLUSION = 7318; -- The chest was but an illusion...
 -- Other texts
  PORTAL_SEALED_BY_3_MAGIC = 8; -- The Sealed Portal is sealed by three kinds of magic.
 PORTAL_NOT_OPEN_THAT_SIDE = 9; -- The Sealed Portal cannot be opened from this side.
+
+
+-- conquest Base
+CONQUEST_BASE = 10;

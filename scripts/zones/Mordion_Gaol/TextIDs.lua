@@ -8,3 +8,6 @@ ITEM_CANNOT_BE_OBTAINED = 6537; -- You cannot obtain the item <item>. Come back 
 
             NO_ESCAPE = 7183; -- Any attempt at escape is futile!
 PROHIBITED_ACTIVITIES = 7199; -- Your character has been jailed due to prohibited activities. Your account will soon be suspended due to this violation.
+
+-- conquest Base
+CONQUEST_BASE = 0;

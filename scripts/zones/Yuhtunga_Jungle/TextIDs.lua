@@ -24,3 +24,6 @@ ALREADY_HAVE_ALL_FRAGS = 7648; -- You have obtained all of the fragments. You mu
 
 -- Other
 NOTHING_HAPPENS = 119; -- Nothing happens...
+
+-- conquest Base
+CONQUEST_BASE = 7024;

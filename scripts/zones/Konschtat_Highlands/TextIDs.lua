@@ -19,3 +19,6 @@ SOMETHING_BURIED_HERE = 7355; -- Something has been buried here.
 
      NOTHING_OUT_OF_ORDINARY = 6395; -- There is nothing out of the ordinary here.
 TELEPOINT_HAS_BEEN_SHATTERED = 7444; -- The telepoint has been shattered into a thousand pieces...
+
+-- conquest Base
+CONQUEST_BASE = 7024;

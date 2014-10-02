@@ -15,3 +15,6 @@ NOTHING_OUT_OF_ORDINARY = 6395; -- There is nothing out of the ordinary here.
 ALREADY_OBTAINED_FRAG = 7194; -- You have already obtained this monument's
       FOUND_ALL_FRAGS = 7196; -- You have obtained ! You now have all 8 fragments of light!
    CANNOT_REMOVE_FRAG = 7193; -- It is an oddly shaped stone monument. A shining stone is embedded in it, but cannot be removed...?Prompt?
+
+-- conquest Base
+CONQUEST_BASE = 7024;

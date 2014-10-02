@@ -14,3 +14,6 @@ CONQUEST = 7861; -- You've earned conquest points!
 -- General Dialogs
   NOTHING_FOUND = 7450; -- You find nothing.
 NOTHING_HAPPENS = 133; -- Nothing happens...
+
+-- conquest Base
+CONQUEST_BASE = 7038;

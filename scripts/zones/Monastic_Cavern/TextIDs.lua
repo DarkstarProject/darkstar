@@ -25,3 +25,6 @@ ORCISH_OVERLORD_ENGAGE = 7272; -- Intruders? Get outs here! We gots us some adve
  ORCISH_OVERLORD_DEATH = 7273; -- Gahahahaha... You fell for our trick. I'm not the big boss. He don't need to be troubled by runty little rarabs like you.
        ORC_KING_ENGAGE = 7274; -- Ungh? Who are you?So, you've come to kill big boss Bakgodek? I'll crush your scrawny bones myself!
         ORC_KING_DEATH = 7275; -- Unghh... Foolish children of Altana. Defeating me won't change anything. There will be others from the north...
+
+-- conquest Base
+CONQUEST_BASE = 7024;

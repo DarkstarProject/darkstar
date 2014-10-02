@@ -16,3 +16,7 @@ LOGGING_IS_POSSIBLE_HERE = 7858; -- Logging is possible here if you have
 
 -- Other Dialog
 NOTHING_HAPPENS = 133; -- Nothing happens...
+
+
+-- conquest Base
+CONQUEST_BASE = 7038;

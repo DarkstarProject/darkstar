@@ -20,3 +20,6 @@ ALREADY_HAVE_ALL_FRAGS = 7316; -- You have obtained all of the fragments. You mu
 -- Other dialog
      THE_DOOR_IS_LOCKED = 7297; -- The door is locked.
        DOES_NOT_RESPOND = 7298; -- It does not respond.
+
+-- conquest Base
+CONQUEST_BASE = 7024;

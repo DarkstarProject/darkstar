@@ -60,3 +60,6 @@ SHEIAPOHRICHAMAHA_CLOSED_DIALOG = 4144; -- I'm a traveling merrrchant. There arr
             ALIZABE_OPEN_DIALOG = 12787; -- Don't tell anybody, but I've managed to get my hands on some items from Tavnazia! Take a look!
           ALIZABE_CLOSED_DIALOG = 12788; -- Pssst! Have you heard of Tavnazia? Boy, do they have some sweet items on those islands...
       ALIZABE_COP_NOT_COMPLETED = 12789; -- It won't be long before I set up shop right here in this very place. And once I start, there won't be no stoppin' me!
+
+-- conquest Base
+CONQUEST_BASE = 4424;

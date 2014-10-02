@@ -26,3 +26,7 @@ NOMAD_MOOGLE_DIALOG = 6770; -- I'm a traveling moogle, kupo. I help adventurers 
 PIKINIMIKINI_SHOP_DIALOG = 7111; -- Hi, I'm Pikini-Mikini, Mhaura's item seller. I've got the wares, so size doesn't matter!
 RUNITOMONITO_SHOP_DIALOG = 7110; -- Hi! Welcome! I'm Runito-Monito, and weapons is my middle name!
   TYAPADOLIH_SHOP_DIALOG = 7112; -- Welcome, strrranger! Tya Padolih's the name, and dealin' in magic is my game!
+
+
+-- conquest Base
+CONQUEST_BASE = 6499;

@@ -21,3 +21,7 @@ ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item>. Come back 
       LOCKED_DOOR_QUADAV_HAS_KEY = 7187; -- It is locked tight, but has what looks like a keyhole. Maybe one of the Quadav here has the key.
          NOTHING_OUT_OF_ORDINARY = 7672; -- There is nothing out of the ordinary here.
 YOU_CAN_NOW_BECOME_A_DARK_KNIGHT = 7324; -- You can now become a dark knight!
+
+-- conquest Base
+CONQUEST_BASE = 7024;
+

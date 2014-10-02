@@ -58,3 +58,6 @@ CONQUEST = 7990; -- You've earned conquest points!
    PAWKRIX_SHOP_DIALOG = 7569; -- Hey, we're fixin' up some stew. Gobbie food's good food!
 AMALASANDA_SHOP_DIALOG = 7617; -- Welcome to the Tenshodo. You want something, we got it. We got all kinds of special merchandise you won't find anywhere else!
  AKAMAFULA_SHOP_DIALOG = 7618; -- We ain't cheap, but you get what you pay for! Take your time, have a look around, see if there's somethin' you like.
+
+-- conquest Base
+CONQUEST_BASE = 6504;

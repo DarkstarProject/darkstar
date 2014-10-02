@@ -31,3 +31,7 @@ FOURTH_DARK_ORB_IN_PLACE = 9; -- Forth Mana Orb Receptacle is ready for use.
 
         DOOR_FIRMLY_SHUT = 7229; -- The door is firmly shut.
     ALL_G_ORBS_ENERGIZED = 7232; -- The six Mana Orbs have been successfully energized with magic!
+
+-- conquest Base
+CONQUEST_BASE = 15;
+

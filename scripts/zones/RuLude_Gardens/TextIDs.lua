@@ -45,3 +45,7 @@ MACCHI_GAZLITAH_SHOP_DIALOG1 = 10848; -- Hello therrre. I work for the Buffalo B
 MACCHI_GAZLITAH_SHOP_DIALOG2 = 10849; -- The Buffalo Bonanza Ranch has a lot of useful items, just for you!
 MACCHI_GAZLITAH_SHOP_DIALOG3 = 10850; -- Business is booming! The Buffalo Bonanza Ranch even made me managerrr of this local shop!
 MACCHI_GAZLITAH_SHOP_DIALOG4 = 10851; -- My new shipment has finally come in. Talk to me, and I can show you what we have!
+
+
+-- conquest Base
+CONQUEST_BASE = 0;

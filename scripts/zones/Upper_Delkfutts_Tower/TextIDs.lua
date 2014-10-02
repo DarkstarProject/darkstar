@@ -19,3 +19,6 @@ CHEST_ILLUSION = 7326; -- The chest was but an illusion...
 
 -- Other Dialog
 THIS_ELEVATOR_GOES_DOWN = 25; -- This elevator goes down, but it is locked. Perhaps a key is needed to activate it.
+
+-- conquest Base
+CONQUEST_BASE = 7154;

@@ -17,3 +17,6 @@ HAVE_BILLET = 7456; -- You cannot buy morrre than one . Use the one you have now
 LEFT_BILLET = 7461; -- You use your
  END_BILLET = 7462; -- You use up your
 NEWS_BILLET = 7463; -- added to your
+
+-- conquest Base
+CONQUEST_BASE = 7024;
