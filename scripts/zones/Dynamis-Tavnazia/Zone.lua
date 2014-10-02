@@ -15,6 +15,18 @@ require("scripts/zones/Dynamis-Tavnazia/TextIDs");
 function onInitialize(zone)
 end;
 
+-----------------------------------		
+-- onConquestUpdate		
+-----------------------------------		
+
+function onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+    
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
+end;
+
 -----------------------------------
 -- onZoneIn
 -----------------------------------

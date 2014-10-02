@@ -30,3 +30,7 @@ BANISHING_GATES_CLOSING = 7263; -- The first banishing gate starts to close.
 
 -- Other
 NOTHING_OUT_OF_THE_ORDINARY = 6554; -- There is nothing out of the ordinary here.
+
+-- conquest Base
+CONQUEST_BASE = 0;
+

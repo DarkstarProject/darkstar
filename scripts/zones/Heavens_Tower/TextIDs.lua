@@ -10,3 +10,6 @@
 -- Other dialog
        STAIRWAY_LOCKED = 554; -- The door to the Starway Stairway is locked tight.
 STAIRWAY_ONLY_CITIZENS = 555; -- The door to the Starway Stairway is locked tight, and only citizens of Windurst can open it.
+
+-- conquest Base
+CONQUEST_BASE = 582;

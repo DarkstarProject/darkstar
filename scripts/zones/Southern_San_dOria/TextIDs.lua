@@ -93,3 +93,6 @@ FERDOULEMIONT_SHOP_DIALOG = 7899; -- Hello!
         RAMINEL_DELIVERY  = 8036; -- Here's your delivery!
             LUSIANE_THANK = 8037; -- Thank you!?Prompt?
        RAMINEL_DELIVERIES = 8038; -- Sorry, I have deliveries to make!
+
+-- conquest Base
+CONQUEST_BASE = 6972;

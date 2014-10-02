@@ -25,3 +25,7 @@ SIGNPOST1 = 7322; -- Northeast: La Theine Plateau Southeast: Konschtat Highlands
               MYSTERIOUS_VOICE = 7812; -- You hear a mysterious, floating voice: Bring forth the
       YOU_CANNOT_ENTER_DYNAMIS = 7824; -- You cannot enter Dynamis
 PLAYERS_HAVE_NOT_REACHED_LEVEL = 7826; -- Players who have not reached levelare prohibited from entering Dynamis.
+
+-- conquest Base
+CONQUEST_BASE = 7037;
+

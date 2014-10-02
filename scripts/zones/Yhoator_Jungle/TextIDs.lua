@@ -20,3 +20,6 @@ HARVESTING_IS_POSSIBLE_HERE = 7640; -- Harvesting is possible here if you have
 -- Other dialog
 TREE_CHECK = 7647; -- The hole in this tree is filled with a sweet-smelling liquid.
  TREE_FULL = 7648; -- Your wine barrel is already full.
+
+-- conquest Base
+CONQUEST_BASE = 7024;

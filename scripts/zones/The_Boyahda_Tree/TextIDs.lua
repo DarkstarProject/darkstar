@@ -25,3 +25,6 @@ NOTHING_OUT_OF_ORDINARY = 6395; -- There is nothing out of the ordinary here.
         CAN_SEE_SKY = 7139; -- You can see the sky from here.
 SOMETHING_NOT_RIGHT = 7140; -- Something is not right!
     CANNOT_SEE_MOON = 7141; -- You cannot see the moon right now.
+
+-- conquest Base
+CONQUEST_BASE = 7142;

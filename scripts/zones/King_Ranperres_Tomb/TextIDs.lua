@@ -18,3 +18,6 @@ CHEST_ILLUSION = 7258; -- The chest was but an illusion...
 
 -- Other
 HEAVY_DOOR = 7280; -- It is a solid stone door.
+
+-- conquest Base
+CONQUEST_BASE = 0;

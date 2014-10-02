@@ -54,3 +54,6 @@ CHARGINGCHOKOBO_SHOP_DIALOG =  7594; --Hello. What piece of armor are you missin
        OGGODETT_OPEN_DIALOG =  7604; --Hello there! Might I interest you in some specialty goods from Aragoneu?
          YAFAFA_OPEN_DIALOG =  7605; --Hello! I've got some goods from Kolshushu--interested?
       SOMNPAEMN_OPEN_DIALOG =  7606; --Welcome! I have goods straight from Sarutabaruta! What say you?
+
+-- conquest Base
+CONQUEST_BASE = 6548;

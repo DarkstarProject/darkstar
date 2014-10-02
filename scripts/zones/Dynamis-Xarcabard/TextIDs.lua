@@ -23,3 +23,7 @@ ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item> come back a
         ANIMATED_HORN_DIALOG = 7720; -- I am called the Mysterial Horn. Show me your true intentions.
       ANIMATED_SHIELD_DIALOG = 7752; -- I am Aegis, the impervious shield of everlasting.
 PRISON_OF_SOULS_HAS_SET_FREE = 7784; -- prison of souls has set free its captive spirits!?Prompt?
+
+
+-- conquest Base
+CONQUEST_BASE = 7030;

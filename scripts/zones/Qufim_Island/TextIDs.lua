@@ -23,3 +23,7 @@ PLAYERS_HAVE_NOT_REACHED_LEVEL = 7817; -- Players who have not reached levelare 
               MYSTERIOUS_VOICE = 7803; -- You hear a mysterious, floating voice: Bring forth the
 
             GIGANTIC_FOOTPRINT = 7789; -- There is a gigantic footprint here.
+
+
+-- conquest Base
+CONQUEST_BASE = 7024;

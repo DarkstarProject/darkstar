@@ -20,3 +20,5 @@ NOTHING_OUT_OF_ORDINARY = 6409; -- There is nothing out of the ordinary here.
 
       MONSTER_TRACKS = 7361; -- You see monster tracks on the ground.
 MONSTER_TRACKS_FRESH = 7362; -- You see fresh monster tracks on the ground.
+-- conquest Base
+CONQUEST_BASE = 7038;

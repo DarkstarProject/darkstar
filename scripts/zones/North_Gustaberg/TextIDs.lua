@@ -20,3 +20,6 @@ SHINING_OBJECT_SLIPS_AWAY = 7399; -- The shining object slips through your finge
         NOTHING_HAPPENS = 292;  -- Nothing happens...
 NOTHING_OUT_OF_ORDINARY = 6568; -- There is nothing out of the ordinary here.
   REACH_WATER_FROM_HERE = 7406; -- You can reach the water from here.
+
+-- conquest Base
+CONQUEST_BASE = 0;

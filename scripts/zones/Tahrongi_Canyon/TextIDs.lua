@@ -28,3 +28,7 @@ SIGN_1 = 7365; -- North: Meriphataud Mountains Northeast: Crag of Mea South: Eas
 SIGN_3 = 7366; -- North: Meriphataud Mountains East: Crag of Mea South: East Sarutabaruta
 SIGN_5 = 7367; -- North: Meriphataud Mountains East: Buburimu Peninsula South: East Sarutabaruta
 SIGN_7 = 7368; -- East: Buburimu Peninsula West: East Sarutabaruta
+
+-- conquest Base
+CONQUEST_BASE = 0;
+
