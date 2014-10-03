@@ -9398,6 +9398,27 @@ inline int32 CLuaBaseEntity::weaknessTrigger(lua_State* L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::setBehaviour(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    ((CMobEntity*)m_PBaseEntity)->m_Behaviour = lua_tointeger(L, 1);
+
+    return 0;
+}
+
+inline int32 CLuaBaseEntity::getBehaviour(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+    lua_pushinteger(L,((CMobEntity*)m_PBaseEntity)->m_Behaviour);
+
+    return 1;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -9823,5 +9844,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAllegiance),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,stun),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,weaknessTrigger),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBehaviour),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setBehaviour),
     {NULL,NULL}
 };

@@ -763,13 +763,13 @@ void CAIMobDummy::ActionAbilityStart()
             }
         }
 
+        // set param so 2hour can be customized
+        m_PMobSkill->setParam(m_PMob->getMobMod(MOBMOD_MAIN_2HOUR));
+
         valid = (m_PMobSkill != NULL && luautils::OnMobSkillCheck(m_PBattleSubTarget, m_PMob, m_PMobSkill) == 0);
 
 		if(valid)
 		{
-			// set param so 2hour can be customized
-			m_PMobSkill->setParam(m_PMob->getMobMod(MOBMOD_MAIN_2HOUR));
-
 			// don't use again unless I can use it multiple times
 			if (!m_PMob->getMobMod(MOBMOD_2HOUR_MULTI))
 			{
@@ -781,13 +781,54 @@ void CAIMobDummy::ActionAbilityStart()
 			int16 skillID = m_PMobSkill->getID();
 			if(skillID == 436 || skillID == 440 || skillID == 435)
 			{
-				m_LastMagicTime = m_Tick + 4000;
+				m_LastMagicTime = 0;
 			}
 		}
 	}
 
+    if (!valid && m_PMob->getMobMod(MOBMOD_SUB_2HOUR) > 0)
+    {
+
+        // get my job two hour
+        m_PMobSkill = battleutils::GetTwoHourMobSkill(m_PMob->GetSJob());
+
+        if (m_PMobSkill != NULL)
+        {
+            if (m_PMobSkill->getValidTargets() == TARGET_SELF)
+            {
+                m_PBattleSubTarget = m_PMob;
+            }
+            else
+            {
+                m_PBattleSubTarget = m_PBattleTarget;
+            }
+        }
+
+        // set param so 2hour can be customized
+        m_PMobSkill->setParam(m_PMob->getMobMod(MOBMOD_SUB_2HOUR));
+
+        valid = (m_PMobSkill != NULL && luautils::OnMobSkillCheck(m_PBattleSubTarget, m_PMob, m_PMobSkill) == 0);
+
+        if (valid)
+        {
+            // don't use again unless I can use it multiple times
+            if (!m_PMob->getMobMod(MOBMOD_2HOUR_MULTI))
+            {
+                // don't use it again
+                m_PMob->setMobMod(MOBMOD_SUB_2HOUR, 0);
+            }
+
+            // force magic spam on chainspell, manafont and soul voice
+            int16 skillID = m_PMobSkill->getID();
+            if (skillID == 436 || skillID == 440 || skillID == 435)
+            {
+                m_LastMagicTime = 0;
+            }
+        }
+    }
+
 	// no 2 hour picked, lets find a normal skill
-	if(valid == false)
+	if(!valid)
 	{
 		std::random_shuffle(MobSkills.begin(), MobSkills.end()); //Start the selection process by randomizing the container
 
@@ -1378,7 +1419,7 @@ void CAIMobDummy::ActionAttack()
     // attempt to teleport
     if (m_PMob->getMobMod(MOBMOD_TELEPORT_TYPE) == 1)
     {
-        if (m_Tick >= m_LastStandbackTime + m_PMob->getMobMod(MOBMOD_TELEPORT_CD))
+        if (m_Tick >= m_LastSpecialTime + m_PMob->getBigMobMod(MOBMOD_TELEPORT_CD))
         {
             CMobSkill* teleportBegin = battleutils::GetMobSkill(m_PMob->getMobMod(MOBMOD_TELEPORT_START));
 
@@ -1389,18 +1430,15 @@ void CAIMobDummy::ActionAttack()
                 m_LastStandbackTime = m_Tick;
                 m_ActionType = ACTION_MOBABILITY_FINISH;
                 ActionAbilityFinish();
+                m_LastSpecialTime = m_Tick;
             }
         }
     }
     // try to standback if I can
-	if (m_PMob->m_Behaviour & BEHAVIOUR_STANDBACK)
+
+    if (m_PMob->getBigMobMod(MOBMOD_STANDBACK_TIME) && m_PMob->getMobMod(MOBMOD_TELEPORT_TYPE) != 2)
 	{
-		FinishAttack();
-		return;
-	}
-    else if (m_PMob->getBigMobMod(MOBMOD_STANDBACK_TIME) && m_PMob->getMobMod(MOBMOD_TELEPORT_TYPE) != 2)
-	{
-		if(currentDistance > 28)
+        if (currentDistance > 28)
 		{
 			// you're so far away i'm going to standback when I get closer
 			m_CanStandback = true;
@@ -1526,13 +1564,17 @@ void CAIMobDummy::ActionAttack()
                     return;
                 }
             }
+            else if (!(m_PMob->m_Behaviour & BEHAVIOUR_STANDBACK && currentDistance < 20) &&
+                !(m_PMob->getMobMod(MOBMOD_SPAWN_LEASH) > 0 && distance(m_PMob->loc.p, m_PMob->m_SpawnPoint) > m_PMob->getMobMod(MOBMOD_SPAWN_LEASH)))
+            {
 
-			m_PPathFind->PathAround(m_PBattleTarget->loc.p, 2.0f, PATHFLAG_WALLHACK | PATHFLAG_RUN);
-			// m_PPathFind->CurvePath(0.5f);
-			m_PPathFind->FollowPath();
+                m_PPathFind->PathAround(m_PBattleTarget->loc.p, 2.0f, PATHFLAG_WALLHACK | PATHFLAG_RUN);
+                // m_PPathFind->CurvePath(0.5f);
+                m_PPathFind->FollowPath();
 
-			// recalculate
-			currentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
+                // recalculate
+                currentDistance = distance(m_PMob->loc.p, m_PBattleTarget->loc.p);
+            }
 		}
 	}
 

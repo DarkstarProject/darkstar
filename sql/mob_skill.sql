@@ -2144,7 +2144,6 @@ INSERT INTO `mob_skill` VALUES (714,483,678,'Savage_blade',0,7,2500,1500,4,0,0,0
 
 
 -- Kam'lanaut
--- TODO: Script these when mob additional effects work.
 INSERT INTO `mob_skill` VALUES (567,351,495,'Fire_Blade',0,7,2000,0,1,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (568,351,496,'Frost_Blade',0,7,2000,0,1,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (569,351,497,'Wind_Blade2',0,7,2000,0,1,0, 0, 0);
@@ -2177,9 +2176,11 @@ INSERT INTO `mob_skill` VALUES (684,355,644,'Rampage',0,7,2000,0,4,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (685,355,645,'Calamity',0,7,2000,0,4,0, 0, 0);
 
 -- Ark Angel TT
-INSERT INTO `mob_skill` VALUES (679,356,636,'Amon_Drive',2,10,2000,0,4,0, 0, 0);
+INSERT INTO `mob_skill` VALUES (679,356,636,'Amon_Drive',2,15.0,2000,500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (680,394,639,'Ark_Guardian_Tarutaru',0,22.0,500,0,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (688,356,646,'Spinning_Scythe',1,7,2000,0,4,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (689,356,647,'Guillotine',0,7,2000,0,4,0, 0, 0);
+INSERT INTO `mob_skill` VALUES (706,394,663,'Tarutaru_Warp_II',0,22.0,500,0,1,0,0,0);
 
 -- Cerberuses
 INSERT INTO `mob_skill` VALUES (1529,62,1223,'Lava_Spit', 1, 10.0, 2000, 1500, 4, 0, 0, 0); -- ~400 dmg

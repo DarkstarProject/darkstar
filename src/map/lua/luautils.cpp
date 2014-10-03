@@ -2282,8 +2282,19 @@ int32 OnMobInitialize(CBaseEntity* PMob)
 
     snprintf( File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
-    if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
+    auto ret = luaL_loadfile(LuaHandle, File);
+    if (ret != 0)
     {
+        if (ret != LUA_ERRFILE)
+            ShowError("luautils::onMobInitialize: %s\n", lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+
+    ret = lua_pcall(LuaHandle, 0, 0, 0);
+    if (ret != 0)
+    {
+        ShowError("luautils::onMobInitialize: %s\n", lua_tostring(LuaHandle, -1));
         lua_pop(LuaHandle, 1);
         return -1;
     }
