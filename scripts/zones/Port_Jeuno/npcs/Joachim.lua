@@ -56,11 +56,11 @@ function onTrigger(player,npc)
 
     if (player:getQuestStatus(ABYSSEA, A_JOURNEY_BEGINS) == QUEST_ACCEPTED) then
         player:startEvent(0x0145);
-     elseif (player:getQuestStatus(ABYSSEA, THE_TRUTH_BECKONS) == QUEST_ACCEPTED) then
+    elseif (player:getQuestStatus(ABYSSEA, THE_TRUTH_BECKONS) == QUEST_ACCEPTED and player:getVar("1stTimeAyssea") == 1) then
+        player:startEvent(0x0147,0,0,MaxKI); -- cs for "The Truth Beckons" completion
+    elseif (player:getQuestStatus(ABYSSEA, THE_TRUTH_BECKONS) ~= QUEST_COMPLETED) then
         player:startEvent(0x0146); -- Pre "The Truth Beckons" Menu
-    elseif (player:getQuestStatus(ABYSSEA, THE_TRUTH_BECKONS) == QUEST_COMPLETED) then
-        --player:startEvent(0x0147); -- cs after "The Truth Beckons" completed
-    --elseif (player:getQuestStatus(ABYSSEA, DAWN_OF_DEATH) == QUEST_ACCEPTED) then
+    elseif (player:getQuestStatus(ABYSSEA, DAWN_OF_DEATH) == QUEST_ACCEPTED) then
         player:startEvent(0x0148,0,StonesStock,StonesKI,isCap,1,1,1,3); -- Post "The Truth Beckons" Menu
     -- elseif
         -- player:startEvent(0x014C);
@@ -88,6 +88,10 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(TRAVERSER_STONE1)
         player:completeQuest(ABYSSEA, A_JOURNEY_BEGINS);
         player:addQuest(ABYSSEA, THE_TRUTH_BECKONS);
+    elseif (csid == 0x0147) then
+        player:completeQuest(ABYSSEA, THE_TRUTH_BECKONS);
+        player:addQuest(ABYSSEA, DAWN_OF_DEATH);
+        player:setVar("1stTimeAyssea",0);
     elseif (csid == 0x0148 and option == 6) then
         local StonesKI = getTravStonesTotal(player);
         if (StonesKI == 5) then
