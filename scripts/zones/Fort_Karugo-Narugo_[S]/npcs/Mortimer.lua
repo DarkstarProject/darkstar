@@ -7,8 +7,8 @@
 --
 -----------------------------------
 
-package.loaded["scripts/zones/Fort_Karugo_Narugo_[S]/TextIDs"] = nil;
-require("scripts/zones/Fort_Karugo_Narugo_[S]/TextIDs");
+package.loaded["scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs"] = nil;
+require("scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade Action

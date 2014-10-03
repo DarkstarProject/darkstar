@@ -28,6 +28,9 @@
 
 #include "../entities/battleentity.h"
 
+#define lua_prepscript(n,...) int8 File[255]; memset(File, 0, sizeof(File)); int32 oldtop = lua_gettop(LuaHandle); \
+                              snprintf( File, sizeof(File), n, __VA_ARGS__);
+
 /************************************************************************
 *																		*
 *																		*
@@ -53,6 +56,7 @@ namespace luautils
 	int32 free();
     int32 garbageCollect(); // performs a full garbage collecting cycle
 	int32 print(lua_State*);
+    int32 prepFile(int8*, const char*);
 
     int32 SendEntityVisualPacket(lua_State*);                                    // временное решение для работы гейзеров в Dangruf_Wadi
 
