@@ -7,7 +7,6 @@
 package.loaded["scripts/zones/Abyssea-Konschtat/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/teleports");
 require("scripts/zones/Abyssea-Konschtat/TextIDs");
 
 -----------------------------------

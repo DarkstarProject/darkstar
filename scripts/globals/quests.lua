@@ -732,7 +732,6 @@ CRYSTAL_GUARDIAN                 = 96;
 ENDINGS_AND_BEGINNINGS           = 97;
 AD_INFINITUM                     = 98;
 
-
 -----------------------------------
 --  Abyssea
 -----------------------------------
@@ -899,7 +898,7 @@ A_MIGHTIER_MARTELLO_ALTEPA      = 157;
 A_MIGHTIER_MARTELLO_ULEGUERAND  = 158;
 A_MIGHTIER_MARTELLO_GRAUBERG    = 159;
 A_JOURNEY_BEGINS                = 160; -- + --
-THE_TRUTH_BECKONS               = 161;
+THE_TRUTH_BECKONS               = 161; -- + --
 DAWN_OF_DEATH                   = 162;
 A_GOLDSTRUCK_GIGAS              = 163;
 TO_PASTE_A_PEISTE               = 164;

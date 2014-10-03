@@ -37,7 +37,7 @@ function onZoneIn(player,prevZone)
 			cs = 0x2725;
 			player:setPos(-24.000, 12.000, 116.000, 128);
 		else
-			position = math.random(1,3) - 2;
+			local position = math.random(1,3) - 2;
 			player:setPos(-192.5 ,-5,position,0);
 			if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
 				cs = 0x7534;
@@ -49,21 +49,24 @@ function onZoneIn(player,prevZone)
 		cs = 0x0144;
 	end
 
------------------------------------		
--- onConquestUpdate		
------------------------------------		
+	return cs
+end;
+
+-----------------------------------
+-- onConquestUpdate
+-----------------------------------
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
-    
+
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
 
------------------------------------		
--- onTransportEvent		
------------------------------------		
+-----------------------------------
+-- onTransportEvent
+-----------------------------------
 
 -----------------------------------
 -- onTransportEvent
@@ -86,8 +89,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	--printf("CSID: %u",csid);
-	--printf("RESULT: %u",option);
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -95,8 +98,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	--printf("CSID: %u",csid);
-	--printf("RESULT: %u",option);
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
 	if (csid == 0x271A) then
 		player:setPos(0,0,0,0,223);
 	elseif (csid == 0x271B) then
