@@ -1,42 +1,28 @@
 -----------------------------------
---
--- Zone: Abyssea - Empyreal_Paradox
+-- Zone: Abyssea - Konschtat
+--  NPC: Atma Fabricant
 --
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-Empyreal_Paradox/TextIDs"] = nil;
+package.loaded["scripts/zones/Abyssea-Konschtat/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-require("scripts/globals/quests");
-require("scripts/zones/Abyssea-Empyreal_Paradox/TextIDs");
+require("scripts/globals/abyssea");
+require("scripts/zones/Abyssea-Konschtat/TextIDs");
 
 -----------------------------------
---  onInitialize
+-- onTrade Action
 -----------------------------------
 
-function onInitialize(zone)
+function onTrade(player,npc,trade)
 end;
 
 -----------------------------------
--- onZoneIn
+-- onTrigger Action
 -----------------------------------
 
-function onZoneIn(player,prevZone)
-    local cs = -1;
-
-    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        --player:setPos(-495,0,483,205); -- BC Area
-        player:setPos(540,-500,-565,64);
-    end
-
-    return cs;
-end;
-
------------------------------------
--- onRegionEnter
------------------------------------
-
-function onRegionEnter(player,region)
+function onTrigger(player,npc)
+    player:startEvent(0x0886);
 end;
 
 -----------------------------------

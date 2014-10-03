@@ -1,46 +1,28 @@
 -----------------------------------
--- 
--- Zone: Abyssea - Grauberg
--- 
+-- Area: Abyssea - Grauberg
+-- Name: Cavernous Maw
+-- Teleports Players to North Gustaberg
+-- @pos -564.000, 30.300, -760.000 254
 -----------------------------------
 package.loaded["scripts/zones/Abyssea-Grauberg/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/settings");
-require("scripts/globals/quests");
+require("scripts/globals/teleports");
 require("scripts/zones/Abyssea-Grauberg/TextIDs");
 
 -----------------------------------
---  onInitialize
+-- onTrade Action
 -----------------------------------
 
-function onInitialize(zone)
+function onTrade(player,npc,trade)
 end;
 
 -----------------------------------
--- onZoneIn
+-- onTrigger Action
 -----------------------------------
 
-function onZoneIn(player,prevZone)
-    local cs = -1;
-
-    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        player:setPos(-555,31,-760,0); 
-    end
-
-    if (player:getQuestStatus(ABYSSEA, THE_TRUTH_BECKONS) == QUEST_ACCEPTED
-    and player:getVar("1stTimeAyssea") == 0) then
-        player:setVar("1stTimeAyssea",1);
-    end
-
-    return cs;
-end;
-
------------------------------------
--- onRegionEnter          
------------------------------------
-
-function onRegionEnter(player,region)
+function onTrigger(player,npc)
+    player:startEvent(0x00C8);
 end;
 
 -----------------------------------
@@ -59,4 +41,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
+    if(csid == 0x00C8 and option == 1) then
+        player:setPos(-71,0.001,601,126,106);
+    end
 end;
