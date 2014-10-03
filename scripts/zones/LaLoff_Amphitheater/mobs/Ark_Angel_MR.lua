@@ -40,16 +40,6 @@ end;
 -----------------------------------
 function onMobFight(mob,target)
 
--- TODO: Determine conditions for resummoning pet, if this is done.
-
-   local mobid = mob:getID()
-
-   -- Party hate.  Keep everybody in the fight.
-   for member = mobid-1, mobid+6 do
-      if (GetMobAction(member) == 16) then
-         GetMobByID(member):updateEnmity(target);
-      end
-   end
 end;
 
 -----------------------------------
