@@ -180,15 +180,15 @@ void CZoneEntities::FindPartyForMob(CBaseEntity* PEntity)
 	}
 }
 
-void CZoneEntities::TransportDepart(CBaseEntity* PTransportNPC)
+void CZoneEntities::TransportDepart(uint16 boundary, uint16 zone)
 {
 	for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
 	{
 		CCharEntity* PCurrentChar = (CCharEntity*)it->second;
 
-		if (PCurrentChar->loc.boundary == PTransportNPC->loc.boundary)
+		if (PCurrentChar->loc.boundary == boundary)
 		{
-			luautils::OnTransportEvent(PCurrentChar, PTransportNPC->loc.prevzone);
+			luautils::OnTransportEvent(PCurrentChar, zone);
 		}
 	}
 }
