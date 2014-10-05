@@ -1088,7 +1088,7 @@ int32 OnZoneIn(CCharEntity* PChar)
 
 int32 AfterZoneIn(uint32 tick, CTaskMgr::CTask *PTask)
 {
-    CCharEntity* PChar = zoneutils::GetCharFromWorld((uint32)PTask->m_data,0);
+    CCharEntity* PChar = zoneutils::GetCharFromWorld((uintptr)PTask->m_data,0);
 
     if (!PChar)
         return -1;
