@@ -71,10 +71,9 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
     {
         if (tick > (CVanaTime::getInstance()->lastVHourlyUpdate + 4800))
         {
-            luautils::OnGameHourAutomatisation();
-
 			zoneutils::ForEachZone([](CZone* PZone)
             {
+                luautils::OnGameHour(PZone);
 				PZone->ForEachChar([](CCharEntity* PChar)
 				{
 					PChar->PLatentEffectContainer->CheckLatentsHours();
@@ -93,6 +92,7 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
         {
 			zoneutils::ForEachZone([](CZone* PZone)
 			{
+                luautils::OnGameDay(PZone);
 				PZone->ForEachChar([](CCharEntity* PChar)
 				{
 					PChar->PLatentEffectContainer->CheckLatentsWeekDay();
@@ -100,7 +100,6 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
 			});
 
             guildutils::UpdateGuildsStock();
-            luautils::OnGameDayAutomatisation();
             zoneutils::SavePlayTime();
 
             CVanaTime::getInstance()->lastVDailyUpdate = tick;

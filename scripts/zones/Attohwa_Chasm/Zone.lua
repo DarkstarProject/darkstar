@@ -113,6 +113,14 @@ end;
 function onRegionLeave(player,region)
 end;
 
+-----------------------------------		
+-- onGameHour
+-----------------------------------	
+
+function onGameHour()
+    GetNPCByID(16806282):openDoor(); -- Attohwa Chasm miasma
+end;
+
 -----------------------------------	
 -- onEventUpdate	
 -----------------------------------	

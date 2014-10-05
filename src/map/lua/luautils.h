@@ -102,8 +102,8 @@ namespace luautils
 
     int32 GetTextIDVariable(uint16 ZoneID, const char* variable);               // загружаем значение переменной TextID указанной зоны
 
-	int32 OnGameDayAutomatisation();											// Automatic action of NPC every game day
-	int32 OnGameHourAutomatisation();											// Automatic action of NPC every game hour
+	int32 OnGameDay(CZone* PZone);								                // Automatic action of NPC every game day
+    int32 OnGameHour(CZone* PZone);								                // Automatic action of NPC every game hour
 	int32 OnZoneWeatherChange(uint16 ZoneID, uint8 weather);
 	int32 OnTOTDChange(uint16 ZoneID, uint8 TOTD);
 

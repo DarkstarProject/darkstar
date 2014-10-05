@@ -2485,42 +2485,25 @@ int32 OnMobDespawn(CBaseEntity* PMob)
 *																		*
 ************************************************************************/
 
-int32 OnGameDayAutomatisation()
+int32 OnGameDay(CZone* PZone)
 {
-	int8 File[255];
-	memset(File,0,sizeof(File));
-    int32 oldtop = lua_gettop(LuaHandle);
+    lua_prepscript("scripts/zones/%s/Zone.lua", PZone->GetName());
 
-    lua_pushnil(LuaHandle);
-    lua_setglobal(LuaHandle, "OnGameDayAutomatisation");
-
-	snprintf(File, sizeof(File), "scripts/globals/automatisation.lua");
-
-	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
-	{
-		ShowError("luautils::OnGameDayAutomatisation: %s\n",lua_tostring(LuaHandle,-1));
-        lua_pop(LuaHandle, 1);
-		return -1;
-	}
-
-    lua_getglobal(LuaHandle, "OnGameDayAutomatisation");
-	if( lua_isnil(LuaHandle,-1) )
-	{
-        lua_pop(LuaHandle, 1);
-		ShowError("luautils::OnGameDayAutomatisation: undefined procedure OnGameDayAutomatisation\n");
-		return -1;
-	}
+    if (prepFile(File, "onGameDay"))
+    {
+        return -1;
+    }
 
 	if( lua_pcall(LuaHandle,0,LUA_MULTRET,0) )
 	{
-		ShowError("luautils::OnGameDayAutomatisation: %s\n",lua_tostring(LuaHandle,-1));
+		ShowError("luautils::OnGameDay: %s\n",lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
 		return -1;
 	}
     int32 returns = lua_gettop(LuaHandle) - oldtop;
     if (returns > 0)
     {
-        ShowError("luatils::OnGameDayAutomisation (%s): 0 returns expected, got %d\n", File, returns);
+        ShowError("luatils::OnGameDay (%s): 0 returns expected, got %d\n", File, returns);
         lua_pop(LuaHandle, returns);
     }
 	return 0;
@@ -2532,42 +2515,25 @@ int32 OnGameDayAutomatisation()
 *																		*
 ************************************************************************/
 
-int32 OnGameHourAutomatisation()
+int32 OnGameHour(CZone* PZone)
 {
-	int8 File[255];
-	memset(File,0,sizeof(File));
-    int32 oldtop = lua_gettop(LuaHandle);
+    lua_prepscript("scripts/zones/%s/Zone.lua", PZone->GetName());
 
-    lua_pushnil(LuaHandle);
-    lua_setglobal(LuaHandle, "OnGameHourAutomatisation");
-
-	snprintf(File, sizeof(File), "scripts/globals/automatisation.lua");
-
-	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
-	{
-		ShowError("luautils::OnGameHourAutomatisation: %s\n",lua_tostring(LuaHandle,-1));
-        lua_pop(LuaHandle, 1);
-		return -1;
-	}
-
-    lua_getglobal(LuaHandle, "OnGameHourAutomatisation");
-	if( lua_isnil(LuaHandle,-1) )
-	{
-        lua_pop(LuaHandle, 1);
-		ShowError("luautils::OnGameHourAutomatisation: undefined procedure OnGameHourAutomatisation\n");
-		return -1;
-	}
+    if (prepFile(File, "onGameHour"))
+    {
+        return -1;
+    }
 
 	if( lua_pcall(LuaHandle,0,LUA_MULTRET,0) )
 	{
-		ShowError("luautils::OnGameHourAutomatisation: %s\n",lua_tostring(LuaHandle,-1));
+		ShowError("luautils::OnGameHour: %s\n",lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
 		return -1;
 	}
     int32 returns = lua_gettop(LuaHandle) - oldtop;
     if (returns > 0)
     {
-        ShowError("luatils::OnGameHourAutomisation (%s): 0 returns expected, got %d\n", File, returns);
+        ShowError("luatils::OnGameHour (%s): 0 returns expected, got %d\n", File, returns);
         lua_pop(LuaHandle, returns);
     }
 	return 0;
