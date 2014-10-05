@@ -1088,7 +1088,10 @@ int32 OnZoneIn(CCharEntity* PChar)
 
 int32 AfterZoneIn(uint32 tick, CTaskMgr::CTask *PTask)
 {
-	CCharEntity* PChar = (CCharEntity*)PTask->m_data;
+    CCharEntity* PChar = zoneutils::GetCharFromWorld((uint32)PTask->m_data,0);
+
+    if (!PChar)
+        return -1;
 
     lua_prepscript("scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
 
