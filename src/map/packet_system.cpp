@@ -5294,6 +5294,8 @@ void SmallPacket0x10F(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x111(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
+    PChar->setStyleLocked(RBUFB(data,(0x04)));
+    PChar->pushPacket(new CCharAppearancePacket(PChar));
     return;
 }
 

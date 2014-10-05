@@ -131,16 +131,17 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
 	WBUFB(data,(0x1F)-4) = PChar->animation;
     WBUFB(data,(0x21)-4) = PChar->GetGender() * 128 + (1 << PChar->look.size);
 
-	WBUFB(data,(0x44)-4) = PChar->look.face;
-	WBUFB(data,(0x45)-4) = PChar->look.race;
-	WBUFW(data,(0x46)-4) = PChar->look.head   + 0x1000;
-	WBUFW(data,(0x48)-4) = PChar->look.body   + 0x2000;
-	WBUFW(data,(0x4A)-4) = PChar->look.hands  + 0x3000;
-	WBUFW(data,(0x4C)-4) = PChar->look.legs   + 0x4000;
-	WBUFW(data,(0x4E)-4) = PChar->look.feet   + 0x5000;
-	WBUFW(data,(0x50)-4) = PChar->look.main   + 0x6000;
-	WBUFW(data,(0x52)-4) = PChar->look.sub    + 0x7000;
-	WBUFW(data,(0x54)-4) = PChar->look.ranged + 0x8000;
+    look_t *look = (PChar->getStyleLocked() ? &PChar->mainlook : &PChar->look);
+	WBUFB(data,(0x44)-4) = look->face;
+	WBUFB(data,(0x45)-4) = look->race;
+	WBUFW(data,(0x46)-4) = look->head   + 0x1000;
+	WBUFW(data,(0x48)-4) = look->body   + 0x2000;
+	WBUFW(data,(0x4A)-4) = look->hands  + 0x3000;
+	WBUFW(data,(0x4C)-4) = look->legs   + 0x4000;
+	WBUFW(data,(0x4E)-4) = look->feet   + 0x5000;
+	WBUFW(data,(0x50)-4) = look->main   + 0x6000;
+	WBUFW(data,(0x52)-4) = look->sub    + 0x7000;
+	WBUFW(data,(0x54)-4) = look->ranged + 0x8000;
 
 	if (PChar->m_Monstrosity != 0)
 	{
