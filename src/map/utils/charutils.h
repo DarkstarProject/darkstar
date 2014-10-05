@@ -146,7 +146,7 @@ namespace charutils
 
     void    RemoveAllEquipment(CCharEntity* PChar);
 
-	uint8	AvatarPerpetuationReduction(CCharEntity* PChar);
+	uint16	AvatarPerpetuationReduction(CCharEntity* PChar);
 
 	void	SaveCharUnlockedWeapons(CCharEntity* PChar);
 	void	LoadCharUnlockedWeapons(CCharEntity* PChar);

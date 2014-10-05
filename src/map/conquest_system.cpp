@@ -462,7 +462,7 @@ namespace conquest
         return 0;
     }
 
-    bool isAlliance()
+    bool IsAlliance()
     {
         uint8 sandoria = 0;
         uint8 bastok = 0;

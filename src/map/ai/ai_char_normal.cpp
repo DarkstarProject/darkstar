@@ -1092,7 +1092,7 @@ void CAICharNormal::ActionRangedFinish()
 				}
 
 				// check for recycle chance
-				uint8 recycleChance = m_PChar->getMod(MOD_RECYCLE);
+				uint16 recycleChance = m_PChar->getMod(MOD_RECYCLE);
 				if (charutils::hasTrait(m_PChar,TRAIT_RECYCLE))
 				{
 					recycleChance += m_PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE,m_PChar);
@@ -1202,7 +1202,7 @@ void CAICharNormal::ActionRangedFinish()
 		// Will instantly trigger another ranged attack
 		if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DOUBLE_SHOT,0) && !m_PChar->secondDoubleShotTaken &&	!isBarrage && !isSange)
 		{
-			uint8 doubleShotChance = m_PChar->getMod(MOD_DOUBLE_SHOT_RATE);
+			uint16 doubleShotChance = m_PChar->getMod(MOD_DOUBLE_SHOT_RATE);
 			if (WELL512::irand()%100 < doubleShotChance)
 			{
 				m_PChar->secondDoubleShotTaken = true;
@@ -1946,7 +1946,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 
     		// check for recycle chance
     		CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getEquip(SLOT_AMMO);
-    		uint8 recycleChance = m_PChar->getMod(MOD_RECYCLE);
+    		uint16 recycleChance = m_PChar->getMod(MOD_RECYCLE);
 
     		if (charutils::hasTrait(m_PChar,TRAIT_RECYCLE))
     			recycleChance += m_PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE,m_PChar);
@@ -2624,7 +2624,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		//ranged WS IDs
 		CItemWeapon* PAmmo = (CItemWeapon*)m_PChar->getEquip(SLOT_AMMO);
 
-        uint8 recycleChance = m_PChar->getMod(MOD_RECYCLE) + m_PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE,m_PChar);
+        uint16 recycleChance = m_PChar->getMod(MOD_RECYCLE) + m_PChar->PMeritPoints->GetMeritValue(MERIT_RECYCLE,m_PChar);
 
         if(m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_UNLIMITED_SHOT))
         {

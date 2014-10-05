@@ -296,7 +296,7 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	PChar->pushPacket(new CDownloadingDataPacket());
 	PChar->pushPacket(new CZoneInPacket(PChar,EventID));
 	PChar->pushPacket(new CZoneVisitedPacket(PChar));
-	CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("afterZoneIn", gettick() + 500, PChar, CTaskMgr::TASK_ONCE, luautils::AfterZoneIn));
+	CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("afterZoneIn", gettick() + 500, (void*)PChar->id, CTaskMgr::TASK_ONCE, luautils::AfterZoneIn));
     charutils::RecoverFailedSendBox(PChar);
 
 	return;
@@ -5270,6 +5270,8 @@ void SmallPacket0x10F(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x111(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
+    PChar->setStyleLocked(RBUFB(data,(0x04)));
+    PChar->pushPacket(new CCharAppearancePacket(PChar));
     return;
 }
 
@@ -5382,6 +5384,8 @@ void PacketParserInitialize()
     PacketSize[0x10B] = 0x00; PacketParser[0x10B] = &SmallPacket0x10B;
     PacketSize[0x10F] = 0x02; PacketParser[0x10F] = &SmallPacket0x10F;
     PacketSize[0x111] = 0x00; PacketParser[0x111] = &SmallPacket0x111; // Lock Style Request
+    PacketSize[0x112] = 0x00; PacketParser[0x112] = &SmallPacket0xFFF;
+    PacketSize[0x114] = 0x00; PacketParser[0x114] = &SmallPacket0xFFF;
 }
 
 /************************************************************************

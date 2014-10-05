@@ -1458,6 +1458,7 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 				PChar->look.sub = 0;
 				PChar->m_Weapons[SLOT_SUB] = itemutils::GetUnarmedItem();			// << equips "nothing" in the sub slot to prevent multi attack exploit
 				PChar->health.tp = 0;
+                PChar->setStyleLocked(false);
 				BuildingCharWeaponSkills(PChar);
             }
 			break;
@@ -1478,6 +1479,7 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 				}
 				PChar->PBattleAI->SetCurrentAction(ACTION_RANGED_INTERRUPT);
 				PChar->health.tp = 0;
+                PChar->setStyleLocked(false);
 				BuildingCharWeaponSkills(PChar);
 			}
 		    break;
@@ -1503,6 +1505,7 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 				}
 
 				PChar->health.tp = 0;
+                PChar->setStyleLocked(false);
 				BuildingCharWeaponSkills(PChar);
 			}
 			break;
@@ -4259,9 +4262,9 @@ bool hasMogLockerAccess(CCharEntity* PChar) {
 *                                                                       *
 ************************************************************************/
 
-uint8 AvatarPerpetuationReduction(CCharEntity* PChar)
+uint16 AvatarPerpetuationReduction(CCharEntity* PChar)
 {
-	uint8 reduction = PChar->getMod(MOD_PERPETUATION_REDUCTION);
+	uint16 reduction = PChar->getMod(MOD_PERPETUATION_REDUCTION);
 
 	static const MODIFIER strong[8] = {
         MOD_FIRE_AFFINITY,
@@ -4297,7 +4300,7 @@ uint8 AvatarPerpetuationReduction(CCharEntity* PChar)
 
     DSP_DEBUG_BREAK_IF(element > 7);
 
-	int8 affinity = PChar->getMod(strong[element]);
+	int16 affinity = PChar->getMod(strong[element]);
 
     // TODO: don't use ItemIDs in CORE. it must be MOD
 

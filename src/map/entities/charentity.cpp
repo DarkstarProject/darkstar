@@ -127,6 +127,7 @@ CCharEntity::CCharEntity()
 
 	m_isWeaponSkillKill = false;
 	m_isMijinGakure = false;
+	m_isStyleLocked = false;
 
     BazaarID.clean();
     TradePending.clean();
@@ -356,6 +357,20 @@ bool CCharEntity::getMijinGakure()
 void CCharEntity::setMijinGakure(bool isMijinGakure)
 {
 	m_isMijinGakure = isMijinGakure;
+}
+
+bool CCharEntity::getStyleLocked()
+{
+  return m_isStyleLocked;
+}
+
+void CCharEntity::setStyleLocked(bool isStyleLocked)
+{
+  if (isStyleLocked) {
+	memcpy(&mainlook, &look, sizeof(look));
+  }
+
+  m_isStyleLocked = isStyleLocked;
 }
 
 void CCharEntity::SetPlayTime(uint32 playTime)
