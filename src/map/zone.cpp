@@ -481,9 +481,9 @@ void CZone::FindPartyForMob(CBaseEntity* PEntity)
 *                                                                       *
 ************************************************************************/
 
-void CZone::TransportDepart(CBaseEntity* PTransportNPC)
+void CZone::TransportDepart(uint16 boundary, uint16 zone)
 {
-	m_zoneEntities->TransportDepart(PTransportNPC);
+	m_zoneEntities->TransportDepart(boundary, zone);
 }
 
 /************************************************************************

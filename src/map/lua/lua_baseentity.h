@@ -249,7 +249,6 @@ public:
     int32 getStatPoppedMobs(lua_State*);       // True if dyna statue has popped mobs
     int32 setStatPoppedMobs(lua_State*);       // Set to 1 for true, 0 for false
 
-
     int32 isInBattlefieldList(lua_State*);  // Return true is the mob is in battlefield list
     int32 addInBattlefieldList(lua_State*); // Add the mob to the battlefield list
 
@@ -468,6 +467,12 @@ public:
     int32 getCruor(lua_State*);             // Get Cruor
     int32 addCruor(lua_State*);             // Add Cruor
     int32 delCruor(lua_State*);             // Delete Cruor
+    int32 getResistanceCredit(lua_State*);  // Get Resistance Credits
+    int32 addResistanceCredit(lua_State*);  // Add Resistance Credits
+    int32 delResistanceCredit(lua_State*);  // Delete Resistance Credits
+    int32 getDominionNote(lua_State*);      // Get Dominion Notes
+    int32 addDominionNote(lua_State*);      // Add Dominion Notes
+    int32 delDominionNote(lua_State*);      // Delete Dominion Notes
 
     int32 getTags(lua_State*);              // Get Imperial ID tags (Assault)
     int32 addTags(lua_State*);              // Add Imperial ID tags (Assault)
@@ -584,6 +589,8 @@ public:
     int32 getAllegiance(lua_State* L);
 	int32 stun(lua_State* L);
     int32 weaknessTrigger(lua_State* L);
+    int32 setBehaviour(lua_State* L);
+    int32 getBehaviour(lua_State* L);
 };
 
 #endif

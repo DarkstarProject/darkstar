@@ -4,7 +4,7 @@
 -----------------------------------
 
 require("scripts/globals/missions");
-require("scripts/globals/keyitem");
+require("scripts/globals/keyitems");
 
 -----------------------------------
 -- onMobSpawn Action

@@ -4,13 +4,13 @@
 -- Starts and Finishes Quest: The General's Secret, Enveloped in Darkness, Peace for the Spirit, Lure of the Wildcat (San d'Oria)
 -- @pos 27 0.1 0.1 233
 -----------------------------------
-package.loaded["scripts/zones/Chateau_Doraguille/TextIDs"] = nil;
+package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Chateau_Doraguille/TextIDs");
+require("scripts/zones/Chateau_dOraguille/TextIDs");
 
 -----------------------------------
 -- onTrade Action

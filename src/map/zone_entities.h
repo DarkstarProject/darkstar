@@ -56,7 +56,7 @@ public:
 	void			DeletePET(CBaseEntity* PPet);       	                        // derefs the pet's ID from this zone
 
 	void			FindPartyForMob(CBaseEntity* PEntity);                          // ищем группу для монстра
-	void			TransportDepart(CBaseEntity* PTransportNPC);                    // транспотр отправляется, необходимо собрать пассажиров
+	void			TransportDepart(uint16 boundary, uint16 zone);                  // транспотр отправляется, необходимо собрать пассажиров
 
 	void			TOTDChange(TIMETYPE TOTD);										// обработка реакции мира на смену времени суток
 	void			WeatherChange(WEATHER weather);

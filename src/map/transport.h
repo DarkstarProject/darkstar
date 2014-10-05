@@ -81,6 +81,14 @@ struct Transport_t
     CBaseEntity* PTransportNPC;
 };
 
+struct TransportZone_t
+{
+    uint16 zone;
+    uint16 TimeOffset;
+    uint16 TimeInterval;
+    uint16 TimeAnimationArrive;
+};
+
 struct Elevator_t 
 {
 	uint8 id;
@@ -126,6 +134,7 @@ private:
 
 	std::vector<Elevator_t> ElevatorList;
     std::vector<Transport_t*> TransportList;
+    std::vector<TransportZone_t> TransportZoneList;
 };
 
 #endif

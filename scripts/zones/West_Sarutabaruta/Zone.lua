@@ -38,6 +38,10 @@ function onZoneIn( player, prevZone)
 
 	if( triggerLightCutscene( player)) then -- Quest: I Can Hear A Rainbow
 		cs = 0x0030;
+	elseif( player:getCurrentMission(ASA) == BURGEONING_DREAD and prevZone == 238 ) then
+		cs = 0x003e;
+	elseif( player:getCurrentMission(ASA) == BURGEONING_DREAD and prevZone == 240 ) then
+		cs = 0x003f;
 	end
 
 	return cs;
@@ -67,12 +71,14 @@ end;
 -----------------------------------			
 
 function onEventUpdate( player, csid, option)			
---printf("CSID: %u",csid);		
---printf("RESULT: %u",option);
+	--printf("CSID: %u",csid);		
+	--printf("RESULT: %u",option);
 
 	if (csid == 0x0030) then		
 		lightCutsceneUpdate( player);  -- Quest: I Can Hear A Rainbow
-	end		
+	elseif (csid == 0x003e or csid == 0x003f) then
+		player:setVar("ASA_Status",option);
+	end	
 end;			
 
 -----------------------------------			
@@ -80,10 +86,13 @@ end;
 -----------------------------------			
 
 function onEventFinish( player, csid, option)			
---printf("CSID: %u",csid);		
---printf("RESULT: %u",option);
+	--printf("CSID: %u",csid);		
+	--printf("RESULT: %u",option);
 
 	if (csid == 0x0030) then		
 		lightCutsceneFinish( player);  -- Quest: I Can Hear A Rainbow
+	elseif (csid == 0x003e or csid == 0x003f) then
+		player:completeMission(ASA,BURGEONING_DREAD);
+		player:addMission(ASA,THAT_WHICH_CURDLES_BLOOD);
 	end		
 end;			

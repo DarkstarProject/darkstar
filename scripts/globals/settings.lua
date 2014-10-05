@@ -18,12 +18,14 @@ require("scripts/globals/common");
 --See chocoprice.lua to adjust chocobo stables.
 --require("scripts/globals/chocoprice");
 -- Enable Extension (1= yes 0= no)
-ENABLE_COP  = 0;
-ENABLE_TOAU = 0;
-ENABLE_WOTG = 0;
-ENABLE_ACP  = 0;
-ENABLE_AMK  = 0;
-ENABLE_ASA  = 0;
+ENABLE_COP    = 0;
+ENABLE_TOAU   = 0;
+ENABLE_WOTG   = 0;
+ENABLE_ACP    = 0;
+ENABLE_AMK    = 0;
+ENABLE_ASA    = 0;
+ENABLE_ABYSEA = 0;
+ENABLE_SOA    = 0;
 
 -- CHARACTER CONFIG
 INITIAL_LEVEL_CAP = 50; --The initial level cap for new players.  There seems to be a hardcap of 255.
@@ -172,3 +174,6 @@ NUMBER_OF_DM_EARRINGS = 1; -- Number of earrings players can simultaneously own 
 --LIMBUS
 BETWEEN_2COSMOCLEANSE_WAIT_TIME = 3; -- day between 2 limbus keyitem  (default 3 days)
 DIMENSIONAL_PORTAL_UNLOCK = false; -- Set true to bypass requirements for using dimensional portals to reach sea for Limbus
+
+--ABYSSEA
+VISITANT_BONUS = 1.00; -- Default: 1.00 - (retail) - Multiplies the base time value of each Traverser Stone.

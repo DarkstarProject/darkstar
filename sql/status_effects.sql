@@ -607,6 +607,15 @@ INSERT INTO `status_effects` VALUES (580,'haste_ii',32,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (581,'flurry_ii',32,0,0,0,0,0,0);
 
 
+INSERT INTO `status_effects` VALUES (768,'ABYSSEA_STR',256,0,0,0,0,0,1);
+INSERT INTO `status_effects` VALUES (769,'ABYSSEA_DEX',256,0,0,0,0,0,6);
+INSERT INTO `status_effects` VALUES (770,'ABYSSEA_VIT',256,0,0,0,0,0,2);
+INSERT INTO `status_effects` VALUES (771,'ABYSSEA_AGI',256,0,0,0,0,0,4);
+INSERT INTO `status_effects` VALUES (772,'ABYSSEA_INT',256,0,0,0,0,0,5);
+INSERT INTO `status_effects` VALUES (773,'ABYSSEA_MND',256,0,0,0,0,0,3);
+INSERT INTO `status_effects` VALUES (774,'ABYSSEA_CHR',256,0,0,0,0,0,7);
+INSERT INTO `status_effects` VALUES (775,'ABYSSEA_HP',256,0,0,0,0,0,7);
+INSERT INTO `status_effects` VALUES (776,'ABYSSEA_MP',256,0,0,0,0,0,8);
 INSERT INTO `status_effects` VALUES (777,'prowess_casket_rate',768,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (778,'prowess_skill_rate',768,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (779,'prowess_crystal_yeild',768,0,0,0,0,0,0);
@@ -616,7 +625,7 @@ INSERT INTO `status_effects` VALUES (782,'prowess_hp_mp',768,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (783,'prowess_acc_racc',768,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (784,'prowess_att_ratt',768,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (785,'prowess_macc_matk',768,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (786,'prowess_cure_potencY',768,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (786,'prowess_cure_potency',768,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (787,'prowess_ws_dmg',768,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (788,'prowess_killer',768,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (789,'field_support_food',32800,0,0,2,0,0,0);
