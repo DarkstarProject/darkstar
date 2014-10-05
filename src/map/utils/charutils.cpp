@@ -1458,6 +1458,7 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 				PChar->look.sub = 0;
 				PChar->m_Weapons[SLOT_SUB] = itemutils::GetUnarmedItem();			// << equips "nothing" in the sub slot to prevent multi attack exploit
 				PChar->health.tp = 0;
+                PChar->setStyleLocked(false);
 				BuildingCharWeaponSkills(PChar);
             }
 			break;
@@ -1478,6 +1479,7 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 				}
 				PChar->PBattleAI->SetCurrentAction(ACTION_RANGED_INTERRUPT);
 				PChar->health.tp = 0;
+                PChar->setStyleLocked(false);
 				BuildingCharWeaponSkills(PChar);
 			}
 		    break;
@@ -1503,6 +1505,7 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 				}
 
 				PChar->health.tp = 0;
+                PChar->setStyleLocked(false);
 				BuildingCharWeaponSkills(PChar);
 			}
 			break;
