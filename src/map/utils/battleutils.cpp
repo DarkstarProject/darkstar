@@ -2170,8 +2170,8 @@ uint8 CheckMobMultiHits(CBattleEntity* PEntity)
 				break;
 		}
 
-		int8 tripleAttack = PEntity->getMod(MOD_TRIPLE_ATTACK);
-		int8 doubleAttack = PEntity->getMod(MOD_DOUBLE_ATTACK);
+		int16 tripleAttack = PEntity->getMod(MOD_TRIPLE_ATTACK);
+		int16 doubleAttack = PEntity->getMod(MOD_DOUBLE_ATTACK);
 		doubleAttack = dsp_cap(doubleAttack,0,100);
 		tripleAttack = dsp_cap(tripleAttack,0,100);
 		if (WELL512::irand()%100 < tripleAttack)
@@ -2198,8 +2198,8 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 	//checking players weapon hit count
 	uint8 num = PWeapon->getHitCount();
 
-	int8 tripleAttack = PEntity->getMod(MOD_TRIPLE_ATTACK);
-	int8 doubleAttack = PEntity->getMod(MOD_DOUBLE_ATTACK);
+	int16 tripleAttack = PEntity->getMod(MOD_TRIPLE_ATTACK);
+	int16 doubleAttack = PEntity->getMod(MOD_DOUBLE_ATTACK);
 
 	//check for merit upgrades
 	if (PEntity->objtype == TYPE_PC)
@@ -2231,7 +2231,7 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 	{
 		if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO))
 		{
-			uint8 zanshin = PEntity->getMod(MOD_ZANSHIN);
+			uint16 zanshin = PEntity->getMod(MOD_ZANSHIN);
 			if (PEntity->objtype == TYPE_PC)
 				zanshin += ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, (CCharEntity*)PEntity);
 
@@ -3602,7 +3602,7 @@ void tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
 		}
 
 		//apply charm time extension from gear
-		uint8 charmModValue = (PCharmer->getMod(MOD_CHARM_TIME));
+		uint16 charmModValue = (PCharmer->getMod(MOD_CHARM_TIME));
 		// adds 5% increase
 		float extraCharmTime = (float)(CharmTime*(charmModValue * 0.5f)/10);
 		CharmTime += extraCharmTime;
