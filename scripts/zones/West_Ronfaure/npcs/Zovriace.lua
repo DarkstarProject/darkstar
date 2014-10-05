@@ -1,13 +1,15 @@
 -----------------------------------
---  Area: West Ronfaure
---  NPC: Zovriace
---  Type: Patrol
---  @zone 100
+-- Area: West Ronfaure
+-- NPC: Zovriace
+-- Type: Patrol NPC
+-- @pos -436.356 -15.851 -258.168 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/pathfind");
+
+-----------------------------------
 
 local path = {
 -439.970062, -16.752592, -255.100327,
@@ -1005,20 +1007,25 @@ local path = {
 };
 
 
-function onSpawn(npc)	
+-----------------------------------
+-- onSpawn Action
+-----------------------------------
+
+function onSpawn(npc)
     npc:initNpcAi();
 	npc:setPos(pathfind.first(path));
 	onPath(npc);
 end;
 
+-----------------------------------
+-- onPath Action
+-----------------------------------
+
 function onPath(npc)
 
-	if(npc:atPoint(pathfind.get(path, 288))) then
-
-		local col = GetNPCByID(17187489);
-
-		col:showText(npc, ZOVRIACE_REPORT);
-
+	if (npc:atPoint(pathfind.get(path, 288))) then
+		local Colmaie = GetNPCByID(npc:getID() + 4);
+		Colmaie:showText(npc, ZOVRIACE_REPORT);
 		-- small delay after path finish
 		npc:wait(8000);
 	end
