@@ -3414,30 +3414,12 @@ int32 OnTransportEvent(CCharEntity* PChar, uint32 TransportID)
 
 int32 OnConquestUpdate(CZone* PZone, ConquestUpdate type)
 {
-    int8 File[255];
-    memset(File, 0, sizeof(File));
-    int32 oldtop = lua_gettop(LuaHandle);
+    lua_prepscript("scripts/zones/%s/Zone.lua", PZone->GetName());
 
-    lua_pushnil(LuaHandle);
-    lua_setglobal(LuaHandle, "onConquestUpdate");
-
-    snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PZone->GetName());
-
-    if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
+    if (prepFile(File, "onConquestUpdate"))
     {
-        ShowError("luautils::onConquestUpdate: %s\n", lua_tostring(LuaHandle, -1));
-        lua_pop(LuaHandle, 1);
         return -1;
     }
-
-    lua_getglobal(LuaHandle, "onConquestUpdate");
-    if (lua_isnil(LuaHandle, -1))
-    {
-        lua_pop(LuaHandle, 1);
-        ShowError("luautils::onConquestUpdate: undefined procedure\n");
-        return -1;
-    }
-
     CLuaZone LuaZone(PZone);
     Lunar<CLuaZone>::push(LuaHandle, &LuaZone);
 
