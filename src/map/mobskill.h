@@ -27,8 +27,6 @@
 #include "../common/cbasetypes.h"
 #include "../common/mmo.h"
 
-#define MAX_MOBSKILL_ID	4096
-
 // TODO: implement this
 enum SKILLFLAG
 {
