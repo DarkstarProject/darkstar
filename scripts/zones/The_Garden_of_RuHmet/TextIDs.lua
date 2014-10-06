@@ -8,3 +8,7 @@ ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item> come back a
 
 -- Other
 NO_NEED_INVESTIGATE = 7583; -- There is no need to investigate further.
+
+-- conquest Base
+CONQUEST_BASE = 7404;
+

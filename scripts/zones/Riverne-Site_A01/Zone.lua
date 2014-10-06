@@ -18,6 +18,19 @@ function onInitialize(zone)
 	SetServerVariable("Heliodromos_ToD", (os.time() + math.random((43200), (54000))));
 end;
 
+-----------------------------------		
+-- onConquestUpdate		
+-----------------------------------		
+
+function onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+    
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
+end;
+
+
 -----------------------------------
 -- onZoneIn
 -----------------------------------

@@ -13,3 +13,6 @@ NOTHING_OUT_OF_ORDINARY = 6395; -- There is nothing out of the ordinary here.
 
 -- Logging
 LOGGING_IS_POSSIBLE_HERE = 7571; -- Logging is possible here if you have
+
+-- conquest Base
+CONQUEST_BASE = 7141;
