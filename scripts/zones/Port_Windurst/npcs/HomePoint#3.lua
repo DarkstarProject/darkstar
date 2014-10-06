@@ -8,7 +8,7 @@ package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/zones/Port_Windurst/TextIDs");
-
+require("scripts/globals/homepoint");
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -21,11 +21,16 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-if (HOMEPOINT_HEAL == 1) then
-	player:addHP(player:getMaxHP());
-	player:addMP(player:getMaxMP());
-end
-player:startEvent(0x21fe);
+	if (HOMEPOINT_HEAL == 1) then
+		player:addHP(player:getMaxHP());
+		player:addMP(player:getMaxMP());
+	end
+	if(HOMEPOINT_TELEPORT == 1)then
+		--                       ?/1-Ru'lude5 /Lude-Ru'Aun/Tav-end/     ?/Gil /Expantion level/Registered   
+		player:startEvent(0x21fe,7,player:getVar("hpmask1"),player:getVar("hpmask2"),player:getVar("hpmask3"),40,player:getGil(),4095, addtohps(player,1,24)  );
+	else
+		player:startEvent(0x21fe)
+	end
 end; 
 
 -----------------------------------
@@ -48,6 +53,8 @@ function onEventFinish(player,csid,option)
 		if (option == 1) then	
 			player:setHomePoint();
 			player:messageSpecial(HOMEPOINT_SET);
+		else
+			hpteleport(player,option);
 		end
 	end
 end;	
