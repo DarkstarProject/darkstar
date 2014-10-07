@@ -54,7 +54,7 @@
 #include "trade_container.h"
 #include "zone.h"
 #include "utils/zoneutils.h"
-#include "chat.h"
+#include "message.h"
 
 #include "items/item_shop.h"
 
@@ -2852,7 +2852,7 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 					WBUFW(packetData, 4) = targid;
 					WBUFL(packetData, 6) = PChar->id;
 					WBUFW(packetData, 10) = PChar->targid;
-					chat::send(chat::CHAT_PT_INVITE, packetData, sizeof packetData, new CPartyInvitePacket(charid, targid, PChar, INVITE_PARTY));
+                    message::send(message::MSG_PT_INVITE, packetData, sizeof packetData, new CPartyInvitePacket(charid, targid, PChar, INVITE_PARTY));
 				}
             }
             else //in party but not leader, cannot invite
@@ -2896,7 +2896,7 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 					WBUFW(packetData, 4) = targid;
 					WBUFL(packetData, 6) = PChar->id;
 					WBUFW(packetData, 10) = PChar->targid;
-					chat::send(chat::CHAT_PT_INVITE, packetData, sizeof packetData, new CPartyInvitePacket(charid, targid, PChar, INVITE_ALLIANCE));
+                    message::send(message::MSG_PT_INVITE, packetData, sizeof packetData, new CPartyInvitePacket(charid, targid, PChar, INVITE_ALLIANCE));
 				}
             }
             break;
@@ -3169,7 +3169,7 @@ void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		WBUFW(packetData, 10) = PChar->targid;
 		WBUFB(packetData, 12) = InviteAnswer;
 		PChar->InvitePending.clean();
-		chat::send(chat::CHAT_PT_INV_RES, packetData, sizeof packetData, NULL);
+        message::send(message::MSG_PT_INV_RES, packetData, sizeof packetData, NULL);
 	}
     PChar->InvitePending.clean();
 	return;
@@ -3565,7 +3565,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	}
     else if (RBUFB(data,(0x06)) == '#' && PChar->nameflags.flags & FLAG_GM)
     {
-		chat::send(chat::CHAT_SERVMES, 0, 0, new CChatMessagePacket(PChar, MESSAGE_SYSTEM_1, data + 7));
+        message::send(message::MSG_CHAT_SERVMES, 0, 0, new CChatMessagePacket(PChar, MESSAGE_SYSTEM_1, data + 7));
     }
     else
     {
@@ -3622,7 +3622,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
 						int8 packetData[8];
 						WBUFL(packetData, 0) = PChar->PLinkshell->getID();
 						WBUFL(packetData, 4) = PChar->id;
-						chat::send(chat::CHAT_LINKSHELL, packetData, sizeof packetData, new CChatMessagePacket(PChar, MESSAGE_LINKSHELL, data + 6));
+                        message::send(message::MSG_CHAT_LINKSHELL, packetData, sizeof packetData, new CChatMessagePacket(PChar, MESSAGE_LINKSHELL, data + 6));
 
 						if (map_config.audit_chat == 1 && map_config.audit_linkshell == 1)
 						{
@@ -3644,7 +3644,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
 						int8 packetData[8];
 						WBUFL(packetData, 0) = PChar->PParty->GetPartyID();
 						WBUFL(packetData, 4) = PChar->id;
-						chat::send(chat::CHAT_PARTY, packetData, sizeof packetData, new CChatMessagePacket(PChar, MESSAGE_PARTY, data + 6));
+                        message::send(message::MSG_CHAT_PARTY, packetData, sizeof packetData, new CChatMessagePacket(PChar, MESSAGE_PARTY, data + 6));
 
 						if (map_config.audit_chat == 1 && map_config.audit_party == 1)
 						{
@@ -3663,7 +3663,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
 				{
 					if (PChar->loc.zone->CanUseMisc(MISC_YELL))
 					{
-						chat::send(chat::CHAT_YELL, NULL, 0, new CChatMessagePacket(PChar, MESSAGE_YELL, data + 6));
+                        message::send(message::MSG_CHAT_YELL, NULL, 0, new CChatMessagePacket(PChar, MESSAGE_YELL, data + 6));
 						if (map_config.audit_chat == 1 && map_config.audit_yell == 1)
 						{
 							std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
@@ -3706,7 +3706,7 @@ void SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	int8 packetData[64];
 	strncpy(packetData + 4, RecipientName.c_str(), RecipientName.length()+1);
 	WBUFL(packetData, 0) = PChar->id;
-	chat::send(chat::CHAT_TELL, packetData, RecipientName.length() + 5, new CChatMessagePacket(PChar, MESSAGE_TELL, data + 20));
+    message::send(message::MSG_CHAT_TELL, packetData, RecipientName.length() + 5, new CChatMessagePacket(PChar, MESSAGE_TELL, data + 20));
 
 	if (map_config.audit_chat == 1 && map_config.audit_tell == 1)
 	{

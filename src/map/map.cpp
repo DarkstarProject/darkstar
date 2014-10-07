@@ -66,7 +66,7 @@
 
 #include "packets/basic.h"
 #include "packets/char_update.h"
-#include "chat.h"
+#include "message.h"
 
 
 const int8* MAP_CONF_FILENAME = NULL;
@@ -175,9 +175,6 @@ int32 do_init(int32 argc, int8** argv)
     Sql_Keepalive(SqlHandle);
 
     // отчищаем таблицу сессий при старте сервера (временное решение, т.к. в кластере это не будет работать)
-    Sql_Query(SqlHandle, "DELETE FROM accounts_parties WHERE charid = \
-                            (SELECT charid FROM accounts_sessions WHERE IF(%u = 0 AND %u = 0, true, server_addr = %u AND server_port = %u));", 
-                            map_ip, map_port, map_ip, map_port);
     Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE IF(%u = 0 AND %u = 0, true, server_addr = %u AND server_port = %u);", 
                             map_ip, map_port, map_ip, map_port);
 
@@ -186,7 +183,7 @@ int32 do_init(int32 argc, int8** argv)
 	zlib_init();
 	ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 
-	std::thread(chat::init, map_config.chatIp, map_config.chatPort).detach();
+    std::thread(message::init, map_config.msg_server_ip, map_config.msg_server_port).detach();
 
 	ShowStatus("do_init: loading items");
     itemutils::Initialize();
@@ -921,8 +918,8 @@ int32 map_config_default()
     map_config.audit_yell = 0;
     map_config.audit_party = 0;
     map_config.audit_linkshell = 0;
-	map_config.chatPort = 54003;
-	map_config.chatIp = "127.0.0.1";
+    map_config.msg_server_port = 54003;
+    map_config.msg_server_ip = "127.0.0.1";
     return 0;
 }
 
@@ -1160,13 +1157,13 @@ int32 map_config_read(const int8* cfgName)
 		{
 			map_config.audit_party = atoi(w2);
 		}
-		else if (strcmp(w1, "chat_port") == 0)
+		else if (strcmp(w1, "msg_server_port") == 0)
 		{
-			map_config.chatPort = atoi(w2);
+            map_config.msg_server_port = atoi(w2);
 		}
-		else if (strcmp(w1, "chat_ip") == 0)
+		else if (strcmp(w1, "msg_server_ip") == 0)
 		{
-			map_config.chatIp = aStrdup(w2);
+            map_config.msg_server_ip = aStrdup(w2);
 		}
 		else
 		{

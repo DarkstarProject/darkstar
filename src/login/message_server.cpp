@@ -21,7 +21,7 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#include "chat_server.h"
+#include "message_server.h"
 #include "../common/showmsg.h"
 #include "login.h"
 
@@ -29,7 +29,7 @@ zmq::context_t zContext;
 zmq::socket_t* zSocket = NULL;
 Sql_t* ChatSqlHandle = NULL;
 
-void chat_init()
+void message_server_init()
 {
 	ChatSqlHandle = Sql_Malloc();
 
@@ -47,9 +47,9 @@ void chat_init()
 	zSocket = new zmq::socket_t(zContext, ZMQ_ROUTER);
 
 	string_t server = "tcp://";
-	server.append(login_config.chatIp);
+    server.append(login_config.msg_server_ip);
 	server.append(":");
-	server.append(std::to_string(login_config.chatPort));
+    server.append(std::to_string(login_config.msg_server_port));
 
 	try
 	{
@@ -60,10 +60,10 @@ void chat_init()
 		ShowFatalError("Unable to bind chat socket: %s\n", err.what());
 	}
 
-	chat_listen();
+	message_server_listen();
 }
 
-void chat_listen()
+void message_server_listen()
 {
 	while (true)
 	{
@@ -79,15 +79,15 @@ void chat_listen()
 		zmq::message_t packet;
 		zSocket->recv(&packet);
 
-		chat_parse((CHATTYPE)RBUFB(type.data(), 0), &extra, &packet);
+        message_server_parse((MSGSERVTYPE)RBUFB(type.data(), 0), &extra, &packet);
 	}
 }
-void chat_parse(CHATTYPE type, zmq::message_t* extra, zmq::message_t* packet)
+void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_t* packet)
 {
 	int ret;
 	switch (type)
 	{
-		case CHAT_TELL:
+		case MSG_CHAT_TELL:
 		{
 			int8* query = "SELECT server_addr, server_port FROM accounts_sessions LEFT JOIN chars ON \
 				accounts_sessions.charid = chars.charid WHERE charname = '%s' LIMIT 1; ";
@@ -99,9 +99,9 @@ void chat_parse(CHATTYPE type, zmq::message_t* extra, zmq::message_t* packet)
 			}
 			break;
 		}
-		case CHAT_PARTY:
-		case CHAT_PT_RELOAD:
-        case CHAT_PT_DISBAND:
+        case MSG_CHAT_PARTY:
+        case MSG_PT_RELOAD:
+        case MSG_PT_DISBAND:
 		{
 			int8* query = "SELECT server_addr, server_port, MIN(charid) FROM accounts_sessions \
 							WHERE IF (allianceid <> 0, allianceid = %d, partyid = %d) GROUP BY server_addr, server_port; ";
@@ -109,28 +109,28 @@ void chat_parse(CHATTYPE type, zmq::message_t* extra, zmq::message_t* packet)
 			ret = Sql_Query(ChatSqlHandle, query, partyid, partyid);
 			break;
 		}
-		case CHAT_LINKSHELL:
+        case MSG_CHAT_LINKSHELL:
 		{
 			int8* query = "SELECT server_addr, server_port FROM accounts_sessions \
 						WHERE linkshellid = %d GROUP BY server_addr, server_port; ";
 			ret = Sql_Query(ChatSqlHandle, query, RBUFL(extra->data(), 0));
 			break;
 		}
-		case CHAT_YELL:
+        case MSG_CHAT_YELL:
 		{
 			int8* query = "SELECT zoneip, zoneport FROM zone_settings WHERE misc & 1024 GROUP BY zoneip, zoneport;";
 			ret = Sql_Query(ChatSqlHandle, query);
 			break;
 		}
-		case CHAT_SERVMES:
+        case MSG_CHAT_SERVMES:
 		{
 			int8* query = "SELECT zoneip, zoneport FROM zone_settings GROUP BY zoneip, zoneport;";
 			ret = Sql_Query(ChatSqlHandle, query);
 			break;
 		}
-		case CHAT_PT_INVITE:
-		case CHAT_PT_INV_RES:
-		case CHAT_MSG_DIRECT:
+        case MSG_PT_INVITE:
+        case MSG_PT_INV_RES:
+		case MSG_DIRECT:
 		{
 			int8* query = "SELECT server_addr, server_port FROM accounts_sessions WHERE charid = %d; ";
 			ret = Sql_Query(ChatSqlHandle, query, RBUFL(extra->data(),0));
@@ -145,21 +145,21 @@ void chat_parse(CHATTYPE type, zmq::message_t* extra, zmq::message_t* packet)
 			uint64 ip = Sql_GetUIntData(ChatSqlHandle, 0);
 			uint64 port = Sql_GetUIntData(ChatSqlHandle, 1);
 			ip |= (port << 32);
-			if (type == CHAT_PARTY || type == CHAT_PT_RELOAD || type == CHAT_PT_DISBAND)
+            if (type == MSG_CHAT_PARTY || type == MSG_PT_RELOAD || type == MSG_PT_DISBAND)
 			{
 				WBUFL(extra->data(), 0) = Sql_GetUIntData(ChatSqlHandle, 2);
 			}
-			chat_send(ip, type, extra, packet);
+			message_server_send(ip, type, extra, packet);
 		}
 	}
 }
-void chat_send(uint64 ipp, CHATTYPE type, zmq::message_t* extra, zmq::message_t* packet)
+void message_server_send(uint64 ipp, MSGSERVTYPE type, zmq::message_t* extra, zmq::message_t* packet)
 {
 	zmq::message_t to(sizeof(uint64));
 	memcpy(to.data(), &ipp, sizeof(uint64));
 	zSocket->send(to, ZMQ_SNDMORE);
 
-	zmq::message_t newType(sizeof(CHATTYPE));
+    zmq::message_t newType(sizeof(MSGSERVTYPE));
 	WBUFB(newType.data(), 0) = type;
 	zSocket->send(newType, ZMQ_SNDMORE);
 

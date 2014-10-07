@@ -60,8 +60,8 @@ struct login_config_t
 
 	uint32 search_server_port;		// search_server_port	-> 54002
 
-	uint16 chatPort;				// chat server port
-	const char* chatIp;				// chat server IP
+    uint16 msg_server_port;			// chat server port
+    const char* msg_server_ip;		// chat server IP
 };
 
 extern login_config_t login_config;

@@ -32,6 +32,14 @@ BEGIN
 	DELETE FROM `chars` WHERE `accid` = OLD.id;     
 END $$
 
+DROP TRIGGER IF EXISTS session_delete $$
+CREATE TRIGGER session_delete
+	BEFORE DELETE ON accounts_sessions
+	FOR EACH ROW
+BEGIN
+	DELETE FROM `accounts_parties` WHERE `charid` = OLD.charid;
+END $$
+
 DROP TRIGGER IF EXISTS char_delete $$
 CREATE TRIGGER char_delete
 	BEFORE DELETE ON chars

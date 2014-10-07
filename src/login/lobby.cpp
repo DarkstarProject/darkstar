@@ -351,7 +351,6 @@ int32 do_close_lobbydata(login_session_data_t *loginsd,int32 fd)
 	if( loginsd != NULL )
 	{
 		ShowInfo("lobbydata_parse: " CL_WHITE"%s" CL_RESET" shutdown the socket\n",loginsd->login);
-        Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE accid = %u;", loginsd->accid);
 		if( session_isActive(loginsd->login_lobbyview_fd) )
 		{
 			do_close_tcp(loginsd->login_lobbyview_fd);

@@ -231,7 +231,7 @@
     <ClInclude Include="..\..\src\map\alliance.h" />
     <ClInclude Include="..\..\src\map\blue_spell.h" />
     <ClInclude Include="..\..\src\map\blue_trait.h" />
-    <ClInclude Include="..\..\src\map\chat.h" />
+    <ClInclude Include="..\..\src\map\message.h" />
     <ClInclude Include="..\..\src\map\commandhandler.h" />
     <ClInclude Include="..\..\src\map\conquest_system.h" />
     <ClInclude Include="..\..\src\map\enmity_container.h" />
@@ -465,7 +465,7 @@
     <ClCompile Include="..\..\src\map\alliance.cpp" />
     <ClCompile Include="..\..\src\map\blue_spell.cpp" />
     <ClCompile Include="..\..\src\map\blue_trait.cpp" />
-    <ClCompile Include="..\..\src\map\chat.cpp" />
+    <ClCompile Include="..\..\src\map\message.cpp" />
     <ClCompile Include="..\..\src\map\commandhandler.cpp" />
     <ClCompile Include="..\..\src\map\conquest_system.cpp" />
     <ClCompile Include="..\..\src\map\enmity_container.cpp" />

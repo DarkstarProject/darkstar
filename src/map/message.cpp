@@ -21,7 +21,7 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#include "chat.h"
+#include "message.h"
 #include "utils/zoneutils.h"
 #include "utils/jailutils.h"
 #include "entities/charentity.h"
@@ -31,7 +31,7 @@ This file is part of DarkStar-server source code.
 #include "packets/message_standard.h"
 #include "packets/party_invite.h"
 
-namespace chat
+namespace message
 {
 	zmq::context_t zContext;
 	zmq::socket_t* zSocket = NULL;
@@ -101,21 +101,30 @@ namespace chat
 			zmq::message_t packet;
 			zSocket->recv(&packet);
 
-			parse((CHATTYPE)RBUFB(type.data(),0), &extra, &packet);
+            parse((MSGSERVTYPE)RBUFB(type.data(), 0), &extra, &packet);
 		}
 	}
-	void parse(CHATTYPE type, zmq::message_t* extra, zmq::message_t* packet)
+    void parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_t* packet)
 	{
 		switch (type)
 		{
-			case CHAT_TELL:
+            case MSG_LOGIN:
+            {
+                CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
+
+                if (!PChar)
+                {
+                    Sql_Query(ChatSqlHandle, "DELETE FROM accounts_sessions WHERE charid = %d;", RBUFL(extra->data(), 0));
+                }
+            }
+			case MSG_CHAT_TELL:
 			{
 				CCharEntity* PChar = zoneutils::GetCharByName((int8*)extra->data()+4);
 				if (PChar && PChar->status != STATUS_DISAPPEAR && !jailutils::InPrison(PChar))
 				{
 					if (PChar->nameflags.flags & FLAG_AWAY)
 					{
-						send(CHAT_MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PChar, 0, 0, 181));
+						send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PChar, 0, 0, 181));
 					}
 					else
 					{
@@ -126,11 +135,11 @@ namespace chat
 				}
 				else
 				{
-					send(CHAT_MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PChar, 0, 0, 125));
+					send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PChar, 0, 0, 125));
 				}
 				break;
 			}
-			case CHAT_PARTY:
+            case MSG_CHAT_PARTY:
 			{
 				CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
 				if (PChar)
@@ -156,7 +165,7 @@ namespace chat
 				}
 				break;
 			}
-			case CHAT_LINKSHELL:
+            case MSG_CHAT_LINKSHELL:
 			{
 				uint32 linkshellID = RBUFL(extra->data(), 0);
 				CLinkshell* PLinkshell = linkshell::GetLinkshell(linkshellID);
@@ -168,7 +177,7 @@ namespace chat
 				}
 				break;
 			}
-			case CHAT_YELL:
+            case MSG_CHAT_YELL:
 			{
 				zoneutils::ForEachZone([&packet](CZone* PZone)
 				{
@@ -184,7 +193,7 @@ namespace chat
 				});
 				break;
 			}
-			case CHAT_SERVMES:
+            case MSG_CHAT_SERVMES:
 			{
 				zoneutils::ForEachZone([&packet](CZone* PZone)
 				{
@@ -197,7 +206,7 @@ namespace chat
 				});
 				break;
 			}
-			case CHAT_PT_INVITE:
+            case MSG_PT_INVITE:
 			{
 				uint32 id = RBUFL(extra->data(), 0);
 				uint16 targid = RBUFW(extra->data(), 4);
@@ -210,12 +219,12 @@ namespace chat
 					if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 || PInvitee->PParty != NULL ||
 						(inviteType == INVITE_ALLIANCE && (PInvitee->PParty->GetLeader() != PInvitee || PInvitee->PParty->m_PAlliance)))
 					{
-						send(CHAT_MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PInvitee, 0, 0, 23));
+						send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PInvitee, 0, 0, 23));
 						return;
 					}
 					if (PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
 					{
-						send(CHAT_MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PInvitee, 0, 0, 236));
+						send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PInvitee, 0, 0, 236));
 						return;
 					}
 
@@ -227,7 +236,7 @@ namespace chat
 				}
 				break;
 			}
-			case CHAT_PT_INV_RES:
+            case MSG_PT_INV_RES:
 			{
 				uint32 inviterId = RBUFL(extra->data(), 0);
 				uint16 inviterTargid = RBUFW(extra->data(), 4);
@@ -261,7 +270,7 @@ namespace chat
 								}
 								else
 								{
-									send(CHAT_MSG_DIRECT, (uint8*)extra->data()+6, sizeof(uint32), new CMessageStandardPacket(PInviter, 0, 0, 14));
+									send(MSG_DIRECT, (uint8*)extra->data()+6, sizeof(uint32), new CMessageStandardPacket(PInviter, 0, 0, 14));
 								}
 							}
 							else
@@ -290,7 +299,7 @@ namespace chat
 					}
 				}
 			}
-			case CHAT_PT_RELOAD:
+            case MSG_PT_RELOAD:
 			{
 				CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
 				if (PChar)
@@ -322,7 +331,7 @@ namespace chat
 				}
 				break;
 			}
-            case CHAT_PT_DISBAND:
+            case MSG_PT_DISBAND:
             {
                 CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
                 if (PChar)
@@ -333,7 +342,7 @@ namespace chat
                     }
                 }
             }
-			case CHAT_MSG_DIRECT:
+			case MSG_DIRECT:
 			{
 				CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(),0));
 				if (PChar)
@@ -347,9 +356,9 @@ namespace chat
 		}
 	}
 
-	void send(CHATTYPE type, void* data, size_t datalen, CBasicPacket* packet)
+	void send(MSGSERVTYPE type, void* data, size_t datalen, CBasicPacket* packet)
 	{
-		zmq::message_t newType(sizeof(CHATTYPE));
+		zmq::message_t newType(sizeof(MSGSERVTYPE));
 		WBUFB(newType.data(),0) = type;
 		zSocket->send(newType, ZMQ_SNDMORE);
 

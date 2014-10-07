@@ -111,8 +111,8 @@ struct map_config_t
 	bool   audit_yell;
 	bool   audit_linkshell;
 	bool   audit_party;
-	uint16 chatPort;				// chat server port
-	const char* chatIp;				// chat server IP
+	uint16 msg_server_port;			// central message server port
+	const char* msg_server_ip;		// central message server IP
 };
 
 /************************************************************************

@@ -20,37 +20,28 @@ This file is part of DarkStar-server source code.
 
 ===========================================================================
 */
-
-#include "../common/socket.h"
 #include "../common/sql.h"
+#include "../common/socket.h"
+
 #include <zmq.hpp>
-#include "../common/cbasetypes.h"
 
-class CBasicPacket;
-
-namespace chat
+enum MSGSERVTYPE : uint8
 {
-	enum CHATTYPE
-	{
-	    CHAT_TELL		= 1,
-	    CHAT_PARTY		= 2,
-	    CHAT_LINKSHELL	= 3,
-	    CHAT_YELL		= 4,
-	    CHAT_SERVMES	= 5,
-	    CHAT_PT_INVITE	= 6,
-	    CHAT_PT_INV_RES = 7,
-	    CHAT_PT_RELOAD  = 8,
-        CHAT_PT_DISBAND = 9,
-	    CHAT_MSG_DIRECT = 10
-	};
-
-	extern zmq::context_t zContext;
-	extern zmq::socket_t* zSocket;
-	extern Sql_t* ChatSqlHandle;
-
-	void init(const char* chatIp, uint16 chatPort);
-
-	void listen();
-	void parse(CHATTYPE type, zmq::message_t* extra, zmq::message_t* packet);
-	void send(CHATTYPE type, void* data, size_t datalen, CBasicPacket* packet);
+    MSG_LOGIN,
+	MSG_CHAT_TELL,
+	MSG_CHAT_PARTY,
+	MSG_CHAT_LINKSHELL,
+	MSG_CHAT_YELL,
+	MSG_CHAT_SERVMES,
+	MSG_PT_INVITE,
+	MSG_PT_INV_RES,
+	MSG_PT_RELOAD,
+    MSG_PT_DISBAND,
+	MSG_DIRECT
 };
+
+void message_server_init();
+
+void message_server_listen();
+void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_t* packet);
+void message_server_send(uint64 ipp, MSGSERVTYPE type, zmq::message_t* extra, zmq::message_t* packet);

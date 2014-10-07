@@ -33,7 +33,7 @@
 #include "map.h"
 #include "party.h"
 #include "treasure_pool.h"
-#include "chat.h"
+#include "message.h"
 
 #include "packets/char_sync.h"
 #include "packets/char_update.h"
@@ -80,7 +80,7 @@ void CAlliance::dissolveAlliance(void)
 			 
 	uint8 data[4];
 	WBUFL(data, 0) = m_AllianceID;
-	chat::send(chat::CHAT_PT_RELOAD, data, sizeof data, NULL);
+    message::send(message::MSG_PT_RELOAD, data, sizeof data, NULL);
 
 	delete this;
 }
@@ -152,7 +152,7 @@ void CAlliance::removeParty(CParty * party)
 	}
 	uint8 data[4];
 	WBUFL(data, 0) = m_AllianceID;
-	chat::send(chat::CHAT_PT_RELOAD, data, sizeof data, NULL);
+    message::send(message::MSG_PT_RELOAD, data, sizeof data, NULL);
 }
 
 void CAlliance::addParty(CParty * party) 
@@ -169,7 +169,7 @@ void CAlliance::addParty(CParty * party)
 
 	uint8 data[4];
 	WBUFL(data, 0) = m_AllianceID;
-	chat::send(chat::CHAT_PT_RELOAD, data, sizeof data, NULL);
+    message::send(message::MSG_PT_RELOAD, data, sizeof data, NULL);
 
 }
 
@@ -178,7 +178,7 @@ void CAlliance::addParty(uint32 partyid, Sql_t* Sql)
 	Sql_Query(Sql, "UPDATE accounts_sessions SET allianceid = %u WHERE partyid = %u", m_AllianceID, partyid);
 	uint8 data[4];
 	WBUFL(data, 0) = m_AllianceID;
-	chat::send(chat::CHAT_PT_RELOAD, data, sizeof data, NULL);
+    message::send(message::MSG_PT_RELOAD, data, sizeof data, NULL);
 }
 
 CParty* CAlliance::getMainParty() 

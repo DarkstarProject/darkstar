@@ -80,7 +80,7 @@
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\login\chat_server.h">
+    <ClInclude Include="..\..\src\login\message_server.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -136,7 +136,7 @@
     <ClCompile Include="..\..\src\common\zlib.cpp">
       <Filter>Source Files\common</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\login\chat_server.cpp">
+    <ClCompile Include="..\..\src\login\message_server.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

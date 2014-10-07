@@ -815,7 +815,7 @@
     <ClInclude Include="..\..\src\map\packets\macroequipset.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\chat.h">
+    <ClInclude Include="..\..\src\map\message.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1498,7 +1498,7 @@
     <ClCompile Include="..\..\src\map\packets\macroequipset.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\chat.cpp">
+    <ClCompile Include="..\..\src\map\message.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
