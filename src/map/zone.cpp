@@ -31,21 +31,20 @@
 
 #include <string.h>
 
-#include "utils/battleutils.h"
-#include "utils/charutils.h"
+
 #include "enmity_container.h"
-#include "utils/itemutils.h"
 #include "map.h"
-#include "utils/mobutils.h"
-#include "entities/npcentity.h"
-#include "entities/petentity.h"
-#include "utils/petutils.h"
+#include "message.h"
 #include "spell.h"
 #include "treasure_pool.h"
 #include "vana_time.h"
 #include "zone.h"
 #include "zone_entities.h"
+
 #include "ai/ai_mob_dummy.h"
+
+#include "entities/npcentity.h"
+#include "entities/petentity.h"
 
 #include "lua/luautils.h"
 
@@ -61,6 +60,13 @@
 #include "packets/message_basic.h"
 #include "packets/server_ip.h"
 #include "packets/wide_scan.h"
+
+#include "utils/battleutils.h"
+#include "utils/charutils.h"
+#include "utils/itemutils.h"
+#include "utils/mobutils.h"
+#include "utils/petutils.h"
+#include "utils/zoneutils.h"
 
 
 /************************************************************************
@@ -795,6 +801,9 @@ void CZone::CharZoneIn(CCharEntity* PChar)
 		PChar->m_Costum = 0;
 		PChar->StatusEffectContainer->DelStatusEffect(EFFECT_COSTUME);
 	}
+
+    PChar->ReloadPartyInc();
+
 	if (PChar->PParty != NULL)
 	{
 		if (m_TreasurePool != NULL)
@@ -878,6 +887,11 @@ void CZone::CharZoneOut(CCharEntity* PChar)
 		PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
 	}
 
+    if (PChar->PParty)
+    {
+        PChar->PParty->PopMember(PChar);
+    }
+
 	//remove status effects that wear on zone
 	PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE, true);
 
@@ -904,6 +918,19 @@ void CZone::CharZoneOut(CCharEntity* PChar)
 	PChar->SpawnNPCList.clear();
 	PChar->SpawnMOBList.clear();
 	PChar->SpawnPETList.clear();
+
+    
+    uint64 ipp = zoneutils::GetZoneIPP(PChar->loc.destination);
+    Sql_Query(SqlHandle, "UPDATE accounts_sessions JOIN chars ON accounts_sessions.charid = chars.charid \
+                          SET server_addr = %d, server_port = %d, pos_zone = %d, pos_prevzone = %d WHERE chars.charid = %d;", 
+                          (uint32)ipp, (uint32)(ipp >> 32), PChar->loc.destination, GetID(), PChar->id);
+
+    if (PChar->PParty)
+    {
+        uint8 data[4];
+        WBUFL(data, 0) = PChar->PParty->GetPartyID();
+        message::send(message::MSG_PT_RELOAD, data, sizeof data, NULL);
+    }
 }
 
 void CZone::CheckRegions(CCharEntity* PChar)

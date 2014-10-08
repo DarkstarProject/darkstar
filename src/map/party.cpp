@@ -372,6 +372,17 @@ void CParty::DelMember(CBattleEntity* PEntity)
 	}
 }
 
+void CParty::PopMember(CBattleEntity* PEntity)
+{
+    for (uint32 i = 0; i < members.size(); ++i)
+    {
+        if (PEntity == members.at(i))
+        {
+            members.erase(members.begin() + i);
+        }
+    }
+}
+
 /************************************************************************
 *																		*
 *  Лидер покидает группу												*
@@ -494,6 +505,7 @@ void CParty::PushMember(CBattleEntity* PEntity)
     PEntity->PParty = this;
     members.push_back(PEntity);
 
+    ReloadTreasurePool((CCharEntity*)PEntity);
 }
 
 /************************************************************************
@@ -584,7 +596,6 @@ uint16 CParty::GetMemberFlags(CBattleEntity* PEntity)
 
 void CParty::ReloadParty()
 {
-
 	//alliance
 	if (this->m_PAlliance != NULL)
 	{
@@ -593,6 +604,7 @@ void CParty::ReloadParty()
 			for (uint8 i = 0; i < m_PAlliance->partyList.at(a)->members.size(); ++i)
 			{
 				CCharEntity* PChar = (CCharEntity*)m_PAlliance->partyList.at(a)->members.at(i);
+                PChar->ReloadPartyDec();
 				uint16 alliance = 0;
 				PChar->pushPacket(new CPartyDefinePacket(m_PAlliance->partyList.at(a)));
 				int ret = Sql_Query(SqlHandle, "SELECT chars.charid, chars.charname, partyflag, pos_zone, partyid FROM accounts_parties \
@@ -636,6 +648,7 @@ void CParty::ReloadParty()
 		PChar->PLatentEffectContainer->CheckLatentsPartyJobs();
 		PChar->PLatentEffectContainer->CheckLatentsPartyMembers(members.size());
 		PChar->PLatentEffectContainer->CheckLatentsPartyAvatar();
+        PChar->ReloadPartyDec();
 		PChar->pushPacket(new CPartyDefinePacket(this));
 		int ret = Sql_Query(SqlHandle, "SELECT chars.charid, chars.charname, partyflag, pos_zone, partyid FROM accounts_parties \
 									   	LEFT JOIN chars ON accounts_parties.charid = chars.charid WHERE \

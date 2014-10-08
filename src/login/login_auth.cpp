@@ -151,8 +151,9 @@ int32 login_parse(int32 fd)
 
                             zmq::message_t chardata(sizeof(charid));
                             WBUFL(chardata.data(), 0) = charid;
+                            zmq::message_t empty(0);
 
-                            message_server_send(ip, MSG_LOGIN, &chardata, &zmq::message_t(0));
+                            message_server_send(ip, MSG_LOGIN, &chardata, &empty);
                         }
                     }
 					memset(session[fd]->wdata,0,33);

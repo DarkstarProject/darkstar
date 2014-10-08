@@ -4639,17 +4639,32 @@ void ReloadParty(CCharEntity* PChar)
 		if (PChar->PParty)
 		{
             PChar->PParty->ReloadParty();
-            for (auto member : PChar->PParty->members)
-            {
-                ((CCharEntity*)member)->ReloadPartyDec();
-            }
 		}
         else
         {
-            CParty* PParty = new CParty(Sql_GetUIntData(SqlHandle, 0));
+            uint32 partyid = Sql_GetUIntData(SqlHandle, 0);
+            CParty* PParty = NULL;
+            zoneutils::ForEachZone([partyid, &PParty](CZone* PZone)
+            {
+                PZone->ForEachChar([partyid, &PParty](CCharEntity* PChar)
+                {
+                    if (PChar->PParty)
+                    {
+                        if (PChar->PParty->GetPartyID() == partyid)
+                        {
+                            PParty = PChar->PParty;
+                        }
+                    }
+                });
+            });
+
+            if (!PParty)
+            {
+                PParty = new CParty(partyid);
+            }
+                
             PParty->PushMember(PChar);
             PParty->ReloadParty();
-            PChar->ReloadPartyDec();
         }
 	}
 	else

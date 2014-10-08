@@ -316,12 +316,6 @@ void SmallPacket0x00C(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	PChar->pushPacket(new CCharJobsPacket(PChar));
 	PChar->pushPacket(new CChangeMusicPacket(4,212)); // The default Chocobo music is Block 4 Track 212 (0xD4)
 
-	if (PChar->PParty != NULL)
-	{
-		PChar->PParty->ReloadParty();
-	}
-
-
 	// TODO: в MogHouse TreasurePool сейчас не создается, по этому необходима проверка
 	if (PChar->PTreasurePool != NULL)
 	{

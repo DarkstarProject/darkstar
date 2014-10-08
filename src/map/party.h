@@ -81,6 +81,7 @@ public:
 	void AddMember(uint32 id, Sql_t* Sql = SqlHandle);	// Add party member from outside this server's scope
     void RemoveMember(CBattleEntity* PEntity);          // удаление персонажа из группы
 	void DelMember(CBattleEntity* PEntity);				// remove a member without invoking chat/db
+    void PopMember(CBattleEntity* PEntity);             // remove a member from memberlist (zoned to different server)
     void PushMember(CBattleEntity* PEntity);            // add a member without invoking chat/db
     void AssignPartyRole(int8* MemberName, uint8 role);	// назначаем роли участникам группы
     void DisableSync();

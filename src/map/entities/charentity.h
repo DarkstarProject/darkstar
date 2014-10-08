@@ -406,8 +406,8 @@ private:
 
 	bool			m_isWeaponSkillKill;
 	bool			m_isMijinGakure;
-	bool                    m_isStyleLocked;
-	int				m_reloadParty;
+	bool            m_isStyleLocked;
+	bool			m_reloadParty;
 
 	PacketList_t      PacketList;					// в этом списке хранятся все пакеты, предназначенные для отправки персонажу
 };

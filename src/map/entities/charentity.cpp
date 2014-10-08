@@ -407,15 +407,15 @@ CItemArmor* CCharEntity::getEquip(SLOTTYPE slot)
 
 void CCharEntity::ReloadPartyInc()
 {
-	m_reloadParty++;
+	m_reloadParty = true;
 }
 
 void CCharEntity::ReloadPartyDec()
 {
-    if (m_reloadParty > 0) m_reloadParty--;
+    m_reloadParty = false;
 }
 
 bool CCharEntity::ReloadParty()
 {
-    return m_reloadParty > 0;
+    return m_reloadParty;
 }
