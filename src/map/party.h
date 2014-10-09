@@ -83,9 +83,10 @@ public:
 	void DelMember(CBattleEntity* PEntity);				// remove a member without invoking chat/db
     void PopMember(CBattleEntity* PEntity);             // remove a member from memberlist (zoned to different server)
     void PushMember(CBattleEntity* PEntity);            // add a member without invoking chat/db
+    void SetPartyID(uint32 id);                         // set new party ID
     void AssignPartyRole(int8* MemberName, uint8 role);	// назначаем роли участникам группы
     void DisableSync();
-	void SetSyncTarget(CBattleEntity* PEntity, uint16 message);         // устанавливаем цель синхронизации уровней3
+    void SetSyncTarget(int8* MemberName, uint16 message);         // устанавливаем цель синхронизации уровней3
     void RefreshSync();
 
     void PushPacket(uint32 senderID, uint16 ZoneID, CBasicPacket* packet);		// отправляем пакет всем членам группы, за исключением PPartyMember
@@ -107,8 +108,8 @@ private:
 	CBattleEntity* m_PQuaterMaster;                     // владелец сокровищ
 
 
-	void SetLeader(CBattleEntity* PEntity);             // устанавливаем лидера группы
-	void SetQuaterMaster(CBattleEntity* PEntity);       // устанавливаем владельца сокровищ
+	void SetLeader(int8* MemberName);                   // устанавливаем лидера группы
+    void SetQuaterMaster(int8* MemberName);             // устанавливаем владельца сокровищ
 
 	void RemovePartyLeader(CBattleEntity* PEntity);     // лидер покидает группу
 };

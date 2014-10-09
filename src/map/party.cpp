@@ -69,7 +69,7 @@ CParty::CParty(CBattleEntity* PEntity, Sql_t* sql)
 
 
 	AddMember(PEntity, sql);
-	SetLeader(PEntity);
+	SetLeader((int8*)PEntity->name.c_str());
 }
 
 CParty::CParty(uint32 id)
@@ -153,27 +153,18 @@ void CParty::AssignPartyRole(int8* MemberName, uint8 role)
 {
     DSP_DEBUG_BREAK_IF (m_PartyType != PARTY_PCS);
 
-	for (uint32 i = 0; i < members.size(); ++i)
+	switch(role)
 	{
-		CCharEntity* PChar = (CCharEntity*)members.at(i);
-
-		if (strcmp(MemberName, PChar->GetName()) == 0)
-		{
-			switch(role)
-			{
-				case 0: SetLeader(PChar);		break;
-				case 4: SetQuaterMaster(PChar); break;
-				case 5: SetQuaterMaster(NULL);	break;
-			    case 6: SetSyncTarget(PChar, 238);	break;
-                case 7: SetSyncTarget(NULL, 553);    break;
-			}
-			uint8 data[4];
-			WBUFL(data, 0) = m_PartyID;
-            message::send(message::MSG_PT_RELOAD, data, sizeof data, NULL);
-		    return;
-        }
-    }
-    ShowError(CL_RED"The character with name <%s> isn't found in party\n" CL_RESET, MemberName);
+		case 0: SetLeader(MemberName);		    break;
+        case 4: SetQuaterMaster(MemberName);    break;
+		case 5: SetQuaterMaster(NULL);	        break;
+        case 6: SetSyncTarget(MemberName, 238);	break;
+        case 7: SetSyncTarget(NULL, 553);       break;
+	}
+	uint8 data[4];
+	WBUFL(data, 0) = m_PartyID;
+    message::send(message::MSG_PT_RELOAD, data, sizeof data, NULL);
+	return;
 }
 
 /************************************************************************
@@ -392,8 +383,6 @@ void CParty::PopMember(CBattleEntity* PEntity)
 void CParty::RemovePartyLeader(CBattleEntity* PEntity)
 {
 	DSP_DEBUG_BREAK_IF(members.empty());
-	DSP_DEBUG_BREAK_IF(m_PLeader != PEntity);
-    DSP_DEBUG_BREAK_IF(PEntity->objtype != TYPE_PC);
 
 	if (members.size() == 1)
 	{
@@ -401,14 +390,16 @@ void CParty::RemovePartyLeader(CBattleEntity* PEntity)
 	}
     else
     {
-		for (uint32 i = 0; i < members.size(); ++i)
-		{
-			if (PEntity != members.at(i))
-			{
-				SetLeader(members.at(i));
-				break;
-			}
-		}
+        int ret = Sql_Query(SqlHandle, "SELECT charname FROM accounts_sessions JOIN chars ON accounts_sessions.charid = chars.charid \
+                                       JOIN accounts_parties ON accounts_parties.charid = chars.charid WHERE partyid = %u ORDER BY timestamp ASC LIMIT 1;", m_PartyID);
+        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            SetLeader(Sql_GetData(SqlHandle, 0));
+        }
+        else
+        {
+            DisbandParty();
+        }
         RemoveMember(PEntity);
 	}
 }
@@ -505,7 +496,14 @@ void CParty::PushMember(CBattleEntity* PEntity)
     PEntity->PParty = this;
     members.push_back(PEntity);
 
+    //TODO: get flags from db, set leader/qm/etc appropriately
+
     ReloadTreasurePool((CCharEntity*)PEntity);
+}
+
+void CParty::SetPartyID(uint32 id)
+{
+    m_PartyID = id;
 }
 
 /************************************************************************
@@ -596,6 +594,51 @@ uint16 CParty::GetMemberFlags(CBattleEntity* PEntity)
 
 void CParty::ReloadParty()
 {
+    //check if partyflags have changed
+    int ret = Sql_Query(SqlHandle, "SELECT charid, partyflag FROM accounts_parties WHERE partyid = %d;", m_PartyID);
+
+    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0)
+    {
+        uint8 j = 0;
+        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            uint32 charid = Sql_GetUIntData(SqlHandle, 0);
+            uint16 memberflags = Sql_GetUIntData(SqlHandle, 1);
+
+            if (memberflags & PARTY_LEADER)
+            {
+                bool found = false;
+                for (auto member : members)
+                {
+                    if (member->id == charid)
+                    {
+                        m_PLeader = member;
+                        found = true;
+                    }
+                }
+                if (!found)
+                {
+                    m_PLeader = NULL;
+                }
+            }
+            if (memberflags & PARTY_QM)
+            {
+                bool found = false;
+                for (auto member : members)
+                {
+                    if (member->id == charid)
+                    {
+                        m_PQuaterMaster = member;
+                        found = true;
+                    }
+                }
+                if (!found)
+                {
+                    m_PQuaterMaster = NULL;
+                }
+            }
+        }
+    }
 	//alliance
 	if (this->m_PAlliance != NULL)
 	{
@@ -834,19 +877,28 @@ void CParty::ReloadTreasurePool(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-void CParty::SetLeader(CBattleEntity* PEntity)
+void CParty::SetLeader(int8* MemberName)
 {
-	DSP_DEBUG_BREAK_IF(PEntity == NULL);
-	DSP_DEBUG_BREAK_IF(PEntity->PParty != this);
-
     if (m_PartyType == PARTY_PCS)
     {
-		Sql_Query(SqlHandle,"UPDATE accounts_sessions SET partyid = %u WHERE partyid = %u", PEntity->id,  m_PartyID);
-        Sql_Query(SqlHandle,"UPDATE accounts_parties SET partyflag = partyflag & ~%d WHERE partyid = %u AND partyflag & %d", PARTY_LEADER, m_PartyID, PARTY_LEADER);
-        Sql_Query(SqlHandle,"UPDATE accounts_parties SET partyid = %u WHERE partyid = %u", PEntity->id,  m_PartyID);
+        uint32 newId = 0;
+        int ret = Sql_Query(SqlHandle, "SELECT chars.charid from accounts_sessions JOIN chars ON chars.charid = accounts_sessions.charid WHERE charname = ('%s')", MemberName);
 
-	    m_PLeader = PEntity;
-	    m_PartyID = PEntity->id;
+        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            newId = Sql_GetUIntData(SqlHandle, 0);
+        }
+        else
+        {
+            return;
+        }
+
+		Sql_Query(SqlHandle,"UPDATE accounts_sessions SET partyid = %u WHERE partyid = %u", newId,  m_PartyID);
+        Sql_Query(SqlHandle,"UPDATE accounts_parties SET partyflag = partyflag & ~%d WHERE partyid = %u AND partyflag & %d", PARTY_LEADER, m_PartyID, PARTY_LEADER);
+        Sql_Query(SqlHandle, "UPDATE accounts_parties SET partyid = %u WHERE partyid = %u", newId, m_PartyID);
+
+        m_PLeader = GetMemberByName(MemberName);
+        m_PartyID = newId;
 
 		Sql_Query(SqlHandle, "UPDATE accounts_parties SET partyflag = partyflag | %d WHERE charid = %u", PARTY_LEADER, m_PartyID);
     }
@@ -858,8 +910,10 @@ void CParty::SetLeader(CBattleEntity* PEntity)
 *																		*
 ************************************************************************/
 
-void CParty::SetSyncTarget(CBattleEntity* PEntity, uint16 message)
+void CParty::SetSyncTarget(int8* MemberName, uint16 message)
 {
+    CBattleEntity* PEntity = GetMemberByName(MemberName);
+
     if (map_config.level_sync_enable)
     {
         if (PEntity && PEntity->objtype == TYPE_PC)
@@ -943,11 +997,16 @@ void CParty::SetSyncTarget(CBattleEntity* PEntity, uint16 message)
 *																		*
 ************************************************************************/
 
-void CParty::SetQuaterMaster(CBattleEntity* PEntity)
+void CParty::SetQuaterMaster(int8* MemberName)
 {
+    CBattleEntity* PEntity = MemberName ? GetMemberByName(MemberName) : NULL;
 	m_PQuaterMaster = PEntity;
-	Sql_Query(SqlHandle, "UPDATE accounts_parties SET partyflag = partyflag & %d WHERE partyid = %u", PARTY_QM, m_PartyID);
 	Sql_Query(SqlHandle, "UPDATE accounts_parties SET partyflag = partyflag & ~%d WHERE partyid = %u AND partyflag & %d", PARTY_QM, m_PartyID, PARTY_QM);
+    if (MemberName != NULL)
+    {
+        Sql_Query(SqlHandle, "UPDATE accounts_parties JOIN chars ON accounts_parties.charid = chars.charid \
+                              SET partyflag = partyflag | %d WHERE partyid = %u AND charname = '%s';", PARTY_QM, m_PartyID, MemberName);
+    }
 }
 
 /************************************************************************

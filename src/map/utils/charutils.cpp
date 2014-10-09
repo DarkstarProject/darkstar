@@ -4636,13 +4636,18 @@ void ReloadParty(CCharEntity* PChar)
 									charid = %u;", PChar->id);
 	if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 	{
+        uint32 partyid = Sql_GetUIntData(SqlHandle, 0);
+
 		if (PChar->PParty)
 		{
+            if (PChar->PParty->GetPartyID() != partyid)
+            {
+                PChar->PParty->SetPartyID(partyid);
+            }
             PChar->PParty->ReloadParty();
 		}
         else
         {
-            uint32 partyid = Sql_GetUIntData(SqlHandle, 0);
             CParty* PParty = NULL;
             zoneutils::ForEachZone([partyid, &PParty](CZone* PZone)
             {
