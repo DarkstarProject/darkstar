@@ -1,6 +1,6 @@
 -----------------------------------------
--- ID: 5575
--- Item: Yogurt
+-- ID: 4378
+-- Item: Jug of Selbina Milk
 -- Item Effect: Restores 60 HP over 180 seconds
 -----------------------------------------
 
@@ -19,14 +19,14 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	local body = caster:getEquipID(SLOT_BODY);
-	if(target:hasStatusEffect(EFFECT_REGEN) == false) then
-		if (body == 14520) then -- Dream Robe +1
+		if(target:hasStatusEffect(EFFECT_REGEN) == false) then
+		if (target:getEquipID(SLOT_BODY) == 14520) then -- Dream Robe +1
 			target:addStatusEffect(EFFECT_REGEN,1,3,150);
 		else
+end
 			target:addStatusEffect(EFFECT_REGEN,1,3,120);
-		end
-	else
+		else
 		target:messageBasic(423);
+
 	end
 end;
