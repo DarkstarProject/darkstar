@@ -20,3 +20,6 @@ CHEST_ILLUSION = 7291; -- The chest was but an illusion...
 -- Other Dialog
 FELL = 7303; -- The piece of wood fell off the cliff!
 EVIL = 7304; -- You sense an evil presence...
+
+-- conquest Base
+CONQUEST_BASE = 7024;

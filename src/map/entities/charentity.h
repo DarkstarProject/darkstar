@@ -362,6 +362,8 @@ public:
 	void			  setWeaponSkillKill(bool isWeaponSkillKill);
 	bool			  getMijinGakure();
 	void			  setMijinGakure(bool isMijinGakure);
+	bool                      getStyleLocked();
+	void                      setStyleLocked(bool isStyleLocked);
 
 	bool			  isRapidShot;										// Flag to track rapid shot
 	bool			  secondDoubleShotTaken;							// Flag to track number of double shots taken
@@ -399,6 +401,7 @@ private:
 
 	bool			m_isWeaponSkillKill;
 	bool			m_isMijinGakure;
+	bool                    m_isStyleLocked;
 
 	PacketList_t      PacketList;					// в этом списке хранятся все пакеты, предназначенные для отправки персонажу
 };

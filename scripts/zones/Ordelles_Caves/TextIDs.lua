@@ -29,3 +29,7 @@ A_SQUIRE_S_TEST_II_DIALOG_III = 7330; -- You have already obtained the dew.
 
 -- Mission Dialog
 RUILLONT_INITIAL_DIALOG = 7315; -- Confound it! If I only had my sword, I'd cut through these fiends single-handedly...
+
+-- conquest Base
+CONQUEST_BASE = 0;
+

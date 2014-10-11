@@ -171,7 +171,7 @@ function EventUpdateBCNM(player,csid,option,entrance)
 			player:setVar("bcnm_instanceid",inst);
 			player:setVar("bcnm_instanceid_tick",0);
 			player:updateEvent(0,3,0,0,1,0);
-            if (entrance ~= nil) then
+            if (entrance ~= nil and player:getBattlefield() ~= nil) then
                 player:getBattlefield():setEntrance(entrance);
             end
 			--player:tradeComplete();
@@ -212,7 +212,7 @@ function EventUpdateBCNM(player,csid,option,entrance)
 				-- print("playerbcnmid2 is "..playerbcnmid);
 			end
             
-            if (entrance ~= nil) then
+            if (entrance ~= nil and player:getBattlefield() ~= nil) then
                 player:getBattlefield():setEntrance(entrance);
             end
 			

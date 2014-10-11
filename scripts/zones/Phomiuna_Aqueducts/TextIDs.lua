@@ -14,3 +14,6 @@ LAMP_OFFSET = 7194; -- A symbol for fire is engraved on the base of the lamp...
 NOTHING_OUT_HERE = 6395; -- There is nothing out of the ordinary here.
 DOOR_SEALED_SHUT = 7186; -- The door above you is sealed shut.
      DOOR_LOCKED = 7188; -- The door is locked.You might be able to open it with
+
+-- conquest Base
+CONQUEST_BASE = 7024;

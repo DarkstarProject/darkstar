@@ -35,14 +35,7 @@ end;
 -- onMobFight Action
 -----------------------------------
 function onMobFight(mob,target)
-   local mobid = mob:getID()
 
-   -- Party hate.  Keep everybody in the fight.
-   for member = mobid-3, mobid+4 do
-      if (GetMobAction(member) == 16) then
-         GetMobByID(member):updateEnmity(target);
-      end
-   end
 end;
 
 -----------------------------------

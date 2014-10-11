@@ -10,3 +10,6 @@ ITEM_CANNOT_BE_OBTAINED = 6537; -- You cannot obtain the item <item>. Come back 
 -- General Dialog
 CHUMIA_DIALOG = 7278; -- Welcome to Bostaunieux Oubliette...
  SEEMS_LOCKED = 7280; -- It seems to be locked.
+
+-- conquest Base
+CONQUEST_BASE = 0;

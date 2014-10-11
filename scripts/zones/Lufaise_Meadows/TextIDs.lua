@@ -19,3 +19,6 @@ LOGGING_IS_POSSIBLE_HERE = 7698; -- Logging is possible here if you have
       MURDEROUS_PRESENCE = 7706; -- Wait, you sense a murderous presence...!
    YOU_CAN_SEE_FOR_MALMS = 7707; -- You can see for malms in every direction.
  SPINE_CHILLING_PRESENCE = 7709; -- You sense a spine-chilling presence!
+
+-- conquest Base
+CONQUEST_BASE = 7024;

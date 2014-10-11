@@ -30,6 +30,8 @@ SetServerVariable("Byakko-to-Genbu-BlueTeleport",0);
 SetServerVariable("Genbu-to-Seiryu-BlueTeleport",0);
 SetServerVariable("Seiryu-to-Main-BlueTeleport",0);
 
+
+
 ------------------------------
 -- Red teleports
 ------------------------------
@@ -82,6 +84,18 @@ zone:registerRegion(36,-456,-5,-149,-454,-3,-147);
 zone:registerRegion(37,-145,-41,-156,-142,-39,-153);
 zone:registerRegion(38,142,-41,-156,145,-39,-153 );
 
+end;
+
+-----------------------------------		
+-- onConquestUpdate		
+-----------------------------------		
+
+function onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+    
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
 end;
 
 -----------------------------------		

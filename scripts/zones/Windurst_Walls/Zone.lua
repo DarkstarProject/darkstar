@@ -33,10 +33,24 @@ function onZoneIn(player,prevZone)
 			cs = 0x7534;
 		end	
 		player:setVar("PlayerMainJob",0);	
+	elseif(ENABLE_ASA == 1 and player:getCurrentMission(ASA) == A_SHANTOTTO_ASCENSION 
+		and (prevZone == 238 or prevZone == 241) and player:getMainLvl()>=10) then
+		cs = 0x01fe;
 	end
 	return cs;
 end;	
 
+-----------------------------------		
+-- onConquestUpdate		
+-----------------------------------		
+
+function onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+    
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
+end;
 -----------------------------------	
 -- onRegionEnter	
 -----------------------------------	
@@ -78,5 +92,11 @@ function onEventFinish(player,csid,option)
 	elseif (csid == 0x7534 and option == 0) then	
 		player:setHomePoint();
 		player:messageSpecial(HOMEPOINT_SET);
+	elseif(csid == 0x01fe) then
+		player:startEvent(0x0202);
+	elseif (csid == 0x0202) then
+		player:completeMission(ASA,A_SHANTOTTO_ASCENSION);
+		player:addMission(ASA,BURGEONING_DREAD);
+		player:setVar("ASA_Status",0);
 	end
 end;		

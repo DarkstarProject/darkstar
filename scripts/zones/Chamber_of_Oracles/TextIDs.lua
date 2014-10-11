@@ -22,3 +22,6 @@ PLACED_INTO_THE_PEDESTAL = 7583; -- It appears that something should be placed i
  TEACH_YOU_TO_RESPECT_ELDERS = 7608; -- I'll teach you to respect your elders!
 TAKE_THAT_YOU_WHIPPERSNAPPER = 7609; -- Take that, you whippersnapper!
  THAT_LL_HURT_IN_THE_MORNING = 7611; -- Ungh... That'll hurt in the morning...
+
+-- conquest Base
+CONQUEST_BASE = 7024;

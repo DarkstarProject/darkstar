@@ -35,8 +35,24 @@ function onZoneIn( player, prevZone)
 		cs = 0x0030;
 	elseif( triggerLightCutscene( player)) then -- Quest: I Can Hear A Rainbow
 		cs = 0x0032;
+	elseif( player:getCurrentMission(ASA) == BURGEONING_DREAD and prevZone == 241 and 
+		player:hasStatusEffect(EFFECT_CHOCOBO) == false ) then
+		cs = 0x0047;
 	end
+	
 	return cs;
+end;
+
+-----------------------------------		
+-- onConquestUpdate		
+-----------------------------------		
+
+function onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+    
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
 end;
 
 -----------------------------------
@@ -51,11 +67,13 @@ end;
 -----------------------------------
 
 function onEventUpdate( player, csid, option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+	--printf("CSID: %u",csid);
+	--printf("RESULT: %u",option);
 
 	if (csid == 0x0032) then
 		lightCutsceneUpdate( player);  -- Quest: I Can Hear A Rainbow
+	elseif (csid == 0x0047) then
+		player:setVar("ASA_Status",option);
 	end
 end;
 
@@ -64,8 +82,8 @@ end;
 -----------------------------------
 
 function onEventFinish( player, csid, option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+	--printf("CSID: %u",csid);
+	--printf("RESULT: %u",option);
 
 	if( csid == 0x0030) then	
 		player:setVar( "MissionStatus",6);
@@ -80,5 +98,8 @@ function onEventFinish( player, csid, option)
 
 	elseif( csid == 0x0032) then
 		lightCutsceneFinish( player);  -- Quest: I Can Hear A Rainbow
+	elseif (csid == 0x0047) then
+		player:completeMission(ASA,BURGEONING_DREAD);
+		player:addMission(ASA,THAT_WHICH_CURDLES_BLOOD);
 	end
 end;

@@ -674,6 +674,17 @@ EFFECT_HASTE_II                 = 580
 EFFECT_FLURRY_II                = 581
 
 
+-- Purchased from Cruor Prospector
+EFFECT_ABYSSEA_STR              = 768 --
+EFFECT_ABYSSEA_DEX              = 769 --
+EFFECT_ABYSSEA_VIT              = 770 --
+EFFECT_ABYSSEA_AGI              = 771 --
+EFFECT_ABYSSEA_INT              = 772 --
+EFFECT_ABYSSEA_MND              = 773 --
+EFFECT_ABYSSEA_CHR              = 774 --
+EFFECT_ABYSSEA_HP               = 775 --
+EFFECT_ABYSSEA_MP               = 776 --
+
 -- *Prowess increases not currently retail accurate.
 -- GoV Prowess bonus effects, real effect at ID 474
 EFFECT_PROWESS_CASKET_RATE      = 777 -- (Unimplemented)
@@ -1776,6 +1787,7 @@ MOBMOD_TELEPORT_TYPE = 43
 MOBMOD_DUAL_WIELD = 44
 MOBMOD_ADD_EFFECT = 45
 MOBMOD_AUTO_SPIKES = 46
+MOBMOD_SPAWN_LEASH = 47
 
 --skills
 
@@ -1927,3 +1939,16 @@ SPELLAOE_DIFFUSION		= 6;   -- AOE when under Diffusion
 
 SPELLFLAG_NONE		= 0;
 SPELLFLAG_HIT_ALL	= 1;		-- hit all targets in range regardless of party
+
+-----------------------------------
+--
+--	Behaviour bits
+--
+-----------------------------------
+
+BEHAVIOUR_NONE				= 0x000;
+BEHAVIOUR_NO_DESPAWN		= 0x001; -- mob does not despawn on death
+BEHAVIOUR_STANDBACK			= 0x002; -- mob will standback forever
+BEHAVIOUR_RAISABLE			= 0x004; -- mob can be raised via Raise spells
+BEHAVIOUR_AGGRO_AMBUSH		= 0x200; -- mob aggroes by ambush
+BEHAVIOUR_NO_TURN           = 0x400; -- mob does not turn to face target

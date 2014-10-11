@@ -80,7 +80,7 @@ function onMobDeath(mob,killer)
 	if(mobID == 17326860 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(15);
 		mob:addInBattlefieldList();
-	elseif(mobID == 17326875 mob:isInBattlefieldList() == false) then
+	elseif(mobID == 17326875 and mob:isInBattlefieldList() == false) then
 		killer:addTimeToDynamis(15);
 		mob:addInBattlefieldList();
 	-- HP Bonus: 037 041 044 051 053 

@@ -48,7 +48,7 @@ enum MOBMODIFIER
   MOBMOD_MAIN_2HOUR     = 16, // give mob its main job two hour, value can maybe be sent to skill
   MOBMOD_NO_DESPAWN     = 17, // do not despawn when too far from spawn. Gob Diggers have this.
   MOBMOD_VAR            = 18, // temp var for whatever
-  MOBMOD_SUB_2HOUR      = 19, // give mob its sub job two hour (dynamis NM) -- not impl
+  MOBMOD_SUB_2HOUR      = 19, // give mob its sub job two hour (dynamis NM)
   MOBMOD_TP_USE_CHANCE  = 20, // % chance to use tp
   MOBMOD_PET_SPELL_LIST = 21, // set pet spell list
   MOBMOD_NA_CHANCE      = 22, // % chance to cast -na
@@ -76,8 +76,9 @@ enum MOBMODIFIER
   MOBMOD_DUAL_WIELD     = 44, // enables a mob to use their offhand in attacks
   MOBMOD_ADD_EFFECT     = 45, // enables additional effect script to process on mobs attacks
   MOBMOD_AUTO_SPIKES    = 46, // enables additional effect script to process when mob is attacked
+  MOBMOD_SPAWN_LEASH    = 47, // forces a mob to not move farther from its spawn than its leash distance
 };
 
-#define MAX_MOBMODIFIER         47
+#define MAX_MOBMODIFIER         48
 
 #endif

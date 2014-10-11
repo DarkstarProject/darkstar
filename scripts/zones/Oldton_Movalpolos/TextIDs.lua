@@ -22,3 +22,6 @@ CHEST_ILLUSION = 7722; -- The chest was but an illusion...
 
 -- NPCs
 RAKOROK_DIALOGUE = 7693; -- Nsy pipul. Gattohre! I bisynw!
+
+-- conquest Base
+CONQUEST_BASE = 7024;

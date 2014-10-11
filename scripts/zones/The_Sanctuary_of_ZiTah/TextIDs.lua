@@ -23,3 +23,7 @@ NOTHING_OUT_OF_ORDINARY = 6395; -- There is nothing out of the ordinary here.
 ALREADY_OBTAINED_FRAG = 7707; -- You have already obtained this monument's
       FOUND_ALL_FRAGS = 7709; -- You now have all 8 fragments of light!
       ZILART_MONUMENT = 7710; -- It is an ancient Zilart monument.
+
+-- conquest Base
+CONQUEST_BASE = 7024;
+

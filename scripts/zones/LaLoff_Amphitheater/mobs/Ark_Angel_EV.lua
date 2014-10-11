@@ -32,7 +32,6 @@ function onMobEngaged(mob,target)
     
     local hp = math.random(40,60)
     mob:setExtraVar(0, hp);
-    print(hp);
 end;
 
 -----------------------------------
@@ -50,15 +49,7 @@ function onMobFight(mob,target)
 		mob:useMobAbility(433);
 		mob:setExtraVar(invtime, 0);
 	end
-    
-    local mobid = mob:getID()
-    
-    -- Party hate.  Keep everybody in the fight.
-    for member = mobid-4, mobid+3 do
-        if (GetMobAction(member) == 16) then
-            GetMobByID(member):updateEnmity(target);
-        end
-    end
+        
 end;
 
 -----------------------------------

@@ -1,13 +1,15 @@
 -----------------------------------
---  Area: West Ronfaure
---  NPC:  Palcomondau
---  Type: Patrol
---  @zone 100
+-- Area: West Ronfaure
+-- NPC:  Palcomondau
+-- Type: Patrol
+-- @pos -349.796 -45.345 344.733 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/pathfind");
+
+-----------------------------------
 
 local path = {
 -373.096863, -45.742077, 340.182159,
@@ -302,21 +304,25 @@ local path = {
 -403.243805, -46.015915, 339.704468,
 };
 
+-----------------------------------
+-- onSpawn Action
+-----------------------------------
 
-function onSpawn(npc)	
-    npc:initNpcAi();
+function onSpawn(npc)
+	npc:initNpcAi();
 	npc:setPos(pathfind.first(path));
 	onPath(npc);
 end;
 
+-----------------------------------
+-- onPath Action
+-----------------------------------
+
 function onPath(npc)
 
-	if(npc:atPoint(pathfind.get(path, 45))) then
-
-		local gac = GetNPCByID(npc:getID() + 3); -- Gachemage
-
-		gac:showText(npc, PALCOMONDAU_REPORT);
-
+	if (npc:atPoint(pathfind.get(path, 45))) then
+		local Gachemage = GetNPCByID(npc:getID() + 3);
+		Gachemage:showText(npc, PALCOMONDAU_REPORT);
 		-- small delay after path finish
 		npc:wait(8000);
 	end
@@ -358,4 +364,3 @@ function onEventFinish(player,csid,option)
 	-- printf("CSID: %u",csid);
 	-- printf("RESULT: %u",option);
 end;
-

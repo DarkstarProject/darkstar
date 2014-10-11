@@ -78,7 +78,7 @@ function onEventFinish(player,csid,option)
 			end
 		elseif(option > 1280 and option < 1309) then
 			if (player:delGil(700)) then
-				player:setTitle(  title7[option - 1280]7)
+				player:setTitle(  title7[option - 1280])
 			end
 		end
 	end

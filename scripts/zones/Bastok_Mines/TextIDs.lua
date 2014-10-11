@@ -74,3 +74,7 @@ MARIADOK_DIALOG = 6707; -- Your fate rides on the changing winds of Vana'diel. I
 
 -- Standard NPC Dialog
 ITEM_DELIVERY_DIALOG = 10358; -- Need something sent to a friend's house? Sending items to your own house? You've come to the right place!
+
+-- conquest Base
+CONQUEST_BASE = 6548;
+

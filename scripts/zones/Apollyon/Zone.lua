@@ -58,6 +58,19 @@ zone:registerRegion(37, -563,-4,356,  -556,4,363); -- appolyon NW telporter floo
 																
 end;
 
+-----------------------------------		
+-- onConquestUpdate		
+-----------------------------------		
+
+function onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+    
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
+end;
+
+
 -----------------------------------
 -- onZoneIn
 -----------------------------------

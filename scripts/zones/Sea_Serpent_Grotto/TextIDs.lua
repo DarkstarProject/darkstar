@@ -37,3 +37,7 @@ SAHAGIN_DOOR_OUTSIDE = 7304; -- This door has an oddly shaped keyhole. It looks 
   MYTHRIL_CHECK = 7315; -- You find something that looks like mythril dust scattered about the indentation.
      GOLD_CHECK = 7316; -- You see something gold glittering around the indentation.
 COMPLETED_CHECK = 7317; -- It is a door you can open using
+
+-- conquest Base
+CONQUEST_BASE = 7024;
+

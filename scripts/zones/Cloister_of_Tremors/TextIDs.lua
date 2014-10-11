@@ -13,3 +13,6 @@ YOU_CANNOT_ENTER_THE_BATTLEFIELD = 7185; -- You cannot enter the battlefield at 
 -- Other
 NOTHING_OUT_OF_THE_ORDINARY = 6395; -- There is nothing out of the ordinary here.
                PROTOCRYSTAL = 7207; -- It is a giant crystal.
+
+-- conquest Base
+CONQUEST_BASE = 7024;

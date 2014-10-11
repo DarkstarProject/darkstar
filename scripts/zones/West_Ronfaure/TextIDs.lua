@@ -20,3 +20,7 @@ PALCOMONDAU_DIALOG = 7340; -- Let me be! I must patrol the road to Ghelsba.
    ZOVRIACE_REPORT = 7342; -- Scout reporting! All is quiet on the roads to La Theine!
    ZOVRIACE_DIALOG = 7344; -- Let me be! I return to Southgate with word on La Theine.
  DISMAYED_CUSTOMER = 7370; -- You find some worthless scraps of paper.
+
+
+-- conquest Base
+CONQUEST_BASE = 7038;

@@ -9,3 +9,5 @@ ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item> come back a
 
 
 DIABOLOS = 7278; -- ??? message
+-- conquest Base
+CONQUEST_BASE = 7119;

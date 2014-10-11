@@ -17,3 +17,6 @@ LOGGING_IS_POSSIBLE_HERE = 7357; -- Logging is possible here if you have
 
 -- Shop Texts
 BEUGUNGEL_SHOP_DIALOG = 7389; -- I'm selling goods direct from the Carpenters' Guild.
+
+-- conquest Base
+CONQUEST_BASE = 7024;

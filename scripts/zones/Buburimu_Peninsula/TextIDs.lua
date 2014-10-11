@@ -27,3 +27,6 @@ SIGN_2 = 7353; -- West: Tahrongi Canyon South: Mhaura
 SIGN_3 = 7354; -- West: Tahrongi Canyon Southwest: Mhaura
 SIGN_4 = 7355; -- West: Mhaura and Tahrongi Canyon
 SIGN_5 = 7356; -- West: Mhaura Northwest: Tahrongi Canyon
+
+-- conquest Base
+CONQUEST_BASE = 7051;

@@ -23,3 +23,6 @@ GHEMISENTERILO_SHOP_DIALOG = 10006; -- Can you really get everything that you wa
     TAHNPOSBEI_SHOP_DIALOG = 10010; -- You don't want to get whipped by those Tonberries, do you? Well, have I got the equipment forrr you!
  PAHYALOLOHOIV_SHOP_DIALOG = 10289; -- Nothing in this world is crrreated good or evil. However, evil can arrrise when something exists in a place where it did not originally belong.
        MAMERIE_SHOP_DIALOG = 10568; -- Is there something you require?
+
+-- conquest Base
+CONQUEST_BASE = 6466;

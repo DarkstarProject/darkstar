@@ -101,11 +101,11 @@ void CZoneInstance::FindPartyForMob(CBaseEntity* PEntity)
 	}
 }
 
-void CZoneInstance::TransportDepart(CBaseEntity* PTransportNPC)
+void CZoneInstance::TransportDepart(uint16 boundary, uint16 zone)
 {
-	if (PTransportNPC->PInstance)
-	{
-		PTransportNPC->PInstance->TransportDepart(PTransportNPC);
+    for (auto instance : instanceList)
+    {
+		instance->TransportDepart(boundary, zone);
 	}
 }
 

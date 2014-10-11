@@ -6,3 +6,6 @@ ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6382; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6384; -- Obtained key item: <keyitem>
  FISHING_MESSAGE_OFFSET = 7183; -- You can't fish here.
+
+-- conquest Base
+CONQUEST_BASE = 7024;

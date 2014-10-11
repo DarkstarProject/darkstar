@@ -27,3 +27,6 @@ YOU_CANNOT_ENTER_DYNAMIS = 11783; -- You cannot enter Dynamis
 PLAYERS_HAVE_NOT_REACHED_LEVEL = 11785; -- Players who have not reached levelare prohibited from entering Dynamis.
 
 MYSTERIOUS_VOICE = 11771; -- You hear a mysterious, floating voice:
+
+-- conquest Base
+CONQUEST_BASE = 6511;

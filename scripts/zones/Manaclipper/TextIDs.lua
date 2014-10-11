@@ -9,3 +9,6 @@ ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item> come back a
 
 -- NPC Dialogue
 KHOTS_CHALAHKO_OFFSET = 7362; -- Ahhh... Isn't it grrreat out here on the open sea!
+
+-- conquest Base
+CONQUEST_BASE = 7024;

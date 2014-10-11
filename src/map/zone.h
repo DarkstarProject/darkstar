@@ -520,7 +520,7 @@ public:
 	virtual void	DeletePET(CBaseEntity* PPet);       	                        // derefs the pet's ID from this zone
 
     virtual void    FindPartyForMob(CBaseEntity* PEntity);                          // ищем группу для монстра
-    virtual void    TransportDepart(CBaseEntity* PTransportNPC);                    // транспотр отправляется, необходимо собрать пассажиров
+    virtual void    TransportDepart(uint16 boundary, uint16 zone);                  // транспотр отправляется, необходимо собрать пассажиров
 
 	void			InsertRegion(CRegion* Region);									// добавляем в зону активную область
 

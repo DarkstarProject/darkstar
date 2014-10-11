@@ -38,3 +38,5 @@ SIGN_11 = 7352; -- North: East Sarutabaruta Southeast: Windurst
 SIGN_13 = 7353; -- East: Port Windurst West: West Tower, Horutoto Ruins
 SIGN_15 = 7354; -- East: East Sarutabaruta West: Giddeus Southeast: Windurst
 SIGN_17 = 7355; -- Northwest: Northwest Tower, Horutoto RuinsEast: Outpost Southwest: Giddeus
+-- conquest Base
+CONQUEST_BASE = 7119;

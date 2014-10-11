@@ -178,7 +178,7 @@ INSERT INTO `blue_spell_list` VALUES ('696','1945','5','21','1','0','0'); -- Orc
 INSERT INTO `blue_spell_list` VALUES ('697','1568','4','28','1','2','0'); -- Amorphic Spikes
 INSERT INTO `blue_spell_list` VALUES ('698','388','2','22','1','0','0'); -- Wind breath
 INSERT INTO `blue_spell_list` VALUES ('699','253','2','25','1','2','0'); -- Barbed Crescent
-INSERT INTO `blue_spell_list` VALUES ('700','2689','6','16','8','0','0'); -- Nature's Meditation
+-- INSERT INTO `blue_spell_list` VALUES ('700','2689','6','16','8','0','0'); -- Nature's Meditation
 -- INSERT INTO `blue_spell_list` VALUES ('701','2694','6','18','8','0','0'); -- Tempestuous Upheaval
 -- INSERT INTO `blue_spell_list` VALUES ('702','2702','6','13','8','0','0'); -- Rending Deluge
 -- INSERT INTO `blue_spell_list` VALUES ('703','2711','6','8','8','0','0'); -- Embalming Earth

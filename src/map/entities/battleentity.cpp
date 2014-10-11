@@ -397,25 +397,29 @@ uint16 CBattleEntity::GetRangedWeaponRank()
 int16 CBattleEntity::addTP(int16 tp)
 {
 	// When adding TP, we must adjust for Inhibit TP effect, which reduces TP gain.
-	float tpReducePercent = this->getMod(MOD_INHIBIT_TP) / 100;
-	tp = tp - (tp * tpReducePercent);
+    if (tp > 0)
+    {
+        float tpReducePercent = this->getMod(MOD_INHIBIT_TP) / 100;
+        tp = tp - (tp * tpReducePercent);
 
-	float TPMulti = 1.0;
+        float TPMulti = 1.0;
 
-	if(objtype == TYPE_PC)
-	{
-		TPMulti = map_config.player_tp_multiplier;
-	}
-	else if(objtype == TYPE_MOB)
-	{
-		TPMulti = map_config.mob_tp_multiplier;
-	}
-	else if(objtype == TYPE_PET)
-	{
-		TPMulti = map_config.mob_tp_multiplier * 3;
-	}
+        if (objtype == TYPE_PC)
+        {
+            TPMulti = map_config.player_tp_multiplier;
+        }
+        else if (objtype == TYPE_MOB)
+        {
+            TPMulti = map_config.mob_tp_multiplier;
+        }
+        else if (objtype == TYPE_PET)
+        {
+            TPMulti = map_config.mob_tp_multiplier * 3;
+        }
 
-	int16 cap = dsp_cap(health.tp + (tp * TPMulti), 0, 3000);
+        tp = tp * TPMulti;
+    }
+	int16 cap = dsp_cap(health.tp + tp, 0, 3000);
 	tp = health.tp - cap;
 	health.tp = cap;
 	return abs(tp);

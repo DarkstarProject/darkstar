@@ -19,6 +19,18 @@ function onInitialize(zone)
 end;
 
 -----------------------------------
+-- onConquestUpdate
+-----------------------------------
+
+function onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
+end;
+
+-----------------------------------
 -- onZoneIn
 -----------------------------------
 
@@ -28,7 +40,7 @@ function onZoneIn(player,prevZone)
 	if (player:getPlaytime(false) == 0) then
 		if (OPENING_CUTSCENE_ENABLE == 1) then
 			cs = 0x0001;
-		end	
+		end
 		player:setPos(132,-8.5,-13,179);
 		player:setHomePoint();
 	end
@@ -39,7 +51,7 @@ function onZoneIn(player,prevZone)
 		else
 			position = math.random(1,5) + 57;
 			player:setPos(position,8.5,-239,192);
-			if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then	
+			if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
 				cs = 0x7534;
 			end
 			player:setVar("PlayerMainJob",0);
@@ -68,12 +80,12 @@ end;
 function onRegionLeave(player,region)
 end;
 -----------------------------------
--- onTransportEvent	
+-- onTransportEvent
 -----------------------------------
 
 function onTransportEvent(player,transport)
 	player:startEvent(0x0047);
-end;	
+end;
 
 -----------------------------------
 -- onEventUpdate
