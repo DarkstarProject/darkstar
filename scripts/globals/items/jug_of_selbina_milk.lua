@@ -1,7 +1,8 @@
 -----------------------------------------
 -- ID: 4378
 -- Item: Jug of Selbina Milk
--- Item Effect: Restores 60 HP over 180 seconds
+-- Item Effect: Restores 40 HP/ 3 seconds over 120 seconds, and 50 HP/ 3 seconds over 150 seconds with dream robe +1 
+-- equipped
 -----------------------------------------
 
 require("scripts/globals/status");
