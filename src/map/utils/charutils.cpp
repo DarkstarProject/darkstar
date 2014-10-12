@@ -4632,11 +4632,12 @@ void ClearTempItems(CCharEntity* PChar)
 
 void ReloadParty(CCharEntity* PChar)
 {
-	int ret = Sql_Query(SqlHandle, "SELECT partyid FROM accounts_sessions WHERE partyid <> 0 AND \
-									charid = %u;", PChar->id);
+	int ret = Sql_Query(SqlHandle, "SELECT partyid, allianceid FROM accounts_sessions s JOIN accounts_parties p ON \
+                                    s.charid = p.charid WHERE p.charid = %u;", PChar->id);
 	if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 	{
         uint32 partyid = Sql_GetUIntData(SqlHandle, 0);
+        uint32 allianceid = Sql_GetUIntData(SqlHandle, 1);
 
 		if (PChar->PParty)
 		{
@@ -4653,12 +4654,9 @@ void ReloadParty(CCharEntity* PChar)
             {
                 PZone->ForEachChar([partyid, &PParty](CCharEntity* PChar)
                 {
-                    if (PChar->PParty)
+                    if (PChar->PParty && PChar->PParty->GetPartyID() == partyid)
                     {
-                        if (PChar->PParty->GetPartyID() == partyid)
-                        {
-                            PParty = PChar->PParty;
-                        }
+                        PParty = PChar->PParty;
                     }
                 });
             });
@@ -4670,6 +4668,40 @@ void ReloadParty(CCharEntity* PChar)
                 
             PParty->PushMember(PChar);
             PParty->ReloadParty();
+        }
+
+        if (allianceid != 0)
+        {
+            if (!PChar->PParty->m_PAlliance)
+            {
+                CAlliance* PAlliance = NULL;
+                zoneutils::ForEachZone([allianceid, &PAlliance](CZone* PZone)
+                {
+                    PZone->ForEachChar([allianceid, &PAlliance](CCharEntity* PChar)
+                    {
+                        if (PChar->PParty && PChar->PParty->m_PAlliance && PChar->PParty->m_PAlliance->m_AllianceID == allianceid)
+                        {
+                            PAlliance = PChar->PParty->m_PAlliance;
+                        }
+                    });
+                });
+
+                if (!PAlliance)
+                {
+                    PAlliance = new CAlliance(allianceid);
+                }
+
+                PAlliance->pushParty(PChar->PParty);
+
+                for (auto party : PAlliance->partyList)
+                {
+                    party->ReloadParty();
+                }
+            }
+        }
+        else if (PChar->PParty->m_PAlliance)
+        {
+            PChar->PParty->m_PAlliance->delParty(PChar->PParty);
         }
 	}
 	else

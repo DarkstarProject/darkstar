@@ -115,6 +115,7 @@ namespace message
                 if (!PChar)
                 {
                     Sql_Query(ChatSqlHandle, "DELETE FROM accounts_sessions WHERE charid = %d;", RBUFL(extra->data(), 0));
+                    Sql_Query(ChatSqlHandle, "DELETE FROM accounts_parties WHERE charid = %d;", RBUFL(extra->data(), 0));
                 }
             }
 			case MSG_CHAT_TELL:
@@ -216,14 +217,16 @@ namespace message
 				if (PInvitee)
 				{
 					//make sure invitee isn't dead or in jail, they aren't a party member and don't already have an invite pending, and your party is not full
-					if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 || PInvitee->PParty != NULL ||
+					if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 || PInvitee->PParty != NULL && inviteType == INVITE_PARTY ||
 						(inviteType == INVITE_ALLIANCE && (PInvitee->PParty->GetLeader() != PInvitee || PInvitee->PParty->m_PAlliance)))
 					{
+                        WBUFL(extra->data(), 0) = RBUFL(extra->data(), 6);
 						send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PInvitee, 0, 0, 23));
 						return;
 					}
 					if (PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
 					{
+                        WBUFL(extra->data(), 0) = RBUFL(extra->data(), 6);
 						send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PInvitee, 0, 0, 236));
 						return;
 					}
@@ -276,8 +279,8 @@ namespace message
 							else
 							{
 								//make new alliance
-								CAlliance* PAlliance = new CAlliance(inviterId, ChatSqlHandle);
-								PInviter->PParty->m_PAlliance->addParty(inviteeId, ChatSqlHandle);
+								CAlliance* PAlliance = new CAlliance(PInviter, ChatSqlHandle);
+                                PAlliance->addParty(inviteeId, ChatSqlHandle);
 							}
 						}
 						else
@@ -310,7 +313,7 @@ namespace message
 						{
 							for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
 							{
-								for (uint8 j = 0; j < PChar->PParty->m_PAlliance->partyList.at(i)->members.size(); ++i)
+								for (uint8 j = 0; j < PChar->PParty->m_PAlliance->partyList.at(i)->members.size(); ++j)
 								{
 									((CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(i)->members.at(j))->ReloadPartyInc();
 								}

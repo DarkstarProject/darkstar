@@ -129,7 +129,6 @@ void CParty::DisbandParty(bool playerInitiated, Sql_t* sql)
                 sync->SetDuration(30000);
             }
             Sql_Query(sql, "DELETE FROM accounts_parties WHERE charid = %u;", PChar->id);
-            Sql_Query(sql, "UPDATE accounts_sessions SET partyid = %u WHERE charid = %u", 0, PChar->id);
 	    }
 
         // make sure chat server isn't notified of a disband if this came from the chat server already
@@ -268,7 +267,6 @@ void CParty::RemoveMember(CBattleEntity* PEntity)
 				    PChar->pushPacket(new CCharUpdatePacket(PChar));
 				    PChar->PParty = NULL;
 
-					Sql_Query(SqlHandle, "UPDATE accounts_sessions SET partyid = 0 WHERE charid = %u;", PChar->id);
 					Sql_Query(SqlHandle, "DELETE FROM accounts_parties WHERE charid = %u;", PChar->id);
 
 					uint8 data[4];
@@ -384,24 +382,21 @@ void CParty::RemovePartyLeader(CBattleEntity* PEntity)
 {
 	DSP_DEBUG_BREAK_IF(members.empty());
 
-	if (members.size() == 1)
-	{
-		DisbandParty();
-	}
+    int ret = Sql_Query(SqlHandle, "SELECT charname FROM accounts_sessions JOIN chars ON accounts_sessions.charid = chars.charid \
+                                    JOIN accounts_parties ON accounts_parties.charid = chars.charid WHERE partyid = %u AND NOT partyflag & %d \
+                                    ORDER BY timestamp ASC LIMIT 1;", m_PartyID, PARTY_LEADER);
+    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    {
+        SetLeader(Sql_GetData(SqlHandle, 0));
+    }
+    if (m_PLeader == PEntity)
+    {
+        DisbandParty();
+    }
     else
     {
-        int ret = Sql_Query(SqlHandle, "SELECT charname FROM accounts_sessions JOIN chars ON accounts_sessions.charid = chars.charid \
-                                       JOIN accounts_parties ON accounts_parties.charid = chars.charid WHERE partyid = %u ORDER BY timestamp ASC LIMIT 1;", m_PartyID);
-        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-        {
-            SetLeader(Sql_GetData(SqlHandle, 0));
-        }
-        else
-        {
-            DisbandParty();
-        }
         RemoveMember(PEntity);
-	}
+    }
 }
 
 /************************************************************************
@@ -424,7 +419,6 @@ void CParty::AddMember(CBattleEntity* PEntity, Sql_t* sql)
 
         CCharEntity* PChar = (CCharEntity*)PEntity;
 
-        Sql_Query(sql, "UPDATE accounts_sessions SET partyid = %u WHERE charid = %u;", m_PartyID, PChar->id);
         Sql_Query(sql, "INSERT INTO accounts_parties (charid, partyid, partyflag) VALUES (%u, %u, %u);", PChar->id, m_PartyID, GetMemberFlags(PChar));
 		uint8 data[4];
 		WBUFL(data, 0) = m_PartyID;
@@ -467,7 +461,6 @@ void CParty::AddMember(uint32 id, Sql_t* Sql)
 {
 	if (m_PartyType == PARTY_PCS)
 	{
-		Sql_Query(SqlHandle, "UPDATE accounts_sessions SET partyid = %u WHERE charid = %u;", m_PartyID, id);
 		Sql_Query(SqlHandle, "INSERT INTO accounts_parties (charid, partyid, partyflag) VALUES (%u, %u, %u);", id, m_PartyID, 0);
 		uint8 data[4];
 		WBUFL(data, 0) = m_PartyID;
@@ -893,7 +886,6 @@ void CParty::SetLeader(int8* MemberName)
             return;
         }
 
-		Sql_Query(SqlHandle,"UPDATE accounts_sessions SET partyid = %u WHERE partyid = %u", newId,  m_PartyID);
         Sql_Query(SqlHandle,"UPDATE accounts_parties SET partyflag = partyflag & ~%d WHERE partyid = %u AND partyflag & %d", PARTY_LEADER, m_PartyID, PARTY_LEADER);
         Sql_Query(SqlHandle, "UPDATE accounts_parties SET partyid = %u WHERE partyid = %u", newId, m_PartyID);
 

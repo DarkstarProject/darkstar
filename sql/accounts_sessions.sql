@@ -30,7 +30,6 @@ CREATE TABLE IF NOT EXISTS `accounts_sessions` (
   `accid` int(10) unsigned NOT NULL DEFAULT '0',
   `charid` int(10) unsigned NOT NULL DEFAULT '0',
   `targid` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `partyid` int(10) unsigned NOT NULL DEFAULT '0',
   `linkshellid` int(10) unsigned NOT NULL DEFAULT '0',
   `linkshellrank` smallint(5) unsigned NOT NULL DEFAULT '0',
   `session_key` binary(20) NOT NULL DEFAULT '\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0',

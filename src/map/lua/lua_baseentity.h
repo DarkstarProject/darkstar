@@ -591,6 +591,7 @@ public:
     int32 weaknessTrigger(lua_State* L);
     int32 setBehaviour(lua_State* L);
     int32 getBehaviour(lua_State* L);
+    int32 reloadParty(lua_State* L);
 };
 
 #endif

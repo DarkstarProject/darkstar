@@ -40,15 +40,17 @@ class CAlliance
 {
 public:
 
-	CAlliance(CBattleEntity* PEntity);
-	CAlliance(uint32 id, Sql_t* Sql = SqlHandle);
+    CAlliance(CBattleEntity* PEntity, Sql_t* Sql = SqlHandle);
+	CAlliance(uint32 id);
 
 	uint32  m_AllianceID;
 	CParty* getMainParty();
 	void setMainParty(CParty * aLeader);
-	void addParty(CParty * party);
+    void addParty(CParty * party, Sql_t* Sql = SqlHandle);
 	void addParty(uint32 partyid, Sql_t* Sql = SqlHandle);
+    void pushParty(CParty* PParty);
 	void removeParty(CParty * party);
+    void delParty(CParty* party);
 	void dissolveAlliance(void);
 	uint32 partyCount(void);
 

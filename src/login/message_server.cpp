@@ -103,7 +103,7 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
         case MSG_PT_RELOAD:
         case MSG_PT_DISBAND:
 		{
-			int8* query = "SELECT server_addr, server_port, MIN(charid) FROM accounts_sessions \
+			int8* query = "SELECT server_addr, server_port, MIN(charid) FROM accounts_sessions JOIN accounts_parties USING (charid) \
 							WHERE IF (allianceid <> 0, allianceid = %d, partyid = %d) GROUP BY server_addr, server_port; ";
 			uint32 partyid = RBUFL(extra->data(), 0);
 			ret = Sql_Query(ChatSqlHandle, query, partyid, partyid);

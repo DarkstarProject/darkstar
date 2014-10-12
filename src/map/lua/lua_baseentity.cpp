@@ -5234,7 +5234,7 @@ inline int32 CLuaBaseEntity::injectPacket(lua_State *L)
         fseek(File,1,SEEK_SET);
         uint16 returnSize = fread(&size,1,1,File);
 
-        if (size <= 128)
+        if (size <= 256)
         {
             fseek(File,0,SEEK_SET);
             uint16 read_elements = fread(PPacket,1,size*2,File);
@@ -9537,6 +9537,13 @@ inline int32 CLuaBaseEntity::getBehaviour(lua_State* L)
     return 1;
 }
 
+inline int32 CLuaBaseEntity::reloadParty(lua_State* L)
+{
+    ((CCharEntity*)m_PBaseEntity)->ReloadPartyInc();
+
+    return 0;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -9970,5 +9977,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,weaknessTrigger),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBehaviour),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setBehaviour),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,reloadParty),
     {NULL,NULL}
 };
