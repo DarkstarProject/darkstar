@@ -761,10 +761,10 @@ void CAIMobDummy::ActionAbilityStart()
             {
                 m_PBattleSubTarget = m_PBattleTarget;
             }
-        }
 
-        // set param so 2hour can be customized
-        m_PMobSkill->setParam(m_PMob->getMobMod(MOBMOD_MAIN_2HOUR));
+            // set param so 2hour can be customized
+            m_PMobSkill->setParam(m_PMob->getMobMod(MOBMOD_MAIN_2HOUR));
+        }
 
         valid = (m_PMobSkill != NULL && luautils::OnMobSkillCheck(m_PBattleSubTarget, m_PMob, m_PMobSkill) == 0);
 
@@ -802,10 +802,10 @@ void CAIMobDummy::ActionAbilityStart()
             {
                 m_PBattleSubTarget = m_PBattleTarget;
             }
-        }
 
-        // set param so 2hour can be customized
-        m_PMobSkill->setParam(m_PMob->getMobMod(MOBMOD_SUB_2HOUR));
+            // set param so 2hour can be customized
+            m_PMobSkill->setParam(m_PMob->getMobMod(MOBMOD_SUB_2HOUR));
+        }
 
         valid = (m_PMobSkill != NULL && luautils::OnMobSkillCheck(m_PBattleSubTarget, m_PMob, m_PMobSkill) == 0);
 
