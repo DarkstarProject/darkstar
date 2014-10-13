@@ -37,6 +37,8 @@
 #include "../ai/ai_mob_dummy.h"
 #include <vector>
 
+#include "../map.h"
+
 namespace mobutils
 {
 	ModsMap_t mobFamilyModsList;
@@ -795,6 +797,36 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
 		// no gil drop and no mugging!
 		PMob->setMobMod(MOBMOD_GIL_MAX, -1);
 		PMob->setMobMod(MOBMOD_MUG_GIL, -1);
+	}
+	else if (map_config.all_mobs_drop_gil == 1)
+	{
+		if (PMob->getMobMod(MOBMOD_GIL_MIN) < 10)
+		{
+		
+		/*
+		// Values you want x20 = number you place here (approximation, it will vary).
+			if (PMob->GetSLevel() <= 10)
+			{
+				PMob->setMobMod(MOBMOD_GIL_MIN, 500);
+				PMob->setMobMod(MOBMOD_GIL_MAX, 500);
+				PMob->setMobMod(MOBMOD_MUG_GIL, 500);
+			}
+			else if (PMob->GetSLevel() > 10)
+			{
+				PMob->setMobMod(MOBMOD_GIL_MIN, 2500);
+				PMob->setMobMod(MOBMOD_GIL_MAX, 2500);
+				PMob->setMobMod(MOBMOD_MUG_GIL, 2500);
+			}
+			else if (PMob->GetSLevel() > 50)
+			{
+				PMob->setMobMod(MOBMOD_GIL_MIN, 4000);
+				PMob->setMobMod(MOBMOD_GIL_MAX, 4000);
+				PMob->setMobMod(MOBMOD_MUG_GIL, 4000);
+			}
+			// else
+			// placeholder for more
+			*/
+		}
 	}
 
 	// add two hours

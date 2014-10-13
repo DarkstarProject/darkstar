@@ -24,7 +24,7 @@
 #include "../../common/timer.h"
 
 #include <string.h>
-
+#include "../map.h"
 #include "mobentity.h"
 
 CMobEntity::CMobEntity()
@@ -134,7 +134,8 @@ uint32 CMobEntity::GetRandomGil()
 
     int16 min = getMobMod(MOBMOD_GIL_MIN);
     int16 max = getMobMod(MOBMOD_GIL_MAX);
-
+	uint8 lvl = m_maxLevel;
+	
     if(min && max)
     {
         // make sure divide won't crash server
@@ -187,13 +188,16 @@ uint32 CMobEntity::GetRandomGil()
         gil = min;
     }
 
+	//Multiples gil amount by level of mob
+	gil = gil*(1+(lvl*0.2)); // may need to adjust the 0.01
+
     return gil;
 }
 
 bool CMobEntity::CanDropGil()
 {
     // smaller than 0 means drop no gil
-    if(getMobMod(MOBMOD_GIL_MAX) < 0) return false;
+    if(getMobMod(MOBMOD_GIL_MAX) < 0) return true;
 
     if(getMobMod(MOBMOD_GIL_MIN) > 0 || getMobMod(MOBMOD_GIL_MAX))
     {

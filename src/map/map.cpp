@@ -866,6 +866,8 @@ int32 map_config_default()
 	map_config.craft_direction_matters = 0;
     map_config.mob_tp_multiplier = 1.0f;
     map_config.player_tp_multiplier = 1.0f;
+	map_config.engage_delay_mod = 1.0f;
+	map_config.all_mobs_drop_gil = 0;
     map_config.vanadiel_time_offset = 0;
     map_config.lightluggage_block = 4;
     map_config.max_time_lastupdate = 60000;
@@ -965,6 +967,10 @@ int32 map_config_read(const int8* cfgName)
         {
             map_config.fov_party_gap_penalties = atof(w2);
         }
+		else if (strcmp(w1,"engage_delay_mod") == 0)
+        {
+			map_config.engage_delay_mod = atoi(w2);
+		}
 		else if (strcmp(w1,"fov_allow_alliance") == 0)
         {
             map_config.fov_allow_alliance = atof(w2);
@@ -996,6 +1002,10 @@ int32 map_config_read(const int8* cfgName)
 		else if (strcmp(w1,"drop_rate_multiplier") == 0)
         {
             map_config.drop_rate_multiplier = atof(w2);
+        }
+        else if (strcmp(w1,"all_mobs_drop_gil") == 0)
+        {
+            map_config.all_mobs_drop_gil = atof(w2);
         }
 		else if (strcmp(w1,"exp_retain") == 0)
         {

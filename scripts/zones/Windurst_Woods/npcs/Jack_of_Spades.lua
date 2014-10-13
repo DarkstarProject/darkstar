@@ -50,7 +50,13 @@ function onEventFinish(player,csid,option)
 	if (csid == 0x271a) then
 		player:tradeComplete();
 		player:addGil(GIL_RATE*50);
-	end 
+		player:addKeyItem(8);
+		player:addKeyItem(9);
+		player:addKeyItem(138);
+		player:messageSpecial(KEYITEM_OBTAINED,8);
+		player:messageSpecial(KEYITEM_OBTAINED,9);
+		player:messageSpecial(KEYITEM_OBTAINED,138);
+	end
 end;
 
 

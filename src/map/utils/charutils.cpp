@@ -2846,7 +2846,6 @@ void DistributeGil(CCharEntity* PChar, CMobEntity* PMob)
     //work out the amount of gil to give (guessed; replace with testing)
     uint32 gil = PMob->GetRandomGil();
 
-
 	//distribute to said members (perhaps store pointers to each member in first loop?)
 	if (PChar->PParty != NULL)
 	{
