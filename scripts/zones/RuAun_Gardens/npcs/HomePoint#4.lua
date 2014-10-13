@@ -27,7 +27,7 @@ function onTrigger(player,npc)
 	end
 	if(HOMEPOINT_TELEPORT == 1)then
 		--                       ?/1-Ru'lude5 /Lude-Ru'Aun/Tav-end/     ?/Gil /Expantion level/Registered   
-		player:startEvent(0x21ff,7,player:getVar("hpmask1"),player:getVar("hpmask2"),player:getVar("hpmask3"),40,player:getGil(),4095,  addtohps(player,2,30));
+		player:startEvent(0x21ff,addtohps(player,2,30),player:getVar("hpmask1"),player:getVar("hpmask2"),player:getVar("hpmask3"),player:getVar("hpmask4"),player:getGil(),4095,62);
 	else
 		player:startEvent(0x21ff)
 	end
