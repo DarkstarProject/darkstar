@@ -4,21 +4,21 @@ function addtohps(player,mask,num)
 		local hps = player:getVar("hpmask1")
 		if (bit.band(hps, bit.lshift(1, (num))) == 0)then
 			player:setVar("hpmask1",bit.bor(hps, bit.lshift(1, (num))))
-			return 65536
+			return 1
 		end
 	end
 	if(mask == 2) then
 		local hps = player:getVar("hpmask2")
 		if (bit.band(hps, bit.lshift(1, (num))) == 0)then
 			player:setVar("hpmask2",bit.bor(hps, bit.lshift(1, (num))))
-			return 65536
+			return 1
 		end
 	end
 	if(mask == 3) then
 		local hps = player:getVar("hpmask3")
 		if (bit.band(hps, bit.lshift(1, (num))) == 0)then
 			player:setVar("hpmask3",bit.bor(hps, bit.lshift(1, (num))))
-			return 65536
+			return 1
 		end
 	end
 	return 0;

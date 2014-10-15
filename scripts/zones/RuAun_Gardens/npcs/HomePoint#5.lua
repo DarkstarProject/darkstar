@@ -26,7 +26,7 @@ function onTrigger(player,npc)
 		player:addMP(player:getMaxMP());
 	end
 	if(HOMEPOINT_TELEPORT == 1)then
-		player:startEvent(0x21ff,0,player:getVar("hpmask1"),player:getVar("hpmask2"),player:getVar("hpmask3"),player:getVar("hpmask4"),player:getGil(),4095,63 + addtohps(player,2,31));
+		player:startEvent(0x21ff,addtohps(player,2,31),player:getVar("hpmask1"),player:getVar("hpmask2"),player:getVar("hpmask3"),player:getVar("hpmask4"),player:getGil(),4095,63);
 	else
 		player:startEvent(0x21ff)
 	end
