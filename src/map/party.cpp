@@ -61,6 +61,7 @@ CParty::CParty(CBattleEntity* PEntity, Sql_t* sql)
 
     m_PartyID   = PEntity->id;
     m_PartyType = PEntity->objtype == TYPE_PC ? PARTY_PCS : PARTY_MOBS;
+    m_PartyNumber = 0;
 
     m_PLeader       = NULL;
 	m_PAlliance		= NULL;
@@ -76,10 +77,11 @@ CParty::CParty(uint32 id)
 {
 	m_PartyID = id;
 	m_PartyType = PARTY_PCS;
+    m_PartyNumber = 0;
 
-	m_PLeader = NULL;
-	m_PAlliance = NULL;
-	m_PSyncTarget = NULL;
+	m_PLeader       = NULL;
+	m_PAlliance     = NULL;
+	m_PSyncTarget   = NULL;
 	m_PQuaterMaster = NULL;
 }
 
@@ -562,15 +564,12 @@ uint16 CParty::GetMemberFlags(CBattleEntity* PEntity)
 	{
 		if (PEntity == m_PLeader && PEntity->PParty->m_PAlliance->getMainParty() == PEntity->PParty)
 			Flags |= ALLIANCE_LEADER;
-
-		if (PEntity->PParty->m_PAlliance->partyList.size() > 1)
-			if (PEntity->PParty->m_PAlliance->partyList.at(1) == PEntity->PParty)
-				Flags += PARTY_SECOND;
-
-		if (PEntity->PParty->m_PAlliance->partyList.size() > 2)
-			if (PEntity->PParty->m_PAlliance->partyList.at(2) == PEntity->PParty)
-				Flags += PARTY_THIRD;
 	}
+
+    if (PEntity->PParty->m_PartyNumber == 1)
+        Flags += PARTY_SECOND;
+    else if (PEntity->PParty->m_PartyNumber == 2)
+        Flags += PARTY_THIRD;
 
     if (PEntity == m_PLeader)       Flags |= PARTY_LEADER;
 	if (PEntity == m_PQuaterMaster) Flags |= PARTY_QM;

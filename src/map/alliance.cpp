@@ -54,7 +54,7 @@ CAlliance::CAlliance(CBattleEntity* PEntity, Sql_t* Sql)
 
     addParty(PEntity->PParty, Sql);
 	this->aLeader = PEntity->PParty;
-
+    Sql_Query(SqlHandle, "UPDATE accounts_parties SET partyflag = partyflag | %d WHERE partyid = %u AND partyflag & %d;", ALLIANCE_LEADER, m_AllianceID, PARTY_LEADER);
 }
 
 CAlliance::CAlliance(uint32 id)
@@ -211,20 +211,35 @@ void CAlliance::delParty(CParty* party)
             ((CCharEntity*)PChar->PParty->GetLeader())->PTreasurePool->UpdatePool(PChar);
         }
     }
-    Sql_Query(SqlHandle, "UPDATE accounts_parties SET allianceid = 0 WHERE partyid = %u", party->GetPartyID());
+    Sql_Query(SqlHandle, "UPDATE accounts_parties SET allianceid = 0, partyflag = partyflag & ^%d WHERE partyid = %u;", PARTY_SECOND | PARTY_THIRD, party->GetPartyID());
 }
 
 void CAlliance::addParty(CParty * party, Sql_t* Sql)
 {
 	party->m_PAlliance = this;
 	partyList.push_back(party);
-		
+	
+    int newparty = 0;
+
+    int ret = Sql_Query(Sql, "SELECT partyflag FROM accounts_parties WHERE allianceid = %d ORDER BY partyflag & %d ASC;", m_AllianceID, PARTY_SECOND | PARTY_THIRD);
+
+    if (ret != SQL_ERROR && Sql_NumRows(Sql) > 0)
+    {
+        while (Sql_NextRow(Sql) == SQL_SUCCESS)
+        {
+            if (Sql_GetUIntData(Sql, 0) & (PARTY_SECOND | PARTY_THIRD) == newparty)
+            {
+                newparty++;
+            }
+        }
+    }
+
 	for (uint8 i = 0; i < party->members.size(); ++i)
 	{
 		party->ReloadTreasurePool((CCharEntity*)party->members.at(i));
 		charutils::SaveCharStats((CCharEntity*)party->members.at(i));
 	}
-	Sql_Query(Sql, "UPDATE accounts_parties SET allianceid = %u WHERE partyid = %u", m_AllianceID, party->GetPartyID());
+    Sql_Query(Sql, "UPDATE accounts_parties SET allianceid = %u, partyflag = partyflag | %d WHERE partyid = %u;", m_AllianceID, newparty, party->GetPartyID());
 
 	uint8 data[4];
 	WBUFL(data, 0) = m_AllianceID;
@@ -234,8 +249,24 @@ void CAlliance::addParty(CParty * party, Sql_t* Sql)
 
 void CAlliance::addParty(uint32 partyid, Sql_t* Sql)
 {
-	Sql_Query(Sql, "UPDATE accounts_parties SET allianceid = %u WHERE partyid = %u", m_AllianceID, partyid);
-	uint8 data[4];
+    int newparty = 0;
+
+    int ret = Sql_Query(Sql, "SELECT partyflag FROM accounts_parties WHERE allianceid = %d ORDER BY partyflag & %d ASC;", m_AllianceID, PARTY_SECOND | PARTY_THIRD);
+
+    if (ret != SQL_ERROR && Sql_NumRows(Sql) > 0)
+    {
+        while (Sql_NextRow(Sql) == SQL_SUCCESS)
+        {
+            uint8 partyflag = Sql_GetUIntData(Sql, 0);
+            uint8 oldparty = partyflag & (PARTY_SECOND | PARTY_THIRD);
+            if (oldparty == newparty)
+            {
+                newparty++;
+            }
+        }
+    }
+    Sql_Query(Sql, "UPDATE accounts_parties SET allianceid = %u, partyflag = partyflag | %d WHERE partyid = %u;", m_AllianceID, newparty, partyid);
+    uint8 data[4];
 	WBUFL(data, 0) = m_AllianceID;
     message::send(message::MSG_PT_RELOAD, data, sizeof data, NULL);
 }

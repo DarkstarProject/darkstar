@@ -102,6 +102,7 @@ private:
 	
     uint32    m_PartyID;                                // уникальный ID группы
     PARTYTYPE m_PartyType;                              // тип существ, составляющих группу
+    uint8     m_PartyNumber;                            // party number in alliance
 	
 	CBattleEntity* m_PLeader;                           // лидер группы
 	CBattleEntity* m_PSyncTarget;                       // цель синхронизации уровней
