@@ -856,7 +856,7 @@ int32 map_config_default()
     map_config.level_sync_enable = 0;
     map_config.all_jobs_widescan = 1;
     map_config.speed_mod = 0;
-    map_config.MOB_speed_mod = 0;
+    map_config.mob_speed_mod = 0;
     map_config.skillup_chance_multiplier = 2.5f;
     map_config.craft_chance_multiplier = 2.6f;
 	map_config.skillup_amount_multiplier = 1;
@@ -866,10 +866,25 @@ int32 map_config_default()
 	map_config.craft_direction_matters = 0;
     map_config.mob_tp_multiplier = 1.0f;
     map_config.player_tp_multiplier = 1.0f;
+    map_config.mob_tp_multiplier = 1.0f;
+    map_config.player_tp_multiplier = 1.0f;
+    map_config.nm_hp_multiplier = 1.0f;
+    map_config.mob_hp_multiplier = 1.0f;
+    map_config.player_mp_multiplier = 1.0f;
+    map_config.sj_mp_divisor = 2.0f;
+    map_config.nm_mp_multiplier = 1.0f;
+    map_config.mob_mp_multiplier = 1.0f;
+    map_config.player_mp_multiplier = 1.0f;
+    map_config.nm_stat_multiplier = 1.0f;
+    map_config.mob_stat_multiplier = 1.0f;
+    map_config.player_stat_multiplier = 1.0f;
     map_config.vanadiel_time_offset = 0;
     map_config.lightluggage_block = 4;
     map_config.max_time_lastupdate = 60000;
     map_config.newstyle_skillups = 7;
+    map_config.drop_rate_multiplier = 1.0f;
+    map_config.all_mobs_gil_bonus = 0;
+    map_config.max_gil_bonus = 9999;
     map_config.Battle_cap_tweak = 0;
     map_config.CoP_Battle_cap = 1;
     map_config.max_merit_points = 30;
@@ -977,25 +992,57 @@ int32 map_config_read(const int8* cfgName)
         {
             map_config.player_tp_multiplier = atof(w2);
         }
-		else if (strcmp(w1,"mob_hp_multiplier") == 0)
+        else if (strcmp(w1,"nm_hp_multiplier") == 0)
+        {
+            map_config.nm_hp_multiplier = atoi(w2);
+        }
+        else if (strcmp(w1,"mob_hp_multiplier") == 0)
         {
             map_config.mob_hp_multiplier = atof(w2);
-	}
-		else if (strcmp(w1,"player_hp_multiplier") == 0)
+        }
+        else if (strcmp(w1,"player_hp_multiplier") == 0)
         {
             map_config.player_hp_multiplier = atof(w2);
         }
-		else if (strcmp(w1,"mob_mp_multiplier") == 0)
+        else if (strcmp(w1,"nm_mp_multiplier") == 0)
+        {
+            map_config.nm_mp_multiplier = atoi(w2);
+        }
+        else if (strcmp(w1,"mob_mp_multiplier") == 0)
         {
             map_config.mob_mp_multiplier = atof(w2);
-	}
-		else if (strcmp(w1,"player_mp_multiplier") == 0)
+        }
+        else if (strcmp(w1,"player_mp_multiplier") == 0)
         {
             map_config.player_mp_multiplier = atof(w2);
         }
-		else if (strcmp(w1,"drop_rate_multiplier") == 0)
+        else if (strcmp(w1,"sj_mp_divisor") == 0)
+        {
+            map_config.sj_mp_divisor = atof(w2);
+        }
+        else if (strcmp(w1,"nm_stat_multiplier") == 0)
+        {
+            map_config.nm_stat_multiplier = atof(w2);
+        }
+        else if (strcmp(w1,"mob_stat_multiplier") == 0)
+        {
+            map_config.mob_stat_multiplier = atof(w2);
+        }
+        else if (strcmp(w1,"player_stat_multiplier") == 0)
+        {
+            map_config.player_stat_multiplier = atof(w2);
+        }
+        else if (strcmp(w1,"drop_rate_multiplier") == 0)
         {
             map_config.drop_rate_multiplier = atof(w2);
+        }
+        else if (strcmp(w1,"all_mobs_gil_bonus") == 0)
+        {
+            map_config.all_mobs_gil_bonus = atoi(w2);
+        }
+        else if (strcmp(w1,"max_gil_bonus") == 0)
+        {
+            map_config.max_gil_bonus = atoi(w2);
         }
 		else if (strcmp(w1,"exp_retain") == 0)
         {
@@ -1017,9 +1064,9 @@ int32 map_config_read(const int8* cfgName)
         {
             map_config.speed_mod = atoi(w2);
         }
-        else if (strcmp(w1,"MOB_speed_mod") == 0)
+        else if (strcmp(w1,"mob_speed_mod") == 0)
         {
-            map_config.MOB_speed_mod = atoi(w2);
+            map_config.mob_speed_mod = atoi(w2);
         }
         else if (strcmp(w1,"skillup_chance_multiplier") == 0)
         {
