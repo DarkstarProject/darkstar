@@ -866,15 +866,13 @@ int32 map_config_default()
 	map_config.craft_direction_matters = 0;
     map_config.mob_tp_multiplier = 1.0f;
     map_config.player_tp_multiplier = 1.0f;
-    map_config.mob_tp_multiplier = 1.0f;
-    map_config.player_tp_multiplier = 1.0f;
     map_config.nm_hp_multiplier = 1.0f;
     map_config.mob_hp_multiplier = 1.0f;
-    map_config.player_mp_multiplier = 1.0f;
-    map_config.sj_mp_divisor = 2.0f;
+    map_config.player_hp_multiplier = 1.0f;
     map_config.nm_mp_multiplier = 1.0f;
     map_config.mob_mp_multiplier = 1.0f;
     map_config.player_mp_multiplier = 1.0f;
+    map_config.sj_mp_divisor = 2.0f;
     map_config.nm_stat_multiplier = 1.0f;
     map_config.mob_stat_multiplier = 1.0f;
     map_config.player_stat_multiplier = 1.0f;
