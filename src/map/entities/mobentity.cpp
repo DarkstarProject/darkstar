@@ -189,8 +189,8 @@ uint32 CMobEntity::GetRandomGil()
     }
 
 	//Multiples gil amount by level of mob
-	gil = gil*(1+(lvl*0.2)); // may need to adjust the 0.01
-
+	gil = (gil * (1 + (lvl * 0.1))) + 50;
+	
     return gil;
 }
 
