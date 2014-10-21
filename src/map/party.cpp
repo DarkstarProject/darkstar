@@ -885,13 +885,16 @@ void CParty::SetLeader(int8* MemberName)
             return;
         }
 
-        Sql_Query(SqlHandle,"UPDATE accounts_parties SET partyflag = partyflag & ~%d WHERE partyid = %u AND partyflag & %d", PARTY_LEADER, m_PartyID, PARTY_LEADER);
+        Sql_Query(SqlHandle,"UPDATE accounts_parties SET partyflag = partyflag & ~%d WHERE partyid = %u AND partyflag & %d", ALLIANCE_LEADER | PARTY_LEADER, m_PartyID, PARTY_LEADER);
         Sql_Query(SqlHandle, "UPDATE accounts_parties SET partyid = %u WHERE partyid = %u", newId, m_PartyID);
+        Sql_Query(SqlHandle, "UPDATE accounts_parties SET allianceid = %u WHERE allianceid = %u", newId, m_PartyID);
 
         m_PLeader = GetMemberByName(MemberName);
         m_PartyID = newId;
+        if (this->m_PAlliance)
+            m_PAlliance->m_AllianceID = newId;
 
-		Sql_Query(SqlHandle, "UPDATE accounts_parties SET partyflag = partyflag | %d WHERE charid = %u", PARTY_LEADER, m_PartyID);
+		Sql_Query(SqlHandle, "UPDATE accounts_parties SET partyflag = partyflag | IF(allianceid = partyid, %d, %d) WHERE charid = %u", ALLIANCE_LEADER | PARTY_LEADER, PARTY_LEADER, m_PartyID);
     }
 }
 
@@ -1078,4 +1081,9 @@ void CParty::RefreshSync()
         member->pushPacket(new CMessageBasicPacket(member, member, 0, syncLevel, 540));
 	}
     m_PSyncTarget = sync;
+}
+
+void CParty::SetPartyNumber(uint8 number)
+{
+    m_PartyNumber = number;
 }

@@ -62,22 +62,24 @@ CAlliance::CAlliance(uint32 id)
 	m_AllianceID = id;
 }
 
-void CAlliance::dissolveAlliance(void) 
+void CAlliance::dissolveAlliance(bool playerInitiated, Sql_t* sql) 
 {
 	//first kick out the third party if it exsists
 	if (this->partyCount() == 3)
-		this->removeParty(this->partyList.at(2));
+		this->delParty(this->partyList.at(2));
 
 	//kick out the second party
-	this->removeParty(this->partyList.at(1));
+    if (this->partyCount() == 2)
+        this->delParty(this->partyList.at(1));
 
 	CParty* party = this->partyList.at(0);
 	this->partyList.clear();
 
 	party->m_PAlliance = NULL;
-			 
+    
+    Sql_Query(SqlHandle, "UPDATE accounts_parties SET allianceid = 0, partyflag = partyflag & ~%d WHERE allianceid = %u;", ALLIANCE_LEADER | PARTY_SECOND | PARTY_THIRD, m_AllianceID);
 	uint8 data[4];
-	WBUFL(data, 0) = m_AllianceID;
+    WBUFL(data, 0) = party->GetPartyID();
     message::send(message::MSG_PT_RELOAD, data, sizeof data, NULL);
 
 	delete this;
@@ -92,65 +94,16 @@ uint32 CAlliance::partyCount(void)
 
 void CAlliance::removeParty(CParty * party) 
 {
-	CAlliance* alliance = party->m_PAlliance;
-	bool mainPartyDisbanding = false;
+    delParty(party);
 
-	//if main party then pass alliance lead to the next (d/c fix)
-	if(alliance->getMainParty() == party){
-		mainPartyDisbanding = true;}
-
-	//delete the party from the alliance list
-	for (uint8 i = 0; i < party->m_PAlliance->partyList.size(); ++i) 
-	{
-		if (party == party->m_PAlliance->partyList.at(i)) 
-			party->m_PAlliance->partyList.erase(partyList.begin()+i);
-	}
-
-	party->m_PAlliance = NULL;
-
-	//update the remaining members of the alliance to show the party left
-	if (alliance != NULL)
-	{
-		//if main party was removed then pass alliance leader
-		if(mainPartyDisbanding == true){
-			alliance->aLeader = alliance->partyList.at(0);
-			alliance->partyList.at(0)->GetMemberFlags(alliance->partyList.at(0)->GetLeader());
-		}
-	}
-
-	//remove party members from the alliance treasure pool
-	for (uint8 i = 0; i < party->members.size(); ++i) 
-	{
-		CCharEntity* PChar = (CCharEntity*)party->members.at(i);
-
-		if (PChar->PTreasurePool != NULL && 
-            PChar->PTreasurePool->GetPoolType() != TREASUREPOOL_ZONE)
-		{
-			PChar->PTreasurePool->DelMember(PChar); 
-		}
-	}
-
-	CCharEntity* PChar = (CCharEntity*)party->GetLeader();
-	PChar->PTreasurePool = new CTreasurePool(TREASUREPOOL_PARTY);
-	PChar->PTreasurePool->AddMember(PChar);
-    PChar->PTreasurePool->UpdatePool(PChar);
-
-	for (uint8 i = 0; i < party->members.size(); ++i) 
-	{
-		CCharEntity* PChar = (CCharEntity*)party->members.at(i);
-		party->ReloadPartyMembers((CCharEntity*)party->members.at(i));
-
-		if (PChar->PParty->GetLeader() != PChar)
-		{
-			PChar->PTreasurePool = ((CCharEntity*)PChar->PParty->GetLeader())->PTreasurePool;
-			((CCharEntity*)PChar->PParty->GetLeader())->PTreasurePool->AddMember(PChar);
-			((CCharEntity*)PChar->PParty->GetLeader())->PTreasurePool->UpdatePool(PChar);
-		}
-
-	}
+    Sql_Query(SqlHandle, "UPDATE accounts_parties SET allianceid = 0, partyflag = partyflag & ~%d WHERE partyid = %u;", ALLIANCE_LEADER | PARTY_SECOND | PARTY_THIRD, party->GetPartyID());
 	uint8 data[4];
 	WBUFL(data, 0) = m_AllianceID;
     message::send(message::MSG_PT_RELOAD, data, sizeof data, NULL);
+
+    uint8 data2[4];
+    WBUFL(data2, 0) = party->GetPartyID();
+    message::send(message::MSG_PT_RELOAD, data2, sizeof data2, NULL);
 }
 
 void CAlliance::delParty(CParty* party)
@@ -171,6 +124,7 @@ void CAlliance::delParty(CParty* party)
     }
 
     party->m_PAlliance = NULL;
+    party->SetPartyNumber(0);
 
     //update the remaining members of the alliance to show the party left
     if (alliance != NULL)
@@ -202,7 +156,7 @@ void CAlliance::delParty(CParty* party)
     for (uint8 i = 0; i < party->members.size(); ++i)
     {
         CCharEntity* PChar = (CCharEntity*)party->members.at(i);
-        party->ReloadPartyMembers((CCharEntity*)party->members.at(i));
+        //party->ReloadPartyMembers((CCharEntity*)party->members.at(i));
 
         if (PChar->PParty->GetLeader() != PChar)
         {
@@ -211,7 +165,6 @@ void CAlliance::delParty(CParty* party)
             ((CCharEntity*)PChar->PParty->GetLeader())->PTreasurePool->UpdatePool(PChar);
         }
     }
-    Sql_Query(SqlHandle, "UPDATE accounts_parties SET allianceid = 0, partyflag = partyflag & ^%d WHERE partyid = %u;", PARTY_SECOND | PARTY_THIRD, party->GetPartyID());
 }
 
 void CAlliance::addParty(CParty * party, Sql_t* Sql)
@@ -240,6 +193,7 @@ void CAlliance::addParty(CParty * party, Sql_t* Sql)
 		charutils::SaveCharStats((CCharEntity*)party->members.at(i));
 	}
     Sql_Query(Sql, "UPDATE accounts_parties SET allianceid = %u, partyflag = partyflag | %d WHERE partyid = %u;", m_AllianceID, newparty, party->GetPartyID());
+    party->SetPartyNumber(newparty);
 
 	uint8 data[4];
 	WBUFL(data, 0) = m_AllianceID;
@@ -271,10 +225,11 @@ void CAlliance::addParty(uint32 partyid, Sql_t* Sql)
     message::send(message::MSG_PT_RELOAD, data, sizeof data, NULL);
 }
 
-void CAlliance::pushParty(CParty* PParty)
+void CAlliance::pushParty(CParty* PParty, uint8 number)
 {
     PParty->m_PAlliance = this;
     partyList.push_back(PParty);
+    PParty->SetPartyNumber(number);
 
     for (uint8 i = 0; i < PParty->members.size(); ++i)
     {
@@ -291,8 +246,5 @@ CParty* CAlliance::getMainParty()
 //Assigns a party leader for the party
 void CAlliance::setMainParty(CParty * aLeader) 
 {
-	//Having no leader is bad so lets check if the pointer is not null.
-	if (aLeader != NULL) {
-		this->aLeader = aLeader;
-	}
+	this->aLeader = aLeader;
 }

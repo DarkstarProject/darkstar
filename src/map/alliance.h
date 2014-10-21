@@ -48,10 +48,10 @@ public:
 	void setMainParty(CParty * aLeader);
     void addParty(CParty * party, Sql_t* Sql = SqlHandle);
 	void addParty(uint32 partyid, Sql_t* Sql = SqlHandle);
-    void pushParty(CParty* PParty);
+    void pushParty(CParty* PParty, uint8 number);
 	void removeParty(CParty * party);
     void delParty(CParty* party);
-	void dissolveAlliance(void);
+    void dissolveAlliance(bool playerInitiated = true, Sql_t* sql = SqlHandle);
 	uint32 partyCount(void);
 
 	std::vector<CParty*> partyList; //list of parties in alliance

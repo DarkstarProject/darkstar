@@ -88,6 +88,7 @@ public:
     void DisableSync();
     void SetSyncTarget(int8* MemberName, uint16 message);         // устанавливаем цель синхронизации уровней3
     void RefreshSync();
+    void SetPartyNumber(uint8 number);
 
     void PushPacket(uint32 senderID, uint16 ZoneID, CBasicPacket* packet);		// отправляем пакет всем членам группы, за исключением PPartyMember
 	

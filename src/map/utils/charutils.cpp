@@ -4632,23 +4632,26 @@ void ClearTempItems(CCharEntity* PChar)
 
 void ReloadParty(CCharEntity* PChar)
 {
-	int ret = Sql_Query(SqlHandle, "SELECT partyid, allianceid FROM accounts_sessions s JOIN accounts_parties p ON \
-                                    s.charid = p.charid WHERE p.charid = %u;", PChar->id);
+	int ret = Sql_Query(SqlHandle, "SELECT partyid, allianceid, partyflag & %d FROM accounts_sessions s JOIN accounts_parties p ON \
+                                    s.charid = p.charid WHERE p.charid = %u;", (PARTY_SECOND | PARTY_THIRD), PChar->id);
 	if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 	{
         uint32 partyid = Sql_GetUIntData(SqlHandle, 0);
         uint32 allianceid = Sql_GetUIntData(SqlHandle, 1);
+        uint32 partynumber = Sql_GetUIntData(SqlHandle, 2);
 
+        //first, parties and alliances must be created or linked if the character's current party has changed
+        // for example, joining a party from another server
 		if (PChar->PParty)
 		{
             if (PChar->PParty->GetPartyID() != partyid)
             {
                 PChar->PParty->SetPartyID(partyid);
             }
-            PChar->PParty->ReloadParty();
 		}
         else
         {
+            //find if party exists on this server already
             CParty* PParty = NULL;
             zoneutils::ForEachZone([partyid, &PParty](CZone* PZone)
             {
@@ -4661,19 +4664,27 @@ void ReloadParty(CCharEntity* PChar)
                 });
             });
 
+            //create new party if it doesn't exist already
             if (!PParty)
             {
                 PParty = new CParty(partyid);
             }
                 
             PParty->PushMember(PChar);
-            PParty->ReloadParty();
         }
 
         if (allianceid != 0)
         {
-            if (!PChar->PParty->m_PAlliance)
+            if (PChar->PParty->m_PAlliance)
             {
+                if (PChar->PParty->m_PAlliance->m_AllianceID != allianceid)
+                {
+                    PChar->PParty->m_PAlliance->m_AllianceID = allianceid;
+                }
+            }
+            else
+            {
+                //find if the alliance exists on this server already
                 CAlliance* PAlliance = NULL;
                 zoneutils::ForEachZone([allianceid, &PAlliance](CZone* PZone)
                 {
@@ -4686,22 +4697,31 @@ void ReloadParty(CCharEntity* PChar)
                     });
                 });
 
+                //create new alliance if it doesn't exist on this server already
                 if (!PAlliance)
                 {
                     PAlliance = new CAlliance(allianceid);
                 }
 
-                PAlliance->pushParty(PChar->PParty);
-
-                for (auto party : PAlliance->partyList)
-                {
-                    party->ReloadParty();
-                }
+                PAlliance->pushParty(PChar->PParty, partynumber);
             }
         }
         else if (PChar->PParty->m_PAlliance)
         {
             PChar->PParty->m_PAlliance->delParty(PChar->PParty);
+        }
+
+        //once parties and alliances have been reassembled, reload the party/parties
+        if (PChar->PParty->m_PAlliance)
+        {
+            for (auto party : PChar->PParty->m_PAlliance->partyList)
+            {
+                party->ReloadParty();
+            }
+        }
+        else
+        {
+            PChar->PParty->ReloadParty();
         }
 	}
 	else
