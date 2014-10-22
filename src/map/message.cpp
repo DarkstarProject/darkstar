@@ -341,7 +341,14 @@ namespace message
                 {
                     if (PChar->PParty)
                     {
-                        PChar->PParty->DisbandParty(false, ChatSqlHandle);
+                        if (PChar->PParty->m_PAlliance)
+                        {
+                            PChar->PParty->m_PAlliance->dissolveAlliance(false, ChatSqlHandle);
+                        }
+                        else
+                        {
+                            PChar->PParty->DisbandParty(false, ChatSqlHandle);
+                        }
                     }
                 }
             }

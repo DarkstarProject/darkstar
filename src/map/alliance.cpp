@@ -63,26 +63,59 @@ CAlliance::CAlliance(uint32 id)
 }
 
 void CAlliance::dissolveAlliance(bool playerInitiated, Sql_t* sql) 
-{
-	//first kick out the third party if it exsists
-	if (this->partyCount() == 3)
-		this->delParty(this->partyList.at(2));
+{   
+    if (playerInitiated)
+    {
+        //Sql_Query(SqlHandle, "UPDATE accounts_parties SET allianceid = 0, partyflag = partyflag & ~%d WHERE allianceid = %u;", ALLIANCE_LEADER | PARTY_SECOND | PARTY_THIRD, m_AllianceID);
+        uint8 data[4];
+        WBUFL(data, 0) = m_AllianceID;
+        message::send(message::MSG_PT_DISBAND, data, sizeof data, NULL);
+    }
+    else
+    {
+        Sql_Query(sql, "UPDATE accounts_parties JOIN accounts_sessions USING (charid) \
+                        SET allianceid = 0, partyflag = partyflag & ~%d \
+                        WHERE allianceid = %u AND IF(%u = 0 AND %u = 0, true, server_addr = %u AND server_port = %u);", 
+                        ALLIANCE_LEADER | PARTY_SECOND | PARTY_THIRD, m_AllianceID, map_ip, map_port, map_ip, map_port);
+        //first kick out the third party if it exsists
+        CParty* party = NULL;
+        if (this->partyCount() == 3)
+        {
+            party = this->partyList.at(2);
+            this->delParty(party);
+            for (auto PChar : party->members)
+            {
+                
+            }
+            party->ReloadParty();
+        }
 
-	//kick out the second party
-    if (this->partyCount() == 2)
-        this->delParty(this->partyList.at(1));
+        //kick out the second party
+        if (this->partyCount() == 2)
+        {
+            party = this->partyList.at(1);
+            this->delParty(party);
+            for (auto PChar : party->members)
+            {
+                Sql_Query(sql, "UPDATE accounts_parties SET allianceid = 0, partyflag = partyflag & ~%d WHERE charid = %u", ALLIANCE_LEADER | PARTY_SECOND | PARTY_THIRD, PChar->id);
+            }
+            party->ReloadParty();
+        }
 
-	CParty* party = this->partyList.at(0);
-	this->partyList.clear();
+        party = this->partyList.at(0);
+        this->partyList.clear();
 
-	party->m_PAlliance = NULL;
-    
-    Sql_Query(SqlHandle, "UPDATE accounts_parties SET allianceid = 0, partyflag = partyflag & ~%d WHERE allianceid = %u;", ALLIANCE_LEADER | PARTY_SECOND | PARTY_THIRD, m_AllianceID);
-	uint8 data[4];
-    WBUFL(data, 0) = party->GetPartyID();
-    message::send(message::MSG_PT_RELOAD, data, sizeof data, NULL);
+        party->m_PAlliance = NULL;
 
-	delete this;
+        for (auto PChar : party->members)
+        {
+            Sql_Query(sql, "UPDATE accounts_parties SET allianceid = 0, partyflag = partyflag & ~%d WHERE charid = %u", ALLIANCE_LEADER | PARTY_SECOND | PARTY_THIRD, PChar->id);
+        }
+
+        party->ReloadParty();
+
+        delete this;
+    }
 }
 
 
