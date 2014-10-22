@@ -605,8 +605,6 @@ public:
     bool        isAoE();
     bool        isConal();
 
-    void        resetMsg();
-
 	uint16		getID();
 	JOBTYPE		getJob();
 	uint8		getLevel();
@@ -617,7 +615,6 @@ public:
 	uint8		getAddType();
     uint16      getMessage();
     uint16      getAoEMsg();
-    uint16      getDefaultMessage();
 	uint16		getRecastTime();
 	uint16		getRecastId();
 	uint16		getCE();
@@ -633,7 +630,6 @@ public:
 	void		setValidTarget(uint8 validTarget);
 	void		setAddType(uint8 addtype);
     void        setMessage(uint16 message);
-    void        setDefaultMessage(uint16 message);
 	void		setRecastTime(uint16 recastTime);
 	void		setRecastId(uint16 recastId);
 	void		setCE(uint16 CE);
@@ -654,7 +650,6 @@ private:
 	uint8		m_validTarget;
 	uint8		m_addType;
     uint16      m_message;
-	uint16		m_DefaultMessage;
 	uint16		m_recastTime;
 	uint16		m_recastId;
 	uint16		m_CE;

@@ -130,8 +130,8 @@ void CAIPetDummy::ActionAbilityStart()
 				int maxSearch = 10;
 				// keep looking for an ability until one is valid
 				do {
-					m_PMobSkill = MobSkills.at(rand() % MobSkills.size());
-				} while(luautils::OnMobSkillCheck(m_PBattleTarget, m_PPet, m_PMobSkill) != 0 && maxSearch--);
+					SetCurrentMobSkill(MobSkills.at(rand() % MobSkills.size()));
+                } while (luautils::OnMobSkillCheck(m_PBattleTarget, m_PPet, GetCurrentMobSkill()) != 0 && maxSearch--);
 
 				// could not find skill
 				if(maxSearch == 0)
@@ -152,7 +152,7 @@ void CAIPetDummy::ActionAbilityStart()
 		if(m_MasterCommand==MASTERCOMMAND_SIC && m_PPet->health.tp>=1000 && m_PBattleTarget!=NULL){ //choose random tp move
 			m_MasterCommand = MASTERCOMMAND_NONE;
 			if(m_PPet->PetSkills.size()>0){
-				m_PMobSkill = m_PPet->PetSkills.at(rand() % m_PPet->PetSkills.size());
+				SetCurrentMobSkill(m_PPet->PetSkills.at(rand() % m_PPet->PetSkills.size()));
 				preparePetAbility(m_PBattleTarget);
 				return;
 			}
@@ -161,7 +161,7 @@ void CAIPetDummy::ActionAbilityStart()
 	else if(m_PPet->getPetType()==PETTYPE_AVATAR){
 		for(int i=0; i<m_PPet->PetSkills.size(); i++){
 			if(m_PPet->PetSkills[i]->getAnimationTime() == m_MasterCommand){
-				m_PMobSkill = m_PPet->PetSkills[i];
+                SetCurrentMobSkill(m_PPet->PetSkills[i]);
 				m_MasterCommand = MASTERCOMMAND_NONE;
 				preparePetAbility(m_PPet);
 				return;
@@ -184,7 +184,7 @@ void CAIPetDummy::ActionAbilityStart()
 				for(int i=0; i<m_PPet->PetSkills.size(); i++){
 					if(m_PPet->PetSkills[i]->getValidTargets() == TARGET_ENEMY){
 						if(hasSkipped == skip){
-							m_PMobSkill = m_PPet->PetSkills[i];
+                            SetCurrentMobSkill(m_PPet->PetSkills[i]);
 							break;
 						}
 						else{
@@ -238,17 +238,17 @@ void CAIPetDummy::ActionAbilityStart()
 					if(m_PPet->PetSkills[i]->getValidTargets() == TARGET_PLAYER_PARTY){
 						if(m_PPet->PetSkills[i]->getID()==638 &&
 							m_PPet->PMaster->GetMLevel() < 20){ //can only using hb1
-								m_PMobSkill = m_PPet->PetSkills[i];
+                                SetCurrentMobSkill(m_PPet->PetSkills[i]);
 								break;
 						}
 						else if(m_PPet->PetSkills[i]->getID()==639 &&
 							m_PPet->PMaster->GetMLevel() < 40){ //can only using hb2
-								m_PMobSkill = m_PPet->PetSkills[i];
+								SetCurrentMobSkill(m_PPet->PetSkills[i]);
 								break;
 						}
 						else if(m_PPet->PetSkills[i]->getID()==640 &&
 							m_PPet->PMaster->GetMLevel() >= 40){ //can only using hb3
-								m_PMobSkill = m_PPet->PetSkills[i];
+								SetCurrentMobSkill(m_PPet->PetSkills[i]);
 								break;
 						}
 					}
@@ -466,9 +466,9 @@ void CAIPetDummy::ActionAbilityFinish(){
 		m_PMobSkill->resetMsg();
 
 		if(m_PPet->isBstPet()){
-			Action.param = luautils::OnMobWeaponSkill(PTarget, m_PPet, m_PMobSkill);
+			Action.param = luautils::OnMobWeaponSkill(PTarget, m_PPet, GetCurrentMobSkill());
 		} else {
-			Action.param = luautils::OnPetAbility(PTarget, m_PPet, m_PMobSkill, m_PPet->PMaster);
+			Action.param = luautils::OnPetAbility(PTarget, m_PPet, GetCurrentMobSkill(), m_PPet->PMaster);
 		}
 
 		if(msg == 0){
@@ -589,7 +589,7 @@ void CAIPetDummy::ActionRoaming()
 	{
 		int16 spellID = 108;
 		// define this so action picks it up
-		m_PSpell = spell::GetSpell(spellID);
+		SetCurrentSpell(spellID);
 		m_PBattleSubTarget = m_PPet->PMaster;
 
 		m_ActionType = ACTION_MAGIC_START;
@@ -939,7 +939,7 @@ void CAIPetDummy::ActionMagicStart()
 	m_LastActionTime = m_Tick;
 	m_LastMagicTime = m_Tick;
 
-	STATESTATUS status = m_PMagicState->CastSpell(m_PSpell, m_PBattleSubTarget);
+	STATESTATUS status = m_PMagicState->CastSpell(GetCurrentSpell(), m_PBattleSubTarget);
 
 	if(status == STATESTATUS_START)
 	{

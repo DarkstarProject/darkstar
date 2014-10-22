@@ -1264,7 +1264,7 @@ void CAICharNormal::ActionMagicStart()
         return;
     }
 
-    STATESTATUS status = m_PMagicState->CastSpell(m_PSpell, m_PTargetFind->getValidTarget(m_ActionTargetID, m_PSpell->getValidTarget()));
+    STATESTATUS status = m_PMagicState->CastSpell(GetCurrentSpell(), m_PTargetFind->getValidTarget(m_ActionTargetID, m_PSpell->getValidTarget()));
 
 
     if(status == STATESTATUS_START)
@@ -1466,7 +1466,7 @@ void CAICharNormal::ActionJobAbilityStart()
 
 		// End of core checks, so call script checks
 		CBaseEntity* PMsgTarget = (CBaseEntity*)m_PChar;
-		int32 errNo = luautils::OnAbilityCheck(m_PChar, m_PBattleSubTarget, m_PJobAbility, &PMsgTarget);
+        int32 errNo = luautils::OnAbilityCheck(m_PChar, m_PBattleSubTarget, GetCurrentJobAbility(), &PMsgTarget);
 		if(errNo != 0)
 		{
 			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, PMsgTarget, m_PJobAbility->getID()+16, m_PJobAbility->getID(), errNo));
@@ -1521,7 +1521,6 @@ void CAICharNormal::ActionJobAbilityFinish()
         Sql_Query(SqlHandle, "UPDATE char_stats SET 2h = %u WHERE charid = %u", m_Tick, m_PChar->id);
     }
 
-	m_PJobAbility->setMessage(m_PJobAbility->getDefaultMessage());
 	// get any available merit recast reduction
 	uint8 meritRecastReduction = 0;
 
@@ -1625,7 +1624,7 @@ void CAICharNormal::ActionJobAbilityFinish()
     					distance(m_PChar->loc.p, PTarget->loc.p) <= m_PJobAbility->getRange())
     				{
     					Action.ActionTarget = PTarget;
-    					luautils::OnUseAbilityRoll(m_PChar, Action.ActionTarget, m_PJobAbility, roll);
+                        luautils::OnUseAbilityRoll(m_PChar, Action.ActionTarget, GetCurrentJobAbility(), roll);
     					if (PTarget->id == m_PChar->id){
     						if (m_PJobAbility->getMessage() == MSGBASIC_ROLL_SUB_FAIL){
     							Action.messageID = MSGBASIC_ROLL_MAIN_FAIL;
@@ -1642,7 +1641,7 @@ void CAICharNormal::ActionJobAbilityFinish()
     			}
     		} else {
     			Action.ActionTarget = m_PBattleSubTarget;
-    			luautils::OnUseAbilityRoll(m_PChar, Action.ActionTarget, m_PJobAbility, roll);
+                luautils::OnUseAbilityRoll(m_PChar, Action.ActionTarget, GetCurrentJobAbility(), roll);
     			if (m_PJobAbility->getMessage() == MSGBASIC_ROLL_SUB_FAIL){
     				Action.messageID = MSGBASIC_ROLL_MAIN_FAIL;
     			} else {
@@ -1857,9 +1856,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 
                 Action.ActionTarget = PTarget;
 
-                m_PJobAbility->resetMsg();
-
-                Action.param = luautils::OnUseAbility(m_PChar, PTarget, m_PJobAbility, &Action);
+                Action.param = luautils::OnUseAbility(m_PChar, PTarget, GetCurrentJobAbility(), &Action);
 
                 if(msg == 0){
                     msg = m_PJobAbility->getMessage();
@@ -1986,7 +1983,7 @@ void CAICharNormal::ActionJobAbilityFinish()
     		Action.animation  = m_PJobAbility->getAnimationID();
     		Action.param      = 0;
 
-            int32 value = luautils::OnUseAbility(m_PChar, m_PBattleSubTarget, m_PJobAbility, &Action);
+            int32 value = luautils::OnUseAbility(m_PChar, m_PBattleSubTarget, GetCurrentJobAbility(), &Action);
             Action.messageID  = m_PJobAbility->getMessage();
             Action.param = value;
 
@@ -2657,7 +2654,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
     {
         // NOTE: GetSkillChainEffect is INSIDE this if statement because it
         //  ALTERS the state of the resonance, which misses and non-elemental skills should NOT do.
-        SUBEFFECT effect = battleutils::GetSkillChainEffect(m_PBattleSubTarget, m_PWeaponSkill);
+        SUBEFFECT effect = battleutils::GetSkillChainEffect(m_PBattleSubTarget, GetCurrentWeaponSkill());
         if (effect != SUBEFFECT_NONE)
         {
 	        uint16 skillChainDamage = battleutils::TakeSkillchainDamage(m_PChar, m_PBattleSubTarget, damage);

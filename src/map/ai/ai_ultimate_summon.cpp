@@ -97,7 +97,7 @@ void CAIUltimateSummon::ActionAbilityStart()
 	}
 
 	for(int i=0; i<m_PPet->PetSkills.size(); i++){
-		m_PMobSkill = m_PPet->PetSkills[i];
+		SetCurrentMobSkill(m_PPet->PetSkills[i]);
 		preparePetAbility(m_PPet);
 		return;
 	}
@@ -283,7 +283,7 @@ void CAIUltimateSummon::ActionAbilityFinish(){
 
 		m_PMobSkill->resetMsg();
 
-		Action.param = luautils::OnPetAbility(PTarget, m_PPet, m_PMobSkill, m_PPet->PMaster);
+		Action.param = luautils::OnPetAbility(PTarget, m_PPet, GetCurrentMobSkill(), m_PPet->PMaster);
 
 		if(msg == 0){
 			msg = m_PMobSkill->getMsg();
