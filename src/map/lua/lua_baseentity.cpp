@@ -8954,7 +8954,7 @@ inline int32 CLuaBaseEntity::wait(lua_State* L)
 
     PBattle->PBattleAI->Wait(waitTime);
 
-    return 1;
+    return 0;
 }
 
 inline int32 CLuaBaseEntity::pathTo(lua_State* L)
