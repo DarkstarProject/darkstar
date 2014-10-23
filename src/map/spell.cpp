@@ -511,7 +511,7 @@ namespace spell
 		    {
 			    uint16 spellId = (uint16)Sql_GetUIntData(SqlHandle,0);
 
-			    if (!(spellId > MAX_SPELL_ID) && (PSpellList[spellId] != NULL))
+			    if (!(spellId >= MAX_SPELL_ID) && (PSpellList[spellId] != NULL))
 			    {
                     PSpellList[spellId]->setMeritId(Sql_GetUIntData(SqlHandle,1));
 			    }

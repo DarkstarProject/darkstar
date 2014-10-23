@@ -96,8 +96,8 @@ void CAIUltimateSummon::ActionAbilityStart()
 		return;
 	}
 
-	for(int i=0; i<m_PPet->PetSkills.size(); i++){
-		SetCurrentMobSkill(m_PPet->PetSkills[i]);
+    if (m_PPet->PetSkills[0]){
+		SetCurrentMobSkill(m_PPet->PetSkills[0]);
 		preparePetAbility(m_PPet);
 		return;
 	}
