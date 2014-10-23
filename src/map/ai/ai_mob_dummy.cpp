@@ -1042,9 +1042,6 @@ void CAIMobDummy::ActionAbilityFinish()
 
         Action.ActionTarget = PTarget;
 
-	        // set default message
-        m_PMobSkill->resetMsg();
-
 		Action.param = luautils::OnMobWeaponSkill(PTarget, m_PMob, GetCurrentMobSkill());
 
 		if(msg == 0){
@@ -1114,7 +1111,7 @@ void CAIMobDummy::ActionAbilityFinish()
             m_LastActionTime = m_Tick - m_PMob->m_Weapons[SLOT_MAIN]->getDelay();
         }
 	}
-
+    m_PMobSkill = NULL;
 }
 
 /************************************************************************
@@ -2049,8 +2046,6 @@ void CAIMobDummy::ActionSpecialSkill()
     m_PMob->m_ActionList.clear();
 
     m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
-
-    m_PMobSkill->resetMsg();
 
 	Action.speceffect = SPECEFFECT_HIT;
     Action.ActionTarget = m_PBattleSubTarget;

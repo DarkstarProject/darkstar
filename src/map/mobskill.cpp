@@ -73,11 +73,6 @@ void CMobSkill::setID(uint16 id)
 	m_ID = id;
 }
 
-void CMobSkill::resetMsg()
-{
-  m_Message = 185;
-}
-
 void CMobSkill::setMsg(uint16 msg)
 {
 	m_Message = msg;
