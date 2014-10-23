@@ -463,8 +463,6 @@ void CAIPetDummy::ActionAbilityFinish(){
 
 		Action.ActionTarget = PTarget;
 
-		m_PMobSkill->resetMsg();
-
 		if(m_PPet->isBstPet()){
 			Action.param = luautils::OnMobWeaponSkill(PTarget, m_PPet, GetCurrentMobSkill());
 		} else {

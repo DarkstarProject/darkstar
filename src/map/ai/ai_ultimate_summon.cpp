@@ -281,8 +281,6 @@ void CAIUltimateSummon::ActionAbilityFinish(){
 
 		Action.ActionTarget = PTarget;
 
-		m_PMobSkill->resetMsg();
-
 		Action.param = luautils::OnPetAbility(PTarget, m_PPet, GetCurrentMobSkill(), m_PPet->PMaster);
 
 		if(msg == 0){
