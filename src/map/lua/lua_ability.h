@@ -47,9 +47,10 @@ public:
 		return m_PLuaAbility;
 	}
 
+	int32 getID(lua_State*);
+    int32 getRecast(lua_State*);
     int32 setMsg(lua_State*);
     int32 setAnimation(lua_State*);
-	int32 getID(lua_State*);
     int32 setRecast(lua_State*);
     int32 setCE(lua_State*);
     int32 setVE(lua_State*);

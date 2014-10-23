@@ -1531,11 +1531,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 
     uint32 RecastTime = (m_PJobAbility->getRecastTime() - meritRecastReduction) * 1000;
 
-    if (m_PJobAbility->getID() == ABILITY_THIRD_EYE && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN))
-    {
-        RecastTime /= 2;
-    }
-    else if( m_PJobAbility->getID() == ABILITY_LIGHT_ARTS || m_PJobAbility->getID() == ABILITY_DARK_ARTS || m_PJobAbility->getRecastId() == 231) //stratagems
+    if( m_PJobAbility->getID() == ABILITY_LIGHT_ARTS || m_PJobAbility->getID() == ABILITY_DARK_ARTS || m_PJobAbility->getRecastId() == 231) //stratagems
     {
         if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TABULA_RASA))
             RecastTime = 0;

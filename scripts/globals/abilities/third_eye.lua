@@ -10,6 +10,9 @@ require("scripts/globals/status");
 -----------------------------------
 
 function OnAbilityCheck(player,target,ability)
+    if (player:hasStatusEffect(EFFECT_SEIGAN)) then
+        ability:setRecast(ability:getRecast()/2);
+    end
 	return 0,0;
 end;
 
