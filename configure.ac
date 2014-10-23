@@ -32,6 +32,7 @@ AC_SUBST(LUA_CFLAGS)
 AC_SUBST(LUA_LIBS)
 
 ### MySQL check
+m4_include([m4/ax_lib_mysql.m4])
 AX_LIB_MYSQL()
 
 ### Checks for typedefs, structures, and compiler characteristics.
