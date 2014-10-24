@@ -475,10 +475,10 @@ void CAICharNormal::ActionDeath()
 		// reraise modifiers
 		if (m_PChar->getMod(MOD_RERAISE_I) > 0)
 			m_PChar->m_hasRaise = 1;
-		
+
 		if (m_PChar->getMod(MOD_RERAISE_II) > 0)
 			m_PChar->m_hasRaise = 2;
-		
+
 		if (m_PChar->getMod(MOD_RERAISE_III) > 0)
 			m_PChar->m_hasRaise = 3;
 
@@ -800,7 +800,7 @@ void CAICharNormal::ActionRangedStart()
 
 		//ranged weapon delay is stored in the db as offset from 240 for some reason.
 		m_PChar->m_rangedDelay = m_PChar->GetRangedWeaponDelay(false);
-		
+
 		// Get Snapshot reduction
 		battleutils::GetSnapshotReduction(m_PChar);
 
@@ -1026,8 +1026,8 @@ void CAICharNormal::ActionRangedFinish()
                     if (battleutils::IsAbsorbByShadow(m_PBattleSubTarget))
                     {
                         shadowsTaken++;
-                    } 
-					else 
+                    }
+					else
 					{
     					float pdif = battleutils::GetRangedPDIF(m_PChar,m_PBattleSubTarget);
 						bool isCrit = false;
@@ -1989,11 +1989,6 @@ void CAICharNormal::ActionJobAbilityFinish()
                 Action.param = -value;
             }
 
-    		if( m_PJobAbility->getID() == ABILITY_SHADOWBIND )
-    		{
-    			//Action.flag = 3;
-    		}
-
     		if (m_PJobAbility->getID() == ABILITY_MIJIN_GAKURE)
 			{
 				m_PChar->setMijinGakure(true);
@@ -2007,21 +2002,22 @@ void CAICharNormal::ActionJobAbilityFinish()
 			 * Blade of Death quests are active.
 			 */
 
+			// Shadow Bind
+			if (m_PJobAbility->getID() == ABILITY_SHADOWBIND)
+			{
+				//Action.flag = 3;
 
-			/// Shadow Bind
-    		if(m_PJobAbility->getID() == ABILITY_SHADOWBIND)
-    		{
 				uint16 shadowBindDuration = 30 + m_PChar->getMod(MOD_SHADOW_BIND_EXT);
 				if (WELL512::irand()%100 >= m_PBattleSubTarget->getMod(MOD_BINDRES))
 				{
 					// Shadow bind success!
-					m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 11, 277)); 
+					m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 11, 277));
 					m_PBattleSubTarget->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_BIND, EFFECT_BIND, 1, 0, shadowBindDuration));
 				}
 				else
 				{
 					// Shadowbind failed!
-					m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 11, 283)); 
+					m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 11, 283));
 				}
 			}
 
@@ -2147,7 +2143,7 @@ void CAICharNormal::ActionJobAbilityFinish()
     		}
 
 
-            if (m_PJobAbility->getValidTarget() & TARGET_ENEMY && 
+            if (m_PJobAbility->getValidTarget() & TARGET_ENEMY &&
                 m_PBattleSubTarget->allegiance != m_PChar->allegiance)
             {
                 // во время pvp целью могут быт персонажи, монстры и их питомцы
@@ -2912,7 +2908,7 @@ void CAICharNormal::ActionAttack()
 			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,MSGBASIC_IS_INTIMIDATED));
 		}
 		else
-		{          
+		{
 			// Create a new attack round.
 			CAttackRound* attackRound = new CAttackRound(m_PChar);
 
@@ -2923,7 +2919,7 @@ void CAICharNormal::ActionAttack()
 			{
 				apAction_t Action;
 				Action.ActionTarget = m_PBattleTarget;
-				Action.knockback  = 0;  
+				Action.knockback  = 0;
 
 				// Reference to the current swing.
 				CAttack* attack = (CAttack*)attackRound->GetCurrentAttack();
@@ -3065,11 +3061,11 @@ void CAICharNormal::ActionAttack()
 
 				i--;
 
-                if (m_PChar->m_ActionList.size() == 8) 
+                if (m_PChar->m_ActionList.size() == 8)
 				{
 					break;
 				}
-			} 
+			}
 			/////////////////////////////////////////////////////////////////////////////////////////////
 			// End of attack loop
 			/////////////////////////////////////////////////////////////////////////////////////////////
