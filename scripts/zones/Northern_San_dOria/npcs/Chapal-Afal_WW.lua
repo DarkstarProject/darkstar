@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: MetalWorks
---	NPC:  Glarociquet, T.K.
--- @pos 19 -16 -28 237
+--	Area: Northern Sando
+--	NPC:  Chapal_Afal, WW
+-- @pos -55 -2 31 231
 -- X Grant Signet
 -- X Recharge Emperor Band, Empress Band, or Chariot Band
 -- X Accepts traded Crystals to fill up the Rank bar to open new Missions.
@@ -16,7 +16,7 @@ require("scripts/globals/conquest");
 require("scripts/globals/common");
 require("scripts/zones/Metalworks/TextIDs");
 
-guardnation = SANDORIA;	-- SANDORIA, BASTOK, WINDURST, JEUNO
+guardnation = WINDURST;	-- SANDORIA, BASTOK, WINDURST, JEUNO
 guardtype	= 2;		-- 1: city, 2: foreign, 3: outpost, 4: border
 size 		= table.getn(SandInv);
 inventory 	= SandInv;

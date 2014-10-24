@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: MetalWorks
---	NPC:  Glarociquet, T.K.
--- @pos 19 -16 -28 237
+--	Area: Windurst Woods
+--	NPC:  Panoquieur, T.K.
+-- @pos -60 0 -31 241
 -- X Grant Signet
 -- X Recharge Emperor Band, Empress Band, or Chariot Band
 -- X Accepts traded Crystals to fill up the Rank bar to open new Missions.
@@ -9,12 +9,12 @@
 -- X Start Supply Run Missions and offers a list of already-delivered supplies.
 --   Start an Expeditionary Force by giving an E.F. region insignia to you. 
 -------------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
+package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/conquest");
 require("scripts/globals/common");
-require("scripts/zones/Metalworks/TextIDs");
+require("scripts/zones/Windurst_Woods/TextIDs");
 
 guardnation = SANDORIA;	-- SANDORIA, BASTOK, WINDURST, JEUNO
 guardtype	= 2;		-- 1: city, 2: foreign, 3: outpost, 4: border

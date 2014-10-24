@@ -1,7 +1,6 @@
 -----------------------------------
---	Area: MetalWorks
---	NPC:  Glarociquet, T.K.
--- @pos 19 -16 -28 237
+-- NPC:  Sachetan, I.M.
+-- @pos -82 -5 165 z 240
 -- X Grant Signet
 -- X Recharge Emperor Band, Empress Band, or Chariot Band
 -- X Accepts traded Crystals to fill up the Rank bar to open new Missions.
@@ -9,32 +8,32 @@
 -- X Start Supply Run Missions and offers a list of already-delivered supplies.
 --   Start an Expeditionary Force by giving an E.F. region insignia to you. 
 -------------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
+package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/conquest");
 require("scripts/globals/common");
-require("scripts/zones/Metalworks/TextIDs");
+require("scripts/zones/Port_Windurst/TextIDs");
 
-guardnation = SANDORIA;	-- SANDORIA, BASTOK, WINDURST, JEUNO
+guardnation = BASTOK;	-- SANDORIA, BASTOK, WINDURST, JEUNO
 guardtype	= 2;		-- 1: city, 2: foreign, 3: outpost, 4: border
-size 		= table.getn(SandInv);
-inventory 	= SandInv;
+size 		= table.getn(BastInv);
+inventory 	= BastInv;
 
------------------------------------ 
--- onTrade Action 
------------------------------------ 
+-----------------------------------
+-- onTrade Action
+-----------------------------------
 
 function onTrade(player,npc,trade)
 	tradeConquestGuard(player,npc,trade,guardnation,guardtype);
 end; 
 
------------------------------------ 
--- onTrigger Action 
+-----------------------------------
+-- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+
 	if(player:getNation() == guardnation and player:getVar("supplyQuest_started") > 0 and supplyRunFresh(player) == 0) then
 		player:showText(npc,CONQUEST + 40); -- "We will dispose of those unusable supplies."
 		region = player:getVar("supplyQuest_region");
@@ -53,10 +52,10 @@ function onTrigger(player,npc)
 		Menu7 = player:getCP();
 		Menu8 = getRewardExForce(guardnation,player);
 		
-		player:startEvent(0x7ff7,Menu1,Menu2,Menu3,Menu4,Menu5,Menu6,Menu7,Menu8);
+		player:startEvent(0x7ff9,Menu1,Menu2,Menu3,Menu4,Menu5,Menu6,Menu7,Menu8);
 	end
 	
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
