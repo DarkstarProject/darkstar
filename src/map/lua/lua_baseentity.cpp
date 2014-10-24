@@ -1890,13 +1890,14 @@ inline int32 CLuaBaseEntity::addAllSpells(lua_State *L)
 
     uint16 elements = sizeof ValidSpells / sizeof ValidSpells[0];
 
-         for(uint16 i = 0; i < elements; ++i)
-         {
-            if (charutils::addSpell(PChar, ValidSpells[i]))
-            {
-                charutils::SaveSpells(PChar);
-            }
-         }
+    for(uint16 i = 0; i < elements; ++i)
+    {
+        if (charutils::addSpell(PChar, ValidSpells[i]))
+        {
+            charutils::SaveSpells(PChar);
+        }
+    }
+
     PChar->pushPacket(new CCharSpellsPacket(PChar));
     PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 23));
 
