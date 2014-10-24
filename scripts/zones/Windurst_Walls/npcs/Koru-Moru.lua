@@ -64,7 +64,7 @@ function onTrade(player,npc,trade)
 		end
 
 	elseif(player:getQuestStatus(WINDURST,CLASS_REUNION) == 1 and player:getVar("ClassReunionProgress") == 2) then
-		if(count == 4 and trade:hasItemQty(17299,4) and trade:getGil() == 0) then
+		if(count == 1 and trade:hasItemQty(17299,4) and trade:getGil() == 0) then
 			player:startEvent(0x0197); -- now Koru remembers something that you need to inquire his former students.
 		end;
 	end;
@@ -158,8 +158,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -167,8 +167,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+	-- printf("CSID: %u",csid);
+	-- printf("RESULT: %u",option);
 
 	if(csid == 0x011d) then  -- Giving him KI from Principle
 		player:tradeComplete();
