@@ -34,17 +34,13 @@ function onTrade(player,npc,trade)
 				player:startEvent(0x011f); -- MAKING THE GRADE: Have test answers but not talked/given to Fuepepe
 			end
 		end
-	elseif(qStarStruck == QUEST_AVAILABLE) then
-		if(count == 1 and trade:hasItemQty(584,1)) then
+	elseif(count == 1 and trade:hasItemQty(584,1)) then
 			player:startEvent(0x00c7);
-		end
-
-		if(qStarStruck == QUEST_ACCEPTED) then
+		
+		elseif(qStarStruck == QUEST_ACCEPTED) then
 			if(count == 1 and trade:hasItemQty(582,1)) then
 				player:startEvent(0x00d3);
 			end
-		end
-
 	elseif(player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_4") == 4) then
 		if(trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
 			player:setVar("ridingOnTheClouds_4",0);
@@ -114,7 +110,7 @@ function onTrigger(player,npc)
 		end
 	elseif(qStarStruck == QUEST_ACCEPTED) then
 		player:startEvent(0x00c6);
-	elseif(player:hasItem(584) and player:getQuestStatus(WINDURST,CLASS_REUNION) ~= QUEST_ACCEPTED) then
+	elseif(player:hasItem(584) and player:getQuestStatus(WINDURST,STAR_STRUCK) == QUEST_AVAILABLE and player:getQuestStatus(WINDURST,CLASS_REUNION) ~= QUEST_ACCEPTED) then
 		player:startEvent(0x00c5);
 	elseif(qStarStruck == QUEST_COMPLETED) then
 		player:startEvent(0x00d5);
