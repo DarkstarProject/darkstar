@@ -312,9 +312,7 @@ function CharCreate(player)
 end;
 
 function onPlayerLevelUp(player)
-    print('Level up!');
 end
 
 function onPlayerLevelDown(player)
-    print('Level down!');
 end
