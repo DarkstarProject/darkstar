@@ -3353,6 +3353,7 @@ void DelExperiencePoints(CCharEntity* PChar, float retainPercent)
         }
 
 		PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar, PChar, PChar->jobs.job[PChar->GetMJob()], 0, 11));
+        luautils::OnPlayerLevelDown(PChar);
 	}
 	else
     {
@@ -3545,6 +3546,8 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
                     PChar->PParty->RefreshSync();
                 }
             }
+
+            luautils::OnPlayerLevelUp(PChar);
 			return;
         }
     }

@@ -182,6 +182,9 @@ namespace luautils
     int32 OnSpikesDamage(CBattleEntity* PDefender, CBattleEntity* PAttacker, apAction_t* Action, uint32 damage);                         // for mobs with spikes
 
     int32 nearLocation(lua_State*);
+
+    int32 OnPlayerLevelUp(CCharEntity* PChar);
+    int32 OnPlayerLevelDown(CCharEntity* PChar);
 };
 
 #endif //- _LUAUTILS_H -
