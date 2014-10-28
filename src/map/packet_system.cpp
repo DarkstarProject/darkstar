@@ -3006,39 +3006,15 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* dat
         case 1: // linkshell
         {
             // Ensure the player has a linkshell equipped..
-            if (PChar->PLinkshell == NULL)
-                break;
-
-            // Ensure the linkshell is valid..
             CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK);
-            if (PItemLinkshell == NULL || !PItemLinkshell->isType(ITEM_LINKSHELL))
-                break;
-
-            // Ensure the linkshell is a shell or sack (cannot kick otherwise..)
-            if (PItemLinkshell->GetLSType() != LSTYPE_LINKSHELL && PItemLinkshell->GetLSType() != LSTYPE_PEARLSACK)
-                break;
-
-            // Obtain the victim..
-            CCharEntity* PVictim = zoneutils::GetCharByName(data + 0x0C);
-            if (PVictim == NULL)
-                break;
-
-            // Obtain the victims linkshell.. (And ensure it is the same as ours to prevent exploiting..)
-            CItemLinkshell* PItemLinkshellVictim = (CItemLinkshell*)PVictim->getEquip(SLOT_LINK);
-            if (PItemLinkshellVictim == NULL || PItemLinkshellVictim->GetLSID() != PItemLinkshell->GetLSID())
-                break;
-
-            // Attempt to kick the player from the linkshell if we have high enough authority..
-            if (PItemLinkshell->GetLSType() == LSTYPE_LINKSHELL)
+            if (PChar->PLinkshell && PItemLinkshell)
             {
-                // We can kick anyone as we have the linkshell..
-                PChar->PLinkshell->RemoveMemberByName(data + 0x0C);
-            }
-            else if (PItemLinkshell->GetLSType() == LSTYPE_PEARLSACK)
-            {
-                // We can only kick someone with a linkpearl..
-                if (PItemLinkshellVictim->GetLSType() == LSTYPE_LINKPEARL)
-                    PChar->PLinkshell->RemoveMemberByName(data + 0x0C);
+                int8 packetData[29];
+                WBUFL(packetData, 0) = PChar->id;
+                memcpy(packetData + 0x04, data + 0x0C, 20);
+                WBUFL(packetData, 24) = PChar->PLinkshell->getID();
+                WBUFB(packetData, 28) = PItemLinkshell->GetLSType();
+                message::send(MSG_LINKSHELL_REMOVE, packetData, sizeof packetData, NULL);
             }
         }
         break;
@@ -3228,7 +3204,6 @@ void SmallPacket0x077(map_session_data_t* session, CCharEntity* PChar, int8* dat
         {
             if (PChar->PLinkshell != NULL)
             {
-				//PChar->PLinkshell->ChangeMemberRank(data+0x04, RBUFB(data,(0x15)));
                 int8 packetData[29];
                 WBUFL(packetData, 0) = PChar->id;
                 memcpy(packetData + 0x04, data + 0x04, 20);
