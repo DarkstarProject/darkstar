@@ -112,6 +112,7 @@ struct map_config_t
     int8   Battle_cap_tweak;        // Default is 0. Globally adjust the level of level capped fights.
     int8   CoP_Battle_cap;          // Default is 0. Disable/enable old lv caps on Chains of Promathia mission battles.
 	uint8  max_merit_points;		// global variable, amount of merit points players are allowed
+    uint16 yell_cooldown;           // Minimum time between uses of yell command (in seconds).
 	bool   audit_chat;
 	bool   audit_say;
 	bool   audit_shout;
