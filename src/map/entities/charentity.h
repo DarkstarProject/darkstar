@@ -350,6 +350,8 @@ public:
 	uint32			  m_PlayTime;
 	uint32			  m_SaveTime;
 
+    uint32            m_LastYell;
+
 	uint8			  m_GMlevel;                    // Level of the GM flag assigned to this character
     bool              m_isGMHidden;                 // GM Hidden flag to prevent player updates from being processed.
 

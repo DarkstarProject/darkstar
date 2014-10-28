@@ -151,6 +151,8 @@ CCharEntity::CCharEntity()
 	m_PlayTime = 0;
 	m_SaveTime = 0;
 	m_reloadParty = 0;
+
+    m_LastYell = 0;
 }
 
 CCharEntity::~CCharEntity()
