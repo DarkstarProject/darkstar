@@ -709,6 +709,8 @@ int32 map_close_session(uint32 tick, map_session_data_t* map_session_data)
     {
         charutils::SavePlayTime(map_session_data->PChar);
 
+        Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE charid = %u", map_session_data->PChar->id);
+
         uint64 port64 = map_session_data->client_port;
         uint64 ipp = map_session_data->client_addr;
         ipp |= port64 << 32;
@@ -798,7 +800,6 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
                     {
                         map_session_data->PChar->StatusEffectContainer->SaveStatusEffects();
                         Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE charid = %u;", map_session_data->PChar->id);
-                        Sql_Query(SqlHandle, "DELETE FROM accounts_parties WHERE charid = %u;", map_session_data->PChar->id);
 
                         aFree(map_session_data->server_packet_data);
                         delete map_session_data->PChar;
