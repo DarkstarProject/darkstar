@@ -115,7 +115,7 @@ INSERT INTO `zone_settings` VALUES (66,6,0016777343,54230,'Mamool_Ja_Training_Gr
 INSERT INTO `zone_settings` VALUES (67,4,0016777343,54230,'Jade_Sepulcher',0,143,143,0,0.00,145,0);
 INSERT INTO `zone_settings` VALUES (68,3,0016777343,54230,'Aydeewa_Subterrane',174,115,139,0,0.00,145,0);
 INSERT INTO `zone_settings` VALUES (69,6,0016777343,54230,'Leujaoam_Sanctum',0,144,144,0,0.00,145,0);
-INSERT INTO `zone_settings` VALUES (70,1,0016777343,54230,'Chocobo_Circuit',176,176,176,0,0.00,4,0);
+INSERT INTO `zone_settings` VALUES (70,1,0016777343,54230,'Chocobo_Circuit',176,176,176,0,0.00,1028,0);
 INSERT INTO `zone_settings` VALUES (71,1,0016777343,54230,'The_Colosseum',0,139,139,0,0.00,152,0);
 INSERT INTO `zone_settings` VALUES (72,3,0016777343,54230,'Alzadaal_Undersea_Ruins',0,115,139,0,0.00,145,0);
 INSERT INTO `zone_settings` VALUES (73,6,0016777343,54230,'Zhayolm_Remnants',148,115,139,0,0.00,145,0);

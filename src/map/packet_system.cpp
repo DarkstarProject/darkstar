@@ -49,6 +49,7 @@
 #include "map.h"
 #include "entities/mobentity.h"
 #include "entities/npcentity.h"
+#include "entities/charentity.h"
 #include "spell.h"
 #include "utils/synthutils.h"
 #include "trade_container.h"
@@ -244,11 +245,11 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		} else {
             PChar->loc.zone = zoneutils::GetZone(destination);
         }
-        
+
         bool firstLogin = true;
         for (uint32 i = 0; i < sizeof(PChar->m_ZonesList); ++i)
         {
-            if (PChar->m_ZonesList[i] != 0) 
+            if (PChar->m_ZonesList[i] != 0)
                 firstLogin = false;
         }
 
@@ -270,7 +271,7 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
             PChar->m_DeathCounter = (uint32)Sql_GetUIntData(SqlHandle, 0);
             PChar->m_DeathTimestamp = (uint32)time(NULL);
         }
-        
+
         if (firstLogin)
             PChar->PMeritPoints->SaveMeritPoints(PChar->id, true);
 
@@ -682,7 +683,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 				{
 					MOB->m_CallForHelp = 0x20;
 					PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(PChar,PChar,0,0,19));
-					
+
                     return;
 				}
 			}
@@ -1478,12 +1479,12 @@ void SmallPacket0x04B(map_session_data_t* session, CCharEntity* PChar, int8* dat
     //ShowWarning(CL_YELLOW"[SMSG] C:%d U1:%d U2:%d L:%d T:%d S:%d O:%d S:%d\n" CL_RESET,
     //    msg_chunk, msg_unknown1, msg_unknown2, msg_language, msg_timestamp, msg_size_total, msg_offset, msg_request_len
     //    );
-         
+
     if (msg_language == 0x02)
         PChar->pushPacket(new CServerMessagePacket(map_config.server_message, msg_language, msg_timestamp, msg_offset));
     else
         PChar->pushPacket(new CServerMessagePacket(map_config.server_message_fr, msg_language, msg_timestamp, msg_offset));
-    
+
     return;
 }
 
@@ -2673,7 +2674,7 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 					    }
 
                         // Handle case for mog garden.. (Above addition does not work for this zone.)
-                        if (zone == 127) 
+                        if (zone == 127)
                         {
                             prevzone = 280;
                         }
@@ -2996,7 +2997,7 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     }
                     else if (PChar->PParty->GetLeader() != PChar) // not leader, cannot kick others
                         break;
- 
+
                     PChar->PParty->RemoveMember(PVictim);
                 }
             }
@@ -3374,7 +3375,7 @@ void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, int8* dat
         PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 316));
         return;
     }
-    
+
     // Prevent crafting exploit if we are already crafting..
     if (PChar->animation == ANIMATION_SYNTH)
     {
@@ -3390,7 +3391,7 @@ void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	uint8  numItems  = RBUFB(data,(0x09));
 
 	std::vector<uint8> slotQty(MAX_CONTAINER_SIZE);
-    
+
     if (numItems > 8)
     {
         // Prevent crafting exploit to crash on container size > 8
@@ -3406,7 +3407,7 @@ void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		invSlotID = RBUFB(data,(0x1A+SlotID));
 
 		slotQty[invSlotID]++;
-		
+
 		if ((PChar->getStorage(0)->GetItem(invSlotID)) && (PChar->getStorage(0)->GetItem(invSlotID)->getID() == ItemID) &&
 			(slotQty[invSlotID] <= PChar->getStorage(0)->GetItem(invSlotID)->getQuantity()))
 			PChar->CraftContainer->setItem(SlotID+1, ItemID, invSlotID, 1);
@@ -3656,7 +3657,17 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
 				{
 					if (PChar->loc.zone->CanUseMisc(MISC_YELL))
 					{
-                        message::send(MSG_CHAT_YELL, NULL, 0, new CChatMessagePacket(PChar, MESSAGE_YELL, data + 6));
+						if (gettick() >= PChar->m_LastYell)
+						{
+							PChar->m_LastYell = gettick() + (map_config.yell_cooldown *1000);
+							// ShowDebug(CL_CYAN" LastYell: %u \n" CL_RESET, PChar->m_LastYell);
+							message::send(MSG_CHAT_YELL, NULL, 0, new CChatMessagePacket(PChar, MESSAGE_YELL, data + 6));
+						}
+						else // You must wait longer to perform that action.
+						{
+							PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 38));
+						}
+
 						if (map_config.audit_chat == 1 && map_config.audit_yell == 1)
 						{
 							std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
@@ -3668,7 +3679,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
 							Sql_QueryStr(SqlHandle, cC);
 						}
 					}
-					else
+					else // You cannot use that command in this area.
 					{
 						PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 256));
 					}
@@ -4123,7 +4134,7 @@ void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		case TYPE_PC:
 		{
 			CCharEntity* PTarget = (CCharEntity*)PEntity;
-            
+
             if (PChar->m_isGMHidden == false || PChar->m_isGMHidden == true && PTarget->m_GMlevel >= PChar->m_GMlevel)
                 PTarget->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 89));
 
@@ -4438,8 +4449,8 @@ void SmallPacket0x0F2(map_session_data_t* session, CCharEntity* PChar, int8* dat
 void SmallPacket0x0F4(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
     // Set Widescan range
-    // Distances need verified, based current values off what we had in traits.sql and data at http://wiki.ffxiclopedia.org/wiki/Wide_Scan 
-    // NOTE: Widescan was formerly piggy backed onto traits (resist slow) but is not a real trait, any attempt to give it a trait will place a dot on characters trait menu. 
+    // Distances need verified, based current values off what we had in traits.sql and data at http://wiki.ffxiclopedia.org/wiki/Wide_Scan
+    // NOTE: Widescan was formerly piggy backed onto traits (resist slow) but is not a real trait, any attempt to give it a trait will place a dot on characters trait menu.
     if (map_config.all_jobs_widescan == 0)
     {
         // Limit to BST and RNG, and try to use old distance values for tiers
@@ -4517,7 +4528,7 @@ void SmallPacket0x0F4(map_session_data_t* session, CCharEntity* PChar, int8* dat
             PChar->loc.zone->WideScan(PChar,0);
             // The zero needs set or client will lag on map screen saying downloading data.
         }
-    }        
+    }
     else if (map_config.all_jobs_widescan == 1)
     {
         // All jobs have 1st tier, and use current retail distance values for tiers
