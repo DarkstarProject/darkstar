@@ -280,7 +280,7 @@ int32 login_config_read(const char *cfgName)
 			
 		if(strcmpi(w1,"timestamp_format") == 0)
         {
-			strncpy(timestamp_format, w2, 20);
+			strncpy(timestamp_format, w2, 19);
         }
 		else if(strcmpi(w1,"stdout_with_ansisequence") == 0 )
         {

@@ -45,11 +45,6 @@ bool CAbility::isConal()
   return false;
 }
 
-void CAbility::resetMsg()
-{
-  m_message = m_DefaultMessage;
-}
-
 void CAbility::setID(uint16 id)
 {
 	m_ID = id;
@@ -249,16 +244,6 @@ uint16 CAbility::getAoEMsg()
     }
 }
 
-uint16 CAbility::getDefaultMessage()
-{
-    return m_DefaultMessage;
-}
-
-void CAbility::setDefaultMessage(uint16 message)
-{
-    m_DefaultMessage = message;
-}
-
 /************************************************************************
 *                                                                       *
 *  Реализация namespase для работы со способностями                     *
@@ -319,7 +304,6 @@ namespace ability
 			    PAbility->setValidTarget(Sql_GetIntData(SqlHandle,4));
 			    PAbility->setRecastTime(Sql_GetIntData(SqlHandle,5));
                 PAbility->setMessage(Sql_GetIntData(SqlHandle,6));
-				PAbility->setDefaultMessage(Sql_GetIntData(SqlHandle,6));
               //PAbility->setMessage(Sql_GetIntData(SqlHandle,7));
 			    PAbility->setAnimationID(Sql_GetIntData(SqlHandle,8));
 			    PAbility->setRange(Sql_GetFloatData(SqlHandle,9));

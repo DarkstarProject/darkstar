@@ -1897,13 +1897,14 @@ inline int32 CLuaBaseEntity::addAllSpells(lua_State *L)
 
     uint16 elements = sizeof ValidSpells / sizeof ValidSpells[0];
 
-         for(uint16 i = 0; i < elements; ++i)
-         {
-            if (charutils::addSpell(PChar, ValidSpells[i]))
-            {
-                charutils::SaveSpells(PChar);
-            }
-         }
+    for(uint16 i = 0; i < elements; ++i)
+    {
+        if (charutils::addSpell(PChar, ValidSpells[i]))
+        {
+            charutils::SaveSpells(PChar);
+        }
+    }
+
     PChar->pushPacket(new CCharSpellsPacket(PChar));
     PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 23));
 
@@ -5238,10 +5239,10 @@ inline int32 CLuaBaseEntity::injectPacket(lua_State *L)
         {
             fseek(File,0,SEEK_SET);
             uint16 read_elements = fread(PPacket,1,size*2,File);
-            fclose(File);
 
             ((CCharEntity*)m_PBaseEntity)->pushPacket(PPacket);
         }
+        fclose(File);
     }else{
         ShowError(CL_RED"CLuaBaseEntity::injectPacket : Cannot open file\n" CL_RESET);
     }
@@ -8961,7 +8962,7 @@ inline int32 CLuaBaseEntity::wait(lua_State* L)
 
     PBattle->PBattleAI->Wait(waitTime);
 
-    return 1;
+    return 0;
 }
 
 inline int32 CLuaBaseEntity::pathTo(lua_State* L)

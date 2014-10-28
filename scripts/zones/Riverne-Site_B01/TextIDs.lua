@@ -14,3 +14,6 @@ SPACE_SEEMS_DISTORTED = 7552; -- The space around you seems oddly distorted and 
    GROUND_GIVING_HEAT = 7560; -- The ground here is giving off heat.
 
 NOTHING_OUT_OF_ORDINARY = 7555 -- There is nothing out of the ordinary here.
+
+-- conquest Base
+CONQUEST_BASE = 7024;

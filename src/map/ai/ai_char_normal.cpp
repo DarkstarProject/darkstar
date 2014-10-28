@@ -478,10 +478,10 @@ void CAICharNormal::ActionDeath()
 		// reraise modifiers
 		if (m_PChar->getMod(MOD_RERAISE_I) > 0)
 			m_PChar->m_hasRaise = 1;
-		
+
 		if (m_PChar->getMod(MOD_RERAISE_II) > 0)
 			m_PChar->m_hasRaise = 2;
-		
+
 		if (m_PChar->getMod(MOD_RERAISE_III) > 0)
 			m_PChar->m_hasRaise = 3;
 
@@ -803,7 +803,7 @@ void CAICharNormal::ActionRangedStart()
 
 		//ranged weapon delay is stored in the db as offset from 240 for some reason.
 		m_PChar->m_rangedDelay = m_PChar->GetRangedWeaponDelay(false);
-		
+
 		// Get Snapshot reduction
 		battleutils::GetSnapshotReduction(m_PChar);
 
@@ -1029,8 +1029,8 @@ void CAICharNormal::ActionRangedFinish()
                     if (battleutils::IsAbsorbByShadow(m_PBattleSubTarget))
                     {
                         shadowsTaken++;
-                    } 
-					else 
+                    }
+					else
 					{
     					float pdif = battleutils::GetRangedPDIF(m_PChar,m_PBattleSubTarget);
 						bool isCrit = false;
@@ -1267,7 +1267,7 @@ void CAICharNormal::ActionMagicStart()
         return;
     }
 
-    STATESTATUS status = m_PMagicState->CastSpell(m_PSpell, m_PTargetFind->getValidTarget(m_ActionTargetID, m_PSpell->getValidTarget()));
+    STATESTATUS status = m_PMagicState->CastSpell(GetCurrentSpell(), m_PTargetFind->getValidTarget(m_ActionTargetID, m_PSpell->getValidTarget()));
 
 
     if(status == STATESTATUS_START)
@@ -1469,7 +1469,7 @@ void CAICharNormal::ActionJobAbilityStart()
 
 		// End of core checks, so call script checks
 		CBaseEntity* PMsgTarget = (CBaseEntity*)m_PChar;
-		int32 errNo = luautils::OnAbilityCheck(m_PChar, m_PBattleSubTarget, m_PJobAbility, &PMsgTarget);
+        int32 errNo = luautils::OnAbilityCheck(m_PChar, m_PBattleSubTarget, GetCurrentJobAbility(), &PMsgTarget);
 		if(errNo != 0)
 		{
 			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, PMsgTarget, m_PJobAbility->getID()+16, m_PJobAbility->getID(), errNo));
@@ -1524,7 +1524,6 @@ void CAICharNormal::ActionJobAbilityFinish()
         Sql_Query(SqlHandle, "UPDATE char_stats SET 2h = %u WHERE charid = %u", m_Tick, m_PChar->id);
     }
 
-	m_PJobAbility->setMessage(m_PJobAbility->getDefaultMessage());
 	// get any available merit recast reduction
 	uint8 meritRecastReduction = 0;
 
@@ -1535,11 +1534,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 
     uint32 RecastTime = (m_PJobAbility->getRecastTime() - meritRecastReduction) * 1000;
 
-    if (m_PJobAbility->getID() == ABILITY_THIRD_EYE && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN))
-    {
-        RecastTime /= 2;
-    }
-    else if( m_PJobAbility->getID() == ABILITY_LIGHT_ARTS || m_PJobAbility->getID() == ABILITY_DARK_ARTS || m_PJobAbility->getRecastId() == 231) //stratagems
+    if( m_PJobAbility->getID() == ABILITY_LIGHT_ARTS || m_PJobAbility->getID() == ABILITY_DARK_ARTS || m_PJobAbility->getRecastId() == 231) //stratagems
     {
         if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TABULA_RASA))
             RecastTime = 0;
@@ -1628,7 +1623,7 @@ void CAICharNormal::ActionJobAbilityFinish()
     					distance(m_PChar->loc.p, PTarget->loc.p) <= m_PJobAbility->getRange())
     				{
     					Action.ActionTarget = PTarget;
-    					luautils::OnUseAbilityRoll(m_PChar, Action.ActionTarget, m_PJobAbility, roll);
+                        luautils::OnUseAbilityRoll(m_PChar, Action.ActionTarget, GetCurrentJobAbility(), roll);
     					if (PTarget->id == m_PChar->id){
     						if (m_PJobAbility->getMessage() == MSGBASIC_ROLL_SUB_FAIL){
     							Action.messageID = MSGBASIC_ROLL_MAIN_FAIL;
@@ -1645,7 +1640,7 @@ void CAICharNormal::ActionJobAbilityFinish()
     			}
     		} else {
     			Action.ActionTarget = m_PBattleSubTarget;
-    			luautils::OnUseAbilityRoll(m_PChar, Action.ActionTarget, m_PJobAbility, roll);
+                luautils::OnUseAbilityRoll(m_PChar, Action.ActionTarget, GetCurrentJobAbility(), roll);
     			if (m_PJobAbility->getMessage() == MSGBASIC_ROLL_SUB_FAIL){
     				Action.messageID = MSGBASIC_ROLL_MAIN_FAIL;
     			} else {
@@ -1860,9 +1855,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 
                 Action.ActionTarget = PTarget;
 
-                m_PJobAbility->resetMsg();
-
-                Action.param = luautils::OnUseAbility(m_PChar, PTarget, m_PJobAbility, &Action);
+                Action.param = luautils::OnUseAbility(m_PChar, PTarget, GetCurrentJobAbility(), &Action);
 
                 if(msg == 0){
                     msg = m_PJobAbility->getMessage();
@@ -1989,7 +1982,7 @@ void CAICharNormal::ActionJobAbilityFinish()
     		Action.animation  = m_PJobAbility->getAnimationID();
     		Action.param      = 0;
 
-            int32 value = luautils::OnUseAbility(m_PChar, m_PBattleSubTarget, m_PJobAbility, &Action);
+            int32 value = luautils::OnUseAbility(m_PChar, m_PBattleSubTarget, GetCurrentJobAbility(), &Action);
             Action.messageID  = m_PJobAbility->getMessage();
             Action.param = value;
 
@@ -1998,11 +1991,6 @@ void CAICharNormal::ActionJobAbilityFinish()
                 Action.messageID = ability::GetAbsorbMessage(Action.messageID);
                 Action.param = -value;
             }
-
-    		if( m_PJobAbility->getID() == ABILITY_SHADOWBIND )
-    		{
-    			//Action.flag = 3;
-    		}
 
     		if (m_PJobAbility->getID() == ABILITY_MIJIN_GAKURE)
 			{
@@ -2017,21 +2005,22 @@ void CAICharNormal::ActionJobAbilityFinish()
 			 * Blade of Death quests are active.
 			 */
 
+			// Shadow Bind
+			if (m_PJobAbility->getID() == ABILITY_SHADOWBIND)
+			{
+				//Action.flag = 3;
 
-			/// Shadow Bind
-    		if(m_PJobAbility->getID() == ABILITY_SHADOWBIND)
-    		{
 				uint16 shadowBindDuration = 30 + m_PChar->getMod(MOD_SHADOW_BIND_EXT);
 				if (WELL512::irand()%100 >= m_PBattleSubTarget->getMod(MOD_BINDRES))
 				{
 					// Shadow bind success!
-					m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 11, 277)); 
+					m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 11, 277));
 					m_PBattleSubTarget->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_BIND, EFFECT_BIND, 1, 0, shadowBindDuration));
 				}
 				else
 				{
 					// Shadowbind failed!
-					m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 11, 283)); 
+					m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 11, 283));
 				}
 			}
 
@@ -2157,7 +2146,7 @@ void CAICharNormal::ActionJobAbilityFinish()
     		}
 
 
-            if (m_PJobAbility->getValidTarget() & TARGET_ENEMY && 
+            if (m_PJobAbility->getValidTarget() & TARGET_ENEMY &&
                 m_PBattleSubTarget->allegiance != m_PChar->allegiance)
             {
                 // во время pvp целью могут быт персонажи, монстры и их питомцы
@@ -2660,7 +2649,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
     {
         // NOTE: GetSkillChainEffect is INSIDE this if statement because it
         //  ALTERS the state of the resonance, which misses and non-elemental skills should NOT do.
-        SUBEFFECT effect = battleutils::GetSkillChainEffect(m_PBattleSubTarget, m_PWeaponSkill);
+        SUBEFFECT effect = battleutils::GetSkillChainEffect(m_PBattleSubTarget, GetCurrentWeaponSkill());
         if (effect != SUBEFFECT_NONE)
         {
 	        uint16 skillChainDamage = battleutils::TakeSkillchainDamage(m_PChar, m_PBattleSubTarget, damage);
@@ -2922,7 +2911,7 @@ void CAICharNormal::ActionAttack()
 			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,MSGBASIC_IS_INTIMIDATED));
 		}
 		else
-		{          
+		{
 			// Create a new attack round.
 			CAttackRound* attackRound = new CAttackRound(m_PChar);
 
@@ -2933,7 +2922,7 @@ void CAICharNormal::ActionAttack()
 			{
 				apAction_t Action;
 				Action.ActionTarget = m_PBattleTarget;
-				Action.knockback  = 0;  
+				Action.knockback  = 0;
 
 				// Reference to the current swing.
 				CAttack* attack = (CAttack*)attackRound->GetCurrentAttack();
@@ -3075,11 +3064,11 @@ void CAICharNormal::ActionAttack()
 
 				i--;
 
-                if (m_PChar->m_ActionList.size() == 8) 
+                if (m_PChar->m_ActionList.size() == 8)
 				{
 					break;
 				}
-			} 
+			}
 			/////////////////////////////////////////////////////////////////////////////////////////////
 			// End of attack loop
 			/////////////////////////////////////////////////////////////////////////////////////////////

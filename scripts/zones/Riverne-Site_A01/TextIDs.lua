@@ -13,3 +13,6 @@ SPACE_SEEMS_DISTORTED = 7554; -- The space around you seems oddly distorted and 
              MONUMENT = 7561; -- Something has been engraved on this stone, but the message is too difficult to make out.
 
 NOTHING_OUT_OF_ORDINARY = 7595 -- There is nothing out of the ordinary here.
+
+-- conquest Base
+CONQUEST_BASE = 7024;

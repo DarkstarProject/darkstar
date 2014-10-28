@@ -23,3 +23,6 @@ CHEST_ILLUSION = 7233; -- The chest was but an illusion...
 SHOWMAN_DECLINE = 7238; -- ... Me no want that. Thing me want not here! It not being here!!!?Prompt?
 SHOWMAN_TRIGGER = 7239; -- Hey, you there! Muscles nice. You want fight strong one? It cost you. Give me nice item.
  SHOWMAN_ACCEPT = 7240; -- Fhungaaa!!! The freshyness, the flavoryness! This very nice item! Good luck, then. Try not die. One...two...four...FIIIIIIGHT!!!
+
+-- conquest Base
+CONQUEST_BASE = 7024;

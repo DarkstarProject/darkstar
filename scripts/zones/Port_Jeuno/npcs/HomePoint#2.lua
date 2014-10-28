@@ -8,7 +8,7 @@ package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/zones/Port_Jeuno/TextIDs");
-
+require("scripts/globals/homepoint");
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -21,13 +21,17 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-if (HOMEPOINT_HEAL == 1) then
-	player:addHP(player:getMaxHP());
-	player:addMP(player:getMaxMP());
-end
-player:startEvent(0x21fd);
+	if (HOMEPOINT_HEAL == 1) then
+		player:addHP(player:getMaxHP());
+		player:addMP(player:getMaxMP());
+	end
+	if(HOMEPOINT_TELEPORT == 1)then
+		--                       ?/1-Ru'lude5 /Lude-Ru'Aun/Tav-end/     ?/Gil /Expantion level/Registered   (4294967295)notworking
+		player:startEvent(0x21fd,0,player:getVar("hpmask1"),player:getVar("hpmask2"),player:getVar("hpmask3"),player:getVar("hpmask4"),player:getGil(),4095,38 + addtohps(player,2,6));
+	else
+		player:startEvent(0x21fd)
+	end
 end; 
-
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
@@ -41,6 +45,7 @@ end;
 -- onEventFinish
 -----------------------------------
 
+	
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
@@ -48,9 +53,14 @@ function onEventFinish(player,csid,option)
 		if (option == 1) then	
 			player:setHomePoint();
 			player:messageSpecial(HOMEPOINT_SET);
+		else
+			hpteleport(player,option);
 		end
 	end
 end;	
+
+
+
 
 
 

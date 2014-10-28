@@ -38,6 +38,19 @@ zone:registerRegion(8,  -542,-4,-586    ,-538,4,-582); -- 'Central_Temenos_4th_F
 
 end;
 
+
+-----------------------------------		
+-- onConquestUpdate		
+-----------------------------------		
+
+function onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+    
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
+end;
+
 -----------------------------------		
 -- onZoneIn		
 -----------------------------------		

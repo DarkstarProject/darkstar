@@ -8,7 +8,7 @@ package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/zones/RuLude_Gardens/TextIDs");
-
+require("scripts/globals/homepoint");
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -21,11 +21,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-if (HOMEPOINT_HEAL == 1) then
-	player:addHP(player:getMaxHP());
-	player:addMP(player:getMaxMP());
-end
-player:startEvent(0x21fe);
+	if (HOMEPOINT_HEAL == 1) then
+		player:addHP(player:getMaxHP());
+		player:addMP(player:getMaxMP());
+	end
+	if(HOMEPOINT_TELEPORT == 1)then
+		player:startEvent(0x21fe,0,player:getVar("hpmask1"),player:getVar("hpmask2"),player:getVar("hpmask3"),player:getVar("hpmask4"),player:getGil(),4095,31 + addtohps(player,1,31));
+	else
+		player:startEvent(0x21fe)
+	end
 end; 
 
 -----------------------------------
@@ -48,6 +52,8 @@ function onEventFinish(player,csid,option)
 		if (option == 1) then	
 			player:setHomePoint();
 			player:messageSpecial(HOMEPOINT_SET);
+		else
+			hpteleport(player,option);
 		end
 	end
 end;	

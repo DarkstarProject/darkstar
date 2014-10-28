@@ -280,7 +280,7 @@ void CAIGeneral::SetCurrentSpell(uint16 SpellID)
 		m_ActionType != ACTION_MAGIC_FINISH  &&
 		m_ActionType != ACTION_MAGIC_INTERRUPT)
 	{
-		m_PSpell = spell::GetSpell(SpellID);
+        m_PSpell = std::unique_ptr<CSpell>(new CSpell(*spell::GetSpell(SpellID)));
 	}
 }
 
@@ -300,7 +300,7 @@ CSpell* CAIGeneral::GetCurrentSpell()
 
 	DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
 
-	return m_PSpell;
+	return m_PSpell.get();
 }
 
 /************************************************************************
@@ -314,7 +314,7 @@ void CAIGeneral::SetCurrentWeaponSkill(uint16 WSkillID)
 	if (m_ActionType != ACTION_WEAPONSKILL_START   &&
 		m_ActionType != ACTION_WEAPONSKILL_FINISH)
 	{
-		m_PWeaponSkill = battleutils::GetWeaponSkill(WSkillID);
+		m_PWeaponSkill = std::unique_ptr<CWeaponSkill>(new CWeaponSkill(*battleutils::GetWeaponSkill(WSkillID)));
 	}
 }
 
@@ -328,7 +328,7 @@ CWeaponSkill* CAIGeneral::GetCurrentWeaponSkill()
 {
 	DSP_DEBUG_BREAK_IF(m_PWeaponSkill == NULL);
 
-	return m_PWeaponSkill;
+	return m_PWeaponSkill.get();
 }
 
 /************************************************************************
@@ -342,7 +342,7 @@ void CAIGeneral::SetCurrentJobAbility(uint16 JobAbilityID)
 	if (m_ActionType != ACTION_JOBABILITY_START   &&
 		m_ActionType != ACTION_JOBABILITY_FINISH)
 	{
-		m_PJobAbility = ability::GetAbility(JobAbilityID);
+		m_PJobAbility = std::unique_ptr<CAbility>(new CAbility(*ability::GetAbility(JobAbilityID)));
 	}
 }
 
@@ -356,7 +356,7 @@ CAbility* CAIGeneral::GetCurrentJobAbility()
 {
 	DSP_DEBUG_BREAK_IF(m_PJobAbility == NULL);
 
-	return m_PJobAbility;
+	return m_PJobAbility.get();
 }
 
 /************************************************************************
@@ -392,7 +392,7 @@ CBattleEntity* CAIGeneral::GetBattleSubTarget()
 
 CMobSkill* CAIGeneral::GetCurrentMobSkill()
 {
-	return m_PMobSkill;
+	return m_PMobSkill.get();
 }
 
 /************************************************************************
@@ -403,7 +403,7 @@ CMobSkill* CAIGeneral::GetCurrentMobSkill()
 
 void CAIGeneral::SetCurrentMobSkill(CMobSkill* skill)
 {
-	m_PMobSkill = skill;
+	m_PMobSkill = std::unique_ptr<CMobSkill>(new CMobSkill(*skill));
 }
 
 /************************************************************************

@@ -3846,4 +3846,58 @@ inline int32 nearLocation(lua_State* L)
     return 1;
 }
 
+
+int32 OnPlayerLevelUp(CCharEntity* PChar)
+{
+    lua_prepscript("scripts/globals/player.lua");
+    if (prepFile(File, "onPlayerLevelUp"))
+        return -1;
+
+    CLuaBaseEntity LuaBaseEntity(PChar);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+    if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
+    {
+        ShowError("luautils::OnPlayerLevelUp: %s\n", lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+
+    int32 returns = lua_gettop(LuaHandle) - oldtop;
+    if (returns > 0)
+    {
+        ShowError("luatils::OnPlayerLevelUp (%s): 0 returns expected, got %d\n", File, returns);
+        lua_pop(LuaHandle, returns);
+    }
+
+    return 0;
+}
+
+int32 OnPlayerLevelDown(CCharEntity* PChar)
+{
+    lua_prepscript("scripts/globals/player.lua");
+    if (prepFile(File, "onPlayerLevelDown"))
+        return -1;
+
+    CLuaBaseEntity LuaBaseEntity(PChar);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+    if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
+    {
+        ShowError("luautils::OnPlayerLevelDown: %s\n", lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+
+    int32 returns = lua_gettop(LuaHandle) - oldtop;
+    if (returns > 0)
+    {
+        ShowError("luatils::OnPlayerLevelDown (%s): 0 returns expected, got %d\n", File, returns);
+        lua_pop(LuaHandle, returns);
+    }
+
+    return 0;
+}
+
+
 }; // namespace luautils

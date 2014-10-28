@@ -185,7 +185,7 @@ void CTransportHandler::InitializeElevators()
 			elevator.isPermanent = (Sql_GetUIntData(SqlHandle,5) != 0);
 
 			elevator.movetime = ((elevator.UpperDoor == NULL)||(elevator.LowerDoor == NULL) ? 0 : 3);
-			elevator.interval = ((elevator.UpperDoor == NULL)||(elevator.LowerDoor == NULL)||(!elevator.isPermanent) ? 8 : 8);
+            elevator.interval = 8;// ((elevator.UpperDoor == NULL) || (elevator.LowerDoor == NULL) || (!elevator.isPermanent) ? 8 : 8);
 
 			if (elevator.Elevator != NULL)
 			{
@@ -419,10 +419,6 @@ void CTransportHandler::startElevator(Elevator_t * elevator)
 
 void CTransportHandler::arriveElevator(Elevator_t * elevator)
 {
-	if (elevator->id == ELEVATOR_DAVOI_ELVTR)
-	{
-		elevator->interval = elevator->interval;
-	}
 	if (elevator->id == ELEVATOR_PORT_BASTOK_DRWBRDG)
 	{
 		elevator->LowerDoor->animation = ANIMATION_OPEN_DOOR;

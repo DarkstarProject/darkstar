@@ -13,3 +13,6 @@ QUASILUMIN_01 = 7335; -- This is Al'Taieu. The celestial capital overflowing wit
     NOTHING_OF_INTEREST = 7445; -- There is nothing of interest here.
          OMINOUS_SHADOW = 7446; -- An ominous shadow falls over you...
 NOTHING_OUT_OF_ORDINARY = 7448; --There is nothing out of the ordinary here.
+
+-- conquest Base
+CONQUEST_BASE = 7119;

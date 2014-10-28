@@ -52,11 +52,21 @@ CLuaAbility::CLuaAbility(CAbility* PAbility)
 	m_PLuaAbility = PAbility;
 }
 
-/************************************************************************
-*                                                                       *
-*  Устанавливаем сообщение способности                                  *
-*                                                                       *
-************************************************************************/
+inline int32 CLuaAbility::getID(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaAbility == NULL);
+
+    lua_pushinteger(L, m_PLuaAbility->getID());
+    return 1;
+}
+
+inline int32 CLuaAbility::getRecast(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaAbility == NULL);
+
+    lua_pushinteger(L, m_PLuaAbility->getRecastTime());
+    return 1;
+}
 
 inline int32 CLuaAbility::setMsg(lua_State *L)
 {
@@ -67,27 +77,40 @@ inline int32 CLuaAbility::setMsg(lua_State *L)
 	return 0;
 }
 
-/************************************************************************
-*                                                                       *
-*  Устанавливаем анимацию способности                                   *
-*                                                                       *
-************************************************************************/
-
 inline int32 CLuaAbility::setAnimation(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaAbility == NULL); 
-    DSP_DEBUG_BREAK_IF(lua_isnil(L,-1) || !lua_isnumber(L,-1));
+    DSP_DEBUG_BREAK_IF(m_PLuaAbility == NULL);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    m_PLuaAbility->setAnimationID(lua_tointeger(L,-1));
-	return 0;
+    m_PLuaAbility->setAnimationID(lua_tointeger(L, -1));
+    return 0;
 }
 
-inline int32 CLuaAbility::getID(lua_State *L)
+inline int32 CLuaAbility::setRecast(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaAbility == NULL); 
+    DSP_DEBUG_BREAK_IF(m_PLuaAbility == NULL);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-	lua_pushinteger(L, m_PLuaAbility->getID());
-	return 1;
+    m_PLuaAbility->setRecastTime(lua_tointeger(L, -1));
+    return 0;
+}
+
+inline int32 CLuaAbility::setCE(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaAbility == NULL);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+
+    m_PLuaAbility->setCE(lua_tointeger(L, -1));
+    return 0;
+}
+
+inline int32 CLuaAbility::setVE(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaAbility == NULL);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+
+    m_PLuaAbility->setVE(lua_tointeger(L, -1));
+    return 0;
 }
 
 /************************************************************************
@@ -100,8 +123,12 @@ const int8 CLuaAbility::className[] = "CAbility";
 
 Lunar<CLuaAbility>::Register_t CLuaAbility::methods[] = 
 {
+    LUNAR_DECLARE_METHOD(CLuaAbility,getID),
+    LUNAR_DECLARE_METHOD(CLuaAbility,getRecast),
     LUNAR_DECLARE_METHOD(CLuaAbility,setMsg),
     LUNAR_DECLARE_METHOD(CLuaAbility,setAnimation),
-	LUNAR_DECLARE_METHOD(CLuaAbility,getID),
+    LUNAR_DECLARE_METHOD(CLuaAbility,setRecast),
+    LUNAR_DECLARE_METHOD(CLuaAbility,setCE),
+    LUNAR_DECLARE_METHOD(CLuaAbility,setVE),
 	{NULL,NULL}
 }; 

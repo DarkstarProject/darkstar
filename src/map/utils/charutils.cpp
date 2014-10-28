@@ -214,7 +214,7 @@ void CalculateStats(CCharEntity* PChar)
 	{
 		if (grade::GetJobGrade(sjob,1) != 0 && slvl > 0)					// В этом выражении ошибка
 		{
-			raceStat = (grade::GetMPScale(grade,0) + grade::GetMPScale(grade,scaleTo60Column) * (slvl - 1)) / 2; 	// Вот здесь ошибка
+			raceStat = (grade::GetMPScale(grade,0) + grade::GetMPScale(grade,scaleTo60Column) * (slvl - 1)) / map_config.sj_mp_divisor;	// Вот здесь ошибка
 		}
 	}else{
 		//Расчет нормального расового бонуса
@@ -236,7 +236,7 @@ void CalculateStats(CCharEntity* PChar)
 	if (slvl > 0)
 	{
 		grade = grade::GetJobGrade(sjob,1);
-		sJobStat = (grade::GetMPScale(grade,0) + grade::GetMPScale(grade,scaleTo60Column) * (slvl - 1)) / 2;
+		sJobStat = (grade::GetMPScale(grade,0) + grade::GetMPScale(grade,scaleTo60Column) * (slvl - 1)) / map_config.sj_mp_divisor;
 	}
 
 	MeritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_MAX_MP, PChar);
@@ -300,7 +300,7 @@ void CalculateStats(CCharEntity* PChar)
 		MeritBonus = PChar->PMeritPoints->GetMeritValue((Merit_t*)PChar->PMeritPoints->GetMeritByIndex(StatIndex), PChar);
 
 		// Вывод значения
-		WBUFW(&PChar->stats,counter) = (uint16)(raceStat + jobStat + sJobStat + MeritBonus);
+		WBUFW(&PChar->stats,counter) = (uint16)(map_config.player_stat_multiplier * (raceStat + jobStat + sJobStat) + MeritBonus);
 		counter += 2;
 	}
 }
@@ -2845,7 +2845,13 @@ void DistributeGil(CCharEntity* PChar, CMobEntity* PMob)
 {
     //work out the amount of gil to give (guessed; replace with testing)
     uint32 gil = PMob->GetRandomGil();
+    uint32 gBonus = 0;
 
+    if (map_config.all_mobs_gil_bonus > 0)
+    {
+        gBonus = map_config.all_mobs_gil_bonus*PMob->GetMLevel();
+        gil += dsp_cap(gBonus, 1, map_config.max_gil_bonus);
+    }
 
 	//distribute to said members (perhaps store pointers to each member in first loop?)
 	if (PChar->PParty != NULL)
@@ -3347,6 +3353,7 @@ void DelExperiencePoints(CCharEntity* PChar, float retainPercent)
         }
 
 		PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar, PChar, PChar->jobs.job[PChar->GetMJob()], 0, 11));
+        luautils::OnPlayerLevelDown(PChar);
 	}
 	else
     {
@@ -3538,6 +3545,8 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
                     PChar->PParty->RefreshSync();
                 }
             }
+
+            luautils::OnPlayerLevelUp(PChar);
 			return;
         }
     }

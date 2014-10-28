@@ -458,7 +458,7 @@ void CAIMobDummy::ActionDropItems()
 			    }
 
 				//check for gil (beastmen drop gil, some NMs drop gil)
-				if(m_PMob->CanDropGil())
+				if(m_PMob->CanDropGil() || map_config.all_mobs_gil_bonus > 0)
                 {
 					charutils::DistributeGil(PChar, m_PMob); // TODO: REALISATION MUST BE IN TREASUREPOOL
 				}
@@ -751,7 +751,7 @@ void CAIMobDummy::ActionAbilityStart()
 	{
 
 		// get my job two hour
-		m_PMobSkill = battleutils::GetTwoHourMobSkill(m_PMob->GetMJob());
+        SetCurrentMobSkill(battleutils::GetTwoHourMobSkill(m_PMob->GetMJob()));
 
         if (m_PMobSkill != NULL)
         {
@@ -763,12 +763,12 @@ void CAIMobDummy::ActionAbilityStart()
             {
                 m_PBattleSubTarget = m_PBattleTarget;
             }
+
+            // set param so 2hour can be customized
+            m_PMobSkill->setParam(m_PMob->getMobMod(MOBMOD_MAIN_2HOUR));
         }
 
-        // set param so 2hour can be customized
-        m_PMobSkill->setParam(m_PMob->getMobMod(MOBMOD_MAIN_2HOUR));
-
-        valid = (m_PMobSkill != NULL && luautils::OnMobSkillCheck(m_PBattleSubTarget, m_PMob, m_PMobSkill) == 0);
+        valid = (m_PMobSkill != NULL && luautils::OnMobSkillCheck(m_PBattleSubTarget, m_PMob, GetCurrentMobSkill()) == 0);
 
 		if(valid)
 		{
@@ -792,7 +792,7 @@ void CAIMobDummy::ActionAbilityStart()
     {
 
         // get my job two hour
-        m_PMobSkill = battleutils::GetTwoHourMobSkill(m_PMob->GetSJob());
+        SetCurrentMobSkill(battleutils::GetTwoHourMobSkill(m_PMob->GetSJob()));
 
         if (m_PMobSkill != NULL)
         {
@@ -804,12 +804,12 @@ void CAIMobDummy::ActionAbilityStart()
             {
                 m_PBattleSubTarget = m_PBattleTarget;
             }
+
+            // set param so 2hour can be customized
+            m_PMobSkill->setParam(m_PMob->getMobMod(MOBMOD_SUB_2HOUR));
         }
 
-        // set param so 2hour can be customized
-        m_PMobSkill->setParam(m_PMob->getMobMod(MOBMOD_SUB_2HOUR));
-
-        valid = (m_PMobSkill != NULL && luautils::OnMobSkillCheck(m_PBattleSubTarget, m_PMob, m_PMobSkill) == 0);
+        valid = (m_PMobSkill != NULL && luautils::OnMobSkillCheck(m_PBattleSubTarget, m_PMob, GetCurrentMobSkill()) == 0);
 
         if (valid)
         {
@@ -835,7 +835,7 @@ void CAIMobDummy::ActionAbilityStart()
 		std::random_shuffle(MobSkills.begin(), MobSkills.end()); //Start the selection process by randomizing the container
 
 		for(int i=0;i<MobSkills.size();i++){
-			m_PMobSkill = MobSkills.at(i);
+            SetCurrentMobSkill(MobSkills.at(i));
             if (m_PMobSkill->getValidTargets() == TARGET_ENEMY){ //enemy
                 m_PBattleSubTarget = m_PBattleTarget;
             }
@@ -847,7 +847,7 @@ void CAIMobDummy::ActionAbilityStart()
                 continue;
             }
             float currentDistance = distance(m_PMob->loc.p, m_PBattleSubTarget->loc.p);
-			if(!m_PMobSkill->isTwoHour() && luautils::OnMobSkillCheck(m_PBattleSubTarget, m_PMob, m_PMobSkill) == 0){ //A script says that the move in question is valid
+            if (!m_PMobSkill->isTwoHour() && luautils::OnMobSkillCheck(m_PBattleSubTarget, m_PMob, GetCurrentMobSkill()) == 0){ //A script says that the move in question is valid
 				if(currentDistance <= m_PMobSkill->getDistance()) {
 					valid = true;
 					break;
@@ -1044,10 +1044,7 @@ void CAIMobDummy::ActionAbilityFinish()
 
         Action.ActionTarget = PTarget;
 
-	        // set default message
-        m_PMobSkill->resetMsg();
-
-		Action.param = luautils::OnMobWeaponSkill(PTarget, m_PMob, m_PMobSkill);
+		Action.param = luautils::OnMobWeaponSkill(PTarget, m_PMob, GetCurrentMobSkill());
 
 		if(msg == 0){
 			msg = m_PMobSkill->getMsg();
@@ -1116,7 +1113,7 @@ void CAIMobDummy::ActionAbilityFinish()
             m_LastActionTime = m_Tick - m_PMob->m_Weapons[SLOT_MAIN]->getDelay();
         }
 	}
-
+    m_PMobSkill = NULL;
 }
 
 /************************************************************************
@@ -1208,7 +1205,7 @@ void CAIMobDummy::ActionMagicStart()
 	// this must be at the top to RESET magic cast timer
 	m_LastMagicTime = m_Tick;
 
-	STATESTATUS status = m_PMagicState->CastSpell(m_PSpell, m_PBattleSubTarget);
+	STATESTATUS status = m_PMagicState->CastSpell(GetCurrentSpell(), m_PBattleSubTarget);
 
 	if(status == STATESTATUS_START)
 	{
@@ -1343,11 +1340,11 @@ void CAIMobDummy::ActionAttack()
 	            {
 		            if (m_PMob->PBattleAI->GetBattleTarget() != NULL)
 		            {
-			            CMobSkill* mobskill = battleutils::GetMobSkill(action.param);
+                        m_PMob->PBattleAI->SetCurrentMobSkill(battleutils::GetMobSkill(action.param));
+                        CMobSkill* mobskill = m_PMob->PBattleAI->GetCurrentMobSkill();
 
 			            if(mobskill != NULL)
 			            {
-				            m_PMob->PBattleAI->SetCurrentMobSkill(mobskill);
                             m_LastActionTime = m_Tick;
 				            if( mobskill->getActivationTime() != 0)
 				            {
@@ -1427,7 +1424,7 @@ void CAIMobDummy::ActionAttack()
 
             if (teleportBegin)
             {
-                m_PMobSkill = teleportBegin;
+                SetCurrentMobSkill(teleportBegin);
                 m_PBattleSubTarget = m_PMob;
                 m_LastStandbackTime = m_Tick;
                 m_ActionType = ACTION_MOBABILITY_FINISH;
@@ -1499,7 +1496,7 @@ void CAIMobDummy::ActionAttack()
         std::random_shuffle(MobSkills.begin(), MobSkills.end()); //Start the selection process by randomizing the container
 
         for (int i = 0; i<MobSkills.size(); i++){
-            m_PMobSkill = MobSkills.at(i);
+            SetCurrentMobSkill(MobSkills.at(i));
             if (m_PMobSkill->getValidTargets() == TARGET_ENEMY){ //enemy
                 m_PBattleSubTarget = m_PBattleTarget;
             }
@@ -1559,7 +1556,7 @@ void CAIMobDummy::ActionAttack()
 
                 if (teleportBegin && currentDistance <= teleportBegin->getDistance())
                 {
-                    m_PMobSkill = teleportBegin;
+                    SetCurrentMobSkill(teleportBegin);
                     m_PBattleSubTarget = m_PMob;
                     m_ActionType = ACTION_MOBABILITY_FINISH;
                     ActionAbilityFinish();
@@ -2029,7 +2026,7 @@ void CAIMobDummy::ActionSpecialSkill()
 
 
 	// this will be read by the packets layer
-	m_PMobSkill = m_PSpecialSkill;
+	SetCurrentMobSkill(m_PSpecialSkill);
 
 	// this makes sure the proper packet is sent
 	m_ActionType = ACTION_MOBABILITY_FINISH;
@@ -2052,14 +2049,12 @@ void CAIMobDummy::ActionSpecialSkill()
 
     m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
 
-    m_PMobSkill->resetMsg();
-
 	Action.speceffect = SPECEFFECT_HIT;
     Action.ActionTarget = m_PBattleSubTarget;
 	Action.animation  = m_PMobSkill->getAnimationID();
     //Why is this even here? if flag = 0, it doesn't even do anything.
 	//Action.subparam   = m_PMobSkill->getMsgForAction();
-	Action.param	  = luautils::OnMobWeaponSkill(m_PBattleSubTarget, m_PMob, m_PMobSkill);
+    Action.param = luautils::OnMobWeaponSkill(m_PBattleSubTarget, m_PMob, GetCurrentMobSkill());
 	Action.messageID  = m_PMobSkill->getMsg();
     Action.knockback  = 0;
 
@@ -2083,7 +2078,7 @@ void CAIMobDummy::ActionSpecialSkill()
 
 void CAIMobDummy::CastSpell(uint16 spellId, CBattleEntity* PTarget)
 {
-	m_PSpell = spell::GetSpell(spellId);
+	SetCurrentSpell(spellId);
 
 	if(m_PSpell == NULL){
 		ShowWarning(CL_YELLOW"ai_mob_dummy::CastSpell: SpellId <%i> is not found\n" CL_RESET, spellId);

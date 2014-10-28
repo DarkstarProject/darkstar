@@ -1,6 +1,8 @@
 #ifndef _CBASETYPES_H_
 #define _CBASETYPES_H_
 
+#include <stdint.h>
+
 /*              +--------+-----------+--------+---------+
  *              | ILP32  |   LP64    |  ILP64 | (LL)P64 |
  * +------------+--------+-----------+--------+---------+
@@ -80,7 +82,6 @@
 // only Silicon Graphics/Cray goes ILP64 so don't care (and don't support)
 //////////////////////////////////////////////////////////////////////////
 
-#include <cstdint>
 #include <limits.h>
 // ILP64 isn't supported, so always 32 bits?
 #ifndef UINT_MAX
