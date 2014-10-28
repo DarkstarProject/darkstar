@@ -368,6 +368,15 @@ namespace message
 				}
 				break;
 			}
+            case MSG_LINKSHELL_RANK_CHANGE:
+            {
+                CLinkshell* PLinkshell = linkshell::GetLinkshell(RBUFL(extra->data(), 24));
+
+                if (PLinkshell)
+                {
+                    PLinkshell->ChangeMemberRank((int8*)extra->data() + 4, RBUFB(extra->data(), 28));
+                }
+            }
 		}
 	}
 

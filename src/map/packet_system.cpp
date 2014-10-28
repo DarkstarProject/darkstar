@@ -3228,7 +3228,13 @@ void SmallPacket0x077(map_session_data_t* session, CCharEntity* PChar, int8* dat
         {
             if (PChar->PLinkshell != NULL)
             {
-				PChar->PLinkshell->ChangeMemberRank(data+0x04, RBUFB(data,(0x15)));
+				//PChar->PLinkshell->ChangeMemberRank(data+0x04, RBUFB(data,(0x15)));
+                int8 packetData[29];
+                WBUFL(packetData, 0) = PChar->id;
+                memcpy(packetData + 0x04, data + 0x04, 20);
+                WBUFL(packetData, 24) = PChar->PLinkshell->getID();
+                WBUFB(packetData, 28) = RBUFB(data, 0x15);
+                message::send(MSG_LINKSHELL_RANK_CHANGE, packetData, sizeof packetData, NULL);
             }
         }
         break;
