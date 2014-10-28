@@ -366,7 +366,7 @@ int32 do_sockets(fd_set* rfd,int32 next)
 				map_session_data->server_packet_data = data;
 				map_session_data->server_packet_size = size;
 			}
-            if (map_session_data->shuttingDown)
+            if (map_session_data->shuttingDown > 0)
             {
                 map_close_session(gettick(), map_session_data);
             }
@@ -704,12 +704,16 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
 int32 map_close_session(uint32 tick, map_session_data_t* map_session_data)
 {
     if (map_session_data != NULL &&
-        map_session_data->server_packet_data != NULL &&		// bad pointer crashed here, might need dia to look at this one
-        map_session_data->PChar != NULL)					// crash occured when both server_packet_data & PChar were NULL
+        map_session_data->server_packet_data != NULL &&	
+        map_session_data->PChar != NULL)
     {
         charutils::SavePlayTime(map_session_data->PChar);
 
-        Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE charid = %u", map_session_data->PChar->id);
+        //clear accounts_sessions if character is logging out (not when zoning)
+        if (map_session_data->shuttingDown == 1)
+        {
+            Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE charid = %u", map_session_data->PChar->id);
+        }
 
         uint64 port64 = map_session_data->client_port;
         uint64 ipp = map_session_data->client_addr;
@@ -728,13 +732,6 @@ int32 map_close_session(uint32 tick, map_session_data_t* map_session_data)
 
     ShowError(CL_RED"map_close_session: cannot close session, session not found\n" CL_RESET);
     return 1;
-}
-
-int32 map_close_session(uint32 tick, CTaskMgr::CTask* PTask)
-{
-	map_session_data_t* map_session_data = (map_session_data_t*)PTask->m_data;
-
-    return map_close_session(tick, map_session_data);
 }
 
 /************************************************************************
@@ -769,7 +766,7 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
 		    {
 			    if (PChar != NULL)
 			    {
-                    if (!map_session_data->shuttingDown)
+                    if (map_session_data->shuttingDown == 0)
                     {
                         //[Alliance] fix to stop server crashing:
                         //if a party within an alliance only has 1 char (that char will be party leader)
@@ -809,7 +806,7 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
                         map_session_list.erase(it++);
                         continue;
                     }
-			    } else if(!map_session_data->shuttingDown){
+			    } else if(map_session_data->shuttingDown == 0){
 
 				    ShowWarning(CL_YELLOW"map_cleanup: WHITHOUT CHAR timed out, session closed\n" CL_RESET);
 

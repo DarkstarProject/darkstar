@@ -138,7 +138,7 @@ void CParty::DisbandParty(bool playerInitiated, Sql_t* sql)
         {
             uint8 data[4];
             WBUFL(data, 0) = m_PartyID;
-            message::send(message::MSG_PT_DISBAND, data, sizeof data, NULL);
+            message::send(MSG_PT_DISBAND, data, sizeof data, NULL);
         }
     }
 	delete this;
@@ -164,7 +164,7 @@ void CParty::AssignPartyRole(int8* MemberName, uint8 role)
 	}
 	uint8 data[4];
 	WBUFL(data, 0) = m_PartyID;
-    message::send(message::MSG_PT_RELOAD, data, sizeof data, NULL);
+    message::send(MSG_PT_RELOAD, data, sizeof data, NULL);
 	return;
 }
 
@@ -273,7 +273,7 @@ void CParty::RemoveMember(CBattleEntity* PEntity)
 
 					uint8 data[4];
 					WBUFL(data, 0) = m_PartyID;
-                    message::send(message::MSG_PT_RELOAD, data, sizeof data, NULL);
+                    message::send(MSG_PT_RELOAD, data, sizeof data, NULL);
 
 				    if (PChar->PTreasurePool != NULL &&
 					    PChar->PTreasurePool->GetPoolType() != TREASUREPOOL_ZONE)
@@ -424,7 +424,7 @@ void CParty::AddMember(CBattleEntity* PEntity, Sql_t* sql)
         Sql_Query(sql, "INSERT INTO accounts_parties (charid, partyid, partyflag) VALUES (%u, %u, %u);", PChar->id, m_PartyID, GetMemberFlags(PChar));
 		uint8 data[4];
 		WBUFL(data, 0) = m_PartyID;
-        message::send(message::MSG_PT_RELOAD, data, sizeof data, NULL);
+        message::send(MSG_PT_RELOAD, data, sizeof data, NULL);
 		ReloadTreasurePool(PChar);
 
 	    if (PChar->nameflags.flags & FLAG_INVITE)
@@ -466,7 +466,7 @@ void CParty::AddMember(uint32 id, Sql_t* Sql)
 		Sql_Query(SqlHandle, "INSERT INTO accounts_parties (charid, partyid, partyflag) VALUES (%u, %u, %u);", id, m_PartyID, 0);
 		uint8 data[4];
 		WBUFL(data, 0) = m_PartyID;
-        message::send(message::MSG_PT_RELOAD, data, sizeof data, NULL);
+        message::send(MSG_PT_RELOAD, data, sizeof data, NULL);
 
 		/*if (PChar->nameflags.flags & FLAG_INVITE)
 		{

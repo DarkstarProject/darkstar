@@ -929,7 +929,7 @@ void CZone::CharZoneOut(CCharEntity* PChar)
     {
         uint8 data[4];
         WBUFL(data, 0) = PChar->PParty->GetPartyID();
-        message::send(message::MSG_PT_RELOAD, data, sizeof data, NULL);
+        message::send(MSG_PT_RELOAD, data, sizeof data, NULL);
     }
 }
 

@@ -21,24 +21,10 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 #include "../common/sql.h"
+#include "../common/mmo.h"
 #include "../common/socket.h"
 
 #include <zmq.hpp>
-
-enum MSGSERVTYPE : uint8
-{
-    MSG_LOGIN,
-	MSG_CHAT_TELL,
-	MSG_CHAT_PARTY,
-	MSG_CHAT_LINKSHELL,
-	MSG_CHAT_YELL,
-	MSG_CHAT_SERVMES,
-	MSG_PT_INVITE,
-	MSG_PT_INV_RES,
-	MSG_PT_RELOAD,
-    MSG_PT_DISBAND,
-	MSG_DIRECT
-};
 
 void message_server_init();
 

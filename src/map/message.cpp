@@ -30,6 +30,7 @@ This file is part of DarkStar-server source code.
 
 #include "packets/message_standard.h"
 #include "packets/party_invite.h"
+#include "packets/server_ip.h"
 
 namespace message
 {
@@ -115,7 +116,11 @@ namespace message
                 if (!PChar)
                 {
                     Sql_Query(ChatSqlHandle, "DELETE FROM accounts_sessions WHERE charid = %d;", RBUFL(extra->data(), 0));
-                    Sql_Query(ChatSqlHandle, "DELETE FROM accounts_parties WHERE charid = %d;", RBUFL(extra->data(), 0));
+                }
+                else
+                {
+                    PChar->status = STATUS_SHUTDOWN;
+                    PChar->pushPacket(new CServerIPPacket(PChar, 1));
                 }
             }
 			case MSG_CHAT_TELL:

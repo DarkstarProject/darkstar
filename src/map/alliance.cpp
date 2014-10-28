@@ -69,7 +69,7 @@ void CAlliance::dissolveAlliance(bool playerInitiated, Sql_t* sql)
         //Sql_Query(SqlHandle, "UPDATE accounts_parties SET allianceid = 0, partyflag = partyflag & ~%d WHERE allianceid = %u;", ALLIANCE_LEADER | PARTY_SECOND | PARTY_THIRD, m_AllianceID);
         uint8 data[4];
         WBUFL(data, 0) = m_AllianceID;
-        message::send(message::MSG_PT_DISBAND, data, sizeof data, NULL);
+        message::send(MSG_PT_DISBAND, data, sizeof data, NULL);
     }
     else
     {
@@ -132,11 +132,11 @@ void CAlliance::removeParty(CParty * party)
     Sql_Query(SqlHandle, "UPDATE accounts_parties SET allianceid = 0, partyflag = partyflag & ~%d WHERE partyid = %u;", ALLIANCE_LEADER | PARTY_SECOND | PARTY_THIRD, party->GetPartyID());
 	uint8 data[4];
 	WBUFL(data, 0) = m_AllianceID;
-    message::send(message::MSG_PT_RELOAD, data, sizeof data, NULL);
+    message::send(MSG_PT_RELOAD, data, sizeof data, NULL);
 
     uint8 data2[4];
     WBUFL(data2, 0) = party->GetPartyID();
-    message::send(message::MSG_PT_RELOAD, data2, sizeof data2, NULL);
+    message::send(MSG_PT_RELOAD, data2, sizeof data2, NULL);
 }
 
 void CAlliance::delParty(CParty* party)
@@ -230,7 +230,7 @@ void CAlliance::addParty(CParty * party, Sql_t* Sql)
 
 	uint8 data[4];
 	WBUFL(data, 0) = m_AllianceID;
-    message::send(message::MSG_PT_RELOAD, data, sizeof data, NULL);
+    message::send(MSG_PT_RELOAD, data, sizeof data, NULL);
 
 }
 
@@ -255,7 +255,7 @@ void CAlliance::addParty(uint32 partyid, Sql_t* Sql)
     Sql_Query(Sql, "UPDATE accounts_parties SET allianceid = %u, partyflag = partyflag | %d WHERE partyid = %u;", m_AllianceID, newparty, partyid);
     uint8 data[4];
 	WBUFL(data, 0) = m_AllianceID;
-    message::send(message::MSG_PT_RELOAD, data, sizeof data, NULL);
+    message::send(MSG_PT_RELOAD, data, sizeof data, NULL);
 }
 
 void CAlliance::pushParty(CParty* PParty, uint8 number)
