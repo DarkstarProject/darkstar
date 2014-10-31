@@ -4003,23 +4003,6 @@ inline int32 CLuaBaseEntity::getStatus(lua_State *L)
 	return 1;
 }
 
-/************************************************************************
-*                                                                       *
-*  Разрещение атаковать этого персонажа другим персонажам               *
-*                                                                       *
-************************************************************************/
-
-inline int32 CLuaBaseEntity::setPVPFlag(lua_State *L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-
-    ((CCharEntity*)m_PBaseEntity)->m_PVPFlag = 0x08;
-
-    m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_UPDATE, UPDATE_COMBAT));
-    return 0;
-}
-
 //==========================================================//
 
 inline int32 CLuaBaseEntity::sendTractor(lua_State *L)
@@ -8185,6 +8168,25 @@ inline int32 CLuaBaseEntity::charmPet(lua_State *L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::charm(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isuserdata(L,1));
+
+    CLuaBaseEntity* PTarget = Lunar<CLuaBaseEntity>::check(L, 1);
+    battleutils::applyCharm((CBattleEntity*)m_PBaseEntity, (CBattleEntity*)PTarget->GetBaseEntity());
+
+    return 0;
+}
+
+inline int32 CLuaBaseEntity::uncharm(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+    battleutils::unCharm((CBattleEntity*)m_PBaseEntity);
+
+    return 0;
+}
 
 /************************************************************************
 *                                                                       *
@@ -9673,7 +9675,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUsePet),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setStatus),
 	LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStatus),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setPVPFlag),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendRaise),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendReraise),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendTractor),
@@ -9724,6 +9725,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPetName),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasPet),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,charmPet),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,charm),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,uncharm),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,spawnPet),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,despawnPet),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,petAttack),

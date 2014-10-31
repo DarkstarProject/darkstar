@@ -300,7 +300,6 @@ public:
 
     int32 setStatus(lua_State*);            // Sets Character's Status
 	int32 getStatus(lua_State*);
-    int32 setPVPFlag(lua_State*);           // Allow to attack this player
 
     int32 sendRaise(lua_State*);            // send raise request to char
     int32 sendReraise(lua_State*);          // send raise request to char
@@ -367,7 +366,9 @@ public:
 
     int32 getPetElement(lua_State*);
     int32 getPetName(lua_State*);
-    int32 charmPet(lua_State*);              // Charms Pet
+    int32 charmPet(lua_State*);              // Charms Pet (Beastmaster ability only)
+    int32 charm(lua_State*);                 // applies charm on target
+    int32 uncharm(lua_State*);               // removes charm on target
     int32 spawnPet(lua_State*);              // Calls Pet
     int32 despawnPet(lua_State*);            // Despawns Pet
     int32 petAttack(lua_State*);             // Despawns Pet

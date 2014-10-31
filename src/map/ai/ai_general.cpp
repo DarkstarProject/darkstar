@@ -403,7 +403,14 @@ CMobSkill* CAIGeneral::GetCurrentMobSkill()
 
 void CAIGeneral::SetCurrentMobSkill(CMobSkill* skill)
 {
-	m_PMobSkill = std::unique_ptr<CMobSkill>(new CMobSkill(*skill));
+    if (skill == NULL)
+    {
+        m_PMobSkill = NULL;
+    }
+    else
+    {
+        m_PMobSkill = std::unique_ptr<CMobSkill>(new CMobSkill(*skill));
+    }
 }
 
 /************************************************************************

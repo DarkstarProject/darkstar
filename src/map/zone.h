@@ -423,8 +423,7 @@ enum ZONEMISC
 	MISC_CHOCOBO	= 0x0004,	// Ability to use Chocobos
 	MISC_MOGMENU	= 0x0020,	// Ability to communicate with Nomad Moogle (menu access mog house)
 	MISC_COSTUME	= 0x0040,	// Ability to use a Costumes
-	MISC_TREASURE	= 0x0100,	// Presence in the global zone TreasurePool
-	MISC_PVP 		= 0x0200    // Ability to PvP
+	MISC_TREASURE	= 0x0100	// Presence in the global zone TreasurePool
 };
 
 /************************************************************************

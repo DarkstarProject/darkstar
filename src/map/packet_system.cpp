@@ -520,14 +520,17 @@ void SmallPacket0x015(map_session_data_t* session, CCharEntity* PChar, int8* dat
 						  (PChar->loc.p.z  != RBUFF(data,(0x0C))) ||
 						  (PChar->m_TargID != RBUFW(data,(0x16))) );
 
-		PChar->loc.p.x = RBUFF(data,(0x04));
-		PChar->loc.p.y = RBUFF(data,(0x08));
-		PChar->loc.p.z = RBUFF(data,(0x0C));
+        if (!PChar->isCharmed)
+        {
+            PChar->loc.p.x = RBUFF(data, (0x04));
+            PChar->loc.p.y = RBUFF(data, (0x08));
+            PChar->loc.p.z = RBUFF(data, (0x0C));
 
-		PChar->loc.p.moving   = RBUFW(data,(0x12));
-		PChar->loc.p.rotation = RBUFB(data,(0x14));
+            PChar->loc.p.moving = RBUFW(data, (0x12));
+            PChar->loc.p.rotation = RBUFB(data, (0x14));
 
-		PChar->m_TargID = RBUFW(data,(0x16));
+            PChar->m_TargID = RBUFW(data, (0x16));
+        }
 
 		if (isUpdate)
 		{

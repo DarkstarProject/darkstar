@@ -775,8 +775,6 @@ void CZone::CharZoneIn(CCharEntity* PChar)
 	PChar->loc.destination = 0;
 	PChar->m_InsideRegionID = 0;
 
-	PChar->m_PVPFlag = CanUseMisc(MISC_PVP);
-
 	//remove temp items
 	charutils::ClearTempItems(PChar);
 

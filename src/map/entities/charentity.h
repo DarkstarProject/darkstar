@@ -341,7 +341,6 @@ public:
     uint32            m_DeathCounter;               // Counter when you last died. This is set when you first login
     uint32            m_DeathTimestamp;             // Timestamp when death counter has been saved to database
 
-    uint8             m_PVPFlag;                    // pvp
 	uint8			  m_hasTractor;					// checks if player has tractor already
 	uint8			  m_hasRaise;					// checks if player has raise already
     uint8             m_hasAutoTarget;              // возможность использования AutoTarget функции

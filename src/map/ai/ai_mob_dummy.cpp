@@ -1293,7 +1293,14 @@ void CAIMobDummy::ActionMagicInterrupt()
 
 void CAIMobDummy::ActionAttack()
 {
-	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
+    if (m_PMob->getMobMod(MOBMOD_SHARE_TARGET) > 0 && m_PMob->loc.zone->GetEntity(m_PMob->getMobMod(MOBMOD_SHARE_TARGET), TYPE_MOB))
+    {
+        m_PBattleTarget = m_PMob->loc.zone->GetEntity(m_PMob->getMobMod(MOBMOD_SHARE_TARGET), TYPE_MOB)->PBattleAI->GetBattleTarget();
+    }
+    else
+    {
+        m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
+    }
 
     m_actionqueueability = false;
 

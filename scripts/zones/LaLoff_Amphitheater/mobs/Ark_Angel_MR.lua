@@ -39,7 +39,12 @@ end;
 -- onMobFight Action
 -----------------------------------
 function onMobFight(mob,target)
-
+    local charm = mob:getExtraVar(1);
+    
+    if (charm == 0 and mob:getHPP() <  50) then
+        mob:useMobAbility(454);
+        mob:setExtraVar(1);
+    end
 end;
 
 -----------------------------------

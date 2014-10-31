@@ -178,6 +178,8 @@ namespace battleutils
 
 	bool				TryCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 base);
 	void				tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim);
+    void                applyCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 charmTime = 0);
+    void                unCharm(CBattleEntity* PEntity);
 
 	uint16				doSoulEaterEffect(CCharEntity* m_PChar, uint32 damage);
 	uint16				getOverWhelmDamageBonus(CCharEntity* m_PChar, CBattleEntity* PDefender, uint16 damage);
