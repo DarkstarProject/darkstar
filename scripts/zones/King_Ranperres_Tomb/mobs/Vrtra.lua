@@ -26,12 +26,12 @@ function onMobFight(mob, target)
 
     if (twohourTime == 0) then
         twohourTime = math.random(4, 6);
-        mob:setExtraVar(changeTime, twohourTime);
+        mob:setExtraVar(spawnTime, twohourTime);
     end
     
     if (spawnTime == 0) then
         spawnTime = math.random(3, 5);
-        mob:setExtraVar(changeTime, twohourTime);
+        mob:setExtraVar(spawnTime, twohourTime);
     end
     
     if (mob:getBattleTime()/15 > twohourTime) then
