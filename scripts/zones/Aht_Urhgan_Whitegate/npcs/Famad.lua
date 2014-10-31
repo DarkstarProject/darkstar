@@ -33,9 +33,9 @@ function onTrigger(player,npc)
     else
         haveimperialIDtag = 0;
     end
-        
+    
     if (rank > 0) then
-        player:startEvent(275,rank,haveimperialIDtag,assaultPoints,player:getCurrentMission(ASSAULT));
+        player:startEvent(275,rank,haveimperialIDtag,assaultPoints,player:getCurrentAssault());
     else
         player:startEvent(281); -- no rank
 	end
@@ -61,7 +61,7 @@ function onEventFinish(player,csid,option)
         local selectiontype = bit.band(option, 0xF);
         if (selectiontype == 1) then
             -- taken assault mission
-            player:addMission(ASSAULT, bit.rshift(option,4));
+            player:addAssault(bit.rshift(option,4));
             player:delKeyItem(IMPERIAL_ARMY_ID_TAG);
             player:addKeyItem(LEBROS_ASSAULT_ORDERS);
             player:messageSpecial(KEYITEM_OBTAINED,LEBROS_ASSAULT_ORDERS);

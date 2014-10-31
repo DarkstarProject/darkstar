@@ -1590,6 +1590,104 @@ inline int32 CLuaBaseEntity::completeMission(lua_State *L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::addAssault(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    uint8 MissionID = (uint8)lua_tointeger(L, 1);
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    if (PChar->m_assaultLog.current != 0)
+    {
+        ShowWarning(CL_YELLOW"Lua::addAssault: player has a current assault\n" CL_RESET);
+    }
+    PChar->m_assaultLog.current = MissionID;
+    PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ASSAULT, 1));
+
+    charutils::SaveMissionsList(PChar);
+
+    return 0;
+}
+
+inline int32 CLuaBaseEntity::delAssault(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    uint8 MissionID = (uint8)lua_tointeger(L, 1);
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    uint8 current = PChar->m_assaultLog.current;
+    uint8 complete = PChar->m_assaultLog.complete[MissionID];
+
+    if (current == MissionID)
+    {
+        PChar->m_assaultLog.current = 0;
+        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ASSAULT, 1));
+    }
+    charutils::SaveMissionsList(PChar);
+
+    return 0;
+}
+
+inline int32 CLuaBaseEntity::hasCompletedAssault(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    uint8 MissionID = (uint8)lua_tointeger(L, 1);
+
+    bool complete = ((CCharEntity*)m_PBaseEntity)->m_assaultLog.complete[MissionID];
+
+    lua_pushboolean(L, complete);
+    return 1;
+}
+
+inline int32 CLuaBaseEntity::getCurrentAssault(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    uint8 MissionID = (uint8)((CCharEntity*)m_PBaseEntity)->m_assaultLog.current;
+
+    lua_pushinteger(L, MissionID);
+    return 1;
+}
+
+inline int32 CLuaBaseEntity::completeAssault(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    uint8 MissionID = (uint8)lua_tointeger(L, 1);
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    if (PChar->m_assaultLog.current != MissionID)
+    {
+        ShowWarning(CL_YELLOW"Lua::completeAssault: completion of not current assault\n" CL_RESET);
+    }
+    PChar->m_assaultLog.current = 0;
+    PChar->m_assaultLog.complete[MissionID] = true;
+    PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ASSAULT, 1));
+    PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ASSAULT, 2));
+
+    charutils::SaveMissionsList(PChar);
+
+    return 0;
+}
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::addKeyItem(lua_State *L)
@@ -9530,6 +9628,11 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCurrentMission),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasCompletedMission),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,completeMission),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addAssault),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,delAssault),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCurrentAssault),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasCompletedAssault),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,completeAssault),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRank),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setRank),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRankPoints),
