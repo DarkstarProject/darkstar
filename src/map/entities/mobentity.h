@@ -166,7 +166,6 @@ public:
   uint8     m_Link;                     // link with mobs of it's family
   uint16    m_Behaviour;                // mob behaviour
   SPAWNTYPE m_SpawnType;                // condition for mob to spawn
-  uint32    m_extraVar;                 // extra variable to store combat related variables from scripts
 
   uint8     m_CallForHelp;              // call for help flag on mob
 

@@ -8400,105 +8400,48 @@ inline int32 CLuaBaseEntity::updateTarget(lua_State* L)
 
 /************************************************************************
 *                                                                       *
-*   Gets the extra var stored in the mob entity.  Number parameter      *
-*   determines the number of results returned and their size:           *
-*   1 - returns one uint32                                              *
-*   2 - returns two uint16s                                             *
-*   3 - returns a uint16, then two uint8s                               *
-*   4 - returns 4 uint8s                                                *
+*   Gets a local var stored in the entity.                              *
 *                                                                       *
 ************************************************************************/
 
-inline int32 CLuaBaseEntity::getExtraVar(lua_State* L)
+inline int32 CLuaBaseEntity::getLocalVar(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
 
-    int32 n = lua_tointeger(L,1);
+    const char* var = lua_tostring(L,1);
 
-    if (n == 1)
-    {
-        lua_pushinteger(L, ((CMobEntity*)m_PBaseEntity)->m_extraVar);
-    }
-    else if (n == 2)
-    {
-        uint32 var = ((CMobEntity*)m_PBaseEntity)->m_extraVar;
-        uint16 var1 = var & 0x0000FFFF;
-        uint16 var2 = var >> 16;
-        lua_pushinteger(L, var1);
-        lua_pushinteger(L, var2);
-    }
-    else if (n == 3)
-    {
-        uint32 var = ((CMobEntity*)m_PBaseEntity)->m_extraVar;
-        uint16 var1 = var >> 16;
-        uint8 var2 = (var & 0x0000FF00) >> 8;
-        uint8 var3 = (var & 0x000000FF);
-        lua_pushinteger(L, var1);
-        lua_pushinteger(L, var2);
-        lua_pushinteger(L, var3);
-    }
-    else
-    {
-        uint32 var = ((CMobEntity*)m_PBaseEntity)->m_extraVar;
-        uint8 var1 = (var & 0x000000FF);
-        uint8 var2 = (var & 0x0000FF00) >> 8;
-        uint8 var3 = (var & 0x00FF0000) >> 16;
-        uint8 var4 = (var & 0xFF000000) >> 24;
-        lua_pushinteger(L, var4);
-        lua_pushinteger(L, var3);
-        lua_pushinteger(L, var2);
-        lua_pushinteger(L, var1);
-    }
+    lua_pushinteger(L, m_PBaseEntity->GetLocalVar(var));
 
-    return n;
+    return 1;
 }
 
 /************************************************************************
 *                                                                       *
-*  Gets the extra var stored in the mob entity.  Number of parameters   *
-*  value sizes:                                                         *
-*  1 - stores one uint32                                                *
-*  2 - stores two uint16s                                               *
-*  3 - stores a uint16, then two uint8s                                 *
-*  4 - stores 4 uint8s                                                  *
+*  Sets a local var stored in the entity.                               *
 *                                                                       *
 ************************************************************************/
 
-inline int32 CLuaBaseEntity::setExtraVar(lua_State* L)
+inline int32 CLuaBaseEntity::setLocalVar(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    ((CMobEntity*)m_PBaseEntity)->m_extraVar = lua_tonumber(L, 1);
+    const char* var = lua_tostring(L, 1);
+    uint32 val = lua_tointeger(L, 2);
 
-    int32 n = lua_gettop(L);
+    m_PBaseEntity->SetLocalVar(var, val);
 
-    if (n == 1)
-    {
-        ((CMobEntity*)m_PBaseEntity)->m_extraVar = lua_tointeger(L, 1);
-    }
-    else if (n == 2)
-    {
-        uint32 var1 = lua_tointeger(L, 1) & 0x0000FFFF;
-        uint32 var2 = lua_tointeger(L, 2) << 16;
-        ((CMobEntity*)m_PBaseEntity)->m_extraVar = var1 + var2;
-    }
-    else if (n == 3)
-    {
-        uint32 var1 = lua_tointeger(L, 1) << 16;
-        uint32 var2 = (lua_tointeger(L, 2) & 0x000000FF) << 8;
-        uint32 var3 = (lua_tointeger(L, 3) & 0x000000FF);
-        ((CMobEntity*)m_PBaseEntity)->m_extraVar = var1 + var2 + var3;
-    }
-    else
-    {
-        uint32 var1 = lua_tointeger(L, 1) << 24;
-        uint32 var2 = (lua_tointeger(L, 2) & 0x000000FF) << 16;
-        uint32 var3 = (lua_tointeger(L, 3) & 0x000000FF) << 8;
-        uint32 var4 = (lua_tointeger(L, 4) & 0x000000FF);
-        ((CMobEntity*)m_PBaseEntity)->m_extraVar = var1 + var2 + var3 + var4;
-    }
+    return 0;
+}
+
+inline int32 CLuaBaseEntity::resetLocalVars(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+    m_PBaseEntity->ResetLocalVars();
+
     return 0;
 }
 
@@ -9894,8 +9837,9 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetMobAbilityEnabled),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetMobSkillAttack),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateTarget),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getExtraVar),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setExtraVar),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getLocalVar),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setLocalVar),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetLocalVars),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setSpellList),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasValidJugPetItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getTarget),

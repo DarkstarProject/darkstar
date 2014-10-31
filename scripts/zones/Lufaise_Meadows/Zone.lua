@@ -15,7 +15,7 @@ require("scripts/globals/titles");
 function onInitialize(zone)
 
 	local Colorful_Leshy = 16875762;
-	GetMobByID(Colorful_Leshy):setExtraVar(os.time() + math.random((43200), (86400)));
+	GetMobByID(Colorful_Leshy):setLocalVar("1",os.time() + math.random((43200), (86400)));
 	
 	zone:registerRegion(1,179,-26,327,219,-18,347);
 

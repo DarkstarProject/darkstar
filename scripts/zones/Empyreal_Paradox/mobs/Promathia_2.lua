@@ -39,7 +39,7 @@ function onMobEngaged(mob,target)
             if not v:getTarget() then
                 v:entityAnimationPacket("prov");
                 v:showText(v, PRISHE_TEXT + 1);
-                v:setExtraVar(0, bit.band(mob:getID(), 0xFFF));
+                v:setLocalVar("ready", bit.band(mob:getID(), 0xFFF));
             end
         else
             v:addEnmity(mob,0,1);

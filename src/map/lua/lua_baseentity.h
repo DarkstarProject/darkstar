@@ -519,8 +519,10 @@ public:
     int32 SetMobSkillAttack(lua_State*);      // enable/disable using mobskills as regular attacks
     int32 updateTarget(lua_State*);           // Force mob to update target from enmity container (ie after updateEnmity)
 
-    int32 getExtraVar(lua_State*);
-    int32 setExtraVar(lua_State*);
+    int32 getLocalVar(lua_State*);
+    int32 setLocalVar(lua_State*);
+    int32 resetLocalVars(lua_State*);
+
     int32 setSpellList(lua_State*);
 
     int32 hasValidJugPetItem(lua_State*);

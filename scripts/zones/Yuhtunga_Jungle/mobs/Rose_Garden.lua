@@ -7,7 +7,7 @@
 function onMobSpawn(mob)
 	
 	local Voluptuous_Vilma = 17281358;
-	GetMobByID(Voluptuous_Vilma):setExtraVar(os.time() + math.random((36000), (37800)));
+	GetMobByID(Voluptuous_Vilma):setLocalVar("1",os.time() + math.random((36000), (37800)));
 	
 end;
 
@@ -19,7 +19,7 @@ function OnMobRoam(mob)
 	{
 		17281357
 	};
-	local Voluptuous_Vilma_ToD = GetMobByID(Voluptuous_Vilma):getExtraVar(1);
+	local Voluptuous_Vilma_ToD = GetMobByID(Voluptuous_Vilma):getLocalVar("1");
 	
 	if (Voluptuous_Vilma_ToD <= os.time()) then
 		Voluptuous_Vilma_PH = math.random((0), (table.getn(Voluptuous_Vilma_PH_Table)));
@@ -45,7 +45,7 @@ function onMobDeath(mob, killer)
 	local Rose_Garden = 17281357;
 	local Rose_Garden_PH = GetServerVariable("Rose_Garden_PH");
 		
-	GetMobByID(Rose_Garden):setExtraVar(os.time() + math.random((36000), (37800)));
+	GetMobByID(Rose_Garden):setLocalVar("1",os.time() + math.random((36000), (37800)));
 	SetServerVariable("Rose_Garden_PH", 0);
 	DeterMob(Rose_Garden, true);
 	DeterMob(Rose_Garden_PH, false);

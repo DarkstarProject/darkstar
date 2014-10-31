@@ -66,7 +66,6 @@ CMobEntity::CMobEntity()
     m_RageMode = 0;
 	m_NewSkin = 0;
 	m_SkinID = 0;
-	m_extraVar = 0;
 
     strRank = 3;
     defRank = 3;

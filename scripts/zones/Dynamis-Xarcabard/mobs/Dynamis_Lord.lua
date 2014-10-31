@@ -47,7 +47,7 @@ end;
 
 function onMobFight(mob,target)
 	
-	if(mob:getExtraVar(1) <= os.time()) then
+	if(mob:getLocalVar("timeLimit") <= os.time()) then
 		DespawnMob(17330177); -- Despawn after 30min
 		DespawnMob(17330183);
 		DespawnMob(17330184);
