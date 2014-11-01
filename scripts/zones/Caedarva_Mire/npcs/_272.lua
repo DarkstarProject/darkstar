@@ -1,16 +1,16 @@
 -----------------------------------
--- Area: Mount Zhayolm
+-- Area: Caedarva Mire
 -- Door: Runic Seal
--- @pos 703 -18 382 61
+-- @pos 486 -23 -500 79
 -----------------------------------
 
-package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
+package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/besieged");
-require("scripts/zones/Mount_Zhayolm/TextIDs");
+require("scripts/zones/Caedarva_Mire/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -24,14 +24,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:hasKeyItem(LEBROS_ASSAULT_ORDERS)) then
+	if (player:hasKeyItem(LEJAOAM_ASSAULT_ORDERS)) then
         local assaultid = player:getCurrentAssault();
         local recommendedLevel = getRecommendedAssaultLevel(assaultid);
         local armband = 0;
         if (player:hasKeyItem(ASSAULT_ARMBAND)) then
             armband = 1;
         end
-        player:startEvent(0x00CB, assaultid, -4, 0, recommendedLevel, 2, armband);
+        player:startEvent(0x008C, assaultid, -4, 0, recommendedLevel, 2, armband);
     else
         player:messageSpecial(NOTHING_HAPPENS);
     end
@@ -64,7 +64,7 @@ function onEventUpdate(player,csid,option,target)
     
     if (party ~= nil) then
         for i,v in ipairs(party) do
-            if (not (v:hasKeyItem(LEBROS_ASSAULT_ORDERS) and v:getCurrentAssault() == assaultid)) then
+            if (not (v:hasKeyItem(LEJAOAM_ASSAULT_ORDERS) and v:getCurrentAssault() == assaultid)) then
                 player:messageText(target,MEMBER_NO_REQS, false);
                 player:instanceEntry(target,1);
                 return;
@@ -76,7 +76,7 @@ function onEventUpdate(player,csid,option,target)
         end
     end
     
-    player:createInstance(player:getCurrentAssault(), 63);
+    player:createInstance(player:getCurrentAssault(), 69);
     
 end;
 
@@ -88,8 +88,8 @@ function onEventFinish(player,csid,option,target)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
  
-    if (csid == 0xD0 or (csid == 0xCB and option == 4)) then
-        player:setPos(0,0,0,0,63);
+    if (csid == 0x82 or (csid == 0x8C and option == 4)) then
+        player:setPos(0,0,0,0,69);
     end
 end;
 
@@ -103,14 +103,14 @@ function onInstanceCreated(player,instance,target)
         player:setVar("AssaultCap", 0);
         player:setInstance(instance);
         player:instanceEntry(target,4);
-        player:delKeyItem(LEBROS_ASSAULT_ORDERS);
+        player:delKeyItem(LEJAOAM_ASSAULT_ORDERS);
         player:delKeyItem(ASSAULT_ARMBAND);
         if (party ~= nil) then
             for i,v in ipairs(party) do
                 if v:getID() ~= player:getID() and v:getZone() == player:getZone() then
                     v:setInstance(instance);
-                    v:startEvent(0xD0, 2);
-                    v:delKeyItem(LEBROS_ASSAULT_ORDERS);
+                    v:startEvent(0x82, 2);
+                    v:delKeyItem(LEJAOAM_ASSAULT_ORDERS);
                 end
             end
         end
