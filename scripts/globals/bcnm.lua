@@ -520,25 +520,25 @@ function checkNonTradeBCNM(player,npc)
 			player:setVar("trade_bcnmid",256);
 		end
 	elseif(Zone == 180) then -- La'Loff Amphitheater
-		if(player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1) then
+		--if(player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1) then
 			local qmid = npc:getID();
-			if (qmid == 17514789 and player:hasKeyItem(SHARD_OF_APATHY) == false) then -- Hume, Ark Angels 1
+			--[[if (qmid == 17514789 and player:hasKeyItem(SHARD_OF_APATHY) == false) then -- Hume, Ark Angels 1
 				mask = GetBattleBitmask(288,Zone,1);
 				player:setVar("trade_bcnmid",288);
 			elseif (qmid == 17514790 and player:hasKeyItem(SHARD_OF_COWARDICE) == false) then -- Tarutaru, Ark Angels 2
 				mask = GetBattleBitmask(289,Zone,1);
 				player:setVar("trade_bcnmid",289);
-			elseif (qmid == 17514791 and player:hasKeyItem(SHARD_OF_ENVY) == false) then -- Mithra, Ark Angels 3
+			elseif (qmid == 17514791 and player:hasKeyItem(SHARD_OF_ENVY) == false) then -- Mithra, Ark Angels 3]]
 				mask = GetBattleBitmask(290,Zone,1);
 				player:setVar("trade_bcnmid",290);
-			elseif (qmid == 17514792 and player:hasKeyItem(SHARD_OF_ARROGANCE) == false) then -- Elvaan, Ark Angels 4
+			--[[elseif (qmid == 17514792 and player:hasKeyItem(SHARD_OF_ARROGANCE) == false) then -- Elvaan, Ark Angels 4
 				mask = GetBattleBitmask(291,Zone,1);
 				player:setVar("trade_bcnmid",291);
 			elseif (qmid == 17514793 and player:hasKeyItem(SHARD_OF_RAGE) == false) then -- Galka, Ark Angels 5
 				mask = GetBattleBitmask(292,Zone,1);
 				player:setVar("trade_bcnmid",292);
-			end
-		end
+			end]]
+		--end
     elseif(Zone == 181) then -- The Celestial Nexus
 		if(player:getCurrentMission(ZILART) == THE_CELESTIAL_NEXUS) then -- Zilart Mission 16
 			mask = GetBattleBitmask(320,Zone,1);

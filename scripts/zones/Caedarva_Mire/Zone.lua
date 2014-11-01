@@ -29,6 +29,17 @@ function onZoneIn(player,prevZone)
 end;		
 
 -----------------------------------		
+-- afterZoneIn		
+-----------------------------------		
+
+function afterZoneIn(player)
+    player:entityVisualPacket("1pb1");
+    player:entityVisualPacket("2pb1");
+    player:entityVisualPacket("1pd1");
+    player:entityVisualPacket("2pc1");
+end;
+
+-----------------------------------		
 -- onRegionEnter		
 -----------------------------------		
 
