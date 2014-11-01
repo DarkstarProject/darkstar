@@ -2981,6 +2981,9 @@ bool HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool)
                     case ITEM_KABENRO:
                     case ITEM_SHINOBI_TABI:
                     case ITEM_SHIHEI:
+					case ITEM_RANKA:
+					case ITEM_FURUSUMI:
+
                         toolID = ITEM_SHIKANOFUDA;
                         break;
 
