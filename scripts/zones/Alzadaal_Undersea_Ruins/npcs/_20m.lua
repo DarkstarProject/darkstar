@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Alzadaal Undersea Ruins
 -- Door: Runic Seal
--- @pos 125 -2 -20 72
+-- @pos 125 -2 20 72
 -----------------------------------
 
 package.loaded["scripts/zones/Alzadaal_Undersea_Ruins/TextIDs"] = nil;
@@ -24,7 +24,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:hasKeyItem(NYZUL_ASSAULT_ORDERS)) then
+	if (player:hasKeyItem(NYZUL_ISLE_ASSAULT_ORDERS)) then
         local assaultid = player:getCurrentAssault();
         local recommendedLevel = getRecommendedAssaultLevel(assaultid);
         local armband = 0;
@@ -64,7 +64,7 @@ function onEventUpdate(player,csid,option,target)
     
     if (party ~= nil) then
         for i,v in ipairs(party) do
-            if (not (v:hasKeyItem(NYZUL_ASSAULT_ORDERS) and v:getCurrentAssault() == assaultid)) then
+            if (not (v:hasKeyItem(NYZUL_ISLE_ASSAULT_ORDERS) and v:getCurrentAssault() == assaultid)) then
                 player:messageText(target,MEMBER_NO_REQS, false);
                 player:instanceEntry(target,1);
                 return;
@@ -103,14 +103,14 @@ function onInstanceCreated(player,instance,target)
         player:setVar("AssaultCap", 0);
         player:setInstance(instance);
         player:instanceEntry(target,4);
-        player:delKeyItem(NYZUL_ASSAULT_ORDERS);
+        player:delKeyItem(NYZUL_ISLE_ASSAULT_ORDERS);
         player:delKeyItem(ASSAULT_ARMBAND);
         if (party ~= nil) then
             for i,v in ipairs(party) do
                 if v:getID() ~= player:getID() and v:getZone() == player:getZone() then
                     v:setInstance(instance);
                     v:startEvent(0x74, 2);
-                    v:delKeyItem(NYZUL_ASSAULT_ORDERS);
+                    v:delKeyItem(NYZUL_ISLE_ASSAULT_ORDERS);
                 end
             end
         end

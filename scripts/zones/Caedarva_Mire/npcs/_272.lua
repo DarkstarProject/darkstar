@@ -24,7 +24,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:hasKeyItem(LEJAOAM_ASSAULT_ORDERS)) then
+	if (player:hasKeyItem(LEUJAOAM_ASSAULT_ORDERS)) then
         local assaultid = player:getCurrentAssault();
         local recommendedLevel = getRecommendedAssaultLevel(assaultid);
         local armband = 0;
@@ -103,14 +103,14 @@ function onInstanceCreated(player,instance,target)
         player:setVar("AssaultCap", 0);
         player:setInstance(instance);
         player:instanceEntry(target,4);
-        player:delKeyItem(LEJAOAM_ASSAULT_ORDERS);
+        player:delKeyItem(LEUJAOAM_ASSAULT_ORDERS);
         player:delKeyItem(ASSAULT_ARMBAND);
         if (party ~= nil) then
             for i,v in ipairs(party) do
                 if v:getID() ~= player:getID() and v:getZone() == player:getZone() then
                     v:setInstance(instance);
                     v:startEvent(0x82, 2);
-                    v:delKeyItem(LEJAOAM_ASSAULT_ORDERS);
+                    v:delKeyItem(LEUJAOAM_ASSAULT_ORDERS);
                 end
             end
         end
