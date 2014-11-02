@@ -59,6 +59,12 @@ function onEventFinish(player,csid,option)
             v:messageSpecial(Leujaoam.text.ASSAULT_POINTS_OBTAINED,points);
             v:addAssaultPoint(LEUJAOAM_ASSAULT_POINT,points);
             v:setVar("AssaultComplete",1);
+            if (v:hasCompletedAssault(v:getCurrentAssault())) then
+                v:setVar("AssaultPromotion", v:getVar("AssaultPromotion")+1);
+            else
+                v:setVar("AssaultPromotion", v:getVar("AssaultPromotion")+5);
+            end
+            
             if (v ~= player) then
                 v:startEvent(102);
             end
