@@ -45,6 +45,7 @@ Leujaoam = {
             LEUJAOAM_WORM12 = 17059852,
             LEUJAOAM_WORM13 = 17059853,
             LEUJAOAM_WORM14 = 17059854,
+            LEUJAOAM_WORM14 = 17059855,
         }
     },
     

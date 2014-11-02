@@ -9,6 +9,7 @@ package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
+require("scripts/globals/besieged");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 -----------------------------------
