@@ -31,7 +31,7 @@ function onTrigger(player,npc)
         if (player:hasKeyItem(ASSAULT_ARMBAND)) then
             armband = 1;
         end
-        player:startEvent(0x008C, assaultid, -4, 0, recommendedLevel, 2, armband);
+        player:startEvent(0x008C, assaultid, -4, 0, recommendedLevel, 0, armband);
     else
         player:messageSpecial(NOTHING_HAPPENS);
     end
@@ -59,7 +59,7 @@ function onEventUpdate(player,csid,option,target)
     end
     
     player:setVar("AssaultCap", cap);
-                
+
     local party = player:getParty();
     
     if (party ~= nil) then
@@ -109,7 +109,7 @@ function onInstanceCreated(player,instance,target)
             for i,v in ipairs(party) do
                 if v:getID() ~= player:getID() and v:getZone() == player:getZone() then
                     v:setInstance(instance);
-                    v:startEvent(0x82, 2);
+                    v:startEvent(0x82, 0);
                     v:delKeyItem(LEUJAOAM_ASSAULT_ORDERS);
                 end
             end

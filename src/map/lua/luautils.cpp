@@ -248,11 +248,28 @@ int32 SendEntityVisualPacket(lua_State* L)
 
 int32 GetNPCByID(lua_State* L)
 {
-	if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
+	if( !lua_isnil(L,1) && lua_isnumber(L,1) )
 	{
-		uint32 npcid = (uint32)lua_tointeger(L, -1);
+		uint32 npcid = (uint32)lua_tointeger(L, 1);
 
-		CBaseEntity* PNpc = zoneutils::GetEntity(npcid, TYPE_NPC);
+        CInstance* PInstance = NULL;
+
+        if (!lua_isnil(L, 2) && lua_isuserdata(L, 2))
+        {
+            CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 2);
+            PInstance = PLuaBaseEntity->GetBaseEntity()->PInstance;
+        }
+
+        CBaseEntity* PNpc = NULL;
+
+        if (PInstance)
+        {
+            PNpc = PInstance->GetEntity(npcid & 0xFFF, TYPE_NPC);
+        }
+        else
+        {
+            PNpc = zoneutils::GetEntity(npcid, TYPE_NPC);
+        }
 
 		if(PNpc == NULL){
 			ShowWarning("luautils::GetNPCByID NPC doesn't exist (%d)\n", npcid);
@@ -1269,6 +1286,7 @@ int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result)
 	int8 File[255];
 	if (luaL_loadfile(LuaHandle, PChar->m_event.Script.c_str()) || lua_pcall(LuaHandle, 0, 0, 0))
 	{
+        lua_pop(LuaHandle, 1);
 		memset(File,0,sizeof(File));
 		snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
 
@@ -1329,6 +1347,7 @@ int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result)
 	int8 File[255];
 	if (luaL_loadfile(LuaHandle, PChar->m_event.Script.c_str()) || lua_pcall(LuaHandle, 0, 0, 0))
 	{
+        lua_pop(LuaHandle, 1);
 		memset(File,0,sizeof(File));
 		snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
 

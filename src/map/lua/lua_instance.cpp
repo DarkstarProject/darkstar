@@ -58,6 +58,15 @@ CLuaInstance::CLuaInstance(CInstance* PBattlefield)
 	m_PLuaInstance = PBattlefield;
 }
 
+inline int32 CLuaInstance::getID(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
+
+    lua_pushinteger(L, m_PLuaInstance->GetID());
+
+    return 1;
+}
+
 inline int32 CLuaInstance::getChars(lua_State* L)
 {
 	DSP_DEBUG_BREAK_IF(m_PLuaInstance == NULL);
@@ -273,6 +282,7 @@ inline int32 CLuaInstance::completed(lua_State* L)
 const int8 CLuaInstance::className[] = "CInstance";
 Lunar<CLuaInstance>::Register_t CLuaInstance::methods[] =
 {
+    LUNAR_DECLARE_METHOD(CLuaInstance, getID),
 	LUNAR_DECLARE_METHOD(CLuaInstance, setLevelCap),
 	LUNAR_DECLARE_METHOD(CLuaInstance, getChars),
 	LUNAR_DECLARE_METHOD(CLuaInstance, getTimeLimit),

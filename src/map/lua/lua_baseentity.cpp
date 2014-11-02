@@ -7527,8 +7527,8 @@ inline int32 CLuaBaseEntity::addAssaultPoint(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    int32 points = lua_tointeger(L, 1);
-    uint32 region = lua_tointeger(L, 2);
+    uint32 region = lua_tointeger(L, 1);
+    int32 points = lua_tointeger(L, 2);
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
     if (region >= 0 && region <= 5)
