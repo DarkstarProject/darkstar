@@ -5215,6 +5215,27 @@ inline int32 CLuaBaseEntity::getMerit(lua_State *L)
     return 1;
 }
 
+/************************************************************************
+*                                                                       *
+*  gets a players total merits                                          *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getMeritCount(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+    if (m_PBaseEntity->objtype != TYPE_PC)
+        lua_pushinteger(L, 0);
+    else
+    {
+        CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+        lua_pushinteger(L, PChar->PMeritPoints->GetMeritPoints());
+    }
+
+    return 1;
+}
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::getPlaytime(lua_State *L)
@@ -9799,6 +9820,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,changesJob),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMerits),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMerit),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMeritCount),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPlaytime),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponDmg),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getOffhandDmg),
