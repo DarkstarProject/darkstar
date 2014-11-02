@@ -100,9 +100,9 @@ CInstance* CInstanceLoader::LoadInstance()
 		(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
 		allegiance, namevis, aggro \
 		FROM instance_entities INNER JOIN mob_spawn_points ON instance_entities.id = mob_spawn_points.mobid \
-		LEFT JOIN mob_groups ON mob_groups.groupid = mob_spawn_points.groupid \
-		LEFT JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
-		LEFT JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
+		INNER JOIN mob_groups ON mob_groups.groupid = mob_spawn_points.groupid \
+		INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
+		INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
 		WHERE instanceid = %u AND NOT (pos_x = 0 AND pos_y = 0 AND pos_z = 0);";
 
 	int32 ret = Sql_Query(SqlInstanceHandle, Query, instance->GetID());
@@ -216,9 +216,9 @@ CInstance* CInstanceLoader::LoadInstance()
 
 			PMob->m_Pool = Sql_GetUIntData(SqlInstanceHandle, 58);
 
-			PMob->allegiance = Sql_GetUIntData(SqlHandle, 59);
-			PMob->namevis = Sql_GetUIntData(SqlHandle, 60);
-			PMob->m_Aggro = Sql_GetUIntData(SqlHandle, 61);
+            PMob->allegiance = Sql_GetUIntData(SqlInstanceHandle, 59);
+            PMob->namevis = Sql_GetUIntData(SqlInstanceHandle, 60);
+            PMob->m_Aggro = Sql_GetUIntData(SqlInstanceHandle, 61);
 
 			// must be here first to define mobmods
 			mobutils::InitializeMob(PMob, zone);

@@ -31,7 +31,11 @@ function onTrigger(player,npc)
         if (player:hasKeyItem(ASSAULT_ARMBAND)) then
             armband = 1;
         end
-        player:startEvent(0x008C, assaultid, -4, 0, recommendedLevel, 0, armband);
+        if (assaultid ~= 0) then
+            player:startEvent(0x008C, assaultid, -4, 0, recommendedLevel, 0, armband);
+        else
+            player:messageSpecial(NOTHING_HAPPENS);
+        end
     else
         player:messageSpecial(NOTHING_HAPPENS);
     end
