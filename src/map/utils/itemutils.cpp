@@ -63,7 +63,7 @@ namespace itemutils
 	    {
 		    return new CItemFurnishing(ItemID);
 	    }
-	    if( (ItemID >= 0x1000) && (ItemID <= 0x17FF) ) 
+	    if( (ItemID >= 0x1000) && (ItemID <= 0x18FF) ) 
 	    {
 		    return new CItemUsable(ItemID);
 	    }
@@ -118,7 +118,7 @@ namespace itemutils
 		    {
 			    return new CItemFurnishing(*((CItemFurnishing*)g_pItemList[ItemID]));
 		    }
-		    if( (ItemID >= 0x1000) && (ItemID <= 0x17FF) ) 
+		    if( (ItemID >= 0x1000) && (ItemID <= 0x18FF) ) 
 		    {
 			    return new CItemUsable(*((CItemUsable*)g_pItemList[ItemID]));
 		    }
