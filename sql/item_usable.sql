@@ -1650,7 +1650,7 @@ INSERT INTO `item_usable` VALUES (5912,'gargouille_quiver',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5913,'adaman_bolt_quiver',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5914,'orichalcum_bullet_pouch',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5915,'adaman_bullet_pouch',1,1,55,0,0,0,0,0);
-INSERT INTO 'item_usable' VALUES (5934, 'chocobiscuit',1,1,29,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (5934,'chocobiscuit',1,1,29,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6041,'pyrohelix_schema',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6042,'hydrohelix_schema',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6043,'ionohelix_schema',1,1,12,5,0,0,0,0);
