@@ -293,10 +293,10 @@ void CAIGeneral::SetCurrentSpell(uint16 SpellID)
 CSpell* CAIGeneral::GetCurrentSpell()
 {
     // TODO: refactor this to only need magic state
-	if (m_PMagicState != NULL && m_PMagicState->GetSpell() != NULL)
+	/*if (m_PMagicState != NULL && m_PMagicState->GetSpell() != NULL)
     {
         return m_PMagicState->GetSpell();
-    }
+    }*/
 
 	DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
 
