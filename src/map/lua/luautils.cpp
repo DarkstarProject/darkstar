@@ -942,6 +942,62 @@ int32 GetTextIDVariable(uint16 ZoneID, const char* variable)
 }
 
 /************************************************************************
+*                                                                       *
+*  Get a Variable From Settings.lua                                     *
+*                                                                       *
+************************************************************************/
+
+uint8 GetSettingsVariable(const char* variable)
+{
+	lua_pushnil(LuaHandle);
+	lua_setglobal(LuaHandle, variable);
+
+	int8 File[255];
+	memset(File, 0, sizeof(File));
+	snprintf(File, sizeof(File), "scripts/globals/settings.lua");
+
+	if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
+	{
+		lua_pop(LuaHandle, 1);
+		return 0;
+	}
+
+	lua_getglobal(LuaHandle, variable);
+
+	if (lua_isnil(LuaHandle, -1) || !lua_isnumber(LuaHandle, -1))
+	{
+		lua_pop(LuaHandle, 1);
+		return 0;
+	}
+
+	uint8 value = lua_tonumber(LuaHandle, -1);
+	lua_pop(LuaHandle, -1);
+	return value;
+}
+
+/************************************************************************
+*                                                                       *
+*  Check if an Expansion Is Enabled In Settings.lua                     *
+*                                                                       *
+************************************************************************/
+
+bool IsExpansionEnabled(const char* expansionCode)
+{
+	if (expansionCode != NULL){
+		char* expansionVariable = new char[14];
+		sprintf(expansionVariable, "ENABLE_%s", expansionCode);
+
+		uint8 expansionEnabled = GetSettingsVariable(expansionVariable);
+
+		if (expansionEnabled == 0){
+			return TRUE;
+		}
+	}
+
+	return FALSE;
+}
+
+/************************************************************************
 *																		*
 *  Выполняем скрипт при старте сервера (все монстры, npc уже загружены) *
 *																		*
