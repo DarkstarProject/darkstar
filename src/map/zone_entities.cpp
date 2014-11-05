@@ -426,7 +426,7 @@ void CZoneEntities::SpawnNPCs(CCharEntity* PChar)
 		CNpcEntity* PCurrentNpc = (CNpcEntity*)it->second;
 		SpawnIDList_t::iterator NPC = PChar->SpawnNPCList.lower_bound(PCurrentNpc->id);
 
-		if (PCurrentNpc->status == STATUS_NORMAL)
+		if (PCurrentNpc->status == STATUS_NORMAL || PCurrentNpc->status == STATUS_UPDATE)
 		{
 			if (distance(PChar->loc.p, PCurrentNpc->loc.p) < 50)
 			{

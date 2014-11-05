@@ -342,8 +342,10 @@ void LoadChar(CCharEntity* PChar)
           "titles,"					// 18
           "zones,"					// 19
           "missions,"				// 20
-		  "playtime,"				// 21
-          "isnewplayer "            // 22
+          "assault,"                // 21
+          "campaign,"               // 22
+		  "playtime,"				// 23
+          "isnewplayer "            // 24
         "FROM chars "
         "WHERE charid = %u";
 
@@ -407,8 +409,18 @@ void LoadChar(CCharEntity* PChar)
 		Sql_GetData(SqlHandle,20,&missions,&length);
 		memcpy(PChar->m_missionLog, missions, (length > sizeof(PChar->m_missionLog) ? sizeof(PChar->m_missionLog) : length));
 
-		PChar->SetPlayTime(Sql_GetUIntData(SqlHandle, 21));
-        PChar->m_isNewPlayer = Sql_GetIntData(SqlHandle, 22) == 1 ? true : false;
+        length = 0;
+        int8* assault = NULL;
+        Sql_GetData(SqlHandle, 21, &assault, &length);
+        memcpy(&PChar->m_assaultLog, assault, (length > sizeof(PChar->m_assaultLog) ? sizeof(PChar->m_assaultLog) : length));
+
+        length = 0;
+        int8* campaign = NULL;
+        Sql_GetData(SqlHandle, 22, &campaign, &length);
+        memcpy(&PChar->m_campaignLog, campaign, (length > sizeof(PChar->m_campaignLog) ? sizeof(PChar->m_campaignLog) : length));
+
+		PChar->SetPlayTime(Sql_GetUIntData(SqlHandle, 23));
+        PChar->m_isNewPlayer = Sql_GetIntData(SqlHandle, 24) == 1 ? true : false;
 	}
 
 
@@ -3721,6 +3733,8 @@ void SaveMissionsList(CCharEntity* PChar)
         "LEFT JOIN char_profile USING(charid) "
         "SET "
           "missions = '%s',"
+          "assault = '%s',"
+          "campaign = '%s',"
           "rank_points = %u,"
           "rank_sandoria = %u,"
           "rank_bastok = %u,"
@@ -3730,8 +3744,16 @@ void SaveMissionsList(CCharEntity* PChar)
 	int8 missionslist[sizeof(PChar->m_missionLog)*2+1];
 	Sql_EscapeStringLen(SqlHandle,missionslist,(const int8*)PChar->m_missionLog,sizeof(PChar->m_missionLog));
 
+    int8 assaultList[sizeof(PChar->m_assaultLog)*2+1];
+    Sql_EscapeStringLen(SqlHandle, assaultList, (const int8*)&PChar->m_assaultLog, sizeof(PChar->m_assaultLog));
+
+    int8 campaignList[sizeof(PChar->m_campaignLog)*2+1];
+    Sql_EscapeStringLen(SqlHandle, campaignList, (const int8*)&PChar->m_campaignLog, sizeof(PChar->m_campaignLog));
+
 	Sql_Query(SqlHandle,Query,
         missionslist,
+        assaultList,
+        campaignList,
         PChar->profile.rankpoints,
 		PChar->profile.rank[0],
         PChar->profile.rank[1],

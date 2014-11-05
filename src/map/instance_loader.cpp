@@ -41,7 +41,7 @@ CInstanceLoader::CInstanceLoader(uint8 instanceid, uint16 zoneid, CCharEntity* P
 	DSP_DEBUG_BREAK_IF(zone->GetType() != ZONETYPE_DUNGEON_INSTANCED);
 
 	requester = PRequester;
-	instance = ((CZoneInstance*)zone)->CreateInstance(instanceid);
+	CInstance* instance = ((CZoneInstance*)zone)->CreateInstance(instanceid);
 
 	SqlInstanceHandle = Sql_Malloc();
 
@@ -55,7 +55,7 @@ CInstanceLoader::CInstanceLoader(uint8 instanceid, uint16 zoneid, CCharEntity* P
 	}
 	Sql_Keepalive(SqlInstanceHandle);
 
-	task = std::async(std::launch::async, &CInstanceLoader::LoadInstance, this);
+	task = std::async(std::launch::async, &CInstanceLoader::LoadInstance, this, instance);
 }
 
 CInstanceLoader::~CInstanceLoader()
@@ -69,7 +69,7 @@ bool CInstanceLoader::Check()
 	{
 		if (task.wait_for(std::chrono::milliseconds(0)) == std::future_status::ready)
 		{
-			instance = task.get();
+			CInstance* instance = task.get();
 			if (!instance)
 			{
 				//Instance failed to load
@@ -86,7 +86,7 @@ bool CInstanceLoader::Check()
 	return false;
 }
 
-CInstance* CInstanceLoader::LoadInstance()
+CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 {
 	int8* Query =
 		"SELECT mobname, mobid, pos_rot, pos_x, pos_y, pos_z, \
@@ -282,7 +282,7 @@ CInstance* CInstanceLoader::LoadInstance()
 	}
 	else
 	{
-		instance->Cancel();
+        delete instance;
 		instance = NULL;
 	}
 

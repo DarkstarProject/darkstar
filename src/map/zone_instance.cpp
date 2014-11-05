@@ -47,6 +47,18 @@ CZoneInstance::~CZoneInstance()
 	}
 }
 
+CCharEntity* CZoneInstance::GetCharByName(int8* name)
+{
+    CCharEntity* PEntity = NULL;
+
+    for (auto instance : instanceList)
+    {
+        PEntity = instance->GetCharByName(name);
+        if (PEntity) break;
+    }
+    return PEntity;
+}
+
 CBaseEntity* CZoneInstance::GetEntity(uint16 targid, uint8 filter)
 {
 	CBaseEntity* PEntity = NULL;

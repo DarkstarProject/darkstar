@@ -31,7 +31,7 @@ function onTrigger(player,npc)
         if (player:hasKeyItem(ASSAULT_ARMBAND)) then
             armband = 1;
         end
-        player:startEvent(0x008F, assaultid, -4, 0, recommendedLevel, 4, armband);
+        player:startEvent(0x008F, assaultid, -4, 0, recommendedLevel, 3, armband);
     else
         player:messageSpecial(NOTHING_HAPPENS);
     end
@@ -109,7 +109,7 @@ function onInstanceCreated(player,instance,target)
             for i,v in ipairs(party) do
                 if v:getID() ~= player:getID() and v:getZone() == player:getZone() then
                     v:setInstance(instance);
-                    v:startEvent(0x85, 2);
+                    v:startEvent(0x85, 3);
                     v:delKeyItem(PERIQIA_ASSAULT_ORDERS);
                 end
             end

@@ -25,17 +25,36 @@ Periqia = {
         ASSAULT_POINTS_OBTAINED = 7481,
         TIME_REMAINING_MINUTES = 7482,
         TIME_REMAINING_SECONDS = 7483,
-        PARTY_FALLEN = 7485
+        PARTY_FALLEN = 7485,
+        
+        -- Seagull Grounded
+        EXCALIACE_START = 7494,
+        EXCALIACE_END1 = 7495,
+        EXCALIACE_END2 = 7496,
+        EXCALIACE_ESCAPE = 7497,
+        EXCALIACE_PAIN1 = 7498,
+        EXCALIACE_PAIN2 = 7499,
+        EXCALIACE_PAIN3 = 7500,
+        EXCALIACE_PAIN4 = 7501,
+        EXCALIACE_PAIN5 = 7502,
+        EXCALIACE_CRAB1 = 7503,
+        EXCALIACE_CRAB2 = 7504,
+        EXCALIACE_CRAB3 = 7505,
+        EXCALIACE_DEBAUCHER1 = 7506,
+        EXCALIACE_DEBAUCHER2 = 7507,
+        EXCALIACE_RUN = 7508,
+        EXCALIACE_TOO_CLOSE = 7509,
+        EXCALIACE_TIRED = 7510,
+        EXCALIACE_CAUGHT = 7511,
     },
     
     mobs = {
         -- Seagull Grounded
         [31] = {
-            EXCALIACE = 17006593,
             CRAB1 = 17006594,
-            CRAB2 = 17006592,
-            CRAB3 = 17006593,
-            CRAB4 = 17006594,
+            CRAB2 = 17006595,
+            CRAB3 = 17006596,
+            CRAB4 = 17006597,
             CRAB5 = 17006598,
             CRAB6 = 17006599,
             CRAB7 = 17006600,
@@ -53,6 +72,7 @@ Periqia = {
     },
     
     npcs = {
+        EXCALIACE = 17006593,
         ANCIENT_LOCKBOX = 17006809,
         RUNE_OF_RELEASE = 17006810,
         _1K1 = 17006836,
@@ -87,7 +107,7 @@ Periqia = {
         _1KU = 17006865,
         _1KV = 17006866,
         _1KW = 17006867,
-        _1KK = 17006868,
+        _1KX = 17006868,
         _1KY = 17006869,
         _1KZ = 17006870,
         _JK0 = 17006871,

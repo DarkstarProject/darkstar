@@ -12,7 +12,7 @@ require("scripts/zones/Periqia/IDs");
 
 function afterInstanceRegister(player)
     local instance = player:getInstance();
-    player:messageSpecial(Periqia.text.ASSAULT_01_START, 1);
+    player:messageSpecial(Periqia.text.ASSAULT_31_START, 1);
     player:messageSpecial(Periqia.text.TIME_TO_COMPLETE, instance:getTimeLimit());
 end;	
 
@@ -22,15 +22,16 @@ end;
 
 function onInstanceCreated(instance)
 
-    for i,v in pairs(Periqia.mobs[1]) do
+    for i,v in pairs(Periqia.mobs[31]) do
         SpawnMob(v, instance);
     end
-
+    
     local rune = instance:getEntity(bit.band(Periqia.npcs.RUNE_OF_RELEASE, 0xFFF), TYPE_NPC);
     local box = instance:getEntity(bit.band(Periqia.npcs.ANCIENT_LOCKBOX, 0xFFF), TYPE_NPC);
     rune:setPos(-495,-9.899,-72,0);
     box:setPos(-495,-9.695,-75,0);
     
+    instance:getEntity(bit.band(Periqia.npcs.EXCALIACE, 0xFFF), TYPE_NPC):setStatus(1);
     instance:getEntity(bit.band(Periqia.npcs._1K6, 0xFFF), TYPE_NPC):setAnimation(8);
     instance:getEntity(bit.band(Periqia.npcs._1KX, 0xFFF), TYPE_NPC):setAnimation(8);
     instance:getEntity(bit.band(Periqia.npcs._1KZ, 0xFFF), TYPE_NPC):setAnimation(8);
