@@ -84,8 +84,8 @@ struct map_config_t
 	int8   exp_loss_level;			// Minimum main job level at which a character may lose experience points.
     bool   level_sync_enable;       // Enable/disable Level Sync
     bool   all_jobs_widescan;       // Enable/disable jobs other than BST and RNG having widescan.
-	int8   speed_mod;				// Modifier to add to player speed
-	int8   MOB_speed_mod;			// Modifier to add to monster speed
+    int8   speed_mod;               // Modifier to add to player speed
+    int8   mob_speed_mod;           // Modifier to add to monster speed
 	float  skillup_chance_multiplier;		// Constant used in the skillup formula that has a strong effect on skill-up rates
 	float  craft_chance_multiplier;			// Constant used in the crafting skill-up formula that has a strong effect on skill-up rates
 	float  skillup_amount_multiplier;		// Used to increase the amount of skill gained during skill up
@@ -95,6 +95,19 @@ struct map_config_t
     bool   craft_direction_matters; // Enable/disable Compass direction factor in synthesis
 	float  mob_tp_multiplier;		// Multiplies the amount of TP mobs gain on any effect that would grant TP
 	float  player_tp_multiplier;	// Multiplies the amount of TP players gain on any effect that would grant TP
+    float  nm_hp_multiplier;        // Multiplier for max HP of NM.
+	float  mob_hp_multiplier;		// Multiplier for max HP pool of mob
+	float  player_hp_multiplier;	// Multiplier for max HP pool of player
+    float  nm_mp_multiplier;        // Multiplier for max MP of NM.
+	float  mob_mp_multiplier;		// Multiplier for max MP pool of mob
+	float  player_mp_multiplier;	// Multiplier for max MP pool of player
+    float  sj_mp_divisor;           // Divisor to use on subjob max MP
+    float  nm_stat_multiplier;      // Multiplier for str/vit/etc of NMs
+    float  mob_stat_multiplier;     // Multiplier for str/vit/etc of mobs
+    float  player_stat_multiplier;  // Multiplier for str/vit/etc. of NMs of player
+	float  drop_rate_multiplier;	// Multiplier for drops
+    uint32 all_mobs_gil_bonus;      // Sets the amount of bonus gil (per level) all mobs will drop.
+    uint32 max_gil_bonus;           // Maximum total bonus gil that can be dropped. Default 9999 gil.
     uint8  newstyle_skillups;       // Allows failed parries and blocks to trigger skill up chance.
     int8   Battle_cap_tweak;        // Default is 0. Globally adjust the level of level capped fights.
     int8   CoP_Battle_cap;          // Default is 0. Disable/enable old lv caps on Chains of Promathia mission battles.

@@ -37,6 +37,18 @@ function onZoneIn( player, prevZone)
 	return cs;
 end;
 
+-----------------------------------		
+-- onConquestUpdate		
+-----------------------------------		
+
+function onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+    
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
+end;
+
 -----------------------------------
 -- onRegionEnter
 -----------------------------------
@@ -71,7 +83,7 @@ function onEventFinish( player, csid, option)
 end;
 
 function OnZoneWeatherChange(weather)
-	local qm1 = GetNPCByID(17199693); -- Quest: An Empty Vessel
+	local qm1 = GetNPCByID(17199694); -- Quest: An Empty Vessel
 	if(weather == WEATHER_DUST_STORM) then
 		qm1:setStatus(STATUS_NORMAL);
 	else

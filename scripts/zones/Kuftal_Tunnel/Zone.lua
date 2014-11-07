@@ -8,12 +8,25 @@ package.loaded["scripts/zones/Kuftal_Tunnel/TextIDs"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/zones/Kuftal_Tunnel/TextIDs");
+require("scripts/globals/weather");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
+end;
+
+-----------------------------------		
+-- onConquestUpdate		
+-----------------------------------		
+
+function onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+    
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
 end;
 
 -----------------------------------		
@@ -52,3 +65,17 @@ function onEventFinish(player,csid,option)
 	--printf("CSID: %u",csid);
 	--printf("RESULT: %u",option);
 end;	
+
+-----------------------------------	
+-- OnZoneWeatherChange	
+-----------------------------------	
+
+function OnZoneWeatherChange(weather)
+
+	if(weather == WEATHER_WIND or weather == WEATHER_GALES) then
+		GetNPCByID(17490276):setAnimation(9); -- Rock Up
+	else
+		GetNPCByID(17490276):setAnimation(8); -- Rock Down
+	end
+	
+end;

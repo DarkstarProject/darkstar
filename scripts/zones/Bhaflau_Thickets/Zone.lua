@@ -28,6 +28,15 @@ function onZoneIn(player,prevZone)
 end;		
 
 -----------------------------------		
+-- afterZoneIn		
+-----------------------------------		
+
+function afterZoneIn(player)
+    player:entityVisualPacket("1pb1");
+    player:entityVisualPacket("2pb1");
+end;
+
+-----------------------------------		
 -- onRegionEnter		
 -----------------------------------		
 

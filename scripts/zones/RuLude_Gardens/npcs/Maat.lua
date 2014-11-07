@@ -29,7 +29,7 @@ function onTrade(player,npc,trade)
 		end
 	end
 
-	if(player:getQuestStatus(JEUNO,SHATTERING_STARS) ~= QUEST_AVAILABLE and player:getMainLvl() >= 66) then
+	if(player:getQuestStatus(JEUNO,SHATTERING_STARS) ~= QUEST_AVAILABLE and player:getMainLvl() >= 66 and player:getVar("maatsCap") < 1) then
 		local mJob = player:getMainJob();
 		if(trade:hasItemQty(1425 + mJob,1) and tradeCount == 1 and mJob <= 15) then
 			player:startEvent(0x0040,mJob); -- Teleport to battlefield for "Shattering Stars"
@@ -98,6 +98,8 @@ function onTrigger(player,npc)
 		player:startEvent(0x005b,player:getMainJob()); -- During Quest "Shattering Stars"
 	elseif(shatteringStars == QUEST_ACCEPTED and LvL >= 66 and mJob <= 15 and player:getVar("maatDefeated") >= 1) then
 		player:startEvent(0x005d); -- Finish Quest "Shattering Stars"
+	elseif(player:getQuestStatus(JEUNO,BEYOND_THE_SUN) == QUEST_AVAILABLE and mJob <= 15 and player:getVar("maatsCap") == 32767) then
+		player:startEvent(0x004a); -- Finish Quest "Beyond The Sun"
 	else
 		player:showText(npc,MAAT_DIALOG);
 	end
@@ -189,11 +191,19 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x005d) then
 		player:addTitle(STAR_BREAKER);
 		player:levelCap(75);
-		player:setVar("maatCap",player:getVar("maatDefeated"));
 		player:setVar("maatDefeated",0);
 		player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_75);
 		player:completeQuest(JEUNO,SHATTERING_STARS);
 		player:addFame(JEUNO, JEUNO_FAME*80);		
+	elseif(csid==0x004a)then
+		if(player:getFreeSlotsCount() > 0)then
+			player:completeQuest(JEUNO,BEYOND_THE_SUN);
+			player:addTitle(ULTIMATE_CHAMPION_OF_THE_WORLD);
+			player:setVar("maatsCap",0);
+			player:addItem(15194);
+			player:messageSpecial(ITEM_OBTAINED,15194);
+		end
 	end
+	
 
 end;

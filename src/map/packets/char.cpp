@@ -88,10 +88,10 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type)
 				    WBUFB(data,(0x26)-4) = (LSColor.B << 4) + 15;
 			    }
             }
-            WBUFB(data,(0x27)-4) = PChar->m_PVPFlag;
+            WBUFB(data,(0x27)-4) = (PChar->isCharmed ? 0x08 : 0x00);
             
             // Mentor flag..
-            if (PChar->m_isMentor)
+            if (PChar->m_mentor >= 2)
                 WBUFB(data, (0x2B) - 4) = 0x01;
             else
                 WBUFB(data, (0x2B) - 4) = 0x00;
@@ -109,16 +109,17 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type)
 				WBUFW(data,(0x3C)-4) = PChar->PPet->targid << 3;
 			}
 
-			WBUFB(data,(0x44)-4) = PChar->look.face;
-			WBUFB(data,(0x45)-4) = PChar->look.race;
-			WBUFW(data,(0x46)-4) = PChar->look.head   + 0x1000;
-			WBUFW(data,(0x48)-4) = PChar->look.body   + 0x2000;
-			WBUFW(data,(0x4A)-4) = PChar->look.hands  + 0x3000;
-			WBUFW(data,(0x4C)-4) = PChar->look.legs   + 0x4000;
-			WBUFW(data,(0x4E)-4) = PChar->look.feet   + 0x5000;
-			WBUFW(data,(0x50)-4) = PChar->look.main   + 0x6000;
-			WBUFW(data,(0x52)-4) = PChar->look.sub    + 0x7000;
-			WBUFW(data,(0x54)-4) = PChar->look.ranged + 0x8000;
+            look_t *look = (PChar->getStyleLocked() ? &PChar->mainlook : &PChar->look);
+			WBUFB(data,(0x44)-4) = look->face;
+			WBUFB(data,(0x45)-4) = look->race;
+			WBUFW(data,(0x46)-4) = look->head   + 0x1000;
+			WBUFW(data,(0x48)-4) = look->body   + 0x2000;
+			WBUFW(data,(0x4A)-4) = look->hands  + 0x3000;
+			WBUFW(data,(0x4C)-4) = look->legs   + 0x4000;
+			WBUFW(data,(0x4E)-4) = look->feet   + 0x5000;
+			WBUFW(data,(0x50)-4) = look->main   + 0x6000;
+			WBUFW(data,(0x52)-4) = look->sub    + 0x7000;
+			WBUFW(data,(0x54)-4) = look->ranged + 0x8000;
 
 			if (PChar->m_Monstrosity != 0)
 			{

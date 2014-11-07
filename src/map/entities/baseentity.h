@@ -128,7 +128,7 @@ public:
 	uint16			m_TargID;			// targid объекта, на который смотрит сущность
 	string_t		name;				// имя сущности
 	look_t			look;				// внешний вид всех сущностей
-	look_t			mainlook;			// only used if mob use changeSkin()
+	look_t			mainlook;			// only used if mob use changeSkin() or player /lockstyle
 	location_t		loc;				// местоположение сущности
 	uint8			animation;			// анимация
 	uint8			animationsub;		// дополнительный параметры анимации
@@ -155,9 +155,16 @@ public:
 
 	CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1);
 
+    void            ResetLocalVars();
+    uint32          GetLocalVar(const char* var);
+    void            SetLocalVar(const char* var, uint32 val);
+
+
     CBaseEntity();						// конструктор
     virtual ~CBaseEntity();						// деструктор
 private:
+protected:
+    std::map<const char*, uint32> m_localVars;
 };
 
 #endif

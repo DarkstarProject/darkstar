@@ -16,8 +16,20 @@ require("scripts/zones/Ranguemont_Pass/TextIDs");
 function onInitialize(zone)
 
 	local Taisaijin = 17457216;
-	GetMobByID(Taisaijin):setExtraVar(os.time() + math.random((86400), (259200)));
+	GetMobByID(Taisaijin):setLocalVar("ToD", os.time() + math.random((86400), (259200)));
 
+end;
+
+-----------------------------------		
+-- onConquestUpdate		
+-----------------------------------		
+
+function onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+    
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
 end;
 
 -----------------------------------		

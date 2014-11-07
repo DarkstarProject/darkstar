@@ -42,7 +42,7 @@ class CPartyMemberUpdatePacket : public CBasicPacket
 {
 public:
 
-	CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 MemberNumber, uint8 ZoneID);
+	CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 MemberNumber, uint16 ZoneID);
 };
 
 #endif

@@ -43,6 +43,10 @@ class CActionPacket : public CBasicPacket
 public:
 
 	 CActionPacket(CBattleEntity* PEntity);
+     CActionPacket(uint32 id, uint32 targetid, uint8 ActionType, 
+                   uint16 param, uint8 reaction = 0, uint16 animation = 0, uint8 speceffect = 0, 
+                   uint8 knockback = 0, uint32 messageparam = 0, uint16 messageID = 0);
+
 };
 
 #endif

@@ -256,7 +256,8 @@ public:
 	uint16					m_EquipFlag;					// текущие события, обрабатываемые экипировкой (потом упакую в структуру, вместе с equip[])
     uint16					m_EquipBlock;					// заблокированные ячейки экипировки
 	bool					m_EquipSwap;					// true if equipment was recently changed
-	uint8					equip[17];						// экипировка персонажа
+	uint8					equip[17];						//      SlotID where equipment is
+	uint8					equipLoc[17];					// ContainerID where equipment is
 
 	uint8					m_ZonesList[36];				// список посещенных персонажем зон
 	uint8					m_SpellList[128];				// список изученных заклинаний
@@ -340,7 +341,6 @@ public:
     uint32            m_DeathCounter;               // Counter when you last died. This is set when you first login
     uint32            m_DeathTimestamp;             // Timestamp when death counter has been saved to database
 
-    uint8             m_PVPFlag;                    // pvp
 	uint8			  m_hasTractor;					// checks if player has tractor already
 	uint8			  m_hasRaise;					// checks if player has raise already
     uint8             m_hasAutoTarget;              // возможность использования AutoTarget функции
@@ -352,7 +352,7 @@ public:
 	uint8			  m_GMlevel;                    // Level of the GM flag assigned to this character
     bool              m_isGMHidden;                 // GM Hidden flag to prevent player updates from being processed.
 
-    bool              m_isMentor;                   // Mentor flag status.
+    uint8             m_mentor;                     // Mentor flag status.
     bool              m_isNewPlayer;                // New player flag..
 
 	int8			  getShieldSize();
@@ -361,6 +361,8 @@ public:
 	void			  setWeaponSkillKill(bool isWeaponSkillKill);
 	bool			  getMijinGakure();
 	void			  setMijinGakure(bool isMijinGakure);
+	bool                      getStyleLocked();
+	void                      setStyleLocked(bool isStyleLocked);
 
 	bool			  isRapidShot;										// Flag to track rapid shot
 	bool			  secondDoubleShotTaken;							// Flag to track number of double shots taken
@@ -398,6 +400,7 @@ private:
 
 	bool			m_isWeaponSkillKill;
 	bool			m_isMijinGakure;
+	bool                    m_isStyleLocked;
 
 	PacketList_t      PacketList;					// в этом списке хранятся все пакеты, предназначенные для отправки персонажу
 };

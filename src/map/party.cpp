@@ -159,7 +159,7 @@ void CParty::AssignPartyRole(int8* MemberName, uint8 role)
 *																		*
 ************************************************************************/
 
-uint8 CParty::MemberCount(uint8 ZoneID)
+uint8 CParty::MemberCount(uint16 ZoneID)
 {
 	uint8 count = 0;
 
@@ -350,7 +350,7 @@ void CParty::AddMember(CBattleEntity* PEntity)
                     m_PSyncTarget->GetMLevel(),
                     0,
                     0), true);
-                PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE);
+                PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE | EFFECTFLAG_ON_ZONE);
                 PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CCharSyncPacket(PChar));
             }
         }
@@ -665,7 +665,7 @@ void CParty::SetSyncTarget(CBattleEntity* PEntity, uint16 message)
                             PChar->GetMLevel(),
                             0,
                             0), true);
-                        member->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE);
+                        member->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE | EFFECTFLAG_ON_ZONE);
                         member->loc.zone->PushPacket(member, CHAR_INRANGE, new CCharSyncPacket(member));
 		            }
 	            }
@@ -718,7 +718,7 @@ void CParty::SetQuaterMaster(CBattleEntity* PEntity)
 *																		*
 ************************************************************************/
 
-void CParty::PushPacket(CCharEntity* PPartyMember, uint8 ZoneID, CBasicPacket* packet)
+void CParty::PushPacket(CCharEntity* PPartyMember, uint16 ZoneID, CBasicPacket* packet)
 {
 	for (uint32 i = 0; i < members.size(); ++i)
 	{

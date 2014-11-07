@@ -84,7 +84,7 @@
 #include "packets/char_update.h"
 #include "packets/chat_message.h"
 #include "packets/chocobo_digging.h"
-#include "packets/chocobo_music.h"
+#include "packets/change_music.h"
 #include "packets/conquest_map.h"
 #include "packets/cs_position.h"
 #include "packets/currency.h"
@@ -103,6 +103,7 @@
 #include "packets/lock_on.h"
 #include "packets/linkshell_equip.h"
 #include "packets/linkshell_message.h"
+#include "packets/macroequipset.h"
 #include "packets/menu_config.h"
 #include "packets/menu_merit.h"
 #include "packets/merit_points_categories.h"
@@ -294,7 +295,7 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	PChar->pushPacket(new CDownloadingDataPacket());
 	PChar->pushPacket(new CZoneInPacket(PChar,EventID));
 	PChar->pushPacket(new CZoneVisitedPacket(PChar));
-	CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("afterZoneIn", gettick() + 500, PChar, CTaskMgr::TASK_ONCE, luautils::AfterZoneIn));
+	CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("afterZoneIn", gettick() + 500, (void*)PChar->id, CTaskMgr::TASK_ONCE, luautils::AfterZoneIn));
     charutils::RecoverFailedSendBox(PChar);
 
 	return;
@@ -312,7 +313,7 @@ void SmallPacket0x00C(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	PChar->pushPacket(new CInventorySizePacket(PChar));
 	PChar->pushPacket(new CMenuConfigPacket(PChar));
 	PChar->pushPacket(new CCharJobsPacket(PChar));
-	PChar->pushPacket(new CChocoboMusicPacket());
+	PChar->pushPacket(new CChangeMusicPacket(4,212)); // The default Chocobo music is Block 4 Track 212 (0xD4)
 
 	if (PChar->PParty != NULL)
 	{
@@ -494,7 +495,7 @@ void SmallPacket0x011(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	{
 		if (PChar->equip[i] != 0)
 		{
-			PChar->pushPacket(new CEquipPacket(PChar->equip[i], i));
+			PChar->pushPacket(new CEquipPacket(PChar->equip[i], i, PChar->equipLoc[i]));
 		}
 	}
 	return;
@@ -519,14 +520,17 @@ void SmallPacket0x015(map_session_data_t* session, CCharEntity* PChar, int8* dat
 						  (PChar->loc.p.z  != RBUFF(data,(0x0C))) ||
 						  (PChar->m_TargID != RBUFW(data,(0x16))) );
 
-		PChar->loc.p.x = RBUFF(data,(0x04));
-		PChar->loc.p.y = RBUFF(data,(0x08));
-		PChar->loc.p.z = RBUFF(data,(0x0C));
+        if (!PChar->isCharmed)
+        {
+            PChar->loc.p.x = RBUFF(data, (0x04));
+            PChar->loc.p.y = RBUFF(data, (0x08));
+            PChar->loc.p.z = RBUFF(data, (0x0C));
 
-		PChar->loc.p.moving   = RBUFW(data,(0x12));
-		PChar->loc.p.rotation = RBUFB(data,(0x14));
+            PChar->loc.p.moving = RBUFW(data, (0x12));
+            PChar->loc.p.rotation = RBUFB(data, (0x14));
 
-		PChar->m_TargID = RBUFW(data,(0x16));
+            PChar->m_TargID = RBUFW(data, (0x16));
+        }
 
 		if (isUpdate)
 		{
@@ -2409,19 +2413,64 @@ void SmallPacket0x050(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	uint8 equipSlotID = RBUFB(data,(0x05));		// charequip slot
     uint8 containerID = RBUFB(data,(0x06));     // container id
 
-    // For now disable wardrobe equipment attempts..
-    if (containerID != 0)
+	if (containerID != 0 && containerID != 8)
     {
         return;
     }
 
-	charutils::EquipItem(PChar, slotID, equipSlotID);
+	charutils::EquipItem(PChar, slotID, equipSlotID, containerID); //current
     charutils::SaveCharEquip(PChar);
 	luautils::CheckForGearSet(PChar); // check for gear set on gear change
 	PChar->UpdateHealth();
 	return;
 }
+/************************************************************************
+*																		*
+*  Equip Macro Set Packet												*
+*																		*
+************************************************************************/
 
+void SmallPacket0x051(map_session_data_t* session, CCharEntity* PChar, int8* data)
+{
+	if (PChar->status != STATUS_NORMAL &&
+		PChar->status != STATUS_UPDATE)
+		return;
+
+	for (uint8 i = 0; i <RBUFB(data, (0x04)); i++)
+	{
+		uint8 slotID = RBUFB(data, (0x08  + (0x04 * i)));		// inventory slot
+		uint8 equipSlotID = RBUFB(data, (0x09 + (0x04 * i)));		// charequip slot
+		uint8 containerID = RBUFB(data, (0x0A + (0x04 * i)));     // container id
+		if (containerID == 0 || containerID == 8 )
+		{
+			charutils::EquipItem(PChar, slotID, equipSlotID, containerID);
+		}
+
+	}
+	charutils::SaveCharEquip(PChar);
+	luautils::CheckForGearSet(PChar); // check for gear set on gear change
+	PChar->UpdateHealth();
+	return;
+}
+/************************************************************************
+*																		*
+*  Add Equipment to set 												*
+*																		*
+************************************************************************/
+
+void SmallPacket0x052(map_session_data_t* session, CCharEntity* PChar, int8* data)
+{
+	//Im guessing this is here to check if you can use A Item, as it seems useless to have this sent to server
+	//as It will check requirements when it goes to equip the items anyway
+	//0x05 is slot of updated item
+	//0x08 is info for updated item
+	//0x0C is first slot every 4 bytes is another set, in (01-equip 0-2 remve),(container),(ID),(ID)
+	//in this list the slot of whats being updated is old value, replace with new in 116
+	//Should Push 0x116 (size 68) in responce
+	//0x04 is start, contains 16 4 byte parts repersently each slot in order
+	PChar->pushPacket(new CAddtoEquipSet(data));
+	return;
+}
 /************************************************************************
 *																		*
 *  Request synthesis suggestion											*
@@ -3858,6 +3907,7 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     PItemLinkshell->setSubType(ITEM_UNLOCKED);
 
                     PChar->equip[SLOT_LINK] = 0;
+					PChar->equipLoc[SLOT_LINK] = 0;
                     PChar->nameflags.flags &= ~FLAG_LINKSHELL;
 
                     PChar->pushPacket(new CInventoryAssignPacket(PItemLinkshell, INV_NORMAL));
@@ -3887,6 +3937,7 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     PItemLinkshell->setSubType(ITEM_LOCKED);
 
                     PChar->equip[SLOT_LINK] = SlotID;
+					PChar->equipLoc[SLOT_LINK] = LOC_INVENTORY;
                     PChar->nameflags.flags |= FLAG_LINKSHELL;
 
                     PChar->pushPacket(new CInventoryAssignPacket(PItemLinkshell, INV_LINKSHELL));
@@ -4763,7 +4814,7 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		uint8 mjob = RBUFB(data,(0x04));
 		uint8 sjob = RBUFB(data,(0x05));
 
-		if ((mjob > 0x00) && (mjob < MAX_JOBTYPE))
+		if ((mjob > 0x00) && (mjob < MAX_JOBTYPE) && (PChar->jobs.unlocked & (1 << mjob )))
 		{
             JOBTYPE prevjob = PChar->GetMJob();
 			PChar->resetPetZoningInfo();
@@ -4785,7 +4836,7 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			}
 		}
 
-		if ((sjob > 0x00) && (sjob < MAX_JOBTYPE))
+		if ((sjob > 0x00) && (sjob < MAX_JOBTYPE) && (PChar->jobs.unlocked & (1 << sjob)))
 		{
 			JOBTYPE prevsjob = PChar->GetSJob();
 
@@ -5246,6 +5297,8 @@ void SmallPacket0x10F(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x111(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
+    PChar->setStyleLocked(RBUFB(data,(0x04)));
+    PChar->pushPacket(new CCharAppearancePacket(PChar));
     return;
 }
 
@@ -5289,6 +5342,8 @@ void PacketParserInitialize()
     PacketSize[0x04D] = 0x00; PacketParser[0x04D] = &SmallPacket0x04D;
     PacketSize[0x04E] = 0x1E; PacketParser[0x04E] = &SmallPacket0x04E;
     PacketSize[0x050] = 0x04; PacketParser[0x050] = &SmallPacket0x050;
+	PacketSize[0x051] = 0x24; PacketParser[0x051] = &SmallPacket0x051;
+	PacketSize[0x052] = 0x26; PacketParser[0x052] = &SmallPacket0x052;
 	PacketSize[0x058] = 0x0A; PacketParser[0x058] = &SmallPacket0x058;
     PacketSize[0x059] = 0x00; PacketParser[0x059] = &SmallPacket0x059;
     PacketSize[0x05A] = 0x02; PacketParser[0x05A] = &SmallPacket0x05A;
@@ -5356,6 +5411,8 @@ void PacketParserInitialize()
     PacketSize[0x10B] = 0x00; PacketParser[0x10B] = &SmallPacket0x10B;
     PacketSize[0x10F] = 0x02; PacketParser[0x10F] = &SmallPacket0x10F;
     PacketSize[0x111] = 0x00; PacketParser[0x111] = &SmallPacket0x111; // Lock Style Request
+    PacketSize[0x112] = 0x00; PacketParser[0x112] = &SmallPacket0xFFF;
+    PacketSize[0x114] = 0x00; PacketParser[0x114] = &SmallPacket0xFFF;
 }
 
 /************************************************************************

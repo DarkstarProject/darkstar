@@ -224,7 +224,7 @@ enum ZONEID : uint16
 	ZONE_LALOFF_AMPHITHEATER          = 180,
 	ZONE_THE_CELESTIAL_NEXUS          = 181,
 	ZONE_WALK_OF_ECHOES               = 182,
-	ZONE_MAQUETTE_ABDHALS_LEGION      = 183,
+	ZONE_MAQUETTE_ABDHALJS_LEGION     = 183,
 	ZONE_LOWER_DELKFUTTS_TOWER        = 184,
 	ZONE_DYNAMIS_SAN_DORIA            = 185,
 	ZONE_DYNAMIS_BASTOK               = 186,
@@ -317,7 +317,7 @@ enum ZONEID : uint16
     ZONE_WOH_GATES                    = 273,
     ZONE_OUTER_RAKAZNAR               = 274,
     ZONE_OUTER_RAKAZNAR_U             = 275,
-    ZONE_276                          = 276,
+    ZONE_RAKAZNAR_INNER_COURT         = 276,
     ZONE_277                          = 277,
     ZONE_278                          = 278,
     ZONE_279                          = 279,
@@ -423,8 +423,7 @@ enum ZONEMISC
 	MISC_CHOCOBO	= 0x0004,	// Ability to use Chocobos
 	MISC_MOGMENU	= 0x0020,	// Ability to communicate with Nomad Moogle (menu access mog house)
 	MISC_COSTUME	= 0x0040,	// Ability to use a Costumes
-	MISC_TREASURE	= 0x0100,	// Presence in the global zone TreasurePool
-	MISC_PVP 		= 0x0200    // Ability to PvP
+	MISC_TREASURE	= 0x0100	// Presence in the global zone TreasurePool
 };
 
 /************************************************************************
@@ -494,8 +493,8 @@ public:
 	uint8			GetBackgroundMusic();
 	zoneLine_t*		GetZoneLine(uint32 zoneLineID);
 
-    CCharEntity*    GetCharByName(int8* name);                                      // finds the player if exists in zone
-	virtual CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1); 					// получаем указатель на любую сущность в зоне
+    virtual CCharEntity*    GetCharByName(int8* name);                              // finds the player if exists in zone
+	virtual CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1); 			// получаем указатель на любую сущность в зоне
 
     bool            IsWeatherStatic();                                              // погода в зоне не требует изменения (никогда не меняется)
 	bool			CanUseMisc(uint16 misc);
@@ -520,7 +519,7 @@ public:
 	virtual void	DeletePET(CBaseEntity* PPet);       	                        // derefs the pet's ID from this zone
 
     virtual void    FindPartyForMob(CBaseEntity* PEntity);                          // ищем группу для монстра
-    virtual void    TransportDepart(CBaseEntity* PTransportNPC);                    // транспотр отправляется, необходимо собрать пассажиров
+    virtual void    TransportDepart(uint16 boundary, uint16 zone);                  // транспотр отправляется, необходимо собрать пассажиров
 
 	void			InsertRegion(CRegion* Region);									// добавляем в зону активную область
 

@@ -481,9 +481,9 @@ void CZone::FindPartyForMob(CBaseEntity* PEntity)
 *                                                                       *
 ************************************************************************/
 
-void CZone::TransportDepart(CBaseEntity* PTransportNPC)
+void CZone::TransportDepart(uint16 boundary, uint16 zone)
 {
-	m_zoneEntities->TransportDepart(PTransportNPC);
+	m_zoneEntities->TransportDepart(boundary, zone);
 }
 
 /************************************************************************
@@ -774,8 +774,7 @@ void CZone::CharZoneIn(CCharEntity* PChar)
 	PChar->loc.zoning = false;
 	PChar->loc.destination = 0;
 	PChar->m_InsideRegionID = 0;
-
-	PChar->m_PVPFlag = CanUseMisc(MISC_PVP);
+    PChar->ResetLocalVars();
 
 	//remove temp items
 	charutils::ClearTempItems(PChar);

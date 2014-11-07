@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2012 Darkstar Dev Teams
+  Copyright (c) 2010-2014 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -278,7 +278,7 @@ int32 login_config_read(const char *cfgName)
 			
 		if(strcmpi(w1,"timestamp_format") == 0)
         {
-			strncpy(timestamp_format, w2, 20);
+			strncpy(timestamp_format, w2, 19);
         }
 		else if(strcmpi(w1,"stdout_with_ansisequence") == 0 )
         {

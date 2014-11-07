@@ -18,12 +18,14 @@ require("scripts/globals/common");
 --See chocoprice.lua to adjust chocobo stables.
 --require("scripts/globals/chocoprice");
 -- Enable Extension (1= yes 0= no)
-ENABLE_COP  = 0;
-ENABLE_TOAU = 0;
-ENABLE_WOTG = 0;
-ENABLE_ACP  = 0;
-ENABLE_AMK  = 0;
-ENABLE_ASA  = 0;
+ENABLE_COP    = 0;
+ENABLE_TOAU   = 0;
+ENABLE_WOTG   = 0;
+ENABLE_ACP    = 0;
+ENABLE_AMK    = 0;
+ENABLE_ASA    = 0;
+ENABLE_ABYSEA = 0;
+ENABLE_SOA    = 0;
 
 -- CHARACTER CONFIG
 INITIAL_LEVEL_CAP = 50; --The initial level cap for new players.  There seems to be a hardcap of 255.
@@ -156,7 +158,7 @@ SUNBREEZE_2009 = 0; -- Set to 1 to give starting characters Far East dress from 
 SUNBREEZE_2011 = 0; -- Set to 1 to give starting characters Far East dress from 2011.  Ex: Hikogami Yukata
 CHRISTMAS = 0; -- Set to 1 to give starting characters Christmas dress.
 HALLOWEEN = 0; -- Set to 1 to give starting characters Halloween items (Does not start event).
-HALLOWEEN_2005 = 1; -- Set to 1 to Enable the 2005 version of Harvest Festival, will start on Oct. 20 and end Nov. 1.
+HALLOWEEN_2005 = 0; -- Set to 1 to Enable the 2005 version of Harvest Festival, will start on Oct. 20 and end Nov. 1.
 HALLOWEEN_YEAR_ROUND = 0; -- Set to 1 to have Harvest Festival initialize outside of normal times.
 
 --MISC
@@ -168,7 +170,10 @@ TIMEZONE_OFFSET = 9.0; -- Offset from UTC used to determine when "JP Midnight" i
 ALLOW_MULTIPLE_EXP_RINGS = 0; -- Set to 1 to remove ownership restrictions on the Chariot/Empress/Emperor Band trio.
 BYPASS_EXP_RING_ONE_PER_WEEK = 0; -- -- Set to 1 to bypass the limit of one ring per Conquest Tally Week.
 NUMBER_OF_DM_EARRINGS = 1; -- Number of earrings players can simultaneously own from Divine Might before scripts start blocking them (Default: 1)
-
+HOMEPOINT_TELEPORT = 0; -- Enables the homepoint teleport system
 --LIMBUS
 BETWEEN_2COSMOCLEANSE_WAIT_TIME = 3; -- day between 2 limbus keyitem  (default 3 days)
 DIMENSIONAL_PORTAL_UNLOCK = false; -- Set true to bypass requirements for using dimensional portals to reach sea for Limbus
+
+--ABYSSEA
+VISITANT_BONUS = 1.00; -- Default: 1.00 - (retail) - Multiplies the base time value of each Traverser Stone.

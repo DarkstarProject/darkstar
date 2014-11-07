@@ -2144,7 +2144,6 @@ INSERT INTO `mob_skill` VALUES (714,483,678,'Savage_blade',0,7,2500,1500,4,0,0,0
 
 
 -- Kam'lanaut
--- TODO: Script these when mob additional effects work.
 INSERT INTO `mob_skill` VALUES (567,351,495,'Fire_Blade',0,7,2000,0,1,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (568,351,496,'Frost_Blade',0,7,2000,0,1,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (569,351,497,'Wind_Blade2',0,7,2000,0,1,0, 0, 0);
@@ -2175,11 +2174,14 @@ INSERT INTO `mob_skill` VALUES (683,354,641,'Swift_Blade',0,7,2000,0,4,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (676,355,634,'Havoc_Spiral',1,7,2000,500,4,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (684,355,644,'Rampage',0,7,2000,0,4,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (685,355,645,'Calamity',0,7,2000,0,4,0, 0, 0);
+INSERT INTO `mob_skill` VALUES (454,355,438,'Charm', 0, 18.0, 2000, 0, 4, 0, 0, 0);
 
 -- Ark Angel TT
-INSERT INTO `mob_skill` VALUES (679,356,636,'Amon_Drive',2,10,2000,0,4,0, 0, 0);
+INSERT INTO `mob_skill` VALUES (679,356,636,'Amon_Drive',2,15.0,2000,500,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (680,394,639,'Ark_Guardian_Tarutaru',0,22.0,500,0,1,0,0,0);
 INSERT INTO `mob_skill` VALUES (688,356,646,'Spinning_Scythe',1,7,2000,0,4,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (689,356,647,'Guillotine',0,7,2000,0,4,0, 0, 0);
+INSERT INTO `mob_skill` VALUES (706,394,663,'Tarutaru_Warp_II',0,22.0,500,0,1,0,0,0);
 
 -- Cerberuses
 INSERT INTO `mob_skill` VALUES (1529,62,1223,'Lava_Spit', 1, 10.0, 2000, 1500, 4, 0, 0, 0); -- ~400 dmg
@@ -2312,7 +2314,7 @@ INSERT INTO `mob_skill` VALUES (1054,391,654,'Spike_Flail', 1, 23.0, 2000, 2000,
 INSERT INTO `mob_skill` VALUES (1055,391,968,'Sable_Breath', 4, 18.0, 2000, 1500, 4, 8, 0, 0);
 INSERT INTO `mob_skill` VALUES (1059,391,659,'Absolute_Terror', 0, 18.0, 4000, 1500, 4, 8, 0, 0);
 INSERT INTO `mob_skill` VALUES (1060,391,660,'Horrid_Roar_3', 0, 18.0, 4000, 1500, 4, 8, 0, 0);
--- INSERT INTO `mob_skill` VALUES (454,391,432,'Charm', 1, 18.0, 2000, 0, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (454,391,438,'Charm', 0, 18.0, 2000, 0, 4, 0, 0, 0);
 
 -- Jormungand
 -- INSERT INTO `mob_skill` VALUES (1031,392,963,'Sleet_Blast_alt', 0, 23.0, 2000, 0, 4, 0, 0, 0);
@@ -3267,12 +3269,12 @@ INSERT INTO `mob_skill` VALUES (2201,60,1695,'Level-6-Holy',1,18.0,2000,1000,4,0
 
 
 -- Lilisette
--- INSERT INTO `mob_skill` VALUES (2191,???,1717,'Vivifying_waltz',1,18.0,2000,1000,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (2190,???,1716,'Rousing_samba',1,18.0,2000,1000,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (2189,???,1713,'Whirling_edge',1,18.0,2000,1000,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (2188,???,1712,'Dancers_fury',1,18.0,2000,1000,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (2187,???,1715,'Sensual_dance',1,18.0,2000,1000,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (2186,???,1714,'Thorned_dance',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2191,484,1717,'Vivifying_waltz',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2190,484,1716,'Rousing_samba',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2189,484,1713,'Whirling_edge',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2188,484,1712,'Dancers_fury',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2187,484,1715,'Sensual_dance',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2186,484,1714,'Thorned_dance',1,18.0,2000,1000,4,0,0,0);
 
 -- Atomos
 -- need right model?
@@ -3283,7 +3285,7 @@ INSERT INTO `mob_skill` VALUES (2201,60,1695,'Level-6-Holy',1,18.0,2000,1000,4,0
 -- SOA
 
 -- Twitherym
-INSERT INTO `mob_skill` VALUES (2694,338,2203,'Tempetuous_Upheaval',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2694,338,2203,'Tempestuous_Upheaval',1,18.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (2695,338,2204,'Slicendice',0,25.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (2696,338,2205,'Blackout',1,18.0,2000,1000,4,0,0,0);
 
@@ -3378,10 +3380,20 @@ INSERT INTO `mob_skill` VALUES (2846,464,2176,'Infaunal_Flop',1,18.0,2000,1000,4
 
 
 -- Dullahan
--- anims 2299 2300 2301 2302 , waiting for skills name to be known
+
+INSERT INTO `mob_skill` VALUES (2962,447,2299,'Villainous_Rebuke',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2963,447,2300,'Stygian_Release',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2964,447,2301,'Infernal_Bulwark',1,18.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (2965,447,2302,'Atramentous_Libations',1,18.0,2000,1000,4,0,0,0);
+-- 2303 probably nm dullahan move 
+
 -- Fluturini
--- anims 2289 2293 ? waiting names
+INSERT INTO `mob_skill` VALUES (2896,448,2289,'Shining_salvo',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2897,448,2290,'Palling_salvo',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2898,448,2291,'Cathartic_Caper',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2899,448,2292,'Bewailing_wake',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2900,448,2293,'Flight_of_the_Fluttyries',1,18.0,2000,1000,4,0,0,0);
+
 
 -- -----------------------------------------------------------
 -- Naakuals
@@ -3441,6 +3453,42 @@ INSERT INTO `mob_skill` VALUES (2803,465,2207,'Uproot',1,18.0,2000,1000,4,0,0,0)
 INSERT INTO `mob_skill` VALUES (2804,465,2208,'Canopierce',1,18.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (2805,465,2209,'Firefly_Fandango',1,18.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (2806,465,2210,'Tiiimbeeer',1,18.0,2000,1000,4,0,0,0);
+
+
+-- Gramk-Droog Velkk Boss
+-- special melee 2223 2224 2225
+-- INSERT INTO `mob_skill` VALUES (2825,???,2226,'Velkan_Ambush',1,18.0,2000,1000,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (2826,???,2227,'Galumph',1,18.0,2000,1000,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (2827,???,2228,'Coming_through',1,18.0,2000,1000,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (2828,???,2229,'Merciless_mauling',1,18.0,2000,1000,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (2829,???,2230,'Croctastrophy',1,18.0,2000,1000,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (2831,???,2231,'Battle_Trance',1,18.0,2000,1000,1,0,0,0);
+
+
+-- Xol (Balamor boss) -- animated model 0x0000460a not 0x0000ba06
+-- melee ranged attack 2343 2344 2345 2346
+-- INSERT INTO `mob_skill` VALUES (3047,???,2347,'Feast_of_Arrows',1,18.0,2000,1000,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (3048,???,2348,'Cruel_Joke',1,18.0,2000,1000,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (3049,???,2349,'Regurgitated_swarm',1,18.0,2000,1000,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (3050,???,2350,'Setting_the_stage',1,18.0,2000,1000,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (3051,???,2351,'Last_Laugh',1,18.0,2000,1000,4,0,0,0);
+
+-- Morimar/Noble Warrior animated model 0x00006f0a not 0x0000ba05
+-- special melee 2332 2333 2334
+-- INSERT INTO `mob_skill` VALUES (2904,???,2335,'Vehement_Resolution',1,18.0,2000,1000,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (2905,???,2336,'Camaraderie_oft_the_crevasse',1,18.0,2000,1000,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (2906,???,2337,'Into_the_light',1,18.0,2000,1000,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (2907,???,2338,'Arduous_decision',1,18.0,2000,1000,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (2908,???,2339,'12_blades_of_remorse',1,18.0,2000,1000,4,0,0,0);
+
+-- Darrcuiln model 0x0000660a not cs one 0x0000b00a
+-- special melee 2320 2321 2322
+-- INSERT INTO `mob_skill` VALUES (2912,???,2323,'Aurous_charge',1,18.0,2000,1000,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (2913,???,2324,'Howling_gust',1,18.0,2000,1000,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (2914,???,2325,'Righteous_Rasp',1,18.0,2000,1000,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (2915,???,2326,'Starward_yowl',1,18.0,2000,1000,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (2916,???,2327,'Stalking_prey',1,18.0,2000,1000,4,0,0,0);
+
 
 -- Static mobs unique attack
 INSERT INTO `mob_skill` VALUES (3000,349,2153,'animationfungus',1,18.0,2000,1000,4,0,0,0);

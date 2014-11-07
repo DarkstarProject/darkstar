@@ -45,7 +45,7 @@ CCharEntity::CCharEntity()
 	m_GMlevel = 0;
     m_isGMHidden = false;
 
-    m_isMentor = false;
+    m_mentor = 0;
     m_isNewPlayer = true;
 
 	allegiance = ALLEGIANCE_PLAYER;
@@ -68,6 +68,7 @@ CCharEntity::CCharEntity()
 	memset(& jobs,  0, sizeof(jobs));
 	memset(& keys,  0, sizeof(keys));
     memset(& equip, 0, sizeof(equip));
+	memset(& equipLoc, 0, sizeof(equipLoc));
 	memset(& RealSkills,   0, sizeof(RealSkills));
     memset(& m_currency, 0, sizeof(m_currency));
     memset(& nationtp,  0, sizeof(nationtp));
@@ -106,7 +107,6 @@ CCharEntity::CCharEntity()
 
     m_Costum     = 0;
 	m_Monstrosity = 0;
-    m_PVPFlag    = 0;
 	m_hasTractor = 0;
 	m_hasRaise	 = 0;
     m_hasAutoTarget    = 1;
@@ -126,6 +126,7 @@ CCharEntity::CCharEntity()
 
 	m_isWeaponSkillKill = false;
 	m_isMijinGakure = false;
+	m_isStyleLocked = false;
 
     BazaarID.clean();
     TradePending.clean();
@@ -356,6 +357,20 @@ void CCharEntity::setMijinGakure(bool isMijinGakure)
 	m_isMijinGakure = isMijinGakure;
 }
 
+bool CCharEntity::getStyleLocked()
+{
+  return m_isStyleLocked;
+}
+
+void CCharEntity::setStyleLocked(bool isStyleLocked)
+{
+  if (isStyleLocked) {
+	memcpy(&mainlook, &look, sizeof(look));
+  }
+
+  m_isStyleLocked = isStyleLocked;
+}
+
 void CCharEntity::SetPlayTime(uint32 playTime)
 {
 	m_PlayTime = playTime;
@@ -378,12 +393,12 @@ uint32 CCharEntity::GetPlayTime(bool needUpdate)
 CItemArmor* CCharEntity::getEquip(SLOTTYPE slot)
 {
 	uint8 loc = equip[slot];
-
+	uint8 est = equipLoc[slot];
 	CItemArmor* item = NULL;
 
 	if (loc != 0)
 	{
-		item = (CItemArmor*)getStorage(LOC_INVENTORY)->GetItem(loc);
+		item = (CItemArmor*)getStorage(est)->GetItem(loc);
 	}
 	return item;
 }

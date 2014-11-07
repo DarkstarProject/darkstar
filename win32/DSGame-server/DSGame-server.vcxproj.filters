@@ -332,7 +332,7 @@
     <ClInclude Include="..\..\src\map\packets\chocobo_digging.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\packets\chocobo_music.h">
+    <ClInclude Include="..\..\src\map\packets\change_music.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\packets\conquest_map.h">
@@ -812,6 +812,12 @@
     <ClInclude Include="..\..\src\map\packets\entity_animation.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\macroequipset.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\ai\ai_char_charm.h">
+      <Filter>Header Files\ai</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
@@ -1030,7 +1036,7 @@
     <ClCompile Include="..\..\src\map\packets\chocobo_digging.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\packets\chocobo_music.cpp">
+    <ClCompile Include="..\..\src\map\packets\change_music.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\conquest_map.cpp">
@@ -1488,6 +1494,12 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\entity_animation.cpp">
       <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\macroequipset.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\ai_char_charm.cpp">
+      <Filter>Source Files\ai</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -28,6 +28,7 @@
 #include <string.h>
 #include <algorithm>
 
+#include "../packets/char.h"
 #include "../packets/char_health.h"
 #include "../packets/char_update.h"
 #include "../packets/entity_update.h"
@@ -58,6 +59,7 @@
 #include "../packets/position.h"
 #include "../packets/lock_on.h"
 #include "../ai/ai_pet_dummy.h"
+#include "../ai/ai_char_charm.h"
 #include "zoneutils.h"
 
 
@@ -66,7 +68,6 @@
 ************************************************************************/
 
 uint16 g_SkillTable[100][13];									// All Skills by level/skilltype
-uint8  g_EnmityTable[100][2];		                            // Holds Enmity Modifier Values
 uint8  g_SkillRanks[MAX_SKILLTYPE][MAX_JOBTYPE];				// Holds skill ranks by skilltype and job
 uint16 g_SkillChainDamageModifiers[MAX_SKILLCHAIN_LEVEL + 1][MAX_SKILLCHAIN_COUNT + 1]; // Holds damage modifiers for skill chains [chain level][chain count]
 
@@ -82,21 +83,6 @@ std::vector<CMobSkill*>  g_PMobFamilySkills[MAX_MOB_FAMILY];	// Mob Skills By Fa
 
 namespace battleutils
 {
-
-/************************************************************************
-*                                                                       *
-*  Generate Enmity Table                                                *
-*                                                                       *
-************************************************************************/
-
-void LoadEnmityTable()
-{
-    for (uint32 x = 0; x < 100; ++x)
-    {
-        g_EnmityTable[x][0] = (uint8)abs(0.5441*x + 13.191);     // cmod
-        g_EnmityTable[x][1] = (uint8)abs(0.6216*x + 5.4363);     // dmod
-    }
-}
 
 /************************************************************************
 *                                                                       *
@@ -328,13 +314,21 @@ bool isValidSelfTargetWeaponskill(int wsid){
 *                                                                       *
 ************************************************************************/
 
-uint8 GetEnmityMod(uint8 level, uint8 modType)
+uint8 GetEnmityModDamage(uint8 level)
 {
-    DSP_DEBUG_BREAK_IF(modType >= 2);
-
 	if(level>=100) { level = 99; }
 
-	return g_EnmityTable[level][modType];
+	return ((31 * level) / 50) + 6;
+}
+
+uint8 GetEnmityModCure(uint8 level)
+{
+    if (level <= 10)
+        return level + 10;
+    else if (level <= 50)
+        return (20 + (level - 10) / 2);
+    else
+        return (40 + (level - 50) * 0.6);
 }
 
 /************************************************************************
@@ -2178,8 +2172,8 @@ uint8 CheckMobMultiHits(CBattleEntity* PEntity)
 				break;
 		}
 
-		int8 tripleAttack = PEntity->getMod(MOD_TRIPLE_ATTACK);
-		int8 doubleAttack = PEntity->getMod(MOD_DOUBLE_ATTACK);
+		int16 tripleAttack = PEntity->getMod(MOD_TRIPLE_ATTACK);
+		int16 doubleAttack = PEntity->getMod(MOD_DOUBLE_ATTACK);
 		doubleAttack = dsp_cap(doubleAttack,0,100);
 		tripleAttack = dsp_cap(tripleAttack,0,100);
 		if (WELL512::irand()%100 < tripleAttack)
@@ -2206,8 +2200,8 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 	//checking players weapon hit count
 	uint8 num = PWeapon->getHitCount();
 
-	int8 tripleAttack = PEntity->getMod(MOD_TRIPLE_ATTACK);
-	int8 doubleAttack = PEntity->getMod(MOD_DOUBLE_ATTACK);
+	int16 tripleAttack = PEntity->getMod(MOD_TRIPLE_ATTACK);
+	int16 doubleAttack = PEntity->getMod(MOD_DOUBLE_ATTACK);
 
 	//check for merit upgrades
 	if (PEntity->objtype == TYPE_PC)
@@ -2239,7 +2233,7 @@ uint8 CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon)
 	{
 		if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO))
 		{
-			uint8 zanshin = PEntity->getMod(MOD_ZANSHIN);
+			uint16 zanshin = PEntity->getMod(MOD_ZANSHIN);
 			if (PEntity->objtype == TYPE_PC)
 				zanshin += ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, (CCharEntity*)PEntity);
 
@@ -2987,6 +2981,9 @@ bool HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool)
                     case ITEM_KABENRO:
                     case ITEM_SHINOBI_TABI:
                     case ITEM_SHIHEI:
+					case ITEM_RANKA:
+					case ITEM_FURUSUMI:
+
                         toolID = ITEM_SHIKANOFUDA;
                         break;
 
@@ -3216,6 +3213,25 @@ void GenerateCureEnmity(CBattleEntity* PSource, CBattleEntity* PTarget, uint16 a
 	}
 }
 
+//Generate enmity for all targets in range
+
+void GenerateInRangeEnmity(CBattleEntity* PSource, int16 CE, int16 VE)
+{
+    DSP_DEBUG_BREAK_IF(PSource == NULL);
+    DSP_DEBUG_BREAK_IF(PSource->objtype != TYPE_PC);
+
+    CCharEntity* PChar = (CCharEntity*)PSource;
+
+    for (SpawnIDList_t::const_iterator it = PChar->SpawnMOBList.begin(); it != PChar->SpawnMOBList.end(); ++it)
+    {
+        CMobEntity* PCurrentMob = (CMobEntity*)it->second;
+
+        if (PCurrentMob->PEnmityContainer->HasTargetID(PSource->id))
+        {
+            PCurrentMob->PEnmityContainer->UpdateEnmity(PChar, CE, VE);
+        }
+    }
+}
 
 /************************************************************************
 *                                                                       *
@@ -3518,9 +3534,6 @@ uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
 	return totalDamage;
 }
 
-
-
-
 /************************************************************************
 *                                                                       *
 *	Entity charms another		                                        *
@@ -3591,7 +3604,7 @@ void tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
 		}
 
 		//apply charm time extension from gear
-		uint8 charmModValue = (PCharmer->getMod(MOD_CHARM_TIME));
+		uint16 charmModValue = (PCharmer->getMod(MOD_CHARM_TIME));
 		// adds 5% increase
 		float extraCharmTime = (float)(CharmTime*(charmModValue * 0.5f)/10);
 		CharmTime += extraCharmTime;
@@ -3611,70 +3624,87 @@ void tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
 		}
 	}
 
-	else if (PVictim->objtype == TYPE_PC)
-	{
-		//TODO: calculate time mob charms player for and work out a reliable base
-		base = 50;
-
-		//mob failed to charm player
-		if (TryCharm(PCharmer, PVictim, base) == false)
-		{
-			return;
-		}
-	}
-
-
-	//Charm is a success - take control of charmed Entity
-	PVictim->isCharmed = true;
-
-	PVictim->PMaster = PCharmer;
-	PCharmer->PPet = PVictim;
-
-
-
-	if (PVictim->objtype == TYPE_MOB)
-	{
-		//make the mob disengage
-		if(PCharmer->PPet->PBattleAI != NULL && PCharmer->PPet->PBattleAI->GetCurrentAction() == ACTION_ENGAGE){
-			PCharmer->PPet->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
-		}
-
-		//clear the victims emnity list
-		((CMobEntity*)PVictim)->PEnmityContainer->Clear();
-
-		//cancel the mobs mobBattle ai
-        delete PCharmer->PPet->PBattleAI;
-
-		//set the mobs ai to petAi
-		PCharmer->PPet->PBattleAI = new CAIPetDummy((CPetEntity*)PVictim);
-		PCharmer->PPet->PBattleAI->SetLastActionTime(gettick());
-		PCharmer->PPet->charmTime = gettick() + CharmTime;
-
-		// this will make him transition back to roaming if sleeping
-		PCharmer->PPet->animation = ANIMATION_NONE;
-
-		// only move to roaming action if not asleep
-		if(!PCharmer->PPet->StatusEffectContainer->HasPreventActionEffect())
-		{
-			PCharmer->PPet->PBattleAI->SetCurrentAction(ACTION_ROAMING);
-		}
-
-		charutils::BuildingCharPetAbilityTable((CCharEntity*)PCharmer,(CPetEntity*)PVictim,PVictim->id);
-		((CCharEntity*)PCharmer)->pushPacket(new CCharUpdatePacket((CCharEntity*)PCharmer));
-		((CCharEntity*)PCharmer)->pushPacket(new CPetSyncPacket((CCharEntity*)PCharmer));
-		PVictim->loc.zone->PushPacket(PVictim, CHAR_INRANGE, new CEntityUpdatePacket(PVictim, ENTITY_UPDATE, UPDATE_COMBAT));
-		PVictim->allegiance = ALLEGIANCE_PLAYER;
-		((CMobEntity*)PVictim)->m_OwnerID.clean();
-	}
-
-	else if (PVictim->objtype == TYPE_PC)
-	{
-		//TODO: mob take control of player
-	}
-
+    applyCharm(PCharmer, PVictim, CharmTime);
 }
 
+void applyCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 charmTime)
+{
+    PVictim->isCharmed = true;
 
+    if (PVictim->objtype == TYPE_MOB)
+    {
+        PVictim->PMaster = PCharmer;
+        PCharmer->PPet = PVictim;
+
+        //make the mob disengage
+        if (PCharmer->PPet->PBattleAI != NULL && PCharmer->PPet->PBattleAI->GetCurrentAction() == ACTION_ENGAGE){
+            PCharmer->PPet->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
+        }
+
+        //clear the victims emnity list
+        ((CMobEntity*)PVictim)->PEnmityContainer->Clear();
+
+        //cancel the mobs mobBattle ai
+        delete PCharmer->PPet->PBattleAI;
+
+        //set the mobs ai to petAi
+        PCharmer->PPet->PBattleAI = new CAIPetDummy((CPetEntity*)PVictim);
+        PCharmer->PPet->PBattleAI->SetLastActionTime(gettick());
+        PCharmer->PPet->charmTime = gettick() + charmTime;
+
+        // this will make him transition back to roaming if sleeping
+        PCharmer->PPet->animation = ANIMATION_NONE;
+
+        // only move to roaming action if not asleep
+        if (!PCharmer->PPet->StatusEffectContainer->HasPreventActionEffect())
+        {
+            PCharmer->PPet->PBattleAI->SetCurrentAction(ACTION_ROAMING);
+        }
+
+        charutils::BuildingCharPetAbilityTable((CCharEntity*)PCharmer, (CPetEntity*)PVictim, PVictim->id);
+        ((CCharEntity*)PCharmer)->pushPacket(new CCharUpdatePacket((CCharEntity*)PCharmer));
+        ((CCharEntity*)PCharmer)->pushPacket(new CPetSyncPacket((CCharEntity*)PCharmer));
+        PVictim->loc.zone->PushPacket(PVictim, CHAR_INRANGE, new CEntityUpdatePacket(PVictim, ENTITY_UPDATE, UPDATE_COMBAT));
+        PVictim->allegiance = ALLEGIANCE_PLAYER;
+        ((CMobEntity*)PVictim)->m_OwnerID.clean();
+    }
+
+    else if (PVictim->objtype == TYPE_PC)
+    {
+        delete PVictim->PBattleAI;
+        PVictim->PBattleAI = new CAICharCharm((CCharEntity*)PVictim);
+
+        PVictim->PMaster = PCharmer;
+
+        if (PCharmer->objtype == TYPE_MOB)
+        {
+            ((CMobEntity*)PCharmer)->PEnmityContainer->Clear(PVictim->id);
+            PCharmer->PBattleAI->SetBattleTarget(((CMobEntity*)PCharmer)->PEnmityContainer->GetHighestEnmity());
+        }
+
+        PVictim->loc.zone->PushPacket(PVictim, CHAR_INRANGE_SELF, new CCharPacket((CCharEntity*)PVictim, ENTITY_UPDATE));
+    }
+}
+
+void unCharm(CBattleEntity* PEntity)
+{
+    if (PEntity->objtype == TYPE_PC)
+    {
+        PEntity->isCharmed = false;
+        delete PEntity->PBattleAI;
+        PEntity->PBattleAI = new CAICharNormal((CCharEntity*)PEntity);
+        PEntity->animation = ANIMATION_NONE;
+
+        PEntity->PMaster = NULL;
+
+        if (PEntity->isDead())
+        {
+            PEntity->PBattleAI->SetCurrentAction(ACTION_FALL);
+        }
+
+        PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE_SELF, new CCharPacket((CCharEntity*)PEntity, ENTITY_UPDATE));
+    }
+}
 
 /************************************************************************
 *                                                                       *
@@ -3919,28 +3949,22 @@ void HandleTacticalParry(CBattleEntity* PEntity){
 }
 
 float HandleTranquilHeart(CBattleEntity* PEntity){
-	//ShowDebug(CL_CYAN"HandleTranquilHeart: Checking For Tranquil Heart...\n" CL_RESET);
 
-	float reductionPercent = 0;
+	float reductionPercent = 0.f;
 
-	for (uint8 j = 0; j < PEntity->TraitList.size(); ++j)
-	{
-		CTrait* PExistingTrait = PEntity->TraitList.at(j);
+    if (PEntity->objtype == TYPE_PC && charutils::hasTrait((CCharEntity*)PEntity, TRAIT_TRANQUIL_HEART))
+    {
+		int16 healingSkill = PEntity->GetSkill(SKILL_HEA);
+		reductionPercent = ((healingSkill / 10) * .5);
 
-		// Checks for Tranquil Heart Trait
-		if (PExistingTrait->getID() == 114){ // Trait 114 = Tranquil Heart	
-			int16 healingSkill = PEntity->GetSkill(SKILL_HEA);
-			reductionPercent = ((healingSkill / 10) * .5);
-
-			// Reduction Percent Caps at 25%
-			if (reductionPercent > 25){
-				reductionPercent = 25;
-			}
-
-			//ShowDebug(CL_CYAN"HandleTranquilHeart: Tranquil Heart is Active! Reduction Percent = %f\n" CL_RESET, reductionPercent);
-
-			reductionPercent = reductionPercent / 100;
+		// Reduction Percent Caps at 25%
+		if (reductionPercent > 25){
+			reductionPercent = 25;
 		}
+
+		//ShowDebug(CL_CYAN"HandleTranquilHeart: Tranquil Heart is Active! Reduction Percent = %f\n" CL_RESET, reductionPercent);
+
+		reductionPercent = reductionPercent / 100.f;
 	}
 
 	return reductionPercent;

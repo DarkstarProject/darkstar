@@ -32,7 +32,7 @@ end;
 function onMobDeath(mob,killer)
 	
 	if(GetMobAction(17330177) == 0 and GetMobAction(17330183) == 0) then
-		GetMobByID(17330177):setExtraVar(os.time() + 1800); -- Time for the 30min limit
+		GetMobByID(17330177):setLocalVar("timeLimit", os.time() + 1800); -- Time for the 30min limit
 		SpawnMob(17330177); -- Dynamis Lord
 	end
 	

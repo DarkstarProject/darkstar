@@ -25,22 +25,21 @@ function onMobEngaged(mob, target)
 end;
 
 function onMobFight(mob, target)
-    local raise, hf, bene = mob:getExtraVar(3);
-    if (mob:getHPP() == 0 and raise == 1) then
+    if (mob:getHPP() == 0 and mob:getLocalVar("Raise") == 1) then
         mob:entityAnimationPacket("sp00");
         mob:messageText(mob, PRISHE_TEXT + 3);
         mob:addHP(mob:getMaxHP());
         mob:addMP(mob:getMaxMP());
-        mob:setExtraVar(0, hf, bene);
+        mob:setLocalVar("Raise", 0);
         mob:stun(3000);
-    elseif (mob:getHPP() < 70 and hf == 0) then
+    elseif (mob:getHPP() < 70 and mob:getLocalVar("HF") == 0) then
         mob:useMobAbility(1229);
         mob:messageText(mob, PRISHE_TEXT + 6);
-        mob:setExtraVar(0, 1, bene);
-    elseif (mob:getHPP() < 30 and bene == 0) then
+        mob:setLocalVar("HF", 1);
+    elseif (mob:getHPP() < 30 and mob:getLocalVar("Bene") == 0) then
         mob:useMobAbility(1230);
         mob:messageText(mob, PRISHE_TEXT + 7);
-        mob:setExtraVar(0, hf, 1);
+        mob:setLocalVar("Bene", 1);
     end
     -- mob:setStatus(0);
 end;
@@ -54,7 +53,8 @@ function onMobDeath(mob,killer)
 end;
 
 function OnMobRoam(mob)
-    local wait, ready = mob:getExtraVar(2);
+    local wait = mob:getLocalVar("wait");
+    local ready = mob:getLocalVar("ready");
     if (wait > 240) then
         local baseID = 16924673 + (mob:getBattlefield():getBattlefieldNumber() - 1) * 2
         if (GetMobAction(baseID) ~= ACTION_NONE) then
@@ -65,12 +65,12 @@ function OnMobRoam(mob)
             mob:messageText(mob, PRISHE_TEXT + 1);
             baseID = baseID + 1;
         end
-        mob:setExtraVar(0, bit.band(baseID, 0xFFF));
+        mob:setLocalVar("ready", bit.band(baseID, 0xFFF));
     elseif (ready > 0) then
         mob:addEnmity(GetMobByID(ready + bit.lshift(mob:getZone(), 12) + 0x1000000),0,1);
         mob:addStatusEffectEx(EFFECT_SILENCE,0,0,0,5)
-        mob:setExtraVar(0);
+        mob:setLocalVar("ready", 0);
     else
-        mob:setExtraVar(wait+3, 0);
+        mob:setLocalVar("wait", wait+3);
     end
 end;

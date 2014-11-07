@@ -266,6 +266,15 @@ void CalculateStats(CMobEntity * PMob)
 		PMob->health.maxhp = PMob->HPmodifier;
 	}
 
+	if(isNM)
+	{
+		PMob->health.maxhp *= map_config.nm_hp_multiplier;
+	}
+	else
+	{
+		PMob->health.maxhp *= map_config.mob_hp_multiplier;
+	}
+
 	bool hasMp = false;
 
 	switch(mJob){
@@ -318,6 +327,15 @@ void CalculateStats(CMobEntity * PMob)
 			}
 		} else {
 			PMob->health.maxmp = PMob->MPmodifier;
+		}
+
+		if(isNM)
+		{
+			PMob->health.maxhp *= map_config.nm_mp_multiplier;
+		}
+		else
+		{
+			PMob->health.maxhp *= map_config.mob_mp_multiplier;
 		}
 	}
 
@@ -386,13 +404,22 @@ void CalculateStats(CMobEntity * PMob)
 	PMob->stats.CHR = fCHR + mCHR + sCHR;
 
 	if(isNM){
-		PMob->stats.STR *= 1.5;
-		PMob->stats.DEX *= 1.5;
-		PMob->stats.VIT *= 1.5;
-		PMob->stats.AGI *= 1.5;
-		PMob->stats.INT *= 1.5;
-		PMob->stats.MND *= 1.5;
-		PMob->stats.CHR *= 1.5;
+		PMob->stats.STR *= (1.5 * map_config.nm_stat_multiplier);
+		PMob->stats.DEX *= (1.5 * map_config.nm_stat_multiplier);
+		PMob->stats.VIT *= (1.5 * map_config.nm_stat_multiplier);
+		PMob->stats.AGI *= (1.5 * map_config.nm_stat_multiplier);
+		PMob->stats.INT *= (1.5 * map_config.nm_stat_multiplier);
+		PMob->stats.MND *= (1.5 * map_config.nm_stat_multiplier);
+		PMob->stats.CHR *= (1.5 * map_config.nm_stat_multiplier);
+	}
+	else{
+		PMob->stats.STR *= map_config.mob_stat_multiplier;
+		PMob->stats.DEX *= map_config.mob_stat_multiplier;
+		PMob->stats.VIT *= map_config.mob_stat_multiplier;
+		PMob->stats.AGI *= map_config.mob_stat_multiplier;
+		PMob->stats.INT *= map_config.mob_stat_multiplier;
+		PMob->stats.MND *= map_config.mob_stat_multiplier;
+		PMob->stats.CHR *= map_config.mob_stat_multiplier;
 	}
 
 	// aggro mobs move around a bit more often
@@ -1208,6 +1235,27 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID)
 		}
 	}
 	return PMob;
+}
+
+void WeaknessTrigger(CBaseEntity* PTarget, WeaknessType level)
+{
+    uint16 animationID = 0;
+    switch (level)
+    {
+    case WeaknessType::RED:
+        animationID = 1806;
+        break;
+    case WeaknessType::YELLOW:
+        animationID = 1807;
+        break;
+    case WeaknessType::BLUE:
+        animationID = 1808;
+        break;
+    case WeaknessType::WHITE:
+        animationID = 1946;
+        break;
+    }
+    PTarget->loc.zone->PushPacket(PTarget, CHAR_INRANGE, new CActionPacket(PTarget->id, PTarget->id, ACTION_MOBABILITY_FINISH, 2582, 0, animationID));
 }
 
 }; // namespace mobutils

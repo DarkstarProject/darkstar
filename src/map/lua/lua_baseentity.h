@@ -77,6 +77,8 @@ public:
         return m_PBaseEntity;
     }
 
+    int32 ChangeMusic(lua_State* L);        // Sets the specified music Track for specified music block.
+
     int32 warp(lua_State*);                 // Returns Character to home point
     int32 leavegame(lua_State*);            // Character leaving game
 
@@ -165,6 +167,12 @@ public:
     int32 getCurrentMission(lua_State*);    // Gets the current mission
     int32 completeMission(lua_State*);      // Complete Mission
 
+    int32 addAssault(lua_State*);           // Add Mission
+    int32 delAssault(lua_State*);           // Delete Mission from Mission Log
+    int32 hasCompletedAssault(lua_State*);  // Checks if mission has been completed
+    int32 getCurrentAssault(lua_State*);    // Gets the current mission
+    int32 completeAssault(lua_State*);      // Complete Mission
+
     int32 getRank(lua_State*);              // Get Current Rank
     int32 setRank(lua_State*);              // Set Rank
 
@@ -247,7 +255,6 @@ public:
     int32 getStatPoppedMobs(lua_State*);       // True if dyna statue has popped mobs
     int32 setStatPoppedMobs(lua_State*);       // Set to 1 for true, 0 for false
 
-
     int32 isInBattlefieldList(lua_State*);  // Return true is the mob is in battlefield list
     int32 addInBattlefieldList(lua_State*); // Add the mob to the battlefield list
 
@@ -299,7 +306,6 @@ public:
 
     int32 setStatus(lua_State*);            // Sets Character's Status
 	int32 getStatus(lua_State*);
-    int32 setPVPFlag(lua_State*);           // Allow to attack this player
 
     int32 sendRaise(lua_State*);            // send raise request to char
     int32 sendReraise(lua_State*);          // send raise request to char
@@ -366,7 +372,9 @@ public:
 
     int32 getPetElement(lua_State*);
     int32 getPetName(lua_State*);
-    int32 charmPet(lua_State*);              // Charms Pet
+    int32 charmPet(lua_State*);              // Charms Pet (Beastmaster ability only)
+    int32 charm(lua_State*);                 // applies charm on target
+    int32 uncharm(lua_State*);               // removes charm on target
     int32 spawnPet(lua_State*);              // Calls Pet
     int32 despawnPet(lua_State*);            // Despawns Pet
     int32 petAttack(lua_State*);             // Despawns Pet
@@ -376,6 +384,7 @@ public:
     int32 hasPet(lua_State*);                // returns true if the player has a pet
     int32 getPet(lua_State*);                // Creates an LUA reference to a pet entity
     int32 getPetID(lua_State*);              // If the entity has a pet, returns the PetID to identify pet type.
+    int32 isJugPet(lua_State*);              // If the entity has a pet, test if it is a jug pet.
     int32 familiar(lua_State*);              // familiar on pet
 
     int32 wakeUp(lua_State*);                //wakes target if necessary
@@ -394,6 +403,7 @@ public:
     int32 changeJob(lua_State*);             // changes the job of a char (testing only!)
     int32 setMerits(lua_State*);             // set merits (testing only!)
     int32 getMerit(lua_State*);
+    int32 getMeritCount(lua_State*);         // Gets a players current merit count.
     int32 getPlaytime(lua_State*);
     int32 changesJob(lua_State*);            // changes the sub job of a char (testing only!)
     int32 getWeaponDmg(lua_State*);          // gets the current equipped weapons' DMG rating
@@ -465,6 +475,12 @@ public:
     int32 getCruor(lua_State*);             // Get Cruor
     int32 addCruor(lua_State*);             // Add Cruor
     int32 delCruor(lua_State*);             // Delete Cruor
+    int32 getResistanceCredit(lua_State*);  // Get Resistance Credits
+    int32 addResistanceCredit(lua_State*);  // Add Resistance Credits
+    int32 delResistanceCredit(lua_State*);  // Delete Resistance Credits
+    int32 getDominionNote(lua_State*);      // Get Dominion Notes
+    int32 addDominionNote(lua_State*);      // Add Dominion Notes
+    int32 delDominionNote(lua_State*);      // Delete Dominion Notes
 
     int32 getTags(lua_State*);              // Get Imperial ID tags (Assault)
     int32 addTags(lua_State*);              // Add Imperial ID tags (Assault)
@@ -510,8 +526,10 @@ public:
     int32 SetMobSkillAttack(lua_State*);      // enable/disable using mobskills as regular attacks
     int32 updateTarget(lua_State*);           // Force mob to update target from enmity container (ie after updateEnmity)
 
-    int32 getExtraVar(lua_State*);
-    int32 setExtraVar(lua_State*);
+    int32 getLocalVar(lua_State*);
+    int32 setLocalVar(lua_State*);
+    int32 resetLocalVars(lua_State*);
+
     int32 setSpellList(lua_State*);
 
     int32 hasValidJugPetItem(lua_State*);
@@ -580,6 +598,9 @@ public:
     int32 getCurrentAction(lua_State* L);
     int32 getAllegiance(lua_State* L);
 	int32 stun(lua_State* L);
+    int32 weaknessTrigger(lua_State* L);
+    int32 setBehaviour(lua_State* L);
+    int32 getBehaviour(lua_State* L);
 };
 
 #endif

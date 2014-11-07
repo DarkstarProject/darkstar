@@ -46,6 +46,7 @@ public:
 		return m_PLuaInstance;
 	}
 	
+    int32 getID(lua_State*);
 	int32 getChars(lua_State*);
 	int32 getTimeLimit(lua_State*);
 	int32 getEntryPos(lua_State*);

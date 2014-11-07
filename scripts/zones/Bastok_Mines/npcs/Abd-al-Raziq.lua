@@ -40,8 +40,23 @@ function onTrigger(player,npc)
 	if(guildMember == 1) then guildMember = 150995375; end
 	if(canGetNewRank(player,craftSkill,SKILLID) == 1) then getNewRank = 100; end
 	
-	player:startEvent(0x0078,testItem,getNewRank,30,guildMember,44,0,0,0);
-	
+		if (player:getCurrentMission(ASA) == THAT_WHICH_CURDLES_BLOOD and guildMember == 150995375 and 
+			getNewRank ~= 100) then
+				local item = 0;
+				local asaStatus = player:getVar("ASA_Status");
+						
+				-- TODO: Other Enfeebling Kits
+				if(asaStatus == 0) then
+					item = 2779;
+				else
+					printf("Error: Unknown ASA Status Encountered <%u>", asaStatus);
+				end
+		
+				-- The Parameters are Item IDs for the Recipe		
+				player:startEvent(0x024e, item, 2774, 929, 4103, 2777, 4103);		
+	else
+		player:startEvent(0x0078,testItem,getNewRank,30,guildMember,44,0,0,0);
+	end	
 end;
 
 -----------------------------------

@@ -75,7 +75,7 @@ namespace charutils
 	uint32	UpdateItem(CCharEntity* PChar, uint8 LocationID, uint8 slotID, int32 quantity);
 	void	CheckValidEquipment(CCharEntity* PChar);
 	void	CheckEquipLogic(CCharEntity* PChar, SCRIPTTYPE ScriptType, uint32 param);
-	void	EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID);
+	void	EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 containerID);
 	void	UnequipItem(CCharEntity* PChar, uint8 equipSlotID);
     void    RemoveSub(CCharEntity* PChar);
     bool    EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID);
@@ -133,6 +133,7 @@ namespace charutils
     void    SaveTitles(CCharEntity* PChar);						        // сохраняем заслуженные звания
 	void	SaveCharStats(CCharEntity* PChar);					        // сохраняем флаги, текущие значения жихней, маны и профессий
     void    SaveCharGMLevel(CCharEntity* PChar);                        // saves the char's gm level and nameflags
+    void    mentorMode(CCharEntity* PChar);                             // Changes char's mentor status
 	void	SaveCharNation(CCharEntity* PChar);							// Sace the character's nation of allegiance.
 	void	SaveCharSkills(CCharEntity* PChar, uint8 skillID);	        // сохраняем указанный skill персонажа
 	void	SaveCharPoints(CCharEntity* PChar);							// Conquest point, Nation TP
@@ -145,7 +146,7 @@ namespace charutils
 
     void    RemoveAllEquipment(CCharEntity* PChar);
 
-	uint8	AvatarPerpetuationReduction(CCharEntity* PChar);
+	uint16	AvatarPerpetuationReduction(CCharEntity* PChar);
 
 	void	SaveCharUnlockedWeapons(CCharEntity* PChar);
 	void	LoadCharUnlockedWeapons(CCharEntity* PChar);

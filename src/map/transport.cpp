@@ -121,6 +121,15 @@ void CTransportHandler::InitializeTransport()
             }
             PTransport->PTransportNPC->name.resize(8);
             TransportList.push_back(PTransport);
+
+            TransportZone_t TransportZone;
+
+            TransportZone.zone = (uint8)Sql_GetIntData(SqlHandle, 8);
+            TransportZone.TimeOffset = (uint16)Sql_GetIntData(SqlHandle, 11);
+            TransportZone.TimeInterval = (uint16)Sql_GetIntData(SqlHandle, 12);
+            TransportZone.TimeAnimationArrive = (uint16)Sql_GetIntData(SqlHandle, 14);
+
+            TransportZoneList.push_back(TransportZone);
         }
     }
 }
@@ -158,7 +167,7 @@ void CTransportHandler::InitializeElevators()
 			elevator.isPermanent = (Sql_GetUIntData(SqlHandle,5) != 0);
 
 			elevator.movetime = ((elevator.UpperDoor == NULL)||(elevator.LowerDoor == NULL) ? 0 : 3);
-			elevator.interval = ((elevator.UpperDoor == NULL)||(elevator.LowerDoor == NULL)||(!elevator.isPermanent) ? 8 : 8);
+            elevator.interval = 8;// ((elevator.UpperDoor == NULL) || (elevator.LowerDoor == NULL) || (!elevator.isPermanent) ? 8 : 8);
 
 			if (elevator.Elevator != NULL)
 			{
@@ -202,14 +211,8 @@ void CTransportHandler::TransportTimer()
         // персонажи видят корабль, иначе ждем следующего прибытия
         else if (PTransport->PTransportNPC->status == STATUS_NORMAL) 
         {
-            // пора подтягивать пассажиров к выходу
-            if (ShipTimerOffset ==  PTransport->TimeAnimationArrive - 10) 
-            {
-                PTransport->PTransportNPC->loc.boundary = 0;
-                zoneutils::GetZone(PTransport->Dock.prevzone)->TransportDepart(PTransport->PTransportNPC);
-            }
             // корабль причалил, открываем двери пассажирам
-            else if (ShipTimerOffset == PTransport->TimeAnimationArrive)
+            if (ShipTimerOffset == PTransport->TimeAnimationArrive)
             {
                 PTransport->PDoorNPC->animation = ANIMATION_OPEN_DOOR;
 				PTransport->Dock.zone->PushPacket(PTransport->PDoorNPC, CHAR_INRANGE, new CEntityUpdatePacket(PTransport->PDoorNPC, ENTITY_UPDATE, UPDATE_COMBAT));
@@ -223,7 +226,7 @@ void CTransportHandler::TransportTimer()
 
                 WBUFL(&PTransport->PTransportNPC->name[0],4) = CVanaTime::getInstance()->getVanaTime();
 
-                PTransport->Dock.zone->TransportDepart(PTransport->PTransportNPC);
+                PTransport->Dock.zone->TransportDepart(PTransport->PTransportNPC->loc.boundary, PTransport->PTransportNPC->loc.prevzone);
 				PTransport->Dock.zone->PushPacket(PTransport->PDoorNPC, CHAR_INRANGE, new CEntityUpdatePacket(PTransport->PDoorNPC, ENTITY_UPDATE, UPDATE_COMBAT));
 				PTransport->Dock.zone->PushPacket(NULL, CHAR_INZONE, new CEntityUpdatePacket(PTransport->PTransportNPC, ENTITY_UPDATE, UPDATE_COMBAT));
             }
@@ -233,6 +236,18 @@ void CTransportHandler::TransportTimer()
                 PTransport->PTransportNPC->status = STATUS_DISAPPEAR;
                 PTransport->Dock.zone->PushPacket(NULL, CHAR_INZONE, new CEntityUpdatePacket(PTransport->PTransportNPC, ENTITY_DESPAWN,UPDATE_NONE));
             }
+        }
+    }
+
+    for (auto transportZone : TransportZoneList)
+    {
+        uint16 ShipTimerOffset = ((VanaTime - transportZone.TimeOffset) % transportZone.TimeInterval);
+
+        if (ShipTimerOffset == transportZone.TimeAnimationArrive - 10)
+        {
+            CZone* PZone = zoneutils::GetZone(transportZone.zone);
+            if (PZone)
+                PZone->TransportDepart(0, transportZone.zone);
         }
     }
 
@@ -386,10 +401,6 @@ void CTransportHandler::startElevator(Elevator_t * elevator)
 
 void CTransportHandler::arriveElevator(Elevator_t * elevator)
 {
-	if (elevator->id == ELEVATOR_DAVOI_ELVTR)
-	{
-		elevator->interval = elevator->interval;
-	}
 	if (elevator->id == ELEVATOR_PORT_BASTOK_DRWBRDG)
 	{
 		elevator->LowerDoor->animation = ANIMATION_OPEN_DOOR;

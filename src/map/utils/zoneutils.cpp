@@ -197,9 +197,19 @@ CCharEntity* GetCharFromWorld(uint32 charid, uint16 targid)
     // will not return pointers to players in Mog House
     for (uint16 ZoneID = 1; ZoneID < MAX_ZONEID; ZoneID++)
     {
-        CBaseEntity* PEntity = g_PZoneList[ZoneID]->GetEntity(targid, TYPE_PC);
-        if (PEntity != NULL && PEntity->id == charid)
-            return (CCharEntity*)PEntity;
+        if (targid)
+        {
+            CBaseEntity* PEntity = g_PZoneList[ZoneID]->GetEntity(targid, TYPE_PC);
+            if (PEntity != NULL && PEntity->id == charid)
+                return (CCharEntity*)PEntity;
+        }
+        else
+        {
+            CCharEntity* PEntity = NULL;
+            g_PZoneList[ZoneID]->ForEachChar([&](CCharEntity* PChar){if (PChar->id == charid) PEntity = PChar; });
+            if (PEntity)
+                return PEntity;
+        }
     }
     return NULL;
 }
@@ -301,7 +311,6 @@ void LoadMOBList()
 			INNER JOIN mob_spawn_points ON mob_groups.groupid = mob_spawn_points.groupid \
 			INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
 			WHERE NOT (pos_x = 0 AND pos_y = 0 AND pos_z = 0) AND zoneid = ((mobid >> 12) & 0xFFF);";
-            //AND zoneid = ((mobid >> 12) & 0xFFF) AND zoneid = 7;";
 
     int32 ret = Sql_Query(SqlHandle, Query);
 
@@ -831,7 +840,7 @@ REGIONTYPE GetCurrentRegion(uint16 ZoneID)
             return REGION_THE_THRESHOLD;
         case ZONE_DIORAMA_ABDHALJS_GHELSBA:
         case ZONE_ABDHALJS_ISLE_PURGONORGO:
-        case ZONE_MAQUETTE_ABDHALS_LEGION:
+        case ZONE_MAQUETTE_ABDHALJS_LEGION:
             return REGION_ABDHALJS;
         case ZONE_WESTERN_ADOULIN:
         case ZONE_EASTERN_ADOULIN:

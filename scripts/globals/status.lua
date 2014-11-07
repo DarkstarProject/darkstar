@@ -40,7 +40,8 @@ STATUS_SHUTDOWN			= 20;
 -- These codes represent the subeffects for
 -- additional effects animations from battleentity.h
 -----------------------------------
---ATTACKS
+
+-- ATTACKS
 	SUBEFFECT_FIRE_DAMAGE       = 1;   -- 110000        3
     SUBEFFECT_ICE_DAMAGE        = 2;   -- 1-01000       5
     SUBEFFECT_WIND_DAMAGE       = 3;   -- 111000        7
@@ -63,7 +64,8 @@ STATUS_SHUTDOWN			= 20;
     SUBEFFECT_HP_DRAIN          = 21;  -- 1-10101      43
     SUBEFFECT_TP_DRAIN          = 22;
 	SUBEFFECT_HASTE             = 23;
---SPIKES
+
+-- SPIKES
     SUBEFFECT_BLAZE_SPIKES      = 1;    -- 01-1000       6
     SUBEFFECT_ICE_SPIKES        = 2;    -- 01-0100      10
     SUBEFFECT_DREAD_SPIKES      = 3;    -- 01-1100      14
@@ -73,7 +75,8 @@ STATUS_SHUTDOWN			= 20;
 	SUBEFFECT_WIND_SPIKES       = 7;
 	SUBEFFECT_STONE_SPIKES      = 8;
 	SUBEFFECT_COUNTER           = 63;
---SKILLCHAINS
+
+-- SKILLCHAINS
     SUBEFFECT_LIGHT             = 1;
     SUBEFFECT_DARKNESS          = 2;
     SUBEFFECT_GRAVITATION       = 3;
@@ -89,7 +92,7 @@ STATUS_SHUTDOWN			= 20;
     SUBEFFECT_DETONATION        = 13;
     SUBEFFECT_IMPACTION         = 14;
 
-    SUBEFFECT_NONE                              = 0;
+    SUBEFFECT_NONE              = 0;
 
 
 -----------------------------------
@@ -323,7 +326,6 @@ EFFECT_MANAWELL                 = 229
 EFFECT_SPONTANEITY              = 230
 EFFECT_MARCATO                  = 231
 EFFECT_NA						= 232
-EFFECT_NA						= 232
 EFFECT_AUTO_REGEN				= 233
 EFFECT_AUTO_REFRESH				= 234
 EFFECT_FISHING_IMAGERY			= 235
@@ -427,10 +429,10 @@ EFFECT_COURSERS_ROLL			= 332
 EFFECT_BLITZERS_ROLL			= 333
 EFFECT_TACTICIANS_ROLL			= 334
 EFFECT_ALLIES_ROLL				= 335
-EFFECT_NONE_I					= 336
-EFFECT_NONE_II					= 337
-EFFECT_NONE_III					= 338
-EFFECT_NONE_IV					= 339
+EFFECT_MISERS_ROLL				= 336
+EFFECT_COMPANIONS_ROLL			= 337
+EFFECT_AVENGERS_ROLL			= 338
+-- EFFECT_NONE						= 339
 EFFECT_WARRIOR_S_CHARGE			= 340
 EFFECT_FORMLESS_STRIKES			= 341
 EFFECT_ASSASSIN_S_CHARGE		= 342
@@ -569,7 +571,7 @@ EFFECT_SACROSANCTITY			= 477 -- WHM 95
 EFFECT_PALISADE					= 478 -- PLD 95
 EFFECT_SCARLET_DELIRIUM			= 479 -- DRK 95
 EFFECT_SCARLET_DELIRIUM_1		= 480 -- DRK 95
-NONE							= 481 -- NONE
+-- EFFECT_NONE						= 481 -- NONE
 EFFECT_DECOY_SHOT				= 482 -- RNG 95
 EFFECT_HAGAKURE					= 483 -- SAM 95
 EFFECT_ISSEKIGAN                = 484 -- NIN 95
@@ -580,10 +582,108 @@ EFFECT_ENASPIR	                = 488 -- FENRIR 96
 EFFECT_AFTERGLOW                = 489 -- WS AFTEREFFECT
 EFFECT_BRAZEN_STRENGTH          = 490 --
 EFFECT_INNER_STRENGTH           = 491
-EFFECT_ISSEKIGAN                = 484
-
+EFFECT_ASYLUM                   = 492
+EFFECT_SUBTLE_SORCERY           = 493
 EFFECT_STYMIE                   = 494
+-- EFFECT_NONE                       = 495
+EFFECT_INTERVENE                = 496
+EFFECT_SOUL_ENSLAVEMENT         = 497
+EFFECT_UNLEASH                  = 498
+EFFECT_CLARION_CALL             = 499
+EFFECT_OVERKILL                 = 500
+EFFECT_YAEGASUMI                = 501
 EFFECT_MIKAGE                   = 502
+EFFECT_FLY_HIGH                 = 503
+EFFECT_ASTRAL_CONDUIT           = 504
+EFFECT_UNBRIDLED_WISDOM         = 505
+-- EFFECT_NONE                      = 506
+EFFECT_GRAND_PAS                = 507
+EFFECT_WIDENED_COMPASS          = 508
+EFFECT_ODYLLIC_SUBTERFUGE       = 509
+EFFECT_ERGON_MIGHT              = 510
+EFFECT_REIVE_MARK               = 511
+EFFECT_IONIS                    = 512
+EFFECT_BOLSTER                  = 513
+-- EFFECT_NONE                      = 514
+EFFECT_LASTING_EMANATION        = 515
+EFFECT_ECLIPTIC_ATTRITION       = 516
+EFFECT_COLLIMATED_FERVOR        = 517
+EFFECT_DEMATERIALIZE            = 518
+EFFECT_THEURGIC_FOCUS           = 519
+-- EFFECT_NONE                      = 520
+-- EFFECT_NONE                      = 521
+EFFECT_ELEMENTAL_SFORZO         = 522
+EFFECT_IGNIS                    = 523
+EFFECT_GELUS                    = 524
+EFFECT_FLABRA                   = 525
+EFFECT_TELLUS                   = 526
+EFFECT_SULPOR                   = 527
+EFFECT_UNDA                     = 528
+EFFECT_LUX                      = 529
+EFFECT_TENEBRAE                 = 530
+EFFECT_VALLATION                = 531
+EFFECT_SWORDPLAY                = 532
+EFFECT_PFLUG                    = 533
+EFFECT_EMBOLDEN                 = 534
+EFFECT_VALIANCE                 = 535
+EFFECT_GAMBIT                   = 536
+EFFECT_LIEMENT                  = 537
+EFFECT_ONE_FOR_ALL              = 538
+EFFECT_REGEN_II                 = 539
+EFFECT_POISON_II                = 540
+EFFECT_REFRESH_II               = 541
+EFFECT_STR_BOOST_III            = 542
+EFFECT_DEX_BOOST_III            = 543
+EFFECT_VIT_BOOST_III            = 544
+EFFECT_AGI_BOOST_III            = 545
+EFFECT_INT_BOOST_III            = 546
+EFFECT_MND_BOOST_III            = 547
+EFFECT_CHR_BOOST_III            = 548
+EFFECT_ATTACK_BOOST_II          = 549
+EFFECT_DEFENSE_BOOST_II         = 550
+EFFECT_MAGIC_ATK_BOOST_II       = 551
+EFFECT_MAGIC_DEF_BOOST_II       = 552
+EFFECT_ACCURACY_BOOST_II        = 553
+EFFECT_EVASION_BOOST_II         = 554
+EFFECT_MAGIC_ACC_BOOST_II       = 555
+EFFECT_MAGIC_EVASION_BOOST_II   = 556
+EFFECT_ATTACK_DOWN_II           = 557
+EFFECT_DEFENSE_DOWN_II          = 558
+EFFECT_MAGIC_ATK_DOWN_II        = 559
+EFFECT_MAGIC_DEF_DOWN_II        = 560
+EFFECT_ACCURACY_DOWN_II         = 561
+EFFECT_EVASION_DOWN_II          = 562
+EFFECT_MAGIC_ACC_DOWN_II        = 563
+EFFECT_MAGIC_EVASION_DOWN_II    = 564
+EFFECT_SLOW_II                  = 565
+EFFECT_PARALYSIS_II             = 566
+EFFECT_WEIGHT_II                = 567
+EFFECT_FOIL                     = 568
+EFFECT_BLAZE_OF_GLORY           = 569
+EFFECT_BATTUTA                  = 570
+EFFECT_RAYKE                    = 571
+EFFECT_AVOIDANCE_DOWN           = 572
+EFFECT_DELUGE_SPIKES            = 573 -- Exists in client, unused on retail?
+EFFECT_FAST_CAST                = 574
+EFFECT_GESTATION                = 575
+EFFECT_DOUBT                    = 576 -- Bully: Intimidation Enfeeble status
+EFFECT_CAIT_SITH_S_FAVOR        = 577
+EFFECT_FISHY_INTUITION          = 578
+EFFECT_COMMITMENT               = 579
+EFFECT_HASTE_II                 = 580
+EFFECT_FLURRY_II                = 581
+
+
+-- Purchased from Cruor Prospector
+EFFECT_ABYSSEA_STR              = 768 --
+EFFECT_ABYSSEA_DEX              = 769 --
+EFFECT_ABYSSEA_VIT              = 770 --
+EFFECT_ABYSSEA_AGI              = 771 --
+EFFECT_ABYSSEA_INT              = 772 --
+EFFECT_ABYSSEA_MND              = 773 --
+EFFECT_ABYSSEA_CHR              = 774 --
+EFFECT_ABYSSEA_HP               = 775 --
+EFFECT_ABYSSEA_MP               = 776 --
 
 -- *Prowess increases not currently retail accurate.
 -- GoV Prowess bonus effects, real effect at ID 474
@@ -694,6 +794,7 @@ MOD_RATT			= 0x18
 MOD_ACC				= 0x19
 MOD_RACC			= 0x1A
 MOD_ENMITY			= 0x1B
+MOD_ENMITY_LOSS_REDUCTION = 0x1F6
 MOD_MATT			= 0x1C
 MOD_MDEF			= 0x1D
 MOD_MACC			= 0x1E
@@ -1250,7 +1351,7 @@ MERIT_TRIPLE_ATTACK_RATE        = MCATEGORY_THF_1 + 0x08
 MERIT_SHIELD_BASH_RECAST        = MCATEGORY_PLD_1 + 0x00
 MERIT_HOLY_CIRCLE_RECAST        = MCATEGORY_PLD_1 + 0x02
 MERIT_SENTINEL_RECAST           = MCATEGORY_PLD_1 + 0x04
-MERIT_COVER_EFFECT_LENTH        = MCATEGORY_PLD_1 + 0x06
+MERIT_COVER_EFFECT_LENGTH       = MCATEGORY_PLD_1 + 0x06
 MERIT_RAMPART_RECAST            = MCATEGORY_PLD_1 + 0x08
 
 --DRK 1
@@ -1686,6 +1787,7 @@ MOBMOD_TELEPORT_TYPE = 43
 MOBMOD_DUAL_WIELD = 44
 MOBMOD_ADD_EFFECT = 45
 MOBMOD_AUTO_SPIKES = 46
+MOBMOD_SPAWN_LEASH = 47
 
 --skills
 
@@ -1837,3 +1939,16 @@ SPELLAOE_DIFFUSION		= 6;   -- AOE when under Diffusion
 
 SPELLFLAG_NONE		= 0;
 SPELLFLAG_HIT_ALL	= 1;		-- hit all targets in range regardless of party
+
+-----------------------------------
+--
+--	Behaviour bits
+--
+-----------------------------------
+
+BEHAVIOUR_NONE				= 0x000;
+BEHAVIOUR_NO_DESPAWN		= 0x001; -- mob does not despawn on death
+BEHAVIOUR_STANDBACK			= 0x002; -- mob will standback forever
+BEHAVIOUR_RAISABLE			= 0x004; -- mob can be raised via Raise spells
+BEHAVIOUR_AGGRO_AMBUSH		= 0x200; -- mob aggroes by ambush
+BEHAVIOUR_NO_TURN           = 0x400; -- mob does not turn to face target

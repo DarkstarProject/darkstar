@@ -15,7 +15,7 @@ TELEPORT_MEA					= 5;
 TELEPORT_ALTEP					= 6;
 TELEPORT_WARP					= 7;
 TELEPORT_ESCAPE					= 8;
-
+			
 RECALL_JUGNER                                   = 9;
 RECALL_PASHH                                    = 10;
 RECALL_MERIPH                                   = 11;
@@ -32,10 +32,12 @@ FIREFLIES_A_REM          = 20;
 FIREFLIES_B_REM          = 21;
 FIREFLIES_S_REM          = 22;
 
+TELEPORT_MAAT					= 23;
+
+TELEPORT_HOMING = 24;
 -----------------------------------
 -- Teleports
 -----------------------------------
-
 function toFeiYin(player)
 	player:setPos(280, 20, 543, 192, 0x6F);
 end;
@@ -180,6 +182,9 @@ end;
 
 function toChateaudOraguille(player)
 	player:setPos(0, 0, 0, 192, 0xE9);
+end;
+function toMaat(player)
+	player:setPos(11, 3, 117, 0, 243);
 end;
 
 function toGhelsba(player)

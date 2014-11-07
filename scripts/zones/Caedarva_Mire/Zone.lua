@@ -24,9 +24,26 @@ function onZoneIn(player,prevZone)
 	local cs = -1;	
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
 		player:setPos(339.996,2.5,-721.286,200);
-	end	
+	end
+    if (prevZone == 69) then
+        player:setPos(495.450,-28.25,-478.43,32);
+    end
+    if (prevZone == 56) then
+        player:setPos(-252.715,-7.666,-30.64,128);
+    end
 	return cs;	
 end;		
+
+-----------------------------------		
+-- afterZoneIn		
+-----------------------------------		
+
+function afterZoneIn(player)
+    player:entityVisualPacket("1pb1");
+    player:entityVisualPacket("2pb1");
+    player:entityVisualPacket("1pd1");
+    player:entityVisualPacket("2pc1");
+end;
 
 -----------------------------------		
 -- onRegionEnter		

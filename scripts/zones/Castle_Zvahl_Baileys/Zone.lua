@@ -20,6 +20,19 @@ function onInitialize(zone)
 	zone:registerRegion(4, -34,17,45, -30,18,51);  -- map 4 NE porter 
 end;
 
+
+-----------------------------------		
+-- onConquestUpdate		
+-----------------------------------		
+
+function onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+    
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
+end;
+
 -----------------------------------		
 -- onZoneIn		
 -----------------------------------		

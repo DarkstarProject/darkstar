@@ -18,8 +18,7 @@ function onSpellCast(caster,target,spell)
     else
         if (target:getName() == "Prishe") then
             -- CoP 8-4 Prishe
-            local raise, hf, bene = target:getExtraVar(3);
-            target:setExtraVar(1,hf,bene);
+            target:setLocalVar("Raise", 1);
         end
     end
     spell:setMsg(309);

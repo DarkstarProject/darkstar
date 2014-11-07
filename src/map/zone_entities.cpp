@@ -180,15 +180,15 @@ void CZoneEntities::FindPartyForMob(CBaseEntity* PEntity)
 	}
 }
 
-void CZoneEntities::TransportDepart(CBaseEntity* PTransportNPC)
+void CZoneEntities::TransportDepart(uint16 boundary, uint16 zone)
 {
 	for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
 	{
 		CCharEntity* PCurrentChar = (CCharEntity*)it->second;
 
-		if (PCurrentChar->loc.boundary == PTransportNPC->loc.boundary)
+		if (PCurrentChar->loc.boundary == boundary)
 		{
-			luautils::OnTransportEvent(PCurrentChar, PTransportNPC->loc.prevzone);
+			luautils::OnTransportEvent(PCurrentChar, zone);
 		}
 	}
 }
@@ -281,7 +281,7 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
 			//move depending on zone
 			int pos[4] = { 0, 0, 0, 0 };
 			battlefieldutils::getStartPosition(m_zone->GetID(), pos);
-			if (pos != NULL){
+            if (!(pos[0] == 0 && pos[1] == 0 && pos[2] == 0 && pos[3] == 0)){
 				PChar->loc.p.x = pos[0];
 				PChar->loc.p.y = pos[1];
 				PChar->loc.p.z = pos[2];
@@ -426,7 +426,7 @@ void CZoneEntities::SpawnNPCs(CCharEntity* PChar)
 		CNpcEntity* PCurrentNpc = (CNpcEntity*)it->second;
 		SpawnIDList_t::iterator NPC = PChar->SpawnNPCList.lower_bound(PCurrentNpc->id);
 
-		if (PCurrentNpc->status == STATUS_NORMAL)
+		if (PCurrentNpc->status == STATUS_NORMAL || PCurrentNpc->status == STATUS_UPDATE)
 		{
 			if (distance(PChar->loc.p, PCurrentNpc->loc.p) < 50)
 			{
@@ -853,7 +853,7 @@ void CZoneEntities::WideScan(CCharEntity* PChar, uint16 radius)
 	for (EntityList_t::const_iterator it = m_npcList.begin(); it != m_npcList.end(); ++it)
 	{
 		CNpcEntity* PNpc = (CNpcEntity*)it->second;
-		if (PNpc->status == STATUS_NORMAL && !PNpc->IsNameHidden())
+		if (PNpc->status == STATUS_NORMAL && !PNpc->IsNameHidden() && !PNpc->untargetable && !(PNpc->unknown & 0x800))
 		{
 			if (distance(PChar->loc.p, PNpc->loc.p) < radius)
 			{
