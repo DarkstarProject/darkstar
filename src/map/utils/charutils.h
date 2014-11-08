@@ -92,6 +92,7 @@ namespace charutils
 	int32	hasSpell(CCharEntity* PChar, uint16 SpellID);		        // проверяем наличие заклинания
 	int32	addSpell(CCharEntity* PChar, uint16 SpellID);		        // добавляем заклинание
 	int32	delSpell(CCharEntity* PChar, uint16 SpellID);		        // улаляем заклинание
+	void    filterEnabledSpells(CCharEntity* PChar);                    // Calculates a View of a Char's Spell List filtering out spells that are disabled.
 
 	int32	hasLearnedAbility(CCharEntity* PChar, uint16 AbilityID);	// проверяем наличие заклинания
 	int32	addLearnedAbility(CCharEntity* PChar, uint16 AbilityID);	// добавляем заклинание

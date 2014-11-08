@@ -261,6 +261,7 @@ public:
 
 	uint8					m_ZonesList[36];				// список посещенных персонажем зон
 	uint8					m_SpellList[128];				// список изученных заклинаний
+	uint8					m_EnabledSpellList[128];		// spell list of enabled spells
     uint8					m_TitleList[94];				// список заслуженных завний
 	uint8					m_Abilities[46];				// список текущих способностей
 	uint8					m_LearnedAbilities[46];			// learnable abilities (corsair rolls)

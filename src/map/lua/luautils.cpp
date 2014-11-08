@@ -990,11 +990,11 @@ bool IsExpansionEnabled(const char* expansionCode)
 		uint8 expansionEnabled = GetSettingsVariable(expansionVariable);
 
 		if (expansionEnabled == 0){
-			return true;
+			return false;
 		}
 	}
 
-	return false;
+	return true;
 }
 
 /************************************************************************

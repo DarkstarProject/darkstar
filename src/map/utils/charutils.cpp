@@ -65,6 +65,7 @@
 #include "../grades.h"
 #include "../conquest_system.h"
 #include "../map.h"
+#include "../spell.h"
 #include "../trait.h"
 #include "../vana_time.h"
 #include "../weapon_skill.h"
@@ -388,6 +389,8 @@ void LoadChar(CCharEntity* PChar)
 		int8* spells = NULL;
 		Sql_GetData(SqlHandle,16,&spells,&length);
 		memcpy(PChar->m_SpellList, spells, (length > sizeof(PChar->m_SpellList) ? sizeof(PChar->m_SpellList) : length));
+		memcpy(PChar->m_EnabledSpellList, spells, (length > sizeof(PChar->m_EnabledSpellList) ? sizeof(PChar->m_EnabledSpellList) : length));
+		filterEnabledSpells(PChar);
 
 		length = 0;
 		int8* abilities = NULL;
@@ -2570,17 +2573,27 @@ int32 delKeyItem(CCharEntity* PChar, uint16 KeyItemID)
 
 int32 hasSpell(CCharEntity* PChar, uint16 SpellID)
 {
-	return hasBit(SpellID, PChar->m_SpellList, sizeof(PChar->m_SpellList));
+	return hasBit(SpellID, PChar->m_EnabledSpellList, sizeof(PChar->m_EnabledSpellList));
 }
 
 int32 addSpell(CCharEntity* PChar, uint16 SpellID)
 {
-	return addBit(SpellID, PChar->m_SpellList, sizeof(PChar->m_SpellList));
+	addBit(SpellID, PChar->m_SpellList, sizeof(PChar->m_SpellList));
+	return addBit(SpellID, PChar->m_EnabledSpellList, sizeof(PChar->m_EnabledSpellList));
 }
 
 int32 delSpell(CCharEntity* PChar, uint16 SpellID)
 {
-	return delBit(SpellID, PChar->m_SpellList, sizeof(PChar->m_SpellList));
+	delBit(SpellID, PChar->m_SpellList, sizeof(PChar->m_SpellList));
+	return delBit(SpellID, PChar->m_EnabledSpellList, sizeof(PChar->m_EnabledSpellList));
+}
+
+void filterEnabledSpells(CCharEntity* PChar){
+	for (int i = 0; i < MAX_SPELL_ID; i++){
+		if (spell::GetSpell(i) == NULL){
+			delBit(i, PChar->m_EnabledSpellList, sizeof(PChar->m_EnabledSpellList));
+		}
+	}
 }
 
 /************************************************************************

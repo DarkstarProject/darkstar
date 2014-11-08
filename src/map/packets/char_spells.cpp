@@ -35,5 +35,5 @@ CCharSpellsPacket::CCharSpellsPacket(CCharEntity* PChar)
 	this->type = 0xAA;
 	this->size = 0x42;
 
-	memcpy(data+(0x04)-4, &PChar->m_SpellList, 128);
+	memcpy(data+(0x04)-4, &PChar->m_EnabledSpellList, 128);
 }
