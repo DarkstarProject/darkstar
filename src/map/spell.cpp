@@ -464,8 +464,10 @@ namespace spell
 		    }
 	    }
 
-		const int8* blueQuery = "SELECT spellid, mob_skill_id, set_points, trait_category, trait_category_weight, primary_sc, secondary_sc \
-							 FROM blue_spell_list;";
+		const int8* blueQuery = "SELECT blue_spell_list.spellid, blue_spell_list.mob_skill_id, blue_spell_list.set_points, \
+								blue_spell_list.trait_category, blue_spell_list.trait_category_weight, blue_spell_list.primary_sc, \
+								blue_spell_list.secondary_sc, spell_list.required_expansion \
+							 FROM blue_spell_list JOIN spell_list on blue_spell_list.spellid = spell_list.spellid;";
 
 	    ret = Sql_Query(SqlHandle, blueQuery);
 
@@ -473,6 +475,13 @@ namespace spell
 	    {
 			while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		    {
+				int8* expansionCode;
+				Sql_GetData(SqlHandle, 7, &expansionCode, NULL);
+
+				if (luautils::IsExpansionEnabled(expansionCode) == false){
+					continue;
+				}
+
 				// Sanity check the spell ID
 				uint16 spellId = Sql_GetIntData(SqlHandle,0);
 				if (spellId > MAX_SPELL_ID || spellId < 0x200) {
