@@ -449,7 +449,7 @@ void CAICharNormal::ActionFall()
 	//influence for conquest system
 	conquest::LoseInfluencePoints(m_PChar);
 
-	if (!m_PChar->getMijinGakure() && !m_PChar->m_PVPFlag)
+	if (!m_PChar->getMijinGakure())
 		charutils::DelExperiencePoints(m_PChar,map_config.exp_retain);
 }
 
@@ -466,19 +466,13 @@ void CAICharNormal::ActionDeath()
     {
         m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH, true);
 
-        if(m_PChar->m_PVPFlag)
-        {
-            // always reraise
-            m_PChar->m_hasRaise = 1;
-        }
-
 		// reraise modifiers
 		if (m_PChar->getMod(MOD_RERAISE_I) > 0)
 			m_PChar->m_hasRaise = 1;
-		
+
 		if (m_PChar->getMod(MOD_RERAISE_II) > 0)
 			m_PChar->m_hasRaise = 2;
-		
+
 		if (m_PChar->getMod(MOD_RERAISE_III) > 0)
 			m_PChar->m_hasRaise = 3;
 
@@ -800,7 +794,7 @@ void CAICharNormal::ActionRangedStart()
 
 		//ranged weapon delay is stored in the db as offset from 240 for some reason.
 		m_PChar->m_rangedDelay = m_PChar->GetRangedWeaponDelay(false);
-		
+
 		// Get Snapshot reduction
 		battleutils::GetSnapshotReduction(m_PChar);
 
@@ -1026,8 +1020,8 @@ void CAICharNormal::ActionRangedFinish()
                     if (battleutils::IsAbsorbByShadow(m_PBattleSubTarget))
                     {
                         shadowsTaken++;
-                    } 
-					else 
+                    }
+					else
 					{
     					float pdif = battleutils::GetRangedPDIF(m_PChar,m_PBattleSubTarget);
 						bool isCrit = false;
@@ -1264,7 +1258,7 @@ void CAICharNormal::ActionMagicStart()
         return;
     }
 
-    STATESTATUS status = m_PMagicState->CastSpell(m_PSpell, m_PTargetFind->getValidTarget(m_ActionTargetID, m_PSpell->getValidTarget()));
+    STATESTATUS status = m_PMagicState->CastSpell(GetCurrentSpell(), m_PTargetFind->getValidTarget(m_ActionTargetID, m_PSpell->getValidTarget()));
 
 
     if(status == STATESTATUS_START)
@@ -1466,7 +1460,7 @@ void CAICharNormal::ActionJobAbilityStart()
 
 		// End of core checks, so call script checks
 		CBaseEntity* PMsgTarget = (CBaseEntity*)m_PChar;
-		int32 errNo = luautils::OnAbilityCheck(m_PChar, m_PBattleSubTarget, m_PJobAbility, &PMsgTarget);
+        int32 errNo = luautils::OnAbilityCheck(m_PChar, m_PBattleSubTarget, GetCurrentJobAbility(), &PMsgTarget);
 		if(errNo != 0)
 		{
 			m_PChar->pushPacket(new CMessageBasicPacket(m_PChar, PMsgTarget, m_PJobAbility->getID()+16, m_PJobAbility->getID(), errNo));
@@ -1521,7 +1515,6 @@ void CAICharNormal::ActionJobAbilityFinish()
         Sql_Query(SqlHandle, "UPDATE char_stats SET 2h = %u WHERE charid = %u", m_Tick, m_PChar->id);
     }
 
-	m_PJobAbility->setMessage(m_PJobAbility->getDefaultMessage());
 	// get any available merit recast reduction
 	uint8 meritRecastReduction = 0;
 
@@ -1532,11 +1525,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 
     uint32 RecastTime = (m_PJobAbility->getRecastTime() - meritRecastReduction) * 1000;
 
-    if (m_PJobAbility->getID() == ABILITY_THIRD_EYE && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN))
-    {
-        RecastTime /= 2;
-    }
-    else if( m_PJobAbility->getID() == ABILITY_LIGHT_ARTS || m_PJobAbility->getID() == ABILITY_DARK_ARTS || m_PJobAbility->getRecastId() == 231) //stratagems
+    if( m_PJobAbility->getID() == ABILITY_LIGHT_ARTS || m_PJobAbility->getID() == ABILITY_DARK_ARTS || m_PJobAbility->getRecastId() == 231) //stratagems
     {
         if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TABULA_RASA))
             RecastTime = 0;
@@ -1625,7 +1614,7 @@ void CAICharNormal::ActionJobAbilityFinish()
     					distance(m_PChar->loc.p, PTarget->loc.p) <= m_PJobAbility->getRange())
     				{
     					Action.ActionTarget = PTarget;
-    					luautils::OnUseAbilityRoll(m_PChar, Action.ActionTarget, m_PJobAbility, roll);
+                        luautils::OnUseAbilityRoll(m_PChar, Action.ActionTarget, GetCurrentJobAbility(), roll);
     					if (PTarget->id == m_PChar->id){
     						if (m_PJobAbility->getMessage() == MSGBASIC_ROLL_SUB_FAIL){
     							Action.messageID = MSGBASIC_ROLL_MAIN_FAIL;
@@ -1642,7 +1631,7 @@ void CAICharNormal::ActionJobAbilityFinish()
     			}
     		} else {
     			Action.ActionTarget = m_PBattleSubTarget;
-    			luautils::OnUseAbilityRoll(m_PChar, Action.ActionTarget, m_PJobAbility, roll);
+                luautils::OnUseAbilityRoll(m_PChar, Action.ActionTarget, GetCurrentJobAbility(), roll);
     			if (m_PJobAbility->getMessage() == MSGBASIC_ROLL_SUB_FAIL){
     				Action.messageID = MSGBASIC_ROLL_MAIN_FAIL;
     			} else {
@@ -1857,9 +1846,7 @@ void CAICharNormal::ActionJobAbilityFinish()
 
                 Action.ActionTarget = PTarget;
 
-                m_PJobAbility->resetMsg();
-
-                Action.param = luautils::OnUseAbility(m_PChar, PTarget, m_PJobAbility, &Action);
+                Action.param = luautils::OnUseAbility(m_PChar, PTarget, GetCurrentJobAbility(), &Action);
 
                 if(msg == 0){
                     msg = m_PJobAbility->getMessage();
@@ -1986,7 +1973,7 @@ void CAICharNormal::ActionJobAbilityFinish()
     		Action.animation  = m_PJobAbility->getAnimationID();
     		Action.param      = 0;
 
-            int32 value = luautils::OnUseAbility(m_PChar, m_PBattleSubTarget, m_PJobAbility, &Action);
+            int32 value = luautils::OnUseAbility(m_PChar, m_PBattleSubTarget, GetCurrentJobAbility(), &Action);
             Action.messageID  = m_PJobAbility->getMessage();
             Action.param = value;
 
@@ -1995,11 +1982,6 @@ void CAICharNormal::ActionJobAbilityFinish()
                 Action.messageID = ability::GetAbsorbMessage(Action.messageID);
                 Action.param = -value;
             }
-
-    		if( m_PJobAbility->getID() == ABILITY_SHADOWBIND )
-    		{
-    			//Action.flag = 3;
-    		}
 
     		if (m_PJobAbility->getID() == ABILITY_MIJIN_GAKURE)
 			{
@@ -2014,21 +1996,22 @@ void CAICharNormal::ActionJobAbilityFinish()
 			 * Blade of Death quests are active.
 			 */
 
+			// Shadow Bind
+			if (m_PJobAbility->getID() == ABILITY_SHADOWBIND)
+			{
+				//Action.flag = 3;
 
-			/// Shadow Bind
-    		if(m_PJobAbility->getID() == ABILITY_SHADOWBIND)
-    		{
 				uint16 shadowBindDuration = 30 + m_PChar->getMod(MOD_SHADOW_BIND_EXT);
 				if (WELL512::irand()%100 >= m_PBattleSubTarget->getMod(MOD_BINDRES))
 				{
 					// Shadow bind success!
-					m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 11, 277)); 
+					m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 11, 277));
 					m_PBattleSubTarget->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_BIND, EFFECT_BIND, 1, 0, shadowBindDuration));
 				}
 				else
 				{
 					// Shadowbind failed!
-					m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 11, 283)); 
+					m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PBattleSubTarget, m_PJobAbility->getID()+16, 11, 283));
 				}
 			}
 
@@ -2154,7 +2137,7 @@ void CAICharNormal::ActionJobAbilityFinish()
     		}
 
 
-            if (m_PJobAbility->getValidTarget() & TARGET_ENEMY && 
+            if (m_PJobAbility->getValidTarget() & TARGET_ENEMY &&
                 m_PBattleSubTarget->allegiance != m_PChar->allegiance)
             {
                 // во время pvp целью могут быт персонажи, монстры и их питомцы
@@ -2657,7 +2640,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
     {
         // NOTE: GetSkillChainEffect is INSIDE this if statement because it
         //  ALTERS the state of the resonance, which misses and non-elemental skills should NOT do.
-        SUBEFFECT effect = battleutils::GetSkillChainEffect(m_PBattleSubTarget, m_PWeaponSkill);
+        SUBEFFECT effect = battleutils::GetSkillChainEffect(m_PBattleSubTarget, GetCurrentWeaponSkill());
         if (effect != SUBEFFECT_NONE)
         {
 	        uint16 skillChainDamage = battleutils::TakeSkillchainDamage(m_PChar, m_PBattleSubTarget, damage);
@@ -2919,173 +2902,8 @@ void CAICharNormal::ActionAttack()
 			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar,m_PBattleTarget,0,0,MSGBASIC_IS_INTIMIDATED));
 		}
 		else
-		{          
-			// Create a new attack round.
-			CAttackRound* attackRound = new CAttackRound(m_PChar);
-
-			/////////////////////////////////////////////////////////////////////////
-			//	Start of the attack loop.
-			/////////////////////////////////////////////////////////////////////////
-			for (uint8 i = 0; i < attackRound->GetAttackSwingCount(); ++i)
-			{
-				apAction_t Action;
-				Action.ActionTarget = m_PBattleTarget;
-				Action.knockback  = 0;  
-
-				// Reference to the current swing.
-				CAttack* attack = (CAttack*)attackRound->GetCurrentAttack();
-
-				if (i != 0)
-				{
-					if (m_PBattleTarget->isDead())
-					{
-						break;
-					}
-					Action.ActionTarget = NULL;
-				}
-
-				// Set the swing animation.
-				Action.animation = attack->GetAnimationID();
-
-				// сначала вычисляем вероятность попадания по монстру
-				// затем нужно вычислить вероятность нанесения критического удара
-				if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE, 0))
-				{
-					Action.messageID = 32;
-					Action.reaction   = REACTION_EVADE;
-					Action.speceffect = SPECEFFECT_NONE;
-				}
-				else if ((WELL512::irand()%100 < attack->GetHitRate() || attackRound->GetSATAOccured()) &&
-                    !m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ALL_MISS))
-				{
-                    // attack hit, try to be absorbed by shadow
-                    if (battleutils::IsAbsorbByShadow(m_PBattleTarget))
-                    {
-                        Action.messageID = 0;
-                        Action.reaction = REACTION_EVADE;
-						attack->SetEvaded(true);
-                        m_PBattleTarget->loc.zone->PushPacket(m_PBattleTarget,CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleTarget,m_PBattleTarget,0,1,31));
-                    }
-                    else
-                    {
-						// Set this attack's critical flag.
-						attack->SetCritical(WELL512::irand()%100 < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget, !attack->IsFirstSwing()));
-
-						// Critical hit.
-						if (attack->IsCritical())
-						{
-							Action.reaction   = REACTION_HIT;
-							Action.speceffect = SPECEFFECT_CRITICAL_HIT;
-							Action.messageID  = 67;
-
-                            if(m_PBattleTarget->objtype == TYPE_MOB)
-                            {
-    							luautils::OnCriticalHit(m_PBattleTarget);
-                            }
-						}
-						// Not critical hit.
-						else
-						{
-							Action.reaction   = REACTION_HIT;
-							Action.speceffect = SPECEFFECT_HIT;
-							Action.messageID  = 1;
-						}
-
-						// Guarded. TODO: Stuff guards that shouldn't.
-						if (attack->IsGuarded())
-						{
-                            Action.reaction = REACTION_GUARD;
-						}
-
-						// Process damage.
-						attack->ProcessDamage();
-
-						// Try shield block
-						if (attack->IsBlocked())
-						{
-							Action.reaction = REACTION_BLOCK;
-						}
-
-						// Damage was absorbed.
-						if (attack->GetDamage() < 0)
-						{
-							Action.messageID = 263;
-						}
-
-						// Try absorb HP chance (The target)
-						if (attackutils::TryAbsorbHPfromPhysicalAttack(m_PBattleTarget, attack->GetDamage()))
-						{
-                            Action.messageID = 373;
-                            Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, -attack->GetDamage(), attack->IsBlocked(), attack->GetWeaponSlot(), 1, attackRound->GetTAEntity(), true);
-						}
-                        else
-                        {
-                            attackutils::TryAbsorbMPfromPhysicalAttack(m_PBattleTarget, attack->GetDamage());
-                            Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, attack->GetDamage(), attack->IsBlocked(), attack->GetWeaponSlot(), 1, attackRound->GetTAEntity(), true);
-                        }
-					}
-				}
-				else
-				{
-					// Player misses the target
-					Action.reaction   = REACTION_EVADE;
-					Action.speceffect = SPECEFFECT_NONE;
-					Action.messageID  = 15;
-					attack->SetEvaded(true);
-
-					// Check & Handle Afflatus Misery Accuracy Bonus
-					battleutils::HandleAfflatusMiseryAccuracyBonus(m_PChar);
-
-					// Try to zanshin (miss).
-					attackRound->CreateZanshinAttacks();
-				}
-
-				if (Action.reaction != REACTION_HIT && Action.reaction != REACTION_BLOCK && Action.reaction != REACTION_GUARD)
-				{
-					Action.param = 0;
-                    battleutils::ClaimMob(m_PBattleTarget, m_PChar);
-				}
-
-				if (Action.reaction != REACTION_EVADE && Action.reaction != REACTION_PARRY)
-				{
-					battleutils::HandleEnspell(m_PChar, m_PBattleTarget, &Action, i, (CItemWeapon*)m_PChar->m_Weapons[attack->GetWeaponSlot()], attack->GetDamage());
-					battleutils::HandleSpikesDamage(m_PChar, m_PBattleTarget, &Action, attack->GetDamage());
-                }
-
-                if (Action.speceffect == SPECEFFECT_HIT && Action.param > 0)
-				{
-                    Action.speceffect = SPECEFFECT_RECOIL;
-				}
-
-                m_PChar->m_ActionList.push_back(Action);
-
-				// Repeat the attack if Zanshin is triggered, otherwise, remove this swing
-				if (!attackRound->GetZanshinOccured())
-				{
-					attackRound->DeleteAttackSwing();
-				}
-				else
-				{
-					attack->SetAttackType(ZANSHIN_ATTACK);
-					attackRound->SetZanshinOccured(false);
-				}
-
-				i--;
-
-                if (m_PChar->m_ActionList.size() == 8) 
-				{
-					break;
-				}
-			} 
-			/////////////////////////////////////////////////////////////////////////////////////////////
-			// End of attack loop
-			/////////////////////////////////////////////////////////////////////////////////////////////
-
-			// Clear this attack round.  We are done with it.
-			delete attackRound;
-
-			m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK | EFFECTFLAG_DETECTABLE);
-			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
+		{
+            DoAttack();
 
             if (m_PChar->PPet != NULL && m_PChar->PPet->objtype == TYPE_PET && ((CPetEntity*)m_PChar->PPet)->getPetType() == PETTYPE_WYVERN)
             {
@@ -3116,7 +2934,7 @@ void CAICharNormal::ActionRaiseMenuSelection()
     }
 
     //add weakness effect (75% reduction in HP/MP)
-    if (!m_PChar->getMijinGakure() && !m_PChar->m_PVPFlag)
+    if (!m_PChar->getMijinGakure())
     {
 	    CStatusEffect* PWeaknessEffect = new CStatusEffect(EFFECT_WEAKNESS,EFFECT_WEAKNESS,weaknessLvl,0,300);
 		m_PChar->StatusEffectContainer->AddStatusEffect(PWeaknessEffect);
@@ -3129,18 +2947,7 @@ void CAICharNormal::ActionRaiseMenuSelection()
     m_PChar->m_ActionList.clear();
 
     Action.ActionTarget = m_PChar;
-    if(m_PChar->m_PVPFlag)
-    {
-        // ballista pvp logic
-        Action.animation = 511;
-        hpReturned = m_PChar->GetMaxHP();
-
-        if(m_PChar->GetMPP() < 50.0f)
-        {
-            m_PChar->health.mp = m_PChar->health.maxmp * 0.5f;
-        }
-    }
-    else if(m_PChar->m_hasRaise == 1)
+    if(m_PChar->m_hasRaise == 1)
     {
         Action.animation = 511;
         hpReturned = (m_PChar->getMijinGakure()) ? m_PChar->GetMaxHP()*0.5 : m_PChar->GetMaxHP()*0.1;
@@ -3184,7 +2991,7 @@ void CAICharNormal::ActionRaiseMenuSelection()
 
     uint16 xpReturned = ceil(expLost * ratioReturned);
 
-    if (!m_PChar->getMijinGakure() && !m_PChar->m_PVPFlag)
+    if (!m_PChar->getMijinGakure())
     {
 		charutils::AddExperiencePoints(true, m_PChar, m_PChar, xpReturned);
     }
@@ -3210,4 +3017,174 @@ void CAICharNormal::TransitionBack(bool skipWait)
 	{
 		m_ActionType = ACTION_NONE;
 	}
+}
+
+void CAICharNormal::DoAttack()
+{
+    // Create a new attack round.
+    CAttackRound* attackRound = new CAttackRound(m_PChar);
+
+    /////////////////////////////////////////////////////////////////////////
+    //	Start of the attack loop.
+    /////////////////////////////////////////////////////////////////////////
+    for (uint8 i = 0; i < attackRound->GetAttackSwingCount(); ++i)
+    {
+        apAction_t Action;
+        Action.ActionTarget = m_PBattleTarget;
+        Action.knockback = 0;
+
+        // Reference to the current swing.
+        CAttack* attack = (CAttack*)attackRound->GetCurrentAttack();
+
+        if (i != 0)
+        {
+            if (m_PBattleTarget->isDead())
+            {
+                break;
+            }
+            Action.ActionTarget = NULL;
+        }
+
+        // Set the swing animation.
+        Action.animation = attack->GetAnimationID();
+
+        // сначала вычисляем вероятность попадания по монстру
+        // затем нужно вычислить вероятность нанесения критического удара
+        if (m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE, 0))
+        {
+            Action.messageID = 32;
+            Action.reaction = REACTION_EVADE;
+            Action.speceffect = SPECEFFECT_NONE;
+        }
+        else if ((WELL512::irand() % 100 < attack->GetHitRate() || attackRound->GetSATAOccured()) &&
+            !m_PBattleTarget->StatusEffectContainer->HasStatusEffect(EFFECT_ALL_MISS))
+        {
+            // attack hit, try to be absorbed by shadow
+            if (battleutils::IsAbsorbByShadow(m_PBattleTarget))
+            {
+                Action.messageID = 0;
+                Action.reaction = REACTION_EVADE;
+                attack->SetEvaded(true);
+                m_PBattleTarget->loc.zone->PushPacket(m_PBattleTarget, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PBattleTarget, m_PBattleTarget, 0, 1, 31));
+            }
+            else
+            {
+                // Set this attack's critical flag.
+                attack->SetCritical(WELL512::irand() % 100 < battleutils::GetCritHitRate(m_PChar, m_PBattleTarget, !attack->IsFirstSwing()));
+
+                // Critical hit.
+                if (attack->IsCritical())
+                {
+                    Action.reaction = REACTION_HIT;
+                    Action.speceffect = SPECEFFECT_CRITICAL_HIT;
+                    Action.messageID = 67;
+
+                    if (m_PBattleTarget->objtype == TYPE_MOB)
+                    {
+                        luautils::OnCriticalHit(m_PBattleTarget);
+                    }
+                }
+                // Not critical hit.
+                else
+                {
+                    Action.reaction = REACTION_HIT;
+                    Action.speceffect = SPECEFFECT_HIT;
+                    Action.messageID = 1;
+                }
+
+                // Guarded. TODO: Stuff guards that shouldn't.
+                if (attack->IsGuarded())
+                {
+                    Action.reaction = REACTION_GUARD;
+                }
+
+                // Process damage.
+                attack->ProcessDamage();
+
+                // Try shield block
+                if (attack->IsBlocked())
+                {
+                    Action.reaction = REACTION_BLOCK;
+                }
+
+                // Damage was absorbed.
+                if (attack->GetDamage() < 0)
+                {
+                    Action.messageID = 263;
+                }
+
+                // Try absorb HP chance (The target)
+                if (attackutils::TryAbsorbHPfromPhysicalAttack(m_PBattleTarget, attack->GetDamage()))
+                {
+                    Action.messageID = 373;
+                    Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, -attack->GetDamage(), attack->IsBlocked(), attack->GetWeaponSlot(), 1, attackRound->GetTAEntity(), true);
+                }
+                else
+                {
+                    attackutils::TryAbsorbMPfromPhysicalAttack(m_PBattleTarget, attack->GetDamage());
+                    Action.param = battleutils::TakePhysicalDamage(m_PChar, m_PBattleTarget, attack->GetDamage(), attack->IsBlocked(), attack->GetWeaponSlot(), 1, attackRound->GetTAEntity(), true);
+                }
+            }
+        }
+        else
+        {
+            // Player misses the target
+            Action.reaction = REACTION_EVADE;
+            Action.speceffect = SPECEFFECT_NONE;
+            Action.messageID = 15;
+            attack->SetEvaded(true);
+
+            // Check & Handle Afflatus Misery Accuracy Bonus
+            battleutils::HandleAfflatusMiseryAccuracyBonus(m_PChar);
+
+            // Try to zanshin (miss).
+            attackRound->CreateZanshinAttacks();
+        }
+
+        if (Action.reaction != REACTION_HIT && Action.reaction != REACTION_BLOCK && Action.reaction != REACTION_GUARD)
+        {
+            Action.param = 0;
+            battleutils::ClaimMob(m_PBattleTarget, m_PChar);
+        }
+
+        if (Action.reaction != REACTION_EVADE && Action.reaction != REACTION_PARRY)
+        {
+            battleutils::HandleEnspell(m_PChar, m_PBattleTarget, &Action, i, (CItemWeapon*)m_PChar->m_Weapons[attack->GetWeaponSlot()], attack->GetDamage());
+            battleutils::HandleSpikesDamage(m_PChar, m_PBattleTarget, &Action, attack->GetDamage());
+        }
+
+        if (Action.speceffect == SPECEFFECT_HIT && Action.param > 0)
+        {
+            Action.speceffect = SPECEFFECT_RECOIL;
+        }
+
+        m_PChar->m_ActionList.push_back(Action);
+
+        // Repeat the attack if Zanshin is triggered, otherwise, remove this swing
+        if (!attackRound->GetZanshinOccured())
+        {
+            attackRound->DeleteAttackSwing();
+        }
+        else
+        {
+            attack->SetAttackType(ZANSHIN_ATTACK);
+            attackRound->SetZanshinOccured(false);
+        }
+
+        i--;
+
+        if (m_PChar->m_ActionList.size() == 8)
+        {
+            break;
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    // End of attack loop
+    /////////////////////////////////////////////////////////////////////////////////////////////
+
+    // Clear this attack round.  We are done with it.
+    delete attackRound;
+
+    m_PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK | EFFECTFLAG_DETECTABLE);
+    m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 }

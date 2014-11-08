@@ -310,3 +310,9 @@ function CharCreate(player)
 	player:setVar("MoghouseExplication",1);
 
 end;
+
+function onPlayerLevelUp(player)
+end
+
+function onPlayerLevelDown(player)
+end

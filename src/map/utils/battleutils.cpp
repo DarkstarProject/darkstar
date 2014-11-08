@@ -28,6 +28,7 @@
 #include <string.h>
 #include <algorithm>
 
+#include "../packets/char.h"
 #include "../packets/char_health.h"
 #include "../packets/char_update.h"
 #include "../packets/entity_update.h"
@@ -58,6 +59,7 @@
 #include "../packets/position.h"
 #include "../packets/lock_on.h"
 #include "../ai/ai_pet_dummy.h"
+#include "../ai/ai_char_charm.h"
 #include "zoneutils.h"
 
 
@@ -2979,6 +2981,9 @@ bool HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool)
                     case ITEM_KABENRO:
                     case ITEM_SHINOBI_TABI:
                     case ITEM_SHIHEI:
+					case ITEM_RANKA:
+					case ITEM_FURUSUMI:
+
                         toolID = ITEM_SHIKANOFUDA;
                         break;
 
@@ -3529,9 +3534,6 @@ uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
 	return totalDamage;
 }
 
-
-
-
 /************************************************************************
 *                                                                       *
 *	Entity charms another		                                        *
@@ -3622,70 +3624,87 @@ void tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
 		}
 	}
 
-	else if (PVictim->objtype == TYPE_PC)
-	{
-		//TODO: calculate time mob charms player for and work out a reliable base
-		base = 50;
-
-		//mob failed to charm player
-		if (TryCharm(PCharmer, PVictim, base) == false)
-		{
-			return;
-		}
-	}
-
-
-	//Charm is a success - take control of charmed Entity
-	PVictim->isCharmed = true;
-
-	PVictim->PMaster = PCharmer;
-	PCharmer->PPet = PVictim;
-
-
-
-	if (PVictim->objtype == TYPE_MOB)
-	{
-		//make the mob disengage
-		if(PCharmer->PPet->PBattleAI != NULL && PCharmer->PPet->PBattleAI->GetCurrentAction() == ACTION_ENGAGE){
-			PCharmer->PPet->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
-		}
-
-		//clear the victims emnity list
-		((CMobEntity*)PVictim)->PEnmityContainer->Clear();
-
-		//cancel the mobs mobBattle ai
-        delete PCharmer->PPet->PBattleAI;
-
-		//set the mobs ai to petAi
-		PCharmer->PPet->PBattleAI = new CAIPetDummy((CPetEntity*)PVictim);
-		PCharmer->PPet->PBattleAI->SetLastActionTime(gettick());
-		PCharmer->PPet->charmTime = gettick() + CharmTime;
-
-		// this will make him transition back to roaming if sleeping
-		PCharmer->PPet->animation = ANIMATION_NONE;
-
-		// only move to roaming action if not asleep
-		if(!PCharmer->PPet->StatusEffectContainer->HasPreventActionEffect())
-		{
-			PCharmer->PPet->PBattleAI->SetCurrentAction(ACTION_ROAMING);
-		}
-
-		charutils::BuildingCharPetAbilityTable((CCharEntity*)PCharmer,(CPetEntity*)PVictim,PVictim->id);
-		((CCharEntity*)PCharmer)->pushPacket(new CCharUpdatePacket((CCharEntity*)PCharmer));
-		((CCharEntity*)PCharmer)->pushPacket(new CPetSyncPacket((CCharEntity*)PCharmer));
-		PVictim->loc.zone->PushPacket(PVictim, CHAR_INRANGE, new CEntityUpdatePacket(PVictim, ENTITY_UPDATE, UPDATE_COMBAT));
-		PVictim->allegiance = ALLEGIANCE_PLAYER;
-		((CMobEntity*)PVictim)->m_OwnerID.clean();
-	}
-
-	else if (PVictim->objtype == TYPE_PC)
-	{
-		//TODO: mob take control of player
-	}
-
+    applyCharm(PCharmer, PVictim, CharmTime);
 }
 
+void applyCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 charmTime)
+{
+    PVictim->isCharmed = true;
 
+    if (PVictim->objtype == TYPE_MOB)
+    {
+        PVictim->PMaster = PCharmer;
+        PCharmer->PPet = PVictim;
+
+        //make the mob disengage
+        if (PCharmer->PPet->PBattleAI != NULL && PCharmer->PPet->PBattleAI->GetCurrentAction() == ACTION_ENGAGE){
+            PCharmer->PPet->PBattleAI->SetCurrentAction(ACTION_DISENGAGE);
+        }
+
+        //clear the victims emnity list
+        ((CMobEntity*)PVictim)->PEnmityContainer->Clear();
+
+        //cancel the mobs mobBattle ai
+        delete PCharmer->PPet->PBattleAI;
+
+        //set the mobs ai to petAi
+        PCharmer->PPet->PBattleAI = new CAIPetDummy((CPetEntity*)PVictim);
+        PCharmer->PPet->PBattleAI->SetLastActionTime(gettick());
+        PCharmer->PPet->charmTime = gettick() + charmTime;
+
+        // this will make him transition back to roaming if sleeping
+        PCharmer->PPet->animation = ANIMATION_NONE;
+
+        // only move to roaming action if not asleep
+        if (!PCharmer->PPet->StatusEffectContainer->HasPreventActionEffect())
+        {
+            PCharmer->PPet->PBattleAI->SetCurrentAction(ACTION_ROAMING);
+        }
+
+        charutils::BuildingCharPetAbilityTable((CCharEntity*)PCharmer, (CPetEntity*)PVictim, PVictim->id);
+        ((CCharEntity*)PCharmer)->pushPacket(new CCharUpdatePacket((CCharEntity*)PCharmer));
+        ((CCharEntity*)PCharmer)->pushPacket(new CPetSyncPacket((CCharEntity*)PCharmer));
+        PVictim->loc.zone->PushPacket(PVictim, CHAR_INRANGE, new CEntityUpdatePacket(PVictim, ENTITY_UPDATE, UPDATE_COMBAT));
+        PVictim->allegiance = ALLEGIANCE_PLAYER;
+        ((CMobEntity*)PVictim)->m_OwnerID.clean();
+    }
+
+    else if (PVictim->objtype == TYPE_PC)
+    {
+        delete PVictim->PBattleAI;
+        PVictim->PBattleAI = new CAICharCharm((CCharEntity*)PVictim);
+
+        PVictim->PMaster = PCharmer;
+
+        if (PCharmer->objtype == TYPE_MOB)
+        {
+            ((CMobEntity*)PCharmer)->PEnmityContainer->Clear(PVictim->id);
+            PCharmer->PBattleAI->SetBattleTarget(((CMobEntity*)PCharmer)->PEnmityContainer->GetHighestEnmity());
+        }
+
+        PVictim->loc.zone->PushPacket(PVictim, CHAR_INRANGE_SELF, new CCharPacket((CCharEntity*)PVictim, ENTITY_UPDATE));
+    }
+}
+
+void unCharm(CBattleEntity* PEntity)
+{
+    if (PEntity->objtype == TYPE_PC)
+    {
+        PEntity->isCharmed = false;
+        delete PEntity->PBattleAI;
+        PEntity->PBattleAI = new CAICharNormal((CCharEntity*)PEntity);
+        PEntity->animation = ANIMATION_NONE;
+
+        PEntity->PMaster = NULL;
+
+        if (PEntity->isDead())
+        {
+            PEntity->PBattleAI->SetCurrentAction(ACTION_FALL);
+        }
+
+        PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE_SELF, new CCharPacket((CCharEntity*)PEntity, ENTITY_UPDATE));
+    }
+}
 
 /************************************************************************
 *                                                                       *

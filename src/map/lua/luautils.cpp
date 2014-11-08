@@ -248,11 +248,28 @@ int32 SendEntityVisualPacket(lua_State* L)
 
 int32 GetNPCByID(lua_State* L)
 {
-	if( !lua_isnil(L,-1) && lua_isnumber(L,-1) )
+	if( !lua_isnil(L,1) && lua_isnumber(L,1) )
 	{
-		uint32 npcid = (uint32)lua_tointeger(L, -1);
+		uint32 npcid = (uint32)lua_tointeger(L, 1);
 
-		CBaseEntity* PNpc = zoneutils::GetEntity(npcid, TYPE_NPC);
+        CInstance* PInstance = NULL;
+
+        if (!lua_isnil(L, 2) && lua_isuserdata(L, 2))
+        {
+            CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 2);
+            PInstance = PLuaBaseEntity->GetBaseEntity()->PInstance;
+        }
+
+        CBaseEntity* PNpc = NULL;
+
+        if (PInstance)
+        {
+            PNpc = PInstance->GetEntity(npcid & 0xFFF, TYPE_NPC);
+        }
+        else
+        {
+            PNpc = zoneutils::GetEntity(npcid, TYPE_NPC);
+        }
 
 		if(PNpc == NULL){
 			ShowWarning("luautils::GetNPCByID NPC doesn't exist (%d)\n", npcid);
@@ -925,6 +942,62 @@ int32 GetTextIDVariable(uint16 ZoneID, const char* variable)
 }
 
 /************************************************************************
+*                                                                       *
+*  Get a Variable From Settings.lua                                     *
+*                                                                       *
+************************************************************************/
+
+uint8 GetSettingsVariable(const char* variable)
+{
+	lua_pushnil(LuaHandle);
+	lua_setglobal(LuaHandle, variable);
+
+	int8 File[255];
+	memset(File, 0, sizeof(File));
+	snprintf(File, sizeof(File), "scripts/globals/settings.lua");
+
+	if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
+	{
+		lua_pop(LuaHandle, 1);
+		return 0;
+	}
+
+	lua_getglobal(LuaHandle, variable);
+
+	if (lua_isnil(LuaHandle, -1) || !lua_isnumber(LuaHandle, -1))
+	{
+		lua_pop(LuaHandle, 1);
+		return 0;
+	}
+
+	uint8 value = lua_tonumber(LuaHandle, -1);
+	lua_pop(LuaHandle, -1);
+	return value;
+}
+
+/************************************************************************
+*                                                                       *
+*  Check if an Expansion Is Enabled In Settings.lua                     *
+*                                                                       *
+************************************************************************/
+
+bool IsExpansionEnabled(const char* expansionCode)
+{
+	if (expansionCode != NULL){
+		char* expansionVariable = new char[14];
+		sprintf(expansionVariable, "ENABLE_%s", expansionCode);
+
+		uint8 expansionEnabled = GetSettingsVariable(expansionVariable);
+
+		if (expansionEnabled == 0){
+			return true;
+		}
+	}
+
+	return false;
+}
+
+/************************************************************************
 *																		*
 *  Выполняем скрипт при старте сервера (все монстры, npc уже загружены) *
 *																		*
@@ -1269,6 +1342,7 @@ int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result)
 	int8 File[255];
 	if (luaL_loadfile(LuaHandle, PChar->m_event.Script.c_str()) || lua_pcall(LuaHandle, 0, 0, 0))
 	{
+        lua_pop(LuaHandle, 1);
 		memset(File,0,sizeof(File));
 		snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
 
@@ -1329,6 +1403,7 @@ int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result)
 	int8 File[255];
 	if (luaL_loadfile(LuaHandle, PChar->m_event.Script.c_str()) || lua_pcall(LuaHandle, 0, 0, 0))
 	{
+        lua_pop(LuaHandle, 1);
 		memset(File,0,sizeof(File));
 		snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
 
@@ -3868,5 +3943,59 @@ inline int32 nearLocation(lua_State* L)
 
     return 1;
 }
+
+
+int32 OnPlayerLevelUp(CCharEntity* PChar)
+{
+    lua_prepscript("scripts/globals/player.lua");
+    if (prepFile(File, "onPlayerLevelUp"))
+        return -1;
+
+    CLuaBaseEntity LuaBaseEntity(PChar);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+    if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
+    {
+        ShowError("luautils::OnPlayerLevelUp: %s\n", lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+
+    int32 returns = lua_gettop(LuaHandle) - oldtop;
+    if (returns > 0)
+    {
+        ShowError("luatils::OnPlayerLevelUp (%s): 0 returns expected, got %d\n", File, returns);
+        lua_pop(LuaHandle, returns);
+    }
+
+    return 0;
+}
+
+int32 OnPlayerLevelDown(CCharEntity* PChar)
+{
+    lua_prepscript("scripts/globals/player.lua");
+    if (prepFile(File, "onPlayerLevelDown"))
+        return -1;
+
+    CLuaBaseEntity LuaBaseEntity(PChar);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+    if (lua_pcall(LuaHandle, 1, LUA_MULTRET, 0))
+    {
+        ShowError("luautils::OnPlayerLevelDown: %s\n", lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+
+    int32 returns = lua_gettop(LuaHandle) - oldtop;
+    if (returns > 0)
+    {
+        ShowError("luatils::OnPlayerLevelDown (%s): 0 returns expected, got %d\n", File, returns);
+        lua_pop(LuaHandle, returns);
+    }
+
+    return 0;
+}
+
 
 }; // namespace luautils

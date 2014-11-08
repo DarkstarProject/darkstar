@@ -33,6 +33,7 @@ class CZoneInstance : public CZone
 {
 public:
 
+    virtual CCharEntity*    GetCharByName(int8* name);
     virtual CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1) override; 			// получаем указатель на любую сущность в зоне
 
 	virtual void	SpawnPCs(CCharEntity* PChar) override; 									// отображаем персонажей в зоне

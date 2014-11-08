@@ -32,22 +32,22 @@ function OnMobWeaponSkill(target, mob, skill)
 	
 	if (mob:getName() == "Kreutzet") then
 		if (mob:actionQueueAbility() == true) then		
-			if (mob:getExtraVar(1) == 0) then
-				mob:setExtraVar(1); 
+			if (mob:getLocalVar("Stormwind") == 0) then
+				mob:setLocalVar("Stormwind", 1); 
 				dmgmod = 1.25;
 				info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,ELE_WIND,dmgmod,TP_NO_EFFECT);
 				dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WIND,MOBPARAM_WIPE_SHADOWS);
-			elseif(mob:getExtraVar(1) == 1) then
-				mob:setExtraVar(0); 
+			elseif (mob:getLocalVar("Stormwind") == 1) then
+				mob:setLocalVar("Stormwind", 0); 
 				dmgmod = 1.6;
 				info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,ELE_WIND,dmgmod,TP_NO_EFFECT);
 				dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WIND,MOBPARAM_WIPE_SHADOWS);
 			end
 		elseif (mob:actionQueueAbility() == false) then	
 			for i = 0, 1 do -- Stormwind 3 times per use. Gets stronger each use. 
--- TODO: Should be some sort of delay here between ws's..
+                -- TODO: Should be some sort of delay here between ws's..
 				mob:useMobAbility(670);
-				mob:setExtraVar(0); 
+				mob:setLocalVar("Stormwind", 0); 
 			end
 		end
 	end

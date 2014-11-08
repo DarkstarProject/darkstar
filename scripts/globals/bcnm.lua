@@ -68,13 +68,13 @@ bcnmid_param_map = {6,{640,0},
 					179,{256,0},
 					180,{293,5,288,0,289,1,290,2,291,3,292,4},
                     181,{320,0},
-					201,{416,0,417,1,418,2},
-					202,{448,0,449,1,450,2},
-					203,{480,0,481,1,482,2},
+					201,{416,0,417,1,418,2,420,4},
+					202,{448,0,449,1,450,2,452,4},
+					203,{480,0,481,1,482,2,484,4},
 					206,{512,0,517,5,518,6,519,7,532,20},
-					207,{544,0,545,1},
-					209,{576,0,577,1,578,2},
-					211,{608,0,609,1}};
+					207,{544,0,545,1,547,3},
+					209,{576,0,577,1,578,2,580,4},
+					211,{608,0,609,1,611,3}};
 
 -- Call this onTrade for burning circles
 function TradeBCNM(player,zone,trade,npc)
@@ -520,25 +520,25 @@ function checkNonTradeBCNM(player,npc)
 			player:setVar("trade_bcnmid",256);
 		end
 	elseif(Zone == 180) then -- La'Loff Amphitheater
-		if(player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1) then
+		--if(player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1) then
 			local qmid = npc:getID();
-			if (qmid == 17514789 and player:hasKeyItem(SHARD_OF_APATHY) == false) then -- Hume, Ark Angels 1
+			--[[if (qmid == 17514789 and player:hasKeyItem(SHARD_OF_APATHY) == false) then -- Hume, Ark Angels 1
 				mask = GetBattleBitmask(288,Zone,1);
 				player:setVar("trade_bcnmid",288);
 			elseif (qmid == 17514790 and player:hasKeyItem(SHARD_OF_COWARDICE) == false) then -- Tarutaru, Ark Angels 2
 				mask = GetBattleBitmask(289,Zone,1);
 				player:setVar("trade_bcnmid",289);
-			elseif (qmid == 17514791 and player:hasKeyItem(SHARD_OF_ENVY) == false) then -- Mithra, Ark Angels 3
+			elseif (qmid == 17514791 and player:hasKeyItem(SHARD_OF_ENVY) == false) then -- Mithra, Ark Angels 3]]
 				mask = GetBattleBitmask(290,Zone,1);
 				player:setVar("trade_bcnmid",290);
-			elseif (qmid == 17514792 and player:hasKeyItem(SHARD_OF_ARROGANCE) == false) then -- Elvaan, Ark Angels 4
+			--[[elseif (qmid == 17514792 and player:hasKeyItem(SHARD_OF_ARROGANCE) == false) then -- Elvaan, Ark Angels 4
 				mask = GetBattleBitmask(291,Zone,1);
 				player:setVar("trade_bcnmid",291);
 			elseif (qmid == 17514793 and player:hasKeyItem(SHARD_OF_RAGE) == false) then -- Galka, Ark Angels 5
 				mask = GetBattleBitmask(292,Zone,1);
 				player:setVar("trade_bcnmid",292);
-			end
-		end
+			end]]
+		--end
     elseif(Zone == 181) then -- The Celestial Nexus
 		if(player:getCurrentMission(ZILART) == THE_CELESTIAL_NEXUS) then -- Zilart Mission 16
 			mask = GetBattleBitmask(320,Zone,1);
@@ -548,16 +548,25 @@ function checkNonTradeBCNM(player,npc)
 		if(player:hasKeyItem(TUNING_FORK_OF_WIND)) then -- Trial by Wind
 			mask = GetBattleBitmask(416,Zone,1);
 			player:setVar("trade_bcnmid",416);
+		elseif(player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(DOMINAS_EMERALD_SEAL)) then
+			mask = GetBattleBitmask(420,Zone,1);
+			player:setVar("trade_bcnmid",420);
 		end
 	elseif(Zone == 202) then -- Cloister of Storms
 		if(player:hasKeyItem(TUNING_FORK_OF_LIGHTNING)) then -- Trial by Lightning
 			mask = GetBattleBitmask(448,Zone,1);
 			player:setVar("trade_bcnmid",448);
+		elseif(player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(DOMINAS_VIOLET_SEAL)) then
+			mask = GetBattleBitmask(452,Zone,1);
+			player:setVar("trade_bcnmid",452);
 		end
 	elseif(Zone == 203) then -- Cloister of Frost
 		if(player:hasKeyItem(TUNING_FORK_OF_ICE)) then -- Trial by Ice
 			mask = GetBattleBitmask(480,Zone,1);
 			player:setVar("trade_bcnmid",480);
+		elseif(player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(DOMINAS_AZURE_SEAL)) then
+			mask = GetBattleBitmask(484,Zone,1);
+			player:setVar("trade_bcnmid",484);
 		end
 	elseif(Zone == 206) then -- Qu'Bia Arena
 		if(player:getCurrentMission(player:getNation()) == 14 and player:getVar("MissionStatus") == 11) then -- Mission 5-1
@@ -572,16 +581,25 @@ function checkNonTradeBCNM(player,npc)
 		if(player:hasKeyItem(TUNING_FORK_OF_FIRE)) then -- Trial by Fire
 			mask = GetBattleBitmask(544,Zone,1);
 			player:setVar("trade_bcnmid",544);
+		elseif(player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(DOMINAS_SCARLET_SEAL)) then
+			mask = GetBattleBitmask(547,Zone,1);
+			player:setVar("trade_bcnmid",547);
 		end
 	elseif(Zone == 209) then -- Cloister of Tremors
 		if(player:hasKeyItem(TUNING_FORK_OF_EARTH)) then -- Trial by Earth
 			mask = GetBattleBitmask(576,Zone,1);
 			player:setVar("trade_bcnmid",576);
+		elseif(player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(DOMINAS_AMBER_SEAL)) then
+			mask = GetBattleBitmask(580,Zone,1);
+			player:setVar("trade_bcnmid",580);
 		end
 	elseif(Zone == 211) then -- Cloister of Tides
 		if(player:hasKeyItem(TUNING_FORK_OF_WATER)) then -- Trial by Water
 			mask = GetBattleBitmask(608,Zone,1);
 			player:setVar("trade_bcnmid",608);
+		elseif(player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(DOMINAS_CERULEAN_SEAL)) then
+			mask = GetBattleBitmask(611,Zone,1);
+			player:setVar("trade_bcnmid",611);
 		end
 	end
 
@@ -738,4 +756,3 @@ function CutsceneSkip(player,npc)
 	end
 	return skip; 
 end;
-

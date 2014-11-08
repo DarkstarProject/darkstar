@@ -107,6 +107,7 @@ enum ABILITY
     ABILITY_REWARD             = 62,
     ABILITY_COVER              = 63,
     ABILITY_SPIRIT_LINK        = 64,
+    ABILITY_ENRAGE             = 65,
     ABILITY_CHI_BLAST          = 66,
     ABILITY_CONVERT            = 67,
     ABILITY_ACCOMPLICE         = 68,
@@ -143,6 +144,11 @@ enum ABILITY
     ABILITY_PUPPET_ROLL        = 99,
     ABILITY_DANCERS_ROLL       = 100,
     ABILITY_SCHOLARS_ROLL      = 101,
+    ABILITY_BOLTERS_ROLL       = 102,
+    ABILITY_CASTERS_ROLL       = 103,
+    ABILITY_COURSERS_ROLL      = 104,
+    ABILITY_BLITZERS_ROLL      = 105,
+    ABILITY_TACTICIANS_ROLL    = 106,
     ABILITY_DOUBLE_UP          = 107,
     ABILITY_QUICK_DRAW         = 108,
     ABILITY_FIRE_SHOT          = 109,
@@ -154,6 +160,7 @@ enum ABILITY
     ABILITY_LIGHT_SHOT         = 115,
     ABILITY_DARK_SHOT          = 116,
     ABILITY_RANDOM_DEAL        = 117,
+    // .                        = 118,
     ABILITY_OVERDRIVE          = 119,
     ABILITY_ACTIVATE           = 120,
     ABILITY_REPAIR             = 121,
@@ -247,8 +254,10 @@ enum ABILITY
     ABILITY_SNARL              = 209,
     ABILITY_RETALIATION        = 210,
     ABILITY_FOOTWORK           = 211,
+    ABILITY_DESPOIL            = 212,
     ABILITY_PIANISSIMO         = 213,
     ABILITY_SEKKANOKI          = 214,
+    // .                        = 215,
     ABILITY_ELEMENTAL_SIPHON   = 216,
     ABILITY_SUBLIMATION        = 217,
     ABILITY_ADDENDUM_WHITE     = 218,
@@ -285,6 +294,7 @@ enum ABILITY
     ABILITY_LIBRA              = 249,
     ABILITY_TACTICAL_SWITCH    = 250,
     ABILITY_BLOOD_RAGE         = 251,
+    // .                        = 252,
     ABILITY_IMPETUS            = 253,
     ABILITY_DIVINE_CARESS      = 254,
     ABILITY_SANCROSANCTITY     = 255,
@@ -305,24 +315,33 @@ enum ABILITY
     ABILITY_DECOY_SHOT         = 270,
     ABILITY_HAMANOHA           = 271,
     ABILITY_HAGAKURE           = 272,
+    // .                        = 273,
+    // .                        = 274,
     ABILITY_ISSEKIGAN          = 275,
     ABILITY_DRAGON_BREAKER     = 276,
     ABILITY_SOUL_JUMP          = 277,
+    // .                        = 278,
     ABILITY_STEADY_WING        = 279,
     ABILITY_MANA_CEDE          = 280,
     ABILITY_EFFLUX             = 281,
     ABILITY_UNBRIDLED_LEARNING = 282,
+    // .                        = 283,
+    // .                        = 284,
     ABILITY_TRIPLE_SHOT        = 285,
     ABILITY_ALLIES_ROLL        = 286,
-    ABILITY_MISER_S_ROLL       = 287,
-    ABILITY_COMPANION_S_ROLL   = 288,
-    ABILITY_AVENGER_S_ROLL     = 289,
+    ABILITY_MISERS_ROLL        = 287,
+    ABILITY_COMPANIONS_ROLL    = 288,
+    ABILITY_AVENGERS_ROLL      = 289,
+    // .                        = 290,
+    // .                        = 291,
+    // .                        = 292,
     ABILITY_COOLDOWN           = 293,
     ABILITY_DEUX_EX_AUTOMATA   = 294,
     ABILITY_CURING_WALTZ_V     = 295,
     ABILITY_FEATHER_STEP       = 296,
     ABILITY_STRIKING_FLOURISH  = 297,
     ABILITY_TERNARY_FLOURISH   = 298,
+    // .                        = 299,
     ABILITY_PERPETUANCE        = 300,
     ABILITY_IMMANENCE          = 301,
     ABILITY_SMITING_BREATH     = 302,
@@ -330,27 +349,28 @@ enum ABILITY
     ABILITY_KONZEN_ITTAI       = 304,
     ABILITY_BULLY              = 305,
     ABILITY_MAINTENANCE        = 306,
-    //ABILITY_WAR_SP2            = 307,
-    //ABILITY_MNK_SP2            = 308,
-    //ABILITY_ASYLUM             = 309,
-    //ABILITY_SUBLTE_SORCERY     = 310,  //yes, subtle is misspelled
-    //ABILITY_RDM_SP2            = 311,
-    //ABILITY_THF_SP2            = 312,
-    //ABILITY_PLD_SP2            = 313,
-    //ABILITY_SOUL_ENSLAVEMENT   = 314,
-    //ABILITY_BST_SP2            = 315,
-    //ABILITY_BRD_SP2            = 316,
-    //ABILITY_RNG_SP2            = 317,
-    //ABILITY_YAEGASUMI          = 318,
-    //ABILITY_NIN_SP2            = 319,
-    //ABILITY_DSG_SP2            = 320,
-    //ABILITY_ASTRAL_CONDUIT     = 321,
-    //ABILITY_UNBRIDLED_WISDOM   = 322,
-    //ABILITY_COR_SP2            = 323,
-    //ABILITY_HEADY_ARTIFICE     = 324,
-    //ABILITY_GRAND_PAS          = 325,
-    //ABILITY_CAPER_EMISSARIUS   = 326,
+    ABILITY_BRAZEN_RUSH        = 307,
+    ABILITY_INNER_STRENGTH     = 308,
+    ABILITY_ASYLUM             = 309,
+    ABILITY_SUBLTE_SORCERY     = 310, // Yes, subtle is misspelled
+    ABILITY_STYMIE             = 311,
+    ABILITY_LARCENY            = 312,
+    ABILITY_INTERVENE          = 313,
+    ABILITY_SOUL_ENSLAVEMENT   = 314,
+    ABILITY_UNLEASH            = 315,
+    ABILITY_CLARION_CALL       = 316,
+    ABILITY_OVERKILL           = 317,
+    ABILITY_YAEGASUMI          = 318,
+    ABILITY_MIKAGE             = 319,
+    ABILITY_FLY_HIGH           = 320,
+    ABILITY_ASTRAL_CONDUIT     = 321,
+    ABILITY_UNBRIDLED_WISDOM   = 322,
+    ABILITY_CUTTING_CARDS      = 323,
+    ABILITY_HEADY_ARTIFICE     = 324,
+    ABILITY_GRAND_PAS          = 325,
+    ABILITY_CAPER_EMISSARIUS   = 326,
     ABILITY_BOLSTER            = 327,
+    // .                        = 328,
     ABILITY_FULL_CIRCLE        = 329,
     ABILITY_LASTING_EMANATION  = 330,
     ABILITY_ECLIPTIC_ATTRITION = 331,
@@ -360,6 +380,8 @@ enum ABILITY
     ABILITY_DEMATERIALIZE      = 335,
     ABILITY_THEURGIC_FOCUS     = 336,
     ABILITY_CONCENTRIC_PULSE   = 337,
+    ABILITY_MENDING_HALATION   = 338,
+    ABILITY_RADIAL_ARCANA      = 339,
     ABILITY_ELEMENTAL_SFORZO   = 340,
     ABILITY_RUNE_ENCHANTMENT   = 341,
     ABILITY_IGNIS              = 342,
@@ -379,8 +401,15 @@ enum ABILITY
     ABILITY_GAMBIT             = 356,
     ABILITY_LIEMENT            = 357,
     ABILITY_ONE_FOR_ALL        = 358,
+    ABILITY_RAYKE              = 359,
+    ABILITY_BATTUTA            = 360,
+    ABILITY_WIDENED_COMPASS    = 361,
+    ABILITY_ODYLLIC_SUBTERFUGE = 362,
     ABILITY_WARD               = 363,
     ABILITY_EFFUSION           = 364,
+    ABILITY_CHOCOBO_JIG_II     = 365,
+    ABILITY_RELINQUISH         = 366,
+
     ABILITY_HEALING_RUBY       = 496,
     ABILITY_POISON_NAILS       = 497,
     ABILITY_SHINING_RUBY       = 498,
@@ -388,6 +417,9 @@ enum ABILITY
     ABILITY_METEORITE          = 500,
     ABILITY_HEALING_RUBY_II    = 501,
 	ABILITY_SEARING_LIGHT	   = 502,
+    ABILITY_HOLY_MIST          = 503,
+    ABILITY_SOOTHING_RUBY      = 504,
+
 	ABILITY_MOONLIT_CHARGE	   = 512,
 	ABILITY_CRESCENT_FANG	   = 513,
 	ABILITY_LUNAR_CRY		   = 514,
@@ -395,7 +427,11 @@ enum ABILITY
 	ABILITY_ECLIPTIC_GROWL	   = 516,
 	ABILITY_ECLIPTIC_HOWL	   = 517,
 	ABILITY_ECLIPSE_BITE	   = 518,
+
 	ABILITY_HOWLING_MOON	   = 520,
+    ABILITY_LUNAR_BAY          = 521,
+    ABILITY_HEAVENWARD_HOWL    = 522,
+
 	ABILITY_PUNCH			   = 528,
 	ABILITY_FIRE_II			   = 529,
 	ABILITY_BURNING_STRIKE	   = 530,
@@ -405,6 +441,8 @@ enum ABILITY
 	ABILITY_FLAMING_CRUSH	   = 534,
 	ABILITY_METEOR_STRIKE	   = 535,
 	ABILITY_INFERNO			   = 536,
+    ABILITY_INFERNO_HOWL       = 537,
+
 	ABILITY_ROCK_THROW		   = 544,
 	ABILITY_STONE_II		   = 545,
 	ABILITY_ROCK_BUSTER		   = 546,
@@ -414,6 +452,8 @@ enum ABILITY
 	ABILITY_MOUNTAIN_BUSTER	   = 550,
 	ABILITY_GEOCRUSH		   = 551,
 	ABILITY_EARTHEN_FURY	   = 552,
+    ABILITY_EARTHEN_ARMOR      = 553,
+
 	ABILITY_BARRACUDA_DIVE	   = 560,
 	ABILITY_WATER_II		   = 561,
 	ABILITY_TAIL_WHIP		   = 562,
@@ -423,6 +463,8 @@ enum ABILITY
 	ABILITY_SPINNING_DIVE	   = 566,
 	ABILITY_GRAND_FALL		   = 567,
 	ABILITY_TIDAL_WAVE		   = 568,
+    ABILITY_TIDAL_ROAR         = 569,
+
     ABILITY_CLAW               = 576,
     ABILITY_AERO_II            = 577,
     ABILITY_WHISPERING_WIND    = 578,
@@ -432,6 +474,8 @@ enum ABILITY
     ABILITY_PREDATOR_CLAWS     = 582,
     ABILITY_WIND_BLADE         = 583,
 	ABILITY_AERIAL_BLAST	   = 584,
+    ABILITY_FLEET_WIND         = 585,
+
 	ABILITY_AXE_KICK		   = 592,
 	ABILITY_BLIZZARD_II		   = 593,
 	ABILITY_FROST_ARMOR		   = 594,
@@ -441,6 +485,8 @@ enum ABILITY
 	ABILITY_RUSH			   = 598,
 	ABILITY_HEAVENLY_STRIKE	   = 599,
 	ABILITY_DIAMOND_DUST	   = 600,
+    ABILITY_DIAMOND_STORM      = 601,
+
 	ABILITY_SHOCK_STRIKE	   = 608,
 	ABILITY_THUNDER_II		   = 609,
 	ABILITY_THUNDERSPARK	   = 611,
@@ -605,8 +651,6 @@ public:
     bool        isAoE();
     bool        isConal();
 
-    void        resetMsg();
-
 	uint16		getID();
 	JOBTYPE		getJob();
 	uint8		getLevel();
@@ -617,7 +661,6 @@ public:
 	uint8		getAddType();
     uint16      getMessage();
     uint16      getAoEMsg();
-    uint16      getDefaultMessage();
 	uint16		getRecastTime();
 	uint16		getRecastId();
 	uint16		getCE();
@@ -633,7 +676,6 @@ public:
 	void		setValidTarget(uint8 validTarget);
 	void		setAddType(uint8 addtype);
     void        setMessage(uint16 message);
-    void        setDefaultMessage(uint16 message);
 	void		setRecastTime(uint16 recastTime);
 	void		setRecastId(uint16 recastId);
 	void		setCE(uint16 CE);
@@ -654,7 +696,6 @@ private:
 	uint8		m_validTarget;
 	uint8		m_addType;
     uint16      m_message;
-	uint16		m_DefaultMessage;
 	uint16		m_recastTime;
 	uint16		m_recastId;
 	uint16		m_CE;

@@ -16,12 +16,15 @@ end;
 
 function onMobFight(mob, target)
     local battletime = mob:getBattleTime();
-    if (mob:getExtraVar(1) == 0) then
-        mob:setExtraVar(math.random(30,90));
+    local twohourTime = mob:getLocalVar("twohourTime");
+    if (twohourTime == 0) then
+        mob:setLocalVar("twohourTime",math.random(30,90));
     end
-    if (battletime >= mob:getExtraVar(1)) then
-        mob:useMobAbility(700); -- technically aerial hurricane wing, but I'm using 700 for his two hour (since I have no inclination to spend millions on a PI to cap one name you never see)
-        mob:setExtraVar(battletime + math.random(60,120));
+    if (battletime >= twohourTime) then
+        mob:useMobAbility(700); 
+        -- technically aerial hurricane wing, but I'm using 700 for his two hour 
+        --(since I have no inclination to spend millions on a PI to cap one name you never see)
+        mob:setLocalVar("twohourTime",battletime + math.random(60,120));
     end
 end;
 

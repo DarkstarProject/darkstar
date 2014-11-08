@@ -1,10 +1,9 @@
 ### Package information
 AC_PREREQ(2.61)
-AC_INIT(DarkStarProject, m4_esyscmd([svnversion -n]))
+AC_INIT(DarkStarProject,m4_esyscmd_s([git rev-parse HEAD]))
 AC_CONFIG_SRCDIR([src/common/cbasetypes.h])
 AC_CANONICAL_SYSTEM
-AM_INIT_AUTOMAKE(DarkStar,9xx-svn)
-AC_DEFINE(PACKAGE_LINE,"Alpha",Name of current line)
+AM_INIT_AUTOMAKE(DarkStar,git)
 
 ### Checks for compiler and core header files
 AC_PROG_CC
@@ -13,25 +12,24 @@ AC_PROG_CXXCPP
 AC_LANG([C++])
 AC_HEADER_STDC
 
-###Add flags without overriding user-defined flags
+### Add flags without overriding user-defined flags
 DARKSTAR_CXXFLAGS="$CXXFLAGS -pipe -ffast-math -Wno-sign-compare"
 DARKSTAR_CPPFLAGS="$CPPFLAGS -I../common"
 
 ### Big endian test
 AC_C_BIGENDIAN(
-        [AC_MSG_ERROR([[bigendian is not supported... stopping]])],
-        ,
-        [AC_MSG_WARN([[unable to determine endianess, only little endian is supported]])]
+     [AC_MSG_ERROR([[bigendian is not supported... stopping]])],
+     ,
+     [AC_MSG_WARN([[unable to determine endianess, only little endian is supported]])]
 )
 
-
-
 ### pkg-config checks
-PKG_CHECK_MODULES(LUA, luajit)
+PKG_CHECK_MODULES(LUA, luajit, , [PKG_CHECK_MODULES(LUA, lua5.1 >= 0.25)])
 AC_SUBST(LUA_CFLAGS)
 AC_SUBST(LUA_LIBS)
 
 ### MySQL check
+m4_include([m4/ax_lib_mysql.m4])
 AX_LIB_MYSQL()
 
 ### Checks for typedefs, structures, and compiler characteristics.
@@ -90,13 +88,13 @@ AC_ARG_ENABLE(
         ]
    ),
    [
-        enable_debug="$enableval"
-        case $enableval in
-                "no");;
-                "yes");;
-                "gdb");;
-                *) AC_MSG_ERROR([[invalid argument --enable-debug=$enableval... stopping]]);;
-        esac
+     enable_debug="$enableval"
+     case $enableval in
+             "no");;
+             "yes");;
+             "gdb");;
+             *) AC_MSG_ERROR([[invalid argument --enable-debug=$enableval... stopping]]);;
+     esac
    ],
    [enable_debug="no"]
 )
@@ -105,7 +103,7 @@ AC_ARG_ENABLE(
 AC_ARG_ENABLE(
    [rdtsc],
    AC_HELP_STRING(
-        [ --enable-rdtsc ],
+        [--enable-rdtsc],
         [
                 Uses rdtsc as timing source (disabled by default)
                 Enable it when you have timing issues.
@@ -119,9 +117,9 @@ AC_ARG_ENABLE(
         ]
   ),
   [
-        enable_rdtsc=1
+     enable_rdtsc=1
   ],
-  [ enable_rdtsc=0 ]
+  [enable_rdtsc=0]
 )
 
 AC_MSG_CHECKING([whether $CXX supports -Wno-unused-parameter])
@@ -131,8 +129,8 @@ AC_COMPILE_IFELSE(
         [int foo;],
         [AC_MSG_RESULT([yes])],
         [
-                AC_MSG_RESULT([no])
-                DARKSTAR_CXXFLAGS="$OLD_DARKSTAR_CXXFLAGS"
+             AC_MSG_RESULT([no])
+             DARKSTAR_CXXFLAGS="$OLD_DARKSTAR_CXXFLAGS"
         ]
 )
 
@@ -155,8 +153,8 @@ AC_COMPILE_IFELSE(
         [int foo;],
         [AC_MSG_RESULT([yes])],
         [
-                AC_MSG_RESULT([no])
-                DARKSTAR_CXXFLAGS="$OLD_DARKSTAR_CXXFLAGS"
+             AC_MSG_RESULT([no])
+             DARKSTAR_CXXFLAGS="$OLD_DARKSTAR_CXXFLAGS"
         ]
 )
 

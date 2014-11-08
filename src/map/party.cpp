@@ -350,7 +350,7 @@ void CParty::AddMember(CBattleEntity* PEntity)
                     m_PSyncTarget->GetMLevel(),
                     0,
                     0), true);
-                PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE);
+                PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE | EFFECTFLAG_ON_ZONE);
                 PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CCharSyncPacket(PChar));
             }
         }
@@ -665,7 +665,7 @@ void CParty::SetSyncTarget(CBattleEntity* PEntity, uint16 message)
                             PChar->GetMLevel(),
                             0,
                             0), true);
-                        member->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE);
+                        member->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE | EFFECTFLAG_ON_ZONE);
                         member->loc.zone->PushPacket(member, CHAR_INRANGE, new CCharSyncPacket(member));
 		            }
 	            }

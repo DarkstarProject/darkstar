@@ -423,8 +423,7 @@ enum ZONEMISC
 	MISC_CHOCOBO	= 0x0004,	// Ability to use Chocobos
 	MISC_MOGMENU	= 0x0020,	// Ability to communicate with Nomad Moogle (menu access mog house)
 	MISC_COSTUME	= 0x0040,	// Ability to use a Costumes
-	MISC_TREASURE	= 0x0100,	// Presence in the global zone TreasurePool
-	MISC_PVP 		= 0x0200    // Ability to PvP
+	MISC_TREASURE	= 0x0100	// Presence in the global zone TreasurePool
 };
 
 /************************************************************************
@@ -494,8 +493,8 @@ public:
 	uint8			GetBackgroundMusic();
 	zoneLine_t*		GetZoneLine(uint32 zoneLineID);
 
-    CCharEntity*    GetCharByName(int8* name);                                      // finds the player if exists in zone
-	virtual CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1); 					// получаем указатель на любую сущность в зоне
+    virtual CCharEntity*    GetCharByName(int8* name);                              // finds the player if exists in zone
+	virtual CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1); 			// получаем указатель на любую сущность в зоне
 
     bool            IsWeatherStatic();                                              // погода в зоне не требует изменения (никогда не меняется)
 	bool			CanUseMisc(uint16 misc);

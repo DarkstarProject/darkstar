@@ -200,6 +200,11 @@ uint8 CTreasurePool::AddItem(uint16 ItemID, CBaseEntity* PEntity)
 						oldest = m_PoolItems[SlotID].TimeStamp;
 					}
 				}
+                if (FreeSlotID > TREASUREPOOL_SIZE)
+                {
+                    //default fallback
+                    FreeSlotID = 0;
+                }
 			}
 		}
 	}

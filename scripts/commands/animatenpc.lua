@@ -12,7 +12,7 @@ cmdprops =
 
 function onTrigger(player, npcId, animationId)
     if (npcId ~= nil and animationId ~= nil) then
-        local npc = GetNPCByID( npcId );
+        local npc = GetNPCByID( npcId, player );
         if (npc == nil) then return; end
 
         local oldAnimiation = npc:getAnimation();

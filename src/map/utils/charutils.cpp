@@ -214,7 +214,7 @@ void CalculateStats(CCharEntity* PChar)
 	{
 		if (grade::GetJobGrade(sjob,1) != 0 && slvl > 0)					// В этом выражении ошибка
 		{
-			raceStat = (grade::GetMPScale(grade,0) + grade::GetMPScale(grade,scaleTo60Column) * (slvl - 1)) / 2; 	// Вот здесь ошибка
+			raceStat = (grade::GetMPScale(grade,0) + grade::GetMPScale(grade,scaleTo60Column) * (slvl - 1)) / map_config.sj_mp_divisor;	// Вот здесь ошибка
 		}
 	}else{
 		//Расчет нормального расового бонуса
@@ -236,7 +236,7 @@ void CalculateStats(CCharEntity* PChar)
 	if (slvl > 0)
 	{
 		grade = grade::GetJobGrade(sjob,1);
-		sJobStat = (grade::GetMPScale(grade,0) + grade::GetMPScale(grade,scaleTo60Column) * (slvl - 1)) / 2;
+		sJobStat = (grade::GetMPScale(grade,0) + grade::GetMPScale(grade,scaleTo60Column) * (slvl - 1)) / map_config.sj_mp_divisor;
 	}
 
 	MeritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_MAX_MP, PChar);
@@ -300,7 +300,7 @@ void CalculateStats(CCharEntity* PChar)
 		MeritBonus = PChar->PMeritPoints->GetMeritValue((Merit_t*)PChar->PMeritPoints->GetMeritByIndex(StatIndex), PChar);
 
 		// Вывод значения
-		WBUFW(&PChar->stats,counter) = (uint16)(raceStat + jobStat + sJobStat + MeritBonus);
+		WBUFW(&PChar->stats,counter) = (uint16)(map_config.player_stat_multiplier * (raceStat + jobStat + sJobStat) + MeritBonus);
 		counter += 2;
 	}
 }
@@ -342,8 +342,10 @@ void LoadChar(CCharEntity* PChar)
           "titles,"					// 18
           "zones,"					// 19
           "missions,"				// 20
-		  "playtime,"				// 21
-          "isnewplayer "            // 22
+          "assault,"                // 21
+          "campaign,"               // 22
+		  "playtime,"				// 23
+          "isnewplayer "            // 24
         "FROM chars "
         "WHERE charid = %u";
 
@@ -407,8 +409,18 @@ void LoadChar(CCharEntity* PChar)
 		Sql_GetData(SqlHandle,20,&missions,&length);
 		memcpy(PChar->m_missionLog, missions, (length > sizeof(PChar->m_missionLog) ? sizeof(PChar->m_missionLog) : length));
 
-		PChar->SetPlayTime(Sql_GetUIntData(SqlHandle, 21));
-        PChar->m_isNewPlayer = Sql_GetIntData(SqlHandle, 22) == 1 ? true : false;
+        length = 0;
+        int8* assault = NULL;
+        Sql_GetData(SqlHandle, 21, &assault, &length);
+        memcpy(&PChar->m_assaultLog, assault, (length > sizeof(PChar->m_assaultLog) ? sizeof(PChar->m_assaultLog) : length));
+
+        length = 0;
+        int8* campaign = NULL;
+        Sql_GetData(SqlHandle, 22, &campaign, &length);
+        memcpy(&PChar->m_campaignLog, campaign, (length > sizeof(PChar->m_campaignLog) ? sizeof(PChar->m_campaignLog) : length));
+
+		PChar->SetPlayTime(Sql_GetUIntData(SqlHandle, 23));
+        PChar->m_isNewPlayer = Sql_GetIntData(SqlHandle, 24) == 1 ? true : false;
 	}
 
 
@@ -2407,12 +2419,6 @@ void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
     // This usually happens after a crash
     DSP_DEBUG_BREAK_IF(SkillID >= MAX_SKILLTYPE);   // выход за пределы допустимых умений
 
-    // can't skill up if in pvp
-    if(PChar->m_PVPFlag)
-    {
-        return;
-    }
-
 	if ((PChar->WorkingSkills.rank[SkillID] != 0) && !(PChar->WorkingSkills.skill[SkillID] & 0x8000))
 	{
 		uint16 CurSkill = PChar->RealSkills.skill[SkillID];
@@ -2845,7 +2851,13 @@ void DistributeGil(CCharEntity* PChar, CMobEntity* PMob)
 {
     //work out the amount of gil to give (guessed; replace with testing)
     uint32 gil = PMob->GetRandomGil();
+    uint32 gBonus = 0;
 
+    if (map_config.all_mobs_gil_bonus > 0)
+    {
+        gBonus = map_config.all_mobs_gil_bonus*PMob->GetMLevel();
+        gil += dsp_cap(gBonus, 1, map_config.max_gil_bonus);
+    }
 
 	//distribute to said members (perhaps store pointers to each member in first loop?)
 	if (PChar->PParty != NULL)
@@ -3347,6 +3359,7 @@ void DelExperiencePoints(CCharEntity* PChar, float retainPercent)
         }
 
 		PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar, PChar, PChar->jobs.job[PChar->GetMJob()], 0, 11));
+        luautils::OnPlayerLevelDown(PChar);
 	}
 	else
     {
@@ -3539,6 +3552,8 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
                     PChar->PParty->RefreshSync();
                 }
             }
+
+            luautils::OnPlayerLevelUp(PChar);
 			return;
         }
     }
@@ -3718,6 +3733,8 @@ void SaveMissionsList(CCharEntity* PChar)
         "LEFT JOIN char_profile USING(charid) "
         "SET "
           "missions = '%s',"
+          "assault = '%s',"
+          "campaign = '%s',"
           "rank_points = %u,"
           "rank_sandoria = %u,"
           "rank_bastok = %u,"
@@ -3727,8 +3744,16 @@ void SaveMissionsList(CCharEntity* PChar)
 	int8 missionslist[sizeof(PChar->m_missionLog)*2+1];
 	Sql_EscapeStringLen(SqlHandle,missionslist,(const int8*)PChar->m_missionLog,sizeof(PChar->m_missionLog));
 
+    int8 assaultList[sizeof(PChar->m_assaultLog)*2+1];
+    Sql_EscapeStringLen(SqlHandle, assaultList, (const int8*)&PChar->m_assaultLog, sizeof(PChar->m_assaultLog));
+
+    int8 campaignList[sizeof(PChar->m_campaignLog)*2+1];
+    Sql_EscapeStringLen(SqlHandle, campaignList, (const int8*)&PChar->m_campaignLog, sizeof(PChar->m_campaignLog));
+
 	Sql_Query(SqlHandle,Query,
         missionslist,
+        assaultList,
+        campaignList,
         PChar->profile.rankpoints,
 		PChar->profile.rank[0],
         PChar->profile.rank[1],

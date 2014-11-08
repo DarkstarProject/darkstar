@@ -44,12 +44,11 @@ public:
 	bool Check();
 private:
 	CZone* zone;
-	CInstance* instance;
 	CCharEntity* requester;
 	Sql_t* SqlInstanceHandle;
 	std::future<CInstance*> task;
 
-	CInstance* LoadInstance();
+	CInstance* LoadInstance(CInstance* instance);
 
 };
 

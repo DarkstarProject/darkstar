@@ -47,6 +47,18 @@ CZoneInstance::~CZoneInstance()
 	}
 }
 
+CCharEntity* CZoneInstance::GetCharByName(int8* name)
+{
+    CCharEntity* PEntity = NULL;
+
+    for (auto instance : instanceList)
+    {
+        PEntity = instance->GetCharByName(name);
+        if (PEntity) break;
+    }
+    return PEntity;
+}
+
 CBaseEntity* CZoneInstance::GetEntity(uint16 targid, uint8 filter)
 {
 	CBaseEntity* PEntity = NULL;
@@ -118,6 +130,7 @@ void CZoneInstance::DecreaseZoneCounter(CCharEntity* PChar)
 		instance->DecreaseZoneCounter(PChar);
 		instance->DespawnPC(PChar);
 		CharZoneOut(PChar);
+        PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
 		PChar->PInstance = NULL;
 
 		if (instance->CharListEmpty())
@@ -169,6 +182,17 @@ void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
 
 		PChar->PInstance->InsertPC(PChar);
 		CharZoneIn(PChar);
+
+        if (PChar->PInstance->GetLevelCap() > 0)
+        {
+            PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE | EFFECTFLAG_ON_ZONE);
+            PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(
+                EFFECT_LEVEL_RESTRICTION, 
+                EFFECT_LEVEL_RESTRICTION, 
+                PChar->PInstance->GetLevelCap(), 
+                0, 0)
+            );
+        }
 
 		if (!PChar->PInstance->CharRegistered(PChar))
 		{

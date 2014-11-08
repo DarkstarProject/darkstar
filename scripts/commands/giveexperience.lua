@@ -11,9 +11,6 @@ cmdprops =
 };
 
 function onTrigger(player, target, amount)
-
-print( 'Exp amount: ' .. tostring( amount ) );
-
     if (target == nil or amount == nil) then
         player:PrintToPlayer("You must enter a valid player name and amount.");
         return;

@@ -97,6 +97,8 @@ namespace luautils
 	int32 clearVarFromAll(lua_State *);											// Deletes a specific player variable from all players
 
     int32 GetTextIDVariable(uint16 ZoneID, const char* variable);               // загружаем значение переменной TextID указанной зоны
+	uint8 GetSettingsVariable(const char* variable);                            // Gets a Variable Value from Settings.lua
+	bool IsExpansionEnabled(const char* expansionCode);                         // Check if an Expansion is Enabled In Settings.lua
 
 	int32 OnServerStart();													// triggers when game server starts up
 
@@ -182,6 +184,9 @@ namespace luautils
     int32 OnSpikesDamage(CBattleEntity* PDefender, CBattleEntity* PAttacker, apAction_t* Action, uint32 damage);                         // for mobs with spikes
 
     int32 nearLocation(lua_State*);
+
+    int32 OnPlayerLevelUp(CCharEntity* PChar);
+    int32 OnPlayerLevelDown(CCharEntity* PChar);
 };
 
 #endif //- _LUAUTILS_H -

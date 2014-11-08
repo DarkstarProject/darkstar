@@ -19,9 +19,11 @@ end;
 
 function onMobFight(mob, target)
 
-    local changeTime, element = mob:getExtraVar(2);
+    local changeTime = mob:getLocalVar("changeTime");
+    local element = mob:getLocalVar("element");
+    
     if (changeTime == 0) then
-        mob:setExtraVar(math.random(1,3)*15, element)
+        mob:setLocalVar("changeTime",math.random(1,3)*15)
         return;
     end
     if (mob:getBattleTime() >= changeTime) then
@@ -34,7 +36,8 @@ function onMobFight(mob, target)
         end
         mob:useMobAbility(blades[newelement]);
         mob:addMod(absorbMod[newelement], 100);
-        mob:setExtraVar(mob:getBattleTime() + math.random(1,3)*15, newelement);
+        mob:setLocalVar("changeTime", mob:getBattleTime() + math.random(1,3)*15);
+        mob:setLocalVar("element", newelement);
     end
 end;
 

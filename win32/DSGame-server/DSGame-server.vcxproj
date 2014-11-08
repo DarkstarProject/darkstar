@@ -210,6 +210,7 @@
     <ClInclude Include="..\..\src\common\version.h" />
     <ClInclude Include="..\..\src\common\zlib.h" />
     <ClInclude Include="..\..\src\map\ability.h" />
+    <ClInclude Include="..\..\src\map\ai\ai_char_charm.h" />
     <ClInclude Include="..\..\src\map\ai\ai_char_gm.h" />
     <ClInclude Include="..\..\src\map\ai\ai_char_normal.h" />
     <ClInclude Include="..\..\src\map\ai\ai_char_prisoner.h" />
@@ -443,6 +444,7 @@
     <ClCompile Include="..\..\src\common\utils.cpp" />
     <ClCompile Include="..\..\src\common\zlib.cpp" />
     <ClCompile Include="..\..\src\map\ability.cpp" />
+    <ClCompile Include="..\..\src\map\ai\ai_char_charm.cpp" />
     <ClCompile Include="..\..\src\map\ai\ai_char_gm.cpp" />
     <ClCompile Include="..\..\src\map\ai\ai_char_normal.cpp" />
     <ClCompile Include="..\..\src\map\ai\ai_char_prisoner.cpp" />
