@@ -23,6 +23,8 @@
 
 #include <string.h>
 
+#include "lua/luautils.h"
+
 #include "map.h"
 #include "spell.h"
 #include "blue_spell.h"
@@ -401,7 +403,7 @@ namespace spell
 	    memset(PSpellList, 0, sizeof(PSpellList));
 
 	    const int8* Query = "SELECT spellid, name, jobs, `group`, validTargets, skill, castTime, recastTime, animation, animationTime, mpCost, \
-					         AOE, base, element, zonemisc, multiplier, message, magicBurstMessage, CE, VE, requirements \
+					         AOE, base, element, zonemisc, multiplier, message, magicBurstMessage, CE, VE, requirements, required_expansion \
 							 FROM spell_list \
 							 WHERE spellid < %u;";
 
@@ -411,6 +413,13 @@ namespace spell
 	    {
 		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		    {
+				int8* expansionCode;
+				Sql_GetData(SqlHandle, 21, &expansionCode, NULL);
+
+				if (luautils::IsExpansionEnabled(expansionCode) == false){
+					continue;
+				}
+
 			    CSpell* PSpell = NULL;
 
                 uint16 id = Sql_GetUIntData(SqlHandle,0);
@@ -503,12 +512,19 @@ namespace spell
 		    }
 	    }
 
-	    ret = Sql_Query(SqlHandle,"SELECT spellId, meritId FROM spell_list INNER JOIN merits ON spell_list.name = merits.name;");
+	    ret = Sql_Query(SqlHandle,"SELECT spellId, meritId, required_expansion FROM spell_list INNER JOIN merits ON spell_list.name = merits.name;");
 
 	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	    {
 		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		    {
+				int8* expansionCode;
+				Sql_GetData(SqlHandle, 2, &expansionCode, NULL);
+
+				if (luautils::IsExpansionEnabled(expansionCode) == false){
+					continue;
+				}
+
 			    uint16 spellId = (uint16)Sql_GetUIntData(SqlHandle,0);
 
 			    if (!(spellId >= MAX_SPELL_ID) && (PSpellList[spellId] != NULL))
