@@ -77,6 +77,17 @@ bool CInstanceLoader::Check()
 			}
 			else
 			{
+                // finish loading by launching remaining setup scripts
+                for (auto PMob : instance->m_mobList)
+                {
+                    luautils::OnMobInitialize(PMob.second);
+                    ((CMobEntity*)PMob.second)->saveModifiers();
+                    ((CMobEntity*)PMob.second)->saveMobModifiers();
+                }
+                for (auto PNpc : instance->m_npcList)
+                {
+                    luautils::OnNpcSpawn(PNpc.second);
+                }
 				luautils::OnInstanceCreated(requester, instance);
 				luautils::OnInstanceCreated(instance);
 			}
@@ -107,7 +118,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 
 	int32 ret = Sql_Query(SqlInstanceHandle, Query, instance->GetID());
 
-	if (ret != SQL_ERROR && Sql_NumRows(SqlInstanceHandle) != 0)
+	if (!instance->Failed() && ret != SQL_ERROR && Sql_NumRows(SqlInstanceHandle) != 0)
 	{
 		while (Sql_NextRow(SqlInstanceHandle) == SQL_SUCCESS)
 		{
@@ -225,11 +236,6 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 			PMob->PInstance = instance;
 
 			instance->InsertMOB(PMob);
-
-			//luautils::OnMobInitialize(PMob);
-
-			PMob->saveModifiers();
-			PMob->saveMobModifiers();
 		}
 
 		Query =
@@ -276,13 +282,12 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 				PNpc->PInstance = instance;
 
 				instance->InsertNPC(PNpc);
-				//luautils::OnNpcSpawn(PNpc);
 			}
 		}
 	}
 	else
 	{
-        delete instance;
+        instance->Cancel();
 		instance = NULL;
 	}
 
