@@ -1685,6 +1685,11 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 conta
 							{
 								UnequipItem(PChar,SLOT_MAIN);
 							}
+                            else if (!((CItemWeapon*)PItem)->getSkillType() == SKILL_NON)
+                            {
+                                //allow Grips to be equipped
+                                return false;
+                            }
 						}
 					}
 				}
@@ -1866,7 +1871,7 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 contai
 			}
         }
 	}
-    if (equipSlotID == SLOT_MAIN || equipSlotID == SLOT_RANGED)
+    if (equipSlotID == SLOT_MAIN || equipSlotID == SLOT_RANGED || equipSlotID == SLOT_SUB)
     {
         PChar->health.tp = 0;
         /*// fixes logging in with no h2h
