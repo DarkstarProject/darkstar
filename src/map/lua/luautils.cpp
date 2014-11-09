@@ -3293,6 +3293,9 @@ int32 OnInstanceCreated(CCharEntity* PChar, CInstance* PInstance)
 	CLuaBaseEntity LuaBaseEntity(PChar);
 	Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
 
+    CLuaBaseEntity LuaTargetEntity(PChar->m_event.Target);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
+
 	if (PInstance)
 	{
 		CLuaInstance LuaInstance(PInstance);
@@ -3302,9 +3305,6 @@ int32 OnInstanceCreated(CCharEntity* PChar, CInstance* PInstance)
 	{
 		lua_pushnil(LuaHandle);
 	}
-
-	CLuaBaseEntity LuaTargetEntity(PChar->m_event.Target);
-	Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
 
 	if (lua_pcall(LuaHandle, 3, LUA_MULTRET, 0))
 	{
