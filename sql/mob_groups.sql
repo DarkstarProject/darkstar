@@ -1969,7 +1969,7 @@ INSERT INTO `mob_groups` VALUES (1933,431,56,0,128,0,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (1934,467,56,0,128,0,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (1935,715,56,0,128,0,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (1936,863,56,0,128,0,0,0,0,0,0);
-INSERT INTO `mob_groups` VALUES (1937,865,56,0,128,0,0,0,0,0,0);
+INSERT INTO `mob_groups` VALUES (1937,865,56,0,128,0,0,0,77,78,0);
 INSERT INTO `mob_groups` VALUES (1938,905,56,0,128,0,0,9999,77,78,0);
 INSERT INTO `mob_groups` VALUES (1939,942,56,0,128,0,0,0,77,78,0);
 INSERT INTO `mob_groups` VALUES (1940,977,56,0,128,0,0,0,0,0,0);
@@ -1977,7 +1977,7 @@ INSERT INTO `mob_groups` VALUES (1941,1097,56,0,128,0,0,0,77,78,0);
 INSERT INTO `mob_groups` VALUES (1942,1112,56,0,128,0,0,0,77,78,0);
 -- excaliace assault seagull grounded
 INSERT INTO `mob_groups` VALUES (1943,1268,56,0,128,0,0,0,75,75,0);
-INSERT INTO `mob_groups` VALUES (1944,1274,56,0,128,0,0,0,0,0,0);
+INSERT INTO `mob_groups` VALUES (1944,1274,56,0,128,0,0,0,77,78,0);
 INSERT INTO `mob_groups` VALUES (1945,2175,56,0,128,0,0,0,78,78,0);
 INSERT INTO `mob_groups` VALUES (1946,2192,56,0,128,0,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (1947,2257,56,0,128,0,0,0,0,0,0);
@@ -11893,9 +11893,10 @@ INSERT INTO `mob_groups` VALUES (14239,5468,66,0,128,0,0,0,77,78,0); -- 00065306
 INSERT INTO `mob_groups` VALUES (14240,4813,63,0,128,0,0,0,75,75,0); -- buckler 2a
 INSERT INTO `mob_groups` VALUES (14241,4814,63,0,128,0,0,0,75,75,0); -- buckler 2c
 INSERT INTO `mob_groups` VALUES (14242,4815,63,0,128,0,0,0,75,75,0); -- buckler 2d
-INSERT INTO `mob_groups` VALUES (14243,5465,66,0,128,0,0,0,77,78,0); -- mamool trainee bst 
-INSERT INTO `mob_groups` VALUES (14244,5466,66,0,128,0,0,0,77,78,0); -- mamool trainee blu
-
+INSERT INTO `mob_groups` VALUES (14243,5466,66,0,128,0,0,0,77,78,0); -- mamool trainee bst 
+INSERT INTO `mob_groups` VALUES (14244,5467,66,0,128,0,0,0,77,78,0); -- mamool trainee blu
+INSERT INTO `mob_groups` VALUES (14245,5468,56,0,128,0,0,0,77,78,0); -- experimental undead brd
+INSERT INTO `mob_groups` VALUES (14246,5469,56,0,128,0,0,9999,77,78,0); -- experimental blm
 
 /*!40000 ALTER TABLE `mob_groups` ENABLE KEYS */;
 UNLOCK TABLES;
