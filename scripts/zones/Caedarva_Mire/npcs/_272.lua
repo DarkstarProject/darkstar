@@ -101,7 +101,7 @@ end;
 -- onInstanceLoaded
 -----------------------------------
 
-function onInstanceCreated(player,instance,target)
+function onInstanceCreated(player,target,instance)
     if (instance) then
         instance:setLevelCap(player:getVar("AssaultCap"));
         player:setVar("AssaultCap", 0);
