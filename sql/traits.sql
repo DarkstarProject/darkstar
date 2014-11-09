@@ -36,8 +36,8 @@ INSERT INTO `traits` VALUES ('1','accuracy bonus','11','70','4','25','48',null);
 INSERT INTO `traits` VALUES ('1','accuracy bonus','11','70','4','26','48',null);
 INSERT INTO `traits` VALUES ('1','accuracy bonus','11','86','5','25','60','ABYSEA');
 INSERT INTO `traits` VALUES ('1','accuracy bonus','11','86','5','26','60','ABYSEA');
-INSERT INTO `traits` VALUES ('1','accuracy bonus','14','30','1','25','10','ROTZ');;
-INSERT INTO `traits` VALUES ('1','accuracy bonus','14','30','1','26','10','ROTZ');;
+INSERT INTO `traits` VALUES ('1','accuracy bonus','14','30','1','25','10',null); -- ROTZ
+INSERT INTO `traits` VALUES ('1','accuracy bonus','14','30','1','26','10',null); -- ROTZ
 INSERT INTO `traits` VALUES ('1','accuracy bonus','14','50','2','25','22','TOAU');
 INSERT INTO `traits` VALUES ('1','accuracy bonus','14','50','2','26','22','TOAU');
 INSERT INTO `traits` VALUES ('1','accuracy bonus','14','78','3','25','35','ABYSEA');
@@ -76,8 +76,8 @@ INSERT INTO `traits` VALUES ('3','attack bonus','8','76','5','23','60','ABYSEA')
 INSERT INTO `traits` VALUES ('3','attack bonus','8','76','5','24','60','ABYSEA');
 INSERT INTO `traits` VALUES ('3','attack bonus','8','91','6','23','72','ABYSEA');
 INSERT INTO `traits` VALUES ('3','attack bonus','8','91','6','24','72','ABYSEA');
-INSERT INTO `traits` VALUES ('3','attack bonus','14','10','1','23','10','ROTZ');;
-INSERT INTO `traits` VALUES ('3','attack bonus','14','10','1','24','10','ROTZ');;
+INSERT INTO `traits` VALUES ('3','attack bonus','14','10','1','23','10',null); -- ROTZ
+INSERT INTO `traits` VALUES ('3','attack bonus','14','10','1','24','10',null); -- ROTZ
 INSERT INTO `traits` VALUES ('3','attack bonus','14','91','2','23','22','ABYSEA');
 INSERT INTO `traits` VALUES ('3','attack bonus','14','91','2','24','22','ABYSEA');
 INSERT INTO `traits` VALUES ('4','defense bonus','1','10','1','1','10',null);
@@ -150,10 +150,10 @@ INSERT INTO `traits` VALUES ('12','fast cast','5','76','4','170','25','ABYSEA');
 INSERT INTO `traits` VALUES ('12','fast cast','5','89','5','170','30','ABYSEA');
 INSERT INTO `traits` VALUES ('13','conserve mp','4','20','1','296','25',null);
 INSERT INTO `traits` VALUES ('13','conserve mp','20','25','1','296','25','WOTG');
-INSERT INTO `traits` VALUES ('14','store tp','12','10','1','73','10','ROTZ');;
-INSERT INTO `traits` VALUES ('14','store tp','12','30','2','73','15','ROTZ');;
-INSERT INTO `traits` VALUES ('14','store tp','12','50','3','73','20','ROTZ');;
-INSERT INTO `traits` VALUES ('14','store tp','12','70','4','73','25','ROTZ');;
+INSERT INTO `traits` VALUES ('14','store tp','12','10','1','73','10',null); -- ROTZ
+INSERT INTO `traits` VALUES ('14','store tp','12','30','2','73','15',null); -- ROTZ
+INSERT INTO `traits` VALUES ('14','store tp','12','50','3','73','20',null); -- ROTZ
+INSERT INTO `traits` VALUES ('14','store tp','12','70','4','73','25',null); -- ROTZ
 INSERT INTO `traits` VALUES ('14','store tp','12','90','5','73','30','ABYSEA');
 INSERT INTO `traits` VALUES ('15','double attack','1','25','1','288','10',null);
 INSERT INTO `traits` VALUES ('16','triple attack','6','55','1','302','5',null);
@@ -163,11 +163,11 @@ INSERT INTO `traits` VALUES ('17','counter','2','81','2','291','13','ABYSEA');
 INSERT INTO `traits` VALUES ('18','dual wield','6','83','1','259','10','ABYSEA');
 INSERT INTO `traits` VALUES ('18','dual wield','6','87','2','259','15','ABYSEA');
 INSERT INTO `traits` VALUES ('18','dual wield','6','98','3','259','25','ABYSEA');
-INSERT INTO `traits` VALUES ('18','dual wield','13','10','1','259','10','ROTZ');;
-INSERT INTO `traits` VALUES ('18','dual wield','13','25','2','259','15','ROTZ');;
-INSERT INTO `traits` VALUES ('18','dual wield','13','45','3','259','25','ROTZ');;
-INSERT INTO `traits` VALUES ('18','dual wield','13','65','4','259','30','ROTZ');;
-INSERT INTO `traits` VALUES ('18','dual wield','13','85','5','259','35','ROTZ');;
+INSERT INTO `traits` VALUES ('18','dual wield','13','10','1','259','10',null); -- ROTZ
+INSERT INTO `traits` VALUES ('18','dual wield','13','25','2','259','15',null); -- ROTZ
+INSERT INTO `traits` VALUES ('18','dual wield','13','45','3','259','25',null); -- ROTZ
+INSERT INTO `traits` VALUES ('18','dual wield','13','65','4','259','30',null); -- ROTZ
+INSERT INTO `traits` VALUES ('18','dual wield','13','85','5','259','35',null); -- ROTZ
 INSERT INTO `traits` VALUES ('18','dual wield','19','20','1','259','10','ABYSEA');
 INSERT INTO `traits` VALUES ('18','dual wield','19','40','2','259','15','ABYSEA');
 INSERT INTO `traits` VALUES ('18','dual wield','19','60','3','259','25','ABYSEA');
@@ -175,7 +175,7 @@ INSERT INTO `traits` VALUES ('18','dual wield','19','80','4','259','30','ABYSEA'
 INSERT INTO `traits` VALUES ('19','treasure hunter','6','15','1','303','1',null);
 INSERT INTO `traits` VALUES ('20','gilfinder','6','5','1','0','0',null);
 INSERT INTO `traits` VALUES ('21','alertness','11','5','1','0','0',null);
-INSERT INTO `traits` VALUES ('22','stealth','13','5','1','358','3','ROTZ');;
+INSERT INTO `traits` VALUES ('22','stealth','13','5','1','358','3',null); -- ROTZ
 INSERT INTO `traits` VALUES ('23','martial arts','2','1','1','173','80',null);
 INSERT INTO `traits` VALUES ('23','martial arts','2','16','2','173','100',null);
 INSERT INTO `traits` VALUES ('23','martial arts','2','31','3','173','120',null);
@@ -245,8 +245,8 @@ INSERT INTO `traits` VALUES ('37','amorph killer','9','30','1','226','8',null);
 INSERT INTO `traits` VALUES ('38','aquan killer','9','50','1','228','8',null);
 INSERT INTO `traits` VALUES ('39','undead killer','7','5','1','231','8',null);
 INSERT INTO `traits` VALUES ('41','arcana killer','8','25','1','232','8',null);
-INSERT INTO `traits` VALUES ('42','demon killer','12','40','1','234','8','ROTZ');;
-INSERT INTO `traits` VALUES ('43','dragon killer','14','25','1','233','8','ROTZ');;
+INSERT INTO `traits` VALUES ('42','demon killer','12','40','1','234','8',null); -- ROTZ
+INSERT INTO `traits` VALUES ('43','dragon killer','14','25','1','233','8',null); -- ROTZ
 INSERT INTO `traits` VALUES ('48','resist sleep','7','20','1','240','2',null);
 INSERT INTO `traits` VALUES ('48','resist sleep','7','40','2','240','3',null);
 INSERT INTO `traits` VALUES ('48','resist sleep','7','60','3','240','5',null);
@@ -261,10 +261,10 @@ INSERT INTO `traits` VALUES ('50','resist paralyze','17','5','1','242','2','TOAU
 INSERT INTO `traits` VALUES ('50','resist paralyze','17','25','2','242','3','TOAU');
 INSERT INTO `traits` VALUES ('50','resist paralyze','17','45','3','242','5','TOAU');
 INSERT INTO `traits` VALUES ('50','resist paralyze','17','65','4','242','6','TOAU');
-INSERT INTO `traits` VALUES ('51','resist blind','12','5','1','243','2','ROTZ');;
-INSERT INTO `traits` VALUES ('51','resist blind','12','25','2','243','3','ROTZ');;
-INSERT INTO `traits` VALUES ('51','resist blind','12','45','3','243','5','ROTZ');;
-INSERT INTO `traits` VALUES ('51','resist blind','12','65','4','243','6','ROTZ');;
+INSERT INTO `traits` VALUES ('51','resist blind','12','5','1','243','2',null); -- ROTZ
+INSERT INTO `traits` VALUES ('51','resist blind','12','25','2','243','3',null); -- ROTZ
+INSERT INTO `traits` VALUES ('51','resist blind','12','45','3','243','5',null); -- ROTZ
+INSERT INTO `traits` VALUES ('51','resist blind','12','65','4','243','6',null); -- ROTZ
 INSERT INTO `traits` VALUES ('52','resist silence','10','5','1','244','2',null);
 INSERT INTO `traits` VALUES ('52','resist silence','10','25','2','244','3',null);
 INSERT INTO `traits` VALUES ('52','resist silence','10','45','3','244','5',null);
@@ -284,10 +284,10 @@ INSERT INTO `traits` VALUES ('54','resist virus','1','55','3','245','5',null);
 INSERT INTO `traits` VALUES ('54','resist virus','1','70','4','245','6',null);
 INSERT INTO `traits` VALUES ('55','resist curse','0','0','1','248','2',null);
 INSERT INTO `traits` VALUES ('56','resist stun','0','0','1','251','2',null);
-INSERT INTO `traits` VALUES ('57','resist bind','13','10','1','247','2','ROTZ');;
-INSERT INTO `traits` VALUES ('57','resist bind','13','30','2','247','3','ROTZ');;
-INSERT INTO `traits` VALUES ('57','resist bind','13','50','3','247','5','ROTZ');;
-INSERT INTO `traits` VALUES ('57','resist bind','13','70','4','247','6','ROTZ');;
+INSERT INTO `traits` VALUES ('57','resist bind','13','10','1','247','2',null); -- ROTZ
+INSERT INTO `traits` VALUES ('57','resist bind','13','30','2','247','3',null); -- ROTZ
+INSERT INTO `traits` VALUES ('57','resist bind','13','50','3','247','5',null); -- ROTZ
+INSERT INTO `traits` VALUES ('57','resist bind','13','70','4','247','6',null); -- ROTZ
 INSERT INTO `traits` VALUES ('58','resist gravity','6','20','1','249','2',null);
 INSERT INTO `traits` VALUES ('58','resist gravity','6','40','2','249','3',null);
 INSERT INTO `traits` VALUES ('58','resist gravity','6','60','3','249','5',null);
@@ -315,16 +315,16 @@ INSERT INTO `traits` VALUES ('65','gilfinder ii','0','0','1','0','0',null);
 INSERT INTO `traits` VALUES ('66','kick attacks','2','51','1','292','10',null);
 INSERT INTO `traits` VALUES ('66','kick attacks','2','71','2','292','13',null);
 INSERT INTO `traits` VALUES ('66','kick attacks','2','96','3','292','15','ABYSEA');
-INSERT INTO `traits` VALUES ('67','subtle blow','2','5','1','289','5','ROTZ');;
-INSERT INTO `traits` VALUES ('67','subtle blow','2','25','2','289','10','ROTZ');;
-INSERT INTO `traits` VALUES ('67','subtle blow','2','45','3','289','15','ROTZ');;
-INSERT INTO `traits` VALUES ('67','subtle blow','2','65','4','289','20','ROTZ');;
+INSERT INTO `traits` VALUES ('67','subtle blow','2','5','1','289','5',null); -- ROTZ
+INSERT INTO `traits` VALUES ('67','subtle blow','2','25','2','289','10',null); -- ROTZ
+INSERT INTO `traits` VALUES ('67','subtle blow','2','45','3','289','15',null); -- ROTZ
+INSERT INTO `traits` VALUES ('67','subtle blow','2','65','4','289','20',null); -- ROTZ
 INSERT INTO `traits` VALUES ('67','subtle blow','2','91','5','289','25','ABYSEA');
-INSERT INTO `traits` VALUES ('67','subtle blow','13','15','1','289','5','ROTZ');;
-INSERT INTO `traits` VALUES ('67','subtle blow','13','30','2','289','10','ROTZ');;
-INSERT INTO `traits` VALUES ('67','subtle blow','13','45','3','289','15','ROTZ');;
-INSERT INTO `traits` VALUES ('67','subtle blow','13','60','4','289','20','ROTZ');;
-INSERT INTO `traits` VALUES ('67','subtle blow','13','75','5','289','25','ROTZ');;
+INSERT INTO `traits` VALUES ('67','subtle blow','13','15','1','289','5',null); -- ROTZ
+INSERT INTO `traits` VALUES ('67','subtle blow','13','30','2','289','10',null); -- ROTZ
+INSERT INTO `traits` VALUES ('67','subtle blow','13','45','3','289','15',null); -- ROTZ
+INSERT INTO `traits` VALUES ('67','subtle blow','13','60','4','289','20',null); -- ROTZ
+INSERT INTO `traits` VALUES ('67','subtle blow','13','75','5','289','25',null); -- ROTZ
 INSERT INTO `traits` VALUES ('67','subtle blow','13','91','6','289','27','ABYSEA');
 INSERT INTO `traits` VALUES ('67','subtle blow','19','25','1','289','5','WOTG');
 INSERT INTO `traits` VALUES ('67','subtle blow','19','45','2','289','10','WOTG');
