@@ -164,7 +164,7 @@ namespace traits
 				int8* expansionCode;
 				Sql_GetData(SqlHandle, 6, &expansionCode, NULL);
 
-				if (luautils::IsExpansionEnabled(expansionCode)){
+				if (luautils::IsExpansionEnabled(expansionCode)==false){
 					continue;
 				}
 

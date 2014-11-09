@@ -21,6 +21,7 @@
 ===========================================================================
 */
 
+#include "lua/luautils.h"
 #include "ability.h"
 
 
@@ -285,7 +286,8 @@ namespace ability
               "CE,"
               "VE, "
               "meritModID, "
-			  "addType "
+			  "addType, "
+			  "required_expansion "
             "FROM abilities  "
             "WHERE job > 0 AND job < %u AND abilityId < %u "
             "ORDER BY job, level ASC";
@@ -296,6 +298,13 @@ namespace ability
 	    {
 		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		    {
+				int8* expansionCode;
+				Sql_GetData(SqlHandle, 16, &expansionCode, NULL);
+
+				if (luautils::IsExpansionEnabled(expansionCode) == false){
+					continue;
+				}
+
 			    CAbility* PAbility = new CAbility(Sql_GetIntData(SqlHandle,0));
 
 			    PAbility->setName(Sql_GetData(SqlHandle,1));
