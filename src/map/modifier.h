@@ -547,7 +547,7 @@ enum MODIFIER
     MOD_ITEM_SPIKES_CHANCE        = 0x1F5, // Chance of an items spike proc (modId = 501)
 
     MOD_GOV_CLEARS                = 0x1F0, // 4% bonus per Grounds of Valor Page clear (modId = 496)
-
+    MOD_FERAL_HOWL_DURATION       = 0x1F6, // adds 20% duration to Feral Howl job ability for each rank of merit. Augmented ability on Monster Jackcoat +2
     //MOD_SPARE =0x1F7, // (modId = 503)
     //MOD_SPARE =0x1F8, // (modId = 504)
     //MOD_SPARE =0x1F9, // (modId = 505)
