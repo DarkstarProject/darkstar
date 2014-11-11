@@ -1,6 +1,9 @@
 ---------------------------------------------------
 -- Ability: Feral Howl
--- Causes Terror for 1 to 20 seconds, which causes the victim to be stunned for the duration of the effect.
+-- Causes Terror for 1 to 10 seconds, which causes the victim to be stunned for the duration of the effect.
+-- add 5% accuracy per merit level
+-- add 20% duration per merit level if wearing Augmented Monster Jackcoat +2 (5 merits doubles the duration)
+-- http://wiki.ffxiclopedia.org/wiki/Monster_Jackcoat_(Augmented)_%2B2
 -- http://wiki.ffxiclopedia.org/wiki/Feral_Howl
 ---------------------------------------------------
 
@@ -15,8 +18,8 @@ function OnAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-	merits = player:getMerit(MERIT_FERAL_HOWL);
-	--printf("merits : %u",merits);
+	modAcc = player:getMerit(MERIT_FERAL_HOWL);
+	--printf("modAcc : %u",modAcc);
 	feralHowlMod = player:getMod(MOD_FERAL_HOWL_DURATION);
 	--printf("feralHowlMod : %u",feralHowlMod);
     if target:hasStatusEffect(EFFECT_TERROR) == true or target:hasStatusEffect(EFFECT_STUN) == true then -- effect already on, or target stunned, do nothing
@@ -28,7 +31,7 @@ function OnUseAbility(player, target, ability)
 		if feralHowlMod >= 1 then
 			-- http://wiki.ffxiclopedia.org/wiki/Monster_Jackcoat_(Augmented)_%2B2
 			-- add 20% duration per merit level if wearing Augmented Monster Jackcoat +2
-			duration = (duration + (duration * merits * 0.2));
+			duration = (duration + (duration * modAcc * 0.04)); -- modAcc returns intervals of 5. (0.2 / 5 = 0.04)
 			--printf("Duration post merit : %u",duration);
 		end
     end
@@ -48,26 +51,28 @@ function OnUseAbility(player, target, ability)
 	--printf("level difference : %u",dLvl);
 
 	-- Determining what level of resistance the target will have to the ability
-	dLvl = (2 * dLvl) - merits; -- merits increase accuracy by 5% per level
+	dLvl = (10 * dLvl) - modAcc; -- merits increase accuracy by 5% per level
 	if dLvl <= 0 then -- default level difference to 1 if mob is equal to the Beastmaster's level or less.
 		resist = 1;
 	--printf("resist : %u",resist);
 	else
-	resist = math.random(1,(dLvl + 20)); -- calculate chance of missing based on number of levels mob is higher than you. Target gets 10% resist per level over BST
+	resist = math.random(1,(dLvl * 10)); -- calculate chance of missing based on number of levels mob is higher than you. Target gets 10% resist per level over BST
 	--printf("resist : %u",resist);
 	end
 
 	-- Adjusting duration based on resistance. Only fair way I could see to do it...
-	if resist >= 2 then
-		if resist >= (duration) then
-			resist = (duration - 2);
+	if resist >= 20 then
+		if (resist / 10) >= (duration) then
+			duration = (duration - math.random(1,(duration - 2)));
+			--printf("Duration post resist : %u",duration);
+		else
+			duration = (duration - math.random(1,(resist / 10)));
+			--printf("Duration post resist : %u",duration);
 		end
-		duration = (duration - math.random(1,resist));
-		--printf("Duration post resist : %u",duration);
 	end
 	
 	-- execute ability based off of resistance value; space reserved for resist message
-    if resist <= 18 then -- still experimental. not exactly sure how to calculate hit %
+    if resist <= 90 then -- still experimental. not exactly sure how to calculate hit %
         target:addStatusEffect(EFFECT_TERROR,potency,0,duration);
     else
         -- reserved for text related to resist
