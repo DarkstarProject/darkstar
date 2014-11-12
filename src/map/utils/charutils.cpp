@@ -625,12 +625,16 @@ void LoadChar(CCharEntity* PChar)
 
         CAbility* PAbility = ability::GetTwoHourAbility(PChar->GetMJob());
 
-        uint32 RecastTime = (uint32)Sql_GetUIntData(SqlHandle, 8) + PAbility->getRecastTime() * 1000;
+		// NULL Check In Case the Expansion for this Job Has Been Disabled
+		if (PAbility != NULL)
+		{
+			uint32 RecastTime = (uint32)Sql_GetUIntData(SqlHandle, 8) + PAbility->getRecastTime() * 1000;
 
-        if (RecastTime > gettick())
-        {
-            PChar->PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), RecastTime - gettick());
-        }
+			if (RecastTime > gettick())
+			{
+				PChar->PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), RecastTime - gettick());
+			}
+		}
 	}
 
 	fmtQuery = "SELECT skillid, value, rank \
@@ -2122,6 +2126,10 @@ void BuildingCharAbilityTable(CCharEntity* PChar)
 	{
 		CAbility* PAbility = AbilitiesList.at(i);
 
+		if (PAbility == NULL){
+			continue;
+		}
+
 		if (PChar->GetMLevel() >= PAbility->getLevel() &&  PAbility->getID() < 496 )
 		{
 			if (PAbility->getID() != ABILITY_PET_COMMANDS && CheckAbilityAddtype(PChar, PAbility))
@@ -2150,6 +2158,10 @@ void BuildingCharAbilityTable(CCharEntity* PChar)
 
 		if (PChar->GetSLevel() >= PAbility->getLevel() &&  PAbility->getID() < 496)
 		{
+			if (PAbility == NULL){
+				continue;
+			}
+
 			if (PAbility->getLevel() != 0 )
 			{
 				if (PAbility->getID() != ABILITY_PET_COMMANDS && CheckAbilityAddtype(PChar, PAbility) && !(PAbility->getAddType() & ADDTYPE_MAIN_ONLY))
