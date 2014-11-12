@@ -22,12 +22,12 @@ function OnUseAbility(player, target, ability)
 	--printf("modAcc : %u",modAcc);
 	local feralHowlMod = player:getMod(MOD_FERAL_HOWL_DURATION);
 	--printf("feralHowlMod : %u",feralHowlMod);
+        local duration = 10;
+	--printf("Duration : %u",duration);
     if target:hasStatusEffect(EFFECT_TERROR) == true or target:hasStatusEffect(EFFECT_STUN) == true then -- effect already on, or target stunned, do nothing
     -- reserved for miss based on target already having stun or terror effect active
     else
         -- Calculate duration.
-        local duration = 10;
-		--printf("Duration : %u",duration);
 		if feralHowlMod >= 1 then
 			-- http://wiki.ffxiclopedia.org/wiki/Monster_Jackcoat_(Augmented)_%2B2
 			-- add 20% duration per merit level if wearing Augmented Monster Jackcoat +2
