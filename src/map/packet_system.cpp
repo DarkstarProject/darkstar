@@ -2853,7 +2853,7 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 21));
             break;
 
-       case 2: // alliance - must be unallied party leader or alliance leader of a non-full alliance
+       case 5: // alliance - must be unallied party leader or alliance leader of a non-full alliance
             if (PChar->PParty && PChar->PParty->GetLeader() == PChar &&
                 (PChar->PParty->m_PAlliance == NULL ||
                 (PChar->PParty->m_PAlliance->getMainParty()->GetLeader() == PChar && PChar->PParty->m_PAlliance->partyCount() < 3)))
