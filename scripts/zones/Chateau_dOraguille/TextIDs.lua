@@ -1,17 +1,17 @@
 -- Variable TextID   Description text
 
 -- General Texts
-   ITEM_CANNOT_BE_OBTAINED = 6578; -- Come back after sorting your inventory.
-             ITEM_OBTAINED = 6581; -- Obtained:
-              GIL_OBTAINED = 6582; -- Obtainedgil.
-          KEYITEM_OBTAINED = 6584; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>.
-              KEYITEM_LOST = 6585; -- Lost key item:
+   ITEM_CANNOT_BE_OBTAINED = 6579; -- Come back after sorting your inventory.
+             ITEM_OBTAINED = 6582; -- Obtained:
+              GIL_OBTAINED = 6583; -- Obtainedgil.
+          KEYITEM_OBTAINED = 6585; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>.
+              KEYITEM_LOST = 6586; -- Lost key item:
 
 -- Other Dialog
-TOMBSTONE = 7139; -- Here lies the beloved Queen Leaute. May Her Majesty's soul find Paradise.
+TOMBSTONE = 7145; -- Here lies the beloved Queen Leaute. May Her Majesty's soul find Paradise.
 
 -- Mission dialog
-HALVER_OFFSET = 6760; -- The princess is always speaking of your deeds for the Kingdom. Everyone here is counting on you,
+HALVER_OFFSET = 6766; -- The princess is always speaking of your deeds for the Kingdom. Everyone here is counting on you,
 
 -- Conquest Base
 
