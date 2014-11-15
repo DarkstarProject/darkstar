@@ -1,18 +1,18 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6378; -- You cannot obtain the item <item> come back again after sorting your inventory
-          ITEM_OBTAINED = 6381; -- Obtained: <item>
-           GIL_OBTAINED = 6382; -- Obtained <number> gil
-       KEYITEM_OBTAINED = 6384; -- Obtained key item: <keyitem>
+ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back again after sorting your inventory
+          ITEM_OBTAINED = 6382; -- Obtained: <item>
+           GIL_OBTAINED = 6383; -- Obtained <number> gil
+       KEYITEM_OBTAINED = 6385; -- Obtained key item: <keyitem>
 
 -- Quest dialog
-YOU_CANNOT_ENTER_THE_BATTLEFIELD = 7185; -- You cannot enter the battlefield at present.
-          TITAN_UNLOCKED = 7537; -- You are now able to summon
+YOU_CANNOT_ENTER_THE_BATTLEFIELD = 7191; -- You cannot enter the battlefield at present.
+          TITAN_UNLOCKED = 7549; -- You are now able to summon
 
 -- Other
-NOTHING_OUT_OF_THE_ORDINARY = 6395; -- There is nothing out of the ordinary here.
-               PROTOCRYSTAL = 7207; -- It is a giant crystal.
+NOTHING_OUT_OF_THE_ORDINARY = 6396; -- There is nothing out of the ordinary here.
+               PROTOCRYSTAL = 7215; -- It is a giant crystal.
 
 -- conquest Base
 CONQUEST_BASE = 7024;
