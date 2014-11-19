@@ -16,5 +16,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	GetNPCByID(16875855):hideNPC(900);
+	GetNPCByID(16875856):hideNPC(900);
 end;

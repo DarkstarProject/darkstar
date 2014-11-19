@@ -106,13 +106,13 @@ function onMobDeath(mob,killer)
 	end
 		switch (mob:getID()) : caseof {
 		[16842781] = function (x) 
-		GetNPCByID(16843056):openDoor(180);
+		GetNPCByID(16843057):openDoor(180);
 		    if(Distance <4 and killeranimation == 0)then 
 			  killer:startEvent(0x0025);
 			end
 		end,
 		[16842839] = function (x)
-		GetNPCByID(16843052):openDoor(180);
+		GetNPCByID(16843053):openDoor(180);
 			if(Distance <4 and killeranimation == 0)then 
 				if(rnd == 2) then
 					killer:startEvent(0x0021);
@@ -122,26 +122,6 @@ function onMobDeath(mob,killer)
 			end
 		end,
 		[16842846] = function (x) 
-		GetNPCByID(16843053):openDoor(180);
-		    if(Distance <4 and killeranimation == 0)then 
-				if(rnd == 2) then
-					killer:startEvent(0x0021);
-				else
-					killer:startEvent(0x0022);
-				end
-			end
-		end,
-		[16842860] = function (x)
-		GetNPCByID(16843055):openDoor(180);
-		    if(Distance <4 and killeranimation == 0)then 
-				if(rnd == 2) then
-					killer:startEvent(0x0021);
-				else
-					killer:startEvent(0x0022);
-				end
-			end
-		end,
-		[16842853] = function (x) 
 		GetNPCByID(16843054):openDoor(180);
 		    if(Distance <4 and killeranimation == 0)then 
 				if(rnd == 2) then
@@ -151,38 +131,58 @@ function onMobDeath(mob,killer)
 				end
 			end
 		end,
+		[16842860] = function (x)
+		GetNPCByID(16843056):openDoor(180);
+		    if(Distance <4 and killeranimation == 0)then 
+				if(rnd == 2) then
+					killer:startEvent(0x0021);
+				else
+					killer:startEvent(0x0022);
+				end
+			end
+		end,
+		[16842853] = function (x) 
+		GetNPCByID(16843055):openDoor(180);
+		    if(Distance <4 and killeranimation == 0)then 
+				if(rnd == 2) then
+					killer:startEvent(0x0021);
+				else
+					killer:startEvent(0x0022);
+				end
+			end
+		end,
 		[16842886] = function (x) 
-		GetNPCByID(16843049):openDoor(180);
+		GetNPCByID(16843050):openDoor(180);
 			if(Distance <4 and killeranimation == 0)then 
 			killer:startEvent(0x001E); 
 			end
 		end,
 		[16842895] = function (x) 
-		GetNPCByID(16843050):openDoor(180);
+		GetNPCByID(16843051):openDoor(180);
 		    if(Distance <4 and killeranimation == 0)then 
 			killer:startEvent(0x001E);
 			end
 		end,
 		[16842904] = function (x) 
-		GetNPCByID(16843051):openDoor(180);
+		GetNPCByID(16843052):openDoor(180);
 			if(Distance <4 and killeranimation == 0)then 
 			killer:startEvent(0x001E)
 			end
 		end,
 		[16842938] = function (x) 
-		GetNPCByID(16843057):openDoor(180);
+		GetNPCByID(16843058):openDoor(180);
 			if(Distance <4 and killeranimation == 0)then 
 			killer:startEvent(0x001E);
 			end
 		end,
 		[16842947] = function (x) 
-		GetNPCByID(16843058):openDoor(180);
+		GetNPCByID(16843059):openDoor(180);
 		    if(Distance <4 and killeranimation == 0)then 
 			killer:startEvent(0x001E);
 			end
 		end,
 		[16842956] = function (x) 
-		GetNPCByID(16843059):openDoor(180);
+		GetNPCByID(16843060):openDoor(180);
 			if(Distance <4 and killeranimation == 0)then 
 			killer:startEvent(0x001E);
 			end

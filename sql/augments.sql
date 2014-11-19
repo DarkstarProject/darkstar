@@ -1707,7 +1707,7 @@ INSERT INTO `augments` VALUES ('1373', '0', '0', '0'); -- Enhances Desperate Blo
 INSERT INTO `augments` VALUES ('1374', '0', '0', '0'); -- 1374 currently unused. Leave at zero.
 INSERT INTO `augments` VALUES ('1375', '0', '0', '0'); -- 1375 currently unused. Leave at zero.
 INSERT INTO `augments` VALUES ('1376', '0', '0', '0'); -- Enhances Killer Instinct effect
-INSERT INTO `augments` VALUES ('1377', '0', '0', '0'); -- Enhances Feral Howl effect
+INSERT INTO `augments` VALUES ('1377', '0', '503', '1'); -- Enhances Feral Howl effect, used with monster jackcoat +2 augment.
 INSERT INTO `augments` VALUES ('1378', '0', '0', '0'); -- Enhances Beast Affinity effect
 INSERT INTO `augments` VALUES ('1379', '0', '0', '0'); -- Enhances Beast Healer effect
 INSERT INTO `augments` VALUES ('1380', '0', '0', '0'); -- 1380 currently unused. Leave at zero.

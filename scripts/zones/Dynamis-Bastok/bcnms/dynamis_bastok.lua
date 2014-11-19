@@ -31,7 +31,7 @@ function OnBcnmLeave(player,instance,leavecode)
 		player:setPos(116.000,0.994,-72.000,127,0xEA);
 	end
 	if(leavecode == 4) then
-		GetNPCByID(17539322):setStatus(2);
+		GetNPCByID(17539323):setStatus(2);
 		SetServerVariable("[DynaBastok]UniqueID",0);
 	end
 	

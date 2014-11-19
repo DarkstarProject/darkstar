@@ -582,7 +582,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("RONFAURE");
 
-	local Doladepaiton = 17187537;
+	local Doladepaiton = 17187538;
 
 	npc  = {
 	--
@@ -613,7 +613,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("ZULKHEIM");
 
-	local Quanteilleron = 17199700;
+	local Quanteilleron = 17199701;
 
 	npc  = {
 	--
@@ -644,7 +644,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("NORVALLEN");
 
-	local Chaplion = 17203839;
+	local Chaplion = 17203840;
 
 	npc  = {
 	--
@@ -675,7 +675,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("GUSTABERG");
 
-	local Ennigreaud = 17212054;
+	local Ennigreaud = 17212055;
 
 	npc  = {
 	--
@@ -706,7 +706,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("DERFLAND");
 
-	local Mesachedeau = 17224317;
+	local Mesachedeau = 17224318;
 
 	npc  = {
 	--
@@ -737,7 +737,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("SARUTABARUTA");
 
-	local Naguipeillont = 17248837;
+	local Naguipeillont = 17248838;
 
 	npc  = {
 	--
@@ -768,7 +768,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("KOLSHUSHU");
 
-	local Bonbavour = 17261141;
+	local Bonbavour = 17261142;
 
 	npc  = {
 	--
@@ -799,7 +799,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("ARAGONEU");
 
-	local Chegourt = 17265262;
+	local Chegourt = 17265263;
 
 	npc  = {
 	--
@@ -830,7 +830,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("FAUREGANDI");
 
-	local Parledaire = 17232200;
+	local Parledaire = 17232201;
 
 	npc  = {
 	--
@@ -861,7 +861,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("VALDEAUNIA");
 
-	local Jeantelas = 17236281;
+	local Jeantelas = 17236282;
 
 	npc  = {
 	--
@@ -892,7 +892,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("QUFIMISLAND");
 
-	local Pitoire = 17293705;
+	local Pitoire = 17293706;
 
 	npc  = {
 	--
@@ -923,7 +923,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("LITELOR");
 
-	local Credaurion = 17273360;
+	local Credaurion = 17273361;
 
 	npc  = {
 	--
@@ -954,7 +954,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("KUZOTZ");
 
-	local Eaulevisat = 17244622;
+	local Eaulevisat = 17244623;
 
 	npc  = {
 	--
@@ -985,7 +985,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("VOLLBOW");
 
-	local Salimardi = 17240465;
+	local Salimardi = 17240466;
 
 	npc  = {
 	--
@@ -1016,7 +1016,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("ELSHIMOLOWLANDS");
 
-	local Zorchorevi = 17281588;
+	local Zorchorevi = 17281589;
 
 	npc  = {
 	--
@@ -1047,7 +1047,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("ELSHIMOUPLANDS");
 
-	local Ilieumort = 17285645;
+	local Ilieumort = 17285646;
 
 	npc  ={
 	--
@@ -1078,7 +1078,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("TULIA");
 	
-	local RuAun_Banner = 17310075;
+	local RuAun_Banner = 17310076;
 
 	npc  = {
 	--
@@ -1097,7 +1097,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("MOVALPOLOS");
 
-	local Oldton_Banner_Offset = 16822508;
+	local Oldton_Banner_Offset = 16822509;
 
 	npc  = {
 	--
@@ -1116,7 +1116,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("TAVNAZIA");
 
-	local Jemmoquel = 16875827;
+	local Jemmoquel = 16875828;
 
 	npc  = {
 	--
