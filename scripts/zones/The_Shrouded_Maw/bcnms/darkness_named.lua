@@ -19,7 +19,7 @@ function OnBcnmRegister(player,instance)
 
 	if(inst == 1)then
 	
-		local TileOffset = 16818242;
+		local TileOffset = 16818243;
 		
 		for i = TileOffset, TileOffset+7 do 
 			local TileOffsetA = GetNPCByID(i):getAnimation();				
@@ -30,7 +30,7 @@ function OnBcnmRegister(player,instance)
 
 	elseif(inst == 2)then
 	
-		local TileOffset = 16818250;
+		local TileOffset = 16818251;
 		
 		for i = TileOffset, TileOffset+7 do 
 			local TileOffsetA = GetNPCByID(i):getAnimation();				
@@ -41,7 +41,7 @@ function OnBcnmRegister(player,instance)
 		
 	elseif(inst == 3)then
 	
-		local TileOffset = 16818258;
+		local TileOffset = 16818259;
 		
 		for i = TileOffset, TileOffset+7 do 
 			local TileOffsetA = GetNPCByID(i):getAnimation();				

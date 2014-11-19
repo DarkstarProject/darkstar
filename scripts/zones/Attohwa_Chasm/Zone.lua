@@ -78,7 +78,7 @@ end;
 
 function onRegionEnter(player,region)
 
-	local Gasponia_Offset = 16806298;
+	local Gasponia_Offset = 16806299;
 	
 	if (region:GetRegionID() <= 30) then
 	

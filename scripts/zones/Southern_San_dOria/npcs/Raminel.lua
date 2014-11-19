@@ -83,12 +83,12 @@ end;
 function onPath(npc)
 
 	if(npc:atPoint(pathfind.get(path, 23))) then
-		local arp = GetNPCByID(17719409);
+		local arp = GetNPCByID(17719410);
 
 		npc:lookAt(arp:getPos());
 		npc:wait();
 	elseif(npc:atPoint(pathfind.get(path, -1))) then
-		local lus = GetNPCByID(17719350);
+		local lus = GetNPCByID(17719351);
 
 		-- give package to Lusiane
 		lus:showText(npc, RAMINEL_DELIVERY);
@@ -98,7 +98,7 @@ function onPath(npc)
 		-- then continue path
 		npc:wait();
 	elseif(npc:atPoint(pathfind.last(path))) then
-		local lus = GetNPCByID(17719350);
+		local lus = GetNPCByID(17719351);
 
 		-- when I walk away stop looking at me
 		lus:clearTargID();
