@@ -415,7 +415,7 @@ CBattleEntity* CEnmityContainer::GetHighestEnmity()
 		EnmityObject_t* PEnmityObject = it->second;
 		uint32 Enmity = PEnmityObject->CE + PEnmityObject->VE;
 
-		if (Enmity >= HighestEnmity)
+		if (PEnmityObject->PEnmityOwner->allegiance != m_EnmityHolder->allegiance && Enmity >= HighestEnmity)
 		{
 			HighestEnmity = Enmity;
 			PEntity = PEnmityObject->PEnmityOwner;

@@ -15,7 +15,7 @@ require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
-    local tomes = {17461577,17461578};
+    local tomes = {17461577,17461578,17461579};
     
     SetGroundsTome(tomes);
     

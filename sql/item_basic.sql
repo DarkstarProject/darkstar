@@ -4472,6 +4472,8 @@ INSERT INTO `item_basic` VALUES (4966,507,'scroll_of_myoshu_ichi','myoshu_ichi',
 INSERT INTO `item_basic` VALUES (4967,508,'scroll_of_yurin_ichi','yurin_ichi',1,34432,31,0,3965);
 INSERT INTO `item_basic` VALUES (4968,509,'scroll_of_kakka_ichi','kakka_ichi',1,34432,31,0,5631);
 INSERT INTO `item_basic` VALUES (4969,510,'scroll_of_migawari_ichi','migawari_ichi',1,34432,31,0,5385);
+INSERT INTO `item_basic` VALUES (4970,505,'scroll_of_gekka_ichi','gekka_ichi',1,34432,31,0,70159);
+INSERT INTO `item_basic` VALUES (4971,506,'scroll_of_yain_ichi','yain_ichi',1,34432,31,0,70159);
 INSERT INTO `item_basic` VALUES (4976,368,'scroll_of_foe_requiem','foe_requiem',1,1664,32,0,75);
 INSERT INTO `item_basic` VALUES (4977,369,'scroll_of_foe_requiem_ii','foe_requiem_ii',1,1664,32,0,528);
 INSERT INTO `item_basic` VALUES (4978,370,'scroll_of_foe_requiem_iii','foe_requiem_iii',1,1664,32,0,1599);
@@ -5593,6 +5595,9 @@ INSERT INTO `item_basic` VALUES (6196,0,'halcyon_icefall_tincture','e_tincture_(
 INSERT INTO `item_basic` VALUES (6197,0,'rime_prominence_tincture','e_tincture_(pri)',1,58944,99,1,0);
 INSERT INTO `item_basic` VALUES (6198,0,'crystalline_claw_tincture','e_tincture_(cc)',1,58944,99,1,0);
 
+INSERT INTO `item_basic` VALUES (6265,0,'toolbag_(ranka)','toolbag_(ranka)',12,1536,49,0,0);
+INSERT INTO `item_basic` VALUES (6266,0,'toolbag_(furu)','toolbag_(furu)',12,1536,49,0,0);
+
 INSERT INTO `item_basic` VALUES (8193,0,'harlequin_head','',1,0,99,1,0);
 INSERT INTO `item_basic` VALUES (8194,0,'valoredge_x-900_head','',1,0,99,1,0);
 INSERT INTO `item_basic` VALUES (8195,0,'sharpshot_z-500_head','',1,0,99,1,0);
@@ -5683,6 +5688,9 @@ INSERT INTO `item_basic` VALUES (8706,0,'handful_of_raaz_arrowheads','raaz_arrow
 INSERT INTO `item_basic` VALUES (8707,0,'raaz_hide','raaz_hide',12,0,41,0,100);
 INSERT INTO `item_basic` VALUES (8708,0,'square_of_raaz_leather','raaz_leather',12,0,41,0,100);
 INSERT INTO `item_basic` VALUES (8709,0,'raaz_tusk','raaz_tusk',12,0,42,0,100);
+
+INSERT INTO `item_basic` VALUES (8803,0,'ranka','ranka',99,0,49,0,0);
+INSERT INTO `item_basic` VALUES (8804,0,'furusumi','furusumi',99,0,49,0,0);
 
 INSERT INTO `item_basic` VALUES (10240,0,'hexed_haubert','hexed_haubert',1,2080,99,0,0);
 INSERT INTO `item_basic` VALUES (10241,0,'hexed_domaru','hexed_domaru',1,2080,99,0,0);

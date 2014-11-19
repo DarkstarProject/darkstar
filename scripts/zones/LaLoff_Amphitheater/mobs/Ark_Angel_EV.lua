@@ -31,7 +31,7 @@ function onMobEngaged(mob,target)
     end
     
     local hp = math.random(40,60)
-    mob:setExtraVar(0, hp);
+    mob:setLocalVar("Benediction", hp);
 end;
 
 -----------------------------------
@@ -40,14 +40,15 @@ end;
 function onMobFight(mob,target)
 
 	local battletime = mob:getBattleTime();
-	local invtime, bhp = mob:getExtraVar(2);
+	local invtime = mob:getLocalVar("Invincible");
+    local bhp = mob:getLocalVar("Benediction");
 	
 	if (battletime > invtime + 150) then
 		mob:useMobAbility(438);
-		mob:setExtraVar(battletime, bhp);
+		mob:setLocalVar("Invincible", battletime);
 	elseif (mob:getHPP() < bhp) then
 		mob:useMobAbility(433);
-		mob:setExtraVar(invtime, 0);
+		mob:setLocalVar("Benediction", 0);
 	end
         
 end;

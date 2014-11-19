@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Mount Zhayolm
--- Door: Runic Gate
+-- Door: Runic Seal
 -- @pos 703 -18 382 61
 -----------------------------------
 
@@ -25,8 +25,8 @@ end;
 
 function onTrigger(player,npc)
 	if (player:hasKeyItem(LEBROS_ASSAULT_ORDERS)) then
-        local assaultid = player:getCurrentMission(ASSAULT);
-        local recommendedLevel = geteRecommendedAssaultLevel(assaultid);
+        local assaultid = player:getCurrentAssault();
+        local recommendedLevel = getRecommendedAssaultLevel(assaultid);
         local armband = 0;
         if (player:hasKeyItem(ASSAULT_ARMBAND)) then
             armband = 1;
@@ -45,7 +45,7 @@ function onEventUpdate(player,csid,option,target)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    local assaultid = player:getCurrentMission(ASSAULT);
+    local assaultid = player:getCurrentAssault();
     
     local cap = bit.band(option, 0x03);
     if (cap == 0) then
@@ -64,7 +64,7 @@ function onEventUpdate(player,csid,option,target)
     
     if (party ~= nil) then
         for i,v in ipairs(party) do
-            if (not (v:hasKeyItem(LEBROS_ASSAULT_ORDERS) and v:getCurrentMission(ASSAULT) == assaultid)) then
+            if (not (v:hasKeyItem(LEBROS_ASSAULT_ORDERS) and v:getCurrentAssault() == assaultid)) then
                 player:messageText(target,MEMBER_NO_REQS, false);
                 player:instanceEntry(target,1);
                 return;
@@ -76,7 +76,7 @@ function onEventUpdate(player,csid,option,target)
         end
     end
     
-    player:createInstance(player:getCurrentMission(ASSAULT), 63);
+    player:createInstance(player:getCurrentAssault(), 63);
     
 end;
 
@@ -97,7 +97,7 @@ end;
 -- onInstanceLoaded
 -----------------------------------
 
-function onInstanceCreated(player,instance,target)
+function onInstanceCreated(player,target,instance)
     if (instance) then
         instance:setLevelCap(player:getVar("AssaultCap"));
         player:setVar("AssaultCap", 0);

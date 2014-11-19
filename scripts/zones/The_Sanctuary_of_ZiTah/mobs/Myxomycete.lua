@@ -15,7 +15,7 @@ function OnMobRoam(mob)
 		17273276,
 		17273277
 	};
-	local Noble_Mold_ToD = GetMobByID(Noble_Mold):getExtraVar(1);
+	local Noble_Mold_ToD = GetMobByID(Noble_Mold):getLocalVar("ToD");
 	
 	if (Noble_Mold_ToD <= os.time()) then
 		Noble_Mold_PH = math.random((0), (table.getn(Noble_Mold_PH_Table)));
@@ -55,7 +55,7 @@ function onMobDeath(mob, killer)
 	for i = 1, table.getn(Noble_Mold_PH_Table), 1 do
 		if (Noble_Mold_PH_Table[i] ~= nil) then
 			if (Myxomycete == Noble_Mold_PH_Table[i]) then
-				GetMobByID(Noble_Mold):setExtraVar(os.time() + math.random((43200), (57600)));
+				GetMobByID(Noble_Mold):setLocalVar("ToD",os.time() + math.random((43200), (57600)));
 			end
 		end
 	end

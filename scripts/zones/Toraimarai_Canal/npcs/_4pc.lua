@@ -39,7 +39,7 @@ local WindyKills = player:getVar("Windurst_7-1Kills");
 			(GetMobAction(17469668) == 25) and
 			(GetMobAction(17469669) == 25)) then
 
-			GetNPCByID(17469795):openDoor(2.5);
+			GetNPCByID(17469796):openDoor(2.5);
 		else
 			player:messageSpecial(3); -- It's sealed shut with incredibly strong magic
 		end

@@ -17,7 +17,7 @@ require("scripts/zones/Lower_Delkfutts_Tower/TextIDs");
 
 function onInitialize(zone)
 
-    local tomes = {17531227,17531228,17531229};
+    local tomes = {17531228,17531229,17531230};
     
     SetGroundsTome(tomes);
 

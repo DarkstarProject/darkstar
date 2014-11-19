@@ -15,7 +15,7 @@ require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17257069,17257070,17257071};
+    local manuals = {17257070,17257071,17257072};
     
     SetFieldManual(manuals);
 end;

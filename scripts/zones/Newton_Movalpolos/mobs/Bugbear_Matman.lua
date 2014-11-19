@@ -15,5 +15,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob,killer)
-	GetNPCByID(16826573):hideNPC(900); -- Moblin Showman in NPC_List
+	GetNPCByID(16826574):hideNPC(900); -- Moblin Showman in NPC_List
 end;

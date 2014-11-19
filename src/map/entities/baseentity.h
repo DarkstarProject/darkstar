@@ -155,9 +155,16 @@ public:
 
 	CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1);
 
+    void            ResetLocalVars();
+    uint32          GetLocalVar(const char* var);
+    void            SetLocalVar(const char* var, uint32 val);
+
+
     CBaseEntity();						// конструктор
     virtual ~CBaseEntity();						// деструктор
 private:
+protected:
+    std::map<const char*, uint32> m_localVars;
 };
 
 #endif

@@ -636,7 +636,7 @@ void CAIMobDummy::ActionSpawn()
 		m_PMob->status = m_PMob->allegiance == ALLEGIANCE_MOB ? STATUS_UPDATE : STATUS_NORMAL;
 		m_PMob->animation = ANIMATION_NONE;
 		m_PMob->HideName(false);
-        m_PMob->m_extraVar = 0;
+        m_PMob->ResetLocalVars();
 
         m_PMob->PEnmityContainer->Clear();
         m_PPathFind->Clear();
@@ -1295,7 +1295,14 @@ void CAIMobDummy::ActionMagicInterrupt()
 
 void CAIMobDummy::ActionAttack()
 {
-	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
+    if (m_PMob->getMobMod(MOBMOD_SHARE_TARGET) > 0 && m_PMob->loc.zone->GetEntity(m_PMob->getMobMod(MOBMOD_SHARE_TARGET), TYPE_MOB))
+    {
+        m_PBattleTarget = m_PMob->loc.zone->GetEntity(m_PMob->getMobMod(MOBMOD_SHARE_TARGET), TYPE_MOB)->PBattleAI->GetBattleTarget();
+    }
+    else
+    {
+        m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
+    }
 
     m_actionqueueability = false;
 
@@ -2261,8 +2268,6 @@ void CAIMobDummy::SetupEngage()
 	}
 
 	m_PBattleTarget = m_PMob->PEnmityContainer->GetHighestEnmity();
-    m_PMob->m_extraVar = 0;
-
 	
 	if(m_PBattleTarget != NULL)
 	{

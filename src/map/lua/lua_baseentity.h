@@ -167,6 +167,12 @@ public:
     int32 getCurrentMission(lua_State*);    // Gets the current mission
     int32 completeMission(lua_State*);      // Complete Mission
 
+    int32 addAssault(lua_State*);           // Add Mission
+    int32 delAssault(lua_State*);           // Delete Mission from Mission Log
+    int32 hasCompletedAssault(lua_State*);  // Checks if mission has been completed
+    int32 getCurrentAssault(lua_State*);    // Gets the current mission
+    int32 completeAssault(lua_State*);      // Complete Mission
+
     int32 getRank(lua_State*);              // Get Current Rank
     int32 setRank(lua_State*);              // Set Rank
 
@@ -300,7 +306,6 @@ public:
 
     int32 setStatus(lua_State*);            // Sets Character's Status
 	int32 getStatus(lua_State*);
-    int32 setPVPFlag(lua_State*);           // Allow to attack this player
 
     int32 sendRaise(lua_State*);            // send raise request to char
     int32 sendReraise(lua_State*);          // send raise request to char
@@ -367,7 +372,9 @@ public:
 
     int32 getPetElement(lua_State*);
     int32 getPetName(lua_State*);
-    int32 charmPet(lua_State*);              // Charms Pet
+    int32 charmPet(lua_State*);              // Charms Pet (Beastmaster ability only)
+    int32 charm(lua_State*);                 // applies charm on target
+    int32 uncharm(lua_State*);               // removes charm on target
     int32 spawnPet(lua_State*);              // Calls Pet
     int32 despawnPet(lua_State*);            // Despawns Pet
     int32 petAttack(lua_State*);             // Despawns Pet
@@ -396,6 +403,7 @@ public:
     int32 changeJob(lua_State*);             // changes the job of a char (testing only!)
     int32 setMerits(lua_State*);             // set merits (testing only!)
     int32 getMerit(lua_State*);
+    int32 getMeritCount(lua_State*);         // Gets a players current merit count.
     int32 getPlaytime(lua_State*);
     int32 changesJob(lua_State*);            // changes the sub job of a char (testing only!)
     int32 getWeaponDmg(lua_State*);          // gets the current equipped weapons' DMG rating
@@ -518,8 +526,10 @@ public:
     int32 SetMobSkillAttack(lua_State*);      // enable/disable using mobskills as regular attacks
     int32 updateTarget(lua_State*);           // Force mob to update target from enmity container (ie after updateEnmity)
 
-    int32 getExtraVar(lua_State*);
-    int32 setExtraVar(lua_State*);
+    int32 getLocalVar(lua_State*);
+    int32 setLocalVar(lua_State*);
+    int32 resetLocalVars(lua_State*);
+
     int32 setSpellList(lua_State*);
 
     int32 hasValidJugPetItem(lua_State*);

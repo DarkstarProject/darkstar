@@ -14,7 +14,7 @@ function onMobDeath(mob, killer)
 	local Colorful_Leshy_PH = GetServerVariable("Colorful_Leshy_PH");
 	local Defoliate_Leshy = 16875763;
 		
-	GetMobByID(Colorful_Leshy):setExtraVar(os.time() + math.random((43200), (86400)));
+	GetMobByID(Colorful_Leshy):setLocalVar("1", os.time() + math.random((43200), (86400)));
 	SetServerVariable("Defoliate_Leshy_PH", 0);
 	DeterMob(Defoliate_Leshy, true);
 	DeterMob(Colorful_Leshy_PH, false);

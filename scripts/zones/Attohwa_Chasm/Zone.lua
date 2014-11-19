@@ -82,7 +82,7 @@ end;
 
 function onRegionEnter(player,region)
 
-	local Gasponia_Offset = 16806298;
+	local Gasponia_Offset = 16806299;
 	
 	if (region:GetRegionID() <= 30) then
 	
@@ -118,7 +118,7 @@ end;
 -----------------------------------	
 
 function onGameHour()
-    GetNPCByID(16806282):openDoor(); -- Attohwa Chasm miasma
+    GetNPCByID(16806283):openDoor(); -- Attohwa Chasm miasma
 end;
 
 -----------------------------------	

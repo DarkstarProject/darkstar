@@ -18,7 +18,7 @@ function OnMobRoam(mob)
 		16875760,
 		16875761
 	};
-	local Colorful_Leshy_ToD = GetMobByID(Colorful_Leshy):getExtraVar(1);
+	local Colorful_Leshy_ToD = GetMobByID(Colorful_Leshy):getLocalVar("1");
 	
 	if (Colorful_Leshy_ToD <= os.time()) then
 		Colorful_Leshy_PH = math.random((0), (table.getn(Colorful_Leshy_PH_Table)));
@@ -58,7 +58,7 @@ function onMobDeath(mob, killer)
 	for i = 1, table.getn(Colorful_Leshy_PH_Table), 1 do
 		if (Colorful_Leshy_PH_Table[i] ~= nil) then
 			if (Leshy == Colorful_Leshy_PH_Table[i]) then
-				GetMobByID(Colorful_Leshy):setExtraVar(os.time() + math.random((43200), (86400)));
+				GetMobByID(Colorful_Leshy):setLocalVar("1",os.time() + math.random((43200), (86400)));
 			end
 		end
 	end

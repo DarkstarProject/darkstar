@@ -15,7 +15,7 @@ require("scripts/globals/icanheararainbow");
 -----------------------------------
 
 function onInitialize(zone)		
-    local manuals = {17220160,17220161};
+    local manuals = {17220164,17220165};
     
     SetFieldManual(manuals);
 end;

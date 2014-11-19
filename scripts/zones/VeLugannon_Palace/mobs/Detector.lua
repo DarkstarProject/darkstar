@@ -17,7 +17,7 @@ end;
 function OnMobSpawn(mob)
 
     local Detector = mob:getID();
-    GetMobByID(Detector):setExtraVar(1);
+    GetMobByID(Detector):setLocalVar("1",1);
 
 end;
 
@@ -29,7 +29,7 @@ function onMobFight(mob,target)
 
     local Detector = mob:getID();
     local Caretaker = Detector + 1;
-    local ExtraVar = GetMobByID(Detector):getExtraVar(1);
+    local ExtraVar = GetMobByID(Detector):getLocalVar("1");
 
    -- Summons a Detector every 15 seconds.
    -- TODO: Casting animation for before summons. When he spawns them isn't exactly retail accurate.
@@ -45,7 +45,7 @@ function onMobFight(mob,target)
             if (GetMobAction(Caretaker) == 0) then
                 SpawnMob(Caretaker):updateEnmity(target);
                 GetMobByID(Caretaker):setPos(GetMobByID(Detector):getXPos()+1, GetMobByID(Detector):getYPos(), GetMobByID(Detector):getZPos()+1); -- Set Caretaker x and z position +1 from Detector
-                GetMobByID(Detector):setExtraVar(ExtraVar+1);
+                GetMobByID(Detector):setLocalVar("1",ExtraVar+1);
                 return;
             end
         end
@@ -62,7 +62,7 @@ function onMobDisengage(mob)
     local Detector = mob:getID();
     local Caretaker = mob:getID() + 1;
 
-    GetMobByID(Detector):setExtraVar(0);
+    GetMobByID(Detector):resetLocalVars();
 
     if (GetMobAction(Caretaker) ~= 0) then
         DespawnMob(Caretaker);
@@ -81,7 +81,7 @@ function onMobDeath(mob, killer)
     local Detector = mob:getID();
     local Caretaker = mob:getID() + 1;
 
-    GetMobByID(Detector):setExtraVar(0);
+    GetMobByID(Detector):resetLocalVars();
 
     if (GetMobAction(Caretaker) ~= 0) then
         DespawnMob(Caretaker);
@@ -97,7 +97,7 @@ function onMobDespawn( mob )
     local Detector = mob:getID();
     local Caretaker = mob:getID() + 1;
 
-    GetMobByID(Detector):setExtraVar(0);
+    GetMobByID(Detector):resetLocalVars();
 
     if (GetMobAction(Caretaker) ~= 0) then
         DespawnMob(Caretaker);

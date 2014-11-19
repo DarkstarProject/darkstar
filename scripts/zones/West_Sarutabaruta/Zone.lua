@@ -16,7 +16,7 @@ require("scripts/globals/conquest");
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17248864,17248865,17248866};
+    local manuals = {17248865,17248866,17248867};
     
     SetFieldManual(manuals);
     

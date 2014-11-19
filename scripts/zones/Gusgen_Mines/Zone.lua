@@ -16,11 +16,11 @@ require("scripts/zones/Gusgen_Mines/TextIDs");
 
 function onInitialize(zone)
 
-    local tomes = {17580411,17580412,17580413};
+    local tomes = {17580412,17580413,17580414};
     
     SetGroundsTome(tomes);
 
-    UpdateTreasureSpawnPoint(17580398);
+    UpdateTreasureSpawnPoint(17580399);
     
 end;
 

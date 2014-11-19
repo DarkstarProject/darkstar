@@ -22,7 +22,7 @@ function onInitialize( zone)
     SetFieldManual(manuals);
     
 	local Noble_Mold = 17273278;
-	GetMobByID(Noble_Mold):setExtraVar(os.time() + math.random((43200), (57600)));
+	GetMobByID(Noble_Mold):setLocalVar("ToD",os.time() + math.random((43200), (57600)));
     
     SetRegionalConquestOverseers(zone:getRegionID())
 end;	

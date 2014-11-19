@@ -293,10 +293,10 @@ void CAIGeneral::SetCurrentSpell(uint16 SpellID)
 CSpell* CAIGeneral::GetCurrentSpell()
 {
     // TODO: refactor this to only need magic state
-	if (m_PMagicState != NULL && m_PMagicState->GetSpell() != NULL)
+	/*if (m_PMagicState != NULL && m_PMagicState->GetSpell() != NULL)
     {
         return m_PMagicState->GetSpell();
-    }
+    }*/
 
 	DSP_DEBUG_BREAK_IF(m_PSpell == NULL);
 
@@ -403,7 +403,14 @@ CMobSkill* CAIGeneral::GetCurrentMobSkill()
 
 void CAIGeneral::SetCurrentMobSkill(CMobSkill* skill)
 {
-	m_PMobSkill = std::unique_ptr<CMobSkill>(new CMobSkill(*skill));
+    if (skill == NULL)
+    {
+        m_PMobSkill = NULL;
+    }
+    else
+    {
+        m_PMobSkill = std::unique_ptr<CMobSkill>(new CMobSkill(*skill));
+    }
 }
 
 /************************************************************************

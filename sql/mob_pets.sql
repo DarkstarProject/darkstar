@@ -1002,6 +1002,23 @@ INSERT INTO `mob_pets` VALUES (16916639, 1, 14);
 INSERT INTO `mob_pets` VALUES (16916745, 1, 14);
 INSERT INTO `mob_pets` VALUES (16916805, 1, 14);
 
+-- periqia requiem assault draugars wyverns
+-- INSERT INTO `mob_pets` VALUES (17006617, 1, 14);
+-- INSERT INTO `mob_pets` VALUES (17006621, 1, 14);
+-- INSERT INTO `mob_pets` VALUES (17006623, 1, 14);
+-- INSERT INTO `mob_pets` VALUES (17006628, 1, 14);
+-- INSERT INTO `mob_pets` VALUES (17006631, 1, 14);
+-- mamool ja training grounds assault imperia agent rescue bst
+-- INSERT INTO `mob_pets` VALUES (17047554, 1, 14);
+-- INSERT INTO `mob_pets` VALUES (17047557, 1, 14);
+-- INSERT INTO `mob_pets` VALUES (17047561, 1, 14);
+-- Mamool ja trainin ggrounds assault sagelord elimination
+-- INSERT INTO `mob_pets` VALUES (17047592, 1, 9);
+-- INSERT INTO `mob_pets` VALUES (17047594, 2, 9);
+-- INSERT INTO `mob_pets` VALUES (17047602, 2, 9);
+-- INSERT INTO `mob_pets` VALUES (17047606, 1, 9);
+-- INSERT INTO `mob_pets` VALUES (17047608, 1, 9);
+
 /*!40000 ALTER TABLE `mob_pets` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

@@ -13,7 +13,7 @@ function OnMobRoam(mob)
 		17457214,
 		17457215
 	};
-	local Taisaijin_ToD = GetMobByID(Taisaijin):getExtraVar(1);
+	local Taisaijin_ToD = GetMobByID(Taisaijin):getLocalVar("ToD");
 
 	if (Taisaijin_ToD <= os.time()) then
 		Taisaijin_PH = math.random((0), (table.getn(Taisaijin_PH_Table)));
@@ -48,7 +48,7 @@ function onMobDeath(mob, killer)
 	for i = 1, table.getn(Taisaijin_PH_Table), 1 do
 		if (Taisaijin_PH_Table[i] ~= nil) then
 			if (Taisai == Taisaijin_PH_Table[i]) then
-				GetMobByID(Taisaijin):setExtraVar(os.time() + math.random((86400), (259200)));
+				GetMobByID(Taisaijin):setLocalVar("ToD",os.time() + math.random((86400), (259200)));
 			end
 		end
 	end

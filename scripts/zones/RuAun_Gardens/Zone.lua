@@ -17,7 +17,7 @@ require("scripts/zones/RuAun_Gardens/TextIDs");
 
 function onInitialize(zone)
 
-    local manuals = {17310099,17310100,17310101,17310102,17310103,17310104};
+    local manuals = {17310100,17310101,17310102,17310103,17310104,17310105};
     
     SetFieldManual(manuals);
 
@@ -87,7 +87,7 @@ function onInitialize(zone)
     zone:registerRegion(37,-145,-41,-156,-142,-39,-153);
     zone:registerRegion(38,142,-41,-156,145,-39,-153 );
     
-    UpdateTreasureSpawnPoint(17310019);
+    UpdateTreasureSpawnPoint(17310020);
     
     SetRegionalConquestOverseers(zone:getRegionID())
 
@@ -266,70 +266,70 @@ function onRegionEnter(player,region)
 		---------------------------------
 		[23] = function (x)  -- Portal -- Main To Seriyu
 		---------------------------------
-			if(GetNPCByID(17310053):getAnimation() == 8) then 
+			if(GetNPCByID(17310054):getAnimation() == 8) then 
 				player:startEvent(0x0003); 
 			end
 		end,
 		---------------------------------
 		[24] = function (x)  -- Portal -- Seriyu to Genbu
 		---------------------------------
-			if(GetNPCByID(17310056):getAnimation() == 8) then
+			if(GetNPCByID(17310057):getAnimation() == 8) then
 				player:startEvent(0x000A);
 			end
 		end,
 		---------------------------------
 		[25] = function (x)  -- Portal -- Genbu to Byakko
 		---------------------------------
-			if(GetNPCByID(17310059):getAnimation() == 8) then
+			if(GetNPCByID(17310060):getAnimation() == 8) then
 				player:startEvent(0x0011);
 			end
 		end,
 		---------------------------------
 		[26] = function (x)  -- Portal -- Byakko to Suzaku
 		---------------------------------
-			if(GetNPCByID(17310062):getAnimation() == 8) then
+			if(GetNPCByID(17310063):getAnimation() == 8) then
 				player:startEvent(0x0018);
 			end
 		end,
 		---------------------------------
 		[27] = function (x)  -- Portal -- Suzaku to Main
 		---------------------------------
-			if(GetNPCByID(17310065):getAnimation() == 8) then
+			if(GetNPCByID(17310066):getAnimation() == 8) then
 				player:startEvent(0x001F);
 			end
 		end,
 		---------------------------------
 		[28] = function (x)  -- Portal -- Main to Suzaku
 		---------------------------------
-			if(GetNPCByID(17310066):getAnimation() == 8) then
+			if(GetNPCByID(17310067):getAnimation() == 8) then
 				player:startEvent(0x0023);
 			end
 		end,
 		---------------------------------
 		[29] = function (x)  -- Portal -- Suzaku to Byakko
 		---------------------------------
-			if(GetNPCByID(17310063):getAnimation() == 8) then
+			if(GetNPCByID(17310064):getAnimation() == 8) then
 				player:startEvent(0x001C);
 			end
 		end,
 		--------------------------------- 
 		[30] = function (x)  -- Portal -- Byakko to Genbu
 		---------------------------------
-			if(GetNPCByID(17310060):getAnimation() == 8) then
+			if(GetNPCByID(17310061):getAnimation() == 8) then
 				player:startEvent(0x0015);
 			end
 		end,
 		---------------------------------
 		[31] = function (x)  -- Portal -- Genbu to Seriyu
 		---------------------------------
-			if(GetNPCByID(17310057):getAnimation() == 8) then
+			if(GetNPCByID(17310058):getAnimation() == 8) then
 				player:startEvent(0x000E);
 			end
 		end,
 		---------------------------------
 		[32] = function (x)  -- Portal -- Seriyu to Main
 		---------------------------------
-			if(GetNPCByID(17310054):getAnimation() == 8) then
+			if(GetNPCByID(17310055):getAnimation() == 8) then
 				player:startEvent(0x0007);
 			end
 		end,

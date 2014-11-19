@@ -15,7 +15,7 @@ require("scripts/zones/Behemoths_Dominion/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17297486};
+    local manuals = {17297487};
     
     SetFieldManual(manuals);
     

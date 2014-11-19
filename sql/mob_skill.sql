@@ -2174,6 +2174,7 @@ INSERT INTO `mob_skill` VALUES (683,354,641,'Swift_Blade',0,7,2000,0,4,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (676,355,634,'Havoc_Spiral',1,7,2000,500,4,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (684,355,644,'Rampage',0,7,2000,0,4,0, 0, 0);
 INSERT INTO `mob_skill` VALUES (685,355,645,'Calamity',0,7,2000,0,4,0, 0, 0);
+INSERT INTO `mob_skill` VALUES (454,355,438,'Charm', 0, 18.0, 2000, 0, 4, 0, 0, 0);
 
 -- Ark Angel TT
 INSERT INTO `mob_skill` VALUES (679,356,636,'Amon_Drive',2,15.0,2000,500,4,0,0,0);
@@ -2313,7 +2314,7 @@ INSERT INTO `mob_skill` VALUES (1054,391,654,'Spike_Flail', 1, 23.0, 2000, 2000,
 INSERT INTO `mob_skill` VALUES (1055,391,968,'Sable_Breath', 4, 18.0, 2000, 1500, 4, 8, 0, 0);
 INSERT INTO `mob_skill` VALUES (1059,391,659,'Absolute_Terror', 0, 18.0, 4000, 1500, 4, 8, 0, 0);
 INSERT INTO `mob_skill` VALUES (1060,391,660,'Horrid_Roar_3', 0, 18.0, 4000, 1500, 4, 8, 0, 0);
--- INSERT INTO `mob_skill` VALUES (454,391,432,'Charm', 1, 18.0, 2000, 0, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (454,391,438,'Charm', 0, 18.0, 2000, 0, 4, 0, 0, 0);
 
 -- Jormungand
 -- INSERT INTO `mob_skill` VALUES (1031,392,963,'Sleet_Blast_alt', 0, 23.0, 2000, 0, 4, 0, 0, 0);

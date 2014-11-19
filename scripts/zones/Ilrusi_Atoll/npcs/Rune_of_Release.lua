@@ -66,7 +66,7 @@ function onEventFinish(player,csid,option)
    GetNPCByID(npcID):setStatus(0);
    GetNPCByID(npcID):setAnimation(90);   
   end
-  GetNPCByID(17002654):setStatus(2); --despawn Ancient_Lockbox
+  GetNPCByID(17002655):setStatus(2); --despawn Ancient_Lockbox
   ------------------------------------------------------
 	   --------------RANDOMIZE COFFER------------------------
   local correctcoffer = math.random(17002505,17002516);

@@ -14,11 +14,11 @@ require("scripts/zones/Toraimarai_Canal/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local tomes = {17469845,17469846,17469847,17469848};
+    local tomes = {17469846,17469847,17469848,17469849};
     
     SetGroundsTome(tomes);
     
-    UpdateTreasureSpawnPoint(17469830);
+    UpdateTreasureSpawnPoint(17469831);
 
 end;
 

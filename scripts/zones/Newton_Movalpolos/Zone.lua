@@ -15,7 +15,7 @@ require("scripts/zones/Newton_Movalpolos/TextIDs");
 
 function onInitialize(zone)
 
-    UpdateTreasureSpawnPoint(16826622);
+    UpdateTreasureSpawnPoint(16826623);
 
 end;
 

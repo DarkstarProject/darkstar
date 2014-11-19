@@ -16,7 +16,7 @@ require("scripts/zones/King_Ranperres_Tomb/TextIDs");
 
 function onInitialize(zone)
 
-    local tomes = {17555961,17555962,17555963,17555964};
+    local tomes = {17555962,17555963,17555964,17555965};
     
     SetGroundsTome(tomes);
 
@@ -25,7 +25,7 @@ function onInitialize(zone)
     -- Vrtra
     SetRespawnTime(17555890, 86400, 259200);
     
-    UpdateTreasureSpawnPoint(17555949);
+    UpdateTreasureSpawnPoint(17555950);
 
 end;
 

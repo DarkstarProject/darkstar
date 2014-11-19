@@ -1,6 +1,6 @@
 require("scripts/globals/settings");
 function addtohps(player,mask,num)
-	if(mask ~= 0) then
+	if(mask == 1) then
 		local hps = player:getVar("hpmask1")
 		if (bit.band(hps, bit.lshift(1, (num))) == 0)then
 			player:setVar("hpmask1",bit.bor(hps, bit.lshift(1, (num))))

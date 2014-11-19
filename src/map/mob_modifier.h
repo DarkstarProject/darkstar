@@ -77,8 +77,9 @@ enum MOBMODIFIER
   MOBMOD_ADD_EFFECT     = 45, // enables additional effect script to process on mobs attacks
   MOBMOD_AUTO_SPIKES    = 46, // enables additional effect script to process when mob is attacked
   MOBMOD_SPAWN_LEASH    = 47, // forces a mob to not move farther from its spawn than its leash distance
+  MOBMOD_SHARE_TARGET   = 48, // mob always targets same target as ID in this var
 };
 
-#define MAX_MOBMODIFIER         48
+#define MAX_MOBMODIFIER         49
 
 #endif

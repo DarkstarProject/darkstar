@@ -88,7 +88,7 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type)
 				    WBUFB(data,(0x26)-4) = (LSColor.B << 4) + 15;
 			    }
             }
-            WBUFB(data,(0x27)-4) = PChar->m_PVPFlag;
+            WBUFB(data,(0x27)-4) = (PChar->isCharmed ? 0x08 : 0x00);
             
             // Mentor flag..
             if (PChar->m_mentor >= 2)

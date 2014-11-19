@@ -147,7 +147,7 @@ public:
 	virtual void	WeatherChange(WEATHER weather, uint8 element) = 0;
 
     CAIGeneral();
-	~CAIGeneral();
+	virtual ~CAIGeneral();
 
     CPathFind*       m_PPathFind; // finds paths
     bool			 m_interruptSpell; // forces interrupt of current spell being cast

@@ -18,7 +18,7 @@ require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
 
 function onInitialize(zone)
 
-    local tomes = {17506821,17506822,17506823,17506824,17506825,17506826,17506827};
+    local tomes = {17506822,17506823,17506824,17506825,17506826,17506827,17506828};
     
     SetGroundsTome(tomes);
 

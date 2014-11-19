@@ -16,11 +16,11 @@ require("scripts/zones/Maze_of_Shakhrami/TextIDs");
 
 function onInitialize(zone)
 
-    local tomes = {17588783,17588784,17588785,17588786};
+    local tomes = {17588784,17588785,17588786,17588787};
     
     SetGroundsTome(tomes);
 
-    UpdateTreasureSpawnPoint(17588768);
+    UpdateTreasureSpawnPoint(17588769);
     
 end;
 

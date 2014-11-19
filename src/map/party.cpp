@@ -452,7 +452,7 @@ void CParty::AddMember(CBattleEntity* PEntity, Sql_t* sql)
                     m_PSyncTarget->GetMLevel(),
                     0,
                     0), true);
-                PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE);
+                PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE | EFFECTFLAG_ON_ZONE);
                 PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CCharSyncPacket(PChar));
             }
         }
@@ -951,7 +951,7 @@ void CParty::SetSyncTarget(int8* MemberName, uint16 message)
                             PChar->GetMLevel(),
                             0,
                             0), true);
-                        member->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE);
+                        member->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE | EFFECTFLAG_ON_ZONE);
                         member->loc.zone->PushPacket(member, CHAR_INRANGE, new CCharSyncPacket(member));
 		            }
 	            }

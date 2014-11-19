@@ -15,7 +15,7 @@ require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17277205,17277206};
+    local manuals = {17277206,17277207};
     
     SetFieldManual(manuals);
 end;
@@ -58,7 +58,7 @@ end;
 function onGameDay()
 	
 	-- Moongates
-	local Moongate_Offset = 17277173; -- _3e0 in npc_list
+	local Moongate_Offset = 17277174; -- _3e0 in npc_list
 	local direction = VanadielMoonDirection();
 	local phase = VanadielMoonPhase();
 	

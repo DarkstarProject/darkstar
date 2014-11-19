@@ -112,3 +112,25 @@ CBaseEntity* CBaseEntity::GetEntity(uint16 targid, uint8 filter)
 	else
 		return loc.zone->GetEntity(targid, filter);
 }
+
+void CBaseEntity::ResetLocalVars()
+{
+    m_localVars.clear();
+}
+
+uint32 CBaseEntity::GetLocalVar(const char* var)
+{
+    try
+    {
+        return m_localVars.at(var);
+    }
+    catch (std::out_of_range e)
+    {
+        return 0;
+    }
+}
+
+void CBaseEntity::SetLocalVar(const char* var, uint32 val)
+{
+    m_localVars[var] = val;
+}

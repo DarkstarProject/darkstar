@@ -27,7 +27,7 @@ function onMobEngaged(mob,target)
             if not v:getTarget() then
                 v:entityAnimationPacket("prov");
                 v:showText(v, PRISHE_TEXT);
-                v:setExtraVar(0, bit.band(mob:getID(), 0xFFF));
+                v:setLocalVar("ready", bit.band(mob:getID(), 0xFFF));
             end
         else
             v:addEnmity(mob,0,1);
@@ -94,7 +94,7 @@ function onEventFinish(player,csid,option,target)
 		mob = SpawnMob(target:getID()+1);
         local bcnmAllies = mob:getBattlefield():getAllies();
         for i,v in pairs(bcnmAllies) do
-            v:setExtraVar(0);
+            v:resetLocalVars();
             local spawn = v:getSpawnPos();
             v:setPos(spawn.x, spawn.y, spawn.z, spawn.rot);
         end

@@ -18,7 +18,7 @@ require("scripts/globals/missions");
 
 function onInitialize(zone)
 
-    SetExplorerMoogles(17723643);
+    SetExplorerMoogles(17723644);
 
 	zone:registerRegion(1, -7,-3,110, 7,-1,155);
     

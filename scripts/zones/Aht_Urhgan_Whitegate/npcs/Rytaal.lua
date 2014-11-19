@@ -9,6 +9,7 @@ package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
+require("scripts/globals/besieged");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 -----------------------------------
@@ -28,7 +29,7 @@ function onTrigger(player,npc)
 	local lastarmyIDtag = player:getVar("TIME_IMPERIAL_ARMY_ID_TAG");
 	local currenttagnummber = player:getVar("REMAINING_IMPERIAL_ARMY_ID_TAG");
 	local diffday = currentday - lastarmyIDtag ;
-	local currentassault = player:getCurrentMission(ASSAULT);
+	local currentassault = player:getCurrentAssault();
 	local haveimperialIDtag;
     
 	if(player:getCurrentMission(TOAU) == PRESIDENT_SALAHEEM and player:getVar("TOAUM3") == 0)then
@@ -38,13 +39,13 @@ function onTrigger(player,npc)
     elseif ((currentassault ~= 0) and (hasAssaultOrders(player) == 0)) then
         if (player:getVar("AssaultComplete") == 1) then
             player:messageText(player,RYTAAL_MISSION_COMPLETE);
-            player:completeMission(ASSAULT, currentassault);
+            player:completeAssault(currentassault);
         else
             player:messageText(player,RYTAAL_MISSION_FAILED);
-            player:addMission(ASSAULT,0);
+            player:addAssault(0);
         end
         player:setVar("AssaultComplete",0);
-	elseif((player:getCurrentMission(TOAU) > PRESIDENT_SALAHEEM) or (player:getCurrentMission(TOAU) == PRESIDENT_SALAHEEM and player:getVar("TOAUM3") ==1))then
+	elseif((player:getCurrentMission(TOAU) > PRESIDENT_SALAHEEM) or (player:getCurrentMission(TOAU) == PRESIDENT_SALAHEEM and player:getVar("TOAUM3") >= 1))then
 		if (lastarmyIDtag == 0 )then -- first time you get the tag
 			player:setVar("REMAINING_IMPERIAL_ARMY_ID_TAG",3); currenttagnummber =3;
 			player:setVar("TIME_IMPERIAL_ARMY_ID_TAG",currentday);
@@ -84,7 +85,7 @@ function onEventFinish(player,csid,option)
 	-- printf("RESULT: %u",option);
 	
 	local currenttagnummber =  player:getVar("REMAINING_IMPERIAL_ARMY_ID_TAG");
-	local CurrentAssault = player:getCurrentMission(ASSAULT);
+	local CurrentAssault = player:getCurrentAssault();
 
 	if(csid == 0x010D)then
 		player:setVar("TOAUM3",1);
@@ -95,8 +96,8 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x010C and option == 2 and player:hasKeyItem(IMPERIAL_ARMY_ID_TAG)==false and hasAssaultOrders(player) ~= 0)then
         if(player:hasKeyItem(LEUJAOAM_ASSAULT_ORDERS))then
             player:delKeyItem(LEUJAOAM_ASSAULT_ORDERS);
-        elseif(player:hasKeyItem(MAMMOOL_JA_ASSAULT_ORDERS))then
-            player:delKeyItem(MAMMOOL_JA_ASSAULT_ORDERS);
+        elseif(player:hasKeyItem(MAMOOL_JA_ASSAULT_ORDERS))then
+            player:delKeyItem(MAMOOL_JA_ASSAULT_ORDERS);
         elseif(player:hasKeyItem(LEBROS_ASSAULT_ORDERS))then
             player:delKeyItem(LEBROS_ASSAULT_ORDERS);
         elseif(player:hasKeyItem(PERIQIA_ASSAULT_ORDERS))then
@@ -108,7 +109,7 @@ function onEventFinish(player,csid,option)
         end
         player:addKeyItem(IMPERIAL_ARMY_ID_TAG);
         player:messageSpecial(KEYITEM_OBTAINED,IMPERIAL_ARMY_ID_TAG);
-        player:delMission(ASSAULT,CurrentAssault);
+        player:delAssault(CurrentAssault);
 	end
 	
 end;

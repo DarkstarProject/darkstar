@@ -19,7 +19,7 @@ base_id = 17629681;
 
 function onInitialize(zone)
 
-    local tomes = {17629762,17629763,17629764,17629765,17629766,17629767};
+    local tomes = {17629763,17629764,17629765,17629766,17629767,17629768};
     
     SetGroundsTome(tomes);
 
@@ -64,7 +64,7 @@ function onInitialize(zone)
 	SetServerVariable("BastokFight8_1" ,0);
 	SetServerVariable("Bastok8-1LastClear", os.time()-QM_RESET_TIME); -- Set a delay on ??? mission NM pop.
     
-    UpdateTreasureSpawnPoint(17629731);
+    UpdateTreasureSpawnPoint(17629732);
 
 end;
 

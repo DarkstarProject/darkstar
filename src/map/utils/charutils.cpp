@@ -65,6 +65,7 @@
 #include "../grades.h"
 #include "../conquest_system.h"
 #include "../map.h"
+#include "../spell.h"
 #include "../trait.h"
 #include "../vana_time.h"
 #include "../weapon_skill.h"
@@ -342,8 +343,10 @@ void LoadChar(CCharEntity* PChar)
           "titles,"					// 18
           "zones,"					// 19
           "missions,"				// 20
-		  "playtime,"				// 21
-          "isnewplayer "            // 22
+          "assault,"                // 21
+          "campaign,"               // 22
+		  "playtime,"				// 23
+          "isnewplayer "            // 24
         "FROM chars "
         "WHERE charid = %u";
 
@@ -386,6 +389,8 @@ void LoadChar(CCharEntity* PChar)
 		int8* spells = NULL;
 		Sql_GetData(SqlHandle,16,&spells,&length);
 		memcpy(PChar->m_SpellList, spells, (length > sizeof(PChar->m_SpellList) ? sizeof(PChar->m_SpellList) : length));
+		memcpy(PChar->m_EnabledSpellList, spells, (length > sizeof(PChar->m_EnabledSpellList) ? sizeof(PChar->m_EnabledSpellList) : length));
+		filterEnabledSpells(PChar);
 
 		length = 0;
 		int8* abilities = NULL;
@@ -407,8 +412,18 @@ void LoadChar(CCharEntity* PChar)
 		Sql_GetData(SqlHandle,20,&missions,&length);
 		memcpy(PChar->m_missionLog, missions, (length > sizeof(PChar->m_missionLog) ? sizeof(PChar->m_missionLog) : length));
 
-		PChar->SetPlayTime(Sql_GetUIntData(SqlHandle, 21));
-        PChar->m_isNewPlayer = Sql_GetIntData(SqlHandle, 22) == 1 ? true : false;
+        length = 0;
+        int8* assault = NULL;
+        Sql_GetData(SqlHandle, 21, &assault, &length);
+        memcpy(&PChar->m_assaultLog, assault, (length > sizeof(PChar->m_assaultLog) ? sizeof(PChar->m_assaultLog) : length));
+
+        length = 0;
+        int8* campaign = NULL;
+        Sql_GetData(SqlHandle, 22, &campaign, &length);
+        memcpy(&PChar->m_campaignLog, campaign, (length > sizeof(PChar->m_campaignLog) ? sizeof(PChar->m_campaignLog) : length));
+
+		PChar->SetPlayTime(Sql_GetUIntData(SqlHandle, 23));
+        PChar->m_isNewPlayer = Sql_GetIntData(SqlHandle, 24) == 1 ? true : false;
 	}
 
 
@@ -610,12 +625,16 @@ void LoadChar(CCharEntity* PChar)
 
         CAbility* PAbility = ability::GetTwoHourAbility(PChar->GetMJob());
 
-        uint32 RecastTime = (uint32)Sql_GetUIntData(SqlHandle, 8) + PAbility->getRecastTime() * 1000;
+		// NULL Check In Case the Expansion for this Job Has Been Disabled
+		if (PAbility != NULL)
+		{
+			uint32 RecastTime = (uint32)Sql_GetUIntData(SqlHandle, 8) + PAbility->getRecastTime() * 1000;
 
-        if (RecastTime > gettick())
-        {
-            PChar->PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), RecastTime - gettick());
-        }
+			if (RecastTime > gettick())
+			{
+				PChar->PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), RecastTime - gettick());
+			}
+		}
 	}
 
 	fmtQuery = "SELECT skillid, value, rank \
@@ -1670,6 +1689,11 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 conta
 							{
 								UnequipItem(PChar,SLOT_MAIN);
 							}
+                            else if (!((CItemWeapon*)PItem)->getSkillType() == SKILL_NON)
+                            {
+                                //allow Grips to be equipped
+                                return false;
+                            }
 						}
 					}
 				}
@@ -1851,7 +1875,7 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 contai
 			}
         }
 	}
-    if (equipSlotID == SLOT_MAIN || equipSlotID == SLOT_RANGED)
+    if (equipSlotID == SLOT_MAIN || equipSlotID == SLOT_RANGED || equipSlotID == SLOT_SUB)
     {
         PChar->health.tp = 0;
         /*// fixes logging in with no h2h
@@ -2102,6 +2126,10 @@ void BuildingCharAbilityTable(CCharEntity* PChar)
 	{
 		CAbility* PAbility = AbilitiesList.at(i);
 
+		if (PAbility == NULL){
+			continue;
+		}
+
 		if (PChar->GetMLevel() >= PAbility->getLevel() &&  PAbility->getID() < 496 )
 		{
 			if (PAbility->getID() != ABILITY_PET_COMMANDS && CheckAbilityAddtype(PChar, PAbility))
@@ -2130,6 +2158,10 @@ void BuildingCharAbilityTable(CCharEntity* PChar)
 
 		if (PChar->GetSLevel() >= PAbility->getLevel() &&  PAbility->getID() < 496)
 		{
+			if (PAbility == NULL){
+				continue;
+			}
+
 			if (PAbility->getLevel() != 0 )
 			{
 				if (PAbility->getID() != ABILITY_PET_COMMANDS && CheckAbilityAddtype(PChar, PAbility) && !(PAbility->getAddType() & ADDTYPE_MAIN_ONLY))
@@ -2407,12 +2439,6 @@ void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
     // This usually happens after a crash
     DSP_DEBUG_BREAK_IF(SkillID >= MAX_SKILLTYPE);   // выход за пределы допустимых умений
 
-    // can't skill up if in pvp
-    if(PChar->m_PVPFlag)
-    {
-        return;
-    }
-
 	if ((PChar->WorkingSkills.rank[SkillID] != 0) && !(PChar->WorkingSkills.skill[SkillID] & 0x8000))
 	{
 		uint16 CurSkill = PChar->RealSkills.skill[SkillID];
@@ -2564,17 +2590,27 @@ int32 delKeyItem(CCharEntity* PChar, uint16 KeyItemID)
 
 int32 hasSpell(CCharEntity* PChar, uint16 SpellID)
 {
-	return hasBit(SpellID, PChar->m_SpellList, sizeof(PChar->m_SpellList));
+	return hasBit(SpellID, PChar->m_EnabledSpellList, sizeof(PChar->m_EnabledSpellList));
 }
 
 int32 addSpell(CCharEntity* PChar, uint16 SpellID)
 {
-	return addBit(SpellID, PChar->m_SpellList, sizeof(PChar->m_SpellList));
+	addBit(SpellID, PChar->m_SpellList, sizeof(PChar->m_SpellList));
+	return addBit(SpellID, PChar->m_EnabledSpellList, sizeof(PChar->m_EnabledSpellList));
 }
 
 int32 delSpell(CCharEntity* PChar, uint16 SpellID)
 {
-	return delBit(SpellID, PChar->m_SpellList, sizeof(PChar->m_SpellList));
+	delBit(SpellID, PChar->m_SpellList, sizeof(PChar->m_SpellList));
+	return delBit(SpellID, PChar->m_EnabledSpellList, sizeof(PChar->m_EnabledSpellList));
+}
+
+void filterEnabledSpells(CCharEntity* PChar){
+	for (int i = 0; i < MAX_SPELL_ID; i++){
+		if (spell::GetSpell(i) == NULL){
+			delBit(i, PChar->m_EnabledSpellList, sizeof(PChar->m_EnabledSpellList));
+		}
+	}
 }
 
 /************************************************************************
@@ -3726,6 +3762,8 @@ void SaveMissionsList(CCharEntity* PChar)
         "LEFT JOIN char_profile USING(charid) "
         "SET "
           "missions = '%s',"
+          "assault = '%s',"
+          "campaign = '%s',"
           "rank_points = %u,"
           "rank_sandoria = %u,"
           "rank_bastok = %u,"
@@ -3735,8 +3773,16 @@ void SaveMissionsList(CCharEntity* PChar)
 	int8 missionslist[sizeof(PChar->m_missionLog)*2+1];
 	Sql_EscapeStringLen(SqlHandle,missionslist,(const int8*)PChar->m_missionLog,sizeof(PChar->m_missionLog));
 
+    int8 assaultList[sizeof(PChar->m_assaultLog)*2+1];
+    Sql_EscapeStringLen(SqlHandle, assaultList, (const int8*)&PChar->m_assaultLog, sizeof(PChar->m_assaultLog));
+
+    int8 campaignList[sizeof(PChar->m_campaignLog)*2+1];
+    Sql_EscapeStringLen(SqlHandle, campaignList, (const int8*)&PChar->m_campaignLog, sizeof(PChar->m_campaignLog));
+
 	Sql_Query(SqlHandle,Query,
         missionslist,
+        assaultList,
+        campaignList,
         PChar->profile.rankpoints,
 		PChar->profile.rank[0],
         PChar->profile.rank[1],

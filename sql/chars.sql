@@ -31,6 +31,8 @@ CREATE TABLE `chars` (
   `home_z` float(7,3) NOT NULL DEFAULT '0.000',
   `merits` blob,
   `missions` blob,
+  `assault` blob,
+  `campaign` blob,
   `quests` blob,
   `keyitems` blob,
   `spells` blob,

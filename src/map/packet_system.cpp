@@ -509,14 +509,17 @@ void SmallPacket0x015(map_session_data_t* session, CCharEntity* PChar, int8* dat
 						  (PChar->loc.p.z  != RBUFF(data,(0x0C))) ||
 						  (PChar->m_TargID != RBUFW(data,(0x16))) );
 
-		PChar->loc.p.x = RBUFF(data,(0x04));
-		PChar->loc.p.y = RBUFF(data,(0x08));
-		PChar->loc.p.z = RBUFF(data,(0x0C));
+        if (!PChar->isCharmed)
+        {
+            PChar->loc.p.x = RBUFF(data, (0x04));
+            PChar->loc.p.y = RBUFF(data, (0x08));
+            PChar->loc.p.z = RBUFF(data, (0x0C));
 
-		PChar->loc.p.moving   = RBUFW(data,(0x12));
-		PChar->loc.p.rotation = RBUFB(data,(0x14));
+            PChar->loc.p.moving = RBUFW(data, (0x12));
+            PChar->loc.p.rotation = RBUFB(data, (0x14));
 
-		PChar->m_TargID = RBUFW(data,(0x16));
+            PChar->m_TargID = RBUFW(data, (0x16));
+        }
 
 		if (isUpdate)
 		{
@@ -2853,7 +2856,7 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 21));
             break;
 
-       case 2: // alliance - must be unallied party leader or alliance leader of a non-full alliance
+       case 5: // alliance - must be unallied party leader or alliance leader of a non-full alliance
             if (PChar->PParty && PChar->PParty->GetLeader() == PChar &&
                 (PChar->PParty->m_PAlliance == NULL ||
                 (PChar->PParty->m_PAlliance->getMainParty()->GetLeader() == PChar && PChar->PParty->m_PAlliance->partyCount() < 3)))

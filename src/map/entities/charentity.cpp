@@ -76,6 +76,7 @@ CCharEntity::CCharEntity()
     memset(& nameflags, 0, sizeof(nameflags));
 
 	memset(& m_SpellList, 0, sizeof(m_SpellList));
+	memset(&m_EnabledSpellList, 0, sizeof(m_EnabledSpellList));
 	memset(& m_LearnedAbilities, 0, sizeof(m_LearnedAbilities));
     memset(& m_TitleList, 0, sizeof(m_TitleList));
 	memset(& m_ZonesList, 0, sizeof(m_ZonesList));
@@ -107,7 +108,6 @@ CCharEntity::CCharEntity()
 
     m_Costum     = 0;
 	m_Monstrosity = 0;
-    m_PVPFlag    = 0;
 	m_hasTractor = 0;
 	m_hasRaise	 = 0;
     m_hasAutoTarget    = 1;

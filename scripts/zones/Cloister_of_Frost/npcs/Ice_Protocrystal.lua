@@ -29,7 +29,9 @@ end;
 
 function onTrigger(player,npc)
 	
-	if(EventTriggerBCNM(player,npc))then
+	if (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:getVar("ASA4_Azure") == 1) then
+		player:startEvent(0x0002);
+	elseif(EventTriggerBCNM(player,npc))then
 		return;
 	else
 		player:messageSpecial(PROTOCRYSTAL);	
@@ -56,10 +58,15 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("onFinish CSID: %u",csid);
---printf("onFinish RESULT: %u",option);
+	--printf("onFinish CSID: %u",csid);
+	--printf("onFinish RESULT: %u",option);
 	
-	if(EventFinishBCNM(player,csid,option))then
+	if(csid==0x0002) then
+		player:delKeyItem(DOMINAS_AZURE_SEAL);
+		player:addKeyItem(AZURE_COUNTERSEAL);
+		player:messageSpecial(KEYITEM_OBTAINED,AZURE_COUNTERSEAL);
+		player:setVar("ASA4_Azure","2");
+	elseif(EventFinishBCNM(player,csid,option))then
 		return;
 	end
 	

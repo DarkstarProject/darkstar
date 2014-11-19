@@ -114,7 +114,7 @@ function getMercenaryRank(player)
 	
 end;
 
-function geteRecommendedAssaultLevel(assaultid)
+function getRecommendedAssaultLevel(assaultid)
     if assaultid == 1 then
         return 50;
     elseif assaultid == 2 then

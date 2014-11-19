@@ -19,7 +19,7 @@ function onInitialize(zone)
     local rand = math.random((2),(7));
     SetServerVariable("Old_Prof_Spawn_Location", rand);
 
-    UpdateTreasureSpawnPoint(16892178);
+    UpdateTreasureSpawnPoint(16892179);
 
 end;		
 
@@ -68,7 +68,7 @@ function onGameDay()
 	-- Labyrinth
 	local day = VanadielDayElement() ;
 	local tbl;
-	local SacrariumWallOffset = 16892108;
+	local SacrariumWallOffset = 16892109;
 	
 	if(day == 3 or day == 7) then
 		tbl = {9,9,8,8,9,9,8,9,8,8,9,8,8,8,9,8,9,8};

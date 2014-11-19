@@ -22,7 +22,7 @@ function onInitialize(zone)
     SetFieldManual(manuals);
 
 	local Rose_Garden = 17281357;
-	GetMobByID(Rose_Garden):setExtraVar(os.time() + math.random((36000), (37800)));
+	GetMobByID(Rose_Garden):setLocalVar("1",os.time() + math.random((36000), (37800)));
     
     SetRegionalConquestOverseers(zone:getRegionID())
 end;		

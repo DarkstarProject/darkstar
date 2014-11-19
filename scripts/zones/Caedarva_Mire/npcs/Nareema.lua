@@ -28,15 +28,15 @@ function onTrigger(player,npc)
 
 	if (player:getCurrentMission(TOAU) == IMMORTAL_SENTRIES) then
 		if(player:hasKeyItem(SUPPLIES_PACKAGE))then
-			player:startEvent(0x0005);
+			player:startEvent(0x0005,1);
 		elseif(player:getVar("TOAUM2") == 1)then
-			player:startEvent(0x0006);
+			player:startEvent(0x0006,1);
 		end
 	elseif(player:getCurrentMission(TOAU) >= PRESIDENT_SALAHEEM)then
 		if(player:hasKeyItem(LEUJAOAM_ASSAULT_ORDERS) and player:hasKeyItem(ASSAULT_ARMBAND) == false) then
 			player:startEvent(0x0095,50,IPpoint);
 		else
-			player:startEvent(0x0007);
+			player:startEvent(0x0007,1);
 			-- player:delKeyItem(ASSAULT_ARMBAND);
 		end
 	else

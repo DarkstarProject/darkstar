@@ -426,7 +426,7 @@ void CZoneEntities::SpawnNPCs(CCharEntity* PChar)
 		CNpcEntity* PCurrentNpc = (CNpcEntity*)it->second;
 		SpawnIDList_t::iterator NPC = PChar->SpawnNPCList.lower_bound(PCurrentNpc->id);
 
-		if (PCurrentNpc->status == STATUS_NORMAL)
+		if (PCurrentNpc->status == STATUS_NORMAL || PCurrentNpc->status == STATUS_UPDATE)
 		{
 			if (distance(PChar->loc.p, PCurrentNpc->loc.p) < 50)
 			{
@@ -865,7 +865,7 @@ void CZoneEntities::WideScan(CCharEntity* PChar, uint16 radius)
 	for (EntityList_t::const_iterator it = m_npcList.begin(); it != m_npcList.end(); ++it)
 	{
 		CNpcEntity* PNpc = (CNpcEntity*)it->second;
-		if (PNpc->status == STATUS_NORMAL && !PNpc->IsNameHidden())
+		if (PNpc->status == STATUS_NORMAL && !PNpc->IsNameHidden() && !PNpc->untargetable && !(PNpc->unknown & 0x800))
 		{
 			if (distance(PChar->loc.p, PNpc->loc.p) < radius)
 			{

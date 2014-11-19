@@ -16,7 +16,7 @@ require("scripts/zones/Gustav_Tunnel/TextIDs");
 
 function onInitialize(zone)
 
-    local tomes = {17645875,17645876,17645877,17645878};
+    local tomes = {17645876,17645877,17645878,17645879};
     
     SetGroundsTome(tomes);
 

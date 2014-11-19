@@ -18,7 +18,7 @@ require("scripts/zones/Middle_Delkfutts_Tower/TextIDs");
 
 function onInitialize(zone)
 	
-    local tomes = {17420674,17420675,17420676,17420677};
+    local tomes = {17420675,17420676,17420677,17420678};
     
     SetGroundsTome(tomes);    
     
@@ -34,7 +34,7 @@ function onInitialize(zone)
 	zone:registerRegion(10, -415, -98, 104, -411, -97, 108 ); -- Seventh Floor  H-6 porter to Sixth Floor "J"
 	zone:registerRegion(11, -489, -130, 84, -484,-129, 88 ); -- Ninth Floor F-6 porter to Upper Delkfutt's Tower
 
-    UpdateTreasureSpawnPoint(17420671);
+    UpdateTreasureSpawnPoint(17420672);
 	
 end;
 
