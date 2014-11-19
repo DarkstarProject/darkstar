@@ -269,6 +269,7 @@
     <ClInclude Include="..\..\src\map\lua\lua_baseentity.h" />
     <ClInclude Include="..\..\src\map\lua\lua_battlefield.h" />
     <ClInclude Include="..\..\src\map\lua\lua_instance.h" />
+    <ClInclude Include="..\..\src\map\lua\lua_item.h" />
     <ClInclude Include="..\..\src\map\lua\lua_mobskill.h" />
     <ClInclude Include="..\..\src\map\lua\lua_region.h" />
     <ClInclude Include="..\..\src\map\lua\lua_spell.h" />
@@ -501,6 +502,7 @@
     <ClCompile Include="..\..\src\map\lua\lua_baseentity.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_battlefield.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_instance.cpp" />
+    <ClCompile Include="..\..\src\map\lua\lua_item.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_mobskill.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_region.cpp" />
     <ClCompile Include="..\..\src\map\lua\lua_spell.cpp" />

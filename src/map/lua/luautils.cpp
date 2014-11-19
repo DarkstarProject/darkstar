@@ -40,6 +40,7 @@
 #include "lua_mobskill.h"
 #include "lua_trade_container.h"
 #include "lua_zone.h"
+#include "lua_item.h"
 
 #include "../alliance.h"
 #include "../ability.h"
@@ -133,6 +134,7 @@ int32 init()
 	Lunar<CLuaStatusEffect>::Register(LuaHandle);
 	Lunar<CLuaTradeContainer>::Register(LuaHandle);
 	Lunar<CLuaZone>::Register(LuaHandle);
+    Lunar<CLuaItem>::Register(LuaHandle);
 
     luaL_dostring(LuaHandle, "require('bit')");
 
