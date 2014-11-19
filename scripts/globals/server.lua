@@ -62,11 +62,11 @@ function SetExplorerMoogles()
 
     local Moogles  =
     {
-        17723643,   -- Northern San d'Oria
-        17735852,   -- Bastok Mines
-        17760446,   -- Port Windurst
-        17793127,   -- Selbina
-        17797249,   -- Mhaura
+        17723644,   -- Northern San d'Oria
+        17735853,   -- Bastok Mines
+        17760447,   -- Port Windurst
+        17793128,   -- Selbina
+        17797250,   -- Mhaura
     }
 
     i = 1;
@@ -90,25 +90,25 @@ function SetFieldManual()
 
     local FieldManuals  =
     {
-        17187561,17187562,17191530,17191531, -- West Ronfaure (2), East Ronfaure (2)
-        17195672,17195673,17199746,17199747, -- La Theine (2), Valkurm (2)
-        17199748,17203878,17203879,17207860, -- Valkurm (1), Jugner (2), Batallia (1)
-        17207861,17212104,17212105,17212106, -- Batallia (1), North Gustaberg (3)
-        17216195,17216196,17220160,17220161, -- South Gustaberg (2), Konschtat (2)
-        17224346,17224347,17228370,17228371, -- Pashhow (2), Rolanberry (2)
-        17232274,17232275,17232276,17232277, -- Beaucedine (4)
-        17236341,17236342,17240509,17240510, -- Xarcabard (2), Cape Teriggan (2)
-        17244648,17244649,17244650,17248864, -- Eastern Altepa (3), West Sarutabaruta (1)
-        17248865,17248866,17253059,17253060, -- West Sarutabaruta (2), East Sarutabaruta (2)
-        17253061,17257069,17257070,17257071, -- East Sarutabaruta (1), Tahrongi (3)
-        17261194,17261195,17265286,17265287, -- Buburimu (2), Meriphataud Mountains (2)
-        17265288,17269255,17269256,17273412, -- Meriphataud Mountains (1), Sauromugue (2), Zi'Tah (1)
-        17273413,17277205,17277206,17281641, -- Zi'Tah (1), Ro'Maeve (2), Yuhtunga Jungle (1)
-        17281642,17281643,17281644,17285693, -- Yuhtunga Jungle (3), Yhoator Jungle (1)
-        17285694,17285695,17289790,17289791, -- Yhoator Jungle (2), Western Altepa (2)
-        17289792,17293770,17293771,17297486, -- Western Altepa (1), Qufim (2), Behemoth's Dominion (1)
-        17301587,17301588,17310099,17310100, -- Valley of Sorrows (2), Ru'Aun Gardens (2)
-        17310101,17310102,17310103,17310104, -- Ru'Aun Gardens (4)
+        17187562,17187563,17191531,17191532, -- West Ronfaure (2), East Ronfaure (2)
+        17195673,17195674,17199747,17199748, -- La Theine (2), Valkurm (2)
+        17199749,17203879,17203880,17207864, -- Valkurm (1), Jugner (2), Batallia (1)
+        17207865,17212105,17212106,17212107, -- Batallia (1), North Gustaberg (3)
+        17216196,17216197,17220164,17220165, -- South Gustaberg (2), Konschtat (2)
+        17224349,17224350,17228374,17228375, -- Pashhow (2), Rolanberry (2)
+        17232275,17232276,17232277,17232278, -- Beaucedine (4)
+        17236342,17236343,17240510,17240511, -- Xarcabard (2), Cape Teriggan (2)
+        17244649,17244650,17244651,17248865, -- Eastern Altepa (3), West Sarutabaruta (1)
+        17248866,17248867,17253060,17253061, -- West Sarutabaruta (2), East Sarutabaruta (2)
+        17253062,17257070,17257071,17257072, -- East Sarutabaruta (1), Tahrongi (3)
+        17261195,17261196,17265290,17265291, -- Buburimu (2), Meriphataud Mountains (2)
+        17265292,17269256,17269257,17273413, -- Meriphataud Mountains (1), Sauromugue (2), Zi'Tah (1)
+        17273414,17277206,17277207,17281642, -- Zi'Tah (1), Ro'Maeve (2), Yuhtunga Jungle (1)
+        17281643,17281644,17281645,17285694, -- Yuhtunga Jungle (3), Yhoator Jungle (1)
+        17285695,17285696,17289791,17289792, -- Yhoator Jungle (2), Western Altepa (2)
+        17289793,17293771,17293772,17297487, -- Western Altepa (1), Qufim (2), Behemoth's Dominion (1)
+        17301588,17301589,17310100,17310101, -- Valley of Sorrows (2), Ru'Aun Gardens (2)
+        17310102,17310103,17310104,17310105, -- Ru'Aun Gardens (4)
     }
 
     i = 1;
@@ -132,36 +132,36 @@ function SetGroundsTome()
 
     local GroundsTomes  =
     {
-        17457373,17457374,17457375,17461576, -- Ranguemont Pass (3), Bostaunieux Oubliette (1)
-        17461577,17461578,17469845,17469846, -- Bostaunieux Oubliette (2), Toraimarai Canal (2)
-        17469847,17469848,17481843,17555961, -- Toraimarai Canal (2), Zeruhn Mines (1), King Ranperre's Tomb (1)
-        17555962,17555963,17555964,17559930, -- King Ranperre's Tomb (3), Dangruf Wadi (1)
-        17559931,17563918,17563919,17563920, -- Dangruf Wadi (1), Inner Horutoto Ruins (3)
-        17568199,17568200,17572304,17572305, -- Ordelle's Caves (2), Outer Horutoto Ruins (2)
-        17572306,17572307,17576424,17576425, -- Outer Horutoto Ruins (2), The Eldieme Necropolis (2)
-        17576426,17576427,17580411,17580412, -- The Eldieme Necropolis (2), Gusgen Mines (2)
-        17580413,17584491,17584492,17588783, -- Gusgen Mines (1), Crawlers' Nest (2), Maze of Shakhrami (1)
-        17588784,17588785,17588786,17596848, -- Maze of Shakhrami (3), Garlaige Citadel (1)
-        17596849,17596850,17613246,17613247, -- Garlaige Citadel (2), Fei'Yin (2)
-        17404399,17404400,17404401,17404402, -- The Boyahda Tree (4)
-        17486258,17486259,17486260,17486261, -- Korroloka Tunnel (4)
-        17490317,17490318,17490319,17490320, -- Kuftal Tunnel (4)
-        17502701,17502702,17502703,17502704, -- Ve'Lugannon Palace (4)
-        17502705,17502706,17502707,17502708, -- Ve'Lugannon Palace (4)
-        17502709,17502710,17506821,17506822, -- Ve'Lugannon Palace (2), The Shrine of Ru'Avitau (2)
-        17506823,17506824,17506825,17506826, -- The Shrine of Ru'Avitau (4)
-        17506827,17617259,17617260,17617261, -- The Shrine of Ru'Avitau (1), Ifrit's Cauldron (3)
-        17617262,17617263,17617264,17617265, -- Ifrit's Cauldron (4)
-        17617266,17645875,17645876,17645877, -- Ifrit's Cauldron (1), Gustav Tunnel (3)
-        17645878,17649894,17649895,17649896, -- Gustav Tunnel (1), Labyrinth of Onzozo (3)
-        17531227,17531228,17531229,17420674, -- Lower Delkfutt's Tower (3), Middle Delkfutt's Tower (1)
-        17420675,17420676,17420677,17424559, -- Middle Delkfutt's Tower (3), Upper Delkfutt's Tower (1)
-        17424560,17424561,17429002,17429003, -- Upper Delkfutt's Tower (2), Temple of Uggalepih (2)
-        17429004,17429005,17429006,17433086, -- Temple of Uggalepih (3), Den of Rancor (1)
-        17433087,17433088,17433089,17433090, -- Den of Rancor (4)
-        17433091,17498648,17498649,17498650, -- Den of Rancor (1), Sea Serpent Grotto (3)
-        17498651,17498652,17629762,17629763, -- Sea Serpent Grotto (2), Quicksand Caves (2)
-        17629764,17629765,17629766,17629767, -- Quicksand Caves (4)
+        17457374,17457375,17457376,17461577, -- Ranguemont Pass (3), Bostaunieux Oubliette (1)
+        17461578,17461579,17469846,17469847, -- Bostaunieux Oubliette (2), Toraimarai Canal (2)
+        17469848,17469849,17481844,17555962, -- Toraimarai Canal (2), Zeruhn Mines (1), King Ranperre's Tomb (1)
+        17555963,17555964,17555965,17559931, -- King Ranperre's Tomb (3), Dangruf Wadi (1)
+        17559932,17563919,17563920,17563921, -- Dangruf Wadi (1), Inner Horutoto Ruins (3)
+        17568200,17568201,17572305,17572306, -- Ordelle's Caves (2), Outer Horutoto Ruins (2)
+        17572307,17572308,17576425,17576426, -- Outer Horutoto Ruins (2), The Eldieme Necropolis (2)
+        17576427,17576428,17580412,17580413, -- The Eldieme Necropolis (2), Gusgen Mines (2)
+        17580414,17584492,17584493,17588784, -- Gusgen Mines (1), Crawlers' Nest (2), Maze of Shakhrami (1)
+        17588785,17588786,17588787,17596849, -- Maze of Shakhrami (3), Garlaige Citadel (1)
+        17596850,17596851,17613247,17613248, -- Garlaige Citadel (2), Fei'Yin (2)
+        17404400,17404401,17404402,17404403, -- The Boyahda Tree (4)
+        17486259,17486260,17486261,17486262, -- Korroloka Tunnel (4)
+        17490318,17490319,17490320,17490321, -- Kuftal Tunnel (4)
+        17502702,17502703,17502704,17502705, -- Ve'Lugannon Palace (4)
+        17502706,17502707,17502708,17502709, -- Ve'Lugannon Palace (4)
+        17502710,17502711,17506822,17506823, -- Ve'Lugannon Palace (2), The Shrine of Ru'Avitau (2)
+        17506824,17506825,17506826,17506827, -- The Shrine of Ru'Avitau (4)
+        17506828,17617260,17617261,17617262, -- The Shrine of Ru'Avitau (1), Ifrit's Cauldron (3)
+        17617263,17617264,17617265,17617266, -- Ifrit's Cauldron (4)
+        17617267,17645876,17645877,17645878, -- Ifrit's Cauldron (1), Gustav Tunnel (3)
+        17645879,17649895,17649896,17649897, -- Gustav Tunnel (1), Labyrinth of Onzozo (3)
+        17531228,17531229,17531230,17420675, -- Lower Delkfutt's Tower (3), Middle Delkfutt's Tower (1)
+        17420676,17420677,17420678,17424560, -- Middle Delkfutt's Tower (3), Upper Delkfutt's Tower (1)
+        17424561,17424562,17429003,17429004, -- Upper Delkfutt's Tower (2), Temple of Uggalepih (2)
+        17429005,17429006,17429007,17433087, -- Temple of Uggalepih (3), Den of Rancor (1)
+        17433088,17433089,17433090,17433091, -- Den of Rancor (4)
+        17433092,17498649,17498650,17498651, -- Den of Rancor (1), Sea Serpent Grotto (3)
+        17498652,17498653,17629763,17629764, -- Sea Serpent Grotto (2), Quicksand Caves (2)
+        17629765,17629766,17629767,17629768, -- Quicksand Caves (4)
     }
 
     i = 1;
@@ -262,55 +262,55 @@ end
 function SetTreasureSpawns()
    local chests  =
    {
-       16814556, -- Pso'Xja
-       16822526, -- Oldton Movalpolos
-       16892178, -- Sacrarium
-       17355007, -- Fort Ghelsba
-       17359047, -- Yughott Grotto
-       17363365, -- Palborough Mines
-       17371603, -- Giddeus
-       17379837, -- Beadeaux
-       17388022, -- Davoi
-       17396205, -- Castle Oztroja
-       17420671, -- Middle Delkfutt's Tower
-       17424558, -- Upper Delkfutt's Tower
-       17436992, -- Castle Zvahl Baileys
-       17441083, -- Castle Zvahl Keep
-       17498611, -- Sea Serpent Grotto
-       17555949, -- King Ranperre's Tomb
-       17559919, -- Dangruf Wadi
-       17563909, -- Inner Horutoto Ruins
-       17568187, -- Ordelle's Caves
-       17572285, -- Outer Horutoto Ruins
-       17576351, -- The Eldieme Necropolis
-       17580398, -- Gusgen Mines
-       17584470, -- Crawler's Nest
-       17588768, -- Maze of Shakhrami
-       17596804, -- Garlaige Citadel
-       17613221, -- Fei'Yin
-       17649892  -- Labyrinth of Onzozo
+       16814557, -- Pso'Xja
+       16822527, -- Oldton Movalpolos
+       16892179, -- Sacrarium
+       17355008, -- Fort Ghelsba
+       17359048, -- Yughott Grotto
+       17363366, -- Palborough Mines
+       17371604, -- Giddeus
+       17379838, -- Beadeaux
+       17388023, -- Davoi
+       17396206, -- Castle Oztroja
+       17420672, -- Middle Delkfutt's Tower
+       17424559, -- Upper Delkfutt's Tower
+       17436993, -- Castle Zvahl Baileys
+       17441084, -- Castle Zvahl Keep
+       17498612, -- Sea Serpent Grotto
+       17555950, -- King Ranperre's Tomb
+       17559920, -- Dangruf Wadi
+       17563910, -- Inner Horutoto Ruins
+       17568188, -- Ordelle's Caves
+       17572286, -- Outer Horutoto Ruins
+       17576352, -- The Eldieme Necropolis
+       17580399, -- Gusgen Mines
+       17584471, -- Crawler's Nest
+       17588769, -- Maze of Shakhrami
+       17596805, -- Garlaige Citadel
+       17613222, -- Fei'Yin
+       17649893  -- Labyrinth of Onzozo
    }
 
    local coffers  =
    {
-       16826622, -- Newton Movalpolos
-       17310019, -- Ru'Aun Gardens
-       17379838, -- Beadeaux
-       17391844, -- Monastic Cavern
-       17396206, -- Castle Oztroja
-       17404385, -- The Boyahda Tree
-       17428981, -- Temple of Uggalepih
-       17433073, -- Den of Rancor
-       17436993, -- Castle Zvahl Baileys
-       17469830, -- Toraimarai Canal
-       17490296, -- Kuftal Tunnel
-       17498612, -- Sea Serpent Grotto
-       17502694, -- Ve'Lugannon Palace
-       17576352, -- The Eldieme Necropolis
-       17584471, -- Crawler's Nest
-       17596805, -- Garlaige Citadel
-       17617216, -- Ifrit's Cauldron
-       17629731  -- Quicksand Caves
+       16826623, -- Newton Movalpolos
+       17310020, -- Ru'Aun Gardens
+       17379839, -- Beadeaux
+       17391845, -- Monastic Cavern
+       17396207, -- Castle Oztroja
+       17404386, -- The Boyahda Tree
+       17428982, -- Temple of Uggalepih
+       17433074, -- Den of Rancor
+       17436994, -- Castle Zvahl Baileys
+       17469831, -- Toraimarai Canal
+       17490297, -- Kuftal Tunnel
+       17498613, -- Sea Serpent Grotto
+       17502695, -- Ve'Lugannon Palace
+       17576353, -- The Eldieme Necropolis
+       17584472, -- Crawler's Nest
+       17596806, -- Garlaige Citadel
+       17617217, -- Ifrit's Cauldron
+       17629732  -- Quicksand Caves
    }
 
    i = 1;

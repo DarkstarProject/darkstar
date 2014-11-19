@@ -106,7 +106,7 @@ function onEventFinish(player,csid,option,npc)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	GetNPCByID(17719328):wait(5000);
+	GetNPCByID(17719329):wait(5000);
 	
 	if (csid == 0x01fe and option == 0) then
 		if (player:getFreeSlotsCount() > 0) then
