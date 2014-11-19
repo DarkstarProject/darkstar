@@ -43,7 +43,7 @@ end;
 
 function onEventFinish(player,csid,option)
 
-	local Torch1 = GetNPCByID(17396172):getID();
+	local Torch1 = GetNPCByID(17396173):getID();
 	local Torch2 = GetNPCByID(Torch1):getID() + 1;	
 	local DoorID = GetNPCByID(Torch1):getID() - 3;	
 

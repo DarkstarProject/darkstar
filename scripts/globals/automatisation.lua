@@ -11,7 +11,7 @@ function OnGameDayAutomatisation()
 						 --[[G-10]]{-55.960,2.958,-300.014}, --[[I-7]]{152.311,4.000,-74.176}, --[[I-8]]{153.514,4.250,-112.616},--[[J-7]]{188.988,4.000,-80.058},  --[[K-7]]{318.694,0.001,-58.646},
 						 --[[K-8]]{299.717,0.001,-160.910},  --[[K-9]]{274.849,4.162,-213.599},--[[K-9]]{250.809,4.000,-240.509},--[[J-8]]{219.474,3.750,-128.170}, --[[I-9]]{86.749,-5.166,-166.414}};
 	
-	local storageHole = GetNPCByID(17388019);
+	local storageHole = GetNPCByID(17388021);
 	local randPos = 0;
 	
 	while(randPos == 0 or storHolePos[randPos][1] == storageHole:getXPos()) do
@@ -23,7 +23,7 @@ function OnGameDayAutomatisation()
 	-- Labyrinth of sacrarium
 	local day = VanadielDayElement() ;
 	local tbl;
-	local SacrariumWallOffset = 16892108;
+	local SacrariumWallOffset = 16892109;
 	
 	if(day == 3 or day == 7) then
 		tbl = {9,9,8,8,9,9,8,9,8,8,9,8,8,8,9,8,9,8};
@@ -55,7 +55,7 @@ function OnGameDayAutomatisation()
 	GetNPCByID(SacrariumWallOffset+5):setAnimation(tbl[18]); 
 	
 	-- Ro'Maeve Moongates
-	local Moongate_Offset = 17277173; -- _3e0 in npc_list
+	local Moongate_Offset = 17277174; -- _3e0 in npc_list
 	local direction = VanadielMoonDirection();
 	local phase = VanadielMoonPhase();
 	
@@ -75,7 +75,7 @@ end;
 function OnGameHourAutomatisation()
 
 	local VanadielHour = VanadielHour();
-	local FlameSpout = 17617199;
+	local FlameSpout = 17617201;
 	
 	-- Community Service Quest
 	if(VanadielHour == 1) then
@@ -88,7 +88,7 @@ function OnGameHourAutomatisation()
 		SetServerVariable("[JEUNO]CommService",0);
 		
 	end
-	GetNPCByID(16806282):openDoor(); -- Attohwa Chasm miasma
+	GetNPCByID(16806283):openDoor(); -- Attohwa Chasm miasma
 	
 	if(VanadielHour % 3 == 0) then -- Opens flame spouts every 3 hours Vana'diel time
 		GetNPCByID(FlameSpout):openDoor(90); -- Ifrit's Cauldron flame spout (H-6) Map 1

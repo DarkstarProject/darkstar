@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
 		else
 			player:tradeComplete();
 			player:addItem(1138); -- Unlit Lantern
-			--GetNPCByID(17433045):lightFor(LANTERNS_STAY_LIT); -- Light the lantern for x sec
+			--GetNPCByID(17433046):lightFor(LANTERNS_STAY_LIT); -- Light the lantern for x sec
 			SetServerVariable("[LANTERN]_rancor_ne_last_lit",os.time());
 			se = os.time() - GetServerVariable("[LANTERN]_rancor_se_last_lit");
 			nw = os.time() - GetServerVariable("[LANTERN]_rancor_nw_last_lit");
@@ -47,7 +47,7 @@ function onTrade(player,npc,trade)
 			elseif(number_of_lit_lanterns == 4) then
 				player:messageSpecial(LANTERN_OFFSET + 12); -- All the lanterns are lit
 				timeGateOpened = math.min(LANTERNS_STAY_LIT - se,LANTERNS_STAY_LIT - nw,LANTERNS_STAY_LIT - sw);
-				GetNPCByID(17433051):openDoor(timeGateOpened); -- drop gate to Sacrificial Chamber   
+				GetNPCByID(17433052):openDoor(timeGateOpened); -- drop gate to Sacrificial Chamber   
 			end;
 		end
 	end
