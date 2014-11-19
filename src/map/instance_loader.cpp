@@ -243,19 +243,22 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 			flag, speed, speedsub, animation, animationsub, namevis,\
 			status, unknown, look, name_prefix \
 			FROM instance_entities INNER JOIN npc_list ON \
-			(instance_entities.id & 0xFFF = npc_list.npcid AND npc_list.zoneid = %u) \
-			WHERE instanceid = %u AND npcid < 1024;";
+			(instance_entities.id = npc_list.npcid) \
+			WHERE instanceid = %u AND npcid >= %u and npcid < %u;";
 
-		ret = Sql_Query(SqlHandle, Query, zone->GetID(), instance->GetID());
+		uint32 zoneMin = (zone->GetID() << 12) + 0x1000000;
+		uint32 zoneMax = zoneMin + 1024;
+
+		ret = Sql_Query(SqlHandle, Query, instance->GetID(), zoneMin, zoneMax);
 
 		if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 		{
 			while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 			{
 				CNpcEntity* PNpc = new CNpcEntity;
-				PNpc->targid = (uint16)Sql_GetUIntData(SqlHandle, 0);
-				PNpc->id = (uint32)PNpc->targid + (zone->GetID() << 12) + 0x1000000;
-
+				PNpc->id = (uint16)Sql_GetUIntData(SqlHandle, 0);
+				PNpc->targid = PNpc->id & 0xFFF;
+				
 				PNpc->name.insert(0, Sql_GetData(SqlHandle, 1));
 
 				PNpc->loc.p.rotation = (uint8)Sql_GetIntData(SqlHandle, 2);
