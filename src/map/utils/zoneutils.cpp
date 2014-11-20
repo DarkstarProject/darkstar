@@ -295,6 +295,9 @@ void LoadNPCList()
 
 void LoadMOBList()
 {
+	uint8 normalLevelRangeMin = luautils::GetSettingsVariable("NORMAL_MOB_MAX_LEVEL_RANGE_MIN");
+	uint8 normalLevelRangeMax = luautils::GetSettingsVariable("NORMAL_MOB_MAX_LEVEL_RANGE_MAX");
+
     const int8* Query =
         "SELECT zoneid, mobname, mobid, pos_rot, pos_x, pos_y, pos_z, \
 			respawntime, spawntype, dropid, mob_groups.HP, mob_groups.MP, minLevel, maxLevel, \
@@ -410,6 +413,15 @@ void LoadMOBList()
 				PMob->m_Family = (uint16)Sql_GetIntData(SqlHandle, 49);
 				PMob->m_name_prefix = (uint8)Sql_GetIntData(SqlHandle, 50);
 				PMob->m_unknown = (uint32)Sql_GetIntData(SqlHandle, 51);
+
+				// Cap Level if Necessary (Don't Cap NMs)
+				if (normalLevelRangeMin > 0 && PMob->m_Type != MOBTYPE_NOTORIOUS && PMob->m_minLevel > normalLevelRangeMin){
+					PMob->m_minLevel = normalLevelRangeMin;
+				}
+
+				if (normalLevelRangeMax > 0 && PMob->m_Type != MOBTYPE_NOTORIOUS && PMob->m_maxLevel > normalLevelRangeMax){
+					PMob->m_maxLevel = normalLevelRangeMax;
+				}
 
 				//Special sub animation for Mob (yovra, jailer of love, phuabo)
 				// yovra 1: en hauteur, 2: en bas, 3: en haut
