@@ -275,7 +275,7 @@ int32 lobbydata_parse(int32 fd)
 					
 					if (Sql_GetIntData(SqlHandle,3) == 0)  key3[16] += 6;
 
-					ZoneIP = Sql_GetUIntData(SqlHandle,0);
+					ZoneIP = inet_addr(Sql_GetData(SqlHandle,0));
 					ZonePort = (uint16)Sql_GetUIntData(SqlHandle,1);
 					uint8  ZoneID = (uint8)Sql_GetUIntData(SqlHandle,2);
 					WBUFL(ReservePacket,(0x38)) = ZoneIP;
