@@ -28,6 +28,7 @@
 #include "../common/showmsg.h"
 #include "../common/timer.h"
 #include "../common/utils.h"
+#include "../common/socket.h"
 
 #include <string.h>
 
@@ -362,7 +363,7 @@ void CZone::LoadZoneSettings()
     {
         m_zoneName.insert(0, Sql_GetData(SqlHandle,0));
 
-		m_zoneIP   = (uint32)Sql_GetUIntData(SqlHandle,1);
+		m_zoneIP   = inet_addr(Sql_GetData(SqlHandle,1));
 		m_zonePort = (uint16)Sql_GetUIntData(SqlHandle,2);
 		m_zoneMusic.m_song   = (uint8)Sql_GetUIntData(SqlHandle,3);   // background music
 		m_zoneMusic.m_bSongS = (uint8)Sql_GetUIntData(SqlHandle,4);   // solo battle music
