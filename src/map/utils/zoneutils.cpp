@@ -259,7 +259,7 @@ void LoadNPCList()
           look,\
           name_prefix \
         FROM npc_list INNER JOIN zone_settings \
-		ON npc_list.zoneid = zone_settings.zoneid \
+        ON (npcid & 0xFFF000) >> 12 = zone_settings.zoneid \
         WHERE IF(%d <> 0, %d = zoneip AND %d = zoneport, TRUE);";
 
     int32 ret = Sql_Query(SqlHandle, Query, map_ip, map_ip, map_port);
