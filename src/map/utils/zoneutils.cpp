@@ -224,7 +224,6 @@ void LoadNPCList()
 {
     const int8* Query =
         "SELECT \
-          zoneid,\
           npcid,\
           name,\
           pos_rot,\
@@ -241,8 +240,7 @@ void LoadNPCList()
           unknown,\
           look,\
           name_prefix \
-        FROM npc_list \
-        WHERE npcid < 1024;";
+        FROM npc_list";
 
     int32 ret = Sql_Query(SqlHandle, Query);
 
@@ -250,36 +248,37 @@ void LoadNPCList()
 	{
 		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		{
-			uint16 ZoneID = (uint16)Sql_GetUIntData(SqlHandle, 0);
+			uint32 NpcID = Sql_GetUIntData(SqlHandle, 0);
+			uint16 ZoneID = (NpcID - 0x1000000) >> 12;
 
 			if (GetZone(ZoneID)->GetType() != ZONETYPE_DUNGEON_INSTANCED)
 			{
 				CNpcEntity* PNpc = new CNpcEntity;
-				PNpc->targid = (uint16)Sql_GetUIntData(SqlHandle, 1);
-				PNpc->id = (uint32)PNpc->targid + (ZoneID << 12) + 0x1000000;
+				PNpc->targid = NpcID & 0xFFF;
+				PNpc->id = NpcID;
 
-				PNpc->name.insert(0, Sql_GetData(SqlHandle, 2));
+				PNpc->name.insert(0, Sql_GetData(SqlHandle, 1));
 
-				PNpc->loc.p.rotation = (uint8)Sql_GetIntData(SqlHandle, 3);
-				PNpc->loc.p.x = Sql_GetFloatData(SqlHandle, 4);
-				PNpc->loc.p.y = Sql_GetFloatData(SqlHandle, 5);
-				PNpc->loc.p.z = Sql_GetFloatData(SqlHandle, 6);
-				PNpc->loc.p.moving = (uint16)Sql_GetUIntData(SqlHandle, 7);
+				PNpc->loc.p.rotation = (uint8)Sql_GetIntData(SqlHandle, 2);
+				PNpc->loc.p.x = Sql_GetFloatData(SqlHandle, 3);
+				PNpc->loc.p.y = Sql_GetFloatData(SqlHandle, 4);
+				PNpc->loc.p.z = Sql_GetFloatData(SqlHandle, 5);
+				PNpc->loc.p.moving = (uint16)Sql_GetUIntData(SqlHandle, 6);
 
-				PNpc->m_TargID = (uint32)Sql_GetUIntData(SqlHandle, 7) >> 16; // вполне вероятно
+				PNpc->m_TargID = (uint32)Sql_GetUIntData(SqlHandle, 6) >> 16; // вполне вероятно
 
-				PNpc->speed = (uint8)Sql_GetIntData(SqlHandle, 8);
-				PNpc->speedsub = (uint8)Sql_GetIntData(SqlHandle, 9);
-				PNpc->animation = (uint8)Sql_GetIntData(SqlHandle, 10);
-				PNpc->animationsub = (uint8)Sql_GetIntData(SqlHandle, 11);
+				PNpc->speed = (uint8)Sql_GetIntData(SqlHandle, 7);
+				PNpc->speedsub = (uint8)Sql_GetIntData(SqlHandle, 8);
+				PNpc->animation = (uint8)Sql_GetIntData(SqlHandle, 9);
+				PNpc->animationsub = (uint8)Sql_GetIntData(SqlHandle, 10);
 
-				PNpc->namevis = (uint8)Sql_GetIntData(SqlHandle, 12);
-				PNpc->status = (STATUSTYPE)Sql_GetIntData(SqlHandle, 13);
-				PNpc->unknown = (uint32)Sql_GetUIntData(SqlHandle, 14);
+				PNpc->namevis = (uint8)Sql_GetIntData(SqlHandle, 11);
+				PNpc->status = (STATUSTYPE)Sql_GetIntData(SqlHandle, 12);
+				PNpc->unknown = (uint32)Sql_GetUIntData(SqlHandle, 13);
 
-				PNpc->name_prefix = (uint8)Sql_GetIntData(SqlHandle, 16);
+				PNpc->name_prefix = (uint8)Sql_GetIntData(SqlHandle, 15);
 
-				memcpy(&PNpc->look, Sql_GetData(SqlHandle, 15), 20);
+				memcpy(&PNpc->look, Sql_GetData(SqlHandle, 14), 20);
 
 				GetZone(ZoneID)->InsertNPC(PNpc);
 				luautils::OnNpcSpawn(PNpc);
@@ -296,6 +295,9 @@ void LoadNPCList()
 
 void LoadMOBList()
 {
+	uint8 normalLevelRangeMin = luautils::GetSettingsVariable("NORMAL_MOB_MAX_LEVEL_RANGE_MIN");
+	uint8 normalLevelRangeMax = luautils::GetSettingsVariable("NORMAL_MOB_MAX_LEVEL_RANGE_MAX");
+
     const int8* Query =
         "SELECT zoneid, mobname, mobid, pos_rot, pos_x, pos_y, pos_z, \
 			respawntime, spawntype, dropid, mob_groups.HP, mob_groups.MP, minLevel, maxLevel, \
@@ -411,6 +413,15 @@ void LoadMOBList()
 				PMob->m_Family = (uint16)Sql_GetIntData(SqlHandle, 49);
 				PMob->m_name_prefix = (uint8)Sql_GetIntData(SqlHandle, 50);
 				PMob->m_unknown = (uint32)Sql_GetIntData(SqlHandle, 51);
+
+				// Cap Level if Necessary (Don't Cap NMs)
+				if (normalLevelRangeMin > 0 && PMob->m_Type != MOBTYPE_NOTORIOUS && PMob->m_minLevel > normalLevelRangeMin){
+					PMob->m_minLevel = normalLevelRangeMin;
+				}
+
+				if (normalLevelRangeMax > 0 && PMob->m_Type != MOBTYPE_NOTORIOUS && PMob->m_maxLevel > normalLevelRangeMax){
+					PMob->m_maxLevel = normalLevelRangeMax;
+				}
 
 				//Special sub animation for Mob (yovra, jailer of love, phuabo)
 				// yovra 1: en hauteur, 2: en bas, 3: en haut
