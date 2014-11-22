@@ -70,3 +70,16 @@ CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 Mem
 
     memcpy(data + (0x26) - 4, PChar->GetName(), PChar->name.size());
 }
+CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(uint32 id, const int8* name, uint16 memberFlags, uint8 ZoneID)
+{
+
+	this->type = 0xDD;
+	this->size = 0x20;
+
+	WBUFL(data, (0x04) - 4) = id;
+
+	WBUFW(data, (0x14) - 4) = memberFlags;
+	WBUFW(data, (0x20) - 4) = ZoneID;
+
+	memcpy(data + (0x26) - 4, name, strlen(name));
+}

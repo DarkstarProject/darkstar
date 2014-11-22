@@ -6,15 +6,31 @@
 package.loaded[ "scripts/zones/Yhoator_Jungle/TextIDs"] = nil;
 -----------------------------------
 
-require( "scripts/zones/Yhoator_Jungle/TextIDs");
-require( "scripts/globals/icanheararainbow");
+require("scripts/zones/Yhoator_Jungle/TextIDs");
+require("scripts/globals/icanheararainbow");
+require("scripts/globals/zone");
+require("scripts/globals/conquest");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
-function onInitialize( zone)		
-end;		
+function onInitialize(zone)
+    local manuals = {17285694,17285695,17285696};
+    
+    SetFieldManual(manuals);
+    
+    -- Bright-handed Kunberry
+    SetRespawnTime(17285220, 900, 10800);
+    
+    -- Bisque-heeled Sunberry
+    SetRespawnTime(17285460, 900, 10800);
+    
+    -- Bright-handed Kunberry
+    SetRespawnTime(17285526, 900, 10800);
+    
+    SetRegionalConquestOverseers(zone:getRegionID())
+end;
 
 -----------------------------------		
 -- onConquestUpdate		

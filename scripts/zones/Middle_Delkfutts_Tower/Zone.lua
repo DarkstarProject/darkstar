@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Middle_Delkfutts_Tower/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/zones/Middle_Delkfutts_Tower/TextIDs");
@@ -17,6 +18,10 @@ require("scripts/zones/Middle_Delkfutts_Tower/TextIDs");
 
 function onInitialize(zone)
 	
+    local tomes = {17420675,17420676,17420677,17420678};
+    
+    SetGroundsTome(tomes);    
+    
 	zone:registerRegion(1, -36, -50, 83,  -30, -49,  89 ); -- Fourth Floor G-6 porter to Lower Delkfutt's Tower
 	zone:registerRegion(2, -49, -50, -50, -43, -49, -43 ); -- Fourth Floor G-6 porter to Lower Delkfutt's Tower "1"
 	zone:registerRegion(3, 103, -50, 10,  109, -49,  16 ); -- Fourth Floor J-6 porter to Lower Delkfutt's Tower "2"
@@ -28,7 +33,8 @@ function onInitialize(zone)
 	zone:registerRegion(9, -356, -98, 84, -351, -97,  88 ); -- Seventh Floor  J-6 porter to Sixth Floor "I"
 	zone:registerRegion(10, -415, -98, 104, -411, -97, 108 ); -- Seventh Floor  H-6 porter to Sixth Floor "J"
 	zone:registerRegion(11, -489, -130, 84, -484,-129, 88 ); -- Ninth Floor F-6 porter to Upper Delkfutt's Tower
-	--print("Middle Delkfutt's Tower Teleporters initialized.")
+
+    UpdateTreasureSpawnPoint(17420672);
 	
 end;
 

@@ -70,6 +70,28 @@ function onRegionEnter(player,region)
 end;
 
 -----------------------------------
+-- onGameHour
+-----------------------------------
+
+function onGameHour()
+
+	local VanadielHour = VanadielHour();
+	
+	-- Community Service Quest
+	if(VanadielHour == 1) then
+		if(GetServerVariable("[JEUNO]CommService") == 0) then
+			GetNPCByID(17780880):setStatus(0); -- Vhana Ehgaklywha
+			GetNPCByID(17780880):initNpcAi();
+		end;
+		
+	elseif(VanadielHour == 5) then
+		SetServerVariable("[JEUNO]CommService",0);
+		
+	end
+
+end;
+
+-----------------------------------
 -- onEventUpdate
 -----------------------------------
 

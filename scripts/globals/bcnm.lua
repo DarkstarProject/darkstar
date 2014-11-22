@@ -128,7 +128,7 @@ function EventTriggerBCNM(player,npc)
 		else --You're not in the BCNM but you have the Battlefield effect. Think: non-trader in a party
 			status = player:getStatusEffect(EFFECT_BATTLEFIELD);
 			playerbcnmid = status:getPower();
-			playermask = GetBattleBitmask(playerbcnmid,player:getZone(),1);
+			playermask = GetBattleBitmask(playerbcnmid,player:getZone():getID(),1);
 			if(playermask~=-1) then
 				--This gives players who did not trade to go in the option of entering the fight
 				player:startEvent(0x7d00,0,0,0,playermask,0,0,0,0);
@@ -192,18 +192,18 @@ function EventUpdateBCNM(player,csid,option,entrance)
 
 		if(instance == player:getVar("bcnm_instanceid"))then
 			--respond to this packet
-			local mask = GetBattleBitmask(id,player:getZone(),2);
+			local mask = GetBattleBitmask(id,player:getZone():getID(),2);
 			local status = player:getStatusEffect(EFFECT_BATTLEFIELD);
 			local playerbcnmid = status:getPower();
 			if(mask < playerbcnmid) then
-				mask = GetBattleBitmask(playerbcnmid,player:getZone(),2);
+				mask = GetBattleBitmask(playerbcnmid,player:getZone():getID(),2);
 				player:updateEvent(2,mask,0,1,1,skip); -- Add mask number for the correct entering CS
 				player:bcnmEnter(id);
 				player:setVar("bcnm_instanceid_tick",0);
 				-- print("mask is "..mask)
 				-- print("playerbcnmid is "..playerbcnmid);
 			
-				mask = GetBattleBitmask(id,player:getZone(),2);
+				mask = GetBattleBitmask(id,player:getZone():getID(),2);
 			elseif(mask >= playerbcnmid) then
 				player:updateEvent(2,mask,0,1,1,skip); -- Add mask number for the correct entering CS
 				player:bcnmEnter(id);
@@ -386,7 +386,7 @@ end;
 function checkNonTradeBCNM(player,npc)
 
 	local mask = 0;
-	local Zone = player:getZone();
+	local Zone = player:getZone():getID();
 	
 	if(Zone == 6) then -- Bearclaw_Pinnacle
 	   	if(player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Ulmia_s_Path") == 6) then --flames_for_the_dead
@@ -618,7 +618,7 @@ end;
 function CutsceneSkip(player,npc)
 
 	local skip = 0;
-	local Zone = player:getZone();
+	local Zone = player:getZone():getID();
 	
 	if(Zone == 6) then -- Bearclaw Pinnacle
 	   	if((player:hasCompletedMission(COP,THREE_PATHS)) or (player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Ulmia_s_Path") > 6)) then -- flames_for_the_dead

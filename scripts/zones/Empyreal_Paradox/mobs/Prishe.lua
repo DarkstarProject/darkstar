@@ -67,7 +67,7 @@ function OnMobRoam(mob)
         end
         mob:setLocalVar("ready", bit.band(baseID, 0xFFF));
     elseif (ready > 0) then
-        mob:addEnmity(GetMobByID(ready + bit.lshift(mob:getZone(), 12) + 0x1000000),0,1);
+        mob:addEnmity(GetMobByID(ready + bit.lshift(mob:getZone():getID(), 12) + 0x1000000),0,1);
         mob:addStatusEffectEx(EFFECT_SILENCE,0,0,0,5)
         mob:setLocalVar("ready", 0);
     else

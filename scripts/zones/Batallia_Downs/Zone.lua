@@ -7,13 +7,20 @@
 package.loaded[ "scripts/zones/Batallia_Downs/TextIDs"] = nil;
 
 require( "scripts/zones/Batallia_Downs/TextIDs");
+require("scripts/globals/zone");
 require( "scripts/globals/icanheararainbow");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
-function onInitialize( zone)
+function onInitialize(zone)		
+    local manuals = {17207864,17207865};
+    
+    SetFieldManual(manuals);
+    
+    -- Ahtu
+    SetRespawnTime(17207657, 900, 10800);
 end;
 
 -----------------------------------
@@ -22,7 +29,7 @@ end;
 
 function onZoneIn( player, prevZone)
 
-	cs = -1;
+	local cs = -1;
 
 	if( player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
 		player:setPos( -693.609, -14.583, 173.59, 30);

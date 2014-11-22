@@ -14,7 +14,7 @@ require("scripts/zones/Wajaom_Woodlands/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	startHarvesting(player,player:getZone(),npc,trade,0x01FB);
+	startHarvesting(player,player:getZone():getID(),npc,trade,0x01FB);
 end;
 
 -----------------------------------

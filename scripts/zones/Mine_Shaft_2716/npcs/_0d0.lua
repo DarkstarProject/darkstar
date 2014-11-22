@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
 	    if(trade:getItemCount() == 1 and trade:hasItemQty(1684,1)) then		    
 		    player:startEvent(0x0003);
 		end
-	elseif(TradeBCNM(player,player:getZone(),trade,npc))then
+	elseif(TradeBCNM(player,player:getZone():getID(),trade,npc))then
 		return;
 	end
 	

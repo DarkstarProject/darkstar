@@ -8,13 +8,21 @@ package.loaded[ "scripts/zones/West_Sarutabaruta/TextIDs"] = nil;
 
 require( "scripts/zones/West_Sarutabaruta/TextIDs");
 require( "scripts/globals/icanheararainbow");
+require("scripts/globals/zone");
+require("scripts/globals/conquest");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
-function onInitialize( zone)		
-end;		
+function onInitialize(zone)
+    local manuals = {17248865,17248866,17248867};
+    
+    SetFieldManual(manuals);
+    
+    SetRegionalConquestOverseers(zone:getRegionID())
+    
+end;
 
 -----------------------------------		
 -- onZoneIn		
@@ -22,7 +30,7 @@ end;
 
 function onZoneIn( player, prevZone)
 
-	cs = -1;
+	local cs = -1;
 
 	if( player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
 		player:setPos( -374.008, -23.712, 63.289, 213);

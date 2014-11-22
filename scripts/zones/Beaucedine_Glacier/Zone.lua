@@ -9,12 +9,19 @@ package.loaded[ "scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
 require( "scripts/zones/Beaucedine_Glacier/TextIDs");
 require( "scripts/globals/missions");
 require( "scripts/globals/icanheararainbow");
+require("scripts/globals/zone");
+require("scripts/globals/conquest");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
-function onInitialize( zone)
+function onInitialize(zone)
+    local manuals = {17232275,17232276,17232277,17232278};
+    
+    SetFieldManual(manuals);
+    
+    SetRegionalConquestOverseers(zone:getRegionID())
 end;
 
 -----------------------------------

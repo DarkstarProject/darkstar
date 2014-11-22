@@ -7,6 +7,7 @@ package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/La_Theine_Plateau/TextIDs");
+require("scripts/globals/zone");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
@@ -16,8 +17,12 @@ require("scripts/globals/weather");
 -- onInitialize
 -----------------------------------
 
-function onInitialize( zone)
-end;
+function onInitialize(zone)		
+    local manuals = {17195673,17195674};
+    
+    SetFieldManual(manuals);
+end;		
+
 
 -----------------------------------
 -- onZoneIn

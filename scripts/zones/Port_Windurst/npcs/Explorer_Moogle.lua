@@ -29,7 +29,7 @@ event  = 0x0356;
 	if (player:getMainLvl() < EXPLORER_MOOGLE_LEVELCAP) then
 		event = event + 1;
 	end
-	player:startEvent(event,player:getZone(),0,accept);	
+	player:startEvent(event,player:getZone():getID(),0,accept);	
 end;
 
 -----------------------------------

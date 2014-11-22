@@ -13,7 +13,7 @@ require("scripts/zones/Grauberg_[S]/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	startHarvesting(player,player:getZone(),npc,trade,0x0385);
+	startHarvesting(player,player:getZone():getID(),npc,trade,0x0385);
 end;
 
 -----------------------------------

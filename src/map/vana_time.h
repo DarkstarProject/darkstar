@@ -93,6 +93,7 @@ public:
 	uint32   lastWeatherUpdate;
 	uint32   lastVHourlyUpdate;
 	uint32   lastVDailyUpdate;
+    uint32   lastConquestTally;
 
 private:
 

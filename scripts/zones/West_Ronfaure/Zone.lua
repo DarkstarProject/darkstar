@@ -6,8 +6,10 @@
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/zone");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
+require("scripts/globals/conquest");
 require("scripts/zones/West_Ronfaure/TextIDs");
 
 -----------------------------------
@@ -15,6 +17,11 @@ require("scripts/zones/West_Ronfaure/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)		
+    local manuals = {17187562,17187563};
+    
+    SetFieldManual(manuals);
+    
+    SetRegionalConquestOverseers(zone:getRegionID())
 end;		
 
 -----------------------------------		

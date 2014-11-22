@@ -8,6 +8,8 @@ package.loaded["scripts/zones/Yuhtunga_Jungle/TextIDs"] = nil;
 
 require("scripts/zones/Yuhtunga_Jungle/TextIDs");
 require("scripts/globals/icanheararainbow");
+require("scripts/globals/zone");
+require("scripts/globals/conquest");
 
 -----------------------------------
 -- onInitialize
@@ -15,9 +17,14 @@ require("scripts/globals/icanheararainbow");
 
 function onInitialize(zone)		
 
+    local manuals = {17281641,17281642,17281643,17281644};
+    
+    SetFieldManual(manuals);
+
 	local Rose_Garden = 17281357;
 	GetMobByID(Rose_Garden):setLocalVar("1",os.time() + math.random((36000), (37800)));
-
+    
+    SetRegionalConquestOverseers(zone:getRegionID())
 end;		
 
 -----------------------------------		

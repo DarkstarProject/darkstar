@@ -34,7 +34,7 @@ function onTrade(player,npc,trade)
 		
 		-- IMPORTANT ITEM: AF Keyitems, AF Items, & Map -----------
 		local mJob = player:getMainJob();
-		local zone = player:getZone();
+		local zone = player:getZone():getID();
 		
 		if(player:hasKeyItem(MAP_OF_THE_QUICKSAND_CAVES) == false) then
 			questItemNeeded = 3;

@@ -726,6 +726,18 @@ CCharEntity* CZoneEntities::GetCharByName(int8* name)
 	return NULL;
 }
 
+CCharEntity* CZoneEntities::GetCharByID(uint32 id)
+{
+	for (auto PChar : m_charList)
+	{
+		if (PChar.second->id == id)
+		{
+			return (CCharEntity*)PChar.second;
+		}
+	}
+	return NULL;
+}
+
 void CZoneEntities::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message_type, CBasicPacket* packet)
 {
 	// Do not send packets that are updates of a hidden GM..

@@ -34,7 +34,7 @@ function onTrade(player,npc,trade)
 		
 		-- IMPORTANT ITEM: AF Keyitems, AF Items, & Map -----------
 		local mJob = player:getMainJob();
-		local zone = player:getZone();
+		local zone = player:getZone():getID();
 		local AFHandsActivated = player:getVar("BorghertzAlreadyActiveWithJob");
 		local listAF = getAFbyZone(zone);
 		if(player:hasKeyItem(MAP_OF_THE_SEA_SERPENT_GROTTO) == false) then

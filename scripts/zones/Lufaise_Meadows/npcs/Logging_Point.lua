@@ -13,7 +13,7 @@ require("scripts/zones/Lufaise_Meadows/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	startLogging(player,player:getZone(),npc,trade,0x0070);
+	startLogging(player,player:getZone():getID(),npc,trade,0x0070);
 end;
 
 -----------------------------------

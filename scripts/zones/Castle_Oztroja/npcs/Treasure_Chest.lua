@@ -32,7 +32,7 @@ function onTrade(player,npc,trade)
 	-- Player traded a key.
 	if((trade:hasItemQty(1035,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
 		
-		local zone = player:getZone();
+		local zone = player:getZone():getID();
 		-- IMPORTANT ITEM: AF1 BST QUEST Beast collar  -----------
 		if(player:getQuestStatus(JEUNO,SCATTERED_INTO_SHADOW) == QUEST_ACCEPTED and 
 		   player:getVar("scatIntoShadowCS") == 1 and player:hasItem(13121) == false) then 

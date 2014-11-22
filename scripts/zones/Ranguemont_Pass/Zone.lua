@@ -8,12 +8,17 @@ package.loaded["scripts/zones/Ranguemont_Pass/TextIDs"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/zones/Ranguemont_Pass/TextIDs");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
+
+    local tomes = {17457374,17457375,17457376,17461577};
+    
+    SetGroundsTome(tomes);
 
 	local Taisaijin = 17457216;
 	GetMobByID(Taisaijin):setLocalVar("ToD", os.time() + math.random((86400), (259200)));

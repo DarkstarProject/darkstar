@@ -28,6 +28,7 @@
 #include "account.h"
 #include "login.h"
 #include "login_auth.h"
+#include "message_server.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -133,6 +134,28 @@ int32 login_parse(int32 fd)
 					//}
 					fmtQuery = "UPDATE accounts SET accounts.timelastmodify = NULL WHERE accounts.id = %d";
 					Sql_Query(SqlHandle,fmtQuery,sd->accid);
+                    fmtQuery = "SELECT charid, server_addr, server_port \
+                                FROM accounts_sessions JOIN accounts \
+                                ON accounts_sessions.accid = accounts.id \
+                                WHERE accounts.id = %d;";
+                    ret = Sql_Query(SqlHandle, fmtQuery, sd->accid);
+                    if (ret != SQL_ERROR  && Sql_NumRows(SqlHandle) == 1)
+                    {
+                        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+                        {
+                            uint32 charid = Sql_GetUIntData(SqlHandle, 0);
+                            uint64 ip = Sql_GetUIntData(SqlHandle, 1);
+                            uint64 port = Sql_GetUIntData(SqlHandle, 2);
+
+                            ip |= (port << 32);
+
+                            zmq::message_t chardata(sizeof(charid));
+                            WBUFL(chardata.data(), 0) = charid;
+                            zmq::message_t empty(0);
+
+                            message_server_send(ip, MSG_LOGIN, &chardata, &empty);
+                        }
+                    }
 					memset(session[fd]->wdata,0,33);
 					WBUFB(session[fd]->wdata,0) = LOGIN_SUCCESS;
 					WBUFL(session[fd]->wdata,1) = sd->accid;

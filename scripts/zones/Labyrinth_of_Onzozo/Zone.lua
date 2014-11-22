@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Labyrinth_of_Onzozo/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/zones/Labyrinth_of_Onzozo/TextIDs");
 
 -----------------------------------
@@ -14,6 +15,16 @@ require("scripts/zones/Labyrinth_of_Onzozo/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    local tomes = {17649895,17649896,17649897};
+    
+    SetGroundsTome(tomes);
+
+    -- Mysticmaker Profblix
+    SetRespawnTime(17649693, 900, 10800);
+    
+    UpdateTreasureSpawnPoint(17649893);
+    
 end;
 
 -----------------------------------		

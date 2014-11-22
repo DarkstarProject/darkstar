@@ -37,6 +37,10 @@ ELSHIMOLOWLANDS = 14;
      MOVALPOLOS = 17;
   TAVNAZIANARCH = 18;
 
+  CONQUEST_TALLY_START = 0;
+  CONQUEST_TALLY_END = 1;
+  CONQUEST_UPDATE = 2;
+  
 nationAlly = 3;
 
 -----------------------------------
@@ -1150,28 +1154,26 @@ end;
 --
 -----------------------------------
 
-function SetRegionalConquestOverseers()
+function SetRegionalConquestOverseers(region)
 
-	for region = 0, 18 do
-		local npclist = getRegionalConquestOverseers(region);
-		local nation  = GetRegionOwner(region);
+    local npclist = getRegionalConquestOverseers(region);
+    local nation  = GetRegionOwner(region);
 
-		for i = 1, table.getn(npclist), 2 do
-			if(npclist[i+1] == nation) then
-				GetNPCByID(npclist[i]):setStatus(0);
-			else
-				GetNPCByID(npclist[i]):setStatus(2);
-			end
+    for i = 1, table.getn(npclist), 2 do
+        if(npclist[i+1] == nation) then
+            GetNPCByID(npclist[i]):setStatus(0);
+        else
+            GetNPCByID(npclist[i]):setStatus(2);
+        end
 
-			if(npclist[i+1] == OTHER) then
-				if(nation ~= BEASTMEN) then
-					GetNPCByID(npclist[i]):setStatus(0);
-				else
-					GetNPCByID(npclist[i]):setStatus(2);
-				end
-			end
-		end;
-	end;
+        if(npclist[i+1] == OTHER) then
+            if(nation ~= BEASTMEN) then
+                GetNPCByID(npclist[i]):setStatus(0);
+            else
+                GetNPCByID(npclist[i]):setStatus(2);
+            end
+        end
+	end
 
 end;
 
@@ -1198,3 +1200,136 @@ function checkConquestRing(player)
 
    return count;
 end;
+
+-----------------------------------
+-- conquestUpdate
+-----------------------------------
+
+function conquestUpdate(zone, player, updateType, messageBase)
+    if (updateType == CONQUEST_TALLY_START) then
+        player:messageText(player, messageBase, 5);
+    elseif (updateType == CONQUEST_TALLY_END) then
+        --Tallying conquest results...
+        player:messageText(player, messageBase+1, 5);
+        -- This region is currently under x control.
+        local owner = GetRegionOwner(zone:getRegionID());
+        if (owner <= 3) then
+            player:messageText(player, messageBase+2+owner, 5);
+        else
+            player:messageText(player, messageBase+6, 5);
+        end
+        
+        local ranking = getConquestBalance();
+        
+        local offset = 0;
+        if (bit.band(ranking, 0x03) == 0x01) then
+            offset = offset + 7; -- 7
+            if (bit.band(ranking, 0x30) == 0x10) then
+                offset = offset + 1; -- 8
+                if (bit.band(ranking, 0x0C) == 0x0C) then
+                    offset = offset + 1; -- 9
+                end
+            elseif (bit.band(ranking, 0x0C) == 0x08) then
+                offset = offset + 3; -- 10
+                if (bit.band(ranking, 0x30) == 0x30) then
+                    offset = offset + 1; -- 11
+                end
+            elseif (bit.band(ranking, 0x0C) == 0x04) then
+                offset = offset + 6; -- 13
+            end
+        elseif (bit.band(ranking, 0x0C) == 0x04) then
+            offset = offset + 15; -- 15
+            if (bit.band(ranking, 0x30) == 0x02) then
+                offset = offset + 3; -- 18
+                if (bit.band(ranking, 0x03) == 0x03) then
+                    offset = offset + 1; -- 19
+                end
+            elseif (bit.band(ranking, 0x30) == 0x10) then
+                offset = offset + 6; -- 21
+            end
+        elseif (bit.band(ranking, 0x30) == 0x10) then
+            offset = offset + 23; -- 23
+            if (bit.band(ranking, 0x0C) == 0x08) then
+                offset = offset + 3; -- 26
+                if (bit.band(ranking, 0x30) == 0x30) then
+                    offset = offset + 1; -- 27
+                end
+            end
+        end
+        -- Global balance of power:
+        player:messageText(player, messageBase+offset, 5);
+        
+        if (isConquestAlliance()) then
+            -- have formed an alliance.
+            if (bit.band(ranking, 0x03) == 0x01) then
+                player:messageText(player, messageBase+50, 5);
+            elseif (bit.band(ranking, 0x0C) == 0x04) then
+                player:messageText(player, messageBase+51, 5);
+            elseif (bit.band(ranking, 0x30) == 0x10) then
+                player:messageText(player, messageBase+52, 5);
+            end
+        end
+    elseif (updateType == CONQUEST_UPDATE) then
+        -- Conquest update: This region is currently under x control.
+        local owner = GetRegionOwner(zone:getRegionID());
+        if (owner <= 3) then
+            player:messageText(player, messageBase+32+owner, 5);
+        else
+            player:messageText(player, messageBase+31, 5);
+        end
+        
+        local influence = GetRegionInfluence(zone:getRegionID());
+        
+        if (influence >= 64) then
+            -- The beastmen are on the rise.
+            player:messageText(player, messageBase+37, 5);
+        elseif (influence == 0) then
+            -- All three nations are at a deadlock.
+            player:messageText(player, messageBase+36, 5);
+        else
+            local sandoria = bit.band(influence, 0x03);
+            local bastok = bit.rshift(bit.band(influence, 0x0C),2);
+            local windurst = bit.rshift(bit.band(influence, 0x30),4);
+            
+            -- Regional influence: San d'Oria
+            player:messageText(player, messageBase+41 - sandoria, 5);
+            -- Bastok
+            player:messageText(player, messageBase+45 - bastok, 5);
+            -- Windurst
+            player:messageText(player, messageBase+49 - windurst, 5);
+        end
+        
+        if (isConquestAlliance()) then
+            --are currently allied.
+            if (bit.band(ranking, 0x03) == 0x01) then
+                player:messageText(player, messageBase+53, 5);
+            elseif (bit.band(ranking, 0x0C) == 0x04) then
+                player:messageText(player, messageBase+54, 5);
+            elseif (bit.band(ranking, 0x30) == 0x10) then
+                player:messageText(player, messageBase+55, 5);
+            end
+        end
+    end
+end;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -10,12 +10,16 @@ require( "scripts/globals/keyitems");
 require( "scripts/globals/missions");
 require( "scripts/globals/icanheararainbow");
 require( "scripts/zones/East_Sarutabaruta/TextIDs");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
-function onInitialize( zone)
+function onInitialize(zone)
+    local manuals = {17253060,17253061,17253062};
+    
+    SetFieldManual(manuals);
 end;
 
 -----------------------------------
@@ -24,7 +28,7 @@ end;
 
 function onZoneIn( player, prevZone)
 
-	cs = -1;
+	local cs = -1;
 
 	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
 		player:setPos(305.377,-36.092,660.435,71);

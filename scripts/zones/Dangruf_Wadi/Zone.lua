@@ -9,6 +9,7 @@ package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/status");
+require("scripts/globals/zone");
 require("scripts/zones/Dangruf_Wadi/TextIDs");
 
 -----------------------------------
@@ -16,9 +17,17 @@ require("scripts/zones/Dangruf_Wadi/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    local tomes = {17559931,17559932};
+    
+    SetGroundsTome(tomes);
+
 	zone:registerRegion(1, -133.5, 2, 132.6, -132.7, 4,  133.8);  -- I-8 Geyser	
 	zone:registerRegion(2, -213.5, 2,  92.6, -212.7, 4,   94.0);  -- H-8 Geyser	
 	zone:registerRegion(3,  -67.3, 2, 532.8,  -66.3, 4,  534.0);  -- J-3 Geyser	
+    
+    UpdateTreasureSpawnPoint(17559920);
+
 end;		
 
 -----------------------------------		

@@ -28,6 +28,7 @@
 #include "../entities/charentity.h"
 #include "../party.h"
 #include "../alliance.h"
+#include "../utils/zoneutils.h"
 
 
 CPartyDefinePacket::CPartyDefinePacket(CParty* PParty) 
@@ -35,41 +36,32 @@ CPartyDefinePacket::CPartyDefinePacket(CParty* PParty)
 	this->type = 0xC8;
 	this->size = 0x7C;
 
-	//party is an alliance do the double loop
-	if (PParty != NULL)
+	if (PParty)
 	{
-		if (PParty->m_PAlliance!= NULL)
+		uint32 allianceid = 0;
+		if (PParty->m_PAlliance)
 		{
-            uint8 offset = 0;
-            
-			for (uint8 a = 0; a < PParty->m_PAlliance->partyList.size(); ++a)
+			allianceid = PParty->m_PAlliance->m_AllianceID;
+		}
+
+		int ret = Sql_Query(SqlHandle, "SELECT chars.charid, partyflag, pos_zone FROM accounts_parties \
+									   	LEFT JOIN chars ON accounts_parties.charid = chars.charid WHERE \
+										IF (allianceid <> 0, allianceid = %d, partyid = %d) ORDER BY partyflag & %u, timestamp;", 
+										allianceid, PParty->GetPartyID(), PARTY_SECOND | PARTY_THIRD);
+		if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0)
+		{
+			uint8 i = 0;
+			while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 			{
-				for (uint8 i = 0; i < PParty->m_PAlliance->partyList.at(a)->members.size(); ++i) 
-				{
-					CBattleEntity* PChar = PParty->m_PAlliance->partyList.at(a)->members.at(i);
-                    
-					WBUFL(data,12*offset+(0x08)-4) = PChar->id;
-					WBUFW(data,12*offset+(0x0C)-4) = PChar->targid;
-                    WBUFW(data,12*offset+(0x0E)-4) = PChar->PParty->GetMemberFlags(PChar);
-					WBUFW(data,12*offset+(0x10)-4) = PChar->getZone();
-                    
-					offset++;
-				}
+				uint16 targid = 0;
+				CCharEntity* PChar = zoneutils::GetChar(Sql_GetUIntData(SqlHandle, 0));
+				if (PChar) targid = PChar->targid;
+				WBUFL(data, 12 * i + (0x08) - 4) = Sql_GetUIntData(SqlHandle, 0);
+				WBUFW(data, 12 * i + (0x0C) - 4) = targid;
+				WBUFW(data, 12 * i + (0x0E) - 4) = Sql_GetUIntData(SqlHandle, 1);
+				WBUFW(data, 12 * i + (0x10) - 4) = Sql_GetUIntData(SqlHandle, 2);
+				i++;
 			}
 		}
-        else //regular party
-        {
-			DSP_DEBUG_BREAK_IF(PParty->members.size() > 6);
-
-			for (uint8 i = 0; i < PParty->members.size(); ++i) 
-			{
-				CBattleEntity* PChar = PParty->members.at(i);
-
-				WBUFL(data,12*i+(0x08)-4) = PChar->id;
-				WBUFW(data,12*i+(0x0C)-4) = PChar->targid;
-				WBUFW(data,12*i+(0x0E)-4) = PChar->PParty->GetMemberFlags(PChar);
-				WBUFW(data,12*i+(0x10)-4) = PChar->getZone();
-			}
-        }
 	}
 }

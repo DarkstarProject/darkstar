@@ -6,6 +6,7 @@
 
 package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil;
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/zones/Sea_Serpent_Grotto/TextIDs");
 
 -----------------------------------
@@ -13,6 +14,18 @@ require("scripts/zones/Sea_Serpent_Grotto/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    local tomes = {17498649,17498650,17498651,17498652,17498653};
+    
+    SetGroundsTome(tomes);
+
+    -- Charybdis PH alternates, remove one
+    DespawnMob(17498518);
+    
+    UpdateTreasureSpawnPoint(17498612);
+
+    UpdateTreasureSpawnPoint(17498613);
+
 end;
 
 -----------------------------------		

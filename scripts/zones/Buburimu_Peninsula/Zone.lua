@@ -6,14 +6,22 @@
 package.loaded[ "scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
 -----------------------------------
 
-require( "scripts/zones/Buburimu_Peninsula/TextIDs");
-require( "scripts/globals/icanheararainbow");
+require("scripts/zones/Buburimu_Peninsula/TextIDs");
+require("scripts/globals/icanheararainbow");
+require("scripts/globals/zone");
+require("scripts/globals/conquest");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
+    local manuals = {17261195,17261196};
+    
+    SetFieldManual(manuals);
+    
+    SetRegionalConquestOverseers(zone:getRegionID())
+    
 end;
 
 -----------------------------------

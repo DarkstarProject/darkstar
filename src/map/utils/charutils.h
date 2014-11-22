@@ -165,6 +165,7 @@ namespace charutils
     void    ApplyAllEquipMods(CCharEntity* PChar);
 
 	void	ClearTempItems(CCharEntity* PChar);
+	void	ReloadParty(CCharEntity* PChar);
 };
 
 #endif

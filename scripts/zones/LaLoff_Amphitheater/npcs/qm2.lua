@@ -40,7 +40,7 @@ require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	if(TradeBCNM(player,player:getZone(),trade,npc))then
+	if(TradeBCNM(player,player:getZone():getID(),trade,npc))then
 		return;
 	end
 

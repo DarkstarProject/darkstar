@@ -38,7 +38,7 @@ function onEventFinish(player,csid,option)
 --printf("onFinish CSID: %u",csid);
 --printf("onFinish RESULT: %u",option);
 
-	local pZone = player:getZone();
+	local pZone = player:getZone():getID();
 
 	if(csid == 0x7d03 and option == 4) then
 		if(player:getVar(tostring(pZone) .. "_Fight") == 100) then

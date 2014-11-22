@@ -6,6 +6,7 @@
 
 package.loaded["scripts/zones/Den_of_Rancor/TextIDs"] = nil;
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/zones/Den_of_Rancor/TextIDs");
 
 -----------------------------------
@@ -13,6 +14,13 @@ require("scripts/zones/Den_of_Rancor/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    local tomes = {17433087,17433088,17433089,17433090,17433091,17433092};
+    
+    SetGroundsTome(tomes);
+
+    UpdateTreasureSpawnPoint(17433074);
+    
 end;
 
 -----------------------------------		

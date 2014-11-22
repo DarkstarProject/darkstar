@@ -13,7 +13,7 @@ require("scripts/zones/Mamook/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	startLogging(player,player:getZone(),npc,trade,0x00D7);
+	startLogging(player,player:getZone():getID(),npc,trade,0x00D7);
 end;
 
 -----------------------------------

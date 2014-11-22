@@ -266,11 +266,11 @@ void CLinkshell::RemoveMemberByName(int8* MemberName)
 *                                                                       *
 ************************************************************************/
 
-void CLinkshell::PushPacket(CCharEntity* PChar, CBasicPacket* packet)
+void CLinkshell::PushPacket(uint32 senderID, CBasicPacket* packet)
 {
     for (uint32 i = 0; i < members.size(); ++i)
 	{
-        if (members.at(i) != PChar &&
+        if (members.at(i)->id != senderID &&
             members.at(i)->status != STATUS_DISAPPEAR &&
             !jailutils::InPrison(members.at(i)))
 		{
@@ -409,4 +409,16 @@ namespace linkshell
         }
         return 0;
     }
+
+	CLinkshell* GetLinkshell(uint32 id)
+	{
+		try
+		{
+			return LinkshellList.at(id);
+		}
+		catch (const std::out_of_range& oor)
+		{
+			return NULL;
+		}
+	}
 };

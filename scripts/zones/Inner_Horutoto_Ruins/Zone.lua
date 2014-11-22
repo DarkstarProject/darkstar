@@ -6,7 +6,8 @@
 package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
 -----------------------------------
 	
-require("scripts/globals/settings");	
+require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/zones/Inner_Horutoto_Ruins/TextIDs");	
 
 -----------------------------------	
@@ -14,10 +15,18 @@ require("scripts/zones/Inner_Horutoto_Ruins/TextIDs");
 -----------------------------------	
 
 function onInitialize(zone)	
+
+    local tomes = {17563919,17563920,17563921};
+    
+    SetGroundsTome(tomes);
+    
 	zone:registerRegion(1, -261, -1, -31, -257, 1, -27); -- Red
 	zone:registerRegion(2, -265, -1, -26, -261, 1, -22); -- White	
 	zone:registerRegion(3, -258, -1, -26, -254, 1, -22); -- Black
 	zone:registerRegion(4, -261, -3, 182, -257, -1, 186); -- Teleport at H-6
+    
+    UpdateTreasureSpawnPoint(17563910);
+
 end;		
 
 -----------------------------------		

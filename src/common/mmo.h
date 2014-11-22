@@ -72,6 +72,23 @@ enum ELEMENTS
 	DARK		= 0x80,
 };
 
+enum MSGSERVTYPE : uint8
+{
+    MSG_LOGIN,
+    MSG_CHAT_TELL,
+    MSG_CHAT_PARTY,
+    MSG_CHAT_LINKSHELL,
+    MSG_CHAT_YELL,
+    MSG_CHAT_SERVMES,
+    MSG_PT_INVITE,
+    MSG_PT_INV_RES,
+    MSG_PT_RELOAD,
+    MSG_PT_DISBAND,
+    MSG_DIRECT,
+    MSG_LINKSHELL_RANK_CHANGE,
+    MSG_LINKSHELL_REMOVE
+};
+
 typedef std::string string_t;
 
 // для персонажей в size хранится рост, 

@@ -18,7 +18,7 @@ function onTrigger(player, target)
     
     local targ = GetPlayerByName( target );
     if (targ ~= nil) then
-        player:setPos( targ:getXPos(), targ:getYPos(), targ:getZPos(), 0, targ:getZone() );    
+        player:setPos( targ:getXPos(), targ:getYPos(), targ:getZPos(), 0, targ:getZone():getID() );    
     else
         player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
     end

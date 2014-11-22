@@ -68,7 +68,7 @@ function onEventUpdate(player,csid,option,target)
                 player:messageText(target,MEMBER_NO_REQS, false);
                 player:instanceEntry(target,1);
                 return;
-            elseif (v:getZone() == player:getZone() and v:checkDistance(player) > 50) then
+            elseif (v:getZone():getID() == player:getZone():getID() and v:checkDistance(player) > 50) then
                 player:messageText(target,MEMBER_TOO_FAR, false);
                 player:instanceEntry(target,1);
                 return;
@@ -107,7 +107,7 @@ function onInstanceCreated(player,target,instance)
         player:delKeyItem(ASSAULT_ARMBAND);
         if (party ~= nil) then
             for i,v in ipairs(party) do
-                if v:getID() ~= player:getID() and v:getZone() == player:getZone() then
+                if v:getID() ~= player:getID() and v:getZone():getID() == player:getZone():getID() then
                     v:setInstance(instance);
                     v:startEvent(0xD0, 2);
                     v:delKeyItem(LEBROS_ASSAULT_ORDERS);

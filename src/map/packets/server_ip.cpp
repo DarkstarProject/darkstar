@@ -33,6 +33,7 @@ CServerIPPacket::CServerIPPacket(CCharEntity* PChar, uint8 type)
 	this->size = 0x0E;
 
 	WBUFB(data,(0x04)-4) = type;
-	WBUFL(data,(0x08)-4) = PChar->loc.zone->GetIP();
-	WBUFW(data,(0x0C)-4) = PChar->loc.zone->GetPort();
+    uint64 ipp = zoneutils::GetZoneIPP(PChar->loc.destination);
+	WBUFL(data,(0x08)-4) = ipp;
+	WBUFW(data,(0x0C)-4) = (ipp >> 32);
 }
