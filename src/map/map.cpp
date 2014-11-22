@@ -175,8 +175,7 @@ int32 do_init(int32 argc, int8** argv)
     Sql_Keepalive(SqlHandle);
 
     // отчищаем таблицу сессий при старте сервера (временное решение, т.к. в кластере это не будет работать)
-    Sql_Query(SqlHandle, "DELETE s, p FROM accounts_sessions s LEFT JOIN accounts_parties p USING (charid) \
-                          WHERE IF(%u = 0 AND %u = 0, true, server_addr = %u AND server_port = %u);", 
+    Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE IF(%u = 0 AND %u = 0, true, server_addr = %u AND server_port = %u);", 
                             map_ip, map_port, map_ip, map_port);
 
 	ShowMessage("\t\t - " CL_GREEN"[OK]" CL_RESET"\n");

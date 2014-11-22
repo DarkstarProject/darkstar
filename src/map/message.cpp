@@ -64,7 +64,7 @@ namespace message
 			int ret = Sql_Query(ChatSqlHandle, "SELECT zoneip, zoneport FROM zone_settings GROUP BY zoneip, zoneport ORDER BY COUNT(*) DESC;");
 			if (ret != SQL_ERROR && Sql_NumRows(ChatSqlHandle) > 0 && Sql_NextRow(ChatSqlHandle) == SQL_SUCCESS)
 			{
-				ipp = Sql_GetUIntData(ChatSqlHandle, 0);
+				ipp = inet_addr(Sql_GetData(ChatSqlHandle, 0));
 				port = Sql_GetUIntData(ChatSqlHandle, 1);
 			}
 		}
