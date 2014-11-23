@@ -190,10 +190,10 @@ void LoadMobSkillsList()
                            INNER JOIN mob_pools ON mob_pools.familyid = mob_family_system.familyid \
                            INNER JOIN mob_groups ON mob_groups.poolid = mob_pools.poolid \
                            INNER JOIN zone_settings ON mob_groups.zoneid = zone_settings.zoneid \
-						   WHERE IF(%d <> 0, %d = zoneip AND %d = zoneport, TRUE) OR family_id = 0 \
+						   WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE) OR family_id = 0 \
 						   ORDER BY family_Id, mob_skill_id ASC";
 
-	int32 ret = Sql_Query(SqlHandle, fmtQuery);
+	int32 ret = Sql_Query(SqlHandle, fmtQuery, map_ip, inet_ntoa(map_ip), map_port);
 
 	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{

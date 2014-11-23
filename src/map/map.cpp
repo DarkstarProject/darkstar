@@ -78,7 +78,7 @@ Sql_t* SqlHandle = NULL;				// SQL descriptor
 int32  map_fd = 0;						// main socket
 uint32 map_amntplayers = 0;				// map amnt unique players
 
-uint32 map_ip = 0;
+in_addr map_ip;
 uint16 map_port = 0;
 
 map_config_t map_config;				// map server settings
@@ -138,11 +138,12 @@ map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
 int32 do_init(int32 argc, int8** argv)
 {
 	ShowStatus("do_init: begin server initialization...\n");
+    map_ip.S_un.S_addr = 0;
 
 	for (int i = 1; i < argc; i++)
 	{
 		if (strcmp(argv[i], "--ip") == 0)
-			map_ip = std::stoi(argv[i+1]);
+			map_ip.S_un.S_addr = inet_addr(argv[i+1]);
 		else if (strcmp(argv[i], "--port") == 0)
 			map_port = std::stoi(argv[i + 1]);
 	}

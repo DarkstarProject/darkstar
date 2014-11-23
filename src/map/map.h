@@ -158,7 +158,7 @@ extern CCommandHandler CmdHandler;
 typedef std::map<uint64,map_session_data_t*> map_session_list_t;
 extern map_session_list_t map_session_list;
 
-extern uint32 map_ip;
+extern in_addr map_ip;
 extern uint16 map_port;
 
 extern inline map_session_data_t* mapsession_getbyipp(uint64 ipp);
