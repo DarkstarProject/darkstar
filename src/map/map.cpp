@@ -138,12 +138,12 @@ map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
 int32 do_init(int32 argc, int8** argv)
 {
 	ShowStatus("do_init: begin server initialization...\n");
-    map_ip.S_un.S_addr = 0;
+    map_ip.s_addr = 0;
 
 	for (int i = 1; i < argc; i++)
 	{
 		if (strcmp(argv[i], "--ip") == 0)
-			map_ip.S_un.S_addr = inet_addr(argv[i+1]);
+			map_ip.s_addr = inet_addr(argv[i+1]);
 		else if (strcmp(argv[i], "--port") == 0)
 			map_port = std::stoi(argv[i + 1]);
 	}

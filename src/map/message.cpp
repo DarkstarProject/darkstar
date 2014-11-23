@@ -55,11 +55,11 @@ namespace message
 		zContext = zmq::context_t(1);
 		zSocket = new zmq::socket_t(zContext, ZMQ_DEALER);
 
-		uint64 ipp = map_ip.S_un.S_addr;
+		uint64 ipp = map_ip.s_addr;
 		uint64 port = map_port;
 
 		//if no ip/port were supplied, set to 1 (0 is not valid for an identity)
-		if (map_ip.S_un.S_addr == 0 && map_port == 0)
+		if (map_ip.s_addr == 0 && map_port == 0)
 		{
 			int ret = Sql_Query(ChatSqlHandle, "SELECT zoneip, zoneport FROM zone_settings GROUP BY zoneip, zoneport ORDER BY COUNT(*) DESC;");
 			if (ret != SQL_ERROR && Sql_NumRows(ChatSqlHandle) > 0 && Sql_NextRow(ChatSqlHandle) == SQL_SUCCESS)
