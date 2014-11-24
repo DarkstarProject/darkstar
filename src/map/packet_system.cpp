@@ -412,11 +412,6 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			PChar->PParty->RemoveMember(PChar);
 			}
 		}
-        if (PChar->PLinkshell != NULL)
-        {
-            // удаляем персонажа из linkshell
-            PChar->PLinkshell->DelMember(PChar);
-        }
         session->shuttingDown = 1;
 	}
 	else  // проверка именно при покидании зоны, чтобы не делать двойную проверку при входе в игру
@@ -424,6 +419,7 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* dat
         session->shuttingDown = 2;
         charutils::CheckEquipLogic(PChar, SCRIPT_CHANGEZONE, PChar->getZone());
 	}
+
     // персонаж может отвалиться во время перехода между зонами,
     // map_cleanup вызовет этот метод и zone персонажа будет NULL
     if (PChar->loc.zone != NULL)

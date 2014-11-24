@@ -892,6 +892,12 @@ void CZone::CharZoneOut(CCharEntity* PChar)
         PChar->PParty->PopMember(PChar);
     }
 
+    if (PChar->PLinkshell != NULL)
+    {
+        // удаляем персонажа из linkshell
+        PChar->PLinkshell->DelMember(PChar);
+    }
+
 	//remove status effects that wear on zone
 	PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE, true);
 
@@ -922,7 +928,7 @@ void CZone::CharZoneOut(CCharEntity* PChar)
     
     uint64 ipp = zoneutils::GetZoneIPP(PChar->loc.destination);
     Sql_Query(SqlHandle, "UPDATE accounts_sessions JOIN chars ON accounts_sessions.charid = chars.charid \
-                          SET server_addr = %d, server_port = %d, pos_zone = %d, pos_prevzone = %d WHERE chars.charid = %d;", 
+                          SET server_addr = %u, server_port = %u, pos_zone = %u, pos_prevzone = %u WHERE chars.charid = %u;", 
                           (uint32)ipp, (uint32)(ipp >> 32), PChar->loc.destination, GetID(), PChar->id);
 
     if (PChar->PParty)
