@@ -76,6 +76,7 @@ private:
 	bool						m_quadAttackOccured;		// Flag: Did a quadruple attack occur during the round?
 	bool						m_kickAttackOccured;		// Flag: Did a kick attack occur during the round?
 	bool						m_missOccured;				// Flag: Did a miss occur during the attack round?
+	uint16						m_subWeaponID;				// The sub weapon id.
 	uint16						m_subWeaponType;			// The sub weapon type.
 
 };

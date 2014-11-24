@@ -39,6 +39,7 @@ CAttackRound::CAttackRound(CBattleEntity* attacker)
 	m_zanshinOccured = false;
 	m_sataOccured = false;
 	m_missOccured = false;
+	m_subWeaponID = attacker->m_Weapons[SLOT_SUB]->getID();
 	m_subWeaponType = attacker->m_Weapons[SLOT_SUB]->getDmgType();
 
 	// Grab a trick attack assistant.
@@ -48,7 +49,7 @@ CAttackRound::CAttackRound(CBattleEntity* attacker)
 	CreateAttacks(attacker->m_Weapons[SLOT_MAIN], RIGHTATTACK);
 
 	// Build dual wield off hand weapon attacks.
-	if ((m_subWeaponType > 0 && m_subWeaponType < 4))
+	if ((m_subWeaponID != 0 && m_subWeaponType < 4))
 	{
 		CreateAttacks(attacker->m_Weapons[SLOT_SUB], LEFTATTACK);
 	}
