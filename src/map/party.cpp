@@ -906,7 +906,11 @@ void CParty::SetLeader(int8* MemberName)
 
 void CParty::SetSyncTarget(int8* MemberName, uint16 message)
 {
-    CBattleEntity* PEntity = GetMemberByName(MemberName);
+    CBattleEntity* PEntity = NULL;
+    if (MemberName)
+    {
+        PEntity = GetMemberByName(MemberName);
+    }
 
     if (map_config.level_sync_enable)
     {
