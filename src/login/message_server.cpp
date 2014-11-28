@@ -68,17 +68,28 @@ void message_server_listen()
 	while (true)
 	{
 		zmq::message_t from;
+        zmq::message_t type;
+        zmq::message_t extra;
+        zmq::message_t packet;
+
 		zSocket->recv(&from);
-
-		zmq::message_t type;
-		zSocket->recv(&type);
-
-		zmq::message_t extra;
-		zSocket->recv(&extra);
-
-		zmq::message_t packet;
-		zSocket->recv(&packet);
-
+        int more;
+        size_t size = sizeof(more);
+        zSocket->getsockopt(ZMQ_RCVMORE, &more, &size);
+        if (more)
+        {
+            zSocket->recv(&type);
+            zSocket->getsockopt(ZMQ_RCVMORE, &more, &size);
+            if (more)
+            {
+                zSocket->recv(&extra);
+                zSocket->getsockopt(ZMQ_RCVMORE, &more, &size);
+                if (more)
+                {
+                    zSocket->recv(&packet);
+                }
+            }
+        }
         message_server_parse((MSGSERVTYPE)RBUFB(type.data(), 0), &extra, &packet);
 	}
 }
