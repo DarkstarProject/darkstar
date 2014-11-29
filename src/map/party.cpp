@@ -721,80 +721,37 @@ void CParty::ReloadParty()
 
 void CParty::ReloadPartyMembers(CCharEntity* PChar)
 {
-	//alliance
-	if (this->m_PAlliance != NULL)
-	{
-		for (uint8 a = 0; a < m_PAlliance->partyList.size(); ++a)
-		{
-			for (uint8 i = 0; i < m_PAlliance->partyList.at(a)->members.size(); ++i)
-			{
-				CCharEntity* PChar = (CCharEntity*)m_PAlliance->partyList.at(a)->members.at(i);
-				uint16 alliance = 0;
-				int ret = Sql_Query(SqlHandle, "SELECT chars.charid, chars.charname, partyflag, pos_zone, partyid FROM accounts_parties \
-												LEFT JOIN chars ON accounts_parties.charid = chars.charid WHERE \
-												allianceid = %d ORDER BY partyflag & %u, timestamp;",
-												m_PAlliance->m_AllianceID, PARTY_SECOND | PARTY_THIRD);
-				if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0)
-				{
-					uint8 j = 0;
-					while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-					{
-						if (Sql_GetUIntData(SqlHandle, 2) & (PARTY_SECOND | PARTY_THIRD) != alliance)
-						{
-							alliance = Sql_GetUIntData(SqlHandle, 2) & (PARTY_SECOND | PARTY_THIRD);
-							j = 0;
-						}
-						CCharEntity* PPartyMember = zoneutils::GetChar(Sql_GetUIntData(SqlHandle, 0));
-						if (PPartyMember)
-						{
-							PChar->pushPacket(new CPartyMemberUpdatePacket(PPartyMember, j, PChar->getZone()));
-						}
-						else
-						{
-							PChar->pushPacket(new CPartyMemberUpdatePacket(
-								Sql_GetUIntData(SqlHandle, 0), Sql_GetData(SqlHandle, 1),
-								Sql_GetUIntData(SqlHandle, 2), Sql_GetUIntData(SqlHandle, 3)));
-						}
-						j++;
-					}
-				}
-			}
-		}
-	}
-	else
-
-	//regular party
-	for (uint8 i = 0; i < members.size(); ++i)
-	{
-		CCharEntity* PChar = (CCharEntity*)members.at(i);
-
-		PChar->PLatentEffectContainer->CheckLatentsPartyJobs();
-		PChar->PLatentEffectContainer->CheckLatentsPartyMembers(members.size());
-		PChar->PLatentEffectContainer->CheckLatentsPartyAvatar();
-		int ret = Sql_Query(SqlHandle, "SELECT chars.charid, chars.charname, partyflag, pos_zone, partyid FROM accounts_parties \
-									   	LEFT JOIN chars ON accounts_parties.charid = chars.charid WHERE \
-										partyid = %d ORDER BY timestamp;",
-										m_PartyID);
-		if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0)
-		{
-			uint8 j = 0;
-			while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-			{
-				CCharEntity* PPartyMember = zoneutils::GetChar(Sql_GetUIntData(SqlHandle, 0));
-				if (PPartyMember)
-				{
-					PChar->pushPacket(new CPartyMemberUpdatePacket(PPartyMember, j, PChar->getZone()));
-				}
-				else
-				{
-					PChar->pushPacket(new CPartyMemberUpdatePacket(
-						Sql_GetUIntData(SqlHandle, 0), Sql_GetData(SqlHandle, 1),
-						Sql_GetUIntData(SqlHandle, 2), Sql_GetUIntData(SqlHandle, 3)));
-				}
-				j++;
-			}
-		}
-	}
+    PChar->ReloadPartyDec();
+    PChar->pushPacket(new CPartyDefinePacket(this));
+    uint16 alliance = 0;
+    int ret = Sql_Query(SqlHandle, "SELECT chars.charid, chars.charname, partyflag, pos_zone, partyid FROM accounts_parties \
+                                    LEFT JOIN chars ON accounts_parties.charid = chars.charid WHERE \
+                                    allianceid = %d ORDER BY partyflag & %u, timestamp;",
+                                    m_PAlliance->m_AllianceID, PARTY_SECOND | PARTY_THIRD);
+    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0)
+    {
+        uint8 j = 0;
+        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            if (Sql_GetUIntData(SqlHandle, 2) & (PARTY_SECOND | PARTY_THIRD) != alliance)
+            {
+                alliance = Sql_GetUIntData(SqlHandle, 2) & (PARTY_SECOND | PARTY_THIRD);
+                j = 0;
+            }
+            CCharEntity* PPartyMember = zoneutils::GetChar(Sql_GetUIntData(SqlHandle, 0));
+            if (PPartyMember)
+            {
+                PChar->pushPacket(new CPartyMemberUpdatePacket(PPartyMember, j, PChar->getZone()));
+            }
+            else
+            {
+                PChar->pushPacket(new CPartyMemberUpdatePacket(
+                    Sql_GetUIntData(SqlHandle, 0), Sql_GetData(SqlHandle, 1),
+                    Sql_GetUIntData(SqlHandle, 2), Sql_GetUIntData(SqlHandle, 3)));
+            }
+            j++;
+        }
+    }
 }
 
 /************************************************************************

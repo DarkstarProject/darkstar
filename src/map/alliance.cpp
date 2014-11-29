@@ -207,13 +207,13 @@ void CAlliance::addParty(CParty * party, Sql_t* Sql)
 	
     int newparty = 0;
 
-    int ret = Sql_Query(Sql, "SELECT partyflag FROM accounts_parties WHERE allianceid = %d ORDER BY partyflag & %d ASC;", m_AllianceID, PARTY_SECOND | PARTY_THIRD);
+    int ret = Sql_Query(Sql, "SELECT partyflag & %d FROM accounts_parties WHERE allianceid = %d ORDER BY partyflag & %d ASC;", PARTY_SECOND | PARTY_THIRD, m_AllianceID, PARTY_SECOND | PARTY_THIRD);
 
     if (ret != SQL_ERROR && Sql_NumRows(Sql) > 0)
     {
         while (Sql_NextRow(Sql) == SQL_SUCCESS)
         {
-            if (Sql_GetUIntData(Sql, 0) & (PARTY_SECOND | PARTY_THIRD) == newparty)
+            if (Sql_GetUIntData(Sql, 0) == newparty)
             {
                 newparty++;
             }
