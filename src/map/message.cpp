@@ -117,6 +117,7 @@ namespace message
 	}
     void parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_t* packet)
 	{
+        ShowDebug("Message: Received message %d from message server\n", type);
 		switch (type)
 		{
             case MSG_LOGIN:
@@ -401,6 +402,10 @@ namespace message
                     }
                 }
             }
+            default:
+            {
+                ShowWarning("Message: unhandled message type %d\n", type);
+            }
 		}
 	}
 
@@ -425,5 +430,6 @@ namespace message
 			zmq::message_t newPacket(0);
 			zSocket->send(newPacket);
 		}
+        ShowDebug("Message: Sent message %d to message server\n", type);
 	}
 };

@@ -29,5 +29,5 @@ This file is part of DarkStar-server source code.
 void message_server_init();
 
 void message_server_listen();
-void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_t* packet);
+void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_t* packet, zmq::message_t* from);
 void message_server_send(uint64 ipp, MSGSERVTYPE type, zmq::message_t* extra, zmq::message_t* packet);
