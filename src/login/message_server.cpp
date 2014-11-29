@@ -90,12 +90,19 @@ void message_server_listen()
                 }
             }
         }
-        message_server_parse((MSGSERVTYPE)RBUFB(type.data(), 0), &extra, &packet);
+        message_server_parse((MSGSERVTYPE)RBUFB(type.data(), 0), &extra, &packet, &from);
 	}
 }
-void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_t* packet)
+void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_t* packet, zmq::message_t* from)
 {
 	int ret;
+    in_addr from_ip;
+    uint16 from_port = 0;
+    if (from)
+    {
+        from_ip.s_addr = RBUFL(from->data(), 0);
+        from_port = RBUFW(from->data(), 4);
+    }
 	switch (type)
 	{
 		case MSG_CHAT_TELL:
@@ -153,10 +160,13 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
 
 	if (ret != SQL_ERROR)
 	{
+        ShowDebug("Message: Received message %d from %s:%hu\n", type, inet_ntoa(from_ip), from_port);
 		while (Sql_NextRow(ChatSqlHandle) == SQL_SUCCESS)
 		{
-			uint64 ip = inet_addr(Sql_GetData(ChatSqlHandle, 0));
+			int8* ip_string = Sql_GetData(ChatSqlHandle, 0);
+            uint64 ip = inet_addr(ip_string);
 			uint64 port = Sql_GetUIntData(ChatSqlHandle, 1);
+            ShowDebug("Message:  -> rerouting to %s:%lu\n", ip_string, port);
 			ip |= (port << 32);
             if (type == MSG_CHAT_PARTY || type == MSG_PT_RELOAD || type == MSG_PT_DISBAND)
 			{
