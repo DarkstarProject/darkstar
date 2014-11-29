@@ -155,7 +155,7 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
 	{
 		while (Sql_NextRow(ChatSqlHandle) == SQL_SUCCESS)
 		{
-			uint64 ip = Sql_GetUIntData(ChatSqlHandle, 0);
+			uint64 ip = inet_addr(Sql_GetData(ChatSqlHandle, 0));
 			uint64 port = Sql_GetUIntData(ChatSqlHandle, 1);
 			ip |= (port << 32);
             if (type == MSG_CHAT_PARTY || type == MSG_PT_RELOAD || type == MSG_PT_DISBAND)
