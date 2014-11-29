@@ -94,7 +94,7 @@ CParty::CParty(uint32 id)
 void CParty::DisbandParty(bool playerInitiated, Sql_t* sql)
 {
 	DisableSync();
-	SetQuaterMaster(NULL);
+	SetQuarterMaster(NULL);
 
 	m_PLeader = NULL;
 	m_PAlliance	= NULL;
@@ -157,8 +157,8 @@ void CParty::AssignPartyRole(int8* MemberName, uint8 role)
 	switch(role)
 	{
 		case 0: SetLeader(MemberName);		    break;
-        case 4: SetQuaterMaster(MemberName);    break;
-		case 5: SetQuaterMaster(NULL);	        break;
+        case 4: SetQuarterMaster(MemberName);    break;
+		case 5: SetQuarterMaster(NULL);	        break;
         case 6: SetSyncTarget(MemberName, 238);	break;
         case 7: SetSyncTarget(NULL, 553);       break;
 	}
@@ -194,7 +194,7 @@ uint8 CParty::MemberCount(uint16 ZoneID)
 *                                                                       *
 ************************************************************************/
 
-CBattleEntity* CParty::GetMemberByName(int8* MemberName)
+CBattleEntity* CParty::GetMemberByName(const int8* MemberName)
 {
     DSP_DEBUG_BREAK_IF(m_PartyType != PARTY_PCS);
 
@@ -234,7 +234,7 @@ void CParty::RemoveMember(CBattleEntity* PEntity)
 
 				    if (m_PQuaterMaster == PChar)
 				    {
-					    SetQuaterMaster(NULL);
+					    SetQuarterMaster(NULL);
 				    }
 				    if (m_PSyncTarget == PChar)
 				    {
@@ -313,7 +313,7 @@ void CParty::DelMember(CBattleEntity* PEntity)
 
 					if (m_PQuaterMaster == PChar)
 					{
-						SetQuaterMaster(NULL);
+						SetQuarterMaster(NULL);
 					}
 					if (m_PSyncTarget == PChar)
 					{
@@ -389,7 +389,8 @@ void CParty::RemovePartyLeader(CBattleEntity* PEntity)
                                     ORDER BY timestamp ASC LIMIT 1;", m_PartyID, PARTY_LEADER);
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
-        SetLeader(Sql_GetData(SqlHandle, 0));
+        std::string newLeader(Sql_GetData(SqlHandle, 0));
+        SetLeader(newLeader.c_str());
     }
     if (m_PLeader == PEntity)
     {
@@ -826,7 +827,7 @@ void CParty::ReloadTreasurePool(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-void CParty::SetLeader(int8* MemberName)
+void CParty::SetLeader(const char* MemberName)
 {
     if (m_PartyType == PARTY_PCS)
     {
@@ -842,7 +843,7 @@ void CParty::SetLeader(int8* MemberName)
             return;
         }
 
-        Sql_Query(SqlHandle,"UPDATE accounts_parties SET partyflag = partyflag & ~%d WHERE partyid = %u AND partyflag & %d", ALLIANCE_LEADER | PARTY_LEADER, m_PartyID, PARTY_LEADER);
+        Sql_Query(SqlHandle, "UPDATE accounts_parties SET partyflag = partyflag & ~%d WHERE partyid = %u AND partyflag & %d", ALLIANCE_LEADER | PARTY_LEADER, m_PartyID, PARTY_LEADER);
         Sql_Query(SqlHandle, "UPDATE accounts_parties SET partyid = %u WHERE partyid = %u", newId, m_PartyID);
         Sql_Query(SqlHandle, "UPDATE accounts_parties SET allianceid = %u WHERE allianceid = %u", newId, m_PartyID);
 
@@ -852,6 +853,10 @@ void CParty::SetLeader(int8* MemberName)
             m_PAlliance->m_AllianceID = newId;
 
 		Sql_Query(SqlHandle, "UPDATE accounts_parties SET partyflag = partyflag | IF(allianceid = partyid, %d, %d) WHERE charid = %u", ALLIANCE_LEADER | PARTY_LEADER, PARTY_LEADER, m_PartyID);
+    }
+    else
+    {
+        m_PLeader = members.at(0);
     }
 }
 
@@ -952,7 +957,7 @@ void CParty::SetSyncTarget(int8* MemberName, uint16 message)
 *																		*
 ************************************************************************/
 
-void CParty::SetQuaterMaster(int8* MemberName)
+void CParty::SetQuarterMaster(const char* MemberName)
 {
     CBattleEntity* PEntity = MemberName ? GetMemberByName(MemberName) : NULL;
 	m_PQuaterMaster = PEntity;

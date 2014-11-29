@@ -51,7 +51,7 @@ int32 time_server(uint32 tick,CTaskMgr::CTask* PTask)
     // hourly conquest update
     else if (CVanaTime::getInstance()->getSysMinute() == 0)
     {
-        if (tick > (CVanaTime::getInstance()->lastConquestUpdate + 4800))
+        if (tick > (CVanaTime::getInstance()->lastConquestUpdate + 60000))
         {
             conquest::UpdateConquestSystem();
             CVanaTime::getInstance()->lastConquestUpdate = tick;
