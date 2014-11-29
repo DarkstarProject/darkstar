@@ -6,15 +6,25 @@
 
 package.loaded[ "scripts/zones/Jugner_Forest/TextIDs"] = nil;
 
-require( "scripts/zones/Jugner_Forest/TextIDs");
-require( "scripts/globals/icanheararainbow");
+require("scripts/zones/Jugner_Forest/TextIDs");
+require("scripts/globals/zone");
+require("scripts/globals/icanheararainbow");
+require("scripts/globals/conquest");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
-function onInitialize( zone)		
-end;		
+function onInitialize(zone)		
+    local manuals = {17203879,17203880};
+    
+    SetFieldManual(manuals);
+    
+    -- Fraelissa
+    SetRespawnTime(17203447, 900, 10800);
+    
+    SetRegionalConquestOverseers(zone:getRegionID())
+end;
 
 -----------------------------------		
 -- onZoneIn		
@@ -22,7 +32,7 @@ end;
 
 function onZoneIn( player, prevZone)		
 
-	cs = -1;
+	local cs = -1;
 
 	if( player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
 		player:setPos( 342, -5, 15.117, 169);

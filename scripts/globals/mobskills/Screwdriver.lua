@@ -11,7 +11,7 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnMobSkillCheck(target,mob,skill)
-    local zone = target:getZone();
+    local zone = target:getZone():getID();
     if(zone >= 1 and zone <= 4) then
         return 1;
     end

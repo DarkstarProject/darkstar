@@ -33,7 +33,7 @@ function onTrade(player,npc,trade)
 		
 		-- IMPORTANT ITEM: AF Keyitems, AF Items, & Map -----------
 		local mJob = player:getMainJob();
-		local zone = player:getZone();
+		local zone = player:getZone():getID();
 		local AFHandsActivated = player:getVar("BorghertzAlreadyActiveWithJob");
 		local listAF = getAFbyZone(zone);
 		if((AFHandsActivated == 8 or AFHandsActivated == 5 or AFHandsActivated == 1 or AFHandsActivated == 7) and player:hasKeyItem(OLD_GAUNTLETS) == false) then 

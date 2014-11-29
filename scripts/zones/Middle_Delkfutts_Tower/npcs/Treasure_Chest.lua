@@ -31,7 +31,7 @@ function onTrade(player,npc,trade)
 	
 	-- Player traded a key.
 	if((trade:hasItemQty(1036,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
-		local zone = player:getZone();
+		local zone = player:getZone():getID();
 		-- IMPORTANT ITEM: WINGS OF GOLD QUEST QUEST -----------
 		if(player:getQuestStatus(JEUNO,WINGS_OF_GOLD) == QUEST_ACCEPTED and player:hasKeyItem(GUIDING_BELL) == false) then 
 			questItemNeeded = 1;
@@ -58,7 +58,7 @@ function onTrade(player,npc,trade)
 					player:addKeyItem(GUIDING_BELL);
 					player:messageSpecial(KEYITEM_OBTAINED,GUIDING_BELL); -- Guiding Bell (KI)
 				else
-					local zone = player:getZone();
+					local zone = player:getZone():getID();
 					player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME)); 
 					
 					local loot = chestLoot(zone,npc);

@@ -53,9 +53,9 @@ CLuaInstance::CLuaInstance(lua_State *L)
 *																		*
 ************************************************************************/
 
-CLuaInstance::CLuaInstance(CInstance* PBattlefield)
+CLuaInstance::CLuaInstance(CInstance* PInstance)
 {
-	m_PLuaInstance = PBattlefield;
+    m_PLuaInstance = PInstance;
 }
 
 inline int32 CLuaInstance::getID(lua_State* L)

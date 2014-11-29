@@ -9,12 +9,13 @@
 
 
 #ifdef WIN32
-#define FD_SETSIZE 1000
+    #define FD_SETSIZE 1000
 	#include <winsock2.h>
 	typedef long in_addr_t;
 #else
 	#include <sys/types.h>
 	#include <sys/socket.h>
+    #include <arpa/inet.h>
 	#include <netinet/in.h>
 	#include <errno.h>
 #endif

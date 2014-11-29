@@ -3454,6 +3454,17 @@ INSERT INTO `mob_skill` VALUES (2804,465,2208,'Canopierce',1,18.0,2000,1000,4,0,
 INSERT INTO `mob_skill` VALUES (2805,465,2209,'Firefly_Fandango',1,18.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (2806,465,2210,'Tiiimbeeer',1,18.0,2000,1000,4,0,0,0);
 
+-- Arciela
+
+-- INSERT INTO `mob_skill` VALUES (2825,486,2247,'',1,18.0,2000,1000,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (2825,486,2248,'',1,18.0,2000,1000,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (2825,486,2249,'',1,18.0,2000,1000,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (2825,486,2250,'',1,18.0,2000,1000,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (2825,486,2251,'',1,18.0,2000,1000,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (2825,486,2252,'',1,18.0,2000,1000,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (2825,486,2253,'',1,18.0,2000,1000,4,0,0,0);
+-- INSERT INTO `mob_skill` VALUES (2825,486,2254,'',1,18.0,2000,1000,4,0,0,0);
+
 
 -- Gramk-Droog Velkk Boss
 -- special melee 2223 2224 2225
@@ -3467,27 +3478,80 @@ INSERT INTO `mob_skill` VALUES (2806,465,2210,'Tiiimbeeer',1,18.0,2000,1000,4,0,
 
 -- Xol (Balamor boss) -- animated model 0x0000460a not 0x0000ba06
 -- melee ranged attack 2343 2344 2345 2346
--- INSERT INTO `mob_skill` VALUES (3047,???,2347,'Feast_of_Arrows',1,18.0,2000,1000,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (3048,???,2348,'Cruel_Joke',1,18.0,2000,1000,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (3049,???,2349,'Regurgitated_swarm',1,18.0,2000,1000,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (3050,???,2350,'Setting_the_stage',1,18.0,2000,1000,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (3051,???,2351,'Last_Laugh',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3047,490,2347,'Feast_of_Arrows',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3048,490,2348,'Cruel_Joke',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3049,490,2349,'Regurgitated_swarm',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3050,490,2350,'Setting_the_stage',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3051,490,2351,'Last_Laugh',1,18.0,2000,1000,4,0,0,0);
 
 -- Morimar/Noble Warrior animated model 0x00006f0a not 0x0000ba05
 -- special melee 2332 2333 2334
--- INSERT INTO `mob_skill` VALUES (2904,???,2335,'Vehement_Resolution',1,18.0,2000,1000,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (2905,???,2336,'Camaraderie_oft_the_crevasse',1,18.0,2000,1000,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (2906,???,2337,'Into_the_light',1,18.0,2000,1000,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (2907,???,2338,'Arduous_decision',1,18.0,2000,1000,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (2908,???,2339,'12_blades_of_remorse',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2904,491,2335,'Vehement_Resolution',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2905,491,2336,'Camaraderie_oft_the_crevasse',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2906,491,2337,'Into_the_light',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2907,491,2338,'Arduous_decision',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2908,491,2339,'12_blades_of_remorse',1,18.0,2000,1000,4,0,0,0);
 
 -- Darrcuiln model 0x0000660a not cs one 0x0000b00a
 -- special melee 2320 2321 2322
--- INSERT INTO `mob_skill` VALUES (2912,???,2323,'Aurous_charge',1,18.0,2000,1000,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (2913,???,2324,'Howling_gust',1,18.0,2000,1000,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (2914,???,2325,'Righteous_Rasp',1,18.0,2000,1000,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (2915,???,2326,'Starward_yowl',1,18.0,2000,1000,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (2916,???,2327,'Stalking_prey',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2912,489,2323,'Aurous_charge',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2913,489,2324,'Howling_gust',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2914,489,2325,'Righteous_Rasp',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2915,489,2326,'Starward_yowl',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (2916,489,2327,'Stalking_prey',1,18.0,2000,1000,4,0,0,0);
+
+-- Ashrakk
+-- melee 2369 2370 2371 2372
+INSERT INTO `mob_skill` VALUES (3107,493,2373,'Tearing_Gust',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3108,493,2374,'Concussive_Shock',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3109,493,2375,'Chokehold',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3110,493,2376,'Zap',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3111,493,2377,'Shrieking_gale',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3112,493,2378,'Undulating_Shockwave',1,18.0,2000,1000,4,0,0,0);
+
+
+-- Xol
+-- Dhokmak melee 2379 2380 2381
+INSERT INTO `mob_skill` VALUES (3116,490,2382,'Cesspool',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3117,490,2383,'Fetid_Eddies',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3118,490,2384,'Nullifying_rain',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3119,490,2385,'Noyade',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3120,490,2386,'Clobering_wave',1,18.0,2000,1000,4,0,0,0);
+
+-- Theodor
+-- Melee 2387 2388 2389
+INSERT INTO `mob_skill` VALUES (3124,488,2390,'Start_From_Scratch',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3125,488,2391,'Frenzied_Thrust',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3126,488,2392,'Sinners_Coss',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3127,488,2393,'Open_Coffin',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3128,488,2394,'Ravenous_Assault',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3129,488,2395,'Hemocladis',1,18.0,2000,1000,4,0,0,0);
+
+
+-- Hades V1
+-- melee 2396 2397 2398
+INSERT INTO `mob_skill` VALUES (3133,485,2399,'Fulminous_Smash',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3134,485,2400,'Flaming_Kick',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3135,485,2401,'Icy_Grasp',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3136,485,2402,'Flash_Flood',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3137,485,2403,'Eroding_Flesh',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3138,485,2404,'Vivisection',1,18.0,2000,1000,4,0,0,0);
+
+-- Hades V2
+-- Melee 2405 2406 2407 2408
+INSERT INTO `mob_skill` VALUES (3143,487,2409,'Impudence',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3144,487,2410,'Incessant_Void',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3145,487,2411,'Tenbrous_Grip',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3146,487,2412,'Demon_Fire',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3147,487,2413,'Frozen_Blood',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3148,487,2414,'Blast_Of_reticence',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3149,487,2415,'Ensepulcher',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3150,487,2416,'Ceaseless_Surge',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3151,487,2417,'Torrential_Pain',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3152,487,2418,'Eternal_Misery',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3153,487,2419,'Crippling_Agony',1,18.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skill` VALUES (3154,487,2420,'Bane_Of_Tartarus',1,18.0,2000,1000,4,0,0,0);
+
 
 
 -- Static mobs unique attack

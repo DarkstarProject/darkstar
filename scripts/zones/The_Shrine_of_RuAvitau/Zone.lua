@@ -9,6 +9,7 @@ package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
+require("scripts/globals/zone");
 require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
 
 -----------------------------------
@@ -16,6 +17,10 @@ require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    local tomes = {17506822,17506823,17506824,17506825,17506826,17506827,17506828};
+    
+    SetGroundsTome(tomes);
 
     -- MAP 1 ------------------------
     zone:registerRegion(1, -21, 29, -61, -16, 31, -57); 	--> F (H-10)

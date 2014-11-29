@@ -7,14 +7,18 @@ package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/Konschtat_Highlands/TextIDs");
-require( "scripts/globals/icanheararainbow");
+require("scripts/globals/zone");
+require("scripts/globals/icanheararainbow");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)		
-end;		
+    local manuals = {17220164,17220165};
+    
+    SetFieldManual(manuals);
+end;
 
 -----------------------------------		
 -- onZoneIn		

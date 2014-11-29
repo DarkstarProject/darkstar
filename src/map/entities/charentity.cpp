@@ -76,6 +76,7 @@ CCharEntity::CCharEntity()
     memset(& nameflags, 0, sizeof(nameflags));
 
 	memset(& m_SpellList, 0, sizeof(m_SpellList));
+	memset(&m_EnabledSpellList, 0, sizeof(m_EnabledSpellList));
 	memset(& m_LearnedAbilities, 0, sizeof(m_LearnedAbilities));
     memset(& m_TitleList, 0, sizeof(m_TitleList));
 	memset(& m_ZonesList, 0, sizeof(m_ZonesList));
@@ -149,6 +150,9 @@ CCharEntity::CCharEntity()
 
 	m_PlayTime = 0;
 	m_SaveTime = 0;
+	m_reloadParty = 0;
+
+    m_LastYell = 0;
 }
 
 CCharEntity::~CCharEntity()
@@ -401,4 +405,19 @@ CItemArmor* CCharEntity::getEquip(SLOTTYPE slot)
 		item = (CItemArmor*)getStorage(est)->GetItem(loc);
 	}
 	return item;
+}
+
+void CCharEntity::ReloadPartyInc()
+{
+	m_reloadParty = true;
+}
+
+void CCharEntity::ReloadPartyDec()
+{
+    m_reloadParty = false;
+}
+
+bool CCharEntity::ReloadParty()
+{
+    return m_reloadParty;
 }

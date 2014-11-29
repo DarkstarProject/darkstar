@@ -65,7 +65,7 @@ public:
     void        RemoveMemberByName(int8* MemberName);
 	void		ChangeMemberRank(int8* MemberName, uint8 toSack);
 
-    void        PushPacket(CCharEntity* PChar, CBasicPacket* packet);
+    void        PushPacket(uint32 senderID, CBasicPacket* packet);
 
     std::vector<CCharEntity*> members; // список участников linkshell
 
@@ -94,6 +94,7 @@ namespace linkshell
     bool DelOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell);
 
     uint32 RegisterNewLinkshell(const int8* name, uint16 color);
+	CLinkshell* GetLinkshell(uint32 id);
 };
 
 #endif

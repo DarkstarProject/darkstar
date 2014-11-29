@@ -25,7 +25,7 @@ function onTrigger(player,npc)
 	
 	local X = player:getXPos();
 	local Z = player:getZPos();
-	local DoorToRancor = 17428967;
+	local DoorToRancor = 17428968;
 
 	if(X < -60) then
 		if(Z < -6) then -- SW frame

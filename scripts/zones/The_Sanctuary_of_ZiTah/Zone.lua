@@ -8,6 +8,8 @@ package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
 
 require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
 require( "scripts/globals/icanheararainbow");
+require("scripts/globals/zone");
+require("scripts/globals/conquest");
 
 -----------------------------------
 -- onInitialize
@@ -15,9 +17,14 @@ require( "scripts/globals/icanheararainbow");
 
 function onInitialize( zone)		
 	
+    local manuals = {17273413,17273414};
+    
+    SetFieldManual(manuals);
+    
 	local Noble_Mold = 17273278;
 	GetMobByID(Noble_Mold):setLocalVar("ToD",os.time() + math.random((43200), (57600)));
-	
+    
+    SetRegionalConquestOverseers(zone:getRegionID())
 end;	
 
 -----------------------------------		

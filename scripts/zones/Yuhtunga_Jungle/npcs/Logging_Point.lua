@@ -13,7 +13,7 @@ require("scripts/zones/Yuhtunga_Jungle/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	startLogging(player,player:getZone(),npc,trade,0x00CD);
+	startLogging(player,player:getZone():getID(),npc,trade,0x00CD);
 end;
 
 -----------------------------------

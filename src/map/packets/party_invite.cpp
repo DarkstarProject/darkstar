@@ -30,15 +30,15 @@
 #include "../entities/charentity.h"
 
 
-CPartyInvitePacket::CPartyInvitePacket(CCharEntity* PChar, CCharEntity* PInviter, INVITETYPE InviteType)
+CPartyInvitePacket::CPartyInvitePacket(uint32 id, uint16 targid, CCharEntity* PInviter, INVITETYPE InviteType)
 {
 	this->type = 0xDC;
 	this->size = 0x10; 
 
 	//DSP_DEBUG_BREAK_IF(PInviter->name.size() > 15);
 	
-	WBUFL(data,(0x04)-4) = PChar->id;
-	WBUFW(data,(0x08)-4) = PChar->targid;
+	WBUFL(data,(0x04)-4) = id;
+	WBUFW(data,(0x08)-4) = targid;
 
 	WBUFB(data,(0x0B)-4) = InviteType;
 

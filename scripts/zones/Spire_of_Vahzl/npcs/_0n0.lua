@@ -16,7 +16,7 @@ require("scripts/zones/Spire_of_Vahzl/TextIDs");
 
 function onTrade(player,npc,trade)
 	
-	if(TradeBCNM(player,player:getZone(),trade,npc))then
+	if(TradeBCNM(player,player:getZone():getID(),trade,npc))then
 		return;
 	else
 		player:messageSpecial(FAINT_SCRAPING);

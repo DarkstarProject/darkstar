@@ -36,7 +36,7 @@ struct lscolor_t
 	uint8 A:4;
 };
 
-enum LSTYPE
+enum LSTYPE : uint8
 {
     LSTYPE_NEW_LINKSHELL,
     LSTYPE_LINKSHELL,

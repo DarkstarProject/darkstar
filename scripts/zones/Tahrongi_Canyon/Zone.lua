@@ -7,14 +7,18 @@
 package.loaded["scripts/zones/Tahrongi_Canyon/TextIDs"] = nil;
 
 require("scripts/zones/Tahrongi_Canyon/TextIDs");
-require( "scripts/globals/icanheararainbow");
+require("scripts/globals/icanheararainbow");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
-function onInitialize(zone)		
-end;		
+function onInitialize(zone)
+    local manuals = {17257070,17257071,17257072};
+    
+    SetFieldManual(manuals);
+end;
 
 -----------------------------------		
 -- onZoneIn		
@@ -22,7 +26,7 @@ end;
 
 function onZoneIn( player, prevZone)
 
-	cs = -1;
+	local cs = -1;
 
 	if( player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
 		player:setPos( 442.781, -1.641, -40.144, 160);

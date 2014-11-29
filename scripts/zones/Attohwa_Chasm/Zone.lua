@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Attohwa_Chasm/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/zones/Attohwa_Chasm/TextIDs");
 
 -----------------------------------
@@ -46,6 +47,9 @@ function onInitialize(zone)
 	zone:registerRegion(28, -369.343, 5, -73.449, 0,0,0);
 	zone:registerRegion(29, -238, 5, -118, 0,0,0);
 	zone:registerRegion(30, -385.349, 5, -173.973, 0,0,0);
+    
+    -- Tiamat
+    SetRespawnTime(16806227, 86400, 259200);
 end;
 
 -----------------------------------		
@@ -78,7 +82,7 @@ end;
 
 function onRegionEnter(player,region)
 
-	local Gasponia_Offset = 16806298;
+	local Gasponia_Offset = 16806299;
 	
 	if (region:GetRegionID() <= 30) then
 	
@@ -107,6 +111,14 @@ end;
 -----------------------------------	
 
 function onRegionLeave(player,region)
+end;
+
+-----------------------------------		
+-- onGameHour
+-----------------------------------	
+
+function onGameHour()
+    GetNPCByID(16806283):openDoor(); -- Attohwa Chasm miasma
 end;
 
 -----------------------------------	

@@ -9,12 +9,23 @@ package.loaded[ "scripts/zones/Cape_Teriggan/TextIDs"] = nil;
 require("scripts/zones/Cape_Teriggan/TextIDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/weather");
+require("scripts/globals/zone");
+require("scripts/globals/conquest");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
-function onInitialize( zone)
+function onInitialize(zone)
+    local manuals = {17240510,17240511};
+    
+    SetFieldManual(manuals);
+    
+    -- Kreutzet
+    SetRespawnTime(17240413, 900, 10800);
+    
+    SetRegionalConquestOverseers(zone:getRegionID())
+    
 end;
 
 -----------------------------------		

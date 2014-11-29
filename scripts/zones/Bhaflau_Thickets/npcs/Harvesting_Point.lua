@@ -13,7 +13,7 @@ require("scripts/zones/Bhaflau_Thickets/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	startHarvesting(player,player:getZone(),npc,trade,0x01F7);
+	startHarvesting(player,player:getZone():getID(),npc,trade,0x01F7);
 end;
 
 -----------------------------------

@@ -10,6 +10,7 @@ require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
+require("scripts/globals/zone");
 require("scripts/zones/FeiYin/TextIDs");
 
 -----------------------------------
@@ -17,6 +18,16 @@ require("scripts/zones/FeiYin/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    local tomes = {17613247,17613248};
+    
+    SetGroundsTome(tomes);
+
+    -- Capricious Cassie
+    SetRespawnTime(17613130, 900, 10800);
+    
+    UpdateTreasureSpawnPoint(17613222);
+    
 end;
 
 -----------------------------------

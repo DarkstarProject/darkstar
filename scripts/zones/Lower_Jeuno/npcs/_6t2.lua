@@ -58,7 +58,7 @@ function onTrigger(player,npc)
 		player:startEvent(0x0000); 
 	
 	-- Save My Son
-	elseif(player:getQuestStatus(JEUNO, SAVE_MY_SON) == QUEST_AVAILABLE and ChocobosWounds == QUEST_COMPLETED) then
+	elseif(player:getQuestStatus(JEUNO, SAVE_MY_SON) == QUEST_AVAILABLE and mLvl >= 30) then
 		player:startEvent(0x00a4);
 	elseif(player:getQuestStatus(JEUNO, SAVE_MY_SON) == QUEST_ACCEPTED) then
 		if(SaveMySon == 0) then

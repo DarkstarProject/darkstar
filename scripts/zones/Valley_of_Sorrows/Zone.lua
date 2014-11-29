@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Valley_of_Sorrows/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/zones/Valley_of_Sorrows/TextIDs");
 
 -----------------------------------
@@ -14,6 +15,12 @@ require("scripts/zones/Valley_of_Sorrows/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+    local manuals = {17301588,17301589};
+    
+    SetFieldManual(manuals);
+    
+    -- Adamantoise
+    SetRespawnTime(17301537, 900, 10800);
 end;
 
 -----------------------------------		

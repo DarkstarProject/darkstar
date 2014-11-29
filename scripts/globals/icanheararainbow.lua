@@ -72,7 +72,7 @@ function triggerLightCutscene( player)
 			hasIndigo = ( tonumber( colors) %  64 >= 32);
 			hasViolet = ( tonumber( colors) % 128 >= 64);
 
-			local zone    = player:getZone();
+			local zone    = player:getZone():getID();
 			local weather = player:getWeather();
 
 			if(     hasRed    == false and ( weather == WEATHER_HOT_SPELL  or weather == WEATHER_HEAT_WAVE    )) then

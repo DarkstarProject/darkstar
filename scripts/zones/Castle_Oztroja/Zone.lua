@@ -6,6 +6,7 @@
 
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/zones/Castle_Oztroja/TextIDs");
 
 -----------------------------------
@@ -13,6 +14,14 @@ require("scripts/zones/Castle_Oztroja/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    -- Yagudo Avatar
+    SetRespawnTime(17396134, 900, 10800);
+
+    UpdateTreasureSpawnPoint(17396206);
+
+    UpdateTreasureSpawnPoint(17396207);
+
 end;
 
 -----------------------------------		

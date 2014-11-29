@@ -426,7 +426,7 @@ function alreadyReceived(player,number,region)
 
 	local LimbusVar = 0;
 	local bit = {};
-	local pZone = player:getZone();
+	local pZone = player:getZone():getID();
 
 
     if(pZone == 37) then
@@ -454,7 +454,7 @@ end;
 
 function addLimbusList(player,number,Region)
 
-	local pZone = player:getZone();
+	local pZone = player:getZone():getID();
 
 	if(pZone == 37) then
 	elseif(pZone == 38) then

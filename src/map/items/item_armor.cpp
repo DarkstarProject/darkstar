@@ -266,7 +266,7 @@ void CItemArmor::SetAugmentMod(uint16 type, uint8 value)
 
     int32 ret = Sql_Query(SqlHandle, fmtQuery, type);
 
-    if (ret != SQL_ERROR &&
+    while (ret != SQL_ERROR &&
         Sql_NumRows(SqlHandle) != 0 &&
         Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {

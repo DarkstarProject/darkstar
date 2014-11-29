@@ -592,7 +592,7 @@ TavnaziaDiabolosList = {
 
 function getDynaMob(player,mobjob,list)
 
-	local pZone = player:getZone();
+	local pZone = player:getZone():getID();
 
 	-- Dynamis San d'Oria -------------------------------
 	if(pZone == 185) then
@@ -667,7 +667,7 @@ function alreadyReceived(player,number)
 
 	local dynaVar = 0;
 	local bit = {};
-	local pZone = player:getZone();
+	local pZone = player:getZone():getID();
 
 	if(pZone == 185) then
 		dynaVar = GetServerVariable("[DynaSandoria]Already_Received");
@@ -715,7 +715,7 @@ end;
 
 function addDynamisList(player,number)
 
-	local pZone = player:getZone();
+	local pZone = player:getZone():getID();
 
 	if(pZone == 185) then
 		SetServerVariable("[DynaSandoria]Already_Received",GetServerVariable("[DynaSandoria]Already_Received") + number);

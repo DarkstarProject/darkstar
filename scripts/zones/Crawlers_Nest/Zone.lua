@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/zones/Crawlers_Nest/TextIDs");
 
 -----------------------------------
@@ -14,6 +15,16 @@ require("scripts/zones/Crawlers_Nest/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    local tomes = {17584492,17584493};
+    
+    SetGroundsTome(tomes);
+
+    UpdateTreasureSpawnPoint(17584471);
+    
+    UpdateTreasureSpawnPoint(17584472);
+
+    
 end;
 
 -----------------------------------		

@@ -40,6 +40,7 @@
 #include "lua_mobskill.h"
 #include "lua_trade_container.h"
 #include "lua_zone.h"
+#include "lua_item.h"
 
 #include "../alliance.h"
 #include "../ability.h"
@@ -86,7 +87,10 @@ int32 init()
 	lua_register(LuaHandle,"GetMobIDByJob",luautils::GetMobIDByJob);
 	lua_register(LuaHandle,"WeekUpdateConquest", luautils::WeekUpdateConquest);
     lua_register(LuaHandle,"GetRegionOwner", luautils::GetRegionOwner);
+    lua_register(LuaHandle,"GetRegionInfluence", luautils::GetRegionInfluence);
     lua_register(LuaHandle,"getNationRank", luautils::getNationRank);
+    lua_register(LuaHandle,"getConquestBalance", luautils::getConquestBalance);
+    lua_register(LuaHandle,"isConquestAlliance", luautils::isConquestAlliance);
 	lua_register(LuaHandle,"setMobPos",luautils::setMobPos);
 	lua_register(LuaHandle,"SpawnMob",luautils::SpawnMob);
 	lua_register(LuaHandle,"DespawnMob",luautils::DespawnMob);
@@ -133,6 +137,7 @@ int32 init()
 	Lunar<CLuaStatusEffect>::Register(LuaHandle);
 	Lunar<CLuaTradeContainer>::Register(LuaHandle);
 	Lunar<CLuaZone>::Register(LuaHandle);
+    Lunar<CLuaItem>::Register(LuaHandle);
 
     luaL_dostring(LuaHandle, "require('bit')");
 
@@ -361,7 +366,12 @@ int32 GetMobIDByJob(lua_State *L)
 
 int32 WeekUpdateConquest(lua_State* L)
 {
-    conquest::UpdateConquestGM();
+    ConquestUpdate type = Conquest_Tally_Start;
+    if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+    {
+        type = (ConquestUpdate)lua_tointeger(L, 1);
+    }
+    conquest::UpdateConquestGM(type);
 
     return 0;
 }
@@ -377,6 +387,14 @@ int32 GetRegionOwner(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isnumber(L,1));
 
     lua_pushinteger(L, conquest::GetRegionOwner((REGIONTYPE)lua_tointeger(L,1)));
+    return 1;
+}
+
+int32 GetRegionInfluence(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    lua_pushinteger(L, conquest::GetInfluenceGraphics((REGIONTYPE)lua_tointeger(L, 1)));
     return 1;
 }
 
@@ -412,13 +430,25 @@ int32 getNationRank(lua_State* L)
     }
 }
 
+int32 getConquestBalance(lua_State* L)
+{
+    lua_pushinteger(L, conquest::GetBalance());
+    return 1;
+}
+
+int32 isConquestAlliance(lua_State* L)
+{
+    lua_pushboolean(L, conquest::IsAlliance());
+    return 1;
+}
+
 /************************************************************************
 *																		*
 * SetRegionalConquestOverseers() used for updating conquest guards		*
 *																		*
 ************************************************************************/
 
-int32 SetRegionalConquestOverseers()
+int32 SetRegionalConquestOverseers(uint8 regionID)
 {
 	int8 File[255];
 	memset(File,0,sizeof(File));
@@ -440,11 +470,13 @@ int32 SetRegionalConquestOverseers()
 	if( lua_isnil(LuaHandle,-1) )
 	{
         lua_pop(LuaHandle, 1);
-		ShowError("luautils::SetRegionalConquestOverseers: undefined procedure onServerStart\n");
+		ShowError("luautils::SetRegionalConquestOverseers: undefined procedure SetRegionalConquestOverseers\n");
 		return -1;
 	}
 
-	if( lua_pcall(LuaHandle,0,LUA_MULTRET,0) )
+    lua_pushinteger(LuaHandle, regionID);
+
+	if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
 	{
 		ShowError("luautils::SetRegionalConquestOverseers: %s\n",lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
@@ -453,7 +485,7 @@ int32 SetRegionalConquestOverseers()
     int32 returns = lua_gettop(LuaHandle) - oldtop;
     if (returns > 0)
     {
-        ShowError("luatils::SetRegionalConquestOverseers (%s): 0 returns expected, got %d\n", File, returns);
+        ShowError("luatils::OnZoneInitialize (%s): 0 returns expected, got %d\n", File, returns);
         lua_pop(LuaHandle, returns);
     }
 	return 0;
@@ -990,58 +1022,11 @@ bool IsExpansionEnabled(const char* expansionCode)
 		uint8 expansionEnabled = GetSettingsVariable(expansionVariable);
 
 		if (expansionEnabled == 0){
-			return true;
+			return false;
 		}
 	}
 
-	return false;
-}
-
-/************************************************************************
-*																		*
-*  Выполняем скрипт при старте сервера (все монстры, npc уже загружены) *
-*																		*
-************************************************************************/
-
-int32 OnServerStart()
-{
-	int8 File[255];
-	memset(File,0,sizeof(File));
-    int32 oldtop = lua_gettop(LuaHandle);
-
-    lua_pushnil(LuaHandle);
-    lua_setglobal(LuaHandle, "onServerStart");
-
-	snprintf(File, sizeof(File), "scripts/globals/server.lua");
-
-	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
-	{
-		ShowError("luautils::OnServerStart: %s\n",lua_tostring(LuaHandle,-1));
-        lua_pop(LuaHandle, 1);
-		return -1;
-	}
-
-    lua_getglobal(LuaHandle, "onServerStart");
-	if( lua_isnil(LuaHandle,-1) )
-	{
-		ShowError("luautils::OnServerStart: undefined procedure onServerStart\n");
-        lua_pop(LuaHandle, 1);
-		return -1;
-	}
-
-	if( lua_pcall(LuaHandle,0,LUA_MULTRET,0) )
-	{
-		ShowError("luautils::OnServerStart: %s\n",lua_tostring(LuaHandle,-1));
-        lua_pop(LuaHandle, 1);
-		return -1;
-	}
-    int32 returns = lua_gettop(LuaHandle) - oldtop;
-    if (returns > 0)
-    {
-        ShowError("luatils::OnServerStart (%s): 0 returns expected, got %d\n", File, returns);
-        lua_pop(LuaHandle, returns);
-    }
-	return 0;
+	return true;
 }
 
 /************************************************************************
@@ -1161,7 +1146,7 @@ int32 OnZoneIn(CCharEntity* PChar)
 
 int32 AfterZoneIn(uint32 tick, CTaskMgr::CTask *PTask)
 {
-    CCharEntity* PChar = zoneutils::GetCharFromWorld((uintptr)PTask->m_data,0);
+    CCharEntity* PChar = zoneutils::GetChar((uintptr)PTask->m_data);
 
     if (!PChar)
         return -1;
@@ -2577,42 +2562,25 @@ int32 OnMobDespawn(CBaseEntity* PMob)
 *																		*
 ************************************************************************/
 
-int32 OnGameDayAutomatisation()
+int32 OnGameDay(CZone* PZone)
 {
-	int8 File[255];
-	memset(File,0,sizeof(File));
-    int32 oldtop = lua_gettop(LuaHandle);
+    lua_prepscript("scripts/zones/%s/Zone.lua", PZone->GetName());
 
-    lua_pushnil(LuaHandle);
-    lua_setglobal(LuaHandle, "OnGameDayAutomatisation");
-
-	snprintf(File, sizeof(File), "scripts/globals/automatisation.lua");
-
-	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
-	{
-		ShowError("luautils::OnGameDayAutomatisation: %s\n",lua_tostring(LuaHandle,-1));
-        lua_pop(LuaHandle, 1);
-		return -1;
-	}
-
-    lua_getglobal(LuaHandle, "OnGameDayAutomatisation");
-	if( lua_isnil(LuaHandle,-1) )
-	{
-        lua_pop(LuaHandle, 1);
-		ShowError("luautils::OnGameDayAutomatisation: undefined procedure OnGameDayAutomatisation\n");
-		return -1;
-	}
+    if (prepFile(File, "onGameDay"))
+    {
+        return -1;
+    }
 
 	if( lua_pcall(LuaHandle,0,LUA_MULTRET,0) )
 	{
-		ShowError("luautils::OnGameDayAutomatisation: %s\n",lua_tostring(LuaHandle,-1));
+		ShowError("luautils::OnGameDay: %s\n",lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
 		return -1;
 	}
     int32 returns = lua_gettop(LuaHandle) - oldtop;
     if (returns > 0)
     {
-        ShowError("luatils::OnGameDayAutomisation (%s): 0 returns expected, got %d\n", File, returns);
+        ShowError("luatils::OnGameDay (%s): 0 returns expected, got %d\n", File, returns);
         lua_pop(LuaHandle, returns);
     }
 	return 0;
@@ -2624,42 +2592,25 @@ int32 OnGameDayAutomatisation()
 *																		*
 ************************************************************************/
 
-int32 OnGameHourAutomatisation()
+int32 OnGameHour(CZone* PZone)
 {
-	int8 File[255];
-	memset(File,0,sizeof(File));
-    int32 oldtop = lua_gettop(LuaHandle);
+    lua_prepscript("scripts/zones/%s/Zone.lua", PZone->GetName());
 
-    lua_pushnil(LuaHandle);
-    lua_setglobal(LuaHandle, "OnGameHourAutomatisation");
-
-	snprintf(File, sizeof(File), "scripts/globals/automatisation.lua");
-
-	if( luaL_loadfile(LuaHandle,File) || lua_pcall(LuaHandle,0,0,0) )
-	{
-		ShowError("luautils::OnGameHourAutomatisation: %s\n",lua_tostring(LuaHandle,-1));
-        lua_pop(LuaHandle, 1);
-		return -1;
-	}
-
-    lua_getglobal(LuaHandle, "OnGameHourAutomatisation");
-	if( lua_isnil(LuaHandle,-1) )
-	{
-        lua_pop(LuaHandle, 1);
-		ShowError("luautils::OnGameHourAutomatisation: undefined procedure OnGameHourAutomatisation\n");
-		return -1;
-	}
+    if (prepFile(File, "onGameHour"))
+    {
+        return -1;
+    }
 
 	if( lua_pcall(LuaHandle,0,LUA_MULTRET,0) )
 	{
-		ShowError("luautils::OnGameHourAutomatisation: %s\n",lua_tostring(LuaHandle,-1));
+		ShowError("luautils::OnGameHour: %s\n",lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
 		return -1;
 	}
     int32 returns = lua_gettop(LuaHandle) - oldtop;
     if (returns > 0)
     {
-        ShowError("luatils::OnGameHourAutomisation (%s): 0 returns expected, got %d\n", File, returns);
+        ShowError("luatils::OnGameHour (%s): 0 returns expected, got %d\n", File, returns);
         lua_pop(LuaHandle, returns);
     }
 	return 0;
@@ -3293,6 +3244,9 @@ int32 OnInstanceCreated(CCharEntity* PChar, CInstance* PInstance)
 	CLuaBaseEntity LuaBaseEntity(PChar);
 	Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
 
+    CLuaBaseEntity LuaTargetEntity(PChar->m_event.Target);
+    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
+
 	if (PInstance)
 	{
 		CLuaInstance LuaInstance(PInstance);
@@ -3302,9 +3256,6 @@ int32 OnInstanceCreated(CCharEntity* PChar, CInstance* PInstance)
 	{
 		lua_pushnil(LuaHandle);
 	}
-
-	CLuaBaseEntity LuaTargetEntity(PChar->m_event.Target);
-	Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
 
 	if (lua_pcall(LuaHandle, 3, LUA_MULTRET, 0))
 	{
@@ -3536,6 +3487,34 @@ int32 OnTransportEvent(CCharEntity* PChar, uint32 TransportID)
         lua_pop(LuaHandle, returns);
     }
 	return 0;
+}
+
+int32 OnConquestUpdate(CZone* PZone, ConquestUpdate type)
+{
+    lua_prepscript("scripts/zones/%s/Zone.lua", PZone->GetName());
+
+    if (prepFile(File, "onConquestUpdate"))
+    {
+        return -1;
+    }
+    CLuaZone LuaZone(PZone);
+    Lunar<CLuaZone>::push(LuaHandle, &LuaZone);
+
+    lua_pushinteger(LuaHandle, type);
+
+    if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
+    {
+        ShowError("luautils::onConquestUpdate: %s\n", lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+    int32 returns = lua_gettop(LuaHandle) - oldtop;
+    if (returns > 0)
+    {
+        ShowError("luatils::onConquestUpdate (%s): 0 returns expected, got %d\n", File, returns);
+        lua_pop(LuaHandle, returns);
+    }
+    return 0;
 }
 
 /********************************************************************

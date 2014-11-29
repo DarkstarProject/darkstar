@@ -12,7 +12,7 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------
 function OnMobSkillCheck(target,mob,skill)
     -- not used in Uleguerand_Range
-    if(mob:getZone() == 5) then
+    if(mob:getZone():getID() == 5) then
         return 1;
     end
     return 0;

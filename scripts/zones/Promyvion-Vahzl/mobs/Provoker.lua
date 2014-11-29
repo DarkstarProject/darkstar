@@ -16,5 +16,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, killer)
-	GetNPCByID(16867689):hideNPC(900); -- 15m Hide Time?, qm3
+	GetNPCByID(16867690):hideNPC(900); -- 15m Hide Time?, qm3
 end;

@@ -6,6 +6,7 @@
 
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 
 -----------------------------------
@@ -13,6 +14,13 @@ require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    local tomes = {17429003,17429004,17429005,17429006,17429007};
+    
+    SetGroundsTome(tomes);
+    
+    UpdateTreasureSpawnPoint(17428982);
+
 end;
 
 -----------------------------------		

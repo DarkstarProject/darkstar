@@ -8,12 +8,16 @@ package.loaded["scripts/zones/RoMaeve/TextIDs"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/zones/RoMaeve/TextIDs");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
+    local manuals = {17277206,17277207};
+    
+    SetFieldManual(manuals);
 end;
 
 -----------------------------------		
@@ -46,6 +50,23 @@ end;
 
 function onRegionEnter(player,region)	
 end;	
+
+-----------------------------------		
+-- onGameDay		
+-----------------------------------		
+
+function onGameDay()
+	
+	-- Moongates
+	local Moongate_Offset = 17277174; -- _3e0 in npc_list
+	local direction = VanadielMoonDirection();
+	local phase = VanadielMoonPhase();
+	
+	if(((direction == 2 and phase >= 90) or (direction == 1 and phase >= 95)) and GetNPCByID(Moongate_Offset):getWeather() == 0) then
+		GetNPCByID(Moongate_Offset):openDoor(432);
+		GetNPCByID(Moongate_Offset+1):openDoor(432);
+	end
+end;
 
 -----------------------------------	
 -- onEventUpdate	

@@ -39,7 +39,7 @@ function onTrigger(player,npc)
    if(player:getCurrentMission(ASSAULT)==GOLDEN_SALVAGE)then
    player:completeMission(ASSAULT,GOLDEN_SALVAGE);
    end
-   GetNPCByID(17002654):setStatus(0);--spawn Ancient_Lockbox
+   GetNPCByID(17002655):setStatus(0);--spawn Ancient_Lockbox
      local ID;
      for ID=17002505,17002516,1 do
      if(GetMobAction(ID) > 0)then DespawnMob(npcID);printf("mobdespawn: %u",ID);  end--despawn mimic

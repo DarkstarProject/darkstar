@@ -28,24 +28,24 @@
 #include "../common/showmsg.h"
 #include "../common/timer.h"
 #include "../common/utils.h"
+#include "../common/socket.h"
 
 #include <string.h>
 
-#include "utils/battleutils.h"
-#include "utils/charutils.h"
+
 #include "enmity_container.h"
-#include "utils/itemutils.h"
 #include "map.h"
-#include "utils/mobutils.h"
-#include "entities/npcentity.h"
-#include "entities/petentity.h"
-#include "utils/petutils.h"
+#include "message.h"
 #include "spell.h"
 #include "treasure_pool.h"
 #include "vana_time.h"
 #include "zone.h"
 #include "zone_entities.h"
+
 #include "ai/ai_mob_dummy.h"
+
+#include "entities/npcentity.h"
+#include "entities/petentity.h"
 
 #include "lua/luautils.h"
 
@@ -61,6 +61,13 @@
 #include "packets/message_basic.h"
 #include "packets/server_ip.h"
 #include "packets/wide_scan.h"
+
+#include "utils/battleutils.h"
+#include "utils/charutils.h"
+#include "utils/itemutils.h"
+#include "utils/mobutils.h"
+#include "utils/petutils.h"
+#include "utils/zoneutils.h"
 
 
 /************************************************************************
@@ -356,7 +363,7 @@ void CZone::LoadZoneSettings()
     {
         m_zoneName.insert(0, Sql_GetData(SqlHandle,0));
 
-		m_zoneIP   = (uint32)Sql_GetUIntData(SqlHandle,1);
+		m_zoneIP   = inet_addr(Sql_GetData(SqlHandle,1));
 		m_zonePort = (uint16)Sql_GetUIntData(SqlHandle,2);
 		m_zoneMusic.m_song   = (uint8)Sql_GetUIntData(SqlHandle,3);   // background music
 		m_zoneMusic.m_bSongS = (uint8)Sql_GetUIntData(SqlHandle,4);   // solo battle music
@@ -678,6 +685,11 @@ CCharEntity* CZone::GetCharByName(int8* name)
 	return m_zoneEntities->GetCharByName(name);
 }
 
+CCharEntity* CZone::GetCharByID(uint32 id)
+{
+	return m_zoneEntities->GetCharByID(id);
+}
+
 /************************************************************************
 *																		*
 *  Отправляем глобальные пакеты											*
@@ -789,6 +801,9 @@ void CZone::CharZoneIn(CCharEntity* PChar)
 		PChar->m_Costum = 0;
 		PChar->StatusEffectContainer->DelStatusEffect(EFFECT_COSTUME);
 	}
+
+    PChar->ReloadPartyInc();
+
 	if (PChar->PParty != NULL)
 	{
 		if (m_TreasurePool != NULL)
@@ -872,6 +887,17 @@ void CZone::CharZoneOut(CCharEntity* PChar)
 		PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
 	}
 
+    if (PChar->PParty)
+    {
+        PChar->PParty->PopMember(PChar);
+    }
+
+    if (PChar->PLinkshell != NULL)
+    {
+        // удаляем персонажа из linkshell
+        PChar->PLinkshell->DelMember(PChar);
+    }
+
 	//remove status effects that wear on zone
 	PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE, true);
 
@@ -883,13 +909,34 @@ void CZone::CharZoneOut(CCharEntity* PChar)
     if (PChar->isDead())
         charutils::SaveDeathTime(PChar);
 
-	PChar->loc.zone = NULL;
-	PChar->loc.prevzone = m_zoneID;
+    PChar->loc.zone = NULL;
+
+    if (PChar->status == STATUS_SHUTDOWN)
+    {
+        PChar->loc.destination = m_zoneID;
+    }
+    else
+    {
+        PChar->loc.prevzone = m_zoneID;
+    }
 
 	PChar->SpawnPCList.clear();
 	PChar->SpawnNPCList.clear();
 	PChar->SpawnMOBList.clear();
 	PChar->SpawnPETList.clear();
+
+    
+    uint64 ipp = zoneutils::GetZoneIPP(PChar->loc.destination);
+    Sql_Query(SqlHandle, "UPDATE accounts_sessions JOIN chars ON accounts_sessions.charid = chars.charid \
+                          SET server_addr = %u, server_port = %u, pos_zone = %u, pos_prevzone = %u WHERE chars.charid = %u;", 
+                          (uint32)ipp, (uint32)(ipp >> 32), PChar->loc.destination, GetID(), PChar->id);
+
+    if (PChar->PParty)
+    {
+        uint8 data[4];
+        WBUFL(data, 0) = PChar->PParty->GetPartyID();
+        message::send(MSG_PT_RELOAD, data, sizeof data, NULL);
+    }
 }
 
 void CZone::CheckRegions(CCharEntity* PChar)

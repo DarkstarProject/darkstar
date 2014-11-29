@@ -13,7 +13,7 @@ require("scripts/zones/Ghelsba_Outpost/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	startLogging(player,player:getZone(),npc,trade,0x0064);
+	startLogging(player,player:getZone():getID(),npc,trade,0x0064);
 end;
 
 -----------------------------------

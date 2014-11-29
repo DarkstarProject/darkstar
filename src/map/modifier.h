@@ -327,6 +327,7 @@ enum MODIFIER
 	MOD_CHARM_TIME                = 0x168, // extends the charm time only, no effect of charm chance (modId = 360)
 	MOD_REWARD_HP_BONUS           = 0x16C, // Percent to add to reward HP healed. (364) (modId = 364)
 	MOD_CHARM_CHANCE              = 0x187, // extra chance to charm (light+apollo staff ect) (modId = 391)
+        MOD_FERAL_HOWL_DURATION       = 0x1F7, // +20% duration per merit when wearing augmented Monster Jackcoat +2 (modId = 503)
 
 	// Bard
     MOD_MINNE_EFFECT              = 0x1B1, // (modId = 433)
@@ -548,7 +549,6 @@ enum MODIFIER
 
     MOD_GOV_CLEARS                = 0x1F0, // 4% bonus per Grounds of Valor Page clear (modId = 496)
 
-    //MOD_SPARE =0x1F7, // (modId = 503)
     //MOD_SPARE =0x1F8, // (modId = 504)
     //MOD_SPARE =0x1F9, // (modId = 505)
     //MOD_SPARE =0x1FA, // (modId = 506)

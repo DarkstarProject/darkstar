@@ -5,7 +5,8 @@
 -----------------------------------
 
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
-require("scripts/globals/server");
+require("scripts/globals/events/harvest_festivals");
+require("scripts/globals/zone");
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/zones/Windurst_Waters/TextIDs");
@@ -16,7 +17,9 @@ require("scripts/zones/Windurst_Waters/TextIDs");
 
 function onInitialize(zone)			
 	-- Check if we are on Windurst Mission 1-3		
-	zone:registerRegion(1, 23,-12,-208, 31,-8,-197);		
+	zone:registerRegion(1, 23,-12,-208, 31,-8,-197);
+
+    applyHalloweenNpcCostumes(zone:getID())	
 end;			
 
 -----------------------------------			

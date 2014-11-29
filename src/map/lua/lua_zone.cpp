@@ -26,6 +26,7 @@
 #include "../region.h"
 
 #include "lua_zone.h"
+#include "lua_baseentity.h"
 
 
 /************************************************************************
@@ -110,6 +111,44 @@ inline int32 CLuaZone::levelRestriction(lua_State *L)
 	return 1;
 }
 
+inline int32 CLuaZone::getPlayers(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_pLuaZone == NULL);
+
+    lua_newtable(L);
+    int newTable = lua_gettop(L);
+
+    m_pLuaZone->ForEachChar([&L, &newTable](CCharEntity* PChar){
+        lua_getglobal(L, CLuaBaseEntity::className);
+        lua_pushstring(L, "new");
+        lua_gettable(L, -2);
+        lua_insert(L, -2);
+        lua_pushlightuserdata(L, (void*)PChar);
+        lua_pcall(L, 2, 1, 0);
+        lua_setfield(L, newTable, PChar->GetName());
+    });
+
+    return 1;
+}
+
+inline int32 CLuaZone::getID(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_pLuaZone == NULL);
+
+    lua_pushinteger(L, m_pLuaZone->GetID());
+
+    return 1;
+}
+
+inline int32 CLuaZone::getRegionID(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_pLuaZone == NULL);
+
+    lua_pushinteger(L, m_pLuaZone->GetRegionID());
+
+    return 1;
+}
+
 /************************************************************************
 *																		*
 *  Инициализация методов в lua											*
@@ -121,5 +160,8 @@ Lunar<CLuaZone>::Register_t CLuaZone::methods[] =
 {
 	LUNAR_DECLARE_METHOD(CLuaZone,levelRestriction),
 	LUNAR_DECLARE_METHOD(CLuaZone,registerRegion),
+    LUNAR_DECLARE_METHOD(CLuaZone,getPlayers),
+    LUNAR_DECLARE_METHOD(CLuaZone,getID),
+    LUNAR_DECLARE_METHOD(CLuaZone,getRegionID),
 	{NULL,NULL}
 }; 

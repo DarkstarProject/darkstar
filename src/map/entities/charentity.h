@@ -261,6 +261,7 @@ public:
 
 	uint8					m_ZonesList[36];				// список посещенных персонажем зон
 	uint8					m_SpellList[128];				// список изученных заклинаний
+	uint8					m_EnabledSpellList[128];		// spell list of enabled spells
     uint8					m_TitleList[94];				// список заслуженных завний
 	uint8					m_Abilities[46];				// список текущих способностей
 	uint8					m_LearnedAbilities[46];			// learnable abilities (corsair rolls)
@@ -349,6 +350,8 @@ public:
 	uint32			  m_PlayTime;
 	uint32			  m_SaveTime;
 
+    uint32            m_LastYell;
+
 	uint8			  m_GMlevel;                    // Level of the GM flag assigned to this character
     bool              m_isGMHidden;                 // GM Hidden flag to prevent player updates from being processed.
 
@@ -381,7 +384,12 @@ public:
 	void SetPlayTime(uint32 playTime);				// Set playtime
 	uint32 GetPlayTime(bool needUpdate = true);		// Get playtime
 
-	CItemArmor* getEquip(SLOTTYPE slot);
+	CItemArmor*	getEquip(SLOTTYPE slot);
+	
+	void		ReloadPartyInc();
+    void        ReloadPartyDec();
+    bool        ReloadParty();
+
 
 	 CCharEntity();									// конструктор
 	~CCharEntity();									// деструктор
@@ -400,7 +408,8 @@ private:
 
 	bool			m_isWeaponSkillKill;
 	bool			m_isMijinGakure;
-	bool                    m_isStyleLocked;
+	bool            m_isStyleLocked;
+	bool			m_reloadParty;
 
 	PacketList_t      PacketList;					// в этом списке хранятся все пакеты, предназначенные для отправки персонажу
 };

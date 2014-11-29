@@ -42,7 +42,7 @@
 #include "../zone_instance.h"
 
 
-CZone* g_PZoneList[MAX_ZONEID];	// глобальный массив указателей на игровые зоны
+std::map<uint16, CZone*> g_PZoneList;	// глобальный массив указателей на игровые зоны
 CNpcEntity*  g_PTrigger;	// триггер для запуска событий
 
 
@@ -57,9 +57,9 @@ namespace zoneutils
 
 void TOTDChange(TIMETYPE TOTD)
 {
-	for (uint16 ZoneID = 0; ZoneID < MAX_ZONEID; ZoneID++)
+	for (auto PZone : g_PZoneList)
 	{
-		g_PZoneList[ZoneID]->TOTDChange(TOTD);
+		PZone.second->TOTDChange(TOTD);
 	}
 }
 
@@ -101,23 +101,22 @@ void UpdateWeather()
     uint8 WeatherChange = 0;
     uint8 WeatherFrequency = 0;
 
-    for (uint16 ZoneID = 0; ZoneID < MAX_ZONEID; ZoneID++)
+	for (auto PZone : g_PZoneList)
     {
-        if (!g_PZoneList[ZoneID]->IsWeatherStatic())
+		if (!PZone.second->IsWeatherStatic())
         {
             WeatherFrequency = 0;
             WeatherChange = WELL512::irand()%100;
 
             for (uint8 weather = 0; weather < MAX_WEATHER_ID; ++weather)
             {
-                WeatherFrequency += g_PZoneList[ZoneID]->m_WeatherFrequency[weather];
+				WeatherFrequency += PZone.second->m_WeatherFrequency[weather];
 
                 if (WeatherChange < WeatherFrequency)
                 {
-
-                    g_PZoneList[ZoneID]->SetWeather((WEATHER)weather);
-          					luautils::OnZoneWeatherChange(ZoneID, weather);
-          					break;
+					PZone.second->SetWeather((WEATHER)weather);
+					luautils::OnZoneWeatherChange(PZone.first, weather);
+          			break;
                 }
             }
         }
@@ -127,9 +126,9 @@ void UpdateWeather()
 
 void SavePlayTime()
 {
-	for(int32 ZoneID = 0; ZoneID < MAX_ZONEID; ZoneID++)
+	for (auto PZone : g_PZoneList)
 	{
-		g_PZoneList[ZoneID]->SavePlayTime();
+		PZone.second->SavePlayTime();
 	}
 	ShowDebug(CL_CYAN"Player playtime saving finished\n" CL_RESET);
 }
@@ -143,7 +142,14 @@ void SavePlayTime()
 CZone* GetZone(uint16 ZoneID)
 {
     DSP_DEBUG_BREAK_IF(ZoneID >= MAX_ZONEID);
-	return g_PZoneList[ZoneID];
+	try
+	{
+		return g_PZoneList.at(ZoneID);
+	}
+	catch (const std::out_of_range& oor)
+	{
+		return NULL;
+	}
 }
 
 CNpcEntity* GetTrigger(uint16 TargID, uint16 ZoneID)
@@ -163,7 +169,16 @@ CNpcEntity* GetTrigger(uint16 TargID, uint16 ZoneID)
 
 CBaseEntity* GetEntity(uint32 ID, uint8 filter)
 {
-    return g_PZoneList[(uint16)((ID >> 12) & 0x0FFF)]->GetEntity((uint16)(ID & 0x0FFF), filter);
+	uint16 zoneID = (ID >> 12) & 0x0FFF;
+	CZone* PZone = GetZone(zoneID);
+	if (PZone)
+	{
+		return PZone->GetEntity((uint16)(ID & 0x0FFF), filter);
+	}
+	else
+	{
+		return NULL;
+	}
 }
 
 /************************************************************************
@@ -174,9 +189,9 @@ CBaseEntity* GetEntity(uint32 ID, uint8 filter)
 
 CCharEntity* GetCharByName(int8* name)
 {
-    for (uint16 ZoneID = 0; ZoneID < MAX_ZONEID; ZoneID++)
+    for (auto PZone : g_PZoneList)
     {
-        CCharEntity* PChar = g_PZoneList[ZoneID]->GetCharByName(name);
+        CCharEntity* PChar = PZone.second->GetCharByName(name);
 
         if (PChar != NULL)
         {
@@ -195,23 +210,26 @@ CCharEntity* GetCharByName(int8* name)
 CCharEntity* GetCharFromWorld(uint32 charid, uint16 targid)
 {
     // will not return pointers to players in Mog House
-    for (uint16 ZoneID = 1; ZoneID < MAX_ZONEID; ZoneID++)
+	for (auto PZone : g_PZoneList)
     {
-        if (targid)
-        {
-            CBaseEntity* PEntity = g_PZoneList[ZoneID]->GetEntity(targid, TYPE_PC);
-            if (PEntity != NULL && PEntity->id == charid)
-                return (CCharEntity*)PEntity;
-        }
-        else
-        {
-            CCharEntity* PEntity = NULL;
-            g_PZoneList[ZoneID]->ForEachChar([&](CCharEntity* PChar){if (PChar->id == charid) PEntity = PChar; });
-            if (PEntity)
-                return PEntity;
-        }
+		if (PZone.first == 0)
+			continue;
+		CBaseEntity* PEntity = PZone.second->GetEntity(targid, TYPE_PC);
+        if (PEntity != NULL && PEntity->id == charid)
+            return (CCharEntity*)PEntity;
     }
     return NULL;
+}
+
+CCharEntity* GetChar(uint32 charid)
+{
+	for (auto PZone : g_PZoneList)
+	{
+		CBaseEntity* PEntity = PZone.second->GetCharByID(charid);
+		if (PEntity)
+			return (CCharEntity*)PEntity;
+	}
+	return NULL;
 }
 
 /************************************************************************
@@ -224,9 +242,8 @@ void LoadNPCList()
 {
     const int8* Query =
         "SELECT \
-          zoneid,\
           npcid,\
-          name,\
+          npc_list.name,\
           pos_rot,\
           pos_x,\
           pos_y,\
@@ -241,45 +258,47 @@ void LoadNPCList()
           unknown,\
           look,\
           name_prefix \
-        FROM npc_list \
-        WHERE npcid < 1024;";
+        FROM npc_list INNER JOIN zone_settings \
+        ON (npcid & 0xFFF000) >> 12 = zone_settings.zoneid \
+        WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE);";
 
-    int32 ret = Sql_Query(SqlHandle, Query);
+    int32 ret = Sql_Query(SqlHandle, Query, map_ip, inet_ntoa(map_ip), map_port);
 
 	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{
 		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		{
-			uint16 ZoneID = (uint16)Sql_GetUIntData(SqlHandle, 0);
+			uint32 NpcID = Sql_GetUIntData(SqlHandle, 0);
+			uint16 ZoneID = (NpcID - 0x1000000) >> 12;
 
 			if (GetZone(ZoneID)->GetType() != ZONETYPE_DUNGEON_INSTANCED)
 			{
 				CNpcEntity* PNpc = new CNpcEntity;
-				PNpc->targid = (uint16)Sql_GetUIntData(SqlHandle, 1);
-				PNpc->id = (uint32)PNpc->targid + (ZoneID << 12) + 0x1000000;
+				PNpc->targid = NpcID & 0xFFF;
+				PNpc->id = NpcID;
 
-				PNpc->name.insert(0, Sql_GetData(SqlHandle, 2));
+				PNpc->name.insert(0, Sql_GetData(SqlHandle, 1));
 
-				PNpc->loc.p.rotation = (uint8)Sql_GetIntData(SqlHandle, 3);
-				PNpc->loc.p.x = Sql_GetFloatData(SqlHandle, 4);
-				PNpc->loc.p.y = Sql_GetFloatData(SqlHandle, 5);
-				PNpc->loc.p.z = Sql_GetFloatData(SqlHandle, 6);
-				PNpc->loc.p.moving = (uint16)Sql_GetUIntData(SqlHandle, 7);
+				PNpc->loc.p.rotation = (uint8)Sql_GetIntData(SqlHandle, 2);
+				PNpc->loc.p.x = Sql_GetFloatData(SqlHandle, 3);
+				PNpc->loc.p.y = Sql_GetFloatData(SqlHandle, 4);
+				PNpc->loc.p.z = Sql_GetFloatData(SqlHandle, 5);
+				PNpc->loc.p.moving = (uint16)Sql_GetUIntData(SqlHandle, 6);
 
-				PNpc->m_TargID = (uint32)Sql_GetUIntData(SqlHandle, 7) >> 16; // вполне вероятно
+				PNpc->m_TargID = (uint32)Sql_GetUIntData(SqlHandle, 6) >> 16; // вполне вероятно
 
-				PNpc->speed = (uint8)Sql_GetIntData(SqlHandle, 8);
-				PNpc->speedsub = (uint8)Sql_GetIntData(SqlHandle, 9);
-				PNpc->animation = (uint8)Sql_GetIntData(SqlHandle, 10);
-				PNpc->animationsub = (uint8)Sql_GetIntData(SqlHandle, 11);
+				PNpc->speed = (uint8)Sql_GetIntData(SqlHandle, 7);
+				PNpc->speedsub = (uint8)Sql_GetIntData(SqlHandle, 8);
+				PNpc->animation = (uint8)Sql_GetIntData(SqlHandle, 9);
+				PNpc->animationsub = (uint8)Sql_GetIntData(SqlHandle, 10);
 
-				PNpc->namevis = (uint8)Sql_GetIntData(SqlHandle, 12);
-				PNpc->status = (STATUSTYPE)Sql_GetIntData(SqlHandle, 13);
-				PNpc->unknown = (uint32)Sql_GetUIntData(SqlHandle, 14);
+				PNpc->namevis = (uint8)Sql_GetIntData(SqlHandle, 11);
+				PNpc->status = (STATUSTYPE)Sql_GetIntData(SqlHandle, 12);
+				PNpc->unknown = (uint32)Sql_GetUIntData(SqlHandle, 13);
 
-				PNpc->name_prefix = (uint8)Sql_GetIntData(SqlHandle, 16);
+				PNpc->name_prefix = (uint8)Sql_GetIntData(SqlHandle, 15);
 
-				memcpy(&PNpc->look, Sql_GetData(SqlHandle, 15), 20);
+				memcpy(&PNpc->look, Sql_GetData(SqlHandle, 14), 20);
 
 				GetZone(ZoneID)->InsertNPC(PNpc);
 				luautils::OnNpcSpawn(PNpc);
@@ -296,8 +315,11 @@ void LoadNPCList()
 
 void LoadMOBList()
 {
+	uint8 normalLevelRangeMin = luautils::GetSettingsVariable("NORMAL_MOB_MAX_LEVEL_RANGE_MIN");
+	uint8 normalLevelRangeMax = luautils::GetSettingsVariable("NORMAL_MOB_MAX_LEVEL_RANGE_MAX");
+
     const int8* Query =
-        "SELECT zoneid, mobname, mobid, pos_rot, pos_x, pos_y, pos_z, \
+        "SELECT mob_groups.zoneid, mobname, mobid, pos_rot, pos_x, pos_y, pos_z, \
 			respawntime, spawntype, dropid, mob_groups.HP, mob_groups.MP, minLevel, maxLevel, \
 			modelid, mJob, sJob, cmbSkill, cmbDmgMult, cmbDelay, behavior, links, mobType, immunity, \
 			systemid, mobsize, speed, \
@@ -310,9 +332,11 @@ void LoadMOBList()
 			FROM mob_groups INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
 			INNER JOIN mob_spawn_points ON mob_groups.groupid = mob_spawn_points.groupid \
 			INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
-			WHERE NOT (pos_x = 0 AND pos_y = 0 AND pos_z = 0) AND zoneid = ((mobid >> 12) & 0xFFF);";
+			INNER JOIN zone_settings ON mob_groups.zoneid = zone_settings.zoneid \
+            			WHERE NOT (pos_x = 0 AND pos_y = 0 AND pos_z = 0) AND IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE) \
+			AND mob_groups.zoneid = ((mobid >> 12) & 0xFFF);";
 
-    int32 ret = Sql_Query(SqlHandle, Query);
+    int32 ret = Sql_Query(SqlHandle, Query, map_ip, inet_ntoa(map_ip), map_port);
 
 	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{
@@ -412,6 +436,15 @@ void LoadMOBList()
 				PMob->m_name_prefix = (uint8)Sql_GetIntData(SqlHandle, 50);
 				PMob->m_unknown = (uint32)Sql_GetIntData(SqlHandle, 51);
 
+				// Cap Level if Necessary (Don't Cap NMs)
+				if (normalLevelRangeMin > 0 && PMob->m_Type != MOBTYPE_NOTORIOUS && PMob->m_minLevel > normalLevelRangeMin){
+					PMob->m_minLevel = normalLevelRangeMin;
+				}
+
+				if (normalLevelRangeMax > 0 && PMob->m_Type != MOBTYPE_NOTORIOUS && PMob->m_maxLevel > normalLevelRangeMax){
+					PMob->m_maxLevel = normalLevelRangeMax;
+				}
+
 				//Special sub animation for Mob (yovra, jailer of love, phuabo)
 				// yovra 1: en hauteur, 2: en bas, 3: en haut
 				// phuabo 1: sous l'eau, 2: sort de l'eau, 3: rentre dans l'eau
@@ -454,12 +487,14 @@ void LoadMOBList()
 
 	// attach pets to mobs
 	const int8* PetQuery =
-		"SELECT zoneid, mob_mobid, pet_offset \
+		"SELECT mob_groups.zoneid, mob_mobid, pet_offset \
 		FROM mob_pets \
 		LEFT JOIN mob_spawn_points ON mob_pets.mob_mobid = mob_spawn_points.mobid \
-		LEFT JOIN mob_groups ON mob_spawn_points.groupid = mob_groups.groupid;";
+		LEFT JOIN mob_groups ON mob_spawn_points.groupid = mob_groups.groupid \
+		INNER JOIN zone_settings ON mob_groups.zoneid = zone_settings.zoneid \
+		WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE);";
 
-	ret = Sql_Query(SqlHandle, PetQuery);
+	ret = Sql_Query(SqlHandle, PetQuery, map_ip, inet_ntoa(map_ip), map_port);
 
 	if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{
@@ -541,21 +576,38 @@ void LoadZoneList()
 {
 	g_PTrigger = new CNpcEntity();	// нужно в конструкторе CNpcEntity задавать модель по умолчанию
 
-	for (uint16 ZoneID = 0; ZoneID < MAX_ZONEID; ZoneID++)
+	std::vector<uint16> zones;
+	const int8* query = "SELECT zoneid FROM zone_settings WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE);";
+
+	int ret = Sql_Query(SqlHandle, query, map_ip, inet_ntoa(map_ip), map_port);
+
+	if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{
-		g_PZoneList[ZoneID] = CreateZone(ZoneID);
+		while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		{
+			zones.push_back(Sql_GetUIntData(SqlHandle, 0));
+		}
+	}
+	else
+	{
+		ShowFatalError("Unable to load any zones! Check IP and port params\n");
+		exit(EXIT_FAILURE);
+	}
+
+	for (auto zone : zones)
+	{
+		g_PZoneList[zone] = CreateZone(zone);
     }
 
 	LoadNPCList();
 	LoadMOBList();
 
-    for (uint16 ZoneID = 0; ZoneID < MAX_ZONEID; ZoneID++)
+	for (auto PZone : g_PZoneList)
     {
-        CZone* PZone = GetZone(ZoneID);
-		PZone->ZoneServer(-1);
+		PZone.second->ZoneServer(-1);
 		
-		if (PZone->GetIP() != 0)
-			luautils::OnZoneInitialise(PZone->GetID());
+		if (PZone.second->GetIP() != 0)
+			luautils::OnZoneInitialise(PZone.second->GetID());
 	}
     UpdateWeather();
 }
@@ -909,11 +961,39 @@ int GetWeatherElement(WEATHER weather)
 
 void FreeZoneList()
 {
-	for (uint16 ZoneID = 0; ZoneID < MAX_ZONEID; ZoneID++)
+	for (auto PZone : g_PZoneList)
 	{
-		delete g_PZoneList[ZoneID];
+		delete PZone.second;
 	}
 	delete g_PTrigger;
+}
+
+void ForEachZone(std::function<void(CZone*)> func)
+{
+	for (auto PZone : g_PZoneList)
+	{
+		func(PZone.second);
+	}
+}
+
+uint64 GetZoneIPP(uint16 zoneID)
+{
+    uint64 ipp = 0;
+    const int8* query = "SELECT zoneip, zoneport FROM zone_settings WHERE zoneid = %u;";
+
+    int ret = Sql_Query(SqlHandle, query, zoneID);
+
+    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    {
+        ipp = inet_addr(Sql_GetData(SqlHandle, 0));
+        uint64 port = Sql_GetUIntData(SqlHandle, 1);
+        ipp |= (port << 32);
+    }
+    else
+    {
+        ShowFatalError(CL_RED"zoneutils::GetZoneIPP: Cannot find zone %u\n" CL_RESET, zoneID);
+    }
+    return ipp;
 }
 
 }; // namespace zoneutils

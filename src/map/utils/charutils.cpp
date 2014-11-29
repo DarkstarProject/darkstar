@@ -65,6 +65,7 @@
 #include "../grades.h"
 #include "../conquest_system.h"
 #include "../map.h"
+#include "../spell.h"
 #include "../trait.h"
 #include "../vana_time.h"
 #include "../weapon_skill.h"
@@ -388,6 +389,8 @@ void LoadChar(CCharEntity* PChar)
 		int8* spells = NULL;
 		Sql_GetData(SqlHandle,16,&spells,&length);
 		memcpy(PChar->m_SpellList, spells, (length > sizeof(PChar->m_SpellList) ? sizeof(PChar->m_SpellList) : length));
+		memcpy(PChar->m_EnabledSpellList, spells, (length > sizeof(PChar->m_EnabledSpellList) ? sizeof(PChar->m_EnabledSpellList) : length));
+		filterEnabledSpells(PChar);
 
 		length = 0;
 		int8* abilities = NULL;
@@ -622,12 +625,16 @@ void LoadChar(CCharEntity* PChar)
 
         CAbility* PAbility = ability::GetTwoHourAbility(PChar->GetMJob());
 
-        uint32 RecastTime = (uint32)Sql_GetUIntData(SqlHandle, 8) + PAbility->getRecastTime() * 1000;
+		// NULL Check In Case the Expansion for this Job Has Been Disabled
+		if (PAbility != NULL)
+		{
+			uint32 RecastTime = (uint32)Sql_GetUIntData(SqlHandle, 8) + PAbility->getRecastTime() * 1000;
 
-        if (RecastTime > gettick())
-        {
-            PChar->PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), RecastTime - gettick());
-        }
+			if (RecastTime > gettick())
+			{
+				PChar->PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), RecastTime - gettick());
+			}
+		}
 	}
 
 	fmtQuery = "SELECT skillid, value, rank \
@@ -1682,6 +1689,11 @@ bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 conta
 							{
 								UnequipItem(PChar,SLOT_MAIN);
 							}
+                            else if (!((CItemWeapon*)PItem)->getSkillType() == SKILL_NON)
+                            {
+                                //allow Grips to be equipped
+                                return false;
+                            }
 						}
 					}
 				}
@@ -1863,7 +1875,7 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 contai
 			}
         }
 	}
-    if (equipSlotID == SLOT_MAIN || equipSlotID == SLOT_RANGED)
+    if (equipSlotID == SLOT_MAIN || equipSlotID == SLOT_RANGED || equipSlotID == SLOT_SUB)
     {
         PChar->health.tp = 0;
         /*// fixes logging in with no h2h
@@ -2114,6 +2126,10 @@ void BuildingCharAbilityTable(CCharEntity* PChar)
 	{
 		CAbility* PAbility = AbilitiesList.at(i);
 
+		if (PAbility == NULL){
+			continue;
+		}
+
 		if (PChar->GetMLevel() >= PAbility->getLevel() &&  PAbility->getID() < 496 )
 		{
 			if (PAbility->getID() != ABILITY_PET_COMMANDS && CheckAbilityAddtype(PChar, PAbility))
@@ -2142,6 +2158,10 @@ void BuildingCharAbilityTable(CCharEntity* PChar)
 
 		if (PChar->GetSLevel() >= PAbility->getLevel() &&  PAbility->getID() < 496)
 		{
+			if (PAbility == NULL){
+				continue;
+			}
+
 			if (PAbility->getLevel() != 0 )
 			{
 				if (PAbility->getID() != ABILITY_PET_COMMANDS && CheckAbilityAddtype(PChar, PAbility) && !(PAbility->getAddType() & ADDTYPE_MAIN_ONLY))
@@ -2570,17 +2590,27 @@ int32 delKeyItem(CCharEntity* PChar, uint16 KeyItemID)
 
 int32 hasSpell(CCharEntity* PChar, uint16 SpellID)
 {
-	return hasBit(SpellID, PChar->m_SpellList, sizeof(PChar->m_SpellList));
+	return hasBit(SpellID, PChar->m_EnabledSpellList, sizeof(PChar->m_EnabledSpellList));
 }
 
 int32 addSpell(CCharEntity* PChar, uint16 SpellID)
 {
-	return addBit(SpellID, PChar->m_SpellList, sizeof(PChar->m_SpellList));
+	addBit(SpellID, PChar->m_SpellList, sizeof(PChar->m_SpellList));
+	return addBit(SpellID, PChar->m_EnabledSpellList, sizeof(PChar->m_EnabledSpellList));
 }
 
 int32 delSpell(CCharEntity* PChar, uint16 SpellID)
 {
-	return delBit(SpellID, PChar->m_SpellList, sizeof(PChar->m_SpellList));
+	delBit(SpellID, PChar->m_SpellList, sizeof(PChar->m_SpellList));
+	return delBit(SpellID, PChar->m_EnabledSpellList, sizeof(PChar->m_EnabledSpellList));
+}
+
+void filterEnabledSpells(CCharEntity* PChar){
+	for (int i = 0; i < MAX_SPELL_ID; i++){
+		if (spell::GetSpell(i) == NULL){
+			delBit(i, PChar->m_EnabledSpellList, sizeof(PChar->m_EnabledSpellList));
+		}
+	}
 }
 
 /************************************************************************
@@ -2748,15 +2778,15 @@ void UpdateHealth(CCharEntity* PChar)
 	{
 		if (PChar->PParty->m_PAlliance == NULL)
 		{
-			PChar->PParty->PushPacket(PChar, PChar->getZone(), new CCharHealthPacket(PChar));
-
-		}else if (PChar->PParty->m_PAlliance != NULL)
-				{
-					for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
-					{
-						((CParty*)PChar->PParty->m_PAlliance->partyList.at(i))->PushPacket(PChar, PChar->getZone(), new CCharHealthPacket(PChar));
-					}
-				}
+			PChar->PParty->PushPacket(PChar->id, PChar->getZone(), new CCharHealthPacket(PChar));
+		}
+		else if (PChar->PParty->m_PAlliance != NULL)
+		{
+			for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
+			{
+				((CParty*)PChar->PParty->m_PAlliance->partyList.at(i))->PushPacket(PChar->id, PChar->getZone(), new CCharHealthPacket(PChar));
+			}
+		}
 	}
 
     PChar->pushPacket(new CCharHealthPacket(PChar));
@@ -3453,7 +3483,6 @@ void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMo
             (region >= 0 && region <= 22))
         {
             // Add influence for the players region..
-            conquest::GainInfluencePoints(PChar);
             conquest::AddConquestPoints(PChar, exp);
         }
 
@@ -4653,6 +4682,110 @@ void ClearTempItems(CCharEntity* PChar)
 	if (Sql_Query(SqlHandle, Query, PChar->id) != SQL_ERROR)
 	{
 		Temp->Clear();
+	}
+}
+
+void ReloadParty(CCharEntity* PChar)
+{
+	int ret = Sql_Query(SqlHandle, "SELECT partyid, allianceid, partyflag & %d FROM accounts_sessions s JOIN accounts_parties p ON \
+                                    s.charid = p.charid WHERE p.charid = %u;", (PARTY_SECOND | PARTY_THIRD), PChar->id);
+	if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+	{
+        uint32 partyid = Sql_GetUIntData(SqlHandle, 0);
+        uint32 allianceid = Sql_GetUIntData(SqlHandle, 1);
+        uint32 partynumber = Sql_GetUIntData(SqlHandle, 2);
+
+        //first, parties and alliances must be created or linked if the character's current party has changed
+        // for example, joining a party from another server
+		if (PChar->PParty)
+		{
+            if (PChar->PParty->GetPartyID() != partyid)
+            {
+                PChar->PParty->SetPartyID(partyid);
+            }
+		}
+        else
+        {
+            //find if party exists on this server already
+            CParty* PParty = NULL;
+            zoneutils::ForEachZone([partyid, &PParty](CZone* PZone)
+            {
+                PZone->ForEachChar([partyid, &PParty](CCharEntity* PChar)
+                {
+                    if (PChar->PParty && PChar->PParty->GetPartyID() == partyid)
+                    {
+                        PParty = PChar->PParty;
+                    }
+                });
+            });
+
+            //create new party if it doesn't exist already
+            if (!PParty)
+            {
+                PParty = new CParty(partyid);
+            }
+                
+            PParty->PushMember(PChar);
+        }
+
+        if (allianceid != 0)
+        {
+            if (PChar->PParty->m_PAlliance)
+            {
+                if (PChar->PParty->m_PAlliance->m_AllianceID != allianceid)
+                {
+                    PChar->PParty->m_PAlliance->m_AllianceID = allianceid;
+                }
+            }
+            else
+            {
+                //find if the alliance exists on this server already
+                CAlliance* PAlliance = NULL;
+                zoneutils::ForEachZone([allianceid, &PAlliance](CZone* PZone)
+                {
+                    PZone->ForEachChar([allianceid, &PAlliance](CCharEntity* PChar)
+                    {
+                        if (PChar->PParty && PChar->PParty->m_PAlliance && PChar->PParty->m_PAlliance->m_AllianceID == allianceid)
+                        {
+                            PAlliance = PChar->PParty->m_PAlliance;
+                        }
+                    });
+                });
+
+                //create new alliance if it doesn't exist on this server already
+                if (!PAlliance)
+                {
+                    PAlliance = new CAlliance(allianceid);
+                }
+
+                PAlliance->pushParty(PChar->PParty, partynumber);
+            }
+        }
+        else if (PChar->PParty->m_PAlliance)
+        {
+            PChar->PParty->m_PAlliance->delParty(PChar->PParty);
+        }
+
+        //once parties and alliances have been reassembled, reload the party/parties
+        if (PChar->PParty->m_PAlliance)
+        {
+            for (auto party : PChar->PParty->m_PAlliance->partyList)
+            {
+                party->ReloadParty();
+            }
+        }
+        else
+        {
+            PChar->PParty->ReloadParty();
+        }
+	}
+	else
+	{
+		if (PChar->PParty)
+		{
+			PChar->PParty->DelMember(PChar);
+		}
+        PChar->ReloadPartyDec();
 	}
 }
 

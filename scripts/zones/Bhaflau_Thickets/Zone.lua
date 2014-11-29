@@ -6,6 +6,7 @@
 
 package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/zones/Bhaflau_Thickets/TextIDs");
 
 -----------------------------------
@@ -13,6 +14,10 @@ require("scripts/zones/Bhaflau_Thickets/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    -- Harvestman
+    SetRespawnTime(16990252, 900, 10800);
+
 end;
 
 -----------------------------------		

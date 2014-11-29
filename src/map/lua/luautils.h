@@ -27,6 +27,7 @@
 #include "../../common/cbasetypes.h"
 
 #include "../entities/battleentity.h"
+#include "../conquest_system.h"
 
 #define lua_prepscript(n,...) int8 File[255]; memset(File, 0, sizeof(File)); int32 oldtop = lua_gettop(LuaHandle); \
                               snprintf( File, sizeof(File), n, ##__VA_ARGS__);
@@ -65,8 +66,11 @@ namespace luautils
 	int32 GetMobIDByJob(lua_State*);											// Return mobid by job
 	int32 WeekUpdateConquest(lua_State*);
     int32 GetRegionOwner(lua_State*);										    // узнаем страну, владеющую текущим регионом
+    int32 GetRegionInfluence(lua_State*);                                       // Return influence graphics
 	int32 getNationRank(lua_State* L);
-	int32 SetRegionalConquestOverseers();										// Update NPC Conquest Guard
+    int32 getConquestBalance(lua_State* L);
+    int32 isConquestAlliance(lua_State* L);
+	int32 SetRegionalConquestOverseers(uint8 regionID);							// Update NPC Conquest Guard
 	int32 setMobPos(lua_State*);												// set a mobs position (only if mob is not in combat)
 
 	int32 getCorsairRollEffect(lua_State*);
@@ -100,10 +104,8 @@ namespace luautils
 	uint8 GetSettingsVariable(const char* variable);                            // Gets a Variable Value from Settings.lua
 	bool IsExpansionEnabled(const char* expansionCode);                         // Check if an Expansion is Enabled In Settings.lua
 
-	int32 OnServerStart();													// triggers when game server starts up
-
-	int32 OnGameDayAutomatisation();											// Automatic action of NPC every game day
-	int32 OnGameHourAutomatisation();											// Automatic action of NPC every game hour
+	int32 OnGameDay(CZone* PZone);								                // Automatic action of NPC every game day
+    int32 OnGameHour(CZone* PZone);								                // Automatic action of NPC every game hour
 	int32 OnZoneWeatherChange(uint16 ZoneID, uint8 weather);
 	int32 OnTOTDChange(uint16 ZoneID, uint8 TOTD);
 
@@ -114,6 +116,7 @@ namespace luautils
 	int32 OnRegionEnter(CCharEntity* PChar, CRegion* PRegion);					// when player enters a region of a zone
 	int32 OnRegionLeave(CCharEntity* PChar, CRegion* Pregion);					// when player leaves a region of a zone
     int32 OnTransportEvent(CCharEntity* PChar, uint32 TransportID);
+    int32 OnConquestUpdate(CZone* PZone, ConquestUpdate type);                  // hourly conquest update
 
 	int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc);						// triggered when user targets npc and clicks action button
 	int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result);		// triggered when game triggers event update during cutscene

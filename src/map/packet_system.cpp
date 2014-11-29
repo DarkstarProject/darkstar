@@ -49,11 +49,13 @@
 #include "map.h"
 #include "entities/mobentity.h"
 #include "entities/npcentity.h"
+#include "entities/charentity.h"
 #include "spell.h"
 #include "utils/synthutils.h"
 #include "trade_container.h"
 #include "zone.h"
 #include "utils/zoneutils.h"
+#include "message.h"
 
 #include "items/item_shop.h"
 
@@ -243,11 +245,11 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		} else {
             PChar->loc.zone = zoneutils::GetZone(destination);
         }
-        
+
         bool firstLogin = true;
         for (uint32 i = 0; i < sizeof(PChar->m_ZonesList); ++i)
         {
-            if (PChar->m_ZonesList[i] != 0) 
+            if (PChar->m_ZonesList[i] != 0)
                 firstLogin = false;
         }
 
@@ -269,7 +271,7 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
             PChar->m_DeathCounter = (uint32)Sql_GetUIntData(SqlHandle, 0);
             PChar->m_DeathTimestamp = (uint32)time(NULL);
         }
-        
+
         if (firstLogin)
             PChar->PMeritPoints->SaveMeritPoints(PChar->id, true);
 
@@ -314,12 +316,6 @@ void SmallPacket0x00C(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	PChar->pushPacket(new CMenuConfigPacket(PChar));
 	PChar->pushPacket(new CCharJobsPacket(PChar));
 	PChar->pushPacket(new CChangeMusicPacket(4,212)); // The default Chocobo music is Block 4 Track 212 (0xD4)
-
-	if (PChar->PParty != NULL)
-	{
-		PChar->PParty->ReloadParty();
-	}
-
 
 	// TODO: в MogHouse TreasurePool сейчас не создается, по этому необходима проверка
 	if (PChar->PTreasurePool != NULL)
@@ -381,14 +377,8 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
     PChar->PRecastContainer->Del(RECAST_MAGIC);
 
-    charutils::SaveCharStats(PChar);
-	charutils::SaveCharPosition(PChar);
-	charutils::SaveCharExp(PChar, PChar->GetMJob());
-	charutils::SaveCharPoints(PChar);
-
 	if (PChar->status == STATUS_SHUTDOWN)
 	{
-
 		if (PChar->PParty != NULL)
 		{
 			if(PChar->PParty->m_PAlliance != NULL)
@@ -422,30 +412,25 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			PChar->PParty->RemoveMember(PChar);
 			}
 		}
-        if (PChar->PLinkshell != NULL)
-        {
-            // удаляем персонажа из linkshell
-            PChar->PLinkshell->DelMember(PChar);
-        }
-
-        if (!session->shuttingDown)
-        {
-            // prevent double shutdown
-            session->shuttingDown = true;
-    		CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("close_session", gettick()+2500, session, CTaskMgr::TASK_ONCE, map_close_session));
-        }
-
+        session->shuttingDown = 1;
 	}
 	else  // проверка именно при покидании зоны, чтобы не делать двойную проверку при входе в игру
 	{
+        session->shuttingDown = 2;
         charutils::CheckEquipLogic(PChar, SCRIPT_CHANGEZONE, PChar->getZone());
 	}
+
     // персонаж может отвалиться во время перехода между зонами,
     // map_cleanup вызовет этот метод и zone персонажа будет NULL
     if (PChar->loc.zone != NULL)
     {
         PChar->loc.zone->DecreaseZoneCounter(PChar);
     }
+
+    charutils::SaveCharStats(PChar);
+    charutils::SaveCharPosition(PChar);
+    charutils::SaveCharExp(PChar, PChar->GetMJob());
+    charutils::SaveCharPoints(PChar);
 
 	PChar->status = STATUS_DISAPPEAR;
     PChar->PBattleAI->Reset();
@@ -697,7 +682,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 				{
 					MOB->m_CallForHelp = 0x20;
 					PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(PChar,PChar,0,0,19));
-					
+
                     return;
 				}
 			}
@@ -1493,12 +1478,12 @@ void SmallPacket0x04B(map_session_data_t* session, CCharEntity* PChar, int8* dat
     //ShowWarning(CL_YELLOW"[SMSG] C:%d U1:%d U2:%d L:%d T:%d S:%d O:%d S:%d\n" CL_RESET,
     //    msg_chunk, msg_unknown1, msg_unknown2, msg_language, msg_timestamp, msg_size_total, msg_offset, msg_request_len
     //    );
-         
+
     if (msg_language == 0x02)
         PChar->pushPacket(new CServerMessagePacket(map_config.server_message, msg_language, msg_timestamp, msg_offset));
     else
         PChar->pushPacket(new CServerMessagePacket(map_config.server_message_fr, msg_language, msg_timestamp, msg_offset));
-    
+
     return;
 }
 
@@ -2658,7 +2643,8 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* dat
             PChar->status = STATUS_UPDATE;
             return;
 		}else{
-			if (zoneutils::GetZone(PZoneLine->m_toZone)->GetIP() == 0) 	// разворачиваем персонажа на 180° и отправляем туда, откуда пришел
+			CZone* PDestination = zoneutils::GetZone(PZoneLine->m_toZone);
+			if (PDestination && PDestination->GetIP() == 0) 	// разворачиваем персонажа на 180° и отправляем туда, откуда пришел
 			{
 				ShowDebug(CL_CYAN"SmallPacket0x5E: Zone %u closed to chars\n" CL_RESET, PZoneLine->m_toZone);
 
@@ -2687,7 +2673,7 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 					    }
 
                         // Handle case for mog garden.. (Above addition does not work for this zone.)
-                        if (zone == 127) 
+                        if (zone == 127)
                         {
                             prevzone = 280;
                         }
@@ -2820,17 +2806,20 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
         case 0: // party - must by party leader or solo
             if (PChar->PParty == NULL || PChar->PParty->GetLeader() == PChar)
             {
-                if (targid == 0) // if the targid of the character is not known, then get it from the table of active sessions
+				if (PChar->PParty && PChar->PParty->members.size() == 6)
+				{
+					PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 23));
+					break;
+				}
+				CCharEntity* PInvitee = NULL;
+                if (targid != 0)
                 {
-                    int32 ret = Sql_Query(SqlHandle, "SELECT targid FROM accounts_sessions WHERE charid = %u LIMIT 1", charid);
-                    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-                        targid = (uint16)Sql_GetIntData(SqlHandle,0);
+					PInvitee = zoneutils::GetCharFromWorld(charid, targid);
                 }
-                CCharEntity* PInvitee = zoneutils::GetCharFromWorld(charid, targid);
                 if (PInvitee)
                 {
-                    //make sure intvitee isn't dead or in jail, they aren't a party member and don't already have an invite pending, and your party is not full
-			        if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 || (PChar->PParty && PChar->PParty->members.size() == 6) || PInvitee->PParty != NULL)
+                    //make sure invitee isn't dead or in jail, they aren't a party member and don't already have an invite pending, and your party is not full
+			        if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 || PInvitee->PParty != NULL)
                     {
 			            PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 23));
 			            break;
@@ -2843,28 +2832,36 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 			        PInvitee->InvitePending.id = PChar->id;
                     PInvitee->InvitePending.targid = PChar->targid;
-		            PInvitee->pushPacket(new CPartyInvitePacket(PInvitee, PChar, INVITE_PARTY));
+		            PInvitee->pushPacket(new CPartyInvitePacket(charid, targid, PChar, INVITE_PARTY));
 
 		            if (PChar->PParty && PChar->PParty->GetSyncTarget())
 		                PInvitee->pushPacket(new CMessageStandardPacket(PInvitee, 0, 0, 235));
 		        }
+				else
+				{
+					//on another server (hopefully)
+					uint8 packetData[12];
+					WBUFL(packetData, 0) = charid;
+					WBUFW(packetData, 4) = targid;
+					WBUFL(packetData, 6) = PChar->id;
+					WBUFW(packetData, 10) = PChar->targid;
+                    message::send(MSG_PT_INVITE, packetData, sizeof packetData, new CPartyInvitePacket(charid, targid, PChar, INVITE_PARTY));
+				}
             }
             else //in party but not leader, cannot invite
                 PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 21));
             break;
 
-       case 2: // alliance - must be unallied party leader or alliance leader of a non-full alliance
+       case 5: // alliance - must be unallied party leader or alliance leader of a non-full alliance
             if (PChar->PParty && PChar->PParty->GetLeader() == PChar &&
                 (PChar->PParty->m_PAlliance == NULL ||
                 (PChar->PParty->m_PAlliance->getMainParty()->GetLeader() == PChar && PChar->PParty->m_PAlliance->partyCount() < 3)))
             {
-                if (targid == 0) // if the targid of the character is not known, then get it from the table of active sessions
+				CCharEntity* PInvitee = NULL;
+                if (targid != 0)
                 {
-                    int32 ret = Sql_Query(SqlHandle, "SELECT targid FROM accounts_sessions WHERE charid = %u LIMIT 1", charid);
-                    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-                        targid = (uint16)Sql_GetIntData(SqlHandle,0);
+					PInvitee = zoneutils::GetCharFromWorld(charid, targid);
                 }
-                CCharEntity* PInvitee = zoneutils::GetCharFromWorld(charid, targid);
                 if (PInvitee)
                 {
                     //make sure intvitee isn't dead or in jail, they are an unallied party leader and don't already have an invite pending
@@ -2882,8 +2879,18 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
                     PInvitee->InvitePending.id = PChar->id;
                     PInvitee->InvitePending.targid = PChar->targid;
-                    PInvitee->pushPacket(new CPartyInvitePacket(PInvitee, PChar, INVITE_ALLIANCE));
+                    PInvitee->pushPacket(new CPartyInvitePacket(charid, targid, PChar, INVITE_ALLIANCE));
                 }
+				else
+				{
+					//on another server (hopefully)
+					uint8 packetData[12];
+					WBUFL(packetData, 0) = charid;
+					WBUFW(packetData, 4) = targid;
+					WBUFL(packetData, 6) = PChar->id;
+					WBUFW(packetData, 10) = PChar->targid;
+                    message::send(MSG_PT_INVITE, packetData, sizeof packetData, new CPartyInvitePacket(charid, targid, PChar, INVITE_ALLIANCE));
+				}
             }
             break;
 
@@ -2989,7 +2996,7 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     }
                     else if (PChar->PParty->GetLeader() != PChar) // not leader, cannot kick others
                         break;
- 
+
                     PChar->PParty->RemoveMember(PVictim);
                 }
             }
@@ -2998,39 +3005,15 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* dat
         case 1: // linkshell
         {
             // Ensure the player has a linkshell equipped..
-            if (PChar->PLinkshell == NULL)
-                break;
-
-            // Ensure the linkshell is valid..
             CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK);
-            if (PItemLinkshell == NULL || !PItemLinkshell->isType(ITEM_LINKSHELL))
-                break;
-
-            // Ensure the linkshell is a shell or sack (cannot kick otherwise..)
-            if (PItemLinkshell->GetLSType() != LSTYPE_LINKSHELL && PItemLinkshell->GetLSType() != LSTYPE_PEARLSACK)
-                break;
-
-            // Obtain the victim..
-            CCharEntity* PVictim = zoneutils::GetCharByName(data + 0x0C);
-            if (PVictim == NULL)
-                break;
-
-            // Obtain the victims linkshell.. (And ensure it is the same as ours to prevent exploiting..)
-            CItemLinkshell* PItemLinkshellVictim = (CItemLinkshell*)PVictim->getEquip(SLOT_LINK);
-            if (PItemLinkshellVictim == NULL || PItemLinkshellVictim->GetLSID() != PItemLinkshell->GetLSID())
-                break;
-
-            // Attempt to kick the player from the linkshell if we have high enough authority..
-            if (PItemLinkshell->GetLSType() == LSTYPE_LINKSHELL)
+            if (PChar->PLinkshell && PItemLinkshell)
             {
-                // We can kick anyone as we have the linkshell..
-                PChar->PLinkshell->RemoveMemberByName(data + 0x0C);
-            }
-            else if (PItemLinkshell->GetLSType() == LSTYPE_PEARLSACK)
-            {
-                // We can only kick someone with a linkpearl..
-                if (PItemLinkshellVictim->GetLSType() == LSTYPE_LINKPEARL)
-                    PChar->PLinkshell->RemoveMemberByName(data + 0x0C);
+                int8 packetData[29];
+                WBUFL(packetData, 0) = PChar->id;
+                memcpy(packetData + 0x04, data + 0x0C, 20);
+                WBUFL(packetData, 24) = PChar->PLinkshell->getID();
+                WBUFB(packetData, 28) = PItemLinkshell->GetLSType();
+                message::send(MSG_LINKSHELL_REMOVE, packetData, sizeof packetData, NULL);
             }
         }
         break;
@@ -3073,12 +3056,12 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    CCharEntity* PInviter = zoneutils::GetCharFromWorld(PChar->InvitePending.id, PChar->InvitePending.targid);
+	CCharEntity* PInviter = zoneutils::GetCharFromWorld(PChar->InvitePending.id, PChar->InvitePending.targid);
+
+	uint8 InviteAnswer = RBUFB(data, (0x04));
 
 	if (PInviter != NULL)
 	{
-		uint8 InviteAnswer = RBUFB(data,(0x04));
-
 		if (InviteAnswer == 0)
 		{
 			//invitee declined invite
@@ -3091,62 +3074,71 @@ void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		if (PChar->PParty != NULL && PInviter->PParty != NULL)
 		{
 			//both invitee and and inviter are party leaders
-			if(PInviter->PParty->GetLeader() == PInviter && PChar->PParty->GetLeader() == PChar)
+			if (PInviter->PParty->GetLeader() == PInviter && PChar->PParty->GetLeader() == PChar)
 			{
-                //the inviter already has an alliance and wants to add another party - only add if they have room for another party
-                if(PInviter->PParty->m_PAlliance && PInviter->PParty->m_PAlliance->getMainParty()->GetLeader() == PInviter)
-                {
-                        //break if alliance is full
-                        if(PInviter->PParty->m_PAlliance->partyCount() == 3)
-                        {
-                            PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 14));
-                            PChar->InvitePending.clean();
-                            return;
-                        }
+				//the inviter already has an alliance and wants to add another party - only add if they have room for another party
+				if (PInviter->PParty->m_PAlliance && PInviter->PParty->m_PAlliance->getMainParty()->GetLeader() == PInviter)
+				{
+					//break if alliance is full
+					if (PInviter->PParty->m_PAlliance->partyCount() == 3)
+					{
+						PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 14));
+						PChar->InvitePending.clean();
+						return;
+					}
 
-
-                        //alliance is not full, add the new party
-                        PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
-                        PChar->InvitePending.clean();
-                        return;
-                }
-                else
-                {
-                    //party leaders have no alliance - create a new one!
-                    CAlliance* PAlliance = new CAlliance(PInviter);
-                    PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
-                    PChar->InvitePending.clean();
-                    return;
-                }
+					//alliance is not full, add the new party
+					PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
+					PChar->InvitePending.clean();
+					return;
+				}
+				else
+				{
+					//party leaders have no alliance - create a new one!
+					CAlliance* PAlliance = new CAlliance(PInviter);
+					PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
+					PChar->InvitePending.clean();
+					return;
+				}
 			}
 		}
 
-
 		//the rest is for a standard party invitation
-        if (PChar->PParty == NULL)
+		if (PChar->PParty == NULL)
 		{
-            if (!(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC) && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_RESTRICTION)))
-            {
-			    if (PInviter->PParty == NULL)
-			    {
-				    CParty* PParty = new CParty(PInviter);
-			    }
-                if (PInviter->PParty->GetLeader() == PInviter)
-                {
-				    if(PInviter->PParty->members.size()==6){//someone else accepted invitation
-					    //PInviter->pushPacket(new CMessageStandardPacket(PInviter, 0, 0, 14)); Don't think retail sends error packet to inviter on full pt
-					    PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 14));
-				    }
-				    else{
-					    PInviter->PParty->AddMember(PChar);
-				    }
-                }
-            }
-            else
-            {
-                PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 237));
-            }
+			if (!(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC) && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_RESTRICTION)))
+			{
+				if (PInviter->PParty == NULL)
+				{
+					CParty* PParty = new CParty(PInviter);
+				}
+				if (PInviter->PParty->GetLeader() == PInviter)
+				{
+					if (PInviter->PParty->members.size() == 6){//someone else accepted invitation
+						//PInviter->pushPacket(new CMessageStandardPacket(PInviter, 0, 0, 14)); Don't think retail sends error packet to inviter on full pt
+						PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 14));
+					}
+					else{
+						PInviter->PParty->AddMember(PChar);
+					}
+				}
+			}
+			else
+			{
+				PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 237));
+			}
 		}
+	}
+	else
+	{
+		uint8 packetData[13];
+		WBUFL(packetData, 0) = PChar->InvitePending.id;
+		WBUFW(packetData, 4) = PChar->InvitePending.targid;
+		WBUFL(packetData, 6) = PChar->id;
+		WBUFW(packetData, 10) = PChar->targid;
+		WBUFB(packetData, 12) = InviteAnswer;
+		PChar->InvitePending.clean();
+        message::send(MSG_PT_INV_RES, packetData, sizeof packetData, NULL);
 	}
     PChar->InvitePending.clean();
 	return;
@@ -3211,7 +3203,12 @@ void SmallPacket0x077(map_session_data_t* session, CCharEntity* PChar, int8* dat
         {
             if (PChar->PLinkshell != NULL)
             {
-				PChar->PLinkshell->ChangeMemberRank(data+0x04, RBUFB(data,(0x15)));
+                int8 packetData[29];
+                WBUFL(packetData, 0) = PChar->id;
+                memcpy(packetData + 0x04, data + 0x04, 20);
+                WBUFL(packetData, 24) = PChar->PLinkshell->getID();
+                WBUFB(packetData, 28) = RBUFB(data, 0x15);
+                message::send(MSG_LINKSHELL_RANK_CHANGE, packetData, sizeof packetData, NULL);
             }
         }
         break;
@@ -3358,7 +3355,7 @@ void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, int8* dat
         PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 316));
         return;
     }
-    
+
     // Prevent crafting exploit if we are already crafting..
     if (PChar->animation == ANIMATION_SYNTH)
     {
@@ -3374,7 +3371,7 @@ void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	uint8  numItems  = RBUFB(data,(0x09));
 
 	std::vector<uint8> slotQty(MAX_CONTAINER_SIZE);
-    
+
     if (numItems > 8)
     {
         // Prevent crafting exploit to crash on container size > 8
@@ -3390,7 +3387,7 @@ void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		invSlotID = RBUFB(data,(0x1A+SlotID));
 
 		slotQty[invSlotID]++;
-		
+
 		if ((PChar->getStorage(0)->GetItem(invSlotID)) && (PChar->getStorage(0)->GetItem(invSlotID)->getID() == ItemID) &&
 			(slotQty[invSlotID] <= PChar->getStorage(0)->GetItem(invSlotID)->getQuantity()))
 			PChar->CraftContainer->setItem(SlotID+1, ItemID, invSlotID, 1);
@@ -3542,13 +3539,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	}
     else if (RBUFB(data,(0x06)) == '#' && PChar->nameflags.flags & FLAG_GM)
     {
-        for (uint16 zone = 0; zone < MAX_ZONEID; ++zone)
-        {
-            zoneutils::GetZone(zone)->PushPacket(
-                NULL,
-                CHAR_INZONE,
-                new CChatMessagePacket(PChar, MESSAGE_SYSTEM_1, data+7));
-        }
+        message::send(MSG_CHAT_SERVMES, 0, 0, new CChatMessagePacket(PChar, MESSAGE_SYSTEM_1, data + 7));
     }
     else
     {
@@ -3568,41 +3559,45 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
             switch(RBUFB(data,(0x04)))
             {
                 case MESSAGE_SAY:
+				{
+					if (map_config.audit_chat == 1 && map_config.audit_say == 1)
 					{
-						if (map_config.audit_chat == 1 && map_config.audit_say == 1)
-						{
-							std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
-							qStr +=PChar->GetName();
-							qStr +="','SAY','";
-							qStr += escape(data+6);
-							qStr +="',current_timestamp());";
-							const char * cC = qStr.c_str();
-							Sql_QueryStr(SqlHandle, cC);
-						}
-						PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_SAY,     data+6));
+						std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
+						qStr +=PChar->GetName();
+						qStr +="','SAY','";
+						qStr += escape(data+6);
+						qStr +="',current_timestamp());";
+						const char * cC = qStr.c_str();
+						Sql_QueryStr(SqlHandle, cC);
 					}
-					break;
+					PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_SAY,     data+6));
+				}
+				break;
                 case MESSAGE_EMOTION:	PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_EMOTION, data+6)); break;
                 case MESSAGE_SHOUT:
+				{
+					if (map_config.audit_chat == 1 && map_config.audit_shout == 1)
 					{
-						if (map_config.audit_chat == 1 && map_config.audit_shout == 1)
-						{
-							std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
-							qStr +=PChar->GetName();
-							qStr +="','SHOUT','";
-							qStr += escape(data+6);
-							qStr +="',current_timestamp());";
-							const char * cC = qStr.c_str();
-							Sql_QueryStr(SqlHandle, cC);
-						}
-						PChar->loc.zone->PushPacket(PChar, CHAR_INSHOUT, new CChatMessagePacket(PChar, MESSAGE_SHOUT,   data+6));
-
+						std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
+						qStr +=PChar->GetName();
+						qStr +="','SHOUT','";
+						qStr += escape(data+6);
+						qStr +="',current_timestamp());";
+						const char * cC = qStr.c_str();
+						Sql_QueryStr(SqlHandle, cC);
 					}
-					break;
+					PChar->loc.zone->PushPacket(PChar, CHAR_INSHOUT, new CChatMessagePacket(PChar, MESSAGE_SHOUT, data+6));
+				}
+				break;
                 case MESSAGE_LINKSHELL:
                 {
                     if (PChar->PLinkshell != NULL)
                     {
+						int8 packetData[8];
+						WBUFL(packetData, 0) = PChar->PLinkshell->getID();
+						WBUFL(packetData, 4) = PChar->id;
+                        message::send(MSG_CHAT_LINKSHELL, packetData, sizeof packetData, new CChatMessagePacket(PChar, MESSAGE_LINKSHELL, data + 6));
+
 						if (map_config.audit_chat == 1 && map_config.audit_linkshell == 1)
 						{
 							std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
@@ -3613,7 +3608,6 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
 							const char * cC = qStr.c_str();
 							Sql_QueryStr(SqlHandle, cC);
 						}
-                        PChar->PLinkshell->PushPacket(PChar, new CChatMessagePacket(PChar, MESSAGE_LINKSHELL, data+6));
                     }
                 }
                 break;
@@ -3621,53 +3615,56 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 {
                     if (PChar->PParty != NULL)
                     {
-						if (PChar->PParty->m_PAlliance == NULL)
-						{
-							if (map_config.audit_chat == 1 && map_config.audit_party == 1)
-							{
-								std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
-								qStr +=PChar->GetName();
-								qStr +="','PARTY','";
-								qStr += escape(data+6);
-								qStr +="',current_timestamp());";
-								const char * cC = qStr.c_str();
-								Sql_QueryStr(SqlHandle, cC);
-							}
-							PChar->PParty->PushPacket(PChar, 0, new CChatMessagePacket(PChar, MESSAGE_PARTY, data+6));
+						int8 packetData[8];
+						WBUFL(packetData, 0) = PChar->PParty->GetPartyID();
+						WBUFL(packetData, 4) = PChar->id;
+                        message::send(MSG_CHAT_PARTY, packetData, sizeof packetData, new CChatMessagePacket(PChar, MESSAGE_PARTY, data + 6));
 
-						}else{ //alliance party chat
-								for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
-								{
-									PChar->PParty->m_PAlliance->partyList.at(i)->PushPacket(PChar, 0, new CChatMessagePacket(PChar, MESSAGE_PARTY, data+6));
-								}
-								if (map_config.audit_chat == 1 && map_config.audit_party == 1)
-								{
-									std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
-									qStr +=PChar->GetName();
-									qStr +="','ALLIANCE','";
-									qStr += escape(data+6);
-									qStr +="',current_timestamp());";
-									const char * cC = qStr.c_str();
-									Sql_QueryStr(SqlHandle, cC);
-								}
-							}
+						if (map_config.audit_chat == 1 && map_config.audit_party == 1)
+						{
+							std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
+							qStr += PChar->GetName();
+							qStr += "','ALLIANCE','";
+							qStr += escape(data + 6);
+							qStr += "',current_timestamp());";
+							const char * cC = qStr.c_str();
+							Sql_QueryStr(SqlHandle, cC);
+						}
 					}
                 }
                 break;
                 case MESSAGE_YELL:
+				{
+					if (PChar->loc.zone->CanUseMisc(MISC_YELL))
 					{
+						if (gettick() >= PChar->m_LastYell)
+						{
+							PChar->m_LastYell = gettick() + (map_config.yell_cooldown *1000);
+							// ShowDebug(CL_CYAN" LastYell: %u \n" CL_RESET, PChar->m_LastYell);
+							message::send(MSG_CHAT_YELL, NULL, 0, new CChatMessagePacket(PChar, MESSAGE_YELL, data + 6));
+						}
+						else // You must wait longer to perform that action.
+						{
+							PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 38));
+						}
+
 						if (map_config.audit_chat == 1 && map_config.audit_yell == 1)
 						{
 							std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
-							qStr +=PChar->GetName();
-							qStr +="','YELL','";
-							qStr += escape(data+6);
-							qStr +="',current_timestamp());";
+							qStr += PChar->GetName();
+							qStr += "','YELL','";
+							qStr += escape(data + 6);
+							qStr += "',current_timestamp());";
 							const char * cC = qStr.c_str();
 							Sql_QueryStr(SqlHandle, cC);
 						}
+					}
+					else // You cannot use that command in this area.
+					{
 						PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 256));
-					}break;
+					}
+				}
+				break;
             }
         }
 	}
@@ -3690,63 +3687,23 @@ void SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, int8* dat
     }
 
     string_t RecipientName = data+5;
+	int8 packetData[64];
+	strncpy(packetData + 4, RecipientName.c_str(), RecipientName.length()+1);
+	WBUFL(packetData, 0) = PChar->id;
+    message::send(MSG_CHAT_TELL, packetData, RecipientName.length() + 5, new CChatMessagePacket(PChar, MESSAGE_TELL, data + 20));
 
-	const int8* Query = "SELECT charid, targid, pos_zone FROM chars INNER JOIN accounts_sessions USING(charid) WHERE charname = '%s' LIMIT 1";
-
-	int32 ret = Sql_Query(SqlHandle, Query, RecipientName.c_str());
-
-	if (ret != SQL_ERROR &&
-		Sql_NumRows(SqlHandle) != 0 &&
-		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+	if (map_config.audit_chat == 1 && map_config.audit_tell == 1)
 	{
-		uint32 CharID = (uint32)Sql_GetUIntData(SqlHandle,0);
-		uint16 TargID = (uint16)Sql_GetUIntData(SqlHandle,1);
-		uint16 ZoneID = (uint16) Sql_GetUIntData(SqlHandle,2);
-
-		CCharEntity* PTellRecipient = (CCharEntity*)zoneutils::GetZone(ZoneID)->GetEntity(TargID, TYPE_PC);
-
-		if(PTellRecipient==NULL && ZoneID==0){//in a moghouse, do a full sweep
-			map_session_list_t::iterator it = map_session_list.begin();
-			while(it != map_session_list.end())
-			{
-				map_session_data_t* map_session_data = it->second;
-				CCharEntity* PChar = map_session_data->PChar;
-				if(PChar!=NULL && PChar->id == CharID){
-					PTellRecipient = PChar;
-					break;
-				}
-				++it;
-			}
-		}
-
-		if (PTellRecipient != NULL &&
-			PTellRecipient->id == CharID &&
-			PTellRecipient->status != STATUS_DISAPPEAR &&
-            !jailutils::InPrison(PTellRecipient))
-		{
-			if (PTellRecipient->nameflags.flags & FLAG_AWAY)
-			{
-				PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 181));
-				return;
-			}
-			if (map_config.audit_chat == 1 && map_config.audit_tell == 1)
-			{
-				std::string qStr = ("INSERT into audit_chat (speaker,type,recipient,message,datetime) VALUES('");
-				qStr +=PChar->GetName();
-				qStr +="','TELL','";
-				qStr +=PTellRecipient->GetName();
-				qStr +="','";
-				qStr += escape(data+20);
-				qStr +="',current_timestamp());";
-				const char * cC = qStr.c_str();
-				Sql_QueryStr(SqlHandle, cC);
-			}
-			PTellRecipient->pushPacket(new CChatMessagePacket(PChar, MESSAGE_TELL, data+20));
-			return;
-		}
+		std::string qStr = ("INSERT into audit_chat (speaker,type,recipient,message,datetime) VALUES('");
+		qStr += PChar->GetName();
+		qStr += "','TELL','";
+		qStr += RecipientName;
+		qStr += "','";
+		qStr += escape(data + 20);
+		qStr += "',current_timestamp());";
+		const char * cC = qStr.c_str();
+		Sql_QueryStr(SqlHandle, cC);
 	}
-	PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 125));
-	return;
 }
 
 /************************************************************************
@@ -4157,7 +4114,7 @@ void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		case TYPE_PC:
 		{
 			CCharEntity* PTarget = (CCharEntity*)PEntity;
-            
+
             if (PChar->m_isGMHidden == false || PChar->m_isGMHidden == true && PTarget->m_GMlevel >= PChar->m_GMlevel)
                 PTarget->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 89));
 
@@ -4303,7 +4260,7 @@ void SmallPacket0x0E2(map_session_data_t* session, CCharEntity* PChar, int8* dat
                         PChar->PLinkshell->setMessage((int8*)Message.c_str());
                         PChar->PLinkshell->setMessageTime(MessageTime);
 
-                        PChar->PLinkshell->PushPacket(NULL, new CLinkshellMessagePacket(PChar->PLinkshell));
+                        PChar->PLinkshell->PushPacket(0, new CLinkshellMessagePacket(PChar->PLinkshell));
                         return;
                     }
                 }
@@ -4472,8 +4429,8 @@ void SmallPacket0x0F2(map_session_data_t* session, CCharEntity* PChar, int8* dat
 void SmallPacket0x0F4(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
     // Set Widescan range
-    // Distances need verified, based current values off what we had in traits.sql and data at http://wiki.ffxiclopedia.org/wiki/Wide_Scan 
-    // NOTE: Widescan was formerly piggy backed onto traits (resist slow) but is not a real trait, any attempt to give it a trait will place a dot on characters trait menu. 
+    // Distances need verified, based current values off what we had in traits.sql and data at http://wiki.ffxiclopedia.org/wiki/Wide_Scan
+    // NOTE: Widescan was formerly piggy backed onto traits (resist slow) but is not a real trait, any attempt to give it a trait will place a dot on characters trait menu.
     if (map_config.all_jobs_widescan == 0)
     {
         // Limit to BST and RNG, and try to use old distance values for tiers
@@ -4551,7 +4508,7 @@ void SmallPacket0x0F4(map_session_data_t* session, CCharEntity* PChar, int8* dat
             PChar->loc.zone->WideScan(PChar,0);
             // The zero needs set or client will lag on map screen saying downloading data.
         }
-    }        
+    }
     else if (map_config.all_jobs_widescan == 1)
     {
         // All jobs have 1st tier, and use current retail distance values for tiers

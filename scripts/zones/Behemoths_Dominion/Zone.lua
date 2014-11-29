@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Behemoths_Dominion/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/zones/Behemoths_Dominion/TextIDs");
 
 -----------------------------------
@@ -14,6 +15,12 @@ require("scripts/zones/Behemoths_Dominion/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+    local manuals = {17297487};
+    
+    SetFieldManual(manuals);
+    
+    -- Behemoth
+    SetRespawnTime(17297440, 900, 10800);
 end;
 
 -----------------------------------		
