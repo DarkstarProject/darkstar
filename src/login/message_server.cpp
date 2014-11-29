@@ -98,6 +98,7 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
 	int ret;
     in_addr from_ip;
     uint16 from_port = 0;
+    bool ipstring = false;
     if (from)
     {
         from_ip.s_addr = RBUFL(from->data(), 0);
@@ -140,12 +141,14 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
 		{
 			int8* query = "SELECT zoneip, zoneport FROM zone_settings WHERE misc & 1024 GROUP BY zoneip, zoneport;";
 			ret = Sql_Query(ChatSqlHandle, query);
+            ipstring = true;
 			break;
 		}
         case MSG_CHAT_SERVMES:
 		{
 			int8* query = "SELECT zoneip, zoneport FROM zone_settings GROUP BY zoneip, zoneport;";
 			ret = Sql_Query(ChatSqlHandle, query);
+            ipstring = true;
 			break;
 		}
         case MSG_PT_INVITE:
@@ -163,10 +166,20 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
         ShowDebug("Message: Received message %d from %s:%hu\n", type, inet_ntoa(from_ip), from_port);
 		while (Sql_NextRow(ChatSqlHandle) == SQL_SUCCESS)
 		{
-			int8* ip_string = Sql_GetData(ChatSqlHandle, 0);
-            uint64 ip = inet_addr(ip_string);
+            uint64 ip = 0;
+            if (ipstring)
+            {
+                int8* ip_string = Sql_GetData(ChatSqlHandle, 0);
+                ip = inet_addr(ip_string);
+            }
+            else
+            {
+                ip = Sql_GetUIntData(ChatSqlHandle, 0);
+            }
 			uint64 port = Sql_GetUIntData(ChatSqlHandle, 1);
-            ShowDebug("Message:  -> rerouting to %s:%lu\n", ip_string, port);
+            in_addr target;
+            target.s_addr = ip;
+            ShowDebug("Message:  -> rerouting to %s:%lu\n", inet_ntoa(target), port);
 			ip |= (port << 32);
             if (type == MSG_CHAT_PARTY || type == MSG_PT_RELOAD || type == MSG_PT_DISBAND)
 			{
