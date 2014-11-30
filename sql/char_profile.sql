@@ -37,5 +37,6 @@ CREATE TABLE IF NOT EXISTS `char_profile` (
   `fame_windurst` smallint(5) unsigned NOT NULL DEFAULT '0',
   `fame_norg` smallint(5) unsigned NOT NULL DEFAULT '0',
   `fame_jeuno` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `guild` tinyint(2) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`charid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

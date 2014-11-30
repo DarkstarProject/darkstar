@@ -437,7 +437,8 @@ void LoadChar(CCharEntity* PChar)
           "fame_bastok,"    // 5
           "fame_windurst,"  // 6
           "fame_norg, "     // 7
-          "fame_jeuno "     // 8
+          "fame_jeuno, "    // 8
+          "guild "          // 9
         "FROM char_profile "
 		"WHERE charid = %u;";
 
@@ -458,6 +459,8 @@ void LoadChar(CCharEntity* PChar)
 		PChar->profile.fame[2] =  (uint16)Sql_GetIntData(SqlHandle,6);  //Windurst
 		PChar->profile.fame[3] =  (uint16)Sql_GetIntData(SqlHandle,7);  //Norg
         PChar->profile.fame[4] =  (uint16)Sql_GetIntData(SqlHandle,8);  //Jeuno
+
+        PChar->profile.guild = (uint8)Sql_GetIntData(SqlHandle,9);
     }
 
     fmtQuery =

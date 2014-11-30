@@ -109,6 +109,8 @@
 #include "../ai/ai_npc_dummy.h"
 #include "../ai/ai_mob_dummy.h"
 
+#include "../items/item_guild.h"
+
 CLuaBaseEntity::CLuaBaseEntity(lua_State* L)
 {
     if( !lua_isnil(L,1) )
@@ -9650,6 +9652,49 @@ inline int32 CLuaBaseEntity::reloadParty(lua_State* L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::getGuildPointsItem(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    uint8 guild = lua_tointeger(L, 1);
+
+    // 48 + guild gives the skill (e.g. 48 + 1 = SKILL_WDW)
+    uint16 PCraft = PChar->GetSkill(PChar->profile.guild + 47);
+    uint8 CraftRank = NULL;
+
+    CraftRank = (PCraft > 8 ? (PCraft - 2) / 8 : PCraft);
+
+    CItemContainer* PGuild = guildutils::GetGuildShop(guild);
+    
+    std::vector<CItemGuild*> PItemList;
+    uint8 maxPoints = NULL;
+    uint16 itemid = NULL;
+
+    if (PGuild->GetID() == PChar->profile.guild)
+    {
+        for (uint8 i = 0; i < PGuild->GetSize(); ++i)
+        {
+            CItemGuild* PItem = (CItemGuild*)PGuild->GetItem(i);
+
+            if (PItem->getMinimumRank() <= CraftRank)
+            {
+                if (PItem->getMaxPoints() > maxPoints)
+                {
+                    maxPoints = PItem->getMaxPoints();
+                    itemid = PItem->getID();
+                }
+            }
+        }
+    }
+
+    lua_pushinteger(L, itemid);
+    lua_pushinteger(L, maxPoints);
+
+    return 1;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -10093,5 +10138,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBehaviour),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setBehaviour),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,reloadParty),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getGuildPointsItem),
     {NULL,NULL}
 };

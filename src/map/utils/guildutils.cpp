@@ -24,6 +24,7 @@
 #include <vector>
 
 #include "../items/item_shop.h"
+#include "../items/item_guild.h"
 
 #include "guildutils.h"
 #include "../item_container.h"
@@ -103,6 +104,7 @@ void Initialize()
 			}
 		}
 	}
+    LoadItemPoints();
 }
 
 /************************************************************************
@@ -148,6 +150,44 @@ CItemContainer* GetGuildShop(uint16 GuildID)
 	}
 	ShowDebug(CL_CYAN"Guild with id <%u> is not found on server\n" CL_RESET);
     return NULL;
+}
+
+void LoadItemPoints()
+{
+    const int8* fmtQuery = "SELECT guildid, itemid, `rank`, points, max_points, pattern FROM guild_item_points WHERE pattern = %u AND guildid = %u";
+
+    uint8 randPattern = (WELL512::irand() % 8);
+    uint8 minRank = (WELL512::irand() % 6);
+
+    // cause truly random
+    while (randPattern == 0)
+        randPattern = WELL512::irand() % 8;
+
+    // 9 guild representatives (10 if you include the extra for smithing), so we'll go with 9 containers for now
+    for (uint8 i = 1; i < 10; ++i)
+    {
+        // new container for the items with points
+        CItemContainer* PGuild = new CItemContainer(i);
+        g_PGuildList.push_back(PGuild);
+
+        int32 ret = Sql_Query(SqlHandle, fmtQuery, randPattern, i);
+
+        while (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) ==  SQL_SUCCESS)
+        {
+            PGuild->SetSize(Sql_NumRows(SqlHandle));
+
+            CItemGuild* PItem = new CItemGuild(Sql_GetIntData(SqlHandle, 1));
+
+            PItem->setGuild(Sql_GetIntData(SqlHandle, 0));
+            PItem->setRank(Sql_GetIntData(SqlHandle, 2));
+            PItem->setMinimumRank(PItem->getRank() - minRank >= 1 ? PItem->getRank() - minRank : 1);
+            PItem->setPoints(Sql_GetIntData(SqlHandle, 3));
+            PItem->setMaxPoints(Sql_GetIntData(SqlHandle, 4));
+            PItem->setPattern(Sql_GetIntData(SqlHandle, 5));
+
+            PGuild->InsertItem(PItem);
+        }
+    }
 }
 
 } // namespace guildutils
