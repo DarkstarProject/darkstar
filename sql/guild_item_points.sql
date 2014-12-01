@@ -26,6 +26,12 @@ CREATE TABLE `guild_item_points` (
 -- ----------------------------
 
 -- ----------------
+-- Fishing
+-- ----------------
+-- next on muh list
+
+
+-- ----------------
 -- Woodworking
 -- ----------------
 
@@ -193,46 +199,147 @@ INSERT INTO `guild_item_points` VALUES(2, 17357, 8, 2587, 6080, 8); -- ebony har
 INSERT INTO `guild_item_points` VALUES(2, 17833, 8, 2700, 6080, 8); -- ebony harp +1
 INSERT INTO `guild_item_points` VALUES(2, 17848, 8, 2813, 6080, 8); -- ebony harp +2 -- TODO: find retail info
 -- TODO: find retail info for the following:
--- INSERT INTO `guild_item_points` VALUES(1, itemid, 9, 0, 0, 8); -- cabinet
--- INSERT INTO `guild_item_points` VALUES(1, itemid, 10, 0, 0, 8); -- bookshelf
+-- INSERT INTO `guild_item_points` VALUES(2, itemid, 9, 0, 0, 8); -- cabinet
+-- INSERT INTO `guild_item_points` VALUES(2, itemid, 10, 0, 0, 8); -- bookshelf
 
 -- ----------------
 -- Blacksmithing
 -- ----------------
 -- insufficient information
+-- INSERT INTO `guild_item_points` VALUES(3, itemid, rank, points, maxpoints, pattern); -- item name
 
 -- ----------------
 -- Goldsmithing
 -- ----------------
 -- insufficient information
-
+-- INSERT INTO `guild_item_points` VALUES(4, itemid, rank, points, maxpoints, pattern); -- item name
 
 -- ----------------
 -- Clothcraft
 -- ----------------
 -- half the info available
+-- INSERT INTO `guild_item_points` VALUES(5, itemid, rank, points, maxpoints, pattern); -- item name
 
 -- ----------------
 -- Leathercraft
 -- ----------------
 -- insufficient info available
+-- INSERT INTO `guild_item_points` VALUES(6, itemid, rank, points, maxpoints, pattern); -- item name
 
 -- ----------------
 -- Bonecraft
 -- ----------------
 -- insufficient info available
+-- INSERT INTO `guild_item_points` VALUES(7, itemid, rank, points, maxpoints, pattern); -- item name
 
 -- ----------------
 -- Alchemy
 -- ----------------
 -- insufficient info available
+-- INSERT INTO `guild_item_points` VALUES(8, itemid, rank, points, maxpoints, pattern); -- item name
 
 -- ----------------
 -- Cooking
 -- ----------------
--- next on muh list
 
--- ----------------
--- Fishing
--- ----------------
--- next on muh list
+-- Pattern A
+INSERT INTO `guild_item_points` VALUES(9, 17016, 1, 3, 1120, 1); -- pet food alpha 
+INSERT INTO `guild_item_points` VALUES(9, 4437, 2, 180, 2240, 1); -- roast mutton
+INSERT INTO `guild_item_points` VALUES(9, 4335, 2, 200, 2240, 1); -- juicy mutton
+INSERT INTO `guild_item_points` VALUES(9, 4380, 3, 55, 1920, 1); -- smoked salmon
+INSERT INTO `guild_item_points` VALUES(9, 4419, 4, 1000, 4560, 1); -- mushroom soup
+INSERT INTO `guild_item_points` VALUES(9, 4333, 4, 1160, 4560, 1); -- witch soup
+INSERT INTO `guild_item_points` VALUES(9, 4420, 5, 294, 3200, 1); -- tomato soup
+INSERT INTO `guild_item_points` VALUES(9, 4341, 5, 894, 3200, 1); -- sunset soup
+INSERT INTO `guild_item_points` VALUES(9, 4572, 6, 165, 2960, 1); -- beaugreen sautee
+INSERT INTO `guild_item_points` VALUES(9, 4293, 6, 577, 2960, 1); -- monastic sautee
+INSERT INTO `guild_item_points` VALUES(9, 4546, 7, 350, 3600, 1); -- raisin bread
+INSERT INTO `guild_item_points` VALUES(9, 4547, 8, 462, 4000, 1); -- boiled cockatrice
+INSERT INTO `guild_item_points` VALUES(9, 4544, 9, 1120, 5040, 1); -- mushroom stew
+INSERT INTO `guild_item_points` VALUES(9, 4344, 9, 1680, 5040, 1); -- witch stew
+INSERT INTO `guild_item_points` VALUES(9, 4297, 10, 730, 4640, 1); -- black curry
+
+-- Pattern B
+INSERT INTO `guild_item_points` VALUES(9, 4415, 1, 31, 1280, 2); -- roasted corn
+INSERT INTO `guild_item_points` VALUES(9, 4334, 1, 37, 1280, 2); -- grilled corn
+INSERT INTO `guild_item_points` VALUES(9, 4416, 2, 280, 2640, 2); -- pea soup
+INSERT INTO `guild_item_points` VALUES(9, 4327, 2, 361, 2640, 2); -- emerald soup
+INSERT INTO `guild_item_points` VALUES(9, 4438, 3, 360, 3040, 2); -- dhalmel steak
+INSERT INTO `guild_item_points` VALUES(9, 4519, 3, 390, 3040, 2); -- wild steak
+INSERT INTO `guild_item_points` VALUES(9, 4555, 4, 372, 3280, 2); -- windurst salad
+INSERT INTO `guild_item_points` VALUES(9, 4321, 4, 409, 3280, 2); -- timbre timbers salad
+INSERT INTO `guild_item_points` VALUES(9, 4413, 5, 80, 2480, 2); -- apple pie
+INSERT INTO `guild_item_points` VALUES(9, 4320, 5, 88, 2480, 2); -- apple pie +1
+INSERT INTO `guild_item_points` VALUES(9, 4563, 6, 256, 3200, 2); -- pamama tart
+INSERT INTO `guild_item_points` VALUES(9, 4287, 6, 612, 3200, 2); -- opo-opo tart
+INSERT INTO `guild_item_points` VALUES(9, 4494, 7, 198, 3200, 2); -- san d'orian tea
+INSERT INTO `guild_item_points` VALUES(9, 4524, 7, 240, 3200, 2); -- royal tea
+INSERT INTO `guild_item_points` VALUES(9, 4552, 8, 425, 3920, 2); -- herb crawler eggs
+INSERT INTO `guild_item_points` VALUES(9, 4561, 9, 1320, 5280, 2); -- seafood stew
+INSERT INTO `guild_item_points` VALUES(9, 4271, 10, 140, 3440, 2); -- rice dumpling
+
+-- Pattern C
+INSERT INTO `guild_item_points` VALUES(9, 4455, 1, 50, 1360, 3); -- pea soup
+INSERT INTO `guild_item_points` VALUES(9, 4592, 1, 55, 1360, 3); -- wisdom soup
+INSERT INTO `guild_item_points` VALUES(9, 4437, 2, 180, 2240, 3); -- roast mutton
+INSERT INTO `guild_item_points` VALUES(9, 4335, 2, 200, 2240, 3); -- grilled mutton
+INSERT INTO `guild_item_points` VALUES(9, 4492, 3, 150, 2320, 3); -- puls
+INSERT INTO `guild_item_points` VALUES(9, 4533, 3, 300, 2320, 3); -- delicious puls
+INSERT INTO `guild_item_points` VALUES(9, 4510, 4, 6, 1920, 3); -- acorn cookie
+INSERT INTO `guild_item_points` VALUES(9, 4577, 4, 7, 1920, 3); -- wild cookie
+INSERT INTO `guild_item_points` VALUES(9, 4413, 5, 80, 2480, 3); -- apple pie
+INSERT INTO `guild_item_points` VALUES(9, 4320, 5, 88, 2480, 3); -- apple pie +1
+INSERT INTO `guild_item_points` VALUES(9, 5168, 6, 123, 2800, 3); -- bataquiche
+INSERT INTO `guild_item_points` VALUES(9, 5169, 6, 184, 2800, 3); -- bataquiche +1
+INSERT INTO `guild_item_points` VALUES(9, 5572, 7, 415, 3760, 3); -- irmik helvasi
+INSERT INTO `guild_item_points` VALUES(9, 5573, 7, 441, 3760, 3); -- irmik helvasi +1
+INSERT INTO `guild_item_points` VALUES(9, 4583, 8, 255, 3520, 3); -- salmon meuniere
+INSERT INTO `guild_item_points` VALUES(9, 4347, 8, 510, 3520, 3); -- salmon meuniere +1
+INSERT INTO `guild_item_points` VALUES(9, 4564, 9, 1836, 5680, 3); -- royal omelette
+INSERT INTO `guild_item_points` VALUES(9, 4331, 9, 2516, 5680, 3); -- imperial omelette
+INSERT INTO `guild_item_points` VALUES(9, 4279, 10, 4375, 6720, 3); -- tavnazian salad
+INSERT INTO `guild_item_points` VALUES(9, 5185, 10, 6475, 6720, 3); -- leremieu salad
+
+-- Pattern D
+INSERT INTO `guild_item_points` VALUES(9, 4535, 1, 100, 1360, 4); -- boiled crayfish
+INSERT INTO `guild_item_points` VALUES(9, 4338, 1, 120, 1360, 4); -- steamed crayfish
+INSERT INTO `guild_item_points` VALUES(9, 4408, 2, 35, 1600, 4); -- tortilla
+INSERT INTO `guild_item_points` VALUES(9, 5181, 2, 52, 1600, 4); -- tortilla bueno
+INSERT INTO `guild_item_points` VALUES(9, 4406, 3, 110, 2160, 4); -- baked apple
+INSERT INTO `guild_item_points` VALUES(9, 4336, 3, 130, 2160, 4); -- sweet baked apple
+INSERT INTO `guild_item_points` VALUES(9, 4499, 4, 25, 2000, 4); -- iron bread
+INSERT INTO `guild_item_points` VALUES(9, 4573, 4, 76, 2000, 4); -- steel bread
+INSERT INTO `guild_item_points` VALUES(9, 4398, 5, 180, 2800, 4); -- fish mithkabob
+INSERT INTO `guild_item_points` VALUES(9, 4575, 5, 204, 2800, 4); -- fish chiefkabob
+INSERT INTO `guild_item_points` VALUES(9, 4417, 6, 300, 3360, 4); -- egg soup
+INSERT INTO `guild_item_points` VALUES(9, 4521, 6, 350, 3360, 4); -- humpty soup
+INSERT INTO `guild_item_points` VALUES(9, 4559, 7, 356, 3600, 4); -- herb quus
+INSERT INTO `guild_item_points` VALUES(9, 4294, 7, 586, 3600, 4); -- herb quus
+INSERT INTO `guild_item_points` VALUES(9, 4439, 8, 175, 3280, 4); -- navarin
+INSERT INTO `guild_item_points` VALUES(9, 4284, 8, 525, 3280, 4); -- tender navarin
+INSERT INTO `guild_item_points` VALUES(9, 4550, 9, 1472, 5360, 4); -- bream risotto
+INSERT INTO `guild_item_points` VALUES(9, 4268, 9, 1792, 5360, 4); -- sea spray risotto
+INSERT INTO `guild_item_points` VALUES(9, 4353, 10, 1818, 5680, 4); -- sea bass croute
+
+-- Pattern E
+INSERT INTO `guild_item_points` VALUES(9, 4455, 1, 50, 1360, 5); -- pebble soup
+INSERT INTO `guild_item_points` VALUES(9, 4592, 1, 55, 1360, 5); -- wisdom soup
+INSERT INTO `guild_item_points` VALUES(9, 4416, 2, 280, 2640, 5); -- pea soup
+INSERT INTO `guild_item_points` VALUES(9, 4327, 2, 361, 2640, 5); -- emerald soup
+INSERT INTO `guild_item_points` VALUES(9, 4560, 3, 251, 2720, 5); -- vegetable soup
+INSERT INTO `guild_item_points` VALUES(9, 4323, 3, 443, 2720, 5); -- vegetable broth
+INSERT INTO `guild_item_points` VALUES(9, 4459, 4, 300, 3440, 5); -- nebimonite bake
+INSERT INTO `guild_item_points` VALUES(9, 4267, 4, 450, 3440, 5); -- buttered nebimonite
+INSERT INTO `guild_item_points` VALUES(9, 4490, 5, 120, 2560, 5); -- pickled herring
+INSERT INTO `guild_item_points` VALUES(9, 5183, 5, 180, 2560, 5); -- viking herring
+INSERT INTO `guild_item_points` VALUES(9, 5598, 6, 400, 3600, 5); -- sis kebabi
+INSERT INTO `guild_item_points` VALUES(9, 5599, 6, 500, 3600, 5); -- sis kebabi +1
+INSERT INTO `guild_item_points` VALUES(9, 4433, 7, 519, 4000, 5); -- dhalmel stew
+INSERT INTO `guild_item_points` VALUES(9, 4519, 7, 570, 4000, 5); -- wild stew
+INSERT INTO `guild_item_points` VALUES(9, 4411, 8, 120, 3120, 5); -- dhalmel pie
+INSERT INTO `guild_item_points` VALUES(9, 4322, 8, 160, 3120, 5); -- dhalmel pie +1
+INSERT INTO `guild_item_points` VALUES(9, 4582, 9, 305, 3760, 5); -- bass meuniere
+INSERT INTO `guild_item_points` VALUES(9, 4346, 9, 610, 3760, 5); -- bass meuniere +1
+INSERT INTO `guild_item_points` VALUES(9, 4584, 10, 1597, 5520, 5); -- flounder meuniere
+INSERT INTO `guild_item_points` VALUES(9, 4345, 10, 2130, 5520, 5); -- flounder meuniere +1
+

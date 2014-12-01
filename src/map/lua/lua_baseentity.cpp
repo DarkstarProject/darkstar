@@ -9660,7 +9660,7 @@ inline int32 CLuaBaseEntity::getGuildPointsItem(lua_State* L)
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
     uint8 guild = lua_tointeger(L, 1);
 
-    // 48 + guild gives the skill (e.g. 48 + 1 = SKILL_WDW)
+    // 47 + guild gives the skill (e.g. 47 + 1 = SKILL_FSH)
     uint16 PCraft = PChar->GetSkill(PChar->profile.guild + 47);
     uint8 CraftRank = NULL;
 
