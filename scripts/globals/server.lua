@@ -63,10 +63,10 @@ function SetExplorerMoogles()
     local Moogles  =
     {
         17723644,   -- Northern San d'Oria
-        17735853,   -- Bastok Mines
-        17760447,   -- Port Windurst
-        17793128,   -- Selbina
-        17797250,   -- Mhaura
+        17735852,   -- Bastok Mines
+        17760446,   -- Port Windurst
+        17793127,   -- Selbina
+        17797249,   -- Mhaura
     }
 
     i = 1;
