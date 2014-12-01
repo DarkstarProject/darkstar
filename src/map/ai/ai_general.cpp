@@ -280,7 +280,15 @@ void CAIGeneral::SetCurrentSpell(uint16 SpellID)
 		m_ActionType != ACTION_MAGIC_FINISH  &&
 		m_ActionType != ACTION_MAGIC_INTERRUPT)
 	{
-        m_PSpell = std::unique_ptr<CSpell>(new CSpell(*spell::GetSpell(SpellID)));
+        CSpell* spell = spell::GetSpell(SpellID);
+        if (spell)
+        {
+            m_PSpell = std::unique_ptr<CSpell>(new CSpell(*spell));
+        }
+        else
+        {
+            m_PSpell = NULL;
+        }
 	}
 }
 

@@ -937,11 +937,12 @@ void CAIMobDummy::ActionAbilityStart()
 void CAIMobDummy::ActionAbilityUsing()
 {
 	DSP_DEBUG_BREAK_IF(m_PMobSkill == NULL);
-	DSP_DEBUG_BREAK_IF(m_PBattleSubTarget == NULL);
 
 	// If our target dies or zones whilst readying, then interrupt the TP move.
-	if(m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleSubTarget->isDead() ||
-		m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleSubTarget->getZone() != m_PMob->getZone()){
+    if ((m_PMobSkill->getValidTargets() == TARGET_ENEMY && !m_PBattleSubTarget) ||
+            (m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleSubTarget->isDead()) ||
+	        (m_PMobSkill->getValidTargets() == TARGET_ENEMY && m_PBattleSubTarget->getZone() != m_PMob->getZone()))
+    {
 		m_ActionType = ACTION_MOBABILITY_INTERRUPT;
 		ActionAbilityInterrupt();
 		return;

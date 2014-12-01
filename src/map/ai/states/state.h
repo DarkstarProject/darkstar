@@ -61,6 +61,7 @@ class CState
     void SetCoolDown(uint32 coolDown);
     void SetLastCoolTime(uint32 tick);
     void SetHiPCLvl(CBattleEntity* PTarget, uint8 lvl);
+    void ClearTarget();
 
     CBattleEntity* GetTarget();
 

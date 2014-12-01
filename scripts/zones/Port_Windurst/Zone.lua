@@ -15,7 +15,7 @@ require("scripts/zones/Port_Windurst/TextIDs");
 
 function onInitialize(zone)
 
-    SetExplorerMoogles(17760447);
+    SetExplorerMoogles(17760446);
     
 end;
 

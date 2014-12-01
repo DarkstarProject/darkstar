@@ -17,7 +17,7 @@ require("scripts/globals/titles");
 
 function onInitialize(zone)
 
-    SetExplorerMoogles(17735853);
+    SetExplorerMoogles(17735852);
     
     applyHalloweenNpcCostumes(zone:getID())
 end;
