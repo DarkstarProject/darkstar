@@ -603,6 +603,8 @@ public:
     int32 setBehaviour(lua_State* L);
     int32 getBehaviour(lua_State* L);
     int32 reloadParty(lua_State* L);
+
+    int32 getGuildPointsItem(lua_State *L);
 };
 
 #endif
