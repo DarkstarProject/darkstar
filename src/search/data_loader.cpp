@@ -200,6 +200,7 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr,int* count)
 	std::string fmtQuery = "SELECT charid, partyid, charname, pos_zone, pos_prevzone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, \
                         war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run \
                         FROM accounts_sessions \
+                        LEFT JOIN accounts_parties USING (charid) \
                         LEFT JOIN chars USING (charid) \
                         LEFT JOIN char_look USING (charid) \
                         LEFT JOIN char_stats USING (charid) \
@@ -349,6 +350,7 @@ std::list<SearchEntity*> CDataLoader::GetPartyList(uint32 PartyID)
     const int8* Query = "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, \
                          war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run \
                          FROM accounts_sessions \
+                         LEFT JOIN accounts_parties USING (charid) \
                          LEFT JOIN chars USING (charid) \
                          LEFT JOIN char_look USING (charid) \
                          LEFT JOIN char_stats USING (charid) \
@@ -410,6 +412,7 @@ std::list<SearchEntity*> CDataLoader::GetLinkshellList(uint32 LinkshellID)
 	const int8* fmtQuery = "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, \
                             war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run, linkshellid, linkshellrank \
                             FROM accounts_sessions \
+                            LEFT JOIN accounts_parties USING (charid) \
                             LEFT JOIN chars USING (charid) \
                             LEFT JOIN char_look USING (charid) \
                             LEFT JOIN char_stats USING (charid) \

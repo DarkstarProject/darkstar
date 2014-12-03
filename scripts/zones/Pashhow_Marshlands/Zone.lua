@@ -7,18 +7,26 @@ package.loaded[ "scripts/zones/Pashhow_Marshlands/TextIDs"] = nil;
 package.loaded[ "scripts/globals/missions"] = nil;
 -----------------------------------
 
-require( "scripts/globals/settings");
-require( "scripts/globals/missions");
-require( "scripts/globals/quests");
-require( "scripts/zones/Pashhow_Marshlands/TextIDs");
-require( "scripts/globals/icanheararainbow");
+require("scripts/globals/zone");
+require("scripts/globals/settings");
+require("scripts/globals/missions");
+require("scripts/globals/quests");
+require("scripts/zones/Pashhow_Marshlands/TextIDs");
+require("scripts/globals/icanheararainbow");
+require("scripts/globals/conquest");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
-function onInitialize( zone)			
-end;			
+function onInitialize(zone)		
+    local manuals = {17224349,17224350};
+    
+    SetFieldManual(manuals);
+    
+    SetRegionalConquestOverseers(zone:getRegionID())
+    
+end;
 
 -----------------------------------			
 -- onZoneIn			

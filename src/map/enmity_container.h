@@ -27,6 +27,9 @@
 #include "../common/cbasetypes.h"
 #include <map>
 
+class CBattleEntity;
+class CCharEntity;
+
 struct EnmityObject_t
 {
 	CBattleEntity* PEnmityOwner;	// Enmity Target
@@ -36,9 +39,6 @@ struct EnmityObject_t
 };
 
 typedef std::map<uint32,EnmityObject_t*> EnmityList_t;
-
-class CBattleEntity;
-class CCharEntity;
 
 class CEnmityContainer
 {

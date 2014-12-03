@@ -30,9 +30,11 @@
 
 #include "lua_baseentity.h"
 #include "lua_instance.h"
+#include "lua_item.h"
 #include "lua_statuseffect.h"
 #include "lua_trade_container.h"
 #include "lua_battlefield.h"
+#include "lua_zone.h"
 #include "luautils.h"
 
 #include "../packets/action.h"
@@ -1016,13 +1018,59 @@ inline int32 CLuaBaseEntity::hasWornItem(lua_State *L)
     return 0;
 }
 
+/************************************************************************
+*  player:getItem(location,slot,equipslot)                              *
+*  returns item object                                                  *
+*  slot param is ignored if equipslot isnt null                         *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getStorageItem(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    
+    uint8 container = lua_tointeger(L, 1); // LOC_INVENTORY etc
+    uint8 slotID = lua_tointeger(L, 2);   // slot in container
+    uint8 equipID = (!lua_isnil(L,3) ? lua_tointeger(L, 3) : 255); // SLOT_MAIN etc
+
+    CItem* PItem = NULL;
+
+    if (equipID == 255)
+        PItem = PChar->getStorage(container)->GetItem(slotID);
+    else
+        PItem = PChar->getEquip((SLOTTYPE)equipID);
+
+    if (PItem != NULL)
+    {
+        lua_getglobal(L, CLuaItem::className);
+        lua_pushstring(L, "new");
+        lua_gettable(L, -2);
+        lua_insert(L, -2);
+        lua_pushlightuserdata(L, PItem);
+        lua_pcall(L, 2, 1, 0);
+        return 1;
+    }
+    ShowError(CL_RED"Lua::getItem: unable to find item! Slot: %i Container: %i\n" CL_RESET, equipID > 0 ? equipID : slotID, container);
+    lua_pushnil(L);
+    return 1;
+}
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::getZone(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 
-    lua_pushinteger( L, m_PBaseEntity->getZone() );
+    lua_getglobal(L, CLuaZone::className);
+    lua_pushstring(L, "new");
+    lua_gettable(L, -2);
+    lua_insert(L, -2);
+    lua_pushlightuserdata(L, (void*)m_PBaseEntity->loc.zone);
+    lua_pcall(L, 2, 1, 0);
+
     return 1;
 }
 
@@ -5330,7 +5378,7 @@ inline int32 CLuaBaseEntity::injectPacket(lua_State *L)
         fseek(File,1,SEEK_SET);
         uint16 returnSize = fread(&size,1,1,File);
 
-        if (size <= 128)
+        if (size <= 256)
         {
             fseek(File,0,SEEK_SET);
             uint16 read_elements = fread(PPacket,1,size*2,File);
@@ -9333,17 +9381,26 @@ inline int32 CLuaBaseEntity::messageText(lua_State* L)
     uint16 messageID = (uint16)lua_tointeger(L, 2);
 
 	bool showName = true;
+    uint8 mode = 0;
 
-	if (!lua_isnil(L, 3) && lua_isboolean(L, 3))
+	if (!lua_isnil(L, 3))
 	{
-		showName = lua_toboolean(L, 3);
+        if (lua_isboolean(L, 3))
+            showName = lua_toboolean(L, 3);
+        else if (lua_isnumber(L, 3))
+            mode = lua_tointeger(L, 3);
 	}
 
+    if (!lua_isnil(L, 4) && lua_isnumber(L, 4))
+    {
+        mode = lua_tointeger(L, 4);
+    }
+
     if (m_PBaseEntity->objtype == TYPE_PC){
-        ((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageTextPacket(PTarget, messageID, showName));
+        ((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageTextPacket(PTarget, messageID, showName, mode));
     }
     else{//broadcast in range
-		m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CMessageTextPacket(PTarget, messageID, showName));
+		m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CMessageTextPacket(PTarget, messageID, showName, mode));
 	}
     return 0;
 }
@@ -9584,6 +9641,13 @@ inline int32 CLuaBaseEntity::getBehaviour(lua_State* L)
     lua_pushinteger(L,((CMobEntity*)m_PBaseEntity)->m_Behaviour);
 
     return 1;
+}
+
+inline int32 CLuaBaseEntity::reloadParty(lua_State* L)
+{
+    ((CCharEntity*)m_PBaseEntity)->ReloadPartyInc();
+
+    return 0;
 }
 
 //==========================================================//
@@ -9943,6 +10007,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getFamily),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,createWornItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasWornItem),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStorageItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getObjType),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isPC),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isNPC),
@@ -10027,5 +10092,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,weaknessTrigger),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBehaviour),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setBehaviour),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,reloadParty),
     {NULL,NULL}
 };

@@ -13,7 +13,7 @@ require("scripts/zones/Mount_Zhayolm/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	startMining(player,player:getZone(),npc,trade,0x0099);
+	startMining(player,player:getZone():getID(),npc,trade,0x0099);
 end;
 
 -----------------------------------

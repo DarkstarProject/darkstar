@@ -31,7 +31,7 @@ function onTrade(player,npc,trade)
 	
 	-- Player traded a key.
 	if((trade:hasItemQty(1036,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
-		local zone = player:getZone();
+		local zone = player:getZone():getID();
 		-- IMPORTANT ITEM: WINGS OF GOLD QUEST -----------
 		if(player:getQuestStatus(JEUNO,WINGS_OF_GOLD) == QUEST_ACCEPTED and player:hasKeyItem(GUIDING_BELL) == false) then 
 			questItemNeeded = 1;

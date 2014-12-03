@@ -39,7 +39,7 @@ function onMobDeath(mob,killer)
 		
 		killer:addTitle(DYNAMISSAN_DORIA_INTERLOPER); -- Add title
 		
-		local npc = GetNPCByID(17535223); -- Spawn ???
+		local npc = GetNPCByID(17535224); -- Spawn ???
 		npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());
 		npc:setStatus(0);
 		

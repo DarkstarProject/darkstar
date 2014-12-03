@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/zones/Garlaige_Citadel/TextIDs");
 
 banishing_gates_base = 17596756; -- _5k0 (First banishing gate)
@@ -16,6 +17,11 @@ banishing_gates_base = 17596756; -- _5k0 (First banishing gate)
 -----------------------------------
 
 function onInitialize(zone)
+
+    local tomes = {17596849,17596850,17596851};
+    
+    SetGroundsTome(tomes);
+
 	-- Banishing Gate #1...
 	zone:registerRegion(1,-208,-1,224,-206,1,227);
 	zone:registerRegion(2,-208,-1,212,-206,1,215);
@@ -31,6 +37,21 @@ function onInitialize(zone)
 	zone:registerRegion(20,-130,-1,355,-128,1,357);
 	zone:registerRegion(21,-190,-1,322,-188,1,324);
 	zone:registerRegion(22,-130,-1,322,-128,1,324);
+    
+    -- Old Two-Wings
+    SetRespawnTime(17596506, 900, 10800);
+    
+    -- Skewer Sam
+    SetRespawnTime(17596507, 900, 10800);
+    
+    -- Serket
+    SetRespawnTime(17596720, 900, 10800);
+    
+    UpdateTreasureSpawnPoint(17596805);
+    
+    UpdateTreasureSpawnPoint(17596806);
+
+    
 end;
 
 -----------------------------------		

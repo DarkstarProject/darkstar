@@ -6,16 +6,23 @@
 package.loaded[ "scripts/zones/Xarcabard/TextIDs"] = nil;
 -----------------------------------
 
-require( "scripts/zones/Xarcabard/TextIDs");
-require( "scripts/globals/icanheararainbow");
-require( "scripts/globals/keyitems");
+require("scripts/zones/Xarcabard/TextIDs");
+require("scripts/globals/icanheararainbow");
+require("scripts/globals/keyitems");
+require("scripts/globals/zone");
+require("scripts/globals/conquest");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
-function onInitialize( zone)		
-end;		
+function onInitialize(zone)
+    local manuals = {17236342,17236343};
+    
+    SetFieldManual(manuals);
+    
+    SetRegionalConquestOverseers(zone:getRegionID())
+end;
 
 -----------------------------------		
 -- onZoneIn

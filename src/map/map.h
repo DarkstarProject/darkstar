@@ -112,6 +112,7 @@ struct map_config_t
     int8   Battle_cap_tweak;        // Default is 0. Globally adjust the level of level capped fights.
     int8   CoP_Battle_cap;          // Default is 0. Disable/enable old lv caps on Chains of Promathia mission battles.
 	uint8  max_merit_points;		// global variable, amount of merit points players are allowed
+    uint16 yell_cooldown;           // Minimum time between uses of yell command (in seconds).
 	bool   audit_chat;
 	bool   audit_say;
 	bool   audit_shout;
@@ -119,6 +120,8 @@ struct map_config_t
 	bool   audit_yell;
 	bool   audit_linkshell;
 	bool   audit_party;
+	uint16 msg_server_port;			// central message server port
+	const char* msg_server_ip;		// central message server IP
 };
 
 /************************************************************************
@@ -129,20 +132,20 @@ struct map_config_t
 
 struct map_session_data_t
 {
-	uint32		client_addr;
-	uint16		client_port;
-	uint16		client_packet_id;			// id последнего пакета, пришедшего от клиента
-	uint16		server_packet_id;			// id последнего пакета, отправленного сервером
-	int8*		server_packet_data; 		// указатель на собранный пакет, который был ранее отправлен клиенту
-	size_t		server_packet_size;			// размер пакета, который был ранее отправлен клиенту
-	time_t		last_update;				// time of last packet recv
-	blowfish_t  blowfish;					// unique decypher keys
-	CCharEntity *PChar;						// game char
-    bool        shuttingDown;               // prevents double session closing
+	uint32		 client_addr;
+	uint16		 client_port;
+	uint16		 client_packet_id;			// id последнего пакета, пришедшего от клиента
+	uint16		 server_packet_id;			// id последнего пакета, отправленного сервером
+	int8*		 server_packet_data; 		// указатель на собранный пакет, который был ранее отправлен клиенту
+	size_t		 server_packet_size;	    // размер пакета, который был ранее отправлен клиенту
+	time_t		 last_update;				// time of last packet recv
+	blowfish_t   blowfish;					// unique decypher keys
+	CCharEntity* PChar;						// game char
+    uint8        shuttingDown;              // prevents double session closing
 
     map_session_data_t()
     {
-        shuttingDown = false;
+        shuttingDown = 0;
     }
 };
 
@@ -154,6 +157,9 @@ extern CCommandHandler CmdHandler;
 
 typedef std::map<uint64,map_session_data_t*> map_session_list_t;
 extern map_session_list_t map_session_list;
+
+extern in_addr map_ip;
+extern uint16 map_port;
 
 extern inline map_session_data_t* mapsession_getbyipp(uint64 ipp);
 extern inline map_session_data_t* mapsession_createsession(uint32 ip,uint16 port);
@@ -171,7 +177,7 @@ int32 map_config_read(const int8 *cfgName);												// Map-Server Config [ven
 int32 map_config_default();
 
 int32 map_cleanup(uint32 tick,CTaskMgr::CTask *PTask);									// Clean up timed out players
-int32 map_close_session(uint32 tick,CTaskMgr::CTask *PTask);							// завершение сессии
+int32 map_close_session(uint32 tick, map_session_data_t* map_session_data);
 
 int32 map_garbage_collect(uint32 tick, CTaskMgr::CTask* PTask);
 

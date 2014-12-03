@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Dragons_Aery/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/zones/Dragons_Aery/TextIDs");
 
 -----------------------------------
@@ -14,6 +15,10 @@ require("scripts/zones/Dragons_Aery/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    -- Fafnir
+    SetRespawnTime(17408018, 900, 10800);
+
 end;
 
 -----------------------------------		

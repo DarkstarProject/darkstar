@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/keyitems");
+require("scripts/globals/zone");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Selbina/TextIDs");
@@ -16,6 +17,9 @@ require("scripts/zones/Selbina/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    SetExplorerMoogles(17793128);
+    
 end;
 
 -----------------------------------		

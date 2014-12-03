@@ -151,6 +151,7 @@ public:
     int32 getFreeSlotsCount(lua_State*);    // Gets value of free slots in Entity inventory
     int32 createWornItem(lua_State*);       // Update this item in worn item (player:createWornItem(itemid))
     int32 hasWornItem(lua_State*);          // Check if the item is already worn (player:hasWornItem(itemid))
+    int32 getStorageItem(lua_State*);       // returns item object player:getStorageItem(containerid, slotid, equipslotid)
     int32 getRace(lua_State*);              // Gets Race of Entity
     int32 getNation(lua_State*);            // Gets Nation of Entity
     int32 setNation(lua_State*);            // Sets Nation of Entity
@@ -601,6 +602,7 @@ public:
     int32 weaknessTrigger(lua_State* L);
     int32 setBehaviour(lua_State* L);
     int32 getBehaviour(lua_State* L);
+    int32 reloadParty(lua_State* L);
 };
 
 #endif

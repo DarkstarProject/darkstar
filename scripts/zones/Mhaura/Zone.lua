@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/keyitems");
+require("scripts/globals/zone");
 require("scripts/zones/Mhaura/TextIDs");
 require("scripts/globals/missions");
 
@@ -15,6 +16,9 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onInitialize(zone)
+
+    SetExplorerMoogles(17797250);
+    
 end;
 
 -----------------------------------

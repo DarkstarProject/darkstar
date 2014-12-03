@@ -29,7 +29,7 @@ function onTrade(player,npc,trade)
 
 	-- Player traded a key.
 	if((trade:hasItemQty(1056,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
-		local zone = player:getZone();
+		local zone = player:getZone():getID();
 		-- IMPORTANT ITEM: L'Ancienne & Map -----------
 		if(player:hasKeyItem(MAP_OF_THE_LABYRINTH_OF_ONZOZO) == false) then
 			questItemNeeded = 1;

@@ -40,7 +40,7 @@ function onTrade(player,npc,trade)
 		
 		-- IMPORTANT ITEM: AF Keyitems, AF Items, & Map -----------
 		local mJob = player:getMainJob();
-		local zone = player:getZone();
+		local zone = player:getZone():getID();
 		local listAF = getAFbyZone(zone);
 		for nb = 1,table.getn(listAF),3 do
 			if(player:getQuestStatus(JEUNO,listAF[nb + 1]) ~= QUEST_AVAILABLE and mJob == listAF[nb] and player:hasItem(listAF[nb + 2]) == false) then

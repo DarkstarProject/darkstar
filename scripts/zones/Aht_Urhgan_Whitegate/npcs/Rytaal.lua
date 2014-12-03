@@ -45,7 +45,7 @@ function onTrigger(player,npc)
             player:addAssault(0);
         end
         player:setVar("AssaultComplete",0);
-	elseif((player:getCurrentMission(TOAU) > PRESIDENT_SALAHEEM) or (player:getCurrentMission(TOAU) == PRESIDENT_SALAHEEM and player:getVar("TOAUM3") ==1))then
+	elseif((player:getCurrentMission(TOAU) > PRESIDENT_SALAHEEM) or (player:getCurrentMission(TOAU) == PRESIDENT_SALAHEEM and player:getVar("TOAUM3") >= 1))then
 		if (lastarmyIDtag == 0 )then -- first time you get the tag
 			player:setVar("REMAINING_IMPERIAL_ARMY_ID_TAG",3); currenttagnummber =3;
 			player:setVar("TIME_IMPERIAL_ARMY_ID_TAG",currentday);

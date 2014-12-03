@@ -7,15 +7,23 @@
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
 
 require("scripts/zones/Valkurm_Dunes/TextIDs");
+require("scripts/globals/zone");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/status");
 require("scripts/globals/weather");
+require("scripts/globals/conquest");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
+    local manuals = {17199747,17199748,17199749};
+    
+    SetFieldManual(manuals);
+    
+    SetRegionalConquestOverseers(zone:getRegionID())
+
 end;
 
 -----------------------------------
@@ -24,7 +32,7 @@ end;
 
 function onZoneIn( player, prevZone)
 
-	cs = -1;
+	local cs = -1;
 
 	if( player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
 		player:setPos( 60.989, -4.898, -151.001, 198);
@@ -83,7 +91,7 @@ function onEventFinish( player, csid, option)
 end;
 
 function OnZoneWeatherChange(weather)
-	local qm1 = GetNPCByID(17199694); -- Quest: An Empty Vessel
+	local qm1 = GetNPCByID(17199698); -- Quest: An Empty Vessel
 	if(weather == WEATHER_DUST_STORM) then
 		qm1:setStatus(STATUS_NORMAL);
 	else

@@ -337,7 +337,15 @@ void LoadSetSpells(CCharEntity* PChar)
             if (PChar->m_SetBlueSpells[slot] != 0)
             {
                 CBlueSpell* PSpell = (CBlueSpell*)spell::GetSpell(PChar->m_SetBlueSpells[slot] + 0x200);
-                PChar->addModifiers(&PSpell->modList);
+
+				if (PSpell == NULL)
+				{
+					PChar->m_SetBlueSpells[slot] = 0;
+				}
+				else
+				{
+					PChar->addModifiers(&PSpell->modList);
+				}
             }
         }
         ValidateBlueSpells(PChar);

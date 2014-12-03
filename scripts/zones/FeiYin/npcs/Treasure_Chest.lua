@@ -29,7 +29,7 @@ function onTrade(player,npc,trade)
 	
 	-- Player traded a key.
 	if((trade:hasItemQty(1037,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
-		local zone = player:getZone();
+		local zone = player:getZone():getID();
 		-- IMPORTANT ITEM: Sorcery of the North QUEST -----------
 		if(player:getQuestStatus(SANDORIA,SORCERY_OF_THE_NORTH) == QUEST_ACCEPTED and player:hasKeyItem(FEIYIN_MAGIC_TOME) == false) then 
 			questItemNeeded = 1;

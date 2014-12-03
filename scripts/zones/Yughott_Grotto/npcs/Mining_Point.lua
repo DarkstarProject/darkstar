@@ -13,7 +13,7 @@ require("scripts/zones/Yughott_Grotto/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	startMining(player,player:getZone(),npc,trade,0x0064);
+	startMining(player,player:getZone():getID(),npc,trade,0x0064);
 end;
 
 -----------------------------------

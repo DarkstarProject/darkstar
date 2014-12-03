@@ -7,14 +7,28 @@ package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/Meriphataud_Mountains/TextIDs");
-require( "scripts/globals/icanheararainbow");
+require("scripts/globals/icanheararainbow");
+require("scripts/globals/zone");
+require("scripts/globals/conquest");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
-function onInitialize(zone)		
-end;		
+function onInitialize(zone)
+    local manuals = {17265290,17265291,17265292};
+    
+    SetFieldManual(manuals);
+    
+    -- Waraxe Beak
+    SetRespawnTime(17264828, 900, 10800);
+    
+    -- Coo Keja the Unseen
+    SetRespawnTime(17264946, 900, 10800);
+    
+    SetRegionalConquestOverseers(zone:getRegionID())
+    
+end;
 
 -----------------------------------		
 -- onZoneIn		

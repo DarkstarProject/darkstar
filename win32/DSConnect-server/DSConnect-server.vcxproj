@@ -35,6 +35,7 @@
     <ClInclude Include="..\..\src\common\version.h" />
     <ClInclude Include="..\..\src\common\zlib.h" />
     <ClInclude Include="..\..\src\login\account.h" />
+    <ClInclude Include="..\..\src\login\message_server.h" />
     <ClInclude Include="..\..\src\login\lobby.h" />
     <ClInclude Include="..\..\src\login\login.h" />
     <ClInclude Include="..\..\src\login\login_auth.h" />
@@ -55,6 +56,7 @@
     <ClCompile Include="..\..\src\common\utils.cpp" />
     <ClCompile Include="..\..\src\common\zlib.cpp" />
     <ClCompile Include="..\..\src\login\account.cpp" />
+    <ClCompile Include="..\..\src\login\message_server.cpp" />
     <ClCompile Include="..\..\src\login\lobby.cpp" />
     <ClCompile Include="..\..\src\login\login.cpp" />
     <ClCompile Include="..\..\src\login\login_auth.cpp" />
@@ -137,12 +139,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;dsTCPSERV;DEBUGLOGLOGIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\external;$(ProjectDir)..\external\mysql;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\external;$(ProjectDir)..\external\mysql;$(ProjectDir)..\external\zmq;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libmariadb.lib;WS2_32.Lib</AdditionalDependencies>
+      <AdditionalDependencies>libmariadb.lib;libzmq.lib;WS2_32.Lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\lib</AdditionalLibraryDirectories>
       <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
     </Link>
@@ -175,7 +177,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;dsTCPSERV;DEBUGLOGLOGIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\external;$(ProjectDir)..\external\mysql;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\external;$(ProjectDir)..\external\mysql;$(ProjectDir)..\external\zmq;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -184,7 +186,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>..\..\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libmariadb.lib;WS2_32.Lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libmariadb.lib;libzmq.lib;WS2_32.Lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

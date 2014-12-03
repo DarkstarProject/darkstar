@@ -77,13 +77,13 @@ if(player:getAnimation()==0)then
 	{
 		[11] = function (x) player:startEvent(0x002E); end,
 		[12] = function (x) 
-			if(GetNPCByID(16851267):getAnimation() == 8) then 
+			if(GetNPCByID(16851268):getAnimation() == 8) then 
 				player:startEvent(30); 
 			end
 		end,
 		[21] = function (x) player:startEvent(41); end,
 		[22] = function (x)
-			if(GetNPCByID(16851272):getAnimation() == 8) then 
+			if(GetNPCByID(16851273):getAnimation() == 8) then 
 				if(player:getVar("MemoryReceptacle") == 2) then	
 					player:startEvent(35);  
 				else
@@ -92,7 +92,7 @@ if(player:getAnimation()==0)then
 			end
 		end,
 		[23] = function (x)
-			if(GetNPCByID(16851274):getAnimation() == 8) then 
+			if(GetNPCByID(16851275):getAnimation() == 8) then 
 				if(player:getVar("MemoryReceptacle") == 2) then
 					player:startEvent(35);  
 				else
@@ -101,7 +101,7 @@ if(player:getAnimation()==0)then
 			end
 		end,
 		[24] = function (x)
-			if(GetNPCByID(16851271):getAnimation() == 8) then
+			if(GetNPCByID(16851272):getAnimation() == 8) then
 				if(player:getVar("MemoryReceptacle") == 2) then
 					player:startEvent(35);  
 				else
@@ -110,7 +110,7 @@ if(player:getAnimation()==0)then
 			end
 		end,
 		[25] = function (x)
-			if(GetNPCByID(16851273):getAnimation() == 8) then 
+			if(GetNPCByID(16851274):getAnimation() == 8) then 
 				if(player:getVar("MemoryReceptacle") == 2) then
 					player:startEvent(35);  
 				else
@@ -120,33 +120,33 @@ if(player:getAnimation()==0)then
 		end,
 		[31] = function (x) player:startEvent(30); end,
 		[32] = function (x) 
-			if(GetNPCByID(16851276):getAnimation() == 8) then 
+			if(GetNPCByID(16851277):getAnimation() == 8) then 
 				player:startEvent(32);
 			end
 		end,
 		[33] = function (x) 
-			if(GetNPCByID(16851275):getAnimation() == 8) then 
+			if(GetNPCByID(16851276):getAnimation() == 8) then 
 				player:startEvent(32); 
 			end
 		end,
 		[34] = function (x) 
-			if(GetNPCByID(16851277):getAnimation() == 8) then 
+			if(GetNPCByID(16851278):getAnimation() == 8) then 
 				player:startEvent(32); 
 			end
 		end,
 		[35] = function (x) player:startEvent(30); end,
 		[36] = function (x) 
-			if(GetNPCByID(16851268):getAnimation() == 8) then 
-				player:startEvent(32); 
-			end
-		end,
-		[37] = function (x) 
 			if(GetNPCByID(16851269):getAnimation() == 8) then 
 				player:startEvent(32); 
 			end
 		end,
-		[38] = function (x) 
+		[37] = function (x) 
 			if(GetNPCByID(16851270):getAnimation() == 8) then 
+				player:startEvent(32); 
+			end
+		end,
+		[38] = function (x) 
+			if(GetNPCByID(16851271):getAnimation() == 8) then 
 				player:startEvent(32); 
 			end
 		end,

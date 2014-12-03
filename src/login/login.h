@@ -59,6 +59,9 @@ struct login_config_t
 	const char* mysql_database;		// mysql database -> default dspdb
 
 	uint32 search_server_port;		// search_server_port	-> 54002
+
+    uint16 msg_server_port;			// chat server port
+    const char* msg_server_ip;		// chat server IP
 };
 
 extern login_config_t login_config;

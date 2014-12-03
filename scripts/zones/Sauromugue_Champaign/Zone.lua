@@ -8,13 +8,21 @@ package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
 
 require("scripts/zones/Sauromugue_Champaign/TextIDs");
 require( "scripts/globals/icanheararainbow");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
-function onInitialize( zone)		
-end;		
+function onInitialize(zone)
+    local manuals = {17269256,17269257};
+    
+    SetFieldManual(manuals);
+    
+    -- Roc
+    SetRespawnTime(17269106, 900, 10800);
+    
+end;
 
 -----------------------------------		
 -- onZoneIn		

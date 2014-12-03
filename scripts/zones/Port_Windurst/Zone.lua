@@ -5,7 +5,7 @@
 -----------------------------------
 
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
-require("scripts/globals/server");
+require("scripts/globals/zone");
 require("scripts/globals/settings");
 require("scripts/zones/Port_Windurst/TextIDs");
 
@@ -14,7 +14,10 @@ require("scripts/zones/Port_Windurst/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-end;			
+
+    SetExplorerMoogles(17760446);
+    
+end;
 
 -----------------------------------			
 -- onZoneIn			

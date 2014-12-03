@@ -106,7 +106,7 @@ function onEventFinish(player,csid,option,npc)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	GetNPCByID(17719328):wait(5000);
+	npc:wait(5000);
 	
 	if (csid == 0x01fe and option == 0) then
 		if (player:getFreeSlotsCount() > 0) then
@@ -134,8 +134,6 @@ function onEventFinish(player,csid,option,npc)
 			player:addFame(SANDORIA,SAN_FAME*30);
 			player:completeQuest(SANDORIA,A_SENTRY_S_PERIL);
 		end
-	else
-		npc:wait(0);
 	end
 	
 end;

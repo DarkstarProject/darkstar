@@ -22,6 +22,8 @@ function onInitialize(zone)
 	zone:registerRegion(4, -384.452,26,257.961, -379.945,32,262.558); -- Uncapped area 1 (F-7 Tower)
 	zone:registerRegion(5, -302.493,42,-179.995, -297.386,48,-176.078); -- Uncapped area 2 (G-9 Tower)
 	zone:registerRegion(6, 299.847,42, 257.716, 303.824,48,262.391); -- Uncapped area 3 (I-7 Tower)
+    
+    UpdateTreasureSpawnPoint(16814557);
 end;
 
 -----------------------------------		

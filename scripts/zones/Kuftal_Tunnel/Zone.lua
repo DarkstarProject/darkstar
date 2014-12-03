@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Kuftal_Tunnel/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/zones/Kuftal_Tunnel/TextIDs");
 require("scripts/globals/weather");
 
@@ -15,6 +16,16 @@ require("scripts/globals/weather");
 -----------------------------------
 
 function onInitialize(zone)
+
+    local tomes = {17490318,17490319,17490320,17490321};
+    
+    SetGroundsTome(tomes);
+
+    -- Guivre
+    SetRespawnTime(17490234, 900, 10800);
+    
+    UpdateTreasureSpawnPoint(17490297);
+    
 end;
 
 -----------------------------------		
@@ -73,9 +84,9 @@ end;
 function OnZoneWeatherChange(weather)
 
 	if(weather == WEATHER_WIND or weather == WEATHER_GALES) then
-		GetNPCByID(17490276):setAnimation(9); -- Rock Up
+		GetNPCByID(17490277):setAnimation(9); -- Rock Up
 	else
-		GetNPCByID(17490276):setAnimation(8); -- Rock Down
+		GetNPCByID(17490277):setAnimation(8); -- Rock Down
 	end
 	
 end;

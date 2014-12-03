@@ -7,7 +7,7 @@ package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/quests");
-require("scripts/globals/server");
+require("scripts/globals/zone");
 require("scripts/globals/settings");
 require("scripts/zones/Metalworks/TextIDs");
 

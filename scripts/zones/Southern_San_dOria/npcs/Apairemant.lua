@@ -8,7 +8,7 @@
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/harvest_festivals");
+require("scripts/globals/events/harvest_festivals");
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/quests");

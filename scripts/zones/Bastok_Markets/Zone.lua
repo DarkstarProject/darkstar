@@ -5,7 +5,8 @@
 -----------------------------------
 
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
-require("scripts/globals/server");
+require("scripts/globals/events/harvest_festivals");
+require("scripts/globals/zone");
 require("scripts/globals/settings");
 require("scripts/zones/Bastok_Markets/TextIDs");
 
@@ -14,6 +15,9 @@ require("scripts/zones/Bastok_Markets/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    applyHalloweenNpcCostumes(zone:getID())
+
 end;			
 
 -----------------------------------			
@@ -60,6 +64,19 @@ end;
 
 function onRegionEnter(player,region)	
 end;	
+
+-----------------------------------			
+-- onGameDay	
+-----------------------------------			
+
+function onGameDay()
+
+	-- Removes daily the bit mask that tracks the treats traded for Harvest Festival.
+	if (isHalloweenEnabled() ~= 0) then
+		clearVarFromAll("harvestFestTreats");
+		clearVarFromAll("harvestFestTreats2");
+	end
+end;
 
 -----------------------------------	
 -- onEventUpdate	

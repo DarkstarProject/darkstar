@@ -9,13 +9,20 @@ package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
 require("scripts/zones/Western_Altepa_Desert/TextIDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/weather");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
-function onInitialize(zone)		
-end;		
+function onInitialize(zone)
+    local manuals = {17289791,17289792,17289793};
+    
+    SetFieldManual(manuals);
+    
+    -- King Vinegarroon
+    SetRespawnTime(17289575, 900, 10800);
+end;
 
 -----------------------------------		
 -- onZoneIn		

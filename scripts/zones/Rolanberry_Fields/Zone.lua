@@ -7,14 +7,25 @@ package.loaded["scripts/zones/Rolanberry_Fields/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/Rolanberry_Fields/TextIDs");
-require( "scripts/globals/icanheararainbow");
+require("scripts/globals/icanheararainbow");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
-function onInitialize( zone)		
-end;		
+function onInitialize(zone)		
+    local manuals = {17228374,17228375};
+    
+    SetFieldManual(manuals);
+    
+    -- Simurgh
+    SetRespawnTime(17228242, 900, 10800);
+    
+    -- Spawns Silk Caterpillar (temporary until someone implements a way to make it spawn properly)
+    SpawnMob(17227782,300,660);
+
+end;
 
 -----------------------------------		
 -- onZoneIn		

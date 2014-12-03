@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Ifrits_Cauldron/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/zones/Ifrits_Cauldron/TextIDs");
 
 -----------------------------------
@@ -14,6 +15,16 @@ require("scripts/zones/Ifrits_Cauldron/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    local tomes = {17617260,17617261,17617262,17617263,17617264,17617265,17617266,17617267};
+    
+    SetGroundsTome(tomes);
+    
+    -- Mysticmaker Profblix
+    SetRespawnTime(17617147, 900, 10800);
+    
+    UpdateTreasureSpawnPoint(17617217);
+
 end;
 
 -----------------------------------		
@@ -46,6 +57,24 @@ end;
 
 function onRegionEnter(player,region)	
 end;	
+
+-----------------------------------		
+-- onGameHour		
+-----------------------------------		
+
+function onGameHour()
+
+	local VanadielHour = VanadielHour();
+	local FlameSpout = 17617201;
+		
+	if(VanadielHour % 3 == 0) then -- Opens flame spouts every 3 hours Vana'diel time
+		GetNPCByID(FlameSpout):openDoor(90); -- Ifrit's Cauldron flame spout (H-6) Map 1
+		GetNPCByID(FlameSpout+1):openDoor(90); -- Ifrit's Cauldron flame spout (H-6) Map 5
+		GetNPCByID(FlameSpout+2):openDoor(90); -- Ifrit's Cauldron flame spout (I-10) Map 8
+		GetNPCByID(FlameSpout+3):openDoor(90); -- Ifrit's Cauldron flame spout (E-7) Map 8
+	end
+	
+end;
 
 -----------------------------------	
 -- onEventUpdate	

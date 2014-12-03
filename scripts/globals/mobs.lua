@@ -33,9 +33,9 @@ function onMobDeathEx(mob, killer, isWeaponSkillKill)
 	end
 	
 	if(killer:getCurrentMission(WINDURST) == A_TESTING_TIME) then
-		if(killer:hasCompletedMission(WINDURST,A_TESTING_TIME) and killer:getZone() == 118) then
+		if(killer:hasCompletedMission(WINDURST,A_TESTING_TIME) and killer:getZone():getID() == 118) then
 			killer:setVar("testingTime_crea_count",killer:getVar("testingTime_crea_count") + 1);
-		elseif(killer:hasCompletedMission(WINDURST,A_TESTING_TIME) == false and killer:getZone() == 117) then
+		elseif(killer:hasCompletedMission(WINDURST,A_TESTING_TIME) == false and killer:getZone():getID() == 117) then
 			killer:setVar("testingTime_crea_count",killer:getVar("testingTime_crea_count") + 1);
 		end
 	end

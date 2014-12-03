@@ -818,6 +818,12 @@
     <ClInclude Include="..\..\src\map\ai\ai_char_charm.h">
       <Filter>Header Files\ai</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\message.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\lua\lua_item.h">
+      <Filter>Header Files\lua</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
@@ -1500,6 +1506,12 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\ai\ai_char_charm.cpp">
       <Filter>Source Files\ai</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\message.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\lua\lua_item.cpp">
+      <Filter>Source Files\lua</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

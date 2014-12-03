@@ -8,13 +8,26 @@ package.loaded["scripts/zones/Eastern_Altepa_Desert/TextIDs"] = nil;
 
 require("scripts/zones/Eastern_Altepa_Desert/TextIDs");
 require( "scripts/globals/icanheararainbow");
+require("scripts/globals/zone");
+require("scripts/globals/conquest");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
-function onInitialize( zone)		
-end;		
+function onInitialize(zone)
+    local manuals = {17244649,17244650,17244651};
+    
+    SetFieldManual(manuals);
+    
+    -- Cactrot Rapido
+    SetRespawnTime(17244539, 900, 10800);
+    
+    -- Centurio XII-I
+    SetRespawnTime(17244372, 900, 10800);
+    
+    SetRegionalConquestOverseers(zone:getRegionID())
+end;
 
 -----------------------------------		
 -- onConquestUpdate		
@@ -34,7 +47,7 @@ end;
 
 function onZoneIn( player, prevZone)
 
-	cs = -1;
+	local cs = -1;
 
 	if( player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
 		player:setPos( 260.09, 6.013, 320.454, 76);

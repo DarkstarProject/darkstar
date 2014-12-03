@@ -5,8 +5,10 @@
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/zone");
 require("scripts/globals/missions");
 require("scripts/globals/titles");
+require("scripts/globals/conquest");
 
 -----------------------------------
 -- onInitialize
@@ -18,7 +20,11 @@ function onInitialize(zone)
 	GetMobByID(Colorful_Leshy):setLocalVar("1",os.time() + math.random((43200), (86400)));
 	
 	zone:registerRegion(1,179,-26,327,219,-18,347);
+    
+    -- Padfoot
+    SetRespawnTime(16875578, 900, 10800);
 
+    SetRegionalConquestOverseers(zone:getRegionID())
 end;
 
 -----------------------------------		

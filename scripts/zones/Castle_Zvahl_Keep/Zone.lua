@@ -20,6 +20,9 @@ function onInitialize(zone)
 	zone:registerRegion(5, -328,-54,-47, -324,-53,-42); -- SW porter on map 3
 	zone:registerRegion(6, -528,-74,84, -526,-73,89); 	-- N porter on map 4
 	zone:registerRegion(7, -528,-74,30, -526,-73,36); 	-- S porter on map 4
+    
+    UpdateTreasureSpawnPoint(17441084);
+
 end;
 
 -----------------------------------		

@@ -77,6 +77,17 @@ bool CInstanceLoader::Check()
 			}
 			else
 			{
+                // finish loading by launching remaining setup scripts
+                for (auto PMob : instance->m_mobList)
+                {
+                    luautils::OnMobInitialize(PMob.second);
+                    ((CMobEntity*)PMob.second)->saveModifiers();
+                    ((CMobEntity*)PMob.second)->saveMobModifiers();
+                }
+                for (auto PNpc : instance->m_npcList)
+                {
+                    luautils::OnNpcSpawn(PNpc.second);
+                }
 				luautils::OnInstanceCreated(requester, instance);
 				luautils::OnInstanceCreated(instance);
 			}
@@ -107,7 +118,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 
 	int32 ret = Sql_Query(SqlInstanceHandle, Query, instance->GetID());
 
-	if (ret != SQL_ERROR && Sql_NumRows(SqlInstanceHandle) != 0)
+	if (!instance->Failed() && ret != SQL_ERROR && Sql_NumRows(SqlInstanceHandle) != 0)
 	{
 		while (Sql_NextRow(SqlInstanceHandle) == SQL_SUCCESS)
 		{
@@ -225,11 +236,6 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 			PMob->PInstance = instance;
 
 			instance->InsertMOB(PMob);
-
-			//luautils::OnMobInitialize(PMob);
-
-			PMob->saveModifiers();
-			PMob->saveMobModifiers();
 		}
 
 		Query =
@@ -237,19 +243,22 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 			flag, speed, speedsub, animation, animationsub, namevis,\
 			status, unknown, look, name_prefix \
 			FROM instance_entities INNER JOIN npc_list ON \
-			(instance_entities.id & 0xFFF = npc_list.npcid AND npc_list.zoneid = %u) \
-			WHERE instanceid = %u AND npcid < 1024;";
+			(instance_entities.id = npc_list.npcid) \
+			WHERE instanceid = %u AND npcid >= %u and npcid < %u;";
 
-		ret = Sql_Query(SqlHandle, Query, zone->GetID(), instance->GetID());
+		uint32 zoneMin = (zone->GetID() << 12) + 0x1000000;
+		uint32 zoneMax = zoneMin + 1024;
+
+		ret = Sql_Query(SqlHandle, Query, instance->GetID(), zoneMin, zoneMax);
 
 		if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 		{
 			while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 			{
 				CNpcEntity* PNpc = new CNpcEntity;
-				PNpc->targid = (uint16)Sql_GetUIntData(SqlHandle, 0);
-				PNpc->id = (uint32)PNpc->targid + (zone->GetID() << 12) + 0x1000000;
-
+				PNpc->id = (uint16)Sql_GetUIntData(SqlHandle, 0);
+				PNpc->targid = PNpc->id & 0xFFF;
+				
 				PNpc->name.insert(0, Sql_GetData(SqlHandle, 1));
 
 				PNpc->loc.p.rotation = (uint8)Sql_GetIntData(SqlHandle, 2);
@@ -276,13 +285,12 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 				PNpc->PInstance = instance;
 
 				instance->InsertNPC(PNpc);
-				//luautils::OnNpcSpawn(PNpc);
 			}
 		}
 	}
 	else
 	{
-        delete instance;
+        instance->Cancel();
 		instance = NULL;
 	}
 

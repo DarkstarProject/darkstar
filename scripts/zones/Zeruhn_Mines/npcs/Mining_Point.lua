@@ -13,7 +13,7 @@ require("scripts/zones/Zeruhn_Mines/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	startMining(player,player:getZone(),npc,trade,0x00A5);
+	startMining(player,player:getZone():getID(),npc,trade,0x00A5);
 end;
 
 -----------------------------------

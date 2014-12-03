@@ -9,12 +9,19 @@ package.loaded[ "scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
 require( "scripts/zones/Beaucedine_Glacier/TextIDs");
 require( "scripts/globals/missions");
 require( "scripts/globals/icanheararainbow");
+require("scripts/globals/zone");
+require("scripts/globals/conquest");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
-function onInitialize( zone)
+function onInitialize(zone)
+    local manuals = {17232275,17232276,17232277,17232278};
+    
+    SetFieldManual(manuals);
+    
+    SetRegionalConquestOverseers(zone:getRegionID())
 end;
 
 -----------------------------------
@@ -93,7 +100,7 @@ end;
 -----------------------------------
 
 function OnZoneWeatherChange(weather)
-	local mirrorPond = GetNPCByID(17232193); -- Quest: Love And Ice
+	local mirrorPond = GetNPCByID(17232194); -- Quest: Love And Ice
 
 	if(weather == WEATHER_GLOOM or weather == WEATHER_DARKNESS) then
 		mirrorPond:setStatus(STATUS_NORMAL);

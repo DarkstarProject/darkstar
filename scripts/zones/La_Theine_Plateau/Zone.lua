@@ -7,6 +7,7 @@ package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/La_Theine_Plateau/TextIDs");
+require("scripts/globals/zone");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
@@ -16,8 +17,12 @@ require("scripts/globals/weather");
 -- onInitialize
 -----------------------------------
 
-function onInitialize( zone)
-end;
+function onInitialize(zone)		
+    local manuals = {17195673,17195674};
+    
+    SetFieldManual(manuals);
+end;		
+
 
 -----------------------------------
 -- onZoneIn
@@ -92,7 +97,7 @@ end;
 
 function OnZoneWeatherChange(weather)
 
-    local _2u0 = GetNPCByID(17195601);
+    local _2u0 = GetNPCByID(17195605);
     local VanadielTOTD = VanadielTOTD();
     local I_Can_Hear_a_Rainbow = GetServerVariable("I_Can_Hear_a_Rainbow");
 
@@ -106,7 +111,7 @@ end;
 
 function OnTOTDChange(TOTD)
 
-    local _2u0 = GetNPCByID(17195601);
+    local _2u0 = GetNPCByID(17195605);
     local I_Can_Hear_a_Rainbow = GetServerVariable("I_Can_Hear_a_Rainbow");
 
     if (I_Can_Hear_a_Rainbow == 1 and TOTD >= TIME_DAWN and TOTD <= TIME_EVENING and _2u0:getAnimation() == 9) then

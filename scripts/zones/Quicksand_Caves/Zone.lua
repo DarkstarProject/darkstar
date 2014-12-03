@@ -8,6 +8,7 @@ package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
+require("scripts/globals/zone");
 require("scripts/zones/Quicksand_Caves/TextIDs");
 
 base_id = 17629681;
@@ -17,6 +18,11 @@ base_id = 17629681;
 -----------------------------------
 
 function onInitialize(zone)
+
+    local tomes = {17629763,17629764,17629765,17629766,17629767,17629768};
+    
+    SetGroundsTome(tomes);
+
 	-- Weight Door System (RegionID, X, Radius, Z)
 	zone:registerRegion(1,   -15, 5, -60, 0,0,0); -- 0x010D01EF Door
 	zone:registerRegion(3, 	  15, 5,-180, 0,0,0); -- 0x010D01F1 Door
@@ -57,6 +63,9 @@ function onInitialize(zone)
 	
 	SetServerVariable("BastokFight8_1" ,0);
 	SetServerVariable("Bastok8-1LastClear", os.time()-QM_RESET_TIME); -- Set a delay on ??? mission NM pop.
+    
+    UpdateTreasureSpawnPoint(17629732);
+
 end;
 
 -----------------------------------		

@@ -13,7 +13,7 @@ require("scripts/zones/Yhoator_Jungle/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	startLogging(player,player:getZone(),npc,trade,0x000A);
+	startLogging(player,player:getZone():getID(),npc,trade,0x000A);
 end;
 
 -----------------------------------

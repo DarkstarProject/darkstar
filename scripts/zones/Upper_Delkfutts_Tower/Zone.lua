@@ -6,8 +6,9 @@
 package.loaded["scripts/zones/Upper_Delkfutts_Tower/TextIDs"] = nil;
 -----------------------------------
 
-require("/scripts/globals/common");
-require("/scripts/globals/settings");
+require("scripts/globals/common");
+require("scripts/globals/zone");
+require("scripts/globals/settings");
 require("scripts/globals/teleports");
 require("scripts/zones/Upper_Delkfutts_Tower/TextIDs");
 
@@ -15,10 +16,17 @@ require("scripts/zones/Upper_Delkfutts_Tower/TextIDs");
 -- onInitialize
 -----------------------------------
 
-function onInitialize(zone)		
+function onInitialize(zone)
+
+    local tomes = {17424560,17424561,17424562};
+    
+    SetGroundsTome(tomes);    
+
 	zone:registerRegion(1, -369, -146, 83,  -365, -145,  89); -- Tenth Floor F-6 porter to Middle Delkfutt's Tower	
 	zone:registerRegion(2, -369, -178, -49, -365, -177, -43); -- Twelfth Floor F-10 porter to Stellar Fulcrum	
-	-- print("Upper Delkfutt's Tower Teleporters initialized.");	
+	
+    UpdateTreasureSpawnPoint(17424559);
+
 end;		
 
 -----------------------------------		

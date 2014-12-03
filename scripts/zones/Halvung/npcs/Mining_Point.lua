@@ -13,7 +13,7 @@ require("scripts/zones/Halvung/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	startMining(player,player:getZone(),npc,trade,0x00D2);
+	startMining(player,player:getZone():getID(),npc,trade,0x00D2);
 end;
 
 -----------------------------------

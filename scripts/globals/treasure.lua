@@ -226,7 +226,7 @@ function openChance(player,npc,trade,TreasureType,treasureLVL,minLVL,questItemNe
 	chance_answer = {nil,nil}; -- {success%,messageType}
 
 	weak = player:getStatusEffect(EFFECT_WEAKNESS);
-	illu  = player:getVar("["..player:getZone().."]".."Treasure_"..TreasureType); 
+	illu  = player:getVar("["..player:getZone():getID().."]".."Treasure_"..TreasureType); 
 	
 	-- SE impleted this in order to prevent coffer farming. 
 	-- Noone in the same area can open more than 1 coffer per hour except for AF, maps or quests items.

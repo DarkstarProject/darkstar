@@ -70,61 +70,61 @@ function onRegionEnter(player,region)
 	{
 		[10] = function (x) player:startEvent(0x002D); end,--ok
 		[11] = function (x) 
-			if(GetNPCByID(16867699):getAnimation() == 8) then 
+			if(GetNPCByID(16867700):getAnimation() == 8) then 
 				player:startEvent(32);--ok 
 			end
 		end,
 		[12] = function (x) 
-		     if(GetNPCByID(16867698):getAnimation() == 8) then 
+		     if(GetNPCByID(16867699):getAnimation() == 8) then 
 	            player:startEvent(33); end --ok
 		     end,
 		[20] = function (x)player:startEvent(41);end,--ok
 		
 		[21] = function (x)
-			if(GetNPCByID(16867696):getAnimation() == 8) then 
+			if(GetNPCByID(16867697):getAnimation() == 8) then 
 				player:startEvent(30);--ok
 			end
 		end,
 		[22] = function (x)
-			if(GetNPCByID(16867697):getAnimation() == 8) then
+			if(GetNPCByID(16867698):getAnimation() == 8) then
 				player:startEvent(31);--ok  
 			end
 		end,
 		[30] = function (x) player:startEvent(42);end,
 		
 		[31] = function (x) 
-		    if(GetNPCByID(16867702):getAnimation() == 8) then
+		    if(GetNPCByID(16867703):getAnimation() == 8) then
 	            player:startEvent(35); --ok
             end
         end,
 		[32] = function (x) 
-			if(GetNPCByID(16867704):getAnimation() == 8) then 
+			if(GetNPCByID(16867705):getAnimation() == 8) then 
 				player:startEvent(36);
 			end
 		end,
 		[33] = function (x) 
-			if(GetNPCByID(16867701):getAnimation() == 8) then 
+			if(GetNPCByID(16867702):getAnimation() == 8) then 
 				player:startEvent(37); 
 		    end
 		end,
 		[34] = function (x) 
-			if(GetNPCByID(16867703):getAnimation() == 8) then 
+			if(GetNPCByID(16867704):getAnimation() == 8) then 
 				player:startEvent(38); 
 			end
 		end,
 		[40] = function (x) player:startEvent(43); end,
 		[41] = function (x) 
-			if(GetNPCByID(16867706):getAnimation() == 8) then 
+			if(GetNPCByID(16867707):getAnimation() == 8) then 
 				player:startEvent(34); 
 			end
 		end,
 		[42] = function (x) 
-			if(GetNPCByID(16867700):getAnimation() == 8) then 
+			if(GetNPCByID(16867701):getAnimation() == 8) then 
 				player:startEvent(39); 
 			end
 		end,
 		[43] = function (x) 
-			if(GetNPCByID(16867705):getAnimation() == 8) then 
+			if(GetNPCByID(16867706):getAnimation() == 8) then 
 				player:startEvent(40); 
 			end
 		end,
