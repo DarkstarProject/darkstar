@@ -33,12 +33,12 @@ function onTrigger(player,npc)
 			player:startEvent(0x00cb);
 		end
 		
-	elseif(player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER and player:getVar("MissionStatus") == 1) then
+	elseif(player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER and player:getVar("MissionStatus") < 2) then
 		player:startEvent(0x00ca);
-	elseif(player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER) then
-		if(player:getVar("MissionStatus") == 4) then
-			player:startEvent(0x00cc);
-		end
+	elseif(player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER and player:getVar("MissionStatus") == 2) then
+		player:startEvent(0x00cb);
+	elseif(player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER and player:getVar("MissionStatus") == 4) then
+		player:startEvent(0x00cc);
 	else
 		player:startEvent(0x006c);
 	end
@@ -70,5 +70,6 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x00cc) then
 		player:setVar("Missionstatus",5);
 		player:delKeyItem(OLD_PIECE_OF_WOOD);
+		player:setPos(-181,-8,-21,0,234);
 	end
 end;

@@ -43,6 +43,8 @@ function onTrigger(player,npc)
 		if(player:hasKeyItem(FIGURE_OF_TITAN) and player:hasKeyItem(FIGURE_OF_GARUDA) and player:hasKeyItem(FIGURE_OF_LEVIATHAN)) then
 			player:startEvent(0x004c);
 		end
+	elseif(currentMission == THE_HEIR_TO_THE_LIGHT and player:getVar("MissionStatus") == 6) then
+		player:startEvent(0x0008);
     else
         player:startEvent(0x202);
 	end
@@ -87,6 +89,8 @@ function onEventFinish(player,csid,option)
 		player:setVar("MissionStatus",1);
 	elseif(csid == 0x004c) then
 		finishMissionTimeline(player,3,csid,option);
+	elseif(csid == 0x0008) then
+		player:setVar("MissionStatus",7);
 	end
 	
 end;

@@ -56,6 +56,9 @@ function onEventFinish(player,csid,option)
 	if(csid == 0x0041) then
 		player:setVar("Mission8-2Kills",0);
 		player:setVar("MissionStatus",6);
+		player:delKeyItem(PIECE_OF_A_BROKEN_KEY1);
+		player:delKeyItem(PIECE_OF_A_BROKEN_KEY2);
+		player:delKeyItem(PIECE_OF_A_BROKEN_KEY3);
 	end
 
 end;
