@@ -28,7 +28,7 @@ function onTrigger(player,npc)
 
 	if(currentMission == XARCABARD_LAND_OF_TRUTHS and player:getVar("MissionStatus") == 0) then
 		player:startEvent(0x025a);
-	elseif(CurrentMission == XARCABARD_LAND_OF_TRUTHS and player:hasKeyItem(SHADOW_FRAGMENT)) then
+	elseif(currentMission == XARCABARD_LAND_OF_TRUTHS and player:hasKeyItem(SHADOW_FRAGMENT)) then
 		player:startEvent(0x025b);
 	elseif(currentMission == ON_MY_WAY) and (player:getVar("MissionStatus") == 0) then
 		player:startEvent(0x02fd);
