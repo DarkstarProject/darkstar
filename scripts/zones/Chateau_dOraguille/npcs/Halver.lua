@@ -91,6 +91,8 @@ function onTrigger(player,npc)
 			player:startEvent(0x003A);
 		elseif(player:getCurrentMission(SANDORIA) == COMING_OF_AGE and player:hasKeyItem(DROPS_OF_AMNIO) and MissionStatus == 3) then
 			player:startEvent(0x0066);
+		elseif(currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 8) then
+			player:startEvent(0x0009);
 		end
 	elseif(pNation == BASTOK) then
 		if(currentMission == THE_EMISSARY) then
@@ -175,6 +177,13 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0066) then
 		finishMissionTimeline(player,3,csid,option);
 		player:setVar("Wait1DayM8-1_date", os.date("%j"));
+	elseif(csid == 0x0009) then
+		player:addGil(100000);
+		player:setRank(10);
+		player:setVar("MissionStatus",0);
+		player:addItem(181,1); -- San d'Orian flag
+		player:messageSpecial(ITEM_OBTAINED, 181);
+		player:completeMission(SANDORIA,THE_HEIR_TO_THE_LIGHT);
 	end
 	
 end;

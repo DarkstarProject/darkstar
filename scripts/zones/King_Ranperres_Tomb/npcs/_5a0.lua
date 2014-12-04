@@ -41,6 +41,8 @@ function onTrigger(player,npc)
 	     player:startEvent(0x0007);
 	elseif(currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 8) then
 	     player:startEvent(0x0005);
+	elseif(currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 7) then
+		 player:startEvent(14);
 	else
 		player:messageSpecial(HEAVY_DOOR);
 	end
@@ -64,5 +66,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
     if(csid == 0x0005) then
 	   player:setVar("MissionStatus",9);
+	elseif(csid == 14) then
+	   player:setVar("MissionStatus",8);
 	end
 end;
