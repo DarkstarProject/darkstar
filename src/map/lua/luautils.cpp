@@ -2288,6 +2288,10 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 		        ShowError("luautils::OnMobDeath: %s\n",lua_tostring(LuaHandle,-1));
 	        }
 	    }
+        else
+        {
+            lua_pop(LuaHandle, 1);
+        }
     }
 
 	int8 File[255];
