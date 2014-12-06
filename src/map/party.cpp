@@ -422,7 +422,13 @@ void CParty::AddMember(CBattleEntity* PEntity, Sql_t* sql)
 
         CCharEntity* PChar = (CCharEntity*)PEntity;
 
-        Sql_Query(sql, "INSERT INTO accounts_parties (charid, partyid, partyflag) VALUES (%u, %u, %u);", PChar->id, m_PartyID, GetMemberFlags(PChar));
+        uint32 allianceid = 0;
+        if (m_PAlliance)
+        {
+            allianceid = m_PAlliance->m_AllianceID;
+        }
+
+        Sql_Query(sql, "INSERT INTO accounts_parties (charid, partyid, allianceid, partyflag) VALUES (%u, %u, %u, %u);", PChar->id, m_PartyID, allianceid, GetMemberFlags(PChar));
 		uint8 data[4];
 		WBUFL(data, 0) = m_PartyID;
         message::send(MSG_PT_RELOAD, data, sizeof data, NULL);
@@ -464,7 +470,12 @@ void CParty::AddMember(uint32 id, Sql_t* Sql)
 {
 	if (m_PartyType == PARTY_PCS)
 	{
-		Sql_Query(SqlHandle, "INSERT INTO accounts_parties (charid, partyid, partyflag) VALUES (%u, %u, %u);", id, m_PartyID, 0);
+        uint32 allianceid = 0;
+        if (m_PAlliance)
+        {
+            allianceid = m_PAlliance->m_AllianceID;
+        }
+		Sql_Query(SqlHandle, "INSERT INTO accounts_parties (charid, partyid, allianceid, partyflag) VALUES (%u, %u, %u, %u);", id, m_PartyID, allianceid, 0);
 		uint8 data[4];
 		WBUFL(data, 0) = m_PartyID;
         message::send(MSG_PT_RELOAD, data, sizeof data, NULL);
