@@ -294,14 +294,44 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
 		}
 	}
 
-	for (EntityList_t::const_iterator it = m_mobList.begin(); it != m_mobList.end(); ++it)
+    for (auto PCharIt : m_charList)
+    {
+        CCharEntity* PCurrentChar = (CCharEntity*)PCharIt.second;
+        if (PCurrentChar->PBattleAI->m_PMagicState->GetTarget() == PChar)
+        {
+            PCurrentChar->PBattleAI->m_PMagicState->ClearTarget();
+        }
+    }
+
+	for (auto PMobIt : m_mobList)
 	{
-		CMobEntity* PCurrentMob = (CMobEntity*)it->second;
+        CMobEntity* PCurrentMob = (CMobEntity*)PMobIt.second;
 		PCurrentMob->PEnmityContainer->Clear(PChar->id);
-		if (PCurrentMob->m_OwnerID.id == PChar->id){
+		if (PCurrentMob->m_OwnerID.id == PChar->id)
+        {
 			PCurrentMob->m_OwnerID.clean();
 		}
+        if (PCurrentMob->PBattleAI->m_PMagicState->GetTarget() == PChar)
+        {
+            PCurrentMob->PBattleAI->m_PMagicState->ClearTarget();
+        }
+        if (PCurrentMob->PBattleAI->GetBattleSubTarget() == PChar)
+        {
+            PCurrentMob->PBattleAI->SetBattleSubTarget(NULL);
+        }
 	}
+    for (auto PPetIt : m_petList)
+    {
+        CPetEntity* PCurrentPet = (CPetEntity*)PPetIt.second;
+        if (PCurrentPet->PBattleAI->m_PMagicState->GetTarget() == PChar)
+        {
+            PCurrentPet->PBattleAI->m_PMagicState->ClearTarget();
+        }
+        if (PCurrentPet->PBattleAI->GetBattleSubTarget() == PChar)
+        {
+            PCurrentPet->PBattleAI->SetBattleSubTarget(NULL);
+        }
+    }
 
 	// TODO: могут возникать проблемы с переходом между одной и той же зоной (zone == prevzone)
 

@@ -153,3 +153,8 @@ void CState::SetHiPCLvl(CBattleEntity* PTarget, uint8 lvl)
         }
     }
 }
+
+void CState::ClearTarget()
+{
+    m_PTarget = NULL;
+}

@@ -2271,27 +2271,52 @@ int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller)
 
 	CLuaBaseEntity LuaMobEntity(PMob);
 
+    int8 File[255];
+    memset(File, 0, sizeof(File));
+
     if (PKiller && ((CMobEntity*)PMob)->m_OwnerID.id == PKiller->id)
     {
-		CLuaBaseEntity LuaKillerEntity(PKiller);
+        CLuaBaseEntity LuaKillerEntity(PKiller);
+        bool loaded = true;
         lua_getglobal(LuaHandle, "onMobDeathEx");
-	    if( !lua_isnil(LuaHandle,-1) )
-	    {
-			bool isWeaponSkillKill = PChar->getWeaponSkillKill();
+        if (lua_isnil(LuaHandle, -1))
+        {
+            lua_pop(LuaHandle, 1);
 
-            Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
-            Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaKillerEntity);
-			lua_pushboolean(LuaHandle, isWeaponSkillKill);
+            snprintf(File, sizeof(File), "scripts/globals/mobs.lua");
 
-            if( lua_pcall(LuaHandle,3,LUA_MULTRET,0) )
-	        {
-		        ShowError("luautils::OnMobDeath: %s\n",lua_tostring(LuaHandle,-1));
-	        }
-	    }
+            if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
+            {
+                lua_pop(LuaHandle, 1);
+                loaded = false;
+            }
+
+            lua_getglobal(LuaHandle, "onMobDeathEx");
+            if (lua_isnil(LuaHandle, -1))
+            {
+                lua_pop(LuaHandle, 1);
+                loaded = false;
+            }
+        }
+
+        if (loaded)
+        {
+            bool isWeaponSkillKill = PChar->getWeaponSkillKill();
+
+            Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+            Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaKillerEntity);
+            lua_pushboolean(LuaHandle, isWeaponSkillKill);
+
+            if (lua_pcall(LuaHandle, 3, 0, 0))
+            {
+                ShowError("luautils::OnMobDeath: %s\n", lua_tostring(LuaHandle, -1));
+                lua_pop(LuaHandle, 1);
+            }
+        }
     }
 
-	int8 File[255];
-	memset(File,0,sizeof(File));
+    memset(File, 0, sizeof(File));
+
     int32 oldtop = lua_gettop(LuaHandle);
 
     lua_pushnil(LuaHandle);

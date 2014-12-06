@@ -70,7 +70,7 @@ public:
     CBattleEntity* GetLeader();                         // узнаем лидера группы
     CBattleEntity* GetSyncTarget();                     // узнаем цель синхронизации
     CBattleEntity* GetQuaterMaster();                   // узнаем владельца сокровищ
-    CBattleEntity* GetMemberByName(int8* MemberName);   // Returns entity pointer for member name string
+    CBattleEntity* GetMemberByName(const int8* MemberName);   // Returns entity pointer for member name string
 
 	void DisbandParty(bool playerInitiated = true, Sql_t* sql = SqlHandle);		// распускаем группу
 	void ReloadParty();                                 // перезагружаем карту группы для всех участников группы
@@ -110,8 +110,8 @@ private:
 	CBattleEntity* m_PQuaterMaster;                     // владелец сокровищ
 
 
-	void SetLeader(int8* MemberName);                   // устанавливаем лидера группы
-    void SetQuaterMaster(int8* MemberName);             // устанавливаем владельца сокровищ
+	void SetLeader(const char* MemberName);                   // устанавливаем лидера группы
+    void SetQuarterMaster(const char* MemberName);            // устанавливаем владельца сокровищ
 
 	void RemovePartyLeader(CBattleEntity* PEntity);     // лидер покидает группу
 };

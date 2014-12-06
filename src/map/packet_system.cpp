@@ -2956,7 +2956,7 @@ void SmallPacket0x070(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     PChar->PParty->DisbandParty();
                 break;
 
-            case 2: // alliance - only alliance leader may dissolve the entire alliance
+            case 5: // alliance - only alliance leader may dissolve the entire alliance
                 if (PChar->PParty->m_PAlliance && PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
                     PChar->PParty->m_PAlliance->dissolveAlliance();
                 break;
@@ -3152,32 +3152,8 @@ void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x076(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-	//alliance
-	if (PChar->PParty != NULL)
-	{
-		if (PChar->PParty->m_PAlliance != NULL)
-		{
-			PChar->PParty->ReloadPartyMembers(PChar);
-
-			for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
-			{
-				if(PChar->PParty->m_PAlliance->partyList.at(i) != PChar->PParty)
-				{
-					for (uint8 a = 0; a < PChar->PParty->m_PAlliance->partyList.at(i)->members.size(); ++a)
-					{
-						PChar->PParty->m_PAlliance->partyList.at(i)->ReloadPartyMembers((CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(i)->members.at(a));
-					}
-				}
-			}
-		return;
-
-		}else{
-			//normal party - no alliance
-			PChar->PParty->ReloadPartyMembers(PChar);
-			return;
-		}
-	}
-
+	PChar->PParty->ReloadPartyMembers(PChar);
+	return;
 }
 
 /************************************************************************
