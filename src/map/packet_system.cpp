@@ -2956,7 +2956,7 @@ void SmallPacket0x070(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     PChar->PParty->DisbandParty();
                 break;
 
-            case 2: // alliance - only alliance leader may dissolve the entire alliance
+            case 5: // alliance - only alliance leader may dissolve the entire alliance
                 if (PChar->PParty->m_PAlliance && PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
                     PChar->PParty->m_PAlliance->dissolveAlliance();
                 break;
