@@ -2,7 +2,7 @@
 -- Area: Valley of Sorrows
 -- NPC:  qm1 (???)
 -- Note: Used to spawn Adamantoise and Aspidochelone
--- @pos 91 -3 -16 128
+-- @pos 0 0 -35 128
 -----------------------------------
 package.loaded["scripts/zones/Valley_of_Sorrows/TextIDs"] = nil;
 -----------------------------------
@@ -37,16 +37,8 @@ end;
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
-local KEYITEM_OBTAINED = 6381; -- Put this as a local until the TextIDs have all been fixed.
 
 function onTrigger(player,npc)
-	if(player:getCurrentMission(SANDORIA) == BREAKING_BARRIERS and player:getVar("MissionStatus") == 1) then
-		player:addKeyItem(FIGURE_OF_TITAN);
-		player:messageSpecial(KEYITEM_OBTAINED,FIGURE_OF_TITAN);
-		player:setVar("MissionStatus",2);
-	else
-		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
-	end
 end;
 
 -----------------------------------

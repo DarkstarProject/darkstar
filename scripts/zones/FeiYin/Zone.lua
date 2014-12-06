@@ -52,6 +52,8 @@ function onZoneIn(player,prevZone)
         cs = 0x0001; -- MISSION 5-1
     elseif(player:getCurrentMission(ACP) == THOSE_WHO_LURK_IN_SHADOWS_I) then
         cs = 0x001D;
+	elseif(player:getCurrentMission(SANDORIA) == THE_HEIR_TO_THE_LIGHT and prevZone == 111 and player:getVar("MissionStatus") == 3) then
+		cs = 23;
     end
 
     return cs;
@@ -101,5 +103,7 @@ function onEventFinish(player,csid,option)
     elseif(csid == 0x001D) then
         player:completeMission(ACP,THOSE_WHO_LURK_IN_SHADOWS_I);
         player:addMission(ACP,THOSE_WHO_LURK_IN_SHADOWS_II);
+	elseif(csid == 23) then
+		player:setVar("MissionStatus", 4);
     end
 end;

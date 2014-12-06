@@ -55,6 +55,10 @@ function onZoneIn(player,prevZone)
 		cs = 0x000E;
 	elseif(player:hasCompletedMission(SANDORIA,COMING_OF_AGE) and tonumber(os.date("%j")) == player:getVar("Wait1DayM8-1_date")) then
 		cs = 0x0010;
+	elseif(player:getCurrentMission(SANDORIA) == THE_HEIR_TO_THE_LIGHT and player:getVar("MissionStatus") < 2) then
+		cs = 1;
+	elseif(player:getCurrentMission(SANDORIA) == THE_HEIR_TO_THE_LIGHT and player:getVar("MissionStatus") == 5) then
+		cs = 0;
 	end		
 	return cs;	
 end;		
@@ -127,6 +131,10 @@ function onEventFinish(player,csid,option)
 		player:setVar("peaceForTheSpiritCS",0);
 		player:addFame(SANDORIA,AF3_FAME);
 		player:completeQuest(SANDORIA,PEACE_FOR_THE_SPIRIT);
+	elseif(csid == 0) then
+		player:setVar("MissionStatus", 6);
+	elseif(csid == 1) then
+		player:setVar("MissionStatus", 2);
 	elseif(csid == 0x0010) then
 		player:setVar("Wait1DayM8-1_date",0);
 		player:setVar("Mission8-1Completed",1);

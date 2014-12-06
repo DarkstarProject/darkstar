@@ -37,6 +37,9 @@ cs = -1;
 		cs = 0x0000;
 	elseif(player:getCurrentMission(SANDORIA) == COMING_OF_AGE and player:getVar("MissionStatus") == 0) then
 		cs = 0x0074;
+	elseif(player:getCurrentMission(SANDORIA) == THE_HEIR_TO_THE_LIGHT and player:getVar("MissionStatus") == 2) then
+		cs=10;
+		player:setVar("MissionStatus",3); -- Orders received to go to Qu'Bia Arena --
 	end
 	
 	return cs;

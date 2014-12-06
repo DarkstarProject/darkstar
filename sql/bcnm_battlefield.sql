@@ -2665,6 +2665,20 @@ INSERT INTO `bcnm_battlefield` VALUES ('1301', '4','16929084','1');-- Temenos Ae
 INSERT INTO `bcnm_battlefield` VALUES ('1301', '4','16929085','1');-- Temenos Aern
 INSERT INTO `bcnm_battlefield` VALUES ('1301', '4','16929086','1');-- Temenos Aern
 INSERT INTO `bcnm_battlefield` VALUES ('1301', '4','16929087','1');-- Temenos Aern
+INSERT INTO `bcnm_battlefield` VALUES ('1500', '1','17621014','2');-- Warlord Rojgnoj
+INSERT INTO `bcnm_battlefield` VALUES ('1500', '1','17621015','2');-- Rojgnoj's Left Hand
+INSERT INTO `bcnm_battlefield` VALUES ('1500', '1','17621016','2');-- Rojgnoj's Right Hand
+INSERT INTO `bcnm_battlefield` VALUES ('1500', '1','17621017','3');-- Yukvok of Clan Death
+INSERT INTO `bcnm_battlefield` VALUES ('1500', '1','17621018','3');-- Vangknok of Clan Death
+INSERT INTO `bcnm_battlefield` VALUES ('1500', '1','17621019','3');-- Vangknok of Clan Death
+INSERT INTO `bcnm_battlefield` VALUES ('1500', '1','17621020','3');-- Vangknok of Clan Death
+INSERT INTO `bcnm_battlefield` VALUES ('1500', '1','17621021','3');-- Rallbrog of Clan Death
+INSERT INTO `bcnm_battlefield` VALUES ('1500', '1','17621022','3');-- Rallbrog of Clan Death
+INSERT INTO `bcnm_battlefield` VALUES ('1500', '1','17621023','3');-- Rallbrog of Clan Death
+INSERT INTO `bcnm_battlefield` VALUES ('1500', '1','17621024','3');-- Worgbut of Clan Death
+INSERT INTO `bcnm_battlefield` VALUES ('1500', '1','17621025','3');-- Worgbut of Clan Death
+INSERT INTO `bcnm_battlefield` VALUES ('1500', '1','17621026','3');-- Worgbut of Clan Death
+INSERT INTO `bcnm_battlefield` VALUES ('1500', '1','17621027','3');-- Death Clan Destroyer
 -- -----------------------------------------
 -- -----------------------------------------
 
