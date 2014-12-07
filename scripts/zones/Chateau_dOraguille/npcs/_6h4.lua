@@ -39,6 +39,8 @@ function onTrigger(player,npc)
 		player:startEvent(0x0068)
 	elseif(currentMission == BREAKING_BARRIERS and player:getVar("MissionStatus") == 0) then
 		player:startEvent(0x0020)
+	elseif(currentMission == THE_HEIR_TO_THE_LIGHT and player:getVar("SANDO92") == 5)then
+	     player:startEvent(0x0008);
 	elseif(currentMission == BREAKING_BARRIERS and player:getVar("MissionStatus") == 4) then
 		if(player:hasKeyItem(FIGURE_OF_TITAN) and player:hasKeyItem(FIGURE_OF_GARUDA) and player:hasKeyItem(FIGURE_OF_LEVIATHAN)) then
 			player:startEvent(0x004c);
@@ -82,6 +84,8 @@ function onEventFinish(player,csid,option)
 	elseif(csid == 0x0068) then
 		player:setVar("Mission8-2Kills",0);
 		finishMissionTimeline(player,3,csid,option);
+	elseif(csid == 0x0008) then
+		player:setVar("SANDO92",6);
 	elseif(csid == 0x0020) then
 		player:setVar("Cutscenes_8-2",0); -- dont need this var now that mission is flagged and cs have been triggered to progress
 		player:setVar("MissionStatus",1);

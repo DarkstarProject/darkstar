@@ -2923,7 +2923,7 @@ void SmallPacket0x06F(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 PChar->PParty->RemoveMember(PChar);
                 break;
 
-            case 2: // alliance - any party leader in alliance may remove their party
+            case 5: // alliance - any party leader in alliance may remove their party
                 if (PChar->PParty->m_PAlliance && PChar->PParty->GetLeader() == PChar)
                 {
                     if (PChar->PParty->m_PAlliance->partyCount() == 2) // if there are only 2 parties then dissolve alliance
