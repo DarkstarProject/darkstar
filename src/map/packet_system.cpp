@@ -1005,6 +1005,7 @@ void SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, int8* dat
 /************************************************************************
 *                                                                       *
 *  Запрос начала обмена между персонажами (trade)                       *
+*  Start trade request between characters							    *
 *                                                                       *
 ************************************************************************/
 
@@ -1047,6 +1048,7 @@ void SmallPacket0x032(map_session_data_t* session, CCharEntity* PChar, int8* dat
 /************************************************************************
 *                                                                       *
 *  Запрос начала обмена между персонажами (trade)                       *
+*  Trade actions request accepted / cancled / trade accpeted			*
 *                                                                       *
 ************************************************************************/
 
@@ -1094,16 +1096,18 @@ void SmallPacket0x033(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     // контейнер у цели зарезервирован для обмена
                     if (PTarget->UContainer->GetType() == UCONTAINER_TRADE)
                     {
-                        PTarget->TradePending.clean();
                         PTarget->UContainer->Clean();
 
-                        PTarget->pushPacket(new CTradeActionPacket(PChar, action));
                     }
                 }
                 if (PChar->UContainer->GetType() == UCONTAINER_TRADE)
                 {
                     PChar->UContainer->Clean();
                 }
+
+				PTarget->TradePending.clean();
+				PTarget->pushPacket(new CTradeActionPacket(PChar, action));
+
                 PChar->TradePending.clean();
             }
             break;
@@ -1178,6 +1182,9 @@ void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
             PChar->pushPacket(new CTradeItemPacket(PItem, tradeSlotID));
             PTarget->pushPacket(new CTradeUpdatePacket(PItem, tradeSlotID));
+
+			PChar->UContainer->UnLock();
+			PTarget->UContainer->UnLock();
         }
     }
     return;
@@ -2923,7 +2930,7 @@ void SmallPacket0x06F(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 PChar->PParty->RemoveMember(PChar);
                 break;
 
-            case 2: // alliance - any party leader in alliance may remove their party
+            case 5: // alliance - any party leader in alliance may remove their party
                 if (PChar->PParty->m_PAlliance && PChar->PParty->GetLeader() == PChar)
                 {
                     if (PChar->PParty->m_PAlliance->partyCount() == 2) // if there are only 2 parties then dissolve alliance
