@@ -14,5 +14,14 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item>. Come back 
 TAKE_THAT_YOU_WHIPPERSNAPPER = 7609; -- Take that, you whippersnapper!
  THAT_LL_HURT_IN_THE_MORNING = 7611; -- Ungh... That'll hurt in the morning...
 
+-- trion dialog
+FLAT_PREPARE = 7599; -- prepare flat blade sentence
+FLAT_LAND = 7600; -- landing flat flade
+RLB_PREPARE = 7601; -- red lotus blade prepare
+RLB_LAND = 7602; -- rlb land
+SAVAGE_PREPARE = 7603;
+SAVAGE_LAND = 7604;
+
+
 -- conquest Base
-CONQUEST_BASE = 7024;
+CONQUEST_BASE = 7030;

@@ -31,6 +31,8 @@ cs = -1;
 	
 	if(prevZone == 231 and player:getCurrentMission(SANDORIA) == THE_CRYSTAL_SPRING and player:getVar("MissionStatus") == 2) then	
 		cs = 0x022b;
+elseif(player:getCurrentMission(SANDORIA) == THE_HEIR_TO_THE_LIGHT and player:getVar("SANDO92") == 1)then
+cs = 0x000a;
 	elseif(prevZone == 231 and player:hasKeyItem(MESSAGE_TO_JEUNO_SANDORIA)) then
 		cs = 0x01FD;
 	elseif(player:getVar("SecretWeaponStatus") == 1) then
@@ -86,6 +88,8 @@ function onEventFinish(player,csid,option)
 		player:delKeyItem(MESSAGE_TO_JEUNO_SANDORIA);
 	elseif(csid == 0) then
 		player:setVar("SecretWeaponStatus",2)
+	elseif(csid == 0x000a) then
+		player:setVar("SANDO92",2)
 	elseif(csid == 0x0074) then
 		player:setVar("MissionStatus",1)
 	end

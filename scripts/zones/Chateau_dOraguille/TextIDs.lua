@@ -15,4 +15,4 @@ HALVER_OFFSET = 6766; -- The princess is always speaking of your deeds for the K
 
 -- Conquest Base
 
-CONQUEST_BASE = 6846;
+CONQUEST_BASE = 6852;
