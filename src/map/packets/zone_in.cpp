@@ -149,8 +149,14 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
 		WBUFW(data, (0x54) - 4) = 0xFFFF;
 	}
 
-	WBUFB(data,(0x56)-4) = PChar->loc.zone->GetBackgroundMusic();
-	WBUFB(data,(0x58)-4) = PChar->loc.zone->GetBackgroundMusic();
+        if(PChar->animation == ANIMATION_CHOCOBO && PChar->loc.zone->CanUseMisc(MISC_CHOCOBO)) {
+		// Keep the Chocobo music going if we're on a Chocobo
+                WBUFB(data,(0x56)-4) = 212;
+                WBUFB(data,(0x58)-4) = 212;
+        } else {
+                WBUFB(data,(0x56)-4) = PChar->loc.zone->GetBackgroundMusic();
+                WBUFB(data,(0x58)-4) = PChar->loc.zone->GetBackgroundMusic();
+        }
 	WBUFB(data,(0x5A)-4) = PChar->loc.zone->GetSoloBattleMusic();
 	WBUFB(data,(0x5C)-4) = PChar->loc.zone->GetPartyBattleMusic();
 
