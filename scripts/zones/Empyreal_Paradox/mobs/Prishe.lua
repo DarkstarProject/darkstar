@@ -55,7 +55,7 @@ end;
 function OnMobRoam(mob)
     local wait = mob:getLocalVar("wait");
     local ready = mob:getLocalVar("ready");
-    if (wait > 240) then
+    if (ready == 0 and wait > 240) then
         local baseID = 16924673 + (mob:getBattlefield():getBattlefieldNumber() - 1) * 2
         if (GetMobAction(baseID) ~= ACTION_NONE) then
             mob:entityAnimationPacket("prov");
@@ -66,10 +66,10 @@ function OnMobRoam(mob)
             baseID = baseID + 1;
         end
         mob:setLocalVar("ready", bit.band(baseID, 0xFFF));
+        mob:setLocalVar("wait", 0);
     elseif (ready > 0) then
         mob:addEnmity(GetMobByID(ready + bit.lshift(mob:getZone():getID(), 12) + 0x1000000),0,1);
         mob:addStatusEffectEx(EFFECT_SILENCE,0,0,0,5)
-        mob:setLocalVar("ready", 0);
     else
         mob:setLocalVar("wait", wait+3);
     end

@@ -42,10 +42,8 @@ function onTrigger(player,npc)
 		else
 			player:startEvent(0x0002);
 		end
-	elseif(npc:getID() == 17555928) then 
-	    if(currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 2) then
-	        player:startEvent(0x0008);
-	    end
+	elseif(currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 2) then
+		player:startEvent(0x0008);
 	end
 	
 end; 

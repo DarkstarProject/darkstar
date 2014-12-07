@@ -41,11 +41,26 @@ function onTrigger(player,npc)
 	
 	if(player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,16) == false) then
 		player:startEvent(0x022e);
+
+elseif(player:getVar("Flagsando") == 1)then
+		if(player:getFreeSlotsCount() == 0) then 
+		player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,181);
+		else
+		player:setVar("Flagsando",0);
+		player:addItem(181);
+		player:messageSpecial(ITEM_OBTAINED,181);
+		end
 	-- Blackmail quest
 	elseif(player:getQuestStatus(SANDORIA, BLACKMAIL) == QUEST_ACCEPTED and player:hasKeyItem(SUSPICIOUS_ENVELOPE)) then
 		player:startEvent(0x0225);
 		player:setVar("BlackMailQuest",1);
 		player:delKeyItem(SUSPICIOUS_ENVELOPE);
+
+elseif(player:hasCompletedMission(SANDORIA,THE_HEIR_TO_THE_LIGHT)) then player:startEvent(0x001f);
+elseif(player:getCurrentMission(SANDORIA)== THE_HEIR_TO_THE_LIGHT and player:getVar("SANDO92") >= 2 and player:getVar("SANDO92") <=5)then player:startEvent(0x001d);
+elseif(player:getCurrentMission(SANDORIA)== THE_HEIR_TO_THE_LIGHT and player:getVar("SANDO92") == 6)then player:startEvent(0x001e);
+
+	elseif(player:getCurrentMission(SANDORIA)== THE_HEIR_TO_THE_LIGHT and player:getVar("SANDO92") == 7)then player:startEvent(0x0009);
 	elseif(pNation == SANDORIA) then
 		if(currentMission == JOURNEY_ABROAD and MissionStatus == 0) then
 			player:startEvent(0x01f9);
@@ -122,6 +137,7 @@ function onTrigger(player,npc)
 			end
 		end
 
+
 	else
 		player:showText(npc,HALVER_OFFSET+1092);
 	end
@@ -170,6 +186,20 @@ function onEventFinish(player,csid,option)
 		player:setVar("MissionStatus",1);
 	elseif(csid == 0x0016) then
 		player:setVar("MissionStatus",4);
+	elseif(csid == 0x0009) then 
+	if(player:getFreeSlotsCount() == 0) then 
+	player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,181);
+	player:setVar("Flagsando",1);
+	else	player:addItem(181);
+	player:messageSpecial(ITEM_OBTAINED,181);
+	end
+	player:setVar("SANDO92",0);
+	player:completeMission(SANDORIA,THE_HEIR_TO_THE_LIGHT);
+	player:setRank(10);
+	player:addGil(100000);
+	player:messageSpecial(GIL_OBTAINED,100000);
+	player:setTitle(295);
+	player:setVar("SandoEpilogue",1);
 	elseif(csid == 0x003A) then
 		player:setVar("MissionStatus",2);
 	elseif(csid == 0x0066) then

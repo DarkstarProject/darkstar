@@ -41,6 +41,9 @@ function onTrigger(player,npc)
 	     player:startEvent(0x0007);
 	elseif(currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 8) then
 	     player:startEvent(0x0005);
+	elseif(currentMission == THE_HEIR_TO_THE_LIGHT and player:getVar("SANDO92") == 6)then
+	     player:startEvent(0x000e);
+
 	else
 		player:messageSpecial(HEAVY_DOOR);
 	end
@@ -62,7 +65,8 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-    if(csid == 0x0005) then
-	   player:setVar("MissionStatus",9);
-	end
+if(csid == 0x0005) then player:setVar("MissionStatus",9);
+elseif(csid == 0x000e) then player:setVar("SANDO92",7);
+-- at this point 3 optional cs are available and open until watched (add 3 var to char?)
+end
 end;
