@@ -264,7 +264,7 @@ int32 lobbydata_parse(int32 fd)
 
 				const char *fmtQuery = "SELECT zoneip, zoneport, zoneid, pos_prevzone \
 									    FROM zone_settings, chars \
-										WHERE zoneid = pos_zone AND charid = %u;";
+										WHERE IF(pos_zone = 0, zoneid = pos_prevzone, zoneid = pos_zone) AND charid = %u;";
 				uint32 ZoneIP	= sd->servip;
                 uint16 ZonePort = 54230;
 
