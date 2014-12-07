@@ -599,6 +599,11 @@ void LoadZoneList()
 		g_PZoneList[zone] = CreateZone(zone);
     }
 
+    if (g_PZoneList.count(0) == 0)
+    {
+        g_PZoneList[0] = CreateZone(0);
+    }
+
 	LoadNPCList();
 	LoadMOBList();
 

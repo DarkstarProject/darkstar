@@ -929,7 +929,7 @@ void CZone::CharZoneOut(CCharEntity* PChar)
     uint64 ipp = 0;
     if (PChar->loc.destination == 0)
     {
-        ipp = zoneutils::GetZoneIPP(PChar->loc.zone->GetID());
+        ipp = zoneutils::GetZoneIPP(m_zoneID);
     }
     else
     {
