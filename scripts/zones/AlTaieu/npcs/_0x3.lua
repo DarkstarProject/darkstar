@@ -23,7 +23,7 @@ end;
 function onTrigger(player,npc)
 
     if(player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and (player:getVar("PromathiaStatus")==2 or player:getVar("PromathiaStatus")==4 or player:getVar("PromathiaStatus")==6)
-     and player:getVar("Ru_aern_3-1KILL")==0 and player:getVar("Ru_aern_3-2KILL")==0 and player:getVar("Ru_aern_3-3KILL")==0)then
+     and player:getVar("Ru_aern_3-1KILL")==0 or player:getVar("Ru_aern_3-2KILL")==0 or player:getVar("Ru_aern_3-3KILL")==0)then
         player:messageSpecial(OMINOUS_SHADOW);
         SpawnMob(16912835,180):updateEnmity(player);   
         SpawnMob(16912836,180):updateEnmity(player);
