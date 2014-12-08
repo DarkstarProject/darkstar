@@ -926,7 +926,15 @@ void CZone::CharZoneOut(CCharEntity* PChar)
 	PChar->SpawnPETList.clear();
 
     
-    uint64 ipp = zoneutils::GetZoneIPP(PChar->loc.destination);
+    uint64 ipp = 0;
+    if (PChar->loc.destination == 0)
+    {
+        ipp = zoneutils::GetZoneIPP(m_zoneID);
+    }
+    else
+    {
+        ipp = zoneutils::GetZoneIPP(PChar->loc.destination);
+    }
     Sql_Query(SqlHandle, "UPDATE accounts_sessions JOIN chars ON accounts_sessions.charid = chars.charid \
                           SET server_addr = %u, server_port = %u, pos_zone = %u, pos_prevzone = %u WHERE chars.charid = %u;", 
                           (uint32)ipp, (uint32)(ipp >> 32), PChar->loc.destination, GetID(), PChar->id);

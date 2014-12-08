@@ -222,6 +222,40 @@ void LoadMobSkillsList()
             g_PMobFamilySkills[PMobSkill->getfamilyID()].push_back(PMobSkill);
 		}
 	}
+	//AVATARS
+	 fmtQuery = "SELECT mob_skill_id, family_id, mob_anim_id, mob_skill_name, \
+						   mob_skill_aoe, mob_skill_distance, mob_anim_time, mob_prepare_time, \
+						   mob_valid_targets, mob_skill_flag, mob_skill_param, knockback \
+						   FROM mob_skill \
+						   WHERE 378 < family_id and family_id < 390 \
+						   ORDER BY family_Id, mob_skill_id ASC";
+	 ret = Sql_Query(SqlHandle, fmtQuery);
+
+	 if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+	 {
+		 while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+		 {
+			 CMobSkill* PMobSkill = new CMobSkill(Sql_GetIntData(SqlHandle, 0));
+			 PMobSkill->setfamilyID(Sql_GetIntData(SqlHandle, 1));
+			 PMobSkill->setAnimationID(Sql_GetIntData(SqlHandle, 2));
+			 PMobSkill->setName(Sql_GetData(SqlHandle, 3));
+			 PMobSkill->setAoe(Sql_GetIntData(SqlHandle, 4));
+			 PMobSkill->setDistance(Sql_GetFloatData(SqlHandle, 5));
+			 PMobSkill->setAnimationTime(Sql_GetIntData(SqlHandle, 6));
+			 PMobSkill->setActivationTime(Sql_GetIntData(SqlHandle, 7));
+			 PMobSkill->setValidTargets(Sql_GetIntData(SqlHandle, 8));
+			 PMobSkill->setFlag(Sql_GetIntData(SqlHandle, 9));
+			 PMobSkill->setParam(Sql_GetIntData(SqlHandle, 10));
+			 PMobSkill->setKnockback(Sql_GetUIntData(SqlHandle, 11));
+			 PMobSkill->setMsg(185); //standard damage message. Scripters will change this.
+			 g_PMobSkillList[PMobSkill->getID()] = PMobSkill;
+			 if (PMobSkill->getfamilyID() >= MAX_MOB_FAMILY)
+			 {
+				 ShowError("battleutils::LoadMobSkillsList Defined skill (%d) is out of range of (%d)\n", PMobSkill->getfamilyID(), MAX_MOB_FAMILY);
+			 }
+			 g_PMobFamilySkills[PMobSkill->getfamilyID()].push_back(PMobSkill);
+		 }
+	 }
 }
 
 void LoadSkillChainDamageModifiers()

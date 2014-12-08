@@ -61,6 +61,7 @@ public:
 	UCONTAINERTYPE	GetType();
 
     void    SetLock();
+	void    UnLock();
     void    SetTarget(uint16 Target);
 	void	SetType(UCONTAINERTYPE Type);
 	bool	SetItem(uint8 slotID, CItem* PItem);

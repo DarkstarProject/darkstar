@@ -782,6 +782,8 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			PChar->animation = ANIMATION_NONE;
 			PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
 			PChar->pushPacket(new CCharUpdatePacket(PChar));
+			PChar->pushPacket(new CChangeMusicPacket(0,PChar->loc.zone->GetBackgroundMusic()));
+			PChar->pushPacket(new CChangeMusicPacket(1,PChar->loc.zone->GetBackgroundMusic()));
         }
         break;
 		case 0x13: // tractor menu
@@ -1005,6 +1007,7 @@ void SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, int8* dat
 /************************************************************************
 *                                                                       *
 *  Запрос начала обмена между персонажами (trade)                       *
+*  Start trade request between characters							    *
 *                                                                       *
 ************************************************************************/
 
@@ -1047,6 +1050,7 @@ void SmallPacket0x032(map_session_data_t* session, CCharEntity* PChar, int8* dat
 /************************************************************************
 *                                                                       *
 *  Запрос начала обмена между персонажами (trade)                       *
+*  Trade actions request accepted / cancled / trade accpeted			*
 *                                                                       *
 ************************************************************************/
 
@@ -1094,16 +1098,18 @@ void SmallPacket0x033(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     // контейнер у цели зарезервирован для обмена
                     if (PTarget->UContainer->GetType() == UCONTAINER_TRADE)
                     {
-                        PTarget->TradePending.clean();
                         PTarget->UContainer->Clean();
 
-                        PTarget->pushPacket(new CTradeActionPacket(PChar, action));
                     }
                 }
                 if (PChar->UContainer->GetType() == UCONTAINER_TRADE)
                 {
                     PChar->UContainer->Clean();
                 }
+
+				PTarget->TradePending.clean();
+				PTarget->pushPacket(new CTradeActionPacket(PChar, action));
+
                 PChar->TradePending.clean();
             }
             break;
@@ -1178,6 +1184,9 @@ void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
             PChar->pushPacket(new CTradeItemPacket(PItem, tradeSlotID));
             PTarget->pushPacket(new CTradeUpdatePacket(PItem, tradeSlotID));
+
+			PChar->UContainer->UnLock();
+			PTarget->UContainer->UnLock();
         }
     }
     return;
