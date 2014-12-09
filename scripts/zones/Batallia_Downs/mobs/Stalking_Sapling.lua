@@ -1,16 +1,18 @@
------------------------------------	
--- Area: Batallia Downs	
--- MOB:  Stalking Sapling	
------------------------------------	
-	
-require("/scripts/globals/fieldsofvalor");	
-require("/scripts/zones/Batallia_Downs/MobIDs");
+-----------------------------------
+-- Area: Batallia Downs
+-- MOB:  Stalking Sapling
+-----------------------------------
 
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
+require("scripts/globals/fieldsofvalor");
+require("scripts/zones/Batallia_Downs/MobIDs");
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer)
+    checkRegime(killer,mob,72,1);
+    checkRegime(killer,mob,73,1);
 
     mob = mob:getID();
     if (Tottering_Toby_PH[mob] ~= nil) then
@@ -25,5 +27,5 @@ function onMobDeath(mob,killer)
             end
         end
     end
-    
-end;	
+
+end;
