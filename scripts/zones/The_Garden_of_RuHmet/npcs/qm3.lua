@@ -17,10 +17,10 @@ require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
 function onTrade(player,npc,trade)
 	
 	-- Trade 1 High-Quality Euvhi Organ
-	if(GetMobAction(16921021) == 0 and trade:hasItemQty(1899,1) and trade:getItemCount() == 1) then
+	--[[if(GetMobAction(16921021) == 0 and trade:hasItemQty(1899,1) and trade:getItemCount() == 1) then
 		player:tradeComplete();
 		SpawnMob(16921021,900):updateEnmity(player); -- Spawn Jailer of Faith
-	end
+	end]]
 	
 end; 
 

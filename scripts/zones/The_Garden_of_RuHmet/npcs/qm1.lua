@@ -17,10 +17,10 @@ require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
 function onTrade(player,npc,trade)
 	
 	-- Trade 12 Ghrah M Chips
-	if(GetMobAction(16921015) == 0 and trade:hasItemQty(1872,12) and trade:getItemCount() == 12) then
+	--[[if(GetMobAction(16921015) == 0 and trade:hasItemQty(1872,12) and trade:getItemCount() == 12) then
 		player:tradeComplete();
 		SpawnMob(16921015,900):updateEnmity(player); -- Spawn Jailer of Fortitude
-	end
+	end]]
 	
 end; 
 
