@@ -11,7 +11,9 @@ cmdprops =
 };
 
 function onTrigger(player)
-    -- GM Flag Definitions
+    -- Official Staff Flag Definition
+	local Flag_Official_Staff   = 0x03000000; -- Adds Official Staff Icon
+	-- GM Flag Definitions
     local FLAG_GM               = 0x04000000;
     local FLAG_GM_SENIOR        = 0x05000000;
     local FLAG_GM_LEAD          = 0x06000000;
@@ -20,13 +22,17 @@ function onTrigger(player)
     local FLAG_LEAD             = 0x02000000; -- ensure all GM status is removed.
 
     -- Configurable Options
-    local MINLVL_GM             = 1; -- For "whitelisting" players to have some commands, but not GM tier commands.
-    local MINLVL_GM_SENIOR      = 2; -- These are configurable so that commands may be restricted
-    local MINLVL_GM_LEAD        = 3; -- between different levels of GM's with the same icon.
-    local MINLVL_GM_PRODUCER    = 4;
+	local MINLVL_STAFF          = 1; -- If GM lvl set to 1 then use Official  staff icon
+    local MINLVL_GM             = 2; -- For "whitelisting" players to have some commands, but not GM tier commands.
+    local MINLVL_GM_SENIOR      = 3; -- These are configurable so that commands may be restricted
+    local MINLVL_GM_LEAD        = 4; -- between different levels of GM's with the same icon.
+    local MINLVL_GM_PRODUCER    = 5;
 
     if (player:checkNameFlags(FLAG_GM)) then
-        if (player:checkNameFlags(FLAG_GM)) then
+        if (player:checkNameFlags(Flag_Official_Staff)) then -- new line for staff icon 
+            player:setFlag(Flag_Official_Staff);			 -- flag check
+        end
+		if (player:checkNameFlags(FLAG_GM)) then
             player:setFlag(FLAG_GM);
         end
         if (player:checkNameFlags(FLAG_SENIOR)) then
@@ -45,6 +51,8 @@ function onTrigger(player)
             player:setFlag(FLAG_GM_SENIOR);
         elseif (gmlvl >= MINLVL_GM) then
             player:setFlag(FLAG_GM);
-        end
+        elseif (gmlvl >= MINLVL_STAFF) then         -- Check for "GM" lvl 
+            player:setFlag(Flag_Official_Staff);	-- set staff icon flag
+		end
     end
 end

@@ -42,8 +42,10 @@ CTradeUpdatePacket::CTradeUpdatePacket(CItem* PItem, uint8 SlotID)
 	this->type = 0x23;
 	this->size = 0x14;
 
-    WBUFL(data,(0x04)-4) = PItem->getReserve();
-	WBUFW(data,(0x0A)-4) = PItem->getID();
+	uint32 amount = PItem->getReserve();
+
+    WBUFL(data,(0x04)-4) = amount;
+	WBUFW(data,(0x0A)-4) = amount == 0 ? 0 : PItem->getID();
 	WBUFB(data,(0x0D)-4) = SlotID;
 
     if (PItem->isSubType(ITEM_CHARGED))
