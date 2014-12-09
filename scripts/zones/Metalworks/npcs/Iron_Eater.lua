@@ -28,6 +28,10 @@ function onTrigger(player,npc)
 
 	if(currentMission == THE_FOUR_MUSKETEERS and missionStatus == 0) then -- Four Musketeers
 		player:startEvent(0x02cb);
+	elseif(currentMission == WHERE_TWO_PATH_CONVERGE and player:getVar("BASTOK92") == 0) then 
+		player:startEvent(0x030c);
+	elseif(currentMission == WHERE_TWO_PATH_CONVERGE and player:getVar("BASTOK92") == 2) then 
+		player:startEvent(0x030e);
 	elseif(currentMission == THE_FOUR_MUSKETEERS and missionStatus == 1) then
 		player:startEvent(0x02cc);
 	elseif(currentMission == THE_CHAINS_THAT_BIND_US and missionStatus == 0) then
@@ -60,9 +64,24 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 	if(csid == 0x02cb and option == 0) then
 		player:setVar("MissionStatus",1);
+	elseif(csid == 0x030c) then
+	    player:setVar("BASTOK92", 1);
 	elseif(csid == 0x02ff and option == 0) then
 	    player:setVar("MissionStatus", 1);
 	elseif(csid == 0x0300) then
 		finishMissionTimeline(player, 1, csid, option);
+	elseif(csid == 0x030c) then
+	if(player:getFreeSlotsCount() == 0) then 
+	player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,181);
+	player:setVar("Flagbastok",1);
+	else	player:addItem(181);
+	player:messageSpecial(ITEM_OBTAINED,181);
 	end
+	player:setVar("BASTOK92",0);
+	player:completeMission(BASTOK,WHERE_TWO_PATH_CONVERGE);
+	player:setRank(10);
+	player:addGil(100000);
+	player:messageSpecial(GIL_OBTAINED,100000);
+	player:setTitle(296);
+end
 end;
