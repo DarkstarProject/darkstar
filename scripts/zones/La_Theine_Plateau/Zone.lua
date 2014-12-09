@@ -18,7 +18,7 @@ require("scripts/globals/weather");
 -----------------------------------
 
 function onInitialize(zone)		
-    local manuals = {17195673,17195674};
+    local manuals = {17195676,17195677};
     
     SetFieldManual(manuals);
 end;		
