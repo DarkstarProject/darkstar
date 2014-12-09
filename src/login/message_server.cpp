@@ -72,23 +72,31 @@ void message_server_listen()
         zmq::message_t extra;
         zmq::message_t packet;
 
-		zSocket->recv(&from);
-        int more;
-        size_t size = sizeof(more);
-        zSocket->getsockopt(ZMQ_RCVMORE, &more, &size);
-        if (more)
+        try
         {
-            zSocket->recv(&type);
+            zSocket->recv(&from);
+            int more;
+            size_t size = sizeof(more);
             zSocket->getsockopt(ZMQ_RCVMORE, &more, &size);
             if (more)
             {
-                zSocket->recv(&extra);
+                zSocket->recv(&type);
                 zSocket->getsockopt(ZMQ_RCVMORE, &more, &size);
                 if (more)
                 {
-                    zSocket->recv(&packet);
+                    zSocket->recv(&extra);
+                    zSocket->getsockopt(ZMQ_RCVMORE, &more, &size);
+                    if (more)
+                    {
+                        zSocket->recv(&packet);
+                    }
                 }
             }
+        }
+        catch (zmq::error_t e)
+        {
+            ShowError("Message: %s", e.what());
+            continue;
         }
         message_server_parse((MSGSERVTYPE)RBUFB(type.data(), 0), &extra, &packet, &from);
 	}
@@ -191,19 +199,26 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
 }
 void message_server_send(uint64 ipp, MSGSERVTYPE type, zmq::message_t* extra, zmq::message_t* packet)
 {
-	zmq::message_t to(sizeof(uint64));
-	memcpy(to.data(), &ipp, sizeof(uint64));
-	zSocket->send(to, ZMQ_SNDMORE);
+    try 
+    {
+        zmq::message_t to(sizeof(uint64));
+        memcpy(to.data(), &ipp, sizeof(uint64));
+        zSocket->send(to, ZMQ_SNDMORE);
 
-    zmq::message_t newType(sizeof(MSGSERVTYPE));
-	WBUFB(newType.data(), 0) = type;
-	zSocket->send(newType, ZMQ_SNDMORE);
+        zmq::message_t newType(sizeof(MSGSERVTYPE));
+        WBUFB(newType.data(), 0) = type;
+        zSocket->send(newType, ZMQ_SNDMORE);
 
-	zmq::message_t newExtra(extra->size());
-	memcpy(newExtra.data(), extra->data(), extra->size());
-	zSocket->send(newExtra, ZMQ_SNDMORE);
+        zmq::message_t newExtra(extra->size());
+        memcpy(newExtra.data(), extra->data(), extra->size());
+        zSocket->send(newExtra, ZMQ_SNDMORE);
 
-	zmq::message_t newPacket(packet->size());
-	memcpy(newPacket.data(), packet->data(), packet->size());
-	zSocket->send(newPacket);
+        zmq::message_t newPacket(packet->size());
+        memcpy(newPacket.data(), packet->data(), packet->size());
+        zSocket->send(newPacket);
+    }
+    catch (zmq::error_t e)
+    {
+        ShowError("Message: %s", e.what());
+    }
 }
