@@ -15,4 +15,4 @@ NOTHING_OUT_OF_THE_ORDINARY = 6396; -- There is nothing out of the ordinary here
                PROTOCRYSTAL = 7215; -- It is a giant crystal.
 
 -- conquest Base
-CONQUEST_BASE = 7024;
+CONQUEST_BASE = 7030; -- Tallying conquest results...

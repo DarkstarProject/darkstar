@@ -22,4 +22,4 @@ ALREADY_HAVE_ALL_FRAGS = 7322; -- You have obtained all of the fragments. You mu
        DOES_NOT_RESPOND = 7304; -- It does not respond.
 
 -- conquest Base
-CONQUEST_BASE = 7024;
+CONQUEST_BASE = 7030; -- Tallying conquest results...

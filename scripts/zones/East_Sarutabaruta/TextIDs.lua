@@ -17,4 +17,4 @@ SAMA_GOHJIMA_POSTDIALOG = 7367; -- Were you able to find the laborrratory? There
 SIGNPOST_OFFSET = 7353; -- Southeast: South Tower, Horutoto Ruins Southwest: Windurst Woods
 
 -- conquest Base
-CONQUEST_BASE = 7024;
+CONQUEST_BASE = 7030; -- Tallying conquest results...

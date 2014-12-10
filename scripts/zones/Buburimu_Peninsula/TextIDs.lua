@@ -17,9 +17,9 @@ LOGGING_IS_POSSIBLE_HERE = 7363; -- Logging is possible here if you have
 -- Dialog Texts
 FIVEOFSPADES_DIALOG = 7216; -- GiMmeIvE! FiVe is cArdIanF WiN-DuRst! FIvES OnA-tRol!
 
-      YOU_CANNOT_ENTER_DYNAMIS = 7855; -- You cannot enter Dynamis
-          MYSTERIOUS_VOICE = 7856; -- You hear a mysterious, floating voice: The guiding aura has not yet faded... Bring forth the
-PLAYERS_HAVE_NOT_REACHED_LEVEL = 7857; -- Players who have not reached levelare prohibited from entering Dynamis.
+      YOU_CANNOT_ENTER_DYNAMIS = 7862; -- You cannot enter Dynamis
+          MYSTERIOUS_VOICE = 7863; -- You hear a mysterious, floating voice: The guiding aura has not yet faded... Bring forth the
+PLAYERS_HAVE_NOT_REACHED_LEVEL = 7864; -- Players who have not reached levelare prohibited from entering Dynamis.
 
 -- Signs
 SIGN_1 = 7358; -- West: Tahrongi Canyon Southeast: Mhaura
@@ -29,4 +29,4 @@ SIGN_4 = 7361; -- West: Mhaura and Tahrongi Canyon
 SIGN_5 = 7362; -- West: Mhaura Northwest: Tahrongi Canyon
 
 -- conquest Base
-CONQUEST_BASE = 7051;
+CONQUEST_BASE = 7057; -- Tallying conquest results...

@@ -27,4 +27,4 @@ SOMETHING_NOT_RIGHT = 7146; -- Something is not right!
     CANNOT_SEE_MOON = 7147; -- You cannot see the moon right now.
 
 -- conquest Base
-CONQUEST_BASE = 7142;
+CONQUEST_BASE = 7148; -- Tallying conquest results...

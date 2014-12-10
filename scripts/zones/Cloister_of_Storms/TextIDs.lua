@@ -14,4 +14,4 @@ YOU_CANNOT_ENTER_THE_BATTLEFIELD = 7191; -- You cannot enter the battlefield at 
 PROTOCRYSTAL = 7215; -- It is a giant crystal.
 
 -- conquest Base
-CONQUEST_BASE = 7024;
+CONQUEST_BASE = 7030; -- Tallying conquest results...

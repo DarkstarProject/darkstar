@@ -8,4 +8,4 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back a
  FISHING_MESSAGE_OFFSET = 7199; -- You can't fish here.
 
 -- conquest Base
-CONQUEST_BASE = 7024;
+CONQUEST_BASE = 7030; -- Tallying conquest results...

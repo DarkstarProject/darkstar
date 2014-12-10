@@ -10,4 +10,4 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item>. Come back 
 THE_MAGICITE_GLOWS_OMINOUSLY = 7083; -- The magicite glows ominously.
 
 -- conquest Base
-CONQUEST_BASE = 7078;
+CONQUEST_BASE = 7084; -- Tallying conquest results...

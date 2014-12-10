@@ -13,4 +13,4 @@ FULL_INVENTORY_AFTER_TRADE = 6381; -- You cannot obtain the #. Try trading again
    NOTHING_OUT_OF_ORDINARY = 6396; -- There is nothing out of the ordinary here.
 
 -- conquest Base
-CONQUEST_BASE = 7121;
+CONQUEST_BASE = 7127; -- Tallying conquest results...

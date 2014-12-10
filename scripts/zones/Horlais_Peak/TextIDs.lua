@@ -19,5 +19,5 @@ TAKE_THAT_YOU_WHIPPERSNAPPER = 7718; -- Take that, you whippersnapper!
  THAT_LL_HURT_IN_THE_MORNING = 7720; -- Ungh... That'll hurt in the morning...
 
 -- conquest Base
-CONQUEST_BASE = 7024;
+CONQUEST_BASE = 7030; -- Tallying conquest results...
 

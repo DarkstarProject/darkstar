@@ -16,4 +16,4 @@ DOOR_SEALED_SHUT = 7192; -- The door above you is sealed shut.
      DOOR_LOCKED = 7194; -- The door is locked.You might be able to open it with
 
 -- conquest Base
-CONQUEST_BASE = 7024;
+CONQUEST_BASE = 7030; -- Tallying conquest results...

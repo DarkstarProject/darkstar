@@ -17,4 +17,4 @@ CONQUEST = 7198; -- You've earned conquest points!
 NOTHING_OUT_OF_ORDINARY = 7641; -- There is nothing out of the ordinary here.
 
 -- conquest Base
-CONQUEST_BASE = 7024;
+CONQUEST_BASE = 7030; -- Tallying conquest results...

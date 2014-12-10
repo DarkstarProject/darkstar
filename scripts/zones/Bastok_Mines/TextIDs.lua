@@ -76,5 +76,5 @@ MARIADOK_DIALOG = 6713; -- Your fate rides on the changing winds of Vana'diel. I
 ITEM_DELIVERY_DIALOG = 10386; -- Need something sent to a friend's house? Sending items to your own house? You've come to the right place!
 
 -- conquest Base
-CONQUEST_BASE = 6548;
+CONQUEST_BASE = 6554; -- Tallying conquest results...
 

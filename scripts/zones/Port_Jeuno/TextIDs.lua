@@ -43,4 +43,4 @@ SECURITY_DIALOG = 7035; -- Port Jeuno must remain secure. After all, if anything
 
 
 -- conquest Base
-CONQUEST_BASE = 6452;
+CONQUEST_BASE = 6458; -- Tallying conquest results...

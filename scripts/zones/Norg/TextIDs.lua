@@ -33,5 +33,5 @@ YOU_CAN_NOW_BECOME_A_SAMURAI = 10166; -- You can now become a samurai.
 SOLBYMAHOLBY_SHOP_DIALOG = 10543; -- Hiya! My name's Solby-Maholby! I'm new here, so they put me on tooty-fruity shop duty. I'll give you a super-duper deal on unwanted items!
 
 -- conquest Base
-CONQUEST_BASE = 6466;
+CONQUEST_BASE = 6472; -- Tallying conquest results...
 

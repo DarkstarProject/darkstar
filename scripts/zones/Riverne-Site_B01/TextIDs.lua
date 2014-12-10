@@ -16,4 +16,4 @@ SPACE_SEEMS_DISTORTED = 7564; -- The space around you seems oddly distorted and 
 NOTHING_OUT_OF_ORDINARY = 7555 -- There is nothing out of the ordinary here.
 
 -- conquest Base
-CONQUEST_BASE = 7024;
+CONQUEST_BASE = 7030; -- Tallying conquest results...
