@@ -181,7 +181,16 @@ void CAlliance::delParty(CParty* party)
         }
     }
 
-    CCharEntity* PChar = (CCharEntity*)party->GetLeader();
+    //create a a new treasure pool for whoever is in the server from this party (if anyone)
+    CCharEntity* PChar = NULL;
+    try
+    {
+        PChar = (CCharEntity*)party->members.at(0);
+    }
+    catch (std::out_of_range& e)
+    {
+        return;
+    }
     PChar->PTreasurePool = new CTreasurePool(TREASUREPOOL_PARTY);
     PChar->PTreasurePool->AddMember(PChar);
     PChar->PTreasurePool->UpdatePool(PChar);
