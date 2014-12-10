@@ -18,7 +18,7 @@ require("scripts/zones/Qufim_Island/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17293771,17293772};
+    local manuals = {17293774,17293775};
     
     SetFieldManual(manuals);
     

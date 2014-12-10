@@ -36,7 +36,7 @@
 CCharStatsPacket::CCharStatsPacket(CCharEntity * PChar) 
 {
 	this->type = 0x61;	
-	this->size = 0x2a;	
+	this->size = 0x30;	
 	
     WBUFL(data,(0x04)-4) = PChar->GetMaxHP();
     WBUFL(data,(0x08)-4) = PChar->GetMaxMP();
@@ -76,4 +76,7 @@ CCharStatsPacket::CCharStatsPacket(CCharEntity * PChar)
 	WBUFW(data,(0x48)-4) = PChar->profile.rankpoints;
     WBUFW(data,(0x4A)-4) = PChar->profile.home_point.destination;
 	WBUFB(data,(0x50)-4) = PChar->profile.nation; 
+    //0x54 = maximum item level
+    //0x55 = itemlevel over 99
+    //0x56 = main weapon item level
 }

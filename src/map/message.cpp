@@ -83,7 +83,7 @@ namespace message
 		}
 		catch (zmq::error_t err)
 		{
-			ShowFatalError("Unable to connect chat socket: %s\n", err.what());
+			ShowFatalError("Message: Unable to connect chat socket: %s\n", err.what());
 		}
 
 		listen();
@@ -97,19 +97,27 @@ namespace message
             zmq::message_t extra;
             zmq::message_t packet;
 
-			zSocket->recv(&type);
-
-            int more;
-            size_t size = sizeof(more);
-            zSocket->getsockopt(ZMQ_RCVMORE, &more, &size);
-            if (more)
+            try
             {
-                zSocket->recv(&extra);
+                zSocket->recv(&type);
+
+                int more;
+                size_t size = sizeof(more);
                 zSocket->getsockopt(ZMQ_RCVMORE, &more, &size);
                 if (more)
                 {
-                    zSocket->recv(&packet);
+                    zSocket->recv(&extra);
+                    zSocket->getsockopt(ZMQ_RCVMORE, &more, &size);
+                    if (more)
+                    {
+                        zSocket->recv(&packet);
+                    }
                 }
+            }
+            catch (zmq::error_t e)
+            {
+                ShowError("Message: %s", e.what());
+                continue;
             }
 
             parse((MSGSERVTYPE)RBUFB(type.data(), 0), &extra, &packet);
@@ -420,16 +428,24 @@ namespace message
 			memcpy(newExtra.data(), data, datalen);
 		zSocket->send(newExtra, ZMQ_SNDMORE);
 
-		if (packet)
-		{
-			zmq::message_t newPacket(packet, packet->getSize() * 2, [](void *data, void *hint){delete (CBasicPacket*)data; });
-			zSocket->send(newPacket);
-		}
-		else
-		{
-			zmq::message_t newPacket(0);
-			zSocket->send(newPacket);
-		}
+        try
+        {
+            if (packet)
+            {
+                zmq::message_t newPacket(packet, packet->getSize() * 2, [](void *data, void *hint){delete (CBasicPacket*)data; });
+                zSocket->send(newPacket);
+            }
+            else
+            {
+                zmq::message_t newPacket(0);
+                zSocket->send(newPacket);
+            }
+        }
+        catch (zmq::error_t e)
+        {
+            ShowError("Message: %s", e.what());
+        }
+
         ShowDebug("Message: Sent message %d to message server\n", type);
 	}
 };
