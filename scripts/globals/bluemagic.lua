@@ -80,7 +80,7 @@ function BluePhysicalSpell(caster, target, spell, params)
     -- Calculate the final D value  -
     ---------------------------------
     -- worked out from http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
-    -- Final D value ÅÅ= floor(D+fSTR+WSC) * Multiplier
+    -- Final D value ??= floor(D+fSTR+WSC) * Multiplier
 
     local D =  math.floor((magicskill * 0.11)) * 2 + 3;
     -- cap D

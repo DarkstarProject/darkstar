@@ -586,7 +586,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("RONFAURE");
 
-	local Doladepaiton = 17187538;
+	local Doladepaiton = 17187539;
 
 	npc  = {
 	--
@@ -679,7 +679,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("GUSTABERG");
 
-	local Ennigreaud = 17212055;
+	local Ennigreaud = 17212056;
 
 	npc  = {
 	--
@@ -741,7 +741,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("SARUTABARUTA");
 
-	local Naguipeillont = 17248838;
+	local Naguipeillont = 17248839;
 
 	npc  = {
 	--
@@ -834,7 +834,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("FAUREGANDI");
 
-	local Parledaire = 17232201;
+	local Parledaire = 17232205;
 
 	npc  = {
 	--
@@ -865,7 +865,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("VALDEAUNIA");
 
-	local Jeantelas = 17236282;
+	local Jeantelas = 17236286;
 
 	npc  = {
 	--
@@ -896,7 +896,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("QUFIMISLAND");
 
-	local Pitoire = 17293706;
+	local Pitoire = 17293707;
 
 	npc  = {
 	--
@@ -927,7 +927,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("LITELOR");
 
-	local Credaurion = 17273361;
+	local Credaurion = 17273362;
 
 	npc  = {
 	--

@@ -17,7 +17,7 @@ require("scripts/zones/West_Ronfaure/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)		
-    local manuals = {17187562,17187563};
+    local manuals = {17187563,17187564};
     
     SetFieldManual(manuals);
     
