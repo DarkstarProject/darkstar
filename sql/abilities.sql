@@ -53,7 +53,7 @@ INSERT INTO `abilities` VALUES ('2', 'benediction', '3', '0', '1', '3600', '0', 
 INSERT INTO `abilities` VALUES ('3', 'manafont', '4', '0', '1', '3600', '0', '0', '0', '36', '20.0', '0', '1', '0', '0', '0',null);
 INSERT INTO `abilities` VALUES ('4', 'chainspell', '5', '0', '1', '3600', '0', '0', '0', '37', '20.0', '0', '1', '0', '0', '0',null);
 INSERT INTO `abilities` VALUES ('5', 'perfect_dodge', '6', '0', '1', '3600', '0', '0', '0', '38', '20.0', '0', '1', '0', '0', '0',null);
-INSERT INTO `abilities` VALUES ('6', 'invincible', '7', '0', '1', '3600', '0', '0', '0', '18', '20.0', '0', '1', '3600', '0', '0',null);
+INSERT INTO `abilities` VALUES ('6', 'invincible', '7', '0', '1', '3600', '0', '0', '0', '18', '20.0', '0', '1', '7200', '0', '0',null);
 INSERT INTO `abilities` VALUES ('7', 'blood_weapon', '8', '0', '1', '3600', '0', '0', '0', '19', '20.0', '0', '1', '80', '0', '0',null);
 INSERT INTO `abilities` VALUES ('8', 'familiar', '9', '0', '1', '3600', '0', '0', '0', '39', '20.0', '0', '0', '0', '0', '0',null);
 INSERT INTO `abilities` VALUES ('9', 'soul_voice', '10', '0', '1', '3600', '0', '0', '0', '40', '20.0', '0', '1', '0', '0', '0',null);
