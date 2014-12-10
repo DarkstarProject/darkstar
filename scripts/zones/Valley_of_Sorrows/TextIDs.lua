@@ -17,4 +17,4 @@ FULL_INVENTORY_AFTER_TRADE = 6381; -- You cannot obtain the <item>. Try trading 
 		 SOMETHING_BURRIED = 7189; -- It looks like something was buried here.
 
 -- conquest Base
-CONQUEST_BASE = 7024;
+CONQUEST_BASE = 7030; -- Tallying conquest results...

@@ -15,12 +15,12 @@ TAKE_THAT_YOU_WHIPPERSNAPPER = 7609; -- Take that, you whippersnapper!
  THAT_LL_HURT_IN_THE_MORNING = 7611; -- Ungh... That'll hurt in the morning...
 
 -- trion dialog
-FLAT_PREPARE = 7599; -- prepare flat blade sentence
-FLAT_LAND = 7600; -- landing flat flade
-RLB_PREPARE = 7601; -- red lotus blade prepare
-RLB_LAND = 7602; -- rlb land
-SAVAGE_PREPARE = 7603;
-SAVAGE_LAND = 7604;
+FLAT_PREPARE = 7599; -- I am Trion, of San d'Oria
+FLAT_LAND = 7600; -- Feel the fire of my forefathers
+RLB_PREPARE = 7601; -- The darkness before me that shrouds the light of good...
+RLB_LAND = 7602; -- ...Return to the hell you crawled out from
+SAVAGE_PREPARE = 7603; -- The anger, the pain, and the will to survive... Let the spirit of San d'Oria converge within this blade
+SAVAGE_LAND = 7604; -- And with this blade I will return the glory to my kingdom's people
 
 
 -- conquest Base

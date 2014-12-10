@@ -10,5 +10,5 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back a
 NO_NEED_INVESTIGATE = 7595; -- There is no need to investigate further.
 
 -- conquest Base
-CONQUEST_BASE = 7404;
+CONQUEST_BASE = 7416; -- Tallying conquest results...
 

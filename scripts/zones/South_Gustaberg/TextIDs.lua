@@ -21,4 +21,4 @@ NOTHING_OUT_OF_ORDINARY = 6410; -- There is nothing out of the ordinary here.
       MONSTER_TRACKS = 7367; -- You see monster tracks on the ground.
 MONSTER_TRACKS_FRESH = 7368; -- You see fresh monster tracks on the ground.
 -- conquest Base
-CONQUEST_BASE = 7038;
+CONQUEST_BASE = 7044; -- Tallying conquest results...

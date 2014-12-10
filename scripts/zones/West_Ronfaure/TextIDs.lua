@@ -23,4 +23,4 @@ PALCOMONDAU_DIALOG = 7346; -- Let me be! I must patrol the road to Ghelsba.
 
 
 -- conquest Base
-CONQUEST_BASE = 7038;
+CONQUEST_BASE = 7044; -- Tallying conquest results...

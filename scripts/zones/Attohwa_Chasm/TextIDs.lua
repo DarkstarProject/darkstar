@@ -16,4 +16,4 @@ MINING_IS_POSSIBLE_HERE = 7189; -- Mining is possible here if you have
 OCCASIONAL_LUMPS = 7224; -- Occasionally lumps arise in the ground here, then settle down again. It seems that there is something beneath the earth.
 
 -- conquest Base
-CONQUEST_BASE = 7024;
+CONQUEST_BASE = 7030; -- Tallying conquest results...

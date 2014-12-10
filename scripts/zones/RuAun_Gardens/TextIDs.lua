@@ -29,4 +29,4 @@ IT_IS_ALREADY_FUNCTIONING = 7285; -- It is already functioning.
 
 
 -- conquest Base
-CONQUEST_BASE = 7119;
+CONQUEST_BASE = 7125; -- Tallying conquest results...

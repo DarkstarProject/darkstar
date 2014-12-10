@@ -15,4 +15,4 @@ QUASILUMIN_01 = 7341; -- This is Al'Taieu. The celestial capital overflowing wit
 NOTHING_OUT_OF_ORDINARY = 7454; --There is nothing out of the ordinary here.
 
 -- conquest Base
-CONQUEST_BASE = 7119;
+CONQUEST_BASE = 7125; -- Tallying conquest results...

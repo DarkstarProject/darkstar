@@ -23,5 +23,5 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item>. Come back 
 YOU_CAN_NOW_BECOME_A_DARK_KNIGHT = 7330; -- You can now become a dark knight!
 
 -- conquest Base
-CONQUEST_BASE = 7024;
+CONQUEST_BASE = 7030; -- Tallying conquest results...
 

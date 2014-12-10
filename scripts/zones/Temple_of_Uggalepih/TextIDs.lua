@@ -39,4 +39,4 @@ HATE_RESET = 7401; -- The built-up hate has been cleansed...!
    NO_HATE = 7404; -- You have no built-up hate to cleanse.
 
 -- conquest Base
-CONQUEST_BASE = 7024;
+CONQUEST_BASE = 7030; -- Tallying conquest results...

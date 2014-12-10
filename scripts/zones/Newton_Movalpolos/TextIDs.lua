@@ -25,4 +25,4 @@ SHOWMAN_TRIGGER = 7245; -- Hey, you there! Muscles nice. You want fight strong o
  SHOWMAN_ACCEPT = 7246; -- Fhungaaa!!! The freshyness, the flavoryness! This very nice item! Good luck, then. Try not die. One...two...four...FIIIIIIGHT!!!
 
 -- conquest Base
-CONQUEST_BASE = 7024;
+CONQUEST_BASE = 7030; -- Tallying conquest results...

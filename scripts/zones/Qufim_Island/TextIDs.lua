@@ -16,14 +16,14 @@ CONQUEST = 7352; -- You've earned conquest points!
 NOW_THAT_NIGHT_HAS_FALLEN = 7304; -- Now that night has fallen, the flowers bloom with a strange glow.
 
 -- Other Dialog
-        AN_EMPTY_LIGHT_SWIRLS =  7711; -- An empty light swirls about the cave, eating away at the surroundings...
+        AN_EMPTY_LIGHT_SWIRLS =  7718; -- An empty light swirls about the cave, eating away at the surroundings...
 
-      YOU_CANNOT_ENTER_DYNAMIS = 7821; -- You cannot enter Dynamis
-PLAYERS_HAVE_NOT_REACHED_LEVEL = 7823; -- Players who have not reached levelare prohibited from entering Dynamis.
-              MYSTERIOUS_VOICE = 7809; -- You hear a mysterious, floating voice: Bring forth the
+      YOU_CANNOT_ENTER_DYNAMIS = 7828; -- You cannot enter Dynamis
+PLAYERS_HAVE_NOT_REACHED_LEVEL = 7830; -- Players who have not reached levelare prohibited from entering Dynamis.
+              MYSTERIOUS_VOICE = 7816; -- You hear a mysterious, floating voice: Bring forth the
 
-            GIGANTIC_FOOTPRINT = 7795; -- There is a gigantic footprint here.
+            GIGANTIC_FOOTPRINT = 7802; -- There is a gigantic footprint here.
 
 
 -- conquest Base
-CONQUEST_BASE = 7024;
+CONQUEST_BASE = 7030; -- Tallying conquest results...

@@ -2,7 +2,7 @@
 
 -- General Texts
 ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back again after sorting your inventory
-ITEM_CANNOT_BE_OBTAINEDX = 6378;
+ITEM_CANNOT_BE_OBTAINEDX = 6378; -- You cannot obtain the
           ITEM_OBTAINED = 6382; -- Obtained: <item>
      ITEM_OBTAINEDX = 6391; -- You obtain ?Numeric Parameter 1? ?Possible Special Code: 01??Speaker Name?)??BAD CHAR: 80??BAD CHAR: 80??BAD CHAR: 8280??BAD CHAR: 80??BAD CHAR: 80?!?Prompt?
            GIL_OBTAINED = 6383; -- Obtained <number> gil

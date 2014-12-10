@@ -62,4 +62,4 @@ DEGUERENDARS_COP_NOT_COMPLETED = 7892; -- Why must I wait for the Kingdom to iss
 
 
 -- conquest Base
-CONQUEST_BASE = 7013;
+CONQUEST_BASE = 7019; -- Tallying conquest results...

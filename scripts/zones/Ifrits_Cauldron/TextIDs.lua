@@ -31,5 +31,5 @@ CHEST_ILLUSION = 7236; -- The chest was but an illusion...
 MINING_IS_POSSIBLE_HERE = 7238; -- Mining is possible here if you have
 
 -- conquest Base
-CONQUEST_BASE = 7024;
+CONQUEST_BASE = 7030; -- Tallying conquest results...
 
