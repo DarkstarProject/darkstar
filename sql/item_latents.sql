@@ -386,86 +386,86 @@ INSERT INTO `item_latents` VALUES(13300, 346, 1, 2, 75); -- Avatar perpetuation 
 -- -------------------------------------------------------
 -- Wagh Baghnakhs   
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(18358, 366, 5, 6, 100); -- DMG+5 while TP <100%
-INSERT INTO `item_latents` VALUES(18358, 25, 5, 6, 100); -- Accuracy+5 while TP <100%
-INSERT INTO `item_latents` VALUES(18358, 23, 14, 6, 100); -- Attack+14 while TP <100%
+INSERT INTO `item_latents` VALUES(18358, 366, 5, 6, 1000); -- DMG+5 while TP <100%
+INSERT INTO `item_latents` VALUES(18358, 25, 5, 6, 1000); -- Accuracy+5 while TP <100%
+INSERT INTO `item_latents` VALUES(18358, 23, 14, 6, 1000); -- Attack+14 while TP <100%
 
 -- -------------------------------------------------------
 -- Blau Dolch   
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(18015, 366, 7, 6, 100); -- DMG+7 while TP <100%
-INSERT INTO `item_latents` VALUES(18015, 25, 5, 6, 100); -- Accuracy+5 while TP <100%
-INSERT INTO `item_latents` VALUES(18015, 23, 16, 6, 100); -- Attack+16 while TP <100%
+INSERT INTO `item_latents` VALUES(18015, 366, 7, 6, 1000); -- DMG+7 while TP <100%
+INSERT INTO `item_latents` VALUES(18015, 25, 5, 6, 1000); -- Accuracy+5 while TP <100%
+INSERT INTO `item_latents` VALUES(18015, 23, 16, 6, 1000); -- Attack+16 while TP <100%
 
 -- -------------------------------------------------------
 -- Maneater   
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(17946, 366, 6, 6, 100); -- DMG+6 while TP <100%
-INSERT INTO `item_latents` VALUES(17946, 25, 5, 6, 100); -- Accuracy+5 while TP <100%
-INSERT INTO `item_latents` VALUES(17946, 23, 18, 6, 100); -- Attack+18 while TP <100%
+INSERT INTO `item_latents` VALUES(17946, 366, 6, 6, 1000); -- DMG+6 while TP <100%
+INSERT INTO `item_latents` VALUES(17946, 25, 5, 6, 1000); -- Accuracy+5 while TP <100%
+INSERT INTO `item_latents` VALUES(17946, 23, 18, 6, 1000); -- Attack+18 while TP <100%
 
 -- -------------------------------------------------------
 -- Stone-splitter    
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(18099, 366, 5, 6, 100); -- DMG+5 while TP <100%
-INSERT INTO `item_latents` VALUES(18099, 25, 5, 6, 100); -- Accuracy+5 while TP <100%
-INSERT INTO `item_latents` VALUES(18099, 23, 24, 6, 100); -- Attack+24 while TP <100%
+INSERT INTO `item_latents` VALUES(18099, 366, 5, 6, 1000); -- DMG+5 while TP <100%
+INSERT INTO `item_latents` VALUES(18099, 25, 5, 6, 1000); -- Accuracy+5 while TP <100%
+INSERT INTO `item_latents` VALUES(18099, 23, 24, 6, 1000); -- Attack+24 while TP <100%
 
 -- -------------------------------------------------------
 -- Onimaru  
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(16976, 366, 6, 6, 100); -- DMG+6 while TP <100%
-INSERT INTO `item_latents` VALUES(16976, 25, 5, 6, 100); -- Accuracy+5 while TP <100%
-INSERT INTO `item_latents` VALUES(16976, 23, 18, 6, 100); -- Attack+18 while TP <100%
+INSERT INTO `item_latents` VALUES(16976, 366, 6, 6, 1000); -- DMG+6 while TP <100%
+INSERT INTO `item_latents` VALUES(16976, 25, 5, 6, 1000); -- Accuracy+5 while TP <100%
+INSERT INTO `item_latents` VALUES(16976, 23, 18, 6, 1000); -- Attack+18 while TP <100%
 
 -- -------------------------------------------------------
 -- Perdu Hanger   
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(17741, 366, 6, 6, 100); -- DMG+6 while TP <100%
-INSERT INTO `item_latents` VALUES(17741, 25, 5, 6, 100); -- Accuracy+5 while TP <100%
-INSERT INTO `item_latents` VALUES(17741, 23, 15, 6, 100); -- Attack+15 while TP <100%
+INSERT INTO `item_latents` VALUES(17741, 366, 6, 6, 1000); -- DMG+6 while TP <100%
+INSERT INTO `item_latents` VALUES(17741, 25, 5, 6, 1000); -- Accuracy+5 while TP <100%
+INSERT INTO `item_latents` VALUES(17741, 23, 15, 6, 1000); -- Attack+15 while TP <100%
 
 -- -------------------------------------------------------
 -- Perdu Sickle     
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(18943, 366, 5, 6, 100); -- DMG+5 while TP <100%
-INSERT INTO `item_latents` VALUES(18943, 25, 5, 6, 100); -- Accuracy+5 while TP <100%
-INSERT INTO `item_latents` VALUES(18943, 23, 14, 6, 100); -- Attack+14 while TP <100%
+INSERT INTO `item_latents` VALUES(18943, 366, 5, 6, 1000); -- DMG+5 while TP <100%
+INSERT INTO `item_latents` VALUES(18943, 25, 5, 6, 1000); -- Accuracy+5 while TP <100%
+INSERT INTO `item_latents` VALUES(18943, 23, 14, 6, 1000); -- Attack+14 while TP <100%
 
 -- -------------------------------------------------------
 -- Perdu Wand       
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(18850, 366, 5, 6, 100); -- DMG+5 while TP <100%
-INSERT INTO `item_latents` VALUES(18850, 25, 5, 6, 100); -- Accuracy+5 while TP <100%
-INSERT INTO `item_latents` VALUES(18850, 23, 14, 6, 100); -- Attack+14 while TP <100%
+INSERT INTO `item_latents` VALUES(18850, 366, 5, 6, 1000); -- DMG+5 while TP <100%
+INSERT INTO `item_latents` VALUES(18850, 25, 5, 6, 1000); -- Accuracy+5 while TP <100%
+INSERT INTO `item_latents` VALUES(18850, 23, 14, 6, 1000); -- Attack+14 while TP <100%
 
 -- -------------------------------------------------------
 -- Perdu Blade
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(18425, 366, 5, 6, 100); -- DMG+5 while TP <100%
-INSERT INTO `item_latents` VALUES(18425, 25, 5, 6, 100); -- Accuracy+5 while TP <100%
-INSERT INTO `item_latents` VALUES(18425, 23, 10, 6, 100); -- Attack+10 while TP <100%
+INSERT INTO `item_latents` VALUES(18425, 366, 5, 6, 1000); -- DMG+5 while TP <100%
+INSERT INTO `item_latents` VALUES(18425, 25, 5, 6, 1000); -- Accuracy+5 while TP <100%
+INSERT INTO `item_latents` VALUES(18425, 23, 10, 6, 1000); -- Attack+10 while TP <100%
 
 -- -------------------------------------------------------
 -- Perdu Staff
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(18588, 366, 6, 6, 100); -- DMG+6 while TP <100%
-INSERT INTO `item_latents` VALUES(18588, 25, 5, 6, 100); -- Accuracy+5 while TP <100%
-INSERT INTO `item_latents` VALUES(18588, 23, 15, 6, 100); -- Attack+15 while TP <100%
+INSERT INTO `item_latents` VALUES(18588, 366, 6, 6, 1000); -- DMG+6 while TP <100%
+INSERT INTO `item_latents` VALUES(18588, 25, 5, 6, 1000); -- Accuracy+5 while TP <100%
+INSERT INTO `item_latents` VALUES(18588, 23, 15, 6, 1000); -- Attack+15 while TP <100%
 
 -- -------------------------------------------------------
 -- Perdu Sword  
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(16602, 366, 4, 6, 100); -- DMG+4 while TP <100%
-INSERT INTO `item_latents` VALUES(16602, 25, 5, 6, 100); -- Accuracy+5 while TP <100%
-INSERT INTO `item_latents` VALUES(16602, 23, 12, 6, 100); -- Attack+12 while TP <100%
+INSERT INTO `item_latents` VALUES(16602, 366, 4, 6, 1000); -- DMG+4 while TP <100%
+INSERT INTO `item_latents` VALUES(16602, 25, 5, 6, 1000); -- Accuracy+5 while TP <100%
+INSERT INTO `item_latents` VALUES(16602, 23, 12, 6, 1000); -- Attack+12 while TP <100%
 
 -- -------------------------------------------------------
 -- Perdu Voulge    
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(18491, 366, 5, 6, 100); -- DMG+5 while TP <100%
-INSERT INTO `item_latents` VALUES(18491, 25, 5, 6, 100); -- Accuracy+5 while TP <100%
-INSERT INTO `item_latents` VALUES(18491, 23, 10, 6, 100); -- Attack+10 while TP <100%
+INSERT INTO `item_latents` VALUES(18491, 366, 5, 6, 1000); -- DMG+5 while TP <100%
+INSERT INTO `item_latents` VALUES(18491, 25, 5, 6, 1000); -- Accuracy+5 while TP <100%
+INSERT INTO `item_latents` VALUES(18491, 23, 10, 6, 1000); -- Attack+10 while TP <100%
 
 -- -------------------------------------------------------
 -- Hachiman Jinpachi    
@@ -1513,16 +1513,16 @@ INSERT INTO `item_latents` VALUES(14413, 369, 1, 5, 49); -- "Refresh" effect whi
 -- -------------------------------------------------------
 -- Perdu Bow         
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(18717, 366, 6, 6, 100); -- DMG+6 while TP <100%
-INSERT INTO `item_latents` VALUES(18717, 26, 5, 6, 100); -- Ranged Accuracy+5 while TP <100%
-INSERT INTO `item_latents` VALUES(18717, 24, 18, 6, 100); -- Ranged Attack+18 while TP <100%
+INSERT INTO `item_latents` VALUES(18717, 366, 6, 6, 1000); -- DMG+6 while TP <100%
+INSERT INTO `item_latents` VALUES(18717, 26, 5, 6, 1000); -- Ranged Accuracy+5 while TP <100%
+INSERT INTO `item_latents` VALUES(18717, 24, 18, 6, 1000); -- Ranged Attack+18 while TP <100%
 
 -- -------------------------------------------------------
 -- Perdu Crossbow          
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(18718, 366, 4, 6, 100); -- DMG+4 while TP <100%
-INSERT INTO `item_latents` VALUES(18718, 26, 5, 6, 100); -- Ranged Accuracy+5 while TP <100%
-INSERT INTO `item_latents` VALUES(18718, 24, 18, 6, 100); -- Ranged Attack+18 while TP <100%
+INSERT INTO `item_latents` VALUES(18718, 366, 4, 6, 1000); -- DMG+4 while TP <100%
+INSERT INTO `item_latents` VALUES(18718, 26, 5, 6, 1000); -- Ranged Accuracy+5 while TP <100%
+INSERT INTO `item_latents` VALUES(18718, 24, 18, 6, 1000); -- Ranged Attack+18 while TP <100%
 
 -- Koga Tekko
 INSERT INTO `item_latents` VALUES(15114, 8, 12, 26, 1); -- STR +12 during nighttime
