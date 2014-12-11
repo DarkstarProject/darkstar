@@ -22,4 +22,4 @@ TREE_CHECK = 7653; -- The hole in this tree is filled with a sweet-smelling liqu
  TREE_FULL = 7654; -- Your wine barrel is already full.
 
 -- conquest Base
-CONQUEST_BASE = 7024;
+CONQUEST_BASE = 7030; -- Tallying conquest results...

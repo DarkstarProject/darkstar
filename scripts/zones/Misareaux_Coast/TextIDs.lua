@@ -15,4 +15,4 @@ NOTHING_OUT_OF_ORDINARY = 6396; -- There is nothing out of the ordinary here.
 LOGGING_IS_POSSIBLE_HERE = 7577; -- Logging is possible here if you have
 
 -- conquest Base
-CONQUEST_BASE = 7141;
+CONQUEST_BASE = 7147; -- Tallying conquest results...

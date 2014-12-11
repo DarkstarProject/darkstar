@@ -17,7 +17,7 @@ require("scripts/globals/conquest");
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17232275,17232276,17232277,17232278};
+    local manuals = {17232279,17232280,17232281,17232282};
     
     SetFieldManual(manuals);
     
@@ -100,7 +100,7 @@ end;
 -----------------------------------
 
 function OnZoneWeatherChange(weather)
-	local mirrorPond = GetNPCByID(17232194); -- Quest: Love And Ice
+	local mirrorPond = GetNPCByID(17232198); -- Quest: Love And Ice
 
 	if(weather == WEATHER_GLOOM or weather == WEATHER_DARKNESS) then
 		mirrorPond:setStatus(STATUS_NORMAL);

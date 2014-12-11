@@ -8,9 +8,9 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back a
  FISHING_MESSAGE_OFFSET = 7030; -- You can't fish here.
 
 -- Fields of Valor Texts
-REGIME_ACCEPTED = 10157; -- New training regime registered!
- DONT_SWAP_JOBS = 10158; -- your job will result in the cancellation of your current training regime.
-REGIME_CANCELED = 10159; -- Training regime canceled.
+REGIME_ACCEPTED = 10164; -- New training regime registered!
+ DONT_SWAP_JOBS = 10165; -- your job will result in the cancellation of your current training regime.
+REGIME_CANCELED = 10166; -- Training regime canceled.
 
 -- Conquest
 CONQUEST = 7429; -- You've earned conquest points!
@@ -39,4 +39,4 @@ SIGN_13 = 7359; -- East: Port Windurst West: West Tower, Horutoto Ruins
 SIGN_15 = 7360; -- East: East Sarutabaruta West: Giddeus Southeast: Windurst
 SIGN_17 = 7361; -- Northwest: Northwest Tower, Horutoto RuinsEast: Outpost Southwest: Giddeus
 -- conquest Base
-CONQUEST_BASE = 7119;
+CONQUEST_BASE = 7125; -- Tallying conquest results...

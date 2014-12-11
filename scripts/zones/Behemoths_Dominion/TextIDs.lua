@@ -17,4 +17,4 @@ ALREADY_OBTAINED_FRAG = 7200; -- You have already obtained this monument's
    CANNOT_REMOVE_FRAG = 7199; -- It is an oddly shaped stone monument. A shining stone is embedded in it, but cannot be removed...?Prompt?
 
 -- conquest Base
-CONQUEST_BASE = 7024;
+CONQUEST_BASE = 7030; -- Tallying conquest results...

@@ -21,4 +21,4 @@ LOGGING_IS_POSSIBLE_HERE = 7704; -- Logging is possible here if you have
  SPINE_CHILLING_PRESENCE = 7715; -- You sense a spine-chilling presence!
 
 -- conquest Base
-CONQUEST_BASE = 7024;
+CONQUEST_BASE = 7030; -- Tallying conquest results...

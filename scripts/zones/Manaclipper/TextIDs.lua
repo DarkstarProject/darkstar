@@ -11,4 +11,4 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back a
 KHOTS_CHALAHKO_OFFSET = 7368; -- Ahhh... Isn't it grrreat out here on the open sea!
 
 -- conquest Base
-CONQUEST_BASE = 7024;
+CONQUEST_BASE = 7030; -- Tallying conquest results...

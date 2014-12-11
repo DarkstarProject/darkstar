@@ -25,4 +25,4 @@ GHEMISENTERILO_SHOP_DIALOG = 10012; -- Can you really get everything that you wa
        MAMERIE_SHOP_DIALOG = 10574; -- Is there something you require?
 
 -- conquest Base
-CONQUEST_BASE = 6466;
+CONQUEST_BASE = 6472; -- Tallying conquest results...

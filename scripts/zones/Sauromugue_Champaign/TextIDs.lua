@@ -20,4 +20,4 @@ OLD_SABERTOOTH_DIALOG_II = 7210; -- The sound of the tiger's footsteps is growin
 NOTHING_OUT_OF_ORDINARY = 6410; -- There is nothing out of the ordinary here.
 
 -- conquest Base
-CONQUEST_BASE = 7038;
+CONQUEST_BASE = 7044; -- Tallying conquest results...

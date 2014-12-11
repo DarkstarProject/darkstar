@@ -12,5 +12,5 @@ CHIP_TRADE = 7022;              --
 -- Cannot find correct TextID for CHIP_TRADE
 
 -- conquest Base
-CONQUEST_BASE = 7341;
+CONQUEST_BASE = 7347; -- Tallying conquest results...
 

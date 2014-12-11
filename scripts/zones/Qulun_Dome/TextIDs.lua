@@ -21,5 +21,5 @@ DIAMOND_QUADAV_ENGAGE = 7234; -- Gwa-ha-ha, puny peoples! Ou-ur king never forge
     QUADAV_KING_DEATH = 7237; -- I a-am fini-ished. Hear me, wa-arriors of the Quadav! The throne of the Adamantking and the line of Za'Dha pa-asses to my bro-other...
 
 -- conquest Base
-CONQUEST_BASE = 7024;
+CONQUEST_BASE = 7030; -- Tallying conquest results...
 

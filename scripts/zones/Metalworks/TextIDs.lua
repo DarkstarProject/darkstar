@@ -36,4 +36,4 @@ VICIOUS_EYE_SHOP_DIALOG =  7939; -- Hi. This is where blacksmiths buy what they 
     TAKIYAH_OPEN_DIALOG =  9901; -- Hey, it's your lucky day! I've got a fresh batch of goods straight from the island of Qufim!
 
 -- conquest Base
-CONQUEST_BASE = 6507;
+CONQUEST_BASE = 6513; -- Tallying conquest results...

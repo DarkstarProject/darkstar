@@ -26,4 +26,4 @@ PRISON_OF_SOULS_HAS_SET_FREE = 7790; -- prison of souls has set free its captive
 
 
 -- conquest Base
-CONQUEST_BASE = 7030;
+CONQUEST_BASE = 7036; -- Tallying conquest results...

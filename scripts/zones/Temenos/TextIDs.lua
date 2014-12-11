@@ -9,4 +9,4 @@ CONDITION_FOR_LIMBUS_T = 7036;  -- You have clearance to enter Limbus, but canno
           CHIP_TRADE_T = 7027;  --
 
 -- conquest Base
-CONQUEST_BASE = 7350;
+CONQUEST_BASE = 7356; -- Tallying conquest results...

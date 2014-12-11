@@ -27,5 +27,5 @@ CHEST_ILLUSION = 7451; -- The chest was but an illusion...
   CHEST_LOCKED = 7452; -- The chest appears to be locked.
 
 -- conquest Base
-CONQUEST_BASE = 7024;
+CONQUEST_BASE = 7030; -- Tallying conquest results...
 

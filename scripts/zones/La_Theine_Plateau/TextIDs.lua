@@ -10,12 +10,12 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item>. Come back 
 
 -- Other Texts
        ALREADY_OBTAINED_TELE = 7189; -- You already possess the gate crystal for this telepoint.
-TELEPOINT_HAS_BEEN_SHATTERED = 7722; -- The telepoint has been shattered into a thousand pieces...
-              CHOCOBO_TRACKS = 7854; -- There are chocobo tracks on the ground here.
+TELEPOINT_HAS_BEEN_SHATTERED = 7729; -- The telepoint has been shattered into a thousand pieces...
+              CHOCOBO_TRACKS = 7861; -- There are chocobo tracks on the ground here.
 
 -- Quest Dialogs
- UNLOCK_SUMMONER = 7542; -- You can now become a summoner.
-UNLOCK_CARBUNCLE = 7543; -- You can now summon Carbuncle.
+ UNLOCK_SUMMONER = 7549; -- You can now become a summoner.
+UNLOCK_CARBUNCLE = 7550; -- You can now summon Carbuncle.
 
 -- Mission Dialogs
 RESCUE_DRILL = 7358; -- Rescue drills in progress. Try to stay out of the way.
@@ -27,11 +27,11 @@ FAURBELLANT_3 = 7400; -- Please deliver thatto the high priest in the San d'Oria
 FAURBELLANT_4 = 7401; -- My thanks again for your services. May the Gates of Paradise open to all.
 
 -- ZM4 Dialog
-    CANNOT_REMOVE_FRAG = 7557; -- It is an oddly shaped stone monument. A shining stone is embedded in it, but cannot be removed...
- ALREADY_OBTAINED_FRAG = 7558; -- You have already obtained this monument's . Try searching for another.
-ALREADY_HAVE_ALL_FRAGS = 7559; -- You have obtained all of the fragments. You must hurry to the ruins of the ancient shrine!
-       FOUND_ALL_FRAGS = 7560; -- You have obtained ! You now have all 8 fragments of light!
-       ZILART_MONUMENT = 7561; -- It is an ancient Zilart monument.
+    CANNOT_REMOVE_FRAG = 7564; -- It is an oddly shaped stone monument. A shining stone is embedded in it, but cannot be removed...
+ ALREADY_OBTAINED_FRAG = 7565; -- You have already obtained this monument's . Try searching for another.
+ALREADY_HAVE_ALL_FRAGS = 7566; -- You have obtained all of the fragments. You must hurry to the ruins of the ancient shrine!
+       FOUND_ALL_FRAGS = 7567; -- You have obtained ! You now have all 8 fragments of light!
+       ZILART_MONUMENT = 7568; -- It is an ancient Zilart monument.
 
 -- conquest Base
-CONQUEST_BASE = 7024;
+CONQUEST_BASE = 7030; -- Tallying conquest results...

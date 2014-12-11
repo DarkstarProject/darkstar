@@ -12,4 +12,4 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back a
 
 
 -- conquest Base
-CONQUEST_BASE = 7385;
+CONQUEST_BASE = 7397; -- Tallying conquest results...

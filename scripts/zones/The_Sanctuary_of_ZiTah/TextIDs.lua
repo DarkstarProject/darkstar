@@ -25,5 +25,5 @@ ALREADY_OBTAINED_FRAG = 7713; -- You have already obtained this monument's
       ZILART_MONUMENT = 7716; -- It is an ancient Zilart monument.
 
 -- conquest Base
-CONQUEST_BASE = 7024;
+CONQUEST_BASE = 7030; -- Tallying conquest results...
 

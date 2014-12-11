@@ -39,5 +39,5 @@ SAHAGIN_DOOR_OUTSIDE = 7310; -- This door has an oddly shaped keyhole. It looks 
 COMPLETED_CHECK = 7323; -- It is a door you can open using
 
 -- conquest Base
-CONQUEST_BASE = 7024;
+CONQUEST_BASE = 7030; -- Tallying conquest results...
 

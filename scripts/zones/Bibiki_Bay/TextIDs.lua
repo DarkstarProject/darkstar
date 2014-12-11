@@ -19,4 +19,4 @@ LEFT_BILLET = 7467; -- You use your
 NEWS_BILLET = 7469; -- added to your
 
 -- conquest Base
-CONQUEST_BASE = 7024;
+CONQUEST_BASE = 7030; -- Tallying conquest results...

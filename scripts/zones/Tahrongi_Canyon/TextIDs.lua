@@ -14,13 +14,13 @@ ITEM_CANNOT_BE_OBTAINED = 6552; -- You cannot obtain the item <item> come back a
 MINING_IS_POSSIBLE_HERE = 7398; -- Mining is possible here if you have
 
 -- ??? that spawns NM Yara Ma Yha Who
-     SPROUT_LOOKS_WITHERED = 7515; -- There is something sprouting from the ground here. It looks a little withered.
-REPULSIVE_CREATURE_EMERGES = 7516; -- A repulsive creature emerges from the ground!
-SPROUT_DOES_NOT_NEED_WATER = 7517; -- The sprout does not need any more water now.
-     SPROUT_LOOKING_BETTER = 7519; -- The sprout is looking better.
+     SPROUT_LOOKS_WITHERED = 7522; -- There is something sprouting from the ground here. It looks a little withered.
+REPULSIVE_CREATURE_EMERGES = 7523; -- A repulsive creature emerges from the ground!
+SPROUT_DOES_NOT_NEED_WATER = 7524; -- The sprout does not need any more water now.
+     SPROUT_LOOKING_BETTER = 7526; -- The sprout is looking better.
 
 -- Other Texts
-TELEPOINT_HAS_BEEN_SHATTERED = 7472; -- The telepoint has been shattered into a thousand pieces...
+TELEPOINT_HAS_BEEN_SHATTERED = 7479; -- The telepoint has been shattered into a thousand pieces...
        TELEPOINT_DISAPPEARED = 7299; -- The telepoint has disappeared...
 
 -- Signs

@@ -26,4 +26,4 @@ NOTHING_OUT_OF_ORDINARY = 6396; -- There is nothing out of the ordinary here.
     SOMETHING_IS_BURIED = 7339; -- Something is buried in this fallen pillar.
 
 -- conquest Base
-CONQUEST_BASE = 7024;
+CONQUEST_BASE = 7030; -- Tallying conquest results...
