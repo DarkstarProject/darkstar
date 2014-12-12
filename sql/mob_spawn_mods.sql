@@ -205,6 +205,7 @@ INSERT INTO `mob_spawn_mods` VALUES (16814432,9,80,1);
 INSERT INTO `mob_spawn_mods` VALUES (16814432,170,50,0);
 INSERT INTO `mob_spawn_mods` VALUES (16814432,168,2,0);
 INSERT INTO `mob_spawn_mods` VALUES (16814432,29,33,0);
+INSERT INTO `mob_spawn_mods` VALUES (16921015,23,4,1); -- Enable Immune to bind for Jailer of Fortitude
 /*!40000 ALTER TABLE `mob_spawn_mods` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

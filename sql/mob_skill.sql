@@ -975,7 +975,7 @@ INSERT INTO `mob_skill` VALUES (367,55,367,'Wing_Cutter', 4, 10.0, 2000, 1500, 4
 -- Birds (COP,TOAU)
 -- INSERT INTO `mob_skill` VALUES (366,55,?,'Helldive', 0, 9.0, 2000, 1500, 4, 0, 0, 1);
 -- INSERT INTO `mob_skill` VALUES (367,55,?,'Wing_Cutter', 4, 10.0, 2000, 1500, 4, 0, 0, 0);
--- INSERT INTO `mob_skill` VALUES (1324,?,343,'Damnation_Dive', 4, 10.0, 2000, 1500, 4, 0, 0, 0);     -- COP/TOAU
+INSERT INTO `mob_skill` VALUES (1324,?,343,'Damnation_Dive', 4, 10.0, 2000, 1500, 4, 0, 0, 0);     -- COP/TOAU
 -- INSERT INTO `mob_skill` VALUES (1323,?,342,'Blind_Side_Barrage', 0, 7.0, 2000, 1500, 4, 0, 0, 0);  -- COP/TOAU
 -- INSERT INTO `mob_skill` VALUES (1322,?,341,'Broadside_Barrage', 0, 7.0, 2000, 1500, 4, 0, 0, 0);   -- COP/TOAU
 
@@ -1671,11 +1671,11 @@ INSERT INTO `mob_skill` VALUES (1963,82,1600,'Dark_Wave',1,10.0,2000,1000,4,0,0,
 
 -- Ghrah
 INSERT INTO `mob_skill` VALUES (1185,122,1065,'Actinic_Burst',1,10.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skill` VALUES (1186,122,1066,'Core_Meltdown',1,15.0,2000,4000,4,0,0,0); -- occurs very rarely. lets say a 5% chance.
+INSERT INTO `mob_skill` VALUES (1186,122,1066,'Core_Meltdown',1,15.0,2000,4000,4,0,0,0); -- occurs very rarely. lets say a 5% chance.
 INSERT INTO `mob_skill` VALUES (1187,122,1061,'Hexidiscs',4,10.0,2000,1500,4,0,0,0); -- only used in ball form
--- INSERT INTO `mob_skill` VALUES (1188,122,1062,'Vorpal_Blade',0,7.0,2000,1500,4,0,0,0); -- only used in human form
--- INSERT INTO `mob_skill` VALUES (1189,122,1063,'Damnation_Dive',4,10.0,2000,1500,4,0,0,0); -- only used in bird form.  Logged on Eo'ghrah. theres a version that supposedly has knockback?
--- INSERT INTO `mob_skill` VALUES (1190,122,1064,'Sickle_Slash',0,7.0,2000,1500,4,0,0,0); -- only used in spider form. 
+INSERT INTO `mob_skill` VALUES (1188,122,1062,'Vorpal_Blade',0,7.0,2000,1500,4,0,0,0); -- only used in human form
+INSERT INTO `mob_skill` VALUES (1189,122,1063,'Damnation_Dive',4,10.0,2000,1500,4,0,0,0); -- only used in bird form.  Logged on Eo'ghrah. theres a version that supposedly has knockback?
+INSERT INTO `mob_skill` VALUES (1190,122,1064,'Sickle_Slash',0,7.0,2000,1500,4,0,0,0); -- only used in spider form. 
 
 INSERT INTO `mob_skill` VALUES (1187,123,1061,'Hexidiscs',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skill` VALUES (1185,123,1065,'Actinic_Burst',1,10.0,2000,1500,4,0,0,0);
