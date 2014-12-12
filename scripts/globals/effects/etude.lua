@@ -1,14 +1,18 @@
 -----------------------------------
 --
---
+--      EFFECT_ETUDE
 --
 -----------------------------------
+
+require("scripts/globals/status");
+require("scripts/globals/magic");
 
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
+    target:addMod(effect:getSubPower(), effect:getPower());
 end;
 
 -----------------------------------
@@ -23,4 +27,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+    target:delMod(effect:getSubPower(), effect:getPower());
 end;
