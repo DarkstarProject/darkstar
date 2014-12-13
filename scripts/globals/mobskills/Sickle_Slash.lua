@@ -9,8 +9,17 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
+---------------------------------------------------
+-- OnMobSkillCheck
+-- Check for Grah Family id 122,123,124
+-- if not in Spider form, then ignore. 
+---------------------------------------------------
 function OnMobSkillCheck(target,mob,skill)
-	return 0;
+	if((mob:getFamily() == 122 or mob:getFamily() == 123 or mob:getFamily() == 124) and mob:AnimationSub() ~= 2) then
+		return 1;
+	else
+		return 0;
+	end
 end;
 
 function OnMobWeaponSkill(target, mob, skill)

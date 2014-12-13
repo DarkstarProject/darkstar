@@ -164,7 +164,7 @@ public:
     virtual ~CBaseEntity();						// деструктор
 private:
 protected:
-    std::map<const char*, uint32> m_localVars;
+    std::map<std::string, uint32> m_localVars;
 };
 
 #endif

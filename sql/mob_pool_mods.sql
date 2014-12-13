@@ -40,6 +40,7 @@ LOCK TABLES `mob_pool_mods` WRITE;
 INSERT INTO `mob_pool_mods` VALUES (519,160,-50,0);
 INSERT INTO `mob_pool_mods` VALUES (532,160,-50,0);
 INSERT INTO `mob_pool_mods` VALUES (676,160,-50,0);
+INSERT INTO `mob_pool_mods` VALUES (697,16,1,1);
 INSERT INTO `mob_pool_mods` VALUES (2643,160,-50,0);
 INSERT INTO `mob_pool_mods` VALUES (2647,160,-50,0);
 INSERT INTO `mob_pool_mods` VALUES (733,302,5,0);
