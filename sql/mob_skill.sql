@@ -975,7 +975,7 @@ INSERT INTO `mob_skill` VALUES (367,55,367,'Wing_Cutter', 4, 10.0, 2000, 1500, 4
 -- Birds (COP,TOAU)
 -- INSERT INTO `mob_skill` VALUES (366,55,?,'Helldive', 0, 9.0, 2000, 1500, 4, 0, 0, 1);
 -- INSERT INTO `mob_skill` VALUES (367,55,?,'Wing_Cutter', 4, 10.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (1324,?,343,'Damnation_Dive', 4, 10.0, 2000, 1500, 4, 0, 0, 0);     -- COP/TOAU
+-- INSERT INTO `mob_skill` VALUES (1324,?,343,'Damnation_Dive', 4, 10.0, 2000, 1500, 4, 0, 0, 0);     -- COP/TOAU
 -- INSERT INTO `mob_skill` VALUES (1323,?,342,'Blind_Side_Barrage', 0, 7.0, 2000, 1500, 4, 0, 0, 0);  -- COP/TOAU
 -- INSERT INTO `mob_skill` VALUES (1322,?,341,'Broadside_Barrage', 0, 7.0, 2000, 1500, 4, 0, 0, 0);   -- COP/TOAU
 
