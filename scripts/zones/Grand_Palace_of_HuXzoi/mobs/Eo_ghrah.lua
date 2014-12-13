@@ -8,9 +8,12 @@
 -- Set core Skin and mob elemental bonus
 -- Set to non aggro. 
 -----------------------------------
+
 function onMobSpawn(mob)
-	mob:unsetAggroFlag(0x08);
-	mob:SetLocalVar("form2",math.random(1,3));
+	mob:AnimationSub(0);
+	mob:unsetAggroFlag(8);
+	mob:setLocalVar("roamTime", os.time());
+	mob:setLocalVar("form2",math.random(2,3));
 	local skin = math.random(1161,1168);
 	mob:setModelId(skin);
 	if(skin == 1161) then -- Fire
@@ -42,23 +45,21 @@ end;
 
 function onMobEngage(mob)
 end;
-
 -----------------------------------
 -- OnMobRoam Action
 -- Autochange Aggro and Form
 -----------------------------------
 
-function onMobRoam(mob)
+function OnMobRoam(mob)
 	local roamTime = mob:getLocalVar("roamTime");
 	if(mob:AnimationSub() == 0 and os.time() - roamTime > 60) then
 		mob:AnimationSub(mob:getLocalVar("form2"));
 		mob:setLocalVar("roamTime", os.time());
-		mob:setAggroFlag(0x08);		
-	elseif(mob:AnimationSub() == mob:getLocalVar("form2") and mob:getBattleTime() - roamTime > 60) then
+		mob:setAggroFlag(8);		
+	elseif(mob:AnimationSub() == mob:getLocalVar("form2") and os.time() - roamTime > 60) then
 		mob:AnimationSub(0);
-		mob:unsetAggroFlag(0x08);
+		mob:unsetAggroFlag(8);
 		mob:setLocalVar("roamTime", os.time());
-		end
 	end
 end;
 
