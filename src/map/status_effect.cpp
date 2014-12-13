@@ -130,6 +130,11 @@ void CStatusEffect::SetFlag(uint16 Flag)
     m_Flag |= Flag;
 }
 
+void CStatusEffect::UnsetFlag(uint16 flag)
+{
+    m_Flag &= ~flag;
+}
+
 void CStatusEffect::SetIcon(uint16 Icon)
 {
     DSP_DEBUG_BREAK_IF(m_POwner == NULL);

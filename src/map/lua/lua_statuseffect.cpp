@@ -283,7 +283,7 @@ inline int32 CLuaStatusEffect::addMod(lua_State* L)
 	DSP_DEBUG_BREAK_IF(lua_isnil(L,2) || !lua_isnumber(L,2));
 	
 	m_PLuaStatusEffect->addMod( lua_tointeger(L,1), lua_tointeger(L,2) );
-	return 1;
+	return 0;
 }
 
 //======================================================//
@@ -295,7 +295,17 @@ inline int32 CLuaStatusEffect::setFlag(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     m_PLuaStatusEffect->SetFlag(lua_tonumber(L,1));
-    return 1;
+    return 0;
+}
+
+inline int32 CLuaStatusEffect::unsetFlag(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == NULL);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    m_PLuaStatusEffect->UnsetFlag(lua_tonumber(L, 1));
+    return 0;
 }
 
 //======================================================//
@@ -325,5 +335,6 @@ Lunar<CLuaStatusEffect>::Register_t CLuaStatusEffect::methods[] =
     LUNAR_DECLARE_METHOD(CLuaStatusEffect,setTick),
     LUNAR_DECLARE_METHOD(CLuaStatusEffect,setStartTime),
     LUNAR_DECLARE_METHOD(CLuaStatusEffect,setFlag),
+    LUNAR_DECLARE_METHOD(CLuaStatusEffect,unsetFlag),
 	{NULL,NULL}
 }; 
