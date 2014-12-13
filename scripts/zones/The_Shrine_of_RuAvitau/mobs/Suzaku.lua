@@ -9,7 +9,12 @@
 
 function OnMobSpawn(mob)
 end;
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
+function onMobDeath(mob, killer)
+end;
 -----------------------------------
 -- onMonsterMagicPrepare
 -----------------------------------
