@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
  
-	if(npc:getID() == 16912907) then
+	if(npc:getID() == 16912908) then
 		player:startEvent(0x009F);
 	else
 		player:startEvent(0x00A0);   
