@@ -2,7 +2,7 @@
 -- Area: Grand Palace of Hu'Xzoi
 -- MOB:  Eo'ghrah
 -----------------------------------
-
+require("scripts/globals/status");
 -----------------------------------
 -- OnMobSpawn Action
 -- Set core Skin and mob elemental bonus
