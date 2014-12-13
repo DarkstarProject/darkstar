@@ -705,6 +705,7 @@ public:
 	CBattleEntity* GetOwner();
 
     void    SetFlag(uint16 Flag);
+    void    UnsetFlag(uint16 Flag);
     void    SetType(uint16 Type);
     void    SetIcon(uint16 Icon);
 	void	SetPower(uint16 Power);

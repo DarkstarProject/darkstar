@@ -71,6 +71,7 @@ public:
 
 	int32 addMod(lua_State*);
     int32 setFlag(lua_State*);
+    int32 unsetFlag(lua_State*);
 };
 
 #endif
