@@ -2,7 +2,7 @@
 -- Area: The Garden of Ru'Hmet
 -- MOB:  Aw'ghrah
 -----------------------------------
-
+require("scripts/globals/status");
 -----------------------------------
 -- OnMobSpawn Action
 -- Set core Skin and mob elemental bonus
@@ -23,7 +23,7 @@ function onMobSpawn(mob)
 		mob:addMod(MOD_THUNDERRES, 27);
 		mob:addMod(MOD_WINDRES, -27);
 	elseif(skin == 1162) then -- Water
-		mob:addMod(MOD_FIRERRES, 27);
+		mob:addMod(MOD_FIRERES, 27);
 		mob:addMod(MOD_THUNDERRES, -27);
 	elseif(skin == 1163) then -- Wind
 		mob:addMod(MOD_EARTHRES, 27);
@@ -32,7 +32,7 @@ function onMobSpawn(mob)
 		mob:addMod(MOD_WINDRES, 27);
 		mob:addMod(MOD_FIRERES, -27);
 	elseif(skin == 1165) then --Lightning
-		mob:addMod(MOD_WATERRRES, 27);
+		mob:addMod(MOD_WATERRES, 27);
 		mob:addMod(MOD_EARTHRES, -27);
 	elseif(skin == 1167) then --Light
 		mob:addMod(MOD_LIGHTRES, 27);
