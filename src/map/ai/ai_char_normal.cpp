@@ -1105,6 +1105,7 @@ void CAICharNormal::ActionRangedFinish()
 					{
 						uint8 slot = m_PChar->equip[SLOT_AMMO];
 						charutils::UnequipItem(m_PChar,SLOT_AMMO);
+                        charutils::SaveCharEquip(m_PChar);
 						charutils::UpdateItem(m_PChar, m_PChar->equipLoc[SLOT_AMMO], slot, -1);
 						i = hitCount; // end loop (if barrage), player is out of ammo
 						PAmmo = NULL;
@@ -1951,6 +1952,7 @@ void CAICharNormal::ActionJobAbilityFinish()
     			{
     				uint8 slot = m_PChar->equip[SLOT_AMMO];
     				charutils::UnequipItem(m_PChar,SLOT_AMMO);
+                    charutils::SaveCharEquip(m_PChar);
 					charutils::UpdateItem(m_PChar, m_PChar->equipLoc[SLOT_AMMO], slot, -1);
     			}
     			else
@@ -2164,27 +2166,36 @@ void CAICharNormal::ActionJobAbilityFinish()
 
         // TODO: все перенести в скрипты, т.к. система позволяет получать указатель на питомца
 
-    	if(m_PJobAbility->getID() == ABILITY_CALL_BEAST || m_PJobAbility->getID() == ABILITY_REWARD ||
-            (m_PJobAbility->getID() >= ABILITY_FIRE_SHOT && m_PJobAbility->getID() <= ABILITY_DARK_SHOT )){
-			charutils::UpdateItem(m_PChar, m_PChar->equipLoc[SLOT_AMMO], m_PChar->equip[SLOT_AMMO], -1);
-            if (m_PJobAbility->getID() >= ABILITY_FIRE_SHOT && m_PJobAbility->getID() <= ABILITY_DARK_SHOT )
+        if (m_PJobAbility->getID() == ABILITY_CALL_BEAST || m_PJobAbility->getID() == ABILITY_REWARD)
+        {
+            CItemArmor* PAmmo = m_PChar->getEquip(SLOT_AMMO);
+            uint8 slot = m_PChar->equip[SLOT_AMMO];
+            if (PAmmo->getQuantity() == 1)
             {
-                CItemContainer* inventory = m_PChar->getStorage(LOC_INVENTORY);
-                uint8 slotID = inventory->SearchItem(2176 + m_PJobAbility->getID() - ABILITY_FIRE_SHOT); //Elemental Card
-
-                if (slotID != ERROR_SLOTID)
-                {
-                    charutils::UpdateItem(m_PChar, LOC_INVENTORY, slotID, -1);
-                }
-                else
-                {
-                    slotID = inventory->SearchItem(2974); //Trump Card
-                    DSP_DEBUG_BREAK_IF(slotID == ERROR_SLOTID);
-                    charutils::UpdateItem(m_PChar, LOC_INVENTORY, slotID, -1);
-                }
+                charutils::UnequipItem(m_PChar, SLOT_AMMO);
+                charutils::SaveCharEquip(m_PChar);
             }
-    		m_PChar->pushPacket(new CInventoryFinishPacket());
-    	}
+            charutils::UpdateItem(m_PChar, m_PChar->equipLoc[SLOT_AMMO], slot, -1);
+            m_PChar->pushPacket(new CInventoryFinishPacket());
+        }
+
+        if (m_PJobAbility->getID() >= ABILITY_FIRE_SHOT && m_PJobAbility->getID() <= ABILITY_DARK_SHOT )
+        {
+            CItemContainer* inventory = m_PChar->getStorage(LOC_INVENTORY);
+            uint8 slotID = inventory->SearchItem(2176 + m_PJobAbility->getID() - ABILITY_FIRE_SHOT); //Elemental Card
+
+            if (slotID != ERROR_SLOTID)
+            {
+                charutils::UpdateItem(m_PChar, LOC_INVENTORY, slotID, -1);
+            }
+            else
+            {
+                slotID = inventory->SearchItem(2974); //Trump Card
+                DSP_DEBUG_BREAK_IF(slotID == ERROR_SLOTID);
+                charutils::UpdateItem(m_PChar, LOC_INVENTORY, slotID, -1);
+            }
+            m_PChar->pushPacket(new CInventoryFinishPacket());
+        }
 
     	if(m_PJobAbility->getID() == ABILITY_SIC && m_PChar->PPet != NULL){//Sic
 
@@ -2626,6 +2637,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 			{
 				uint8 slot = m_PChar->equip[SLOT_AMMO];
 				charutils::UnequipItem(m_PChar,SLOT_AMMO);
+                charutils::SaveCharEquip(m_PChar);
 				charutils::UpdateItem(m_PChar, m_PChar->equipLoc[SLOT_AMMO], slot, -1);
 			}
 			else
