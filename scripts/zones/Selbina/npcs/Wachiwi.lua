@@ -1,20 +1,20 @@
 -----------------------------------
--- Area: Aht Urhgan Whitegate
--- NPC: Sajaaya
+-- Area: Selbina
+-- NPC: Wachiwi
 -- Type: Weather Reporter
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+require("scripts/zones/Selbina/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end; 
 
 -----------------------------------
 -- onTrigger Action
@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
     player:startEvent(0x01F6,0,0,0,0,0,0,0,VanadielTime());
-end;
+end; 
 
 -----------------------------------
 -- onEventUpdate
