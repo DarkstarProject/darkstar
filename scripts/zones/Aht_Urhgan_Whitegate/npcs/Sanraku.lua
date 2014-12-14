@@ -70,7 +70,7 @@ function onTrigger(player,npc)
 		if(player:hasKeyItem(APPLE_GREEN_SEAL)) then
 			param = param - 0x1C0; -- unlocks Tinnin path tier 3 ZNMs.
 		end;
-		if(player:hasKeyItem(CHARCOAL_GREY_SEAL) or player:hasKeyItem(DEEP_PURPLE_SEAL) or player:hasKeyItem(CHESTNUT_COLORED_SEAL)) then
+		if(player:hasKeyItem(CHARCOAL_GREY_SEAL) and player:hasKeyItem(DEEP_PURPLE_SEAL) and player:hasKeyItem(CHESTNUT_COLORED_SEAL)) then
 			param = param - 0x200; -- unlocks Tinnin.
 		end;
 		-- Sarameya Path
@@ -80,7 +80,7 @@ function onTrigger(player,npc)
 		if(player:hasKeyItem(SALMON_COLORED_SEAL)) then
 			param = param - 0x70000; -- unlocks Sarameya path tier 3 ZNMs.
 		end;
-		if(player:hasKeyItem(PURPLISH_GREY_SEAL) or player:hasKeyItem(GOLD_COLORED_SEAL) or player:hasKeyItem(COPPER_COLORED_SEAL)) then
+		if(player:hasKeyItem(PURPLISH_GREY_SEAL) and player:hasKeyItem(GOLD_COLORED_SEAL) and player:hasKeyItem(COPPER_COLORED_SEAL)) then
 			param = param - 0x80000; -- unlocks Sarameya.
 		end;
 		-- Tyger Path
@@ -90,7 +90,7 @@ function onTrigger(player,npc)
 		if(player:hasKeyItem(AMBER_COLORED_SEAL)) then
 			param = param - 0x1C000000; -- unlocks Tyger path tier 3 ZNMs.
 		end;
-		if(player:hasKeyItem(TAUPE_COLORED_SEAL) or player:hasKeyItem(FALLOW_COLORED_SEAL) or player:hasKeyItem(SIENNA_COLORED_SEAL)) then
+		if(player:hasKeyItem(TAUPE_COLORED_SEAL) and player:hasKeyItem(FALLOW_COLORED_SEAL) and player:hasKeyItem(SIENNA_COLORED_SEAL)) then
 			param = param - 0x20000000; -- unlocks Tyger.
 		end;
 
