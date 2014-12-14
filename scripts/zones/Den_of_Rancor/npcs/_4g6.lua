@@ -25,7 +25,7 @@ function onTrade(player,npc,trade)
 		if (LSE == 8) then
 			player:messageSpecial(LANTERN_OFFSET + 7); -- already lit
 		elseif(LSE == 9)then
-			npc:openDoor(300);
+			npc:openDoor(LANTERNS_STAY_LIT);
 			local ALL = LNW+LNE+LSW;
 			player:tradeComplete();
 			player:addItem(1138); -- Unlit Lantern
