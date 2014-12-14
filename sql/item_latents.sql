@@ -2272,14 +2272,14 @@ INSERT INTO `item_latents` VALUES(13652, 161, -6, 26, 1);
 -- -------------------------------------------------------
 -- Kingdom Aketon
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(14428, 169, 12, 54, 0);
+INSERT INTO `item_latents` VALUES(14428, 169, 12, 54, 19);
 
 -- -------------------------------------------------------
 -- Republic Aketon
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(14429, 169, 12, 54, 0);
+INSERT INTO `item_latents` VALUES(14429, 169, 12, 54, 20);
 
 -- -------------------------------------------------------
 -- Federation Aketon
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(14430, 169, 12, 54, 0);
+INSERT INTO `item_latents` VALUES(14430, 169, 12, 54, 21);
