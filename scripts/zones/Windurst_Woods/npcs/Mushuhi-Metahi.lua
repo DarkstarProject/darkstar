@@ -1,27 +1,27 @@
 -----------------------------------
--- Area: Aht Urhgan Whitegate
--- NPC: Sajaaya
+-- Area: Windurst Woods
+-- NPC: Mushuhi-Metahi
 -- Type: Weather Reporter
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end; 
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x01F6,0,0,0,0,0,0,0,VanadielTime());
+     player:startEvent(0x82718,0,0,0,0,0,0,0,VanadielTime());
 end;
 
 -----------------------------------

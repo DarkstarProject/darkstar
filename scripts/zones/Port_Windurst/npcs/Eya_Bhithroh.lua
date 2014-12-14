@@ -1,28 +1,28 @@
 -----------------------------------
--- Area: Aht Urhgan Whitegate
--- NPC: Sajaaya
+-- Area: Port Windurst
+-- NPC: Eya Bhithroh
 -- Type: Weather Reporter
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+require("scripts/zones/Port_Windurst/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end; 
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x01F6,0,0,0,0,0,0,0,VanadielTime());
-end;
+    player:startEvent(0x82716,0,0,0,0,0,0,0,VanadielTime());
+end; 
 
 -----------------------------------
 -- onEventUpdate
