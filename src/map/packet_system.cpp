@@ -3014,13 +3014,13 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, int8* dat
         case 1: // linkshell
         {
             // Ensure the player has a linkshell equipped..
-            CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK);
-            if (PChar->PLinkshell && PItemLinkshell)
+            CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK1);
+            if (PChar->PLinkshell1 && PItemLinkshell)
             {
                 int8 packetData[29];
                 WBUFL(packetData, 0) = PChar->id;
                 memcpy(packetData + 0x04, data + 0x0C, 20);
-                WBUFL(packetData, 24) = PChar->PLinkshell->getID();
+                WBUFL(packetData, 24) = PChar->PLinkshell1->getID();
                 WBUFB(packetData, 28) = PItemLinkshell->GetLSType();
                 message::send(MSG_LINKSHELL_REMOVE, packetData, sizeof packetData, NULL);
             }
@@ -3186,12 +3186,12 @@ void SmallPacket0x077(map_session_data_t* session, CCharEntity* PChar, int8* dat
 		break;
         case 1: // linkshell
         {
-            if (PChar->PLinkshell != NULL)
+            if (PChar->PLinkshell1 != NULL)
             {
                 int8 packetData[29];
                 WBUFL(packetData, 0) = PChar->id;
                 memcpy(packetData + 0x04, data + 0x04, 20);
-                WBUFL(packetData, 24) = PChar->PLinkshell->getID();
+                WBUFL(packetData, 24) = PChar->PLinkshell1->getID();
                 WBUFB(packetData, 28) = RBUFB(data, 0x15);
                 message::send(MSG_LINKSHELL_RANK_CHANGE, packetData, sizeof packetData, NULL);
             }
@@ -3576,10 +3576,10 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
 				break;
                 case MESSAGE_LINKSHELL:
                 {
-                    if (PChar->PLinkshell != NULL)
+                    if (PChar->PLinkshell1 != NULL)
                     {
 						int8 packetData[8];
-						WBUFL(packetData, 0) = PChar->PLinkshell->getID();
+						WBUFL(packetData, 0) = PChar->PLinkshell1->getID();
 						WBUFL(packetData, 4) = PChar->id;
                         message::send(MSG_CHAT_LINKSHELL, packetData, sizeof packetData, new CChatMessagePacket(PChar, MESSAGE_LINKSHELL, data + 6));
 
@@ -3596,6 +3596,27 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     }
                 }
                 break;
+                case MESSAGE_LINKSHELL2:
+                {
+                    if (PChar->PLinkshell2 != NULL)
+                    {
+                        int8 packetData[8];
+                        WBUFL(packetData, 0) = PChar->PLinkshell2->getID();
+                        WBUFL(packetData, 4) = PChar->id;
+                        message::send(MSG_CHAT_LINKSHELL, packetData, sizeof packetData, new CChatMessagePacket(PChar, MESSAGE_LINKSHELL2, data + 6));
+
+                        if (map_config.audit_chat == 1 && map_config.audit_linkshell == 1)
+                        {
+                            std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
+                            qStr += PChar->GetName();
+                            qStr += "','LINKSHELL','";
+                            qStr += escape(data + 6);
+                            qStr += "',current_timestamp());";
+                            const char * cC = qStr.c_str();
+                            Sql_QueryStr(SqlHandle, cC);
+                        }
+                    }
+                }
 				case MESSAGE_PARTY:
                 {
                     if (PChar->PParty != NULL)
@@ -3769,7 +3790,7 @@ void SmallPacket0x0BE(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x0C3(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK);
+    CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK1);
 
     if (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL))
     {
@@ -3848,8 +3869,8 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
                     PItemLinkshell->setSubType(ITEM_UNLOCKED);
 
-                    PChar->equip[SLOT_LINK] = 0;
-					PChar->equipLoc[SLOT_LINK] = 0;
+                    PChar->equip[SLOT_LINK1] = 0;
+					PChar->equipLoc[SLOT_LINK1] = 0;
                     PChar->nameflags.flags &= ~FLAG_LINKSHELL;
 
                     PChar->pushPacket(new CInventoryAssignPacket(PItemLinkshell, INV_NORMAL));
@@ -3862,9 +3883,9 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
                         PChar->pushPacket(new CMessageSystemPacket(0,0,110));
                         return;
                     }
-                    if (PChar->PLinkshell != NULL) // switching linkshell group
+                    if (PChar->PLinkshell1 != NULL) // switching linkshell group
                     {
-                        CItemLinkshell* POldItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK);
+                        CItemLinkshell* POldItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK1);
 
                         if (POldItemLinkshell != NULL && POldItemLinkshell->isType(ITEM_LINKSHELL))
                         {
@@ -3878,8 +3899,8 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
                     PItemLinkshell->setSubType(ITEM_LOCKED);
 
-                    PChar->equip[SLOT_LINK] = SlotID;
-					PChar->equipLoc[SLOT_LINK] = LOC_INVENTORY;
+                    PChar->equip[SLOT_LINK1] = SlotID;
+					PChar->equipLoc[SLOT_LINK1] = LOC_INVENTORY;
                     PChar->nameflags.flags |= FLAG_LINKSHELL;
 
                     PChar->pushPacket(new CInventoryAssignPacket(PItemLinkshell, INV_LINKSHELL));
@@ -3891,7 +3912,7 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
             if (PChar->status == STATUS_NORMAL) PChar->status = STATUS_UPDATE;
 
-            PChar->pushPacket(new CLinkshellEquipPacket(PChar));
+            PChar->pushPacket(new CLinkshellEquipPacket(PChar, 1));
             PChar->pushPacket(new CInventoryItemPacket(PItemLinkshell, LOC_INVENTORY, SlotID));
         }
         PChar->pushPacket(new CInventoryFinishPacket());
@@ -4200,9 +4221,9 @@ void SmallPacket0x0E0(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x0E1(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    if (PChar->PLinkshell != NULL)
+    if (PChar->PLinkshell1 != NULL)
     {
-        PChar->pushPacket(new CLinkshellMessagePacket(PChar->PLinkshell));
+        PChar->pushPacket(new CLinkshellMessagePacket(PChar->PLinkshell1));
     }
     return;
 }
@@ -4215,9 +4236,9 @@ void SmallPacket0x0E1(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 void SmallPacket0x0E2(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK);
+    CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK1);
 
-    if (PChar->PLinkshell != NULL && (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL)))
+    if (PChar->PLinkshell1 != NULL && (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL)))
     {
         switch (RBUFB(data,(0x04)) & 0xF0) // назначение первых бит пока неизвестно
         {
@@ -4238,14 +4259,14 @@ void SmallPacket0x0E2(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
                     const int8* Query = "UPDATE linkshells SET poster = '%s', message = '%s', messagetime = %u WHERE linkshellid = %u LIMIT 1";
 
-                    if (Sql_Query(SqlHandle, Query, PChar->GetName(), sqlMessage, MessageTime, PChar->PLinkshell->getID()) != SQL_ERROR &&
+                    if (Sql_Query(SqlHandle, Query, PChar->GetName(), sqlMessage, MessageTime, PChar->PLinkshell1->getID()) != SQL_ERROR &&
                         Sql_AffectedRows(SqlHandle) != 0)
                     {
-                        PChar->PLinkshell->setPoster((int8*)PChar->GetName());
-                        PChar->PLinkshell->setMessage((int8*)Message.c_str());
-                        PChar->PLinkshell->setMessageTime(MessageTime);
+                        PChar->PLinkshell1->setPoster((int8*)PChar->GetName());
+                        PChar->PLinkshell1->setMessage((int8*)Message.c_str());
+                        PChar->PLinkshell1->setMessageTime(MessageTime);
 
-                        PChar->PLinkshell->PushPacket(0, new CLinkshellMessagePacket(PChar->PLinkshell));
+                        PChar->PLinkshell1->PushPacket(0, new CLinkshellMessagePacket(PChar->PLinkshell1));
                         return;
                     }
                 }

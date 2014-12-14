@@ -949,7 +949,8 @@ void LoadInventory(CCharEntity* PChar)
 	if (ret != SQL_ERROR &&
 		Sql_NumRows(SqlHandle) != 0)
 	{
-		CItemLinkshell* PLinkshell = NULL;
+		CItemLinkshell* PLinkshell1 = NULL;
+        CItemLinkshell* PLinkshell2 = NULL;
 
 		while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		{
@@ -958,21 +959,26 @@ void LoadInventory(CCharEntity* PChar)
 			else
 			{
 				uint8 SlotID = Sql_GetUIntData(SqlHandle, 0);
+                uint8 equipSlot = Sql_GetUIntData(SqlHandle, 1);
 				CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
 
 				if ((PItem != NULL) && PItem->isType(ITEM_LINKSHELL))
 				{
 					PItem->setSubType(ITEM_LOCKED);
-					PChar->equip[SLOT_LINK] = SlotID;
-					PChar->equipLoc[SLOT_LINK] = LOC_INVENTORY;
+					PChar->equip[equipSlot] = SlotID;
+                    PChar->equipLoc[equipSlot] = LOC_INVENTORY;
 					PLinkshell = (CItemLinkshell*)PItem;
 				}
 			}
 		}
-		if (PLinkshell)
+		if (PLinkshell1)
 		{
-			linkshell::AddOnlineMember(PChar, PLinkshell);
+			linkshell::AddOnlineMember(PChar, PLinkshell1);
 		}
+        if (PLinkshell2)
+        {
+            linkshell::AddOnlineMember(PChar, PLinkshell2);
+        }
 	}
     else
     {
@@ -1084,15 +1090,26 @@ void SendInventory(CCharEntity* PChar)
 		}
 	}
 
-    CItem* PItem = PChar->getEquip(SLOT_LINK);
+    CItem* PItem = PChar->getEquip(SLOT_LINK1);
     if (PItem != NULL)
     {
         PItem->setSubType(ITEM_LOCKED);
 
         PChar->nameflags.flags |= FLAG_LINKSHELL;
-        PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_INVENTORY, PChar->equip[SLOT_LINK]));
+        PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_INVENTORY, PChar->equip[SLOT_LINK1]));
 		PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_LINKSHELL));
-        PChar->pushPacket(new CLinkshellEquipPacket(PChar));
+        PChar->pushPacket(new CLinkshellEquipPacket(PChar,1));
+    }
+
+    CItem* PItem = PChar->getEquip(SLOT_LINK2);
+    if (PItem != NULL)
+    {
+        PItem->setSubType(ITEM_LOCKED);
+
+        PChar->nameflags.flags |= FLAG_LINKSHELL;
+        PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_INVENTORY, PChar->equip[SLOT_LINK2]));
+        PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_LINKSHELL));
+        PChar->pushPacket(new CLinkshellEquipPacket(PChar, 2));
     }
 	PChar->pushPacket(new CInventoryFinishPacket());
 }

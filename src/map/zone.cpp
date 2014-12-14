@@ -892,10 +892,14 @@ void CZone::CharZoneOut(CCharEntity* PChar)
         PChar->PParty->PopMember(PChar);
     }
 
-    if (PChar->PLinkshell != NULL)
+    if (PChar->PLinkshell1 != NULL)
     {
-        // удаляем персонажа из linkshell
-        PChar->PLinkshell->DelMember(PChar);
+        PChar->PLinkshell1->DelMember(PChar);
+    }
+
+    if (PChar->PLinkshell2 != NULL)
+    {
+        PChar->PLinkshell2->DelMember(PChar);
     }
 
 	//remove status effects that wear on zone
