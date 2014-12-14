@@ -1534,8 +1534,7 @@ void CLatentEffectContainer::CheckLatentsZone()
                 continue;
             }
 
-            uint16 zone = m_LatentEffectList.at(i)->GetConditionsValue();
-            CZone* PZone = zoneutils::GetZone(zone);
+            CZone* PZone = m_POwner->loc.zone;
 
             bool ActivateLatent = false;
 
