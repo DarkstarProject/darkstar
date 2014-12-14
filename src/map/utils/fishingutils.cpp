@@ -57,10 +57,9 @@ uint16 MessageOffset[MAX_ZONEID];
 
 void LoadFishingMessages()
 {
-    for (uint16 ZoneID = 0; ZoneID < ARRAYLENGTH(MessageOffset); ZoneID++)
-    {
-        //MessageOffset[ZoneID] = luautils::GetTextIDVariable(ZoneID, "FISHING_MESSAGE_OFFSET");
-    }
+    zoneutils::ForEachZone([](CZone* PZone){
+        MessageOffset[PZone->GetID()] = luautils::GetTextIDVariable(PZone->GetID(), "FISHING_MESSAGE_OFFSET");
+    });
 }
 
 /************************************************************************
@@ -69,7 +68,7 @@ void LoadFishingMessages()
 *																		*
 ************************************************************************/
 
-uint16 GetMessageOffset(uint8 ZoneID)
+uint16 GetMessageOffset(uint16 ZoneID)
 {
 	return MessageOffset[ZoneID];
 }
