@@ -124,8 +124,8 @@ CCheckPacket::CCheckPacket(CCharEntity* PChar, CCharEntity* PTarget)
 	{
 		WBUFB(data,(0x12)-4) = PTarget->GetMJob();
 		WBUFB(data,(0x13)-4) = PTarget->GetSJob();
-		WBUFB(data,(0x23)-4) = PTarget->GetMLevel();
-		WBUFB(data,(0x24)-4) = PTarget->GetSLevel();
+		WBUFB(data,(0x24)-4) = PTarget->GetMLevel();
+		WBUFB(data,(0x25)-4) = PTarget->GetSLevel();
 	}
 
 	//Chevron 32 bit Big Endean, starting at 0x2B
