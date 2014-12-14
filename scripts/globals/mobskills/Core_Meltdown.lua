@@ -10,7 +10,7 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function OnMobSkillCheck(target,mob,skill)
-    if(mob:isMobType(MOBTYPE_NOTORIOUS)) then
+    if(mob:isMobType(MOBTYPE_NOTORIOUS) and mob:AnimationSub ~= 0) then
         return 1;
     end
     return 0;
