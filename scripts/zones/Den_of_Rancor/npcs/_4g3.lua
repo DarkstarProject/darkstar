@@ -14,59 +14,56 @@ require("scripts/zones/Den_of_Rancor/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	local Lantern_ID = 17433044
+	local LSW = GetNPCByID(Lantern_ID):getAnimation();
+	local LNW = GetNPCByID(Lantern_ID+1):getAnimation();
+	local LNE = GetNPCByID(Lantern_ID+2):getAnimation();
+	local LSE = GetNPCByID(Lantern_ID+3):getAnimation(); 
+
 	
-	-- Trade Crimson Rancor Flame
+-- Trade Crimson Rancor Flame
 	if(trade:hasItemQty(1139,1) and trade:getItemCount() == 1) then
-		sw = os.time() - GetServerVariable("[LANTERN]_rancor_sw_last_lit");
-		if(sw <= LANTERNS_STAY_LIT) then
-			player:messageSpecial(LANTERN_OFFSET + 7); -- the lantern is already lit
-		else
+		if (LSW == 8) then
+			player:messageSpecial(LANTERN_OFFSET + 7); -- already lit
+		elseif(LSW == 9)then
+			npc:openDoor(LANTERNS_STAY_LIT);
+		local ALL = LNW+LNE+LSE;
 			player:tradeComplete();
 			player:addItem(1138); -- Unlit Lantern
-			--GetNPCByID(17433046):lightFor(LANTERNS_STAY_LIT); -- Light the lantern for x sec
-			SetServerVariable("[LANTERN]_rancor_sw_last_lit",os.time());
-			ne = os.time() - GetServerVariable("[LANTERN]_rancor_ne_last_lit");
-			nw = os.time() - GetServerVariable("[LANTERN]_rancor_nw_last_lit");
-			se = os.time() - GetServerVariable("[LANTERN]_rancor_se_last_lit");
-			number_of_lit_lanterns = 1;
-			if(ne <= LANTERNS_STAY_LIT) then
-				number_of_lit_lanterns = number_of_lit_lanterns + 1;
+			if ALL == 27 then
+				player:messageSpecial(LANTERN_OFFSET + 9);
+			elseif ALL == 26 then
+				player:messageSpecial(LANTERN_OFFSET + 10); 
+			elseif ALL == 25 then
+				player:messageSpecial(LANTERN_OFFSET + 11); 
+			elseif ALL == 24 then
+				player:messageSpecial(LANTERN_OFFSET + 12); 
+				GetNPCByID(Lantern_ID+3):closeDoor(1);
+				GetNPCByID(Lantern_ID+2):closeDoor(1);
+				GetNPCByID(Lantern_ID+1):closeDoor(1);
+				GetNPCByID(Lantern_ID):closeDoor(1);
+
+				GetNPCByID(Lantern_ID+4):openDoor(30);
+				GetNPCByID(Lantern_ID+3):openDoor(30);
+				GetNPCByID(Lantern_ID+2):openDoor(30);
+				GetNPCByID(Lantern_ID+1):openDoor(30);
+				GetNPCByID(Lantern_ID):openDoor(30);
 			end
-			if(nw <= LANTERNS_STAY_LIT) then
-				number_of_lit_lanterns = number_of_lit_lanterns + 1;
-			end
-			if(se <= LANTERNS_STAY_LIT) then
-				number_of_lit_lanterns = number_of_lit_lanterns + 1;
-			end;
-			if(number_of_lit_lanterns == 1) then
-				player:messageSpecial(LANTERN_OFFSET + 9); -- the first lantern is lit
-			elseif(number_of_lit_lanterns == 2) then
-				player:messageSpecial(LANTERN_OFFSET + 10); -- the second lantern is lit
-			elseif(number_of_lit_lanterns == 3) then
-				player:messageSpecial(LANTERN_OFFSET + 11); -- the third lantern is lit
-			elseif(number_of_lit_lanterns == 4) then
-				player:messageSpecial(LANTERN_OFFSET + 12); -- All the lanterns are lit
-				timeGateOpened = math.min(LANTERNS_STAY_LIT - ne,LANTERNS_STAY_LIT - nw,LANTERNS_STAY_LIT - se);
-				GetNPCByID(17433052):openDoor(timeGateOpened); -- drop gate to Sacrificial Chamber   
-			end;
 		end
 	end
+end;
 
-end; 
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-
-	sw = os.time() - GetServerVariable("[LANTERN]_rancor_sw_last_lit");
-	if(sw <= LANTERNS_STAY_LIT) then
-		player:messageSpecial(LANTERN_OFFSET + 7); -- The lantern is already lit.
+	local npca = npc:getAnimation()
+	if (npca == 8) then
+		player:messageSpecial(LANTERN_OFFSET + 7); -- already lit
 	else
-		player:messageSpecial(LANTERN_OFFSET + 20); -- The flames of rancor have burned out.
+		player:messageSpecial(LANTERN_OFFSET + 20); -- unlit
 	end
-	
-	return 0;
-
+return 0;
 end;
