@@ -29,15 +29,15 @@ This file is part of DarkStar-server source code.
 
 class CBasicPacket;
 
+struct chat_message_t
+{
+    zmq::message_t* type;
+    zmq::message_t* data;
+    zmq::message_t* packet;
+};
+
 namespace message
 {
-	extern zmq::context_t zContext;
-	extern zmq::socket_t* zSocket;
-	extern Sql_t* ChatSqlHandle;
-
 	void init(const char* chatIp, uint16 chatPort);
-
-	void listen();
-    void parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_t* packet);
     void send(MSGSERVTYPE type, void* data, size_t datalen, CBasicPacket* packet);
 };
