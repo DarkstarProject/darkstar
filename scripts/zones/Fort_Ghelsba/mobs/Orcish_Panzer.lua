@@ -16,6 +16,6 @@ function onMobDeath(mob,killer)
         GetMobByID(Chariotbuster):setPos( mob:getXPos(), mob:getYPos(), mob:getZPos(), 0);
     else -- Not NM time yet, so spawn normal Orcish Fighter instead
         SpawnMob(OrcFighter,600):updateEnmity(killer);
-        GetMobByID(GetMobByIDOrcFighter):setPos( mob:getXPos(), mob:getYPos(), mob:getZPos(), 0);
+        GetMobByID(OrcFighter):setPos( mob:getXPos(), mob:getYPos(), mob:getZPos(), 0);
     end
 end;
