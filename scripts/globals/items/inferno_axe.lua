@@ -1,9 +1,7 @@
 -----------------------------------------
--- ID: 6430
--- Item: Koen
+-- ID: 16709
+-- Item: Inferno Axe
 -- Additional Effect: Fire Damage
--- Enchantment: "Enfire"
--- Charges: 30 Reuse: 300 Secs
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -19,7 +17,7 @@ function onAdditionalEffect(player,target,damage)
     if (math.random(0,99) >= chance) then
         return 0,0,0;
     else
-        local dmg = math.random(4,19);
+        local dmg = math.random(3,10);
         local params = {};
         params.bonusmab = 0;
         params.includemab = false;
@@ -35,21 +33,4 @@ function onAdditionalEffect(player,target,damage)
 
         return SUBEFFECT_FIRE_DAMAGE,message,dmg;
     end
-end;
-
------------------------------------------
--- OnItemCheck
------------------------------------------
-
-function onItemCheck(target)
-    return 0;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
-
-function onItemUse(target)
-    effect = EFFECT_ENFIRE;
-    doEnspell(target,target,nil,effect);
 end;

@@ -1,8 +1,8 @@
 -----------------------------------------
--- ID: 16613
--- Spirit Sword
--- Additional effect: Light damage
--- Enchantment: TP+100
+-- ID: 18392
+-- Item: Sacred Maul
+-- Additional Effect: Light Damage
+-- Enchantment: "Enlight"
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -41,11 +41,7 @@ end;
 -----------------------------------------
 
 function onItemCheck(target)
-    local result = 0;
-    if (target:getFreeSlotsCount() == 0) then
-        result = 308;
-    end
-    return result;
+    return 0;
 end;
 
 -----------------------------------------
@@ -53,5 +49,6 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    target:addTP(10); -- Core currently makes this *10 stated value, so its 100...
+    local effect = EFFECT_ENLIGHT;
+    doEnspell(target,target,nil,effect);
 end;
