@@ -85,16 +85,16 @@ INSERT INTO `mob_skill` VALUES (2,206,2,'Dust_Cloud', 4, 10.0, 2000, 1500, 4, 0,
 INSERT INTO `mob_skill` VALUES (3,206,3,'Whirl_Claws', 1, 5.0, 2000, 1500, 4, 0, 0, 0);
 
 -- Rabbits With Cure
-INSERT INTO `mob_skill` VALUES (1,701,1,'Foot_Kick', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (2,701,2,'Dust_Cloud', 4, 10.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (3,701,3,'Whirl_Claws', 1, 5.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (67, 701, 37, 'Wild_Carrot', 0, 20.0, 2000, 1500, 1, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1,494,1,'Foot_Kick', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (2,494,2,'Dust_Cloud', 4, 10.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (3,494,3,'Whirl_Claws', 1, 5.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (67,494,37,'Wild_Carrot', 0, 20.0, 2000, 1500, 1, 0, 0, 0);
 
 -- Rabbits (Snowy)
-INSERT INTO `mob_skill` VALUES (1,702,1,'Foot_Kick', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (3,702, 3,'Whirl_Claws', 1, 5.0, 2000, 1500, 4, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (67, 702, 37, 'Wild_Carrot', 0, 20.0, 2000, 1500, 1, 0, 0, 0);
-INSERT INTO `mob_skill` VALUES (405, 702, 970, 'Snow_Cloud', 4, 10.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (1,495,1,'Foot_Kick', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (3,495,3,'Whirl_Claws', 1, 5.0, 2000, 1500, 4, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (67,495,37,'Wild_Carrot', 0, 20.0, 2000, 1500, 1, 0, 0, 0);
+INSERT INTO `mob_skill` VALUES (405,495,970,'Snow_Cloud', 4, 10.0, 2000, 1500, 4, 0, 0, 0);
 
 -- Rabbits (nm or abyssea area?)
 -- INSERT INTO `mob_skill` VALUES (1311,?,?,'Foot_Kick', 0, 7.0, 2000, 1500, 4, 0, 0, 0);
