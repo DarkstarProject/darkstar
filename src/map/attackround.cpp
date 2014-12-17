@@ -39,7 +39,12 @@ CAttackRound::CAttackRound(CBattleEntity* attacker)
 	m_zanshinOccured = false;
 	m_sataOccured = false;
 	m_missOccured = false;
-	m_subWeaponType = attacker->m_Weapons[SLOT_SUB]->getDmgType();
+    m_subWeaponType = 0;
+
+    if (attacker->m_Weapons[SLOT_SUB]->isType(ITEM_WEAPON))
+    {
+        m_subWeaponType = attacker->m_Weapons[SLOT_SUB]->getDmgType();
+    }
 
 	// Grab a trick attack assistant.
 	m_taEntity = battleutils::getAvailableTrickAttackChar(attacker, attacker->PBattleAI->GetBattleTarget());
