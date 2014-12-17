@@ -10,7 +10,7 @@
 require("scripts/globals/status");
 
 -----------------------------------
--- OnMobSpawn Action
+-- onMobSpawn Action
 -- Set AnimationSub to 0, put it in pot form
 -----------------------------------
 function onMobSpawn(mob)

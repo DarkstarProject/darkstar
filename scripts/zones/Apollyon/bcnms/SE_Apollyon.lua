@@ -6,13 +6,13 @@ require("scripts/globals/limbus");
 require("scripts/globals/keyitems");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function OnBcnmRegister(player,instance)
+function onBcnmRegister(player,instance)
 	SetServerVariable("[SE_Apollyon]UniqueID",GenerateLimbusKey());
 	HideArmouryCrates(GetInstanceRegion(1293),APPOLLYON_SE_NE);
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
-function OnBcnmEnter(player,instance)
+function onBcnmEnter(player,instance)
 	player:setVar("limbusbitmap",0);
 	player:setVar("characterLimbusKey",GetServerVariable("[SE_Apollyon]UniqueID"));
 	player:setVar("LimbusID",1293);	
@@ -24,7 +24,7 @@ end;
 -- 3=Disconnected or warped out (if dyna is empty: launch 4 after 3)
 -- 4=Finish 
 
-function OnBcnmLeave(player,instance,leavecode)
+function onBcnmLeave(player,instance,leavecode)
   -- print("leave code "..leavecode);
    
 	if(leavecode == 4) then

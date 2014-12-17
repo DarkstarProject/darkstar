@@ -17,9 +17,9 @@ function onMobInitialize(mob)
 end;
 
 ------------------------------------
--- OnMagicCastingCheck 
+-- onMagicCastingCheck 
 ------------------------------------
-function OnMagicCastingCheck(mob, target, spell)
+function onMagicCastingCheck(mob, target, spell)
     if math.random() > 0.75 then
         return 219;
     else

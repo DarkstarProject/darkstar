@@ -26,7 +26,7 @@ function onMobFight(mob, target)
 
 end;
 
-function OnCriticalHit(mob)
+function onCriticalHit(mob)
 
 	local rand = math.random();
 	local battletime = mob:getBattleTime();

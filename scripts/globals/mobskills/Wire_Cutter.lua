@@ -10,7 +10,7 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
  local mobID = mob:getID();   --(16908295 ,16908302 ,16908309 =omega ,          16928966=proto-ultima   )
  local mobhp = mob:getHPP();
    if ((mobID == 16928966 and mobhp > 80) or(mobhp > 70 and(mobID == 16908295 or mobID == 16908302 or mobID == 16908309 )))then 
@@ -19,7 +19,7 @@ function OnMobSkillCheck(target,mob,skill)
    return 1;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
 
 	local numhits = 2;
 	local accmod = 1;

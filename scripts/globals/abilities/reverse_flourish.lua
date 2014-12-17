@@ -6,10 +6,10 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- OnUseAbility
+-- onUseAbility
 -----------------------------------
 
-function OnAbilityCheck(player,target,ability)
+function onAbilityCheck(player,target,ability)
 
 	if (player:hasStatusEffect(EFFECT_FINISHING_MOVE_1)) then
 		return 0,0;
@@ -31,7 +31,7 @@ function OnAbilityCheck(player,target,ability)
 	end;
 end;
 
-function OnUseAbility(player, target, ability)
+function onUseAbility(player, target, ability)
 
 	local TPGain = 0;
 	local STM = 0.5;

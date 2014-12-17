@@ -6,14 +6,14 @@ require("scripts/globals/status");
 
 
 -----------------------------------
--- OnUseAbility
+-- onUseAbility
 -----------------------------------
 
-function OnAbilityCheck(player,target,ability)
+function onAbilityCheck(player,target,ability)
 	return 0,0;
 end;
 
-function OnUseAbility(player, target, ability)
+function onUseAbility(player, target, ability)
 	local sLegs = player:getEquipID(SLOT_LEGS);
 	local power = 20
 	if(sLegs == 14090 or sLegs == 15353) then

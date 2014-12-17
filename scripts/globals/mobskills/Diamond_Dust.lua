@@ -9,11 +9,11 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
     return 0;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
 
 	local dmgmod = 2;
 	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg() * 8,ELE_ICE,dmgmod,TP_MAB_BONUS,1);

@@ -10,7 +10,7 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
     -- maat can only use this at 70
     if(mob:getMainLvl() < 70) then
         return 1;
@@ -18,7 +18,7 @@ function OnMobSkillCheck(target,mob,skill)
 	return 0;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
     if(target:getID() < 1000000) then target:showText(mob,TAKE_THAT_YOU_WHIPPERSNAPPER); end
 
 	local numhits = 8;

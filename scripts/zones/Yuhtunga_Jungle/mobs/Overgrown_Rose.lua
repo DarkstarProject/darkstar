@@ -3,7 +3,7 @@
 -- MOB:  Overgrown Rose
 -----------------------------------	
 	
-function OnMobRoam(mob)
+function onMobRoam(mob)
 	
 	local Rose_Garden = 17281357;
 	local Rose_Garden_PH = 0;

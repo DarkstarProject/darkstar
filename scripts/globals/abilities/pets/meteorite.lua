@@ -8,11 +8,11 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
-function OnAbilityCheck(player, target, ability)
+function onAbilityCheck(player, target, ability)
     return 0,0;
 end;
 
-function OnPetAbility(target, pet, skill)
+function onPetAbility(target, pet, skill)
 	local dint = pet:getStat(MOD_INT) - target:getStat(MOD_INT);
 	local dmg = 500 + dint*1.5 + skill:getTP()/2;
 	target:updateEnmityFromDamage(pet,dmg);

@@ -13,7 +13,7 @@ require("/scripts/globals/monstertpmoves");
 require("/scripts/globals/utils");
 
 ---------------------------------------------
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
     if (mob:hasStatusEffect(EFFECT_BLOOD_WEAPON)) then
         return 1;
 	elseif(target:isBehind(mob, 48) == true) then
@@ -24,7 +24,7 @@ function OnMobSkillCheck(target,mob,skill)
 	return 0;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
 
     local dmgmod = MobBreathMove(mob, target, 0.2, 1.25, ELE_ICE, 1400);
     

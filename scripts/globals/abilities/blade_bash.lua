@@ -8,10 +8,10 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- OnUseAbility
+-- onUseAbility
 -----------------------------------
 
-function OnAbilityCheck(player,target,ability)
+function onAbilityCheck(player,target,ability)
 	if (not player:isWeaponTwoHanded()) then
 		return MSGBASIC_NEEDS_2H_WEAPON,0;
 	else
@@ -19,7 +19,7 @@ function OnAbilityCheck(player,target,ability)
 	end
 end;
 
-function OnUseAbility(player, target, ability)
+function onUseAbility(player, target, ability)
 	-- Stun rate
 	if(math.random(1,100) < 99) then
 		target:addStatusEffect(EFFECT_STUN,1,0,6);

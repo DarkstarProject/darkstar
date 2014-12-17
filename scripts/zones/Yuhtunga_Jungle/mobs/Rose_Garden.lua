@@ -11,7 +11,7 @@ function onMobSpawn(mob)
 	
 end;
 
-function OnMobRoam(mob)
+function onMobRoam(mob)
 	
 	local Voluptuous_Vilma = 17281358;
 	local Voluptuous_Vilma_PH = 0;

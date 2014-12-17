@@ -6,10 +6,10 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- OnUseAbility
+-- onUseAbility
 -----------------------------------
 
-function OnAbilityCheck(player,target,ability)
+function onAbilityCheck(player,target,ability)
 	if (not player:isWeaponTwoHanded()) then
 		return MSGBASIC_NEEDS_2H_WEAPON,0;
 	else
@@ -17,7 +17,7 @@ function OnAbilityCheck(player,target,ability)
 	end
 end;
 
-function OnUseAbility(player, target, ability)
+function onUseAbility(player, target, ability)
 	-- Applying Weapon Bash stun. Rate is said to be near 100%, so let's say 99%.
 	if(math.random()*100 < 99) then
 		target:addStatusEffect(EFFECT_STUN,1,0,6);

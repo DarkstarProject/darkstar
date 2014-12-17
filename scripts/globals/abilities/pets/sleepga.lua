@@ -9,11 +9,11 @@ require("scripts/globals/monstertpmoves");
 -- OnSpellCast
 -----------------------------------------
 
-function OnAbilityCheck(player, target, ability)
+function onAbilityCheck(player, target, ability)
     return 0,0;
 end;
 
-function OnPetAbility(target, pet, skill)
+function onPetAbility(target, pet, skill)
 	local duration = 60;
 	local resm = applyPlayerResistance(pet,-1,target,pet:getStat(MOD_INT)-target:getStat(MOD_INT),ELEMENTAL_MAGIC_SKILL, 5);
 	if(resm < 0.5) then

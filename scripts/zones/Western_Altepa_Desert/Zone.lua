@@ -88,7 +88,7 @@ function onEventFinish( player, csid, option)
 	end		
 end;
 
-function OnZoneWeatherChange(weather)
+function onZoneWeatherChange(weather)
 	
 	if(GetMobAction(17289575) == 24 and (weather == WEATHER_DUST_STORM or weather == WEATHER_SAND_STORM)) then
 		SpawnMob(17289575); -- King Vinegarroon
