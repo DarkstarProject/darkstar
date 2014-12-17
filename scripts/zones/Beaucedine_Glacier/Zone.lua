@@ -96,10 +96,10 @@ function onEventFinish( player, csid, option)
 end;
 
 -----------------------------------
--- OnZoneWeatherChange
+-- onZoneWeatherChange
 -----------------------------------
 
-function OnZoneWeatherChange(weather)
+function onZoneWeatherChange(weather)
 	local mirrorPond = GetNPCByID(17232198); -- Quest: Love And Ice
 
 	if(weather == WEATHER_GLOOM or weather == WEATHER_DARKNESS) then

@@ -11,12 +11,12 @@ require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");
 require("/scripts/zones/Qubia_Arena/TextIDs");
 ---------------------------------------------
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
 target:showText(mob,RLB_PREPARE);
     return 0;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
 target:showText(mob,RLB_LAND);
 skill:setSkillchain(40);
     

@@ -12,10 +12,10 @@ require("scripts/globals/status");
 require("scripts/globals/bluemagic");
 
 -----------------------------------------
--- OnMagicCastingCheck
+-- onMagicCastingCheck
 -----------------------------------------
 
-function OnMagicCastingCheck(caster,target,spell)
+function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
 

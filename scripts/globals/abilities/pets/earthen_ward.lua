@@ -8,11 +8,11 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
-function OnAbilityCheck(player, target, ability)
+function onAbilityCheck(player, target, ability)
     return 0,0;
 end;
 
-function OnPetAbility(target, pet, skill)
+function onPetAbility(target, pet, skill)
 	target:delStatusEffect(EFFECT_STONESKIN);
 	local amount = pet:getMainLvl()*2 + 50;
 	target:addStatusEffect(EFFECT_STONESKIN,amount,0,900);

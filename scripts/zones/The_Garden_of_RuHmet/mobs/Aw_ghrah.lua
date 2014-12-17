@@ -46,11 +46,11 @@ end;
 function onMobEngage(mob)
 end;
 -----------------------------------
--- OnMobRoam Action
+-- onMobRoam Action
 -- Autochange Aggro and Form
 -----------------------------------
 
-function OnMobRoam(mob)
+function onMobRoam(mob)
 	local roamTime = mob:getLocalVar("roamTime");
 	if(mob:AnimationSub() == 0 and os.time() - roamTime > 60) then
 		mob:AnimationSub(mob:getLocalVar("form2"));

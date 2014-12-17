@@ -90,7 +90,7 @@ function onEventFinish( player, csid, option)
 	end
 end;
 
-function OnZoneWeatherChange(weather)
+function onZoneWeatherChange(weather)
 	local qm1 = GetNPCByID(17199698); -- Quest: An Empty Vessel
 	if(weather == WEATHER_DUST_STORM) then
 		qm1:setStatus(STATUS_NORMAL);

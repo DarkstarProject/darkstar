@@ -8,11 +8,11 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
-function OnAbilityCheck(player, target, ability)
+function onAbilityCheck(player, target, ability)
     return 0,0;
 end;
 
-function OnPetAbility(target, pet, skill, summoner)
+function onPetAbility(target, pet, skill, summoner)
 	local duration = 30 + summoner:getMod(MOD_SUMMONING);
 	target:addStatusEffect(EFFECT_WARCRY,9,0,duration);
 	skill:setMsg(MSG_BUFF);

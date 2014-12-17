@@ -14,10 +14,10 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 ---------------------------------------------------
--- OnMobSkillCheck
+-- onMobSkillCheck
 -- if not in Ball form, then ignore. 
 ---------------------------------------------------
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
 	if(mob:AnimationSub() ~=0) then
 		return 1;
 	else
@@ -25,7 +25,7 @@ function OnMobSkillCheck(target,mob,skill)
 	end
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
 	local numhits = 6;
 	local accmod = 1;
 	local dmgmod = .7;

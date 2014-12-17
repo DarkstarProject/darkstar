@@ -13,11 +13,11 @@ require("/scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 ---------------------------------------------------
--- OnMobSkillCheck
+-- onMobSkillCheck
 -- Check for Grah Family id 122,123,124
 -- if not in Paladin form, then ignore. 
 ---------------------------------------------------
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
     if((mob:getFamily() == 122 or mob:getFamily() == 123 or mob:getFamily() == 124) and mob:AnimationSub() ~= 1) then
 		return 1;
 	else
@@ -25,7 +25,7 @@ function OnMobSkillCheck(target,mob,skill)
 	end
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
 
 	mob:messageBasic(43, 0, 687+256);
 	skill:setSkillchain(40);

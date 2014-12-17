@@ -9,14 +9,14 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
     if(mob:isMobType(MOBTYPE_NOTORIOUS) or mob:getHPP() > 75) then
     	return 1;
     end
 	return 0;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
 	local dmgmod = 1;
 	if(mob:getHP()~=0) then
 		BOMB_TOSS_HPP = mob:getHP()/mob:getMaxHP();

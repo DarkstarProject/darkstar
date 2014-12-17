@@ -6,7 +6,7 @@ require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");
 require("/scripts/zones/Empyreal_Paradox/TextIDs");
 ---------------------------------------------
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
     if (mob:hasStatusEffect(EFFECT_PHYSICAL_SHIELD) or mob:hasStatusEffect(EFFECT_MAGIC_SHIELD)) then
         return 1;
     end
@@ -14,7 +14,7 @@ function OnMobSkillCheck(target,mob,skill)
     return 0;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
 
 	local typeEffect = EFFECT_PHYSICAL_SHIELD;
 

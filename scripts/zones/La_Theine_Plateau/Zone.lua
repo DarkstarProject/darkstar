@@ -95,7 +95,7 @@ function onEventFinish( player, csid, option)
 	end
 end;
 
-function OnZoneWeatherChange(weather)
+function onZoneWeatherChange(weather)
 
     local _2u0 = GetNPCByID(17195605);
     local VanadielTOTD = VanadielTOTD();
@@ -109,7 +109,7 @@ function OnZoneWeatherChange(weather)
     end
 end;
 
-function OnTOTDChange(TOTD)
+function onTOTDChange(TOTD)
 
     local _2u0 = GetNPCByID(17195605);
     local I_Can_Hear_a_Rainbow = GetServerVariable("I_Can_Hear_a_Rainbow");

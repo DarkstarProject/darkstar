@@ -9,7 +9,7 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
     if (skill:getParam() ~= 0) then
         return 1;
     elseif(mob:getHPP() <= 60) then
@@ -18,7 +18,7 @@ function OnMobSkillCheck(target,mob,skill)
     return 1;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_INVINCIBLE;
     MobBuffMove(mob, typeEffect, 1, 0, 30);
 

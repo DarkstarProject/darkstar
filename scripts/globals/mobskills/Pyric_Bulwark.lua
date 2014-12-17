@@ -11,7 +11,7 @@ require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
    -- TODO: Used only when second/left head is alive (animationsub 0 or 1)
    if (mob:AnimationSub() <= 1) then
       return 0;
@@ -20,7 +20,7 @@ function OnMobSkillCheck(target,mob,skill)
    end
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
 
    -- addEx to pervent dispel
    mob:addStatusEffectEx(EFFECT_PHYSICAL_SHIELD,0,1,0,45)
