@@ -1,6 +1,6 @@
 -----------------------------------------
--- ID: 16613
--- Spirit Sword
+-- ID: 18853
+-- Spirit Maul
 -- Additional effect: Light damage
 -- Enchantment: TP+100
 -----------------------------------------

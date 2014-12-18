@@ -3,9 +3,7 @@
 -- Item: Carbuncle's Pole
 -- Item Effect: Restores 160-220 HP
 -----------------------------------------
-
-package.loaded["scripts/globals/magic"] = nil;
-require("scripts/globals/status");
+require("scripts/globals/status");
 require("scripts/globals/magic");
 
 -----------------------------------

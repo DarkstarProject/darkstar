@@ -1,8 +1,8 @@
 -----------------------------------------
--- ID: 16613
--- Spirit Sword
--- Additional effect: Light damage
--- Enchantment: TP+100
+-- ID: 18379
+-- Item: Vulcan Claymore
+-- Additional Effect: Fire Damage
+-- Enchantment: Enfire
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -18,21 +18,21 @@ function onAdditionalEffect(player,target,damage)
     if (math.random(0,99) >= chance) then
         return 0,0,0;
     else
-        local dmg = math.random(7,21);
+        local dmg = math.random(3,10);
         local params = {};
         params.bonusmab = 0;
         params.includemab = false;
-        dmg = addBonusesAbility(player, ELE_LIGHT, target, dmg, params);
-        dmg = dmg * applyResistanceAddEffect(player,target,ELE_LIGHT,0);
-        dmg = adjustForTarget(target,dmg,ELE_LIGHT);
-        dmg = finalMagicNonSpellAdjustments(player,target,ELE_LIGHT,dmg);
+        dmg = addBonusesAbility(player, ELE_FIRE, target, dmg, params);
+        dmg = dmg * applyResistanceAddEffect(player,target,ELE_FIRE,0);
+        dmg = adjustForTarget(target,dmg,ELE_FIRE);
+        dmg = finalMagicNonSpellAdjustments(player,target,ELE_FIRE,dmg);
 
         local message = 163;
         if (dmg < 0) then
             message = 167;
         end
 
-        return SUBEFFECT_LIGHT_DAMAGE,message,dmg;
+        return SUBEFFECT_FIRE_DAMAGE,message,dmg;
     end
 end;
 
@@ -41,11 +41,7 @@ end;
 -----------------------------------------
 
 function onItemCheck(target)
-    local result = 0;
-    if (target:getFreeSlotsCount() == 0) then
-        result = 308;
-    end
-    return result;
+    return 0;
 end;
 
 -----------------------------------------
@@ -53,5 +49,6 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    target:addTP(10); -- Core currently makes this *10 stated value, so its 100...
+    local effect = EFFECT_ENFIRE;
+    doEnspell(target,target,nil,effect);
 end;
