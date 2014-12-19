@@ -1,7 +1,7 @@
 -----------------------------------------
 -- ID: 18696
--- Item: Paralysis Arrow
--- Additional Effect: Paralysis (20 power)
+-- Item: Paralysis arrow 
+-- Additional Effect: Paralysis
 -----------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");
@@ -15,12 +15,17 @@ function onAdditionalEffect(player,target,damage)
         chance = chance - 5 * (target:getMainLvl() - player:getMainLvl())
         chance = utils.clamp(chance, 5, 95);
     end
-    if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_ICE,0) <= 0.5) then
+    if (math.random(0,99) >= chance) then
         return 0,0,0;
     else
-        target:delStatusEffect(EFFECT_PARALYSIS)
+        local duration = 25;
+        if (target:getMainLvl() > player:getMainLvl()) then
+            duration = duration - (target:getMainLvl() - player:getMainLvl())
+        end
+        utils.clamp(duration,1,25);
+        duration = duration * applyResistanceAddEffect(player,target,ELE_LIGHTNING,0);
         if (not target:hasStatusEffect(EFFECT_PARALYSIS)) then
-            target:addStatusEffect(EFFECT_PARALYSIS, 20, 0, 30);
+            target:addStatusEffect(EFFECT_PARALYSIS, 1, 0, duration);
         end
         return SUBEFFECT_PARALYSIS, 160, EFFECT_PARALYSIS;
     end

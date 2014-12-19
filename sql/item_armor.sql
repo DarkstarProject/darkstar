@@ -9916,3 +9916,9 @@ INSERT INTO `item_armor` VALUES('28645','ogapepo_cape_+1','99','3507256','0','0'
 INSERT INTO `item_armor` VALUES('28663','steadfast_shield','99','384','0','3','0','2','0');
 INSERT INTO `item_armor` VALUES('28664','killedar_shield','99','128','0','3','0','2','0');
 INSERT INTO `item_armor` VALUES('28665','killedar_shield_+1','99','128','0','3','0','2','0');
+INSERT INTO `item_armor` VALUES ('28301', 'hag_sabots_+1', '99', '1622040', '262', '0', '0', '256', '0');
+INSERT INTO `item_armor` VALUES ('27878', 'hag_coat_+1', '99', '1622040', '262', '0', '0', '32', '0');
+INSERT INTO `item_armor` VALUES ('28022', 'hag_cuffs_+1', '99', '1622040', '262', '0', '0', '64', '0');
+INSERT INTO `item_armor` VALUES ('27732', 'hag_hat_+1', '99', '1622040', '262', '0', '0', '16', '0');
+INSERT INTO `item_armor` VALUES ('28164', 'hag_pants_+1', '99', '1622040', '262', '0', '0', '128', '0');
+INSERT INTO `item_armor` VALUES ('28654', 'beatific_shield_+1', '99', '2385', '51', '6', '0', '2', '0');

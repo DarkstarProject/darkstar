@@ -1,7 +1,7 @@
 -----------------------------------------
 -- ID: 18159
--- Item: Demon Arrow
--- Additional Effect: 12% Attack Down
+-- Item: Demon Bolt
+-- Additional Effect: Effect Attack Down
 -----------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");
@@ -15,13 +15,18 @@ function onAdditionalEffect(player,target,damage)
         chance = chance - 5 * (target:getMainLvl() - player:getMainLvl())
         chance = utils.clamp(chance, 5, 95);
     end
-    if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_WATER,0) <= 0.5) then
+    if (math.random(0,99) >= chance) then
         return 0,0,0;
     else
-        target:delStatusEffect(EFFECT_ATTACK_DOWN)
-        if (not target:hasStatusEffect(EFFECT_ATTACK_DOWN)) then
-            target:addStatusEffect(EFFECT_ATTACK_DOWN, 12, 0, 60);
+        local duration = 25;
+        if (target:getMainLvl() > player:getMainLvl()) then
+            duration = duration - (target:getMainLvl() - player:getMainLvl())
         end
-        return SUBEFFECT_DEFENSE_DOWN, 160, EFFECT_ATTACK_DOWN;
+        utils.clamp(duration,1,25);
+        duration = duration * applyResistanceAddEffect(player,target,ELE_DARK,0);
+        if (not target:hasStatusEffect(EFFECT_ATTACK_DOWN)) then
+            target:addStatusEffect(EFFECT_ATTACK_DOWN, 12.5, 0, duration);
+        end
+        return SUBEFFECT_ATTACK_DOWN, 160, EFFECT_ATTACK_DOWN;
     end
 end;
