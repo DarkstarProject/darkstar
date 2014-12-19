@@ -11,7 +11,7 @@ require("scripts/globals/magic");
 -----------------------------------
 function onAdditionalEffect(player,target,damage)
     local chance = 95;
-    if (target:getMainLvl() > player:getMainLvl()) then
+	    if (target:getMainLvl() > player:getMainLvl()) then
         chance = chance - 5 * (target:getMainLvl() - player:getMainLvl())
         chance = utils.clamp(chance, 5, 95);
     end

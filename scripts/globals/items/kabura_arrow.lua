@@ -10,12 +10,12 @@ require("scripts/globals/magic");
 -- onAdditionalEffect Action
 -----------------------------------
 function onAdditionalEffect(player,target,damage)
-    local chance = 95;
+    local chance = 80;
     if (target:getMainLvl() > player:getMainLvl()) then
         chance = chance - 5 * (target:getMainLvl() - player:getMainLvl())
         chance = utils.clamp(chance, 5, 95);
     end
-    if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_WIND,0) <= 0.5) then
+    if (math.random(0,99) <= chance) then
         return 0,0,0;
     else
         target:delStatusEffect(EFFECT_SILENCE)

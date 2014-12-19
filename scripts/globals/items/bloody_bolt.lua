@@ -14,6 +14,11 @@ function onAdditionalEffect(player,target,damage)
         chance = chance - 5 * (target:getMainLvl() - player:getMainLvl())
         chance = utils.clamp(chance, 5, 95);
     end
+	
+		if (target:isUndead()) then
+		return 0,0,0;
+	end		
+	
     if (math.random(0,99) >= chance) then
         return 0,0,0;
     else

@@ -1,7 +1,7 @@
 -----------------------------------------
 -- ID: 18152
 -- Item: Venom Bolt
--- Additional Effect: Poison
+-- Additional Effect: Venom
 -----------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");
@@ -15,14 +15,17 @@ function onAdditionalEffect(player,target,damage)
         chance = chance - 5 * (target:getMainLvl() - player:getMainLvl())
         chance = utils.clamp(chance, 5, 95);
     end
-    if(target:hasImmunity(256)) then
-        spell:setMsg(75);
-    elseif (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_WATER,0) <= 0.5) then
+    if (math.random(0,99) >= chance) then
         return 0,0,0;
     else
-        target:delStatusEffect(EFFECT_POISON)
+        local duration = 25;
+        if (target:getMainLvl() > player:getMainLvl()) then
+            duration = duration - (target:getMainLvl() - player:getMainLvl())
+        end
+        utils.clamp(duration,1,25);
+        duration = duration * applyResistanceAddEffect(player,target,ELE_WATER,0);
         if (not target:hasStatusEffect(EFFECT_POISON)) then
-            target:addStatusEffect(EFFECT_POISON, 4, 3, 30);
+            target:addStatusEffect(EFFECT_POISON, 4, 0, duration);
         end
         return SUBEFFECT_POISON, 160, EFFECT_POISON;
     end

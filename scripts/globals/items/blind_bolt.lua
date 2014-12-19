@@ -1,7 +1,7 @@
 -----------------------------------------
 -- ID: 18150
 -- Item: Blind Bolt
--- Additional Effect: Blindness
+-- Additional Effect: Blind
 -----------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");
@@ -15,14 +15,12 @@ function onAdditionalEffect(player,target,damage)
         chance = chance - 5 * (target:getMainLvl() - player:getMainLvl())
         chance = utils.clamp(chance, 5, 95);
     end
-    if(target:hasImmunity(64)) then
-        spell:setMsg(75);
-    elseif (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_DARK,0) <= 0.5) then
+    if (math.random(0,99) >= chance) then
         return 0,0,0;
     else
         target:delStatusEffect(EFFECT_BLINDNESS)
         if (not target:hasStatusEffect(EFFECT_BLINDNESS)) then
-            target:addStatusEffect(EFFECT_BLINDNESS, 10, 0, 30);
+            target:addStatusEffect(EFFECT_BLINDNESS, 1, 0, 60);
         end
         return SUBEFFECT_BLIND, 160, EFFECT_BLINDNESS;
     end

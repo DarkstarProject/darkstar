@@ -2283,3 +2283,9 @@ INSERT INTO `item_latents` VALUES(14429, 169, 12, 54, 20);
 -- Federation Aketon
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14430, 169, 12, 54, 21);
+
+-- -------------------------------------------------------
+-- Melody earring
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(14725, 108, 5, 25, 1);
+INSERT INTO `item_latents` VALUES(14726, 108, 6, 25, 1);

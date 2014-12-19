@@ -6,7 +6,7 @@
 -----------------------------------------
 -- Enchantment: Synthesis image support
 -- Duration: 2Min
--- Alchemy Skill +1
+-- Alchemy Skill +3
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -28,21 +28,21 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_COOKING_IMAGERY,56,0,120);
+	target:addStatusEffect(EFFECT_COOKING_IMAGERY,3,0,120);
 end;
 
 -----------------------------------------
 -- onEffectGain Action
 -----------------------------------------
 
-function onEffectGain(target,effect)
-	target:addMod(MOD_SKILL_COK, 1);
-end;
+--function onEffectGain(target,effect)
+--	target:addMod(MOD_SKILL_COK, 1);
+--end;
 
 -----------------------------------------
 -- onEffectLose Action
 -----------------------------------------
 
-function onEffectLose(target,effect)
-    target:delMod(MOD_SKILL_COK, 1);
-end;
+--function onEffectLose(target,effect)
+--    target:delMod(MOD_SKILL_COK, 1);
+--end;
