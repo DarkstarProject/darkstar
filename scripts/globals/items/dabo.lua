@@ -4,7 +4,7 @@
 -- Additional Effect: Lightning Damage
 -----------------------------------------
 
-package.loaded["scripts/globals/magic"] = nil;
+
 require("scripts/globals/status");
 require("scripts/globals/magic");
 
@@ -20,7 +20,7 @@ function onAdditionalEffect(player,target,damage)
     dmg = addBonusesAbility(player, ELE_LIGHTNING, target, dmg, params);
     dmg = dmg * applyResistanceAddEffect(player,target,ELE_LIGHTNING,0);
     dmg = adjustForTarget(target,dmg,ELE_LIGHTNING);
-	dmg = finalMagicNonSpellAdjustments(player,target,ELE_LIGHTNING,dmg);
+    dmg = finalMagicNonSpellAdjustments(player,target,ELE_LIGHTNING,dmg);
     
     local message = 163;
     if (dmg < 0) then

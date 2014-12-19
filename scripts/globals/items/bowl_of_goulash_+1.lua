@@ -6,7 +6,7 @@
 -- Intelligence -2
 -- Defense +10% 
 -- Accuracy +10%
-	
+    
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -17,9 +17,9 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
 local result = 0;
-	if (target:hasStatusEffect(EFFECT_FOOD) == true) then
-		result = 246;
-	end
+    if (target:hasStatusEffect(EFFECT_FOOD) == true) then
+        result = 246;
+    end
 return result;
 end;
 
@@ -28,7 +28,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_FOOD,0,0,10800,5751);
+    target:addStatusEffect(EFFECT_FOOD,0,0,10800,5751);
 end;
 
 -----------------------------------------
@@ -37,9 +37,9 @@ end;
 
 function onEffectGain(target,effect)
     target:addMod(MOD_VIT, 3);
-	target:addMod(MOD_INT, -2);
-	target:addMod(MOD_FOOD_DEFP, 11);
-	target:addMod(MOD_FOOD_ACCP, 11);
+    target:addMod(MOD_INT, -2);
+    target:addMod(MOD_FOOD_DEFP, 11);
+    target:addMod(MOD_FOOD_ACCP, 11);
 end;
 
 -----------------------------------------
@@ -47,9 +47,9 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-	target:delMod(MOD_VIT, 3);
-	target:delMod(MOD_INT, -2);
-	target:delMod(MOD_FOOD_DEFP, 11);
-	target:delMod(MOD_FOOD_ACCP, 11);
+    target:delMod(MOD_VIT, 3);
+    target:delMod(MOD_INT, -2);
+    target:delMod(MOD_FOOD_DEFP, 11);
+    target:delMod(MOD_FOOD_ACCP, 11);
    
 end;

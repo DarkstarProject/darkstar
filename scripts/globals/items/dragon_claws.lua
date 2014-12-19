@@ -4,7 +4,7 @@
 -- Additional Effect: Fire Damage
 -----------------------------------------
 
-package.loaded["scripts/globals/magic"] = nil;
+
 require("scripts/globals/status");
 require("scripts/globals/magic");
 
@@ -20,7 +20,7 @@ function onAdditionalEffect(player,target,damage)
     dmg = addBonusesAbility(player, ELE_FIRE, target, dmg, params);
     dmg = dmg * applyResistanceAddEffect(player,target,ELE_FIRE,0);
     dmg = adjustForTarget(target,dmg,ELE_FIRE);
-	dmg = finalMagicNonSpellAdjustments(player,target,ELE_FIRE,dmg);
+    dmg = finalMagicNonSpellAdjustments(player,target,ELE_FIRE,dmg);
     
     local message = 163;
     if (dmg < 0) then

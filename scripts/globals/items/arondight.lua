@@ -4,7 +4,7 @@
 -- Additional Effect: Water Damage
 -----------------------------------------
 
-package.loaded["scripts/globals/magic"] = nil;
+
 require("scripts/globals/status");
 require("scripts/globals/magic");
 
@@ -20,7 +20,7 @@ function onAdditionalEffect(player,target,damage)
     dmg = addBonusesAbility(player, ELE_WATER, target, dmg, params);
     dmg = dmg * applyResistanceAddEffect(player,target,ELE_WATER,0);
     dmg = adjustForTarget(target,dmg,ELE_WATER);
-	dmg = finalMagicNonSpellAdjustments(player,target,ELE_WATER,dmg);
+    dmg = finalMagicNonSpellAdjustments(player,target,ELE_WATER,dmg);
     
     local message = 163;
     if (dmg < 0) then
