@@ -1,9 +1,7 @@
 -----------------------------------------
--- ID: 6430
--- Item: Koen
+-- ID: 16973
+-- Item: Homura
 -- Additional Effect: Fire Damage
--- Enchantment: "Enfire"
--- Charges: 30 Reuse: 300 Secs
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -35,21 +33,4 @@ function onAdditionalEffect(player,target,damage)
 
         return SUBEFFECT_FIRE_DAMAGE,message,dmg;
     end
-end;
-
------------------------------------------
--- OnItemCheck
------------------------------------------
-
-function onItemCheck(target)
-    return 0;
-end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
-
-function onItemUse(target)
-    local effect = EFFECT_ENFIRE;
-    doEnspell(target,target,nil,effect);
 end;
