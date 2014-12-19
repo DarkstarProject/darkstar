@@ -6,10 +6,10 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- OnUseAbility
+-- onUseAbility
 -----------------------------------
 
-function OnAbilityCheck(player,target,ability)
+function onAbilityCheck(player,target,ability)
 	local effectID = getCorsairRollEffect(ability:getID());
 	if (player:hasStatusEffect(effectID) or player:hasBustEffect(effectID)) then
 		return MSGBASIC_ROLL_ALREADY_ACTIVE,0;
@@ -18,7 +18,7 @@ function OnAbilityCheck(player,target,ability)
 	end
 end;
 
-function OnUseAbilityRoll(caster, target, ability, total)
+function onUseAbilityRoll(caster, target, ability, total)
 	local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
 	local effectpowers = {4, 5, 18, 7, 9, 10, 2, 11, 13, 15, 22, 8}
 	local effectpower = effectpowers[total]

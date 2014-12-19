@@ -7,7 +7,7 @@ require("scripts/globals/titles");
 require("scripts/globals/missions");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function OnBcnmRegister(player,instance)
+function onBcnmRegister(player,instance)
 	-- initialize timers if they don't already exist
 	-- a random seed of 30 to 100 seconds is added to mix up the changes
 	-- Changes should be ~60 seconds apart, although I've seen one ~50
@@ -29,7 +29,7 @@ function OnBcnmRegister(player,instance)
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
-function OnBcnmEnter(player,instance)
+function onBcnmEnter(player,instance)
 
 end;
 
@@ -41,7 +41,7 @@ end;
 -- via bcnmLeave(1) or bcnmLeave(2). LeaveCodes 3 and 4 are called
 -- from the core when a player disconnects or the time limit is up, etc
 
-function OnBcnmLeave(player,instance,leavecode)
+function onBcnmLeave(player,instance,leavecode)
 --printf("leavecode: %u",leavecode);
 	
 	if(leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage

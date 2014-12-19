@@ -92,7 +92,7 @@ function onEventFinish( player, csid, option)
 	end
 end;
 
-function OnZoneWeatherChange(weather)
+function onZoneWeatherChange(weather)
 	
 	if(GetMobAction(17240413) == 24 and (weather == WEATHER_WIND or weather == WEATHER_GALES)) then
 		SpawnMob(17240413); -- Kreutzet

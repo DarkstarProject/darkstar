@@ -4,7 +4,7 @@
 -----------------------------------
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function OnBcnmRegister(player,instance)
+function onBcnmRegister(player,instance)
 	
 	SetServerVariable("[DynaBeaucedine]UniqueID",player:getDynamisUniqueID(1284));
 	SetServerVariable("[DynaBeaucedine]Already_Received",0);
@@ -12,7 +12,7 @@ function OnBcnmRegister(player,instance)
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
-function OnBcnmEnter(player,instance)
+function onBcnmEnter(player,instance)
 	
 	player:setVar("DynamisID",GetServerVariable("[DynaBeaucedine]UniqueID"));
 	player:setVar("dynaWaitxDay",os.time());
@@ -23,7 +23,7 @@ end;
 -- 3=Disconnected or warped out (if dyna is empty: launch 4 after 3)
 -- 4=Finish he dynamis
 
-function OnBcnmLeave(player,instance,leavecode)
+function onBcnmLeave(player,instance,leavecode)
 --print("leave code "..leavecode);
 	
 	if(leavecode == 2 or leavecode == 3 or leavecode == 4) then

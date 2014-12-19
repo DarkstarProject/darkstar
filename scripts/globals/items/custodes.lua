@@ -3,23 +3,34 @@
 -- Item: Custodes
 -- Additional Effect: Paralysis
 -----------------------------------------
+
 require("scripts/globals/status");
 require("scripts/globals/magic");
 
 -----------------------------------
 -- onAdditionalEffect Action
 -----------------------------------
+
 function onAdditionalEffect(player,target,damage)
-    local chance = math.random(1,100)
+    local chance = 5;
 
+    if (VanadielDayElement() == ICEDAY) then
+        chance = chance+6;
+    end
 
-    if (chance >= 9)then
+    if (player:getWeather() == WEATHER_ICE) then
+        chance = chance+4;
+    elseif (player:getWeather() == WEATHER_BLIZZARDS) then
+        chance = chance+6;
+    end
+
+    if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_ICE,0) <= 0.5) then
         return 0,0,0;
     else
         target:delStatusEffect(EFFECT_PARALYSIS)
         if (not target:hasStatusEffect(EFFECT_PARALYSIS)) then
-            target:addStatusEffect(EFFECT_PARALYSIS, 25, 0, 15);
+            target:addStatusEffect(EFFECT_PARALYSIS, 1, 0, 60);
         end
- return SUBEFFECT_PARALYSIS, 160, EFFECT_PARALYSIS;
+        return SUBEFFECT_PARALYSIS, 160, EFFECT_PARALYSIS;
     end
 end;

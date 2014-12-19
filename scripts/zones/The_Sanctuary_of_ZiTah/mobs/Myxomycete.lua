@@ -6,7 +6,7 @@
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/weather");
 
-function OnMobRoam(mob)
+function onMobRoam(mob)
 	
 	local Noble_Mold = 17273278;
 	local Noble_Mold_PH = 0;

@@ -33,7 +33,7 @@ CChatMessagePacket::CChatMessagePacket(CCharEntity* PChar, CHAT_MESSAGE_TYPE Mes
 
      // Build the packet..
      this->type = 0x17;
-     this->size = (28 + (buffSize + 1) + ((4 - ((buffSize + 1) % 4)) % 4)) / 2;
+     this->size = dsp_min((32 + (buffSize + 1) + ((4 - ((buffSize + 1) % 4)) % 4)) / 2, 128);
 
      WBUFB(data, (0x04) - 4) = MessageType;
      if (PChar->nameflags.flags & FLAG_GM)

@@ -15,14 +15,14 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
 	if(mob:getMobMod(MOBMOD_VAR) == 0) then
 		return 0;
 	end
 	return 1;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
 	mob:setMobMod(MOBMOD_VAR, 1);
 	local numhits = 1;
 	local accmod = 1;

@@ -11,11 +11,11 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
 	return 0;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
 	local dmgmod = mob:getWeaponDmg() * 4;
 
 	local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_SPECIAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);

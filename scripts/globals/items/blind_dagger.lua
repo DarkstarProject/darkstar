@@ -1,31 +1,25 @@
 -----------------------------------------
 -- ID: 16454
--- Item: Blind Dagger
--- Additional Effect: blind Damage
+-- Item: Blind dagger
+-- Additional Effect: Blindness
 -----------------------------------------
+
 require("scripts/globals/status");
 require("scripts/globals/magic");
 
 -----------------------------------
 -- onAdditionalEffect Action
 -----------------------------------
+
 function onAdditionalEffect(player,target,damage)
-    local chance = 9;
-    if (target:getMainLvl() > player:getMainLvl()) then
-        chance = chance - 5 * (target:getMainLvl() - player:getMainLvl())
-        chance = utils.clamp(chance, 5, 9);
-    end
-    if (math.random(0,99) >= chance) then
+    local chance = 10;
+
+    if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_DARK,0) <= 0.5) then
         return 0,0,0;
     else
-        local duration = 25;
-        if (target:getMainLvl() > player:getMainLvl()) then
-            duration = duration - (target:getMainLvl() - player:getMainLvl())
-        end
-        utils.clamp(duration,1,25);
-        --duration = duration * applyResistanceAddEffect(player,target,EFFECT_BLINDNESS,0);
+        target:delStatusEffect(EFFECT_BLINDNESS);
         if (not target:hasStatusEffect(EFFECT_BLINDNESS)) then
-            target:addStatusEffect(EFFECT_BLINDNESS, 1, 0, duration);
+            target:addStatusEffect(EFFECT_BLINDNESS, 10, 0, 30);
         end
         return SUBEFFECT_BLIND, 160, EFFECT_BLINDNESS;
     end

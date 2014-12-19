@@ -8,11 +8,11 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
-function OnAbilityCheck(player, target, ability)
+function onAbilityCheck(player, target, ability)
     return 0,0;
 end;
 
-function OnPetAbility(target, pet, skill, summoner)
+function onPetAbility(target, pet, skill, summoner)
 	local duration = 90 + 3 * summoner:getMod(MOD_SUMMONING);
 	target:delStatusEffect(EFFECT_SHOCK_SPIKES);
 	target:addStatusEffect(EFFECT_SHOCK_SPIKES,15,0,duration);

@@ -6,10 +6,10 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- OnUseAbility
+-- onUseAbility
 -----------------------------------
 
-function OnAbilityCheck(player,target,ability)
+function onAbilityCheck(player,target,ability)
 	if (not player:hasStatusEffect(EFFECT_DOUBLE_UP_CHANCE)) then
 		return MSGBASIC_NO_ELIGIBLE_ROLL,0;
 	else
@@ -17,5 +17,5 @@ function OnAbilityCheck(player,target,ability)
 	end
 end;
 
-function OnUseAbility(player, target, ability)
+function onUseAbility(player, target, ability)
 end;

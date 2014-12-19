@@ -4,11 +4,11 @@
 --
 ---------------------------------------------
 
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
     return 0;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_PARALYSIS;
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, math.random(40,70), 0, 120));

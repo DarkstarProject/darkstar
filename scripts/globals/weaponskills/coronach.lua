@@ -18,7 +18,7 @@ require("scripts/globals/status");
 require("scripts/globals/settings");   
 require("scripts/globals/weaponskills");   
 -----------------------------------   
-function OnUseWeaponSkill(player, target, wsID)   
+function onUseWeaponSkill(player, target, wsID)   
 	local params = {};
 	params.numHits = 1;
 	params.ftp100 = 3; params.ftp200 = 3; params.ftp300 = 3;

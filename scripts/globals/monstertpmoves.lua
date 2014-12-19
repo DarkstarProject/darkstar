@@ -255,7 +255,7 @@ end
 
 -- MAGICAL MOVE
 -- Call this on every magical move!
--- mob/target/skill should be passed from OnMobWeaponSkill.
+-- mob/target/skill should be passed from onMobWeaponSkill.
 -- dmg is the base damage (V value), accmod is a multiplier for accuracy (1 default, more than 1 = higher macc for mob),
 -- ditto for dmg mod but more damage >1 (equivalent of M value)
 -- tpeffect is an enum from one of:

@@ -8850,7 +8850,7 @@ inline int32 CLuaBaseEntity::setGMHidden(lua_State* L)
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
     PChar->m_isGMHidden = lua_toboolean(L, 1);
 
-    if (PChar->m_isGMHidden == true)
+    if (PChar->m_isGMHidden == true && PChar->loc.zone)
         PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CCharPacket(PChar, ENTITY_DESPAWN));
 
     return 0;

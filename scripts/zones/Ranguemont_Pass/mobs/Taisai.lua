@@ -3,7 +3,7 @@
 -- MOB:  Taisai
 -----------------------------------
 
-function OnMobRoam(mob)
+function onMobRoam(mob)
 
 	local Taisaijin = 17457216;
 	local Taisaijin_PH = 0;

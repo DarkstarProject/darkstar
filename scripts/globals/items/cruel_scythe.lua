@@ -1,32 +1,26 @@
 -----------------------------------------
--- ID: 16773 
+-- ID: 16773
 -- Item: Cruel Scythe
--- Additional Effect: Evasion Down
+-- Additional Effect: Impairs evasion
 -----------------------------------------
+
 require("scripts/globals/status");
 require("scripts/globals/magic");
 
 -----------------------------------
 -- onAdditionalEffect Action
 -----------------------------------
+
 function onAdditionalEffect(player,target,damage)
-    local chance = 9;
-    if (target:getMainLvl() > player:getMainLvl()) then
-        chance = chance - 5 * (target:getMainLvl() - player:getMainLvl())
-        chance = utils.clamp(chance, 5, 9);
-    end
-    if (math.random(0,99) >= chance) then
+    local chance = 10;
+
+    if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_ICE,0) <= 0.5) then
         return 0,0,0;
     else
-        local duration = 25;
-        if (target:getMainLvl() > player:getMainLvl()) then
-            duration = duration - (target:getMainLvl() - player:getMainLvl())
-        end
-        utils.clamp(duration,1,25);
-        --duration = duration * applyResistanceAddEffect(player,target,EFFECT_EVASION_DOWN,0);
+        target:delStatusEffect(EFFECT_EVASION_DOWN)
         if (not target:hasStatusEffect(EFFECT_EVASION_DOWN)) then
-            target:addStatusEffect(EFFECT_EVASION_DOWN, 1, 0, duration);
+            target:addStatusEffect(EFFECT_EVASION_DOWN, 12, 0, 60);
         end
-        return SUBEFFECT_NONE, 160, EFFECT_EVASION_DOWN;
+        return SUBEFFECT_DEFENSE_DOWN, 160, EFFECT_EVASION_DOWN; -- I believe this is the correct subeffect animation.
     end
 end;

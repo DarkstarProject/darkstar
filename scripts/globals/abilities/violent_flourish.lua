@@ -8,10 +8,10 @@ require("scripts/globals/weaponskills");
 require("scripts/globals/magic");
 
 -----------------------------------
--- OnUseAbility
+-- onUseAbility
 -----------------------------------
 
-function OnAbilityCheck(player,target,ability)
+function onAbilityCheck(player,target,ability)
 	if (player:getAnimation() ~= 1) then
 		return MSGBASIC_REQUIRES_COMBAT,0;
 	else
@@ -40,7 +40,7 @@ function OnAbilityCheck(player,target,ability)
 	end
 end;
 
-function OnUseAbility(player, target, ability)
+function onUseAbility(player, target, ability)
 	local hit = 4;
 	--get fstr
 	local fstr = fSTR(player:getStat(MOD_STR),target:getStat(MOD_VIT),player:getWeaponDmgRank());

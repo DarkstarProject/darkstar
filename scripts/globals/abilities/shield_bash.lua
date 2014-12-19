@@ -5,7 +5,7 @@
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
-function OnAbilityCheck(player,target,ability)
+function onAbilityCheck(player,target,ability)
 	if (player:getShieldSize() == 0) then
 		return MSGBASIC_REQUIRES_SHIELD,0;
 	else
@@ -14,10 +14,10 @@ function OnAbilityCheck(player,target,ability)
 end;
 
 -----------------------------------
--- OnUseAbility
+-- onUseAbility
 -----------------------------------
 
-function OnUseAbility(player, target, ability)
+function onUseAbility(player, target, ability)
 
 	local shieldSize = player:getShieldSize();
 	local damage = 0;

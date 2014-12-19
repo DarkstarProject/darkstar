@@ -6,10 +6,10 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- OnUseAbility
+-- onUseAbility
 -----------------------------------
 
-function OnAbilityCheck(player,target,ability)
+function onAbilityCheck(player,target,ability)
 	if (player:hasStatusEffect(EFFECT_FINISHING_MOVE_5)) then
         return 561,0;
 	else
@@ -17,7 +17,7 @@ function OnAbilityCheck(player,target,ability)
     end
 end;
 
-function OnUseAbility(player, target, ability)
+function onUseAbility(player, target, ability)
 	
     local moves = player:getMerit(MERIT_NO_FOOT_RISE);
     if (player:hasStatusEffect(EFFECT_FINISHING_MOVE_1)) then
