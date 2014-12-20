@@ -318,7 +318,7 @@ enum ZONEID : uint16
     ZONE_OUTER_RAKAZNAR               = 274,
     ZONE_OUTER_RAKAZNAR_U             = 275,
     ZONE_RAKAZNAR_INNER_COURT         = 276,
-    ZONE_277                          = 277,
+    ZONE_RAKAZNAR_TURRIS              = 277,
     ZONE_278                          = 278,
     ZONE_279                          = 279,
     ZONE_MOG_GARDEN                   = 280,
