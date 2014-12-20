@@ -240,7 +240,7 @@ enum ZONEID : uint16
 	ZONE_GUSGEN_MINES                 = 196,
 	ZONE_CRAWLERS_NEST                = 197,
 	ZONE_MAZE_OF_SHAKHRAMI            = 198,
-	ZONE_198                          = 198,
+	ZONE_199                          = 199,
 	ZONE_GARLAIGE_CITADEL             = 200,
 	ZONE_CLOISTER_OF_GALES            = 201,
 	ZONE_CLOISTER_OF_STORMS           = 202,
