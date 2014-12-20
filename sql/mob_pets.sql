@@ -1001,6 +1001,17 @@ INSERT INTO `mob_pets` VALUES (16916598, 1, 14);
 INSERT INTO `mob_pets` VALUES (16916639, 1, 14);
 INSERT INTO `mob_pets` VALUES (16916745, 1, 14);
 INSERT INTO `mob_pets` VALUES (16916805, 1, 14);
+-- Ruhmet
+INSERT INTO `mob_pets` VALUES (16920596 , 1, 14);
+INSERT INTO `mob_pets` VALUES (16920606 , 1, 9);
+INSERT INTO `mob_pets` VALUES (16920609 , 1, 15);
+INSERT INTO `mob_pets` VALUES (16920648 , 1, 15);
+INSERT INTO `mob_pets` VALUES (16920657 , 1, 9);
+INSERT INTO `mob_pets` VALUES (16920662 , 1, 14);
+INSERT INTO `mob_pets` VALUES (16920779 , 1, 9);
+INSERT INTO `mob_pets` VALUES (16920783 , 1, 14);
+INSERT INTO `mob_pets` VALUES (16920787 , 1, 15);
+
 
 -- periqia requiem assault draugars wyverns
 -- INSERT INTO `mob_pets` VALUES (17006617, 1, 14);
