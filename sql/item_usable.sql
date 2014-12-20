@@ -1683,6 +1683,7 @@ INSERT INTO `item_usable` VALUES (10268,'creek_maillot_+1',1,8,0,0,1,30,86400,0)
 INSERT INTO `item_usable` VALUES (10269,'creek_top_+1',1,8,0,0,1,30,86400,0);
 INSERT INTO `item_usable` VALUES (10270,'river_top_+1',1,8,0,0,1,30,86400,0);
 INSERT INTO `item_usable` VALUES (10271,'dune_gilet_+1',1,8,0,0,1,30,86400,0);
+INSERT INTO `item_usable` VALUES (10383,'dream_mittens_+1',1,6,24,0,1,30,7200,0);
 INSERT INTO `item_usable` VALUES (10875,'snowman_cap',1,1,0,0,1,30,3600,0);
 INSERT INTO `item_usable` VALUES (11273,'custom_gilet_+1',1,8,0,0,1,30,72000,0);
 INSERT INTO `item_usable` VALUES (11274,'custom_top_+1',1,8,0,0,1,30,72000,0);
