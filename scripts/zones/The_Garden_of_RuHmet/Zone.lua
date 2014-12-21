@@ -54,7 +54,67 @@ function onInitialize(zone)
 	zone:registerRegion(31,  97,-4,541,  102,4,547);--mithra niv 2 177 vers niv 1	
 	zone:registerRegion(32,  97,-4,372,  102,4,379);--mithra niv 2 176 vers niv 3
 	zone:registerRegion(33,  97,-4,-427, 102,4,-421);--mithra niv 3 182 vers niv 2	
+	
+	
+	
+end;
+
+-----------------------------------		
+-- onGameHour		
+-----------------------------------		  
+
+function onGameHour(npc, mob, player)
+	
+	local VanadielHour = VanadielHour();
+	local qm2 = GetNPCByID(16921028); -- Jailer of Faith
+	local qm3 = GetNPCByID(16921029); -- Ix'aern drk
+    local s = math.random(6,12) -- wait time till change to next spawn pos, random 15~30 mins.
+	-- Jailer of Faith spawn randomiser
+	--[[if(VanadielHour % s == 0 and GetMobAction(16921021) == 0) then -- Change ??? position every 6 hours Vana'diel time (~15 mins)
+        local qm3p = math.random(1,5); -- random for next @pos. -- start in spawn pos 1.
+			--print(qm3p) 
+			qm3:hideNPC(60);
+				if (qm3p == 1) then
+                        qm3:setPos(-420,0.00,-157); -- spawn point 1 "Hume"
+						--printf("Qm3 is at pos 1");
+                elseif (qm3p == 2) then
+                        qm3:setPos(-157,0.00,-340); -- spawn point 2 "Elvaan"
+						--printf("Qm3 is at pos 2");
+                elseif (qm3p == 3) then
+                        qm3:setPos(-260,0.00,-643); -- spawn point 3 "Galka"
+						--printf("Qm3 is at pos 3");
+                elseif (qm3p == 4) then
+                        qm3:setPos(-580,0.00,-644); -- spawn point 4 "Taru"
+						--printf("Qm3 is at pos 4");
+                elseif (qm3p == 5) then
+                        qm3:setPos(-683,0.00,-340); -- spawn point 5 "Mithra"
+						--printf("Qm3 is at pos 5");
+				end
+		end	
 		
+	-- Ix'DRK spawn randomiser
+	if(VanadielHour % 6 == 0) then -- Change ??? position every 6 hours Vana'diel time (~15 mins)
+		local qm2p = math.random(1,4); -- random for next @pos. -- start in spawn pos 1.
+			--print(qm2p) 
+			qm3:hideNPC(30);
+				if (qm2p == 1) then
+                    qm2:setPos(-240,5.00,440); -- spawn point 1 "Hume-Elvaan"
+					SetServerVariable("[POSI]Ix_aern_drk",1);
+					--printf("Qm2 is at pos 1");
+				elseif (qm2p == 2) then
+                    qm2:setPos(-280,5.00,240); -- spawn point 2 "Elvaan-Galka"
+					SetServerVariable("[POSI]Ix_aern_drk",2);
+					--printf("Qm2 is at pos 2");
+				elseif (qm2p == 3) then
+                    qm2:setPos(-560,5.00,239); -- spawn point 3 "Taru-Mithra"
+					SetServerVariable("[POSI]Ix_aern_drk",3);
+					--printf("Qm2 is at pos 3");
+				elseif (qm2p == 4) then
+                    qm2:setPos(-600,5.00,440); -- spawn point 4 "Mithra-Hume"
+					SetServerVariable("[POSI]Ix_aern_drk",4);
+					--printf("Qm2 is at pos 4");               
+				end
+	end	]]--
 end;
 
 -----------------------------------		
@@ -157,6 +217,7 @@ function onRegionEnter(player,region)
 	}
  end
 end;	
+
 
 -----------------------------------	
 -- onRegionLeave	
