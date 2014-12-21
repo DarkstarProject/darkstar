@@ -1542,7 +1542,7 @@ INSERT INTO `item_weapon` VALUES (17902,'jug_of_lucky_broth',0,64,0,1,0,0,0);
 INSERT INTO `item_weapon` VALUES (17903,'jug_of_shadowy_broth',0,65,0,1,0,0,0);
 INSERT INTO `item_weapon` VALUES (17904,'jug_of_briny_broth',0,66,0,1,0,0,0);
 INSERT INTO `item_weapon` VALUES (17905,'jug_of_wormy_broth',0,67,0,1,0,0,0);
-INSERT INTO `item_weapon` VALUES (17906,'jug_of_auroral_broth',0,0,0,1,0,0,0);
+INSERT INTO `item_weapon` VALUES (17906,'jug_of_auroral_broth',0,68,0,1,0,0,0);
 INSERT INTO `item_weapon` VALUES (17923,'deluxe_animator',0,0,0,1,0,1,0);
 INSERT INTO `item_weapon` VALUES (17924,'tungi',5,0,2,1,260,41,0);
 INSERT INTO `item_weapon` VALUES (17925,'fransisca',5,0,2,1,288,44,0);

@@ -8507,7 +8507,7 @@ INSERT INTO `item_armor` VALUES ('18848', 'brass_jadagna', '71', '1048645', '401
 INSERT INTO `item_armor` VALUES ('18849', 'brass_jadagna_+1', '71', '1048645', '401', '0', '0', '3', '0');
 INSERT INTO `item_armor` VALUES ('18850', 'perdu_wand', '73', '1622044', '228', '0', '0', '3', '0');
 INSERT INTO `item_armor` VALUES ('18851', 'werebuster', '75', '4', '111', '0', '0', '3', '0');
-INSERT INTO `item_armor` VALUES ('18852', 'octave_club', '99', '32767', '110', '0', '0', '3', '0');
+INSERT INTO `item_armor` VALUES ('18852', 'octave_club', '63', '32767', '110', '0', '0', '3', '0');
 INSERT INTO `item_armor` VALUES ('18853', 'spirit_maul', '38', '1048580', '116', '0', '0', '3', '0');
 INSERT INTO `item_armor` VALUES ('18854', 'fourth_division_mace', '71', '1590047', '105', '0', '0', '3', '0');
 INSERT INTO `item_armor` VALUES ('18855', 'trainee_hammer', '1', '4194303', '115', '0', '0', '3', '0');
@@ -9396,7 +9396,7 @@ INSERT INTO `item_armor` VALUES ('19750', 'guttler', '99', '256', '0', '0', '0',
 INSERT INTO `item_armor` VALUES ('19751', 'bravura', '99', '1', '548', '0', '0', '1', '0');
 INSERT INTO `item_armor` VALUES ('19752', 'gungnir', '99', '8192', '0', '0', '0', '1', '0');
 INSERT INTO `item_armor` VALUES ('19753', 'apocalypse', '99', '128', '0', '0', '0', '1', '0');
-INSERT INTO `item_armor` VALUES ('19754', 'kikoku', '75', '4096', '344', '0', '0', '3', '0');
+INSERT INTO `item_armor` VALUES ('19754', 'kikoku', '99', '4096', '344', '0', '0', '3', '0');
 INSERT INTO `item_armor` VALUES ('19755', 'amanomurakumo', '99', '2048', '340', '0', '0', '1', '0');
 INSERT INTO `item_armor` VALUES ('19756', 'mjollnir', '99', '4', '307', '0', '0', '3', '0');
 INSERT INTO `item_armor` VALUES ('19757', 'claustrum', '99', '16392', '0', '0', '0', '1', '0');
