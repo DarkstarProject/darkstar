@@ -317,7 +317,8 @@
     <ClInclude Include="..\..\src\map\packets\change_music.h" />
     <ClInclude Include="..\..\src\map\packets\conquest_map.h" />
     <ClInclude Include="..\..\src\map\packets\cs_position.h" />
-    <ClInclude Include="..\..\src\map\packets\currency.h" />
+    <ClInclude Include="..\..\src\map\packets\currency1.h" />
+    <ClInclude Include="..\..\src\map\packets\currency2.h" />
     <ClInclude Include="..\..\src\map\packets\delivery_box.h" />
     <ClInclude Include="..\..\src\map\packets\downloading_data.h" />
     <ClInclude Include="..\..\src\map\packets\entity_update.h" />
@@ -549,7 +550,8 @@
     <ClCompile Include="..\..\src\map\packets\change_music.cpp" />
     <ClCompile Include="..\..\src\map\packets\conquest_map.cpp" />
     <ClCompile Include="..\..\src\map\packets\cs_position.cpp" />
-    <ClCompile Include="..\..\src\map\packets\currency.cpp" />
+    <ClCompile Include="..\..\src\map\packets\currency1.cpp" />
+    <ClCompile Include="..\..\src\map\packets\currency2.cpp" />
     <ClCompile Include="..\..\src\map\packets\delivery_box.cpp" />
     <ClCompile Include="..\..\src\map\packets\downloading_data.cpp" />
     <ClCompile Include="..\..\src\map\packets\entity_update.cpp" />

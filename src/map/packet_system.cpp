@@ -89,7 +89,8 @@
 #include "packets/change_music.h"
 #include "packets/conquest_map.h"
 #include "packets/cs_position.h"
-#include "packets/currency.h"
+#include "packets/currency1.h"
+#include "packets/currency2.h"
 #include "packets/delivery_box.h"
 #include "packets/downloading_data.h"
 #include "packets/entity_update.h"
@@ -5221,13 +5222,13 @@ void SmallPacket0x10B(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 /************************************************************************
 *																		*
-*  Request Currency tab                                 		 		*
+*  Request Currency1 tab                                 		 		*
 *																		*
 ************************************************************************/
 
 void SmallPacket0x10F(map_session_data_t* session, CCharEntity* PChar, int8* data)
 {
-    PChar->pushPacket(new CCurrencyPacket(PChar));
+    PChar->pushPacket(new CCurrencyPacket1(PChar));
     return;
 }
 
@@ -5241,6 +5242,18 @@ void SmallPacket0x111(map_session_data_t* session, CCharEntity* PChar, int8* dat
 {
     PChar->setStyleLocked(RBUFB(data,(0x04)));
     PChar->pushPacket(new CCharAppearancePacket(PChar));
+    return;
+}
+
+/************************************************************************
+*																		*
+*  Request Currency2 tab                                 		 		*
+*																		*
+************************************************************************/
+
+void SmallPacket0x115(map_session_data_t* session, CCharEntity* PChar, int8* data)
+{
+    PChar->pushPacket(new CCurrencyPacket2(PChar));
     return;
 }
 
@@ -5355,6 +5368,7 @@ void PacketParserInitialize()
     PacketSize[0x111] = 0x00; PacketParser[0x111] = &SmallPacket0x111; // Lock Style Request
     PacketSize[0x112] = 0x00; PacketParser[0x112] = &SmallPacket0xFFF;
     PacketSize[0x114] = 0x00; PacketParser[0x114] = &SmallPacket0xFFF;
+    PacketSize[0x115] = 0x02; PacketParser[0x115] = &SmallPacket0x115;
 }
 
 /************************************************************************
