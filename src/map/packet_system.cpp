@@ -345,7 +345,7 @@ void SmallPacket0x00C(map_session_data_t* session, CCharEntity* PChar, int8* dat
             PChar->resetPetZoningInfo();
         }
     }
-    
+
     return;
 }
 
@@ -724,12 +724,12 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
         PChar->pushPacket(new CServerIPPacket(PChar, 2));
     }
     break;
-    case 0x0C:     // assist
+    case 0x0C: // assist
     {
         battleutils::assistTarget(PChar, TargID);
     }
     break;
-    case 0x0D:     // raise menu
+    case 0x0D: // raise menu
     {
         if (!PChar->m_hasRaise)
             return;
@@ -739,12 +739,12 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
         }
     }
     break;
-    case 0x0E: // рыбалка
+    case 0x0E: // Fishing
     {
         fishingutils::StartFishing(PChar);
     }
     break;
-    case 0x0F: // смена цели во время боя
+    case 0x0F: // change target
     {
         PChar->PBattleAI->SetCurrentAction(ACTION_CHANGE_TARGET, TargID);
     }
@@ -772,7 +772,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
         }
     }
     break;
-    case 0x12:     // dismount
+    case 0x12: // dismount
     {
         PChar->status = STATUS_UPDATE;
         PChar->animation = ANIMATION_NONE;
@@ -798,7 +798,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
         PChar->m_hasTractor = 0;
     }
     break;
-    case 0x14: // окончание обновления данных персонажа
+    case 0x14: // complete character update
     {
         if (PChar->getZone() == 0)
         {
@@ -938,18 +938,17 @@ void SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
     uint32 NewQuantity = PItem->getQuantity() - quantity;
 
-    if (NewQuantity != 0) // делим пачку
+    if (NewQuantity != 0) // split item stack
     {
         if (charutils::AddItem(PChar, ToLocationID, PItem->getID(), quantity) != ERROR_SLOTID)
         {
             charutils::UpdateItem(PChar, FromLocationID, FromSlotID, -(int32)quantity);
         }
     }
-    else // переносим всю пачку, или пытаемся объединить одинаковые предметы
+    else // move stack / combine items into stack
     {
         if (ToSlotID < 82) // 80 + 1
         {
-            // объединение еще не реализовано
             ShowDebug("SmallPacket0x29: Trying to unite items\n", FromLocationID, FromSlotID);
             return;
         }
@@ -958,29 +957,26 @@ void SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
         if (NewSlotID != ERROR_SLOTID)
         {
-            const int8* Query = "UPDATE char_inventory \
-                                                                                                 SET location = %u, slot = %u \
-                                                                                                                                                                                                   WHERE charid = %u AND location = %u AND slot = %u;";
+            const int8* Query = "UPDATE char_inventory SET location = %u, slot = %u WHERE charid = %u AND location = %u AND slot = %u;";
 
             if (Sql_Query(SqlHandle, Query, ToLocationID, NewSlotID, PChar->id, FromLocationID, FromSlotID) != SQL_ERROR &&
                 Sql_AffectedRows(SqlHandle) != 0)
             {
                 PChar->getStorage(FromLocationID)->InsertItem(NULL, FromSlotID);
 
-                PChar->pushPacket(new CInventoryItemPacket(NULL, FromLocationID, FromSlotID));    // убираем предмет из FormLocationID
-                PChar->pushPacket(new CInventoryItemPacket(PItem, ToLocationID, NewSlotID));        // добавляем предмет в ToLocationID
+                PChar->pushPacket(new CInventoryItemPacket(NULL, FromLocationID, FromSlotID));
+                PChar->pushPacket(new CInventoryItemPacket(PItem, ToLocationID, NewSlotID));
             }
-            else // в случае ошибки отменяем перемещение предмета
+            else
             {
-                PChar->getStorage(ToLocationID)->InsertItem(NULL, NewSlotID);       // убираем предмет
-                PChar->getStorage(FromLocationID)->InsertItem(PItem, FromSlotID);   // возвращаем предмет (для обновления Location и Slot предмета)
+                PChar->getStorage(ToLocationID)->InsertItem(NULL, NewSlotID);
+                PChar->getStorage(FromLocationID)->InsertItem(PItem, FromSlotID);
             }
         }
         else
         {
-            // клиент не позволяет перемещать предмет в полный контейнер.
-            // если мы видим это сообщение, значит данные клиента и сервера различаются
-            // Client thinks that ToLocationID is NOT full, so lets send those packets again and tell them it is!
+            // Client assumed the location was not full when it is..
+            // Resend the packets to inform the client of the storage sizes..
             uint8 size = PChar->getStorage(ToLocationID)->GetSize();
             for (uint8 slotID = 0; slotID <= size; ++slotID)
             {
@@ -1061,13 +1057,10 @@ void SmallPacket0x033(map_session_data_t* session, CCharEntity* PChar, int8* dat
         {
         case 0x00: // request accepted
         {
-            // цели обмена у персонажей соответствующие
             if (PChar->TradePending.id == PTarget->id && PTarget->TradePending.id == PChar->id)
             {
-                // контейнеры у персонажей свободны
                 if (PChar->UContainer->IsContainerEmpty() && PTarget->UContainer->IsContainerEmpty())
                 {
-                    // между персонажами соответствующая дистанция
                     if (distance(PChar->loc.p, PTarget->loc.p) < 6)
                     {
                         PChar->UContainer->SetType(UCONTAINER_TRADE);
@@ -1087,10 +1080,8 @@ void SmallPacket0x033(map_session_data_t* session, CCharEntity* PChar, int8* dat
         break;
         case 0x01: // trade cancelled
         {
-            // цели обмена у персонажей соответствующие
             if (PChar->TradePending.id == PTarget->id && PTarget->TradePending.id == PChar->id)
             {
-                // контейнер у цели зарезервирован для обмена
                 if (PTarget->UContainer->GetType() == UCONTAINER_TRADE)
                 {
                     PTarget->UContainer->Clean();
@@ -1110,13 +1101,11 @@ void SmallPacket0x033(map_session_data_t* session, CCharEntity* PChar, int8* dat
         break;
         case 0x02: // trade accepted
         {
-            // цели обмена у персонажей соответствующие
             if (PChar->TradePending.id == PTarget->id && PTarget->TradePending.id == PChar->id)
             {
                 PChar->UContainer->SetLock();
                 PTarget->pushPacket(new CTradeActionPacket(PChar, action));
 
-                // совершаем обмен предметами в контейнерах персонажей
                 if (PTarget->UContainer->IsLocked())
                 {
                     if (charutils::CanTrade(PChar, PTarget) && charutils::CanTrade(PTarget, PChar))
@@ -1129,11 +1118,8 @@ void SmallPacket0x033(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     }
                     else
                     {
-                        // обмен не состоялся:
-                        // недостаточно места в контейнере одного или обоих персонажей
-                        // or
-                        // rare item in the exchange is owned by the recipient
-
+                        // Failed to trade..
+                        // Either players containers are full or illegal item trade attempted..
                         PChar->pushPacket(new CTradeActionPacket(PTarget, 1));
                         PTarget->pushPacket(new CTradeActionPacket(PChar, 1));
                     }
@@ -1173,7 +1159,7 @@ void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, int8* dat
         // We used to disable Rare/Ex items being added to the container, but that is handled properly else where now
         if (PItem != NULL && PItem->getID() == itemID)
         {
-            // если количество предметов равно нулю, то удаляем предмет из контейнера
+            // If item count is zero.. remove from container..
             PItem->setReserve(quantity);
             PChar->UContainer->SetItem(tradeSlotID, quantity > 0 ? PItem : NULL);
 
@@ -1257,7 +1243,7 @@ void SmallPacket0x037(map_session_data_t* session, CCharEntity* PChar, int8* dat
     {
         if (PItem->isType(ITEM_ARMOR))
         {
-            //TODO: если ITEM_LOCKED, то должна быть проверка на то, что предмет экипирован
+            //TODO: If item is locked, we need to check if its equipped..
         }
         else if (PItem->isSubType(ITEM_LOCKED))
         {
@@ -1352,6 +1338,7 @@ void SmallPacket0x03A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 *                                                                       *
 *  Unknown Packet                                                       *
 *  Assumed packet empty response for npcs/monsters/players.             *
+*                                                                       *
 ************************************************************************/
 
 void SmallPacket0x03C(map_session_data_t* session, CCharEntity* PChar, int8* data)
@@ -1499,38 +1486,29 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
     ShowDebug(CL_CYAN"DeliveryBox Action (%02hx)\n" CL_RESET, RBUFB(data, (0x04)));
     PrintPacket(data);
 
-    // 0x01 - отправка клиенту старых предметов
-    // 0x02 - добавление предметов в список отправляемых (подготовка к отправке)
-    // 0x03 - подтверждение отправки (отправляем предметы)
-    // 0x04 - возврат неправильно отправленного предмета (отмена выполненной отправки)
-    // 0x05 - отправка клиенту количества новых предметов
-    // 0x06 - отправка клиенту новых предметов
-    // 0x07 - removes a delivered item from sending box
-    // 0x08 - обновление предмета в ячейке перед удалением
-    // 0x09 - вернуть предмет отправителю
-    // 0x0a - взять предмет из ячейки
-    // 0x0b - удаление предмета из ячейки
-    // 0x0c - подтверждение введенного имени в окне отправки
-    // 0x0d - открытие окна отправки почты
-    // 0x0e - открытие окна приема почты
-    // 0x0f - закрытие окна почты
+    // 0x01 - Send old items..
+    // 0x02 - Add items to be sent..
+    // 0x03 - Send confirmation..
+    // 0x04 - Cancel sending item..
+    // 0x05 - Send client new item count..
+    // 0x06 - Send new items..
+    // 0x07 - Removes a delivered item from sending box
+    // 0x08 - Update delivery cell before removing..
+    // 0x09 - Return to sender..
+    // 0x0a - Take item from cell..
+    // 0x0b - Remove item from cell..
+    // 0x0c - Confirm name before sending..
+    // 0x0d - Opening to send mail..
+    // 0x0e - Opening to receive mail..
+    // 0x0f - Closing mail window..
 
     switch (action)
     {
     case 0x01:
     {
-        // отправляем персонажу старые предметы (предметы, которые персонаж уже видел в delivery box)
-        // все старые предметы расположены в ячейках 0-7
-
-
         if (boxtype == 0x01)
         {
-            const int8* fmtQuery = "SELECT itemid, itemsubid, slot, quantity, sender \
-                                                                                                              FROM delivery_box \
-                                                                                                                                                                                                                                 WHERE charid = %u \
-                                                                                                                                                                                                                                                                                                                                                                                         AND box = %u \
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ORDER BY slot \
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 LIMIT 8";
+            const int8* fmtQuery = "SELECT itemid, itemsubid, slot, quantity, sender  FROM delivery_box WHERE charid = %u AND box = %u ORDER BY slot  LIMIT 8";
 
             int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id, boxtype);
 
@@ -1595,15 +1573,15 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
                 ret = Sql_Query(SqlHandle,
                     "INSERT INTO delivery_box(charid, charname, box, slot, itemid, itemsubid, quantity, senderid, sender) \
-                                                                VALUES(%u, '%s', 2, %u, %u, %u, %u, %u, '%s'); ",
-                                                                charid,
-                                                                data + 0x10,
-                                                                slotID,
-                                                                PItem->getID(),
-                                                                PItem->getSubID(),
-                                                                quantity,
-                                                                PChar->id,
-                                                                PChar->GetName());
+                                                                                                        VALUES(%u, '%s', 2, %u, %u, %u, %u, %u, '%s'); ",
+                                                                                                        charid,
+                                                                                                        data + 0x10,
+                                                                                                        slotID,
+                                                                                                        PItem->getID(),
+                                                                                                        PItem->getSubID(),
+                                                                                                        quantity,
+                                                                                                        PChar->id,
+                                                                                                        PChar->GetName());
 
                 if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
                 {
@@ -1655,14 +1633,14 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
                         {
                             ret = Sql_Query(SqlHandle,
                                 "INSERT INTO delivery_box(charid, charname, box, itemid, itemsubid, quantity, senderid, sender) \
-                                                                                                    VALUES(%u, '%s', 1, %u, %u, %u, %u, '%s'); ",
-                                                                                                    charid,
-                                                                                                    PItem->getReceiver(),
-                                                                                                    PItem->getID(),
-                                                                                                    PItem->getSubID(),
-                                                                                                    PItem->getQuantity(),
-                                                                                                    PChar->id,
-                                                                                                    PChar->GetName());
+                                                                                                                                                                    VALUES(%u, '%s', 1, %u, %u, %u, %u, '%s'); ",
+                                                                                                                                                                    charid,
+                                                                                                                                                                    PItem->getReceiver(),
+                                                                                                                                                                    PItem->getID(),
+                                                                                                                                                                    PItem->getSubID(),
+                                                                                                                                                                    PItem->getQuantity(),
+                                                                                                                                                                    PChar->id,
+                                                                                                                                                                    PChar->GetName());
                             if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
                             {
                                 PChar->pushPacket(new CSendBoxPacket(action, PItem, slotID, send_items, 0x02));
@@ -1728,11 +1706,9 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
     }
     case 0x05:
     {
-        // отправляем персонажу количество новых предметов (предметы, которые персонаж еще не видел в delivery box)
-        // все новые предметы помещаются в контейнет начиная со значения 8
-        // перемещаем новые предметы в свободные ячейки delivery box
-
-        if (PChar->UContainer->GetType() != UCONTAINER_DELIVERYBOX) return;
+        // Send the player the new items count not seen..
+        if (PChar->UContainer->GetType() != UCONTAINER_DELIVERYBOX)
+            return;
 
         if (boxtype == 0x01)
         {
@@ -1753,7 +1729,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
                         if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
                         {
                             ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET received = 1 WHERE charid = %u AND sender = '%s' AND box = 2 AND received = 0 \
-                                                                                                                                                                         AND quantity = %u LIMIT 1", PChar->id, PItem->getSender(), PItem->getQuantity());
+                                                                                                                                                                                                                                                                                       AND quantity = %u LIMIT 1", PChar->id, PItem->getSender(), PItem->getQuantity());
 
                             if (ret != SQL_ERROR)
                             {
@@ -1787,26 +1763,24 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
     case 0x06:
     case 0x08:
     {
-        // 0x08 и 0x06 идентичны
+        // 0x06 and 0x08 are identical
         //
-        // 0х06 - добавляем предмет в определенную ячейку
-        // 0х08 - обновляем предмет в определенной ячейке
-
-        // отправляем персонажу все новые предметы (предметы, которые персонаж еще не видел в delivery box)
-        // клиент отправляет запрос серверу для каждого нового предмета, при этом указывая, какая ячейка его интересует
+        // 0x06 - Add item to specific cell.
+        // 0x08 - Update item in specific cell.
         //
-        // сервер должен отправлять два пакета с действием 0х06
-        // у первого пакета data[0x0c] равняется 0x02, у второго 0x01, в остальном заголовок идентичен
-        // возможно это связано с тем, что я сам отправлял себе предметы
+        // Send the player all the new items (items not seen yet by the player)
+        // Client sends request to the server for each new item (While pointing out what has been inserted into the cell.)
         //
+        // Server sends two packages with the 0x06 action.
+        // 1st packet data 0x0C is equal to 0x02, the 2nd packet its equal to 0x01.
+        // Otherwise the item is identical.
+        //
+        // Perhaps this is due to the fact that the player sent itself the object.
         // 0x4b 0x2c 0x00 0x00 0x06 0x01 0x01 0x01 0xff 0xff 0xff 0xff 0x02 0x01 0xff 0xff
         // 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
         // 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
         // 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
         // 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
-        //
-        // зачем нужен этот пустой пакет я не знаю, но и без него все отлично работает
-        // предположительно он отчищает целевую ячейку от предметов, на всякий случай
 
         if (PChar->UContainer->GetType() == UCONTAINER_DELIVERYBOX &&
             !PChar->UContainer->IsSlotEmpty(slotID))
@@ -1873,14 +1847,14 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
                         // Insert a return record into delivery_box
                         ret = Sql_Query(SqlHandle,
                             "INSERT INTO delivery_box(charid, charname, box, itemid, itemsubid, quantity, senderid, sender) \
-                                                                                        VALUES(%u, '%s', 1, %u, %u, %u, %u, '%s'); ",
-                                                                                        senderID,
-                                                                                        senderName.c_str(),
-                                                                                        PItem->getID(),
-                                                                                        PItem->getSubID(),
-                                                                                        PItem->getQuantity(),
-                                                                                        PChar->id,
-                                                                                        PChar->GetName());
+                                                                                                                                                VALUES(%u, '%s', 1, %u, %u, %u, %u, '%s'); ",
+                                                                                                                                                senderID,
+                                                                                                                                                senderName.c_str(),
+                                                                                                                                                PItem->getID(),
+                                                                                                                                                PItem->getSubID(),
+                                                                                                                                                PItem->getQuantity(),
+                                                                                                                                                PChar->id,
+                                                                                                                                                PChar->GetName());
 
                         if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) > 0)
                         {
@@ -2009,8 +1983,6 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
     }
     case 0x0B: // Option: Drop
     {
-        // удаление предмета из ячейки
-
         if (PChar->UContainer->GetType() == UCONTAINER_DELIVERYBOX &&
             !PChar->UContainer->IsSlotEmpty(slotID))
         {
@@ -2048,12 +2020,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
         PChar->UContainer->Clean();
         PChar->UContainer->SetType(UCONTAINER_DELIVERYBOX);
 
-        const int8* fmtQuery = "SELECT itemid, itemsubid, slot, quantity, sender \
-                                                                                                  FROM delivery_box \
-                                                                                                                                                                                                         WHERE charid = %u \
-                                                                                                                                                                                                                                                                                                                                                 AND box = %u \
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             AND slot < 8 \
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ORDER BY slot;";
+        const int8* fmtQuery = "SELECT itemid, itemsubid, slot, quantity, sender FROM delivery_box  WHERE charid = %u AND box = %u AND slot < 8 ORDER BY slot;";
 
         int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id, boxtype);
 
@@ -2103,12 +2070,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
                         }
                     }
                 }
-                const int8* fmtQuery = "DELETE FROM delivery_box \
-                                                                                                                      WHERE senderid = %u \
-                                                                                                                                                                                                                                          AND box = 2 \
-                                                                                                                                                                                                                                                                                                                                                                                                      AND slot < 8 \
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          AND sent = 0 \
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ORDER BY slot;";
+                const int8* fmtQuery = "DELETE FROM delivery_box WHERE senderid = %u AND box = 2 AND slot < 8 AND sent = 0 ORDER BY slot;";
                 int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
                 DSP_DEBUG_BREAK_IF(ret == SQL_ERROR);
             }
@@ -2118,7 +2080,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, int8* dat
     break;
     }
 
-    // отправка простых действий - открыть окно почты, закрыть окно почты
+    // Open mail, close mail..
 
     PChar->pushPacket(new CDeliveryBoxPacket(action, 0));
     return;
@@ -2141,13 +2103,13 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
     ShowDebug(CL_CYAN"AH Action (%02hx)\n" CL_RESET, RBUFB(data, (0x04)));
 
-    // 0x04 - продажа предмета
-    // 0x05 - похоже, что в ответ на этот пакет мы можем открыть список продаж или предложить персонажу подождать немного
-    // 0x0A - получение списка продаваемых персонажем предметов
-    // 0x0B - подтверждение покупки
-    // 0x0E - покупка предмета
-    // 0x0С - отмена продажи
-    // 0x0D - обновление списка продаваемых персонажем предметов
+    // 0x04 - Selling Items
+    // 0x05 - Open List Of Sales / Wait
+    // 0x0A - Retrieve List of Items Sold By Player
+    // 0x0B - Proof Of Purchase
+    // 0x0E - Purchasing Items
+    // 0x0С - Cancel Sale
+    // 0x0D - Update Sale List By Player
 
     switch (action)
     {
@@ -2234,7 +2196,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
             }
 
             const int8* fmtQuery = "INSERT INTO auction_house(itemid, stack, seller, seller_name, date, price) \
-                                                                                                              VALUES(%u,%u,%u,'%s',%u,%u)";
+                                                                                                                                                                                    VALUES(%u,%u,%u,'%s',%u,%u)";
 
             if (Sql_Query(SqlHandle,
                 fmtQuery,
@@ -2287,11 +2249,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     gil->isType(ITEM_CURRENCY) &&
                     gil->getQuantity() >= price)
                 {
-                    const int8* fmtQuery = "UPDATE auction_house \
-                                                                                                                                      SET buyer_name = '%s', sale = %u, sell_date = %u \
-                                                                                                                                                                                                                                                                                 WHERE itemid = %u AND buyer_name IS NULL AND stack = %u AND price <= %u \
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ORDER BY price \
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       LIMIT 1";
+                    const int8* fmtQuery = "UPDATE auction_house SET buyer_name = '%s', sale = %u, sell_date = %u WHERE itemid = %u AND buyer_name IS NULL AND stack = %u AND price <= %u ORDER BY price LIMIT 1";
 
                     if (Sql_Query(SqlHandle,
                         fmtQuery,
@@ -2492,7 +2450,7 @@ void SmallPacket0x05A(map_session_data_t* session, CCharEntity* PChar, int8* dat
     PChar->pushPacket(new CCampaingPacket(PChar, 0));
     PChar->pushPacket(new CCampaingPacket(PChar, 1));
 
-    // пакет не на своем месте, возможно 0x0F
+    // May Require Sending of 0x0F
     //    PChar->pushPacket(new CStopDownloadingPacket(PChar));
     //    luautils::CheckForGearSet(PChar); // also check for gear set
     return;
@@ -2613,25 +2571,20 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
     uint32 zoneLineID = RBUFL(data, (0x04));
     //TODO: verify packet in adoulin expansion
-    uint8  town = RBUFB(data, (0x16)); // используются при выходе из mog house
-    uint8  zone = RBUFB(data, (0x17)); // используются при выходе из mog house
+    uint8  town = RBUFB(data, (0x16));
+    uint8  zone = RBUFB(data, (0x17));
 
-    // переход между зонами с использованием таблицы zoneline
-    //
-    // игнорируем все zoneline пакеты,
-    // пока не завершен текущий переход
-
-    if (PChar->status == STATUS_NORMAL ||
-        PChar->status == STATUS_UPDATE)
+    if (PChar->status == STATUS_NORMAL || PChar->status == STATUS_UPDATE)
     {
         PChar->status = STATUS_DISAPPEAR;
         PChar->loc.boundary = 0;
 
         zoneLine_t* PZoneLine = PChar->loc.zone->GetZoneLine(zoneLineID);
 
-        if (PZoneLine == NULL) // разворачиваем персонажа на 180° и отправляем туда, откуда пришел
+        // Ensure the zone line exists..
+        if (PZoneLine == NULL)
         {
-            ShowError(CL_RED"SmallPacket0x5E: Zone line %u not found\n" CL_RESET, zoneLineID); // в идеале нужно добавить зону и координаты
+            ShowError(CL_RED"SmallPacket0x5E: Zone line %u not found\n" CL_RESET, zoneLineID);
 
             PChar->loc.p.rotation += 128;
 
@@ -2641,9 +2594,11 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* dat
             PChar->status = STATUS_UPDATE;
             return;
         }
-        else{
+        else
+        {
+            // Ensure the destination exists..
             CZone* PDestination = zoneutils::GetZone(PZoneLine->m_toZone);
-            if (PDestination && PDestination->GetIP() == 0)     // разворачиваем персонажа на 180° и отправляем туда, откуда пришел
+            if (PDestination && PDestination->GetIP() == 0)
             {
                 ShowDebug(CL_CYAN"SmallPacket0x5E: Zone %u closed to chars\n" CL_RESET, PZoneLine->m_toZone);
 
@@ -2656,12 +2611,13 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 return;
             }
             else {
-                // выход из MogHouse
+                // Exiting Mog House..
                 if (PZoneLine->m_zoneLineID == 1903324538)
                 {
                     uint16 prevzone = PChar->loc.prevzone;
 
-                    if (zone != 0)  // 0 - выход в предыдущую зону, остальные значения - выбор зоны по имени
+                    // If zero, return to previous zone.. otherwise, determine the zone..
+                    if (zone != 0)
                     {
                         switch (town)
                         {
@@ -3278,7 +3234,6 @@ void SmallPacket0x084(map_session_data_t* session, CCharEntity* PChar, int8* dat
             (PItem->getID() == itemID) &&
             !(PItem->getFlag() & ITEM_FLAG_NOSALE))
         {
-            // подготавливаем предмет для продажи
             PChar->Container->setItem(PChar->Container->getSize() - 1, itemID, slotID, quantity);
             PChar->pushPacket(new CShopAppraisePacket(slotID, PItem->getBasePrice()));
         }
@@ -3310,7 +3265,7 @@ void SmallPacket0x085(map_session_data_t* session, CCharEntity* PChar, int8* dat
         PChar->pushPacket(new CMessageStandardPacket(0, itemID, quantity, 232));
         PChar->pushPacket(new CInventoryFinishPacket());
     }
-    // очищаем ячейку для безопасности (защита от группы 0x085-ых пакетов)
+
     PChar->Container->setItem(PChar->Container->getSize() - 1, 0, -1, 0);
     return;
 }
@@ -3693,7 +3648,7 @@ void SmallPacket0x0BE(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
     switch (RBUFB(data, (0x04)))
     {
-    case 2: // изменение mode
+    case 2: // change mode
     {
         // TODO: you can switch mode anywhere except in besieged & under level restriction
         if (Sql_Query(SqlHandle, "UPDATE char_exp SET mode = %u WHERE charid = %u", operation, PChar->id) != SQL_ERROR)
@@ -3703,13 +3658,13 @@ void SmallPacket0x0BE(map_session_data_t* session, CCharEntity* PChar, int8* dat
         }
     }
     break;
-    case 3: // изменение merit
+    case 3: // change merit
     {
-        if (PChar->getZone() == 0) // все операции обрабатываются только в moghouse
+        if (PChar->getZone() == 0)
         {
             MERIT_TYPE merit = (MERIT_TYPE)(RBUFW(data, (0x06)) << 1);
 
-            if (PChar->PMeritPoints->IsMeritExist(merit)) // проверяем присланный персонажем id
+            if (PChar->PMeritPoints->IsMeritExist(merit))
             {
                 switch (operation)
                 {
@@ -3791,7 +3746,8 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
     if (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL))
     {
-        if (PItemLinkshell->getID() == 512) // создание новой linkshell
+        // Create new linkshell..
+        if (PItemLinkshell->getID() == 512)
         {
             uint32   LinkshellID = 0;
             uint16   LinkshellColor = RBUFW(data, (0x04));
@@ -3801,9 +3757,9 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
             DecodeStringLinkshell(data + 8, DecodedName);
             EncodeStringLinkshell(DecodedName, EncodedName);
-            // TODO: проверить имя на необходимость добавления окончания строки
+            // TODO: Check if a linebreak is needed..
 
-            if (LinkshellID = linkshell::RegisterNewLinkshell(DecodedName, LinkshellColor)) // здесь дейтсвительно присваивание
+            if (LinkshellID = linkshell::RegisterNewLinkshell(DecodedName, LinkshellColor))
             {
                 const int8* Query = "UPDATE char_inventory SET signature = '%s', itemId = 513 WHERE charid = %u AND location = 0 AND slot = %u LIMIT 1";
 
@@ -4051,11 +4007,7 @@ void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
             uint8 MessageValue = 0;
 
-            // TODO: Логическая ошибка использовать exp для определения сложности боя
-            // необходимы условия, основанные на разницах уровня
-            // не стоит забывать, что эта разница увеличивается с ростом уровня персонажа
             // NOTE: message 0x41: Incredibly Easy Prey
-
             if (baseExp >= 400) MessageValue = 0x47;
             else if (baseExp >= 240) MessageValue = 0x46;
             else if (baseExp >= 120) MessageValue = 0x45;
@@ -4130,50 +4082,49 @@ void SmallPacket0x0E0(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
     PChar->search.messagetype = RBUFB(data, (0xA4));
 
-    // в ответ на этот пакет не нужно посылать что-либо клиенту
-    // эта информация используется лишь при поиске персонажа
+    // No response is needed to be sent from this packet.
+    // This is only used when searching for a character.
+    //                 s   a   l   u   t
+    // e0  4c  c2  00  73  61  6c  75  74  20  20  20  20  20  20  20
+    // 20  20  20  20  20  20  20  20  20  20  20  20  20  20  20  20
+    // 20  20  20  20  20  20  20  20  20  20  20  20  20  20  20  20
+    // 20  20  20  20  20  20  20  20  20  20  20  20  20  20  20  20
+    // 20  20  20  20  20  20  20  20  20  20  20  20  20  20  20  20
+    // 20  20  20  20  20  20  20  20  20  20  20  20  20  20  20  20
+    // 20  20  20  20  20  20  20  20  20  20  20  20  20  20  20  20
+    // 20  20  20  20  20  20  20  20  20  20  20  20  20  20  20  00
+    // 00  00  00  00  2f  15  4c  4b  57  49  4e  08  3f  00  00  00
+    // ff  00  00  00  11  00  00  00
 
-    //                s   a   l   u   t
-    //e0  4c  c2  00  73  61  6c  75  74  20  20  20  20  20  20  20
-    //20  20  20  20  20  20  20  20  20  20  20  20  20  20  20  20
-    //20  20  20  20  20  20  20  20  20  20  20  20  20  20  20  20
-    //20  20  20  20  20  20  20  20  20  20  20  20  20  20  20  20
-    //20  20  20  20  20  20  20  20  20  20  20  20  20  20  20  20
-    //20  20  20  20  20  20  20  20  20  20  20  20  20  20  20  20
-    //20  20  20  20  20  20  20  20  20  20  20  20  20  20  20  20
-    //20  20  20  20  20  20  20  20  20  20  20  20  20  20  20  00
-    //00  00  00  00  2f  15  4c  4b  57  49  4e  08  3f  00  00  00
-    //ff  00  00  00  11  00  00  00
+    // Message Max of 120, 3 lines of 40 characters, starting from 5th byte.
+    // Message Type - 4th from the end.
 
-    // сообщение максимум 120, 3 строки по 40 символов, идущие подряд, начиная с 5-го байта
-    // тип сообщения - 4й байт с конца
-
-    //EXP party
-    //0x11 - seek party
-    //0x12 - find member
-    //0x13 - other
-    //Mission
-    //0x21 - seek party
-    //0x22 - find member
-    //0x23 - other
-    //Quest
-    //0x31 - seek party
-    //0x32 - find member
-    //0x33 - other
-    //Battlefield
-    //0x41 - seek party
-    //0x42 - find member
-    //0x43 - other
-    //Item
-    //0x51 - Want to Sell
-    //0x52 - Want to Buy
-    //0x53 - Other
-    //Synthesis
-    //0x61 - Need Made
-    //0x62 - Can Make
-    //0x63 - Other
-    //Others
-    //0x73 - others
+    // EXP party
+    //  0x11 - seek party
+    //  0x12 - find member
+    //  0x13 - other
+    // Mission
+    //  0x21 - seek party
+    //  0x22 - find member
+    //  0x23 - other
+    // Quest
+    //  0x31 - seek party
+    //  0x32 - find member
+    //  0x33 - other
+    // Battlefield
+    //  0x41 - seek party
+    //  0x42 - find member
+    //  0x43 - other
+    // Item
+    //  0x51 - Want to Sell
+    //  0x52 - Want to Buy
+    //  0x53 - Other
+    // Synthesis
+    //  0x61 - Need Made
+    //  0x62 - Can Make
+    //  0x63 - Other
+    // Others
+    //  0x73 - others
     return;
 }
 
@@ -4204,14 +4155,14 @@ void SmallPacket0x0E2(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
     if (PChar->PLinkshell != NULL && (PItemLinkshell != NULL && PItemLinkshell->isType(ITEM_LINKSHELL)))
     {
-        switch (RBUFB(data, (0x04)) & 0xF0) // назначение первых бит пока неизвестно
+        switch (RBUFB(data, (0x04)) & 0xF0)
         {
-        case 0x20: // устанавливаем права на изменение сообщения
+        case 0x20: // Establish right to change the message..
         {
             // TODO: ....
         }
         break;
-        case 0x40: // изменяем сообщение
+        case 0x40: // Change Message
         {
             if (PItemLinkshell->GetLSType() == LSTYPE_LINKSHELL ||
                 PItemLinkshell->GetLSType() == LSTYPE_PEARLSACK)
@@ -4366,7 +4317,7 @@ void SmallPacket0x0F1(map_session_data_t* session, CCharEntity* PChar, int8* dat
 {
     uint16 IconID = RBUFW(data, (0x04));
 
-    if (IconID != 0) // удаляем только видимые эффекты
+    if (IconID != 0)
     {
         PChar->StatusEffectContainer->DelStatusEffectsByIcon(IconID);
     }
@@ -4595,11 +4546,7 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, int8* dat
     uint16 ItemID = RBUFW(data, (0x04));
 
     if (ItemID == 0)
-    {
-        // выход из режима установки мебели
-        // здесь мы считаем ауру и добавляем необходимый keyitem
         return;
-    }
 
     uint8  slotID = RBUFB(data, (0x06));
     uint8  col = RBUFB(data, (0x07));
@@ -4671,8 +4618,6 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, int8* dat
         PItem->getID() == ItemID &&
         PItem->isType(ITEM_FURNISHING))
     {
-        // TODO: удаление мебели может никак не повлиять на размер хранилища, если сумма Storage превышала 80 ячеек
-
         PItemContainer = PChar->getStorage(LOC_STORAGE);
 
         uint8 RemovedSize = PItemContainer->GetSize() - dsp_min(PItemContainer->GetSize(), PItemContainer->GetBuff() - PItem->getStorage());
@@ -4698,10 +4643,7 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
                 PItem->setSubType(ITEM_UNLOCKED);
 
-                // пробегаться по предметам нужно лишь в случае, если новый размер контейнера изменится
-
                 uint8 NewSize = PItemContainer->GetSize() - RemovedSize;
-
                 for (uint8 SlotID = PItemContainer->GetSize(); SlotID > NewSize; --SlotID)
                 {
                     if (PItemContainer->GetItem(SlotID) != NULL)
@@ -4742,7 +4684,7 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, int8* dat
             JOBTYPE prevjob = PChar->GetMJob();
             PChar->resetPetZoningInfo();
 
-            charutils::RemoveAllEquipment(PChar); // TODO: разобраться, зачем
+            charutils::RemoveAllEquipment(PChar);
             PChar->SetMJob(mjob);
             PChar->SetMLevel(PChar->jobs.job[PChar->GetMJob()]);
             PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
@@ -4953,7 +4895,6 @@ void SmallPacket0x104(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
     if (PTarget != NULL && PTarget->id == PChar->BazaarID.id)
     {
-        // надеюсь, что персонаж прописался в массиве однажны, но на всякий случай пробегаем по всему
         for (uint32 i = 0; i < PTarget->BazaarCustomers.size(); ++i)
         {
             if (PTarget->BazaarCustomers[i].id == PChar->targid)
@@ -5065,10 +5006,8 @@ void SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, int8* dat
         if (charutils::AddItem(PChar, LOC_INVENTORY, PItem) == ERROR_SLOTID)
             return;
 
-        // TODO: мне так лень делать проверки на текущее количество gil, на первое время понадеемся на клиента
-
-        uint32 Price1 = (PBazaarItem->getCharPrice() * Quantity);               // цена
-        uint32 Price2 = (PChar->loc.zone->GetTax() * Price1) / 10000 + Price1;  // цена + налог
+        uint32 Price1 = (PBazaarItem->getCharPrice() * Quantity);
+        uint32 Price2 = (PChar->loc.zone->GetTax() * Price1) / 10000 + Price1;
 
         charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -Price2);
         charutils::UpdateItem(PTarget, LOC_INVENTORY, 0, Price1);
