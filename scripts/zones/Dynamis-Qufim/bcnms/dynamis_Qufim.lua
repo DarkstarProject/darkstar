@@ -30,9 +30,6 @@ end;
 function onBcnmLeave(player,instance,leavecode)
 --print("leave code "..leavecode);
 	
-	if(leavecode == 2 or leavecode == 3 or leavecode == 4) then
-	    player:setPos(18,-19,162,240, 126);
-	end
 	if(leavecode == 4) then
 		SetServerVariable("[DynaQufim]UniqueID",0);
 	end

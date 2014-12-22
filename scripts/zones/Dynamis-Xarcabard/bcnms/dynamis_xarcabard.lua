@@ -27,9 +27,6 @@ end;
 function onBcnmLeave(player,instance,leavecode)
 --print("leave code "..leavecode);
 	
-	if(leavecode == 2 or leavecode == 3 or leavecode == 4) then
-		player:setPos(569.312,-0.098,-270.158,90,0x70);
-	end
 	if(leavecode == 4) then
 		GetNPCByID(17330778):setStatus(2);
 		SetServerVariable("[DynaXarcabard]UniqueID",0);

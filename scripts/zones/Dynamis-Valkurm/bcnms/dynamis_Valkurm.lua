@@ -49,9 +49,6 @@ end;
 function onBcnmLeave(player,instance,leavecode)
 --print("leave code "..leavecode);
 	
-	if(leavecode == 2 or leavecode == 3 or leavecode == 4) then
-		player:setPos(119,-9,131,52,0x67);
-	end
 	if(leavecode == 4) then
 		SetServerVariable("[DynaValkurm]UniqueID",0);
 	end

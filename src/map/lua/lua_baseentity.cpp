@@ -592,6 +592,15 @@ inline int32 CLuaBaseEntity::setPos(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 
+    if (m_PBaseEntity->objtype == TYPE_PC)
+    {
+        if (!lua_isnil(L, 5) && lua_isnumber(L, 5) && ((CCharEntity*)m_PBaseEntity)->status == STATUS_DISAPPEAR)
+        {
+            // do not modify zone/position if the character is already zoning
+            return 0;
+        }
+    }
+
     if(lua_isnumber(L, 1))
     {
 
@@ -623,7 +632,6 @@ inline int32 CLuaBaseEntity::setPos(lua_State *L)
         m_PBaseEntity->loc.p.rotation = (uint8)lua_tointeger(L, -1);
         lua_pop(L,1);
     }
-
 
     if( m_PBaseEntity->objtype == TYPE_PC)
     {

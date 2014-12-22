@@ -27,9 +27,6 @@ end;
 function onBcnmLeave(player,instance,leavecode)
 --print("leave code "..leavecode);
 	
-	if(leavecode == 2 or leavecode == 3 or leavecode == 4) then
-		player:setPos(161.000,-2.000,161.000,94,0xE6);
-	end
 	if(leavecode == 4) then
 		GetNPCByID(17535224):setStatus(2);
 		SetServerVariable("[DynaSandoria]UniqueID",0);

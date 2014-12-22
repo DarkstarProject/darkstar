@@ -26,10 +26,7 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 --print("leave code "..leavecode);
-	
-	if(leavecode == 2 or leavecode == 3 or leavecode == 4) then
-		player:setPos(-217.000,1.000,-119.000,94,0xEF);
-	end
+
 	if(leavecode == 4) then
 		GetNPCByID(17543480):setStatus(2);
 		SetServerVariable("[DynaWindurst]UniqueID",0);

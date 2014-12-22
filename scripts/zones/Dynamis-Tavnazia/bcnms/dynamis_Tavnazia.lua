@@ -28,10 +28,7 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 --print("leave code "..leavecode);
-	
-	if(leavecode == 2 or leavecode == 3 or leavecode == 4) then
-		player:setPos(0.1,-7,-23,195,26);
-	end
+
 	if(leavecode == 4) then
 		SetServerVariable("[DynaTavnazia]UniqueID",0);
 	end
