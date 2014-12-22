@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 -- func: setplayervar
--- auth: Link
+-- auth: Link, modified by TeoTwawki
 -- desc: Sets a variable on the target player.
 ---------------------------------------------------------------------------------------------------
 
@@ -15,12 +15,16 @@ function onTrigger(player, target, variable, value)
         player:PrintToPlayer("You must enter a valid target name and variable name.");
         return;
     end
-    
+
+    if (value == nil) then
+        player:PrintToPlayer("You must enter a number to set the variable's value to.");
+        return;
+    end
+
     local targ = GetPlayerByName( target );
     if (targ ~= nil) then
         targ:setVar(variable, value);
     else
         player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
     end
-
 end
