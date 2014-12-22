@@ -1239,8 +1239,9 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
         int16 poison = m_POwner->getMod(MOD_REGEN_DOWN);
         int16 refresh = m_POwner->getMod(MOD_REFRESH) - m_POwner->getMod(MOD_REFRESH_DOWN);
         int16 regain = m_POwner->getMod(MOD_REGAIN) - m_POwner->getMod(MOD_REGAIN_DOWN);
-
-		m_POwner->addHP(regen);
+        bool update = false;
+        if (m_POwner->addHP(regen))
+            update = true;
 
         if(poison)
         {
@@ -1251,6 +1252,7 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
                 DelStatusEffectSilent(EFFECT_HEALING);
                 m_POwner->addHP(-damage);
                 WakeUp();
+                update = true;
             }
         }
 
@@ -1285,7 +1287,8 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
 				}
 			}
 
-			m_POwner->addMP(refresh - perpetuation);
+            if (m_POwner->addMP(refresh - perpetuation))
+                update = true;
 
 			if( m_POwner->health.mp == 0 && m_POwner->PPet != NULL && m_POwner->PPet->objtype == TYPE_PET)
 			{
@@ -1297,24 +1300,14 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
 		}
 		else
 		{
-			m_POwner->addMP(refresh);
+            if (m_POwner->addMP(refresh))
+                update = true;
 		}
 
-        if(PChar != NULL && IsAsleep())
-        {
-            CItem* neck = PChar->getEquip(SLOT_NECK);
+        if (m_POwner->addTP(regain))
+            update = true;
 
-            // opo-opo necklace
-            if(neck != NULL && neck->getID() == 13143)
-            {
-                // add tp
-                regain += 2.5f;
-            }
-        }
-
-		m_POwner->addTP(regain);
-
-		if( m_POwner->status != STATUS_DISAPPEAR && (m_POwner->objtype == TYPE_PC))
+		if( m_POwner->status != STATUS_DISAPPEAR && (m_POwner->objtype == TYPE_PC) && update)
 		{
 			charutils::UpdateHealth((CCharEntity*)m_POwner);
 		}

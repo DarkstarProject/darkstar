@@ -134,7 +134,7 @@ void CZoneEntities::InsertPET(CBaseEntity* PPet)
 			if (distance(PPet->loc.p, PCurrentChar->loc.p) < 50)
 			{
 				PCurrentChar->SpawnPETList[PPet->id] = PPet;
-				PCurrentChar->pushPacket(new CEntityUpdatePacket(PPet, ENTITY_SPAWN, UPDATE_ALL));
+                PCurrentChar->pushPacket(new CEntityUpdatePacket(PPet, ENTITY_SPAWN, UPDATE_ALL_MOB));
 			}
 		}
 		return;
@@ -264,6 +264,7 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
 				PChar->loc.p.y = pos[1];
 				PChar->loc.p.z = pos[2];
 				PChar->loc.p.rotation = pos[3];
+                PChar->updatemask |= UPDATE_POS;
 				charutils::SaveCharPosition(PChar);
 			}
 			else{
@@ -286,6 +287,7 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
 				PChar->loc.p.y = pos[1];
 				PChar->loc.p.z = pos[2];
 				PChar->loc.p.rotation = pos[3];
+                PChar->updatemask |= UPDATE_POS;
 				charutils::SaveCharPosition(PChar);
 			}
 			else{
@@ -310,6 +312,7 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
 		if (PCurrentMob->m_OwnerID.id == PChar->id)
         {
 			PCurrentMob->m_OwnerID.clean();
+            PCurrentMob->updatemask |= UPDATE_STATUS;
 		}
         if (PCurrentMob->PBattleAI->m_PMagicState->GetTarget() == PChar)
         {
@@ -369,7 +372,7 @@ void CZoneEntities::DespawnPC(CCharEntity* PChar)
 		if (PC != PCurrentChar->SpawnPCList.end())
 		{
 			PCurrentChar->SpawnPCList.erase(PC);
-			PCurrentChar->pushPacket(new CCharPacket(PChar, ENTITY_DESPAWN));
+			PCurrentChar->pushPacket(new CCharPacket(PChar, ENTITY_DESPAWN, 0));
 		}
 	}
 }
@@ -390,7 +393,7 @@ void CZoneEntities::SpawnMOBs(CCharEntity* PChar)
 				PChar->SpawnMOBList.key_comp()(PCurrentMob->id, MOB->first))
 			{
 				PChar->SpawnMOBList.insert(MOB, SpawnIDList_t::value_type(PCurrentMob->id, PCurrentMob));
-				PChar->pushPacket(new CEntityUpdatePacket(PCurrentMob, ENTITY_SPAWN, UPDATE_ALL));
+                PChar->pushPacket(new CEntityUpdatePacket(PCurrentMob, ENTITY_SPAWN, UPDATE_ALL_MOB));
 			}
 
 			if (PChar->isDead() || PChar->nameflags.flags & FLAG_GM || PCurrentMob->PMaster != NULL)
@@ -435,7 +438,7 @@ void CZoneEntities::SpawnPETs(CCharEntity* PChar)
 				PChar->SpawnPETList.key_comp()(PCurrentPet->id, PET->first))
 			{
 				PChar->SpawnPETList.insert(PET, SpawnIDList_t::value_type(PCurrentPet->id, PCurrentPet));
-				PChar->pushPacket(new CEntityUpdatePacket(PCurrentPet, ENTITY_SPAWN, UPDATE_ALL));
+                PChar->pushPacket(new CEntityUpdatePacket(PCurrentPet, ENTITY_SPAWN, UPDATE_ALL_MOB));
 			}
 		}
 		else{
@@ -464,7 +467,7 @@ void CZoneEntities::SpawnNPCs(CCharEntity* PChar)
 					PChar->SpawnNPCList.key_comp()(PCurrentNpc->id, NPC->first))
 				{
 					PChar->SpawnNPCList.insert(NPC, SpawnIDList_t::value_type(PCurrentNpc->id, PCurrentNpc));
-					PChar->pushPacket(new CEntityUpdatePacket(PCurrentNpc, ENTITY_SPAWN, UPDATE_ALL));
+                    PChar->pushPacket(new CEntityUpdatePacket(PCurrentNpc, ENTITY_SPAWN, UPDATE_ALL_MOB));
 				}
 			}
 			else{
@@ -492,36 +495,37 @@ void CZoneEntities::SpawnPCs(CCharEntity* PChar)
 			{
 				if (PC == PChar->SpawnPCList.end())
 				{
-					if (PCurrentChar->m_isGMHidden == false || PCurrentChar->m_isGMHidden && PChar->m_GMlevel > PCurrentChar->m_GMlevel)
+					if (PCurrentChar->m_isGMHidden == false)
 					{
 						PChar->SpawnPCList[PCurrentChar->id] = PCurrentChar;
-						PChar->pushPacket(new CCharPacket(PCurrentChar, ENTITY_SPAWN));
+						PChar->pushPacket(new CCharPacket(PCurrentChar, ENTITY_SPAWN, UPDATE_ALL_CHAR));
 						PChar->pushPacket(new CCharSyncPacket(PCurrentChar));
 					}
 
-					if (PChar->m_isGMHidden == true && PCurrentChar->m_GMlevel < PChar->m_GMlevel)
-						continue;
-					PCurrentChar->SpawnPCList[PChar->id] = PChar;
-					PCurrentChar->pushPacket(new CCharPacket(PChar, ENTITY_SPAWN));
-					PCurrentChar->pushPacket(new CCharSyncPacket(PChar));
+                    if (PChar->m_isGMHidden == false)
+                    {
+                        PCurrentChar->SpawnPCList[PChar->id] = PChar;
+                        PCurrentChar->pushPacket(new CCharPacket(PChar, ENTITY_SPAWN, UPDATE_ALL_CHAR));
+                        PCurrentChar->pushPacket(new CCharSyncPacket(PChar));
+                    }
 				}
-				else
-				{
-					// Skip updating this player if we are GM hidden..
-					if (PChar->m_isGMHidden == true && PCurrentChar->m_GMlevel < PChar->m_GMlevel)
-						continue;
-					PCurrentChar->pushPacket(new CCharPacket(PChar, ENTITY_UPDATE));
-				}
+                else
+                {
+                    if (PCurrentChar->m_isGMHidden == true)
+                    {
+                        PChar->SpawnPCList.erase(PC);
+                    }
+                }
 			}
 			else
 			{
 				if (PC != PChar->SpawnPCList.end())
 				{
 					PChar->SpawnPCList.erase(PC);
-					PChar->pushPacket(new CCharPacket(PCurrentChar, ENTITY_DESPAWN));
+					PChar->pushPacket(new CCharPacket(PCurrentChar, ENTITY_DESPAWN,0));
 
 					PCurrentChar->SpawnPCList.erase(PChar->id);
-					PCurrentChar->pushPacket(new CCharPacket(PChar, ENTITY_DESPAWN));
+					PCurrentChar->pushPacket(new CCharPacket(PChar, ENTITY_DESPAWN,0));
 				}
 			}
 		}
@@ -538,7 +542,7 @@ void CZoneEntities::SpawnMoogle(CCharEntity* PChar)
 			PCurrentNpc->look.face == 0x52)
 		{
 			PCurrentNpc->status = STATUS_NORMAL;
-			PChar->pushPacket(new CEntityUpdatePacket(PCurrentNpc, ENTITY_SPAWN, UPDATE_ALL));
+			PChar->pushPacket(new CEntityUpdatePacket(PCurrentNpc, ENTITY_SPAWN, UPDATE_ALL_MOB));
 			PCurrentNpc->status = STATUS_DISAPPEAR;
 			return;
 		}
@@ -549,15 +553,13 @@ void CZoneEntities::SpawnTransport(CCharEntity* PChar)
 {
 	if (m_Transport != NULL)
 	{
-		PChar->pushPacket(new CEntityUpdatePacket(m_Transport, ENTITY_SPAWN, UPDATE_ALL));
+        PChar->pushPacket(new CEntityUpdatePacket(m_Transport, ENTITY_SPAWN, UPDATE_ALL_MOB));
 		return;
 	}
 }
 
 CBaseEntity* CZoneEntities::GetEntity(uint16 targid, uint8 filter)
 {
-	CBaseEntity* PEntity = NULL;
-
 	if (targid < 0x400)
 	{
 		if (filter & TYPE_MOB)
@@ -565,7 +567,7 @@ CBaseEntity* CZoneEntities::GetEntity(uint16 targid, uint8 filter)
 			EntityList_t::const_iterator it = m_mobList.find(targid);
 			if (it != m_mobList.end())
 			{
-				PEntity = it->second;
+				return it->second;
 			}
 		}
 		if (filter & TYPE_NPC)
@@ -573,14 +575,14 @@ CBaseEntity* CZoneEntities::GetEntity(uint16 targid, uint8 filter)
 			EntityList_t::const_iterator it = m_npcList.find(targid);
 			if (it != m_npcList.end())
 			{
-				PEntity = it->second;
+                return it->second;
 			}
 		}
 		if (filter & TYPE_SHIP)
 		{
 			if (m_Transport != NULL && m_Transport->targid == targid)
 			{
-				PEntity = m_Transport;
+                return m_Transport;
 			}
 		}
 	}
@@ -591,7 +593,7 @@ CBaseEntity* CZoneEntities::GetEntity(uint16 targid, uint8 filter)
 			EntityList_t::const_iterator it = m_charList.find(targid);
 			if (it != m_charList.end())
 			{
-				PEntity = it->second;
+                return it->second;
 			}
 		}
 	}
@@ -602,11 +604,11 @@ CBaseEntity* CZoneEntities::GetEntity(uint16 targid, uint8 filter)
 			EntityList_t::const_iterator it = m_petList.find(targid);
 			if (it != m_petList.end())
 			{
-				PEntity = it->second;
+                return it->second;
 			}
 		}
 	}
-	return PEntity;
+	return NULL;
 }
 
 void CZoneEntities::TOTDChange(TIMETYPE TOTD)

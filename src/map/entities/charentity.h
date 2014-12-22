@@ -321,6 +321,7 @@ public:
     void        ReloadPartyDec();
     bool        ReloadParty();
 
+    void        UpdateEntity() override;
 
 	 CCharEntity();									// конструктор
 	~CCharEntity();									// деструктор

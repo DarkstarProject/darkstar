@@ -233,6 +233,7 @@ public:
 
   void      HideModel(bool hide);                    // hide / show model
   bool      IsModelHidden();
+  void      UpdateEntity() override;
 
   CMobEntity();
   ~CMobEntity();

@@ -22,6 +22,7 @@
 */
 
 #include "../../common/timer.h"
+#include "../packets/entity_update.h"
 
 #include <string.h>
 
@@ -564,4 +565,13 @@ void CMobEntity::HideModel(bool hide)
 bool CMobEntity::IsModelHidden()
 {
     return m_unknown == 0;
+}
+
+void CMobEntity::UpdateEntity()
+{
+    if (loc.zone && updatemask)
+    {
+        loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));
+        updatemask = 0;
+    }
 }

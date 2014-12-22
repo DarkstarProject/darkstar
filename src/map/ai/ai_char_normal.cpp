@@ -126,6 +126,7 @@ void CAICharNormal::CheckCurrentAction(uint32 tick)
 
 		default : DSP_DEBUG_BREAK_IF(true);
 	}
+    m_PChar->UpdateEntity();
 }
 
 void CAICharNormal::CheckActionAfterReceive(uint32 tick)
@@ -446,8 +447,6 @@ void CAICharNormal::ActionFall()
     m_PChar->m_DeathTimestamp = (uint32)time(NULL);
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
     m_PChar->pushPacket(new CRaiseTractorMenuPacket(m_PChar,TYPE_HOMEPOINT));
-
-	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE, new CCharPacket(m_PChar,ENTITY_UPDATE));
 
 	//influence for conquest system
 	conquest::LoseInfluencePoints(m_PChar);
@@ -2155,6 +2154,7 @@ void CAICharNormal::ActionJobAbilityFinish()
                     CMobEntity* mob = (CMobEntity*)m_PBattleSubTarget;
                     mob->m_OwnerID.id = m_PChar->id;
                     mob->m_OwnerID.targid = m_PChar->targid;
+                    mob->updatemask |= UPDATE_STATUS;
                     mob->PEnmityContainer->UpdateEnmity(m_PChar, m_PJobAbility->getCE(), m_PJobAbility->getVE());
                 }
             }

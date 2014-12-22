@@ -1444,6 +1444,7 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 
         PChar->UpdateHealth();
 		PChar->m_EquipSwap = true;
+        PChar->updatemask |= UPDATE_LOOK;
 	}
 }
 
@@ -1739,6 +1740,7 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 contai
 
 		PChar->status = STATUS_UPDATE;
 		PChar->m_EquipSwap = true;
+        PChar->updatemask |= UPDATE_LOOK;
 		PChar->pushPacket(new CEquipPacket(slotID, equipSlotID, containerID));
 	}
 	else
@@ -1808,6 +1810,7 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 contai
 
     PChar->UpdateHealth();
 	PChar->m_EquipSwap = true;
+    PChar->updatemask |= UPDATE_LOOK;
 }
 
 /************************************************************************

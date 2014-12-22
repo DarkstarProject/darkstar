@@ -224,7 +224,7 @@ void CTransportHandler::TransportTimer()
 
             WBUFL(&PTransport->PTransportNPC->name[0],4) = CVanaTime::getInstance()->getVanaTime();
 
-			PTransport->Dock.zone->PushPacket(NULL, CHAR_INZONE, new CEntityUpdatePacket(PTransport->PTransportNPC, ENTITY_SPAWN, UPDATE_ALL));
+			PTransport->Dock.zone->PushPacket(NULL, CHAR_INZONE, new CEntityUpdatePacket(PTransport->PTransportNPC, ENTITY_SPAWN, UPDATE_ALL_MOB));
         }
         // персонажи видят корабль, иначе ждем следующего прибытия
         else if (PTransport->PTransportNPC->status == STATUS_NORMAL) 
@@ -380,35 +380,35 @@ void CTransportHandler::startElevator(Elevator_t * elevator)
 		if (elevator->id == ELEVATOR_PORT_BASTOK_DRWBRDG)
 		{
 			elevator->LowerDoor->animation = ANIMATION_CLOSE_DOOR;
-			zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->LowerDoor,ENTITY_SPAWN,UPDATE_ALL));
+			zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->LowerDoor,ENTITY_SPAWN,UPDATE_ALL_MOB));
 			elevator->UpperDoor->animation = ANIMATION_CLOSE_DOOR;
-			zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->UpperDoor,ENTITY_SPAWN,UPDATE_ALL));
+			zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->UpperDoor,ENTITY_SPAWN,UPDATE_ALL_MOB));
 		}
 		else
 		{
 			if (elevator->Elevator->animation == ANIMATION_ELEVATOR_DOWN) 
 			{
 				elevator->LowerDoor->animation = ANIMATION_CLOSE_DOOR;
-				zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->LowerDoor,ENTITY_SPAWN,UPDATE_ALL));
+				zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->LowerDoor,ENTITY_SPAWN,UPDATE_ALL_MOB));
 				if (!elevator->isPermanent) 
 				{
 					elevator->UpperDoor->animation = ANIMATION_OPEN_DOOR;
-					zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->UpperDoor,ENTITY_SPAWN,UPDATE_ALL));
+					zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->UpperDoor,ENTITY_SPAWN,UPDATE_ALL_MOB));
 				}
 			}
 			else
 			{
 				elevator->UpperDoor->animation = ANIMATION_CLOSE_DOOR;
-				zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->UpperDoor,ENTITY_SPAWN,UPDATE_ALL));
+				zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->UpperDoor,ENTITY_SPAWN,UPDATE_ALL_MOB));
 				if (!elevator->isPermanent) 
 				{
 					elevator->LowerDoor->animation = ANIMATION_OPEN_DOOR;
-					zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->LowerDoor,ENTITY_SPAWN,UPDATE_ALL));
+					zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->LowerDoor,ENTITY_SPAWN,UPDATE_ALL_MOB));
 				}
 			}
 		}
 	}
-	zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->Elevator,ENTITY_SPAWN,UPDATE_ALL));
+	zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->Elevator,ENTITY_SPAWN,UPDATE_ALL_MOB));
 }
 
 /************************************************************************
@@ -422,21 +422,21 @@ void CTransportHandler::arriveElevator(Elevator_t * elevator)
 	if (elevator->id == ELEVATOR_PORT_BASTOK_DRWBRDG)
 	{
 		elevator->LowerDoor->animation = ANIMATION_OPEN_DOOR;
-		zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->LowerDoor,ENTITY_SPAWN,UPDATE_ALL));
+		zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->LowerDoor,ENTITY_SPAWN,UPDATE_ALL_MOB));
 		elevator->UpperDoor->animation = ANIMATION_OPEN_DOOR;
-		zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->UpperDoor,ENTITY_SPAWN,UPDATE_ALL));
+		zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->UpperDoor,ENTITY_SPAWN,UPDATE_ALL_MOB));
 	}
 	else
 	{
 		if (elevator->Elevator->animation == ANIMATION_ELEVATOR_DOWN)
 		{
 			elevator->LowerDoor->animation = ANIMATION_OPEN_DOOR;
-			zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->LowerDoor,ENTITY_SPAWN, UPDATE_ALL));
+			zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->LowerDoor,ENTITY_SPAWN, UPDATE_ALL_MOB));
 		}
 		else
 		{
 			elevator->UpperDoor->animation = ANIMATION_OPEN_DOOR;
-			zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->UpperDoor,ENTITY_SPAWN, UPDATE_ALL));
+			zoneutils::GetZone(elevator->zone)->PushPacket(NULL,CHAR_INZONE, new CEntityUpdatePacket(elevator->UpperDoor,ENTITY_SPAWN, UPDATE_ALL_MOB));
 		}
 	}
 }

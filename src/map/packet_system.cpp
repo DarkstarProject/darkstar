@@ -501,10 +501,11 @@ void SmallPacket0x015(map_session_data_t* session, CCharEntity* PChar, int8* dat
 	if (PChar->status != STATUS_SHUTDOWN &&
         PChar->status != STATUS_DISAPPEAR)
 	{
-		bool isUpdate = ( (PChar->status == STATUS_UPDATE) ||
-						  (PChar->loc.p.x  != RBUFF(data,(0x04))) ||
+		bool moved = ((PChar->loc.p.x  != RBUFF(data,(0x04))) ||
 						  (PChar->loc.p.z  != RBUFF(data,(0x0C))) ||
 						  (PChar->m_TargID != RBUFW(data,(0x16))) );
+
+        bool isUpdate = moved || PChar->status == STATUS_UPDATE;
 
         if (!PChar->isCharmed)
         {
@@ -516,6 +517,11 @@ void SmallPacket0x015(map_session_data_t* session, CCharEntity* PChar, int8* dat
             PChar->loc.p.rotation = RBUFB(data, (0x14));
 
             PChar->m_TargID = RBUFW(data, (0x16));
+        }
+
+        if (moved)
+        {
+            PChar->updatemask |= UPDATE_POS;
         }
 
 		if (isUpdate)
@@ -553,7 +559,7 @@ void SmallPacket0x016(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 	if (targid == PChar->targid)
 	{
-		PChar->pushPacket(new CCharPacket(PChar, ENTITY_SPAWN));
+		PChar->pushPacket(new CCharPacket(PChar, ENTITY_SPAWN, UPDATE_ALL_CHAR));
 		PChar->pushPacket(new CCharUpdatePacket(PChar));
 	}
 	else
@@ -562,7 +568,7 @@ void SmallPacket0x016(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
 		if (PEntity && PEntity->objtype == TYPE_PC)
 		{
-			PChar->pushPacket(new CCharPacket((CCharEntity*)PEntity, ENTITY_SPAWN));
+			PChar->pushPacket(new CCharPacket((CCharEntity*)PEntity, ENTITY_SPAWN, UPDATE_ALL_CHAR));
 			PChar->pushPacket(new CCharUpdatePacket((CCharEntity*)PEntity));
 		}
 		else
@@ -571,7 +577,7 @@ void SmallPacket0x016(map_session_data_t* session, CCharEntity* PChar, int8* dat
 			{
 				PEntity = zoneutils::GetTrigger(targid, PChar->getZone());
 			}
-			PChar->pushPacket(new CEntityUpdatePacket(PEntity, ENTITY_SPAWN, UPDATE_ALL));
+			PChar->pushPacket(new CEntityUpdatePacket(PEntity, ENTITY_SPAWN, UPDATE_ALL_MOB));
 		}
 	}
 	return;

@@ -28,6 +28,7 @@
 #include <string.h>
 
 #include "../packets/basic.h"
+#include "../packets/char.h"
 
 #include "charentity.h"
 #include "../spell.h"
@@ -419,4 +420,13 @@ void CCharEntity::ReloadPartyDec()
 bool CCharEntity::ReloadParty()
 {
     return m_reloadParty;
+}
+
+void CCharEntity::UpdateEntity()
+{
+    if (loc.zone && updatemask && !m_isGMHidden)
+    {
+        loc.zone->PushPacket(this, CHAR_INRANGE, new CCharPacket(this, ENTITY_UPDATE, updatemask));
+        updatemask = 0;
+    }
 }

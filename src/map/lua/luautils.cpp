@@ -1428,7 +1428,7 @@ int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result)
 		PChar->animation = ANIMATION_DEATH;
 		PChar->pushPacket(new CCharUpdatePacket(PChar));
 		PChar->pushPacket(new CRaiseTractorMenuPacket(PChar,TYPE_HOMEPOINT));
-		PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CCharPacket(PChar,ENTITY_UPDATE));
+        PChar->updatemask |= UPDATE_HP;
 	}
     if (returns > 0)
     {

@@ -592,11 +592,6 @@ inline int32 CLuaBaseEntity::setPos(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
 
-    if( m_PBaseEntity->objtype != TYPE_PC)
-    {
-        m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_DESPAWN, UPDATE_NONE));
-    }
-
     if(lua_isnumber(L, 1))
     {
 
@@ -646,10 +641,8 @@ inline int32 CLuaBaseEntity::setPos(lua_State *L)
             ((CCharEntity*)m_PBaseEntity)->pushPacket(new CPositionPacket((CCharEntity*)m_PBaseEntity));
         }
     }
-    else
-    {
-        m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_SPAWN, UPDATE_ALL));
-    }
+    m_PBaseEntity->updatemask |= UPDATE_POS;
+
     return 0;
 }
 
@@ -674,6 +667,7 @@ inline int32 CLuaBaseEntity::teleport(lua_State *L)
     }
 
     m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CPositionPacket(m_PBaseEntity));
+    m_PBaseEntity->updatemask |= UPDATE_POS;
     return 0;
 }
 
@@ -2728,7 +2722,7 @@ inline int32 CLuaBaseEntity::showText(lua_State *L)
             PBaseEntity->loc.zone->PushPacket(
                 PBaseEntity,
                 CHAR_INRANGE,
-                new CEntityUpdatePacket(PBaseEntity,ENTITY_UPDATE, UPDATE_COMBAT));
+                new CEntityUpdatePacket(PBaseEntity,ENTITY_UPDATE, UPDATE_POS));
         }
 
         uint32 param0 = 0;
@@ -4033,6 +4027,7 @@ inline int32 CLuaBaseEntity::costume(lua_State *L)
         {
             PChar->m_Costum = costum;
             PChar->status   = STATUS_UPDATE;
+            PChar->updatemask |= UPDATE_HP;
             PChar->pushPacket(new CCharUpdatePacket(PChar));
         }
         return 0;
@@ -8653,8 +8648,13 @@ inline int32 CLuaBaseEntity::setGMHidden(lua_State* L)
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
     PChar->m_isGMHidden = lua_toboolean(L, 1);
 
-    if (PChar->m_isGMHidden == true && PChar->loc.zone)
-        PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CCharPacket(PChar, ENTITY_DESPAWN));
+    if (PChar->loc.zone)
+    {
+        if (PChar->m_isGMHidden)
+            PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CCharPacket(PChar, ENTITY_DESPAWN, 0));
+        else
+            PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CCharPacket(PChar, ENTITY_SPAWN, 0));
+    }
 
     return 0;
 }
@@ -8810,7 +8810,7 @@ inline int32 CLuaBaseEntity::lookAt(lua_State* L)
 
     m_PBaseEntity->loc.p.rotation = getangle(m_PBaseEntity->loc.p, point);
 
-    m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity,CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity,ENTITY_UPDATE,UPDATE_POS));
+    m_PBaseEntity->updatemask |= UPDATE_POS;
 
     return 0;
 }
@@ -9068,6 +9068,7 @@ inline int32 CLuaBaseEntity::setMentor(lua_State* L)
     PChar->m_mentor = (uint8)lua_tonumber(L,1);
     charutils::mentorMode(PChar);
     PChar->pushPacket(new CCharUpdatePacket(PChar));
+    PChar->updatemask |= UPDATE_HP;
     return 0;
 }
 

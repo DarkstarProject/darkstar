@@ -106,3 +106,12 @@ CNpcEntity::~CNpcEntity()
 {
   
 }
+
+void CNpcEntity::UpdateEntity()
+{
+    if (loc.zone && updatemask)
+    {
+        loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));
+        updatemask = 0;
+    }
+}
