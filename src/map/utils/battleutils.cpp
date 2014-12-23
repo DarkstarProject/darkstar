@@ -1720,6 +1720,7 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
     {
         PDefender->m_OwnerID.id = PAttacker->PMaster->id;
         PDefender->m_OwnerID.targid = PAttacker->PMaster->targid;
+        PDefender->updatemask |= UPDATE_STATUS;
     }
     else
     {
@@ -1731,6 +1732,7 @@ uint32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, in
 		{
 			PDefender->m_OwnerID.id = PAttacker->id;
 			PDefender->m_OwnerID.targid = PAttacker->targid;
+            PDefender->updatemask |= UPDATE_STATUS;
 		}
     }
 
@@ -2876,6 +2878,7 @@ uint16 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, 
         PDefender->m_OwnerID.id = PAttacker->id;
         PDefender->m_OwnerID.targid = PAttacker->targid;
     }
+    PDefender->updatemask |= UPDATE_STATUS;
 
     switch (PDefender->objtype)
     {
@@ -3681,9 +3684,9 @@ void applyCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 charmTim
         charutils::BuildingCharPetAbilityTable((CCharEntity*)PCharmer, (CPetEntity*)PVictim, PVictim->id);
         ((CCharEntity*)PCharmer)->pushPacket(new CCharUpdatePacket((CCharEntity*)PCharmer));
         ((CCharEntity*)PCharmer)->pushPacket(new CPetSyncPacket((CCharEntity*)PCharmer));
-        PVictim->loc.zone->PushPacket(PVictim, CHAR_INRANGE, new CEntityUpdatePacket(PVictim, ENTITY_UPDATE, UPDATE_COMBAT));
         PVictim->allegiance = ALLEGIANCE_PLAYER;
         ((CMobEntity*)PVictim)->m_OwnerID.clean();
+        PVictim->updatemask |= UPDATE_STATUS;
     }
 
     else if (PVictim->objtype == TYPE_PC)
@@ -3698,9 +3701,8 @@ void applyCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 charmTim
             ((CMobEntity*)PCharmer)->PEnmityContainer->Clear(PVictim->id);
             PCharmer->PBattleAI->SetBattleTarget(((CMobEntity*)PCharmer)->PEnmityContainer->GetHighestEnmity());
         }
-
-        PVictim->loc.zone->PushPacket(PVictim, CHAR_INRANGE_SELF, new CCharPacket((CCharEntity*)PVictim, ENTITY_UPDATE));
     }
+    PVictim->updatemask |= UPDATE_HP;
 }
 
 void unCharm(CBattleEntity* PEntity)
@@ -3718,9 +3720,8 @@ void unCharm(CBattleEntity* PEntity)
         {
             PEntity->PBattleAI->SetCurrentAction(ACTION_FALL);
         }
-
-        PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE_SELF, new CCharPacket((CCharEntity*)PEntity, ENTITY_UPDATE));
     }
+    PEntity->updatemask |= UPDATE_HP;
 }
 
 /************************************************************************
@@ -3830,6 +3831,7 @@ void ClaimMob(CBattleEntity* PDefender, CBattleEntity* PAttacker)
         mob->PEnmityContainer->AddBaseEnmity(PAttacker);
         mob->m_OwnerID.id = PAttacker->id;
         mob->m_OwnerID.targid = PAttacker->targid;
+        mob->updatemask |= UPDATE_STATUS;
     }
 }
 

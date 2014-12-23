@@ -103,6 +103,8 @@ void CAIPetDummy::CheckCurrentAction(uint32 tick)
 
 		default : DSP_DEBUG_BREAK_IF(true);
 	}
+
+    m_PPet->UpdateEntity();
 }
 
 void CAIPetDummy::WeatherChange(WEATHER weather, uint8 element)
@@ -410,8 +412,6 @@ void CAIPetDummy::ActionAbilityUsing()
 		m_ActionType = ACTION_MOBABILITY_FINISH;
 		ActionAbilityFinish();
 	}
-
-	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 }
 
 void CAIPetDummy::ActionAbilityFinish(){
@@ -532,14 +532,14 @@ bool CAIPetDummy::WyvernIsHealing(){
 		//animation down
 		m_PPet->animation = ANIMATION_HEALING;
 		m_PPet->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HEALING,0,0,10,0));
-		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
+        m_PPet->updatemask |= UPDATE_HP;
 		return true;
 	}
 	else if(!isMasterHealing && isPetHealing){
 		//animation up
 		m_PPet->animation = ANIMATION_NONE;
 		m_PPet->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
-		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
+        m_PPet->updatemask |= UPDATE_HP;
 		return false;
 	}
 	return isMasterHealing;
@@ -564,7 +564,6 @@ void CAIPetDummy::ActionRoaming()
 		if(WyvernIsHealing()){
 			m_PPathFind->LookAt(m_PPet->PMaster->loc.p);
 
-			m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 			if(m_PPet->PMaster->objtype == TYPE_PC){
 				((CCharEntity*)m_PPet->PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)m_PPet->PMaster));
 			}
@@ -606,8 +605,6 @@ void CAIPetDummy::ActionRoaming()
 			m_PPathFind->WarpTo(m_PPet->PMaster->loc.p, PET_ROAM_DISTANCE);
 		}
 	}
-
-    m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 }
 
 void CAIPetDummy::ActionEngage()
@@ -658,7 +655,6 @@ void CAIPetDummy::ActionEngage()
 		m_PPet->animation = ANIMATION_ATTACK;
 		m_LastActionTime = m_Tick - 1000;
 		TransitionBack(true);
-		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 	}
 	else
 	{
@@ -858,9 +854,6 @@ void CAIPetDummy::ActionAttack()
                 Monster->m_HiPCLvl = ((CCharEntity*)m_PPet->PMaster)->GetMLevel();
 		}
 	}
-
-	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
-
 }
 
 void CAIPetDummy::ActionSleep()
@@ -869,9 +862,6 @@ void CAIPetDummy::ActionSleep()
     {
     	TransitionBack();
     }
-
-	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
-
 }
 
 void CAIPetDummy::ActionDisengage()
@@ -887,7 +877,6 @@ void CAIPetDummy::ActionDisengage()
 	m_LastActionTime = m_Tick;
 	m_PBattleTarget  = NULL;
 	TransitionBack();
-	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 }
 
 /************************************************************************
@@ -909,8 +898,6 @@ void CAIPetDummy::ActionFall()
     if(isMob){
         return;
     }
-
-	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 
 	m_LastActionTime = m_Tick;
 	m_ActionType = ACTION_DEATH;
@@ -942,8 +929,6 @@ void CAIPetDummy::ActionMagicStart()
 	if(status == STATESTATUS_START)
 	{
 		m_ActionType = ACTION_MAGIC_CASTING;
-
-		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 	}
 	else
 	{
@@ -972,11 +957,6 @@ void CAIPetDummy::ActionMagicCasting()
 		m_ActionType = ACTION_MAGIC_FINISH;
 		ActionMagicFinish();
 	}
-	else
-	{
-		m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
-	}
-
 }
 
 void CAIPetDummy::ActionMagicFinish()
@@ -985,8 +965,6 @@ void CAIPetDummy::ActionMagicFinish()
 	m_LastMagicTime = m_Tick;
 
 	m_PMagicState->FinishSpell();
-
-	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 
 	m_PSpell = NULL;
 	m_PBattleSubTarget = NULL;
@@ -1000,8 +978,6 @@ void CAIPetDummy::ActionMagicInterrupt()
 	m_LastMagicTime = m_Tick;
 
 	m_PMagicState->InterruptSpell();
-
-	m_PPet->loc.zone->PushPacket(m_PPet, CHAR_INRANGE, new CEntityUpdatePacket(m_PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 
 	m_PSpell = NULL;
 	m_PBattleSubTarget = NULL;

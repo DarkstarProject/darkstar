@@ -6,14 +6,14 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- OnUseAbility
+-- onUseAbility
 -----------------------------------
 
-function OnAbilityCheck(player,target,ability)
+function onAbilityCheck(player,target,ability)
 	return 0,0;
 end;
 
-function OnUseAbility(player, target, ability)
+function onUseAbility(player, target, ability)
 	local boost = player:getStatusEffect(EFFECT_BOOST);
 	local multiplier = 1.0;
 	if(boost ~= nil) then

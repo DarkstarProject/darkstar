@@ -54,6 +54,10 @@ function onGameIn(player, firstlogin)
         player:addHP( 50000 );
         player:setMP( 50000 );
     end
+    
+    if (player:getVar("GMHidden") == 1) then
+        player:setGMHidden(true);
+    end
 end;
 
 -----------------------------------

@@ -34,7 +34,7 @@ function onMobDeath(mob,killer)
 mob:getBattlefield():lose();
 end;
 
-function OnMobRoam(mob)
+function onMobRoam(mob)
     local wait = mob:getLocalVar("wait");
     local ready = mob:getLocalVar("ready");
 if (ready == 0 and wait > 40) then local baseID = 17621014 + (mob:getBattlefield():getBattlefieldNumber() - 1) * 2

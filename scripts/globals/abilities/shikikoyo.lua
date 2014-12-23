@@ -8,16 +8,16 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- OnUseAbility
+-- onUseAbility
 -----------------------------------
-function OnAbilityCheck(player,target,ability)
+function onAbilityCheck(player,target,ability)
 	if (player:getTP() < 100) then
 		return MSGBASIC_NOT_ENOUGH_TP, 0;
 	end
 	return 0,0;
 end;
 
-function OnUseAbility(player, target, ability)
+function onUseAbility(player, target, ability)
 	local pTP = player:getTP() - 100;
 
 	if (pTP > 0) then

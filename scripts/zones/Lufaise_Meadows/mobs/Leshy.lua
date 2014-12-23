@@ -3,7 +3,7 @@
 -- MOB:  Leshy
 -----------------------------------	
 	
-function OnMobRoam(mob)
+function onMobRoam(mob)
 	
 	local Colorful_Leshy = 16875762;
 	local Colorful_Leshy_PH = 0;

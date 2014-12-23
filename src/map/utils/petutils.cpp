@@ -844,6 +844,7 @@ void DetachPet(CBattleEntity* PMaster)
             else
             {
                 PMob->m_OwnerID.clean();
+                PMob->updatemask |= UPDATE_STATUS;
             }
 
             // dirty exp if not full
@@ -854,10 +855,12 @@ void DetachPet(CBattleEntity* PMaster)
             if(PMaster->PBattleAI->GetCurrentAction() == ACTION_JOBABILITY_FINISH && PMaster->PBattleAI->GetCurrentJobAbility()->getID() == 55 || PChar->loc.zoning || PChar->isDead()){
                 PMob->PEnmityContainer->Clear();
                 PMob->m_OwnerID.clean();
+                PMob->updatemask |= UPDATE_STATUS;
             }
 
         } else {
             PMob->m_OwnerID.clean();
+            PMob->updatemask |= UPDATE_STATUS;
         }
 
         PMob->isCharmed = false;

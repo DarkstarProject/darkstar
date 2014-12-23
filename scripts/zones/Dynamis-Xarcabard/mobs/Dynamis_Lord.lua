@@ -20,7 +20,7 @@ end;
 -- onMobRoam
 -----------------------------------
 
-function OnMobRoam(mob)
+function onMobRoam(mob)
 	--[[
 	if(mob:getExtraVar(1) <= os.time()) then
 		DespawnMob(17330177); -- Despawn after 30min

@@ -10,14 +10,14 @@ require("/scripts/globals/settings");
 require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");
 ---------------------------------------------
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
     if(target:isInDynamis()) then
         return 0;
     end
     return 1;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
 
     local dmgmod = MobBreathMove(mob, target, 0.5, 1, ELE_THUNDER, 700);
 

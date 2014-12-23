@@ -485,7 +485,7 @@ int32 SetRegionalConquestOverseers(uint8 regionID)
     int32 returns = lua_gettop(LuaHandle) - oldtop;
     if (returns > 0)
     {
-        ShowError("luatils::OnZoneInitialize (%s): 0 returns expected, got %d\n", File, returns);
+        ShowError("luatils::SetRegionalConquestOverseers (%s): 0 returns expected, got %d\n", File, returns);
         lua_pop(LuaHandle, returns);
     }
 	return 0;
@@ -1268,8 +1268,29 @@ int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc)
     PChar->m_event.Script.insert(0, File);
     PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BOOST);
 
-    if (prepFile(File, "onTrigger"))
+    lua_pushnil(LuaHandle);
+    lua_setglobal(LuaHandle, "onTrigger");
+
+    auto ret = luaL_loadfile(LuaHandle, File);
+    if (ret)
     {
+        ShowError("luautils::%s: %s\n", "onTrigger", lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+
+    ret = lua_pcall(LuaHandle, 0, 0, 0);
+    if (ret)
+    {
+        ShowError("luautils::%s: %s\n", "onTrigger", lua_tostring(LuaHandle, -1));
+        lua_pop(LuaHandle, 1);
+        return -1;
+    }
+
+    lua_getglobal(LuaHandle, "onTrigger");
+    if (lua_isnil(LuaHandle, -1))
+    {
+        lua_pop(LuaHandle, 1);
         return -1;
     }
 
@@ -1428,7 +1449,7 @@ int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result)
 		PChar->animation = ANIMATION_DEATH;
 		PChar->pushPacket(new CCharUpdatePacket(PChar));
 		PChar->pushPacket(new CRaiseTractorMenuPacket(PChar,TYPE_HOMEPOINT));
-		PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CCharPacket(PChar,ENTITY_UPDATE));
+        PChar->updatemask |= UPDATE_HP;
 	}
     if (returns > 0)
     {
@@ -2223,7 +2244,7 @@ int32 OnMobPath(CBaseEntity* PMob)
 
     lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
-    if (prepFile(File, "OnMobPath"))
+    if (prepFile(File, "onMobPath"))
     {
         return -1;
     }
@@ -2416,7 +2437,7 @@ int32 OnCriticalHit(CBattleEntity* PMob)
 
     lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
-    if (prepFile(File, "OnCriticalHit"))
+    if (prepFile(File, "onCriticalHit"))
     {
         return -1;
     }
@@ -2669,7 +2690,7 @@ int32 OnMobRoamAction(CBaseEntity* PMob)
 
     lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
-    if (prepFile(File, "OnMobRoamAction"))
+    if (prepFile(File, "onMobRoamAction"))
     {
         return -1;
     }
@@ -2704,7 +2725,7 @@ int32 OnMobRoam(CBaseEntity* PMob)
 
     lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
-    if (prepFile(File, "OnMobRoam"))
+    if (prepFile(File, "onMobRoam"))
     {
         return -1;
     }
@@ -2826,7 +2847,7 @@ int32 OnZoneWeatherChange(uint16 ZoneID, uint8 weather)
 {
     lua_prepscript("scripts/zones/%s/Zone.lua", zoneutils::GetZone(ZoneID)->GetName());
 
-    if (prepFile(File, "OnZoneWeatherChange"))
+    if (prepFile(File, "onZoneWeatherChange"))
     {
         return -1;
     }
@@ -2851,7 +2872,7 @@ int32 OnTOTDChange(uint16 ZoneID, uint8 TOTD)
 {
     lua_prepscript("scripts/zones/%s/Zone.lua", zoneutils::GetZone(ZoneID)->GetName());
 
-    if (prepFile(File, "OnTOTDChange"))
+    if (prepFile(File, "onTOTDChange"))
     {
         return -1;
     }
@@ -2884,7 +2905,7 @@ int32 OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, uint16* tpHitsLand
 
     lua_prepscript("scripts/globals/weaponskills/%s.lua", wskill->getName());
 
-    if (prepFile(File, "OnUseWeaponSkill"))
+    if (prepFile(File, "onUseWeaponSkill"))
     {
         return 0;
     }
@@ -2937,7 +2958,7 @@ int32 OnMobWeaponSkill(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobS
 {
     lua_prepscript("scripts/globals/mobskills/%s.lua", PMobSkill->getName());
 
-    if (prepFile(File, "OnMobWeaponSkill"))
+    if (prepFile(File, "onMobWeaponSkill"))
     {
         return 0;
     }
@@ -2983,7 +3004,7 @@ int32 OnMobSkillCheck(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSk
 {
     lua_prepscript("scripts/globals/mobskills/%s.lua", PMobSkill->getName());
 
-    if (prepFile(File, "OnMobSkillCheck"))
+    if (prepFile(File, "onMobSkillCheck"))
     {
         return 1;
     }
@@ -3029,7 +3050,7 @@ int32 OnMagicCastingCheck(CBaseEntity* PChar,CBaseEntity* PTarget,CSpell* PSpell
 {
     lua_prepscript(PSpell->getSpellGroup() == SPELLGROUP_BLUE ? "scripts/globals/spells/bluemagic/%s.lua" : "scripts/globals/spells/%s.lua", PSpell->getName());
 
-    if (prepFile(File, "OnMagicCastingCheck"))
+    if (prepFile(File, "onMagicCastingCheck"))
     {
         return 47;
     }
@@ -3084,7 +3105,7 @@ int32 OnAbilityCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CAbility* PAbilit
 
     lua_prepscript(filePath, PAbility->getName());
 
-    if (prepFile(File, "OnAbilityCheck"))
+    if (prepFile(File, "onAbilityCheck"))
     {
         return 87;
     }
@@ -3134,7 +3155,7 @@ int32 OnPetAbility(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill
 {
     lua_prepscript("scripts/globals/abilities/pets/%s.lua", PMobSkill->getName());
 
-    if (prepFile(File, "OnPetAbility"))
+    if (prepFile(File, "onPetAbility"))
     {
         return 0;
     }
@@ -3183,7 +3204,7 @@ int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbilit
 {
     lua_prepscript("scripts/globals/abilities/%s.lua", PAbility->getName());
 
-    if (prepFile(File, "OnUseAbility"))
+    if (prepFile(File, "onUseAbility"))
     {
         return 0;
     }
@@ -3263,7 +3284,7 @@ int32 OnUseAbilityRoll(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAb
 {
     lua_prepscript("scripts/globals/abilities/%s.lua", PAbility->getName());
 
-    if (prepFile(File, "OnUseAbilityRoll"))
+    if (prepFile(File, "onUseAbilityRoll"))
     {
         return 0;
     }
@@ -3730,7 +3751,7 @@ int32 OnBcnmEnter(CCharEntity* PChar, CBattlefield* PBattlefield){
 
     lua_prepscript("scripts/zones/%s/bcnms/%s.lua", PChar->loc.zone->GetName(), PBattlefield->getBcnmName());
 
-    if (prepFile(File, "OnBcnmEnter"))
+    if (prepFile(File, "onBcnmEnter"))
     {
         return 0;
     }
@@ -3770,7 +3791,7 @@ int32 OnBcnmLeave(CCharEntity* PChar, CBattlefield* PBattlefield, uint8 LeaveCod
 
     lua_prepscript("scripts/zones/%s/bcnms/%s.lua", PChar->loc.zone->GetName(), PBattlefield->getBcnmName());
 
-    if (prepFile(File, "OnBcnmLeave"))
+    if (prepFile(File, "onBcnmLeave"))
     {
         return 0;
     }
@@ -3813,7 +3834,7 @@ int32 OnBcnmRegister(CCharEntity* PChar, CBattlefield* PBattlefield){
 
     lua_prepscript("scripts/zones/%s/bcnms/%s.lua", PChar->loc.zone->GetName(), PBattlefield->getBcnmName());
 
-    if (prepFile(File, "OnBcnmRegister"))
+    if (prepFile(File, "onBcnmRegister"))
     {
         return 0;
     }
@@ -3846,7 +3867,7 @@ int32 OnBcnmDestroy(CBattlefield* PBattlefield){
 
     lua_prepscript("scripts/zones/%s/bcnms/%s.lua", zoneutils::GetZone(PBattlefield->getZoneId())->GetName(), PBattlefield->getBcnmName());
 
-    if (prepFile(File, "OnBcnmDestroy"))
+    if (prepFile(File, "onBcnmDestroy"))
     {
         return 0;
     }

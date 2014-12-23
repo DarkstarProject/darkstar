@@ -12,7 +12,7 @@ require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
  local mobID = mob:getID();   --(16908295 ,16908302 ,16908309 =omega ,          16928966=proto-ultima   )
  local mobhp = mob:getHPP();
    if (mobID == 16928966)then
@@ -27,7 +27,7 @@ function OnMobSkillCheck(target,mob,skill)
    return 1;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
 	local typeEffect = EFFECT_STUN;
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 3, 2);
     local dmgmod = 2;

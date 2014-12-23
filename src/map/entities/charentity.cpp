@@ -28,6 +28,7 @@
 #include <string.h>
 
 #include "../packets/basic.h"
+#include "../packets/char.h"
 
 #include "charentity.h"
 #include "../spell.h"
@@ -70,7 +71,6 @@ CCharEntity::CCharEntity()
     memset(& equip, 0, sizeof(equip));
 	memset(& equipLoc, 0, sizeof(equipLoc));
 	memset(& RealSkills,   0, sizeof(RealSkills));
-    memset(& m_currency, 0, sizeof(m_currency));
     memset(& nationtp,  0, sizeof(nationtp));
     memset(& expChain,  0, sizeof(expChain));
     memset(& nameflags, 0, sizeof(nameflags));
@@ -420,4 +420,13 @@ void CCharEntity::ReloadPartyDec()
 bool CCharEntity::ReloadParty()
 {
     return m_reloadParty;
+}
+
+void CCharEntity::UpdateEntity()
+{
+    if (loc.zone && updatemask && !m_isGMHidden)
+    {
+        loc.zone->PushPacket(this, CHAR_INRANGE, new CCharPacket(this, ENTITY_UPDATE, updatemask));
+        updatemask = 0;
+    }
 }

@@ -78,10 +78,10 @@ function onEventFinish(player,csid,option)
 end;	
 
 -----------------------------------	
--- OnZoneWeatherChange	
+-- onZoneWeatherChange	
 -----------------------------------	
 
-function OnZoneWeatherChange(weather)
+function onZoneWeatherChange(weather)
 
 	if(weather == WEATHER_WIND or weather == WEATHER_GALES) then
 		GetNPCByID(17490277):setAnimation(9); -- Rock Up

@@ -6,7 +6,7 @@ require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");
 require("/scripts/zones/Empyreal_Paradox/TextIDs");
 ---------------------------------------------
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
     if (target:hasStatusEffect(EFFECT_PHYSICAL_SHIELD) or target:hasStatusEffect(EFFECT_MAGIC_SHIELD)) then
         return 1;
     elseif (mob:hasStatusEffect(EFFECT_PLAGUE) or mob:hasStatusEffect(EFFECT_CURSE_I) or mob:hasStatusEffect(EFFECT_MUTE)) then
@@ -17,7 +17,7 @@ function OnMobSkillCheck(target,mob,skill)
     return 0;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
     skill:setMsg(0);
     if (mob:hasStatusEffect(EFFECT_PLAGUE) or mob:hasStatusEffect(EFFECT_CURSE_I) or mob:hasStatusEffect(EFFECT_MUTE)) then
         -- use Remedy!

@@ -6,16 +6,16 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
--- OnUseAbility
+-- onUseAbility
 -----------------------------------
 
-function OnAbilityCheck(player,target,ability)
+function onAbilityCheck(player,target,ability)
 	
 	return 0,0;
 end;
 
 
 
-function OnUseAbilityRoll(caster, target, ability, total)
+function onUseAbilityRoll(caster, target, ability, total)
 	
 end;

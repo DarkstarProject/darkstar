@@ -7,10 +7,10 @@ require("scripts/globals/status");
 require("scripts/globals/pets");
 
 -----------------------------------
--- OnUseAbility
+-- onUseAbility
 -----------------------------------
 
-function OnAbilityCheck(player,target,ability)
+function onAbilityCheck(player,target,ability)
 	if (player:getPet() ~= nil) then
 		return MSGBASIC_ALREADY_HAS_A_PET,0;
 	elseif (target:getMaster() ~= nil and target:getMaster():isPC()) then
@@ -20,6 +20,6 @@ function OnAbilityCheck(player,target,ability)
 	end
 end;
 
-function OnUseAbility(player, target, ability)
+function onUseAbility(player, target, ability)
 	player:charmPet(target);
 end;

@@ -118,6 +118,7 @@ void CAIMobDummy::CheckCurrentAction(uint32 tick)
 		case ACTION_MAGIC_INTERRUPT:	  ActionMagicInterrupt();	break;
 		default : DSP_DEBUG_BREAK_IF(true);
 	}
+    m_PMob->UpdateEntity();
 }
 
 /************************************************************************
@@ -158,11 +159,8 @@ void CAIMobDummy::ActionRoaming()
 
 	// wait my time
 	if(m_Tick < m_LastWaitTime + m_WaitTime){
-		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_NONE));
 		return;
 	}
-
-    uint8 updates = 0;
 
 	if(m_PMob->m_roamFlags & ROAMFLAG_IGNORE)
 	{
@@ -176,8 +174,6 @@ void CAIMobDummy::ActionRoaming()
 	if(m_PPathFind->IsFollowingPath())
 	{
 		FollowPath();
-
-        updates |= UPDATE_POS;
 	}
     else if (m_Tick >= m_LastActionTime + m_PMob->getBigMobMod(MOBMOD_ROAM_COOL))
 	{
@@ -189,7 +185,7 @@ void CAIMobDummy::ActionRoaming()
                 if(m_PMob->Rest(0.1f))
                 {
                     // health updated
-                    updates |= UPDATE_HP;
+                    m_PMob->updatemask |= UPDATE_HP;
                 }
                 else
                 {
@@ -210,8 +206,6 @@ void CAIMobDummy::ActionRoaming()
 				m_PPathFind->LimitDistance(10.0f);
 
 				FollowPath();
-
-                updates |= UPDATE_POS;
 
 				// move back every 5 seconds
 				m_LastActionTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_ROAM_COOL) + MOB_NEUTRAL_TIME;
@@ -244,7 +238,7 @@ void CAIMobDummy::ActionRoaming()
 				m_PMob->HideModel(true);
 				m_PMob->animationsub = 0;
 
-				updates |= UPDATE_POS;
+                m_PMob->updatemask |= UPDATE_HP;
 			}
             else if((m_PMob->m_roamFlags & ROAMFLAG_STEALTH))
             {
@@ -252,15 +246,13 @@ void CAIMobDummy::ActionRoaming()
                 m_PMob->HideName(true);
                 m_PMob->untargetable = true;
 
-                updates |= UPDATE_POS;
+                m_PMob->updatemask |= UPDATE_HP;
             }
 			else if(m_PMob->m_roamFlags & ROAMFLAG_EVENT)
 			{
 				// allow custom event action
 				luautils::OnMobRoamAction(m_PMob);
 				m_LastActionTime = m_Tick;
-
-                updates |= UPDATE_POS;
 			}
 			else if(m_PMob->CanRoam() && m_PPathFind->RoamAround(m_PMob->m_SpawnPoint, m_PMob->m_roamFlags))
 			{
@@ -278,8 +270,6 @@ void CAIMobDummy::ActionRoaming()
 				{
 					FollowPath();
 				}
-
-				updates |= UPDATE_POS;
 			}
 			else
 			{
@@ -293,11 +283,6 @@ void CAIMobDummy::ActionRoaming()
 	if ((m_Tick - m_SpawnTime) % 3000 <= 400)
 	{
 		luautils::OnMobRoam(m_PMob);
-	}
-
-	if (updates != 0)
-	{
-		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, updates));
 	}
 }
 
@@ -334,14 +319,12 @@ void CAIMobDummy::ActionEngage()
 		{
 			ActionAttack();
 		}
-
+        m_PMob->updatemask |= UPDATE_HP;
 	}
 	else
 	{
 		m_ActionType = ACTION_DISENGAGE;
 	}
-
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
 }
 
 /************************************************************************
@@ -367,6 +350,7 @@ void CAIMobDummy::ActionDisengage()
 	m_PMob->SetMainSkin(m_PMob->id);
     m_PMob->delRageMode();
     m_PMob->m_OwnerID.clean();
+    m_PMob->updatemask |= (UPDATE_STATUS | UPDATE_HP);
 	m_PMob->m_CallForHelp = 0;
 	m_PMob->animation = ANIMATION_NONE;
 
@@ -375,8 +359,6 @@ void CAIMobDummy::ActionDisengage()
 	TransitionBack();
 
 	luautils::OnMobDisengage(m_PMob);
-
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
 }
 
 /************************************************************************
@@ -401,8 +383,6 @@ void CAIMobDummy::ActionFall()
 		m_PMob->PPet->health.hp = 0;
 		m_PMob->PPet->PBattleAI->SetCurrentAction(ACTION_FALL);
 	}
-
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
 }
 
 /************************************************************************
@@ -589,8 +569,6 @@ void CAIMobDummy::ActionFadeOut()
         m_ActionType  = m_PMob->m_AllowRespawn ? ACTION_SPAWN : ACTION_NONE;
 
         luautils::OnMobDespawn(m_PMob);
-
-		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
 	}
 }
 
@@ -708,8 +686,6 @@ void CAIMobDummy::ActionSpawn()
 		}
 		
         luautils::OnMobSpawn( m_PMob );
-
-		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_SPAWN, UPDATE_ALL));
 	}
 }
 
@@ -903,8 +879,6 @@ void CAIMobDummy::ActionAbilityStart()
         }
     }
 
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
-
 	if( m_PMobSkill->getActivationTime() == 0)
 	{
 		m_ActionType = ACTION_MOBABILITY_FINISH;
@@ -971,8 +945,6 @@ void CAIMobDummy::ActionAbilityUsing()
 		m_ActionType = ACTION_MOBABILITY_FINISH;
 		ActionAbilityFinish();
 	}
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT)); //need to keep HP updating
-
 }
 
 /************************************************************************
@@ -1170,8 +1142,6 @@ void CAIMobDummy::ActionSleep()
 	{
 		SetupEngage();
 	}
-
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
 }
 
 
@@ -1194,8 +1164,6 @@ void CAIMobDummy::ActionStun()
 			m_PPathFind->LookAt(m_PBattleSubTarget->loc.p);
 		}	
 	}
-
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
 }
 
 void CAIMobDummy::ActionMagicStart()
@@ -1211,8 +1179,6 @@ void CAIMobDummy::ActionMagicStart()
 	if(status == STATESTATUS_START)
 	{
 		m_ActionType = ACTION_MAGIC_CASTING;
-
-		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
 	}
 	else
 	{
@@ -1239,10 +1205,6 @@ void CAIMobDummy::ActionMagicCasting()
 		m_ActionType = ACTION_MAGIC_FINISH;
 		ActionMagicFinish();
 	}
-	else
-	{
-		m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
-	}
 }
 
 void CAIMobDummy::ActionMagicFinish()
@@ -1264,8 +1226,6 @@ void CAIMobDummy::ActionMagicFinish()
 		m_LastMagicTime = m_Tick - m_PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + 10000;
 	}
 
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
-
 	// display animation, then continue fighting
 	Stun(m_PSpell->getAnimationTime());
 
@@ -1279,8 +1239,6 @@ void CAIMobDummy::ActionMagicInterrupt()
 	m_LastActionTime = m_Tick;
 
 	m_PMagicState->InterruptSpell();
-
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
 
 	m_PSpell = NULL;
 	m_PBattleSubTarget = NULL;
@@ -1848,8 +1806,6 @@ void CAIMobDummy::FinishAttack()
 		// come at me bro
 		m_PMob->addRageMode();
 	}
-
-	m_PMob->loc.zone->PushPacket(m_PMob, CHAR_INRANGE, new CEntityUpdatePacket(m_PMob, ENTITY_UPDATE, UPDATE_COMBAT));
 }
 
 bool CAIMobDummy::TryDeaggro()
@@ -2204,8 +2160,6 @@ void CAIMobDummy::FollowPath()
 	        position_t targetPoint = nearPosition(m_PMob->loc.p, 2.1f, M_PI);
 
 	        PPet->PBattleAI->MoveTo(&targetPoint);
-
-			PPet->loc.zone->PushPacket(PPet, CHAR_INRANGE, new CEntityUpdatePacket(PPet, ENTITY_UPDATE, UPDATE_COMBAT));
 		}
 
 		// if I just finished reset my last action time
@@ -2374,7 +2328,7 @@ void CAIMobDummy::Deaggro()
 	{
 	    m_PMob->m_OwnerID.clean();
 	}
-
+    m_PMob->updatemask |= UPDATE_STATUS;
 
 	m_PBattleTarget = NULL;
 }

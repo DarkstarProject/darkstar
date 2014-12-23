@@ -448,14 +448,6 @@ public:
     int32 addScylds(lua_State*);            // Add Scylds
     int32 delScylds(lua_State*);            // Delete Scylds
 
-    int32 getCinders(lua_State*);           // Get Cinders
-    int32 addCinders(lua_State*);           // Add Cinders
-    int32 delCinders(lua_State*);           // Delete Cinders
-
-    int32 getFewell(lua_State*);            // Get Fewell (fire fewell, etc)
-    int32 addFewell(lua_State*);            // Add Fewell
-    int32 delFewell(lua_State*);            // Delete Fewell
-
     int32 getImperialStanding(lua_State*);  // Get imperial standing
     int32 addImperialStanding(lua_State*);  // Add imperial standing
     int32 delImperialStanding(lua_State*);  // Delete imperial standing
@@ -477,12 +469,6 @@ public:
     int32 getCruor(lua_State*);             // Get Cruor
     int32 addCruor(lua_State*);             // Add Cruor
     int32 delCruor(lua_State*);             // Delete Cruor
-    int32 getResistanceCredit(lua_State*);  // Get Resistance Credits
-    int32 addResistanceCredit(lua_State*);  // Add Resistance Credits
-    int32 delResistanceCredit(lua_State*);  // Delete Resistance Credits
-    int32 getDominionNote(lua_State*);      // Get Dominion Notes
-    int32 addDominionNote(lua_State*);      // Add Dominion Notes
-    int32 delDominionNote(lua_State*);      // Delete Dominion Notes
 
     int32 getTags(lua_State*);              // Get Imperial ID tags (Assault)
     int32 addTags(lua_State*);              // Add Imperial ID tags (Assault)
@@ -491,10 +477,6 @@ public:
     int32 getTstone(lua_State*);            // Get Traverser Stone Stock
     int32 addTstone(lua_State*);            // Add Traverser Stone Stock
     int32 delTstone(lua_State*);            // Delete Traverser Stone Stock
-
-    int32 getVstone(lua_State*);            // Get Voidstone Stock
-    int32 addVstone(lua_State*);            // Add Voidstone Stock
-    int32 delVstone(lua_State*);            // Delete Voidstone Stock
 
     int32 addNationTeleport(lua_State*);     // Add new teleport: addNationTeleport(nation,number)
     int32 getNationTeleport(lua_State*);     // Get teleport you can use by nation: getNationTeleport(nation)

@@ -18,7 +18,7 @@ require("scripts/globals/weather");
 -----------------------------------
 
 function onInitialize(zone)		
-    local manuals = {17195676,17195677};
+    local manuals = {17195677,17195678};
     
     SetFieldManual(manuals);
 end;		
@@ -95,9 +95,9 @@ function onEventFinish( player, csid, option)
 	end
 end;
 
-function OnZoneWeatherChange(weather)
+function onZoneWeatherChange(weather)
 
-    local _2u0 = GetNPCByID(17195605);
+    local _2u0 = GetNPCByID(17195606);
     local VanadielTOTD = VanadielTOTD();
     local I_Can_Hear_a_Rainbow = GetServerVariable("I_Can_Hear_a_Rainbow");
 
@@ -109,9 +109,9 @@ function OnZoneWeatherChange(weather)
     end
 end;
 
-function OnTOTDChange(TOTD)
+function onTOTDChange(TOTD)
 
-    local _2u0 = GetNPCByID(17195605);
+    local _2u0 = GetNPCByID(17195606);
     local I_Can_Hear_a_Rainbow = GetServerVariable("I_Can_Hear_a_Rainbow");
 
     if (I_Can_Hear_a_Rainbow == 1 and TOTD >= TIME_DAWN and TOTD <= TIME_EVENING and _2u0:getAnimation() == 9) then

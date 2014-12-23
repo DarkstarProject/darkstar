@@ -26,6 +26,7 @@
 #include "petentity.h"
 #include "../mob_spell_container.h"
 #include "../mob_spell_list.h"
+#include "../packets/entity_update.h"
 
 
 CPetEntity::CPetEntity(PETTYPE petType)
@@ -80,6 +81,13 @@ WYVERNTYPE CPetEntity::getWyvernType()
     default:
       return WYVERNTYPE_OFFENSIVE;
   };
+}
 
-
+void CPetEntity::UpdateEntity()
+{
+    if (loc.zone && updatemask)
+    {
+        loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));
+        updatemask = 0;
+    }
 }

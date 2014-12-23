@@ -433,8 +433,6 @@ int16 CBattleEntity::addTP(int16 tp)
 
 int32 CBattleEntity::addHP(int32 hp)
 {
-	if (status == STATUS_NORMAL) status = STATUS_UPDATE;
-
 	if (health.hp == 0 && hp < 0){
 		return 0; //if the entity is already dead, skip the rest to prevent killing it again
 	}
@@ -448,6 +446,8 @@ int32 CBattleEntity::addHP(int32 hp)
     if(hp > 0)
     {
         battleutils::MakeEntityStandUp(this);
+        if (status == STATUS_NORMAL) status = STATUS_UPDATE;
+        updatemask |= UPDATE_HP;
     }
 
 	if (health.hp == 0)

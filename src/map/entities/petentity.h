@@ -59,6 +59,7 @@ public:
     uint8 m_name_prefix;
 
     WYVERNTYPE getWyvernType();
+    void UpdateEntity() override;
 
 	std::vector<CMobSkill*> PetSkills;
 private:

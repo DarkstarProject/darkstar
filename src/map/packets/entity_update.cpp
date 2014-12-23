@@ -51,21 +51,15 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 		break;
 		case ENTITY_SPAWN:
 		{
-			switch(PEntity->objtype)
+            updatemask = UPDATE_ALL_MOB;
+			if (PEntity->objtype == TYPE_PET)
 			{
-				case TYPE_PET:
-				{
-					WBUFB(data,(0x28)-4) = 0x04;
-				}
-				break;
-				case TYPE_NPC:
-				{
-					if (PEntity->look.size == MODEL_EQUIPED || PEntity->look.size == MODEL_CHOCOBO)
-					{
-						updatemask = 0x57;
-						WBUFB(data,(0x0A)-4) = updatemask;
-					}
-				}
+				WBUFB(data,(0x28)-4) = 0x04;
+			}
+			if (PEntity->look.size == MODEL_EQUIPED || PEntity->look.size == MODEL_CHOCOBO)
+			{
+				updatemask = 0x57;
+				WBUFB(data,(0x0A)-4) = updatemask;
 			}
 		}
 		break;
@@ -80,13 +74,12 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 		WBUFW(data,(0x1A)-4) = PEntity->m_TargID << 1;
 		WBUFB(data,(0x1C)-4) = PEntity->speed;
 		WBUFB(data,(0x1D)-4) = PEntity->speedsub;
-		WBUFB(data,(0x1F)-4) = PEntity->animation;
-		if (PEntity->allegiance == ALLEGIANCE_PLAYER && PEntity->status == STATUS_UPDATE)
-			WBUFB(data,(0x20)-4) = STATUS_NORMAL;
-		else
-			WBUFB(data,(0x20)-4) = PEntity->status;
-		WBUFB(data,(0x2A)-4) = PEntity->animationsub;
 	}
+
+    if (PEntity->allegiance == ALLEGIANCE_PLAYER && PEntity->status == STATUS_UPDATE)
+        WBUFB(data, (0x20) - 4) = STATUS_NORMAL;
+    else
+        WBUFB(data, (0x20) - 4) = PEntity->status;
 
 	switch(PEntity->objtype)
 	{
@@ -95,6 +88,8 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 			if (updatemask & UPDATE_HP)
 			{
 				WBUFB(data,(0x1E)-4) = 0x64;
+                WBUFB(data,(0x1F)-4) = PEntity->animation;
+                WBUFB(data,(0x2A)-4) = PEntity->animationsub;
 				WBUFL(data,(0x21)-4) = ((CNpcEntity*)PEntity)->unknown;
 				WBUFB(data,(0x22)-4) |= (PEntity->untargetable ? 0x08 : 0x00);
 				WBUFB(data,(0x22)-4) |= (PEntity->hpvis ? 0x00 : 0x01);
@@ -124,10 +119,8 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 				if (updatemask & UPDATE_HP)
 				{
 					WBUFB(data,(0x1E)-4) = PMob->GetHPP();
-					if (PEntity->allegiance == ALLEGIANCE_PLAYER && PEntity->status == STATUS_UPDATE)
-						WBUFB(data,(0x20)-4) = STATUS_NORMAL;
-					else
-						WBUFB(data,(0x20)-4) = PMob->status;
+					WBUFB(data,(0x1F)-4) = PEntity->animation;
+                    WBUFB(data,(0x2A)-4) = PEntity->animationsub;
 					WBUFL(data,(0x21)-4) = PMob->m_unknown;
 					WBUFB(data,(0x21)-4) |= PMob->m_CallForHelp;
 					WBUFB(data,(0x22)-4) |= (PEntity->untargetable ? 0x08 : 0x00);
@@ -137,11 +130,11 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 						WBUFB(data,(0x27)-4) |= 0x08;
                     WBUFB(data,(0x28)-4) = (PMob->StatusEffectContainer->HasStatusEffect(EFFECT_TERROR) ? 0x10 : 0x00);
 					WBUFB(data,(0x29)-4) = PEntity->allegiance;
-					WBUFB(data,(0x2B)-4) = PEntity->namevis;
+                    WBUFB(data, (0x2B) - 4) = 0;//PEntity->namevis;
 				}
 				if (updatemask & UPDATE_STATUS)
 				{
-					WBUFL(data,(0x2C)-4) = PMob->m_OwnerID.id;
+                    WBUFL(data, (0x2C) - 4) = PMob->m_OwnerID.id;
 				}
 			}
 			if (updatemask & UPDATE_NAME)
@@ -168,12 +161,14 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
 				if (updatemask & UPDATE_HP)
 				{
 					WBUFB(data,(0x1E)-4) = ((CPetEntity*)PEntity)->GetHPP();
-                    WBUFB(data, (0x28) - 4) = (((CPetEntity*)PEntity)->StatusEffectContainer->HasStatusEffect(EFFECT_TERROR) ? 0x10 : 0x00);
+                    WBUFB(data,(0x1F)-4) = PEntity->animation;
+                    WBUFB(data,(0x2A)-4) = PEntity->animationsub;
+                    WBUFB(data,(0x28)-4) = (((CPetEntity*)PEntity)->StatusEffectContainer->HasStatusEffect(EFFECT_TERROR) ? 0x10 : 0x00);
+                    WBUFB(data,(0x29)-4) = PEntity->allegiance;
 				}
 				if (updatemask & UPDATE_STATUS)
 				{
 					WBUFB(data,(0x27)-4) = 0x08 | ((CPetEntity*)PEntity)->m_name_prefix;
-					WBUFB(data,(0x29)-4) = PEntity->allegiance;
 				}
 				if (updatemask & UPDATE_NAME)
 				{

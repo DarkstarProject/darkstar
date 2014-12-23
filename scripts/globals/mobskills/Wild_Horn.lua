@@ -12,14 +12,14 @@ require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");
 
 ---------------------------------------------
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
 	if(target:isBehind(mob, 48) == true) then
 		return 1;
     end
 	return 0;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
 	local numhits = 3;
 	local accmod = 1;
 	local dmgmod =  1.3;

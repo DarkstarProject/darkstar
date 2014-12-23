@@ -3,14 +3,14 @@ require("/scripts/globals/status");
 require("/scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
-function OnMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target,mob,skill)
     if(mob:isMobType(MOBTYPE_NOTORIOUS) or mob:isInDynamis()) then
         return 0;
     end
     return 1;
 end;
 
-function OnMobWeaponSkill(target, mob, skill)
+function onMobWeaponSkill(target, mob, skill)
     local numhits = 4;
     local accmod = 1;
     local dmgmod = 1.3;

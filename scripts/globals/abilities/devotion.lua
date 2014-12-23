@@ -5,10 +5,10 @@
 require("scripts/globals/status");
 
 -----------------------------------
--- OnUseAbility
+-- onUseAbility
 -----------------------------------
 
-function OnAbilityCheck(player,target,ability)
+function onAbilityCheck(player,target,ability)
         -- Fails if HP < 4
         if(player:getHP() < 4) then
             return MSGBASIC_UNABLE_TO_USE_JA,0;
@@ -17,7 +17,7 @@ function OnAbilityCheck(player,target,ability)
         end
 end;
 
-function OnUseAbility(player, target, ability)
+function onUseAbility(player, target, ability)
     --Plus 5 percent mp recovers per extra devotion merit
     local meritBonus = player:getMerit(MERIT_DEVOTION) - 5;
     --printf("Devotion Merit Bonus: %d", meritBonus);

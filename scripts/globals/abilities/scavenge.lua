@@ -8,14 +8,14 @@ require("scripts/globals/status");
 
 
 -----------------------------------
--- OnUseAbility
+-- onUseAbility
 -----------------------------------
 
-function OnAbilityCheck(player,target,ability)
+function onAbilityCheck(player,target,ability)
 	return 0,0;
 end;
 
-function OnUseAbility(user, target, ability)
+function onUseAbility(user, target, ability)
 	
 	-- RNG AF2 quest check
 	local FireAndBrimstoneCS = user:getVar("fireAndBrimstone");		

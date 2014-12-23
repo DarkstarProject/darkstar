@@ -92,7 +92,7 @@ function TradeBCNM(player,zone,trade,npc)
 	end
 	--the following is for orb battles, etc
 
-	id = ItemToBCNMID(player,zone,trade);
+	local id = ItemToBCNMID(player,zone,trade);
 
 	if(id == -1)then --no valid BCNMs with this item
 		--todo: display message based on zone text offset
