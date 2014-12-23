@@ -30,9 +30,9 @@
 
 struct map_session_data_t;
 
-extern uint8 PacketSize[512]; // массив размеров входящих пакетов
+extern uint8 PacketSize[512];
 
-extern void (*PacketParser[512])(map_session_data_t*, CCharEntity*, int8*);
+extern void(*PacketParser[512])(map_session_data_t*, CCharEntity*, int8*);
 
 void PrintPacket(int8* data);
 void PacketParserInitialize();

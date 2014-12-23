@@ -617,7 +617,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("ZULKHEIM");
 
-	local Quanteilleron = 17199701;
+	local Quanteilleron = 17199705;
 
 	npc  = {
 	--
@@ -648,7 +648,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("NORVALLEN");
 
-	local Chaplion = 17203840;
+	local Chaplion = 17203844;
 
 	npc  = {
 	--
@@ -710,7 +710,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("DERFLAND");
 
-	local Mesachedeau = 17224318;
+	local Mesachedeau = 17224322;
 
 	npc  = {
 	--
@@ -772,7 +772,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("KOLSHUSHU");
 
-	local Bonbavour = 17261142;
+	local Bonbavour = 17261143;
 
 	npc  = {
 	--
@@ -803,7 +803,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("ARAGONEU");
 
-	local Chegourt = 17265263;
+	local Chegourt = 17265267;
 
 	npc  = {
 	--
@@ -896,7 +896,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("QUFIMISLAND");
 
-	local Pitoire = 17293707;
+	local Pitoire = 17293710;
 
 	npc  = {
 	--
@@ -958,7 +958,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("KUZOTZ");
 
-	local Eaulevisat = 17244623;
+	local Eaulevisat = 17244627;
 
 	npc  = {
 	--
@@ -1020,7 +1020,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("ELSHIMOLOWLANDS");
 
-	local Zorchorevi = 17281589;
+	local Zorchorevi = 17281590;
 
 	npc  = {
 	--
@@ -1051,7 +1051,7 @@ switch (region): caseof {
   ---------------------------------
 	--print("ELSHIMOUPLANDS");
 
-	local Ilieumort = 17285646;
+	local Ilieumort = 17285650;
 
 	npc  ={
 	--

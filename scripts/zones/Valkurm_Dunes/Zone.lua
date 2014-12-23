@@ -18,7 +18,7 @@ require("scripts/globals/conquest");
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17199750,17199751,17199752};
+    local manuals = {17199751,17199752,17199753};
     
     SetFieldManual(manuals);
     
@@ -91,7 +91,7 @@ function onEventFinish( player, csid, option)
 end;
 
 function onZoneWeatherChange(weather)
-	local qm1 = GetNPCByID(17199698); -- Quest: An Empty Vessel
+	local qm1 = GetNPCByID(17199699); -- Quest: An Empty Vessel
 	if(weather == WEATHER_DUST_STORM) then
 		qm1:setStatus(STATUS_NORMAL);
 	else

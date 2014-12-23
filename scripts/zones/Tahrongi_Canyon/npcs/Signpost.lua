@@ -24,9 +24,9 @@ function onTrigger(player,npc)
 		player:messageSpecial(SIGN_1);		
 	elseif(npc:getID() == 17257027) or (npc:getID() == 17257028) then
 		player:messageSpecial(SIGN_3);
-	elseif(npc:getID() == 17257029) or (npc:getID() == 17257030) then
+	elseif(npc:getID() == 17257030) or (npc:getID() == 17257031) then
 		player:messageSpecial(SIGN_5);
-	elseif(npc:getID() == 17257031) or (npc:getID() == 17257032) then
+	elseif(npc:getID() == 17257032) or (npc:getID() == 17257033) then
 		player:messageSpecial(SIGN_7);	
 	end
 	
