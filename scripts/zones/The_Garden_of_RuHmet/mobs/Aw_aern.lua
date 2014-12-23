@@ -12,7 +12,7 @@ require("scripts/zones/The_Garden_of_RuHmet/MobIDs");
 -- onMobSpawn Action
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobSpawn(mob)
 	
 end;
 
