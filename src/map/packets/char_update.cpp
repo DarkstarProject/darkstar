@@ -93,9 +93,13 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
     WBUFL(data,(0x40)-4) = CVanaTime::getInstance()->getVanaTime();
     WBUFW(data,(0x44)-4) = PChar->m_Costum;
 
-	if (PChar->animation == ANIMATION_FISHING_START)
+	if (PChar->animation == ANIMATION_NEW_FISHING_START)
 	{
-		WBUFB(data,(0x4A)-4) = 0x10;
+		WBUFB(data,(0x4A)-4) = 0x0F;
+		//WBUFB(data, (0x58) - 4) = 0x80;
+		WBUFB(data, (0x59) - 4) = 0x03;
+		//WBUFB(data, (0x5A) - 4) = 0x80;
+		//WBUFB(data, (0x5B) - 4) = 0x1C;
 	}
 	WBUFU(data,(0x4C)-4) = PChar->StatusEffectContainer->m_Flags;
 }

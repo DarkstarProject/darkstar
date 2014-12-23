@@ -5737,13 +5737,38 @@ inline int32 CLuaBaseEntity::updateEnmity(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L,1) || !lua_isuserdata(L,1));
 
     CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L,1);
-
+	
     if (PEntity != NULL &&
         PEntity->GetBaseEntity()->objtype != TYPE_NPC)
     {
         ((CMobEntity*)m_PBaseEntity)->PEnmityContainer->AddBaseEnmity((CBattleEntity*)PEntity->GetBaseEntity());
     }
     return 0;
+}
+
+/************************************************************************
+*                                                                       *
+*  updates enmity and claims monster									*
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::updateClaim(lua_State *L)
+{
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+	//DSP_DEBUG_BREAK_IF(lua_gettop(L) > 1);
+	DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+
+	CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
+
+	if (PEntity != NULL &&
+		PEntity->GetBaseEntity()->objtype != TYPE_NPC)
+	{
+		battleutils::ClaimMob((CMobEntity*)m_PBaseEntity, (CBattleEntity*)PEntity->GetBaseEntity());
+//		((CMobEntity*)m_PBaseEntity)->PEnmityContainer->AddBaseEnmity((CBattleEntity*)PEntity->GetBaseEntity());
+	}
+	return 0;
 }
 
 /************************************************************************
@@ -9698,6 +9723,15 @@ inline int32 CLuaBaseEntity::unsetAggroFlag(lua_State* L)
     return 0;
 }
 
+
+/* FISHING ZONE METHODS */
+
+inline int32 CLuaBaseEntity::addFishingZone(lua_State* L)
+{
+
+
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -9890,6 +9924,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,injectPacket),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,showPosition),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmity),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateClaim),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetEnmity),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,lowerEnmity),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmityFromDamage),

@@ -313,8 +313,9 @@ public:
     int32 sendTractor(lua_State*);          // send tractor request to char
     int32 SendRevision(lua_State*);         // send Git revision to char
 
-    int32 updateEnmity(lua_State*);           // Adds Enmity to player for specified mob
-    int32 updateEnmityFromDamage(lua_State*); // Adds Enmity to player for specified mob for the damage specified
+	int32 updateEnmity(lua_State*);           // Adds Enmity to player for specified mob
+	int32 updateClaim(lua_State*);           // Adds Enmity to player for specified mob and claims
+	int32 updateEnmityFromDamage(lua_State*); // Adds Enmity to player for specified mob for the damage specified
     int32 updateEnmityFromCure(lua_State*);
     int32 addEnmity(lua_State*);            // Add specified amount of enmity (target, CE, VE)
     int32 resetEnmity(lua_State*);          //resets enmity to player for specificed mob
