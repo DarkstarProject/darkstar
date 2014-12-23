@@ -18,22 +18,23 @@ int32 zlib_init()
     fread(zlib_compress_table, sizeof(uint32), 512, fp);
     fclose(fp);
 
+    uint32 temp_decompress_table[2556];
     fp = fopen("decompress.dat", "rb");
     if (fp == NULL)
         ShowFatalError("zlib_init: can't open file <decompress.dat> \n");
     fseek(fp, 0, SEEK_END);
     auto size = ftell(fp);
     fseek(fp, 0, SEEK_SET);
-    fread(&zlib_decompress_table, 1, size, fp);
+    fread(temp_decompress_table, sizeof(char), size, fp);
     fclose(fp);
 
     // Align the jump table with our internal table..
-    for (auto x = 0; x < (size / 4); x++)
+    for (auto x = 0; x < size / 4; x++)
     {
-        // Skip value column entries or null jumps..
-        if ((x % 5) == 4 || zlib_decompress_table[x] == 0)
-            continue;
-        zlib_decompress_table[x] = (uintptr)((uintptr*)zlib_decompress_table + (zlib_decompress_table[x] / 4));
+        if (temp_decompress_table[x] > 0xff)
+            zlib_decompress_table[x] = (uintptr)((uintptr*)zlib_decompress_table + ((temp_decompress_table[x] - 0x15b3aaa0) / 4));
+        else
+            zlib_decompress_table[x] = temp_decompress_table[x];
     }
 
     return 0;
