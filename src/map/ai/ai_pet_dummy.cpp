@@ -74,6 +74,8 @@ void CAIPetDummy::CheckCurrentAction(uint32 tick)
 {
 	m_Tick = tick;
 
+    ACTIONTYPE actionType = m_ActionType;
+    bool isMob = m_PPet->objtype == TYPE_MOB;
 
 	//uncharm any pets if time is up
 	if(tick > m_PPet->charmTime && m_PPet->isCharmed)
@@ -104,7 +106,10 @@ void CAIPetDummy::CheckCurrentAction(uint32 tick)
 		default : DSP_DEBUG_BREAK_IF(true);
 	}
 
-    m_PPet->UpdateEntity();
+    if (!(actionType == ACTION_FALL && isMob))
+    {
+        m_PPet->UpdateEntity();
+    }
 }
 
 void CAIPetDummy::WeatherChange(WEATHER weather, uint8 element)
@@ -898,6 +903,9 @@ void CAIPetDummy::ActionFall()
     if(isMob){
         return;
     }
+
+    m_PPet->updatemask |= UPDATE_HP;
+    m_PPet->UpdateEntity();
 
 	m_LastActionTime = m_Tick;
 	m_ActionType = ACTION_DEATH;
