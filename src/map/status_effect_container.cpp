@@ -889,6 +889,43 @@ void CStatusEffectContainer::Fold(uint32 charid)
     }
 }
 
+uint8 CStatusEffectContainer::GetActiveManeuvers()
+{
+    uint8 count = 0;
+    for (auto PStatusEffect : m_StatusEffectList)
+    {
+        if (PStatusEffect->GetStatusID() >= EFFECT_FIRE_MANEUVER &&
+            PStatusEffect->GetStatusID() <= EFFECT_DARK_MANEUVER)
+        {
+            count++;
+        }
+    }
+    return count;
+}
+
+void CStatusEffectContainer::RemoveOldestManeuver()
+{
+    CStatusEffect* oldest = NULL;
+    int index = 0;
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+    {
+        CStatusEffect* PStatusEffect = m_StatusEffectList.at(i);
+        if (PStatusEffect->GetStatusID() >= EFFECT_FIRE_MANEUVER &&
+            PStatusEffect->GetStatusID() <= EFFECT_DARK_MANEUVER)
+        {
+            if (!oldest || PStatusEffect->GetStartTime() < oldest->GetStartTime())
+            {
+                oldest = PStatusEffect;
+                index = i;
+            }
+        }
+    }
+    if (oldest)
+    {
+        RemoveStatusEffect(index, true);
+    }
+}
+
 /************************************************************************
 *                                                                       *
 *  Проверяем наличие статус-эффекта	в контейнере с уникальным subid     *

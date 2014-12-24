@@ -2215,20 +2215,6 @@ void CAICharNormal::ActionJobAbilityFinish()
 
     	m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CActionPacket(m_PChar));
 
-    	// Message "player uses..."  for most abilities
-        // TODO: all abilities should display their own messages!
-    	if(m_PJobAbility->getID() < ABILITY_HEALING_RUBY &&
-    		m_PJobAbility->getID() != ABILITY_JUMP &&
-    		m_PJobAbility->getID() != ABILITY_HIGH_JUMP &&
-    		m_PJobAbility->getID() != ABILITY_SUPER_JUMP &&
-    		m_PJobAbility->getID() != ABILITY_REWARD &&
-    		m_PJobAbility->getID() != ABILITY_SNARL &&
-    		m_PJobAbility->getID() != ABILITY_GAUGE)
-    	{
-    		if (m_PJobAbility->getMessage() == 0)
-    			m_PChar->loc.zone->PushPacket(m_PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(m_PChar, m_PChar, m_PJobAbility->getID()+16, 0, MSGBASIC_USES_JA));
-    	}
-
     } // end paralysis if
 
     uint32 chargeTime = 0;

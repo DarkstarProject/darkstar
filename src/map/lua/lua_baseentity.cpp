@@ -6266,7 +6266,7 @@ inline int32 CLuaBaseEntity::getWeaponSubSkillType(lua_State *L)
             lua_pushinteger(L,0);
             return 1;
         }
-        CItemWeapon* weapon = ((CBattleEntity*)m_PBaseEntity)->m_Weapons[SLOT];
+        CItemWeapon* weapon = (CItemWeapon*)((CCharEntity*)m_PBaseEntity)->getEquip((SLOTTYPE)SLOT);
 
         if(weapon == NULL)
         {
@@ -8965,6 +8965,28 @@ inline int32 CLuaBaseEntity::hasCorsairEffect(lua_State* L)
     return 1;
 }
 
+inline int32 CLuaBaseEntity::getActiveManeuvers(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+    CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
+
+    lua_pushinteger(L,PEntity->StatusEffectContainer->GetActiveManeuvers());
+
+    return 1;
+}
+
+inline int32 CLuaBaseEntity::removeOldestManeuver(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+    CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
+
+    PEntity->StatusEffectContainer->RemoveOldestManeuver();
+
+    return 0;
+}
+
 inline int32 CLuaBaseEntity::initNpcAi(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -9510,6 +9532,22 @@ inline int32 CLuaBaseEntity::unsetAggroFlag(lua_State* L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::instantiateMob(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    CMobEntity* newMob = mobutils::InstantiateAlly(lua_tointeger(L, 1), m_PBaseEntity->getZone());
+
+    newMob->loc.p = m_PBaseEntity->loc.p;
+    newMob->m_SpawnPoint = newMob->loc.p;
+    newMob->PBattleAI->SetLastActionTime(0);
+    newMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+
+    return 0;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -9691,6 +9729,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasPartyJob),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,fold),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasCorsairEffect),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getActiveManeuvers),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeOldestManeuver),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addMod),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMod),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMod),
@@ -9942,5 +9982,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setModelId),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setAggroFlag),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,unsetAggroFlag),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,instantiateMob),
     {NULL,NULL}
 };
