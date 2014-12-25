@@ -1083,6 +1083,9 @@ MOD_REGAIN_DOWN			 = 0x196			-- plague, reduce tp
 MOD_DA_DOUBLE_DAMAGE		  =0x198 -- Double attack's double damage chance %.
 MOD_TA_TRIPLE_DAMAGE		  =0x199 -- Triple attack's triple damage chance %.
 MOD_ZANSHIN_DOUBLE_DAMAGE	  =0x19A -- Zanshin's double damage chance %.
+MOD_AUTO_MELEE_SKILL          =0x19C
+MOD_AUTO_RANGED_SKILL         =0x19D
+MOD_AUTO_MAGIC_SKILL          =0x19E
 MOD_RAPID_SHOT_DOUBLE_DAMAGE  =0x1DF -- Rapid shot's double damage chance %.
 MOD_ABSORB_DMG_CHANCE		  =0x1E0 -- Chance to absorb damage %
 MOD_EXTRA_DUAL_WIELD_ATTACK   =0x1E1 -- Chance to land an extra attack when dual wielding
@@ -1170,6 +1173,10 @@ MOD_ITEM_SPIKES_DMG           =0x1F4 -- Damage of an items spikes (modId = 500)
 MOD_ITEM_SPIKES_CHANCE        =0x1F5 -- Chance of an items spike proc (modId = 501)
 
 MOD_FERAL_HOWL_DURATION       =0x1F7 -- +20% duration per merit when wearing augmented Monster Jackcoat +2 (modId = 503)
+
+MOD_MANEUVER_BONUS            =0x1F8 -- Maneuver Stat Bonus
+MOD_OVERLOAD_THRESH           =0x1F9 -- Overload Threshold Bonus
+
 -- MOD_SPARE =0x1F8 -- (modId = 504)
 -- MOD_SPARE =0x1F9 -- (modId = 505)
 -- MOD_SPARE =0x1FA -- (modId = 506)

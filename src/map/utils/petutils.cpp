@@ -38,6 +38,7 @@
 #include "../entities/mobentity.h"
 #include "../ability.h"
 
+#include "../ai/ai_automaton_dummy.h"
 #include "../ai/ai_pet_dummy.h"
 #include "../ai/ai_mob_dummy.h"
 #include "../ai/ai_ultimate_summon.h"
@@ -720,6 +721,10 @@ void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
     if (PetID == PETID_ALEXANDER || PetID == PETID_ODIN)
     {
         PPet->PBattleAI = new CAIUltimateSummon(PPet);
+    }
+    else if (PetID >= PETID_HARLEQUINFRAME && PetID <= PETID_STORMWAKERFRAME)
+    {
+        PPet->PBattleAI = new CAIAutomatonDummy(PPet);
     }
     else
     {

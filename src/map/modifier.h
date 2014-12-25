@@ -417,7 +417,9 @@ enum MODIFIER
     MOD_AUTO_MELEE_SKILL          = 0x19C, // (modId = 412)
     MOD_AUTO_RANGED_SKILL         = 0x19D, // (modId = 413)
     MOD_AUTO_MAGIC_SKILL          = 0x19E, // (modId = 414)
-	
+    MOD_MANEUVER_BONUS            = 0x1F8, // (modId = 504) Maneuver Stat Bonus
+    MOD_OVERLOAD_THRESH           = 0x1F9, // (modId = 505) Overload Threshold Bonus
+
 	// Dancer
 	MOD_FINISHING_MOVES           = 0x14D, // Tracks # of finishing moves (modId = 333)    
     MOD_SAMBA_DURATION            = 0x1EA, // Samba duration bonus(modId = 490)
@@ -549,9 +551,6 @@ enum MODIFIER
 
     MOD_GOV_CLEARS                = 0x1F0, // 4% bonus per Grounds of Valor Page clear (modId = 496)
 
-    //MOD_SPARE =0x1F8, // (modId = 504)
-    //MOD_SPARE =0x1F9, // (modId = 505)
-    //MOD_SPARE =0x1FA, // (modId = 506)
     //MOD_SPARE =0x1FB, // (modId = 507)
     //MOD_SPARE =0x1FC, // (modId = 508)
     //MOD_SPARE =0x1FD, // (modId = 509)
@@ -561,7 +560,7 @@ enum MODIFIER
 
 };
 
-#define MAX_MODIFIER 503
+#define MAX_MODIFIER 506
 
 
 

@@ -39,6 +39,7 @@ When a status effect is gained twice on a player. It can do one or more of the f
 #include "lua/luautils.h"
 
 #include "packets/char_health.h"
+#include "packets/char_job_extra.h"
 #include "packets/char_sync.h"
 #include "packets/char_update.h"
 #include "packets/message_basic.h"
@@ -507,12 +508,12 @@ void CStatusEffectContainer::KillAllStatusEffect()
 		luautils::OnEffectLose(m_POwner, PStatusEffect);
 
 		m_POwner->delModifiers(&PStatusEffect->modList);
-		m_POwner->UpdateHealth();
 
 		m_StatusEffectList.erase(m_StatusEffectList.begin() + i);
 
 		delete PStatusEffect;
 	}
+    m_POwner->UpdateHealth();
 }
 
 /************************************************************************
@@ -926,6 +927,18 @@ void CStatusEffectContainer::RemoveOldestManeuver()
     }
 }
 
+void CStatusEffectContainer::RemoveAllManeuvers()
+{
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+    {
+        if (m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_FIRE_MANEUVER && 
+            m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_DARK_MANEUVER)
+        {
+            RemoveStatusEffect(i--, true);
+        }
+    }
+}
+
 /************************************************************************
 *                                                                       *
 *  Проверяем наличие статус-эффекта	в контейнере с уникальным subid     *
@@ -1048,6 +1061,8 @@ void CStatusEffectContainer::UpdateStatusIcons()
         }
 	}
     ((CCharEntity*)m_POwner)->pushPacket(new CCharUpdatePacket((CCharEntity*)m_POwner));
+    ((CCharEntity*)m_POwner)->pushPacket(new CCharJobExtraPacket((CCharEntity*)m_POwner, true));
+    ((CCharEntity*)m_POwner)->pushPacket(new CCharJobExtraPacket((CCharEntity*)m_POwner, false));
 }
 
 /************************************************************************
@@ -1343,6 +1358,11 @@ void CStatusEffectContainer::CheckRegen(uint32 tick)
 
         if (m_POwner->addTP(regain))
             update = true;
+
+        if (m_POwner->PPet && ((CPetEntity*)(m_POwner->PPet))->getPetType() == PETTYPE_AUTOMATON)
+        {
+            ((CAutomatonEntity*)(m_POwner->PPet))->burdenTick();
+        }
 
 		if( m_POwner->status != STATUS_DISAPPEAR && (m_POwner->objtype == TYPE_PC) && update)
 		{

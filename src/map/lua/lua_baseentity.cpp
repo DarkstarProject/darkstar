@@ -8965,28 +8965,6 @@ inline int32 CLuaBaseEntity::hasCorsairEffect(lua_State* L)
     return 1;
 }
 
-inline int32 CLuaBaseEntity::getActiveManeuvers(lua_State* L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-
-    CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
-
-    lua_pushinteger(L,PEntity->StatusEffectContainer->GetActiveManeuvers());
-
-    return 1;
-}
-
-inline int32 CLuaBaseEntity::removeOldestManeuver(lua_State* L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-
-    CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
-
-    PEntity->StatusEffectContainer->RemoveOldestManeuver();
-
-    return 0;
-}
-
 inline int32 CLuaBaseEntity::initNpcAi(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -9548,6 +9526,57 @@ inline int32 CLuaBaseEntity::instantiateMob(lua_State* L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::getActiveManeuvers(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+    CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
+
+    lua_pushinteger(L, PEntity->StatusEffectContainer->GetActiveManeuvers());
+
+    return 1;
+}
+
+inline int32 CLuaBaseEntity::removeOldestManeuver(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+    CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
+
+    PEntity->StatusEffectContainer->RemoveOldestManeuver();
+
+    return 0;
+}
+
+inline int32 CLuaBaseEntity::addBurden(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    if (((CBattleEntity*)m_PBaseEntity)->PPet && ((CPetEntity*)((CBattleEntity*)m_PBaseEntity)->PPet)->getPetType() == PETTYPE_AUTOMATON)
+    {
+        lua_pushinteger(L, ((CAutomatonEntity*)((CBattleEntity*)m_PBaseEntity)->PPet)->addBurden(lua_tointeger(L, 1), lua_tointeger(L, 2)));
+    }
+    else
+    {
+        lua_pushinteger(L, 0);
+    }
+    return 1;
+}
+
+inline int32 CLuaBaseEntity::removeAllManeuvers(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+
+    CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
+
+    PEntity->StatusEffectContainer->RemoveAllManeuvers();
+
+    return 0;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -9729,8 +9758,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasPartyJob),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,fold),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasCorsairEffect),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getActiveManeuvers),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeOldestManeuver),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addMod),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMod),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMod),
@@ -9983,5 +10010,9 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setAggroFlag),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,unsetAggroFlag),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,instantiateMob),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getActiveManeuvers),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeOldestManeuver),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeAllManeuvers),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addBurden),
     {NULL,NULL}
 };

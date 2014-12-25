@@ -45,23 +45,23 @@ enum EFFECTFLAG
     EFFECTFLAG_NONE             = 0x0000,
     EFFECTFLAG_DISPELABLE       = 0x0001,
     EFFECTFLAG_ERASABLE         = 0x0002,
-    EFFECTFLAG_ATTACK           = 0x0004,     // исчезает при нанесении урона
+    EFFECTFLAG_ATTACK           = 0x0004,   // исчезает при нанесении урона
 
-    EFFECTFLAG_DAMAGE           = 0x0010,     // исчезает при получении урона
-    EFFECTFLAG_DEATH            = 0x0020,     // исчезает при смерти
-    EFFECTFLAG_MAGIC_BEGIN      = 0x0040,     // исчезает перед началом чтения заклинания
-    EFFECTFLAG_MAGIC_END        = 0x0080,     // исчезает после прочтения заклинания
+    EFFECTFLAG_DAMAGE           = 0x0010,   // исчезает при получении урона
+    EFFECTFLAG_DEATH            = 0x0020,   // исчезает при смерти
+    EFFECTFLAG_MAGIC_BEGIN      = 0x0040,   // исчезает перед началом чтения заклинания
+    EFFECTFLAG_MAGIC_END        = 0x0080,   // исчезает после прочтения заклинания
     EFFECTFLAG_ON_ZONE          = 0x0100,
-    EFFECTFLAG_NO_LOSS_MESSAGE  = 0x0200,     // Suppress effect worn off message.
-    EFFECTFLAG_INVISIBLE	= 0x0400,     // invisible effect
-    EFFECTFLAG_DETECTABLE	= 0x0800,      // invisible, sneak, deo
-    EFFECTFLAG_NO_REST 		= 0x1000,  // prevents resting, curse II, plague, disease
-    EFFECTFLAG_PREVENT_ACTION   = 0x2000,    // sleep, lullaby, stun, petro. Not implemented
-    EFFECTFLAG_WALTZABLE        = 0x4000,   //for healing waltzable spells
+    EFFECTFLAG_NO_LOSS_MESSAGE  = 0x0200,   // Suppress effect worn off message.
+    EFFECTFLAG_INVISIBLE	    = 0x0400,   // invisible effect
+    EFFECTFLAG_DETECTABLE	    = 0x0800,   // invisible, sneak, deo
+    EFFECTFLAG_NO_REST 		    = 0x1000,   // prevents resting, curse II, plague, disease
+    EFFECTFLAG_PREVENT_ACTION   = 0x2000,   // sleep, lullaby, stun, petro. Not implemented
+    EFFECTFLAG_WALTZABLE        = 0x4000,   // for healing waltzable spells
     EFFECTFLAG_FOOD             = 0x8000,
-    EFFECTFLAG_SONG             = 0x10000,  //bard songs
-    EFFECTFLAG_ROLL             = 0x20000,   //corsair rolls
-    EFFECTFLAG_SYNTH_SUPPORT    = 0x40000    // Synthesis Image Support
+    EFFECTFLAG_SONG             = 0x10000,  // bard songs
+    EFFECTFLAG_ROLL             = 0x20000,  // corsair rolls
+    EFFECTFLAG_SYNTH_SUPPORT    = 0x40000   // Synthesis Image Support
 };
 
 enum EFFECT
@@ -750,7 +750,7 @@ private:
     uint16		m_SubPower;				// Secondary power of the effect
     uint16      m_Tier;                 // Tier of the effect
 	uint16		m_Flag;					// флаг эффекта (условия его исчезновения)
-	uint16		m_Type; // used to enforce only one
+	uint16		m_Type;                 // used to enforce only one
 
 	uint32		m_TickTime;				// время повторения эффекта (млс)
 	uint32		m_Duration;				// продолжительность эффекта (млс)

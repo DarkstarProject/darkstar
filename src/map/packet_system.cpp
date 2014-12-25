@@ -560,7 +560,7 @@ void SmallPacket0x016(map_session_data_t* session, CCharEntity* PChar, int8* dat
         if (PEntity && PEntity->objtype == TYPE_PC)
         {
             PChar->pushPacket(new CCharPacket((CCharEntity*)PEntity, ENTITY_SPAWN, UPDATE_ALL_CHAR));
-            PChar->pushPacket(new CCharUpdatePacket((CCharEntity*)PEntity));
+            //PChar->pushPacket(new CCharUpdatePacket((CCharEntity*)PEntity));
         }
         else
         {
