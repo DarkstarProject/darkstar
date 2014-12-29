@@ -840,6 +840,7 @@ int32 startSynth(CCharEntity* PChar)
 	}
 
 	PChar->animation = ANIMATION_SYNTH;
+    PChar->updatemask |= UPDATE_HP;
 	PChar->pushPacket(new CCharUpdatePacket(PChar));
 
     if(PChar->loc.zone->GetID() != 255 && PChar->loc.zone->GetID() != 0)
@@ -949,6 +950,7 @@ int32 sendSynthDone(CCharEntity* PChar)
 	doSynthResult(PChar);
 
 	PChar->animation = ANIMATION_NONE;
+    PChar->updatemask |= UPDATE_HP;
 	PChar->pushPacket(new CCharUpdatePacket(PChar));
 	return 0;
 }

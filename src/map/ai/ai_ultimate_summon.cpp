@@ -410,6 +410,7 @@ void CAIUltimateSummon::ActionEngage()
 	else
 	{
 		m_PPet->animation = ANIMATION_NONE;
+        m_PPet->updatemask |= UPDATE_HP;
 		if(m_PPet->PMaster->objtype == TYPE_PC)
 		{
 			((CCharEntity*)m_PPet->PMaster)->pushPacket(new CMessageBasicPacket(((CCharEntity*)m_PPet->PMaster),

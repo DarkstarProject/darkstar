@@ -658,12 +658,14 @@ void CAIPetDummy::ActionEngage()
 	if(hasClaim)
 	{
 		m_PPet->animation = ANIMATION_ATTACK;
+        m_PPet->updatemask |= UPDATE_HP;
 		m_LastActionTime = m_Tick - 1000;
 		TransitionBack(true);
 	}
 	else
 	{
 		m_PPet->animation = ANIMATION_NONE;
+        m_PPet->updatemask |= UPDATE_HP;
 		if(m_PPet->PMaster->objtype == TYPE_PC)
 		{
 			((CCharEntity*)m_PPet->PMaster)->pushPacket(new CMessageBasicPacket(((CCharEntity*)m_PPet->PMaster),
@@ -736,6 +738,7 @@ void CAIPetDummy::ActionAttack()
 
 	// some reason this doesn't get set on engage?
 	m_PPet->animation = ANIMATION_ATTACK;
+    m_PPet->updatemask |= UPDATE_HP;
 
 	if(currentDistance <= m_PBattleTarget->m_ModelSize)
 	{
@@ -879,6 +882,7 @@ void CAIPetDummy::ActionDisengage()
 
 	m_queueSic = false;
 	m_PPet->animation = ANIMATION_NONE;
+    m_PPet->updatemask |= UPDATE_HP;
 	m_LastActionTime = m_Tick;
 	m_PBattleTarget  = NULL;
 	TransitionBack();

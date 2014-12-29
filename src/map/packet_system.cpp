@@ -369,6 +369,7 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* dat
     if (PChar->animation == ANIMATION_ATTACK)
     {
         PChar->animation = ANIMATION_NONE;
+        PChar->updatemask |= UPDATE_HP;
     }
 
     PChar->PRecastContainer->Del(RECAST_MAGIC);
@@ -721,6 +722,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
         PChar->status = STATUS_DISAPPEAR;
         PChar->animation = ANIMATION_NONE;
+        PChar->updatemask |= UPDATE_HP;
 
         PChar->clearPacketList();
         PChar->pushPacket(new CServerIPPacket(PChar, 2));
@@ -778,6 +780,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, int8* dat
     {
         PChar->status = STATUS_UPDATE;
         PChar->animation = ANIMATION_NONE;
+        PChar->updatemask |= UPDATE_HP;
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
         PChar->pushPacket(new CCharUpdatePacket(PChar));
         PChar->pushPacket(new CChangeMusicPacket(0, PChar->loc.zone->GetBackgroundMusic()));
@@ -4305,6 +4308,7 @@ void SmallPacket0x0EA(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
     PChar->status = STATUS_UPDATE;
     PChar->animation = (PChar->animation == ANIMATION_SIT ? ANIMATION_NONE : ANIMATION_SIT);
+    PChar->updatemask |= UPDATE_HP;
     PChar->pushPacket(new CCharUpdatePacket(PChar));
     return;
 }

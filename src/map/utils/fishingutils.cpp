@@ -127,6 +127,7 @@ void StartFishing(CCharEntity* PChar)
 
 	PChar->status = STATUS_UPDATE;
 	PChar->animation = ANIMATION_FISHING_START;
+    PChar->updatemask |= UPDATE_HP;
 
 	PChar->pushPacket(new CCharUpdatePacket(PChar));
 	PChar->pushPacket(new CCharSyncPacket(PChar));
@@ -347,6 +348,7 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina)
 				// сообщение: "Something caught the hook!"
 			
 				PChar->animation = ANIMATION_FISHING_FISH;
+                PChar->updatemask |= UPDATE_HP;
 				PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x08));
 				PChar->pushPacket(new CFishingPacket());
 			}
@@ -355,6 +357,7 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina)
 				// сообщение: "You didn't catch anything."
 
 				PChar->animation = ANIMATION_FISHING_STOP;
+                PChar->updatemask |= UPDATE_HP;
 				PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x04));
 			}
 		}
@@ -369,6 +372,7 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina)
 				DSP_DEBUG_BREAK_IF(PChar->UContainer->GetItem(0) == NULL);
 
 				PChar->animation = ANIMATION_FISHING_CAUGHT;
+                PChar->updatemask |= UPDATE_HP;
 
 				CItem* PFish = PChar->UContainer->GetItem(0);
 
@@ -388,6 +392,7 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina)
 				// сообщение: "Your line breaks!"
 	
 				PChar->animation = ANIMATION_FISHING_LINE_BREAK;
+                PChar->updatemask |= UPDATE_HP;
 				LureLoss(PChar, true);
 				PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x06));
 			}
@@ -396,6 +401,7 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina)
 				// сообщение: "You give up!"
 
 				PChar->animation = ANIMATION_FISHING_STOP;
+                PChar->updatemask |= UPDATE_HP;
 
 				if (PChar->UContainer->GetType() == UCONTAINER_FISHING &&
 					LureLoss(PChar, false))
@@ -410,6 +416,7 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina)
 				// сообщение: "You lost your catch!"
 
 				PChar->animation = ANIMATION_FISHING_STOP;
+                PChar->updatemask |= UPDATE_HP;
 				LureLoss(PChar, false);
 				PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x09));
 			}
@@ -429,6 +436,7 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina)
 			// skillup
 
 			PChar->animation = ANIMATION_NONE;
+            PChar->updatemask |= UPDATE_HP;
 		}
 		break;
 	}

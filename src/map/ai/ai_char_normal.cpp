@@ -318,6 +318,7 @@ void CAICharNormal::ActionEngage()
 					m_PChar->animation = ANIMATION_ATTACK;
 					m_PChar->pushPacket(new CLockOnPacket(m_PChar, m_PBattleTarget));
 					m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
+                    m_PChar->updatemask |= UPDATE_HP;
 					return;
 				}
                 else
@@ -401,6 +402,7 @@ void CAICharNormal::ActionDisengage()
 	if (m_PChar->status != STATUS_DISAPPEAR)
 		m_PChar->status = STATUS_UPDATE;
 	m_PChar->animation = ANIMATION_NONE;
+    m_PChar->updatemask |= UPDATE_HP;
 	m_PChar->pushPacket(new CCharUpdatePacket(m_PChar));
 
     if (m_PChar->PPet != NULL && m_PChar->PPet->objtype == TYPE_PET && ((CPetEntity*)m_PChar->PPet)->getPetType() == PETTYPE_WYVERN)
@@ -2967,6 +2969,7 @@ void CAICharNormal::ActionRaiseMenuSelection()
         ratioReturned = ((m_PChar->GetMLevel() <= 50) ? 0.50f : 0.90f) * (1 - map_config.exp_retain);
     }
 	m_PChar->addHP(((hpReturned < 1) ? 1 : hpReturned));
+    m_PChar->updatemask |= UPDATE_HP;
     Action.reaction   = REACTION_NONE;
     Action.speceffect = SPECEFFECT_RAISE;
     Action.messageID  = 0;

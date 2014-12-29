@@ -515,6 +515,12 @@ void CZoneEntities::SpawnPCs(CCharEntity* PChar)
                     {
                         PChar->SpawnPCList.erase(PC);
                     }
+                    // TODO: figure out a way to push these packets in response to 0x015s while preserving the mask
+                    //  every operation on the mask should persist for 400ms (0x015 frequency)
+                    /*else if (PChar->updatemask != 0)
+                    {
+                        PCurrentChar->pushPacket(new CCharPacket(PChar, ENTITY_UPDATE, PChar->updatemask));
+                    }*/
                 }
 			}
 			else

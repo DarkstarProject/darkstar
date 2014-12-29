@@ -279,6 +279,7 @@ inline int32 CLuaBaseEntity::setHP(lua_State *L)
     ((CBattleEntity*)m_PBaseEntity)->health.hp = 0;
     int32 value = lua_tointeger(L,1);
     int32 result = ((CBattleEntity*)m_PBaseEntity)->addHP(value);
+    m_PBaseEntity->updatemask |= UPDATE_HP;
 
     if(m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status !=  STATUS_DISAPPEAR)
     {
@@ -3943,9 +3944,8 @@ inline int32 CLuaBaseEntity::setAnimation(lua_State *L)
         if (m_PBaseEntity->objtype == TYPE_PC)
         {
             ((CCharEntity*)m_PBaseEntity)->pushPacket(new CCharUpdatePacket((CCharEntity*)m_PBaseEntity));
-        } else {
-            m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity,ENTITY_UPDATE, UPDATE_COMBAT));
         }
+        m_PBaseEntity->updatemask |= UPDATE_HP;
     }
     return 0;
 }
