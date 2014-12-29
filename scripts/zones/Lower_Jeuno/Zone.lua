@@ -28,7 +28,7 @@ function onZoneIn(player,prevZone)
     local cs = -1;
     local month = tonumber(os.date("%m"));
     local day = tonumber(os.date("%d"));
-    -- Retail start/end dates very, I am going with Dec 5th through Jan 5th.
+    -- Retail start/end dates vary, I am going with Dec 5th through Jan 5th.
     if ((month == 12 and day >= 5) or (month == 1 and day <= 5)) then
         player:ChangeMusic(0,239);
         player:ChangeMusic(1,239);
