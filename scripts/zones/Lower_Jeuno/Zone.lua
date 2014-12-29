@@ -16,7 +16,7 @@ require("scripts/globals/missions");
 
 function onInitialize(zone)
 
-    zone:registerRegion(1, 23, 0, -43, 44, 7, -39); 	-- Inside Tenshodo HQ
+    zone:registerRegion(1, 23, 0, -43, 44, 7, -39); -- Inside Tenshodo HQ
 
 end;
 
@@ -26,11 +26,19 @@ end;
 
 function onZoneIn(player,prevZone)
     local cs = -1;
+    local month = tonumber(os.date("%m"));
+    local day = tonumber(os.date("%d"));
+    -- Retail start/end dates vary, I am going with Dec 5th through Jan 5th.
+    if ((month == 12 and day >= 5) or (month == 1 and day <= 5)) then
+        player:ChangeMusic(0,239);
+        player:ChangeMusic(1,239);
+        -- No need for an 'else' to change it back outside these dates as a re-zone will handle that.
+    end
+
     -- MOG HOUSE EXIT
     if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
         player:setPos(41.2,-5, 84,85);
-
-        if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then	
+        if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
             cs = 0x7534;
         end
         player:setVar("PlayerMainJob",0);
@@ -43,13 +51,13 @@ function onZoneIn(player,prevZone)
 
     return cs;
 end;
------------------------------------		
--- onConquestUpdate		
------------------------------------		
+-----------------------------------
+-- onConquestUpdate
+-----------------------------------
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
-    
+
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
@@ -74,21 +82,18 @@ end;
 -----------------------------------
 
 function onGameHour()
+    local VanadielHour = VanadielHour();
 
-	local VanadielHour = VanadielHour();
-	
-	-- Community Service Quest
-	if(VanadielHour == 1) then
-		if(GetServerVariable("[JEUNO]CommService") == 0) then
-			GetNPCByID(17780880):setStatus(0); -- Vhana Ehgaklywha
-			GetNPCByID(17780880):initNpcAi();
-		end;
-		
-	elseif(VanadielHour == 5) then
-		SetServerVariable("[JEUNO]CommService",0);
-		
-	end
+    -- Community Service Quest
+    if(VanadielHour == 1) then
+        if(GetServerVariable("[JEUNO]CommService") == 0) then
+            GetNPCByID(17780880):setStatus(0); -- Vhana Ehgaklywha
+            GetNPCByID(17780880):initNpcAi();
+        end;
 
+    elseif(VanadielHour == 5) then
+        SetServerVariable("[JEUNO]CommService",0);
+    end
 end;
 
 -----------------------------------
