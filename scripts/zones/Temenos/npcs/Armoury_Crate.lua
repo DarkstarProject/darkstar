@@ -52,7 +52,7 @@ function onTrigger(player,npc)
  printf("addtime: %u",addtime);
  printf("MimicID: %u",MimicID);
  printf("lootID: %u",lootID);
- local coffer = CofferID-16928768;
+ local coffer = CofferID-16928769;
  
     if(CofferType == cTIME)then 
 	        player:addTimeToSpecialBattlefield(InstanceRegion,addtime);
