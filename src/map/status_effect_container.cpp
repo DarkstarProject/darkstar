@@ -376,6 +376,7 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
 			}
             PChar->pushPacket(new CCharSyncPacket(PChar));
         }
+        m_POwner->updatemask |= UPDATE_HP;
 
         return true;
 	}

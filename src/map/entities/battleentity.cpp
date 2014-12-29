@@ -123,6 +123,8 @@ void CBattleEntity::UpdateHealth()
 
     health.hp = dsp_cap(health.hp, 0, health.modhp);
     health.mp = dsp_cap(health.mp, 0, health.modmp);
+
+    updatemask |= UPDATE_HP;
 }
 
 /************************************************************************

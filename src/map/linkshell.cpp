@@ -224,6 +224,7 @@ void CLinkshell::RemoveMemberByName(int8* MemberName)
 
                 PMember->equip[SLOT_LINK] = 0;
                 PMember->nameflags.flags &= ~FLAG_LINKSHELL;
+                PMember->updatemask |= UPDATE_HP;
 
                 PMember->pushPacket(new CInventoryAssignPacket(PItemLinkshell, INV_NORMAL));
                 PMember->pushPacket(new CLinkshellEquipPacket(PMember));

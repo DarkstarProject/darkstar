@@ -3982,6 +3982,7 @@ void SaveCharJob(CCharEntity* PChar, JOBTYPE job)
     if (PChar->m_isNewPlayer && PChar->jobs.job[job] >= 10)
     {
         PChar->m_isNewPlayer = false;
+        PChar->updatemask |= UPDATE_HP;
         Sql_Query(SqlHandle, "UPDATE chars SET isnewplayer = 0 WHERE charid = %u LIMIT 1", PChar->id);
     }
 }

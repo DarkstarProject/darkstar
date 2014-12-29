@@ -4067,6 +4067,7 @@ inline int32 CLuaBaseEntity::costume2(lua_State *L)
 		{
 			PChar->m_Monstrosity = model;
 			PChar->status = STATUS_UPDATE;
+            PChar->updatemask |= UPDATE_LOOK;
 			PChar->pushPacket(new CCharAppearancePacket(PChar));
 		}
 		return 0;
@@ -5334,6 +5335,7 @@ inline int32 CLuaBaseEntity::setFlag(lua_State *L)
 
     ((CCharEntity*)m_PBaseEntity)->nameflags.flags ^= (uint32)lua_tointeger(L,1);
     ((CCharEntity*)m_PBaseEntity)->pushPacket(new CCharUpdatePacket((CCharEntity*)m_PBaseEntity));
+    m_PBaseEntity->updatemask |= UPDATE_HP;
     return 0;
 }
 
@@ -9052,6 +9054,7 @@ inline int32 CLuaBaseEntity::setNewPlayer(lua_State* L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
     PChar->m_isNewPlayer = lua_toboolean(L, 1);
+    PChar->updatemask |= UPDATE_HP;
     charutils::SaveCharJob(PChar, PChar->GetMJob());
     return 0;
 }

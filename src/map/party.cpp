@@ -437,6 +437,7 @@ void CParty::AddMember(CBattleEntity* PEntity, Sql_t* sql)
 	    if (PChar->nameflags.flags & FLAG_INVITE)
 	    {
             PChar->nameflags.flags ^= FLAG_INVITE;
+            PChar->updatemask |= UPDATE_HP;
 
             charutils::SaveCharStats(PChar);
 
@@ -483,6 +484,7 @@ void CParty::AddMember(uint32 id, Sql_t* Sql)
 		/*if (PChar->nameflags.flags & FLAG_INVITE)
 		{
 			PChar->nameflags.flags ^= FLAG_INVITE;
+            PChar->updatemask |= UPDATE_HP;
 
 			charutils::SaveCharStats(PChar);
 
