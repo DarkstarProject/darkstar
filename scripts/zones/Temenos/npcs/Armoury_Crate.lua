@@ -36,7 +36,7 @@ function onTrigger(player,npc)
 	local Z = npc:getZPos();
 	
   for coffer = 1,table.getn (ARMOURY_CRATES_LIST_TEMENOS),2 do
-      if(ARMOURY_CRATES_LIST_TEMENOS[coffer]== CofferID-16928768)then	 	  
+      if(ARMOURY_CRATES_LIST_TEMENOS[coffer]== CofferID-16928769)then	 	  
 	     CofferType=ARMOURY_CRATES_LIST_TEMENOS[coffer+1][1];
 		 InstanceRegion=ARMOURY_CRATES_LIST_TEMENOS[coffer+1][2];
 		 addtime=ARMOURY_CRATES_LIST_TEMENOS[coffer+1][3];
@@ -46,13 +46,13 @@ function onTrigger(player,npc)
 	  end	  
   end
   
- printf("CofferID : %u",CofferID-16928768);
+ printf("CofferID : %u",CofferID-16928769);
  printf("Coffertype %u",CofferType);
  printf("InstanceRegion: %u",InstanceRegion);
  printf("addtime: %u",addtime);
  printf("MimicID: %u",MimicID);
  printf("lootID: %u",lootID);
- local coffer = CofferID-16928768;
+ local coffer = CofferID-16928769;
  
     if(CofferType == cTIME)then 
 	        player:addTimeToSpecialBattlefield(InstanceRegion,addtime);
@@ -72,7 +72,7 @@ function onTrigger(player,npc)
 			-- despawn les coffer du meme groupe
 		    for coffer = 1,table.getn (ARMOURY_CRATES_LIST_TEMENOS),2 do
                if(ARMOURY_CRATES_LIST_TEMENOS[coffer+1][5] == MimicID)then	 	  
-		            GetNPCByID(16928768+ARMOURY_CRATES_LIST_TEMENOS[coffer]):setStatus(STATUS_DISAPPEAR);
+		            GetNPCByID(16928769+ARMOURY_CRATES_LIST_TEMENOS[coffer]):setStatus(STATUS_DISAPPEAR);
 	           end	  
             end				
 	   else
