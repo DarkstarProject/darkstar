@@ -1531,35 +1531,6 @@ int32 OnNpcSpawn(CBaseEntity* PNpc)
 	return 0;
 }
 
-int32 OnNpcPath(CBaseEntity* PNpc)
-{
-    DSP_DEBUG_BREAK_IF(PNpc == NULL);
-
-    lua_prepscript("scripts/zones/%s/npcs/%s.lua", PNpc->loc.zone->GetName(), PNpc->GetName());
-
-    if (prepFile(File, "onPath"))
-    {
-        return -1;
-    }
-
-    CLuaBaseEntity LuaBaseEntity(PNpc);
-    Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaBaseEntity);
-
-    if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
-    {
-        ShowError("luautils::onNpcPath: %s\n",lua_tostring(LuaHandle,-1));
-        lua_pop(LuaHandle, 1);
-        return -1;
-    }
-    int32 returns = lua_gettop(LuaHandle) - oldtop;
-    if (returns > 0)
-    {
-        ShowError("luautils::onNpcPath (%s): 0 returns expected, got %d\n", File, returns);
-        lua_pop(LuaHandle, returns);
-    }
-	return 0;
-}
-
 int32 OnAdditionalEffect(CBattleEntity* PAttacker, CBattleEntity* PDefender, CItemWeapon* PItem, apAction_t* Action, uint32 damage)
 {
     lua_prepscript(PAttacker->objtype == TYPE_PC ? "scripts/globals/items/%s.lua" : "scripts/zones/%s/mobs/%s.lua", 
@@ -2057,30 +2028,32 @@ int32 OnMobInitialize(CBaseEntity* PMob)
 	return 0;
 }
 
-int32 OnMobPath(CBaseEntity* PMob)
+int32 OnPath(CBaseEntity* PEntity)
 {
-    DSP_DEBUG_BREAK_IF(PMob == NULL);
+    DSP_DEBUG_BREAK_IF(PEntity == NULL);
+    DSP_DEBUG_BREAK_IF(PEntity->objtype == TYPE_PC)
 
-    lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
+    lua_prepscript("scripts/zones/%s/%s/%s.lua", PEntity->loc.zone->GetName(), (PEntity->objtype == TYPE_MOB ? "mobs" : "npcs"), PEntity->GetName());
 
-    if (prepFile(File, "onMobPath"))
+
+    if (prepFile(File, "onPath"))
     {
         return -1;
     }
 
-    CLuaBaseEntity LuaMobEntity(PMob);
+    CLuaBaseEntity LuaMobEntity(PEntity);
     Lunar<CLuaBaseEntity>::push(LuaHandle,&LuaMobEntity);
 
     if( lua_pcall(LuaHandle,1,LUA_MULTRET,0) )
     {
-        ShowError("luautils::onMobPath: %s\n",lua_tostring(LuaHandle,-1));
+        ShowError("luautils::onPath: %s\n",lua_tostring(LuaHandle,-1));
         lua_pop(LuaHandle, 1);
         return -1;
     }
     int32 returns = lua_gettop(LuaHandle) - oldtop;
     if (returns > 0)
     {
-        ShowError("luautils::onMobPath (%s): 0 returns expected, got %d\n", File, returns);
+        ShowError("luautils::onPath (%s): 0 returns expected, got %d\n", File, returns);
         lua_pop(LuaHandle, returns);
     }
 	return 0;

@@ -16,10 +16,10 @@ require("scripts/globals/status");
 
 function onMobSpawn(mob)
 	mob:AnimationSub(0);
-    onMobPath(mob);
+    onPath(mob);
 end;
 
-function onMobPath(mob)
+function onPath(mob)
     local spawnPos = mob:getSpawnPos();
 	mob:pathThrough({spawnPos.x, spawnPos.y, spawnPos.z});
     local pos = mob:getPos();
