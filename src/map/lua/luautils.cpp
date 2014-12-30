@@ -1639,7 +1639,7 @@ int32 OnSpikesDamage(CBattleEntity* PDefender, CBattleEntity* PAttacker, apActio
 
 int32 OnEffectGain(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
 {
-    lua_prepscript("scripts/globals/effects/%s.lua", PStatusEffect->GetName());
+    lua_prepscript("scripts/%s.lua", PStatusEffect->GetName());
 
     if (prepFile(File, "onEffectGain"))
     {
@@ -1675,7 +1675,7 @@ int32 OnEffectGain(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
 
 int32 OnEffectTick(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
 {
-    lua_prepscript("scripts/globals/effects/%s.lua", PStatusEffect->GetName());
+    lua_prepscript("scripts/%s.lua", PStatusEffect->GetName());
 
     if (prepFile(File, "onEffectTick"))
     {
@@ -1712,7 +1712,7 @@ int32 OnEffectTick(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
 
 int32 OnEffectLose(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
 {
-    lua_prepscript("scripts/globals/effects/%s.lua", PStatusEffect->GetName());
+    lua_prepscript("scripts/%s.lua", PStatusEffect->GetName());
 
     if (prepFile(File, "onEffectLose"))
     {
