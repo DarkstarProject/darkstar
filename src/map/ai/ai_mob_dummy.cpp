@@ -2187,7 +2187,7 @@ void CAIMobDummy::FollowPath()
 
 
 		if(m_PPathFind->OnPoint()){
-			luautils::OnMobPath(m_PMob);
+			luautils::OnPath(m_PMob);
 		}
 	}
 }

@@ -124,7 +124,6 @@ namespace luautils
 	int32 OnTrade(CCharEntity* PChar, CBaseEntity* PNpc);						// triggers when a trade completes with an npc
 
 	int32 OnNpcSpawn(CBaseEntity* PNpc);										// triggers when a patrol npc spawns
-	int32 OnNpcPath(CBaseEntity* PNpc);											// triggers when a patrol npc reaches a point
 
 	int32 OnEffectGain(CBattleEntity* PEntity, CStatusEffect* StatusEffect);	// triggers when an effect is applied to pc/npc
 	int32 OnEffectTick(CBattleEntity* PEntity, CStatusEffect* StatusEffect);	// triggers when effect tick timer has been reached
@@ -139,7 +138,6 @@ namespace luautils
 	int32 OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget);// triggered when monster wants to use a spell on target
 
     int32 OnMobInitialize(CBaseEntity* PMob);									// Used for passive trait
-	int32 OnMobPath(CBaseEntity* PMob);											// triggers when a patrol npc finishes its pathfind
 	int32 OnMobSpawn(CBaseEntity* PMob);										// triggers on mob spawn
 	int32 OnMobRoamAction(CBaseEntity* PMob);										// triggers when event mob is ready for a custom roam action
 	int32 OnMobRoam(CBaseEntity* PMob);
@@ -150,6 +148,8 @@ namespace luautils
 	int32 OnCriticalHit(CBattleEntity* PTarget);
 	int32 OnMobDeath(CBaseEntity* PMob, CBaseEntity* PKiller);					// triggers on mob death
 	int32 OnMobDespawn(CBaseEntity* PMob);										// triggers on mob despawn (death not assured)
+
+    int32 OnPath(CBaseEntity* PEntity);											// triggers when a patrol npc finishes its pathfind
 
 	int32 OnBcnmEnter(CCharEntity* PChar, CBattlefield* PInstance);					//triggers when enter a bcnm
 	int32 OnBcnmLeave(CCharEntity* PChar, CBattlefield* PInstance, uint8 LeaveCode);	//triggers when leaving a bcnm
