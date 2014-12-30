@@ -58,7 +58,7 @@ end;
 -----------------------------------			
 
 function onRegionEnter(player,region)
-	local circle= 17563860;
+	local circle= 17563861;
 	local red   = GetNPCByID(circle);		
 	local white = GetNPCByID(circle+1);		
 	local black = GetNPCByID(circle+2);	
