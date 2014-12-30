@@ -33,31 +33,31 @@ function onSpellCast(caster,target,spell)
     local duration = 180 * resist; -- BG wiki suggests only duration gets effected by resist.
 
     if (target:hasStatusEffect(EFFECT_STR_DOWN) == false) then
-    -- caster:PrintToPlayer( string.format( "STR: '%s' ", STR_Loss ) );
+        -- caster:PrintToPlayer( string.format( "STR: '%s' ", STR_Loss ) );
         target:addStatusEffect(EFFECT_STR_DOWN,STR_Loss,0,duration);
     end
     if (target:hasStatusEffect(EFFECT_DEX_DOWN) == false) then
-    -- caster:PrintToPlayer( string.format( "DEX: '%s' ", DEX_Loss ) );
+        -- caster:PrintToPlayer( string.format( "DEX: '%s' ", DEX_Loss ) );
         target:addStatusEffect(EFFECT_DEX_DOWN,DEX_Loss,0,duration);
     end
     if (target:hasStatusEffect(EFFECT_VIT_DOWN) == false) then
-    -- caster:PrintToPlayer( string.format( "VIT: '%s' ", VIT_Loss ) );
+        -- caster:PrintToPlayer( string.format( "VIT: '%s' ", VIT_Loss ) );
         target:addStatusEffect(EFFECT_VIT_DOWN,VIT_Loss,0,duration);
     end
     if (target:hasStatusEffect(EFFECT_AGI_DOWN) == false) then
-    -- caster:PrintToPlayer( string.format( "AGI: '%s' ", AGI_Loss ) );
+        -- caster:PrintToPlayer( string.format( "AGI: '%s' ", AGI_Loss ) );
         target:addStatusEffect(EFFECT_AGI_DOWN,AGI_Loss,0,duration);
     end
     if (target:hasStatusEffect(EFFECT_INT_DOWN) == false) then
-    -- caster:PrintToPlayer( string.format( "INT: '%s' ", INT_Loss ) );
+        -- caster:PrintToPlayer( string.format( "INT: '%s' ", INT_Loss ) );
         target:addStatusEffect(EFFECT_INT_DOWN,INT_Loss,0,duration);
     end
     if (target:hasStatusEffect(EFFECT_MND_DOWN) == false) then
-    -- caster:PrintToPlayer( string.format( "MND: '%s' ", MND_Loss ) );
+        -- caster:PrintToPlayer( string.format( "MND: '%s' ", MND_Loss ) );
         target:addStatusEffect(EFFECT_MND_DOWN,MND_Loss,0,duration);
     end
     if (target:hasStatusEffect(EFFECT_CHR_DOWN) == false) then
-    -- caster:PrintToPlayer( string.format( "CHR: '%s' ", CHR_Loss ) );
+        -- caster:PrintToPlayer( string.format( "CHR: '%s' ", CHR_Loss ) );
         target:addStatusEffect(EFFECT_CHR_DOWN,CHR_Loss,0,duration);
     end
 
