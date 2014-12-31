@@ -898,9 +898,6 @@ void CZone::CharZoneOut(CCharEntity* PChar)
         PChar->PLinkshell->DelMember(PChar);
     }
 
-	//remove status effects that wear on zone
-	PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE, true);
-
 	if (PChar->PTreasurePool != NULL) // TODO: условие для устранения проблем с MobHouse, надо блин решить ее раз и навсегда
 	{
 		PChar->PTreasurePool->DelMember(PChar);

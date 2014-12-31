@@ -491,8 +491,6 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
 			PChar->PBattleAI = new CAICharNormal(PChar);
 
 			charutils::LoadChar(PChar);
-			charutils::LoadInventory(PChar);
-            luautils::OnGameIn(PChar);
 
             PChar->status = STATUS_DISAPPEAR;
 

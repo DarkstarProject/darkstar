@@ -133,7 +133,8 @@ struct PetInfo_t
 	bool		respawnPet;		// used for spawning pet on zone
 	uint8		petID;			// id as in wyvern(48) , carbuncle(8) ect..
 	PETTYPE		petType;		// type of pet being transfered
-	int32		petHP;			// pets hp
+	int16		petHP;			// pets hp
+    int16       petMP;
 	float		petTP;			// pets tp
 };
 

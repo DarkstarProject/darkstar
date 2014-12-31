@@ -410,11 +410,14 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, int8* dat
             }
         }
         session->shuttingDown = 1;
+        Sql_Query(SqlHandle, "UPDATE char_stats SET zoning = 0 WHERE charid = %u", PChar->id);
     }
     else
     {
         session->shuttingDown = 2;
+        Sql_Query(SqlHandle, "UPDATE char_stats SET zoning = 1 WHERE charid = %u", PChar->id);
         charutils::CheckEquipLogic(PChar, SCRIPT_CHANGEZONE, PChar->getZone());
+        PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE);
     }
 
     if (PChar->loc.zone != NULL)

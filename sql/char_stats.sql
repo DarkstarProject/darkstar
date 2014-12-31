@@ -38,5 +38,6 @@ CREATE TABLE IF NOT EXISTS `char_stats` (
   `2h` int(10) unsigned NOT NULL DEFAULT '0',
   `title` smallint(4) unsigned NOT NULL DEFAULT '0',
   `bazaar_message` BLOB,
+  `zoning` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`charid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

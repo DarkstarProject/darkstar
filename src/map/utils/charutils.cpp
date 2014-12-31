@@ -591,11 +591,12 @@ void LoadChar(CCharEntity* PChar)
 
 
 
-	fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, mhflag, title, bazaar_message, 2h \
+	fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, mhflag, title, bazaar_message, 2h, zoning \
 				FROM char_stats \
 				WHERE charid = %u;";
 
 	ret = Sql_Query(SqlHandle,fmtQuery,PChar->id);
+    bool zoning = false;
 
 	if (ret != SQL_ERROR &&
 		Sql_NumRows(SqlHandle) != 0 &&
@@ -635,6 +636,8 @@ void LoadChar(CCharEntity* PChar)
 				PChar->PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), RecastTime - gettick());
 			}
 		}
+
+        zoning = Sql_GetUIntData(SqlHandle, 9);
 	}
 
 	fmtQuery = "SELECT skillid, value, rank \
@@ -711,6 +714,13 @@ void LoadChar(CCharEntity* PChar)
     {
         PChar->m_GMlevel = (uint8)Sql_GetUIntData(SqlHandle,0);
         PChar->m_mentor = (uint8)Sql_GetUIntData(SqlHandle,1);
+    }
+
+    charutils::LoadInventory(PChar);
+
+    if (!zoning)
+    {
+        luautils::OnGameIn(PChar);
     }
 }
 
