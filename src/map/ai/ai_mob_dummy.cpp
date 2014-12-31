@@ -1493,7 +1493,7 @@ void CAIMobDummy::ActionAttack()
 
     if (m_PMob->getMobMod(MOBMOD_SHARE_POS) > 0)
     {
-        CMobEntity* posShare = (CMobEntity*)m_PMob->GetEntity(m_PMob->getMobMod(MOBMOD_SHARE_POS), TYPE_MOB);
+        CMobEntity* posShare = (CMobEntity*)m_PMob->GetEntity(m_PMob->getMobMod(MOBMOD_SHARE_POS) + m_PMob->targid, TYPE_MOB);
         m_PMob->loc = posShare->loc;
     }
 
