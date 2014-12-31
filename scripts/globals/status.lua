@@ -1177,8 +1177,6 @@ MOD_FERAL_HOWL_DURATION       =0x1F7 -- +20% duration per merit when wearing aug
 MOD_MANEUVER_BONUS            =0x1F8 -- Maneuver Stat Bonus
 MOD_OVERLOAD_THRESH           =0x1F9 -- Overload Threshold Bonus
 
--- MOD_SPARE =0x1F8 -- (modId = 504)
--- MOD_SPARE =0x1F9 -- (modId = 505)
 -- MOD_SPARE =0x1FA -- (modId = 506)
 -- MOD_SPARE =0x1FB -- (modId = 507)
 -- MOD_SPARE =0x1FC -- (modId = 508)
