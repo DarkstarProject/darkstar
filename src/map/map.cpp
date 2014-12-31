@@ -259,6 +259,7 @@ void do_final(void)
 	petutils::FreePetList();
 	zoneutils::FreeZoneList();
 	luautils::free();
+    message::close();
 
 	delete CTaskMgr::getInstance();
 	delete CVanaTime::getInstance();

@@ -45,9 +45,9 @@ namespace message
 
     void send_queue()
     {
-        std::lock_guard<std::mutex> lk(send_mutex);
         while (!message_queue.empty())
         {
+            std::lock_guard<std::mutex> lk(send_mutex);
             chat_message_t msg = message_queue.front();
             message_queue.pop();
             try
@@ -367,6 +367,10 @@ namespace message
 
             try
             {
+                if (!zSocket)
+                {
+                    return;
+                }
                 if (!zSocket->recv(&type))
                 {
                     if (!message_queue.empty())
@@ -450,6 +454,13 @@ namespace message
 
 		listen();
 	}
+
+    void close()
+    {
+        zSocket->close();
+        zSocket = NULL;
+        zContext.close();
+    }
 
 	void send(MSGSERVTYPE type, void* data, size_t datalen, CBasicPacket* packet)
 	{
