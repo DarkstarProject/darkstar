@@ -689,6 +689,8 @@ void LoadChar(CCharEntity* PChar)
 	PChar->PMeritPoints->SetMeritPoints(meritPoints);
 	PChar->PMeritPoints->SetLimitPoints(limitPoints);
 
+    PChar->m_event.EventID = luautils::OnZoneIn(PChar);
+
     blueutils::LoadSetSpells(PChar);
 	BuildingCharSkillsTable(PChar);
     PChar->PRecastContainer->ResetAbilities();
@@ -717,7 +719,6 @@ void LoadChar(CCharEntity* PChar)
     }
 
     charutils::LoadInventory(PChar);
-
     if (!zoning)
     {
         luautils::OnGameIn(PChar);

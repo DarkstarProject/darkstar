@@ -290,14 +290,13 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
     {
         PChar->loc.prevzone = PChar->getZone();
     }
-    int16 EventID = luautils::OnZoneIn(PChar);
 
     charutils::SaveCharPosition(PChar);
     charutils::SaveZonesVisited(PChar);
     charutils::SavePlayTime(PChar);
 
     PChar->pushPacket(new CDownloadingDataPacket());
-    PChar->pushPacket(new CZoneInPacket(PChar, EventID));
+    PChar->pushPacket(new CZoneInPacket(PChar, PChar->m_event.EventID));
     PChar->pushPacket(new CZoneVisitedPacket(PChar));
     CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("afterZoneIn", gettick() + 500, (void*)PChar->id, CTaskMgr::TASK_ONCE, luautils::AfterZoneIn));
     charutils::RecoverFailedSendBox(PChar);

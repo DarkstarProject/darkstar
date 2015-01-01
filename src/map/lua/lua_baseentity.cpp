@@ -645,7 +645,7 @@ inline int32 CLuaBaseEntity::setPos(lua_State *L)
             ((CCharEntity*)m_PBaseEntity)->pushPacket(new CServerIPPacket((CCharEntity*)m_PBaseEntity,2));
             //((CCharEntity*)m_PBaseEntity)->loc.zone->DecreaseZoneCounter(((CCharEntity*)m_PBaseEntity));
         }
-        else
+        else if (((CCharEntity*)m_PBaseEntity)->status != STATUS_DISAPPEAR)
         {
             ((CCharEntity*)m_PBaseEntity)->pushPacket(new CPositionPacket((CCharEntity*)m_PBaseEntity));
         }
@@ -2349,12 +2349,15 @@ inline int32 CLuaBaseEntity::levelRestriction(lua_State* L)
             PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
             charutils::ApplyAllEquipMods(PChar);
 
-            blueutils::ValidateBlueSpells(PChar);
-            charutils::BuildingCharSkillsTable(PChar);
-            charutils::CalculateStats(PChar);
-            charutils::BuildingCharTraitsTable(PChar);
-            charutils::BuildingCharAbilityTable(PChar);
-            charutils::CheckValidEquipment(PChar); // Handles rebuilding weapon skills as well.
+            if (PChar->status != STATUS_DISAPPEAR)
+            {
+                blueutils::ValidateBlueSpells(PChar);
+                charutils::BuildingCharSkillsTable(PChar);
+                charutils::CalculateStats(PChar);
+                charutils::BuildingCharTraitsTable(PChar);
+                charutils::BuildingCharAbilityTable(PChar);
+                charutils::CheckValidEquipment(PChar); // Handles rebuilding weapon skills as well.
+            }
 
             if (PChar->PPet)
             {

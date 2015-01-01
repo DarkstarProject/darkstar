@@ -1110,7 +1110,7 @@ int32 OnGameIn(CCharEntity* PChar)
 
 int32 OnZoneIn(CCharEntity* PChar)
 {
-    lua_prepscript("scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
+    lua_prepscript("scripts/zones/%s/Zone.lua", zoneutils::GetZone(PChar->loc.destination)->GetName());
 
     if (prepFile(File, "onZoneIn"))
     {
