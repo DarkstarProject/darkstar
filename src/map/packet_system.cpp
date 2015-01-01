@@ -211,9 +211,9 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, int8* dat
         {
             //remove the char from previous zone, and unset shuttingDown (already in next zone)
             PacketParser[0x00D](session, PChar, NULL);
-            session->shuttingDown = 0;
         }
 
+        session->shuttingDown = 0;
         session->blowfish.key[4] += 2;
         session->blowfish.status = BLOWFISH_SENT;
 
