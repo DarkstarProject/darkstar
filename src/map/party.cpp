@@ -42,6 +42,7 @@
 
 #include "packets/char_sync.h"
 #include "packets/char_update.h"
+#include "packets/char_abilities.h"
 #include "packets/menu_config.h"
 #include "packets/message_standard.h"
 #include "packets/party_define.h"
@@ -1069,7 +1070,8 @@ void CParty::RefreshSync()
 			charutils::CalculateStats(member);
 			charutils::BuildingCharTraitsTable(member);
 			charutils::BuildingCharAbilityTable(member);
-			charutils::CheckValidEquipment(member); // Handles rebuilding weapon skills as well.
+			charutils::CheckValidEquipment(member);
+            member->pushPacket(new CCharAbilitiesPacket(member));
 		}
         member->pushPacket(new CMessageBasicPacket(member, member, 0, syncLevel, 540));
 	}

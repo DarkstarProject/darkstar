@@ -2356,7 +2356,8 @@ inline int32 CLuaBaseEntity::levelRestriction(lua_State* L)
                 charutils::CalculateStats(PChar);
                 charutils::BuildingCharTraitsTable(PChar);
                 charutils::BuildingCharAbilityTable(PChar);
-                charutils::CheckValidEquipment(PChar); // Handles rebuilding weapon skills as well.
+                charutils::CheckValidEquipment(PChar);
+                PChar->pushPacket(new CCharAbilitiesPacket(PChar));
             }
 
             if (PChar->PPet)
@@ -2408,7 +2409,6 @@ inline int32 CLuaBaseEntity::sjRestriction(lua_State* L)
     charutils::BuildingCharAbilityTable(PChar);
     charutils::BuildingCharTraitsTable(PChar);
     charutils::CheckValidEquipment(PChar);
-    charutils::BuildingCharWeaponSkills(PChar);
 
     PChar->UpdateHealth();
     PChar->health.hp = PChar->GetMaxHP();
@@ -5065,7 +5065,6 @@ inline int32 CLuaBaseEntity::changeJob(lua_State *L)
     PChar->PRecastContainer->ResetAbilities();
     charutils::BuildingCharAbilityTable(PChar);
     charutils::BuildingCharTraitsTable(PChar);
-    charutils::BuildingCharWeaponSkills(PChar);
 
     if(PChar->PParty != NULL) // check latents affected by party jobs
     {
@@ -5152,7 +5151,6 @@ inline int32 CLuaBaseEntity::setsLevel(lua_State *L)
     charutils::CheckValidEquipment(PChar);
     charutils::BuildingCharAbilityTable(PChar);
     charutils::BuildingCharTraitsTable(PChar);
-    charutils::BuildingCharWeaponSkills(PChar);
 
     PChar->UpdateHealth();
     PChar->health.hp = PChar->GetMaxHP();
@@ -5195,13 +5193,11 @@ inline int32 CLuaBaseEntity::setLevel(lua_State *L)
     PChar->jobs.exp[PChar->GetMJob()] = charutils::GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) - 1;
 
     blueutils::ValidateBlueSpells(PChar);
-
     charutils::CalculateStats(PChar);
     charutils::CheckValidEquipment(PChar);
     charutils::BuildingCharSkillsTable(PChar);
     charutils::BuildingCharAbilityTable(PChar);
     charutils::BuildingCharTraitsTable(PChar);
-    charutils::BuildingCharWeaponSkills(PChar);
 
     PChar->UpdateHealth();
     PChar->health.hp = PChar->GetMaxHP();

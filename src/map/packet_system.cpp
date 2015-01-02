@@ -563,7 +563,6 @@ void SmallPacket0x016(map_session_data_t* session, CCharEntity* PChar, int8* dat
         if (PEntity && PEntity->objtype == TYPE_PC)
         {
             PChar->pushPacket(new CCharPacket((CCharEntity*)PEntity, ENTITY_SPAWN, UPDATE_ALL_CHAR));
-            //PChar->pushPacket(new CCharUpdatePacket((CCharEntity*)PEntity));
         }
         else
         {
@@ -3691,7 +3690,6 @@ void SmallPacket0x0BE(map_session_data_t* session, CCharEntity* PChar, int8* dat
                 charutils::CheckValidEquipment(PChar);
                 charutils::BuildingCharAbilityTable(PChar);
                 charutils::BuildingCharTraitsTable(PChar);
-                charutils::BuildingCharWeaponSkills(PChar);
 
                 PChar->UpdateHealth();
                 PChar->addHP(PChar->GetMaxHP());
@@ -4809,10 +4807,10 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, int8* dat
             }
             charutils::BuildingCharTraitsTable(PChar);
             PChar->status = STATUS_UPDATE;
+            PChar->pushPacket(new CCharAbilitiesPacket(PChar));
             PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
             PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
             PChar->pushPacket(new CCharStatsPacket(PChar));
-            charutils::CalculateStats(PChar);
             PChar->UpdateHealth();
             PChar->pushPacket(new CCharHealthPacket(PChar));
         }
@@ -4833,10 +4831,10 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, int8* dat
                     blueutils::SetBlueSpell(PChar, spell, spellIndex, (spellToAdd > 0));
                     charutils::BuildingCharTraitsTable(PChar);
                     PChar->status = STATUS_UPDATE;
+                    PChar->pushPacket(new CCharAbilitiesPacket(PChar));
                     PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
                     PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
                     PChar->pushPacket(new CCharStatsPacket(PChar));
-                    charutils::CalculateStats(PChar);
                     PChar->UpdateHealth();
                     PChar->pushPacket(new CCharHealthPacket(PChar));
                 }

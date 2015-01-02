@@ -689,34 +689,35 @@ void LoadChar(CCharEntity* PChar)
 	PChar->PMeritPoints->SetMeritPoints(meritPoints);
 	PChar->PMeritPoints->SetLimitPoints(limitPoints);
 
-    PChar->m_event.EventID = luautils::OnZoneIn(PChar);
-
-    blueutils::LoadSetSpells(PChar);
-	BuildingCharSkillsTable(PChar);
-    PChar->PRecastContainer->ResetAbilities();
-	BuildingCharAbilityTable(PChar);
-	BuildingCharTraitsTable(PChar);
-	CalculateStats(PChar);
-    puppetutils::LoadAutomaton(PChar);
-
-	PChar->animation = (PChar->health.hp == 0 ? ANIMATION_DEATH : ANIMATION_NONE);
-
     fmtQuery =
         "SELECT "
-          "gmlevel,"    // 0
-          "mentor "     // 1
+        "gmlevel,"    // 0
+        "mentor "     // 1
         "FROM chars "
         "WHERE charid = %u;";
 
-    ret = Sql_Query(SqlHandle,fmtQuery,PChar->id);
+    ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
 
     if (ret != SQL_ERROR &&
         Sql_NumRows(SqlHandle) != 0 &&
         Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
-        PChar->m_GMlevel = (uint8)Sql_GetUIntData(SqlHandle,0);
-        PChar->m_mentor = (uint8)Sql_GetUIntData(SqlHandle,1);
+        PChar->m_GMlevel = (uint8)Sql_GetUIntData(SqlHandle, 0);
+        PChar->m_mentor = (uint8)Sql_GetUIntData(SqlHandle, 1);
     }
+
+    CalculateStats(PChar);
+    blueutils::LoadSetSpells(PChar);
+	BuildingCharSkillsTable(PChar);
+    PChar->PRecastContainer->ResetAbilities();
+	BuildingCharAbilityTable(PChar);
+	BuildingCharTraitsTable(PChar);
+    puppetutils::LoadAutomaton(PChar);
+    PChar->UpdateHealth();
+
+    PChar->m_event.EventID = luautils::OnZoneIn(PChar);
+
+	PChar->animation = (PChar->health.hp == 0 ? ANIMATION_DEATH : ANIMATION_NONE);
 
     charutils::LoadInventory(PChar);
     if (!zoning)
@@ -1157,7 +1158,6 @@ void UpdateSubJob(CCharEntity* PChar)
     PChar->PRecastContainer->ResetAbilities();
     charutils::BuildingCharAbilityTable(PChar);
     charutils::BuildingCharTraitsTable(PChar);
-    charutils::BuildingCharWeaponSkills(PChar);
 
     PChar->UpdateHealth();
     PChar->health.hp = PChar->GetMaxHP();
@@ -1450,8 +1450,8 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID)
 			}
 			break;
 		}
+
         charutils::BuildingCharSkillsTable(PChar);
-        charutils::CalculateStats(PChar);
 
         PChar->UpdateHealth();
 		PChar->m_EquipSwap = true;
@@ -1750,8 +1750,6 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 contai
             RemoveSub(PChar);
 
 		PChar->status = STATUS_UPDATE;
-		PChar->m_EquipSwap = true;
-        PChar->updatemask |= UPDATE_LOOK;
 		PChar->pushPacket(new CEquipPacket(slotID, equipSlotID, containerID));
 	}
 	else
@@ -1814,10 +1812,10 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 contai
 		}
 
         BuildingCharWeaponSkills(PChar);
+        PChar->pushPacket(new CCharAbilitiesPacket(PChar));
     }
 
     charutils::BuildingCharSkillsTable(PChar);
-    charutils::CalculateStats(PChar);
 
     PChar->UpdateHealth();
 	PChar->m_EquipSwap = true;
@@ -1891,7 +1889,6 @@ void RemoveAllEquipment(CCharEntity* PChar)
     }
 	// Determines the UnarmedItem to use, since all slots are empty now.
 	CheckUnarmedWeapon(PChar);
-    PChar->pushPacket(new CCharAppearancePacket(PChar));
 
     BuildingCharWeaponSkills(PChar);
     SaveCharEquip(PChar);
@@ -1998,7 +1995,6 @@ void BuildingCharWeaponSkills(CCharEntity* PChar)
 			}
 		}
 	}
-	PChar->pushPacket(new CCharAbilitiesPacket(PChar));
 }
 
 void BuildingCharPetAbilityTable(CCharEntity* PChar, CPetEntity* PPet, uint32 PetID){
@@ -2348,7 +2344,6 @@ void BuildingCharTraitsTable(CCharEntity* PChar)
 
     PChar->m_magicEvasion = battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PChar->GetMLevel());
 	PChar->addModifier(MOD_MEVA, PChar->m_magicEvasion);
-	PChar->pushPacket(new CCharAbilitiesPacket(PChar));
 }
 
 /************************************************************************
