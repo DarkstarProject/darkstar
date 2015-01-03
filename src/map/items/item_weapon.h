@@ -44,13 +44,16 @@ public:
 	uint16	getDmgType();
     uint8   getAdditionalEffect();
     uint8   getHitCount();
-	uint16  getUnlockId();
+	uint16  getUnlockPoints();
+    uint16  getCurrentUnlockPoints();
     void    resetDelay();
+    bool    addWsPoints(uint8 points);
 
     bool    isRanged();
     bool    isThrowing();
     bool    isTwoHanded();
 	bool    isUnlockable();
+    bool    isUnlocked();
 
 	void	setSkillType(uint8 skillType);
 	void	setSubSkillType(uint8 subSkillType);
@@ -60,7 +63,8 @@ public:
 	void	setDmgType(uint16 dmgType);
     void    setAdditionalEffect(uint8 effect);
     void    setMaxHit(uint8 hit);
-	void    setUnlockable(uint16 unlockId);
+	void    setUnlockablePoints(uint16 points);
+    void    setCurrentUnlockPoints(uint16 points);
 
 private:
 
@@ -72,7 +76,8 @@ private:
 	uint16	m_dmgType;
     uint8   m_effect;
     uint8   m_maxHit;
-	uint16	m_unlockId;
+
+    uint16  m_wsunlockpoints;
 
     bool    m_ranged;
     bool    m_twoHanded;

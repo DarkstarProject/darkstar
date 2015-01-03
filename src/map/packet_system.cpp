@@ -3766,16 +3766,19 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
             if (LinkshellID = linkshell::RegisterNewLinkshell(DecodedName, LinkshellColor))
             {
-                const int8* Query = "UPDATE char_inventory SET signature = '%s', itemId = 513 WHERE charid = %u AND location = 0 AND slot = %u LIMIT 1";
+                PItemLinkshell->setID(513);
+                PItemLinkshell->SetLSID(LinkshellID);
+                PItemLinkshell->setSignature(EncodedName); //because apparently the format from the packet isn't right, and is missing terminators
+                PItemLinkshell->SetLSColor(LinkshellColor);
 
-                if (Sql_Query(SqlHandle, Query, DecodedName, PChar->id, SlotID) != SQL_ERROR &&
+                int8 extra[sizeof(PItemLinkshell->m_extra) * 2 + 1];
+                Sql_EscapeStringLen(SqlHandle, extra, (const char*)PItemLinkshell->m_extra, sizeof(PItemLinkshell->m_extra));
+
+                const int8* Query = "UPDATE char_inventory SET signature = '%s', extra = '%s', itemId = 513 WHERE charid = %u AND location = 0 AND slot = %u LIMIT 1";
+
+                if (Sql_Query(SqlHandle, Query, DecodedName, extra, PChar->id, SlotID) != SQL_ERROR &&
                     Sql_AffectedRows(SqlHandle) != 0)
                 {
-                    PItemLinkshell->setID(513);
-                    PItemLinkshell->SetLSID(LinkshellID);
-                    PItemLinkshell->setSignature(EncodedName); //because apparently the format from the packet isn't right, and is missing terminators
-                    PItemLinkshell->SetLSColor(LinkshellColor);
-
                     PChar->pushPacket(new CInventoryItemPacket(PItemLinkshell, LOC_INVENTORY, SlotID));
                 }
             }
@@ -4573,25 +4576,26 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, int8* dat
         {
             rotation = (col >= 2 ? 3 : 1);
         }
+
+        PItem->setInstalled(true);
+        PItem->setCol(col);
+        PItem->setRow(row);
+        PItem->setLevel(level);
+        PItem->setRotation(rotation);
+
+        PItem->setSubType(ITEM_LOCKED);
+
+        int8 extra[sizeof(PItem->m_extra) * 2 + 1];
+        Sql_EscapeStringLen(SqlHandle, extra, (const int8*)PItem->m_extra, sizeof(PItem->m_extra));
+
         const int8* Query =
             "UPDATE char_inventory "
             "SET "
-            "locked = 1,"
-            "col = %u,"
-            "row = %u,"
-            "level = %u,"
-            "rotation = %u "
+            "extra = '%s' "
             "WHERE location = 1 AND slot = %u AND charid = %u";
 
-        if (Sql_Query(SqlHandle, Query, col, row, level, rotation, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
+        if (Sql_Query(SqlHandle, Query, extra, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
         {
-            PItem->setCol(col);
-            PItem->setRow(row);
-            PItem->setLevel(level);
-            PItem->setRotation(rotation);
-
-            PItem->setSubType(ITEM_LOCKED);
-
             PChar->getStorage(LOC_STORAGE)->AddBuff(PItem->getStorage());
 
             PChar->pushPacket(new CInventorySizePacket(PChar));
@@ -4633,25 +4637,25 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, int8* dat
 
         if (PItemContainer->GetFreeSlotsCount() >= RemovedSize)
         {
+            PItem->setInstalled(false);
+            PItem->setCol(0);
+            PItem->setRow(0);
+            PItem->setLevel(0);
+            PItem->setRotation(0);
+
+            PItem->setSubType(ITEM_UNLOCKED);
+
+            int8 extra[sizeof(PItem->m_extra) * 2 + 1];
+            Sql_EscapeStringLen(SqlHandle, extra, (const int8*)PItem->m_extra, sizeof(PItem->m_extra));
+
             const int8* Query =
                 "UPDATE char_inventory "
                 "SET "
-                "locked = 0,"
-                "col = 0,"
-                "row = 0,"
-                "level = 0,"
-                "rotation = 0 "
+                "extra = '%s' "
                 "WHERE location = 1 AND slot = %u AND charid = %u";
 
-            if (Sql_Query(SqlHandle, Query, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
+            if (Sql_Query(SqlHandle, Query, extra, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
             {
-                PItem->setCol(0);
-                PItem->setRow(0);
-                PItem->setLevel(0);
-                PItem->setRotation(0);
-
-                PItem->setSubType(ITEM_UNLOCKED);
-
                 uint8 NewSize = PItemContainer->GetSize() - RemovedSize;
                 for (uint8 SlotID = PItemContainer->GetSize(); SlotID > NewSize; --SlotID)
                 {

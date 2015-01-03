@@ -424,15 +424,15 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
 					CItemWeapon* PWeaponMain = (CItemWeapon*)m_POwner->getEquip(SLOT_MAIN);
 					CItemWeapon* PWeaponSub = (CItemWeapon*)m_POwner->getEquip(SLOT_SUB);
 					CItemWeapon* PWeaponRanged = (CItemWeapon*)m_POwner->getEquip(SLOT_RANGED);
-					if( PWeaponMain && m_POwner->unlockedWeapons[PWeaponMain->getUnlockId()-1].unlocked && m_LatentEffectList.at(i)->GetSlot() == SLOT_MAIN )
+					if( PWeaponMain && PWeaponMain->isUnlocked() && m_LatentEffectList.at(i)->GetSlot() == SLOT_MAIN )
 					{
 						m_LatentEffectList.at(i)->Activate();
 					}
-					if( PWeaponSub && m_POwner->unlockedWeapons[PWeaponSub->getUnlockId()-1].unlocked && m_LatentEffectList.at(i)->GetSlot() == SLOT_SUB)
+                    if (PWeaponSub && PWeaponSub->isUnlocked() && m_LatentEffectList.at(i)->GetSlot() == SLOT_SUB)
 					{
 						m_LatentEffectList.at(i)->Activate();
 					}
-					if( PWeaponRanged && m_POwner->unlockedWeapons[PWeaponRanged->getUnlockId()-1].unlocked && m_LatentEffectList.at(i)->GetSlot() == SLOT_RANGED)
+                    if (PWeaponRanged && PWeaponRanged->isUnlocked() && m_LatentEffectList.at(i)->GetSlot() == SLOT_RANGED)
 					{
 						m_LatentEffectList.at(i)->Activate();
 					}
@@ -1431,7 +1431,7 @@ void CLatentEffectContainer::CheckLatentsWeaponBreak(uint8 slot)
 		if( m_LatentEffectList.at(i)->GetConditionsID() == LATENT_WEAPON_BROKEN && m_LatentEffectList.at(i)->GetConditionsValue() == slot)
 		{
 			CItemWeapon* PWeaponMain = (CItemWeapon*)m_POwner->getEquip((SLOTTYPE)slot);
-			if( PWeaponMain && m_POwner->unlockedWeapons[PWeaponMain->getUnlockId()-1].unlocked && m_LatentEffectList.at(i)->GetSlot() == slot )
+			if( PWeaponMain && PWeaponMain->isUnlocked() && m_LatentEffectList.at(i)->GetSlot() == slot )
 			{
 				m_LatentEffectList.at(i)->Activate();
 			}

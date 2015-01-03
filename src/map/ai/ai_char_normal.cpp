@@ -48,6 +48,7 @@
 #include "../packets/char_abilities.h"
 #include "../packets/char_health.h"
 #include "../packets/char_skills.h"
+#include "../packets/char_stats.h"
 #include "../packets/char_update.h"
 #include "../packets/inventory_assign.h"
 #include "../packets/inventory_finish.h"
@@ -2404,6 +2405,12 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	//apply TP Bonus
 	float bonusTp = m_PChar->getMod(MOD_TP_BONUS);
 
+    uint8 damslot = SLOT_MAIN;
+    if (m_PWeaponSkill->getID() >= 192 && m_PWeaponSkill->getID() <= 221)
+    {
+        damslot = SLOT_RANGED;
+    }
+
 	//remove TP Bonus from offhand weapon
 	if (m_PChar->equip[SLOT_SUB] != 0)
 	{
@@ -2419,7 +2426,7 @@ void CAICharNormal::ActionWeaponSkillFinish()
 	}
 
 	//if ranged WS, remove TP bonus from mainhand weapon
-	if (m_PWeaponSkill->getID() >= 192 && m_PWeaponSkill->getID() <= 221)
+	if (damslot == SLOT_RANGED)
 	{
 		if(m_PChar->equip[SLOT_MAIN] != 0)
 		{
@@ -2526,27 +2533,6 @@ void CAICharNormal::ActionWeaponSkillFinish()
 
 	if (!battleutils::isValidSelfTargetWeaponskill(m_PWeaponSkill->getID()))
 	{
-		uint8 damslot = SLOT_MAIN;
-		if (m_PWeaponSkill->getID()>=192 && m_PWeaponSkill->getID()<=218)
-		{
-			//ranged WS IDs
-			damslot = SLOT_RANGED;
-		}
-
-
-		// check for ws points
-		CItemWeapon* PWeapon = (CItemWeapon*)m_PChar->m_Weapons[damslot];
-
-		if (PWeapon->isUnlockable() && !m_PChar->unlockedWeapons[PWeapon->getUnlockId()-1].unlocked)
-		{
-			if (m_PChar->addWsPoints(1,PWeapon->getUnlockId()-1))
-			{
-				// weapon is now broken
-				m_PChar->PLatentEffectContainer->CheckLatentsWeaponBreak(damslot);
-			}
-		}
-
-
 		// add overwhelm damage bonus
 		damage = battleutils::getOverWhelmDamageBonus(m_PChar, m_PBattleSubTarget, damage);
 
@@ -2595,10 +2581,13 @@ void CAICharNormal::ActionWeaponSkillFinish()
 		m_PChar->addMP(damage);
 	}
 
+    uint8 wspoints = 0;
+
 	// try to skill up if ws hit
 	if(Action.reaction == REACTION_HIT)
 	{
 		charutils::TrySkillUP(m_PChar, (SKILLTYPE)m_PWeaponSkill->getType(), m_PBattleSubTarget->GetMLevel());
+        wspoints = 1;
 	}
 
 	if (m_PWeaponSkill->getID() >= 192 && m_PWeaponSkill->getID() <= 218)
@@ -2653,7 +2642,31 @@ void CAICharNormal::ActionWeaponSkillFinish()
             Action.addEffectMessage = 287 + effect;
             Action.additionalEffect = effect;
 
+            if (effect >= 7)
+                wspoints += 1;
+            else if (effect >= 3)
+                wspoints += 2;
+            else
+                wspoints += 4;
         }
+    }
+
+    // check for ws points
+    CItemWeapon* PWeapon = (CItemWeapon*)m_PChar->m_Weapons[damslot];
+
+    if (PWeapon->isUnlockable() && !PWeapon->isUnlocked())
+    {
+        if (PWeapon->addWsPoints(wspoints))
+        {
+            // weapon is now broken
+            m_PChar->PLatentEffectContainer->CheckLatentsWeaponBreak(damslot);
+            m_PChar->pushPacket(new CCharStatsPacket(m_PChar));
+        }
+        int8 extra[sizeof(PWeapon->m_extra) * 2 + 1];
+        Sql_EscapeStringLen(SqlHandle, extra, (const char*)PWeapon->m_extra, sizeof(PWeapon->m_extra));
+
+        const int8* Query = "UPDATE char_inventory SET extra = '%s' WHERE charid = %u AND location = %u AND slot = %u LIMIT 1";
+        Sql_Query(SqlHandle, Query, extra, m_PChar->id, PWeapon->getLocationID(), PWeapon->getSlotID());
     }
 
 	m_PChar->m_ActionList.push_back(Action);

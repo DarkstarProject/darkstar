@@ -105,11 +105,13 @@ public:
 	uint8	getElement();
 	uint8	getAura();
 
+    bool    isInstalled();
 	uint8	getCol();
 	uint8	getRow();
 	uint8	getLevel();
 	uint8	getRotation();
 
+    void    setInstalled(bool installed);
 	void	setStorage(uint8 storage);
 	void	setMoghancement(uint8 moghancement);
 	void	setElement(uint8 element);
@@ -126,11 +128,6 @@ private:
 	uint8	m_moghancement;
 	uint8	m_element;
 	uint8	m_aura;
-
-	uint8	m_col;
-	uint8	m_row;
-	uint8	m_level;
-	uint8	m_rotation;
 };
 
 #endif

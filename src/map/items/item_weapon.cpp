@@ -48,7 +48,7 @@ CItemWeapon::CItemWeapon(uint16 id) : CItemArmor(id)
     m_maxHit		= 0;
     m_ranged		= false;
     m_twoHanded		= false;
-	m_unlockId		= 0;
+	m_wsunlockpoints= 0;
 }
 
 CItemWeapon::~CItemWeapon() {}
@@ -96,9 +96,27 @@ bool CItemWeapon::isUnlockable()
 {
     if(m_skillType == SKILL_NON) return false;
 
-	return ( m_unlockId > 0 ? true : false );
+	return ( m_wsunlockpoints > 0 ? true : false );
 }
 
+bool CItemWeapon::isUnlocked()
+{
+    return isUnlockable() && getCurrentUnlockPoints() == m_wsunlockpoints;
+}
+
+bool CItemWeapon::addWsPoints(uint8 points)
+{
+    if (getCurrentUnlockPoints() + points >= m_wsunlockpoints)
+    {
+        setCurrentUnlockPoints(m_wsunlockpoints);
+        return true;
+    }
+    else
+    {
+        setCurrentUnlockPoints(getCurrentUnlockPoints() + points);
+        return false;
+    }
+}
 
 /************************************************************************
 *                                                                       *
@@ -186,13 +204,18 @@ int16 CItemWeapon::getBaseDelay()
 }
 /************************************************************************
 *                                                                       *
-*  get unlock id		                                                *
+*  get unlock points	                                                *
 *                                                                       *
 ************************************************************************/
 
-uint16 CItemWeapon::getUnlockId()
+uint16 CItemWeapon::getUnlockPoints()
 {
-	return m_unlockId;
+	return m_wsunlockpoints;
+}
+
+uint16 CItemWeapon::getCurrentUnlockPoints()
+{
+    return RBUFW(m_extra, 0);
 }
 
 /************************************************************************
@@ -243,16 +266,20 @@ uint8 CItemWeapon::getAdditionalEffect()
     return m_effect;
 }
 
-
 /************************************************************************
 *                                                                       *
-*  set unlockable property of weapon			                        *
+*  set unlockable points of weapon	    		                        *
 *                                                                       *
 ************************************************************************/
 
-void CItemWeapon::setUnlockable(uint16 unlockId)
+void CItemWeapon::setUnlockablePoints(uint16 points)
 {
-    m_unlockId = unlockId;
+    m_wsunlockpoints = points;
+}
+
+void CItemWeapon::setCurrentUnlockPoints(uint16 points)
+{
+    WBUFW(m_extra, 0) = points;
 }
 
 /************************************************************************

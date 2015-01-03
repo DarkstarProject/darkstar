@@ -982,16 +982,17 @@ inline int32 CLuaBaseEntity::createWornItem(lua_State *L)
     if(slotID != -1)
     {
         CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
+        PItem->m_extra[0] = 1;
+
+        int8 extra[sizeof(PItem->m_extra) * 2 + 1];
+        Sql_EscapeStringLen(SqlHandle, extra, (const int8*)PItem->m_extra, sizeof(PItem->m_extra));
 
         const int8* Query =
                 "UPDATE char_inventory "
-                "SET worn = 1 "
+                "SET extra = '%s' "
                 "WHERE charid = %u AND location = %u AND slot = %u;";
 
-        if (Sql_Query(SqlHandle, Query, PChar->id, PItem->getLocationID(), PItem->getSlotID()) != SQL_ERROR)
-        {
-            PItem->setWornItem(1);
-        }
+        Sql_Query(SqlHandle, Query, extra, PChar->id, PItem->getLocationID(), PItem->getSlotID());
     }
 
     return 0;
@@ -1015,7 +1016,7 @@ inline int32 CLuaBaseEntity::hasWornItem(lua_State *L)
     {
         CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
 
-        lua_pushboolean( L, PItem->getWornItem() == 1 );
+        lua_pushboolean(L, PItem->m_extra[0] == 1);
         return 1;
     }
     return 0;

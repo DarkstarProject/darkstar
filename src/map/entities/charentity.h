@@ -302,10 +302,6 @@ public:
 	bool			  isRapidShot;										// Flag to track rapid shot
 	bool			  secondDoubleShotTaken;							// Flag to track number of double shots taken
 
-	bool			  isWeaponUnlocked(uint16 indexid);					// return if weapon is broken
-	bool			  addWsPoints(uint8 points, uint16 WeaponIndex);	// return if weapon is broken
-	UnlockedWeapons_t unlockedWeapons[MAX_UNLOCKABLE_WEAPONS];			// chars unlocked weapon status
-
 	int16 addTP(int16 tp) override;
 	int32 addHP(int32 hp) override;
 	int32 addMP(int32 mp) override;

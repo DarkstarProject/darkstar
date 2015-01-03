@@ -46,6 +46,9 @@ public:
     uint8   GetSize();
     uint8   GetStamina();
     uint8   GetRodFlag();
+    uint16  GetLength();
+    uint16  GetWeight();
+    bool    IsRanked();
     
     void    SetMin(uint8);
     void    SetMax(uint8);
@@ -53,6 +56,9 @@ public:
     void    SetSize(uint8);
     void    SetStamina(uint8);
     void    SetRodFlag(uint8);
+    void    SetLength(uint16);
+    void    SetWeight(uint16);
+    void    SetRank(bool);
 
     virtual ~CItemFish();
 

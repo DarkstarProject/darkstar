@@ -206,7 +206,6 @@ int32 do_init(int32 argc, int8** argv)
     effects::LoadEffectsParameters();
 	battleutils::LoadSkillTable();
 	meritNameSpace::LoadMeritsList();
-	nameSpaceUnlockableWeapons::LoadUnlockableWeaponList();
 	ability::LoadAbilitiesList();
 	battleutils::LoadWeaponSkillsList();
 	battleutils::LoadMobSkillsList();
