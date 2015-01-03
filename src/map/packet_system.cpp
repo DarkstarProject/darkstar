@@ -3240,6 +3240,7 @@ void SmallPacket0x084(map_session_data_t* session, CCharEntity* PChar, int8* dat
             (PItem->getID() == itemID) &&
             !(PItem->getFlag() & ITEM_FLAG_NOSALE))
         {
+            quantity = dsp_min(quantity, PItem->getQuantity());
             PChar->Container->setItem(PChar->Container->getSize() - 1, itemID, slotID, quantity);
             PChar->pushPacket(new CShopAppraisePacket(slotID, PItem->getBasePrice()));
         }
