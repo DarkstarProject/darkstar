@@ -7215,6 +7215,61 @@ inline int32 CLuaBaseEntity::hideNPC(lua_State *L)
 
 //==========================================================//
 
+inline int32 CLuaBaseEntity::getCurrency(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
+
+    const char* type = lua_tostring(L,1);
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    lua_pushinteger(L, charutils::GetPoints(PChar, type));
+
+    return 1;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::addCurrency(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    const char* type = lua_tostring(L,1);
+    int32 amount = (int32)lua_tointeger(L, 2);
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    charutils::AddPoints(PChar, type, amount);
+
+    return 0;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::delCurrency(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    const char* type = lua_tostring(L,1);
+    int32 amount = (int32)lua_tointeger(L, 2);
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    charutils::AddPoints(PChar, type, -amount);
+
+    return 0;
+}
+
+//==========================================================//
+
 inline int32 CLuaBaseEntity::getCP(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
@@ -9875,9 +9930,12 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,RestoreAndHealOnBattlefield),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,BCNMSetLoot),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBattlefieldID),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCurrency),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addCurrency),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,delCurrency),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addCP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delCP),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSeals),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addSeals),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delSeals),

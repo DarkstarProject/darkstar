@@ -431,8 +431,12 @@ public:
     int32 resetRecasts(lua_State*);         // Reset recasts for the caller
     int32 resetRecast(lua_State*);          // Reset one recast ID
 
-    int32 addCP(lua_State*);                // Add CP
+    int32 getCurrency(lua_State*);          // Get Currency
+    int32 addCurrency(lua_State*);          // Add Currency
+    int32 delCurrency(lua_State*);          // Delete Currency
+
     int32 getCP(lua_State*);                // Get CP
+    int32 addCP(lua_State*);                // Add CP
     int32 delCP(lua_State*);                // Delete CP
 
     int32 getSeals(lua_State*);             // Get Seals (beastman seals, etc)
