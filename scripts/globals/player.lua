@@ -268,7 +268,7 @@ function CharCreate(player)
       for i=385,447 do
          player:addKeyItem(i);
       end
-      for i=1856,1903 do
+      for i=1856,1915 do
          player:addKeyItem(i);
       end
    end
