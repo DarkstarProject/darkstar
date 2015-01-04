@@ -1,9 +1,10 @@
 -----------------------------------
 -- Elevator in Palborough
+-- Notes: Used to operate Elevator @3z0
 -----------------------------------
 package.loaded["scripts/zones/Palborough_Mines/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/zones/Palborough_Mines/TextIDs");
@@ -20,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	RunElevator(22);
+	RunElevator(ELEVATOR_PALBOROUGH_MINES_LIFT);
 end;
 
 -----------------------------------

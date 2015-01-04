@@ -109,6 +109,8 @@
 #include "../ai/ai_npc_dummy.h"
 #include "../ai/ai_mob_dummy.h"
 
+#include "../transport.h"
+
 CLuaBaseEntity::CLuaBaseEntity(lua_State* L)
 {
     if( !lua_isnil(L,1) )
@@ -9613,6 +9615,39 @@ inline int32 CLuaBaseEntity::removeAllManeuvers(lua_State* L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::setElevator(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 4) || !lua_isnumber(L, 3));
+
+    Elevator_t elevator;
+
+    // id should be 0 for most elevators, except special ones such as port bastok drawbridge
+    elevator.id = (uint8)lua_tointeger(L, 1);
+    elevator.LowerDoor = (CNpcEntity*)zoneutils::GetEntity(lua_tointeger(L, 2), TYPE_NPC);
+    elevator.UpperDoor = (CNpcEntity*)zoneutils::GetEntity(lua_tointeger(L, 3), TYPE_NPC);
+    elevator.Elevator = (CNpcEntity*)zoneutils::GetEntity(lua_tointeger(L, 4), TYPE_NPC);
+
+    elevator.isMoving = false;
+    elevator.isStarted = (!lua_isnil(L, 5) && lua_isnumber(L, 5)) ? (lua_tointeger(L, 5) != 0) : 0;
+    elevator.isPermanent = (!lua_isnil(L, 6) && lua_isnumber(L, 6)) ? (lua_tointeger(L, 6) != 0) : 0;
+
+    elevator.movetime = ((elevator.UpperDoor == NULL) || (elevator.LowerDoor == NULL) ? 0 : 3);
+    elevator.interval = 8;// ((elevator.UpperDoor == NULL) || (elevator.LowerDoor == NULL) || (!elevator.isPermanent) ? 8 : 8);
+
+    elevator.zone = m_PBaseEntity->loc.zone->GetID();
+
+    elevator.Elevator->name.resize(10);
+    CTransportHandler::getInstance()->insertElevator(elevator);
+
+    return 0;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -10051,5 +10086,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeOldestManeuver),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeAllManeuvers),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addBurden),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setElevator),
     {NULL,NULL}
 };

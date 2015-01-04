@@ -596,6 +596,8 @@ public:
     int32 removeOldestManeuver(lua_State*);
     int32 removeAllManeuvers(lua_State*);
     int32 addBurden(lua_State* L);
+
+    int32 setElevator(lua_State* L);
 };
 
 #endif

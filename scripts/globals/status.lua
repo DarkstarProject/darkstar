@@ -1956,3 +1956,13 @@ BEHAVIOUR_STANDBACK			= 0x002; -- mob will standback forever
 BEHAVIOUR_RAISABLE			= 0x004; -- mob can be raised via Raise spells
 BEHAVIOUR_AGGRO_AMBUSH		= 0x200; -- mob aggroes by ambush
 BEHAVIOUR_NO_TURN           = 0x400; -- mob does not turn to face target
+
+------------------------------------
+--
+-- Elevator IDs
+--
+------------------------------------
+ELEVATOR_KUFTAL_TUNNEL_DSPPRNG_RCK		= 1;
+ELEVATOR_PORT_BASTOK_DRWBRDG			= 2;
+ELEVATOR_DAVOI_LIFT                     = 3;
+ELEVATOR_PALBOROUGH_MINES_LIFT          = 4;
